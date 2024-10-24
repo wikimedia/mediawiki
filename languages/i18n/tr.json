@@ -6,7 +6,6 @@
 			"Ahmetlii",
 			"Alerque",
 			"Alikaan",
-			"Amire80",
 			"Arystanbek",
 			"Asmen",
 			"Ayrıntılı Bilgi",
@@ -124,7 +123,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"RuzDD",
-			"Vikipolimer"
+			"Vikipolimer",
+			"RoseloveDoodles"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çizme:",
@@ -1714,7 +1714,7 @@
 	"rcfilters-filter-watchlist-watched-label": "İzleme Listesinde",
 	"rcfilters-filter-watchlist-watched-description": "İzleme Listenizdeki sayfalarda değişiklikler.",
 	"rcfilters-filter-watchlist-watchednew-label": "Yeni İzleme Listesi değişiklikleri",
-	"rcfilters-filter-watchlist-watchednew-description": "Değişiklikler gerçekleştiğinden beri ziyaret etmediğiniz Lzleme Listenizdeki sayfalarda yapılan değişiklikler.",
+	"rcfilters-filter-watchlist-watchednew-description": "Değişiklikler gerçekleştiğinden beri ziyaret etmediğiniz İzleme Listenizdeki sayfalarda yapılan değişiklikler.",
 	"rcfilters-filter-watchlist-notwatched-label": "İzleme Listesinde değil",
 	"rcfilters-filter-watchlist-notwatched-description": "İzleme listenizdeki sayfalardaki değişiklikler hariç her şey.",
 	"rcfilters-filtergroup-watchlistactivity": "İzleme listesi faaliyetleri",

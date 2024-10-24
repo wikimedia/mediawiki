@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"CorrelMoris38",
 			"DannyS712",
 			"FRANCIS5091",
@@ -549,9 +548,9 @@
 	"changeemail-none": "(ingaa)",
 	"changeemail-submit": "Alanai surat-i",
 	"changeemail-nochange": "Posuango alamat e-mel wagu di suai",
-	"edit-recovery-special-view": "Intangai",
+	"edit-recovery-special-view": "intangai",
 	"edit-recovery-special-edit": "idito",
-	"edit-recovery-special-recovered-on": "Mantad $1",
+	"edit-recovery-special-recovered-on": "mantad $1",
 	"edit-recovery-loaded-show": "Pokitono kosimbanon",
 	"summary": "Koinibaan:",
 	"subject": "Ahal:",
@@ -628,7 +627,7 @@
 	"template-protected": "(tingoligan)",
 	"template-semiprotected": "(noumoligan)",
 	"hiddencategories": "Bolikan nopo diti nga haro id suang {{PLURAL:$1|1 kategori poinlisok|$1 kategori poinlisok}}:",
-	"nocreatetext": "{{SITENAME}} tinagal kasagaan momonsoi bobolikon kawawagu.\nMilo ko do gumuli om mongidit di bolikon poinsuang, toi ko [[Special:UserLogin|sumuang log toi momonsoi do takaun.]].",
+	"nocreatetext": "{{SITENAME}} tinagal kasagaan momonsoi bobolikon kawawagu.\nMilo ko do gumuli om mongidit di bolikon poinsuang, toi ko [[Special:UserLogin|sumuang log toi momonsoi do takaun]].",
 	"nocreate-loggedin": "Ingaa kasagaannu do momonsoi bobolikon wagu.",
 	"sectioneditnotsupported-title": "Boogian mongidit awu nosokodung",
 	"permissionserrors": "Ralat papasaga",

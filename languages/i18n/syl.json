@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Asmani Haz",
 			"Mahir256",
 			"Sadidmibzalhan",
@@ -343,6 +342,7 @@
 	"changeemail-oldemail": "ꠅꠘꠇꠥꠞ ꠁꠝꠦꠁꠟꠞ ꠑꠤꠇꠣꠘꠣ ꠪",
 	"changeemail-newemail": "ꠘꠄꠀ ꠁꠝꠦꠁꠟꠞ ꠑꠤꠇꠣꠘꠣ ꠪",
 	"changeemail-none": "( ꠇꠥꠘ꠆ꠔꠣꠘꠣ )",
+	"changeemail-password": "ꠀꠙꠘꠣꠞ {{SITENAME}} ꠙꠣꠍꠅꠣꠒ ꠪",
 	"changeemail-submit": "ꠁꠝꠦꠁꠟ ꠛꠖꠟꠣꠃꠇ꠆ꠇꠣ",
 	"resettokens": "ꠐꠥꠇꠦꠘꠣꠁꠘ ꠙꠄꠟꠣꠔꠘꠦ ꠇꠞꠂꠘ",
 	"resettokens-tokens": "ꠐꠥꠇꠦꠘꠣꠁꠘ ꠪",
@@ -373,6 +373,7 @@
 	"temp-user-banner-tooltip-title": "ꠀꠙꠣꠔꠔꠇꠥꠞ ꠄꠇꠣꠃꠘ",
 	"anoneditwarning": "<strong>ꠡꠣꠛꠖꠣꠘ ꠪</strong> ꠀꠚꠘꠦ ꠟꠉ ꠁꠘ ꠈꠞꠣ ꠘꠣꠄ ⁕ ꠅꠘꠦ ꠀꠚꠘꠦ ꠇꠥꠘꠔꠣ ꠟꠦꠈꠟꠦ ꠀꠝꠙꠣꠛꠟꠤꠇꠞ ꠉꠦꠍꠦ ꠀꠚꠘꠣꠞ IP ꠄꠒ꠆ꠞꠍ ꠖꠦꠈꠣ ꠎꠣꠁꠛ ⁕ ꠀꠚꠘꠦ ꠎꠖꠤ <strong>[$1 ꠟꠉ ꠁꠘ]</strong> ꠈꠞꠂꠘ ꠛꠣ ꠄꠉꠥ <strong>[$2 ꠄꠇꠣꠃꠘ꠆ꠐ ꠔꠣꠁꠀꠞ]</strong> ꠈꠞꠂꠘ ꠨ ꠔꠦ ꠀꠚꠘꠣꠞ ꠟꠦꠈꠣꠁꠘ ꠅꠁꠘ꠆ꠘꠣꠘ꠆ꠘ ꠡꠥꠛꠤꠗꠣꠞ ꠟꠉꠦ ꠀꠚꠘꠣꠞ ꠛꠦꠛꠀꠞꠈꠞꠞꠣ ꠘꠣꠝꠦ ꠎꠥꠠꠣ ꠅꠁꠛ ⁕",
 	"missingcommenttext": "ꠄꠇꠣꠘ ꠝꠔ ꠖꠦꠃꠇ꠆ꠇꠣ ⁕",
+	"summary-preview": "ꠀꠉꠦꠛꠣꠞꠤ ꠖꠦꠈꠂꠘ ꠡꠋꠇꠦꠙꠦ ꠪",
 	"blockedtitle": "ꠛꠦꠛꠀꠞꠇꠞ꠆ꠞꠣ ꠛꠟꠇ ꠝꠣꠞꠣ",
 	"blockedtext": "<strong>ꠀꠙꠘꠣꠞ ꠛꠦꠛꠀꠞꠇꠞ꠆ꠞꠣ ꠘꠣꠝ ꠀꠞꠘꠣꠄ ꠀꠁꠙꠤ ꠑꠤꠇꠣꠘꠣ ꠘꠤꠡꠤꠖ꠆ꠖ ꠇꠞꠣ ꠅꠁꠍꠦ ॥</strong>\n\nꠘꠤꠡꠤꠖ꠆ꠖ ꠇꠞ꠆ꠍꠂꠘ $1 ॥\nꠇꠣꠞꠘ ꠖꠤꠍꠂꠘ <em>$2</em> ॥\n\n* ꠘꠤꠡꠤꠖ꠆ꠖ ꠀꠞꠝ꠆ꠛ : $8\n* ꠘꠤꠡꠤꠖ꠆ꠖ ꠡꠦꠡ ꠅꠁꠛꠧ : $6\n* ꠎꠣꠞ ꠃꠖ꠆ꠖꠦꠡ ꠘꠤꠡꠤꠖ꠆ꠖ : $7\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nꠀꠙ꠆ꠘꠦ ꠛꠦꠛꠀꠞ ꠇꠞ꠆ꠔꠦ ꠙꠣꠞꠂꠘ \"{{int:emailuser}}\" ꠃꠙꠣꠄ ꠎꠖꠤꠘ ꠄꠉꠥ ꠑꠤꠇꠑꠣꠇ ꠁꠝꠦꠁꠟ ꠖꠤꠀ ꠕꠣꠇꠂꠘ ꠔꠦ [[Special:Preferences|ꠛꠣꠅ]] ꠀꠞ ꠀꠙ꠆ꠘꠦ ꠁꠈꠣꠘ ꠛꠦꠛꠀꠞ ꠇꠞꠣ ꠕꠘꠦ ꠘꠤꠡꠤꠖ꠆ꠖ ꠘꠣ ꠕꠣꠇꠂꠘ\nꠀꠙ꠆ꠘꠣꠞ ꠅꠘ꠆ꠇꠥꠞ ꠀꠁꠙꠤ ꠑꠤꠇꠣꠘꠣ $3 ꠨ ꠀꠞ ꠘꠤꠡꠤꠖ꠆ꠖꠞ ꠙꠞꠤꠌꠄ ꠘꠝ꠆ꠛꠞ #$5 ॥\nꠖꠄꠀꠇꠞꠤ ꠀꠞ ꠎꠥꠉꠣꠎꠥꠉ ꠇꠞ꠆ꠟꠦ ꠅꠁꠟ ꠃꠙ꠆ꠞꠞ ꠢꠇꠟ꠆ꠔꠣ ꠖꠤꠛꠣ ॥",
 	"blockednoreason": "ꠇꠥꠘꠇꠣꠞꠘꠦ ꠇꠅꠀ ꠅꠁꠍꠦꠘꠣ",
@@ -443,6 +444,7 @@
 	"history-feed-title": "ꠙꠤꠞꠤꠀꠖꠦꠈꠣꠞ ꠁꠔꠤꠀꠡ",
 	"history-feed-description": "ꠢꠤꠞꠛꠣꠞꠖꠦꠈꠣ history for this page on the wiki",
 	"history-feed-item-nocomment": "$2 ꠄ $1 ꠐꠣꠞ ꠡꠝꠄ",
+	"rev-deleted-user": "(ꠛꠦꠛꠀꠞꠇꠞ꠆ꠞꠣ ꠢꠞꠣꠁꠟꠅꠁꠉꠦꠍ)",
 	"rev-delundel": "ꠛꠖꠟꠣꠘꠤꠞ ꠖꠦꠈꠣ",
 	"rev-showdeleted": "ꠖꠦꠈꠣꠁꠘ",
 	"revisiondelete": "ꠞꠤꠜꠤꠡꠘꠣꠁꠘ ꠙꠣꠟꠣꠁꠘ / ꠙꠣꠟꠣꠁꠟꠔꠣ ꠢꠤꠞꠤ ꠀꠘꠂꠘ",

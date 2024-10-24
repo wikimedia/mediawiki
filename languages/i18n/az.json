@@ -44,8 +44,7 @@
 			"Şeyx Şamil",
 			"לערי ריינהארט",
 			"아라",
-			"Nemoralis",
-			"Amire80"
+			"Nemoralis"
 		]
 	},
 	"tog-underline": "Keçidlərin altını xətlə:",
@@ -770,8 +769,8 @@
 	"editpage-cannot-use-custom-model": "Bu səhifənin məzmun modeli dəyişdirilə bilməz.",
 	"longpageerror": "<strong>Xəta: Daxil etdiyiniz mətnin həcmi {{PLURAL:$2|bir kilobayt|$2 kilobayt}} limitini aşır və {{PLURAL:$1|bir kilobayt|$1 kilobayt}} həcmindədir.</strong>\nRedaktəniz yayımlanabilməz.",
 	"readonlywarning": "<strong>Xəbərdarlıq: Verilənlər bazası texniki baxış üçün kilidlənib, yəni redaktələrinizi hazırda yayımlaya bilməzsiniz.</strong>\nMətni mətn faylına köçürüb daha sonra əlavə etməyinizi tövsiyə edirik.\n\nBazanı kilidləyən sistem idarəçisinin verdiyi səbəb: $1",
-	"protectedpagewarning": "<strong>Xəbərdarlıq:</strong> Bu səhifə mühafizə edildiyi üçün yalnız inzibatçılar redaktə edə bilərlər.\n\nƏn son jurnal qeydi aşağıda verilmişdir:",
-	"semiprotectedpagewarning": "'''Qeyd:''' Bu səhifə mühafizəli olduğu üçün onu yalnız qeydiyyatdan keçmiş istifadəçilər redaktə edə bilərlər. Mühafizə qeydlərindəki ən son qeyd aşağıda göstərilmişdir:",
+	"protectedpagewarning": "<strong>Xəbərdarlıq: Bu səhifəni yalnız inzibatçılar redaktə edə bilər.</strong>\n\nMühafizə jurnalındakı axırıncı qeyd istinad üçün aşağıda göstərilib:",
+	"semiprotectedpagewarning": "<strong>Qeyd:</strong> Bu səhifə sadəcə avtotəsdiqlənmiş istifadəçilər tərəfindən redaktə edilə bilər.\nMühafizə jurnalındakı axırıncı qeyd istinad üçün aşağıda göstərilib:",
 	"cascadeprotectedwarning": "<strong>Xəbərdarlıq:</strong> Bu səhifə yalnız [[Special:ListGroupRights|xüsusi hüquqlara malik]] istifadəçilər tərəfindən redaktə ediləcək şəkildə mühafizə edilir. Çünki bu səhifə aşağıdakı kaskad mühafizə ilə qorunan {{PLURAL:$1|səhifəyə|səhifələrə}} daxildir:",
 	"titleprotectedwarning": "'''DİQQƏT! Bu səhifə mühafizəlidir, yalnız [[Special:ListGroupRights|icazəsi olan]] istifadəçilər onu redaktə edə bilərlər.'''",
 	"templatesused": "Bu səhifədə istifadə edilmiş {{PLURAL:$1|şablon|şablonlar}}:",

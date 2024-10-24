@@ -944,7 +944,7 @@
 	"apihelp-query+info-param-testactionsdetail": "רמת פירוט של <var>$1testactions</var>. יש להשתמש בפרמטרים <var>errorformat</var> ו־<var>errorlang</var> של [[Special:ApiHelp/main|המודול הראשי]] כדי לשלוט בתסדיר את ההודעות המוחזרות.",
 	"apihelp-query+info-paramvalue-testactionsdetail-boolean": "החזרת ערך בוליאני עבור כל פעולה.",
 	"apihelp-query+info-paramvalue-testactionsdetail-full": "החזרת הודעות שמתארות למה הפעולה אינה מותרת, או מערך ריק אם היא מותרת.",
-	"apihelp-query+info-paramvalue-testactionsdetail-quick": "כמו <kbd>full</kbd>, אבל בלי בדיקות יקרות.",
+	"apihelp-query+info-paramvalue-testactionsdetail-quick": "כמו <kbd>full</kbd>, אבל בלי בדיקות שגוזלות משאבים.",
 	"apihelp-query+info-param-testactionsautocreate": "בדיקה האם ביצוע <var>$1testactions</var> ייצור חשבון חולף אוטומטית.",
 	"apihelp-query+info-example-simple": "קבלת מידע על הדף [[{{MediaWiki:Mainpage}}]]",
 	"apihelp-query+info-example-protection": "קבלת מידע כללי ומידע על הגנה של הדף [[{{MediaWiki:Mainpage}}]].",

@@ -1563,7 +1563,7 @@
 	"uploaded-script-svg": "Elemento automatable \"$1\" ia es trovada en la fix SVG cargada.",
 	"uploaded-hostile-svg": "CSS nonsecur ia es trovada en la stilo de la fix SVG cargada.",
 	"uploaded-event-handler-on-svg": "On no permete defini atribuidas per trata avenis <code>$1=\"$2\"</code> en fixes de SVG.",
-	"uploaded-href-attribute-svg": "elementos de <a> pote lia (href) sola a datos: (fix caxida), http:// o https://, o ojetos fratal (#, mesma-testo). Per otra elementos, como <imaje>, sola datos e fratas es permeteda. Atenta caxi imajes cuando on esporta sua SVG. <code>&lt;$1 $2=\"$3\"&gt;</code> ia es trovada.",
+	"uploaded-href-attribute-svg": "Elementos de &lt;a&gt; pote lia (href) sola a datos: (fix caxida), http:// o https://, o ojetos fratal (#, mesma-testo). Per otra elementos, como &lt;image&gt;, sola datos e fratas es permeteda. Atenta caxi imajes cuando on esporta sua SVG. <code>&lt;$1 $2=\"$3\"&gt;</code> ia es trovada.",
 	"uploaded-href-unsafe-target-svg": "Un href a datos nonsecur ia es trovada en la fix SVG cargada: adirije destinal <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-animate-svg": "Un eticeta \"animate\" cual ta pote cambia href, usante la atribuida \"from\" <code>&lt;$1 $2=\"$3\"&gt;</code>, ia es trovada en la fix SVG cargada.",
 	"uploaded-setting-event-handler-svg": "On proibi la defini de atribuidas per trata avenis, ma <code>&lt;$1 $2=\"$3\"&gt;</code> ia es trovada en la fix SVG cargada.",

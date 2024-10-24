@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"1233qwer1234qwer4",
-			"Amire80",
 			"Dicto23456",
 			"Engelseziekte",
 			"Fitoschido",
@@ -1124,7 +1123,7 @@
 	"nchanges": "$1 {{PLURAL:$1|зміна|зміны|змін}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|од остатнёй навщівы}}",
 	"enhancedrc-history": "історія",
-	"recentchanges": "Послїдны зміны",
+	"recentchanges": "Послїднї зміны",
 	"recentchanges-legend": "Можности послїднїх змін",
 	"recentchanges-summary": "Слїдуйте послїднї зміны на Вікіпедії на тій сторінцї.",
 	"recentchanges-noresult": "В данім періодї не было ниякых змін, котры одповідали тым крітеріям.",

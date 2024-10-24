@@ -20,7 +20,8 @@
 			"http://tokipona.wikia.com sysops",
 			"janTepo",
 			"שוקו מוקה",
-			"JanMike"
+			"JanMike",
+			"Ookap"
 		]
 	},
 	"tog-underline": "linja anpa pi linja tawa:",
@@ -230,7 +231,7 @@
 	"backlinksubtitle": "← $1",
 	"retrievedfrom": "tan $1",
 	"new-messages": "jan li $1{{PLURAL:$3|| mute}} tawa sina ($2).",
-	"new-messages-from-users": "{{PLURAL:$3|jan|jan $3}} li toki tawa sina. (o lukin e $2).",
+	"new-messages-from-users": "{{PLURAL:$3|jan|jan $3}} li toki tawa sina. o lukin e $2.",
 	"new-messages-from-many-users": "jan mute ($2) li toki ($1) tawa sina.",
 	"new-messages-link-plural": "{{PLURAL:$1|toki sin}}",
 	"new-messages-diff-link-plural": "{{PLURAL:$1|ante}}",

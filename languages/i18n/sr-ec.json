@@ -3,7 +3,6 @@
 		"authors": [
 			"Acamicamacaraca",
 			"Aktron",
-			"Amire80",
 			"BadDog",
 			"Bjankuloski06",
 			"BokicaK",
@@ -3744,6 +3743,7 @@
 	"htmlform-title-badnamespace": "[[:$1]] није у именском простору „{{ns:$2}}“.",
 	"htmlform-title-not-creatable": "Страница „$1” се не може направити",
 	"htmlform-title-not-exists": "$1 не постоји.",
+	"htmlform-title-interwiki": "$1 је међувки наслов, потребно је да буде локалан.",
 	"htmlform-user-not-exists": "<strong>$1</strong> не постоји.",
 	"htmlform-user-not-valid": "<strong>$1</strong> није важеће корисничко име.",
 	"htmlform-tag-not-allowed": "$1 није дозвољена ознака",

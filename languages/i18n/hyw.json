@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"ArmenBakkalian",
 			"Armeniki",
 			"Azniv Stepanian",
@@ -903,6 +902,7 @@
 	"deadendpages": "Յղումներ չունեցող էջեր",
 	"protectedpages": "Պաշտպանուած էջեր",
 	"protectedpages-page": "Էջ",
+	"protectedpages-unknown-timestamp": "Անյայտ",
 	"protectedtitles": "Պաշտպանուած վերնագրեր",
 	"listusers": "Մասնակիցներու ցանկ",
 	"newpages": "Նոր էջեր",
@@ -1216,6 +1216,7 @@
 	"expand_templates_preview": "Կանխաստուգել",
 	"pagelang-name": "Էջ",
 	"pagelang-language": "Լեզու",
+	"mediastatistics-header-unknown": "Անյայտ",
 	"special-characters-group-latin": "Լատիներէն",
 	"special-characters-group-latinextended": "Ընդլայնուած լատիներէն",
 	"special-characters-group-ipa": "Միջ․ Հնչիւնային Այբուբեն (IPA)",

@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"BHARATHESHA ALASANDEMAJALU",
 			"Bharathesha Alasandemajalu",
 			"ChiK",
@@ -447,7 +446,7 @@
 	"createaccountmail": "(ರಾಂಡಮ್) ತಾತ್ಕಾಲಿಕವಾದ್ ಯಾದೃಚ್ಛಿಕ ಪಾಸ್ವರ್ಡ್ ಆಯ್ಕೆ ಮಾಲ್ಪುಲೆ ಬುಕ್ಕೊ ಇಮೇಲ್ ವಿಳಾಸೊನು ಸೂಚಿಸದ್ : ಕಡಪುಡುಲೆ",
 	"createaccountmail-help": "ಸಂಕೇತಪದ ಕಲ್ಪಂದೆ ನನೊರಿ ವ್ಯಕ್ತಿಗ್ ಖಾತೆ ದೆಪ್ಪರೆ ಬಳಸೊಲಿ.",
 	"createacct-realname": "ನಿಜವಾಯಿನ ಪುದರ್(ಐಚ್ಛಿಕೊ)",
-	"createacct-reason": "ಕಾರಣೊ",
+	"createacct-reason": "ಕಾರಣೊ (ಸಾರ್ವಜನಿಕವಾದ್ ಲಾಗ್ ಆತ್ಂಡ್)",
 	"createacct-reason-ph": "ಈರ್ ದಾಯೆ ನಾನಲ ಒಂಜಿ ಕಾತೆ ದೆತ್ತೊಂದುಲ್ಲರ್?",
 	"createacct-reason-help": "ಖಾತೆ ರಚನೆದ ಚರಿಟ್ ಸಂದೇಶ ತೋಜಾದುಂಡು.",
 	"createacct-submit": "ಪೊಸ ಕಾತೆ ಸುರು ಮಲ್ಪುಲೆ",
@@ -1915,7 +1914,7 @@
 	"blocklink": "ಉಂತಾಲೆ",
 	"unblocklink": "ಅಡ್ಡನ್ ದೆಪ್ಪುಲೆ",
 	"change-blocklink": "ಬ್ಲಾಕ್’ನ್ ಬದಲಾಲೆ",
-	"contribslink": "ಕಾಣಿಕೆಲು",
+	"contribslink": "ಕಾನಿಕೆಲು",
 	"emaillink": "ಇ-ಅಂಚೆ ಕಡಪುಡುಲೆ",
 	"blocklogpage": "ತಡೆ ಆತಿನ ಸದಸ್ಯೆರ್ನ ದಾಕಲೆ",
 	"block-log-flags-nocreate": "ಖಾತೆ ಉಂಡುಮಲ್ಪುನೇನ್ ತಡೆಪತ್ತ್'ದ್ಂಡ್",
@@ -2150,7 +2149,7 @@
 	"tags-delete-reason": "ಕಾರಣ:",
 	"tags-deactivate-reason": "ಕಾರಣ:",
 	"comparepages": "ಪುಟೊಕುಲೆನ್ ತುಲನೆ ಮಲ್ಪುಲೆ",
-	"deletepage": "ಪುಟೊಕುಲೆನ್ ಮಾಜಾಲೆ",
+	"deletepage": "ಪುಟೊನ್ ಮಾಜಾಲೆ",
 	"htmlform-submit": "ಒಪ್ಪಾಲೆ",
 	"logentry-delete-delete": "$1 $3 ಪುಟೊನು {{GENDER:$2|ಮಾಜಾಯೆರ್}}",
 	"logentry-delete-restore": "$3 ಪುಟೊನು ($4) $1 {{GENDER:$2|ಕುಡ ಸ್ಥಾಪನೆ ಮಲ್ತೆರ್}}",
@@ -2181,7 +2180,7 @@
 	"randomrootpage": "ಒವ್ವಾಂಡಲ ಮೂಲಪುಟೊ",
 	"specialmute-login-required": "ದಯಮಲ್ತ್ ಲಾಗ್ ಇನ್ ಮಲ್ಪುಲೆ ನಿಕ್ಲೆನ ಮ್ಯೂಟ್ ಆದ್ಯತೆಲೆನ್ ಬದಲಾವೊಡು.",
 	"passwordpolicies-group": "ಗುಂಪು",
-	"paramvalidator-help-type-user-subtype-name": "ಬಳಕೆದಾರೆರೆ ಪುದರ್",
+	"paramvalidator-help-type-user-subtype-name": "ಬಳಕೆದಾರೆರೆಪುದರ್",
 	"skin-view-create-local": "ಸ್ಥಳೀಯ ವಿವರಣೆನ್ ಸೇರಾಲೆ",
 	"nstab-mainpage": "ಮುಕ್ಯೊ ಪುಟೊ",
 	"skin-view-edit-local": "ಸ್ಥಳೀಯ ವಿವರಣೆನ್ ಸೇರಾಲೆ",

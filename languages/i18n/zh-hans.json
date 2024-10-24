@@ -10,7 +10,6 @@
 			"AYZ04",
 			"Aaron Liu",
 			"Alebcay",
-			"Amire80",
 			"Anakmalaysia",
 			"Angrydog001",
 			"AnnAngela",
@@ -205,7 +204,8 @@
 			"M397749490",
 			"Key0121",
 			"Matma Rex",
-			"Midleading"
+			"Midleading",
+			"Chimes"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -2580,7 +2580,7 @@
 	"unwatchthispage": "停止监视",
 	"notanarticle": "非内容页面",
 	"notvisiblerev": "上次由不同用户所作的版本已经删除",
-	"watchlist-details": "您的监视列表中有{{PLURAL:$1|$1个页面}}（外加监视讨论页）。",
+	"watchlist-details": "您的监视列表中有{{PLURAL:$1|$1个页面}}（包括讨论页）。",
 	"watchlist-expiry-days-left": "还剩{{PLURAL:$1|$1天}}",
 	"watchlist-expiring-days-full-text": "$1天后将自动移出您的监视列表",
 	"watchlist-expiry-hours-left": "还剩几个小时",

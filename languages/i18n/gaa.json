@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Benebiankie",
 			"Chivano",
 			"Flixtey",
@@ -807,7 +806,7 @@
 	"upload-disallowed-here": "Onyɛŋ otsumɔ faili nɛɛ",
 	"filedelete": "Jiemɔ $1",
 	"filedelete-legend": "Jiemɔ faili lɛ",
-	"filedelete-intro": "Ooba ni obajie faili lɛ <strong>[[Media: $1 | $1 ]]</strong> kɛ ehe yinɔsane fɛɛ.",
+	"filedelete-intro": "Ooba ni obajie faili lɛ <strong>[[Media:$1|$1]]</strong> kɛ ehe yinɔsane fɛɛ.",
 	"filedelete-submit": "Jiemɔ",
 	"randompage": "Baafa eko fɛɛ eko",
 	"statistics": "Mlijaa akontaa",
