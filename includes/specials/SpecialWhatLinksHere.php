@@ -212,7 +212,8 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 			'il_to' => $target->getDBkey(),
 		];
 
-		if ( $this->formData['namespace'] !== '' ) {
+		$namespace = $this->formData['namespace'];
+		if ( $namespace !== '' ) {
 			$namespace = intval( $this->formData['namespace'] );
 			$invert = $this->formData['invert'];
 			if ( $invert ) {
