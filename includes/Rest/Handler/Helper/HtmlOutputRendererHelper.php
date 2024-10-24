@@ -969,4 +969,11 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			return Status::newFatal( 'parsoid-resource-limit-exceeded', $e->getMessage() );
 		}
 	}
+
+	public function isParsoidContent(): bool {
+		return PageBundleParserOutputConverter::hasPageBundle(
+			$this->getParserOutput()
+		);
+	}
+
 }
