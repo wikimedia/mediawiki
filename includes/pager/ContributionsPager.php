@@ -1031,10 +1031,10 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 	 * @since 1.43
 	 *
 	 * @param stdClass|mixed $row
-	 * @param string[] $classes
+	 * @param string[] &$classes
 	 * @return mixed[]
 	 */
-	public function getTemplateParams( $row, $classes ) {
+	public function getTemplateParams( $row, &$classes ) {
 		$link = $this->formatArticleLink( $row );
 		$topmarktext = $this->formatTopMarkText( $row, $classes );
 		$diffHistLinks = $this->formatDiffHistLinks( $row );
