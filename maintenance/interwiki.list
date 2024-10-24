@@ -3,7 +3,6 @@
 acronym|https://www.acronymfinder.com/~/search/af.aspx?string=exact&Acronym=$1|0|
 arxiv|https://www.arxiv.org/abs/$1|0|
 c2|https://wiki.c2.com/?$1|0|
-cache|https://www.google.com/search?q=cache:$1|0|
 commons|https://commons.wikimedia.org/wiki/$1|0|https://commons.wikimedia.org/w/api.php
 dictionary|https://www.dict.org/bin/Dict?Database=*&Form=Dict1&Strategy=*&Query=$1|0|
 doi|https://dx.doi.org/$1|0|
