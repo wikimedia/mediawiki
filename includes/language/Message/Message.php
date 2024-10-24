@@ -1044,10 +1044,11 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 
 		# Maybe transform using the full parser
 		if ( $format === self::FORMAT_PARSE ) {
-			$string = $this->parseText( $string );
-			$string = Parser::stripOuterParagraph( $string );
+			$po = $this->parseText( $string );
+			$string = Parser::stripOuterParagraph( $po->getContentHolderText() );
 		} elseif ( $format === self::FORMAT_BLOCK_PARSE ) {
-			$string = $this->parseText( $string );
+			$po = $this->parseText( $string );
+			$string = $po->getContentHolderText();
 		} elseif ( $format === self::FORMAT_TEXT ) {
 			$string = $this->transformText( $string );
 		} elseif ( $format === self::FORMAT_ESCAPED ) {
@@ -1444,29 +1445,17 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 *
 	 * @param string $string Wikitext message contents.
 	 *
-	 * @return string Wikitext parsed into HTML.
+	 * @return ParserOutput Wikitext parsed into HTML.
 	 */
-	protected function parseText( $string ) {
-		$out = MediaWikiServices::getInstance()->getMessageCache()->parse(
+	protected function parseText( string $string ): ParserOutput {
+		$out = MediaWikiServices::getInstance()->getMessageCache()->parseWithPostprocessing(
 			$string,
-			$this->contextPage,
-			/*linestart*/true,
+			$this->contextPage ?? PageReferenceValue::localReference( NS_SPECIAL, 'Badtitle/Message' ),
 			$this->isInterface,
 			$this->getLanguage()
 		);
 
-		return $out instanceof ParserOutput
-			? $out->getText( [
-				'allowTOC' => false,
-				'enableSectionEditLinks' => false,
-				// Wrapping messages in an extra <div> is probably not expected. If
-				// they're outside the content area they probably shouldn't be
-				// targeted by CSS that's targeting the parser output, and if
-				// they're inside they already are from the outer div.
-				'unwrap' => true,
-				'userLang' => $this->getLanguage(),
-			] )
-			: $out;
+		return $out;
 	}
 
 	/**

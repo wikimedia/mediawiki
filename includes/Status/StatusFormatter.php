@@ -24,7 +24,7 @@ use MediaWiki\Api\ApiMessage;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Message;
-use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\StubObject\StubUserLang;
 use MessageCache;
 use MessageLocalizer;
@@ -350,11 +350,11 @@ class StatusFormatter {
 		$lang = $options['lang'] ?? null;
 
 		$text = $this->getWikiText( $status, $options );
-		$out = $this->messageCache->parse( $text, null, true, true, $lang );
+		$out = $this->messageCache->parseWithPostprocessing(
+			$text, PageReferenceValue::localReference( NS_SPECIAL, 'Badtitle/StatusFormatter' ), true, $lang
+		);
 
-		return $out instanceof ParserOutput
-			? $out->getText( [ 'enableSectionEditLinks' => false ] )
-			: $out;
+		return $out->getContentHolderText();
 	}
 
 	/**
