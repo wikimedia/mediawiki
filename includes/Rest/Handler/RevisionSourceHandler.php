@@ -79,7 +79,7 @@ class RevisionSourceHandler extends SimpleHandler {
 		return $response;
 	}
 
-	protected function getResponseBodySchemaFileName(): ?string {
+	protected function getResponseBodySchemaFileName( string $method ): ?string {
 		// TODO: add fields based on the output mode to the schema
 		return 'includes/Rest/Handler/Schema/RevisionMetaData.json';
 	}
