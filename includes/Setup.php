@@ -584,21 +584,13 @@ if ( !defined( 'MW_NO_SESSION' ) && MW_ENTRY_POINT !== 'cli' ) {
 	if ( $sessionUser->getId() === 0 &&
 		MediaWikiServices::getInstance()->getUserNameUtils()->isValid( $sessionUser->getName() )
 	) {
-		$res = MediaWikiServices::getInstance()->getAuthManager()->autoCreateUser(
+		MediaWikiServices::getInstance()->getAuthManager()->autoCreateUser(
 			$sessionUser,
 			MediaWiki\Auth\AuthManager::AUTOCREATE_SOURCE_SESSION,
 			true,
 			true,
 			$sessionUser
 		);
-		$firstMessage = $res->getMessages( 'error' )[0] ?? $res->getMessages( 'warning' )[0] ?? null;
-		\MediaWiki\Logger\LoggerFactory::getInstance( 'authevents' )->info( 'Autocreation attempt', [
-			'event' => 'autocreate',
-			'successful' => $res->isGood(),
-			'status' => $firstMessage ? $firstMessage->getKey() : '-',
-		] );
-		unset( $res );
-		unset( $firstMessage );
 	}
 	unset( $sessionUser );
 }
