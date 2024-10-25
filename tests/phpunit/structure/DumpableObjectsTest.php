@@ -8,6 +8,7 @@ use MediaWiki\User\User;
  *
  * Add @noVarDump annotations to large properties if these tests fail.
  *
+ * @group Database
  * @coversNothing
  */
 class DumpableObjectsTest extends MediaWikiIntegrationTestCase {
