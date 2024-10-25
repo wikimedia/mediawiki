@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Bawoor",
 			"Bennylin",
 			"DannyS712",
@@ -542,7 +541,7 @@
 	"currentrev-asof": "Revisi paling anyar nang tanggal $1",
 	"revisionasof": "Revisi per $1",
 	"revision-info": "Revisi per $1; $2",
-	"previousrevision": "Revisi sedurunge",
+	"previousrevision": "← Revisi sedurunge",
 	"nextrevision": "Revisi lewih anyar",
 	"currentrevisionlink": "Revisi sekiyé",
 	"cur": "siki",

@@ -13,7 +13,7 @@
 	"cdx-search-input-search-button-label": "חיפוש",
 	"cdx-table-select-all-label": "בחירת כל השורות",
 	"cdx-table-select-row-label": "בחירת שורה $1 מתוך $2",
-	"cdx-table-sort-caption": "$1, ניתן למיין עמודות שבכותרות שלהן יש כפתורים.",
+	"cdx-table-sort-caption": "$1 (ניתן למיין עמודות שבכותרות שלהן יש כפתורים).",
 	"cdx-typeahead-search-search-results-label": "תוצאות חיפוש",
 	"cdx-table-pager-button-first-page": "הדף הראשון",
 	"cdx-table-pager-button-last-page": "הדף האחרון",

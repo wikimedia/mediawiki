@@ -3,7 +3,6 @@
 		"authors": [
 			"1233qwer1234qwer4",
 			"Alma",
-			"Amire80",
 			"ArenaL5",
 			"Athena in Wonderland",
 			"Banjo",
@@ -2569,6 +2568,8 @@
 	"block-user-placeholder": "Comeza a escribir un usuario...",
 	"block-target": "Nome de usuario, enderezo IP ou rango de enderezos IP:",
 	"block-target-placeholder": "NomeDaConta, 1.1.1.42 ou 1.1.1.42/16",
+	"block-pages-placeholder": "Engadir máis páxinas...",
+	"block-namespaces-placeholder": "Engadir máis espazos de nomes...",
 	"unblockip": "Desbloquear un usuario",
 	"unblockiptext": "Use o seguinte formulario para dar de novo acceso de escritura a un enderezo IP ou usuario que estea bloqueado.",
 	"ipusubmit": "Retirar o bloqueo",

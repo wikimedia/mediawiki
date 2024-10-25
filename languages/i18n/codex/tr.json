@@ -11,7 +11,7 @@
 	"cdx-search-input-search-button-label": "Ara",
 	"cdx-table-select-all-label": "Tüm satırları seç",
 	"cdx-table-select-row-label": "Satır $1/$2 seçin",
-	"cdx-table-sort-caption": "$1, butonlu sütun başlıkları sıralanabilir.",
+	"cdx-table-sort-caption": "$1 (butonlu sütun başlıkları sıralanabilir).",
 	"cdx-typeahead-search-search-results-label": "Arama sonuçları",
 	"cdx-table-pager-button-first-page": "İlk sayfa",
 	"cdx-table-pager-button-last-page": "Son sayfa",

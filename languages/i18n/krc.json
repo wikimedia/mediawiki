@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"1233qwer1234qwer4",
-			"Amire80",
 			"DannyS712",
 			"Don Alessandro",
 			"Ernác",
@@ -4098,5 +4097,7 @@
 	"benefit-1-description": "Ангарылгъан бетлеригизни тинтерге болушхан кёзде тутхан тизмеле.",
 	"benefit-2-description": "Проектге этген къошумугъузну дайым тизмеси.",
 	"benefit-3-description": "Сынамыгъызны энчилешдирирге амал берген джарашдырыула.",
-	"temp-user-unable-to-acquire": "Болджаллы хыйсаб хайырланыучу ат алыналмайды. Тилейбиз джангыдан сынагъыз."
+	"temp-user-unable-to-acquire": "Болджаллы хыйсаб хайырланыучу ат алыналмайды. Тилейбиз джангыдан сынагъыз.",
+	"table-of-contents-show-button-aria-label": "Ичиндегилени таблицасын кёргюз",
+	"table-of-contents-hide-button-aria-label": "Ичиндегилени таблицасын джашыр"
 }

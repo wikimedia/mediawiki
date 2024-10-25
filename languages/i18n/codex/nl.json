@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Catrope",
+			"McDutchie",
 			"Siebrand"
 		]
 	},
@@ -12,7 +13,7 @@
 	"cdx-search-input-search-button-label": "Zoeken",
 	"cdx-table-select-all-label": "Alle rijen selecteren",
 	"cdx-table-select-row-label": "Rij $1 van $2 selecteren",
-	"cdx-table-sort-caption": "$1, kolomkoppen met knoppen kunnen gesorteerd worden",
+	"cdx-table-sort-caption": "$1 (kolomkoppen met knoppen kunnen gesorteerd worden).",
 	"cdx-typeahead-search-search-results-label": "Zoekresultaten",
 	"cdx-table-pager-button-first-page": "Eerste pagina",
 	"cdx-table-pager-button-last-page": "Laatste pagina",

@@ -1,12 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Flrn",
 			"Ilja.mos",
 			"Likopiän tyttö",
 			"Mashoi7",
 			"Matma Rex",
+			"Mkr",
 			"Ontoi",
 			"Theunitedstatesofme",
 			"Varvana"
@@ -481,6 +481,7 @@
 	"whatlinkshere-hidelinks": "Piilota linkit",
 	"whatlinkshere-hideimages": "Piilota tiijoštolinkit",
 	"ipboptions": "2 tuntie:2 hours,1 päivä:1 day,3 päivyä:3 days,1 netäli:1 week,2 netälie:2 weeks,1 kuukauši:1 month,3 kuukautta:3 months,6 kuukautta:6 months,1 vuoši:1 year,ikuini:infinite",
+	"block-user-no-reason-given": "Ei šyytä annettu",
 	"ipblocklist-submit": "Ečindy",
 	"infiniteblock": "ikuini",
 	"blocklink": "lukiče",

@@ -14,7 +14,7 @@
 	"cdx-search-input-search-button-label": "Sök",
 	"cdx-table-select-all-label": "Markera alla rader",
 	"cdx-table-select-row-label": "Markera rad $1 av $2",
-	"cdx-table-sort-caption": "$1, kolumnrubriker med knappar går att sortera.",
+	"cdx-table-sort-caption": "$1 (kolumnrubriker med knappar går att sortera).",
 	"cdx-typeahead-search-search-results-label": "Sökresultat",
 	"cdx-table-pager-button-first-page": "Första sidan",
 	"cdx-table-pager-button-last-page": "Sista sidan",

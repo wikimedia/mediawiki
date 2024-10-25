@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Albertoleoncio",
-			"Amire80",
 			"Comp1089",
 			"Enye Lav",
 			"Matma Rex",
@@ -766,8 +765,8 @@
 	"currentrev-asof": "$1-са медбӧръя версия",
 	"revisionasof": "\n$1-ся версия",
 	"revision-info": " $1-са версия {{GENDER:$6|$2}}$7",
-	"previousrevision": "Воддза версия",
-	"nextrevision": "Табӧрса версия",
+	"previousrevision": "← Воддза версия",
+	"nextrevision": "Табӧрса версия →",
 	"currentrevisionlink": "Ӧнія версия",
 	"cur": "ӧнія",
 	"tooltip-cur": "Бӧръя версияысь торъялӧм",

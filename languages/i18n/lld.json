@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Asenoner",
 			"Fierodelveneto",
 			"JuaFlick",
@@ -446,7 +445,7 @@
 	"currentrev-asof": "Verjiun atuala dles $1",
 	"revisionasof": "Reviscion de i $1",
 	"revision-info": "Verjiun de $1 di {{GENDER:$6|$2}}$7",
-	"previousrevision": "Verscion plu vedla",
+	"previousrevision": "← Verscion plu vedla",
 	"nextrevision": "Verjiun plü atuala →",
 	"currentrevisionlink": "Verjiun atuala",
 	"cur": "at",

@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Aliyu shaba",
-			"Amire80",
 			"Mohammedbama123",
 			"Umargana1"
 		]
@@ -229,12 +228,12 @@
 	"showpreview": "Fuleta",
 	"showdiff": "Faltə",
 	"anoneditwarning": "<strong>Baritǝgǝ:</strong> gaami yaye adreshi ip num ndusso ye rassu surin yasa dəmiya. Dimiya <strong>[$1 gawo]</strong> or <strong>[$2 account katta]</strong>, yasa num na fal lo kəltin sunum faida bəya",
-	"blockedtext": "<strong>Su faidatu bǝ or IP address has been blocked.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nYou can use the \"{{int:emailuser}}\" feature if a valid email address is specified in your [[Special:Preferences|preferences]] and you have not been blocked from using it.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
+	"blockedtext": "<strong>Su faidatu bǝ au IP num dafkata.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nYou can use the \"{{int:emailuser}}\" feature if a valid email address is specified in your [[Special:Preferences|preferences]] and you have not been blocked from using it.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"loginreqlink": "gawo",
 	"newarticletext": "Shafi ba, rannum\nShafi de yikimin maa ruwo sidiyalan badine (rui [$1 shafi bana bǝ] bayin gafsuna ro).\nNotǝ balan na adǝ ro kadǝm ma, rannǝ buton  browser's nǝmye <strong>ngawo</strong>",
 	"anontalkpagetext": "----\n<em>Adǝ shima shafi mana bǝ faidatu ma notǝyima account kaziyi ma, aw shilan faidatan ba ma.</em>\nWe therefore have to use the numerical IP address to identify them.\nSuch an IP address can be shared by several users.\nIf you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:CreateAccount|create an account]] or [[Special:UserLogin|log in]] to avoid future confusion with other anonymous users.",
-	"noarticletext": "Shafi aden ruwo ba. [[Special:Search/{{PAGENAME}}|su doni shafi adəye manə]] shafi gadə lan, au <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs]</span>, izini nyiro sadeyi kela shafi adǝ ruwote bǝ",
-	"noarticletext-nopermission": "Shafi aden ruwo ba. [[Special:Search/{{PAGENAME}}|su doni shafi adəye manə]] shafi gadə lan, au <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs]</span>, izini nyiro sadeyi kela shafi adǝ ruwote bǝ",
+	"noarticletext": "Shafi aden ruwo ba.\n[[Special:Search/{{PAGENAME}}|Su doni shafi adəye manə]] shafi gadə lan, au <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} logs jiri falla mata]</span>, izini nyiro sadeyi kela shafi adǝ ruwote bǝ.",
+	"noarticletext-nopermission": "Shafi aden ruwo ba.\n[[Special:Search/{{PAGENAME}}|Su doni shafi adəye manə]] shafi gadə lan, au <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} logs jiri falla mata]</span>, izini nyiro sadeyi kela shafi adǝ ruwote bǝ.",
 	"userpage-userdoesnotexist-view": "Account chidama bǝ \"$1\" register bawo suro wiki adǝ lan",
 	"previewnote": "<strong>No ne shafi atte kurubǝ.</strong>\nAwo yasama de ruwoteyi!",
 	"continue-editing": "Na yasa ye ro lene",
@@ -484,7 +483,7 @@
 	"blocklink": "daftu",
 	"contribslink": "banayəə",
 	"block-log-flags-nocreate": "account kata zakkata",
-	"newtitle": "Suu brin:",
+	"newtitle": "Su burin:",
 	"movereason": "Ayiiro:",
 	"export": "Shafi gota",
 	"allmessagesname": "Su",
@@ -522,7 +521,7 @@
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|mana]])",
 	"version-ext-colheader-description": "Bayin",
 	"version-libraries-description": "Bayin",
-	"redirect": "Redirect by file, chidama, shari, revision or log id",
+	"redirect": "Liwuram ro walta, chidama, shafi, revision or log ID",
 	"redirect-submit": "Lene",
 	"redirect-lookup": "Kuru ye:",
 	"redirect-user": "ID chidama yə",

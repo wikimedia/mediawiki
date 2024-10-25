@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"BaRaN6161 TURK",
 			"Behdarvandyani",
 			"Beyronvan",
@@ -597,8 +596,8 @@
 	"currentrev-asof": "آخرین ڤانیٱری جۊر $1",
 	"revisionasof": "ڤانیٱری چی $1",
 	"revision-info": "نوسقاْ ڤانیٱری ڤابیڌاْ جۊر $1 ڤا $2",
-	"previousrevision": "← ڤانیٱری دیندایی",
-	"nextrevision": "نوسقاْ نیایی →",
+	"previousrevision": "→ ڤانیٱری دیندایی",
+	"nextrevision": "نوسقاْ نیایی ←",
 	"currentrevisionlink": "آخری ڤانیٱری",
 	"cur": "ایسنی",
 	"next": "نيایي",

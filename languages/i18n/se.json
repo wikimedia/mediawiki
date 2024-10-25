@@ -1,12 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Ante75",
 			"Caden99",
 			"Fitoschido",
 			"Gálaniitoluodda",
 			"Jeblad",
+			"Jon Harald Søby",
 			"Jon Harald Søby (WMNO)",
 			"Kaganer",
 			"Kimberli Mäkäräinen (WMNO)",
@@ -114,7 +114,7 @@
 	"navigation-heading": "Navigašuvdnafállu",
 	"errorpagetitle": "Meattáhus",
 	"returnto": "Máhca siidui $1.",
-	"tagline": "{{SITENAME}}'as/is",
+	"tagline": "{{GRAMMAR:locative|{{SITENAME}}}}",
 	"help": "Rávvagat",
 	"help-mediawiki": "Rávvagat MediaWiki birra",
 	"search": "Ohcan",

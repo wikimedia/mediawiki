@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Giromin Cangiaxo",
 			"N. Longo",
 			"S4b1nuz E.656"
@@ -271,7 +270,7 @@
 	"apihelp-import-param-templates": "Pe-e inportaçioìn interwiki: inpòrta tùtti i modélli inclûxi ascì.",
 	"apihelp-import-param-namespace": "Inpòrta inte quésto namespace. O no peu êse dêuviòu insémme a <var>$1rootpage</var>.",
 	"apihelp-import-param-rootpage": "Inpòrta cómme sotopàgina de quésta pàgina. O no peu êse dêuviòu insémme a <var>$1namespace</var>.",
-	"apihelp-import-param-tags": "Càngia i tag da aplicâ a-a vôxe into regìstro de inportaçioìn e a-a revixón vêua in scê pàgine inpòrtæ.",
+	"apihelp-import-param-tags": "I tag de cangiaménto da aplicâ a-a vôxe into regìstro de inportaçioìn e a-a revixón vêua in scê pàgine inportæ.",
 	"apihelp-import-example-import": "Inpòrta [[meta:Help:ParserFunctions]] into namespace 100 con cronologîa conplêta.",
 	"apihelp-linkaccount-summary": "Colegaménto de 'n'uténsa de 'n provider de tèrse pàrte a l'uténte corénte.",
 	"apihelp-linkaccount-example-link": "Inàndia o procèsso d'ingàncio a 'n'uténsa da <kbd>Example</kbd>.",
@@ -294,7 +293,7 @@
 	"apihelp-managetags-param-tag": "Tag da creâ, scancelâ, ativâ ò dizativâ. Pe creâlo, o tag o no dêve exìste. Pe scancelâlo, o tag o dêve exìste. Pe l'ativaçión do tag, o tag o dêve exìste e o no dêv'êse dêuviòu da 'n'estensción. Pe-a dizativaçión do tag, o tag o dêv'êse atoalménte atîvo e definîo manoalménte.",
 	"apihelp-managetags-param-reason": "'Na raxón facoltatîva pe creâ, scancelâ, ativâ ò dizativâ o tag.",
 	"apihelp-managetags-param-ignorewarnings": "Se ignorâ i avertiménti che són stæti emìsci into córso de l'operaçión.",
-	"apihelp-managetags-param-tags": "Modificâ i tag da aplicâ a-a vôxe into regìstro da gestión di tag.",
+	"apihelp-managetags-param-tags": "I tag de cangiaménto da aplicâ a-a vôxe into regìstro da gestión di tag.",
 	"apihelp-managetags-example-create": "Creâ 'n tag ciamòu <kbd>spam</kbd> pe-o motîvo <kbd>For use in edit patrolling</kbd>",
 	"apihelp-managetags-example-delete": "Scancelâ o tag <kbd>vandlaism</kbd> pe-o motîvo <kbd>Misspelt</kbd>",
 	"apihelp-managetags-example-activate": "Ativâ 'n tag ciamòu <kbd>spam</kbd> pe-o motîvo <kbd>For use in edit patrolling</kbd>",
@@ -321,7 +320,7 @@
 	"apihelp-move-param-watchlist": "Azónze o levâ sénsa condiçioìn a pàgina da-a lìsta di òservæ speciâli\nde l'uténte in particolâ, dêuviâ e preferénse (ignoræ pe-i bot) ò no cangiâ e pàgine òservæ.",
 	"apihelp-move-param-watchlistexpiry": "Moménto de scadénsa di òservæ speciâli. Òmétte do tùtto sto paràmetro chi pe no cangiâ a dæta de scadénsa atoâle.",
 	"apihelp-move-param-ignorewarnings": "Ignóra i mesàggi d'avertiménto do scistêma.",
-	"apihelp-move-param-tags": "Càngia i tag da aplicâ a-a vôxe into regìstro di spostaménti e a-a revixón vêua in scê pàgine inpòrtæ.",
+	"apihelp-move-param-tags": "I tag de cangiaménto da aplicâ a-a vôxe into regìstro di spostaménti e a-a revixón vêua in scê pàgine inpòrtæ.",
 	"apihelp-move-example-move": "Méscia <kbd>Badtitle</kbd> a <kbd>Goodtitle</kbd> sénsa lasciâ 'n rindirìsso.",
 	"apihelp-opensearch-summary": "Çèrca inta wiki dêuviàndo o protocòllo OpenSearch.",
 	"apihelp-opensearch-param-search": "Strìnga de riçèrca.",
@@ -1739,6 +1738,7 @@
 	"apierror-filenopath": "Inposcìbile òtegnî o percórso do file locâle.",
 	"apierror-filetypecannotberotated": "O tîpo do file o no peu êse gjòu.",
 	"apierror-formatphp": "Quésta rispòsta a no peu êse raprezentâ dêuviàndo <kbd>format=php</kbd>. Védde https://phabricator.wikimedia.org/T68776.",
+	"apierror-http-contenttoolarge": "Contegnûo da domànda HTTP tròppo grànde. Longhéssa màscima: $1.",
 	"apierror-imageusage-badtitle": "O tìtolo pe <kbd>$1</kbd> o dêv'êse 'n file.",
 	"apierror-import-unknownerror": "Erô sconosciûo inte l'inportaçiónː $1.",
 	"apierror-info-singlepagerevision": "L'é stæto fornîo ciù pàgine ò verscioìn, ma <var>$1prop=preloadcontent</var> e <var>$1prop=editintro</var> pêuan êse dêuviæ sôlo co-ina çèrta pàgina e versción.",

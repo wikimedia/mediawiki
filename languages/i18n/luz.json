@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Bluehamed",
 			"Bonevarluri",
 			"Hosseinblue",
@@ -389,8 +388,8 @@
 	"currentrev-asof": "آخرین نوسخٱ تا $1",
 	"revisionasof": "ئیصلاح $1",
 	"revision-info": "ۉرژن $1 تۉسط {{GENDER:$6|$2}}$7",
-	"previousrevision": "← ئیصلاح قأبلی",
-	"nextrevision": "نوسخاٛی نۊتٱر →",
+	"previousrevision": "→ ئیصلاح قأبلی",
+	"nextrevision": "نوسخاٛی نۊتٱر ←",
 	"currentrevisionlink": "نوسخاٛی دیندائی",
 	"cur": "ایسنی",
 	"last": "نهاتٱری",

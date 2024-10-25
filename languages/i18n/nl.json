@@ -3,7 +3,6 @@
 		"authors": [
 			"AHmed Khaled",
 			"Akoopal",
-			"Amire80",
 			"Annabel",
 			"Aranka",
 			"Arent",
@@ -2643,6 +2642,8 @@
 	"block-user-placeholder": "Begin met het typen van een gebruiker...",
 	"block-target": "Gebruikersnaam, IP-adres of IP-bereik:",
 	"block-target-placeholder": "Gebruikersnaam, 1.1.1.42 of 1.1.1.42/16",
+	"block-pages-placeholder": "Meer pagina’s toevoegen…",
+	"block-namespaces-placeholder": "Meer naamruimten toevoegen…",
 	"unblockip": "Gebruiker deblokkeren",
 	"unblockiptext": "Gebruik het onderstaande formulier om opnieuw schrijftoegang te geven aan een geblokkeerde gebruiker of IP-adres.",
 	"ipusubmit": "Blokkade opheffen",

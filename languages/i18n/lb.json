@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"1233qwer1234qwer4",
-			"Amire80",
 			"Geitost",
 			"Hercule",
 			"Kaffi",
@@ -2256,6 +2255,8 @@
 	"block-user-description": "E Benotzer kann e Benotzernumm, eng IP-Adress oder en IP-Beräich sinn.",
 	"block-target": "Benotzernumm, IP-Adress oder IP-Adressberäich:",
 	"block-target-placeholder": "Benotzernumm, 1.1.1.42 oder 1.1.1.42/16",
+	"block-pages-placeholder": "Méi Säiten derbäisetzen...",
+	"block-namespaces-placeholder": "Méi Nummraim derbäisetzen...",
 	"unblockip": "Spär vum Benotzer ophiewen",
 	"unblockiptext": "Benotzt dëse Formulaire fir enger IP-Adress oder engem Benotzer seng Spär opzehiewen.",
 	"ipusubmit": "Des Spär ophiewen",
