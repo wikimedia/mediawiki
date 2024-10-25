@@ -49,12 +49,8 @@
 			:label="$i18n( 'block-details' ).text()"
 			:description="$i18n( 'block-details-description' ).text()"
 		></block-details-field>
-		<block-details-field
-			v-model="store.additionalDetails"
-			:checkboxes="additionalDetailsOptions"
-			:label="$i18n( 'block-options' ).text()"
-			:description="$i18n( 'block-options-description' ).text()"
-		></block-details-field>
+		<additional-details-field>
+		</additional-details-field>
 		<cdx-field v-if="store.confirmationRequired">
 			<cdx-checkbox
 				v-model="store.confirmationChecked"
@@ -88,6 +84,7 @@ const BlockTypeField = require( './components/BlockTypeField.vue' );
 const ExpiryField = require( './components/ExpiryField.vue' );
 const ReasonField = require( './components/ReasonField.vue' );
 const BlockDetailsField = require( './components/BlockDetailsOptions.vue' );
+const AdditionalDetailsField = require( './components/AdditionalDetailsField.vue' );
 
 module.exports = exports = defineComponent( {
 	name: 'SpecialBlock',
@@ -99,6 +96,7 @@ module.exports = exports = defineComponent( {
 		ExpiryField,
 		ReasonField,
 		BlockDetailsField,
+		AdditionalDetailsField,
 		CdxButton,
 		CdxCheckbox,
 		CdxField,
@@ -123,8 +121,6 @@ module.exports = exports = defineComponent( {
 		} );
 		const blockAllowsUTEdit = mw.config.get( 'blockAllowsUTEdit' ) || false;
 		const blockEmailBan = mw.config.get( 'blockAllowsEmailBan' ) || false;
-		const blockAutoblockExpiry = mw.config.get( 'blockAutoblockExpiry' );
-		const blockHideUser = mw.config.get( 'blockHideUser' ) || false;
 		const blockDetailsOptions = [
 			{
 				label: mw.message( 'ipbcreateaccount' ),
@@ -146,20 +142,6 @@ module.exports = exports = defineComponent( {
 			} );
 		}
 
-		const additionalDetailsOptions = [ {
-			label: mw.message( 'ipbenableautoblock', blockAutoblockExpiry ),
-			value: 'wpAutoBlock',
-			disabled: false
-		} ];
-
-		if ( blockHideUser ) {
-			additionalDetailsOptions.push( {
-				label: mw.message( 'ipbhidename' ),
-				value: 'wpHideName',
-				class: 'mw-block-hideuser'
-			} );
-		}
-
 		// Show an error message if the target user is the current user.
 		const { formErrors, targetUser } = storeToRefs( store );
 		watch( targetUser, ( newValue ) => {
@@ -168,18 +150,6 @@ module.exports = exports = defineComponent( {
 			} else {
 				formErrors.value = [];
 			}
-		} );
-
-		additionalDetailsOptions.push( {
-			label: mw.message( 'ipbwatchuser' ),
-			value: 'wpWatch',
-			disabled: false
-		} );
-
-		additionalDetailsOptions.push( {
-			label: mw.message( 'ipb-hardblock' ),
-			value: 'wpHardBlock',
-			disabled: false
 		} );
 
 		/**
@@ -236,7 +206,6 @@ module.exports = exports = defineComponent( {
 			submitButtonMessage,
 			handleSubmit,
 			blockDetailsOptions,
-			additionalDetailsOptions,
 			blockEnableMultiblocks
 		};
 	}
