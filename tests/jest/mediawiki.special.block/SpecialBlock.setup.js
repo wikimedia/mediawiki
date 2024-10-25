@@ -102,7 +102,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 	 * @type {Object}
 	 */
 	const mocks = [
-		// Used in TargetBlockLog
+		// Used in BlockLog
 		{
 			params: {
 				list: 'logevents',
