@@ -38,6 +38,10 @@ class ScalarParamTest extends MediaWikiUnitTestCase {
 				[ ParamType::TEXT, new MessageValue( 'key' ), ],
 				'<text><message key="key"></message></text>',
 			],
+			'T377912' => [
+				[ ParamType::PLAINTEXT, T377912TestCase::class ],
+				'<plaintext>' . T377912TestCase::class . '</plaintext>',
+			]
 		];
 	}
 
