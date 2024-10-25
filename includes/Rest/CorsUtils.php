@@ -164,7 +164,7 @@ class CorsUtils implements BasicAuthorizerInterface {
 			// REST must allow Content-Type to be operational
 			'Content-Type',
 			// REST relies on conditional requests for some endpoints
-			'If-Mach',
+			'If-Match',
 			'If-None-Match',
 			'If-Modified-Since',
 		], $allowedHeaders ) );
