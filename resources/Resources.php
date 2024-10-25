@@ -1684,6 +1684,7 @@ return [
 			} ],
 		],
 		'dependencies' => [
+			'mediawiki.user',
 			'mediawiki.util',
 			'mediawiki.api'
 		],
