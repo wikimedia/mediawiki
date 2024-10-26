@@ -73,7 +73,6 @@ use Wikimedia\Parsoid\ParserTests\TestMode as ParserTestMode;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Parsoid\Utils\DOMCompat;
-use Wikimedia\Parsoid\Utils\DOMDataUtils;
 use Wikimedia\Parsoid\Utils\DOMUtils;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\IDatabase;
@@ -1767,9 +1766,6 @@ class ParserTestRunner {
 			$this->wt2html( $parsoid, $pageConfig, $test, new ParserTestMode( 'cache' ) );
 		}
 		$doc = DOMUtils::parseHTML( $test->cachedBODYstr, true );
-		// XXX applyChanges calls functions in WTUtils which assume we
-		// have a DataBag associated with the document.
-		DOMDataUtils::prepareDoc( $doc );
 		return $doc;
 	}
 

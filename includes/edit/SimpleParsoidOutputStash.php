@@ -3,15 +3,14 @@
 namespace MediaWiki\Edit;
 
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\Parser\Parsoid\PageBundleJsonTrait;
 use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\Parsoid\Core\PageBundle;
 
 /**
  * @internal
  * @since 1.39
  */
 class SimpleParsoidOutputStash implements ParsoidOutputStash {
-	use PageBundleJsonTrait;
 
 	/** @var BagOStuff */
 	private $bagOfStuff;
@@ -81,11 +80,8 @@ class SimpleParsoidOutputStash implements ParsoidOutputStash {
 			return null;
 		}
 
-		$pb = $this->newPageBundleFromJson( $json['pb'] );
-
-		if ( !$pb ) {
-			return null;
-		}
+		// TODO: should use proper JsonCodec for this
+		$pb = PageBundle::newFromJsonArray( $json['pb'] );
 
 		$revId = (int)$json['revId'];
 
@@ -104,7 +100,8 @@ class SimpleParsoidOutputStash implements ParsoidOutputStash {
 			'revId' => $selserContext->getRevisionID(),
 		];
 
-		$json['pb'] = $this->jsonSerializePageBundle( $selserContext->getPageBundle() );
+		// TODO: should use proper JsonCodec for this
+		$json['pb'] = $selserContext->getPageBundle()->toJsonArray();
 
 		$content = $selserContext->getContent();
 		if ( $content ) {

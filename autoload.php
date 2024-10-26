@@ -2076,7 +2076,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Parser\\Parsoid\\HtmlTransformFactory' => __DIR__ . '/includes/parser/Parsoid/HtmlTransformFactory.php',
 	'MediaWiki\\Parser\\Parsoid\\LanguageVariantConverter' => __DIR__ . '/includes/parser/Parsoid/LanguageVariantConverter.php',
 	'MediaWiki\\Parser\\Parsoid\\LintErrorChecker' => __DIR__ . '/includes/parser/Parsoid/LintErrorChecker.php',
-	'MediaWiki\\Parser\\Parsoid\\PageBundleJsonTrait' => __DIR__ . '/includes/parser/Parsoid/PageBundleJsonTrait.php',
 	'MediaWiki\\Parser\\Parsoid\\PageBundleParserOutputConverter' => __DIR__ . '/includes/parser/Parsoid/PageBundleParserOutputConverter.php',
 	'MediaWiki\\Parser\\Parsoid\\ParsoidParser' => __DIR__ . '/includes/parser/Parsoid/ParsoidParser.php',
 	'MediaWiki\\Parser\\Parsoid\\ParsoidParserFactory' => __DIR__ . '/includes/parser/Parsoid/ParsoidParserFactory.php',

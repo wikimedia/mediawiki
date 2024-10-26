@@ -20,6 +20,7 @@ use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Core\ClientError;
+use Wikimedia\Parsoid\Core\DomPageBundle;
 use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Core\SelserData;
@@ -568,7 +569,11 @@ class HtmlToContentTransform {
 		}
 
 		$this->validatePageBundle( $pb );
-		PageBundle::apply( $doc, $pb );
+		$dpb = new DomPageBundle(
+			$doc, $pb->parsoid, $pb->mw, $pb->version,
+			$pb->headers, $pb->contentmodel
+		);
+		$dpb->toDom( false );
 	}
 
 	/**
