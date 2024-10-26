@@ -3415,7 +3415,6 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\DebugInfo\\Placeholder' => __DIR__ . '/includes/libs/DebugInfo/Placeholder.php',
 	'Wikimedia\\DependencyStore\\DependencyStore' => __DIR__ . '/includes/ResourceLoader/dependencystore/DependencyStore.php',
 	'Wikimedia\\DependencyStore\\KeyValueDependencyStore' => __DIR__ . '/includes/ResourceLoader/dependencystore/KeyValueDependencyStore.php',
-	'Wikimedia\\DependencyStore\\SqlModuleDependencyStore' => __DIR__ . '/includes/ResourceLoader/dependencystore/SqlModuleDependencyStore.php',
 	'Wikimedia\\Diff\\ArrayDiffFormatter' => __DIR__ . '/includes/libs/Diff/ArrayDiffFormatter.php',
 	'Wikimedia\\Diff\\ComplexityException' => __DIR__ . '/includes/libs/Diff/ComplexityException.php',
 	'Wikimedia\\Diff\\Diff' => __DIR__ . '/includes/libs/Diff/Diff.php',
