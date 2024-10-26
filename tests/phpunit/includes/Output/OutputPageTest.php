@@ -32,7 +32,7 @@ use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
 use PHPUnit\Framework\MockObject\MockObject;
-use Wikimedia\DependencyStore\KeyValueDependencyStore;
+use Wikimedia\DependencyStore\DependencyStore;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\TestingAccessWrapper;
@@ -2548,7 +2548,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$reflectCSP = new ReflectionClass( ContentSecurityPolicy::class );
 		$rl = $out->getResourceLoader();
 		$rl->setMessageBlobStore( $this->createMock( RL\MessageBlobStore::class ) );
-		$rl->setDependencyStore( $this->createMock( KeyValueDependencyStore::class ) );
+		$rl->setDependencyStore( $this->createMock( DependencyStore::class ) );
 		$rl->register( [
 			'test.foo' => [
 				'class' => ResourceLoaderTestModule::class,

@@ -55,7 +55,6 @@ use stdClass;
 use Throwable;
 use UnexpectedValueException;
 use Wikimedia\DependencyStore\DependencyStore;
-use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\Minify\CSSMin;
 use Wikimedia\Minify\IdentityMinifierState;
 use Wikimedia\Minify\IndexMap;
@@ -198,7 +197,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			new MessageBlobStore( $this, $this->logger, $services->getMainWANObjectCache() )
 		);
 
-		$tracker = $tracker ?: new KeyValueDependencyStore( new HashBagOStuff() );
+		$tracker = $tracker ?: new DependencyStore( new HashBagOStuff() );
 		$this->setDependencyStore( $tracker );
 	}
 
