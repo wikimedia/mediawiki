@@ -165,7 +165,6 @@ use MediaWiki\Parser\Parsoid\Config\PageConfigFactory as MWPageConfigFactory;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig as MWSiteConfig;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\LintErrorChecker;
-use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Password\PasswordFactory;
 use MediaWiki\Permissions\GrantsInfo;
@@ -1664,17 +1663,6 @@ return [
 			$services->getReadOnlyMode(),
 			$services->getParserFactory(), // *legacy* parser factory
 			$services->getLinkBatchFactory()
-		);
-	},
-
-	'ParsoidOutputAccess' => static function ( MediaWikiServices $services ): ParsoidOutputAccess {
-		return new ParsoidOutputAccess(
-			$services->getParsoidParserFactory(),
-			$services->getParserOutputAccess(),
-			$services->getPageStore(),
-			$services->getRevisionLookup(),
-			$services->getParsoidSiteConfig(),
-			$services->getContentHandlerFactory()
 		);
 	},
 

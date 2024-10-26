@@ -100,6 +100,8 @@ because of Phabricator reports.
 * The MediaWiki\Message\Converter class, deprecated in 1.43, has been removed.
   Use MessageValue::newFromSpecifier or Message::newFromSpecifier
   instead (T358779).
+* The ParsoidOutputAccess class marked @unstable from creation and
+  deprecated with all of its methods in 1.43, has been removed.
 * …
 
 === Deprecations in 1.44 ===

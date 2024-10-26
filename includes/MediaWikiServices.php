@@ -123,7 +123,6 @@ use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\LintErrorChecker;
-use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Password\PasswordFactory;
 use MediaWiki\Permissions\GrantsInfo;
@@ -1622,14 +1621,6 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getParsoidDataAccess(): DataAccess {
 		return $this->getService( 'ParsoidDataAccess' );
-	}
-
-	/**
-	 * @since 1.39
-	 * @unstable
-	 */
-	public function getParsoidOutputAccess(): ParsoidOutputAccess {
-		return $this->getService( 'ParsoidOutputAccess' );
 	}
 
 	/**

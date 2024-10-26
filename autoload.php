@@ -2050,7 +2050,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Parser\\Parsoid\\LintErrorChecker' => __DIR__ . '/includes/parser/Parsoid/LintErrorChecker.php',
 	'MediaWiki\\Parser\\Parsoid\\PageBundleJsonTrait' => __DIR__ . '/includes/parser/Parsoid/PageBundleJsonTrait.php',
 	'MediaWiki\\Parser\\Parsoid\\PageBundleParserOutputConverter' => __DIR__ . '/includes/parser/Parsoid/PageBundleParserOutputConverter.php',
-	'MediaWiki\\Parser\\Parsoid\\ParsoidOutputAccess' => __DIR__ . '/includes/parser/Parsoid/ParsoidOutputAccess.php',
 	'MediaWiki\\Parser\\Parsoid\\ParsoidParser' => __DIR__ . '/includes/parser/Parsoid/ParsoidParser.php',
 	'MediaWiki\\Parser\\Parsoid\\ParsoidParserFactory' => __DIR__ . '/includes/parser/Parsoid/ParsoidParserFactory.php',
 	'MediaWiki\\Parser\\Parsoid\\ParsoidRenderID' => __DIR__ . '/includes/edit/ParsoidRenderID.php',
