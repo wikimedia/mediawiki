@@ -54,7 +54,6 @@ const useBlockStore = require( '../stores/block.js' );
  *  - HardBlock (if the target is an IP)
  */
 
-// @vue/component
 module.exports = exports = defineComponent( {
 	name: 'AdditionalDetailsField',
 	components: { CdxCheckbox, CdxField },

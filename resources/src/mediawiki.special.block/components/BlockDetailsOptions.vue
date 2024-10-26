@@ -28,7 +28,6 @@ const { storeToRefs } = require( 'pinia' );
 const { CdxCheckbox, CdxField, useModelWrapper } = require( '@wikimedia/codex' );
 const useBlockStore = require( '../stores/block.js' );
 
-// @vue/component
 module.exports = exports = defineComponent( {
 	name: 'BlockDetailsField',
 	components: { CdxCheckbox, CdxField },
