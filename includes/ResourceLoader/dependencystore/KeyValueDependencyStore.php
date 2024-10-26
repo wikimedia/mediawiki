@@ -26,8 +26,7 @@ use Wikimedia\ObjectCache\BagOStuff;
 /**
  * Track per-module file dependencies in object cache via BagOStuff.
  *
- * @see $wgResourceLoaderUseObjectCacheForDeps
- * @internal For use by ResourceLoader\Module only
+ * * @internal For use by ResourceLoader\Module only
  * @since 1.35
  */
 class KeyValueDependencyStore extends DependencyStore {

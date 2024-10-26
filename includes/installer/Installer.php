@@ -1984,9 +1984,6 @@ abstract class Installer {
 			// Don't cache langconv tables
 			MainConfigNames::LanguageConverterCacheType => CACHE_NONE,
 
-			// Don't try to cache ResourceLoader dependencies in the database
-			MainConfigNames::ResourceLoaderUseObjectCacheForDeps => true,
-
 			// Debug-friendly
 			MainConfigNames::ShowExceptionDetails => true,
 			MainConfigNames::ShowHostnames => true,

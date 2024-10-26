@@ -665,7 +665,6 @@ return [
 			'ResourceBasePath' => null,
 			'ResourceLoaderMaxage' => [
 			],
-			'ResourceLoaderUseObjectCacheForDeps' => true,
 			'ResourceLoaderDebug' => false,
 			'ResourceLoaderMaxQueryLength' => false,
 			'ResourceLoaderValidateJS' => true,

@@ -392,6 +392,6 @@ EOT;
 		'flags' => 0
 	]
 ];
-\$wgResourceLoaderUseObjectCacheForDeps = true;";
+";
 	}
 }

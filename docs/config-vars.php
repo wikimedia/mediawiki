@@ -2085,12 +2085,6 @@ $wgResourceBasePath = null;
 $wgResourceLoaderMaxage = null;
 
 /**
- * Config variable stub for the ResourceLoaderUseObjectCacheForDeps setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::ResourceLoaderUseObjectCacheForDeps
- */
-$wgResourceLoaderUseObjectCacheForDeps = null;
-
-/**
  * Config variable stub for the ResourceLoaderDebug setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ResourceLoaderDebug
  */

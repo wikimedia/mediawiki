@@ -3718,12 +3718,6 @@ config-schema:
               - unversioned
             @see \MediaWiki\ResourceLoader\ResourceLoader::__construct
             @since 1.35
-    ResourceLoaderUseObjectCacheForDeps:
-        default: true
-        description: |-
-            Use the main stash instead of the module_deps table for indirect dependency tracking
-            @deprecated since 1.43; This will be removed in 1.44
-            @since 1.35
     ResourceLoaderDebug:
         default: false
         description: |-
