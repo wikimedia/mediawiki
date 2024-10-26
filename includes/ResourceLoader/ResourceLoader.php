@@ -30,7 +30,6 @@ use Less_Parser;
 use LogicException;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\Config;
-use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Html\Html;
 use MediaWiki\Html\HtmlJsCode;
@@ -97,10 +96,6 @@ class ResourceLoader implements LoggerAwareInterface {
 	/** @var string JavaScript / CSS pragma to disable minification. * */
 	public const FILTER_NOMIN = '/*@nomin*/';
 
-	/** @var string */
-	private const RL_DEP_STORE_PREFIX = 'ResourceLoaderModule';
-	/** @var int How long to preserve indirect dependency metadata in our backend store. */
-	private const RL_MODULE_DEP_TTL = BagOStuff::TTL_YEAR;
 	/** @var int */
 	private const MAXAGE_RECOVER = 60;
 
@@ -141,8 +136,6 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * Exposed for testing.
 	 */
 	protected $extraHeaders = [];
-	/** @var array Map of (module-variant => buffered DependencyStore updates) */
-	private $depStoreUpdateBuffer = [];
 	/**
 	 * @var array Styles that are skin-specific and supplement or replace the
 	 * default skinStyles of a FileModule. See $wgResourceModuleSkinStyles.
@@ -246,6 +239,15 @@ class ResourceLoader implements LoggerAwareInterface {
 	 */
 	public function setDependencyStore( DependencyStore $tracker ) {
 		$this->depStore = $tracker;
+	}
+
+	/**
+	 * @internal For use by Module.php
+	 * @since 1.44
+	 * @return DependencyStore
+	 */
+	public function getDependencyStore(): DependencyStore {
+		return $this->depStore;
 	}
 
 	/**
@@ -418,10 +420,6 @@ class ResourceLoader implements LoggerAwareInterface {
 			$object->setLogger( $this->logger );
 			$object->setHookContainer( $this->hookContainer );
 			$object->setName( $name );
-			$object->setDependencyAccessCallbacks(
-				[ $this, 'loadModuleDependenciesInternal' ],
-				[ $this, 'saveModuleDependenciesInternal' ]
-			);
 			$object->setSkinStylesOverride( $this->moduleSkinStyles );
 			$this->modules[$name] = $object;
 		}
@@ -443,7 +441,6 @@ class ResourceLoader implements LoggerAwareInterface {
 			$entitiesByModule[$moduleName] = "$moduleName|$vary";
 		}
 		$depsByEntity = $this->depStore->retrieveMulti(
-			self::RL_DEP_STORE_PREFIX,
 			$entitiesByModule
 		);
 		// Inject the indirect file dependencies for all the modules
@@ -473,77 +470,6 @@ class ResourceLoader implements LoggerAwareInterface {
 		$blobs = $store->getBlobs( $modulesWithMessages, $lang );
 		foreach ( $blobs as $moduleName => $blob ) {
 			$modulesWithMessages[$moduleName]->setMessageBlob( $blob, $lang );
-		}
-	}
-
-	/**
-	 * @internal Exposed for letting getModule() pass the callable to DependencyStore
-	 * @param string $moduleName
-	 * @param string $variant Language/skin variant
-	 * @return string[] List of absolute file paths
-	 */
-	public function loadModuleDependenciesInternal( $moduleName, $variant ) {
-		$deps = $this->depStore->retrieve( self::RL_DEP_STORE_PREFIX, "$moduleName|$variant" );
-
-		return Module::expandRelativePaths( $deps['paths'] );
-	}
-
-	/**
-	 * @internal Exposed for letting getModule() pass the callable to DependencyStore
-	 * @param string $moduleName
-	 * @param string $variant Language/skin variant
-	 * @param string[] $paths List of relative paths referenced during computation
-	 * @param string[] $priorPaths List of relative paths tracked in the dependency store
-	 */
-	public function saveModuleDependenciesInternal( $moduleName, $variant, $paths, $priorPaths ) {
-		$hasPendingUpdate = (bool)$this->depStoreUpdateBuffer;
-		$entity = "$moduleName|$variant";
-
-		if ( array_diff( $paths, $priorPaths ) || array_diff( $priorPaths, $paths ) ) {
-			// Dependency store needs to be updated with the new path list
-			if ( $paths ) {
-				$deps = $this->depStore->newEntityDependencies( $paths, time() );
-				$this->depStoreUpdateBuffer[$entity] = $deps;
-			} else {
-				$this->depStoreUpdateBuffer[$entity] = null;
-			}
-		}
-
-		// If paths were unchanged, leave the dependency store unchanged also.
-		// The entry will eventually expire, after which we will briefly issue an incomplete
-		// version hash for a 5-min startup window, the module then recomputes and rediscovers
-		// the paths and arrive at the same module version hash once again. It will churn
-		// part of the browser cache once, for clients connecting during that window.
-
-		if ( !$hasPendingUpdate ) {
-			DeferredUpdates::addCallableUpdate( function () {
-				$updatesByEntity = $this->depStoreUpdateBuffer;
-				$this->depStoreUpdateBuffer = [];
-				$cache = MediaWikiServices::getInstance()
-					->getObjectCacheFactory()->getLocalClusterInstance();
-
-				$scopeLocks = [];
-				$depsByEntity = [];
-				$entitiesUnreg = [];
-				foreach ( $updatesByEntity as $entity => $update ) {
-					$lockKey = $cache->makeKey( 'rl-deps', $entity );
-					$scopeLocks[$entity] = $cache->getScopedLock( $lockKey, 0 );
-					if ( !$scopeLocks[$entity] ) {
-						// avoid duplicate write request slams (T124649)
-						// the lock must be specific to the current wiki (T247028)
-						continue;
-					}
-					if ( $update === null ) {
-						$entitiesUnreg[] = $entity;
-					} else {
-						$depsByEntity[$entity] = $update;
-					}
-				}
-
-				$ttl = self::RL_MODULE_DEP_TTL;
-				$this->depStore->storeMulti( self::RL_DEP_STORE_PREFIX, $depsByEntity, $ttl );
-				$this->depStore->remove( self::RL_DEP_STORE_PREFIX, $entitiesUnreg );
-			} );
 		}
 	}
 

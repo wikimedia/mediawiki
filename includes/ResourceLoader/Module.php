@@ -22,7 +22,6 @@
 
 namespace MediaWiki\ResourceLoader;
 
-use Exception;
 use FileContentsHasher;
 use LogicException;
 use MediaWiki\Config\Config;
@@ -36,7 +35,6 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RuntimeException;
 use Wikimedia\RelPath;
-use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
  * Abstraction for ResourceLoader modules, with name registration and maxage functionality.
@@ -77,11 +75,6 @@ abstract class Module implements LoggerAwareInterface {
 
 	/** @var HookRunner|null */
 	private $hookRunner;
-
-	/** @var callback Function of (module name, variant) to get indirect file dependencies */
-	private $depLoadCallback;
-	/** @var callback Function of (module name, variant) to get indirect file dependencies */
-	private $depSaveCallback;
 
 	/** @var string|bool Deprecation string or true if deprecated; false otherwise */
 	protected $deprecated = false;
@@ -156,18 +149,6 @@ abstract class Module implements LoggerAwareInterface {
 	 */
 	public function setSkinStylesOverride( array $moduleSkinStyles ): void {
 		// Stub, only supported by FileModule currently.
-	}
-
-	/**
-	 * Inject the functions that load/save the indirect file path dependency list from storage
-	 *
-	 * @param callable $loadCallback Function of (module name, variant)
-	 * @param callable $saveCallback Function of (module name, variant, current paths, stored paths)
-	 * @since 1.35
-	 */
-	public function setDependencyAccessCallbacks( callable $loadCallback, callable $saveCallback ) {
-		$this->depLoadCallback = $loadCallback;
-		$this->depSaveCallback = $saveCallback;
 	}
 
 	/**
@@ -571,13 +552,10 @@ abstract class Module implements LoggerAwareInterface {
 		$variant = self::getVary( $context );
 
 		if ( !isset( $this->fileDeps[$variant] ) ) {
-			if ( $this->depLoadCallback ) {
-				$this->fileDeps[$variant] =
-					call_user_func( $this->depLoadCallback, $this->getName(), $variant );
-			} else {
-				$this->getLogger()->info( __METHOD__ . ": no callback registered" );
-				$this->fileDeps[$variant] = [];
-			}
+			$depStore = $context->getResourceLoader()->getDependencyStore();
+			$moduleName = $this->getName();
+			$styleDependencies = $depStore->retrieve( "$moduleName|$variant" );
+			$this->fileDeps[$variant] = self::expandRelativePaths( $styleDependencies['paths'] );
 		}
 
 		return $this->fileDeps[$variant];
@@ -606,37 +584,25 @@ abstract class Module implements LoggerAwareInterface {
 	 * @since 1.27
 	 */
 	protected function saveFileDependencies( Context $context, array $curFileRefs ) {
-		if ( !$this->depSaveCallback ) {
-			$this->getLogger()->info( __METHOD__ . ": no callback registered" );
+		// Pitfalls and performance considerations:
+		// 1. Don't keep updating the tracked paths due to duplicates or sorting.
+		// 2. Use relative paths to avoid ghost entries when $IP changes. (T111481)
+		// 3. Don't needlessly replace tracked paths with the same value
+		//    just because $IP changed (e.g. when upgrading a wiki).
+		// 4. Don't create an endless replace loop on every request for this
+		//    module when '../' is used anywhere. Even though both are expanded
+		//    (one expanded by getFileDependencies from the DB, the other is
+		//    still raw as originally read by RL), the latter has not
+		//    been normalized yet.
 
-			return;
-		}
+		$paths = self::getRelativePaths( $curFileRefs );
+		$priorPaths = self::getRelativePaths( $this->getFileDependencies( $context ) );
 
-		try {
-			// Pitfalls and performance considerations:
-			// 1. Don't keep updating the tracked paths due to duplicates or sorting.
-			// 2. Use relative paths to avoid ghost entries when $IP changes. (T111481)
-			// 3. Don't needlessly replace tracked paths with the same value
-			//    just because $IP changed (e.g. when upgrading a wiki).
-			// 4. Don't create an endless replace loop on every request for this
-			//    module when '../' is used anywhere. Even though both are expanded
-			//    (one expanded by getFileDependencies from the DB, the other is
-			//    still raw as originally read by RL), the latter has not
-			//    been normalized yet.
-			call_user_func(
-				$this->depSaveCallback,
-				$this->getName(),
-				self::getVary( $context ),
-				self::getRelativePaths( $curFileRefs ),
-				self::getRelativePaths( $this->getFileDependencies( $context ) )
-			);
-		} catch ( TimeoutException $e ) {
-			throw $e;
-		} catch ( Exception $e ) {
-			$this->getLogger()->warning(
-				__METHOD__ . ": failed to update dependencies: {$e->getMessage()}",
-				[ 'exception' => $e ]
-			);
+		if ( array_diff( $paths, $priorPaths ) || array_diff( $priorPaths, $paths ) ) {
+			$depStore = $context->getResourceLoader()->getDependencyStore();
+			$variant = self::getVary( $context );
+			$moduleName = $this->getName();
+			$depStore->storeMulti( [ "$moduleName|$variant" => $paths ] );
 		}
 	}
 
