@@ -155,7 +155,13 @@ class SpecialPasswordPolicies extends SpecialPage {
 				// Policy isn't enabled, so no need to display it
 				continue;
 			}
-			$msg = $this->msg( 'passwordpolicies-policy-' . strtolower( $gp ) )->numParams( $val );
+
+			$msg = $this->msg( 'passwordpolicies-policy-' . strtolower( $gp ) );
+
+			if ( is_numeric( $val ) ) {
+				$msg->numParams( $val );
+			}
+
 			$flagMsgs = [];
 			foreach ( array_filter( $flags ) as $flag => $value ) {
 				$flagMsg = $this->msg( 'passwordpolicies-policyflag-' . strtolower( $flag ) );
