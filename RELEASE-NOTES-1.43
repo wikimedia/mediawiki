@@ -62,6 +62,10 @@ For notes on 1.42.x and older releases, see HISTORY.
   'history_copyright' and the hook 'SkinCopyrightFooter', which have been
   deprecated in this release. This helps protect your wiki against attacks by
   a rogue administrator account and will become the default in the future.
+* (T4085) $wgParserEnableUserLanguage - Defaults to false, can be set to
+  true to let {{USERLANGUAGE}} magic word return the user's language,
+  instead of the page language. Beware that accessing the user language may
+  reduce the efficiency of the parser cache.
 * …
 
 ==== Changed configuration ====
