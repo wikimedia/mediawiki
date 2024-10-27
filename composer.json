@@ -35,7 +35,7 @@
 		"ext-openssl": "*",
 		"ext-xml": "*",
 		"ext-xmlreader": "*",
-		"guzzlehttp/guzzle": "7.8.1",
+		"guzzlehttp/guzzle": "7.9.2",
 		"justinrainbow/json-schema": "5.2.13",
 		"liuggio/statsd-php-client": "1.0.18",
 		"mck89/peast": "1.16.2",
