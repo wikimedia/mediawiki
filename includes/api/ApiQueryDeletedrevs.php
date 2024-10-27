@@ -23,9 +23,9 @@
 namespace MediaWiki\Api;
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -51,6 +51,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 	private RowCommentFormatter $commentFormatter;
 	private RevisionStore $revisionStore;
 	private NameTableStore $changeTagDefStore;
+	private ChangeTagsStore $changeTagsStore;
 	private LinkBatchFactory $linkBatchFactory;
 
 	public function __construct(
@@ -60,6 +61,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		RowCommentFormatter $commentFormatter,
 		RevisionStore $revisionStore,
 		NameTableStore $changeTagDefStore,
+		ChangeTagsStore $changeTagsStore,
 		LinkBatchFactory $linkBatchFactory
 	) {
 		parent::__construct( $query, $moduleName, 'dr' );
@@ -67,6 +69,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$this->commentFormatter = $commentFormatter;
 		$this->revisionStore = $revisionStore;
 		$this->changeTagDefStore = $changeTagDefStore;
+		$this->changeTagsStore = $changeTagsStore;
 		$this->linkBatchFactory = $linkBatchFactory;
 	}
 
@@ -144,8 +147,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 		if ( $fld_tags ) {
 			$this->addFields( [
-				'ts_tags' => MediaWikiServices::getInstance()->getChangeTagsStore()
-					->makeTagSummarySubquery( 'archive' )
+				'ts_tags' => $this->changeTagsStore->makeTagSummarySubquery( 'archive' )
 			] );
 		}
 
