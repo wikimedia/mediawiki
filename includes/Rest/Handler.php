@@ -653,7 +653,7 @@ abstract class Handler {
 
 		$spec = [
 			'parameters' => $parameters,
-			'responses' => $this->generateResponseSpec(),
+			'responses' => $this->generateResponseSpec( $method ),
 		];
 
 		if ( !in_array( $method, RequestInterface::NO_BODY_METHODS ) ) {
@@ -772,16 +772,19 @@ abstract class Handler {
 
 	/**
 	 * Returns an OpenAPI Schema Object specification structure as an associative array.
+	 *
 	 * @see https://swagger.io/specification/#schema-object
 	 *
 	 * Returns null by default. Subclasses that return a JSON response should
 	 * implement this method to return a schema of the response body.
 	 *
+	 * @param string $method The HTTP method to produce a spec for ("get", "post", etc).
+	 *
 	 * @stable to override
 	 * @return ?array
 	 */
-	protected function getResponseBodySchema(): ?array {
-		$file = $this->getResponseBodySchemaFileName();
+	protected function getResponseBodySchema( string $method ): ?array {
+		$file = $this->getResponseBodySchemaFileName( $method );
 		return $file ? Module::loadJsonFile( $file ) : null;
 	}
 
@@ -793,16 +796,19 @@ abstract class Handler {
 	 *
 	 * Returns null by default. Subclasses with a suitable JSON file should implement this method.
 	 *
+	 * @param string $method The HTTP method to produce a spec for ("get", "post", etc).
+	 *
 	 * @stable to override
 	 * @since 1.43
 	 * @return ?string
 	 */
-	protected function getResponseBodySchemaFileName(): ?string {
+	protected function getResponseBodySchemaFileName( string $method ): ?string {
 		return null;
 	}
 
 	/**
 	 * Returns an OpenAPI Responses Object specification structure as an associative array.
+	 *
 	 * @see https://swagger.io/specification/#responses-object
 	 *
 	 * By default, this will contain basic information response for status 200, 400, and 500.
@@ -810,13 +816,15 @@ abstract class Handler {
 	 *
 	 * Subclasses may override this to provide additional information about the structure of responses.
 	 *
+	 * @param string $method The HTTP method to produce a spec for ("get", "post", etc).
+	 *
 	 * @stable to override
 	 * @return array
 	 */
-	protected function generateResponseSpec(): array {
+	protected function generateResponseSpec( string $method ): array {
 		$ok = [ 'description' => 'OK' ];
 
-		$bodySchema = $this->getResponseBodySchema();
+		$bodySchema = $this->getResponseBodySchema( $method );
 
 		if ( $bodySchema ) {
 			$ok['content']['application/json']['schema'] = $bodySchema;
