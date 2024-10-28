@@ -22,7 +22,14 @@ module.exports = exports = defineStore( 'block', () => {
 	);
 	const reason = ref( 'other' );
 	const reasonOther = ref( mw.config.get( 'blockReasonOtherPreset' ) || '' );
+
 	const details = ref( mw.config.get( 'blockDetailsPreset' ) || [] );
+
+	const createAccount = ref( details.value.indexOf( 'wpCreateAccount' ) !== -1 );
+	const disableEmail = ref( details.value.indexOf( 'wpDisableEmail' ) !== -1 );
+	const disableEmailVisible = ref( mw.config.get( 'blockDisableEmailVisible' ) || false );
+	const disableUTEdit = ref( details.value.indexOf( 'wpDisableUTEdit' ) !== -1 );
+	const disableUTEditVisible = ref( mw.config.get( 'blockDisableUTEditVisible' ) || false );
 
 	const additionalDetails = ref( mw.config.get( 'blockAdditionalDetailsPreset' ) || [] );
 
@@ -113,15 +120,15 @@ module.exports = exports = defineStore( 'block', () => {
 			}
 		}
 
-		if ( details.value.indexOf( 'wpCreateAccount' ) !== -1 ) {
+		if ( createAccount.value ) {
 			params.nocreate = 1;
 		}
 
-		if ( details.value.indexOf( 'wpDisableEmail' ) !== -1 ) {
+		if ( disableEmail.value ) {
 			params.noemail = 1;
 		}
 
-		if ( details.value.indexOf( 'wpDisableUTEdit' ) === -1 ) {
+		if ( !disableUTEdit.value ) {
 			params.allowusertalk = 1;
 		}
 
@@ -158,7 +165,11 @@ module.exports = exports = defineStore( 'block', () => {
 		namespaces,
 		reason,
 		reasonOther,
-		details,
+		createAccount,
+		disableEmail,
+		disableEmailVisible,
+		disableUTEdit,
+		disableUTEditVisible,
 		autoBlock,
 		autoBlockExpiry,
 		autoBlockVisible,
