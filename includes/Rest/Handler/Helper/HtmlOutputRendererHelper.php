@@ -139,6 +139,8 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 */
 	private $parsoidOptions = [];
 
+	private ?ParserOptions $parserOptions = null;
+
 	/**
 	 * Whether the result can be cached in the parser cache and the web cache.
 	 * Set to false when bespoke options are set.
@@ -177,6 +179,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 *    $page and the page that $revision belongs to? Usually happens
 	 *    because of page moves. This should be set to true only for
 	 *    internal API calls.
+	 * @param ParserOptions|null $parserOptions
 	 * @note Since 1.43, setting $page and $authority arguments to null
 	 *    has been deprecated.
 	 */
@@ -195,7 +198,8 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		array $parameters = [],
 		?Authority $authority = null,
 		$revision = null,
-		bool $lenientRevHandling = false
+		bool $lenientRevHandling = false,
+		?ParserOptions $parserOptions = null
 	) {
 		$this->parsoidOutputStash = $parsoidOutputStash;
 		$this->statsFactory = $statsFactory;
@@ -208,6 +212,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->languageFactory = $languageFactory;
 		$this->lenientRevHandling = $lenientRevHandling;
+		$this->parserOptions = $parserOptions;
 		if ( $page === null || $authority === null ) {
 			// Constructing without $page and $authority parameters
 			// is deprecated since 1.43.
@@ -443,6 +448,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		} else {
 			$this->setFlavor( $parameters['flavor'] ?? 'view' );
 		}
+		$this->parserOptions ??= ParserOptions::newFromAnon();
 	}
 
 	/**
@@ -602,14 +608,14 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		];
 	}
 
-	private function getDefaultPageLanguage( ParserOptions $options ): Bcp47Code {
+	private function getDefaultPageLanguage(): Bcp47Code {
 		// NOTE: keep in sync with Parser::getTargetLanguage!
 
 		// XXX: Inject a TitleFactory just for this?! We need a better way to determine the page language...
 		$title = Title::castFromPageIdentity( $this->page );
 
-		if ( $options->getInterfaceMessage() ) {
-			return $options->getUserLangObj();
+		if ( $this->parserOptions->getInterfaceMessage() ) {
+			return $this->parserOptions->getUserLangObj();
 		}
 
 		return $title->getPageLanguage();
@@ -620,25 +626,24 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 */
 	private function getParserOutput(): ParserOutput {
 		if ( !$this->parserOutput ) {
-			$parserOptions = ParserOptions::newFromAnon();
-			$parserOptions->setRenderReason( __METHOD__ );
+			$this->parserOptions->setRenderReason( __METHOD__ );
 
-			$defaultLanguage = $this->getDefaultPageLanguage( $parserOptions );
+			$defaultLanguage = $this->getDefaultPageLanguage();
 
 			if ( $this->pageLanguage
 				&& $this->pageLanguage->toBcp47Code() !== $defaultLanguage->toBcp47Code()
 			) {
 				$languageObj = $this->languageFactory->getLanguage( $this->pageLanguage );
-				$parserOptions->setTargetLanguage( $languageObj );
+				$this->parserOptions->setTargetLanguage( $languageObj );
 				// Ensure target language splits the parser cache, when
 				// non-default; targetLangauge is not in
 				// ParserOptions::$cacheVaryingOptionsHash for the legacy
 				// parser.
-				$parserOptions->addExtraKey( 'target=' . $languageObj->getCode() );
+				$this->parserOptions->addExtraKey( 'target=' . $languageObj->getCode() );
 			}
 
 			try {
-				$status = $this->getParserOutputInternal( $parserOptions );
+				$status = $this->getParserOutputInternal();
 			} catch ( RevisionAccessException $e ) {
 				throw new LocalizedHttpException(
 					MessageValue::new( 'rest-nonexistent-title' ),
@@ -807,11 +812,9 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	}
 
 	/**
-	 * @param ParserOptions $parserOptions
-	 *
 	 * @return Status
 	 */
-	private function getParserOutputInternal( ParserOptions $parserOptions ): Status {
+	private function getParserOutputInternal(): Status {
 		// NOTE: ParserOutputAccess::getParserOutput() should be used for revisions
 		//       that come from the database. Either this revision is null to indicate
 		//       the current revision or the revision must have an ID.
@@ -889,7 +892,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		$mainSlot = $revision->getSlot( SlotRecord::MAIN );
 		$contentModel = $mainSlot->getModel();
 		if ( $this->parsoidSiteConfig->supportsContentModel( $contentModel ) ) {
-			$parserOptions->setUseParsoid();
+			$this->parserOptions->setUseParsoid();
 		}
 		if ( $this->isCacheable ) {
 			// phan can't tell that we must have used the block above to
@@ -897,7 +900,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			'@phan-var PageRecord $page';
 			try {
 				$status = $this->parserOutputAccess->getParserOutput(
-					$page, $parserOptions, $revision, $flags
+					$page, $this->parserOptions, $revision, $flags
 				);
 			} catch ( ClientError $e ) {
 				$status = Status::newFatal( 'parsoid-client-error', $e->getMessage() );
@@ -908,7 +911,6 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		} else {
 			$status = $this->parseUncacheable(
 				$page,
-				$parserOptions,
 				$revision,
 				$this->lenientRevHandling
 			);
@@ -935,7 +937,6 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	// bypasses any caching.
 	private function parseUncacheable(
 		PageIdentity $page,
-		ParserOptions $parserOptions,
 		RevisionRecord $revision,
 		bool $lenientRevHandling = false
 	): Status {
@@ -948,7 +949,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		try {
 			$renderedRev = $this->revisionRenderer->getRenderedRevision(
 				$revision,
-				$parserOptions,
+				$this->parserOptions,
 				// ParserOutputAccess uses 'null' for the authority and
 				// 'audience' => RevisionRecord::RAW, presumably because
 				// the access checks are already handled by the

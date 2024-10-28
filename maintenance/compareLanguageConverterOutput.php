@@ -87,8 +87,8 @@ class CompareLanguageConverterOutput extends Maintenance {
 		$parsoidOutput = $this->getParsoidOutput( $pageTitle, $targetVariant, $user );
 		$converterUsed = $this->getConverterUsed( $parsoidOutput );
 
-		$this->compareOutput( $parserOutput->getContentHolderText(),
-			$parsoidOutput->getText( [ 'deduplicateStyles' => false ] ), $converterUsed );
+		$this->compareOutput( $parserOutput->getContentHolderText(), $parsoidOutput->getContentHolderText(),
+			$converterUsed );
 		return true;
 	}
 
@@ -162,13 +162,17 @@ class CompareLanguageConverterOutput extends Maintenance {
 		Bcp47Code $targetVariant,
 		User $user
 	): ParserOutput {
+		$parserOptions = ParserOptions::newFromAnon();
 		$htmlOutputRendererHelper = $this->newPageRestHelperFactory()->newHtmlOutputRendererHelper( $pageTitle, [
 			'stash' => false,
 			'flavor' => 'view',
-		], $user );
+		], $user, null, false, $parserOptions );
 		$htmlOutputRendererHelper->setVariantConversionLanguage( $targetVariant );
 
-		return $htmlOutputRendererHelper->getHtml();
+		$po = $htmlOutputRendererHelper->getHtml();
+		$pipeline = $this->getServiceContainer()->getDefaultOutputPipeline();
+		$options = [ 'deduplicateStyles' => false ];
+		return $pipeline->run( $po, $parserOptions, $options );
 	}
 
 	private function getWords( string $output ): array {
