@@ -1160,8 +1160,7 @@ class WebInstaller extends Installer {
 		return parent::envCheckPath();
 	}
 
-	public function envPrepPath() {
-		parent::envPrepPath();
+	protected function detectWebPaths() {
 		// PHP_SELF isn't available sometimes, such as when PHP is CGI but
 		// cgi.fix_pathinfo is disabled. In that case, fall back to SCRIPT_NAME
 		// to get the path to the current script... hopefully it's reliable. SIGH
@@ -1174,16 +1173,19 @@ class WebInstaller extends Installer {
 		if ( $path !== false ) {
 			$scriptPath = preg_replace( '{^(.*)/(mw-)?config.*$}', '$1', $path );
 
-			$this->setVar( 'wgScriptPath', "$scriptPath" );
-			// Update variables set from Setup.php that are derived from wgScriptPath
-			$this->setVar( 'wgScript', "$scriptPath/index.php" );
-			$this->setVar( 'wgLoadScript', "$scriptPath/load.php" );
-			$this->setVar( 'wgStylePath', "$scriptPath/skins" );
-			$this->setVar( 'wgLocalStylePath', "$scriptPath/skins" );
-			$this->setVar( 'wgExtensionAssetsPath', "$scriptPath/extensions" );
-			$this->setVar( 'wgUploadPath', "$scriptPath/images" );
-			$this->setVar( 'wgResourceBasePath', "$scriptPath" );
+			return [
+				'wgScriptPath' => "$scriptPath",
+				// Update variables set from Setup.php that are derived from wgScriptPath
+				'wgScript' => "$scriptPath/index.php",
+				'wgLoadScript' => "$scriptPath/load.php",
+				'wgStylePath' => "$scriptPath/skins",
+				'wgLocalStylePath' => "$scriptPath/skins",
+				'wgExtensionAssetsPath' => "$scriptPath/extensions",
+				'wgUploadPath' => "$scriptPath/images",
+				'wgResourceBasePath' => "$scriptPath",
+			];
 		}
+		return [];
 	}
 
 	/**
