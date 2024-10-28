@@ -16,6 +16,9 @@ use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
+use OOUI\FieldLayout;
+use OOUI\HtmlSnippet;
+use OOUI\MessageWidget;
 use UserBlockedError;
 use Wikimedia\Rdbms\IConnectionProvider;
 
@@ -355,8 +358,17 @@ class SpecialRenameUser extends SpecialPage {
 				'type' => 'info',
 				'label-message' => 'renameuserwarnings',
 				'raw' => true,
-				'default' => Html::warningBox( '<ul><li>' .
-					implode( '</li><li>', $warningsHtml ) . '</li></ul>' ),
+				'rawrow' => true,
+				'default' => new FieldLayout(
+					new MessageWidget( [
+						'label' => new HtmlSnippet(
+							'<ul><li>'
+							. implode( '</li><li>', $warningsHtml )
+							. '</li></ul>'
+						),
+						'type' => 'warning',
+					] )
+				),
 			];
 
 			$formDescriptor['confirmaction'] = [
