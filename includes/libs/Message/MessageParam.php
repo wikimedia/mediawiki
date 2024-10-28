@@ -2,16 +2,14 @@
 
 namespace Wikimedia\Message;
 
-use MediaWiki\Json\JsonDeserializable;
-use MediaWiki\Json\JsonDeserializableTrait;
+use Wikimedia\JsonCodec\JsonCodecable;
 
 /**
  * Value object representing a message parameter that consists of a list of values.
  *
  * Message parameter classes are pure value objects and are newable and (de)serializable.
  */
-abstract class MessageParam implements JsonDeserializable {
-	use JsonDeserializableTrait;
+abstract class MessageParam implements JsonCodecable {
 
 	/** @var string */
 	protected $type;

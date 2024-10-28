@@ -3,8 +3,8 @@
 namespace Wikimedia\Message;
 
 use InvalidArgumentException;
-use MediaWiki\Json\JsonDeserializer;
 use Stringable;
+use Wikimedia\JsonCodec\JsonCodecableTrait;
 
 /**
  * Value object representing a message parameter holding a single value.
@@ -14,6 +14,8 @@ use Stringable;
  * @newable
  */
 class ScalarParam extends MessageParam {
+	use JsonCodecableTrait;
+
 	/**
 	 * Construct a text parameter
 	 *
@@ -59,7 +61,7 @@ class ScalarParam extends MessageParam {
 		return "<{$this->type}>" . $contents . "</{$this->type}>";
 	}
 
-	protected function toJsonArray(): array {
+	public function toJsonArray(): array {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 		return [
@@ -67,7 +69,7 @@ class ScalarParam extends MessageParam {
 		];
 	}
 
-	public static function newFromJsonArray( JsonDeserializer $deserializer, array $json ) {
+	public static function newFromJsonArray( array $json ) {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 		if ( count( $json ) !== 1 ) {
