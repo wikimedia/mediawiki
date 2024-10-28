@@ -65,13 +65,6 @@ class ParamType {
 	 */
 	public const GROUP = 'group';
 
-	/**
-	 * For arbitrary stringable objects
-	 * @since 1.38
-	 * @deprecated since 1.43
-	 */
-	public const OBJECT = 'object';
-
 	/** A number of bytes. The output will be rounded to an appropriate magnitude. */
 	public const SIZE = 'size';
 
@@ -108,7 +101,6 @@ class ParamType {
 			self::DATE,
 			self::TIME,
 			self::GROUP,
-			self::OBJECT,
 			self::SIZE,
 			self::BITRATE,
 			self::LIST,

@@ -5,7 +5,6 @@ namespace Wikimedia\Message;
 use MediaWiki\Json\JsonDeserializable;
 use MediaWiki\Json\JsonDeserializableTrait;
 use MediaWiki\Json\JsonDeserializer;
-use Stringable;
 
 /**
  * Value object representing a message for i18n.
@@ -111,21 +110,6 @@ class MessageValue implements JsonDeserializable, MessageSpecifier {
 	public function textParamsOfType( $type, ...$values ) {
 		foreach ( $values as $value ) {
 			$this->params[] = new ScalarParam( $type, $value );
-		}
-		return $this;
-	}
-
-	/**
-	 * Chainable mutator which adds object parameters
-	 *
-	 * @deprecated since 1.43
-	 * @param Stringable ...$values stringable object values
-	 * @return $this
-	 */
-	public function objectParams( ...$values ) {
-		wfDeprecated( __METHOD__, '1.43' );
-		foreach ( $values as $value ) {
-			$this->params[] = new ScalarParam( ParamType::OBJECT, $value );
 		}
 		return $this;
 	}

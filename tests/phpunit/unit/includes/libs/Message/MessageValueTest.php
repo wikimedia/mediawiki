@@ -3,8 +3,6 @@
 namespace Wikimedia\Tests\Message;
 
 use MediaWiki\Json\JsonCodec;
-use MediaWiki\Message\UserGroupMembershipParam;
-use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use Wikimedia\Message\ListType;
 use Wikimedia\Message\MessageValue;
@@ -207,18 +205,6 @@ class MessageValueTest extends MediaWikiUnitTestCase {
 		$mv2 = $mv->userGroupParams( 'bot' );
 		$this->assertSame( '<message key="key">' .
 			"<group>bot</group>" .
-			'</message>',
-			$mv->dump() );
-		$this->assertSame( $mv, $mv2 );
-	}
-
-	public function testUserGroupMemberParams() {
-		$mv = new MessageValue( 'key' );
-		$mv2 = @$mv->objectParams(
-			new UserGroupMembershipParam( 'bot', new UserIdentityValue( 1, 'user' ) )
-		);
-		$this->assertSame( '<message key="key">' .
-			'<object>bot:user</object>' .
 			'</message>',
 			$mv->dump() );
 		$this->assertSame( $mv, $mv2 );
