@@ -24,7 +24,9 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 	/** @var Authority */
 	private static $admin;
 	/** @var User */
-	private static $user;
+	private static $hiddenUser;
+	/** @var User */
+	private static $topUser;
 	private static int $useModWikiIPRevId;
 
 	public function addDBDataOnce() {
@@ -48,10 +50,20 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 			'Edit failed for admin'
 		);
 
-		self::$user = $this->getTestUser()->getUser();
+		self::$hiddenUser = $this->getTestUser()->getUser();
 		$this->assertTrue(
 			$this->editPage(
-				'Test', 'Test Content', 'test', NS_MAIN, self::$user
+				'Test', 'Test Content', 'test', NS_MAIN, self::$hiddenUser
+			)->isOK(),
+			'Edit failed for user'
+		);
+
+		// self::$topUser made the last edit to 'TopTest'. It should
+		// not be edited by a different user after this.
+		self::$topUser = $this->getTestUser( 'TopUser' )->getUser();
+		$this->assertTrue(
+			$this->editPage(
+				'TopTest', 'Test Content', 'test', NS_MAIN, self::$topUser
 			)->isOK(),
 			'Edit failed for user'
 		);
@@ -65,7 +77,7 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 
 		$blockStatus = $this->getServiceContainer()->getBlockUserFactory()
 			->newBlockUser(
-				self::$user->getName(),
+				self::$hiddenUser->getName(),
 				self::$admin,
 				'infinity',
 				'',
@@ -84,14 +96,14 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 
 	public function testExecuteHiddenTarget() {
 		[ $html ] = $this->executeSpecialPage(
-			self::$user->getName()
+			self::$hiddenUser->getName()
 		);
 		$this->assertStringNotContainsString( 'mw-pager-body', $html );
 	}
 
 	public function testExecuteHiddenTargetWithPermissions() {
 		[ $html ] = $this->executeSpecialPage(
-			self::$user->getName(),
+			self::$hiddenUser->getName(),
 			null,
 			'qqx',
 			// This is necessary because permission checks aren't actually
@@ -273,6 +285,13 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 		$this->assertStringContainsString( 'tagfilter', $url );
 		$this->assertStringContainsString( 'year', $url );
 		$this->assertStringContainsString( 'month', $url );
+	}
+
+	public function testCSSClasses() {
+		// Regression test for T378132
+		[ $html ] = $this->executeSpecialPage( self::$topUser->getName() );
+
+		$this->assertStringContainsString( "mw-contributions-current", $html );
 	}
 
 	/**
