@@ -412,10 +412,12 @@ class MediaWikiServices extends ServiceContainer {
 	 *        config of the old instance of MediaWikiServices will be re-used. If there
 	 *        was no previous instance, a new GlobalVarConfig object will be used to
 	 *        bootstrap the services.
-	 * @param string $quick Set this to "quick" to allow expensive resources to be re-used.
-	 * See SalvageableService for details.
+	 * @param string $mode May be one of:
+	 *   - quick: allow expensive resources to be re-used. See SalvageableService for details.
+	 *   - reset: discard expensive resources but reuse service wiring (default)
+	 *   - reload: discard expensive resources and reload the service wiring
 	 */
-	public static function resetGlobalInstance( ?Config $bootstrapConfig = null, $quick = '' ) {
+	public static function resetGlobalInstance( ?Config $bootstrapConfig = null, $mode = 'reset' ) {
 		if ( self::$instance === null ) {
 			// no global instance yet, nothing to reset
 			return;
@@ -433,9 +435,11 @@ class MediaWikiServices extends ServiceContainer {
 		$runner = new HookRunner( $oldInstance->getHookContainer() );
 		$runner->onMediaWikiServices( self::$instance );
 
-		self::$instance->importWiring( $oldInstance, [ 'BootstrapConfig' ] );
+		if ( $mode !== 'reload' ) {
+			self::$instance->importWiring( $oldInstance, [ 'BootstrapConfig' ] );
+		}
 
-		if ( $quick === 'quick' ) {
+		if ( $mode === 'quick' ) {
 			self::$instance->salvage( $oldInstance );
 		} else {
 			$oldInstance->destroy();
@@ -511,8 +515,8 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * Disables all storage layer services. After calling this, any attempt to access the
-	 * storage layer will result in an error. Use resetGlobalInstance() to restore normal
-	 * operation.
+	 * storage layer will result in an error. Use resetGlobalInstance() with $mode=reload
+	 * to restore normal operation.
 	 *
 	 * @since 1.40
 	 *
