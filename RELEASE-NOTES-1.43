@@ -840,12 +840,11 @@ supported.
     - RedisBagOStuff
     - WANObjectCache
     - WinCacheBagOStuff
+    - RedisConnectionPool
+    - RedisConnRef
   - Wikimedia\Rdbms:
     - DBAccessObjectUtils
     - IDBAccessObject
-  - Wikimedia\Redis:
-    - RedisConnectionPool
-    - RedisConnRef
   - Wikimedia\Stats:
     - BufferingStatsdDataFactory
     - IBufferingStatsdDataFactory

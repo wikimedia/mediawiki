@@ -23,8 +23,6 @@ use ArrayUtils;
 use Exception;
 use Redis;
 use RedisException;
-use Wikimedia\Redis\RedisConnectionPool;
-use Wikimedia\Redis\RedisConnRef;
 
 /**
  * Store data in Redis.

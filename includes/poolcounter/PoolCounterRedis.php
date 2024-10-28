@@ -25,8 +25,8 @@ use Exception;
 use HashRing;
 use MediaWiki\Status\Status;
 use RedisException;
-use Wikimedia\Redis\RedisConnectionPool;
-use Wikimedia\Redis\RedisConnRef;
+use Wikimedia\ObjectCache\RedisConnectionPool;
+use Wikimedia\ObjectCache\RedisConnRef;
 
 /**
  * Version of PoolCounter that uses Redis
