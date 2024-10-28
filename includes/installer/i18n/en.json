@@ -270,7 +270,6 @@
 	"config-install-interwiki-list": "Could not read file <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "<strong>Warning:</strong> The interwiki table seems to already have entries.\nSkipping default list.",
 	"config-install-stats": "Initializing statistics",
-	"config-install-keys": "Generating secret keys",
 	"config-install-updates": "Prevent running unneeded updates",
 	"config-install-updates-failed": "<strong>Error:</strong> Inserting update keys into tables failed with the following error: $1",
 	"config-install-sysop": "Creating administrator user account",
