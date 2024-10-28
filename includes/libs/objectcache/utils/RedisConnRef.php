@@ -18,7 +18,7 @@
  * @file
  */
 
-namespace Wikimedia\Redis;
+namespace Wikimedia\ObjectCache;
 
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;

@@ -21,7 +21,7 @@
  * @defgroup Redis Redis
  */
 
-namespace Wikimedia\Redis;
+namespace Wikimedia\ObjectCache;
 
 use Exception;
 use InvalidArgumentException;
