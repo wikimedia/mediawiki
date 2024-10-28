@@ -34,9 +34,7 @@
 			v-if="blockEnableMultiblocks"
 			:target-user="store.targetUser"
 		></target-active-blocks>
-		<target-block-log
-			:target-user="store.targetUser"
-		></target-block-log>
+		<target-block-log></target-block-log>
 		<block-type-field></block-type-field>
 		<expiry-field :form-submitted="formSubmitted"></expiry-field>
 		<reason-field

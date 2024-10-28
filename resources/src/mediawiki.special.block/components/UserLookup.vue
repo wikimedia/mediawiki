@@ -9,12 +9,13 @@
 			v-model:input-value="currentSearchTerm"
 			name="wpTarget"
 			required
+			:clearable="true"
 			:menu-items="menuItems"
 			:placeholder="$i18n( 'block-user-placeholder' ).text()"
 			:start-icon="cdxIconSearch"
 			@input="onInput"
 			@change="onChange"
-			@update:selected="currentSearchTerm = selection"
+			@update:selected="onSelect"
 		>
 		</cdx-lookup>
 		<template #label>
@@ -168,6 +169,16 @@ module.exports = exports = defineComponent( {
 			targetUser.value = event.target.value;
 		}
 
+		/**
+		 * Handle lookup selection.
+		 *
+		 * @param {string} value
+		 */
+		function onSelect( value ) {
+			currentSearchTerm.value = value;
+			targetUser.value = value;
+		}
+
 		// Validate the input when the form is submitted.
 		// TODO: Remove once Codex supports native validations (T373872).
 		watch( () => props.formSubmitted, () => {
@@ -178,6 +189,7 @@ module.exports = exports = defineComponent( {
 			menuItems,
 			onChange,
 			onInput,
+			onSelect,
 			cdxIconSearch,
 			currentSearchTerm,
 			selection,
