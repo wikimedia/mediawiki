@@ -11,8 +11,7 @@
 			"Matma Rex",
 			"Mjbmr",
 			"Rachitrali",
-			"Sultanselim baloch",
-			"Amire80"
+			"Sultanselim baloch"
 		]
 	},
 	"tog-underline": "لینکانی جهلگا خط کشیتین",
@@ -731,7 +730,7 @@
 	"titlematches": "مقاله ئی ئنوانئ یکی کورتین",
 	"textmatches": "مقاله ئی متنئ یکی کورتین",
 	"notextmatches": "هیچ یک شه مقاله ئانی متن مطابقت ندارنت",
-	"prevn": "{{PLURAL:$1|$1}}دیمتیری",
+	"prevn": "{{PLURAL:$1|$1}} دیمتیری",
 	"nextn": "{{PLURAL:$1|$1}}پدتیری",
 	"prev-page": "دیمتیرین تاکدیم",
 	"next-page": "دیگرین تاکدیم",

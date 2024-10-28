@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"DannyS712",
 			"Enye Lav",
 			"Soul Train",
@@ -11,7 +10,8 @@
 			"СерМар",
 			"Matma Rex",
 			"Sagan",
-			"Анастасия Хорошева"
+			"Анастасия Хорошева",
+			"Stjn"
 		]
 	},
 	"tog-underline": "Визьнитны ыстісьӧм:",
@@ -787,7 +787,7 @@
 	"revisionasof": "Версия № $1",
 	"revision-info": "Версия $1 {{GENDER:$6|$2}}$7- сянь",
 	"previousrevision": "← Важжык",
-	"nextrevision": "Вильжык версия",
+	"nextrevision": "Вильжык версия →",
 	"currentrevisionlink": "Öння версия",
 	"cur": "öння",
 	"tooltip-cur": "Бӧрья вӧзйӧмись торьялӧм",

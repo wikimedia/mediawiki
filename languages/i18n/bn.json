@@ -61,10 +61,10 @@
 			"এম আবু সাঈদ",
 			"খাত্তাব হাসান",
 			"মোঃ মারুফ হাসান24",
-			"Amire80",
 			"Asked42",
 			"Borhan",
-			"RiazACU"
+			"RiazACU",
+			"San1joy23"
 		]
 	},
 	"tog-underline": "সংযোগের নিচে দাগ দেখানো হোক:",
@@ -3785,7 +3785,7 @@
 	"duration-seconds": "$1 {{PLURAL:$1|সেকেন্ড|সেকেন্ড}}",
 	"duration-minutes": "$1 {{PLURAL:$1|মিনিট|মিনিট}}",
 	"duration-hours": "$1 {{PLURAL:$1|ঘণ্টা}}",
-	"duration-days": "$1 {{PLURAL:$1|দিন|দিন}}",
+	"duration-days": "$1 {{PLURAL:$1|দিন}}",
 	"duration-weeks": "$1 {{PLURAL:$1|সপ্তাহ}}",
 	"duration-years": "$1 {{PLURAL:$1|বছর|বছর}}",
 	"duration-decades": "$1 {{PLURAL:$1|দশক|দশক}}",

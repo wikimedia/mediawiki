@@ -11,7 +11,6 @@
 			"YesIn",
 			"ⵕⴰⵊⵉ",
 			"Lhoussine AIT TAYFST",
-			"Amire80",
 			"AguzulH",
 			"Aksel Tinfat"
 		]
@@ -524,8 +523,8 @@
 	"currentrev-asof": "ⴰⵣⵣⵔⴰⵢ ⴰⵎⴳⴳⴰⵔⵓ ⴳ $1",
 	"revisionasof": "ⵜⵓⵏⵖⵉⵍⵜ ⵏ $1",
 	"revision-info": "ⴰⵣⵣⵔⴰⵢ ⵏ $1 ⵙⴳ ⵖⵓⵔ {{GENDER:$6|$2}}$7",
-	"previousrevision": "ⵜⵓⵏⵖⵉⵍⵜ ⵜⴰⵇⴱⵓⵔⵜ",
-	"nextrevision": "ⴰⵣⵣⵔⴰⵢ ⴰⵎⴰⵢⵏⵓ",
+	"previousrevision": "← ⵜⵓⵏⵖⵉⵍⵜ ⵜⴰⵇⴱⵓⵔⵜ",
+	"nextrevision": "ⴰⵣⵣⵔⴰⵢ ⴰⵎⴰⵢⵏⵓ →",
 	"currentrevisionlink": "ⴰⵣⵣⵔⴰⵢ ⴰⵎⴳⴳⴰⵔⵓ",
 	"cur": "ⵎⵔⵏ",
 	"next": "ⵉⵏⴹⴼⵔ",

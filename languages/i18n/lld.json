@@ -6,8 +6,7 @@
 			"JuaFlick",
 			"Nintendofan885",
 			"S4b1nuz E.656",
-			"Starladin",
-			"Amire80"
+			"Starladin"
 		]
 	},
 	"tog-underline": "Sotrissëia i lians",
@@ -502,7 +501,7 @@
 	"currentrev-asof": "Verjiun atuala dles $1",
 	"revisionasof": "Reviscion de i $1",
 	"revision-info": "Verjiun de $1 di {{GENDER:$6|$2}}$7",
-	"previousrevision": "Verscion plu vedla",
+	"previousrevision": "← Verscion plu vedla",
 	"nextrevision": "Verjiun plü atuala →",
 	"currentrevisionlink": "Verjiun atuala",
 	"cur": "at",

@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Jose77",
 			"Meno25",
 			"Nemo bis",
@@ -342,7 +341,7 @@
 	"currentrev-asof": "Latest rivishɔn as of $1",
 	"revisionasof": "Rivishɔn as fɔ $1",
 	"revision-info": "Rivishɔn as fɔ $1 bay {{GENDER:$6|$2}}$7",
-	"previousrevision": "pass ol vèrsiòn",
+	"previousrevision": "← Pass ol vèrsiòn",
 	"nextrevision": "Nyu rivishɔn →",
 	"currentrevisionlink": "Di las rivishɔn",
 	"cur": "kùr",

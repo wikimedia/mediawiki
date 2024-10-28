@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Fitoschido",
 			"Gálaniitoluodda",
 			"Jeblad",
@@ -25,7 +24,8 @@
 			"Caden99",
 			"Luke Davidson",
 			"Matma Rex",
-			"WMNO sámeprošeakta"
+			"WMNO sámeprošeakta",
+			"Jon Harald Søby"
 		]
 	},
 	"tog-underline": "Liŋkkaid vuollesárggis:",
@@ -165,7 +165,7 @@
 	"navigation-heading": "Navigašuvdnafállu",
 	"errorpagetitle": "Meattáhus",
 	"returnto": "Máhca siidui $1.",
-	"tagline": "{{SITENAME}}'as/is",
+	"tagline": "{{GRAMMAR:locative|{{SITENAME}}}}",
 	"help": "Rávvagat",
 	"help-mediawiki": "Rávvagat MediaWiki birra",
 	"search": "Ohcan",

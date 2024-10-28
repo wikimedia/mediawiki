@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Aram",
 			"Aras Noori",
 			"Arastein",
@@ -697,7 +696,7 @@
 	"currentrev-asof": "دوایین پێداچوونەوەی $1",
 	"revisionasof": "وەک پێداچوونەوەی $1",
 	"revision-info": "پێداچوونەوی $1 لە لایەن {{GENDER:$6|$2}}$7",
-	"previousrevision": "→پیاچوونەوەی کۆنتر",
+	"previousrevision": "→ پیاچوونەوەی کۆنتر",
 	"nextrevision": "پێداچوونەوەی نوێتر←",
 	"currentrevisionlink": "پێداچوونەوەی ئێستا",
 	"cur": "ئێستا",

@@ -3,7 +3,6 @@
 		"authors": [
 			"ANukuma",
 			"Abdiafrizal",
-			"Amire80",
 			"Boesenbergia",
 			"NoiX180"
 		]
@@ -321,7 +320,7 @@
 	"currentrev-asof": "Rèvisi jângkènè è $1",
 	"revisionasof": "Rèvisi per $1",
 	"revision-info": "Rèvisi per $1 bi' {{GENDER:$6|$2}}$7",
-	"previousrevision": "Rèvisi sabelluna",
+	"previousrevision": "← Rèvisi sabelluna",
 	"nextrevision": "Rèvisi lebbi anyar →",
 	"currentrevisionlink": "Rèvisi jângkènè",
 	"cur": "satèya",

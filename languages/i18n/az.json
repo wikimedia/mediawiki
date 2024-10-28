@@ -45,7 +45,7 @@
 			"IBAnk",
 			"Atakhanli",
 			"Nemoralis",
-			"Amire80"
+			"Gadir"
 		]
 	},
 	"tog-underline": "Keçidlərin altını xətlə:",
@@ -740,7 +740,7 @@
 	"readonlywarning": "<strong>Xəbərdarlıq: Verilənlər bazası texniki baxış üçün kilidlənib, yəni redaktələrinizi hazırda yayımlaya bilməzsiniz.</strong>\nMətni mətn faylına köçürüb daha sonra əlavə etməyinizi tövsiyə edirik.\n\nBazanı kilidləyən sistem idarəçisinin verdiyi səbəb: $1",
 	"protectedpagewarning": "<strong>Xəbərdarlıq: Bu səhifəni yalnız inzibatçılar redaktə edə bilər.</strong>\n\nMühafizə jurnalındakı axırıncı qeyd istinad üçün aşağıda göstərilib:",
 	"semiprotectedpagewarning": "<strong>Qeyd:</strong> Bu səhifə sadəcə avtotəsdiqlənmiş istifadəçilər tərəfindən redaktə edilə bilər.\nMühafizə jurnalındakı axırıncı qeyd istinad üçün aşağıda göstərilib:",
-	"cascadeprotectedwarning": "<strong>Xəbərdarlıq:</strong> Bu səhifə yalnız [[Special:ListGroupRights|xüsusi hüquqlara malik]] istifadəçilər tərəfindən redaktə ediləcək şəkildə mühafizə edilir. Çünki bu səhifə aşağıdakı kaskad mühafizə ilə qorunan {{PLURAL:$1|səhifəyə|səhifələrə}} daxildir:",
+	"cascadeprotectedwarning": "<strong>Xəbərdarlıq:</strong> Bu səhifə yalnız [[Special:ListGroupRights|xüsusi hüquqlara malik]] istifadəçilər tərəfindən redaktə ediləcək şəkildə mühafizə edilir. Çünki bu səhifə aşağıdakı kaskad mühafizə edilmiş {{PLURAL:$1|səhifəyə|səhifələrə}} daxil edilib:",
 	"titleprotectedwarning": "'''DİQQƏT! Bu səhifə mühafizəlidir, yalnız [[Special:ListGroupRights|icazəsi olan]] istifadəçilər onu redaktə edə bilərlər.'''",
 	"templatesused": "Bu səhifədə istifadə edilmiş {{PLURAL:$1|şablon|şablonlar}}:",
 	"templatesusedpreview": "Bu sınaq göstərişində istifadə edilmiş {{PLURAL:$1|şablon|şablonlar}}:",
@@ -2605,7 +2605,7 @@
 	"ipbenableautoblock": "Bu istifadəçinin istifadə etdiyi son IP-ünvanını və redaktə etməyə çalışdığı sonrakı IP-ünvanlarını $1 müddətinə avtomatik blokla",
 	"ipbsubmit": "Bu istifadəçini blokla",
 	"ipbother": "Başqa vaxt",
-	"ipboptions": "2 saat:2 hours,1 gün:1 day,3 gün:3 days,1 həftə:1 week,2 həftə:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 il:1 year,müddətsiz:infinite",
+	"ipboptions": "2 saat:2 hours,1 gün:1 day,2 gün:2 day,3 gün:3 days,1 həftə:1 week,2 həftə:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 il:1 year,müddətsiz:infinite",
 	"ipbhidename": "İstifadəçi adını redaktələrdə və siyahılarda gizlət",
 	"ipbwatchuser": "Bu istifadəçinin istifadəçi və müzakirə səhifəsini izlə",
 	"ipb-disableusertalk": "Öz müzakirə səhifəsini redaktə edə bilmə",
@@ -3608,7 +3608,7 @@
 	"restore-count-revisions": "{{PLURAL:$1|1 redaktə}}",
 	"restore-count-files": "{{PLURAL:$1|1 fayl}}",
 	"logentry-delete-event": "$1 $3 jurnalındakı {{PLURAL:$5|qeydin|$5 qeydin}} görünəbilərliyini {{GENDER:$2|dəyişdi}}: $4",
-	"logentry-delete-revision": "$1 $3 səhifəsindəki {{PLURAL:$5|bir redaktəni|$5 redaktəni}} {{GENDER:$2|gizlətdi}}: $4",
+	"logentry-delete-revision": "$1 $3 səhifəsindəki {{PLURAL:$5|bir redaktənin|$5 redaktənin}} {{GENDER:$2|görünmə vəziyyətini dəyişdirdi}}: $4",
 	"logentry-delete-event-legacy": "$1 $3 səhifəsindəki jurnal qeydlərinin görünmə vəziyyətini {{GENDER:$2|dəyişdirdi}}",
 	"logentry-delete-revision-legacy": "$1 $3 səhifəsindəki versiyaların görünəbilərliyini {{GENDER:$2|dəyişdi}}",
 	"logentry-suppress-delete": "$1 $3 səhifəsini {{GENDER:$2|gizlətdi}}",

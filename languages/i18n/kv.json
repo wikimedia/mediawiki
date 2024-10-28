@@ -6,11 +6,11 @@
 			"ОйЛ",
 			"Enye Lav",
 			"Merrahtar",
-			"Amire80",
 			"СерМар",
 			"Марина",
 			"Albertoleoncio",
-			"Mićadźoridź"
+			"Mićadźoridź",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Ыстӧг визьйӧдлӧм:",
@@ -785,8 +785,8 @@
 	"currentrev-asof": "$1-са медбӧръя версия",
 	"revisionasof": "\n$1-ся версия",
 	"revision-info": " $1-са версия {{GENDER:$6|$2}}$7",
-	"previousrevision": "Воддза версия",
-	"nextrevision": "Табӧрса версия",
+	"previousrevision": "← Воддза версия",
+	"nextrevision": "Табӧрса версия →",
 	"currentrevisionlink": "Ӧнія версия",
 	"cur": "ӧнія",
 	"tooltip-cur": "Бӧръя версияысь торъялӧм",

@@ -21,7 +21,8 @@
 			"ערן",
 			"שמזן",
 			"Dee",
-			"מיכי י-ם"
+			"מיכי י-ם",
+			"מקף"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|תיעוד]]\n* [[mw:Special:MyLanguage/API:Etiquette|כללי נימוסין והנחיות שימוש]]\n* [[mw:Special:MyLanguage/API:FAQ|שו\"ת]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ רשימת תפוצה]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ הודעות על API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R באגים ובקשות]\n</div>\n<strong>מצב:</strong> ה־API של מדיה־ויקי הוא ממשק ותיק ויציב שנתמך ומשתפר באופן סדיר. אף שאנחנו משתדלים להימנע מכך, לעיתים עלינו לבצע שינויים שעלולים לשבש דברים בפונקציונליות הזאת; באפשרותך לעשות מינוי ל[https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ רשימת התפוצה mediawiki-api-announce] כדי לקבל הודעות על עדכונים.\n\n<strong>בקשות שגויות:</strong> כשבקשות שגויות נשלחות ל־API, יישלח כותר HTTP עם המפתח \"MediaWiki-API-Error\", ואז גם הערך של הכותר וגם קוד השגיאה יוגדרו לאותו ערך. למידע נוסף, אפשר לעיין בדף [[mw:Special:MyLanguage/API:Errors_and_warnings|API:שגיאות ואזהרות]].\n\n<p class=\"mw-apisandbox-link\"><strong>בדיקה:</strong> לבדיקה קלה יותר של בקשות, אפשר להשתמש ב[[Special:ApiSandbox|ארגז החול של API]].</p>",
@@ -924,7 +925,7 @@
 	"apihelp-query+info-param-testactionsdetail": "רמת פירוט של <var>$1testactions</var>. יש להשתמש בפרמטרים <var>errorformat</var> ו־<var>errorlang</var> של [[Special:ApiHelp/main|המודול הראשי]] כדי לשלוט בתסדיר את ההודעות המוחזרות.",
 	"apihelp-query+info-paramvalue-testactionsdetail-boolean": "החזרת ערך בוליאני עבור כל פעולה.",
 	"apihelp-query+info-paramvalue-testactionsdetail-full": "החזרת הודעות שמתארות למה הפעולה אינה מותרת, או מערך ריק אם היא מותרת.",
-	"apihelp-query+info-paramvalue-testactionsdetail-quick": "כמו <kbd>full</kbd>, אבל בלי בדיקות יקרות.",
+	"apihelp-query+info-paramvalue-testactionsdetail-quick": "כמו <kbd>full</kbd>, אבל בלי בדיקות שגוזלות משאבים.",
 	"apihelp-query+info-example-simple": "קבלת מידע על הדף [[{{MediaWiki:Mainpage}}]]",
 	"apihelp-query+info-example-protection": "קבלת מידע כללי ומידע על הגנה של הדף [[{{MediaWiki:Mainpage}}]].",
 	"apihelp-query+iwbacklinks-summary": "מציאות כל הדפים שמקשרים לקישור הבינוויקי הנתון.",

@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"BukhariSaeed",
 			"DannyS712",
 			"Fitoschido",
@@ -536,8 +535,8 @@
 	"currentrev-asof": "حالیہ نظرثانی بمطابق $1",
 	"revisionasof": "تجدید بمطابق $1",
 	"revision-info": "$2 $1 ھموݰ نیویشیتائے",
-	"previousrevision": "←پرانو تدوین",
-	"nextrevision": "→پروشٹیو اعادہ",
+	"previousrevision": "→ پرانو تدوین",
+	"nextrevision": "پروشٹیو اعادہ ←",
 	"currentrevisionlink": "حالیہ نظرثانی",
 	"cur": "رائج",
 	"next": "پروشٹیو",

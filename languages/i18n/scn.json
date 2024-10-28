@@ -21,7 +21,6 @@
 			"Vlad5250",
 			"לערי ריינהארט",
 			"아라",
-			"Amire80",
 			"Dapal"
 		]
 	},
@@ -455,7 +454,7 @@
 	"eauthentsent": "Nu missaggiu email di cunferma fu spidutu ô nnirizzu nnicatu.\nPrima chi ponnu èssiri mannati àutri missaggi email a stu cuntu, è nicissariu sèquiri li struzzioni ca vi sunnu scritti, n modu di cunfirmari d'èssiri li prupitarî liggìttimi dû cuntu.",
 	"throttled-mailpassword": "Nu missaggiu e-mail di azziramentu dâ password già fu mannatu nta {{PLURAL:$1|l'ùrtima ura|l'ùrtimi $1 uri}}. Pi privèniri abbusi, si pò mannari nu missaggiu e-mail d'azziramentu dâ password na vota sula ogni {{PLURAL:$1|ura|$1 uri}}.",
 	"mailerror": "Erruri nta lu mannu dû missaggiu: $1",
-	"acct_creation_throttle_hit": "Visitaturi di sta wiki cû to stissu nnirizzu IP già criaru {{PLURAL:$1|un cuntu|$1 cunti}} nta l'ùrtimi $2, chi è lu màssimu pirmisu pi stu pirìudu di tempu.\nPi sta scaciuni, accamora nuḍḍu visitaturi ca usa stu nnirizzu IP po' criari autri cunti.",
+	"acct_creation_throttle_hit": "Visitaturi di sta wiki cû to stissu nnirizzu IP già criaru {{PLURAL:$1|un cuntu|$1 cunti}} nta l'ùrtimi $2, chi è lu màssimu pirmissu pi stu pirìudu di tempu.\nPi sta scaciuni, accamora nuḍḍu visitaturi ca usa stu nnirizzu IP pò criari autri cunti.",
 	"emailauthenticated": "Lu tò nnirizzu di posta elittrònica fu cunfirmatu lu $2 ê $3.",
 	"emailnotauthenticated": "Lu tò nnirizzu di posta elittrònica ancora nun fu cunfirmatu.\nNun ti sunnu mannati missaggi di posta elittrònica pi sti funzioni.",
 	"noemailprefs": "Nnicari nu nnirizzu di posta elittrònica p'attivari sti funzioni.",
@@ -1202,6 +1201,7 @@
 	"recentchanges-label-plusminus": "La grannizza dâ pàggina canciau di stu nùmmiru di byte",
 	"recentchanges-legend-heading": "<strong>Ligenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (talìa puru [[Special:NewPages|la lista dî pàggini novi]])",
+	"recentchanges-legend-watchlistexpiry": "Pàggina taliata timpuraniamenti",
 	"recentchanges-submit": "Ammustra",
 	"rcfilters-tag-remove": "Leva '$1'",
 	"rcfilters-legend-heading": "<strong>Elencu dî abbriviazzioni:</strong>",

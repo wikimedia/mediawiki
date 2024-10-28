@@ -1,10 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"DaSupremo",
 			"Jwale2",
-			"Afimaame"
+			"Afimaame",
+			"Cookai1205"
 		]
 	},
 	"tog-underline": "Link wey dey underline:",
@@ -428,7 +428,7 @@
 	"revisionasof": "Revision as of $1",
 	"revision-info": "Revision as of $1 by {{GENDER:$6|$2}}$7",
 	"previousrevision": "← Older revision",
-	"nextrevision": "Fresh revision",
+	"nextrevision": "Fresh revision →",
 	"currentrevisionlink": "Latest revision",
 	"cur": "cur",
 	"last": "prev",

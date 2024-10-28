@@ -32,7 +32,6 @@
 			"Þjarkur",
 			"לערי ריינהארט",
 			"아라",
-			"Amire80",
 			"Stefán Örvar Sigmundsson"
 		]
 	},
@@ -800,7 +799,7 @@
 	"currentrev-asof": "Nýjasta útgáfa síðan $1",
 	"revisionasof": "Útgáfa síðunnar $1",
 	"revision-info": "Útgáfa frá $1 eftir $2\nÚtgáfa frá $1 eftir {{GENDER:$6|$2}}$7",
-	"previousrevision": "←Fyrri útgáfa",
+	"previousrevision": "← Fyrri útgáfa",
 	"nextrevision": "Næsta útgáfa→",
 	"currentrevisionlink": "Nýjasta útgáfa",
 	"cur": "núverandi",

@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Adam-Yourist",
-			"Amire80",
 			"Andrijko Z.",
 			"BaRaN6161 TURK",
 			"ElizaMag",
@@ -3576,7 +3575,7 @@
 	"duration-seconds": "$1 {{PLURAL:$1|секунд}}",
 	"duration-minutes": "$1 {{PLURAL:$1|минот}}",
 	"duration-hours": "$1 {{PLURAL:$1|сахьат}}",
-	"duration-days": "{{PLURAL:$1|ди}}",
+	"duration-days": "$1 {{PLURAL:$1|ди}}",
 	"duration-weeks": "$1 {{PLURAL:$1|кӀира}}",
 	"duration-years": "$1 {{PLURAL:$1|шу}}",
 	"duration-decades": "$1 {{PLURAL:$1|иттшу}}",

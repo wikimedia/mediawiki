@@ -6,8 +6,7 @@
 			"Kaztrans",
 			"Macofe",
 			"Vlad5250",
-			"아라",
-			"Amire80"
+			"아라"
 		]
 	},
 	"tog-underline": "سىلتەمەنىڭ استىن سىز:",
@@ -395,7 +394,7 @@
 	"revisionasof": "$1 كەزىندەگى تۇزەتۋ",
 	"revision-info": "$1 كەزىندەگى $2 ىستەگەن تۇزەتۋ",
 	"previousrevision": "← ەسكىلەۋ تۇزەتۋى",
-	"nextrevision": "جاڭالاۋ تۇزەتۋى →",
+	"nextrevision": "جاڭالاۋ تۇزەتۋى ←",
 	"currentrevisionlink": "اعىمدىق تۇزەتۋى",
 	"cur": "اعىم.",
 	"next": "كەل.",

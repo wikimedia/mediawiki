@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Ahmed-Najib-Biabani-Ibrahimkhel",
-			"Amire80",
 			"Amjad Khan",
 			"Baloch Khan",
 			"DannyS712",
@@ -708,8 +707,8 @@
 	"currentrev-asof": "د $1 پورې تازه بڼه",
 	"revisionasof": "د $1 بڼه",
 	"revision-info": "تر $1 پورې شته مخليدنه، د {{GENDER:$6|$2}}$7 لخوا ترسره شوې",
-	"previousrevision": "← زړه بڼه",
-	"nextrevision": "← نوې بڼه",
+	"previousrevision": "→ زړه بڼه",
+	"nextrevision": "نوې بڼه ←",
 	"currentrevisionlink": "اوسنۍ بڼه",
 	"cur": "اوسنی",
 	"next": "راتلونکي",

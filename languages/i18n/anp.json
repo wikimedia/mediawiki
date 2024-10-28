@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Angpradesh",
 			"Macofe",
 			"Matma Rex",
@@ -571,7 +570,7 @@
 	"currentrev-asof": "$1 केरौ समय के संस्करण",
 	"revisionasof": "$1 केरौ संस्करण",
 	"revision-info": "{{GENDER:$6|$2}}$7 द्वारा $1 ऐन्हौ संशोधन",
-	"previousrevision": "पुरानौ संशोधन",
+	"previousrevision": "← पुरानौ संशोधन",
 	"nextrevision": "नया संशोधन →",
 	"currentrevisionlink": "हाल के संशोधन",
 	"cur": "सद्य",

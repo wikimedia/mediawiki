@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Emmikweok",
 			"Maryeren",
 			"Samatics"
@@ -232,7 +231,7 @@
 	"currentrev-asof": "Obufa ikpehe ọtọn̄ọde ke $1",
 	"revisionasof": "Edifiak nse eke $1",
 	"revision-info": "Edifiak ndụñọde nte $1 ke {{GENDER:$6|$2}}$7",
-	"previousrevision": "Akani ikpehe",
+	"previousrevision": "← Akani ikpehe",
 	"nextrevision": "Obufa ikpehe",
 	"currentrevisionlink": "Obufa ikpehe",
 	"cur": "ọdọn̄ mi",

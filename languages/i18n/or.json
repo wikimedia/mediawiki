@@ -20,8 +20,7 @@
 			"Vlad5250",
 			"ଶିତିକଣ୍ଠ ଦାଶ",
 			"아라",
-			"Chinmayee Mishra",
-			"Amire80"
+			"Chinmayee Mishra"
 		]
 	},
 	"tog-underline": "ଲିଙ୍କତଳେ ଗାର ଟାଣିବା:",
@@ -585,7 +584,7 @@
 	"savearticle-start": "ପୃଷ୍ଠା ସାଇତିବେ...",
 	"savechanges-start": "ବଦଳ ସାଇତିବେ",
 	"publishpage-start": "ପୃଷ୍ଠା ପ୍ରକାଶ...",
-	"publishchanges-start": "ବଦଳ ପ୍ରକାଶକରନ୍ତୁ...",
+	"publishchanges-start": "ବଦଳ ପ୍ରକାଶ କରନ୍ତୁ...",
 	"preview": "ସାଇତିବା ଆଗରୁ ଦେଖନ୍ତୁ",
 	"showpreview": "ଦେଖଣା [Preview]",
 	"showdiff": "ବଦଳ ଦେଖାନ୍ତୁ",
@@ -727,7 +726,7 @@
 	"revisionasof": "$1 ଅନୁସାରେ କରାଯାଇଥିବା ବଦଳ",
 	"revision-info": "$1 ବେଳେ {{GENDER:$6|$2}}$7 ଙ୍କ ଦେଇ ହୋଇଥିବା ସଂସ୍କରଣ",
 	"previousrevision": "← ପୁରୁଣା ସଂସ୍କରଣ",
-	"nextrevision": "ନୂଆ ସଂସ୍କରଣ",
+	"nextrevision": "ନୂଆ ସଂସ୍କରଣ →",
 	"currentrevisionlink": "ନଗଦ ସଂସ୍କରଣ",
 	"cur": "ପୃଷ୍ଠା ଇତିହାସ ସଙ୍ଗେ ଯୋଗ",
 	"next": "ପର",

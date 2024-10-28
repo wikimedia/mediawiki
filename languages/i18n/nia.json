@@ -3,7 +3,8 @@
 		"authors": [
 			"Anugrahgori",
 			"NoiX180",
-			"Slaia"
+			"Slaia",
+			"Bennylin"
 		]
 	},
 	"tog-underline": "Lala wanura khai-khai",
@@ -696,7 +697,7 @@
 	"revisionasof": "Famulö'ö molo'ö $1",
 	"revision-info": "Molo'ö $1 nibulö'ö {{GENDER:$6|$2}}$7",
 	"previousrevision": "← Versi sabölö atua",
-	"nextrevision": "Nibulö'ö safuria",
+	"nextrevision": "Nibulö'ö safuria →",
 	"currentrevisionlink": "Sawena mubulö'ö",
 	"cur": "iada'a",
 	"last": "oföna",

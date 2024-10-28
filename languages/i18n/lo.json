@@ -9,8 +9,7 @@
 			"Bebiezaza",
 			"Lookruk",
 			"Kimmie023",
-			"沈澄心",
-			"Amire80"
+			"沈澄心"
 		]
 	},
 	"tog-underline": "ການຂີດເສັ້ນກ້ອງລິງກ໌:",
@@ -474,7 +473,7 @@
 	"currentrev": "ສະບັບປະຈຸບັນ",
 	"revisionasof": "ລຸ້ນແກ້ໄຂເກົ່າເມື່ອ $1",
 	"previousrevision": "← ລຸ້ນເກົ່າກວ່າ",
-	"nextrevision": "ສະບັບກ່ອນ",
+	"nextrevision": "ສະບັບກ່ອນ →",
 	"currentrevisionlink": "ສະບັບປະຈຸບັນ",
 	"cur": "ດຽວນີ້",
 	"next": "ຕໍ່ໄປ",

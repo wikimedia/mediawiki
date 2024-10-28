@@ -52,7 +52,6 @@
 			"לערי ריינהארט",
 			"아라",
 			"Eleassar",
-			"Amire80",
 			"Iketsi",
 			"N0one"
 		]
@@ -809,7 +808,7 @@
 	"currentrev-asof": "Posljednja izmjena od $2 u $3",
 	"revisionasof": "Inačica od $2 u $3",
 	"revision-info": "Inačica $3 od $4 u $5 koju je {{GENDER:$6|unio|unijela}} {{GENDER:$6|$2}}$7",
-	"previousrevision": "←Starija inačica",
+	"previousrevision": "← Starija inačica",
 	"nextrevision": "Novija inačica→",
 	"currentrevisionlink": "vidi trenutačnu inačicu",
 	"cur": "sad",

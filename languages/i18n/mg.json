@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Alno",
-			"Amire80",
 			"DannyS712",
 			"Fitoschido",
 			"Hoo",
@@ -277,7 +276,7 @@
 	"sort-initial": "Fandaharana voalohany",
 	"sort-rowspan-error": "Ity pejy ity dia ahitana attribut-na tabilao maka andininy mihoatra noho izay misy ao amin'ny tabilao. Azonao atao ny manitsy izany amin'ny alàlan'ny fanitsiana ny pejy.",
 	"nstab-main": "Lahatsoratra",
-	"nstab-user": "Pejim-pikambana{{GENDER:$1|}}",
+	"nstab-user": "{{GENDER:$1|Pejim-pikambana}}",
 	"nstab-media": "Pejy sary sy/na feo",
 	"nstab-special": "Pejy Manokana",
 	"nstab-project": "Tetikasa",
@@ -2942,7 +2941,7 @@
 	"duration-seconds": "$1 segondra{{PLURAL:$1|}}",
 	"duration-minutes": "$1 minitra{{PLURAL:$1|}}",
 	"duration-hours": "$1 ora{{PLURAL:$1|}}",
-	"duration-days": "$1 andro{{PLURAL:$1|}}",
+	"duration-days": "$1 {{PLURAL:$1|andro}}",
 	"duration-weeks": "$1{{PLURAL:$1|}} herinandro",
 	"duration-years": "$1 taona{{PLURAL:$1|}}",
 	"duration-decades": "folotaona{{PLURAL:$1|}} $1",

@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Tofeiku",
 			"Hakimi97"
 		]
@@ -337,8 +336,8 @@
 	"currentrev-asof": "سيمقن سماس ڤد $1",
 	"revisionasof": "سيمقن ڤد $1",
 	"revision-info": "سيمقن ڤد $1 اوليه {{GENDER:$6|$2}}$7",
-	"previousrevision": "← سيمقن تردهولو",
-	"nextrevision": "سيمقن برايکوتڽ →",
+	"previousrevision": "→ سيمقن تردهولو",
+	"nextrevision": "سيمقن برايکوتڽ ←",
 	"currentrevisionlink": "سيمقن سماس",
 	"cur": "کيني",
 	"tooltip-cur": "ڤربيذاءن دڠن سيمقن ترکيني",

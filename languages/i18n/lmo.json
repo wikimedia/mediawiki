@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Amgine",
-			"Amire80",
 			"C.R.",
 			"Clamengh",
 			"Dakrismeno",
@@ -1445,7 +1444,7 @@
 	"recentchanges-label-unpatrolled": "Quella modifega chì a l'è stada nananmò verificada.",
 	"recentchanges-label-plusminus": "La grandezza de la pagina l'è cambiada de quell numer de bait chì",
 	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
-	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (vanda anca [[Special:NewPages|la lista de le pagine noeuve]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (varda anca [[Special:NewPages|la lista de le pagine noeuve]])",
 	"recentchanges-legend-watchlistexpiry": "Pagina temporanement sot oeugg",
 	"recentchanges-submit": "Fà vedè",
 	"rcfilters-tag-remove": "Toeu via '$1'",

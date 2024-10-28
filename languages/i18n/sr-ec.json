@@ -50,8 +50,7 @@
 			"Сербијана",
 			"לערי ריינהארט",
 			"아라",
-			"Zenfiric",
-			"Amire80"
+			"Zenfiric"
 		]
 	},
 	"tog-underline": "Подвлачење веза:",
@@ -3504,7 +3503,7 @@
 	"tags-intro": "Ова страница наводи ознаке којима софтвер може да означи измене, те њихово значење.",
 	"tags-tag": "Назив ознаке",
 	"tags-display-header": "Изглед на списковима измена",
-	"tags-description-header": "Опис значења",
+	"tags-description-header": "Опис ознаке",
 	"tags-source-header": "Извор",
 	"tags-active-header": "Укљ.?",
 	"tags-hitcount-header": "Означене измене",

@@ -98,6 +98,7 @@
 	"config-db-prefix": "Prefixo di la datumaro-tabelo (sen strekteti):",
 	"config-db-prefix-help": "If you need to share one database between multiple wikis, or between MediaWiki and another web application, you may choose to add a prefix to all the table names to avoid conflicts.\nDo not use spaces.\n\nThis field is usually left empty.",
 	"config-mysql-old": "Bezonesas MySQL $1 o plu recenta versiono. Vua versiono esas $2.",
+	"config-mariadb-old": "On bezonas MariaDB $1 o posa. Vu havas $2.",
 	"config-db-port": "Porto uzata por acesar la datumaro:",
 	"config-db-schema": "Skemo por MediaWiki (sen strekteti):",
 	"config-db-schema-help": "Ca ''schema'' por datumaro certe funcionos.\nModifikez ol NUR se vu FAKTE bezonos modifikar ol.",

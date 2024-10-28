@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"CFynn",
 			"Rpel",
 			"Tenzin",
@@ -188,7 +187,7 @@
 	"currentrev": "ད་ལྟོའི་བསྐྱར་ཞིབ།",
 	"revisionasof": "$1 གི་བསྐྱར་ཞིབ།",
 	"revision-info": "$2 གིས་ $1 ཚུན་གྱི་བསྐྱར་ཞིབ།",
-	"previousrevision": "←བསྐྱར་ཞིབ་རྙིངམ།",
+	"previousrevision": "← བསྐྱར་ཞིབ་རྙིངམ།",
 	"nextrevision": "བསྐྱར་ཞིབ་གསརཔ་→",
 	"currentrevisionlink": "ད་ལྟོའི་བསྐྱར་ཞིབ།",
 	"cur": "ཀཱར།",
