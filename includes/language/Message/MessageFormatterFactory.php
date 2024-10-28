@@ -7,6 +7,10 @@ use Wikimedia\Message\ITextFormatter;
 
 /**
  * The MediaWiki-specific implementation of IMessageFormatterFactory
+ *
+ * To obtain an instance, use \MediaWiki\MediaWikiServices::getMessageFormatterFactory().
+ *
+ * @ingroup Language
  */
 class MessageFormatterFactory implements IMessageFormatterFactory {
 
@@ -17,11 +21,8 @@ class MessageFormatterFactory implements IMessageFormatterFactory {
 	private $textFormatters = [];
 
 	/**
-	 * Required parameters may be added to this function without deprecation.
-	 * External callers should use MediaWikiServices::getMessageFormatterFactory().
-	 *
+	 * @internal For use by ServiceWiring only
 	 * @param string $format which if the Message::FORMAT_* to use in the formatters.
-	 * @internal
 	 */
 	public function __construct( string $format = Message::FORMAT_TEXT ) {
 		$this->format = $format;
