@@ -358,7 +358,8 @@ class ApiResult implements ApiSerializable {
 			} elseif ( $value instanceof \Wikimedia\Message\MessageParam ) {
 				// HACK Support code that puts $msg->getParams() directly into API responses
 				// (e.g. ApiErrorFormatter::formatRawMessage()).
-				$value = $value->getType() === 'text' ? $value->getValue() : $value->jsonSerialize();
+				$codec = MediaWikiServices::getInstance()->getJsonCodec();
+				$value = $value->getType() === 'text' ? $value->getValue() : $codec->serialize( $value );
 			} elseif ( is_callable( [ $value, '__toString' ] ) ) {
 				$value = (string)$value;
 			} else {

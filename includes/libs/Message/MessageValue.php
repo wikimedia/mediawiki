@@ -2,9 +2,8 @@
 
 namespace Wikimedia\Message;
 
-use MediaWiki\Json\JsonDeserializable;
-use MediaWiki\Json\JsonDeserializableTrait;
-use MediaWiki\Json\JsonDeserializer;
+use Wikimedia\JsonCodec\JsonCodecable;
+use Wikimedia\JsonCodec\JsonCodecableTrait;
 
 /**
  * Value object representing a message for i18n.
@@ -17,8 +16,8 @@ use MediaWiki\Json\JsonDeserializer;
  *
  * @newable
  */
-class MessageValue implements JsonDeserializable, MessageSpecifier {
-	use JsonDeserializableTrait;
+class MessageValue implements MessageSpecifier, JsonCodecable {
+	use JsonCodecableTrait;
 
 	/** @var string */
 	private $key;
@@ -351,7 +350,7 @@ class MessageValue implements JsonDeserializable, MessageSpecifier {
 			$contents . '</message>';
 	}
 
-	protected function toJsonArray(): array {
+	public function toJsonArray(): array {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 		return [
@@ -360,7 +359,7 @@ class MessageValue implements JsonDeserializable, MessageSpecifier {
 		];
 	}
 
-	public static function newFromJsonArray( JsonDeserializer $deserializer, array $json ) {
+	public static function newFromJsonArray( array $json ) {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 		return new self( $json['key'], $json['params'] );
