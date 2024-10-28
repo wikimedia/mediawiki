@@ -26,11 +26,14 @@ use Redis;
 use RedisException;
 
 /**
- * Helper class to handle automatically marking connections as reusable (via RAII pattern)
+ * Wrapper class for Redis connections that automatically reuses connections (via RAII pattern)
  *
- * This class simply wraps the Redis class and can be used the same way
+ * This class proxies a Redis class instance from the php-redis PECL extension.
+ * All its methods can be called the same way.
  *
- * @ingroup Redis
+ * @see <https://github.com/phpredis/phpredis#table-of-contents>
+ *
+ * @ingroup Cache
  * @since 1.21
  */
 class RedisConnRef implements LoggerAwareInterface {
