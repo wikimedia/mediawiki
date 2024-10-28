@@ -2248,7 +2248,7 @@
 	"changeblockip": "Chanjar blokuso",
 	"blockip": "Blokusado di {{GENDER:$1|uzero}}",
 	"blockiptext": "Uzez la formulario adinfre por blokusar aceso de specifika adreso IP o de specifika uzeronomo.\nFacez to NUR POR PREVENTAR VANDALISMO, e segun la [[{{MediaWiki:Policy-url}}|politiko de ica Wiki]].\nInformez adinfre la specifika motivi (exemple, mencionez specifika pagini qui subisis vandalismo dal IP/uzero).\nVu povas blokusar serio di adresi IP per l'uzo dil sintaxo [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]; la maxim longa serio permisata esas /$1 por IPv4 e /$2 por IPv6.",
-	"ipaddressorusername": "IP-adreso uzeronomo od blokuso-ID:",
+	"ipaddressorusername": "IP-adreso, uzeronomo, o blokuso-ID:",
 	"ipbreason": "Motivo:",
 	"ipbreason-dropdown": "*Ordinara motivi por blokuso\n** Insertar nevera informi\n** Efacar kontenajo de pagini\n** Insertadar ligili 'spam' ad extera reti\n** Insertar radoto aden pagini\n** Timidiganta ago kontre uzeri\n** Trouzar multopla konti\n** Neaceptebla uzeronomo",
 	"ipb-hardblock": "Blokusar uzeri qui facas 'login' de ica IP-adreso",

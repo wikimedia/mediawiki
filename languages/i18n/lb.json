@@ -3225,7 +3225,7 @@
 	"expand_templates_ok": "OK",
 	"expand_templates_remove_comments": "Bemierkunge läschen",
 	"expand_templates_remove_nowiki": "<nowiki>-Taggen am Resultat suppriméieren",
-	"expand_templates_generate_xml": "Weis d'Struktur vum XML",
+	"expand_templates_generate_xml": "D'Struktur vum XML weisen",
 	"expand_templates_generate_rawhtml": "HTML-Format weisen",
 	"expand_templates_preview": "Kucken ouni ofzespäicheren",
 	"expand_templates_input_missing": "Dir musst mindestens ee Wiki-Text aginn.",

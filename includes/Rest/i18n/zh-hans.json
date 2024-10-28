@@ -97,5 +97,6 @@
 	"rest-target-variant-required": "需要目标变体。",
 	"rest-unsupported-language-conversion": "不支持的语言转换：$1到$2",
 	"rest-unknown-content-model": "未知的内容模型：$1",
-	"rest-page-bundle-validation-error": "PageBundle与contentVersion不匹配：$1"
+	"rest-page-bundle-validation-error": "PageBundle与contentVersion不匹配：$1",
+	"rest-param-desc-revision-id": "修订版本ID"
 }

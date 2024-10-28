@@ -157,6 +157,7 @@
 			"VulpesVulpes825",
 			"WQL",
 			"Waihorace",
+			"Wang31",
 			"WhitePhosphorus",
 			"Willy1018",
 			"Wilsonmess",
@@ -2664,7 +2665,7 @@
 	"whatlinkshere-links": "←链接",
 	"whatlinkshere-hideredirs": "隐藏重定向",
 	"whatlinkshere-hidetrans": "隐藏嵌入",
-	"whatlinkshere-hidelinks": "隐藏链接",
+	"whatlinkshere-hidelinks": "隐藏链入",
 	"whatlinkshere-hideimages": "隐藏文件链接",
 	"whatlinkshere-sectionredir": "重定向至章节“$1”",
 	"whatlinkshere-submit": "提交",
@@ -2741,6 +2742,8 @@
 	"block-user-placeholder": "输入用户…",
 	"block-target": "用户名、IP地址或IP范围：",
 	"block-target-placeholder": "用户名、1.1.1.42或1.1.1.42/16",
+	"block-pages-placeholder": "添加更多页面……",
+	"block-namespaces-placeholder": "添加更多命名空间……",
 	"unblockip": "解封用户",
 	"unblockiptext": "使用下列表单来恢复之前被封禁的IP地址或用户名的写权限。",
 	"ipusubmit": "解除此封禁",
@@ -3899,7 +3902,7 @@
 	"duration-seconds": "$1秒",
 	"duration-minutes": "$1分",
 	"duration-hours": "$1小时",
-	"duration-days": "$1天",
+	"duration-days": "$1{{PLURAL:$1|天}}",
 	"duration-weeks": "$1周",
 	"duration-months": "$1个{{PLURAL:$1|月}}",
 	"duration-years": "$1年",
@@ -4310,5 +4313,7 @@
 	"benefit-1-description": "监视列表，可让您监视您感兴趣的页面。",
 	"benefit-2-description": "您对该项目所做贡献的永久记录。",
 	"benefit-3-description": "参数设置，允许您定制使用体验。",
-	"temp-user-unable-to-acquire": "无法获取临时账号的用户名。请再试一次。"
+	"temp-user-unable-to-acquire": "无法获取临时账号的用户名。请再试一次。",
+	"table-of-contents-show-button-aria-label": "显示目录",
+	"table-of-contents-hide-button-aria-label": "隐藏目录"
 }

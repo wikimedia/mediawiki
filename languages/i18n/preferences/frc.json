@@ -7,11 +7,12 @@
 			"Hangmanwa7id",
 			"JeanVoisin",
 			"Pierpao",
-			"RoyAlcatraz"
+			"RoyAlcatraz",
+			"SleaY"
 		]
 	},
 	"preferences": "Réglage",
-	"prefs-personal": "Profil d'useur",
+	"prefs-personal": "Profil d'utilisateur",
 	"username": "Page d’utilisat{{GENDER:$1|eur|rice}} :",
 	"yourrealname": "Vrai nom:",
 	"prefs-help-realname": "Votre vrai nom est pas nécessaire.\nS’il est fourni, ça serait usé pour vous donner du crédit pour votre ouvrage.",
@@ -98,6 +99,6 @@
 	"tog-watchdeletion": "Additionner les pages que j’ôte à ma liste des pages guettées",
 	"tog-watchcreations": "Ajouter à ma liste de suivi les pages que je crée et les fichiers que je téléverse",
 	"tog-watchuploads": "Ajouter à ma liste de suivi les nouveaux fichiers que je téléverse",
-	"prefs-searchoptions": "Charche",
+	"prefs-searchoptions": "Recherche",
 	"prefs-advancedsearchoptions": "Options avancées"
 }

@@ -3,17 +3,22 @@
 		"authors": [
 			"Diskdance",
 			"Func",
-			"LittlePaw365"
+			"LittlePaw365",
+			"沈澄心"
 		]
 	},
 	"paramvalidator-badbool": "布尔类型参数\"$1\"的值\"$2\"无效。传递 $3 为真，或 $5 为假。",
+	"paramvalidator-badbool-type": "布尔参数“$1”的值“$2”无效。实际取到的值为$3。",
 	"paramvalidator-badexpiry": "日期类型参数\"$1\"的值\"$2\"无效。",
 	"paramvalidator-badexpiry-duration": "提供给参数<var>$1</var>的值\"$2\"超过了最大值\"$3\"。",
 	"paramvalidator-badexpiry-duration-max": "提供给参数<var>$1</var>的值\"$2\"超过了最大值\"$3\"。使用最大值代替。",
 	"paramvalidator-badexpiry-past": "期限参数“$1”的值“$2”位于过去。",
 	"paramvalidator-badfloat": "浮点参数“$1”的值“$2”无效。",
+	"paramvalidator-badfloat-type": "浮点参数“$1”的值“$2”无效。实际取到的值为$3。",
 	"paramvalidator-badfloat-notfinite": "浮点参数“$1”的值“$2”太大或不是数字。",
 	"paramvalidator-badinteger": "整数参数“$1”的值“$2”无效。",
+	"paramvalidator-badinteger-type": "整数参数“$1”的值“$2”无效。实际取到的值为$3。",
+	"paramvalidator-badinteger-fraction": "整数参数“$1”的值“$2”无效。实际取到的值为有小数的浮点数。",
 	"paramvalidator-badtimestamp": "时间戳参数“$1”的值“$2”无效。",
 	"paramvalidator-badupload-cantwrite": "由于服务器配置问题（写操作失败），提供给“$1”参数的文件无法被保存和处理。",
 	"paramvalidator-badupload-formsize": "为“$1”上传的文件大小超过了客户端配置的最大值。",
@@ -31,6 +36,8 @@
 	"paramvalidator-maxchars": "参数“$1”的值不能超过$3{{PLURAL:$3|字符}}（提供了$4）。",
 	"paramvalidator-missingparam": "\"$1\"参数必须被设置。",
 	"paramvalidator-notmulti": "\"$1\"参数只接受单个值。U+001F多值分隔法只能用于支持多个值的参数。",
+	"paramvalidator-multivalue-must-be-array": "多值参数“$1”必须以数组形式给出。",
+	"paramvalidator-needstring": "参数“$1”仅接受字符串值，但取到的是$2",
 	"paramvalidator-outofrange-max": "给参数\"$1\"的值\"$2\"必须不大于$4。",
 	"paramvalidator-outofrange-minmax": "给参数\"$1\"的值\"$2\"必须介于$3和$4之间。",
 	"paramvalidator-outofrange-min": "给参数\"$1\"的值\"$2\"必须不小于$3。",

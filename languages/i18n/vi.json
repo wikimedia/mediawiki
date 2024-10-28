@@ -2642,7 +2642,7 @@
 	"ipblocklist-localblock": "Cấm tại wiki này",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Lần|Các lần}} cấm khác",
 	"infiniteblock": "vô hạn",
-	"anononlyblock": "chỉ cấm vô danh",
+	"anononlyblock": "chỉ cấm người dùng vô danh",
 	"noautoblockblock": "đã tắt chức năng tự động cấm",
 	"createaccountblock": "không được mở tài khoản",
 	"emailblock": "đã cấm thư điện tử",
