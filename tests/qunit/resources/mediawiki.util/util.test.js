@@ -274,8 +274,17 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		errSpan.textContent = 'error';
 		const errorMessage = util.messageBox( errSpan, 'error' );
 		assert.strictEqual( message.querySelector( '.cdx-message__content' ).textContent, 'test' );
+		assert.strictEqual( message.getAttribute( 'aria-live' ), 'polite' );
+		assert.false( message.hasAttribute( 'role' ) );
 		assert.strictEqual( errorMessage.querySelector( '.cdx-message__content span' ).textContent, 'error' );
+		assert.strictEqual( errorMessage.getAttribute( 'role' ), 'alert' );
+		assert.false( errorMessage.hasAttribute( 'aria-live' ) );
 		assert.true( errorMessage.classList.contains( 'cdx-message--error' ) );
+		const fragment = document.createDocumentFragment();
+		fragment.appendChild( document.createTextNode( 'hello ' ) );
+		fragment.appendChild( document.createTextNode( 'world!' ) );
+		const warningMessage = util.messageBox( fragment, 'error' );
+		assert.strictEqual( warningMessage.querySelector( '.cdx-message__content' ).textContent, 'hello world!' );
 	} );
 
 	QUnit.test( 'addPortlet does not append to DOM if no `before` is provided', ( assert ) => {
