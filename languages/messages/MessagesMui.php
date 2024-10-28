@@ -2,7 +2,7 @@
 /** Musi (Baso Palembang)
  *
  * @file
- * @ingroup Language
+ * @ingroup Languages
  */
 
 $fallback = 'id';
