@@ -608,7 +608,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 *
 	 * @since 1.18
 	 *
-	 * @param mixed ...$params Numeric parameters, or a single argument that is
+	 * @param string|int|float|list<string|int|float> ...$params Numeric parameters, or a single argument that is
 	 * an array of numeric parameters.
 	 *
 	 * @return self $this
@@ -1188,7 +1188,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	/**
 	 * @since 1.18
 	 *
-	 * @param mixed $num
+	 * @param string|int|float $num
 	 *
 	 * @return ScalarParam
 	 */
