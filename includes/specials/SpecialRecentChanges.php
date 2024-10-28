@@ -978,6 +978,12 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$links = [];
 
 		foreach ( $this->getLegacyShowHideFilters() as $key => $filter ) {
+			if ( !MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->isEveryoneAllowed( "edit" ) &&
+				( $filter->getName() == "hideliu" || $filter->getName() == "hideanons" ) ) {
+				continue;
+			}
 			$msg = $filter->getShowHide();
 			$linkMessage = $this->msg( $msg . '-' . $showhide[1 - $options[$key]] );
 			// Extensions can define additional filters, but don't need to define the corresponding

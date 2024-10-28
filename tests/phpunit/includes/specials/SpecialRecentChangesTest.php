@@ -181,6 +181,44 @@ class SpecialRecentChangesTest extends AbstractChangesListSpecialPageTestCase {
 		$this->assertStringNotContainsString( 'anon summary', $html );
 	}
 
+	public function testRegistrationFiltersDoShow() {
+		$this->disableAutoCreateTempUser();
+
+		$context = new RequestContext;
+		$context->setTitle( Title::newFromText( __METHOD__ ) );
+		$context->setUser( $this->getTestUser()->getUser() );
+		$context->setRequest( new FauxRequest );
+
+		[ $html ] = ( new SpecialPageExecutor() )->executeSpecialPage(
+			$this->getPage(),
+			'',
+			new FauxRequest()
+		);
+		$this->assertStringContainsString( 'rcshowhideliu', $html );
+		$this->assertStringContainsString( 'rcshowhideanons', $html );
+	}
+
+	public function testRegistrationFiltersDoNotShowWhenRegistrationIsRequiredToEdit() {
+		$this->overrideConfigValue(
+			MainConfigNames::GroupPermissions,
+			[ '*' => [ 'edit' => false ] ]
+		);
+		$this->disableAutoCreateTempUser();
+
+		$context = new RequestContext;
+		$context->setTitle( Title::newFromText( __METHOD__ ) );
+		$context->setUser( $this->getTestUser()->getUser() );
+		$context->setRequest( new FauxRequest );
+
+		[ $html ] = ( new SpecialPageExecutor() )->executeSpecialPage(
+			$this->getPage(),
+			'',
+			new FauxRequest()
+		);
+		$this->assertStringNotContainsString( 'rcshowhideliu', $html );
+		$this->assertStringNotContainsString( 'rcshowhideanons', $html );
+	}
+
 	/**
 	 * This integration test just tries to run the isDenseFilter() queries, to
 	 * check for syntax errors etc. It doesn't verify the logic.

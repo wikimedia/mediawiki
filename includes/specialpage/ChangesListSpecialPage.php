@@ -602,6 +602,21 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
+	 * Removes registration filters from filterGroupDefinitions
+	 * @return void
+	 */
+	private function removeRegistrationFilterDefinitions(): void {
+		foreach ( $this->filterGroupDefinitions as $key => $value ) {
+			if ( $value['name'] == "userExpLevel" ) {
+				$this->filterGroupDefinitions[ $key ][ 'filters' ] = array_filter(
+					$this->filterGroupDefinitions[ $key ][ 'filters' ],
+					fn ( $val, $key ) => $val[ 'name' ] != 'registered'
+						&& $val[ 'name' ] != 'unregistered', ARRAY_FILTER_USE_BOTH );
+			}
+		}
+	}
+
+	/**
 	 * Check if filters are in conflict and guaranteed to return no results.
 	 *
 	 * @return bool
@@ -1008,6 +1023,12 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * setDefault).
 	 */
 	protected function registerFilters() {
+		$isRegistrationRequiredToEdit = !MediaWikiServices::getInstance()
+			->getPermissionManager()
+			->isEveryoneAllowed( "edit" );
+		if ( $isRegistrationRequiredToEdit ) {
+			$this->removeRegistrationFilterDefinitions();
+		}
 		$this->registerFiltersFromDefinitions( $this->filterGroupDefinitions );
 
 		// Make sure this is not being transcluded (we don't want to show this
@@ -1038,10 +1059,12 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$this->registerFiltersFromDefinitions( [] );
 
 		$userExperienceLevel = $this->getFilterGroup( 'userExpLevel' );
-		$registered = $userExperienceLevel->getFilter( 'registered' );
-		$registered->setAsSupersetOf( $userExperienceLevel->getFilter( 'newcomer' ) );
-		$registered->setAsSupersetOf( $userExperienceLevel->getFilter( 'learner' ) );
-		$registered->setAsSupersetOf( $userExperienceLevel->getFilter( 'experienced' ) );
+		if ( !$isRegistrationRequiredToEdit ) {
+			$registered = $userExperienceLevel->getFilter( 'registered' );
+			$registered->setAsSupersetOf( $userExperienceLevel->getFilter( 'newcomer' ) );
+			$registered->setAsSupersetOf( $userExperienceLevel->getFilter( 'learner' ) );
+			$registered->setAsSupersetOf( $userExperienceLevel->getFilter( 'experienced' ) );
+		}
 
 		$logactionsFilter = $changeTypeGroup->getFilter( 'hidelog' );
 		$lognewuserFilter = $changeTypeGroup->getFilter( 'hidenewuserlog' );
