@@ -1041,8 +1041,6 @@ class SessionManager implements SessionManagerInterface {
 			'supposedUser' => $info->getUserInfo() ? $info->getUserInfo()->getName() : null,
 			'clientip' => $request->getIP(),
 			'userAgent' => $request->getHeader( 'user-agent' ),
-			// FIXME extra debugging for T373270; revert once not needed
-			'cookieArray' => $_COOKIE,
 		];
 		if ( $info->getUserInfo() ) {
 			if ( !$info->getUserInfo()->isAnon() ) {
