@@ -8379,6 +8379,18 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Defines a denylist of group names. One-shot autopromotions into these groups will not cause a
+	 * RecentChanges entry to be inserted even if AutopromoteOnceLogInRC is set, as long as they are the
+	 * only new groups the user was autopromoted to.
+	 *
+	 * @since 1.44
+	 */
+	public const AutopromoteOnceRCExcludedGroups = [
+		'default' => [],
+		'type' => 'array',
+	];
+
+	/**
 	 * $wgAddGroups and $wgRemoveGroups can be used to give finer control over who
 	 * can assign which groups at Special:Userrights.
 	 *

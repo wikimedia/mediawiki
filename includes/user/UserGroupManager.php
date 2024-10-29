@@ -61,6 +61,7 @@ class UserGroupManager {
 		MainConfigNames::Autopromote,
 		MainConfigNames::AutopromoteOnce,
 		MainConfigNames::AutopromoteOnceLogInRC,
+		MainConfigNames::AutopromoteOnceRCExcludedGroups,
 		MainConfigNames::EmailAuthentication,
 		MainConfigNames::ImplicitGroups,
 		MainConfigNames::GroupInheritsPermissions,
@@ -735,7 +736,14 @@ class UserGroupManager {
 			'5::newgroups' => $newGroups,
 		] );
 		$logid = $logEntry->insert();
-		if ( $this->options->get( MainConfigNames::AutopromoteOnceLogInRC ) ) {
+
+		// Allow excluding autopromotions into select groups from RecentChanges (T377829).
+		$groupsToShowInRC = array_diff(
+			$toPromote,
+			$this->options->get( MainConfigNames::AutopromoteOnceRCExcludedGroups )
+		);
+
+		if ( $this->options->get( MainConfigNames::AutopromoteOnceLogInRC ) && count( $groupsToShowInRC ) ) {
 			$logEntry->publish( $logid );
 		}
 

@@ -1347,6 +1347,8 @@ return [
 				],
 			],
 			'AutopromoteOnceLogInRC' => true,
+			'AutopromoteOnceRCExcludedGroups' => [
+			],
 			'AddGroups' => [
 			],
 			'RemoveGroups' => [
@@ -2836,6 +2838,7 @@ return [
 			'NonincludableNamespaces' => 'object',
 			'Autopromote' => 'object',
 			'AutopromoteOnce' => 'object',
+			'AutopromoteOnceRCExcludedGroups' => 'array',
 			'AddGroups' => 'object',
 			'RemoveGroups' => 'object',
 			'AvailableRights' => 'array',

@@ -2856,6 +2856,12 @@ $wgAutopromoteOnce = null;
 $wgAutopromoteOnceLogInRC = null;
 
 /**
+ * Config variable stub for the AutopromoteOnceRCExcludedGroups setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::AutopromoteOnceRCExcludedGroups
+ */
+$wgAutopromoteOnceRCExcludedGroups = null;
+
+/**
  * Config variable stub for the AddGroups setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::AddGroups
  */

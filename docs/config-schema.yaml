@@ -5307,6 +5307,14 @@ config-schema:
         description: |-
             Put user rights log entries for autopromotion in recent changes?
             @since 1.18
+    AutopromoteOnceRCExcludedGroups:
+        default: []
+        type: array
+        description: |-
+            Defines a denylist of group names. One-shot autopromotions into these groups will not cause a
+            RecentChanges entry to be inserted even if AutopromoteOnceLogInRC is set, as long as they are the
+            only new groups the user was autopromoted to.
+            @since 1.44
     AddGroups:
         default: {  }
         type: object
