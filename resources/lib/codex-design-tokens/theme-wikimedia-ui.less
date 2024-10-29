@@ -1,5 +1,5 @@
 
-// Codex Design Tokens v1.14.0
+// Codex Design Tokens v1.15.0
 // Design System for Wikimedia
 // See https://doc.wikimedia.org/codex/latest/design-tokens/overview.html
 
@@ -11,23 +11,28 @@
 @color-emphasized: var( --color-emphasized, #101418 );
 @color-subtle: var( --color-subtle, #54595d );
 @color-placeholder: var( --color-placeholder, #72777d );
-@color-disabled: var( --color-disabled, #72777d );
+@color-disabled: var( --color-disabled, #a2a9b1 );
+@color-disabled-emphasized: var( --color-disabled-emphasized, #a2a9b1 );
 @color-inverted: var( --color-inverted, #fff );
 @color-inverted-fixed: var( --color-inverted-fixed, #fff ); // The same as color-inverted in light mode, but does not change in dark mode. Use this for things that should be white in both modes.
 @color-progressive: var( --color-progressive, #36c ); // 'Progressive' Color and states
 @color-progressive--hover: var( --color-progressive--hover, #4b77d6 );
 @color-progressive--active: var( --color-progressive--active, #233566 );
 @color-progressive--focus: var( --color-progressive--focus, #36c );
-@color-destructive: var( --color-destructive, #d73333 ); // 'Destructive' Color and states
-@color-destructive--hover: var( --color-destructive--hover, #fc493b );
+@color-destructive: var( --color-destructive, #bf3c2c ); // 'Destructive' Color and states
+@color-destructive--hover: var( --color-destructive--hover, #f54739 );
 @color-destructive--active: var( --color-destructive--active, #9f3526 );
 @color-destructive--focus: var( --color-destructive--focus, #36c );
 @color-visited: var( --color-visited, #6a60b0 ); // 'Visited' color. In combination with progressive. Used for default links.
 @color-destructive--visited: var( --color-destructive--visited, #9f5555 ); // Red link 'Visited' color. Used for visited red links.
-@color-error: var( --color-error, #d73333 );
-@color-warning: var( --color-warning, #eeb533 ); // Note, this is only meant for warning icon for contrast reasons.
-@color-success: var( --color-success, #177860 ); // Note, this needs to use a tone darker than Red and Yellow for contrast reasons with background White.
-@color-notice: var( --color-notice, #202122 );
+@color-error: var( --color-error, #bf3c2c );
+@color-warning: var( --color-warning, #886425 );
+@color-success: var( --color-success, #177860 );
+@color-notice: var( --color-notice, #404244 );
+@color-icon-error: var( --color-icon-error, #f54739 );
+@color-icon-warning: var( --color-icon-warning, #ab7f2a );
+@color-icon-success: var( --color-icon-success, #099979 );
+@color-icon-notice: var( --color-icon-notice, #72777d );
 @color-content-added: var( --color-content-added, #006400 );
 @color-content-removed: var( --color-content-removed, #8b0000 );
 @opacity-base: 1;
@@ -181,7 +186,7 @@
 @background-color-neutral-subtle: var( --background-color-neutral-subtle, #f8f9fa );
 @background-color-interactive: var( --background-color-interactive, #eaecf0 );
 @background-color-interactive-subtle: var( --background-color-interactive-subtle, #f8f9fa );
-@background-color-disabled: var( --background-color-disabled, #c8ccd1 ); // Components like Buttons, Checkboxes, Radios, ProgressBars….
+@background-color-disabled: var( --background-color-disabled, #dadde3 ); // Components like Buttons, Checkboxes, Radios, ProgressBars….
 @background-color-disabled-subtle: var( --background-color-disabled-subtle, #eaecf0 ); // Components like TextInputs, Selects….
 @background-color-inverted: var( --background-color-inverted, #101418 );
 @background-color-progressive: var( --background-color-progressive, #36c );
@@ -189,14 +194,14 @@
 @background-color-progressive--active: var( --background-color-progressive--active, #233566 );
 @background-color-progressive--focus: var( --background-color-progressive--focus, #36c );
 @background-color-progressive-subtle: var( --background-color-progressive-subtle, #f1f4fd );
-@background-color-destructive: var( --background-color-destructive, #d73333 );
-@background-color-destructive--hover: var( --background-color-destructive--hover, #fc493b );
+@background-color-destructive: var( --background-color-destructive, #bf3c2c );
+@background-color-destructive--hover: var( --background-color-destructive--hover, #f54739 );
 @background-color-destructive--active: var( --background-color-destructive--active, #9f3526 );
 @background-color-destructive--focus: var( --background-color-destructive--focus, #36c );
 @background-color-destructive-subtle: var( --background-color-destructive-subtle, #ffe9e5 );
-@background-color-error: var( --background-color-error, #d73333 );
-@background-color-error--hover: var( --background-color-error--hover, #fc493b );
-@background-color-error--active: var( --background-color-error--active, #9f3526 );
+@background-color-error: var( --background-color-error, #f54739 );
+@background-color-error--hover: var( --background-color-error--hover, #d74032 );
+@background-color-error--active: var( --background-color-error--active, #bf3c2c );
 @background-color-error-subtle: var( --background-color-error-subtle, #ffe9e5 );
 @background-color-warning-subtle: var( --background-color-warning-subtle, #fdf2d5 );
 @background-color-success-subtle: var( --background-color-success-subtle, #dff2eb );
@@ -260,15 +265,16 @@
 @border-color-progressive--hover: var( --border-color-progressive--hover, #4b77d6 );
 @border-color-progressive--active: var( --border-color-progressive--active, #233566 );
 @border-color-progressive--focus: var( --border-color-progressive--focus, #36c );
-@border-color-destructive: var( --border-color-destructive, #d73333 );
-@border-color-destructive--hover: var( --border-color-destructive--hover, #fc493b );
+@border-color-destructive: var( --border-color-destructive, #bf3c2c );
+@border-color-destructive--hover: var( --border-color-destructive--hover, #f54739 );
 @border-color-destructive--active: var( --border-color-destructive--active, #9f3526 );
 @border-color-destructive--focus: var( --border-color-destructive--focus, #36c );
-@border-color-error: var( --border-color-error, #9f3526 );
-@border-color-error--hover: var( --border-color-error--hover, #fc493b );
-@border-color-warning: var( --border-color-warning, #987027 );
-@border-color-success: var( --border-color-success, #196551 );
-@border-color-notice: var( --border-color-notice, #54595d );
+@border-color-error: var( --border-color-error, #f54739 );
+@border-color-error--hover: var( --border-color-error--hover, #d74032 );
+@border-color-error--active: var( --border-color-error--active, #bf3c2c );
+@border-color-warning: var( --border-color-warning, #ab7f2a );
+@border-color-success: var( --border-color-success, #099979 );
+@border-color-notice: var( --border-color-notice, #72777d );
 @border-color-content-added: var( --border-color-content-added, #a3d3ff );
 @border-color-content-removed: var( --border-color-content-removed, #ffe49c );
 @border-color-transparent: var( --border-color-transparent, transparent );

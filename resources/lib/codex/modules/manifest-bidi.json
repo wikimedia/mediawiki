@@ -315,6 +315,7 @@
     "isEntry": true,
     "imports": [
       "src/components/menu-item/MenuItem.vue",
+      "_Icon.js",
       "src/components/progress-bar/ProgressBar.vue",
       "src/composables/useGeneratedId.ts",
       "src/composables/useIntersectionObserver.ts",
