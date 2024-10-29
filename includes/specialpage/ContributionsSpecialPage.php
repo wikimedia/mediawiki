@@ -873,6 +873,9 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 			'section' => 'contribs-date',
 		];
 
+		// Allow children classes to modify field options before generating HTML
+		$this->modifyFields( $fields );
+
 		$htmlForm = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
 		$htmlForm
 			->setMethod( 'get' )
@@ -903,6 +906,16 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 		}
 
 		return $htmlForm->getHTML( $result );
+	}
+
+	/**
+	 * Allow children classes to call this function and make modifications to the
+	 * field options before they're used to create the form in getForm.
+	 *
+	 * @since 1.44
+	 * @param array &$fields
+	 */
+	protected function modifyFields( &$fields ) {
 	}
 
 	/**
