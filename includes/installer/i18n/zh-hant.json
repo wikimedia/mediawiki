@@ -298,7 +298,6 @@
 	"config-install-interwiki-list": "查無檔案 <code>interwiki.list</code>。",
 	"config-install-interwiki-exists": "<strong>警告：</strong>跨wiki資料表內已有資料，略過建立預設資料。",
 	"config-install-stats": "初始化統計資訊",
-	"config-install-keys": "正在產生密鑰",
 	"config-install-updates": "略過執行不需要的更新",
 	"config-install-updates-failed": "<strong>錯誤：</strong> 插入更新鍵值至資料表失敗，並出現以下錯誤：$1",
 	"config-install-sysop": "正在建立管理員使用者帳號",

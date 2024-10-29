@@ -119,7 +119,6 @@
 	"config-install-interwiki": "Remplissâjo per dèfôt de la trâbla des entèrvouiquis",
 	"config-install-interwiki-list": "Empossiblo de trovar lo fichiér <code>interwiki.list</code>.",
 	"config-install-stats": "Inicialisacion de les statistiques",
-	"config-install-keys": "G·ènèracion de les cllâfs secrètes",
 	"config-install-sysop": "Crèacion du compto administrator",
 	"config-install-subscribe-fail": "Empossiblo de s’abonar a mediawiki-announce [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-mainpage": "Crèacion de la pâge principâla avouéc un contegnu per dèfôt",

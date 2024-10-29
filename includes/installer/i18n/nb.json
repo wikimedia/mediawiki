@@ -281,7 +281,6 @@
 	"config-install-interwiki-list": "Det var ikke mulig å lese filen <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "<strong>Advarsel:</strong> Interwiki-tabellen ser allerede ut til å ha innhold.\nLegger derfor ikke inn standardlisten.",
 	"config-install-stats": "Initialiserer statisikk",
-	"config-install-keys": "Genererer hemmelige nøkler",
 	"config-install-updates": "Forhindre unødvendige oppdateringer",
 	"config-install-updates-failed": "<strong>Feil:</strong> Innsetting av oppdateringsnøkler i tabellene mislyktes med følgende feilmelding: $1",
 	"config-install-sysop": "Oppretter brukerkonto for administrator",

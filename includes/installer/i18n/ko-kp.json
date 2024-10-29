@@ -157,7 +157,6 @@
 	"config-install-interwiki-list": "<code>interwiki.list</code> 서류를 불러올수 없습니다.",
 	"config-install-interwiki-exists": "<strong>경고:</strong> 위키사이표가 이미 항목을 갖고있는것 같습니다.\n기본 목록을 건너뜁니다.",
 	"config-install-stats": "통계를 초기화하는중",
-	"config-install-keys": "보안키를 만드는중",
 	"config-install-subscribe-notpossible": "cURL이 설치되여있지 않고 <code>allow_url_fopen</code>을 사용할수 없습니다.",
 	"config-install-mainpage": "기본 내용으로 대문을 만드는중",
 	"config-install-mainpage-exists": "대문은 이미 존재함, 건너뜀",

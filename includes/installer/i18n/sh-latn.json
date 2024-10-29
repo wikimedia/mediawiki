@@ -217,7 +217,6 @@
 	"config-install-interwiki-list": "Nisam mogao pronaći datoteku <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "<strong>Upozorenje:</strong> Tabela međuwikija već ima unose.\nPreskočim podrazumevano-zadanu listu.",
 	"config-install-stats": "Pokrećem statistiku",
-	"config-install-keys": "Generisanje tajnih ključeva",
 	"config-install-updates": "Spriječi vršenje nepotrebnih podnova",
 	"config-install-updates-failed": "<strong>Greška:</strong> Umetanje podnovnih klučeva u tabele nije uspjelo, zbog sljedeće greške: $1",
 	"config-install-sysop": "Otvaranje korisničkog računa administratora",

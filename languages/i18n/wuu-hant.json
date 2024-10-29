@@ -3,7 +3,8 @@
 		"authors": [
 			"Benojan",
 			"Subarupan",
-			"Winston Sung"
+			"Winston Sung",
+			"沈澄心"
 		]
 	},
 	"sunday": "禮拜日",
@@ -1663,7 +1664,7 @@
 	"skin-action-delete": "刪除",
 	"skin-action-move": "移動",
 	"blockedtext-made-by": "畀$1查封脫。",
-	"blockedtext-reason-comment": "畀出个原因是<em>$1</em>",
+	"blockedtext-reason-comment": "畀出个原因是<em>$1</em>。",
 	"blockedtext-start-time": "查封開始辰光：$1",
 	"blockedtext-expiration-time": "查封到期辰光：$1",
 	"blockedtext-intended-blockee": "目標查封對象：$1",

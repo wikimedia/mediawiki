@@ -304,7 +304,6 @@
 	"config-install-interwiki-list": "Impossible de lire le fichier <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "<strong>Attention :</strong> la table des interwikis semble déjà contenir des entrées.\nLa liste par défaut ne sera pas inscrite.",
 	"config-install-stats": "Initialisation des statistiques",
-	"config-install-keys": "Génération de la clé secrète",
 	"config-install-updates": "Empêcher l’exécution des mises à jour non nécessaires",
 	"config-install-updates-failed": "<strong>Erreur :</strong> l’insertion des clés mises à jour dans les tables a échoué avec l’erreur suivante : $1",
 	"config-install-sysop": "Création du compte administrateur",

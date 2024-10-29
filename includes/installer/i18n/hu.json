@@ -283,7 +283,6 @@
 	"config-install-interwiki-list": "Az <code>interwiki.list</code> fájl nem olvasható.",
 	"config-install-interwiki-exists": "<strong>Figyelmeztetés:</strong> Úgy tűnik, hogy az interwikitáblában már vannak bejegyzések.\nAlapértelmezett lista kihagyása.",
 	"config-install-stats": "Statisztika inicializálása",
-	"config-install-keys": "Titkos kulcsok generálása",
 	"config-install-updates": "Nem szükséges frissítések futtatásának megakadályozása",
 	"config-install-updates-failed": "<strong>Hiba:</strong> A frissítő kulcsok beillesztése a táblákba nem sikerült a következő hiba miatt: $1",
 	"config-install-sysop": "Az adminisztrátor felhasználói fiókjának létrehozása",

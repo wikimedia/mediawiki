@@ -246,7 +246,6 @@
 	"config-install-interwiki-list": "Mer kunnte de Dattei <code lang=\"en\">interwiki.list</code> nit fenge.",
 	"config-install-interwiki-exists": "'''Opjepaß''': En der Engewiki-Tabäll schingk alt jät dren ze shtonn.\nDoh dom_mer nix dobei.",
 	"config-install-stats": "De Shtatestek-Zahle wääde op Aanfang jeshtallt.",
-	"config-install-keys": "Jeheime Schlößel wääde opjebout.",
 	"config-install-updates": "Donn kein onnühdeje Änderonge maache.",
 	"config-install-updates-failed": "<strong>Dä:</strong> Schlößßelle för et Ändere en Tabälle  bränge es donävve jajange. Jemäldt wood: $1",
 	"config-install-sysop": "Dä Zohjang för der Wiki-Köbes weed aanjelaat.",

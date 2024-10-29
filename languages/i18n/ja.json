@@ -1097,7 +1097,7 @@
 	"titlematches": "ページ名と一致",
 	"textmatches": "ページ本文と一致",
 	"notextmatches": "どのページ本文とも一致しませんでした",
-	"prevn": "前の$1件",
+	"prevn": "前の{{PLURAL:$1|$1}}件",
 	"nextn": "次の$1件",
 	"prev-page": "前のページ",
 	"next-page": "次のページ",

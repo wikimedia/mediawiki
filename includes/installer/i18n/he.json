@@ -281,7 +281,6 @@
 	"config-install-interwiki-list": "קריאת הקובץ <code>interwiki.list</code> לא הצליחה.",
 	"config-install-interwiki-exists": "'''אזהרה:''' נראה שבטבלת הבינוויקי כבר יש רשומות.\nמדלג על הרשומה ההתחלתית.",
 	"config-install-stats": "אתחול סטטיסטיקות",
-	"config-install-keys": "יצירת מפתחות סודיים",
 	"config-install-updates": "למנוע הרצת עדכונים מיותרים",
 	"config-install-updates-failed": "<strong>שגיאה:</strong> הוספת מפתחות עדכון לטבלאות נכשל עם השגיאה הבאה: $1",
 	"config-install-sysop": "יצירת חשבון מפעיל",

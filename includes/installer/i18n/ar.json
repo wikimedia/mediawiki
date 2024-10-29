@@ -291,7 +291,6 @@
 	"config-install-interwiki-list": "لا يمكن قراءة الملف <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "<strong>تحذير:</strong> يبدو أن جدول الإنترويكي به إدخالات بالفعل. تخطي القائمة الافتراضي.",
 	"config-install-stats": "بدء الإحصاءات",
-	"config-install-keys": "توليد المفاتيح السرية",
 	"config-install-updates": "منع تشغيل التحديثات غير الضرورية",
 	"config-install-updates-failed": "<strong>خطأ:</strong> إدخال مفاتيح التحديث إلى الجداول فشلت بسبب الخطأ التالي: $1",
 	"config-install-sysop": "إنشاء حساب مستخدم إداري",

@@ -144,7 +144,6 @@
 	"config-install-tables": "Creacion de las taulas",
 	"config-install-interwiki-list": "Impossible de legir lo fichier <code>interwiki.list</code>.",
 	"config-install-stats": "Inicializacion de las estatisticas",
-	"config-install-keys": "Generacion de la clau secreta",
 	"config-install-updates": "Empachar l’execucion de las mesas a jorn inutilas",
 	"config-install-sysop": "Creacion del compte administrator",
 	"config-install-mainpage": "Creacion de la pagina principala amb un contengut per defaut",

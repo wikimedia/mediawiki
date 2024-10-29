@@ -239,7 +239,6 @@
 	"config-install-interwiki-list": "Hindi matagpuan ang talaksang <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "'''Babala''': Tila may mga laman na ang talahanayan ng interwiki.\nNilalaktawan ang likas na nakatakdang talaan.",
 	"config-install-stats": "Sinisimulan ang estadistika",
-	"config-install-keys": "Ginagawa ang lihim na mga susi",
 	"config-install-sysop": "Nililikha ang account ng tagagamit na tagapangasiwa",
 	"config-install-subscribe-fail": "Hindi nagawang magpasipi mula sa mediawiki-announce[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "Hindi nakalagak ang cURL at hindi makukuha ang <code>allow_url_fopen</code>",

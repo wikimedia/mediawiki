@@ -272,7 +272,6 @@
 	"config-install-interwiki-list": "Ne povis lektar l'arkivo <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "<strong>Atencez:</strong> Semblas ke la tabelo interwiki ja havas enrejistruri.\nLa listo ''default'' ne mencionesos.",
 	"config-install-stats": "Komencar statistiki",
-	"config-install-keys": "Kreante sekreta klefi",
 	"config-install-updates": "Impedar aktualigi nebezonata",
 	"config-install-updates-failed": "<strong>Error:</strong> Inserting update keys into tables failed with the following error: $1",
 	"config-install-sysop": "Krear la konto dil administrero",

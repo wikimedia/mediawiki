@@ -283,7 +283,6 @@
 	"config-install-interwiki-list": "Tiedostoa <code>interwiki.list</code> ei voitu lukea.",
 	"config-install-interwiki-exists": "<strong>Varoitus:</strong> interwiki-taulussa on jo tietueita, ohitetaan oletuslista.",
 	"config-install-stats": "Alustetaan tilastoja",
-	"config-install-keys": "Muodostetaan salausavaimia",
 	"config-install-updates": "Estä tarpeettomien päivitysten asennus",
 	"config-install-updates-failed": "<strong>Virhe:</strong> Päivitysavainten lisääminen taulukoihin epäonnistui seuraavalla virheellä: $1",
 	"config-install-sysop": "Luodaan ylläpitäjän käyttäjätunnusta",

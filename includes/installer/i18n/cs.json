@@ -285,7 +285,6 @@
 	"config-install-interwiki-list": "Nelze přečíst soubor <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "'''Upozornění''': Vypadá to, že tabulka interwiki již obsahuje nějaké záznamy.\nPřeskakuje se implicitní seznam.",
 	"config-install-stats": "Inicializují se statistiky",
-	"config-install-keys": "Vytvářejí se tajné klíče",
 	"config-install-updates": "Ruší se spuštění nepotřebných aktualizací",
 	"config-install-updates-failed": "<strong>Chyba:</strong> Vložení aktualizačních klíčů do tabulek selhalo s následující chybou: $1",
 	"config-install-sysop": "Zakládá se uživatelský účet správce",

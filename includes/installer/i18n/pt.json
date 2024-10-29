@@ -293,7 +293,6 @@
 	"config-install-interwiki-list": "Não foi possível ler o ficheiro <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "<strong>Aviso:</strong> A tabela de interwikis parece já conter entradas.\nO preenchimento padrão desta tabela será saltado.",
 	"config-install-stats": "A inicializar as estatísticas",
-	"config-install-keys": "A gerar as chaves secretas",
 	"config-install-updates": "Evitar executar atualizações desnecessárias",
 	"config-install-updates-failed": "<strong>Erro:</strong> A inserção de chaves de atualização nas tabelas falhou com o seguinte erro: $1",
 	"config-install-sysop": "A criar a conta de administrador",

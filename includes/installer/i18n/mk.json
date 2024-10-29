@@ -278,7 +278,6 @@
 	"config-install-interwiki-list": "Не можев да ја пронајдам податотеката <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "'''Предупредување''': Табелата со интервикија веќе содржи ставки.\nГо прескокнувам основно-зададениот список.",
 	"config-install-stats": "Ги подготвувам статистиките",
-	"config-install-keys": "Создавање на тајни клучеви",
 	"config-install-updates": "Спречи вршење на непотребни поднови",
 	"config-install-updates-failed": "<strong>Грешка:</strong> Вметнувањето на подновни клучеви во табелите не успеа, со следнава грешка: $1",
 	"config-install-sysop": "Создавање на администраторска корисничка сметка",

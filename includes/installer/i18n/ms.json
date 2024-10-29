@@ -124,7 +124,6 @@
 	"config-install-interwiki": "Mengisi jadual antara wiki lalai",
 	"config-install-interwiki-list": "Fail <code>interwiki.list</code> tidak dapat dibaca.",
 	"config-install-interwiki-exists": "<strong>Amaran:</strong> Jadual antara wiki nampaknya sudah ada entri. Senarai asali dilangkau.",
-	"config-install-keys": "Menjana kunci-kunci rahsia",
 	"config-install-sysop": "Membuka akaun pengguna pentadbir",
 	"config-install-mainpage": "Mewujudkan laman utama dengan kandungan lalai",
 	"config-help": "bantuan",

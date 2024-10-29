@@ -115,7 +115,6 @@
 	"config-install-interwiki": "සාමාන්‍ය අන්තර්විකි වගුව ගහනය කරමින්",
 	"config-install-interwiki-list": "<code>interwiki.list</code> ගොනුව කියවිය නොහැක.",
 	"config-install-stats": "සංඛ්‍යානය අරඹමින්",
-	"config-install-keys": "රහස් යතුරු ජනිත කරමින්",
 	"config-install-sysop": "පරිපාලක පරිශීලක ගිණුම තනමින්",
 	"config-install-mainpage": "සාමාන්‍ය අන්තර්ගතය සමඟින් ප්‍රධාන පිටුව තනමින්",
 	"config-install-mainpage-failed": "ප්‍රධාන පිටුව ඇතුල් කල නොහැක: $1",

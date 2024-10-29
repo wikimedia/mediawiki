@@ -280,7 +280,6 @@
 	"config-install-interwiki-list": "Не вдалося знайти файл <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "'''Увага''': Таблиця інтервікі уже, здається, має записи.\nСтворення стандартного списку пропускається.",
 	"config-install-stats": "Ініціалізація статистики",
-	"config-install-keys": "Генерація секретних ключів",
 	"config-install-updates": "Запобігти запуску непотрібних оновлень",
 	"config-install-updates-failed": "<strong>Помилка:</strong> Вставка оновленних ключів в таблиці не вдалося через таку помилку:$1",
 	"config-install-sysop": "Створення облікового запису адміністратора",

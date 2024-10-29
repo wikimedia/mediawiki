@@ -287,7 +287,6 @@
 	"config-install-interwiki-list": "<code>interwiki.list</code> 파일을 불러올 수 없습니다.",
 	"config-install-interwiki-exists": "<strong>경고:</strong> 인터위키 테이블이 이미 항목을 갖고 있는 것 같습니다.\n기본 목록을 건너뜁니다.",
 	"config-install-stats": "통계를 초기화하는 중",
-	"config-install-keys": "보안 키를 만드는 중",
 	"config-install-updates": "불필요한 업데이트 실행 방지",
 	"config-install-updates-failed": "<strong>오류:</strong> 다음 오류로 테이블 안에 업데이트 키를 넣기에 실패했습니다: $1",
 	"config-install-sysop": "관리자 사용자 계정을 만드는 중",

@@ -264,7 +264,6 @@
 	"config-install-interwiki-list": "ไม่สามารถอ่านไฟล์ <code>interwiki.list</code>",
 	"config-install-interwiki-exists": "<strong>คำเตือน:</strong> ตารางอินเตอร์วิกิมีรายการอยู่แล้ว\nกำลังข้ามรายการเริ่มต้น",
 	"config-install-stats": "กำลังเตรียมใช้งานสถิติ",
-	"config-install-keys": "กำลังสร้างคีย์ลับ",
 	"config-install-updates": "ป้องกันไม่ให้เรียกใช้การปรับปรุงที่ไม่จำเป็น",
 	"config-install-updates-failed": "<strong>ข้อผิดพลาด:</strong> การแทรกคีย์ปรับปรุงลงในตารางล้มเหลวโดยมีข้อผิดพลาดต่อไปนี้: $1",
 	"config-install-sysop": "สร้างบัญชีผู้ใช้ที่เป็นผู้ดูแลระบบ",

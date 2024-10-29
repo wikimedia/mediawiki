@@ -251,7 +251,6 @@
 	"config-install-interwiki-list": "<code>interwiki.list</code> файлын уҡып булманы.",
 	"config-install-interwiki-exists": "<strong>Иҫкәртеү:</strong> интервики-таблицала яҙма бар.\nСтандарт исемлек төҙөү төшөрөп ҡалдырылды.",
 	"config-install-stats": "Инициализация статистикаһы",
-	"config-install-keys": "Йәшерен асҡыстар төҙөү",
 	"config-install-updates": "Кәрәкмәген яңыртыуҙар башлауға юл ҡуйылманы",
 	"config-install-updates-failed": "<strong>Хата:</strong> таблицаға яңыртыу асҡысы ҡуйыу түбәндәге хата менән тамамланды: $1",
 	"config-install-sysop": "Хакимдың иҫәп яҙмаһын булдырыу",

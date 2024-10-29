@@ -255,7 +255,6 @@
 	"config-install-interwiki-list": "Файлът <code>interwiki.list</code> не можа да бъде прочетен.",
 	"config-install-interwiki-exists": "<strong>Внимание:</strong> Таблицата с междууикита изглежда вече съдържа данни.\nПропускане на списъка по подразбиране.",
 	"config-install-stats": "Инициализиране на статистиките",
-	"config-install-keys": "Генериране на тайни ключове",
 	"config-install-updates": "Предотвратяване стартирането на ненужни актуализации",
 	"config-install-updates-failed": "<strong>Грешка:</strong> Вмъкването на обновяващи ключове в таблиците се провали по следната причина: $1",
 	"config-install-sysop": "Създаване на администраторска сметка",

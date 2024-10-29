@@ -280,7 +280,6 @@
 	"config-install-interwiki-list": "Non se puido atopar o ficheiro <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "<strong>Atención:</strong> Semella que a táboa de interwiki xa contén entradas.\nSaltando a lista por defecto.",
 	"config-install-stats": "Iniciando as estatísticas",
-	"config-install-keys": "Xerando as claves secretas",
 	"config-install-updates": "Evitar executar actualizacións innecesarias",
 	"config-install-updates-failed": "<strong>Erro:</strong> A inserción de claves de actualización nas táboas fallou co seguinte erro: $1",
 	"config-install-sysop": "Creando a conta de usuario de administrador",

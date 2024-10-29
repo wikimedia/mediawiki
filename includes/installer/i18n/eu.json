@@ -254,7 +254,6 @@
 	"config-install-interwiki-list": "Ezin izan da <code>interwiki.list</code> fitxategia irakurri.",
 	"config-install-interwiki-exists": "<strong>Oharra:</strong> Interwikiko taula badirudi sarrerak dituela. \nTaula estandarra saltatzen.",
 	"config-install-stats": "Estatistikak hasten",
-	"config-install-keys": "Gako sekretuak sortzen",
 	"config-install-updates": "Saihestu egikaratzen behar ez diren aktualizazioak",
 	"config-install-updates-failed": "<strong>Errore</strong> Sartzea eguneratze-gakoak taulen barruan huts egin du hurrengo errorearekin: $1",
 	"config-install-sysop": "Administratzaile kontua sortzen",

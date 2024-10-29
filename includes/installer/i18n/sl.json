@@ -276,7 +276,6 @@
 	"config-install-interwiki-list": "Datoteke <code>interwiki.list</code> ni bilo mogoče prebrati.",
 	"config-install-interwiki-exists": "<strong>Opozorilo:</strong> Zdi se, da tabela intervikijev že vsebuje vnose.\nPrivzeti seznam bo preskočen.",
 	"config-install-stats": "Inicializacija statistike",
-	"config-install-keys": "Generiranje skrivnih ključev",
 	"config-install-updates": "Prepreči uveljavitev nepotrebnih posodobitev",
 	"config-install-updates-failed": "<strong>Napaka:</strong> Vstavljanje posodobitvenih ključev v tabele je spodletelo z naslednjo napako: $1",
 	"config-install-sysop": "Ustvarjanje uporabniškega računa administratorja",

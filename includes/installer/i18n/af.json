@@ -121,7 +121,6 @@
 	"config-install-interwiki-list": "Kon nie die lêer <code>interwiki.list</code> vind nie.",
 	"config-install-interwiki-exists": "'''Waarskuwing''': Die interwiki-tabel bevat reeds inskrywings.\nDie standaardlys word oorgeslaan.",
 	"config-install-stats": "Inisialiseer statistieke",
-	"config-install-keys": "Genereer geheime sleutel",
 	"config-install-sysop": "Skep 'n gebruiker vir die administrateur",
 	"config-install-subscribe-fail": "Kon nie vir MediaWiki-announce inskryf nie[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-mainpage": "Skep die hoofblad met standaard inhoud",

@@ -205,7 +205,6 @@
 	"config-install-interwiki-list": "<code>interwiki.list</code> njeda so namakać.",
 	"config-install-interwiki-exists": "'''Warnowanje''': Zda so, zo tabela interwikjow hižo zapiski wobsahuje.\nStandardna lisćina sp přeskakuje.",
 	"config-install-stats": "Statistika so inicializuje",
-	"config-install-keys": "Tajne kluče so tworja",
 	"config-install-sysop": "Tworjenje administratoroweho wužiwarskeho konta",
 	"config-install-subscribe-fail": "Abonowanje \"mediawiki-announce\" njemóžno[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL njeje instalowany a <code>allow_url_fopen</code> k dispoziciji njesteji.",

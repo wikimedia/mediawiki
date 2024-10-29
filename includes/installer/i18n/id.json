@@ -286,7 +286,6 @@
 	"config-install-interwiki-list": "Tidak dapat membaca berkas <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "<strong>Peringatan:</strong> Tabel MediaWiki sepertinya sudah ada.\nMelompati daftar baku.",
 	"config-install-stats": "Inisialisasi statistik",
-	"config-install-keys": "Membuat kunci rahasia",
 	"config-install-updates": "Cegah jalannya pembaruan yang tidak dibutuhkan",
 	"config-install-updates-failed": "<strong>Galat:</strong> Memasukkan kunci pembaruan ke dalam tabel gagal dengan kode galat: $1",
 	"config-install-sysop": "Membuat akun pengguna pengurus",

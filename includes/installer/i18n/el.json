@@ -241,7 +241,6 @@
 	"config-install-interwiki-list": "Αδυναμία ανάγνωσης του αρχείου <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "<strong>Προειδοποίηση:</strong> O πίνακας interwiki φαίνεται να έχει ήδη καταχωρηθεί.\nΠαρακάμπτοντας προεπιλεγμένη λίστα.",
 	"config-install-stats": "Γίνεται αρχικοποίηση των στατιστικών",
-	"config-install-keys": "Γίνεται δημιουργία των μυστικών κλειδιών",
 	"config-install-updates": "Αποτρέψτε αχρειάστες ενημερώσεις",
 	"config-install-updates-failed": "<strong>Σφάλμα:</strong> Η εισαγωγή κλειδιών ενημέρωσης  σε πίνακες απέτυχε με το ακόλουθο σφάλμα: $1",
 	"config-install-sysop": "Γίνεται δημιουργία του λογαριασμού χρήστη του διαχειριστή",

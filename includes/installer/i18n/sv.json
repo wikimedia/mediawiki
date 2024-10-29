@@ -280,7 +280,6 @@
 	"config-install-interwiki-list": "Kunde inte läsa filen <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "<strong>Varning:</strong> Interwiki-tabellen verkar redan innehålla poster.\nHoppar över standardlistan.",
 	"config-install-stats": "Initierar statistik",
-	"config-install-keys": "Genererar hemliga nycklar",
 	"config-install-updates": "Förhindra att onödiga uppdateringar körs",
 	"config-install-updates-failed": "<strong>Fel:</strong> Infogning av uppdateringsnycklar i tabeller misslyckades med följande fel:$1",
 	"config-install-sysop": "Skapar administratörskonto",

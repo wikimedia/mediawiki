@@ -315,7 +315,6 @@
 	"config-install-interwiki-list": "无法读取文件<code>interwiki.list</code>。",
 	"config-install-interwiki-exists": "<strong>警告：</strong>跨wiki数据表似乎已有内容。\n跳过默认列表。",
 	"config-install-stats": "初始化统计",
-	"config-install-keys": "生成密钥中",
 	"config-install-updates": "防止运行不需要的更新",
 	"config-install-updates-failed": "<strong>错误：</strong>插入更新键到表格内失败，错误如下：$1",
 	"config-install-sysop": "正在创建管理员用户账号",

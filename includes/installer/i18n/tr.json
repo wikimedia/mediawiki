@@ -297,7 +297,6 @@
 	"config-install-interwiki-list": "<code>interwiki.list</code> dosyası okunamadı.",
 	"config-install-interwiki-exists": "<strong>Uyarı:</strong> Vikiarası tablo girdileri zaten görünüyor.\nVarsayılan liste atlanıyor.",
 	"config-install-stats": "İstatistik başlatma",
-	"config-install-keys": "Gizli anahtar oluşturma",
 	"config-install-updates": "Gereksiz güncellemeleri çalıştırmayı önle",
 	"config-install-updates-failed": "<strong>Hata:</strong> Güncelleme anahtarlarını tablolara ekleme şu hatayla başarısız oldu: $1",
 	"config-install-sysop": "Hizmetli kullanıcı hesabı oluşturma",

@@ -149,7 +149,6 @@
 	"config-install-user-alreadyexists": "ব্যবহারকারী \"$1\" ইতিমধ্যে বিদ্যমান আছে",
 	"config-install-tables": "ছক তৈরি করা হচ্ছে",
 	"config-install-interwiki-list": "<code>interwiki.list</code> ফাইলটি পড়া যায়নি।",
-	"config-install-keys": "গোপন চাবি উৎপন্ন করা হচ্ছে",
 	"config-install-mainpage-exists": "প্রধান পাতা ইতিমধ্যেই বিদ্যমান, এডিয়ে যাওয়া হচ্ছে",
 	"config-download-localsettings": "<code>LocalSettings.php</code> ডাউনলোড করুন",
 	"config-help": "সাহায্য",

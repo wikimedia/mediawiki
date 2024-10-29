@@ -237,7 +237,6 @@
 	"config-install-interwiki-list": "Die Datei <code>interwiki.list</code> konnt net geles sin.",
 	"config-install-interwiki-exists": "'''Warnung:'''  Es woare Interwikitabelle mit Date gefund.\nDie Standardliste weard üwersprung.",
 	"config-install-stats": "Statistike werre initialisiert",
-	"config-install-keys": "Geheimschlüssel werre erstellt",
 	"config-install-sysop": "Administratorkonto weard erstellt",
 	"config-install-subscribe-fail": "Abonniere von „mediawiki-announce“ ist gescheitert[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL ist net installiert und <code>allow_url_fopen</code> ist niet verfüchbar.",

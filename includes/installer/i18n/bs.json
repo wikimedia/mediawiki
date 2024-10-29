@@ -150,7 +150,6 @@
 	"config-install-tables": "Pravim tabele",
 	"config-install-interwiki": "Popunjavam predodređenu međuprojektnu tabelu",
 	"config-install-stats": "Pokrećem statistiku",
-	"config-install-keys": "Stvaram tajne ključeve",
 	"config-install-updates": "Spriječi pokretanje nepotrebnih ažuriranja",
 	"config-install-sysop": "Pravim administratorski korisnički račun",
 	"config-install-subscribe-fail": "Ne mogu Vas pretplatiti na mediawiki-announce[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",

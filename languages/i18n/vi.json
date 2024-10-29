@@ -69,6 +69,7 @@
 			"Withoutaname",
 			"Xð",
 			"לערי ריינהארט",
+			"沈澄心",
 			"아라"
 		]
 	},
@@ -3789,7 +3790,7 @@
 	"duration-seconds": "$1 giây",
 	"duration-minutes": "$1 phút",
 	"duration-hours": "$1 giờ",
-	"duration-days": "$1 ngày",
+	"duration-days": "$1 {{PLURAL:$1|ngày}}",
 	"duration-weeks": "$1 tuần",
 	"duration-months": "$1 tháng",
 	"duration-years": "$1 năm",

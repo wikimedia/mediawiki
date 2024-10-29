@@ -305,7 +305,6 @@
 	"config-install-interwiki-list": "Не удалось прочесть файл <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "<strong>Предупреждение:</strong> в интервики-таблице, кажется, уже есть записи.\nСоздание стандартного списка пропущено.",
 	"config-install-stats": "Статистика инициализации",
-	"config-install-keys": "Создание секретных ключей",
 	"config-install-updates": "Предотвращение запуска ненужных обновлений",
 	"config-install-updates-failed": "<strong>Ошибка:</strong> Вставка ключей обновления в таблицы завершилась со следующей ошибкой: $1",
 	"config-install-sysop": "Создание учётной записи администратора",

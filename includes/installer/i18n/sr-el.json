@@ -232,7 +232,6 @@
 	"config-install-interwiki-list": "Nije moguće čitati datoteku <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "<strong>Upozorenje:</strong> Izgleda da tabela međuvikija već ima unose.\nPreskakanje podrazumevane liste.",
 	"config-install-stats": "Pokretanje statistike",
-	"config-install-keys": "Generisanje tajnih ključeva",
 	"config-install-updates": "Spreči pokretanje nepotrebnih ažuriranja",
 	"config-install-updates-failed": "<strong>Greška:</strong> Umetanje klučeva za ažuriranje u tabele nije uspelo zbog sledeće greške: $1",
 	"config-install-sysop": "Otvaranje korisničkog naloga administratora",

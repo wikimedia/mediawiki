@@ -245,7 +245,6 @@
 	"config-install-interwiki-list": "Coudna read file <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "<strong>Warnishment:</strong> The interwiki buird awreadie seems tae hae entries.\nSkippin defaut let.",
 	"config-install-stats": "Ineetializin stateestics",
-	"config-install-keys": "Generatin hidlins keys",
 	"config-install-updates": "Hinder the runnin o onneedit updates.",
 	"config-install-updates-failed": "<strong>Mistak:</strong> Insertin update keys intae the buirds failed wi the folleain mistak: $1",
 	"config-install-sysop": "Makin admeenistrâter uiser accoont",

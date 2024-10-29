@@ -224,7 +224,6 @@
 	"config-install-interwiki-list": "Nepavyko perskaityti failo <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "<strong>Įspėjimas:</strong> Interwiki lentelė, atrodo, jau turi įrašų.\nNumatytasis sąrašas praleidžiamas.",
 	"config-install-stats": "Inicijuojamos statistikos",
-	"config-install-keys": "Generuojami slapti raktai",
 	"config-install-updates-failed": "<strong>Klaida:</strong> nepavyko įterpti naujinimo raktų į lenteles, klaida: $1",
 	"config-install-sysop": "Administratoriaus vartotojo paskyra kuriama",
 	"config-install-subscribe-fail": "Nepavyko užsiprenumeruoti [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",

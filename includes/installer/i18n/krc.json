@@ -271,7 +271,6 @@
 	"config-install-interwiki-list": "<code>interwiki.list</code> окъуялмады.",
 	"config-install-interwiki-exists": "<strong>Эсгертиу:</strong> Интервики таблцицада алайсыз да джазыула барча кёрюнеди.\nТынгылау бла тизме атлатылды.",
 	"config-install-stats": "Статистиканы инициализациясы",
-	"config-install-keys": "Джашыртын ачхычланы къурау",
 	"config-install-updates": "Керкесиз джангыртыуланы ишлетиуню аллын тый",
 	"config-install-updates-failed": "<strong>Халат:</strong> Таблицалагъа ачхычланы салыу бу халат бла бошалды: $1",
 	"config-install-sysop": "Администратор хыйсабны къурау",

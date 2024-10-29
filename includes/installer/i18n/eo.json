@@ -110,7 +110,6 @@
 	"config-install-tables": "Kreante tabelojn",
 	"config-install-interwiki-list": "Ne povis legi dosieron <code>interwiki.list</code>.",
 	"config-install-stats": "Pretigante statistikon",
-	"config-install-keys": "Farante sekretajn ŝlosilojn",
 	"config-download-localsettings": "Elŝuti la dosieron <code>LocalSettings.php</code>",
 	"config-help": "helpo",
 	"config-skins-screenshots": "$1 (ekrankopioj: $2)",

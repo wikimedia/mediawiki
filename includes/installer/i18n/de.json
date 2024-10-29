@@ -292,7 +292,6 @@
 	"config-install-interwiki-list": "Die Datei <code>interwiki.list</code> konnte nicht gelesen werden.",
 	"config-install-interwiki-exists": "<strong>Warnung:</strong> Es wurden Interwikitabellen mit Daten gefunden.\nDie Standardliste wird übersprungen.",
 	"config-install-stats": "Statistiken werden initialisiert",
-	"config-install-keys": "Geheimschlüssel werden erstellt",
 	"config-install-updates": "Unnötige Aktualisierungen nicht ausführen",
 	"config-install-updates-failed": "<strong>Fehler:</strong> Das Einfügen von Aktualisierungsschlüssel in die Tabellen ist mit dem folgenden Fehler fehlgeschlagen: $1",
 	"config-install-sysop": "Administratorkonto wird erstellt",

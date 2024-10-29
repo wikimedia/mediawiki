@@ -237,7 +237,6 @@
 	"config-install-interwiki-list": "As peul pa trovesse l'archivi <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "'''Avis''': La tàula interwiki a smija ch'a l'abia già dj'element.\nPër stàndard, la lista a sarà sautà.",
 	"config-install-stats": "Inissialisassion dle statìstiche",
-	"config-install-keys": "Generassion ëd le ciav segrete",
 	"config-install-sysop": "Creassion dël cont ëd l'utent aministrator",
 	"config-install-subscribe-fail": "As peul pa sot-scrivse mediawiki-announce[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL a l'é pa istalà e <code>allow_url_fopen</code> a l'é pa disponìbil.",

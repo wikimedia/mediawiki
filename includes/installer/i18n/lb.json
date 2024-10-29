@@ -175,7 +175,6 @@
 	"config-install-interwiki": "Standard Interwiki-Tabell gëtt ausgefëllt",
 	"config-install-interwiki-list": "De Fichier <code>interwiki.list</code> gouf net fonnt.",
 	"config-install-stats": "Initialisatioun vun de Statistiken",
-	"config-install-keys": "Generéiere vum Geheimschlëssel",
 	"config-install-updates": "Net néideg Aktualiséierungen net maachen",
 	"config-install-sysop": "Administrateur Benotzerkont gëtt ugeluecht",
 	"config-install-mainpage": "Haaptsäit mat Standard-Inhalt gëtt ugeluecht",

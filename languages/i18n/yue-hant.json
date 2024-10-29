@@ -50,6 +50,7 @@
 			"Yueman",
 			"Z423x5c6",
 			"捍粵者",
+			"沈澄心",
 			"아라"
 		]
 	},
@@ -918,7 +919,7 @@
 	"titlematches": "啱頁面標題",
 	"textmatches": "啱頁面文字",
 	"notextmatches": "冇頁面文字符合",
-	"prevn": "前$1",
+	"prevn": "前{{PLURAL:$1|$1}}",
 	"nextn": "後{{PLURAL:$1|$1}}",
 	"prev-page": "上一版",
 	"next-page": "下一版",
@@ -3214,7 +3215,7 @@
 	"newpages-showhide-redirect": "$1跳轉",
 	"newpages-showhide-registered": "$1註冊咗嘅用戶",
 	"blockedtext-made-by": "個封鎖係由$1經手嘅",
-	"blockedtext-reason-comment": "畀出嚟嘅理由係 <em>$1</em>",
+	"blockedtext-reason-comment": "畀出嚟嘅理由係<em>$1</em>。",
 	"blockedtext-start-time": "開始封鎖時間：$1",
 	"blockedtext-expiration-time": "結束封鎖時間：$1",
 	"blockedtext-intended-blockee": "封鎖目標：$1",

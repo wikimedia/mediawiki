@@ -73,7 +73,6 @@
 	"config-install-step-failed": "असफल",
 	"config-install-tables": "टेबल बनाउदै",
 	"config-install-stats": "तथ्याङ्क सुचारू हुदै",
-	"config-install-keys": "गोप्य चाबी उत्पन्न गर्दै",
 	"config-install-sysop": "प्रबन्धकको प्रयोगकर्ता खाता बनाउदै",
 	"config-help": "सहायता",
 	"config-help-tooltip": "विस्तार गर्न क्लीक गर्नुहोस्",

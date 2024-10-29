@@ -249,7 +249,6 @@
 	"config-install-interwiki-list": "Nun se pò lieggere 'o file <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "'''Attenziò:''' 'a tabbella interwiki pare ca cuntenesse già elemente.\nZumpann' 'a lista predefinita.",
 	"config-install-stats": "Inizializzaziona d' 'e statistiche",
-	"config-install-keys": "Generaziona d' 'e chiave segrete",
 	"config-install-updates": "Mpiccià ll'agghiurnamiente ca nun fossero necessarie",
 	"config-install-updates-failed": "<strong>Errore:</strong> l'inserimento d' 'e chiave 'agghiurnamiento dint' 'e tabbelle nun è asciuto pecché se cunfermaje l'errore ccà annanze: $1",
 	"config-install-sysop": "Crianno nu cunto utente ammenistratore",

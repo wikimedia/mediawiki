@@ -244,7 +244,6 @@
 	"config-install-interwiki-list": "Није могуће читати датотеку <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "<strong>Упозорење:</strong> Изгледа да табела међувикија већ има уносе.\nПрескакање подразумеване листе.",
 	"config-install-stats": "Покретање статистике",
-	"config-install-keys": "Генерисање тајних кључева",
 	"config-install-updates": "Спречи покретање непотребних ажурирања",
 	"config-install-updates-failed": "<strong>Грешка:</strong> Уметање клучева за ажурирање у табеле није успело због следеће грешке: $1",
 	"config-install-sysop": "Отварање корисничког налога администратора",

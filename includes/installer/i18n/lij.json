@@ -273,7 +273,6 @@
 	"config-install-interwiki-list": "Inposcìbile lêze o file <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "<strong>Atençión:</strong> o pâ che inta tabélla interwiki ghe ségge za di eleménti.\nA lìsta predefinîa a l'é sâtâ.",
 	"config-install-stats": "Iniçializaçión de statìstiche",
-	"config-install-keys": "Generaçión de ciâve segrétte",
 	"config-install-updates": "Inpedî l'ezecuçión di agiornaménti no necesâi",
 	"config-install-updates-failed": "<strong>Erô:</strong> l'inseriménto de ciâve de agiornaménto inte tabélle o no l'é ariêscîo pe l'erô chi de sótta: $1",
 	"config-install-sysop": "Creaçión de l'uténza pe l'aministratô",

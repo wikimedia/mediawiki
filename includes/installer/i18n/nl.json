@@ -295,7 +295,6 @@
 	"config-install-interwiki-list": "Het bestand <code>interwiki.list</code> is niet aangetroffen",
 	"config-install-interwiki-exists": "'''Waarschuwing''': de interwikitabel heeft al inhoud.\nDe standaardlijst wordt overgeslagen.",
 	"config-install-stats": "Statistieken initialiseren",
-	"config-install-keys": "Bezig met aanmaken van geheime sleutels",
 	"config-install-updates": "Voorkomen dat updates onnodig worden uitgevoerd",
 	"config-install-updates-failed": "<strong>Fout:</strong> het toevoegen van updatesleutels aan tabellen is mislukt met de volgende fout: $1",
 	"config-install-sysop": "Account voor beheerder aanmaken",

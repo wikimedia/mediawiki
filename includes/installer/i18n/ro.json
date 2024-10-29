@@ -158,7 +158,6 @@
 	"config-install-user-missing": "Utilizatorul „$1” specificat nu există.",
 	"config-install-tables": "Se creează tabelele, pasul unu",
 	"config-install-stats": "Se inițializează statisticile",
-	"config-install-keys": "Se generează cheile secrete",
 	"config-install-sysop": "Se creează contul de administrator",
 	"config-install-mainpage-failed": "Nu s-a putut insera pagina principală: $1",
 	"config-download-localsettings": "Descarcă <code>LocalSettings.php</code>",

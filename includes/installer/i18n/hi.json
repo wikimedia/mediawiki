@@ -274,7 +274,6 @@
 	"config-install-interwiki-list": "<code>interwiki.list</code> फ़ाइल को पढ़ा न जा सका।",
 	"config-install-interwiki-exists": "<strong>चेतावनी:</strong> ऐसा लगता है कि इंटरविकि टेबल पर पहले से ही एंट्रियाँ हैं।\nडिफ़ॉल्ट सूची को छोड़ दिया गया।",
 	"config-install-stats": "सांख्यिकी को शुरू किया जा रहा है",
-	"config-install-keys": "गुप्त कुँजियाँ बनाई जा रही हैं",
 	"config-install-updates": "अनावश्यक अपडेट चलाने से रोकें",
 	"config-install-updates-failed": "<strong>त्रुटि:</strong> टेबल में अपडेट कुँजियों को डालने का कार्य इस त्रुटि के साथ असफल हुआ: $1",
 	"config-install-sysop": "प्रबंधक खाता बन रहा है",

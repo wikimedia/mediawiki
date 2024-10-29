@@ -295,7 +295,6 @@
 	"config-install-interwiki-list": "Nie można odnaleźć pliku <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "'''Uwaga''' – wygląda na to, że tabela interwiki ma już jakieś wpisy.\nTworzenie domyślnej listy pominięto.",
 	"config-install-stats": "Inicjowanie statystyki",
-	"config-install-keys": "Generowanie tajnych kluczy",
 	"config-install-updates": "Zapobieganie uruchamianiu niepotrzebnych aktualizacji",
 	"config-install-updates-failed": "<strong>Błąd:</strong> Wstawianie kluczy aktualizacji d0 tabeli nie powiodło się z powodu następującego błędu: $1",
 	"config-install-sysop": "Tworzenie konta administratora",

@@ -275,7 +275,6 @@
 	"config-install-interwiki-list": "Non poteva trovar le file <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "'''Aviso''': Le tabella interwiki pare jam haber entratas.\nLe lista predefinite es saltate.",
 	"config-install-stats": "Initialisation del statisticas",
-	"config-install-keys": "Generation de claves secrete",
 	"config-install-updates": "Impedir le execution de actualisationes innecessari",
 	"config-install-updates-failed": "<strong>Error:</strong> Le insertion de claves de actualisation in le tabellas ha fallite con le error sequente: $1",
 	"config-install-sysop": "Crea conto de usator pro administrator",

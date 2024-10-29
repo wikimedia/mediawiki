@@ -134,7 +134,6 @@
 	"config-install-tables-failed": "'''ГӀалат''': Таблица кхолла таро йац гӀалат бахьнехь: $1",
 	"config-install-interwiki-list": "Файл <code>interwiki.list</code> ца карийна.",
 	"config-install-stats": "Инициализацин статистика",
-	"config-install-keys": "Къайлаха долу догӀанаш кхоллар",
 	"config-install-sysop": "Администраторан аккаунт кхоллар",
 	"config-install-subscribe-notpossible": "cURL дӀахӀоттийна йац йа тӀекхочехь йац опци <code>allow_url_fopen</code>.",
 	"config-install-mainpage-failed": "Коьрта агӀо йилла цатарло: $1",

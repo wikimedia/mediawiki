@@ -203,7 +203,6 @@
 	"config-install-interwiki-list": "<code>interwiki.list</code> ఫైలును చదవలేకపోయాం.",
 	"config-install-interwiki-exists": "<strong>హెచ్చరిక:</strong> అంతర్వికీ టేబుల్ లో ఈసరికే ఎంట్రీలున్నట్లుగా ఉన్నాయి.\nడిఫాల్టు జాబితాను దాటేస్తున్నాం.",
 	"config-install-stats": "గణాంకాలను తొలికరిస్తున్నాం (ఇనిషియలైజింగ్)",
-	"config-install-keys": "రహస్య కీలను సృష్టిస్తున్నాం",
 	"config-install-sysop": "అధికారి ఖాతా సృష్టిస్తున్నాము",
 	"config-install-mainpage": "డిఫాల్టు కంటెంటుతో మొదటిపేజీని సృష్టిస్తున్నాం",
 	"config-install-extension-tables": "చేతనం చేసిన పొడిగింతల కోసం టేబుళ్ళను సృష్టిస్తున్నాం",

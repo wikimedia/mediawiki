@@ -278,7 +278,6 @@
 	"config-install-interwiki-list": "پوشهٔ <code>interwiki.list</code> نتوانست خوانده شود.",
 	"config-install-interwiki-exists": "'''هشدار:''' به نظر می‌رسد جدول میان‌ویکی در حال حاضر دارای مقداری اطلاعات است.\nنادیده گرفتن فهرست پیش‌فرض.",
 	"config-install-stats": "شروع آمار",
-	"config-install-keys": "تولید کلیدهای مخفی",
 	"config-install-updates": "جلوگیری از به روز رسانی‌های غیر ضروری در حال اجرا",
 	"config-install-updates-failed": "<strong>خطا:</strong> قرار دادن کلیدهای روزآمدسازی در جدول‌ها با شکست و این خطا مواجه شد: $1",
 	"config-install-sysop": "ایجاد حساب کاربری مدیر",

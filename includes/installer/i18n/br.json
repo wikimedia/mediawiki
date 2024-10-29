@@ -239,7 +239,6 @@
 	"config-install-interwiki": "O leuniañ dre ziouer an daolenn etrewiki",
 	"config-install-interwiki-list": "Ne c'haller ket kavout ar restr <code>interwiki.list</code>.",
 	"config-install-stats": "O sevel ar stadegoù",
-	"config-install-keys": "Genel an alc'hwezioù kuzh",
 	"config-install-updates": "Mirout da lakaat hizivadennoù diezhomm da vont en-dro",
 	"config-install-sysop": "Krouidigezh kont ar merour",
 	"config-install-subscribe-fail": "N'haller ket koumanantiñ da [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",

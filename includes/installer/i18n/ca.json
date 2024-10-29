@@ -281,7 +281,6 @@
 	"config-install-interwiki-list": "No s'ha pogut llegir el fitxer <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "'''Avís:''' La taula d'interwiki sembla que ja té entrades. S'omet la llista per defecte.",
 	"config-install-stats": "S'estan inicialitzant les estadístiques",
-	"config-install-keys": "S'estan generant les claus secretes",
 	"config-install-updates": "Evita que s'executin actualitzacions no necessàries",
 	"config-install-updates-failed": "<strong>Error:</strong> La inserció de claus d'actualització a les taules ha fallat amb l'error següent: $1",
 	"config-install-sysop": "S'està creant un compte d'usuari d'administrador",
