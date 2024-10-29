@@ -33,8 +33,8 @@ use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Shell\Shell;
 use MediaWiki\User\User;
 use StatusValue;
-use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
 
@@ -189,11 +189,9 @@ abstract class Maintenance {
 	public $orderedOptions = [];
 
 	/**
-	 * An injected connection provider (e.g. LBFactorySingle during installation); null if none
-	 *
-	 * @var IConnectionProvider|null
+	 * @var ILBFactory|null Injected DB connection manager (e.g. LBFactorySingle); null if none
 	 */
-	private ?IConnectionProvider $dbProvider = null;
+	private ?ILBFactory $lbFactory = null;
 
 	/**
 	 * Default constructor. Children should call this *first* if implementing
@@ -787,8 +785,8 @@ abstract class Maintenance {
 		if ( $this->mDb !== null ) {
 			$child->setDB( $this->mDb );
 		}
-		if ( $this->dbProvider !== null ) {
-			$child->setDBProvider( $this->dbProvider );
+		if ( $this->lbFactory !== null ) {
+			$child->setLBFactory( $this->lbFactory );
 		}
 
 		return $child;
@@ -1151,10 +1149,7 @@ abstract class Maintenance {
 	 * @since 1.42
 	 */
 	protected function getReplicaDB(): IReadableDatabase {
-		if ( $this->dbProvider === null ) {
-			$this->dbProvider = $this->getServiceContainer()->getConnectionProvider();
-		}
-		return $this->dbProvider->getReplicaDatabase();
+		return $this->getLBFactory()->getReplicaDatabase();
 	}
 
 	/**
@@ -1162,19 +1157,25 @@ abstract class Maintenance {
 	 * @since 1.42
 	 */
 	protected function getPrimaryDB(): IDatabase {
-		if ( $this->dbProvider === null ) {
-			$this->dbProvider = $this->getServiceContainer()->getConnectionProvider();
-		}
-		return $this->dbProvider->getPrimaryDatabase();
+		return $this->getLBFactory()->getPrimaryDatabase();
 	}
 
 	/**
 	 * @internal
-	 * @param IConnectionProvider $dbProvider
+	 * @param ILBFactory $lbFactory LBFactory to inject in place of the service instance
 	 * @return void
 	 */
-	public function setDBProvider( IConnectionProvider $dbProvider ) {
-		$this->dbProvider = $dbProvider;
+	public function setLBFactory( ILBFactory $lbFactory ) {
+		$this->lbFactory = $lbFactory;
+	}
+
+	/**
+	 * @return ILBFactory Injected LBFactory, if any, the service instance, otherwise
+	 */
+	private function getLBFactory() {
+		$this->lbFactory ??= $this->getServiceContainer()->getDBLoadBalancerFactory();
+
+		return $this->lbFactory;
 	}
 
 	/**
@@ -1216,7 +1217,8 @@ abstract class Maintenance {
 	 * @since 1.36
 	 */
 	protected function waitForReplication() {
-		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
+		$lbFactory = $this->getLBFactory();
+
 		$waitSucceeded = $lbFactory->waitForReplication(
 			[ 'timeout' => 30, 'ifWritesSince' => $this->lastReplicationWait ]
 		);
