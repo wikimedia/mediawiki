@@ -18,7 +18,7 @@
  * @file
  */
 
-use Wikimedia\Redis\RedisConnectionPool;
+use Wikimedia\ObjectCache\RedisConnectionPool;
 
 /**
  * Manage locks using redis servers.
