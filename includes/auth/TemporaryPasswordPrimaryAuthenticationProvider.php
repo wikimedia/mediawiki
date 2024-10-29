@@ -51,7 +51,6 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			->select( [ 'user_id' ] )
 			->from( 'user' )
 			->where( [ 'user_name' => $username ] )
-			->recency( $flags )
 			->caller( __METHOD__ )->fetchField();
 	}
 
@@ -61,7 +60,6 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			->select( [ 'user_newpassword', 'user_newpass_time' ] )
 			->from( 'user' )
 			->where( [ 'user_name' => $username ] )
-			->recency( $flags )
 			->caller( __METHOD__ )->fetchRow();
 
 		if ( !$row ) {

@@ -1375,8 +1375,11 @@ class AuthManager implements LoggerAwareInterface {
 			return AuthenticationResponse::newFail( $status->getMessage() );
 		}
 
+		// Avoid deadlocks by placing no shared or exclusive gap locks (T199393)
+		// As defense in-depth, PrimaryAuthenticationProvider::testUserExists only
+		// supports READ_NORMAL/READ_LATEST (no support for recency query flags).
 		$status = $this->canCreateAccount(
-			$username, [ 'flags' => IDBAccessObject::READ_LOCKING, 'creating' => true ]
+			$username, [ 'flags' => IDBAccessObject::READ_LATEST, 'creating' => true ]
 		);
 		if ( !$status->isGood() ) {
 			$this->logger->debug( __METHOD__ . ': {user} cannot be created: {reason}', [
@@ -1534,7 +1537,7 @@ class AuthManager implements LoggerAwareInterface {
 			}
 
 			// Load from primary DB for existence check
-			$user->load( IDBAccessObject::READ_LOCKING );
+			$user->load( IDBAccessObject::READ_LATEST );
 
 			if ( $state['userid'] === 0 ) {
 				if ( $user->isRegistered() ) {
