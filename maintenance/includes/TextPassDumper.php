@@ -48,7 +48,6 @@ use MWUnknownContentModelException;
 use RuntimeException;
 use WikiExporter;
 use Wikimedia\AtEase\AtEase;
-use Wikimedia\Rdbms\IMaintainableDatabase;
 use XmlDumpWriter;
 
 /**
@@ -134,11 +133,6 @@ class TextPassDumper extends BackupDumper {
 	protected $checkpointJustWritten = false;
 	/** @var string[] */
 	protected $checkpointFiles = [];
-
-	/**
-	 * @var IMaintainableDatabase
-	 */
-	protected $db;
 
 	/**
 	 * @param array|null $args For backward compatibility
@@ -240,56 +234,6 @@ TEXT
 		}
 	}
 
-	/**
-	 * Drop the database connection $this->db and try to get a new one.
-	 *
-	 * This function tries to get a /different/ connection if this is
-	 * possible. Hence, (if this is possible) it switches to a different
-	 * failover upon each call.
-	 *
-	 * This function resets $this->lb and closes all connections on it.
-	 *
-	 * @suppress PhanTypeObjectUnsetDeclaredProperty
-	 */
-	protected function rotateDb() {
-		// Cleaning up old connections
-		if ( isset( $this->lb ) ) {
-			$this->lb->closeAll( __METHOD__ );
-			unset( $this->lb );
-		}
-
-		if ( $this->forcedDb !== null ) {
-			$this->db = $this->forcedDb;
-
-			return;
-		}
-
-		if ( isset( $this->db ) && $this->db->isOpen() ) {
-			throw new RuntimeException( 'DB is set and has not been closed by the Load Balancer' );
-		}
-
-		unset( $this->db );
-
-		// Trying to set up new connection.
-		// We do /not/ retry upon failure, but delegate to encapsulating logic, to avoid
-		// individually retrying at different layers of code.
-
-		try {
-			$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
-			$this->lb = $lbFactory->newMainLB();
-		} catch ( Exception $e ) {
-			throw new RuntimeException( __METHOD__
-				. " rotating DB failed to obtain new load balancer (" . $e->getMessage() . ")" );
-		}
-
-		try {
-			$this->db = $this->lb->getMaintenanceConnectionRef( DB_REPLICA, 'dump' );
-		} catch ( Exception $e ) {
-			throw new RuntimeException( __METHOD__
-				. " rotating DB failed to obtain new database (" . $e->getMessage() . ")" );
-		}
-	}
-
 	public function initProgress( $history = WikiExporter::FULL ) {
 		parent::initProgress();
 		$this->timeOfCheckpoint = $this->startTime;
@@ -303,20 +247,6 @@ TEXT
 		}
 
 		$this->initProgress( $this->history );
-
-		// We are trying to get an initial database connection to avoid that the
-		// first try of this request's first call to getText fails. However, if
-		// obtaining a good DB connection fails it's not a serious issue, as
-		// getText does retry upon failure and can start without having a working
-		// DB connection.
-		try {
-			$this->rotateDb();
-		} catch ( Exception $e ) {
-			// We do not even count this as failure. Just let eventual
-			// watchdogs know.
-			$this->progress( "Getting initial DB connection failed (" .
-				$e->getMessage() . ")" );
-		}
 
 		$this->egress = new ExportProgressFilter( $this->sink, $this );
 
@@ -718,7 +648,6 @@ TEXT
 				// parts
 				sleep( $this->failureTimeout );
 				try {
-					$this->rotateDb();
 					if ( $this->spawn ) {
 						$this->closeSpawn();
 						$this->openSpawn();

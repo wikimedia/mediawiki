@@ -39,8 +39,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\WikiMap\WikiMap;
 use WikiExporter;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
-use Wikimedia\Rdbms\LoadBalancer;
 use XmlDumpWriter;
 
 /**
@@ -135,9 +135,6 @@ abstract class BackupDumper extends Maintenance {
 	 * @see self::setDB
 	 */
 	protected $forcedDb = null;
-
-	/** @var LoadBalancer */
-	protected $lb;
 
 	/**
 	 * @param array|null $args For backward compatibility
@@ -322,10 +319,9 @@ abstract class BackupDumper extends Maintenance {
 
 		$this->initProgress( $history );
 
-		$db = $this->backupDb();
 		$services = $this->getServiceContainer();
 		$exporter = $services->getWikiExporterFactory()->getWikiExporter(
-			$db,
+			$this->getBackupDatabase(),
 			$history,
 			$text,
 			$this->limitNamespaces
@@ -392,16 +388,17 @@ abstract class BackupDumper extends Maintenance {
 	}
 
 	/**
-	 * @return IMaintainableDatabase
+	 * @return IDatabase
 	 */
-	protected function backupDb() {
+	protected function getBackupDatabase() {
 		if ( $this->forcedDb !== null ) {
 			return $this->forcedDb;
 		}
 
-		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
-		$this->lb = $lbFactory->newMainLB();
-		$db = $this->lb->getMaintenanceConnectionRef( DB_REPLICA, 'dump' );
+		$db = $this->getServiceContainer()
+			->getDBLoadBalancerFactory()
+			->getMainLB()
+			->getConnection( DB_REPLICA, 'dump' );
 
 		// Discourage the server from disconnecting us if it takes a long time
 		// to read out the big ol' batch query.
@@ -419,12 +416,6 @@ abstract class BackupDumper extends Maintenance {
 	public function setDB( IMaintainableDatabase $db ) {
 		parent::setDB( $db );
 		$this->forcedDb = $db;
-	}
-
-	public function __destruct() {
-		if ( isset( $this->lb ) ) {
-			$this->lb->closeAll( __METHOD__ );
-		}
 	}
 
 	public function reportPage() {
