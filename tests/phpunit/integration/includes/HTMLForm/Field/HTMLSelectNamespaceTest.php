@@ -61,6 +61,22 @@ class HTMLSelectNamespaceTest extends HTMLFormFieldTestCase {
 			'',
 			"<select class=\"namespaceselector\" id=\"mw-input-testfield\" name=\"testfield\">\n<option value=\"\" selected=\"\">all</option>\n" . $expectedOptions . "\n</select>"
 		];
+
+		yield 'Basic list, empty include (only show all)' => [
+			[
+				'include' => [],
+			],
+			'',
+			"<select class=\"namespaceselector\" id=\"mw-input-testfield\" name=\"testfield\"><option value=\"all\">all</option></select>"
+		];
+
+		yield 'Basic list, use include (show all and main only)' => [
+			[
+				'include' => [ NS_MAIN ],
+			],
+			'',
+			"<select class=\"namespaceselector\" id=\"mw-input-testfield\" name=\"testfield\"><option value=\"all\">all</option><option value=\"0\">(Main)</option></select>"
+		];
 	}
 
 	public static function provideInputCodex() {
@@ -122,6 +138,22 @@ class HTMLSelectNamespaceTest extends HTMLFormFieldTestCase {
 			'',
 			"<div id='mw-input-testfield' class='oo-ui-widget oo-ui-widget-enabled oo-ui-inputWidget oo-ui-dropdownInputWidget oo-ui-dropdownInputWidget-php mw-widget-namespaceInputWidget'><select tabindex='0' name='testfield' class='oo-ui-inputWidget-input oo-ui-indicator-down'><option value='' selected='selected'>all</option>" . $expectedOptions . "</select></div>"
 
+		];
+
+		yield 'Basic list, empty include (only show all)' => [
+			[
+				'include' => [],
+			],
+			'',
+			"<div id='mw-input-testfield' class='oo-ui-widget oo-ui-widget-enabled oo-ui-inputWidget oo-ui-dropdownInputWidget oo-ui-dropdownInputWidget-php mw-widget-namespaceInputWidget'><select tabindex='0' name='testfield' class='oo-ui-inputWidget-input oo-ui-indicator-down'><option value='all' selected='selected'>all</option></select></div>"
+		];
+
+		yield 'Basic list, use include (show all and main only)' => [
+			[
+				'include' => [ NS_MAIN ],
+			],
+			'',
+			"<div id='mw-input-testfield' class='oo-ui-widget oo-ui-widget-enabled oo-ui-inputWidget oo-ui-dropdownInputWidget oo-ui-dropdownInputWidget-php mw-widget-namespaceInputWidget'><select tabindex='0' name='testfield' class='oo-ui-inputWidget-input oo-ui-indicator-down'><option value='all' selected='selected'>all</option><option value='0'>(Main)</option></select></div>"
 		];
 	}
 }

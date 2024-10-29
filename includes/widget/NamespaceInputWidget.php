@@ -19,6 +19,8 @@ class NamespaceInputWidget extends DropdownInputWidget {
 	protected $userLang;
 	/** @var int[] */
 	protected $exclude;
+	/** @var int[] */
+	protected $include;
 
 	/**
 	 * @param array $config Configuration options
@@ -37,6 +39,7 @@ class NamespaceInputWidget extends DropdownInputWidget {
 		$this->includeAllValue = $config['includeAllValue'] ?? null;
 		$this->userLang = $config['userLang'] ?? false;
 		$this->exclude = $config['exclude'] ?? [];
+		$this->include = $config['include'] ?? [];
 
 		// Initialization
 		$this->addClasses( [ 'mw-widget-namespaceInputWidget' ] );
@@ -46,7 +49,8 @@ class NamespaceInputWidget extends DropdownInputWidget {
 		$namespaceOptionsParams = [
 			'all' => $config['includeAllValue'] ?? null,
 			'in-user-lang' => $config['userLang'] ?? false,
-			'exclude' => $config['exclude'] ?? null
+			'exclude' => $config['exclude'] ?? null,
+			'include' => $config['include'] ?? null,
 		];
 		$namespaceOptions = Html::namespaceSelectorOptions( $namespaceOptionsParams );
 
@@ -69,8 +73,9 @@ class NamespaceInputWidget extends DropdownInputWidget {
 		$config['includeAllValue'] = $this->includeAllValue;
 		$config['userLang'] = $this->userLang;
 		$config['exclude'] = $this->exclude;
-		// Skip DropdownInputWidget's getConfig(), we don't need 'options' config
+		$config['include'] = $this->include;
 		$config['dropdown']['$overlay'] = true;
+		// Skip DropdownInputWidget's getConfig(), we don't need 'options' config
 		return InputWidget::getConfig( $config );
 	}
 }
