@@ -29,7 +29,12 @@ module.exports = exports = defineStore( 'block', () => {
 	const disableEmail = ref( details.value.indexOf( 'wpDisableEmail' ) !== -1 );
 	const disableEmailVisible = ref( mw.config.get( 'blockDisableEmailVisible' ) || false );
 	const disableUTEdit = ref( details.value.indexOf( 'wpDisableUTEdit' ) !== -1 );
-	const disableUTEditVisible = ref( mw.config.get( 'blockDisableUTEditVisible' ) || false );
+	const disableUTEditVisible = computed( () => {
+		const isVisible = mw.config.get( 'blockDisableUTEditVisible' ) || false;
+		const isPartial = type.value === 'partial';
+		const blocksUT = namespaces.value.indexOf( mw.config.get( 'wgNamespaceIds' ).user_talk ) !== -1;
+		return isVisible && ( !isPartial || ( isPartial && !blocksUT ) );
+	} );
 
 	const additionalDetails = ref( mw.config.get( 'blockAdditionalDetailsPreset' ) || [] );
 

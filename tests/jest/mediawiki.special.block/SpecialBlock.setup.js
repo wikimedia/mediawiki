@@ -43,6 +43,13 @@ function getSpecialBlock( config = {}, apiMocks = [] ) {
  */
 function mockMwConfigGet( config = {} ) {
 	const mockConfig = Object.assign( {
+		wgNamespaceIds: {
+			'': '(Main)',
+			talk: 'Talk',
+			user: 'User',
+			// eslint-disable-next-line camelcase
+			user_talk: 3
+		},
 		wgFormattedNamespaces: {
 			0: '(Main)',
 			1: 'Talk',
