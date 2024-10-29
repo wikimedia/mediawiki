@@ -662,7 +662,7 @@ class GlobalIdGenerator {
 				// https://technet.microsoft.com/en-us/library/bb490913.aspx
 				$csv = trim( ( $this->shellCallback )( 'getmac /NH /FO CSV' ) );
 				$line = substr( $csv, 0, strcspn( $csv, "\n" ) );
-				$info = str_getcsv( $line );
+				$info = str_getcsv( $line, ",", "\"", "\\" );
 				// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal False positive
 				$nodeId = isset( $info[0] ) ? str_replace( '-', '', $info[0] ) : '';
 			} elseif ( is_executable( '/sbin/ifconfig' ) ) {
