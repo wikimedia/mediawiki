@@ -41,12 +41,8 @@
 			v-model:selected="store.reason"
 			v-model:other="store.reasonOther"
 		></reason-field>
-		<block-details-field
-			v-model="store.details"
-			:checkboxes="blockDetailsOptions"
-			:label="$i18n( 'block-details' ).text()"
-			:description="$i18n( 'block-details-description' ).text()"
-		></block-details-field>
+		<block-details-field>
+		</block-details-field>
 		<additional-details-field>
 		</additional-details-field>
 		<cdx-field v-if="store.confirmationRequired">
@@ -81,7 +77,7 @@ const TargetBlockLog = require( './components/TargetBlockLog.vue' );
 const BlockTypeField = require( './components/BlockTypeField.vue' );
 const ExpiryField = require( './components/ExpiryField.vue' );
 const ReasonField = require( './components/ReasonField.vue' );
-const BlockDetailsField = require( './components/BlockDetailsOptions.vue' );
+const BlockDetailsField = require( './components/BlockDetailsField.vue' );
 const AdditionalDetailsField = require( './components/AdditionalDetailsField.vue' );
 
 module.exports = exports = defineComponent( {
@@ -117,28 +113,6 @@ module.exports = exports = defineComponent( {
 		const submitButtonMessage = computed( () => {
 			return mw.message( store.alreadyBlocked ? 'ipb-change-block' : 'ipbsubmit' ).text();
 		} );
-		const blockAllowsUTEdit = mw.config.get( 'blockAllowsUTEdit' ) || false;
-		const blockEmailBan = mw.config.get( 'blockAllowsEmailBan' ) || false;
-		const blockDetailsOptions = [
-			{
-				label: mw.message( 'ipbcreateaccount' ),
-				value: 'wpCreateAccount'
-			}
-		];
-
-		if ( blockEmailBan ) {
-			blockDetailsOptions.push( {
-				label: mw.message( 'ipbemailban' ),
-				value: 'wpDisableEmail'
-			} );
-		}
-
-		if ( blockAllowsUTEdit ) {
-			blockDetailsOptions.push( {
-				label: mw.message( 'ipb-disableusertalk' ),
-				value: 'wpDisableUTEdit'
-			} );
-		}
 
 		// Show an error message if the target user is the current user.
 		const { formErrors, targetUser } = storeToRefs( store );
@@ -203,7 +177,6 @@ module.exports = exports = defineComponent( {
 			success,
 			submitButtonMessage,
 			handleSubmit,
-			blockDetailsOptions,
 			blockEnableMultiblocks
 		};
 	}
