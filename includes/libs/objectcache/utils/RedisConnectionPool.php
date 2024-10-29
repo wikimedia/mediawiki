@@ -1,7 +1,5 @@
 <?php
 /**
- * Redis client connection pooling manager.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @defgroup Redis Redis
  */
 
 namespace Wikimedia\ObjectCache;
@@ -33,16 +30,18 @@ use RedisException;
 use RuntimeException;
 
 /**
- * Helper class to manage Redis connections.
+ * Manage one or more Redis client connection.
  *
- * This can be used to get handle wrappers that free the handle when the wrapper
- * leaves scope. The maximum number of free handles (connections) is configurable.
+ * This can be used to get RedisConnRef objects that automatically reuses
+ * connections internally after the calling function has returned (and thus
+ * your RedisConnRef instance leaves scope/destructs).
+ *
  * This provides an easy way to cache connection handles that may also have state,
  * such as a handle does between multi() and exec(), and without hoarding connections.
  * The wrappers use PHP magic methods so that calling functions on them calls the
  * function of the actual Redis object handle.
  *
- * @ingroup Redis
+ * @ingroup Cache
  * @since 1.21
  */
 class RedisConnectionPool implements LoggerAwareInterface {
