@@ -498,9 +498,6 @@ because of Phabricator reports.
 * MediaWikiVersionFetcher, deprecated since 1.42 has been removed.
 * Support for using Skin::addToBodyAttributes() method, which was deprecated
   in 1.35, has been removed. Use OutputPageBodyAttributesHook instead.
-* Skins since 1.39 have not supported rendering content outside the body tag.
-The bodyOnly=false option has now been removed, meaning this is no longer
-supported.
 * …
 
 === Deprecations in 1.43 ===

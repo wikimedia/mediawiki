@@ -3190,7 +3190,7 @@ class OutputPage extends ContextSource {
 			}
 
 			try {
-				$sk->outputPageFinal( $this );
+				$sk->outputPage();
 			} catch ( Exception $e ) {
 				ob_end_clean(); // bug T129657
 				throw $e;
