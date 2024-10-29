@@ -117,6 +117,18 @@ class SkinFactoryTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( [ 'foo'  => 'Skin 2' ], $factory->getAllowedSkins(), 'not skipped' );
 	}
 
+	public function testGetSkinNames() {
+		$this->expectDeprecationAndContinue( '/Use of SkinFactory::getSkinNames was deprecated in MediaWiki 1\.37/' );
+
+		$factory = $this->createSkinFactory();
+		$factory->register( 'skin1', 'Skin1', [] );
+		$factory->register( 'skin2', 'Skin2', [] );
+
+		$names = $factory->getSkinNames();
+		$this->assertEquals( 'Skin1', $names['skin1'] );
+		$this->assertEquals( 'Skin2', $names['skin2'] );
+	}
+
 	public function testGetAllowedSkins() {
 		$sf = $this->createSkinFactory( [], [ 'quux' ] );
 		$sf->register( 'foo', 'Foo', [] );
