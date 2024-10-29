@@ -66,6 +66,8 @@ use MediaWiki\Config\GlobalVarConfig;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
+use MediaWiki\DomainEvent\DomainEventSink;
+use MediaWiki\DomainEvent\DomainEventSource;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\EditPage\IntroMessageBuilder;
 use MediaWiki\EditPage\PreloadedContentBuilder;
@@ -1091,6 +1093,22 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getDeletePageFactory(): DeletePageFactory {
 		return $this->getService( 'DeletePageFactory' );
+	}
+
+	/**
+	 * @since 1.44
+	 * @unstable until 1.45
+	 */
+	public function getDomainEventSink(): DomainEventSink {
+		return $this->getService( 'DomainEventSink' );
+	}
+
+	/**
+	 * @since 1.44
+	 * @unstable until 1.45
+	 */
+	public function getDomainEventSource(): DomainEventSource {
+		return $this->getService( 'DomainEventSource' );
 	}
 
 	/**

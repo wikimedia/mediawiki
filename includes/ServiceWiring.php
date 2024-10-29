@@ -89,6 +89,9 @@ use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\DomainEvent\DomainEventDispatcher;
+use MediaWiki\DomainEvent\DomainEventSink;
+use MediaWiki\DomainEvent\DomainEventSource;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Edit\SimpleParsoidOutputStash;
 use MediaWiki\EditPage\Constraint\EditConstraintFactory;
@@ -176,6 +179,7 @@ use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Preferences\SignatureValidator;
 use MediaWiki\Preferences\SignatureValidatorFactory;
+use MediaWiki\RecentChanges\ChangeTrackingEventIngress;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Request\ProxyLookup;
 use MediaWiki\Request\WebRequest;
@@ -208,6 +212,7 @@ use MediaWiki\Storage\EditResultCache;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\PageEditStash;
+use MediaWiki\Storage\PageUpdatedEvent;
 use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\Storage\RevertedTagUpdateManager;
 use MediaWiki\Storage\SqlBlobStore;
@@ -794,6 +799,14 @@ return [
 
 	'DeletePageFactory' => static function ( MediaWikiServices $services ): DeletePageFactory {
 		return $services->getService( '_PageCommandFactory' );
+	},
+
+	'DomainEventSink' => static function ( MediaWikiServices $services ): DomainEventSink {
+		return $services->getService( '_DomainEventDispatcher' );
+	},
+
+	'DomainEventSource' => static function ( MediaWikiServices $services ): DomainEventSource {
+		return $services->getService( '_DomainEventDispatcher' );
 	},
 
 	'Emailer' => static function ( MediaWikiServices $services ): IEmailer {
@@ -1541,6 +1554,7 @@ return [
 			$services->getContentLanguage(),
 			$services->getDBLoadBalancerFactory(),
 			$services->getContentHandlerFactory(),
+			$services->getDomainEventSink(),
 			$services->getHookContainer(),
 			$editResultCache,
 			$services->getUserNameUtils(),
@@ -1549,7 +1563,6 @@ return [
 				PageUpdaterFactory::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig()
 			),
-			$services->getUserEditTracker(),
 			$services->getUserGroupManager(),
 			$services->getTitleFormatter(),
 			$services->getContentTransformer(),
@@ -2683,6 +2696,51 @@ return [
 			$services->getNamespaceInfo(),
 			$services->get( '_ConditionalDefaultsLookup' )
 		);
+	},
+
+	'_DomainEventDispatcher' => static function ( MediaWikiServices $services ): DomainEventDispatcher {
+		$dispatcher = new DomainEventDispatcher(
+			$services->getHookContainer()
+		);
+
+		// Core event wiring.
+		// TODO: move this to a more prominent location? A separate file?
+
+		// Register listener for propagating PageUpdatedEvents to the
+		// change tracking component.
+		$dispatcher->registerListener(
+			PageUpdatedEvent::TYPE,
+			new ChangeTrackingEventIngress( // TODO: use an ObjectFactory spec
+				new ServiceOptions(
+					ChangeTrackingEventIngress::CONSTRUCTOR_OPTIONS,
+					$services->getMainConfig()
+				),
+				$services->getChangeTagsStore(),
+				$services->getUserEditTracker()
+			)
+		);
+
+		// Automatically trigger the RevisionFromEditComplete hook (synchronously).
+		$hooks = $services->getHookContainer();
+		$hooks->register(
+			PageUpdatedEvent::TYPE,
+			static function ( PageUpdatedEvent $event ) use ( $hooks, $services ) {
+				$wikiPage = $services->getWikiPageFactory()
+					->newFromTitle( $event->getPage() );
+
+				$editResult = $event->getEditResult();
+
+				$hooks->run( 'RevisionFromEditComplete', [
+					$wikiPage,
+					$event->getNewRevision(),
+					$editResult ? $editResult->getOriginalRevisionId() : false,
+					$event->getAuthor(),
+					$event->getTags()
+				] );
+			}
+		);
+
+		return $dispatcher;
 	},
 
 	'_EditConstraintFactory' => static function ( MediaWikiServices $services ): EditConstraintFactory {

@@ -976,7 +976,6 @@ class MovePage {
 				->setContent( SlotRecord::MAIN, $redirectContent )
 				->addTags( $changeTags )
 				->addSoftwareTag( 'mw-new-redirect' )
-				->setUsePageCreationLog( false )
 				->setFlags( EDIT_SUPPRESS_RC )
 				->saveRevision( $commentObj );
 		}

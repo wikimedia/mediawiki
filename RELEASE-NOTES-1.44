@@ -104,7 +104,9 @@ because of Phabricator reports.
 
 === Deprecations in 1.44 ===
 
-* …
+* PageUpdater::setUsePageCreationLog() is deprecated and emitting warnings.
+  Use setFlags( EDIT_SUPPRESS_RC ) instead.
+* ...
 
 === Other changes in 1.44 ===
 

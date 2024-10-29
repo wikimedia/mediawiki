@@ -21,7 +21,6 @@
 use MediaWiki\ChangeTags\Taggable;
 use MediaWiki\Config\Config;
 use MediaWiki\Debug\DeprecationHelper;
-use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
@@ -813,15 +812,9 @@ class RecentChange implements Taggable {
 			'pageStatus' => 'changed'
 		];
 
-		DeferredUpdates::addCallableUpdate(
-			static function () use ( $rc, $tags, $editResult ) {
-				$rc->addTags( $tags );
-				$rc->setEditResult( $editResult );
-				$rc->save();
-			},
-			DeferredUpdates::POSTSEND,
-			MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase()
-		);
+		$rc->addTags( $tags );
+		$rc->setEditResult( $editResult );
+		$rc->save();
 
 		return $rc;
 	}
@@ -894,14 +887,8 @@ class RecentChange implements Taggable {
 			'pageStatus' => 'created'
 		];
 
-		DeferredUpdates::addCallableUpdate(
-			static function () use ( $rc, $tags ) {
-				$rc->addTags( $tags );
-				$rc->save();
-			},
-			DeferredUpdates::POSTSEND,
-			MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase()
-		);
+		$rc->addTags( $tags );
+		$rc->save();
 
 		return $rc;
 	}
