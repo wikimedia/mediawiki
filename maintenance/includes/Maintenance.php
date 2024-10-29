@@ -187,6 +187,12 @@ abstract class Maintenance {
 	 * @var array
 	 */
 	public $orderedOptions = [];
+
+	/**
+	 * An injected connection provider (e.g. LBFactorySingle during installation); null if none
+	 *
+	 * @var IConnectionProvider|null
+	 */
 	private ?IConnectionProvider $dbProvider = null;
 
 	/**
