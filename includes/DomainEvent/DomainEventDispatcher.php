@@ -20,6 +20,9 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * @internal
  */
 class DomainEventDispatcher implements DomainEventSink, DomainEventSource {
+	private const HOOK_CONTAINER_OPTIONS = [
+		'prefix' => 'after',
+	];
 
 	/**
 	 * An associative array mapping event names to lists of listeners.
@@ -57,25 +60,13 @@ class DomainEventDispatcher implements DomainEventSink, DomainEventSource {
 	 * @param mixed $listener
 	 */
 	public function registerListener( string $eventType, $listener ): void {
-		// TODO: unify with HookContainer::normalizeHandler
-		// TODO: support object specs and named handler objects
+		$spec = $this->hookContainer->normalizeHandler(
+			$eventType,
+			$listener,
+			self::HOOK_CONTAINER_OPTIONS
+		);
 
-		if ( is_callable( $listener ) ) {
-			// TODO: unify with HookContainer::getHookMethodName
-			$spec = [
-				'callback' => $listener
-			];
-		} elseif ( is_object( $listener ) ) {
-			// TODO: unify with HookContainer::getHookMethodName
-			$spec = [
-				'callback' => [ $listener, "after$eventType" ]
-			];
-		} elseif ( is_string( $listener ) && class_exists( $listener ) ) {
-			// TODO: unify with HookContainer::getHookMethodName
-			$spec = [
-				'callback' => [ $listener, "after$eventType" ]
-			];
-		} else {
+		if ( !$spec ) {
 			throw new InvalidArgumentException( "Invalid event listener for $eventType" );
 		}
 

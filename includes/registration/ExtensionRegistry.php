@@ -628,6 +628,31 @@ class ExtensionRegistry {
 	}
 
 	/**
+	 * Returns all registered listeners for the given event type,
+	 * in a form acceptable for use with DomainEventSource::registerListener().
+	 *
+	 * @internal
+	 *
+	 * @return array[]
+	 */
+	public function getDomainEventListeners( string $eventType ): array {
+		$listeners = $this->getAttribute( 'Listeners' );
+		return $listeners[$eventType] ?? [];
+	}
+
+	/**
+	 * Returns the names of all domain events for which getDomainEventListeners()
+	 * can return listeners.
+	 *
+	 * @internal
+	 *
+	 * @return string[]
+	 */
+	public function getDomainEventTypes(): array {
+		return array_keys( $this->getAttribute( 'Listeners' ) );
+	}
+
+	/**
 	 * Get an attribute value that isn't cached by reading each
 	 * extension.json file again
 	 *

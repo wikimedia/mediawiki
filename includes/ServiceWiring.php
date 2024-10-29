@@ -2720,6 +2720,14 @@ return [
 			)
 		);
 
+		$extensionRegistry = $services->getExtensionRegistry();
+		foreach ( $extensionRegistry->getDomainEventTypes() as $eventType ) {
+			$listeners = $extensionRegistry->getDomainEventListeners( $eventType );
+			foreach ( $listeners as $listenerSpec ) {
+				$dispatcher->registerListener( $eventType, $listenerSpec );
+			}
+		}
+
 		// Automatically trigger the RevisionFromEditComplete hook (synchronously).
 		$hooks = $services->getHookContainer();
 		$hooks->register(
