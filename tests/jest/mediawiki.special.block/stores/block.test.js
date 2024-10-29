@@ -65,4 +65,20 @@ describe( 'Block store', () => {
 		mw.util.isIPAddress.mockReturnValue( true );
 		expect( store.hardBlockVisible ).toBe( true );
 	} );
+
+	it( 'hides the wpDisableUTEdit field for partial blocks, unless the block is against the User_talk namespace', () => {
+		mockMwConfigGet( { blockDisableUTEditVisible: true } );
+		const store = useBlockStore();
+		// Initially visible.
+		expect( store.disableUTEditVisible ).toBe( true );
+		// Also visible for partial.
+		store.type = 'partial';
+		expect( store.disableUTEditVisible ).toBe( true );
+		// Including if they block a different namespace (the Talk NS in this case, ID 1).
+		store.namespaces.push( 1 );
+		expect( store.disableUTEditVisible ).toBe( true );
+		// But if it's the User_talk NS (ID 3), then it's not visible.
+		store.namespaces.push( 3 );
+		expect( store.disableUTEditVisible ).toBe( false );
+	} );
 } );
