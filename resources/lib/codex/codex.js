@@ -53,7 +53,7 @@ var __async = (__this, __arguments, generator) => {
     step((generator = generator.apply(__this, __arguments)).next());
   });
 };
-import { ref, onMounted, defineComponent, computed, openBlock, createElementBlock, normalizeClass, toDisplayString, createCommentVNode, Comment, warn, watch, withKeys, withModifiers, renderSlot, resolveComponent, createElementVNode, createBlock, resolveDynamicComponent, withCtx, createVNode, toRef, Fragment, renderList, createTextVNode, Transition, normalizeStyle, inject, mergeProps, getCurrentInstance, withDirectives, vModelCheckbox, createSlots, nextTick, vModelDynamic, onUnmounted, vShow, unref, shallowRef, getCurrentScope, onScopeDispose, shallowReadonly, Teleport, toRefs, provide, vModelRadio, vModelText } from "vue";
+import { ref, onMounted, defineComponent, computed, openBlock, createElementBlock, normalizeClass, toDisplayString, createCommentVNode, Comment, warn, watch, withKeys, withModifiers, renderSlot, resolveComponent, createElementVNode, createBlock, resolveDynamicComponent, withCtx, createVNode, toRef, Fragment, renderList, createTextVNode, Transition, normalizeStyle, inject, mergeProps, getCurrentInstance, withDirectives, vModelCheckbox, createSlots, nextTick, vModelDynamic, onUnmounted, toHandlers, vShow, unref, shallowRef, getCurrentScope, onScopeDispose, shallowReadonly, Teleport, toRefs, provide, vModelRadio, vModelText } from "vue";
 const g = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', q = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', s1 = '<path d="M7 14.17 2.83 10l-1.41 1.41L7 17 19 5l-1.41-1.42z"/>', n1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0m5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', d1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', g1 = '<path d="M10 15 2 5h16z"/>', k1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', F1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', t0 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', p = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7"/>', e0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0M9 5h2v2H9zm0 4h2v6H9z"/>', z2 = '<path d="M3 1h2v18H3zm13.5 1.5L15 1l-9 9 9 9 1.5-1.5L9 10z"/>', i2 = '<path d="M15 1h2v18h-2zM3.5 2.5 11 10l-7.5 7.5L5 19l9-9-9-9z"/>', V2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', b2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', J2 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"/>', h5 = '<path d="M10 0 3 8h14zm0 18-7-8h14z"/>', M5 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20m-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10z"/>', G5 = '<path d="m10 5 8 10H2z"/>', M3 = g, S3 = q, K3 = s1, Y3 = n1, X3 = d1, l4 = g1, i4 = k1, m4 = F1, P4 = t0, Y4 = {
   langCodeMap: {
     ar: p
@@ -280,9 +280,9 @@ const _export_sfc = (sfc, props) => {
   return target;
 };
 const _hoisted_1$v = ["aria-hidden"];
-const _hoisted_2$m = { key: 0 };
+const _hoisted_2$l = { key: 0 };
 const _hoisted_3$e = ["innerHTML"];
-const _hoisted_4$9 = ["d"];
+const _hoisted_4$a = ["d"];
 function _sfc_render$y(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock(
     "span",
@@ -301,7 +301,7 @@ function _sfc_render$y(_ctx, _cache, $props, $setup, $data, $options) {
       }, [
         _ctx.iconLabel ? (openBlock(), createElementBlock(
           "title",
-          _hoisted_2$m,
+          _hoisted_2$l,
           toDisplayString(_ctx.iconLabel),
           1
           /* TEXT */
@@ -312,7 +312,7 @@ function _sfc_render$y(_ctx, _cache, $props, $setup, $data, $options) {
         }, null, 8, _hoisted_3$e)) : (openBlock(), createElementBlock("path", {
           key: 2,
           d: _ctx.iconPath
-        }, null, 8, _hoisted_4$9))
+        }, null, 8, _hoisted_4$a))
       ], 8, _hoisted_1$v))
     ],
     2
@@ -553,7 +553,7 @@ const _sfc_main$w = defineComponent({
   }
 });
 const _hoisted_1$u = { class: "cdx-accordion__header__title" };
-const _hoisted_2$l = { class: "cdx-accordion__header__description" };
+const _hoisted_2$k = { class: "cdx-accordion__header__description" };
 function _sfc_render$w(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_button = resolveComponent("cdx-button");
@@ -570,7 +570,7 @@ function _sfc_render$w(_ctx, _cache, $props, $setup, $data, $options) {
             createElementVNode("span", _hoisted_1$u, [
               renderSlot(_ctx.$slots, "title")
             ]),
-            createElementVNode("span", _hoisted_2$l, [
+            createElementVNode("span", _hoisted_2$k, [
               renderSlot(_ctx.$slots, "description")
             ])
           ]),
@@ -850,14 +850,14 @@ const _sfc_main$u = defineComponent({
   }
 });
 const _hoisted_1$s = { class: "cdx-thumbnail" };
-const _hoisted_2$k = {
+const _hoisted_2$j = {
   key: 0,
   class: "cdx-thumbnail__placeholder"
 };
 function _sfc_render$u(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   return openBlock(), createElementBlock("span", _hoisted_1$s, [
-    !_ctx.thumbnailLoaded ? (openBlock(), createElementBlock("span", _hoisted_2$k, [
+    !_ctx.thumbnailLoaded ? (openBlock(), createElementBlock("span", _hoisted_2$j, [
       createVNode(_component_cdx_icon, {
         icon: _ctx.placeholderIcon,
         class: "cdx-thumbnail__placeholder__icon--vue"
@@ -948,12 +948,12 @@ const _sfc_main$t = defineComponent({
   }
 });
 const _hoisted_1$r = { class: "cdx-card__text" };
-const _hoisted_2$j = { class: "cdx-card__text__title" };
+const _hoisted_2$i = { class: "cdx-card__text__title" };
 const _hoisted_3$d = {
   key: 0,
   class: "cdx-card__text__description"
 };
-const _hoisted_4$8 = {
+const _hoisted_4$9 = {
   key: 1,
   class: "cdx-card__text__supporting-text"
 };
@@ -980,13 +980,13 @@ function _sfc_render$t(_ctx, _cache, $props, $setup, $data, $options) {
         class: "cdx-card__icon"
       }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
       createElementVNode("span", _hoisted_1$r, [
-        createElementVNode("span", _hoisted_2$j, [
+        createElementVNode("span", _hoisted_2$i, [
           renderSlot(_ctx.$slots, "title")
         ]),
         _ctx.$slots.description ? (openBlock(), createElementBlock("span", _hoisted_3$d, [
           renderSlot(_ctx.$slots, "description")
         ])) : createCommentVNode("v-if", true),
-        _ctx.$slots["supporting-text"] ? (openBlock(), createElementBlock("span", _hoisted_4$8, [
+        _ctx.$slots["supporting-text"] ? (openBlock(), createElementBlock("span", _hoisted_4$9, [
           renderSlot(_ctx.$slots, "supporting-text")
         ])) : createCommentVNode("v-if", true)
       ])
@@ -1168,19 +1168,19 @@ const _sfc_main$s = defineComponent({
   }
 });
 const _hoisted_1$q = ["for"];
-const _hoisted_2$i = { class: "cdx-label__label__text" };
+const _hoisted_2$h = { class: "cdx-label__label__text" };
 const _hoisted_3$c = {
   key: 1,
   class: "cdx-label__label__optional-flag"
 };
-const _hoisted_4$7 = ["id"];
-const _hoisted_5$7 = { class: "cdx-label__label" };
-const _hoisted_6$6 = { class: "cdx-label__label__text" };
-const _hoisted_7$2 = {
+const _hoisted_4$8 = ["id"];
+const _hoisted_5$8 = { class: "cdx-label__label" };
+const _hoisted_6$7 = { class: "cdx-label__label__text" };
+const _hoisted_7$3 = {
   key: 1,
   class: "cdx-label__label__optional-flag"
 };
-const _hoisted_8$1 = {
+const _hoisted_8$2 = {
   key: 0,
   class: "cdx-label__description"
 };
@@ -1203,7 +1203,7 @@ function _sfc_render$s(_ctx, _cache, $props, $setup, $data, $options) {
           icon: _ctx.icon,
           class: "cdx-label__label__icon"
         }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
-        createElementVNode("span", _hoisted_2$i, [
+        createElementVNode("span", _hoisted_2$h, [
           renderSlot(_ctx.$slots, "default")
         ]),
         _ctx.optionalFlag || _ctx.optional ? (openBlock(), createElementBlock(
@@ -1220,7 +1220,7 @@ function _sfc_render$s(_ctx, _cache, $props, $setup, $data, $options) {
         class: "cdx-label__description"
       }, [
         renderSlot(_ctx.$slots, "description")
-      ], 8, _hoisted_4$7)) : createCommentVNode("v-if", true)
+      ], 8, _hoisted_4$8)) : createCommentVNode("v-if", true)
     ],
     6
     /* CLASS, STYLE */
@@ -1232,24 +1232,24 @@ function _sfc_render$s(_ctx, _cache, $props, $setup, $data, $options) {
       style: _ctx.rootStyle
     }, _ctx.otherAttrs),
     [
-      createElementVNode("span", _hoisted_5$7, [
+      createElementVNode("span", _hoisted_5$8, [
         _ctx.icon ? (openBlock(), createBlock(_component_cdx_icon, {
           key: 0,
           icon: _ctx.icon,
           class: "cdx-label__label__icon"
         }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
-        createElementVNode("span", _hoisted_6$6, [
+        createElementVNode("span", _hoisted_6$7, [
           renderSlot(_ctx.$slots, "default")
         ]),
         _ctx.optionalFlag || _ctx.optional ? (openBlock(), createElementBlock(
           "span",
-          _hoisted_7$2,
+          _hoisted_7$3,
           toDisplayString(" ") + " " + toDisplayString(_ctx.translatedOptionalFlag),
           1
           /* TEXT */
         )) : createCommentVNode("v-if", true)
       ]),
-      _ctx.$slots.description && _ctx.$slots.description().length > 0 ? (openBlock(), createElementBlock("span", _hoisted_8$1, [
+      _ctx.$slots.description && _ctx.$slots.description().length > 0 ? (openBlock(), createElementBlock("span", _hoisted_8$2, [
         renderSlot(_ctx.$slots, "description")
       ])) : createCommentVNode("v-if", true)
     ],
@@ -1407,7 +1407,7 @@ const _sfc_main$r = defineComponent({
   }
 });
 const _hoisted_1$p = { class: "cdx-checkbox__wrapper" };
-const _hoisted_2$h = ["id", "aria-describedby", "value", "name", "disabled", ".indeterminate"];
+const _hoisted_2$g = ["id", "aria-describedby", "value", "name", "disabled", ".indeterminate"];
 const _hoisted_3$b = /* @__PURE__ */ createElementVNode(
   "span",
   { class: "cdx-checkbox__icon" },
@@ -1435,7 +1435,7 @@ function _sfc_render$r(_ctx, _cache, $props, $setup, $data, $options) {
           name: _ctx.name,
           disabled: _ctx.computedDisabled,
           ".indeterminate": _ctx.indeterminate
-        }, null, 40, _hoisted_2$h), [
+        }, null, 40, _hoisted_2$g), [
           [vModelCheckbox, _ctx.wrappedModel]
         ]),
         _hoisted_3$b,
@@ -1587,7 +1587,7 @@ const _sfc_main$q = defineComponent({
   }
 });
 const _hoisted_1$o = ["aria-description"];
-const _hoisted_2$g = { class: "cdx-input-chip__text" };
+const _hoisted_2$f = { class: "cdx-input-chip__text" };
 function _sfc_render$q(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_button = resolveComponent("cdx-button");
@@ -1605,7 +1605,7 @@ function _sfc_render$q(_ctx, _cache, $props, $setup, $data, $options) {
       icon: _ctx.icon,
       size: "small"
     }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
-    createElementVNode("span", _hoisted_2$g, [
+    createElementVNode("span", _hoisted_2$f, [
       renderSlot(_ctx.$slots, "default")
     ]),
     createVNode(_component_cdx_button, {
@@ -1924,14 +1924,14 @@ const _hoisted_1$n = {
   role: "listbox",
   "aria-orientation": "horizontal"
 };
-const _hoisted_2$f = ["disabled"];
+const _hoisted_2$e = ["disabled"];
 const _hoisted_3$a = {
   key: 0,
   ref: "separateInputWrapper",
   class: "cdx-chip-input__separate-input"
 };
-const _hoisted_4$6 = ["disabled"];
-const _hoisted_5$6 = {
+const _hoisted_4$7 = ["disabled"];
+const _hoisted_5$7 = {
   class: "cdx-chip-input__aria-status",
   role: "status",
   "aria-live": "polite"
@@ -1995,7 +1995,7 @@ function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
             onBlur: _cache[1] || (_cache[1] = (...args) => _ctx.onInputBlur && _ctx.onInputBlur(...args)),
             onFocus: _cache[2] || (_cache[2] = (...args) => _ctx.onInputFocus && _ctx.onInputFocus(...args)),
             onKeydown: _cache[3] || (_cache[3] = (...args) => _ctx.onInputKeydown && _ctx.onInputKeydown(...args))
-          }), null, 16, _hoisted_2$f)), [
+          }), null, 16, _hoisted_2$e)), [
             [vModelDynamic, _ctx.computedInputValue]
           ]) : createCommentVNode("v-if", true)
         ],
@@ -2015,7 +2015,7 @@ function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
             onBlur: _cache[5] || (_cache[5] = (...args) => _ctx.onInputBlur && _ctx.onInputBlur(...args)),
             onFocus: _cache[6] || (_cache[6] = (...args) => _ctx.onInputFocus && _ctx.onInputFocus(...args)),
             onKeydown: _cache[7] || (_cache[7] = (...args) => _ctx.onInputKeydown && _ctx.onInputKeydown(...args))
-          }), null, 16, _hoisted_4$6), [
+          }), null, 16, _hoisted_4$7), [
             [vModelDynamic, _ctx.computedInputValue]
           ])
         ],
@@ -2024,7 +2024,7 @@ function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
       )) : createCommentVNode("v-if", true),
       createElementVNode(
         "div",
-        _hoisted_5$6,
+        _hoisted_5$7,
         toDisplayString(_ctx.statusMessageContent),
         1
         /* TEXT */
@@ -2092,7 +2092,7 @@ const _sfc_main$o = defineComponent({
   }
 });
 const _hoisted_1$m = { class: "cdx-search-result-title" };
-const _hoisted_2$e = { class: "cdx-search-result-title__match" };
+const _hoisted_2$d = { class: "cdx-search-result-title__match" };
 function _sfc_render$o(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", _hoisted_1$m, [
     createElementVNode("bdi", null, [
@@ -2103,7 +2103,7 @@ function _sfc_render$o(_ctx, _cache, $props, $setup, $data, $options) {
       ),
       createElementVNode(
         "span",
-        _hoisted_2$e,
+        _hoisted_2$d,
         toDisplayString(_ctx.titleChunks[1]),
         1
         /* TEXT */
@@ -2335,11 +2335,11 @@ const _sfc_main$n = defineComponent({
   }
 });
 const _hoisted_1$l = ["id", "aria-disabled", "aria-selected", "aria-checked"];
-const _hoisted_2$d = { class: "cdx-menu-item__text" };
+const _hoisted_2$c = { class: "cdx-menu-item__text" };
 const _hoisted_3$9 = ["lang"];
-const _hoisted_4$5 = ["lang"];
-const _hoisted_5$5 = ["lang"];
-const _hoisted_6$5 = ["lang"];
+const _hoisted_4$6 = ["lang"];
+const _hoisted_5$6 = ["lang"];
+const _hoisted_6$6 = ["lang"];
 function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_thumbnail = resolveComponent("cdx-thumbnail");
   const _component_cdx_icon = resolveComponent("cdx-icon");
@@ -2373,7 +2373,7 @@ function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
               icon: _ctx.icon,
               class: "cdx-menu-item__icon"
             }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
-            createElementVNode("span", _hoisted_2$d, [
+            createElementVNode("span", _hoisted_2$c, [
               _ctx.highlightQuery ? (openBlock(), createBlock(_component_cdx_search_result_title, {
                 key: 0,
                 title: _ctx.title,
@@ -2414,7 +2414,7 @@ function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
                       1
                       /* TEXT */
                     )
-                  ], 8, _hoisted_4$5))
+                  ], 8, _hoisted_4$6))
                 ],
                 64
                 /* STABLE_FRAGMENT */
@@ -2435,7 +2435,7 @@ function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
                       1
                       /* TEXT */
                     )
-                  ], 8, _hoisted_5$5)
+                  ], 8, _hoisted_5$6)
                 ],
                 64
                 /* STABLE_FRAGMENT */
@@ -2452,7 +2452,7 @@ function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
                   1
                   /* TEXT */
                 )
-              ], 8, _hoisted_6$5)) : createCommentVNode("v-if", true)
+              ], 8, _hoisted_6$6)) : createCommentVNode("v-if", true)
             ]),
             _ctx.multiselect && _ctx.selected ? (openBlock(), createBlock(_component_cdx_icon, {
               key: 2,
@@ -2510,7 +2510,7 @@ const _sfc_main$m = defineComponent({
   }
 });
 const _hoisted_1$k = ["aria-hidden", "aria-disabled"];
-const _hoisted_2$c = /* @__PURE__ */ createElementVNode(
+const _hoisted_2$b = /* @__PURE__ */ createElementVNode(
   "div",
   { class: "cdx-progress-bar__bar" },
   null,
@@ -2518,7 +2518,7 @@ const _hoisted_2$c = /* @__PURE__ */ createElementVNode(
   /* HOISTED */
 );
 const _hoisted_3$8 = [
-  _hoisted_2$c
+  _hoisted_2$b
 ];
 function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
@@ -2572,10 +2572,14 @@ function useIntersectionObserver(templateRef, observerOptions) {
 function selectedIsArray(selected) {
   return selected !== null && Array.isArray(selected);
 }
+function isMenuGroupData(menuEntry) {
+  return "items" in menuEntry;
+}
 const _sfc_main$l = defineComponent({
   name: "CdxMenu",
   components: {
     CdxMenuItem,
+    CdxIcon,
     CdxProgressBar
   },
   /**
@@ -2583,7 +2587,11 @@ const _sfc_main$l = defineComponent({
    */
   inheritAttrs: false,
   props: {
-    /** Menu items. See the MenuItemData type. */
+    /**
+     * Menu items and menu group definitions.
+     *
+     * Menu groups and individual menu items will be output in the order they appear here.
+     */
     menuItems: {
       type: Array,
       required: true
@@ -2740,14 +2748,36 @@ const _sfc_main$l = defineComponent({
     "clearActive",
     "getHighlightedMenuItem",
     "getHighlightedViaKeyboard",
+    "getComputedMenuItems",
     "delegateKeyNavigation"
   ],
   setup(props, { emit, slots, attrs }) {
-    const computedMenuItems = computed(() => {
+    const computedMenuEntries = computed(() => {
       const menuItemsWithFooter = props.footer && props.menuItems ? [...props.menuItems, props.footer] : props.menuItems;
-      return menuItemsWithFooter.map((menuItem) => __spreadProps(__spreadValues({}, menuItem), {
+      const getMenuItemWithId = (menuItem) => __spreadProps(__spreadValues({}, menuItem), {
         id: useGeneratedId("menu-item")
-      }));
+      });
+      return menuItemsWithFooter.map((menuEntry) => {
+        if (isMenuGroupData(menuEntry)) {
+          return __spreadProps(__spreadValues({}, menuEntry), {
+            id: useGeneratedId("menu-group"),
+            items: menuEntry.items.map((subItem) => getMenuItemWithId(subItem))
+          });
+        } else {
+          return getMenuItemWithId(menuEntry);
+        }
+      });
+    });
+    const computedMenuItems = computed(() => {
+      const items = [];
+      computedMenuEntries.value.forEach((menuEntry) => {
+        if (isMenuGroupData(menuEntry)) {
+          items.push(...menuEntry.items);
+        } else {
+          items.push(menuEntry);
+        }
+      });
+      return items;
     });
     const computedShowNoResultsSlot = computed(() => {
       if (!slots["no-results"]) {
@@ -3063,6 +3093,40 @@ const _sfc_main$l = defineComponent({
       const firstHiddenMenuItemTop = menuItemElements[props.visibleItemLimit].getBoundingClientRect().top;
       maxMenuHeight.value = firstHiddenMenuItemTop - firstMenuItemTop + 2;
     }
+    function getGroupWrapperClasses(group) {
+      return {
+        "cdx-menu__group-wrapper--hide-label": !!group.hideLabel
+      };
+    }
+    function getMenuItemIndex(menuItem) {
+      return computedMenuItems.value.indexOf(menuItem);
+    }
+    function getMenuItemBindings(menuItem) {
+      var _a, _b;
+      return __spreadValues({
+        selected: isItemSelected(menuItem.value),
+        active: menuItem.value === ((_a = activeMenuItem.value) == null ? void 0 : _a.value),
+        highlighted: menuItem.value === ((_b = highlightedMenuItem.value) == null ? void 0 : _b.value),
+        showThumbnail: props.showThumbnail,
+        boldLabel: props.boldLabel,
+        hideDescriptionOverflow: props.hideDescriptionOverflow,
+        searchQuery: props.searchQuery,
+        multiselect: isMultiselect.value
+      }, menuItem);
+    }
+    function getMenuItemHandlers(menuItem) {
+      return {
+        change: (menuState, setState) => handleMenuItemChange(menuState, setState ? menuItem : null),
+        click: () => emit("menu-item-click", menuItem)
+      };
+    }
+    function getSlotBindings(menuItem) {
+      var _a, _b;
+      return {
+        menuItem,
+        active: menuItem.value === ((_a = activeMenuItem.value) == null ? void 0 : _a.value) && menuItem.value === ((_b = highlightedMenuItem.value) == null ? void 0 : _b.value)
+      };
+    }
     onMounted(() => {
       document.addEventListener("mouseup", onMouseUp);
     });
@@ -3110,17 +3174,22 @@ const _sfc_main$l = defineComponent({
       rootStyle,
       otherAttrs,
       assignTemplateRef,
+      computedMenuEntries,
       computedMenuItems,
       computedShowNoResultsSlot,
       highlightedMenuItem,
       highlightedViaKeyboard,
-      activeMenuItem,
       handleMenuItemChange,
       handleKeyNavigation,
       ariaRelevant,
       isMultiselect,
-      isItemSelected,
-      menuListbox
+      menuListbox,
+      getGroupWrapperClasses,
+      getMenuItemIndex,
+      getMenuItemBindings,
+      getMenuItemHandlers,
+      getSlotBindings,
+      isMenuGroupData
     };
   },
   // Public methods
@@ -3159,6 +3228,15 @@ const _sfc_main$l = defineComponent({
       return this.highlightedViaKeyboard;
     },
     /**
+     * Get the computed menu items with IDs (without menu groups).
+     *
+     * @public
+     * @return {MenuItemDataWithId[]} List of current menu items without menu groups.
+     */
+    getComputedMenuItems() {
+      return this.computedMenuItems;
+    },
+    /**
      * Ensure no menu item is active. This unsets the active item if there is one.
      *
      * @public
@@ -3188,7 +3266,7 @@ const _sfc_main$l = defineComponent({
   }
 });
 const _hoisted_1$j = ["aria-live", "aria-relevant", "aria-multiselectable"];
-const _hoisted_2$b = {
+const _hoisted_2$a = {
   key: 0,
   class: "cdx-menu__pending cdx-menu-item"
 };
@@ -3197,7 +3275,13 @@ const _hoisted_3$7 = {
   class: "cdx-menu__no-results cdx-menu-item",
   role: "option"
 };
+const _hoisted_4$5 = ["aria-labelledby", "aria-describedby"];
+const _hoisted_5$5 = { class: "cdx-menu__group__meta" };
+const _hoisted_6$5 = { class: "cdx-menu__group__meta__text" };
+const _hoisted_7$2 = ["id"];
+const _hoisted_8$1 = ["id"];
 function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_menu_item = resolveComponent("cdx-menu-item");
   const _component_cdx_progress_bar = resolveComponent("cdx-progress-bar");
   return withDirectives((openBlock(), createElementBlock(
@@ -3216,7 +3300,7 @@ function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
         "aria-relevant": _ctx.showPending ? _ctx.ariaRelevant : void 0,
         "aria-multiselectable": _ctx.isMultiselect ? true : void 0
       }, _ctx.otherAttrs), [
-        _ctx.showPending && _ctx.computedMenuItems.length === 0 && _ctx.$slots.pending ? (openBlock(), createElementBlock("li", _hoisted_2$b, [
+        _ctx.showPending && _ctx.computedMenuItems.length === 0 && _ctx.$slots.pending ? (openBlock(), createElementBlock("li", _hoisted_2$a, [
           renderSlot(_ctx.$slots, "pending")
         ])) : createCommentVNode("v-if", true),
         _ctx.computedShowNoResultsSlot ? (openBlock(), createElementBlock("li", _hoisted_3$7, [
@@ -3225,36 +3309,93 @@ function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
         (openBlock(true), createElementBlock(
           Fragment,
           null,
-          renderList(_ctx.computedMenuItems, (menuItem, index) => {
-            var _a, _b;
-            return openBlock(), createBlock(_component_cdx_menu_item, mergeProps({
-              key: menuItem.value,
-              ref_for: true,
-              ref: (ref2) => _ctx.assignTemplateRef(ref2, index)
-            }, menuItem, {
-              selected: _ctx.isItemSelected(menuItem.value),
-              active: menuItem.value === ((_a = _ctx.activeMenuItem) == null ? void 0 : _a.value),
-              highlighted: menuItem.value === ((_b = _ctx.highlightedMenuItem) == null ? void 0 : _b.value),
-              "show-thumbnail": _ctx.showThumbnail,
-              "bold-label": _ctx.boldLabel,
-              "hide-description-overflow": _ctx.hideDescriptionOverflow,
-              "search-query": _ctx.searchQuery,
-              multiselect: _ctx.isMultiselect,
-              onChange: (menuState, setState) => _ctx.handleMenuItemChange(menuState, setState ? menuItem : null),
-              onClick: ($event) => _ctx.$emit("menu-item-click", menuItem)
-            }), {
-              default: withCtx(() => {
-                var _a2, _b2;
-                return [
-                  renderSlot(_ctx.$slots, "default", {
-                    menuItem,
-                    active: menuItem.value === ((_a2 = _ctx.activeMenuItem) == null ? void 0 : _a2.value) && menuItem.value === ((_b2 = _ctx.highlightedMenuItem) == null ? void 0 : _b2.value)
-                  })
-                ];
-              }),
-              _: 2
-              /* DYNAMIC */
-            }, 1040, ["selected", "active", "highlighted", "show-thumbnail", "bold-label", "hide-description-overflow", "search-query", "multiselect", "onChange", "onClick"]);
+          renderList(_ctx.computedMenuEntries, (menuEntry, index) => {
+            return openBlock(), createElementBlock(
+              Fragment,
+              { key: index },
+              [
+                _ctx.isMenuGroupData(menuEntry) ? (openBlock(), createElementBlock(
+                  "li",
+                  {
+                    key: 0,
+                    class: normalizeClass(["cdx-menu__group-wrapper", _ctx.getGroupWrapperClasses(menuEntry)])
+                  },
+                  [
+                    createElementVNode("ul", {
+                      class: "cdx-menu__group",
+                      role: "group",
+                      "aria-labelledby": menuEntry.id + "-label",
+                      "aria-describedby": menuEntry.id + "-description"
+                    }, [
+                      createElementVNode("span", _hoisted_5$5, [
+                        menuEntry.icon ? (openBlock(), createBlock(_component_cdx_icon, {
+                          key: 0,
+                          class: "cdx-menu__group__icon",
+                          icon: menuEntry.icon
+                        }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
+                        createElementVNode("span", _hoisted_6$5, [
+                          createElementVNode("span", {
+                            id: menuEntry.id + "-label",
+                            class: "cdx-menu__group__label"
+                          }, toDisplayString(menuEntry.label), 9, _hoisted_7$2),
+                          menuEntry.description ? (openBlock(), createElementBlock("span", {
+                            key: 0,
+                            id: menuEntry.id + "-description",
+                            class: "cdx-menu__group__description"
+                          }, toDisplayString(menuEntry.description), 9, _hoisted_8$1)) : createCommentVNode("v-if", true)
+                        ])
+                      ]),
+                      (openBlock(true), createElementBlock(
+                        Fragment,
+                        null,
+                        renderList(menuEntry.items, (menuItemInGroup) => {
+                          return openBlock(), createBlock(
+                            _component_cdx_menu_item,
+                            mergeProps({
+                              key: menuItemInGroup.value,
+                              ref_for: true,
+                              ref: (ref2) => _ctx.assignTemplateRef(ref2, _ctx.getMenuItemIndex(menuItemInGroup)),
+                              class: "cdx-menu__group__item"
+                            }, _ctx.getMenuItemBindings(menuItemInGroup), toHandlers(_ctx.getMenuItemHandlers(menuItemInGroup))),
+                            {
+                              default: withCtx(() => [
+                                renderSlot(_ctx.$slots, "default", mergeProps({ ref_for: true }, _ctx.getSlotBindings(menuItemInGroup)))
+                              ]),
+                              _: 2
+                              /* DYNAMIC */
+                            },
+                            1040
+                            /* FULL_PROPS, DYNAMIC_SLOTS */
+                          );
+                        }),
+                        128
+                        /* KEYED_FRAGMENT */
+                      ))
+                    ], 8, _hoisted_4$5)
+                  ],
+                  2
+                  /* CLASS */
+                )) : (openBlock(), createBlock(
+                  _component_cdx_menu_item,
+                  mergeProps({
+                    key: 1,
+                    ref_for: true,
+                    ref: (ref2) => _ctx.assignTemplateRef(ref2, _ctx.getMenuItemIndex(menuEntry))
+                  }, _ctx.getMenuItemBindings(menuEntry), toHandlers(_ctx.getMenuItemHandlers(menuEntry))),
+                  {
+                    default: withCtx(() => [
+                      renderSlot(_ctx.$slots, "default", mergeProps({ ref_for: true }, _ctx.getSlotBindings(menuEntry)))
+                    ]),
+                    _: 2
+                    /* DYNAMIC */
+                  },
+                  1040
+                  /* FULL_PROPS, DYNAMIC_SLOTS */
+                ))
+              ],
+              64
+              /* STABLE_FRAGMENT */
+            );
           }),
           128
           /* KEYED_FRAGMENT */
@@ -5181,7 +5322,9 @@ const _sfc_main$j = defineComponent({
   inheritAttrs: false,
   props: {
     /**
-     * Menu items. See the MenuItemData type.
+     * Menu items and/or menu group definitions.
+     *
+     * Menu groups and individual menu items will be output in the order they appear here.
      */
     menuItems: {
       type: Array,
@@ -5760,7 +5903,7 @@ const _sfc_main$i = defineComponent({
   }
 });
 const _hoisted_1$g = ["aria-label", "aria-labelledby"];
-const _hoisted_2$a = {
+const _hoisted_2$9 = {
   key: 0,
   class: "cdx-dialog__header__title-group"
 };
@@ -5834,7 +5977,7 @@ function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
                 },
                 [
                   renderSlot(_ctx.$slots, "header", {}, () => [
-                    !_ctx.hideTitle ? (openBlock(), createElementBlock("div", _hoisted_2$a, [
+                    !_ctx.hideTitle ? (openBlock(), createElementBlock("div", _hoisted_2$9, [
                       createElementVNode("h2", {
                         id: _ctx.labelId,
                         class: "cdx-dialog__header__title"
@@ -6110,7 +6253,7 @@ const _sfc_main$h = defineComponent({
   }
 });
 const _hoisted_1$f = ["aria-live", "role"];
-const _hoisted_2$9 = { class: "cdx-message__content" };
+const _hoisted_2$8 = { class: "cdx-message__content" };
 function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_button = resolveComponent("cdx-button");
@@ -6130,7 +6273,7 @@ function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
           class: "cdx-message__icon--vue",
           icon: _ctx.computedIcon
         }, null, 8, ["icon"]),
-        createElementVNode("div", _hoisted_2$9, [
+        createElementVNode("div", _hoisted_2$8, [
           renderSlot(_ctx.$slots, "default")
         ]),
         _ctx.userDismissable ? (openBlock(), createBlock(_component_cdx_button, {
@@ -6268,7 +6411,7 @@ const _sfc_main$g = defineComponent({
   }
 });
 const _hoisted_1$e = { class: "cdx-field__control" };
-const _hoisted_2$8 = { class: "cdx-field__help-text" };
+const _hoisted_2$7 = { class: "cdx-field__help-text" };
 const _hoisted_3$5 = {
   key: 0,
   class: "cdx-field__validation-message"
@@ -6310,7 +6453,7 @@ function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
       createElementVNode("div", _hoisted_1$e, [
         renderSlot(_ctx.$slots, "default")
       ]),
-      createElementVNode("div", _hoisted_2$8, [
+      createElementVNode("div", _hoisted_2$7, [
         renderSlot(_ctx.$slots, "help-text")
       ]),
       !_ctx.computedDisabled && _ctx.validationMessage ? (openBlock(), createElementBlock("div", _hoisted_3$5, [
@@ -6336,6 +6479,7 @@ function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
 }
 const Field = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$g]]);
 const iconMap$1 = {
+  notice: Y4,
   error: i4,
   warning: M3,
   success: O7
@@ -6364,34 +6508,41 @@ const _sfc_main$f = defineComponent({
     }
   },
   setup(props) {
-    const iconClass = computed(() => {
+    const rootClasses = computed(() => {
       return {
-        ["cdx-info-chip__icon--".concat(props.status)]: true
+        ["cdx-info-chip--".concat(props.status)]: true
       };
     });
     const computedIcon = computed(
       () => props.status === "notice" ? props.icon : iconMap$1[props.status]
     );
     return {
-      iconClass,
+      rootClasses,
       computedIcon
     };
   }
 });
-const _hoisted_1$d = { class: "cdx-info-chip" };
-const _hoisted_2$7 = { class: "cdx-info-chip--text" };
+const _hoisted_1$d = { class: "cdx-info-chip__text" };
 function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
-  return openBlock(), createElementBlock("div", _hoisted_1$d, [
-    _ctx.computedIcon ? (openBlock(), createBlock(_component_cdx_icon, {
-      key: 0,
-      class: normalizeClass(["cdx-info-chip__icon", _ctx.iconClass]),
-      icon: _ctx.computedIcon
-    }, null, 8, ["class", "icon"])) : createCommentVNode("v-if", true),
-    createElementVNode("span", _hoisted_2$7, [
-      renderSlot(_ctx.$slots, "default")
-    ])
-  ]);
+  return openBlock(), createElementBlock(
+    "div",
+    {
+      class: normalizeClass(["cdx-info-chip", _ctx.rootClasses])
+    },
+    [
+      _ctx.computedIcon ? (openBlock(), createBlock(_component_cdx_icon, {
+        key: 0,
+        class: "cdx-info-chip__icon--vue",
+        icon: _ctx.computedIcon
+      }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
+      createElementVNode("span", _hoisted_1$d, [
+        renderSlot(_ctx.$slots, "default")
+      ])
+    ],
+    2
+    /* CLASS */
+  );
 }
 const InfoChip = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$f]]);
 const statusValidator$5 = makeStringTypeValidator(ValidationStatusTypes);
@@ -6418,7 +6569,9 @@ const _sfc_main$e = defineComponent({
       required: true
     },
     /**
-     * Menu items.
+     * Menu items and/or menu group definitions.
+     *
+     * Menu groups and individual menu items will be output in the order they appear here.
      */
     menuItems: {
       type: Array,
@@ -6544,7 +6697,10 @@ const _sfc_main$e = defineComponent({
     const selectedProp = toRef(props, "selected");
     const modelWrapper = useModelWrapper(selectedProp, emit, "update:selected");
     const selectedMenuItem = computed(
-      () => props.menuItems.find((item) => item.value === props.selected)
+      () => {
+        var _a;
+        return (_a = menu.value) == null ? void 0 : _a.getComputedMenuItems().find((item) => item.value === props.selected);
+      }
     );
     const highlightedId = computed(() => {
       var _a, _b;
@@ -6783,6 +6939,7 @@ function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
     class: normalizeClass(["cdx-toggle-button", _ctx.rootClasses]),
     "aria-pressed": _ctx.modelValue,
     disabled: _ctx.disabled,
+    type: "button",
     onClick: _cache[0] || (_cache[0] = (...args) => _ctx.onClick && _ctx.onClick(...args)),
     onKeydown: _cache[1] || (_cache[1] = withKeys(withModifiers((...args) => _ctx.onKeyDown && _ctx.onKeyDown(...args), ["prevent"]), ["space", "enter"])),
     onKeyup: _cache[2] || (_cache[2] = withKeys((...args) => _ctx.onKeyUp && _ctx.onKeyUp(...args), ["space", "enter"]))
@@ -6809,7 +6966,9 @@ const _sfc_main$c = defineComponent({
       required: true
     },
     /**
-     * Menu items. See the MenuItemData type.
+     * Menu items and/or menu group definitions.
+     *
+     * Menu groups and individual menu items will be output in the order they appear here.
      */
     menuItems: {
       type: Array,
@@ -6960,9 +7119,10 @@ const _sfc_main$b = defineComponent({
       required: true
     },
     /**
-     * Menu items.
+     * Menu items and/or menu group definitions. Initialize to an empty array if there are no
+     * initial menu items.
      *
-     * Initialize to an empty array if there are no initial menu items.
+     * Menu groups and individual menu items will be output in the order they appear here.
      */
     menuItems: {
       type: Array,
@@ -7140,9 +7300,11 @@ const _sfc_main$b = defineComponent({
       const newSelections = newVal.filter((selection) => inputChipsWrapper.value.find((chip) => selection === chip.value) === void 0);
       if (newSelections.length > 0) {
         newSelections.forEach((newSelection) => {
-          const newMenuItem = props.menuItems.find((menuItem) => menuItem.value === newSelection);
+          var _a;
+          const newMenuItem = (_a = menu.value) == null ? void 0 : _a.getComputedMenuItems().find((menuItem) => menuItem.value === newSelection);
           if (newMenuItem) {
-            inputChipsWrapper.value.push(newMenuItem);
+            const _b = newMenuItem, { id } = _b, newMenuItemWithoutId = __objRest(_b, ["id"]);
+            inputChipsWrapper.value.push(newMenuItemWithoutId);
           }
         });
         computedInputValue.value = "";
@@ -7627,7 +7789,9 @@ const _sfc_main$8 = defineComponent({
   inheritAttrs: false,
   props: {
     /**
-     * Menu items. See the MenuItemData type.
+     * Menu items and/or menu group definitions.
+     *
+     * Menu groups and individual menu items will be output in the order they appear here.
      */
     menuItems: {
       type: Array,
@@ -7720,7 +7884,10 @@ const _sfc_main$8 = defineComponent({
     );
     const modelWrapper = useModelWrapper(toRef(props, "selected"), emit, "update:selected");
     const selectedMenuItem = computed(
-      () => props.menuItems.find((menuItem) => menuItem.value === props.selected)
+      () => {
+        var _a;
+        return (_a = menu.value) == null ? void 0 : _a.getComputedMenuItems().find((menuItem) => menuItem.value === props.selected);
+      }
     );
     const currentLabel = computed(() => {
       var _a;
@@ -8436,7 +8603,7 @@ const _sfc_main$6 = defineComponent({
     });
     const translatedSortCaption = useI18n(
       "cdx-table-sort-caption",
-      (caption) => "".concat(caption, ", column headers with buttons are sortable."),
+      (caption) => "".concat(caption, " (column headers with buttons are sortable)."),
       [toRef(props, "caption")]
     );
     const translatedSelectRowLabel = (rowIndex, totalRows) => useI18n(

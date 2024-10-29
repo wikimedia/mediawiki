@@ -1,3 +1,41 @@
+# 1.15.0 / 2024-10-29
+
+## Features
+- Menu: Enable groupings of menu items (Anne Tomasevich)
+- Menu components: Enable use of menu groups (Anne Tomasevich)
+
+## Styles
+- tokens: Apply new icon-status application tokens to infochip (Derek Torsani)
+- tokens: Apply new icon-status application tokens to message (Derek Torsani)
+- tokens: Update disabled tokens and add color-disabled-emphasized (Derek Torsani)
+- tokens: Update red600 value and replace red600 application tokens with red700 (Derek Torsani)
+- tokens: add and adjust status tokens (Derek Torsani)
+- tokens: create border-color-error--active token (Derek Torsani)
+
+## New design tokens
+- `color-icon-error`
+- `color-icon-warning`
+- `color-icon-success`
+- `color-icon-notice`
+- `color-disabled-emphasized`
+
+## Code
+- IconLookup: Use Lookup component's `inputValue` prop (Anne Tomasevich)
+- Table, i18n: improve caption message for a11y (lwatson)
+- ToggleButton: add button type (lwatson)
+
+## Docs
+- InfoChip: CSS-only demo with icon (lwatson)
+- docs: ADR for native constraint validation (Anne Tomasevich)
+- docs: Link to the menu group docs (Anne Tomasevich)
+- docs: Set correct background color (Anne Tomasevich)
+- docs: Update Lookup with suggestions demos to use groups (Anne Tomasevich)
+- docs: implement new design for tokens table (lwatson)
+- docs: include guidelines for grouping of items in a menu (bmartinezcalvo)
+- docs: remove width and height from `thumbnail` type (lwatson)
+- docs: reorganize VitePress override styles (lwatson)
+- docs: update images using menus in the guidelines (bmartinezcalvo)
+
 # 1.14.0 / 2024-10-16
 
 ## Features
