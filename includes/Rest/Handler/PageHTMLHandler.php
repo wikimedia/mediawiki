@@ -181,4 +181,23 @@ class PageHTMLHandler extends SimpleHandler {
 			HtmlOutputRendererHelper::getParamSettings()
 		);
 	}
+
+	protected function generateResponseSpec( string $method ): array {
+		$spec = parent::generateResponseSpec( $method );
+
+		// TODO: Consider if we prefer something like:
+		//    text/html; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/HTML/2.8.0"
+		//  That would be more specific, but fragile when the profile version changes. It could
+		//  also be inaccurate if the page content was not in fact produced by Parsoid.
+		if ( $this->getOutputMode() == 'html' ) {
+			unset( $spec['200']['content']['application/json'] );
+			$spec['200']['content']['text/html']['schema']['type'] = 'string';
+		}
+
+		return $spec;
+	}
+
+	public function getResponseBodySchemaFileName( string $method ): ?string {
+		return 'includes/Rest/Handler/Schema/ExistingPageHtml.json';
+	}
 }

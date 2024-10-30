@@ -1,17 +1,18 @@
 {
-	"description": "Schema for wiki pages.",
+	"description": "Page with source (usually wikitext)",
 	"required": [
 		"id",
 		"key",
 		"title",
 		"latest",
 		"content_model",
-		"license"
+		"license",
+		"source"
 	],
 	"properties": {
 		"id": {
 			"type": "integer",
-			"description": "Page identifier."
+			"description": "Page identifier"
 		},
 		"key": {
 			"type": "string",
@@ -40,7 +41,7 @@
 			"description": "Page content type"
 		},
 		"license": {
-			"type": "string",
+			"type": "object",
 			"description": "Information about the wiki's license",
 			"properties": {
 				"url": {

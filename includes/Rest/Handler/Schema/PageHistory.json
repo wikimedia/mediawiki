@@ -1,0 +1,78 @@
+{
+	"description": "Page revision history",
+	"required": [
+		"revisions",
+		"latest"
+	],
+	"properties": {
+		"revisions": {
+			"type": "array",
+			"description": "List of revisions of the page",
+			"items": {
+				"type": "object",
+				"required": [
+					"id",
+					"timestamp",
+					"minor",
+					"size",
+					"comment",
+					"user",
+					"delta"
+				],
+				"properties": {
+					"id": {
+						"type": "integer",
+						"description": "Unique revision identifier"
+					},
+					"timestamp": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"minor": {
+						"type": "boolean",
+						"description": "True if the edit is marked as minor"
+					},
+					"size": {
+						"type": "integer",
+						"description": "Size of the revision in bytes"
+					},
+					"comment": {
+						"type": "string",
+						"nullable": true,
+						"description": "The comment the author associated with the revision"
+					},
+					"user": {
+						"type": "object",
+						"nullable": true,
+						"description": "Information about the user who made the revision",
+						"properties": {
+							"id": {
+								"type": "integer",
+								"nullable": true,
+								"description": "Unique identifier for the user; null for anonymous users"
+							},
+							"name": {
+								"type": "string",
+								"description": "Username of the editor, or IP address if the user is anonymous"
+							}
+						},
+						"required": [
+							"id",
+							"name"
+						]
+					},
+					"delta": {
+						"type": "integer",
+						"nullable": true,
+						"description": "Change in size between this revision and the preceding one; null if not available"
+					}
+				}
+			}
+		},
+		"latest": {
+			"type": "string",
+			"format": "uri",
+			"description": "URL to the latest revision of the page"
+		}
+	}
+}
