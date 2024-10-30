@@ -22,11 +22,11 @@
 
 namespace MediaWiki\Api;
 
+use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Parser\ParserFactory;
@@ -55,6 +55,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 
 	private RevisionStore $revisionStore;
 	private NameTableStore $changeTagDefStore;
+	private ChangeTagsStore $changeTagsStore;
 	private ActorMigration $actorMigration;
 	private TitleFormatter $titleFormatter;
 
@@ -66,6 +67,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		ParserFactory $parserFactory,
 		SlotRoleRegistry $slotRoleRegistry,
 		NameTableStore $changeTagDefStore,
+		ChangeTagsStore $changeTagsStore,
 		ActorMigration $actorMigration,
 		ContentRenderer $contentRenderer,
 		ContentTransformer $contentTransformer,
@@ -90,6 +92,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		);
 		$this->revisionStore = $revisionStore;
 		$this->changeTagDefStore = $changeTagDefStore;
+		$this->changeTagsStore = $changeTagsStore;
 		$this->actorMigration = $actorMigration;
 		$this->titleFormatter = $titleFormatter;
 	}
@@ -175,8 +178,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 
 		if ( $this->fld_tags ) {
 			$this->addFields( [
-				'ts_tags' => MediaWikiServices::getInstance()->getChangeTagsStore()
-					->makeTagSummarySubquery( 'revision' )
+				'ts_tags' => $this->changeTagsStore->makeTagSummarySubquery( 'revision' )
 			] );
 		}
 

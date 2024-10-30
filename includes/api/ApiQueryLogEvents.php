@@ -26,11 +26,11 @@ use DatabaseLogEntry;
 use LogEventsList;
 use LogFormatterFactory;
 use LogPage;
+use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Storage\NameTableAccessException;
@@ -52,6 +52,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	private CommentStore $commentStore;
 	private CommentFormatter $commentFormatter;
 	private NameTableStore $changeTagDefStore;
+	private ChangeTagsStore $changeTagsStore;
 	private UserNameUtils $userNameUtils;
 	private LogFormatterFactory $logFormatterFactory;
 
@@ -64,6 +65,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		CommentStore $commentStore,
 		RowCommentFormatter $commentFormatter,
 		NameTableStore $changeTagDefStore,
+		ChangeTagsStore $changeTagsStore,
 		UserNameUtils $userNameUtils,
 		LogFormatterFactory $logFormatterFactory
 	) {
@@ -71,6 +73,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->commentStore = $commentStore;
 		$this->commentFormatter = $commentFormatter;
 		$this->changeTagDefStore = $changeTagDefStore;
+		$this->changeTagsStore = $changeTagsStore;
 		$this->userNameUtils = $userNameUtils;
 		$this->logFormatterFactory = $logFormatterFactory;
 	}
@@ -159,8 +162,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		if ( $this->fld_tags ) {
 			$this->addFields( [
-				'ts_tags' => MediaWikiServices::getInstance()->getChangeTagsStore()
-					->makeTagSummarySubquery( 'logging' )
+				'ts_tags' => $this->changeTagsStore->makeTagSummarySubquery( 'logging' )
 			] );
 		}
 

@@ -26,11 +26,11 @@
 namespace MediaWiki\Api;
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Revision\RevisionRecord;
@@ -52,6 +52,7 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 
 	private RevisionStore $revisionStore;
 	private NameTableStore $changeTagDefStore;
+	private ChangeTagsStore $changeTagsStore;
 	private LinkBatchFactory $linkBatchFactory;
 
 	public function __construct(
@@ -62,6 +63,7 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 		ParserFactory $parserFactory,
 		SlotRoleRegistry $slotRoleRegistry,
 		NameTableStore $changeTagDefStore,
+		ChangeTagsStore $changeTagsStore,
 		LinkBatchFactory $linkBatchFactory,
 		ContentRenderer $contentRenderer,
 		ContentTransformer $contentTransformer,
@@ -85,6 +87,7 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 		);
 		$this->revisionStore = $revisionStore;
 		$this->changeTagDefStore = $changeTagDefStore;
+		$this->changeTagsStore = $changeTagsStore;
 		$this->linkBatchFactory = $linkBatchFactory;
 	}
 
@@ -123,8 +126,7 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 
 		if ( $this->fld_tags ) {
 			$this->addFields( [
-				'ts_tags' => MediaWikiServices::getInstance()->getChangeTagsStore()
-					->makeTagSummarySubquery( 'archive' )
+				'ts_tags' => $this->changeTagsStore->makeTagSummarySubquery( 'archive' )
 			] );
 		}
 
