@@ -16,6 +16,8 @@ class HTMLSelectNamespace extends HTMLFormField {
 	protected $mAllValue;
 	/** @var bool */
 	protected $mUserLang;
+	/** @var int[]|null */
+	protected $mInclude;
 
 	/**
 	 * @stable to call
@@ -30,6 +32,10 @@ class HTMLSelectNamespace extends HTMLFormField {
 		$this->mUserLang = array_key_exists( 'in-user-lang', $params )
 			? $params['in-user-lang']
 			: false;
+
+		$this->mInclude = array_key_exists( 'include', $params )
+			? $params['include']
+			: null;
 	}
 
 	/**
@@ -42,6 +48,7 @@ class HTMLSelectNamespace extends HTMLFormField {
 				'selected' => $value,
 				'all' => $this->mAllValue,
 				'in-user-lang' => $this->mUserLang,
+				'include' => $this->mInclude
 			], [
 				'name' => $this->mName,
 				'id' => $this->mID,
@@ -61,6 +68,7 @@ class HTMLSelectNamespace extends HTMLFormField {
 			'id' => $this->mID,
 			'includeAllValue' => $this->mAllValue,
 			'userLang' => $this->mUserLang,
+			'include' => $this->mInclude,
 		] );
 	}
 

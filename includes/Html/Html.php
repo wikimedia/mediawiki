@@ -889,6 +889,14 @@ class Html {
 			if ( $nsId < NS_MAIN || in_array( $nsId, $params['exclude'] ) ) {
 				continue;
 			}
+			if (
+				isset( $params['include'] ) &&
+				is_array( $params['include'] ) &&
+				!in_array( $nsId, $params['include'] )
+			) {
+				continue;
+			}
+
 			if ( $nsId === NS_MAIN ) {
 				// For other namespaces use the namespace prefix as label, but for
 				// main we don't use "" but the user message describing it (e.g. "(Main)" or "(Article)")

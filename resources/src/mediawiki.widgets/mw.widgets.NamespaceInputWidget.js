@@ -52,6 +52,7 @@
 	 */
 	mw.widgets.NamespaceInputWidget.static.getNamespaceDropdownOptions = function ( config ) {
 		const exclude = config.exclude || [],
+			include = config.include || null,
 			mainNamespace = mw.config.get( 'wgNamespaceIds' )[ '' ];
 
 		const namespaces = config.userLang ?
@@ -60,7 +61,11 @@
 
 		// eslint-disable-next-line no-jquery/no-map-util
 		const options = $.map( namespaces, ( name, ns ) => {
-			if ( ns < mainNamespace || exclude.indexOf( Number( ns ) ) !== -1 ) {
+			if (
+				ns < mainNamespace ||
+				exclude.indexOf( Number( ns ) ) !== -1 ||
+				( Array.isArray( include ) && include.indexOf( Number( ns ) ) === -1 )
+			) {
 				return null; // skip
 			}
 			ns = String( ns );
