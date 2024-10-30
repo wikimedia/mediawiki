@@ -298,12 +298,6 @@ abstract class Skin extends ContextSource {
 	 *  - `bodyClasses`: An array of extra class names to add to the HTML `<body>` element.
 	 *     Default: `[]`
 	 *
-	 *  - `bodyOnly`: Whether the skin is takes control of generating the `<html>`, `<head>` and
-	 *    `<body>` elements. This is for SkinTemplate subclasses only. For SkinMustache, this is
-	 *     always true and ignored.
-	 *
-	 *     Default: `false`
-	 *
 	 *  - `clientPrefEnabled`: Enable support for mw.user.clientPrefs.
 	 *     This instructs OutputPage and ResourceLoader\ClientHtml to include an inline script
 	 *     in web responses for unregistered users to switch HTML classes as needed.
@@ -677,6 +671,29 @@ abstract class Skin extends ContextSource {
 		}
 
 		return $this->mRelevantUser;
+	}
+
+	/**
+	 * Outputs the HTML for the page.
+	 * @internal Only to be called by OutputPage.
+	 */
+	final public function outputPageFinal( OutputPage $out ) {
+		// generate body
+		ob_start();
+		$this->outputPage();
+		$html = ob_get_contents();
+		ob_end_clean();
+
+		// T259955: OutputPage::headElement must be called last
+		// as it calls OutputPage::getRlClient, which freezes the ResourceLoader
+		// modules queue for the current page load.
+		// Since Skins can add ResourceLoader modules via OutputPage::addModule
+		// and OutputPage::addModuleStyles changing this order can lead to
+		// bugs.
+		$head = $out->headElement( $this );
+		$tail = $out->tailElement( $this );
+
+		echo $head . $html . $tail;
 	}
 
 	/**
@@ -2410,7 +2427,6 @@ abstract class Skin extends ContextSource {
 			'toc' => true,
 			'format' => 'html',
 			'bodyClasses' => [],
-			'bodyOnly' => false,
 			'clientPrefEnabled' => false,
 			'responsive' => false,
 			'supportsMwHeading' => false,
