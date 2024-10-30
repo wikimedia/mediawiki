@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\SpecialPage\ChangesListSpecialPage;
 use Wikimedia\Rdbms\IDatabase;
@@ -181,6 +182,9 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiUnitTestCase {
 		$query_options = [];
 		$join_conds = [];
 
+		$specialPage = $this->createNoOpAbstractMock( ChangesListSpecialPage::class );
+		$specialPage->setContext( new RequestContext() );
+
 		$group = new ChangesListStringOptionsFilterGroup( $groupDefinition );
 
 		$opts = new FormOptions();
@@ -188,7 +192,7 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiUnitTestCase {
 
 		$group->modifyQuery(
 			$dbr,
-			$this->createNoOpAbstractMock( ChangesListSpecialPage::class ),
+			$specialPage,
 			$tables,
 			$fields,
 			$conds,
