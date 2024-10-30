@@ -4491,7 +4491,7 @@
 	"restsandbox": "REST Sandbox",
 	"restsandbox-text": "This page provides a query builder for REST APIs. Note that API calls will interact with live wiki content.",
 	"restsandbox-select-api": "Choose the API to explore.",
-	"restsandbox-no-specs-configured": "No REST APIs were configured for exploration. Use the RestExplorerSpecs setting.",
+	"restsandbox-no-specs-configured": "No REST APIs were configured for exploration. Use the RestSandboxSpecs setting.",
 	"restsandbox-no-such-api": "The given API parameter is not supported: $1",
 	"restsandbox-jsonly": "JavaScript is required to view the REST specification.",
 	"blockedtext-made-by": "The block was made by $1.",
