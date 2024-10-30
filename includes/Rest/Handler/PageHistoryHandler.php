@@ -489,4 +489,8 @@ class PageHistoryHandler extends SimpleHandler {
 	protected function hasRepresentation() {
 		return (bool)$this->getPage();
 	}
+
+	public function getResponseBodySchemaFileName( string $method ): ?string {
+		return 'includes/Rest/Handler/Schema/PageHistory.json';
+	}
 }
