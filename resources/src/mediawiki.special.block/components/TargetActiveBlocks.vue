@@ -18,7 +18,6 @@
 				{{ util.formatTimestamp( item ) }}
 			</template>
 			<template #item-target="{ item }">
-				<!-- TODO: Is this safe? -->
 				<!-- eslint-disable-next-line vue/no-v-html -->
 				<span v-html="$i18n( 'userlink-with-contribs', item ).parse()"></span>
 			</template>
@@ -26,7 +25,6 @@
 				{{ util.formatTimestamp( item ) }}
 			</template>
 			<template #item-blockedby="{ item }">
-				<!-- TODO: Is this safe? -->
 				<!-- eslint-disable-next-line vue/no-v-html -->
 				<span v-html="$i18n( 'userlink-with-contribs', item ).parse()"></span>
 			</template>
@@ -40,19 +38,32 @@
 			<template #item-reason="{ item }">
 				{{ item ? item : $i18n( 'block-user-no-reason-given' ).text() }}
 			</template>
+			<template #item-modify>
+				<!-- TODO: Ensure dropdown menu uses Right-Top layout (https://w.wiki/BTaj) -->
+				<cdx-menu-button
+					v-model:selected="selection"
+					:menu-items="menuItems"
+					class="mw-block-active-blocks__menu"
+					aria-label="Modify block"
+					type="button"
+				>
+					<cdx-icon :icon="cdxIconEllipsis"></cdx-icon>
+				</cdx-menu-button>
+			</template>
 		</cdx-table>
 	</cdx-accordion>
 </template>
 
 <script>
 const util = require( '../util.js' );
-const { defineComponent } = require( 'vue' );
-const { CdxAccordion, CdxTable } = require( '@wikimedia/codex' );
+const { defineComponent, ref } = require( 'vue' );
+const { CdxAccordion, CdxTable, CdxMenuButton, CdxIcon } = require( '@wikimedia/codex' );
+const { cdxIconEllipsis, cdxIconEdit, cdxIconTrash } = require( '../icons.json' );
 
 // @vue/component
 module.exports = defineComponent( {
 	name: 'TargetActiveBlocks',
-	components: { CdxAccordion, CdxTable },
+	components: { CdxAccordion, CdxTable, CdxMenuButton, CdxIcon },
 	props: {
 		targetUser: {
 			type: [ Number, String, null ],
@@ -66,12 +77,21 @@ module.exports = defineComponent( {
 			{ id: 'expires', label: mw.message( 'blocklist-expiry' ).text(), minWidth: '112px' },
 			{ id: 'blockedby', label: mw.message( 'blocklist-by' ).text(), minWidth: '200px' },
 			{ id: 'parameters', label: mw.message( 'blocklist-params' ).text(), minWidth: '160px' },
-			{ id: 'reason', label: mw.message( 'blocklist-reason' ).text(), minWidth: '160px' }
+			{ id: 'reason', label: mw.message( 'blocklist-reason' ).text(), minWidth: '160px' },
+			{ id: 'modify', label: '', minWidth: '100px' }
 		];
+		const menuItems = [
+			{ label: mw.message( 'edit' ).text(), value: 'edit', icon: cdxIconEdit },
+			{ label: mw.message( 'block-item-remove' ).text(), value: 'remove', icon: cdxIconTrash }
+		];
+		const selection = ref( null );
 
 		return {
 			columns,
-			util
+			util,
+			menuItems,
+			selection,
+			cdxIconEllipsis
 		};
 	},
 	data() {
@@ -129,5 +149,13 @@ module.exports = defineComponent( {
 
 .mw-block-active-blocks {
 	word-break: auto-phrase;
+}
+
+.mw-block-active-blocks__menu {
+	text-align: center;
+}
+
+.cdx-table__table-wrapper {
+	overflow-x: visible;
 }
 </style>

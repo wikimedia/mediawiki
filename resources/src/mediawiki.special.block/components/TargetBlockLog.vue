@@ -58,6 +58,18 @@
 					{{ item }}
 				</span>
 			</template>
+			<template #item-modify>
+				<!-- TODO: Ensure dropdown menu uses Right-Top layout (https://w.wiki/BTaj) -->
+				<cdx-menu-button
+					v-model:selected="selection"
+					:menu-items="menuItems"
+					class="mw-block-active-blocks__menu"
+					aria-label="Modify block"
+					type="button"
+				>
+					<cdx-icon :icon="cdxIconEllipsis"></cdx-icon>
+				</cdx-menu-button>
+			</template>
 		</cdx-table>
 		<div v-if="moreBlocks" class="mw-block-fulllog">
 			<a
@@ -72,13 +84,14 @@
 <script>
 const util = require( '../util.js' );
 const { defineComponent, ref, watch } = require( 'vue' );
-const { CdxAccordion, CdxTable } = require( '@wikimedia/codex' );
+const { CdxAccordion, CdxTable, CdxMenuButton, CdxIcon } = require( '@wikimedia/codex' );
+const { cdxIconEllipsis, cdxIconEdit, cdxIconTrash } = require( '../icons.json' );
 const { storeToRefs } = require( 'pinia' );
 const useBlockStore = require( '../stores/block.js' );
 
 module.exports = exports = defineComponent( {
 	name: 'TargetBlockLog',
-	components: { CdxAccordion, CdxTable },
+	components: { CdxAccordion, CdxTable, CdxMenuButton, CdxIcon },
 	setup() {
 		const { targetUser } = storeToRefs( useBlockStore() );
 		const columns = [
@@ -87,8 +100,14 @@ module.exports = exports = defineComponent( {
 			{ id: 'expiry', label: mw.message( 'blocklist-expiry' ).text(), minWidth: '112px' },
 			{ id: 'blockedby', label: mw.message( 'blocklist-by' ).text(), minWidth: '150px' },
 			{ id: 'parameters', label: mw.message( 'blocklist-params' ).text(), minWidth: '160px' },
-			{ id: 'reason', label: mw.message( 'blocklist-reason' ).text(), minWidth: '160px' }
+			{ id: 'reason', label: mw.message( 'blocklist-reason' ).text(), minWidth: '160px' },
+			{ id: 'modify', label: '', minWidth: '100px' }
 		];
+		const menuItems = [
+			{ label: mw.message( 'edit' ).text(), value: 'edit', url: mw.util.getUrl( 'Special:Block/' + targetUser.value ), icon: cdxIconEdit },
+			{ label: mw.message( 'block-item-remove' ).text(), value: 'remove', url: mw.util.getUrl( 'Special:Unblock/' + targetUser.value ), icon: cdxIconTrash }
+		];
+		const selection = ref( null );
 		const logEntries = ref( [] );
 		const moreBlocks = ref( false );
 
@@ -148,7 +167,10 @@ module.exports = exports = defineComponent( {
 			columns,
 			logEntries,
 			moreBlocks,
-			targetUser
+			targetUser,
+			menuItems,
+			selection,
+			cdxIconEllipsis
 		};
 	}
 } );
@@ -172,5 +194,13 @@ module.exports = exports = defineComponent( {
 .mw-block-nodata {
 	color: @color-subtle;
 	font-style: italic;
+}
+
+.mw-block-previous-blocks__menu {
+	text-align: center;
+}
+
+.cdx-table__table-wrapper {
+	overflow-x: visible;
 }
 </style>
