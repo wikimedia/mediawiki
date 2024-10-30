@@ -16,6 +16,7 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Tests\Session\TestUtils;
@@ -1527,5 +1528,133 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			$errorsStatus->getMessages(),
 			'getPermissionStatus() preserves ApiMessage objects'
 		);
+	}
+
+	/**
+	 * @dataProvider provideTestCheckQuickPermissions
+	 */
+	public function testCheckQuickPermissions(
+		int $namespace,
+		string $pageTitle,
+		string $userType,
+		string $action,
+		array $rights,
+		string $expectedError
+	) {
+		// Convert string single error to the array of errors PermissionManager uses
+		$expectedErrors = ( $expectedError === '' ? [] : [ [ $expectedError ] ] );
+
+		$userIsAnon = $userType === 'anon';
+		$userIsTemp = $userType === 'temp';
+		$userIsNamed = $userType === 'user';
+		$user = $this->createMock( User::class );
+		$user->method( 'getId' )->willReturn( $userIsAnon ? 0 : 123 );
+		$user->method( 'getName' )->willReturn( $userIsAnon ? '1.1.1.1' : 'NameOfActingUser' );
+		$user->method( 'isAnon' )->willReturn( $userIsAnon );
+		$user->method( 'isNamed' )->willReturn( $userIsNamed );
+		$user->method( 'isTemp' )->willReturn( $userIsTemp );
+
+		// Cannot use setGroupPermissions as this has to clear all the other user groups
+		// in case `GroupPermissionsLookup::groupHasPermission` is called
+		$this->overrideConfigValues( [
+			MainConfigNames::GroupPermissions => [
+				'autoconfirmed' => [
+					'move' => true
+				]
+			]
+		] );
+
+		$permissionManager = TestingAccessWrapper::newFromObject( $this->getServiceContainer()->getPermissionManager() );
+		$permissionManager->overrideUserRightsForTesting( $user, $rights );
+
+		$title = $this->createMock( Title::class );
+		$title->method( 'getNamespace' )->willReturn( $namespace );
+		$title->method( 'getText' )->willReturn( $pageTitle );
+
+		// Ensure that `missingPermissionError` doesn't call User::newFatalPermissionDeniedStatus
+		// which uses the global state
+		$short = true;
+
+		$result = PermissionStatus::newEmpty();
+		$permissionManager->checkQuickPermissions(
+			$action,
+			$user,
+			$result,
+			PermissionManager::RIGOR_QUICK, // unused
+			$short,
+			$title
+		);
+		$this->assertEquals( $expectedErrors, $result->toLegacyErrorArray() );
+	}
+
+	public static function provideTestCheckQuickPermissions() {
+		// $namespace, $pageTitle, $userIsAnon, $action, $rights, $expectedError
+
+		// Four different possible errors when trying to create
+		yield 'Anon createtalk fail' => [
+			NS_TALK, 'Example', 'anon', 'create', [], 'nocreatetext'
+		];
+		yield 'Anon createpage fail' => [
+			NS_MAIN, 'Example', 'anon', 'create', [], 'nocreatetext'
+		];
+		yield 'User createtalk fail' => [
+			NS_TALK, 'Example', 'user', 'create', [], 'nocreate-loggedin'
+		];
+		yield 'User createpage fail' => [
+			NS_MAIN, 'Example', 'user', 'create', [], 'nocreate-loggedin'
+		];
+		yield 'Temp user createpage fail' => [
+			NS_MAIN, 'Example', 'temp', 'create', [], 'nocreatetext'
+		];
+
+		yield 'Createpage pass' => [
+			NS_MAIN, 'Example', 'anon', 'create', [ 'createpage' ], ''
+		];
+
+		// Three different namespace specific move failures, even if user has `move` rights
+		yield 'Move root user page fail' => [
+			NS_USER, 'Example', 'anon', 'move', [ 'move' ], 'cant-move-user-page'
+		];
+		yield 'Move file fail' => [
+			NS_FILE, 'Example', 'anon', 'move', [ 'move' ], 'movenotallowedfile'
+		];
+		yield 'Move category fail' => [
+			NS_CATEGORY, 'Example', 'anon', 'move', [ 'move' ], 'cant-move-category-page'
+		];
+
+		// No move rights at all. Different failures depending on who is allowed to move.
+		// Test method sets group permissions to [ 'autoconfirmed' => [ 'move' => true ] ]
+		yield 'Anon move fail, autoconfirmed can move' => [
+			NS_TALK, 'Example', 'anon', 'move', [], 'movenologintext'
+		];
+		yield 'User move fail, autoconfirmed can move' => [
+			NS_TALK, 'Example', 'user', 'move', [], 'movenotallowed'
+		];
+		yield 'Temp user move fail, autoconfirmed can move' => [
+			NS_TALK, 'Example', 'temp', 'move', [], 'movenologintext'
+		];
+		yield 'Move pass' => [ NS_MAIN, 'Example', 'anon', 'move', [ 'move' ], '' ];
+
+		// Three different possible failures for move target
+		yield 'Move-target no rights' => [
+			NS_MAIN, 'Example', 'user', 'move-target', [], 'movenotallowed'
+		];
+		yield 'Move-target to user root' => [
+			NS_USER, 'Example', 'user', 'move-target', [ 'move' ], 'cant-move-to-user-page'
+		];
+		yield 'Move-target to category' => [
+			NS_CATEGORY, 'Example', 'user', 'move-target', [ 'move' ], 'cant-move-to-category-page'
+		];
+		yield 'Move-target pass' => [
+			NS_MAIN, 'Example', 'user', 'move-target', [ 'move' ], ''
+		];
+
+		// Other actions without special handling
+		yield 'Missing rights for edit' => [
+			NS_MAIN, 'Example', 'user', 'edit', [], 'badaccess-group0'
+		];
+		yield 'Having rights for edit' => [
+			NS_MAIN, 'Example', 'user', 'edit', [ 'edit', ], ''
+		];
 	}
 }
