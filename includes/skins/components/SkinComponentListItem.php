@@ -122,7 +122,9 @@ class SkinComponentListItem implements SkinComponent {
 		// In case this is still set from SkinTemplate, we don't want it to appear in
 		// the HTML output (normally removed in SkinTemplate::buildContentActionUrls())
 		unset( $item['redundant'] );
-
+		$iconData = [
+			'icon' => $item['icon'] ?? null,
+		];
 		$linksArray = [];
 		if ( isset( $this->item['links'] ) ) {
 			$links = [];
@@ -131,7 +133,7 @@ class SkinComponentListItem implements SkinComponent {
 				// Note: links will have identical label unless 'msg' is set on $link
 				$linkComponent = new SkinComponentLink(
 					$key,
-					$link,
+					$link + $iconData,
 					$this->getMessageLocalizer(),
 					$options + $linkOptions
 				);
