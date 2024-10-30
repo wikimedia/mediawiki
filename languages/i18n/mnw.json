@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Aue Nai",
 			"DannyS712",
 			"Dr Lotus Black",
@@ -132,8 +131,6 @@
 	"index-category": "မုက်လိက်မစၞောန်လဝ်",
 	"noindex-category": "မုက်လိက် မသက္ကုလိက်",
 	"broken-file-category": "မုက်လိက် နကဵုလေန် ဝှာင်မလီုလာ်ဂမၠိုင်",
-	"categoryviewer-pagedlinks": "($1) ($2)",
-	"category-header-numerals": "$1–$2",
 	"about": "ပရူ",
 	"article": "မုက်လိက် မာတိကာဂမၠိုၚ်",
 	"newwindow": "(ပံက် ပ္ဍဲ မုက်ဗတင် တၟိ)",
@@ -244,7 +241,6 @@
 	"versionrequired": "မူ $1 မဳဒဳယာဝဳကဳ မနွံလဝ်ပၟိက်",
 	"versionrequiredtext": "တၞဟ်န ဂွံဗဵု မုက်လိက်ဏအ်ဂွံဂှ် မူမဳဒဳယာဝဳကဳ $1 ဂှ် နွံပၟိက်ဒၟံၚ်ရ။ \nရံၚ် ပ္ဍဲ[[Special:Version|version page]] ဏအ်ညိ။",
 	"ok": "ခိုဟ်",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"backlinksubtitle": "← $1",
 	"retrievedfrom": "ကလေၚ်သီကေတ်လဝ် နူ \"$1\"",
 	"youhavenewmessages": "{{PLURAL:$3|မၞး ကလိဂွံ}} $1 ($2).",

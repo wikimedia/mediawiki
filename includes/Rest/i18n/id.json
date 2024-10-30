@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Rachmat04"
+			"Rachmat04",
+			"Veracious"
 		]
 	},
 	"rest-prefix-mismatch": "Lintasan yang diminta ($1) tidak berada di dalam lintasan utama REST API ($2)",

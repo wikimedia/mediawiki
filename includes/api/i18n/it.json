@@ -3,7 +3,6 @@
 		"authors": [
 			"Ajeje Brazorf",
 			"Alexmar983",
-			"Amire80",
 			"Beta16",
 			"Daimona Eaytoy",
 			"Einreiher",
@@ -26,7 +25,8 @@
 			"Toadino2",
 			"Urielejh",
 			"Valepert",
-			"Ontsed"
+			"Ontsed",
+			"McDutchie"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentazione]] (in inglese)\n* [[mw:Special:MyLanguage/API:Etiquette|Etiquette & linee guida sull'utilizzo]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]] (in inglese)\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Mailing list]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ Annunci sull'API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bug & richieste]\n</div>\n<strong>Stato:</strong> l'API MediaWiki è un'interfaccia matura e stabile che è attivamente supportata e migliorata. Anche se cerchiamo di evitarlo, potremmo dover fare delle modifiche che causano malfunzionamenti; iscriviti alla [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ mailing list sugli annunci delle API MediaWiki] per essere informato sugli aggiornamenti.\n\n<strong>Istruzioni sbagliate:</strong> quando vengono impartite alle API delle istruzioni sbagliate, un'intestazione HTTP verrà inviata col messaggio \"MediaWiki-API-Error\" e, sia il valore dell'intestazione, sia il codice d'errore, verranno impostati con lo stesso valore. Per maggiori informazioni leggi [[mw:Special:MyLanguage/API:Errors_and_warnings|API:Errori ed avvertimenti]] (in inglese).\n\n<p class=\"mw-apisandbox-link\"><strong>Test:</strong> per testare facilmente le richieste API, vedi [[Special:ApiSandbox]].</p>",
@@ -235,13 +235,13 @@
 	"apihelp-patrol-summary": "Verifica una pagina o versione.",
 	"apihelp-patrol-param-rcid": "ID della modifica recente da verificare.",
 	"apihelp-patrol-param-revid": "ID versione da verificare.",
-	"apihelp-patrol-param-tags": "Modifica etichette da applicare all'elemento del registro delle verifiche.",
+	"apihelp-patrol-param-tags": "I tag di modifica da applicare all'elemento del registro delle verifiche.",
 	"apihelp-patrol-example-rcid": "Verifica una modifica recente.",
 	"apihelp-patrol-example-revid": "Verifica una versione.",
 	"apihelp-protect-summary": "Modifica il livello di protezione di una pagina.",
 	"apihelp-protect-param-title": "Titolo della pagina da (s)proteggere. Non può essere usato insieme a <var>$1pageid</var>.",
 	"apihelp-protect-param-pageid": "ID della pagina da (s)proteggere. Non può essere usato insieme con $1title.",
-	"apihelp-protect-param-tags": "Modifica etichette da applicare all'elemento del registro delle protezioni.",
+	"apihelp-protect-param-tags": "I tag di modifica da applicare all'elemento del registro delle protezioni.",
 	"apihelp-protect-example-protect": "Proteggi una pagina.",
 	"apihelp-protect-example-unprotect": "Sproteggi una pagina impostando restrizione su <kbd>all</kbd> (cioè a tutti è consentito intraprendere l'azione).",
 	"apihelp-protect-example-unprotect2": "Sproteggi una pagina impostando nessuna restrizione.",

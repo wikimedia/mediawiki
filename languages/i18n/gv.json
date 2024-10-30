@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Alison",
-			"Amire80",
 			"DannyS712",
 			"Kaganer",
 			"MacTire02",
@@ -345,7 +344,7 @@
 	"currentrev-asof": "Aavriwnys s'noa er $1",
 	"revisionasof": "Aavriwnys veih $1",
 	"revision-info": "Aavriwnys veih $1 ec $2",
-	"previousrevision": "←Aavriwnys ny shinney",
+	"previousrevision": "← Aavriwnys ny shinney",
 	"nextrevision": "Aavriwnys ny saa→",
 	"currentrevisionlink": "Aavriwnys s’noa",
 	"cur": "bio",
@@ -527,7 +526,6 @@
 	"rcnotefrom": "Shoh heese ny caghlaaghyn veih '''$2''' (gys '''$1''' taishbynit).",
 	"rclistfrom": "Taishbyn ny caghlaaghyn s'noa veih $3 $2",
 	"rcshowhideminor": "$1 myn-arraghyn",
-	"rcshowhidebots": "{{PLURAL:$1|$1 robot|$1 robot|$1 robot|$1 robotyn}}",
 	"rcshowhideliu": "{{PLURAL:$1|$1 ymmydeyr|$1 ymmydeyr|$1 ymmydeyr|$1 ymmydeyryn}} ta loggit stiagh",
 	"rcshowhideanons": "{{PLURAL:$1|$1 ymmydeyr|$1 ymmydeyr|$1 ymmydeyr|$1 ymmydeyryn}} neuenmyssit",
 	"rcshowhidepatr": "$1 arraghyn patrolit",

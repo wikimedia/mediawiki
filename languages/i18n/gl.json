@@ -3,7 +3,6 @@
 		"authors": [
 			"1233qwer1234qwer4",
 			"Alma",
-			"Amire80",
 			"ArenaL5",
 			"Athena in Wonderland",
 			"Banjo",
@@ -2674,7 +2673,7 @@
 	"ipb-namespaces-label": "Espazos de nomes",
 	"badipaddress": "O enderezo IP non é válido",
 	"blockipsuccesssub": "O bloqueo realizouse correctamente",
-	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] foi {{GENDER:$1|bloqueado|bloqueada}}.<br />\nOlle a [[Special:BlockList|lista de bloqueos]] para revisalo.",
+	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] foi {{GENDER:$1|bloqueado|bloqueada}}.<br />\nOlla a [[Special:BlockList|lista de bloqueos]] para revisar os bloqueos.",
 	"ipb-empty-block": "O bloqueo enviado non ten restricións activadas.",
 	"ipb-block-not-found": "Non se puido establecer o bloqueo, pero non se atopou ningún bloqueo existente para \"$1\". Se este problema persiste, [https://www.mediawiki.org/wiki/Special:MyLanguage/Help_talk:Blocking_users informa do mesmo].",
 	"ipb-blockingself": "Estás a piques de te bloquear! Queres facelo?",

@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Mlolthuis",
 			"Muotâ",
 			"Seipinne",
@@ -924,7 +923,7 @@
 	"action-editmyuserjs": "mutteđ jieijâs JavaScript-tiätuvuárháid",
 	"action-editmyuserjsredirect": "mutteđ jieijâs JavaScript-tiätuvuárháid, moh láá stivriimeh",
 	"action-viewsuppressed": "keččâđ versioid, moh láá čiehhum jyehi kevttest",
-	"action-hideuser": "estiđ kevtteenoomâ já čiehâđ tom uáinusist",
+	"action-hideuser": "estiđ teikkâ lyeštiđ iästust kevtteenoomâ, já čiehâđ tom uáinusist teikkâ macâttiđ uáinusân",
 	"nchanges": "$1 {{PLURAL:$1|nubástus|nubástus|nubástus|nubástussâd}}",
 	"enhancedrc-history": "historjá",
 	"recentchanges": "Vorâs nubástusah",
@@ -1474,7 +1473,7 @@
 	"blocklist-type-opt-all": "Puoh",
 	"blocklist-reason": "Suijâ",
 	"ipblocklist-submit": "Uusâ",
-	"infiniteblock": "avalâš",
+	"infiniteblock": "ij kuássin",
 	"emailblock": "šleđgâpostâviestâi vuolgâttem estum",
 	"blocklist-editing-page": "sijđoh",
 	"blocklink": "eesti",
@@ -1806,7 +1805,7 @@
 	"feedback-submit": "Vuolgât",
 	"feedback-thanks-title": "Takkâ!",
 	"searchsuggest-search": "Uusâ {{SITENAME}}:st",
-	"searchsuggest-containing": "Uusâ siijđoid, moh siskáldeh",
+	"searchsuggest-containing": "Uusâ siijđoid, moh siskeldeh",
 	"api-error-unknown-warning": "Tubdâmettum váruttâs: \"$1\".",
 	"api-error-unknownerror": "Tubdâmettum feilâ: \"$1\".",
 	"duration-seconds": "$1 {{PLURAL:$1|seekunt|seekunt|seekunt|sekuntid}}",

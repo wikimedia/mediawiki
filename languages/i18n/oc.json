@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Boulaur",
 			"BrennodAloisi",
 			"COMISSIONTOPOC",
@@ -3228,7 +3227,7 @@
 	"duration-seconds": "$1 segonda{{PLURAL:$1||s}}",
 	"duration-minutes": "$1 minuta{{PLURAL:$1||s}}",
 	"duration-hours": "$1 ora{{PLURAL:$1||s}}",
-	"duration-days": "$1 jorn{{PLURAL:$1||s}}",
+	"duration-days": "$1 {{PLURAL:$1|jorn|jorns}}",
 	"duration-weeks": "$1 setmana{{PLURAL:$1||s}}",
 	"duration-years": "$1 annada{{PLURAL:$1||s}}",
 	"duration-decades": "$1 decenni{{PLURAL:$1||s}}",

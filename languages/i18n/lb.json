@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"1233qwer1234qwer4",
-			"Amire80",
 			"Geitost",
 			"Hercule",
 			"Kaffi",
@@ -1524,7 +1523,6 @@
 	"minoreditletter": "k",
 	"newpageletter": "N",
 	"boteditletter": "B",
-	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|Byte|Byten}} no der Ännerung",
 	"newsectionsummary": "Neien Abschnitt /* $1 */",
 	"rc-old-title": "original als \"$1\" ugeluecht",
@@ -3365,7 +3363,7 @@
 	"expand_templates_ok": "OK",
 	"expand_templates_remove_comments": "Bemierkunge läschen",
 	"expand_templates_remove_nowiki": "<nowiki>-Taggen am Resultat suppriméieren",
-	"expand_templates_generate_xml": "Weis d'Struktur vum XML",
+	"expand_templates_generate_xml": "D'Struktur vum XML weisen",
 	"expand_templates_generate_rawhtml": "HTML-Format weisen",
 	"expand_templates_preview": "Kucken ouni ofzespäicheren",
 	"expand_templates_input_missing": "Dir musst mindestens ee Wiki-Text aginn.",

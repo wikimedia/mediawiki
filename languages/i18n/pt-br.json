@@ -8,7 +8,6 @@
 			"Alex Great",
 			"Almondega",
 			"Amgauna",
-			"Amire80",
 			"Anaclaudiaml",
 			"Anderson Costa",
 			"Araceletorres",
@@ -154,7 +153,8 @@
 			"Vinickw",
 			"CamiloCBranco",
 			"Flaviane da Silva",
-			"Qwrop"
+			"Qwrop",
+			"Juliana Reboucas de Oliveira"
 		]
 	},
 	"tog-underline": "Sublinhar links:",
@@ -281,7 +281,7 @@
 	"article": "Página de conteúdo",
 	"newwindow": "(abre numa nova janela)",
 	"cancel": "Cancelar",
-	"moredotdotdot": "Mais…",
+	"moredotdotdot": "Mais...",
 	"morenotlisted": "Esta lista pode estar incompleta.",
 	"mypage": "Página",
 	"mytalk": "Discussão",
@@ -2712,7 +2712,7 @@
 	"contribsub2": "Para {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "Para {{GENDER:$2|$1}}",
 	"contributions-edit-count": "{{GENDER:$1|Usuário|Usuária}} com $2 {{PLURAL:$2|edição|edições}}.",
-	"contributions-account-creation-date": "Contra criada em $1.",
+	"contributions-account-creation-date": "Conta criada em $1.",
 	"contributions-userdoesnotexist": "A conta de usuário \"$1\" não está registrada.",
 	"negative-namespace-not-supported": "Namespaces com valores negativos não são suportados.",
 	"nocontribs": "Não foram encontradas mudanças com este critério.",

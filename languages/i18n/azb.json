@@ -3,7 +3,6 @@
 		"authors": [
 			"Alp Er Tunqa",
 			"Amir a57",
-			"Amire80",
 			"Arjanizary",
 			"Baloch Afghanistan",
 			"Bir morty",
@@ -741,7 +740,7 @@
 	"currentrev-asof": "$1 تاریخینه کیمی سون نۆسخه",
 	"revisionasof": "$1 نوسخه‌سی",
 	"revision-info": "$1- یارادیلمیش نوسخه{{GENDER:$6|$2}}$7 الیله",
-	"previousrevision": "قاباقکی نوسخه",
+	"previousrevision": "→ قاباقکی نوسخه",
 	"nextrevision": "داها یئنی نوسخه ←",
 	"currentrevisionlink": "سون نوسخه",
 	"cur": "ایندی",

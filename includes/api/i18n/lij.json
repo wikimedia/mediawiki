@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Giromin Cangiaxo",
 			"N. Longo",
 			"S4b1nuz E.656"
@@ -270,7 +269,7 @@
 	"apihelp-import-param-templates": "Pe-e inportaçioìn interwiki: inpòrta tùtti i modélli inclûxi ascì.",
 	"apihelp-import-param-namespace": "Inpòrta inte quésto namespace. O no peu êse dêuviòu insémme a <var>$1rootpage</var>.",
 	"apihelp-import-param-rootpage": "Inpòrta cómme sotopàgina de quésta pàgina. O no peu êse dêuviòu insémme a <var>$1namespace</var>.",
-	"apihelp-import-param-tags": "Càngia i tag da aplicâ a-a vôxe into regìstro de inportaçioìn e a-a revixón vêua in scê pàgine inpòrtæ.",
+	"apihelp-import-param-tags": "I tag de cangiaménto da aplicâ a-a vôxe into regìstro de inportaçioìn e a-a revixón vêua in scê pàgine inportæ.",
 	"apihelp-import-example-import": "Inpòrta [[meta:Help:ParserFunctions]] into namespace 100 con cronologîa conplêta.",
 	"apihelp-linkaccount-summary": "Colegaménto de 'n'uténsa de 'n provider de tèrse pàrte a l'uténte corénte.",
 	"apihelp-linkaccount-example-link": "Inàndia o procèsso d'ingàncio a 'n'uténsa da <kbd>Example</kbd>.",
@@ -293,7 +292,7 @@
 	"apihelp-managetags-param-tag": "Tag da creâ, scancelâ, ativâ ò dizativâ. Pe creâlo, o tag o no dêve exìste. Pe scancelâlo, o tag o dêve exìste. Pe l'ativaçión do tag, o tag o dêve exìste e o no dêv'êse dêuviòu da 'n'estensción. Pe-a dizativaçión do tag, o tag o dêv'êse atoalménte atîvo e definîo manoalménte.",
 	"apihelp-managetags-param-reason": "'Na raxón facoltatîva pe creâ, scancelâ, ativâ ò dizativâ o tag.",
 	"apihelp-managetags-param-ignorewarnings": "Se ignorâ i avertiménti che són stæti emìsci into córso de l'operaçión.",
-	"apihelp-managetags-param-tags": "Modificâ i tag da aplicâ a-a vôxe into regìstro da gestión di tag.",
+	"apihelp-managetags-param-tags": "I tag de cangiaménto da aplicâ a-a vôxe into regìstro da gestión di tag.",
 	"apihelp-managetags-example-create": "Creâ 'n tag ciamòu <kbd>spam</kbd> pe-o motîvo <kbd>For use in edit patrolling</kbd>",
 	"apihelp-managetags-example-delete": "Scancelâ o tag <kbd>vandlaism</kbd> pe-o motîvo <kbd>Misspelt</kbd>",
 	"apihelp-managetags-example-activate": "Ativâ 'n tag ciamòu <kbd>spam</kbd> pe-o motîvo <kbd>For use in edit patrolling</kbd>",
@@ -320,7 +319,7 @@
 	"apihelp-move-param-watchlist": "Azónze o levâ sénsa condiçioìn a pàgina da-a lìsta di òservæ speciâli\nde l'uténte in particolâ, dêuviâ e preferénse (ignoræ pe-i bot) ò no cangiâ e pàgine òservæ.",
 	"apihelp-move-param-watchlistexpiry": "Moménto de scadénsa di òservæ speciâli. Òmétte do tùtto sto paràmetro chi pe no cangiâ a dæta de scadénsa atoâle.",
 	"apihelp-move-param-ignorewarnings": "Ignóra i mesàggi d'avertiménto do scistêma.",
-	"apihelp-move-param-tags": "Càngia i tag da aplicâ a-a vôxe into regìstro di spostaménti e a-a revixón vêua in scê pàgine inpòrtæ.",
+	"apihelp-move-param-tags": "I tag de cangiaménto da aplicâ a-a vôxe into regìstro di spostaménti e a-a revixón vêua in scê pàgine inpòrtæ.",
 	"apihelp-move-example-move": "Méscia <kbd>Badtitle</kbd> a <kbd>Goodtitle</kbd> sénsa lasciâ 'n rindirìsso.",
 	"apihelp-opensearch-summary": "Çèrca inta wiki dêuviàndo o protocòllo OpenSearch.",
 	"apihelp-opensearch-param-search": "Strìnga de riçèrca.",
@@ -416,7 +415,7 @@
 	"apihelp-patrol-summary": "Verificâ 'na pàgina ò revixón.",
 	"apihelp-patrol-param-rcid": "Nùmero da modìfica recénte da verificâ.",
 	"apihelp-patrol-param-revid": "Nùmero da versción da verificâ.",
-	"apihelp-patrol-param-tags": "Modificâ i tag da aplicâ a l'eleménto into regìstro de verìfiche.",
+	"apihelp-patrol-param-tags": "I tag de cangiaménto da aplicâ a l'eleménto into regìstro de verìfiche.",
 	"apihelp-patrol-example-rcid": "Verificâ 'na modìfica recénte.",
 	"apihelp-patrol-example-revid": "Verificâ 'na versción.",
 	"apihelp-protect-summary": "Modificâ o livéllo de proteçión de 'na pàgina.",
@@ -425,7 +424,7 @@
 	"apihelp-protect-param-protections": "Lìsta di livélli de proteçión, formatâ <kbd>action=level</kbd> (prezénpio <kbd>edit=sysop</kbd>). 'N livéllo de <kbd>all</kbd> o veu dî che tùtti àn o permìsso de fâ quélla açión, sénsa restriçioìn.\n\n<strong>Nòtta:</strong> Tùtte e açioìn de fêua da lìsta no aviàn de restriçioìn.",
 	"apihelp-protect-param-expiry": "Timestamp de scadénsa. Se o l'é indicòu sôlo 'n timestamp, quésto o saiâ dêuviòu pe tùtte e proteçioìn. Dêuviâ <kbd>infinite</kbd>, <kbd>indefinite</kbd>, <kbd>infinity</kbd> òpû <kbd>never</kbd>, pe 'na proteçión sénsa scadénsa.",
 	"apihelp-protect-param-reason": "Raxón pe-a (s)proteçión.",
-	"apihelp-protect-param-tags": "Modificâ i tag da aplicâ a-a vôxe into regìstro de proteçioìn.",
+	"apihelp-protect-param-tags": "I tag de cangiaménto da aplicâ a-a vôxe into regìstro de proteçioìn.",
 	"apihelp-protect-param-cascade": "Abìlita a proteçión a cascâta (prezénpio protézzi i modélli e-e inmàgine in transcluxón dêuviæ inte sta pàgina chi). Ignoròu se nisciùn di livélli de proteçión indichæ o supòrta a proteçión a cascâta.",
 	"apihelp-protect-param-watch": "Se inpostòu, o l'azónze a pàgina (s)protètta a-a lìsta di òservæ speciâli de l'uténte atoâle.",
 	"apihelp-protect-param-watchlist": "Azónze o levâ sénsa condiçioìn a pàgina da-a lìsta di òservæ speciâli\nde l'uténte in particolâ, dêuviâ e preferénse (ignoræ pe-i bot) ò no cangiâ e pàgine òservæ.",

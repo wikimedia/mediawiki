@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"27christian11",
-			"Amire80",
 			"Bennylin",
 			"Daniel Harahap",
 			"Herryz",
@@ -347,7 +346,7 @@
 	"currentrev-asof": "Panotaan parpudi ni $1",
 	"revisionasof": "Panindoan di $1",
 	"revision-info": "Hamubaon $1 sian {{GENDER:$6|$2}}$7",
-	"previousrevision": "←Revisi andorang na",
+	"previousrevision": "← Revisi andorang na",
 	"nextrevision": "Panotaan na mangihut→",
 	"currentrevisionlink": "Padengganan parpudi",
 	"cur": "nuaeng",
@@ -571,8 +570,8 @@
 	"contributions": "Silua ni sipanghasea",
 	"tool-link-contributions": "Na niula {{GENDER:$1|panghasea}}",
 	"contributions-title": "Silua ni sipanghasea tu $1",
-	"mycontris": "Angka silua",
-	"anoncontribs": "kontribusi",
+	"mycontris": "Silua",
+	"anoncontribs": "Silua",
 	"contribsub2": "Naeng tu {{GENDER:$3|$1}} ($2)",
 	"nocontribs": "Ndada parubaan na dos dohot kriteria nian.",
 	"uctop": "saonari",

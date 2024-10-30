@@ -31,7 +31,6 @@
 			"Vlad5250",
 			"לערי ריינהארט",
 			"아라",
-			"Amire80",
 			"Iohanen"
 		]
 	},
@@ -295,7 +294,7 @@
 	"sort-ascending": "Ordinamento cresente",
 	"sort-initial": "Órdena łétara de scumìsio",
 	"nstab-main": "Voxe",
-	"nstab-user": "{{GENDER:$1|Utente}}:",
+	"nstab-user": "{{GENDER:$1|Utente}}",
 	"nstab-media": "File multimediałe",
 	"nstab-special": "Pàjina speçale",
 	"nstab-project": "Pajina de projeto",
@@ -2629,7 +2628,10 @@
 	"compare-rev2": "Revisión 2",
 	"compare-submit": "Confronta",
 	"compare-revision-not-exists": "Ła revixion che te ghe spesifegà nó ła existe.",
-	"diff-form": "un '''modulo'''",
+	"diff-form": "Difarense",
+	"diff-form-oldid": "ID de la revision vècia (opzional)",
+	"diff-form-revid": "ID de la revision o difarensa",
+	"diff-form-submit": "Fame védar le difarense",
 	"deletepage": "Scanceƚa pàgina",
 	"dberr-problems": "Sto sito al momento el gà qualche problema tènico.",
 	"dberr-again": "Próa a spetar un par de minuti e ricargar la pàxena.",

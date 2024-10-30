@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"DannyS712",
 			"MF-Warburg",
 			"Matma Rex",
@@ -221,7 +220,6 @@
 	"watchthis": "Hateke pájina ne'e",
 	"savearticle": "Muda pájina",
 	"showdiff": "Hatudu diferensa sira",
-	"anoneditwarning": "<strong>Warning:</strong> You are not logged in. Your IP address will be publicly visible if you make any edits. If you <strong>[$1 log in]</strong> or <strong>[$2 create an account]</strong>, your edits will be attributed to your username, along with other benefits.",
 	"blockedtitle": "Uza-na'in la bele edita (blokeiu)",
 	"blockednoreason": "laiha motivu",
 	"whitelistedittext": "Ó tenke $1 ba edita pájina sira.",

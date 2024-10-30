@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Adam N.",
-			"Amire80",
 			"Asmen",
 			"Chmee2",
 			"Cvanca",
@@ -66,7 +65,10 @@
 			"YjM",
 			"לערי ריינהארט",
 			"Cookai1205",
-			"Polda18"
+			"Polda18",
+			"MasterStudioCZ",
+			"ShaggyCZ - Main",
+			"Woytecr"
 		]
 	},
 	"tog-underline": "Podtrhávat odkazy:",
@@ -193,7 +195,7 @@
 	"article": "Obsahová stránka",
 	"newwindow": "(otevře se v novém okně)",
 	"cancel": "Storno",
-	"moredotdotdot": "Další…",
+	"moredotdotdot": "Další...",
 	"morenotlisted": "Tento seznam může být neúplný.",
 	"mypage": "Stránka",
 	"mytalk": "Diskuse",

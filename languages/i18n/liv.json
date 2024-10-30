@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Andrijko Z.",
 			"Erdemaslancan",
 			"Kengšepā",
@@ -209,8 +208,8 @@
 	"currentrev-asof": "Perri redaktsij: $1",
 	"revisionasof": "Redaktsij",
 	"revision-info": "Redaktsij āigald $1 kȭlbatijiz $2 pierrõ",
-	"previousrevision": "Juo vaņīmi redaktsij",
-	"nextrevision": "Jo ūž redaktsij",
+	"previousrevision": "← Juo vaņīmi redaktsij",
+	"nextrevision": "Jo ūž redaktsij →",
 	"currentrevisionlink": "Perri redaktsij",
 	"cur": "perri",
 	"last": "jedmõli",

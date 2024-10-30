@@ -6,7 +6,6 @@
 			"Ajeje Brazorf",
 			"Albe Albe 460",
 			"Alexmar983",
-			"Amire80",
 			"Andria",
 			"Ankabel",
 			"Anto",
@@ -149,7 +148,8 @@
 			"Luca.favorido",
 			"Stefán Örvar Sigmundsson",
 			"Champ0999",
-			"Dream Indigo"
+			"Dream Indigo",
+			"Ciampix"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -2820,7 +2820,7 @@
 	"blocklist-rangeblocks": "Nascondi blocchi di range",
 	"blocklist-timestamp": "Data e ora",
 	"blocklist-target": "Destinazione",
-	"blocklist-expiry": "Scade",
+	"blocklist-expiry": "Scadenza",
 	"blocklist-by": "Amministratore che ha bloccato",
 	"blocklist-params": "Parametri di blocco",
 	"blocklist-reason": "Motivo",

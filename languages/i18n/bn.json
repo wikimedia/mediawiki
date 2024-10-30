@@ -8,7 +8,6 @@
 			"Aishik Rehman",
 			"Al Riaz Uddin Ripon",
 			"Ali Haidar Khan",
-			"Amire80",
 			"Ankan",
 			"Bellayet",
 			"Bodhisattwa",
@@ -64,7 +63,8 @@
 			"মোঃ মারুফ হাসান24",
 			"Asked42",
 			"Borhan",
-			"RiazACU"
+			"RiazACU",
+			"San1joy23"
 		]
 	},
 	"tog-underline": "সংযোগের নিচে দাগ দেখানো হোক:",
@@ -3745,7 +3745,7 @@
 	"logentry-delete-revision": "$1 $3 পাতাটির {{PLURAL:$5|একটি সংস্করণের|$5টি সংস্করণের}} দৃশ্যমানতা {{GENDER:$2|পরিবর্তন}} করেছেন: $4",
 	"logentry-delete-event-legacy": "$1 $3টায় লগ ইভেন্টসমূহের দৃশ্যমানতা {{GENDER:$2|পরিবর্তন}} করেছেন",
 	"logentry-delete-revision-legacy": "$1 $3টায় সংস্করণসমূহের দৃশ্যমানতা {{GENDER:$2|পরিবর্তন}} করেছেন",
-	"logentry-suppress-delete": "$1 কর্তৃক $3 পাতাটি {{GENDER:$2|ফিরিয়ে আনা}} হয়েছে",
+	"logentry-suppress-delete": "$1 কর্তৃক $3 পাতাটি অপসারণ ও একইসাথে {{GENDER:$2|গোপন করা}} হয়েছে",
 	"logentry-suppress-event": "$1 গোপনে $3 পাতাটির {{PLURAL:$5|একটি লগ ইভেন্টের|$5টি লগ ইভেন্টের}} দৃশ্যমানতা {{GENDER:$2|পরিবর্তন}} করেছেন: $4",
 	"logentry-suppress-revision": "$1 গোপনে $3 পাতাটির {{PLURAL:$5|একটি সংস্করণের|$5টি সংস্করণের}} দৃশ্যমানতা {{GENDER:$2|পরিবর্তন}} করেছেন: $4",
 	"logentry-suppress-event-legacy": "$1 গোপনে $3টায় লগ ইভেন্টসমূহের দৃশ্যমানতা {{GENDER:$2|পরিবর্তন}} করেছেন",
@@ -3851,7 +3851,7 @@
 	"duration-seconds": "$1 {{PLURAL:$1|সেকেন্ড|সেকেন্ড}}",
 	"duration-minutes": "$1 {{PLURAL:$1|মিনিট|মিনিট}}",
 	"duration-hours": "$1 {{PLURAL:$1|ঘণ্টা}}",
-	"duration-days": "$1 {{PLURAL:$1|দিন|দিন}}",
+	"duration-days": "$1 {{PLURAL:$1|দিন}}",
 	"duration-weeks": "$1 {{PLURAL:$1|সপ্তাহ}}",
 	"duration-years": "$1 {{PLURAL:$1|বছর|বছর}}",
 	"duration-decades": "$1 {{PLURAL:$1|দশক|দশক}}",

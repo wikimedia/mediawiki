@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Jcwf",
 			"Jose77",
 			"Nomden"
@@ -135,7 +134,7 @@
 	"loginreqlink": "vula ungene ekhompyutheni",
 	"noarticletext": "Alikho eli gama kweli phepha/kweli khasi",
 	"template-protected": "likhuselekile/akhuselekile",
-	"previousrevision": "Inguqulelo endala",
+	"previousrevision": "← Inguqulelo endala",
 	"rev-delundel": "Tshintsha le ndlela kubonakala ngayo",
 	"lineno": "Umgca we-$1",
 	"editundo": "Buyela kumbhalo osuka kuwo",
@@ -201,7 +200,7 @@
 	"whatlinkshere-links": "← izixhumanisi",
 	"whatlinkshere-hideredirs": "Jika eli phepha liye kwenye indawo",
 	"ipblocklist-submit": "Khangela",
-	"blocklink": "Vala",
+	"blocklink": "vala",
 	"contribslink": "Igalelo",
 	"move-page-legend": "Dlulisa eliphepha",
 	"movepagebtn": "DLulisa eliphepha",

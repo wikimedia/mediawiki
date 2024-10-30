@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Brettchenweber"
+			"Brettchenweber",
+			"Justman10000"
 		]
 	},
 	"paramvalidator-badbool": "Ungültiger Wert „$2“ für den booleschen Parameter „$1“. Übergib $3 für true oder $5 für false.",

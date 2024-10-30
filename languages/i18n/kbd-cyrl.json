@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Bogups",
 			"DannyS712",
 			"Macofe",
@@ -245,7 +244,7 @@
 	"sort-descending": "Нэхъ цӀыкӀумкӀэ/жьымкӀэ екӀуэкӀыу зэгъэзэхуэн",
 	"sort-ascending": "Нэхъ инымкӀэ/щӀэмкӀэ екӀуэкӀыу зэгъэзэхуэн",
 	"nstab-main": "НапэкӀуэцӀ",
-	"nstab-user": "{{GENDER:$1|Хэтым и напэкӀуэцӀ|Хэтым и напэкӀуэцӀ}}",
+	"nstab-user": "{{GENDER:$1|Хэтым и напэкӀуэцӀ}}",
 	"nstab-media": "Мультимедиа",
 	"nstab-special": "НапэкӀуэцӀ лажьэ",
 	"nstab-project": "Проектым теухуауэ",

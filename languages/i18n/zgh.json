@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Amara-Amaziɣ",
-			"Amire80",
 			"Aslmad mohamed belarhzali",
 			"Brahim-essaidi",
 			"Gagnabil",
@@ -12,7 +11,8 @@
 			"Ya2sine",
 			"YesIn",
 			"ⵕⴰⵊⵉ",
-			"AguzulH"
+			"AguzulH",
+			"Aksel Tinfat"
 		]
 	},
 	"tog-underline": "ⴰⵣⵔⵉⵔⴳ ⴷⴷⴰⵡ ⵓⵙⵖⵏ:",
@@ -70,7 +70,7 @@
 	"wednesday": "ⴰⴽⵕⴰⵙ",
 	"thursday": "ⴰⴽⵡⴰⵙ",
 	"friday": "ⴰⵙⵉⵎⵡⴰⵙ",
-	"saturday": "ⴰⵚⵉⴹⵢⴰⵙ",
+	"saturday": "ⴰⵙⵉⴹⵢⴰⵙ",
 	"sun": "ⴰⵙⴰ",
 	"mon": "ⴰⵢⵏ",
 	"tue": "ⴰⵙⵏ",
@@ -524,8 +524,8 @@
 	"currentrev-asof": "ⴰⵣⵣⵔⴰⵢ ⴰⵎⴳⴳⴰⵔⵓ ⴳ $1",
 	"revisionasof": "ⵜⵓⵏⵖⵉⵍⵜ ⵏ $1",
 	"revision-info": "ⴰⵣⵣⵔⴰⵢ ⵏ $1 ⵙⴳ ⵖⵓⵔ {{GENDER:$6|$2}}$7",
-	"previousrevision": "ⵜⵓⵏⵖⵉⵍⵜ ⵜⴰⵇⴱⵓⵔⵜ",
-	"nextrevision": "ⴰⵣⵣⵔⴰⵢ ⴰⵎⴰⵢⵏⵓ",
+	"previousrevision": "← ⵜⵓⵏⵖⵉⵍⵜ ⵜⴰⵇⴱⵓⵔⵜ",
+	"nextrevision": "ⴰⵣⵣⵔⴰⵢ ⴰⵎⴰⵢⵏⵓ →",
 	"currentrevisionlink": "ⴰⵣⵣⵔⴰⵢ ⴰⵎⴳⴳⴰⵔⵓ",
 	"cur": "ⵎⵔⵏ",
 	"next": "ⵉⵏⴹⴼⵔ",

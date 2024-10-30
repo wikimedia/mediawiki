@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Pacha Tchernof",
 			"RFScott"
 		]
@@ -588,7 +587,7 @@
 	"logentry-move-move": "$1 {{GENDER:$2гэрбусигохани}} страницава $3, $4 - сикун гэрбуни",
 	"logentry-newusers-create": "{{GENDER:$2|Най аӈгохани}} учётнэй записивэ $1",
 	"searchsuggest-search": "Гэлэури {{grammar:prepositional|{{SITENAME}}}}ду",
-	"duration-days": "$1 {{PLURAL:$1ини}}",
+	"duration-days": "$1 {{PLURAL:$1|ини}}",
 	"skin-view-create-local": "Эй бэунду нируйни",
 	"nstab-mainpage": "Дэрӯвури страница",
 	"skin-action-protect": "Кандёри",

@@ -5,7 +5,9 @@
 			"Fitoschido",
 			"Ihojose",
 			"MarcoAurelio",
-			"No se"
+			"No se",
+			"Eulalio",
+			"McDutchie"
 		]
 	},
 	"rest-prefix-mismatch": "La ruta solicitada ($1) no estaba dentro de la ruta raíz ($2) de la API REST",

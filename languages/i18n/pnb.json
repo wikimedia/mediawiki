@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Abbas dhothar",
-			"Amire80",
 			"Arslan",
 			"BaRaN6161 TURK",
 			"Bgo eiu",
@@ -144,7 +143,7 @@
 	"article": "آرٹیکل والا صفحہ",
 	"newwindow": "(نویں ونڈو وچ کھلھدی ہے)",
 	"cancel": "رد کرو",
-	"moredotdotdot": "ہور…",
+	"moredotdotdot": "ہور...",
 	"morenotlisted": "ایہہ لسٹ پوری نہیں۔",
 	"mypage": "صفحہ",
 	"mytalk": "گل بات",
@@ -597,8 +596,8 @@
 	"currentrev-asof": "$1 ویلے دا صفحہ",
 	"revisionasof": "$1 دی دہرائی",
 	"revision-info": "$1 دی دہرائی  توں {{GENDER:$6|$2}}$7",
-	"previousrevision": "← اوس توں پچھلا کم",
-	"nextrevision": "نویں تبدیلی →",
+	"previousrevision": "→ اوس توں پچھلا کم",
+	"nextrevision": "نویں تبدیلی ←",
 	"currentrevisionlink": "سجرا نسخہ",
 	"cur": "موجودہ",
 	"next": "اگلا",

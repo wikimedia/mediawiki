@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"BadDog",
 			"Dbc334",
 			"Eleassar",
@@ -3298,8 +3297,6 @@
 	"colon-separator": ":&#32;",
 	"ellipsis": "...",
 	"percent": "$1&#160;%",
-	"parentheses-start": "(",
-	"parentheses-end": ")",
 	"brackets": "[$1]",
 	"brackets-start": "[",
 	"brackets-end": "]",
