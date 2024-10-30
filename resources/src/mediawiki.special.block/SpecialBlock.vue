@@ -39,6 +39,11 @@
 			:key="`${submitCount}-recent`"
 			block-log-type="recent"
 		></block-log>
+		<block-log
+			v-if="blockShowSuppressLog"
+			:key="`${submitCount}-suppress`"
+			block-log-type="suppress"
+		></block-log>
 		<block-type-field></block-type-field>
 		<expiry-field :form-submitted="formSubmitted"></expiry-field>
 		<reason-field
@@ -101,6 +106,7 @@ module.exports = exports = defineComponent( {
 	setup() {
 		const store = useBlockStore();
 		const blockEnableMultiblocks = mw.config.get( 'blockEnableMultiblocks' ) || false;
+		const blockShowSuppressLog = mw.config.get( 'blockShowSuppressLog' ) || false;
 		const success = ref( false );
 		/**
 		 * Whether the form has been submitted. This is used to only show error states
@@ -190,7 +196,8 @@ module.exports = exports = defineComponent( {
 			submitCount,
 			submitButtonMessage,
 			handleSubmit,
-			blockEnableMultiblocks
+			blockEnableMultiblocks,
+			blockShowSuppressLog
 		};
 	}
 } );
