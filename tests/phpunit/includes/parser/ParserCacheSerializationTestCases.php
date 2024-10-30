@@ -46,6 +46,8 @@ abstract class ParserCacheSerializationTestCases {
 
 	public const FAKE_CACHE_EXPIRY = 42;
 
+	public const FAKE_ASYNC_CACHE_EXPIRY = 3;
+
 	private const MOCK_EXT_DATA = [
 		'boolean' => true,
 		'null' => null,
