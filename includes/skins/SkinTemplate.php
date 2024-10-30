@@ -150,10 +150,7 @@ class SkinTemplate extends Skin {
 	 * render method can rewrite this method, for example to use
 	 * TemplateParser::processTemplate
 	 * @since 1.35
-	 * @return string of complete skin HTML to output to the page. This varies based on
-	 *  the skin option bodyOnly (see Skin::getOptions):
-	 *    - If true, HTML includes `<!DOCTYPE>` and opening and closing html tags
-	 *    - If false, HTML is the contents of the body tag.
+	 * @return string HTML is the contents of the body tag e.g. <body>...</body>
 	 */
 	public function generateHTML() {
 		$tpl = $this->prepareQuickTemplate();
@@ -164,13 +161,6 @@ class SkinTemplate extends Skin {
 		$tpl->execute();
 		$html = ob_get_contents();
 		ob_end_clean();
-
-		// If skin is using bodyOnly mode, for now we must output head and tail.
-		// In future when this is the default,
-		// this logic will be moved into the OutputPage::output method.
-		if ( $options['bodyOnly'] ) {
-			$html = $out->headElement( $this ) . $html . $out->tailElement( $this );
-		}
 
 		return $html;
 	}
@@ -338,10 +328,6 @@ class SkinTemplate extends Skin {
 
 		$tpl->set( 'sidebar', $this->buildSidebar() );
 		$tpl->set( 'nav_urls', $this->buildNavUrls() );
-
-		// Set the head scripts near the end, in case the above actions resulted in added scripts
-		$tpl->set( 'headelement', $out->headElement( $this ) );
-		$tpl->deprecate( 'headelement', '1.39' );
 
 		$tpl->set( 'debug', '' );
 		$tpl->set( 'debughtml', MWDebug::getHTMLDebugLog() );
