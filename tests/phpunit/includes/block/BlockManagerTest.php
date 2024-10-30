@@ -380,10 +380,14 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		$autoblockWithoutParentIdMethod->method( 'getType' )
 			->willReturn( Block::TYPE_AUTO );
 
-		$blocks = [ $block, $block, $autoblock, new SystemBlock() ];
+		$systemBlock = new SystemBlock();
+		$blocks = [ $block, $block, $autoblock, $systemBlock, $autoblockWithoutParentIdMethod ];
 
 		$blockManager = TestingAccessWrapper::newFromObject( $this->getBlockManager( [] ) );
-		$this->assertCount( 2, $blockManager->getUniqueBlocks( $blocks ) );
+		$this->assertArrayEquals(
+			[ $block, $systemBlock, $autoblockWithoutParentIdMethod ],
+			$blockManager->getUniqueBlocks( $blocks )
+		);
 	}
 
 	/**
