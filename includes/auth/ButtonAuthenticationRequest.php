@@ -34,11 +34,8 @@ class ButtonAuthenticationRequest extends AuthenticationRequest {
 	/** @var string */
 	protected $name;
 
-	/** @var Message */
-	protected $label;
-
-	/** @var Message */
-	protected $help;
+	protected Message $label;
+	protected Message $help;
 
 	/**
 	 * @stable to call

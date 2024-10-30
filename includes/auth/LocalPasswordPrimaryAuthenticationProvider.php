@@ -41,8 +41,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 	/** @var bool If true, this instance is for legacy logins only. */
 	protected $loginOnly = false;
 
-	/** @var IConnectionProvider */
-	private $dbProvider;
+	private IConnectionProvider $dbProvider;
 
 	/**
 	 * @param IConnectionProvider $dbProvider

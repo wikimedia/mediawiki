@@ -22,8 +22,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
 class CentralIdLookupFactoryTest extends MediaWikiUnitTestCase {
 	use DummyServicesTrait;
 
-	/** @var CentralIdLookup */
-	private $centralLookupMock;
+	private CentralIdLookup $centralLookupMock;
 
 	protected function setUp(): void {
 		parent::setUp();

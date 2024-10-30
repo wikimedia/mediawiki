@@ -34,23 +34,12 @@ use Psr\Log\LoggerInterface;
  * @since 1.27
  */
 abstract class AbstractAuthenticationProvider implements AuthenticationProvider {
-	/** @var LoggerInterface */
-	protected $logger;
-
-	/** @var AuthManager */
-	protected $manager;
-
-	/** @var Config */
-	protected $config;
-
-	/** @var HookContainer */
-	private $hookContainer;
-
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/** @var UserNameUtils */
-	protected $userNameUtils;
+	protected LoggerInterface $logger;
+	protected AuthManager $manager;
+	protected Config $config;
+	private HookContainer $hookContainer;
+	private HookRunner $hookRunner;
+	protected UserNameUtils $userNameUtils;
 
 	/**
 	 * Initialise with dependencies of an AuthenticationProvider
@@ -59,12 +48,6 @@ abstract class AbstractAuthenticationProvider implements AuthenticationProvider 
 	 * @internal In production code AuthManager will initialize the
 	 * AbstractAuthenticationProvider, in tests
 	 * AuthenticationProviderTestTrait must be used.
-	 *
-	 * @param LoggerInterface $logger
-	 * @param AuthManager $manager
-	 * @param HookContainer $hookContainer
-	 * @param Config $config
-	 * @param UserNameUtils $userNameUtils
 	 */
 	public function init(
 		LoggerInterface $logger,

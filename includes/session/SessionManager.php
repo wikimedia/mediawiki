@@ -79,29 +79,15 @@ use Wikimedia\ObjectCache\CachedBagOStuff;
  * @see https://www.mediawiki.org/wiki/Manual:SessionManager_and_AuthManager
  */
 class SessionManager implements SessionManagerInterface {
-	/** @var SessionManager|null */
-	private static $instance = null;
+	private static ?SessionManager $instance = null;
+	private static ?Session $globalSession = null;
+	private static ?WebRequest $globalSessionRequest = null;
 
-	/** @var Session|null */
-	private static $globalSession = null;
-
-	/** @var WebRequest|null */
-	private static $globalSessionRequest = null;
-
-	/** @var LoggerInterface */
-	private $logger;
-
-	/** @var HookContainer */
-	private $hookContainer;
-
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/** @var Config */
-	private $config;
-
-	/** @var UserNameUtils */
-	private $userNameUtils;
+	private LoggerInterface $logger;
+	private HookContainer $hookContainer;
+	private HookRunner $hookRunner;
+	private Config $config;
+	private UserNameUtils $userNameUtils;
 
 	/** @var CachedBagOStuff|null */
 	private $store;
@@ -185,12 +171,12 @@ class SessionManager implements SessionManagerInterface {
 	public function __construct( $options = [] ) {
 		$services = MediaWikiServices::getInstance();
 		if ( isset( $options['config'] ) ) {
-			$this->config = $options['config'];
-			if ( !$this->config instanceof Config ) {
+			if ( !$options['config'] instanceof Config ) {
 				throw new InvalidArgumentException(
 					'$options[\'config\'] must be an instance of Config'
 				);
 			}
+			$this->config = $options['config'];
 		} else {
 			$this->config = $services->getMainConfig();
 		}

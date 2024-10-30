@@ -199,21 +199,6 @@ class AuthManager implements LoggerAwareInterface {
 	/** Call all authentication providers */
 	private const CALL_ALL = self::CALL_PRE | self::CALL_PRIMARY | self::CALL_SECONDARY;
 
-	/** @var WebRequest */
-	private $request;
-
-	/** @var Config */
-	private $config;
-
-	/** @var ObjectFactory */
-	private $objectFactory;
-
-	/** @var LoggerInterface */
-	private $logger;
-
-	/** @var UserNameUtils */
-	private $userNameUtils;
-
 	/** @var AuthenticationProvider[] */
 	private $allAuthenticationProviders = [];
 
@@ -229,60 +214,24 @@ class AuthManager implements LoggerAwareInterface {
 	/** @var CreatedAccountAuthenticationRequest[] */
 	private $createdAccountAuthenticationRequests = [];
 
-	/** @var HookContainer */
-	private $hookContainer;
+	private WebRequest $request;
+	private Config $config;
+	private ObjectFactory $objectFactory;
+	private LoggerInterface $logger;
+	private UserNameUtils $userNameUtils;
+	private HookContainer $hookContainer;
+	private HookRunner $hookRunner;
+	private ReadOnlyMode $readOnlyMode;
+	private BlockManager $blockManager;
+	private WatchlistManager $watchlistManager;
+	private ILoadBalancer $loadBalancer;
+	private Language $contentLanguage;
+	private LanguageConverterFactory $languageConverterFactory;
+	private BotPasswordStore $botPasswordStore;
+	private UserFactory $userFactory;
+	private UserIdentityLookup $userIdentityLookup;
+	private UserOptionsManager $userOptionsManager;
 
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/** @var ReadOnlyMode */
-	private $readOnlyMode;
-
-	/** @var BlockManager */
-	private $blockManager;
-
-	/** @var WatchlistManager */
-	private $watchlistManager;
-
-	/** @var ILoadBalancer */
-	private $loadBalancer;
-
-	/** @var Language */
-	private $contentLanguage;
-
-	/** @var LanguageConverterFactory */
-	private $languageConverterFactory;
-
-	/** @var BotPasswordStore */
-	private $botPasswordStore;
-
-	/** @var UserFactory */
-	private $userFactory;
-
-	/** @var UserIdentityLookup */
-	private $userIdentityLookup;
-
-	/** @var UserOptionsManager */
-	private $userOptionsManager;
-
-	/**
-	 * @param WebRequest $request
-	 * @param Config $config
-	 * @param ObjectFactory $objectFactory
-	 * @param HookContainer $hookContainer
-	 * @param ReadOnlyMode $readOnlyMode
-	 * @param UserNameUtils $userNameUtils
-	 * @param BlockManager $blockManager
-	 * @param WatchlistManager $watchlistManager
-	 * @param ILoadBalancer $loadBalancer
-	 * @param Language $contentLanguage
-	 * @param LanguageConverterFactory $languageConverterFactory
-	 * @param BotPasswordStore $botPasswordStore
-	 * @param UserFactory $userFactory
-	 * @param UserIdentityLookup $userIdentityLookup
-	 * @param UserOptionsManager $userOptionsManager
-	 *
-	 */
 	public function __construct(
 		WebRequest $request,
 		Config $config,
@@ -319,9 +268,6 @@ class AuthManager implements LoggerAwareInterface {
 		$this->userOptionsManager = $userOptionsManager;
 	}
 
-	/**
-	 * @param LoggerInterface $logger
-	 */
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
 	}

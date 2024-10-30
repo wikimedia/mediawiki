@@ -92,23 +92,13 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \MediaWiki\Auth\AuthManager
  */
 class AuthManagerTest extends MediaWikiIntegrationTestCase {
-	/** @var WebRequest */
-	protected $request;
-	/** @var Config */
-	protected $config;
-	/** @var ObjectFactory */
-	protected $objectFactory;
-	/** @var ReadOnlyMode */
-	protected $readOnlyMode;
-
-	/** @var HookContainer */
-	private $hookContainer;
-
-	/** @var UserNameUtils */
-	protected $userNameUtils;
-
-	/** @var LoggerInterface */
-	protected $logger;
+	protected WebRequest $request;
+	protected Config $config;
+	protected ObjectFactory $objectFactory;
+	protected ReadOnlyMode $readOnlyMode;
+	private HookContainer $hookContainer;
+	protected UserNameUtils $userNameUtils;
+	protected LoggerInterface $logger;
 
 	/** @var AbstractPreAuthenticationProvider&MockObject[] */
 	protected $preauthMocks = [];
@@ -117,40 +107,20 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 	/** @var AbstractSecondaryAuthenticationProvider&MockObject[] */
 	protected $secondaryauthMocks = [];
 
-	/** @var AuthManager */
-	protected $manager;
+	protected AuthManager $manager;
 	/** @var TestingAccessWrapper|AuthManager */
 	protected $managerPriv;
 
-	/** @var BlockManager */
-	private $blockManager;
-
-	/** @var WatchlistManager */
-	private $watchlistManager;
-
-	/** @var ILoadBalancer */
-	private $loadBalancer;
-
-	/** @var Language */
-	private $contentLanguage;
-
-	/** @var LanguageConverterFactory */
-	private $languageConverterFactory;
-
-	/** @var BotPasswordStore */
-	private $botPasswordStore;
-
-	/** @var UserFactory */
-	private $userFactory;
-
-	/** @var UserIdentityLookup */
-	private $userIdentityLookup;
-
-	/** @var UserOptionsManager */
-	private $userOptionsManager;
-
-	/** @var ObjectCacheFactory */
-	private $objectCacheFactory;
+	private BlockManager $blockManager;
+	private WatchlistManager $watchlistManager;
+	private ILoadBalancer $loadBalancer;
+	private Language $contentLanguage;
+	private LanguageConverterFactory $languageConverterFactory;
+	private BotPasswordStore $botPasswordStore;
+	private UserFactory $userFactory;
+	private UserIdentityLookup $userIdentityLookup;
+	private UserOptionsManager $userOptionsManager;
+	private ObjectCacheFactory $objectCacheFactory;
 
 	/**
 	 * Registers a mock hook.
@@ -255,84 +225,53 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 	 * @param bool $regen Force a call to $this->initializeConfig()
 	 */
 	protected function initializeManager( $regen = false ) {
-		// TODO clean this up, don't need to re fetch the services each time
-		if ( $regen || !$this->config ) {
+		if ( $regen || !isset( $this->config ) ) {
 			$this->config = new HashConfig();
 		}
-		if ( $regen || !$this->request ) {
+		if ( $regen || !isset( $this->request ) ) {
 			$this->request = new FauxRequest();
 		}
-		if ( $regen || !$this->objectFactory ) {
-			$services = $this->createNoOpAbstractMock( ContainerInterface::class );
-			$this->objectFactory = new ObjectFactory( $services );
-		}
-		if ( $regen || !$this->readOnlyMode ) {
-			$this->readOnlyMode = $this->getServiceContainer()->getReadOnlyMode();
-		}
-		if ( $regen || !$this->blockManager ) {
-			// Override BlockManager::checkHost. Formerly testAuthorizeCreateAccount_DNSBlacklist
-			// required *.localhost to resolve as 127.0.0.1, but that is system-dependent.
-			$this->blockManager = new class(
-				new ServiceOptions(
-					BlockManager::CONSTRUCTOR_OPTIONS,
-					$this->getServiceContainer()->getMainConfig()
-				),
-				$this->getServiceContainer()->getUserFactory(),
-				$this->getServiceContainer()->getUserIdentityUtils(),
-				LoggerFactory::getInstance( 'BlockManager' ),
-				$this->getServiceContainer()->getHookContainer(),
-				$this->getServiceContainer()->getDatabaseBlockStore(),
-				$this->getServiceContainer()->getProxyLookup()
-			) extends BlockManager {
-				protected function checkHost( $hostname ) {
-					return '127.0.0.1';
-				}
-			};
-		}
-		if ( $regen || !$this->watchlistManager ) {
-			$this->watchlistManager = $this->getServiceContainer()->getWatchlistManager();
-		}
-		if ( $regen || !$this->hookContainer ) {
-			// Set up a HookContainer we control
-			$this->hookContainer = new HookContainer(
-				new StaticHookRegistry( [], [], [] ),
-				$this->objectFactory
-			);
-		}
-		if ( $regen || !$this->userNameUtils ) {
-			$this->userNameUtils = $this->getServiceContainer()->getUserNameUtils();
-		}
-		if ( $regen || !$this->loadBalancer ) {
-			$this->loadBalancer = $this->getServiceContainer()->getDBLoadBalancer();
-		}
-		if ( $regen || !$this->contentLanguage ) {
-			$this->contentLanguage = $this->getServiceContainer()->getContentLanguage();
-		}
-		if ( $regen || !$this->languageConverterFactory ) {
-			$this->languageConverterFactory = $this->getServiceContainer()->getLanguageConverterFactory();
-		}
-		if ( $regen || !$this->botPasswordStore ) {
-			$this->botPasswordStore = $this->getServiceContainer()->getBotPasswordStore();
-		}
-		if ( $regen || !$this->userFactory ) {
-			$this->userFactory = $this->getServiceContainer()->getUserFactory();
-		}
-		if ( $regen || !$this->userIdentityLookup ) {
-			$this->userIdentityLookup = $this->getServiceContainer()->getUserIdentityLookup();
-		}
-		if ( $regen || !$this->userOptionsManager ) {
-			$this->userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();
-		}
-		if ( $regen || !$this->objectCacheFactory ) {
-			$this->objectCacheFactory = $this->getServiceContainer()->getObjectCacheFactory();
-		}
-		if ( !$this->logger ) {
-			$this->logger = new TestLogger();
-		}
+
+		$this->objectFactory ??= new ObjectFactory( $this->createNoOpAbstractMock( ContainerInterface::class ) );
+		$this->readOnlyMode ??= $this->getServiceContainer()->getReadOnlyMode();
+		// Override BlockManager::checkHost. Formerly testAuthorizeCreateAccount_DNSBlacklist
+		// required *.localhost to resolve as 127.0.0.1, but that is system-dependent.
+		$this->blockManager ??= new class(
+			new ServiceOptions(
+				BlockManager::CONSTRUCTOR_OPTIONS,
+				$this->getServiceContainer()->getMainConfig()
+			),
+			$this->getServiceContainer()->getUserFactory(),
+			$this->getServiceContainer()->getUserIdentityUtils(),
+			LoggerFactory::getInstance( 'BlockManager' ),
+			$this->getServiceContainer()->getHookContainer(),
+			$this->getServiceContainer()->getDatabaseBlockStore(),
+			$this->getServiceContainer()->getProxyLookup()
+		) extends BlockManager {
+			protected function checkHost( $hostname ) {
+				return '127.0.0.1';
+			}
+		};
+		$this->watchlistManager ??= $this->getServiceContainer()->getWatchlistManager();
+		$this->hookContainer ??= new HookContainer(
+			new StaticHookRegistry( [], [], [] ),
+			$this->objectFactory
+		);
+		$this->userNameUtils ??= $this->getServiceContainer()->getUserNameUtils();
+		$this->loadBalancer ??= $this->getServiceContainer()->getDBLoadBalancer();
+		$this->contentLanguage ??= $this->getServiceContainer()->getContentLanguage();
+		$this->languageConverterFactory ??= $this->getServiceContainer()->getLanguageConverterFactory();
+		$this->botPasswordStore ??= $this->getServiceContainer()->getBotPasswordStore();
+		$this->userFactory ??= $this->getServiceContainer()->getUserFactory();
+		$this->userIdentityLookup ??= $this->getServiceContainer()->getUserIdentityLookup();
+		$this->userOptionsManager ??= $this->getServiceContainer()->getUserOptionsManager();
+		$this->objectCacheFactory ??= $this->getServiceContainer()->getObjectCacheFactory();
+		$this->logger ??= new TestLogger();
 
 		if ( $regen || !$this->config->has( MainConfigNames::AuthManagerConfig ) ) {
 			$this->initializeConfig();
 		}
+
 		$this->manager = new AuthManager(
 			$this->request,
 			$this->config,
@@ -361,7 +300,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 	 * @return array (MediaWiki\Session\SessionProvider, ScopedCallback)
 	 */
 	protected function getMockSessionProvider( $canChangeUser = null, array $methods = [] ) {
-		if ( !$this->config ) {
+		if ( !isset( $this->config ) ) {
 			$this->config = new HashConfig();
 			$this->initializeConfig();
 		}
@@ -398,7 +337,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 
 		$reset = TestUtils::setSessionManagerSingleton( $manager );
 
-		if ( $this->request ) {
+		if ( isset( $this->request ) ) {
 			$manager->getSessionForRequest( $this->request );
 		}
 
@@ -1538,6 +1477,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( AuthenticationResponse::newPass( 'UTDummy' ), $response );
 		$this->assertNotNull( $this->manager->getRequest()->getSession()->getUser() );
 		$this->assertSame( 'UTDummy', $this->manager->getRequest()->getSession()->getUser()->getName() );
+		$this->unhook( 'AuthManagerVerifyAuthentication' );
 
 		// Will prevent login
 		$updateManager();
@@ -1549,6 +1489,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$response = $this->manager->beginAuthentication( [ $req ], 'http://localhost/' );
 		$this->assertEquals( AuthenticationResponse::newFail( wfMessage( 'hook-fail' ) ), $response );
 		$this->assertTrue( $this->manager->getRequest()->getSession()->getUser()->isAnon() );
+		$this->unhook( 'AuthManagerVerifyAuthentication' );
 
 		// Will not allow invalid responses
 		$updateManager();
@@ -1563,6 +1504,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		} catch ( LogicException $ex ) {
 			$this->assertSame( '$response must be an AuthenticationResponse', $ex->getMessage() );
 		}
+		$this->unhook( 'AuthManagerVerifyAuthentication' );
 
 		$updateManager();
 		$hook = $this->hook( 'AuthManagerVerifyAuthentication', AuthManagerVerifyAuthenticationHook::class, $this->once() );
@@ -1575,6 +1517,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		} catch ( LogicException $ex ) {
 			$this->assertSame( 'AuthManagerVerifyAuthenticationHook must not modify the response unless it returns false', $ex->getMessage() );
 		}
+		$this->unhook( 'AuthManagerVerifyAuthentication' );
 
 		$updateManager();
 		$hook = $this->hook( 'AuthManagerVerifyAuthentication', AuthManagerVerifyAuthenticationHook::class, $this->once() );
@@ -1587,6 +1530,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		} catch ( LogicException $ex ) {
 			$this->assertSame( 'AuthManagerVerifyAuthenticationHook must set the response to FAIL if it returns false', $ex->getMessage() );
 		}
+		$this->unhook( 'AuthManagerVerifyAuthentication' );
 
 		// Will prevent restart
 		$primaryConfig['beginPrimaryAuthentication'] = AuthenticationResponse::newPass( null );
@@ -1602,6 +1546,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( AuthenticationResponse::newFail( wfMessage( 'hook-fail' ) ), $response );
 		$this->assertTrue( $this->manager->getRequest()->getSession()->getUser()->isAnon() );
 		$this->assertNull( $this->manager->getRequest()->getSession()->get( AuthManager::AUTHN_STATE ) );
+		$this->unhook( 'AuthManagerVerifyAuthentication' );
 	}
 
 	/**
@@ -1875,19 +1820,19 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			],
 			MainConfigNames::ProxyWhitelist => [],
 		] );
+		unset( $this->blockManager );
 		$this->initializeManager( true );
-
-		// For User::getBlockedStatus()
-		$this->setService( 'BlockManager', $this->blockManager );
 
 		$status = $this->manager->authorizeCreateAccount( new User );
 		$this->assertStatusError( 'sorbs_create_account_reason', $status );
 
 		$this->overrideConfigValue( MainConfigNames::ProxyWhitelist, [ '127.0.0.1' ] );
+		unset( $this->blockManager );
 		$this->initializeManager( true );
-		$this->setService( 'BlockManager', $this->blockManager );
 		$status = $this->manager->authorizeCreateAccount( new User );
 		$this->assertStatusGood( $status );
+
+		unset( $this->blockManager );
 	}
 
 	/**
@@ -2221,6 +2166,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$this->hook( 'LocalUserCreated', LocalUserCreatedHook::class, $this->never() );
 		$cache = $this->objectCacheFactory->getLocalClusterInstance();
 		$lock = $cache->getScopedLock( $cache->makeGlobalKey( 'account', md5( $username ) ) );
+		$this->assertNotNull( $lock );
 		$ret = $this->manager->continueAccountCreation( [] );
 		unset( $lock );
 		$this->unhook( 'LocalUserCreated' );
@@ -2850,6 +2796,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( AuthenticationResponse::newPass( 'UTDummy' ), $response );
 		$this->assertNotNull( $this->manager->getRequest()->getSession()->getUser() );
 		$this->assertTrue( $this->getServiceContainer()->getUserFactory()->newFromName( 'UTDummy' )->isRegistered() );
+		$this->unhook( 'AuthManagerVerifyAuthentication' );
 
 		// Will prevent login
 		unset( $secondaryConfig['beginSecondaryAccountCreation'] );
@@ -2864,6 +2811,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$response = $this->manager->beginAccountCreation( new User(), [ $req ], 'http://localhost/' );
 		$this->assertEquals( AuthenticationResponse::newFail( wfMessage( 'hook-fail' ) ), $response );
 		$this->assertFalse( $this->getServiceContainer()->getUserFactory()->newFromName( 'UTDummy2' )->isRegistered() );
+		$this->unhook( 'AuthManagerVerifyAuthentication' );
 
 		// the LogicError paths are already tested under testAuthentication_AuthManagerVerifyAuthentication
 	}
@@ -3120,10 +3068,14 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 
 		// Test lock fail
 		$session->clear();
+		unset( $this->objectCacheFactory );
+		$this->initializeManager( true );
+		$session = $this->request->getSession();
 		$user = User::newFromName( $username );
 		$this->hook( 'LocalUserCreated', LocalUserCreatedHook::class, $this->never() );
 		$cache = $this->objectCacheFactory->getLocalClusterInstance();
 		$lock = $cache->getScopedLock( $cache->makeGlobalKey( 'account', md5( $username ) ) );
+		$this->assertNotNull( $lock );
 		$ret = $this->manager->autoCreateUser( $user, AuthManager::AUTOCREATE_SOURCE_SESSION, true, true );
 		unset( $lock );
 		$this->unhook( 'LocalUserCreated' );

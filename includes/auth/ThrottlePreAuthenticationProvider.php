@@ -40,14 +40,9 @@ class ThrottlePreAuthenticationProvider extends AbstractPreAuthenticationProvide
 	/** @var array */
 	protected $throttleSettings;
 
-	/** @var Throttler */
-	protected $accountCreationThrottle;
-
-	/** @var Throttler */
-	protected $passwordAttemptThrottle;
-
-	/** @var BagOStuff */
-	protected $cache;
+	protected ?Throttler $accountCreationThrottle = null;
+	protected ?Throttler $passwordAttemptThrottle = null;
+	protected BagOStuff $cache;
 
 	/**
 	 * @param array $params

@@ -38,14 +38,9 @@ use Wikimedia\TestingAccessWrapper;
 class SessionManagerTest extends MediaWikiIntegrationTestCase {
 	use SessionProviderTestTrait;
 
-	/** @var HashConfig */
-	private $config;
-
-	/** @var TestLogger */
-	private $logger;
-
-	/** @var TestBagOStuff */
-	private $store;
+	private HashConfig $config;
+	private TestLogger $logger;
+	private TestBagOStuff $store;
 
 	protected function getManager() {
 		$this->store = new TestBagOStuff();

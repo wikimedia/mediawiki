@@ -36,8 +36,7 @@ use MWRestrictions;
  * @since 1.27
  */
 class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
-	/** @var GrantsInfo */
-	private $grantsInfo;
+	private GrantsInfo $grantsInfo;
 
 	/** @var bool Whether the current request is an API request. */
 	private $isApiRequest;

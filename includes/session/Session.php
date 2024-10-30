@@ -55,14 +55,13 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	/** @var null|string[] Encryption algorithm to use */
 	private static $encryptionAlgorithm = null;
 
-	/** @var SessionBackend Session backend */
+	/** @var SessionBackend Session backend (can't be type-hinted, see DummySessionBackend in tests) */
 	private $backend;
 
 	/** @var int Session index */
 	private $index;
 
-	/** @var LoggerInterface */
-	private $logger;
+	private LoggerInterface $logger;
 
 	/**
 	 * @param SessionBackend $backend

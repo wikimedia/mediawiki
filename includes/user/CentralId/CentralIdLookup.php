@@ -47,8 +47,7 @@ abstract class CentralIdLookup {
 	/** @var string */
 	private $providerId;
 
-	/** @var UserIdentityLookup */
-	private $userIdentityLookup;
+	private UserIdentityLookup $userIdentityLookup;
 	private UserFactory $userFactory;
 
 	/**
@@ -92,8 +91,6 @@ abstract class CentralIdLookup {
 	/**
 	 * Initialize the provider.
 	 *
-	 * @param string $providerId
-	 * @param UserIdentityLookup $userIdentityLookup
 	 * @internal
 	 */
 	public function init(

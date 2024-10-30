@@ -55,8 +55,7 @@ use Wikimedia\ObjectCache\CachedBagOStuff;
  * @since 1.27
  */
 final class SessionBackend {
-	/** @var SessionId */
-	private $id;
+	private SessionId $id;
 
 	/** @var bool */
 	private $persist = false;
@@ -98,20 +97,14 @@ final class SessionBackend {
 	/** @var string Used to detect subarray modifications */
 	private $dataHash = null;
 
-	/** @var CachedBagOStuff */
-	private $store;
-
-	/** @var LoggerInterface */
-	private $logger;
-
-	/** @var HookRunner */
-	private $hookRunner;
+	private CachedBagOStuff $store;
+	private LoggerInterface $logger;
+	private HookRunner $hookRunner;
 
 	/** @var int */
 	private $lifetime;
 
-	/** @var User */
-	private $user;
+	private User $user;
 
 	/** @var int */
 	private $curIndex = 0;
