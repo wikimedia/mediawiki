@@ -458,7 +458,7 @@ class EditPage implements IEditObject {
 	private UserOptionsLookup $userOptionsLookup;
 	private TempUserCreator $tempUserCreator;
 	private UserFactory $userFactory;
-	private IConnectionProvider $connectionProvider;
+	private IConnectionProvider $dbProvider;
 	private BlockErrorFormatter $blockErrorFormatter;
 	private AuthManager $authManager;
 
@@ -529,7 +529,7 @@ class EditPage implements IEditObject {
 		$this->linkBatchFactory = $services->getLinkBatchFactory();
 		$this->restrictionStore = $services->getRestrictionStore();
 		$this->commentStore = $services->getCommentStore();
-		$this->connectionProvider = $services->getConnectionProvider();
+		$this->dbProvider = $services->getConnectionProvider();
 		$this->blockErrorFormatter = $services->getFormatterFactory()
 			->getBlockErrorFormatter( $this->context );
 		$this->authManager = $services->getAuthManager();
@@ -2324,7 +2324,7 @@ class EditPage implements IEditObject {
 				} elseif ( $this->section === ''
 					&& $this->edittime
 					&& $this->revisionStore->userWasLastToEdit(
-						$this->connectionProvider->getPrimaryDatabase(),
+						$this->dbProvider->getPrimaryDatabase(),
 						$this->mTitle->getArticleID(),
 						$requestUser->getId(),
 						$this->edittime
@@ -3961,7 +3961,7 @@ class EditPage implements IEditObject {
 	 * @return stdClass|null
 	 */
 	private function getLastDelete(): ?stdClass {
-		$dbr = $this->connectionProvider->getReplicaDatabase();
+		$dbr = $this->dbProvider->getReplicaDatabase();
 		$commentQuery = $this->commentStore->getJoin( 'log_comment' );
 		$data = $dbr->newSelectQueryBuilder()
 			->select( [

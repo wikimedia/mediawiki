@@ -55,7 +55,7 @@ class PageRestHelperFactory {
 	private RedirectStore $redirectStore;
 	private LanguageConverterFactory $languageConverterFactory;
 	private TitleFactory $titleFactory;
-	private IConnectionProvider $connectionProvider;
+	private IConnectionProvider $dbProvider;
 	private ChangeTagsStore $changeTagStore;
 	private StatsFactory $statsFactory;
 
@@ -75,7 +75,7 @@ class PageRestHelperFactory {
 		RedirectStore $redirectStore,
 		LanguageConverterFactory $languageConverterFactory,
 		TitleFactory $titleFactory,
-		IConnectionProvider $connectionProvider,
+		IConnectionProvider $dbProvider,
 		ChangeTagsStore $changeTagStore,
 		StatsFactory $statsFactory
 	) {
@@ -95,7 +95,7 @@ class PageRestHelperFactory {
 		$this->languageConverterFactory = $languageConverterFactory;
 		$this->statsFactory = $statsFactory;
 		$this->titleFactory = $titleFactory;
-		$this->connectionProvider = $connectionProvider;
+		$this->dbProvider = $dbProvider;
 		$this->changeTagStore = $changeTagStore;
 	}
 
@@ -106,7 +106,7 @@ class PageRestHelperFactory {
 			$this->titleFormatter,
 			$this->pageLookup,
 			$this->titleFactory,
-			$this->connectionProvider,
+			$this->dbProvider,
 			$this->changeTagStore
 		);
 	}
@@ -118,7 +118,7 @@ class PageRestHelperFactory {
 			$this->titleFormatter,
 			$this->pageLookup,
 			$this->titleFactory,
-			$this->connectionProvider,
+			$this->dbProvider,
 			$this->changeTagStore
 		);
 	}

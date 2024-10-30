@@ -59,7 +59,7 @@ class PageContentHelper {
 	protected TitleFormatter $titleFormatter;
 	protected PageLookup $pageLookup;
 	private TitleFactory $titleFactory;
-	private IConnectionProvider $connectionProvider;
+	private IConnectionProvider $dbProvider;
 	private ChangeTagsStore $changeTagStore;
 
 	/** @var Authority|null */
@@ -83,7 +83,7 @@ class PageContentHelper {
 		TitleFormatter $titleFormatter,
 		PageLookup $pageLookup,
 		TitleFactory $titleFactory,
-		IConnectionProvider $connectionProvider,
+		IConnectionProvider $dbProvider,
 		ChangeTagsStore $changeTagStore
 	) {
 		$this->options = $options;
@@ -91,7 +91,7 @@ class PageContentHelper {
 		$this->titleFormatter = $titleFormatter;
 		$this->pageLookup = $pageLookup;
 		$this->titleFactory = $titleFactory;
-		$this->connectionProvider = $connectionProvider;
+		$this->dbProvider = $dbProvider;
 		$this->changeTagStore = $changeTagStore;
 	}
 
@@ -285,7 +285,7 @@ class PageContentHelper {
 		$title = $this->titleFactory->newFromPageIdentity( $page );
 
 		$tags = $this->changeTagStore->getTags(
-			$this->connectionProvider->getReplicaDatabase(),
+			$this->dbProvider->getReplicaDatabase(),
 			null, $revision->getId(), null
 		);
 

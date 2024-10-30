@@ -85,7 +85,7 @@ class LinksUpdate extends DataUpdate {
 	/** @var LinksTableGroup */
 	private $tableFactory;
 
-	private IConnectionProvider $connectionProvider;
+	private IConnectionProvider $dbProvider;
 
 	/**
 	 * @param PageIdentity $page The page we're updating
@@ -120,7 +120,7 @@ class LinksUpdate extends DataUpdate {
 		);
 		// TODO: this does not have to be called in LinksDeletionUpdate
 		$this->tableFactory->setParserOutput( $parserOutput );
-		$this->connectionProvider = $services->getDBLoadBalancerFactory();
+		$this->dbProvider = $services->getDBLoadBalancerFactory();
 	}
 
 	public function setTransactionTicket( $ticket ) {
@@ -544,7 +544,7 @@ class LinksUpdate extends DataUpdate {
 	 */
 	protected function getDB() {
 		if ( !$this->db ) {
-			$this->db = $this->connectionProvider->getPrimaryDatabase();
+			$this->db = $this->dbProvider->getPrimaryDatabase();
 		}
 
 		return $this->db;
