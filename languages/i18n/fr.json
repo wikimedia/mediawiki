@@ -3915,7 +3915,7 @@
 	"logentry-protect-modify-cascade": "$1{{GENDER:$2|}} a modifié les paramètres de protection de $3 $4 [protection en cascade]",
 	"logentry-rights-rights": "$1{{GENDER:$2|}} a modifié l’appartenance aux groupes de $3{{GENDER:$6|}}, de $4 à $5",
 	"logentry-rights-rights-legacy": "$1{{GENDER:$2|}} a modifié l’appartenance aux groupes pour $3",
-	"logentry-rights-autopromote": "$1 a été promu{{GENDER:$2|e}} automatiquement de $4 en $5",
+	"logentry-rights-autopromote": "$1 a été {{GENDER:$2|promu|promue}} automatiquement de $4 en $5",
 	"logentry-upload-upload": "{{GENDER:$2|}}$1 a téléversé $3",
 	"logentry-upload-overwrite": "$1{{GENDER:$2|}} a téléversé une nouvelle version de $3",
 	"logentry-upload-revert": "$1{{GENDER:$2|}} a annulé $3 vers une ancienne version",
