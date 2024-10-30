@@ -586,8 +586,8 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 *
 	 * @since 1.17
 	 *
-	 * @param mixed ...$params Raw parameters as strings, or a single argument that is
-	 * an array of raw parameters.
+	 * @param string|int|float|MessageSpecifier|array<string|int|float|MessageSpecifier> ...$params
+	 * Raw parameters as strings, or a single argument that is an array of raw parameters.
 	 * @param-taint ...$params html,exec_html
 	 *
 	 * @return self $this
@@ -1176,7 +1176,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	/**
 	 * @since 1.17
 	 *
-	 * @param mixed $raw
+	 * @param string|int|float|MessageSpecifier $raw
 	 * @param-taint $raw html,exec_html
 	 *
 	 * @return ScalarParam
