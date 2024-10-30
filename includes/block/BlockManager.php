@@ -531,8 +531,8 @@ class BlockManager {
 		foreach ( $blocks as $block ) {
 			if ( $block instanceof SystemBlock ) {
 				$systemBlocks[] = $block;
-			} elseif ( $block->getType() === DatabaseBlock::TYPE_AUTO ) {
-				if ( $block instanceof DatabaseBlock && !isset( $databaseBlocks[$block->getParentBlockId()] ) ) {
+			} elseif ( $block->getType() === DatabaseBlock::TYPE_AUTO && $block instanceof DatabaseBlock ) {
+				if ( !isset( $databaseBlocks[$block->getParentBlockId()] ) ) {
 					$databaseBlocks[$block->getParentBlockId()] = $block;
 				}
 			} else {
