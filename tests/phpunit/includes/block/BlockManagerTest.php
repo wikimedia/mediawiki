@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Block\AbstractBlock;
+use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
@@ -358,9 +360,6 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 	public function testGetUniqueBlocks() {
 		$blockId = 100;
 
-		/** @var BlockManager $blockManager */
-		$blockManager = TestingAccessWrapper::newFromObject( $this->getBlockManager( [] ) );
-
 		$block = $this->getMockBuilder( DatabaseBlock::class )
 			->onlyMethods( [ 'getId' ] )
 			->getMock();
@@ -373,10 +372,17 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		$autoblock->method( 'getParentBlockId' )
 			->willReturn( $blockId );
 		$autoblock->method( 'getType' )
-			->willReturn( DatabaseBlock::TYPE_AUTO );
+			->willReturn( Block::TYPE_AUTO );
+
+		$autoblockWithoutParentIdMethod = $this->getMockBuilder( AbstractBlock::class )
+			->onlyMethods( [ 'getType' ] )
+			->getMockForAbstractClass();
+		$autoblockWithoutParentIdMethod->method( 'getType' )
+			->willReturn( Block::TYPE_AUTO );
 
 		$blocks = [ $block, $block, $autoblock, new SystemBlock() ];
 
+		$blockManager = TestingAccessWrapper::newFromObject( $this->getBlockManager( [] ) );
 		$this->assertCount( 2, $blockManager->getUniqueBlocks( $blocks ) );
 	}
 
