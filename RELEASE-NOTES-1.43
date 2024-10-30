@@ -1087,6 +1087,12 @@ supported.
   SpecialBlock::canBlockEmail(), deprecated since 1.36, and
   SpecialBlock::getSuggestedDurations(), deprecated since 1.42, now emit
   deprecation warnings.
+* The following soft deprecated Skin methods will now emit warnings:
+  - Skin::makeSpecialUrl (use SkinComponentUtils::makeSpecialUrl instead)
+  - Skin::makeSpecialUrlSubpage (use SkinComponentUtils::makeSpecialUrlSubpage
+    instead)
+* The SkinFactory::getSkinNames deprecated in 1.37 now emits warnings,
+   use getInstalledSkins instead.
 * …
 
 === Other changes in 1.43 ===
