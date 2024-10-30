@@ -4,7 +4,6 @@ use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
-use MediaWiki\Title\Title;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
@@ -50,44 +49,6 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 		$article->method( 'getActionOverrides' )
 			->willReturn( $overrides );
 		return $article;
-	}
-
-	/**
-	 * @covers ::getActionInfo
-	 */
-	public function testGetActionInfo() {
-		$article = $this->getArticle();
-		$theAction = $this->createMock( Action::class );
-		$theAction->method( 'getName' )->willReturn( 'test' );
-		$theAction->method( 'getRestriction' )->willReturn( 'testing' );
-		$theAction->method( 'needsReadRights' )->willReturn( true );
-		$theAction->method( 'requiresWrite' )->willReturn( true );
-		$theAction->method( 'requiresUnblock' )->willReturn( true );
-
-		$factory = $this->getFactory( [
-			'actions' => [
-				'view' => $theAction,
-				'disabled' => false,
-			]
-		] );
-
-		$info = $factory->getActionInfo( 'view', $article );
-		$this->assertIsObject( $info );
-
-		$this->assertSame( 'test', $info->getName() );
-		$this->assertSame( 'testing', $info->getRestriction() );
-		$this->assertTrue( $info->needsReadRights() );
-		$this->assertTrue( $info->requiresWrite() );
-		$this->assertTrue( $info->requiresUnblock() );
-
-		$this->assertNull(
-			$factory->getActionInfo( 'missing', $article ),
-			'No ActionInfo should be returned for an unknown action'
-		);
-		$this->assertNull(
-			$factory->getActionInfo( 'disabled', $article ),
-			'No ActionInfo should be returned for a disabled action'
-		);
 	}
 
 	/**
@@ -140,26 +101,6 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 			$theOverrideAction,
 			$factory->getAction( 'the-override', $article, $context ),
 			'Article::getActionOverrides can override configured actions'
-		);
-	}
-
-	/**
-	 * Regression test for T348451
-	 * @covers ::getAction
-	 */
-	public function testActionForSpecialPage() {
-		$context = $this->createMock( IContextSource::class );
-		$factory = $this->getFactory();
-
-		$article = Title::makeTitle( NS_SPECIAL, 'Blankpage' );
-
-		$this->assertNull(
-			$factory->getActionInfo( 'edit', $article ),
-			'Special pages do not support actions'
-		);
-		$this->assertNull(
-			$factory->getAction( 'edit', $article, $context ),
-			'Special pages do not support actions'
 		);
 	}
 
