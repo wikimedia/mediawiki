@@ -202,12 +202,6 @@ class UserDef extends TypeDef {
 			return [ 'interwiki', $user ];
 		}
 
-		// A temp user?
-		if ( $this->userNameUtils->isTemp( $value ) ) {
-			$userIdentity = $this->userIdentityLookup->getUserIdentityByName( $value );
-			return [ 'temp', $userIdentity ];
-		}
-
 		// A valid user name?
 		// Match behavior of UserFactory::newFromName with RIGOR_VALID and User::getId()
 		// we know that if there is a canonical form from UserNameUtils then this can't
@@ -216,13 +210,16 @@ class UserDef extends TypeDef {
 		// the id, and if there is no user with this name the id is 0
 		$canonicalName = $this->userNameUtils->getCanonical( $value, UserRigorOptions::RIGOR_VALID );
 		if ( $canonicalName !== false ) {
+			// Determine if the username matches the temporary account format.
+			$userType = $this->userNameUtils->isTemp( $value ) ? 'temp' : 'name';
+
 			$userIdentity = $this->userIdentityLookup->getUserIdentityByName( $canonicalName );
 			if ( $userIdentity ) {
-				return [ 'name', $userIdentity ];
+				return [ $userType, $userIdentity ];
 			}
-			// Fall back to id 0
+			// Fall back to id 0, which can occur when the account does not exist.
 			return [
-				'name',
+				$userType,
 				new UserIdentityValue( 0, $canonicalName )
 			];
 		}
