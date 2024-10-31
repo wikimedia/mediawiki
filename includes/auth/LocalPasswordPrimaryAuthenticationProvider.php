@@ -197,7 +197,6 @@ class LocalPasswordPrimaryAuthenticationProvider
 			->select( [ 'user_id' ] )
 			->from( 'user' )
 			->where( [ 'user_name' => $username ] )
-			->recency( $flags )
 			->caller( __METHOD__ )->fetchField();
 	}
 
