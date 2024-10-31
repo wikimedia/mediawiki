@@ -441,6 +441,9 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropTable', 'ipblocks' ],
 			[ 'dropField', 'pagelinks', 'pl_title', 'patch-pagelinks-drop-pl_title.sql' ],
 			[ 'addPostDatabaseUpdateMaintenance', FixAutoblockLogTitles::class ],
+
+			// 1.44
+			[ 'renameIndex', 'searchindex', 'si_page', 'PRIMARY', false, 'patch-searchindex-pk-titlelength.sql' ],
 		];
 	}
 

@@ -172,6 +172,10 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'dropField', 'pagelinks', 'pl_title', 'patch-pagelinks-drop-pl_title.sql' ],
 			[ 'modifyField', 'page', 'page_links_updated', 'patch-page-page_links_updated-noinfinite.sql' ],
 			[ 'addPostDatabaseUpdateMaintenance', FixAutoblockLogTitles::class ],
+
+			// 1.44
+			[ 'changeTableOption', 'searchindex', 'CONVERT TO CHARACTER SET utf8mb4', 'utf8mb4' ],
+			[ 'renameIndex', 'searchindex', 'si_page', 'PRIMARY', false, 'patch-searchindex-pk-titlelength.sql' ],
 		];
 	}
 
@@ -243,6 +247,32 @@ class MysqlUpdater extends DatabaseUpdater {
 				"ALTER TABLE $table ALTER COLUMN $field SET DEFAULT "
 				. $this->db->addQuotes( $default ), __METHOD__
 			);
+		}
+	}
+
+	/**
+	 * Change the table options of a table
+	 *
+	 * @since 1.43
+	 * @param string $table
+	 * @param string $tableOption Raw table option that should already have been escaped !!!!
+	 * @param string $updateName
+	 */
+	protected function changeTableOption( string $table, string $tableOption, string $updateName ) {
+		$updateKey = "$table-tableoption-$updateName";
+		if ( $this->updateRowExists( $updateKey ) ) {
+			return;
+		}
+
+		$this->output( "Changing table options of '$table'.\n" );
+		$table = $this->db->tableName( $table );
+		$ret = $this->db->query(
+			"ALTER TABLE $table $tableOption",
+			__METHOD__
+		);
+
+		if ( $ret ) {
+			$this->insertUpdateRow( $updateKey );
 		}
 	}
 
