@@ -331,8 +331,12 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	public function testUserGroups( $numInGroup ) {
 		global $wgGroupPermissions, $wgAutopromote;
 
-		$this->setGroupPermissions( 'viscount', 'perambulate', 'yes' );
-		$this->setGroupPermissions( 'viscount', 'legislate', '0' );
+		$this->setGroupPermissions( [
+			'viscount' => [
+				'perambulate' => true,
+				'legislate' => false,
+			],
+		] );
 		$this->overrideConfigValues( [
 			MainConfigNames::AddGroups => [ 'viscount' => true, 'bot' => [] ],
 			MainConfigNames::RemoveGroups => [ 'viscount' => [ 'sysop' ], 'bot' => [ '*', 'earl' ] ],

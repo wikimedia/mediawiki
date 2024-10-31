@@ -88,29 +88,39 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			]
 		] );
 
-		$this->setGroupPermissions( 'unittesters', 'test', true );
-		$this->setGroupPermissions( 'unittesters', 'runtest', true );
-		$this->setGroupPermissions( 'unittesters', 'writetest', false );
-		$this->setGroupPermissions( 'unittesters', 'nukeworld', false );
-
-		$this->setGroupPermissions( 'testwriters', 'test', true );
-		$this->setGroupPermissions( 'testwriters', 'writetest', true );
-		$this->setGroupPermissions( 'testwriters', 'modifytest', true );
-
-		$this->setGroupPermissions( '*', 'editmyoptions', true );
-
-		$this->setGroupPermissions( 'deleted-viewer', 'deletedhistory', true );
-		$this->setGroupPermissions( 'deleted-viewer', 'deletedtext', true );
-		$this->setGroupPermissions( 'deleted-viewer', 'viewsuppressed', true );
-
-		$this->setGroupPermissions( 'interface-admin', 'editinterface', true );
-		$this->setGroupPermissions( 'interface-admin', 'editsitejs', true );
-		$this->setGroupPermissions( 'interface-admin', 'edituserjs', true );
-		$this->setGroupPermissions( 'sysop', 'editinterface', true );
-		$this->setGroupPermissions( 'sysop', 'delete', true );
-		$this->setGroupPermissions( 'sysop', 'undelete', true );
-		$this->setGroupPermissions( 'sysop', 'deletedhistory', true );
-		$this->setGroupPermissions( 'sysop', 'deletedtext', true );
+		$this->setGroupPermissions( [
+			'unittesters' => [
+				'test' => true,
+				'runtest' => true,
+				'writetest' => false,
+				'nukeworld' => false,
+			],
+			'testwriters' => [
+				'test' => true,
+				'writetest' => true,
+				'modifytest' => true,
+			],
+			'*' => [
+				'editmyoptions' => true,
+			],
+			'deleted-viewer' => [
+				'deletedhistory' => true,
+				'deletedtext' => true,
+				'viewsuppressed' => true,
+			],
+			'interface-admin' => [
+				'editinterface' => true,
+				'editsitejs' => true,
+				'edituserjs' => true,
+			],
+			'sysop' => [
+				'editinterface' => true,
+				'delete' => true,
+				'undelete' => true,
+				'deletedhistory' => true,
+				'deletedtext' => true,
+			],
+		] );
 
 		// Without this testUserBlock will use a non-English context on non-English MediaWiki
 		// installations (because of how Title::checkUserBlock is implemented) and fail.

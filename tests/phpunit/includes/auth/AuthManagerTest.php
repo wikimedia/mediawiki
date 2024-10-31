@@ -2878,8 +2878,12 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$username = self::usernameForCreation();
 		$expectedSource = AuthManager::AUTOCREATE_SOURCE_SESSION;
 
-		$this->setGroupPermissions( '*', 'createaccount', true );
-		$this->setGroupPermissions( '*', 'autocreateaccount', false );
+		$this->setGroupPermissions( [
+			'*' => [
+				'createaccount' => true,
+				'autocreateaccount' => false,
+			]
+		] );
 		$this->initializeManager( true );
 
 		// Set up lots of mocks...
@@ -3062,8 +3066,12 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'noname', $session->get( AuthManager::AUTOCREATE_BLOCKLIST ) );
 
 		// IP unable to create accounts
-		$this->setGroupPermissions( '*', 'createaccount', false );
-		$this->setGroupPermissions( '*', 'autocreateaccount', false );
+		$this->setGroupPermissions( [
+			'*' => [
+				'createaccount' => false,
+				'autocreateaccount' => false,
+			]
+		] );
 		$this->initializeManager( true );
 		$session = $this->request->getSession();
 		$user = User::newFromName( $username );
@@ -3084,8 +3092,6 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 
 		// maintenance scripts always work
 		$expectedSource = AuthManager::AUTOCREATE_SOURCE_MAINT;
-		$this->setGroupPermissions( '*', 'createaccount', false );
-		$this->setGroupPermissions( '*', 'autocreateaccount', false );
 		$this->initializeManager( true );
 		$session = $this->request->getSession();
 		$user = User::newFromName( $username );
@@ -3097,7 +3103,6 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		// Test that both permutations of permissions are allowed
 		// (this hits the two "ok" entries in $mocks['pre'])
 		$expectedSource = AuthManager::AUTOCREATE_SOURCE_SESSION;
-		$this->setGroupPermissions( '*', 'createaccount', false );
 		$this->setGroupPermissions( '*', 'autocreateaccount', true );
 		$this->initializeManager( true );
 		$session = $this->request->getSession();
@@ -3107,8 +3112,12 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$this->unhook( 'LocalUserCreated' );
 		$this->assertStatusError( 'ok', $ret );
 
-		$this->setGroupPermissions( '*', 'createaccount', true );
-		$this->setGroupPermissions( '*', 'autocreateaccount', false );
+		$this->setGroupPermissions( [
+			'*' => [
+				'createaccount' => true,
+				'autocreateaccount' => false,
+			]
+		] );
 		$this->initializeManager( true );
 		$session = $this->request->getSession();
 		$user = User::newFromName( $username );
