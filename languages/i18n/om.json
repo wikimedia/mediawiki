@@ -343,7 +343,7 @@
 	"currentrev-asof": "Foyyeeffata reefuu hanga $1",
 	"revisionasof": "Foyyeeffata hamma $1",
 	"revision-info": "Keessa deebiin kun gaafa $1 {{GENDER:$6|$2 irratti}}$7",
-	"previousrevision": "Foyyeeffata duraani",
+	"previousrevision": "← Foyyeeffata duraani",
 	"nextrevision": "Foyyeeffata daran haaraa →",
 	"currentrevisionlink": "Foyyeeffata reefuu",
 	"cur": "ammee",

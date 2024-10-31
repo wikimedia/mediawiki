@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Aandeginini",
-			"Amire80",
 			"Nibi-zhimaaganish"
 		]
 	},
@@ -227,7 +226,7 @@
 	"currentrev-asof": "Ishkwaaj aanji' ako $1",
 	"revisionasof": "Ako-aanji' $1",
 	"revision-info": "Aanji' ako $1 jiigayi'ii {{GENDER:$6|$2}}$7",
-	"previousrevision": "Gete-aanji'",
+	"previousrevision": "← Gete-aanji'",
 	"nextrevision": "Nawaj oshki aanji' →",
 	"currentrevisionlink": "Ishkwaaj aanji'",
 	"cur": "aazha",

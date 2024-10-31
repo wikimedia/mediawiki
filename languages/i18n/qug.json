@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"AlimanRuna",
-			"Amire80",
 			"Ebe123",
 			"Sylvain2803",
 			"아라"
@@ -294,8 +293,8 @@
 	"currentrev-asof": "$1 pachamanta kunan killkay",
 	"revisionasof": "$1-pa panka",
 	"revision-info": "Kay pankaka $1-pi shinallami karka, $2 rurakka kayta rurarka.",
-	"previousrevision": "Ñawpak pachapi panka",
-	"nextrevision": "Katik killkay",
+	"previousrevision": "← Ñawpak pachapi panka",
+	"nextrevision": "Katik killkay →",
 	"currentrevisionlink": "Kunan killkashka",
 	"cur": "Kunan",
 	"last": "ñawp",

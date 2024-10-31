@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Ahmedadeljaff",
-			"Amire80",
 			"Dr-Taher",
 			"Hubaishan",
 			"MRidhaAJ",
@@ -825,8 +824,8 @@
 	"currentrev-asof": "المراجعة الحالية بتاريخ $1",
 	"revisionasof": "مراجعه $1",
 	"revision-info": "مراجعة $1 بواسطة {{GENDER:$6|$2}}$7",
-	"previousrevision": "مراجعة أقدم",
-	"nextrevision": "مراجعة أحدث",
+	"previousrevision": "→ مراجعة أقدم",
+	"nextrevision": "مراجعة أحدث ←",
 	"currentrevisionlink": "المراجعة الحالية",
 	"cur": "حالياً",
 	"tooltip-cur": "الفرق وي المراجعه الأخيره",

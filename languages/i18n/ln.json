@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"BamLifa",
 			"Bombo (on ln.wikipedia.org)",
 			"DannyS712",
@@ -74,6 +73,7 @@
 	"cancel": "Kozóngela",
 	"mypage": "Lonkásá",
 	"mytalk": "Ntembe na ngáí",
+	"anontalk": "Ntembe",
 	"navigation": "Botamboli",
 	"and": "&#32;mpé",
 	"faq": "Mitúná Mizóngelaka (MM)",
@@ -95,6 +95,7 @@
 	"print": "kobimisa nkomá",
 	"view": "Komɔ́nisa",
 	"skin-view-view": "Kotánga",
+	"skin-view-foreign": "Tálá na $1",
 	"edit": "kobɔngisa",
 	"skin-view-edit": "kobɔngisa",
 	"create": "Kokela",
@@ -187,6 +188,7 @@
 	"nav-login-createaccount": "Komíkomisa tǒ kokɔtɔ",
 	"logout": "kolongwa",
 	"userlogout": "Kolongwa",
+	"notloggedin": "Bakɔtákí na mikandá tɛ",
 	"createaccount": "Míkomísá yɔ̌-mɛ́i",
 	"createaccountmail": "na mokánda",
 	"mailmypassword": "Kotíndisa liloba-nzelá lya sika na mɛ́lɛ",

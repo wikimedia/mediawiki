@@ -2,8 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"AgnesAbah",
-			"Amire80",
-			"Peace"
+			"Peace",
+			"AnnGabZak"
 		]
 	},
 	"tog-underline": "éwú kíyà kámé wú dámá",
@@ -347,7 +347,7 @@
 	"revisionasof": "Èwn mádabiwubi gba ako $1",
 	"revision-info": "Éwn má dabi ché égbá $1 akò {{GENDER:$6|$2}}$7",
 	"previousrevision": "← èyíigbélé",
-	"nextrevision": "Èyi etitò pé",
+	"nextrevision": "Èyi etitò pé →",
 	"currentrevisionlink": "Éyi etitò",
 	"cur": "ábajoí",
 	"last": "gótá",
@@ -373,7 +373,7 @@
 	"diff-multi-otherusers": "({{PLURAL:$1|agbadé oka ma dabi kó|$1 amenwu kí da agbadé má dabi kó}} {{PLURAL:$2|éné eku oka ómuné|$2 énéeku}} kí má mà du nwañ)",
 	"searchresults": "Téné oyí",
 	"searchresults-title": "Téné oyí $1",
-	"prevn": "Akwobi {{PLURAL:$1|$1}}",
+	"prevn": "akwobi {{PLURAL:$1|$1}}",
 	"nextn": "aróno {{PLURAL:$1|$1}}",
 	"prev-page": "ogbá akwobi",
 	"next-page": "ogbá kí róno",

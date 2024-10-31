@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Crucifunked",
 			"Enolp",
 			"Esbardu",
@@ -790,7 +789,7 @@
 	"currentrev-asof": "Revisión actual a fecha de $1",
 	"revisionasof": "Revisión a fecha de $1",
 	"revision-info": "La revisión del $4 a les $5 por {{GENDER:$6|$2}}$7",
-	"previousrevision": "←Revisión anterior",
+	"previousrevision": "← Revisión anterior",
 	"nextrevision": "Revisión siguiente→",
 	"currentrevisionlink": "Revisión actual",
 	"cur": "act",
@@ -3088,8 +3087,6 @@
 	"mcrundo-changed": "La páxina cambió desque visti les diferencies. Revisa'l cambiu nuevu.",
 	"mcrundo-parse-failed": "Nun pudo analizase la nueva revisión: $1",
 	"percent": "$1%",
-	"parentheses-start": "(",
-	"parentheses-end": ")",
 	"quotation-marks": "«$1»",
 	"imgmultipageprev": "← páxina anterior",
 	"imgmultipagenext": "páxina siguiente →",

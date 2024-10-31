@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Aishik Rehman",
-			"Amire80",
 			"Bodhisattwa",
 			"DannyS712",
 			"Macofe",
@@ -473,7 +472,7 @@
 	"currentrev-asof": "$1র মাতুঙে এবাকার সংস্করণহান",
 	"revisionasof": "রিভিসনহান $1 পেয়া",
 	"revision-info": "{{GENDER:$6|$2}}ে $1 তারিখে সিলকরিসে সংস্করনহান$7",
-	"previousrevision": "←পুরানা পতানিহান",
+	"previousrevision": "← পুরানা পতানিহান",
 	"nextrevision": "নুৱা ভার্সনহান→",
 	"currentrevisionlink": "হাদি এহানর পতানি",
 	"cur": "এপাগা",

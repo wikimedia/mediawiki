@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"POSSUM chowg"
 		]
 	},
@@ -600,7 +599,7 @@
 	"feedback-submit": "Mamuk ukuk",
 	"searchsuggest-search": "nanich-ɬatwa kʰapa {{SITENAME}}",
 	"searchsuggest-containing": "tilay t’ɬap pipa pus t’uʔan",
-	"duration-days": "$1 {{PLURAL:$1sən}}",
+	"duration-days": "$1 {{PLURAL:$1|sən}}",
 	"expand_templates_ok": "Aha",
 	"pagelang-name": "Pipa",
 	"pagelang-reason": "Qhata",

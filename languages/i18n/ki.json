@@ -3,8 +3,7 @@
 		"authors": [
 			"Kwisha",
 			"Ngangaesther",
-			"Stephenwanjau",
-			"Amire80"
+			"Stephenwanjau"
 		]
 	},
 	"underline-always": "Mahinda mothe",
@@ -46,7 +45,6 @@
 	"cactions": "Makiria",
 	"nstab-image": "Failo",
 	"nstab-help": "Handu ha uteithio",
-	"action-delete": "Futa",
 	"move": "Thie",
 	"movereason": "Gitumi:",
 	"skin-action-delete": "Futa"

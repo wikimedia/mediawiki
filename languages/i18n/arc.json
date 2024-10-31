@@ -3,7 +3,6 @@
 		"authors": [
 			"334a",
 			"A2raya07",
-			"Amire80",
 			"Basharh",
 			"DannyS712",
 			"Fitoschido",
@@ -364,8 +363,8 @@
 	"currentrev-asof": "ܬܢܝܬܐ ܗܫܝܬܐ ܒܣܝܩܘܡ $1",
 	"revisionasof": "ܬܢܝܬܐ ܒܣܝܩܘܡ $1",
 	"revision-info": "ܬܢܝܬܐ ܒܣܝܩܘܡ $1 ܒܝܕ $2",
-	"previousrevision": "← ܬܢܝܬܐ ܕܩܕܡ",
-	"nextrevision": "ܬܢܝܬܐ ܕܒܬܪ →",
+	"previousrevision": "→ ܬܢܝܬܐ ܕܩܕܡ",
+	"nextrevision": "ܬܢܝܬܐ ܕܒܬܪ ←",
 	"currentrevisionlink": "ܬܢܝܬܐ ܗܫܝܬܐ",
 	"cur": "ܗܫܝܐ",
 	"next": "ܕܒܬܪ",

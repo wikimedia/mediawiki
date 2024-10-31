@@ -1,8 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
-			"ऐक्टिवेटेड्",
-			"Amire80"
+			"ऐक्टिवेटेड्"
 		]
 	},
 	"tog-underline": "रेखाङ्कित कड़ी :",
@@ -593,7 +592,7 @@
 	"revisionasof": "$1 तकला संशोधन",
 	"revision-info": "{{GENDER:$6|$2}} के द्वारा परिवर्तित $1 के संशोधन $7",
 	"previousrevision": "← पुरान संशोधन",
-	"nextrevision": "नया संशोधन",
+	"nextrevision": "नया संशोधन →",
 	"currentrevisionlink": "वर्तमान संशोधन",
 	"cur": "हाल",
 	"tooltip-cur": "वर्तमान संशोधनके साथे अन्तर",

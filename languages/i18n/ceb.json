@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Abastillas",
-			"Amire80",
 			"Bentong Isles",
 			"DannyS712",
 			"Dosmiin Barsbold",
@@ -239,7 +238,7 @@
 	"page-atom-feed": "\"$1\" Feed nga Atom",
 	"red-link-title": "$1 (wala pa masulat)",
 	"nstab-main": "Artikulo",
-	"nstab-user": "{{GENDER:$1| panid sa tiggamit}}",
+	"nstab-user": "{{GENDER:$1|panid sa tiggamit}}",
 	"nstab-media": "Panid sa medya",
 	"nstab-special": "Espesyal nga panid",
 	"nstab-project": "Panid sa proyekto",
@@ -401,7 +400,7 @@
 	"currentrev-asof": "Rebisyon sa kasamtangan sa taknang $1",
 	"revisionasof": "Rebisyon niadtong $1",
 	"revision-info": "Rebisyon sa $1 ni $2",
-	"previousrevision": "←Mas daang pag-usab",
+	"previousrevision": "← Mas daang pag-usab",
 	"nextrevision": "Mas bag-ong rebisyon →",
 	"currentrevisionlink": "Kasamtangang rebisyon",
 	"cur": "kar",

@@ -3,7 +3,6 @@
 		"authors": [
 			"1233qwer1234qwer4",
 			"Amaia",
-			"Amire80",
 			"An13sa",
 			"Arkaitz Barnetik",
 			"Asierog",
@@ -1154,6 +1153,7 @@
 	"prefs-help-signature": "Eztabaida orrietako iruzkinak \"<nowiki>~~~~</nowiki>\" ikurrekin sinatu behar dira, honela zure sinadura eta sinatzeko-unea azalduko dira.",
 	"badsig": "Baliogabeko sinadura; egiaztatu HTML etiketak.",
 	"badsiglength": "Zure sinadura luzeegia da.\n$1 {{PLURAL:$1|karakteretik|karakteretik}} behera izan behar ditu.",
+	"linterror-wikilink-in-extlink": "Loturak loturetan",
 	"yourgender": "Nola nahi duzu zu deskribatzea?",
 	"gender-unknown": "Aipatzen zaituztenean, softwareak genero neutroa erabiliko du hori posible denean",
 	"gender-notknown": "Wiki orriak editatzen dituen pertsona bat",

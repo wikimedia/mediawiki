@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Arjunaraoc",
 			"Ashokjayanti",
 			"Bvprasadenwiki",
@@ -3269,8 +3268,6 @@
 	"colon-separator": ":&#32;",
 	"ellipsis": "...",
 	"percent": "$1%",
-	"parentheses-start": "(",
-	"parentheses-end": ")",
 	"brackets": "[$1]",
 	"brackets-start": "[",
 	"brackets-end": "]",

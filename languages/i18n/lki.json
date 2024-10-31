@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Alirezaaa",
-			"Amire80",
 			"Arash71",
 			"DannyS712",
 			"Ebraminio",
@@ -19,7 +18,8 @@
 			"Miladrahimi",
 			"Mjbmr",
 			"Physicsch",
-			"Process cq"
+			"Process cq",
+			"Ebrahim"
 		]
 	},
 	"tog-underline": "خط کیشائن ژێر پیوندەل:",
@@ -718,7 +718,7 @@
 	"currentrev-asof": "نسخهٔ کنونی تا $1",
 	"revisionasof": "نؤسخهٔ $1",
 	"revision-info": "Revision as of $1 by {{GENDER:$6|$2}}$7",
-	"previousrevision": "← ورژن کؤئنۀ/قۀدیمی",
+	"previousrevision": "→ ورژن کؤئنۀ/قۀدیمی",
 	"nextrevision": "نسخهٔ جدیدتر ←",
 	"currentrevisionlink": "نمایش نسخهٔ فعلی",
 	"cur": "فعلی",

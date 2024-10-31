@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Denö",
 			"Ghiutun",
 			"Hiloin Natoi",
@@ -825,7 +824,7 @@
 	"currentrev-asof": "Nygöine versii $1",
 	"revisionasof": "Versii $1",
 	"revision-info": "Versii aijas $1 - luadinuh {{GENDER:$6|$2}}$7",
-	"previousrevision": "← ielembäine versii",
+	"previousrevision": "← Ielembäine versii",
 	"nextrevision": "Uvvembi versii →",
 	"currentrevisionlink": "Nygöine versii",
 	"cur": "nyg.",

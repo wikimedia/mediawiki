@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Amgine",
-			"Amire80",
 			"C.R.",
 			"Clamengh",
 			"Dakrismeno",
@@ -777,7 +776,7 @@
 	"postedit-confirmation-saved": "La toa mudifica l'è stada memorizzada.",
 	"postedit-confirmation-published": "La toa modifega l'è stada publicada.",
 	"postedit-temp-created-label": "Cunt temporani",
-	"postedit-temp-created": "On cunt insgenerad in automatich l'è stad cread per ti cont el sgiontà on cochi al to programa de navigazzion. Per catà foeura on nom de toa scerna e otegnì pussee de fonzion, pensa de [$1 crà on cunt].",
+	"postedit-temp-created": "Un'[[$2|utenza insgenerada in automatich]] l'è stada creada per cont el sgiontàgh on coki al to curiosador. Per catà foeura on nom che te pias e otegnì pussee de fonzion, considera la [$1 creazzion d'on cunt].",
 	"edit-already-exists": "A se po minga creà una pagina noeuva.\nLa gh'è sgiamò.",
 	"defaultmessagetext": "Test standard",
 	"content-failed-to-parse": "Impossibil fà l'analisi del contegnud de $2 per el model $1: $3",
@@ -1479,7 +1478,7 @@
 	"recentchanges-label-unpatrolled": "Quella modifega chì a l'è stada nananmò verificada.",
 	"recentchanges-label-plusminus": "La grandezza de la pagina l'è cambiada de quell numer de bait chì",
 	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
-	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (vanda anca [[Special:NewPages|la lista de le pagine noeuve]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (varda anca [[Special:NewPages|la lista de le pagine noeuve]])",
 	"recentchanges-legend-watchlistexpiry": "Pagina temporanement sot oeugg",
 	"recentchanges-submit": "Fà vedè",
 	"rcfilters-tag-remove": "Toeu via '$1'",

@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"CapitainAfrika",
 			"Chrisdanielkazadi",
 			"Shayi ngolu"
@@ -174,7 +173,6 @@
 	"viewdeleted": "Udi umona $1 anyi?",
 	"red-link-title": "$1 (page does not exist)",
 	"nstab-main": "Dibeji",
-	"nstab-user": "{{GENDER:$1|User page}}",
 	"nstab-media": "Tshibejibeji tshia malu a bantu",
 	"nstab-special": "Dibeji Dia mushinga",
 	"nstab-project": "Tshibejibeji tshia mudimu",
@@ -296,7 +294,7 @@
 	"diff-multi-otherusers": "({{PLURAL:$1|tshi|$1}} mushindu{{PLURAL:$1||s}} wa pa kashi{{PLURAL:$1||s}} kudi {{PLURAL:$2|un autre|$2}} udi ukuata mudimu {{PLURAL:$2||s}} kashiyi tshimweka {{PLURAL:$1||s}})",
 	"searchresults": "Mapeta aa dikebulula",
 	"searchresults-title": "Mapeta aa dikebulula bua:$1",
-	"prevn": "Kunnyima{{PLURAL:$1|$1}}",
+	"prevn": "kunnyima {{PLURAL:$1|$1}}",
 	"nextn": "Tshidi tshilonda{{PLURAL:$1|$1}}",
 	"prevn-title": "$1bipeta{{PLURAL:$1||s}}\nBia panyima{{PLURAL:$1||s}}",
 	"nextn-title": "$1bipeta{{PLURAL:$1||s}}\nBidi bilonda{{PLURAL:$1||s}}",
@@ -528,7 +526,7 @@
 	"feedback-cancel": "Kwimakija",
 	"searchsuggest-search": "Bukebuludi",
 	"searchsuggest-containing": "Kukeba pa mabeji adi ne:",
-	"duration-days": "$1 dituku{{PLURAL:$1||s}}",
+	"duration-days": "$1 {{PLURAL:$1|dituku}}",
 	"pagelang-reason": "Bua tshinyi",
 	"blockedtext-made-by": "Dikanga dienzeka kudi $1.",
 	"blockedtext-start-time": "Tshia ku ntuadijilu: $1",

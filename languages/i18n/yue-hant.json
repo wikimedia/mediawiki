@@ -50,7 +50,8 @@
 			"Yueman",
 			"Z423x5c6",
 			"捍粵者",
-			"아라"
+			"아라",
+			"沈澄心"
 		]
 	},
 	"tog-underline": "連結加底線：",
@@ -980,7 +981,7 @@
 	"titlematches": "啱頁面標題",
 	"textmatches": "啱頁面文字",
 	"notextmatches": "冇頁面文字符合",
-	"prevn": "前$1",
+	"prevn": "前{{PLURAL:$1|$1}}",
 	"nextn": "後{{PLURAL:$1|$1}}",
 	"prev-page": "上一版",
 	"next-page": "下一版",

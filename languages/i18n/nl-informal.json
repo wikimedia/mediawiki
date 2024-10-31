@@ -12,7 +12,8 @@
 			"Romaine",
 			"Siebrand",
 			"Southparkfan",
-			"Tedjuh10"
+			"Tedjuh10",
+			"Woytecr"
 		]
 	},
 	"tog-oldsig": "Je huidige handtekening:",
@@ -311,7 +312,6 @@
 	"undeletehistory": "Als je de pagina terugplaatst, worden ook de oude versies ervan teruggeplaatst in de geschiedenis.\nAls er al een nieuwe pagina met dezelfde naam is aangemaakt sinds de pagina is verwijderd, dan verschijnen de eerder verwijderde versies in de geschiedenis van de nieuwe pagina.",
 	"undeleterevision-missing": "Ongeldige of ontbrekende versie.\nMogelijk is je koppeling verkeerd, of is de versie al teruggeplaatst of al verwijderd uit het archief.",
 	"undelete-show-file-confirm": "Weet je zeker dat je een verwijderde versie van het bestand \"<nowiki>$1</nowiki>\" van $2 om $3 wilt bekijken?",
-	"ipb-partial-help": "Hiermee kun je pagina's en naamruimten kiezen om te blokkeren. Blokkeert geen standaardacties, maar laat je wel bepaalde specifieke acties blokkeren.",
 	"ipb-blockingself": "Je staat op het punt jezelf te blokkeren. Weet je zeker dat je dat wilt doen?",
 	"ipb-confirmhideuser": "Je staat op het punt een verborgen gebruiker te blokkeren. Hiervoor worden gebruikersnamen in alle lijsten en logboekregels verborgen. Weet je het zeker?",
 	"ipb-needreblock": "$1 is al geblokkeerd.\nWil je de instellingen wijzigen?",

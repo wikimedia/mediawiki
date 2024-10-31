@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Kaganer",
 			"Mestos",
 			"Meänmaa2",
@@ -346,7 +345,7 @@
 	"currentrev-asof": "Nykynen versuuni $1",
 	"revisionasof": "Versuuni $1",
 	"revision-info": "Versuuni hetkelä $1 – tehny {{GENDER:$6|$2}}$7",
-	"previousrevision": "Vanheempi versuuni",
+	"previousrevision": "← Vanheempi versuuni",
 	"nextrevision": "Uuempi versuuni",
 	"currentrevisionlink": "Nykynen versuuni",
 	"cur": "nyk.",

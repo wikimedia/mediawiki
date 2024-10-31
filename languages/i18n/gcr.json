@@ -1027,7 +1027,7 @@
 	"logentry-upload-upload": "$1 {{GENDER:$2|enpòrté}} $3",
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|télévèrsé}} roun vèrsyon nòv di $3",
 	"searchsuggest-search": "Sasé annan {{SITENAME}}",
-	"duration-days": "$1 jou{{PLURAL:$1|}}",
+	"duration-days": "$1 {{PLURAL:$1|jou}}",
 	"pagelang-name": "Paj",
 	"date-range-from": "Dipi :",
 	"randomrootpage": "Paj rakaba aléyatwar",

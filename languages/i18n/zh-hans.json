@@ -205,7 +205,8 @@
 			"Key0121",
 			"Matma Rex",
 			"Midleading",
-			"Chimes"
+			"Chimes",
+			"Wang31"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -2859,7 +2860,7 @@
 	"whatlinkshere-links": "←链接",
 	"whatlinkshere-hideredirs": "隐藏重定向",
 	"whatlinkshere-hidetrans": "隐藏嵌入",
-	"whatlinkshere-hidelinks": "隐藏链接",
+	"whatlinkshere-hidelinks": "隐藏链入",
 	"whatlinkshere-hideimages": "隐藏文件链接",
 	"whatlinkshere-sectionredir": "重定向至章节“$1”",
 	"whatlinkshere-submit": "提交",
@@ -4047,7 +4048,7 @@
 	"duration-seconds": "$1秒",
 	"duration-minutes": "$1分",
 	"duration-hours": "$1小时",
-	"duration-days": "$1天",
+	"duration-days": "$1{{PLURAL:$1|天}}",
 	"duration-weeks": "$1周",
 	"duration-years": "$1年",
 	"duration-decades": "$10年",

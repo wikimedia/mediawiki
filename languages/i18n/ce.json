@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"BaRaN6161 TURK",
 			"Chechenka",
 			"Comp1089",
@@ -144,7 +143,6 @@
 	"index-category": "Меттигтерахьйо агӀонаш",
 	"noindex-category": "ДӀахьушйоцу агӀонаш",
 	"broken-file-category": "Болх ца бен файлийн хьажоргаш йолу агӀонаш",
-	"categoryviewer-pagedlinks": "\"$1\" ($2)",
 	"about": "Цуьнах лаьцна",
 	"article": "Йаззам",
 	"newwindow": "(керлачу корехь)",
@@ -292,7 +290,6 @@
 	"page-rss-feed": "«$1» — RSS-аса",
 	"page-atom-feed": "«$1» — Atom-аса",
 	"feed-atom": "Атом",
-	"feed-rss": "RSS",
 	"red-link-title": "$1 (иштта агӀо йоцуш йу)",
 	"sort-descending": "Жима хилийта къепе далор",
 	"sort-ascending": "Алсам хилийта къепе далор",

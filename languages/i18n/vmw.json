@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Gildo Máquina",
 			"Gito da Ana",
 			"Jacinto Jeque",
@@ -261,8 +260,8 @@
 	"currentrev-asof": "Mureerihelo wa naanano okhuma $1",
 	"revisionasof": "Otthikela oweha wa $1",
 	"revision-info": "Moonelelo wa $1 variyari mwa {{GENDER:$6|$2}}$7",
-	"previousrevision": "Moonelo ovinre",
-	"nextrevision": "Moonelo onttharelana",
+	"previousrevision": "← Moonelo ovinre",
+	"nextrevision": "Moonelo onttharelana →",
 	"currentrevisionlink": "Moonelo a naanano",
 	"cur": "Ya naanaano",
 	"last": "Ya khalayi",
@@ -289,7 +288,7 @@
 	"diff-multi-otherusers": "({{PLURAL:$1|Woonexexiwa wa variari|$1 intermediate revisions}} ni {{PLURAL:$2|Mulipa olepa munika |$2 users}} not shown)",
 	"searchresults": "Soophwanyiwa sa muthokoseryo",
 	"searchresults-title": "Soophwanya sa muthokoseryo a $1",
-	"prevn": "Ottuli {{PLURAL:$1|$1}}",
+	"prevn": "ottuli {{PLURAL:$1|$1}}",
 	"nextn": "Ohoolo {{PLURAL:$1|$1}}",
 	"prevn-title": "Otthika {{PLURAL:$1 yoowattamela|sowaattamela}} $1 {{PLURAL:$1|mureerelo|mireerelo}}",
 	"nextn-title": "Otthika {{PLURAL:$1 yoowattamela|sowaattamela}} $1 {{PLURAL:$1|mureerelo|mireerelo}}",

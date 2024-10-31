@@ -252,7 +252,7 @@
 	"sort-descending": "Discrexhant relijhaedje",
 	"sort-ascending": "Acrexhant relijhaedje",
 	"nstab-main": "Årtike",
-	"nstab-user": "Pådje di l’&nbsp;uzeu{{GENDER:$1||se}}",
+	"nstab-user": "Pådje di {{GENDER:$1|l’&nbsp;uzeu|l’&nbsp;uzeuse}}",
 	"nstab-media": "Media",
 	"nstab-special": "Pådje sipeciåle",
 	"nstab-project": "Pådje",

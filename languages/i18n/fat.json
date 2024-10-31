@@ -1,14 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Ebenoffen1",
 			"Gregorynelsonmensah1",
 			"Leonard Nketsia",
 			"Lynessa",
 			"Robertjamal12",
 			"Suzieturkson",
-			"Wendygyadu"
+			"Wendygyadu",
+			"Assilidjoe"
 		]
 	},
 	"tog-underline": "Linke Asetwa",
@@ -301,8 +301,8 @@
 	"currentrev-asof": "Nsesamu a ɔnnkyɛree bɛpem $1",
 	"revisionasof": "Nsesa wɔayɛ bɛpem $1",
 	"revision-info": "Nsesa a {{GENDER:$6|$2}}$7 ayɛ bɛpem $1",
-	"previousrevision": "Nsesamu dadaw",
-	"nextrevision": "Nsesa fofor",
+	"previousrevision": "← Nsesamu dadaw",
+	"nextrevision": "Nsesa fofor →",
 	"currentrevisionlink": "Nsesamu a ɔnnkyɛree",
 	"cur": "dza ɔwɔ do",
 	"next": "dza ɔtɔ do",

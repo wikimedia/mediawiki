@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Asmen",
 			"Bjarki S",
 			"Cessator",
@@ -298,7 +297,6 @@
 	"site-atom-feed": "$1 Atom-streymi",
 	"page-rss-feed": "„$1“ RSS-streymi",
 	"page-atom-feed": "„$1“ Atom-streymi",
-	"feed-rss": "RSS",
 	"red-link-title": "$1 (síða er ekki enn til)",
 	"sort-descending": "Raða í lækkandi röð",
 	"sort-ascending": "Raða í hækkandi röð",
@@ -814,7 +812,7 @@
 	"currentrev-asof": "Nýjasta útgáfa síðan $1",
 	"revisionasof": "Útgáfa síðunnar $1",
 	"revision-info": "Útgáfa frá $1 eftir $2\nÚtgáfa frá $1 eftir {{GENDER:$6|$2}}$7",
-	"previousrevision": "←Fyrri útgáfa",
+	"previousrevision": "← Fyrri útgáfa",
 	"nextrevision": "Næsta útgáfa→",
 	"currentrevisionlink": "Nýjasta útgáfa",
 	"cur": "núverandi",
@@ -1573,7 +1571,6 @@
 	"minoreditletter": "m",
 	"newpageletter": "N",
 	"boteditletter": "v",
-	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bæt|bæti}} eftir breytingu",
 	"newsectionsummary": "Nýr hluti: /* $1 */",
 	"rc-old-title": "upphaflega búin til að nafni „$1“",
@@ -3165,8 +3162,6 @@
 	"pipe-separator": "&#32;|&#32;",
 	"ellipsis": "...",
 	"percent": "$1%",
-	"parentheses-start": "(",
-	"parentheses-end": ")",
 	"brackets": "[$1]",
 	"brackets-start": "[",
 	"brackets-end": "]",

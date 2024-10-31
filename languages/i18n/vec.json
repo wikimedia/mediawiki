@@ -3,7 +3,6 @@
 		"authors": [
 			"1233qwer1234qwer4",
 			"Alunardon90",
-			"Amire80",
 			"BrokenArrow",
 			"C.R.",
 			"Candalua",
@@ -295,7 +294,7 @@
 	"sort-ascending": "Ordinamento cresente",
 	"sort-initial": "Órdena łétara de scumìsio",
 	"nstab-main": "Voxe",
-	"nstab-user": "{{GENDER:$1|Utente}}:",
+	"nstab-user": "{{GENDER:$1|Utente}}",
 	"nstab-media": "File multimediałe",
 	"nstab-special": "Pàjina speçale",
 	"nstab-project": "Pajina de projeto",

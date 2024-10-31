@@ -3,7 +3,6 @@
 		"authors": [
 			"AguzulH",
 			"Amara-Amaziɣ",
-			"Amire80",
 			"Aslmad mohamed belarhzali",
 			"Brahim-essaidi",
 			"Gagnabil",
@@ -527,8 +526,8 @@
 	"currentrev-asof": "ⴰⵣⵣⵔⴰⵢ ⴰⵎⴳⴳⴰⵔⵓ ⴳ $1",
 	"revisionasof": "ⵜⵓⵏⵖⵉⵍⵜ ⵏ $1",
 	"revision-info": "ⴰⵣⵣⵔⴰⵢ ⵏ $1 ⵙⴳ ⵖⵓⵔ {{GENDER:$6|$2}}$7",
-	"previousrevision": "ⵜⵓⵏⵖⵉⵍⵜ ⵜⴰⵇⴱⵓⵔⵜ",
-	"nextrevision": "ⴰⵣⵣⵔⴰⵢ ⴰⵎⴰⵢⵏⵓ",
+	"previousrevision": "← ⵜⵓⵏⵖⵉⵍⵜ ⵜⴰⵇⴱⵓⵔⵜ",
+	"nextrevision": "ⴰⵣⵣⵔⴰⵢ ⴰⵎⴰⵢⵏⵓ →",
 	"currentrevisionlink": "ⴰⵣⵣⵔⴰⵢ ⴰⵎⴳⴳⴰⵔⵓ",
 	"cur": "ⵎⵔⵏ",
 	"next": "ⵉⵏⴹⴼⵔ",

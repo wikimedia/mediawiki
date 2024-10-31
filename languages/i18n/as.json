@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Aftabuzzaman",
-			"Amire80",
 			"Bishnu Saikia",
 			"Bodhisattwa",
 			"Britul",
@@ -2819,7 +2818,7 @@
 	"duration-minutes": "$1 {{PLURAL:$1|মিনিট|মিনিট}}",
 	"duration-hours": "$1 {{PLURAL:$1|ঘণ্টা|ঘণ্টা}}",
 	"duration-days": "$1 {{PLURAL:$1|দিন|দিন}}",
-	"duration-weeks": "{{PLURAL:$1|সপ্তাহ|সপ্তাহ}}",
+	"duration-weeks": "{{PLURAL:$1|সপ্তাহ}}",
 	"duration-years": "$1 {{PLURAL:$1|বছৰ|বছৰ}}",
 	"duration-decades": "$1 {{PLURAL:$1|দশক|দশক}}",
 	"duration-centuries": "$1 {{PLURAL:$1|শতাব্দী|শতাব্দী}}",

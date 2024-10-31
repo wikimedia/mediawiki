@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Adi Mayndra",
-			"Amire80",
 			"Andru",
 			"BASAbali",
 			"Carma Citrawati",
@@ -16,7 +15,8 @@
 			"Nemo bis",
 			"NoiX180",
 			"Wandering ant",
-			"아라"
+			"아라",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Garis ring sor pranala:",
@@ -3307,8 +3307,6 @@
 	"colon-separator": ":&#32;",
 	"ellipsis": "...",
 	"percent": "$1%",
-	"parentheses-start": "(",
-	"parentheses-end": ")",
 	"brackets": "[$1]",
 	"brackets-start": "[",
 	"brackets-end": "]",

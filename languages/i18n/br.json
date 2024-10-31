@@ -3,7 +3,6 @@
 		"authors": [
 			"Adriendelucca",
 			"Als-Holder",
-			"Amire80",
 			"Base",
 			"Candalua",
 			"DannyS712",
@@ -3113,8 +3112,6 @@
 	"mcrundo-changed": "Kemmet eo bet ar bajenn abaoe m’ho peus gwelet an dif. Adlennit ar c’hemm nevez mar plij.",
 	"ellipsis": "...",
 	"percent": "$1%",
-	"parentheses-start": "(",
-	"parentheses-end": ")",
 	"brackets": "[$1]",
 	"quotation-marks": "« $1 »",
 	"formatnum-nan": "Ket un niver",

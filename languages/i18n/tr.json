@@ -3938,7 +3938,7 @@
 	"duration-seconds": "$1 saniye",
 	"duration-minutes": "$1 dakika",
 	"duration-hours": "$1 {{PLURAL:$1|saat}}",
-	"duration-days": "$1 gün",
+	"duration-days": "$1 {{PLURAL:$1|gün}}",
 	"duration-weeks": "$1 hafta",
 	"duration-years": "$1 yıl",
 	"duration-decades": "$1 on yıl",

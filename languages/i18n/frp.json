@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Cedric31",
 			"ChrisPtDe",
 			"DannyS712",
@@ -338,7 +337,7 @@
 	"no-null-revision": "Y at pas moyen de fâre na novèla vèrsion voueda por la pâge « $1 »",
 	"badtitle": "Crouyo titro",
 	"badtitletext": "Lo titro de la pâge demandâye est envalido, vouedo, ou ben o est un titro entèrlengoua ou entèrvouiqui mâl-liyê.\nContint de sûr yon ou ben un mouél de caractèros que pôvont pas étre empleyês dedens los titros.",
-	"title-invalid": "Lo titro de la pâge demandâye est envalido.",
+	"title-invalid": "Lo titro de la pâge demandâye est envalido",
 	"title-invalid-empty": "Lo titro de la pâge demandâye est vouedo ou ben contint mas que lo nom d’un èspâço de noms.",
 	"title-invalid-utf8": "Lo titro de la pâge demandâye contint na cobla UTF-8 envalida.",
 	"title-invalid-interwiki": "Lo titro de la pâge demandâye contint un lim entèrvouiqui que pôt pas étre empleyê dedens los titros.",
@@ -3335,7 +3334,7 @@
 	"duration-seconds": "$1 second{{PLURAL:$1|a|es}}",
 	"duration-minutes": "$1 menut{{PLURAL:$1|a|es}}",
 	"duration-hours": "$1 hor{{PLURAL:$1|a|es}}",
-	"duration-days": "$1 jorn{{PLURAL:$1||s}}",
+	"duration-days": "$1 {{PLURAL:$1|jorn|jorns}}",
 	"duration-weeks": "$1 seman{{PLURAL:$1|a|es}}",
 	"duration-years": "$1 an{{PLURAL:$1||s}}",
 	"duration-decades": "$1 dècèni{{PLURAL:$1|a|es}}",

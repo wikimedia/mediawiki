@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"1233qwer1234qwer4",
-			"Amire80",
 			"Baloch Afghanistan",
 			"Ebraminio",
 			"FarsiNevis",
@@ -19,7 +18,8 @@
 			"RigiMahnoor",
 			"Sultanselim baloch",
 			"ZxxZxxZ",
-			"아라"
+			"아라",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "لینکان کِشک کن:",
@@ -712,8 +712,8 @@
 	"currentrev-asof": "ھنیگݔن پداچارگ چہ $1 ئا",
 	"revisionasof": "چارگ پہ $1",
 	"revision-info": "رمسءِ ورژن $1 گۏن {{GENDER:$6|$2}}$7",
-	"previousrevision": "←پݔسری ورژن",
-	"nextrevision": "نۏکݔن پداچارگ→",
+	"previousrevision": "→ پݔسری ورژن",
+	"nextrevision": "نۏکݔن پداچارگ ←",
 	"currentrevisionlink": "ھنیگݔن پداچارگ",
 	"cur": "هننی",
 	"next": "اݔدگہ",

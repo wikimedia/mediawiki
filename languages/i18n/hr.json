@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Anarhistička Maca",
 			"Anton008",
 			"Astrind",
@@ -817,7 +816,7 @@
 	"currentrev-asof": "Posljednja izmjena od $2 u $3",
 	"revisionasof": "Inačica od $2 u $3",
 	"revision-info": "Inačica $3 od $4 u $5 koju je {{GENDER:$6|unio|unijela}} {{GENDER:$6|$2}}$7",
-	"previousrevision": "←Starija inačica",
+	"previousrevision": "← Starija inačica",
 	"nextrevision": "Novija inačica→",
 	"currentrevisionlink": "vidi trenutačnu inačicu",
 	"cur": "sad",
@@ -948,7 +947,7 @@
 	"showhideselectedversions": "Otkrij/sakrij odabrane izmjene",
 	"editundo": "ukloni ovu izmjenu",
 	"diff-empty": "(Nema razlike inačica)",
-	"diff-multi-sameuser": "{{PLURAL:$1|1=Nije prikazana jedna međuinačica|Nije prikazana $1 međuinačica|Nisu prikazane $1 međuinačice|Nije prikazano $1 međuinačica}}",
+	"diff-multi-sameuser": "({{PLURAL:$1|1=Nije prikazana jedna međuinačica|Nije prikazana $1 međuinačica|Nisu prikazane $1 međuinačice|Nije prikazano $1 međuinačica}} {{GENDER:$3|istoga suradnika|iste suradnice}})",
 	"diff-multi-otherusers": "({{PLURAL:$1|Nije prikazana jedna međuinačica|Nisu prikazane $1 međuinačice|Nije prikazano $1 međuinačica}} {{PLURAL:$2|jednog|$2}} suradnika)",
 	"diff-multi-manyusers": "({{PLURAL:$1|Nije prikazana jedna međuinačica|Nisu prikazane $1 međuinačice|Nije prikazano $1 međuinačica}} više od {{PLURAL:$2|jednog|$2|$2}} suradnika)",
 	"diff-inline-tooltip-ins": "Dodani sadržaj",
