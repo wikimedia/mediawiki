@@ -42,6 +42,8 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
+use MediaWiki\Installer\Task\TaskFactory;
+use MediaWiki\Installer\Task\TaskList;
 use MediaWiki\Interwiki\NullInterwikiLookup;
 use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
@@ -259,14 +261,6 @@ abstract class Installer {
 		'_WithDevelopmentSettings' => false,
 		'wgAuthenticationTokenVersion' => 1,
 	];
-
-	/**
-	 * The actual list of installation steps. This will be initialized by getInstallSteps()
-	 *
-	 * @var array[]
-	 * @phan-var array<int,array{name:string,callback:array{0:object,1:string}}>
-	 */
-	private $installSteps = [];
 
 	/**
 	 * Extra steps for installation, for things like DatabaseInstallers to modify
@@ -792,29 +786,6 @@ abstract class Installer {
 	}
 
 	/**
-	 * On POSIX systems return the primary group of the webserver we're running under.
-	 * On other systems just returns null.
-	 *
-	 * This is used to advice the user that he should chgrp his mw-config/data/images directory as the
-	 * webserver user before he can install.
-	 *
-	 * Public because SqliteInstaller needs it, and doesn't subclass Installer.
-	 *
-	 * @return mixed
-	 */
-	public static function maybeGetWebserverPrimaryGroup() {
-		if ( !function_exists( 'posix_getegid' ) || !function_exists( 'posix_getpwuid' ) ) {
-			# I don't know this, this isn't UNIX.
-			return null;
-		}
-
-		# posix_getegid() *not* getmygid() because we want the group of the webserver,
-		# not whoever owns the current script.
-		$gid = posix_getegid();
-		return posix_getpwuid( $gid )['name'] ?? null;
-	}
-
-	/**
 	 * Convert wikitext $text to HTML.
 	 *
 	 * This is potentially error prone since many parser features require a complete
@@ -867,37 +838,6 @@ abstract class Installer {
 		// updating ExternalLinkTarget in the Configuration instead.
 		global $wgExternalLinkTarget;
 		$this->parserOptions->setExternalLinkTarget( $wgExternalLinkTarget );
-	}
-
-	/**
-	 * Install step which adds a row to the site_stats table with appropriate
-	 * initial values.
-	 *
-	 * @param DatabaseInstaller $installer
-	 *
-	 * @return Status
-	 */
-	public function populateSiteStats( DatabaseInstaller $installer ) {
-		$status = $installer->getConnection( DatabaseInstaller::CONN_CREATE_TABLES );
-		if ( !$status->isOK() ) {
-			return $status;
-		}
-		$status->getDB()->newInsertQueryBuilder()
-			->insertInto( 'site_stats' )
-			->ignore()
-			->row( [
-				'ss_row_id' => 1,
-				'ss_total_edits' => 0,
-				'ss_good_articles' => 0,
-				'ss_total_pages' => 0,
-				'ss_users' => 0,
-				'ss_active_users' => 0,
-				'ss_images' => 0
-			] )
-			->caller( __METHOD__ )
-			->execute();
-
-		return Status::newGood();
 	}
 
 	/**
@@ -1672,62 +1612,67 @@ abstract class Installer {
 	}
 
 	/**
-	 * Get an array of install steps. Should always be in the format of
-	 * [
-	 *   'name'     => 'someuniquename',
-	 *   'callback' => [ $obj, 'method' ],
-	 * ]
+	 * Get a list of tasks to do
+	 *
 	 * There must be a config-install-$name message defined per step, which will
 	 * be shown on install.
 	 *
 	 * @param DatabaseInstaller $installer DatabaseInstaller so we can make callbacks
-	 * @return array[]
-	 * @phan-return array<int,array{name:string,callback:array{0:object,1:string}}>
+	 * @return TaskList
 	 */
-	protected function getInstallSteps( DatabaseInstaller $installer ) {
-		$coreInstallSteps = [
-			[ 'name' => 'database', 'callback' => [ $installer, 'setupDatabase' ] ],
-			[ 'name' => 'tables', 'callback' => [ $installer, 'createTables' ] ],
-			[ 'name' => 'interwiki', 'callback' => [ $installer, 'populateInterwikiTable' ] ],
-			[ 'name' => 'stats', 'callback' => [ $this, 'populateSiteStats' ] ],
-			[ 'name' => 'updates', 'callback' => [ $installer, 'insertUpdateKeys' ] ],
-			[ 'name' => 'restore-services', 'callback' => [ $this, 'restoreServices' ] ],
-			[ 'name' => 'sysop', 'callback' => [ $this, 'createSysop' ] ],
-			[ 'name' => 'mainpage', 'callback' => [ $this, 'createMainpage' ] ],
-		];
+	protected function getTaskList( DatabaseInstaller $installer ) {
+		$taskList = new TaskList;
+		$taskFactory = new TaskFactory(
+			MediaWikiServices::getInstance()->getObjectFactory(),
+			$this->getDBInstaller()
+		);
 
-		// Build the array of install steps starting from the core install list,
-		// then adding any callbacks that wanted to attach after a given step
-		foreach ( $coreInstallSteps as $step ) {
-			$this->installSteps[] = $step;
-			if ( isset( $this->extraInstallSteps[$step['name']] ) ) {
-				$this->installSteps = array_merge(
-					$this->installSteps,
-					$this->extraInstallSteps[$step['name']]
-				);
+		$taskFactory->registerMainInstallerTasks( $taskList );
+
+		$specs = [
+			[
+				'name' => 'restore-services',
+				'callback' => [ $this, 'restoreServices' ],
+				'after' => 'tables',
+			],
+			[
+				'name' => 'sysop',
+				'callback' => function () {
+					return $this->createSysop();
+				},
+				'after' => 'restore-services',
+			],
+			[
+				'name' => 'mainpage',
+				'callback' => function () {
+					return $this->createMainpage();
+				},
+				'after' => 'restore-services',
+			],
+		];
+		foreach ( $specs as $spec ) {
+			$taskList->add( $taskFactory->create( $spec ) );
+		}
+
+		// Add any steps added by overrides
+		foreach ( $this->extraInstallSteps as $requirement => $steps ) {
+			foreach ( $steps as $spec ) {
+				if ( $requirement !== 'BEGINNING' ) {
+					$spec += [ 'after' => $requirement ];
+				}
+				$taskList->add( $taskFactory->create( $spec ) );
 			}
 		}
 
-		// Prepend any steps that want to be at the beginning
-		if ( isset( $this->extraInstallSteps['BEGINNING'] ) ) {
-			$this->installSteps = array_merge(
-				$this->extraInstallSteps['BEGINNING'],
-				$this->installSteps
-			);
-		}
-
-		// Extensions should always go first, chance to tie into hooks and such
 		if ( count( $this->getVar( '_Extensions' ) ) ) {
-			array_unshift( $this->installSteps,
-				[ 'name' => 'extensions', 'callback' => [ $this, 'includeExtensions' ] ]
-			);
-			$this->installSteps[] = [
+			$taskList->add( $taskFactory->create( [
 				'name' => 'extension-tables',
-				'callback' => [ $installer, 'createExtensionTables' ]
-			];
+				'callback' => [ $installer, 'createExtensionTables' ],
+				'after' => 'restore-services',
+			] ) );
 		}
 
-		return $this->installSteps;
+		return $taskList;
 	}
 
 	/**
@@ -1741,17 +1686,22 @@ abstract class Installer {
 	public function performInstallation( $startCB, $endCB ) {
 		$installResults = [];
 		$installer = $this->getDBInstaller();
-		$installer->preInstall();
-		$steps = $this->getInstallSteps( $installer );
-		foreach ( $steps as $stepObj ) {
-			$name = $stepObj['name'];
-			call_user_func_array( $startCB, [ $name ] );
+		$tasks = $this->getTaskList( $installer );
+
+		if ( count( $this->getVar( '_Extensions' ) ) ) {
+			$this->includeExtensions();
+		}
+
+		$status = Status::newGood();
+		foreach ( $tasks as $task ) {
+			$name = $task->getName();
+			$startCB( $name );
 
 			// Perform the callback step
-			$status = call_user_func( $stepObj['callback'], $installer );
+			$status = $task->execute();
 
 			// Output and save the results
-			call_user_func( $endCB, $name, $status );
+			$endCB( $name, $status );
 			$installResults[$name] = $status;
 
 			// If we've hit some sort of fatal, we need to bail.
@@ -1760,8 +1710,6 @@ abstract class Installer {
 				break;
 			}
 		}
-		// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable
-		// $steps has at least one element and that defines $status
 		if ( $status->isOK() ) {
 			$this->showMessage(
 				'config-install-db-success'
@@ -1912,10 +1860,9 @@ abstract class Installer {
 	/**
 	 * Insert Main Page with default content.
 	 *
-	 * @param DatabaseInstaller $installer
 	 * @return Status
 	 */
-	protected function createMainpage( DatabaseInstaller $installer ) {
+	protected function createMainpage() {
 		$status = Status::newGood();
 		$title = Title::newMainPage();
 		if ( $title->exists() ) {
@@ -1987,7 +1934,7 @@ abstract class Installer {
 					'args' => [ [
 						'priority' => 1,
 					] ]
-				]
+				],
 			],
 
 			// Don't use the DB as the main stash
