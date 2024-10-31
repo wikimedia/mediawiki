@@ -81,6 +81,9 @@ abstract class DatabaseInstaller implements ITaskContext {
 	 */
 	protected $globalNames = [];
 
+	/** @var array */
+	private $provisions = [];
+
 	/**
 	 * Whether the provided version meets the necessary requirements for this type
 	 *
@@ -258,22 +261,16 @@ abstract class DatabaseInstaller implements ITaskContext {
 		return $this->getVar( "_$name" );
 	}
 
-	/**
-	 * Create the tables for each extension the user enabled
-	 * @return Status
-	 */
-	public function createExtensionTables() {
-		$status = $this->getConnection( self::CONN_CREATE_TABLES );
-		if ( !$status->isOK() ) {
-			return $status;
+	public function provide( string $name, $value ) {
+		$this->provisions[$name] = $value;
+	}
+
+	public function getProvision( string $name ) {
+		if ( isset( $this->provisions[$name] ) ) {
+			return $this->provisions[$name];
+		} else {
+			throw new \RuntimeException( "Can't find provided data \"$name\"" );
 		}
-
-		// Now run updates to create tables for old extensions
-		$updater = DatabaseUpdater::newForDB( $status->getDB() );
-		$updater->setAutoExtensionHookContainer( $this->parent->getAutoExtensionHookContainer() );
-		$updater->doUpdates( [ 'extensions' ] );
-
-		return $status;
 	}
 
 	/**

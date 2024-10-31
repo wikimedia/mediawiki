@@ -274,6 +274,7 @@
 	"config-install-updates": "Prevent running unneeded updates",
 	"config-install-updates-failed": "<strong>Error:</strong> Inserting update keys into tables failed with the following error: $1",
 	"config-install-sysop": "Creating administrator user account",
+	"config-install-subscribe": "Subscribing to mediawiki-announce",
 	"config-install-subscribe-fail": "Unable to subscribe to [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL is not installed and <code>allow_url_fopen</code> is not available.",
 	"config-install-subscribe-alreadysubscribed": "You are already subscribed to mediawiki-announce. [https://lists.wikimedia.org/postorius/accounts/per-subscription-preferences/ View or change your subscription preferences].",

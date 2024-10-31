@@ -26,25 +26,21 @@
 
 namespace MediaWiki\Installer;
 
-use AutoLoader;
 use Exception;
 use ExecutableFinder;
 use GuzzleHttp\Psr7\Header;
 use IntlChar;
 use InvalidArgumentException;
-use LogicException;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\GlobalVarConfig;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\MultiConfig;
-use MediaWiki\Content\WikitextContent;
 use MediaWiki\Context\RequestContext;
-use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\HookContainer\StaticHookRegistry;
+use MediaWiki\Installer\Task\RestoredServicesProvider;
 use MediaWiki\Installer\Task\TaskFactory;
 use MediaWiki\Installer\Task\TaskList;
-use MediaWiki\Interwiki\NullInterwikiLookup;
+use MediaWiki\Installer\Task\TaskRunner;
 use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
@@ -52,22 +48,17 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Registration\ExtensionDependencyError;
-use MediaWiki\Registration\ExtensionProcessor;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Status\Status;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
-use MediaWiki\User\Options\StaticUserOptionsLookup;
 use MediaWiki\User\User;
-use MediaWiki\Utils\UrlUtils;
 use MWCryptRand;
-use MWLBFactory;
 use RuntimeException;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
-use Wikimedia\Rdbms\LBFactorySingle;
 use Wikimedia\Services\ServiceDisabledException;
 
 /**
@@ -92,12 +83,6 @@ use Wikimedia\Services\ServiceDisabledException;
  * @since 1.17
  */
 abstract class Installer {
-
-	/**
-	 * URL to mediawiki-announce list summary page
-	 */
-	private const MEDIAWIKI_ANNOUNCE_URL =
-		'https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/';
 
 	/**
 	 * @var array
@@ -342,6 +327,9 @@ abstract class Installer {
 	protected $autoExtensionHookContainer;
 	protected array $virtualDomains = [];
 
+	/** @var TaskFactory|null */
+	private $taskFactory;
+
 	/**
 	 * UI interface for displaying a short message
 	 * The parameters are like parameters to wfMessage().
@@ -418,7 +406,7 @@ abstract class Installer {
 		$installerConfig = self::getInstallerConfig( $defaultConfig );
 
 		// Disable all storage services, since we don't have any configuration yet!
-		$this->resetMediaWikiServices( $installerConfig, [], true );
+		$this->resetMediaWikiServices( $installerConfig );
 
 		$this->settings = $this->getDefaultSettings();
 
@@ -505,24 +493,12 @@ abstract class Installer {
 	}
 
 	/**
-	 * Reset the global service container and associated global state
-	 * to accommodate different stages of the installation.
-	 * @since 1.35
+	 * Reset the global service container and associated global state,
+	 * disabling storage, to support pre-installation operation.
 	 *
-	 * @param Config|null $installerConfig Config override. If null, the previous
-	 *        config will be inherited.
-	 * @param array $serviceOverrides Service definition overrides. Values can be null to
-	 *        disable specific overrides that would be applied by default, namely
-	 *        'InterwikiLookup' and 'UserOptionsLookup'.
-	 * @param bool $disableStorage Whether MediaWikiServices::disableStorage() should be called.
-	 *
-	 * @return MediaWikiServices
+	 * @param Config $installerConfig Config override
 	 */
-	public function resetMediaWikiServices(
-		?Config $installerConfig = null,
-		$serviceOverrides = [],
-		bool $disableStorage = false
-	) {
+	private function resetMediaWikiServices( Config $installerConfig ) {
 		global $wgObjectCaches, $wgLang;
 
 		// Reset all services and inject config overrides.
@@ -530,37 +506,9 @@ abstract class Installer {
 		MediaWikiServices::resetGlobalInstance( $installerConfig, 'reload' );
 
 		$mwServices = MediaWikiServices::getInstance();
-
-		if ( $disableStorage ) {
-			$mwServices->disableStorage();
-		} else {
-			// Default to partially disabling services.
-
-			$serviceOverrides += [
-				// Disable interwiki lookup, to avoid database access during parses
-				'InterwikiLookup' => static function () {
-					return new NullInterwikiLookup();
-				},
-
-				// Disable user options database fetching, only rely on default options.
-				'UserOptionsLookup' => static function ( MediaWikiServices $services ) {
-					return new StaticUserOptionsLookup(
-						[],
-						$services->getMainConfig()->get( MainConfigNames::DefaultUserOptions )
-					);
-				},
-			];
-		}
+		$mwServices->disableStorage();
 
 		$lang = $this->getVar( '_UserLang', 'en' );
-
-		foreach ( $serviceOverrides as $name => $callback ) {
-			// Skip if the caller set $callback to null
-			// to suppress default overrides.
-			if ( $callback ) {
-				$mwServices->redefineService( $name, $callback );
-			}
-		}
 
 		// Disable i18n cache
 		$mwServices->getLocalisationCache()->disableBackend();
@@ -587,8 +535,6 @@ abstract class Installer {
 		$this->parserOptions = new ParserOptions( $user ); // language will be wrong :(
 		// Don't try to access DB before user language is initialised
 		$this->setParserLanguage( $mwServices->getLanguageFactory()->getLanguage( 'en' ) );
-
-		return $mwServices;
 	}
 
 	/**
@@ -1461,198 +1407,17 @@ abstract class Installer {
 	}
 
 	/**
-	 * Installs the auto-detected extensions.
-	 *
-	 * @return Status
-	 */
-	protected function includeExtensions() {
-		// Marker for DatabaseUpdater::loadExtensions so we don't
-		// double load extensions
-		define( 'MW_EXTENSIONS_LOADED', true );
-
-		$legacySchemaHooks = $this->getAutoExtensionLegacyHooks();
-		$data = $this->getAutoExtensionData();
-		if ( isset( $data['globals']['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
-			$legacySchemaHooks = array_merge( $legacySchemaHooks,
-				$data['globals']['wgHooks']['LoadExtensionSchemaUpdates'] );
-		}
-		$extDeprecatedHooks = $data['attributes']['DeprecatedHooks'] ?? [];
-
-		$this->autoExtensionHookContainer = new HookContainer(
-			new StaticHookRegistry(
-				[ 'LoadExtensionSchemaUpdates' => $legacySchemaHooks ],
-				$data['attributes']['Hooks'] ?? [],
-				$extDeprecatedHooks
-			),
-			MediaWikiServices::getInstance()->getObjectFactory()
-		);
-		$this->virtualDomains = $data['attributes']['DatabaseVirtualDomains'] ?? [];
-
-		return Status::newGood();
-	}
-
-	/**
-	 * Auto-detect extensions with an old style .php registration file, load
-	 * the extensions, and return the merged $wgHooks array.
-	 *
-	 * @suppress SecurityCheck-PathTraversal It thinks $exts/$IP is user controlled but they are not.
-	 * @return array
-	 */
-	protected function getAutoExtensionLegacyHooks() {
-		$exts = $this->getVar( '_Extensions' );
-		$installPath = $this->getVar( 'IP' );
-		$files = [];
-		foreach ( $exts as $e ) {
-			if ( file_exists( "$installPath/extensions/$e/$e.php" ) ) {
-				$files[] = "$installPath/extensions/$e/$e.php";
-			}
-		}
-
-		if ( $files ) {
-			return $this->includeExtensionFiles( $files );
-		} else {
-			return [];
-		}
-	}
-
-	/**
-	 * Include the specified extension PHP files. Populate $wgAutoloadClasses
-	 * and return the LoadExtensionSchemaUpdates hooks.
-	 *
-	 * @param string[] $files
-	 * @return array LoadExtensionSchemaUpdates legacy hooks
-	 */
-	protected function includeExtensionFiles( $files ) {
-		global $IP;
-		$IP = $this->getVar( 'IP' );
-
-		/**
-		 * We need to define the $wgXyz variables before including extensions to avoid
-		 * warnings about unset variables. However, the only thing we really
-		 * want here is $wgHooks['LoadExtensionSchemaUpdates']. This won't work
-		 * if the extension has hidden hook registration in $wgExtensionFunctions,
-		 * but we're not opening that can of worms
-		 * @see https://phabricator.wikimedia.org/T28857
-		 */
-		// Extract the defaults into the current scope
-		foreach ( MainConfigSchema::listDefaultValues( 'wg' ) as $var => $value ) {
-			$$var = $value;
-		}
-
-		// phpcs:ignore MediaWiki.VariableAnalysis.UnusedGlobalVariables
-		global $wgAutoloadClasses, $wgExtensionDirectory, $wgStyleDirectory;
-		$wgExtensionDirectory = "$IP/extensions";
-		$wgStyleDirectory = "$IP/skins";
-
-		foreach ( $files as $file ) {
-			require_once $file;
-		}
-
-		// @phpcs:disable MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgHooks
-		// @phpcs:ignore Generic.Files.LineLength.TooLong
-		// @phan-suppress-next-line PhanUndeclaredVariable,PhanCoalescingAlwaysNull $wgHooks is defined by MainConfigSchema
-		$hooksWeWant = $wgHooks['LoadExtensionSchemaUpdates'] ?? [];
-		// @phpcs:enable MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgHooks
-
-		// Ignore everyone else's hooks. Lord knows what someone might be doing
-		// in ParserFirstCallInit (see T29171)
-		return [ 'LoadExtensionSchemaUpdates' => $hooksWeWant ];
-	}
-
-	/**
-	 * Auto-detect extensions with an extension.json file. Load the extensions,
-	 * register classes with the autoloader and return the merged registry data.
-	 *
-	 * @return array
-	 */
-	protected function getAutoExtensionData() {
-		$exts = $this->getVar( '_Extensions' );
-		$installPath = $this->getVar( 'IP' );
-
-		$extensionProcessor = new ExtensionProcessor();
-		foreach ( $exts as $e ) {
-			$jsonPath = "$installPath/extensions/$e/extension.json";
-			if ( file_exists( $jsonPath ) ) {
-				$extensionProcessor->extractInfoFromFile( $jsonPath );
-			}
-		}
-
-		$autoload = $extensionProcessor->getExtractedAutoloadInfo();
-		AutoLoader::loadFiles( $autoload['files'] );
-		AutoLoader::registerClasses( $autoload['classes'] );
-		AutoLoader::registerNamespaces( $autoload['namespaces'] );
-
-		return $extensionProcessor->getExtractedInfo();
-	}
-
-	/**
-	 * Get the hook container previously populated by includeExtensions().
-	 *
-	 * @internal For use by DatabaseInstaller
-	 * @since 1.36
-	 * @return HookContainer
-	 */
-	public function getAutoExtensionHookContainer() {
-		if ( !$this->autoExtensionHookContainer ) {
-			throw new LogicException( __METHOD__ .
-				': includeExtensions() has not been called' );
-		}
-		return $this->autoExtensionHookContainer;
-	}
-
-	/**
-	 * Get the virtual domains
-	 *
-	 * @internal For use by DatabaseInstaller
-	 * @since 1.42
-	 * @return array
-	 */
-	public function getVirtualDomains(): array {
-		return $this->virtualDomains;
-	}
-
-	/**
 	 * Get a list of tasks to do
 	 *
 	 * There must be a config-install-$name message defined per step, which will
 	 * be shown on install.
 	 *
-	 * @param DatabaseInstaller $installer DatabaseInstaller so we can make callbacks
 	 * @return TaskList
 	 */
-	protected function getTaskList( DatabaseInstaller $installer ) {
+	protected function getTaskList() {
 		$taskList = new TaskList;
-		$taskFactory = new TaskFactory(
-			MediaWikiServices::getInstance()->getObjectFactory(),
-			$this->getDBInstaller()
-		);
-
+		$taskFactory = $this->getTaskFactory();
 		$taskFactory->registerMainInstallerTasks( $taskList );
-
-		$specs = [
-			[
-				'name' => 'restore-services',
-				'callback' => [ $this, 'restoreServices' ],
-				'after' => 'tables',
-			],
-			[
-				'name' => 'sysop',
-				'callback' => function () {
-					return $this->createSysop();
-				},
-				'after' => 'restore-services',
-			],
-			[
-				'name' => 'mainpage',
-				'callback' => function () {
-					return $this->createMainpage();
-				},
-				'after' => 'restore-services',
-			],
-		];
-		foreach ( $specs as $spec ) {
-			$taskList->add( $taskFactory->create( $spec ) );
-		}
 
 		// Add any steps added by overrides
 		foreach ( $this->extraInstallSteps as $requirement => $steps ) {
@@ -1664,15 +1429,17 @@ abstract class Installer {
 			}
 		}
 
-		if ( count( $this->getVar( '_Extensions' ) ) ) {
-			$taskList->add( $taskFactory->create( [
-				'name' => 'extension-tables',
-				'callback' => [ $installer, 'createExtensionTables' ],
-				'after' => 'restore-services',
-			] ) );
-		}
-
 		return $taskList;
+	}
+
+	private function getTaskFactory() {
+		if ( $this->taskFactory === null ) {
+			$this->taskFactory = new TaskFactory(
+				MediaWikiServices::getInstance()->getObjectFactory(),
+				$this->getDBInstaller()
+			);
+		}
+		return $this->taskFactory;
 	}
 
 	/**
@@ -1681,35 +1448,16 @@ abstract class Installer {
 	 * @param callable $startCB A callback array for the beginning of each step
 	 * @param callable $endCB A callback array for the end of each step
 	 *
-	 * @return Status[]
+	 * @return Status
 	 */
 	public function performInstallation( $startCB, $endCB ) {
-		$installResults = [];
-		$installer = $this->getDBInstaller();
-		$tasks = $this->getTaskList( $installer );
+		$tasks = $this->getTaskList();
 
-		if ( count( $this->getVar( '_Extensions' ) ) ) {
-			$this->includeExtensions();
-		}
+		$taskRunner = new TaskRunner( $tasks );
+		$taskRunner->addTaskStartListener( $startCB );
+		$taskRunner->addTaskEndListener( $endCB );
 
-		$status = Status::newGood();
-		foreach ( $tasks as $task ) {
-			$name = $task->getName();
-			$startCB( $name );
-
-			// Perform the callback step
-			$status = $task->execute();
-
-			// Output and save the results
-			$endCB( $name, $status );
-			$installResults[$name] = $status;
-
-			// If we've hit some sort of fatal, we need to bail.
-			// Callback already had a chance to do output above.
-			if ( !$status->isOK() ) {
-				break;
-			}
-		}
+		$status = $taskRunner->execute();
 		if ( $status->isOK() ) {
 			$this->showMessage(
 				'config-install-db-success'
@@ -1717,177 +1465,16 @@ abstract class Installer {
 			$this->setVar( '_InstallDone', true );
 		}
 
-		return $installResults;
+		return $status;
 	}
 
 	/**
 	 * Restore services that have been redefined in the early stage of installation
-	 * @return Status
 	 */
-	public function restoreServices() {
-		// Apply wgServer, so it's available for database initialization hooks.
-		$urlOptions = [
-			UrlUtils::SERVER => $GLOBALS['wgServer'],
-		];
-
-		$connection = $this->getDBInstaller()
-			->definitelyGetConnection( DatabaseInstaller::CONN_CREATE_TABLES );
-		$virtualDomains = array_merge(
-			$this->getVirtualDomains(),
-			MWLBFactory::CORE_VIRTUAL_DOMAINS
-		);
-
-		$this->resetMediaWikiServices( null, [
-			'DBLoadBalancerFactory' => static function () use ( $virtualDomains, $connection ) {
-				return LBFactorySingle::newFromConnection(
-					$connection,
-					[ 'virtualDomains' => $virtualDomains ]
-				);
-			},
-			'UrlUtils' => static function ( MediaWikiServices $services ) use ( $urlOptions ) {
-				return new UrlUtils( $urlOptions );
-			},
-			'UserOptionsLookup' => static function ( MediaWikiServices $services ) {
-				return $services->get( 'UserOptionsManager' );
-			},
-		] );
-		return Status::newGood();
-	}
-
-	/**
-	 * Create the first user account, grant it sysop, bureaucrat and interface-admin rights
-	 *
-	 * @return Status
-	 */
-	protected function createSysop() {
-		$name = $this->getVar( '_AdminName' );
-		$user = User::newFromName( $name );
-
-		if ( !$user ) {
-			// We should've validated this earlier anyway!
-			return Status::newFatal( 'config-admin-error-user', $name );
-		}
-
-		if ( $user->idForName() == 0 ) {
-			$user->addToDatabase();
-
-			$password = $this->getVar( '_AdminPassword' );
-			$status = $user->changeAuthenticationData( [
-				'username' => $user->getName(),
-				'password' => $password,
-				'retype' => $password,
-			] );
-			if ( !$status->isGood() ) {
-				return Status::newFatal( 'config-admin-error-password',
-					$name, $status->getWikiText( false, false, $this->getVar( '_UserLang' ) ) );
-			}
-
-			$userGroupManager = MediaWikiServices::getInstance()->getUserGroupManager();
-			$userGroupManager->addUserToGroup( $user, 'sysop' );
-			$userGroupManager->addUserToGroup( $user, 'bureaucrat' );
-			$userGroupManager->addUserToGroup( $user, 'interface-admin' );
-			if ( $this->getVar( '_AdminEmail' ) ) {
-				$user->setEmail( $this->getVar( '_AdminEmail' ) );
-			}
-			$user->saveSettings();
-
-			// Update user count
-			$ssUpdate = SiteStatsUpdate::factory( [ 'users' => 1 ] );
-			$ssUpdate->doUpdate();
-		}
-
-		if ( $this->getVar( '_Subscribe' ) && $this->getVar( '_AdminEmail' ) ) {
-			return $this->subscribeToMediaWikiAnnounce();
-		}
-		return Status::newGood();
-	}
-
-	/**
-	 * @return Status
-	 */
-	private function subscribeToMediaWikiAnnounce() {
-		$status = Status::newGood();
-		$http = MediaWikiServices::getInstance()->getHttpRequestFactory();
-		if ( !$http->canMakeRequests() ) {
-			$status->warning( 'config-install-subscribe-fail',
-				wfMessage( 'config-install-subscribe-notpossible' ) );
-			return $status;
-		}
-
-		// Create subscription request
-		$params = [ 'email' => $this->getVar( '_AdminEmail' ) ];
-		$req = $http->create( self::MEDIAWIKI_ANNOUNCE_URL . 'anonymous_subscribe',
-			[ 'method' => 'POST', 'postData' => $params ], __METHOD__ );
-
-		// Add headers needed to pass Django's CSRF checks
-		$token = str_repeat( 'a', 64 );
-		$req->setHeader( 'Referer', self::MEDIAWIKI_ANNOUNCE_URL );
-		$req->setHeader( 'Cookie', "csrftoken=$token" );
-		$req->setHeader( 'X-CSRFToken', $token );
-
-		// Send subscription request
-		$reqStatus = $req->execute();
-		if ( !$reqStatus->isOK() ) {
-			$status->warning( 'config-install-subscribe-fail',
-				Status::wrap( $reqStatus )->getMessage() );
-			return $status;
-		}
-
-		// Was the request submitted successfully?
-		// The status message is displayed after a redirect, using Django's messages
-		// framework, so load the list summary page and look for the expected text.
-		// (Though parsing the cookie set by the framework may be possible, it isn't
-		// simple, since the format of the cookie has changed between versions.)
-		$checkReq = $http->create( self::MEDIAWIKI_ANNOUNCE_URL, [], __METHOD__ );
-		$checkReq->setCookieJar( $req->getCookieJar() );
-		if ( !$checkReq->execute()->isOK() ) {
-			$status->warning( 'config-install-subscribe-possiblefail' );
-			return $status;
-		}
-		$html = $checkReq->getContent();
-		if ( strpos( $html, 'Please check your inbox for further instructions' ) !== false ) {
-			// Success
-		} elseif ( strpos( $html, 'Member already subscribed' ) !== false ) {
-			$status->warning( 'config-install-subscribe-alreadysubscribed' );
-		} elseif ( strpos( $html, 'Subscription request already pending' ) !== false ) {
-			$status->warning( 'config-install-subscribe-alreadypending' );
-		} else {
-			$status->warning( 'config-install-subscribe-possiblefail' );
-		}
-		return $status;
-	}
-
-	/**
-	 * Insert Main Page with default content.
-	 *
-	 * @return Status
-	 */
-	protected function createMainpage() {
-		$status = Status::newGood();
-		$title = Title::newMainPage();
-		if ( $title->exists() ) {
-			$status->warning( 'config-install-mainpage-exists' );
-			return $status;
-		}
-		try {
-			$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
-			$content = new WikitextContent(
-				wfMessage( 'mainpagetext' )->inContentLanguage()->text() . "\n\n" .
-				wfMessage( 'mainpagedocfooter' )->inContentLanguage()->text()
-			);
-
-			$status = $page->doUserEditContent(
-				$content,
-				User::newSystemUser( 'MediaWiki default' ),
-				'',
-				EDIT_NEW
-			);
-		} catch ( Exception $e ) {
-			// using raw, because $wgShowExceptionDetails can not be set yet
-			$status->fatal( 'config-install-mainpage-failed', $e->getMessage() );
-		}
-
-		return $status;
+	protected function restoreServices() {
+		$provider = $this->getTaskFactory()->create(
+			[ 'class' => RestoredServicesProvider::class ] );
+		$provider->execute();
 	}
 
 	/**

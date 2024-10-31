@@ -66,4 +66,20 @@ interface ITaskContext {
 	 * @return string
 	 */
 	public function getDbType(): string;
+
+	/**
+	 * Store an object to be used by a later task
+	 *
+	 * @param string $name
+	 * @param mixed $value
+	 */
+	public function provide( string $name, $value );
+
+	/**
+	 * Get the object stored by provide()
+	 *
+	 * @param string $name
+	 * @return mixed
+	 */
+	public function getProvision( string $name );
 }

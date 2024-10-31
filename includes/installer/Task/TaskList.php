@@ -63,7 +63,11 @@ class TaskList implements \IteratorAggregate {
 			$name = $task->getName();
 			$tasksByName[$name][] = $task;
 
-			foreach ( $task->getAliasesArray() as $alias ) {
+			foreach ( (array)$task->getAliases() as $alias ) {
+				$tasksByName[$alias][] = $task;
+			}
+
+			foreach ( (array)$task->getProvidedNames() as $alias ) {
 				$tasksByName[$alias][] = $task;
 			}
 		}
@@ -89,7 +93,7 @@ class TaskList implements \IteratorAggregate {
 		$name = $task->getName();
 		$id = spl_object_id( $task );
 		$unresolvedTasks[$id] = $task;
-		foreach ( $task->getDependenciesArray() as $depName ) {
+		foreach ( (array)$task->getDependencies() as $depName ) {
 			if ( !isset( $tasksByName[$depName] ) ) {
 				throw new RuntimeException(
 					"Can't find dependency \"$depName\" required by task \"$name\"" );

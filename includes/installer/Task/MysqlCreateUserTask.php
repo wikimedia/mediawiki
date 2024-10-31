@@ -23,11 +23,13 @@ class MysqlCreateUserTask extends Task {
 		return 'database';
 	}
 
+	public function isSkipped(): bool {
+		$dbUser = $this->getConfigVar( MainConfigNames::DBuser );
+		return $dbUser == $this->getOption( 'InstallUser' );
+	}
+
 	public function execute(): Status {
 		$dbUser = $this->getConfigVar( MainConfigNames::DBuser );
-		if ( $dbUser == $this->getOption( 'InstallUser' ) ) {
-			return Status::newGood();
-		}
 		$status = $this->getConnection( ITaskContext::CONN_CREATE_DATABASE );
 		if ( !$status->isOK() ) {
 			return $status;

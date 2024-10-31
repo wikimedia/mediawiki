@@ -2,7 +2,9 @@
 
 namespace MediaWiki\Installer\Task;
 
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Installer\ConnectionStatus;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use RuntimeException;
 use Wikimedia\Rdbms\Database;
@@ -35,6 +37,17 @@ abstract class Task {
 	abstract public function getName();
 
 	/**
+	 * Override this to return true to skip the task. If this returns true,
+	 * execute() will not be called, and start/end messages will not be
+	 * produced.
+	 *
+	 * @return bool
+	 */
+	public function isSkipped(): bool {
+		return false;
+	}
+
+	/**
 	 * Get alternative names of this task. These aliases can be used to fulfill
 	 * dependencies of other tasks.
 	 *
@@ -54,21 +67,17 @@ abstract class Task {
 	}
 
 	/**
-	 * Get the aliases as an array
+	 * Get a list of names of objects that this task promises to provide
+	 * via $this->getContext()->provide().
 	 *
-	 * @return string[]
-	 */
-	final public function getAliasesArray() {
-		return (array)$this->getAliases();
-	}
-
-	/**
-	 * Get the dependencies as an array
+	 * If this is non-empty, the task is a scheduled provider, which means that
+	 * it is not persistently complete after it has been run. If installation
+	 * is interrupted, it might need to be run again.
 	 *
-	 * @return string[]
+	 * @return string|string[]
 	 */
-	final public function getDependenciesArray() {
-		return (array)$this->getDependencies();
+	public function getProvidedNames() {
+		return [];
 	}
 
 	/**
@@ -77,7 +86,10 @@ abstract class Task {
 	 * @param ITaskContext $context
 	 * @param string $schemaBasePath
 	 */
-	final public function initBase( ITaskContext $context, string $schemaBasePath ) {
+	final public function initBase(
+		ITaskContext $context,
+		string $schemaBasePath
+	) {
 		$this->context = $context;
 		$this->schemaBasePath = $schemaBasePath;
 	}
@@ -193,4 +205,46 @@ abstract class Task {
 		}
 	}
 
+	/**
+	 * Get the restored services. Subclasses that want to call this must declare
+	 * a dependency on "services".
+	 *
+	 * @return MediaWikiServices
+	 */
+	public function getServices(): MediaWikiServices {
+		$this->assertDependsOn( 'services' );
+		return $this->getContext()->getProvision( 'services' );
+	}
+
+	/**
+	 * Get a HookContainer suitable for calling LoadExtensionSchemaUpdates.
+	 * Subclasses that want to call this must declare a dependency on
+	 * "HookContainer".
+	 *
+	 * @return HookContainer
+	 */
+	public function getHookContainer(): HookContainer {
+		$this->assertDependsOn( 'HookContainer' );
+		return $this->getContext()->getProvision( 'HookContainer' );
+	}
+
+	/*
+	 * Get the array of database virtual domains declared in extensions.
+	 * Subclasses that want to call this must declare a dependency on
+	 * "VirtualDomains".
+	 *
+	 * @return array
+	 */
+	public function getVirtualDomains(): array {
+		$this->assertDependsOn( 'VirtualDomains' );
+		return $this->getContext()->getProvision( 'VirtualDomains' );
+	}
+
+	private function assertDependsOn( $dependency ) {
+		$deps = (array)$this->getDependencies();
+		if ( !in_array( $dependency, $deps, true ) ) {
+			throw new \RuntimeException( 'Task class "' . static::class . '" ' .
+				"does not declare a dependency on \"$dependency\"" );
+		}
+	}
 }

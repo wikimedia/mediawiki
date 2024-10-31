@@ -10,6 +10,31 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  * @internal For use by the installer
  */
 class TaskFactory {
+	/**
+	 * This list is roughly in order of execution, although the declared
+	 * dependencies take precedence over the order in the input array.
+	 */
+	private const CORE_SPECS = [
+		[ 'class' => ExtensionsProvider::class ],
+		[ 'class' => MysqlCreateDatabaseTask::class, 'db' => 'mysql' ],
+		[ 'class' => MysqlCreateUserTask::class, 'db' => 'mysql' ],
+		[ 'class' => PostgresCreateDatabaseTask::class, 'db' => 'postgres' ],
+		[ 'class' => PostgresCreateUserTask::class, 'db' => 'postgres' ],
+		[ 'class' => PostgresPlTask::class, 'db' => 'postgres' ],
+		[ 'class' => PostgresCreateSchemaTask::class, 'db' => 'postgres' ],
+		[ 'class' => SqliteCreateDatabaseTask::class, 'db' => 'sqlite' ],
+		[ 'class' => SqliteCreateSearchIndexTask::class, 'db' => 'sqlite' ],
+		[ 'class' => CreateTablesTask::class ],
+		[ 'class' => PopulateSiteStatsTask::class ],
+		[ 'class' => PopulateInterwikiTask::class ],
+		[ 'class' => InsertUpdateKeysTask::class ],
+		[ 'class' => RestoredServicesProvider::class ],
+		[ 'class' => ExtensionTablesTask::class ],
+		[ 'class' => InitialContentTask::class ],
+		[ 'class' => CreateSysopTask::class ],
+		[ 'class' => MailingListSubscribeTask::class ],
+	];
+
 	/** @var ObjectFactory */
 	private $objectFactory;
 	/** @var ITaskContext */
@@ -23,31 +48,16 @@ class TaskFactory {
 	/**
 	 * Populate the task list with core installer tasks which are shared by the
 	 * various installation methods.
+	 *
+	 * @param TaskList $list
 	 */
 	public function registerMainInstallerTasks( TaskList $list ) {
-		$taskClasses = [
-			CreateTablesTask::class,
-			PopulateSiteStatsTask::class,
-			PopulateInterwikiTask::class,
-			InsertUpdateKeysTask::class,
-		];
-		switch ( $this->context->getDbType() ) {
-			case 'mysql':
-				$taskClasses[] = MysqlCreateDatabaseTask::class;
-				$taskClasses[] = MysqlCreateUserTask::class;
-				break;
-			case 'postgres':
-				$taskClasses[] = PostgresCreateDatabaseTask::class;
-				$taskClasses[] = PostgresPlTask::class;
-				$taskClasses[] = PostgresCreateUserTask::class;
-				$taskClasses[] = PostgresCreateSchemaTask::class;
-				break;
-			case 'sqlite':
-				$taskClasses[] = SqliteCreateDatabaseTask::class;
-				$taskClasses[] = SqliteCreateSearchIndexTask::class;
-		}
-		foreach ( $taskClasses as $class ) {
-			$list->add( $this->create( [ 'class' => $class ] ) );
+		$dbType = $this->context->getDbType();
+		foreach ( self::CORE_SPECS as $spec ) {
+			if ( isset( $spec['db'] ) && $spec['db'] !== $dbType ) {
+				continue;
+			}
+			$list->add( $this->create( $spec ) );
 		}
 	}
 
@@ -64,16 +74,13 @@ class TaskFactory {
 	 *     - class: The class name (ObjectFactory only)
 	 *     - factory: A factory function (ObjectFactory only)
 	 *     - args: Arguments to pass to the constructor (ObjectFactory only)
-	 *     - services: Services to locate and pass as constructor args (ObjectFactory only)
-	 *     - optional_services: Services to locate and pass as constructor args if they exist
-	 *       (ObjectFactory only)
 	 * @return Task
 	 */
 	public function create( array $spec ): Task {
 		if ( isset( $spec['callback'] ) ) {
 			$task = new CallbackTask( $spec );
 		} else {
-			$allowedParamNames = [ 'factory', 'class', 'args', 'services', 'optional_services' ];
+			$allowedParamNames = [ 'factory', 'class', 'args' ];
 			$factorySpec = array_intersect_key( $spec, array_fill_keys( $allowedParamNames, true ) );
 			$task = $this->objectFactory->createObject( $factorySpec );
 			if ( !( $task instanceof Task ) ) {
@@ -81,8 +88,11 @@ class TaskFactory {
 			}
 		}
 
-		// TODO: determine extension base path from $spec
-		$task->initBase( $this->context, $this->getCoreSchemaBasePath() );
+		$task->initBase(
+			$this->context,
+			// TODO: determine extension base path from $spec
+			$this->getCoreSchemaBasePath(),
+		);
 		return $task;
 	}
 
