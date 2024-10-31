@@ -65,6 +65,7 @@ use OOUI\ButtonWidget;
 use OOUI\FieldLayout;
 use OOUI\HtmlSnippet;
 use OOUI\LabelWidget;
+use OOUI\MessageWidget;
 use PreferencesFormOOUI;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
@@ -992,8 +993,14 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				$defaultPreferences['customcssjs-safemode'] = [
 					'type' => 'info',
 					'raw' => true,
-					'default' => Html::warningBox( $context->msg( 'prefs-custom-cssjs-safemode' )->parse() ),
+					'rawrow' => true,
 					'section' => 'rendering/skin',
+					'default' => new FieldLayout(
+						new MessageWidget( [
+							'label' => new HtmlSnippet( $context->msg( 'prefs-custom-cssjs-safemode' )->parse() ),
+							'type' => 'warning',
+						] )
+					),
 				];
 			} else {
 				$linkTools = [];
