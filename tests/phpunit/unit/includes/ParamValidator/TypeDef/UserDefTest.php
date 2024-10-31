@@ -82,6 +82,8 @@ class UserDefTest extends TypeDefUnitTestCase {
 			'Normalized' => [ 'name', 'adam_Smith', 'Adam Smith' ],
 			'External' => [ 'interwiki', 'm>some_user', 'm>some_user' ],
 			'Temporary user' => [ 'temp', '*Unregistered 1', '*Unregistered 1' ],
+			'Temporary user which does not exist' => [ 'temp', '*Unregistered 123456', '*Unregistered 123456' ],
+			'Temporary user which is not normalised' => [ 'temp', '*Unregistered_123456', '*Unregistered 123456' ],
 			'IPv4' => [ 'ip', '192.168.0.1', '192.168.0.1' ],
 			'IPv4, normalized' => [ 'ip', '192.168.000.001', '192.168.0.1' ],
 			'IPv6' => [ 'ip', '2001:DB8:0:0:0:0:0:0', '2001:DB8:0:0:0:0:0:0' ],
@@ -96,6 +98,7 @@ class UserDefTest extends TypeDefUnitTestCase {
 			'Bad username' => [ '', '[[Foo]]', null ],
 			'No namespaces' => [ '', 'Talk:Foo', null ],
 			'No namespaces (2)' => [ '', 'Help:Foo', null ],
+			'Matches temporary user format but contains fragment' => [ '', '*Unregistered_123456#', null ],
 			'No namespaces (except User is ok)' => [ 'name', 'User:Adam_Smith', 'Adam Smith' ],
 			'No namespaces (except User is ok) (IPv6)' => [ 'ip', 'User:::1', '0:0:0:0:0:0:0:1' ],
 			'No interwiki prefixes' => [ '', 'interwiki:Foo', null ],
@@ -134,8 +137,12 @@ class UserDefTest extends TypeDefUnitTestCase {
 				// known (id is 0 for all)
 				$obj = UserIdentityValue::newAnonymous( $expect );
 			} elseif ( $type === 'temp' ) {
-				// The 1 temp user has an id of 100
-				$obj = new UserIdentityValue( 100, $expect );
+				if ( $input === '*Unregistered 1' ) {
+					$id = 100;
+				} else {
+					$id = 0;
+				}
+				$obj = new UserIdentityValue( $id, $expect );
 			} else {
 				// Creating from name, we are only testing for "Adam Smith"
 				// so the id will be 1
