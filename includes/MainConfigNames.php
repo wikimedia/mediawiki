@@ -2871,6 +2871,12 @@ class MainConfigNames {
 	public const AutopromoteOnceLogInRC = 'AutopromoteOnceLogInRC';
 
 	/**
+	 * Name constant for the AutopromoteOnceRCExcludedGroups setting, for use with Config::get()
+	 * @see MainConfigSchema::AutopromoteOnceRCExcludedGroups
+	 */
+	public const AutopromoteOnceRCExcludedGroups = 'AutopromoteOnceRCExcludedGroups';
+
+	/**
 	 * Name constant for the AddGroups setting, for use with Config::get()
 	 * @see MainConfigSchema::AddGroups
 	 */

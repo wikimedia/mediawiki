@@ -25,6 +25,11 @@ For notes on 1.43.x and older releases, see HISTORY.
 
 ==== New configuration ====
 
+* (T377829) $wgAutopromoteOnceRCExcludedGroups - Defaults to an empty list, can
+  be used to define a denylist of user group names. One-shot autopromotions
+  into these groups will never result in an RC entry, even if
+  $wgAutopromoteOnceLogInRC is true, as long as they were the only new groups
+  the user was autopromoted into.
 * …
 
 ==== Changed configuration ====

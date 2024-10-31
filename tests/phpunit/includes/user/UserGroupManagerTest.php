@@ -1207,6 +1207,83 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 			] ] );
 	}
 
+	/**
+	 * @covers \MediaWiki\User\UserGroupManager::addUserToAutopromoteOnceGroups
+	 * @dataProvider provideAutopromoteOnceGroupsRecentChanges
+	 */
+	public function testAddUserToAutopromoteOnceGroupsRecentChanges( array $autoPromoteOnceGroups ) {
+		$user = $this->getTestUser()->getUser();
+
+		// Setup one-shot autopromote conditions for the groups we would like to trigger autopromotion into
+		$autoPromoteOnce = [];
+		foreach ( $autoPromoteOnceGroups as $groupName ) {
+			$autoPromoteOnce[$groupName] = [ APCOND_EDITCOUNT, 0 ];
+		}
+
+		$rcExcludedGroups = [ 'autopromoteonce-excluded' ];
+
+		$manager = $this->getManager( [
+			MainConfigNames::AutopromoteOnce => [
+				'EVENT' => $autoPromoteOnce
+			],
+			MainConfigNames::AutopromoteOnceLogInRC => true,
+			MainConfigNames::AutopromoteOnceRCExcludedGroups => $rcExcludedGroups
+		] );
+
+		// Add the test user to an unrelated group to verify autopromote RC exclusion ignores these.
+		$manager->addUserToGroup( $user, 'sysop' );
+		$preAutopromoteGroups = $manager->getUserGroups( $user );
+
+		foreach ( $autoPromoteOnceGroups as $groupName ) {
+			$this->assertNotContains( $groupName, $manager->getUserGroups( $user ) );
+		}
+
+		$manager->addUserToAutopromoteOnceGroups( $user, 'EVENT' );
+
+		foreach ( $autoPromoteOnceGroups as $groupName ) {
+			$this->assertContains( $groupName, $manager->getUserGroups( $user ) );
+		}
+
+		$logQueryBuilder = $this->newSelectQueryBuilder()
+			->select( [ 'log_type', 'log_action', 'log_params' ] )
+			->from( 'logging' )
+			->where( [ 'log_type' => 'rights' ] );
+
+		$logQueryBuilder->assertRowValue( [ 'rights',
+			'autopromote',
+			LogEntryBase::makeParamBlob( [
+				'4::oldgroups' => $preAutopromoteGroups,
+				'5::newgroups' => $manager->getUserGroups( $user ),
+			] )
+		] );
+
+		$logId = $logQueryBuilder
+			->clearFields()
+			->field( 'log_id' )
+			->fetchField();
+
+		if ( !array_diff( $autoPromoteOnceGroups, $rcExcludedGroups ) ) {
+			$this->newSelectQueryBuilder()
+				->select( [ 'rc_logid' ] )
+				->from( 'recentchanges' )
+				->where( [ 'rc_type' => RC_LOG ] )
+				->assertEmptyResult();
+			return;
+		}
+
+		$this->newSelectQueryBuilder()
+			->select( [ 'rc_logid' ] )
+			->from( 'recentchanges' )
+			->where( [ 'rc_type' => RC_LOG ] )
+			->assertFieldValue( $logId );
+	}
+
+	public static function provideAutopromoteOnceGroupsRecentChanges(): iterable {
+		yield 'autopromotion into excluded group' => [ [ 'autopromoteonce-excluded' ] ];
+		yield 'autopromotion into excluded and non-excluded group' => [ [ 'autopromoteonce', 'autopromoteonce-excluded' ] ];
+		yield 'autopromotion into non-excluded group' => [ [ 'autopromoteonce' ] ];
+	}
+
 	private const CHANGEABLE_GROUPS_TEST_CONFIG = [
 		MainConfigNames::GroupPermissions => [],
 		MainConfigNames::AddGroups => [
