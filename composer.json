@@ -159,8 +159,8 @@
 		"phan": "phan -d . --long-progress-bar",
 		"phpcs": "phpcs -p -s --cache",
 		"fix": [
-			"phpcbf",
-			"minus-x fix ."
+			"minus-x fix .",
+			"phpcbf"
 		],
 		"pre-install-cmd": "MediaWiki\\Composer\\VersionChecker::onEvent",
 		"pre-update-cmd": "MediaWiki\\Composer\\VersionChecker::onEvent",
