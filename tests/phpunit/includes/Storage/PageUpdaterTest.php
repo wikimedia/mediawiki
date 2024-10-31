@@ -4,13 +4,11 @@ namespace MediaWiki\Tests\Storage;
 
 use LogicException;
 use MediaWiki\CommentStore\CommentStoreComment;
-use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Json\FormatJson;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\ParserOptions;
@@ -909,12 +907,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	public function testSetUsePageCreationLog( $use, $expected ) {
 		$this->hideDeprecated( 'MediaWiki\Storage\PageUpdater::setUsePageCreationLog' );
 
-		$ingressOptions = new ServiceOptions(
-			ChangeTrackingEventIngress::CONSTRUCTOR_OPTIONS,
-			[ MainConfigNames::PageCreationLog => false ]
-		);
 		$ingress = new ChangeTrackingEventIngress(
-			$ingressOptions,
 			$this->getServiceContainer()->getChangeTagsStore(),
 			$this->getServiceContainer()->getUserEditTracker(),
 		);
