@@ -1430,7 +1430,10 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		ParserOptions::clearStaticCache();
 
 		// User objects may hold service references!
-		RequestContext::getMain()->getUser()->clearInstanceCache();
+		$context = RequestContext::getMain();
+		if ( $context->hasUser() ) {
+			$context->getUser()->clearInstanceCache();
+		}
 
 		TestUserRegistry::clearInstanceCaches();
 	}
