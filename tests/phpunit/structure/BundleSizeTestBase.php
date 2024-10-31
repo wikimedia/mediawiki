@@ -100,6 +100,3 @@ abstract class BundleSizeTestBase extends MediaWikiIntegrationTestCase {
 	}
 
 }
-
-/** @deprecated class alias since 1.42 */
-class_alias( BundleSizeTestBase::class, 'MediaWiki\\Tests\\Structure\\BundleSizeTest' );
