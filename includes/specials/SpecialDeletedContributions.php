@@ -125,6 +125,11 @@ class SpecialDeletedContributions extends ContributionsSpecialPage {
 		return $this->pager;
 	}
 
+	/** @inheritDoc */
+	public function isIncludable() {
+		return false;
+	}
+
 	/**
 	 * @inheritDoc
 	 */
