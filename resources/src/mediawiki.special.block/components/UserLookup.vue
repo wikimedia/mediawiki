@@ -19,10 +19,7 @@
 		>
 		</cdx-lookup>
 		<template #label>
-			{{ $i18n( 'block-user-label' ).text() }}
-		</template>
-		<template #description>
-			{{ $i18n( 'block-user-description' ).text() }}
+			{{ $i18n( 'block-target' ).text() }}
 		</template>
 	</cdx-field>
 </template>
