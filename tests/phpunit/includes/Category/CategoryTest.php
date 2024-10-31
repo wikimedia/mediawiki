@@ -30,7 +30,7 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 			->row( [
 				'cat_id' => 1,
 				'cat_title' => 'Example',
-				'cat_pages' => 3,
+				'cat_pages' => 12,
 				'cat_subcats' => 4,
 				'cat_files' => 5
 			] )
@@ -48,7 +48,7 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 			// Existing title
 			[ 'newFromName', 'Example', 'getID', 1 ],
 			[ 'newFromName', 'Example', 'getName', 'Example' ],
-			[ 'newFromName', 'Example', 'getMemberCount', 3 ],
+			[ 'newFromName', 'Example', 'getMemberCount', 12 ],
 			[ 'newFromName', 'Example', 'getSubcatCount', 4 ],
 			[ 'newFromName', 'Example', 'getFileCount', 5 ],
 
@@ -62,7 +62,7 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 			// Existing ID
 			[ 'newFromID', 1, 'getID', 1 ],
 			[ 'newFromID', 1, 'getName', 'Example' ],
-			[ 'newFromID', 1, 'getMemberCount', 3 ],
+			[ 'newFromID', 1, 'getMemberCount', 12 ],
 			[ 'newFromID', 1, 'getSubcatCount', 4 ],
 			[ 'newFromID', 1, 'getFileCount', 5 ]
 		];
@@ -139,7 +139,8 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	public function testGetCounts() {
 		// Defined via addDBDataOnce
 		$category = Category::newFromID( 1 );
-		$this->assertEquals( 3, $category->getMemberCount() );
+		$this->assertEquals( 12, $category->getMemberCount() );
+		$this->assertEquals( 3, $category->getPageCount( Category::COUNT_CONTENT_PAGES ) );
 		$this->assertEquals( 4, $category->getSubcatCount() );
 		$this->assertEquals( 5, $category->getFileCount() );
 	}
