@@ -22,6 +22,7 @@ namespace MediaWiki\Storage;
 
 use InvalidArgumentException;
 use LogicException;
+use ManualLogEntry;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\Content;
@@ -156,6 +157,11 @@ class PageUpdater {
 	 * @var int the RC patrol status the new revision should be marked with.
 	 */
 	private $rcPatrolStatus = RecentChange::PRC_UNPATROLLED;
+
+	/**
+	 * @var bool whether to create a log entry for new page creations.
+	 */
+	private $usePageCreationLog = true;
 
 	/**
 	 * @var bool Whether null-edits create a revision.
@@ -393,19 +399,15 @@ class PageUpdater {
 	}
 
 	/**
-	 * @deprecated since 1.43 use setFlags( EDIT_SUPPRESS_RC )
+	 * Whether to create a log entry for new page creations.
+	 *
+	 * @see $wgPageCreationLog
 	 *
 	 * @param bool $use
-	 *
-	 * @return PageUpdater
+	 * @return $this
 	 */
 	public function setUsePageCreationLog( $use ) {
-		wfDeprecated( __METHOD__, '1.43' );
-
-		if ( !$use ) {
-			$this->setFlags( EDIT_SUPPRESS_RC );
-		}
-
+		$this->usePageCreationLog = $use;
 		return $this;
 	}
 
@@ -1495,6 +1497,21 @@ class PageUpdater {
 		}
 
 		$tags = $this->computeEffectiveTags();
+
+		if ( $this->usePageCreationLog ) {
+			// Log the page creation
+			// @TODO: Do we want a 'recreate' action?
+			$logEntry = new ManualLogEntry( 'create', 'create' );
+			$logEntry->setPerformer( $this->author );
+			$logEntry->setTarget( $this->getPage() );
+			$logEntry->setComment( $summary->text );
+			$logEntry->setTimestamp( $now );
+			$logEntry->setAssociatedRevId( $newRevisionRecord->getId() );
+			$logEntry->insert();
+			// Note that we don't publish page creation events to recentchanges
+			// (i.e. $logEntry->publish()) since this would create duplicate entries,
+			// one for the edit and one for the page creation.
+		}
 
 		$this->eventEmitter->send( new PageUpdatedEvent(
 			$newRevisionRecord,

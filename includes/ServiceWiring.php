@@ -2699,10 +2699,6 @@ return [
 		$dispatcher->registerListener(
 			PageUpdatedEvent::TYPE,
 			new ChangeTrackingEventIngress( // TODO: use an ObjectFactory spec
-				new ServiceOptions(
-					ChangeTrackingEventIngress::CONSTRUCTOR_OPTIONS,
-					$services->getMainConfig()
-				),
 				$services->getChangeTagsStore(),
 				$services->getUserEditTracker()
 			)

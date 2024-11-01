@@ -2,11 +2,7 @@
 
 namespace MediaWiki\RecentChanges;
 
-use ManualLogEntry;
 use MediaWiki\ChangeTags\ChangeTagsStore;
-use MediaWiki\Config\ServiceOptions;
-use MediaWiki\MainConfigNames;
-use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\PageUpdatedEvent;
@@ -22,30 +18,17 @@ use RecentChange;
  */
 class ChangeTrackingEventIngress {
 
-	private ServiceOptions $options;
 	private ChangeTagsStore $changeTagsStore;
 	private UserEditTracker $userEditTracker;
 
 	/**
-	 * @internal
-	 */
-	public const CONSTRUCTOR_OPTIONS = [
-		MainConfigNames::PageCreationLog
-	];
-
-	/**
-	 * @param ServiceOptions $options
 	 * @param ChangeTagsStore $changeTagsStore
 	 * @param UserEditTracker $userEditTracker
 	 */
 	public function __construct(
-		ServiceOptions $options,
 		ChangeTagsStore $changeTagsStore,
 		UserEditTracker $userEditTracker
 	) {
-		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-
-		$this->options = $options;
 		$this->changeTagsStore = $changeTagsStore;
 		$this->userEditTracker = $userEditTracker;
 	}
@@ -66,16 +49,6 @@ class ChangeTrackingEventIngress {
 				$event->getTags(),
 				$event->getEditResult()
 			);
-
-			if ( $event->isNew() && $this->options->get( MainConfigNames::PageCreationLog ) ) {
-				$this->updateLogAfterPageUpdated(
-					$event->getAuthor(),
-					$event->getPage(),
-					$event->getNewRevision()->getId(),
-					$event->getEventTimestamp(),
-					$event->getNewRevision()->getComment( RevisionRecord::RAW )->text
-				);
-			}
 		} else {
 			$this->updateChangeTageAfterPageUpdated(
 				$event->getTags(),
@@ -139,27 +112,6 @@ class ChangeTrackingEventIngress {
 
 	private function updateUserEditTrackerAfterPageUpdated( UserIdentity $author ) {
 		$this->userEditTracker->incrementUserEditCount( $author );
-	}
-
-	private function updateLogAfterPageUpdated(
-		UserIdentity $author,
-		PageIdentity $page,
-		int $revId,
-		string $timestamp,
-		string $comment
-	) {
-		// Log the page creation
-		// @TODO: Do we want a 'recreate' action?
-		$logEntry = new ManualLogEntry( 'create', 'create' );
-		$logEntry->setPerformer( $author );
-		$logEntry->setTarget( $page );
-		$logEntry->setComment( $comment );
-		$logEntry->setTimestamp( $timestamp );
-		$logEntry->setAssociatedRevId( $revId );
-		$logEntry->insert();
-		// Note that we don't publish page creation events to recentchanges
-		// (i.e. $logEntry->publish()) since this would create duplicate entries,
-		// one for the edit and one for the page creation.
 	}
 
 }
