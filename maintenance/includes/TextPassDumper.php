@@ -35,6 +35,7 @@ require_once __DIR__ . '/../../includes/export/WikiExporter.php';
 use BaseDump;
 use Exception;
 use ExportProgressFilter;
+use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Shell\Shell;
@@ -192,6 +193,13 @@ TEXT
 	 */
 	private function getBlobStore() {
 		return $this->getServiceContainer()->getBlobStore();
+	}
+
+	/**
+	 * @return RevisionStore
+	 */
+	private function getRevisionStore() {
+		return $this->getServiceContainer()->getRevisionStore();
 	}
 
 	public function execute() {
@@ -613,6 +621,7 @@ TEXT
 		$prefetchNotTried = true; // Whether or not we already tried to get the text via prefetch.
 		$text = false; // The candidate for a good text. false if no proper value.
 		$failures = 0; // The number of times, this invocation of getText already failed.
+		$contentAddress = $id; // Where the content should be found
 
 		// The number of times getText failed without yielding a good text in between.
 		static $consecutiveFailedTextRetrievals = 0;
@@ -659,9 +668,9 @@ TEXT
 					// Fallback to asking the database
 					$tryIsPrefetch = false;
 					if ( $this->spawn ) {
-						$text = $this->getTextSpawned( $id );
+						$text = $this->getTextSpawned( $contentAddress );
 					} else {
-						$text = $this->getTextDb( $id );
+						$text = $this->getTextDb( $contentAddress );
 					}
 
 					if ( $text !== false && $model !== null ) {
@@ -679,7 +688,7 @@ TEXT
 				}
 
 				if ( $text === false ) {
-					throw new RuntimeException( "Generic error while obtaining text for id " . $id );
+					throw new RuntimeException( "Generic error while obtaining text for id " . $contentAddress );
 				}
 
 				// We received a good candidate for the text of $id via some method
@@ -697,9 +706,9 @@ TEXT
 				}
 
 				$text = false;
-				throw new RuntimeException( "Received text is unplausible for id " . $id );
+				throw new RuntimeException( "Received text is unplausible for id " . $contentAddress );
 			} catch ( Exception $e ) {
-				$msg = "getting/checking text " . $id . " failed (" . $e->getMessage()
+				$msg = "getting/checking text " . $contentAddress . " failed (" . $e->getMessage()
 					. ") for revision " . $this->thisRev;
 				if ( $failures + 1 < $this->maxFailures ) {
 					$msg .= " (Will retry " . ( $this->maxFailures - $failures - 1 ) . " more times)";
@@ -707,11 +716,35 @@ TEXT
 				$this->progress( $msg );
 			}
 
-			// Something went wrong; we did not a text that was plausible :(
+			// Something went wrong; we did not get a text that was plausible :(
 			$failures++;
 
+			if ( $contentAddress === $id && $this->thisRev && trim( $this->thisRole ) ) {
+				try {
+					// MediaWiki doesn't guarantee that content addresses are valid
+					// for any significant length of time. Try refreshing as the
+					// previously retrieved address may no longer be valid.
+					$revRecord = $this->getRevisionStore()->getRevisionById( (int)$this->thisRev );
+					if ( $revRecord !== null ) {
+						$refreshed = $revRecord->getSlot( trim( $this->thisRole ) )->getAddress();
+						if ( $contentAddress !== $refreshed ) {
+							$this->progress(
+								"Updated content address for rev {$this->thisRev} from "
+								. "{$contentAddress} to {$refreshed}"
+							);
+							$contentAddress = $refreshed;
+							// Skip sleeping if we updated the address
+							continue;
+						}
+					}
+				} catch ( Exception $e ) {
+					$this->progress(
+						"refreshing content address for revision {$this->thisRev} failed ({$e->getMessage()})"
+					);
+				}
+			}
+
 			// A failure in a prefetch hit does not warrant resetting db connection etc.
-			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable Control flow is hard to understand here.
 			if ( !$tryIsPrefetch ) {
 				// After backing off for some time, we try to reboot the whole process as
 				// much as possible to not carry over failures from one part to the other
