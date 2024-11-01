@@ -388,7 +388,7 @@ class RequestContext implements IContextSource, MutableContext {
 	}
 
 	public function hasUser(): bool {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
 			throw new LogicException( __METHOD__ . '() should be called only from tests!' );
 		}
 		return $this->user !== null;
