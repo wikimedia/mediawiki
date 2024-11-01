@@ -237,7 +237,7 @@
 	"config-install-user-missing": "Наведени корисник „$1” не постоји.",
 	"config-install-user-missing-create": "Наведени корисник „$1” не постоји.\nКликните на поље за потврду „отвори налог” испод ако желите да га отворите.",
 	"config-install-restore-services": "Враћање сервиса Медијавикија",
-	"config-install-tables": "Прављење табела, први корак",
+	"config-install-tables": "Прављење табела",
 	"config-install-tables-exist": "<strong>Упозорење:</strong> Изгледа да MediaWiki табеле већ постоје.\nПрескакање прављења.",
 	"config-install-tables-failed": "<strong>Грешка:</strong> Прављење табеле није успело због следеће грешке: $1",
 	"config-install-interwiki": "Попуњавање подразумеване табеле међувикија",

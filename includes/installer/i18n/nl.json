@@ -288,7 +288,7 @@
 	"config-install-user-missing-create": "Het opgegeven account \"$1\" bestaat niet.\nKlik op \"registreren\" onderaan als u het account wilt aanmaken.",
 	"config-install-logo-blank": "Voer een geldige URL voor het logo in.",
 	"config-install-restore-services": "MediaWiki services worden hersteld",
-	"config-install-tables": "Tabellen aanmaken, deel een",
+	"config-install-tables": "Tabellen aanmaken",
 	"config-install-tables-exist": "'''Waarschuwing''': de MediaWikitabellen lijken al te bestaan.\nHet aanmaken wordt overgeslagen.",
 	"config-install-tables-failed": "'''Fout''': het aanmaken van een tabel is mislukt met de volgende foutmelding: $1",
 	"config-install-interwiki": "Bezig met het vullen van de interwikitabel",

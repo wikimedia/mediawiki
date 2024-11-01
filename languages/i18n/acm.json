@@ -2230,8 +2230,6 @@
 	"block-options": "اعدادات زياده:",
 	"block-options-description": "هاي الاعدادات تساعد تراقب النفر، حتى لا تصير مشاكل زياده.",
 	"block-reason": "سبب:",
-	"block-user-label": "شنو النفر التريد تحظره؟",
-	"block-user-description": "النفر يصير لو يوزر لو آيبي لو نطاق مال آيبي.",
 	"block-user-placeholder": "ابدي اكتب يوزر...",
 	"block-target": "يوزر لو آيبي لو نطاق آيبي",
 	"block-target-placeholder": "يوزر، 1.1.1.42 لو 1.1.1.42/16",

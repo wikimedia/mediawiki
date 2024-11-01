@@ -55,6 +55,7 @@
 	"config-env-bad": "Aplinka buvo patikrinta.\nJūs negalite įdiegti MediaWiki.",
 	"config-env-php": "PHP $1 yra įdiegtas.",
 	"config-env-icu": "Įdiegtas ICU $1 (palaiko Unicode $2).",
+	"config-no-db": "Nepavyko rasti tinkamos duomenų bazės tvarkyklės! Turite įdiegti duomenų bazės tvarkyklę, skirtą PHP.\n{{PLURAL:$2|Ši duomenų bazės tipas yra palaikomas|Šie duomenų bazės tipai yra palaikomi}}: $1.\n\nJei patys sukompiliavote PHP, iš naujo sukonfigūruokite su įjungtu duomenų bazės klientu, pavyzdžiui, naudodami <code>./configure --with-mysqli</code>.\nJei įdiegėte PHP iš Debian arba Ubuntu paketo, tada taip pat reikia įdiegti, pavyzdžiui, <code>php-mysql</code> paketą.",
 	"config-outdated-sqlite": "<strong>Įspėjimas:</strong> jūs turite SQLite $2, kuri yra žemesnė nei minimali reikalinga versija $1. SQLite nebus prieinama.",
 	"config-no-fts3": "<strong>Įspėjimas:</strong> SQLite sukompiliuota be [//sqlite.org/fts3.html FTS3 modulio], paieškos funkcijos šioje vidinėje sistemoje nebus pasiekiamos.",
 	"config-pcre-invalid-newline": "<strong>Kritinis:</strong> PCRE2 biblioteka, atrodo, buvo sudaryta naudojant <code>--enable-newline-is-any</code>. MediaWiki nesuderinama su šia konfigūracija.",
@@ -179,6 +180,7 @@
 	"config-email-watchlist": "Įjungti stebimųjų pranešimą",
 	"config-email-watchlist-help": "Leisti naudotojams gauti pranešimus apie savo stebimus puslapius, jei jie tai įgalino savo nuostatymuose.",
 	"config-email-auth": "Įjungti el. pašto autentifikavimą",
+	"config-email-sender": "Grąžinimo el. pašto adresas:",
 	"config-upload-settings": "Vaizdų ir failų įkėlimai",
 	"config-upload-enable": "Įgalinti failų įkėlimus",
 	"config-upload-deleted": "Katalogas ištrintiems failams:",
@@ -198,6 +200,8 @@
 	"config-extensions-help": "Aukščiau išvardyti plėtiniai buvo aptikti jūsų <code>./extensions</code> kataloge.\n\nJiems gali reikėti papildomos konfigūracijos, bet galite juos įjungti dabar.",
 	"config-skins": "Išvaizda",
 	"config-skins-use-as-default": "Naudoti šią išvaizdą pagal nutylėjimą",
+	"config-skins-must-enable-some": "Turite pasirinkti bent vieną temą, kad įgalintumėte.",
+	"config-skins-must-enable-default": "Pasirinkta tema kaip numatytoji turi būti įjungta.",
 	"config-install-alreadydone": "<strong>Įspėjimas:</strong> atrodo, kad MediaWiki jau įdiegėte ir bandote įdiegti dar kartą.\nPrašome pereiti į kitą puslapį.",
 	"config-install-begin": "Paspaudę „{{int:config-continue}}“, pradėsite MediaWiki diegimą.\nJei vis tiek norite atlikti pakeitimus, paspauskite „{{int:config-back}}“.",
 	"config-install-step-done": "atlikta",
@@ -221,9 +225,11 @@
 	"config-install-tables": "Kuriamos lentelės, pirmas žingsnis",
 	"config-install-tables-exist": "<strong>Įspėjimas:</strong> MediaWiki lentelės, atrodo, jau egzistuoja.\nKūrimas praleidžiamas.",
 	"config-install-tables-failed": "<strong>Klaida:</strong> Lentelės sukūrimas nepavyko dėl šios klaidos: $1",
+	"config-install-interwiki": "Pildoma numatytoji interviki lentelė",
 	"config-install-interwiki-list": "Nepavyko perskaityti failo <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "<strong>Įspėjimas:</strong> Interwiki lentelė, atrodo, jau turi įrašų.\nNumatytasis sąrašas praleidžiamas.",
 	"config-install-stats": "Inicijuojamos statistikos",
+	"config-install-updates": "Neleiskite paleisti nereikalingų naujinimų",
 	"config-install-updates-failed": "<strong>Klaida:</strong> nepavyko įterpti naujinimo raktų į lenteles, klaida: $1",
 	"config-install-sysop": "Administratoriaus vartotojo paskyra kuriama",
 	"config-install-subscribe-fail": "Nepavyko užsiprenumeruoti [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
@@ -251,5 +257,5 @@
 	"config-extension-dependency": "Diegiant plėtinį „$1“ įvyko priklausomybės klaida: $2",
 	"config-ext-skins-more-info": "daugiau informacijos",
 	"mainpagetext": "<strong>MediaWiki sėkmingai įdiegta.</strong>",
-	"mainpagedocfooter": "Informacijos apie viki programinės įrangos naudojimą, ieškokite [[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Naudotojo gide].\n\n== Pradžia ==\n* [https\n://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Konfigūracijos nustatymų sąrašas]\n* [https\n://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MedijaWiki DUK]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki pranešimai el. paštu apie naujas versijas]\n* [https\n://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lokalizuokite MedijaWiki savo kalbai]\n* [https\n://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Sužinokite kaip kovoti su šlamštu savo viki]"
+	"mainpagedocfooter": "Informacijos apie viki programinės įrangos naudojimą, ieškokite [https\n://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Naudotojo gide].\n\n== Pradžia ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Konfigūracijos nustatymų sąrašas]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ DUK]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki pranešimai el. paštu apie naujas versijas]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lokalizuokite MedijaWiki savo kalbai]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Sužinokite kaip kovoti su šlamštu savo viki]"
 }

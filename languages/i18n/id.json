@@ -2613,8 +2613,6 @@
 	"block-options-description": "Opsi ini dapat membantu Anda memantau pengguna ini untuk mencegak masalah lebih lanjut.",
 	"block-reason": "Alasan:",
 	"block-reason-other": "Alasan tambahan atau lainnya",
-	"block-user-label": "Pengguna mana yang ingin Anda blokir?",
-	"block-user-description": "Pengguna dapat berupa nama pengguna, alamat IP, atau rentang IP.",
 	"block-user-placeholder": "Mulai ketikkan nama pengguna...",
 	"block-target": "Nama pengguna, alamat IP, atau rentang IP:",
 	"block-target-placeholder": "NamaPengguna, 1.1.1.42, atau 1.1.1.42/16",

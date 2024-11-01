@@ -2546,7 +2546,6 @@
 	"block-expiry": "Λήξη",
 	"block-options": "Επιπρόσθετες επιλογές:",
 	"block-reason": "Αιτία:",
-	"block-user-description": "Οι χρήστες μπορούν να είναι ονόματα χρήστη, διευθύνσεις IP ή περιοχές IP.",
 	"block-user-placeholder": "Ξεκινήστε να πληκτρολογείτε έναν χρήστη...",
 	"block-target": "Όνομα χρήστη, διεύθυνση IP ή εύρος IP:",
 	"block-target-placeholder": "ΌνομαΧρήστη, 1.1.1.42, ή 1.1.1.42/16",

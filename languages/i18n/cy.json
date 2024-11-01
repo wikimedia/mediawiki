@@ -2386,8 +2386,6 @@
 	"block-options": "Opsiynau ychwanegol:",
 	"block-reason": "Rhesymau:",
 	"block-reason-other": "Rheswm ychwanegol neu reswm arall",
-	"block-user-label": "Pa ddefnyddiwr ydych chi am ei flocio?",
-	"block-user-description": "Gall defnyddiwr fod yn enw defnyddiwr, cyfeiriad IP, neu ystod IP.",
 	"block-user-placeholder": "Dechreuwch deipio defnyddiwr...",
 	"block-target": "Enw defnyddiwr, cyfeiriad IP, neu ystod IP:",
 	"block-target-placeholder": "EnwDefnyddiwr, 1.1.1.42, neu 1.1.1.42/16",
