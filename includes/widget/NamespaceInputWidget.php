@@ -19,7 +19,7 @@ class NamespaceInputWidget extends DropdownInputWidget {
 	protected $userLang;
 	/** @var int[] */
 	protected $exclude;
-	/** @var int[] */
+	/** @var int[]|null */
 	protected $include;
 
 	/**
@@ -28,6 +28,8 @@ class NamespaceInputWidget extends DropdownInputWidget {
 	 *     namespace dropdown, and use this as the input value for it
 	 *   - bool $config['userLang'] Display namespaces in user language
 	 *   - int[] $config['exclude'] List of namespace numbers to exclude from the selector
+	 *   - int[]|null $config['include'] List of namespace numbers to only include in the selector, or null
+	 *     to not apply this filter.
 	 */
 	public function __construct( array $config = [] ) {
 		// Configuration initialization
@@ -39,7 +41,7 @@ class NamespaceInputWidget extends DropdownInputWidget {
 		$this->includeAllValue = $config['includeAllValue'] ?? null;
 		$this->userLang = $config['userLang'] ?? false;
 		$this->exclude = $config['exclude'] ?? [];
-		$this->include = $config['include'] ?? [];
+		$this->include = $config['include'] ?? null;
 
 		// Initialization
 		$this->addClasses( [ 'mw-widget-namespaceInputWidget' ] );
