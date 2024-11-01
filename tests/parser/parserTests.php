@@ -35,6 +35,7 @@ use MediaWiki\Tests\DummyTermColorer;
 use Wikimedia\Parsoid\Utils\ScriptUtils;
 
 define( 'MW_AUTOLOAD_TEST_CLASSES', true );
+define( 'MW_PARSER_TEST', true );
 
 class ParserTestsMaintenance extends Maintenance {
 
