@@ -30,11 +30,8 @@
 			:form-submitted="formSubmitted"
 			@input="store.alreadyBlocked = false"
 		></user-lookup>
-		<target-active-blocks
-			v-if="blockEnableMultiblocks"
-			:target-user="store.targetUser"
-		></target-active-blocks>
-		<target-block-log></target-block-log>
+		<block-log v-if="blockEnableMultiblocks" block-log-type="active"></block-log>
+		<block-log block-log-type="recent"></block-log>
 		<block-type-field></block-type-field>
 		<expiry-field :form-submitted="formSubmitted"></expiry-field>
 		<reason-field
@@ -72,8 +69,7 @@ const { storeToRefs } = require( 'pinia' );
 const { CdxButton, CdxCheckbox, CdxField, CdxMessage } = require( '@wikimedia/codex' );
 const useBlockStore = require( './stores/block.js' );
 const UserLookup = require( './components/UserLookup.vue' );
-const TargetActiveBlocks = require( './components/TargetActiveBlocks.vue' );
-const TargetBlockLog = require( './components/TargetBlockLog.vue' );
+const BlockLog = require( './components/BlockLog.vue' );
 const BlockTypeField = require( './components/BlockTypeField.vue' );
 const ExpiryField = require( './components/ExpiryField.vue' );
 const ReasonField = require( './components/ReasonField.vue' );
@@ -84,8 +80,7 @@ module.exports = exports = defineComponent( {
 	name: 'SpecialBlock',
 	components: {
 		UserLookup,
-		TargetActiveBlocks,
-		TargetBlockLog,
+		BlockLog,
 		BlockTypeField,
 		ExpiryField,
 		ReasonField,
