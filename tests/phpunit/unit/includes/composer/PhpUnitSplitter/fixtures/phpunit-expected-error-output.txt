@@ -1,0 +1,26 @@
+There were 5 errors:
+
+1) Wikibase\Repo\Tests\ParserOutput\ReferencedEntitiesDataUpdaterTest::testUpdateParserOutput with data set #0 (array())
+Error: Undefined constant "Wikibase\Repo\Tests\ParserOutput\Garbage"
+
+/var/www/html/w/extensions/Wikibase/repo/tests/phpunit/includes/ParserOutput/ReferencedEntitiesDataUpdaterTest.php:77
+
+2) Wikibase\Repo\Tests\ParserOutput\ReferencedEntitiesDataUpdaterTest::testUpdateParserOutput with data set #1 (array(Wikibase\DataModel\Entity\NumericPropertyId Object (...), Wikibase\DataModel\Entity\ItemId Object (...)))
+Error: Undefined constant "Wikibase\Repo\Tests\ParserOutput\Garbage"
+
+/var/www/html/w/extensions/Wikibase/repo/tests/phpunit/includes/ParserOutput/ReferencedEntitiesDataUpdaterTest.php:77
+
+3) Wikibase\Repo\Tests\ParserOutput\ReferencedEntitiesDataUpdaterTest::testUpdateParserOutput with data set #2 (array(Wikibase\DataModel\Entity\ItemId Object (...)))
+Error: Undefined constant "Wikibase\Repo\Tests\ParserOutput\Garbage"
+
+/var/www/html/w/extensions/Wikibase/repo/tests/phpunit/includes/ParserOutput/ReferencedEntitiesDataUpdaterTest.php:77
+
+4) Wikibase\Repo\Tests\ParserOutput\ReferencedEntitiesDataUpdaterTest::testUpdateParserOutput with data set #3 (array(Wikibase\DataModel\Entity\NumericPropertyId Object (...), Wikibase\DataModel\Entity\ItemId Object (...)))
+Error: Undefined constant "Wikibase\Repo\Tests\ParserOutput\Garbage"
+
+/var/www/html/w/extensions/Wikibase/repo/tests/phpunit/includes/ParserOutput/ReferencedEntitiesDataUpdaterTest.php:77
+
+5) Wikibase\Repo\Tests\ParserOutput\ReferencedEntitiesDataUpdaterTest::testUpdateParserOutput with data set #4 (array(Wikibase\DataModel\Entity\NumericPropertyId Object (...), Wikibase\DataModel\Entity\ItemId Object (...), Wikibase\DataModel\Entity\ItemId Object (...), Wikibase\DataModel\Entity\ItemId Object (...)))
+Error: Undefined constant "Wikibase\Repo\Tests\ParserOutput\Garbage"
+
+/var/www/html/w/extensions/Wikibase/repo/tests/phpunit/includes/ParserOutput/ReferencedEntitiesDataUpdaterTest.php:77

@@ -1,0 +1,24 @@
+> phpunit 'extensions/Wikibase/repo/tests/phpunit/includes/ParserOutput/'
+Using PHP 8.1.18
+Running with MediaWiki settings because there might be integration tests
+PHPUnit 9.6.19 by Sebastian Bergmann and contributors.
+
+.................................[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m[36;1mS[0m........................  63 / 103 ( 61%)
+........................................                        103 / 103 (100%)
+
+Time: 00:07.664, Memory: 97.00 MB
+
+[30;43mOK, but incomplete, skipped, or risky tests![0m
+[30;43mTests: 103[0m[30;43m, Assertions: 210[0m[30;43m, Skipped: 6[0m[30;43m.[0m
+
+
+You should really speed up these slow tests (>100ms)...
+ 1. 867ms to run Wikibase\\Repo\\Tests\\ParserOutput\\FullEntityParserOutputGeneratorIntegrationTest::testGetParserOutputIncludesLabelsOfRedirectEntityUsedAsStatementValue
+ 2. 841ms to run Wikibase\\Repo\\Tests\\ParserOutput\\ReferencedEntitiesDataUpdaterTest::testUpdateParserOutput with data set #2
+ 3. 790ms to run Wikibase\\Repo\\Tests\\ParserOutput\\ReferencedEntitiesDataUpdaterTest::testUpdateParserOutput with data set #1
+ 4. 765ms to run Wikibase\\Repo\\Tests\\ParserOutput\\ReferencedEntitiesDataUpdaterTest::testUpdateParserOutput with data set #4
+ 5. 764ms to run Wikibase\\Repo\\Tests\\ParserOutput\\ReferencedEntitiesDataUpdaterTest::testUpdateParserOutput with data set #3
+ 6. 751ms to run Wikibase\\Repo\\Tests\\ParserOutput\\ReferencedEntitiesDataUpdaterTest::testUpdateParserOutput with data set #0
+ 7. 749ms to run Wikibase\\Repo\\Tests\\ParserOutput\\ReferencedEntitiesDataUpdaterTest::testValidCovers
+ 8. 707ms to run Wikibase\\Repo\\Tests\\ParserOutput\\FullEntityParserOutputGeneratorIntegrationTest::testParserOutputContainsLinksForItemsUsedAsQuantity
+ 9. 235ms to run Wikibase\\Repo\\Tests\\ParserOutput\\EntityParserOutputGeneratorFactoryTest::testGetEntityParserOutputGenerator
