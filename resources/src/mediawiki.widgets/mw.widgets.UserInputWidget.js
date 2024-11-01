@@ -40,6 +40,12 @@
 		// Initialization
 		this.$element.addClass( 'mw-widget-userInputWidget' );
 		this.lookupMenu.$element.addClass( 'mw-widget-userInputWidget-menu' );
+
+		// Disable autocompletion if this widget only accepts IPs or IP ranges,
+		// since the allusers API won't yield results in this case.
+		if ( this.excludeNamed && this.excludeTemp ) {
+			this.setLookupsDisabled( true );
+		}
 	};
 
 	/* Setup */
