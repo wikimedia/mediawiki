@@ -116,9 +116,6 @@ because of Phabricator reports.
 * ...
 
 === Other changes in 1.44 ===
-
-* (T231827, T249976) Searchindex now uses utf8mb4,
-  si_page is marked as PK and si_title can handle longer title values.
 * …
 
 == Compatibility ==

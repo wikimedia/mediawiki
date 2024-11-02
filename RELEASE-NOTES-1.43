@@ -1123,6 +1123,8 @@ supported.
 * Image captions are no longer trimmed.
 * 'SpecialPasswordResetOnSubmit' hook handlers can now receive both the
   username and the email provided by the user, instead of only one of them.
+* (T231827, T249976) Searchindex now uses utf8mb4,
+  si_page is marked as PK and si_title can handle longer title values.
 * …
 
 == Compatibility ==
