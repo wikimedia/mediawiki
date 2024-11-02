@@ -135,15 +135,23 @@ class Category {
 		$this->mSubcats = (int)$row->cat_subcats;
 		$this->mFiles = (int)$row->cat_files;
 
-		# (T15683) If the count is negative, then 1) it's obviously wrong
-		# and should not be kept, and 2) we *probably* don't have to scan many
-		# rows to obtain the correct figure, so let's risk a one-time recount.
-		if ( $this->mPages < 0 || $this->mSubcats < 0 || $this->mFiles < 0
+		# (T15683, T373773) If any of the per-link-type counts are negative
+		# (which may also make the total negative), then 1) the counts are
+		# obviously wrong and should not be kept, and 2) we *probably* don't
+		# have to scan many rows to obtain the correct figure, so let's risk
+		# a one-time recount.
+		if ( $this->mSubcats < 0 || $this->mFiles < 0
 			|| $this->mPages - $this->mSubcats - $this->mFiles < 0
 		) {
+			# Adjust any per-link-type counts that are negative, so callers
+			# of the getter methods will not see negative numbers. Adjust the
+			# total last; increasing a negative number other than the total
+			# to zero could cause the number of regular pages to go negative.
 			$this->mSubcats = max( $this->mSubcats, 0 );
 			$this->mFiles = max( $this->mFiles, 0 );
-			$this->mPages = max( $this->mPages - $this->mSubcats - $this->mFiles, 0 );
+			# For the number of regular pages to not be negative, the total
+			# number of members must be at least the sum of the other counts.
+			$this->mPages = max( $this->mPages, $this->mSubcats + $this->mFiles );
 
 			if ( $mode === self::LAZY_INIT_ROW ) {
 				DeferredUpdates::addCallableUpdate( [ $this, 'refreshCounts' ] );
