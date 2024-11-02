@@ -32,7 +32,7 @@ class PageSelectQueryBuilderTest extends MediaWikiIntegrationTestCase {
 		$serviceOptions = new ServiceOptions(
 			PageStore::CONSTRUCTOR_OPTIONS,
 			[
-				MainConfigNames::LanguageCode => $services->getContentLanguage()->getCode(),
+				MainConfigNames::LanguageCode => $services->getContentLanguageCode()->toString(),
 				MainConfigNames::PageLanguageUseDB => true,
 			]
 		);

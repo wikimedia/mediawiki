@@ -53,7 +53,7 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 		$serviceOptions = new ServiceOptions(
 			PageStore::CONSTRUCTOR_OPTIONS,
 			$options + [
-				MainConfigNames::LanguageCode => $services->getContentLanguage()->getCode(),
+				MainConfigNames::LanguageCode => $services->getContentLanguageCode()->toString(),
 				MainConfigNames::PageLanguageUseDB => true,
 			]
 		);

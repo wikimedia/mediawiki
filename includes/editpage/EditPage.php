@@ -1997,7 +1997,7 @@ class EditPage implements IEditObject {
 		$services = MediaWikiServices::getInstance();
 		$parser = $services->getParser();
 		$textFormatter = $services->getMessageFormatterFactory()->getTextFormatter(
-			$services->getContentLanguage()->getCode()
+			$services->getContentLanguageCode()->toString()
 		);
 
 		if ( $this->sectiontitle !== '' ) {

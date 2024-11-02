@@ -13,7 +13,7 @@ abstract class MediaWikiLangTestCase extends MediaWikiIntegrationTestCase {
 	final protected function mediaWikiLangSetUp(): void {
 		$services = $this->getServiceContainer();
 		$languageCode = $this->getConfVar( MainConfigNames::LanguageCode );
-		$contLanguageCode = $services->getContentLanguage()->getCode();
+		$contLanguageCode = $services->getContentLanguageCode()->toString();
 		if ( $languageCode !== $contLanguageCode ) {
 			throw new RuntimeException( "Error in " . __METHOD__ . ': ' .
 				"\$wgLanguageCode ('$languageCode') is different from content language code " .

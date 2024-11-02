@@ -66,7 +66,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	 */
 	private function makePage( $title, $lang, $content = null ) {
 		$content ??= $lang;
-		if ( $lang !== $this->getServiceContainer()->getContentLanguage()->getCode() ) {
+		if ( $lang !== $this->getServiceContainer()->getContentLanguageCode()->toString() ) {
 			$title = "$title/$lang";
 		}
 

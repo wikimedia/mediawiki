@@ -390,7 +390,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 				// Get language variant preference from logged in users
 				if (
 					$this->getMainCode() ===
-					$services->getContentLanguage()->getCode()
+					$services->getContentLanguageCode()->toString()
 				) {
 					$optionName = 'variant';
 				} else {
