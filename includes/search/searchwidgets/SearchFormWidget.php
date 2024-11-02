@@ -407,13 +407,8 @@ class SearchFormWidget {
 			$rows[$subject] .= $this->createNamespaceCheckbox( $namespace, $activeNamespaces );
 		}
 
-		$namespaceTables = [];
-		foreach ( array_chunk( $rows, 4 ) as $chunk ) {
-			$namespaceTables[] = implode( '', $chunk );
-		}
-
-		return '<div class="checkbox-container">' .
-			implode( '</div><div class="checkbox-container">', $namespaceTables ) . '</div>';
+		return '<div class="checkbox-wrapper"><div>' .
+			implode( '</div><div>', $rows ) . '</div></div>';
 	}
 
 	private function createHiddenOptsHtml( array $opts ): string {
