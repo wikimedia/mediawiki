@@ -1,0 +1,131 @@
+{
+	"comment": "Searchindex with PK (T249976), InnoDB (T107875), larger title (T231827)",
+	"before": {
+		"columns": [
+			{
+				"name": "si_page",
+				"type": "integer",
+				"comment": "Key to page_id",
+				"options": {
+					"notnull": true,
+					"unsigned": true
+				}
+			},
+			{
+				"name": "si_title",
+				"type": "string",
+				"comment": "Munged version of title",
+				"options": {
+					"default": "",
+					"length": 255,
+					"notnull": true
+				}
+			},
+			{
+				"name": "si_text",
+				"type": "text",
+				"comment": "Munged version of body text",
+				"options": {
+					"length": 16777215,
+					"notnull": true
+				}
+			}
+		],
+		"comment": "search backend, this is actively used in MySQL but created and not used in Postgres while there are plans to use it in the future (T220450). This table must be MyISAM in MySQL; InnoDB does not support the needed fulltext index.",
+		"indexes": [
+			{
+				"name": "si_page",
+				"columns": [
+					"si_page"
+				],
+				"unique": true
+			},
+			{
+				"name": "si_title",
+				"columns": [
+					"si_title"
+				],
+				"flags": [
+					"fulltext"
+				],
+				"unique": false
+			},
+			{
+				"name": "si_text",
+				"columns": [
+					"si_text"
+				],
+				"flags": [
+					"fulltext"
+				],
+				"unique": false
+			}
+		],
+		"name": "searchindex",
+		"pk": [],
+		"table_options": [
+			"ENGINE=MyISAM",
+			"DEFAULT CHARSET=utf8"
+		]
+	},
+	"after": {
+		"columns": [
+			{
+				"name": "si_page",
+				"type": "integer",
+				"comment": "Key to page_id",
+				"options": {
+					"notnull": true,
+					"unsigned": true
+				}
+			},
+			{
+				"name": "si_title",
+				"type": "string",
+				"comment": "Munged version of title",
+				"options": {
+					"length": 16777215,
+					"notnull": true
+				}
+			},
+			{
+				"name": "si_text",
+				"type": "text",
+				"comment": "Munged version of body text",
+				"options": {
+					"length": 16777215,
+					"notnull": true
+				}
+			}
+		],
+		"comment": "search backend, this is actively used in MySQL but created and not used in Postgres while there are plans to use it in the future (T220450). This table must be MyISAM in MySQL; InnoDB does not support the needed fulltext index.",
+		"indexes": [
+			{
+				"name": "si_title",
+				"columns": [
+					"si_title"
+				],
+				"flags": [
+					"fulltext"
+				],
+				"unique": false
+			},
+			{
+				"name": "si_text",
+				"columns": [
+					"si_text"
+				],
+				"flags": [
+					"fulltext"
+				],
+				"unique": false
+			}
+		],
+		"name": "searchindex",
+		"pk": [ "si_page" ],
+		"table_options": [
+			"ENGINE=MyISAM",
+			"DEFAULT CHARSET=utf8mb4"
+		]
+	}
+}

@@ -853,11 +853,10 @@ CREATE INDEX rev_page_actor_timestamp ON /*_*/revision (
 
 CREATE TABLE /*_*/searchindex (
   si_page INTEGER UNSIGNED NOT NULL,
-  si_title VARCHAR(255) DEFAULT '' NOT NULL,
-  si_text CLOB NOT NULL
+  si_title CLOB NOT NULL,
+  si_text CLOB NOT NULL,
+  PRIMARY KEY(si_page)
 );
-
-CREATE UNIQUE INDEX si_page ON /*_*/searchindex (si_page);
 
 CREATE INDEX si_title ON /*_*/searchindex (si_title);
 
