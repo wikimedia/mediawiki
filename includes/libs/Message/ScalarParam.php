@@ -48,10 +48,15 @@ class ScalarParam extends MessageParam {
 			// TODO: Remove separate '__toString' check above once we drop PHP 7.4
 			$value = (string)$value;
 		} elseif ( !is_string( $value ) && !is_numeric( $value ) ) {
-			$type = get_debug_type( $value );
-			throw new InvalidArgumentException(
-				"Scalar parameter must be a string, number, Stringable, or MessageSpecifier; got $type"
-			);
+			$valType = get_debug_type( $value );
+			if ( $value === null || is_bool( $value ) ) {
+				wfDeprecatedMsg( "Using $valType as message parameter was deprecated in MediaWiki 1.43", '1.43' );
+				$value = (string)$value;
+			} else {
+				throw new InvalidArgumentException(
+					"Scalar parameter must be a string, number, Stringable, or MessageSpecifier; got $valType"
+				);
+			}
 		}
 
 		$this->type = $type;

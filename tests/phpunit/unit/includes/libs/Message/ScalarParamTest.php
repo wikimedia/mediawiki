@@ -82,9 +82,8 @@ class ScalarParamTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testConstruct_badValueNULL() {
-		$this->expectException( InvalidArgumentException::class );
-		$this->expectExceptionMessage(
-			'Scalar parameter must be a string, number, Stringable, or MessageSpecifier; got null'
+		$this->expectDeprecationAndContinue(
+			'/Using null as message parameter was deprecated/'
 		);
 		new ScalarParam( ParamType::TEXT, null );
 	}
