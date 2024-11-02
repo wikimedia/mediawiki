@@ -203,6 +203,11 @@ class RenameuserSQL {
 			->where( [ 'actor_name' => $this->old, 'actor_user' => $this->uid ] )
 			->caller( __METHOD__ )->execute();
 
+		// If this user is renaming themself, make sure that code below uses a proper name
+		if ( $this->renamer->getId() === $this->uid ) {
+			$this->renamer->setName( $this->new );
+		}
+
 		// Reset token to break login with central auth systems.
 		// Again, avoids user being logged in with old name.
 		$user = $this->userFactory->newFromId( $this->uid );

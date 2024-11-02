@@ -4523,7 +4523,6 @@
 	"renameuser-error-same-user": "You cannot rename a user to the same thing as before.",
 	"renameuser-error-temp-user": "You cannot rename temporary account \"$1\".",
 	"renameuser-error-temp-user-reserved": "You cannot use \"$1\". It is reserved for temporary accounts.",
-	"renameuser-error-self-rename": "You cannot rename yourself",
 	"renameusersuccess": "The {{GENDER:$2|user}} \"<nowiki>$1</nowiki>\" has been renamed to \"<nowiki>$2</nowiki>\".",
 	"renameuser-page-exists": "The page $1 already exists and cannot be automatically overwritten.",
 	"renameuser-page-moved": "The page $1 has been moved to $2.",

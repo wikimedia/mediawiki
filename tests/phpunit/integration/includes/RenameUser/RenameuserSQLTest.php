@@ -68,4 +68,21 @@ class RenameuserSQLTest extends MediaWikiIntegrationTestCase {
 			->newFromTarget( "#$blockId" );
 		$this->assertSame( $newName, $block->getTargetName() );
 	}
+
+	public function testRenameSelf() {
+		$user = $this->getMutableTestUser( [ 'sysop', 'bureaucrat' ] )->getUser();
+		$newName = $user->getName() . ' new';
+		$renamer = new RenameuserSQL( $user->getName(), $newName, $user->getId(), $user );
+		$this->assertTrue( $renamer->rename() );
+
+		$this->newSelectQueryBuilder()
+			->select( 'actor_name' )
+			->from( 'logging' )
+			->join( 'actor', null, 'actor_id=log_actor' )
+			->where( [
+				'log_type' => 'renameuser',
+				'log_action' => 'renameuser'
+			] )
+			->assertFieldValue( $newName );
+	}
 }
