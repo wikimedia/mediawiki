@@ -1016,6 +1016,8 @@ supported.
   as JSON, the methods MessageValue::objectParams(), Message::objectParams()
   and Message::objectParam() are deprecated. The UserGroupMembershipParam
   class and the ParamType::OBJECT constant are likewise deprecated.
+* Passing null or boolean values as message parameters, which are converted
+  to strings "" and "1", is deprecated.
 * The Less mixin .column-break-after-avoid() is deprecated. Use just the
   CSS rule `break-after: avoid-column;` instead now.
 * The Less mixins .horizontal-gradient and .vertical-gradient are deprecated.
