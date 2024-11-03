@@ -25,9 +25,6 @@ use Wikimedia\Rdbms\LikeMatch;
 use Wikimedia\Rdbms\RawSQLValue;
 use Wikimedia\Rdbms\Subquery;
 
-// Very long type annotations :(
-// phpcs:disable Generic.Files.LineLength
-
 /**
  * Interface for query language.
  * Note: This is for simple SQL operations, use query builder classes for building full queries.
@@ -526,6 +523,7 @@ interface ISQLPlatform {
 	 * @param-taint $tables exec_sql
 	 * @param string|array $vars Field names
 	 * @param-taint $vars exec_sql
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
 	 *   Conditions
 	 * @param-taint $conds exec_sql_numkey
@@ -632,6 +630,7 @@ interface ISQLPlatform {
 	 * @param string|array $tables Table reference(s), using the unqualified name of tables
 	 *   or of the form "information_schema.<identifier>". {@see select} for details.
 	 * @param string $field Field name
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
 	 *   Conditions
 	 * @param string|array $join_conds Join conditions
