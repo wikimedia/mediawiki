@@ -266,14 +266,15 @@ class Status extends StatusValue {
 	 * Try to convert the status to a PSR-3 friendly format. The output will be similar to
 	 * getWikiText( false, false, 'en' ), but message parameters will be extracted into the
 	 * context array with parameter names 'parameter1' etc. when possible.
+	 * A predefined context array may be passed for convenience.
 	 *
 	 * @deprecated since 1.42, use StatusFormatter instead.
 	 *
 	 * @return array A pair of (message, context) suitable for passing to a PSR-3 logger.
 	 * @phan-return array{0:string,1:(int|float|string)[]}
 	 */
-	public function getPsr3MessageAndContext(): array {
-		return $this->getFormatter()->getPsr3MessageAndContext( $this );
+	public function getPsr3MessageAndContext( array $context = [] ): array {
+		return $this->getFormatter()->getPsr3MessageAndContext( $this, $context );
 	}
 
 	/**
