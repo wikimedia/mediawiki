@@ -624,7 +624,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 		if ( isset( $this->respHeaders['set-cookie'] ) ) {
 			$url = parse_url( $this->getFinalUrl() );
 			if ( !isset( $url['host'] ) ) {
-				$this->status->fatal( 'http-invalid-url', $url );
+				$this->status->fatal( 'http-invalid-url', $this->getFinalUrl() );
 			} else {
 				foreach ( $this->respHeaders['set-cookie'] as $cookie ) {
 					$this->cookieJar->parseCookieResponseHeader( $cookie, $url['host'] );

@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Specials;
 
+use LogicException;
 use MediaWiki\Api\ApiHelp;
 use MediaWiki\Api\ApiMain;
 use MediaWiki\Api\ApiUsageException;
@@ -82,10 +83,12 @@ class SpecialApiHelp extends UnlistedSpecialPage {
 			$moduleName = $par;
 			break;
 		}
+		if ( !isset( $moduleName ) ) {
+			throw new LogicException( 'Module name should have been found' );
+		}
 
 		if ( !$this->including() ) {
 			unset( $options['nolead'], $options['title'] );
-			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
 			$options['modules'] = $moduleName;
 			$link = wfAppendQuery( (string)$this->urlUtils->expand( wfScript( 'api' ), PROTO_CURRENT ), $options );
 			$this->getOutput()->redirect( $link );
@@ -94,11 +97,9 @@ class SpecialApiHelp extends UnlistedSpecialPage {
 
 		$main = new ApiMain( $this->getContext(), false );
 		try {
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable,PhanPossiblyUndeclaredVariable False positive
 			$module = $main->getModuleFromPath( $moduleName );
 		} catch ( ApiUsageException $ex ) {
 			$this->getOutput()->addHTML( Html::rawElement( 'span', [ 'class' => 'error' ],
-				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
 				$this->msg( 'apihelp-no-such-module', $moduleName )->inContentLanguage()->parse()
 			) );
 			return;

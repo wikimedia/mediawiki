@@ -3,6 +3,7 @@
 namespace MediaWiki\EditPage;
 
 use LogEventsList;
+use LogicException;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Config\Config;
@@ -419,6 +420,9 @@ class IntroMessageBuilder {
 				),
 				PROTO_CURRENT
 			);
+			if ( $helpLink === null ) {
+				throw new LogicException( 'Help link was invalid, this should be impossible' );
+			}
 			if ( $performer->getUser()->isRegistered() ) {
 				$messages->add(
 					$localizer->msg( 'newarticletext', $helpLink ),

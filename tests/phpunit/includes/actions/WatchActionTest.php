@@ -266,7 +266,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$testOutput = $this->createMock( OutputPage::class );
 		$testOutput->expects( $this->once() )
 			->method( 'addWikiMsg' )
-			->with( $msg, $prefixedTitle, $expiryLabel );
+			->with( $msg, $prefixedTitle, ...array_filter( [ $expiryLabel ] ) );
 		$testContext->method( 'getOutput' )->willReturn( $testOutput );
 		// Set language to anything non-English/default, to catch assumptions.
 		$langDe = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'de' );
@@ -310,14 +310,14 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 				'msg' => 'addedwatchindefinitelytext',
 				'prefixedTitle' => 'Foo',
 				'submittedExpiry' => 'infinite',
-				'expiryLabel' => 'Dauerhaft',
+				'expiryLabel' => null,
 			],
 			[
 				'wgWatchlistExpiry' => true,
 				'msg' => 'addedwatchindefinitelytext-talk',
 				'prefixedTitle' => 'Talk:Foo',
 				'submittedExpiry' => 'infinite',
-				'expiryLabel' => 'Dauerhaft',
+				'expiryLabel' => null,
 			],
 			[
 				'wgWatchlistExpiry' => true,
