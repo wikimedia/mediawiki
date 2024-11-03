@@ -9,6 +9,8 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Title\Title;
 use MessageLocalizer;
 use RuntimeException;
+use Wikimedia\Message\MessageParam;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * Build the navigation for a pager, with links to prev/next page, links to change limits, and
@@ -232,8 +234,11 @@ class PagerNavigationBuilder {
 	}
 
 	/**
-	 * @param mixed $key
-	 * @param mixed ...$params
+	 * @param string|string[]|MessageSpecifier $key Message key, or array of keys,
+	 *   or a MessageSpecifier.
+	 * @phpcs:ignore Generic.Files.LineLength
+	 * @param MessageParam|MessageSpecifier|string|int|float|list<MessageParam|MessageSpecifier|string|int|float> ...$params
+	 *   See Message::params()
 	 * @return Message
 	 */
 	private function msg( $key, ...$params ): Message {

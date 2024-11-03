@@ -51,6 +51,7 @@ use ReadOnlyError;
 use SearchEngineFactory;
 use Skin;
 use UserNotLoggedIn;
+use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 
 /**
@@ -993,7 +994,9 @@ class SpecialPage implements MessageLocalizer {
 	 *
 	 * @since 1.16
 	 * @param string|string[]|MessageSpecifier $key
-	 * @param mixed ...$params
+	 * @phpcs:ignore Generic.Files.LineLength
+	 * @param MessageParam|MessageSpecifier|string|int|float|list<MessageParam|MessageSpecifier|string|int|float> ...$params
+	 *   See Message::params()
 	 * @return Message
 	 * @see wfMessage
 	 */

@@ -39,6 +39,8 @@ use MediaWiki\User\UserNameUtils;
 use MWRestrictions;
 use Psr\Log\LoggerInterface;
 use Stringable;
+use Wikimedia\Message\MessageParam;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * A SessionProvider provides SessionInfo and support for Session
@@ -729,7 +731,9 @@ abstract class SessionProvider implements Stringable, SessionProviderInterface {
 	 * API requests), and the returned SessionInfo should be returned by provideSessionInfo().
 	 *
 	 * @param string $key Key for the error message
-	 * @param mixed ...$params Parameters as strings.
+	 * @phpcs:ignore Generic.Files.LineLength
+	 * @param MessageParam|MessageSpecifier|string|int|float|list<MessageParam|MessageSpecifier|string|int|float> ...$params
+	 *   See Message::params()
 	 * @return SessionInfo An anonymous session info with maximum priority, to force an
 	 *   anonymous session in case throwing the exception doesn't happen.
 	 */

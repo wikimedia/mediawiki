@@ -43,6 +43,8 @@ use Shellbox\Command\BoxedCommand;
 use StatusValue;
 use Wikimedia\FileBackend\FSFile\FSFile;
 use Wikimedia\FileBackend\FSFile\TempFSFile;
+use Wikimedia\Message\MessageParam;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -1713,15 +1715,18 @@ abstract class FileBackend implements LoggerAwareInterface {
 
 	/**
 	 * Yields the result of the status wrapper callback on either:
-	 *   - StatusValue::newGood() if this method is called without parameters
-	 *   - StatusValue::newFatal() with all parameters to this method if passed in
+	 *   - StatusValue::newGood(), if this method is called without a message
+	 *   - StatusValue::newFatal( ... ) with all parameters to this method, if a message was given
 	 *
-	 * @param mixed ...$args
+	 * @param null|string $message Message key
+	 * @phpcs:ignore Generic.Files.LineLength
+	 * @param MessageParam|MessageSpecifier|string|int|float|list<MessageParam|MessageSpecifier|string|int|float> ...$params
+	 *   See Message::params()
 	 * @return StatusValue
 	 */
-	final protected function newStatus( ...$args ) {
-		if ( count( $args ) ) {
-			$sv = StatusValue::newFatal( ...$args );
+	final protected function newStatus( $message = null, ...$params ) {
+		if ( $message !== null ) {
+			$sv = StatusValue::newFatal( $message, ...$params );
 		} else {
 			$sv = StatusValue::newGood();
 		}

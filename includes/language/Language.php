@@ -67,6 +67,8 @@ use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\DebugInfo\DebugInfoTrait;
+use Wikimedia\Message\MessageParam;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * Base class for language-specific code.
@@ -744,7 +746,9 @@ class Language implements Bcp47Code {
 	 * Gets the Message object from this language. Only for use inside this class.
 	 *
 	 * @param string $msg Message name
-	 * @param mixed ...$params Message parameters
+	 * @phpcs:ignore Generic.Files.LineLength
+	 * @param MessageParam|MessageSpecifier|string|int|float|list<MessageParam|MessageSpecifier|string|int|float> ...$params
+	 *   See Message::params()
 	 * @return Message
 	 */
 	protected function msg( $msg, ...$params ) {

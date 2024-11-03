@@ -267,7 +267,7 @@ class CliInstaller extends Installer {
 
 	/**
 	 * @param string|MessageSpecifier $msg
-	 * @param array $params
+	 * @param (string|int|float)[] $params Message parameters
 	 * @return string
 	 */
 	protected function getMessageText( $msg, $params ) {
@@ -280,8 +280,8 @@ class CliInstaller extends Installer {
 
 	/**
 	 * Dummy
-	 * @param string $msg Key for wfMessage()
-	 * @param mixed ...$params
+	 * @param string $msg Message key
+	 * @param string|int|float ...$params Message parameters
 	 */
 	public function showHelpBox( $msg, ...$params ) {
 	}

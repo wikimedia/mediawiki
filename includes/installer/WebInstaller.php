@@ -647,14 +647,14 @@ class WebInstaller extends Installer {
 	 * Get small text indented help for a preceding form field.
 	 * Parameters like wfMessage().
 	 *
-	 * @param string $msg
-	 * @param mixed ...$args
+	 * @param string $msg Message key
+	 * @param string|int|float ...$params Message parameters
 	 * @return string HTML
 	 * @return-taint escaped
 	 */
-	public function getHelpBox( $msg, ...$args ) {
-		$args = array_map( 'htmlspecialchars', $args );
-		$text = wfMessage( $msg, $args )->useDatabase( false )->plain();
+	public function getHelpBox( $msg, ...$params ) {
+		$params = array_map( 'htmlspecialchars', $params );
+		$text = wfMessage( $msg, $params )->useDatabase( false )->plain();
 		$html = $this->parse( $text, true );
 
 		return "<div class=\"config-help-field-container\">\n" .
@@ -669,8 +669,8 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Output a help box.
-	 * @param string $msg Key for wfMessage()
-	 * @param mixed ...$params
+	 * @param string $msg Message key
+	 * @param string|int|float ...$params Message parameters
 	 */
 	public function showHelpBox( $msg, ...$params ) {
 		$html = $this->getHelpBox( $msg, ...$params );

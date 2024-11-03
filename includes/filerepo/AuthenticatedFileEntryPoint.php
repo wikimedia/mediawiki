@@ -32,6 +32,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiEntryPoint;
 use MediaWiki\Title\Title;
 use Wikimedia\FileBackend\HTTPFileStreamer;
+use Wikimedia\Message\MessageParam;
+use Wikimedia\Message\MessageSpecifier;
 
 class AuthenticatedFileEntryPoint extends MediaWikiEntryPoint {
 
@@ -198,8 +200,9 @@ class AuthenticatedFileEntryPoint extends MediaWikiEntryPoint {
 	 *
 	 * @param string $msg1
 	 * @param string $msg2
-	 * @param mixed ...$args To pass as params to $context->msg() with $msg2. Either variadic, or a single
-	 *   array argument.
+	 * @phpcs:ignore Generic.Files.LineLength
+	 * @param MessageParam|MessageSpecifier|string|int|float|list<MessageParam|MessageSpecifier|string|int|float> ...$args
+	 *   See Message::params()
 	 */
 	private function forbidden( $msg1, $msg2, ...$args ) {
 		$args = ( isset( $args[0] ) && is_array( $args[0] ) ) ? $args[0] : $args;

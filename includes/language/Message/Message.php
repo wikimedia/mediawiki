@@ -440,7 +440,9 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 * @since 1.17
 	 *
 	 * @param string|string[]|MessageSpecifier $key
-	 * @param mixed ...$params Parameters as strings.
+	 * @phpcs:ignore Generic.Files.LineLength
+	 * @param MessageParam|MessageSpecifier|string|int|float|list<MessageParam|MessageSpecifier|string|int|float> ...$params
+	 *   See Message::params()
 	 *
 	 * @return self
 	 */
@@ -556,8 +558,10 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 *
 	 * @since 1.17
 	 *
-	 * @param MessageParam|MessageSpecifier|string|int|float|array ...$params Parameters as strings or
-	 *  MessageParam values (from Message::numParam() and the like), or a single array of parameters.
+	 * @phpcs:ignore Generic.Files.LineLength
+	 * @param MessageParam|MessageSpecifier|string|int|float|list<MessageParam|MessageSpecifier|string|int|float> ...$params
+	 *   Parameters as strings or MessageParam values (from Message::numParam() and the like),
+	 *   may also be passed as a single array instead of variadic parameters.
 	 *
 	 * @return self $this
 	 */

@@ -383,7 +383,9 @@ class StatusFormatter {
 	/**
 	 * @param string|MessageSpecifier $key
 	 * @param string|Language|StubUserLang|null $lang
-	 * @param mixed ...$params
+	 * @phpcs:ignore Generic.Files.LineLength
+	 * @param MessageParam|MessageSpecifier|string|int|float|list<MessageParam|MessageSpecifier|string|int|float> ...$params
+	 *   See Message::params()
 	 * @return Message
 	 */
 	private function msgInLang( $key, $lang, ...$params ): Message {

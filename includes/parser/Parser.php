@@ -88,6 +88,8 @@ use StringUtils;
 use UnexpectedValueException;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\IPUtils;
+use Wikimedia\Message\MessageParam;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\Parsoid\Core\TOCData;
@@ -4162,13 +4164,15 @@ class Parser {
 	 * polluted.
 	 *
 	 * @param string $msg The localization message key
-	 * @param mixed ...$args Optional arguments for the message
+	 * @phpcs:ignore Generic.Files.LineLength
+	 * @param MessageParam|MessageSpecifier|string|int|float|list<MessageParam|MessageSpecifier|string|int|float> ...$params
+	 *   See Message::params()
 	 * @return Message
 	 * @since 1.40
 	 * @see https://phabricator.wikimedia.org/T202481
 	 */
-	public function msg( string $msg, ...$args ): Message {
-		return wfMessage( $msg, ...$args )
+	public function msg( string $msg, ...$params ): Message {
+		return wfMessage( $msg, ...$params )
 			->inLanguage( $this->getTargetLanguage() )
 			->page( $this->getPage() );
 	}
