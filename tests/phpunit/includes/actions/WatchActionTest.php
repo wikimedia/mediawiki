@@ -4,10 +4,8 @@ use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Language\Language;
-use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
-use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
@@ -20,6 +18,7 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Watchlist\WatchedItem;
 use PHPUnit\Framework\MockObject\MockObject;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -194,61 +193,49 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \WatchAction::onSuccess()
+	 * @covers \WatchAction::makeSuccessMessage()
 	 */
 	public function testOnSuccessMainNamespaceTitle() {
-		/** @var MockObject|IContextSource $testContext */
-		$testContext = $this->getMockBuilder( DerivativeContext::class )
-			->onlyMethods( [ 'msg' ] )
-			->setConstructorArgs( [ $this->watchAction->getContext() ] )
-			->getMock();
-		$testOutput = new OutputPage( $testContext );
-		$testContext->setOutput( $testOutput );
-		$testContext->method( 'msg' )->willReturnCallback( static function ( $msgKey ) {
-			return new RawMessage( $msgKey );
-		} );
-		$watchAction = $this->getWatchAction(
-			Article::newFromWikiPage( $this->testWikiPage, $testContext ),
-			$testContext
+		$testContext = $this->watchAction->getContext();
+
+		/** @var WatchAction $watchAction */
+		$watchAction = TestingAccessWrapper::newFromObject(
+			$watchAction = $this->getWatchAction(
+				Article::newFromWikiPage( $this->testWikiPage, $testContext ),
+				$testContext
+			)
 		);
 
-		$watchAction->onSuccess();
-
-		$this->assertEquals( '<p>addedwatchtext
-</p>', $testOutput->getHTML() );
+		$this->assertEquals( 'addedwatchtext', $watchAction->makeSuccessMessage( '' )->getKey() );
 	}
 
 	/**
 	 * @covers \WatchAction::onSuccess()
+	 * @covers \WatchAction::makeSuccessMessage()
 	 */
 	public function testOnSuccessTalkPage() {
-		/** @var MockObject|IContextSource $testContext */
-		$testContext = $this->getMockBuilder( DerivativeContext::class )
-			->onlyMethods( [ 'getOutput', 'msg' ] )
-			->setConstructorArgs( [ $this->watchAction->getContext() ] )
-			->getMock();
-		$testOutput = new OutputPage( $testContext );
-		$testContext->method( 'getOutput' )->willReturn( $testOutput );
-		$testContext->method( 'msg' )->willReturnCallback( static function ( $msgKey ) {
-			return new RawMessage( $msgKey );
-		} );
+		$testContext = new DerivativeContext( $this->watchAction->getContext() );
 		$talkPageTitle = Title::makeTitle( NS_TALK, 'UTTest' );
 		$testContext->setTitle( $talkPageTitle );
-		$watchAction = $this->getWatchAction(
-			Article::newFromTitle( $talkPageTitle, $testContext ),
-			$testContext
+
+		/** @var WatchAction $watchAction */
+		$watchAction = TestingAccessWrapper::newFromObject(
+			$watchAction = $this->getWatchAction(
+				Article::newFromTitle( $talkPageTitle, $testContext ),
+				$testContext
+			)
 		);
 
-		$watchAction->onSuccess();
-
-		$this->assertEquals( '<p>addedwatchtext-talk
-</p>', $testOutput->getHTML() );
+		$this->assertEquals( 'addedwatchtext-talk', $watchAction->makeSuccessMessage( '' )->getKey() );
 	}
 
 	/**
 	 * @dataProvider provideOnSuccessDifferentMessages
+	 * @covers \WatchAction::onSuccess()
+	 * @covers \WatchAction::makeSuccessMessage()
 	 */
 	public function testOnSuccessDifferentMessages(
-		$watchlistExpiry, $msg, $prefixedTitle, $submittedExpiry, $expiryLabel
+		$watchlistExpiry, $expectedMessage, $prefixedTitle, $submittedExpiry
 	) {
 		// Fake current time to be 2020-09-17 12:00:00 UTC.
 		ConvertibleTimestamp::setFakeTime( '20200917120000' );
@@ -256,29 +243,16 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		// WatchlistExpiry feature flag.
 		$this->overrideConfigValue( MainConfigNames::WatchlistExpiry, $watchlistExpiry );
 
-		// Set up context, request, and output.
+		// Set up context
 		/** @var MockObject|IContextSource $testContext */
 		$testContext = $this->getMockBuilder( DerivativeContext::class )
-			->onlyMethods( [ 'getOutput', 'getRequest', 'getLanguage' ] )
+			->onlyMethods( [ 'getLanguage' ] )
 			->setConstructorArgs( [ $this->watchAction->getContext() ] )
 			->getMock();
-		/** @var MockObject|OutputPage $testOutput */
-		$testOutput = $this->createMock( OutputPage::class );
-		$testOutput->expects( $this->once() )
-			->method( 'addWikiMsg' )
-			->with( $msg, $prefixedTitle, ...array_filter( [ $expiryLabel ] ) );
-		$testContext->method( 'getOutput' )->willReturn( $testOutput );
 		// Set language to anything non-English/default, to catch assumptions.
 		$langDe = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'de' );
 		$testContext->method( 'getLanguage' )->willReturn( $langDe );
-		/** @var MockObject|WebRequest $testRequest */
-		$testRequest = $this->createMock( WebRequest::class );
-		$testRequest->expects( $this->once() )
-			->method( 'getText' )
-			->willReturn( $submittedExpiry );
-		$testContext->method( 'getRequest' )->willReturn( $testRequest );
 
-		// Call the onSuccess method, and the above mocks will confirm it's correct.
 		/** @var WatchAction $watchAction */
 		$watchAction = TestingAccessWrapper::newFromObject(
 			$this->getWatchAction(
@@ -286,66 +260,69 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 				$testContext
 			)
 		);
-		$watchAction->onSuccess();
+
+		$this->assertEquals( $expectedMessage, $watchAction->makeSuccessMessage( $submittedExpiry ) );
 	}
 
 	public static function provideOnSuccessDifferentMessages() {
 		return [
 			[
 				'wgWatchlistExpiry' => false,
-				'msg' => 'addedwatchtext',
+				'msg' => MessageValue::new( 'addedwatchtext' )
+					->params( 'Foo' ),
 				'prefixedTitle' => 'Foo',
-				'submittedExpiry' => null,
-				'expiryLabel' => null,
+				'submittedExpiry' => '',
 			],
 			[
 				'wgWatchlistExpiry' => false,
-				'msg' => 'addedwatchtext-talk',
+				'msg' => MessageValue::new( 'addedwatchtext-talk' )
+					->params( 'Talk:Foo' ),
 				'prefixedTitle' => 'Talk:Foo',
-				'submittedExpiry' => null,
-				'expiryLabel' => null,
+				'submittedExpiry' => '',
 			],
 			[
 				'wgWatchlistExpiry' => true,
-				'msg' => 'addedwatchindefinitelytext',
+				'msg' => MessageValue::new( 'addedwatchindefinitelytext' )
+					->params( 'Foo' ),
 				'prefixedTitle' => 'Foo',
 				'submittedExpiry' => 'infinite',
-				'expiryLabel' => null,
 			],
 			[
 				'wgWatchlistExpiry' => true,
-				'msg' => 'addedwatchindefinitelytext-talk',
+				'msg' => MessageValue::new( 'addedwatchindefinitelytext-talk' )
+					->params( 'Talk:Foo' ),
 				'prefixedTitle' => 'Talk:Foo',
 				'submittedExpiry' => 'infinite',
-				'expiryLabel' => null,
 			],
 			[
 				'wgWatchlistExpiry' => true,
-				'msg' => 'addedwatchexpirytext',
+				'msg' => MessageValue::new( 'addedwatchexpirytext' )
+					->params( 'Foo' )
+					->params( '1 Woche' ),
 				'prefixedTitle' => 'Foo',
 				'submittedExpiry' => '1 week',
-				'expiryLabel' => '1 Woche',
 			],
 			[
 				'wgWatchlistExpiry' => true,
-				'msg' => 'addedwatchexpirytext-talk',
+				'msg' => MessageValue::new( 'addedwatchexpirytext-talk' )
+					->params( 'Talk:Foo' )
+					->params( '1 Woche' ),
 				'prefixedTitle' => 'Talk:Foo',
 				'submittedExpiry' => '1 week',
-				'expiryLabel' => '1 Woche',
 			],
 			[
 				'wgWatchlistExpiry' => true,
-				'msg' => 'addedwatchexpiryhours',
+				'msg' => MessageValue::new( 'addedwatchexpiryhours' )
+					->params( 'Foo' ),
 				'prefixedTitle' => 'Foo',
 				'submittedExpiry' => '2020-09-17T14:00:00Z',
-				'expiryLabel' => null,
 			],
 			[
 				'wgWatchlistExpiry' => true,
-				'msg' => 'addedwatchexpiryhours-talk',
+				'msg' => MessageValue::new( 'addedwatchexpiryhours-talk' )
+					->params( 'Talk:Foo' ),
 				'prefixedTitle' => 'Talk:Foo',
 				'submittedExpiry' => '2020-09-17T14:00:00Z',
-				'expiryLabel' => null,
 			],
 		];
 	}
