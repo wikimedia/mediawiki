@@ -33,7 +33,7 @@ module.exports = exports = defineStore( 'block', () => {
 		const isVisible = mw.config.get( 'blockDisableUTEditVisible' ) || false;
 		const isPartial = type.value === 'partial';
 		const blocksUT = namespaces.value.indexOf( mw.config.get( 'wgNamespaceIds' ).user_talk ) !== -1;
-		return isVisible && ( !isPartial || ( isPartial && !blocksUT ) );
+		return isVisible && ( !isPartial || ( isPartial && blocksUT ) );
 	} );
 
 	const additionalDetails = ref( mw.config.get( 'blockAdditionalDetailsPreset' ) || [] );
