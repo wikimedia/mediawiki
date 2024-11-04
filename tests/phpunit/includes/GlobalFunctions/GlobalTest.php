@@ -27,6 +27,7 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::wfArrayDiff2
 	 */
 	public function testWfArrayDiff2( $a, $b, $expected ) {
+		$this->expectDeprecationAndContinue( '/wfArrayDiff2/' );
 		$this->assertEquals(
 			$expected, wfArrayDiff2( $a, $b )
 		);
