@@ -633,10 +633,6 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function onAtomicSectionCancel( callable $callback, $fname = __METHOD__ ) {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function setTransactionListener( $name, ?callable $callback = null ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
