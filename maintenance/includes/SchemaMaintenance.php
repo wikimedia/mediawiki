@@ -100,6 +100,7 @@ abstract class SchemaMaintenance extends Maintenance {
 		if ( $this->hasOption( 'validate' ) ) {
 			$this->getSchema( $jsonPath );
 
+			$this->output( "Schema is valid.\n" );
 			return;
 		}
 
@@ -127,7 +128,11 @@ abstract class SchemaMaintenance extends Maintenance {
 
 			// MediaWiki, and some extensions place mysql .sql files in the directory root, instead of a dedicated
 			// sub directory. If mysql/ doesn't exist, assume that the .sql files should be in the directory root.
-			if ( $platform === 'mysql' && !is_dir( $sqlPath . '/mysql' ) ) {
+			if (
+				$platform === 'mysql' &&
+				!is_dir( $sqlPath . '/mysql' ) &&
+				!( count( $platforms ) > 1 && is_dir( dirname( $sqlPath ) . '/' . $platform ) )
+			) {
 				// Allow to specify a folder and build the name from the json filename
 				if ( is_dir( $sqlPath ) ) {
 					$sqlPath = $this->getSqlPathWithFileName( $relativeJsonPath, $sqlPath );
