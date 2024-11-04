@@ -23,9 +23,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
-use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
-use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * Helper class for category membership changes
@@ -41,7 +39,7 @@ class CategoryMembershipChange {
 	private const CATEGORY_REMOVAL = -1;
 
 	/**
-	 * @var string Current timestamp, set during CategoryMembershipChange::__construct()
+	 * @var string Timestamp of the revision associated with this category membership change
 	 */
 	private $timestamp;
 
@@ -51,9 +49,9 @@ class CategoryMembershipChange {
 	private $pageTitle;
 
 	/**
-	 * @var RevisionRecord|null Latest revision of the categorized page
+	 * @var RevisionRecord Latest revision of the categorized page
 	 */
-	private $revision;
+	private RevisionRecord $revision;
 
 	/** @var bool Whether this was caused by an import */
 	private $forImport;
@@ -76,13 +74,12 @@ class CategoryMembershipChange {
 	/**
 	 * @param Title $pageTitle Title instance of the categorized page
 	 * @param BacklinkCache $backlinkCache
-	 * @param RevisionRecord|null $revision Latest revision of the categorized page.
-	 * @param bool $forImport Whether this was caused by a import
+	 * @param RevisionRecord $revision Latest revision of the categorized page.
+	 * @param bool $forImport Whether this was caused by an import
 	 */
 	public function __construct(
-		Title $pageTitle, BacklinkCache $backlinkCache, ?RevisionRecord $revision = null, bool $forImport = false
+		Title $pageTitle, BacklinkCache $backlinkCache, RevisionRecord $revision, bool $forImport
 	) {
-		// TODO: Update callers of this method to pass for import
 		$this->pageTitle = $pageTitle;
 		$this->revision = $revision;
 
@@ -90,11 +87,7 @@ class CategoryMembershipChange {
 		// since their timestamp may be significantly older than the current time.
 		// This ensures the resulting RC entry won't be immediately reaped by probabilistic RC purging if
 		// the imported revision is older than $wgRCMaxAge (T377392).
-		if ( $revision === null || $forImport ) {
-			$this->timestamp = wfTimestampNow();
-		} else {
-			$this->timestamp = $revision->getTimestamp();
-		}
+		$this->timestamp = $forImport ? wfTimestampNow() : $revision->getTimestamp();
 		$this->newForCategorizationCallback = [ RecentChange::class, 'newForCategorization' ];
 		$this->backlinkCache = $backlinkCache;
 		$this->forImport = $forImport;
@@ -170,7 +163,7 @@ class CategoryMembershipChange {
 	 * @param string $comment Change summary
 	 * @param PageIdentity $page Page that is being added or removed
 	 * @param string $lastTimestamp Parent revision timestamp of this change in TS_MW format
-	 * @param RevisionRecord|null $revision
+	 * @param RevisionRecord $revision
 	 * @param bool $forImport Whether the associated revision was imported
 	 * @param bool $added true, if the category was added, false for removed
 	 */
@@ -181,12 +174,12 @@ class CategoryMembershipChange {
 		$comment,
 		PageIdentity $page,
 		$lastTimestamp,
-		$revision,
+		RevisionRecord $revision,
 		bool $forImport,
 		$added
 	) {
-		$deleted = $revision ? $revision->getVisibility() & RevisionRecord::SUPPRESSED_USER : 0;
-		$newRevId = $revision ? $revision->getId() : 0;
+		$deleted = $revision->getVisibility() & RevisionRecord::SUPPRESSED_USER;
+		$newRevId = $revision->getId();
 
 		/**
 		 * T109700 - Default bot flag to true when there is no corresponding RC entry
@@ -197,17 +190,13 @@ class CategoryMembershipChange {
 		$lastRevId = 0;
 		$ip = '';
 
-		# If no revision is given, the change was probably triggered by parser functions
-		if ( $revision !== null ) {
-			$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
-
-			$correspondingRc = $revisionStore->getRecentChange( $this->revision ) ??
-				$revisionStore->getRecentChange( $this->revision, IDBAccessObject::READ_LATEST );
-			if ( $correspondingRc !== null ) {
-				$bot = $correspondingRc->getAttribute( 'rc_bot' ) ?: 0;
-				$ip = $correspondingRc->getAttribute( 'rc_ip' ) ?: '';
-				$lastRevId = $correspondingRc->getAttribute( 'rc_last_oldid' ) ?: 0;
-			}
+		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$correspondingRc = $revisionStore->getRecentChange( $revision ) ??
+			$revisionStore->getRecentChange( $revision, IDBAccessObject::READ_LATEST );
+		if ( $correspondingRc !== null ) {
+			$bot = $correspondingRc->getAttribute( 'rc_bot' ) ?: 0;
+			$ip = $correspondingRc->getAttribute( 'rc_ip' ) ?: '';
+			$lastRevId = $correspondingRc->getAttribute( 'rc_last_oldid' ) ?: 0;
 		}
 
 		/** @var RecentChange $rc */
@@ -230,32 +219,13 @@ class CategoryMembershipChange {
 	}
 
 	/**
-	 * Get the user associated with this change.
-	 *
-	 * If there is no revision associated with the change and thus no editing user
-	 * fallback to a default.
-	 *
-	 * False will be returned if the user name specified in the
-	 * 'autochange-username' message is invalid.
+	 * Get the user associated with this change, or `null` if there is no valid author
+	 * associated with this change.
 	 *
 	 * @return UserIdentity|null
 	 */
 	private function getUser(): ?UserIdentity {
-		if ( $this->revision ) {
-			$user = $this->revision->getUser( RevisionRecord::RAW );
-			if ( $user ) {
-				return $user;
-			}
-		}
-
-		$username = wfMessage( 'autochange-username' )->inContentLanguage()->text();
-
-		$user = User::newSystemUser( $username );
-		if ( $user && !$user->isRegistered() ) {
-			$user->addToDatabase();
-		}
-
-		return $user ?: null;
+		return $this->revision->getUser( RevisionRecord::RAW );
 	}
 
 	/**
