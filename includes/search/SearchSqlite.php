@@ -108,6 +108,7 @@ class SearchSqlite extends SearchDatabase {
 				if ( count( $strippedVariants ) > 1 ) {
 					$searchon .= '(';
 				}
+				$count = 0;
 				foreach ( $strippedVariants as $stripped ) {
 					if ( $nonQuoted && strpos( $stripped, ' ' ) !== false ) {
 						// Hack for Chinese: we need to toss in quotes for
@@ -115,7 +116,11 @@ class SearchSqlite extends SearchDatabase {
 						// added spaces between them to make word breaks.
 						$stripped = '"' . trim( $stripped ) . '"';
 					}
+					if ( $count > 0 ) {
+						$searchon .= " OR ";
+					}
 					$searchon .= "$quote$stripped$quote$wildcard ";
+					++$count;
 				}
 				if ( count( $strippedVariants ) > 1 ) {
 					$searchon .= ')';
