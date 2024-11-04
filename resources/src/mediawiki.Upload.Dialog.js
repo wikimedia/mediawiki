@@ -189,9 +189,7 @@
 	 */
 	mw.Upload.Dialog.prototype.getSetupProcess = function ( data ) {
 		return mw.Upload.Dialog.super.prototype.getSetupProcess.call( this, data )
-			.next( function () {
-				return this.uploadBooklet.initialize();
-			}, this );
+			.next( () => this.uploadBooklet.initialize() );
 	};
 
 	/**
@@ -228,8 +226,8 @@
 	 */
 	mw.Upload.Dialog.prototype.getTeardownProcess = function ( data ) {
 		return mw.Upload.Dialog.super.prototype.getTeardownProcess.call( this, data )
-			.next( function () {
+			.next( () => {
 				this.uploadBooklet.clear();
-			}, this );
+			} );
 	};
 }() );
