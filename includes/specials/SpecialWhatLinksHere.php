@@ -143,7 +143,7 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 	 * @return array
 	 */
 	private function parseOffsetAndDir(): array {
-		$from = $this->formData['from'];
+		$from = (int)$this->formData['from'];
 
 		if ( $from ) {
 			$dir = 'next';
