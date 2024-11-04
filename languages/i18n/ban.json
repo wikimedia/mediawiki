@@ -4007,7 +4007,6 @@
 	"renameuser-error-same-user": "Ragané tan prasida ngentosin parab anganggé pateh sekadi sadurungné.",
 	"renameuser-error-temp-user": "Ragané ten prasida nguah wastan akun sauntara \"$1”.",
 	"renameuser-error-temp-user-reserved": "Ragané ten prasida nganggén \"$1\". Punika kacadangang antuk akun sauntara.",
-	"renameuser-error-self-rename": "Raganr tan prasida ngentosin wasta antuk ngaraga",
 	"renameusersuccess": "{{GENDER:$2|Sang anganggé}} \"<nowiki>$1</nowiki>\" parab nyané sampun kagentosin nuju \"<nowiki>$2</nowiki>\".",
 	"renameuser-page-exists": "Kaca $1 sampun wénten miwah tan prasida katumpuk otomatis.",
 	"renameuser-page-moved": "Kaca $1 sampun kagingsirang nuju $2.",

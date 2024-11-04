@@ -4123,7 +4123,6 @@
 	"renameuser-error-same-user": "Et voi nimetä käyttäjää uudelleen samaksi kuin hän jo on.",
 	"renameuser-error-temp-user": "Et voi nimetä uudelleen tilapäistä tunnusta ”$1”.",
 	"renameuser-error-temp-user-reserved": "Et voi käyttää nimeä ”$1”. Se on varattu tilapäisille tunnuksille.",
-	"renameuser-error-self-rename": "Et voi uudelleennimetä itseäsi",
 	"renameusersuccess": "{{GENDER:$2|käyttäjä}} ”<nowiki>$1</nowiki>” on nimetty uudelleen nimelle ”<nowiki>$2</nowiki>”.",
 	"renameuser-page-exists": "Sivu $1 on jo olemassa eikä sitä korvattu.",
 	"renameuser-page-moved": "Sivu $1 siirrettiin nimelle $2.",

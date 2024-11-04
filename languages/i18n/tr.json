@@ -4180,7 +4180,6 @@
 	"renameuser-error-same-user": "Bir kullanıcıyı daha önce olduğu gibi yeniden adlandıramazsınız.",
 	"renameuser-error-temp-user": "\"$1\" geçici hesabını yeniden adlandıramazsınız.",
 	"renameuser-error-temp-user-reserved": "\"$1\" kullanamazsınız. Geçici hesaplara ayrılmıştır.",
-	"renameuser-error-self-rename": "Kendinizi yeniden adlandıramazsınız",
 	"renameusersuccess": "\"<nowiki>$1</nowiki>\" {{GENDER:$2|kullanıcısı}}, \"<nowiki>$2</nowiki>\" olarak yeniden adlandırıldı.",
 	"renameuser-page-exists": "$1 sayfası zaten mevcut ve otomatik olarak üstüne yazılamaz.",
 	"renameuser-page-moved": "$1 sayfası $2 sayfasına taşındı.",

@@ -3931,7 +3931,6 @@
 	"renameusererrorinvalid": "El nom d'usuari «<nowiki>$1</nowiki>» no és vàlid",
 	"renameuser-error-request": "Hi ha hagut un problema en la recepció de l'ordre.\nTorneu enrere i torneu-ho a intentar.",
 	"renameuser-error-same-user": "No podeu reanomenar un usuari a un nom que ja tenia anteriorment.",
-	"renameuser-error-self-rename": "No podeu canviar el vostre propi nom",
 	"renameusersuccess": "{{GENDER:$1|L'usuari|La usuària}} \"<nowiki>$1</nowiki>\" s'ha reanomenat com a \"<nowiki>$2</nowiki>\".",
 	"renameuser-page-exists": "La pàgina «$1» ja existeix i no pot ser sobreescrita automàticament",
 	"renameuser-page-moved": "La pàgina «$1» s'ha reanomenat com a «$2».",

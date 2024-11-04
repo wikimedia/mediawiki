@@ -4182,7 +4182,6 @@
 	"renameuser-error-same-user": "Bạn không thể đổi tên thành viên thành tên mới giống với tên cũ.",
 	"renameuser-error-temp-user": "Bạn không thể đổi tên tài khoản tạm thời \"$1\".",
 	"renameuser-error-temp-user-reserved": "Bạn không thể sử dụng \"$1\". Nó được dành riêng cho các tài khoản tạm thời.",
-	"renameuser-error-self-rename": "Bạn không thể đổi tên chính mình",
 	"renameusersuccess": "Thành viên “<nowiki>$1</nowiki>” đã được đổi tên thành “<nowiki>$2</nowiki>”.",
 	"renameuser-page-exists": "Trang $1 đã tồn tại và không thể bị tự động ghi đè.",
 	"renameuser-page-moved": "Trang $1 đã được di chuyển đến $2.",

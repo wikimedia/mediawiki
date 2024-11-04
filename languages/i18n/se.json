@@ -3923,7 +3923,6 @@
 	"renameuser-error-same-user": "Don it sáhte geavaheaddjinama rievdadit seamma nammii go mii das lea juo.",
 	"renameuser-error-temp-user": "Don it sáhte gaskaboddosaš geavaheaddjidovddaldahkii \"$1\" bidjat ođđa nama.",
 	"renameuser-error-temp-user-reserved": "Don it sáhte \"$1\" atnit. Dat lea várrejuvvon gaskaboddosaš geavaheaddjidovddaldagaide. ",
-	"renameuser-error-self-rename": "It sáhte rievdadit iežat geavaheaddjinama",
 	"renameusersuccess": "{{GENDER:$2|Geavaheaddji}} \"<nowiki>$1</nowiki>\" namma lea rievdaduvvon nammii \"<nowiki>$2</nowiki>\".",
 	"renameuser-page-exists": "Siidu $1 gávdno juo, iige dan sadjái sáhte automáhtalaččat vurket ođđa siiddu.",
 	"renameuser-page-moved": "Siiddu $1 sirdin nammii $2 lihkostuvai.",

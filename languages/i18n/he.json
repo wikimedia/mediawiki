@@ -4145,7 +4145,6 @@
 	"renameuser-error-same-user": "לא ניתן לשנות את שם המשתמש לשם זהה לשמו הישן.",
 	"renameuser-error-temp-user": "אין לך אפשרות לשנות את שם החשבון החולף \"$1\".",
 	"renameuser-error-temp-user-reserved": "איך לך אפשרות להשתמש במחרוזת \"$1\". היא שמורה לחשבונות זמניים.",
-	"renameuser-error-self-rename": "לא ניתן לשנות את השם של עצמך.",
 	"renameusersuccess": "שם {{GENDER:$2|המשתמש|המשתמשת}} \"<nowiki>$1</nowiki>\" שונה לשם \"<nowiki>$2</nowiki>\".",
 	"renameuser-page-exists": "הדף $1 כבר קיים ולא ניתן לדרוס אותו אוטומטית.",
 	"renameuser-page-moved": "הדף $1 הועבר לשם $2.",

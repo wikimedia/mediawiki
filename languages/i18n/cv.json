@@ -3972,7 +3972,6 @@
 	"renameuser-error-same-user": "Хутшӑнаканӑн ятне эсир малтанхи ячӗ ҫине улӑштараймастӑр.",
 	"renameuser-error-temp-user": "Эсир  «$1» вӑхӑтлӑ аккаунт ятне улӑштараймастӑр.",
 	"renameuser-error-temp-user-reserved": "Эсир «$1» усӑ кураймастӑр. Ӑна вӑхӑтлӑ аккаунтсем хатӗрленӗ чухне усӑ курма хӑварнӑ.",
-	"renameuser-error-self-rename": "Эсир хӑвӑрӑн ята улӑштарма пултараймастӑр",
 	"renameusersuccess": "«<nowiki>$1</nowiki>» {{GENDER:$2|хутшӑнаканӑн}} ятне «<nowiki>$2</nowiki>» ҫине улӑштартӑмӑр.",
 	"renameuser-page-exists": "$1 страница пур ӗнтӗ, хӑй тӗллӗн ун ҫийӗн ҫырма май ҫук.",
 	"renameuser-page-moved": "$1 страницăн ятне $2 çине улăштарнă.",

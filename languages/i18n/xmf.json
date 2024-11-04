@@ -4027,7 +4027,6 @@
 	"renameuser-error-same-user": "თქვა ვეშეილებჷნა ქეგიოდვათ მახვარებუს კჷნ თი ჯოხო, ნამუთ კინოხ ჯოხოდჷნ.",
 	"renameuser-error-temp-user": "თქვა ვეშეილებჷნა ობირჯე ანგარიშიშ \"$1\" ჯოხოშ გინოდვალა.",
 	"renameuser-error-temp-user-reserved": "თქვა ვეშეილებჷმა გჷმირინუათ \"$1\". თინა მუკოჩუალირი რე ობორჯე ანგარიშეფშო.",
-	"renameuser-error-self-rename": "თქვა ვეშეილებჷნა თქვან დუდშა ჯოხოშ გინოდვალა",
 	"renameusersuccess": "მახვარებუშ ჯოხოქ — „<nowiki>$1</nowiki>“, დითირჷ „<nowiki>$2</nowiki>-თ“",
 	"renameuser-page-exists": "ხასჷლა $1 უჯვე რე დო თიში ავტომატურო გოთირუა ვეშილებე.",
 	"renameuser-page-moved": "ხასჷლა $1 გინოღალირი რე $2-შა.",

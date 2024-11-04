@@ -822,6 +822,5 @@
 	"blockedtext-reason-comment": "ለትሃየባ ሰበብ <em>$1</em> ቱ.",
 	"blockedtext-start-time": "ክርፈት ኣንበቶት: $1",
 	"blockedtext-expiration-time": "ክርፈት ኣክለሶት: $1",
-	"blockedtext-block-ip": "ናይ ኣዘ ዕንዋን IP ናይካ $1 ቱ.",
-	"renameuser-error-self-rename": "ስሜትካ ትቀይር ኢትቀድርኒ"
+	"blockedtext-block-ip": "ናይ ኣዘ ዕንዋን IP ናይካ $1 ቱ."
 }

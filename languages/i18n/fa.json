@@ -4126,7 +4126,6 @@
 	"renameuser-error-same-user": "شما نمی‌توانید نام یک کاربر را به همان نام قبلی‌اش تغییر دهید.",
 	"renameuser-error-temp-user": "شما قادر به تغییر نام حساب موقت «$1» نیستید.",
 	"renameuser-error-temp-user-reserved": "شما نمی‌توانید از «$1» استفاده کنید. زیرا برای حساب‌های موقت رزرو شده است.",
-	"renameuser-error-self-rename": "نمی‌توانید نام خودتان را تغییر دهید",
 	"renameusersuccess": "نام {{GENDER:$2|کاربر}} «<nowiki>$1</nowiki>» به «<nowiki>$2</nowiki>» تغییر یافت.",
 	"renameuser-page-exists": "صفحهٔ $1 از قبل وجود داشته و به طور خودکار قابل بازنویسی نیست.",
 	"renameuser-page-moved": "صفحهٔ $1 به $2 انتقال داده شد.",

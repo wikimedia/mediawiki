@@ -3941,7 +3941,6 @@
 	"renameuser-error-request": "Am întâmpinat o problemă în procesul de recepționare a cererii.\nVă rugăm să vă întoarceți și să reîncercați.",
 	"renameuser-error-same-user": "Nu puteți redenumi un utilizator la același nume ca și înainte.",
 	"renameuser-error-temp-user-reserved": "Nu puteți folosi „$1”. Este rezervat pentru conturile temporare.",
-	"renameuser-error-self-rename": "Nu vă puteți redenumi pe sine însuți.",
 	"renameusersuccess": "{{GENDER:$2|Utilizatorul|Utilizatoarea|Utilizatorul}} „$1” a fost {{GENDER:$2|redenumit|redenumită|redenumit}} în „$2”",
 	"renameuser-page-exists": "Pagina $1 există deja și nu poate fi suprascrisă automat.",
 	"renameuser-page-moved": "Pagina $1 a fost redenumită în $2.",

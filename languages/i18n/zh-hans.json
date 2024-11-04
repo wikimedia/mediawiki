@@ -4291,7 +4291,6 @@
 	"renameuser-error-same-user": "您不能将用户重命名至与其之前相同的用户名。",
 	"renameuser-error-temp-user": "您不能重命名临时账号“$1”。",
 	"renameuser-error-temp-user-reserved": "您不能使用“$1”。该用户名是为临时账号所保留的。",
-	"renameuser-error-self-rename": "您不能重命名您自己",
 	"renameusersuccess": "{{GENDER:$2|用户}}“<nowiki>$1</nowiki>”已更名为“<nowiki>$2</nowiki>”。",
 	"renameuser-page-exists": "页面$1已经存在，不能被自动覆盖。",
 	"renameuser-page-moved": "页面$1已移动至$2。",

@@ -3877,7 +3877,6 @@
 	"renameuser-error-same-user": "Тӥ уд быгатӥське воштыны юзчилэсь нимзэ азьвылэз сямен ик.",
 	"renameuser-error-temp-user": "Тӥ уд быгатӥське воштыны огдырлы кылдытэм пыроннимлэсь нимзэ «$1».",
 	"renameuser-error-temp-user-reserved": "Тӥ уд быгатӥське кутыны \"$1\"-эз. Со огдырлы кылдытэм пыроннимъёслы азьпал азелы кельтэмын.",
-	"renameuser-error-self-rename": "Тӥ уд быгатӥське асьтэлэсь нимдэс воштыны",
 	"renameusersuccess": "{{GENDER:$2|юзчи}}-лэн та нимыз \n\"<nowiki>$1</nowiki>\" таиныз воштэмын вал\n \"<nowiki>$2</nowiki>\".",
 	"renameuser-page-exists": "$1 бам вань ини но асэрказ гожтэмын луыны уг быгаты.",
 	"renameuser-page-moved": "$1 бам $2-е выжтэмын вал",

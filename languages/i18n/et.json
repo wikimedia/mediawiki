@@ -4035,7 +4035,6 @@
 	"renameuser-error-same-user": "Vana ja uus nimi on samased.",
 	"renameuser-error-temp-user": "Sa ei saa ajutist kontot \"$1\" ümber nimetada.",
 	"renameuser-error-temp-user-reserved": "Sa ei saa kasutada nime \"$1\". See on jäetud ajutiste kontode jaoks.",
-	"renameuser-error-self-rename": "Sa ei saa ennast ümber nimetada",
 	"renameusersuccess": "Kasutaja \"<nowiki>$1</nowiki>\" uus nimi on nüüd \"<nowiki>$2</nowiki>\".",
 	"renameuser-page-exists": "Lehekülg $1 on juba olemas ja seda ei saa automaatselt üle kirjutada.",
 	"renameuser-page-moved": "Lehekülg $1 on teisaldatud pealkirja $2 alla.",

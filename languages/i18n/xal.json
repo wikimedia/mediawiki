@@ -3865,7 +3865,6 @@
 	"renameuser-error-same-user": "Та кергләчд өмннь бәәсн нериг өгч чадхшт.",
 	"renameuser-error-temp-user": "Та \"$1\" түр-зуурин бүртклиг дәкн нерлҗ чадхшт.",
 	"renameuser-error-temp-user-reserved": "Та $1-г ашглҗ чадхшт. Эннь түр-зуурин бүрткләр ашглхд нөөцлгдв.",
-	"renameuser-error-self-rename": "Та эврә бийән дәкн нерлҗ чадхшт.",
 	"renameusersuccess": "\"<nowiki>$1</nowiki>\" {{GENDER:$2|кергләчнь}} \"<nowiki>$2</nowiki>\"-ур дәкн нерлгдв.",
 	"renameuser-page-exists": "$1 гих халх оршҗах болад деерәснь автоматар дарҗ бичҗ болшго.",
 	"renameuser-page-moved": "$1 гих халх $2-ур дәкн нерлгдлә.",

@@ -4008,7 +4008,6 @@
 	"renameuser-error-same-user": "Jūs negalite pervadinti naudotojo į tokį pat vardą, kaip pirmiau.",
 	"renameuser-error-temp-user": "Negalite pervardyti laikinos paskyros „$1“.",
 	"renameuser-error-temp-user-reserved": "Negalite naudoti „$1“. Tai skirta laikinoms paskyroms.",
-	"renameuser-error-self-rename": "Negalite pervadinti savęs.",
 	"renameusersuccess": "{{GENDER:$2|Naudotojas|Naudotoja}} \"<nowiki>$1</nowiki>\" buvo pervadintas(-a) į \"<nowiki>$2</nowiki>\".",
 	"renameuser-page-exists": "Puslapis $1 jau egzistuoja ir negali būti automatiškai perrašytas.",
 	"renameuser-page-moved": "Puslapis $1 buvo perkeltas į $2.",

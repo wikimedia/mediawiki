@@ -23,6 +23,7 @@
 	},
 	"preferences": "Nastavení",
 	"prefsnologintext2": "Pro změnu uživatelských nastavení se musíte přihlásit.",
+	"prefsnologintext2-for-temp-user": "Chcete-li si změnit nastavení, vytvořte si prosím účet.",
 	"searchprefs": "Hledat v nastaveních",
 	"searchprefs-noresults": "Žádné výsledky",
 	"searchprefs-results": "$1 {{PLURAL:$1|výsledek|výsledky|výsledků}}",

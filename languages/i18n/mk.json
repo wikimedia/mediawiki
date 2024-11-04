@@ -4141,7 +4141,6 @@
 	"renameuser-error-same-user": "Не можете да го преименувате корисникот во име кое е исто како претходното.",
 	"renameuser-error-temp-user": "Не можете да ја преименувате привремената сметка во „$1“.",
 	"renameuser-error-temp-user-reserved": "Не можете да го употребите „$1“. Резервирано е за привремени сметки.",
-	"renameuser-error-self-rename": "Не можете да се преименувате себеси",
 	"renameusersuccess": "{{GENDER:$2|Корисникот}} „<nowiki>$1</nowiki>“ е преименуван во „<nowiki>$2</nowiki>“",
 	"renameuser-page-exists": "Страницата $1 веќе постои и не може автоматски да се замени со друга содржина.",
 	"renameuser-page-moved": "Страницата $1 е преместена на $2.",

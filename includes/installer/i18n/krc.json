@@ -264,7 +264,7 @@
 	"config-install-user-missing-create": "Белгиленнген хайырланыучу \"$1\" джокъду.\nБолдурургъа излей эсегиз, тилейбиз, тюбюнде \"хыйсаб болдур\" чекбоксну басыгъыз.",
 	"config-install-logo-blank": "Логотини джараулу URL-адресин киргизтигиз.",
 	"config-install-restore-services": "MediaWiki къуллукълары кери джюкленедиле",
-	"config-install-tables": "Таблица къуралады, биринчи атлам",
+	"config-install-tables": "Таблица къуралады",
 	"config-install-tables-exist": "<strong>Эскгертиу:</strong> MediaWiki таблицала алайсыз да бар кибик кёрюнедиле.\nБолдуруу атлатылады.",
 	"config-install-tables-failed": "<strong>Халат:</strong> Таблица болдуруу, тюбюндеги халат ючюн тындырылмады: $1",
 	"config-install-interwiki": "Интервикини таблицасын тынгылау бла магъанала бла толтуруу",

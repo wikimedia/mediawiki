@@ -4141,7 +4141,6 @@
 	"renameuser-error-same-user": "Anda tak dapat mengganti nama pengguna sama seperti asalnya.",
 	"renameuser-error-temp-user": "Anda tidak dapat mengganti nama akun sementara \" $1 \".",
 	"renameuser-error-temp-user-reserved": "Anda tidak dapat menggunakan \" $1 \". Ini dicadangkan untuk akun sementara.",
-	"renameuser-error-self-rename": "Anda tidak bisa mengganti nama sendiri",
 	"renameusersuccess": "Nama {{GENDER:$2|pengguna}} \"<nowiki>$1</nowiki>\" ini telah diubah menjadi \"<nowiki>$2</nowiki>\".",
 	"renameuser-page-exists": "Halaman $1 telah ada dan tidak dapat ditimpa secara otomatis.",
 	"renameuser-page-moved": "Halaman $1 telah dipindah ke $2.",

@@ -3872,7 +3872,6 @@
 	"renameuser-error-same-user": "Тонеть а мереви лемдемс совицянть секе лемс, кона ульнесь икеле.",
 	"renameuser-error-temp-user": "Тонеть а мереви одов лемдемс «$1» нурька шкань учётонь сёрмадовксонть.",
 	"renameuser-error-temp-user-reserved": "Тонеть а мереви тевс нолдамс «$1». Сон путозь нурька шкань учётонь сёрмадовкстнэнь туртов.",
-	"renameuser-error-self-rename": "А мерить полавтомс эсеть леметь.",
 	"renameusersuccess": "{{GENDER:$2|Совицясь}} «<nowiki>$1</nowiki>» ульнесь лемдезь «<nowiki>$2</nowiki>» лемс.",
 	"renameuser-page-exists": "$1 лопась ули ды автоматикань ёндо одов а сёрмадови.",
 	"renameuser-page-moved": "$1 лопась ульнесь лемдезь $2-с.",

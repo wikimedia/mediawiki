@@ -2,14 +2,20 @@
 	"@metadata": {
 		"authors": [
 			"Goombiis",
+			"Mahabarata",
 			"SleaY"
 		]
 	},
+	"cdx-chip-input-chip-added": "Le jeton $1 a été ajouté.",
+	"cdx-chip-input-chip-removed": "Le jeton $1 a été retiré.",
+	"cdx-input-chip-aria-description": "Appuyez sur Entrée pour modifier ou sur Supprimer pour supprimer.",
 	"cdx-dialog-close-button-label": "Fermer",
 	"cdx-label-optional-flag": "(optionnel)",
 	"cdx-message-dismiss-button-label": "Fermer",
 	"cdx-search-input-search-button-label": "Rechercher",
 	"cdx-table-select-all-label": "Sélectionner toutes les lignes",
+	"cdx-table-select-row-label": "Sélectionner la ligne $1 sur $2",
+	"cdx-table-sort-caption": "$1 (les colonnes avec des en-têtes contenant des boutons peuvent être triées).",
 	"cdx-typeahead-search-search-results-label": "Résultats de la recherche",
 	"cdx-table-pager-button-first-page": "Première page",
 	"cdx-table-pager-button-last-page": "Dernière page",

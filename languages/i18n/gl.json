@@ -4083,7 +4083,6 @@
 	"renameuser-error-same-user": "Non pode mudar o nome dun usuario ao mesmo nome que tiña antes.",
 	"renameuser-error-temp-user": "Non podes cambiar o nome da conta temporal \"$1\".",
 	"renameuser-error-temp-user-reserved": "Non podes usar \"$1\". Está reservado para contas temporais.",
-	"renameuser-error-self-rename": "Non podes cambiar o teu propio nome de usuario",
 	"renameusersuccess": "O nome de {{GENDER:$1|usuario|usuaria}} \"<nowiki>$1</nowiki>\" cambiou a \"<nowiki>$2</nowiki>\".",
 	"renameuser-page-exists": "A páxina \"$1\" xa existe e non pode ser sobrescrita automaticamente.",
 	"renameuser-page-moved": "A páxina \"$1\" foi movida a \"$2\".",

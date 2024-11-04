@@ -3914,7 +3914,6 @@
 	"renameuser-error-same-user": "Sinä ed voi antta kävutajale mugošt-žo nimed, kut i aigemba.",
 	"renameuser-error-temp-user": "Sinä ed voi antta ut nimed keskaigaižele lehtpolele \"$1\".",
 	"renameuser-error-temp-user-reserved": "Sinä ed voi kävutada \"$1\". Se om pandud varhu keskaigaižile lehtpolile.",
-	"renameuser-error-self-rename": "Sinä ed voi udes nimitada ičtaiž",
 	"renameusersuccess": "{{GENDER:$2|Kävutai}} \"<nowiki>$1</nowiki>\" uz' nimi om \"<nowiki>$2</nowiki>\".",
 	"renameuser-page-exists": "Lehtpol' $1 jo om da sidä ei sa avtomatižesti udes kirjutada.",
 	"renameuser-page-moved": "Lehtpol' $1 oli sirttud $2.",

@@ -4173,7 +4173,6 @@
 	"renameuser-error-same-user": "您不可使用與先前相同名稱替使用者重新命名。",
 	"renameuser-error-temp-user": "您無法重新命名臨時帳號「$1」。",
 	"renameuser-error-temp-user-reserved": "您無法使用「$1」。此名稱是為臨時帳號所保留的。",
-	"renameuser-error-self-rename": "您不能對自己重新命名。",
 	"renameusersuccess": "{{GENDER:$2|使用者}} \"<nowiki>$1</nowiki>\" 已重新命名為 \"<nowiki>$2</nowiki>\"。",
 	"renameuser-page-exists": "頁面 $1 已經存在，無法自動覆寫。",
 	"renameuser-page-moved": "頁面 $1 已移動至 $2。",

@@ -1201,7 +1201,7 @@
 	"apihelp-query+search-param-enablerewrites": "Activar le rescriptura interne de consultas. Alcun servitores de recerca pote rescriber le consulta in un altere que se pensa fornir melior resultatos, per exemplo corrigente errores de orthographia.",
 	"apihelp-query+search-param-sort": "Definir le ordinamento del resultatos retornate.",
 	"apihelp-query+search-example-simple": "Cercar <kbd>meaning</kbd>.",
-	"apihelp-query+search-example-text": "Cercar textos pro <kbd>meaning</kbd>.",
+	"apihelp-query+search-example-text": "Cercar <kbd>meaning</kbd> in textos.",
 	"apihelp-query+search-example-generator": "Obtener information de pagina sur le paginas restituite pro un recerca de <kbd>meaning</kbd>.",
 	"apihelp-query+siteinfo-summary": "Restitue information general sur le sito.",
 	"apihelp-query+siteinfo-param-prop": "Qual information obtener:",

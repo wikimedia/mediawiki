@@ -3919,7 +3919,6 @@
 	"renameuser-error-same-user": "Тый ушнышылан ондакысе лийше лӱмжым пуэн от керт.",
 	"renameuser-error-temp-user": "Тый «$1» жаплан лийше аккаунтым вес семын лӱмден от керт.",
 	"renameuser-error-temp-user-reserved": "Тый «$1» лӱмым кучылтын от керт. Тудым жаплан лийше аккаунт-влаклан шапашлен кодымо.",
-	"renameuser-error-self-rename": "Шканет вес лӱмым пуэн от керт",
 	"renameusersuccess": "«<nowiki>$1</nowiki>» {{GENDER:$2|ушнышым}} «<nowiki>$2</nowiki>» семын лӱмдымӧ.",
 	"renameuser-page-exists": "$1 велыж ынде уло да тудым вигак угыч возаш огеш лий.",
 	"renameuser-page-moved": "$1 велыжым $2 семын лӱмдымӧ.",

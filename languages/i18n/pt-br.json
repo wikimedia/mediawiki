@@ -4126,7 +4126,6 @@
 	"renameuser-error-same-user": "Não é possível renomear um usuário para o nome anterior.",
 	"renameuser-error-temp-user": "Você não pode alterar o nome da conta temporária \"$1\".",
 	"renameuser-error-temp-user-reserved": "Você não pode utilizar \"$1\". Reservado para contas temporárias.",
-	"renameuser-error-self-rename": "Não é possível renomear a si próprio.",
 	"renameusersuccess": "{{GENDER:$2|O usuário|A usuária|O(a) usuário(a)}} \"<nowiki>$1</nowiki>\" foi renomeado para \"<nowiki>$2</nowiki>\".",
 	"renameuser-page-exists": "A página $1 já existe e não pode ser substituída automaticamente.",
 	"renameuser-page-moved": "A página $1 foi movida para $2.",

@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ant176",
+			"Müller857"
+		]
+	},
+	"cdx-chip-input-chip-added": "チップ$1が追加されました。",
+	"cdx-chip-input-chip-removed": "チップ$1が削除されました。",
+	"cdx-input-chip-aria-description": "編集する場合はEnterを、削除する場合はDeleteを押してください。",
+	"cdx-dialog-close-button-label": "閉じる",
+	"cdx-label-optional-flag": "（省略可）",
+	"cdx-message-dismiss-button-label": "閉じる",
+	"cdx-search-input-search-button-label": "検索",
+	"cdx-table-select-all-label": "全ての行を選択",
+	"cdx-table-select-row-label": "$2行目中$1行目を選択",
+	"cdx-table-sort-caption": "$1（ボタン付きの列ヘッダーは並べ替え可能です）。",
+	"cdx-typeahead-search-search-results-label": "検索結果",
+	"cdx-table-pager-button-first-page": "最初のページ",
+	"cdx-table-pager-button-last-page": "最後のページ",
+	"cdx-table-pager-button-next-page": "次のページ",
+	"cdx-table-pager-button-prev-page": "前のページ",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1行}}",
+	"cdx-table-pager-items-per-page-default": "各ページの結果",
+	"cdx-table-pagination-status-message-determinate-long": "$3行中$1から$2行の結果を表示中",
+	"cdx-table-pagination-status-message-determinate-short": "$3行中$1から$2行目",
+	"cdx-table-pagination-status-message-indeterminate-long": "多行のうち$1から$2行の結果を表示中",
+	"cdx-table-pagination-status-message-indeterminate-short": "多行中$1から$2行目",
+	"cdx-table-pagination-status-message-indeterminate-final": "最後の{{PLURAL:$1|$1件の結果}}を表示中",
+	"cdx-table-pagination-status-message-pending": "結果の読み込み中..."
+}

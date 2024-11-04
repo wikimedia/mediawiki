@@ -3864,7 +3864,6 @@
 	"renameuser-error-same-user": "Ті одӧ вермӧ сетны уджкерисьлӧ виль ним, кытшӧм вӧлі одзжык ни.",
 	"renameuser-error-temp-user": "Ті одӧ вермӧ сетны виль ним недырся аккаунтлӧ \"$1\".",
 	"renameuser-error-temp-user-reserved": "Ті одӧ вермӧ уджавны \"$1\"-ӧн. Сійӧ видзӧны недырся аккаунттэслӧ.",
-	"renameuser-error-self-rename": "Ті одӧ вермӧ сетны виль ним аслыныт.",
 	"renameusersuccess": "{{GENDER:$2|уджкерись}} \"<nowiki>$1</nowiki>\" вӧлі  вились нимтӧма \"<nowiki>$2</nowiki>\"-ӧн.",
 	"renameuser-page-exists": "$1 листбокыс эм ни и сійӧ оз позь автоматическӧя вились гижны.",
 	"renameuser-page-moved": "$1 листбокыс вӧлі вуджӧтӧма $2-ӧ.",

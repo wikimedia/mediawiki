@@ -4161,7 +4161,6 @@
 	"renameuser-error-same-user": "Alter und neuer Benutzername sind identisch.",
 	"renameuser-error-temp-user": "Das temporäre Konto „$1“ kann nicht umbenannt werden.",
 	"renameuser-error-temp-user-reserved": "„$1“ kann nicht verwenden werden; es ist für temporäre Konten reserviert.",
-	"renameuser-error-self-rename": "Du kannst dich nicht selbst umbenennen",
 	"renameusersuccess": "{{GENDER:$2|Der Benutzer|Die Benutzerin}} „<nowiki>$1</nowiki>“ wurde erfolgreich in „<nowiki>$2</nowiki>“ umbenannt.",
 	"renameuser-page-exists": "Die Seite „$1“ ist bereits vorhanden und kann nicht automatisch überschrieben werden.",
 	"renameuser-page-moved": "Die Seite „$1“ wurde nach „$2“ verschoben.",

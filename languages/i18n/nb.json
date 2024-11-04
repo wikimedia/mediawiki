@@ -4103,7 +4103,6 @@
 	"renameuser-error-same-user": "Du kan ikke gi en bruker samme navn som vedkommende allerede har.",
 	"renameuser-error-temp-user": "Du kan ikke døpe om den midlertidige kontoen «$1».",
 	"renameuser-error-temp-user-reserved": "Du kan ikke bruke «$1». Det navnet er reservert for midlertidige kontoer.",
-	"renameuser-error-self-rename": "Du kan ikke endre ditt eget brukernavn",
 	"renameusersuccess": "{{GENDER:$2|Brukeren}} «<nowiki>$1</nowiki>» har blitt omdøpt til «<nowiki>$2</nowiki>».",
 	"renameuser-page-exists": "Siden $1 finnes allerede, og kunne ikke erstattes automatisk.",
 	"renameuser-page-moved": "Siden $1 har blitt flyttet til $2.",

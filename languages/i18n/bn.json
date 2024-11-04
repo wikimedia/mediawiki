@@ -4115,7 +4115,6 @@
 	"renameuser-error-same-user": "আপনি পূর্বের নামে নামান্তর করতে পারবেন না।",
 	"renameuser-error-temp-user": "আপনি অস্থায়ী অ্যাকাউন্ট \"$1\" নামান্তর করতে পারবেন না।",
 	"renameuser-error-temp-user-reserved": "আপনি \"$1\" ব্যবহার করতে পারবেন না। এটি অস্থায়ী অ্যাকাউন্টের জন্য সংরক্ষিত।",
-	"renameuser-error-self-rename": "আপনি নিজে নিজের নাম পরিবর্তন করতে পারবেন না",
 	"renameusersuccess": "{{GENDER:$2|ব্যবহারকারী}} \"<nowiki>$1</nowiki>\" থেকে \"<nowiki>$2</nowiki>\"-এ নামান্তরিত হয়েছেন।",
 	"renameuser-page-exists": "পাতা $1 বিদ্যমান এবং সয়ঙ্ক্রিয়ভাবে এটির উপর লেখা যাবে না",
 	"renameuser-page-moved": "পাতাটি $1 থেকে $2 তে সরিয়ে নেওয়া হয়েছে।",

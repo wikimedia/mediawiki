@@ -3863,7 +3863,6 @@
 	"renameuser-error-same-user": "Араласчын алнында полған атнаң адирға чарабас.",
 	"renameuser-error-temp-user": "Сiрерге ӱр нимеске идiлген \"$1\" аккаунт адын алыстырарға чарабас.",
 	"renameuser-error-temp-user-reserved": "\"$1\" тузаланарға чарабас. Ол ӱр нимеске идiлген аккаунттарға артызылған.",
-	"renameuser-error-self-rename": "Сiрер пос адын алыстыр полбассар",
 	"renameusersuccess": "{{GENDER:$2|Араласчы}} \"<nowiki>$1</nowiki>\" атты \"<nowiki>$2</nowiki>\" атха алыстырған.",
 	"renameuser-page-exists": "$1 страница пар, аны автомат оңдайынаң хатап пазарға чарабас.",
 	"renameuser-page-moved": "$1 страница ады $2 атха алыстырылған.",

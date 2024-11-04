@@ -4309,7 +4309,6 @@
 	"renameuser-error-same-user": "現在と同じ利用者名には変更できません。",
 	"renameuser-error-temp-user": "臨時アカウント「$1」の名前は変更できません。",
 	"renameuser-error-temp-user-reserved": "「$1」は使用できません。臨時アカウントのために予約されています。",
-	"renameuser-error-self-rename": "自分自身の名前を変更することはできません",
 	"renameusersuccess": "{{GENDER:$2|利用者}}名を「<nowiki>$1</nowiki>」から「<nowiki>$2</nowiki>」に変更しました。",
 	"renameuser-page-exists": "$1 が既に存在するため、自動での上書きはできませんでした。",
 	"renameuser-page-moved": "$1 を $2 に移動しました。",

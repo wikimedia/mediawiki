@@ -3986,7 +3986,6 @@
 	"renameuser-error-same-user": "ไม่สามารถเปลี่ยนชื่อผู้ใช้ได้เนื่องจากมีชื่อผู้ใช้นี้อยู่ก่อนแล้ว",
 	"renameuser-error-temp-user": "คุณไม่สามารถเปลี่ยนชื่อบัญชีชั่วคราว \"$1\" ได้",
 	"renameuser-error-temp-user-reserved": "คุณไม่สามารถใช้ \"$1\" ได้ ชื่อนี้ถูกสงวนไว้สำหรับบัญชีชั่วคราว",
-	"renameuser-error-self-rename": "คุณไม่สามารถเปลี่ยนชื่อตัวคุณเองได้",
 	"renameusersuccess": "{{GENDER:$2|ผู้ใช้}} \"<nowiki>$1</nowiki>\" ได้ถูกเปลี่ยนชื่อเป็น \"<nowiki>$2</nowiki>\" แล้ว",
 	"renameuser-page-exists": "หน้า $1 มีอยู่แล้ว และไม่สามารถย้ายไปแทนที่ได้โดยอัตโนมัติ",
 	"renameuser-page-moved": "หน้า $1 ถูกย้ายไปยัง $2",

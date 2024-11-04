@@ -3874,7 +3874,6 @@
 	"renameuser-error-same-user": "Тееть аш кода сувайти максомс сяка лемть, кона максфоль инголе.",
 	"renameuser-error-temp-user": "Тееть аш кода оду лемдемс \"$1\"аф лама пингс  максф учётонь сёрматфксть.",
 	"renameuser-error-temp-user-reserved": "Тееть аф мярьгови  нолдамс тевс «$1». Сон путф аф лама пингс  \n максф учётонь сёрматфксонди .",
-	"renameuser-error-self-rename": "Тееть аш кода эстееть лемдемс эсь пряцень лиякс",
 	"renameusersuccess": "{{GENDER:$2|Совицясь}} «<nowiki>$1</nowiki>» ульсь лемтьф «<nowiki>$2</nowiki>» лемс.",
 	"renameuser-page-exists": "$1 лопась ули ни и сон аш кода сёрмадомс оду автоматикань ширде.",
 	"renameuser-page-moved": "$1 лопась ульсь лемтьф $2-с.",

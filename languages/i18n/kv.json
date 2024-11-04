@@ -3869,7 +3869,6 @@
 	"renameuser-error-same-user": "Ті онӧ вермӧй сетны пырӧдчысьлы выль ним, кутшӧм вӧлі таӧдз нин.",
 	"renameuser-error-temp-user": "Ті онӧ вермӧй сетны выль ним недырся аккаунтлы \"$1\".",
 	"renameuser-error-temp-user-reserved": "Ті онӧ вермӧй вӧдитчыны \"$1\"-ӧн. Сійӧс видзӧны недырся аккаунтъяслы.",
-	"renameuser-error-self-rename": "Ті онӧ вермӧй сетны выль ним аслыныд.",
 	"renameusersuccess": "{{GENDER:$2|пырӧдчысьлы}} \"<nowiki>$1</nowiki>\" вӧлі сетӧма выль ним \"<nowiki>$2</nowiki>\".",
 	"renameuser-page-exists": "$1 лист бокыс эм нин и сійӧс оз позь автоматическӧя выльысь гижны.",
 	"renameuser-page-moved": "$1 лист бокыс вӧлі вештӧма $2-ӧ.",

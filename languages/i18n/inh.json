@@ -3881,7 +3881,6 @@
 	"renameuser-error-same-user": "Доакъашхочун цӀи хувцаш цун хьалха хинна цӀи тилла йиш яц хьа.",
 	"renameuser-error-temp-user": "Йиш яц цӀи хувца хаьдда ха йолча аккаунта «$1».",
 	"renameuser-error-temp-user-reserved": "Хьа йиш яц лелае «$1». Хаьдда ха йолча аккаунташта дӀайиллá я из.",
-	"renameuser-error-self-rename": "Йиш яц Ӏайха хьай цӀи хувца",
 	"renameusersuccess": "{{GENDER:$2|Доакъашхочун}} «<nowiki>$1</nowiki>» цӀи хийцай → «<nowiki>$2</nowiki>».",
 	"renameuser-page-exists": "ОагӀув $1 тхьовре йолаш я, ши-шегӀа юхадӀаязъе йиш йолаш а яц.",
 	"renameuser-page-moved": "$1 яхача оагIонах «$2» аьнна керда цIи тиллай.",

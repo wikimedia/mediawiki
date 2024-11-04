@@ -3995,7 +3995,6 @@
 	"renameuser-error-same-user": "Хьуна цало хьалха хилла цӀеран тӀе хийца.",
 	"renameuser-error-temp-user": "Шуга цӀе ца хийцало ханна тоьхна чоьтан йозана «$1».",
 	"renameuser-error-temp-user-reserved": "Хьоьга лелалур йац «$1». Иза тӀехьлонна дӀайиллина йу ханна йолу чоьтан йозанашна.",
-	"renameuser-error-self-rename": "Хьан аьтту бац хьай цӀе хийца",
 	"renameusersuccess": "Декъашхочун цӀе«<nowiki>$1</nowiki>» хийцина → «<nowiki>$2</nowiki>».",
 	"renameuser-page-exists": "АгӀо $1 йолуш йу цундела авто-дӀайазйан йиш йац.",
 	"renameuser-page-moved": "АгӀонан $1 цӀе хийцина → $2.",

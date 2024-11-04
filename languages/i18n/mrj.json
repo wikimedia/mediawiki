@@ -3959,7 +3959,6 @@
 	"renameuser-error-same-user": "Тӹнь пользовательлӓн тошты лӹмжӹмок пуэн ат керд.",
 	"renameuser-error-temp-user": "Тӹнь «$1» жеплӓн ӹштӹмӹ аккаунтетӹн лӹмжӹм вашталтен ат керд.",
 	"renameuser-error-temp-user-reserved": "Тӹнь «$1» лӹмӹм кычылт ат керд. Тӹдӹм жеплӓн лишӹ аккаунтвлӓлӓн переген кодымы.",
-	"renameuser-error-self-rename": "Ӹшкӹлӓнет вес лӹмӹм пуэн ат керд",
 	"renameusersuccess": "«<nowiki>$1</nowiki>» {{GENDER:$2|пользовательӹм}} «<nowiki>$2</nowiki>» семӹнь лӹмдӹмӹ.",
 	"renameuser-page-exists": "$1 страницӓ уже улы дӓ тӹдӹм тӧрӧк угӹц сирӓш ак ли.",
 	"renameuser-page-moved": "$1 страницӓм $2 семӹнь лӹмдӹмӹ.",

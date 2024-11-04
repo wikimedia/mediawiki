@@ -3668,7 +3668,6 @@
 	"renameuser-error-same-user": "Ni ellir ail-enwi defnyddiwr gyda'r un enw ag o'r blaen.",
 	"renameuser-error-temp-user": "Ni allwch ailenwi cyfrif dros dro \"$1\".",
 	"renameuser-error-temp-user-reserved": "Ni allwch ddefnyddio \"$1\". Fe'i cedwir ar gyfer cyfrifon dros dro.",
-	"renameuser-error-self-rename": "Ni allwch ailenwi eich hunan",
 	"renameusersuccess": "Mae'r defnyddiwr \"<nowiki>$1</nowiki>\" wedi cael ei ail-enwi i \"<nowiki>$2</nowiki>\"",
 	"renameuser-page-exists": "Mae'r dudalen $1 ar gael yn barod ac ni ellir ei throsysgrifo.",
 	"renameuser-page-moved": "Symudwyd $1 i $2.",

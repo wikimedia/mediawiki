@@ -3694,7 +3694,6 @@
 	"renameusererrorinvalid": "Faziek eo an anv implijer \"<nowiki>$1</nowiki>\"",
 	"renameuser-error-request": "Ur gudenn zo bet gant degemer ar reked. Kit war-gil ha klaskit en-dro.",
 	"renameuser-error-same-user": "N'haller ket adenvel un implijer gant an hevelep anv hag a-raok.",
-	"renameuser-error-self-rename": "Ne c'hallit ket adenvel ac'hanoc'h hoc'h-unan.",
 	"renameusersuccess": "Deuet eo an {{GENDER:$2|implijer|implijerez|implijer}} \"<nowiki>$1</nowiki>\" da vezañ \"<nowiki>$2</nowiki>\"",
 	"renameuser-page-exists": "Bez' ez eus eus ar bajenn $1 dija, n'haller ket hec'h erlec'hiañ ent emgefreek.",
 	"renameuser-page-moved": "Adkaset eo bet ar bajenn $1 da $2.",

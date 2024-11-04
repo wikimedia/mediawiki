@@ -3933,7 +3933,6 @@
 	"renameuser-error-same-user": "Һеҙ ҡатнашыусы исемен шул уҡ исемгә үҙгәртә алмайһығыҙ.",
 	"renameuser-error-temp-user": "Һеҙ «$1» ваҡытлыса иҫәп яҙмаһын үҙгәртә алмайһығыҙ.",
 	"renameuser-error-temp-user-reserved": "Һеҙ $1 ҡуллана алмайһығыҙ, ул ваҡытлыса иҫәп яҙмалары өсөн һаҡланған.",
-	"renameuser-error-self-rename": "Үҙ исемегеҙҙе үҙгәртә алмайһығыҙ",
 	"renameusersuccess": "Ҡатнашыусының \"<nowiki>$1</nowiki>\" исеме \"<nowiki>$2</nowiki>\" тип алыштырылды.",
 	"renameuser-page-exists": "$1 бите бар инде һәм ул автоматик рәүештә ҡабаттан яҙҙырыла алмай.",
 	"renameuser-page-moved": "$1 атамаһы $2 тип алыштырылды.",

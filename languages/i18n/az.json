@@ -4092,7 +4092,6 @@
 	"renameuser-error-same-user": "İstifadəçinin adını əvvəlkinə dəyişdirə bilməzsiniz.",
 	"renameuser-error-temp-user": "Siz \"$1\" müvəqqəti hesabının adını dəyişə bilməzsiniz.",
 	"renameuser-error-temp-user-reserved": "\"$1\" seçə bilməzsiniz. O, müvəqqəti hesablar üçün ayrılıb.",
-	"renameuser-error-self-rename": "Öz adınızı dəyişə bilməzsiniz",
 	"renameusersuccess": "\"<nowiki>$1</nowiki>\" adlı {{GENDER:$2|istifadəçinin}} adı \"<nowiki>$2</nowiki>\" olaraq dəyişdirildi.",
 	"renameuser-page-exists": "$1 səhifəsi artıq mövcuddur və avtomatik olaraq üzərinə yazıla bilməz.",
 	"renameuser-page-moved": "$1 $2 səhifəsinə köçürülüb.",

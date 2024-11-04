@@ -4035,7 +4035,6 @@
 	"renameuser-error-same-user": "Não é possível alterar o nome de um utilizador para o nome anterior.",
 	"renameuser-error-temp-user": "Não pode alterar o nome da conta temporária \"$1\".",
 	"renameuser-error-temp-user-reserved": "Não pode usar \"$1\". O nome está reservado para contas temporárias.",
-	"renameuser-error-self-rename": "Não pode alterar o seu nome",
 	"renameusersuccess": "O nome {{GENDER:$2|do utilizador|da utilizadora|do(a) utilizador(a)}} \"<nowiki>$1</nowiki>\" foi alterado para \"<nowiki>$2</nowiki>\".",
 	"renameuser-page-exists": "Já existe a página $1. Não é possível sobrescrever automaticamente.",
 	"renameuser-page-moved": "A página $1 foi movida para $2.",

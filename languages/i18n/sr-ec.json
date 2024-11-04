@@ -4064,7 +4064,6 @@
 	"renameuser-error-same-user": "Не можете преименовати корисника у исто име.",
 	"renameuser-error-temp-user": "Не можете преименовати привремени налог „$1“.",
 	"renameuser-error-temp-user-reserved": "Не можете користи „$1”. Резервисано је за привремене налоге.",
-	"renameuser-error-self-rename": "Не можете самог себе да преименујете.",
 	"renameusersuccess": "{{GENDER:$2|Корисник|Корисница}} „<nowiki>$1</nowiki>“ је {{GENDER:$2|преименован|преименована}} на „<nowiki>$2</nowiki>“",
 	"renameuser-page-exists": "Страница $1 већ постоји и не може се заменити.",
 	"renameuser-page-moved": "Страница $1 је премештена на $2.",
