@@ -40,7 +40,6 @@ class AddSite extends Maintenance {
 	/**
 	 * Imports the site described by the parameters (see self::__construct()) passed to this
 	 * maintenance sccript into the sites table of MediaWiki.
-	 * @return bool
 	 */
 	public function execute() {
 		$siteStore = $this->getServiceContainer()->getSiteStore();
@@ -58,13 +57,11 @@ class AddSite extends Maintenance {
 		$filepath = $this->getOption( 'filepath' );
 
 		if ( !is_string( $globalId ) || !is_string( $group ) ) {
-			$this->error( 'Arguments globalid and group need to be strings.' );
-			return false;
+			$this->fatalError( 'Arguments globalid and group need to be strings.' );
 		}
 
 		if ( $siteStore->getSite( $globalId ) !== null ) {
-			$this->error( "Site with global id $globalId already exists." );
-			return false;
+			$this->fatalError( "Site with global id $globalId already exists." );
 		}
 
 		$site = new MediaWikiSite();
