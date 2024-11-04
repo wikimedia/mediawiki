@@ -66,19 +66,20 @@ describe( 'Block store', () => {
 		expect( store.hardBlockVisible ).toBe( true );
 	} );
 
-	it( 'hides the wpDisableUTEdit field for partial blocks, unless the block is against the User_talk namespace', () => {
+	it( 'show the wpDisableUTEdit field for partial blocks, unless the block is against the User_talk namespace', () => {
 		mockMwConfigGet( { blockDisableUTEditVisible: true } );
 		const store = useBlockStore();
-		// Initially visible.
+		// Visible for sitewide blocks.
+		store.type = 'sitewide';
 		expect( store.disableUTEditVisible ).toBe( true );
-		// Also visible for partial.
+		// But not visible for partial.
 		store.type = 'partial';
-		expect( store.disableUTEditVisible ).toBe( true );
+		expect( store.disableUTEditVisible ).toBe( false );
 		// Including if they block a different namespace (the Talk NS in this case, ID 1).
 		store.namespaces.push( 1 );
-		expect( store.disableUTEditVisible ).toBe( true );
-		// But if it's the User_talk NS (ID 3), then it's not visible.
-		store.namespaces.push( 3 );
 		expect( store.disableUTEditVisible ).toBe( false );
+		// But if it's the User_talk NS (ID 3), then it is visible.
+		store.namespaces.push( 3 );
+		expect( store.disableUTEditVisible ).toBe( true );
 	} );
 } );
