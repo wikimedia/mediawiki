@@ -244,7 +244,6 @@
 	"versionrequired": "نسخهٔ $1 از نرم‌افزار مدیاویکی لازم است",
 	"versionrequiredtext": "برای دیدن این صفحه به نسخهٔ $1 از نرم‌افزار مدیاویکی نیاز دارید.\nبه [[Special:Version|این صفحه]] مراجعه کنید.",
 	"ok": "خوو/ باشد",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "إژ \"$1\" گیریائۀ",
 	"youhavenewmessages": "{{PLURAL:$3|درین}}$1$2",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|هؤمة}} $1 د {{PLURAL:$3|کاربةرێ تِر|$3 کاربةر}}دِرین($2).",

@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Cekli829",
 			"DannyS712",
 			"Fitoschido",
@@ -18,7 +17,8 @@
 			"Vlad5250",
 			"아라",
 			"Base",
-			"Zolgoyo"
+			"Zolgoyo",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Çykgytlaryň aşagyny çyz:",
@@ -683,8 +683,6 @@
 	"slot-name-main": "Esas",
 	"content-model-wikitext": "wikitekst",
 	"content-model-text": "ýönekeý tekst",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Boş obýekt",
 	"content-json-empty-array": "Boş massiw",
 	"unsupported-content-model": "<strong>Duýduryş:</strong> Mazmun modeli $1 bu wikide goldanylmaýar.",

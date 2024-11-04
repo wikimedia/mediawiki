@@ -9,8 +9,7 @@
 			"Matma Rex",
 			"Tokoabibi",
 			"Xiplus",
-			"Iyumu",
-			"Amire80"
+			"Iyumu"
 		]
 	},
 	"tog-underline": "nu sasaan sacuzu’ masasiket:",
@@ -668,7 +667,6 @@
 	"slot-name-main": "sausi",
 	"content-model-wikitext": "Wikitext",
 	"content-model-text": "sulit a dada’",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "inayi’ay a tuutuud",
 	"content-json-empty-array": "inayi’ay a papazengan tu nisulitan",
 	"duplicate-args-warning": "<strong>patalaw:</strong> [[:$1]] miawza [[:$2]] a \"$3\" aazihen-sulyang pisaungay mangsiw tu cacay，pisaungay dada’ nipabeli sazikuzay a aazihen-sulyang sulyang.",

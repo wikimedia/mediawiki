@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Carlosedepaula",
 			"Fitoschido",
 			"Geitost",
@@ -757,8 +756,6 @@
 	"slot-name-main": "Principal",
 	"content-model-wikitext": "wikitexto",
 	"content-model-text": "texto simple",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Objecto vacue",
 	"content-json-empty-array": "Matrice vacue",
 	"unsupported-content-model": "<strong>Attention:</strong> Le modello de contento $1 non es supportate sur iste wiki.",

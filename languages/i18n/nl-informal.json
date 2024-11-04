@@ -12,7 +12,8 @@
 			"Romaine",
 			"Siebrand",
 			"Southparkfan",
-			"Tedjuh10"
+			"Tedjuh10",
+			"Woytecr"
 		]
 	},
 	"tog-oldsig": "Je huidige handtekening:",
@@ -77,7 +78,6 @@
 	"createacct-temp-warning": "De bewerkingen die je maakt met je tijdelijke account worden niet overgedragen naar je permanente account.",
 	"noname": "Je hebt geen geldige gebruikersnaam opgegeven.",
 	"loginsuccess": "<strong>Je bent nu aangemeld bij {{SITENAME}} als \"$1\".</strong>",
-	"nouserspecified": "Geef een gebruikersnaam op.",
 	"password-name-match": "Je wachtwoord en je gebruikersnaam mogen niet hetzelfde zijn.",
 	"password-substring-username-match": "Je wachtwoord mag niet voorkomen in je gebruikersnaam.",
 	"passwordremindertext": "Iemand heeft vanaf IP-adres $1 een verzoek\ngedaan tot het toezenden van een nieuw wachtwoord voor {{SITENAME}}\n($4). Er is een tijdelijk wachtwoord aangemaakt voor gebruiker \"$2\":\n\"$3\". Als dat je bedoeling was, meld je dan nu aan en kies een nieuw\nwachtwoord.\nJe tijdelijke wachtwoord vervalt over {{PLURAL:$5|$5 dag|$5 dagen}}.\n\nAls iemand anders dan jij dit verzoek heeft gedaan of als je je inmiddels het\nwachtwoord herinnert en het niet meer wilt wijzigen, negeer dan dit bericht\nen blijf je oude wachtwoord gebruiken.",
@@ -96,7 +96,6 @@
 	"login-migrated-generic": "Je account is overgezet, en je gebruikersnaam bestaat nu niet meer op deze wiki.",
 	"suspicious-userlogout": "Je verzoek om af te melden is genegeerd, omdat het lijkt alsof het verzoek is verzonden door een browser of cacheproxy die stuk is.",
 	"createacct-another-realname-tip": "Je mag een echte naam opgeven.\nAls je dat doet, wordt de gebruiker onder deze naam vermeld als erkenning voor diens werk.",
-	"resetpass_announce": "Voer een nieuw wachtwoord in om het aanmelden te voltooien:",
 	"changepassword-success": "Je wachtwoord is gewijzigd!",
 	"changepassword-throttled": "Je hebt in korte tijd te veel aanmeldpogingen gedaan.\nWacht $1 voordat je het weer probeert.",
 	"botpasswords-summary": "<em>Robotwachtwoorden</em> zorgen voor toegang tot een gebruikersaccount via de API, zonder de aanmeldgegevens van dat account op te geven. De beschikbare gebruikersrechten kunnen beperkt zijn wanneer er met een robotwachtwoord is aangemeld.\n\nAls je niet weet waarom je een robotwachtwoord zou willen aanmaken, doe het dan liever niet. Niemand hoort je ooit te vragen om een robotwachtwoord aan te maken en het door te geven.",

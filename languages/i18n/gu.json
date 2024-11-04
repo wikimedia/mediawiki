@@ -33,8 +33,7 @@
 			"Vyom",
 			"YmKavishwar",
 			"לערי ריינהארט",
-			"아라",
-			"Amire80"
+			"아라"
 		]
 	},
 	"tog-underline": "કડીઓની નીચે લીટી (અંડરલાઇન):",
@@ -259,7 +258,6 @@
 	"versionrequired": "મીડીયાવિકિનું $1 સંસ્કરણ જરૂરી",
 	"versionrequiredtext": "આ પાનાના વપરાશ માટે મીડિયાવિકિનું $1 સંસ્કરણ જરૂરી.\n\nજુઓ [[Special:Version|સંસ્કરણ પાનું]].",
 	"ok": "મંજૂર",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "\"$1\" થી મેળવેલ",
 	"youhavenewmessages": "{{PLURAL:$3|તમારી પાસે}} $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|આપ}}ને માટે {{PLURAL:$3|અન્ય સભ્ય|$3 અન્ય સભ્યો}} તરફથી $1 છે. ($2).",
@@ -642,7 +640,6 @@
 	"content-model-wikitext": "વિકિલખાણ",
 	"content-model-text": "સાદું લખાણ",
 	"content-model-javascript": "જાવાસ્ક્રિપ્ટ",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "ખાલી ઓબ્જેક્ટ",
 	"content-json-empty-array": "ખાલી એરે",
 	"expensive-parserfunction-warning": "'''ચેતવણી:''' આ પાનું ખૂબ ખર્ચાળ પદચ્છેદ સૂત્ર ધરાવે છે.\n\nતેમાં $2 કરતા ઓછાં{{PLURAL:$2|પૃછા|પૃછાઓ}}હોવા જોઇએ, અત્યારે તેમાં  {{PLURAL:$1|$1 પૃછા| $1 પૃછાઓ }} છે.",
@@ -941,7 +938,6 @@
 	"saveusergroups": "{{GENDER:$1|સભ્ય}} સમુહો સાચવો",
 	"userrights-groupsmember": "સભ્યપદ:",
 	"userrights-groupsmember-auto": "સામે દર્શાવેલા {{PLURAL:$1|જૂથ|જૂથો}}{{GENDER:$2|નો|ની|ના}} અભિપ્રેત સભ્ય:",
-	"userrights-groupsmember-type": " $1",
 	"userrights-groups-help": "આ સભ્ય જે જૂથોનો સભ્ય છે તે તમે બદલી શકો છો:\n* અંકિત કરેલું ખાનું દર્શાવે છે કે સભ્ય તે જૂથમાં છે.\n* જો ખાનું અંકિત ન હોય તો તેનો અર્થ એમ છે કે સભ્ય તે જૂથમાં નથી.\n* ફૂદડી (*) દર્શાવે છે કે તમે એક વખત ઉમેર્યા પછી તે જૂથમાંથી સભ્યને હટાવી નહિ શકો અથવા હટાવ્યા પછી ઉમેરી નહિ શકો.",
 	"userrights-reason": "કારણ:",
 	"userrights-no-interwiki": "અન્ય વિકિ પર અન્ય સભ્યો ના અધિકારો માં પરિવર્તન કરવાની તમને પરવાનગી નથી",

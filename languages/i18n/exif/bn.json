@@ -189,7 +189,6 @@
 	"exif-originalimageheight": "ক্রপ করার পূর্বে চিত্রটির উচ্চতা",
 	"exif-originalimagewidth": "ক্রপ করার পূর্বে চিত্রটির প্রস্থ",
 	"exif-contact-value": "$1\n\n$2\n<div class=\"adr\">\n$3\n\n$4, $5, $6 $7\n</div>\n$8",
-	"exif-subjectnewscode-value": "$2 ($1)",
 	"exif-compression-1": "অসংকুচিত",
 	"exif-compression-2": "সিসিআইটিটি গ্রুপ ৩ ১-ডাইমেনশনাম মডিফাইড হাফম্যান রান লেংক্থ এনকোডিং",
 	"exif-compression-3": "সিসিআইটিটি গ্রুপ ৩ ফ্যাক্স এনকোডিং",

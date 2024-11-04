@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"DannyS712",
 			"Fitoschido",
 			"Lpachuau",
@@ -488,8 +487,6 @@
 	"invalid-content-data": "Kentel phal loh thil",
 	"content-model-wikitext": "wikithü",
 	"content-model-text": "thutluang",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"post-expand-template-inclusion-warning": "'''Vaukhanna:''' Siamsa telh a lian leh lutuk.\nSiamsa ţhenkhat hmaih a ni ang.",
 	"post-expand-template-inclusion-category": "Siamsa telh theih lenzawng khûmna phêkte",
 	"post-expand-template-argument-warning": "'''Vaukhanna:''' He phekah hian siamsa kawng kaihparh theih lenzawng nei lian leh lutuk pakhat tal a awm a ni.\nHeng kawngte hi hmaih mai tur.",

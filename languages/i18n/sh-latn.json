@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Acamicamacaraca",
-			"Amire80",
 			"BadDog",
 			"Bugoslav",
 			"Conquistador",
@@ -755,8 +754,6 @@
 	"slot-name-main": "Glavna",
 	"content-model-wikitext": "vikitekst",
 	"content-model-text": "obični tekst",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Prazan objekat",
 	"content-json-empty-array": "Prazan niz",
 	"unsupported-content-model": "<strong>Upozorenje:</strong> Model sadržaja $1 nije podržan na ovom vikiju.",

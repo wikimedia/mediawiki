@@ -587,8 +587,6 @@
 	"editpage-notsupportedcontentformat-title": "Samiqpa rikch'ayninqa manam q'imisqachu",
 	"content-model-wikitext": "wiki qillqa",
 	"content-model-text": "qillqalla",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"expensive-parserfunction-warning": "Paqtataq: Kay p'anqaqa nisyu achka qullqipaq k'uskina rurana qayayniyuqmi.\n\n$2-manta aswan pisillam {{PLURAL:$2|qayayniyuq}} kanman, kunantaq {{PLURAL:$1|$1 qayayniyuqmi}} kachkan.",
 	"expensive-parserfunction-category": "Nisyu achka qullqipaq k'uskina rurana qayayniyuq p'anqakuna",
 	"post-expand-template-inclusion-warning": "Paqtataq: Nisyum ch'aqtasqa plantillakuna.\nHuk plantillakunaqa manam ch'aqtasqachu kanqa.",

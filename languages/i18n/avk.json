@@ -12,8 +12,7 @@
 			"Wikimistusik",
 			"Zetud",
 			"아라",
-			"1233qwer1234qwer4",
-			"Amire80"
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "Levconyana gluyaxa",
@@ -522,7 +521,6 @@
 	"slot-name-main": "Dalaf",
 	"content-model-wikitext": "\"wikitext\"",
 	"content-model-text": "Krentack",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Nedaca",
 	"content-json-empty-array": "Nedafa wafra",
 	"duplicate-args-warning": "<strong>OBRAL</strong> [[:$1]] va [[:$2]] rozar, kan loa tanoya voda mu \"$3\" dor. Ant bocafa deana voda zo saveter.",

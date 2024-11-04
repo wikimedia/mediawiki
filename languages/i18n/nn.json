@@ -36,8 +36,7 @@
 			"1233qwer1234qwer4",
 			"Harald Khan",
 			"Maddy from Celeste",
-			"Iketsi",
-			"Amire80"
+			"Iketsi"
 		]
 	},
 	"tog-underline": "Strek under lenkjer:",
@@ -741,8 +740,6 @@
 	"slot-name-main": "Hovud",
 	"content-model-wikitext": "WikiTekst",
 	"content-model-text": "Rein tekst",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Tomt objekt",
 	"content-json-empty-array": "Tom matrise",
 	"duplicate-args-warning": "<strong>Åtvaring:</strong> [[:$1]] kallar [[:$2]] med meir enn éin verdi for argumentet «$3». Berre den sist oppgjevne verdien vert nytta.",

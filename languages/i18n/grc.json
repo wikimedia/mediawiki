@@ -27,7 +27,7 @@
 			"Yannos",
 			"ZaDiak",
 			"아라",
-			"Amire80"
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Ὑπογραμμίζειν συνδέσμους:",
@@ -241,7 +241,6 @@
 	"versionrequired": "Ἔκδοσις $1 τῆς MediaWiki ἀπαιτεῖται",
 	"versionrequiredtext": "Ἡ ἔκδοσις $1 τῆς MediaWiki ἀναγκαία ἐστὶ τῷ χρῆσθαι τῇδε τῇ δέλτῳ.\nἼδε [[Special:Version|τὴν δέλτον ἐκδόσεως]].",
 	"ok": "εἶεν",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "Ἀνακτηθεῖσα ὑπὸ \"$1\"",
 	"youhavenewmessages": "Ἔχεις $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Ἔχεις}} $1 ἀπὸ {{PLURAL:$3|τινὸς χρωμένου|$3 χρωμένων}} ($2).",

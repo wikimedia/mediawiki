@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Amara-Amaziɣ",
-			"Amire80",
 			"Ayour2002",
 			"BaRaN6161 TURK",
 			"Dalinanir",
@@ -221,7 +220,6 @@
 	"versionrequired": "Txxṣṣa $1 n MediaWiki",
 	"versionrequiredtext": "Ixxṣṣa w-ayyaw $1 n MediaWiki bac at tskrert tasna yad.\nẒr [[Special:Version|ayyaw tasna]].",
 	"ok": "Waxxa",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "Yurrid zɣ \"$1\"",
 	"youhavenewmessages": "{{PLURAL:$3|{{GENDER:$3|Dark|Darm}}}} $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Illa dark}} $1 zɣ {{PLURAL:$3|yan umssmrs yaḍn|$3 imssmrsn}} ($2).",
@@ -625,7 +623,6 @@
 	"recentchanges-label-bot": "Asnfl ad iskrt yan rrubut",
 	"recentchanges-label-unpatrolled": "Ambddl ad ura jju ittmẓra",
 	"recentchanges-label-plusminus": "Tbadl tiddi n tasna s wuṭṭun ad n id byte",
-	"recentchanges-legend-heading": "<strong>Legend:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (ẓr ula [[Special:NewPages|talgamt n tasniwin timaynutin]])",
 	"rcfilters-legend-heading": "<strong>Tizgzilin :</strong>",
 	"rcfilters-days-title": "Ussan ggranin",
@@ -663,8 +660,6 @@
 	"minoreditletter": "m",
 	"newpageletter": "N",
 	"boteditletter": "b",
-	"unpatrolledletter": "!",
-	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|id byte}} dffir n usenfl",
 	"newsectionsummary": "/* $1 */ tigzmi tamaynut",
 	"rc-old-title": "Asnulfu anṣli \"$1\"",

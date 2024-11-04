@@ -612,8 +612,6 @@
 	"slot-name-main": "Головна",
 	"content-model-wikitext": "вікітекст",
 	"content-model-text": "чістый текст",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"expensive-parserfunction-warning": "Увага: Тота сторінка обсягує дуже много кликаня выконово тяжкых функцій парсера.\nДозволеный ліміт є $2, теперь шак  {{PLURAL:$1|ту єдно кликаня є|ту суть  $2 кликаня|ту є $2 кликань}}.",
 	"expensive-parserfunction-category": "Сторінкы з дуже великым чіслом кликаня функції парсера",
 	"post-expand-template-inclusion-warning": "Позірь: розмір шаблон на включіня є барз великый.\nДакотры шаблоны не будуть включены.",

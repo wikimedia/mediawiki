@@ -797,8 +797,6 @@
 	"slot-name-main": "ראשית",
 	"content-model-wikitext": "קוד ויקי",
 	"content-model-text": "טקסט רגיל",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "אובייקט ריק",
 	"content-json-empty-array": "מערך ריק",
 	"unsupported-content-model": "<strong>אזהרה:</strong> מודל התוכן $1 אינו נתמך באתר הוויקי הזה.",

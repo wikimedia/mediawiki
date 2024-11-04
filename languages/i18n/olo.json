@@ -737,7 +737,6 @@
 	"slot-name-main": "Piäsivu",
 	"content-model-wikitext": "wikitekstu",
 	"content-model-text": "perustekstu",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Tyhjy objektu",
 	"content-json-empty-array": "Tyhjy massiivu",
 	"unsupported-content-model": "<strong>Huomavo:</strong> Syväindömallii $1 ei kannateta täs wiki.",

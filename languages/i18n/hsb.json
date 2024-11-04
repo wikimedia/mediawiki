@@ -19,7 +19,6 @@
 			"Vlad5250",
 			"לערי ריינהארט",
 			"아라",
-			"Amire80",
 			"Reedy",
 			"Sławobóg"
 		]
@@ -695,8 +694,6 @@
 	"slot-name-main": "Hłowny",
 	"content-model-wikitext": "wikitekst",
 	"content-model-text": "luty tekst",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Pródzny objekt",
 	"content-json-empty-array": "Prózdna pólna wariabla",
 	"unsupported-content-model": "<strong>Kedźbu:</strong> Wobsahowy model $1 so na tutym wikiju njepodpěruje.",

@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Chavash",
 			"Chuvash",
 			"Chuvash2014",
@@ -1575,7 +1574,6 @@
 	"minoreditletter": "п",
 	"newpageletter": "Ҫ",
 	"boteditletter": "б",
-	"unpatrolledletter": "!",
 	"rc-change-size-new": "Улӑштарнӑ хыҫҫӑнхи калӑпӑш: $1 {{PLURAL:$1|байт}}",
 	"newsectionsummary": "/* $1 */ ҫӗнӗ тема",
 	"rc-old-title": "чи малтанах «$1» пек хатӗрленӗ",
@@ -3129,7 +3127,6 @@
 	"mcrundo-missingparam": "Запросра пулмалли параметрсем ҫук.",
 	"mcrundo-changed": "Эсир ку страница мӗнпе уйрӑлса тӑнине пӑхнӑ хыҫҫӑн ӑна тӳрлетнӗ. Тархасшӑн, ҫӗнӗ улшӑнусемпе паллашӑр.",
 	"mcrundo-parse-failed": "Ҫӗнӗ версие уйӑрса илме май килмерӗ: $1",
-	"pipe-separator": "&#32;|&#32;",
 	"quotation-marks": "«$1»",
 	"formatnum-nan": "Число мар",
 	"imgmultipageprev": "← умӗнчи страница",

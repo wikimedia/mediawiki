@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Khun Kt",
 			"Ninjastrikers",
 			"လွိုင်ႏအာထင်ႏထိုထဲင်း",
@@ -622,9 +621,6 @@
 	"slot-name-main": "ဗဟိုႏ",
 	"content-model-wikitext": "ဝီခီလိတ်ယာႏ",
 	"content-model-text": "ဖျင်ယို လိတ်ယာႏ",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
-	"content-model-json": "JSON",
 	"content-json-empty-object": "ပရောစဲစ်အခြေင်",
 	"content-json-empty-array": "သိစ်တခြေင် ရဲန်ꩻဒါအခင်",
 	"unsupported-content-model": "<strong>ဖေႏသꩻတိꩻချက်:</strong> ဝီခီကိုယိုနဝ်ꩻ စွဲးကမ်းခါꩻတဝ်း အကျောင်ꩻခရာႏမော်ဒယ် $1 သွူ။",
@@ -726,7 +722,6 @@
 	"mergehistory-comment": "အဝ်ႏ [[:$1]] ယို ခြွောန်းလွေꩻခါꩻဒျာႏ [[:$2]]သွူ: $3",
 	"mergehistory-same-destination": "လိတ်မဲ့ငါရွီးခိုႏတောမ်ႏ ကအွဉ်ႏထွော့ခါꩻဒါႏ လိတ်မဲ့ငါ ဖိုင်ႏနဝ်ꩻ ဗိုန်ဝင်ꩻလꩻတဝ်းသွူ။",
 	"mergehistory-reason": "အကျောင်ꩻပျꩻချက်:",
-	"mergehistory-revisionrow": "$1 ($2) $3 . . $4 $5 $6",
 	"mergelog": "ထဲမ်ခါꩻဒါႏ မုဲင်တန်ꩻ",
 	"revertmerge": "ဖြယ်ထန်ႏချာယင်း",
 	"mergelogpagetext": "လယိုဖိုင်ႏနဝ်ꩻ အဝ်ႏလိတ်မဲ့ငါရာႏဇာႏဝင်ႏ ကခြွောန်းလွေꩻဒါႏ အလင်တဗာႏကို စာႏရင်ꩻဒျာႏသွူ။",

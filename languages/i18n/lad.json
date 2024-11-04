@@ -437,8 +437,6 @@
 	"defaultmessagetext": "Teksto de mesaje predeterminado",
 	"content-model-wikitext": "vikiteksto",
 	"content-model-text": "teksto simple",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"post-expand-template-inclusion-warning": "'''Aviso:''' Ay munchos şablones y kaji no quedó lugar.\nAlgunos şablones no van a caver.",
 	"post-expand-template-inclusion-category": "Hojas con sovrecarga de şablones",
 	"post-expand-template-argument-warning": "'''Aviso:''' Esta oja tiene kuanto menos un kampo enel xablon muy lungo.\nEste o estos kampos no van ser amostrados",

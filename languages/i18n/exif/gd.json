@@ -176,7 +176,6 @@
 	"exif-originalimageheight": "Àirde an deilbh mus deach a bhearradh",
 	"exif-originalimagewidth": "Leud an deilbh mus deach a bhearradh",
 	"exif-contact-value": "$1\n\n$2\n<div class=\"adr\">\n$3\n\n$4, $5, $6 $7\n</div>\n$8",
-	"exif-subjectnewscode-value": "$2 ($1)",
 	"exif-compression-1": "Gun dùmhlachadh",
 	"exif-compression-3": "Còdachadh facs CCITT Group 3",
 	"exif-compression-4": "Còdachadh facs CCITT Group 4",

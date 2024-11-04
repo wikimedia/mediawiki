@@ -25,7 +25,6 @@
 			"Tlustulimu Nepl1",
 			"Vlad5250",
 			"아라",
-			"Amire80",
 			"Reedy"
 		]
 	},
@@ -608,8 +607,6 @@
 	"editpage-notsupportedcontentformat-text": "Wopśimjeśowy format $1 njepódpěra se pśez wopśimjeśowy model $2.",
 	"content-model-wikitext": "wikitekst",
 	"content-model-text": "lutny tekst",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"expensive-parserfunction-warning": "Warnowanje: Toś ten bok wopśimujo pśewjele wołanjow parserowych funkcijow wupominajucych wusoke wugbaśe.\n\nNjesmějo daś wěcej nježli $2 {{PLURAL:$2|wołanja|wołanjowu|wołanjow|wołanjow}}, něnto {{PLURAL:$1|jo $1 wołanje|stej $1 wołani|su $1 wołanja|jo $1 wołanjow}}.",
 	"expensive-parserfunction-category": "Boki z pśewjele paerserowymi funkcijami, kótarež pominaju sebje wusoke wugbaśe.",
 	"post-expand-template-inclusion-warning": "Warnowanje: Wjelikosć zapśěgnjonych pśedłogow jo pśewjelika. Někotare pśedłogi se njezapśěgu.",

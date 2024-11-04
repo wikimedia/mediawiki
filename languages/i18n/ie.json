@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Fanjiayi",
 			"Fitoschido",
 			"Jmb",
@@ -596,7 +595,6 @@
 	"edit-already-exists": "Ínpossibil crear nov págine.\nLi págine ja existe.",
 	"slot-name-main": "Principal",
 	"content-model-wikitext": "textu wiki",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Vacui objecte",
 	"post-expand-template-inclusion-warning": "'''Advertiment:''' Li grandore del includet shablones es tro grand. Alcun shablones ne posse esser includet.",
 	"post-expand-template-inclusion-category": "Págines, in queles li maximal grandore del includet shablones es excedet",
@@ -1195,7 +1193,6 @@
 	"usermaildisabledtext": "Vu ne posse inviar e-mail por altri usatores in ti wiki",
 	"usermessage-summary": "Abandonant missage del sistema",
 	"usermessage-editor": "Missagero del sistema",
-	"usermessage-template": "MediaWiki:UserMessage",
 	"watchlist": "Liste de págines vigilat",
 	"mywatchlist": "Liste de págines vigilat",
 	"watchlistfor2": "Por $1",

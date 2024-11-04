@@ -3,8 +3,7 @@
 		"authors": [
 			"BukhariSaeed",
 			"Muhammad Shuaib",
-			"Obaid Raza",
-			"Amire80"
+			"Obaid Raza"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|دستاویز]]\n* [[mw:Special:MyLanguage/API:Etiquette|استعمال کے اصول و ضوابط اور رہنما ہدایات]]\n* [[mw:Special:MyLanguage/API:FAQ|عمومی سوالات]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ ڈاک فہرست]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ اےپی‌آئی کے اعلانات]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R نقائص اور درخواستیں]\n</div>\n<strong>کیفیت:</strong> میڈیاویکی اےپی‌آئی ایک مکمل اور مستحکم انٹرفیس ہے جس میں اصلاح و تحسین کا عمل مستقل جاری رہتا ہے۔ گو کہ ہم ایسی کسی تبدیلی سے گریز کرتے ہیں جس سے سارا نظام شکستہ اور ٹوٹ پھوٹ کا شکار ہو جائے لیکن بعض اوقات اس کے بغیر چارہ نہیں ہوتا؛ چنانچہ ان تبدیلیوں کی بروقت اطلاع پانے کے لیے [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ mediawiki-api-announce نامی فہرست میں اپنا نام درج کر دیں]۔\n\n<strong>غلط درخواستیں:</strong> جب اےپی‌آئی کو غلط درخواستیں بھیجی جاتی ہیں تو «MediaWiki-API-Error» کی کلید کے ساتھ ایک ایچ‌ٹی‌ٹی‌پی سرنامہ روانہ کیا جاتا ہے، اور بعد ازاں ان دونوں کو یعنی سرنامہ کی قدر اور نقص کوڈ کو یکساں قدر دے دی جاتی ہے۔ مزید معلومات کے لیے [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]] ملاحظہ فرمائیں۔\n\n<p class=\"mw-apisandbox-link\"><strong>جانچ:</strong> اےپی‌آئی درخواستوں کی جانچ کے لیے [[Special:ApiSandbox]] ملاحظہ کریں۔</p>",

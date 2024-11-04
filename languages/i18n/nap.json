@@ -23,7 +23,6 @@
 			"לערי ריינהארט",
 			"아라",
 			"Finizio",
-			"Amire80",
 			"Reedy",
 			"Dreamy Jazz",
 			"AbsolutelyBee"
@@ -733,8 +732,6 @@
 	"slot-name-main": "Prencepale",
 	"content-model-wikitext": "wikitesto",
 	"content-model-text": "testo nurmale",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Oggetto abbacante",
 	"content-json-empty-array": "Array abbacante",
 	"unsupported-content-model": "<strong>Attenziò:</strong> 'o modello $1 nun è suppuntato ngopp' 'a sta wiki.",

@@ -23,7 +23,6 @@
 			"Vlad5250",
 			"לערי ריינהארט",
 			"아라",
-			"Amire80",
 			"Servien"
 		]
 	},
@@ -705,7 +704,6 @@
 	"editpage-notsupportedcontentformat-text": "'t Inhawdstype $1 weurt neet óngersteund door 't inhawdsmodel $2.",
 	"content-model-wikitext": "wikiteks",
 	"content-model-text": "teks zónger opmaak",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Laeg objek",
 	"content-json-empty-array": "Laege rits",
 	"duplicate-args-warning": "<strong>Waorsjoewing:</strong> [[:$1]] reup [[:$2]] aan mit mieër es ein waerd veur de paramaeter \"$3\". Allein de litste waerd weurt gebroek.",

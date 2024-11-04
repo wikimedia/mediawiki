@@ -542,8 +542,6 @@
 	"content-not-allowed-here": "Il cuntegn \"$1\" n'è betg lubì sin la pagina [[:$2]]",
 	"content-model-wikitext": "wikitext",
 	"content-model-text": "text senza formataziun",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"expensive-parserfunction-warning": "'''Attenziun:''' Questa pagina cuntegna memia bleras funcziuns dal parser cumplitgadas. \n\nTi stuessas utilisar pli pauc che {{PLURAL:$2|ina tala funcziun|$2 talas funcziuns}}, ussa utiliseschas ti dentant {{PLURAL:$1|ina tala funcziun|$1 talas funcziuns}}.",
 	"expensive-parserfunction-category": "Paginas cun memia bleras funcziuns da parser cumplitgadas",
 	"post-expand-template-inclusion-warning": "'''Attenziun:''' La grondezza dals models integrads è memia gronda.\nInsaquants models vegnan betg integrads.",

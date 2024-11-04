@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"1233qwer1234qwer4",
-			"Amire80",
 			"DannyS712",
 			"Fitoschido",
 			"Hugo.arg",
@@ -535,7 +534,6 @@
 	"defaultmessagetext": "Tekstos kāp prėklaus",
 	"content-model-wikitext": "viki tekstos",
 	"content-model-text": "paprasts tekstos",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Dīks dākts",
 	"post-expand-template-inclusion-warning": "Perspiejėms: Šabluonu īterpėma dėdoms īr par dėdelis.\nKāp katrėi šabluonā nebus ītrauktė.",
 	"post-expand-template-inclusion-category": "Poslapē, kur šabluonu īterpėma dėdoms viršėjams",

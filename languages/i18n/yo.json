@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Demmy",
 			"Fitoschido",
 			"Kaganer",
@@ -648,8 +647,6 @@
 	"content-not-allowed-here": "Àkóónú \"$1\" kò ní ìyọ̀nda lórí ojúewé [[:$2]] ní ààyè \"$3\"",
 	"content-model-wikitext": "ìkọ-ọ̀rọ̀ wiki",
 	"content-model-text": "ìkọ̀rọ̀ kedere",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"expensive-parserfunction-warning": "'''Ìkìlọ̀:''' Ojúewé yìí ní àwọn ìpè olùtúwò ìmúṣe adíyelélórí tó pọ̀ ju bóṣeyẹlọ.\n\nÓ yẹ kó ní {{PLURAL:$2|ìpè|ìpè}} tókéré ju $2 lọ, sùgbọ́n lọ́wọ́ báàyí ó ní {{PLURAL:$1|ìpè $1|ìpè $1}}.",
 	"expensive-parserfunction-category": "Àwọn ojúewé tí wọ́n ní àwọn ìpè olùtúwò ìmúṣe adíyelélórí tópọ́ju bóṣeyẹlọ",
 	"post-expand-template-inclusion-warning": "'''Ìkìlọ̀:''' Ìtóbi àdàkọ tó jẹ́ mímúpọ̀ mọ ti pòjù.\nÀwọn apá àdàkọ kan kò ní jẹ́ mímúpọ̀.",

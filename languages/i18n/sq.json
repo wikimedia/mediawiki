@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"1233qwer1234qwer4",
-			"Amire80",
 			"Ammartivari",
 			"Andejkendej",
 			"Arianit",
@@ -738,7 +737,6 @@
 	"slot-name-main": "Kryesor",
 	"content-model-wikitext": "wikitekst",
 	"content-model-text": "tekst i thejshtë",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Objekt bosh",
 	"content-json-empty-array": "Fushë boshe",
 	"expensive-parserfunction-warning": "Kujdes: Kjo faqe ka shumë kërkesa që kërkojnë analizë gramatikore të kushtueshme për sistemin.\n\nDuhet të ketë më pakë se $2, {{PLURAL:$2|kërkesë|kërkesa}}, kurse tani {{PLURAL:$1|është $1 kërkesë|janë $1 kërkesa}}.",

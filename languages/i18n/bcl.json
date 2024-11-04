@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"BaRaN6161 TURK",
 			"Brazal.dang",
 			"Daramlagon",
@@ -704,8 +703,6 @@
 	"slot-name-main": "Kapamayuhanan",
 	"content-model-wikitext": "wikitext",
 	"content-model-text": "yanong-teksto",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Halion an bagay",
 	"content-json-empty-array": "Halion an array",
 	"duplicate-args-warning": "<strong>Patanid:</strong> [[:$1]] nag-aapod [[:$2]] na igwa nin sobra sa sarong halaga para sa \"$3\" na parametro. An pinakahuring halaga sanang ipinagtao an magagamit.",

@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Amdf",
-			"Amire80",
 			"Azim",
 			"DannyS712",
 			"Fitoschido",
@@ -19,7 +18,8 @@
 			"아라",
 			"Венина Наталья Константиновна",
 			"Валентина Семёнова",
-			"Mxalexandrov86"
+			"Mxalexandrov86",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Кылверлам ӱлыч удырал палемдаш:",
@@ -746,7 +746,6 @@
 	"slot-name-main": "Тӱҥ",
 	"content-model-wikitext": "вики-текст",
 	"content-model-text": "тыглай текст",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Яра объект",
 	"content-json-empty-array": "Яра массив",
 	"unsupported-content-model": "<strong>Тӱткӧ лий:</strong> $1 контент модель тиде викиште огеш кучылталт.",

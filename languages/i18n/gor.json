@@ -667,7 +667,6 @@
 	"slot-name-main": "Uda'a",
 	"content-model-wikitext": "tuladu wiki",
 	"content-model-text": "teks polos",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Obyek ja otuwa",
 	"content-json-empty-array": "Barisi ja otuwa",
 	"unsupported-content-model": "<strong>Awasi:</strong> Model konten $1 ja dilukungi to wiki botiya.",

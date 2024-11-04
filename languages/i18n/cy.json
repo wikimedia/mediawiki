@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Arwel Parry",
 			"Cymrodor",
 			"Dafyddt",
@@ -766,8 +765,6 @@
 	"slot-name-main": "Prif",
 	"content-model-wikitext": "cystrawen wici",
 	"content-model-text": "testun plaen",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Gwrthrych gwag",
 	"content-json-empty-array": "Rhesi gwag",
 	"unsupported-content-model": "<strong>Rhybudd:</strong> Ni chefnogir y model cynnwys $1 ar y wici hwn.",

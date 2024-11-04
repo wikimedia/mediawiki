@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"DannyS712",
 			"Fitoschido",
 			"Geitost",
@@ -685,8 +684,6 @@
 	"editpage-notsupportedcontentformat-text": "Det formoot $1 gongt ei mä det model $2.",
 	"content-model-wikitext": "wikitekst",
 	"content-model-text": "normool tekst",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Leesag objekt",
 	"content-json-empty-array": "Leesag array",
 	"duplicate-args-warning": "<strong>Paase üüb:</strong> [[:$1]] rept [[:$2]] mä muar üs ään wäärs för di parameter „$3“ ap. Bluas di leetst wäärs woort brükt.",

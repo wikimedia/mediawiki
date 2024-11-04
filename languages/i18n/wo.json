@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Ahloubadar",
-			"Amire80",
 			"DannyS712",
 			"Fanjiayi",
 			"Fitoschido",
@@ -692,7 +691,6 @@
 	"userrights-nodatabase": "Dàttub njoxe bii « $1 » amul walla nekkul ci barab bi.",
 	"userrights-changeable-col": "Mbooloo yees man a soppi",
 	"userrights-unchangeable-col": "Mbooloo yees manuta soppi",
-	"userrights-irreversible-marker": "$1*",
 	"group": "Mbooloo :",
 	"group-user": "Jëfandikukat",
 	"group-autoconfirmed": "Jëfandikukat bu bindu",
@@ -840,7 +838,6 @@
 	"minoreditletter": "m",
 	"newpageletter": "N",
 	"boteditletter": "b",
-	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} ginnaaw coppite gi",
 	"newsectionsummary": "/* $1 */ xaaj bu bees",
 	"recentchangeslinked": "Coppite yi ko ñeel",

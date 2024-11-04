@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Boldbdd",
 			"Chinneeb",
 			"DannyS712",
@@ -246,7 +245,6 @@
 	"versionrequired": "МедиаВикигийн $1 хувилбар шаардлагатай",
 	"versionrequiredtext": "Энэ хуудсыг ашиглахын тулд МедиаВикигйин $1 хувилбар шаардлагатай. [[Special:Version|Энэ хувилбарын тухай]] үзнэ үү.",
 	"ok": "OK",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "\"$1\" хуудаснаас авсан",
 	"youhavenewmessages": "{{PLURAL:$3|Танд}} $1 ($2) байна.",
 	"youhavenewmessagesfromusers": "Танд {{PLURAL:$3|өөр нэгэн хэрэглэгчээс |$3 хэрэглэгчээс}} $1 ирсэн байна ($2).",
@@ -638,8 +636,6 @@
 	"editpage-notsupportedcontentformat-text": "$1 гэсэн агуулын формат $2 моделд дэмжигддэггүй.",
 	"content-model-wikitext": "вики бичвэр",
 	"content-model-text": "энгийн бичвэр",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Хоосон объект",
 	"content-json-empty-array": "Хоосон хүснэгт",
 	"expensive-parserfunction-warning": "'''Анхаар:''' Энэ хуудсанд хэт олон парсер функцийн дуудлагууд байна.\n\n$2 дуудлагаас доош байх ёстой, харин одоо $1 байна.",

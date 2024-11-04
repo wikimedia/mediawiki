@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Bulaisen",
 			"DannyS712",
 			"Kalani",
@@ -459,7 +458,6 @@
 	"defaultmessagetext": "Kikokikona pūlono pa‘amau",
 	"content-model-wikitext": "kikokikonawiki",
 	"content-model-javascript": "IawaSikulipa",
-	"content-model-css": "CSS",
 	"post-expand-template-inclusion-warning": "<strong>E akahele:</strong> Hoʻokela ʻia ka palena nui o ke anakuhi.\nHoʻohui ʻole i kekahi mau anakuhi.",
 	"post-expand-template-inclusion-category": "Nā ʻaoʻao me nā anakuhi e hoʻokela i ka palenanui",
 	"post-expand-template-argument-warning": "<strong>E akahele:</strong> Aia ma kēia ʻaoʻao i kekahi a ʻoi pilikia anakuhi e loaʻa i kekahi nui hoʻonui nunui loa.\nUa waiho ʻia kēia mau pilikia.",

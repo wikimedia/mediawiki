@@ -11,8 +11,7 @@
 			"बडा काजी",
 			"बिप्लब आनन्द",
 			"रमेश सिंह बोहरा",
-			"राम प्रसाद जोशी",
-			"Amire80"
+			"राम प्रसाद जोशी"
 		]
 	},
 	"tog-underline": "सम्बन्ध निम्न रेखाङ्कन:",
@@ -238,7 +237,6 @@
 	"versionrequired": "MediaWiki संस्करण $1 चाईन्या",
 	"versionrequiredtext": "ये पाना प्रयोग गर्नका लागि MediaWiki $1 संस्करण चाहिन्छ ।\nहेर  [[Special:Version|version page]]",
 	"ok": "भयो",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": " \"$1\" बठे निकालियाऽ",
 	"youhavenewmessages": "{{PLURAL:$3|तम सित छन}} $1 ($2)।",
 	"youhavenewmessagesfromusers": "{{PLURAL:$3|अर्खा प्रयोगकर्ता|$3 प्रयोगकर्ताअन}} ($2) मी है {{PLURAL:$4|तम सित}} $1 छन।",

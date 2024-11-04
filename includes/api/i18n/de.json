@@ -32,7 +32,6 @@
 			"ThisCarthing",
 			"Justman10000",
 			"McDutchie",
-			"Amire80",
 			"TomatoCake",
 			"TMg"
 		]
@@ -1041,7 +1040,7 @@
 	"apihelp-query+prefixsearch-param-namespace": "Welche Namensräume durchsucht werden sollen. Wird ignoriert, falls <var>$1search</var> mit einem gültigen Namensraumpräfix beginnt.",
 	"apihelp-query+prefixsearch-param-limit": "Maximale Anzahl zurückzugebender Ergebnisse.",
 	"apihelp-query+prefixsearch-param-offset": "Anzahl der zu überspringenden Ergebnisse.",
-	"apihelp-query+prefixsearch-example-simple": "Suche nach Seitentiteln, die mit <kbd>Bedeutung</kbd> beginnen.",
+	"apihelp-query+prefixsearch-example-simple": "Suche nach Seitentiteln, die mit <kbd>meaning</kbd> beginnen.",
 	"apihelp-query+prefixsearch-param-profile": "Zu verwendendes Suchprofil.",
 	"apihelp-query+protectedtitles-summary": "Listet alle Titel auf, die vor einer Erstellung geschützt sind.",
 	"apihelp-query+protectedtitles-param-namespace": "Listet nur Titel in diesen Namensräumen auf.",
@@ -1079,7 +1078,7 @@
 	"apihelp-query+recentchanges-param-tag": "Listet nur Änderungen auf, die mit dieser Markierung markiert sind.",
 	"apihelp-query+recentchanges-param-slot": "Listet nur Änderungen auf, die den genannten Slot betreffen.",
 	"apihelp-query+recentchanges-param-prop": "Bezieht zusätzliche Informationen mit ein:",
-	"apihelp-query+recentchanges-paramvalue-prop-user": "Fügt den Benutzer hinzu, der für die Bearbeitung und die Tags verantwortlich ist, wenn er eine IP ist. Wenn der Benutzer in der Revision gelöscht wurde, wird eine <samp>userhidden</samp> Eigenschaft zurückgegeben.",
+	"apihelp-query+recentchanges-paramvalue-prop-user": "Fügt den für die Bearbeitung verantwortlichen Benutzer hinzu und und fügt eine Bezeichnung hinzu, wenn es sich um eine IP-Adresse handelt. Wenn der Benutzer in der Revision gelöscht wurde, wird eine <samp>userhidden</samp> Eigenschaft zurückgegeben.",
 	"apihelp-query+recentchanges-paramvalue-prop-comment": "Fügt den Kommentar für die Bearbeitung hinzu. Wenn der Kommentar versionsgelöscht wurde, wird die Eigenschaft <samp>commenthidden</samp> zurückgegeben.",
 	"apihelp-query+recentchanges-paramvalue-prop-flags": "Ergänzt Markierungen für die Bearbeitung.",
 	"apihelp-query+recentchanges-paramvalue-prop-timestamp": "Ergänzt den Zeitstempel für die Bearbeitung.",

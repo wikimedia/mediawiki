@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"DannyS712",
 			"Diupwijk",
 			"EileenSanda",
@@ -18,7 +17,8 @@
 			"Urhixidur",
 			"Vlad5250",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Stefán Örvar Sigmundsson"
 		]
 	},
 	"tog-underline": "Undirstrika leinki:",
@@ -595,8 +595,6 @@
 	"content-not-allowed-here": "\"$1\" innihald er ikki loyvt á síðu [[:$2]]",
 	"content-model-wikitext": "wikitekst",
 	"content-model-text": "simpul tekstur",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"expensive-parserfunction-warning": "'''Ávaring:''' Henda síðan inniheldur ov nógvar útrokningstungar parsara-funksjónskall.\n\nHon eigur at hava minni enn $2 {{PLURAL:$2|kall}}, tað {{PLURAL:$1|er nú $1|eru nú $1 kall}}.",
 	"expensive-parserfunction-category": "Síður við ov nógvum dýrum parsara funktiónskallum",
 	"post-expand-template-inclusion-warning": "'''Ávaring:''' Tað eru ov nógvar skabilónir á hesi síðu. \nNakrar skabilónir vera ikki vístar.",

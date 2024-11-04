@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"A2093064",
-			"Amire80",
 			"Bowleerin",
 			"C933103",
 			"Crowley666",
@@ -597,7 +596,6 @@
 	"edit-already-exists": "不建新頁。\n已存也。",
 	"defaultmessagetext": "慣話文",
 	"content-model-text": "純文本",
-	"content-model-javascript": "JavaScript",
 	"content-model-css": "層疊樣式表",
 	"expensive-parserfunction-warning": "警：頁有多貴功呼。\n\n其須少$2呼，現有$1呼。",
 	"expensive-parserfunction-category": "頁有多貴功呼",

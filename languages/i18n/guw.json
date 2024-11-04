@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Anthonymodec",
 			"Atej2*",
 			"Gadarawamo",
@@ -13,7 +12,8 @@
 			"Yemi festus",
 			"Jamex18",
 			"Medaho",
-			"Reedy"
+			"Reedy",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Kọndopọ he tin to odo lẹ:",
@@ -735,7 +735,6 @@
 	"slot-name-main": "Tangan",
 	"content-model-wikitext": "nukinkan wiki tọn",
 	"content-model-text": "nukinkan tlọlọ",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Nu tata",
 	"content-json-empty-array": "Todohukanji he to ovọ́",
 	"unsupported-content-model": "<strong>Avase:</strong> Wunmẹ nuhe $1 bẹhẹn lẹ tọn ma yin alọkẹyi to wiki ehe ji.",

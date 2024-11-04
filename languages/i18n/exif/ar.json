@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Abanima",
-			"Amire80",
 			"BAB ZAA",
 			"Ciphers",
 			"Houcinee1",
@@ -193,7 +192,6 @@
 	"exif-personinimage": "الشخص في الصورة",
 	"exif-originalimageheight": "ارتفاع الصورة قبل أن تقتطع",
 	"exif-originalimagewidth": "عرض الصورة قبل أن تقتطع",
-	"exif-subjectnewscode-value": "$2 ($1)",
 	"exif-compression-1": "غير مضغوط",
 	"exif-compression-2": "CCITT المجموعة 3 -1 تعديل طول تشغيل ترميز هوفمان البعدي",
 	"exif-compression-3": "ترميز فاكس المجموعة 3 CCITT",
@@ -235,12 +233,6 @@
 	"exif-colorspace-1": "إس آر جي بي",
 	"exif-colorspace-65535": "غير معاير",
 	"exif-componentsconfiguration-0": "غير موجود",
-	"exif-componentsconfiguration-1": "واي",
-	"exif-componentsconfiguration-2": "سب",
-	"exif-componentsconfiguration-3": "سر",
-	"exif-componentsconfiguration-4": "آر",
-	"exif-componentsconfiguration-5": "جي",
-	"exif-componentsconfiguration-6": "بي",
 	"exif-exposureprogram-0": "غير معرف",
 	"exif-exposureprogram-1": "يدوي",
 	"exif-exposureprogram-2": "برنامج عادي",

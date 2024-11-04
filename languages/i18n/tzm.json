@@ -1,13 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Brahim-essaidi",
 			"Hakim1bal",
 			"Moha",
 			"Mohamed Belarhzali",
 			"Tifinaghes",
-			"ⵕⴰⵊⵉ"
+			"ⵕⴰⵊⵉ",
+			"Caden000"
 		]
 	},
 	"underline-always": "Abda",
@@ -140,7 +140,6 @@
 	"privacypage": "Project:Tasertit tusligt",
 	"badaccess": "ⴰⵣⴳⴰⵍ ⴳ ⵓⵙⵙⵓⵔⴼ",
 	"ok": "ⵡⴰⵅⵅⴰ",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"youhavenewmessages": "ⵜⵍⵍⴰ ⵖⵓⵔⴽ $1 ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|ⵜⵓⵣⵓⵏⵜ ⵜⴰⵎⴰⵢⵏⵓⵜ|999=ⵜⵓⵣⵓⵏⵉⵏ ⵜⵉⵎⴰⵢⵏⵓⵜⵉⵏ}}",
 	"editsection": "senfel",
@@ -224,11 +223,8 @@
 	"editing": "Isenfelen $1",
 	"yourtext": "Aḍṛiṣ-nnek/m",
 	"template-protected": "(protected)",
-	"edittools-upload": "-",
 	"nocreate-loggedin": "ⵓⵔ ⵖⵓⵔⴽ ⵜⵓⵔⴰⴳⵜ ⵏ ⴰⵙⵏⵓⵍⴼⵓ ⵏ ⵜⴰⵙⵏⵉⵡⵉⵏ ⵜⵉⵎⴰⵢⵏⵓⵜⵉⵏ.",
 	"content-model-wikitext": "Wikiḍṛiṣ",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"nextrevision": "ⵜⴰⵙⵉⵡⵍⵜ ⵜⴰⵎⴰⵢⵏⵓⵜ",
 	"cur": "ⵡⵉⵏ ⵖⵉⵍⴰ",
 	"last": "ⴰⵎⵣⵡⴰⵔⵓ",
@@ -310,7 +306,6 @@
 	"prefs-preview": "ⴰⵥⵕⵉ ⴰⵎⵣⵡⴰⵔⵓ",
 	"prefs-tokenwatchlist": "ⵜⴰⵙⴰⵔⵓⵜ",
 	"userrights-groupsmember": "ⴰⴳⵎⴰⵎ ⴷⵉ:",
-	"userrights-irreversible-marker": "$1*",
 	"group": "Tarabbut:",
 	"group-sysop": "ⵉⵏⵎⵀⴰⵍⵏ ⵏ ⵓⴳⵔⴰⵡ",
 	"group-all": "(ⵎⴰⵕⵕⴰ)",
@@ -339,7 +334,6 @@
 	"minoreditletter": "ⵎ",
 	"newpageletter": "ⵏ",
 	"boteditletter": "ⴱ",
-	"unpatrolledletter": "!",
 	"recentchangeslinked-toolbox": "ⵉⴱⴷⴷⴻⵍⵏ ⵖⵓⵔ ⵜⴰⵣⴷⴰⵢⵜ",
 	"recentchangeslinked-page": "Assaɣ n tasna:",
 	"upload": "ⵣⴷⴻⵎ ⴰⵙⴷⴰⵡ",
@@ -502,10 +496,6 @@
 	"months": "{{PLURAL:$1|$1 ⴰⵢⵢⵓⵔ|$1 ⴰⵢⵢⵓⵔⵏ}}",
 	"ago": "$1 ⴷⴰⵜ",
 	"just-now": "ⵖⵉⵍⴰ ⵚⴰⴼⵉ",
-	"variantname-zh-hant": "hant",
-	"variantname-zh-cn": "cn",
-	"variantname-ku-arab": "ku-Arab",
-	"variantname-tg": "tg",
 	"namespacesall": "Akk°",
 	"monthsall": "Akk°",
 	"confirm_purge_button": "WAX",

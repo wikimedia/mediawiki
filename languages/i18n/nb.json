@@ -61,7 +61,6 @@
 			"לערי ריינהארט",
 			"아라",
 			"EdoAug",
-			"Amire80",
 			"TommyG",
 			"Iketsi",
 			"Kimberli Mäkäräinen (WMNO)"
@@ -804,8 +803,6 @@
 	"slot-name-main": "Hoveddel",
 	"content-model-wikitext": "wikitekst",
 	"content-model-text": "ren tekst",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Tomt objekt",
 	"content-json-empty-array": "Tom matrise",
 	"unsupported-content-model": "<strong>Advarsel:</strong> Innholdsmodellen $1 støttes ikke på denne wikien.",

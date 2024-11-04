@@ -24,7 +24,6 @@
 			"Akbar Soepadhi",
 			"Pijri Paijar",
 			"Veracious",
-			"Amire80",
 			"Bennylin"
 		]
 	},
@@ -690,8 +689,6 @@
 	"editpage-notsupportedcontentformat-text": "Format eusi $1 teu dirojong ku modél eusi $2.",
 	"content-model-wikitext": "wikitéks",
 	"content-model-text": "téks polos",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Obyék kosong",
 	"content-json-empty-array": "Larik kosong",
 	"duplicate-args-warning": "<strong>Awas:</strong> [[:$1]] nyalukan [[:$2]] ku leuwih ti hiji ajén pikeun paraméter \"$3\". Ngan ajén panungtung anu bakal dipaké.",

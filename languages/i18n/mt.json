@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"CharlieTheCabbie",
 			"Chrisportelli",
 			"DannyS712",
@@ -693,8 +692,6 @@
 	"slot-name-main": "Prinċipali",
 	"content-model-wikitext": "test tal-wiki",
 	"content-model-text": "test normali",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Oġġett vojt",
 	"duplicate-args-category": "Paġni li jużaw argumenti dduplikati fis-sejħiet għal mudell",
 	"expensive-parserfunction-warning": "'''Twissija:''' Din il-paġna għandha ħafna sejħiet għall-funzjonijiet parser.\n\nSuppost irid ikollha inqas minn $2, bħalissa hemm {{PLURAL:$1|waħda|$1}}.",
@@ -2794,9 +2791,6 @@
 	"autosumm-new": "Inħolqot paġna b'\"$1\"",
 	"autosumm-newblank": "Paġna vojta maħluqa",
 	"size-bytes": "$1 B",
-	"size-kilobytes": "$1 KB",
-	"size-megabytes": "$1 MB",
-	"size-gigabytes": "$1 GB",
 	"lag-warn-normal": "It-tibdil li hu aktar riċenti minn $1 {{PLURAL:$1|sekonda|sekonda}}, jista' li ma jiġix inkluż fil-lista.",
 	"lag-warn-high": "Minħabba li l-aġġornament tas-server huwa eċċessivament bil-mod, il-modifiki fl-aħħar $1 {{PLURAL:$1|sekonda|sekonda}} ma jistgħux jiġu nklużi fil-lista.",
 	"watchlistedit-normal-title": "Modifika l-lista tal-osservazzjonijiet speċjali",

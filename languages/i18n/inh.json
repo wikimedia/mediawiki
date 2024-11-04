@@ -2388,7 +2388,6 @@
 	"protect-fallback": "Могадаьд алхха ше «$1» волача доакъашхошта",
 	"protect-level-autoconfirmed": "Могадаьд алхха автохьатӀаийца доакъашхошта",
 	"protect-level-sysop": "Могадаьд алхха администраторашта",
-	"protect-summary-desc": "[$1 = $2] ($3)",
 	"protect-summary-cascade": "каскадни",
 	"protect-expiring": "ха чакхйоалл $1 (UTC)",
 	"protect-expiring-local": "чакхдоалл $1",

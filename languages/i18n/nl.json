@@ -114,7 +114,6 @@
 			"לערי ריינהארט",
 			"아라",
 			"Daniuu",
-			"Amire80",
 			"Victor LP",
 			"Iamthedutchdude",
 			"IJzeren Jan"
@@ -856,8 +855,6 @@
 	"slot-name-main": "Hoofdonderdeel",
 	"content-model-wikitext": "wikitekst",
 	"content-model-text": "tekst zonder opmaak",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Leeg object",
 	"content-json-empty-array": "Lege reeks",
 	"unsupported-content-model": "<strong>Let op:</strong> het inhoudsmodel $1 wordt niet ondersteunt op deze wiki.",

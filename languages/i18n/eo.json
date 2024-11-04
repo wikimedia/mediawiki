@@ -4,7 +4,6 @@
 			"AVRS",
 			"Airon90",
 			"Amikeco",
-			"Amire80",
 			"Anakmalaysia",
 			"ArnoLagrange",
 			"Blahma",
@@ -67,7 +66,8 @@
 			"נדב ס",
 			"Lepticed",
 			"Voltinus",
-			"Ziko"
+			"Ziko",
+			"Stefangrotz"
 		]
 	},
 	"tog-underline": "Substrekado de ligiloj:",
@@ -806,8 +806,6 @@
 	"slot-name-main": "Ĉefa",
 	"content-model-wikitext": "vikiteksto",
 	"content-model-text": "plata teksto",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Malplena objekto",
 	"content-json-empty-array": "Malplena tabelo",
 	"unsupported-content-model": "<strong>Averto:</strong> Enhava modelo $1 ne estas subtenata en tiu ĉi vikio.",

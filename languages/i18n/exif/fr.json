@@ -210,7 +210,6 @@
 	"exif-originalimageheight": "Hauteur de l’image avant recadrage",
 	"exif-originalimagewidth": "Largeur de l’image avant recadrage",
 	"exif-contact-value": "$1\n\n$2\n<div class=\"adr\">\n$3\n\n$6 $4, $5\n$7\n</div>\n$8",
-	"exif-subjectnewscode-value": "$2 ($1)",
 	"exif-compression-1": "Non compressé",
 	"exif-compression-2": "Codage Huffman modifié par longueur de plage à 1 dimension pour le groupe 3 du CCITT",
 	"exif-compression-3": "Codage de télécopie du groupe 3 du CCITT",

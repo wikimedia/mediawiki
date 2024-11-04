@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Aig mest ei varasta",
-			"Amire80",
 			"Andrijko Z.",
 			"DannyS712",
 			"Fitoschido",
@@ -1167,7 +1166,6 @@
 	"userrights-nodatabase": "Tedokaičust $1 ei ole libo se ei ole sijaline.",
 	"userrights-changeable-col": "Gruppad, miččid sinä void vajehtada",
 	"userrights-unchangeable-col": "Gruppad, miččid sinä ed voi vajehtada",
-	"userrights-irreversible-marker": "$1*",
 	"userrights-expiry-current": "Radonaig lopiše $1",
 	"userrights-expiry-none": "Radonaig ei lopte",
 	"userrights-expiry": "Lopiše:",
@@ -1586,7 +1584,6 @@
 	"minoreditletter": "p",
 	"newpageletter": "U",
 	"boteditletter": "r",
-	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bait|baitad}} jäl'ghe vajehtust",
 	"newsectionsummary": "/* $1 */ uz' erišt",
 	"rc-old-title": "augotišes tehtud \"$1\"",
@@ -3086,7 +3083,6 @@
 	"sunday-at": "Pühäpäivän $1",
 	"yesterday-at": "Eglai $1",
 	"bad_image_list": "Format om mugoine:\n\nVaiše lugetišen elementad (rived, miččed zavodihe *-znamaspäi) om ottud homaičusehe.\nEzmäine tarkenduz rives ozutab muretud failad.\nKaik jäl'geližed tarkendused neciš-žo rives lugetas erotelusikš, toižil sanoil lehtpoled, miččil fail voib vastatas riviš.",
-	"variantname-zh-hans": "hans",
 	"metadata": "Metatedod",
 	"metadata-help": "Neciš failas om ližatedoid, miččed ližatihe voib olda kameraspäi libo skaneraspäi tedomašinan täht.\nKu fail oli lujas vajehtadud, se voib eroneda ezmäižes variantaspäi.",
 	"metadata-expand": "Ozuta levotoittud tedod",

@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"AryanSogd",
 			"Cbrown1023",
 			"Chinneeb",
@@ -252,7 +251,6 @@
 	"versionrequired": "Нусхаи $1 аз нармафзори МедиаВики лозим аст",
 	"versionrequiredtext": "Барои истифодаи ин саҳифа ба нусхаи $1 аз нармафзори МедиаВики ниёз доред. Барои иттилооъ аз нусхаи нармафзори насбшуда дар ин вики ба [[Special:Version|ин саҳифа]] нигаред.",
 	"ok": "Бошад",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "Баргирифта аз \"$1\"",
 	"youhavenewmessages": "Шумо $1 ($2) доред.",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Шумо}} аз {{PLURAL:$3|корбари дигар|корбарони дигарон}} $1 доред ($2).",
@@ -609,7 +607,6 @@
 	"content-model-wikitext": "вики-матн",
 	"content-model-text": "матни содда",
 	"content-model-javascript": "ҶаваСкрипт",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Ашёи холӣ",
 	"content-json-empty-array": "Массиви холӣ",
 	"post-expand-template-inclusion-warning": "<strong>Огоҳӣ:</strong> Шаблони дар баргирифта хеле калон аст. Баъзе аз шаблонҳо дар бар гирифта намешавад.",
@@ -1440,7 +1437,6 @@
 	"emailsent": "Почтаи электронӣ фиристода шуд",
 	"emailsenttext": "Номаи почтаи электронии шумо фиристода шуд.",
 	"usermessage-editor": "Пайёмрасони системавӣ",
-	"usermessage-template": "MediaWiki:UserMessage",
 	"watchlist": "Феҳристи пайгирӣ",
 	"mywatchlist": "Феҳристи пайгириҳо",
 	"watchlistfor2": "Барои $1",

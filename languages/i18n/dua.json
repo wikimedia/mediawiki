@@ -3,7 +3,8 @@
 		"authors": [
 			"EbelleMarcel",
 			"Olivier Moukodi",
-			"Serieminou"
+			"Serieminou",
+			"NdumbèNdumbè"
 		]
 	},
 	"sunday": "Eti",
@@ -156,8 +157,8 @@
 	"pool-errorunknown": "Dikɔbi disi biyanɛ",
 	"pool-servererror": "Epolá kombɛ mapitá dí tití ($1).",
 	"poolcounter-usage-error": "Diwuse lá bolanɛ : $1",
-	"aboutsite": "O ŋólo a {{SITENAME}}",
-	"aboutpage": "Project:O ŋólo a",
+	"aboutsite": "Ó njé é mōmbweyɛ̌ {{SITENAME}}",
+	"aboutpage": "Project:Ó njé é mōmbweyɛ̌",
 	"copyrightpage": "{{ns:project}}:Wonja mubɛnɛ",
 	"currentevents": "Myangó",
 	"currentevents-url": "Project:Wɛlɛ búnyá",

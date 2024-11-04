@@ -24,7 +24,7 @@
 			"V6rg",
 			"ZeneizeForesto",
 			"아라",
-			"Amire80"
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Sotolìnia i ligàmmi:",
@@ -758,7 +758,6 @@
 	"slot-name-main": "Prinçipâ",
 	"content-model-wikitext": "wikitèsto",
 	"content-model-text": "tèsto normâle",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Ògètto vêuo",
 	"content-json-empty-array": "Array vêuo",
 	"unsupported-content-model": "<strong>Atençión:</strong> o modéllo de contegnûo $1 o no l'é suportòu inte sta wiki chi.",

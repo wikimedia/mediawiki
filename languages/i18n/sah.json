@@ -23,8 +23,7 @@
 			"Туллук",
 			"아라",
 			"Base",
-			"MARKSDNW",
-			"Amire80"
+			"MARKSDNW"
 		]
 	},
 	"tog-underline": "Сигэлэри аннынан тардыы:",
@@ -758,8 +757,6 @@
 	"slot-name-main": "Сүрүн",
 	"content-model-wikitext": "биики-тиэкис",
 	"content-model-text": "көннөрү тиэкис",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Кураанах эбийиэк",
 	"content-json-empty-array": "Кураанах массив",
 	"unsupported-content-model": "<strong>Болҕой:</strong> $1 иһинээҕитин модела бу викиҕа өйөммөт.",

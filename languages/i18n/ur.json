@@ -45,7 +45,7 @@
 			"아라",
 			"TheAafi",
 			"Kaleem Bhatti",
-			"Amire80"
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "ربط کی خط کشیدگی:",
@@ -274,7 +274,6 @@
 	"versionrequired": "میڈیا ویکی کا $1 نسخہ لازمی چاہئیے.",
 	"versionrequiredtext": "اِس صفحہ کو استعمال کرنے کیلئے میڈیاویکی کا $1 نسخہ چاہئیے.\n\n\nدیکھئے [[خاص:نسخہ|صفحۂ نسخہ]]",
 	"ok": "ٹھیک ہے",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"backlinksubtitle": "→ $1",
 	"retrievedfrom": "اخذ کردہ از «$1»",
 	"youhavenewmessages": "آپکے لیۓ ایک $1 ہے۔ ($2)",

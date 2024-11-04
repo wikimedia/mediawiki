@@ -22,8 +22,7 @@
 			"לערי ריינהארט",
 			"아라",
 			"1233qwer1234qwer4",
-			"Volvox",
-			"Amire80"
+			"Volvox"
 		]
 	},
 	"tog-underline": "Linken ënnersträichen:",
@@ -145,7 +144,6 @@
 	"index-category": "Indexéiert Säiten",
 	"noindex-category": "Net-indexéiert Säiten",
 	"broken-file-category": "Säite mat futtisse Linken op Fichieren",
-	"categoryviewer-pagedlinks": "($1) ($2)",
 	"category-header-numerals": "$1-$2",
 	"about": "Iwwer",
 	"article": "Säit mat Inhalt",
@@ -738,8 +736,6 @@
 	"slot-name-main": "Haapt",
 	"content-model-wikitext": "Wikitext",
 	"content-model-text": "Kloertext",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Eidelen Objet",
 	"content-json-empty-array": "Eidel Tabell",
 	"duplicate-args-warning": "<strong>Opgepasst:</strong> [[:$1]] rifft [[:$2]] mat méi wéi engem Wäert fir de Parameter \"$3\" op. Nëmmen de leschte Wäert gëtt benotzt.",
@@ -1501,7 +1497,6 @@
 	"minoreditletter": "k",
 	"newpageletter": "N",
 	"boteditletter": "B",
-	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|Byte|Byten}} no der Ännerung",
 	"newsectionsummary": "Neien Abschnitt /* $1 */",
 	"rc-old-title": "original als \"$1\" ugeluecht",
@@ -3337,7 +3332,7 @@
 	"expand_templates_ok": "OK",
 	"expand_templates_remove_comments": "Bemierkunge läschen",
 	"expand_templates_remove_nowiki": "<nowiki>-Taggen am Resultat suppriméieren",
-	"expand_templates_generate_xml": "Weis d'Struktur vum XML",
+	"expand_templates_generate_xml": "D'Struktur vum XML weisen",
 	"expand_templates_generate_rawhtml": "HTML-Format weisen",
 	"expand_templates_preview": "Kucken ouni ofzespäicheren",
 	"expand_templates_input_missing": "Dir musst mindestens ee Wiki-Text aginn.",

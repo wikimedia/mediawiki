@@ -2,8 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Hakka",
-			"Masiziva",
-			"Amire80"
+			"Masiziva"
 		]
 	},
 	"tog-hideminor": "Viga zvichinjirudzwa zvidoko panezvabva kushandurwa",
@@ -511,7 +510,6 @@
 	"slot-name-main": "Huru",
 	"content-model-wikitext": "wikichinyorwa",
 	"content-model-text": "chinyorwa sezvachiri",
-	"content-model-javascript": "JavaScript",
 	"post-expand-template-inclusion-warning": "<strong>Yambiro:</strong> makuriro ekusanganisa doodzerwa akakurisa.\nMamwe madoodzerwa haazosanganiswi.",
 	"template-equals-category": "Mazanhi anoshandisa = sedoodzerwa",
 	"parser-template-loop-warning": "Chishwe chedoodzerwa chadzumbunurwa: [[$1]]",

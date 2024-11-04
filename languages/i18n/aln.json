@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Ammartivari",
 			"Bresta",
 			"Cradel",
@@ -982,12 +981,6 @@
 	"svg-long-desc": "skeda SVG, $1 × $2 pixela, madhësia: $3",
 	"show-big-image": "Rezolucion i plotë",
 	"bad_image_list": "Formati asht si vijon:\n\nMerren parasysh vetëm elementet e radhituna (rreshtat që fillojnë me *).\nVegza e parë në rresht lidhet patjetër me nji skedë të keqe.\nKrejt vegzat tjera në të njejtin rresht do të bajnë përjashtim, d.m.th. faqe ku skeda paraqitet mbrenda rreshtit.",
-	"variantname-zh-hans": "hans",
-	"variantname-zh-hant": "hant",
-	"variantname-zh-cn": "cn",
-	"variantname-zh-tw": "tw",
-	"variantname-zh-hk": "hk",
-	"variantname-zh-mo": "mo",
 	"metadata": "Metadata",
 	"metadata-help": "Kjo skedë përmban hollësira tjera të cilat munen qi jan shtue nga kamera ose skaneri dixhital që është përdorur për ta krijuar. Nëse se skeda asht ndryshue nga gjendja origjinale, disa hollësira munen mos me pasqyru skedën e tashme.",
 	"metadata-expand": "Tregoji detajet",

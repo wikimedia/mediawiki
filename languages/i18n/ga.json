@@ -26,8 +26,7 @@
 			"לערי ריינהארט",
 			"ديفيد",
 			"පසිඳු කාවින්ද",
-			"아라",
-			"Amire80"
+			"아라"
 		]
 	},
 	"tog-underline": "Folínte faoi naisc:",
@@ -236,7 +235,6 @@
 	"versionrequired": "Tá leagan $1 de MediaWiki de dhíth",
 	"versionrequiredtext": "Tá an leagan $1 de MediaWiki riachtanach chun an leathanach seo a úsáid. Féach ar [[Special:Version]]",
 	"ok": "OK",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "Aisghafa ó \"$1\"",
 	"youhavenewmessages": "Tá $1 agat ($2).",
 	"editsection": "cuir in eagar",

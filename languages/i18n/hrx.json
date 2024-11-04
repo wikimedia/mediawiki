@@ -8,8 +8,7 @@
 			"Macofe",
 			"Matma Rex",
 			"Midnight Gambler",
-			"Paul Beppler",
-			"Amire80"
+			"Paul Beppler"
 		]
 	},
 	"tog-underline": "Link unnerstreiche:",
@@ -593,8 +592,6 @@
 	"editpage-notsupportedcontentformat-text": "Das Inhaltsformat $1 weard vom Inhaltsmodell $2 net unnerstützt.",
 	"content-model-wikitext": "Wikitext",
 	"content-model-text": "Klartext",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"expensive-parserfunction-warning": "'''Achtung:''' Die Seit enthält zu viele Aufrufe uffwändicher Parserfunktione.\n\nDie därref nemehr als wie $2 {{PLURAL:$2|Uffruf|Uffrufe}} honn, do {{PLURAL:$1|ist aktuell $1 Uffruf|sind aktuell $1 Uffrufe}}.",
 	"expensive-parserfunction-category": "Seite, wo uffwändiche Parserfunktione zu oft uffrufe",
 	"post-expand-template-inclusion-warning": "Warnung: Die Gröss ingebundner Voarlooche ist zu gross, eniche Voarlooche könne net ingebund sin.",

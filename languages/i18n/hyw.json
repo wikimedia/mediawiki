@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"ArmenBakkalian",
 			"Armeniki",
 			"Azniv Stepanian",
@@ -199,7 +198,6 @@
 	"badaccess-group0": "Արտունութիւն չունիք այս գործողութիւնը կատարել:",
 	"badaccess-groups": "Տուեալ գործողութիւնը միայն $1 {{PLURAL:$2|խումբի|խումբերի}} մասնակիցները կ՛րնան կատարել։",
 	"ok": "Լաւ",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "Վերցուած է «$1» էջէն",
 	"youhavenewmessages": "{{PLURAL:$3|Դուք ունիք}} $1 ($2)։",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Դուք ունիք}} $1 {{PLURAL:$3|այլ մասնակից|$3 մասնակիցէն}} ($2):",

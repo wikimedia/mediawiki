@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Albert Fazlî",
-			"Amire80",
 			"DannyS712",
 			"Don Alessandro",
 			"Fitoschido",
@@ -710,7 +709,6 @@
 	"userrights-nodatabase": "Birelgän $1 bazası yuq yäisä  lokal bulıp tormıy.",
 	"userrights-changeable-col": "Sezneñ taraftan üzgärtä ala torğan törkemnär",
 	"userrights-unchangeable-col": "Sezneñ taraftan üzgärtä almıy torğan törkemnär",
-	"userrights-irreversible-marker": "$1*",
 	"group": "Törkem:",
 	"group-user": "Qullanuçılar",
 	"group-autoconfirmed": "Avtoraslanğan qullanuçı",

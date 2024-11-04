@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Antofa",
 			"Cornelia",
 			"DannyS712",
@@ -579,7 +578,6 @@
 	"slot-name-main": "Prinzipari",
 	"content-model-wikitext": "wikitext",
 	"content-model-text": "testhu noimmali",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Ogghjettu bòiddu",
 	"unsupported-content-diff": "Mudifiggà migga pussìbiri pai li pàgini di lu mudellu di cuntinuddu $1.",
 	"template-equals-category": "Pàgini chi imprèani = cumenti mudellu",

@@ -750,8 +750,6 @@
 	"slot-name-main": "Principâl",
 	"content-model-wikitext": "vouiquitèxto",
 	"content-model-text": "tèxto bruto",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Chousa voueda",
 	"content-json-empty-array": "Grelye voueda",
 	"unsupported-content-model": "<strong>Atencion :</strong> lo modèlo de contegnu $1 est pas recognu sus cél vouiqui.",

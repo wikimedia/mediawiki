@@ -191,7 +191,6 @@
 	"exif-originalimageheight": "Висина слике пре исецања",
 	"exif-originalimagewidth": "Ширина слике пре исецања",
 	"exif-contact-value": "$1\n\n$2\n<div class=\"adr\">\n$3\n\n$4, $5, $6 $7\n</div>\n$8",
-	"exif-subjectnewscode-value": "$2 ($1)",
 	"exif-compression-1": "Несажето",
 	"exif-compression-2": "CCITT Group 3 1 – Димензионално измењено Хафманово кодирање по дужини",
 	"exif-compression-3": "CCITT Group 3 факс кодирање",

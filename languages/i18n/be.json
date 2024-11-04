@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Andrus",
 			"Artificial123",
 			"Artsiom91",
@@ -48,7 +47,8 @@
 			"Kareyac",
 			"Jarash",
 			"Earnur97",
-			"Andoti"
+			"Andoti",
+			"Dirruw'o"
 		]
 	},
 	"tog-underline": "Падкрэсленне спасылак:",
@@ -170,8 +170,6 @@
 	"index-category": "Індэксаваныя старонкі",
 	"noindex-category": "Неіндэксаваныя старонкі",
 	"broken-file-category": "Старонкі з няслушнымі спасылкамі на файлы",
-	"categoryviewer-pagedlinks": "($1) ($2)",
-	"category-header-numerals": "$1–$2",
 	"about": "Інфармацыя",
 	"article": "Старонка змесціва",
 	"newwindow": "(адкрыецца ў новым акне)",
@@ -310,8 +308,6 @@
 	"site-atom-feed": "$1 струмень Atom",
 	"page-rss-feed": "\"$1\" струмень RSS",
 	"page-atom-feed": "\"$1\" струмень Atom",
-	"feed-atom": "Atom",
-	"feed-rss": "RSS",
 	"red-link-title": "$1 (няма такой старонкі)",
 	"sort-descending": "Спарадкаваць па змяншэнні",
 	"sort-ascending": "Спарадкаваць па ўзрастанні",
@@ -751,7 +747,6 @@
 	"template-semiprotected": "(часткова ахоўваецца)",
 	"hiddencategories": "Старонка належыць да {{PLURAL:$1|1 схаванай катэгорыі|$1 схаваных катэгорый}}:",
 	"edittools": "<!-- Размешчаны тут тэкст будзе паказаны пад формамі рэдагавання і загрузкі. -->",
-	"edittools-upload": "-",
 	"nocreatetext": "На пляцоўцы {{SITENAME}} магчымасці стварэння новых старонак абмежаваны.\nВы можаце папрацаваць з існуючай старонкай, або [[Special:UserLogin|увайсці ў сістэму, або стварыць сабе ўліковы запіс]].",
 	"nocreate-loggedin": "Вам не дазволена ствараць новыя старонкі.",
 	"sectioneditnotsupported-title": "Праўка раздзелу не падтрымліваецца",
@@ -793,9 +788,6 @@
 	"slot-name-main": "Галоўная",
 	"content-model-wikitext": "вікіразметка",
 	"content-model-text": "звычайны тэкст",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
-	"content-model-json": "JSON",
 	"content-json-empty-object": "Пусты аб’ект",
 	"content-json-empty-array": "Пусты масіў",
 	"unsupported-content-model": "<strong>Увага:</strong> Мадэль змесціва $1 не падтрымліваецца на гэтай вікі.",
@@ -974,7 +966,6 @@
 	"mergehistory-reason": "Прычына:",
 	"mergehistory-source-deleted-reason": "Зыходная старонка аўтаматам выдаляецца пасля аб'яднання гісторыі, паколькі яе мадэль зместу не падтрымлівае перасылкі, а астатніх рэвізіяў няма",
 	"mergehistory-source-deleted": "Акрамя таго, старонка [[:$1]] была выдаленая, паколькі яна болей не мае бачных зменаў, а яе мадэль зместу не падтрымлівае пакіданне перасылак.",
-	"mergehistory-revisionrow": "$1 ($2) $3 . . $4 $5 $6 $7",
 	"mergelog": "Журнал аб’яднанняў",
 	"revertmerge": "Адкаціць аб’яднанне",
 	"mergelogpagetext": "Ніжэй паказаны спіс апошніх аб’яднанняў гісторый старонак.",
@@ -1215,7 +1206,6 @@
 	"saveusergroups": "Захаваць групы {{GENDER:$1|ўдзельнікаў|ўдзельніц}}",
 	"userrights-groupsmember": "У групе:",
 	"userrights-groupsmember-auto": "Няяўны член:",
-	"userrights-groupsmember-type": "$1",
 	"userrights-systemuser": "{{GENDER:$1|Гэты ўдзельнік сістэмны|Гэтая ўдзельніца сістэмная}}",
 	"userrights-groups-help": "Тут можна мяняць групы, да якіх належыць {{GENDER:$1|гэты ўдзельнік|гэтая ўдзельніца}}.\n* Адзначанае поле выбару азначае ўваходжанне ўдзельніка ў пэўную групу.\n* Чыстае поле выбару азначае неўваходжанне.\n* Знак * азначае, што нельга выняць удзельніка з групы, калі ён ужо там, або наадварот.\n* Знак # азначае, што вы можаце толькі адкласці час выдалення з групы; вы не можаце перанесці яго на больш ранні тэрмін.",
 	"userrights-reason": "Прычына:",

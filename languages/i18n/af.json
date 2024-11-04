@@ -37,8 +37,7 @@
 			"Xethron",
 			"පසිඳු කාවින්ද",
 			"아라",
-			"Hentie",
-			"Amire80"
+			"Hentie"
 		]
 	},
 	"tog-underline": "Onderstreep skakels:",
@@ -700,8 +699,6 @@
 	"slot-name-main": "Hoof",
 	"content-model-wikitext": "Wikiteks",
 	"content-model-text": "eenvoudige teks",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Leë objek",
 	"content-json-empty-array": "Leë reeks",
 	"duplicate-args-category": "Bladsye met dubbele sjabloonparameters",

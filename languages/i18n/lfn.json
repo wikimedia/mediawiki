@@ -703,7 +703,6 @@
 	"editpage-notsupportedcontentformat-text": "La formato de contenida $1 no es suportada par la model de contenida $2.",
 	"content-model-wikitext": "vicitesto",
 	"content-model-text": "testo plata",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Ojeto vacua",
 	"content-json-empty-array": "Lista vacua",
 	"duplicate-args-warning": "<strong>Averti:</strong> [[:$1]] clama [[:$2]] con plu ca un valua per la parametre \"$3\". Sola la valua final furnida va es usada.",

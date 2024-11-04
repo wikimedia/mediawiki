@@ -30,8 +30,7 @@
 			"రహ్మానుద్దీన్",
 			"రాకేశ్వర",
 			"아라",
-			"Base",
-			"Amire80"
+			"Base"
 		]
 	},
 	"tog-underline": "परिसन्धेः अधो रेखाङ्कनम्:",
@@ -254,7 +253,6 @@
 	"versionrequired": "मीडीयाविकि-इत्यस्य $1 संस्करणम् आवश्यकम् ।",
 	"versionrequiredtext": "अस्य पृष्ठस्य उपयोगार्थं मीडीयाविकि इत्यस्य $1 संस्करणम् आवश्यकम् । पश्यतु [[Special:Version|version page]] ।",
 	"ok": "अस्तु",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "\"$1\" इत्यस्माद् प्रतिप्राप्तम्",
 	"youhavenewmessages": "{{PLURAL:$3|भवतः/भवत्याः कृते}} $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|भवतः/भवत्याः कृते}} $1  {{PLURAL:$3|अन्यस्मात् योजकात्|$3 अन्येभ्यः योजकेभ्यः}} अस्ति ($2)।",

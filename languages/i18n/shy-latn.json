@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"DannyS712",
 			"Vikoula5",
 			"Base"
@@ -646,7 +645,6 @@
 	"editpage-notsupportedcontentformat-text": "Amasal n ugbur $1 ur d-yetwarfed ara sɣur talɣa n ugbur $2.",
 	"content-model-wikitext": "wikiaḍris",
 	"content-model-text": "aḍris afraray",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Asentel d ilem",
 	"content-json-empty-array": "Talfelwit d tilemt",
 	"expensive-parserfunction-warning": "'''Ɣur-wet :''' Asebter agi yesɛa aṭas n tiɣriwin ar tiseɣnin ɣlayen n umsisleḍ taseddast.\nIlaq ad i sɛu ddaw n  $2 {{PLURAL:$2|tiɣri|tiɣriwin }}, wannag tura {{PLURAL:$1|tella $1 tiɣri|llant $1 tiɣriwin}}.",

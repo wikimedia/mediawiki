@@ -25,7 +25,6 @@
 			"Zedlik",
 			"Тест",
 			"아라",
-			"Amire80",
 			"Matma Rex"
 		]
 	},
@@ -764,8 +763,6 @@
 	"slot-name-main": "Асноўнае",
 	"content-model-wikitext": "вікітэкст",
 	"content-model-text": "просты тэкст",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Пусты аб’ект",
 	"content-json-empty-array": "Пусты масіў",
 	"unsupported-content-model": "<strong>Увага:</strong> Мадэль са зьместам $1 ня падтрымоўвацца на гэтай вікі.",

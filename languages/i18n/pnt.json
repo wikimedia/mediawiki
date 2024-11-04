@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Consta",
 			"Crazymadlover",
 			"DannyS712",
@@ -468,7 +467,6 @@
 	"rcnotefrom": "Αφκά καικά ευρίουνταν τ' αλλαγάς ασό <b>$2</b> (εμφάνιση <b>$1</b> αλλαγίων max).",
 	"rclistfrom": "Δείξον τ' αλλαγάς ασα $3 $2 μαναχόν",
 	"rcshowhideminor": "$1 τα μικρά αλλαγάς",
-	"rcshowhidebots": "$1 bots",
 	"rcshowhideliu": "$1 χρήστες με λογαρίαν",
 	"rcshowhideanons": "$1 τ' αναγνώριμους τοι χρήστς",
 	"rcshowhidepatr": "$1 αλλαγάς ντ' ωράουνταν",

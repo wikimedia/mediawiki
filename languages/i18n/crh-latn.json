@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"AlefZet",
-			"Amire80",
 			"DannyS712",
 			"Don Alessandro",
 			"Fitoschido",
@@ -539,7 +538,6 @@
 	"slot-name-main": "Esas",
 	"content-model-wikitext": "vikimetin",
 	"content-model-text": "sade metin",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Boş obyekt",
 	"content-json-empty-array": "Boş massiv",
 	"unsupported-content-model": "<strong>Tenbi:</strong> $1 münderice modeli bu vikide işlemey.",

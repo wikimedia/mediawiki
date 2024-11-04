@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"DannyS712",
 			"Joemaza",
 			"Kaganer",
@@ -12,7 +11,8 @@
 			"Saluyot",
 			"Urhixidur",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Pinag-ugisan ti silpo:",
@@ -703,8 +703,6 @@
 	"slot-name-main": "Nangruna",
 	"content-model-wikitext": "wikitext",
 	"content-model-text": "naranas a teksto",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Awan linaon a banag",
 	"content-json-empty-array": "Awan linaon a rimpuok",
 	"unsupported-content-model": "<strong>Ballaag:</strong> Ti modelo ti linaon ti $1 ket saan a nasuportaran iti daytoy a wiki.",

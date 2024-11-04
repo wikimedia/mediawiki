@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Aboubacar.banamoridou.toure",
-			"Amire80",
 			"BaRaN6161 TURK",
 			"Babamamadidiane",
 			"Babamamadidianee",
@@ -675,7 +674,6 @@
 	"slot-name-main": "ߓߏ߬ߟߏ߲߬ߘߊ",
 	"content-model-wikitext": "ߥߞߌ߫ ߞߟߏߜߍ",
 	"content-model-text": "ߛߓߍߟߌ߫ ߘߝߊߣߍ߲",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "ߊ߬ ߘߐߞߏߟߏ߲ ߠߋ߬",
 	"content-json-empty-array": "ߥߟߊ߬ߟߋ߲߬ ߘߐߞߏߟߏ߲",
 	"unsupported-content-model": "<strong>ߌ ߖߊ߲߬ߕߏ߫:</strong> ߞߣߐߘߐ ߛߎ߯ߦߊ߫ $1 ߟߊߘߤߊ߬ߣߍ߲߫ ߕߍ߫ ߥߞߌ ߣߌ߲߬ ߞߊ߲߬.",

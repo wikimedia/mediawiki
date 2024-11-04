@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"DannyS712",
 			"Fitoschido",
 			"Geitost",
@@ -725,8 +724,6 @@
 	"slot-name-main": "Cifikos",
 	"content-model-wikitext": "vödem vükik",
 	"content-model-text": "vödem balugik",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Yeg nenkipädik",
 	"content-json-empty-array": "Nünamasif nenkipädik",
 	"unsupported-content-model": "<strong>Nuned:</strong> Samot ninäda: $1 no binon gebovik pö vükatoped at.",

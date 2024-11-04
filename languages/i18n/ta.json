@@ -63,7 +63,6 @@
 			"아라",
 			"McDutchie",
 			"Sridhar G",
-			"Amire80",
 			"Fahimrazick",
 			"Neechalkaran"
 		]
@@ -187,8 +186,6 @@
 	"index-category": "வரிசைப்படுத்தப்பட்ட பக்கங்கள்",
 	"noindex-category": "வரிசைப்படுத்தப்படாத பக்கங்கள்",
 	"broken-file-category": "அறுபட்ட கோப்புத் தொடுப்புகளுள்ள பக்கங்கள்",
-	"categoryviewer-pagedlinks": "($1) ($2)",
-	"category-header-numerals": "$1–$2",
 	"about": "இதைப் பற்றி",
 	"article": "உள்ளடக்கப் பக்கம்",
 	"newwindow": "(புதிய சாளரத்துள் திறக்கும்)",
@@ -297,7 +294,6 @@
 	"versionrequired": "மீடியாவிக்கியின் $1 பதிப்பு தேவை",
 	"versionrequiredtext": "இப்பக்கத்தைப் பயன்படுத்த மீடியாவிக்கியின் $1 பதிப்பு தேவை. [[Special:Version|பதிப்புப் பக்கத்தைப்]] பார்க்க.",
 	"ok": "சரி",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"backlinksubtitle": "← $1",
 	"retrievedfrom": "\"$1\" இலிருந்து மீள்விக்கப்பட்டது",
 	"youhavenewmessages": "உங்களுக்குப் $1 உள்ளன ($2).",
@@ -328,8 +324,6 @@
 	"site-atom-feed": "$1 ஆட்டம் (Atom) ஓடை",
 	"page-rss-feed": "\"$1\" RSS ஓடை",
 	"page-atom-feed": "\"$1\" ஆட்டம் (Atom) ஓடை",
-	"feed-atom": "Atom",
-	"feed-rss": "RSS",
 	"red-link-title": "$1 (கட்டுரை எழுதப்படவில்லை)",
 	"sort-descending": "இறங்கு வரிசையில் வரிசைப்படுத்து",
 	"sort-ascending": "ஏறுமுகமாக வரிசைப்படுத்து",

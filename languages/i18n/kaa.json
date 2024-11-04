@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"AlefZet",
-			"Amire80",
 			"Atabek",
 			"CoderSI",
 			"DannyS712",
@@ -140,8 +139,6 @@
 	"index-category": "Indekslengen betler",
 	"noindex-category": "Indekslenbegen betler",
 	"broken-file-category": "Buzılǵan fayl siltemeleri bolǵan betler",
-	"categoryviewer-pagedlinks": "($1) ($2)",
-	"category-header-numerals": "$1–$2",
 	"about": "Haqqında",
 	"article": "Maǵlıwmat beti",
 	"newwindow": "(jańa aynada)",
@@ -250,7 +247,6 @@
 	"versionrequired": "MediaWikidiń $1 nusqası kerek",
 	"versionrequiredtext": "Bul betti paydalanıw ushın MediaWikidiń $1 versiyası kerek. Qosımsha maǵlıwmat ushın [[Special:Version|versiya beti]]n qarań.",
 	"ok": "OK",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"backlinksubtitle": "← $1",
 	"retrievedfrom": "«$1» saytınan alınǵan",
 	"youhavenewmessages": "Sizge $1 bar ($2).",

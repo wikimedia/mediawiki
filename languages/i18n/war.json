@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"BaRaN6161 TURK",
 			"DannyS712",
 			"Estudyante",
@@ -244,7 +243,6 @@
 	"versionrequired": "Kinahanglan an Bersion $1 han MediaWiki",
 	"versionrequiredtext": "Kinahanglan an Bersyon $1 han MediaWiki ha paggamit hini nga pakli.  Kitaa an [[Special:Version|bersyon nga pakli]].",
 	"ok": "OK",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "Ginkuha tikang ha \"$1\"",
 	"youhavenewmessages": "Mayda ka $1 ($2).",
 	"youhavenewmessagesfromusers": "May-ada ka $1 tikang ha {{PLURAL:$3|iba nga gumaramit|$3 mga gumaramit}} ($2).",
@@ -662,8 +660,6 @@
 	"content-not-allowed-here": "An sulod nga \"$1\" in diri gintutugotan ha pakli nga [[:$2]] ha slot nga \"$3\"",
 	"content-model-wikitext": "wikiteksto",
 	"content-model-text": "yano nga teksto",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Empty object",
 	"content-json-empty-array": "Empty array",
 	"post-expand-template-inclusion-warning": "'''Pahimatngon:''' An batakan nga ginlakip in sobra kadako.\nAn iba nga mga batakan in diri mauupod.",

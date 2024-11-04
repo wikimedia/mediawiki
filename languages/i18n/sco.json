@@ -3,7 +3,6 @@
 		"authors": [
 			"(vinny)",
 			"AmaryllisGardener",
-			"Amire80",
 			"Anomie",
 			"Aursani",
 			"Avicennasis",
@@ -709,8 +708,6 @@
 	"slot-name-main": "Main",
 	"content-model-wikitext": "wikitex",
 	"content-model-text": "plain tex",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Emptie object",
 	"content-json-empty-array": "Emptie array",
 	"unsupported-content-model": "<strong>Wairnin:</strong> Content model $1 isna supportit on this wiki.",

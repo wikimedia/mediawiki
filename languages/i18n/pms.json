@@ -25,8 +25,7 @@
 			"Ævar Arnfjörð Bjarmason <avarab@gmail.com>, Jens Frank",
 			"לערי ריינהארט",
 			"아라",
-			"Albertoleoncio",
-			"Amire80"
+			"Albertoleoncio"
 		]
 	},
 	"tog-underline": "Anliure con la sotliniadura",
@@ -753,8 +752,6 @@
 	"slot-name-main": "Prinsipal",
 	"content-model-wikitext": "test wiki",
 	"content-model-text": "mach test",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Oget veuid",
 	"content-json-empty-array": "Tàula veuida",
 	"unsupported-content-model": "<strong>Atension:</strong> Ël model ëd contnù $1 a l'é nen mantnù su costa wiki.",
@@ -1165,7 +1162,6 @@
 	"userrights-nodatabase": "La base ëd dat $1 a-i é pa, ò pura a l'é nen local.",
 	"userrights-changeable-col": "Partìe ch'a peul cambié",
 	"userrights-unchangeable-col": "Partìe ch'a peul pa cambié",
-	"userrights-irreversible-marker": "$1*",
 	"userrights-expiry-current": "a finiss $1",
 	"userrights-expiry-none": "A finiss pa",
 	"userrights-expiry": "A finiss:",

@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
-			"Kambai Akau"
+			"Kambai Akau",
+			"Friday musa"
 		]
 	},
 	"tog-underline": "Kwak lang a̱tafa a̱fwuop ka:",
@@ -611,7 +611,6 @@
 	"slot-name-main": "A̱tsak",
 	"content-model-wikitext": "wikitext",
 	"content-model-text": "a̱kpa̱kpai lyuut",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Kyang ku sang kyang",
 	"unsupported-content-model": "<strong>Gba:</strong> Á̱ li̱n a̱ma sangak kyangmami $1 huni bah mami wiki huni.",
 	"unsupported-content-diff": "Á̱ li̱n a̱ma vi̱vwuon mat sangak kyangmami $1 bah.",

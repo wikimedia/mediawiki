@@ -26,7 +26,7 @@
 			"לערי ריינהארט",
 			"아라",
 			80686,
-			"Amire80"
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Links unterstryche:",
@@ -665,8 +665,6 @@
 	"editpage-notsupportedcontentformat-text": "S Inhaltsformat $1 wird vum Inhaltsmodäll $2 nit unterstitzt.",
 	"content-model-wikitext": "Wikitext",
 	"content-model-text": "Klartext",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Läärs Objekt",
 	"content-json-empty-array": "Läären Array",
 	"duplicate-args-warning": "<strong>Obacht:</strong> D Syte [[:$1]] rüefft [[:$2]] ab. Im Abrueff het der Parameter «$3» meh weder ei Wärt. Nume der letst Wärt chunt zum Zug.",

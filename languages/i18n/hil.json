@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Anjoeli9806",
 			"Berniemack",
 			"DannyS712",
@@ -19,7 +18,8 @@
 			"Vlad5250",
 			"아라",
 			"Base",
-			"Billie bb"
+			"Billie bb",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Kuritan sa idalom ang mga tabid:",
@@ -563,8 +563,6 @@
 	"content-not-allowed-here": "\"$1\" nga sulod indi pwede sa panid [[:$2]]",
 	"content-model-wikitext": "tekstong wiki",
 	"content-model-text": "tekstong ordinaryo",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"expensive-parserfunction-warning": "'''Pahibalo:''' Ang ini nga panid may yara sang madamo nga mahal nga pagtawag sang kapusalanan parser.\n\nKinahanglan nga may yara sang manubo sa  $2 nga {{PLURAL:$2|pagtawag|mga pagtawag}}, kay karon may {{PLURAL:$1|$1 ka pagtawag|$1 ka mga pagtawag}}.",
 	"expensive-parserfunction-category": "Mga pahina nga may tuman ka damo nga mahal nga pagtawag sang kapuslanan parser",
 	"post-expand-template-inclusion-warning": "'''Pagpaandam:''' Ang temleyt nga nadala tuman ka dako.\nMay iban nga templeyt indi madala.",

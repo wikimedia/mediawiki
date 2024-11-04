@@ -3,8 +3,7 @@
 		"authors": [
 			"C.R.",
 			"Chelin",
-			"Ruthven",
-			"Amire80"
+			"Ruthven"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentaziona]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista 'e mmasciate]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annunziaziune 'e ll'API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bug e richieste]\n</div>\n<strong>Stato:</strong> Tuttuquante 'e funziune 'e sta paggena avesser'a funziunà, ma ll'API è ancora a se sviluppà, picciò chesto putesse cagnà a nu certo mumento. Iscriviteve ccà ncoppa: [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ the mediawiki-api-announce 'a lista 'e mmasciate] pe' n'avé cocche notifica 'e ll'agghiurnamente.\n\n<strong>Richieste sbagliate:</strong> Si se mannasse na richiesta sbagliata a ll'API, nu cap' 'e HTTP sarrà mannata c' 'a chiave 'e mmasciata \"MediaWiki-API-Error\" e po' tuttuquante 'e valure d' 'a cap' 'e mmasciata e codece 'errore se mannassero arreto e se mpustassero a 'o stesso valore. Pe n'avé cchiù nfurmaziune vedite [[mw:API:Errors_and_warnings|API: Errure e Avvise]].\n\n<strong>Test:</strong> Pe' ve ffà cchiù semprice 'e test 'e richieste API, vedite [[Special:ApiSandbox]].",

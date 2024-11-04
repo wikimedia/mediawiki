@@ -855,8 +855,6 @@
 	"slot-name-main": "Główna",
 	"content-model-wikitext": "wikitekst",
 	"content-model-text": "zwykły tekst",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Pusty obiekt",
 	"content-json-empty-array": "Pusta tablica",
 	"unsupported-content-model": "<strong>Uwaga:</strong> Model zawartości $1 nie jest wspierany na tej wiki.",

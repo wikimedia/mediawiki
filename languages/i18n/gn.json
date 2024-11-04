@@ -6,8 +6,7 @@
 			"Hugo.arg",
 			"P. S. F. Freitas",
 			"Perla",
-			"아라",
-			"Amire80"
+			"아라"
 		]
 	},
 	"tog-underline": "Joajuha haiguývaː",
@@ -497,7 +496,6 @@
 	"prefs-signature": "Teraguapy",
 	"prefs-signature-error-details": "Eikuaave",
 	"prefs-advancedediting": "Poravorã opaichagua",
-	"userrights-lookup-user": "Configurar grupos de usuarios",
 	"userrights-user-editname": "Ehaimi peteĩ puruhára réra:",
 	"editusergroup": "Modificar grupos de usuarios",
 	"editinguser": "Ojehaihína '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",

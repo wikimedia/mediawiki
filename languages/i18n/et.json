@@ -35,9 +35,9 @@
 			"WikedKentaur",
 			"לערי ריינהארט",
 			"Kareyac",
-			"Amire80",
 			"Castellum",
-			"Matma Rex"
+			"Matma Rex",
+			"Nuclear"
 		]
 	},
 	"tog-underline": "Linkide allakriipsutus:",
@@ -777,8 +777,6 @@
 	"slot-name-main": "Peamine",
 	"content-model-wikitext": "vikitekst",
 	"content-model-text": "lihttekst",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Tühi objekt",
 	"content-json-empty-array": "Tühi massiiv",
 	"unsupported-content-model": "<strong>Hoiatus:</strong> Selles vikis puudub sisumudeli $1 tugi.",
@@ -2552,8 +2550,8 @@
 	"sp-contributions-userrights": "{{GENDER:$1|kasutajaõiguste}} haldus",
 	"sp-contributions-blocked-notice": "See {{GENDER:$1|kasutaja}} on parajasti blokeeritud. Allpool on toodud viimane blokeerimislogi sissekanne:",
 	"sp-contributions-blocked-notice-partial": "See kasutaja on parasjagu osaliselt blokeeritud.\nAllpool on viidatud blokeerimislogi viimasele sissekandele:",
-	"sp-contributions-blocked-notice-anon": "See IP-aadress on parajasti blokeeritud.\nAllpool on toodud viimane blokeerimislogi sissekanne:",
-	"sp-contributions-blocked-notice-anon-partial": "See IP-aadress on parasjagu osaliselt blokeeritud.\nAllpool on viidatud blokeerimislogi viimasele sissekandele:",
+	"sp-contributions-blocked-notice-anon": "See IP-aadress on praegu blokeeritud.\nAllpool on toodud viimane blokeerimislogi sissekanne:",
+	"sp-contributions-blocked-notice-anon-partial": "See IP-aadress on praegu osaliselt blokeeritud.\nAllpool on toodud viimane blokeerimislogi sissekanne:",
 	"sp-contributions-search": "Kaastöö otsimine",
 	"sp-contributions-username": "IP-aadress või kasutajanimi:",
 	"sp-contributions-toponly": "Ainult uusimad redaktsioonid",

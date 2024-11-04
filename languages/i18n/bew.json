@@ -1,12 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Bangrapip",
 			"Naval Scene",
 			"NoiX180",
 			"Sonic Speedy",
-			"Veracious"
+			"Veracious",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Nggarisbawahin sènggètan:",
@@ -733,7 +733,6 @@
 	"slot-name-main": "Utama",
 	"content-model-wikitext": "tèks wiki",
 	"content-model-text": "tèks polosan",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Obyèk kosong",
 	"content-json-empty-array": "Pejèjèran kosong",
 	"unsupported-content-model": "<strong>Wanti-wanti:</strong> Modèl isi $1 kaga' didukung di ni wiki",

@@ -35,8 +35,7 @@
 			"아라",
 			"Base",
 			"Reedy",
-			"Ponor",
-			"Amire80"
+			"Ponor"
 		]
 	},
 	"tog-underline": "Podvlačenje linkova:",
@@ -760,8 +759,6 @@
 	"slot-name-main": "Glavno",
 	"content-model-wikitext": "wikitekst",
 	"content-model-text": "obični tekst",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Prazan objekat",
 	"content-json-empty-array": "Prazan niz",
 	"unsupported-content-model": "<strong>Upozorenje:</strong> Model sadržaja $1 nije podržan na ovom wikiju.",
@@ -2299,7 +2296,6 @@
 	"protect-fallback": "Dozvolite samo korisnicima sa \"$1\" ovlastima/privilegijama",
 	"protect-level-autoconfirmed": "Dopušteno samo automatski potvrđenim korisnicima",
 	"protect-level-sysop": "Dopušteno samo administratorima",
-	"protect-summary-desc": "[$1=$2] ($3)",
 	"protect-summary-cascade": "prenosna zaštita",
 	"protect-expiring": "ističe $1 (UTC)",
 	"protect-expiring-local": "ističe $2 u $3",
@@ -3029,9 +3025,6 @@
 	"autosumm-new": "Nova stranica: $1",
 	"autosumm-newblank": "Napravljena prazna stranica",
 	"size-bytes": "$1 {{PLURAL:$1|bajt|bajta|bajtova}}",
-	"size-kilobytes": "$1 KB",
-	"size-megabytes": "$1 MB",
-	"size-gigabytes": "$1 GB",
 	"lag-warn-normal": "Promjene načinjene prije manje od $1 {{PLURAL:$1|sekunde|sekunde|sekundi}} možda neće biti prikazane na ovom spisku.",
 	"lag-warn-high": "Zbog dužeg zastoja baze podataka na serveru, izmjene novije od $1 {{PLURAL:$1|sekunde|sekunde|sekundi}} možda neće biti prikazane na ovom spisku.",
 	"watchlistedit-normal-title": "Uredi spisak praćenja",

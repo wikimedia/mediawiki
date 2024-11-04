@@ -3,7 +3,6 @@
 		"authors": [
 			"Agilight",
 			"Altai uul",
-			"Amire80",
 			"Catrope",
 			"HalanTul",
 			"Kareyac",
@@ -750,7 +749,6 @@
 	"slot-name-main": "Тӧс",
 	"content-model-wikitext": "викибичимел",
 	"content-model-text": "тегин бичимел",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Куру объект",
 	"content-json-empty-array": "Куру массив",
 	"unsupported-content-model": "<strong>Ајару:</strong>бБу викиде $1 толынтыныҥ модели јарадылбайт.",

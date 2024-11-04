@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Amikeco",
-			"Amire80",
 			"Bouron",
 			"HalanTul",
 			"Macofe",
@@ -586,8 +585,6 @@
 	"slot-name-main": "Сæйраг",
 	"content-model-wikitext": "викитекст",
 	"content-model-text": "хуымæтæг текст",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Афтид объект",
 	"content-json-empty-array": "Афтид массив",
 	"post-expand-template-inclusion-warning": "'''Сындæг: ''' Хуызæджы бавæрд бæрц æгæр стыр у.\nКæцыдæр хуызæгтæ нæ бавæд уыдзысты.",

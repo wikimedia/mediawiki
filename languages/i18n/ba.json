@@ -3,7 +3,6 @@
 		"authors": [
 			"AiseluRB",
 			"Alfiya55",
-			"Amire80",
 			"Assele",
 			"Comp1089",
 			"DannyS712",
@@ -769,8 +768,6 @@
 	"slot-name-main": "Төп",
 	"content-model-wikitext": "викитекст",
 	"content-model-text": "ғәҙәти текст",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Буш объект",
 	"content-json-empty-array": "Буш массив",
 	"unsupported-content-model": "<strong>Иғтибар:</strong> $1 моделенең эстәлеге был викиҙа тотолмай.",

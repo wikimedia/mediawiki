@@ -5,8 +5,7 @@
 			"Muotâ",
 			"Seipinne",
 			"Trondtr",
-			"Yupik",
-			"Amire80"
+			"Yupik"
 		]
 	},
 	"tog-underline": "Liiŋkâi vuálávijvim:",
@@ -230,7 +229,6 @@
 	"versionrequired": "MediaWikist taarbâš versio $1",
 	"versionrequiredtext": "MediaWikist taarbâš versio $1 taan siijđo kevttimân. Keejâ [[Special:Version|versio]].",
 	"ok": "OK",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"retrievedfrom": "Viežžum saajeest \"$1\"",
 	"youhavenewmessages": "{{PLURAL:$3|Tunjin láá}} $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Tust lii|Tust láá}} $1 {{PLURAL:$3|nube kevttest|$3 kevttest}} ($2).",
@@ -260,7 +258,6 @@
 	"site-atom-feed": "$1-Atom-fáálus",
 	"page-rss-feed": "$1 (RSS-fáálus)",
 	"page-atom-feed": "$1 (Atom-fáálus)",
-	"feed-rss": "RSS",
 	"red-link-title": "$1 (sijđo ij kavnuu)",
 	"sort-descending": "Šlajâttâl lyeštee oornigist",
 	"sort-ascending": "Šlajâttâl pajaneijee oornigist",
@@ -534,9 +531,6 @@
 	"slot-name-main": "Váldusijđo",
 	"content-model-wikitext": "wikitekstâ",
 	"content-model-text": "tuš tekstâ",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
-	"content-model-json": "JSON",
 	"content-json-empty-object": "Kuárus objekt",
 	"content-json-empty-array": "Kuárus array",
 	"duplicate-args-category": "Siijđoh, moh kevttih kyevtkiärdág argumenttijd myensterkoččomijn",

@@ -3,7 +3,6 @@
 		"authors": [
 			"Agurwin Isaac",
 			"Akudugu",
-			"Amire80",
 			"Bugirbiig",
 			"Musahfm",
 			"Awinimi"
@@ -258,7 +257,6 @@
 	"recreate-moveddeleted-warn": "<strong>Baŋim: Fʋ maligim maanɛ lʋgir kanɛ ka pʋn yisi bas.</strong>\n\nTɛn'ɛsim gɔs ye li nar ye fʋ keŋ tuon nɛ lʋgir kaŋa dɛmisigɔɔ.\nLi yisib nɛ li vuugir pʋtɛn'ɛr zaŋi ken lʋgir kaŋa anɛ bʋn linɛ ka ba niŋ kpɛla ka li anɛ fʋ sʋ'ʋŋir zug:",
 	"moveddeleted-notice": "Lugir kaŋa kae.\nDi yisib nɛ di gurim nɔ lʋgir la tɔlisʋg bɛ teŋir nwa",
 	"content-model-wikitext": "wikitɛs",
-	"content-model-javascript": "JavaScript",
 	"undo-failure": "Dɛmisʋg la kʋ nyaŋi tiakɛ bɔzugɔ, sieba pʋn dɛŋi dɛmis",
 	"viewpagelogs": "Gɔsim kpɛn'ɛsa lʋgir kaŋa ni",
 	"currentrev-asof": "Yuoliŋ ti'asʋg linɛ maal nwɛnɛ $1",

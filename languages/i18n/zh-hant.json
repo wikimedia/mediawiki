@@ -883,8 +883,6 @@
 	"slot-name-main": "主頁",
 	"content-model-wikitext": "wikitext",
 	"content-model-text": "純文字",
-	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "空物件",
 	"content-json-empty-array": "空陣列",
 	"unsupported-content-model": "<strong>警告：</strong>內容模型$1在此 wiki 上不支援。",
