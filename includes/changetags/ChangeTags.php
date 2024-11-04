@@ -145,9 +145,10 @@ class ChangeTags {
 	 *
 	 * @param bool $all If true, return all valid defined tags. Otherwise, return only enabled ones.
 	 * @return array Array of all defined/enabled tags.
-	 * @deprecated since 1.41 use ChangeTagsStore::getSoftwareTags() instead.
+	 * @deprecated since 1.41 use ChangeTagsStore::getSoftwareTags() instead. Hard-deprecated since 1.44.
 	 */
 	public static function getSoftwareTags( $all = false ) {
+		wfDeprecated( __METHOD__, '1.41' );
 		return MediaWikiServices::getInstance()->getChangeTagsStore()->getSoftwareTags( $all );
 	}
 
@@ -317,7 +318,7 @@ class ChangeTags {
 	/**
 	 * Add tags to a change given its rc_id, rev_id and/or log_id
 	 *
-	 * @deprecated since 1.41 use ChangeTagsStore instead.
+	 * @deprecated since 1.41 use ChangeTagsStore instead. Hard-deprecated since 1.44.
 	 * @param string|string[] $tags Tags to add to the change
 	 * @param int|null $rc_id The rc_id of the change to add the tags to
 	 * @param int|null $rev_id The rev_id of the change to add the tags to
@@ -331,6 +332,7 @@ class ChangeTags {
 	public static function addTags( $tags, $rc_id = null, $rev_id = null,
 		$log_id = null, $params = null, ?RecentChange $rc = null
 	) {
+		wfDeprecated( __METHOD__, '1.41' );
 		return MediaWikiServices::getInstance()->getChangeTagsStore()->addTags(
 			$tags, $rc_id, $rev_id, $log_id, $params, $rc
 		);
@@ -345,7 +347,7 @@ class ChangeTags {
 	 * have registered using the ListDefinedTags hook. When dealing with user
 	 * input, call updateTagsWithChecks() instead.
 	 *
-	 * @deprecated since 1.41 use ChangeTagStore::updateTags()
+	 * @deprecated since 1.41 use ChangeTagStore::updateTags(). Hard-deprecated since 1.44.
 	 * @param string|array|null $tagsToAdd Tags to add to the change
 	 * @param string|array|null $tagsToRemove Tags to remove from the change
 	 * @param int|null &$rc_id The rc_id of the change to add the tags to.
@@ -370,6 +372,7 @@ class ChangeTags {
 		&$rev_id = null, &$log_id = null, $params = null, ?RecentChange $rc = null,
 		?UserIdentity $user = null
 	) {
+		wfDeprecated( __METHOD__, '1.41' );
 		return MediaWikiServices::getInstance()->getChangeTagsStore()->updateTags(
 			$tagsToAdd, $tagsToRemove, $rc_id, $rev_id, $log_id, $params, $rc, $user
 		);
@@ -379,7 +382,7 @@ class ChangeTags {
 	 * Return all the tags associated with the given recent change ID,
 	 * revision ID, and/or log entry ID, along with any data stored with the tag.
 	 *
-	 * @deprecated since 1.41 use ChangeTagStore::getTagsWithData()
+	 * @deprecated since 1.41 use ChangeTagStore::getTagsWithData(). Hard-deprecated since 1.44.
 	 * @param IReadableDatabase $db the database to query
 	 * @param int|null $rc_id
 	 * @param int|null $rev_id
@@ -390,6 +393,7 @@ class ChangeTags {
 	public static function getTagsWithData(
 		IReadableDatabase $db, $rc_id = null, $rev_id = null, $log_id = null
 	) {
+		wfDeprecated( __METHOD__, '1.41' );
 		return MediaWikiServices::getInstance()->getChangeTagsStore()->getTagsWithData( $db, $rc_id, $rev_id, $log_id );
 	}
 
@@ -397,7 +401,7 @@ class ChangeTags {
 	 * Return all the tags associated with the given recent change ID,
 	 * revision ID, and/or log entry ID.
 	 *
-	 * @deprecated since 1.41 use ChangeTagStore::getTags()
+	 * @deprecated since 1.41 use ChangeTagStore::getTags(). Hard-deprecated since 1.44.
 	 * @param IReadableDatabase $db the database to query
 	 * @param int|null $rc_id
 	 * @param int|null $rev_id
@@ -405,6 +409,7 @@ class ChangeTags {
 	 * @return string[]
 	 */
 	public static function getTags( IReadableDatabase $db, $rc_id = null, $rev_id = null, $log_id = null ) {
+		wfDeprecated( __METHOD__, '1.41' );
 		return MediaWikiServices::getInstance()->getChangeTagsStore()->getTags( $db, $rc_id, $rev_id, $log_id );
 	}
 
@@ -546,7 +551,7 @@ class ChangeTags {
 	 * an example.
 	 *
 	 * Extensions should generally avoid this function. Call
-	 * ChangeTags::updateTags() instead, unless directly handling a user request
+	 * ChangeTagsStore->updateTags() instead, unless directly handling a user request
 	 * to add or remove tags from an existing revision or log entry.
 	 *
 	 * @param array|null $tagsToAdd If none, pass [] or null
@@ -667,7 +672,7 @@ class ChangeTags {
 	 * ORDER BY. For example, if you had ORDER BY foo_timestamp DESC, you will now need
 	 * GROUP BY foo_timestamp, foo_id ORDER BY foo_timestamp DESC, foo_id DESC.
 	 *
-	 * @deprecated since 1.41 use ChangeTagsStore::modifyDisplayQueryBuilder instead
+	 * @deprecated since 1.41 use ChangeTagsStore::modifyDisplayQueryBuilder instead. Hard-deprecated since 1.44.
 	 * @param string|array &$tables Table names, see Database::select
 	 * @param string|array &$fields Fields used in query, see Database::select
 	 * @param string|array &$conds Conditions used in query, see Database::select
@@ -680,6 +685,7 @@ class ChangeTags {
 	public static function modifyDisplayQuery( &$tables, &$fields, &$conds,
 		&$join_conds, &$options, $filter_tag = '', bool $exclude = false
 	) {
+		wfDeprecated( __METHOD__, '1.41' );
 		MediaWikiServices::getInstance()->getChangeTagsStore()->modifyDisplayQuery(
 			$tables,
 			$fields,
@@ -697,22 +703,24 @@ class ChangeTags {
 	 *
 	 * @deprecated since 1.41 use ChangeTags::CHANGE_TAG or 'change_tag' instead.
 	 *   Note that directly querying this table is discouraged, try using one of
-	 *   the existing functions instead.
+	 *   the existing functions instead. Hard-deprecated since 1.44.
 	 * @return string
 	 */
 	public static function getDisplayTableName() {
+		wfDeprecated( __METHOD__, '1.41' );
 		return self::CHANGE_TAG;
 	}
 
 	/**
 	 * Make the tag summary subquery based on the given tables and return it.
 	 *
-	 * @deprecated since 1.41 use ChangeTagStore instead
+	 * @deprecated since 1.41 use ChangeTagStore instead. Hard-deprecated since 1.44.
 	 * @param string|array $tables Table names, see Database::select
 	 *
 	 * @return string tag summary subqeury
 	 */
 	public static function makeTagSummarySubquery( $tables ) {
+		wfDeprecated( __METHOD__, '1.41' );
 		return MediaWikiServices::getInstance()->getChangeTagsStore()->makeTagSummarySubquery( $tables );
 	}
 
@@ -791,11 +799,12 @@ class ChangeTags {
 	 * Extensions should NOT use this function; they can use the ListDefinedTags
 	 * hook instead.
 	 *
-	 * @deprecated since 1.41 use ChangeTagsStore
+	 * @deprecated since 1.41 use ChangeTagsStore. Hard-deprecated since 1.44.
 	 * @param string $tag Tag to create
 	 * @since 1.25
 	 */
 	public static function defineTag( $tag ) {
+		wfDeprecated( __METHOD__, '1.41' );
 		MediaWikiServices::getInstance()->getChangeTagsStore()->defineTag( $tag );
 	}
 
@@ -1065,12 +1074,13 @@ class ChangeTags {
 	 * by user-facing code. See deleteTagWithChecks() for functionality that can
 	 * safely be exposed to users.
 	 *
-	 * @deprecated since 1.41 use ChangeTagsStore instead
+	 * @deprecated since 1.41 use ChangeTagsStore instead. Hard-deprecated since 1.44.
 	 * @param string $tag Tag to remove
 	 * @return Status The returned status will be good unless a hook changed it
 	 * @since 1.25
 	 */
 	public static function deleteTagEverywhere( $tag ) {
+		wfDeprecated( __METHOD__, '1.41' );
 		return MediaWikiServices::getInstance()->getChangeTagsStore()->deleteTagEverywhere( $tag );
 	}
 
@@ -1182,11 +1192,12 @@ class ChangeTags {
 	/**
 	 * Lists those tags which core or extensions report as being "active".
 	 *
-	 * @deprecated since 1.41 use ChangeTagsStore instead
+	 * @deprecated since 1.41 use ChangeTagsStore instead. Hard-deprecated since 1.44.
 	 * @return array
 	 * @since 1.25
 	 */
 	public static function listSoftwareActivatedTags() {
+		wfDeprecated( __METHOD__, '1.41' );
 		return MediaWikiServices::getInstance()->getChangeTagsStore()->listSoftwareActivatedTags();
 	}
 
@@ -1195,10 +1206,11 @@ class ChangeTags {
 	 * It returns a union of the results of listExplicitlyDefinedTags() and
 	 * listSoftwareDefinedTags()
 	 *
-	 * @deprecated since 1.41 use ChangeTagsStore instead
+	 * @deprecated since 1.41 use ChangeTagsStore instead. Hard-deprecated since 1.44.
 	 * @return string[] Array of strings: tags
 	 */
 	public static function listDefinedTags() {
+		wfDeprecated( __METHOD__, '1.41' );
 		return MediaWikiServices::getInstance()->getChangeTagsStore()->listDefinedTags();
 	}
 
@@ -1207,11 +1219,12 @@ class ChangeTags {
 	 *
 	 * Tries memcached first.
 	 *
-	 * @deprecated since 1.41 use ChangeTagsStore instead
+	 * @deprecated since 1.41 use ChangeTagsStore instead. Hard-deprecated since 1.44.
 	 * @return string[] Array of strings: tags
 	 * @since 1.25
 	 */
 	public static function listExplicitlyDefinedTags() {
+		wfDeprecated( __METHOD__, '1.41' );
 		return MediaWikiServices::getInstance()->getChangeTagsStore()->listExplicitlyDefinedTags();
 	}
 
@@ -1221,21 +1234,23 @@ class ChangeTags {
 	 *
 	 * Tries memcached first.
 	 *
-	 * @deprecated since 1.41 use ChangeTagsStore instead
+	 * @deprecated since 1.41 use ChangeTagsStore instead. Hard-deprecated since 1.44.
 	 * @return string[] Array of strings: tags
 	 * @since 1.25
 	 */
 	public static function listSoftwareDefinedTags() {
+		wfDeprecated( __METHOD__, '1.41' );
 		return MediaWikiServices::getInstance()->getChangeTagsStore()->listSoftwareDefinedTags();
 	}
 
 	/**
 	 * Invalidates the short-term cache of defined tags used by the
 	 * list*DefinedTags functions, as well as the tag statistics cache.
-	 * @deprecated since 1.41 use ChangeTagsStore instead
+	 * @deprecated since 1.41 use ChangeTagsStore instead. Hard-deprecated since 1.44.
 	 * @since 1.25
 	 */
 	public static function purgeTagCacheAll() {
+		wfDeprecated( __METHOD__, '1.41' );
 		MediaWikiServices::getInstance()->getChangeTagsStore()->purgeTagCacheAll();
 	}
 
@@ -1244,10 +1259,11 @@ class ChangeTags {
 	 * tagged with them, ordered descending by the hitcount.
 	 * This does not include tags defined somewhere that have never been applied.
 	 *
-	 * @deprecated since 1.41 use ChangeTagsStore
+	 * @deprecated since 1.41 use ChangeTagsStore. Hard-deprecated since 1.44.
 	 * @return array Array of string => int
 	 */
 	public static function tagUsageStatistics() {
+		wfDeprecated( __METHOD__, '1.41' );
 		return MediaWikiServices::getInstance()->getChangeTagsStore()->tagUsageStatistics();
 	}
 
