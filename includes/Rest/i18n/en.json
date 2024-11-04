@@ -73,7 +73,7 @@
 	"rest-unmapped-action-error": "Unmapped action module error: $1",
 	"rest-unsupported-transform-input": "Unsupported input: $1",
 	"rest-bad-etag": "Bad ETag: $1",
-	"rest-no-stashed-content": "No stashed content found for $1",
+	"rest-no-stashed-content": "No stashed content found for $1. This is most likely because your edit session has expired. Try to copy your changes, reload the page, and try again.",
 	"rest-unsupported-profile-version": "Unsupported profile version: $1",
 	"rest-no-json-decode": "Payload does not JSON decode to an array",
 	"rest-parsoid-unsupported-media": "Unsupported Media Type",
