@@ -2,7 +2,7 @@
 	"name": "core",
 	"private": true,
 	"scripts": {
-		"api-testing": "mocha --timeout 0 --recursive tests/api-testing",
+		"api-testing": "mocha --timeout 0 --recursive --parallel tests/api-testing",
 		"doc": "jsdoc -c jsdoc.json",
 		"lint": "grunt lint",
 		"minify:svg": "svgo --config=.svgo.config.js --quiet --recursive --folder resources/src --folder resources/assets",
