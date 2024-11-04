@@ -69,27 +69,6 @@ abstract class CentralIdLookup {
 	}
 
 	/**
-	 * Returns a CentralIdLookup that is guaranteed to be non-local.
-	 * If no such guarantee can be made, returns null.
-	 *
-	 * If this function returns a non-null CentralIdLookup,
-	 * that lookup is expected to provide IDs that are shared with some set of other wikis.
-	 * However, you should still be cautious when using those IDs,
-	 * as they will not necessarily work with *all* other wikis,
-	 * and it can be hard to tell if another wiki is in the same set as this one or not.
-	 *
-	 * @since 1.35
-	 * @deprecated since 1.37. Use CentralIdLookupFactory::getNonLocalLookup instead.
-	 * @return CentralIdLookup|null
-	 */
-	public static function factoryNonLocal(): ?self {
-		wfDeprecated( __METHOD__, '1.37' );
-		return MediaWikiServices::getInstance()
-			->getCentralIdLookupFactory()
-			->getNonLocalLookup();
-	}
-
-	/**
 	 * Initialize the provider.
 	 *
 	 * @param string $providerId

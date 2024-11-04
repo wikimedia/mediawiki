@@ -501,6 +501,7 @@ because of Phabricator reports.
 * Skins since 1.39 have not supported rendering content outside the body tag.
 The bodyOnly=false option has now been removed, meaning this is no longer
 supported.
+* CentralIdLookup::factoryNonLocal(), deprecated since 1.37, has been removed.
 * …
 
 === Deprecations in 1.43 ===
