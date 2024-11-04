@@ -29,10 +29,10 @@ class TaskFactory {
 		[ 'class' => PopulateInterwikiTask::class ],
 		[ 'class' => InsertUpdateKeysTask::class ],
 		[ 'class' => RestoredServicesProvider::class ],
-		[ 'class' => ExtensionTablesTask::class ],
 		[ 'class' => InitialContentTask::class ],
 		[ 'class' => CreateSysopTask::class ],
 		[ 'class' => MailingListSubscribeTask::class ],
+		[ 'class' => ExtensionTablesTask::class ],
 	];
 
 	/** @var ObjectFactory */
