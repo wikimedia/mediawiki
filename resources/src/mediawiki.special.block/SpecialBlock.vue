@@ -117,6 +117,7 @@ module.exports = exports = defineComponent( {
 			} else {
 				formErrors.value = [];
 			}
+			success.value = false;
 		} );
 
 		/**
@@ -140,6 +141,8 @@ module.exports = exports = defineComponent( {
 				store.doBlock()
 					.done( () => {
 						success.value = true;
+						formErrors.value = [];
+						formSubmitted.value = false;
 					} )
 					.fail( ( _, errorObj ) => {
 						formErrors.value = [ errorObj.error.info ];
