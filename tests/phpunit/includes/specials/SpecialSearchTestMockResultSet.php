@@ -1,29 +1,20 @@
 <?php
 
 class SpecialSearchTestMockResultSet extends SearchResultSet {
-	/** @var array */
-	protected $results;
-	/** @var string|null */
-	protected $suggestion;
-	/** @var string|null */
-	protected $rewrittenQuery;
-	/** @var bool */
-	protected $containedSyntax;
+
+	private ?string $suggestion;
+	private ?string $rewrittenQuery;
 
 	public function __construct(
-		$suggestion = null,
-		$rewrittenQuery = null,
+		?string $suggestion = null,
+		?string $rewrittenQuery = null,
 		array $results = [],
-		$containedSyntax = false
+		bool $containedSyntax = false
 	) {
 		$this->suggestion = $suggestion;
 		$this->rewrittenQuery = $rewrittenQuery;
 		$this->results = $results;
 		$this->containedSyntax = $containedSyntax;
-	}
-
-	public function expandResults() {
-		return $this->results;
 	}
 
 	public function getTotalHits() {
@@ -54,10 +45,8 @@ class SpecialSearchTestMockResultSet extends SearchResultSet {
 		return htmlspecialchars( $this->rewrittenQuery );
 	}
 
-	public function getFirstResult() {
-		if ( count( $this->results ) === 0 ) {
-			return null;
-		}
-		return $this->results[0]->getTitle();
+	public function getFirstResult(): ?Title {
+		$first = reset( $this->results );
+		return $first ? $first->getTitle() : null;
 	}
 }
