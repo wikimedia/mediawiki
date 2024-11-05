@@ -227,4 +227,9 @@ module.exports = exports = defineComponent( {
 .mw-block-error {
 	margin-left: @spacing-75;
 }
+
+// Hide the log showing at the bottom of page.
+.mw-warning-with-logexcerpt {
+	display: none;
+}
 </style>
