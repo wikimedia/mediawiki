@@ -2631,6 +2631,7 @@
 	"whatlinkshere-submit": "Go",
 	"autoblockid": "Autoblock #$1",
 	"block": "Block user",
+	"block-manage-blocks": "Manage blocks",
 	"unblock": "Unblock user",
 	"unblock-summary": "",
 	"changeblockip": "Change block",
