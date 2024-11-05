@@ -191,8 +191,7 @@ abstract class QuickTemplate {
 	 * @return bool
 	 */
 	protected function haveMsg( $msgKey ) {
-		$msg = wfMessage( $msgKey );
-		return $msg->exists() && !$msg->isDisabled();
+		return !wfMessage( $msgKey )->isDisabled();
 	}
 
 	/**
