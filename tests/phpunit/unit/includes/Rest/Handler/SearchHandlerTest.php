@@ -122,7 +122,6 @@ class SearchHandlerTest extends MediaWikiUnitTestCase {
 			$mockTitleFormatter = $this->getDummyTitleFormatter();
 		}
 
-		/** @var SearchEngine|MockObject $searchEngine */
 		$this->searchEngine = $this->createMock( SearchEngine::class );
 		$this->searchEngine->method( 'searchTitle' )
 			->with( $query )

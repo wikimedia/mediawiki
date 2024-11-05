@@ -585,7 +585,6 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 			$this->markTestSkipped( "Not applicable per ATTR_DB_IS_FILE" );
 		}
 
-		/** @var IDatabase $db */
 		$this->assertNotNull( $lb->getConnectionInternal( DB_PRIMARY, [], $lb::DOMAIN_ANY ) );
 	}
 

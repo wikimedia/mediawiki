@@ -34,7 +34,6 @@ class TextFormatterTest extends MediaWikiIntegrationTestCase {
 
 				$message->method( 'fetchMessage' )
 					->willReturnCallback( static function () use ( $message, $includeWikitext ) {
-						/** @var Message $message */
 						$result = "{$message->getKey()} $1 $2";
 						if ( $includeWikitext ) {
 							$result .= " {{SITENAME}}";

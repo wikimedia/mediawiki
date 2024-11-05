@@ -315,7 +315,6 @@ class PageDataRequestHandlerTest extends \MediaWikiLangTestCase {
 		array $headers,
 		$expectedRedirectSuffix
 	) {
-		/** @var FauxResponse $response */
 		$output = $this->makeOutputPage( [], $headers );
 		$request = $output->getRequest();
 
