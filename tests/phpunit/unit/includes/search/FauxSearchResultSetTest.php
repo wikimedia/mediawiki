@@ -13,7 +13,7 @@ class FauxSearchResultSetTest extends MediaWikiUnitTestCase {
 		$rs = new FauxSearchResultSet( $titles );
 		$titleTexts = [];
 		foreach ( $rs as $result ) {
-			/** @var $result SearchResult */
+			/** @var SearchResult $result */
 			$titleTexts[] = $result->getTitle()->getPrefixedText();
 		}
 		$this->assertSame( [ 'Foo', 'Bar', 'Baz' ], $titleTexts );

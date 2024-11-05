@@ -33,7 +33,7 @@ class PasswordDomainAuthenticationRequest extends PasswordAuthenticationRequest 
 	/** @var string[] Domains available */
 	private $domainList;
 
-	/** @var string Domain */
+	/** @var string|null */
 	public $domain = null;
 
 	/**
