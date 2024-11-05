@@ -104,6 +104,9 @@ class SpecialBlock extends FormSpecialPage {
 	/** @var bool */
 	protected bool $useCodex = false;
 
+	/** @var bool */
+	protected bool $useMultiblocks = false;
+
 	/**
 	 * @var array <mixed,mixed> An associative array used to pass vars to Codex form
 	 */
@@ -146,12 +149,19 @@ class SpecialBlock extends FormSpecialPage {
 		$this->namespaceInfo = $namespaceInfo;
 		$this->useCodex = $this->getConfig()->get( MainConfigNames::UseCodexSpecialBlock ) ||
 			$this->getRequest()->getBool( 'usecodex' );
+		$this->useMultiblocks = $this->getConfig()->get( MainConfigNames::EnableMultiBlocks ) ||
+			$this->getRequest()->getBool( 'multiblocks' );
+	}
+
+	public function getDescription(): Message {
+		return $this->msg( $this->useMultiblocks ? 'block-manage-blocks' : 'block' );
 	}
 
 	public function execute( $par ) {
 		parent::execute( $par );
 
 		if ( $this->useCodex ) {
+			$this->codexFormData[ 'blockEnableMultiblocks' ] = $this->useMultiblocks;
 			$this->codexFormData[ 'blockTargetUser' ] = $this->target instanceof UserIdentity ?
 				$this->target->getName() :
 				$this->target ?? null;
@@ -320,9 +330,6 @@ class SpecialBlock extends FormSpecialPage {
 		$user = $this->getUser();
 
 		$suggestedDurations = $this->getLanguage()->getBlockDurations();
-
-		$this->codexFormData[ 'blockEnableMultiblocks' ] = $conf->get( MainConfigNames::EnableMultiBlocks ) ||
-			$this->getRequest()->getBool( 'multiblocks' );
 
 		$a = [];
 

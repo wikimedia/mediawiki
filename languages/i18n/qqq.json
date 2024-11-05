@@ -2895,6 +2895,7 @@
 	"autoblockid": "Used as name of autoblock, instead of autoblocked IPs. Parameters:\n* $1 - autoblock ID",
 	"block": "{{doc-special|Block}}\n{{Identical|Block user}}",
 	"unblock": "{{doc-special|Unblock}}",
+	"block-manage-blocks": "{{doc-special|Block}}\n{{Identical|Manage blocks}}",
 	"unblock-summary": "{{doc-specialpagesummary|unblock}}",
 	"changeblockip": "Used as the text of a link in the sidebar toolbox. Clicking this link takes you to [[Special:Block]], with a relevant username or IP address (e.g. \"Username\" on [[User talk:Username]], [[Special:Contributions/Username]], etc.) already filled in.",
 	"blockip": "Used as the text of a link in the sidebar toolbox. Clicking this link takes you to [[Special:Block]], with a relevant username or IP address (e.g. \"Username\" on [[User talk:Username]], [[Special:Contributions/Username]], etc.) already filled in.\n\nParameters:\n* $1 - username, for GENDER support\n{{Identical|Block user}}",
