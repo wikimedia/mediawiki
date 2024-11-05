@@ -172,6 +172,9 @@ because of Phabricator reports.
 * The Less mixin .column-break-after-avoid(), deprecated in 1.43, has been
   removed. Use just the CSS rule `break-after: avoid-column;` instead now.
 * ApiBase::errorArrayToStatus(), deprecated in 1.43, has been removed.
+* The MediaWiki\Config\MutableConfig interface now extends
+  MediaWiki\Config\Config. Implementing MutableConfig without implementing
+  Config is no longer possible.
 * …
 
 === Deprecations in 1.44 ===

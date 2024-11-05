@@ -29,7 +29,7 @@ namespace MediaWiki\Config;
  *
  * @since 1.24
  */
-interface MutableConfig {
+interface MutableConfig extends Config {
 
 	/**
 	 * Set a configuration variable such a "Sitename" to something like "My Wiki"
