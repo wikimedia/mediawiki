@@ -251,6 +251,16 @@ describe( 'Page Source', () => {
 			assert.match( headers[ 'content-type' ], /^text\/html/ );
 		} );
 
+		it( 'Bypass wiki redirects with query param redirect=false', async () => {
+			const redirectPageDbkey = utils.dbkey( redirectPage );
+			const { status, text, headers } = await client.get(
+				`/page/${ redirectPageDbkey }/html`,
+				{ redirect: 'false' }
+			);
+			assert.deepEqual( status, 200, text );
+			assert.match( headers[ 'content-type' ], /^text\/html/ );
+		} );
+
 		it( 'Bypass variant redirects with query param redirect=no', async () => {
 			const agepayDbkey = utils.dbkey( agepay );
 			const { status, headers } = await client.get(

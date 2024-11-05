@@ -7,6 +7,7 @@ use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Hook\ParserLogLinterDataHook;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\Handler\PageHTMLHandler;
+use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Title\Title;
@@ -160,6 +161,42 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( '<!DOCTYPE html>', $htmlResponse );
 		$this->assertStringContainsString( '<html', $htmlResponse );
 		$this->assertStringContainsString( self::HTML, $htmlResponse );
+	}
+
+	public static function provideWikiRedirect() {
+		yield 'follow wiki redirects per default' => [ [], 307 ];
+		yield 'bad redirect param' => [ [ 'redirect' => 'wrong' ], 400 ];
+		yield 'redirect=no' => [ [ 'redirect' => 'no' ], 200 ];
+		yield 'redirect=false' => [ [ 'redirect' => 'false' ], 200 ];
+		yield 'redirect=true' => [ [ 'redirect' => 'true' ], 307 ];
+	}
+
+	/**
+	 * @dataProvider provideWikiRedirect
+	 */
+	public function testWikiRedirect( $params, $expectedStatus ) {
+		$redirect = $this->getExistingTestPage( 'HtmlEndpointTestPage/redirect' );
+		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage/target' );
+
+		$this->editPage( $redirect, "#REDIRECT [[{$page->getTitle()->getPrefixedDBkey()}]]" );
+
+		$request = new RequestData(
+			[
+				'pathParams' => [ 'title' => $redirect->getTitle()->getPrefixedText() ],
+				'queryParams' => $params
+			]
+		);
+
+		try {
+			$handler = $this->newHandler();
+			$response = $this->executeHandler( $handler, $request, [
+				'format' => 'html'
+			] );
+
+			$this->assertSame( $expectedStatus, $response->getStatusCode() );
+		} catch ( HttpException $ex ) {
+			$this->assertSame( $expectedStatus, $ex->getCode() );
+		}
 	}
 
 	public function testExecuteHtmlOnlyForSystemMessagePage() {
