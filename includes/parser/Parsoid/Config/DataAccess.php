@@ -24,7 +24,6 @@ use MediaTransformError;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -341,22 +340,6 @@ class DataAccess extends IDataAccess {
 			$this->ppFrame = $this->parser->getPreprocessor()->newFrame();
 		}
 		return $this->parser;
-	}
-
-	/** @inheritDoc */
-	public function doPst( IPageConfig $pageConfig, string $wikitext ): string {
-		'@phan-var PageConfig $pageConfig'; // @var PageConfig $pageConfig
-		// This could use prepareParser(), but it's only called once per page,
-		// so it's not essential.
-		$titleObj = Title::newFromLinkTarget( $pageConfig->getLinkTarget() );
-		$user = $pageConfig->getParserOptions()->getUserIdentity();
-		$content = ContentHandler::makeContent( $wikitext, $titleObj, CONTENT_MODEL_WIKITEXT );
-		return $this->contentTransformer->preSaveTransform(
-			$content,
-			$titleObj,
-			$user,
-			$pageConfig->getParserOptions()
-		)->serialize();
 	}
 
 	/** @inheritDoc */
