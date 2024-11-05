@@ -286,7 +286,7 @@
 	"config-install-user-missing-create": "L'utente indicato \"$1\" non esiste.\nSeleziona la casella \"crea utenza\" qui sotto se vuoi crearla.",
 	"config-install-logo-blank": "Introdurre un URL valido per il logo.",
 	"config-install-restore-services": "Ripristino dei servizi mediawiki",
-	"config-install-tables": "Creazione tabelle, primo passo",
+	"config-install-tables": "Creazione tabelle",
 	"config-install-tables-exist": "<strong>Attenzione:</strong> sembra che le tabelle di MediaWiki esistano già.\nSalto la creazione.",
 	"config-install-tables-failed": "<strong>Errore:</strong> la creazione della tabella non è riuscita per il seguente errore: $1",
 	"config-install-interwiki": "Riempimento della tabella interwiki predefinita",
