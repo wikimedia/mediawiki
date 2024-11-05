@@ -2,11 +2,9 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
-use MediaWiki\Config\HashConfig;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Pager\ContribsPager;
 use MediaWiki\Pager\IndexPager;
 use MediaWiki\Permissions\SimpleAuthority;
@@ -180,58 +178,6 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 					'end' => '2012-12-31'
 				]
 			],
-		];
-	}
-
-	/**
-	 * @dataProvider provideQueryableRanges
-	 */
-	public function testQueryableRanges( $ipRange ) {
-		$config = new HashConfig( [
-			MainConfigNames::RangeContributionsCIDRLimit => [
-				'IPv4' => 16,
-				'IPv6' => 32,
-			]
-		] );
-
-		$this->assertTrue(
-			ContribsPager::isQueryableRange( $ipRange, $config ),
-			"$ipRange is a queryable IP range"
-		);
-	}
-
-	public static function provideQueryableRanges() {
-		return [
-			[ '116.17.184.5/32' ],
-			[ '0.17.184.5/16' ],
-			[ '2000::/32' ],
-			[ '2001:db8::/128' ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideUnqueryableRanges
-	 */
-	public function testUnqueryableRanges( $ipRange ) {
-		$config = new HashConfig( [
-			MainConfigNames::RangeContributionsCIDRLimit => [
-				'IPv4' => 16,
-				'IPv6' => 32,
-			]
-		] );
-
-		$this->assertFalse(
-			ContribsPager::isQueryableRange( $ipRange, $config ),
-			"$ipRange is not a queryable IP range"
-		);
-	}
-
-	public static function provideUnqueryableRanges() {
-		return [
-			[ '116.17.184.5/33' ],
-			[ '0.17.184.5/15' ],
-			[ '2000::/31' ],
-			[ '2001:db8::/9999' ],
 		];
 	}
 

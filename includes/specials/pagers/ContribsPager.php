@@ -24,13 +24,12 @@ namespace MediaWiki\Pager;
 use DateTime;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
-use MediaWiki\Config\Config;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\SpecialPage\ContributionsRangeTrait;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\IPUtils;
@@ -48,6 +47,8 @@ use Wikimedia\Rdbms\IReadableDatabase;
  * @ingroup Pager
  */
 class ContribsPager extends ContributionsPager {
+
+	use ContributionsRangeTrait;
 
 	/**
 	 * FIXME List services first T266484 / T290405
@@ -150,37 +151,13 @@ class ContribsPager extends ContributionsPager {
 	 */
 	private function getIpRangeConds( $db, $ip ) {
 		// First make sure it is a valid range and they are not outside the CIDR limit
-		if ( !self::isQueryableRange( $ip, $this->getConfig() ) ) {
+		if ( !$this->isQueryableRange( $ip, $this->getConfig() ) ) {
 			return false;
 		}
 
 		[ $start, $end ] = IPUtils::parseRange( $ip );
 
 		return $db->expr( 'ipc_hex', '>=', $start )->and( 'ipc_hex', '<=', $end );
-	}
-
-	/**
-	 * Is the given IP a range and within the CIDR limit?
-	 *
-	 * @internal Public only for SpecialContributions
-	 * @param string $ipRange
-	 * @param Config $config
-	 * @return bool True if it is valid
-	 * @since 1.30
-	 */
-	public static function isQueryableRange( $ipRange, $config ) {
-		$limits = $config->get( MainConfigNames::RangeContributionsCIDRLimit );
-
-		$bits = IPUtils::parseCIDR( $ipRange )[1];
-		if (
-			( $bits === false ) ||
-			( IPUtils::isIPv4( $ipRange ) && $bits < $limits['IPv4'] ) ||
-			( IPUtils::isIPv6( $ipRange ) && $bits < $limits['IPv6'] )
-		) {
-			return false;
-		}
-
-		return true;
 	}
 
 	/**
