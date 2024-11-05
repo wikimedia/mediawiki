@@ -172,8 +172,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'dropField', 'pagelinks', 'pl_title', 'patch-pagelinks-drop-pl_title.sql' ],
 			[ 'modifyField', 'page', 'page_links_updated', 'patch-page-page_links_updated-noinfinite.sql' ],
 			[ 'addPostDatabaseUpdateMaintenance', FixAutoblockLogTitles::class ],
-
-			// 1.44
 			[ 'changeTableOption', 'searchindex', 'CONVERT TO CHARACTER SET utf8mb4', 'utf8mb4' ],
 			[ 'renameIndex', 'searchindex', 'si_page', 'PRIMARY', false, 'patch-searchindex-pk-titlelength.sql' ],
 		];
