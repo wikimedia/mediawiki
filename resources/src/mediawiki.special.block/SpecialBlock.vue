@@ -30,8 +30,15 @@
 			:form-submitted="formSubmitted"
 			@input="store.alreadyBlocked = false"
 		></user-lookup>
-		<block-log v-if="blockEnableMultiblocks" block-log-type="active"></block-log>
-		<block-log block-log-type="recent"></block-log>
+		<block-log
+			v-if="blockEnableMultiblocks"
+			:key="`${submitCount}-active`"
+			block-log-type="active"
+		></block-log>
+		<block-log
+			:key="`${submitCount}-recent`"
+			block-log-type="recent"
+		></block-log>
 		<block-type-field></block-type-field>
 		<expiry-field :form-submitted="formSubmitted"></expiry-field>
 		<reason-field
@@ -104,6 +111,8 @@ module.exports = exports = defineComponent( {
 		const formSubmitted = ref( false );
 		const formDisabled = ref( false );
 		const messagesContainer = ref();
+		// Value to use for BlockLog component keys, so they reload after saving.
+		const submitCount = ref( 0 );
 		// eslint-disable-next-line arrow-body-style
 		const submitButtonMessage = computed( () => {
 			return mw.message( store.alreadyBlocked ? 'ipb-change-block' : 'ipbsubmit' ).text();
@@ -151,6 +160,11 @@ module.exports = exports = defineComponent( {
 					.always( () => {
 						formDisabled.value = false;
 						messagesContainer.value.scrollIntoView( { behavior: 'smooth' } );
+						if ( success.value ) {
+							// Bump the submitCount (to re-render the logs) after scrolling
+							// because the log tables may change the length of the page.
+							submitCount.value++;
+						}
 					} );
 			} else {
 				// nextTick() needed to ensure error messages are rendered before scrolling.
@@ -173,6 +187,7 @@ module.exports = exports = defineComponent( {
 			messagesContainer,
 			formErrors,
 			success,
+			submitCount,
 			submitButtonMessage,
 			handleSubmit,
 			blockEnableMultiblocks
