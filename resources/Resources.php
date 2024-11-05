@@ -2342,7 +2342,7 @@ return [
 			'blocklist-type-opt-sitewide',
 			'colon-separator',
 			'contribslink',
-			'edit',
+			'block-item-edit',
 			'htmlform-optional-flag',
 			'htmlform-selectorother-other',
 			'infiniteblock',
