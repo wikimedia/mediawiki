@@ -24,6 +24,7 @@ use LogicException;
 use MediaWiki\Api\ApiResult;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Logger\LegacyLogger;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\Sanitizer;
@@ -660,7 +661,9 @@ class MWDebug {
 			// Cannot use OutputPage::addJsConfigVars because those are already outputted
 			// by the time this method is called.
 			$html[] = ResourceLoader::makeInlineScript(
-				ResourceLoader::makeConfigSetScript( [ 'debugInfo' => $debugInfo ] )
+				'mw.config.set('
+					. FormatJson::encode( [ 'debugInfo' => $debugInfo ] )
+					. ');'
 			);
 		}
 
