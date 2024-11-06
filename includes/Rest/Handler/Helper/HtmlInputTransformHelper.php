@@ -188,6 +188,7 @@ class HtmlInputTransformHelper {
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_DEFAULT => '',
 				ParamValidator::PARAM_REQUIRED => false,
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-html-input-title' )
 			],
 			// XXX: Needed for compatibility with the parsoid transform endpoint.
 			//      But revid should just be part of the info about the original data
@@ -197,6 +198,7 @@ class HtmlInputTransformHelper {
 				ParamValidator::PARAM_TYPE => 'int',
 				ParamValidator::PARAM_DEFAULT => 0,
 				ParamValidator::PARAM_REQUIRED => false,
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-html-input-oldid' )
 			],
 			// XXX: Supported for compatibility with the parsoid transform endpoint.
 			//      If given, it should be 'html' or 'pagebundle'.
@@ -205,6 +207,7 @@ class HtmlInputTransformHelper {
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_DEFAULT => '',
 				ParamValidator::PARAM_REQUIRED => false,
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-html-input-from' )
 			],
 			// XXX: Supported for compatibility with the parsoid transform endpoint.
 			//      Ignored.
@@ -213,18 +216,21 @@ class HtmlInputTransformHelper {
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_DEFAULT => '',
 				ParamValidator::PARAM_REQUIRED => false,
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-html-input-format' )
 			],
 			'contentmodel' => [ // XXX: get this from the Accept header?
 				Handler::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_DEFAULT => '',
 				ParamValidator::PARAM_REQUIRED => false,
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-html-input-contentmodel' )
 			],
 			'language' => [ // TODO: get this from Accept-Language header?!
 				Handler::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_DEFAULT => '',
 				ParamValidator::PARAM_REQUIRED => false,
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-html-input-language' )
 			]
 		];
 	}
