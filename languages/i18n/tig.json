@@ -397,6 +397,8 @@
 	"histfirst": "ላኣበራ",
 	"histlast": "ላሓደሳ",
 	"historysize": "({{PLURAL:$1|1 ባይት|$1 ባይታት}})",
+	"history-feed-title": "ታሪክ ምራጀዐት",
+	"history-feed-description": "ታሪክ ምራጀዐት ናይ እላ ገጽ ዲብ ዊኪ",
 	"history-feed-item-nocomment": "$1 ዲብ $2",
 	"rev-delundel": "ርእየት ቀይር",
 	"rev-showdeleted": "ኣርአ",
