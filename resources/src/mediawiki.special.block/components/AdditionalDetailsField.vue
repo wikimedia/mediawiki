@@ -61,7 +61,6 @@ module.exports = exports = defineComponent( {
 		const store = useBlockStore();
 		const {
 			autoBlock,
-			autoBlockExpiry,
 			autoBlockVisible,
 			hideName,
 			hideNameVisible,
@@ -71,7 +70,7 @@ module.exports = exports = defineComponent( {
 		} = storeToRefs( store );
 		return {
 			autoBlock,
-			autoBlockExpiry,
+			autoBlockExpiry: store.autoBlockExpiry,
 			autoBlockVisible,
 			hideName,
 			hideNameVisible,
