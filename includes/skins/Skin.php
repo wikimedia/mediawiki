@@ -2158,6 +2158,7 @@ abstract class Skin extends ContextSource {
 					[ 'single-id' => "pt-$key" ],
 				],
 				'id' => "pt-$key",
+				'icon' => $plink[ 'icon' ] ?? null,
 			];
 			if ( $applyClassesToListItems && isset( $plink['class'] ) ) {
 				$ptool['class'] = $plink['class'];

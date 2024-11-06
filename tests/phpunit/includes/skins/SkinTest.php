@@ -404,6 +404,7 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 							]
 						],
 						'id' => 'pt-foo',
+						'icon' => null,
 					]
 				],
 			],
@@ -426,6 +427,7 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 							]
 						],
 						'id' => 'pt-foo',
+						'icon' => null,
 						'class' => 'foo',
 					]
 				],

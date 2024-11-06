@@ -248,7 +248,8 @@ class SkinComponentLink implements SkinComponent {
 			$tip = Linker::tooltipAndAccesskeyAttribs(
 				$tooltipId,
 				$tooltipParams,
-				$tooltipOption
+				$tooltipOption,
+				$this->localizer
 			);
 			if ( isset( $tip['title'] ) && $tip['title'] !== false ) {
 				$attrs['title'] = $tip['title'];
