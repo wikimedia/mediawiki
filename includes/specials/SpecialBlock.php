@@ -157,6 +157,9 @@ class SpecialBlock extends FormSpecialPage {
 		return $this->msg( $this->useMultiblocks ? 'block-manage-blocks' : 'block' );
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function execute( $par ) {
 		parent::execute( $par );
 
@@ -169,6 +172,9 @@ class SpecialBlock extends FormSpecialPage {
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function doesWrites() {
 		return true;
 	}
@@ -313,6 +319,9 @@ class SpecialBlock extends FormSpecialPage {
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	protected function getDisplayFormat() {
 		return $this->useCodex ? 'codex' : 'ooui';
 	}
@@ -1192,6 +1201,9 @@ class SpecialBlock extends FormSpecialPage {
 			->search( UserNamePrefixSearch::AUDIENCE_PUBLIC, $search, $limit, $offset );
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	protected function getGroupName() {
 		return 'users';
 	}
