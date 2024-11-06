@@ -2587,6 +2587,7 @@
 	"whatlinkshere-submit": "Git",
 	"autoblockid": "Otomatik engelleme #$1",
 	"block": "Kullanıcıyı engelle",
+	"block-manage-blocks": "Engellemeleri yönet",
 	"unblock": "Kullanıcının engelini kaldır",
 	"changeblockip": "Engeli değiştir",
 	"blockip": "{{GENDER:$1|Kullanıcıyı}} engelle",

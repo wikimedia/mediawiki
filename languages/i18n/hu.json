@@ -2522,6 +2522,7 @@
 	"whatlinkshere-submit": "Indítás",
 	"autoblockid": "$1. autoblokk",
 	"block": "Felhasználó blokkolása",
+	"block-manage-blocks": "Blokkok kezelése",
 	"unblock": "Felhasználó blokkolásának feloldása",
 	"changeblockip": "Blokkolás módosítása",
 	"blockip": "{{GENDER:$1|Felhasználó}} blokkolása",

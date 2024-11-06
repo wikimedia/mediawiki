@@ -2543,6 +2543,7 @@
 	"whatlinkshere-submit": "Siirry",
 	"autoblockid": "Automaattinen esto #$1",
 	"block": "Estä käyttäjä",
+	"block-manage-blocks": "Hallitse estoja",
 	"unblock": "Poista käyttäjän esto",
 	"changeblockip": "Muuta estoasetuksia",
 	"blockip": "Estä {{GENDER:$1|käyttäjä}}",

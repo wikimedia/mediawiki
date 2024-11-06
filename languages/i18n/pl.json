@@ -2571,6 +2571,7 @@
 	"whatlinkshere-submit": "Dalej",
 	"autoblockid": "automatyczna blokada nr $1",
 	"block": "Zablokuj użytkownika",
+	"block-manage-blocks": "Zarządzanie blokadami",
 	"unblock": "Odblokuj użytkownika",
 	"changeblockip": "Zmień blokadę",
 	"blockip": "Zablokuj {{GENDER:$1|użytkownika|użytkowniczkę}}",

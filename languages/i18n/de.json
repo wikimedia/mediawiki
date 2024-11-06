@@ -2588,6 +2588,7 @@
 	"whatlinkshere-submit": "Los",
 	"autoblockid": "Automatische Sperrung #$1",
 	"block": "Benutzer sperren",
+	"block-manage-blocks": "Verwalten von Sperren",
 	"unblock": "Benutzer freigeben",
 	"changeblockip": "Sperre ändern",
 	"blockip": "IP-Adresse/{{GENDER:$1|Benutzer|Benutzerin}} sperren",

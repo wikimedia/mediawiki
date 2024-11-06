@@ -75,7 +75,7 @@
 	"rest-unmapped-action-error": "Fehler bei nicht zugeordnetem Aktionsmodul: $1",
 	"rest-unsupported-transform-input": "Nicht unterstützte Eingabe: $1",
 	"rest-bad-etag": "Schlechtes ETag: $1",
-	"rest-no-stashed-content": "Keine versteckten Inhalte für $1 gefunden",
+	"rest-no-stashed-content": "Keine versteckten Inhalte für $1 gefunden. Das liegt höchstwahrscheinlich daran, dass deine Bearbeitungssitzung abgelaufen ist. Versuche, deine Änderungen zu kopieren, lade die Seite neu und versuche es erneut.",
 	"rest-unsupported-profile-version": "Nicht unterstützte Profilversion: $1",
 	"rest-no-json-decode": "Die Nutzlast kann nicht per JSON in ein Array dekodiert werden.",
 	"rest-parsoid-unsupported-media": "Nicht unterstützter Medientyp",

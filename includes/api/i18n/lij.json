@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Giromin Cangiaxo",
+			"McDutchie",
 			"N. Longo",
 			"S4b1nuz E.656"
 		]
@@ -1450,7 +1451,7 @@
 	"apihelp-setpagelanguage-param-pageid": "ID de pàgina da pàgina da quæ ti veu cangiâ a léngoa. O no peu êse dêuviòu insémme a <var>$1title</var>.",
 	"apihelp-setpagelanguage-param-lang": "Còdice léngoa da léngoa a-a quæ ti veu cangiâ a pàgina. Dêuviâ <kbd>default</kbd> pe tornâ inderê a quélla de default do contegnûo da wiki.",
 	"apihelp-setpagelanguage-param-reason": "Raxón pe-a modìfica.",
-	"apihelp-setpagelanguage-param-tags": "Cangiâ e etichétte da aplicâ a-a vôxe de regìstro ch'a rizùlta da st'açión chi.",
+	"apihelp-setpagelanguage-param-tags": "I tag de cangiamento da applicâ a-a vôxe de regìstro ch'a rizùlta da st'açión chi.",
 	"apihelp-setpagelanguage-example-language": "Cangiâ a léngoa da pàgina [[{{MediaWiki:Mainpage}}]] a-o bàsco.",
 	"apihelp-setpagelanguage-example-default": "Cangiâ a léngoa da pàgina con ID 123 a quélla de default do contegnûo da wiki.",
 	"apihelp-stashedit-summary": "Preparâ 'na modìfica inta cache condivîza.",
@@ -1479,7 +1480,7 @@
 	"apihelp-unblock-param-user": "Uténte da sblocâ. O no peu êse dêuviòu insémme a <var>$1id</var>.",
 	"apihelp-unblock-param-userid": "Ciufîto specificâ <kbd>$1user=#<var>ID</var></kbd>.",
 	"apihelp-unblock-param-reason": "Raxón do sblòcco.",
-	"apihelp-unblock-param-tags": "Modificâ i tag da aplicâ a-a vôxe into regìstro di blòcchi.",
+	"apihelp-unblock-param-tags": "I tag de cangiaménto da aplicâ a-a vôxe into regìstro di blòcchi.",
 	"apihelp-unblock-param-watchuser": "Òserva a pàgina uténte e-e pàgine de discusción uténte de l'uténte ò de l'indirìsso IP.",
 	"apihelp-unblock-param-watchlistexpiry": "Moménto de scadénsa di òservæ speciâli. Òmétte do tùtto sto paràmetro chi pe no cangiâ a dæta de scadénsa atoâle.",
 	"apihelp-unblock-example-id": "Sblocâ l'ID blòcco #<kbd>105</kbd>.",

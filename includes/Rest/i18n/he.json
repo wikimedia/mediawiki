@@ -75,7 +75,7 @@
 	"rest-unmapped-action-error": "שגיאת מודול פעולה לא ממופה: $1",
 	"rest-unsupported-transform-input": "קלט לא נתמך: $1",
 	"rest-bad-etag": "ETag גרוע: $1",
-	"rest-no-stashed-content": "לא נמצא תוכן שמור במאגר עבור $1",
+	"rest-no-stashed-content": "לא נמצא תוכן שמור במאגר עבור $1. סביר להניח שזה קרה כי פג תוקפה של פעולת העריכה שלך. נא לנסות להעתיק את השינויים שלך, לרענן את הדף ולנסות שוב.",
 	"rest-unsupported-profile-version": "גרסת פרופיל לא נתמכת: $1",
 	"rest-no-json-decode": "המטען לא מתפענח מ־JSON למערך",
 	"rest-parsoid-unsupported-media": "סוג מדיה לא נתמך",

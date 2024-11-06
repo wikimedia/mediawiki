@@ -2571,6 +2571,7 @@
 	"whatlinkshere-submit": "OK",
 	"autoblockid": "Automatische blokkade #$1",
 	"block": "Gebruiker blokkeren",
+	"block-manage-blocks": "Blokkades beheren",
 	"unblock": "Gebruiker deblokkeren",
 	"changeblockip": "Blokkade wijzigen",
 	"blockip": "{{GENDER:$1|Gebruiker}} blokkeren",

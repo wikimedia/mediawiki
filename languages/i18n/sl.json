@@ -2485,6 +2485,7 @@
 	"whatlinkshere-submit": "Pojdi",
 	"autoblockid": "Samodejno blokiranje št. $1",
 	"block": "Blokiranje uporabnika",
+	"block-manage-blocks": "Upravljanje blokov",
 	"unblock": "Odblokiranje uporabnika",
 	"changeblockip": "Spremeni blokiranje",
 	"blockip": "Blokiraj {{GENDER:$1|uporabnika|uporabnico|uporabnika}}",

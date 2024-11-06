@@ -2516,6 +2516,7 @@
 	"whatlinkshere-submit": "הצגה",
 	"autoblockid": "חסימה אוטומטית #$1",
 	"block": "חסימת משתמש",
+	"block-manage-blocks": "ניהול חסימות",
 	"unblock": "שחרור חסימה של משתמש",
 	"changeblockip": "שינוי החסימה",
 	"blockip": "חסימת ה{{GENDER:$1|משתמש|משתמשת}}",

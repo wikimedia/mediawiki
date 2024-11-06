@@ -2497,6 +2497,7 @@
 	"whatlinkshere-submit": "Consultar",
 	"autoblockid": "Bloqueo automático nº$1",
 	"block": "Bloquear un usuario",
+	"block-manage-blocks": "Xestionar os bloqueos",
 	"unblock": "Desbloquear un usuario",
 	"changeblockip": "Cambiar o bloqueo",
 	"blockip": "Bloquear {{GENDER:$1|o usuario|a usuaria}}",

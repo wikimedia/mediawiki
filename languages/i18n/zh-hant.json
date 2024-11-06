@@ -2600,6 +2600,7 @@
 	"whatlinkshere-submit": "前往",
 	"autoblockid": "自動封鎖 #$1",
 	"block": "封鎖使用者",
+	"block-manage-blocks": "管理封鎖",
 	"unblock": "解除封鎖使用者",
 	"changeblockip": "變更封鎖",
 	"blockip": "封鎖{{GENDER:$1|使用者}}",
