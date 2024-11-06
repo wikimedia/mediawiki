@@ -124,5 +124,6 @@
 	"rest-param-desc-transform-from": "{{Experimental}} Transform from parameter description",
 	"rest-param-desc-transform-format": "{{Experimental}} Transform format parameter description",
 	"rest-param-desc-transform-title": "{{Experimental}} Transform title parameter description",
-	"rest-param-desc-transform-revision": "{{Experimental}} Transform revision parameter description"
+	"rest-param-desc-transform-revision": "{{Experimental}} Transform revision parameter description",
+	"rest-param-desc-update-title": "{{Experimental}} Update page title parameter description"
 }

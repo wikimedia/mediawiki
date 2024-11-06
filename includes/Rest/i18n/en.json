@@ -119,5 +119,6 @@
 	"rest-param-desc-transform-from": "Transform from",
 	"rest-param-desc-transform-format": "Transform format",
 	"rest-param-desc-transform-title": "Transform title",
-	"rest-param-desc-transform-revision": "Transform revision"
+	"rest-param-desc-transform-revision": "Transform revision",
+	"rest-param-desc-update-title": "Updated page title"
 }
