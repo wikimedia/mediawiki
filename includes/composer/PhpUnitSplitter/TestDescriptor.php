@@ -12,11 +12,18 @@ class TestDescriptor {
 	private string $className;
 	private array $namespace;
 	private ?string $filename;
+	private int $duration;
 
-	public function __construct( string $className, array $namespace, ?string $filename = null ) {
+	public function __construct(
+		string $className,
+		array $namespace,
+		?string $filename = null,
+		int $duration = 0
+	) {
 		$this->className = $className;
 		$this->namespace = $namespace;
 		$this->filename = $filename;
+		$this->duration = $duration;
 	}
 
 	public function getNamespace(): array {
@@ -39,8 +46,8 @@ class TestDescriptor {
 		return implode( '\\', $this->namespace ) . '\\' . $this->className;
 	}
 
-	public function getDuration() {
-		return 0;
+	public function getDuration(): int {
+		return $this->duration;
 	}
 
 }
