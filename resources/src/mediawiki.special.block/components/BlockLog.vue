@@ -127,7 +127,7 @@ module.exports = exports = defineComponent( {
 			{ id: 'modify', label: '', minWidth: '100px' }
 		];
 		const menuItems = [
-			{ label: mw.message( 'edit' ).text(), value: 'edit', url: mw.util.getUrl( 'Special:Block/' + targetUser.value ), icon: cdxIconEdit },
+			{ label: mw.message( 'block-item-edit' ).text(), value: 'edit', url: mw.util.getUrl( 'Special:Block/' + targetUser.value ), icon: cdxIconEdit },
 			{ label: mw.message( 'block-item-remove' ).text(), value: 'remove', url: mw.util.getUrl( 'Special:Unblock/' + targetUser.value ), icon: cdxIconTrash }
 		];
 		const selection = ref( null );
@@ -161,6 +161,9 @@ module.exports = exports = defineComponent( {
 
 		watch( targetUser, ( newValue ) => {
 			if ( newValue ) {
+				// Update the URLs for the menu items
+				menuItems[ 0 ].url = mw.util.getUrl( 'Special:Block/' + newValue );
+				menuItems[ 1 ].url = mw.util.getUrl( 'Special:Unblock/' + newValue );
 				const newData = [];
 				// Look up the block(s) for the target user in the log
 				getUserBlocks( newValue ).then( ( response ) => {
