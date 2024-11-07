@@ -4,6 +4,9 @@
 	>
 		<template #title>
 			{{ title }}
+			<cdx-info-chip :icon="infoChipIcon">
+				{{ logEntriesCount }}
+			</cdx-info-chip>
 		</template>
 		<cdx-table
 			:caption="title"
@@ -92,15 +95,15 @@
 
 <script>
 const util = require( '../util.js' );
-const { defineComponent, ref, watch } = require( 'vue' );
-const { CdxAccordion, CdxTable, CdxMenuButton, CdxIcon } = require( '@wikimedia/codex' );
+const { computed, defineComponent, ref, watch } = require( 'vue' );
+const { CdxAccordion, CdxTable, CdxMenuButton, CdxIcon, CdxInfoChip } = require( '@wikimedia/codex' );
 const { storeToRefs } = require( 'pinia' );
 const useBlockStore = require( '../stores/block.js' );
-const { cdxIconEllipsis, cdxIconEdit, cdxIconTrash } = require( '../icons.json' );
+const { cdxIconEllipsis, cdxIconEdit, cdxIconTrash, cdxIconClock, cdxIconAlert } = require( '../icons.json' );
 
 module.exports = exports = defineComponent( {
 	name: 'BlockLog',
-	components: { CdxAccordion, CdxTable, CdxMenuButton, CdxIcon },
+	components: { CdxAccordion, CdxTable, CdxMenuButton, CdxIcon, CdxInfoChip },
 	props: {
 		blockLogType: {
 			type: String,
@@ -138,7 +141,11 @@ module.exports = exports = defineComponent( {
 		const selection = ref( null );
 
 		const logEntries = ref( [] );
+		const logEntriesCount = ref( 0 );
 		const moreBlocks = ref( false );
+		const FETCH_LIMIT = 10;
+
+		const infoChipIcon = computed( () => props.blockLogType === 'recent' ? cdxIconClock : cdxIconAlert );
 
 		function getUserBlocks( searchTerm ) {
 			const api = new mw.Api();
@@ -149,13 +156,13 @@ module.exports = exports = defineComponent( {
 			};
 			if ( props.blockLogType === 'recent' || props.blockLogType === 'suppress' ) {
 				params.list = 'logevents';
-				params.lelimit = '10';
+				params.lelimit = FETCH_LIMIT;
 				params.letype = props.blockLogType === 'suppress' ? 'suppress' : 'block';
 				params.leprop = 'ids|title|type|user|timestamp|comment|details';
 				params.letitle = 'User:' + searchTerm;
 			} else {
 				params.list = 'blocks';
-				params.bklimit = '10';
+				params.bklimit = FETCH_LIMIT;
 				params.bkprop = 'id|user|by|timestamp|expiry|reason|range|flags';
 				params.bkusers = searchTerm;
 			}
@@ -213,6 +220,14 @@ module.exports = exports = defineComponent( {
 							} );
 						}
 					}
+
+					// Update count for the infochip
+					if ( moreBlocks.value ) {
+						logEntriesCount.value = mw.msg( 'block-user-label-count-exceeds-limit', FETCH_LIMIT );
+					} else {
+						logEntriesCount.value = newData.length;
+					}
+
 					logEntries.value = newData;
 				} );
 			} else {
@@ -232,7 +247,9 @@ module.exports = exports = defineComponent( {
 			cdxIconEllipsis,
 			logEntries,
 			moreBlocks,
-			targetUser
+			targetUser,
+			logEntriesCount,
+			infoChipIcon
 		};
 	}
 } );
