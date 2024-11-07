@@ -74,7 +74,7 @@
 	"config-no-db": "لا يمكن العثور على مشغل قاعدة بيانات مناسب! تحتاج إلى تثبيت مشغل قاعدة بيانات PHP، \n{{PLURAL:$2|نوع قاعدة البيانات التالي مدعوم|أنواع قاعدة البيانات التالية مدعومة}} البيانات التالية مدعومة: $1.\n\nإذا قمت بتجميع PHP بنفسك، فقم بتكوينها مع تمكين عميل قاعدة البيانات، على سبيل المثال، باستخدام <code>./configure --with-mysqli</code>.\nإذا قمت بتثبيت PHP من حزمة Debian أو Ubuntu، فستحتاج أيضا إلى تثبيت، على سبيل المثال، حزمة <code>php-mysql</code>.",
 	"config-outdated-sqlite": "<strong>تحذير:</strong> لديك SQLite $2، وهو أقل من الحد الأدنى المطلوب للنسخة $1، SQLite سوف يكون غير متوفر.",
 	"config-no-fts3": "<strong>تحذير:</strong> يتم تجميع SQLite بدون [//sqlite.org/fts3.html FTS3 module]; ستكون ميزات البحث غير متوفرة في هذه الواجهة الخلفية.",
-	"config-pcre-invalid-newline": "خطأ <strong>فادح:</strong> يبدو أن وحدة PCRE الخاصة بـ PHP قد تم تجميعها باستخدام PCRE_CONFIG_NEWLINE = -1 لـ ANY.! N! MediaWiki غير متوافق مع هذا التكوين.",
+	"config-pcre-invalid-newline": "<strong>فادح:</strong> يبدو أن مكتبة PCRE2 تم تجميعها باستخدام <code>--enable-newline-is-any</code> .\nMediaWiki غير متوافقة مع هذا التكوين.",
 	"config-memory-raised": "<code>memory_limit</code> في PHP $1 ومرتفعة إلى $2.",
 	"config-memory-bad": "<strong>تحذير:</strong> في PHP <code>memory_limit</code> $1،\nهذا على الارجح منخفض جدا;\nقد يفشل التثبيت!",
 	"config-apc": "تثبيت [https://www.php.net/apc APC]",

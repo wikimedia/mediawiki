@@ -2768,7 +2768,7 @@
 	"block-user-description": "A felhasználó lehet felhasználónév, IP-cím vagy IP-tartomány.",
 	"block-user-placeholder": "Kezd el beírni a felhasználó nevét...",
 	"block-save": "Blokk mentése",
-	"block-target": "Felhasználónév, IP-cím vagy IP címtartomány:",
+	"block-target": "Felhasználónév, IP-cím vagy IP-cím-tartomány:",
 	"block-target-placeholder": "Felhasználónév, 1.1.1.42 vagy 1.1.1.42/16",
 	"unblockip": "Blokk feloldása",
 	"unblockiptext": "Itt tudod visszaadni egy blokkolt felhasználónévnek vagy IP-nek a szerkesztési jogosultságot.",

@@ -3926,7 +3926,7 @@
 	"duration-seconds": "$1 ثانیه",
 	"duration-minutes": "$1 دقیقه",
 	"duration-hours": "$1 ساعت",
-	"duration-days": "$1 روز",
+	"duration-days": "$1 {{PLURAL:$1|روز}}",
 	"duration-weeks": "$1 هفته",
 	"duration-years": "$1 سال",
 	"duration-decades": "$1 دهه",

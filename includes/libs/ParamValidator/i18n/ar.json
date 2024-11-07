@@ -40,7 +40,7 @@
 	"paramvalidator-help-default-empty": "الافتراضي: (فارغ)",
 	"paramvalidator-help-deprecated": "تم إهمال هذه المعلمة.",
 	"paramvalidator-help-multi-separate": "افصل القيم بـ \"|\" ، أو ابدأ القائمة بـ U + 001F وافصل بينها بـ U + 001F.",
-	"paramvalidator-help-multi-max": "الحد الأقصى لعدد القيم هو {{PLURAL:$1| $1 }} ( {{PLURAL:$2| $2 }} للعملاء المسموح لهم بحدود أعلى).",
+	"paramvalidator-help-multi-max": "الحد الأقصى لعدد القيم هو {{PLURAL:$1|$1}} ({{PLURAL:$2|$2}} للعملاء المسموح لهم بحدود أعلى).",
 	"paramvalidator-help-multi-max-simple": "الحد الأقصى لعدد القيم هو {{PLURAL:$1| $1 }}.",
 	"paramvalidator-help-multi-all": "لتحديد كل القيم ، استخدم <kbd>$1</kbd> .",
 	"paramvalidator-help-required": "هذه المعلمة مطلوبة.",

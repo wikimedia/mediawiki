@@ -2046,7 +2046,7 @@
 	"recentchanges-page-added-to-category-bundled": "Edit summary (comment) message for template embedded by other pages added to a category.\n\nParameters:\n* $1 - name of the page being added",
 	"recentchanges-page-removed-from-category": "Edit summary (comment) message for pages removed from a category.\n\nParameters:\n* $1 - name of the page being removed",
 	"recentchanges-page-removed-from-category-bundled": "Edit summary (comment) message for templates embedded by other pages removed from a category.\n\nParameters:\n* $1 - name of the page being added",
-	"autochange-username": "Used as bot / unknown username.",
+	"autochange-username": "Used as bot / unknown username for anon category RC entries until MediaWiki 1.44.",
 	"upload": "Display name for link to [[Special:Upload]] for uploading files to the wiki.\n\nIn case that [[Special:Upload]] is disabled, the link will appoint to Wikimedia Commons.\n\nSee also:\n* {{msg-mw|Upload}}\n* {{msg-mw|Accesskey-t-upload}}\n* {{msg-mw|Tooltip-t-upload}}\n{{Identical|Upload file}}",
 	"uploadbtn": "Button name in [[Special:Upload]].\n\nSee also:\n* {{msg-mw|Uploadbtn}}\n* {{msg-mw|Accesskey-upload}}\n* {{msg-mw|Tooltip-upload}}\n{{Identical|Upload file}}",
 	"reuploaddesc": "Used as button text in the Upload form on [[Special:Upload]].\n\nSee also:\n* {{msg-mw|upload-tryagain|Submit button text}}\n* {{msg-mw|ignorewarning|button text}}",

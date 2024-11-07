@@ -27,7 +27,8 @@
 			"ᱥᱟᱹᱜᱩᱱ ᱗",
 			"아라",
 			"ᱢᱩᱨᱢᱩ",
-			"ᱤᱧ ᱢᱟᱛᱟᱞ"
+			"ᱤᱧ ᱢᱟᱛᱟᱞ",
+			"ᱯᱨᱚᱯᱷᱮᱥᱥᱚᱨ"
 		]
 	},
 	"tog-underline": "ᱡᱚᱱᱚᱲ ᱞᱟᱛᱟᱨᱨᱮ ᱫᱟᱜᱽ ᱩᱫᱩᱜᱽᱢᱮ:",
@@ -641,7 +642,7 @@
 	"shown-title": "ᱥᱟᱦᱴᱟ $1 {{PLURAL:$1|ᱚᱨᱡᱚ|ᱚᱨᱡᱚᱠᱳ}} ᱩᱰᱩᱜᱽᱢᱮ",
 	"viewprevnext": "ᱧᱮᱞᱢᱮ ($1 {{int:pipe-separator}} $2) ($3)",
 	"searchmenu-exists": "<strong>ᱥᱟᱦᱴᱟ ᱧᱤᱛᱩᱢ ᱫᱚ \"[[:$1]]\" ᱱᱤᱭᱟᱹ ᱩᱭᱠᱤᱨᱮ᱾</strong> {{PLURAL:$2|0=|ᱟᱨᱦᱚᱸ ᱧᱮᱞᱢᱮ ᱮᱴᱟᱜ ᱥᱮᱸᱫᱽᱨᱟ ᱟᱨᱡᱚ ᱠᱚᱨᱮ᱾}}",
-	"searchmenu-new": "<strong>ᱥᱟᱦᱴᱟ ᱛᱮᱭᱟᱨ ᱢᱮ \"[[:$1]]\" ᱱᱚᱶᱟ ᱣᱤᱠᱤ ᱨᱮ!</strong> {{PLURAL:$2|0=|ᱟᱢᱟᱜ ᱥᱮᱸᱫᱽᱨᱟ ᱛᱮ ᱧᱟᱢᱮᱱ ᱥᱟᱦᱴᱟ ᱧᱮᱞᱢᱮ|ᱧᱟᱢᱮᱱ ᱥᱮᱸᱫᱽᱨᱟ ᱚᱨᱡᱚ ᱠᱚ ᱦᱚᱸ ᱧᱮᱞᱢᱮ}}",
+	"searchmenu-new": "ᱱᱚᱶᱟ ᱣᱤᱠᱤ ᱨᱮ \"[[:$1]]\" ᱥᱟᱦᱴᱟ ᱵᱮᱱᱟᱣ ᱢᱮ! {{PLURAL:$2|0=|ᱟᱢᱟᱜ ᱥᱮᱸᱫᱽᱨᱟ ᱛᱮ ᱧᱟᱢᱮᱱ ᱥᱟᱦᱴᱟ ᱦᱚᱸ ᱧᱮᱞᱢᱮ|ᱥᱮᱸᱫᱽᱨᱟ ᱚᱨᱡᱚᱠᱚ ᱦᱚᱸ ᱧᱮᱞ ᱢᱮ ᱾}}",
 	"searchprofile-articles": "ᱩᱱᱩᱫᱩᱜ ᱥᱟᱦᱴᱟᱠᱚ",
 	"searchprofile-images": "ᱢᱟᱞᱴᱤᱢᱤᱰᱤᱭᱟ",
 	"searchprofile-everything": "ᱡᱷᱚᱛᱚ ᱜᱮ",
@@ -1024,9 +1025,9 @@
 	"whatlinkshere-prev": "{{PLURAL:$1|ᱞᱟᱦᱟ ᱨᱮᱭᱟᱜ |ᱞᱟᱦᱟ ᱨᱮᱭᱟᱜ$1}}",
 	"whatlinkshere-next": "{{PLURAL:$1|ᱛᱟᱭᱚᱢ|ᱛᱟᱭᱚᱢ $1}}",
 	"whatlinkshere-links": "← ᱡᱚᱱᱚᱲᱠᱚ",
-	"whatlinkshere-hideredirs": "$1 ᱟᱨᱦᱚᱸ ᱩᱱᱩᱫᱩᱜ",
-	"whatlinkshere-hidetrans": "ᱥᱮᱞᱮᱫ $1",
-	"whatlinkshere-hidelinks": "$1 ᱡᱚᱱᱚᱲᱠᱚ",
+	"whatlinkshere-hideredirs": "ᱫᱚᱦᱲᱟ ᱢᱚᱸᱦᱰᱟᱠᱚ ᱩᱠᱩ",
+	"whatlinkshere-hidetrans": "ᱛᱟᱯᱟᱵᱥᱮᱞᱮᱫ ᱠᱚ ᱩᱠᱩ",
+	"whatlinkshere-hidelinks": "ᱡᱚᱱᱚᱲᱠᱚ ᱩᱠᱩ",
 	"whatlinkshere-hideimages": "$1 ᱨᱮᱫ ᱡᱳᱱᱳᱲᱠᱚ",
 	"block": "ᱵᱮᱵᱦᱟᱨᱤᱡ ᱮᱥᱮᱫᱮᱢ",
 	"blockip": "ᱮᱥᱮᱫᱽ {{GENDER:$1|ᱵᱮᱵᱦᱟᱨᱤ}}",
