@@ -234,7 +234,8 @@ module.exports = exports = defineComponent( {
 	font-weight: @font-weight-normal;
 }
 
-// Hide the log showing at the bottom of page.
+// Hide the log and convenience links showing at the bottom of page.
+.mw-ipb-conveniencelinks,
 .mw-warning-with-logexcerpt {
 	display: none;
 }

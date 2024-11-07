@@ -22,11 +22,24 @@
 		<template #label>
 			{{ $i18n( 'block-target' ).text() }}
 		</template>
+		<div class="mw-block-conveniencelinks" >
+			<span v-if="!!targetUser">
+				<a
+					:href="mw.util.getUrl( contribsTitle )"
+					:title="contribsTitle"
+				>
+					{{ $i18n( 'ipb-blocklist-contribs', targetUser ) }}
+				</a>
+			</span>
+			<span v-else>
+				&nbsp;
+			</span>
+		</div>
 	</cdx-field>
 </template>
 
 <script>
-const { defineComponent, ref, watch } = require( 'vue' );
+const { computed, defineComponent, ref, watch } = require( 'vue' );
 const { CdxLookup, CdxField } = require( '@wikimedia/codex' );
 const { storeToRefs } = require( 'pinia' );
 const { cdxIconSearch } = require( '../icons.json' );
@@ -49,7 +62,7 @@ module.exports = exports = defineComponent( {
 	],
 	setup( props ) {
 		const store = useBlockStore();
-		const { targetUser } = storeToRefs( store );
+		const { targetUser } = storeToRefs( useBlockStore() );
 
 		// Set a flag to keep track of pending API requests, so we can abort if
 		// the target string changes
@@ -188,7 +201,12 @@ module.exports = exports = defineComponent( {
 			validate( document.querySelector( '[name="wpTarget"]' ) );
 		} );
 
+		const contribsTitle = computed( () => `Special:Contributions/${ targetUser.value }` );
+
 		return {
+			mw,
+			contribsTitle,
+			targetUser,
 			menuItems,
 			onChange,
 			onInput,
@@ -202,3 +220,11 @@ module.exports = exports = defineComponent( {
 	}
 } );
 </script>
+
+<style lang="less">
+.mw-block-conveniencelinks {
+	a {
+		font-size: 90%;
+	}
+}
+</style>
