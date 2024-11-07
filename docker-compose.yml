@@ -1,6 +1,6 @@
 # Please see DEVELOPERS.md for help
 #
-# Contributions to this file are welcome but please note that this file is
+# Contributions to this file are welcome, but please note that this file is
 # minimal by design, with the idea to make it easily extensible via
 # docker-compose.override.yml. For help with doing that, please see
 # DEVELOPERS.md
