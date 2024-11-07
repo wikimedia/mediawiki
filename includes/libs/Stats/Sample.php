@@ -22,8 +22,6 @@ declare( strict_types=1 );
 namespace Wikimedia\Stats;
 
 /**
- * Sample Data Class
- *
  * A container for a metric sample to be passed to the rendering function.
  *
  * @author Cole White
@@ -33,8 +31,6 @@ class Sample {
 
 	/** @var string[] */
 	private array $labelValues;
-
-	/** @var float */
 	private float $value;
 
 	/**
