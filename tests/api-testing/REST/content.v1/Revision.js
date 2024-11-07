@@ -1,17 +1,22 @@
 'use strict';
 
 const { action, assert, REST, utils } = require( 'api-testing' );
+const chai = require( 'chai' );
+const expect = chai.expect;
 
-let pathPrefix = 'rest.php/content/v1';
+const chaiResponseValidator = require( 'chai-openapi-response-validator' ).default;
+
+let pathPrefix = '/content/v1';
+let specModule = '/content/v1';
 
 describe( 'Revision', () => {
 	const page = utils.title( 'Revision' );
 	let client;
 	let mindy;
-	let newrevid, pageid, param_summary;
+	let newrevid, pageid, param_summary, openApiSpec;
 
 	before( async () => {
-		client = new REST( pathPrefix );
+		client = new REST( 'rest.php' );
 		mindy = await action.mindy();
 
 		const resp = await mindy.edit( page, {
@@ -19,11 +24,19 @@ describe( 'Revision', () => {
 			summary: 'creating page'
 		} );
 		( { newrevid, pageid, param_summary } = resp );
+
+		const specPath = '/specs/v0/module' + specModule;
+		const { status, text } = await client.get( specPath );
+		assert.deepEqual( status, 200 );
+
+		openApiSpec = JSON.parse( text );
+		chai.use( chaiResponseValidator( openApiSpec ) );
 	} );
 
 	describe( 'GET /revision/{id}', () => {
 		it( 'should successfully get source and metadata for revision', async () => {
-			const { status, body, text, headers } = await client.get( `/revision/${ newrevid }` );
+			const res = await client.get( `${ pathPrefix }/revision/${ newrevid }` );
+			const { status, body, text, headers } = res;
 
 			assert.strictEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
@@ -37,10 +50,13 @@ describe( 'Revision', () => {
 			assert.isOk( headers.etag, 'etag' );
 			assert.equal( Date.parse( body.timestamp ), Date.parse( headers[ 'last-modified' ] ) );
 			assert.nestedPropertyVal( body, 'source', 'Hello World' );
+
+			// eslint-disable-next-line no-unused-expressions
+			expect( res ).to.satisfyApiSpec;
 		} );
 
 		it( 'should return 404 for revision that does not exist', async () => {
-			const { status } = await client.get( '/revision/99999999' );
+			const { status } = await client.get( `${ pathPrefix }/revision/99999999` );
 
 			assert.strictEqual( status, 404 );
 		} );
@@ -48,7 +64,7 @@ describe( 'Revision', () => {
 
 	describe( 'GET /revision/{id}/bare', () => {
 		it( 'should successfully get information about revision', async () => {
-			const { status, body, text, headers } = await client.get( `/revision/${ newrevid }/bare` );
+			const { status, body, text, headers } = await client.get( `${ pathPrefix }/revision/${ newrevid }/bare` );
 
 			assert.strictEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
@@ -64,7 +80,7 @@ describe( 'Revision', () => {
 		} );
 
 		it( 'should return 404 for revision that does not exist', async () => {
-			const { status } = await client.get( '/revision/99999999/bare' );
+			const { status } = await client.get( `${ pathPrefix }/revision/99999999/bare` );
 
 			assert.strictEqual( status, 404 );
 		} );
@@ -73,7 +89,7 @@ describe( 'Revision', () => {
 	describe( 'GET /revision/{id}/bare with x-restbase-compat', () => {
 		it( 'Should successfully return restbase-compatible revision meta-data', async () => {
 			const { status, body, text, headers } = await client
-				.get( `/revision/${ newrevid }/bare` )
+				.get( `${ pathPrefix }/revision/${ newrevid }/bare` )
 				.set( 'x-restbase-compat', 'true' );
 
 			assert.deepEqual( status, 200, text );
@@ -89,7 +105,7 @@ describe( 'Revision', () => {
 
 		it( 'Should successfully return restbase-compatible errors', async () => {
 			const { status, body, text, headers } = await client
-				.get( '/revision/987654321/bare' )
+				.get( `${ pathPrefix }/revision/987654321/bare` )
 				.set( 'x-restbase-compat', 'true' );
 
 			assert.deepEqual( status, 404, text );
@@ -100,7 +116,9 @@ describe( 'Revision', () => {
 
 	describe( 'GET /revision/{id}/with_html', () => {
 		it( 'should successfully get metadata and HTML of revision', async () => {
-			const { status, body, text, headers } = await client.get( `/revision/${ newrevid }/with_html` );
+			const { status, body, text, headers } = await client.get(
+				`${ pathPrefix }/revision/${ newrevid }/with_html`
+			);
 
 			assert.strictEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
@@ -123,13 +141,13 @@ describe( 'Revision', () => {
 		} );
 
 		it( 'should return 404 for revision that does not exist', async () => {
-			const { status } = await client.get( '/revision/99999999/with_html' );
+			const { status } = await client.get( `${ pathPrefix }/revision/99999999/with_html` );
 
 			assert.strictEqual( status, 404 );
 		} );
 
 		it( 'should perform variant conversion', async () => {
-			const { headers, text } = await client.get( `/revision/${ newrevid }/with_html`, null, {
+			const { headers, text } = await client.get( `${ pathPrefix }/revision/${ newrevid }/with_html`, null, {
 				'accept-language': 'en-x-piglatin'
 			} );
 
@@ -149,7 +167,9 @@ describe( 'Revision', () => {
 
 	describe( 'GET /revision/{id}/html', () => {
 		it( 'should successfully get HTML of revision', async () => {
-			const { status, text, headers } = await client.get( `/revision/${ newrevid }/html` );
+			const { status, text, headers } = await client.get(
+				`${ pathPrefix }/revision/${ newrevid }/html`
+			);
 
 			assert.strictEqual( status, 200, text );
 			assert.containsAllKeys( headers, [ 'etag', 'cache-control', 'last-modified', 'content-type' ] );
@@ -161,15 +181,18 @@ describe( 'Revision', () => {
 		} );
 
 		it( 'should return 404 for revision that does not exist', async () => {
-			const { status } = await client.get( '/revision/99999999/html' );
+			const { status } = await client.get( `${ pathPrefix }/revision/99999999/html` );
 
 			assert.strictEqual( status, 404 );
 		} );
 
 		it( 'should perform variant conversion', async () => {
-			const { headers, text } = await client.get( `/revision/${ newrevid }/html`, null, {
-				'accept-language': 'en-x-piglatin'
-			} );
+			const { headers, text } = await client.get(
+				`${ pathPrefix }/revision/${ newrevid }/html`,
+				null, {
+					'accept-language': 'en-x-piglatin'
+				}
+			);
 
 			assert.match( text, /Ellohay/ );
 			assert.match( text, /Orldway/ );
@@ -183,7 +206,7 @@ describe( 'Revision', () => {
 	describe( 'GET /revision/{id}/html with x-restbase-compat', () => {
 		it( 'Should successfully return restbase-compatible errors', async () => {
 			const { body, headers } = await client
-				.get( '/revision/99999999/html' )
+				.get( `${ pathPrefix }/revision/99999999/html` )
 				.set( 'x-restbase-compat', 'true' );
 
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
@@ -193,7 +216,8 @@ describe( 'Revision', () => {
 } );
 
 // eslint-disable-next-line mocha/no-exports
-exports.init = function ( pp ) {
+exports.init = function ( pp, sm ) {
 	// Allow testing both legacy and module paths using the same tests
 	pathPrefix = pp;
+	specModule = sm;
 };
