@@ -2640,6 +2640,7 @@
 	"block-user-no-reason-given-aria-details": "Er is geen reden opgegeven voor deze logboekvermelding",
 	"block-user-placeholder": "Begin met het typen van een gebruiker...",
 	"block-item-remove": "Verwijderen",
+	"block-item-edit": "Bewerken",
 	"block-target": "Gebruikersnaam, IP-adres of IP-bereik:",
 	"block-target-placeholder": "Gebruikersnaam, 1.1.1.42 of 1.1.1.42/16",
 	"block-pages-placeholder": "Meer pagina’s toevoegen…",

@@ -2640,6 +2640,7 @@
 	"block-user-no-reason-given-aria-details": "Nie podano powodu dla tego wpisu w rejestrze",
 	"block-user-placeholder": "Wprowadź użytkownika…",
 	"block-item-remove": "Usuń",
+	"block-item-edit": "Zmień",
 	"block-target": "Nazwa użytkownika, adres IP lub ich zakres:",
 	"block-target-placeholder": "Nazwa użytkownika, 1.1.1.43 lub 1.1.1.42/16",
 	"block-pages-placeholder": "Dodaj więcej stron…",

@@ -2750,6 +2750,7 @@
 	"block-user-no-reason-given-aria-details": "Aucune raison n’a été donnée pour cette entrée de journal",
 	"block-user-placeholder": "Commencez à saisir un utilisateur...",
 	"block-item-remove": "Supprimer",
+	"block-item-edit": "Modifier",
 	"block-target": "Nom d’utilisateur, adresse IP ou plage d’adresses IP :",
 	"block-target-placeholder": "NomUtilisateur, 1.1.1.42 ou 1.1.1.42/16",
 	"block-pages-placeholder": "Ajouter des pages…",

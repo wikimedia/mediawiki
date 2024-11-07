@@ -2576,6 +2576,7 @@
 	"block-user-no-reason-given-aria-details": "Bu jurnal qeydi üçün səbəb göstərilməyib",
 	"block-user-placeholder": "İstifadəçi adı yazmağa başlayın...",
 	"block-item-remove": "Sil",
+	"block-item-edit": "Redaktə et",
 	"block-target": "İstifadəçi adı, IP ünvanı və ya IP aralığı:",
 	"block-target-placeholder": "İstifadəçiAdı, 1.1.1.42 və ya 1.1.1.42/16",
 	"block-pages-placeholder": "Daha çox səhifə əlavə et...",

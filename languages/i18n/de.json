@@ -2657,6 +2657,7 @@
 	"block-user-no-reason-given-aria-details": "Für diesen Logbucheintrag wurde kein Grund angegeben",
 	"block-user-placeholder": "Beginne mit der Eingabe eines Benutzers …",
 	"block-item-remove": "Entfernen",
+	"block-item-edit": "Bearbeiten",
 	"block-target": "Benutzername, IP-Adresse oder IP-Adressbereich",
 	"block-target-placeholder": "Benutzername, 1.1.1.42 oder 1.1.1.42/16",
 	"block-pages-placeholder": "Weitere Seiten hinzufügen …",

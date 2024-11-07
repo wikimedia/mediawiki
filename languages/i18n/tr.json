@@ -2656,6 +2656,7 @@
 	"block-user-no-reason-given-aria-details": "Bu günlük girdisi için herhangi bir gerekçe belirtilmedi",
 	"block-user-placeholder": "Bir kullanıcı yazmaya başlayın...",
 	"block-item-remove": "Kaldır",
+	"block-item-edit": "Düzenle",
 	"block-target": "Kullanıcı adı, IP adresi veya IP aralığı:",
 	"block-target-placeholder": "KullanıcıAdı, 1.1.1.42, ya da 1.1.1.42/16",
 	"block-pages-placeholder": "Daha fazla sayfa ekle...",

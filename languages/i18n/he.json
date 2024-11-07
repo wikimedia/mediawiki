@@ -2585,6 +2585,7 @@
 	"block-user-no-reason-given-aria-details": "לא ניתנה סיבה לרשומת היומן הזאת",
 	"block-user-placeholder": "נא להקליד משתמש...",
 	"block-item-remove": "הסרה",
+	"block-item-edit": "עריכה",
 	"block-target": "שם משתמש, כתובת IP, או טווח IP:",
 	"block-target-placeholder": "שם־משתמש, 1.1.1.42, או 1.1.1.42/16",
 	"block-pages-placeholder": "הוספת דפים...",

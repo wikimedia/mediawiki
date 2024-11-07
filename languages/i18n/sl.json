@@ -2554,6 +2554,7 @@
 	"block-user-no-reason-given-aria-details": "Za ta dnevniški vnos ni bil naveden noben razlog",
 	"block-user-placeholder": "Začnite vnašati uporabnika ...",
 	"block-item-remove": "Odstrani",
+	"block-item-edit": "Uredi",
 	"block-target": "Uporabniško ime, IP-naslov ali IP-razpon:",
 	"block-target-placeholder": "UporabniškoIme, 1.1.1.42 ali 1.1.1.42/16",
 	"block-pages-placeholder": "Dodaj več strani ...",
