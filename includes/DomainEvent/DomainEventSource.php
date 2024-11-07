@@ -22,20 +22,24 @@ interface DomainEventSource {
 	 * implementation of DomainEvent sink used.
 	 *
 	 * @param string $eventType
-	 * @param mixed $listener
-	 * - callable: a callback with the signature (DomainEvent): void.
-	 * - object: an object that has a method that starts with "after"
-	 *           followed by the event name and the signature
-	 *           (DomainEvent): void
+	 * @param callable $listener
 	 */
 	public function registerListener( string $eventType, $listener ): void;
 
 	/**
-	 * Register the given subscriber to this event source.
-	 * @param mixed $subscriber
-	 * - object: a DomainEventSubscriber
+	 * Register the given subscriber to this event source. A subscriber
+	 * is a way to bundle related listeners, typically by implementing them
+	 * as methods on the subscriber object.
 	 *
-	 * @todo support object specs
+	 * If the subscriber is supplied as a spec array, instantiation and
+	 * application may be deferred until one of the relevant events is
+	 * triggered.
+	 *
+	 * @param DomainEventSubscriber|array $subscriber
+	 * - object: a DomainEventSubscriber
+	 * - array: An object spec suitable for use with ObjectFactory.
+	 *          The array must use the key 'events' to specify which
+	 *          events will trigger application of the subscriber.
 	 */
 	public function registerSubscriber( $subscriber ): void;
 

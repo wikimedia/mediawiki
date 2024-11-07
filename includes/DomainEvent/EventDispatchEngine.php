@@ -5,6 +5,7 @@ use InvalidArgumentException;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\MWCallableUpdate;
 use MediaWiki\HookContainer\HookContainer;
+use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -20,21 +21,27 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * @internal
  */
 class EventDispatchEngine implements DomainEventDispatcher, DomainEventSource {
-	private const HOOK_CONTAINER_OPTIONS = [
-		'prefix' => 'after',
-	];
 
 	/**
 	 * An associative array mapping event names to lists of listeners.
-	 * Each listener is represented as an associative array.
-	 * @var array<string,array<array>>
+	 * @var array<string,array<callable>>
 	 */
 	private array $listeners = [];
 
+	/**
+	 * An associative array mapping event names to lists of subscriber specs.
+	 * Each subscriber spec is a reference to an associative array.
+	 * @var array<string,array<array>>
+	 */
+	private array $pendingSubscribers = [];
+
 	private HookContainer $hookContainer;
 
-	public function __construct( HookContainer $hookContainer ) {
+	private ObjectFactory $objectFactory;
+
+	public function __construct( ObjectFactory $objectFactory, HookContainer $hookContainer ) {
 		$this->hookContainer = $hookContainer;
+		$this->objectFactory = $objectFactory;
 	}
 
 	/**
@@ -57,46 +64,124 @@ class EventDispatchEngine implements DomainEventDispatcher, DomainEventSource {
 	 * Add a listener that will be notified on events of the given type.
 	 *
 	 * @param string $eventType
-	 * @param mixed $listener
+	 * @param callable $listener
 	 */
 	public function registerListener( string $eventType, $listener ): void {
-		if ( is_callable( $listener ) ) {
-			$spec = [ 'callback' => $listener ];
-		} else {
-			$spec = $this->hookContainer->normalizeHandler(
-				$eventType,
-				$listener,
-				self::HOOK_CONTAINER_OPTIONS
+		if ( !is_callable( $listener ) ) {
+			throw new InvalidArgumentException( '$listener must be callable' );
+		}
+
+		$this->registerTriggerIfNeeded( $eventType );
+		$this->listeners[$eventType][] = $listener;
+	}
+
+	/**
+	 * @param DomainEventSubscriber|array $subscriber
+	 */
+	public function registerSubscriber( $subscriber ): void {
+		if ( $subscriber instanceof DomainEventSubscriber ) {
+			// If we have a DomainEventSubscriber, apply it immediately.
+			// We can't wait until later, because we don't know what events
+			// it wants to register for, so we don't know on what event to
+			// call registerListeners().
+			$subscriber->registerListeners( $this );
+			return;
+		}
+
+		if ( !is_array( $subscriber ) ) {
+			throw new InvalidArgumentException(
+				'$subscriber must be a DomainEventSubscriber or an array'
 			);
 		}
 
-		if ( !$spec ) {
-			throw new InvalidArgumentException( "Invalid event listener for $eventType" );
+		// NOTE: we could make the 'events' key optional, and just call
+		// applySubscriberSpec() immediately if it's not given. But that would
+		// make it too easy to just forget about providing it. Callers that want
+		// to apply the subscriber immediately can just create the object instead
+		// of passing a spec array.
+		if ( !isset( $subscriber['events'] ) ) {
+			throw new InvalidArgumentException(
+				'$subscriber must contain the key "events" to specify which ' .
+				'events will trigger instantiation of the subscriber'
+			);
 		}
 
-		// If this is the first listener, register a hook handler for this
-		// event. The hook handler will call push(), which will register a
-		// deferred update which will eventually call dispatch().
-		if ( !isset( $this->listeners[$eventType] ) ) {
-			$this->registerTrigger( $eventType );
+		// Register the spec for lazy instantiation when any of the relevant
+		// events is triggered.
+		foreach ( $subscriber['events'] as $eventType ) {
+			$this->registerTriggerIfNeeded( $eventType );
+			// NOTE: must be by reference, so the spec can be resolved for all
+			// events that trigger instantiation at once.
+			$this->pendingSubscribers[$eventType][] =& $subscriber;
 		}
-
-		$this->listeners[$eventType][] = $spec;
 	}
 
-	public function registerSubscriber( $subscriber ): void {
-		// TODO: Allow $subscriber to be an object spec. Determine list of events!
+	/**
+	 * Perform lazy instantiation for any pending subscribers for the given
+	 * event.
+	 */
+	private function resolveSubscribers( string $eventType ) {
+		// Copy the list of pending subscribers, since applying subscribers
+		// may modify $this->pendingSubscribers again.
+		$pending = $this->pendingSubscribers[$eventType] ?? [];
+
+		// Blank subscribers for this event. Once the subscribers have been
+		// applied, all their listeners are registered, and the subscribers
+		// are no longer relevant.
+		$this->pendingSubscribers[$eventType] = [];
+
+		// NOTE: entries in $this->subscribers are by reference!
+		foreach ( $pending as &$spec ) {
+			// NOTE: $spec may be empty if it was previously resolved through
+			// a different event type.
+			if ( !$spec ) {
+				continue;
+			}
+
+			$this->applySubscriberSpec( $spec );
+
+			// Empty the spec, so it's not re-triggered though another event
+			// that also references it.
+			$spec = [];
+		}
+
+		if ( $this->pendingSubscribers[$eventType] ) {
+			// If more pending subscribers got added, recurse!
+			$this->resolveSubscribers( $eventType );
+		}
+	}
+
+	private function applySubscriberSpec( array $spec ) {
+		/** @var DomainEventSubscriber $subscriber */
+		$subscriber = $this->objectFactory->createObject(
+			$spec,
+			[ 'assertClass' => DomainEventSubscriber::class, ]
+		);
+
+		if ( $subscriber instanceof InitializableDomainEventSubscriber ) {
+			$subscriber->initSubscriber( $spec );
+		}
+
 		$subscriber->registerListeners( $this );
 	}
 
 	/**
-	 * Register a hook handler that will invoke dispatchInternal() when the event's hook
+	 * Register a hook handler that will invoke dispatch() when the event's hook
 	 * is run.
 	 */
-	private function registerTrigger( string $eventName ) {
+	private function registerTriggerIfNeeded( string $eventName ) {
+		if (
+			isset( $this->listeners[ $eventName ] ) ||
+			isset( $this->pendingSubscribers[ $eventName ] )
+		) {
+			// If there is already a listener or subscriber, then we assume
+			// we already registered a trigger.
+			return;
+		}
+
 		$this->hookContainer->register(
 			$eventName,
-			function ( DomainEvent $event, IConnectionProvider $dbProvider ) use ( $eventName ) {
+			function ( DomainEvent $event, IConnectionProvider $dbProvider ) {
 				$this->dispatchInternal( $event, $dbProvider );
 			}
 		);
@@ -107,10 +192,11 @@ class EventDispatchEngine implements DomainEventDispatcher, DomainEventSource {
 	 * capping push() for each listener.
 	 */
 	private function dispatchInternal( DomainEvent $event, IConnectionProvider $dbProvider ) {
+		$this->resolveSubscribers( $event->getEventType() );
 		$listeners = $this->listeners[ $event->getEventType() ] ?? [];
 
-		foreach ( $listeners as $spec ) {
-			$this->push( $spec, $event, $dbProvider );
+		foreach ( $listeners as $callback ) {
+			$this->push( $callback, $event, $dbProvider );
 		}
 	}
 
@@ -119,17 +205,16 @@ class EventDispatchEngine implements DomainEventDispatcher, DomainEventSource {
 	 * current transaction in $dbProvider is not successful.
 	 */
 	private function push(
-		array $spec,
+		callable $callback,
 		DomainEvent $event,
 		IConnectionProvider $dbProvider
 	) {
 		// TODO: DeferredUpdates should take a more abstract representation of
 		// the current transactional context!
 		$dbw = $dbProvider->getPrimaryDatabase();
-
 		DeferredUpdates::addUpdate( new MWCallableUpdate(
-			function () use ( $spec, $event, $dbProvider ) {
-				$this->invoke( $spec, $event, $dbProvider );
+			function () use ( $callback, $event, $dbProvider ) {
+				$this->invoke( $callback, $event, $dbProvider );
 			},
 			__METHOD__,
 			[ $dbw ]
@@ -140,11 +225,11 @@ class EventDispatchEngine implements DomainEventDispatcher, DomainEventSource {
 	 * Invokes the given listener on the given event
 	 */
 	private function invoke(
-		array $spec,
+		callable $callback,
 		DomainEvent $event,
 		IConnectionProvider $dbProvider
 	) {
-		$callback = $spec['callback'];
 		$callback( $event, $dbProvider );
 	}
+
 }

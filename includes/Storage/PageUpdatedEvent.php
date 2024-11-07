@@ -33,6 +33,7 @@ use MediaWiki\User\UserIdentity;
 class PageUpdatedEvent extends DomainEvent {
 
 	public const TYPE = 'PageUpdated';
+
 	private RevisionRecord $newRevision;
 	private ?RevisionRecord $oldRevision;
 	private ?EditResult $editResult;

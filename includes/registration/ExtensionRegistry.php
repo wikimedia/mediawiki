@@ -630,44 +630,14 @@ class ExtensionRegistry implements DomainEventSubscriber {
 	}
 
 	/**
-	 * Register any domain event listeners defined by extensions.
+	 * Register any domain event subscribers defined by extensions.
 	 *
 	 * @internal
 	 */
 	public function registerListeners( DomainEventSource $eventSource ): void {
-		// TODO: register subscribers instead!
-		$listeners = $this->getAttribute( 'Listeners' );
-
-		foreach ( $listeners as $eventType => $listenersForType ) {
-			foreach ( $listenersForType as $listenerSpec ) {
-				$eventSource->registerListener( $eventType, $listenerSpec );
-			}
+		foreach ( $this->getAttribute( 'DomainEventSubscribers' ) as $subscriber ) {
+			$eventSource->registerSubscriber( $subscriber );
 		}
-	}
-
-	/**
-	 * Returns all registered listeners for the given event type,
-	 * in a form acceptable for use with DomainEventSource::registerListener().
-	 *
-	 * @internal
-	 *
-	 * @return array[]
-	 */
-	public function getDomainEventListeners( string $eventType ): array {
-		$listeners = $this->getAttribute( 'Listeners' );
-		return $listeners[$eventType] ?? [];
-	}
-
-	/**
-	 * Returns the names of all domain events for which getDomainEventListeners()
-	 * can return listeners.
-	 *
-	 * @internal
-	 *
-	 * @return string[]
-	 */
-	public function getDomainEventTypes(): array {
-		return array_keys( $this->getAttribute( 'Listeners' ) );
 	}
 
 	/**
