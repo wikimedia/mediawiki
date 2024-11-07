@@ -32,7 +32,10 @@
 				this.setValue( v );
 			},
 			apiCheckValid: function ( shouldSuppressErrors ) {
-				return this.getValidity().then( () => $.Deferred().resolve( true ).promise(), () => $.Deferred().resolve( false ).promise() ).done( ( ok ) => {
+				return this.getValidity().then(
+					() => $.Deferred().resolve( true ).promise(),
+					() => $.Deferred().resolve( false ).promise()
+				).done( ( ok ) => {
 					ok = ok || shouldSuppressErrors;
 					this.setIcon( ok ? null : 'alert' );
 					this.setTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
@@ -165,7 +168,9 @@
 			multi: function () {
 				const map = this.paramInfo.submodules,
 					v = this.isDisabled() ? this.paramInfo.default : this.getApiValue();
-				return v === undefined || v === '' ? [] : String( v ).split( '|' ).map( ( val ) => ( { value: val, path: map[ val ] } ) );
+				return v === undefined || v === '' ?
+					[] :
+					String( v ).split( '|' ).map( ( val ) => ( { value: val, path: map[ val ] } ) );
 			}
 		}
 	};
