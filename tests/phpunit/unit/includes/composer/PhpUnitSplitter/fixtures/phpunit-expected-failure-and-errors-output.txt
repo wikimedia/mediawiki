@@ -1,0 +1,20 @@
+There were 2 errors:
+
+1) ResultBuilderLexemeTest::testAddLexemeRevision with data set #0 (false, array(array(array(123, 406, 'MockPrefixedText', 'L1', 'lexeme', 33, '2020-11-26T20:29:23Z', array(), 2, 1, array(), array(array(array(), array(), 'L1-F1', array(array(array('imaguid', array('value', 'P65', array('snakStringValue', 'string'), 'DtIdFor_P65'), 'statement', array(array(array('3ea0f5404dd4e631780b3386d17a1...e499a6', 'value', 'P65', array('string!', 'string'), 'DtIdFor_P65'), array('aa9a5f05e20d7fa5cda7d98371e44...5de35e', 'somevalue', 'P65', 'DtIdFor_P65'))), 'normal', array('P65'), array(array('8445204eb74e636cb53687e2f947c...186075', array(array(array('somevalue', 'P65', 'DtIdFor_P65')), array(array('somevalue', 'P68', 'DtIdFor_P68'))), array('P65', 'P68')))))))))), 'assoc'))
+Error: Can only throw objects
+
+/var/www/html/w/extensions/WikibaseLexeme/tests/phpunit/composer/DataModel/Serialization/ResultBuilderLexemeTest.php:246
+
+2) ResultBuilderLexemeTest::testAddLexemeRevision with data set #1 (true, array(array(array(123, 406, 'MockPrefixedText', 'L1', 'lexeme', 33, '2020-11-26T20:29:23Z', array('property', 'kvp', 'id'), 2, 1, array(), array(array(array(), array(), 'L1-F1', array(array(array('imaguid', array('value', 'P65', array('snakStringValue', 'string'), 'DtIdFor_P65'), 'statement', array(array(array('3ea0f5404dd4e631780b3386d17a1...e499a6', 'value', 'P65', array('string!', 'string'), 'DtIdFor_P65'), array('aa9a5f05e20d7fa5cda7d98371e44...5de35e', 'somevalue', 'P65', 'DtIdFor_P65'), 'qualifiers'), 'kvp', 'id', 'property'), 'normal', array('P65', 'property'), array(array('8445204eb74e636cb53687e2f947c...186075', array(array(array('somevalue', 'P65', 'DtIdFor_P65'), 'snak'), array(array('somevalue', 'P68', 'DtIdFor_P68'), 'snak'), 'kvp', 'id', 'property'), array('P65', 'P68', 'property')), 'reference')), 'claim'), 'kvp', 'id', 'property')))), 'entity', 'kvp', 'id', true), 'assoc'))
+Error: Can only throw objects
+
+/var/www/html/w/extensions/WikibaseLexeme/tests/phpunit/composer/DataModel/Serialization/ResultBuilderLexemeTest.php:246
+
+--
+
+There was 1 failure:
+
+1) ResultBuilderLexemeTest::testFail
+Not a good test
+
+/var/www/html/w/extensions/WikibaseLexeme/tests/phpunit/composer/DataModel/Serialization/ResultBuilderLexemeTest.php:237

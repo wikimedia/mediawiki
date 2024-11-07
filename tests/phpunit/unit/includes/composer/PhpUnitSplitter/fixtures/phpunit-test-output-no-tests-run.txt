@@ -1,0 +1,5 @@
+Using PHP 8.1.18
+Running with MediaWiki settings because there might be integration tests
+PHPUnit 9.6.19 by Sebastian Bergmann and contributors.
+
+[30;43mNo tests executed![0m

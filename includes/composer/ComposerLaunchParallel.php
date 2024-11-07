@@ -5,6 +5,8 @@ declare( strict_types = 1 );
 namespace MediaWiki\Composer;
 
 use Composer\Script\Event;
+use MediaWiki\Composer\PhpUnitSplitter\PhpUnitConsoleOutputProcessingException;
+use MediaWiki\Composer\PhpUnitSplitter\PhpUnitConsoleOutputProcessor;
 use MediaWiki\Composer\PhpUnitSplitter\PhpUnitXml;
 use MediaWiki\Maintenance\ForkController;
 use Shellbox\Shellbox;
@@ -29,6 +31,8 @@ require_once $basePath . '/maintenance/includes/ForkController.php';
  */
 class ComposerLaunchParallel extends ForkController {
 
+	private const SPLIT_GROUP_COUNT = 8;
+
 	private const ALWAYS_EXCLUDE = [ 'Broken', 'ParserFuzz', 'Stub' ];
 	private array $groups = [];
 	private array $excludeGroups = [];
@@ -44,7 +48,7 @@ class ComposerLaunchParallel extends ForkController {
 		 * of evenly distributed test classes extracted from the `--list-tests-xml` phpunit function. The
 		 * 8th group contains just the ExtensionsParserTestSuite.
 		 */
-		$splitGroupCount = 7;
+		$splitGroupCount = self::SPLIT_GROUP_COUNT - 1;
 		if ( $this->isDatabaseRun() ) {
 			/**
 			 * In the splitting, we put ExtensionsParserTestSuite in `split_group_7` on its own. We only
@@ -52,14 +56,18 @@ class ComposerLaunchParallel extends ForkController {
 			 * database. Running `split_group_7` when no matches tests get executed results in a phpunit
 			 * error code.
 			 */
-			$splitGroupCount = 8;
+			$splitGroupCount = self::SPLIT_GROUP_COUNT;
 		}
 		parent::__construct( $splitGroupCount );
 	}
 
 	private function isDatabaseRun(): bool {
-		return in_array( 'Database', $this->groups ) &&
-			!in_array( 'Database', $this->excludeGroups );
+		return self::isDatabaseRunForGroups( $this->groups, $this->excludeGroups );
+	}
+
+	private static function isDatabaseRunForGroups( array $groups, array $excludeGroups ): bool {
+		return in_array( 'Database', $groups ) &&
+			!in_array( 'Database', $excludeGroups );
 	}
 
 	/**
@@ -100,7 +108,12 @@ class ComposerLaunchParallel extends ForkController {
 		$command->environment( [ 'MW_PHPUNIT_SPLIT_GROUP_ID' => $groupId ] );
 		print( "Running command '" . $command->getCommandString() . "' ..." . PHP_EOL );
 		$result = $command->execute();
-		print( $result->getStdout() );
+		$consoleOutput = $result->getStdout();
+		PhpUnitConsoleOutputProcessor::writeOutputToLogFile(
+			"phpunit_output_{$groupId}_{$groupName}.log",
+			$consoleOutput
+		);
+		print( $consoleOutput );
 		exit( $result->getExitCode() );
 	}
 
@@ -127,6 +140,9 @@ class ComposerLaunchParallel extends ForkController {
 		return $options;
 	}
 
+	/**
+	 * @throws PhpUnitConsoleOutputProcessingException
+	 */
 	public static function launchTests( Event $event, array $groups, array $excludeGroups ): void {
 		$phpUnitConfig = getcwd() . DIRECTORY_SEPARATOR . 'phpunit.xml';
 		if ( !PhpUnitXml::isPhpUnitXmlPrepared( $phpUnitConfig ) ) {
@@ -141,7 +157,16 @@ class ComposerLaunchParallel extends ForkController {
 			$event->getIO()->info( "All split_groups succeeded!" );
 			exit( 0 );
 		} else {
+			$event->getIO()->write( PHP_EOL . PHP_EOL );
 			$event->getIO()->warning( "Some split_groups failed - returning failure status" );
+			$groupName = self::isDatabaseRunForGroups( $groups, $excludeGroups ) ? "database" : "databaseless";
+			$event->getIO()->warning( "Summarizing parallel error logs for " . $groupName . " group..." );
+			$event->getIO()->write( PHP_EOL );
+			PhpUnitConsoleOutputProcessor::collectAndDumpFailureSummary(
+				"phpunit_output_%d_{$groupName}.log",
+				self::SPLIT_GROUP_COUNT,
+				$event->getIO()
+			);
 			exit( 1 );
 		}
 	}

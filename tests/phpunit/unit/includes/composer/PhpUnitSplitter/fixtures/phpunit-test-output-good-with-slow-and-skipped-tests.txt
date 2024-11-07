@@ -1,0 +1,21 @@
+Using PHP 8.1.18
+Running with MediaWiki settings because there might be integration tests
+PHPUnit 9.6.19 by Sebastian Bergmann and contributors.
+
+.................................................[36;1mS[0m.               51 / 51 (100%)
+
+Time: 00:04.233, Memory: 48.50 MB
+
+[30;43mOK, but incomplete, skipped, or risky tests![0m
+[30;43mTests: 51[0m[30;43m, Assertions: 50[0m[30;43m, Skipped: 1[0m[30;43m.[0m
+
+
+You should really speed up these slow tests (>100ms)...
+ 1. 1113ms to run AbstractSchemaValidationTest::testSchemasPassValidation with data set "maintenance/tables.json"
+ 2. 138ms to run AbstractSchemaValidationTest::testSchemasPassValidation with data set "patch-recentchanges-rc_new_name_timestamp.json"
+ 3. 137ms to run AbstractSchemaValidationTest::testSchemasPassValidation with data set "patch-recentchanges-rc_id-bigint.json"
+ 4. 135ms to run AbstractSchemaValidationTest::testSchemasPassValidation with data set "patch-recentchanges-rc_id.json"
+ 5. 120ms to run AbstractSchemaValidationTest::testSchemasPassValidation with data set "patch-filearchive-fa_id.json"
+ 6. 118ms to run AbstractSchemaValidationTest::testSchemasPassValidation with data set "patch-filearchive-fa_size_to_bigint.json"
+ 7. 116ms to run AbstractSchemaValidationTest::testSchemasPassValidation with data set "patch-ipblocks-ipb_id.json"
+ 8. 116ms to run AbstractSchemaValidationTest::testSchemasPassValidation with data set "patch-user_table-updates.json"
