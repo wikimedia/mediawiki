@@ -2356,6 +2356,12 @@ $wgTidyConfig = null;
 $wgParsoidSettings = null;
 
 /**
+ * Config variable stub for the ParsoidFragmentSupport setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::ParsoidFragmentSupport
+ */
+$wgParsoidFragmentSupport = null;
+
+/**
  * Config variable stub for the ParserEnableLegacyMediaDOM setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ParserEnableLegacyMediaDOM
  * @deprecated since 1.41

@@ -159,6 +159,36 @@ class StripState {
 	}
 
 	/**
+	 * Split the given text by strip markers, returning an array that
+	 * alternates between plain text and strip marker information.  The
+	 * strip marker information includes 'type', and 'content'.  The
+	 * resulting array will always be at least 1 element long and contain
+	 * an odd number of elements.
+	 * @return array<string|array{type:string,content:string}>
+	 */
+	public function split( string $text ): array {
+		$pieces = preg_split( $this->regex, $text, -1, PREG_SPLIT_DELIM_CAPTURE );
+		for ( $i = 1; $i < count( $pieces ); $i += 2 ) {
+			$marker = $pieces[$i];
+			foreach ( $this->data as $type => $items ) {
+				if ( isset( $items[$marker] ) ) {
+					$pieces[$i] = [
+						'type' => $type,
+						'content' => $items[$marker],
+					];
+					continue 2;
+				}
+			}
+			$pieces[$i] = [
+				'marker' => $marker,
+				'type' => 'unknown',
+				'content' => null,
+			];
+		}
+		return $pieces;
+	}
+
+	/**
 	 * @param string $text
 	 * @return mixed
 	 */

@@ -4191,6 +4191,15 @@ config-schema:
             Overriding the default configuration is strongly discouraged in
             production.
             @since 1.39
+    ParsoidFragmentSupport:
+        default: false
+        type: boolean
+        description: |-
+            Enable fragment support in Parsoid (transclusions returning
+            html).  This is a temporary configuration variable to allow
+            testing a new parsoid feature, which will become the default
+            in future releases.
+            @unstable EXPERIMENTAL
     ParserEnableLegacyMediaDOM:
         default: false
         deprecated: 'since 1.41'

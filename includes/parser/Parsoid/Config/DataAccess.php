@@ -42,6 +42,9 @@ use Wikimedia\Parsoid\Config\PageConfig as IPageConfig;
 use Wikimedia\Parsoid\Config\PageContent as IPageContent;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
+use Wikimedia\Parsoid\Fragments\HtmlPFragment;
+use Wikimedia\Parsoid\Fragments\LiteralStringPFragment;
+use Wikimedia\Parsoid\Fragments\PFragment;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
@@ -52,6 +55,7 @@ use Wikimedia\Rdbms\ReadOnlyMode;
  */
 class DataAccess extends IDataAccess {
 	public const CONSTRUCTOR_OPTIONS = [
+		MainConfigNames::ParsoidFragmentSupport,
 		MainConfigNames::SVGMaxSize,
 	];
 
@@ -365,20 +369,39 @@ class DataAccess extends IDataAccess {
 		IPageConfig $pageConfig,
 		ContentMetadataCollector $metadata,
 		string $wikitext
-	): string {
+	) {
 		$parser = $this->prepareParser( $pageConfig, Parser::OT_PREPROCESS );
 		$this->hookRunner->onParserBeforePreprocess(
 			# $wikitext is passed by reference and mutated
 			$parser, $wikitext, $parser->getStripState()
 		);
-		$wikitext = $parser->replaceVariables( $wikitext, $this->ppFrame );
-		// FIXME (T289545): StripState markers protect content that need to be protected from further
-		// "wikitext processing". So, where the result has strip state markers, we actually
-		// need to tunnel this content through rather than unwrap and let it go through the
-		// rest of the parsoid pipeline. For example, some parser functions might return HTML
-		// not wikitext, and where the content might contain wikitext characters, we are now
-		// going to potentially mangle that output.
-		$wikitext = $parser->getStripState()->unstripBoth( $wikitext );
+		if ( !$this->config->get( MainConfigNames::ParsoidFragmentSupport ) ) {
+			// Original support: just unstrip (T289545)
+			$wikitext = $parser->replaceVariables( $wikitext, $this->ppFrame );
+			$wikitext = $parser->getStripState()->unstripBoth( $wikitext );
+		} else {
+			// New PFragment-based support (T374616)
+			$wikitext = $parser->replaceVariables(
+				$wikitext, $this->ppFrame, false, false
+			);
+			// Where the result has strip state markers, tunnel this content
+			// through Parsoid as a PFragment type.
+			$pieces = $parser->getStripState()->split( $wikitext );
+			if ( count( $pieces ) > 1 ) {
+				for ( $i = 1; $i < count( $pieces ); $i += 2 ) {
+					[ 'type' => $type, 'content' => $content ] = $pieces[$i];
+					if ( !$content ) {
+						$pieces[$i] = '';
+					} elseif ( $type === 'nowiki' ) {
+						$pieces[$i] = LiteralStringPFragment::newFromLiteral( $content, null );
+					} else {
+						$pieces[$i] = HtmlPFragment::newFromHtmlString( $content, null );
+					}
+				}
+				// $wikitext will be a PFragment, no longer a string.
+				$wikitext = PFragment::fromSplitWt( $pieces );
+			}
+		}
 
 		// XXX: Ideally we will eventually have the legacy parser use our
 		// ContentMetadataCollector instead of having a new ParserOutput
