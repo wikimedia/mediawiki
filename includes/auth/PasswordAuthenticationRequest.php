@@ -30,10 +30,10 @@ use MediaWiki\Language\RawMessage;
  * @since 1.27
  */
 class PasswordAuthenticationRequest extends AuthenticationRequest {
-	/** @var string Password */
+	/** @var string|null */
 	public $password = null;
 
-	/** @var string Password, again */
+	/** @var string|null Password, again */
 	public $retype = null;
 
 	/**

@@ -68,13 +68,13 @@ class ArchivedFile {
 	/** @var int File size in bytes */
 	private $size;
 
-	/** @var int Size in bytes */
+	/** @var int Bitdepth */
 	private $bits;
 
-	/** @var int Width */
+	/** @var int */
 	private $width;
 
-	/** @var int Height */
+	/** @var int */
 	private $height;
 
 	/** @var array Unserialized metadata */
@@ -605,7 +605,6 @@ class ArchivedFile {
 	}
 
 	/**
-	 * Return the bits of the image file, in bytes
 	 * @return int
 	 */
 	public function getBits() {

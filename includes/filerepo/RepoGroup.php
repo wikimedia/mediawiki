@@ -197,10 +197,7 @@ class RepoGroup {
 
 		foreach ( $this->foreignRepos as $repo ) {
 			// Remove found files from $items
-			foreach ( $images as $name => $image ) {
-				unset( $items[$name] );
-			}
-
+			$items = array_diff_key( $items, $images );
 			$images = array_merge( $images, $repo->findFiles( $items, $flags ) );
 		}
 

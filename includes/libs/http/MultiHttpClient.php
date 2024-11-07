@@ -77,7 +77,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	protected $usePipelining = false;
 	/** @var int */
 	protected $maxConnsPerHost = 50;
-	/** @var string|null proxy */
+	/** @var string|null */
 	protected $proxy;
 	/** @var string|false */
 	protected $localProxy = false;
