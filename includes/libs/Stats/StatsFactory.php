@@ -35,9 +35,7 @@ use Wikimedia\Stats\Metrics\NullMetric;
 use Wikimedia\Stats\Metrics\TimingMetric;
 
 /**
- * StatsFactory Implementation
- *
- * This is the primary interface for validating metrics definitions
+ * This is the primary interface for validating metrics definitions,
  * caching defined metrics, and returning metric instances from cache
  * if previously defined.
  *
@@ -46,19 +44,10 @@ use Wikimedia\Stats\Metrics\TimingMetric;
  */
 class StatsFactory {
 
-	/** @var string */
 	private string $component;
-
-	/** @var StatsCache */
 	private StatsCache $cache;
-
-	/** @var EmitterInterface */
 	private EmitterInterface $emitter;
-
-	/** @var LoggerInterface */
 	private LoggerInterface $logger;
-
-	/** @var IBufferingStatsdDataFactory|null */
 	private ?IBufferingStatsdDataFactory $statsdDataFactory = null;
 
 	/**

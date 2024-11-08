@@ -25,9 +25,6 @@ use InvalidArgumentException;
 use Wikimedia\Stats\Exceptions\InvalidConfigurationException;
 
 /**
- *
- * StatsUtils Implementation
- *
  * Functionality common to all metric types.
  *
  * @author Cole White
@@ -109,27 +106,6 @@ class StatsUtils {
 		if ( $value === "" ) {
 			throw new InvalidArgumentException( "Stats: Label value cannot be empty." );
 		}
-	}
-
-	/**
-	 * Merges two associative arrays of labels.  Prioritizes leftmost labels.
-	 *
-	 * @param array $leftLabels
-	 * @param array $rightLabels
-	 * @return array
-	 */
-	public static function mergeLabels( array $leftLabels, array $rightLabels ): array {
-		$output = [];
-		foreach ( $leftLabels as $key => $value ) {
-			$output[$key] = $value;
-		}
-		foreach ( $rightLabels as $key => $value ) {
-			if ( array_key_exists( $key, $output ) ) {
-				continue;
-			}
-			$output[$key] = $value;
-		}
-		return $output;
 	}
 
 	/**

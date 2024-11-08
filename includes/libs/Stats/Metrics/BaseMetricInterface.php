@@ -156,8 +156,9 @@ interface BaseMetricInterface {
 	/**
 	 * StatsD Data Factory instance to copy metrics to.
 	 *
-	 * @param IBufferingStatsdDataFactory $statsdDataFactory
+	 * @param IBufferingStatsdDataFactory|null $statsdDataFactory
+	 *
 	 * @return BaseMetricInterface
 	 */
-	public function withStatsdDataFactory( IBufferingStatsdDataFactory $statsdDataFactory );
+	public function withStatsdDataFactory( ?IBufferingStatsdDataFactory $statsdDataFactory );
 }
