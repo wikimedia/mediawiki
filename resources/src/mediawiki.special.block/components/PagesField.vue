@@ -11,7 +11,7 @@
 			:menu-items="menuItems"
 			:menu-config="menuConfig"
 			:aria-label="$i18n( 'ipb-pages-label' ).text()"
-			:placeholder="$i18n( 'block-pages-placeholder' ).text()"
+			:placeholder="placeholder"
 			@input="onInput"
 			@update:input-chips="onUpdateChips"
 		></cdx-multiselect-lookup>
@@ -19,11 +19,13 @@
 </template>
 
 <script>
-const { defineComponent, ref } = require( 'vue' );
+const { computed, defineComponent, ref } = require( 'vue' );
 const { storeToRefs } = require( 'pinia' );
 const { CdxField, ChipInputItem, CdxMultiselectLookup } = require( '@wikimedia/codex' );
 const useBlockStore = require( '../stores/block.js' );
 const api = new mw.Api();
+const useMultiblocks = mw.config.get( 'blockEnableMultiblocks' );
+const MAX_CHIPS = useMultiblocks ? 50 : 10;
 
 module.exports = exports = defineComponent( {
 	name: 'PagesField',
@@ -33,9 +35,18 @@ module.exports = exports = defineComponent( {
 	},
 	setup() {
 		const { pages } = storeToRefs( useBlockStore() );
+		if ( pages.value.length > MAX_CHIPS ) {
+			pages.value = pages.value.slice( 0, MAX_CHIPS );
+		}
 		const chips = ref(
 			pages.value.map( ( page ) => ( { value: page, label: page } ) )
 		);
+		const placeholder = computed( () => {
+			if ( chips.value.length === MAX_CHIPS ) {
+				return '';
+			}
+			return mw.msg( 'block-pages-placeholder' );
+		} );
 		const selection = ref( pages.value );
 		const inputValue = ref( '' );
 		const menuItems = ref( [] );
@@ -64,6 +75,11 @@ module.exports = exports = defineComponent( {
 		 * @param {string} value
 		 */
 		const onInput = mw.util.debounce( ( value ) => {
+			if ( chips.value.length >= MAX_CHIPS ) {
+				menuItems.value = [];
+				return;
+			}
+
 			// Clear menu items if the input was cleared.
 			if ( !value ) {
 				menuItems.value = [];
@@ -104,6 +120,7 @@ module.exports = exports = defineComponent( {
 
 		return {
 			chips,
+			placeholder,
 			selection,
 			inputValue,
 			menuItems,
