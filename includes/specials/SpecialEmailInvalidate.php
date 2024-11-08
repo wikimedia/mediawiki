@@ -82,8 +82,9 @@ class SpecialEmailInvalidate extends UnlistedSpecialPage {
 			return;
 		}
 
-		$user->invalidateEmail();
-		$user->saveSettings();
+		$userLatest = $user->getInstanceForUpdate();
+		$userLatest->invalidateEmail();
+		$userLatest->saveSettings();
 		$this->getOutput()->addWikiMsg( 'confirmemail_invalidated' );
 
 		if ( !$this->getUser()->isRegistered() ) {
