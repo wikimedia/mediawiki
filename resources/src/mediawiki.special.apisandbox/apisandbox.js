@@ -32,11 +32,10 @@
 				this.setValue( v );
 			},
 			apiCheckValid: function ( shouldSuppressErrors ) {
-				const widget = this;
 				return this.getValidity().then( () => $.Deferred().resolve( true ).promise(), () => $.Deferred().resolve( false ).promise() ).done( ( ok ) => {
 					ok = ok || shouldSuppressErrors;
-					widget.setIcon( ok ? null : 'alert' );
-					widget.setTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
+					this.setIcon( ok ? null : 'alert' );
+					this.setTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
 				} );
 			}
 		},
@@ -1508,9 +1507,8 @@
 	 * @param {Object} [params] Query parameters for initializing the widgets
 	 */
 	ApiSandbox.PageLayout.prototype.updateTemplatedParameters = function ( params ) {
-		const layout = this,
-			pi = this.paramInfo,
-			prefix = layout.prefix + pi.prefix;
+		const pi = this.paramInfo,
+			prefix = this.prefix + pi.prefix;
 
 		if ( !pi || !pi.templatedparameters.length ) {
 			return;
@@ -1537,21 +1535,21 @@
 			usedVars: []
 		} ) );
 		let p;
-		const doProcess = function ( placeholder, target ) {
+		const doProcess = ( placeholder, target ) => {
 			target = prefix + target;
 
-			if ( !layout.widgets[ target ] ) {
+			if ( !this.widgets[ target ] ) {
 				// The target wasn't processed yet, try the next one.
 				// If all hit this case, the parameter has no expansions.
 				return true;
 			}
 
-			if ( !layout.widgets[ target ].getApiValueForTemplates ) {
+			if ( !this.widgets[ target ].getApiValueForTemplates ) {
 				// Not a multi-valued widget, so it can't have expansions.
 				return false;
 			}
 
-			const values = layout.widgets[ target ].getApiValueForTemplates();
+			const values = this.widgets[ target ].getApiValueForTemplates();
 			if ( !Array.isArray( values ) || !values.length ) {
 				// The target was processed but has no (valid) values.
 				// That means it has no expansions.
@@ -1567,7 +1565,7 @@
 			const done = $.isEmptyObject( p.vars );
 			let index, container;
 			if ( done ) {
-				container = Util.apiBool( p.info.deprecated ) ? layout.deprecatedItemsFieldset : layout.itemsFieldset;
+				container = Util.apiBool( p.info.deprecated ) ? this.deprecatedItemsFieldset : this.itemsFieldset;
 				const items = container.getItems();
 				for ( let i = 0; i < items.length; i++ ) {
 					if ( items[ i ].apiParamIndex !== undefined && items[ i ].apiParamIndex > p.info.index ) {
@@ -1585,17 +1583,17 @@
 				const name = p.name.replace( placeholder, value );
 				if ( done ) {
 					let tmp;
-					if ( layout.templatedItemsCache[ name ] ) {
-						tmp = layout.templatedItemsCache[ name ];
+					if ( this.templatedItemsCache[ name ] ) {
+						tmp = this.templatedItemsCache[ name ];
 					} else {
-						tmp = layout.makeWidgetFieldLayouts(
+						tmp = this.makeWidgetFieldLayouts(
 							Object.assign( {}, p.info, { usedTemplateVars: usedVars } ), name
 						);
-						layout.templatedItemsCache[ name ] = tmp;
+						this.templatedItemsCache[ name ] = tmp;
 					}
 					delete toRemove[ name ];
 					if ( !tmp.widget.isElementAttached() ) {
-						layout.widgets[ name ] = tmp.widget;
+						this.widgets[ name ] = tmp.widget;
 						container.addItems( [ tmp.widgetField, tmp.helpField ], index );
 						if ( index !== undefined ) {
 							index += 2;
@@ -1628,7 +1626,7 @@
 
 		// eslint-disable-next-line no-jquery/no-map-util
 		toRemove = $.map( toRemove, ( el, name ) => {
-			delete layout.widgets[ name ];
+			delete this.widgets[ name ];
 			return [ el.widgetField, el.helpField ];
 		} );
 		if ( toRemove.length ) {
@@ -1642,12 +1640,11 @@
 	 */
 	ApiSandbox.PageLayout.prototype.loadParamInfo = function () {
 		let dynamicFieldset, dynamicParamNameWidget;
-		const layout = this,
-			removeDynamicParamWidget = function ( name, item ) {
+		const removeDynamicParamWidget = ( name, item ) => {
 				dynamicFieldset.removeItems( [ item ] );
-				delete layout.widgets[ name ];
+				delete this.widgets[ name ];
 			},
-			addDynamicParamWidget = function () {
+			addDynamicParamWidget = () => {
 				// Check name is filled in
 				const name = dynamicParamNameWidget.getValue().trim();
 				if ( name === '' ) {
@@ -1655,7 +1652,7 @@
 					return;
 				}
 
-				if ( layout.widgets[ name ] !== undefined ) {
+				if ( this.widgets[ name ] !== undefined ) {
 					windowManager.openWindow( 'errorAlert', {
 						title: Util.parseMsg( 'apisandbox-dynamic-error-exists', name ),
 						actions: [
@@ -1689,7 +1686,7 @@
 					}
 				);
 				button.on( 'click', removeDynamicParamWidget, [ name, actionFieldLayout ] );
-				layout.widgets[ name ] = widget;
+				this.widgets[ name ] = widget;
 				dynamicFieldset.addItems( [ actionFieldLayout ], dynamicFieldset.getItemCount() - 1 );
 				widget.focus();
 
@@ -1709,16 +1706,14 @@
 				const items = [],
 					deprecatedItems = [],
 					buttons = [],
-					filterFmModules = function ( v ) {
-						return v.slice( -2 ) !== 'fm' ||
-							!Object.prototype.hasOwnProperty.call( availableFormats, v.slice( 0, v.length - 2 ) );
-					};
+					filterFmModules = ( v ) => v.slice( -2 ) !== 'fm' ||
+						!Object.prototype.hasOwnProperty.call( availableFormats, v.slice( 0, v.length - 2 ) );
 
 				// This is something of a hack. We always want the 'format' and
 				// 'action' parameters from the main module to be specified,
 				// and for 'format' we also want to simplify the dropdown since
 				// we always send the 'fm' variant.
-				if ( layout.apiModule === 'main' ) {
+				if ( this.apiModule === 'main' ) {
 					pi.parameters.forEach( ( parameter ) => {
 						if ( parameter.name === 'action' ) {
 							parameter.required = true;
@@ -1750,7 +1745,7 @@
 					} );
 				}
 
-				layout.paramInfo = pi;
+				this.paramInfo = pi;
 
 				let $desc = Util.parseHTML( pi.description );
 				if ( pi.deprecated !== undefined ) {
@@ -1814,10 +1809,10 @@
 				}
 
 				if ( pi.parameters.length ) {
-					const prefix = layout.prefix + pi.prefix;
+					const prefix = this.prefix + pi.prefix;
 					pi.parameters.forEach( ( parameter ) => {
-						const tmpLayout = layout.makeWidgetFieldLayouts( parameter, prefix + parameter.name );
-						layout.widgets[ prefix + parameter.name ] = tmpLayout.widget;
+						const tmpLayout = this.makeWidgetFieldLayouts( parameter, prefix + parameter.name );
+						this.widgets[ prefix + parameter.name ] = tmpLayout.widget;
 						if ( Util.apiBool( parameter.deprecated ) ) {
 							deprecatedItems.push( tmpLayout.widgetField, tmpLayout.helpField );
 						} else {
@@ -1835,13 +1830,13 @@
 					) );
 				}
 
-				layout.$element.empty();
+				this.$element.empty();
 
-				layout.itemsFieldset = new OO.ui.FieldsetLayout( {
-					label: layout.displayText
+				this.itemsFieldset = new OO.ui.FieldsetLayout( {
+					label: this.displayText
 				} );
-				layout.itemsFieldset.addItems( items );
-				layout.itemsFieldset.$element.appendTo( layout.$element );
+				this.itemsFieldset.addItems( items );
+				this.itemsFieldset.$element.appendTo( this.$element );
 
 				if ( Util.apiBool( pi.dynamicparameters ) ) {
 					dynamicFieldset = new OO.ui.FieldsetLayout();
@@ -1872,52 +1867,51 @@
 							$( '<legend>' ).text( mw.msg( 'apisandbox-dynamic-parameters' ) ),
 							dynamicFieldset.$element
 						)
-						.appendTo( layout.$element );
+						.appendTo( this.$element );
 				}
 
-				layout.deprecatedItemsFieldset = new OO.ui.FieldsetLayout().addItems( deprecatedItems ).toggle( false );
+				this.deprecatedItemsFieldset = new OO.ui.FieldsetLayout().addItems( deprecatedItems ).toggle( false );
 				const $tmp = $( '<fieldset>' )
-					.toggle( !layout.deprecatedItemsFieldset.isEmpty() )
+					.toggle( !this.deprecatedItemsFieldset.isEmpty() )
 					.append(
 						$( '<legend>' ).append(
 							new OO.ui.ToggleButtonWidget( {
 								label: mw.msg( 'apisandbox-deprecated-parameters' )
-							} ).on( 'change', layout.deprecatedItemsFieldset.toggle, [], layout.deprecatedItemsFieldset ).$element
+							} ).on( 'change', this.deprecatedItemsFieldset.toggle, [], this.deprecatedItemsFieldset ).$element
 						),
-						layout.deprecatedItemsFieldset.$element
+						this.deprecatedItemsFieldset.$element
 					)
-					.appendTo( layout.$element );
-				layout.deprecatedItemsFieldset.on( 'add', function () {
-					this.toggle( !layout.deprecatedItemsFieldset.isEmpty() );
-				}, [], $tmp );
-				layout.deprecatedItemsFieldset.on( 'remove', function () {
-					this.toggle( !layout.deprecatedItemsFieldset.isEmpty() );
-				}, [], $tmp );
-
+					.appendTo( this.$element );
+				this.deprecatedItemsFieldset.on( 'add', () => {
+					$tmp.toggle( !this.deprecatedItemsFieldset.isEmpty() );
+				} );
+				this.deprecatedItemsFieldset.on( 'remove', () => {
+					$tmp.toggle( !this.deprecatedItemsFieldset.isEmpty() );
+				} );
 				// Load stored params, if any, then update the booklet if we
 				// have subpages (or else just update our valid-indicator).
-				const tmp = layout.loadFromQueryParams;
-				layout.loadFromQueryParams = null;
+				const tmp = this.loadFromQueryParams;
+				this.loadFromQueryParams = null;
 				if ( $.isPlainObject( tmp ) ) {
-					layout.loadQueryParams( tmp );
+					this.loadQueryParams( tmp );
 				} else {
-					layout.updateTemplatedParameters();
+					this.updateTemplatedParameters();
 				}
-				if ( layout.getSubpages().length > 0 ) {
+				if ( this.getSubpages().length > 0 ) {
 					ApiSandbox.updateUI( tmp );
 				} else {
-					layout.apiCheckValid();
+					this.apiCheckValid();
 				}
 			} ).fail( ( code, detail ) => {
-				layout.$element.empty()
+				this.$element.empty()
 					.append(
 						new OO.ui.LabelWidget( {
-							label: mw.msg( 'apisandbox-load-error', layout.apiModule, detail ),
+							label: mw.msg( 'apisandbox-load-error', this.apiModule, detail ),
 							classes: [ 'error' ]
 						} ).$element,
 						new OO.ui.ButtonWidget( {
 							label: mw.msg( 'apisandbox-retry' )
-						} ).on( 'click', layout.loadParamInfo, [], layout ).$element
+						} ).on( 'click', this.loadParamInfo, [], this ).$element
 					);
 			} );
 	};
