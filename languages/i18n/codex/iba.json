@@ -4,6 +4,8 @@
 			"Song GK"
 		]
 	},
+	"cdx-chip-input-chip-added": "Chip $1 udah ditambah.",
+	"cdx-chip-input-chip-removed": "Chip $1 udah dibuai.",
 	"cdx-input-chip-aria-description": "Tekan Tama enti deka edit tauka Buai enti deka muai.",
 	"cdx-dialog-close-button-label": "Tutup",
 	"cdx-label-optional-flag": "(pemilih)",
@@ -11,7 +13,7 @@
 	"cdx-search-input-search-button-label": "Giga",
 	"cdx-table-select-all-label": "Pilih semua baris",
 	"cdx-table-select-row-label": "Pilih baris $1 ari $2",
-	"cdx-table-sort-caption": "$1 (ulu tiang enggau butang ulih ditusun).",
+	"cdx-table-sort-caption": "$1 (pala tiang enggau butang ulih ditusun).",
 	"cdx-typeahead-search-search-results-label": "Asil pengiga",
 	"cdx-table-pager-button-first-page": "Lambar keterubah",
 	"cdx-table-pager-button-last-page": "Lambar kepenudi",

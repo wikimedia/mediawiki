@@ -2566,6 +2566,7 @@
 	"block-user-no-reason-given-aria-details": "Non se indicou ningún motivo para esta entrada de rexistro",
 	"block-user-placeholder": "Comeza a escribir un usuario...",
 	"block-item-remove": "Retirar",
+	"block-item-edit": "Modificar",
 	"block-target": "Nome de usuario, enderezo IP ou rango de enderezos IP:",
 	"block-target-placeholder": "NomeDaConta, 1.1.1.42 ou 1.1.1.42/16",
 	"block-pages-placeholder": "Engadir máis páxinas...",

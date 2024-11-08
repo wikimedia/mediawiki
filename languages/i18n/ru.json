@@ -2721,6 +2721,7 @@
 	"block-user-no-reason-given-aria-details": "Для этой записи в журнале причина не указана",
 	"block-user-placeholder": "Начните вводить участника…",
 	"block-item-remove": "Удалить",
+	"block-item-edit": "Править",
 	"block-target": "Имя участника, IP-адрес или диапазон IP-адресов:",
 	"block-target-placeholder": "ИмяУчастника, 1.1.1.42 или 1.1.1.42/16",
 	"block-pages-placeholder": "Добавить больше страниц…",

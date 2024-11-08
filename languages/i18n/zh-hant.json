@@ -2669,6 +2669,7 @@
 	"block-user-no-reason-given-aria-details": "這則日誌項目未提供原因",
 	"block-user-placeholder": "輸入使用者…",
 	"block-item-remove": "移除",
+	"block-item-edit": "編輯",
 	"block-target": "使用者名稱、IP位址或IP範圍：",
 	"block-target-placeholder": "使用者名稱、1.1.1.42或1.1.1.42/16",
 	"block-pages-placeholder": "新增更多頁面……",
