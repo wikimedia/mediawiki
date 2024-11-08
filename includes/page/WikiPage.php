@@ -2014,12 +2014,12 @@ class WikiPage implements Stringable, Page, PageRecord {
 		// Null revision (used for change tag insertion)
 		$nullRevisionRecord = null;
 
-		if ( $id ) { // Protection of existing page
-			$legacyUser = $services->getUserFactory()->newFromUserIdentity( $user );
-			if ( !$this->getHookRunner()->onArticleProtect( $this, $legacyUser, $limit, $reason ) ) {
-				return Status::newGood();
-			}
+		$legacyUser = $services->getUserFactory()->newFromUserIdentity( $user );
+		if ( !$this->getHookRunner()->onArticleProtect( $this, $legacyUser, $limit, $reason ) ) {
+			return Status::newGood();
+		}
 
+		if ( $id ) { // Protection of existing page
 			// Only certain restrictions can cascade...
 			$editrestriction = isset( $limit['edit'] )
 				? [ $limit['edit'] ]
@@ -2107,8 +2107,6 @@ class WikiPage implements Stringable, Page, PageRecord {
 
 			$this->getHookRunner()->onRevisionFromEditComplete(
 				$this, $nullRevisionRecord, $latest, $user, $tags );
-
-			$this->getHookRunner()->onArticleProtectComplete( $this, $legacyUser, $limit, $reason );
 		} else { // Protection of non-existing page (also known as "title protection")
 			// Cascade protection is meaningless in this case
 			$cascade = false;
@@ -2142,6 +2140,8 @@ class WikiPage implements Stringable, Page, PageRecord {
 					->caller( __METHOD__ )->execute();
 			}
 		}
+
+		$this->getHookRunner()->onArticleProtectComplete( $this, $legacyUser, $limit, $reason );
 
 		$services->getRestrictionStore()->flushRestrictions( $this->mTitle );
 
