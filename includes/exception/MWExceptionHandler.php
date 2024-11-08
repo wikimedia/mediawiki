@@ -28,6 +28,8 @@ use Psr\Log\LogLevel;
 use Wikimedia\NormalizedException\INormalizedException;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\DBQueryError;
+use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Services\RecursiveServiceDependencyException;
 
 /**
  * Handler class for MWExceptions
@@ -153,10 +155,11 @@ class MWExceptionHandler {
 		}
 
 		$services = MediaWikiServices::getInstance();
-		if ( $services->isServiceDisabled( 'DBLoadBalancerFactory' ) ) {
-			// The DBLoadBalancerFactory is disabled, possibly because we are in the installer,
-			// or we are in the process of shutting MediaWiki. At this point, any DB transactions
-			// would already have been committed or rolled back.
+		$lbFactory = $services->peekService( 'DBLoadBalancerFactory' );
+		'@phan-var LBFactory $lbFactory'; /* @var LBFactory $lbFactory */
+		if ( !$lbFactory ) {
+			// There's no need to roll back transactions if the LBFactory is
+			// disabled or hasn't been created yet
 			return;
 		}
 
@@ -164,7 +167,6 @@ class MWExceptionHandler {
 		// to roll back some databases due to connection issues or exceptions.
 		// However, any sensible DB driver will roll back implicitly anyway.
 		try {
-			$lbFactory = $services->getDBLoadBalancerFactory();
 			$lbFactory->rollbackPrimaryChanges( __METHOD__ );
 			$lbFactory->flushPrimarySessions( __METHOD__ );
 		} catch ( DBError $e ) {
@@ -744,7 +746,7 @@ TXT;
 				$logger->error( $json, [ 'private' => true ] );
 			}
 
-			( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onLogException( $e, false );
+			self::callLogExceptionHook( $e, false );
 		}
 	}
 
@@ -780,6 +782,21 @@ TXT;
 			self::getLogContext( $e, $catcher )
 		);
 
-		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onLogException( $e, $suppressed );
+		self::callLogExceptionHook( $e, $suppressed );
+	}
+
+	/**
+	 * Call the LogException hook, suppressing some exceptions.
+	 *
+	 * @param Throwable $e
+	 * @param bool $suppressed
+	 */
+	private static function callLogExceptionHook( Throwable $e, bool $suppressed ) {
+		try {
+			( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+				->onLogException( $e, $suppressed );
+		} catch ( RecursiveServiceDependencyException $e ) {
+			// An error from the HookContainer wiring will lead here (T379125)
+		}
 	}
 }
