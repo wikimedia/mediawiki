@@ -148,7 +148,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 	private CommentFormatter $commentFormatter;
 	private HookRunner $hookRunner;
 	private LinkBatchFactory $linkBatchFactory;
-	private NamespaceInfo $namespaceInfo;
+	protected NamespaceInfo $namespaceInfo;
 	protected RevisionStore $revisionStore;
 
 	/** @var string[] */
