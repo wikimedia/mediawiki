@@ -1203,8 +1203,10 @@
 							const button = new OO.ui.ButtonWidget( {
 								label: mw.msg( 'apisandbox-results-fixtoken' )
 							} );
-							button.on( 'click', ApiSandbox.fixTokenAndResend )
-								.on( 'click', button.setDisabled, [ true ], button )
+							button.on( 'click', () => {
+								ApiSandbox.fixTokenAndResend();
+								button.setDisabled( true );
+							} )
 								.$element.appendTo( $result );
 						}
 					}, ( code, data ) => {
@@ -1320,16 +1322,6 @@
 		);
 	};
 
-	function widgetLabelOnClick() {
-		const f = this.getField();
-		if ( typeof f.setDisabled === 'function' ) {
-			f.setDisabled( false );
-		}
-		if ( typeof f.focus === 'function' ) {
-			f.focus();
-		}
-	}
-
 	/**
 	 * Create a widget and the FieldLayouts it needs
 	 *
@@ -1347,7 +1339,9 @@
 			this.tokenWidget = widget;
 		}
 		if ( this.paramInfo.templatedparameters.length ) {
-			widget.on( 'change', this.updateTemplatedParameters, [ null ], this );
+			widget.on( 'change', () => {
+				this.updateTemplatedParameters( null );
+			} );
 		}
 
 		const helpLabel = new ParamLabelWidget();
@@ -1479,7 +1473,9 @@
 			const button = new OO.ui.ButtonWidget( {
 				label: mw.msg( 'apisandbox-fetch-token' )
 			} );
-			button.on( 'click', widget.fetchToken, [], widget );
+			button.on( 'click', () => {
+				widget.fetchToken();
+			} );
 
 			widgetField = new OO.ui.ActionFieldLayout( widget, button, layoutConfig );
 		} else {
@@ -1488,7 +1484,14 @@
 
 		// We need our own click handler on the widget label to
 		// turn off the disablement.
-		widgetField.$label.on( 'click', widgetLabelOnClick.bind( widgetField ) );
+		widgetField.$label.on( 'click', () => {
+			if ( typeof widget.setDisabled === 'function' ) {
+				widget.setDisabled( false );
+			}
+			if ( typeof widget.focus === 'function' ) {
+				widget.focus();
+			}
+		} );
 
 		// Don't grey out the label when the field is disabled,
 		// it makes it too hard to read and our "disabled"
@@ -1690,7 +1693,9 @@
 						align: 'left'
 					}
 				);
-				button.on( 'click', removeDynamicParamWidget, [ name, actionFieldLayout ] );
+				button.on( 'click', () => {
+					removeDynamicParamWidget( name, actionFieldLayout );
+				} );
 				this.widgets[ name ] = widget;
 				dynamicFieldset.addItems( [ actionFieldLayout ], dynamicFieldset.getItemCount() - 1 );
 				widget.focus();
@@ -1882,7 +1887,9 @@
 						$( '<legend>' ).append(
 							new OO.ui.ToggleButtonWidget( {
 								label: mw.msg( 'apisandbox-deprecated-parameters' )
-							} ).on( 'change', this.deprecatedItemsFieldset.toggle, [], this.deprecatedItemsFieldset ).$element
+							} ).on( 'change', () => {
+								this.deprecatedItemsFieldset.toggle();
+							} ).$element
 						),
 						this.deprecatedItemsFieldset.$element
 					)
@@ -1916,7 +1923,9 @@
 						} ).$element,
 						new OO.ui.ButtonWidget( {
 							label: mw.msg( 'apisandbox-retry' )
-						} ).on( 'click', this.loadParamInfo, [], this ).$element
+						} ).on( 'click', () => {
+							this.loadParamInfo();
+						} ).$element
 					);
 			} );
 	};
