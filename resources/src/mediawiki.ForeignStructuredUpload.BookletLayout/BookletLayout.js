@@ -44,30 +44,29 @@
 	 * @ignore
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.initialize = function () {
-		const booklet = this;
 		return mw.ForeignStructuredUpload.BookletLayout.super.prototype.initialize.call( this ).then(
 			() => $.when(
 				// Point the CategoryMultiselectWidget to the right wiki
-				booklet.upload.getApi().then( ( api ) => {
+				this.upload.getApi().then( ( api ) => {
 					// If this is a ForeignApi, it will have a apiUrl, otherwise we don't need to do anything
 					if ( api.apiUrl ) {
 						// Can't reuse the same object, CategoryMultiselectWidget calls #abort on its mw.Api instance
-						booklet.categoriesWidget.api = new mw.ForeignApi( api.apiUrl );
+						this.categoriesWidget.api = new mw.ForeignApi( api.apiUrl );
 					}
 					return $.Deferred().resolve();
 				} ),
 				// Set up booklet fields and license messages to match configuration
-				booklet.upload.loadConfig().then( ( config ) => {
-					const isLocal = booklet.upload.target === 'local',
+				this.upload.loadConfig().then( ( config ) => {
+					const isLocal = this.upload.target === 'local',
 						fields = config.fields,
 						msgs = config.licensemessages[ isLocal ? 'local' : 'foreign' ];
 
 					// Hide disabled fields
-					booklet.descriptionField.toggle( !!fields.description );
-					booklet.categoriesField.toggle( !!fields.categories );
-					booklet.dateField.toggle( !!fields.date );
+					this.descriptionField.toggle( !!fields.description );
+					this.categoriesField.toggle( !!fields.categories );
+					this.dateField.toggle( !!fields.date );
 					// Update form validity
-					booklet.onInfoFormChange();
+					this.onInfoFormChange();
 
 					let msgPromise;
 					// Load license messages from the remote wiki if we don't have these messages locally
@@ -76,7 +75,7 @@
 					if ( mw.message( 'upload-form-label-own-work-message-' + msgs ).exists() ) {
 						msgPromise = $.Deferred().resolve();
 					} else {
-						msgPromise = booklet.upload.apiPromise.then( ( api ) => api.loadMessages( [
+						msgPromise = this.upload.apiPromise.then( ( api ) => api.loadMessages( [
 							// These messages are documented where msgPromise resolves
 							'upload-form-label-own-work-message-' + msgs,
 							'upload-form-label-not-own-work-message-' + msgs,
@@ -89,18 +88,18 @@
 						// The following messages are used here:
 						// * upload-form-label-own-work-message-generic-local
 						// * upload-form-label-own-work-message-generic-foreign
-						booklet.$ownWorkMessage.msg( 'upload-form-label-own-work-message-' + msgs );
+						this.$ownWorkMessage.msg( 'upload-form-label-own-work-message-' + msgs );
 						// * upload-form-label-not-own-work-message-generic-local
 						// * upload-form-label-not-own-work-message-generic-foreign
-						booklet.$notOwnWorkMessage.msg( 'upload-form-label-not-own-work-message-' + msgs );
+						this.$notOwnWorkMessage.msg( 'upload-form-label-not-own-work-message-' + msgs );
 						// * upload-form-label-not-own-work-local-generic-local
 						// * upload-form-label-not-own-work-local-generic-foreign
-						booklet.$notOwnWorkLocal.msg( 'upload-form-label-not-own-work-local-' + msgs );
+						this.$notOwnWorkLocal.msg( 'upload-form-label-not-own-work-local-' + msgs );
 
 						const $labels = $( [
-							booklet.$ownWorkMessage[ 0 ],
-							booklet.$notOwnWorkMessage[ 0 ],
-							booklet.$notOwnWorkLocal[ 0 ]
+							this.$ownWorkMessage[ 0 ],
+							this.$notOwnWorkMessage[ 0 ],
+							this.$notOwnWorkLocal[ 0 ]
 						] );
 
 						// Improve the behavior of links inside these labels, which may point to important
@@ -115,7 +114,7 @@
 					} );
 				}, ( errorMsg ) => {
 					// eslint-disable-next-line mediawiki/msg-doc
-					booklet.getPage( 'upload' ).$element.msg( errorMsg );
+					this.getPage( 'upload' ).$element.msg( errorMsg );
 					return $.Deferred().resolve();
 				} )
 			)
@@ -149,8 +148,6 @@
 	 * @inheritdoc
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.renderUploadForm = function () {
-		const layout = this;
-
 		// These elements are filled with text in #initialize
 		// TODO Refactor this to be in one place
 		this.$ownWorkMessage = $( '<p>' );
@@ -167,7 +164,7 @@
 			)
 		} );
 		this.ownWorkCheckbox = new OO.ui.CheckboxInputWidget().on( 'change', ( on ) => {
-			layout.messageLabel.toggle( !on );
+			this.messageLabel.toggle( !on );
 		} );
 
 		const fieldset = new OO.ui.FieldsetLayout();
@@ -192,19 +189,19 @@
 		this.ownWorkCheckbox.on( 'change', this.onUploadFormChange.bind( this ) );
 
 		this.selectFileWidget.on( 'change', () => {
-			const file = layout.getFile();
+			const file = this.getFile();
 
 			// Set the date to lastModified once we have the file
-			if ( layout.getDateFromLastModified( file ) !== undefined ) {
-				layout.dateWidget.setValue( layout.getDateFromLastModified( file ) );
+			if ( this.getDateFromLastModified( file ) !== undefined ) {
+				this.dateWidget.setValue( this.getDateFromLastModified( file ) );
 			}
 
 			// Check if we have EXIF data and set to that where available
-			layout.getDateFromExif( file ).done( ( date ) => {
-				layout.dateWidget.setValue( date );
+			this.getDateFromExif( file ).done( ( date ) => {
+				this.dateWidget.setValue( date );
 			} );
 
-			layout.updateFilePreview();
+			this.updateFilePreview();
 		} );
 
 		return this.uploadForm;
@@ -303,8 +300,7 @@
 	 * @inheritdoc
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.onInfoFormChange = function () {
-		const layout = this,
-			validityPromises = [];
+		const validityPromises = [];
 
 		validityPromises.push( this.filenameWidget.getValidity() );
 		if ( this.descriptionField.isVisible() ) {
@@ -315,9 +311,9 @@
 		}
 
 		$.when( ...validityPromises ).done( () => {
-			layout.emit( 'infoValid', true );
+			this.emit( 'infoValid', true );
 		} ).fail( () => {
-			layout.emit( 'infoValid', false );
+			this.emit( 'infoValid', false );
 		} );
 	};
 

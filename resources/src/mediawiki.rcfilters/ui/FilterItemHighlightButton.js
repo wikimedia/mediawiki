@@ -65,8 +65,7 @@ FilterItemHighlightButton.prototype.onAction = function () {
  * Respond to item model update event
  */
 FilterItemHighlightButton.prototype.updateUiBasedOnModel = function () {
-	const currentColor = this.model.getHighlightColor(),
-		widget = this;
+	const currentColor = this.model.getHighlightColor();
 
 	this.$icon.toggleClass(
 		'mw-rcfilters-ui-filterItemHighlightButton-circle',
@@ -80,7 +79,7 @@ FilterItemHighlightButton.prototype.updateUiBasedOnModel = function () {
 		// * mw-rcfilters-ui-filterItemHighlightButton-circle-color-c3
 		// * mw-rcfilters-ui-filterItemHighlightButton-circle-color-c4
 		// * mw-rcfilters-ui-filterItemHighlightButton-circle-color-c5
-		widget.$icon
+		this.$icon
 			.toggleClass(
 				'mw-rcfilters-ui-filterItemHighlightButton-circle-color-' + c,
 				c === currentColor

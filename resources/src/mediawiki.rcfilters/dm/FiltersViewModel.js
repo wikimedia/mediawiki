@@ -76,8 +76,7 @@ OO.mixinClass( FiltersViewModel, OO.EmitterList );
  *  method will go over the state of all items
  */
 FiltersViewModel.prototype.reassessFilterInteractions = function ( item ) {
-	const model = this,
-		iterationItems = item !== undefined ? [ item ] : this.getItems();
+	const iterationItems = item !== undefined ? [ item ] : this.getItems();
 
 	iterationItems.forEach( ( checkedItem ) => {
 		const allCheckedItems = checkedItem.getSubset().concat( [ checkedItem.getName() ] ),
@@ -85,12 +84,12 @@ FiltersViewModel.prototype.reassessFilterInteractions = function ( item ) {
 
 		// Check for subsets (included filters) plus the item itself:
 		allCheckedItems.forEach( ( filterItemName ) => {
-			const itemInSubset = model.getItemByName( filterItemName );
+			const itemInSubset = this.getItemByName( filterItemName );
 
 			itemInSubset.toggleIncluded(
 				// If any of itemInSubset's supersets are selected, this item
 				// is included
-				itemInSubset.getSuperset().some( ( supersetName ) => ( model.getItemByName( supersetName ).isSelected() ) )
+				itemInSubset.getSuperset().some( ( supersetName ) => ( this.getItemByName( supersetName ).isSelected() ) )
 			);
 		} );
 
@@ -114,7 +113,7 @@ FiltersViewModel.prototype.reassessFilterInteractions = function ( item ) {
 
 		// For each item, see if that item is still conflicting
 		// eslint-disable-next-line no-jquery/no-each-util
-		$.each( model.groups, ( groupName, groupModel ) => {
+		$.each( this.groups, ( groupName, groupModel ) => {
 			if ( filterItem.getGroupName() === groupName ) {
 				// Check inside the group
 				inConflict = groupModel.areAnySelectedInConflictWith( filterItem );
@@ -221,8 +220,7 @@ FiltersViewModel.prototype.getFirstConflictedItem = function () {
  *  }
  */
 FiltersViewModel.prototype.initializeFilters = function ( filterGroups, views ) {
-	const model = this,
-		items = [],
+	const items = [],
 		groupConflictMap = {},
 		filterConflictMap = {},
 		/*!
@@ -235,7 +233,7 @@ FiltersViewModel.prototype.initializeFilters = function ( filterGroups, views ) 
 		 * @param {Object} obj Conflict definition
 		 * @return {Object} Expanded conflict definition
 		 */
-		expandConflictDefinitions = function ( obj ) {
+		expandConflictDefinitions = ( obj ) => {
 			const result = {};
 
 			// eslint-disable-next-line no-jquery/no-each-util
@@ -246,8 +244,8 @@ FiltersViewModel.prototype.initializeFilters = function ( filterGroups, views ) 
 					let filter;
 
 					if ( conflict.filter ) {
-						const filterName = model.groups[ conflict.group ].getPrefixedName( conflict.filter );
-						filter = model.getItemByName( filterName );
+						const filterName = this.groups[ conflict.group ].getPrefixedName( conflict.filter );
+						filter = this.getItemByName( filterName );
 
 						// Rename
 						adjustedConflicts[ filterName ] = Object.assign(
@@ -263,7 +261,7 @@ FiltersViewModel.prototype.initializeFilters = function ( filterGroups, views ) 
 						// represent each filter
 
 						// Get the relevant group items
-						model.groups[ conflict.group ].getItems().forEach( ( groupItem ) => {
+						this.groups[ conflict.group ].getItems().forEach( ( groupItem ) => {
 							// Rebuild the conflict
 							adjustedConflicts[ groupItem.getName() ] = Object.assign(
 								{},
@@ -328,7 +326,7 @@ FiltersViewModel.prototype.initializeFilters = function ( filterGroups, views ) 
 	// eslint-disable-next-line no-jquery/no-each-util
 	$.each( allViews, ( viewName, viewData ) => {
 		// Define the view
-		model.views[ viewName ] = {
+		this.views[ viewName ] = {
 			name: viewData.name,
 			title: viewData.title,
 			trigger: viewData.trigger
@@ -338,15 +336,15 @@ FiltersViewModel.prototype.initializeFilters = function ( filterGroups, views ) 
 		viewData.groups.forEach( ( groupData ) => {
 			const group = groupData.name;
 
-			if ( !model.groups[ group ] ) {
-				model.groups[ group ] = new FilterGroup(
+			if ( !this.groups[ group ] ) {
+				this.groups[ group ] = new FilterGroup(
 					group,
 					$.extend( true, {}, groupData, { view: viewName } )
 				);
 			}
 
-			model.groups[ group ].initializeFilters( groupData.filters, groupData.default );
-			items.push( ...model.groups[ group ].getItems() );
+			this.groups[ group ].initializeFilters( groupData.filters, groupData.default );
+			items.push( ...this.groups[ group ].getItems() );
 
 			// Prepare conflicts
 			if ( groupData.conflicts ) {
@@ -355,7 +353,7 @@ FiltersViewModel.prototype.initializeFilters = function ( filterGroups, views ) 
 			}
 
 			groupData.filters.forEach( ( itemData ) => {
-				const filterItem = model.groups[ group ].getItemByParamName( itemData.name );
+				const filterItem = this.groups[ group ].getItemByParamName( itemData.name );
 				// Filter conflicts
 				if ( itemData.conflicts ) {
 					filterConflictMap[ filterItem.getName() ] = itemData.conflicts;
@@ -374,13 +372,13 @@ FiltersViewModel.prototype.initializeFilters = function ( filterGroups, views ) 
 	// Set conflicts for groups
 	// eslint-disable-next-line no-jquery/no-each-util
 	$.each( groupConflictResult, ( group, conflicts ) => {
-		model.groups[ group ].setConflicts( conflicts );
+		this.groups[ group ].setConflicts( conflicts );
 	} );
 
 	// Set conflicts for items
 	// eslint-disable-next-line no-jquery/no-each-util
 	$.each( filterConflictResult, ( filterName, conflicts ) => {
-		const filterItem = model.getItemByName( filterName );
+		const filterItem = this.getItemByName( filterName );
 		// set conflicts for items in the group
 		filterItem.setConflicts( conflicts );
 	} );
@@ -395,14 +393,14 @@ FiltersViewModel.prototype.initializeFilters = function ( filterGroups, views ) 
 		) {
 			// Individual filters
 			groupModel.getItems().forEach( ( filterItem ) => {
-				model.parameterMap[ filterItem.getParamName() ] = filterItem;
+				this.parameterMap[ filterItem.getParamName() ] = filterItem;
 			} );
 		} else if (
 			groupModel.getType() === 'string_options' ||
 			groupModel.getType() === 'single_option'
 		) {
 			// Group
-			model.parameterMap[ groupModel.getName() ] = groupModel;
+			this.parameterMap[ groupModel.getName() ] = groupModel;
 		}
 	} );
 
@@ -773,8 +771,7 @@ FiltersViewModel.prototype.getParametersFromFilters = function ( filterDefinitio
  * @return {Object} Filter state object
  */
 FiltersViewModel.prototype.getFiltersFromParameters = function ( params ) {
-	const groupMap = {},
-		model = this;
+	const groupMap = {};
 	let result = {};
 
 	// Go over the given parameters, break apart to groupings
@@ -790,7 +787,7 @@ FiltersViewModel.prototype.getFiltersFromParameters = function ( params ) {
 	// }
 	// eslint-disable-next-line no-jquery/no-each-util
 	$.each( params, ( paramName, paramValue ) => {
-		const itemOrGroup = model.parameterMap[ paramName ];
+		const itemOrGroup = this.parameterMap[ paramName ];
 
 		if ( itemOrGroup ) {
 			const groupName = itemOrGroup instanceof FilterItem ?

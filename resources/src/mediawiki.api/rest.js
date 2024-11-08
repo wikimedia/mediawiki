@@ -177,8 +177,7 @@
 		 *  Fail: Error code
 		 */
 		ajax: function ( path, ajaxOptions ) {
-			const self = this,
-				apiDeferred = $.Deferred();
+			const apiDeferred = $.Deferred();
 
 			ajaxOptions = Object.assign( {}, this.defaults.ajax, ajaxOptions );
 			ajaxOptions.url = this.url + path;
@@ -190,7 +189,7 @@
 			const requestIndex = this.requests.length;
 			this.requests.push( xhr );
 			xhr.always( () => {
-				self.requests[ requestIndex ] = null;
+				this.requests[ requestIndex ] = null;
 			} );
 
 			xhr.then(

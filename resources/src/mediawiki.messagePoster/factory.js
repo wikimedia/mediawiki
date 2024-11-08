@@ -86,8 +86,7 @@
 	 *   - details Further error details
 	 */
 	MessagePosterFactory.prototype.create = function ( title, apiUrl ) {
-		const factory = this,
-			api = apiUrl ? new mw.ForeignApi( apiUrl ) : new mw.Api();
+		const api = apiUrl ? new mw.ForeignApi( apiUrl ) : new mw.Api();
 
 		return api.get( {
 			formatversion: 2,
@@ -100,10 +99,10 @@
 				return $.Deferred().reject( 'unexpected-response', 'Unexpected API response' );
 			}
 			const contentModel = page.contentmodel;
-			if ( !factory.contentModelToClass[ contentModel ] ) {
+			if ( !this.contentModelToClass[ contentModel ] ) {
 				return $.Deferred().reject( 'content-model-unknown', 'No handler for "' + contentModel + '"' );
 			}
-			return new factory.contentModelToClass[ contentModel ]( title, api );
+			return new this.contentModelToClass[ contentModel ]( title, api );
 		}, ( error, details ) => $.Deferred().reject( 'content-model-query-failed', error, details ) );
 	};
 

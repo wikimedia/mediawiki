@@ -100,16 +100,15 @@ OO.mixinClass( FilterGroup, OO.EmitterList );
 FilterGroup.prototype.initializeFilters = function ( filterDefinition, groupDefault ) {
 	let defaultParam;
 	const supersetMap = {},
-		model = this,
 		items = [];
 
 	filterDefinition.forEach( ( filter ) => {
 		// Instantiate an item
-		const filterItem = new FilterItem( filter.name, model, {
-			group: model.getName(),
+		const filterItem = new FilterItem( filter.name, this, {
+			group: this.getName(),
 			label: filter.label || filter.name,
 			description: filter.description || '',
-			labelPrefixKey: model.labelPrefixKey,
+			labelPrefixKey: this.labelPrefixKey,
 			cssClass: filter.cssClass,
 			helpLink: filter.helpLink,
 			identifiers: filter.identifiers,
@@ -125,7 +124,7 @@ FilterGroup.prototype.initializeFilters = function ( filterDefinition, groupDefa
 				// Subsets (unlike conflicts) are always inside the same group
 				// We can re-map the names of the filters we are getting from
 				// the subsets with the group prefix
-				const subsetName = model.getPrefixedName( subsetFilterName );
+				const subsetName = this.getPrefixedName( subsetFilterName );
 				// For convenience, we should store each filter's "supersets" -- these are
 				// the filters that have that item in their subset list. This will just
 				// make it easier to go through whether the item has any other items
@@ -150,15 +149,15 @@ FilterGroup.prototype.initializeFilters = function ( filterDefinition, groupDefa
 
 		// Store default parameter state; in this case, default is defined per filter
 		if (
-			model.getType() === 'send_unselected_if_any' ||
-			model.getType() === 'boolean'
+			this.getType() === 'send_unselected_if_any' ||
+			this.getType() === 'boolean'
 		) {
 			// Store the default parameter state
 			// For this group type, parameter values are direct
 			// We need to convert from a boolean to a string ('1' and '0')
-			model.defaultParams[ filter.name ] = String( Number( filter.default || 0 ) );
-		} else if ( model.getType() === 'any_value' ) {
-			model.defaultParams[ filter.name ] = filter.default;
+			this.defaultParams[ filter.name ] = String( Number( filter.default || 0 ) );
+		} else if ( this.getType() === 'any_value' ) {
+			this.defaultParams[ filter.name ] = filter.default;
 		}
 	} );
 
@@ -208,7 +207,7 @@ FilterGroup.prototype.initializeFilters = function ( filterDefinition, groupDefa
 		const defaultFilters = this.defaultFilters;
 		for ( const filterName in defaultFilters ) {
 			const filterValue = defaultFilters[ filterName ];
-			model.getItemByName( filterName ).toggleSelected( filterValue );
+			this.getItemByName( filterName ).toggleSelected( filterValue );
 		}
 	}
 
@@ -236,8 +235,7 @@ FilterGroup.prototype.initializeFilters = function ( filterDefinition, groupDefa
 FilterGroup.prototype.onFilterItemUpdate = function ( item ) {
 	// Update state
 	let changed = false;
-	const active = this.areAnySelected(),
-		model = this;
+	const active = this.areAnySelected();
 
 	if ( this.getType() === 'single_option' ) {
 		// This group must have one item selected always
@@ -264,7 +262,7 @@ FilterGroup.prototype.onFilterItemUpdate = function ( item ) {
 
 				itemModel.toggleSelected( selected );
 				if ( selected ) {
-					model.currSelected = itemModel;
+					this.currSelected = itemModel;
 				}
 			} );
 			changed = true;
@@ -528,9 +526,8 @@ FilterGroup.prototype.getParamRepresentation = function ( filterRepresentation )
 	const buildFromCurrentState = !filterRepresentation,
 		defaultFilters = this.getDefaultFilters(),
 		result = {},
-		model = this,
 		filterParamNames = {},
-		getSelectedParameter = function ( filters ) {
+		getSelectedParameter = ( filters ) => {
 			const selected = [];
 
 			// Find if any are selected
@@ -541,7 +538,7 @@ FilterGroup.prototype.getParamRepresentation = function ( filterRepresentation )
 				}
 			} );
 
-			const item = model.getItemByName( selected[ 0 ] );
+			const item = this.getItemByName( selected[ 0 ] );
 			return ( item && item.getParamName() ) || '';
 		};
 
@@ -560,7 +557,7 @@ FilterGroup.prototype.getParamRepresentation = function ( filterRepresentation )
 			// We are given a filter representation, but we have to make
 			// sure that we fill in the missing filters if there are any
 			// we will assume they are all falsey
-			if ( model.isSticky() ) {
+			if ( this.isSticky() ) {
 				filterRepresentation[ item.getName() ] = !!defaultFilters[ item.getName() ];
 			} else {
 				filterRepresentation[ item.getName() ] = false;
@@ -586,15 +583,15 @@ FilterGroup.prototype.getParamRepresentation = function ( filterRepresentation )
 		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( filterRepresentation, ( name, value ) => {
 			// We must store all parameter values as strings '0' or '1'
-			if ( model.getType() === 'send_unselected_if_any' ) {
+			if ( this.getType() === 'send_unselected_if_any' ) {
 				result[ filterParamNames[ name ] ] = areAnySelected ?
 					String( Number( !value ) ) :
 					'0';
-			} else if ( model.getType() === 'boolean' ) {
+			} else if ( this.getType() === 'boolean' ) {
 				// Representation is straight-forward and direct from
 				// the parameter value to the filter state
 				result[ filterParamNames[ name ] ] = String( Number( !!value ) );
-			} else if ( model.getType() === 'any_value' ) {
+			} else if ( this.getType() === 'any_value' ) {
 				result[ filterParamNames[ name ] ] = value;
 			}
 		} );
@@ -634,7 +631,6 @@ FilterGroup.prototype.getFilterRepresentation = function ( paramRepresentation )
 		oneWasSelected = false;
 	const defaultParams = this.getDefaultParams(),
 		expandedParams = $.extend( true, {}, paramRepresentation ),
-		model = this,
 		paramToFilterMap = {},
 		result = {};
 
@@ -667,7 +663,7 @@ FilterGroup.prototype.getFilterRepresentation = function ( paramRepresentation )
 		$.each( expandedParams, ( paramName, paramValue ) => {
 			const filterItem = paramToFilterMap[ paramName ];
 
-			if ( model.getType() === 'send_unselected_if_any' ) {
+			if ( this.getType() === 'send_unselected_if_any' ) {
 				// Flip the definition between the parameter
 				// state and the filter state
 				// This is what the 'toggleSelected' value of the filter is
@@ -676,10 +672,10 @@ FilterGroup.prototype.getFilterRepresentation = function ( paramRepresentation )
 					// Otherwise, there are no selected items in the
 					// group, which means the state is false
 					false;
-			} else if ( model.getType() === 'boolean' ) {
+			} else if ( this.getType() === 'boolean' ) {
 				// Straight-forward definition of state
 				result[ filterItem.getName() ] = !!Number( paramRepresentation[ filterItem.getParamName() ] );
-			} else if ( model.getType() === 'any_value' ) {
+			} else if ( this.getType() === 'any_value' ) {
 				result[ filterItem.getName() ] = paramRepresentation[ filterItem.getParamName() ];
 			}
 		} );
@@ -709,7 +705,7 @@ FilterGroup.prototype.getFilterRepresentation = function ( paramRepresentation )
 	} else if ( this.getType() === 'single_option' ) {
 		// There is parameter that fits a single filter and if not, get the default
 		this.getItems().forEach( ( filterItem ) => {
-			const selected = filterItem.getParamName() === paramRepresentation[ model.getName() ];
+			const selected = filterItem.getParamName() === paramRepresentation[ this.getName() ];
 
 			result[ filterItem.getName() ] = selected;
 			oneWasSelected = oneWasSelected || selected;

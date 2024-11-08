@@ -10,7 +10,7 @@
 	 *   button = new OO.ui.ButtonWidget( { label: 'Save' } ),
 	 *   upload = new mw.Upload;
 	 *
-	 * button.on( 'click', function () {
+	 * button.on( 'click', () => {
 	 *   upload.setFile( file.getValue() );
 	 *   upload.setFilename( file.getValue().name );
 	 *   upload.upload();
@@ -26,14 +26,14 @@
 	 *   stashPromise = $.Deferred();
 	 *
 	 * upload.setFile( file );
-	 * upload.uploadToStash().then( function () {
+	 * upload.uploadToStash().then( () => {
 	 *   stashPromise.resolve();
 	 * } );
 	 *
-	 * stashPromise.then( function () {
+	 * stashPromise.then( () => {
 	 *   upload.setFilename( 'foo' );
 	 *   upload.setText( 'bar' );
-	 *   upload.finishStashUpload().then( function () {
+	 *   upload.finishStashUpload().then( () => {
 	 *     console.log( 'Done!' );
 	 *   } );
 	 * } );
@@ -101,10 +101,8 @@
 	 * @param {string} filekey
 	 */
 	UP.setFilekey = function ( filekey ) {
-		const upload = this;
-
 		this.setState( Upload.State.STASHED );
-		this.stashPromise = $.Deferred().resolve( ( data ) => upload.api.uploadFromStash( filekey, data ) );
+		this.stashPromise = $.Deferred().resolve( ( data ) => this.api.uploadFromStash( filekey, data ) );
 	};
 
 	/**
@@ -297,8 +295,6 @@
 	 * @return {jQuery.Promise}
 	 */
 	UP.upload = function () {
-		const upload = this;
-
 		if ( !this.getFile() ) {
 			return $.Deferred().reject( 'No file to upload. Call setFile to add one.' );
 		}
@@ -315,14 +311,14 @@
 			filename: this.getFilename(),
 			text: this.getText()
 		} ).then( ( result ) => {
-			upload.setState( Upload.State.UPLOADED );
-			upload.imageinfo = result.upload.imageinfo;
+			this.setState( Upload.State.UPLOADED );
+			this.imageinfo = result.upload.imageinfo;
 			return result;
 		}, ( errorCode, result ) => {
 			if ( result && result.upload && result.upload.warnings ) {
-				upload.setState( Upload.State.WARNING, result );
+				this.setState( Upload.State.WARNING, result );
 			} else {
-				upload.setState( Upload.State.ERROR, result );
+				this.setState( Upload.State.ERROR, result );
 			}
 			return $.Deferred().reject( errorCode, result );
 		} );
@@ -336,8 +332,6 @@
 	 * @return {jQuery.Promise}
 	 */
 	UP.uploadToStash = function () {
-		const upload = this;
-
 		if ( !this.getFile() ) {
 			return $.Deferred().reject( 'No file to upload. Call setFile to add one.' );
 		}
@@ -352,13 +346,13 @@
 			ignorewarnings: true,
 			filename: this.getFilename()
 		} ).then( ( finishStash ) => {
-			upload.setState( Upload.State.STASHED );
+			this.setState( Upload.State.STASHED );
 			return finishStash;
 		}, ( errorCode, result ) => {
 			if ( result && result.upload && result.upload.warnings ) {
-				upload.setState( Upload.State.WARNING, result );
+				this.setState( Upload.State.WARNING, result );
 			} else {
-				upload.setState( Upload.State.ERROR, result );
+				this.setState( Upload.State.ERROR, result );
 			}
 			return $.Deferred().reject( errorCode, result );
 		} );
@@ -374,30 +368,28 @@
 	 * @return {jQuery.Promise}
 	 */
 	UP.finishStashUpload = function () {
-		const upload = this;
-
 		if ( !this.stashPromise ) {
 			return $.Deferred().reject( 'This upload has not been stashed, please upload it to the stash first.' );
 		}
 
 		return this.stashPromise.then( ( finishStash ) => {
-			upload.setState( Upload.State.UPLOADING );
+			this.setState( Upload.State.UPLOADING );
 
 			return finishStash( {
 				ignorewarnings: false,
-				watchlist: ( upload.getWatchlist() ) ? 1 : undefined,
-				comment: upload.getComment(),
-				filename: upload.getFilename(),
-				text: upload.getText()
+				watchlist: ( this.getWatchlist() ) ? 1 : undefined,
+				comment: this.getComment(),
+				filename: this.getFilename(),
+				text: this.getText()
 			} ).then( ( result ) => {
-				upload.setState( Upload.State.UPLOADED );
-				upload.imageinfo = result.upload.imageinfo;
+				this.setState( Upload.State.UPLOADED );
+				this.imageinfo = result.upload.imageinfo;
 				return result;
 			}, ( errorCode, result ) => {
 				if ( result && result.upload && result.upload.warnings ) {
-					upload.setState( Upload.State.WARNING, result );
+					this.setState( Upload.State.WARNING, result );
 				} else {
-					upload.setState( Upload.State.ERROR, result );
+					this.setState( Upload.State.ERROR, result );
 				}
 				return $.Deferred().reject( errorCode, result );
 			} );

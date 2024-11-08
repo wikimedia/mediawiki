@@ -27,7 +27,7 @@
 	 * api.get( {
 	 *     action: 'query',
 	 *     meta: 'userinfo'
-	 * } ).then( function ( data ) {
+	 * } ).then( ( data ) => {
 	 *     console.log( data );
 	 * } );
 	 * ```
@@ -39,7 +39,7 @@
 	 * api.get( {
 	 *     action: 'query',
 	 *     meta: [ 'userinfo', 'siteinfo' ] // same effect as 'userinfo|siteinfo'
-	 * } ).then( function ( data ) {
+	 * } ).then( ( data ) => {
 	 *     console.log( data );
 	 * } );
 	 * ```
@@ -231,8 +231,7 @@
 		 *       {@link JSON.parse}.
 		 */
 		ajax: function ( parameters, ajaxOptions ) {
-			const api = this,
-				apiDeferred = $.Deferred();
+			const apiDeferred = $.Deferred();
 
 			parameters = Object.assign( {}, this.defaults.parameters, parameters );
 			ajaxOptions = Object.assign( {}, this.defaults.ajax, ajaxOptions );
@@ -320,7 +319,7 @@
 			const requestIndex = this.requests.length;
 			this.requests.push( xhr );
 			xhr.always( () => {
-				api.requests[ requestIndex ] = null;
+				this.requests[ requestIndex ] = null;
 			} );
 			// Return the Promise
 			return apiDeferred.promise( { abort: xhr.abort } ).fail( ( code, details ) => {
@@ -349,8 +348,7 @@
 		 * @since 1.22
 		 */
 		postWithToken: function ( tokenType, params, ajaxOptions ) {
-			const api = this,
-				assertParams = {
+			const assertParams = {
 					assert: params.assert,
 					assertuser: params.assertuser
 				},
@@ -359,7 +357,7 @@
 			let abortable,
 				aborted;
 
-			return api.getToken( tokenType, assertParams ).then( ( token ) => {
+			return this.getToken( tokenType, assertParams ).then( ( token ) => {
 				params.token = token;
 				// Request was aborted while token request was running, but we
 				// don't want to unnecessarily abort token requests, so abort
@@ -368,29 +366,29 @@
 					return abortedPromise;
 				}
 
-				return ( abortable = api.post( params, ajaxOptions ) ).catch(
+				return ( abortable = this.post( params, ajaxOptions ) ).catch(
 					// Error handler
-					function ( code ) {
+					( code, ...args ) => {
 						if ( code === 'badtoken' ) {
-							api.badToken( tokenType );
+							this.badToken( tokenType );
 							// Try again, once
 							params.token = undefined;
 							abortable = null;
-							return api.getToken( tokenType, assertParams ).then( ( t ) => {
+							return this.getToken( tokenType, assertParams ).then( ( t ) => {
 								params.token = t;
 								if ( aborted ) {
 									return abortedPromise;
 								}
 
-								return ( abortable = api.post( params, ajaxOptions ) );
+								return ( abortable = this.post( params, ajaxOptions ) );
 							} );
 						}
 
 						// Let caller handle the error code
-						return $.Deferred().rejectWith( this, arguments );
+						return $.Deferred().reject( code, ...args );
 					}
 				);
-			} ).promise( { abort: function () {
+			} ).promise( { abort: () => {
 				if ( abortable ) {
 					abortable.abort();
 				} else {
@@ -421,13 +419,13 @@
 			}
 			let promise = promiseGroup && promiseGroup[ cacheKey ];
 
-			function reject() {
+			const reject = ( ...args ) => {
 				// Clear cache. Do not cache errors.
 				delete promiseGroup[ cacheKey ];
 
 				// Let caller handle the error code
-				return $.Deferred().rejectWith( this, arguments );
-			}
+				return $.Deferred().reject( ...args );
+			};
 
 			if ( !promise ) {
 				const apiPromise = this.get( Object.assign( {
@@ -499,9 +497,9 @@
 		 * api.postWithToken( 'watch', {
 		 *   action: 'watch',
 		 *   title: title
-		 * } ).then( function ( data ) {
+		 * } ).then( ( data ) => {
 		 *   mw.notify( 'Success!' );
-		 * }, function ( code, data ) {
+		 * }, ( code, data ) => {
 		 *   mw.notify( api.getErrorMessage( data ), { type: 'error' } );
 		 * } );
 		 *

@@ -315,13 +315,12 @@
 			 * @throws {Error} when the query string or fragment contains an unknown % sequence
 			 */
 			parse: function ( str, options ) {
-				const uri = this,
-					hasOwn = Object.prototype.hasOwnProperty;
+				const hasOwn = Object.prototype.hasOwnProperty;
 
 				// Apply parser regex and set all properties based on the result
 				const matches = parser[ options.strictMode ? 'strict' : 'loose' ].exec( str );
 				properties.forEach( ( property, i ) => {
-					uri[ property ] = matches[ i + 1 ];
+					this[ property ] = matches[ i + 1 ];
 				} );
 
 				// uri.query starts out as the query string; we will parse it into key-val pairs then make
@@ -329,9 +328,9 @@
 				// we overwrite query in uri way to make cloning easier, it can use the same list of properties.
 				const q = {};
 				// using replace to iterate over a string
-				if ( uri.query ) {
+				if ( this.query ) {
 
-					uri.query.replace( /(?:^|&)([^&=]*)(?:(=)([^&]*))?/g, ( match, k, eq, v ) => {
+					this.query.replace( /(?:^|&)([^&=]*)(?:(=)([^&]*))?/g, ( match, k, eq, v ) => {
 						let arrayKeyMatch, i;
 						if ( k ) {
 							k = Uri.decode( k );
@@ -376,11 +375,11 @@
 						}
 					} );
 				}
-				uri.query = q;
+				this.query = q;
 
 				// Decode uri.fragment, otherwise it gets double-encoded when serializing
-				if ( uri.fragment !== undefined ) {
-					uri.fragment = Uri.decode( uri.fragment );
+				if ( this.fragment !== undefined ) {
+					this.fragment = Uri.decode( this.fragment );
 				}
 			},
 

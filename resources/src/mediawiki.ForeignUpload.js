@@ -24,8 +24,7 @@
 	 * @param {Object} [apiconfig] Passed to the constructor of {@link mw.ForeignApi} or {@link mw.Api}, as needed.
 	 */
 	function ForeignUpload( target, apiconfig ) {
-		const validTargets = config.ForeignUploadTargets,
-			upload = this;
+		const validTargets = config.ForeignUploadTargets;
 
 		if ( typeof target === 'object' ) {
 			// target probably wasn't passed in, it must
@@ -73,7 +72,7 @@
 
 					// Skip repos that are not our target, or if they
 					// are the target, cannot be uploaded to.
-					if ( repo.name === upload.target && repo.canUpload === '' ) {
+					if ( repo.name === this.target && repo.canUpload === '' ) {
 						return new mw.ForeignApi(
 							repo.scriptDirUrl + '/api.php',
 							apiconfig
@@ -123,10 +122,9 @@
 	 * @inheritdoc
 	 */
 	ForeignUpload.prototype.upload = function () {
-		const upload = this;
 		return this.apiPromise.then( ( api ) => {
-			upload.api = api;
-			return mw.Upload.prototype.upload.call( upload );
+			this.api = api;
+			return mw.Upload.prototype.upload.call( this );
 		} );
 	};
 
@@ -136,10 +134,9 @@
 	 * @inheritdoc
 	 */
 	ForeignUpload.prototype.uploadToStash = function () {
-		const upload = this;
 		return this.apiPromise.then( ( api ) => {
-			upload.api = api;
-			return mw.Upload.prototype.uploadToStash.call( upload );
+			this.api = api;
+			return mw.Upload.prototype.uploadToStash.call( this );
 		} );
 	};
 
