@@ -29,7 +29,6 @@ use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\Field\HTMLMultiSelectField;
 use MediaWiki\HTMLForm\HTMLForm;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Pager\ContribsPager;
 use MediaWiki\Pager\ContributionsPager;
 use MediaWiki\Permissions\PermissionManager;
@@ -66,6 +65,9 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * @since 1.43 Refactored from SpecialContributions
  */
 class ContributionsSpecialPage extends IncludableSpecialPage {
+
+	use ContributionsRangeTrait;
+
 	/** @var array */
 	protected $opts = [];
 	/** @var bool */
@@ -312,11 +314,12 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 			$userIdentity = $notExternal ? $userObj :
 				$this->userIdentityLookup->getUserIdentityByName( $target ) ?? $userObj;
 			$pager = $this->getPager( $userIdentity );
-			if ( IPUtils::isValidRange( $target ) &&
-				!ContribsPager::isQueryableRange( $target, $this->getConfig() )
+			if (
+				IPUtils::isValidRange( $target ) &&
+				!$this->isQueryableRange( $target, $this->getConfig() )
 			) {
 				// Valid range, but outside CIDR limit.
-				$limits = $this->getConfig()->get( MainConfigNames::RangeContributionsCIDRLimit );
+				$limits = $this->getQueryableRangeLimit( $this->getConfig() );
 				$limit = $limits[ IPUtils::isIPv4( $target ) ? 'IPv4' : 'IPv6' ];
 				$out->addWikiMsg( 'sp-contributions-outofrange', $limit );
 			} else {
@@ -365,8 +368,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 			$out->setPreventClickjacking( $pager->getPreventClickjacking() );
 
 			# Show the appropriate "footer" message - WHOIS tools, etc.
-			if ( IPUtils::isValidRange( $target ) &&
-				ContribsPager::isQueryableRange( $target, $this->getConfig() )
+			if ( $this->isQueryableRange( $target, $this->getConfig() )
 			) {
 				$message = 'sp-contributions-footer-anon-range';
 			} elseif ( IPUtils::isIPAddress( $target ) ) {
@@ -436,8 +438,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 		$links = '';
 
 		// T211910. Don't show action links if a range is outside block limit
-		$showForIp = IPUtils::isValid( $userObj ) ||
-			( IPUtils::isValidRange( $userObj ) && ContribsPager::isQueryableRange( $userObj, $this->getConfig() ) );
+		$showForIp = $this->isValidIPOrQueryableRange( $userObj, $this->getConfig() );
 
 		// T276306. if the user is hidden and the viewer cannot see hidden, pretend that it does not exist
 		$registeredAndVisible = $userObj->isRegistered() && ( !$userObj->isHidden()
