@@ -13,7 +13,7 @@
 			:hide-caption="true"
 		>
 			<template #empty-state>
-				{{ $i18n( 'block-user-no-previous-blocks' ).text() }}
+				{{ emptyState }}
 			</template>
 			<template #item-timestamp="{ item }">
 				<a
@@ -111,8 +111,13 @@ module.exports = exports = defineComponent( {
 		const { targetUser } = storeToRefs( useBlockStore() );
 
 		let title = mw.message( 'block-user-previous-blocks' ).text();
+		let emptyState = mw.message( 'block-user-no-previous-blocks' ).text();
 		if ( props.blockLogType === 'active' ) {
 			title = mw.message( 'block-user-active-blocks' ).text();
+			emptyState = mw.message( 'block-user-no-active-blocks' ).text();
+		} else if ( props.blockLogType === 'suppress' ) {
+			title = mw.message( 'block-user-suppressed-blocks' ).text();
+			emptyState = mw.message( 'block-user-no-suppressed-blocks' ).text();
 		}
 
 		const columns = [
@@ -142,14 +147,13 @@ module.exports = exports = defineComponent( {
 				format: 'json',
 				formatversion: 2
 			};
-			if ( props.blockLogType === 'recent' ) {
+			if ( props.blockLogType === 'recent' || props.blockLogType === 'suppress' ) {
 				params.list = 'logevents';
 				params.lelimit = '10';
-				params.letype = 'block';
+				params.letype = props.blockLogType === 'suppress' ? 'suppress' : 'block';
 				params.leprop = 'ids|title|type|user|timestamp|comment|details';
 				params.letitle = 'User:' + searchTerm;
 			} else {
-				// params.origin = '*';
 				params.list = 'blocks';
 				params.bklimit = '10';
 				params.bkprop = 'id|user|by|timestamp|expiry|reason|range|flags';
@@ -170,8 +174,8 @@ module.exports = exports = defineComponent( {
 					moreBlocks.value = !!response.continue;
 					let data = response.query;
 
-					if ( props.blockLogType === 'recent' ) {
-						// List of recent blocks.
+					if ( props.blockLogType === 'recent' || props.blockLogType === 'suppress' ) {
+						// List of block and supress log entries.
 						// The fallback is only necessary for Jest tests.
 						data = data || { logevents: [] };
 						for ( let i = 0; i < data.logevents.length; i++ ) {
@@ -221,6 +225,7 @@ module.exports = exports = defineComponent( {
 			mw,
 			util,
 			title,
+			emptyState,
 			columns,
 			menuItems,
 			selection,
