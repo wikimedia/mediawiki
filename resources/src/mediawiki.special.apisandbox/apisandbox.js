@@ -193,7 +193,7 @@
 			if ( Object.prototype.hasOwnProperty.call( moduleInfoCache, module ) ) {
 				return deferred
 					.resolve( moduleInfoCache[ module ] )
-					.promise( { abort: function () {} } );
+					.promise( { abort: () => {} } );
 			} else {
 				const apiPromise = api.post( {
 					action: 'paraminfo',
@@ -493,20 +493,20 @@
 							widget.getMenu().on( 'select', ApiSandbox.updateUI );
 						}
 						if ( pi.deprecatedvalues ) {
-							widget.getMenu().on( 'select', function ( item ) {
-								this.$element.toggleClass(
+							widget.getMenu().on( 'select', ( item ) => {
+								widget.$element.toggleClass(
 									'mw-apisandbox-deprecated-value',
 									pi.deprecatedvalues.indexOf( item.data ) >= 0
 								);
-							}, [], widget );
+							} );
 						}
 						if ( pi.internalvalues ) {
-							widget.getMenu().on( 'select', function ( item ) {
-								this.$element.toggleClass(
+							widget.getMenu().on( 'select', ( item ) => {
+								widget.$element.toggleClass(
 									'mw-apisandbox-internal-value',
 									pi.internalvalues.indexOf( item.data ) >= 0
 								);
-							}, [], widget );
+							} );
 						}
 					}
 
@@ -534,7 +534,7 @@
 				widget.paramInfo = pi;
 				Object.assign( widget, WidgetMethods.tagWidget );
 
-				const func = function () {
+				const func = () => {
 					if ( !innerWidget.isDisabled() ) {
 						innerWidget.apiCheckValid( suppressErrors ).done( ( ok ) => {
 							if ( ok ) {
@@ -933,9 +933,9 @@
 				baseRequestParams = Object.assign( {}, params );
 			}
 
-			$.when( ...deferreds ).done( function () {
+			$.when( ...deferreds ).done( ( ...args ) => {
 				// Count how many times `value` occurs in `array`.
-				function countValues( value, array ) {
+				const countValues = ( value, array ) => {
 					let count = 0;
 					for ( let n = 0; n < array.length; n++ ) {
 						if ( array[ n ] === value ) {
@@ -943,9 +943,9 @@
 						}
 					}
 					return count;
-				}
+				};
 
-				const errorCount = countValues( false, arguments );
+				const errorCount = countValues( false, args );
 				if ( errorCount > 0 ) {
 					const actions = [
 						{
@@ -959,9 +959,9 @@
 						// Check all token widgets' validity separately
 						deferred = $.when( ...tokenWidgets.map( ( w ) => w.apiCheckValid( suppressErrors ) ) );
 
-						deferred.done( function () {
+						deferred.done( ( ...args2 ) => {
 							// If only the tokens are invalid, offer to fix them
-							const tokenErrorCount = countValues( false, arguments );
+							const tokenErrorCount = countValues( false, args2 );
 							if ( tokenErrorCount === errorCount ) {
 								delete actions[ 0 ].flags;
 								actions.push( {
@@ -1350,9 +1350,9 @@
 		let $tmp = Util.parseHTML( ppi.description );
 		$tmp.filter( 'dl' ).makeCollapsible( {
 			collapsed: true
-		} ).children( '.mw-collapsible-toggle' ).each( function () {
-			const $this = $( this );
-			$this.parent().prev( 'p' ).append( $this );
+		} ).children( '.mw-collapsible-toggle' ).each( ( i, el ) => {
+			const $el = $( el );
+			$el.parent().prev( 'p' ).append( $el );
 		} );
 		helpLabel.addDescription( $tmp );
 
