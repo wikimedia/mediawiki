@@ -3,7 +3,6 @@
 namespace MediaWiki\Parser\Parsoid;
 
 use Composer\Semver\Semver;
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\ContentHandler;
@@ -88,17 +87,8 @@ class HtmlToContentTransform {
 
 	/**
 	 * Set metrics sink.
-	 *
-	 * @note Passing a StatsdDataFactoryInterface here has been deprecated
-	 * since 1.43.
-	 *
-	 * @param StatsFactory|StatsdDataFactoryInterface $metrics
 	 */
-	public function setMetrics( $metrics ): void {
-		if ( $metrics instanceof StatsdDataFactoryInterface ) {
-			wfDeprecated( __METHOD__ . ' with StatsdDataFactoryInterface', '1.43' );
-			return;
-		}
+	public function setMetrics( StatsFactory $metrics ): void {
 		$this->metrics = $metrics;
 	}
 
