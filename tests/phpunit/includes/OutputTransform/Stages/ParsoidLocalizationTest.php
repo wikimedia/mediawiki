@@ -4,10 +4,14 @@ namespace MediaWiki\OutputTransform\Stages;
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Message\MessageFormatterFactory;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\NullLogger;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
+use Wikimedia\Message\MessageValue;
+use Wikimedia\Message\ParamType;
+use Wikimedia\Message\ScalarParam;
 use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\ParserTests\TestUtils;
 use Wikimedia\Parsoid\Utils\ContentUtils;
@@ -29,7 +33,8 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 	public function createStage(): ParsoidLocalization {
 		return new ParsoidLocalization(
 			new ServiceOptions( [] ),
-			new NullLogger()
+			new NullLogger(),
+			new MessageFormatterFactory()
 		);
 	}
 
@@ -136,6 +141,12 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 				'Span with <b> (doesn\'t get escaped)'
 			],
 			[
+				'testparam',
+				[ new MessageValue( 'testparam', [ new ScalarParam( ParamType::TEXT, new MessageValue( 'testparam', [ new ScalarParam( ParamType::TEXT, 'hello' ) ] ) ) ] ) ],
+				'<p><span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"x-user","key":"testparam","params":{"0":{"key":"testparam","params":{"0":{"text":{"key":"testparam","params":{"0":{"text":"hello","_type_":"Wikimedia\\\\Message\\\\ScalarParam"},"_type_":"array"},"_type_":"Wikimedia\\\\Message\\\\MessageValue"},"_type_":"Wikimedia\\\\Message\\\\ScalarParam"},"_type_":"array"},"_type_":"Wikimedia\\\\Message\\\\MessageValue"},"_type_":"array"}}}\'>english english english hello</span></p>',
+				'Span with nested message'
+			],
+			[
 				'testblock',
 				[],
 				// Observe that we're not generating HTML conforming to content types in this specific case
@@ -170,6 +181,12 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 				[],
 				'<a typeof="mw:LocalizedAttrs" title="english stuff" data-mw-i18n=\'{"title":{"lang":"x-user","key":"testblock","params":[]}}\'></a>',
 				'Attr with block content'
+			],
+			[
+				'testparam',
+				[ new MessageValue( 'testparam', [ new ScalarParam( ParamType::TEXT, new MessageValue( 'testparam', [ new ScalarParam( ParamType::TEXT, 'hello' ) ] ) ) ] ) ],
+				'<a typeof="mw:LocalizedAttrs" title="english english english hello" data-mw-i18n=\'{"title":{"lang":"x-user","key":"testparam","params":{"0":{"key":"testparam","params":{"0":{"text":{"key":"testparam","params":{"0":{"text":"hello","_type_":"Wikimedia\\\\Message\\\\ScalarParam"},"_type_":"array"},"_type_":"Wikimedia\\\\Message\\\\MessageValue"},"_type_":"Wikimedia\\\\Message\\\\ScalarParam"},"_type_":"array"},"_type_":"Wikimedia\\\\Message\\\\MessageValue"},"_type_":"array"}}}\'></a>',
+				'Attr with nested message'
 			]
 		];
 	}
