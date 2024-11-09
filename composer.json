@@ -80,7 +80,7 @@
 		"wikimedia/services": "4.0.0",
 		"wikimedia/shellbox": "4.1.1",
 		"wikimedia/utfnormal": "4.0.0",
-		"wikimedia/timestamp": "4.1.1",
+		"wikimedia/timestamp": "4.2.0",
 		"wikimedia/wait-condition-loop": "2.0.2",
 		"wikimedia/wrappedstring": "4.0.1",
 		"wikimedia/xmp-reader": "0.9.4",
