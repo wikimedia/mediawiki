@@ -594,15 +594,7 @@ Parser.prototype = {
 			return expr.length > 1 ? [ 'CONCAT' ].concat( expr ) : expr[ 0 ];
 		}
 
-		function templateWithReplacement() {
-			const result = sequence( [
-				templateName,
-				colon,
-				replacement
-			] );
-			return result === null ? null : [ result[ 0 ], result[ 2 ] ];
-		}
-		function templateWithOutReplacement() {
+		function templateNameWithParam() {
 			const result = sequence( [
 				templateName,
 				colon,
@@ -615,20 +607,11 @@ Parser.prototype = {
 			// use a CONCAT operator if there are multiple nodes, otherwise return the first node, raw.
 			return [ result[ 0 ], expr.length > 1 ? [ 'CONCAT' ].concat( expr ) : expr[ 0 ] ];
 		}
-		function templateWithOutFirstParameter() {
-			const result = sequence( [
-				templateName,
-				colon
-			] );
-			return result === null ? null : [ result[ 0 ], '' ];
-		}
 		colon = makeStringParser( ':' );
 		templateContents = choice( [
 			function () {
 				const result = sequence( [
-					// templates can have placeholders for dynamic replacement eg: {{PLURAL:$1|one car|$1 cars}}
-					// or no placeholders eg: {{GRAMMAR:genitive|{{SITENAME}}}
-					choice( [ templateWithReplacement, templateWithOutReplacement, templateWithOutFirstParameter ] ),
+					templateNameWithParam,
 					nOrMore( 0, templateParam )
 				] );
 				return result === null ? null : result[ 0 ].concat( result[ 1 ] );
