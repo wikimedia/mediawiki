@@ -88,23 +88,12 @@ use Stringable;
  */
 abstract class SessionProvider implements Stringable, SessionProviderInterface {
 
-	/** @var LoggerInterface */
-	protected $logger;
-
-	/** @var Config */
-	protected $config;
-
-	/** @var SessionManager */
-	protected $manager;
-
-	/** @var HookContainer */
-	private $hookContainer;
-
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/** @var UserNameUtils */
-	protected $userNameUtils;
+	protected LoggerInterface $logger;
+	protected Config $config;
+	protected SessionManager $manager;
+	private HookContainer $hookContainer;
+	private HookRunner $hookRunner;
+	protected UserNameUtils $userNameUtils;
 
 	/** @var int Session priority. Used for the default newSessionInfo(), but
 	 * could be used by subclasses too.
@@ -124,12 +113,6 @@ abstract class SessionProvider implements Stringable, SessionProviderInterface {
 	 * @since 1.37
 	 * @internal In production code SessionManager will initialize the
 	 * SessionProvider, in tests SessionProviderTestTrait must be used.
-	 *
-	 * @param LoggerInterface $logger
-	 * @param Config $config
-	 * @param SessionManager $manager
-	 * @param HookContainer $hookContainer
-	 * @param UserNameUtils $userNameUtils
 	 */
 	public function init(
 		LoggerInterface $logger,

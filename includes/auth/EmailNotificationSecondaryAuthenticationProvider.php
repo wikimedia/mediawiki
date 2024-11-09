@@ -17,8 +17,7 @@ class EmailNotificationSecondaryAuthenticationProvider
 	/** @var bool */
 	protected $sendConfirmationEmail;
 
-	/** @var IConnectionProvider */
-	private $dbProvider;
+	private IConnectionProvider $dbProvider;
 
 	/**
 	 * @param IConnectionProvider $dbProvider

@@ -47,14 +47,9 @@ class PHPSessionHandler implements SessionHandlerInterface {
 	/** @var bool */
 	protected $warn = true;
 
-	/** @var SessionManagerInterface|null */
-	protected $manager;
-
-	/** @var BagOStuff|null */
-	protected $store;
-
-	/** @var LoggerInterface */
-	protected $logger;
+	protected ?SessionManagerInterface $manager = null;
+	protected ?BagOStuff $store = null;
+	protected LoggerInterface $logger;
 
 	/** @var array Track original session fields for later modification check */
 	protected $sessionFieldCache = [];

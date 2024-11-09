@@ -22,8 +22,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class BotPasswordTest extends MediaWikiIntegrationTestCase {
 
-	/** @var TestUser */
-	private $testUser;
+	private TestUser $testUser;
 
 	/** @var string */
 	private $testUserName;

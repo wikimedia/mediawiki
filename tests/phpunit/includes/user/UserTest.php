@@ -30,10 +30,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	/** Constant for self::testIsBlockedFrom */
 	private const USER_TALK_PAGE = '<user talk page>';
 
-	/**
-	 * @var User
-	 */
-	protected $user;
+	protected User $user;
 
 	protected function setUp(): void {
 		parent::setUp();

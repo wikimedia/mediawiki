@@ -38,8 +38,10 @@ use Wikimedia\ObjectCache\BagOStuff;
  * @since 1.27
  */
 class Throttler implements LoggerAwareInterface {
+
 	/** @var string */
 	protected $type;
+
 	/**
 	 * See documentation of $wgPasswordAttemptThrottle for format. Old (pre-1.27) format is not
 	 * allowed here.
@@ -47,13 +49,12 @@ class Throttler implements LoggerAwareInterface {
 	 * @see https://www.mediawiki.org/wiki/Manual:$wgPasswordAttemptThrottle
 	 */
 	protected $conditions;
-	/** @var BagOStuff */
-	protected $cache;
-	/** @var LoggerInterface */
-	protected $logger;
+
 	/** @var int|float */
 	protected $warningLimit;
 
+	protected BagOStuff $cache;
+	protected LoggerInterface $logger;
 	private HookRunner $hookRunner;
 
 	/**

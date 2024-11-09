@@ -32,8 +32,7 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
 
 class UserSelectQueryBuilder extends SelectQueryBuilder {
 
-	/** @var ActorStore */
-	private $actorStore;
+	private ActorStore $actorStore;
 	private TempUserConfig $tempUserConfig;
 	private HideUserUtils $hideUserUtils;
 
@@ -41,9 +40,6 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 
 	/**
 	 * @internal
-	 * @param IReadableDatabase $db
-	 * @param ActorStore $actorStore
-	 * @param TempUserConfig $tempUserConfig
 	 */
 	public function __construct(
 		IReadableDatabase $db,
