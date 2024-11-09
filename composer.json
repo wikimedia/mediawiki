@@ -41,7 +41,7 @@
 		"mck89/peast": "1.16.2",
 		"monolog/monolog": "2.9.3",
 		"oojs/oojs-ui": "0.51.1",
-		"pear/mail": "1.6.0",
+		"pear/mail": "2.0.0",
 		"pear/mail_mime": "1.10.12",
 		"pear/net_smtp": "1.12.1",
 		"php": ">=7.4.3",
