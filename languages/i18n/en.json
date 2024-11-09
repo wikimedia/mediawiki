@@ -2698,6 +2698,7 @@
 	"block-user-no-active-blocks": "No active blocks found",
 	"block-user-previous-blocks": "Block log",
 	"block-user-no-previous-blocks": "No previous blocks found",
+	"block-user-label-count-exceeds-limit": "$1+",
 	"block-user-suppressed-blocks": "Suppressed blocks",
 	"block-user-no-suppressed-blocks": "No previous suppressed blocks found",
 	"block-user-no-reason-given": "No reason given",
