@@ -312,7 +312,7 @@ class LocalFileMoveBatch {
 
 		// Defer lock release until the transaction is committed.
 		if ( $this->db->trxLevel() ) {
-			$unlockScope->cancel();
+			ScopedCallback::cancel( $unlockScope );
 			$this->db->onTransactionResolution( function () {
 				$this->releaseLocks();
 			}, __METHOD__ );
