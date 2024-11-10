@@ -659,13 +659,12 @@ class TitleUrlTest extends MediaWikiLangTestCase {
 		// Test getFullUrlForRedirect()
 		// Note that it uses PROTO_CURRENT by default, which is 'http' for tests
 		$this->assertSame(
-			'http://m.xx.wiki.test/wiki/Special:GoToInterwiki/' . $name,
+			'http://m.xx.wiki.test/wiki/' . $name,
 			$title->getFullUrlForRedirect(),
 			'getFullUrlForRedirect()'
 		);
 		$this->assertSame(
-			'http://m.xx.wiki.test/m/index.php?title=Special:GoToInterwiki/'
-				. $name . '&' . $queryString,
+			'http://m.xx.wiki.test/m/index.php?title=' . $name . '&' . $queryString,
 			$title->getFullUrlForRedirect( $query ),
 			'getFullUrlForRedirect( array )'
 		);
@@ -884,13 +883,13 @@ class TitleUrlTest extends MediaWikiLangTestCase {
 		// Test getFullUrlForRedirect()
 		// Note that it uses PROTO_CURRENT by default, which is 'http' for tests
 		$this->assertSame(
-			'http://m.xx.wiki.test/wiki/Special:GoToInterwiki/yy:' . $name,
+			'http://yy.wiki.test/wiki/' . $name . '#' . $section,
 			$title->getFullUrlForRedirect(),
 			'getFullUrlForRedirect()'
 		);
+
 		$this->assertSame(
-			'http://m.xx.wiki.test/m/index.php?title=Special:GoToInterwiki/yy:'
-			. $name . '&' . $queryString,
+			'http://yy.wiki.test/wiki/' . $name . '?' . $queryString . '#' . $section,
 			$title->getFullUrlForRedirect( $query ),
 			'getFullUrlForRedirect( array )'
 		);

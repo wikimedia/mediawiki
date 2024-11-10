@@ -15,6 +15,7 @@ use MediaWiki\Request\FauxResponse;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Tests\MockEnvironment;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
@@ -30,6 +31,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 	use TempUserTestTrait;
+	use DummyServicesTrait;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -78,6 +80,37 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 		$entryPoint->enableOutputCapture();
 
 		return $entryPoint;
+	}
+
+	public function testInterwikiLookup() {
+		$goToInterwiki = SpecialPage::getTitleFor( 'GoToInterwiki', 'nonlocal:abc' );
+		$expectations = [
+			'local:abc' => 'https://local.invalid/abc',
+			'nonlocal:abc' => $goToInterwiki->getFullURL()
+		];
+
+		$this->setService( 'InterwikiLookup', $this->getDummyInterwikiLookup( [
+			[ 'iw_prefix' => 'local', 'iw_url' => 'https://local.invalid/$1', 'iw_local' => 1 ],
+			[ 'iw_prefix' => 'nonlocal', 'iw_url' => 'https://nonlocal.invalid/$1' ]
+		] ) );
+
+		foreach ( $expectations as $title => $url ) {
+
+			$title = Title::newFromText( $title );
+			$req = new FauxRequest( [
+				'title' => $title->getPrefixedDbKey(),
+			] );
+			$req->setRequestURL( $title->getLinkURL() );
+
+			$env = new MockEnvironment( $req );
+			$context = $env->makeFauxContext();
+			$context->setTitle( $title );
+
+			$mw = TestingAccessWrapper::newFromObject( $this->getEntryPoint( $env, $context ) );
+
+			$mw->performRequest();
+			$this->assertEquals( $url, $context->getOutput()->getRedirect() );
+		}
 	}
 
 	public static function provideTryNormaliseRedirect() {

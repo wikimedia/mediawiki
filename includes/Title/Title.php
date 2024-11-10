@@ -2171,7 +2171,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	/**
 	 * Get a url appropriate for making redirects based on an untrusted url arg
 	 *
-	 * This is basically the same as getFullUrl(), but in the case of external
+	 * This is basically the same as getFullUrl(), but in the case of non-local
 	 * interwikis, we send the user to a landing page, to prevent possible
 	 * phishing attacks and the like.
 	 *
@@ -2186,7 +2186,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	 */
 	public function getFullUrlForRedirect( $query = '', $proto = PROTO_CURRENT ) {
 		$target = $this;
-		if ( $this->isExternal() ) {
+		if ( $this->isExternal() && !$this->isLocal() ) {
 			$target = SpecialPage::getTitleFor(
 				'GoToInterwiki',
 				$this->getPrefixedDBkey()

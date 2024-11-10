@@ -423,14 +423,14 @@ class ActionEntryPoint extends MediaWikiEntryPoint {
 		if ( $title->isExternal() ) {
 			$rdfrom = $request->getVal( 'rdfrom' );
 			if ( $rdfrom ) {
-				$url = $title->getFullURL( [ 'rdfrom' => $rdfrom ] );
+				$url = $title->getFullURLForRedirect( [ 'rdfrom' => $rdfrom ] );
 			} else {
 				$query = $request->getQueryValues();
 				unset( $query['title'] );
-				$url = $title->getFullURL( $query );
+				$url = $title->getFullURLForRedirect( $query );
 			}
 			// Check for a redirect loop
-			if ( $url !== $request->getFullRequestURL() && $title->isLocal() ) {
+			if ( $url !== $request->getFullRequestURL() ) {
 				// 301 so google et al report the target as the actual url.
 				$output->redirect( $url, 301 );
 			} else {
