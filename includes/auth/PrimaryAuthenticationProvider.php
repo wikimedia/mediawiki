@@ -334,8 +334,8 @@ interface PrimaryAuthenticationProvider extends AuthenticationProvider {
 	 * @param array $options
 	 *  - flags: (int) Bitfield of IDBAccessObject::READ_* constants, default IDBAccessObject::READ_NORMAL
 	 *  - creating: (bool) If false (or missing), this call is only testing if
-	 *    a user could be created. If set, this (non-autocreation) is for
-	 *    actually creating an account and will be followed by a call to
+	 *    a user could be created. If set, this is for actually creating an account.
+	 *    If set and $autocreate is false, it's guaranteed to be followed by a call to
 	 *    testForAccountCreation(). In this case, the provider might return
 	 *    StatusValue::newGood() here and let the later call to
 	 *    testForAccountCreation() do a more thorough test.
