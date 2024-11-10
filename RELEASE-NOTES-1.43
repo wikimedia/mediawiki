@@ -213,7 +213,7 @@ For notes on 1.42.x and older releases, see HISTORY.
 * Updated justinrainbow/json-schema from 5.2.13 to 5.3.0.
 * Updated pear/net_smtp from 1.11.1 to 1.12.1.
 * Updated monolog/monolog from 2.9.2 to 2.9.3.
-* Updated symfony/yaml from 5.4.35 to 5.4.39.
+* Updated symfony/yaml from 5.4.35 to 5.4.45.
 * Updated OOUI from v0.49.1 to v0.51.1.
 * Updated wikimedia/at-ease from 2.1.0 to 3.0.0.
 * Updated wikimedia/json-codec from 3.0.1 to 3.0.3.
@@ -226,10 +226,10 @@ For notes on 1.42.x and older releases, see HISTORY.
 * Updated wikimedia/shellbox from 4.0.2 to 4.1.1.
 * Updated wikimedia/xmp-reader from 0.9.1 to 0.9.4.
 * Updated vue from 3.3.9 to 3.4.27.
-* Updated symfony/polyfill-php80 from 1.29.0 to 1.30.0.
-* Updated symfony/polyfill-php81 from 1.29.0 to 1.30.0.
-* Updated symfony/polyfill-php82 from 1.29.0 to 1.30.0.
-* Updated symfony/polyfill-php83 from 1.29.0 to 1.30.0.
+* Updated symfony/polyfill-php80 from 1.29.0 to 1.31.0.
+* Updated symfony/polyfill-php81 from 1.29.0 to 1.31.0.
+* Updated symfony/polyfill-php82 from 1.29.0 to 1.31.0.
+* Updated symfony/polyfill-php83 from 1.29.0 to 1.31.0.
 * …
 
 ===== Changed development-only external libraries =====
