@@ -48,6 +48,8 @@ For notes on 1.43.x and older releases, see HISTORY.
   and {{#interwikilink:prefix|title|caption}} to unambiguously create
   interlanguage and interwiki links, respectively, even when the "prefix"
   might conflict with a namespace on the local wiki.
+* (T326057) Attempting to create a redirect to a nonexistent page will now
+  result in a warning.
 * …
 
 === New features for sysadmins in 1.44 ===

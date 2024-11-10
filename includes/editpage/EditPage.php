@@ -41,6 +41,7 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Debug\DeprecationHelper;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\EditPage\Constraint\AccidentalRecreationConstraint;
+use MediaWiki\EditPage\Constraint\BrokenRedirectConstraint;
 use MediaWiki\EditPage\Constraint\ChangeTagsConstraint;
 use MediaWiki\EditPage\Constraint\ContentModelChangeConstraint;
 use MediaWiki\EditPage\Constraint\DefaultTextConstraint;
@@ -261,6 +262,12 @@ class EditPage implements IEditObject {
 
 	/** @var bool */
 	private $allowSelfRedirect = false;
+
+	/** @var bool */
+	private $brokenRedirect = false;
+
+	/** @var bool */
+	private $allowBrokenRedirects = false;
 
 	/** @var string */
 	private $autoSumm = '';
@@ -1329,6 +1336,7 @@ class EditPage implements IEditObject {
 
 		$this->allowBlankArticle = $request->getBool( 'wpIgnoreBlankArticle' );
 		$this->allowSelfRedirect = $request->getBool( 'wpIgnoreSelfRedirect' );
+		$this->allowBrokenRedirects = $request->getBool( 'wpIgnoreBrokenRedirects' );
 
 		$changeTags = $request->getVal( 'wpChangeTags' );
 		if ( $changeTags === null || $changeTags === '' ) {
@@ -1859,6 +1867,7 @@ class EditPage implements IEditObject {
 			case self::AS_END:
 			case self::AS_BLANK_ARTICLE:
 			case self::AS_SELF_REDIRECT:
+			case self::AS_BROKEN_REDIRECT:
 			case self::AS_REVISION_WAS_DELETED:
 				return true;
 
@@ -2487,6 +2496,14 @@ class EditPage implements IEditObject {
 			)
 		);
 		$constraintRunner->addConstraint(
+			new BrokenRedirectConstraint(
+				$this->allowBrokenRedirects,
+				$content,
+				$this->getCurrentContent(),
+				$this->getTitle()
+			)
+		);
+		$constraintRunner->addConstraint(
 			// Same constraint is used to check size before and after merging the
 			// edits, which use different failure codes
 			$constraintFactory->newPageSizeConstraint(
@@ -2608,6 +2625,8 @@ class EditPage implements IEditObject {
 			$this->missingComment = true;
 		} elseif ( $failed instanceof SelfRedirectConstraint ) {
 			$this->selfRedirect = true;
+		} elseif ( $failed instanceof BrokenRedirectConstraint ) {
+			$this->brokenRedirect = true;
 		}
 	}
 
@@ -3136,6 +3155,10 @@ class EditPage implements IEditObject {
 			$out->addHTML( Html::hidden( 'wpIgnoreSelfRedirect', true ) );
 		}
 
+		if ( $this->brokenRedirect ) {
+			$out->addHTML( Html::hidden( 'wpIgnoreBrokenRedirects', true ) );
+		}
+
 		$autosumm = $this->autoSumm !== '' ? $this->autoSumm : md5( $this->summary );
 		$out->addHTML( Html::hidden( 'wpAutoSummary', $autosumm ) );
 
@@ -3345,6 +3368,13 @@ class EditPage implements IEditObject {
 				$out->wrapWikiMsg(
 					"<div id='mw-selfredirect'>\n$1\n</div>",
 					[ 'selfredirect', $buttonLabel ]
+				);
+			}
+
+			if ( $this->brokenRedirect ) {
+				$out->wrapWikiMsg(
+					"<div id='mw-brokenredirect'>\n$1\n</div>",
+					[ 'brokenredirect', $buttonLabel ]
 				);
 			}
 
