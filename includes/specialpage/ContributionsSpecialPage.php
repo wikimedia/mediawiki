@@ -149,11 +149,14 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 		// Normalize underscores that may be present in the target parameter
 		// if it was passed in as a path param, rather than a query param
 		// where HTMLForm may have already performed preprocessing (T372444).
-		$target = $this->userNameUtils->getCanonical( $target, UserNameUtils::RIGOR_NONE ) ?: '';
+		$target = $this->userNameUtils->getCanonical( $target, UserNameUtils::RIGOR_NONE );
 
 		$this->opts['deletedOnly'] = $request->getBool( 'deletedOnly' );
 
-		if ( !strlen( $target ) ) {
+		// Explicitly check for false or empty string as this needs to account
+		// for the rare case where the target parameter is '0' which is a valid
+		// target but resolves to false in boolean context (T379515).
+		if ( $target === false || $target === '' ) {
 			$out->addHTML( $this->getForm( $this->opts ) );
 
 			return;
