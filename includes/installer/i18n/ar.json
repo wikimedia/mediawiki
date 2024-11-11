@@ -92,6 +92,8 @@
 	"config-using-server": "باستخدام اسم الخادم «<nowiki>$1</nowiki>».",
 	"config-using-uri": "باستخدام URL الخادم «<nowiki>$1$2</nowiki>».",
 	"config-uploads-not-safe": "<strong>تحذير:</strong>  الدليل الافتراضي للمرفوعات <code>$1</code> عرضة لتنفيذ سكريبتات عشوائية،\nعلى الرغم من أن ميدياويكي يتحقق من كل الملفات المرفوعة للتهديدات الأمنية، فمن المستحسن بشدة [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security إغلاق هذه الثغرة الأمنية] قبل تمكين المرفوعات.",
+	"config-uploads-security-headers": "<strong>تحذير:</strong> يجب الرد على طلبات الصور الموجودة في دليل التحميلات الخاص بك باستخدام رأس HTTP <code>$1</code> لحماية المتصفحات من الملفات غير الآمنة المحتملة.\nمن المستحسن بشدة [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security تكوين رؤوس الاستجابة المناسبة على خادم الويب الخاص بك] قبل تمكين عمليات التحميل.",
+	"config-uploads-security-requesterror": "<strong>تحذير:</strong> بسبب خطأ في الاتصال، لم يكن من الممكن التحقق من أن الصور الموجودة في دليل التحميلات الخاص بك تستجيب برأس HTTP <code>$1</code> لحماية المتصفحات من الملفات غير الآمنة المحتملة.\nمن المستحسن بشدة [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security تكوين رؤوس الاستجابة المناسبة على خادم الويب الخاص بك] قبل تمكين عمليات التحميل.",
 	"config-no-cli-uploads-check": "<strong>تحذير:</strong> لم يتم تحديد الدليل الافتراضي للمرفوعات (<code>$1</code>) للقابلية للتأثر\nلتنفيذ برنامج تعسفي أثناء تثبيت CLI.",
 	"config-using-32bit": "<strong>تحذير:</strong> يبدو أن نظامك يعمل مع الأعداد الصحيحة 32 بت، هذا [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit لا يُنصَح به].",
 	"config-db-type": "نوع قاعدة البيانات:",

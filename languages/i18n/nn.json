@@ -2305,6 +2305,7 @@
 	"emailblock": "sending av e-post blokkert",
 	"blocklist-nousertalk": "kan ikkje endre si eiga diskusjonsside",
 	"blocklist-editing": "endring",
+	"blocklist-editing-sitewide": "endring (heile nettstaden)",
 	"blocklist-editing-ns": "namnerom",
 	"ipblocklist-empty": "Lista over blokkeringar er tom.",
 	"ipblocklist-no-results": "Fann ingen blokkeringar for etterspurt brukarnamn eller IP-adresse.",

@@ -1807,7 +1807,7 @@
 	"apierror-mustbeloggedin-uploadstash": "A reserva de subas só está dispoñible para os usuarios que iniciaron a sesión.",
 	"apierror-mustbeloggedin": "Debe iniciar a sesión para $1.",
 	"apierror-mustbeposted": "O módulo <kbd>$1</kbd> require unha petición POST.",
-	"apierror-mustpostparams": "{{PLURAL:$2|Atopouse o seguinte parámetro|Atopáronse os seguintes parámetros}} na cadea da consulta, pero deben estar no corpo do POST: $1.",
+	"apierror-mustpostparams": "{{PLURAL:$2|Atopouse o seguinte parámetro|Atopáronse os seguintes parámetros}} na cadea da consulta, pero debe{{PLURAL:$2||n}} estar no corpo do POST: $1.",
 	"apierror-noapiwrite": "A edición deste wiki a través da API está deshabilitada.",
 	"apierror-nochanges": "Non se solicitou ningún cambio.",
 	"apierror-nodeleteablefile": "Non existe esa versión antiga do ficheiro.",

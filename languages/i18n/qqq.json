@@ -2961,7 +2961,7 @@
 	"block-user-no-active-blocks": "Message shown when there are no active blocks for the user",
 	"block-user-previous-blocks": "Header for the previous blocks table",
 	"block-user-no-previous-blocks": "Message shown when there are no previous block log entries for the user",
-	"block-user-label-count-exceeds-limit": "Label displaying the total number of blocks or block events, with a '+' sign to indicate additional entries",
+	"block-user-label-count-exceeds-limit": "{{ignored}}\nLabel displaying the total number of blocks or block events, with a '+' sign to indicate additional entries",
 	"block-user-suppressed-blocks": "Header for the suppressed blocks table",
 	"block-user-no-suppressed-blocks": "Message shown when there are no suppressed block log entries for the user",
 	"block-user-no-reason-given": "Message shown when no reason is given for a block",

@@ -1833,7 +1833,7 @@
 	"apierror-mustbeloggedin-uploadstash": "La zone de préparation des téléversements n’est disponible que pour les utilisateurs connectés.",
 	"apierror-mustbeloggedin": "Vous devez être connecté pour $1.",
 	"apierror-mustbeposted": "Le module <kbd>$1</kbd> nécessite une requête POST.",
-	"apierror-mustpostparams": "Le{{PLURAL:$2||s}} paramètre{{PLURAL:$2||s}} suivant{{PLURAL:$2||s}} {{PLURAL:$2|a|ont}} été trouvé{{PLURAL:$2||s}} dans la chaîne de requête, mais doi{{PLURAL:$2||ven}}t figurer dans le corps de la requête POST : $1.",
+	"apierror-mustpostparams": "{{PLURAL:$2|Le paramètre suivant a été trouvé|Les paramètres suivants ont été trouvés}} dans la chaîne de requête, mais {{PLURAL:$2|doit|doivent}} figurer dans le corps de la requête POST : $1.",
 	"apierror-noapiwrite": "La modification de ce wiki via l’API est désactivée.",
 	"apierror-nochanges": "Aucun changement n’a été demandé.",
 	"apierror-nodeleteablefile": "Pas de telle ancienne version du fichier.",

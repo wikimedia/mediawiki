@@ -4,6 +4,7 @@
 			"Cabal"
 		]
 	},
+	"cdx-input-chip-aria-description": "ਸੋਧ ਕਰਨ ਲਈ Enter ਦੱਬੋ ਜਾਂ ਮਿਟਾਉਣ ਲਈ Delete ਦੱਬੋ।",
 	"cdx-dialog-close-button-label": "ਬੰਦ ਕਰੋ",
 	"cdx-label-optional-flag": "(ਚੋਣਵਾਂ)",
 	"cdx-message-dismiss-button-label": "ਬੰਦ ਕਰੋ",
