@@ -45,6 +45,7 @@ use UnexpectedValueException;
 use UpdateCollation;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
+use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 require_once __DIR__ . '/../../maintenance/Maintenance.php';
@@ -124,6 +125,12 @@ abstract class DatabaseUpdater {
 	 * @var bool
 	 */
 	protected $skipSchema = false;
+
+	/**
+	 * The virtual domain currently being acted on
+	 * @var string|null
+	 */
+	private $currentVirtualDomain = null;
 
 	/**
 	 * @param IMaintainableDatabase &$db To perform updates on
@@ -571,17 +578,17 @@ abstract class DatabaseUpdater {
 	 * @param bool $hasVirtualDomain Whether the updates' array include virtual domains
 	 */
 	private function runUpdates( array $updates, $passSelf, $hasVirtualDomain = false ) {
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory = $this->getLBFactory();
 		$updatesDone = [];
 		$updatesSkipped = [];
 		foreach ( $updates as $params ) {
 			$origParams = $params;
 			$oldDb = null;
-			$virtualDomain = null;
+			$this->currentVirtualDomain = null;
 			if ( $hasVirtualDomain === true ) {
-				$virtualDomain = array_shift( $params );
+				$this->currentVirtualDomain = array_shift( $params );
 				$oldDb = $this->db;
-				$virtualDb = $lbFactory->getPrimaryDatabase( $virtualDomain );
+				$virtualDb = $lbFactory->getPrimaryDatabase( $this->currentVirtualDomain );
 				'@phan-var IMaintainableDatabase $virtualDb';
 				$this->maintenance->setDB( $virtualDb );
 				$this->db = $virtualDb;
@@ -596,6 +603,7 @@ abstract class DatabaseUpdater {
 			if ( $hasVirtualDomain === true && $oldDb ) {
 				$this->db = $oldDb;
 				$this->maintenance->setDB( $oldDb );
+				$this->currentVirtualDomain = null;
 			}
 
 			flush();
@@ -612,6 +620,10 @@ abstract class DatabaseUpdater {
 		}
 		$this->updatesSkipped = array_merge( $this->updatesSkipped, $updatesSkipped );
 		$this->updates = array_merge( $this->updates, $updatesDone );
+	}
+
+	private function getLBFactory(): LBFactory {
+		return MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 	}
 
 	/**
@@ -693,13 +705,17 @@ abstract class DatabaseUpdater {
 	protected function doTable( $name ) {
 		global $wgSharedDB, $wgSharedTables;
 
-		// Don't bother to check $wgSharedTables if there isn't a shared database
-		// or the user actually also wants to do updates on the shared database.
-		if ( $wgSharedDB === null || $this->shared ) {
+		if ( $this->shared ) {
+			// Shared updates are enabled
 			return true;
 		}
-
-		if ( in_array( $name, $wgSharedTables ) ) {
+		if ( $this->currentVirtualDomain
+			&& $this->getLBFactory()->isSharedVirtualDomain( $this->currentVirtualDomain )
+		) {
+			$this->output( "...skipping update to table $name in shared virtual domain.\n" );
+			return false;
+		}
+		if ( $wgSharedDB !== null && in_array( $name, $wgSharedTables ) ) {
 			$this->output( "...skipping update to shared table $name.\n" );
 			return false;
 		}

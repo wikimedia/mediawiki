@@ -570,12 +570,63 @@ abstract class LBFactory implements ILBFactory {
 	 * @return IDatabase
 	 */
 	private function getMappedDatabase( $index, $groups, $domain ) {
+		return $this->getLoadBalancer( $domain )
+			->getConnection( $index, $groups, $this->getMappedDomain( $domain ) );
+	}
+
+	/**
+	 * @internal For installer and getMappedDatabase
+	 * @param string|false $domain
+	 * @return string|false
+	 */
+	public function getMappedDomain( $domain ) {
 		if ( $domain !== false && in_array( $domain, $this->virtualDomains ) ) {
-			$dbDomain = $this->virtualDomainsMapping[$domain]['db'] ?? false;
+			return $this->virtualDomainsMapping[$domain]['db'] ?? false;
 		} else {
-			$dbDomain = $domain;
+			return $domain;
 		}
-		return $this->getLoadBalancer( $domain )->getConnection( $index, $groups, $dbDomain );
+	}
+
+	/**
+	 * Determine whether, after mapping, the domain refers to the main domain
+	 * of the local wiki.
+	 *
+	 * @internal for installer
+	 * @param string|false $domain
+	 * @return bool
+	 */
+	public function isLocalDomain( $domain ) {
+		if ( $domain !== false && in_array( $domain, $this->virtualDomains ) ) {
+			if ( isset( $this->virtualDomainsMapping[$domain] ) ) {
+				$config = $this->virtualDomainsMapping[$domain];
+				if ( isset( $config['cluster'] ) ) {
+					// In an external cluster
+					return false;
+				}
+				$domain = $config['db'];
+			} else {
+				// Unconfigured virtual domain is always local
+				return true;
+			}
+		}
+		return $domain === false || $domain === $this->getLocalDomainID();
+	}
+
+	/**
+	 * Is the domain a virtual domain with a statically configured database name?
+	 *
+	 * @internal for installer
+	 * @param string|false $domain
+	 * @return bool
+	 */
+	public function isSharedVirtualDomain( $domain ) {
+		if ( $domain !== false
+			&& in_array( $domain, $this->virtualDomains )
+			&& isset( $this->virtualDomainsMapping[$domain] )
+		) {
+			return $this->virtualDomainsMapping[$domain]['db'] !== false;
+		}
+		return false;
 	}
 
 	final public function commitAndWaitForReplication( $fname, $ticket, array $opts = [] ) {

@@ -421,4 +421,28 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			$path[4] ?? false // itemID
 		];
 	}
+
+	/**
+	 * Get the cluster part of a URL
+	 *
+	 * @internal for installer
+	 * @param string $url
+	 * @return string|null
+	 */
+	public function getClusterForUrl( $url ) {
+		$parts = explode( '/', $url );
+		return $parts[2] ?? null;
+	}
+
+	/**
+	 * Get the domain ID for a given cluster, which is false for the local wiki ID
+	 *
+	 * @internal for installer
+	 * @param string $cluster
+	 * @return string|false
+	 */
+	public function getDomainIdForCluster( $cluster ) {
+		$lb = $this->getLoadBalancer( $cluster );
+		return $this->getDomainId( $lb->getServerInfo( ServerInfo::WRITER_INDEX ) );
+	}
 }

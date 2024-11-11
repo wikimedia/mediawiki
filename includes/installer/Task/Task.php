@@ -4,6 +4,7 @@ namespace MediaWiki\Installer\Task;
 
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Installer\ConnectionStatus;
+use MediaWiki\Installer\DatabaseCreator;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
@@ -265,6 +266,15 @@ abstract class Task {
 	}
 
 	/**
+	 * Get a helper for creating databases
+	 *
+	 * @return DatabaseCreator
+	 */
+	protected function getDatabaseCreator() {
+		return DatabaseCreator::createInstance( $this->getContext() );
+	}
+
+	/**
 	 * Get the restored services. Subclasses that want to call this must declare
 	 * a dependency on "services".
 	 *
@@ -299,6 +309,9 @@ abstract class Task {
 		return $this->getContext()->getProvision( 'VirtualDomains' );
 	}
 
+	/**
+	 * @param string $dependency
+	 */
 	private function assertDependsOn( $dependency ) {
 		$deps = (array)$this->getDependencies();
 		if ( !in_array( $dependency, $deps, true ) ) {

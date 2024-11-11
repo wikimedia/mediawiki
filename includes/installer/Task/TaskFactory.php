@@ -19,9 +19,9 @@ class TaskFactory {
 	 */
 	private const CORE_SPECS = [
 		[ 'class' => ExtensionsProvider::class, 'profile' => self::PROFILE_INSTALLER ],
-		[ 'class' => MysqlCreateDatabaseTask::class, 'db' => 'mysql' ],
+		[ 'class' => CreateDatabaseTask::class, 'db' => 'mysql' ],
 		[ 'class' => MysqlCreateUserTask::class, 'db' => 'mysql' ],
-		[ 'class' => PostgresCreateDatabaseTask::class, 'db' => 'postgres' ],
+		[ 'class' => CreateDatabaseTask::class, 'db' => 'postgres' ],
 		[ 'class' => PostgresCreateUserTask::class, 'db' => 'postgres' ],
 		[ 'class' => PostgresPlTask::class, 'db' => 'postgres' ],
 		[ 'class' => PostgresCreateSchemaTask::class, 'db' => 'postgres' ],
@@ -33,6 +33,7 @@ class TaskFactory {
 		[ 'class' => InsertUpdateKeysTask::class ],
 		[ 'class' => RestoredServicesProvider::class, 'profile' => self::PROFILE_INSTALLER ],
 		[ 'class' => AddWikiRestoredServicesProvider::class, 'profile' => self::PROFILE_ADD_WIKI ],
+		[ 'class' => CreateExternalDomainsTask::class, 'profile' => self::PROFILE_ADD_WIKI ],
 		[ 'class' => ExtensionTablesTask::class ],
 		[ 'class' => InitialContentTask::class ],
 		[ 'class' => CreateSysopTask::class, 'profile' => self::PROFILE_INSTALLER ],
