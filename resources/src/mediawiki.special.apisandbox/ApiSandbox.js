@@ -1,15 +1,10 @@
 'use strict';
 let ApiSandbox = null, Util = null,
-	windowManager,
-	formatDropdown,
 	resultPage = null,
-	suppressErrors = true,
 	updatingBooklet = false,
-	baseRequestParams = {},
-	pages = {};
+	baseRequestParams = {};
 const api = new mw.Api(),
 	bookletPages = [],
-	availableFormats = {},
 	moduleInfoCache = {},
 	OptionalParamWidget = require( './OptionalParamWidget.js' ),
 	ParamLabelWidget = require( './ParamLabelWidget.js' ),
@@ -44,7 +39,7 @@ const WidgetMethods = {
 
 	tokenWidget: {
 		alertTokenError: function ( code, error ) {
-			windowManager.openWindow( 'errorAlert', {
+			ApiSandbox.windowManager.openWindow( 'errorAlert', {
 				title: Util.parseMsg( 'apisandbox-results-fixtoken-fail', this.paramInfo.tokentype ),
 				message: error,
 				actions: [
@@ -235,7 +230,7 @@ Util = {
 	 * Mark all currently-in-use tokens as bad
 	 */
 	markTokensBad: function () {
-		const checkPages = [ pages.main ];
+		const checkPages = [ ApiSandbox.pages.main ];
 
 		while ( checkPages.length ) {
 			const page = checkPages.shift();
@@ -247,8 +242,8 @@ Util = {
 			const subpages = page.getSubpages();
 			// eslint-disable-next-line no-loop-func
 			subpages.forEach( ( subpage ) => {
-				if ( Object.prototype.hasOwnProperty.call( pages, subpage.key ) ) {
-					checkPages.push( pages[ subpage.key ] );
+				if ( Object.prototype.hasOwnProperty.call( ApiSandbox.pages, subpage.key ) ) {
+					checkPages.push( ApiSandbox.pages[ subpage.key ] );
 				}
 			} );
 		}
@@ -540,7 +535,7 @@ Util = {
 
 			const func = () => {
 				if ( !innerWidget.isDisabled() ) {
-					innerWidget.apiCheckValid( suppressErrors ).done( ( ok ) => {
+					innerWidget.apiCheckValid( ApiSandbox.suppressErrors ).done( ( ok ) => {
 						if ( ok ) {
 							widget.addTag( innerWidget.getApiValue() );
 							innerWidget.setApiValue( undefined );
@@ -699,7 +694,7 @@ Util = {
 	 * Event handler for when formatDropdown's selection changes
 	 */
 	onFormatDropdownChange: function () {
-		const menu = formatDropdown.getMenu(),
+		const menu = ApiSandbox.formatDropdown.getMenu(),
 			selected = menu.findFirstSelectedItem(),
 			selectedField = selected ? selected.getData() : null;
 
@@ -717,15 +712,21 @@ let booklet, panel, oldhash;
  * @ignore
  */
 ApiSandbox = {
+	suppressErrors: true,
+	windowManager: null,
+	formatDropdown: null,
+	availableFormats: {},
+	pages: {},
+
 	/**
 	 * Initialize the UI
 	 *
 	 * Automatically called on $.ready()
 	 */
 	init: function () {
-		windowManager = new OO.ui.WindowManager();
-		$( OO.ui.getTeleportTarget() ).append( windowManager.$element );
-		windowManager.addWindows( {
+		ApiSandbox.windowManager = new OO.ui.WindowManager();
+		$( OO.ui.getTeleportTarget() ).append( ApiSandbox.windowManager.$element );
+		ApiSandbox.windowManager.addWindows( {
 			errorAlert: new OO.ui.MessageDialog()
 		} );
 
@@ -754,7 +755,7 @@ ApiSandbox = {
 			expanded: false
 		} );
 
-		pages.main = new ApiSandbox.PageLayout( { key: 'main', path: 'main' } );
+		ApiSandbox.pages.main = new ApiSandbox.PageLayout( { key: 'main', path: 'main' } );
 
 		// Parse the current hash string
 		if ( !ApiSandbox.loadFromHash() ) {
@@ -820,13 +821,13 @@ ApiSandbox = {
 		updatingBooklet = true;
 		try {
 			if ( params !== undefined ) {
-				pages.main.loadQueryParams( params );
+				ApiSandbox.pages.main.loadQueryParams( params );
 			}
-			addPages.push( pages.main );
+			addPages.push( ApiSandbox.pages.main );
 			if ( resultPage !== null ) {
 				addPages.push( resultPage );
 			}
-			pages.main.apiCheckValid();
+			ApiSandbox.pages.main.apiCheckValid();
 
 			let i = 0;
 			while ( addPages.length ) {
@@ -844,17 +845,16 @@ ApiSandbox = {
 
 				if ( page.getSubpages ) {
 					const subpages = page.getSubpages();
-					// eslint-disable-next-line no-loop-func
 					subpages.forEach( ( subpage, k ) => {
-						if ( !Object.prototype.hasOwnProperty.call( pages, subpage.key ) ) {
+						if ( !Object.prototype.hasOwnProperty.call( ApiSandbox.pages, subpage.key ) ) {
 							subpage.indentLevel = page.indentLevel + 1;
-							pages[ subpage.key ] = new ApiSandbox.PageLayout( subpage );
+							ApiSandbox.pages[ subpage.key ] = new ApiSandbox.PageLayout( subpage );
 						}
 						if ( params !== undefined ) {
-							pages[ subpage.key ].loadQueryParams( params );
+							ApiSandbox.pages[ subpage.key ].loadQueryParams( params );
 						}
-						addPages.splice( k, 0, pages[ subpage.key ] );
-						pages[ subpage.key ].apiCheckValid();
+						addPages.splice( k, 0, ApiSandbox.pages[ subpage.key ] );
+						ApiSandbox.pages[ subpage.key ].apiCheckValid();
 					} );
 				}
 			}
@@ -876,8 +876,8 @@ ApiSandbox = {
 	 * Reset button handler
 	 */
 	resetUI: function () {
-		suppressErrors = true;
-		pages = {
+		ApiSandbox.suppressErrors = true;
+		ApiSandbox.pages = {
 			main: new ApiSandbox.PageLayout( { key: 'main', path: 'main' } )
 		};
 		resultPage = null;
@@ -897,7 +897,7 @@ ApiSandbox = {
 			displayParams = {},
 			ajaxOptions = {},
 			tokenWidgets = [],
-			checkPages = [ pages.main ];
+			checkPages = [ ApiSandbox.pages.main ];
 
 		// Blur any focused widget before submit, because
 		// OO.ui.ButtonWidget doesn't take focus itself (T128054)
@@ -906,7 +906,7 @@ ApiSandbox = {
 			$focus[ 0 ].blur();
 		}
 
-		suppressErrors = false;
+		ApiSandbox.suppressErrors = false;
 
 		// save widget state in params (or load from it if we are forced)
 		if ( paramsAreForced ) {
@@ -924,10 +924,9 @@ ApiSandbox = {
 				method = 'post';
 			}
 			const subpages = checkPage.getSubpages();
-			// eslint-disable-next-line no-loop-func
 			subpages.forEach( ( subpage ) => {
-				if ( Object.prototype.hasOwnProperty.call( pages, subpage.key ) ) {
-					checkPages.push( pages[ subpage.key ] );
+				if ( Object.prototype.hasOwnProperty.call( ApiSandbox.pages, subpage.key ) ) {
+					checkPages.push( ApiSandbox.pages[ subpage.key ] );
 				}
 			} );
 		}
@@ -961,7 +960,7 @@ ApiSandbox = {
 				let deferred;
 				if ( tokenWidgets.length ) {
 					// Check all token widgets' validity separately
-					deferred = $.when( ...tokenWidgets.map( ( w ) => w.apiCheckValid( suppressErrors ) ) );
+					deferred = $.when( ...tokenWidgets.map( ( w ) => w.apiCheckValid( ApiSandbox.suppressErrors ) ) );
 
 					deferred.done( ( ...args2 ) => {
 						// If only the tokens are invalid, offer to fix them
@@ -979,7 +978,7 @@ ApiSandbox = {
 					deferred = $.Deferred().resolve();
 				}
 				deferred.always( () => {
-					windowManager.openWindow( 'errorAlert', {
+					ApiSandbox.windowManager.openWindow( 'errorAlert', {
 						title: Util.parseMsg( 'apisandbox-submit-invalid-fields-title' ),
 						message: Util.parseMsg( 'apisandbox-submit-invalid-fields-message' ),
 						actions: actions
@@ -998,7 +997,7 @@ ApiSandbox = {
 
 			// Force a 'fm' format with wrappedhtml=1, if available
 			if ( params.format !== undefined ) {
-				if ( Object.prototype.hasOwnProperty.call( availableFormats, params.format + 'fm' ) ) {
+				if ( Object.prototype.hasOwnProperty.call( ApiSandbox.availableFormats, params.format + 'fm' ) ) {
 					params.format = params.format + 'fm';
 				}
 				if ( params.format.slice( -2 ) === 'fm' ) {
@@ -1020,15 +1019,15 @@ ApiSandbox = {
 				this.outlineItem.setLabel( mw.msg( 'apisandbox-results' ) );
 			};
 
-			if ( !formatDropdown ) {
-				formatDropdown = new OO.ui.DropdownWidget( {
+			if ( !ApiSandbox.formatDropdown ) {
+				ApiSandbox.formatDropdown = new OO.ui.DropdownWidget( {
 					menu: { items: [] },
 					$overlay: true
 				} );
-				formatDropdown.getMenu().on( 'select', Util.onFormatDropdownChange );
+				ApiSandbox.formatDropdown.getMenu().on( 'select', Util.onFormatDropdownChange );
 			}
 
-			const menu = formatDropdown.getMenu();
+			const menu = ApiSandbox.formatDropdown.getMenu();
 			let selectedLabel = menu.findSelectedItem() ? menu.findSelectedItem().getLabel() : '';
 			if ( typeof selectedLabel !== 'string' ) {
 				selectedLabel = selectedLabel.text();
@@ -1042,7 +1041,7 @@ ApiSandbox = {
 			page.$element.empty()
 				.append(
 					new OO.ui.FieldLayout(
-						formatDropdown, {
+						ApiSandbox.formatDropdown, {
 							label: Util.parseMsg( 'apisandbox-request-selectformat-label' )
 						}
 					).$element,
@@ -1230,7 +1229,7 @@ ApiSandbox = {
 	fixTokenAndResend: function () {
 		let ok = true;
 		const tokenWait = { dummy: true },
-			checkPages = [ pages.main ],
+			checkPages = [ ApiSandbox.pages.main ],
 			success = function ( k ) {
 				delete tokenWait[ k ];
 				if ( ok && $.isEmptyObject( tokenWait ) ) {
@@ -1254,10 +1253,9 @@ ApiSandbox = {
 			}
 
 			const subpages = page.getSubpages();
-			// eslint-disable-next-line no-loop-func
 			subpages.forEach( ( subpage ) => {
-				if ( Object.prototype.hasOwnProperty.call( pages, subpage.key ) ) {
-					checkPages.push( pages[ subpage.key ] );
+				if ( Object.prototype.hasOwnProperty.call( ApiSandbox.pages, subpage.key ) ) {
+					checkPages.push( ApiSandbox.pages[ subpage.key ] );
 				}
 			} );
 		}
@@ -1269,16 +1267,15 @@ ApiSandbox = {
 	 * Reset validity indicators for all widgets
 	 */
 	updateValidityIndicators: function () {
-		const checkPages = [ pages.main ];
+		const checkPages = [ ApiSandbox.pages.main ];
 
 		while ( checkPages.length ) {
 			const page = checkPages.shift();
 			page.apiCheckValid();
 			const subpages = page.getSubpages();
-			// eslint-disable-next-line no-loop-func
 			subpages.forEach( ( subpage ) => {
-				if ( Object.prototype.hasOwnProperty.call( pages, subpage.key ) ) {
-					checkPages.push( pages[ subpage.key ] );
+				if ( Object.prototype.hasOwnProperty.call( ApiSandbox.pages, subpage.key ) ) {
+					checkPages.push( ApiSandbox.pages[ subpage.key ] );
 				}
 			} );
 		}
@@ -1315,9 +1312,9 @@ OO.inheritClass( ApiSandbox.PageLayout, OO.ui.PageLayout );
 ApiSandbox.PageLayout.prototype.setupOutlineItem = function () {
 	this.outlineItem.setLevel( this.indentLevel );
 	this.outlineItem.setLabel( this.displayText );
-	this.outlineItem.setIcon( this.apiIsValid || suppressErrors ? null : 'alert' );
+	this.outlineItem.setIcon( this.apiIsValid || ApiSandbox.suppressErrors ? null : 'alert' );
 	this.outlineItem.setTitle(
-		this.apiIsValid || suppressErrors ? '' : mw.message( 'apisandbox-alert-page' ).plain()
+		this.apiIsValid || ApiSandbox.suppressErrors ? '' : mw.message( 'apisandbox-alert-page' ).plain()
 	);
 };
 
@@ -1660,7 +1657,7 @@ ApiSandbox.PageLayout.prototype.loadParamInfo = function () {
 			}
 
 			if ( this.widgets[ name ] !== undefined ) {
-				windowManager.openWindow( 'errorAlert', {
+				ApiSandbox.windowManager.openWindow( 'errorAlert', {
 					title: Util.parseMsg( 'apisandbox-dynamic-error-exists', name ),
 					actions: [
 						{
@@ -1716,7 +1713,7 @@ ApiSandbox.PageLayout.prototype.loadParamInfo = function () {
 				deprecatedItems = [],
 				buttons = [],
 				filterFmModules = ( v ) => v.slice( -2 ) !== 'fm' ||
-					!Object.prototype.hasOwnProperty.call( availableFormats, v.slice( 0, v.length - 2 ) );
+					!Object.prototype.hasOwnProperty.call( ApiSandbox.availableFormats, v.slice( 0, v.length - 2 ) );
 
 			// This is something of a hack. We always want the 'format' and
 			// 'action' parameters from the main module to be specified,
@@ -1731,7 +1728,7 @@ ApiSandbox.PageLayout.prototype.loadParamInfo = function () {
 					if ( parameter.name === 'format' ) {
 						const types = parameter.type;
 						types.forEach( ( type ) => {
-							availableFormats[ type ] = true;
+							ApiSandbox.availableFormats[ type ] = true;
 						} );
 						parameter.type = types.filter( filterFmModules );
 						parameter.default = 'json';
@@ -1939,13 +1936,13 @@ ApiSandbox.PageLayout.prototype.apiCheckValid = function () {
 		return [];
 	} else {
 		// eslint-disable-next-line no-jquery/no-map-util
-		const promises = $.map( this.widgets, ( widget ) => widget.apiCheckValid( suppressErrors ) );
+		const promises = $.map( this.widgets, ( widget ) => widget.apiCheckValid( ApiSandbox.suppressErrors ) );
 		$.when( ...promises ).then( ( ...results ) => {
 			this.apiIsValid = results.indexOf( false ) === -1;
 			if ( this.getOutlineItem() ) {
-				this.getOutlineItem().setIcon( this.apiIsValid || suppressErrors ? null : 'alert' );
+				this.getOutlineItem().setIcon( this.apiIsValid || ApiSandbox.suppressErrors ? null : 'alert' );
 				this.getOutlineItem().setTitle(
-					this.apiIsValid || suppressErrors ? '' : mw.message( 'apisandbox-alert-page' ).plain()
+					this.apiIsValid || ApiSandbox.suppressErrors ? '' : mw.message( 'apisandbox-alert-page' ).plain()
 				);
 			}
 		} );
