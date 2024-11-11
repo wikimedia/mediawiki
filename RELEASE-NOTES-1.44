@@ -113,10 +113,6 @@ because of Phabricator reports.
   instead (T358779).
 * The ParsoidOutputAccess class marked @unstable from creation and
   deprecated with all of its methods in 1.43, has been removed.
-* CryptHKDF and MWCryptHKDF were removed without deprecation, in part because no
-  past or present use could be found. hash_hkdf() can be used instead of HKDF().
-  While generate() and generateHex() have no direct replacement, random_bytes()
-  and MWCryptRand::generateHex() can be used instead.
 * …
 
 === Deprecations in 1.44 ===
