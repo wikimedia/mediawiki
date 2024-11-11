@@ -581,8 +581,8 @@ class HtmlInputTransformHelper {
 
 		// NOTE: We might have an incomplete PageBundle here, with no HTML.
 		//       PageBundle::$html is declared to not be nullable, so it would be set to the empty
-		//       string if not given. Note however that it might also be null, since it's a public field.
-		if ( $originalRendering->html !== null && $originalRendering->html !== '' ) {
+		//       string if not given.
+		if ( $originalRendering->html !== '' ) {
 			$this->transform->setOriginalHtml( $originalRendering->html );
 		}
 

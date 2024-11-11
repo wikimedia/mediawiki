@@ -338,7 +338,7 @@ class HtmlToContentTransform {
 	 * @return bool
 	 */
 	public function hasOriginalHtml(): bool {
-		return $this->originalPageBundle->html !== null && $this->originalPageBundle->html !== '';
+		return $this->originalPageBundle->html !== '';
 	}
 
 	/**
