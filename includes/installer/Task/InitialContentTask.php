@@ -28,7 +28,7 @@ class InitialContentTask extends Task {
 	}
 
 	public function getDependencies() {
-		return 'services';
+		return [ 'services', 'extension-tables' ];
 	}
 
 	public function execute(): Status {
