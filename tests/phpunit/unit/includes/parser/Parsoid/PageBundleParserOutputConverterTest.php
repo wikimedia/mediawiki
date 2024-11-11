@@ -110,8 +110,8 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 			PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY
 		);
 
-		$this->assertSame( $extensionData['parsoid'] ?? [], $pageBundle->parsoid );
-		$this->assertSame( $extensionData['mw'] ?? [], $pageBundle->mw );
+		$this->assertSame( $extensionData['parsoid'] ?? [ 'ids' => [] ], $pageBundle->parsoid );
+		$this->assertSame( $extensionData['mw'] ?? null, $pageBundle->mw );
 
 		// NOTE: We default to "0.0.0" as a fix for T325137. We can go back to null
 		//       once PageBundle::responseData is more robust.
