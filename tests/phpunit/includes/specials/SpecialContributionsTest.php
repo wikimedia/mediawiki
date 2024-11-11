@@ -27,6 +27,8 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 	private static $hiddenUser;
 	/** @var User */
 	private static $topUser;
+	/** @var User */
+	private static $zeroUser;
 	private static int $useModWikiIPRevId;
 
 	public function addDBDataOnce() {
@@ -68,6 +70,15 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 			'Edit failed for user'
 		);
 
+		// The name of this user is '0' which is a valid name.
+		self::$zeroUser = ( new TestUser( '0' ) )->getUser();
+		$this->assertTrue(
+			$this->editPage(
+				'TestPage', 'Test Content', 'test', NS_MAIN, self::$zeroUser
+			)->isOK(),
+			'Edit failed for user'
+		);
+
 		$this->disableAutoCreateTempUser();
 		$useModWikiIP = $this->getServiceContainer()->getUserFactory()
 			->newFromName( '1.2.3.xxx', UserFactory::RIGOR_NONE );
@@ -85,6 +96,14 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 			)
 			->placeBlock();
 		$this->assertStatusGood( $blockStatus, 'Block was not placed' );
+	}
+
+	public function testExecuteForZeroUser() {
+		[ $html ] = $this->executeSpecialPage(
+			self::$zeroUser->getName()
+		);
+
+		$this->assertStringContainsString( 'mw-pager-body', $html );
 	}
 
 	public function testExecuteEmptyTarget() {
