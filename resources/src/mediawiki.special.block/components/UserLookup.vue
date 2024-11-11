@@ -15,6 +15,7 @@
 			:start-icon="cdxIconSearch"
 			@input="onInput"
 			@change="onChange"
+			@blur="onChange"
 			@update:selected="onSelect"
 		>
 		</cdx-lookup>
