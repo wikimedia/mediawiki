@@ -755,7 +755,7 @@ ApiSandbox = {
 			expanded: false
 		} );
 
-		ApiSandbox.pages.main = new ApiSandbox.PageLayout( { key: 'main', path: 'main' } );
+		ApiSandbox.pages.main = new ApiSandboxLayout( { key: 'main', path: 'main' } );
 
 		// Parse the current hash string
 		if ( !ApiSandbox.loadFromHash() ) {
@@ -848,7 +848,7 @@ ApiSandbox = {
 					subpages.forEach( ( subpage, k ) => {
 						if ( !Object.prototype.hasOwnProperty.call( ApiSandbox.pages, subpage.key ) ) {
 							subpage.indentLevel = page.indentLevel + 1;
-							ApiSandbox.pages[ subpage.key ] = new ApiSandbox.PageLayout( subpage );
+							ApiSandbox.pages[ subpage.key ] = new ApiSandboxLayout( subpage );
 						}
 						if ( params !== undefined ) {
 							ApiSandbox.pages[ subpage.key ].loadQueryParams( params );
@@ -878,7 +878,7 @@ ApiSandbox = {
 	resetUI: function () {
 		ApiSandbox.suppressErrors = true;
 		ApiSandbox.pages = {
-			main: new ApiSandbox.PageLayout( { key: 'main', path: 'main' } )
+			main: new ApiSandboxLayout( { key: 'main', path: 'main' } )
 		};
 		resultPage = null;
 		ApiSandbox.updateUI();
@@ -1291,7 +1291,7 @@ ApiSandbox = {
  * @constructor
  * @param {Object} [config] Configuration options
  */
-ApiSandbox.PageLayout = function ( config ) {
+function ApiSandboxLayout( config ) {
 	config = Object.assign( { prefix: '', expanded: false }, config );
 	this.displayText = config.key;
 	this.apiModule = config.path;
@@ -1305,11 +1305,11 @@ ApiSandbox.PageLayout = function ( config ) {
 	this.templatedItemsCache = {};
 	this.tokenWidget = null;
 	this.indentLevel = config.indentLevel ? config.indentLevel : 0;
-	ApiSandbox.PageLayout.super.call( this, config.key, config );
+	ApiSandboxLayout.super.call( this, config.key, config );
 	this.loadParamInfo();
-};
-OO.inheritClass( ApiSandbox.PageLayout, OO.ui.PageLayout );
-ApiSandbox.PageLayout.prototype.setupOutlineItem = function () {
+}
+OO.inheritClass( ApiSandboxLayout, OO.ui.PageLayout );
+ApiSandboxLayout.prototype.setupOutlineItem = function () {
 	this.outlineItem.setLevel( this.indentLevel );
 	this.outlineItem.setLabel( this.displayText );
 	this.outlineItem.setIcon( this.apiIsValid || ApiSandbox.suppressErrors ? null : 'alert' );
@@ -1329,7 +1329,7 @@ ApiSandbox.PageLayout.prototype.setupOutlineItem = function () {
  * @return {OO.ui.FieldLayout} return.widgetField
  * @return {OO.ui.FieldLayout} return.helpField
  */
-ApiSandbox.PageLayout.prototype.makeWidgetFieldLayouts = function ( ppi, name ) {
+ApiSandboxLayout.prototype.makeWidgetFieldLayouts = function ( ppi, name ) {
 	const widget = Util.createWidgetForParameter( ppi );
 	if ( ppi.tokentype ) {
 		this.tokenWidget = widget;
@@ -1510,7 +1510,7 @@ ApiSandbox.PageLayout.prototype.makeWidgetFieldLayouts = function ( ppi, name ) 
  * @private
  * @param {Object} [params] Query parameters for initializing the widgets
  */
-ApiSandbox.PageLayout.prototype.updateTemplatedParameters = function ( params ) {
+ApiSandboxLayout.prototype.updateTemplatedParameters = function ( params ) {
 	const pi = this.paramInfo,
 		prefix = this.prefix + pi.prefix;
 
@@ -1642,7 +1642,7 @@ ApiSandbox.PageLayout.prototype.updateTemplatedParameters = function ( params ) 
 /**
  * Fetch module information for this page's module, then create UI
  */
-ApiSandbox.PageLayout.prototype.loadParamInfo = function () {
+ApiSandboxLayout.prototype.loadParamInfo = function () {
 	let dynamicFieldset, dynamicParamNameWidget;
 	const removeDynamicParamWidget = ( name, item ) => {
 			dynamicFieldset.removeItems( [ item ] );
@@ -1931,7 +1931,7 @@ ApiSandbox.PageLayout.prototype.loadParamInfo = function () {
  *
  * @return {jQuery.Promise[]} One promise for each widget, resolved with `false` if invalid
  */
-ApiSandbox.PageLayout.prototype.apiCheckValid = function () {
+ApiSandboxLayout.prototype.apiCheckValid = function () {
 	if ( this.paramInfo === null ) {
 		return [];
 	} else {
@@ -1955,7 +1955,7 @@ ApiSandbox.PageLayout.prototype.apiCheckValid = function () {
  *
  * @param {Object} params
  */
-ApiSandbox.PageLayout.prototype.loadQueryParams = function ( params ) {
+ApiSandboxLayout.prototype.loadQueryParams = function ( params ) {
 	if ( this.paramInfo === null ) {
 		this.loadFromQueryParams = params;
 	} else {
@@ -1976,7 +1976,7 @@ ApiSandbox.PageLayout.prototype.loadQueryParams = function ( params ) {
  * @param {Object} ajaxOptions Write options for the API request into this object, in the format
  *   expected by jQuery#ajax.
  */
-ApiSandbox.PageLayout.prototype.getQueryParams = function ( params, displayParams, ajaxOptions ) {
+ApiSandboxLayout.prototype.getQueryParams = function ( params, displayParams, ajaxOptions ) {
 	// eslint-disable-next-line no-jquery/no-each-util
 	$.each( this.widgets, ( name, widget ) => {
 		let value = widget.getApiValue();
@@ -1998,7 +1998,7 @@ ApiSandbox.PageLayout.prototype.getQueryParams = function ( params, displayParam
  *
  * @return {Array}
  */
-ApiSandbox.PageLayout.prototype.getSubpages = function () {
+ApiSandboxLayout.prototype.getSubpages = function () {
 	const ret = [];
 	// eslint-disable-next-line no-jquery/no-each-util
 	$.each( this.widgets, ( name, widget ) => {
