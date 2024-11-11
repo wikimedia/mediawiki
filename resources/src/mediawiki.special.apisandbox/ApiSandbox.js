@@ -2018,6 +2018,4 @@ ApiSandbox.PageLayout.prototype.getSubpages = function () {
 	return ret;
 };
 
-$( ApiSandbox.init );
-
 module.exports = ApiSandbox;

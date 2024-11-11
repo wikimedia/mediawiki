@@ -2045,7 +2045,8 @@ return [
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.special.apisandbox",
 		'styles' => 'apisandbox.less',
 		'packageFiles' => [
-			'apisandbox.js',
+			'init.js',
+			'ApiSandbox.js',
 			'OptionalParamWidget.js',
 			'ParamLabelWidget.js',
 			'BooleanToggleSwitchParamWidget.js',
