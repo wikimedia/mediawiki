@@ -726,7 +726,7 @@
 	"explainconflict": "Siz məqaləni redaktə etməyə başlamazdan əvvəl başqa bir istifadəçi onu redaktə etmişdir. Yuxarıdakı mətn bölməsində hazırda mövcud olan səhifə mətni göstərilmişdir. Sizin düzəlişləriniz aşağıdakı mətn bölməsində göstərilmişdir. Siz dəyişiklikləri mövcud mətn ilə birləşdirməli olacaqsınız. \"$1\" düyməsini sıxdıqda <strong>yalnız</strong> yuxarıdakı mətn yayımlanacaq.",
 	"yourtext": "Mətniniz",
 	"storedversion": "Qeyd edilmiş versiya",
-	"editingold": "<strong>DİQQƏT: Siz bu səhifənin köhnə versiyasını redaktə edirsiniz.</strong>\nMəqaləni yaddaşda saxlayacağınız halda bu versiyadan sonra edilmiş hər bir dəyişiklik itiriləcək.",
+	"editingold": "<strong>Xəbərdarlıq: Siz bu səhifənin köhnə versiyasını redaktə edirsiniz.</strong>\nRedaktəni yayımladığınız halda bu versiyadan sonra edilmiş hər bir dəyişiklik yoxa çıxacaq.",
 	"unicode-support-fail": "Brauzeriniz Unicode-u dəstəkləmədiyindən redaktəniz yayımlanmadı.",
 	"yourdiff": "Fərqlər",
 	"copyrightwarning": "Nəzərə alın ki, {{SITENAME}} saytına edilən bütün töhfələr $2 lisenziyası altında yayımlanmış hesab olunur (ətraflı məlumat üçün $1 səhifəsinə baxın).\nYazınızın redaktə edilməsini və yenidən yayımlanmasını istəmirsinizsə, bura əlavə etməyin.<br />\nBunu özünüzün yazdığınızı və ya ictimai bir sahədən və ya oxşar azad mənbədən kopyaladığınızı bizə söz verirsiniz.\n<strong>Müəllif hüquqları ilə qorunan əsərləri icazəsiz əlavə etməyin!</strong>",

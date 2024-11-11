@@ -2600,7 +2600,7 @@
 	"ipboptions": "2 jam:2 hours,1 hari:1 day,3 hari:3 days,1 minggu:1 week,2 minggu:2 weeks,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahun:1 year,selama-lamanya:infinite",
 	"ipbhidename": "Sembunyikan nama pengguna daripada senarai suntingan dan pengguna",
 	"ipbwatchuser": "Pantau laman pengguna dan laman perbincangan bagi pengguna ini",
-	"ipb-disableusertalk": "Menyunting laman perbincangan mereka sendiri",
+	"ipb-disableusertalk": "Menyunting laman perbincangan dia sendiri",
 	"ipb-change-block": "Sekat semula pengguna tersebut dengan tetapan ini",
 	"ipb-confirm": "Sahkan sekatan",
 	"ipb-sitewide": "Seluruh tapak",

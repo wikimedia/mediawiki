@@ -22,7 +22,8 @@
 			"Verdy p",
 			"Zoranzoki21",
 			"Orlodrim",
-			"Jon Harald Søby"
+			"Jon Harald Søby",
+			"Urhixidur"
 		]
 	},
 	"apihelp-main-summary": "{{doc-apihelp-summary|main}}",
@@ -1490,7 +1491,7 @@
 	"apihelp-upload-extended-description": "{{doc-apihelp-extended-description|upload}}",
 	"apihelp-upload-param-filename": "{{doc-apihelp-param|upload|filename}}",
 	"apihelp-upload-param-comment": "{{doc-apihelp-param|upload|comment}}",
-	"apihelp-upload-param-tags": "{{doc-apihelp-param|upload|tags}}",
+	"apihelp-upload-param-tags": "{{doc-apihelp-param|upload|tags}}\n\"Change tags\" is nominal, not verbal.",
 	"apihelp-upload-param-text": "{{doc-apihelp-param|upload|text}}",
 	"apihelp-upload-param-watch": "{{doc-apihelp-param|upload|watch}}",
 	"apihelp-upload-param-watchlist": "{{doc-apihelp-param|upload|watchlist}}",

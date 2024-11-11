@@ -177,7 +177,7 @@
 	"config-admin-email-help": "Escriba aquí un enderezo de correo electrónico para que poida recibir mensaxes doutros usuarios a través do wiki, restablecer o contrasinal e ser notificado das modificacións feitas nas páxinas presentes na súa lista de vixilancia. Pode deixar este campo en branco.",
 	"config-admin-error-user": "Erro interno ao crear un administrador co nome \"<nowiki>$1</nowiki>\".",
 	"config-admin-error-password": "Erro interno ao establecer un contrasinal para o administrador \"<nowiki>$1</nowiki>\": <pre>$2</pre>",
-	"config-admin-error-password-invalid": "Contrasinal de administración da wiki inválida: $1",
+	"config-admin-error-password-invalid": "Contrasinal de administración do wiki non válido: $1",
 	"config-admin-error-bademail": "Escribiu un enderezo de correo electrónico non válido.",
 	"config-subscribe": "Subscribirse á [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ lista de correo de anuncios sobre lanzamentos].",
 	"config-subscribe-help": "Esta é unha lista de correos de baixo volume usada para anuncios sobre lanzamentos de novas versións, incluíndo avisos de seguridade importantes.\nDebería subscribirse a ela e actualizar a súa instalación MediaWiki cando saian as novas versións.",

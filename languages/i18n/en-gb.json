@@ -57,7 +57,8 @@
 			"Syafiq.y",
 			"Qwrop",
 			"Billy bindun",
-			"Samthecrazyman"
+			"Samthecrazyman",
+			"Thadh"
 		]
 	},
 	"tog-hidecategorization": "Hide categorisation of pages",
@@ -84,6 +85,8 @@
 	"editfont-monospace": "Monospaced font",
 	"editfont-sansserif": "Sans serif font",
 	"editfont-serif": "Serif font",
+	"sunday": "Sunday",
+	"monday": "Monday",
 	"lastmodifiedat": "This page was last modified on $1, at $2.",
 	"actionthrottledtext": "As an anti-abuse measure, you are limited from performing this action too many times in a short space of time, and you have exceeded this limit.\nPlease try again in a few minutes.",
 	"botpasswords-no-central-id": "To use bot passwords, you must be logged in to a centralised account.",
