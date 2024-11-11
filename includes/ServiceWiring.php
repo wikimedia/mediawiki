@@ -2712,26 +2712,6 @@ return [
 			}
 		}
 
-		// Automatically trigger the RevisionFromEditComplete hook (synchronously).
-		$hooks = $services->getHookContainer();
-		$hooks->register(
-			PageUpdatedEvent::TYPE,
-			static function ( PageUpdatedEvent $event ) use ( $hooks, $services ) {
-				$wikiPage = $services->getWikiPageFactory()
-					->newFromTitle( $event->getPage() );
-
-				$editResult = $event->getEditResult();
-
-				$hooks->run( 'RevisionFromEditComplete', [
-					$wikiPage,
-					$event->getNewRevision(),
-					$editResult ? $editResult->getOriginalRevisionId() : false,
-					$event->getAuthor(),
-					$event->getTags()
-				] );
-			}
-		);
-
 		return $dispatcher;
 	},
 

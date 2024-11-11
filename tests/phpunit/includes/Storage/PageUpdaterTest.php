@@ -316,6 +316,53 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $oldStats->ss_total_edits + 2, (int)$stats->ss_total_edits );
 	}
 
+	/**
+	 * Regression test for T379152
+	 * @covers \MediaWiki\Storage\PageUpdater::saveRevision()
+	 */
+	public function testRevisionFromEditComplete() {
+		$user = $this->getTestUser()->getUser();
+		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
+		$tagsStore = $this->getServiceContainer()->getChangeTagsStore();
+
+		$this->setTemporaryHook(
+			'RevisionFromEditComplete',
+			static function ( $wikiPage, $rev, $originalRevId, $user, &$tags ) {
+				$tags[] = ( $rev->getParentId() ? 'test_updated' : 'test_created' );
+			}
+		);
+
+		$title = $this->getDummyTitle( __METHOD__ );
+		$page = $wikiPageFactory->newFromTitle( $title );
+		$updater = $page->newPageUpdater( $user );
+
+		$content = new TextContent( 'Lorem Ipsum' );
+		$updater->setContent( SlotRecord::MAIN, $content );
+
+		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
+		$rev = $updater->saveRevision( $summary );
+
+		$this->assertArrayContains(
+			[ 'test_created' ],
+			$tagsStore->getTags( $this->getDb(), null, $rev->getId() )
+		);
+
+		// Now, try an update
+		$page = $wikiPageFactory->newFromTitle( $title );
+		$updater = $page->newPageUpdater( $user );
+
+		$content = new TextContent( 'Lorem Ipsum dolor sit amet' );
+		$updater->setContent( SlotRecord::MAIN, $content );
+
+		$summary = CommentStoreComment::newUnsavedComment( 'Next test' );
+		$rev = $updater->saveRevision( $summary );
+
+		$this->assertArrayContains(
+			[ 'test_updated' ],
+			$tagsStore->getTags( $this->getDb(), null, $rev->getId() )
+		);
+	}
+
 	public function testSetForceEmptyRevisionSetsOriginalRevisionId() {
 		$user = $this->getTestUser()->getUser();
 		$title = $this->getDummyTitle( __METHOD__ );
