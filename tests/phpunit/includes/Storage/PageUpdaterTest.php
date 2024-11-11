@@ -12,13 +12,11 @@ use MediaWiki\Json\FormatJson;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\ParserOptions;
-use MediaWiki\RecentChanges\ChangeTrackingEventIngress;
 use MediaWiki\Revision\RenderedRevision;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Storage\EditResult;
-use MediaWiki\Storage\PageUpdatedEvent;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
@@ -949,19 +947,8 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideSetUsePageCreationLog
-	 * @covers \MediaWiki\RecentChanges\ChangeTrackingEventIngress
 	 */
 	public function testSetUsePageCreationLog( $use, $expected ) {
-		$this->hideDeprecated( 'MediaWiki\Storage\PageUpdater::setUsePageCreationLog' );
-
-		$ingress = new ChangeTrackingEventIngress(
-			$this->getServiceContainer()->getChangeTagsStore(),
-			$this->getServiceContainer()->getUserEditTracker(),
-		);
-
-		$this->getServiceContainer()->getDomainEventSource()
-			->registerListener( PageUpdatedEvent::TYPE, $ingress );
-
 		$user = $this->getTestUser()->getUser();
 
 		$title = $this->getDummyTitle( __METHOD__ . ( $use ? '_logged' : '_unlogged' ) );
