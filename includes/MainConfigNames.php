@@ -1548,6 +1548,12 @@ class MainConfigNames {
 	public const ParserCacheExpireTime = 'ParserCacheExpireTime';
 
 	/**
+	 * Name constant for the ParserCacheNewKeySchemaRatio setting, for use with Config::get()
+	 * @see MainConfigSchema::ParserCacheNewKeySchemaRatio
+	 */
+	public const ParserCacheNewKeySchemaRatio = 'ParserCacheNewKeySchemaRatio';
+
+	/**
 	 * Name constant for the OldRevisionParserCacheExpireTime setting, for use with Config::get()
 	 * @see MainConfigSchema::OldRevisionParserCacheExpireTime
 	 */

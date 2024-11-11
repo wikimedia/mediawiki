@@ -29,6 +29,8 @@ use JsonException;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Json\JsonCodec;
+use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Title\TitleFactory;
@@ -319,6 +321,13 @@ class ParserCache {
 	 * @return string
 	 */
 	private function makeMetadataKey( PageRecord $page ): string {
+		$ratio = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::ParserCacheNewKeySchemaRatio
+		);
+		$configHash = hexdec( substr( md5( (string)$page->getId( PageRecord::LOCAL ) ), 0, 8 ) ) & 0x7fffffff;
+		if ( $ratio && ( $configHash % $ratio ) == 0 ) {
+			return $this->cache->makeKey( $this->name, $page->getId( PageRecord::LOCAL ), '|#|', 'idoptions' );
+		}
 		return $this->cache->makeKey( $this->name, 'idoptions', $page->getId( PageRecord::LOCAL ) );
 	}
 
@@ -348,6 +357,13 @@ class ParserCache {
 		$pageid = $page->getId( PageRecord::LOCAL );
 		$title = $this->titleFactory->newFromPageIdentity( $page );
 		$hash = $options->optionsHash( $usedOptions, $title );
+		$ratio = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::ParserCacheNewKeySchemaRatio
+		);
+		$configHash = hexdec( substr( md5( (string)$page->getId( PageRecord::LOCAL ) ), 0, 8 ) ) & 0x7fffffff;
+		if ( $ratio && ( $configHash % $ratio ) == 0 ) {
+			return $this->cache->makeKey( $this->name, $page->getId( PageRecord::LOCAL ), '|#|', 'idhash', $hash );
+		}
 		// Before T263581 ParserCache was split between normal page views
 		// and action=parse. -0 is left in the key to avoid invalidating the entire
 		// cache when removing the cache split.

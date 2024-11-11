@@ -520,6 +520,7 @@ return [
 			],
 			'ChronologyProtectorSecret' => '',
 			'ParserCacheExpireTime' => 86400,
+			'ParserCacheNewKeySchemaRatio' => 0,
 			'OldRevisionParserCacheExpireTime' => 3600,
 			'ObjectCacheSessionExpiry' => 3600,
 			'PHPSessionHandling' => 'enable',
@@ -2726,6 +2727,7 @@ return [
 			'ParsoidSelectiveUpdateSampleRate' => 'integer',
 			'ParserCacheFilterConfig' => 'object',
 			'ChronologyProtectorSecret' => 'string',
+			'ParserCacheNewKeySchemaRatio' => 'integer',
 			'PHPSessionHandling' => 'string',
 			'SuspiciousIpExpiry' => [
 				'integer',
