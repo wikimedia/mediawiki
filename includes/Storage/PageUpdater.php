@@ -1392,6 +1392,13 @@ class PageUpdater {
 
 			$editResult = $this->getEditResult();
 			$tags = $this->computeEffectiveTags();
+			$this->hookRunner->onRevisionFromEditComplete(
+				$wikiPage,
+				$newRevisionRecord,
+				$editResult->getOriginalRevisionId(),
+				$this->author,
+				$tags
+			);
 
 			$this->eventEmitter->send( new PageUpdatedEvent(
 				$newRevisionRecord,
@@ -1497,6 +1504,9 @@ class PageUpdater {
 		}
 
 		$tags = $this->computeEffectiveTags();
+		$this->hookRunner->onRevisionFromEditComplete(
+			$wikiPage, $newRevisionRecord, false, $this->author, $tags
+		);
 
 		if ( $this->usePageCreationLog ) {
 			// Log the page creation
