@@ -361,9 +361,24 @@
 		mw.messages.set( 'formal-msg-one-argument', '{{#FORMAL:Single form}}' );
 		assert.strictEqual( formatParse( 'formal-msg-one-argument' ), 'Single form', 'Formal Test with a single argument' );
 
+		mw.messages.set( 'formal-msg-complex1', '{{#FORMAL:Informal hello|{{GENDER:|Formal}} hello}}' );
+		assert.strictEqual( formatParse( 'formal-msg-complex1' ), 'Informal hello', 'Complex first parameter' );
+		mw.messages.set( 'formal-msg-complex2', '{{#FORMAL:{{GENDER:|Informal}} hello|Formal hello}}' );
+		assert.strictEqual( formatParse( 'formal-msg-complex2' ), 'Informal hello', 'Complex second parameter' );
+		mw.messages.set( 'formal-msg-complex3', '{{#FORMAL:{{GENDER:|Informal}} hello|{{GENDER:|Formal}} hello}}' );
+		assert.strictEqual( formatParse( 'formal-msg-complex3' ), 'Informal hello', 'Complex both parameters' );
+
 		mw.language.setData( mw.config.get( 'wgUserLanguage' ), 'formalityIndex', 1 );
 		assert.strictEqual( formatParse( 'formal-msg' ), 'Sie haben', 'Formal Test' );
 		assert.strictEqual( formatParse( 'formal-msg-one-argument' ), 'Single form', 'Formal Test with a single argument when the second argument should be chosen' );
+
+		mw.messages.set( 'formal-msg-complex1', '{{#FORMAL:Informal hello|{{GENDER:|Formal}} hello}}' );
+		assert.strictEqual( formatParse( 'formal-msg-complex1' ), 'Formal hello', 'Complex first parameter' );
+		mw.messages.set( 'formal-msg-complex2', '{{#FORMAL:{{GENDER:|Informal}} hello|Formal hello}}' );
+		assert.strictEqual( formatParse( 'formal-msg-complex2' ), 'Formal hello', 'Complex second parameter' );
+		mw.messages.set( 'formal-msg-complex3', '{{#FORMAL:{{GENDER:|Informal}} hello|{{GENDER:|Formal}} hello}}' );
+		assert.strictEqual( formatParse( 'formal-msg-complex3' ), 'Formal hello', 'Complex both parameters' );
+
 	} );
 
 	QUnit.test( 'Variables', ( assert ) => {

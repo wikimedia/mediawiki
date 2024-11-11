@@ -606,9 +606,14 @@ Parser.prototype = {
 			const result = sequence( [
 				templateName,
 				colon,
-				paramExpression
+				nOrMore( 0, paramExpression )
 			] );
-			return result === null ? null : [ result[ 0 ], result[ 2 ] ];
+			if ( result === null ) {
+				return null;
+			}
+			const expr = result[ 2 ];
+			// use a CONCAT operator if there are multiple nodes, otherwise return the first node, raw.
+			return [ result[ 0 ], expr.length > 1 ? [ 'CONCAT' ].concat( expr ) : expr[ 0 ] ];
 		}
 		function templateWithOutFirstParameter() {
 			const result = sequence( [
