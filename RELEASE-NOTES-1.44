@@ -76,7 +76,7 @@ For notes on 1.43.x and older releases, see HISTORY.
 * …
 
 ===== Changed development-only external libraries =====
-
+* Updated nikic/php-parser from ^4.10.2 to ^5.3.1.
 * …
 
 ==== Removed external libraries ====
