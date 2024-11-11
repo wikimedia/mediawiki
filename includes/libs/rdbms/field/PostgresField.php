@@ -51,7 +51,7 @@ SQL;
 			$res = $db->query(
 				sprintf( $q,
 					$db->addQuotes( $schema ),
-					$db->addQuotes( $table ),
+					$db->addQuotes( $db->tableName( $table, 'raw' ) ),
 					$db->addQuotes( $field )
 				),
 				__METHOD__
