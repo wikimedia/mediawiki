@@ -3,6 +3,8 @@
 namespace MediaWiki\RecentChanges;
 
 use MediaWiki\ChangeTags\ChangeTagsStore;
+use MediaWiki\DomainEvent\DomainEventSource;
+use MediaWiki\DomainEvent\EventSubscriberBase;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\PageUpdatedEvent;
@@ -16,7 +18,7 @@ use RecentChange;
  *
  * @internal
  */
-class ChangeTrackingEventIngress {
+class ChangeTrackingEventIngress extends EventSubscriberBase {
 
 	private ChangeTagsStore $changeTagsStore;
 	private UserEditTracker $userEditTracker;
@@ -29,8 +31,13 @@ class ChangeTrackingEventIngress {
 		ChangeTagsStore $changeTagsStore,
 		UserEditTracker $userEditTracker
 	) {
+		parent::__construct();
 		$this->changeTagsStore = $changeTagsStore;
 		$this->userEditTracker = $userEditTracker;
+	}
+
+	public function registerListeners( DomainEventSource $eventSource ): void {
+		$this->registerListenerMethod( $eventSource, PageUpdatedEvent::TYPE );
 	}
 
 	/**
@@ -39,7 +46,7 @@ class ChangeTrackingEventIngress {
 	 *
 	 * @noinspection PhpUnused
 	 */
-	public function afterPageUpdated( PageUpdatedEvent $event ) {
+	public function handlePageUpdatedEventAfterCommit( PageUpdatedEvent $event ) {
 		if ( !$event->hasFlag( EDIT_SUPPRESS_RC ) ) {
 			$this->updateRecentChangesAfterPageUpdated(
 				$event->getNewRevision(),
