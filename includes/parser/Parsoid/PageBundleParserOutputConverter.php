@@ -106,8 +106,8 @@ final class PageBundleParserOutputConverter {
 
 		return new PageBundle(
 			$parserOutput->getRawText(),
-			$pageBundleData['parsoid'] ?? [],
-			$pageBundleData['mw'] ?? [],
+			$pageBundleData['parsoid'] ?? [ 'ids' => [] ],
+			$pageBundleData['mw'] ?? null,
 			// It would be nice to have this be "null", but PageBundle::responseData()
 			// chocks on that: T325137.
 			$pageBundleData['version'] ?? '0.0.0',
