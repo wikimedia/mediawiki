@@ -666,27 +666,6 @@ return [
 		return RequestTimeout::singleton()->createCriticalSectionProvider( $limit );
 	},
 
-	'CryptHKDF' => static function ( MediaWikiServices $services ): CryptHKDF {
-		$config = $services->getMainConfig();
-
-		$secret = $config->get( MainConfigNames::HKDFSecret ) ?: $config->get( MainConfigNames::SecretKey );
-		if ( !$secret ) {
-			throw new RuntimeException( "Cannot use MWCryptHKDF without a secret." );
-		}
-
-		// In HKDF, the context can be known to the attacker, but this will
-		// keep simultaneous runs from producing the same output.
-		$context = [ microtime(), getmypid(), gethostname() ];
-
-		// Setup salt cache. Use APC, or fallback to the main cache if it isn't setup
-		$cache = $services->getLocalServerObjectCache();
-		if ( $cache instanceof EmptyBagOStuff ) {
-			$cache = $services->getObjectCacheFactory()->getLocalClusterInstance();
-		}
-
-		return new CryptHKDF( $secret, $config->get( MainConfigNames::HKDFAlgorithm ), $cache, $context );
-	},
-
 	'DatabaseBlockStore' => static function ( MediaWikiServices $services ): DatabaseBlockStore {
 		return $services->getDatabaseBlockStoreFactory()->getDatabaseBlockStore( DatabaseBlock::LOCAL );
 	},

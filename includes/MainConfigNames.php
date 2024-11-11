@@ -3141,18 +3141,6 @@ class MainConfigNames {
 	public const SessionSecret = 'SessionSecret';
 
 	/**
-	 * Name constant for the HKDFSecret setting, for use with Config::get()
-	 * @see MainConfigSchema::HKDFSecret
-	 */
-	public const HKDFSecret = 'HKDFSecret';
-
-	/**
-	 * Name constant for the HKDFAlgorithm setting, for use with Config::get()
-	 * @see MainConfigSchema::HKDFAlgorithm
-	 */
-	public const HKDFAlgorithm = 'HKDFAlgorithm';
-
-	/**
 	 * Name constant for the CookieExpiration setting, for use with Config::get()
 	 * @see MainConfigSchema::CookieExpiration
 	 */

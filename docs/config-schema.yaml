@@ -5897,22 +5897,6 @@ config-schema:
             This should be set in LocalSettings.php, otherwise $wgSecretKey will
             be used.
             @since 1.27
-    HKDFSecret:
-        default: false
-        description: |-
-            Secret for hmac-based key derivation function (fast,
-            cryptographically secure random numbers).
-            This should be set in LocalSettings.php, otherwise $wgSecretKey will
-            be used.
-            See also: $wgHKDFAlgorithm
-            @since 1.24
-    HKDFAlgorithm:
-        default: sha256
-        description: |-
-            Algorithm for hmac-based key derivation function (fast,
-            cryptographically secure random numbers).
-            See also: $wgHKDFSecret
-            @since 1.24
     CookieExpiration:
         default: 2592000
         description: 'Default cookie lifetime, in seconds. Setting to 0 makes all cookies session-only.'

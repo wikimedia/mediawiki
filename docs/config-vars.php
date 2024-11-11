@@ -3126,18 +3126,6 @@ $wgRestAllowCrossOriginCookieAuth = null;
 $wgSessionSecret = null;
 
 /**
- * Config variable stub for the HKDFSecret setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::HKDFSecret
- */
-$wgHKDFSecret = null;
-
-/**
- * Config variable stub for the HKDFAlgorithm setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::HKDFAlgorithm
- */
-$wgHKDFAlgorithm = null;
-
-/**
  * Config variable stub for the CookieExpiration setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::CookieExpiration
  */
