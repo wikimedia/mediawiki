@@ -296,6 +296,28 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		$helper->checkAccess();
 	}
 
+	public static function provideRedirectsAllowed() {
+		yield [ [], true ];
+		yield [ [ 'redirect' => true ], true ];
+		yield [ [ 'redirect' => false ], false ];
+	}
+
+	/**
+	 * @dataProvider provideRedirectsAllowed
+	 */
+	public function testRedirectsAllowed( array $params, bool $allowRedirect ) {
+		$page = $this->getNonexistingTestPage(
+			Title::makeTitle( NS_MEDIAWIKI, 'Logouttext' )
+		);
+		$title = $page->getTitle();
+		$helper = $this->newHelper(
+			$params + [ 'title' => $title->getPrefixedDBkey() ],
+			$this->mockAnonUltimateAuthority()
+		);
+
+		$this->assertSame( $allowRedirect, $helper->getRedirectsAllowed() );
+	}
+
 	public function testParameterSettings() {
 		$helper = $this->newHelper();
 		$settings = $helper->getParamSettings();

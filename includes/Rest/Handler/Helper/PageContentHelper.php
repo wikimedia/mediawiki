@@ -334,10 +334,24 @@ class PageContentHelper {
 			],
 			'redirect' => [
 				Handler::PARAM_SOURCE => 'query',
-				ParamValidator::PARAM_TYPE => [ 'no' ],
+				ParamValidator::PARAM_TYPE => 'boolean',
 				ParamValidator::PARAM_REQUIRED => false,
+				ParamValidator::PARAM_DEFAULT => true,
 			]
 		];
+	}
+
+	/**
+	 * Whether the handler is allowed to follow redirects, according to the
+	 * request parameters.
+	 *
+	 * Handlers that can follow wiki redirects can use this to give clients
+	 * control over the redirect handling behavior.
+	 *
+	 * @return bool
+	 */
+	public function getRedirectsAllowed(): bool {
+		return $this->parameters['redirect'] ?? true;
 	}
 
 	/**

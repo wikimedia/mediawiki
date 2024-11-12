@@ -77,13 +77,8 @@ class PageHTMLHandler extends SimpleHandler {
 	public function run(): Response {
 		$this->contentHelper->checkAccessPermission();
 		$page = $this->contentHelper->getPageIdentity();
-		$params = $this->getRequest()->getQueryParams();
 
-		if ( array_key_exists( 'redirect', $params ) ) {
-			$followWikiRedirects = $params['redirect'] !== 'no';
-		} else {
-			$followWikiRedirects = true;
-		}
+		$followWikiRedirects = $this->contentHelper->getRedirectsAllowed();
 
 		// The call to $this->contentHelper->getPage() should not return null if
 		// $this->contentHelper->checkAccess() did not throw.
