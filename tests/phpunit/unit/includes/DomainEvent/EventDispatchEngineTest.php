@@ -8,8 +8,6 @@ use MediaWiki\DomainEvent\DomainEventSource;
 use MediaWiki\DomainEvent\DomainEventSubscriber;
 use MediaWiki\DomainEvent\EventDispatchEngine;
 use MediaWiki\DomainEvent\EventSubscriberBase;
-use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Tests\MockDatabase;
 use MediaWikiUnitTestCase;
 use Wikimedia\ObjectFactory\ObjectFactory;
@@ -43,43 +41,32 @@ class EventDispatchEngineTest extends MediaWikiUnitTestCase {
 		return $conProv;
 	}
 
-	private function newDispatchEngine( ?HookContainer $hookContainer = null ): EventDispatchEngine {
-		$hookContainer ??= new HookContainer(
-			new StaticHookRegistry(),
-			$this->createNoOpMock( ObjectFactory::class )
-		);
-
+	private function newDispatchEngine(): EventDispatchEngine {
 		$objectFactory = new ObjectFactory(
 			$this->createNoOpMock( ServiceContainer::class )
 		);
 
 		$engine = new EventDispatchEngine(
-			$objectFactory,
-			$hookContainer
+			$objectFactory
 		);
 
 		return $engine;
 	}
 
 	public function testSend() {
-		$hookContainer = new HookContainer(
-			new StaticHookRegistry(),
-			$this->createNoOpMock( ObjectFactory::class )
-		);
-
-		$engine = $this->newDispatchEngine( $hookContainer );
-
+		$engine = $this->newDispatchEngine();
 		$conProv = $this->newConnectionProvider();
 
 		$callCount = 0;
-		$hookContainer->register(
+		$engine->registerListener(
 			'Tested',
 			static function (
 				DomainEvent $event,
 				IConnectionProvider $conProv
 			) use ( &$callCount ) {
 				$callCount++;
-			}
+			},
+			[ DomainEventSource::INVOCATION_MODE => DomainEventSource::INVOKE_BEFORE_COMMIT ]
 		);
 
 		$engine->registerListener(
@@ -89,7 +76,8 @@ class EventDispatchEngineTest extends MediaWikiUnitTestCase {
 				IConnectionProvider $conProv
 			) use ( &$callCount ) {
 				$callCount++;
-			}
+			},
+			[ DomainEventSource::INVOCATION_MODE => DomainEventSource::INVOKE_AFTER_COMMIT ]
 		);
 
 		$dbw = $conProv->getPrimaryDatabase();
@@ -106,24 +94,20 @@ class EventDispatchEngineTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testRollback() {
-		$hookContainer ??= new HookContainer(
-			new StaticHookRegistry(),
-			$this->createNoOpMock( ObjectFactory::class )
-		);
-
-		$engine = $this->newDispatchEngine( $hookContainer );
+		$engine = $this->newDispatchEngine();
 
 		$conProv = $this->newConnectionProvider();
 
 		$callCount = 0;
-		$hookContainer->register(
+		$engine->registerListener(
 			'Tested',
 			static function (
 				DomainEvent $event,
 				IConnectionProvider $conProv
 			) use ( &$callCount ) {
 				$callCount++;
-			}
+			},
+			[ DomainEventSource::INVOCATION_MODE => DomainEventSource::INVOKE_BEFORE_COMMIT ]
 		);
 
 		$engine->registerListener(
@@ -133,7 +117,8 @@ class EventDispatchEngineTest extends MediaWikiUnitTestCase {
 				IConnectionProvider $conProv
 			) use ( &$callCount ) {
 				$callCount++;
-			}
+			},
+			[ DomainEventSource::INVOCATION_MODE => DomainEventSource::INVOKE_AFTER_COMMIT ]
 		);
 
 		$dbw = $conProv->getPrimaryDatabase();
