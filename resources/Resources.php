@@ -2047,6 +2047,7 @@ return [
 		'packageFiles' => [
 			'init.js',
 			'ApiSandbox.js',
+			'ApiSandboxLayout.js',
 			'OptionalParamWidget.js',
 			'ParamLabelWidget.js',
 			'BooleanToggleSwitchParamWidget.js',
@@ -2055,6 +2056,7 @@ return [
 			'PasswordParamWidget.js',
 			'UploadSelectFileParamWidget.js',
 			'TextParamMixin.js',
+			'Util.js',
 			'UtilMixin.js',
 		],
 		'dependencies' => [
