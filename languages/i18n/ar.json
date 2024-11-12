@@ -2649,6 +2649,8 @@
 	"block-user-no-active-blocks": "لا منع نشط",
 	"block-user-previous-blocks": "سجل المنع",
 	"block-user-no-previous-blocks": "لم يتم العثور على عمليات منع سابقة",
+	"block-user-suppressed-blocks": "عمليات المنع المخفية",
+	"block-user-no-suppressed-blocks": "لم يتم العثور على أي عمليات منع تم إخفاؤها سابقا",
 	"block-user-no-reason-given": "لا سبب معطى",
 	"block-user-no-reason-given-aria-details": "لم يتم تقديم سبب لمدخلة هذا السجل",
 	"block-user-placeholder": "ابدأ في كتابة اسم مستخدم...",

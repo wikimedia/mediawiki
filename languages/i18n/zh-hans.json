@@ -2734,6 +2734,7 @@
 	"block-reason-other": "额外或其它原因",
 	"block-success": "[[Special:Contributions/$1|$1]]已被封禁。参见[[Special:BlockList|封禁列表]]以检查目前的封禁。",
 	"block-user-active-blocks": "现有封禁",
+	"block-user-no-active-blocks": "没有找到生效的封禁",
 	"block-user-previous-blocks": "封禁日志",
 	"block-user-no-previous-blocks": "未找到先前的封禁",
 	"block-user-no-reason-given": "未给出原因",
