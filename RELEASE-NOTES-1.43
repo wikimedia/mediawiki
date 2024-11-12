@@ -225,6 +225,7 @@ For notes on 1.42.x and older releases, see HISTORY.
 * Updated wikimedia/purtle from 1.0.8 to 2.0.0.
 * Updated wikimedia/relpath from 4.0.0 to 4.0.1.
 * Updated wikimedia/remex-html from 4.1.0 to 4.1.1.
+* Updated wikimedia/request-timeout from 1.2.0 to 2.0.0.
 * Updated wikimedia/scoped-callback from 4.0.0 to 5.0.0.
 * Updated wikimedia/services from 3.0.0 to 4.0.0.
 * Updated wikimedia/shellbox from 4.0.2 to 4.1.1.
