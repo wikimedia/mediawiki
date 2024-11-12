@@ -4317,6 +4317,10 @@ class Parser {
 			$enoughToc = true;
 		}
 
+		if ( !$numMatches ) {
+			return $text;
+		}
+
 		# headline counter
 		$headlineCount = 0;
 		$haveTocEntries = false;
@@ -4337,11 +4341,9 @@ class Parser {
 		$cpOffset = 0;
 		$refers = [];
 
-		$headlines = $numMatches !== false ? $matches[3] : [];
-
 		$maxTocLevel = $this->svcOptions->get( MainConfigNames::MaxTocLevel );
 		$domDocument = DOMUtils::parseHTML( '' );
-		foreach ( $headlines as $headline ) {
+		foreach ( $matches[3] as $headline ) {
 			// $headline is half-parsed HTML
 			$isTemplate = false;
 			$titleText = false;
