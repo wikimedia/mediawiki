@@ -1,10 +1,4 @@
 <?php
-/**
- * Initialize a user preference based on the value
- * of another preference.
- *
- * @ingroup Maintenance
- */
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
@@ -13,6 +7,10 @@ require_once __DIR__ . '/Maintenance.php';
 /**
  * Maintenance script that initializes a user preference
  * based on the value of another preference.
+ *
+ * This is done by copying any non-empty (i.e. excluding 0 or null) value for a given
+ * source preference to be the value of the target preference. Only users with the value set
+ * will have the target preference set.
  *
  * @ingroup Maintenance
  */
@@ -54,7 +52,7 @@ class InitUserPreference extends Maintenance {
 		$iterator->addConditions( [
 			'up_property' => $source,
 			$dbr->expr( 'up_value', '!=', null ),
-			$dbr->expr( 'up_value', '!=', 0 ),
+			$dbr->expr( 'up_value', '!=', '0' ),
 		] );
 		$iterator->setCaller( __METHOD__ );
 
