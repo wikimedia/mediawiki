@@ -22,6 +22,8 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
+use MediaWiki\Maintenance\Maintenance;
+
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd

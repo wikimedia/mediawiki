@@ -22,6 +22,7 @@
  * @author Alex Dean <wikimedia@mostlyalex.com>
  */
 
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\User\BotPassword;
 use MediaWiki\User\User;
 

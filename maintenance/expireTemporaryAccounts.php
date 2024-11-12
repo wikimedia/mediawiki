@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;

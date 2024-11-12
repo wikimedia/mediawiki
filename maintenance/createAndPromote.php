@@ -29,6 +29,7 @@ require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Deferred\SiteStatsUpdate;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Password\PasswordError;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;

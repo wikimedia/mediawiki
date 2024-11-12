@@ -26,6 +26,7 @@
 require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ActorMigration;

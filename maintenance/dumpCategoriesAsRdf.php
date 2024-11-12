@@ -19,6 +19,7 @@
 
 use MediaWiki\Category\CategoriesRdf;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Maintenance\Maintenance;
 use Wikimedia\Purtle\RdfWriter;
 use Wikimedia\Purtle\RdfWriterFactory;
 use Wikimedia\Rdbms\IReadableDatabase;

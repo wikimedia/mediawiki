@@ -28,6 +28,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;

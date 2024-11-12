@@ -22,6 +22,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\User\User;
 
 // @codeCoverageIgnoreStart

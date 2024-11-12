@@ -23,6 +23,9 @@
  * @file
  * @ingroup Maintenance
  */
+
+use MediaWiki\Maintenance\TextPassDumper;
+
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/includes/TextPassDumper.php';
 

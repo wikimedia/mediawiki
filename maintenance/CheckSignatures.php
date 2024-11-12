@@ -19,6 +19,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Parser\ParserOptions;
 
 /**

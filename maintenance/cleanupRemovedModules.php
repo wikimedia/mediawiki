@@ -22,6 +22,7 @@
  * @author Roan Kattouw
  */
 
+use MediaWiki\Maintenance\Maintenance;
 use Wikimedia\Rdbms\IDatabase;
 
 // @codeCoverageIgnoreStart

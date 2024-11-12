@@ -24,6 +24,7 @@
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Language\RawMessage;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;

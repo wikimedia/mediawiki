@@ -23,6 +23,7 @@
 require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Title\Title;
 use Wikimedia\Diff\Diff;
 use Wikimedia\Diff\UnifiedDiffFormatter;

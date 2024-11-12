@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Registration\ExtensionDependencyError;
 use MediaWiki\Registration\ExtensionRegistry;
 

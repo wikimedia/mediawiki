@@ -27,6 +27,7 @@ require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\BlobStore;
