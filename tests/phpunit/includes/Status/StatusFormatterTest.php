@@ -36,11 +36,11 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 			}
 		};
 
-		$cache = $this->createNoOpMock( MessageCache::class, [ 'parse' ] );
-		$cache->method( 'parse' )->willReturnCallback(
+		$cache = $this->createNoOpMock( MessageCache::class, [ 'parseWithPostprocessing' ] );
+		$cache->method( 'parseWithPostprocessing' )->willReturnCallback(
 			static function ( $text ) {
 				$text = html_entity_decode( $text, ENT_QUOTES | ENT_HTML5 );
-				return "<p>" . trim( $text ) . "\n</p>";
+				return new ParserOutput( "<p>" . trim( $text ) . "\n</p>" );
 			}
 		);
 
