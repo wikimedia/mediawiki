@@ -125,7 +125,7 @@ module.exports = exports = defineComponent( {
 
 		const columns = [
 			{ id: 'timestamp', label: mw.message( 'blocklist-timestamp' ).text(), minWidth: '112px' },
-			props.blockLogType === 'recent' ?
+			props.blockLogType === 'recent' || props.blockLogType === 'suppress' ?
 				{ id: 'type', label: mw.message( 'blocklist-type-header' ).text(), minWidth: '112px' } :
 				{ id: 'target', label: mw.message( 'blocklist-target' ).text(), minWidth: '200px' },
 			{ id: 'expiry', label: mw.message( 'blocklist-expiry' ).text(), minWidth: '112px' },
@@ -186,6 +186,10 @@ module.exports = exports = defineComponent( {
 						// The fallback is only necessary for Jest tests.
 						data = data || { logevents: [] };
 						for ( let i = 0; i < data.logevents.length; i++ ) {
+							// Only show 'suppress' entries that are of a relevant action/subtype.
+							if ( data.logevents[ i ].type === 'suppress' && !data.logevents[ i ].action.endsWith( 'block' ) ) {
+								continue;
+							}
 							newData.push( {
 								timestamp: {
 									timestamp: data.logevents[ i ].timestamp,
