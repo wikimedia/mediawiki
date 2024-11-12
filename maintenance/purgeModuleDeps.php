@@ -29,6 +29,7 @@ require_once __DIR__ . '/Maintenance.php';
  * Maintenance script to purge the module_deps database cache table for ResourceLoader.
  *
  * @ingroup Maintenance
+ * @ingroup ResourceLoader
  */
 class PurgeModuleDeps extends Maintenance {
 	public function __construct() {

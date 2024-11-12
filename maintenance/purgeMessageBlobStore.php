@@ -10,6 +10,7 @@ require_once __DIR__ . '/Maintenance.php';
  * This script exists for use with the `--skip-message-purge` option of
  * rebuildLocalisationCache.php.
  *
+ * @ingroup ResourceLoader
  * @since 1.36
  */
 class PurgeMessageBlobStore extends Maintenance {
