@@ -34,11 +34,13 @@
 			"Weft",
 			"Wladek92",
 			"Wyz",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"Mahabarata"
 		]
 	},
 	"preferences": "Préférences",
 	"prefsnologintext2": "Veuillez vous connecter pour modifier vos préférences.",
+	"prefsnologintext2-for-temp-user": "Veuillez créer un compte pour modifier vos préférences.",
 	"searchprefs": "Chercher dans les préférences",
 	"searchprefs-noresults": "Aucun résultat",
 	"searchprefs-results": "$1 {{PLURAL:$1|résultat|résultats}}",
@@ -51,7 +53,7 @@
 	"prefs-personal": "Informations personnelles",
 	"prefs-description-personal": "Contrôlez la façon dont vous apparaissez, vous connectez et communiquez.",
 	"prefs-info": "Informations de base",
-	"username": "Nom d’utilisat{{GENDER:$1|eur|rice}} :",
+	"username": "Nom {{GENDER:$1|d’utilisateur|d’utilisatrice}} :",
 	"prefs-memberingroups": "Membre{{GENDER:$2|}} d{{PLURAL:$1|u|es}} groupe{{PLURAL:$1||s}} :",
 	"group-membership-link-with-expiry": "$1 (jusqu’à $2)",
 	"prefs-edits": "Nombre de modifications :",

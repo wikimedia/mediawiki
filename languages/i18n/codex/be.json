@@ -11,6 +11,6 @@
 	"cdx-search-input-search-button-label": "Пошук",
 	"cdx-table-select-all-label": "Выбраць усе радкі",
 	"cdx-table-select-row-label": "Выбраць радок $1 з $2",
-	"cdx-table-sort-caption": "$1, загалоўкі слупкоў з кнопкамі можна сартаваць.",
+	"cdx-table-sort-caption": "$1 (загалоўкі слупкоў з кнопкамі можна сартаваць).",
 	"cdx-typeahead-search-search-results-label": "Вынікі пошуку"
 }

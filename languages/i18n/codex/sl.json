@@ -11,7 +11,7 @@
 	"cdx-search-input-search-button-label": "Išči",
 	"cdx-table-select-all-label": "Izbira vseh vrstic",
 	"cdx-table-select-row-label": "Izbira vrstice $1 od $2",
-	"cdx-table-sort-caption": "$1; glave stolpcev z gumbi so razvrstljive.",
+	"cdx-table-sort-caption": "$1 (glave stolpcev z gumbi so razvrstljive).",
 	"cdx-typeahead-search-search-results-label": "Iskalni zadetki",
 	"cdx-table-pager-button-first-page": "Prva stran",
 	"cdx-table-pager-button-last-page": "Zadnja stran",

@@ -3,7 +3,6 @@
 		"authors": [
 			"1233qwer1234qwer4",
 			"Acamicamacaraca",
-			"Amire80",
 			"BadDog",
 			"Bjankuloski06",
 			"Brainmachine",
@@ -2563,6 +2562,8 @@
 	"block-user-placeholder": "Почнете да пишувате...",
 	"block-target": "Корисничко име, IP-адреса или IP-опсег:",
 	"block-target-placeholder": "КорисничкоИме, 1.1.1.42 или 1.1.1.42/16",
+	"block-pages-placeholder": "Додајте уште страници...",
+	"block-namespaces-placeholder": "Додајте уште именски простори...",
 	"unblockip": "Одблокирај корисник",
 	"unblockiptext": "Користете го долниот образец да го вратите правото на пишување на претходно блокирана IP-адреса или корисничко име.",
 	"ipusubmit": "Избриши го ова блокирање",

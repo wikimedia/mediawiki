@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Afimaame",
-			"Amire80",
 			"Cookai1205",
 			"DaSupremo",
 			"Jwale2"
@@ -378,7 +377,7 @@
 	"revisionasof": "Revision as of $1",
 	"revision-info": "Revision as of $1 by {{GENDER:$6|$2}}$7",
 	"previousrevision": "← Older revision",
-	"nextrevision": "Fresh revision",
+	"nextrevision": "Fresh revision →",
 	"currentrevisionlink": "Latest revision",
 	"cur": "cur",
 	"last": "prev",

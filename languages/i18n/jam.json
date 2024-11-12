@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			")8",
-			"Amire80",
 			"Chabi1",
 			"Dcljr",
 			"Dentonius",
@@ -406,7 +405,7 @@
 	"revisionasof": "'Ow di page did set a $1",
 	"revision-info": "Rivijan optel $1 by {{GENDER:$6|$2}}$7‎",
 	"previousrevision": "← 'Ow di page tan before dis",
-	"nextrevision": "Nyuwa rivijan",
+	"nextrevision": "Nyuwa rivijan →",
 	"currentrevisionlink": "Lietis rivijan",
 	"cur": "lat",
 	"next": "nexx",

@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Polda18"
+		]
+	},
+	"cdx-chip-input-chip-added": "Iver $1 běše dodany.",
+	"cdx-chip-input-chip-removed": "Iver $1 běše udaljany.",
+	"cdx-input-chip-aria-description": "Po upravjane prite klavišu Enter ili po udaljanje klavišu Delete.",
+	"cdx-dialog-close-button-label": "Zatvoriti",
+	"cdx-label-optional-flag": "(opcionalno)",
+	"cdx-message-dismiss-button-label": "Zatvoriti",
+	"cdx-search-input-search-button-label": "Iskati",
+	"cdx-table-select-all-label": "Izbrati vsih redky",
+	"cdx-table-select-row-label": "Izbrati redok $1 iz $2",
+	"cdx-table-sort-caption": "$1 (glavice stolpov s knopkami sut sortujuče).",
+	"cdx-typeahead-search-search-results-label": "Rezultaty poiskanja",
+	"cdx-table-pager-button-first-page": "Prva stranica",
+	"cdx-table-pager-button-last-page": "Poslědnja stranica",
+	"cdx-table-pager-button-next-page": "Slědujuča stranica",
+	"cdx-table-pager-button-prev-page": "Prědhodeča stranica",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 redok|$1 redky|$1 redkov}}",
+	"cdx-table-pager-items-per-page-default": "Rezultaty podolg stranic",
+	"cdx-table-pagination-status-message-determinate-long": "Pokazanje rezultatov $1–$2 iz $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 iz $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Pokazanje rezultatov $1–$2 iz mnoga",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 iz mnoga",
+	"cdx-table-pagination-status-message-indeterminate-final": "Pokazanje {{PLURAL:$1|poslědny $1 rezultat|$1 poslědnje rezultaty|$1 poslědnjih rezultatov}}",
+	"cdx-table-pagination-status-message-pending": "Načitanje rezultatov..."
+}

@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"GastonJeremiah"
 		]
 	},
@@ -148,7 +147,7 @@
 	"confirmable-no": "Ĥaai",
 	"red-link-title": "$1 (wadvaagu kpaɦ)",
 	"nstab-main": "Wadga",
-	"nstab-user": "{{GENDER:$1|wadga zaŋta}}",
+	"nstab-user": "{{GENDER:$1|Wadga zaŋta}}",
 	"nstab-media": "Media wadga",
 	"nstab-special": "Wadg hɔmga",
 	"nstab-project": "Ŋmɛɛgb wadga",
@@ -236,7 +235,7 @@
 	"currentrev-asof": "Lagiib kwɛkwɛɛlb wo $1",
 	"revisionasof": "Manyiib wo $1 ba' le",
 	"revision-info": "Lagiib ʋan heer bii $1 jugun l'bahrn {{GENDER:$6|}} nn $7",
-	"previousrevision": "Lagiib kpemb",
+	"previousrevision": "← Lagiib kpemb",
 	"nextrevision": "Lagiib kwɛɛlb →",
 	"currentrevisionlink": "Lagiib kwɛkwɛɛlb",
 	"cur": "kwɛɛlm",

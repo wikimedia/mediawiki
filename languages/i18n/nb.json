@@ -4,7 +4,6 @@
 			"1233qwer1234qwer4",
 			"4ing",
 			"Abuluntu",
-			"Amire80",
 			"Audun",
 			"Boivie",
 			"Brik",
@@ -64,7 +63,8 @@
 			"Wouterkoch",
 			"Yupik",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Tumbuka Arch"
 		]
 	},
 	"sunday": "søndag",
@@ -1440,7 +1440,7 @@
 	"rcfilters-filter-user-experience-level-experienced-label": "Erfarne brukere",
 	"rcfilters-filter-user-experience-level-experienced-description": "Registrerte brukere med mer enn 500 redigeringer og 30 dagers aktivitet.",
 	"rcfilters-filtergroup-automated": "Automatiske bidrag",
-	"rcfilters-filter-bots-label": "Bot",
+	"rcfilters-filter-bots-label": "Kadoli",
 	"rcfilters-filter-bots-description": "Redigeringer gjort med automatiske verktøy.",
 	"rcfilters-filter-humans-label": "Menneske (ikke bot)",
 	"rcfilters-filter-humans-description": "Redigeringer utført av mennesker.",
@@ -2586,7 +2586,7 @@
 	"block-user-active-blocks": "Aktive blokkeringer",
 	"block-user-previous-blocks": "Blokkeringslogg",
 	"block-user-no-previous-blocks": "Ingen tidligere blokkeringer funnet",
-	"block-user-no-reason-given": "Ingen blokkeringsårsak angitt",
+	"block-user-no-reason-given": "Ingen årsak angitt",
 	"block-user-description": "En brukr kan være et brukernavn, en IP-adresse eller et IP-intervall.",
 	"block-user-placeholder": "Begynn å skrive inn et brukernavn …",
 	"block-target": "Brukernavn, IP-adresse eller IP-intervall:",

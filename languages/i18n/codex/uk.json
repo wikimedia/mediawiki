@@ -2,15 +2,31 @@
 	"@metadata": {
 		"authors": [
 			"Ignatgg",
-			"Yasen igra"
+			"Yasen igra",
+			"METROKOP228 UA"
 		]
 	},
+	"cdx-chip-input-chip-added": "Додано чіп $1.",
+	"cdx-chip-input-chip-removed": "Вилучено чіп $1.",
+	"cdx-input-chip-aria-description": "Натисніть Enter для редагування або Delete для вилучення.",
 	"cdx-dialog-close-button-label": "Закрити",
 	"cdx-label-optional-flag": "(необов'язково)",
 	"cdx-message-dismiss-button-label": "Закрити",
+	"cdx-search-input-search-button-label": "Пошук",
+	"cdx-table-select-all-label": "Вибрати усі рядки",
+	"cdx-table-select-row-label": "Виберіть ряд $1 з $2",
+	"cdx-table-sort-caption": "$1 (заголовки стовпців з кнопками можна сортувати).",
+	"cdx-typeahead-search-search-results-label": "Результати пошуку",
 	"cdx-table-pager-button-first-page": "Перша сторінка",
 	"cdx-table-pager-button-last-page": "Остання сторінка",
 	"cdx-table-pager-button-next-page": "Наступна сторінка",
 	"cdx-table-pager-button-prev-page": "Попередня сторінка",
-	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 ряд|$1 ряди|$1 рядів}}"
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 ряд|$1 ряди|$1 рядів}}",
+	"cdx-table-pager-items-per-page-default": "Результатів на сторінку",
+	"cdx-table-pagination-status-message-determinate-long": "Показ результатів $1–$2 з $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 з $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Показ $1–$2 результатів",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2",
+	"cdx-table-pagination-status-message-indeterminate-final": "Показ останніх {{PLURAL:$1|$1 результат|$1 результати|$1 результатів}}",
+	"cdx-table-pagination-status-message-pending": "Завантаження результатів…"
 }

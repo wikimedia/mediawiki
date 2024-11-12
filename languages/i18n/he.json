@@ -2587,6 +2587,8 @@
 	"block-user-placeholder": "נא להקליד משתמש...",
 	"block-target": "שם משתמש, כתובת IP, או טווח IP:",
 	"block-target-placeholder": "שם־משתמש, 1.1.1.42, או 1.1.1.42/16",
+	"block-pages-placeholder": "הוספת דפים...",
+	"block-namespaces-placeholder": "הוספת מרחבי שם...",
 	"unblockip": "שחרור חסימה של משתמש",
 	"unblockiptext": "ניתן להשתמש בטופס שלהלן כדי להחזיר את הרשאות הכתיבה לכתובת IP חסומה או למשתמש חסום.",
 	"ipusubmit": "הסרת חסימה זו",

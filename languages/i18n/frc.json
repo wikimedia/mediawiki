@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"1233qwer1234qwer4",
-			"Amire80",
 			"Beunice",
 			"Cinebeunice",
 			"DannyS712",
@@ -17,7 +16,8 @@
 			"Stisc-14",
 			"Urhixidur",
 			"Whytheonlyone",
-			"Zetud"
+			"Zetud",
+			"SleaY"
 		]
 	},
 	"sunday": "dimanche",
@@ -504,7 +504,7 @@
 	"editinguser": "Modification des groupes de l’utilisat{{GENDER:$1|eur|rice}} <strong>[[User:$1|$1]]</strong> $2",
 	"userrights-reason": "Raison:",
 	"group": "Groupe:",
-	"group-user": "Useurs",
+	"group-user": "Utilisateurs",
 	"group-all": "(tous)",
 	"group-bot-member": "{{GENDER:$1|robot}}",
 	"group-sysop-member": "{{GENDER:$1|administrateur|administratrice}}",
@@ -709,7 +709,7 @@
 	"ipb-unblock-addr": "Débloquer $1",
 	"ipb-unblock": "Débloquer un compte useur ou une adresse IP",
 	"unblockip": "Débloquer l’useur",
-	"ipblocklist": "Useurs bloqués",
+	"ipblocklist": "Utilisateurs bloqués",
 	"infiniteblock": "infini",
 	"blocklink": "bloquer",
 	"contribslink": "changes",

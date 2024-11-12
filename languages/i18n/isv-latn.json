@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"IJzeren Jan",
-			"Matma Rex"
+			"Matma Rex",
+			"Polda18"
 		]
 	},
 	"sunday": "nedělja",
@@ -563,12 +563,13 @@
 	"edit-recovery-special-delete": "odstraniti",
 	"edit-recovery-special-recovered-on": "iz $1",
 	"edit-recovery-special-recovered-on-tooltip": "Data i čas poslědnjego zapisanja odnovjenyh danyh",
-	"edit-recovery-loaded-title": "Izměny sut odnovjene",
-	"edit-recovery-loaded-message": "Vaše nezapisane izměny sut avtomatično odnovjene.",
+	"edit-recovery-loaded-title": "Obnoviti izměny?",
+	"edit-recovery-loaded-message": "Vaše nezapisane izměny mogti byti avtomatično obnovjene.",
 	"edit-recovery-loaded-message-different-rev": "<em>Čuvanje: stranica može byti izměnjena od momenta, kogda vy načeli jeste ju praviti.</em>",
 	"edit-recovery-loaded-message-different-rev-publish": "<em>Prosimo, prověrite svoje izměny prěd publikovanjem.</em>",
 	"edit-recovery-loaded-message-different-rev-save": "<em>Prosimo, prověrite svoje izměny prěd zapisanjem.</em>",
-	"edit-recovery-loaded-discard": "Odvrgnuti izměny",
+	"edit-recovery-loaded-recover": "Obnoviti",
+	"edit-recovery-loaded-discard": "Odvrgnuti",
 	"summary": "Kratky opis:",
 	"subject": "Prědmet:",
 	"minoredit": "Tuto jest mala pravka",
@@ -2432,7 +2433,7 @@
 	"sp-contributions-concurrency-user": "Izvinite, iz vašego koristničskogo konta bylo sdělano prěmnogo zapytov. Prosimo, poprobujte pozdněje.",
 	"sp-contributions-concurrency-ip": "Izvinite, iz vašego IP-adresa bylo sdělano prěmnogo zapytov. Prosimo, poprobujte pozdněje.",
 	"whatlinkshere": "Linky napravjajuče ovde",
-	"whatlinkshere-count": "Pokazan{{PLURAL:$1|y $1 element|e $1 elementy|yh $1 elementov}}.",
+	"whatlinkshere-count": "Pokazanje $1 {{PLURAL:$1|element|elementy|elementov}}.",
 	"whatlinkshere-title": "Stranice s linkami na «$1»",
 	"whatlinkshere-page": "Stranica:",
 	"linkshere": "Slědujuče stranice sodrživajut link na <strong>$2</strong>:",
@@ -2513,11 +2514,19 @@
 	"block-options-description": "Tute opcije mogut vam pomogti slědovati tutogo koristnika, za izběganje daljših problemov.",
 	"block-reason": "Pričina:",
 	"block-reason-other": "Dodatočna ili druga pričina",
+	"block-success": "{{GENDER:$1|Koristnik|Koristnica}} [[Special:Contributions/$1|$1]] jest {{GENDER:$1|zablokovany|zablokovana}}. Gledite [[Special:BlockList|spisok blokad]] za prěgled blokad.",
 	"block-user-label": "Kojego koristnika hočete zablokovati?",
+	"block-user-active-blocks": "Aktivne blokady",
+	"block-user-previous-blocks": "Dnevnik blokad",
+	"block-user-no-previous-blocks": "Žadne prědšedše blokady ne byli najdene",
+	"block-user-no-reason-given": "Pričina ne byla podana",
+	"block-user-no-reason-given-aria-details": "Dlja tutoj element dnevnika ne byla podana žadna pričina",
 	"block-user-description": "Koristnik može byti: koristničsko ime, IP-adres ili obseg IP-adresov.",
 	"block-user-placeholder": "Načnite vpisyvati koristnika...",
 	"block-target": "Koristničsko ime, IP-adres ili obseg IP-adresov:",
 	"block-target-placeholder": "KoristničskoIme, 1.1.1.42, ili 1.1.1.42/16",
+	"block-pages-placeholder": "Pridati vyše stranic...",
+	"block-namespaces-placeholder": "Pridati vyše imennych prostorov...",
 	"unblockip": "Odblokovati koristnika",
 	"unblockiptext": "Upotrěbite slědujuči formular za vračenje dostupa raněje zablokovanomu IP-adresu ili koristničskomu imeni.",
 	"ipusubmit": "Sjeti tutu blokadu",
@@ -2540,6 +2549,7 @@
 	"blocklist-indefblocks": "Skryti bezkonečne blokady",
 	"blocklist-addressblocks": "Skryti blokady pojedinočnyh IP-adresov",
 	"blocklist-type": "Tip:",
+	"blocklist-type-header": "Tip",
 	"blocklist-type-opt-all": "Vse",
 	"blocklist-type-opt-sitewide": "Na cělom sajtu",
 	"blocklist-type-opt-partial": "Čestična",
@@ -3875,6 +3885,7 @@
 	"specialmute-error-no-options": "Funkcije ignorovanja sut nedostupne.",
 	"specialmute-email-footer": "Za upravjenje nastavjenja e-pošty za koristnika {{BIDI:$2}}, posětite slědujuči URL-adres:\n$1",
 	"specialmute-login-required": "Prosimo, že prijavite se, da byste izměnili svoje nastavjenja v oblasti ignorovanja uvědomjenij.",
+	"specialmute-login-required-for-temp-user": "Prosimo izdělajte si konto, ako hočete užiti funkciju oglušenje.",
 	"mute-preferences": "Nastavjenja ignorovanja uvědomjenij",
 	"revid": "versija $1",
 	"pageid": "Identifikator stranice $1",
@@ -3997,5 +4008,7 @@
 	"benefit-1-description": "Spisky slědovanyh stranic, ktore pozvaljajut vam observovati iměny na stranicah, ktore vas interesujut.",
 	"benefit-2-description": "Trajny spisok vašego vklada v tutoj projekt.",
 	"benefit-3-description": "Nastavjenja, ktorymi možete prisposobiti svoj opyt k svojim prědpočitanjam.",
-	"temp-user-unable-to-acquire": "Priděljenje vrěmennogo koristničskogo imene ne udalo se. Prosimo, poprobujte ponovno."
+	"temp-user-unable-to-acquire": "Priděljenje vrěmennogo koristničskogo imene ne udalo se. Prosimo, poprobujte ponovno.",
+	"table-of-contents-show-button-aria-label": "Pokazati tabelu sodržanja",
+	"table-of-contents-hide-button-aria-label": "Skryti tabelu sodržanja"
 }

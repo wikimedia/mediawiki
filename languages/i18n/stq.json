@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"DannyS712",
 			"Fitoschido",
 			"Kaganer",
@@ -202,7 +201,7 @@
 	"sort-descending": "Oustiegend sortierje",
 	"sort-ascending": "Apstiegend sortierje",
 	"nstab-main": "Siede",
-	"nstab-user": "{{GENDER:$1|}}Benutsersiede",
+	"nstab-user": "{{GENDER:$1|Benutsersiede}}",
 	"nstab-media": "Media",
 	"nstab-special": "Spezioalsiede",
 	"nstab-project": "Projektsiede",

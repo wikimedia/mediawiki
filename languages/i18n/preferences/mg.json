@@ -12,7 +12,7 @@
 	"prefs-tabs-navigation-hint": "Torohevitra: afaka mampiasa ny zana-tsipika havia ary havanana ianao ho an'ny fitetezana ny vakizoro ao amin'ny lisi-bakizoro",
 	"prefs-personal": "Mombamomba anao",
 	"prefs-info": "Fampahalalàna fototra",
-	"username": "{{GENDER:$1}}Anaram-pikambana :",
+	"username": "{{GENDER:$1|Anaram-pikambana}} :",
 	"prefs-memberingroups": "Mpikambana{{GENDER:$2}} ao amin'ny vondrona{{PLURAL:$1}}:",
 	"group-membership-link-with-expiry": "$1 (hatramin'i $2)",
 	"prefs-edits": "isa ny fanovàna :",

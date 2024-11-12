@@ -114,7 +114,7 @@
 	"prefs-description-rendering": "A felület, méret és olvasási beállítások módosítása.",
 	"prefs-skin": "Felület",
 	"skin-preview": "előnézet",
-	"prefs-common-config": "Közös CSS/JavaScript minden skinhez:",
+	"prefs-common-config": "Közös CSS/JavaScript minden felülethez:",
 	"prefs-custom-css": "saját CSS",
 	"prefs-custom-js": "saját JavaScript",
 	"prefs-custom-cssjs-safemode": "Az egyéni CSS/JavaScript jelenleg nem érhető el, mivel a biztonsági mód engedélyezve van. Kérjük, [[#mw-input-wpforcesafemode|kapcsold ki a biztonsági módot]] az egyéni CSS/JavaScript használatához.",

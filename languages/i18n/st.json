@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Cbrown1023",
 			"Coldfact",
 			"Gustave London",
@@ -106,7 +105,7 @@
 	"toc": "Tse kahare",
 	"red-link-title": "$1 (leqephe ha le eo)",
 	"nstab-main": "Sengolwa",
-	"nstab-user": "{{GENDER:$1| Leqephe la mosebelisi}}",
+	"nstab-user": "{{GENDER:$1|Leqephe la mosebelisi}}",
 	"nstab-special": "Leqephe le khethehileng",
 	"nstab-image": "Faele",
 	"nstab-mediawiki": "Molaetsa",

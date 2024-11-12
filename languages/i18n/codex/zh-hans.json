@@ -3,7 +3,8 @@
 		"authors": [
 			"Lakejason0",
 			"LittlePaw365",
-			"沈澄心"
+			"沈澄心",
+			"Winston Sung"
 		]
 	},
 	"cdx-chip-input-chip-added": "已添加标签$1。",
@@ -15,7 +16,7 @@
 	"cdx-search-input-search-button-label": "搜索",
 	"cdx-table-select-all-label": "选择所有行",
 	"cdx-table-select-row-label": "选择第$1行（共$2行）",
-	"cdx-table-sort-caption": "$1，有按钮的列表头可以排序。",
+	"cdx-table-sort-caption": "$1（有按钮的列表头可以排序）。",
 	"cdx-typeahead-search-search-results-label": "搜索结果",
 	"cdx-table-pager-button-first-page": "第一页",
 	"cdx-table-pager-button-last-page": "最后一页",

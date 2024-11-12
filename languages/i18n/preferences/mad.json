@@ -1,18 +1,19 @@
 {
 	"@metadata": {
 		"authors": [
-			"Boesenbergia"
+			"Boesenbergia",
+			"Munajad.MH"
 		]
 	},
 	"tog-prefershttps": "Samanè ngangghuy konèksi sè aman mon alebbhu ka log",
 	"tog-oldsig": "Tanḍhâ tanangnga bâ'na sè ella bâḍâ:",
 	"tog-fancysig": "Kalako tanḍhâ tanang mènang tèks wiki (ta'pa sèttong pranala otomatis ka kaca pangangghuy Bâ'na)",
 	"tog-requireemail": "Kèrèm sorèl settèl bâli oca' sanḍhi mon lamat sorèl bân nyama pangangghuy èbherri'i bhâi.",
-	"tog-ccmeonemails": "Kèrèmmaghi engko' salènanna sorèl sè la è kèrèmmaghi ka orèng laèn",
-	"tog-enotifwatchlistpages": "Engko' kèrèmè sorèl kalamon sèttong kaca otabâ bhengkek sè toman èsègher bi' engkok aobâ",
-	"tog-enotifusertalkpages": "Engko' kèrèmè sorèl kalamon tang kaca pakanḍhâ'ân aobâ",
-	"tog-enotifminoredits": "Engko' kèrèmè sorèl kèya è obâ'ân kènè' è kaca bân bhengkek",
-	"tog-enotifrevealaddr": "Angghâllaghi tang lamat sorèl è sorèl partèla",
+	"tog-ccmeonemails": "Kèrèmè kaulâ salènanna sorasa/sorèl sè ampon kakèrèm dâ'ka orèng sè laèn",
+	"tog-enotifwatchlistpages": "Kaulâ kèrèmè sorèl/sorasa kalamon bâḍâ sa kaca otabâ bhengkek sè toman èsègher bi' kawulâ panèka aobâ",
+	"tog-enotifusertalkpages": "Kaulâ kèrèmè sorèl kalamon tang kaca pakanḍhâ'ân panèka aobâ",
+	"tog-enotifminoredits": "Kaulâ kèrèmè sorèl/sorasa sè kèya è obâ'ân kènè' è kaca bân bhengkek",
+	"tog-enotifrevealaddr": "Angghâllaghi tang alamat sorèl/sorasa è sorasa partèla",
 	"tog-diffonly": "Jhâ' angghâllaghi èssèna kaca è babana parbhidhâ'ân beccè'an",
 	"tog-norollbackdiff": "Jhâ' anggâllaghi parbhidhâ'ân samarèna ngalakonè pabâliyân",
 	"tog-underline": "Ghâris bâbâi pranala:",

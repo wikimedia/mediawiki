@@ -11,7 +11,7 @@
 	"cdx-search-input-search-button-label": "Suchen",
 	"cdx-table-select-all-label": "Alle Zeilen auswählen",
 	"cdx-table-select-row-label": "Zeile $1 von $2 auswählen",
-	"cdx-table-sort-caption": "$1, Spaltenüberschriften mit Schaltflächen sind sortierbar.",
+	"cdx-table-sort-caption": "$1 (Spaltenüberschriften mit Schaltflächen sind sortierbar)",
 	"cdx-typeahead-search-search-results-label": "Suchergebnisse",
 	"cdx-table-pager-button-first-page": "Erste Seite",
 	"cdx-table-pager-button-last-page": "Letzte Seite",

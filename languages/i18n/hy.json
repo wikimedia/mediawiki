@@ -3,7 +3,6 @@
 		"authors": [
 			"23artashes",
 			"Ahmed-Najib-Biabani-Ibrahimkhel",
-			"Amire80",
 			"Aram1985",
 			"Armenoid",
 			"Azniv Stepanian",
@@ -1579,6 +1578,7 @@
 	"ipblocklist": "Արգելափակված IP-հասցեները և մասնակիցները",
 	"ipblocklist-legend": "Արգելափակված մասնակցի որոնում",
 	"blocklist-type": "Տեսակ՝",
+	"blocklist-type-header": "Տեսակ",
 	"blocklist-type-opt-all": "Բոլորը",
 	"blocklist-type-opt-sitewide": "Ամբողջ նախագծում",
 	"blocklist-type-opt-partial": "Մասամբ",
@@ -2234,5 +2234,7 @@
 	"skin-action-undelete": "Վերականգնել",
 	"skin-action-delete": "Ջնջել",
 	"skin-action-move": "Տեղափոխել այս էջը",
-	"renameuser-linkoncontribs-text": "Վերանվանել այս {{GENDER:$1|մասնակցին}}"
+	"renameuser-linkoncontribs-text": "Վերանվանել այս {{GENDER:$1|մասնակցին}}",
+	"table-of-contents-show-button-aria-label": "Ցույց տալ բովանդակության աղյուսակը",
+	"table-of-contents-hide-button-aria-label": "Թաքցնել բովանդակության աղյուսակը"
 }

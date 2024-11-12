@@ -6,7 +6,6 @@
 			"AS",
 			"Ahonc",
 			"Alexander Yukal",
-			"Amire80",
 			"Andriykopanytsia",
 			"Base",
 			"Choomaq",
@@ -25,7 +24,8 @@
 			"Vlad5250",
 			"Zoranzoki21",
 			"Ата",
-			"Максим Підліснюк"
+			"Максим Підліснюк",
+			"McDutchie"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Документація]]\n* [[mw:Special:MyLanguage/API:Etiquette|Етикет і настанови з використання]]\n* [[mw:Special:MyLanguage/API:FAQ|ЧаПи]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Список розсилки]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ Оголошення API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Баґи і запити]\n</div>\n<strong>Статус:</strong> Усі функції, вказані на цій сторінці, мають працювати, але API далі перебуває в активній розробці і може змінитися у будь-який момент. Підпишіться на [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ список розсилки mediawiki-api-announce], щоб помічати оновлення.\n\n<strong>Хибні запити:</strong> Коли до API надсилаються хибні запити, буде відіслано HTTP-заголовок з ключем «MediaWiki-API-Error», а тоді і значення заголовку, і код помилки, надіслані назад, будуть встановлені з тим же значенням. Більше інформації див. на сторінці [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Помилки й попередження]].\n\n<p class=\"mw-apisandbox-link\"><strong>Тестування:</strong> Для зручності тестування запитів API, див. [[Special:ApiSandbox]].</p>",
@@ -1686,7 +1686,7 @@
 	"apierror-changecontentmodel-missingtitle": "Зазначена вами сторінка не існує. Щоб створити нову сторінку з нестандартною моделлю контенту, скористайтесь модулем <kbd>action=edit</kbd>.",
 	"apierror-changecontentmodel-nodirectediting": "Контентна модель <code>$1</code> не підтримує безпосереднє редагування",
 	"apierror-changecontentmodel-cannotbeused": "Контентну модель <code>$1</code> не можна використовувати на сторінці $2",
-	"apierror-changecontentmodel-cannot-convert": "Не вдалося конвертувати $1 у контентну модель <code>$2</code>",
+	"apierror-changecontentmodel-cannot-convert": "Не вдалося конвертувати $1 у контентну модель $2",
 	"apierror-chunk-too-small": "Мінімальний розмір шматка становить $1 {{PLURAL:$1|байт|байти|байтів}} для некінцевих шматків.",
 	"apierror-cidrtoobroad": "$1 CIDR-діапазони, ширші ніж /$2, недозволені.",
 	"apierror-compare-maintextrequired": "Необхідний параметр <var>$1text-main</var>, коли <var>$1slots</var> містить <kbd>main</kbd> (неможливо вилучити головний слот).",

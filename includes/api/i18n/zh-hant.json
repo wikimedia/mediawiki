@@ -1764,6 +1764,7 @@
 	"apierror-filenopath": "無法取得本地端檔案路徑。",
 	"apierror-filetypecannotberotated": "無法旋轉的檔案類型。",
 	"apierror-formatphp": "此回應不能使用 <kbd>format=php</kbd> 來表示。請參閱 https://phabricator.wikimedia.org/T68776。",
+	"apierror-http-contenttoolarge": "HTTP 請求內容太長。最大長度：$1。",
 	"apierror-imageusage-badtitle": "<kbd>$1</kbd>的標題必須是檔案。",
 	"apierror-import-unknownerror": "未知的匯入錯誤：$1",
 	"apierror-info-singlepagerevision": "提供了多個頁面或修訂版本，但<var>$1prop=preloadcontent</var>和<var>$1prop=editintro</var>只能與單個頁面和修訂版本一起使用。",

@@ -11,7 +11,7 @@
 	"cdx-search-input-search-button-label": "Найти",
 	"cdx-table-select-all-label": "Выбрать все строки",
 	"cdx-table-select-row-label": "Выбрать строку $1 из $2",
-	"cdx-table-sort-caption": "$1, заголовки столбцов с кнопками можно сортировать.",
+	"cdx-table-sort-caption": "$1 (заголовки столбцов с кнопками можно сортировать).",
 	"cdx-typeahead-search-search-results-label": "Результаты поиска",
 	"cdx-table-pager-button-first-page": "Первая страница",
 	"cdx-table-pager-button-last-page": "Последняя страница",

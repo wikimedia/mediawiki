@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Ariyo",
 			"Arjunaraoc",
 			"DannyS712",
@@ -201,7 +200,7 @@
 	"revisionasof": "Versyon 3atiqo diNaqa: $1",
 	"revision-info": "Revision as of $1 by $2",
 	"previousrevision": "←Versyon 3atiqtır",
-	"nextrevision": "Versyon ḥaṭtır",
+	"nextrevision": "Versyon ḥaṭtır →",
 	"cur": "du³do",
 	"next": "Ḥreto",
 	"last": "dmeqım",

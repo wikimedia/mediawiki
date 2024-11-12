@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Abanima",
-			"Amire80",
 			"BAB ZAA",
 			"Ciphers",
 			"Houcinee1",
@@ -220,9 +219,9 @@
 	"exif-photometricinterpretation-34892": "خام خطي",
 	"exif-unknowndate": "تاريخ غير معروف",
 	"exif-orientation-1": "عادي",
-	"exif-orientation-2": "مقلوبة أفقياً",
+	"exif-orientation-2": "مقلوبة أفقيا",
 	"exif-orientation-3": "مدورة 180°",
-	"exif-orientation-4": "مقلوبة رأسياً",
+	"exif-orientation-4": "مقلوبة رأسيا",
 	"exif-orientation-5": "مدورة 90° عكس عقارب الساعة ومقلوبة رأسياً",
 	"exif-orientation-6": "مدورة 90° عكس عقارب الساعة",
 	"exif-orientation-7": "مدورة 90° في اتجاه عقارب الساعة ومقلوبة رأسياً",

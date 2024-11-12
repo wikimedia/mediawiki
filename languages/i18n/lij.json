@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"BaRaN6161 TURK",
 			"Baciccin",
 			"C.R.",
@@ -2547,6 +2546,8 @@
 	"block-user-placeholder": "Coménsa a scrîve 'n uténte...",
 	"block-target": "Nómme uténte ò indirìsso IP:",
 	"block-target-placeholder": "Nómme uténte, 1.1.1.42 ò 1.1.1.42/16",
+	"block-pages-placeholder": "Azónzi ciù pàgine...",
+	"block-namespaces-placeholder": "Azónzi ciù namespace...",
 	"unblockip": "Sblòcca uténte",
 	"unblockiptext": "Dêuvia o mòdolo chi de sótta pe restitoî l'intrâ in scritûa a 'n uténte ò indirìsso IP blocòu.",
 	"ipusubmit": "Lêva sto blòcco chi",
@@ -4029,5 +4030,7 @@
 	"benefit-1-description": "Lìste di òservæ speciâli che te perméttan de controlâ e pàgine de tò interèsse.",
 	"benefit-2-description": "Lìsta permanénte di tò contribûti a-o progètto.",
 	"benefit-3-description": "Preferénse che te perméttan de personalizâ a tò espertîxe.",
-	"temp-user-unable-to-acquire": "No l'é stæto poscìbile òtegnî 'n nómme uténte tenporànio. Pe piâxéi, prêuva tórna."
+	"temp-user-unable-to-acquire": "No l'é stæto poscìbile òtegnî 'n nómme uténte tenporànio. Pe piâxéi, prêuva tórna.",
+	"table-of-contents-show-button-aria-label": "Móstra l'ìndice",
+	"table-of-contents-hide-button-aria-label": "Ascóndi l'ìndice"
 }

@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Adam N.",
-			"Amire80",
 			"Asmen",
 			"Chmee2",
 			"Cookai1205",
@@ -2599,6 +2598,8 @@
 	"block-user-placeholder": "Začněte psát uživatele…",
 	"block-target": "Uživatelské jméno, IP adresa nebo rozsah:",
 	"block-target-placeholder": "UživatelskéJméno, 1.1.1.42 nebo 1.1.1.42/16",
+	"block-pages-placeholder": "Přidat další stránky…",
+	"block-namespaces-placeholder": "Přidat další jmenné prostory…",
 	"unblockip": "Odblokovat uživatele",
 	"unblockiptext": "Tímto formulářem je možno obnovit právo blokované IP adresy či uživatele opět přispívat do {{grammar:2sg|{{SITENAME}}}}.",
 	"ipusubmit": "Odblokovat",

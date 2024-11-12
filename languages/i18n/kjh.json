@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"AlexandrL714",
-			"Amire80",
 			"Ayas7",
 			"BaRaN6161 TURK",
 			"HalanTul",
@@ -11,7 +10,8 @@
 			"Matma Rex",
 			"Oxianboal",
 			"Sibday",
-			"Андрей Саг."
+			"Андрей Саг.",
+			"Köpleres"
 		]
 	},
 	"sunday": "Позырах",
@@ -3337,6 +3337,7 @@
 	"purge": "Арығлирға",
 	"specialpurge-page": "Кӧстегліг страница",
 	"specialpurge-submit": "Страницаа иртерге",
+	"namespaceinfo-heading-id": "ID",
 	"dberr-problems": "Пыросынчабыс! Пу сайтта программа алҷаастары сығыс килген.",
 	"dberr-again": "Нинҷе-де пағат пазынаң страницаны нааҷылап кӧріңер.",
 	"dberr-info": "(Искiрiг базазына кiрер оңдай чоғыл: $1)",

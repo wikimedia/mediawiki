@@ -32,7 +32,8 @@
 			"Taxandru",
 			"Titore",
 			"Toadino2",
-			"Urielejh"
+			"Urielejh",
+			"ZandDev"
 		]
 	},
 	"preferences": "Preferenze",
@@ -181,7 +182,7 @@
 	"tog-minordefault": "Indica ogni modifica come minore (solo come predefinito)",
 	"tog-forceeditsummary": "Chiedi conferma se il campo oggetto è vuoto (o contiene l'oggetto predefinito per l'annullamento)",
 	"tog-editrecovery": "Abilita la funzione [[Special:EditRecovery|{{int:editrecovery}}]].",
-	"tog-editrecovery-help": "Puoi dare un feedback sulla [pagina di discussione del progetto $1].",
+	"tog-editrecovery-help": "Puoi lasciare un commento sulla [$1 pagina di discussione del progetto].",
 	"tog-useeditwarning": "Avvisa quando si esce da una pagina di modifica con modifiche non salvate",
 	"prefs-preview": "Anteprima",
 	"tog-previewonfirst": "Mostra l'anteprima quando inizi a modificare",

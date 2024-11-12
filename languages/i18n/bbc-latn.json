@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"27christian11",
-			"Amire80",
 			"Bennylin",
 			"Daniel Harahap",
 			"Herryz",
@@ -326,7 +325,7 @@
 	"currentrev-asof": "Panotaan parpudi ni $1",
 	"revisionasof": "Panindoan di $1",
 	"revision-info": "Hamubaon $1 sian {{GENDER:$6|$2}}$7",
-	"previousrevision": "←Revisi andorang na",
+	"previousrevision": "← Revisi andorang na",
 	"nextrevision": "Panotaan na mangihut→",
 	"currentrevisionlink": "Padengganan parpudi",
 	"cur": "nuaeng",

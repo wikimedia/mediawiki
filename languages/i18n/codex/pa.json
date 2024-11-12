@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Cabal"
+		]
+	},
+	"cdx-input-chip-aria-description": "ਸੋਧ ਕਰਨ ਲਈ Enter ਦੱਬੋ ਜਾਂ ਮਿਟਾਉਣ ਲਈ Delete ਦੱਬੋ।",
+	"cdx-dialog-close-button-label": "ਬੰਦ ਕਰੋ",
+	"cdx-label-optional-flag": "(ਚੋਣਵਾਂ)",
+	"cdx-message-dismiss-button-label": "ਬੰਦ ਕਰੋ",
+	"cdx-search-input-search-button-label": "ਖੋਜੋ",
+	"cdx-typeahead-search-search-results-label": "ਖੋਜ ਨਤੀਜੇ",
+	"cdx-table-pager-button-first-page": "ਮੁਢਲਾ ਵਰਕਾ",
+	"cdx-table-pager-button-last-page": "ਆਖ਼ਰੀ ਸਫ਼ਾ",
+	"cdx-table-pager-button-next-page": "ਅਗਲਾ ਸਫ਼ਾ",
+	"cdx-table-pager-button-prev-page": "ਪਿਛਲਾ ਸਫ਼ਾ",
+	"cdx-table-pager-items-per-page-default": "ਪ੍ਰਤੀ ਸਫ਼ਾ ਨਤੀਜੇ",
+	"cdx-table-pagination-status-message-determinate-long": "$3 ਵਿੱਚੋਂ $1 – $2 ਨਤੀਜੇ ਵਿਖਾ ਰਿਹਾ ਹੈ",
+	"cdx-table-pagination-status-message-determinate-short": "$3 ਵਿੱਚੋਂ $1 – $2",
+	"cdx-table-pagination-status-message-indeterminate-long": "ਬਹੁਤ ਸਾਰੇ ਨਤੀਜੇਆਂ ਚੋਂ $1 – $2 ਦਿਖਾ ਰਿਹਾ ਹੈ",
+	"cdx-table-pagination-status-message-indeterminate-short": "ਬਹੁਤ ਸਾਰੇਆਂ ਵਿੱਚੋਂ $1 – $2",
+	"cdx-table-pagination-status-message-indeterminate-final": "ਆਖਰੀ {{PLURAL:$1| $1 ਨਤੀਜਾ| $1 ਨਤੀਜੇ}} ਵਿਖਾ ਰਿਹਾ ਹੈ",
+	"cdx-table-pagination-status-message-pending": "ਨਤੀਜੇ ਲੱਦੇ ਜਾ ਰਹੇ ਹਨ..."
+}

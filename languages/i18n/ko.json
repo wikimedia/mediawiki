@@ -5,7 +5,6 @@
 			"Adreamy",
 			"Albamhandae",
 			"Altostratus",
-			"Amire80",
 			"Apzp79",
 			"Aster15",
 			"Banwol",
@@ -2631,6 +2630,8 @@
 	"block-user-placeholder": "사용자 입력을 시작하세요...",
 	"block-target": "사용자 이름, IP 주소 또는 IP 대역:",
 	"block-target-placeholder": "사용자 이름, 1.1.1.42 또는 1.1.1.42/16",
+	"block-pages-placeholder": "더 많은 문서를 추가...",
+	"block-namespaces-placeholder": "더 많은 이름공간을 추가...",
 	"unblockip": "사용자 차단 해제",
 	"unblockiptext": "아래의 양식에 차단 해제하려는 IP 주소나 사용자 이름을 입력하세요.",
 	"ipusubmit": "차단 해제",
@@ -4137,5 +4138,7 @@
 	"benefit-1-description": "관심 있는 문서를 추적할 수 있는 주시문서 목록입니다.",
 	"benefit-2-description": "당신이 프로젝트에 수행한 영구적인 기여 목록입니다.",
 	"benefit-3-description": "경험을 맞춤 설정할 수 있는 환경 설정입니다.",
-	"temp-user-unable-to-acquire": "임시 계정 사용자 이름을 가져올 수 없습니다. 다시 시도해 주십시오."
+	"temp-user-unable-to-acquire": "임시 계정 사용자 이름을 가져올 수 없습니다. 다시 시도해 주십시오.",
+	"table-of-contents-show-button-aria-label": "목차 보이기",
+	"table-of-contents-hide-button-aria-label": "목차 숨기기"
 }

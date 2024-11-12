@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Abdul Kadir",
-			"Amire80",
 			"AndySingh",
 			"Bihari",
 			"Brijlal",
@@ -283,7 +282,7 @@
 	"no-null-revision": "Panna \"$1\" ke khatir nawaa null badlao nai banae sakaa hae",
 	"badtitle": "Kharaab title",
 	"badtitletext": "Jon panna aap mangta hai uske page title invalid, galat, nai to an incorrectly linked inter-language or inter-wiki title. Isme sait ek yah jaada character hoi jon ki title me nai kaam me lawa jae sake hai.",
-	"title-invalid-empty": "Maanga gais panna khaali hae, nai to, isme khaali namespace ke naam hae.",
+	"title-invalid-empty": "Maanga gais panna ke naam khaali hae, nai to, isme khaali namespace ke prefix hae.",
 	"title-invalid-utf8": "Maanga gias panna me invalid UTF-8 sequence hae.",
 	"title-invalid-interwiki": "Maanga gais panna ke title me ek interwiki link hai, jiske title me nai kaam me lawa jaae sake hai.",
 	"title-invalid-talk-namespace": "Maaga gais panna ke title uu baat waala panna ke refer kare hae jon ki nai hai.",

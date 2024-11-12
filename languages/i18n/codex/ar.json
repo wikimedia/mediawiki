@@ -15,14 +15,18 @@
 	"cdx-search-input-search-button-label": "بحث",
 	"cdx-table-select-all-label": "اختر جميع الصفوف",
 	"cdx-table-select-row-label": "اختر الصف $1 من $2",
+	"cdx-table-sort-caption": "$1 (يمكن فرز رؤوس الأعمدة التي تحتوي على الأزرار).",
 	"cdx-typeahead-search-search-results-label": "نتائج البحث",
 	"cdx-table-pager-button-first-page": "الصفحة الأولى",
 	"cdx-table-pager-button-last-page": "الصفحة الأخيرة",
 	"cdx-table-pager-button-next-page": "الصفحة التالية",
 	"cdx-table-pager-button-prev-page": "الصفحة السابقة",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 صف|$1 صفوف}}",
 	"cdx-table-pager-items-per-page-default": "النتائج لكل صفحة",
 	"cdx-table-pagination-status-message-determinate-long": "عرض النتائج $1 – $2 من $3",
 	"cdx-table-pagination-status-message-determinate-short": "$1 – $2 من $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "عرض النتائج $1 – $2 من العديد",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1 – $2 من العديد",
+	"cdx-table-pagination-status-message-indeterminate-final": "عرض آخر {{PLURAL:$1|$1 نتيجة|$1 نتائج}}",
 	"cdx-table-pagination-status-message-pending": "جاري تحميل النتائج..."
 }

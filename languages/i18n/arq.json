@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Bachounda",
 			"Cigaryno",
 			"GeekEmad",
@@ -572,7 +571,7 @@
 	"currentrev-asof": "نسخة ضركانية بل تاريخ تاع $1",
 	"revisionasof": "معاودة تاع الـ $1",
 	"revision-info": "مراجعة تاع $1 من عند {{GENDER:$6|$2}}$7",
-	"previousrevision": "← نسخة اللوله",
+	"previousrevision": "→ نسخة اللوله",
 	"nextrevision": "فرسيون جايه←",
 	"currentrevisionlink": "المراجعه الحاليه",
 	"cur": "الحالي",

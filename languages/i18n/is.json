@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80",
 			"Asmen",
 			"Bjarki S",
 			"Cessator",
@@ -748,7 +747,7 @@
 	"currentrev-asof": "Nýjasta útgáfa síðan $1",
 	"revisionasof": "Útgáfa síðunnar $1",
 	"revision-info": "Útgáfa frá $1 eftir $2\nÚtgáfa frá $1 eftir {{GENDER:$6|$2}}$7",
-	"previousrevision": "←Fyrri útgáfa",
+	"previousrevision": "← Fyrri útgáfa",
 	"nextrevision": "Næsta útgáfa→",
 	"currentrevisionlink": "Nýjasta útgáfa",
 	"cur": "núverandi",
@@ -2059,6 +2058,7 @@
 	"exbeforeblank": "innihald fyrir tæmingu var: '$1'",
 	"delete-confirm": "Eyða „$1“",
 	"delete-legend": "Eyða",
+	"delete-talk-summary-prefix": "Eytt samhliða samtengdri síðu með ástæðu: $1",
 	"historywarning": "<strong>Viðvörun:</strong> Síðan sem þú ert um það bil að eyða hefur breytingaskrá með $1 {{PLURAL:$1|breytingu|breytingum}}:",
 	"historyaction-submit": "Birta breytingar",
 	"confirmdeletetext": "Þú ert um það bil að eyða síðu ásamt breytingaskrá hennar.\nStaðfestu það að þú ætlir að gera svo, það að þú skiljir afleiðingarnar, og að þú sért að gera þetta í samræmi við [[{{MediaWiki:Policy-url}}|samþykktir]].",

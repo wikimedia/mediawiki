@@ -11,6 +11,7 @@
 	"cdx-search-input-search-button-label": "Ricerca",
 	"cdx-table-select-all-label": "Seleziona tutte le righe",
 	"cdx-table-select-row-label": "Seleziona la riga $1 di $2",
+	"cdx-table-sort-caption": "$1 (le intestazioni delle colonne con pulsanti sono ordinabili).",
 	"cdx-typeahead-search-search-results-label": "Risultati della ricerca",
 	"cdx-table-pager-button-first-page": "Prima pagina",
 	"cdx-table-pager-button-last-page": "Ultima pagina",
