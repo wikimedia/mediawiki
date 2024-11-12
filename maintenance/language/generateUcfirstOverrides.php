@@ -5,13 +5,12 @@
  * overrides. Takes as input two json files generated with generateUpperCharTable.php
  * as input.
  *
- * Example run:
- * # this will prepare a file to use to make hhvm's Language::ucfirst work like php7's
+ * Example: Prepare Language::ucfirst on newer PHP 7.4 to work like the current PHP 7.2
  *
- * $ php7.2 maintenance/language/generateUpperCharTable.php --outfile php7.2.json
- * $ hhvm --php maintenance/language/generateUpperCharTable.php --outfile hhvm.json
- * $ hhvm maintenance/language/generateUcfirstOverrides.php \
- *       --override hhvm.json --with php7.2.json --outfile test.php
+ * $ php7.2 maintenance/language/generateUpperCharTable.php --outfile php72.json
+ * $ php7.4 maintenance/language/generateUpperCharTable.php --outfile php74.json
+ * $ php7.2 maintenance/language/generateUcfirstOverrides.php \
+ *       --override php74.json --with php72.json --outfile test.php
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -45,9 +44,9 @@ class GenerateUcfirstOverrides extends Maintenance {
 		$this->addDescription(
 			'Generates a php source file containing a definition for mb_strtoupper overrides' );
 		$this->addOption( 'outfile', 'Output file', true, true, 'o' );
-		$this->addOption( 'override', 'Char table we want to override',
+		$this->addOption( 'override', 'Char table we want to avoid (e.g. future PHP)',
 			true, true, false, true );
-		$this->addOption( 'with', 'Char table we want to obtain', true, true );
+		$this->addOption( 'with', 'Char table we want to obtain or preserve (e.g. current PHP)', true, true );
 	}
 
 	public function execute() {
