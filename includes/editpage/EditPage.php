@@ -45,6 +45,7 @@ use MediaWiki\EditPage\Constraint\BrokenRedirectConstraint;
 use MediaWiki\EditPage\Constraint\ChangeTagsConstraint;
 use MediaWiki\EditPage\Constraint\ContentModelChangeConstraint;
 use MediaWiki\EditPage\Constraint\DefaultTextConstraint;
+use MediaWiki\EditPage\Constraint\DoubleRedirectConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraintFactory;
 use MediaWiki\EditPage\Constraint\EditConstraintRunner;
 use MediaWiki\EditPage\Constraint\EditFilterMergedContentHookConstraint;
@@ -268,6 +269,12 @@ class EditPage implements IEditObject {
 
 	/** @var bool */
 	private $allowBrokenRedirects = false;
+
+	/** @var bool */
+	private $doubleRedirect = false;
+
+	/** @var bool */
+	private $allowDoubleRedirects = false;
 
 	/** @var string */
 	private $autoSumm = '';
@@ -1327,6 +1334,7 @@ class EditPage implements IEditObject {
 		$this->allowBlankArticle = $request->getBool( 'wpIgnoreBlankArticle' );
 		$this->allowSelfRedirect = $request->getBool( 'wpIgnoreSelfRedirect' );
 		$this->allowBrokenRedirects = $request->getBool( 'wpIgnoreBrokenRedirects' );
+		$this->allowDoubleRedirects = $request->getBool( 'wpIgnoreDoubleRedirects' );
 
 		$changeTags = $request->getVal( 'wpChangeTags' );
 		if ( $changeTags === null || $changeTags === '' ) {
@@ -1860,6 +1868,7 @@ class EditPage implements IEditObject {
 			case self::AS_BLANK_ARTICLE:
 			case self::AS_SELF_REDIRECT:
 			case self::AS_BROKEN_REDIRECT:
+			case self::AS_DOUBLE_REDIRECT:
 			case self::AS_REVISION_WAS_DELETED:
 				return true;
 
@@ -2498,6 +2507,15 @@ class EditPage implements IEditObject {
 			)
 		);
 		$constraintRunner->addConstraint(
+			new DoubleRedirectConstraint(
+				$this->allowDoubleRedirects,
+				$content,
+				$this->getCurrentContent(),
+				$this->getTitle(),
+				$this->redirectLookup
+			)
+		);
+		$constraintRunner->addConstraint(
 			// Same constraint is used to check size before and after merging the
 			// edits, which use different failure codes
 			$constraintFactory->newPageSizeConstraint(
@@ -2619,6 +2637,8 @@ class EditPage implements IEditObject {
 			$this->selfRedirect = true;
 		} elseif ( $failed instanceof BrokenRedirectConstraint ) {
 			$this->brokenRedirect = true;
+		} elseif ( $failed instanceof DoubleRedirectConstraint ) {
+			$this->doubleRedirect = true;
 		}
 	}
 
@@ -3154,6 +3174,10 @@ class EditPage implements IEditObject {
 			$out->addHTML( Html::hidden( 'wpIgnoreBrokenRedirects', true ) );
 		}
 
+		if ( $this->doubleRedirect ) {
+			$out->addHTML( Html::hidden( 'wpIgnoreDoubleRedirects', true ) );
+		}
+
 		$autosumm = $this->autoSumm !== '' ? $this->autoSumm : md5( $this->summary );
 		$out->addHTML( Html::hidden( 'wpAutoSummary', $autosumm ) );
 
@@ -3372,6 +3396,26 @@ class EditPage implements IEditObject {
 					"<div id='mw-brokenredirect'>\n$1\n</div>",
 					[ 'edit-constraint-brokenredirect', $buttonLabel ]
 				);
+			}
+
+			if ( $this->doubleRedirect ) {
+				$editContent = $this->toEditContent( $this->textbox1 );
+				$redirectTarget = $editContent->getRedirectTarget();
+
+				$doubleRedirectTarget = $this->redirectLookup->getRedirectTarget( $redirectTarget );
+				$doubleRedirectTargetTitle = Title::castFromLinkTarget( $doubleRedirectTarget );
+
+				$suggestedRedirectContent =
+					$editContent->getContentHandler()->makeRedirectContent( $doubleRedirectTargetTitle );
+				$suggestedRedirectCode =
+					Html::element( 'pre', [], $this->toEditText( $suggestedRedirectContent ) );
+
+				$out->wrapWikiMsg( "<div id='mw-doubleredirect'>\n$1\n</div>", [
+					'edit-constraint-doubleredirect',
+					$buttonLabel,
+					wfEscapeWikiText( $doubleRedirectTargetTitle->getPrefixedText() ),
+					$suggestedRedirectCode,
+				] );
 			}
 
 			if ( $this->hookError !== '' ) {

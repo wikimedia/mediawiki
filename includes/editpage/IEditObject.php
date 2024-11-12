@@ -120,4 +120,7 @@ interface IEditObject {
 
 	/** Status: user tried to create a redirect to a nonexistent page and wpIgnoreBrokenRedirects is false */
 	public const AS_BROKEN_REDIRECT = 244;
+
+	/** Status: user tried to create a redirect to another redirect and wpIgnoreDoubleRedirects is false */
+	public const AS_DOUBLE_REDIRECT = 245;
 }
