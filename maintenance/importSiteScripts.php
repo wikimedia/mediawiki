@@ -44,6 +44,7 @@ class ImportSiteScripts extends Maintenance {
 		$this->addArg( 'api', 'API base url' );
 		$this->addArg( 'index', 'index.php base url' );
 		$this->addOption( 'username', 'User name of the script importer' );
+		$this->setBatchSize( 100 );
 	}
 
 	public function execute() {
@@ -63,22 +64,30 @@ class ImportSiteScripts extends Maintenance {
 		$wikiPageFactory = $services->getWikiPageFactory();
 		$httpRequestFactory = $services->getHttpRequestFactory();
 
-		foreach ( $pageList as $page ) {
-			$title = Title::makeTitleSafe( NS_MEDIAWIKI, $page );
-			if ( !$title ) {
-				$this->error( "$page is an invalid title; it will not be imported\n" );
-				continue;
+		/** @var iterable<Title[]> $pageBatches */
+		$pageBatches = $this->newBatchIterator( $pageList );
+
+		foreach ( $pageBatches as $pageBatch ) {
+			$this->beginTransactionRound( __METHOD__ );
+			foreach ( $pageBatch as $page ) {
+				$title = Title::makeTitleSafe( NS_MEDIAWIKI, $page );
+				if ( !$title ) {
+					$this->error( "$page is an invalid title; it will not be imported\n" );
+					continue;
+				}
+
+				$this->output( "Importing $page\n" );
+				$url = wfAppendQuery( $baseUrl, [
+					'action' => 'raw',
+					'title' => "MediaWiki:{$page}" ] );
+				$text = $httpRequestFactory->get( $url, [], __METHOD__ );
+
+				$wikiPage = $wikiPageFactory->newFromTitle( $title );
+				$content = ContentHandler::makeContent( $text, $wikiPage->getTitle() );
+
+				$wikiPage->doUserEditContent( $content, $user, "Importing from $url" );
 			}
-
-			$this->output( "Importing $page\n" );
-			$url = wfAppendQuery( $baseUrl, [
-				'action' => 'raw',
-				'title' => "MediaWiki:{$page}" ] );
-			$text = $httpRequestFactory->get( $url, [], __METHOD__ );
-
-			$wikiPage = $wikiPageFactory->newFromTitle( $title );
-			$content = ContentHandler::makeContent( $text, $wikiPage->getTitle() );
-			$wikiPage->doUserEditContent( $content, $user, "Importing from $url" );
+			$this->commitTransactionRound( __METHOD__ );
 		}
 	}
 

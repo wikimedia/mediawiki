@@ -51,21 +51,31 @@ class MakeTestEdits extends Maintenance {
 
 		$count = $this->getOption( 'count' );
 		$namespace = (int)$this->getOption( 'namespace', 0 );
+		$batchSize = $this->getBatchSize();
 		$services = $this->getServiceContainer();
 		$wikiPageFactory = $services->getWikiPageFactory();
 
-		for ( $i = 0; $i < $count; ++$i ) {
-			$title = Title::makeTitleSafe( $namespace, "Page " . wfRandomString( 2 ) );
-			$page = $wikiPageFactory->newFromTitle( $title );
-			$content = ContentHandler::makeContent( wfRandomString(), $title );
-			$summary = "Change " . wfRandomString( 6 );
-
-			$page->doUserEditContent( $content, $user, $summary );
-
-			$this->output( "Edited $title\n" );
-			if ( $i && ( $i % $this->getBatchSize() ) == 0 ) {
-				$this->waitForReplication();
+		/** @var iterable<Title[]> $titleBatches */
+		$titleBatches = $this->newBatchIterator(
+			static function () use ( $namespace, $count ) {
+				for ( $i = 0; $i < $count; ++$i ) {
+					yield Title::makeTitleSafe( $namespace, "Page " . wfRandomString( 2 ) );
+				}
 			}
+		);
+
+		foreach ( $titleBatches as $titleBatch ) {
+			$this->beginTransactionRound( __METHOD__ );
+			foreach ( $titleBatch as $title ) {
+				$page = $wikiPageFactory->newFromTitle( $title );
+				$content = ContentHandler::makeContent( wfRandomString(), $title );
+				$summary = "Change " . wfRandomString( 6 );
+
+				$page->doUserEditContent( $content, $user, $summary );
+
+				$this->output( "Edited $title\n" );
+			}
+			$this->commitTransactionRound( __METHOD__ );
 		}
 
 		$this->output( "Done\n" );

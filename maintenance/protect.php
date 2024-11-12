@@ -81,8 +81,10 @@ class Protect extends Maintenance {
 		# un/protect the article
 		$this->output( "Updating protection status..." );
 
+		$this->beginTransactionRound( __METHOD__ );
 		$page = $services->getWikiPageFactory()->newFromTitle( $t );
 		$status = $page->doUpdateRestrictions( $restrictions, [], $cascade, $reason, $user );
+		$this->commitTransactionRound( __METHOD__ );
 
 		if ( $status->isOK() ) {
 			$this->output( "done\n" );
