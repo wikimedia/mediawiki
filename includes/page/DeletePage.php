@@ -22,7 +22,6 @@ use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\RawMessage;
-use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\Authority;
@@ -493,13 +492,15 @@ class DeletePage {
 	 * @param string $pageRole
 	 * @param string $reason
 	 * @param string|null $webRequestId
+	 * @param mixed|null $ticket Result of ILBFactory::getEmptyTransactionTicket() or null
 	 * @return Status
 	 */
 	public function deleteInternal(
 		WikiPage $page,
 		string $pageRole,
 		string $reason,
-		?string $webRequestId = null
+		?string $webRequestId = null,
+		$ticket = null
 	): Status {
 		$title = $page->getTitle();
 		$status = Status::newGood();
@@ -551,21 +552,7 @@ class DeletePage {
 				break;
 			}
 			$dbw->endAtomic( __METHOD__ );
-			if ( $dbw->explicitTrxActive() ) {
-				// Explicit transactions may never happen here in practice.  Log to be sure.
-				if ( !$explictTrxLogged ) {
-					$explictTrxLogged = true;
-					LoggerFactory::getInstance( 'wfDebug' )->debug(
-						'explicit transaction active in ' . __METHOD__ . ' while deleting {title}', [
-						'title' => $title->getText(),
-						] );
-				}
-				continue;
-			}
-			if ( $dbw->trxLevel() ) {
-				$dbw->commit( __METHOD__ );
-			}
-			$this->lbFactory->waitForReplication();
+			$this->lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
 			$dbw->startAtomic( __METHOD__ );
 		}
 
