@@ -23,7 +23,9 @@
 namespace MediaWiki\Installer;
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Installer\Task\Task;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Password\UserPasswordPolicy;
 use MediaWiki\Status\Status;
@@ -237,14 +239,19 @@ class CliInstaller extends Installer {
 		$ls->writeFile( "$path/LocalSettings.php" );
 	}
 
-	public function startStage( $step ) {
-		// Messages: config-install-database, config-install-tables, config-install-interwiki,
-		// config-install-stats, config-install-keys, config-install-sysop, config-install-mainpage,
-		// config-install-extensions
-		$this->showMessage( "config-install-$step" );
+	/**
+	 * @param Task $task
+	 */
+	public function startStage( $task ) {
+		// @phan-suppress-next-line SecurityCheck-XSS -- it's CLI
+		echo $this->formatMessage( $task->getDescriptionMessage() ) . '... ';
 	}
 
-	public function endStage( $step, $status ) {
+	/**
+	 * @param Task $task
+	 * @param Status $status
+	 */
+	public function endStage( $task, $status ) {
 		$this->showStatusMessage( $status );
 		if ( $status->isOK() ) {
 			$this->showMessage( 'config-install-step-done' );
@@ -271,10 +278,16 @@ class CliInstaller extends Installer {
 	 * @return string
 	 */
 	protected function getMessageText( $msg, $params ) {
-		$text = wfMessage( $msg, $params )->parse();
+		return $this->formatMessage( wfMessage( $msg, $params ) );
+	}
 
+	/**
+	 * @param Message $message
+	 * @return string
+	 */
+	protected function formatMessage( $message ) {
+		$text = $message->parse();
 		$text = preg_replace( '/<a href="(.*?)".*?>(.*?)<\/a>/', '$2 &lt;$1&gt;', $text );
-
 		return Sanitizer::stripAllTags( $text );
 	}
 

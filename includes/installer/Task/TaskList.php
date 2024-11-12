@@ -23,6 +23,7 @@ class TaskList implements \IteratorAggregate {
 	 */
 	public function add( Task $task ) {
 		$this->unsortedTasks[] = $task;
+		$this->sortedTasks = null;
 	}
 
 	/**

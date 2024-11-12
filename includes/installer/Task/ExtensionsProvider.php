@@ -21,12 +21,13 @@ class ExtensionsProvider extends Task {
 	}
 
 	public function getProvidedNames() {
-		return [ 'HookContainer', 'VirtualDomains' ];
+		return [ 'HookContainer', 'VirtualDomains', 'ExtensionTaskSpecs' ];
 	}
 
 	public function execute(): Status {
 		if ( !$this->getOption( 'Extensions' ) ) {
 			$this->getContext()->provide( 'VirtualDomains', [] );
+			$this->getContext()->provide( 'ExtensionTaskSpecs', [] );
 			return Status::newGood();
 		}
 
@@ -54,6 +55,8 @@ class ExtensionsProvider extends Task {
 		);
 		$this->getContext()->provide( 'VirtualDomains',
 			$data['attributes']['DatabaseVirtualDomains'] ?? [] );
+		$this->getContext()->provide( 'ExtensionTaskSpecs',
+			$data['attributes']['InstallerTasks'] ?? [] );
 
 		return Status::newGood();
 	}

@@ -11,7 +11,7 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  */
 class TaskFactory {
 	public const PROFILE_INSTALLER = 'installer';
-	public const PROFILE_ADD_WIKI = 'addwiki';
+	public const PROFILE_ADD_WIKI = 'installPreConfigured';
 
 	/**
 	 * This list is roughly in order of execution, although the declared
@@ -57,8 +57,34 @@ class TaskFactory {
 	 * @param string $profile One of the PROFILE_xxx constants
 	 */
 	public function registerMainTasks( TaskList $list, string $profile ) {
+		$this->registerTasks( $list, $profile, self::CORE_SPECS );
+	}
+
+	/**
+	 * Populate the task list with extension installer tasks provided by the
+	 * current task context.
+	 *
+	 * @param TaskList $list
+	 * @param string $profile One of the PROFILE_xxx constants
+	 */
+	public function registerExtensionTasks( TaskList $list, string $profile ) {
+		$specs = $this->context->getProvision( 'ExtensionTaskSpecs' );
+		if ( !is_array( $specs ) ) {
+			throw new \RuntimeException( 'Invalid value for ExtensionTaskSpecs' );
+		}
+		$this->registerTasks( $list, $profile, $specs );
+	}
+
+	/**
+	 * Register tasks from a spec array
+	 *
+	 * @param TaskList $list
+	 * @param string $profile
+	 * @param array $specs
+	 */
+	private function registerTasks( TaskList $list, string $profile, array $specs ) {
 		$dbType = $this->context->getDbType();
-		foreach ( self::CORE_SPECS as $spec ) {
+		foreach ( $specs as $spec ) {
 			if ( isset( $spec['db'] ) && $spec['db'] !== $dbType ) {
 				continue;
 			}
@@ -78,10 +104,11 @@ class TaskFactory {
 	 *     - callback: A callable to call when the task is executed
 	 *     - name: The task name (callback only)
 	 *     - after: A task or list of tasks that this task must run after (callback only)
-	 *     - before: A task or list of tasks that this task must run before (callback only)
 	 *     - class: The class name (ObjectFactory only)
 	 *     - factory: A factory function (ObjectFactory only)
 	 *     - args: Arguments to pass to the constructor (ObjectFactory only)
+	 *     - schemaBasePath: The base path used for SQL files. This is populated by
+	 *       ExtensionProcessor if the spec comes from an extension.
 	 * @return Task
 	 */
 	public function create( array $spec ): Task {
@@ -96,10 +123,11 @@ class TaskFactory {
 			}
 		}
 
+		$schemaBasePath = $spec['schemaBasePath'] ?? $this->getCoreSchemaBasePath();
+
 		$task->initBase(
 			$this->context,
-			// TODO: determine extension base path from $spec
-			$this->getCoreSchemaBasePath(),
+			$schemaBasePath,
 		);
 		return $task;
 	}

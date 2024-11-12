@@ -4,6 +4,7 @@ use MediaWiki\Installer\Installer;
 use MediaWiki\Installer\Task\AddWikiTaskContext;
 use MediaWiki\Installer\Task\CannedProvider;
 use MediaWiki\Installer\Task\ITaskContext;
+use MediaWiki\Installer\Task\Task;
 use MediaWiki\Installer\Task\TaskFactory;
 use MediaWiki\Installer\Task\TaskList;
 use MediaWiki\Installer\Task\TaskRunner;
@@ -53,11 +54,13 @@ class InstallPreConfigured extends Maintenance {
 	}
 
 	public function execute() {
-		$context = $this->getTaskContext();
-		$taskList = $this->getTaskList( $context );
-		$taskRunner = $this->getTaskRunner( $taskList );
+		$context = $this->createTaskContext();
+		$taskFactory = $this->createTaskFactory( $context );
+		$taskList = $this->createTaskList( $taskFactory );
+		$taskRunner = $this->createTaskRunner( $taskList, $taskFactory );
 
 		if ( $this->hasOption( 'show-tasks' ) ) {
+			$taskRunner->loadExtensions();
 			echo $taskRunner->dumpTaskList();
 			return true;
 		}
@@ -99,7 +102,7 @@ class InstallPreConfigured extends Maintenance {
 	 *
 	 * @return AddWikiTaskContext
 	 */
-	private function getTaskContext() {
+	private function createTaskContext() {
 		$context = new AddWikiTaskContext(
 			$this->getConfig(),
 			$this->getServiceContainer()->getDBLoadBalancerFactory()
@@ -119,16 +122,13 @@ class InstallPreConfigured extends Maintenance {
 	/**
 	 * Get the full list of tasks, before skipping is applied.
 	 *
-	 * @param ITaskContext $context
+	 * @param TaskFactory $taskFactory
 	 * @return TaskList
 	 */
-	private function getTaskList( ITaskContext $context ) {
+	private function createTaskList( TaskFactory $taskFactory ) {
 		$taskList = new TaskList;
-		$taskFactory = new TaskFactory(
-			$this->getServiceContainer()->getObjectFactory(),
-			$context
-		);
 		$taskFactory->registerMainTasks( $taskList, TaskFactory::PROFILE_ADD_WIKI );
+		$reg = ExtensionRegistry::getInstance();
 		$taskList->add( $taskFactory->create(
 			[
 				'class' => CannedProvider::class,
@@ -136,8 +136,8 @@ class InstallPreConfigured extends Maintenance {
 					'extensions',
 					[
 						'HookContainer' => $this->getHookContainer(),
-						'VirtualDomains' => ExtensionRegistry::getInstance()
-							->getAttribute( 'DatabaseVirtualDomains' ),
+						'VirtualDomains' => $reg->getAttribute( 'DatabaseVirtualDomains' ),
+						'ExtensionTaskSpecs' => $reg->getAttribute( 'InstallerTasks' ),
 					]
 				]
 			]
@@ -149,18 +149,20 @@ class InstallPreConfigured extends Maintenance {
 	 * Create and configure a TaskRunner
 	 *
 	 * @param TaskList $taskList
+	 * @param TaskFactory $taskFactory
 	 * @return TaskRunner
 	 */
-	private function getTaskRunner( TaskList $taskList ) {
-		$taskRunner = new TaskRunner( $taskList );
+	private function createTaskRunner( TaskList $taskList, TaskFactory $taskFactory ) {
+		$taskRunner = new TaskRunner( $taskList, $taskFactory, TaskFactory::PROFILE_ADD_WIKI );
 		$taskRunner->setSkippedTasks( $this->getOption( 'skip' ) ?? [] );
 
-		$taskRunner->addTaskStartListener( function ( $name ) {
-			$desc = wfMessage( "config-install-$name" )->plain();
+		$taskRunner->addTaskStartListener( function ( Task $task ) {
+			$name = $task->getName();
+			$desc = $task->getDescriptionMessage()->plain();
 			$this->output( "[$name] $desc... " );
 		} );
 
-		$taskRunner->addTaskEndListener( function ( $name, StatusValue $status ) {
+		$taskRunner->addTaskEndListener( function ( $task, StatusValue $status ) {
 			if ( $status->isOK() ) {
 				$this->output( "done\n" );
 			} else {
@@ -176,6 +178,19 @@ class InstallPreConfigured extends Maintenance {
 		} );
 
 		return $taskRunner;
+	}
+
+	/**
+	 * Get the factory used to create tasks
+	 *
+	 * @param ITaskContext $context
+	 * @return TaskFactory
+	 */
+	private function createTaskFactory( ITaskContext $context ) {
+		return new TaskFactory(
+			$this->getServiceContainer()->getObjectFactory(),
+			$context
+		);
 	}
 }
 
