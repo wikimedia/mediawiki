@@ -299,6 +299,7 @@ class SpecialRenameUser extends SpecialPage {
 				'label-message' => 'renameuserold',
 				'default' => $oldName,
 				'required' => true,
+				'excludetemp' => true,
 			],
 			'newusername' => [
 				'type' => 'text',
