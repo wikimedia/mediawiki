@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Avjoska",
+			"Nuclear",
 			"Pikne",
 			"Suwa"
 		]
@@ -24,5 +25,6 @@
 	"ooui-selectfile-placeholder": "Faili ei ole valitud",
 	"ooui-selectfile-dragdrop-placeholder": "Lohista fail siia",
 	"ooui-selectfile-dragdrop-placeholder-multiple": "Lohista failid siia",
+	"ooui-popup-widget-close-button-aria-label": "Sulge",
 	"ooui-field-help": "Abi"
 }

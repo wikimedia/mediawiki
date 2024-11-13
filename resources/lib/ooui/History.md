@@ -1,5 +1,19 @@
 # OOUI Release History
 
+## v0.51.2 / 2024-11-13
+
+### Deprecating changes
+* [DEPRECATING CHANGE] Implement Dialog#getEscapeAction (Ed Sanders)
+
+### Styles
+* HorizontalLayout: Use flexbox to avoid extra vertical margin (Bartosz Dziewoński)
+
+### Code
+* Use explicit nullable type on parameter arguments (Sam Reed)
+* build, docs: Improve the releasing process (Anne Tomasevich)
+* build: Updating mediawiki/mediawiki-codesniffer to 45.0.0 ([BOT] libraryupgrader)
+* build: Updating npm dependencies ([BOT] libraryupgrader)
+
 ## v0.51.1 / 2024-09-19
 
 * This patch release aims to fix a dist file `dist/wikimedia-ui-base.less` that was incorrectly
