@@ -27,6 +27,7 @@
 	"ooui-dialog-process-dismiss": "Elrejt",
 	"ooui-dialog-process-retry": "Próbáld újra",
 	"ooui-dialog-process-continue": "Folytatás",
+	"ooui-combobox-button-label": "Opciók megjelenítése/elrejtése",
 	"ooui-selectfile-button-select": "Fájl kiválasztása",
 	"ooui-selectfile-button-select-multiple": "Fájlok kijelölése",
 	"ooui-selectfile-placeholder": "Nincs fájl kiválasztva",

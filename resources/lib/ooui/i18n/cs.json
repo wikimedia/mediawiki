@@ -13,6 +13,7 @@
 			"Patriccck",
 			"Patrik L.",
 			"Polda18",
+			"ShaggyCZ - Main",
 			"Tchoř",
 			"Vojtěch Dostál",
 			"ශ්වෙත"
@@ -32,12 +33,12 @@
 	"ooui-dialog-process-dismiss": "Zavřít",
 	"ooui-dialog-process-retry": "Zkusit znovu",
 	"ooui-dialog-process-continue": "Pokračovat",
-	"ooui-combobox-button-label": "Rozbalení výběru",
+	"ooui-combobox-button-label": "Přepnout možnosti",
 	"ooui-selectfile-button-select": "Vybrat soubor",
 	"ooui-selectfile-button-select-multiple": "Vybrat soubory",
 	"ooui-selectfile-placeholder": "Nebyl vybrán žádný soubor",
 	"ooui-selectfile-dragdrop-placeholder": "Umístěte soubor sem",
-	"ooui-selectfile-dragdrop-placeholder-multiple": "Přetáhněte soubory zde",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "Přetáhněte soubory sem",
 	"ooui-popup-widget-close-button-aria-label": "Zavřít",
 	"ooui-field-help": "Pomoc"
 }
