@@ -141,9 +141,15 @@ module.exports = exports = defineComponent( {
 		const selection = ref( null );
 
 		const logEntries = ref( [] );
-		const logEntriesCount = ref( 0 );
 		const moreBlocks = ref( false );
 		const FETCH_LIMIT = 10;
+
+		const logEntriesCount = computed( () => {
+			if ( moreBlocks.value ) {
+				return mw.msg( 'block-user-label-count-exceeds-limit', FETCH_LIMIT );
+			}
+			return mw.language.convertNumber( logEntries.value.length );
+		} );
 
 		const infoChipIcon = computed( () => props.blockLogType === 'recent' ? cdxIconClock : cdxIconAlert );
 
@@ -225,19 +231,13 @@ module.exports = exports = defineComponent( {
 						}
 					}
 
-					// Update count for the infochip
-					if ( moreBlocks.value ) {
-						logEntriesCount.value = mw.msg( 'block-user-label-count-exceeds-limit', FETCH_LIMIT );
-					} else {
-						logEntriesCount.value = newData.length;
-					}
-
 					logEntries.value = newData;
 				} );
 			} else {
 				moreBlocks.value = false;
 				logEntries.value = [];
 			}
+
 		}, { immediate: true } );
 
 		return {
