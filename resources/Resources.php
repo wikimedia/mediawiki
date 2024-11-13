@@ -1215,7 +1215,7 @@ return [
 		'scripts' => 'resources/src/mediawiki.checkboxtoggle.js',
 	],
 	'mediawiki.checkboxtoggle.styles' => [
-		'styles' => 'resources/src/mediawiki.checkboxtoggle.styles.css',
+		'styles' => 'resources/src/mediawiki.checkboxtoggle.styles.less',
 	],
 	'mediawiki.cookie' => [
 		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.cookie',
