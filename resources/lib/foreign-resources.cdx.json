@@ -2,7 +2,7 @@
     "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
     "bomFormat": "CycloneDX",
     "specVersion": "1.6",
-    "serialNumber": "urn:uuid:ef77018a-be42-4f3f-b1e7-95f12e296eb3",
+    "serialNumber": "urn:uuid:8f7b71d2-192a-4a77-beb2-28d13a983050",
     "version": 1,
     "components": [
         {
@@ -411,7 +411,7 @@
         {
             "type": "library",
             "name": "ooui",
-            "version": "0.51.1",
+            "version": "0.51.2",
             "licenses": [
                 {
                     "license": {
@@ -419,7 +419,7 @@
                     }
                 }
             ],
-            "purl": "pkg:npm/oojs-ui@0.51.1",
+            "purl": "pkg:npm/oojs-ui@0.51.2",
             "authors": [
                 {
                     "name": "OOUI Team and other contributors"

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.51.1
+ * OOUI v0.51.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2024 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-09-19T17:13:45Z
+ * Date: 2024-11-13T16:37:13Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -611,16 +611,17 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   margin: 1em 0;
 }
 
-.oo-ui-horizontalLayout > .oo-ui-widget {
-  display: inline-block;
-  vertical-align: middle;
+.oo-ui-horizontalLayout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
 }
-.oo-ui-horizontalLayout > .oo-ui-layout {
-  display: inline-block;
+.oo-ui-horizontalLayout > .oo-ui-widget {
+  align-self: center;
 }
 .oo-ui-horizontalLayout > .oo-ui-layout,
 .oo-ui-horizontalLayout > .oo-ui-widget {
-  margin-right: 0.5em;
+  margin-right: 0;
 }
 .oo-ui-horizontalLayout > .oo-ui-layout:last-child,
 .oo-ui-horizontalLayout > .oo-ui-widget:last-child {
@@ -628,9 +629,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-horizontalLayout > .oo-ui-layout {
   margin-top: 0;
-}
-.oo-ui-horizontalLayout > .oo-ui-widget {
-  margin-bottom: 0.5em;
 }
 
 
