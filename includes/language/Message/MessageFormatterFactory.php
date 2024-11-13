@@ -31,7 +31,7 @@ class MessageFormatterFactory implements IMessageFormatterFactory {
 	/**
 	 * @inheritDoc
 	 */
-	public function getTextFormatter( $langCode ): ITextFormatter {
+	public function getTextFormatter( string $langCode ): ITextFormatter {
 		if ( !isset( $this->textFormatters[$langCode] ) ) {
 			$this->textFormatters[$langCode] = new TextFormatter(
 				$langCode, $this->format );

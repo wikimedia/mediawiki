@@ -47,11 +47,11 @@ class DBExpectedError extends DBError implements MessageSpecifier {
 		$this->params = $params;
 	}
 
-	public function getKey() {
+	public function getKey(): string {
 		return 'databaseerror-text';
 	}
 
-	public function getParams() {
+	public function getParams(): array {
 		return $this->params;
 	}
 }

@@ -80,7 +80,7 @@ class RawMessage extends Message {
 	 * which is a real message key that can be used with MessageValue and other classes.
 	 * @return string
 	 */
-	public function getKey() {
+	public function getKey(): string {
 		return 'rawmessage';
 	}
 
@@ -89,7 +89,7 @@ class RawMessage extends Message {
 	 * 'rawmessage' message, and can be used with MessageValue and other classes.
 	 * @return string[]
 	 */
-	public function getParams() {
+	public function getParams(): array {
 		// If the provided text is equivalent to 'rawmessage', return the provided params.
 		if ( $this->key === '$1' ) {
 			return $this->parameters;

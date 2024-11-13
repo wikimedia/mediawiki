@@ -399,7 +399,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 *
 	 * @return string
 	 */
-	public function getKey() {
+	public function getKey(): string {
 		return $this->key;
 	}
 
@@ -410,7 +410,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 *
 	 * @return (MessageParam|Message|string|int|float)[]
 	 */
-	public function getParams() {
+	public function getParams(): array {
 		return $this->parameters;
 	}
 

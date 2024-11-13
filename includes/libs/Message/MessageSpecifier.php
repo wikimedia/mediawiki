@@ -33,14 +33,14 @@ interface MessageSpecifier {
 	 *
 	 * @return string
 	 */
-	public function getKey();
+	public function getKey(): string;
 
 	/**
 	 * Returns the message parameters
 	 *
 	 * @return (MessageParam|MessageSpecifier|string|int|float)[]
 	 */
-	public function getParams();
+	public function getParams(): array;
 }
 
 /**

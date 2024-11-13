@@ -48,7 +48,7 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$formatter = new class implements ITextFormatter {
-			public function getLangCode() {
+			public function getLangCode(): string {
 				return 'qqx';
 			}
 

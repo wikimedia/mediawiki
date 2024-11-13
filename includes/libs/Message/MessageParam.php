@@ -11,8 +11,7 @@ use Wikimedia\JsonCodec\JsonCodecable;
  */
 abstract class MessageParam implements JsonCodecable {
 
-	/** @var string */
-	protected $type;
+	protected string $type;
 	/** @var mixed */
 	protected $value;
 
@@ -21,7 +20,7 @@ abstract class MessageParam implements JsonCodecable {
 	 *
 	 * @return string One of the ParamType constants
 	 */
-	public function getType() {
+	public function getType(): string {
 		return $this->type;
 	}
 
@@ -39,5 +38,5 @@ abstract class MessageParam implements JsonCodecable {
 	 *
 	 * @return string
 	 */
-	abstract public function dump();
+	abstract public function dump(): string;
 }

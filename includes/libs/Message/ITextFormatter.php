@@ -20,7 +20,7 @@ interface ITextFormatter {
 	 * Get the internal language code in which format() is
 	 * @return string
 	 */
-	public function getLangCode();
+	public function getLangCode(): string;
 
 	/**
 	 * Convert a MessageSpecifier to text.

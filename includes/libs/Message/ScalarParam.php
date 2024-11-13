@@ -24,7 +24,7 @@ class ScalarParam extends MessageParam {
 	 * @param string $type One of the ParamType constants.
 	 * @param string|int|float|MessageSpecifier|Stringable $value
 	 */
-	public function __construct( $type, $value ) {
+	public function __construct( string $type, $value ) {
 		if ( !in_array( $type, ParamType::cases() ) ) {
 			throw new InvalidArgumentException( '$type must be one of the ParamType constants' );
 		}
@@ -57,13 +57,13 @@ class ScalarParam extends MessageParam {
 		$this->value = $value;
 	}
 
-	public function dump() {
+	public function dump(): string {
 		if ( $this->value instanceof MessageValue ) {
 			$contents = $this->value->dump();
 		} else {
 			$contents = htmlspecialchars( (string)$this->value );
 		}
-		return "<{$this->type}>" . $contents . "</{$this->type}>";
+		return "<$this->type>" . $contents . "</$this->type>";
 	}
 
 	public function toJsonArray(): array {
@@ -74,15 +74,16 @@ class ScalarParam extends MessageParam {
 		];
 	}
 
-	public static function newFromJsonArray( array $json ) {
+	public static function newFromJsonArray( array $json ): ScalarParam {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 		if ( count( $json ) !== 1 ) {
 			throw new InvalidArgumentException( 'Invalid format' );
 		}
-		// Use a dummy loop to get the first (and only) key/value pair in the array.
-		foreach ( $json as $type => $value ) {
-			return new self( $type, $value );
-		}
+
+		$type = key( $json );
+		$value = current( $json );
+
+		return new self( $type, $value );
 	}
 }

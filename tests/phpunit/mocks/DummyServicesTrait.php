@@ -471,7 +471,7 @@ trait DummyServicesTrait {
 				$this->dumpMessages = $dumpMessages;
 			}
 
-			public function getLangCode() {
+			public function getLangCode(): string {
 				return 'qqx';
 			}
 

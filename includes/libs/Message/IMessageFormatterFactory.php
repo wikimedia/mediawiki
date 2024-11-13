@@ -14,5 +14,5 @@ interface IMessageFormatterFactory {
 	 * @param string $langCode The language code
 	 * @return ITextFormatter
 	 */
-	public function getTextFormatter( $langCode ): ITextFormatter;
+	public function getTextFormatter( string $langCode ): ITextFormatter;
 }

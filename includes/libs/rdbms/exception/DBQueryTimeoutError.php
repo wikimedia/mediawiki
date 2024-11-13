@@ -45,7 +45,7 @@ class DBQueryTimeoutError extends DBQueryError {
 		parent::__construct( $db, $error, $errno, $sql, $fname, $message );
 	}
 
-	public function getKey() {
+	public function getKey(): string {
 		return 'transaction-max-statement-time-exceeded';
 	}
 

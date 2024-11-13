@@ -33,7 +33,7 @@ class TextFormatter implements ITextFormatter {
 		$this->format = $format;
 	}
 
-	public function getLangCode() {
+	public function getLangCode(): string {
 		return $this->langCode;
 	}
 
