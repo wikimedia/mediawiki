@@ -2042,14 +2042,18 @@ abstract class Skin extends ContextSource {
 			$linksHtml[] = $linkDetails['html'];
 		}
 
-		$result .= implode(
-			Html::rawElement(
-				'span',
-				[ 'class' => 'mw-editsection-divider' ],
-				$this->msg( 'pipe-separator' )->inLanguage( $lang )->escaped()
-			),
-			$linksHtml
-		);
+		if ( count( $linksHtml ) === 1 ) {
+			$result .= $linksHtml[0];
+		} else {
+			$result .= implode(
+				Html::rawElement(
+					'span',
+					[ 'class' => 'mw-editsection-divider' ],
+					$this->msg( 'pipe-separator' )->inLanguage( $lang )->escaped()
+				),
+				$linksHtml
+			);
+		}
 
 		$result .= Html::rawElement( 'span', [ 'class' => 'mw-editsection-bracket' ], ']' );
 		$result .= Html::closeElement( 'span' );
