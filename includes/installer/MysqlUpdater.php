@@ -173,7 +173,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'page', 'page_links_updated', 'patch-page-page_links_updated-noinfinite.sql' ],
 			[ 'addPostDatabaseUpdateMaintenance', FixAutoblockLogTitles::class ],
 			[ 'changeTableOption', 'searchindex', 'CONVERT TO CHARACTER SET utf8mb4', 'utf8mb4' ],
-			[ 'renameIndex', 'searchindex', 'si_page', 'PRIMARY', false, 'patch-searchindex-pk-titlelength.sql' ],
+			[ 'migrateSearchindex' ],
 
 			// 1.44
 		];
@@ -276,6 +276,27 @@ class MysqlUpdater extends DatabaseUpdater {
 		}
 	}
 
+	protected function migrateSearchindex() {
+		$updateKey = 'searchindex-pk-titlelength';
+		if ( !$this->tableExists( 'searchindex' ) ) {
+			return;
+		}
+
+		$primaryIndexExists = $this->db->indexExists( 'searchindex', 'PRIMARY' );
+		if ( $this->updateRowExists( $updateKey ) || $primaryIndexExists ) {
+			$this->output( "...searchindex table has already been migrated.\n" );
+			if ( !$this->updateRowExists( $updateKey ) ) {
+				$this->insertUpdateRow( $updateKey );
+			}
+			return;
+		}
+
+		$apply = $this->applyPatch( 'patch-searchindex-pk-titlelength.sql', false, '...migrating searchindex table' );
+
+		if ( $apply ) {
+			$this->insertUpdateRow( $updateKey );
+		}
+	}
 }
 
 /** @deprecated class alias since 1.42 */

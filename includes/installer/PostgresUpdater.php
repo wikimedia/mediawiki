@@ -441,7 +441,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropTable', 'ipblocks' ],
 			[ 'dropField', 'pagelinks', 'pl_title', 'patch-pagelinks-drop-pl_title.sql' ],
 			[ 'addPostDatabaseUpdateMaintenance', FixAutoblockLogTitles::class ],
-			[ 'renameIndex', 'searchindex', 'si_page', 'PRIMARY', false, 'patch-searchindex-pk-titlelength.sql' ],
+			[ 'migrateSearchindex' ],
 
 			// 1.44
 		];
@@ -970,5 +970,33 @@ END;
 		}
 
 		return false;
+	}
+
+	/**
+	 * Replaces unique index with primary key,modifies si_title length
+	 *
+	 * @since 1.43
+	 * @return void
+	 */
+	protected function migrateSearchindex() {
+		$updateKey = 'searchindex-pk-titlelength';
+		if ( !$this->tableExists( 'searchindex' ) ) {
+			return;
+		}
+
+		$primaryIndexExists = $this->db->indexExists( 'searchindex', 'searchindex_pkey' );
+		if ( $this->updateRowExists( $updateKey ) || ( $primaryIndexExists ) ) {
+			$this->output( "...searchindex table has already been migrated.\n" );
+			if ( !$this->updateRowExists( $updateKey ) ) {
+				$this->insertUpdateRow( $updateKey );
+			}
+			return;
+		}
+
+		$apply = $this->applyPatch( 'patch-searchindex-pk-titlelength.sql', false, '...migrating searchindex table' );
+
+		if ( $apply ) {
+			$this->insertUpdateRow( $updateKey );
+		}
 	}
 }
