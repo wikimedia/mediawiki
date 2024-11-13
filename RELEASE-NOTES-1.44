@@ -133,6 +133,9 @@ because of Phabricator reports.
 * …
 
 === Other changes in 1.44 ===
+* The ArticleProtect and ArticleProtectComplete hooks are now called when
+  WikiPage::doUpdateRestrictions is called to protect a non-existing
+  title.
 * …
 
 == Compatibility ==

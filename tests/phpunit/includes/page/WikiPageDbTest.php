@@ -1535,7 +1535,29 @@ more stuff
 
 		$cascade = false;
 
+		// Expect that the onArticleProtect and onArticleProtectComplete hooks are called for successful calls.
+		$articleProtectHookCalled = false;
+		$this->setTemporaryHook(
+			'ArticleProtect',
+			static function () use ( &$articleProtectHookCalled ) {
+				$articleProtectHookCalled = true;
+			},
+			false
+		);
+
+		$articleProtectCompleteHookCalled = false;
+		$this->setTemporaryHook(
+			'ArticleProtectComplete',
+			static function () use ( &$articleProtectCompleteHookCalled ) {
+				$articleProtectCompleteHookCalled = true;
+			},
+			false
+		);
+
 		$status = $page->doUpdateRestrictions( $limit, $expiry, $cascade, 'aReason', $userIdentity, [] );
+
+		$this->assertTrue( $articleProtectCompleteHookCalled );
+		$this->assertTrue( $articleProtectHookCalled );
 
 		$logId = $status->getValue();
 		$restrictionStore = $this->getServiceContainer()->getRestrictionStore();
