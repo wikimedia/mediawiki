@@ -91,7 +91,8 @@ class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 
 		$result = $job->run();
 
-		$this->assertFalse( $result );
+		// We don't want to retry the job so it is returned with true.
+		$this->assertTrue( $result );
 		$this->assertSame( 1, $totalFailuresCounter->getSampleCount() );
 		$this->assertSame( "Revision {$prevRev->getId()} is not current", $job->getLastError() );
 	}
