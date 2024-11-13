@@ -234,6 +234,7 @@ class Names {
 		'hif' => 'Fiji Hindi', # Fijian Hindi (multiple scripts - defaults to Latin)
 		'hif-latn' => 'Fiji Hindi', # Fiji Hindi (Latin script)
 		'hil' => 'Ilonggo', # Hiligaynon
+		'hke' => 'kihunde', # Hunde
 		'hno' => 'ہندکو', # Hindko
 		'ho' => 'Hiri Motu', # Hiri Motu
 		'hr' => 'hrvatski', # Croatian

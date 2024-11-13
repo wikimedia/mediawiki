@@ -303,6 +303,7 @@ because of Phabricator reports.
 * (T356144) Deprecated the Kanuri language (kr) and replaced it
   with Central Kanuri (knc). The language code kr is kept for
   backwards compatibility and falls back to knc.
+* (T379137) Added language support for Hunde (hke).
 * …
 
 === Breaking changes in 1.43 ===
