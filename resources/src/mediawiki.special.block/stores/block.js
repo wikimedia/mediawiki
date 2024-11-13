@@ -83,7 +83,6 @@ module.exports = exports = defineStore( 'block', () => {
 	function doBlock() {
 		const params = {
 			action: 'block',
-			reblock: alreadyBlocked.value ? 1 : 0,
 			format: 'json',
 			user: targetUser.value,
 			// Remove browser-specific milliseconds for consistency.
@@ -93,6 +92,10 @@ module.exports = exports = defineStore( 'block', () => {
 			errorlang: mw.config.get( 'wgUserLanguage' ),
 			errorsuselocal: true
 		};
+
+		if ( alreadyBlocked.value ) {
+			params.reblock = 1;
+		}
 
 		// Reason selected concatenated with 'Other' field
 		if ( reason.value === 'other' ) {

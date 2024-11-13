@@ -82,4 +82,28 @@ describe( 'Block store', () => {
 		store.namespaces.push( 3 );
 		expect( store.disableUTEditVisible ).toBe( true );
 	} );
+
+	it( 'should only pass the reblock param to the API if there was an "already blocked" error', () => {
+		mockMwConfigGet( { blockAlreadyBlocked: false } );
+		const store = useBlockStore();
+		store.doBlock();
+		const spy = jest.spyOn( mw.Api.prototype, 'postWithEditToken' );
+		const expected = {
+			action: 'block',
+			allowusertalk: 1,
+			autoblock: 1,
+			errorlang: 'en',
+			errorsuselocal: true,
+			expiry: '',
+			format: 'json',
+			reason: '',
+			uselang: 'en',
+			user: ''
+		};
+		expect( spy ).toHaveBeenCalledWith( expected );
+		store.alreadyBlocked = true;
+		store.doBlock();
+		expected.reblock = 1;
+		expect( spy ).toHaveBeenCalledWith( expected );
+	} );
 } );
