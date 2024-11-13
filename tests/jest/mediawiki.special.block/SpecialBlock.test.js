@@ -54,7 +54,6 @@ describe( 'SpecialBlock', () => {
 			user: 'ExampleUser',
 			expiry: '2999-01-23T12:34:56',
 			reason: 'This is a test',
-			reblock: 0,
 			autoblock: 1,
 			allowusertalk: 1,
 			errorlang: 'en',
