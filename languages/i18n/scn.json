@@ -1084,6 +1084,7 @@
 	"rcfilters-filter-previousrevision-label": "Nun l'ùrtima virsioni",
 	"rcfilters-filter-previousrevision-description": "Tutti li canciamenti chi nun sunnu la \"virsioni attuali\".",
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:nun</strong> $1",
+	"rcfilters-liveupdates-button": "Ùrtimi canci n tempu riali",
 	"rcfilters-watchlist-edit-watchlist-button": "Cancia lu tò elencu di pàggini taliata",
 	"rcfilters-target-page-placeholder": "Nzirisci lu nomu di na pàggina (o catigurìa)",
 	"rcfilters-allcontents-label": "Tutti li cuntinuti",
