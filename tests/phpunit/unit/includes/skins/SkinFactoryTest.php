@@ -101,7 +101,7 @@ class SkinFactoryTest extends \MediaWikiUnitTestCase {
 			},
 			true
 		);
-		$this->assertEquals( [ 'foo'  => 'Skin 1' ], $factory->getSkinNames() );
+		$this->assertEquals( [ 'foo'  => 'Skin 1' ], $factory->getInstalledSkins() );
 		$this->assertSame( $s1, $factory->makeSkin( 'foo' ) );
 		$this->assertSame( [], $factory->getAllowedSkins(), 'skipped' );
 
@@ -112,19 +112,9 @@ class SkinFactoryTest extends \MediaWikiUnitTestCase {
 				return $s2;
 			}
 		);
-		$this->assertEquals( [ 'foo'  => 'Skin 2' ], $factory->getSkinNames() );
+		$this->assertEquals( [ 'foo'  => 'Skin 2' ], $factory->getInstalledSkins() );
 		$this->assertSame( $s2, $factory->makeSkin( 'foo' ) );
 		$this->assertSame( [ 'foo'  => 'Skin 2' ], $factory->getAllowedSkins(), 'not skipped' );
-	}
-
-	public function testGetSkinNames() {
-		$factory = $this->createSkinFactory();
-		$factory->register( 'skin1', 'Skin1', [] );
-		$factory->register( 'skin2', 'Skin2', [] );
-
-		$names = $factory->getSkinNames();
-		$this->assertEquals( 'Skin1', $names['skin1'] );
-		$this->assertEquals( 'Skin2', $names['skin2'] );
 	}
 
 	public function testGetAllowedSkins() {

@@ -118,6 +118,7 @@ class SkinFactory {
 	 * @return array
 	 */
 	public function getSkinNames() {
+		wfDeprecated( __METHOD__, '1.37' );
 		return $this->displayNames;
 	}
 
