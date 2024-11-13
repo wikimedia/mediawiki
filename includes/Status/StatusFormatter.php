@@ -228,11 +228,12 @@ class StatusFormatter {
 	 * Try to convert the status to a PSR-3 friendly format. The output will be similar to
 	 * getWikiText( false, false, 'en' ), but message parameters will be extracted into the
 	 * context array with parameter names 'parameter1' etc. when possible.
+	 * A predefined context array may be passed for convenience.
 	 *
 	 * @return array A pair of (message, context) suitable for passing to a PSR-3 logger.
 	 * @phan-return array{0:string,1:(int|float|string)[]}
 	 */
-	public function getPsr3MessageAndContext( StatusValue $status ): array {
+	public function getPsr3MessageAndContext( StatusValue $status, array $context = [] ): array {
 		$options = [ 'lang' => 'en' ];
 		$errors = $status->getErrors();
 
@@ -244,7 +245,7 @@ class StatusFormatter {
 				// Fall back to getWikiText for rawmessage, which is just a placeholder for non-translated text.
 				// Turning the entire message into a context parameter wouldn't be useful.
 				if ( $message->getKey() === 'rawmessage' ) {
-					return [ $this->getWikiText( $status, $options ), [] ];
+					return [ $this->getWikiText( $status, $options ), $context ];
 				}
 				// $1,$2... will be left as-is when no parameters are provided.
 				$text = $this->msgInLang( $message->getKey(), 'en' )->plain();
@@ -254,20 +255,20 @@ class StatusFormatter {
 				$params = $message->getParamsOfRawMessage();
 			} else {
 				// Unknown Message subclass, we can't be sure how it marks parameters. Fall back to getWikiText.
-				return [ $this->getWikiText( $status, $options ), [] ];
+				return [ $this->getWikiText( $status, $options ), $context ];
 			}
 
-			$context = [];
+			$contextParams = [];
 			$i = 1;
 			foreach ( $params as $param ) {
 				if ( $param instanceof MessageParam ) {
 					$param = $param->getValue();
 				}
 				if ( is_int( $param ) || is_float( $param ) || is_string( $param ) ) {
-					$context["parameter$i"] = $param;
+					$contextParams["parameter$i"] = $param;
 				} else {
 					// Parameter is not of a safe type, fall back to getWikiText.
-					return [ $this->getWikiText( $status, $options ), [] ];
+					return [ $this->getWikiText( $status, $options ), $context ];
 				}
 
 				$text = str_replace( "\$$i", "{parameter$i}", $text );
@@ -275,10 +276,10 @@ class StatusFormatter {
 				$i++;
 			}
 
-			return [ $text, $context ];
+			return [ $text, $context + $contextParams ];
 		}
 		// Parameters cannot be easily extracted, fall back to getWikiText,
-		return [ $this->getWikiText( $status, $options ), [] ];
+		return [ $this->getWikiText( $status, $options ), $context ];
 	}
 
 	/**
