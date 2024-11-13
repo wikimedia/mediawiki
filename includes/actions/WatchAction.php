@@ -29,6 +29,7 @@ use MediaWiki\Watchlist\WatchedItem;
 use MediaWiki\Watchlist\WatchedItemStore;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWiki\Xml\XmlSelect;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 
 /**
@@ -232,9 +233,13 @@ class WatchAction extends FormAction {
 	 * 8. addedwatchexpiryhours-talk
 	 */
 	public function onSuccess() {
+		$submittedExpiry = $this->getContext()->getRequest()->getText( 'wp' . $this->expiryFormFieldName );
+		$this->getOutput()->addWikiMsg( $this->makeSuccessMessage( $submittedExpiry ) );
+	}
+
+	protected function makeSuccessMessage( string $submittedExpiry ): MessageValue {
 		$msgKey = $this->getTitle()->isTalkPage() ? 'addedwatchtext-talk' : 'addedwatchtext';
 		$params = [];
-		$submittedExpiry = $this->getContext()->getRequest()->getText( 'wp' . $this->expiryFormFieldName );
 		if ( $submittedExpiry ) {
 			// We can't use $this->watcheditem to get the expiry because it's not been saved at this
 			// point in the request and so its values are those from before saving.
@@ -259,7 +264,7 @@ class WatchAction extends FormAction {
 				$msgKey = $isTalk ? 'addedwatchexpiryhours-talk' : 'addedwatchexpiryhours';
 			}
 		}
-		$this->getOutput()->addWikiMsg( $msgKey, $this->getTitle()->getPrefixedText(), ...$params );
+		return MessageValue::new( $msgKey )->params( $this->getTitle()->getPrefixedText(), ...$params );
 	}
 
 	public function doesWrites() {
