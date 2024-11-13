@@ -13,6 +13,11 @@ use MediaWiki\Title\TitleValue;
  * @since 1.39
  */
 class MigrateLinksTable extends LoggedUpdateMaintenance {
+	/** @var int */
+	private $totalUpdated = 0;
+	/** @var int */
+	private $lastProgress = 0;
+
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription(
@@ -79,11 +84,11 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 			// Given the indexes and the structure of links tables,
 			// we need to split the update into batches of pages.
 			// Otherwise the queries will take a really long time in production and cause read-only.
-			$updated += $this->handlePageBatch( $pageId, $mapping, $table );
+			$this->handlePageBatch( $pageId, $mapping, $table );
 			$pageId += $this->getBatchSize();
 		}
 
-		$this->output( "Completed normalization of $table, $updated rows updated.\n" );
+		$this->output( "Completed normalization of $table, {$this->totalUpdated} rows updated.\n" );
 
 		return true;
 	}
@@ -95,7 +100,6 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 		// range is inclusive, let's subtract one.
 		$highPageId = $lowPageId + $batchSize - 1;
 		$dbw = $this->getPrimaryDB();
-		$updated = 0;
 
 		while ( true ) {
 			$res = $dbw->newSelectQueryBuilder()
@@ -116,8 +120,6 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 			$ns = $row[$mapping[$table]['ns']];
 			$titleString = $row[$mapping[$table]['title']];
 			$title = new TitleValue( (int)$ns, $titleString );
-			$this->output( "Starting backfill of $ns:$titleString " .
-				"title on pages between $lowPageId and $highPageId\n" );
 			$id = $this->getServiceContainer()->getLinkTargetLookup()->acquireLinkTargetId( $title, $dbw );
 			$dbw->newUpdateQueryBuilder()
 				->update( $table )
@@ -130,17 +132,33 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 					$dbw->expr( $pageIdColumn, '<=', $highPageId ),
 				] )
 				->caller( __METHOD__ )->execute();
-			$updatedInThisBatch = $dbw->affectedRows();
-			$updated += $updatedInThisBatch;
-			$this->output( "Updated $updatedInThisBatch rows\n" );
-			// Sleep between batches for replication to catch up
+			$this->updateProgress( $dbw->affectedRows(), $lowPageId, $highPageId, $ns, $titleString );
+		}
+	}
+
+	/**
+	 * Update the total progress metric. If enough progress has been made,
+	 * report to the user and do a replication wait.
+	 *
+	 * @param int $updatedInThisBatch
+	 * @param int $lowPageId
+	 * @param int $highPageId
+	 * @param int $ns
+	 * @param string $titleString
+	 */
+	private function updateProgress( $updatedInThisBatch, $lowPageId, $highPageId, $ns, $titleString ) {
+		$this->totalUpdated += $updatedInThisBatch;
+		if ( $this->totalUpdated >= $this->lastProgress + $this->getBatchSize() ) {
+			$this->lastProgress = $this->totalUpdated;
+			$this->output( "Updated {$this->totalUpdated} rows, " .
+				"at page_id $lowPageId-$highPageId title $ns:$titleString\n" );
 			$this->waitForReplication();
+			// Sleep between batches for replication to catch up
 			$sleep = (int)$this->getOption( 'sleep', 0 );
 			if ( $sleep > 0 ) {
 				sleep( $sleep );
 			}
 		}
-		return $updated;
 	}
 
 }
