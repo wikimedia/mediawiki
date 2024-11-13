@@ -3496,7 +3496,7 @@
 	"duration-seconds": "$1 {{PLURAL:$1|eiliad}}",
 	"duration-minutes": "$1 {{PLURAL:$1|munud|munud|funud|munud|munud|munud}}",
 	"duration-hours": "$1 {{PLURAL:$1|awr}}",
-	"duration-days": "$1 {{PLURAL:$1|diwrnod|diwrnod|ddiwrnod|diwrnod|diwrnod|diwrnod}}",
+	"duration-days": "$1 {{PLURAL:$1|diwrnod|diwrnod|ddiwrnod|diwrnod}}",
 	"duration-weeks": "$1 {{PLURAL:$1|wythnos}}",
 	"duration-years": "$1 {{PLURAL:$1|mlynedd|mlynedd|flynedd|mlynedd|mlynedd|mlynedd}}",
 	"duration-decades": "$1 {{PLURAL:$1|degawd|degawd|ddegawd|degawd|degawd|degawd}}",

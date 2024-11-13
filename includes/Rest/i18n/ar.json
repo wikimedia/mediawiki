@@ -46,5 +46,7 @@
 	"rest-cannot-load-file": "لا يمكن تحميل ملف العنوان «$1».",
 	"rest-cross-origin-anon-write": "غير مسموح بطلبات الكتابة عبر الأصل المجهول",
 	"rest-requires-safe-against-csrf": "تتطلب نقطة النهاية هذه موفر جلسة CSRF آمنًا.",
-	"rest-badtoken": "رمز CSRF المقدم غير صالح."
+	"rest-badtoken": "رمز CSRF المقدم غير صالح.",
+	"rest-badtoken-missing": "تكون معلمة <var>token</var> مطلوبة ما لم يتم استخدام طريقة مصادقة آمنة لـ CSRF.",
+	"rest-badtoken-nosession": "خطأ CSRF - لا توجد جلسة."
 }

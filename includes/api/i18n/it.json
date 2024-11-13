@@ -629,7 +629,7 @@
 	"apihelp-unblock-param-user": "Utente da sbloccare. Non può essere usato insieme a <var>$1id</var>.",
 	"apihelp-unblock-param-userid": "Specifica <kbd>$1user=#<var>ID</var></kbd> invece.",
 	"apihelp-unblock-param-reason": "Motivo dello sblocco.",
-	"apihelp-unblock-param-tags": "Modifica etichette da applicare all'elemento del registro dei blocchi.",
+	"apihelp-unblock-param-tags": "I tag di modifica da applicare all'elemento del registro dei blocchi.",
 	"apihelp-undelete-summary": "Ripristina versioni di una pagina cancellata.",
 	"apihelp-undelete-param-title": "Titolo della pagina da ripristinare.",
 	"apihelp-undelete-param-reason": "Motivo per il ripristino.",

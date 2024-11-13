@@ -1972,7 +1972,7 @@
 	"uploadstash-wrong-owner": "Dit bestand ($1) is niet van de huidige gebruiker.",
 	"uploadstash-no-such-key": "Geen sleutel met deze naam ($1), kan de sleutel niet verwijderen.",
 	"uploadstash-zero-length": "Bestandsgrootte is nul.",
-	"invalid-chunk-offset": "Ongeldige chunkoffset",
+	"invalid-chunk-offset": "Ongeldig beginpunt van het fragment",
 	"img-auth-accessdenied": "Toegang geweigerd",
 	"img-auth-notindir": "Het opgegeven pad is niet de ingestelde uploadmap.",
 	"img-auth-badtitle": "Het was niet mogelijk een geldige paginanaam te maken van \"$1\".",
@@ -2115,7 +2115,7 @@
 	"statistics-edits-average": "Gemiddeld aantal bewerkingen per pagina",
 	"statistics-users": "Geregistreerde gebruikers",
 	"statistics-users-active": "Actieve gebruikers",
-	"statistics-users-active-desc": "Gebruikers die in de afgelopen {{PLURAL:$1|dag|$1 dagen}} een handeling hebben uitgevoerd",
+	"statistics-users-active-desc": "Gebruikers die in de afgelopen {{PLURAL:$1|dag|$1 dagen}} een handeling hebben verricht",
 	"pageswithprop": "Pagina's met een pagina-eigenschap",
 	"pageswithprop-legend": "Pagina's met een pagina-eigenschap",
 	"pageswithprop-text": "Op deze pagina worden pagina's weergegeven met een bepaalde pagina-eigenschap.",
@@ -2864,7 +2864,7 @@
 	"ipbnounblockself": "U mag uzelf niet deblokkeren",
 	"lockdb": "Database blokkeren",
 	"unlockdb": "Blokkering van de database opheffen",
-	"lockdbtext": "Als u de database blokkeert, kunnen gebruikers geen pagina's meer bewerken, geen voorkeuren wijzigen of iets anders te doen waarvoor wijzigingen in de database nodig zijn.\nBevestig dat u deze handeling wilt uitvoeren en dat u de database vrijgeeft nadat het onderhoud is uitgevoerd.",
+	"lockdbtext": "Als u de database blokkeert, kunnen gebruikers geen pagina’s meer bewerken, geen voorkeuren wijzigen en niets anders doen waarvoor wijzigingen in de database nodig zijn.\nBevestig dat dit de bedoeling is, en dat u de database weer vrijgeeft wanneer het onderhoud klaar is.",
 	"unlockdbtext": "Na het vrijgeven van de database kunnen alle gebruikers weer pagina’s bewerken, hun voorkeuren wijzigen en andere dingen doen waarvoor er wijzigingen in de database nodig zijn.\nBevestig dat dit inderdaad de bedoeling is.",
 	"lockconfirm": "Ja, ik wil de database blokkeren.",
 	"unlockconfirm": "Ja, ik wil de database vrijgeven.",
@@ -4175,7 +4175,7 @@
 	"skin-action-undelete": "Terugplaatsen",
 	"skin-action-delete": "Verwijderen",
 	"skin-action-move": "Hernoemen",
-	"parsoid-stash-rate-limit-error": "Opslaan is mislukt omdat het aantal pogingen de limiet overschreed. Probeer het later opnieuw.",
+	"parsoid-stash-rate-limit-error": "Het opbergen is mislukt omdat de tempobeperking is overschreden. Probeer het later opnieuw.",
 	"parsoid-resource-limit-exceeded": "Parsoid-bronnenlimiet overschreden: $1",
 	"parsoid-revision-access": "Parsoid kan geen toegang krijgen tot de versie: $1",
 	"parsoid-client-error": "Ongeldige Parsoid-invoer: $1",
@@ -4225,5 +4225,5 @@
 	"action-renameuser": "gebruikers te hernoemen",
 	"right-renameuser": "Gebruikers hernoemen",
 	"renameuser-renamed-notice": "Deze gebruiker is hernoemd.\nRelevante regels uit het logboek gebruikersnaamwijzigingen worden hieronder ter referentie weergegeven.",
-	"log-unknown-action": "heeft onbekende handeling \"$2\" op [[$1]] uitgevoerd"
+	"log-unknown-action": "heeft onbekende handeling “$2” verricht op [[$1]]"
 }

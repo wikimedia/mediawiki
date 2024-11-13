@@ -1792,7 +1792,7 @@
 	"apierror-mustbeloggedin-uploadstash": "A área dos ficheiros escondidos só está disponível para utilizadores autenticados.",
 	"apierror-mustbeloggedin": "Tem de ter uma sessão iniciada para $1.",
 	"apierror-mustbeposted": "O módulo <kbd>$1</kbd> requer um pedido POST.",
-	"apierror-mustpostparams": "{{PLURAL:$2|O seguinte parâmetro foi encontrado|Os seguintes parâmetros foram encontrados}} no texto da pesquisa, mas têm de estar no corpo do POST: $1.",
+	"apierror-mustpostparams": "{{PLURAL:$2|O seguinte parâmetro foi encontrado|Os seguintes parâmetros foram encontrados}} no texto da pesquisa, mas {{PLURAL:$2|tem|têm}} de estar no corpo do POST: $1.",
 	"apierror-noapiwrite": "A edição desta wiki através da API foi impossibilitada.",
 	"apierror-nochanges": "Não foi pedida nenhuma mudança.",
 	"apierror-nodeleteablefile": "Essa versão antiga do ficheiro não existe.",
