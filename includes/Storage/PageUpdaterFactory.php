@@ -65,6 +65,7 @@ class PageUpdaterFactory {
 		MainConfigNames::ManualRevertSearchRadius,
 		MainConfigNames::UseRCPatrol,
 		MainConfigNames::ParsoidCacheConfig,
+		MainConfigNames::PageCreationLog,
 	];
 
 	/** @var RevisionStore */
@@ -282,6 +283,9 @@ class PageUpdaterFactory {
 			$this->logger,
 			$this->wikiPageFactory
 		);
+
+		$pageUpdater->setUsePageCreationLog(
+			$this->options->get( MainConfigNames::PageCreationLog ) );
 
 		$pageUpdater->setUseAutomaticEditSummaries(
 			$this->options->get( MainConfigNames::UseAutomaticEditSummaries )
