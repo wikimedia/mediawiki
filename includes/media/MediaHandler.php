@@ -791,7 +791,7 @@ abstract class MediaHandler {
 	 * Note, everything here is passed through the parser later on (!)
 	 */
 	protected static function addMeta( &$array, $visibility, $type, $id, $value, $param = false ) {
-		$msg = wfMessage( "$type-$id", $param );
+		$msg = wfMessage( "$type-$id", (string)$param );
 		if ( $msg->exists() ) {
 			$name = $msg->text();
 		} else {

@@ -98,7 +98,7 @@ class PageDataRequestHandler {
 
 		if ( $title === null || $title === '' ) {
 			// TODO: different error message?
-			throw new HttpError( 400, wfMessage( 'pagedata-bad-title', $title ) );
+			throw new HttpError( 400, wfMessage( 'pagedata-bad-title', (string)$title ) );
 		}
 
 		try {

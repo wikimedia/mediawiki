@@ -74,7 +74,7 @@ class SimpleAntiSpamConstraint implements IEditConstraint {
 	public function getLegacyStatus(): StatusValue {
 		$statusValue = StatusValue::newGood();
 		if ( $this->input !== '' ) {
-			$statusValue->fatal( 'spamprotectionmatch', false );
+			$statusValue->fatal( 'spamprotectionmatch', '' );
 			$statusValue->value = self::AS_SPAM_ERROR;
 		}
 		return $statusValue;

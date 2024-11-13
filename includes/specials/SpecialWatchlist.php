@@ -46,6 +46,7 @@ use MediaWiki\Xml\Xml;
 use MediaWiki\Xml\XmlSelect;
 use RecentChange;
 use UserNotLoggedIn;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\RawSQLExpression;
@@ -558,7 +559,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 					return "<span style='visibility:hidden'>$unwatch</span>\u{00A0}";
 				} else {
 					$unwatchTooltipMessage = 'tooltip-ca-unwatch';
-					$diffInDays = null;
 					// Check if the watchlist expiry flag is enabled to show new tooltip message
 					if ( $this->getConfig()->get( MainConfigNames::WatchlistExpiry ) ) {
 						$watchedItem = $this->watchedItemStore->getWatchedItem( $this->getUser(), $rc->getTitle() );
@@ -566,7 +566,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 							$diffInDays = $watchedItem->getExpiryInDays();
 
 							if ( $diffInDays > 0 ) {
-								$unwatchTooltipMessage = 'tooltip-ca-unwatch-expiring';
+								$unwatchTooltipMessage = MessageValue::new( 'tooltip-ca-unwatch-expiring' )
+									->numParams( $diffInDays );
 							} else {
 								$unwatchTooltipMessage = 'tooltip-ca-unwatch-expiring-hours';
 							}
@@ -577,7 +578,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 							->makeKnownLink( $rc->getTitle(),
 								$unwatch, [
 									'class' => 'mw-unwatch-link',
-									'title' => $this->msg( $unwatchTooltipMessage, [ $diffInDays ] )->text()
+									'title' => $this->msg( $unwatchTooltipMessage )->text()
 								], [ 'action' => 'unwatch' ] ) . "\u{00A0}";
 				}
 			} );
