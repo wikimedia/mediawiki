@@ -6456,20 +6456,28 @@ function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
       createElementVNode("div", _hoisted_2$7, [
         renderSlot(_ctx.$slots, "help-text")
       ]),
-      !_ctx.computedDisabled && _ctx.validationMessage ? (openBlock(), createElementBlock("div", _hoisted_3$5, [
+      !_ctx.computedDisabled && _ctx.validationMessage || _ctx.$slots[_ctx.validationMessageType] ? (openBlock(), createElementBlock("div", _hoisted_3$5, [
         createVNode(_component_cdx_message, {
           type: _ctx.validationMessageType,
           inline: true
         }, {
           default: withCtx(() => [
-            createTextVNode(
-              toDisplayString(_ctx.validationMessage),
-              1
-              /* TEXT */
-            )
+            _ctx.status === "warning" && _ctx.$slots.warning ? renderSlot(_ctx.$slots, "warning", { key: 0 }) : _ctx.status === "error" && _ctx.$slots.error ? renderSlot(_ctx.$slots, "error", { key: 1 }) : _ctx.status === "success" && _ctx.$slots.success ? renderSlot(_ctx.$slots, "success", { key: 2 }) : (openBlock(), createElementBlock(
+              Fragment,
+              { key: 3 },
+              [
+                createTextVNode(
+                  toDisplayString(_ctx.validationMessage),
+                  1
+                  /* TEXT */
+                )
+              ],
+              64
+              /* STABLE_FRAGMENT */
+            ))
           ]),
-          _: 1
-          /* STABLE */
+          _: 3
+          /* FORWARDED */
         }, 8, ["type"])
       ])) : createCommentVNode("v-if", true)
     ]),
@@ -6695,11 +6703,11 @@ const _sfc_main$e = defineComponent({
       toRef(props, "status")
     );
     const selectedProp = toRef(props, "selected");
-    const modelWrapper = useModelWrapper(selectedProp, emit, "update:selected");
+    const selection = useModelWrapper(selectedProp, emit, "update:selected");
     const selectedMenuItem = computed(
       () => {
         var _a;
-        return (_a = menu.value) == null ? void 0 : _a.getComputedMenuItems().find((item) => item.value === props.selected);
+        return (_a = menu.value) == null ? void 0 : _a.getComputedMenuItems().find((item) => item.value === selection.value);
       }
     );
     const highlightedId = computed(() => {
@@ -6727,10 +6735,10 @@ const _sfc_main$e = defineComponent({
     function onUpdateInput(newVal) {
       if (selectedMenuItem.value) {
         if (selectedMenuItem.value.label !== newVal && selectedMenuItem.value.value !== newVal) {
-          modelWrapper.value = null;
+          selection.value = null;
         }
       } else if (props.selected !== null && props.selected !== newVal) {
-        modelWrapper.value = null;
+        selection.value = null;
       }
       if (newVal === "" && initialMenuItems.value.length === 0) {
         expanded.value = false;
@@ -6761,13 +6769,13 @@ const _sfc_main$e = defineComponent({
       menu.value.delegateKeyNavigation(e);
     }
     useFloatingMenu(textInput, menu);
-    watch(selectedProp, (newVal) => {
+    watch(selection, (newVal) => {
       var _a;
       if (newVal !== null) {
-        const selectedValue = selectedMenuItem.value ? (_a = selectedMenuItem.value.label) != null ? _a : selectedMenuItem.value.value : "";
-        if (computedInputValue.value !== selectedValue) {
-          computedInputValue.value = selectedValue;
-          emit("input", computedInputValue.value);
+        const inputValueForSelection = selectedMenuItem.value ? (_a = selectedMenuItem.value.label) != null ? _a : selectedMenuItem.value.value : "";
+        if (computedInputValue.value !== inputValueForSelection) {
+          computedInputValue.value = inputValueForSelection;
+          emit("input", inputValueForSelection);
         }
       }
     });
@@ -6792,7 +6800,7 @@ const _sfc_main$e = defineComponent({
       menuId,
       highlightedId,
       computedInputValue,
-      modelWrapper,
+      selection,
       expanded,
       computedDisabled,
       computedStatus,
@@ -6840,8 +6848,8 @@ function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
       createVNode(_component_cdx_menu, mergeProps({
         id: _ctx.menuId,
         ref: "menu",
-        selected: _ctx.modelWrapper,
-        "onUpdate:selected": _cache[2] || (_cache[2] = ($event) => _ctx.modelWrapper = $event),
+        selected: _ctx.selection,
+        "onUpdate:selected": _cache[2] || (_cache[2] = ($event) => _ctx.selection = $event),
         expanded: _ctx.expanded,
         "onUpdate:expanded": _cache[3] || (_cache[3] = ($event) => _ctx.expanded = $event),
         "menu-items": _ctx.menuItems
@@ -6992,6 +7000,20 @@ const _sfc_main$c = defineComponent({
     disabled: {
       type: Boolean,
       default: false
+    },
+    /**
+     * Interactive footer item.
+     *
+     * This is a special menu item which is pinned to the bottom of the menu. When scrolling is
+     * enabled within the menu, the footer item will always be visible at the bottom of the
+     * menu. When scrolling is not enabled, the footer item will simply appear as the last menu
+     * item.
+     *
+     * The footer item is selectable, like other menu items.
+     */
+    footer: {
+      type: Object,
+      default: null
     }
   },
   emits: [
@@ -7080,8 +7102,15 @@ function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
           "menu-items": _ctx.menuItems
         }, _ctx.menuConfig, {
           role: "menu",
-          "aria-labelledby": _ctx.toggleId
-        }), null, 16, ["id", "selected", "expanded", "menu-items", "aria-labelledby"])
+          "aria-labelledby": _ctx.toggleId,
+          footer: _ctx.footer
+        }), {
+          default: withCtx(({ menuItem }) => [
+            renderSlot(_ctx.$slots, "menu-item", { menuItem })
+          ]),
+          _: 3
+          /* FORWARDED */
+        }, 16, ["id", "selected", "expanded", "menu-items", "aria-labelledby", "footer"])
       ])
     ],
     6
@@ -8769,7 +8798,7 @@ const _hoisted_13 = { key: 0 };
 const _hoisted_14 = { key: 0 };
 const _hoisted_15 = { key: 1 };
 const _hoisted_16 = { class: "cdx-table__table__empty-state" };
-const _hoisted_17 = { class: "cdx-table__table__empty-state-content" };
+const _hoisted_17 = ["colspan"];
 const _hoisted_18 = { class: "cdx-table__pagination-status--long" };
 const _hoisted_19 = { class: "cdx-table__pagination-status--short" };
 const _hoisted_20 = {
@@ -8923,7 +8952,7 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
                         createVNode(_component_cdx_icon, {
                           icon: _ctx.getSortIcon(column.id),
                           size: "small",
-                          class: "cdx-table__table__sort-icon",
+                          class: "cdx-table__table__sort-icon--vue",
                           "aria-hidden": "true"
                         }, null, 8, ["icon"])
                       ], 8, _hoisted_11)) : (openBlock(), createElementBlock(
@@ -9027,9 +9056,12 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
               ))
             ])) : _ctx.$slots["empty-state"] && _ctx.$slots["empty-state"]().length > 0 ? (openBlock(), createElementBlock("tbody", _hoisted_15, [
               createElementVNode("tr", _hoisted_16, [
-                createElementVNode("td", _hoisted_17, [
+                createElementVNode("td", {
+                  colspan: _ctx.columns.length,
+                  class: "cdx-table__table__empty-state-content"
+                }, [
                   renderSlot(_ctx.$slots, "empty-state")
-                ])
+                ], 8, _hoisted_17)
               ])
             ])) : createCommentVNode("v-if", true)
           ]),

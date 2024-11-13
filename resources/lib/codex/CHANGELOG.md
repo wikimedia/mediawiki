@@ -1,3 +1,38 @@
+# 1.16.0 / 2024-11-13
+
+## Features
+- MenuButton: add support for custom menu items (lwatson)
+- Field: add custom status message slots (lwatson)
+
+## Styles
+- tokens: Add new tokens for more interactive link styles (Derek Torsani)
+- tokens: Adjust hover and active states for progressive and destructive (Derek Torsani)
+- TablePager: Support CSS-only icons for pager buttons (Anne Tomasevich)
+- Table: Support CSS-only sort icons (Anne Tomasevich)
+- Table: Use colspan and basic table styles for empty state (Eric Gardner)
+- tokens: Unify interactive styles phase 1 (Derek Torsani)
+
+## New design tokens
+- `color-visited--hover`
+- `color-visited--active`
+- `color-destructive--visited--hover`
+- `color-destructive--visited--active`
+- `background-color-interactive-subtle--hover`
+- `background-color-interactive-subtle--active`
+- `background-color-error-subtle--hover`
+- `background-color-error-subtle--active`
+- `border-color-interactive--hover`
+- `border-color-interactive--active`
+- `color-error--hover`
+- `color-error--active`
+
+## Code
+- Lookup: Ensure input event on selection has correct value (Anne Tomasevich)
+
+## Docs
+- docs: update the Figma library links (bmartinezcalvo)
+- docs: Fix typo in field demo header (Anne Tomasevich)
+
 # 1.15.0 / 2024-10-29
 
 ## Features

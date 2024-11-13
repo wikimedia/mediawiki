@@ -1,5 +1,5 @@
 /**
- * Codex Design Tokens v1.15.0
+ * Codex Design Tokens v1.16.0
  * Design System for Wikimedia
  * See https://doc.wikimedia.org/codex/latest/design-tokens/overview.html
  */
@@ -16,16 +16,22 @@
   --color-inverted: #fff;
   --color-inverted-fixed: #fff; /* The same as color-inverted in light mode, but does not change in dark mode. Use this for things that should be white in both modes. */
   --color-progressive: #36c; /* 'Progressive' Color and states */
-  --color-progressive--hover: #4b77d6;
+  --color-progressive--hover: #3056a9;
   --color-progressive--active: #233566;
   --color-progressive--focus: #36c;
   --color-destructive: #bf3c2c; /* 'Destructive' Color and states */
-  --color-destructive--hover: #f54739;
-  --color-destructive--active: #9f3526;
+  --color-destructive--hover: #9f3526;
+  --color-destructive--active: #612419;
   --color-destructive--focus: #36c;
   --color-visited: #6a60b0; /* 'Visited' color. In combination with progressive. Used for default links. */
+  --color-visited--hover: #534fa3;
+  --color-visited--active: #353262;
   --color-destructive--visited: #9f5555; /* Red link 'Visited' color. Used for visited red links. */
+  --color-destructive--visited--hover: #854848;
+  --color-destructive--visited--active: #512e2e;
   --color-error: #bf3c2c;
+  --color-error--hover: #9f3526;
+  --color-error--active: #612419;
   --color-warning: #886425;
   --color-success: #177860;
   --color-notice: #404244;
@@ -52,23 +58,27 @@
   --background-color-neutral-subtle: #f8f9fa;
   --background-color-interactive: #eaecf0;
   --background-color-interactive-subtle: #f8f9fa;
+  --background-color-interactive-subtle--hover: #eaecf0;
+  --background-color-interactive-subtle--active: #dadde3;
   --background-color-disabled: #dadde3; /* Components like Buttons, Checkboxes, Radios, ProgressBars…. */
   --background-color-disabled-subtle: #eaecf0; /* Components like TextInputs, Selects…. */
   --background-color-inverted: #101418;
   --background-color-progressive: #36c;
-  --background-color-progressive--hover: #4b77d6;
+  --background-color-progressive--hover: #3056a9;
   --background-color-progressive--active: #233566;
   --background-color-progressive--focus: #36c;
   --background-color-progressive-subtle: #f1f4fd;
   --background-color-destructive: #bf3c2c;
-  --background-color-destructive--hover: #f54739;
-  --background-color-destructive--active: #9f3526;
+  --background-color-destructive--hover: #9f3526;
+  --background-color-destructive--active: #612419;
   --background-color-destructive--focus: #36c;
   --background-color-destructive-subtle: #ffe9e5;
   --background-color-error: #f54739;
   --background-color-error--hover: #d74032;
   --background-color-error--active: #bf3c2c;
   --background-color-error-subtle: #ffe9e5;
+  --background-color-error-subtle--hover: #ffdad3;
+  --background-color-error-subtle--active: #ffc8bd;
   --background-color-warning-subtle: #fdf2d5;
   --background-color-success-subtle: #dff2eb;
   --background-color-notice-subtle: #eaecf0;
@@ -92,19 +102,21 @@
   --border-color-subtle: #c8ccd1;
   --border-color-muted: #dadde3;
   --border-color-interactive: #72777d;
+  --border-color-interactive--hover: #27292d;
+  --border-color-interactive--active: #202122;
   --border-color-disabled: #c8ccd1;
   --border-color-inverted: #fff;
   --border-color-progressive: #36c;
-  --border-color-progressive--hover: #4b77d6;
+  --border-color-progressive--hover: #3056a9;
   --border-color-progressive--active: #233566;
   --border-color-progressive--focus: #36c;
   --border-color-destructive: #bf3c2c;
-  --border-color-destructive--hover: #f54739;
-  --border-color-destructive--active: #9f3526;
+  --border-color-destructive--hover: #9f3526;
+  --border-color-destructive--active: #612419;
   --border-color-destructive--focus: #36c;
   --border-color-error: #f54739;
-  --border-color-error--hover: #d74032;
-  --border-color-error--active: #bf3c2c;
+  --border-color-error--hover: #9f3526;
+  --border-color-error--active: #612419;
   --border-color-warning: #ab7f2a;
   --border-color-success: #099979;
   --border-color-notice: #72777d;
@@ -118,6 +130,8 @@
   --color-link-red--active: var( --color-destructive--active );
   --color-link-red--focus: var( --color-destructive--focus );
   --color-link-red--visited: var( --color-destructive--visited );
+  --color-link-red--visited--hover: var( --color-destructive--visited--hover );
+  --color-link-red--visited--active: var( --color-destructive--visited--active );
   --border-color-input--hover: var( --border-color-interactive );
   --border-color-input-binary: var( --border-color-interactive );
   --border-color-input-binary--hover: var( --border-color-progressive--hover );
