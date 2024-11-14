@@ -206,13 +206,9 @@ class AuthenticatedFileEntryPoint extends MediaWikiEntryPoint {
 		$context = $this->getContext();
 
 		$msgHdr = $context->msg( $msg1 )->text();
-		$detailMsgKey = $this->getConfig( MainConfigNames::ImgAuthDetails )
-			? $msg2 : 'badaccess-group0';
-
-		$detailMsg = $context->msg(
-			$detailMsgKey,
-			$args
-		)->text();
+		$detailMsg = $this->getConfig( MainConfigNames::ImgAuthDetails )
+			? $context->msg( $msg2, $args )->text()
+			: $context->msg( 'badaccess-group0' )->text();
 
 		wfDebugLog(
 			'img_auth',
