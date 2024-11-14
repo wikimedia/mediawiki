@@ -3802,7 +3802,7 @@ class EditPage implements IEditObject {
 
 			if ( $hookRunner->onParserLimitReportFormat( $key, $value, $limitReport, true, true ) ) {
 				$keyMsg = wfMessage( $key );
-				$valueMsg = wfMessage( [ "$key-value-html", "$key-value" ] );
+				$valueMsg = wfMessage( "$key-value" );
 				if ( !$valueMsg->exists() ) {
 					// This is formatted raw, not as localized number.
 					// If you want the parameter formatted as a number,

@@ -13,8 +13,7 @@ interface ParserLimitReportFormatHook {
 	/**
 	 * This hook is called for each row in the parser limit report that
 	 * needs formatting. If nothing handles this hook, the default is to use "$key" to
-	 * get the label, and "$key-value" or "$key-value-text"/"$key-value-html" to
-	 * format the value.
+	 * get the label, and "$key-value" to format the value.
 	 *
 	 * @since 1.35
 	 *
