@@ -218,7 +218,7 @@ For notes on 1.42.x and older releases, see HISTORY.
 * Updated OOUI from v0.49.1 to v0.51.2.
 * Updated wikimedia/at-ease from 2.1.0 to 3.0.0.
 * Updated wikimedia/json-codec from 3.0.1 to 3.0.3.
-* Updated wikimedia/less.php from 4.2.1 to 5.1.1.
+* Updated wikimedia/less.php from 4.2.1 to 5.1.2.
 * Updated wikimedia/minify from 2.7.0 to 2.8.0.
 * Updated wikimedia/normalized-exception from 1.0.1 to 2.0.0.
 * Updated wikimedia/php-session-serializer from 2.0.1 to 3.0.0.
