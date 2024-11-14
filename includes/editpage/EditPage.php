@@ -3787,6 +3787,19 @@ class EditPage implements IEditObject {
 
 		$hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
 		foreach ( $output->getLimitReportData() as $key => $value ) {
+			if ( in_array( $key, [
+				'cachereport-origin',
+				'cachereport-timestamp',
+				'cachereport-ttl',
+				'cachereport-transientcontent',
+				'limitreport-timingprofile',
+			] ) ) {
+				// These entries have non-numeric parameters, and can't be displayed by this code.
+				// They are used by the plaintext limit report (see RenderDebugInfo::debugInfo()).
+				// TODO: Display this information in the table somehow.
+				continue;
+			}
+
 			if ( $hookRunner->onParserLimitReportFormat( $key, $value, $limitReport, true, true ) ) {
 				$keyMsg = wfMessage( $key );
 				$valueMsg = wfMessage( [ "$key-value-html", "$key-value" ] );
