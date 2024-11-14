@@ -55,6 +55,7 @@ For notes on 1.43.x and older releases, see HISTORY.
 === New developer features in 1.44 ===
 
 * The AuthenticationAttemptThrottled hook was added.
+* The CodexTablePager class was added.
 * …
 
 === External library changes in 1.44 ===
