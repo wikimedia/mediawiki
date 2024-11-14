@@ -85,7 +85,7 @@
 		</cdx-table>
 		<div v-if="moreBlocks" class="mw-block-log-fulllog">
 			<a
-				:href="mw.util.getUrl( 'Special:Log', { page: targetUser, type: blockLogType === 'suppress' ? 'suppress' : 'block' } )"
+				:href="mw.util.getUrl( 'Special:Log', { page: 'User:' + targetUser, type: blockLogType === 'suppress' ? 'suppress' : 'block' } )"
 			>
 				{{ $i18n( 'log-fulllog' ).text() }}
 			</a>
