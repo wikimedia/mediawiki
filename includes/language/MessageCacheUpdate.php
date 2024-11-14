@@ -20,15 +20,18 @@
  * @file
  */
 
-namespace MediaWiki\Deferred;
+namespace MediaWiki\Language;
 
+use MediaWiki\Deferred\DeferrableUpdate;
+use MediaWiki\Deferred\MergeableUpdate;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Assert\Assert;
 
 /**
  * Message cache purging and in-place update handler for specific message page changes
  *
- * @ingroup Cache
+ * @ingroup Language
+ * @internal For use by MessageCache only.
  * @since 1.32
  */
 class MessageCacheUpdate implements DeferrableUpdate, MergeableUpdate {
@@ -61,6 +64,3 @@ class MessageCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 		}
 	}
 }
-
-/** @deprecated class alias since 1.42 */
-class_alias( MessageCacheUpdate::class, 'MessageCacheUpdate' );
