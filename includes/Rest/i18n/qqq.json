@@ -100,5 +100,6 @@
 	"rest-param-desc-html-output-stash": "{{notranslate}} HTML output renderer stash parameter description",
 	"rest-param-desc-html-output-flavor": "{{notranslate}} HTML output renderer flavor parameter description",
 	"rest-param-desc-page-content-title": "{{notranslate}} Page content title parameter description",
-	"rest-param-desc-page-content-redirect": "{{notranslate}} Page content redirect parameter description"
+	"rest-param-desc-page-content-redirect": "{{notranslate}} Page content redirect parameter description",
+	"rest-param-desc-update-source": "{{notranslate}} Request body parameter providing the page content"
 }

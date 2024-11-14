@@ -1323,16 +1323,23 @@ class HandlerTest extends MediaWikiUnitTestCase {
 					Handler::PARAM_SOURCE => 'path',
 					ParamValidator::PARAM_TYPE => [ 'x', 'y', 'z' ],
 					ParamValidator::PARAM_REQUIRED => false,
+					Handler::PARAM_DESCRIPTION => "param b"
 				],
 				'c' => [
 					Handler::PARAM_SOURCE => 'path',
 					ParamValidator::PARAM_TYPE => 'string',
 					ParamValidator::PARAM_REQUIRED => false,
 				],
+				'd' => [
+					Handler::PARAM_SOURCE => 'path',
+					ParamValidator::PARAM_TYPE => 'string',
+					ParamValidator::PARAM_REQUIRED => false,
+					Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-mock-error' )
+				],
 			],
 			'$bodySettings' => [],
 			'$requestTypes' => [ 'application/json' ],
-			'$routeConfig' => [ 'path' => '/test/{a}/{b}' ],
+			'$routeConfig' => [ 'path' => '/test/{a}/{b}/{d}' ],
 			'$method' => 'GET',
 			'$assertions' =>
 				static function ( array $spec ) {
@@ -1352,6 +1359,12 @@ class HandlerTest extends MediaWikiUnitTestCase {
 					Assert::assertTrue( $params['a']['required'] );
 					Assert::assertTrue( $params['b']['required'] );
 
+					Assert::assertSame( 'a parameter', $params['a']['description'] );
+					Assert::assertSame( 'param b', $params['b']['description'] );
+					Assert::assertSame( '<message key="rest-mock-error"></message>',
+						$params['d']['description']
+					);
+
 					Assert::assertSame( 'integer', $params['a']['schema']['type'] );
 					Assert::assertSame( 'string', $params['b']['schema']['type'] );
 					Assert::assertSame( [ 'x', 'y', 'z' ], $params['b']['schema']['enum'] );
@@ -1369,6 +1382,13 @@ class HandlerTest extends MediaWikiUnitTestCase {
 					Handler::PARAM_SOURCE => 'query',
 					ParamValidator::PARAM_TYPE => [ 'x', 'y', 'z' ],
 					ParamValidator::PARAM_REQUIRED => false,
+					Handler::PARAM_DESCRIPTION => "param b"
+				],
+				'c' => [
+					Handler::PARAM_SOURCE => 'query',
+					ParamValidator::PARAM_TYPE => 'string',
+					ParamValidator::PARAM_REQUIRED => false,
+					Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-mock-error' )
 				],
 			],
 			'$bodySettings' => [],
@@ -1388,6 +1408,12 @@ class HandlerTest extends MediaWikiUnitTestCase {
 
 					Assert::assertTrue( $params['a']['required'] );
 					Assert::assertFalse( $params['b']['required'] );
+
+					Assert::assertSame( 'a parameter', $params['a']['description'] );
+					Assert::assertSame( 'param b', $params['b']['description'] );
+					Assert::assertSame( '<message key="rest-mock-error"></message>',
+						$params['c']['description']
+					);
 
 					Assert::assertSame( 'integer', $params['a']['schema']['type'] );
 					Assert::assertSame( 'string', $params['b']['schema']['type'] );
@@ -1410,6 +1436,12 @@ class HandlerTest extends MediaWikiUnitTestCase {
 				'b' => [
 					Handler::PARAM_SOURCE => 'body',
 					ParamValidator::PARAM_REQUIRED => false,
+					Handler::PARAM_DESCRIPTION => "param b"
+				],
+				'c' => [
+					Handler::PARAM_SOURCE => 'body',
+					ParamValidator::PARAM_REQUIRED => false,
+					Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-mock-error' )
 				],
 				'p' => [
 					Handler::PARAM_SOURCE => 'post',
@@ -1446,6 +1478,12 @@ class HandlerTest extends MediaWikiUnitTestCase {
 
 					Assert::assertContains( 'a', $schema['required'] );
 					Assert::assertNotContains( 'b', $schema['required'] );
+
+					Assert::assertSame( 'a parameter', $schema['properties']['a']['description'] );
+					Assert::assertSame( 'param b', $schema['properties']['b']['description'] );
+					Assert::assertSame( '<message key="rest-mock-error"></message>',
+						$schema['properties']['c']['description']
+					);
 
 					// Nested schema, from ArrayDef
 					$aSchema = $schema['properties']['a'];
@@ -1625,6 +1663,13 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			$routeConfig['path'],
 			$routeConfig
 		);
+
+		$formatter = $this->getDummyTextFormatter( true );
+		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );
+		$authority = $this->mockAnonUltimateAuthority();
+		$hookContainer = $this->createHookContainer();
+		$handler->initServices( $authority, $responseFactory, $hookContainer );
+
 		$spec = $handler->getOpenApiSpec( $method );
 
 		$assertions( $spec );
