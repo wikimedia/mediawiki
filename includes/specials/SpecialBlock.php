@@ -270,8 +270,8 @@ class SpecialBlock extends FormSpecialPage {
 				$blockAdditionalDetailsPreset[] = 'wpWatch';
 			}
 
-			if ( $request->getBool( 'wpHideName' ) ) {
-				$blockAdditionalDetailsPreset[] = 'wpHideName';
+			if ( $request->getBool( 'wpHideUser' ) ) {
+				$blockAdditionalDetailsPreset[] = 'wpHideUser';
 			}
 
 			if ( $request->getBool( 'wpHardBlock' ) ) {
@@ -701,7 +701,7 @@ class SpecialBlock extends FormSpecialPage {
 		}
 
 		// We always need confirmation to do HideUser
-		if ( $this->requestedHideUser ) {
+		if ( $this->requestedHideUser && $this->getAuthority()->isAllowed( 'hideuser' ) ) {
 			$fields['Confirm']['type'] = 'check';
 			unset( $fields['Confirm']['default'] );
 			$this->preErrors[] = $this->msg( 'ipb-confirmhideuser', 'ipb-confirmaction' );
