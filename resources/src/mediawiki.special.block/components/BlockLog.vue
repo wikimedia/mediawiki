@@ -70,7 +70,7 @@
 					{{ item }}
 				</span>
 			</template>
-			<template #item-modify>
+			<template v-if="blockLogType === 'active'" #item-modify>
 				<!-- TODO: Ensure dropdown menu uses Right-Top layout (https://w.wiki/BTaj) -->
 				<cdx-menu-button
 					v-model:selected="selection"
@@ -132,7 +132,8 @@ module.exports = exports = defineComponent( {
 			{ id: 'blockedby', label: mw.message( 'blocklist-by' ).text(), minWidth: '200px' },
 			{ id: 'parameters', label: mw.message( 'blocklist-params' ).text(), minWidth: '160px' },
 			{ id: 'reason', label: mw.message( 'blocklist-reason' ).text(), minWidth: '160px' },
-			{ id: 'modify', label: '', minWidth: '100px' }
+			...( props.blockLogType === 'active' ?
+				[ { id: 'modify', label: '', minWidth: '100px' } ] : [] )
 		];
 		const menuItems = [
 			{ label: mw.message( 'block-item-edit' ).text(), value: 'edit', url: mw.util.getUrl( 'Special:Block/' + targetUser.value ), icon: cdxIconEdit },
