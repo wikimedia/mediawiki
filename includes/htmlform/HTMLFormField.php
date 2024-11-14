@@ -15,6 +15,7 @@ use MediaWiki\Message\Message;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
 use StatusValue;
+use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 
 /**
@@ -133,7 +134,9 @@ abstract class HTMLFormField {
 	 * Parameters are the same as wfMessage().
 	 *
 	 * @param string|string[]|MessageSpecifier $key
-	 * @param mixed ...$params
+	 * @phpcs:ignore Generic.Files.LineLength
+	 * @param MessageParam|MessageSpecifier|string|int|float|list<MessageParam|MessageSpecifier|string|int|float> ...$params
+	 *   See Message::params()
 	 * @return Message
 	 */
 	public function msg( $key, ...$params ) {

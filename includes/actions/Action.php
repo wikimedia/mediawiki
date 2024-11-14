@@ -31,6 +31,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 
 /**
@@ -219,7 +220,9 @@ abstract class Action implements MessageLocalizer {
 	 * Parameters are the same as wfMessage()
 	 *
 	 * @param string|string[]|MessageSpecifier $key
-	 * @param mixed ...$params
+	 * @phpcs:ignore Generic.Files.LineLength
+	 * @param MessageParam|MessageSpecifier|string|int|float|list<MessageParam|MessageSpecifier|string|int|float> ...$params
+	 *   See Message::params()
 	 * @return Message
 	 */
 	final public function msg( $key, ...$params ) {

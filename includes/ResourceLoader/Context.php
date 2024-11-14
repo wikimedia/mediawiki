@@ -33,6 +33,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserRigorOptions;
 use MessageLocalizer;
 use Psr\Log\LoggerInterface;
+use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 
 /**
@@ -255,7 +256,9 @@ class Context implements MessageLocalizer {
 	 * @since 1.27
 	 * @param string|string[]|MessageSpecifier $key Message key, or array of keys,
 	 *   or a MessageSpecifier.
-	 * @param mixed ...$params
+	 * @phpcs:ignore Generic.Files.LineLength
+	 * @param MessageParam|MessageSpecifier|string|int|float|list<MessageParam|MessageSpecifier|string|int|float> ...$params
+	 *   See Message::params()
 	 * @return Message
 	 */
 	public function msg( $key, ...$params ): Message {

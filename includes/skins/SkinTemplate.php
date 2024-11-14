@@ -33,6 +33,7 @@ use MediaWiki\Skin\SkinComponentUtils;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\Contribute\ContributeFactory;
 use MediaWiki\Title\Title;
+use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 
 /**
@@ -840,7 +841,7 @@ class SkinTemplate extends Skin {
 	 * Get a message label that skins can override.
 	 *
 	 * @param string $labelMessageKey
-	 * @param mixed $param for the message
+	 * @param MessageParam|MessageSpecifier|string|int|float|null $param for the message
 	 * @return string
 	 */
 	private function getSkinNavOverrideableLabel( $labelMessageKey, $param = null ) {

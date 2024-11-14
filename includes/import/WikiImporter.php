@@ -52,6 +52,8 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\ExternalUserNames;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Message\MessageParam;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\NormalizedException\NormalizedException;
 use Wikimedia\Rdbms\IDBAccessObject;
 
@@ -216,7 +218,9 @@ class WikiImporter {
 
 	/**
 	 * @param string $msg
-	 * @param mixed ...$params
+	 * @phpcs:ignore Generic.Files.LineLength
+	 * @param MessageParam|MessageSpecifier|string|int|float|list<MessageParam|MessageSpecifier|string|int|float> ...$params
+	 *   See Message::params()
 	 */
 	public function notice( $msg, ...$params ) {
 		if ( is_callable( $this->mNoticeCallback ) ) {

@@ -41,6 +41,8 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\Message\MessageParam;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * Implements the default log formatting.
@@ -857,7 +859,9 @@ class LogFormatter {
 	/**
 	 * Shortcut for wfMessage which honors local context.
 	 * @param string $key
-	 * @param mixed ...$params
+	 * @phpcs:ignore Generic.Files.LineLength
+	 * @param MessageParam|MessageSpecifier|string|int|float|list<MessageParam|MessageSpecifier|string|int|float> ...$params
+	 *   See Message::params()
 	 * @return Message
 	 */
 	protected function msg( $key, ...$params ) {

@@ -154,7 +154,7 @@ class CoreParserFunctions {
 	/**
 	 * @param Parser $parser
 	 * @param string $part1 Message key
-	 * @param mixed ...$params To pass to wfMessage()
+	 * @param string ...$params To pass to wfMessage()
 	 * @return array
 	 */
 	public static function intFunction( $parser, $part1 = '', ...$params ) {

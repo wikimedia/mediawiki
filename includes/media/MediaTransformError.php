@@ -22,6 +22,8 @@
  */
 
 use MediaWiki\Message\Message;
+use Wikimedia\Message\MessageParam;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * Basic media transform error class
@@ -40,7 +42,7 @@ class MediaTransformError extends MediaTransformOutput {
 	 * @param string $msg
 	 * @param int $width
 	 * @param int $height
-	 * @param mixed ...$args
+	 * @param MessageParam|MessageSpecifier|string|int|float ...$args
 	 */
 	public function __construct( $msg, $width, $height, ...$args ) {
 		$this->msg = wfMessage( $msg )->params( $args );

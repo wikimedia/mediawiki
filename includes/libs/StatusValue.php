@@ -84,7 +84,9 @@ class StatusValue implements Stringable {
 	 * Factory function for fatal errors
 	 *
 	 * @param string|MessageSpecifier $message Message key or object
-	 * @param mixed ...$parameters
+	 * @phpcs:ignore Generic.Files.LineLength
+	 * @param MessageParam|MessageSpecifier|string|int|float|list<MessageParam|MessageSpecifier|string|int|float> ...$parameters
+	 *   See Message::params()
 	 * @return static
 	 */
 	public static function newFatal( $message, ...$parameters ) {
@@ -251,7 +253,9 @@ class StatusValue implements Stringable {
 	 * Add a new warning
 	 *
 	 * @param string|MessageSpecifier $message Message key or object
-	 * @param mixed ...$parameters
+	 * @phpcs:ignore Generic.Files.LineLength
+	 * @param MessageParam|MessageSpecifier|string|int|float|list<MessageParam|MessageSpecifier|string|int|float> ...$parameters
+	 *   See Message::params()
 	 * @return $this
 	 */
 	public function warning( $message, ...$parameters ) {
@@ -267,7 +271,9 @@ class StatusValue implements Stringable {
 	 * This can be used for non-fatal errors
 	 *
 	 * @param string|MessageSpecifier $message Message key or object
-	 * @param mixed ...$parameters
+	 * @phpcs:ignore Generic.Files.LineLength
+	 * @param MessageParam|MessageSpecifier|string|int|float|list<MessageParam|MessageSpecifier|string|int|float> ...$parameters
+	 *   See Message::params()
 	 * @return $this
 	 */
 	public function error( $message, ...$parameters ) {
@@ -283,7 +289,9 @@ class StatusValue implements Stringable {
 	 * as a whole was fatal
 	 *
 	 * @param string|MessageSpecifier $message Message key or object
-	 * @param mixed ...$parameters
+	 * @phpcs:ignore Generic.Files.LineLength
+	 * @param MessageParam|MessageSpecifier|string|int|float|list<MessageParam|MessageSpecifier|string|int|float> ...$parameters
+	 *   See Message::params()
 	 * @return $this
 	 */
 	public function fatal( $message, ...$parameters ) {
