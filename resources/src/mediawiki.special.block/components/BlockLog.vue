@@ -146,7 +146,8 @@ module.exports = exports = defineComponent( {
 
 		const logEntriesCount = computed( () => {
 			if ( moreBlocks.value ) {
-				return mw.msg( 'block-user-label-count-exceeds-limit', FETCH_LIMIT );
+				return mw.msg( 'block-user-label-count-exceeds-limit',
+					mw.language.convertNumber( FETCH_LIMIT ) );
 			}
 			return mw.language.convertNumber( logEntries.value.length );
 		} );
@@ -237,7 +238,6 @@ module.exports = exports = defineComponent( {
 				moreBlocks.value = false;
 				logEntries.value = [];
 			}
-
 		}, { immediate: true } );
 
 		return {
