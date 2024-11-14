@@ -29,7 +29,7 @@
 					{{ util.formatTimestamp( item.timestamp ) }}
 				</span>
 			</template>
-			<template v-if="blockLogType === 'recent'" #item-type="{ item }">
+			<template v-if="blockLogType !== 'active'" #item-type="{ item }">
 				{{ util.getBlockActionMessage( item ) }}
 			</template>
 			<template v-if="blockLogType === 'active'" #item-target="{ item }">
