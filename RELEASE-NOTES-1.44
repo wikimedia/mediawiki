@@ -70,7 +70,7 @@ For notes on 1.43.x and older releases, see HISTORY.
 ==== Changed external libraries ====
 
 * Updated codex, codex-design-tokens and codex-icons
-  from v1.14.0 to v1.15.0.
+  from v1.14.0 to v1.16.0.
 * Updated wikimedia/bcp-47-code from 2.0.0 to 2.0.1.
 * Updated wikimedia/timestamp from 4.1.1 to 4.2.0.
 * Updated OOUI from v0.51.1 to v0.51.2.
