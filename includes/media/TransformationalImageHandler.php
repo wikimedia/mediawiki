@@ -364,7 +364,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	/**
 	 * Transform an image using ImageMagick
 	 *
-	 * This is a stub method. The real method is in BitmapHander.
+	 * This is a stub method. The real method is in BitmapHandler.
 	 *
 	 * @stable to override
 	 * @param File $image File associated with this thumbnail
@@ -379,7 +379,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	/**
 	 * Transform an image using the Imagick PHP extension
 	 *
-	 * This is a stub method. The real method is in BitmapHander.
+	 * This is a stub method. The real method is in BitmapHandler.
 	 *
 	 * @stable to override
 	 * @param File $image File associated with this thumbnail
@@ -394,7 +394,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	/**
 	 * Transform an image using a custom command
 	 *
-	 * This is a stub method. The real method is in BitmapHander.
+	 * This is a stub method. The real method is in BitmapHandler.
 	 *
 	 * @stable to override
 	 * @param File $image File associated with this thumbnail
@@ -421,7 +421,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	/**
 	 * Transform an image using the built in GD library
 	 *
-	 * This is a stub method. The real method is in BitmapHander.
+	 * This is a stub method. The real method is in BitmapHandler.
 	 *
 	 * @param File $image File associated with this thumbnail
 	 * @param array $params Array with scaler params
