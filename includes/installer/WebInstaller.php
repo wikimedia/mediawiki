@@ -667,16 +667,6 @@ class WebInstaller extends Installer {
 			"</div>\n";
 	}
 
-	/**
-	 * Output a help box.
-	 * @param string $msg Message key
-	 * @param string|int|float ...$params Message parameters
-	 */
-	public function showHelpBox( $msg, ...$params ) {
-		$html = $this->getHelpBox( $msg, ...$params );
-		$this->output->addHTML( $html );
-	}
-
 	public function showMessage( $msg, ...$params ) {
 		$html = '<div class="cdx-message cdx-message--block cdx-message--notice">' .
 			'<span class="cdx-message__icon"></span><div class="cdx-message__content">' .
