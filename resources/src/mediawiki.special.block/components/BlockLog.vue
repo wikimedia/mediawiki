@@ -154,7 +154,7 @@ module.exports = exports = defineComponent( {
 
 		const infoChipIcon = computed( () => props.blockLogType === 'recent' ? cdxIconClock : cdxIconAlert );
 
-		function getUserBlocks( searchTerm ) {
+		function getData( searchTerm ) {
 			const api = new mw.Api();
 			const params = {
 				action: 'query',
@@ -164,7 +164,7 @@ module.exports = exports = defineComponent( {
 			if ( props.blockLogType === 'recent' || props.blockLogType === 'suppress' ) {
 				params.list = 'logevents';
 				params.lelimit = FETCH_LIMIT;
-				params.letype = props.blockLogType === 'suppress' ? 'suppress' : 'block';
+				params.letype = 'block';
 				params.leprop = 'ids|title|type|user|timestamp|comment|details';
 				params.letitle = 'User:' + searchTerm;
 			} else {
@@ -173,8 +173,48 @@ module.exports = exports = defineComponent( {
 				params.bkprop = 'id|user|by|timestamp|expiry|reason|range|flags';
 				params.bkusers = searchTerm;
 			}
-			return api.get( params )
-				.then( ( response ) => response );
+			const requests = [];
+			// For suppress log entries only, add two API calls.
+			if ( props.blockLogType !== 'suppress' ) {
+				requests.push( api.get( params ) );
+			} else {
+				// leaction overrides letype (because it contains the type as a prefix).
+				delete params.letype;
+				params.leaction = 'suppress/block';
+				requests.push( api.get( params ) );
+				params.leaction = 'suppress/reblock';
+				requests.push( api.get( params ) );
+			}
+			return Promise.all( requests );
+		}
+
+		/**
+		 * Construct the data object needed for a template row, from a logentry API response.
+		 *
+		 * @param {Array} logevents
+		 * @return {Array}
+		 */
+		function logentriesToRows( logevents ) {
+			const rows = [];
+			for ( let i = 0; i < logevents.length; i++ ) {
+				const logevent = logevents[ i ];
+				rows.push( {
+					timestamp: {
+						timestamp: logevent.timestamp,
+						logid: logevent.logid
+					},
+					type: logevent.action,
+					expiry: {
+						expires: logevent.params.expiry,
+						duration: logevent.params.duration,
+						type: logevent.action
+					},
+					blockedby: logevent.user,
+					parameters: logevent.params.flags,
+					reason: logevent.comment
+				} );
+			}
+			return rows;
 		}
 
 		watch( targetUser, ( newValue ) => {
@@ -182,37 +222,24 @@ module.exports = exports = defineComponent( {
 				// Update the URLs for the menu items
 				menuItems[ 0 ].url = mw.util.getUrl( 'Special:Block/' + newValue );
 				menuItems[ 1 ].url = mw.util.getUrl( 'Special:Unblock/' + newValue );
-				const newData = [];
-				// Look up the block(s) for the target user in the log
-				getUserBlocks( newValue ).then( ( response ) => {
-					moreBlocks.value = !!response.continue;
-					let data = response.query;
+				getData( newValue ).then( ( responses ) => {
+					moreBlocks.value = !!responses[ 0 ].continue || ( responses[ 1 ] && !!responses[ 1 ].continue );
+					let newData = [];
+					const data = responses[ 0 ].query;
 
-					if ( props.blockLogType === 'recent' || props.blockLogType === 'suppress' ) {
-						// List of block and supress log entries.
-						// The fallback is only necessary for Jest tests.
-						data = data || { logevents: [] };
-						for ( let i = 0; i < data.logevents.length; i++ ) {
-							// Only show 'suppress' entries that are of a relevant action/subtype.
-							if ( data.logevents[ i ].type === 'suppress' && !data.logevents[ i ].action.endsWith( 'block' ) ) {
-								continue;
-							}
-							newData.push( {
-								timestamp: {
-									timestamp: data.logevents[ i ].timestamp,
-									logid: data.logevents[ i ].logid
-								},
-								type: data.logevents[ i ].action,
-								expiry: {
-									expires: data.logevents[ i ].params.expiry,
-									duration: data.logevents[ i ].params.duration,
-									type: data.logevents[ i ].action
-								},
-								blockedby: data.logevents[ i ].user,
-								parameters: data.logevents[ i ].params.flags,
-								reason: data.logevents[ i ].comment
-							} );
-						}
+					if ( props.blockLogType === 'recent' ) {
+						// List of recent block entries.
+						newData = logentriesToRows( data.logevents );
+
+					} else if ( props.blockLogType === 'suppress' ) {
+						// List of suppress/block or suppress/reblock log entries.
+						newData.push( ...logentriesToRows( data.logevents ) );
+						newData.push( ...logentriesToRows( responses[ 1 ].query.logevents ) );
+						newData.sort( ( a, b ) => b.timestamp.logid - a.timestamp.logid );
+						moreBlocks.value = newData.length >= FETCH_LIMIT;
+						// Re-apply limit, as each may have been longer.
+						newData = newData.slice( 0, FETCH_LIMIT );
+
 					} else {
 						// List of active blocks.
 						for ( let i = 0; i < data.blocks.length; i++ ) {

@@ -321,6 +321,83 @@ function mockMwApiGet( additionalMocks = [] ) {
 				}
 			}
 		},
+		{
+			params: {
+				list: 'logevents',
+				letype: 'block',
+				letitle: 'User:BadNameBlocked'
+			},
+			response: {
+				query: {
+					logevents: []
+				}
+			}
+		},
+		{
+			params: {
+				list: 'logevents',
+				leaction: 'suppress/block',
+				letitle: 'User:BadNameBlocked'
+			},
+			response: {
+				query: {
+					logevents: [
+						{
+							logid: 1030,
+							ns: 2,
+							title: 'User:BadNameBlocked',
+							pageid: 583,
+							logpage: 583,
+							params: { duration: 'infinity', flags: [ 'hiddenname' ], sitewide: true },
+							type: 'suppress',
+							action: 'block',
+							user: 'Admin',
+							timestamp: '2024-11-14T07:30:00Z',
+							comment: ''
+						}
+					]
+				}
+			}
+		},
+		{
+			params: {
+				list: 'logevents',
+				leaction: 'suppress/reblock',
+				letitle: 'User:BadNameBlocked'
+			},
+			response: {
+				query: {
+					logevents: [
+						{
+							logid: 1029,
+							ns: 2,
+							title: 'User:BadNameBlocked',
+							pageid: 583,
+							logpage: 583,
+							params: { duration: 'infinity', flags: [ 'hiddenname' ], sitewide: true },
+							type: 'suppress',
+							action: 'block',
+							user: 'Admin',
+							timestamp: '2024-11-14T07:29:00Z',
+							comment: ''
+						},
+						{
+							logid: 1031,
+							ns: 2,
+							title: 'User:BadNameBlocked',
+							pageid: 583,
+							logpage: 583,
+							params: { duration: 'infinity', flags: [ 'hiddenname' ], sitewide: true },
+							type: 'suppress',
+							action: 'block',
+							user: 'Admin',
+							timestamp: '2024-11-14T07:31:00Z',
+							comment: ''
+						}
+					]
+				}
+			}
+		},
 		// Used in UserLookup
 		{
 			params: {
