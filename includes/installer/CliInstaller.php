@@ -278,14 +278,6 @@ class CliInstaller extends Installer {
 		return Sanitizer::stripAllTags( $text );
 	}
 
-	/**
-	 * Dummy
-	 * @param string $msg Message key
-	 * @param string|int|float ...$params Message parameters
-	 */
-	public function showHelpBox( $msg, ...$params ) {
-	}
-
 	public function showStatusMessage( Status $status ) {
 		// Show errors at the end in CLI installer to make them easier to notice
 		foreach ( $status->getMessages( 'warning' ) as $msg ) {
