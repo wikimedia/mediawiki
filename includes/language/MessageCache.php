@@ -1496,15 +1496,14 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param PageReference $contextPage
 	 * @param bool $interface Whether this is an interface message
 	 * @param Language|StubUserLang|string|null $language Language code
-	 * @param array $options (will be deprecated)
 	 * @return ParserOutput
 	 * @internal
 	 */
 	public function parseWithPostprocessing(
 		string $text, PageReference $contextPage, bool $interface = false,
-		$language = null, array $options = []
+		$language = null
 	): ParserOutput {
-		$options += [
+		$options = [
 			'allowTOC' => false,
 			'enableSectionEditLinks' => false,
 			// Wrapping messages in an extra <div> is probably not expected. If
