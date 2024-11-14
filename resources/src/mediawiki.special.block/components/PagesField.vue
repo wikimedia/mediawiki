@@ -27,6 +27,11 @@ const api = new mw.Api();
 const useMultiblocks = mw.config.get( 'blockEnableMultiblocks' );
 const MAX_CHIPS = useMultiblocks ? 50 : 10;
 
+/**
+ * Field component for selecting pages to block.
+ *
+ * @todo Abstract for general use in MediaWiki (T375220)
+ */
 module.exports = exports = defineComponent( {
 	name: 'PagesField',
 	components: {

@@ -1,9 +1,10 @@
 const { defineStore } = require( 'pinia' );
-const { computed, ref } = require( 'vue' );
+const { computed, ComputedRef, ref, Ref, watch } = require( 'vue' );
 const api = new mw.Api();
 
 module.exports = exports = defineStore( 'block', () => {
 	const formErrors = ref( mw.config.get( 'blockPreErrors' ) || [] );
+	const formSubmitted = ref( false );
 	const targetUser = ref( mw.config.get( 'blockTargetUser' ) || '' );
 	const alreadyBlocked = ref( Boolean );
 	const type = ref( String );
@@ -61,17 +62,40 @@ module.exports = exports = defineStore( 'block', () => {
 		return mw.util.isIPAddress( targetUser.value, true ) || false;
 	} );
 
-	// Show confirm checkbox if 'Hide username' is visible and selected, or if the target user is the current user.
-	// eslint-disable-next-line arrow-body-style
-	const confirmationRequired = computed( () => {
-		return targetUser.value === mw.config.get( 'wgUserName' ) || (
-			type.value === 'sitewide' &&
-			hideNameVisible.value &&
-			hideName.value
-		);
-	} );
+	/**
+	 * Confirmation dialog message. When not null, the confirmation dialog will be
+	 * shown on submission. This is set automatically by a watcher in the store.
+	 *
+	 * @type {Ref<string>}
+	 */
+	const confirmationMessage = ref( '' );
 
-	const confirmationChecked = ref( Boolean );
+	/**
+	 * Convenience computed prop indicating if confirmation is needed on submission.
+	 *
+	 * @type {ComputedRef<boolean>}
+	 */
+	const confirmationNeeded = computed( () => !!confirmationMessage.value );
+
+	// Show confirm checkbox if 'Hide username' is visible and selected,
+	// or if the target user is the current user.
+	const computedConfirmation = computed(
+		() => [ targetUser.value, hideName.value, hideNameVisible.value ]
+	);
+	watch(
+		computedConfirmation,
+		( [ newTargetUser, newHideName, newHideNameVisible ] ) => {
+			if ( newHideNameVisible && newHideName ) {
+				confirmationMessage.value = mw.message( 'ipb-confirmhideuser' ).parse();
+			} else if ( newTargetUser === mw.config.get( 'wgUserName' ) ) {
+				confirmationMessage.value = mw.msg( 'ipb-blockingself' );
+			} else {
+				confirmationMessage.value = '';
+			}
+		},
+		// Ensure confirmationMessage is set on initial load.
+		{ immediate: true }
+	);
 
 	function $reset() {
 		alreadyBlocked.value = mw.config.get( 'blockAlreadyBlocked' ) || false;
@@ -96,7 +120,6 @@ module.exports = exports = defineStore( 'block', () => {
 		hideName.value = additionalDetails.value.indexOf( 'wpHideName' ) !== -1;
 		autoBlock.value = additionalDetails.value.indexOf( 'wpAutoBlock' ) !== -1;
 		autoBlockExpiry.value = mw.config.get( 'blockAutoblockExpiry' ) || '';
-		confirmationChecked.value = false;
 	}
 
 	/**
@@ -187,6 +210,7 @@ module.exports = exports = defineStore( 'block', () => {
 
 	return {
 		formErrors,
+		formSubmitted,
 		targetUser,
 		alreadyBlocked,
 		type,
@@ -209,8 +233,8 @@ module.exports = exports = defineStore( 'block', () => {
 		watchUser,
 		hardBlock,
 		hardBlockVisible,
-		confirmationRequired,
-		confirmationChecked,
+		confirmationMessage,
+		confirmationNeeded,
 		doBlock,
 		$reset
 	};

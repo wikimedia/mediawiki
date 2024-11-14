@@ -33,25 +33,23 @@ const { cdxIconSearch } = require( '../icons.json' );
 const useBlockStore = require( '../stores/block.js' );
 const api = new mw.Api();
 
+/**
+ * User lookup component for Special:Block.
+ *
+ * @todo Abstract for general use in MediaWiki (T375220)
+ */
 module.exports = exports = defineComponent( {
 	name: 'UserLookup',
 	components: { CdxLookup, CdxField },
 	props: {
-		modelValue: { type: [ String, null ], required: true },
-		/**
-		 * Whether the form has been submitted yet. This is used to show
-		 * validation messages only after the form has been submitted.
-		 */
-		formSubmitted: {
-			type: Boolean,
-			default: false
-		}
+		modelValue: { type: [ String, null ], required: true }
 	},
 	emits: [
 		'update:modelValue'
 	],
 	setup( props ) {
-		const { targetUser } = storeToRefs( useBlockStore() );
+		const store = useBlockStore();
+		const { targetUser } = storeToRefs( store );
 
 		// Set a flag to keep track of pending API requests, so we can abort if
 		// the target string changes
@@ -186,7 +184,7 @@ module.exports = exports = defineComponent( {
 
 		// Validate the input when the form is submitted.
 		// TODO: Remove once Codex supports native validations (T373872).
-		watch( () => props.formSubmitted, () => {
+		watch( () => store.formSubmitted, () => {
 			validate( document.querySelector( '[name="wpTarget"]' ) );
 		} );
 

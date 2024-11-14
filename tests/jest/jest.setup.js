@@ -57,7 +57,7 @@ const mw = {
 	},
 	message: jest.fn( ( key ) => ( {
 		text: jest.fn( () => key ),
-		parse: jest.fn()
+		parse: jest.fn( () => key )
 	} ) ),
 	msg: jest.fn( ( key ) => key ),
 	user: {

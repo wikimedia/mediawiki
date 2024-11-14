@@ -22,12 +22,12 @@
 				class="mw-block-error"
 				inline
 			>
+				<!-- eslint-disable-next-line vue/no-v-html -->
 				<div v-html="formError"></div>
 			</cdx-message>
 		</div>
 		<user-lookup
 			v-model="store.targetUser"
-			:form-submitted="formSubmitted"
 			@input="store.alreadyBlocked = false"
 		></user-lookup>
 		<block-log
@@ -45,30 +45,31 @@
 			block-log-type="suppress"
 		></block-log>
 		<block-type-field></block-type-field>
-		<expiry-field :form-submitted="formSubmitted"></expiry-field>
+		<expiry-field></expiry-field>
 		<reason-field
 			v-model:selected="store.reason"
 			v-model:other="store.reasonOther"
 		></reason-field>
-		<block-details-field>
-		</block-details-field>
-		<additional-details-field>
-		</additional-details-field>
-		<cdx-field v-if="store.confirmationRequired">
-			<cdx-checkbox
-				v-model="store.confirmationChecked"
-				class="mw-block-confirm"
-			>
-				{{ $i18n( 'ipb-confirm' ).text() }}
-			</cdx-checkbox>
-		</cdx-field>
+		<block-details-field></block-details-field>
+		<additional-details-field></additional-details-field>
+		<confirmation-dialog
+			v-if="store.confirmationNeeded"
+			v-model:open="confirmationOpen"
+			:title="$i18n( 'ipb-confirm' ).text()"
+			@confirm="doBlock"
+		>
+			<template #default>
+				<!-- eslint-disable-next-line vue/no-v-html -->
+				<p v-html="store.confirmationMessage"></p>
+			</template>
+		</confirmation-dialog>
 		<hr class="mw-block-hr">
 		<cdx-button
 			action="destructive"
 			weight="primary"
 			class="mw-block-submit"
-			:disabled="formDisabled || ( store.confirmationRequired && !store.confirmationChecked )"
-			@click="handleSubmit"
+			:disabled="formDisabled"
+			@click="onFormSubmission"
 		>
 			{{ submitButtonMessage }}
 		</cdx-button>
@@ -76,9 +77,9 @@
 </template>
 
 <script>
-const { computed, defineComponent, nextTick, ref, Ref, watch } = require( 'vue' );
+const { computed, defineComponent, nextTick, ref } = require( 'vue' );
 const { storeToRefs } = require( 'pinia' );
-const { CdxButton, CdxCheckbox, CdxField, CdxMessage } = require( '@wikimedia/codex' );
+const { CdxButton, CdxField, CdxMessage } = require( '@wikimedia/codex' );
 const useBlockStore = require( './stores/block.js' );
 const UserLookup = require( './components/UserLookup.vue' );
 const BlockLog = require( './components/BlockLog.vue' );
@@ -87,6 +88,7 @@ const ExpiryField = require( './components/ExpiryField.vue' );
 const ReasonField = require( './components/ReasonField.vue' );
 const BlockDetailsField = require( './components/BlockDetailsField.vue' );
 const AdditionalDetailsField = require( './components/AdditionalDetailsField.vue' );
+const ConfirmationDialog = require( './components/ConfirmationDialog.vue' );
 
 module.exports = exports = defineComponent( {
 	name: 'SpecialBlock',
@@ -98,8 +100,8 @@ module.exports = exports = defineComponent( {
 		ReasonField,
 		BlockDetailsField,
 		AdditionalDetailsField,
+		ConfirmationDialog,
 		CdxButton,
-		CdxCheckbox,
 		CdxField,
 		CdxMessage
 	},
@@ -109,13 +111,7 @@ module.exports = exports = defineComponent( {
 		const blockEnableMultiblocks = mw.config.get( 'blockEnableMultiblocks' ) || false;
 		const blockShowSuppressLog = mw.config.get( 'blockShowSuppressLog' ) || false;
 		const success = ref( false );
-		/**
-		 * Whether the form has been submitted. This is used to only show error states
-		 * after the user has attempted to submit the form.
-		 *
-		 * @type {Ref<boolean>}
-		 */
-		const formSubmitted = ref( false );
+		const { formErrors, formSubmitted } = storeToRefs( store );
 		const formDisabled = ref( false );
 		const messagesContainer = ref();
 		// Value to use for BlockLog component keys, so they reload after saving.
@@ -124,17 +120,7 @@ module.exports = exports = defineComponent( {
 		const submitButtonMessage = computed( () => {
 			return mw.message( store.alreadyBlocked ? 'ipb-change-block' : 'ipbsubmit' ).text();
 		} );
-
-		// Show an error message if the target user is the current user.
-		const { formErrors, targetUser } = storeToRefs( store );
-		watch( targetUser, ( newValue ) => {
-			if ( newValue === mw.config.get( 'wgUserName' ) ) {
-				formErrors.value.push( mw.msg( 'ipb-blockingself', 'ipb-confirmaction' ) );
-			} else {
-				formErrors.value = [];
-			}
-			success.value = false;
-		} );
+		const confirmationOpen = ref( false );
 
 		/**
 		 * Handle form submission. If the form is invalid, show the browser's
@@ -146,7 +132,7 @@ module.exports = exports = defineComponent( {
 		 *
 		 * @param {Event} event
 		 */
-		function handleSubmit( event ) {
+		function onFormSubmission( event ) {
 			event.preventDefault();
 			formSubmitted.value = true;
 			success.value = false;
@@ -154,53 +140,61 @@ module.exports = exports = defineComponent( {
 			// checkValidity() executes browser form validation, which triggers automatic
 			// validation states on applicable components (e.g. fields with `required` attr).
 			if ( event.target.form.checkValidity() && store.expiry ) {
-				store.doBlock()
-					.done( () => {
-						success.value = true;
-						formErrors.value = [];
-						formSubmitted.value = false;
-						store.$reset();
-					} )
-					.fail( ( _, errorObj ) => {
-						formErrors.value = [ errorObj.error.info ];
-						success.value = false;
-					} )
-					.always( () => {
-						formDisabled.value = false;
-						// Scroll to the success message after the form has been submitted.
-						nextTick( () => messagesContainer.value.scrollIntoView( { behavior: 'smooth' } ) );
-						if ( success.value ) {
-							// Bump the submitCount (to re-render the logs) after scrolling
-							// because the log tables may change the length of the page.
-							submitCount.value++;
-						}
-					} );
+				if ( store.confirmationNeeded ) {
+					confirmationOpen.value = true;
+					return;
+				}
+				doBlock();
 			} else {
 				// nextTick() needed to ensure error messages are rendered before scrolling.
 				nextTick( () => {
 					// Currently, only the expiry field has custom validations.
 					// Scrolling to `cdx-message--error` is merely future-proofing to
 					// ensure the user sees the error message, wherever it may be.
-					// Actual validation logic should live in the respective component,
-					// and only apply after the form has been submitted via a `formSubmitted` prop.
+					// Actual validation logic should live in the respective component.
 					document.querySelector( '.cdx-message--error' )
 						.scrollIntoView( { behavior: 'smooth' } );
+					formSubmitted.value = false;
 				} );
 			}
 		}
 
+		/**
+		 * @internal
+		 */
+		function doBlock() {
+			store.doBlock()
+				.done( () => {
+					success.value = true;
+					formErrors.value = [];
+					// Bump the submitCount (to re-render the logs) after scrolling
+					// because the log tables may change the length of the page.
+					submitCount.value++;
+				} )
+				.fail( ( _, errorObj ) => {
+					formErrors.value = [ errorObj.error.info ];
+					success.value = false;
+				} )
+				.always( () => {
+					formDisabled.value = false;
+					formSubmitted.value = false;
+					messagesContainer.value.scrollIntoView( { behavior: 'smooth' } );
+				} );
+		}
+
 		return {
 			store,
-			formSubmitted,
 			formDisabled,
 			messagesContainer,
 			formErrors,
 			success,
 			submitCount,
 			submitButtonMessage,
-			handleSubmit,
 			blockEnableMultiblocks,
-			blockShowSuppressLog
+			blockShowSuppressLog,
+			confirmationOpen,
+			onFormSubmission,
+			doBlock
 		};
 	}
 } );
@@ -226,11 +220,8 @@ module.exports = exports = defineComponent( {
 	margin-top: 0;
 }
 
-.mw-block-hideuser,
-.mw-block-confirm {
-	.cdx-checkbox__label .cdx-label__label__text {
-		font-weight: @font-weight-bold;
-	}
+.mw-block-hideuser .cdx-checkbox__label .cdx-label__label__text {
+	font-weight: @font-weight-bold;
 }
 
 .mw-block-hr {
@@ -243,6 +234,10 @@ module.exports = exports = defineComponent( {
 
 .mw-block-error {
 	margin-left: @spacing-75;
+}
+
+.mw-block-confirm {
+	font-weight: @font-weight-normal;
 }
 
 // Hide the log showing at the bottom of page.

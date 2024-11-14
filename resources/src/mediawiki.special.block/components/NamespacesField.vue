@@ -23,6 +23,11 @@ const { storeToRefs } = require( 'pinia' );
 const { CdxField, ChipInputItem, CdxMultiselectLookup } = require( '@wikimedia/codex' );
 const useBlockStore = require( '../stores/block.js' );
 
+/**
+ * Namespaces field component for use by Special:Block.
+ *
+ * @todo Abstract for general use in MediaWiki (T375220)
+ */
 module.exports = exports = defineComponent( {
 	name: 'NamespacesField',
 	components: {

@@ -69,7 +69,9 @@ describe( 'ExpiryField', () => {
 		const wrapper = mount( ExpiryField, {
 			global: { plugins: [ createTestingPinia() ] }
 		} );
-		await wrapper.setProps( { formSubmitted: true } );
+		const store = useBlockStore();
+		store.formSubmitted = true;
+		await wrapper.vm.$nextTick();
 		expect( wrapper.find( '.cdx-message--error' ).text() )
 			.toStrictEqual( 'ipb_expiry_invalid' );
 	} );
