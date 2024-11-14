@@ -340,7 +340,7 @@ abstract class TablePager extends IndexPager {
 	 * @param string[] $attribs Extra attributes to set
 	 * @return string HTML fragment
 	 */
-	public function getLimitSelect( $attribs = [] ) {
+	public function getLimitSelect( array $attribs = [] ): string {
 		$select = new XmlSelect( 'limit', false, $this->mLimit );
 		$select->addOptions( $this->getLimitSelectList() );
 		foreach ( $attribs as $name => $value ) {
