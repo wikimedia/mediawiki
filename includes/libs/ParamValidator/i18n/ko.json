@@ -4,6 +4,8 @@
 			"Ykhwong"
 		]
 	},
+	"paramvalidator-badupload-partial": "\"$1\"에 대한 파일이 일부만 업로드되었습니다.",
+	"paramvalidator-badupload-phpext": "PHP 확장 기능으로 인해 \"$1\"에 대한 파일 업로드가 차단되었습니다.",
 	"paramvalidator-emptystring": "빈 문자열",
 	"paramvalidator-missingparam": "\"$1\" 변수는 설정이 필수입니다.",
 	"paramvalidator-outofrange-max": "\"$1\" 변수의 \"$2\" 값은 $4 미만이어야 합니다.",

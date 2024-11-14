@@ -2193,7 +2193,7 @@
 	"listusers": "Brugerliste",
 	"listusers-editsonly": "Vis kun brugere med redigeringer",
 	"listusers-temporarygroupsonly": "Vis kun brugere i midlertidige brugergrupper",
-	"listusers-creationsort": "Sorter efter oprettelsesdato",
+	"listusers-creationsort": "Sortér efter oprettelsesdato",
 	"listusers-desc": "Sortér i faldende rækkefølge",
 	"usereditcount": "{{PLURAL:$1|én redigering|$1 redigeringer}}",
 	"usercreated": "{{GENDER:$3|Oprettet}} den $1 $2",

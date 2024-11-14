@@ -10,7 +10,8 @@
 			"Matma Rex",
 			"Paulu",
 			"S4b1nuz E.656",
-			"아라"
+			"아라",
+			"Mahabarata"
 		]
 	},
 	"tog-underline": "Sottulignà ligami:",
@@ -507,6 +508,7 @@
 	"actionfailed": "Azione faltata",
 	"dellogpage": "Cancellamenti",
 	"deletecomment": "Mutivu:",
+	"sessionfailure": "Pare esse un prublema cù a vostra sessione di login;\nQuesta azzione hè stata annullata cum'è una precauzione contr'à u pirate di sessione.\nPer piacè rimandate u modulo.",
 	"prot_1movedto2": "hà mossu [[$1]] à [[$2]]",
 	"protect-legend": "Cunfirmà a prutezzione",
 	"protectcomment": "Mutivu:",

@@ -1660,7 +1660,7 @@
 	"apierror-changecontentmodel-missingtitle": "Belirttiğiniz sayfa mevcut değil. Özel içerik modeliyle yeni bir sayfa oluşturmak için <kbd>action=edit</kbd> modülünü kullanın.",
 	"apierror-changecontentmodel-nodirectediting": "<code>$1</code> içerik modeli doğrudan düzenlemeyi desteklemiyor",
 	"apierror-changecontentmodel-cannotbeused": "<code>$1</code> içerik modeli $2 üzerinde kullanılamaz",
-	"apierror-changecontentmodel-cannot-convert": "$1, <code>$2</code> içerik modeline dönüştürülemedi",
+	"apierror-changecontentmodel-cannot-convert": "$1, $2 içerik modeline dönüştürülemedi",
 	"apierror-chunk-too-small": "Nihai olmayan parçalar için minimum yığın boyutu $1 {{PLURAL:$1|bayt|bayt}}.",
 	"apierror-cidrtoobroad": "/$2 üzerinden daha geniş olan $1 CIDR aralıkları kabul edilmez.",
 	"apierror-compare-maintextrequired": "<var>$1slots</var> <kbd>main</kbd> içerdiğinde <var>$1text-main</var> parametresi gereklidir (ana yuvayı silemezsiniz).",

@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Brettchenweber",
-			"Justman10000"
+			"Justman10000",
+			"McDutchie"
 		]
 	},
 	"paramvalidator-badbool": "Ungültiger Wert „$2“ für den booleschen Parameter „$1“. Übergib $3 für true oder $5 für false.",
@@ -24,7 +25,7 @@
 	"paramvalidator-badupload-phpext": "Eine PHP-Erweiterung verhinderte den Upload der Datei für „$1“.",
 	"paramvalidator-badvalue-enummulti": "Ungültiger Wert „$2“ für den Parameter „$1“. {{PLURAL:$4|Nur „$3“ ist erlaubt.|Erlaubte Werte sind $3.}}",
 	"paramvalidator-badvalue-enumnotmulti": "Nicht erkannter Wert für den Parameter „$1“: $2.",
-	"paramvalidator-deprecated-value": "Der Wert „$2“für den Parameter „$1“ ist veraltet.",
+	"paramvalidator-deprecated-value": "Der Wert „$2“ für den Parameter „$1“ ist veraltet.",
 	"paramvalidator-emptystring": "der leere String",
 	"paramvalidator-maxbytes": "Der Wert für den Parameter „$1“ kann nicht länger als $3 {{PLURAL:$3|Byte|Bytes}} sein (war $4).",
 	"paramvalidator-maxchars": "The value for parameter \"$1\" cannot be longer than $3 {{PLURAL:$3|Zeichen}} (war $4).",

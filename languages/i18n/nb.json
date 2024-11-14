@@ -63,7 +63,8 @@
 			"Wouterkoch",
 			"Yupik",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Tumbuka Arch"
 		]
 	},
 	"tog-underline": "Strek under lenker:",
@@ -1632,7 +1633,7 @@
 	"rcfilters-filter-user-experience-level-experienced-label": "Erfarne brukere",
 	"rcfilters-filter-user-experience-level-experienced-description": "Registrerte brukere med mer enn 500 redigeringer og 30 dagers aktivitet.",
 	"rcfilters-filtergroup-automated": "Automatiske bidrag",
-	"rcfilters-filter-bots-label": "Bot",
+	"rcfilters-filter-bots-label": "Kadoli",
 	"rcfilters-filter-bots-description": "Redigeringer gjort med automatiske verktøy.",
 	"rcfilters-filter-humans-label": "Menneske (ikke bot)",
 	"rcfilters-filter-humans-description": "Redigeringer utført av mennesker.",
