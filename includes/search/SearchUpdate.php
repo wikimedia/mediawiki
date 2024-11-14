@@ -1,9 +1,5 @@
 <?php
 /**
- * Search index updater
- *
- * See deferred.txt
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -20,12 +16,12 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Search
  */
 
-namespace MediaWiki\Deferred;
+namespace MediaWiki\Search;
 
 use MediaWiki\Content\Content;
+use MediaWiki\Deferred\DeferrableUpdate;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -38,6 +34,7 @@ use Wikimedia\Rdbms\IDBAccessObject;
 /**
  * Database independent search index updater
  *
+ * @internal
  * @ingroup Search
  */
 class SearchUpdate implements DeferrableUpdate {
@@ -209,6 +206,3 @@ class SearchUpdate implements DeferrableUpdate {
 		return $search->normalizeText( trim( $t ) );
 	}
 }
-
-/** @deprecated class alias since 1.42 */
-class_alias( SearchUpdate::class, 'SearchUpdate' );

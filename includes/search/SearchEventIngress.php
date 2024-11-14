@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Search;
 
-use MediaWiki\Deferred\SearchUpdate;
 use MediaWiki\DomainEvent\EventSubscriberBase;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
