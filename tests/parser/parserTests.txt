@@ -7404,7 +7404,7 @@ parsoid=wt2html
 !! end
 
 # This test also demonstrates because of newline+category tunneling
-# through the list hander, template wrapping doesn't expand to the
+# through the list handler, template wrapping doesn't expand to the
 # containing list when the list item swallows the category.
 !! test
 7. cats/langlinks: migrateTrailingSolTransparentLinks dom pass should leave template content alone
