@@ -90,5 +90,15 @@
 	"rest-unsupported-language-conversion": "Error message for REST API debugging, shown when the language conversion is not supported. Parameters:\n* $1: The source format \n* $2: The target format",
 	"rest-unknown-content-model": "Error message for REST API debugging, shown when an unregistered content model is requested. Parameters:\n* $1: The name of the unknown content model",
 	"rest-page-bundle-validation-error": "Error message for REST API debugging, shown when PageBundle does not match the given contentVersion. Parameters:\n* $1: The error details",
-	"rest-param-desc-revision-id": "Revision id parameter description"
+	"rest-param-desc-revision-id": "{{notranslate}} Revision id parameter description",
+	"rest-param-desc-html-input-title": "{{notranslate}} HTML input transform title parameter description",
+	"rest-param-desc-html-input-oldid": "{{notranslate}} HTML input transform oldid parameter description",
+	"rest-param-desc-html-input-from": "{{notranslate}} HTML input transform from parameter description",
+	"rest-param-desc-html-input-format": "{{notranslate}} HTML input transform format parameter description",
+	"rest-param-desc-html-input-contentmodel": "{{notranslate}} HTML input transform contentmodel parameter description",
+	"rest-param-desc-html-input-language": "{{notranslate}} HTML input transform language parameter description",
+	"rest-param-desc-html-output-stash": "{{notranslate}} HTML output renderer stash parameter description",
+	"rest-param-desc-html-output-flavor": "{{notranslate}} HTML output renderer flavor parameter description",
+	"rest-param-desc-page-content-title": "{{notranslate}} Page content title parameter description",
+	"rest-param-desc-page-content-redirect": "{{notranslate}} Page content redirect parameter description"
 }

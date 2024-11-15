@@ -86,5 +86,15 @@
 	"rest-unsupported-language-conversion": "Unsupported language conversion: $1 to $2",
 	"rest-unknown-content-model": "Unknown content model: $1",
 	"rest-page-bundle-validation-error": "PageBundle does not match contentVersion: $1",
-	"rest-param-desc-revision-id": "Revision id"
+	"rest-param-desc-revision-id": "Revision id",
+	"rest-param-desc-html-input-title": "HTML input transform title",
+	"rest-param-desc-html-input-oldid": "HTML input transform oldid",
+	"rest-param-desc-html-input-from": "HTML input transform from",
+	"rest-param-desc-html-input-format": "HTML input transform format",
+	"rest-param-desc-html-input-contentmodel": "HTML input transform contentmodel",
+	"rest-param-desc-html-input-language": "HTML input transform language",
+	"rest-param-desc-html-output-stash": "HTML output renderer stash",
+	"rest-param-desc-html-output-flavor": "HTML output renderer flavor",
+	"rest-param-desc-page-content-title": "Page content title",
+	"rest-param-desc-page-content-redirect": "Page content redirect"
 }

@@ -598,12 +598,14 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 				ParamValidator::PARAM_TYPE => 'boolean',
 				ParamValidator::PARAM_DEFAULT => false,
 				ParamValidator::PARAM_REQUIRED => false,
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-html-output-stash' )
 			],
 			'flavor' => [
 				Handler::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => self::OUTPUT_FLAVORS,
 				ParamValidator::PARAM_DEFAULT => 'view',
 				ParamValidator::PARAM_REQUIRED => false,
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-html-output-flavor' )
 			],
 		];
 	}
