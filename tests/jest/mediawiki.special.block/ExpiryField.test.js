@@ -4,6 +4,7 @@ const { mount } = require( '@vue/test-utils' );
 const { createTestingPinia } = require( '@pinia/testing' );
 const { mockMwConfigGet } = require( './SpecialBlock.setup.js' );
 const ExpiryField = require( '../../../resources/src/mediawiki.special.block/components/ExpiryField.vue' );
+const useBlockStore = require( '../../../resources/src/mediawiki.special.block/stores/block.js' );
 
 const presetTestCases = [
 	{
@@ -66,7 +67,6 @@ describe( 'ExpiryField', () => {
 	it( 'should show an error message if no expiry is provided after form submission', async () => {
 		mockMwConfigGet();
 		const wrapper = mount( ExpiryField, {
-			propsData: { modelValue: {} },
 			global: { plugins: [ createTestingPinia() ] }
 		} );
 		await wrapper.setProps( { formSubmitted: true } );
@@ -74,12 +74,28 @@ describe( 'ExpiryField', () => {
 			.toStrictEqual( 'ipb_expiry_invalid' );
 	} );
 
+	it( 'should react to changes to the store\'s expiry', async () => {
+		mockMwConfigGet();
+		const wrapper = mount( ExpiryField, {
+			global: { plugins: [ createTestingPinia() ] }
+		} );
+		const store = useBlockStore();
+		store.expiry = '1 week';
+		await wrapper.vm.$nextTick();
+		// Assert refs are updated.
+		expect( wrapper.vm.expiryType ).toStrictEqual( 'custom-duration' );
+		expect( wrapper.vm.customDurationNumber ).toStrictEqual( 1 );
+		expect( wrapper.vm.customDurationUnit ).toStrictEqual( 'weeks' );
+		// Assert DOM is updated.
+		expect( wrapper.find( '[name=expiryType]:checked' ).element.value ).toStrictEqual( 'custom-duration' );
+		expect( wrapper.find( 'input[type=number]' ).element.value ).toStrictEqual( '1' );
+	} );
+
 	it.each( presetTestCases )(
 		'should preselect from fields and set values ($title)', ( { config, expected } ) => {
 			mockMwConfigGet( config );
 			mw.util.isInfinity = jest.fn().mockReturnValue( !!config.isInfinity );
 			const wrapper = mount( ExpiryField, {
-				propsData: { modelValue: {} },
 				global: { plugins: [ createTestingPinia() ] }
 			} );
 			Object.keys( expected ).forEach( ( key ) => {
