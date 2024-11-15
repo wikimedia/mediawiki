@@ -4,6 +4,7 @@ namespace MediaWiki\Parser\Parsoid;
 
 use MediaWiki\Content\TextContent;
 use MediaWiki\Content\WikitextContent;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -151,8 +152,10 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 			'outputContentVersion' => Parsoid::defaultHTMLVersion(),
 			'previousOutput' => $oldPageBundle,
 			'previousInput' => $oldPageConfig,
+			// The following are passed for metrics & labelling
 			'sampleStats' => $doSample,
 			'renderReason' => $options->getRenderReason(),
+			'userAgent' => RequestContext::getMain()->getRequest()->getHeader( 'User-Agent' ),
 		];
 
 		$parserOutput->resetParseStartTime();
