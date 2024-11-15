@@ -3715,5 +3715,267 @@
 			{ "name": "lt_namespace_title", "columns": [ "lt_namespace", "lt_title" ], "unique": true }
 		],
 		"pk": [ "lt_id" ]
+	},
+	{
+		"name": "file",
+		"comment": "Uploaded images and other files.",
+		"columns": [
+			{
+				"name": "file_id",
+				"comment": "primary key",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "file_name",
+				"comment": "Name of the file",
+				"type": "binary",
+				"options": { "length": 255, "notnull": true }
+			},
+			{
+				"name": "file_latest",
+				"comment": "FK to fr_id",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "file_type",
+				"comment": "FK to file_types.ft_id",
+				"type": "smallint",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "file_deleted",
+				"comment": "Whether the file is deleted",
+				"type": "smallint",
+				"options": { "unsigned": true, "notnull": true }
+			}
+		],
+		"indexes": [
+			{
+				"name": "file_name",
+				"comment": "To find files based on their name",
+				"columns": [
+					"file_name"
+				],
+				"unique": true
+			},
+			{
+				"name": "file_latest",
+				"comment": "To allow join with filerevision table",
+				"columns": [
+					"file_latest"
+				],
+				"unique": false
+			}
+		],
+		"pk": [ "file_id" ]
+	},
+	{
+		"name": "filerevision",
+		"comment": "Revisions of the files",
+		"columns": [
+			{
+				"name": "fr_id",
+				"comment": "primary key",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "fr_file",
+				"comment": "FK to file_id",
+				"type": "bigint",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "fr_size",
+				"comment": "File size in bytes.",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "fr_width",
+				"comment": "For images, width in pixels.",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "fr_height",
+				"comment": "For images, height in pixels.",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "fr_metadata",
+				"comment": "Extracted Exif metadata stored as a json array (new system) or serialized PHP array (old system). The json array can contain an address in the text table or external storage.",
+				"type": "blob",
+				"options": {
+					"notnull": true,
+					"length": 16777215
+				}
+			},
+			{
+				"name": "fr_bits",
+				"comment": "For images, bits per pixel if known.",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "fr_description_id",
+				"comment": "Foreign key to comment table, which contains the description field as entered by the uploader. This is displayed in image upload history and logs.",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "fr_actor",
+				"comment": "actor_id of the uploader.",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "fr_timestamp",
+				"comment": "Time of the upload.",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": true
+				}
+			},
+			{
+				"name": "fr_sha1",
+				"comment": "SHA-1 content hash in base-36",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 32
+				}
+			},
+			{
+				"name": "fr_archive_name",
+				"comment": "Filename of the archived file. This is generally a timestamp and '!' prepended to the base name.",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 255
+				}
+			},
+			{
+				"name": "fr_deleted",
+				"comment": "Whether the file is deleted",
+				"type": "smallint",
+				"options": { "unsigned": true, "notnull": true }
+			}
+		],
+		"indexes": [
+			{
+				"name": "fr_actor_timestamp",
+				"comment": "Used by Special:Newimages and ApiQueryAllImages",
+				"columns": [
+					"fr_actor",
+					"fr_timestamp"
+				],
+				"unique": false
+			},
+			{
+				"name": "fr_size",
+				"comment": "Used by Special:ListFiles for sort-by-size",
+				"columns": [
+					"fr_size"
+				],
+				"unique": false
+			},
+			{
+				"name": "fr_timestamp",
+				"comment": "Used by Special:Newimages and Special:ListFiles",
+				"columns": [
+					"fr_timestamp"
+				],
+				"unique": false
+			},
+			{
+				"name": "fr_sha1",
+				"comment": "Used in API and duplicate search",
+				"columns": [
+					"fr_sha1"
+				],
+				"unique": false,
+				"options": { "lengths": [ 10 ] }
+			},
+			{
+				"name": "fr_file",
+				"comment": "To find all filerevisions belonging to one file",
+				"columns": [
+					"fr_file"
+				],
+				"unique": false
+			}
+		],
+		"pk": [ "fr_id" ]
+	},
+	{
+		"name": "filetypes",
+		"comment": "Valid file types",
+		"columns": [
+			{
+				"name": "ft_id",
+				"comment": "primary key",
+				"type": "smallint",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "ft_media_type",
+				"comment": "Media type as defined by the MEDIATYPE_xxx constants",
+				"type": "binary",
+				"options": { "length": 255, "notnull": true }
+			},
+			{
+				"name": "ft_major_mime",
+				"comment": "major part of a MIME media type as defined by IANA see https://www.iana.org/assignments/media-types/ for \"chemical\" cf. http://dx.doi.org/10.1021/ci9803233 by the ACS",
+				"type": "binary",
+				"options": { "length": 255, "notnull": true }
+			},
+			{
+				"name": "ft_minor_mime",
+				"comment": "minor part of a MIME media type as defined by IANA the minor parts are not required to adhere to any standard but should be consistent throughout the database see https://www.iana.org/assignments/media-types/",
+				"type": "binary",
+				"options": { "length": 255, "notnull": true }
+			}
+		],
+		"indexes": [
+			{
+				"name": "ft_media_mime",
+				"comment": "Used to get media of one type",
+				"columns": [
+					"ft_media_type",
+					"ft_major_mime",
+					"ft_minor_mime"
+				],
+				"unique": true
+			}
+		],
+		"pk": [ "ft_id" ]
 	}
 ]
