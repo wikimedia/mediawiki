@@ -1058,26 +1058,13 @@ abstract class DatabaseUpdater {
 	 * @return bool False if this was skipped because schema changes are skipped
 	 */
 	protected function modifyField( $table, $field, $patch, $fullpath = false ) {
-		if ( !$this->doTable( $table ) ) {
-			return true;
-		}
-
-		$updateKey = "$table-$field-$patch";
-		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
-			$this->output( "...$table table does not exist, skipping modify field patch.\n" );
-		} elseif ( !$this->db->fieldExists( $table, $field, __METHOD__ ) ) {
-			$this->output( "...$field field does not exist in $table table, " .
-				"skipping modify field patch.\n" );
-		} elseif ( $this->updateRowExists( $updateKey ) ) {
-			$this->output( "...$field in table $table already modified by patch $patch.\n" );
-		} else {
-			$apply = $this->applyPatch( $patch, $fullpath, "Modifying $field field of table $table" );
-			if ( $apply ) {
-				$this->insertUpdateRow( $updateKey );
-			}
-			return $apply;
-		}
-		return true;
+		return $this->modifyFieldWithCondition(
+			$table, $field,
+			static function () {
+				return true;
+			},
+			$patch, $fullpath
+		);
 	}
 
 	/**
@@ -1105,13 +1092,134 @@ abstract class DatabaseUpdater {
 		} elseif ( $this->updateRowExists( $updateKey ) ) {
 			$this->output( "...table $table already modified by patch $patch.\n" );
 		} else {
-			$apply = $this->applyPatch( $patch, $fullpath, "Modifying table $table" );
+			$apply = $this->applyPatch( $patch, $fullpath, "Modifying table $table with patch $patch" );
 			if ( $apply ) {
 				$this->insertUpdateRow( $updateKey );
 			}
 			return $apply;
 		}
 		return true;
+	}
+
+	/**
+	 * Modify a table if a field doesn't exist. This helps extensions to avoid
+	 * running updates on SQLite that are destructive because they don't copy
+	 * new fields.
+	 *
+	 * @since 1.44
+	 * @param string $table Name of the table to which the field belongs
+	 * @param string $field Name of the field to check
+	 * @param string $patch Path to the patch file
+	 * @param bool $fullpath Whether to treat $patch path as a relative or not
+	 * @param string|null $fieldBeingModified The field being modified. If this
+	 *   is specified, the updatelog key will match that used by modifyField(),
+	 *   so if the patch was previously applied via modifyField(), it won't be
+	 *   applied again. Also, if the field doesn't exist, the patch will not be
+	 *   applied. If this is null, the updatelog key will match that used by
+	 *   modifyTable().
+	 * @return bool False if this was skipped because schema changes are skipped
+	 */
+	protected function modifyTableIfFieldNotExists( $table, $field, $patch, $fullpath = false,
+		$fieldBeingModified = null
+	) {
+		if ( !$this->doTable( $table ) ) {
+			return true;
+		}
+
+		if ( $fieldBeingModified === null ) {
+			$updateKey = "$table-$patch";
+		} else {
+			$updateKey = "$table-$fieldBeingModified-$patch";
+		}
+
+		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
+			$this->output( "...$table table does not exist, skipping patch $patch.\n" );
+		} elseif ( $this->db->fieldExists( $table, $field, __METHOD__ ) ) {
+			$this->output( "...$field field exists in $table table, skipping obsolete patch $patch.\n" );
+		} elseif ( $fieldBeingModified !== null
+			&& !$this->db->fieldExists( $table, $fieldBeingModified, __METHOD__ )
+		) {
+			$this->output( "...$fieldBeingModified field does not exist in $table table, " .
+				"skipping patch $patch.\n" );
+		} elseif ( $this->updateRowExists( $updateKey ) ) {
+			$this->output( "...table $table already modified by patch $patch.\n" );
+		} else {
+			$apply = $this->applyPatch( $patch, $fullpath, "Modifying table $table with patch $patch" );
+			if ( $apply ) {
+				$this->insertUpdateRow( $updateKey );
+			}
+			return $apply;
+		}
+		return true;
+	}
+
+	/**
+	 * Modify a field if the field exists and is nullable
+	 *
+	 * @since 1.44
+	 * @param string $table Name of the table to which the field belongs
+	 * @param string $field Name of the field to modify
+	 * @param string $patch Path to the patch file
+	 * @param bool $fullpath Whether to treat $patch path as a relative or not
+	 * @return bool False if this was skipped because schema changes are skipped
+	 */
+	protected function modifyFieldIfNullable( $table, $field, $patch, $fullpath = false ) {
+		return $this->modifyFieldWithCondition(
+			$table, $field,
+			static function ( $fieldInfo ) {
+				return $fieldInfo->isNullable();
+			},
+			$patch,
+			$fullpath
+		);
+	}
+
+	/**
+	 * Modify a field if a field exists and a callback returns true. The callback
+	 * is called with the FieldInfo of the field in question.
+	 *
+	 * @internal
+	 * @param string $table Name of the table to modify
+	 * @param string $field Name of the field to modify
+	 * @param callable $condCallback A callback which will be called with the
+	 *   \Wikimedia\Rdbms\Field object for the specified field. If the callback returns
+	 *   true, the update will proceed.
+	 * @param string $patch Name of the patch file to apply
+	 * @param string|bool $fullpath Whether to treat $patch path as relative or not, defaults to false
+	 * @return bool False if this was skipped because of schema changes being skipped
+	 */
+	private function modifyFieldWithCondition(
+		$table, $field, $condCallback, $patch, $fullpath = false
+	) {
+		if ( !$this->doTable( $table ) ) {
+			return true;
+		}
+
+		$updateKey = "$table-$field-$patch";
+		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
+			$this->output( "...$table table does not exist, skipping modify field patch.\n" );
+			return true;
+		}
+		$fieldInfo = $this->db->fieldInfo( $table, $field );
+		if ( !$fieldInfo ) {
+			$this->output( "...$field field does not exist in $table table, " .
+				"skipping modify field patch.\n" );
+			return true;
+		}
+		if ( $this->updateRowExists( $updateKey ) ) {
+			$this->output( "...$field in table $table already modified by patch $patch.\n" );
+			return true;
+		}
+		if ( !$condCallback( $fieldInfo ) ) {
+			$this->output( "...$field in table $table already has the required properties.\n" );
+			return true;
+		}
+
+		$apply = $this->applyPatch( $patch, $fullpath, "Modifying $field field of table $table" );
+		if ( $apply ) {
+			$this->insertUpdateRow( $updateKey );
+		}
+		return $apply;
 	}
 
 	/**
