@@ -4523,6 +4523,29 @@ language=eo
 !! end
 
 !! test
+Localized gallery widths
+!! config
+wgParserEnableLegacyMediaDOM=false
+!! options
+language=eo
+!! wikitext
+<gallery widths="100ra">
+Dosiero:Foobar.jpg|caption
+</gallery>
+!! html/php
+<ul class="gallery mw-gallery-traditional">
+		<li class="gallerybox" style="width: 135px">
+			<div class="thumb" style="width: 130px; height: 150px;"><span typeof="mw:File"><a href="/wiki/Dosiero:Foobar.jpg" class="mw-file-description" title="caption"><img alt="caption" src="http://example.com/images/thumb/3/3a/Foobar.jpg/100px-Foobar.jpg" decoding="async" width="100" height="11" class="mw-file-element" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/150px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg 2x" /></a></span></div>
+			<div class="gallerytext">caption</div>
+		</li>
+</ul>
+!! html/parsoid
+<ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","attrs":{"widths":"100ra"},"body":{}}'>
+<li class="gallerybox" style="width: 135px;"><div class="thumb" style="width: 130px; height: 150px;"><span typeof="mw:File"><a href="./Dosiero:Foobar.jpg" class="mw-file-description" title="caption"><img alt="caption" resource="./Dosiero:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/100px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="11" width="100" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/150px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg 2x" class="mw-file-element"/></a></span></div><div class="gallerytext">caption</div></li>
+</ul>
+!! end
+
+!! test
 Broken media gets category
 !! options
 cat
