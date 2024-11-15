@@ -1963,10 +1963,6 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		}
 	}
 
-	final public function onAtomicSectionCancel( callable $callback, $fname = __METHOD__ ) {
-		$this->transactionManager->onAtomicSectionCancel( $this, $callback, $fname );
-	}
-
 	final public function setTransactionListener( $name, ?callable $callback = null ) {
 		$this->transactionManager->setTransactionListener( $name, $callback );
 	}
@@ -2011,7 +2007,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		$autoTrx = $this->flagsHolder->hasImplicitTrxFlag(); // automatic begin() enabled?
 		// Drain the queues of transaction "idle" and "end" callbacks until they are empty
 		do {
-			$callbackEntries = $this->transactionManager->consumeEndCallbacks( $trigger );
+			$callbackEntries = $this->transactionManager->consumeEndCallbacks();
 			$count += count( $callbackEntries );
 			foreach ( $callbackEntries as $entry ) {
 				$this->flagsHolder->clearFlag( self::DBO_TRX ); // make each query its own transaction
@@ -2235,11 +2231,6 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 					$query = new Query( $sql, self::QUERY_CHANGE_TRX, 'ROLLBACK TO SAVEPOINT' );
 					$this->query( $query, $fname );
 					$this->transactionManager->setTrxStatusToOk(); // no exception; recovered
-					$this->transactionManager->runOnAtomicSectionCancelCallbacks(
-						$this,
-						self::TRIGGER_CANCEL,
-						$excisedSectionIds
-					);
 				}
 			} else {
 				// Put the transaction into an error state if it's not already in one

@@ -108,11 +108,6 @@ class TransactionManager {
 	 * @phan-var array<array{0:callable,1:string,2:AtomicSectionIdentifier|null}>
 	 */
 	private $trxEndCallbacks = [];
-	/**
-	 * @var array[] Pending cancel callbacks; list of (callable, method name, atomic section id)
-	 * @phan-var array<array{0:callable,1:string,2:AtomicSectionIdentifier|null}>
-	 */
-	private $trxSectionCancelCallbacks = [];
 	/** @var callable[] Listener callbacks; map of (name => callable) */
 	private $trxRecurringCallbacks = [];
 	/** @var bool Whether to suppress triggering of transaction end callbacks */
@@ -360,13 +355,6 @@ class TransactionManager {
 		}
 
 		return $error;
-	}
-
-	public function onAtomicSectionCancel( IDatabase $db, $callback, $fname ): void {
-		if ( !$this->trxLevel() || !$this->trxAtomicLevels ) {
-			throw new DBUnexpectedError( $db, "No atomic section is open (got $fname)" );
-		}
-		$this->trxSectionCancelCallbacks[] = [ $callback, $fname, $this->currentAtomicSectionId() ];
 	}
 
 	public function onCancelAtomicBeforeCriticalSection( IDatabase $db, $fname ): void {
@@ -663,11 +651,6 @@ class TransactionManager {
 				$this->trxEndCallbacks[$key][2] = $new;
 			}
 		}
-		foreach ( $this->trxSectionCancelCallbacks as $key => $info ) {
-			if ( $info[2] === $old ) {
-				$this->trxSectionCancelCallbacks[$key][2] = $new;
-			}
-		}
 	}
 
 	/**
@@ -717,59 +700,17 @@ class TransactionManager {
 				$this->trxEndCallbacks[$key][2] = null;
 			}
 		}
-		// Hoist callback ownership for section cancel callbacks to the new top section
-		foreach ( $this->trxSectionCancelCallbacks as $key => $entry ) {
-			if ( in_array( $entry[2], $excisedSectionsId, true ) ) {
-				$this->trxSectionCancelCallbacks[$key][2] = $newSectionId;
-			}
-		}
 	}
 
-	public function consumeEndCallbacks( $trigger ): array {
+	public function consumeEndCallbacks(): array {
 		$callbackEntries = array_merge(
 			$this->trxPostCommitOrIdleCallbacks,
-			$this->trxEndCallbacks,
-			( $trigger === IDatabase::TRIGGER_ROLLBACK )
-				? $this->trxSectionCancelCallbacks
-				: [] // just consume them
+			$this->trxEndCallbacks
 		);
 		$this->trxPostCommitOrIdleCallbacks = []; // consumed (and recursion guard)
 		$this->trxEndCallbacks = []; // consumed (recursion guard)
-		$this->trxSectionCancelCallbacks = []; // consumed (recursion guard)
 
 		return $callbackEntries;
-	}
-
-	/**
-	 * Consume and run any relevant "on atomic section cancel" callbacks for the active transaction
-	 *
-	 * @param IDatabase $db
-	 * @param int $trigger IDatabase::TRIGGER_* constant
-	 * @param AtomicSectionIdentifier[] $sectionIds IDs of the sections that where just cancelled
-	 * @throws Throwable Any exception thrown by a callback
-	 */
-	public function runOnAtomicSectionCancelCallbacks( IDatabase $db, int $trigger, array $sectionIds ) {
-		// Drain the queue of matching "atomic section cancel" callbacks until there are none
-		$unrelatedCallbackEntries = [];
-		do {
-			$callbackEntries = $this->trxSectionCancelCallbacks;
-			$this->trxSectionCancelCallbacks = []; // consumed (recursion guard)
-			foreach ( $callbackEntries as $entry ) {
-				if ( in_array( $entry[2], $sectionIds, true ) ) {
-					try {
-						$entry[0]( $trigger, $db );
-					} catch ( Throwable $trxError ) {
-						$this->setTransactionError( $trxError );
-						throw $trxError;
-					}
-				} else {
-					$unrelatedCallbackEntries[] = $entry;
-				}
-			}
-			// @phan-suppress-next-line PhanImpossibleConditionInLoop
-		} while ( $this->trxSectionCancelCallbacks );
-
-		$this->trxSectionCancelCallbacks = $unrelatedCallbackEntries;
 	}
 
 	/**
@@ -808,7 +749,6 @@ class TransactionManager {
 
 	public function clearEndCallbacks() {
 		$this->trxEndCallbacks = []; // don't copy
-		$this->trxSectionCancelCallbacks = []; // don't copy
 	}
 
 	public function writesOrCallbacksPending(): bool {
@@ -816,8 +756,7 @@ class TransactionManager {
 				$this->trxWriteCallers ||
 				$this->trxPostCommitOrIdleCallbacks ||
 				$this->trxPreCommitOrIdleCallbacks ||
-				$this->trxEndCallbacks ||
-				$this->trxSectionCancelCallbacks
+				$this->trxEndCallbacks
 			);
 	}
 
@@ -831,8 +770,7 @@ class TransactionManager {
 		foreach ( [
 			$this->trxPostCommitOrIdleCallbacks,
 			$this->trxPreCommitOrIdleCallbacks,
-			$this->trxEndCallbacks,
-			$this->trxSectionCancelCallbacks
+			$this->trxEndCallbacks
 		] as $callbacks ) {
 			foreach ( $callbacks as $callback ) {
 				$fnames[] = $callback[1];
