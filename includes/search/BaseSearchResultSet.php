@@ -59,6 +59,13 @@ abstract class BaseSearchResultSet implements ISearchResultSet {
 	}
 
 	/**
+	 * @inheritDoc
+	 */
+	public function isApproximateTotalHits(): bool {
+		return false;
+	}
+
+	/**
 	 * Fetch an array of regular expression fragments for matching
 	 * the search terms as parsed by this engine in a text extract.
 	 * STUB

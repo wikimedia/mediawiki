@@ -42,4 +42,8 @@ class MockSearchResultSet extends SearchResultSet {
 	public function getInterwikiResults( $type = self::SECONDARY_RESULTS ) {
 		return $this->interwikiResults[$type] ?? [];
 	}
+
+	public function getTotalHits() {
+		return $this->numRows();
+	}
 }

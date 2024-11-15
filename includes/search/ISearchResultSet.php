@@ -42,6 +42,16 @@ interface ISearchResultSet extends \Countable, \IteratorAggregate {
 	public function getTotalHits();
 
 	/**
+	 * If {@link #getTotalHits()} is supported determine whether this number is approximate or not.
+	 * Some engine might perform optimizations that might lead to inaccurate total hits.
+	 * If this happens such engine should return true.
+	 *
+	 * @return bool
+	 * @since 1.44
+	 */
+	public function isApproximateTotalHits(): bool;
+
+	/**
 	 * Some search modes will run an alternative query that it thinks gives
 	 * a better result than the provided search. Returns true if this has
 	 * occurred.

@@ -428,7 +428,7 @@ class SpecialSearch extends SpecialPage {
 			// only do the form render here for the empty $term case. Rendering
 			// the form when a search is provided is repeated below.
 			$out->addHTML( $formWidget->render(
-				$this->profile, $term, 0, 0, $this->offset, $this->isPowerSearch(), $widgetOptions
+				$this->profile, $term, 0, 0, false, $this->offset, $this->isPowerSearch(), $widgetOptions
 			) );
 			return;
 		}
@@ -477,13 +477,16 @@ class SpecialSearch extends SpecialPage {
 
 		// Get number of results
 		$titleMatchesNum = $textMatchesNum = $numTitleMatches = $numTextMatches = 0;
+		$approxTotalRes = false;
 		if ( $titleMatches ) {
 			$titleMatchesNum = $titleMatches->numRows();
 			$numTitleMatches = $titleMatches->getTotalHits();
+			$approxTotalRes = $titleMatches->isApproximateTotalHits();
 		}
 		if ( $textMatches ) {
 			$textMatchesNum = $textMatches->numRows();
 			$numTextMatches = $textMatches->getTotalHits();
+			$approxTotalRes = $approxTotalRes || $textMatches->isApproximateTotalHits();
 			if ( $textMatchesNum > 0 ) {
 				$engine->augmentSearchResults( $textMatches );
 			}
@@ -494,7 +497,8 @@ class SpecialSearch extends SpecialPage {
 		// start rendering the page
 		$out->enableOOUI();
 		$out->addHTML( $formWidget->render(
-			$this->profile, $term, $num, $totalRes, $this->offset, $this->isPowerSearch(), $widgetOptions
+			$this->profile, $term, $num, $totalRes, $approxTotalRes, $this->offset, $this->isPowerSearch(),
+			$widgetOptions
 		) );
 
 		// did you mean... suggestions

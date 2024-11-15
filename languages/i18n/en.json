@@ -1056,6 +1056,7 @@
 	"searchall": "all",
 	"showingresultsinrange": "Showing below up to <strong>$1</strong> {{PLURAL:$1|result|results}} in range #<strong>$2</strong> to #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|1=Result <strong>$1</strong> of <strong>$3</strong>|Results <strong>$1 – $2</strong> of <strong>$3</strong>}}",
+	"search-showingresults-approximate": "{{PLURAL:$4|1=Result <strong>$1</strong> of at least <strong>$3</strong>|Results <strong>$1 – $2</strong> of at least <strong>$3</strong>}}",
 	"search-nonefound": "There were no results matching the query.",
 	"search-nonefound-thiswiki": "There were no results matching the query in this site.",
 	"powersearch-legend": "Advanced search",
