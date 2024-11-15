@@ -8,7 +8,6 @@ use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
-use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Parsoid\DOM\Document;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\DOM\Element;
@@ -98,38 +97,18 @@ class ParsoidLocalization extends ContentDOMTransformStage {
 	}
 
 	private function localizeI18n( I18nInfo $i18n, Bcp47Code $poLang, Document $doc, bool $inline ): DocumentFragment {
-		$i18n = $this->localizeI18nParams( $i18n, $poLang );
 		$msg = Message::newFromKey( $i18n->key, ...( $i18n->params ?? [] ) );
-		$txt = $this->localizeMessage( $msg, $i18n->lang, $poLang, $inline );
-		return ContentUtils::createAndLoadDocumentFragment( $doc, $txt );
-	}
-
-	private function localizeI18nParams( I18nInfo $i18n, Bcp47Code $poLang ): I18nInfo {
-		if ( $i18n->params === null || $i18n->params === [] ) {
-			return $i18n;
-		}
-		$newParams = [];
-		foreach ( $i18n->params as $k => $v ) {
-			if ( is_string( $v ) ) {
-				$newParams[$k] = $v;
-			} elseif ( $v instanceof MessageSpecifier ) {
-				$msg = Message::newFromSpecifier( $v );
-				$newParams[] = $this->localizeMessage( $msg, $i18n->lang, $poLang, true );
-			}
-		}
-		return new I18nInfo( $i18n->lang, $i18n->key, $newParams );
-	}
-
-	private function localizeMessage( Message $msg, string $languageSpec, Bcp47Code $poLang, bool $inline ): string {
-		if ( $languageSpec === I18nInfo::PAGE_LANG ) {
+		if ( $i18n->lang === I18nInfo::PAGE_LANG ) {
 			$msg = $msg->inLanguage( $poLang );
-		} elseif ( $languageSpec === I18nInfo::USER_LANG ) {
+		} elseif ( $i18n->lang === I18nInfo::USER_LANG ) {
 			// note: there's a high chance we'll want to access parseroptions->getUserLang here when we introduce
 			// post-proc cache (so that we split the cache accordingly)
 			$msg = $msg->inUserLanguage();
 		} else {
-			$msg = $msg->inLanguage( new Bcp47CodeValue( $languageSpec ) );
+			$msg = $msg->inLanguage( new Bcp47CodeValue( $i18n->lang ) );
 		}
-		return $inline ? $msg->parse() : $msg->parseAsBlock();
+		$txt = $inline ? $msg->parse() : $msg->parseAsBlock();
+
+		return ContentUtils::createAndLoadDocumentFragment( $doc, $txt );
 	}
 }
