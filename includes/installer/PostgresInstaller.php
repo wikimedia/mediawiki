@@ -25,10 +25,10 @@ namespace MediaWiki\Installer;
 
 use InvalidArgumentException;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseFactory;
 use Wikimedia\Rdbms\DatabasePostgres;
 use Wikimedia\Rdbms\DBConnectionError;
+use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
  * Class for setting up the MediaWiki database using Postgres.
@@ -150,7 +150,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		}
 	}
 
-	protected function changeConnTypeFromSchemaToTables( Database $conn ) {
+	protected function changeConnTypeFromSchemaToTables( IMaintainableDatabase $conn ) {
 		if ( !( $conn instanceof DatabasePostgres ) ) {
 			throw new InvalidArgumentException( 'Invalid connection type' );
 		}

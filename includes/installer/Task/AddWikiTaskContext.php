@@ -1,0 +1,115 @@
+<?php
+
+namespace MediaWiki\Installer\Task;
+
+use MediaWiki\Config\Config;
+use MediaWiki\Installer\ConnectionStatus;
+use MediaWiki\MainConfigNames;
+use Wikimedia\Rdbms\DatabaseDomain;
+use Wikimedia\Rdbms\DBConnectionError;
+use Wikimedia\Rdbms\IMaintainableDatabase;
+use Wikimedia\Rdbms\LBFactory;
+
+/**
+ * A task context for use in installPreConfigured.php
+ *
+ * @internal
+ */
+class AddWikiTaskContext implements ITaskContext {
+	/** @var Config */
+	private $config;
+
+	/** @var LBFactory */
+	private $lbFactory;
+
+	/** @var array */
+	private $configOverrides = [];
+
+	/** @var array */
+	private $options = [];
+
+	/** @var array */
+	private $provisions = [];
+
+	public function __construct( Config $config, LBFactory $lbFactory ) {
+		$this->config = $config;
+		$this->lbFactory = $lbFactory;
+	}
+
+	public function getConfigVar( string $name ) {
+		return $this->configOverrides[$name] ?? $this->config->get( $name );
+	}
+
+	public function getOption( string $name ) {
+		return $this->options[$name] ?? null;
+	}
+
+	public function getConnection( $type = self::CONN_DONT_KNOW ): ConnectionStatus {
+		$localDomain = $this->getDomain();
+		$lb = $this->lbFactory->getLoadBalancer( $localDomain );
+		if ( $type === self::CONN_CREATE_DATABASE || $type === self::CONN_CREATE_SCHEMA ) {
+			$connectDomain = '';
+		} else {
+			$connectDomain = $localDomain->getId();
+		}
+
+		$status = new ConnectionStatus;
+		try {
+			$conn = $lb->getConnection( DB_PRIMARY, [], $connectDomain );
+			if ( $conn instanceof IMaintainableDatabase ) {
+				$status->setDB( $conn );
+			} else {
+				throw new \RuntimeException( 'Invalid DB connection class' );
+			}
+		} catch ( DBConnectionError $e ) {
+			$status->fatal( 'config-connection-error', $e->getMessage() );
+		}
+
+		return $status;
+	}
+
+	private function getDomain(): DatabaseDomain {
+		return new DatabaseDomain(
+			$this->getConfigVar( MainConfigNames::DBname ),
+			$this->getConfigVar( MainConfigNames::DBmwschema ),
+			$this->getConfigVar( MainConfigNames::DBprefix ) ?? ''
+		);
+	}
+
+	public function getDbType(): string {
+		return $this->getConfigVar( MainConfigNames::DBtype );
+	}
+
+	public function provide( string $name, $value ) {
+		$this->provisions[$name] = $value;
+	}
+
+	public function getProvision( string $name ) {
+		if ( isset( $this->provisions[$name] ) ) {
+			return $this->provisions[$name];
+		} else {
+			throw new \RuntimeException( "Can't find provided data \"$name\"" );
+		}
+	}
+
+	/**
+	 * Override a configuration variable
+	 *
+	 * @param string $name
+	 * @param mixed $value
+	 */
+	public function setConfigVar( string $name, $value ) {
+		$this->configOverrides[$name] = $value;
+	}
+
+	/**
+	 * Set an installer option
+	 *
+	 * @param string $name
+	 * @param mixed $value
+	 */
+	public function setOption( string $name, $value ) {
+		$this->options[$name] = $value;
+	}
+
+}

@@ -10,12 +10,15 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  * @internal For use by the installer
  */
 class TaskFactory {
+	public const PROFILE_INSTALLER = 'installer';
+	public const PROFILE_ADD_WIKI = 'addwiki';
+
 	/**
 	 * This list is roughly in order of execution, although the declared
 	 * dependencies take precedence over the order in the input array.
 	 */
 	private const CORE_SPECS = [
-		[ 'class' => ExtensionsProvider::class ],
+		[ 'class' => ExtensionsProvider::class, 'profile' => self::PROFILE_INSTALLER ],
 		[ 'class' => MysqlCreateDatabaseTask::class, 'db' => 'mysql' ],
 		[ 'class' => MysqlCreateUserTask::class, 'db' => 'mysql' ],
 		[ 'class' => PostgresCreateDatabaseTask::class, 'db' => 'postgres' ],
@@ -28,10 +31,11 @@ class TaskFactory {
 		[ 'class' => PopulateSiteStatsTask::class ],
 		[ 'class' => PopulateInterwikiTask::class ],
 		[ 'class' => InsertUpdateKeysTask::class ],
-		[ 'class' => RestoredServicesProvider::class ],
+		[ 'class' => RestoredServicesProvider::class, 'profile' => self::PROFILE_INSTALLER ],
+		[ 'class' => AddWikiRestoredServicesProvider::class, 'profile' => self::PROFILE_ADD_WIKI ],
 		[ 'class' => InitialContentTask::class ],
-		[ 'class' => CreateSysopTask::class ],
-		[ 'class' => MailingListSubscribeTask::class ],
+		[ 'class' => CreateSysopTask::class, 'profile' => self::PROFILE_INSTALLER ],
+		[ 'class' => MailingListSubscribeTask::class, 'profile' => self::PROFILE_INSTALLER ],
 		[ 'class' => ExtensionTablesTask::class ],
 	];
 
@@ -50,11 +54,15 @@ class TaskFactory {
 	 * various installation methods.
 	 *
 	 * @param TaskList $list
+	 * @param string $profile One of the PROFILE_xxx constants
 	 */
-	public function registerMainInstallerTasks( TaskList $list ) {
+	public function registerMainTasks( TaskList $list, string $profile ) {
 		$dbType = $this->context->getDbType();
 		foreach ( self::CORE_SPECS as $spec ) {
 			if ( isset( $spec['db'] ) && $spec['db'] !== $dbType ) {
+				continue;
+			}
+			if ( isset( $spec['profile'] ) && $spec['profile'] !== $profile ) {
 				continue;
 			}
 			$list->add( $this->create( $spec ) );
