@@ -1,4 +1,5 @@
 {
 	"testparam": "english $1",
-	"testblock": "english <div>stuff</div>"
+	"testblock": "english <div>stuff</div>",
+	"testlink": "english [[link]]"
 }

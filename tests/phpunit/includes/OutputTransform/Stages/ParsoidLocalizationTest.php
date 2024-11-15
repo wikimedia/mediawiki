@@ -4,7 +4,6 @@ namespace MediaWiki\OutputTransform\Stages;
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Message\MessageFormatterFactory;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\NullLogger;
@@ -33,8 +32,7 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 	public function createStage(): ParsoidLocalization {
 		return new ParsoidLocalization(
 			new ServiceOptions( [] ),
-			new NullLogger(),
-			new MessageFormatterFactory()
+			new NullLogger()
 		);
 	}
 
@@ -152,6 +150,12 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 				// Observe that we're not generating HTML conforming to content types in this specific case
 				'<p><span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"x-user","key":"testblock","params":[]}}\'><p>english </p><div>stuff</div></span></p>',
 				'Message with block content in a span'
+			],
+			[
+				'testparam',
+				[ new MessageValue( 'testlink', [] ) ],
+				'<p><span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"x-user","key":"testparam","params":{"0":{"key":"testlink","params":[],"_type_":"Wikimedia\\\\Message\\\\MessageValue"},"_type_":"array"}}}\'>english english <a href="/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">link</a></span></p>',
+				'span with link in the parameter'
 			]
 		];
 	}
