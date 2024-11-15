@@ -67,6 +67,7 @@ $specialPageAliases = [
 	'DeletedContributions'      => [ 'תרומות_מחוקות' ],
 	'Diff'                      => [ 'הבדלים', 'הבדל' ],
 	'DoubleRedirects'           => [ 'הפניות_כפולות' ],
+	'EditRecovery'              => [ 'שחזור_עריכה_אבודה', 'עריכות_אבודות' ],
 	'EditTags'                  => [ 'עריכת_תגיות' ],
 	'EditWatchlist'             => [ 'עריכת_רשימת_המעקב' ],
 	'Emailuser'                 => [ 'שליחת_דואר_למשתמש' ],
