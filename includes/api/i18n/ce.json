@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Исмаил Садуев",
 			"Умар"
 		]
 	},
@@ -183,7 +184,7 @@
 	"apihelp-rollback-example-simple": "<kbd>Main Page</kbd> агӀонан тӀаьххьара <kbd>Example</kbd> декъашхочо бина хийцамаш йухабаха.",
 	"apihelp-setpagelanguage-param-reason": "Хийцаран бахьана.",
 	"apihelp-stashedit-param-text": "АгӀонан чулацам.",
-	"apihelp-stashedit-param-summary": "Нисдарах лаьцна.",
+	"apihelp-stashedit-param-summary": "Нисдарх лаьцна.",
 	"apihelp-tag-summary": "Билгалонаш тӀетохар йа дӀайахар цхьадолу нисдаршкахь а, журналийн дӀайаздаршкахь а",
 	"apihelp-tag-param-reason": "Хийцаран бахьана.",
 	"apihelp-unblock-summary": "Декъашхочун тӀера блокдӀайакхар",
