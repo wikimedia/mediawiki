@@ -165,6 +165,13 @@ module.exports = exports = defineComponent( {
 		function onChange( event ) {
 			validate( event.target );
 			targetUser.value = event.target.value;
+
+			// Change the address bar to reflect the newly-selected target (while keeping all URL parameters).
+			const specialBlockUrl = mw.util.getUrl( 'Special:Block' + ( targetUser.value ? '/' + targetUser.value : '' ) );
+			if ( window.location.pathname !== specialBlockUrl ) {
+				const newUrl = ( new URL( `${ specialBlockUrl }${ window.location.search }`, window.location.origin ) ).toString();
+				window.history.replaceState( null, '', newUrl );
+			}
 		}
 
 		/**
