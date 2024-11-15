@@ -80,14 +80,14 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 		] ] );
 		$input = '<section id="a"><h2 id="foo">Foo</h2>Bar</section>';
 
-		$expected = '<section id="a"><div class="mw-heading mw-heading-1" id="mwAQ"><h2 id="foo">Foo</h2></div>Bar</section>';
+		$expected = '<section id="a"><div class="mw-heading mw-heading-1" id="mwAA"><h2 id="foo">Foo</h2></div>Bar</section>';
 		yield 'Standard Parsoid output: no links' => [
 			self::newParserOutput( $input, null, $toc ),
 			null, [ 'enableSectionEditLinks' => false ] + $options,
 			self::newParserOutput( $expected, null, $toc )
 		];
 
-		$expected = '<section id="a"><div class="mw-heading mw-heading-1" id="mwAQ"><h2 id="foo">Foo</h2>!<a id="c">edit</a>!</div>Bar</section>';
+		$expected = '<section id="a"><div class="mw-heading mw-heading-1" id="mwAA"><h2 id="foo">Foo</h2>!<a id="c">edit</a>!</div>Bar</section>';
 		yield 'Standard Parsoid output: with links' => [
 			self::newParserOutput( $input, null, $toc ),
 			null, $options,
@@ -97,7 +97,7 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 		// Test collapsible section wrapper (T359001)
 		$pOpts = ParserOptions::newFromAnon();
 		$pOpts->setCollapsibleSections();
-		$expected = '<section id="a"><div class="mw-heading mw-heading-1" id="mwAQ"><h2 id="foo">Foo</h2>!<a id="c">edit</a>!</div><div id="mwAg">Bar</div></section>';
+		$expected = '<section id="a"><div class="mw-heading mw-heading-1" id="mwAA"><h2 id="foo">Foo</h2>!<a id="c">edit</a>!</div><div id="mwAQ">Bar</div></section>';
 		yield 'Standard Parsoid output: collapsible with links' => [
 			self::newParserOutput( $input, $pOpts, $toc ),
 			$pOpts, $options,
@@ -114,7 +114,7 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 		];
 
 		// Reused <div> plus collapsible sections
-		$expected = '<section id="a"><div class="mw-heading mw-heading2" id="b">prefix<h2 id="foo">Foo</h2>!<a id="c">edit</a>!suffix</div><div id="mwAQ">Bar</div></section>';
+		$expected = '<section id="a"><div class="mw-heading mw-heading2" id="b">prefix<h2 id="foo">Foo</h2>!<a id="c">edit</a>!suffix</div><div id="mwAA">Bar</div></section>';
 		yield 'Output with existing div: collapsible with links' => [
 			self::newParserOutput( $input, $pOpts, $toc ),
 			$pOpts, $options,

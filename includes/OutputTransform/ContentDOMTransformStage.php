@@ -5,17 +5,13 @@ namespace MediaWiki\OutputTransform;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
-use stdClass;
+use Wikimedia\Parsoid\Core\DomPageBundle;
 use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\DOM\Document;
 use Wikimedia\Parsoid\DOM\Element;
-use Wikimedia\Parsoid\Mocks\MockEnv;
 use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Parsoid\Utils\DOMCompat;
-use Wikimedia\Parsoid\Utils\DOMDataUtils;
 use Wikimedia\Parsoid\Utils\DOMUtils;
-use Wikimedia\Parsoid\Utils\PHPUtils;
-use Wikimedia\Parsoid\Utils\Utils;
 
 /**
  * OutputTransformStages that modify the content as a HTML DOM tree.
@@ -65,12 +61,9 @@ abstract class ContentDOMTransformStage extends OutputTransformStage {
 		$origPb = null;
 		if ( $hasPageBundle ) {
 			$origPb = PageBundleParserOutputConverter::pageBundleFromParserOutput( $po );
-			$doc = DOMUtils::parseHTML( $po->getContentHolderText() );
-			PageBundle::apply( $doc, $origPb );
-			DOMDataUtils::prepareDoc( $doc );
-			$body = DOMCompat::getBody( $doc );
-			'@phan-var Element $body'; // assert non-null
-			DOMDataUtils::visitAndLoadDataAttribs( $body );
+			// TODO: pageBundleFromParserOutput should be able to create a
+			// DomPageBundle when the HTMLHolder has a DOM already.
+			$doc = DomPageBundle::fromPageBundle( $origPb )->toDom( true );
 		} else {
 			$doc = ContentUtils::createAndLoadDocument(
 				$po->getContentHolderText(),
@@ -79,54 +72,23 @@ abstract class ContentDOMTransformStage extends OutputTransformStage {
 
 		$doc = $this->transformDOM( $doc, $po, $popts, $options );
 
-		// TODO will use HTMLHolder in the future
-		$body = DOMCompat::getBody( $doc );
-		'@phan-var Element $body'; // assert non-null
+		// TODO will use HTMLHolder/DomPageBundle in the future
 		if ( $hasPageBundle ) {
-			DOMDataUtils::visitAndStoreDataAttribs(
-				$body,
-				[
-					'storeInPageBundle' => true,
-					'env' => new MockEnv( [] ),
-				]
-			);
-			$pb = DOMDataUtils::getPageBundle( $doc );
-			$pb = self::workaroundT365036( $pb );
-			$pb = self::combinePageBundles( $pb, $origPb );
-
-			PageBundleParserOutputConverter::applyPageBundleDataToParserOutput( $pb, $po );
-			$text = ContentUtils::toXML( $body, [
-				'innerXML' => true,
+			$dpb = DomPageBundle::fromLoadedDocument( $doc, [
+				'pageBundle' => $origPb,
 			] );
+			$pb = PageBundle::fromDomPageBundle( $dpb, [ 'body_only' => true ] );
+			PageBundleParserOutputConverter::applyPageBundleDataToParserOutput( $pb, $po );
+			$text = $pb->html;
 		} else {
+			$body = DOMCompat::getBody( $doc );
+			'@phan-var Element $body'; // assert non-null
 			$text = ContentUtils::ppToXML( $body, [
 				'innerXML' => true,
 			] );
 		}
 		$po->setContentHolderText( $text );
 		return $po;
-	}
-
-	private function combinePageBundles( stdClass $pb, ?PageBundle $origPb ): stdClass {
-		if ( $origPb === null ) {
-			return $pb;
-		}
-		$headers = $origPb->headers;
-		$pb->headers = $headers ? Utils::clone( $headers ) : null;
-		$pb->version = $origPb->version;
-		$pb->contentmodel = $origPb->contentmodel;
-		return $pb;
-	}
-
-	/**
-	 * This function is necessary (T365036) because PageBundle can have
-	 * non-serializable DataParsoid  inside which need
-	 * to be converted to stdClass and string, respectively. We should replace this
-	 * ugly workaround with something nicer.
-	 */
-	private function workaroundT365036( PageBundle $pb ): stdClass {
-		$arrayPageBundle = PHPUtils::jsonDecode( PHPUtils::jsonEncode( $pb ) );
-		return (object)$arrayPageBundle;
 	}
 
 	/** Applies the transformation to a DOM document */
