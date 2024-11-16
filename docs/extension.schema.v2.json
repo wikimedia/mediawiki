@@ -1346,6 +1346,47 @@
 				}
 			}
 		},
+		"InstallerTasks": {
+			"type": "array",
+			"description": "Array of specification objects describing tasks to run during installation",
+			"items": {
+				"type": "object",
+				"properties": {
+					"class": {
+						"type": "string",
+						"description": "The class name to create"
+					},
+					"factory": {
+						"type": [ "array", "string" ],
+						"description": "A function to call to create the object"
+					},
+					"args": {
+						"type": "array",
+						"description": "Arguments to pass to the constructor"
+					},
+					"callback": {
+						"type": [ "array", "string" ],
+						"description": "Function to call during installation"
+					},
+					"name": {
+						"type": "string",
+						"description": "The name of the task (with callback only)"
+					},
+					"after": {
+						"type": [ "array", "string" ],
+						"description": "The name of the dependency or provided data, or a list of such names (with callback only)"
+					},
+					"profile": {
+						"type": "string",
+						"description": "Which installer to run the task under. If unspecified, it runs in both installers.",
+						"enum": [
+							"installer",
+							"installPreConfigured"
+						]
+					}
+				}
+			}
+		},
 		"callback": {
 			"type": [
 				"array",

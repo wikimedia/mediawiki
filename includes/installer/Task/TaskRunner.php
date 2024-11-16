@@ -10,17 +10,25 @@ use MediaWiki\Status\Status;
 class TaskRunner {
 	/** @var TaskList|Task[] */
 	private $tasks;
+	/** @var TaskFactory */
+	private $taskFactory;
+	/** @var string */
+	private $profile;
 	/** @var callable[] */
 	private $taskStartListeners;
 	/** @var callable[] */
 	private $taskEndListeners;
 	/** @var array<string,bool> */
-	private $skippedTasks;
+	private $skippedTasks = [];
+	/** @var array<string,bool> */
+	private $completedTasks = [];
 	/** @var string|null */
 	private $currentTaskName;
 
-	public function __construct( TaskList $tasks ) {
+	public function __construct( TaskList $tasks, TaskFactory $taskFactory, string $profile ) {
 		$this->tasks = $tasks;
+		$this->taskFactory = $taskFactory;
+		$this->profile = $profile;
 	}
 
 	/**
@@ -30,9 +38,14 @@ class TaskRunner {
 	 */
 	public function execute() {
 		$overallStatus = Status::newGood();
+		$overallStatus->merge( $this->loadExtensions() );
+		if ( !$overallStatus->isOK() ) {
+			return $overallStatus;
+		}
+
 		/** @var Task $task */
 		foreach ( $this->tasks as $task ) {
-			if ( $this->isSkipped( $task ) ) {
+			if ( $this->isSkipped( $task ) || $this->isComplete( $task ) ) {
 				continue;
 			}
 
@@ -73,6 +86,24 @@ class TaskRunner {
 	}
 
 	/**
+	 * Run the extensions provider (if it is registered) and load any extension tasks.
+	 *
+	 * @return Status
+	 */
+	public function loadExtensions() {
+		$task = $this->findNamedTask( 'extensions' );
+		if ( $task ) {
+			$status = $this->runTask( $task );
+			if ( $status->isOK() ) {
+				$this->taskFactory->registerExtensionTasks( $this->tasks, $this->profile );
+			}
+		} else {
+			$status = Status::newGood();
+		}
+		return $status;
+	}
+
+	/**
 	 * @param string $name
 	 * @return Task|null
 	 */
@@ -100,28 +131,39 @@ class TaskRunner {
 	}
 
 	/**
+	 * Determine whether a task has already completed
+	 *
+	 * @param Task $task
+	 * @return bool
+	 */
+	private function isComplete( Task $task ) {
+		return isset( $this->completedTasks[$task->getName()] );
+	}
+
+	/**
 	 * Run a task and call the listeners
 	 *
 	 * @param Task $task
 	 * @return Status
 	 */
 	private function runTask( Task $task ) {
-		$this->currentTaskName = $name = $task->getName();
+		$this->currentTaskName = $task->getName();
 		foreach ( $this->taskStartListeners as $listener ) {
-			$listener( $name );
+			$listener( $task );
 		}
 
 		$status = $task->execute();
 
+		$this->completedTasks[$task->getName()] = true;
 		foreach ( $this->taskEndListeners as $listener ) {
-			$listener( $name, $status );
+			$listener( $task, $status );
 		}
 		return $status;
 	}
 
 	/**
 	 * Add a callback to be called before each task is executed. The callback
-	 * takes one parameter: the task name.
+	 * takes one parameter: the task object.
 	 *
 	 * @param callable $listener
 	 */
@@ -131,7 +173,7 @@ class TaskRunner {
 
 	/**
 	 * Add a callback to be called after each task completes. The callback
-	 * takes two parameters: the task name and the Status returned by the
+	 * takes two parameters: the task object and the Status returned by the
 	 * task.
 	 *
 	 * @param callable $listener

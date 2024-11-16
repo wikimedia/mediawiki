@@ -270,6 +270,7 @@ class ExtensionProcessor implements Processor {
 		$this->extractNamespaces( $info );
 		$this->extractImplicitRights( $info );
 		$this->extractResourceLoaderModules( $dir, $info );
+		$this->extractInstallerTasks( $dir, $info );
 		if ( isset( $info['ServiceWiringFiles'] ) ) {
 			$this->extractPathBasedGlobal(
 				'wgServiceWiringFiles',
@@ -905,6 +906,18 @@ class ExtensionProcessor implements Processor {
 				throw new InvalidArgumentException( "Incorrect ForeignResourcesDir type, must be a string (in $name)" );
 			}
 			$this->attributes['ForeignResourcesDir'][$name] = "{$dir}/{$info['ForeignResourcesDir']}";
+		}
+	}
+
+	protected function extractInstallerTasks( string $path, array $info ): void {
+		if ( isset( $info['InstallerTasks'] ) ) {
+			// Use a fixed path for the schema base path for now. This could be
+			// made configurable if there were a use case for that.
+			$schemaBasePath = $path . '/sql';
+			foreach ( $info['InstallerTasks'] as $taskSpec ) {
+				$this->attributes['InstallerTasks'][]
+					= $taskSpec + [ 'schemaBasePath' => $schemaBasePath ];
+			}
 		}
 	}
 

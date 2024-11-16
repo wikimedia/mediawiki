@@ -1457,7 +1457,8 @@ abstract class Installer {
 	public function performInstallation( $startCB, $endCB ) {
 		$tasks = $this->getTaskList();
 
-		$taskRunner = new TaskRunner( $tasks );
+		$taskRunner = new TaskRunner( $tasks, $this->getTaskFactory(),
+			TaskFactory::PROFILE_INSTALLER );
 		$taskRunner->addTaskStartListener( $startCB );
 		$taskRunner->addTaskEndListener( $endCB );
 

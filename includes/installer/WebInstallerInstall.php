@@ -22,6 +22,7 @@
 
 namespace MediaWiki\Installer;
 
+use MediaWiki\Installer\Task\Task;
 use MediaWiki\Status\Status;
 
 class WebInstallerInstall extends WebInstallerPage {
@@ -62,25 +63,23 @@ class WebInstallerInstall extends WebInstallerPage {
 	}
 
 	/**
-	 * @param string $step
+	 * @param Task $task
 	 */
-	public function startStage( $step ) {
-		// Messages: config-install-database, config-install-tables, config-install-interwiki,
-		// config-install-stats, config-install-keys, config-install-sysop, config-install-mainpage
-		$this->addHTML( "<li>" . wfMessage( "config-install-$step" )->escaped() .
+	public function startStage( $task ) {
+		$this->addHTML( "<li>" . $task->getDescriptionMessage()->escaped() .
 			wfMessage( 'ellipsis' )->escaped() );
 
-		if ( $step == 'extension-tables' ) {
+		if ( $task->getName() == 'extension-tables' ) {
 			$this->startLiveBox();
 		}
 	}
 
 	/**
-	 * @param string $step
+	 * @param Task $task
 	 * @param Status $status
 	 */
-	public function endStage( $step, $status ) {
-		if ( $step == 'extension-tables' ) {
+	public function endStage( $task, $status ) {
+		if ( $task->getName() == 'extension-tables' ) {
 			$this->endLiveBox();
 		}
 		$msg = $status->isOK() ? 'config-install-step-done' : 'config-install-step-failed';

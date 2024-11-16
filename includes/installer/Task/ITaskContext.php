@@ -5,7 +5,11 @@ namespace MediaWiki\Installer\Task;
 use MediaWiki\Installer\ConnectionStatus;
 
 /**
- * @internal For use by the installer
+ * Dependency bundle and execution context for installer tasks.
+ *
+ * For most things in here, the Task base class provides more convenient access.
+ *
+ * @since 1.44
  */
 interface ITaskContext {
 	/**

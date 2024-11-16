@@ -4,9 +4,12 @@ namespace MediaWiki\Installer\Task;
 
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Installer\ConnectionStatus;
+use MediaWiki\Language\RawMessage;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\Status\Status;
 use RuntimeException;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -14,7 +17,8 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
 /**
  * Base class for installer tasks
  *
- * @internal For use by the installer
+ * @stable to extend
+ * @since 1.44
  */
 abstract class Task {
 	/** @var ITaskContext|null */
@@ -23,7 +27,18 @@ abstract class Task {
 	private $schemaBasePath;
 
 	/**
-	 * Execute the task
+	 * Execute the task.
+	 *
+	 * Notes for implementors:
+	 *  - Unless the task is registered with a specific profile, tasks will run
+	 *    in both installPreConfigured.php and the traditional unconfigured
+	 *    environment. The global state differs between these environments.
+	 *
+	 *  - Tasks almost always have dependencies. Override getDependencies().
+	 *
+	 *  - If you need MediaWikiServices, declare a dependency on 'services' and
+	 *    use getServices(). The dependency ensures that the task is run when
+	 *    the global service container is functional.
 	 *
 	 * @return Status
 	 */
@@ -37,10 +52,48 @@ abstract class Task {
 	abstract public function getName();
 
 	/**
+	 * Get a human-readable description of what this task does, for use as a
+	 * progress message. This may either be English text or a MessageSpecifier.
+	 * It is unsafe to use an extension message.
+	 *
+	 * @stable to override
+	 * @return MessageSpecifier|string
+	 */
+	public function getDescription() {
+		// Messages: config-install-database, config-install-tables, config-install-interwiki,
+		// config-install-stats, config-install-keys, config-install-sysop, config-install-mainpage,
+		// config-install-extensions
+		$msg = wfMessage( "config-install-" . $this->getName() );
+		if ( $msg->exists() ) {
+			return $msg;
+		} else {
+			return wfMessage( "config-install-generic", $this->getName() );
+		}
+	}
+
+	/**
+	 * Get the description as a Message object
+	 *
+	 * @internal
+	 * @return Message
+	 */
+	final public function getDescriptionMessage() {
+		$msg = $this->getDescription();
+		if ( $msg instanceof Message ) {
+			return $msg;
+		} elseif ( $msg instanceof MessageSpecifier ) {
+			return new Message( $msg );
+		} else {
+			return new RawMessage( $msg );
+		}
+	}
+
+	/**
 	 * Override this to return true to skip the task. If this returns true,
 	 * execute() will not be called, and start/end messages will not be
 	 * produced.
 	 *
+	 * @stable to override
 	 * @return bool
 	 */
 	public function isSkipped(): bool {
@@ -51,6 +104,7 @@ abstract class Task {
 	 * Get alternative names of this task. These aliases can be used to fulfill
 	 * dependencies of other tasks.
 	 *
+	 * @stable to override
 	 * @return string|string[]
 	 */
 	public function getAliases() {
@@ -60,6 +114,7 @@ abstract class Task {
 	/**
 	 * Get a list of names or aliases of tasks that must be done prior to this task.
 	 *
+	 * @stable to override
 	 * @return string|string[]
 	 */
 	public function getDependencies() {
@@ -74,6 +129,7 @@ abstract class Task {
 	 * it is not persistently complete after it has been run. If installation
 	 * is interrupted, it might need to be run again.
 	 *
+	 * @stable to override
 	 * @return string|string[]
 	 */
 	public function getProvidedNames() {
@@ -127,11 +183,10 @@ abstract class Task {
 	/**
 	 * Connect to the database for a specified purpose
 	 *
-	 * @param string $type One of the self::CONN_* constants. Using CONN_DONT_KNOW
-	 *   is deprecated and will cause an exception to be thrown in a future release.
+	 * @param string $type One of the ITaskContext::CONN_* constants.
 	 * @return ConnectionStatus
 	 */
-	protected function getConnection( $type = ITaskContext::CONN_DONT_KNOW ): ConnectionStatus {
+	protected function getConnection( string $type ): ConnectionStatus {
 		return $this->getContext()->getConnection( $type );
 	}
 
@@ -143,7 +198,7 @@ abstract class Task {
 	 * @param string $type
 	 * @return IMaintainableDatabase
 	 */
-	protected function definitelyGetConnection( $type ): IMaintainableDatabase {
+	protected function definitelyGetConnection( string $type ): IMaintainableDatabase {
 		$status = $this->getConnection( $type );
 		if ( !$status->isOK() ) {
 			throw new RuntimeException( __METHOD__ . ': unexpected DB connection error' );
@@ -158,7 +213,7 @@ abstract class Task {
 	 * @param string $relPath
 	 * @return Status
 	 */
-	protected function applySourceFile( $conn, $relPath ) {
+	protected function applySourceFile( IMaintainableDatabase $conn, string $relPath ) {
 		$path = $this->getSqlFilePath( $relPath );
 		$status = Status::newGood();
 		try {
@@ -178,7 +233,11 @@ abstract class Task {
 	 * Get the absolute base path for SQL schema files.
 	 *
 	 * For core tasks, this is $IP/maintenance. For extension tasks, this will
-	 * be some directory in the extension's source tree.
+	 * be sql/ under the extension directory.
+	 *
+	 * It would be possible to make the extension path be configurable, but it
+	 * is currently not needed since extensions typically do not create their
+	 * tables by this mechanism.
 	 *
 	 * @return string
 	 */
