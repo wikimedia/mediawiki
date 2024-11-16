@@ -33,10 +33,10 @@ class TaskFactory {
 		[ 'class' => InsertUpdateKeysTask::class ],
 		[ 'class' => RestoredServicesProvider::class, 'profile' => self::PROFILE_INSTALLER ],
 		[ 'class' => AddWikiRestoredServicesProvider::class, 'profile' => self::PROFILE_ADD_WIKI ],
+		[ 'class' => ExtensionTablesTask::class ],
 		[ 'class' => InitialContentTask::class ],
 		[ 'class' => CreateSysopTask::class, 'profile' => self::PROFILE_INSTALLER ],
 		[ 'class' => MailingListSubscribeTask::class, 'profile' => self::PROFILE_INSTALLER ],
-		[ 'class' => ExtensionTablesTask::class ],
 	];
 
 	/** @var ObjectFactory */

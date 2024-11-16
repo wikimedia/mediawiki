@@ -20,7 +20,7 @@ class CreateSysopTask extends Task {
 	}
 
 	public function getDependencies() {
-		return [ 'services', 'tables' ];
+		return [ 'services', 'extension-tables' ];
 	}
 
 	public function getProvidedNames() {
