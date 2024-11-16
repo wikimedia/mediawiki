@@ -50,7 +50,7 @@ class SkinComponentUtils {
 
 		$query = [];
 		if ( !$request->wasPosted() ) {
-			$query = $request->getValues();
+			$query = $request->getQueryValues();
 			unset( $query['title'] );
 			unset( $query['returnto'] );
 			unset( $query['returntoquery'] );

@@ -265,7 +265,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 		$showDiffToggleSwitch = $this->inlineToggleEnabled && $this->getTextDiffer()->hasFormat( 'inline' );
 		// If we support the inline type, add a toggle switch
 		if ( $showDiffToggleSwitch ) {
-			$values = $context->getRequest()->getValues();
+			$values = $context->getRequest()->getQueryValues();
 			$isInlineDiffType = $this->format === 'inline';
 			$values[ 'diff-type' ] = $isInlineDiffType ? 'table' : 'inline';
 			unset( $values[ 'title' ] );

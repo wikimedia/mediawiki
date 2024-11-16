@@ -97,7 +97,7 @@ class SpecialUserLogin extends LoginSignupSpecialPage {
 		if ( $subPage === 'signup' || $this->getRequest()->getText( 'type' ) === 'signup' ) {
 			// B/C for old account creation URLs
 			$title = SpecialPage::getTitleFor( 'CreateAccount' );
-			$query = array_diff_key( $this->getRequest()->getValues(),
+			$query = array_diff_key( $this->getRequest()->getQueryValues(),
 				array_fill_keys( [ 'type', 'title' ], true ) );
 			$url = $title->getFullURL( $query, false, PROTO_CURRENT );
 			$this->getOutput()->redirect( $url );

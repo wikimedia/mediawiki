@@ -190,7 +190,7 @@ class SpecialSearch extends SpecialPage {
 		// in releasing page view data. As such issue a 301 redirect to the correct
 		// URL.
 		if ( $par !== null && $par !== '' && $term === '' ) {
-			$query = $request->getValues();
+			$query = $request->getQueryValues();
 			unset( $query['title'] );
 			// Strip underscores from title parameter; most of the time we'll want
 			// text form here. But don't strip underscores from actual text params!
@@ -208,7 +208,7 @@ class SpecialSearch extends SpecialPage {
 			// Remove the token from the URL to prevent the user from inadvertently
 			// exposing it (e.g. by pasting it into a public wiki page) or undoing
 			// later settings changes (e.g. by reloading the page).
-			$query = $request->getValues();
+			$query = $request->getQueryValues();
 			unset( $query['title'], $query['nsRemember'] );
 			$out->redirect( $this->getPageTitle()->getFullURL( $query ) );
 			return;
