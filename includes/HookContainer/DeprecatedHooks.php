@@ -47,6 +47,7 @@ class DeprecatedHooks {
 		'MagicWordwgVariableIDs' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
 		'MessageCache::get' => [ 'deprecatedVersion' => '1.41' ],
 		'PageContentSave' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
+		'PermissionErrorAudit' => [ 'deprecatedVersion' => '1.44' ],
 		'PrefixSearchBackend' => [ 'deprecatedVersion' => '1.27' ],
 		'ProtectionForm::buildForm' => [ 'deprecatedVersion' => '1.36', 'silent' => true ],
 		'RollbackComplete' => [ 'deprecatedVersion' => '1.36', 'silent' => true ],

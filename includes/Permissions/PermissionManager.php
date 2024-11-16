@@ -519,6 +519,10 @@ class PermissionManager {
 				break;
 			}
 		}
+
+		// Clone the status to prevent users of this hook from modifying the original
+		$this->hookRunner->onPermissionStatusAudit( $page, $user, $action, $rigor, clone $status );
+
 		if ( !$status->isGood() ) {
 			$errors = $status->toLegacyErrorArray();
 			$this->hookRunner->onPermissionErrorAudit( $page, $user, $action, $rigor, $errors );

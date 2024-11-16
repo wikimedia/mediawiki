@@ -21,6 +21,7 @@ use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\RenameUser\RenameuserSQL;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\Revision\RevisionRecord;
@@ -491,6 +492,7 @@ class HookRunner implements
 	\MediaWiki\Page\Hook\WikiPageDeletionUpdatesHook,
 	\MediaWiki\Page\Hook\WikiPageFactoryHook,
 	\MediaWiki\Permissions\Hook\PermissionErrorAuditHook,
+	\MediaWiki\Permissions\Hook\PermissionStatusAuditHook,
 	\MediaWiki\Permissions\Hook\GetUserPermissionsErrorsExpensiveHook,
 	\MediaWiki\Permissions\Hook\GetUserPermissionsErrorsHook,
 	\MediaWiki\Permissions\Hook\TitleQuickPermissionsHook,
@@ -2033,6 +2035,20 @@ class HookRunner implements
 		$this->container->run(
 			'PermissionErrorAudit',
 			[ $title, $user, $action, $rigor, $errors ],
+			[ 'abortable' => false ]
+		);
+	}
+
+	public function onPermissionStatusAudit(
+		LinkTarget $title,
+		UserIdentity $user,
+		string $action,
+		string $rigor,
+		PermissionStatus $status
+	): void {
+		$this->container->run(
+			'PermissionStatusAudit',
+			[ $title, $user, $action, $rigor, $status ],
 			[ 'abortable' => false ]
 		);
 	}

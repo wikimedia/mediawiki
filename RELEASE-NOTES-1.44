@@ -270,6 +270,8 @@ because of Phabricator reports.
   added. This will be hard deprecated in the next MediaWiki release. More
   information is available at T333211. To avoid future breakage, see the
   guidance in T385346.
+* The 'PermissionErrorAudit' hook has been deprecated and replaced by
+  the 'PermissionStatusAudit' hook.
 * …
 
 === Other changes in 1.44 ===
