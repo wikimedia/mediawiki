@@ -86,6 +86,7 @@ describe( 'Block store', () => {
 	it( 'should only pass the reblock param to the API if there was an "already blocked" error', () => {
 		mockMwConfigGet( { blockAlreadyBlocked: false } );
 		const store = useBlockStore();
+		store.$reset();
 		store.doBlock();
 		const spy = jest.spyOn( mw.Api.prototype, 'postWithEditToken' );
 		const expected = {
