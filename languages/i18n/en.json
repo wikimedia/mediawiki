@@ -2292,7 +2292,7 @@
 	"emailsubject": "Subject:",
 	"emailmessage": "Message:",
 	"emailsend": "Send",
-	"emailccme": "Email me a copy of my message.",
+	"emailccme": "Email me a copy of my message",
 	"emailccsubject": "Copy of your message to $1: $2",
 	"emailsent": "Email sent",
 	"emailsenttext": "Your email message has been sent.",
