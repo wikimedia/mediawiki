@@ -545,7 +545,6 @@ class DeletePage {
 
 		// Archive revisions.  In immediate mode, archive all revisions.  Otherwise, archive
 		// one batch of revisions and defer archival of any others to the job queue.
-		$explictTrxLogged = false;
 		while ( true ) {
 			$done = $this->archiveRevisions( $page, $id );
 			if ( $done || !$this->forceImmediate ) {
