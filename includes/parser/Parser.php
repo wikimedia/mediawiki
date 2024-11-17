@@ -3476,9 +3476,13 @@ class Parser {
 	 * Get the semi-parsed DOM representation of a template with a given title,
 	 * and its redirect destination title. Cached.
 	 *
+	 * The second element of the returned array may be a Title object, or may be
+	 * the passed `$title` parameter, so if you need a `Title`, pass it a `Title`
+	 * rather than a TitleValue.
+	 *
 	 * @param LinkTarget $title
 	 *
-	 * @return array
+	 * @return array{0:PPNode|false,1:LinkTarget} [Template DOM, final template title]
 	 * @since 1.12
 	 */
 	public function getTemplateDom( LinkTarget $title ) {
@@ -3505,7 +3509,7 @@ class Parser {
 		$dom = $this->preprocessToDom( $text, Preprocessor::DOM_FOR_INCLUSION );
 		$this->mTplDomCache[$titleKey] = $dom;
 
-		if ( !$title->isSamePageAs( $cacheTitle ) ) {
+		if ( !$title->isSameLinkAs( $cacheTitle ) ) {
 			$this->mTplRedirCache[ CacheKeyHelper::getKeyForPage( $cacheTitle ) ] =
 				[ $title->getNamespace(), $title->getDBkey() ];
 		}
@@ -3592,7 +3596,7 @@ class Parser {
 	/**
 	 * Fetch the unparsed text of a template and register a reference to it.
 	 * @param LinkTarget $link
-	 * @return array ( string or false, Title )
+	 * @return array{0:string|false,1:Title}
 	 * @since 1.11
 	 */
 	public function fetchTemplateAndTitle( LinkTarget $link ) {
