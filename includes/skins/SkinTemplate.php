@@ -684,8 +684,7 @@ class SkinTemplate extends Skin {
 			'single-id' => 'pt-logout',
 			'text' => $this->msg( $msg )->text(),
 			'data-mw' => 'interface',
-			'href' => SkinComponentUtils::makeSpecialUrl( 'Userlogout',
-				( $title->isSpecial( 'Preferences' ) ? [] : $returnto ) ),
+			'href' => SkinComponentUtils::makeSpecialUrl( 'Userlogout', $returnto ),
 			'active' => false,
 			'icon' => 'logOut'
 		];
