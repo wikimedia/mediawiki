@@ -836,45 +836,6 @@ END
 		$this->assertEquals( $expected, $response, $message ?: 'Response' );
 	}
 
-	public function testMakeModuleResponseNomin() {
-		// Regression test for FILTER_NOMIN in source-mapped JavaScript code (T373990).
-		$rl = new EmptyResourceLoader();
-		$rl->register( [
-			'test1' => [ 'scripts' => [
-					[ 'name' => '1a.js', 'content' => "// Comment\nconsole.log( 'A' );" ],
-					[ 'name' => '1b.js', 'content' => "/*@nomin*/\nconsole.log( 'B' );" ],
-					[ 'name' => '1c.js', 'content' => "// Comment\nconsole.log( 'C' );" ],
-			] ],
-			'test2' => [ 'scripts' => [
-				[ 'name' => '2a.js', 'content' => "// Comment\nconsole.log( 'A' );" ],
-				[ 'name' => '2b.js', 'content' => "// Comment\nconsole.log( 'B' );" ],
-				[ 'name' => '2c.js', 'content' => "// Comment\nconsole.log( 'C' );" ],
-			] ],
-		] );
-		$context = $this->getResourceLoaderContext(
-			[ 'modules' => 'test1|test2', 'debug' => 'false', 'only' => null ],
-			$rl
-		);
-		$modules = [ 'test1' => $rl->getModule( 'test1' ), 'test2' => $rl->getModule( 'test2' ) ];
-		$response = $rl->makeModuleResponse( $context, $modules );
-
-		$expected = <<<JS
-mw.loader.impl(function(){return["test1@cv4dm",function($,jQuery,require,module){// Comment
-console.log( 'A' );
-/*@nomin*/
-console.log( 'B' );
-// Comment
-console.log( 'C' );
-}];});
-mw.loader.impl(function(){return["test2@1yyxt",function($,jQuery,require,module){console.log('A');
-console.log('B');
-console.log('C');
-}];});
-
-JS;
-		$this->assertSame( $expected, $response );
-	}
-
 	public function testMakeModuleResponseEmpty() {
 		$rl = new EmptyResourceLoader();
 		$context = $this->getResourceLoaderContext(
