@@ -1590,7 +1590,7 @@
 	"apierror-mustbeloggedin-uploadstash": "El almacén provisional de cargas solo está disponible para usuarios que hayan accedido a una cuenta.",
 	"apierror-mustbeloggedin": "Debes estar conectado para $1.",
 	"apierror-mustbeposted": "El módulo <kbd>$1</kbd> requiere una petición POST.",
-	"apierror-mustpostparams": "Se {{PLURAL:$2|encontró el siguiente parámetro|encontraron los siguientes parámetros}} en la cadena de la consulta, pero deben estar en el cuerpo del POST: $1.",
+	"apierror-mustpostparams": "Se {{PLURAL:$2|encontró el siguiente parámetro|encontraron los siguientes parámetros}} en la cadena de la consulta, pero debe{{PLURAL:$2||n}} estar en el cuerpo del POST: $1.",
 	"apierror-noapiwrite": "La edición de esta wiki a través de la API está deshabilitada.",
 	"apierror-nochanges": "No se solicitó ningún cambio.",
 	"apierror-nodeleteablefile": "No existe tal versión antigua del archivo.",

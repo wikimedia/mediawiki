@@ -2163,6 +2163,7 @@
 	"rollback-confirmation-no": "الغي",
 	"rollbacklink": "استرجاع",
 	"rollbacklinkcount": "استرجع {{PLURAL:$1|$1 تعديل|$1 تعديلات}}",
+	"editcomment": "الملخص مال التعديل جان: <em>$1</em>.",
 	"sessionfailure": "يمكن اكو مشكله بهاي جلستك مال تسجيل الدخول؛\nهاي الشغله انلغت حته نحذرك من الهكر.\nدز الاستماره مره ثانيه.",
 	"changecontentmodel-legend": "غير موديل المحتوه",
 	"changecontentmodel-title-label": "اسم الصفحه:",

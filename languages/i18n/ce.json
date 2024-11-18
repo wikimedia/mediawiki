@@ -3968,7 +3968,7 @@
 	"nonmain-slot-differences-therefore-readonly": "Хьоьга редакци йан лур йац оцу агӀонан вики-текстан версица, хӀунда аьлча оцу агӀонан тӀехь редакцин хийцаман бина, вики-текстан бух тӀехь йоцуш. [$1 ХӀара верси меттахӀотто, тӀетаӀайе кхузахь.]",
 	"config-missing-key": "Йац MediaWiki «$1» конфигурацин параметр",
 	"config-invalid-key": "Харц MediaWiki «$1» конфигурацин параметр: $2",
-	"changeslist-nocomment": "Нисдарах лаьцна йаздина дац",
+	"changeslist-nocomment": "Нисдарх лаьцна йаздина дац",
 	"skin-view-create-local": "Кхолла локалан",
 	"nstab-mainpage": "Коьрта агӀо",
 	"skin-view-edit-local": "ТӀетоха локалан цуьнах лаьцна",

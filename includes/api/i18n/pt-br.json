@@ -1724,7 +1724,7 @@
 	"apierror-mustbeloggedin-uploadstash": "O upload do stash só está disponível para usuários registrados.",
 	"apierror-mustbeloggedin": "Você precisa estar logado para $1.",
 	"apierror-mustbeposted": "O módulo <kbd>$1</kbd> requer uma solicitação POST.",
-	"apierror-mustpostparams": "{{PLURAL:$2|O seguinte parâmetro foi encontrado|Os seguintes parâmetros foram encontrados}} na string de consulta, mas deve estar no corpo POST: $1.",
+	"apierror-mustpostparams": "{{PLURAL:$2|O seguinte parâmetro foi encontrado|Os seguintes parâmetros foram encontrados}} na string de consulta, mas deve{{PLURAL:$2||m}} estar no corpo POST: $1.",
 	"apierror-noapiwrite": "A edição deste wiki através da API está desabilitada.",
 	"apierror-nochanges": "Nenhuma alteração foi solicitada.",
 	"apierror-nodeleteablefile": "Nenhuma versão antiga do arquivo.",
