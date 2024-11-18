@@ -16,10 +16,13 @@ QUnit.module( 'mediawiki.base/track', () => {
 
 	QUnit.test( 'trackSubscribe', ( assert ) => {
 		const sequence = [];
+		let thisValue;
 		mw.track( 'before', { key: 1 } );
 		mw.track( 'before', { key: 2 } );
-		mw.trackSubscribe( 'before', ( topic, data ) => {
+		mw.trackSubscribe( 'before', function ( topic, data ) {
+			'use strict';
 			sequence.push( [ topic, data ] );
+			thisValue = this;
 		} );
 		mw.track( 'before', { key: 3 } );
 
@@ -29,11 +32,7 @@ QUnit.module( 'mediawiki.base/track', () => {
 			[ 'before', { key: 3 } ]
 		], 'Replay events from before subscribing' );
 
-		mw.track( 'context', { key: 0 } );
-		mw.trackSubscribe( 'context', function ( topic, data ) {
-			assert.strictEqual( this.topic, topic, 'thisValue has topic' );
-			assert.strictEqual( this.data, data, 'thisValue has data' );
-		} );
+		assert.strictEqual( thisValue, undefined, 'thisValue' );
 	} );
 
 	QUnit.test( 'trackUnsubscribe', ( assert ) => {
