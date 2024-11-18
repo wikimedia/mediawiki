@@ -2713,7 +2713,7 @@
 	"delete_and_move_reason": "Delite pro permitter le renomination de “[[$1]]”",
 	"selfmove": "Le titulo es identic;\nnon pote renominar un pagina al mesme titulo.",
 	"immobile-source-namespace": "Non pote renominar paginas in le spatio de nomines “$1”",
-	"immobile-source-namespace-iw": "Paginas sur altere wikis non pote esser displaciate a iste wiki.",
+	"immobile-source-namespace-iw": "Paginas sur altere wikis non pote esser renominate desde iste wiki.",
 	"immobile-target-namespace": "Non pote renominar paginas verso le spatio de nomines “$1”",
 	"immobile-target-namespace-iw": "Un ligamine interwiki non es un destination valide pro le renomination de un pagina.",
 	"immobile-source-page": "Iste pagina non es renominabile.",

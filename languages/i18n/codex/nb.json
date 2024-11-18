@@ -4,6 +4,8 @@
 			"Jon Harald Søby"
 		]
 	},
+	"cdx-chip-input-chip-added": "Chippen $1 ble lagt til.",
+	"cdx-chip-input-chip-removed": "Chippen $1 ble fjernet.",
 	"cdx-input-chip-aria-description": "Trykk Enter for å redigere eller Delete for å fjerne.",
 	"cdx-dialog-close-button-label": "Lukk",
 	"cdx-label-optional-flag": "(valgfritt)",
@@ -17,5 +19,12 @@
 	"cdx-table-pager-button-last-page": "Siste side",
 	"cdx-table-pager-button-next-page": "Neste side",
 	"cdx-table-pager-button-prev-page": "Forrige side",
-	"cdx-table-pager-items-per-page-current": "$1 {{PLURAL:$1|rad|rader}}"
+	"cdx-table-pager-items-per-page-current": "$1 {{PLURAL:$1|rad|rader}}",
+	"cdx-table-pager-items-per-page-default": "Resultater per side",
+	"cdx-table-pagination-status-message-determinate-long": "Viser resultat $1–$2 av $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 av $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Viser resultat $1–$2 av mange",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 av mange",
+	"cdx-table-pagination-status-message-indeterminate-final": "Viser {{PLURAL:$1|det siste resultatet|de siste $1 resultatene}}",
+	"cdx-table-pagination-status-message-pending": "Laster resultater …"
 }

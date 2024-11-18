@@ -291,6 +291,7 @@
 	"config-install-updates": "불필요한 업데이트 실행 방지",
 	"config-install-updates-failed": "<strong>오류:</strong> 다음 오류로 테이블 안에 업데이트 키를 넣기에 실패했습니다: $1",
 	"config-install-sysop": "관리자 사용자 계정을 만드는 중",
+	"config-install-subscribe": "mediawiki-announce 가입 중",
 	"config-install-subscribe-fail": "미디어위키 알림을 구독할 수 없습니다[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL이 설치되어 있지 않고 <code>allow_url_fopen</code>을 사용할 수 없습니다.",
 	"config-install-subscribe-alreadysubscribed": "미디어위키 알림을 이미 구독중입니다.\n[https://lists.wikimedia.org/postorius/accounts/per-subscription-preferences/ 구독 설정을 확인하세요].",

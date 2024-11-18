@@ -322,6 +322,7 @@
 	"config-install-done-path": "<strong>Félicitations !</strong>\nVous avez installé MediaWiki.\n\nLe programme d’installation a généré un fichier <code>LocalSettings.php</code>.\nIl contient tous vos paramètres de configuration.\n\nVous devez le télécharger et le mettre dans <code>$4</code>. Le téléchargement devrait démarrer automatiquement.\n\nSi le téléchargement n’a pas été proposé ou si vous l’avez annulé, vous pouvez le lancer en cliquant sur le lien ci-dessous :\n\n$3\n\n<strong>Note :</strong> si vous ne le faites pas maintenant, ce fichier de configuration généré ne sera pas disponible plus tard si vous quittez l’installation sans l’avoir téléchargé.\n\nUne fois cela fait, vous pouvez <strong>[$2 accéder à votre wiki]</strong>.",
 	"config-install-success": "MediaWiki a été installé correctement. Vous pouvez maintenant visiter <$1$2> pour voir votre wiki.\nSi vous avez des questions, consultez notre foire aux questions :\n<https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ> ou utilisez un des\nforums d’assistance liés depuis cette page.",
 	"config-install-db-success": "La base de données a été bien installée",
+	"config-install-generic": "Exécution de la tâche « $1 »",
 	"config-download-localsettings": "Télécharger <code>LocalSettings.php</code>",
 	"config-help": "aide",
 	"config-help-tooltip": "cliquer pour agrandir",

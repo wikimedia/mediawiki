@@ -291,6 +291,7 @@
 	"config-install-done-path": "<strong>Conpliménti!</strong>\nTi t'æ instalòu MediaWiki.\n\nO progràmma d'instalaçión o l'à creòu 'n file <code>LocalSettings.php</code> ch'o contêgne tùtte e inpostaçioîn.\n\nTi ti dêvi scaregâlo e inserîlo in <code>$4</code>. O download o doviéiva partî outomaticaménte.\n\nSe o download o no pàrte, ò se o l'é stæto anulòu, ti ti pêu comensâlo tórna scicàndo in sce l'ingàncio chi de sótta:\n\n$3\n\n<strong>Nòtta:</strong> se ti sciórti òua da l'instalaçión sénsa scaregâ o file de configuraçión ch'o l'é stæto creòu, quésto o no saiâ ciù disponìbile.\n\nQuànde ti t'æ fæto, ti ti pêu <strong>[$2 intrâ inta tò wiki]</strong>.",
 	"config-install-success": "MediaWiki o l'é stæto instalòu coretaménte. Òua ti ti pêu vixitâ <$1$2> pe védde a tò wiki.\nSe ti t'æ de domànde, contròlla a nòstra FAQ: <https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ> o adêuvia 'n di forum de sùporto riepìloghæ in sce quélla pàgina.",
 	"config-install-db-success": "A bànca dæti a l'é stæta configurâ con sucèsso.",
+	"config-install-generic": "In ezecuçión o cónpito \"$1\"",
 	"config-download-localsettings": "Scàrega <code>LocalSettings.php</code>",
 	"config-help": "agiùtto",
 	"config-help-tooltip": "sciàcca pe ingrandî",

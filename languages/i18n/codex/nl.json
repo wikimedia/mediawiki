@@ -6,6 +6,8 @@
 			"Siebrand"
 		]
 	},
+	"cdx-chip-input-chip-added": "Het trefwoord $1 is toegevoegd.",
+	"cdx-chip-input-chip-removed": "Het trefwoord $1 is verwijderd.",
 	"cdx-input-chip-aria-description": "Druk op Enter om te bewerken of op Delete om te verwijderen.",
 	"cdx-dialog-close-button-label": "Sluiten",
 	"cdx-label-optional-flag": "(optioneel)",

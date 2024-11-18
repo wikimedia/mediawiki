@@ -3,7 +3,8 @@
 		"authors": [
 			"Caiofernandes",
 			"Hamilton Abreu",
-			"Mansil alfalb"
+			"Mansil alfalb",
+			"Mbs262"
 		]
 	},
 	"rest-prefix-mismatch": "O caminho pedido ($1) não estava no interior do caminho base da API REST ($2)",
@@ -16,6 +17,7 @@
 	"rest-nonexistent-revision": "A revisão especificada ($1) não existe.",
 	"rest-nonexistent-user": "O utilizador especificado ($1) não existe",
 	"rest-invalid-user": "O nome de utilizador especificado ($1) é inválido",
+	"rest-invalid-ip": "O endereço IP especificado ($1) é inválido",
 	"rest-invalid-title": "O título especificado ($1) não se refere a uma página da wiki.",
 	"rest-unsupported-content-type": "Tipo de conteúdo não suportado: $1",
 	"rest-permission-error": "Permissão negada: $1",

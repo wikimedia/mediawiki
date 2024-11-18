@@ -25,6 +25,7 @@
 	},
 	"preferences": "Innstillinger",
 	"prefsnologintext2": "Logg inn for å endre innstillingene dine.",
+	"prefsnologintext2-for-temp-user": "Opprett en konto for å endre innstillinger.",
 	"searchprefs": "Søk i innstillingene",
 	"searchprefs-noresults": "Ingen resultater",
 	"searchprefs-results": "$1 {{PLURAL:$1|resultat|resultater}}",
