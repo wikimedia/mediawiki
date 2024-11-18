@@ -9,6 +9,7 @@ use MediaWiki\Composer\PhpUnitSplitter\PhpUnitConsoleOutputProcessingException;
 use MediaWiki\Composer\PhpUnitSplitter\PhpUnitConsoleOutputProcessor;
 use MediaWiki\Composer\PhpUnitSplitter\PhpUnitXml;
 use MediaWiki\Maintenance\ForkController;
+use Shellbox\Command\UnboxedResult;
 use Shellbox\Shellbox;
 
 $basePath = getenv( 'MW_INSTALL_PATH' ) !== false ? getenv( 'MW_INSTALL_PATH' ) : __DIR__ . '/../..';
@@ -34,8 +35,14 @@ class ComposerLaunchParallel extends ForkController {
 	private const SPLIT_GROUP_COUNT = 8;
 
 	private const ALWAYS_EXCLUDE = [ 'Broken', 'ParserFuzz', 'Stub' ];
+	private const DATABASELESS_GROUPS = [];
+	private const DATABASE_GROUPS = [ 'Database' ];
 	private array $groups = [];
 	private array $excludeGroups = [];
+
+	public const EXIT_STATUS_SUCCESS = 0;
+	public const EXIT_STATUS_FAILURE = 1;
+	public const EXIT_STATUS_PHPUNIT_LIST_TESTS_ERROR = 2;
 
 	public function __construct(
 		array $groups,
@@ -81,12 +88,47 @@ class ComposerLaunchParallel extends ForkController {
 		return $status;
 	}
 
+	private static function exitAfterTestSuiteSplittingFailure( Event $event ) {
+		$event->getIO()->error( "Test suite splitting failed" );
+		exit( self::EXIT_STATUS_PHPUNIT_LIST_TESTS_ERROR );
+	}
+
+	public static function runLinearFallback( string $testSuite, Event $event ) {
+		$event->getIO()->warning( "Test suite splitting failed - falling back to linear run" );
+		$event->getIO()->write( "Running " . $testSuite . " phpunit suite databaseless tests..." );
+		$databaselessResult = self::executeComposerTestSuite(
+			$testSuite,
+			self::DATABASELESS_GROUPS,
+			self::getDatabaselessExcludeGroups()
+		);
+		print( $databaselessResult->getStdout() );
+		if ( $databaselessResult->getExitCode() !== 0 ) {
+			self::exitAfterTestSuiteSplittingFailure( $event );
+		}
+		$event->getIO()->write( "Running " . $testSuite . " phpunit suite database tests..." );
+		$databaseResult = self::executeComposerTestSuite(
+			$testSuite,
+			self::DATABASE_GROUPS,
+			self::getDatabaseExcludeGroups()
+		);
+		print( $databaseResult->getStdout() );
+		// Whether or not the `database` group run was a success, we exit here via the
+		// TestSuiteSplittingFailure path because the linear fallback has been triggered.
+		self::exitAfterTestSuiteSplittingFailure( $event );
+	}
+
 	protected function prepareEnvironment() {
 		// Skip parent class method to avoid errors:
 		// this script does not run inside MediaWiki, so there is no environment to prepare
 	}
 
-	private function runTestSuite( int $groupId ) {
+	private static function executeComposerTestSuite(
+		string $testSuite,
+		array $groups,
+		array $excludeGroups,
+		?string $resultsCacheFile = null,
+		?int $groupId = null
+	): UnboxedResult {
 		$executor = Shellbox::createUnboxedExecutor();
 		$command = $executor->createCommand()
 			->params(
@@ -94,20 +136,35 @@ class ComposerLaunchParallel extends ForkController {
 				'--timeout=0',
 				'phpunit:entrypoint',
 				'--',
-				'--testsuite', "split_group_$groupId",
-				'--exclude-group', implode( ",", array_diff( $this->excludeGroups, $this->groups ) )
+				'--testsuite', $testSuite,
+				'--exclude-group', implode( ",", $excludeGroups )
 			);
-		if ( count( $this->groups ) ) {
-			$command->params( '--group', implode( ',', $this->groups ) );
+		if ( count( $groups ) ) {
+			$command->params( '--group', implode( ',', $groups ) );
 		}
-		$groupName = $this->isDatabaseRun() ? "database" : "databaseless";
-		$command->params(
-			"--cache-result-file=.phpunit_group_{$groupId}_{$groupName}.result.cache"
-		);
+		if ( $resultsCacheFile ) {
+			$command->params(
+				"--cache-result-file=$resultsCacheFile"
+			);
+		}
 		$command->includeStderr( true );
-		$command->environment( [ 'MW_PHPUNIT_SPLIT_GROUP_ID' => $groupId ] );
+		if ( $groupId !== null ) {
+			$command->environment( [ 'MW_PHPUNIT_SPLIT_GROUP_ID' => $groupId ] );
+		}
 		print( "Running command '" . $command->getCommandString() . "' ..." . PHP_EOL );
-		$result = $command->execute();
+		return $command->execute();
+	}
+
+	private function runTestSuite( int $groupId ) {
+		$excludeGroups = array_diff( $this->excludeGroups, $this->groups );
+		$groupName = self::isDatabaseRunForGroups( $this->groups, $excludeGroups );
+		$result = self::executeComposerTestSuite(
+			"split_group_$groupId",
+			$this->groups,
+			$excludeGroups,
+			".phpunit_group_{$groupId}_{$groupName}.result.cache",
+			$groupId
+		);
 		$consoleOutput = $result->getStdout();
 		PhpUnitConsoleOutputProcessor::writeOutputToLogFile(
 			"phpunit_output_{$groupId}_{$groupName}.log",
@@ -148,14 +205,14 @@ class ComposerLaunchParallel extends ForkController {
 		if ( !PhpUnitXml::isPhpUnitXmlPrepared( $phpUnitConfig ) ) {
 			$event->getIO()->error( "phpunit.xml is not present or does not contain split test suites" );
 			$event->getIO()->error( "run `composer phpunit:prepare-parallel:...` to generate the split suites" );
-			exit( 1 );
+			exit( self::EXIT_STATUS_FAILURE );
 		}
 		$event->getIO()->info( "Running 'split_group_X' suites in parallel..." );
 		$launcher = new ComposerLaunchParallel( $groups, $excludeGroups );
 		$launcher->start();
 		if ( $launcher->allSuccessful() ) {
 			$event->getIO()->info( "All split_groups succeeded!" );
-			exit( 0 );
+			exit( self::EXIT_STATUS_SUCCESS );
 		} else {
 			$event->getIO()->write( PHP_EOL . PHP_EOL );
 			$event->getIO()->warning( "Some split_groups failed - returning failure status" );
@@ -167,7 +224,7 @@ class ComposerLaunchParallel extends ForkController {
 				self::SPLIT_GROUP_COUNT,
 				$event->getIO()
 			);
-			exit( 1 );
+			exit( self::EXIT_STATUS_FAILURE );
 		}
 	}
 
@@ -186,19 +243,27 @@ class ComposerLaunchParallel extends ForkController {
 		self::launchTests( $event, $groups, $excludeGroups );
 	}
 
+	private static function getDatabaseExcludeGroups(): array {
+		return array_merge( self::ALWAYS_EXCLUDE, [ 'Standalone' ] );
+	}
+
 	public static function launchTestsDatabase( Event $event ) {
 		self::launchTests(
 			$event,
-			[ 'Database' ],
-			array_merge( self::ALWAYS_EXCLUDE, [ 'Standalone' ] )
+			self::DATABASE_GROUPS,
+			self::getDatabaseExcludeGroups()
 		);
+	}
+
+	private static function getDatabaselessExcludeGroups(): array {
+		return array_merge( self::ALWAYS_EXCLUDE, [ 'Standalone', 'Database' ] );
 	}
 
 	public static function launchTestsDatabaseless( Event $event ) {
 		self::launchTests(
 			$event,
-			[],
-			array_merge( self::ALWAYS_EXCLUDE, [ 'Standalone', 'Database' ] )
+			self::DATABASELESS_GROUPS,
+			self::getDatabaselessExcludeGroups()
 		);
 	}
 }
