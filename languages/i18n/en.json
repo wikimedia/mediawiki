@@ -487,7 +487,6 @@
 	"login-migrated-generic": "Your account has been migrated, and your username no longer exist on this wiki.",
 	"loginlanguagelabel": "Language: $1",
 	"loginlanguagelinks": "* {{#language:de}}|de\n* {{#language:en}}|en\n* {{#language:eo}}|eo\n* {{#language:fr}}|fr\n* {{#language:es}}|es\n* {{#language:it}}|it\n* {{#language:nl}}|nl",
-	"suspicious-userlogout": "Your request to log out was denied because it looks like it was sent by a broken browser or caching proxy.",
 	"createacct-another-realname-tip": "Real name is optional.\nIf you choose to provide it, this will be used for giving the user attribution for their work.",
 	"pt-login": "Log in",
 	"pt-login-button": "Log in",
