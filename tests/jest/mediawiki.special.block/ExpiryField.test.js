@@ -92,12 +92,16 @@ describe( 'ExpiryField', () => {
 	} );
 
 	it.each( presetTestCases )(
-		'should preselect from fields and set values ($title)', ( { config, expected } ) => {
+		'should preselect from fields and set values ($title)', async ( { config, expected } ) => {
 			mockMwConfigGet( config );
 			mw.util.isInfinity = jest.fn().mockReturnValue( !!config.isInfinity );
 			const wrapper = mount( ExpiryField, {
-				global: { plugins: [ createTestingPinia() ] }
+				global: { plugins: [ createTestingPinia( { stubActions: false } ) ] }
 			} );
+			const store = useBlockStore();
+			store.$reset();
+			await wrapper.vm.$nextTick();
+
 			Object.keys( expected ).forEach( ( key ) => {
 				// Test against the app instance
 				expect( wrapper.vm[ key ] ).toStrictEqual( expected[ key ] );

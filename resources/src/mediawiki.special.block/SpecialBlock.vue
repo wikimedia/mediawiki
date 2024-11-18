@@ -105,6 +105,7 @@ module.exports = exports = defineComponent( {
 	},
 	setup() {
 		const store = useBlockStore();
+		store.$reset();
 		const blockEnableMultiblocks = mw.config.get( 'blockEnableMultiblocks' ) || false;
 		const blockShowSuppressLog = mw.config.get( 'blockShowSuppressLog' ) || false;
 		const success = ref( false );
@@ -158,6 +159,7 @@ module.exports = exports = defineComponent( {
 						success.value = true;
 						formErrors.value = [];
 						formSubmitted.value = false;
+						store.$reset();
 					} )
 					.fail( ( _, errorObj ) => {
 						formErrors.value = [ errorObj.error.info ];
@@ -165,7 +167,8 @@ module.exports = exports = defineComponent( {
 					} )
 					.always( () => {
 						formDisabled.value = false;
-						messagesContainer.value.scrollIntoView( { behavior: 'smooth' } );
+						// Scroll to the success message after the form has been submitted.
+						nextTick( () => messagesContainer.value.scrollIntoView( { behavior: 'smooth' } ) );
 						if ( success.value ) {
 							// Bump the submitCount (to re-render the logs) after scrolling
 							// because the log tables may change the length of the page.

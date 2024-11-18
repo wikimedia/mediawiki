@@ -161,7 +161,6 @@ module.exports = exports = defineComponent( {
 		 * Set the form fields according to the given expiry.
 		 *
 		 * @param {string} given
-		 * @return {boolean} false if the given expiry is invalid or of an unsupported format.
 		 */
 		function setDurationFromGiven( given ) {
 			const optionsContainsValue = ( opts, v ) => opts.some( ( option ) => option.value === v );
@@ -181,8 +180,6 @@ module.exports = exports = defineComponent( {
 					expiryType.value = 'custom-duration';
 					customDurationNumber.value = Number( number );
 					customDurationUnit.value = unitPlural;
-				} else {
-					return false;
 				}
 			} else if ( /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test( given ) ) {
 				expiryType.value = 'datetime';
@@ -194,16 +191,7 @@ module.exports = exports = defineComponent( {
 				customDurationNumber.value = 1;
 				customDurationUnit.value = 'hours';
 				datetime.value = '';
-				return false;
 			}
-
-			return true;
-		}
-
-		// Set the form fields according to the preselected expiry (?wpExpiry=).
-		if ( !setDurationFromGiven( mw.config.get( 'blockExpiryPreset' ) ) ) {
-			// If no expiry is preselected, attempt to go by [[MediaWiki:Ipb-default-expiry]].
-			setDurationFromGiven( mw.config.get( 'blockExpiryDefault' ) );
 		}
 
 		const { expiry } = storeToRefs( store );
@@ -224,14 +212,14 @@ module.exports = exports = defineComponent( {
 			if ( newValue !== computedModelValue.value ) {
 				setDurationFromGiven( newValue );
 			}
-		} );
+		}, { immediate: true } );
 
 		/**
 		 * The preset duration field is a dropdown that requires custom validation.
 		 * We simply need to assert something is selected, but only do so after form submission.
 		 */
-		watch( () => props.formSubmitted, () => {
-			if ( expiryType.value === 'preset-duration' && !presetDuration.value ) {
+		watch( () => props.formSubmitted, ( submitted ) => {
+			if ( submitted && expiryType.value === 'preset-duration' && !presetDuration.value ) {
 				presetDurationStatus.value = 'error';
 				presetDurationMessages.value = { error: mw.msg( 'ipb_expiry_invalid' ) };
 			}

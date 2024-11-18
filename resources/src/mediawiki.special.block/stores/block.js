@@ -5,10 +5,10 @@ const api = new mw.Api();
 module.exports = exports = defineStore( 'block', () => {
 	const formErrors = ref( mw.config.get( 'blockPreErrors' ) || [] );
 	const targetUser = ref( mw.config.get( 'blockTargetUser' ) || '' );
-	const alreadyBlocked = ref( mw.config.get( 'blockAlreadyBlocked' ) || false );
-	const type = ref( mw.config.get( 'blockTypePreset' ) || 'sitewide' );
-	const expiry = ref( '' );
-	const partialOptions = ref( [ 'ipb-action-create' ] );
+	const alreadyBlocked = ref( Boolean );
+	const type = ref( String );
+	const expiry = ref( String );
+	const partialOptions = ref( Array );
 	const pages = ref(
 		( mw.config.get( 'blockPageRestrictions' ) || '' )
 			.split( '\n' )
@@ -20,15 +20,13 @@ module.exports = exports = defineStore( 'block', () => {
 			.filter( Boolean )
 			.map( Number )
 	);
-	const reason = ref( 'other' );
-	const reasonOther = ref( mw.config.get( 'blockReasonOtherPreset' ) || '' );
-
+	const reason = ref( String );
+	const reasonOther = ref( String );
 	const details = ref( mw.config.get( 'blockDetailsPreset' ) || [] );
-
-	const createAccount = ref( details.value.indexOf( 'wpCreateAccount' ) !== -1 );
-	const disableEmail = ref( details.value.indexOf( 'wpDisableEmail' ) !== -1 );
+	const createAccount = ref( Boolean );
+	const disableEmail = ref( Boolean );
 	const disableEmailVisible = ref( mw.config.get( 'blockDisableEmailVisible' ) || false );
-	const disableUTEdit = ref( details.value.indexOf( 'wpDisableUTEdit' ) !== -1 );
+	const disableUTEdit = ref( Boolean );
 	const disableUTEditVisible = computed( () => {
 		const isVisible = mw.config.get( 'blockDisableUTEditVisible' ) || false;
 		const isPartial = type.value === 'partial';
@@ -38,14 +36,14 @@ module.exports = exports = defineStore( 'block', () => {
 
 	const additionalDetails = ref( mw.config.get( 'blockAdditionalDetailsPreset' ) || [] );
 
-	const autoBlock = ref( additionalDetails.value.indexOf( 'wpAutoBlock' ) !== -1 );
+	const autoBlock = ref( Boolean );
 	const autoBlockExpiry = mw.config.get( 'blockAutoblockExpiry' ) || '';
 	// eslint-disable-next-line arrow-body-style
 	const autoBlockVisible = computed( () => {
 		return !mw.util.isIPAddress( targetUser.value, true );
 	} );
 
-	const hideName = ref( additionalDetails.value.indexOf( 'wpHideName' ) !== -1 );
+	const hideName = ref( Boolean );
 	// Hide the 'Hide username' checkbox if the user doesn't have the hideuser right (this is passed from PHP),
 	// and the block is not sitewide and infinite.
 	const hideNameVisible = computed( () => {
@@ -55,9 +53,9 @@ module.exports = exports = defineStore( 'block', () => {
 			mw.util.isInfinity( expiry.value );
 	} );
 
-	const watch = ref( additionalDetails.value.indexOf( 'wpWatch' ) !== -1 );
+	const watch = ref( Boolean );
 
-	const hardBlock = ref( additionalDetails.value.indexOf( 'wpHardBlock' ) !== -1 );
+	const hardBlock = ref( Boolean );
 	// eslint-disable-next-line arrow-body-style
 	const hardBlockVisible = computed( () => {
 		return mw.util.isIPAddress( targetUser.value, true ) || false;
@@ -73,7 +71,33 @@ module.exports = exports = defineStore( 'block', () => {
 		);
 	} );
 
-	const confirmationChecked = ref( false );
+	const confirmationChecked = ref( Boolean );
+
+	function $reset() {
+		alreadyBlocked.value = mw.config.get( 'blockAlreadyBlocked' ) || false;
+		type.value = mw.config.get( 'blockTypePreset' ) || 'sitewide';
+		pages.value = ( mw.config.get( 'blockPageRestrictions' ) || '' )
+			.split( '\n' )
+			.filter( Boolean );
+		namespaces.value = ( mw.config.get( 'blockNamespaceRestrictions' ) || '' )
+			.split( '\n' )
+			.filter( Boolean )
+			.map( Number );
+
+		expiry.value = mw.config.get( 'blockExpiryPreset' ) || mw.config.get( 'blockExpiryDefault' ) || '';
+		partialOptions.value = [ 'ipb-action-create' ];
+		reason.value = 'other';
+		reasonOther.value = mw.config.get( 'blockReasonOtherPreset' ) || '';
+		createAccount.value = details.value.indexOf( 'wpCreateAccount' ) !== -1;
+		disableEmail.value = details.value.indexOf( 'wpDisableEmail' ) !== -1;
+		disableUTEdit.value = details.value.indexOf( 'wpDisableUTEdit' ) !== -1;
+		watch.value = additionalDetails.value.indexOf( 'wpWatch' ) !== -1;
+		hardBlock.value = additionalDetails.value.indexOf( 'wpHardBlock' ) !== -1;
+		hideName.value = additionalDetails.value.indexOf( 'wpHideName' ) !== -1;
+		autoBlock.value = additionalDetails.value.indexOf( 'wpAutoBlock' ) !== -1;
+		autoBlockExpiry.value = mw.config.get( 'blockAutoblockExpiry' ) || '';
+		confirmationChecked.value = false;
+	}
 
 	/**
 	 * Execute the block.
@@ -187,6 +211,7 @@ module.exports = exports = defineStore( 'block', () => {
 		hardBlockVisible,
 		confirmationRequired,
 		confirmationChecked,
-		doBlock
+		doBlock,
+		$reset
 	};
 } );
