@@ -226,7 +226,15 @@ module.exports = exports = defineComponent( {
 									duration: data.blocks[ i ].expiry === 'infinity' ? 'infinity' : null
 								},
 								blockedby: data.blocks[ i ].by,
-								// parameters: data.blocks[ i ].range,
+								parameters:
+									[
+										data.blocks[ i ].anononly ? 'anononly' : null,
+										data.blocks[ i ].nocreate ? 'nocreate' : null,
+										data.blocks[ i ].autoblock ? null : 'noautoblock',
+										data.blocks[ i ].noemail ? 'noemail' : null,
+										data.blocks[ i ].allowusertalk ? null : 'nousertalk',
+										data.blocks[ i ].hidden ? 'hiddenname' : null
+									].filter( ( e ) => e !== null ),
 								reason: data.blocks[ i ].reason
 							} );
 						}
