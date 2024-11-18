@@ -146,13 +146,16 @@ class MessageCache implements LoggerAwareInterface {
 	 */
 	private $parserOptions;
 
-	/** @var ?Parser Lazy-created via self::getParser() */
-	private $parser = null;
+	/** @var Parser[] Lazy-created via self::getParser() */
+	private array $parsers = [];
+	private int $curParser = -1;
 
 	/**
-	 * @var bool
+	 * Parsing some messages may require parsing another message first, due to special page
+	 * transclusion and some hooks (T372891). This constant is the limit of nesting depth where
+	 * we'll display an error instead of the other message.
 	 */
-	private $inParser = false;
+	private const MAX_PARSER_DEPTH = 5;
 
 	/** @var WANObjectCache */
 	private $wanCache;
@@ -1462,33 +1465,44 @@ class MessageCache implements LoggerAwareInterface {
 	 */
 	public function transform( $message, $interface = false, $language = null, ?PageReference $page = null ) {
 		// Avoid creating parser if nothing to transform
-		if ( $this->inParser || !str_contains( $message, '{{' ) ) {
+		if ( !str_contains( $message, '{{' ) ) {
 			return $message;
 		}
 
-		$parser = $this->getParser();
 		$popts = $this->getParserOptions();
 		$popts->setInterfaceMessage( $interface );
 		$popts->setTargetLanguage( $language );
 
 		$userlang = $popts->setUserLang( $language );
-		$this->inParser = true;
-		$message = $parser->transformMsg( $message, $popts, $page );
-		$this->inParser = false;
+		try {
+			$this->curParser++;
+			$parser = $this->getParser();
+			if ( !$parser ) {
+				return '<span class="error">Message transform depth limit exceeded</span>';
+			}
+			$message = $parser->transformMsg( $message, $popts, $page );
+		} finally {
+			$this->curParser--;
+		}
 		$popts->setUserLang( $userlang );
 
 		return $message;
 	}
 
 	/**
-	 * @return Parser
+	 * You should increment $this->curParser before calling this method and decrement it after
+	 * to support recursive calls to message parsing.
 	 */
-	public function getParser() {
-		if ( !$this->parser ) {
-			$this->parser = $this->parserFactory->create();
+	private function getParser(): ?Parser {
+		if ( $this->curParser >= self::MAX_PARSER_DEPTH ) {
+			$this->logger->debug( __METHOD__ . ": Refusing to create a new parser with index {$this->curParser}" );
+			return null;
 		}
-
-		return $this->parser;
+		if ( !isset( $this->parsers[ $this->curParser ] ) ) {
+			$this->logger->debug( __METHOD__ . ": Creating a new parser with index {$this->curParser}" );
+			$this->parsers[ $this->curParser ] = $this->parserFactory->create();
+		}
+		return $this->parsers[ $this->curParser ];
 	}
 
 	/**
@@ -1513,11 +1527,11 @@ class MessageCache implements LoggerAwareInterface {
 			'unwrap' => true,
 			'userLang' => $language,
 		];
-		$po = $this->inParser ?
-			// Don't allow recursive parse; just return the wikitext as-is
-			new ParserOutput( htmlspecialchars( $text ) ) :
-			// Parse $text to yield a ParserOutput
-			$this->parse( $text, $contextPage, true, $interface, $language );
+		// Parse $text to yield a ParserOutput
+		$po = $this->parse( $text, $contextPage, true, $interface, $language );
+		if ( is_string( $po ) ) {
+			$po = new ParserOutput( $po );
+		}
 		// Run the post-processing pipeline
 		return MediaWikiServices::getInstance()->getDefaultOutputPipeline()
 				->run( $po, $this->getParserOptions(), $options );
@@ -1530,7 +1544,6 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param bool $interface Whether this is an interface message
 	 * @param Language|StubUserLang|string|null $language Language code
 	 * @return ParserOutput|string
-	 *
 	 */
 	public function parse( $text, ?PageReference $page = null, $linestart = true,
 		$interface = false, $language = null
@@ -1538,12 +1551,6 @@ class MessageCache implements LoggerAwareInterface {
 		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle
 		global $wgTitle;
 
-		if ( $this->inParser ) {
-			wfDeprecated( __METHOD__ . ': when already in parser, returning a string' );
-			return htmlspecialchars( $text );
-		}
-
-		$parser = $this->getParser();
 		$popts = $this->getParserOptions();
 		$popts->setInterfaceMessage( $interface );
 
@@ -1570,11 +1577,16 @@ class MessageCache implements LoggerAwareInterface {
 			);
 		}
 
-		$this->inParser = true;
-		$res = $parser->parse( $text, $page, $popts, $linestart );
-		$this->inParser = false;
-
-		return $res;
+		try {
+			$this->curParser++;
+			$parser = $this->getParser();
+			if ( !$parser ) {
+				return '<span class="error">Message parse depth limit exceeded</span>';
+			}
+			return $parser->parse( $text, $page, $popts, $linestart );
+		} finally {
+			$this->curParser--;
+		}
 	}
 
 	public function disable() {
