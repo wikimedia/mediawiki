@@ -1126,6 +1126,10 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 
 		$this->queryFlagsUsed = $flags;
 
+		// Fandom-start: restore UserLoadFromDatabase hook
+		$this->getHookContainer()->run( 'UserLoadFromDatabase', [ $this, &$row ] );
+		// Fandom-end
+
 		if ( $row !== false ) {
 			// Initialise user table data
 			$this->loadFromRow( $row );
