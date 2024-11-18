@@ -85,8 +85,7 @@ module.exports = exports = defineStore( 'block', () => {
 			action: 'block',
 			format: 'json',
 			user: targetUser.value,
-			// Remove browser-specific milliseconds for consistency.
-			expiry: expiry.value.replace( /\.000$/, '' ),
+			expiry: expiry.value,
 			// Localize errors
 			uselang: mw.config.get( 'wgUserLanguage' ),
 			errorlang: mw.config.get( 'wgUserLanguage' ),

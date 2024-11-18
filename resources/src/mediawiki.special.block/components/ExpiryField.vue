@@ -157,11 +157,6 @@ module.exports = exports = defineComponent( {
 			}
 		} );
 
-		watch( computedModelValue, ( newValue ) => {
-			const { expiry } = storeToRefs( store );
-			expiry.value = newValue;
-		} );
-
 		/**
 		 * Set the form fields according to the given expiry.
 		 *
@@ -193,7 +188,12 @@ module.exports = exports = defineComponent( {
 				expiryType.value = 'datetime';
 				datetime.value = given;
 			} else {
-				// Unsupported format.
+				// Unsupported format; Reset to defaults.
+				expiryType.value = 'preset-duration';
+				presetDuration.value = null;
+				customDurationNumber.value = 1;
+				customDurationUnit.value = 'hours';
+				datetime.value = '';
 				return false;
 			}
 
@@ -205,6 +205,26 @@ module.exports = exports = defineComponent( {
 			// If no expiry is preselected, attempt to go by [[MediaWiki:Ipb-default-expiry]].
 			setDurationFromGiven( mw.config.get( 'blockExpiryDefault' ) );
 		}
+
+		const { expiry } = storeToRefs( store );
+
+		// Update the store's expiry value when the computed value changes.
+		watch( computedModelValue, ( newValue ) => {
+			if ( newValue !== expiry.value ) {
+				// Remove browser-specific milliseconds from datetime for consistency.
+				if ( expiryType.value === 'datetime' ) {
+					newValue = newValue.replace( /\.000$/, '' );
+				}
+				expiry.value = newValue;
+			}
+		} );
+
+		// Update the form fields when the store's expiry value changes.
+		watch( expiry, ( newValue ) => {
+			if ( newValue !== computedModelValue.value ) {
+				setDurationFromGiven( newValue );
+			}
+		} );
 
 		/**
 		 * The preset duration field is a dropdown that requires custom validation.
