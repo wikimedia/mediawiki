@@ -339,6 +339,8 @@ class Parser {
 	private Title $mTitle;
 	/** Output type, one of the OT_xxx constants */
 	private int $mOutputType;
+	/** When false, suppress extension tag processing for OT_PREPROCESS */
+	private bool $mStripExtTags = true;
 	/**
 	 * Shortcut alias, see Parser::setOutputType()
 	 * @deprecated since 1.35
@@ -2927,10 +2929,12 @@ class Parser {
 	 *   explicitly.
 	 * @param bool $argsOnly Only do argument (triple-brace) expansion, not
 	 *   double-brace expansion.
+	 * @param bool $stripExtTags When true, put extension tags in general strip state; when
+	 *   false extension tags are skipped during OT_PREPROCESS
 	 * @return string
 	 * @since 1.24 method is public
 	 */
-	public function replaceVariables( $text, $frame = false, $argsOnly = false ) {
+	public function replaceVariables( $text, $frame = false, $argsOnly = false, $stripExtTags = true ) {
 		# Is there any text? Also, Prevent too big inclusions!
 		$textSize = strlen( $text );
 		if ( $textSize < 1 || $textSize > $this->mOptions->getMaxIncludeSize() ) {
@@ -2950,7 +2954,9 @@ class Parser {
 
 		$dom = $this->preprocessToDom( $text );
 		$flags = $argsOnly ? PPFrame::NO_TEMPLATES : 0;
+		[ $stripExtTags, $this->mStripExtTags ] = [ $this->mStripExtTags, $stripExtTags ];
 		$text = $frame->expand( $dom, $flags );
+		$this->mStripExtTags = $stripExtTags;
 
 		return $text;
 	}
@@ -4046,6 +4052,9 @@ class Parser {
 					return $close;
 				}
 				$output = "<$name$attrText>$content$close";
+			}
+			if ( !$this->mStripExtTags ) {
+				$markerType = 'none';
 			}
 		}
 

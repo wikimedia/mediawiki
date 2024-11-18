@@ -793,6 +793,7 @@ return [
 			'ParsoidSettings' => [
 				'useSelser' => true,
 			],
+			'ParsoidFragmentSupport' => false,
 			'ParserEnableLegacyMediaDOM' => false,
 			'ParserEnableLegacyHeadingDOM' => true,
 			'UseContentMediaStyles' => false,
@@ -2787,6 +2788,7 @@ return [
 			'UrlProtocols' => 'array',
 			'TidyConfig' => 'object',
 			'ParsoidSettings' => 'object',
+			'ParsoidFragmentSupport' => 'boolean',
 			'NoFollowNsExceptions' => 'array',
 			'NoFollowDomainExceptions' => 'array',
 			'EnableMagicLinks' => 'object',

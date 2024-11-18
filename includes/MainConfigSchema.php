@@ -6573,6 +6573,18 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Enable fragment support in Parsoid (transclusions returning
+	 * html).  This is a temporary configuration variable to allow
+	 * testing a new parsoid feature, which will become the default
+	 * in future releases.
+	 * @unstable EXPERIMENTAL
+	 */
+	public const ParsoidFragmentSupport = [
+		'default' => false,
+		'type' => 'boolean',
+	];
+
+	/**
 	 * Enable legacy media HTML structure in the output from the Parser.  The
 	 * alternative modern HTML structure that replaces it is described at
 	 * https://www.mediawiki.org/wiki/Parsing/Media_structure
