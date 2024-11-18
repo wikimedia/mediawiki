@@ -133,9 +133,7 @@
 		"ext-redis": "Enables use of Redis for caching purposes.",
 		"ext-sockets": "Enable CLI concurrent processing, e.g. for rebuildLocalisationCache.php.",
 		"ext-wikidiff2": "Faster text difference engine.",
-		"ext-wincache": "Enables use of WinCache on Windows.",
-		"ext-zlib": "Enable use of GZIP compression, e.g. for SqlBagOStuff (ParserCache), $wgCompressRevisions, or $wgUseFileCache.",
-		"monolog/monolog": "Enable use of MonologSpi ($wgMWLoggerDefaultSpi)."
+		"ext-zlib": "Enable use of GZIP compression, e.g. for SqlBagOStuff (ParserCache), $wgCompressRevisions, or $wgUseFileCache."
 	},
 	"autoload": {
 		"psr-4": {
