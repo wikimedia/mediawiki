@@ -3,7 +3,7 @@
 use MediaWiki\Maintenance\MWDoxygenFilter;
 
 /**
- * @covers \MediaWiki\Namespace\MWDoxygenFilter
+ * @covers \MediaWiki\Maintenance\MWDoxygenFilter
  */
 class MWDoxygenFilterTest extends \PHPUnit\Framework\TestCase {
 
