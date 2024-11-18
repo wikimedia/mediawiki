@@ -92,9 +92,6 @@ use Wikimedia\WrappedStringList;
  *
  * @todo FIXME: Another class handles sending the whole page to the client.
  *
- * Some comments comes from a pairing session between Zak Greant and Antoine Musso
- * in November 2010.
- *
  * @todo document
  */
 class OutputPage extends ContextSource {
@@ -468,7 +465,7 @@ class OutputPage extends ContextSource {
 	private string $cspOutputMode = self::CSP_HEADERS;
 
 	/**
-	 * To eliminate redundancy between information kept in OutputPage
+	 * To eliminate the redundancy between information kept in OutputPage
 	 * for non-article pages and metadata kept by the Parser for
 	 * article pages, we create a ParserOutput for the OutputPage
 	 * which will collect metadata such as categories, index policy,
@@ -478,14 +475,14 @@ class OutputPage extends ContextSource {
 	private ParserOutput $metadata;
 
 	/**
-	 * @var array A cache of the names of the cookies that will influence the cache
+	 * @var array A cache of the cookie names that will influence the cache
 	 */
 	private static $cacheVaryCookies = null;
 
 	/**
 	 * Constructor for OutputPage. This should not be called directly.
-	 * Instead a new RequestContext should be created and it will implicitly create
-	 * a OutputPage tied to that context.
+	 * Instead, a new RequestContext should be created, and it will implicitly create
+	 * an OutputPage tied to that context.
 	 * @param IContextSource $context
 	 */
 	public function __construct( IContextSource $context ) {
@@ -503,7 +500,8 @@ class OutputPage extends ContextSource {
 		$this->deprecatePublicProperty( 'mNoGallery', '1.38', __CLASS__ );
 		$this->setContext( $context );
 		$this->metadata = new ParserOutput( null );
-		$this->metadata->setPreventClickjacking( true ); // OutputPage default
+		// OutputPage default
+		$this->metadata->setPreventClickjacking( true );
 		$this->CSP = new ContentSecurityPolicy(
 			$context->getRequest()->response(),
 			$context->getConfig(),
@@ -664,7 +662,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Filter an array of modules to remove insufficiently trustworthy members, and modules
+	 * Filter an array of modules to remove members not considered to be trustworthy, and modules
 	 * which are no longer registered (eg a page is cached before an extension is disabled)
 	 * @param string[] $modules
 	 * @param string|null $position Unused
@@ -690,7 +688,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get the list of modules to include on this page
 	 *
-	 * @param bool $filter Whether to filter out insufficiently trustworthy modules
+	 * @param bool $filter Whether to filter out any modules that are not considered to be sufficiently trusted
 	 * @param string|null $position Unused
 	 * @param string $param
 	 * @param string $type
@@ -1240,7 +1238,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Same as page title but only contains name of the page, not any other text.
+	 * Same as page title but only contains the name of the page, not any other text.
 	 *
 	 * @since 1.32
 	 * @param string $html Page title text.
@@ -1253,7 +1251,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Returns page display title.
 	 *
-	 * Performs some normalization, but this not as strict the magic word.
+	 * Performs some normalization, but this is not as strict the magic word.
 	 *
 	 * @since 1.32
 	 * @return string HTML
@@ -1268,7 +1266,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Returns page display title without namespace prefix if possible.
+	 * Returns page display title without the namespace prefix if possible.
 	 *
 	 * This method is unreliable and best avoided. (T314399)
 	 *
@@ -1708,7 +1706,7 @@ class OutputPage extends ContextSource {
 				];
 				$this->mCategoriesSorted = false;
 				// Setting mCategories and mCategoryLinks is redundant here,
-				// but it is needed for compatibility until mCategories and
+				// but is needed for compatibility until mCategories and
 				// mCategoryLinks are made private (T301020)
 				$this->mCategories[$type][] = $title->getText();
 				$this->mCategoryLinks[$type][] = $link;
@@ -1852,7 +1850,7 @@ class OutputPage extends ContextSource {
 	 * Add an array of indicators, with their identifiers as array
 	 * keys and HTML contents as values.
 	 *
-	 * In case of duplicate keys, existing values are overwritten.
+	 * In the case of duplicate keys, existing values are overwritten.
 	 *
 	 * @note External code which calls this method should ensure that
 	 * any indicators sourced from parsed wikitext are wrapped with
@@ -1890,7 +1888,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Adds help link with an icon via page indicators.
+	 * Adds a help link with an icon via page indicators.
 	 * Link target can be overridden by a local message containing a wikilink:
 	 * the message key is: lowercase action or special page name + '-helppage'.
 	 * @param string $to Target MediaWiki.org page title or encoded URL.
@@ -2180,7 +2178,7 @@ class OutputPage extends ContextSource {
 		if ( $title === null ) {
 			throw new RuntimeException( 'No title in ' . __METHOD__ );
 		}
-		$this->addWikiTextTitleInternal( $text, $title, $linestart, /*interface*/true );
+		$this->addWikiTextTitleInternal( $text, $title, $linestart, true );
 	}
 
 	/**
@@ -2204,8 +2202,10 @@ class OutputPage extends ContextSource {
 			throw new RuntimeException( 'No title in ' . __METHOD__ );
 		}
 		$this->addWikiTextTitleInternal(
-			$text, $title,
-			/*linestart*/true, /*interface*/true,
+			$text,
+			$title,
+			true,
+			true,
 			$wrapperClass
 		);
 	}
@@ -2230,7 +2230,7 @@ class OutputPage extends ContextSource {
 		if ( !$title ) {
 			throw new RuntimeException( 'No title in ' . __METHOD__ );
 		}
-		$this->addWikiTextTitleInternal( $text, $title, $linestart, /*interface*/false );
+		$this->addWikiTextTitleInternal( $text, $title, $linestart, false );
 	}
 
 	/**
@@ -2531,7 +2531,8 @@ class OutputPage extends ContextSource {
 		$skinOptions = $skin->getOptions();
 		$oldText = $parserOutput->getRawText();
 		$poOptions += [
-			'allowClone' => false, // T371022
+			// T371022
+			'allowClone' => false,
 			'skin' => $skin,
 			'injectTOC' => $skinOptions['toc'],
 		];
@@ -2615,7 +2616,7 @@ class OutputPage extends ContextSource {
 			throw new RuntimeException( 'No title in ' . __METHOD__ );
 		}
 		$po = $this->parseInternal(
-			$text, $title, $linestart, /*interface*/false
+			$text, $title, $linestart, false
 		);
 		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
 		// TODO T371008 consider if using the Content framework makes sense instead of creating the pipeline
@@ -2644,7 +2645,7 @@ class OutputPage extends ContextSource {
 			throw new RuntimeException( 'No title in ' . __METHOD__ );
 		}
 		$po = $this->parseInternal(
-			$text, $title, $linestart, /*interface*/true
+			$text, $title, $linestart, true
 		);
 		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
 		// TODO T371008 consider if using the Content framework makes sense instead of creating the pipeline
@@ -2732,7 +2733,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * This sets and returns $minTTL if $mtime is false or null. Otherwise,
 	 * the TTL is higher the older the $mtime timestamp is. Essentially, the
-	 * TTL is 90% of the age of the object, subject to the min and max.
+	 * TTL is 90% of the objects age, subject to the min and max.
 	 *
 	 * @param string|int|float|false|null $mtime Last-Modified timestamp
 	 * @param int $minTTL Minimum TTL in seconds [default: 1 minute]
@@ -2744,7 +2745,8 @@ class OutputPage extends ContextSource {
 		$maxTTL = $maxTTL ?: $this->getConfig()->get( MainConfigNames::CdnMaxAge );
 
 		if ( $mtime === null || $mtime === false ) {
-			return; // entity does not exist
+			// entity does not exist
+			return;
 		}
 
 		$age = MWTimestamp::time() - (int)wfTimestamp( TS_UNIX, $mtime );
@@ -3199,7 +3201,7 @@ class OutputPage extends ContextSource {
 			MWDebug::addModules( $this );
 
 			// Hook that allows last minute changes to the output page, e.g.
-			// adding of CSS or Javascript by extensions, adding CSP sources.
+			// adding of CSS or JavaScript by extensions, adding CSP sources.
 			$this->getHookRunner()->onBeforePageDisplay( $this, $sk );
 
 			if ( $this->cspOutputMode === self::CSP_HEADERS ) {
@@ -3375,7 +3377,8 @@ class OutputPage extends ContextSource {
 				$msg = 'nocreatetext';
 			} elseif ( $action == 'upload' ) {
 				$msg = 'uploadnologintext';
-			} else { # Read
+			} else {
+				# Read
 				$msg = 'loginreqpagetext';
 				$displayReturnto = Title::newMainPage();
 			}
@@ -3534,7 +3537,8 @@ class OutputPage extends ContextSource {
 	public function showLagWarning( $lag ) {
 		$config = $this->getConfig();
 		if ( $lag >= $config->get( MainConfigNames::DatabaseReplicaLagWarning ) ) {
-			$lag = floor( $lag ); // floor to avoid nano seconds to display
+			// floor to avoid nano seconds to display
+			$lag = floor( $lag );
 			$message = $lag < $config->get( MainConfigNames::DatabaseReplicaLagCritical )
 				? 'lag-warn-normal'
 				: 'lag-warn-high';
@@ -3737,7 +3741,7 @@ class OutputPage extends ContextSource {
 			$moduleStyles = $this->getModuleStyles( /*filter*/ true );
 
 			// Preload getTitleInfo for isKnownEmpty calls below and in RL\ClientHtml
-			// Separate user-specific batch for improved cache-hit ratio.
+			// Separate user-specific batch for an improved cache-hit ratio.
 			$userBatch = [ 'user.styles', 'user' ];
 			$siteBatch = array_diff( $moduleStyles, $userBatch );
 			RL\WikiModule::preloadTitleInfo( $context, $siteBatch );
@@ -3953,7 +3957,7 @@ class OutputPage extends ContextSource {
 		$chunks[] = $this->mScripts;
 
 		// Keep hostname and backend time as the first variables for quick view-source access.
-		// This other variables will form a very long inline blob.
+		// These other variables will form a very long inline blob.
 		$vars = [];
 		if ( $this->getConfig()->get( MainConfigNames::ShowHostnames ) ) {
 			$vars['wgHostname'] = wfHostname();
@@ -4028,7 +4032,8 @@ class OutputPage extends ContextSource {
 	public function getJSVars( ?int $flag = null ) {
 		$curRevisionId = 0;
 		$articleId = 0;
-		$canonicalSpecialPageName = false; # T23115
+		// T23115
+		$canonicalSpecialPageName = false;
 		$services = MediaWikiServices::getInstance();
 
 		$title = $this->getTitle();
@@ -4044,7 +4049,7 @@ class OutputPage extends ContextSource {
 		$relevantTitle = $sk->getRelevantTitle();
 
 		if ( $ns === NS_SPECIAL ) {
-			[ $canonicalSpecialPageName, /*...*/ ] =
+			[ $canonicalSpecialPageName, ] =
 				$services->getSpecialPageFactory()->
 					resolveAlias( $title->getDBkey() );
 		} elseif ( $this->canUseWikiPage() ) {
@@ -4307,7 +4312,7 @@ class OutputPage extends ContextSource {
 			] );
 		}
 
-		# Browser based phonenumber detection
+		# Browser based phone number detection
 		if ( $config->get( MainConfigNames::BrowserFormatDetection ) !== false ) {
 			$tags['meta-format-detection'] = Html::element( 'meta', [
 				'name' => 'format-detection',
@@ -4350,12 +4355,12 @@ class OutputPage extends ContextSource {
 			}
 		}
 
-		# Generally the order of the favicon and apple-touch-icon links
+		# Generally, the order of the favicon and apple-touch-icon links
 		# should not matter, but Konqueror (3.5.9 at least) incorrectly
 		# uses whichever one appears later in the HTML source. Make sure
 		# apple-touch-icon is specified first to avoid this.
 		$appleTouchIconHref = $config->get( MainConfigNames::AppleTouchIcon );
-		# Browser look for those by default, unnessecary to set a link tag
+		# Browser look for those by default, unnecessary to set a link tag
 		if (
 			$appleTouchIconHref !== false &&
 			$appleTouchIconHref !== '/apple-touch-icon.png' &&
@@ -4368,7 +4373,7 @@ class OutputPage extends ContextSource {
 		}
 
 		$faviconHref = $config->get( MainConfigNames::Favicon );
-		# Browser look for those by default, unnessecary to set a link tag
+		# Browser look for those by default, unnecessary to set a link tag
 		if ( $faviconHref !== false && $faviconHref !== '/favicon.ico' ) {
 			$tags['favicon'] = Html::element( 'link', [
 				'rel' => 'icon',
