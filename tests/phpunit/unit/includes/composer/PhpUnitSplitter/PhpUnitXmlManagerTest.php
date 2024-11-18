@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Tests\Unit\composer\PhpUnitSplitter;
 
+use MediaWiki\Composer\PhpUnitSplitter\PhpUnitErrorTestCaseFoundException;
 use MediaWiki\Composer\PhpUnitSplitter\PhpUnitXmlManager;
 use MediaWiki\Composer\PhpUnitSplitter\TestListMissingException;
 use PHPUnit\Framework\TestCase;
@@ -60,9 +61,9 @@ class PhpUnitXmlManagerTest extends TestCase {
 		rmdir( $this->testDir );
 	}
 
-	private function copyTestListIntoPlace() {
+	private function copyTestListIntoPlace( string $srcFilename = 'tests-list.xml' ) {
 		copy(
-			__DIR__ . DIRECTORY_SEPARATOR . 'fixtures' . DIRECTORY_SEPARATOR . 'tests-list.xml',
+			__DIR__ . DIRECTORY_SEPARATOR . 'fixtures' . DIRECTORY_SEPARATOR . $srcFilename,
 			$this->testDir . DIRECTORY_SEPARATOR . 'tests-list.xml'
 		);
 	}
@@ -92,5 +93,13 @@ class PhpUnitXmlManagerTest extends TestCase {
 		$this->manager->createPhpUnitXml( 4 );
 		copy( self::getSourcePhpUnitDistXml(), implode( DIRECTORY_SEPARATOR, [ $this->testDir, "phpunit.xml" ] ) );
 		$this->assertFalse( $this->manager->isPhpUnitXmlPrepared(), "Expected phpunit.dist.xml to be treated as unprepared" );
+	}
+
+	public function testFailWithInformativeErrorIfErrorTestCaseFound() {
+		$this->assertFalse( $this->manager->isPhpUnitXmlPrepared(), "Expected no PHPUnit Xml to be present" );
+		copy( self::getSourcePhpUnitDistXml(), implode( DIRECTORY_SEPARATOR, [ $this->testDir, "phpunit.xml" ] ) );
+		$this->copyTestListIntoPlace( 'tests-list-with-error.xml' );
+		$this->expectException( PhpUnitErrorTestCaseFoundException::class );
+		$this->manager->createPhpUnitXml( 4 );
 	}
 }

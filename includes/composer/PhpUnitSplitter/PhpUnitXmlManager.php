@@ -4,6 +4,9 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Composer\PhpUnitSplitter;
 
+use Composer\Script\Event;
+use PHPUnit\Framework\ErrorTestCase;
+
 /**
  * @license GPL-2.0-or-later
  */
@@ -79,11 +82,15 @@ class PhpUnitXmlManager {
 	 * @return ?string
 	 * @throws MissingNamespaceMatchForTestException
 	 * @throws UnlocatedTestException
+	 * @throws PhpUnitErrorTestCaseFoundException
 	 */
 	private function resolveFileForTest( TestDescriptor $testDescriptor, array $phpFiles ): ?string {
 		$filename = $testDescriptor->getClassName() . ".php";
 		if ( !array_key_exists( $filename, $phpFiles ) ) {
 			if ( !in_array( $testDescriptor->getFullClassname(), self::EXPECTED_MISSING_CLASSES ) ) {
+				if ( $testDescriptor->getFullClassname() === ErrorTestCase::class ) {
+					throw new PhpUnitErrorTestCaseFoundException();
+				}
 				throw new UnlocatedTestException( $testDescriptor );
 			} else {
 				return null;
@@ -117,6 +124,7 @@ class PhpUnitXmlManager {
 	 * @throws TestListMissingException
 	 * @throws UnlocatedTestException
 	 * @throws SuiteGenerationException
+	 * @throws PhpUnitErrorTestCaseFoundException
 	 */
 	public function createPhpUnitXml( int $groups ) {
 		$unitFile = $this->loadPhpUnitXmlDist();
@@ -136,10 +144,10 @@ class PhpUnitXmlManager {
 		$unitFile->saveToDisk( $this->getPhpUnitXmlTarget() );
 	}
 
-	public static function listTestsNotice() {
-		print( PHP_EOL );
-		print( 'Running `phpunit --list-tests-xml` to get a list of expected tests ... ' . PHP_EOL );
-		print( PHP_EOL );
+	public static function listTestsNotice( Event $event ) {
+		$event->getIO()->write( '' );
+		$event->getIO()->write( 'Running `phpunit --list-tests-xml` to get a list of expected tests ... ' );
+		$event->getIO()->write( '' );
 	}
 
 	/**
@@ -148,14 +156,20 @@ class PhpUnitXmlManager {
 	 * @throws MissingNamespaceMatchForTestException
 	 * @throws SuiteGenerationException
 	 */
-	public static function splitTestsList( string $testListFile ) {
+	public static function splitTestsList( string $testListFile, Event $event ) {
 		/**
 		 * We split into 8 groups here, because experimentally that generates 100% CPU load
 		 * on developer machines and results in groups that are similar in size to the
 		 * Parser tests (which we have to run in a group on their own - see T345481)
 		 */
-		( new PhpUnitXmlManager( getcwd(), $testListFile ) )->createPhpUnitXml( 8 );
-		print( PHP_EOL . 'Created modified `phpunit.xml` with test suite groups' . PHP_EOL );
+		try {
+			( new PhpUnitXmlManager( getcwd(), $testListFile ) )->createPhpUnitXml( 8 );
+		} catch ( PhpUnitErrorTestCaseFoundException $tce ) {
+			$event->getIO()->error( $tce->getMessage() );
+			exit( 2 );
+		}
+		$event->getIO()->write( '' );
+		$event->getIO()->info( 'Created modified `phpunit.xml` with test suite groups' );
 	}
 
 	/**
@@ -164,8 +178,8 @@ class PhpUnitXmlManager {
 	 * @throws MissingNamespaceMatchForTestException
 	 * @throws SuiteGenerationException
 	 */
-	public static function splitTestsListExtensions() {
-		self::splitTestsList( 'tests-list-extensions.xml' );
+	public static function splitTestsListExtensions( Event $event ) {
+		self::splitTestsList( 'tests-list-extensions.xml', $event );
 	}
 
 	/**
@@ -174,8 +188,8 @@ class PhpUnitXmlManager {
 	 * @throws MissingNamespaceMatchForTestException
 	 * @throws SuiteGenerationException
 	 */
-	public static function splitTestsListDefault() {
-		self::splitTestsList( 'tests-list-default.xml' );
+	public static function splitTestsListDefault( Event $event ) {
+		self::splitTestsList( 'tests-list-default.xml', $event );
 	}
 
 	/**
@@ -184,12 +198,12 @@ class PhpUnitXmlManager {
 	 * @throws MissingNamespaceMatchForTestException
 	 * @throws SuiteGenerationException
 	 */
-	public static function splitTestsCustom() {
+	public static function splitTestsCustom( Event $event ) {
 		if ( $_SERVER["argc"] < 3 ) {
-			print( 'Specify a filename to split' . PHP_EOL );
+			$event->getIO()->error( 'Specify a filename to split' );
 			exit( 1 );
 		}
 		$filename = $_SERVER["argv"][2];
-		self::splitTestsList( $filename );
+		self::splitTestsList( $filename, $event );
 	}
 }

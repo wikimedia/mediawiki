@@ -1116,6 +1116,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Composer\\PhpUnitSplitter\\MissingNamespaceMatchForTestException' => __DIR__ . '/includes/composer/PhpUnitSplitter/MissingNamespaceMatchForTestException.php',
 	'MediaWiki\\Composer\\PhpUnitSplitter\\PhpUnitConsoleOutputProcessingException' => __DIR__ . '/includes/composer/PhpUnitSplitter/PhpUnitConsoleOutputProcessingException.php',
 	'MediaWiki\\Composer\\PhpUnitSplitter\\PhpUnitConsoleOutputProcessor' => __DIR__ . '/includes/composer/PhpUnitSplitter/PhpUnitConsoleOutputProcessor.php',
+	'MediaWiki\\Composer\\PhpUnitSplitter\\PhpUnitErrorTestCaseFoundException' => __DIR__ . '/includes/composer/PhpUnitSplitter/PhpUnitErrorTestCaseFoundException.php',
 	'MediaWiki\\Composer\\PhpUnitSplitter\\PhpUnitFailure' => __DIR__ . '/includes/composer/PhpUnitSplitter/PhpUnitFailure.php',
 	'MediaWiki\\Composer\\PhpUnitSplitter\\PhpUnitSlowTest' => __DIR__ . '/includes/composer/PhpUnitSplitter/PhpUnitSlowTest.php',
 	'MediaWiki\\Composer\\PhpUnitSplitter\\PhpUnitTestFileScanner' => __DIR__ . '/includes/composer/PhpUnitSplitter/PhpUnitTestFileScanner.php',
