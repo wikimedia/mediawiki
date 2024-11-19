@@ -337,9 +337,6 @@ class MysqlInstaller extends DatabaseInstaller {
 	public function getSchemaVars() {
 		return [
 			'wgDBTableOptions' => $this->getTableOptions(),
-			'wgDBname' => $this->getVar( 'wgDBname' ),
-			'wgDBuser' => $this->getVar( 'wgDBuser' ),
-			'wgDBpassword' => $this->getVar( 'wgDBpassword' ),
 		];
 	}
 
