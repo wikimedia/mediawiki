@@ -64,7 +64,8 @@ describe( 'Revision', () => {
 
 	describe( 'GET /revision/{id}/bare', () => {
 		it( 'should successfully get information about revision', async () => {
-			const { status, body, text, headers } = await client.get( `${ pathPrefix }/revision/${ newrevid }/bare` );
+			const res = await client.get( `${ pathPrefix }/revision/${ newrevid }/bare` );
+			const { status, body, text, headers } = res;
 
 			assert.strictEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
@@ -77,6 +78,9 @@ describe( 'Revision', () => {
 			assert.isOk( headers.etag, 'etag' );
 			assert.equal( Date.parse( body.timestamp ), Date.parse( headers[ 'last-modified' ] ) );
 			assert.nestedProperty( body, 'html_url' );
+
+			// eslint-disable-next-line no-unused-expressions
+			expect( res ).to.satisfyApiSpec;
 		} );
 
 		it( 'should return 404 for revision that does not exist', async () => {
@@ -91,7 +95,6 @@ describe( 'Revision', () => {
 			const { status, body, text, headers } = await client
 				.get( `${ pathPrefix }/revision/${ newrevid }/bare` )
 				.set( 'x-restbase-compat', 'true' );
-
 			assert.deepEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.match( headers.vary, /\bx-restbase-compat\b/ );
@@ -116,9 +119,10 @@ describe( 'Revision', () => {
 
 	describe( 'GET /revision/{id}/with_html', () => {
 		it( 'should successfully get metadata and HTML of revision', async () => {
-			const { status, body, text, headers } = await client.get(
+			const res = await client.get(
 				`${ pathPrefix }/revision/${ newrevid }/with_html`
 			);
+			const { status, body, text, headers } = res;
 
 			assert.strictEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
@@ -138,6 +142,10 @@ describe( 'Revision', () => {
 			const headerDate = Date.parse( headers[ 'last-modified' ] );
 			const revDate = Date.parse( body.timestamp );
 			assert.strictEqual( revDate.valueOf() <= headerDate.valueOf(), true );
+
+			// eslint-disable-next-line no-unused-expressions
+			expect( res ).to.satisfyApiSpec;
+
 		} );
 
 		it( 'should return 404 for revision that does not exist', async () => {
@@ -167,9 +175,10 @@ describe( 'Revision', () => {
 
 	describe( 'GET /revision/{id}/html', () => {
 		it( 'should successfully get HTML of revision', async () => {
-			const { status, text, headers } = await client.get(
+			const res = await client.get(
 				`${ pathPrefix }/revision/${ newrevid }/html`
 			);
+			const { status, text, headers } = res;
 
 			assert.strictEqual( status, 200, text );
 			assert.containsAllKeys( headers, [ 'etag', 'cache-control', 'last-modified', 'content-type' ] );
@@ -208,7 +217,6 @@ describe( 'Revision', () => {
 			const { body, headers } = await client
 				.get( `${ pathPrefix }/revision/99999999/html` )
 				.set( 'x-restbase-compat', 'true' );
-
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.containsAllKeys( body, [ 'type', 'title', 'method', 'detail', 'uri' ] );
 		} );

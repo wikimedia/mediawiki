@@ -3,19 +3,33 @@
 const { action, assert, REST, utils } = require( 'api-testing' );
 const supertest = require( 'supertest' );
 
-let pathPrefix = 'rest.php/content/v1';
+const chai = require( 'chai' );
+const expect = chai.expect;
+
+const chaiResponseValidator = require( 'chai-openapi-response-validator' ).default;
+
+let pathPrefix = '/content/v1';
+let specModule = '/content/v1';
 
 describe( 'POST /page', () => {
-	let client, mindy, anon, anonToken;
+	let client, mindy, anon, anonToken, openApiSpec;
 
 	beforeEach( async () => {
 		// Reset the client and token before each test
 		// In a temp account context, making an anonymous edit generates an account
 		// so we want to reset state after each edit
 		mindy = await action.mindy();
-		client = new REST( pathPrefix );
+		client = new REST( 'rest.php' );
 		anon = await action.getAnon();
 		anonToken = await anon.token();
+
+		const specPath = '/specs/v0/module' + specModule;
+		const { status, text } = await client.get( specPath );
+		assert.deepEqual( status, 200 );
+
+		openApiSpec = JSON.parse( text );
+		chai.use( chaiResponseValidator( openApiSpec ) );
+
 	} );
 
 	const checkEditResponse = function ( title, reqBody, body ) {
@@ -61,10 +75,12 @@ describe( 'POST /page', () => {
 				title
 			};
 
-			const { status: editStatus, body: editBody, header } =
-				await client.post( '/page', reqBody );
+			const newPage = await client.post( `${ pathPrefix }/page`, reqBody );
+			const { status: editStatus, body: editBody, header } = newPage;
 			assert.equal( editStatus, 201 );
 			assert.match( header[ 'content-type' ], /^application\/json/ );
+			// eslint-disable-next-line no-unused-expressions
+			expect( newPage ).to.satisfyApiSpec;
 
 			assert.nestedProperty( header, 'location' );
 			const location = header.location;
@@ -79,11 +95,15 @@ describe( 'POST /page', () => {
 			checkSourceResponse( title, reqBody, redirBody );
 
 			// construct request to fetch content
-			const { status: sourceStatus, body: sourceBody, header: sourceHeader } =
-				await client.get( `/page/${ normalizedTitle }` );
+			const res = await client.get( `${ pathPrefix }/page/${ normalizedTitle }` );
+			const { status: sourceStatus, body: sourceBody, header: sourceHeader } = res;
 			assert.equal( sourceStatus, 200 );
 			assert.match( sourceHeader[ 'content-type' ], /^application\/json/ );
 			checkSourceResponse( title, reqBody, sourceBody );
+
+			// eslint-disable-next-line no-unused-expressions
+			expect( res ).to.satisfyApiSpec;
+
 		} );
 
 		it( 'should create a page with specified model', async () => {
@@ -100,17 +120,24 @@ describe( 'POST /page', () => {
 				title
 			};
 
-			const { status: editStatus, body: editBody, header: editHeader } =
-				await client.post( '/page', reqBody );
+			const newPage = await client.post( `${ pathPrefix }/page`, reqBody );
+			const { status: editStatus, body: editBody, header: editHeader } = newPage;
+
 			assert.equal( editStatus, 201 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
+			// eslint-disable-next-line no-unused-expressions
+			expect( newPage ).to.satisfyApiSpec;
 			checkEditResponse( title, reqBody, editBody );
 
-			const { status: sourceStatus, body: sourceBody, header: sourceHeader } =
-				await client.get( `/page/${ normalizedTitle }` );
+			const res = await client.get( `${ pathPrefix }/page/${ normalizedTitle }` );
+			const { status: sourceStatus, body: sourceBody, header: sourceHeader } = res;
 			assert.equal( sourceStatus, 200 );
 			assert.match( sourceHeader[ 'content-type' ], /^application\/json/ );
 			checkSourceResponse( title, reqBody, sourceBody );
+
+			// eslint-disable-next-line no-unused-expressions
+			expect( res ).to.satisfyApiSpec;
+
 		} );
 	} );
 
@@ -130,12 +157,14 @@ describe( 'POST /page', () => {
 				const incompleteBody = { ...reqBody };
 				delete incompleteBody[ missingPropName ];
 
-				const { status: editStatus, body: editBody, header: editHeader } =
-					await client.post( '/page', incompleteBody );
+				const newPage = await client.post( `${ pathPrefix }/page`, incompleteBody );
+				const { status: editStatus, body: editBody, header: editHeader } = newPage;
 
 				assert.equal( editStatus, 400 );
 				assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 				assert.nestedProperty( editBody, 'messageTranslations' );
+				// eslint-disable-next-line no-unused-expressions
+				expect( newPage ).to.satisfyApiSpec;
 			} );
 		} );
 
@@ -148,12 +177,15 @@ describe( 'POST /page', () => {
 				title
 			};
 
-			const { status: editStatus, body: editBody, header: editHeader } =
-				await client.post( '/page', reqBody );
+			const newPage = await client.post( `${ pathPrefix }/page`, reqBody );
+			const { status: editStatus, body: editBody, header: editHeader } = newPage;
 
 			assert.equal( editStatus, 403 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
+			// eslint-disable-next-line no-unused-expressions
+			expect( newPage ).to.satisfyApiSpec;
+
 		} );
 
 		it( 'should fail if a bad token is given', async () => {
@@ -165,12 +197,15 @@ describe( 'POST /page', () => {
 				title
 			};
 
-			const { status: editStatus, body: editBody, header: editHeader } =
-				await client.post( '/page', reqBody );
+			const newPage = await client.post( `${ pathPrefix }/page`, reqBody );
+			const { status: editStatus, body: editBody, header: editHeader } = newPage;
 
 			assert.equal( editStatus, 403 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
+			// eslint-disable-next-line no-unused-expressions
+			expect( newPage ).to.satisfyApiSpec;
+
 		} );
 
 		it( 'should fail if a bad content model is given', async () => {
@@ -183,12 +218,15 @@ describe( 'POST /page', () => {
 				content_model: 'THIS DOES NOT EXIST!',
 				title
 			};
-			const { status: editStatus, body: editBody, header: editHeader } =
-				await client.post( '/page', reqBody );
+			const newPage = await client.post( `${ pathPrefix }/page`, reqBody );
+			const { status: editStatus, body: editBody, header: editHeader } = newPage;
 
 			assert.equal( editStatus, 400 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
+			// eslint-disable-next-line no-unused-expressions
+			expect( newPage ).to.satisfyApiSpec;
+
 		} );
 
 		it( 'should fail if a bad title is given', async () => {
@@ -200,12 +238,15 @@ describe( 'POST /page', () => {
 				comment: 'tästing',
 				title
 			};
-			const { status: editStatus, body: editBody, header: editHeader } =
-				await client.post( '/page', reqBody );
+			const newPage = await client.post( `${ pathPrefix }/page`, reqBody );
+			const { status: editStatus, body: editBody, header: editHeader } = newPage;
 
 			assert.equal( editStatus, 400 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
+			// eslint-disable-next-line no-unused-expressions
+			expect( newPage ).to.satisfyApiSpec;
+
 		} );
 	} );
 
@@ -222,12 +263,15 @@ describe( 'POST /page', () => {
 				comment: 'tästing',
 				title
 			};
-			const { status: editStatus, body: editBody, header: editHeader } =
-				await client.post( '/page', reqBody );
+			const newPage = await client.post( `${ pathPrefix }/page`, reqBody );
+			const { status: editStatus, body: editBody, header: editHeader } = newPage;
 
 			assert.equal( editStatus, 409 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
+			// eslint-disable-next-line no-unused-expressions
+			expect( newPage ).to.satisfyApiSpec;
+
 		} );
 	} );
 
@@ -248,19 +292,23 @@ describe( 'POST /page', () => {
 				comment: 'tästing',
 				title
 			};
-			const { status: editStatus, body: editBody, header: editHeader } =
-				await client.post( '/page', reqBody );
+			const newPage = await client.post( `${ pathPrefix }/page`, reqBody );
+			const { status: editStatus, body: editBody, header: editHeader } = newPage;
 
 			assert.equal( editStatus, 403 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
+			// eslint-disable-next-line no-unused-expressions
+			expect( newPage ).to.satisfyApiSpec;
+
 		} );
 
 	} );
 } );
 
 // eslint-disable-next-line mocha/no-exports
-exports.init = function ( pp ) {
+exports.init = function ( pp, sm ) {
 	// Allow testing both legacy and module paths using the same tests
 	pathPrefix = pp;
+	specModule = sm;
 };

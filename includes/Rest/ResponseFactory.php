@@ -401,7 +401,7 @@ class ResponseFactory {
 			'schemas' => [
 				'GenericErrorResponseModel' => [
 					'description' => 'Generic error response body',
-					'required' => [ 'httpCode', 'httpMessage' ],
+					'required' => [ 'httpCode' ],
 					'properties' => [
 						'httpCode' => [
 							'type' => 'integer'

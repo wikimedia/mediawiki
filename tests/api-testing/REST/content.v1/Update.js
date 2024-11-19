@@ -2,15 +2,28 @@
 
 const { action, assert, REST, utils } = require( 'api-testing' );
 
-let pathPrefix = 'rest.php/content/v1';
+const chai = require( 'chai' );
+const expect = chai.expect;
+
+const chaiResponseValidator = require( 'chai-openapi-response-validator' ).default;
+
+let pathPrefix = '/content/v1';
+let specModule = '/content/v1';
 
 describe( 'PUT /page/{title}', () => {
-	let client, mindy, mindyToken;
+	let client, mindy, mindyToken, openApiSpec;
 
 	before( async () => {
 		mindy = await action.mindy();
-		client = new REST( pathPrefix, mindy );
+		client = new REST( 'rest.php', mindy );
 		mindyToken = await mindy.token();
+
+		const specPath = '/specs/v0/module' + specModule;
+		const { status, text } = await client.get( specPath );
+		assert.deepEqual( status, 200 );
+
+		openApiSpec = JSON.parse( text );
+		chai.use( chaiResponseValidator( openApiSpec ) );
 	} );
 
 	const checkEditResponse = function ( title, reqBody, body ) {
@@ -47,17 +60,22 @@ describe( 'PUT /page/{title}', () => {
 				comment: 'tästing'
 			};
 
-			const { status: editStatus, body: editBody, header: editHeader } =
-				await client.put( `/page/${ title }`, reqBody );
+			const res =
+				await client.put( `${ pathPrefix }/page/${ title }`, reqBody );
+			const { status: editStatus, body: editBody, header: editHeader } = res;
 			assert.equal( editStatus, 201 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			checkEditResponse( title, reqBody, editBody );
 
 			const { status: sourceStatus, body: sourceBody, header: sourceHeader } =
-				await client.get( `/page/${ normalizedTitle }` );
+				await client.get( `${ pathPrefix }/page/${ normalizedTitle }` );
 			assert.equal( sourceStatus, 200 );
 			assert.match( sourceHeader[ 'content-type' ], /^application\/json/ );
 			checkSourceResponse( title, reqBody, sourceBody );
+
+			// eslint-disable-next-line no-unused-expressions
+			expect( res ).to.satisfyApiSpec;
+
 		} );
 
 		it( 'should create a page with specific content model', async () => {
@@ -72,17 +90,22 @@ describe( 'PUT /page/{title}', () => {
 				content_model: 'wikitext'
 			};
 
-			const { status: editStatus, body: editBody, header: editHeader } =
-				await client.put( `/page/${ title }`, reqBody );
+			const resEdit = await client.put( `${ pathPrefix }/page/${ title }`, reqBody );
+			const { status: editStatus, body: editBody, header: editHeader } = resEdit;
 			assert.equal( editStatus, 201 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
+			// eslint-disable-next-line no-unused-expressions
+			expect( resEdit ).to.satisfyApiSpec;
+
 			checkEditResponse( title, reqBody, editBody );
 
-			const { status: sourceStatus, body: sourceBody, header: sourceHeader } =
-				await client.get( `/page/${ normalizedTitle }` );
+			const resGet = await client.get( `${ pathPrefix }/page/${ normalizedTitle }` );
+			const { status: sourceStatus, body: sourceBody, header: sourceHeader } = resGet;
 			assert.equal( sourceStatus, 200 );
 			assert.match( sourceHeader[ 'content-type' ], /^application\/json/ );
 			checkSourceResponse( title, reqBody, sourceBody );
+			// eslint-disable-next-line no-unused-expressions
+			expect( resGet ).to.satisfyApiSpec;
 		} );
 
 		it( 'should update an existing page', async () => {
@@ -91,7 +114,7 @@ describe( 'PUT /page/{title}', () => {
 
 			// create
 			await mindy.edit( normalizedTitle, {} );
-			const { body: newPage } = await client.get( `/page/${ normalizedTitle }/bare` );
+			const { body: newPage } = await client.get( `${ pathPrefix }/page/${ normalizedTitle }/bare` );
 
 			const firstRev = newPage.latest;
 
@@ -101,19 +124,23 @@ describe( 'PUT /page/{title}', () => {
 				comment: 'tästing',
 				latest: firstRev // provide the base revision
 			};
-			const { status: editStatus, body: editBody, header: editHeader } =
-				await client.put( `/page/${ title }`, reqBody );
+			const resEdit = await client.put( `${ pathPrefix }/page/${ title }`, reqBody );
+			const { status: editStatus, body: editBody, header: editHeader } = resEdit;
 
 			assert.equal( editStatus, 200 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			checkEditResponse( title, reqBody, editBody );
 			assert.isAbove( editBody.latest.id, firstRev.id );
+			// eslint-disable-next-line no-unused-expressions
+			expect( resEdit ).to.satisfyApiSpec;
 
-			const { status: sourceStatus, body: sourceBody, header: sourceHeader } =
-				await client.get( `/page/${ normalizedTitle }` );
+			const resGet = await client.get( `${ pathPrefix }/page/${ normalizedTitle }` );
+			const { status: sourceStatus, body: sourceBody, header: sourceHeader } = resGet;
 			assert.equal( sourceStatus, 200 );
 			assert.match( sourceHeader[ 'content-type' ], /^application\/json/ );
 			checkSourceResponse( title, reqBody, sourceBody );
+			// eslint-disable-next-line no-unused-expressions
+			expect( resGet ).to.satisfyApiSpec;
 		} );
 
 		it( 'should handle null-edits (unchanged content) gracefully', async () => {
@@ -128,7 +155,7 @@ describe( 'PUT /page/{title}', () => {
 				comment: 'nothing at all changed',
 				latest: { id: firstRev.newrevid }
 			};
-			const resp = await client.put( `/page/${ title }`, reqBody );
+			const resp = await client.put( `${ pathPrefix }/page/${ title }`, reqBody );
 			const { status: editStatus, body: editBody, header: editHeader } = resp;
 
 			assert.equal( editStatus, 200 );
@@ -138,6 +165,8 @@ describe( 'PUT /page/{title}', () => {
 
 			// No revision was created, new ID is the same as the old ID
 			assert.equal( editBody.latest.id, firstRev.newrevid );
+			// eslint-disable-next-line no-unused-expressions
+			expect( resp ).to.satisfyApiSpec;
 		} );
 
 		it( 'should automatically solve merge conflicts', async () => {
@@ -156,14 +185,17 @@ describe( 'PUT /page/{title}', () => {
 				content_model: 'wikitext',
 				latest: { id: firstRev.newrevid }
 			};
-			const { status: editStatus, body: editBody, header: editHeader } =
-				await client.put( `/page/${ title }`, reqBody );
+			const res =
+				await client.put( `${ pathPrefix }/page/${ title }`, reqBody );
+			const { status: editStatus, body: editBody, header: editHeader } = res;
 
 			assert.equal( editStatus, 200 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			const expectedText = 'FIRST LINE\nlorem ipsum\nSECOND LINE';
 
 			assert.nestedPropertyVal( editBody, 'source', expectedText );
+			// eslint-disable-next-line no-unused-expressions
+			expect( res ).to.satisfyApiSpec;
 		} );
 	} );
 
@@ -183,12 +215,16 @@ describe( 'PUT /page/{title}', () => {
 				const incompleteBody = { ...reqBody };
 				delete incompleteBody[ missingPropName ];
 
-				const { status: editStatus, body: editBody, header: editHeader } =
-					await client.put( `/page/${ title }`, incompleteBody );
+				const res =
+					await client.put( `${ pathPrefix }/page/${ title }`, incompleteBody );
+				const { status: editStatus, body: editBody, header: editHeader } = res;
 
 				assert.equal( editStatus, 400 );
 				assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 				assert.nestedProperty( editBody, 'messageTranslations' );
+				// eslint-disable-next-line no-unused-expressions
+				expect( res ).to.satisfyApiSpec;
+
 			} );
 		} );
 
@@ -200,12 +236,14 @@ describe( 'PUT /page/{title}', () => {
 				comment: 'tästing'
 			};
 
-			const { status: editStatus, body: editBody, header: editHeader } =
-				await client.put( `/page/${ title }`, reqBody );
+			const res = await client.put( `${ pathPrefix }/page/${ title }`, reqBody );
+			const { status: editStatus, body: editBody, header: editHeader } = res;
 
 			assert.equal( editStatus, 403 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
+			// eslint-disable-next-line no-unused-expressions
+			expect( res ).to.satisfyApiSpec;
 		} );
 
 		it( 'should fail if a bad token is given', async () => {
@@ -216,12 +254,15 @@ describe( 'PUT /page/{title}', () => {
 				comment: 'tästing'
 			};
 
-			const { status: editStatus, body: editBody, header: editHeader } =
-				await client.put( `/page/${ title }`, reqBody );
+			const res = await client.put( `${ pathPrefix }/page/${ title }`, reqBody );
+			const { status: editStatus, body: editBody, header: editHeader } = res;
 
 			assert.equal( editStatus, 403 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
+			// eslint-disable-next-line no-unused-expressions
+			expect( res ).to.satisfyApiSpec;
+
 		} );
 
 		it( 'should fail if a bad content model is given', async () => {
@@ -233,12 +274,15 @@ describe( 'PUT /page/{title}', () => {
 				comment: 'tästing',
 				content_model: 'THIS DOES NOT EXIST!'
 			};
-			const { status: editStatus, body: editBody, header: editHeader } =
-				await client.put( `/page/${ title }`, reqBody );
+			const res =
+				await client.put( `${ pathPrefix }/page/${ title }`, reqBody );
+			const { status: editStatus, body: editBody, header: editHeader } = res;
 
 			assert.equal( editStatus, 400 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
+			// eslint-disable-next-line no-unused-expressions
+			expect( res ).to.satisfyApiSpec;
 		} );
 
 		it( 'should fail if a bad title is given', async () => {
@@ -250,12 +294,15 @@ describe( 'PUT /page/{title}', () => {
 				content_model: 'wikitext',
 				token: mindyToken
 			};
-			const { status: editStatus, body: editBody, header: editHeader } =
-				await client.put( `/page/${ title }`, reqBody );
+			const res =
+				await client.put( `${ pathPrefix }/page/${ title }`, reqBody );
+			const { status: editStatus, body: editBody, header: editHeader } = res;
 
 			assert.equal( editStatus, 400 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
+			// eslint-disable-next-line no-unused-expressions
+			expect( res ).to.satisfyApiSpec;
 		} );
 
 		it( 'should fail if no title is given', async () => {
@@ -265,12 +312,15 @@ describe( 'PUT /page/{title}', () => {
 				content_model: 'wikitext',
 				token: mindyToken
 			};
-			const { status: editStatus, body: editBody, header: editHeader } =
-				await client.put( '/page/', reqBody );
+			const res =
+				await client.post( `${ pathPrefix }/page`, reqBody );
+			const { status: editStatus, body: editBody, header: editHeader } = res;
 
 			assert.equal( editStatus, 400 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
+			// eslint-disable-next-line no-unused-expressions
+			expect( res ).to.satisfyApiSpec;
 		} );
 	} );
 
@@ -284,12 +334,15 @@ describe( 'PUT /page/{title}', () => {
 				comment: 'tästing',
 				latest: { id: 1234 }
 			};
-			const { status: editStatus, body: editBody, header: editHeader } =
-				await client.put( `/page/${ title }`, reqBody );
+			const res = await client.put( `${ pathPrefix }/page/${ title }`, reqBody );
+			const { status: editStatus, body: editBody, header: editHeader } = res;
 
 			assert.equal( editStatus, 404 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
+			// eslint-disable-next-line no-unused-expressions
+			expect( res ).to.satisfyApiSpec;
+
 		} );
 
 		it( 'should detect a conflict if page exist but no revision ID was given', async () => {
@@ -304,12 +357,15 @@ describe( 'PUT /page/{title}', () => {
 				comment: 'tästing'
 				// not 'latest' key, so page should be created
 			};
-			const { status: editStatus, body: editBody, header: editHeader } =
-				await client.put( `/page/${ title }`, reqBody );
+			const res = await client.put( `${ pathPrefix }/page/${ title }`, reqBody );
+			const { status: editStatus, body: editBody, header: editHeader } = res;
 
 			assert.equal( editStatus, 409 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
+			// eslint-disable-next-line no-unused-expressions
+			expect( res ).to.satisfyApiSpec;
+
 		} );
 
 		it( 'should detect a conflict when an old base revision ID is given and conflict resolution fails', async () => {
@@ -325,12 +381,15 @@ describe( 'PUT /page/{title}', () => {
 				comment: 'tästing',
 				latest: { id: firstRev.newrevid }
 			};
-			const { status: editStatus, body: editBody, header: editHeader } =
-				await client.put( `/page/${ title }`, reqBody );
+			const res = await client.put( `${ pathPrefix }/page/${ title }`, reqBody );
+			const { status: editStatus, body: editBody, header: editHeader } = res;
 
 			assert.equal( editStatus, 409 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
+			// eslint-disable-next-line no-unused-expressions
+			expect( res ).to.satisfyApiSpec;
+
 		} );
 	} );
 
@@ -353,18 +412,22 @@ describe( 'PUT /page/{title}', () => {
 				comment: 'tästing',
 				latest: { id: firstRev.newrevid }
 			};
-			const { status: editStatus, body: editBody, header: editHeader } =
-				await client.put( `/page/${ title }`, reqBody );
+			const res = await client.put( `${ pathPrefix }/page/${ title }`, reqBody );
+			const { status: editStatus, body: editBody, header: editHeader } = res;
 
 			assert.equal( editStatus, 403 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
+			// eslint-disable-next-line no-unused-expressions
+			expect( res ).to.satisfyApiSpec;
+
 		} );
 	} );
 } );
 
 // eslint-disable-next-line mocha/no-exports
-exports.init = function ( pp ) {
+exports.init = function ( pp, sm ) {
 	// Allow testing both legacy and module paths using the same tests
 	pathPrefix = pp;
+	specModule = sm;
 };

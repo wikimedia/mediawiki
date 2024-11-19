@@ -32,6 +32,7 @@
 				},
 				"timestamp": {
 					"type": "string",
+					"format": "date-time",
 					"description": " Timestamp of the latest revision",
 					"nullable": true
 				}
@@ -58,6 +59,51 @@
 		"source": {
 			"type": "string",
 			"description": "Latest page content in the format specified by the content_model property"
+		},
+		"page_id": {
+			"type": "integer",
+			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+		},
+		"rev": {
+			"type": "integer",
+			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+
+		},
+		"tid": {
+			"type": "string",
+			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+		},
+		"namespace": {
+			"type": "integer",
+			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+		},
+		"user_id": {
+			"type": "integer",
+			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+		},
+		"user_text": {
+			"type": "string",
+			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+		},
+		"tags": {
+			"type": "array",
+			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+		},
+		"restrictions": {
+			"type": "array",
+			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+		},
+		"page_language": {
+			"type": "string",
+			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+		},
+		"redirect": {
+			"type": "boolean",
+			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+		},
+		"comment": {
+			"type": "string",
+			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
 		}
 	}
 }
