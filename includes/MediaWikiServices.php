@@ -65,7 +65,7 @@ use MediaWiki\Config\GlobalVarConfig;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
-use MediaWiki\DomainEvent\DomainEventSink;
+use MediaWiki\DomainEvent\DomainEventDispatcher;
 use MediaWiki\DomainEvent\DomainEventSource;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\EditPage\IntroMessageBuilder;
@@ -1090,8 +1090,8 @@ class MediaWikiServices extends ServiceContainer {
 	 * @since 1.44
 	 * @unstable until 1.45
 	 */
-	public function getDomainEventSink(): DomainEventSink {
-		return $this->getService( 'DomainEventSink' );
+	public function getDomainEventDispatcher(): DomainEventDispatcher {
+		return $this->getService( 'DomainEventDispatcher' );
 	}
 
 	/**

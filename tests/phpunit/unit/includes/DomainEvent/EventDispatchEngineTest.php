@@ -4,7 +4,7 @@ namespace MediaWiki\Tests\DomainEvent;
 
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\DomainEvent\DomainEvent;
-use MediaWiki\DomainEvent\DomainEventDispatcher;
+use MediaWiki\DomainEvent\EventDispatchEngine;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Tests\MockDatabase;
@@ -13,9 +13,9 @@ use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
- * @covers \MediaWiki\DomainEvent\DomainEventDispatcher
+ * @covers \MediaWiki\DomainEvent\EventDispatchEngine
  */
-class DomainEventDispatcherTest extends MediaWikiUnitTestCase {
+class EventDispatchEngineTest extends MediaWikiUnitTestCase {
 
 	private function newEvent( string $type ): DomainEvent {
 		return new class ( $type ) extends DomainEvent {
@@ -47,7 +47,7 @@ class DomainEventDispatcherTest extends MediaWikiUnitTestCase {
 
 		$conProv = $this->newConnectionProvider();
 
-		$dispatcher = new DomainEventDispatcher( $hookContainer );
+		$dispatcher = new EventDispatchEngine( $hookContainer );
 
 		$callCount = 0;
 		$hookContainer->register(
@@ -73,7 +73,7 @@ class DomainEventDispatcherTest extends MediaWikiUnitTestCase {
 		$dbw = $conProv->getPrimaryDatabase();
 		$dbw->begin();
 		$event = $this->newEvent( 'Tested' );
-		$dispatcher->send( $event, $conProv );
+		$dispatcher->dispatch( $event, $conProv );
 
 		$this->assertSame( 1, $callCount, 'Hook handler should have been called' );
 
@@ -91,7 +91,7 @@ class DomainEventDispatcherTest extends MediaWikiUnitTestCase {
 
 		$conProv = $this->newConnectionProvider();
 
-		$dispatcher = new DomainEventDispatcher( $hookContainer );
+		$dispatcher = new EventDispatchEngine( $hookContainer );
 
 		$callCount = 0;
 		$hookContainer->register(
@@ -117,7 +117,7 @@ class DomainEventDispatcherTest extends MediaWikiUnitTestCase {
 		$dbw = $conProv->getPrimaryDatabase();
 		$dbw->begin();
 		$event = $this->newEvent( 'Tested' );
-		$dispatcher->send( $event, $conProv );
+		$dispatcher->dispatch( $event, $conProv );
 
 		$this->assertSame( 1, $callCount, 'Hook handler should have been called' );
 

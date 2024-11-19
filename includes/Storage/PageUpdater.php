@@ -31,7 +31,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\ValidationParams;
 use MediaWiki\Deferred\AtomicSectionUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
-use MediaWiki\DomainEvent\DomainEventSink;
+use MediaWiki\DomainEvent\DomainEventDispatcher;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
@@ -127,9 +127,9 @@ class PageUpdater {
 	private $contentHandlerFactory;
 
 	/**
-	 * @var DomainEventSink
+	 * @var DomainEventDispatcher
 	 */
-	private $eventEmitter;
+	private $eventDispatcher;
 
 	/**
 	 * @var HookRunner
@@ -223,7 +223,7 @@ class PageUpdater {
 	 * @param RevisionStore $revisionStore
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param DomainEventSink $eventEmitter
+	 * @param DomainEventDispatcher $eventDispatcher
 	 * @param HookContainer $hookContainer
 	 * @param UserGroupManager $userGroupManager
 	 * @param TitleFormatter $titleFormatter
@@ -241,7 +241,7 @@ class PageUpdater {
 		RevisionStore $revisionStore,
 		SlotRoleRegistry $slotRoleRegistry,
 		IContentHandlerFactory $contentHandlerFactory,
-		DomainEventSink $eventEmitter,
+		DomainEventDispatcher $eventDispatcher,
 		HookContainer $hookContainer,
 		UserGroupManager $userGroupManager,
 		TitleFormatter $titleFormatter,
@@ -262,7 +262,7 @@ class PageUpdater {
 		$this->revisionStore = $revisionStore;
 		$this->slotRoleRegistry = $slotRoleRegistry;
 		$this->contentHandlerFactory = $contentHandlerFactory;
-		$this->eventEmitter = $eventEmitter;
+		$this->eventDispatcher = $eventDispatcher;
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->userGroupManager = $userGroupManager;
@@ -1400,7 +1400,7 @@ class PageUpdater {
 				$tags
 			);
 
-			$this->eventEmitter->send( new PageUpdatedEvent(
+			$this->eventDispatcher->dispatch( new PageUpdatedEvent(
 				$newRevisionRecord,
 				$oldRev,
 				$editResult,
@@ -1523,7 +1523,7 @@ class PageUpdater {
 			// one for the edit and one for the page creation.
 		}
 
-		$this->eventEmitter->send( new PageUpdatedEvent(
+		$this->eventDispatcher->dispatch( new PageUpdatedEvent(
 			$newRevisionRecord,
 			null,
 			null,

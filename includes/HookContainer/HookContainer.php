@@ -265,7 +265,7 @@ class HookContainer implements SalvageableService {
 	/**
 	 * Normalize/clean up format of argument passed as hook handler
 	 *
-	 * @internal for use in DomainEventDispatcher
+	 * @internal for use in EventDispatchEngine
 	 *
 	 * @param string $hook Hook name
 	 * @param string|array|callable $handler Executable handler function. See register() for supported structures.

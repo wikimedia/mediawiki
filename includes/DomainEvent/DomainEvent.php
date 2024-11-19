@@ -6,7 +6,7 @@ use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
- * Base class for domain event objects to be used with DomainEventSink.
+ * Base class for domain event objects to be used with DomainEventDispatcher.
  *
  * Domain events are used to notify other parts of the code (oder "domains")
  * about a change to the persistent state of the local wiki.

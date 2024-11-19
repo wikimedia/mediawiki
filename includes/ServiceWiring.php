@@ -90,8 +90,8 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\DomainEvent\DomainEventDispatcher;
-use MediaWiki\DomainEvent\DomainEventSink;
 use MediaWiki\DomainEvent\DomainEventSource;
+use MediaWiki\DomainEvent\EventDispatchEngine;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Edit\SimpleParsoidOutputStash;
 use MediaWiki\EditPage\Constraint\EditConstraintFactory;
@@ -779,7 +779,7 @@ return [
 		return $services->getService( '_PageCommandFactory' );
 	},
 
-	'DomainEventSink' => static function ( MediaWikiServices $services ): DomainEventSink {
+	'DomainEventDispatcher' => static function ( MediaWikiServices $services ): DomainEventDispatcher {
 		return $services->getService( '_DomainEventDispatcher' );
 	},
 
@@ -1532,7 +1532,7 @@ return [
 			$services->getContentLanguage(),
 			$services->getDBLoadBalancerFactory(),
 			$services->getContentHandlerFactory(),
-			$services->getDomainEventSink(),
+			$services->getDomainEventDispatcher(),
 			$services->getHookContainer(),
 			$editResultCache,
 			$services->getUserNameUtils(),
@@ -2665,8 +2665,8 @@ return [
 		);
 	},
 
-	'_DomainEventDispatcher' => static function ( MediaWikiServices $services ): DomainEventDispatcher {
-		$dispatcher = new DomainEventDispatcher(
+	'_DomainEventDispatcher' => static function ( MediaWikiServices $services ): EventDispatchEngine {
+		$dispatcher = new EventDispatchEngine(
 			$services->getHookContainer()
 		);
 
