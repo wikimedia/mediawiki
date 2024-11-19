@@ -12,7 +12,7 @@ use MediaWiki\Watchlist\WatchedItemQueryService;
  * @group Database
  * @group medium
  *
- * @covers MediaWiki\Api\ApiQueryWatchlistRaw
+ * @covers \MediaWiki\Api\ApiQueryWatchlistRaw
  */
 class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 	// TODO: This test should use Authority, but can't due to User::saveSettings

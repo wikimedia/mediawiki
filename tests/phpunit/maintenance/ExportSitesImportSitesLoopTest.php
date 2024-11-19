@@ -10,8 +10,8 @@ use MediaWiki\Site\Site;
 /**
  * Tests that a XML file exported by {@link ExportSites} can be imported by {@link ImportSites}.
  *
- * @covers ExportSites
- * @covers ImportSites
+ * @covers \ExportSites
+ * @covers \ImportSites
  * @group Database
  * @author Dreamy Jazz
  */

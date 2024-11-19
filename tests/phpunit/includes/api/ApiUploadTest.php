@@ -16,7 +16,7 @@ use Wikimedia\Mime\MimeAnalyzer;
  * @group Database
  * @group medium
  *
- * @covers MediaWiki\Api\ApiUpload
+ * @covers \MediaWiki\Api\ApiUpload
  */
 class ApiUploadTest extends ApiUploadTestCase {
 	private ?Authority $uploader = null;

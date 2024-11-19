@@ -7,7 +7,7 @@ use NullJob;
 use RunJobs;
 
 /**
- * @covers RunJobs
+ * @covers \RunJobs
  * @group Database
  * @author Dreamy Jazz
  */

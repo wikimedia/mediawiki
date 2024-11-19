@@ -8,7 +8,7 @@ use PurgeOldText;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers PurgeOldText
+ * @covers \PurgeOldText
  * @author Dreamy Jazz
  */
 class PurgeOldTextTest extends MaintenanceBaseTestCase {

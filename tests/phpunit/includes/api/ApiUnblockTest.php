@@ -12,7 +12,7 @@ use MediaWiki\User\User;
  * @group Database
  * @group medium
  *
- * @covers MediaWiki\Api\ApiUnblock
+ * @covers \MediaWiki\Api\ApiUnblock
  */
 class ApiUnblockTest extends ApiTestCase {
 	/** @var User */

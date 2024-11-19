@@ -12,7 +12,7 @@ use MediaWiki\Utils\MWTimestamp;
  * @group API
  * @group Database
  * @group medium
- * @covers MediaWiki\Api\ApiQueryUserInfo
+ * @covers \MediaWiki\Api\ApiQueryUserInfo
  */
 class ApiQueryUserInfoTest extends ApiTestCase {
 
@@ -20,7 +20,7 @@ class ApiQueryUserInfoTest extends ApiTestCase {
 	use MockAuthorityTrait;
 
 	/**
-	 * @covers MediaWiki\Api\ApiQueryUserInfo::getLatestContributionTime
+	 * @covers \MediaWiki\Api\ApiQueryUserInfo::getLatestContributionTime
 	 */
 	public function testTimestamp() {
 		$clock = MWTimestamp::convert( TS_UNIX, '20100101000000' );

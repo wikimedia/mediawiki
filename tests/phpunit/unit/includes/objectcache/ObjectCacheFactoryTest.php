@@ -6,7 +6,7 @@ use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Stats\StatsFactory;
 
 /**
- * @covers ObjectCacheFactory
+ * @covers \ObjectCacheFactory
  */
 class ObjectCacheFactoryTest extends MediaWikiUnitTestCase {
 	private function newObjectCacheFactory() {

@@ -7,7 +7,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Tests\Integration\HTMLForm\HTMLFormFieldTestCase;
 
 /**
- * @covers MediaWiki\HTMLForm\Field\HTMLSelectNamespace
+ * @covers \MediaWiki\HTMLForm\Field\HTMLSelectNamespace
  */
 class HTMLSelectNamespaceTest extends HTMLFormFieldTestCase {
 	/** @inheritDoc */

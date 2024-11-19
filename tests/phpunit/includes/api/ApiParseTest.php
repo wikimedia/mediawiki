@@ -38,7 +38,7 @@ use SkinFallback;
  * @group Database
  * @group medium
  *
- * @covers MediaWiki\Api\ApiParse
+ * @covers \MediaWiki\Api\ApiParse
  */
 class ApiParseTest extends ApiTestCase {
 	use DummyServicesTrait;

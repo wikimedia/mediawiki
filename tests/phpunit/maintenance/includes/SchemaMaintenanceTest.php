@@ -10,8 +10,8 @@ use RecursiveIteratorIterator;
 
 /**
  * @covers \MediaWiki\Maintenance\SchemaMaintenance
- * @covers GenerateSchemaChangeSql
- * @covers GenerateSchemaSql
+ * @covers \GenerateSchemaChangeSql
+ * @covers \GenerateSchemaSql
  */
 class SchemaMaintenanceTest extends MaintenanceBaseTestCase {
 

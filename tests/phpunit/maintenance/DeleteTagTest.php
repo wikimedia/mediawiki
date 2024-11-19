@@ -5,7 +5,7 @@ namespace MediaWiki\Tests\Maintenance;
 use DeleteTag;
 
 /**
- * @covers DeleteTag
+ * @covers \DeleteTag
  * @group Database
  * @author Dreamy Jazz
  */

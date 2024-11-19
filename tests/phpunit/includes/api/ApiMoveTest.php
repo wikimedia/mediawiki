@@ -15,7 +15,7 @@ use Wikimedia\Rdbms\IDBAccessObject;
  * @group Database
  * @group medium
  *
- * @covers MediaWiki\Api\ApiMove
+ * @covers \MediaWiki\Api\ApiMove
  */
 class ApiMoveTest extends ApiTestCase {
 

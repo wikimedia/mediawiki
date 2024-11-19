@@ -11,7 +11,7 @@ use MockCompletionSearchEngine;
  * @group medium
  * @group Database
  *
- * @covers MediaWiki\Api\ApiQueryPrefixSearch
+ * @covers \MediaWiki\Api\ApiQueryPrefixSearch
  */
 class ApiQueryPrefixSearchTest extends ApiTestCase {
 	private const TEST_QUERY = 'unittest';

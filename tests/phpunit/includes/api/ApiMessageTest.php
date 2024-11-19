@@ -34,7 +34,7 @@ class ApiMessageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Api\ApiMessageTrait
+	 * @covers \MediaWiki\Api\ApiMessageTrait
 	 * @dataProvider provideCodeDefaults
 	 */
 	public function testCodeDefaults( $msg, $expectedCode ) {
@@ -53,7 +53,7 @@ class ApiMessageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Api\ApiMessageTrait
+	 * @covers \MediaWiki\Api\ApiMessageTrait
 	 * @dataProvider provideInvalidCode
 	 */
 	public function testInvalidCode( $code ) {
@@ -85,7 +85,7 @@ class ApiMessageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Api\ApiMessage
-	 * @covers MediaWiki\Api\ApiMessageTrait
+	 * @covers \MediaWiki\Api\ApiMessageTrait
 	 */
 	public function testApiMessage() {
 		$msg = new Message( [ 'foo', 'bar' ], [ 'baz' ] );
@@ -127,7 +127,7 @@ class ApiMessageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Api\ApiRawMessage
-	 * @covers MediaWiki\Api\ApiMessageTrait
+	 * @covers \MediaWiki\Api\ApiMessageTrait
 	 */
 	public function testApiRawMessage() {
 		$msg = new RawMessage( 'foo', [ 'baz' ] );

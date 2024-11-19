@@ -4,7 +4,7 @@ use MediaWiki\MainConfigNames;
 
 /**
  * @group LockManager
- * @covers RedisLockManager
+ * @covers \RedisLockManager
  */
 class RedisLockManagerIntegrationTest extends LockManagerIntegrationTestBase {
 	/** @var LockManager[] */

@@ -909,7 +909,7 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 	 * (This does not test that other variables aren't also set.)
 	 *
 	 * @dataProvider provideGlobals
-	 * @covers       \MediaWiki\Settings\DynamicDefaultValues
+	 * @covers \MediaWiki\Settings\DynamicDefaultValues
 	 *
 	 * @param array $test Keys are the names of variables, values are their values. If a value is
 	 *   callable, it will be called with no arguments to obtain the value.

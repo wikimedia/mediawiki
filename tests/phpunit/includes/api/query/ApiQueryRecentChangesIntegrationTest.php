@@ -17,7 +17,7 @@ use RecentChange;
  * @group Database
  * @group medium
  *
- * @covers MediaWiki\Api\ApiQueryRecentChanges
+ * @covers \MediaWiki\Api\ApiQueryRecentChanges
  */
 class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 	use MockAuthorityTrait;

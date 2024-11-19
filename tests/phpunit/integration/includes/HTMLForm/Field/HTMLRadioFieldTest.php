@@ -5,7 +5,7 @@ use MediaWiki\HTMLForm\Field\HTMLRadioField;
 use MediaWiki\Tests\Integration\HTMLForm\HTMLFormFieldTestCase;
 
 /**
- * @covers MediaWiki\HTMLForm\Field\HTMLRadioField
+ * @covers \MediaWiki\HTMLForm\Field\HTMLRadioField
  */
 class HTMLRadioFieldTest extends HTMLFormFieldTestCase {
 	/** @inheritDoc */

@@ -7,7 +7,7 @@ use MediaWiki\Json\FormatJson;
 use MediaWiki\Tests\Language\MockLocalisationCacheTrait;
 
 /**
- * @covers AllTrans
+ * @covers \AllTrans
  * @author Dreamy Jazz
  */
 class AllTransTest extends MaintenanceBaseTestCase {

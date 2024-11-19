@@ -8,7 +8,7 @@ use MediaWiki\Title\Title;
 /**
  * @group API
  * @group Database
- * @covers MediaWiki\Api\ApiFormatXml
+ * @covers \MediaWiki\Api\ApiFormatXml
  */
 class ApiFormatXmlTest extends ApiFormatTestBase {
 
