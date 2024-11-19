@@ -96,5 +96,6 @@
 	"rest-param-desc-html-output-stash": "HTML output renderer stash",
 	"rest-param-desc-html-output-flavor": "HTML output renderer flavor",
 	"rest-param-desc-page-content-title": "Page content title",
-	"rest-param-desc-page-content-redirect": "Page content redirect"
+	"rest-param-desc-page-content-redirect": "Page content redirect",
+	"rest-param-desc-update-source": "Page content in the format specified by the content_model property"
 }

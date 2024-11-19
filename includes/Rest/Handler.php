@@ -598,6 +598,31 @@ abstract class Handler {
 	}
 
 	/**
+	 * Returns the translated description string for a parameter if possible,
+	 * the untranslated string if one is available, or null otherwise.
+	 *
+	 * @param array $paramSetting a parameter settings array
+	 *
+	 * @return ?string
+	 */
+	private function resolveParamDescription( array $paramSetting ): ?string {
+		$desc = null;
+
+		if ( array_key_exists( Validator::PARAM_DESCRIPTION, $paramSetting ) ) {
+			if ( $paramSetting[ Validator::PARAM_DESCRIPTION ] instanceof MessageValue ) {
+				// TODO: consider if we want to request a specific preferred language
+				$desc = $this->responseFactory->getFormattedMessage(
+					$paramSetting[ Validator::PARAM_DESCRIPTION ]
+				);
+			} else {
+				$desc = $paramSetting[ Validator::PARAM_DESCRIPTION ];
+			}
+		}
+
+		return $desc;
+	}
+
+	/**
 	 * Returns an OpenAPI Operation Object specification structure as an associative array.
 	 *
 	 * @see https://swagger.io/specification/#operation-object
@@ -633,15 +658,9 @@ abstract class Handler {
 				continue;
 			}
 
-			if ( array_key_exists( Validator::PARAM_DESCRIPTION, $paramSetting ) &&
-				$paramSetting[ Validator::PARAM_DESCRIPTION ] instanceof MessageValue
-			) {
-				// TODO: consider if we want to request a specific preferred language
-				$translation = $this->responseFactory->getFormattedMessage(
-					$paramSetting[ Validator::PARAM_DESCRIPTION ]
-				);
-				$paramSetting[ Validator::PARAM_DESCRIPTION ] = $translation;
-			}
+			$paramSetting[ Validator::PARAM_DESCRIPTION ] = $this->resolveParamDescription(
+				$paramSetting
+			);
 
 			$param = Validator::getParameterSpec(
 				$name,
@@ -748,6 +767,7 @@ abstract class Handler {
 			}
 
 			$properties[$name] = Validator::getParameterSchema( $settings );
+			$properties[$name]['description'] = $this->resolveParamDescription( $settings ) ?? "$name parameter";
 
 			if ( $isRequired ) {
 				$required[] = $name;

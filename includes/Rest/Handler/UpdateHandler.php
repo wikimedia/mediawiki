@@ -6,6 +6,7 @@ use MediaWiki\Api\IApiMessage;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\ParamValidator\TypeDef\ArrayDef;
+use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -61,6 +62,7 @@ class UpdateHandler extends EditHandler {
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-update-source' )
 			],
 			'comment' => [
 				self::PARAM_SOURCE => 'body',

@@ -44,7 +44,7 @@ class CreationHandler extends EditHandler {
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
-				self::PARAM_DESCRIPTION => 'A comment descripting the reason for creating the page',
+				self::PARAM_DESCRIPTION => 'A comment describing the reason for creating the page',
 			],
 			'content_model' => [
 				self::PARAM_SOURCE => 'body',
