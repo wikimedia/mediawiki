@@ -2,6 +2,7 @@
 
 namespace Wikimedia\Tests\Http;
 
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\Http\HttpAcceptParser;
 
@@ -11,6 +12,7 @@ use Wikimedia\Http\HttpAcceptParser;
  * @author Daniel Kinzler
  */
 class HttpAcceptParserTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	public static function provideParseWeights() {
 		return [

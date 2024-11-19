@@ -10,6 +10,7 @@ use PHPUnit\Framework\TestCase;
  * @license GPL-2.0-or-later
  */
 class CommentStoreCommentTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	public function testConstructorWithMessage() {
 		$message = new Message( 'test' );

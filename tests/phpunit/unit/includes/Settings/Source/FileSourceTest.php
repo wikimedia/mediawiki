@@ -5,12 +5,15 @@ namespace MediaWiki\Tests\Unit\Settings\Source;
 use MediaWiki\Settings\SettingsBuilderException;
 use MediaWiki\Settings\Source\FileSource;
 use MediaWiki\Settings\Source\Format\JsonFormat;
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \MediaWiki\Settings\Source\FileSource
  */
 class FileSourceTest extends TestCase {
+	use MediaWikiCoversValidator;
+
 	public function testAllowsStaleLoad() {
 		$source = new FileSource( __DIR__ . 'foo.json' );
 		$this->assertFalse( $source->allowsStaleLoad() );

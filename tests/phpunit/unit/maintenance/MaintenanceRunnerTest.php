@@ -9,6 +9,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \MediaWiki\Maintenance\MaintenanceRunner
  */
 class MaintenanceRunnerTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	public const FIXTURE_DIRECTORY = MW_INSTALL_PATH . '/tests/phpunit/data/MaintenanceRunner';
 

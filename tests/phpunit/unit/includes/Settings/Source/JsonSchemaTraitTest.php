@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Unit\Settings\Source;
 use InvalidArgumentException;
 use MediaWiki\Settings\Source\JsonSchemaTrait;
 use MediaWiki\Settings\Source\RefLoopException;
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -12,6 +13,7 @@ use PHPUnit\Framework\TestCase;
  */
 class JsonSchemaTraitTest extends TestCase {
 	use JsonSchemaTrait;
+	use MediaWikiCoversValidator;
 
 	public static function providePhpDocToJson() {
 		yield 'int' => [ 'int', 'integer' ];

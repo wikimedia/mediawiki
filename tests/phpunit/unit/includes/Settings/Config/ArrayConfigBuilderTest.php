@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Unit\Settings\Config;
 use MediaWiki\Config\IterableConfig;
 use MediaWiki\Settings\Config\ArrayConfigBuilder;
 use MediaWiki\Settings\Config\ConfigBuilder;
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -12,6 +13,7 @@ use PHPUnit\Framework\TestCase;
  */
 class ArrayConfigBuilderTest extends TestCase {
 	use ConfigSinkTestTrait;
+	use MediaWikiCoversValidator;
 
 	/** @var ArrayConfigBuilder */
 	private $builder;

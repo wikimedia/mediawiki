@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\User\TempUser;
 
 use MediaWiki\User\TempUser\Pattern;
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
@@ -10,6 +11,8 @@ use RuntimeException;
  * @covers \MediaWiki\User\TempUser\Pattern
  */
 class PatternTest extends TestCase {
+	use MediaWikiCoversValidator;
+
 	public function testInvalid() {
 		$this->expectException( RuntimeException::class );
 		$pattern = new Pattern( 'test', 'test' );

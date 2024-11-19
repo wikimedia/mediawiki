@@ -3,12 +3,15 @@
 namespace MediaWiki\Tests\Unit\ResourceLoader;
 
 use MediaWiki\ResourceLoader\VueComponentParser;
+use MediaWikiCoversValidator;
 
 /**
  * @group ResourceLoader
  * @covers \MediaWiki\ResourceLoader\VueComponentParser
  */
 class VueComponentParserTest extends \PHPUnit\Framework\TestCase {
+	use MediaWikiCoversValidator;
+
 	/**
 	 * @dataProvider provideTestParse
 	 */

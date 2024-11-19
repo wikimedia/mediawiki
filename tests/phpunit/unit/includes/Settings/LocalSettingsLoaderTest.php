@@ -7,12 +7,14 @@ use MediaWiki\Settings\Config\ArrayConfigBuilder;
 use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\LocalSettingsLoader;
 use MediaWiki\Settings\SettingsBuilder;
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \MediaWiki\Settings\LocalSettingsLoader
  */
 class LocalSettingsLoaderTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	/**
 	 * @param array $params

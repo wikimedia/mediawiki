@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Unit\Settings\Config;
 use MediaWiki\Settings\Config\ConfigBuilder;
 use MediaWiki\Settings\Config\GlobalConfigBuilder;
 use MediaWiki\Settings\Config\MergeStrategy;
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -12,6 +13,7 @@ use PHPUnit\Framework\TestCase;
  */
 class GlobalConfigBuilderTest extends TestCase {
 	use ConfigSinkTestTrait;
+	use MediaWikiCoversValidator;
 
 	protected function getConfigSink(): ConfigBuilder {
 		return new GlobalConfigBuilder( 'GlobalConfigBuilderTestPrefix_' );

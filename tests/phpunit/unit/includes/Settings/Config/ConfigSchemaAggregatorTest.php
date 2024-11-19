@@ -7,12 +7,14 @@ use MediaWiki\Config\HashConfig;
 use MediaWiki\Settings\Config\ConfigSchemaAggregator;
 use MediaWiki\Settings\Config\MergeStrategy;
 use MediaWiki\Settings\SettingsBuilderException;
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \MediaWiki\Settings\Config\ConfigSchemaAggregator
  */
 class ConfigSchemaAggregatorTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	public function testAddSchema() {
 		$aggregator = new ConfigSchemaAggregator();

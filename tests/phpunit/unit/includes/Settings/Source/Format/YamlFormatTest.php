@@ -3,11 +3,13 @@
 namespace MediaWiki\Tests\Unit\Settings\Source\Format;
 
 use MediaWiki\Settings\Source\Format\YamlFormat;
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use UnexpectedValueException;
 
 /** @covers \MediaWiki\Settings\Source\Format\YamlFormat */
 class YamlFormatTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	private const VALID_YAML = <<<'VALID_YAML'
 config-schema:

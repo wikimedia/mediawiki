@@ -4,6 +4,7 @@ namespace Wikimedia\Tests\ParamValidator;
 
 use DomainException;
 use InvalidArgumentException;
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use stdClass;
@@ -22,6 +23,7 @@ use Wikimedia\ParamValidator\ValidationException;
  * @covers \Wikimedia\ParamValidator\ParamValidator
  */
 class ParamValidatorTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	public function testTypeRegistration() {
 		$validator = new ParamValidator(

@@ -7,11 +7,13 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Tests\OutputTransform\DummyDOMTransformStage;
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 use Wikimedia\Parsoid\Core\PageBundle;
 
 class ContentDOMTransformStageTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	public function createStage(): ContentDOMTransformStage {
 		return new DummyDOMTransformStage(

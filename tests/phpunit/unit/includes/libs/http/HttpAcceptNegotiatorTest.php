@@ -2,6 +2,7 @@
 
 namespace Wikimedia\Tests\Http;
 
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\Http\HttpAcceptNegotiator;
 
@@ -11,6 +12,7 @@ use Wikimedia\Http\HttpAcceptNegotiator;
  * @author Daniel Kinzler
  */
 class HttpAcceptNegotiatorTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	public static function provideGetFirstSupportedValue() {
 		return [

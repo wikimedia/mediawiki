@@ -3,12 +3,14 @@
 namespace Wikimedia\Tests;
 
 use Cookie;
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \Cookie
  */
 class CookieTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	/**
 	 * @dataProvider cookieDomains

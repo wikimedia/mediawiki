@@ -7,6 +7,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \MediaWiki\Maintenance\MaintenanceParameters
  */
 class MaintenanceParametersTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	public function testOption() {
 		$params = new MaintenanceParameters();

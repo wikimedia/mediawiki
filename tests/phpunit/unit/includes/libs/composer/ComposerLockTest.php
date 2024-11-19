@@ -2,6 +2,7 @@
 
 namespace Wikimedia\Tests\Composer;
 
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\Composer\ComposerLock;
 
@@ -9,6 +10,7 @@ use Wikimedia\Composer\ComposerLock;
  * @covers \Wikimedia\Composer\ComposerLock
  */
 class ComposerLockTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	private const LOCK = __DIR__ . '/../../../../data/composer/composer.lock';
 

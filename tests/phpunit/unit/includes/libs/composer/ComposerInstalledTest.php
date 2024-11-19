@@ -2,6 +2,7 @@
 
 namespace Wikimedia\Tests\Composer;
 
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\Composer\ComposerInstalled;
 
@@ -9,6 +10,7 @@ use Wikimedia\Composer\ComposerInstalled;
  * @covers \Wikimedia\Composer\ComposerInstalled
  */
 class ComposerInstalledTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	public function testGetInstalledDependencies() {
 		$location = __DIR__ . '/../../../../data/composer/installed-v2.json';

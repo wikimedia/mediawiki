@@ -6,6 +6,7 @@ namespace MediaWiki\Tests\Unit\composer\PhpUnitSplitter;
 
 use MediaWiki\Composer\PhpUnitSplitter\PhpUnitXmlManager;
 use MediaWiki\Composer\PhpUnitSplitter\TestListMissingException;
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -13,6 +14,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \MediaWiki\Composer\PhpUnitSplitter\PhpUnitXmlManager
  */
 class PhpUnitXmlManagerTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	private string $testDir;
 	private PhpUnitXmlManager $manager;

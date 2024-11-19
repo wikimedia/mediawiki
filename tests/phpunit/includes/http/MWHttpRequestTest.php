@@ -8,6 +8,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \MWHttpRequest
  */
 class MWHttpRequestTest extends PHPUnit\Framework\TestCase {
+	use MediaWikiCoversValidator;
 
 	/**
 	 * Feeds URI to test a long regular expression in MWHttpRequest::isValidURI

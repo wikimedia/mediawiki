@@ -8,6 +8,7 @@ use Wikimedia\FileBackend\HTTPFileStreamer;
  * @covers \Wikimedia\FileBackend\HTTPFileStreamer
  */
 class HTTPFileStreamerTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	private const FILE = MW_INSTALL_PATH . '/tests/phpunit/data/media/test.jpg';
 

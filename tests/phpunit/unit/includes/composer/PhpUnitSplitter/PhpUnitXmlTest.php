@@ -5,6 +5,7 @@ declare( strict_types = 1 );
 namespace MediaWiki\Tests\Unit\composer\PhpUnitSplitter;
 
 use MediaWiki\Composer\PhpUnitSplitter\PhpUnitXml;
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -12,6 +13,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \MediaWiki\Composer\PhpUnitSplitter\PhpUnitXml
  */
 class PhpUnitXmlTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	private const BASIC_XML = '<?xml version="1.0" encoding="UTF-8"?>
 <phpunit bootstrap="tests/phpunit/bootstrap.php">

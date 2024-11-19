@@ -3,6 +3,7 @@
 namespace Wikimedia\Tests\Stats;
 
 use InvalidArgumentException;
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\Stats\Exceptions\UnsupportedFormatException;
 use Wikimedia\Stats\Metrics\CounterMetric;
@@ -19,6 +20,7 @@ use Wikimedia\Stats\StatsUtils;
  * @covers \Wikimedia\Stats\StatsUtils
  */
 class StatsFactoryTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	public function testGetCounter() {
 		$m = StatsFactory::newNull();

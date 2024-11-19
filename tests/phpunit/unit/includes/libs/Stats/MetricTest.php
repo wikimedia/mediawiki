@@ -2,6 +2,7 @@
 
 namespace Wikimedia\Tests\Stats;
 
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 use Wikimedia\Stats\IBufferingStatsdDataFactory;
@@ -21,6 +22,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \Wikimedia\Stats\StatsUtils
  */
 class MetricTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	public const FORMATS = [ 'statsd', 'dogstatsd' ];
 

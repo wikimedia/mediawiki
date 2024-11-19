@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Unit\Settings\Cache;
 use MediaWiki\Settings\Cache\CacheableSource;
 use MediaWiki\Settings\Cache\CachedSource;
 use MediaWiki\Settings\SettingsBuilderException;
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\ObjectCache\HashBagOStuff;
 
@@ -12,6 +13,8 @@ use Wikimedia\ObjectCache\HashBagOStuff;
  * @covers \MediaWiki\Settings\Cache\CachedSource
  */
 class CachedSourceTest extends TestCase {
+	use MediaWikiCoversValidator;
+
 	public function testLoadWithMiss() {
 		$settings = [ 'config' => [ 'Foo' => 'value' ] ];
 		$hashKey = 'abc123';

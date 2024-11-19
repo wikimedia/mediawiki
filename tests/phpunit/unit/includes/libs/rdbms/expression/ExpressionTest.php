@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Unit\Libs\Rdbms;
 
 use InvalidArgumentException;
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\Rdbms\AndExpressionGroup;
 use Wikimedia\Rdbms\Expression;
@@ -20,6 +21,7 @@ use Wikimedia\Rdbms\OrExpressionGroup;
  * @covers \Wikimedia\Rdbms\LikeValue
  */
 class ExpressionTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	public static function provideSimple() {
 		return [

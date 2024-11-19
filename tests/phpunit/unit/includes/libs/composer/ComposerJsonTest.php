@@ -2,6 +2,7 @@
 
 namespace Wikimedia\Tests\Composer;
 
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\Composer\ComposerJson;
 
@@ -9,6 +10,8 @@ use Wikimedia\Composer\ComposerJson;
  * @covers \Wikimedia\Composer\ComposerJson
  */
 class ComposerJsonTest extends TestCase {
+	use MediaWikiCoversValidator;
+
 	private const JSON_FILE = __DIR__ . '/../../../../data/composer/composer.json';
 
 	public function testGetRequiredDependencies() {

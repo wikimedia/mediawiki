@@ -4,12 +4,14 @@ namespace MediaWiki\Tests\Unit\Settings\Config;
 
 use MediaWiki\Settings\Config\MergeStrategy;
 use MediaWiki\Settings\SettingsBuilderException;
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \MediaWiki\Settings\Config\MergeStrategy
  */
 class MergeStrategyTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	public function testUnknownStrategy() {
 		$this->expectException( SettingsBuilderException::class );
