@@ -143,7 +143,6 @@ function onLoadData( pageData ) {
 		} );
 		// On 'discard changes'.
 		loadNotification.getDiscardButton().on( 'click', () => {
-			loadData( originalData );
 			storage.deleteData( pageName, section ).then( () => {
 				notification.close();
 			} );
