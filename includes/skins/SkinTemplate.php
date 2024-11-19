@@ -406,6 +406,14 @@ class SkinTemplate extends Skin {
 		$returnto = SkinComponentUtils::getReturnToParam( $title, $request, $authority );
 		$shouldHideUserLinks = $this->isAnonUser && $tempUserConfig->isKnown();
 
+		// T379295: Preserve authentication query params so they don't get lost
+		// during switching between Login or CreateAccount pages where we need them.
+		$params = [];
+		if ( $title->isSpecial( 'Userlogin' ) || $title->isSpecial( 'CreateAccount' ) ) {
+			$this->getHookRunner()->onAuthPreserveQueryParams( $params, [ 'reset' => true ] );
+			$returnto = $params;
+		}
+
 		/* set up the default links for the personal toolbar */
 		$personal_urls = [];
 
