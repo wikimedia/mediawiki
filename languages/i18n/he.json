@@ -2196,7 +2196,7 @@
 	"emailsubject": "נושא:",
 	"emailmessage": "הודעה:",
 	"emailsend": "שליחה",
-	"emailccme": "שלחו לי העתק של ההודעה שלי.",
+	"emailccme": "שלחו לי העתק של ההודעה שלי",
 	"emailccsubject": "העתק של הודעתך למשתמש $1: $2",
 	"emailsent": "הדואר נשלח",
 	"emailsenttext": "הודעת הדואר האלקטרוני שלך נשלחה.",

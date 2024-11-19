@@ -2251,7 +2251,7 @@
 	"emailsubject": "Oggetto:",
 	"emailmessage": "Messaggio:",
 	"emailsend": "Invia",
-	"emailccme": "Invia in copia al mio indirizzo.",
+	"emailccme": "Invia in copia al mio indirizzo",
 	"emailccsubject": "Copia del messaggio inviato a $1: $2",
 	"emailsent": "Messaggio inviato",
 	"emailsenttext": "Il messaggio e-mail è stato inviato.",

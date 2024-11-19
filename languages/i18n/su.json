@@ -23,6 +23,7 @@
 			"Veracious",
 			"Vlad5250",
 			"WikiKaruhun",
+			"Zulf",
 			"לערי ריינהארט",
 			"아라"
 		]
@@ -302,7 +303,7 @@
 	"viewsourcetext": "Anjeun bisa nempo sarta néplak sumber ieu kaca.",
 	"viewyourtext": "Anjeun bisa némbongkeun sarta nyalin sumber <strong>éditan anjeun</strong> ka ieu kaca.",
 	"protectedinterface": "Ieu kaca nyadiakeun téks antarmuka pikeun sopwér di ieu wiki, ku kkituna dikonci pikeun nyingkahan \nanu ngaruksak.\nPikeun nambahkeun atawa ngarobah tarjamahan pikeun sakabéh wiki, buka [https://translatewiki.net/ translatewiki.net], proyék lokalisasi MediaWiki.",
-	"editinginterface": "<strong>Awas:</strong> Anjeun keur ngédit kaca nu dipaké pikeun nyadiakeun téks antarmuka pikeun sopwérna.\nParobahan kana ieu kaca bakal mangaruhan pidangan antarmuka pikeun pamaké séjén di ieu wiki.",
+	"editinginterface": "<strong>Awas:</strong> Anjeun keur ngédit kaca nu dipaké pikeun nyadiakeun téks antarpenteu pikeun sopwérna.\nParobahan kana ieu kaca bakal mangaruhan pidangan antarpenteu pikeun pamaké séjén di ieu wiki.",
 	"translateinterface": "Pikeun nambahkeun atawa ngarobah tarjamah keur sakabéh wiki, paké [https://translatewiki.net/ translatewiki.net], proyék lokalisasi MediaWiki.",
 	"cascadeprotected": "Kaca ieu geus dikonci ti éditan alatan ditransklusikeun dina {{PLURAL:$1|kaca|kaca-kaca}} katut anu geus dikonci kalawan pilihan \"runtun\": $2",
 	"namespaceprotected": "Anjeun teu ngabogaan hak pikeun ngédit kaca di ngaranspasi '''$1'''.",

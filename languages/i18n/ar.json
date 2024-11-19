@@ -2262,7 +2262,7 @@
 	"emailsubject": "الموضوع:",
 	"emailmessage": "الرسالة:",
 	"emailsend": "أرسل",
-	"emailccme": "أرسل لي بنسخة من رسالتي.",
+	"emailccme": "أرسل لي بنسخة من رسالتي",
 	"emailccsubject": "نسخة من رسالتك إلى $1: $2",
 	"emailsent": "أُرسل البريد الإلكتروني",
 	"emailsenttext": "أُرسلت رسالتك الإلكترونية.",

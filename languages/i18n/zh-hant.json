@@ -2278,7 +2278,7 @@
 	"emailsubject": "主旨：",
 	"emailmessage": "訊息：",
 	"emailsend": "寄出",
-	"emailccme": "傳送一份訊息副本到我的電子郵件信箱。",
+	"emailccme": "傳送一份訊息副本到我的電子郵件信箱",
 	"emailccsubject": "您寄給 $1 的訊息副本：$2",
 	"emailsent": "已寄出電子郵件",
 	"emailsenttext": "已寄出您的電子郵件訊息。",
