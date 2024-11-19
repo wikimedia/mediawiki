@@ -53,7 +53,7 @@ module.exports = exports = defineStore( 'block', () => {
 			mw.util.isInfinity( expiry.value );
 	} );
 
-	const watch = ref( Boolean );
+	const watchUser = ref( Boolean );
 
 	const hardBlock = ref( Boolean );
 	// eslint-disable-next-line arrow-body-style
@@ -91,7 +91,7 @@ module.exports = exports = defineStore( 'block', () => {
 		createAccount.value = details.value.indexOf( 'wpCreateAccount' ) !== -1;
 		disableEmail.value = details.value.indexOf( 'wpDisableEmail' ) !== -1;
 		disableUTEdit.value = details.value.indexOf( 'wpDisableUTEdit' ) !== -1;
-		watch.value = additionalDetails.value.indexOf( 'wpWatch' ) !== -1;
+		watchUser.value = additionalDetails.value.indexOf( 'wpWatch' ) !== -1;
 		hardBlock.value = additionalDetails.value.indexOf( 'wpHardBlock' ) !== -1;
 		hideName.value = additionalDetails.value.indexOf( 'wpHideName' ) !== -1;
 		autoBlock.value = additionalDetails.value.indexOf( 'wpAutoBlock' ) !== -1;
@@ -167,11 +167,11 @@ module.exports = exports = defineStore( 'block', () => {
 			params.autoblock = 1;
 		}
 
-		if ( hideName.value ) {
+		if ( hideNameVisible.value && hideName.value ) {
 			params.hidename = 1;
 		}
 
-		if ( watch.value ) {
+		if ( watchUser.value ) {
 			params.watchuser = 1;
 		}
 
@@ -206,7 +206,7 @@ module.exports = exports = defineStore( 'block', () => {
 		autoBlockVisible,
 		hideName,
 		hideNameVisible,
-		watch,
+		watchUser,
 		hardBlock,
 		hardBlockVisible,
 		confirmationRequired,

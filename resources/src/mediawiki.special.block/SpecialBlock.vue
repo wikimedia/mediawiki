@@ -22,7 +22,7 @@
 				class="mw-block-error"
 				inline
 			>
-				{{ formError }}
+				<div v-html="formError"></div>
 			</cdx-message>
 		</div>
 		<user-lookup
@@ -215,8 +215,15 @@ module.exports = exports = defineComponent( {
 }
 
 // HACK: Set the max-width of the fields back to what they should be.
-.cdx-field:not( .mw-block-fieldset ) {
+.cdx-field:not( .mw-block-fieldset ),
+.mw-block-messages {
 	max-width: @size-4000;
+}
+
+// HACK: CdxMessage doesn't support v-html, so we need an inner div,
+// and apply the expected styling to the contents therein.
+.mw-block-messages .cdx-message__content > div > :first-child {
+	margin-top: 0;
 }
 
 .mw-block-hideuser,

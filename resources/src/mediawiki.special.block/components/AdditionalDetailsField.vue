@@ -10,13 +10,13 @@
 		<cdx-checkbox
 			v-if="hideNameVisible"
 			v-model="hideName"
-			input-value="wpHideName"
+			input-value="wpHideUser"
 			class="mw-block-hideuser"
 		>
 			{{ $i18n( 'ipbhidename' ) }}
 		</cdx-checkbox>
 		<cdx-checkbox
-			v-model="watch"
+			v-model="watchUser"
 			input-value="wpWatch"
 		>
 			{{ $i18n( 'ipbwatchuser' ) }}
@@ -64,7 +64,7 @@ module.exports = exports = defineComponent( {
 			autoBlockVisible,
 			hideName,
 			hideNameVisible,
-			watch,
+			watchUser,
 			hardBlock,
 			hardBlockVisible
 		} = storeToRefs( store );
@@ -74,7 +74,7 @@ module.exports = exports = defineComponent( {
 			autoBlockVisible,
 			hideName,
 			hideNameVisible,
-			watch,
+			watchUser,
 			hardBlock,
 			hardBlockVisible
 		};
