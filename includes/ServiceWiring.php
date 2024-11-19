@@ -211,7 +211,6 @@ use MediaWiki\Storage\EditResultCache;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\PageEditStash;
-use MediaWiki\Storage\PageUpdatedEvent;
 use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\Storage\RevertedTagUpdateManager;
 use MediaWiki\Storage\SqlBlobStore;
@@ -2673,10 +2672,9 @@ return [
 		// Core event wiring.
 		// TODO: move this to a more prominent location? A separate file?
 
-		// Register listener for propagating PageUpdatedEvents to the
+		// Register subscriber for propagating PageUpdatedEvents to the
 		// change tracking component.
-		$dispatcher->registerListener(
-			PageUpdatedEvent::TYPE,
+		$dispatcher->registerSubscriber(
 			new ChangeTrackingEventIngress( // TODO: use an ObjectFactory spec
 				$services->getChangeTagsStore(),
 				$services->getUserEditTracker()
@@ -2684,12 +2682,7 @@ return [
 		);
 
 		$extensionRegistry = $services->getExtensionRegistry();
-		foreach ( $extensionRegistry->getDomainEventTypes() as $eventType ) {
-			$listeners = $extensionRegistry->getDomainEventListeners( $eventType );
-			foreach ( $listeners as $listenerSpec ) {
-				$dispatcher->registerListener( $eventType, $listenerSpec );
-			}
-		}
+		$dispatcher->registerSubscriber( $extensionRegistry );
 
 		return $dispatcher;
 	},

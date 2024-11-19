@@ -60,11 +60,15 @@ class EventDispatchEngine implements DomainEventDispatcher, DomainEventSource {
 	 * @param mixed $listener
 	 */
 	public function registerListener( string $eventType, $listener ): void {
-		$spec = $this->hookContainer->normalizeHandler(
-			$eventType,
-			$listener,
-			self::HOOK_CONTAINER_OPTIONS
-		);
+		if ( is_callable( $listener ) ) {
+			$spec = [ 'callback' => $listener ];
+		} else {
+			$spec = $this->hookContainer->normalizeHandler(
+				$eventType,
+				$listener,
+				self::HOOK_CONTAINER_OPTIONS
+			);
+		}
 
 		if ( !$spec ) {
 			throw new InvalidArgumentException( "Invalid event listener for $eventType" );
@@ -78,6 +82,11 @@ class EventDispatchEngine implements DomainEventDispatcher, DomainEventSource {
 		}
 
 		$this->listeners[$eventType][] = $spec;
+	}
+
+	public function registerSubscriber( $subscriber ): void {
+		// TODO: Allow $subscriber to be an object spec. Determine list of events!
+		$subscriber->registerListeners( $this );
 	}
 
 	/**

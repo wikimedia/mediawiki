@@ -27,10 +27,16 @@ interface DomainEventSource {
 	 * - object: an object that has a method that starts with "after"
 	 *           followed by the event name and the signature
 	 *           (DomainEvent): void
-	 *
-	 * @todo support named handler objects
-	 * @todo support object specs
 	 */
 	public function registerListener( string $eventType, $listener ): void;
+
+	/**
+	 * Register the given subscriber to this event source.
+	 * @param mixed $subscriber
+	 * - object: a DomainEventSubscriber
+	 *
+	 * @todo support object specs
+	 */
+	public function registerSubscriber( $subscriber ): void;
 
 }

@@ -6,6 +6,8 @@ use AutoLoader;
 use Composer\Semver\Semver;
 use InvalidArgumentException;
 use LogicException;
+use MediaWiki\DomainEvent\DomainEventSource;
+use MediaWiki\DomainEvent\DomainEventSubscriber;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Shell\Shell;
 use MediaWiki\ShellDisabledError;
@@ -30,7 +32,7 @@ use Wikimedia\ScopedCallback;
  * @ingroup ExtensionRegistry
  * @since 1.25
  */
-class ExtensionRegistry {
+class ExtensionRegistry implements DomainEventSubscriber {
 
 	/**
 	 * "requires" key that applies to MediaWiki core
@@ -625,6 +627,22 @@ class ExtensionRegistry {
 		}
 
 		return $this->attributes[$name] ?? [];
+	}
+
+	/**
+	 * Register any domain event listeners defined by extensions.
+	 *
+	 * @internal
+	 */
+	public function registerListeners( DomainEventSource $eventSource ): void {
+		// TODO: register subscribers instead!
+		$listeners = $this->getAttribute( 'Listeners' );
+
+		foreach ( $listeners as $eventType => $listenersForType ) {
+			foreach ( $listenersForType as $listenerSpec ) {
+				$eventSource->registerListener( $eventType, $listenerSpec );
+			}
+		}
 	}
 
 	/**

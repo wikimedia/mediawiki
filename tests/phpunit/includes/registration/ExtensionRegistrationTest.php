@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Registration;
 
 use AutoLoader;
 use Generator;
+use MediaWiki\DomainEvent\DomainEventSource;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Settings\Config\ArrayConfigBuilder;
 use MediaWiki\Settings\Config\PhpIniSink;
@@ -147,22 +148,34 @@ class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 		$registry->queue( $file );
 		$registry->loadFromQueue();
 
+		$listeners = [];
+		$mockSource = $this->createMock( DomainEventSource::class );
+		$mockSource->method( 'registerListener' )->willReturnCallback(
+			static function ( $type, $listener ) use ( &$listeners ) {
+				$listeners[$type][] = $listener;
+			}
+		);
+		$registry->registerListeners( $mockSource );
+
 		$this->assertArrayEquals(
 			[ 'AnEvent', 'BooEvent', ],
-			$registry->getDomainEventTypes()
+			array_keys( $listeners )
 		);
 
-		$this->assertArrayEquals(
-			[ self::class . '::onAnEvent' ],
-			$registry->getDomainEventListeners( 'AnEvent' )
+		$this->assertSame(
+			self::class . '::onAnEvent',
+			$listeners['AnEvent'][0]
 		);
 
-		$this->assertArrayEquals(
-			[ [
-				'handler' => [ 'class' => self::class, 'name' => 'Test-main' ],
+		$this->assertSame(
+			[
+				'handler' => [
+					'name' => 'Test-main',
+					'class' => self::class,
+				],
 				'extensionPath' => $file
-			] ],
-			$registry->getDomainEventListeners( 'BooEvent' )
+			],
+			$listeners['BooEvent'][0]
 		);
 	}
 
