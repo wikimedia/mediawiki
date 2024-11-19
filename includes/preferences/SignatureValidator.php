@@ -26,10 +26,12 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutputFlags;
+use MediaWiki\Parser\ParserOutputLinkTypes;
 use MediaWiki\Parser\Parsoid\LintErrorChecker;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\TitleFactory;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MessageLocalizer;
 use OOUI\ButtonWidget;
@@ -282,23 +284,31 @@ class SignatureValidator {
 		);
 
 		// Checking user or talk links is easy
-		$links = $pout->getLinks();
-		$username = $this->user->getName();
-		if (
-			isset( $links[ NS_USER ][ strtr( $username, ' ', '_' ) ] ) ||
-			isset( $links[ NS_USER_TALK ][ strtr( $username, ' ', '_' ) ] )
+		$user = User::newFromIdentity( $this->user );
+		$userPage = $user->getUserPage();
+		$userTalkPage = $user->getTalkPage();
+		foreach (
+			$pout->getLinkList( ParserOutputLinkTypes::LOCAL )
+			as [ 'link' => $link ]
 		) {
-			return true;
+			if (
+				$link->isSameLinkAs( $userPage ) ||
+				$link->isSameLinkAs( $userTalkPage )
+			) {
+				return true;
+			}
 		}
 
 		// Checking the contributions link is harder, because the special page name and the username in
 		// the "subpage parameter" are not normalized for us.
-		$splinks = $pout->getLinksSpecial();
-		foreach ( $splinks as $dbkey => $unused ) {
-			[ $name, $subpage ] = $this->specialPageFactory->resolveAlias( $dbkey );
+		foreach (
+			$pout->getLinkList( ParserOutputLinkTypes::SPECIAL )
+			as [ 'link' => $link ]
+		) {
+			[ $name, $subpage ] = $this->specialPageFactory->resolveAlias( $link->getDBkey() );
 			if ( $name === 'Contributions' && $subpage ) {
 				$userTitle = $this->titleFactory->makeTitleSafe( NS_USER, $subpage );
-				if ( $userTitle && $userTitle->getText() === $username ) {
+				if ( $userTitle && $userTitle->isSameLinkAs( $userPage ) ) {
 					return true;
 				}
 			}

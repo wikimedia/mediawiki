@@ -783,7 +783,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			// isCountable() method. However, that would break parity with
 			// WikiPage::isCountable, which uses the pagelinks table to determine
 			// whether the current revision has links.
-			$hasLinks = (bool)count( $this->getParserOutputForMetaData()->getLinks() );
+			$hasLinks = $this->getParserOutputForMetaData()->hasLinks();
 		}
 
 		foreach ( $this->getSlots()->getSlotRoles() as $role ) {

@@ -41,6 +41,7 @@ use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
+use MediaWiki\Parser\ParserOutputLinkTypes;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -1561,10 +1562,15 @@ class ParserTestRunner {
 			}
 		}
 
+		// unlike other link types, this dumps the 'sort' property as well
 		if ( isset( $opts['cat'] ) ) {
 			$defaultSortKey = $output->getPageProperty( 'defaultsort' ) ?? '';
-			foreach ( $output->getCategoryNames() as $name ) {
-				$sortkey = $output->getCategorySortKey( $name ) ?: $defaultSortKey;
+			foreach (
+				$output->getLinkList( ParserOutputLinkTypes::CATEGORY )
+				as [ 'link' => $link, 'sort' => $sort ]
+			) {
+				$sortkey = $sort ?: $defaultSortKey;
+				$name = $link->getDBkey();
 				$after[] = "cat=$name sort=$sortkey";
 			}
 		}
@@ -1575,42 +1581,26 @@ class ParserTestRunner {
 			}
 		}
 
+		// Unlike other link types, this is stored as text, not dbkey
 		if ( isset( $opts['ill'] ) ) {
-			foreach ( $output->getLanguageLinks() as $ll ) {
-				$after[] = "ill=$ll";
+			foreach (
+				$output->getLinkList( ParserOutputLinkTypes::LANGUAGE )
+				as [ 'link' => $ll ]
+			) {
+				$after[] = "ill=" . Title::newFromLinkTarget( $ll )->getFullText();
 			}
 		}
 
-		if ( isset( $opts['iwl'] ) ) {
-			foreach ( $output->getInterwikiLinks() as $prefix => $arr ) {
-				foreach ( $arr as $dbk => $ignore ) {
-					$after[] = "iwl=$prefix:$dbk";
-				}
-			}
-		}
-
-		if ( isset( $opts['links'] ) ) {
-			foreach ( $output->getLinks() as $ns => $arr ) {
-				foreach ( $arr as $dbk => $page_id ) {
-					$nsName = $titleFormatter->getNamespaceName( $ns, $dbk );
-					$t = $nsName ? "$nsName:$dbk" : $dbk;
-					$after[] = "link=$t";
-				}
-			}
-		}
-
-		if ( isset( $opts['special'] ) ) {
-			foreach ( $output->getLinksSpecial() as $dbk => $ignore ) {
-				$after[] = "special=Special:$dbk";
-			}
-		}
-
-		if ( isset( $opts['templates'] ) ) {
-			foreach ( $output->getTemplates() as $ns => $arr ) {
-				foreach ( $arr as $dbk => $page_id ) {
-					$nsName = $titleFormatter->getNamespaceName( $ns, $dbk );
-					$t = $nsName ? "$nsName:$dbk" : $dbk;
-					$after[] = "template=$t";
+		$linkoptions = [
+			[ 'iwl', 'iwl=', ParserOutputLinkTypes::INTERWIKI ],
+			[ 'links', 'link=', ParserOutputLinkTypes::LOCAL ],
+			[ 'special', 'special=', ParserOutputLinkTypes::SPECIAL ],
+			[ 'templates', 'template=', ParserOutputLinkTypes::TEMPLATE ],
+		];
+		foreach ( $linkoptions as [ $optName, $prefix, $type ] ) {
+			if ( isset( $opts[$optName] ) ) {
+				foreach ( $output->getLinkList( $type ) as [ 'link' => $ll ] ) {
+					$after[] = $prefix . Title::newFromLinkTarget( $ll )->getPrefixedDBkey();
 				}
 			}
 		}
@@ -1667,7 +1657,11 @@ class ParserTestRunner {
 			}
 		}
 		if ( isset( $opts['showmedia'] ) ) {
-			$after[] = 'images=' . implode( ', ', array_keys( $output->getImages() ) );
+			$images = array_map(
+				fn ( $item ) => $item['link']->getDBkey(),
+				$output->getLinkList( ParserOutputLinkTypes::MEDIA )
+			);
+			$after[] = 'images=' . implode( ', ', $images );
 		}
 		if ( $metadataExpected === null ) {
 			// legacy format, add $before and $after to $out

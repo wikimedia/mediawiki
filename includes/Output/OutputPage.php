@@ -52,6 +52,7 @@ use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
+use MediaWiki\Parser\ParserOutputLinkTypes;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Registration\ExtensionRegistry;
@@ -2374,8 +2375,23 @@ class OutputPage extends ContextSource {
 	public function addParserOutputMetadata( ParserOutput $parserOutput ) {
 		// T301020 This should eventually use the standard "merge ParserOutput"
 		// function between $parserOutput and $this->metadata.
-		$this->addLanguageLinks( $parserOutput->getLanguageLinks() );
-		$this->addCategoryLinks( $parserOutput->getCategoryMap() );
+		$links = [];
+		foreach (
+			$parserOutput->getLinkList( ParserOutputLinkTypes::LANGUAGE )
+			as [ 'link' => $link ]
+		) {
+			$links[] = $link;
+		}
+		$this->addLanguageLinks( $links );
+
+		$cats = [];
+		foreach (
+			$parserOutput->getLinkList( ParserOutputLinkTypes::CATEGORY )
+			as [ 'link' => $link, 'sort' => $sort ]
+		) {
+			$cats[$link->getDBkey()] = $sort;
+		}
+		$this->addCategoryLinks( $cats );
 
 		// Parser-generated indicators get wrapped like other parser output.
 		$wrapClass = $parserOutput->getWrapperDivClass();
@@ -2430,7 +2446,7 @@ class OutputPage extends ContextSource {
 
 		// If $wgImagePreconnect is true, and if the output contains images, give the user-agent
 		// a hint about a remote hosts from which images may be served. Launched in T123582.
-		if ( $this->getConfig()->get( MainConfigNames::ImagePreconnect ) && count( $parserOutput->getImages() ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::ImagePreconnect ) && $parserOutput->hasImages() ) {
 			$preconnect = [];
 			// Optimization: Instead of processing each image, assume that wikis either serve both
 			// foreign and local from the same remote hostname (e.g. public wikis at WMF), or that

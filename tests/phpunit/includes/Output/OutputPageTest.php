@@ -17,6 +17,7 @@ use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
+use MediaWiki\Parser\ParserOutputLinkTypes;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Request\ContentSecurityPolicy;
@@ -1183,12 +1184,33 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op->setLanguageLinks( [ TitleValue::tryNew( NS_MAIN, 'E', '', 'pt' ) ] );
 		$this->assertSame( [ 'pt:E' ], $op->getLanguageLinks() );
 
-		$pOut1 = $this->createParserOutputStub( 'getLanguageLinks', [ 'he:F', 'ar:G#y' ] );
+		$pOut1 = $this->createParserOutputStub( [
+			'getLanguageLinks' => [ 'he:F', 'ar:G#y' ],
+			'getLinkList' => static function ( $type ) {
+				if ( $type !== ParserOutputLinkTypes::LANGUAGE ) {
+					return [];
+				}
+				return [
+					[ 'link' => TitleValue::tryNew( NS_MAIN, 'F', '', 'he' ) ],
+					[ 'link' => TitleValue::tryNew( NS_MAIN, 'G', 'y', 'ar' ) ],
+				];
+			},
+		] );
 		$op->addParserOutputMetadata( $pOut1 );
 		$this->assertSame( [ 'pt:E', 'he:F', 'ar:G#y' ], $op->getLanguageLinks() );
 
 		# Duplicates are removed in OutputPage (T26502)
-		$pOut2 = $this->createParserOutputStub( 'getLanguageLinks', [ 'pt:H' ] );
+		$pOut2 = $this->createParserOutputStub( [
+			'getLanguageLinks' => [ 'pt:H' ],
+			'getLinkList' => static function ( $type ) {
+				if ( $type !== ParserOutputLinkTypes::LANGUAGE ) {
+					return [];
+				}
+				return [
+					[ 'link' => TitleValue::tryNew( NS_MAIN, 'H', '', 'pt' ) ],
+				];
+			},
+		] );
 		$op->addParserOutput( $pOut2 );
 		$this->assertSame( [ 'pt:E', 'he:F', 'ar:G#y' ], $op->getLanguageLinks() );
 	}
@@ -1285,6 +1307,19 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 		$stubPO = $this->createParserOutputStub( [
 			'getCategoryMap' => $args,
+			'getLinkList' => static function ( $type ) use ( $args ) {
+				if ( $type !== ParserOutputLinkTypes::CATEGORY ) {
+					return [];
+				}
+				$result = [];
+				foreach ( $args as $cat => $sort ) {
+					$result[] = [
+						'link' => TitleValue::tryNew( NS_CATEGORY, $cat ),
+						'sort' => $sort,
+					];
+				}
+				return $result;
+			},
 		] );
 
 		// addParserOutput and addParserOutputMetadata should behave identically for us, so
@@ -1645,7 +1680,11 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 		$mockedRunOutputPipeline = false;
 		foreach ( $retVals as $method => $retVal ) {
-			$pOut->method( $method )->willReturn( $retVal );
+			if ( is_callable( $retVal ) ) {
+				$pOut->method( $method )->willReturnCallback( $retVal );
+			} else {
+				$pOut->method( $method )->willReturn( $retVal );
+			}
 			if ( $method === 'runOutputPipeline' ) {
 				$mockedRunOutputPipeline = true;
 			}

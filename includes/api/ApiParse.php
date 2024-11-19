@@ -44,6 +44,7 @@ use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
+use MediaWiki\Parser\ParserOutputLinkTypes;
 use MediaWiki\PoolCounter\PoolCounterWorkViaCallback;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\RevisionLookup;
@@ -61,6 +62,7 @@ use Skin;
 use SkinFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
+use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
 use WikiPage;
 
 /**
@@ -567,11 +569,24 @@ class ApiParse extends ApiBase {
 			if ( $skin ) {
 				$langlinks = $outputPage->getLanguageLinks();
 			} else {
-				$langlinks = $p_result->getLanguageLinks();
+				$langlinks = array_map(
+					fn ( $item ) => $item['link'],
+					$p_result->getLinkList( ParserOutputLinkTypes::LANGUAGE )
+				);
 				// The deprecated 'effectivelanglinks' option pre-dates OutputPage
 				// support via 'useskin'. If not already applied, then run just this
 				// one hook of OutputPage::addParserOutputMetadata here.
 				if ( $params['effectivelanglinks'] ) {
+					# for compatibility with old hook, convert to string[]
+					$compat = [];
+					foreach ( $langlinks as $link ) {
+						$s = $link->getInterwiki() . ':' . $link->getText();
+						if ( $link->hasFragment() ) {
+							$s .= '#' . $link->getFragment();
+						}
+						$compat[] = $s;
+					}
+					$langlinks = $compat;
 					$linkFlags = [];
 					$this->getHookRunner()->onLanguageLinks( $titleObj, $langlinks, $linkFlags );
 				}
@@ -587,17 +602,18 @@ class ApiParse extends ApiBase {
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'categorieshtml';
 		}
 		if ( isset( $prop['links'] ) ) {
-			$result_array['links'] = $this->formatLinks( $p_result->getLinks() );
+
+			$result_array['links'] = $this->formatLinks( $p_result->getLinkList( ParserOutputLinkTypes::LOCAL ) );
 		}
 		if ( isset( $prop['templates'] ) ) {
-			$result_array['templates'] = $this->formatLinks( $p_result->getTemplates() );
+			$result_array['templates'] = $this->formatLinks(
+				$p_result->getLinkList( ParserOutputLinkTypes::TEMPLATE )
+			);
 		}
 		if ( isset( $prop['images'] ) ) {
-			// Cast image links to string since PHP coerces numeric string array keys to numbers
-			// (T346265).
 			$result_array['images'] = array_map(
-				fn ( $link ) => (string)$link,
-				array_keys( $p_result->getImages() )
+				fn ( $item ) => $item['link']->getDBkey(),
+				$p_result->getLinkList( ParserOutputLinkTypes::MEDIA )
 			);
 		}
 		if ( isset( $prop['externallinks'] ) ) {
@@ -687,7 +703,11 @@ class ApiParse extends ApiBase {
 		}
 
 		if ( isset( $prop['iwlinks'] ) ) {
-			$result_array['iwlinks'] = $this->formatIWLinks( $p_result->getInterwikiLinks() );
+			$links = array_map(
+				fn ( $item ) => $item['link'],
+				$p_result->getLinkList( ParserOutputLinkTypes::INTERWIKI )
+			);
+			$result_array['iwlinks'] = $this->formatIWLinks( $links );
 		}
 
 		if ( isset( $prop['wikitext'] ) ) {
@@ -913,14 +933,27 @@ class ApiParse extends ApiBase {
 		return $this->commentFormatter->format( $summary, $title, $this->section === 'new' );
 	}
 
-	private function formatLangLinks( $links ) {
+	/**
+	 * @param string[]|ParsoidLinkTarget[] $links
+	 * @return array
+	 */
+	private function formatLangLinks( $links ): array {
 		$result = [];
 		foreach ( $links as $link ) {
 			$entry = [];
-			[ $lang, $titleWithFrag ] = explode( ':', $link, 2 );
-			[ $title, $frag ] = array_pad( explode( '#', $titleWithFrag, 2 ), 2, '' );
-			$title = TitleValue::tryNew( NS_MAIN, $title, $frag, $lang );
-			$title = $title ? Title::newFromLinkTarget( $title ) : null;
+			if ( is_string( $link ) ) {
+				[ $lang, $titleWithFrag ] = explode( ':', $link, 2 );
+				[ $title, $frag ] = array_pad( explode( '#', $titleWithFrag, 2 ), 2, '' );
+				$title = TitleValue::tryNew( NS_MAIN, $title, $frag, $lang );
+			} else {
+				$title = $link;
+				$lang = $link->getInterwiki();
+				$titleWithFrag = $link->getText();
+				if ( $link->hasFragment() ) {
+					$titleWithFrag .= '#' . $link->getFragment();
+				}
+			}
+			$title = Title::castFromLinkTarget( $title );
 
 			$entry['lang'] = $lang;
 			if ( $title ) {
@@ -989,16 +1022,18 @@ class ApiParse extends ApiBase {
 		return $result;
 	}
 
-	private function formatLinks( $links ) {
+	/**
+	 * @param list<array{link:ParsoidLinkTarget,pageid?:int}> $links
+	 * @return array
+	 */
+	private function formatLinks( array $links ): array {
 		$result = [];
-		foreach ( $links as $ns => $nslinks ) {
-			foreach ( $nslinks as $title => $id ) {
-				$entry = [];
-				$entry['ns'] = $ns;
-				ApiResult::setContentValue( $entry, 'title', Title::makeTitle( $ns, $title )->getFullText() );
-				$entry['exists'] = $id != 0;
-				$result[] = $entry;
-			}
+		foreach ( $links as [ 'link' => $link, 'pageid' => $id ] ) {
+			$entry = [];
+			$entry['ns'] = $link->getNamespace();
+			ApiResult::setContentValue( $entry, 'title', Title::newFromLinkTarget( $link )->getFullText() );
+			$entry['exists'] = $id != 0;
+			$result[] = $entry;
 		}
 
 		return $result;
@@ -1006,19 +1041,16 @@ class ApiParse extends ApiBase {
 
 	private function formatIWLinks( $iw ) {
 		$result = [];
-		foreach ( $iw as $prefix => $titles ) {
-			foreach ( $titles as $title => $_ ) {
-				$entry = [];
-				$entry['prefix'] = $prefix;
-
-				$title = Title::newFromText( "{$prefix}:{$title}" );
-				if ( $title ) {
-					$entry['url'] = (string)$this->urlUtils->expand( $title->getFullURL(), PROTO_CURRENT );
-				}
+		foreach ( $iw as $linkTarget ) {
+			$entry = [];
+			$entry['prefix'] = $linkTarget->getInterwiki();
+			$title = Title::newFromLinkTarget( $linkTarget );
+			if ( $title ) {
+				$entry['url'] = (string)$this->urlUtils->expand( $title->getFullURL(), PROTO_CURRENT );
 
 				ApiResult::setContentValue( $entry, 'title', $title->getFullText() );
-				$result[] = $entry;
 			}
+			$result[] = $entry;
 		}
 
 		return $result;

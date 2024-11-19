@@ -232,8 +232,7 @@ class WikitextContent extends TextContent {
 				$contentRenderer = MediaWikiServices::getInstance()->getContentRenderer();
 				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable getTitle does not return null here
 				$po = $contentRenderer->getParserOutput( $this, $title, null, null, false );
-				$links = $po->getLinks();
-				$hasLinks = $links !== [];
+				$hasLinks = $po->hasLinks();
 			}
 
 			return $hasLinks;

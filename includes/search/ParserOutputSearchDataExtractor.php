@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Search;
 
-use MediaWiki\Category\Category;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\ParserOutputLinkTypes;
 use MediaWiki\Title\Title;
 
 /**
@@ -37,9 +37,11 @@ class ParserOutputSearchDataExtractor {
 	public function getCategories( ParserOutput $parserOutput ) {
 		$categories = [];
 
-		foreach ( $parserOutput->getCategoryNames() as $key ) {
-			$name = Category::newFromName( $key )->getName();
-			$categories[] = str_replace( '_', ' ', $name );
+		foreach (
+			$parserOutput->getLinkList( ParserOutputLinkTypes::CATEGORY )
+			as [ 'link' => $link ]
+		) {
+			$categories[] = $link->getText();
 		}
 
 		return $categories;
@@ -65,11 +67,14 @@ class ParserOutputSearchDataExtractor {
 	public function getOutgoingLinks( ParserOutput $parserOutput ) {
 		$outgoingLinks = [];
 
-		foreach ( $parserOutput->getLinks() as $linkedNamespace => $namespaceLinks ) {
-			foreach ( $namespaceLinks as $linkedDbKey => $_ ) {
-				$outgoingLinks[] =
-					Title::makeTitle( $linkedNamespace, $linkedDbKey )->getPrefixedDBkey();
-			}
+		foreach (
+			$parserOutput->getLinkList( ParserOutputLinkTypes::LOCAL )
+			as [ 'link' => $link ]
+		) {
+			// XXX should use a TitleFormatter
+			// XXX why is this a DBkey when all of the others are text?
+			$outgoingLinks[] =
+				Title::newFromLinkTarget( $link )->getPrefixedDBkey();
 		}
 
 		return $outgoingLinks;
@@ -84,11 +89,13 @@ class ParserOutputSearchDataExtractor {
 	public function getTemplates( ParserOutput $parserOutput ) {
 		$templates = [];
 
-		foreach ( $parserOutput->getTemplates() as $tNS => $templatesInNS ) {
-			foreach ( $templatesInNS as $tDbKey => $_ ) {
-				$templateTitle = Title::makeTitle( $tNS, $tDbKey );
-				$templates[] = $templateTitle->getPrefixedText();
-			}
+		foreach (
+			$parserOutput->getLinkList( ParserOutputLinkTypes::TEMPLATE )
+			as [ 'link' => $link ]
+		) {
+			// XXX should use a TitleFormatter
+			$templates[] =
+				Title::newFromLinkTarget( $link )->getPrefixedText();
 		}
 
 		return $templates;
