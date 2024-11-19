@@ -5,7 +5,7 @@ namespace MediaWiki\Tests\Maintenance;
 use GetReplicaServer;
 
 /**
- * @covers GetReplicaServer
+ * @covers \GetReplicaServer
  * @group Database
  * @author Dreamy Jazz
  */

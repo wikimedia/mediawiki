@@ -5,7 +5,7 @@ use MediaWiki\RCFeed\RedisPubSubFeedEngine;
 use MediaWiki\RCFeed\UDPRCFeedEngine;
 
 /**
- * @covers MediaWiki\RCFeed\RCFeed
+ * @covers \MediaWiki\RCFeed\RCFeed
  */
 class RCFeedTest extends MediaWikiUnitTestCase {
 

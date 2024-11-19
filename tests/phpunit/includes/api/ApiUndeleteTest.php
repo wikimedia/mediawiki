@@ -13,7 +13,7 @@ use Wikimedia\Rdbms\IDBAccessObject;
  * @group Database
  * @group medium
  *
- * @covers MediaWiki\Api\ApiUndelete
+ * @covers \MediaWiki\Api\ApiUndelete
  */
 class ApiUndeleteTest extends ApiTestCase {
 
@@ -24,7 +24,7 @@ class ApiUndeleteTest extends ApiTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Api\ApiUndelete::execute()
+	 * @covers \MediaWiki\Api\ApiUndelete::execute()
 	 */
 	public function testUndeleteWithWatch(): void {
 		$title = Title::makeTitle( NS_MAIN, 'TestUndeleteWithWatch' );

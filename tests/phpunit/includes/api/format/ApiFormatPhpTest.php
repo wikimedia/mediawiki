@@ -6,7 +6,7 @@ use MediaWiki\Api\ApiResult;
 
 /**
  * @group API
- * @covers MediaWiki\Api\ApiFormatPhp
+ * @covers \MediaWiki\Api\ApiFormatPhp
  */
 class ApiFormatPhpTest extends ApiFormatTestBase {
 

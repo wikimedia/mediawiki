@@ -31,7 +31,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWikiIntegrationTestCase;
 
 /**
- * @covers ChangeTagsList
+ * @covers \ChangeTagsList
  * @group ChangeTag
  * @group Database
  */

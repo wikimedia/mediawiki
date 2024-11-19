@@ -8,7 +8,7 @@ use MediaWiki\Site\MediaWikiSite;
 use MediaWiki\Site\Site;
 
 /**
- * @covers AddSite
+ * @covers \AddSite
  * @author Dreamy Jazz
  */
 class AddSiteTest extends MaintenanceBaseTestCase {

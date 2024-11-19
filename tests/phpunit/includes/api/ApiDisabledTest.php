@@ -6,7 +6,7 @@ namespace MediaWiki\Tests\Api;
  * @group API
  * @group medium
  *
- * @covers MediaWiki\Api\ApiDisabled
+ * @covers \MediaWiki\Api\ApiDisabled
  */
 class ApiDisabledTest extends ApiTestCase {
 	public function testDisabled() {

@@ -27,7 +27,7 @@ use Exception;
  * @group API
  * @group Database
  * @group medium
- * @covers MediaWiki\Api\ApiQuery
+ * @covers \MediaWiki\Api\ApiQuery
  */
 class ApiQueryContinue2Test extends ApiQueryContinueTestBase {
 	/** @var Exception|null */

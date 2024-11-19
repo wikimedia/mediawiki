@@ -5,7 +5,7 @@ use MediaWiki\HTMLForm\Field\HTMLButtonField;
 use MediaWiki\Tests\Integration\HTMLForm\HTMLFormFieldTestCase;
 
 /**
- * @covers MediaWiki\HTMLForm\Field\HTMLButtonField
+ * @covers \MediaWiki\HTMLForm\Field\HTMLButtonField
  */
 class HTMLButtonFieldTest extends HTMLFormFieldTestCase {
 	/** @inheritDoc */

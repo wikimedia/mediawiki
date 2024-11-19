@@ -6,7 +6,7 @@ use MediaWiki\Api\ApiResult;
 
 /**
  * @group API
- * @covers MediaWiki\Api\ApiFormatNone
+ * @covers \MediaWiki\Api\ApiFormatNone
  */
 class ApiFormatNoneTest extends ApiFormatTestBase {
 

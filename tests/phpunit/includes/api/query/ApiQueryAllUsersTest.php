@@ -13,7 +13,7 @@ use MediaWiki\User\User;
  * @group Database
  * @group medium
  *
- * @covers MediaWiki\Api\ApiQueryAllUsers
+ * @covers \MediaWiki\Api\ApiQueryAllUsers
  */
 class ApiQueryAllUsersTest extends ApiTestCase {
 	use MockAuthorityTrait;

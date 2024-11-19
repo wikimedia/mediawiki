@@ -6,9 +6,9 @@ use FindDeprecated;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers FindDeprecated
- * @covers DeprecatedInterfaceFinder
- * @covers FileAwareNodeVisitor
+ * @covers \FindDeprecated
+ * @covers \DeprecatedInterfaceFinder
+ * @covers \FileAwareNodeVisitor
  * @group Database
  * @author Dreamy Jazz
  */

@@ -6,7 +6,7 @@ use DeleteSelfExternals;
 use MediaWiki\MainConfigNames;
 
 /**
- * @covers DeleteSelfExternals
+ * @covers \DeleteSelfExternals
  * @group Database
  * @author Dreamy Jazz
  */

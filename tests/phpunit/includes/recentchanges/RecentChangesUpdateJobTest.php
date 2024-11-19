@@ -5,7 +5,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @group Database
- * @covers RecentChangesUpdateJob
+ * @covers \RecentChangesUpdateJob
  * @author Dreamy Jazz
  */
 class RecentChangesUpdateJobTest extends MediaWikiIntegrationTestCase {

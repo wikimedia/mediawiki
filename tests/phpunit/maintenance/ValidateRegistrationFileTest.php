@@ -7,7 +7,7 @@ use MediaWiki\Registration\ExtensionRegistry;
 use ValidateRegistrationFile;
 
 /**
- * @covers ValidateRegistrationFile
+ * @covers \ValidateRegistrationFile
  * @author Dreamy Jazz
  */
 class ValidateRegistrationFileTest extends MaintenanceBaseTestCase {

@@ -9,7 +9,7 @@ use MediaWiki\Title\Title;
  * @group API
  * @group Database
  * @group medium
- * @covers MediaWiki\Api\ApiQueryAllRevisions
+ * @covers \MediaWiki\Api\ApiQueryAllRevisions
  */
 class ApiQueryAllRevisionsTest extends ApiTestCase {
 

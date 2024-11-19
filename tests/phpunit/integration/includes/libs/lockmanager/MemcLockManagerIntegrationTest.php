@@ -4,7 +4,7 @@ use MediaWiki\MainConfigNames;
 
 /**
  * @group LockManager
- * @covers MemcLockManager
+ * @covers \MemcLockManager
  */
 class MemcLockManagerIntegrationTest extends LockManagerIntegrationTestBase {
 	/** @var LockManager[] */

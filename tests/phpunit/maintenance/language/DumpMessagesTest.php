@@ -7,7 +7,7 @@ use MediaWiki\Json\FormatJson;
 use MediaWiki\Tests\Language\MockLocalisationCacheTrait;
 
 /**
- * @covers DumpMessages
+ * @covers \DumpMessages
  * @author Dreamy Jazz
  */
 class DumpMessagesTest extends MaintenanceBaseTestCase {

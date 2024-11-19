@@ -14,7 +14,7 @@ use MediaWiki\User\UserIdentityValue;
  * @group API
  * @group Database
  * @group medium
- * @covers MediaWiki\Api\ApiQueryRevisions
+ * @covers \MediaWiki\Api\ApiQueryRevisions
  */
 class ApiQueryRevisionsTest extends ApiTestCase {
 	use TempUserTestTrait;

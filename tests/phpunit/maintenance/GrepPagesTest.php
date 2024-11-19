@@ -6,7 +6,7 @@ use GrepPages;
 use MediaWiki\WikiMap\WikiMap;
 
 /**
- * @covers GrepPages
+ * @covers \GrepPages
  * @group Database
  * @author Dreamy Jazz
  */

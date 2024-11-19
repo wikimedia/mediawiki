@@ -5,7 +5,7 @@ use MediaWiki\HTMLForm\Field\HTMLCheckField;
 use MediaWiki\Tests\Integration\HTMLForm\HTMLFormFieldTestCase;
 
 /**
- * @covers MediaWiki\HTMLForm\Field\HTMLCheckField
+ * @covers \MediaWiki\HTMLForm\Field\HTMLCheckField
  */
 class HTMLCheckFieldTest extends HTMLFormFieldTestCase {
 	/** @inheritDoc */

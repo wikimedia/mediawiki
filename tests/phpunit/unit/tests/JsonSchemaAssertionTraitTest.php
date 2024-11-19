@@ -3,7 +3,7 @@
 use PHPUnit\Framework\AssertionFailedError;
 
 /**
- * @covers JsonSchemaAssertionTrait
+ * @covers \JsonSchemaAssertionTrait
  * @group MediaWikiIntegrationTestCaseTest
  */
 class JsonSchemaAssertionTraitTest extends MediaWikiUnitTestCase {

@@ -11,7 +11,7 @@ use RenameUsersMatchingPattern;
 use TestUser;
 
 /**
- * @covers RenameUsersMatchingPattern
+ * @covers \RenameUsersMatchingPattern
  * @group Database
  * @author Dreamy Jazz
  */

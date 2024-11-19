@@ -12,7 +12,7 @@ use MWCryptRand;
 
 /**
  * Tests for action=revisiondelete
- * @covers MediaWiki\Api\ApiRevisionDelete
+ * @covers \MediaWiki\Api\ApiRevisionDelete
  * @group API
  * @group medium
  * @group Database

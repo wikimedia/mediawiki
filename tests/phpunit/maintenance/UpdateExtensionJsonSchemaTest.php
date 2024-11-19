@@ -7,7 +7,7 @@ use MediaWiki\Registration\ExtensionRegistry;
 use UpdateExtensionJsonSchema;
 
 /**
- * @covers ValidateRegistrationFile
+ * @covers \ValidateRegistrationFile
  * @author Dreamy Jazz
  */
 class UpdateExtensionJsonSchemaTest extends MaintenanceBaseTestCase {

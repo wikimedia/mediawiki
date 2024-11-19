@@ -15,7 +15,7 @@ use MediaWiki\Tests\Api\ApiTestCase;
  * @group Database
  * @group medium
  *
- * @covers MediaWiki\Api\ApiQueryBlocks
+ * @covers \MediaWiki\Api\ApiQueryBlocks
  */
 class ApiQueryBlocksTest extends ApiTestCase {
 

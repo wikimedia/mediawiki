@@ -5,7 +5,7 @@ namespace MediaWiki\Tests\Maintenance;
 use MakeTestEdits;
 
 /**
- * @covers MakeTestEdits
+ * @covers \MakeTestEdits
  * @group Database
  * @author Dreamy Jazz
  */

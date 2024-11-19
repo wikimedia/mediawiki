@@ -8,7 +8,7 @@ use MediaWiki\Tests\Api\ApiTestCase;
  * @group API
  * @group medium
  *
- * @covers MediaWiki\Api\ApiQueryDisabled
+ * @covers \MediaWiki\Api\ApiQueryDisabled
  */
 class ApiQueryDisabledTest extends ApiTestCase {
 	public function testDisabled() {

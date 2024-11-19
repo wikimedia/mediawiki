@@ -9,7 +9,7 @@ use MediaWiki\Title\Title;
 /**
  * @group API
  * @group Database
- * @covers MediaWiki\Api\ApiQueryAllDeletedRevisions
+ * @covers \MediaWiki\Api\ApiQueryAllDeletedRevisions
  */
 class ApiQueryAllDeletedRevisionsTest extends ApiTestCase {
 

@@ -22,7 +22,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group medium
  * @group Database
  *
- * @covers MediaWiki\Api\ApiQuerySiteinfo
+ * @covers \MediaWiki\Api\ApiQuerySiteinfo
  */
 class ApiQuerySiteinfoTest extends ApiTestCase {
 	use TempUserTestTrait;
