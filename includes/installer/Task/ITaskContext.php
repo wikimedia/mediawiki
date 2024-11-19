@@ -86,4 +86,11 @@ interface ITaskContext {
 	 * @return mixed
 	 */
 	public function getProvision( string $name );
+
+	/**
+	 * Get schema variables
+	 *
+	 * @return array
+	 */
+	public function getSchemaVars();
 }
