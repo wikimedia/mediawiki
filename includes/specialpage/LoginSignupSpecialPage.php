@@ -1284,6 +1284,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			->getLanguage( $lang );
 		$attr['lang'] = $attr['hreflang'] = $targetLanguage->getHtmlCode();
 		$attr['class'] = 'mw-authentication-popup-link';
+		$attr['title'] = false;
 
 		return $this->getLinkRenderer()->makeKnownLink(
 			$this->getPageTitle(),
