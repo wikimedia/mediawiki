@@ -24,3 +24,18 @@
 		}
 	}
 }
+
+.cdx-table {
+	thead {
+		// Override MediaWiki style.
+		font-size: 100%;
+	}
+
+	.cdx-table__table__sort-button {
+		// Ensure proper sizing of interior link.
+		box-sizing: @box-sizing-base;
+		// Account for link styles on fake button.
+		color: @color-emphasized;
+		text-decoration: none;
+	}
+}

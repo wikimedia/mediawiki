@@ -50,7 +50,6 @@ abstract class CodexTablePager extends TablePager {
 		if ( trim( $caption ) === '' ) {
 			throw new InvalidArgumentException( 'Table caption is required.' );
 		}
-		// TODO T366847: add sort text to caption when data is sortable.
 		$this->mCaption = $caption;
 
 		$this->getOutput()->addModules( 'mediawiki.pager.codex' );
@@ -102,17 +101,78 @@ abstract class CodexTablePager extends TablePager {
 		$theadContent = '';
 		$fields = $this->getFieldNames();
 
-		// Make table header
-		// TODO T366847: Add sort buttons.
+		// Build each th element.
 		foreach ( $fields as $field => $name ) {
 			if ( $name === '' ) {
 				// th with no label (not advised).
 				$theadContent .= Html::rawElement( 'th', $this->getCellAttrs( $field, $name ), "\u{00A0}" ) . "\n";
+			} elseif ( $this->isFieldSortable( $field ) ) {
+				// Sortable column.
+				$query = [ 'sort' => $field, 'limit' => $this->mLimit ];
+				$sortIconClasses = [ 'cdx-table__table__sort-icon' ];
+
+				if ( $this->mSort == $field ) {
+					// Set data for the currently sorted column.
+					if ( $this->mDefaultDirection == IndexPager::DIR_DESCENDING ) {
+						$sortIconClasses[] = 'cdx-table__table__sort-icon--desc';
+						$query['asc'] = '1';
+						$query['desc'] = '';
+					} else {
+						$sortIconClasses[] = 'cdx-table__table__sort-icon--asc';
+						$query['asc'] = '';
+						$query['desc'] = '1';
+					}
+				} else {
+					$sortIconClasses[] = 'cdx-table__table__sort-icon--unsorted';
+				}
+
+				// Build the label and icon span that go inside the link.
+				$linkContents = Html::rawElement( 'span',
+					[ 'class' => 'cdx-table__table__sort-label' ],
+					htmlspecialchars( $name )
+				) . "\n" .
+				Html::rawElement( 'span',
+					[ 'class' => $sortIconClasses, 'aria-hidden' => true ]
+				) . "\n";
+
+				// Build the link that goes inside the th.
+				$link = Html::rawElement( 'a',
+					[
+						'class' => [ 'cdx-table__table__sort-button' ],
+						'role' => 'button',
+						'href' => $this->getTitle()->getLinkURL( $query + $this->getDefaultQuery() ),
+					],
+					$linkContents
+				);
+
+				// Build the th.
+				$thAttrs = $this->getCellAttrs( $field, $name );
+				$thAttrs[ 'class' ][] = $this->getSortHeaderClass();
+				$theadContent .= Html::rawElement( 'th', $thAttrs, $link ) . "\n";
 			} else {
+				// Unsortable column.
 				$theadContent .= Html::element( 'th', $this->getCellAttrs( $field, $name ), $name ) . "\n";
 			}
 		}
 		return Html::rawElement( 'thead', [], Html::rawElement( 'tr', [], "\n" . $theadContent . "\n" ) );
+	}
+
+	/**
+	 * Append text to the caption if any fields are sortable.
+	 *
+	 * @param string $captionText Caption provided for the table
+	 */
+	private function getFullCaption( string $captionText ): string {
+		$fields = $this->getFieldNames();
+
+		// Make table header
+		foreach ( $fields as $field => $name ) {
+			if ( $this->isFieldSortable( $field ) === true ) {
+				return $this->msg( 'cdx-table-sort-caption', $captionText )->text();
+			}
+		}
+
+		return $captionText;
 	}
 
 	/**
@@ -127,7 +187,7 @@ abstract class CodexTablePager extends TablePager {
 		$ret = Html::openElement( 'table', [
 			'class' => $this->getTableClass() ]
 		);
-		$ret .= Html::rawElement( 'caption', [], $this->mCaption );
+		$ret .= Html::rawElement( 'caption', [], $this->getFullCaption( $this->mCaption ) );
 		$ret .= $this->getThead();
 		$ret .= Html::openElement( 'tbody' ) . "\n";
 
@@ -212,7 +272,14 @@ abstract class CodexTablePager extends TablePager {
 		return 'cdx-table-pager';
 	}
 
-	// TODO T366847: override getSortHeaderClass
+	/**
+	 * Class for th elements of sortable columns.
+	 *
+	 * @stable to override
+	 */
+	protected function getSortHeaderClass(): string {
+		return 'cdx-table__table__cell--has-sort';
+	}
 
 	/**
 	 * Pager bar with per-page limit and pager buttons.
@@ -296,7 +363,6 @@ abstract class CodexTablePager extends TablePager {
 	 * @return string HTML fragment
 	 */
 	public function getLimitForm(): string {
-		// TODO: style the submit button
 		return Html::rawElement(
 			'form',
 			[
