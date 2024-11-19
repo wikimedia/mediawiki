@@ -274,7 +274,8 @@ $dateFormats = [
 	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
 ];
 
-$separatorTransformTable = [ ',' => '.', '.' => ',' ];
+$separatorTransformTable = [ ',' => "\u{202F}", '.' => ',' ];
+$minimumGroupingDigits = 2;
 
 $fallback8bitEncoding = 'iso-8859-2';
 
