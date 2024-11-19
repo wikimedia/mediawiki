@@ -3370,7 +3370,7 @@ class OutputPage extends ContextSource {
 				$query['returnto'] = $returnto->getPrefixedText();
 
 				if ( !$request->wasPosted() ) {
-					$returntoquery = $request->getValues();
+					$returntoquery = $request->getQueryValues();
 					unset( $returntoquery['title'] );
 					unset( $returntoquery['returnto'] );
 					unset( $returntoquery['returntoquery'] );

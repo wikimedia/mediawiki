@@ -809,7 +809,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 					);
 					// Add to the query any parameters that we may have ignored before
 					// but are still valid and requested in the URL
-					$query = array_merge( $this->getRequest()->getValues(), $query );
+					$query = array_merge( $this->getRequest()->getQueryValues(), $query );
 					unset( $query[ 'title' ] );
 					$this->getOutput()->redirect( $this->getPageTitle( $subpage )->getCanonicalURL( $query ) );
 

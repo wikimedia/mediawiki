@@ -1213,7 +1213,7 @@ class Article implements Page {
 		$rdfrom = $request->getVal( 'rdfrom' );
 
 		// Construct a URL for the current page view, but with the target title
-		$query = $request->getValues();
+		$query = $request->getQueryValues();
 		unset( $query['rdfrom'] );
 		unset( $query['title'] );
 		if ( $this->getTitle()->isRedirect() ) {

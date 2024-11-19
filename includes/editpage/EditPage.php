@@ -2896,7 +2896,7 @@ class EditPage implements IEditObject {
 			$this->context->getRequest()->getVal( 'editintro' ),
 			wfArrayToCgi(
 				array_diff_key(
-					$this->context->getRequest()->getValues(),
+					$this->context->getRequest()->getQueryValues(),
 					[ 'title' => true, 'returnto' => true, 'returntoquery' => true ]
 				)
 			),

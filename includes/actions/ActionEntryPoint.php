@@ -425,7 +425,7 @@ class ActionEntryPoint extends MediaWikiEntryPoint {
 			if ( $rdfrom ) {
 				$url = $title->getFullURL( [ 'rdfrom' => $rdfrom ] );
 			} else {
-				$query = $request->getValues();
+				$query = $request->getQueryValues();
 				unset( $query['title'] );
 				$url = $title->getFullURL( $query );
 			}

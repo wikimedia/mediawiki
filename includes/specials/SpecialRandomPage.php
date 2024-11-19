@@ -89,7 +89,7 @@ class SpecialRandomPage extends SpecialPage {
 		}
 
 		$redirectParam = $this->isRedirect() ? [ 'redirect' => 'no' ] : [];
-		$query = array_merge( $this->getRequest()->getValues(), $redirectParam );
+		$query = array_merge( $this->getRequest()->getQueryValues(), $redirectParam );
 		unset( $query['title'] );
 		$this->getOutput()->redirect( $title->getFullURL( $query ) );
 	}

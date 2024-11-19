@@ -84,7 +84,7 @@ class CategoryPage extends Article {
 		$oldFrom = $request->getVal( 'from' );
 		$oldUntil = $request->getVal( 'until' );
 
-		$reqArray = $request->getValues();
+		$reqArray = $request->getQueryValues();
 
 		$from = $until = [];
 		foreach ( [ 'page', 'subcat', 'file' ] as $type ) {

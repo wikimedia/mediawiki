@@ -129,7 +129,7 @@ class UserNotLoggedIn extends ErrorPageError {
 		}
 
 		$output = $context->getOutput();
-		$query = $context->getRequest()->getValues();
+		$query = $context->getRequest()->getQueryValues();
 		// Title will be overridden by returnto
 		unset( $query['title'] );
 		// Redirect to Special:Userlogin
