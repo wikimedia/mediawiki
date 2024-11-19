@@ -24,7 +24,7 @@ use JobQueueGroup;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Transform\ContentTransformer;
-use MediaWiki\DomainEvent\DomainEventSink;
+use MediaWiki\DomainEvent\DomainEventDispatcher;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
@@ -95,8 +95,8 @@ class PageUpdaterFactory {
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
 
-	/** @var DomainEventSink */
-	private $eventEmitter;
+	/** @var DomainEventDispatcher */
+	private $eventDispatcher;
 
 	/** @var HookContainer */
 	private $hookContainer;
@@ -150,7 +150,7 @@ class PageUpdaterFactory {
 	 * @param Language $contLang
 	 * @param ILBFactory $loadbalancerFactory
 	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param DomainEventSink $eventEmitter
+	 * @param DomainEventDispatcher $eventDispatcher
 	 * @param HookContainer $hookContainer
 	 * @param EditResultCache $editResultCache
 	 * @param UserNameUtils $userNameUtils
@@ -176,7 +176,7 @@ class PageUpdaterFactory {
 		Language $contLang,
 		ILBFactory $loadbalancerFactory,
 		IContentHandlerFactory $contentHandlerFactory,
-		DomainEventSink $eventEmitter,
+		DomainEventDispatcher $eventDispatcher,
 		HookContainer $hookContainer,
 		EditResultCache $editResultCache,
 		UserNameUtils $userNameUtils,
@@ -203,7 +203,7 @@ class PageUpdaterFactory {
 		$this->contLang = $contLang;
 		$this->loadbalancerFactory = $loadbalancerFactory;
 		$this->contentHandlerFactory = $contentHandlerFactory;
-		$this->eventEmitter = $eventEmitter;
+		$this->eventDispatcher = $eventDispatcher;
 		$this->hookContainer = $hookContainer;
 		$this->editResultCache = $editResultCache;
 		$this->userNameUtils = $userNameUtils;
@@ -271,7 +271,7 @@ class PageUpdaterFactory {
 			$this->revisionStore,
 			$this->slotRoleRegistry,
 			$this->contentHandlerFactory,
-			$this->eventEmitter,
+			$this->eventDispatcher,
 			$this->hookContainer,
 			$this->userGroupManager,
 			$this->titleFormatter,
