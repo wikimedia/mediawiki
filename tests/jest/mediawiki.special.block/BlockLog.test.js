@@ -49,4 +49,15 @@ describe( 'BlockLog', () => {
 		// Test: The show more link should exist
 		expect( wrapper.find( '.mw-block-log-fulllog' ).exists() ).toBeTruthy();
 	} );
+	it( 'should show the suppress log with block and reblock entries', async () => {
+		mockMwConfigGet( { blockTargetUser: 'BadNameBlocked' } );
+		const wrapper = mount( BlockLog, {
+			propsData: { blockLogType: 'suppress' },
+			global: { plugins: [ createTestingPinia() ] }
+		} );
+		await flushPromises();
+		expect( wrapper.find( '.mw-block-log__type-suppress' ).exists() ).toBeTruthy();
+		const rows = wrapper.findAll( '.cdx-table__table tbody tr' );
+		expect( rows ).toHaveLength( 3 );
+	} );
 } );
