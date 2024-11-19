@@ -750,7 +750,6 @@
 	"login-migrated-generic": "The generic unsuccessful login message when the user's account has been updated, and their username no longer exist",
 	"loginlanguagelabel": "Used on [[Special:UserLogin]] if $wgLoginLanguageSelector is true. Parameters:\n* $1 - a pipe-separated list built from the names that appear in the message {{msg-mw|Loginlanguagelinks}}.\n{{Identical|Language}}",
 	"loginlanguagelinks": "{{notranslate}}",
-	"suspicious-userlogout": "Used when the logout request looks suspicious, in Special:UserLogout.",
 	"createacct-another-realname-tip": "{{doc-singularthey}}\nUsed on the account creation form when creating another user's account. Similar to {{msg-mw|prefs-help-realname}}.\n{{Identical|Real name attribution}}",
 	"pt-login": "Shown to anonymous users in the upper right corner of the page when they can't create an account (otherwise the message {{msg-mw|nav-login-createaccount}} is shown there).\n{{Identical|Log in}}",
 	"pt-login-button": "Shown as the caption of the button at [[Special:UserLogin]].\n{{Identical|Log in}}",

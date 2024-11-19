@@ -35,7 +35,7 @@ class HttpErrorTest extends MediaWikiUnitTestCase {
 		// Avoid parsing logic in real Message class which includes text transformations
 		// that require MediaWikiServices
 		$content = $this->createMock( Message::class );
-		$content->method( 'escaped' )->willReturn( 'suspicious-userlogout' );
+		$content->method( 'escaped' )->willReturn( 'blahblah' );
 		$header = $this->createMock( Message::class );
 		$header->method( 'escaped' )->willReturn( 'loginerror' );
 
@@ -53,7 +53,7 @@ class HttpErrorTest extends MediaWikiUnitTestCase {
 				[
 					'head html' => '<head><title>loginerror</title>',
 					'body html' => '<body><h1>loginerror</h1>'
-					. '<p>suspicious-userlogout</p></body>'
+					. '<p>blahblah</p></body>'
 				],
 				$content,
 				$header

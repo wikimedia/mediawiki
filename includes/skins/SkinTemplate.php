@@ -693,8 +693,6 @@ class SkinTemplate extends Skin {
 			'text' => $this->msg( $msg )->text(),
 			'data-mw' => 'interface',
 			'href' => SkinComponentUtils::makeSpecialUrl( 'Userlogout',
-				// Note: userlogout link must always contain an & character, otherwise we might not be able
-				// to detect a buggy precaching proxy (T19790)
 				( $title->isSpecial( 'Preferences' ) ? [] : $returnto ) ),
 			'active' => false,
 			'icon' => 'logOut'
