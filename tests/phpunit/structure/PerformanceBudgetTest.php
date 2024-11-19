@@ -114,6 +114,85 @@ class PerformanceBudgetTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * Find all bundle size configs in all repos and create a way to look up
+	 * the bundle size for a given module.
+	 *
+	 * @return array
+	 */
+	private function getBudgetConfig(): array {
+		$installed = ExtensionRegistry::getInstance()->getAllThings();
+		$allModules = [];
+
+		// Add MediaWiki core's own config file.
+		$installed['mw-core'] = [
+			'path' => getcwd() . '/package.json',
+		];
+		foreach ( $installed as $key => $install ) {
+			$configFile = dirname( $install['path'] ) . '/bundlesize.config.json';
+			if ( file_exists( $configFile ) ) {
+				$bundleSizeConfig = json_decode( file_get_contents( $configFile ), true );
+				foreach ( $bundleSizeConfig as $moduleBundle ) {
+					$module = $moduleBundle['resourceModule'] ?? null;
+					if ( $module ) {
+						// defaults to 0 if not defined for some reason
+						$maxSize = $this->getSizeInBytes(
+							$moduleBundle['maxSize'] ?? '0 KB'
+						);
+						$allModules[$module] = $maxSize;
+					}
+				}
+			}
+		}
+		return $allModules;
+	}
+
+	/**
+	 * @param string $skinName
+	 * @param array $moduleNames
+	 * @param bool $isScripts
+	 */
+	private function testForUnexpectedModules( $skinName, $moduleNames, $isScripts = false ) {
+		$budgetConfig = $this->getBudgetConfig();
+		$undefinedModules = [];
+		foreach ( $moduleNames as $moduleName ) {
+			// Skip these modules as they are not static.
+			if (
+				in_array( $moduleName, [
+					// <exclusions>
+					// Important: DO NOT EXPAND THIS ARRAY with modules defined outside MediaWiki core, these
+					// entries exist here only during roll out.
+					// Instead fix failures using guidelines on https://www.mediawiki.org/wiki/Performance_budgeting
+					'ext.navigationTiming',
+					// [[phab:T378772]]
+					'ext.eventLogging',
+					'ext.wikimediaEvents',
+					// [[phab:T378773]]
+					'ext.visualEditor.desktopArticleTarget.noscript', 'ext.visualEditor.desktopArticleTarget.init',
+					'ext.visualEditor.targetLoader',
+					// CheckUser
+					'ext.checkUser.clientHints',
+					// Wikibase
+					'wikibase.client.init', 'wikibase.client.data-bridge.externalModifiers', 'wikibase.vector.searchClient', 'wikibase.client.data-bridge.init',
+					// </exclusions>
+				] )
+			) {
+				continue;
+			}
+			$expectedModuleSize = $budgetConfig[ $moduleName ] ?? false;
+			if ( $expectedModuleSize === false ) {
+				$undefinedModules[] = $moduleName;
+			}
+		}
+		$debugInformation = "PLEASE DO NOT SKIP THIS TEST. If this is blocking a merge this might " .
+			"signal a potential performance regression with the desktop site.\n\n" .
+			"All extensions/skins adding code to page load for an article must monitor their ResourceLoader modules.\n" .
+			"Read https://www.mediawiki.org/wiki/Performance_budgeting for guidance on how to suppress this error message.\n" .
+			"The following modules have not declared budgets:\n" .
+			implode( "\n", $undefinedModules );
+		$this->assertCount( 0, $undefinedModules, $debugInformation );
+	}
+
+	/**
 	 * Tests the size of modules in allowed skins
 	 *
 	 * @coversNothing
@@ -127,6 +206,8 @@ class PerformanceBudgetTest extends MediaWikiIntegrationTestCase {
 		$skin = $this->prepareSkin( $skinName );
 		$moduleStyles = $skin->getOutput()->getModuleStyles();
 		$moduleScripts = $skin->getOutput()->getModules();
+		$this->testForUnexpectedModules( $skinName, $moduleStyles );
+		$this->testForUnexpectedModules( $skinName, $moduleScripts, true );
 		$this->testModuleSizes( $skinName, $moduleStyles );
 		$this->testModuleSizes( $skinName, $moduleScripts, true );
 	}

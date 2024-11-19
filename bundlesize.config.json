@@ -1,5 +1,35 @@
 [
 	{
+		"@note": "Community maintained code is out of scope for bundle size check",
+		"resourceModule": "site",
+		"maxSize": null
+	},
+	{
+		"@note": "Community maintained code is out of scope for bundle size check",
+		"resourceModule": "site.styles",
+		"maxSize": null
+	},
+	{
+		"@note": "Community maintained code is out of scope for bundle size check",
+		"resourceModule": "user.styles",
+		"maxSize": null
+	},
+	{
+		"@note": "Community maintained code is out of scope for bundle size check",
+		"resourceModule": "user.options",
+		"maxSize": null
+	},
+	{
+		"@note": "Community maintained code is out of scope for bundle size check",
+		"resourceModule": "user",
+		"maxSize": null
+	},
+	{
+		"@owner": "Web Team (temporarily until more suitable owner identified)",
+		"resourceModule": "noscript",
+		"maxSize": null
+	},
+	{
 		"@owner": "Web Team",
 		"resourceModule": "mediawiki.page.ready",
 		"maxSize": "3.2 kB"
