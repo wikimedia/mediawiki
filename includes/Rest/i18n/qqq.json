@@ -90,5 +90,5 @@
 	"rest-unsupported-language-conversion": "Error message for REST API debugging, shown when the language conversion is not supported. Parameters:\n* $1: The source format \n* $2: The target format",
 	"rest-unknown-content-model": "Error message for REST API debugging, shown when an unregistered content model is requested. Parameters:\n* $1: The name of the unknown content model",
 	"rest-page-bundle-validation-error": "Error message for REST API debugging, shown when PageBundle does not match the given contentVersion. Parameters:\n* $1: The error details",
-	"rest-param-desc-revision-id": "Revision id parameter description"
+	"rest-param-desc-revision-id": "{{notranslate}} Revision id parameter description"
 }

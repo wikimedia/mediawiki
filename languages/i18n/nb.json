@@ -2587,10 +2587,13 @@
 	"block-user-previous-blocks": "Blokkeringslogg",
 	"block-user-no-previous-blocks": "Ingen tidligere blokkeringer funnet",
 	"block-user-no-reason-given": "Ingen årsak angitt",
+	"block-user-no-reason-given-aria-details": "Ingen årsak ble gitt for denne loggoppføringen",
 	"block-user-description": "En brukr kan være et brukernavn, en IP-adresse eller et IP-intervall.",
 	"block-user-placeholder": "Begynn å skrive inn et brukernavn …",
 	"block-target": "Brukernavn, IP-adresse eller IP-intervall:",
 	"block-target-placeholder": "Brukernavn, 1.1.1.42 eller 1.1.1.42/16",
+	"block-pages-placeholder": "Legg til flere sider …",
+	"block-namespaces-placeholder": "Legg til flere navnerom …",
 	"unblockip": "Opphev blokkering",
 	"unblockiptext": "Bruk skjemaet under for å gjenopprette skriveadgangen for en tidligere blokkert adresse eller bruker.",
 	"ipusubmit": "Opphev blokkering",
@@ -2613,6 +2616,7 @@
 	"blocklist-indefblocks": "Skjul blokkeringer på ubestemt tid",
 	"blocklist-addressblocks": "Skjul individuelle IP-blokkeringer",
 	"blocklist-type": "Type:",
+	"blocklist-type-header": "Type",
 	"blocklist-type-opt-all": "Alle",
 	"blocklist-type-opt-sitewide": "Hele nettstedet",
 	"blocklist-type-opt-partial": "Delvis",
@@ -4126,5 +4130,7 @@
 	"benefit-1-description": "Overvåkningslister som lar deg følge med på sider du er interessert i.",
 	"benefit-2-description": "Permanent liste over dine bidrag til prosjektet.",
 	"benefit-3-description": "Innstillinger som lar deg tilpasse brukeropplevelsen din.",
-	"temp-user-unable-to-acquire": "Kunne ikke hente brukernavn for midlertidig konto. Prøv gjerne på nytt."
+	"temp-user-unable-to-acquire": "Kunne ikke hente brukernavn for midlertidig konto. Prøv gjerne på nytt.",
+	"table-of-contents-show-button-aria-label": "Vis innholdsfortegnelsen",
+	"table-of-contents-hide-button-aria-label": "Skjul innholdsfortegnelsen"
 }

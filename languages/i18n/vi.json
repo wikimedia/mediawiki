@@ -794,7 +794,6 @@
 	"content-model-wikitext": "mã wiki",
 	"content-model-text": "văn bản thuần",
 	"content-model-javascript": "JavaScript",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Đối tượng trống",
 	"content-json-empty-array": "Mảng trống",
 	"unsupported-content-model": "<strong>Chú ý:</strong> Wiki này không hỗ trợ mô hình nội dung $1.",

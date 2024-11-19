@@ -99,7 +99,8 @@
 			"WongKentir",
 			"Zulf",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Munajad.MH"
 		]
 	},
 	"sunday": "Minggu",
@@ -422,6 +423,7 @@
 	"invalidtitle-unknownnamespace": "Judul yang tidak sah dengan nomor ruang nama tidak diketahui $1 dan teks \"$2\"",
 	"exception-nologin": "Belum masuk log",
 	"exception-nologin-text": "Silakan masuk log untuk dapat mengakses halaman atau tindakan ini.",
+	"exception-nologin-text-for-temp-user": "Silakan buat akun untuk dapat mengakses halaman atau tindakan ini.",
 	"virus-badscanner": "Kesalahan konfigurasi: pemindai virus tidak dikenal: ''$1''",
 	"virus-scanfailed": "pemindaian gagal (kode $1)",
 	"virus-unknownscanner": "antivirus tidak dikenal:",

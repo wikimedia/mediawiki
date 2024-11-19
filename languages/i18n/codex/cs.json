@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mormegil"
+		]
+	},
+	"cdx-input-chip-aria-description": "Stiskněte Enter pro editaci nebo Delete pro odstranění.",
+	"cdx-dialog-close-button-label": "Zavřít",
+	"cdx-label-optional-flag": "(nepovinné)",
+	"cdx-message-dismiss-button-label": "Zavřít",
+	"cdx-search-input-search-button-label": "Hledat",
+	"cdx-table-select-all-label": "Vybrat všechny řádky",
+	"cdx-table-select-row-label": "Vybrat řádek $1 z $2",
+	"cdx-table-sort-caption": "$1 (záhlaví sloupců s tlačítky lze seřadit)",
+	"cdx-typeahead-search-search-results-label": "Výsledky hledání",
+	"cdx-table-pager-button-first-page": "První stránka",
+	"cdx-table-pager-button-last-page": "Poslední stránka",
+	"cdx-table-pager-button-next-page": "Další stránka",
+	"cdx-table-pager-button-prev-page": "Předchozí stránka",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 řádek|$1 řádky|$1 řádků}}",
+	"cdx-table-pager-items-per-page-default": "Výsledků na stránku",
+	"cdx-table-pagination-status-message-determinate-long": "Zobrazují se výsledky $1–$2 z $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 z $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Zobrazují se výsledky $1–$2 z mnoha",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 z mnoha",
+	"cdx-table-pagination-status-message-indeterminate-final": "{{PLURAL:$1|Zobrazuje se poslední výsledek|Zobrazují se poslední $1 výsledky|Zobrazuje se posledních $1 výsledků}}",
+	"cdx-table-pagination-status-message-pending": "Načítání výsledků…"
+}

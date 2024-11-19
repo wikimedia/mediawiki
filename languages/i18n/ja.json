@@ -1461,7 +1461,6 @@
 	"recentchanges-label-plusminus": "ページサイズの増減 (バイト単位)",
 	"recentchanges-legend-heading": "<strong>凡例:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|新しいページ一覧]]も参照)",
-	"recentchanges-legend-plusminus": "(±123)",
 	"recentchanges-legend-watchlistexpiry": "一時的にウォッチしているページ",
 	"recentchanges-submit": "表示",
 	"rcfilters-tag-remove": "「$1」を除去",

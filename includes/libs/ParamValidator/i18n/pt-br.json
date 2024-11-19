@@ -5,7 +5,8 @@
 			"Eduardoaddad",
 			"Flaviane da Silva",
 			"Iohanen",
-			"Re demz"
+			"Re demz",
+			"McDutchie"
 		]
 	},
 	"paramvalidator-badbool": "Valor inválido \"$2\" para o parâmetro booleano \"$1\". Passe $3 para true ou $5 para false.",
@@ -56,7 +57,7 @@
 	"paramvalidator-help-type-float": "Tipo: {{PLURAL:$1|1=flutuante|2=lista de flutuantes}}",
 	"paramvalidator-help-type-integer": "Tipo: {{PLURAL:$1|1=inteiro|2=lista de inteiros}}",
 	"paramvalidator-help-type-limit": "Tipo: número inteiro ou \"max\"",
-	"paramvalidator-help-type-number-max": "{{PLURAL:$1|1=O valor deve ser maior que|2=Os valores devem ser maiores que}} $3.",
+	"paramvalidator-help-type-number-max": "{{PLURAL:$1|1=O valor não pode ser maior|2=Os valores não podem ser maiores}} que $3.",
 	"paramvalidator-help-type-number-minmax": "{{PLURAL:$1|1=O valor deve estar entre|2=Os valores devem estar entre}} $2 e $3.",
 	"paramvalidator-help-type-number-min": "{{PLURAL:$1|1=O valor não pode ser inferior a|2=Os valores não podem ser inferiores a}} $2.",
 	"paramvalidator-help-type-presenceboolean": "Tipo: booleano",

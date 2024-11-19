@@ -206,6 +206,8 @@
 	"exif-photometricinterpretation-5": "Separerad (förmodligen CMYK)",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (ICC-kodning)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (ITU-kodning)",
+	"exif-photometricinterpretation-32803": "Färgfilreringsarray",
+	"exif-photometricinterpretation-34892": "Linjär oformaterad",
 	"exif-unknowndate": "Okänt datum",
 	"exif-orientation-1": "Normal",
 	"exif-orientation-2": "Spegelvänd horisontellt",

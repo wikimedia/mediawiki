@@ -4,8 +4,8 @@
 			"McDutchie"
 		]
 	},
-	"cdx-chip-input-chip-added": "Le fragmento $1 ha essite addite.",
-	"cdx-chip-input-chip-removed": "Le fragmento $1 ha essite removite.",
+	"cdx-chip-input-chip-added": "Le parola clave $1 ha essite addite.",
+	"cdx-chip-input-chip-removed": "Le parola clave $1 ha essite removite.",
 	"cdx-input-chip-aria-description": "Preme ‘Enter’ pro modificar o ‘Delete’ pro eliminar.",
 	"cdx-dialog-close-button-label": "Clauder",
 	"cdx-label-optional-flag": "(optional)",
