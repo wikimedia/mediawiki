@@ -553,11 +553,11 @@ Parser.prototype = {
 			// singles with the same effect.
 			const target = parsedResult[ 1 ].length === 1 ?
 				parsedResult[ 1 ][ 0 ] :
-				[ 'CONCAT' ].concat( parsedResult[ 1 ] );
+				[ 'CONCAT', ...parsedResult[ 1 ] ];
 			return [
 				'EXTLINK',
 				target,
-				[ 'CONCAT' ].concat( parsedResult[ 3 ] )
+				[ 'CONCAT', ...parsedResult[ 3 ] ]
 			];
 		}
 		const pipe = makeStringParser( '|' );
@@ -591,7 +591,7 @@ Parser.prototype = {
 			}
 			const expr = result[ 1 ];
 			// use a CONCAT operator if there are multiple nodes, otherwise return the first node, raw.
-			return expr.length > 1 ? [ 'CONCAT' ].concat( expr ) : expr[ 0 ];
+			return expr.length > 1 ? [ 'CONCAT', ...expr ] : expr[ 0 ];
 		}
 
 		function templateNameWithParam() {
@@ -605,7 +605,7 @@ Parser.prototype = {
 			}
 			const expr = result[ 2 ];
 			// use a CONCAT operator if there are multiple nodes, otherwise return the first node, raw.
-			return [ result[ 0 ], expr.length > 1 ? [ 'CONCAT' ].concat( expr ) : expr[ 0 ] ];
+			return [ result[ 0 ], expr.length > 1 ? [ 'CONCAT', ...expr ] : expr[ 0 ] ];
 		}
 		colon = makeStringParser( ':' );
 		templateContents = choice( [
@@ -614,7 +614,7 @@ Parser.prototype = {
 					templateNameWithParam,
 					nOrMore( 0, templateParam )
 				] );
-				return result === null ? null : result[ 0 ].concat( result[ 1 ] );
+				return result === null ? null : [ ...result[ 0 ], ...result[ 1 ] ];
 			},
 			function () {
 				const result = sequence( [
@@ -624,7 +624,7 @@ Parser.prototype = {
 				if ( result === null ) {
 					return null;
 				}
-				return [ result[ 0 ] ].concat( result[ 1 ] );
+				return [ result[ 0 ], ...result[ 1 ] ];
 			}
 		] );
 
@@ -635,8 +635,8 @@ Parser.prototype = {
 				nOrMore( 1, expression )
 			] );
 			return result === null ? null : [
-				[ 'CONCAT' ].concat( result[ 0 ] ),
-				[ 'CONCAT' ].concat( result[ 2 ] )
+				[ 'CONCAT', ...result[ 0 ] ],
+				[ 'CONCAT', ...result[ 2 ] ]
 			];
 		}
 
@@ -645,7 +645,7 @@ Parser.prototype = {
 				nOrMore( 1, paramExpression )
 			] );
 			return result === null ? null : [
-				[ 'CONCAT' ].concat( result[ 0 ] )
+				[ 'CONCAT', ...result[ 0 ] ]
 			];
 		}
 
@@ -662,7 +662,7 @@ Parser.prototype = {
 				wikilinkContents,
 				closeWikilink
 			] );
-			return parsedResult === null ? null : [ 'WIKILINK' ].concat( parsedResult[ 1 ] );
+			return parsedResult === null ? null : [ 'WIKILINK', ...parsedResult[ 1 ] ];
 		}
 
 		// TODO: Support data- if appropriate
@@ -783,8 +783,8 @@ Parser.prototype = {
 
 			if ( parsedCloseTagResult === null ) {
 				// Closing tag failed.  Return the start tag and contents.
-				return [ 'CONCAT', input.slice( startOpenTagPos, endOpenTagPos ) ]
-					.concat( parsedHtmlContents );
+				return [ 'CONCAT', input.slice( startOpenTagPos, endOpenTagPos ),
+					...parsedHtmlContents ];
 			}
 
 			const endCloseTagPos = pos;
@@ -792,8 +792,8 @@ Parser.prototype = {
 			const wrappedAttributes = parsedOpenTagResult[ 2 ];
 			const attributes = wrappedAttributes.slice( 1 );
 			if ( isAllowedHtml( startTagName, endTagName, attributes ) ) {
-				return [ 'HTMLELEMENT', startTagName, wrappedAttributes ]
-					.concat( parsedHtmlContents );
+				return [ 'HTMLELEMENT', startTagName, wrappedAttributes,
+					...parsedHtmlContents ];
 			}
 			// HTML is not allowed, so contents will remain how
 			// it was, while HTML markup at this level will be
@@ -807,8 +807,8 @@ Parser.prototype = {
 			// parsed HTML link.
 			//
 			// Concatenate everything from the tag, flattening the contents.
-			return [ 'CONCAT', input.slice( startOpenTagPos, endOpenTagPos ) ]
-				.concat( parsedHtmlContents, input.slice( startCloseTagPos, endCloseTagPos ) );
+			return [ 'CONCAT', input.slice( startOpenTagPos, endOpenTagPos ),
+				...parsedHtmlContents, input.slice( startCloseTagPos, endCloseTagPos ) ];
 		}
 
 		// <nowiki>...</nowiki> tag. The tags are stripped and the contents are returned unparsed.
@@ -819,7 +819,7 @@ Parser.prototype = {
 				makeRegexParser( /^.*?(?=<\/nowiki>)/ ),
 				makeStringParser( '</nowiki>' )
 			] );
-			return parsedResult === null ? null : [ 'CONCAT' ].concat( parsedResult[ 1 ] );
+			return parsedResult === null ? null : [ 'CONCAT', ...parsedResult[ 1 ] ];
 		}
 
 		nonWhitespaceExpression = choice( [
@@ -872,7 +872,7 @@ Parser.prototype = {
 			if ( result === null ) {
 				return null;
 			}
-			return [ 'CONCAT' ].concat( result );
+			return [ 'CONCAT', ...result ];
 		}
 		// everything above this point is supposed to be stateless/static, but
 		// I am deferring the work of turning it into prototypes & objects. It's quite fast enough
