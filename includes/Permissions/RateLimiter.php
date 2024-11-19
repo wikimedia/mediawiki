@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Permissions;
 
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -31,7 +30,7 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 use Psr\Log\LoggerInterface;
 use Wikimedia\IPUtils;
-use Wikimedia\Stats\NullStatsdDataFactory;
+use Wikimedia\Stats\StatsFactory;
 use Wikimedia\WRStats\LimitCondition;
 use Wikimedia\WRStats\WRStatsFactory;
 
@@ -44,7 +43,7 @@ use Wikimedia\WRStats\WRStatsFactory;
 class RateLimiter {
 
 	private LoggerInterface $logger;
-	private StatsdDataFactoryInterface $stats;
+	private StatsFactory $statsFactory;
 
 	private ServiceOptions $options;
 	private WRStatsFactory $wrstatsFactory;
@@ -92,7 +91,7 @@ class RateLimiter {
 		HookContainer $hookContainer
 	) {
 		$this->logger = LoggerFactory::getInstance( 'ratelimit' );
-		$this->stats = new NullStatsdDataFactory();
+		$this->statsFactory = StatsFactory::newNull();
 
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
@@ -106,12 +105,8 @@ class RateLimiter {
 		$this->rateLimits = $this->options->get( MainConfigNames::RateLimits );
 	}
 
-	public function setStats( StatsdDataFactoryInterface $stats ) {
-		$this->stats = $stats;
-	}
-
-	private function incrementStats( $name ) {
-		$this->stats->increment( "RateLimiter.$name" );
+	public function setStats( StatsFactory $statsFactory ) {
+		$this->statsFactory = $statsFactory;
 	}
 
 	/**
@@ -186,6 +181,8 @@ class RateLimiter {
 		if ( $this->nonLimitableActions[$action] ?? false ) {
 			return false;
 		}
+		$actionMetric = $this->statsFactory->getCounter( 'RateLimiter_limit_actions_total' )
+			->setLabel( 'action', $action );
 
 		$user = $subject->getUser();
 		$ip = $subject->getIP();
@@ -194,7 +191,10 @@ class RateLimiter {
 		$result = false;
 		$legacyUser = $this->userFactory->newFromUserIdentity( $user );
 		if ( !$this->hookRunner->onPingLimiter( $legacyUser, $action, $result, $incrBy ) ) {
-			$this->incrementStats( "limit.$action.result." . ( $result ? 'tripped_by_hook' : 'passed_by_hook' ) );
+			$statsResult = ( $result ? 'tripped_by_hook' : 'passed_by_hook' );
+			$actionMetric->setLabel( 'result', $statsResult )
+				->copyToStatsdAt( "RateLimiter.limit.$action.result." . $statsResult )
+				->increment();
 			return $result;
 		}
 
@@ -204,7 +204,9 @@ class RateLimiter {
 
 		// Some groups shouldn't trigger the ping limiter, ever
 		if ( $this->canBypass( $action ) && $this->isExempt( $subject ) ) {
-			$this->incrementStats( "limit.$action.result.exempt" );
+			$actionMetric->setLabel( 'result', 'exempt' )
+				->copyToStatsdAt( "RateLimiter.limit.$action.result.exempt" )
+				->increment();
 			return false;
 		}
 
@@ -312,6 +314,8 @@ class RateLimiter {
 		];
 
 		$batchResult = $limitBatch->tryIncr();
+		$failedMetric = $this->statsFactory->getCounter( 'RateLimiter_limit_cause_total' )
+			->setLabel( 'action', $action );
 		foreach ( $batchResult->getFailedResults() as $type => $result ) {
 			$this->logger->info(
 				'User::pingLimiter: User tripped rate limit',
@@ -323,13 +327,16 @@ class RateLimiter {
 					'key' => $type
 				] + $loggerInfo
 			);
-
-			$this->incrementStats( "limit.$action.tripped_by.$type" );
+			$failedMetric->setLabel( 'tripped_by', $type )
+				->copyToStatsdAt( "RateLimiter.limit.$action.tripped_by.$type" )
+				->increment();
 		}
 
 		$allowed = $batchResult->isAllowed();
 
-		$this->incrementStats( "limit.$action.result." . ( $allowed ? 'passed' : 'tripped' ) );
+		$actionMetric->setLabel( 'result', ( $allowed ? 'passed' : 'tripped' ) )
+			->copyToStatsdAt( "RateLimiter.limit.$action.result." . ( $allowed ? 'passed' : 'tripped' ) )
+			->increment();
 
 		return !$allowed;
 	}

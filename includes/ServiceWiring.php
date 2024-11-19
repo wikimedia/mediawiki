@@ -1840,7 +1840,7 @@ return [
 			$services->getHookContainer()
 		);
 
-		$rateLimiter->setStats( $services->getStatsdDataFactory() );
+		$rateLimiter->setStats( $services->getStatsFactory() );
 
 		return $rateLimiter;
 	},
