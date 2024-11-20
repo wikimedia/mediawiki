@@ -18,8 +18,8 @@ EOF;
 // by adding statements to PHPUnitMaintClass::execute.
 // Instead, we work around it by registering a shutdown callback from the bootstrap
 // file, which runs before PHPUnit starts.
-// @todo Once we use PHPUnit 8 or higher, use the 'AfterLastTestHook' feature.
-// https://phpunit.readthedocs.io/en/8.0/extending-phpunit.html#available-hook-interfaces
+// T253699: Not switching to PHPUnit's 'AfterLastTestHook' as this entrypoint is
+// deprecated.
 register_shutdown_function( static function () {
 	// This will:
 	// - clear the temporary job queue.
