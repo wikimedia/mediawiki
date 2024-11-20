@@ -21,6 +21,7 @@
 namespace Wikimedia\Tests;
 
 use Deflate;
+use MediaWikiCoversValidator;
 use MediaWikiTestCaseTrait;
 use PHPUnit\Framework\TestCase;
 
@@ -28,6 +29,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \Deflate
  */
 class DeflateTest extends TestCase {
+	use MediaWikiCoversValidator;
 	use MediaWikiTestCaseTrait;
 
 	public static function provideIsDeflated() {

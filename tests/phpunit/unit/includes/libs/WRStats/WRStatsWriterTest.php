@@ -2,6 +2,7 @@
 
 namespace Wikimedia\Tests\WRStats;
 
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\WRStats\ArrayStatsStore;
 use Wikimedia\WRStats\GlobalEntityKey;
@@ -17,6 +18,8 @@ use Wikimedia\WRStats\WRStatsWriter;
  * @covers \Wikimedia\WRStats\ArrayStatsStore
  */
 class WRStatsWriterTest extends TestCase {
+	use MediaWikiCoversValidator;
+
 	public static function provideIncrFlush() {
 		$specs1 = [
 			'test' => [

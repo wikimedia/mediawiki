@@ -2,6 +2,7 @@
 
 namespace Wikimedia\Tests\ParamValidator\TypeDef;
 
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -11,6 +12,7 @@ use PHPUnit\Framework\TestCase;
  * data providers methods.
  */
 abstract class TypeDefTestCase extends TestCase {
+	use MediaWikiCoversValidator;
 	use TypeDefTestCaseTrait;
 
 	/** Standard "$ret" array for provideCheckSettings */

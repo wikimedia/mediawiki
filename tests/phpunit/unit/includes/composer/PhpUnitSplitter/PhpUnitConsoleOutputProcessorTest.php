@@ -5,6 +5,7 @@ declare( strict_types = 1 );
 namespace MediaWiki\Tests\Unit\composer\PhpUnitSplitter;
 
 use MediaWiki\Composer\PhpUnitSplitter\PhpUnitConsoleOutputProcessor;
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -12,6 +13,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \MediaWiki\Composer\PhpUnitSplitter\PhpUnitTestFileScanner
  */
 class PhpUnitConsoleOutputProcessorTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	private function loadFixture( string $filename ): string {
 		$fixtureData = file_get_contents(

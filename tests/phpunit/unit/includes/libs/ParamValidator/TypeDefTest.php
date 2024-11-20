@@ -2,6 +2,7 @@
 
 namespace Wikimedia\Tests\ParamValidator;
 
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\Callbacks;
@@ -15,6 +16,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \Wikimedia\ParamValidator\TypeDef
  */
 class TypeDefTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	public function testMisc() {
 		$typeDef = $this->getMockBuilder( TypeDef::class )

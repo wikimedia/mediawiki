@@ -4,12 +4,14 @@ namespace MediaWiki\Tests\Unit\Settings\Source;
 
 use MediaWiki\Settings\SettingsBuilderException;
 use MediaWiki\Settings\Source\ReflectionSchemaSource;
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \MediaWiki\Settings\Source\ReflectionSchemaSource
  */
 class ReflectionSchemaSourceTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	private const NOT_PUBLIC = [
 		'type' => 'object'

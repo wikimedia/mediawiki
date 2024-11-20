@@ -5,6 +5,7 @@ declare( strict_types = 1 );
 namespace MediaWiki\Tests\Unit\composer\PhpUnitSplitter;
 
 use MediaWiki\Composer\PhpUnitSplitter\PhpUnitTestFileScanner;
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -12,6 +13,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \MediaWiki\Composer\PhpUnitSplitter\PhpUnitTestFileScanner
  */
 class PhpUnitTestFileScannerTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	public function testScanForTestFiles() {
 		$scanner = new PhpUnitTestFileScanner( __DIR__ );

@@ -5,6 +5,7 @@ declare( strict_types = 1 );
 namespace MediaWiki\Tests\Unit\composer\PhpUnitSplitter;
 
 use MediaWiki\Composer\PhpUnitSplitter\PhpUnitTestListProcessor;
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -12,6 +13,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \MediaWiki\Composer\PhpUnitSplitter\PhpUnitTestListProcessor
  */
 class PhpUnitTestListProcessorTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	private const FIXTURE_FILE = __DIR__ . "/fixtures/tests-list.xml";
 

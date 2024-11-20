@@ -2,6 +2,7 @@
 
 namespace Wikimedia\Tests\DebugInfo;
 
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 use Wikimedia\DebugInfo\DebugInfoTrait;
@@ -11,6 +12,8 @@ use Wikimedia\DebugInfo\DebugInfoTrait;
  * @covers \Wikimedia\DebugInfo\DumpUtils
  */
 class DebugInfoTraitTest extends TestCase {
+	use MediaWikiCoversValidator;
+
 	public function setUp(): void {
 		if ( extension_loaded( 'xdebug' ) ) {
 			if ( version_compare( phpversion( 'xdebug' ), '3.0.0', '>=' ) ) {

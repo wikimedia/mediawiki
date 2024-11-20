@@ -20,6 +20,7 @@
 
 namespace Wikimedia\Tests;
 
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\StaticArrayWriter;
 
@@ -27,6 +28,8 @@ use Wikimedia\StaticArrayWriter;
  * @covers \Wikimedia\StaticArrayWriter
  */
 class StaticArrayWriterTest extends TestCase {
+	use MediaWikiCoversValidator;
+
 	public function testCreate() {
 		$data = [
 			'foo' => 'bar',

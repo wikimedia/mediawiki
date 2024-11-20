@@ -2,6 +2,7 @@
 
 namespace Wikimedia\Tests\DebugInfo;
 
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 use Wikimedia\DebugInfo\Placeholder;
@@ -10,6 +11,8 @@ use Wikimedia\DebugInfo\Placeholder;
  * @covers \Wikimedia\DebugInfo\Placeholder
  */
 class PlaceholderTest extends TestCase {
+	use MediaWikiCoversValidator;
+
 	public static function provideConstruct() {
 		return [
 			[

@@ -13,6 +13,7 @@ use MediaWiki\Settings\Config\MergeStrategy;
 use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Settings\SettingsBuilderException;
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\ObjectCache\BagOStuff;
 
@@ -20,6 +21,7 @@ use Wikimedia\ObjectCache\BagOStuff;
  * @covers \MediaWiki\Settings\SettingsBuilder
  */
 class SettingsBuilderTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	/**
 	 * @param array $params

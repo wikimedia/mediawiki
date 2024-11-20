@@ -16,6 +16,7 @@
 
 namespace Wikimedia\Tests\Mime;
 
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\Mime\MSCompoundFileReader;
 
@@ -25,6 +26,8 @@ use Wikimedia\Mime\MSCompoundFileReader;
  * @covers \Wikimedia\Mime\MSCompoundFileReader
  */
 class MSCompoundFileReaderTest extends TestCase {
+	use MediaWikiCoversValidator;
+
 	public static function provideValid() {
 		return [
 			[ 'calc.xls', 'application/vnd.ms-excel' ],

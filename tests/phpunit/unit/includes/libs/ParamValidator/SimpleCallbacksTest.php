@@ -2,6 +2,7 @@
 
 namespace Wikimedia\Tests\ParamValidator;
 
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\UploadedFileInterface;
 use Wikimedia\Message\DataMessageValue;
@@ -11,6 +12,7 @@ use Wikimedia\ParamValidator\SimpleCallbacks;
  * @covers \Wikimedia\ParamValidator\SimpleCallbacks
  */
 class SimpleCallbacksTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	public function testDataAccess() {
 		$callbacks = new SimpleCallbacks(

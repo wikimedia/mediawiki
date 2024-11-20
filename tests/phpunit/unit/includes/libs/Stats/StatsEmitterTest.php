@@ -2,6 +2,7 @@
 
 namespace Wikimedia\Tests\Stats;
 
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 use UDPTransport;
@@ -17,6 +18,7 @@ use Wikimedia\Stats\StatsFactory;
  * @covers \Wikimedia\Stats\OutputFormats
  */
 class StatsEmitterTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	public function testSendMetrics() {
 		// set up a mock statsd data factory

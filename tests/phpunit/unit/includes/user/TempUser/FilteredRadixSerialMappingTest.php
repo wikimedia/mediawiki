@@ -3,12 +3,15 @@
 namespace MediaWiki\Tests\User\TempUser;
 
 use MediaWiki\User\TempUser\FilteredRadixSerialMapping;
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \MediaWiki\User\TempUser\FilteredRadixSerialMapping
  */
 class FilteredRadixSerialMappingTest extends TestCase {
+	use MediaWikiCoversValidator;
+
 	public static function provideGetSerialIdForIndex() {
 		return [
 			[

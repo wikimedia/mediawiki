@@ -3,6 +3,7 @@
 namespace Wikimedia\Tests\Stats;
 
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\Stats\PrefixingStatsdDataFactoryProxy;
@@ -11,6 +12,7 @@ use Wikimedia\Stats\PrefixingStatsdDataFactoryProxy;
  * @covers \Wikimedia\Stats\PrefixingStatsdDataFactoryProxy
  */
 class PrefixingStatsdDataFactoryProxyTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	public static function provideMethodNames() {
 		return [

@@ -13,12 +13,15 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use MediaWiki\Settings\SettingsBuilderException;
 use MediaWiki\Settings\Source\EtcdSource;
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \MediaWiki\Settings\Source\EtcdSource
  */
 class EtcdSourceTest extends TestCase {
+	use MediaWikiCoversValidator;
+
 	public function testGetExpiryTtl() {
 		$source = new EtcdSource();
 		$this->assertSame( 10, $source->getExpiryTtl() );

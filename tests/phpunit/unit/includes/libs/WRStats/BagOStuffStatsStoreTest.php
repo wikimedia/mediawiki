@@ -2,6 +2,7 @@
 
 namespace Wikimedia\Tests\WRStats;
 
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\WRStats\BagOStuffStatsStore;
@@ -13,6 +14,7 @@ use Wikimedia\WRStats\LocalEntityKey;
  * @covers \Wikimedia\WRStats\BagOStuffStatsStore
  */
 class BagOStuffStatsStoreTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	/**
 	 * @var HashBagOStuff

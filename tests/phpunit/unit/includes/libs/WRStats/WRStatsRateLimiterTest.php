@@ -2,6 +2,7 @@
 
 namespace Wikimedia\Tests\WRStats;
 
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\WRStats\ArrayStatsStore;
 use Wikimedia\WRStats\LimitCondition;
@@ -18,6 +19,8 @@ use Wikimedia\WRStats\WRStatsRateLimiter;
  * @covers \Wikimedia\WRStats\LimitOperation
  */
 class WRStatsRateLimiterTest extends TestCase {
+	use MediaWikiCoversValidator;
+
 	public function testTryIncrBatch() {
 		$store = new ArrayStatsStore;
 		$conds = [

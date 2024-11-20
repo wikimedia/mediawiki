@@ -31,6 +31,8 @@ use Wikimedia\Rdbms\MySQLPrimaryPos;
  * @covers \Wikimedia\Rdbms\ChronologyProtector
  */
 class ChronologyProtectorTest extends TestCase {
+	use MediaWikiCoversValidator;
+
 	/**
 	 * @dataProvider clientIdProvider
 	 * @param array $client

@@ -4,12 +4,14 @@ namespace MediaWiki\Tests\Sparql;
 
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Sparql\SparqlClient;
+use MediaWikiCoversValidator;
 use MWHttpRequest;
 
 /**
  * @covers \MediaWiki\Sparql\SparqlClient
  */
 class SparqlClientTest extends \PHPUnit\Framework\TestCase {
+	use MediaWikiCoversValidator;
 
 	private function getRequestFactory( $request ) {
 		$requestFactory = $this->createMock( HttpRequestFactory::class );

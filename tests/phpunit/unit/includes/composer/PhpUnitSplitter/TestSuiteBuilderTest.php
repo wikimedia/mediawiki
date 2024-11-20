@@ -6,6 +6,7 @@ namespace MediaWiki\Tests\Unit\composer\PhpUnitSplitter;
 
 use MediaWiki\Composer\PhpUnitSplitter\TestDescriptor;
 use MediaWiki\Composer\PhpUnitSplitter\TestSuiteBuilder;
+use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -13,6 +14,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \MediaWiki\Composer\PhpUnitSplitter\TestSuiteBuilder
  */
 class TestSuiteBuilderTest extends TestCase {
+	use MediaWikiCoversValidator;
 
 	public function testBuildSuitesInAlphabeticalOrder() {
 		$testList = [
