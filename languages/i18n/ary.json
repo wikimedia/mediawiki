@@ -393,7 +393,6 @@
 	"login-throttled": "مؤخرا درتي بزاف د لمحاولات باش تكونيكطا.\nعافاك تسنًا $1 قبل ماتحاول مرة خرا.",
 	"login-abort-generic": "فشل الدخول ديالك - حبس",
 	"loginlanguagelabel": "لوغة: $1",
-	"suspicious-userlogout": "الطلب ديالك باش ديكونيكطا ماتقبلش حيث تيبان بحالا تصيفط من متصفح خاسر ولا وسيط تخزين.",
 	"pt-login": "دخل",
 	"pt-login-button": "تكونيكطا",
 	"pt-login-continue-button": "كمل تسجيل الدخول",

@@ -498,7 +498,6 @@
 	"login-abort-generic": "Via ensalutado malsukcesis - Ĉesigita",
 	"login-migrated-generic": "Via konto estis migrita kaj via uzantnomo ne plu ekzistas en tiu ĉi vikio.",
 	"loginlanguagelabel": "Lingvo: $1",
-	"suspicious-userlogout": "Via peto por elsaluti estis malpermesita, ĉar verŝajne ĝi estis sendita de trompita retumilo aŭ kaŝiĝanta prokura servilo.",
 	"createacct-another-realname-tip": "La vera nomo estas nedeviga.\nSe vi decidas indiki ĝin, ĝi estos uzata por montri atribuadon de viaj kontribuoj.",
 	"pt-login": "Ensaluti",
 	"pt-login-button": "Ensaluti",

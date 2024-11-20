@@ -595,7 +595,6 @@
 	"login-abort-generic": "ログインに失敗しました - 中止",
 	"login-migrated-generic": "あなたのアカウントは移行が完了しており、その利用者名はこのウィキにはもう存在しません。",
 	"loginlanguagelabel": "言語: $1",
-	"suspicious-userlogout": "壊れたブラウザーまたはキャッシュプロキシによって送信された可能性があるため、ログアウト要求は拒否されました。",
 	"createacct-another-realname-tip": "本名は省略できます。\n入力すると、その利用者の著作物の帰属表示に使われます。",
 	"pt-login": "ログイン",
 	"pt-login-button": "ログイン",

@@ -461,7 +461,6 @@
 	"login-abort-generic": "Nabigo ang iyong pag-login - hindi tagumpay",
 	"login-migrated-generic": "Ang iyong account ay inilipat, at ang iyong pangalan ay hindi na umiiral sa wiking ito.",
 	"loginlanguagelabel": "Wika: $1",
-	"suspicious-userlogout": "Tinanggihan ang inyong kahilingang umalis sa pagkalagda dahil tila ito ay ipinadala ng sirang pambasa-basa o apoderadong pambaon (''caching proxy'')",
 	"createacct-another-realname-tip": "Hindi kinakailangan ang tunay na pangalan.\nKung nais mo na ibigay ito, gagamitin ito para sa pagbibigay ng atribusyon para sa kanilang gawa.",
 	"pt-login": "Mag-login",
 	"pt-login-button": "Mag-login",

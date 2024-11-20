@@ -445,7 +445,6 @@
 	"login-abort-generic": "فشل دخولك - تم إجهاضه",
 	"login-migrated-generic": "تهجر حسابك، واسم المستخدم مالك ما صار موجود على هاي الويكي",
 	"loginlanguagelabel": "لغه: $1",
-	"suspicious-userlogout": "انرفض طلب خروجك لأن جنه دازه عن طريق متصفح معطوب لو بروكسي تخزين.",
 	"createacct-another-realname-tip": "الاسم الحقيقي اختياري.\nلو اختاريت توفره فراح يستخدم لنسبة عمل المستخدم إله.",
 	"pt-login": "سجل دخول",
 	"pt-login-button": "سجل دخول",

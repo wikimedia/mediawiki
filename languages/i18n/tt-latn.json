@@ -333,7 +333,6 @@
 	"createaccount-text": "Kemder, elektron poçta adresığıznı kürsätep, {{SITENAME}} ($4) proyektında «$3» sersüze belän «$2» isemle xisap yazması terkäde. Sez kerergä häm sersüzegezne üzgärtergä tieş.\n\nXisap yazması tözü xata bulsa, bu xatnı onıtığız.",
 	"login-throttled": "Sez artıq küp tapqır kerergä tırıştığız.\nYañadan qabatlağançı beraz kötüegez sorala.",
 	"loginlanguagelabel": "Tel: $1",
-	"suspicious-userlogout": "Sezneñ eşçänlekne beterü sorawığız kire qağıldı, çönki ul yalğış brauzer yäisä keşlawçı proksi aşa cibärelerge mömkin.",
 	"pt-login": "Kerü",
 	"pt-login-button": "Kerü",
 	"pt-createaccount": "Xisap yazmanı tözü",

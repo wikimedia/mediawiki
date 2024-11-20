@@ -456,7 +456,6 @@
 	"login-abort-generic": "Pieteikšanās neizdevās — darbība pārtraukta",
 	"login-migrated-generic": "Tavs konts ir ticis migrēts un tavs lietotājvārds vairs nepastāv šajā vikivietnē.",
 	"loginlanguagelabel": "Valoda: $1",
-	"suspicious-userlogout": "Tavs pieprasījums izrakstīties tika noraidīts, jo izskatās, ka to ir nosūtījusi bojāta pārlūkprogramma vai kešatmiņas starpniekserveris.",
 	"createacct-another-realname-tip": "Īstais vārds ir neobligāts.\nJa tu to norādīsi, tas tiks lietots darba autora norādīšanai.",
 	"pt-login": "Pieslēgties",
 	"pt-login-button": "Pieslēgties",

@@ -412,7 +412,6 @@
 	"login-abort-generic": "Dh’fhàillig an logadh a-steach - Sguireadh dheth",
 	"login-migrated-generic": "Chaidh an cunntas agad imrich 's chan eil an t-ainm cleachdaiche agad ann tuilleadh air an uicidh seo.",
 	"loginlanguagelabel": "Cànan: $1",
-	"suspicious-userlogout": "Chaidh d' iarrtas airson logadh a-mach a dhiùltadh a chionn 's gu bheil coltas gun deach a chur le brabhsair briste no le progsaidh tasglannaidh.",
 	"createacct-another-realname-tip": "Cha leig thu leas innse dè am fìor-ainm a tha ort.\nMa bheir thu seachad e, thèid seo a chleachdadh gus urram a thoirt dha na h-ùghdaran airson an cuid obrach.",
 	"pt-login": "Log a-steach",
 	"pt-login-button": "Log a-steach",

@@ -478,7 +478,6 @@
 	"login-abort-generic": "Fallou o inicio da sesión - Cancelouse",
 	"login-migrated-generic": "Migróuseche a conta e o teu nome de usuario xa non existe neste wiki.",
 	"loginlanguagelabel": "Lingua: $1",
-	"suspicious-userlogout": "Rexéitouse a túa petición de saíres do sistema porque semella que a enviou un navegador estragado ou a caché dun proxy.",
 	"createacct-another-realname-tip": "O nome real é opcional.\nSe escolles dálo utilizarase para atribuírlle ao usuario o teu traballo.",
 	"pt-login": "Acceder ao sistema",
 	"pt-login-button": "Acceder ao sistema",

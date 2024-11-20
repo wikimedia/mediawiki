@@ -426,7 +426,6 @@
 	"login-abort-generic": "가입에 실패했습니다 - 중지됨",
 	"login-migrated-generic": "당신의 계산자리가 이식되여있으며, 당신의 사용자 이름이 더 이상 이 위키에 존재하지 않습니다.",
 	"loginlanguagelabel": "언어: $1",
-	"suspicious-userlogout": "웨브열람기에 이상이 있거나 캐쉬대리봉사기에서 탈퇴를 요청한 가능성이 있으므로 탈퇴가 거부되였습니다.",
 	"createacct-another-realname-tip": "실명은 선택 사항입니다.\n실명을 입력하면 문서 기여에 사용자의 이름이 들어가게 됩니다.",
 	"pt-login": "가입",
 	"pt-login-button": "가입",

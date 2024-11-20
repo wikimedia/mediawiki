@@ -459,7 +459,6 @@
 	"login-abort-generic": "Regjistrimi juaj ishte i pasuksesshëm - U ndërpre",
 	"login-migrated-generic": "Llogaria juaj ka emigruar, dhe emri juaj nuk ekzistojnë më në këtë wiki.",
 	"loginlanguagelabel": "Gjuha: $1",
-	"suspicious-userlogout": "Kërkesa juaj për të shkëputet u mohua sepse duket sikur është dërguar nga një shfletues të thyer ose caching proxy.",
 	"createacct-another-realname-tip": "* Emri i vërtetë nuk është i domosdoshëm: Nëse e jepni do të përmendeni si kontribues për punën që ke bërë.",
 	"pt-login": "Hyni",
 	"pt-login-button": "Hyni",

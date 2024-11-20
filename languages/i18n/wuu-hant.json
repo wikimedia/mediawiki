@@ -426,7 +426,6 @@
 	"login-abort-generic": "儂登入失敗 - 中止哉",
 	"login-migrated-generic": "儂个帳號已經畀移脫哉，並且儂个用戶名來箇wiki弗再存在。",
 	"loginlanguagelabel": "話：$1",
-	"suspicious-userlogout": "儂登出个要求已經撥回頭脫，因為渠可能是由已損壞个瀏覽器或者快取代理傳送个。",
 	"createacct-another-realname-tip": "真實姓名是選填个。假使儂選擇提供伊，伊會得用勒了貢獻署名方面高頭。",
 	"pt-login": "登上來",
 	"pt-login-button": "登上來",

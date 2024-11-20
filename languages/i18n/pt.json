@@ -530,7 +530,6 @@
 	"login-abort-generic": "O início de sessão falhou - Cancelado",
 	"login-migrated-generic": "A sua conta foi migrada e o seu nome de utilizador já não existe nesta wiki.",
 	"loginlanguagelabel": "Língua: $1",
-	"suspicious-userlogout": "O seu pedido para sair foi negado porque parece ter sido enviado por um navegador danificado ou por um proxy com cache.",
 	"createacct-another-realname-tip": "O fornecimento do nome verdadeiro é opcional.\nSe optar por revelá-lo, ele será utilizado para atribuir-lhe crédito pelo seu trabalho.",
 	"pt-login": "Entrar",
 	"pt-login-button": "Entrar",

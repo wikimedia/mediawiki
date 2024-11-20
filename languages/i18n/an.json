@@ -334,7 +334,6 @@
 	"login-throttled": "Ha feito masiaus intentos ta encetar una sesión. Por favor, aspere antes de prebar de fer-lo unatra vegada.",
 	"login-abort-generic": "A dentrada a la cuenta d'usuario ha fallato - Cancelato",
 	"loginlanguagelabel": "Idioma: $1",
-	"suspicious-userlogout": "S'ha denegau a suya demanda de zarrar a sesión ya que pareix que la ninvió un navegador defectuoso u bell proxy amagau.",
 	"pt-login": "Dentrar-ie",
 	"pt-createaccount": "Creyar cuenta",
 	"pt-userlogout": "Salir d'a sesión",

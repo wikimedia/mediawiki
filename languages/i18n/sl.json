@@ -464,7 +464,6 @@
 	"login-abort-generic": "Vaša prijava je spodletela – prekinjeno",
 	"login-migrated-generic": "Vaš račun smo preselili in vaše uporabniško ime v tem vikiju ne obstaja več.",
 	"loginlanguagelabel": "Jezik: $1",
-	"suspicious-userlogout": "Vaša zahteva za odjavo je bila zavrnjena, saj se zdi, da je bila poslana iz okvarjenega brskalnika ali posredniškega strežnika s predpomnjenjem.",
 	"createacct-another-realname-tip": "Pravo ime ni obvezno.\nČe se ga bpste odločili navesti, bo uporabljeno za priznavanje uporabnikovega dela.",
 	"pt-login": "Prijava",
 	"pt-login-button": "Prijava",

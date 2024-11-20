@@ -482,7 +482,6 @@
 	"login-abort-generic": "Vaše prihlásenie bolo neúspešné – zrušené",
 	"login-migrated-generic": "Váš účet bol presťahovaný a vaše používateľské meno už viac na tejto wiki neexistuje.",
 	"loginlanguagelabel": "Jazyk: $1",
-	"suspicious-userlogout": "Vaša požiadavka odhlásiť sa bola zamietnutá, pretože to vyzerá, že ju poslal pokazený prehliadač alebo proxy server.",
 	"createacct-another-realname-tip": "Skutočné meno je nepovinné.\nAk sa rozhodnete ho poskytnúť, použije sa na označenie vašej práce.",
 	"pt-login": "Prihlásiť sa",
 	"pt-login-button": "Prihlásiť sa",

@@ -487,7 +487,6 @@
 	"login-abort-generic": "Jūsų prisijungimas nepavyko - Nutraukta",
 	"login-migrated-generic": "Jūsų paskyra buvo perkelta ir jūsų naudotojo vardo šioje wiki daugiau nebėra.",
 	"loginlanguagelabel": "Kalba: $1",
-	"suspicious-userlogout": "Jūsų prašymas atsijungti buvo atmestas, nes, atrodo, jį klaidingai išsiuntė naršyklė arba spartinantysis tarpinis serveris.",
 	"createacct-another-realname-tip": "Tikrojo vardo nurodyti nebūtina.\nJei pasirinksite jį nurodyti, jis bus naudojamas parodymui, kas atliko straipsnio papildymus.",
 	"pt-login": "Prisijungti",
 	"pt-login-button": "Prisijungti",

@@ -509,7 +509,6 @@
 	"login-abort-generic": "A bejelentkezés sikertelen – megszakítva",
 	"login-migrated-generic": "A fiók áttelepítése megtörtént, felhasználóneved már nem létezik ezen a wikin.",
 	"loginlanguagelabel": "Nyelv: $1",
-	"suspicious-userlogout": "A kijelentkezési kérésed vissza lett utasítva, mert úgy tűnik, hogy egy hibás böngésző vagy gyorsítótárazó proxy küldte.",
 	"createacct-another-realname-tip": "A valódi nevet nem kötelező megadni, de ha úgy döntesz, hogy megadod, azzal leszel feltüntetve a munkád szerzőjeként.",
 	"pt-login": "Bejelentkezés",
 	"pt-login-button": "Bejelentkezés",

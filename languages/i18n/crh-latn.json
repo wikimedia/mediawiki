@@ -354,7 +354,6 @@
 	"createaccount-text": "Birev siziñ e-mail adresini bildirip {{SITENAME}} saytında ($4) \"$2\" adlı bir esap yarattı.\nŞu esap içün parol budır: \"$3\".\nSiz şimdi oturım açıp paroliñizni deñiştirmek kereksiñiz.\n\nŞu esap hata olaraq yaratılğan olsa bu mektüpke qulaq asmayıp olasıñız.",
 	"login-throttled": "Yaqın zamanda pek çoq kere kirmege tırıştıñız.\nLütfen, qayta kirmezden evel $1 bekleñiz.",
 	"loginlanguagelabel": "Til: $1",
-	"suspicious-userlogout": "Çıqış istegeniñiz red etildi, çünki bozuq bir brauzer ya da keşleyici proksi tarafından yollanğan kibi körüne.",
 	"pt-login": "Kiriş",
 	"pt-login-button": "Kiriş",
 	"pt-login-continue-button": "Kirmege devam et",

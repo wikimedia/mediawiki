@@ -456,7 +456,6 @@
 	"login-abort-generic": "Jou aanmelding het misluk - Geaborteer",
 	"login-migrated-generic": "Jou rekening is gemigreer, en jou gebruikersnaam bestaan nie meer op hierdie wiki nie.",
 	"loginlanguagelabel": "Taal: $1",
-	"suspicious-userlogout": "U versoek om af te teken is geïgnoreer omdat dit lyk asof dit deur 'n gebreekte webleser of instaanbediener gestuur is.",
 	"createacct-another-realname-tip": "Regte naam is opsioneel.\nAs u dit verskaf, sal dit gebruik word om u erkenning vir u werk te gee.",
 	"pt-login": "Meld aan",
 	"pt-login-button": "Meld aan",

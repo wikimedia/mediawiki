@@ -594,7 +594,6 @@
 	"login-abort-generic": "A sua autenticação não teve êxito - Abortada",
 	"login-migrated-generic": "A sua conta foi migrada e o seu nome de usuário já não existe nesta wiki.",
 	"loginlanguagelabel": "Idioma: $1",
-	"suspicious-userlogout": "Sua solicitação para sair foi negada porque aparentemente foi enviada por um navegador danificado ou por um servidor proxy com cache.",
 	"createacct-another-realname-tip": "O nome verdadeiro é opcional.\nSe você optar por fornecê-lo, este nome será utilizado para dar ao usuário a atribuição de seu trabalho.",
 	"pt-login": "Entrar",
 	"pt-login-button": "Entrar",

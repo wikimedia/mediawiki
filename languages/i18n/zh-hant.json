@@ -585,7 +585,6 @@
 	"login-abort-generic": "您登入失敗 - 已中止",
 	"login-migrated-generic": "您的帳號已轉移，且此 Wiki 中您的使用者名稱已不存在。",
 	"loginlanguagelabel": "語言：$1",
-	"suspicious-userlogout": "您登出的請求被拒絕，可能是因您使用了有問題的瀏覽器或者快取代理伺服器。",
 	"createacct-another-realname-tip": "真實姓名為選填欄位。\n若您提供真實姓名，它會用於使用者貢獻署名。",
 	"pt-login": "登入",
 	"pt-login-button": "登入",

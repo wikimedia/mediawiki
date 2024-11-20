@@ -379,7 +379,6 @@
 	"login-throttled": "Tú hevur roynt at rita inn ov nógvar ferðir nýliga.\nVinarliga bíða $1 áðrenn tú roynir aftur.",
 	"login-abort-generic": "Tað miseydnaðist tær at rita inn - avbrotið",
 	"loginlanguagelabel": "Mál: $1",
-	"suspicious-userlogout": "Tín fyrispurningur um at útrita var noktaður, tí tað sær út til at hann varð sendur frá einum oyðiløgdum kaga ella caching proxy.",
 	"createacct-another-realname-tip": "Veruligt navn er valfrítt.\nUm tú velur at skriva tað, so verður tað nýtt til at geva brúkaranum æruna fyri hennara/hansara  arbeiði.",
 	"pt-login": "Rita inn",
 	"pt-login-button": "Rita inn",

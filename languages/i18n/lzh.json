@@ -400,7 +400,6 @@
 	"login-throttled": "汝嘗登簿甚矣。\n請候 $1 而試之。",
 	"login-abort-generic": "登簿未成——棄",
 	"loginlanguagelabel": "語：$1",
-	"suspicious-userlogout": "爾欲無離也，可由壞瀏覽器或快枝代理呈送之。",
 	"pt-login": "籍名",
 	"pt-login-button": "登簿",
 	"pt-createaccount": "增簿",

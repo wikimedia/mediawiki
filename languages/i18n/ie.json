@@ -396,7 +396,6 @@
 	"accountcreatedtext": "Li conto de usator por [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|discussion]]) ha esset creat.",
 	"createaccount-title": "Creation de conto por {{SITENAME}}",
 	"loginlanguagelabel": "Lingue: $1",
-	"suspicious-userlogout": "Tui petition por surtir esset desaprobat pro que probabilmen esset inviat per un navigator ruptet o servitor de autorisation che caching.",
 	"pt-login": "Aperter session",
 	"pt-login-button": "Aperter session",
 	"pt-login-continue-button": "Continuar session",

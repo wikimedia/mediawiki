@@ -224,7 +224,6 @@
 	"login-throttled": "Sie haben zu oft versucht, sich anzumelden.\nBitte warten Sie $1, bevor Sie es erneut probieren.",
 	"login-abort-generic": "Ihre Anmeldung ist fehlgeschlagen – Abgebrochen",
 	"login-migrated-generic": "Ihr Benutzerkonto wurde migriert. Ihr Benutzername ist auf diesem Wiki nicht mehr vorhanden.",
-	"suspicious-userlogout": "Ihre Abmeldeanfrage wurde verweigert, da sie vermutlich von einem defekten Browser oder einem Cache-Proxy gesendet wurde.",
 	"createacct-another-realname-tip": "Der bürgerliche Name ist optional.\nWenn Sie ihn angeben, wird er für die Zuordnung der Beiträge verwendet.",
 	"pt-login": "Anmelden",
 	"pt-createaccount": "Benutzerkonto erstellen",

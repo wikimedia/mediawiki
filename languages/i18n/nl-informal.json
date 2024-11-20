@@ -86,7 +86,6 @@
 	"login-throttled": "Je hebt in korte tijd te veel aanmeldpogingen gedaan.\nWacht $1 voordat je het opnieuw probeert.",
 	"login-abort-generic": "Je aanmelding is mislukt - Afgebroken",
 	"login-migrated-generic": "Je account is overgezet, en je gebruikersnaam bestaat nu niet meer op deze wiki.",
-	"suspicious-userlogout": "Je verzoek om af te melden is genegeerd, omdat het lijkt alsof het verzoek is verzonden door een browser of cacheproxy die stuk is.",
 	"createacct-another-realname-tip": "Je mag een echte naam opgeven.\nAls je dat doet, wordt de gebruiker onder deze naam vermeld als erkenning voor diens werk.",
 	"changepassword-success": "Je wachtwoord is gewijzigd!",
 	"changepassword-throttled": "Je hebt in korte tijd te veel aanmeldpogingen gedaan.\nWacht $1 voordat je het weer probeert.",

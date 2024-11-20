@@ -530,7 +530,6 @@
 	"login-abort-generic": "Kirjautuminen epäonnistui – keskeytetty",
 	"login-migrated-generic": "Tunnuksesi on siirretty, ja käyttäjänimeäsi ei löydy enää tästä wikistä.",
 	"loginlanguagelabel": "Kieli: $1",
-	"suspicious-userlogout": "Pyyntösi kirjautua ulos evättiin, koska se näytti rikkinäisen selaimen tai välimuistipalvelimen lähettämältä.",
 	"createacct-another-realname-tip": "Vapaaehtoinen.\nNimesi näytetään käyttäjänimesi sijasta sivun tekijäluettelossa.",
 	"pt-login": "Kirjaudu sisään",
 	"pt-login-button": "Kirjaudu sisään",

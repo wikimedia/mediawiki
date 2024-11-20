@@ -472,7 +472,6 @@
 	"login-abort-generic": "Neuspešna prijava – prekinuto",
 	"login-migrated-generic": "Nalog je premešten, a korisničko više ne postoji na ovom projektu.",
 	"loginlanguagelabel": "Jezik: $1",
-	"suspicious-userlogout": "Zahtev za odjavu je odbijen jer izgleda da ga je poslao pokvareni pregledač ili keširani proksi.",
 	"createacct-another-realname-tip": "Pravo ime nije obavezno.\nAko odlučite da ga unesete, biće korišćeno za pripisivanje rada.",
 	"pt-login": "Prijavi me",
 	"pt-login-button": "Prijavi me",

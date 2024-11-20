@@ -372,7 +372,6 @@
 	"login-throttled": "汝已經嘗試多次登入動作。\n請等$1後再試。",
 	"login-abort-generic": "登入錯誤 - 中止",
 	"loginlanguagelabel": "Ngî-ngièn: $1",
-	"suspicious-userlogout": "汝登出嘅要求已經分拒絕，因為其可能係由已損壞嘅瀏覽器或者緩存代理傳送。",
 	"pt-login": "Tên-ngi̍p",
 	"pt-login-button": "Tên-ngi̍p",
 	"pt-createaccount": "Khôi fu-thèu",

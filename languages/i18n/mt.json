@@ -438,7 +438,6 @@
 	"login-abort-generic": "Il-login ma kienx suċċess - Imħassar",
 	"login-migrated-generic": "Il-kont tiegħek tmexxa u ismek ta' utent m'għadux jeżisti fuq dan il-wiki.",
 	"loginlanguagelabel": "Lingwa: $1",
-	"suspicious-userlogout": "Ir-rikjesta tiegħek li toħroġ barra mill-kont tiegħek ġiet miċħuda minħabba li jidher li din intbagħtet minn browser li ma jaħdimx jew minn proxy ta' caching.",
 	"createacct-another-realname-tip": "L-isem proprju mhuwiex huwa fakultattiv. Jekk tagħżel li ddaħlu, dan jiġi wżat biex jattribwixxi lill-utent ta' xogħlu.",
 	"pt-login": "Idħol",
 	"pt-login-button": "Idħol",

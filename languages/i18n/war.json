@@ -426,7 +426,6 @@
 	"login-abort-generic": "An imo paglog-in in pakyas - Gin-undang",
 	"login-migrated-generic": "An imo account in nabalhin, ngan an imo agnay-gumaramit in waray na hinin nga wiki.",
 	"loginlanguagelabel": "Pinulongan: $1",
-	"suspicious-userlogout": "Waray ka tugoti pag-logout tungod nga baga ini ginpadangat hin usa nga broken browser o caching proxy.",
 	"createacct-another-realname-tip": "Ada la ha imo kun karuyag mo igbutang an imo tinuod nga ngaran.\nKun pinili mo ito ighatag, gagamiton ini paghatag hin atribusyon ha gumaramit para hit ira buhat.",
 	"pt-login": "Sakob",
 	"pt-login-button": "Sakob",

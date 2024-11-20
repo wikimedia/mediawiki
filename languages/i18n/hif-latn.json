@@ -419,7 +419,6 @@
 	"login-abort-generic": "Aap ke login nai chalaa - Aborted",
 	"login-migrated-generic": "Aap ke account ke update kare ke kaaran, aap ke username ab nai hae.",
 	"loginlanguagelabel": "Bhasa: $1",
-	"suspicious-userlogout": "Aap ke log out kare ke maang ke na kar dewa gais hae kaahe ki ii janaawe hae ki ii maang ke ek tuuta browser nai to caching proxy bhejis hae.",
 	"createacct-another-realname-tip": "Aslii naam ke jaruri nai hae.\nAgar aap iske diya hae tab iske aapke kaam ke attribute kare ke khatir kaam me lawa jaai.",
 	"pt-login": "Log in karo",
 	"pt-login-button": "Log in karo",

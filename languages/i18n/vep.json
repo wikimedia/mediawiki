@@ -456,7 +456,6 @@
 	"login-abort-generic": "Sinun taht tulda sistemha om satusetoi - Seižutadud",
 	"login-migrated-generic": "Sinun lehtpol' oli sirttud, da sinun kävutajan nimed enamba ei ole neciš vikiš.",
 	"loginlanguagelabel": "Kel’: $1",
-	"suspicious-userlogout": "Sinun pakičuz lähtta sistemaspäi oli heittud, sikš miše se oli oigetud radmatoman web-ecijan abul libo proksi-serveran abul.",
 	"createacct-another-realname-tip": "Todesine nimi ei ole tarbhašt. \nKu sinä tahtoid jätta sen, nece linneb kävutajan radoiktusen todištuz.",
 	"pt-login": "Tule",
 	"pt-login-button": "Tule",

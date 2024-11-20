@@ -557,7 +557,6 @@
 	"login-abort-generic": "Uw aanmelding is mislukt - Afgebroken",
 	"login-migrated-generic": "Uw account is overgezet, en uw gebruikersnaam bestaat niet langer op deze wiki.",
 	"loginlanguagelabel": "Taal: $1",
-	"suspicious-userlogout": "Uw verzoek om af te melden is genegeerd, omdat het lijkt alsof het verzoek is verzonden door een browser of cacheproxy die stuk is.",
 	"createacct-another-realname-tip": "Een echte naam is optioneel.\nAls u er een opgeeft, wordt de gebruiker onder deze naam vermeld als erkenning voor diens werk.",
 	"pt-login": "Aanmelden",
 	"pt-login-button": "Aanmelden",

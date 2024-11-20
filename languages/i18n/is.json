@@ -454,7 +454,6 @@
 	"login-abort-generic": "Innskráningin misheppnaðist - hætt var við hana.",
 	"login-migrated-generic": "Aðgangurinn þinn hefur verið sameinaður og notandanafnið þitt finnst ekki lengur á þessum wiki.",
 	"loginlanguagelabel": "Tungumál: $1",
-	"suspicious-userlogout": "Beiðni um útskráningu hafnað því hún var líklegast send frá biluðum vafra eða vefseli sem hefur vistað vefsíðuna í flýtiminni.",
 	"createacct-another-realname-tip": "Alvöru nafn er valfrjálst. Ef þú kýst að gefa það upp, verður það notað til að gefa þér heiður af verkum þínum.",
 	"pt-login": "Skrá inn",
 	"pt-login-button": "Skrá inn",

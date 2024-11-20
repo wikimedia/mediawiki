@@ -26,6 +26,7 @@
 			"Sp5uhe",
 			"The Polish",
 			"WTM",
+			"WaldiSt",
 			"Woytecr",
 			"아라"
 		]
@@ -288,9 +289,10 @@
 	"config-install-user-missing-create": "Określony użytkownik \"$1\" nie istnieje.\nKliknij poniższe pole wyboru „utwórz konto\" jeśli chcesz go utworzyć.",
 	"config-install-logo-blank": "Podaj poprawny adres URL dla logo.",
 	"config-install-restore-services": "Odtwarzanie usług MediaWiki",
-	"config-install-tables": "Tworzenie tabel, krok pierwszy",
+	"config-install-tables": "Tworzenie tabel",
 	"config-install-tables-exist": "'''Uwaga''' – wygląda na to, że tabele MediaWiki już istnieją.\nPomijam tworzenie tabel.",
 	"config-install-tables-failed": "'''Błąd''' – tworzenie tabeli nie powiodło się z powodu błędu – $1",
+	"config-install-search": "Tworzenie indeksu wyszukiwania",
 	"config-install-interwiki": "Wypełnianie tabeli domyślnymi interwiki",
 	"config-install-interwiki-list": "Nie można odnaleźć pliku <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "'''Uwaga''' – wygląda na to, że tabela interwiki ma już jakieś wpisy.\nTworzenie domyślnej listy pominięto.",
@@ -311,6 +313,7 @@
 	"config-install-done-path": "<strong>Gratulacje!</strong>\nZainstalowałeś właśnie MediaWiki.\n\nInstalator wygenerował plik <code>LocalSettings.php</code>.\nZawiera całą Twoją konfigurację.\n\nMusisz go pobrać i umieścić w <code>$4</code>. Pobieranie powinno rozpocząć się automatycznie.\n\nJeżeli nie pojawiła się informacja o pobieraniu lub jeżeli ja anulowałeś, kliknij poniższy link:\n\n$3\n\n<strong>Uwaga:</strong> Jeżeli nie zrobisz tego teraz, wygenerowany plik konfiguracyjny nie będzie potem dostępny, jeżeli wyjdziesz z instalacji bez jego pobrania.\n\nGdy to będzie zrobione, możesz <strong>[$2 wejść na swoją wiki]</strong>.",
 	"config-install-success": "MediaWiki została pomyślnie zainstalowana. Możesz teraz\nodwiedzić <$1$2>, aby zobaczyć swoją wiki.\nJeśli masz pytania, sprawdź naszą listę najczęściej zadawanych pytań:\n<https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ> lub użyj jednej z\nform wsparcia odsyłanej z tej strony.",
 	"config-install-db-success": "Baza danych została pomyślnie utworzona",
+	"config-install-generic": "Uruchamianie zadania „ $1 ”",
 	"config-download-localsettings": "Pobierz <code>LocalSettings.php</code>",
 	"config-help": "pomoc",
 	"config-help-tooltip": "kliknij, aby rozwinąć",

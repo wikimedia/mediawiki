@@ -479,7 +479,6 @@
 	"login-abort-generic": "Sisselogimine ebaõnnestus – Katkestatud",
 	"login-migrated-generic": "Sinu konto on migreeritud ja sinu kasutajanime pole enam selles vikis.",
 	"loginlanguagelabel": "Keel: $1",
-	"suspicious-userlogout": "Sinu väljalogimiskatse nurjus, sest see näis olevat katkise brauseri või puhverserveri saadetud.",
 	"createacct-another-realname-tip": "Tegelik nimi on valikuline.\nKui otsustad selle sisestada, kasutatakse seda kasutaja töö temale omistamiseks.",
 	"pt-login": "Logi sisse",
 	"pt-login-button": "Logi sisse",

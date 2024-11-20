@@ -483,7 +483,6 @@
 	"login-abort-generic": "Zure sarrerak akatsa izan du - Abortatua",
 	"login-migrated-generic": "Zure kontua migratu da, eta zure erabiltzaile-izena ez dago jadanik wiki honetan.",
 	"loginlanguagelabel": "Hizkuntza: $1",
-	"suspicious-userlogout": "Saioa amaitzeko egin duzun eskaria ukatu da. Izan ere, ematen du eskari hori gaizki dabilen nabigatzaile edo cache proxy batek bidali duela.",
 	"createacct-another-realname-tip": "Benetako izena hautazkoa da.\nEmatea erabakitzen baduzu hori erabiliko da lanaren atribuzioa egiterako garaian.",
 	"pt-login": "Hasi saioa",
 	"pt-login-button": "Hasi saioa",

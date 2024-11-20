@@ -343,7 +343,6 @@
 	"login-throttled": "Du hest to faken versöcht, di ünner dissen Brukernaam antomellen.\nTööv en Stoot, ehrdat du dat noch wedder versöchst.",
 	"login-abort-generic": "Dien Anmellen harr keen Spood. Dat is afbroken worrn.",
 	"loginlanguagelabel": "Spraak: $1",
-	"suspicious-userlogout": "Dien Anfraag, di aftomellen, worr aflehnt, wieldat se vermoodlich vun en Browser oder Cache-Proxy sennt worrn is, de nich mehr funkschoneert.",
 	"pt-login": "Anmellen",
 	"pt-login-button": "Anmellen",
 	"pt-createaccount": "Brukerkonto inrichten",

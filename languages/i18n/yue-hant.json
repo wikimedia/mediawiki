@@ -477,7 +477,6 @@
 	"login-abort-generic": "你簽到失敗",
 	"login-migrated-generic": "由於閣下嘅用戶已經搬走徂，因此閣下嘅爾個用戶名已經唔存在。",
 	"loginlanguagelabel": "話：$1",
-	"suspicious-userlogout": "你去登出嘅要求已經拒絕咗，因為佢可能由壞咗嘅瀏覽器或者快取代理傳送。",
 	"createacct-another-realname-tip": "真名可以唔填。\n如果你畀埋佢，有需要嘅時候會用佢來標示你嘅工夫。",
 	"pt-login": "簽到",
 	"pt-login-button": "簽到",

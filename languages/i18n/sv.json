@@ -539,7 +539,6 @@
 	"login-abort-generic": "Din inloggning misslyckades - Avbröts",
 	"login-migrated-generic": "Ditt konto har migrerats och ditt användarnamn existerar inte längre på denna wiki.",
 	"loginlanguagelabel": "Språk: $1",
-	"suspicious-userlogout": "Din begäran om att logga ut nekades eftersom det ser ut som det skickades av en trasig webbläsare eller cachande proxy.",
 	"createacct-another-realname-tip": "Riktigt namn behöver inte anges.\nOm du väljer att ange det, kommer det att användas för att tillskriva dig ditt arbete.",
 	"pt-login": "Logga in",
 	"pt-login-button": "Logga in",

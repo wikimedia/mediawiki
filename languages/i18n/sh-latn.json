@@ -452,7 +452,6 @@
 	"login-abort-generic": "Neuspješna prijava – Prekinuto",
 	"login-migrated-generic": "Vaš se korisnički račun preselio, te Vaše korisničko ime više ne postoji na ovom wikiju.",
 	"loginlanguagelabel": "Jezik: $1",
-	"suspicious-userlogout": "Vaš zahtjev za odjavu je odbijen jer je poslan preko pokvarenog preglednika ili keširanog proksija.",
 	"createacct-another-realname-tip": "Pravo ime nije obavezno.\nAko izaberete da date ime, biće korišteno za pripisivanje za vaš rad.",
 	"pt-login": "Prijavi me",
 	"pt-login-button": "Prijavi me",

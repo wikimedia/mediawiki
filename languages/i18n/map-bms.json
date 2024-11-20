@@ -391,7 +391,6 @@
 	"login-abort-generic": "Rika gagal mlebu log - Dibatalna",
 	"login-migrated-generic": "Akune rika uwis dipindahna, lan jeneng panganggone rika wis ora ana maning nang wiki kiye.",
 	"loginlanguagelabel": "Basa: $1",
-	"suspicious-userlogout": "Panjalukan Rika nggo metu log ditolak jalarak ketone dikirim nang panjlajah sing rusak utawa proksi panyinggah (''caching proxy'').",
 	"createacct-another-realname-tip": "'''Jeneng asli''' kuwe ora kudu.\nAngger Rika milih arep ngaweh, kiye bakal digunakna nggo aweh atribut maring kasil kerjaane Rika.",
 	"pt-login": "Mlebu log",
 	"pt-login-button": "Mlebu log",

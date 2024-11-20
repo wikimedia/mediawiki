@@ -265,7 +265,6 @@
 	"blocked-mailpassword": "Su dirección IP está bloqueada para editar. Para prevenir abusos, no se permite el uso de la función de recuperación de contraseñas desde esta dirección IP.",
 	"invalidemailaddress": "No se puede aceptar la dirección de correo electrónico, pues parece que tiene un formato no válido.\nPor favor, escriba una dirección bien formada o deje el campo en blanco.",
 	"login-throttled": "Ha intentado iniciar sesión demasiadas veces seguidas. Por favor espere $1 antes de intentarlo nuevamente.",
-	"suspicious-userlogout": "Su solicitud de desconexión ha sido denegada, pues parece haber sido enviada desde un navegador defectuoso o un proxy caché.",
 	"createacct-another-realname-tip": "El nombre real es opcional.\nSi lo proporciona, se usará para dar atribución al trabajo del usuario.",
 	"changeemail-password": "Su contraseña en {{SITENAME}}:",
 	"anoneditwarning": "<strong>Advertencia:</strong> no ha iniciado sesión. Su dirección IP se hará pública si hace cualquier edición en estas condiciones. Si <strong>[$1 inicia sesión]</strong> o <strong>[$2 crea una cuenta]</strong>, sus ediciones se atribuirán a su nombre de usuario, además de otros beneficios.",

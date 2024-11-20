@@ -289,7 +289,6 @@
 	"createaccount-text": "Dikush ka krijue llogari me adresën tuej të emailit në {{SITENAME}} ($4) me nofkën \"$2\", dhe fjalëkalimin \"$3\".\nKyçuni tash dhe ndërroni fjalëkalimin.\n\nNëse kjo llogari âsht krijue gabimisht, mundeni me injorue këtë email.",
 	"login-throttled": "Keni bâ shumë tentime frik me u kyçë në kët llogari.\nJu lutemi pritni pak për me provue prap.",
 	"loginlanguagelabel": "Gjuha: $1",
-	"suspicious-userlogout": "Kërkesa juaj për të shkëputet u mohua sepse duket sikur është dërguar nga një shfletues të thyer ose caching proxy",
 	"changepassword": "Ndërrimi i fjalëkalimit",
 	"resetpass_announce": "Jeni kyçë me nji kod të përkohshëm të dërguem me email.\nPër me krye kyçjen, specifikoni fjalëkalimin e ri këtu:",
 	"resetpass_text": "<!-- Shto tekst këtu -->",

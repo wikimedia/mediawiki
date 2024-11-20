@@ -252,7 +252,6 @@
 	"login-throttled": "لقد قمت بمحاولات دخول كثيرة جدا مؤخرا.\nمن فضلك انتظر $1 قبل المحاولة مرة أخرى.",
 	"login-abort-generic": "لم ينجح ولوجك - إجهاض",
 	"loginlanguagelabel": "اللغة: $1",
-	"suspicious-userlogout": "رفض طلب خروجك لأنه يبدو كأنه أرسل عن طريق متصفح معطوب أو وسيط تخزين.",
 	"pt-login": "أدخل",
 	"pt-createaccount": "أعمل حساب",
 	"pt-userlogout": "أخرج",

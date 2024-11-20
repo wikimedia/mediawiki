@@ -480,7 +480,6 @@
 	"login-abort-generic": "Log masuk anda tidak berjaya - Dibatalkan",
 	"login-migrated-generic": "Akaun anda telah dipindahkan dan nama pengguna anda tidak lagi wujud di wiki ini.",
 	"loginlanguagelabel": "Bahasa: $1",
-	"suspicious-userlogout": "Permintaan anda untuk log keluar ditolak kerana ia kelihatan seperti dihantar oleh pelayar rosak atau proksi pengagregatan.",
 	"createacct-another-realname-tip": "Nama sebenar adalah tidak wajib.\nJika anda memilih untuk menyatakannya, ini akan digunakan untuk memberikan atribusi kepada pengguna atas sumbangan mereka.",
 	"pt-login": "Log masuk",
 	"pt-login-button": "Log masuk",

@@ -513,7 +513,6 @@
 	"login-abort-generic": "L'inici de sessió ha fallat - Operació anul·lada.",
 	"login-migrated-generic": "S'ha migrat el vostre compte, i el vostre nom d'usuari ja no existeix en aquest wiki.",
 	"loginlanguagelabel": "Llengua: $1",
-	"suspicious-userlogout": "S'ha denegat la vostra petició per a tancar la sessió, ja que sembla que va ser enviada per un navegador defectuós o un servidor intermediari.",
 	"createacct-another-realname-tip": "El nom real és opcional.\nSi decidiu proporcionar-lo, s'utilitzarà per a reconèixer a l'usuari el seu treball.",
 	"pt-login": "Inicia la sessió",
 	"pt-login-button": "Inicia sessió",

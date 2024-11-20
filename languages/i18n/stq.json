@@ -315,7 +315,6 @@
 	"login-throttled": "Du hääst tou oafte fersoacht, die antoumäldjen.\nTäif, eer du fon näien fersäkst.",
 	"login-abort-generic": "Dien Ounmäldenge waas nit ärffoulchriek - oubreeken",
 	"loginlanguagelabel": "Sproake: $1",
-	"suspicious-userlogout": "Dien Oumälde-Anfroage wuud ferwäigerd, deer ju fermoudelk fon n defekten Browser of n Cache-Proxy soand wuud.",
 	"pt-login": "Anmäldje",
 	"pt-createaccount": "Benutserkonto anlääse",
 	"pt-userlogout": "Oumäldje",

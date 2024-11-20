@@ -356,7 +356,6 @@
 	"login-throttled": "Ti has empruvà memia savens da t'annunziar.\nSpetga $1 avant ch'empruvar anc ina giada.",
 	"login-abort-generic": "Annunzia senza success - Annullà",
 	"loginlanguagelabel": "Lingua: $1",
-	"suspicious-userlogout": "Tia dumonda per partir è vegnida refusada perquai ch'i para ch'ella è vegnida tramessa d'in navigatur che funcziuna betg correctamain u d'in proxy da cache.",
 	"createacct-another-realname-tip": "Il num real è opziunal.\nSche ti l'inditgeschas, vegn el duvrà per attribuir las contribuziuns.",
 	"pt-login": "T'annunziar",
 	"pt-login-button": "T'annunziar",

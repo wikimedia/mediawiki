@@ -422,7 +422,6 @@
 	"login-abort-generic": "Asup log anjeun gagal - Dibolaykeun",
 	"login-migrated-generic": "Akun anjeun geus pindah, ku kituna sandiasma anjeun geus leungit ti ieu wiki.",
 	"loginlanguagelabel": "Basa: $1",
-	"suspicious-userlogout": "Pamundut anjeun pikeun kaluar log ditolak ku sabab sigana dikirim ku pangaprak buntu atawa ''cache'' proxi.",
 	"createacct-another-realname-tip": "Ngaran asli hanteu diwajibkeun.\nLamun anjeun milih ngeusian, ieu ngaran bakal dipaké pikeun nandaan kontribusi anjeun.",
 	"pt-login": "Asup log",
 	"pt-login-button": "Asup log",

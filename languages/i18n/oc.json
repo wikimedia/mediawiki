@@ -453,7 +453,6 @@
 	"login-abort-generic": "Vòstra temptativa de connexion a fracassat - Anullat",
 	"login-migrated-generic": "S'a migrat lo vòstre compte, e lo vòstre nom d'usatgièr existís pas mai en aquel wiki.",
 	"loginlanguagelabel": "Lenga: $1",
-	"suspicious-userlogout": "Vòstra demanda de desconnexion es estada refusada perque sembla qu’es estada mandada per un navigador copat o la mesa en cache d’un proxy.",
 	"createacct-another-realname-tip": "Lo nom vertadièr es opcional.\nSe decidissètz de lo provesir, serà utilizat per atribuir a l’utilizaire sos trabalhs.",
 	"pt-login": "Se connectar",
 	"pt-login-button": "Se connectar",

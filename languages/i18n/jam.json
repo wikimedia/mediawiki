@@ -315,7 +315,6 @@
 	"createaccount-text": "Smadi kriet a akount fi yu e-miel ajres pahn {{SITENAME}} ($4) niem \"$2\", wid paaswod \"$3\".\nYu shuda lag iin ahn chienj yu paaswod nou.\n\nYu kiahn ignuor dis mechiz, ef dis akount kriet bai mistiek.",
 	"login-throttled": "Yu mek tomoch riisant lagiin atemp.\nBegyu wiet likl bifuo yu chrai agen.",
 	"loginlanguagelabel": "Langwij: $1",
-	"suspicious-userlogout": "Yu rikwes fi lag out dinai bikaa iluk laik se isen bai a brok brouza ar kiashin praxi.",
 	"pt-login": "Log on",
 	"pt-login-button": "Lagiin‎",
 	"pt-createaccount": "Set up a account",

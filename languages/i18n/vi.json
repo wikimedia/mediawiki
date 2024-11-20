@@ -514,7 +514,6 @@
 	"login-abort-generic": "Đăng nhập của bạn không thành công – bị hủy bỏ",
 	"login-migrated-generic": "Tài khoản của bạn đã được hợp nhất, và tên đăng nhập của bạn không còn tồn tại trên wiki này.",
 	"loginlanguagelabel": "Ngôn ngữ: $1",
-	"suspicious-userlogout": "Đã bỏ qua yêu cầu đăng xuất bạn, hình như được gửi từ trình duyệt hoặc máy proxy nhớ đệm hư.",
 	"createacct-another-realname-tip": "Tên thật là không bắt buộc. \n\nNếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao của bạn.",
 	"pt-login": "Đăng nhập",
 	"pt-login-button": "Đăng nhập",

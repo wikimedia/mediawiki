@@ -510,7 +510,6 @@
 	"login-abort-generic": "Vaše přihlášení se nezdařilo – přerušeno",
 	"login-migrated-generic": "Váš účet byl zmigrován a vaše uživatelské jméno již nadále na této wiki neexistuje.",
 	"loginlanguagelabel": "Jazyk: $1",
-	"suspicious-userlogout": "Váš požadavek na odhlášení byl odmítnut, neboť to vypadá, že ho poslal rozbitý prohlížeč nebo cachující proxy.",
 	"createacct-another-realname-tip": "Skutečné jméno je nepovinné.\nPokud se ho rozhodnete uvést, bude použito pro označení autorství vaší práce.",
 	"pt-login": "Přihlášení",
 	"pt-login-button": "Přihlásit se",

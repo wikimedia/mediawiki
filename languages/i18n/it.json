@@ -585,7 +585,6 @@
 	"login-abort-generic": "Il tuo accesso non è riuscito - Annullato",
 	"login-migrated-generic": "La tua utenza è stata migrata, e il tuo nome utente non esiste più su questo wiki.",
 	"loginlanguagelabel": "Lingua: $1",
-	"suspicious-userlogout": "La tua richiesta di disconnessione è stata negata perché sembra inviata da un browser non funzionante o un proxy di caching.",
 	"createacct-another-realname-tip": "L'indicazione del proprio nome vero è opzionale; se si sceglie di inserirlo, verrà utilizzato per attribuire la paternità dei contenuti inviati.",
 	"pt-login": "entra",
 	"pt-login-button": "Entra",

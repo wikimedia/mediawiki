@@ -559,7 +559,6 @@
 	"login-abort-generic": "فشل دخولك - تم إجهاضه",
 	"login-migrated-generic": "تم تهجير حسابك، ولم يعد اسم المستخدم الخاص بك موجوداً على هذه الويكي",
 	"loginlanguagelabel": "اللغة: $1",
-	"suspicious-userlogout": "رفض طلب خروجك لأنه يبدو كأنه أرسل عن طريق متصفح معطوب أو وسيط تخزين.",
 	"createacct-another-realname-tip": "الاسم الحقيقي اختياري.\nإذا اخترت توفيره فسيستخدم لنسبة عمل المستخدم إليه.",
 	"pt-login": "دخول",
 	"pt-login-button": "دخول",

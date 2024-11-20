@@ -374,7 +374,6 @@
 	"createaccount-text": "Yon moun kreye yon kont pou adrès imèl ou an sou paj sa {{SITENAME}} ($4), non l se « $2 », mopas an se « $3 ». Ou ta dwe ouvè yon sesyon pou chanje kounye a mopas ou.\n\nPa pòte atansyon pou mesaj sa si kont sa kreye pa erè.",
 	"login-throttled": "Ou fè twòp tantativ pou konekte w. Tanpri tann $1 anvan ou eseye ankò.",
 	"loginlanguagelabel": "Lang : $1",
-	"suspicious-userlogout": "Demand ou te fè pou dekonekte w te refize paske sanble li te voye pa yon navigatè ki fè erè oubyen li sòti nan yon proksi pou kach.",
 	"pt-login": "Konekte",
 	"pt-login-button": "Konekte",
 	"pt-createaccount": "Ouvri yon kont",

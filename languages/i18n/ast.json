@@ -434,7 +434,6 @@
 	"login-abort-generic": "Falló l'aniciu de sesión - Encaboxao",
 	"login-migrated-generic": "La to cuenta migróse ya'l to nome d'usuariu yá nun esiste nesta wiki.",
 	"loginlanguagelabel": "Llingua: $1",
-	"suspicious-userlogout": "La to solicitú de zarrar sesión refugose porque paez qu'unvióla un restolador frañíu o un proxy de caché.",
 	"createacct-another-realname-tip": "El nome real ye opcional.\nSi decide conseñalu, va usase p'atribuir el trabayu al usuariu.",
 	"pt-login": "Entrar",
 	"pt-login-button": "Aniciar sesión",

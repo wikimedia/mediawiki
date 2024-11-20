@@ -291,7 +291,6 @@
 	"login-throttled": "Ogezeza okuyingira mu sisitemu emilundi egiyitiridde obungi kaseera kano.<br />\nSooka olindeko akaseera okuddamu n'ate.",
 	"login-abort-generic": "Sisitemu tekuyingizza - Omulimu gukomezedwa",
 	"loginlanguagelabel": "Lulimi: $1",
-	"suspicious-userlogout": "Sisitemu ezize ekiragiro kyo eky'okugivaamu kubanga kirabise nga ekivudde mu kalambulanetti enfu<br />\noba mu puloguramu etereka n'eddamu okuyisa ebiragiro ebivudde awalala.",
 	"php-mail-error-unknown": "Wazzewo kiremya atategeerese mu mukolo mail() ogw'omu PHP",
 	"resetpass_announce": "Weyambisa ekyama eky'ekiseerabuseera okuyingira.<br />\nOkuyingirira ddala, wetaaga okuwandika wano ekinaaba ekyama kyo ekya ddala:",
 	"resetpass_header": "Kyusa ekigambo ekikuumi eky'oku akawunti eno",

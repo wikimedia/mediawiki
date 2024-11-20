@@ -435,7 +435,6 @@
 	"login-abort-generic": "Yer login failed - Abortit",
 	"login-migrated-generic": "Yer accoont's been migratit, n yer uisername nae langer exeests oan this wiki.",
 	"loginlanguagelabel": "Leid: $1",
-	"suspicious-userlogout": "Yer request tae log oot wis denied cause it luiks like it wis sent bi ae broken brouser or caching proxy.",
 	"createacct-another-realname-tip": "Real name is aen optie.\nGif ye chuise tae provide it, this will be uised fer giein the uiser attreebution fer their wark.",
 	"pt-login": "Log in",
 	"pt-login-button": "Log in",

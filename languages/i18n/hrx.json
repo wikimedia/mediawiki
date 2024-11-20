@@ -369,7 +369,6 @@
 	"login-throttled": "Du host keerzlich zu viele Oonmeldversuche unnernomm.\nBittachön woort $1, bevoar du das erneit versuchst.",
 	"login-abort-generic": "Dein Oonmeldung woor net erfollichreich – Abgebroch",
 	"loginlanguagelabel": "Sproch: $1",
-	"suspicious-userlogout": "Dein Abmeldeoonfroch woard verweichert, weil die vermutlich von en defekte Browser orrer en Cache-Proxy gesendt woard.",
 	"createacct-another-realname-tip": "Der bürcherliche registriert Noome ist optional.\nWenn du ihn oongebst, weard ear für die Zuordnung von der Beiträche verwendt.",
 	"pt-login": "Aanmelle",
 	"pt-login-button": "Aanmelle",

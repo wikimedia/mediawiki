@@ -465,7 +465,6 @@
 	"login-abort-generic": "Ni lwyddodd y mewngofnodi",
 	"login-migrated-generic": "Trosglwyddwyd eich cyfrif ac nid yw eich enw defnyddiwr bellach yn bodoli ar y wici hwn.",
 	"loginlanguagelabel": "Iaith: $1",
-	"suspicious-userlogout": "Gwrthodwyd eich cais i allgofnodi oherwydd ei fod yn ymddangos mai gweinydd wedi torri neu ddirprwy gelc a anfonodd y cais.",
 	"createacct-another-realname-tip": "Gallwch ddewis roi eich enw go iawn.\nOs y gwnewch, fe gaiff yr enw go iawn ei defnyddio wrth dadogi'ch gwaith.",
 	"pt-login": "Mewngofnodi",
 	"pt-login-button": "Mewngofnodi",

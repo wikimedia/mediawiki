@@ -437,7 +437,6 @@
 	"login-abort-generic": "Tua autentici ia fali - Abortada",
 	"login-migrated-generic": "Tua conta ia es migrada, e tua nom de usor no esiste plu en esta vici.",
 	"loginlanguagelabel": "Lingua: $1",
-	"suspicious-userlogout": "Tua solisita de desautentici ia es refusada car lo pare es enviada par un surfador o proxi malfunsionante.",
 	"createacct-another-realname-tip": "La nom vera es nonobligante.\nSi tu eleje furni lo, lo va es usada per atribui la laboras fada par la usor.",
 	"pt-login": "Autentici",
 	"pt-login-button": "Autentici",

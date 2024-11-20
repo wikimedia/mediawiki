@@ -455,7 +455,6 @@
 	"login-abort-generic": "Innlogginga di feila - avbroten.",
 	"login-migrated-generic": "Kontoen din er blitt globalisert, og brukarnamnet ditt finst ikkje lenger på denne wikien.",
 	"loginlanguagelabel": "Språk: $1",
-	"suspicious-userlogout": "Førespurnaden din om å logge ut vart nekta fordi han såg ut til å vere sendt av ein øydelagt nettlesar eller mellomtenar.",
 	"createacct-another-realname-tip": "Det er frivillig å oppgi det eigentlege namnet sitt.\nOm du vel å oppgje det, vil det bli brukt til å tilskriva deg arbeidet ditt.",
 	"pt-login": "Logg inn",
 	"pt-login-button": "Logg inn",

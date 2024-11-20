@@ -543,7 +543,6 @@
 	"login-abort-generic": "로그인에 실패했습니다 - 중지됨",
 	"login-migrated-generic": "당신의 계정이 마이그레이션되었으며, 당신의 사용자 이름이 더 이상 이 위키에 존재하지 않습니다.",
 	"loginlanguagelabel": "언어: $1",
-	"suspicious-userlogout": "브라우저에 이상이 있거나 캐싱 프록시에서 로그아웃을 요청했기 때문에 로그아웃이 거부되었습니다.",
 	"createacct-another-realname-tip": "실명은 선택 사항입니다.\n실명을 입력하면 문서 기여에 사용자의 이름이 들어가게 됩니다.",
 	"pt-login": "로그인",
 	"pt-login-button": "로그인",

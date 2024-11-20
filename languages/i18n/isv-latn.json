@@ -444,7 +444,6 @@
 	"login-abort-generic": "Prijavjenje ne udalo se – prěrvano",
 	"login-migrated-generic": "Vaše konto bylo prěneseno i vaše koristničsko ime uže ne jestvuje na tutoj viki.",
 	"loginlanguagelabel": "Jezyk: $1",
-	"suspicious-userlogout": "Vaša prosba za odjavjenje jest odvrgnena, ibo izdavaje se, že ona byla poslana poškodženym prěgledačem ili kešujučim proksi-serverom.",
 	"createacct-another-realname-tip": "Pravdivo ime jest opcionalno.\nAko rěšite, že go podate, ono bude koristano za označenje avtorstva vašej raboty.",
 	"pt-login": "Prijaviti se",
 	"pt-login-button": "Prijaviti se",

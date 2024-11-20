@@ -445,7 +445,6 @@
 	"login-abort-generic": "侬登录失败 - 中止哉",
 	"login-migrated-generic": "侬个账号已经畀移脱哉，并且侬个用户名来箇wiki弗再存在。",
 	"loginlanguagelabel": "闲话：$1",
-	"suspicious-userlogout": "侬登出个要求已经拨回头脱，因为渠可能是由已损坏个浏览器或者缓存代理传送个。",
 	"createacct-another-realname-tip": "真实姓名是选填个。假使侬选择提供伊，伊会得用勒了贡献署名方面高头。",
 	"pt-login": "登录",
 	"pt-login-button": "登录",
