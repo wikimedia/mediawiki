@@ -115,6 +115,8 @@ because of Phabricator reports.
   deprecated with all of its methods in 1.43, has been removed.
 * IDatabase::onAtomicSectionCancel() has been removed without deprecation
   as it's completely unused.
+* The Less mixin .column-break-after-avoid(), deprecated in 1.43, has been
+  removed. Use just the CSS rule `break-after: avoid-column;` instead now.
 * …
 
 === Deprecations in 1.44 ===
