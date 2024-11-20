@@ -4,6 +4,7 @@ namespace MediaWiki\Installer\Task;
 
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\WikitextContent;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Page\WikiPageFactory;
@@ -33,7 +34,31 @@ class InitialContentTask extends Task {
 
 	public function execute(): Status {
 		$this->initServices( $this->getServices() );
-		$titleText = wfMessage( 'mainpage' )->inContentLanguage()->text();
+		$pages = $this->getConfigVar( MainConfigNames::InstallerInitialPages );
+		$status = Status::newGood();
+		foreach ( $pages as $pageInfo ) {
+			$status->merge( $this->createPage( $pageInfo ) );
+		}
+		return $status;
+	}
+
+	/**
+	 * Create a page using an associative array of information
+	 *
+	 * @see \MediaWiki\MainConfigSchema::InstallerInitialPages
+	 *
+	 * @param array $pageInfo Associative array of page info
+	 * @return Status
+	 */
+	private function createPage( array $pageInfo ) {
+		if ( isset( $pageInfo['title'] ) ) {
+			$titleText = $pageInfo['title'];
+		} elseif ( isset( $pageInfo['titlemsg'] ) ) {
+			$titleText = wfMessage( $pageInfo['titlemsg'] )->inContentLanguage()->text();
+		} else {
+			throw new \InvalidArgumentException(
+				'InstallerInitialPages is missing title/titlemsg' );
+		}
 		$title = $this->pageStore->getPageByText( $titleText );
 		$status = Status::newGood();
 		if ( !$title ) {
@@ -44,10 +69,17 @@ class InitialContentTask extends Task {
 			$status->warning( 'config-install-mainpage-exists', $titleText );
 			return $status;
 		}
-
 		$page = $this->wikiPageFactory->newFromTitle( $title );
-		$text = wfMessage( 'mainpagetext' )->inContentLanguage()->text() . "\n\n" .
-			wfMessage( 'mainpagedocfooter' )->inContentLanguage()->text();
+
+		if ( isset( $pageInfo['text'] ) ) {
+			$text = $pageInfo['text'];
+		} elseif ( isset( $pageInfo['textmsg'] ) ) {
+			$text = wfMessage( $pageInfo['textmsg'] )->inContentLanguage()->text();
+		} else {
+			throw new \InvalidArgumentException(
+				'InstallerInitialPages is missing text/textmsg' );
+		}
+		$text = $this->replaceVariables( $text );
 
 		$content = new WikitextContent( $text );
 
@@ -67,9 +99,38 @@ class InitialContentTask extends Task {
 		return $status;
 	}
 
+	/**
+	 * Get services from the restored service container
+	 *
+	 * @param MediaWikiServices $services
+	 */
 	private function initServices( MediaWikiServices $services ) {
 		$this->wikiPageFactory = $services->getWikiPageFactory();
 		$this->pageStore = $services->getPageStore();
+	}
+
+	/**
+	 * Replace {{InstallerOption:}} and {{InstallerConfig:}} pseudo-parser functions
+	 *
+	 * @param string $text
+	 * @return string
+	 */
+	private function replaceVariables( string $text ): string {
+		$text = preg_replace_callback(
+			'/\{\{ *InstallerOption: *(\w+) *}}/',
+			function ( $match ) {
+				return (string)$this->getOption( $match[1] );
+			},
+			$text
+		);
+		$text = preg_replace_callback(
+			'/\{\{ *InstallerConfig: *(\w+) *}}/',
+			function ( $match ) {
+				return (string)$this->getConfigVar( $match[1] );
+			},
+			$text
+		);
+		return $text;
 	}
 
 }

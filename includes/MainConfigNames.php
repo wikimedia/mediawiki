@@ -3573,6 +3573,12 @@ class MainConfigNames {
 	public const GitRepositoryViewers = 'GitRepositoryViewers';
 
 	/**
+	 * Name constant for the InstallerInitialPages setting, for use with Config::get()
+	 * @see MainConfigSchema::InstallerInitialPages
+	 */
+	public const InstallerInitialPages = 'InstallerInitialPages';
+
+	/**
 	 * Name constant for the RCMaxAge setting, for use with Config::get()
 	 * @see MainConfigSchema::RCMaxAge
 	 */

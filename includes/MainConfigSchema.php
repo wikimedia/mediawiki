@@ -10414,6 +10414,33 @@ class MainConfigSchema {
 		'type' => 'map',
 	];
 
+	/**
+	 * Initial content to create when installing a wiki. An array of page info
+	 * arrays. Each must contain at least one of:
+	 *   - title: The title to create (string)
+	 *   - titlemsg: The name of a message to read the title from
+	 *
+	 * And one of:
+	 *   - text: The text to write to the page (string)
+	 *   - textmsg: The name of a message to read the page contents from
+	 *
+	 * The text may contain
+	 *   - {{InstallerOption:<name>}}: This will be replaced with the named option value
+	 *   - {{InstallerConfig:<name>}}: This will be replaced with the named config value
+	 *
+	 * @see \InstallPreConfigured
+	 * @since 1.44
+	 */
+	public const InstallerInitialPages = [
+		'default' => [
+			[
+				'titlemsg' => 'mainpage',
+				'text' => "{{subst:int:mainpagetext}}\n\n{{subst:int:mainpagedocfooter}}",
+			]
+		],
+		'type' => 'list'
+	];
+
 	// endregion -- End of maintenance
 
 	/***************************************************************************/

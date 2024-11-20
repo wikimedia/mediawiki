@@ -1962,6 +1962,14 @@ return [
 				'https://(?:[a-z0-9_]+@)?gerrit.wikimedia.org/r/(?:p/)?(.*)' => 'https://gerrit.wikimedia.org/g/%R/+/%H',
 				'ssh://(?:[a-z0-9_]+@)?gerrit.wikimedia.org:29418/(.*)' => 'https://gerrit.wikimedia.org/g/%R/+/%H',
 			],
+			'InstallerInitialPages' => [
+				[
+					'titlemsg' => 'mainpage',
+					'text' => '{{subst:int:mainpagetext}}
+
+{{subst:int:mainpagedocfooter}}',
+				],
+			],
 			'RCMaxAge' => 7776000,
 			'WatchersMaxAge' => 15552000,
 			'UnwatchedPageSecret' => 1,
@@ -2924,6 +2932,7 @@ return [
 			'PreviewOnOpenNamespaces' => 'object',
 			'ReadOnlyWatchedItemStore' => 'boolean',
 			'GitRepositoryViewers' => 'object',
+			'InstallerInitialPages' => 'array',
 			'RCLinkLimits' => 'array',
 			'RCLinkDays' => 'array',
 			'RCFeeds' => 'object',
