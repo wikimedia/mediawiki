@@ -18,7 +18,8 @@ function convertCheckboxesWidgetToTags( fieldLayout ) {
 			items: menuTagOptions
 		},
 		disabled: checkboxesWidget.isDisabled(),
-		placeholder: fieldData.placeholder || ''
+		placeholder: fieldData.placeholder || '',
+		tagLimit: fieldData.tagLimit || 0
 	} );
 	menuTagWidget.setValue( checkboxesWidget.getValue() );
 
