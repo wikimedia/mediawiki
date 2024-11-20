@@ -154,8 +154,6 @@ use Wikimedia\Stats\StatsFactory;
  * - `t`: used to store "last purge" timestamps for "check" keys.
  * - `m`: used to store temporary mutex locks to avoid cache stampedes.
  * - `i`: used to store temporary interim values (metadata-wrapped) for tombstoned keys.
- * - `c`: used to store temporary "cool-off" indicators, which specify a period during which
- *        values cannot be stored, neither regularly nor using interim keys.
  *
  * @ingroup Cache
  * @newable
