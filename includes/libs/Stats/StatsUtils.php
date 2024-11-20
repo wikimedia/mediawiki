@@ -125,16 +125,14 @@ class StatsUtils {
 	/**
 	 * Normalize strings to a metrics-compatible format.
 	 *
-	 * Replace any other non-alphanumeric characters with underscores.
-	 * Eliminate repeated underscores.
+	 * Replace all other non-alphanumeric characters with an underscore.
 	 * Trim leading or trailing underscores.
 	 *
 	 * @param string $entity
 	 * @return string
 	 */
 	public static function normalizeString( string $entity ): string {
-		$entity = preg_replace( "/[^a-z0-9]/i", "_", $entity );
-		$entity = preg_replace( "/_+/", "_", $entity );
+		$entity = preg_replace( '/[^a-z\d]+/i', '_', $entity );
 		return trim( $entity, "_" );
 	}
 }
