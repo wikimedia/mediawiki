@@ -961,6 +961,11 @@ return [
 			]
 		],
 	],
+	'mediawiki.pager.codex.styles' => [
+		'class' => CodexModule::class,
+		'codexComponents' => [ 'CdxTable' ],
+		'codexStyleOnly' => true,
+	],
 	'mediawiki.pulsatingdot' => [
 		'styles' => [
 			'resources/src/mediawiki.pulsatingdot/mediawiki.pulsatingdot.less',
