@@ -375,3 +375,38 @@ ill=zh:Chinese#fragment
 !! html/parsoid
 <link rel="mw:PageProp/Language" href="http://zh.wikipedia.org/wiki/Chinese#fragment" data-parsoid='{"stx":"simple","a":{"href":"http://zh.wikipedia.org/wiki/Chinese#fragment"},"sa":{"href":"zh:Chinese#fragment"}}'/>
 !! end
+
+!! test
+{{#langlink}} parser function as a means to force a language link (T363538)
+!! options
+ill
+!! wikitext
+*{{#langlink:mi|Template:Bar}}
+*[[mi:Template:Foo]]
+!! metadata
+ill=mi:Template:Bar
+!! html/php
+<ul><li class="mw-empty-elt"></li>
+<li><a href="/wiki/Template:Foo" title="Template:Foo">mi:Template:Foo</a></li></ul>
+!! html/parsoid
+<ul>
+<li><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#langlink:mi","function":"langlink"},"params":{"1":{"wt":"Template:Bar"}},"i":0}}]}'></span></li>
+<li><a rel="mw:WikiLink" href="./Template:Foo" title="Template:Foo">mi:Template:Foo</a></li>
+</ul>
+!! end
+
+!! test
+{{#langlink}} parser function as a means to force a language link, v2 (T363538)
+!! options
+ill
+!! wikitext
+*{{#langlink:mi|Template:Bat#fragment-kept|caption is ignored}}
+!! metadata
+ill=mi:Template:Bat#fragment-kept
+!! html/php
+<ul><li class="mw-empty-elt"></li></ul>
+!! html/parsoid
+<ul>
+<li><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#langlink:mi","function":"langlink"},"params":{"1":{"wt":"Template:Bat#fragment-kept"},"2":{"wt":"caption is ignored"}},"i":0}}]}'></span></li>
+</ul>
+!! end
