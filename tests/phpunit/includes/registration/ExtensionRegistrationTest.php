@@ -129,15 +129,14 @@ class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $hookContainer->isRegistered( 'BooEvent' ), 'BooEvent' );
 	}
 
-	public function testGetDomainEventListeners() {
+	public function testRegisterDomainEventListeners() {
+		$subscriber = [
+			'events' => [ 'AnEvent', 'BooEvent' ],
+			'factory' => [ self::class, 'newSubscriber' ]
+		];
+
 		$manifest = [
-			'Listeners' => [
-				'AnEvent' => self::class . '::onAnEvent',
-				'BooEvent' => 'main',
-			],
-			'HookHandlers' => [
-				'main' => [ 'class' => self::class ]
-			],
+			'DomainEventSubscribers' => [ $subscriber ]
 		];
 
 		$file = $this->makeManifestFile( $manifest );
@@ -148,34 +147,20 @@ class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 		$registry->queue( $file );
 		$registry->loadFromQueue();
 
-		$listeners = [];
+		$actualSubscribers = [];
 		$mockSource = $this->createMock( DomainEventSource::class );
-		$mockSource->method( 'registerListener' )->willReturnCallback(
-			static function ( $type, $listener ) use ( &$listeners ) {
-				$listeners[$type][] = $listener;
+		$mockSource->method( 'registerSubscriber' )->willReturnCallback(
+			static function ( $subscriber ) use ( &$actualSubscribers ) {
+				$actualSubscribers[] = $subscriber;
 			}
 		);
 		$registry->registerListeners( $mockSource );
 
+		$expectedSubscribers = [ $subscriber + [ 'extensionPath' => $file ] ];
+
 		$this->assertArrayEquals(
-			[ 'AnEvent', 'BooEvent', ],
-			array_keys( $listeners )
-		);
-
-		$this->assertSame(
-			self::class . '::onAnEvent',
-			$listeners['AnEvent'][0]
-		);
-
-		$this->assertSame(
-			[
-				'handler' => [
-					'name' => 'Test-main',
-					'class' => self::class,
-				],
-				'extensionPath' => $file
-			],
-			$listeners['BooEvent'][0]
+			$expectedSubscribers,
+			$actualSubscribers
 		);
 	}
 

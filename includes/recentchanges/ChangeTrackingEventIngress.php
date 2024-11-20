@@ -3,7 +3,6 @@
 namespace MediaWiki\RecentChanges;
 
 use MediaWiki\ChangeTags\ChangeTagsStore;
-use MediaWiki\DomainEvent\DomainEventSource;
 use MediaWiki\DomainEvent\EventSubscriberBase;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\EditResult;
@@ -13,12 +12,38 @@ use MediaWiki\User\UserIdentity;
 use RecentChange;
 
 /**
- * The ingres adapter for the change tracking component. It updates change
+ * The ingress subscriber for the change tracking component. It updates change
  * tracking state according to domain events coming from other components.
  *
  * @internal
  */
 class ChangeTrackingEventIngress extends EventSubscriberBase {
+
+	/**
+	 * The events handled by this ingress subscriber.
+	 * @see registerListeners()
+	 */
+	public const EVENTS = [
+		PageUpdatedEvent::TYPE
+	];
+
+	/**
+	 * Object spec used for lazy instantiation.
+	 * Using this spec with DomainEventSource::registerSubscriber defers
+	 * instantiation until one of the listed events is dispatched.
+	 * Declaring it as a constant avoids the overhead of using reflection
+	 * for auto-wiring.
+	 */
+	public const OBJECT_SPEC = [
+		'class' => self::class,
+		'services' => [ // see __construct
+			'ChangeTagsStore',
+			'UserEditTracker'
+		],
+		'events' => [ // see registerListeners()
+			PageUpdatedEvent::TYPE
+		],
+	];
 
 	private ChangeTagsStore $changeTagsStore;
 	private UserEditTracker $userEditTracker;
@@ -31,13 +56,18 @@ class ChangeTrackingEventIngress extends EventSubscriberBase {
 		ChangeTagsStore $changeTagsStore,
 		UserEditTracker $userEditTracker
 	) {
-		parent::__construct();
+		// NOTE: keep in sync with self::OBJECT_SPEC
 		$this->changeTagsStore = $changeTagsStore;
 		$this->userEditTracker = $userEditTracker;
 	}
 
-	public function registerListeners( DomainEventSource $eventSource ): void {
-		$this->registerListenerMethod( $eventSource, PageUpdatedEvent::TYPE );
+	public static function newForTesting(
+		ChangeTagsStore $changeTagsStore,
+		UserEditTracker $userEditTracker
+	) {
+		$ingress = new self( $changeTagsStore, $userEditTracker );
+		$ingress->initSubscriber( self::OBJECT_SPEC );
+		return $ingress;
 	}
 
 	/**

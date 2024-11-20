@@ -1267,6 +1267,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\DomainEvent\\DomainEventSubscriber' => __DIR__ . '/includes/DomainEvent/DomainEventSubscriber.php',
 	'MediaWiki\\DomainEvent\\EventDispatchEngine' => __DIR__ . '/includes/DomainEvent/EventDispatchEngine.php',
 	'MediaWiki\\DomainEvent\\EventSubscriberBase' => __DIR__ . '/includes/DomainEvent/EventSubscriberBase.php',
+	'MediaWiki\\DomainEvent\\InitializableDomainEventSubscriber' => __DIR__ . '/includes/DomainEvent/InitializableDomainEventSubscriber.php',
 	'MediaWiki\\EditPage\\Constraint\\AccidentalRecreationConstraint' => __DIR__ . '/includes/editpage/Constraint/AccidentalRecreationConstraint.php',
 	'MediaWiki\\EditPage\\Constraint\\ChangeTagsConstraint' => __DIR__ . '/includes/editpage/Constraint/ChangeTagsConstraint.php',
 	'MediaWiki\\EditPage\\Constraint\\ContentModelChangeConstraint' => __DIR__ . '/includes/editpage/Constraint/ContentModelChangeConstraint.php',

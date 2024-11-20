@@ -2666,6 +2666,7 @@ return [
 
 	'_DomainEventDispatcher' => static function ( MediaWikiServices $services ): EventDispatchEngine {
 		$dispatcher = new EventDispatchEngine(
+			$services->getObjectFactory(),
 			$services->getHookContainer()
 		);
 
@@ -2675,10 +2676,7 @@ return [
 		// Register subscriber for propagating PageUpdatedEvents to the
 		// change tracking component.
 		$dispatcher->registerSubscriber(
-			new ChangeTrackingEventIngress( // TODO: use an ObjectFactory spec
-				$services->getChangeTagsStore(),
-				$services->getUserEditTracker()
-			)
+			ChangeTrackingEventIngress::OBJECT_SPEC
 		);
 
 		$extensionRegistry = $services->getExtensionRegistry();

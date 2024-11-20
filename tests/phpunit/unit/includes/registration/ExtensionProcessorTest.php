@@ -596,92 +596,46 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 		$processor->getExtractedInfo();
 	}
 
-	public function provideDomainEventListeners() {
+	public function provideDomainEventDomainEventSubscribers() {
 		// Format:
-		// Current Listeners attribute
+		// Current DomainEventSubscribers attribute
 		// Content in extension.json
-		// Expected Listeners attribute
+		// Expected DomainEventSubscribers attribute
 		return [
-			// Listener for "FooBaz": object with handler attribute
 			[
-				[ 'FooBaz' => [ 'PriorCallback' ] ],
 				[
-					'Listeners' => [ 'FooBaz' => [ 'handler' => 'HandlerObjectCallback', 'deprecated' => true ] ],
-					'HookHandlers' => [
-						'HandlerObjectCallback' => [
+					[ 'events' => [ 'FooDone' ], 'factory' => 'PriorCallback' ]
+				],
+				[
+					'DomainEventSubscribers' => [
+						[
+							'events' => [ 'FooDone', 'BarDone', ],
 							'class' => 'FooClass',
 							'services' => [],
-							'name' => 'FooBar-HandlerObjectCallback'
-						]
-					]
-				] + self::$default,
-				[ 'FooBaz' =>
-					[
-						'PriorCallback',
-						[
-							'handler' => [
-								'class' => 'FooClass',
-								'services' => [],
-								'name' => 'FooBar-HandlerObjectCallback'
-							],
-							'deprecated' => true,
-							'extensionPath' => $this->getExtensionPath()
-						]
-					]
-				],
-				[]
-			],
-			// Listener for "FooBaz": string corresponding to a handler definition
-			[
-				[ 'FooBaz' => [ 'PriorCallback' ] ],
-				[
-					'Listeners' => [ 'FooBaz' => [ 'HandlerObjectCallback' ] ],
-					'HookHandlers' => [
-						'HandlerObjectCallback' => [ 'class' => 'FooClass', 'services' => [] ],
-					]
-				] + self::$default,
-				[ 'FooBaz' =>
-					[
-						'PriorCallback',
-						[
-							'handler' => [
-								'class' => 'FooClass',
-								'services' => [],
-								'name' => 'FooBar-HandlerObjectCallback'
-							],
-							'extensionPath' => $this->getExtensionPath()
 						],
 					]
-				],
-				[]
-			],
-			// Listener for "FooBaz": legacy style object and method array
-			[
-				[ 'FooBaz' => [ 'PriorCallback' ] ],
-				[
-					'Listeners' => [ 'FooBaz' => [
-						[ 'FooClass', 'FooMethod' ]
-					] ],
-					'HookHandlers' => []
 				] + self::$default,
-				[ 'FooBaz' =>
+				[
+					[ 'events' => [ 'FooDone' ], 'factory' => 'PriorCallback' ],
 					[
-						'PriorCallback',
-						[ 'FooClass', 'FooMethod' ],
+						'events' => [ 'FooDone', 'BarDone', ],
+						'class' => 'FooClass',
+						'services' => [],
+						'extensionPath' => $this->getExtensionPath()
 					]
-				],
-			]
+				]
+			],
 		];
 	}
 
 	/**
-	 * @dataProvider provideDomainEventListeners
+	 * @dataProvider provideDomainEventDomainEventSubscribers
 	 */
-	public function testDomainEventListeners( $pre, $info, $expected ) {
-		$processor = new MockExtensionProcessor( [ 'attributes' => [ 'Listeners' => $pre ] ] );
+	public function testDomainEventDomainEventSubscribers( $pre, $info, $expected ) {
+		$processor = new MockExtensionProcessor( [ 'attributes' => [ 'DomainEventSubscribers' => $pre ] ] );
 		$processor->extractInfo( $this->extensionPath, $info, 1 );
 		$extracted = $processor->getExtractedInfo();
-		$this->assertEquals( $expected, $extracted['attributes']['Listeners'] );
+		$this->assertEquals( $expected, $extracted['attributes']['DomainEventSubscribers'] );
 	}
 
 	public function testExtractConfig1() {

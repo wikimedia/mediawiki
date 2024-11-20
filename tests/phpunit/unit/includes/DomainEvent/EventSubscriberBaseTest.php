@@ -9,6 +9,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWikiUnitTestCase;
 use Wikimedia\ObjectFactory\ObjectFactory;
+use Wikimedia\Services\ServiceContainer;
 
 /**
  * @covers \MediaWiki\DomainEvent\EventSubscriberBase
@@ -16,13 +17,17 @@ use Wikimedia\ObjectFactory\ObjectFactory;
 class EventSubscriberBaseTest extends MediaWikiUnitTestCase {
 
 	private function newSpyEvenSource( &$trace ): DomainEventSource {
+		$objectFactory = new ObjectFactory(
+			$this->createNoOpMock( ServiceContainer::class )
+		);
+
 		$hookContainer = new HookContainer(
 			new StaticHookRegistry(),
-			$this->createNoOpMock( ObjectFactory::class )
+			$objectFactory
 		);
 
 		$dispatcher = $this->getMockBuilder( EventDispatchEngine::class )
-			->setConstructorArgs( [ $hookContainer ] )
+			->setConstructorArgs( [ $objectFactory, $hookContainer ] )
 			->onlyMethods( [ 'registerListener' ] )
 			->getMock();
 
@@ -43,7 +48,7 @@ class EventSubscriberBaseTest extends MediaWikiUnitTestCase {
 		// Pass the list of events as a constructor parameter
 		$subscriber = new class ( $events ) extends EventSubscriberBase {
 			public function __construct( $events ) {
-				parent::__construct( $events );
+				$this->initEvents( $events );
 			}
 
 			public function handleFooEventAfterCommit() {
@@ -67,4 +72,33 @@ class EventSubscriberBaseTest extends MediaWikiUnitTestCase {
 		], $trace );
 	}
 
+	public function testAutoSubscribe_init() {
+		$trace = [];
+		$source = $this->newSpyEvenSource( $trace );
+
+		$events = [ 'Foo', 'Bar' ];
+
+		// Pass nothing to the constructor, rely on initSubscriber()
+		$subscriber = new class () extends EventSubscriberBase {
+			public function handleFooEventAfterCommit() {
+				// no-op
+			}
+
+			public function handleBarEventAfterCommit() {
+				// no-op
+			}
+
+			public function handleXyzzyEventAfterCommit() {
+				// no-op
+			}
+		};
+
+		$subscriber->initSubscriber( [ 'events' => $events ] );
+		$subscriber->registerListeners( $source );
+
+		$this->assertSame( [
+			[ 'Foo', [ $subscriber, 'handleFooEventAfterCommit' ] ],
+			[ 'Bar', [ $subscriber, 'handleBarEventAfterCommit' ] ],
+		], $trace );
+	}
 }
