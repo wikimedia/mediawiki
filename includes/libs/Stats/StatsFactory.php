@@ -44,27 +44,25 @@ use Wikimedia\Stats\Metrics\TimingMetric;
  */
 class StatsFactory {
 
-	private string $component;
+	private string $component = '';
 	private StatsCache $cache;
 	private EmitterInterface $emitter;
 	private LoggerInterface $logger;
+
 	private ?IBufferingStatsdDataFactory $statsdDataFactory = null;
 
 	/**
 	 * StatsFactory builds, configures, and caches Metrics.
-	 *
-	 * @param StatsCache $cache
-	 * @param EmitterInterface $emitter
-	 * @param LoggerInterface $logger
-	 * @param string $component
 	 */
 	public function __construct(
 		StatsCache $cache,
 		EmitterInterface $emitter,
 		LoggerInterface $logger,
-		string $component = ''
+		?string $component = null
 	) {
-		$this->component = StatsUtils::normalizeString( $component );
+		if ( $component !== null ) {
+			$this->component = StatsUtils::normalizeString( $component );
+		}
 		$this->cache = $cache;
 		$this->emitter = $emitter;
 		$this->logger = $logger;
