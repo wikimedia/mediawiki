@@ -2698,7 +2698,7 @@
 	"block-user-previous-blocks": "Block log",
 	"block-user-no-previous-blocks": "No previous blocks found",
 	"block-user-label-count-exceeds-limit": "$1+",
-	"block-user-suppressed-blocks": "Suppressed blocks",
+	"block-user-suppressed-blocks": "Suppressed block log",
 	"block-user-no-suppressed-blocks": "No previous suppressed blocks found",
 	"block-user-no-reason-given": "No reason given",
 	"block-user-no-reason-given-aria-details": "No reason was given for this log entry",

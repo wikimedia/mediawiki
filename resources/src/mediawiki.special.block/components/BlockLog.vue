@@ -4,7 +4,7 @@
 	>
 		<template #title>
 			{{ title }}
-			<cdx-info-chip :icon="infoChipIcon">
+			<cdx-info-chip :icon="infoChipIcon" :status="infoChipStatus">
 				{{ logEntriesCount }}
 			</cdx-info-chip>
 		</template>
@@ -147,13 +147,16 @@ module.exports = exports = defineComponent( {
 
 		const logEntriesCount = computed( () => {
 			if ( moreBlocks.value ) {
-				return mw.msg( 'block-user-label-count-exceeds-limit',
-					mw.language.convertNumber( FETCH_LIMIT ) );
+				return mw.msg(
+					'block-user-label-count-exceeds-limit',
+					mw.language.convertNumber( FETCH_LIMIT )
+				);
 			}
 			return mw.language.convertNumber( logEntries.value.length );
 		} );
 
-		const infoChipIcon = computed( () => props.blockLogType === 'recent' ? cdxIconClock : cdxIconAlert );
+		const infoChipIcon = computed( () => props.blockLogType === 'active' ? cdxIconAlert : cdxIconClock );
+		const infoChipStatus = computed( () => logEntries.value.length > 0 && props.blockLogType === 'active' ? 'warning' : 'notice' );
 
 		function getData( searchTerm ) {
 			const api = new mw.Api();
@@ -289,7 +292,8 @@ module.exports = exports = defineComponent( {
 			moreBlocks,
 			targetUser,
 			logEntriesCount,
-			infoChipIcon
+			infoChipIcon,
+			infoChipStatus
 		};
 	}
 } );
