@@ -379,10 +379,10 @@ let trackHandlers = [];
  *
  * @memberof mw
  * @param {string} topic Topic name
- * @param {Object|number|string} [data] Data describing the event.
+ * @param {...Object|number|string} [data] Data describing the event.
  */
-mw.track = function ( topic, data ) {
-	mw.trackQueue.push( { topic: topic, data: data } );
+mw.track = function ( topic, ...data ) {
+	mw.trackQueue.push( { topic, args: data } );
 	trackCallbacks.fire( mw.trackQueue );
 };
 
@@ -390,8 +390,8 @@ mw.track = function ( topic, data ) {
  * Register a handler for subset of analytic events, specified by topic.
  *
  * Handlers will be called once for each tracked event, including for any buffered events that
- * fired before the handler was subscribed. The callback is passed a `topic` string, and an optional
- * `data` argument.
+ * fired before the handler was subscribed. The callback is passed a `topic` string, and optional
+ * `data` argument(s).
  *
  * @example
  * // To monitor all topics for debugging
@@ -405,7 +405,7 @@ mw.track = function ( topic, data ) {
  * @param {string} topic Handle events whose name starts with this string prefix
  * @param {Function} callback Handler to call for each matching tracked event
  * @param {string} callback.topic
- * @param {Object|number|string} [callback.data]
+ * @param {...Object|number|string} [callback.data]
  */
 mw.trackSubscribe = function ( topic, callback ) {
 	let seen = 0;
@@ -413,7 +413,7 @@ mw.trackSubscribe = function ( topic, callback ) {
 		for ( ; seen < trackQueue.length; seen++ ) {
 			const event = trackQueue[ seen ];
 			if ( event.topic.indexOf( topic ) === 0 ) {
-				callback( event.topic, event.data );
+				callback( event.topic, ...event.args );
 			}
 		}
 	}

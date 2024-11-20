@@ -216,7 +216,7 @@
 			if ( mw.track ) {
 				mw.track( 'resourceloader.exception', data );
 			} else {
-				mw.trackQueue.push( { topic: 'resourceloader.exception', data: data } );
+				mw.trackQueue.push( { topic: 'resourceloader.exception', args: [ data ] } );
 			}
 
 			// Log an error message to window.console, even in production mode.
