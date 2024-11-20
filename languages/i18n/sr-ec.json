@@ -2461,7 +2461,7 @@
 	"protectedarticle-comment": "{{GENDER:$2|Заштићена}} страница [[$1]]",
 	"modifiedarticleprotection-comment": "{{GENDER:$2|променио|променила|променио/-ла}} је подешавања заштите странице [[$1]]",
 	"unprotectedarticle-comment": "{{GENDER:$2|Скинута}} заштита са [[$1]]",
-	"protect-title": "Промена подешавања заштите за страницу \"$1\"",
+	"protect-title": "Промена подешавања заштите за „$1”",
 	"protect-title-notallowed": "Преглед подешавања заштите странице „$1”",
 	"prot_1movedto2": "страница „[[$1]]” премештена на „[[$2]]”",
 	"protect-badnamespace-title": "Незаштитљив именски простор",

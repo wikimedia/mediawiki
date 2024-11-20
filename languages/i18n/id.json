@@ -99,7 +99,8 @@
 			"Birusian",
 			"Fafau06",
 			"Leapofod",
-			"Rebeccayoga"
+			"Rebeccayoga",
+			"Munajad.MH"
 		]
 	},
 	"tog-underline": "Garis bawahi pranala:",
@@ -1318,7 +1319,7 @@
 	"group-user": "Pengguna",
 	"group-named": "Pengguna terdaftar",
 	"group-temp": "Pengguna sementara",
-	"group-autoconfirmed": "Pengguna terkonfirmasi otomatis",
+	"group-autoconfirmed": "Pengguna Terkonfirmasi otomatis",
 	"group-bot": "Bot",
 	"group-sysop": "Pengurus",
 	"group-interface-admin": "Pengurus antarmuka",
@@ -2440,7 +2441,7 @@
 	"wlshowhideminor": "suntingan kecil",
 	"wlshowhidebots": "bot",
 	"wlshowhideliu": "pengguna terdaftar",
-	"wlshowhideanons": "pengguna anonim",
+	"wlshowhideanons": "Pengguna anonim",
 	"wlshowhidepatr": "suntingan terpatroli",
 	"wlshowhidemine": "suntingan saya",
 	"wlshowhidecategorization": "kategorisasi halaman",
@@ -2461,7 +2462,7 @@
 	"enotif_body_intro_changed": "Halaman $1 di {{SITENAME}} telah diubah pada $PAGEEDITDATE oleh {{gender:$2|$2}}, lihat $3 untuk revisi terkini.",
 	"enotif_lastvisited": "Untuk semua perubahan sejak kunjungan terakhir, lihat $1",
 	"enotif_lastdiff": "Untuk melihat perubahan ini, lihat $1",
-	"enotif_anon_editor": "pengguna anonim $1",
+	"enotif_anon_editor": "Pengguna anonim $1",
 	"enotif_temp_editor": "pengguna sementara $1",
 	"enotif_body": "Halo $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nRingkasan suntingan: $PAGESUMMARY $PAGEMINOREDIT\n\nHubungi penyunting:\nsurel: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nKami tidak akan mengirim pemberitahuan lain bila ada perubahan lebih lanjut sampai Anda mengunjungi halaman ini ketika masuk log. Anda juga dapat menyetel ulang tanda pemberitahuan untuk semua halaman pantauan pada daftar pantauan Anda.\n\nSistem pemberitahuan situs {{SITENAME}} Anda yang ramah\n\n--\nUntuk mengubah pengaturan pemberitahuan surel, kunjungi\n{{canonicalurl:{{#special:Preferences}}}}\n\nUntuk mengubah setelan daftar pantauan, kunjungi\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nUntuk menghapus halaman dari daftar pantauan, kunjungi\n$UNWATCHURL\n\nUmpan balik dan bantuan lebih lanjut:\n$HELPPAGE",
 	"enotif_minoredit": "Ini adalah suntingan kecil.",

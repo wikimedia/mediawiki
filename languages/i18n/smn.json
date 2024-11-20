@@ -1885,6 +1885,7 @@
 	"blockedtext-contact-blocker-admin": "Puávtáh väldiđ ohtâvuođâ kevttei $1 teikkâ nube [[{{MediaWiki:Grouppage-sysop}}|halšâseijei]], jis halijdah savâstâllâđ iästust.",
 	"blockedtext-block-ip": "Tuu tááláš IP-čujottâs lii $1.",
 	"blockedtext-include-details-queries": "Siskálmit puoh paijeen leijee tiäđuid ko rááhtáh koijâdâlmijd.",
+	"renameusernew": "Uđđâ kevtteenommâ:",
 	"renameuserreason": "Suijâ:",
 	"renameuserwarnings": "Váruttâsah:",
 	"log-name-renameuser": "Kevtteenoomâi molsom loki",

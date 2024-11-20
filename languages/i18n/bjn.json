@@ -2612,6 +2612,8 @@
 	"logentry-newusers-create": "$1 {{GENDER:$2|maulah}} akun pamakai",
 	"logentry-newusers-create2": "$1 ma-ulah sabuting akun pamakai $3",
 	"logentry-newusers-autocreate": "Akun $1 {{GENDER:$2|diulah}} sacara utumatis",
+	"logentry-protect-modify": "$1 {{GENDER:$2|maubah}} pangaturan palindungan ka $3 $4",
+	"logentry-protect-modify-cascade": "$1 {{GENDER:$2|maubah}} pangaturan palindungan ka $3 $4 [runtun]",
 	"logentry-rights-rights": "$1 {{GENDER:$2|maubah}} kaanggutaan grup {{GENDER:$6|$3}} matan $4 ka $5",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|maubah}} kaanggutaan grup $3",
 	"logentry-upload-upload": "$1 {{GENDER:$2|ma-unggah}} $3",
