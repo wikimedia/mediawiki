@@ -43,9 +43,7 @@ class Deflate {
 	 * Data can be compressed in the client using the 'mediawiki.deflate' module:
 	 *
 	 * @code
-	 *    mw.loader.using( 'mediawiki.deflate' ).then( function () {
-	 *        var deflated = mw.deflate( myContent );
-	 *    } );
+	 *    return mw.loader.using( 'mediawiki.deflate' ).then( () => mw.deflateAsync( html ) );
 	 * @endcode
 	 *
 	 * @param string $data Deflated data
