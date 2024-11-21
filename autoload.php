@@ -2225,6 +2225,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\ResourceLoader\\OOUIIconPackModule' => __DIR__ . '/includes/ResourceLoader/OOUIIconPackModule.php',
 	'MediaWiki\\ResourceLoader\\OOUIImageModule' => __DIR__ . '/includes/ResourceLoader/OOUIImageModule.php',
 	'MediaWiki\\ResourceLoader\\OOUIModule' => __DIR__ . '/includes/ResourceLoader/OOUIModule.php',
+	'MediaWiki\\ResourceLoader\\ReplayMinifierState' => __DIR__ . '/includes/ResourceLoader/ReplayMinifierState.php',
 	'MediaWiki\\ResourceLoader\\ResourceLoader' => __DIR__ . '/includes/ResourceLoader/ResourceLoader.php',
 	'MediaWiki\\ResourceLoader\\ResourceLoaderEntryPoint' => __DIR__ . '/includes/ResourceLoader/ResourceLoaderEntryPoint.php',
 	'MediaWiki\\ResourceLoader\\SiteModule' => __DIR__ . '/includes/ResourceLoader/SiteModule.php',
