@@ -39,6 +39,10 @@ abstract class Handler {
 	 */
 	public const PARAM_DESCRIPTION = Validator::PARAM_DESCRIPTION;
 
+	public const OPENAPI_DESCRIPTION_KEY = 'description';
+
+	public const RESPONSE_BODY_DESCRIPTION_KEY = 'x-i18n-description';
+
 	/** @var Module */
 	private $module;
 
@@ -598,24 +602,23 @@ abstract class Handler {
 	}
 
 	/**
-	 * Returns the translated description string for a parameter if possible,
-	 * the untranslated string if one is available, or null otherwise.
+	 * Returns the translated description string if possible, the untranslated string if one is
+	 * available, or null otherwise.
 	 *
-	 * @param array $paramSetting a parameter settings array
+	 * @param array $schema a schema array
+	 * @param string $descKey key name of the description field in $setting
 	 *
 	 * @return ?string
 	 */
-	private function resolveParamDescription( array $paramSetting ): ?string {
+	private function resolveDescription( array $schema, string $descKey ): ?string {
 		$desc = null;
 
-		if ( array_key_exists( Validator::PARAM_DESCRIPTION, $paramSetting ) ) {
-			if ( $paramSetting[ Validator::PARAM_DESCRIPTION ] instanceof MessageValue ) {
+		if ( array_key_exists( $descKey, $schema ) ) {
+			if ( $schema[ $descKey ] instanceof MessageValue ) {
 				// TODO: consider if we want to request a specific preferred language
-				$desc = $this->responseFactory->getFormattedMessage(
-					$paramSetting[ Validator::PARAM_DESCRIPTION ]
-				);
+				$desc = $this->responseFactory->getFormattedMessage( $schema[ $descKey ] );
 			} else {
-				$desc = $paramSetting[ Validator::PARAM_DESCRIPTION ];
+				$desc = $schema[ $descKey ];
 			}
 		}
 
@@ -658,8 +661,8 @@ abstract class Handler {
 				continue;
 			}
 
-			$paramSetting[ Validator::PARAM_DESCRIPTION ] = $this->resolveParamDescription(
-				$paramSetting
+			$paramSetting[ Validator::PARAM_DESCRIPTION ] = $this->resolveDescription(
+				$paramSetting, Validator::PARAM_DESCRIPTION
 			);
 
 			$param = Validator::getParameterSpec(
@@ -767,7 +770,9 @@ abstract class Handler {
 			}
 
 			$properties[$name] = Validator::getParameterSchema( $settings );
-			$properties[$name]['description'] = $this->resolveParamDescription( $settings ) ?? "$name parameter";
+			$properties[$name][self::OPENAPI_DESCRIPTION_KEY] =
+				$this->resolveDescription( $settings, Validator::PARAM_DESCRIPTION )
+				?? "$name parameter";
 
 			if ( $isRequired ) {
 				$required[] = $name;
@@ -827,6 +832,28 @@ abstract class Handler {
 	}
 
 	/**
+	 * If possible, adds a translated description to the schema, and removes the custom key
+	 *
+	 * @param array $schema The response schema
+	 *
+	 * @return array the adjusted schema, or the unchanged schema if no adjustments were made
+	 */
+	private function resolveResponseDescription( array $schema ): array {
+		$key = self::RESPONSE_BODY_DESCRIPTION_KEY;
+		if ( array_key_exists( $key, $schema ) && is_string( $schema[$key] ) ) {
+			// Add the description to the top of the schema, for visibility in raw specs
+			$desc = [ self::OPENAPI_DESCRIPTION_KEY => new MessageValue( $schema[$key] ) ];
+			$schema = $desc + $schema;
+			$schema[self::OPENAPI_DESCRIPTION_KEY] = $this->resolveDescription(
+				$schema, self::OPENAPI_DESCRIPTION_KEY
+			);
+			unset( $schema[$key] );
+		}
+
+		return $schema;
+	}
+
+	/**
 	 * Returns an OpenAPI Responses Object specification structure as an associative array.
 	 *
 	 * @see https://swagger.io/specification/#responses-object
@@ -842,11 +869,20 @@ abstract class Handler {
 	 * @return array
 	 */
 	protected function generateResponseSpec( string $method ): array {
-		$ok = [ 'description' => 'OK' ];
+		$ok = [ self::OPENAPI_DESCRIPTION_KEY => 'OK' ];
 
 		$bodySchema = $this->getResponseBodySchema( $method );
 
 		if ( $bodySchema ) {
+			$bodySchema = $this->resolveResponseDescription( $bodySchema );
+			if ( array_key_exists( 'properties', $bodySchema ) ) {
+				// TODO: each property can be an object with its own properties, and so on.
+				//  Consider recursively resolving nested descriptions.
+				foreach ( $bodySchema['properties'] as &$definition ) {
+					$definition = $this->resolveResponseDescription( $definition );
+				}
+			}
+
 			$ok['content']['application/json']['schema'] = $bodySchema;
 		}
 

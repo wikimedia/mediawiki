@@ -125,5 +125,10 @@
 	"rest-param-desc-transform-format": "{{Experimental}} Transform format parameter description",
 	"rest-param-desc-transform-title": "{{Experimental}} Transform title parameter description",
 	"rest-param-desc-transform-revision": "{{Experimental}} Transform revision parameter description",
-	"rest-param-desc-update-title": "{{Experimental}} Update page title parameter description"
+	"rest-param-desc-update-title": "{{Experimental}} Update page title parameter description",
+	"rest-param-desc-mock-desc": "{{Experimental}} Mock description for use in tests",
+	"rest-property-desc-mock-desc": "{{Experimental}} Mock description for use in tests",
+	"rest-property-desc-revision-id": "{{Experimental}} Revision id property description",
+	"rest-schema-desc-mock-desc": "{{Experimental}} Mock description for use in tests",
+	"rest-schema-desc-revision-metadata": "{{Experimental}} revision meta-data"
 }
