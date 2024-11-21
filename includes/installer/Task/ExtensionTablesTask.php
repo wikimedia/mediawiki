@@ -30,7 +30,10 @@ class ExtensionTablesTask extends Task {
 		}
 
 		// Now run updates to create tables for old extensions
-		$updater = DatabaseUpdater::newForDB( $status->getDB() );
+		$updater = DatabaseUpdater::newForDB(
+			$status->getDB(),
+			(bool)$this->getOption( 'Shared' )
+		);
 		$updater->setAutoExtensionHookContainer( $this->getHookContainer() );
 		$updater->doUpdates( [ 'extensions' ] );
 

@@ -5,7 +5,6 @@ namespace MediaWiki\Installer\Task;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Status\Status;
 use Wikimedia\Rdbms\DatabaseFactory;
-use Wikimedia\Rdbms\DatabaseSqlite;
 use Wikimedia\Rdbms\DBConnectionError;
 
 /**
@@ -40,11 +39,12 @@ class SqliteCreateDatabaseTask extends Task {
 		$db = $this->getConfigVar( MainConfigNames::DBname );
 
 		# Make the main and cache stub DB files
+		$creator = $this->getDatabaseCreator();
 		$status = Status::newGood();
-		$status->merge( $this->makeStubDBFile( $dir, $db ) );
-		$status->merge( $this->makeStubDBFile( $dir, "wikicache" ) );
-		$status->merge( $this->makeStubDBFile( $dir, "{$db}_l10n_cache" ) );
-		$status->merge( $this->makeStubDBFile( $dir, "{$db}_jobqueue" ) );
+		$status->merge( $creator->createLocally( $db ) );
+		$status->merge( $creator->createLocally( "wikicache" ) );
+		$status->merge( $creator->createLocally( "{$db}_l10n_cache" ) );
+		$status->merge( $creator->createLocally( "{$db}_jobqueue" ) );
 		if ( !$status->isOK() ) {
 			return $status;
 		}
@@ -111,31 +111,6 @@ EOT;
 		// so we only have to do this on creation.
 		$mainConnStatus->getDB()->query( "PRAGMA journal_mode=WAL", __METHOD__ );
 		return $mainConnStatus;
-	}
-
-	/**
-	 * @param string $dir
-	 * @param string $db
-	 * @return Status
-	 */
-	protected function makeStubDBFile( $dir, $db ) {
-		$file = DatabaseSqlite::generateFileName( $dir, $db );
-
-		if ( file_exists( $file ) ) {
-			if ( !is_writable( $file ) ) {
-				return Status::newFatal( 'config-sqlite-readonly', $file );
-			}
-			return Status::newGood();
-		}
-
-		$oldMask = umask( 0177 );
-		if ( file_put_contents( $file, '' ) === false ) {
-			umask( $oldMask );
-			return Status::newFatal( 'config-sqlite-cant-create-db', $file );
-		}
-		umask( $oldMask );
-
-		return Status::newGood();
 	}
 
 	private function getSqliteUtils() {
