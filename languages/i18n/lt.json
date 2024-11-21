@@ -2695,6 +2695,8 @@
 	"ipb-confirm": "Patvirtinkite blokavimą",
 	"ipb-sitewide": "Visoje svetainėje",
 	"ipb-partial": "Dalinis",
+	"ipb-sitewide-help": "Blokuoja redagavimą visuose puslapiuose ir vardų srityse. Taip pat blokuoja numatytuosius veiksmus ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users#What_it_means_to_be_blocked Žiūrėkite pagalbą])",
+	"ipb-partial-help": "Blokuoja redagavimą specifiniuose puslapiuose ir vardų srityse. Neblokuoja numatytųjų veiksmų ([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Blocking_users#What_it_means_to_be_blocked Žiūrėkite pagalbą]). Naudokite žymimuosius langelius, kad užblokuotumėte specifinius veiksmus visuose puslapiuose ir vardų srityse.",
 	"ipb-action-create": "Kuriami nauji puslapiai ir įkeliami nauji failai",
 	"ipb-action-move": "Perkeliami puslapiai ir failai",
 	"ipb-action-upload": "Įkeliami failai (įskaitant failį perrašymą)",

@@ -571,7 +571,7 @@
 	"protectedinterface": "Cette page fournit du texte d’interface pour le logiciel sur ce wiki et est protégée pour éviter les abus.\nPour ajouter ou modifier des traductions sur tous les wikis, veuillez utiliser [https://translatewiki.net/ translatewiki.net], le projet de régionalisation de MediaWiki.",
 	"editinginterface": "<strong>Attention :</strong> vous êtes en train de modifier une page utilisée pour fournir le texte de l’interface du logiciel.\nLes changements sur cette page se répercuteront sur l’apparence de l’interface utilisateur pour les autres utilisateurs de ce wiki.",
 	"translateinterface": "Pour ajouter ou modifier des traductions pour tous les wikis, veuillez utiliser [https://translatewiki.net/ translatewiki.net], le projet de localisation linguistique de MediaWiki.",
-	"cascadeprotected": "Cette page est protégée contre les modifications car elle est incluse par {{PLURAL:$1|la page suivante, qui a été protégée|les pages suivantes, qui ont été protégées}} avec l’option « protection en cascade » activée :\n$2",
+	"cascadeprotected": "Cette page est protégée contre toute modification car elle est incluse dans {{PLURAL:$1|la page suivante, qui a été protégée|les pages suivantes, qui ont été protégées}} avec l’option « protection en cascade » activée :\n$2",
 	"namespaceprotected": "Vous n’avez pas la permission de modifier les pages de l’espace de noms « <strong>$1</strong> ».",
 	"customcssprotected": "Vous n’avez pas la permission de modifier cette feuille de style CSS, car elle contient les paramètres personnels d’un autre utilisateur.",
 	"customjsonprotected": "Vous n’avez pas le droit de modifier cette page JSON parce qu’elle contient les paramètres personnels d’un autre utilisateur.",
