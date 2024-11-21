@@ -270,8 +270,8 @@ class RefreshLinksJob extends Job {
 		if ( !$output ) {
 			// probably raced out.
 			// Specific refreshlinks_outcome metric sent by getCurrentRevisionIfUnchanged().
-			// FIXME: Why do we retry this? Can this be a cancellation?
-			return false;
+			// Don't retry job.
+			return true;
 		}
 
 		// Tell DerivedPageDataUpdater to use this parser output
