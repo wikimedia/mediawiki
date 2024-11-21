@@ -12,6 +12,21 @@ mw.deflate = function ( data ) {
 	return 'rawdeflate,' + bytesToBase64( pako.deflateRaw( data, { level: 5 } ) );
 };
 
+let compressionStreamAvailable;
+// Check if CompressionStream is available and deflate-raw is an option
+function isCompressionStreamAvailable() {
+	if ( compressionStreamAvailable === undefined ) {
+		try {
+			// eslint-disable-next-line no-new
+			new CompressionStream( 'deflate-raw' );
+			compressionStreamAvailable = true;
+		} catch ( e ) {
+			compressionStreamAvailable = false;
+		}
+	}
+	return compressionStreamAvailable;
+}
+
 /**
  * Convert a byte stream to base64 text.
  *
@@ -23,7 +38,7 @@ mw.deflate = function ( data ) {
  * @return {Promise<string>} Compressed data
  */
 mw.deflateAsync = function ( data ) {
-	if ( window.CompressionStream ) {
+	if ( isCompressionStreamAvailable() ) {
 		return compress( data ).then( ( buffer ) => 'rawdeflate,' + bytesToBase64( new Uint8Array( buffer ) ) );
 	} else {
 		return Promise.resolve( mw.deflate( data ) );
