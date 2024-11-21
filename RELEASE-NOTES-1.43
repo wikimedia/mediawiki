@@ -126,6 +126,8 @@ For notes on 1.42.x and older releases, see HISTORY.
   and username are provided."
 * (T4085) Added new magic word {{USERLANGUAGE}} which returns the language code
   of the interface set by the user.
+* (T263513) Special:NamespaceInfo is a new special page that displays a list
+  of namespaces available on the wiki, their descriptions and configuration.
 * …
 
 === New features for sysadmins in 1.43 ===
