@@ -28,6 +28,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
+use Wikimedia\Assert\Assert;
 
 /**
  * A RevisionRecord representing an existing revision persisted in the revision table.
@@ -65,6 +66,17 @@ class RevisionStoreRecord extends RevisionRecord {
 		$this->mId = intval( $row->rev_id );
 		$this->mPageId = intval( $row->rev_page );
 		$this->mComment = $comment;
+
+		Assert::parameter(
+			$page->exists(),
+			'$page',
+			'must represent an existing page'
+		);
+		Assert::parameter(
+			$page->getId( $wikiId ) === $this->mPageId,
+			'$page',
+			'must match the rev_page field in $row'
+		);
 
 		// Don't use MWTimestamp::convert, instead let any detailed exception from MWTimestamp
 		// bubble up (T254210)

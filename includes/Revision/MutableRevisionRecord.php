@@ -26,6 +26,7 @@ use InvalidArgumentException;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\Content;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
@@ -335,6 +336,12 @@ class MutableRevisionRecord extends RevisionRecord {
 		}
 
 		$this->mPageId = $pageId;
+		$this->mPage = new PageIdentityValue(
+			$pageId,
+			$this->mPage->getNamespace(),
+			$this->mPage->getDBkey(),
+			$this->mPage->getWikiId()
+		);
 
 		return $this;
 	}

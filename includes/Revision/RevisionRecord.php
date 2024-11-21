@@ -30,10 +30,13 @@ use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\LegacyArticleIdAccess;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\NonSerializable\NonSerializableTrait;
+use WikiPage;
 
 /**
  * Page revision base class.
@@ -86,7 +89,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	/** @var CommentStoreComment|null */
 	protected $mComment;
 
-	/** @var PageIdentity */
+	/** @var ProperPageIdentity */
 	protected $mPage;
 
 	/** @var RevisionSlots */
@@ -102,6 +105,14 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 */
 	public function __construct( PageIdentity $page, RevisionSlots $slots, $wikiId = self::LOCAL ) {
 		$this->assertWikiIdParam( $wikiId );
+
+		// Make sure $page is immutable, see T380536. This is a nasty hack.
+		// Eventually, all PageIdentities should be immutable and "proper".
+		if ( $page instanceof Title ) {
+			$page = $page->toPageIdentity();
+		} elseif ( $page instanceof WikiPage ) {
+			$page = $page->getTitle()->toPageIdentity();
+		}
 
 		$this->mPage = $page;
 		$this->mSlots = $slots;
@@ -395,9 +406,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * @return LinkTarget
 	 */
 	public function getPageAsLinkTarget() {
-		// TODO: Should be TitleValue::newFromPage( $this->mPage ),
-		// but Title is used too much still, so let's keep propagating it
-		return Title::newFromPageIdentity( $this->mPage );
+		return TitleValue::newFromPage( $this->mPage );
 	}
 
 	/**
@@ -407,9 +416,9 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 *
 	 * @since 1.36
 	 *
-	 * @return PageIdentity
+	 * @return ProperPageIdentity (before 1.44, this was returning a PageIdentity)
 	 */
-	public function getPage(): PageIdentity {
+	public function getPage(): ProperPageIdentity {
 		return $this->mPage;
 	}
 
