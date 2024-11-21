@@ -1113,15 +1113,18 @@ MESSAGE;
 			];
 		}
 
+		$replayMinifier = new ReplayMinifierState;
+		$this->addOneModuleResponse( $context, $replayMinifier, $name, $module, $this->extraHeaders );
+
 		$minifier = new IdentityMinifierState;
-		$this->addOneModuleResponse( $context, $minifier, $name, $module, $this->extraHeaders );
+		$replayMinifier->replayOn( $minifier );
 		$plainContent = $minifier->getMinifiedOutput();
 		if ( $context->getDebug() ) {
 			return [ $plainContent, null ];
 		}
 
 		$isHit = true;
-		$callback = function () use ( $context, $name, $module, &$isHit ) {
+		$callback = function () use ( $context, $replayMinifier, &$isHit ) {
 			$isHit = false;
 			if ( $context->isSourceMap() ) {
 				$minifier = ( new JavaScriptMapperState )
@@ -1132,9 +1135,7 @@ MESSAGE;
 			} else {
 				$minifier = new JavaScriptMinifierState;
 			}
-			// We only need to add one set of headers, and we did that for the identity response
-			$discardedHeaders = null;
-			$this->addOneModuleResponse( $context, $minifier, $name, $module, $discardedHeaders );
+			$replayMinifier->replayOn( $minifier );
 			if ( $context->isSourceMap() ) {
 				$sourceMap = $minifier->getRawSourceMap();
 				$generated = $minifier->getMinifiedOutput();
