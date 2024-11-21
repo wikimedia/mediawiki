@@ -59,35 +59,63 @@ QUnit.module( 'mediawiki.deflate', () => {
 				}
 			}
 		}
-	}, ( assert, data ) => {
-		[ false, true ].forEach( ( useLegacy ) => {
-			const done = assert.async();
-			let promise;
-			let platform;
-			if ( useLegacy ) {
-				platform = 'pako';
-				promise = Promise.resolve( mw.deflate( data.data ) );
-			} else {
-				platform = $.client.profile().name;
-				if ( platform !== 'chrome' && platform !== 'firefox' ) {
-					assert.true( true, 'Unknown browser, skipping test' );
-					done();
-					return;
-				}
-				promise = mw.deflateAsync( data.data );
-			}
+	}, async ( assert, data ) => {
+		const methods = [ 'pako', 'deflate', 'deflate-raw' ];
+		const OriginalCompressionStream = CompressionStream;
 
-			promise.then( ( deflated ) => {
-				const msg = useLegacy ? 'pako' : 'native';
-				if ( data.expected ) {
-					assert.strictEqual( deflated, data.expected[ platform ], msg );
-				} else {
-					assert.strictEqual( deflated.length, data.expectedMeta[ platform ].length, 'length (' + msg + ')' );
-					assert.strictEqual( deflated.slice( 11, 21 ), data.expectedMeta[ platform ].head, 'head (' + msg + ')' );
-					assert.strictEqual( deflated.slice( -10 ), data.expectedMeta[ platform ].tail, 'tail (' + msg + ')' );
+		for ( const method of methods ) {
+			await ( async () => {
+				// eslint-disable-next-line qunit/no-async-in-loops
+				const done = assert.async();
+				let promise;
+				let platform;
+
+				switch ( method ) {
+					case 'pako':
+						platform = 'pako';
+						promise = Promise.resolve( mw.deflate( data.data ) );
+						break;
+					case 'deflate':
+					case 'deflate-raw':
+						if ( method === 'deflate' ) {
+							// Stub the CompressionStream constructor to disable deflate-raw
+							globalThis.CompressionStream = function ( type ) {
+								if ( type === 'deflate-raw' ) {
+									throw new Error( 'Testing deflate-raw being unavailable' );
+								}
+								// Call the original constructor for other arguments
+								return new OriginalCompressionStream( type );
+							};
+							sinon.spy( globalThis, 'CompressionStream' );
+						}
+						platform = $.client.profile().name;
+						if ( platform !== 'chrome' && platform !== 'firefox' ) {
+							assert.true( true, 'Unknown browser, skipping test' );
+							done();
+							return;
+						}
+						promise = mw.deflateAsync( data.data );
+						break;
 				}
-				done();
-			} );
-		} );
+
+				return promise.then( ( deflated ) => {
+					if ( data.expected ) {
+						assert.strictEqual( deflated, data.expected[ platform ], method );
+					} else {
+						assert.strictEqual( deflated.length, data.expectedMeta[ platform ].length, 'length (' + method + ')' );
+						assert.strictEqual( deflated.slice( 11, 21 ), data.expectedMeta[ platform ].head, 'head (' + method + ')' );
+						assert.strictEqual( deflated.slice( -10 ), data.expectedMeta[ platform ].tail, 'tail (' + method + ')' );
+					}
+					done();
+				} ).finally( () => {
+					// Restore CompressionStream if it was stubbed
+					if ( method === 'deflate' ) {
+						globalThis.CompressionStream.restore();
+						globalThis.CompressionStream = OriginalCompressionStream;
+					}
+				} );
+			} )();
+		}
 	} );
+
 } );

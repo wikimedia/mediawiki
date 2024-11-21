@@ -12,21 +12,6 @@ mw.deflate = function ( data ) {
 	return 'rawdeflate,' + bytesToBase64( pako.deflateRaw( data, { level: 5 } ) );
 };
 
-let compressionStreamAvailable;
-// Check if CompressionStream is available and deflate-raw is an option
-function isCompressionStreamAvailable() {
-	if ( compressionStreamAvailable === undefined ) {
-		try {
-			// eslint-disable-next-line no-new
-			new CompressionStream( 'deflate-raw' );
-			compressionStreamAvailable = true;
-		} catch ( e ) {
-			compressionStreamAvailable = false;
-		}
-	}
-	return compressionStreamAvailable;
-}
-
 /**
  * Convert a byte stream to base64 text.
  *
@@ -38,22 +23,45 @@ function isCompressionStreamAvailable() {
  * @return {Promise<string>} Compressed data
  */
 mw.deflateAsync = function ( data ) {
-	if ( isCompressionStreamAvailable() ) {
+	// Support: Chrome < 80, Firefox < 113, Safari < 16.4
+	if ( window.CompressionStream ) {
 		return compress( data ).then( ( buffer ) => 'rawdeflate,' + bytesToBase64( new Uint8Array( buffer ) ) );
 	} else {
 		return Promise.resolve( mw.deflate( data ) );
 	}
 };
 
+function stripHeaderAndChecksum( buffer ) {
+	// Header is 2 bytes, checksum is the last 4 bytes
+	return buffer.slice( 2, buffer.byteLength - 4 );
+}
+
 function compress( string ) {
 	const byteArray = new TextEncoder().encode( string );
-	// eslint-disable-next-line compat/compat
-	const cs = new CompressionStream( 'deflate-raw' );
+	let cs, isRaw;
+	// Support: Chrome < 103
+	// Not all browsers with CompressionStream support 'deflate-raw'
+	// so fall back to the universally-supported 'deflate' and
+	// remove the header/checksum manually
+	try {
+		// eslint-disable-next-line compat/compat
+		cs = new CompressionStream( 'deflate-raw' );
+		isRaw = true;
+	} catch ( e ) {
+		// eslint-disable-next-line compat/compat
+		cs = new CompressionStream( 'deflate' );
+		isRaw = false;
+	}
 	const writer = cs.writable.getWriter();
 	writer.write( byteArray );
 	writer.close();
 
-	return new Response( cs.readable ).arrayBuffer();
+	const arrayBuffer = new Response( cs.readable ).arrayBuffer();
+	if ( isRaw ) {
+		return arrayBuffer;
+	} else {
+		return arrayBuffer.then( ( buffer ) => stripHeaderAndChecksum( new Uint8Array( buffer ) ) );
+	}
 }
 
 /*
