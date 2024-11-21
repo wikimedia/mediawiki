@@ -2581,7 +2581,7 @@
 	"block-user-no-active-blocks": "לא נמצאו חסימות פעילות",
 	"block-user-previous-blocks": "יומן חסימות",
 	"block-user-no-previous-blocks": "לא נמצאו חסימות קודמות",
-	"block-user-suppressed-blocks": "חסימות מועלמות",
+	"block-user-suppressed-blocks": "יומן חסימות מועלמות",
 	"block-user-no-suppressed-blocks": "לא נמצאו חסימות מועלמות קודמות",
 	"block-user-no-reason-given": "לא ניתנה סיבה",
 	"block-user-no-reason-given-aria-details": "לא ניתנה סיבה לרשומת היומן הזאת",

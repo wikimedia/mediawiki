@@ -2653,7 +2653,7 @@
 	"block-user-no-active-blocks": "Keine aktiven Sperren gefunden",
 	"block-user-previous-blocks": "Benutzersperr-Logbuch",
 	"block-user-no-previous-blocks": "Keine vorherigen Sperren gefunden",
-	"block-user-suppressed-blocks": "Unterdrückte Sperren",
+	"block-user-suppressed-blocks": "Logbuch unterdrückter Sperren",
 	"block-user-no-suppressed-blocks": "Keine zuvor unterdrückten Sperren gefunden",
 	"block-user-no-reason-given": "Es wurde kein Grund angegeben",
 	"block-user-no-reason-given-aria-details": "Für diesen Logbucheintrag wurde kein Grund angegeben",

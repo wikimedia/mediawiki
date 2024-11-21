@@ -2573,7 +2573,7 @@
 	"block-user-no-active-blocks": "Aktiv blok yoxdur",
 	"block-user-previous-blocks": "Blok jurnalı",
 	"block-user-no-previous-blocks": "Blokda olmayıb",
-	"block-user-suppressed-blocks": "Gizlədilmiş bloklar",
+	"block-user-suppressed-blocks": "Gizlədilmiş blok jurnalı",
 	"block-user-no-suppressed-blocks": "Keçmişdə gizlədilmiş blok yoxdur.",
 	"block-user-no-reason-given": "Səbəb göstərilməyib",
 	"block-user-no-reason-given-aria-details": "Bu jurnal qeydi üçün səbəb göstərilməyib",

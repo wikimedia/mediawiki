@@ -90,5 +90,6 @@
 	"rest-unsupported-language-conversion": "Niet-ondersteunde taalconversie: $1 naar $2",
 	"rest-unknown-content-model": "Onbekend inhoudsmodel: $1",
 	"rest-page-bundle-validation-error": "PageBundle komt niet overeen met contentVersion: $1",
-	"rest-param-desc-revision-id": "Versie-ID"
+	"rest-param-desc-revision-id": "Versie-ID",
+	"rest-param-desc-update-source": "Pagina-inhoud in de indeling die is opgegeven door de eigenschap content_model"
 }

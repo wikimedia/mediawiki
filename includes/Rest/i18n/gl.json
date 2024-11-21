@@ -73,7 +73,7 @@
 	"rest-unmapped-action-error": "Erro do módulo de acción sen asignar: $1",
 	"rest-unsupported-transform-input": "Entrada non admitida: $1",
 	"rest-bad-etag": "Etiqueta incorrecta: $1",
-	"rest-no-stashed-content": "Non se atopou ningún contido agochado para \"$1\"",
+	"rest-no-stashed-content": "Non se atopou ningún contido agochado para \"$1\". O máis probable é que caducase a túa sesión. Copia os cambios, recarga a páxina e inténtao de novo.",
 	"rest-unsupported-profile-version": "Versión de perfil non compatible: $1",
 	"rest-no-json-decode": "O JSON da carga útil non decodifica nunha matriz",
 	"rest-parsoid-unsupported-media": "Tipo de soporte non compatible",
@@ -86,5 +86,6 @@
 	"rest-unsupported-language-conversion": "Conversión de lingua non compatible: $1 a $2",
 	"rest-unknown-content-model": "Modelo de contido descoñecido: $1",
 	"rest-page-bundle-validation-error": "PageBundle non coincide con contentVersion: $1",
-	"rest-param-desc-revision-id": "ID da revisión"
+	"rest-param-desc-revision-id": "ID da revisión",
+	"rest-param-desc-update-source": "Contido da páxina no formato especificado pola propiedade content_model"
 }

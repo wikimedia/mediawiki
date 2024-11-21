@@ -2636,7 +2636,7 @@
 	"block-user-no-active-blocks": "Geen actieve blokkades gevonden",
 	"block-user-previous-blocks": "Blokkeerlogboek",
 	"block-user-no-previous-blocks": "Geen eerdere blokkades gevonden",
-	"block-user-suppressed-blocks": "Onzichtbaar gemaakte blokkades",
+	"block-user-suppressed-blocks": "Logboek onzichtbaar gemaakte blokkades",
 	"block-user-no-suppressed-blocks": "Geen eerder onzichtbaar gemaakte blokkades gevonden",
 	"block-user-no-reason-given": "Geen reden opgegeven",
 	"block-user-no-reason-given-aria-details": "Er is geen reden opgegeven voor deze logboekvermelding",
