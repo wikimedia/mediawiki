@@ -510,6 +510,7 @@ class Article implements Page {
 		if ( $outputPage->isPrintable() ) {
 			$parserOptions->setIsPrintable( true );
 			$poOptions['enableSectionEditLinks'] = false;
+			$this->addMessageBoxStyles( $outputPage );
 			$outputPage->prependHTML(
 				Html::warningBox(
 					$outputPage->msg( 'printableversion-deprecated-warning' )->escaped()
@@ -1522,6 +1523,7 @@ class Article implements Page {
 			}
 
 			if ( !( $user && $user->isRegistered() ) && !$ip ) {
+				$this->addMessageBoxStyles( $outputPage );
 				// User does not exist
 				$outputPage->addHTML( Html::warningBox(
 					$context->msg( 'userpage-userdoesnotexist-view', wfEscapeWikiText( $rootPart ) )->parse(),
@@ -1658,6 +1660,7 @@ class Article implements Page {
 		$outputPage->disableClientCache();
 		$outputPage->setRobotPolicy( 'noindex,nofollow' );
 		$outputPage->clearHTML();
+		$this->addMessageBoxStyles( $outputPage );
 		$outputPage->addHTML( Html::errorBox( $outputPage->parseAsContent( $errortext ) ) );
 	}
 
@@ -1675,6 +1678,7 @@ class Article implements Page {
 		$outputPage = $this->getContext()->getOutput();
 		// Used in wikilinks, should not contain whitespaces
 		$titleText = $this->getTitle()->getPrefixedDBkey();
+		$this->addMessageBoxStyles( $outputPage );
 		// If the user is not allowed to see it...
 		if ( !$this->mRevisionRecord->userCan(
 			RevisionRecord::DELETED_TEXT,
@@ -1717,6 +1721,15 @@ class Article implements Page {
 
 			return true;
 		}
+	}
+
+	/**
+	 * @param OutputPage $outputPage
+	 */
+	private function addMessageBoxStyles( OutputPage $outputPage ) {
+		$outputPage->addModuleStyles( [
+			'mediawiki.codex.messagebox.styles',
+		] );
 	}
 
 	/**
@@ -1769,7 +1782,6 @@ class Article implements Page {
 
 		$outputPage = $context->getOutput();
 		$outputPage->addModuleStyles( [
-			'mediawiki.codex.messagebox.styles',
 			'mediawiki.action.styles',
 			'mediawiki.interface.helpers.styles'
 		] );
@@ -1868,6 +1880,7 @@ class Article implements Page {
 		}
 
 		// the outer div is need for styling the revision info and nav in MobileFrontend
+		$this->addMessageBoxStyles( $outputPage );
 		$outputPage->addSubtitle(
 			Html::warningBox(
 				$revisionInfo .
