@@ -465,6 +465,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 *  the default output pipeline on a ParserOutput; for now, use of
 	 *  ::runOutputPipeline() is preferred to ensure that ParserOptions are
 	 *  available.
+	 * Do NOT hard-deprecate this method until the corresponding patch
+	 * (1093952) is merged to CentralNotice wmf_deploy branch!
 	 */
 	public function getText( $options = [] ) {
 		$oldText = $this->mRawText; // T353257
