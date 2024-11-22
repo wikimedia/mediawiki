@@ -583,7 +583,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 		// Generic styles and scripts for both login and signup form
 		$out->addModuleStyles( [
-			'mediawiki.special.userlogin.common.styles'
+			'mediawiki.special.userlogin.common.styles',
+			'mediawiki.codex.messagebox.styles'
 		] );
 		if ( $this->isSignup() ) {
 			// Additional styles and scripts for signup form
