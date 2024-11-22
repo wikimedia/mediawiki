@@ -520,7 +520,7 @@ abstract class Skin extends ContextSource {
 			// This channel will be used to identify pages relying on this method that
 			// shouldn't be.
 			$logger = LoggerFactory::getInstance( 'SkinCodex' );
-			$codexModules = array_filter( $out->getModules(), static function ( $module ) {
+			$codexModules = array_filter( $out->getModuleStyles(), static function ( $module ) {
 				return strpos( $module, 'codex' ) !== false;
 			} );
 			if ( !$codexModules ) {
