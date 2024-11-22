@@ -234,6 +234,7 @@ module.exports = exports = defineComponent( {
 </script>
 
 <style lang="less">
+/* stylelint-disable plugin/no-unsupported-browser-features */
 @import 'mediawiki.skin.variables.less';
 
 .mw-block-expiry-field {

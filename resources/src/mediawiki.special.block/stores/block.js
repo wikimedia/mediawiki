@@ -23,7 +23,6 @@ module.exports = exports = defineStore( 'block', () => {
 	);
 	const reason = ref( String );
 	const reasonOther = ref( String );
-	const details = ref( mw.config.get( 'blockDetailsPreset' ) || [] );
 	const createAccount = ref( Boolean );
 	const disableEmail = ref( Boolean );
 	const disableEmailVisible = ref( mw.config.get( 'blockDisableEmailVisible' ) || false );
@@ -34,8 +33,6 @@ module.exports = exports = defineStore( 'block', () => {
 		const blocksUT = namespaces.value.indexOf( mw.config.get( 'wgNamespaceIds' ).user_talk ) !== -1;
 		return isVisible && ( !isPartial || ( isPartial && blocksUT ) );
 	} );
-
-	const additionalDetails = ref( mw.config.get( 'blockAdditionalDetailsPreset' ) || [] );
 
 	const autoBlock = ref( Boolean );
 	const autoBlockExpiry = mw.config.get( 'blockAutoblockExpiry' ) || '';
@@ -61,6 +58,13 @@ module.exports = exports = defineStore( 'block', () => {
 	const hardBlockVisible = computed( () => {
 		return mw.util.isIPAddress( targetUser.value, true ) || false;
 	} );
+
+	/**
+	 * Keep track of all UI-blocking API requests that are currently in flight.
+	 *
+	 * @type {Ref<Set<Promise|jQuery.Promise>>}
+	 */
+	const promises = ref( new Set() );
 
 	/**
 	 * Confirmation dialog message. When not null, the confirmation dialog will be
@@ -97,6 +101,23 @@ module.exports = exports = defineStore( 'block', () => {
 		{ immediate: true }
 	);
 
+	/**
+	 * The current in-flight API request for block log data. This is used to
+	 * avoid redundant API queries when rendering multiple BlockLog components.
+	 *
+	 * @type {Promise|null}
+	 */
+	let blockLogPromise = null;
+	// Reset the blockLogPromise when the target user changes or the form is submitted.
+	watch( [ targetUser, formSubmitted ], () => {
+		blockLogPromise = null;
+	} );
+
+	// ** Actions (exported functions) **
+
+	/**
+	 * Reset the form to its initial state.
+	 */
 	function $reset() {
 		alreadyBlocked.value = mw.config.get( 'blockAlreadyBlocked' ) || false;
 		type.value = mw.config.get( 'blockTypePreset' ) || 'sitewide';
@@ -112,13 +133,15 @@ module.exports = exports = defineStore( 'block', () => {
 		partialOptions.value = [ 'ipb-action-create' ];
 		reason.value = 'other';
 		reasonOther.value = mw.config.get( 'blockReasonOtherPreset' ) || '';
-		createAccount.value = details.value.indexOf( 'wpCreateAccount' ) !== -1;
-		disableEmail.value = details.value.indexOf( 'wpDisableEmail' ) !== -1;
-		disableUTEdit.value = details.value.indexOf( 'wpDisableUTEdit' ) !== -1;
-		watchUser.value = additionalDetails.value.indexOf( 'wpWatch' ) !== -1;
-		hardBlock.value = additionalDetails.value.indexOf( 'wpHardBlock' ) !== -1;
-		hideName.value = additionalDetails.value.indexOf( 'wpHideName' ) !== -1;
-		autoBlock.value = additionalDetails.value.indexOf( 'wpAutoBlock' ) !== -1;
+		const details = mw.config.get( 'blockDetailsPreset' ) || [];
+		createAccount.value = details.indexOf( 'wpCreateAccount' ) !== -1;
+		disableEmail.value = details.indexOf( 'wpDisableEmail' ) !== -1;
+		disableUTEdit.value = details.indexOf( 'wpDisableUTEdit' ) !== -1;
+		const additionalDetails = mw.config.get( 'blockAdditionalDetailsPreset' ) || [];
+		watchUser.value = additionalDetails.indexOf( 'wpWatch' ) !== -1;
+		hardBlock.value = additionalDetails.indexOf( 'wpHardBlock' ) !== -1;
+		hideName.value = additionalDetails.indexOf( 'wpHideName' ) !== -1;
+		autoBlock.value = additionalDetails.indexOf( 'wpAutoBlock' ) !== -1;
 		autoBlockExpiry.value = mw.config.get( 'blockAutoblockExpiry' ) || '';
 	}
 
@@ -205,7 +228,71 @@ module.exports = exports = defineStore( 'block', () => {
 		// Clear any previous errors.
 		formErrors.value = [];
 
-		return api.postWithEditToken( params );
+		return pushPromise( api.postWithEditToken( params ) );
+	}
+
+	/**
+	 * Query the API for data needed by the BlockLog component. This method caches the response
+	 * by target user to consolidate API requests across multiple BlockLog components.
+	 * The cache is cleared when the target user changes by a watcher in the store.
+	 *
+	 * @param {string} blockLogType Which data to fetch. One of 'recent', 'active', or 'suppress'.
+	 * @return {Promise|jQuery.Promise}
+	 */
+	function getBlockLogData( blockLogType ) {
+		if ( blockLogPromise && blockLogType !== 'suppress' ) {
+			// Serve block log data from cache if available.
+			return blockLogPromise;
+		}
+
+		const params = {
+			action: 'query',
+			format: 'json',
+			leprop: 'ids|title|type|user|timestamp|comment|details',
+			letitle: `User:${ targetUser.value }`,
+			list: 'logevents',
+			formatversion: 2
+		};
+
+		if ( blockLogType === 'suppress' ) {
+			const localPromises = [];
+			// Query both the block and reblock actions of the suppression log.
+			params.leaction = 'suppress/block';
+			localPromises.push( pushPromise( api.get( params ) ) );
+			params.leaction = 'suppress/reblock';
+			localPromises.push( pushPromise( api.get( params ) ) );
+			return Promise.all( localPromises );
+		}
+
+		// Cache miss for block log data.
+		// Add params needed to fetch block log and active blocks in one request.
+		params.list = 'logevents|blocks';
+		params.letype = 'block';
+		params.bkprop = 'id|user|by|timestamp|expiry|reason|range|flags';
+		params.bkusers = targetUser.value;
+
+		blockLogPromise = Promise.all( [ api.get( params ) ] );
+		return pushPromise( blockLogPromise );
+	}
+
+	/**
+	 * Add a promise to the `Set` of pending promises.
+	 * This is used solely to disable the form while waiting for a response,
+	 * and should only be used for requests that need to block UI interaction.
+	 * The promise will be removed from the Set when it resolves, and
+	 * once the Set is empty, the form will be re-enabled.
+	 *
+	 * @param {Promise|jQuery.Promise} promise
+	 * @return {Promise|jQuery.Promise} The same unresolved promise that was passed in.
+	 */
+	function pushPromise( promise ) {
+		promises.value.add( promise );
+		// Can't use .finally() because it's not supported in jQuery.
+		promise.then(
+			() => promises.value.delete( promise ),
+			() => promises.value.delete( promise )
+		);
+		return promise;
 	}
 
 	return {
@@ -233,9 +320,11 @@ module.exports = exports = defineStore( 'block', () => {
 		watchUser,
 		hardBlock,
 		hardBlockVisible,
+		promises,
 		confirmationMessage,
 		confirmationNeeded,
+		$reset,
 		doBlock,
-		$reset
+		getBlockLogData
 	};
 } );

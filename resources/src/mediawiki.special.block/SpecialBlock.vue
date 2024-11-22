@@ -2,7 +2,7 @@
 	<cdx-field
 		class="mw-block-fieldset"
 		:is-fieldset="true"
-		:disabled="formDisabled"
+		:disabled="!!store.promises.size"
 	>
 		<div ref="messagesContainer" class="mw-block-messages">
 			<cdx-message
@@ -68,7 +68,7 @@
 			action="destructive"
 			weight="primary"
 			class="mw-block-submit"
-			:disabled="formDisabled"
+			:disabled="!!store.promises.size"
 			@click="onFormSubmission"
 		>
 			{{ submitButtonMessage }}
@@ -112,7 +112,6 @@ module.exports = exports = defineComponent( {
 		const blockShowSuppressLog = mw.config.get( 'blockShowSuppressLog' ) || false;
 		const success = ref( false );
 		const { formErrors, formSubmitted } = storeToRefs( store );
-		const formDisabled = ref( false );
 		const messagesContainer = ref();
 		// Value to use for BlockLog component keys, so they reload after saving.
 		const submitCount = ref( 0 );
@@ -176,7 +175,6 @@ module.exports = exports = defineComponent( {
 					success.value = false;
 				} )
 				.always( () => {
-					formDisabled.value = false;
 					formSubmitted.value = false;
 					messagesContainer.value.scrollIntoView( { behavior: 'smooth' } );
 				} );
@@ -184,7 +182,6 @@ module.exports = exports = defineComponent( {
 
 		return {
 			store,
-			formDisabled,
 			messagesContainer,
 			formErrors,
 			success,
@@ -243,5 +240,13 @@ module.exports = exports = defineComponent( {
 // Hide the log showing at the bottom of page.
 .mw-warning-with-logexcerpt {
 	display: none;
+}
+
+// Lower opacity and remove pointer events from accordions while the disabled state is active.
+// This to prevent users from going to click on something and then having it immediately
+// disappear, or worse, change to a different link that they click by mistake.
+.mw-block-fieldset[ disabled ] .cdx-accordion {
+	opacity: @opacity-low;
+	pointer-events: none;
 }
 </style>

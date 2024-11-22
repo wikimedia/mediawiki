@@ -1,6 +1,6 @@
 <template>
 	<cdx-accordion
-		:class="`mw-block-log mw-block-log__type-${blockLogType}`"
+		:class="`mw-block-log mw-block-log__type-${ blockLogType }`"
 	>
 		<template #title>
 			{{ title }}
@@ -111,7 +111,8 @@ module.exports = exports = defineComponent( {
 		}
 	},
 	setup( props ) {
-		const { targetUser } = storeToRefs( useBlockStore() );
+		const store = useBlockStore();
+		const { targetUser } = storeToRefs( store );
 
 		let title = mw.message( 'block-user-previous-blocks' ).text();
 		let emptyState = mw.message( 'block-user-no-previous-blocks' ).text();
@@ -154,40 +155,6 @@ module.exports = exports = defineComponent( {
 
 		const infoChipIcon = computed( () => props.blockLogType === 'recent' ? cdxIconClock : cdxIconAlert );
 
-		function getData( searchTerm ) {
-			const api = new mw.Api();
-			const params = {
-				action: 'query',
-				format: 'json',
-				formatversion: 2
-			};
-			if ( props.blockLogType === 'recent' || props.blockLogType === 'suppress' ) {
-				params.list = 'logevents';
-				params.lelimit = FETCH_LIMIT;
-				params.letype = 'block';
-				params.leprop = 'ids|title|type|user|timestamp|comment|details';
-				params.letitle = 'User:' + searchTerm;
-			} else {
-				params.list = 'blocks';
-				params.bklimit = FETCH_LIMIT;
-				params.bkprop = 'id|user|by|timestamp|expiry|reason|range|flags';
-				params.bkusers = searchTerm;
-			}
-			const requests = [];
-			// For suppress log entries only, add two API calls.
-			if ( props.blockLogType !== 'suppress' ) {
-				requests.push( api.get( params ) );
-			} else {
-				// leaction overrides letype (because it contains the type as a prefix).
-				delete params.letype;
-				params.leaction = 'suppress/block';
-				requests.push( api.get( params ) );
-				params.leaction = 'suppress/reblock';
-				requests.push( api.get( params ) );
-			}
-			return Promise.all( requests );
-		}
-
 		/**
 		 * Construct the data object needed for a template row, from a logentry API response.
 		 *
@@ -222,14 +189,14 @@ module.exports = exports = defineComponent( {
 				// Update the URLs for the menu items
 				menuItems[ 0 ].url = mw.util.getUrl( 'Special:Block/' + newValue );
 				menuItems[ 1 ].url = mw.util.getUrl( 'Special:Unblock/' + newValue );
-				getData( newValue ).then( ( responses ) => {
-					moreBlocks.value = !!responses[ 0 ].continue || ( responses[ 1 ] && !!responses[ 1 ].continue );
+				store.getBlockLogData( props.blockLogType ).then( ( responses ) => {
 					let newData = [];
 					const data = responses[ 0 ].query;
 
 					if ( props.blockLogType === 'recent' ) {
 						// List of recent block entries.
 						newData = logentriesToRows( data.logevents );
+						moreBlocks.value = newData.length >= FETCH_LIMIT;
 
 					} else if ( props.blockLogType === 'suppress' ) {
 						// List of suppress/block or suppress/reblock log entries.
@@ -316,9 +283,5 @@ module.exports = exports = defineComponent( {
 
 .mw-block-active-blocks__menu {
 	text-align: center;
-}
-
-.cdx-table__table-wrapper {
-	overflow-x: visible;
 }
 </style>
