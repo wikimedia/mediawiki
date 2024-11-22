@@ -15,7 +15,14 @@ use Symfony\Component\Yaml\Yaml;
 
 require_once __DIR__ . '/Maintenance.php';
 
+/**
+ * @since 1.44
+ * @stable to extend
+ */
 class InstallPreConfigured extends Maintenance {
+	/** @var ITaskContext|null */
+	private $taskContext;
+
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Create the database and tables for a new wiki, ' .
@@ -54,7 +61,7 @@ class InstallPreConfigured extends Maintenance {
 	}
 
 	public function execute() {
-		$context = $this->createTaskContext();
+		$context = $this->getTaskContext();
 		$taskFactory = $this->createTaskFactory( $context );
 		$taskList = $this->createTaskList( $taskFactory );
 		$taskRunner = $this->createTaskRunner( $taskList, $taskFactory );
@@ -97,6 +104,16 @@ class InstallPreConfigured extends Maintenance {
 	}
 
 	/**
+	 * @return AddWikiTaskContext
+	 */
+	protected function getTaskContext() {
+		if ( !$this->taskContext ) {
+			$this->taskContext = $this->createTaskContext();
+		}
+		return $this->taskContext;
+	}
+
+	/**
 	 * Get the context for running tasks, with config overrides from the
 	 * command line.
 	 *
@@ -116,7 +133,21 @@ class InstallPreConfigured extends Maintenance {
 			[ $name, $value ] = $this->parseKeyValue( $str );
 			$context->setOption( $name, $value );
 		}
+		foreach ( $this->getSubclassDefaultOptions() as $name => $value ) {
+			$context->setOption( $name, $value );
+		}
+
 		return $context;
+	}
+
+	/**
+	 * Get installer options overridden by a subclass
+	 *
+	 * @stable to override
+	 * @return array
+	 */
+	protected function getSubclassDefaultOptions() {
+		return [];
 	}
 
 	/**
