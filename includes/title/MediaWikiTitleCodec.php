@@ -427,7 +427,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 						} elseif ( $this->interwikiLookup->isValidInterwiki( $x[1] ) ) {
 							# Disallow Talk:Interwiki:x type titles...
 							$exception = ( $this->createMalformedTitleException )(
-								'title-invalid-talk-namespace',
+								'title-invalid-talk-interwiki',
 								$text
 							);
 							throw $exception;
@@ -527,7 +527,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 			$exception = ( $this->createMalformedTitleException )(
 				'title-invalid-too-long',
 				$text,
-				[ Message::numParam( $maxLength ) ]
+				[ Message::numParam( $maxLength ), Message::numParam( strlen( $dbkey ) ) ]
 			);
 			throw $exception;
 		}
