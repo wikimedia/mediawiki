@@ -729,6 +729,8 @@ class LogEventsList extends ContextSource {
 				$s,
 				'mw-warning-with-logexcerpt'
 			);
+			// Add styles for warning box
+			$context->getOutput()->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
 		}
 
 		// @phan-suppress-next-line PhanSuspiciousValueComparison, PhanRedundantCondition
