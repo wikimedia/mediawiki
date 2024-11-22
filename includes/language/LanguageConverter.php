@@ -1210,9 +1210,14 @@ abstract class LanguageConverter implements ILanguageConverter {
 		return $key;
 	}
 
-	public function updateConversionTable( LinkTarget $linkTarget ) {
-		if ( $linkTarget->getNamespace() === NS_MEDIAWIKI ) {
-			$t = explode( '/', $linkTarget->getDBkey(), 3 );
+	/**
+	 * @param PageIdentity $page Message page
+	 *
+	 * @return void
+	 */
+	public function updateConversionTable( PageIdentity $page ) {
+		if ( $page->getNamespace() === NS_MEDIAWIKI ) {
+			$t = explode( '/', $page->getDBkey(), 3 );
 			$c = count( $t );
 			if ( $c > 1 && $t[0] == 'Conversiontable' && $this->validateVariant( $t[1] ) ) {
 				$this->reloadTables();

@@ -33,7 +33,6 @@ use MediaWiki\Deferred\DeferrableUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Deferred\RefreshSecondaryDataUpdate;
-use MediaWiki\Deferred\SearchUpdate;
 use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\HookContainer\HookContainer;
@@ -1645,12 +1644,6 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			) );
 		} );
 
-		// TODO: make search infrastructure aware of slots!
-		$mainSlot = $this->revision->getSlot( SlotRecord::MAIN );
-		if ( !$mainSlot->isInherited() && !$this->isContentDeleted() ) {
-			DeferredUpdates::addUpdate( new SearchUpdate( $id, $title, $mainSlot->getContent() ) );
-		}
-
 		// If this is another user's talk page, update newtalk.
 		// Don't do this if $options['changed'] = false (null-edits) nor if
 		// it's a minor edit and the user making the edit doesn't generate notifications for those.
@@ -1681,14 +1674,6 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 					}
 				}
 			}
-		}
-
-		if ( $title->getNamespace() === NS_MEDIAWIKI
-			&& $this->getRevisionSlotsUpdate()->isModifiedSlot( SlotRecord::MAIN )
-		) {
-			$mainContent = $this->isContentDeleted() ? null : $this->getRawContent( SlotRecord::MAIN );
-
-			$this->messageCache->updateMessageOverride( $title, $mainContent );
 		}
 
 		// TODO: move onArticleCreate and onArticleEdit into a PageEventEmitter service

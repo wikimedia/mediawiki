@@ -21,6 +21,7 @@
 namespace MediaWiki\Language;
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Title\Title;
 
@@ -241,9 +242,9 @@ interface ILanguageConverter {
 	 * Refresh the cache of conversion tables when
 	 * MediaWiki:Conversiontable* is updated.
 	 *
-	 * @param LinkTarget $linkTarget The LinkTarget of the page being updated
+	 * @param PageIdentity $page The page being updated
 	 */
-	public function updateConversionTable( LinkTarget $linkTarget );
+	public function updateConversionTable( PageIdentity $page );
 
 	/**
 	 * Check if this is a language with variants
