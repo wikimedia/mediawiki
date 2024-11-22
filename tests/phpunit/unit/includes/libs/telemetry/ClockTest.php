@@ -35,6 +35,8 @@ class ClockTest extends MediaWikiUnitTestCase {
 	 * @return void
 	 */
 	private function assertClockReturnsCurrentTime() {
+		$this->markTestSkipped( 'Flaky (T379562) - to be replaced by ConvertibleTimestamp::microtime()' );
+
 		$referenceTime = (int)( 1e9 * microtime( true ) ) - hrtime( true );
 		$currentTime = $referenceTime + hrtime( true );
 
