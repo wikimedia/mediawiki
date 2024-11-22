@@ -61,6 +61,7 @@ class AddWikiTaskContext implements ITaskContext {
 			} else {
 				throw new \RuntimeException( 'Invalid DB connection class' );
 			}
+			$conn->setSchemaVars( $this->getSchemaVars() );
 		} catch ( DBConnectionError $e ) {
 			$status->fatal( 'config-connection-error', $e->getMessage() );
 		}
@@ -74,6 +75,23 @@ class AddWikiTaskContext implements ITaskContext {
 			$this->getConfigVar( MainConfigNames::DBmwschema ),
 			$this->getConfigVar( MainConfigNames::DBprefix ) ?? ''
 		);
+	}
+
+	/**
+	 * Get schema variable replacements to be applied to SQL files
+	 *
+	 * @return array
+	 */
+	public function getSchemaVars() {
+		$tableOptions = $this->getConfigVar( MainConfigNames::DBTableOptions );
+		if ( str_contains( $tableOptions, 'TYPE=' ) ) {
+			throw new \RuntimeException( '$wgDBTableOptions contains obsolete TYPE option, ' .
+				'replace it with ENGINE' );
+		}
+		if ( str_contains( $tableOptions, 'CHARSET=mysql4' ) ) {
+			throw new \RuntimeException( '$wgDBTableOptions contains invalid CHARSET option' );
+		}
+		return [ 'wgDBTableOptions' => $tableOptions ];
 	}
 
 	public function getDbType(): string {

@@ -79,6 +79,7 @@ class CreateExternalDomainsTask extends Task {
 				$status->merge( $this->maybeCreateDomain( $lb, $domainId ) );
 
 				$conn = $lb->getMaintenanceConnectionRef( DB_PRIMARY, [], $domainId );
+				$conn->setSchemaVars( $this->getContext()->getSchemaVars() );
 				if ( !$conn->tableExists( $store->getTable( $cluster ) ) ) {
 					$store->initializeTable( $cluster );
 				}
