@@ -4138,7 +4138,7 @@ class Language implements Bcp47Code {
 	 *
 	 * @return string
 	 */
-	public function getCode() {
+	public function getCode(): string {
 		return $this->mCode;
 	}
 
