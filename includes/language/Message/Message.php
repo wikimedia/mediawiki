@@ -1455,6 +1455,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 		$out = MediaWikiServices::getInstance()->getMessageCache()->parseWithPostprocessing(
 			$string,
 			$this->contextPage ?? PageReferenceValue::localReference( NS_SPECIAL, 'Badtitle/Message' ),
+			/*linestart*/ true,
 			$this->isInterface,
 			$this->getLanguage()
 		);
