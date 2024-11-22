@@ -285,6 +285,9 @@ class ParserCache {
 			$this->incrementStats( $page, 'miss', 'absent_metadata' );
 			$this->logger->debug( 'ParserOutput metadata cache miss', [ 'name' => $this->name ] );
 			return null;
+		} else {
+			// Ensure this cache hit is present in the in-process cache (T277829)
+			$this->metadataProcCache->set( $pageKey, $metadata );
 		}
 
 		// NOTE: If the value wasn't serialized to JSON when being stored,
