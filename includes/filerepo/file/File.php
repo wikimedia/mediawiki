@@ -1254,7 +1254,7 @@ abstract class File implements MediaHandlerState {
 						break;
 					}
 				} elseif ( $flags & self::RENDER_FORCE ) {
-					wfDebug( __METHOD__ . " forcing rendering per flag File::RENDER_FORCE" );
+					wfDebug( __METHOD__ . ": forcing rendering per flag File::RENDER_FORCE" );
 				}
 
 				// If the backend is ready-only, don't keep generating thumbnails
@@ -1369,6 +1369,7 @@ abstract class File implements MediaHandlerState {
 				->copyToStatsdAt( 'media.thumbnail.generate.store' );
 			$timer->start();
 
+			wfDebug( __METHOD__ . ": copying $tmpThumbPath to $thumbPath" );
 			$disposition = $this->getThumbDisposition( $thumbName );
 			$status = $this->repo->quickImport( $tmpThumbPath, $thumbPath, $disposition );
 			if ( $status->isOK() ) {

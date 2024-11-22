@@ -158,7 +158,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		}
 
 		wfDebug( __METHOD__ . ": creating {$scalerParams['physicalDimensions']} " .
-			"thumbnail at $dstPath using scaler $scalerName" );
+			"thumbnail of {$image->getPath()} at $dstPath using scaler $scalerName" );
 
 		if ( !$image->mustRender() &&
 			$scalerParams['physicalWidth'] == $scalerParams['srcWidth']
