@@ -311,6 +311,7 @@
 	"config-install-success": "MediaWiki wurde erfolgreich installiert. Du kannst jetzt\n<$1$2> aufrufen, um dein Wiki anzusehen.\nFalls du Fragen hast, lies unsere Liste der häufig gestellten Fragen:\n<https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ> oder benutze eines der\nSupport-Foren, die auf dieser Seite verlinkt sind.",
 	"config-install-db-success": "Die Datenbank wurde erfolgreich aufgesetzt",
 	"config-install-generic": "Aufgabe „$1“ wird ausgeführt",
+	"config-install-external-domains": "Erstellen externer Datenbanken",
 	"config-download-localsettings": "<code>LocalSettings.php</code> herunterladen",
 	"config-help": "Hilfe",
 	"config-help-tooltip": "Zum Expandieren klicken",

@@ -2636,6 +2636,8 @@
 	"block-user-no-active-blocks": "Nie znaleziono aktywnych blokad",
 	"block-user-previous-blocks": "Rejestr blokad",
 	"block-user-no-previous-blocks": "Nie znaleziono wcześniejszych blokad",
+	"block-user-suppressed-blocks": "Rejestr ukrytych blokad",
+	"block-user-no-suppressed-blocks": "Nie znaleziono wcześniejszych ukrytych blokad",
 	"block-user-no-reason-given": "Nie podano powodu",
 	"block-user-no-reason-given-aria-details": "Nie podano powodu dla tego wpisu w rejestrze",
 	"block-user-placeholder": "Wprowadź użytkownika…",

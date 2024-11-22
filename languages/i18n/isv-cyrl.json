@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Danvintius Bookix",
 			"Fitik",
 			"IJzeren Jan",
 			"Qiorly"
@@ -2509,6 +2510,7 @@
 	"block-reason": "Причина:",
 	"block-reason-other": "Додаточна или друга причина",
 	"block-user-placeholder": "Начните вписывати користника...",
+	"block-item-edit": "Измєнити",
 	"block-target": "Користничско име, IP-адрес или обсег IP-адресов:",
 	"block-target-placeholder": "КористничскоИме, 1.1.1.42, или 1.1.1.42/16",
 	"unblockip": "Одблоковати користника",

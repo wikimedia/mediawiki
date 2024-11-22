@@ -314,6 +314,7 @@
 	"config-install-success": "MediaWiki is geïnstalleerd. U kunt nu\n<$1$2> bezoeken om uw wiki te bekijken.\nAls u vragen hebt, bekijk dan onze lijst met veelgestelde vragen:\n<https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ>, of gebruik een van de hulpforums vermeld op die pagina.",
 	"config-install-db-success": "Het installeren van de database is geslaagd",
 	"config-install-generic": "Taak “$1” in uitvoering",
+	"config-install-external-domains": "Externe databases worden aangemaakt",
 	"config-download-localsettings": "<code>LocalSettings.php</code> downloaden",
 	"config-help": "hulp",
 	"config-help-tooltip": "klik om uit te vouwen",

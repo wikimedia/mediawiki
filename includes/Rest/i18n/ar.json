@@ -87,5 +87,6 @@
 	"rest-unsupported-language-conversion": "تحويل اللغة غير المدعومة: $1 إلى $2",
 	"rest-unknown-content-model": "نموذج محتوى غير معروف: $1",
 	"rest-page-bundle-validation-error": "PageBundle لا يتطابق مع نسخة المحتوى: $1",
-	"rest-param-desc-revision-id": "معرف المراجعة"
+	"rest-param-desc-revision-id": "معرف المراجعة",
+	"rest-param-desc-update-source": "محتوى الصفحة بالتنسيق المحدد بواسطة خاصية content_model"
 }

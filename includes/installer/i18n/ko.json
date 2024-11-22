@@ -306,6 +306,7 @@
 	"config-install-success": "미디어위키가 성공적으로 설치되었습니다. 이제 <$1$2>에 방문하여 위키를 볼 수 있습니다.\n질문이 있으시다면 자주 묻는 질문 목록을 살펴보십시오:\n<https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ> 아니면\n해당 문서에 연결된 지원 포럼 중 한곳을 이용하십시오.",
 	"config-install-db-success": "데이터베이스가 성공적으로 구축되었습니다",
 	"config-install-generic": "\"$1\" 작업 실행 중",
+	"config-install-external-domains": "외부 데이터베이스 생성 중",
 	"config-download-localsettings": "<code>LocalSettings.php</code> 다운로드",
 	"config-help": "도움말",
 	"config-help-tooltip": "확장하려면 클릭",

@@ -30,6 +30,7 @@
 	},
 	"preferences": "Tercihler",
 	"prefsnologintext2": "Tercihlerinizi ayarlamak için lütfen oturum açın.",
+	"prefsnologintext2-for-temp-user": "Tercihlerinizi değiştirmek için lütfen bir hesap oluşturun.",
 	"searchprefs": "Tercihleri ara",
 	"searchprefs-noresults": "Sonuç yok",
 	"searchprefs-results": "$1 {{PLURAL:$1|sonuç}}",

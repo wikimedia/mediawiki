@@ -72,7 +72,7 @@
 	"rest-unmapped-action-error": "Грешка во неназначен дејствен модул: $1",
 	"rest-unsupported-transform-input": "Неподдржано внос: $1",
 	"rest-bad-etag": "Неисправен ETag: $1",
-	"rest-no-stashed-content": "Не пронајдов складирана содржина за $1",
+	"rest-no-stashed-content": "Не пронајдов складирана содржина за $1. Најверојатно ова се должи на тоа што уредувачката седница е истечена. Ископирајте ги промените, превчитајте ја страницата и обидете се повторно.",
 	"rest-unsupported-profile-version": "Неподдржана верзија на профил: $1",
 	"rest-no-json-decode": "Товарот не се декодира со JSON во низа",
 	"rest-parsoid-unsupported-media": "Неподдржан вид на податотека",
@@ -85,5 +85,6 @@
 	"rest-unsupported-language-conversion": "Неподдржано јазично претворање: $1 во $2",
 	"rest-unknown-content-model": "Непознат содржински модел: $1",
 	"rest-page-bundle-validation-error": "PageBundle не одговара на contentVersion: $1",
-	"rest-param-desc-revision-id": "Назнака на преработката"
+	"rest-param-desc-revision-id": "Назнака на преработката",
+	"rest-param-desc-update-source": "Содржина на страница во форматот укажан од својството content_model"
 }

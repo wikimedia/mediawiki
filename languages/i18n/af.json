@@ -1875,6 +1875,8 @@
 	"contributions-title": "$1 se bydraes",
 	"mycontris": "Bydraes",
 	"anoncontribs": "Bydraes",
+	"contributions-edit-count": "'n {{GENDER:$1|gebruiker}} met $2 {{PLURAL:$2|wysiging|wysigings}}.",
+	"contributions-account-creation-date": "Rekening geskep op $1.",
 	"contributions-userdoesnotexist": "Die gebruiker \"$1\" is nie geregistreer nie.",
 	"nocontribs": "Geen veranderinge wat by hierdie kriteria pas, is gevind nie.",
 	"uctop": "laaste wysiging",
