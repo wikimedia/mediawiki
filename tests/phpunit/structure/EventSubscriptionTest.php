@@ -16,8 +16,8 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-use MediaWiki\DomainEvent\DomainEventDispatcher;
 use MediaWiki\DomainEvent\DomainEventSource;
+use MediaWiki\DomainEvent\EventDispatchEngine;
 use MediaWiki\Registration\ExtensionRegistry;
 use Wikimedia\TestingAccessWrapper;
 
@@ -30,7 +30,7 @@ class EventSubscriptionTest extends MediaWikiIntegrationTestCase {
 	private function newSpyEvenSource( &$events ): DomainEventSource {
 		$services = $this->getServiceContainer();
 
-		$dispatcher = $this->getMockBuilder( DomainEventDispatcher::class )
+		$dispatcher = $this->getMockBuilder( EventDispatchEngine::class )
 			->setConstructorArgs( [
 				$services->getObjectFactory(),
 				$services->getHookContainer()
