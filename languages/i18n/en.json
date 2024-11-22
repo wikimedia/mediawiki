@@ -2692,6 +2692,8 @@
 	"block-options-description": "These options may help you monitor this user, in order to prevent further issues.",
 	"block-reason": "Reason:",
 	"block-reason-other": "Additional or other reason",
+	"block-confirm-yes": "Yes",
+	"block-confirm-no": "No",
 	"block-success": "[[Special:Contributions/$1|$1]] has been blocked. See the [[Special:BlockList|block list]] to review blocks.",
 	"block-user-active-blocks": "Active blocks",
 	"block-user-no-active-blocks": "No active blocks found",

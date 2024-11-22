@@ -108,17 +108,7 @@ module.exports = exports = defineComponent( {
 		CdxSelect,
 		ValidatingTextInput
 	},
-	props: {
-		/**
-		 * Whether the form has been submitted yet. This is used to show
-		 * validation messages only after the form has been submitted.
-		 */
-		formSubmitted: {
-			type: Boolean,
-			default: false
-		}
-	},
-	setup( props ) {
+	setup() {
 		const store = useBlockStore();
 		const blockExpiryOptions = mw.config.get( 'blockExpiryOptions' );
 		const presetDurationOptions = Object.keys( blockExpiryOptions )
@@ -187,7 +177,6 @@ module.exports = exports = defineComponent( {
 			} else {
 				// Unsupported format; Reset to defaults.
 				expiryType.value = 'preset-duration';
-				presetDuration.value = null;
 				customDurationNumber.value = 1;
 				customDurationUnit.value = 'hours';
 				datetime.value = '';
@@ -218,7 +207,7 @@ module.exports = exports = defineComponent( {
 		 * The preset duration field is a dropdown that requires custom validation.
 		 * We simply need to assert something is selected, but only do so after form submission.
 		 */
-		watch( () => props.formSubmitted, ( submitted ) => {
+		watch( () => store.formSubmitted, ( submitted ) => {
 			if ( submitted && expiryType.value === 'preset-duration' && !presetDuration.value ) {
 				presetDurationStatus.value = 'error';
 				presetDurationMessages.value = { error: mw.msg( 'ipb_expiry_invalid' ) };

@@ -2,6 +2,7 @@
 
 const { nextTick } = require( 'vue' );
 const { getSpecialBlock } = require( './SpecialBlock.setup.js' );
+const useBlockStore = require( '../../../resources/src/mediawiki.special.block/stores/block.js' );
 
 describe( 'SpecialBlock', () => {
 	let wrapper;
@@ -19,11 +20,8 @@ describe( 'SpecialBlock', () => {
 		wrapper = getSpecialBlock( config );
 	};
 
-	beforeEach( () => {
-		wrapper = getSpecialBlock();
-	} );
-
 	it( 'should show no banner and "Block this user" button on page load', () => {
+		wrapper = getSpecialBlock();
 		expect( wrapper.find( '.cdx-message__content' ).exists() ).toBeFalsy();
 		expect( wrapper.find( '.mw-block-submit' ).text() ).toStrictEqual( 'ipbsubmit' );
 	} );
@@ -80,36 +78,57 @@ describe( 'SpecialBlock', () => {
 	} );
 
 	it( 'should require confirmation for the hide-user option', async () => {
-		withSubmission( { blockHideUser: true } );
+		wrapper = getSpecialBlock( { blockHideUser: true } );
+		const store = useBlockStore();
 		await wrapper.find( '[name=wpTarget]' ).setValue( 'ExampleUser' );
 		// Assert 'hide username' is not yet visible.
 		expect( wrapper.find( '.mw-block-hideuser input' ).exists() ).toBeFalsy();
+		expect( store.hideNameVisible ).toBeFalsy();
+		expect( store.confirmationMessage ).toStrictEqual( '' );
 		// Set the expiry to 'infinite' to enable the hide-user option.
-		wrapper.vm.store.expiry = 'infinite';
+		store.expiry = 'infinite';
 		mw.util.isInfinity = jest.fn().mockReturnValue( true );
 		await nextTick();
-		// Assert confirmation checkbox is not shown.
-		expect( wrapper.find( '.mw-block-confirm' ).exists() ).toBeFalsy();
 		// Assert 'hide username' is now clickable.
 		expect( wrapper.find( '.mw-block-hideuser input' ).attributes().disabled ).toBeUndefined();
+		expect( store.hideNameVisible ).toBeTruthy();
+		expect( store.hideName ).toBeFalsy();
 		await wrapper.find( '.mw-block-hideuser input' ).trigger( 'click' );
-		// Assert confirmation checkbox is now shown.
-		expect( wrapper.find( '.mw-block-confirm' ).exists() ).toBeTruthy();
-		// Once clicked, assert the submit button is disabled.
-		expect( wrapper.find( '.mw-block-submit' ).attributes().disabled ).toStrictEqual( '' );
+		expect( store.hideName ).toBeTruthy();
+		// Assert confirmation is required.
+		expect( store.confirmationMessage ).toStrictEqual( 'ipb-confirmhideuser' );
+		expect( store.confirmationNeeded ).toBeTruthy();
+		expect( store.formSubmitted ).toBeFalsy();
+		expect( wrapper.vm.confirmationOpen ).toBeFalsy();
+		expect( document.body.querySelector( '.mw-block-confirm' ) ).toBeFalsy();
 		await wrapper.find( '.mw-block-submit' ).trigger( 'click' );
-		// Assert submission is not possible.
-		expect( wrapper.find( '.mw-block-success' ).exists() ).toBeFalsy();
-		await wrapper.find( '.mw-block-confirm input' ).trigger( 'click' );
-		expect( wrapper.find( '.mw-block-submit' ).attributes().disabled ).toBeUndefined();
+		expect( store.formSubmitted ).toBeTruthy();
+		expect( wrapper.vm.confirmationOpen ).toBeTruthy();
+		expect( document.body.querySelector( '.mw-block-confirm' ) ).toBeTruthy();
 	} );
 
 	it( 'should require confirmation for self-blocking', async () => {
-		withSubmission( { wgUserName: 'ExampleUser' } );
+		wrapper = getSpecialBlock( { wgUserName: 'ExampleUser' } );
+		const store = useBlockStore();
+		store.$reset();
 		expect( wrapper.find( '.mw-block-error' ).exists() ).toBeFalsy();
-		expect( wrapper.find( '.mw-block-submit' ).attributes().disabled ).toBeUndefined();
+		expect( store.confirmationNeeded ).toBeFalsy();
+		expect( store.confirmationMessage ).toStrictEqual( '' );
 		await wrapper.find( '[name=wpTarget]' ).setValue( 'ExampleUser' );
-		expect( wrapper.find( '.mw-block-submit' ).attributes().disabled ).toStrictEqual( '' );
-		expect( wrapper.find( '.mw-block-error' ).text() ).toStrictEqual( 'ipb-blockingself' );
+		store.expiry = '3 days';
+		expect( store.confirmationNeeded ).toBeTruthy();
+		expect( store.confirmationMessage ).toStrictEqual( 'ipb-blockingself' );
+		expect( store.formSubmitted ).toBeFalsy();
+		expect( wrapper.vm.confirmationOpen ).toBeFalsy();
+		expect( document.body.querySelector( '.mw-block-confirm' ) ).toBeFalsy();
+		await wrapper.find( '.mw-block-submit' ).trigger( 'click' );
+		await nextTick();
+		expect( store.formSubmitted ).toBeTruthy();
+		expect( wrapper.vm.confirmationOpen ).toBeTruthy();
+		expect( document.body.querySelector( '.mw-block-confirm' ) ).toBeTruthy();
+	} );
+
+	afterEach( () => {
+		wrapper.unmount();
 	} );
 } );
