@@ -54,6 +54,31 @@
 					}
 				}
 			]
+		},
+		"ObjectFactorySpec": {
+			"type": "object",
+			"properties": {
+				"factory": {
+					"type": [ "string", "array" ],
+					"description": "A factory function to be called to create the object"
+				},
+				"class": {
+					"type": "string",
+					"description": "The fully-qualified class name of the object. This should be omitted if a factory is specified."
+				},
+				"args": {
+					"type": "array",
+					"description": "The arguments passed to the object constructor or factory"
+				},
+				"services": {
+					"type": "array",
+					"description": "If supplied and non-empty, the named services are requested from the service container and prepended before 'args'."
+				},
+				"optional_services": {
+					"type": "array",
+					"description": "If supplied and non-empty, the named services are requested from the service container and appended after 'services' if the services are available; null is passed if the services are not available."
+				}
+			}
 		}
 	},
 	"type": "object",
@@ -976,31 +1001,7 @@
 		"HookHandlers": {
 			"type": "object",
 			"description": "ObjectFactory specifications for new-style hook handlers",
-			"additionalProperties": {
-				"type": "object",
-				"properties": {
-					"factory": {
-						"type": [ "string", "array" ],
-						"description": "A factory function to be called to create the handler for this hook"
-					},
-					"class": {
-						"type": "string",
-						"description": "The fully-qualified class name of the handler. This should be omitted if a factory is specified."
-					},
-					"args": {
-						"type": "array",
-						"description": "The arguments passed to the handler constructor or factory"
-					},
-					"services": {
-						"type": "array",
-						"description": "If supplied and non-empty, the named services are requested from the service container and prepended before 'args'."
-					},
-					"optional_services": {
-						"type": "array",
-						"description": "If supplied and non-empty, the named services are requested from the service container and appended after 'services' if the services are available; null is passed if the services are not available."
-					}
-				}
-			}
+			"additionalProperties": { "$ref": "#/definitions/ObjectFactorySpec" }
 		},
 		"DeprecatedHooks": {
 			"type": "object",
@@ -1214,44 +1215,38 @@
 			"type": "array",
 			"description": "List of route specifications to be added to the REST API",
 			"items": {
-				"type": "object",
-				"properties": {
-					"method": {
-						"oneOf": [
-							{
-								"type": "string",
-								"description": "The HTTP method name"
+				"allOf": [
+					{
+						"type": "object",
+						"properties": {
+							"method": {
+								"oneOf": [
+									{
+										"type": "string",
+										"description": "The HTTP method name"
+									},
+									{
+										"type": "array",
+										"items": {
+											"type": "string",
+											"description": "An acceptable HTTP method name"
+										}
+									}
+								]
 							},
-							{
-								"type": "array",
-								"items": {
-									"type": "string",
-									"description": "An acceptable HTTP method name"
-								}
-							}
-						]
+							"path": {
+								"type": "string",
+								"description": "The path template. This should start with an initial slash, designating the root of the REST API. Path parameters are enclosed in braces, for example /endpoint/{param}."
+							},
+							"factory": { "description": "See the ObjectFactorySpec definition" },
+							"class": { "description": "See the ObjectFactorySpec definition" },
+							"args": { "description": "See the ObjectFactorySpec definition" },
+							"services": { "description": "See the ObjectFactorySpec definition" },
+							"optional_services": { "description": "See the ObjectFactorySpec definition" }
+						}
 					},
-					"path": {
-						"type": "string",
-						"description": "The path template. This should start with an initial slash, designating the root of the REST API. Path parameters are enclosed in braces, for example /endpoint/{param}."
-					},
-					"factory": {
-						"type": [ "string", "array" ],
-						"description": "A factory function to be called to create the handler for this route"
-					},
-					"class": {
-						"type": "string",
-						"description": "The fully-qualified class name of the handler. This should be omitted if a factory is specified."
-					},
-					"args": {
-						"type": "array",
-						"description": "The arguments passed to the handler constructor or factory"
-					},
-					"services": {
-						"type": "array",
-						"description": "If supplied and non-empty, the named services are requested from the service container and prepended before 'args'."
-					}
-				}
+					{ "$ref": "#/definitions/ObjectFactorySpec" }
+				]
 			}
 		},
 		"ParsoidModules": {
@@ -1347,104 +1342,28 @@
 			"type": "object",
 			"description": "Map of temporary user serial provider type name to ObjectFactory spec",
 			"patternProperties": {
-				".*": {
-					"type": "object",
-					"properties": {
-						"factory": {
-							"type": [ "string", "array" ],
-							"description": "A factory function"
-						},
-						"class": {
-							"type": "string",
-							"description": "The fully-qualified class name of the handler. This should be omitted if a factory is specified."
-						},
-						"args": {
-							"type": "array",
-							"description": "The arguments passed to the constructor or factory"
-						},
-						"services": {
-							"type": "array",
-							"description": "If supplied and non-empty, the named services are requested from the service container and prepended before 'args'."
-						}
-					}
-				}
+				".*": { "$ref": "#/definitions/ObjectFactorySpec" }
 			}
 		},
 		"TempUserSerialMappings": {
 			"type": "object",
 			"description": "Map of temporary user serial map type name to ObjectFactory spec",
 			"patternProperties": {
-				".*": {
-					"type": "object",
-					"properties": {
-						"factory": {
-							"type": [ "string", "array" ],
-							"description": "A factory function"
-						},
-						"class": {
-							"type": "string",
-							"description": "The fully-qualified class name of the handler. This should be omitted if a factory is specified."
-						},
-						"args": {
-							"type": "array",
-							"description": "The arguments passed to the constructor or factory"
-						},
-						"services": {
-							"type": "array",
-							"description": "If supplied and non-empty, the named services are requested from the service container and prepended before 'args'."
-						}
-					}
-				}
+				".*": { "$ref": "#/definitions/ObjectFactorySpec" }
 			}
 		},
 		"UserOptionsStoreProviders": {
 			"type": "object",
 			"description": "Map of user options store providers (specs for ObjectFactory, indexed by provider name). The class should implement the UserOptionsStore interface.",
 			"patternProperties": {
-				".*": {
-					"type": "object",
-					"properties": {
-						"factory": {
-							"type": [ "string", "array" ],
-							"description": "A factory function"
-						},
-						"class": {
-							"type": "string",
-							"description": "The fully-qualified class name of the store. This should be omitted if a factory is specified."
-						},
-						"args": {
-							"type": "array",
-							"description": "The arguments passed to the constructor or factory"
-						},
-						"services": {
-							"type": "array",
-							"description": "If supplied and non-empty, the named services are requested from the service container and prepended before 'args'."
-						}
-					}
-				}
+				".*": { "$ref": "#/definitions/ObjectFactorySpec" }
 			}
 		},
 		"UserRegistrationProviders": {
 			"type": "object",
 			"description": "Map of user registration timestamp providers (specs for ObjectFactory, indexed by provider name)",
 			"patternProperties": {
-				".*": {
-					"type": "object",
-					"properties": {
-						"class": {
-							"type": "string",
-							"description": "The fully-qualified class name of the handler. This should be omitted if a factory is specified."
-						},
-						"args": {
-							"type": "array",
-							"description": "The arguments passed to the constructor or factory"
-						},
-						"services": {
-							"type": "array",
-							"description": "If supplied and non-empty, the named services are requested from the service container and prepended before 'args'."
-						}
-					}
-				}
+				".*": { "$ref": "#/definitions/ObjectFactorySpec" }
 			}
 		},
 		"ForeignResourcesDir": {
