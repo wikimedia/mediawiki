@@ -723,6 +723,11 @@ class Html {
 
 	/**
 	 * Return the HTML for a notice message box.
+	 *
+	 * This method produces HTML that requires CSS styles for the Codex MessageBox component
+	 * that need to be supplied by mediawiki.codex.messagebox.styles or another suitable
+	 * Codex style module.
+	 *
 	 * @since 1.38
 	 * @param string $html of contents of notice
 	 * @param-taint $html tainted
@@ -740,6 +745,11 @@ class Html {
 
 	/**
 	 * Return a warning box.
+	 *
+	 * This method produces HTML that requires CSS styles for the Codex MessageBox component
+	 * that need to be supplied by mediawiki.codex.messagebox.styles or another suitable
+	 * Codex style module.
+	 *
 	 * @since 1.31
 	 * @since 1.34 $className optional parameter added
 	 * @param string $html of contents of box
@@ -754,6 +764,11 @@ class Html {
 
 	/**
 	 * Return an error box.
+	 *
+	 * This method produces HTML that requires CSS styles for the Codex MessageBox component
+	 * that need to be supplied by mediawiki.codex.messagebox.styles or another suitable
+	 * Codex style module.
+	 *
 	 * @since 1.31
 	 * @since 1.34 $className optional parameter added
 	 * @param string $html of contents of error box
@@ -769,6 +784,11 @@ class Html {
 
 	/**
 	 * Return a success box.
+	 *
+	 * This method produces HTML that requires CSS styles for the Codex MessageBox component
+	 * that need to be supplied by mediawiki.codex.messagebox.styles or another suitable
+	 * Codex style module.
+	 *
 	 * @since 1.31
 	 * @since 1.34 $className optional parameter added
 	 * @param string $html of contents of box
