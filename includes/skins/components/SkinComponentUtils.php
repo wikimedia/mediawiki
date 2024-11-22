@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Skin;
 
+use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -37,6 +39,24 @@ class SkinComponentUtils {
 	 * @return string[]
 	 */
 	public static function getReturnToParam( $title, $request, $authority ) {
+		// T379295: Preserve authentication query params so they don't get lost
+		// during switching between Login or CreateAccount pages where we need them.
+		// See AuthManagerSpecialPage/LoginSignupSpecialPage::getPreservedParams().
+		// This special case also avoids "nesting" returnto values on these pages.
+		if ( $title->isSpecial( 'Userlogin' ) || $title->isSpecial( 'CreateAccount' ) ) {
+			$params = [
+				'uselang' => $request->getVal( 'uselang' ),
+				'variant' => $request->getVal( 'variant' ),
+				'display' => $request->getVal( 'display' ),
+				'returnto' => $request->getVal( 'returnto' ),
+				'returntoquery' => $request->getVal( 'returntoquery' ),
+				'returntoanchor' => $request->getVal( 'returntoanchor' ),
+			];
+			( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+				->onAuthPreserveQueryParams( $params, [ 'reset' => true ] );
+			return array_filter( $params, fn ( $val ) => $val !== null );
+		}
+
 		# Due to T34276, if a user does not have read permissions,
 		# $this->getTitle() will just give Special:Badtitle, which is
 		# not especially useful as a returnto parameter. Use the title
@@ -46,30 +66,22 @@ class SkinComponentUtils {
 		} else {
 			$page = Title::newFromText( $request->getVal( 'title', '' ) );
 		}
-		$page = $request->getVal( 'returnto', $page );
 
 		$query = [];
 		if ( !$request->wasPosted() ) {
 			$query = $request->getQueryValues();
 			unset( $query['title'] );
-			unset( $query['returnto'] );
-			unset( $query['returntoquery'] );
 		}
 
-		$thisquery = wfArrayToCgi( $query );
-
-		$returnto = [];
-		if ( strval( $page ) !== '' ) {
-			$returnto['returnto'] = $page;
-			$query = $request->getVal( 'returntoquery', $thisquery );
-			$paramsArray = wfCgiToArray( $query );
-			$query = wfArrayToCgi( $paramsArray );
-			if ( $query != '' ) {
-				$returnto['returntoquery'] = $query;
+		$params = [];
+		if ( $page ) {
+			$params['returnto'] = $page->getPrefixedText();
+			if ( $query ) {
+				$params['returntoquery'] = wfArrayToCgi( $query );
 			}
 		}
 
-		return $returnto;
+		return $params;
 	}
 
 	/**
