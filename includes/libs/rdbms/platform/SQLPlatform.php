@@ -1204,21 +1204,6 @@ class SQLPlatform implements ISQLPlatform {
 		return $this->currentDomain->getSchema();
 	}
 
-	/**
-	 * @deprecated since 1.39.
-	 */
-	public function tableNames( ...$tables ) {
-		wfDeprecated( __METHOD__, '1.39' );
-
-		$retVal = [];
-
-		foreach ( $tables as $name ) {
-			$retVal[$name] = $this->tableName( $name );
-		}
-
-		return $retVal;
-	}
-
 	public function tableNamesN( ...$tables ) {
 		$retVal = [];
 
