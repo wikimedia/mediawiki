@@ -87,7 +87,7 @@ class ChangeTrackingEventIngress extends EventSubscriberBase {
 				$event->getEditResult()
 			);
 		} else {
-			$this->updateChangeTageAfterPageUpdated(
+			$this->updateChangeTagsAfterPageUpdated(
 				$event->getTags(),
 				$event->getNewRevision()->getId(),
 			);
@@ -98,13 +98,13 @@ class ChangeTrackingEventIngress extends EventSubscriberBase {
 		);
 	}
 
-	private function updateChangeTageAfterPageUpdated( array $tags, int $revId ) {
+	private function updateChangeTagsAfterPageUpdated( array $tags, int $revId ) {
 		$this->changeTagsStore->addTags( $tags, null, $revId );
 	}
 
 	private function updateRecentChangesAfterPageUpdated(
 		RevisionRecord $newRevisionRecord,
-		?REvisionRecord $oldRevisionRecord,
+		?RevisionRecord $oldRevisionRecord,
 		bool $forceBot,
 		int $patrolStatus,
 		array $tags,
