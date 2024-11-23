@@ -1193,6 +1193,41 @@
 				]
 			}
 		},
+		"DomainEventSubscribers": {
+			"type": "array",
+			"description": "ObjectFactory specifications for domain event subscribers. EXPERIMENTAL, see T376063",
+			"items": {
+				"type": "object",
+				"required": [ "events" ],
+				"properties": {
+					"events": {
+						"type": "array",
+						"items": { "type": "string" },
+						"description": "A list of events to subscribe to"
+					},
+					"factory": {
+						"type": [ "string", "array" ],
+						"description": "A factory function to be called to create the handler for this hook"
+					},
+					"class": {
+						"type": "string",
+						"description": "The fully-qualified class name of the handler. This should be omitted if a factory is specified."
+					},
+					"args": {
+						"type": "array",
+						"description": "The arguments passed to the handler constructor or factory"
+					},
+					"services": {
+						"type": "array",
+						"description": "If supplied and non-empty, the named services are requested from the service container and prepended before 'args'."
+					},
+					"optional_services": {
+						"type": "array",
+						"description": "If supplied and non-empty, the named services are requested from the service container and appended after 'services' if the services are available; null is passed if the services are not available."
+					}
+				}
+			}
+		},
 		"JobClasses": {
 			"type": "object",
 			"description": "Job types this extension implements (mapping of job type to class name or factory function)"
