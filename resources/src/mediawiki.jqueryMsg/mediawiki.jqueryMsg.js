@@ -1398,6 +1398,29 @@ HtmlEmitter.prototype = {
 	},
 
 	/**
+	 * Takes a pagename and optional URL queries and returns a full URL to that
+	 * page (with URL queries).
+	 *
+	 * @param {Array} nodes List of nodes
+	 * @return {string} A URL string
+	 */
+	fullurl: function ( nodes ) {
+		const targetPage = textify( nodes[ 0 ] ),
+			queryObject = {};
+		let queryStrings = nodes[ 1 ];
+
+		if ( queryStrings ) {
+			queryStrings = textify( queryStrings );
+			queryStrings = new URLSearchParams( queryStrings );
+			for ( const [ key, value ] of queryStrings.entries() ) {
+				queryObject[ key ] = value;
+			}
+		}
+
+		return mw.config.get( 'wgServer' ) + util.getUrl( targetPage, queryObject );
+	},
+
+	/**
 	 * Lowercase text
 	 *
 	 * @param {Array} nodes List of nodes

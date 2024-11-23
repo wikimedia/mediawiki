@@ -994,6 +994,36 @@
 		} );
 	} );
 
+	QUnit.test( 'fullurl', ( assert ) => {
+		mw.messages.set( {
+			'fullurl-plain-msg': '{{fullurl:Main Page}}',
+			'fullurl-with-params-msg': '{{fullurl:Main Page|action=history&safemode=1}}',
+			'fullurl-link-msg': 'Link to [{{fullurl:$1}} main page]',
+			'fullurl-nested-params-msg': '{{fullurl:Special:MyLanguage/$1|action={{lc:$2}}}}'
+		} );
+
+		assert.strictEqual(
+			formatText( 'fullurl-plain-msg' ),
+			mw.config.get( 'wgServer' ) + mw.config.get( 'wgArticlePath' ).replace( '$1', 'Main_Page' ),
+			'Fullurl with no parameters'
+		);
+		assert.strictEqual(
+			formatText( 'fullurl-with-params-msg' ),
+			mw.config.get( 'wgServer' ) + mw.config.get( 'wgScriptPath' ) + '/index.php?title=Main_Page&action=history&safemode=1',
+			'Fullurl with URL parameters'
+		);
+		assert.strictEqual(
+			formatText( 'fullurl-link-msg', 'Main Page' ),
+			'Link to [' + mw.config.get( 'wgServer' ) + mw.config.get( 'wgArticlePath' ).replace( '$1', 'Main_Page' ) + ' main page]',
+			'Fullurl with link syntax'
+		);
+		assert.strictEqual(
+			formatText( 'fullurl-nested-params-msg', 'Hellø World?', 'DELETE' ),
+			mw.config.get( 'wgServer' ) + mw.config.get( 'wgScriptPath' ) + '/index.php?title=Special:MyLanguage/Hell%C3%B8_World%3F&action=delete',
+			'Fullurl with nested parameters'
+		);
+	} );
+
 	// HTML in wikitext
 	QUnit.test( 'HTML', ( assert ) => {
 		mw.messages.set( 'jquerymsg-italics-msg', '<i>Very</i> important' );
