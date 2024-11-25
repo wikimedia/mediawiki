@@ -737,9 +737,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$parserOutput = $this->messageCache->parseWithPostprocessing(
 				$message->plain(),
 				$this->getPageTitle(),
+				/*linestart*/ true,
 				// Message class sets the interface flag to false when parsing in a language different than
 				// user language, and this is wiki content language
-				/*interface*/false,
+				/*interface*/ false,
 				$contLang
 			);
 			$content = $parserOutput->getContentHolderText();

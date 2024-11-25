@@ -352,7 +352,11 @@ class StatusFormatter {
 
 		$text = $this->getWikiText( $status, $options );
 		$out = $this->messageCache->parseWithPostprocessing(
-			$text, PageReferenceValue::localReference( NS_SPECIAL, 'Badtitle/StatusFormatter' ), true, $lang
+			$text,
+			PageReferenceValue::localReference( NS_SPECIAL, 'Badtitle/StatusFormatter' ),
+			/*linestart*/ true,
+			/*interface*/ true,
+			$lang
 		);
 
 		return $out->getContentHolderText();

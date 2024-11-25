@@ -1508,13 +1508,18 @@ class MessageCache implements LoggerAwareInterface {
 	/**
 	 * @param string $text
 	 * @param PageReference $contextPage
+	 * @param bool $linestart Whether this should be parsed in start-of-line
+	 *  context (defaults to true)
 	 * @param bool $interface Whether this is an interface message
+	 *  (defaults to false)
 	 * @param Language|StubUserLang|string|null $language Language code
 	 * @return ParserOutput
 	 * @internal
 	 */
 	public function parseWithPostprocessing(
-		string $text, PageReference $contextPage, bool $interface = false,
+		string $text, PageReference $contextPage,
+		bool $linestart = true,
+		bool $interface = false,
 		$language = null
 	): ParserOutput {
 		$options = [
@@ -1528,7 +1533,7 @@ class MessageCache implements LoggerAwareInterface {
 			'userLang' => $language,
 		];
 		// Parse $text to yield a ParserOutput
-		$po = $this->parse( $text, $contextPage, true, $interface, $language );
+		$po = $this->parse( $text, $contextPage, $linestart, $interface, $language );
 		if ( is_string( $po ) ) {
 			$po = new ParserOutput( $po );
 		}
