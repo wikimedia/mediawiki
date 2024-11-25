@@ -126,8 +126,8 @@ class CoreParserFunctions {
 			# is the same as passing an empty first argument
 			'bcp47',
 			'dir',
-			'iwlink',
-			'langlink',
+			'interwikilink',
+			'interlanguagelink',
 		];
 		foreach ( $noHashFunctions as $func ) {
 			$parser->setFunctionHook( $func, [ __CLASS__, $func ], Parser::SFH_NO_HASH );
@@ -1686,7 +1686,7 @@ class CoreParserFunctions {
 		return '';
 	}
 
-	public static function iwlink( $parser, $prefix = '', $title = '', $linkText = null ) {
+	public static function interwikilink( $parser, $prefix = '', $title = '', $linkText = null ) {
 		$services = MediaWikiServices::getInstance();
 		if (
 			$prefix !== '' &&
@@ -1709,7 +1709,7 @@ class CoreParserFunctions {
 		return [ 'found' => false ];
 	}
 
-	public static function langlink( $parser, $prefix = '', $title = '', $linkText = null ) {
+	public static function interlanguagelink( $parser, $prefix = '', $title = '', $linkText = null ) {
 		$services = MediaWikiServices::getInstance();
 		$extraInterlanguageLinkPrefixes = $services->getMainConfig()->get(
 			MainConfigNames::ExtraInterlanguageLinkPrefixes
