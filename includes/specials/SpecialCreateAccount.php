@@ -57,6 +57,7 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 	/**
 	 * @param AuthManager $authManager
 	 * @param FormatterFactory $formatterFactory
+	 * @param UserIdentityUtils $identityUtils
 	 */
 	public function __construct(
 		AuthManager $authManager,
