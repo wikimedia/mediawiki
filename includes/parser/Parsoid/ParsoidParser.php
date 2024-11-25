@@ -9,9 +9,9 @@ use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
-use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\Parsoid\Config\DataAccess;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
@@ -41,24 +41,23 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 	private Parsoid $parsoid;
 	private PageConfigFactory $pageConfigFactory;
 	private LanguageConverterFactory $languageConverterFactory;
-	private ParserFactory $legacyParserFactory;
+	private DataAccess $dataAccess;
 
 	/**
 	 * @param Parsoid $parsoid
 	 * @param PageConfigFactory $pageConfigFactory
 	 * @param LanguageConverterFactory $languageConverterFactory
-	 * @param ParserFactory $legacyParserFactory
 	 */
 	public function __construct(
 		Parsoid $parsoid,
 		PageConfigFactory $pageConfigFactory,
 		LanguageConverterFactory $languageConverterFactory,
-		ParserFactory $legacyParserFactory
+		DataAccess $dataAccess
 	) {
 		$this->parsoid = $parsoid;
 		$this->pageConfigFactory = $pageConfigFactory;
 		$this->languageConverterFactory = $languageConverterFactory;
-		$this->legacyParserFactory = $legacyParserFactory;
+		$this->dataAccess = $dataAccess;
 	}
 
 	/**
@@ -184,7 +183,12 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 		$parserOutput->setFromParserOptions( $options );
 
 		$parserOutput->recordTimeProfile();
-		$this->makeLimitReport( $options, $parserOutput );
+		$limitReporting = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::EnableParserLimitReporting
+		);
+		if ( $limitReporting ) {
+			$this->dataAccess->makeLimitReport( $pageConfig, $options, $parserOutput );
+		}
 
 		// T371713: Collect statistics on parsing time -vs- presence of
 		// $previousOutput
@@ -321,38 +325,4 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 
 		return $this->genParserOutput( $pageConfig, $options, null );
 	}
-
-	/**
-	 * Set the limit report data in the current ParserOutput.
-	 * This is ported from Parser::makeLimitReport() and should eventually
-	 * use the method from the superclass directly.
-	 */
-	protected function makeLimitReport(
-		ParserOptions $parserOptions, ParserOutput $parserOutput
-	) {
-		$maxIncludeSize = $parserOptions->getMaxIncludeSize();
-
-		$cpuTime = $parserOutput->getTimeProfile( 'cpu' );
-		if ( $cpuTime !== null ) {
-			$parserOutput->setLimitReportData( 'limitreport-cputime',
-				sprintf( "%.3f", $cpuTime )
-			);
-		}
-
-		$wallTime = $parserOutput->getTimeProfile( 'wall' );
-		$parserOutput->setLimitReportData( 'limitreport-walltime',
-			sprintf( "%.3f", $wallTime )
-		);
-
-		$parserOutput->setLimitReportData( 'limitreport-timingprofile', [ 'not yet supported' ] );
-
-		// Add other cache related metadata
-		$parserOutput->setLimitReportData( 'cachereport-timestamp',
-			$parserOutput->getCacheTime() );
-		$parserOutput->setLimitReportData( 'cachereport-ttl',
-			$parserOutput->getCacheExpiry() );
-		$parserOutput->setLimitReportData( 'cachereport-transientcontent',
-			$parserOutput->hasReducedExpiry() );
-	}
-
 }

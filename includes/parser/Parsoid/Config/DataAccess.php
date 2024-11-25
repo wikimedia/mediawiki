@@ -33,6 +33,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\File\BadFileLookup;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserFactory;
+use MediaWiki\Parser\ParserOptions;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\PPFrame;
 use MediaWiki\Title\Title;
 use RepoGroup;
@@ -344,6 +346,17 @@ class DataAccess extends IDataAccess {
 			$this->ppFrame = $this->parser->getPreprocessor()->newFrame();
 		}
 		return $this->parser;
+	}
+
+	/** @internal */
+	public function makeLimitReport(
+		IPageConfig $pageConfig,
+		ParserOptions $parserOptions,
+		ParserOutput $parserOutput
+	) {
+		$parser = $this->parser ??
+			$this->prepareParser( $pageConfig, Parser::OT_HTML );
+		$parser->makeLimitReport( $parserOptions, $parserOutput );
 	}
 
 	/** @inheritDoc */

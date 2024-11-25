@@ -23,13 +23,12 @@ namespace MediaWiki\Tests\Parser\Parsoid;
 
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Parser\ParserFactory;
+use MediaWiki\Parser\Parsoid\Config\DataAccess;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWikiUnitTestCase;
-use Wikimedia\Parsoid\Config\DataAccess;
 use Wikimedia\Parsoid\Config\SiteConfig;
-use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
  * $group Parsoid
@@ -42,7 +41,6 @@ class ParsoidParserFactoryTest extends MediaWikiUnitTestCase {
 	protected PageConfigFactory $pageConfigFactory;
 	protected LanguageConverterFactory $languageConverterFactory;
 	protected ParserFactory $legacyParserFactory;
-	protected GlobalIdGenerator $globalIdGenerator;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -51,7 +49,6 @@ class ParsoidParserFactoryTest extends MediaWikiUnitTestCase {
 		$this->pageConfigFactory = $this->createMock( PageConfigFactory::class );
 		$this->languageConverterFactory = $this->createMock( LanguageConverterFactory::class );
 		$this->legacyParserFactory = $this->createMock( ParserFactory::class );
-		$this->globalIdGenerator = $this->createMock( GlobalIdGenerator::class );
 	}
 
 	public function testCreate() {
@@ -60,8 +57,7 @@ class ParsoidParserFactoryTest extends MediaWikiUnitTestCase {
 			$this->dataAccess,
 			$this->pageConfigFactory,
 			$this->languageConverterFactory,
-			$this->legacyParserFactory,
-			$this->globalIdGenerator
+			$this->legacyParserFactory
 		);
 		$this->assertInstanceOf( ParsoidParser::class, $factory->create() );
 	}

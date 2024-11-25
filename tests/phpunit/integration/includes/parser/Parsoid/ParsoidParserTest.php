@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Parser\Parsoid;
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
@@ -13,6 +14,15 @@ use MediaWikiIntegrationTestCase;
  * @group Database
  */
 class ParsoidParserTest extends MediaWikiIntegrationTestCase {
+
+	protected function setUp(): void {
+		parent::setUp();
+		// Limit reporting affects the options used
+		$this->overrideConfigValue(
+			MainConfigNames::EnableParserLimitReporting,
+			false
+		);
+	}
 
 	/** @dataProvider provideParsoidParserHtml */
 	public function testParsoidParserHtml( $args, $expected, $getTextOpts = [] ) {
@@ -38,7 +48,6 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 			'disableContentConversion',
 			'interfaceMessage',
 			'isPreview',
-			'maxIncludeSize',
 			'suppressSectionEditLinks',
 			'wrapclass',
 		];
@@ -87,7 +96,6 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 			'disableContentConversion',
 			'interfaceMessage',
 			'isPreview',
-			'maxIncludeSize',
 			'suppressSectionEditLinks',
 			'wrapclass',
 		];

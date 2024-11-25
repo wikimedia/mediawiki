@@ -77,8 +77,7 @@ trait PageHandlerTestTrait {
 			$mockParsoid,
 			$services->getParsoidPageConfigFactory(),
 			$services->getLanguageConverterFactory(),
-			$services->getParserFactory(),
-			$services->getGlobalIdGenerator()
+			$services->getParsoidDataAccess()
 		);
 
 		// Create a mock Parsoid factory that returns the ParsoidParser object

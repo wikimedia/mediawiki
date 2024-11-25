@@ -4,8 +4,8 @@ namespace MediaWiki\Parser\Parsoid;
 
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Parser\ParserFactory;
+use MediaWiki\Parser\Parsoid\Config\DataAccess;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
-use Wikimedia\Parsoid\Config\DataAccess;
 use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Parsoid;
 
@@ -61,7 +61,7 @@ class ParsoidParserFactory /* eventually this may extend \ParserFactory */ {
 			new Parsoid( $this->siteConfig, $this->dataAccess ),
 			$this->pageConfigFactory,
 			$this->languageConverterFactory,
-			$this->legacyParserFactory
+			$this->dataAccess
 		);
 	}
 }
