@@ -2047,7 +2047,7 @@
 	"prefixindex-strip": "Сакриј префикс у резултатима",
 	"shortpages": "Кратке странице",
 	"longpages": "Дуге странице",
-	"deadendpages": "Ћорсокаци",
+	"deadendpages": "Странице без унутрашњих веза",
 	"deadendpagestext": "Следеће странице немају везе до других страница на овом пројекту.",
 	"protectedpages": "Заштићене странице",
 	"protectedpages-filters": "Филтери:",
