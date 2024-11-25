@@ -9,11 +9,14 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
@@ -459,22 +462,61 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 		$this->assertSame( 1, $options->getSpeculativeRevId() );
 	}
 
-	public function testSetupFakeRevision() {
+	public function testSetupFakeRevision_new() {
 		$options = ParserOptions::newFromAnon();
+		$options->setIsPreview( true );
+		$options->setSpeculativePageIdCallback( fn () => 105 );
 
-		$page = Title::newFromText( __METHOD__ );
+		$page = PageIdentityValue::localIdentity( 0, NS_MAIN, __METHOD__ );
 		$content = new DummyContentForTesting( '12345' );
 		$user = UserIdentityValue::newRegistered( 123, 'TestTest' );
 		$fakeRevisionScope = $options->setupFakeRevision( $page, $content, $user );
 
+		/** @var RevisionRecord $fakeRevision */
 		$fakeRevision = $options->getCurrentRevisionRecordCallback()( $page );
 		$this->assertNotNull( $fakeRevision );
-		$this->assertSame( '12345', $fakeRevision->getContent( SlotRecord::MAIN )->getNativeData() );
+		$this->assertSame( '12345', $fakeRevision->getContent( SlotRecord::MAIN )->serialize() );
 		$this->assertSame( $user, $fakeRevision->getUser() );
+		$this->assertSame( 0, $fakeRevision->getId() );
+		$this->assertSame( 0, $fakeRevision->getParentId() );
+		$this->assertSame( 105, $fakeRevision->getPageId() );
+		$this->assertSame( 105, $fakeRevision->getPage()->getId() );
 		$this->assertTrue( $fakeRevision->getPage()->exists() );
 
 		ScopedCallback::consume( $fakeRevisionScope );
-		$this->assertFalse( $options->getCurrentRevisionRecordCallback()( $page ) );
+		$this->assertFalse(
+			$options->getCurrentRevisionRecordCallback()(
+				TitleValue::newFromPage( $page )
+			)
+		);
+	}
+
+	public function testSetupFakeRevision_existing() {
+		$options = ParserOptions::newFromAnon();
+		$options->setIsPreview( true );
+
+		$page = PageIdentityValue::localIdentity( 105, NS_MAIN, __METHOD__ );
+		$content = new DummyContentForTesting( '12345' );
+		$user = UserIdentityValue::newRegistered( 123, 'TestTest' );
+		$fakeRevisionScope = $options->setupFakeRevision( $page, $content, $user, 1002 );
+
+		/** @var RevisionRecord $fakeRevision */
+		$fakeRevision = $options->getCurrentRevisionRecordCallback()( $page );
+		$this->assertNotNull( $fakeRevision );
+		$this->assertSame( '12345', $fakeRevision->getContent( SlotRecord::MAIN )->serialize() );
+		$this->assertSame( $user, $fakeRevision->getUser() );
+		$this->assertSame( 0, $fakeRevision->getId() );
+		$this->assertSame( 1002, $fakeRevision->getParentId() );
+		$this->assertSame( 105, $fakeRevision->getPageId() );
+		$this->assertSame( 105, $fakeRevision->getPage()->getId() );
+		$this->assertTrue( $fakeRevision->getPage()->exists() );
+
+		ScopedCallback::consume( $fakeRevisionScope );
+		$this->assertFalse(
+			$options->getCurrentRevisionRecordCallback()(
+				TitleValue::newFromPage( $page )
+			)
+		);
 	}
 
 	public function testRenderReason() {

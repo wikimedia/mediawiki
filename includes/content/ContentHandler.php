@@ -1666,7 +1666,12 @@ abstract class ContentHandler {
 		$parserOptions = $cpoParams->getParserOptions();
 
 		if ( $parserOptions->getIsPreview() ) {
-			$scopedCallback = $parserOptions->setupFakeRevision( $title, $content, $parserOptions->getUserIdentity() );
+			$scopedCallback = $parserOptions->setupFakeRevision(
+				$title,
+				$content,
+				$parserOptions->getUserIdentity(),
+				$cpoParams->getRevId() ?: 0
+			);
 		}
 
 		$hookRunner = new HookRunner( $services->getHookContainer() );
