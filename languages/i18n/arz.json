@@ -1306,7 +1306,7 @@
 	"emailsubject": "الموضوع:",
 	"emailmessage": "الرساله:",
 	"emailsend": "إبعت",
-	"emailccme": "ابعتلى نسخة من الايميل اللى بعته.",
+	"emailccme": "ابعتلى نسخة من الايميل اللى بعته",
 	"emailccsubject": "نسخة من رسالتك ل $1: $2",
 	"emailsent": "الإيميل اتبعت",
 	"emailsenttext": "الايميل بتاعك اتبعت خلاص.",

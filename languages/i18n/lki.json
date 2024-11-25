@@ -1597,7 +1597,7 @@
 	"emailsubject": "عنوان:",
 	"emailmessage": ":پیغام",
 	"emailsend": "كِل كردن/ارسال",
-	"emailccme": "رونوشت پیغام را برایم بفرست.",
+	"emailccme": "رونوشت پیغام را برایم بفرست",
 	"emailccsubject": "رونوشت پیغام شما به $1: $2",
 	"emailsent": "ایمیل کِل بی",
 	"emailsenttext": "پیام ایمیل شما فرستاده شد.",

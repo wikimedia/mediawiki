@@ -2213,7 +2213,7 @@
 	"emailsubject": "Tiêu đề:",
 	"emailmessage": "Nội dung:",
 	"emailsend": "Gửi",
-	"emailccme": "Gửi cho tôi bản sao của thư này.",
+	"emailccme": "Gửi cho tôi bản sao của thư này",
 	"emailccsubject": "Bản sao của thư gửi cho $1: $2",
 	"emailsent": "Đã gửi",
 	"emailsenttext": "Thư của bạn đã được gửi.",

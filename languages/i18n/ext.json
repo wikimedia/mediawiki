@@ -911,7 +911,7 @@
 	"emailsubject": "Tema:",
 	"emailmessage": "Mensaji:",
 	"emailsend": "Envial",
-	"emailccme": "Envialmi una copia el mensahi.",
+	"emailccme": "Envialmi una copia el mensahi",
 	"emailccsubject": "Copia el tu mensahi a $1: $2",
 	"emailsent": "E-mail enviau",
 	"emailsenttext": "Se á enviau el tu mensahi pol e-mail.",

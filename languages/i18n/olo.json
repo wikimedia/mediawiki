@@ -2087,7 +2087,7 @@
 	"emailsubject": "Tiemu:",
 	"emailmessage": "Viesti:",
 	"emailsend": "Työnnä",
-	"emailccme": "Työnnä minule koupii viestis.",
+	"emailccme": "Työnnä minule koupii viestis",
 	"emailccsubject": "Koupii sinun viestis adresile $1: $2",
 	"emailsent": "Sähköpoštuviesti on työtty",
 	"emailsenttext": "Sinun sähköpoštuviesti on työtty.",

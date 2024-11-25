@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"BivutiChakma"
+			"BivutiChakma",
+			"Joychangma"
 		]
 	},
 	"sunday": "𑄢𑄧𑄝𑄨𑄝𑄢𑄴",
@@ -541,6 +542,8 @@
 	"whatlinkshere-submit": "𑄡",
 	"ipbreason": "𑄇𑄢𑄧𑄚𑄴:",
 	"block-reason": "𑄇𑄢𑄧𑄚𑄴:",
+	"block-confirm-yes": "𑄃𑄳𑄃𑄧𑄘𑄬",
+	"block-confirm-no": "𑄚𑄳𑄦𑄘𑄬",
 	"autoblocklist-submit": "𑄖𑄮𑄉𑄚",
 	"blocklist-reason": "𑄇𑄢𑄧𑄚𑄴",
 	"ipblocklist-submit": "𑄖𑄮𑄉𑄚",

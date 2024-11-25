@@ -292,6 +292,7 @@
 	"config-install-success": "MediaWiki o l'é stæto instalòu coretaménte. Òua ti ti pêu vixitâ <$1$2> pe védde a tò wiki.\nSe ti t'æ de domànde, contròlla a nòstra FAQ: <https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ> o adêuvia 'n di forum de sùporto riepìloghæ in sce quélla pàgina.",
 	"config-install-db-success": "A bànca dæti a l'é stæta configurâ con sucèsso.",
 	"config-install-generic": "In ezecuçión o cónpito \"$1\"",
+	"config-install-external-domains": "Creaçión de bànche dæti estèrne",
 	"config-download-localsettings": "Scàrega <code>LocalSettings.php</code>",
 	"config-help": "agiùtto",
 	"config-help-tooltip": "sciàcca pe ingrandî",

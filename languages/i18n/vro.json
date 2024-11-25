@@ -935,7 +935,7 @@
 	"emailsubject": "Teema",
 	"emailmessage": "Sõnnom",
 	"emailsend": "Saadaq",
-	"emailccme": "Saadaq mullõ kopi mu e-kiräst.",
+	"emailccme": "Saadaq mullõ kopi mu e-kiräst",
 	"emailccsubject": "Kopi su kiräst aadrõsi pääle $1: $2",
 	"emailsent": "E-post saadõt",
 	"emailsenttext": "Sõnnom saadõt.",

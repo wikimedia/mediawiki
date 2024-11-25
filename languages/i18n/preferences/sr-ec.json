@@ -35,7 +35,7 @@
 	"prefs-memberingroups": "{{GENDER:$2|Члан|Чланица}} {{PLURAL:$1|групе|група}}:",
 	"group-membership-link-with-expiry": "$1 (до $2)",
 	"prefs-edits": "Број измена:",
-	"prefs-registration": "Време регистрације:",
+	"prefs-registration": "Датум регистрације:",
 	"yourrealname": "Право име:",
 	"prefs-help-realname": "Право име није обавезно.\nАко га унесете, биће коришћено за приписивање рада.",
 	"yourpassword": "Лозинка:",

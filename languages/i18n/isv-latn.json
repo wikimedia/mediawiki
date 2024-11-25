@@ -2133,7 +2133,7 @@
 	"emailsubject": "Prědmet:",
 	"emailmessage": "Soobčenje:",
 	"emailsend": "Izslati",
-	"emailccme": "Poslati mi kopiju mojego soobčenja.",
+	"emailccme": "Poslati mi kopiju mojego soobčenja",
 	"emailccsubject": "Kopija vašego soobčenja za $1: $2",
 	"emailsent": "E-pismo jest izslano",
 	"emailsenttext": "Vaše soobčenje jest izslano.",

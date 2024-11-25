@@ -88,5 +88,6 @@
 	"rest-unsupported-language-conversion": "המרת שפה לא נתמכת: מהתסדיר $1 לתסדיר $2",
 	"rest-unknown-content-model": "מודל תוכן לא ידוע: $1",
 	"rest-page-bundle-validation-error": "PageBundle אינו תואם ל־contentVersion‏: $1",
-	"rest-param-desc-revision-id": "מזהה גרסה"
+	"rest-param-desc-revision-id": "מזהה גרסה",
+	"rest-param-desc-update-source": "תוכן הדך בתסדיר שצוין על־ידי המאפיין content_model"
 }

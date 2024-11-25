@@ -2150,7 +2150,7 @@
 	"emailsubject": "Subjecto:",
 	"emailmessage": "Message:",
 	"emailsend": "Inviar",
-	"emailccme": "Inviar me un copia de mi message.",
+	"emailccme": "Inviar me un copia de mi message",
 	"emailccsubject": "Copia de tu message a $1: $2",
 	"emailsent": "E-mail inviate",
 	"emailsenttext": "Tu message de e-mail ha essite inviate.",

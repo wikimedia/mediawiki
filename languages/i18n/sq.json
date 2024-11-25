@@ -1773,7 +1773,7 @@
 	"emailsubject": "Subjekti:",
 	"emailmessage": "Porosia:",
 	"emailsend": "Dërgo",
-	"emailccme": "Ma dërgo edhe mua një kopje të këtij emaili.",
+	"emailccme": "Ma dërgo edhe mua një kopje të këtij emaili",
 	"emailccsubject": "Kopje e emailit tuaj për $1: $2",
 	"emailsent": "Email-i u dërgua",
 	"emailsenttext": "Email-i është dërguar.",

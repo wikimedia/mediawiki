@@ -1890,7 +1890,7 @@
 	"emailsubject": "Suheto:",
 	"emailmessage": "Mensahe:",
 	"emailsend": "Ipatulod",
-	"emailccme": "Esuratannak iti kopia ti mensahek.",
+	"emailccme": "Esuratannak iti kopia ti mensahek",
 	"emailccsubject": "Kopia ti mensahem kenni $1: $2",
 	"emailsent": "Naipatuloden ti esurat",
 	"emailsenttext": "Naipatuloden ti esurat a mensahem.",

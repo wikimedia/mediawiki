@@ -2535,6 +2535,8 @@
 	"block-options-description": "Quéste çèrnie poriéivan agiutâte a controlâ st'uténte chi, de mòddo da prevegnî di problêmi futûri.",
 	"block-reason": "Raxón:",
 	"block-reason-other": "Raxoìn âtre ò de ciù",
+	"block-confirm-yes": "Scì",
+	"block-confirm-no": "No",
 	"block-success": "[[Special:Contributions/$1|$1]] o l'é stæto blocòu. Védde a [[Special:BlockList|lìsta di blòcchi]] pe amiâli tórna.",
 	"block-user-active-blocks": "Blòcchi atîvi",
 	"block-user-no-active-blocks": "No l'é stæto atrovòu di blòcchi atîvi",

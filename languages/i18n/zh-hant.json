@@ -2661,6 +2661,8 @@
 	"block-options-description": "這些選項可幫助您監視此使用者，以防止進一步的問題。",
 	"block-reason": "原因：",
 	"block-reason-other": "額外或其他原因",
+	"block-confirm-yes": "是",
+	"block-confirm-no": "否",
 	"block-success": "[[Special:Contributions/$1|$1]]已經被封鎖。參見[[Special:BlockList|封鎖清單]]以檢查目前的封鎖。",
 	"block-user-active-blocks": "生效封鎖",
 	"block-user-no-active-blocks": "沒有找到生效的封鎖",

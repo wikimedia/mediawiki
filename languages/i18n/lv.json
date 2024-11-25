@@ -1733,7 +1733,7 @@
 	"emailsubject": "Temats:",
 	"emailmessage": "Vēstījums:",
 	"emailsend": "Nosūtīt",
-	"emailccme": "Atsūtīt man uz e-pastu mana ziņojuma kopiju.",
+	"emailccme": "Atsūtīt man uz e-pastu mana ziņojuma kopiju",
 	"emailccsubject": "Ziņojuma kopija $1: $2",
 	"emailsent": "E-pasts nosūtīts",
 	"emailsenttext": "Tavs e-pasts ir nosūtīts.",

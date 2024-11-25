@@ -2166,7 +2166,7 @@
 	"emailsubject": "Assumpte:",
 	"emailmessage": "Missatge:",
 	"emailsend": "Envia",
-	"emailccme": "Envia’m una còpia del meu missatge.",
+	"emailccme": "Envia’m una còpia del meu missatge",
 	"emailccsubject": "Còpia del vostre missatge a $1: $2",
 	"emailsent": "Correu electrònic enviat",
 	"emailsenttext": "S'ha enviat el vostre correu electrònic.",

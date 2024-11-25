@@ -1773,7 +1773,7 @@
 	"emailsubject": "Suġġett:",
 	"emailmessage": "Messaġġ:",
 	"emailsend": "Ibgħat",
-	"emailccme": "Ibgħatli kopja tal-messaġġ tiegħi.",
+	"emailccme": "Ibgħatli kopja tal-messaġġ tiegħi",
 	"emailccsubject": "Kopja tal-messaġġ tiegħek lil $1: $2",
 	"emailsent": "Il-messaġġ intbagħat",
 	"emailsenttext": "Il-messaġġ bil-posta elettronika intbagħat.",

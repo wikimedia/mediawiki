@@ -1765,7 +1765,7 @@
 	"emailsubject": "Subjeck:",
 	"emailmessage": "Message:",
 	"emailsend": "Send",
-	"emailccme": "Wab-mail me ae copie o ma message.",
+	"emailccme": "Wab-mail me ae copie o ma message",
 	"emailccsubject": "Copie o yer message til $1: $2",
 	"emailsent": "Wab-mail sent",
 	"emailsenttext": "Yer wab-mail message haes been sent.",

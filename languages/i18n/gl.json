@@ -2557,6 +2557,8 @@
 	"block-options-description": "Estas opcións poden axudarche a supervisar este usuario para evitar máis problemas.",
 	"block-reason": "Motivo:",
 	"block-reason-other": "Outro motivo",
+	"block-confirm-yes": "Si",
+	"block-confirm-no": "Non",
 	"block-success": "[[Special:Contributions/$1|$1]] foi bloqueado. Olla a [[Special:BlockList|lista de bloqueos]] para revisar os bloqueos.",
 	"block-user-active-blocks": "Bloqueos activos",
 	"block-user-no-active-blocks": "Non se atoparon bloqueos activos",

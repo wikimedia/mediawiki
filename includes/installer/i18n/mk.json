@@ -297,6 +297,7 @@
 	"config-install-success": "МедијаВики е успешно воспоставен. Сега можете да појдете на <$1$2> за да го погледате вашето вики.\nАко имате какви било прашања, погледајте го списокот на често поставувани прашања:\n<https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ> или појдете на еден од форумите за поддршка наведени на таа страница.",
 	"config-install-db-success": "Базата е успешно поставена",
 	"config-install-generic": "Ја извршувам задачата „$1“",
+	"config-install-external-domains": "Создавање на надворешни бази",
 	"config-download-localsettings": "Преземи го <code>LocalSettings.php</code>",
 	"config-help": "помош",
 	"config-help-tooltip": "стиснете да расклопите",

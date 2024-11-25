@@ -312,6 +312,7 @@
 	"config-install-success": "لقد تم تثبيت ميدياويكي بنجاح; يمكنك الآن \nزيارة <$1$2> لعرض الويكي الخاص بك; \nإذا كانت لديك أسئلة، فاطلع على قائمة الأسئلة الشائعة: \n<https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ>> أو استخدم أحد \nمنتديات الدعم المرتبطة بهذه الصفحة.",
 	"config-install-db-success": "تم إعداد قاعدة البيانات بنجاح",
 	"config-install-generic": "تشغيل المهمة \"$1\"",
+	"config-install-external-domains": "إنشاء قواعد بيانات خارجية",
 	"config-download-localsettings": "تنزيل <code>LocalSettings.php</code>",
 	"config-help": "مساعدة",
 	"config-help-tooltip": "اضغط للتوسيع",

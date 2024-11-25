@@ -912,7 +912,7 @@
 	"emailsubject": "主題",
 	"emailmessage": "消息",
 	"emailsend": "發出",
-	"emailccme": "搦我嗰消息嗰副本發到我嗰郵箱。",
+	"emailccme": "搦我嗰消息嗰副本發到我嗰郵箱",
 	"emailccsubject": "拿倷嗰消息複製到 $1: $2",
 	"emailsent": "email發出哩",
 	"emailsenttext": "汝嗰email發出哩。",

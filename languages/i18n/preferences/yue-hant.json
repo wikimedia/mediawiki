@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"H78c67c",
+			"Juwan",
 			"Ktchankt",
 			"Winston Sung",
 			"Yueman",
@@ -25,7 +26,7 @@
 	"group-membership-link-with-expiry": "$1 （直到 $2）",
 	"prefs-edits": "編輯數:",
 	"prefs-registration": "註冊時間:",
-	"yourrealname": "真名:",
+	"yourrealname": "真名：",
 	"prefs-help-realname": "真名可以揀填定唔填。\n如果你畀埋佢，可能會用佢嚟標示你嘅貢獻。",
 	"yourpassword": "密碼:",
 	"prefs-resetpass": "改密碼",

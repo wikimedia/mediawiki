@@ -2232,7 +2232,7 @@
 	"emailsubject": "Ämne:",
 	"emailmessage": "Meddelande:",
 	"emailsend": "Skicka",
-	"emailccme": "Skicka en kopia av meddelandet till mig.",
+	"emailccme": "Skicka en kopia av meddelandet till mig",
 	"emailccsubject": "Kopia av ditt meddelande till $1: $2",
 	"emailsent": "E-post har nu skickats",
 	"emailsenttext": "Ditt e-postmeddelande har skickats",

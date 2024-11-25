@@ -1974,7 +1974,7 @@
 	"emailsubject": "Fyrirsögn:",
 	"emailmessage": "Skilaboð:",
 	"emailsend": "Senda",
-	"emailccme": "Senda mér tölvupóst með afriti af mínum skeytum.",
+	"emailccme": "Senda mér tölvupóst með afriti af mínum skeytum",
 	"emailccsubject": "Afrit af skilaboðinu þínu til $1: $2",
 	"emailsent": "Sending tókst",
 	"emailsenttext": "Skilaboðin þín hafa verið send.",

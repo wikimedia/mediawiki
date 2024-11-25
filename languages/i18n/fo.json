@@ -1321,7 +1321,7 @@
 	"emailsubject": "Evni:",
 	"emailmessage": "Boð:",
 	"emailsend": "Send",
-	"emailccme": "Send mær avrit av mínum boðum.",
+	"emailccme": "Send mær avrit av mínum boðum",
 	"emailccsubject": "Avrit av tínum boðum til $1: $2",
 	"emailsent": "T-postur sendur",
 	"emailsenttext": "Títt t-post boð er sent.",

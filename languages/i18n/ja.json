@@ -2294,7 +2294,7 @@
 	"emailsubject": "件名:",
 	"emailmessage": "本文:",
 	"emailsend": "送信",
-	"emailccme": "自分宛に控えを送信する。",
+	"emailccme": "自分宛に控えを送信する",
 	"emailccsubject": "$1 に送信したメールの控え: $2",
 	"emailsent": "メールを送信しました",
 	"emailsenttext": "メールを送信しました。",

@@ -1937,7 +1937,7 @@
 	"emailsubject": "Emne:",
 	"emailmessage": "Melding:",
 	"emailsend": "Send",
-	"emailccme": "Send meg ein kopi av meldinga mi.",
+	"emailccme": "Send meg ein kopi av meldinga mi",
 	"emailccsubject": "Kopi av meldinga di til $1: $2",
 	"emailsent": "E-posten er sendt",
 	"emailsenttext": "E-posten er sendt.",

@@ -2647,6 +2647,8 @@
 	"block-options-description": "Bu seçenekler, başka sorunları önlemek için bu kullanıcıyı izlemenize yardımcı olabilir.",
 	"block-reason": "Sebep:",
 	"block-reason-other": "Ek ya da başka bir gerekçe",
+	"block-confirm-yes": "Evet",
+	"block-confirm-no": "Hayır",
 	"block-success": "[[Special:Contributions/$1|$1]] engellendi. Engellemeleri gözden geçirmek için [[Special:BlockList|engelleme listesine]] bakın.",
 	"block-user-active-blocks": "Etkin engellemeler",
 	"block-user-no-active-blocks": "Etkin engelleme bulunamadı",

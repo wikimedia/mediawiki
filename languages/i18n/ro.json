@@ -2156,7 +2156,7 @@
 	"emailsubject": "Subiect:",
 	"emailmessage": "Mesaj:",
 	"emailsend": "Trimite",
-	"emailccme": "Trimite-mi pe e-mail o copie a mesajului meu.",
+	"emailccme": "Trimite-mi pe e-mail o copie a mesajului meu",
 	"emailccsubject": "O copie a mesajului la $1: $2",
 	"emailsent": "E-mail trimis",
 	"emailsenttext": "E-mailul dumneavoastră a fost trimis.",

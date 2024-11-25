@@ -2071,7 +2071,7 @@
 	"emailsubject": "Gaia:",
 	"emailmessage": "Mezua:",
 	"emailsend": "Mezua",
-	"emailccme": "Mezu honen kopia bat niri bidali.",
+	"emailccme": "Mezu honen kopia bat niri bidali",
 	"emailccsubject": "Zure mezuaren kopia $1(r)i: $2",
 	"emailsent": "Mezua bidali da",
 	"emailsenttext": "Zure mezu elektronikoa bidali da.",

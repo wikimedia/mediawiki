@@ -2119,7 +2119,7 @@
 	"emailsubject": "Tem:",
 	"emailmessage": "Kirjeine:",
 	"emailsend": "Oigenda",
-	"emailccme": "Oigenda minei minun email-kirjeižen kopii.",
+	"emailccme": "Oigenda minei minun email-kirjeižen kopii",
 	"emailccsubject": "Sinun kirjeižen kopii $1: $2",
 	"emailsent": "Email-kirjeine om oigetud",
 	"emailsenttext": "Sinun email-kirjeine oli oigetud.",

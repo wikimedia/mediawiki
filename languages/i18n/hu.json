@@ -2582,6 +2582,8 @@
 	"block-options-description": "Ezek a beállítások segíthetnek ennek a felhasználónak a figyelemmel követésében, megelőzendő a jövőbeli problémákat.",
 	"block-reason": "Indoklás:",
 	"block-reason-other": "További vagy egyéb ok",
+	"block-confirm-yes": "Igen",
+	"block-confirm-no": "Nem",
 	"block-success": "„[[Special:Contributions/$1|$1]]” felhasználót blokkoltad. Lásd a [[Special:BlockList|blokkok listáját]] az érvényben lévő blokkok áttekintéséhez.",
 	"block-user-active-blocks": "Aktív blokkok",
 	"block-user-no-active-blocks": "Nem található aktív blokk",

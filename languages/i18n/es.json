@@ -2385,7 +2385,7 @@
 	"emailsubject": "Asunto:",
 	"emailmessage": "Mensaje:",
 	"emailsend": "Enviar",
-	"emailccme": "Enviarme una copia de mi mensaje.",
+	"emailccme": "Enviarme una copia de mi mensaje",
 	"emailccsubject": "Copia de tu mensaje a $1: $2",
 	"emailsent": "Correo electrónico enviado",
 	"emailsenttext": "Se ha enviado tu mensaje de correo electrónico.",

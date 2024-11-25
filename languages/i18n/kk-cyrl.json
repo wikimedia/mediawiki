@@ -2815,6 +2815,7 @@
 	"confirm-purge-bottom": "Беттің бүркемесінің тазартылуынан кейін соңғы нұсқалары көрінеді.",
 	"confirm-watch-button": "OK",
 	"confirm-watch-top": "Бұл бетті бақылау тізіміңізге қосқыңыз келе ме?",
+	"watchlist-expiry-options": "Мәңгі:infinite,1 апта:1 week,1 ай:1 month,3 ай:3 months,6 ай:6 months,1 жыл:1 year",
 	"confirm-unwatch-button": "OK",
 	"confirm-unwatch-top": "Бұл бетті бақылау тізіміңізден аластағыңыз келе ме?",
 	"confirm-rollback-button": "OK",

@@ -2053,7 +2053,7 @@
 	"emailsubject": "Predmet:",
 	"emailmessage": "Správa:",
 	"emailsend": "Odoslať",
-	"emailccme": "Pošli mi e-mailom kópiu mojej správy.",
+	"emailccme": "Pošli mi e-mailom kópiu mojej správy",
 	"emailccsubject": "Kópia správy pre $1: $2",
 	"emailsent": "E-mail bol odoslaný",
 	"emailsenttext": "Vaša e-mailová správa bola odoslaná.",

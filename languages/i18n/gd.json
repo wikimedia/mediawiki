@@ -1559,7 +1559,7 @@
 	"emailsubject": "Cuspair:",
 	"emailmessage": "Teachdaireachd:",
 	"emailsend": "Cuir",
-	"emailccme": "Cuir lethbhreac dhen phost-d thugam.",
+	"emailccme": "Cuir lethbhreac dhen phost-d thugam",
 	"emailccsubject": "Lethbhreac dhen teachdaireachd agad gu $1: $2",
 	"emailsent": "Post-d air a chur",
 	"emailsenttext": "Chaidh an teachdaireachd puist-d agad a chur.",

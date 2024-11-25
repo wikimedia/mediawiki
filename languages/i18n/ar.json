@@ -2643,6 +2643,8 @@
 	"block-options-description": "قد تساعدك هذه الخيارات في مراقبة هذا المستخدم، لمنع حدوث مشكلات أخرى.",
 	"block-reason": "السبب:",
 	"block-reason-other": "سبب إضافي أو سبب آخر",
+	"block-confirm-yes": "نعم",
+	"block-confirm-no": "لا",
 	"block-success": "تم منع [[Special:Contributions/$1|$1]]. راجع [[Special:BlockList|قائمة المنع]] لمراجعة المنع.",
 	"block-user-active-blocks": "المنع النشط",
 	"block-user-no-active-blocks": "لا منع نشط",

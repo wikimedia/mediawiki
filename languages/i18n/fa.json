@@ -2236,7 +2236,7 @@
 	"emailsubject": "عنوان:",
 	"emailmessage": "پیام:",
 	"emailsend": "ارسال",
-	"emailccme": "یک رونوشت از پیام خودم به من ایمیل کن.",
+	"emailccme": "یک رونوشت از پیام خودم به من ایمیل کن",
 	"emailccsubject": "رونوشت پیام شما به $1: $2",
 	"emailsent": "ایمیل ارسال شد",
 	"emailsenttext": "پیام ایمیل شما فرستاده شد.",

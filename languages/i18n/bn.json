@@ -2582,6 +2582,8 @@
 	"block-options-description": "আরও সমস্যা এড়াতে, এই বিকল্পগুলি আপনাকে এই ব্যবহারকারীকে পর্যবেক্ষণ করতে সাহায্য করতে পারে।",
 	"block-reason": "কারণ:",
 	"block-reason-other": "অতিরিক্ত বা অন্য কারণ",
+	"block-confirm-yes": "হ্যাঁ",
+	"block-confirm-no": "না",
 	"block-success": "[[Special:Contributions/$1|$1]]-কে বাধা দেওয়া হয়েছে। বাধাদানগুলি পুনর্বিবেচনা করতে [[Special:BlockList|বাধাদানের তালিকাটি]] দেখুন।",
 	"block-user-active-blocks": "সক্রিয় বাধা",
 	"block-user-previous-blocks": "বাধাদানের লগ",

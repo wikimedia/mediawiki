@@ -1227,7 +1227,7 @@
 	"emailsubject": "Afer:",
 	"emailmessage": "Mensache:",
 	"emailsend": "Ninviar",
-	"emailccme": "Ninviar-me una copia d'o mío mensache.",
+	"emailccme": "Ninviar-me una copia d'o mío mensache",
 	"emailccsubject": "Copia d'o suyo mensache ta $1: $2",
 	"emailsent": "Mensache de correu ninviato",
 	"emailsenttext": "S'ha ninviato o suyo correu.",

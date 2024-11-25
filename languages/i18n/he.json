@@ -2576,6 +2576,8 @@
 	"block-options-description": "האפשרויות האלו עשויות לעזור לך לעקוב אחר המשתמש הזה כדי למנוע בעיות נוספות.",
 	"block-reason": "סיבה:",
 	"block-reason-other": "סיבה נוספת או אחרת",
+	"block-confirm-yes": "כן",
+	"block-confirm-no": "לא",
 	"block-success": "[[Special:Contributions/$1|$1]] {{GENDER:$1|נחסם|נחסמה}}. ר' את [[Special:BlockList|רשימת החסימות]] כדי לסקור חסימות.",
 	"block-user-active-blocks": "חסימות פעילות",
 	"block-user-no-active-blocks": "לא נמצאו חסימות פעילות",

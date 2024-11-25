@@ -1906,7 +1906,7 @@
 	"emailsubject": "主題:",
 	"emailmessage": "信息:",
 	"emailsend": "傳送",
-	"emailccme": "傳送一個我嘅信息電郵畀我。",
+	"emailccme": "傳送一個我嘅信息電郵畀我",
 	"emailccsubject": "你畀$1: $2封信嘅副本",
 	"emailsent": "電郵已傳送",
 	"emailsenttext": "你嘅電郵信息已傳送。",

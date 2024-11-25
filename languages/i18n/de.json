@@ -2648,6 +2648,8 @@
 	"block-options-description": "Diese Optionen können dir dabei helfen, diesen Benutzer im Blick zu behalten, um weitere Probleme zu vermeiden.",
 	"block-reason": "Grund:",
 	"block-reason-other": "Zusätzlicher oder anderer Grund",
+	"block-confirm-yes": "Ja",
+	"block-confirm-no": "Nein",
 	"block-success": "[[Special:Contributions/$1|$1]] wurde gesperrt. Siehe die [[Special:BlockList|Liste aller Sperren]], um Sperren zu überprüfen.",
 	"block-user-active-blocks": "Aktive Sperren",
 	"block-user-no-active-blocks": "Keine aktiven Sperren gefunden",

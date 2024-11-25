@@ -2200,7 +2200,7 @@
 	"emailsubject": "Emne:",
 	"emailmessage": "Beskjed:",
 	"emailsend": "Send",
-	"emailccme": "Send meg en kopi av beskjeden min.",
+	"emailccme": "Send meg en kopi av beskjeden min",
 	"emailccsubject": "Kopi av din beskjed til $1: $2",
 	"emailsent": "E-post sendt",
 	"emailsenttext": "E-postbeskjeden er sendt",

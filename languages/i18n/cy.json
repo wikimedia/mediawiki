@@ -2043,7 +2043,7 @@
 	"emailsubject": "Pwnc:",
 	"emailmessage": "Neges:",
 	"emailsend": "Anfon",
-	"emailccme": "Anfoner gopi o'r neges e-bost ataf.",
+	"emailccme": "Anfoner gopi o'r neges e-bost ataf",
 	"emailccsubject": "Copi o'ch neges at $1: $2",
 	"emailsent": "Anfonwyd e-bost",
 	"emailsenttext": "Mae eich neges e-bost wedi cael ei hanfon.",

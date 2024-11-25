@@ -1943,7 +1943,7 @@
 	"emailsubject": "Naslov:",
 	"emailmessage": "Poruka:",
 	"emailsend": "Pošalji",
-	"emailccme": "Pošalji mi kopiju moje poruke e-poštom.",
+	"emailccme": "Pošalji mi kopiju moje poruke e-poštom",
 	"emailccsubject": "Kopija Vaše poruke korisniku/-ci $1: $2",
 	"emailsent": "Poruka poslata",
 	"emailsenttext": "Vaša poruka je poslata e-poštom.",

@@ -2172,7 +2172,7 @@
 	"emailsubject": "Perkara:",
 	"emailmessage": "Pesanan:",
 	"emailsend": "Kirim",
-	"emailccme": "Kirim salinan mesej ini kepada saya.",
+	"emailccme": "Kirim salinan mesej ini kepada saya",
 	"emailccsubject": "Salinan bagi mesej anda kepada $1: $2",
 	"emailsent": "E-mel dikirim",
 	"emailsenttext": "E-mel anda telah dikirim.",

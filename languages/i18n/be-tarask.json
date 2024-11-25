@@ -2114,7 +2114,7 @@
 	"emailsubject": "Тэма:",
 	"emailmessage": "Паведамленьне:",
 	"emailsend": "Даслаць",
-	"emailccme": "Даслаць мне копію ліста.",
+	"emailccme": "Даслаць мне копію ліста",
 	"emailccsubject": "Копія вашага паведамленьня да $1: $2",
 	"emailsent": "Ліст адасланы",
 	"emailsenttext": "Ваш ліст быў адасланы.",

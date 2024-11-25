@@ -1517,7 +1517,7 @@
 	"emailsubject": "Mada:",
 	"emailmessage": "Ujumbe:",
 	"emailsend": "Tuma",
-	"emailccme": "Tuma nakala ya barua yangu ya pepe kwangu.",
+	"emailccme": "Tuma nakala ya barua yangu ya pepe kwangu",
 	"emailccsubject": "Nakala ya barua pepe uliotuma kwa $1: $2",
 	"emailsent": "Barua pepe imetumwa",
 	"emailsenttext": "Barua pepe yako imetumwa.",

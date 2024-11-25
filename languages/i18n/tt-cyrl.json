@@ -2104,7 +2104,7 @@
 	"emailsubject": "Тема:",
 	"emailmessage": "Хәбәр:",
 	"emailsend": "Җибәрү",
-	"emailccme": "Миңа хатның күчерелмәсе җибәрелсен.",
+	"emailccme": "Миңа хатның күчерелмәсе җибәрелсен",
 	"emailccsubject": "$1 өчен хәбәрегезнең күчермәсе: $2",
 	"emailsent": "Хат җибәрелде",
 	"emailsenttext": "E-mail хатыгыз җиберелде.",

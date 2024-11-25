@@ -1732,6 +1732,8 @@
 	"block-expiry-custom-years": "سال",
 	"block-options": "اضافی اختیارات:",
 	"block-reason": "سبب:",
+	"block-confirm-yes": "جیا",
+	"block-confirm-no": "کو",
 	"block-user-active-blocks": "فعال بلاک",
 	"block-user-previous-blocks": "پابندی دی لاگ",
 	"block-user-no-previous-blocks": "کوئی پچھلے بلاک کائنی لبھے",
