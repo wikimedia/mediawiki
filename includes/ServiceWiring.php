@@ -2145,7 +2145,7 @@ return [
 			'args' => [
 				[
 					'name' => 'fallback',
-					'styles' => [ 'mediawiki.skinning.interface' ],
+					'styles' => [ 'mediawiki.skinning.interface', 'mediawiki.codex.messagebox.styles' ],
 					'supportsMwHeading' => true,
 					'templateDirectory' => __DIR__ . '/skins/templates/fallback',
 				]
