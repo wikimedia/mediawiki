@@ -26,7 +26,6 @@ namespace MediaWiki\Feed;
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Title\Title;
 use MediaWiki\Utils\UrlUtils;
 
 /**
@@ -39,7 +38,7 @@ use MediaWiki\Utils\UrlUtils;
  * @ingroup Feed
  */
 class FeedItem {
-	/** @var Title */
+	/** @var string */
 	public $title;
 
 	/** @var string */
@@ -66,7 +65,7 @@ class FeedItem {
 	protected UrlUtils $urlUtils;
 
 	/**
-	 * @param string|Title $title Item's title
+	 * @param string $title Item's title
 	 * @param string $description
 	 * @param string $url URL uniquely designating the item.
 	 * @param string $date Item's date
