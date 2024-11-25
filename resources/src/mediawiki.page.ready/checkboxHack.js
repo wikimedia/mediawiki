@@ -163,19 +163,8 @@ function updateAriaExpanded( checkbox, button ) {
  */
 function setCheckedState( checkbox, checked ) {
 	checkbox.checked = checked;
-	// Chrome and Firefox sends the builtin Event with .bubbles == true and .composed == true.
-	/** @type {Event} */
-	let e;
-	if ( typeof Event === 'function' ) {
-		e = new Event( 'input', { bubbles: true, composed: true } );
-	} else {
-		// IE 9-11, FF 6-10, Chrome 9-14, Safari 5.1, Opera 11.5, Android 3-4.3
-		e = document.createEvent( 'CustomEvent' );
-		if ( !e ) {
-			return;
-		}
-		e.initCustomEvent( 'input', true /* canBubble */, false, false );
-	}
+
+	const e = new Event( 'input', { bubbles: true, composed: true } );
 	checkbox.dispatchEvent( e );
 }
 
