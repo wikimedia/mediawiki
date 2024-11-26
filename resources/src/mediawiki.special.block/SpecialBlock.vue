@@ -31,7 +31,6 @@
 			@input="store.alreadyBlocked = false"
 		></user-lookup>
 		<block-log
-			v-if="blockEnableMultiblocks"
 			:key="`${submitCount}-active`"
 			block-log-type="active"
 		></block-log>
@@ -108,7 +107,6 @@ module.exports = exports = defineComponent( {
 	setup() {
 		const store = useBlockStore();
 		store.$reset();
-		const blockEnableMultiblocks = mw.config.get( 'blockEnableMultiblocks' ) || false;
 		const blockShowSuppressLog = mw.config.get( 'blockShowSuppressLog' ) || false;
 		const success = ref( false );
 		const { formErrors, formSubmitted } = storeToRefs( store );
@@ -187,7 +185,6 @@ module.exports = exports = defineComponent( {
 			success,
 			submitCount,
 			submitButtonMessage,
-			blockEnableMultiblocks,
 			blockShowSuppressLog,
 			confirmationOpen,
 			onFormSubmission,
