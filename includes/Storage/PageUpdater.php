@@ -1257,8 +1257,6 @@ class PageUpdater {
 
 		$slots = $this->revisionStore->updateSlotsOn( $revision, $this->slotsUpdate, $dbw );
 
-		$dbw->endAtomic( __METHOD__ );
-
 		// Return the slots and revision to the caller
 		$newRevisionRecord = MutableRevisionRecord::newUpdatedRevisionRecord( $revision, $slots );
 		$status = PageUpdateStatus::newGood( [
@@ -1275,7 +1273,6 @@ class PageUpdater {
 
 			$this->buildEditResult( $newRevisionRecord, false );
 
-			// Do secondary updates once the main changes have been committed...
 			$wikiPage = $this->getWikiPage(); // TODO: use for legacy hooks only!
 			$this->prepareDerivedDataUpdater(
 				$wikiPage,
@@ -1289,8 +1286,9 @@ class PageUpdater {
 				]
 			);
 
+			// Notify the dispatcher of the PageUpdatedEvent during the transaction round
 			$this->dispatchPageUpdatedEvent();
-
+			// Schedule the secondary updates to run after the transaction round commits
 			DeferredUpdates::addUpdate(
 				$this->getAtomicSectionUpdate(
 					$dbw,
@@ -1302,6 +1300,12 @@ class PageUpdater {
 				DeferredUpdates::PRESEND
 			);
 		}
+
+		// Mark the earliest point where the transaction round can be committed in CLI mode.
+		// We want to make sure that the event was bound to a round of transactions. We also
+		// want the deferred update to enqueue similarly in both web and CLI modes, in order
+		// to simplify testing assertions.
+		$dbw->endAtomic( __METHOD__ );
 
 		return $status;
 	}
@@ -1361,10 +1365,9 @@ class PageUpdater {
 		$this->buildEditResult( $newRevisionRecord, false );
 
 		$dbw = $this->dbProvider->getPrimaryDatabase( $this->getWikiId() );
+		$dbw->startAtomic( __METHOD__ );
 
 		if ( $changed || $this->forceEmptyRevision ) {
-			$dbw->startAtomic( __METHOD__ );
-
 			// Get the latest page_latest value while locking it.
 			// Do a CAS style check to see if it's the same as when this method
 			// started. If it changed then bail out before touching the DB.
@@ -1411,12 +1414,11 @@ class PageUpdater {
 				$tags
 			);
 
-			$this->dispatchPageUpdatedEvent();
-
-			$dbw->endAtomic( __METHOD__ );
-
 			// Return the new revision to the caller
 			$status->setNewRevision( $newRevisionRecord );
+
+			// Notify the dispatcher of the PageUpdatedEvent during the transaction round
+			$this->dispatchPageUpdatedEvent();
 		} else {
 			// T34948: revision ID must be set to page {{REVISIONID}} and
 			// related variables correctly. Likewise for {{REVISIONUSER}} (T135261).
@@ -1431,7 +1433,7 @@ class PageUpdater {
 			$this->getTitle()->invalidateCache( $now );
 		}
 
-		// Do secondary updates once the main changes have been committed...
+		// Schedule the secondary updates to run after the transaction round commits.
 		// NOTE: the updates have to be processed before sending the response to the client
 		// (DeferredUpdates::PRESEND), otherwise the client may already be following the
 		// HTTP redirect to the standard view before derived data has been created - most
@@ -1447,6 +1449,12 @@ class PageUpdater {
 			),
 			DeferredUpdates::PRESEND
 		);
+
+		// Mark the earliest point where the transaction round can be committed in CLI mode.
+		// We want to make sure that the event was bound to a round of transactions. We also
+		// want the deferred update to enqueue similarly in both web and CLI modes, in order
+		// to simplify testing assertions.
+		$dbw->endAtomic( __METHOD__ );
 
 		return $status;
 	}
@@ -1534,14 +1542,12 @@ class PageUpdater {
 			$tags
 		);
 
-		$this->dispatchPageUpdatedEvent();
-
-		$dbw->endAtomic( __METHOD__ );
-
 		// Return the new revision to the caller
 		$status->setNewRevision( $newRevisionRecord );
 
-		// Do secondary updates once the main changes have been committed...
+		// Notify the dispatcher of the PageUpdatedEvent during the transaction round
+		$this->dispatchPageUpdatedEvent();
+		// Schedule the secondary updates to run after the transaction round commits
 		DeferredUpdates::addUpdate(
 			$this->getAtomicSectionUpdate(
 				$dbw,
@@ -1552,6 +1558,12 @@ class PageUpdater {
 			),
 			DeferredUpdates::PRESEND
 		);
+
+		// Mark the earliest point where the transaction round can be committed in CLI mode.
+		// We want to make sure that the event was bound to a round of transactions. We also
+		// want the deferred update to enqueue similarly in both web and CLI modes, in order
+		// to simplify testing assertions.
+		$dbw->endAtomic( __METHOD__ );
 
 		return $status;
 	}
