@@ -1357,7 +1357,6 @@ class RecentChange implements Taggable {
 		$mainConfig = $services->getMainConfig();
 		$useRCPatrol = $mainConfig->get( MainConfigNames::UseRCPatrol );
 		$useNPPatrol = $mainConfig->get( MainConfigNames::UseNPPatrol );
-		$localInterwikis = $mainConfig->get( MainConfigNames::LocalInterwikis );
 		$canonicalServer = $mainConfig->get( MainConfigNames::CanonicalServer );
 		$script = $mainConfig->get( MainConfigNames::Script );
 
