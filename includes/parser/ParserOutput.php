@@ -142,7 +142,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * @var array<string,string> Map of category names to sort keys
 	 */
-	private $mCategories;
+	private $mCategories = [];
 
 	/**
 	 * @var array<string,string> Page status indicators, usually displayed in top-right corner.
@@ -854,7 +854,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 						$result[] = [
 							'link' => new TitleValue( $ns, (string)$dbkey ),
 							'pageid' => $pageid,
-							'revid' => $this->mTemplateIds[$ns][$dbkey],
+							// default to invalid/broken revision if this is not present
+							'revid' => $this->mTemplateIds[$ns][$dbkey] ?? 0,
 						];
 					}
 				}
@@ -2901,7 +2902,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			}
 			foreach ( $this->mTemplates as $ns => $arr ) {
 				foreach ( $arr as $dbk => $page_id ) {
-					$rev_id = $this->mTemplateIds[$ns][$dbk];
+					// default to invalid/broken revision if this is not present
+					$rev_id = $this->mTemplateIds[$ns][$dbk] ?? 0;
 					$metadata->addTemplate( TitleValue::tryNew( $ns, (string)$dbk ), $page_id, $rev_id );
 				}
 			}
