@@ -21,6 +21,7 @@ use MediaWiki\Session\Session;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Stats\StatsFactory;
@@ -358,6 +359,16 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 				$this->assertTrue( Message::newFromKey( $key )->exists(),
 					"$msg: $dataName: Parameter message $key exists" );
 			}
+		}
+
+		$description = $settings[Handler::PARAM_DESCRIPTION] ?? null;
+		if ( $description && !is_string( $description ) ) {
+			$this->assertInstanceOf( MessageValue::class, $description );
+			$this->assertTrue(
+				wfMessage( $description->getKey() )->exists(),
+				'Message key of parameter description should exit: '
+				. $description->getKey()
+			);
 		}
 	}
 
