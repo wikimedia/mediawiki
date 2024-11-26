@@ -140,6 +140,29 @@ class ChangeTags {
 	public const DISPLAY_TABLE_ALIAS = 'changetagdisplay';
 
 	/**
+	 * Constants that can be used to set the `activeOnly` parameter for calling
+	 * self::buildCustomTagFilterSelect in order to improve function/parameter legibility
+	 *
+	 * If TAG_SET_ACTIVE_ONLY is used then the hit count for each tag will be checked against
+	 * and only tags with hits will be returned
+	 * Otherwise if TAG_SET_ALL is used then all tags will be returned regardlesss of if they've
+	 * ever been used or not
+	 */
+	public const TAG_SET_ACTIVE_ONLY = true;
+	public const TAG_SET_ALL = false;
+
+	/**
+	 * Constants that can be used to set the `useAllTags` parameter for calling
+	 * self::buildCustomTagFilterSelect in order to improve function/parameter legibility
+	 *
+	 * If USE_ALL_TAGS is used then all on-wiki tags will be returned
+	 * Otherwise if USE_SOFTWARE_TAGS_ONLY is used then only mediawiki core-defined tags
+	 * will be returned
+	 */
+	public const USE_ALL_TAGS = true;
+	public const USE_SOFTWARE_TAGS_ONLY = false;
+
+	/**
 	 * Loads defined core tags, checks for invalid types (if not array),
 	 * and filters for supported and enabled (if $all is false) tags only.
 	 *
@@ -725,7 +748,8 @@ class ChangeTags {
 	}
 
 	/**
-	 * Build a text box to select a change tag
+	 * Build a text box to select a change tag. The tag set can be customized via the $activeOnly
+	 * and $useAllTags parameters and defaults to all active tags.
 	 *
 	 * @param string $selected Tag to select by default
 	 * @param bool $ooui Use an OOUI TextInputWidget as selector instead of a non-OOUI input field
@@ -733,10 +757,15 @@ class ChangeTags {
 	 * @param IContextSource|null $context
 	 * @note Even though it takes null as a valid argument, an IContextSource is preferred
 	 *       in a new code, as the null value can change in the future
+	 * @param bool $activeOnly Whether to filter for tags that have been used or not
+	 * @param bool $useAllTags Whether to use all known tags or to only use software defined tags
+	 *        These map to ChangeTagsStore->listDefinedTags and ChangeTagsStore->getSoftwareTags respectively
 	 * @return array an array of (label, selector)
 	 */
 	public static function buildTagFilterSelector(
-		$selected = '', $ooui = false, ?IContextSource $context = null
+		$selected = '', $ooui = false, ?IContextSource $context = null,
+		bool $activeOnly = self::TAG_SET_ACTIVE_ONLY,
+		bool $useAllTags = self::USE_ALL_TAGS
 	) {
 		if ( !$context ) {
 			$context = RequestContext::getMain();
@@ -749,7 +778,13 @@ class ChangeTags {
 			return [];
 		}
 
-		$tags = self::getChangeTagList( $context, $context->getLanguage() );
+		$tags = self::getChangeTagList(
+			$context,
+			$context->getLanguage(),
+			$activeOnly,
+			$useAllTags
+		);
+
 		$autocomplete = [];
 		foreach ( $tags as $tagInfo ) {
 			$autocomplete[ $tagInfo['label'] ] = $tagInfo['name'];
@@ -1275,6 +1310,7 @@ class ChangeTags {
 
 	/**
 	 * Get information about change tags, without parsing messages, for tag filter dropdown menus.
+	 * By default, this will return explicitly-defined and software-defined tags that are currently active (have hits)
 	 *
 	 * Message contents are the raw values (->plain()), because parsing messages is expensive.
 	 * Even though we're not parsing messages, building a data structure with the contents of
@@ -1296,24 +1332,49 @@ class ChangeTags {
 	 *
 	 * @param MessageLocalizer $localizer
 	 * @param Language $lang
+	 * @param bool $activeOnly
+	 * @param bool $useAllTags
 	 * @return array[] Information about each tag
 	 */
-	public static function getChangeTagListSummary( MessageLocalizer $localizer, Language $lang ) {
+	public static function getChangeTagListSummary(
+		MessageLocalizer $localizer,
+		Language $lang,
+		bool $activeOnly = self::TAG_SET_ACTIVE_ONLY,
+		bool $useAllTags = self::USE_ALL_TAGS
+	) {
+		$changeTagStore = MediaWikiServices::getInstance()->getChangeTagsStore();
+
+		if ( $useAllTags ) {
+			$tagKeys = $changeTagStore->listDefinedTags();
+			$cacheKey = 'tags-list-summary';
+		} else {
+			$tagKeys = $changeTagStore->getSoftwareTags( true );
+			$cacheKey = 'core-software-tags-summary';
+		}
+
+		// if $tagHitCounts exists, check against it later to determine whether or not to omit tags
+		$tagHitCounts = null;
+		if ( $activeOnly ) {
+			$tagHitCounts = $changeTagStore->tagUsageStatistics();
+		} else {
+			// The full set of tags should use a different cache key than the subset
+			$cacheKey .= '-all';
+		}
+
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		return $cache->getWithSetCallback(
-			$cache->makeKey( 'tags-list-summary', $lang->getCode() ),
+			$cache->makeKey( $cacheKey, $lang->getCode() ),
 			WANObjectCache::TTL_DAY,
-			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $localizer ) {
-				$changeTagStore = MediaWikiServices::getInstance()->getChangeTagsStore();
-				$tagHitCounts = $changeTagStore->tagUsageStatistics();
-
+			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $localizer, $tagKeys, $tagHitCounts ) {
 				$result = [];
-				// Only list tags that are still actively defined
-				foreach ( $changeTagStore->listDefinedTags() as $tagName ) {
-					// Only list tags with more than 0 hits
-					$hits = $tagHitCounts[$tagName] ?? 0;
-					if ( $hits <= 0 ) {
-						continue;
+				foreach ( $tagKeys as $tagName ) {
+					// Only list tags that are still actively defined
+					if ( $tagHitCounts !== null ) {
+						// Only list tags with more than 0 hits
+						$hits = $tagHitCounts[$tagName] ?? 0;
+						if ( $hits <= 0 ) {
+							continue;
+						}
 					}
 
 					$labelMsg = self::tagShortDescriptionMessage( $tagName, $localizer );
@@ -1345,10 +1406,16 @@ class ChangeTags {
 	 *
 	 * @param MessageLocalizer $localizer
 	 * @param Language $lang
+	 * @param bool $activeOnly
+	 * @param bool $useAllTags
 	 * @return array[] Same as getChangeTagListSummary(), with messages parsed, stripped and truncated
 	 */
-	public static function getChangeTagList( MessageLocalizer $localizer, Language $lang ) {
-		$tags = self::getChangeTagListSummary( $localizer, $lang );
+	public static function getChangeTagList(
+		MessageLocalizer $localizer, Language $lang,
+		bool $activeOnly = self::TAG_SET_ACTIVE_ONLY, bool $useAllTags = self::USE_ALL_TAGS
+	) {
+		$tags = self::getChangeTagListSummary( $localizer, $lang, $activeOnly, $useAllTags );
+
 		foreach ( $tags as &$tagInfo ) {
 			if ( $tagInfo['labelMsg'] ) {
 				// Use localizer with the correct page title to parse plain message from the cache.
