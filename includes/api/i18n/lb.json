@@ -159,7 +159,7 @@
 	"apihelp-query+userinfo-paramvalue-prop-editcount": "Setzt d'Gesamtzuel vun den Ännerunge vum aktuelle Benotzer dobäi.",
 	"apihelp-query+userinfo-paramvalue-prop-realname": "Setzt dem Benotzer säi richtegen Numm dobäi.",
 	"apihelp-query+userinfo-paramvalue-prop-registrationdate": "Setzt de Registréierungsdatum vum Benotzer dobäi.",
-	"apihelp-query+users-paramvalue-prop-rights": "Weist all Rechter déi all Benotzer huet.",
+	"apihelp-query+users-paramvalue-prop-rights": "Weist all d'Rechter, déi jiddwer Benotzer huet.",
 	"apihelp-query+watchlist-param-user": "Nëmmen Ännerunge vun dësem Benotzer opzielen.",
 	"apihelp-query+watchlist-param-excludeuser": "Ännerunge vun dësem Benotzer net opzielen.",
 	"apihelp-query+watchlist-paramvalue-prop-title": "Setzt den Titel vun der Säit dobäi.",

@@ -29,6 +29,7 @@
 	},
 	"preferences": "Preferensi",
 	"prefsnologintext2": "Silakan masuk log untuk mengubah preferensi Anda.",
+	"prefsnologintext2-for-temp-user": "Silakan buat akun untuk mengubah preferensi.",
 	"searchprefs": "Preferensi pencarian",
 	"searchprefs-noresults": "Hasil nihil",
 	"searchprefs-results": "$1 {{PLURAL:$1|hasil}}",

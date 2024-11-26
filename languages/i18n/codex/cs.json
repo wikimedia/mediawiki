@@ -4,6 +4,8 @@
 			"Mormegil"
 		]
 	},
+	"cdx-chip-input-chip-added": "Byl přidán žeton $1.",
+	"cdx-chip-input-chip-removed": "Byl odstraněn žeton $1.",
 	"cdx-input-chip-aria-description": "Stiskněte Enter pro editaci nebo Delete pro odstranění.",
 	"cdx-dialog-close-button-label": "Zavřít",
 	"cdx-label-optional-flag": "(nepovinné)",

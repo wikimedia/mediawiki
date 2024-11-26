@@ -75,7 +75,7 @@
 	"config-admin-box": "Администраторан аккаунт",
 	"config-admin-name": "Хьан декъашхочун цӀе:",
 	"config-admin-password": "Пароль:",
-	"config-admin-password-confirm": "Кхин цӀа пароль:",
+	"config-admin-password-confirm": "Кхин цкъа пароль:",
 	"config-admin-name-blank": "Йазйе администраторан цӀе.",
 	"config-admin-name-invalid": "Йазйина декъашхочун цӀе «<nowiki>$1</nowiki>» магош йац.\nКхин декъашхочун цӀе йазйе.",
 	"config-admin-password-blank": "Администраторан аккаунтан пароль йазйе.",
