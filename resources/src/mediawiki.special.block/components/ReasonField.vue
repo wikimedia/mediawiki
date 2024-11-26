@@ -11,7 +11,7 @@
 		></cdx-select>
 
 		<cdx-text-input
-			v-model.trim="wrappedOther"
+			v-model="wrappedOther"
 			:placeholder="$i18n( 'block-reason-other' ).text()"
 			:maxlength="reasonMaxLength"
 			name="wpReason-other"
