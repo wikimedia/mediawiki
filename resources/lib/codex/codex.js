@@ -54,25 +54,25 @@ var __async = (__this, __arguments, generator) => {
   });
 };
 import { ref, onMounted, defineComponent, computed, openBlock, createElementBlock, normalizeClass, toDisplayString, createCommentVNode, Comment, warn, watch, withKeys, withModifiers, renderSlot, resolveComponent, createElementVNode, createBlock, resolveDynamicComponent, withCtx, createVNode, toRef, Fragment, renderList, createTextVNode, Transition, normalizeStyle, inject, mergeProps, getCurrentInstance, withDirectives, vModelCheckbox, createSlots, nextTick, vModelDynamic, onUnmounted, toHandlers, vShow, unref, shallowRef, getCurrentScope, onScopeDispose, shallowReadonly, Teleport, toRefs, provide, vModelRadio, vModelText } from "vue";
-const g = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', q = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', s1 = '<path d="M7 14.17 2.83 10l-1.41 1.41L7 17 19 5l-1.41-1.42z"/>', n1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0m5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', d1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', g1 = '<path d="M10 15 2 5h16z"/>', k1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', F1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', t0 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', p = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7"/>', e0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0M9 5h2v2H9zm0 4h2v6H9z"/>', z2 = '<path d="M3 1h2v18H3zm13.5 1.5L15 1l-9 9 9 9 1.5-1.5L9 10z"/>', i2 = '<path d="M15 1h2v18h-2zM3.5 2.5 11 10l-7.5 7.5L5 19l9-9-9-9z"/>', V2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', b2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', J2 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"/>', h5 = '<path d="M10 0 3 8h14zm0 18-7-8h14z"/>', M5 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20m-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10z"/>', G5 = '<path d="m10 5 8 10H2z"/>', M3 = g, S3 = q, K3 = s1, Y3 = n1, X3 = d1, l4 = g1, i4 = k1, m4 = F1, P4 = t0, Y4 = {
+const g = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', q = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', s1 = '<path d="M7 14.17 2.83 10l-1.41 1.41L7 17 19 5l-1.41-1.42z"/>', n1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0m5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', d1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', g1 = '<path d="M10 15 2 5h16z"/>', k1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', F1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', t0 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', p = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7"/>', e0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0M9 5h2v2H9zm0 4h2v6H9z"/>', z2 = '<path d="M3 1h2v18H3zm13.5 1.5L15 1l-9 9 9 9 1.5-1.5L9 10z"/>', i2 = '<path d="M15 1h2v18h-2zM3.5 2.5 11 10l-7.5 7.5L5 19l9-9-9-9z"/>', V2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', b2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', Y2 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"/>', o5 = '<path d="M10 0 3 8h14zm0 18-7-8h14z"/>', H5 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20m-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10z"/>', K5 = '<path d="m10 5 8 10H2z"/>', H3 = g, b3 = q, J3 = s1, j3 = n1, _3 = d1, n4 = g1, p4 = k1, M4 = F1, N4 = t0, j4 = {
   langCodeMap: {
     ar: p
   },
   default: e0
-}, P6 = {
+}, N6 = {
   ltr: z2,
   shouldFlip: true
-}, N6 = {
+}, O6 = {
   ltr: i2,
   shouldFlip: true
-}, j6 = {
+}, X6 = {
   ltr: V2,
   shouldFlip: true
-}, d7 = {
+}, e7 = {
   ltr: b2,
   shouldFlip: true
-}, A7 = J2, T7 = h5, O7 = M5, x8 = G5;
-function N8(c, s, h) {
+}, k7 = Y2, Z7 = o5, G7 = H5, u8 = K5;
+function Q8(c, s, h) {
   if (typeof c == "string" || "path" in c)
     return c;
   if ("shouldFlip" in c)
@@ -82,7 +82,7 @@ function N8(c, s, h) {
   const n = s in c.langCodeMap ? c.langCodeMap[s] : c.default;
   return typeof n == "string" || "path" in n ? n : n.ltr;
 }
-function O8(c, s) {
+function G8(c, s) {
   if (typeof c == "string")
     return false;
   if ("langCodeMap" in c) {
@@ -250,16 +250,14 @@ const _sfc_main$y = defineComponent({
       var _a;
       return (_a = props.lang) != null ? _a : computedLang.value;
     });
-    const rootClasses = computed(() => {
-      return {
-        "cdx-icon--flipped": overriddenDir.value === "rtl" && overriddenLang.value !== null && O8(props.icon, overriddenLang.value),
-        ["cdx-icon--".concat(props.size)]: true
-      };
-    });
+    const rootClasses = computed(() => ({
+      "cdx-icon--flipped": overriddenDir.value === "rtl" && overriddenLang.value !== null && G8(props.icon, overriddenLang.value),
+      ["cdx-icon--".concat(props.size)]: true
+    }));
     const resolvedIcon = computed(
       () => {
         var _a, _b;
-        return N8(props.icon, (_a = overriddenLang.value) != null ? _a : "", (_b = overriddenDir.value) != null ? _b : "ltr");
+        return Q8(props.icon, (_a = overriddenLang.value) != null ? _a : "", (_b = overriddenDir.value) != null ? _b : "ltr");
       }
     );
     const iconSvg = computed(() => typeof resolvedIcon.value === "string" ? resolvedIcon.value : "");
@@ -538,9 +536,9 @@ const _sfc_main$w = defineComponent({
     const onToggle = (e) => {
       isExpanded.value = e.newState === "open";
     };
-    const shouldShowActionButton = computed(() => {
-      return props.actionIcon && (isExpanded.value || props.actionAlwaysVisible);
-    });
+    const shouldShowActionButton = computed(
+      () => props.actionIcon && (isExpanded.value || props.actionAlwaysVisible)
+    );
     const rootClasses = computed(() => ({
       "cdx-accordion--has-icon": shouldShowActionButton.value
     }));
@@ -818,7 +816,7 @@ const _sfc_main$u = defineComponent({
      */
     placeholderIcon: {
       type: [String, Object],
-      default: P4
+      default: N4
     }
   },
   setup: (props) => {
@@ -1143,12 +1141,10 @@ const _sfc_main$s = defineComponent({
   },
   setup(props, { attrs }) {
     const { computedDisabled } = useFieldData(toRef(props, "disabled"));
-    const internalClasses = computed(() => {
-      return {
-        "cdx-label--visually-hidden": props.visuallyHidden,
-        "cdx-label--disabled": computedDisabled.value
-      };
-    });
+    const internalClasses = computed(() => ({
+      "cdx-label--visually-hidden": props.visuallyHidden,
+      "cdx-label--disabled": computedDisabled.value
+    }));
     const {
       rootClasses,
       rootStyle,
@@ -1267,11 +1263,9 @@ function useLabelChecker(slot, attrs, componentName) {
 function useModelWrapper(modelValueRef, emit, eventName) {
   return computed({
     get: () => modelValueRef.value,
-    set: (value) => (
-      // If eventName is undefined, then 'update:modelValue' must be a valid EventName,
-      // but TypeScript's type analysis isn't clever enough to realize that
-      emit(eventName || "update:modelValue", value)
-    )
+    // If eventName is undefined, then 'update:modelValue' must be a valid EventName,
+    // but TypeScript's type analysis isn't clever enough to realize that
+    set: (value) => emit(eventName || "update:modelValue", value)
   });
 }
 let counter = 0;
@@ -1380,17 +1374,13 @@ const _sfc_main$r = defineComponent({
       toRef(props, "disabled"),
       toRef(props, "status")
     );
-    const rootClasses = computed(() => {
-      return {
-        "cdx-checkbox--inline": props.inline,
-        ["cdx-checkbox--status-".concat(computedStatus.value)]: true
-      };
-    });
-    const customInputClasses = computed(() => {
-      return {
-        "cdx-checkbox__custom-input--inline": props.inline
-      };
-    });
+    const rootClasses = computed(() => ({
+      "cdx-checkbox--inline": props.inline,
+      ["cdx-checkbox--status-".concat(computedStatus.value)]: true
+    }));
+    const customInputClasses = computed(() => ({
+      "cdx-checkbox__custom-input--inline": props.inline
+    }));
     const input = ref();
     const checkboxId = useGeneratedId("checkbox");
     const descriptionId = useGeneratedId("description");
@@ -1527,11 +1517,9 @@ const _sfc_main$q = defineComponent({
   ],
   setup(props, { emit }) {
     const rootElement = ref();
-    const rootClasses = computed(() => {
-      return {
-        "cdx-input-chip--disabled": props.disabled
-      };
-    });
+    const rootClasses = computed(() => ({
+      "cdx-input-chip--disabled": props.disabled
+    }));
     const ariaDescription = useI18n(
       "cdx-input-chip-aria-description",
       "Press Enter to edit or Delete to remove"
@@ -1572,7 +1560,7 @@ const _sfc_main$q = defineComponent({
       rootClasses,
       ariaDescription,
       onKeydown,
-      cdxIconClose: X3
+      cdxIconClose: _3
     };
   },
   methods: {
@@ -1745,16 +1733,14 @@ const _sfc_main$p = defineComponent({
     });
     const { computedDisabled, computedStatus } = useFieldData(toRef(props, "disabled"), internalStatus);
     const isFocused = ref(false);
-    const internalClasses = computed(() => {
-      return {
-        "cdx-chip-input--has-separate-input": props.separateInput,
-        ["cdx-chip-input--status-".concat(computedStatus.value)]: true,
-        // We need focused and disabled classes on the root element, which contains the
-        // chips and the input, since it is styled to look like the input.
-        "cdx-chip-input--focused": isFocused.value,
-        "cdx-chip-input--disabled": computedDisabled.value
-      };
-    });
+    const internalClasses = computed(() => ({
+      "cdx-chip-input--has-separate-input": props.separateInput,
+      ["cdx-chip-input--status-".concat(computedStatus.value)]: true,
+      // We need focused and disabled classes on the root element, which contains the
+      // chips and the input, since it is styled to look like the input.
+      "cdx-chip-input--focused": isFocused.value,
+      "cdx-chip-input--disabled": computedDisabled.value
+    }));
     const {
       rootClasses,
       rootStyle,
@@ -2085,7 +2071,9 @@ const _sfc_main$o = defineComponent({
     }
   },
   setup: (props) => {
-    const titleChunks = computed(() => splitStringAtMatch(props.searchQuery, String(props.title)));
+    const titleChunks = computed(
+      () => splitStringAtMatch(props.searchQuery, String(props.title))
+    );
     return {
       titleChunks
     };
@@ -2248,13 +2236,12 @@ const _sfc_main$n = defineComponent({
      *
      * If included, that language code will be added as a `lang` attribute to the element
      * wrapping that text node.
+     *
      * @default {}
      */
     language: {
       type: Object,
-      default: () => {
-        return {};
-      }
+      default: () => ({})
     },
     /**
      * MenuItems inside a MenuButton can also support an "action" prop
@@ -2299,26 +2286,24 @@ const _sfc_main$n = defineComponent({
       emit("change", "selected", true);
     };
     const highlightQuery = computed(() => props.searchQuery.length > 0);
-    const rootClasses = computed(() => {
-      return {
-        "cdx-menu-item--selected": props.selected,
-        // Only show the active visual state when the menu item is both active and
-        // highlighted. This means, on mousedown -> mouseleave, the menu item is still
-        // technically tracked by the menu as active, but will not appear active to the
-        // user. This also means in the case of mousedown -> mouseleave -> mouseenter, the
-        // menu item will appear active again, and on click (releasing the mouse button),
-        // the item will be selected.
-        "cdx-menu-item--active": props.active && props.highlighted,
-        "cdx-menu-item--highlighted": props.highlighted,
-        "cdx-menu-item--destructive": props.action && props.action === "destructive",
-        "cdx-menu-item--enabled": !props.disabled,
-        "cdx-menu-item--disabled": props.disabled,
-        "cdx-menu-item--highlight-query": highlightQuery.value,
-        "cdx-menu-item--bold-label": props.boldLabel,
-        "cdx-menu-item--has-description": !!props.description,
-        "cdx-menu-item--hide-description-overflow": props.hideDescriptionOverflow
-      };
-    });
+    const rootClasses = computed(() => ({
+      "cdx-menu-item--selected": props.selected,
+      // Only show the active visual state when the menu item is both active and
+      // highlighted. This means, on mousedown -> mouseleave, the menu item is still
+      // technically tracked by the menu as active, but will not appear active to the
+      // user. This also means in the case of mousedown -> mouseleave -> mouseenter, the
+      // menu item will appear active again, and on click (releasing the mouse button),
+      // the item will be selected.
+      "cdx-menu-item--active": props.active && props.highlighted,
+      "cdx-menu-item--highlighted": props.highlighted,
+      "cdx-menu-item--destructive": props.action && props.action === "destructive",
+      "cdx-menu-item--enabled": !props.disabled,
+      "cdx-menu-item--disabled": props.disabled,
+      "cdx-menu-item--highlight-query": highlightQuery.value,
+      "cdx-menu-item--bold-label": props.boldLabel,
+      "cdx-menu-item--has-description": !!props.description,
+      "cdx-menu-item--hide-description-overflow": props.hideDescriptionOverflow
+    }));
     const contentTag = computed(() => props.url ? "a" : "span");
     const title = computed(() => props.label || String(props.value));
     return {
@@ -2330,7 +2315,7 @@ const _sfc_main$n = defineComponent({
       rootClasses,
       contentTag,
       title,
-      cdxIconCheck: K3
+      cdxIconCheck: J3
     };
   }
 });
@@ -2492,17 +2477,17 @@ const _sfc_main$m = defineComponent({
       () => !props.inline && !attrs["aria-label"] && !attrs["aria-hidden"],
       "CdxProgressBar: Progress bars require one of the following attribute, aria-label or aria-hidden. See documentation on https://doc.wikimedia.org/codex/latest/components/demos/progressbar.html"
     );
-    const rootClasses = computed(() => {
-      return {
-        "cdx-progress-bar--block": !props.inline,
-        "cdx-progress-bar--inline": props.inline,
-        "cdx-progress-bar--enabled": !props.disabled,
-        "cdx-progress-bar--disabled": props.disabled
-      };
-    });
-    const computedAriaHidden = computed(() => {
-      return props.inline ? "true" : void 0;
-    });
+    const rootClasses = computed(() => ({
+      "cdx-progress-bar--block": !props.inline,
+      "cdx-progress-bar--inline": props.inline,
+      "cdx-progress-bar--enabled": !props.disabled,
+      "cdx-progress-bar--disabled": props.disabled
+    }));
+    const computedAriaHidden = computed(
+      // Set `aria-hidden` to `true` only when `inline` prop is true.
+      // Otherwise, don't set the attribute.
+      () => props.inline ? "true" : void 0
+    );
     return {
       rootClasses,
       computedAriaHidden
@@ -2857,10 +2842,8 @@ const _sfc_main$l = defineComponent({
         return;
       }
       return computedMenuItems.value.findIndex(
-        (menuItem) => (
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          menuItem.value === highlightedMenuItem.value.value
-        )
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        (menuItem) => menuItem.value === highlightedMenuItem.value.value
       );
     });
     function handleHighlightViaKeyboard(newHighlightedMenuItem) {
@@ -2885,7 +2868,9 @@ const _sfc_main$l = defineComponent({
     }
     function highlightNext(highlightedIndex) {
       var _a;
-      const findNextEnabled = (startIndex) => computedMenuItems.value.find((item, index) => !item.disabled && index > startIndex);
+      const findNextEnabled = (startIndex) => computedMenuItems.value.find(
+        (item, index) => !item.disabled && index > startIndex
+      );
       highlightedIndex = highlightedIndex != null ? highlightedIndex : -1;
       const next = (_a = findNextEnabled(highlightedIndex)) != null ? _a : findNextEnabled(-1);
       handleHighlightViaKeyboard(next);
@@ -3152,17 +3137,13 @@ const _sfc_main$l = defineComponent({
         yield resizeMenu();
       }
     }), { deep: true });
-    const listBoxStyle = computed(() => {
-      return {
-        "max-height": maxMenuHeight.value ? "".concat(maxMenuHeight.value, "px") : void 0,
-        "margin-bottom": footerHeight.value ? "".concat(footerHeight.value, "px") : void 0
-      };
-    });
-    const internalClasses = computed(() => {
-      return {
-        "cdx-menu--has-footer": !!props.footer
-      };
-    });
+    const listBoxStyle = computed(() => ({
+      "max-height": maxMenuHeight.value ? "".concat(maxMenuHeight.value, "px") : void 0,
+      "margin-bottom": footerHeight.value ? "".concat(footerHeight.value, "px") : void 0
+    }));
+    const internalClasses = computed(() => ({
+      "cdx-menu--has-footer": !!props.footer
+    }));
     const {
       rootClasses,
       rootStyle,
@@ -3425,7 +3406,10 @@ const _sfc_main$k = defineComponent({
   inheritAttrs: false,
   expose: [
     "focus",
-    "blur"
+    "blur",
+    "checkValidity",
+    "reportValidity",
+    "setCustomValidity"
   ],
   props: {
     /**
@@ -3533,7 +3517,15 @@ const _sfc_main$k = defineComponent({
      *
      * @property {MouseEvent} event
      */
-    "clear"
+    "clear",
+    /**
+     * When the input value is invalid according to the input's constraint
+     * attributes (e.g. min, max, pattern). See:
+     * https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event
+     *
+     * @property {Event} event
+     */
+    "invalid"
   ],
   setup(props, { emit, attrs }) {
     const idAttribute = attrs.id;
@@ -3548,17 +3540,15 @@ const _sfc_main$k = defineComponent({
     );
     const descriptionId = inject(FieldDescriptionIdKey, void 0);
     const wrappedModel = useModelWrapper(toRef(props, "modelValue"), emit);
-    const isClearable = computed(() => {
-      return props.clearable && !!wrappedModel.value && !computedDisabled.value;
-    });
-    const internalClasses = computed(() => {
-      return {
-        "cdx-text-input--has-start-icon": !!props.startIcon,
-        "cdx-text-input--has-end-icon": !!props.endIcon,
-        "cdx-text-input--clearable": isClearable.value,
-        ["cdx-text-input--status-".concat(computedStatus.value)]: true
-      };
-    });
+    const isClearable = computed(
+      () => props.clearable && !!wrappedModel.value && !computedDisabled.value
+    );
+    const internalClasses = computed(() => ({
+      "cdx-text-input--has-start-icon": !!props.startIcon,
+      "cdx-text-input--has-end-icon": !!props.endIcon,
+      "cdx-text-input--clearable": isClearable.value,
+      ["cdx-text-input--status-".concat(computedStatus.value)]: true
+    }));
     const {
       rootClasses,
       rootStyle,
@@ -3568,11 +3558,9 @@ const _sfc_main$k = defineComponent({
       const _a = otherAttrs.value, { id } = _a, everythingElse = __objRest(_a, ["id"]);
       return everythingElse;
     });
-    const inputClasses = computed(() => {
-      return {
-        "cdx-text-input__input--has-value": !!wrappedModel.value
-      };
-    });
+    const inputClasses = computed(() => ({
+      "cdx-text-input__input--has-value": !!wrappedModel.value
+    }));
     const onClear = (event) => {
       wrappedModel.value = "";
       emit("clear", event);
@@ -3595,6 +3583,14 @@ const _sfc_main$k = defineComponent({
     const onBlur = (event) => {
       emit("blur", event);
     };
+    const shouldPreventDefault = ref(true);
+    const onInvalid = (event, doPreventDefault) => {
+      if (doPreventDefault) {
+        event.preventDefault();
+      }
+      emit("invalid", event);
+      shouldPreventDefault.value = true;
+    };
     return {
       computedInputId,
       descriptionId,
@@ -3611,7 +3607,9 @@ const _sfc_main$k = defineComponent({
       onKeydown,
       onFocus,
       onBlur,
-      cdxIconClear: Y3
+      onInvalid,
+      shouldPreventDefault,
+      cdxIconClear: j3
     };
   },
   // Public methods
@@ -3635,6 +3633,41 @@ const _sfc_main$k = defineComponent({
     blur() {
       const input = this.$refs.input;
       input.blur();
+    },
+    /**
+     * Check the validity of the input element according to its constraint attributes. Emits an
+     * 'invalid' event if the input is invalid. See:
+     * https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/checkValidity
+     *
+     * @public
+     * @return {boolean} Whether the input is valid
+     */
+    checkValidity() {
+      const input = this.$refs.input;
+      return input.checkValidity();
+    },
+    /**
+     * Check the validity of the input element and report it as a pop up on the UI. See:
+     * https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/reportValidity
+     *
+     * @public
+     * @return {boolean} Whether the input is valid
+     */
+    reportValidity() {
+      this.shouldPreventDefault = false;
+      const input = this.$refs.input;
+      return input.reportValidity();
+    },
+    /**
+     * Set custom validity and message for the input element. See:
+     * https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/setCustomValidity
+     *
+     * @public
+     * @param {string} message The custom validation message to set
+     */
+    setCustomValidity(message) {
+      const input = this.$refs.input;
+      input.setCustomValidity(message);
     }
   }
 });
@@ -3662,7 +3695,8 @@ function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
         onChange: _cache[2] || (_cache[2] = (...args) => _ctx.onChange && _ctx.onChange(...args)),
         onFocus: _cache[3] || (_cache[3] = (...args) => _ctx.onFocus && _ctx.onFocus(...args)),
         onBlur: _cache[4] || (_cache[4] = (...args) => _ctx.onBlur && _ctx.onBlur(...args)),
-        onKeydown: _cache[5] || (_cache[5] = (...args) => _ctx.onKeydown && _ctx.onKeydown(...args))
+        onKeydown: _cache[5] || (_cache[5] = (...args) => _ctx.onKeydown && _ctx.onKeydown(...args)),
+        onInvalid: _cache[6] || (_cache[6] = (e) => _ctx.onInvalid(e, _ctx.shouldPreventDefault))
       }), null, 16, _hoisted_1$i), [
         [vModelDynamic, _ctx.wrappedModel]
       ]),
@@ -3680,7 +3714,7 @@ function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
         key: 2,
         icon: _ctx.cdxIconClear,
         class: "cdx-text-input__icon-vue cdx-text-input__clear-icon",
-        onMousedown: _cache[6] || (_cache[6] = withModifiers(() => {
+        onMousedown: _cache[7] || (_cache[7] = withModifiers(() => {
         }, ["prevent"])),
         onClick: _ctx.onClear
       }, null, 8, ["icon", "onClick"])) : createCommentVNode("v-if", true)
@@ -3802,12 +3836,22 @@ function getPaddingObject(padding) {
   };
 }
 function rectToClientRect(rect) {
-  return __spreadProps(__spreadValues({}, rect), {
-    top: rect.y,
-    left: rect.x,
-    right: rect.x + rect.width,
-    bottom: rect.y + rect.height
-  });
+  const {
+    x,
+    y,
+    width,
+    height
+  } = rect;
+  return {
+    width,
+    height,
+    top: y,
+    left: x,
+    right: x + width,
+    bottom: y + height,
+    x,
+    y
+  };
 }
 function computeCoordsFromPlacement(_ref, placement, rtl) {
   let {
@@ -3973,10 +4017,12 @@ function detectOverflow(state, options) {
       rootBoundary,
       strategy
     }));
-    const rect = elementContext === "floating" ? __spreadProps(__spreadValues({}, rects.floating), {
+    const rect = elementContext === "floating" ? {
       x,
-      y
-    }) : rects.reference;
+      y,
+      width: rects.floating.width,
+      height: rects.floating.height
+    } : rects.reference;
     const offsetParent = yield platform2.getOffsetParent == null ? void 0 : platform2.getOffsetParent(elements.floating);
     const offsetScale = (yield platform2.isElement == null ? void 0 : platform2.isElement(offsetParent)) ? (yield platform2.getScale == null ? void 0 : platform2.getScale(offsetParent)) || {
       x: 1,
@@ -4036,10 +4082,12 @@ const flip$1 = function(options) {
           return {};
         }
         const side = getSide(placement);
+        const initialSideAxis = getSideAxis(initialPlacement);
         const isBasePlacement = getSide(initialPlacement) === initialPlacement;
         const rtl = yield platform2.isRTL == null ? void 0 : platform2.isRTL(elements.floating);
         const fallbackPlacements = specifiedFallbackPlacements || (isBasePlacement || !flipAlignment ? [getOppositePlacement(initialPlacement)] : getExpandedPlacements(initialPlacement));
-        if (!specifiedFallbackPlacements && fallbackAxisSideDirection !== "none") {
+        const hasFallbackAxisSideDirection = fallbackAxisSideDirection !== "none";
+        if (!specifiedFallbackPlacements && hasFallbackAxisSideDirection) {
           fallbackPlacements.push(...getOppositeAxisPlacements(initialPlacement, flipAlignment, fallbackAxisSideDirection, rtl));
         }
         const placements = [initialPlacement, ...fallbackPlacements];
@@ -4076,8 +4124,16 @@ const flip$1 = function(options) {
           if (!resetPlacement) {
             switch (fallbackStrategy) {
               case "bestFit": {
-                var _overflowsData$map$so;
-                const placement2 = (_overflowsData$map$so = overflowsData.map((d) => [d.placement, d.overflows.filter((overflow2) => overflow2 > 0).reduce((acc, overflow2) => acc + overflow2, 0)]).sort((a, b) => a[1] - b[1])[0]) == null ? void 0 : _overflowsData$map$so[0];
+                var _overflowsData$filter2;
+                const placement2 = (_overflowsData$filter2 = overflowsData.filter((d) => {
+                  if (hasFallbackAxisSideDirection) {
+                    const currentSideAxis = getSideAxis(d.placement);
+                    return currentSideAxis === initialSideAxis || // Create a bias to the `y` side axis due to horizontal
+                    // reading directions favoring greater width.
+                    currentSideAxis === "y";
+                  }
+                  return true;
+                }).map((d) => [d.placement, d.overflows.filter((overflow2) => overflow2 > 0).reduce((acc, overflow2) => acc + overflow2, 0)]).sort((a, b) => a[1] - b[1])[0]) == null ? void 0 : _overflowsData$filter2[0];
                 if (placement2) {
                   resetPlacement = placement2;
                 }
@@ -4184,11 +4240,11 @@ function convertValueToCoords(state, options) {
       mainAxis: rawValue,
       crossAxis: 0,
       alignmentAxis: null
-    } : __spreadValues({
-      mainAxis: 0,
-      crossAxis: 0,
-      alignmentAxis: null
-    }, rawValue);
+    } : {
+      mainAxis: rawValue.mainAxis || 0,
+      crossAxis: rawValue.crossAxis || 0,
+      alignmentAxis: rawValue.alignmentAxis
+    };
     if (alignment && typeof alignmentAxis === "number") {
       crossAxis = alignment === "end" ? alignmentAxis * -1 : alignmentAxis;
     }
@@ -4201,7 +4257,7 @@ function convertValueToCoords(state, options) {
     };
   });
 }
-const offset = function(options) {
+const offset$1 = function(options) {
   if (options === void 0) {
     options = 0;
   }
@@ -4296,7 +4352,11 @@ const shift$1 = function(options) {
         return __spreadProps(__spreadValues({}, limitedCoords), {
           data: {
             x: limitedCoords.x - x,
-            y: limitedCoords.y - y
+            y: limitedCoords.y - y,
+            enabled: {
+              [mainAxis]: checkMainAxis,
+              [crossAxis]: checkCrossAxis
+            }
           }
         });
       });
@@ -4312,6 +4372,7 @@ const size$1 = function(options) {
     options,
     fn(state) {
       return __async(this, null, function* () {
+        var _state$middlewareData, _state$middlewareData2;
         const {
           placement,
           rects,
@@ -4341,17 +4402,18 @@ const size$1 = function(options) {
           widthSide = side;
           heightSide = alignment === "end" ? "top" : "bottom";
         }
-        const overflowAvailableHeight = height - overflow[heightSide];
-        const overflowAvailableWidth = width - overflow[widthSide];
+        const maximumClippingHeight = height - overflow.top - overflow.bottom;
+        const maximumClippingWidth = width - overflow.left - overflow.right;
+        const overflowAvailableHeight = min(height - overflow[heightSide], maximumClippingHeight);
+        const overflowAvailableWidth = min(width - overflow[widthSide], maximumClippingWidth);
         const noShift = !state.middlewareData.shift;
         let availableHeight = overflowAvailableHeight;
         let availableWidth = overflowAvailableWidth;
-        if (isYAxis) {
-          const maximumClippingWidth = width - overflow.left - overflow.right;
-          availableWidth = alignment || noShift ? min(overflowAvailableWidth, maximumClippingWidth) : maximumClippingWidth;
-        } else {
-          const maximumClippingHeight = height - overflow.top - overflow.bottom;
-          availableHeight = alignment || noShift ? min(overflowAvailableHeight, maximumClippingHeight) : maximumClippingHeight;
+        if ((_state$middlewareData = state.middlewareData.shift) != null && _state$middlewareData.enabled.x) {
+          availableWidth = maximumClippingWidth;
+        }
+        if ((_state$middlewareData2 = state.middlewareData.shift) != null && _state$middlewareData2.enabled.y) {
+          availableHeight = maximumClippingHeight;
         }
         if (noShift && !alignment) {
           const xMin = max(overflow.left, 0);
@@ -4381,6 +4443,9 @@ const size$1 = function(options) {
     }
   };
 };
+function hasWindow() {
+  return typeof window !== "undefined";
+}
 function getNodeName(node) {
   if (isNode(node)) {
     return (node.nodeName || "").toLowerCase();
@@ -4396,16 +4461,25 @@ function getDocumentElement(node) {
   return (_ref = (isNode(node) ? node.ownerDocument : node.document) || window.document) == null ? void 0 : _ref.documentElement;
 }
 function isNode(value) {
+  if (!hasWindow()) {
+    return false;
+  }
   return value instanceof Node || value instanceof getWindow(value).Node;
 }
 function isElement(value) {
+  if (!hasWindow()) {
+    return false;
+  }
   return value instanceof Element || value instanceof getWindow(value).Element;
 }
 function isHTMLElement(value) {
+  if (!hasWindow()) {
+    return false;
+  }
   return value instanceof HTMLElement || value instanceof getWindow(value).HTMLElement;
 }
 function isShadowRoot(value) {
-  if (typeof ShadowRoot === "undefined") {
+  if (!hasWindow() || typeof ShadowRoot === "undefined") {
     return false;
   }
   return value instanceof ShadowRoot || value instanceof getWindow(value).ShadowRoot;
@@ -4422,9 +4496,18 @@ function isOverflowElement(element) {
 function isTableElement(element) {
   return ["table", "td", "th"].includes(getNodeName(element));
 }
-function isContainingBlock(element) {
+function isTopLayer(element) {
+  return [":popover-open", ":modal"].some((selector) => {
+    try {
+      return element.matches(selector);
+    } catch (e) {
+      return false;
+    }
+  });
+}
+function isContainingBlock(elementOrCss) {
   const webkit = isWebKit();
-  const css = getComputedStyle(element);
+  const css = isElement(elementOrCss) ? getComputedStyle(elementOrCss) : elementOrCss;
   return css.transform !== "none" || css.perspective !== "none" || (css.containerType ? css.containerType !== "normal" : false) || !webkit && (css.backdropFilter ? css.backdropFilter !== "none" : false) || !webkit && (css.filter ? css.filter !== "none" : false) || ["transform", "perspective", "filter"].some((value) => (css.willChange || "").includes(value)) || ["paint", "layout", "strict", "content"].some((value) => (css.contain || "").includes(value));
 }
 function getContainingBlock(element) {
@@ -4432,9 +4515,10 @@ function getContainingBlock(element) {
   while (isHTMLElement(currentNode) && !isLastTraversableNode(currentNode)) {
     if (isContainingBlock(currentNode)) {
       return currentNode;
-    } else {
-      currentNode = getParentNode(currentNode);
+    } else if (isTopLayer(currentNode)) {
+      return null;
     }
+    currentNode = getParentNode(currentNode);
   }
   return null;
 }
@@ -4457,8 +4541,8 @@ function getNodeScroll(element) {
     };
   }
   return {
-    scrollLeft: element.pageXOffset,
-    scrollTop: element.pageYOffset
+    scrollLeft: element.scrollX,
+    scrollTop: element.scrollY
   };
 }
 function getParentNode(node) {
@@ -4496,9 +4580,13 @@ function getOverflowAncestors(node, list, traverseIframes) {
   const isBody = scrollableAncestor === ((_node$ownerDocument2 = node.ownerDocument) == null ? void 0 : _node$ownerDocument2.body);
   const win = getWindow(scrollableAncestor);
   if (isBody) {
-    return list.concat(win, win.visualViewport || [], isOverflowElement(scrollableAncestor) ? scrollableAncestor : [], win.frameElement && traverseIframes ? getOverflowAncestors(win.frameElement) : []);
+    const frameElement = getFrameElement(win);
+    return list.concat(win, win.visualViewport || [], isOverflowElement(scrollableAncestor) ? scrollableAncestor : [], frameElement && traverseIframes ? getOverflowAncestors(frameElement) : []);
   }
   return list.concat(scrollableAncestor, getOverflowAncestors(scrollableAncestor, [], traverseIframes));
+}
+function getFrameElement(win) {
+  return win.parent && Object.getPrototypeOf(win.parent) ? win.frameElement : null;
 }
 function getCssDimensions(element) {
   const css = getComputedStyle(element);
@@ -4593,7 +4681,7 @@ function getBoundingClientRect(element, includeScale, isFixedStrategy, offsetPar
     const win = getWindow(domElement);
     const offsetWin = offsetParent && isElement(offsetParent) ? getWindow(offsetParent) : offsetParent;
     let currentWin = win;
-    let currentIFrame = currentWin.frameElement;
+    let currentIFrame = getFrameElement(currentWin);
     while (currentIFrame && offsetParent && offsetWin !== currentWin) {
       const iframeScale = getScale(currentIFrame);
       const iframeRect = currentIFrame.getBoundingClientRect();
@@ -4607,7 +4695,7 @@ function getBoundingClientRect(element, includeScale, isFixedStrategy, offsetPar
       x += left;
       y += top;
       currentWin = getWindow(currentIFrame);
-      currentIFrame = currentWin.frameElement;
+      currentIFrame = getFrameElement(currentWin);
     }
   }
   return rectToClientRect({
@@ -4617,15 +4705,27 @@ function getBoundingClientRect(element, includeScale, isFixedStrategy, offsetPar
     y
   });
 }
-const topLayerSelectors = [":popover-open", ":modal"];
-function isTopLayer(floating) {
-  return topLayerSelectors.some((selector) => {
-    try {
-      return floating.matches(selector);
-    } catch (e) {
-      return false;
-    }
-  });
+function getWindowScrollBarX(element, rect) {
+  const leftScroll = getNodeScroll(element).scrollLeft;
+  if (!rect) {
+    return getBoundingClientRect(getDocumentElement(element)).left + leftScroll;
+  }
+  return rect.left + leftScroll;
+}
+function getHTMLOffset(documentElement, scroll, ignoreScrollbarX) {
+  if (ignoreScrollbarX === void 0) {
+    ignoreScrollbarX = false;
+  }
+  const htmlRect = documentElement.getBoundingClientRect();
+  const x = htmlRect.left + scroll.scrollLeft - (ignoreScrollbarX ? 0 : (
+    // RTL <body> scrollbar.
+    getWindowScrollBarX(documentElement, htmlRect)
+  ));
+  const y = htmlRect.top + scroll.scrollTop;
+  return {
+    x,
+    y
+  };
 }
 function convertOffsetParentRelativeRectToViewportRelativeRect(_ref) {
   let {
@@ -4658,18 +4758,16 @@ function convertOffsetParentRelativeRectToViewportRelativeRect(_ref) {
       offsets.y = offsetRect.y + offsetParent.clientTop;
     }
   }
+  const htmlOffset = documentElement && !isOffsetParentAnElement && !isFixed ? getHTMLOffset(documentElement, scroll, true) : createCoords(0);
   return {
     width: rect.width * scale.x,
     height: rect.height * scale.y,
-    x: rect.x * scale.x - scroll.scrollLeft * scale.x + offsets.x,
-    y: rect.y * scale.y - scroll.scrollTop * scale.y + offsets.y
+    x: rect.x * scale.x - scroll.scrollLeft * scale.x + offsets.x + htmlOffset.x,
+    y: rect.y * scale.y - scroll.scrollTop * scale.y + offsets.y + htmlOffset.y
   };
 }
 function getClientRects(element) {
   return Array.from(element.getClientRects());
-}
-function getWindowScrollBarX(element) {
-  return getBoundingClientRect(getDocumentElement(element)).left + getNodeScroll(element).scrollLeft;
 }
 function getDocumentRect(element) {
   const html = getDocumentElement(element);
@@ -4739,10 +4837,12 @@ function getClientRectFromClippingAncestor(element, clippingAncestor, strategy) 
     rect = getInnerBoundingClientRect(clippingAncestor, strategy);
   } else {
     const visualOffsets = getVisualOffsets(element);
-    rect = __spreadProps(__spreadValues({}, clippingAncestor), {
+    rect = {
       x: clippingAncestor.x - visualOffsets.x,
-      y: clippingAncestor.y - visualOffsets.y
-    });
+      y: clippingAncestor.y - visualOffsets.y,
+      width: clippingAncestor.width,
+      height: clippingAncestor.height
+    };
   }
   return rectToClientRect(rect);
 }
@@ -4786,7 +4886,7 @@ function getClippingRect(_ref) {
     rootBoundary,
     strategy
   } = _ref;
-  const elementClippingAncestors = boundary === "clippingAncestors" ? getClippingElementAncestors(element, this._c) : [].concat(boundary);
+  const elementClippingAncestors = boundary === "clippingAncestors" ? isTopLayer(element) ? [] : getClippingElementAncestors(element, this._c) : [].concat(boundary);
   const clippingAncestors = [...elementClippingAncestors, rootBoundary];
   const firstClippingAncestor = clippingAncestors[0];
   const clippingRect = clippingAncestors.reduce((accRect, clippingAncestor) => {
@@ -4836,14 +4936,18 @@ function getRectRelativeToOffsetParent(element, offsetParent, strategy) {
       offsets.x = getWindowScrollBarX(documentElement);
     }
   }
-  const x = rect.left + scroll.scrollLeft - offsets.x;
-  const y = rect.top + scroll.scrollTop - offsets.y;
+  const htmlOffset = documentElement && !isOffsetParentAnElement && !isFixed ? getHTMLOffset(documentElement, scroll) : createCoords(0);
+  const x = rect.left + scroll.scrollLeft - offsets.x - htmlOffset.x;
+  const y = rect.top + scroll.scrollTop - offsets.y - htmlOffset.y;
   return {
     x,
     y,
     width: rect.width,
     height: rect.height
   };
+}
+function isStaticPositioned(element) {
+  return getComputedStyle(element).position === "static";
 }
 function getTrueOffsetParent(element, polyfill) {
   if (!isHTMLElement(element) || getComputedStyle(element).position === "fixed") {
@@ -4852,32 +4956,49 @@ function getTrueOffsetParent(element, polyfill) {
   if (polyfill) {
     return polyfill(element);
   }
-  return element.offsetParent;
+  let rawOffsetParent = element.offsetParent;
+  if (getDocumentElement(element) === rawOffsetParent) {
+    rawOffsetParent = rawOffsetParent.ownerDocument.body;
+  }
+  return rawOffsetParent;
 }
 function getOffsetParent(element, polyfill) {
-  const window2 = getWindow(element);
-  if (!isHTMLElement(element) || isTopLayer(element)) {
-    return window2;
+  const win = getWindow(element);
+  if (isTopLayer(element)) {
+    return win;
+  }
+  if (!isHTMLElement(element)) {
+    let svgOffsetParent = getParentNode(element);
+    while (svgOffsetParent && !isLastTraversableNode(svgOffsetParent)) {
+      if (isElement(svgOffsetParent) && !isStaticPositioned(svgOffsetParent)) {
+        return svgOffsetParent;
+      }
+      svgOffsetParent = getParentNode(svgOffsetParent);
+    }
+    return win;
   }
   let offsetParent = getTrueOffsetParent(element, polyfill);
-  while (offsetParent && isTableElement(offsetParent) && getComputedStyle(offsetParent).position === "static") {
+  while (offsetParent && isTableElement(offsetParent) && isStaticPositioned(offsetParent)) {
     offsetParent = getTrueOffsetParent(offsetParent, polyfill);
   }
-  if (offsetParent && (getNodeName(offsetParent) === "html" || getNodeName(offsetParent) === "body" && getComputedStyle(offsetParent).position === "static" && !isContainingBlock(offsetParent))) {
-    return window2;
+  if (offsetParent && isLastTraversableNode(offsetParent) && isStaticPositioned(offsetParent) && !isContainingBlock(offsetParent)) {
+    return win;
   }
-  return offsetParent || getContainingBlock(element) || window2;
+  return offsetParent || getContainingBlock(element) || win;
 }
 const getElementRects = function(data) {
   return __async(this, null, function* () {
     const getOffsetParentFn = this.getOffsetParent || getOffsetParent;
     const getDimensionsFn = this.getDimensions;
+    const floatingDimensions = yield getDimensionsFn(data.floating);
     return {
       reference: getRectRelativeToOffsetParent(data.reference, yield getOffsetParentFn(data.floating), data.strategy),
-      floating: __spreadValues({
+      floating: {
         x: 0,
-        y: 0
-      }, yield getDimensionsFn(data.floating))
+        y: 0,
+        width: floatingDimensions.width,
+        height: floatingDimensions.height
+      }
     };
   });
 };
@@ -4945,7 +5066,7 @@ function observeMove(element, onMove) {
         if (!ratio) {
           timeoutId = setTimeout(() => {
             refresh(false, 1e-7);
-          }, 100);
+          }, 1e3);
         } else {
           refresh(false, ratio);
         }
@@ -5033,6 +5154,7 @@ function autoUpdate(reference, floating, update, options) {
     }
   };
 }
+const offset = offset$1;
 const shift = shift$1;
 const flip = flip$1;
 const size = size$1;
@@ -5350,13 +5472,12 @@ const _sfc_main$j = defineComponent({
      * Configuration for various menu features. All properties default to false.
      *
      * See the MenuConfig type.
+     *
      * @default {}
      */
     menuConfig: {
       type: Object,
-      default: () => {
-        return {};
-      }
+      default: () => ({})
     },
     /**
      * `status` property of the TextInput component
@@ -5426,12 +5547,10 @@ const _sfc_main$j = defineComponent({
       toRef(props, "disabled"),
       toRef(props, "status")
     );
-    const internalClasses = computed(() => {
-      return {
-        "cdx-combobox--expanded": expanded.value,
-        "cdx-combobox--disabled": computedDisabled.value
-      };
-    });
+    const internalClasses = computed(() => ({
+      "cdx-combobox--expanded": expanded.value,
+      "cdx-combobox--disabled": computedDisabled.value
+    }));
     const {
       rootClasses,
       rootStyle,
@@ -5487,7 +5606,7 @@ const _sfc_main$j = defineComponent({
       onKeydown,
       onButtonClick,
       onButtonMousedown,
-      cdxIconExpand: m4,
+      cdxIconExpand: M4,
       rootClasses,
       rootStyle,
       otherAttrs
@@ -5883,7 +6002,7 @@ const _sfc_main$i = defineComponent({
     });
     return {
       close,
-      cdxIconClose: X3,
+      cdxIconClose: _3,
       labelId,
       rootClasses,
       backdrop,
@@ -6107,10 +6226,10 @@ function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
 }
 const Dialog = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$i]]);
 const iconMap$2 = {
-  notice: Y4,
-  error: i4,
-  warning: M3,
-  success: O7
+  notice: j4,
+  error: p4,
+  warning: H3,
+  success: G7
 };
 const _sfc_main$h = defineComponent({
   name: "CdxMessage",
@@ -6213,14 +6332,12 @@ const _sfc_main$h = defineComponent({
       }
       return props.autoDismiss;
     });
-    const rootClasses = computed(() => {
-      return {
-        "cdx-message--inline": props.inline,
-        "cdx-message--block": !props.inline,
-        "cdx-message--user-dismissable": userDismissable.value,
-        ["cdx-message--".concat(props.type)]: true
-      };
-    });
+    const rootClasses = computed(() => ({
+      "cdx-message--inline": props.inline,
+      "cdx-message--block": !props.inline,
+      "cdx-message--user-dismissable": userDismissable.value,
+      ["cdx-message--".concat(props.type)]: true
+    }));
     const computedIcon = computed(
       () => props.icon && props.type === "notice" ? props.icon : iconMap$2[props.type]
     );
@@ -6248,7 +6365,7 @@ const _sfc_main$h = defineComponent({
       leaveActiveClass,
       computedIcon,
       onDismiss,
-      cdxIconClose: X3
+      cdxIconClose: _3
     };
   }
 });
@@ -6366,24 +6483,21 @@ const _sfc_main$g = defineComponent({
     },
     /**
      * Message text keyed on validation status type.
+     *
      * @default {}
      */
     messages: {
       type: Object,
-      default: () => {
-        return {};
-      }
+      default: () => ({})
     }
   },
   setup(props, { slots }) {
     const { disabled, status, isFieldset } = toRefs(props);
     const computedDisabled = useComputedDisabled(disabled);
-    const rootClasses = computed(() => {
-      return {
-        "cdx-field--disabled": computedDisabled.value,
-        "cdx-field--is-fieldset": isFieldset.value
-      };
-    });
+    const rootClasses = computed(() => ({
+      "cdx-field--disabled": computedDisabled.value,
+      "cdx-field--is-fieldset": isFieldset.value
+    }));
     const labelId = useGeneratedId("label");
     const descriptionId = useGeneratedId("description");
     const inputId = useGeneratedId("input");
@@ -6487,10 +6601,10 @@ function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
 }
 const Field = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$g]]);
 const iconMap$1 = {
-  notice: Y4,
-  error: i4,
-  warning: M3,
-  success: O7
+  notice: j4,
+  error: p4,
+  warning: H3,
+  success: G7
 };
 const _sfc_main$f = defineComponent({
   name: "CdxInfoChip",
@@ -6516,11 +6630,9 @@ const _sfc_main$f = defineComponent({
     }
   },
   setup(props) {
-    const rootClasses = computed(() => {
-      return {
-        ["cdx-info-chip--".concat(props.status)]: true
-      };
-    });
+    const rootClasses = computed(() => ({
+      ["cdx-info-chip--".concat(props.status)]: true
+    }));
     const computedIcon = computed(
       () => props.status === "notice" ? props.icon : iconMap$1[props.status]
     );
@@ -6624,13 +6736,12 @@ const _sfc_main$e = defineComponent({
      * Configuration for various menu features. All properties default to false.
      *
      * See the MenuConfig type.
+     *
      * @default {}
      */
     menuConfig: {
       type: Object,
-      default: () => {
-        return {};
-      }
+      default: () => ({})
     },
     /**
      * `status` property of the TextInput component
@@ -6721,12 +6832,10 @@ const _sfc_main$e = defineComponent({
       emit,
       "update:input-value"
     );
-    const internalClasses = computed(() => {
-      return {
-        "cdx-lookup--disabled": computedDisabled.value,
-        "cdx-lookup--pending": pending.value
-      };
-    });
+    const internalClasses = computed(() => ({
+      "cdx-lookup--disabled": computedDisabled.value,
+      "cdx-lookup--pending": pending.value
+    }));
     const {
       rootClasses,
       rootStyle,
@@ -6986,13 +7095,12 @@ const _sfc_main$c = defineComponent({
      * Configuration for various menu features. All properties default to false.
      *
      * See the MenuConfig type.
+     *
      * @default {}
      */
     menuConfig: {
       type: Object,
-      default: () => {
-        return {};
-      }
+      default: () => ({})
     },
     /**
      * Whether the dropdown is disabled.
@@ -7195,13 +7303,12 @@ const _sfc_main$b = defineComponent({
      * Configuration for various menu features. All properties default to false.
      *
      * See the MenuConfig type.
+     *
      * @default {}
      */
     menuConfig: {
       type: Object,
-      default: () => {
-        return {};
-      }
+      default: () => ({})
     }
   },
   emits: [
@@ -7278,12 +7385,10 @@ const _sfc_main$b = defineComponent({
       toRef(props, "disabled"),
       toRef(props, "status")
     );
-    const internalClasses = computed(() => {
-      return {
-        "cdx-multiselect-lookup--disabled": computedDisabled.value,
-        "cdx-multiselect-lookup--pending": pending.value
-      };
-    });
+    const internalClasses = computed(() => ({
+      "cdx-multiselect-lookup--disabled": computedDisabled.value,
+      "cdx-multiselect-lookup--pending": pending.value
+    }));
     const {
       rootClasses,
       rootStyle,
@@ -7326,11 +7431,15 @@ const _sfc_main$b = defineComponent({
       menu.value.delegateKeyNavigation(e);
     }
     watch(toRef(props, "selected"), (newVal) => {
-      const newSelections = newVal.filter((selection) => inputChipsWrapper.value.find((chip) => selection === chip.value) === void 0);
+      const newSelections = newVal.filter(
+        (selection) => inputChipsWrapper.value.find((chip) => selection === chip.value) === void 0
+      );
       if (newSelections.length > 0) {
         newSelections.forEach((newSelection) => {
           var _a;
-          const newMenuItem = (_a = menu.value) == null ? void 0 : _a.getComputedMenuItems().find((menuItem) => menuItem.value === newSelection);
+          const newMenuItem = (_a = menu.value) == null ? void 0 : _a.getComputedMenuItems().find(
+            (menuItem) => menuItem.value === newSelection
+          );
           if (newMenuItem) {
             const _b = newMenuItem, { id } = _b, newMenuItemWithoutId = __objRest(_b, ["id"]);
             inputChipsWrapper.value.push(newMenuItemWithoutId);
@@ -7339,9 +7448,9 @@ const _sfc_main$b = defineComponent({
         computedInputValue.value = "";
         emit("input", "");
       }
-      inputChipsWrapper.value = inputChipsWrapper.value.filter((chip) => {
-        return newVal.find((selection) => chip.value === selection) !== void 0;
-      });
+      inputChipsWrapper.value = inputChipsWrapper.value.filter(
+        (chip) => newVal.find((selection) => chip.value === selection) !== void 0
+      );
     });
     watch(toRef(props, "inputChips"), (newVal) => {
       if (newVal.length < selectedWrapper.value.length) {
@@ -7510,17 +7619,13 @@ const _sfc_main$a = defineComponent({
       toRef(props, "disabled"),
       toRef(props, "status")
     );
-    const rootClasses = computed(() => {
-      return {
-        "cdx-radio--inline": props.inline,
-        ["cdx-radio--status-".concat(computedStatus.value)]: true
-      };
-    });
-    const customInputClasses = computed(() => {
-      return {
-        "cdx-radio__custom-input--inline": props.inline
-      };
-    });
+    const rootClasses = computed(() => ({
+      "cdx-radio--inline": props.inline,
+      ["cdx-radio--status-".concat(computedStatus.value)]: true
+    }));
+    const customInputClasses = computed(() => ({
+      "cdx-radio__custom-input--inline": props.inline
+    }));
     const input = ref();
     const radioId = useGeneratedId("radio");
     const descriptionId = useGeneratedId("description");
@@ -7707,11 +7812,9 @@ const _sfc_main$9 = defineComponent({
   setup(props, { emit, attrs }) {
     const wrappedModel = useModelWrapper(toRef(props, "modelValue"), emit);
     const { computedDisabled } = useFieldData(toRef(props, "disabled"));
-    const internalClasses = computed(() => {
-      return {
-        "cdx-search-input--has-end-button": !!props.buttonLabel || props.useButton
-      };
-    });
+    const internalClasses = computed(() => ({
+      "cdx-search-input--has-end-button": !!props.buttonLabel || props.useButton
+    }));
     const {
       rootClasses,
       rootStyle,
@@ -7736,7 +7839,7 @@ const _sfc_main$9 = defineComponent({
       rootStyle,
       otherAttrs,
       handleSubmit,
-      searchIcon: A7,
+      searchIcon: k7,
       translatedSearchButtonLabel,
       useButtonOrLabel
     };
@@ -7855,13 +7958,12 @@ const _sfc_main$8 = defineComponent({
      * Configuration for various menu features. All properties default to false.
      *
      * See the MenuConfig type.
+     *
      * @default {}
      */
     menuConfig: {
       type: Object,
-      default: () => {
-        return {};
-      }
+      default: () => ({})
     },
     /**
      * An icon at the start of the select element
@@ -7915,7 +8017,9 @@ const _sfc_main$8 = defineComponent({
     const selectedMenuItem = computed(
       () => {
         var _a;
-        return (_a = menu.value) == null ? void 0 : _a.getComputedMenuItems().find((menuItem) => menuItem.value === props.selected);
+        return (_a = menu.value) == null ? void 0 : _a.getComputedMenuItems().find(
+          (menuItem) => menuItem.value === props.selected
+        );
       }
     );
     const currentLabel = computed(() => {
@@ -7931,17 +8035,15 @@ const _sfc_main$8 = defineComponent({
       }
       return void 0;
     });
-    const internalClasses = computed(() => {
-      return {
-        "cdx-select-vue--enabled": !computedDisabled.value,
-        "cdx-select-vue--disabled": computedDisabled.value,
-        "cdx-select-vue--expanded": expanded.value,
-        "cdx-select-vue--value-selected": !!selectedMenuItem.value,
-        "cdx-select-vue--no-selections": !selectedMenuItem.value,
-        "cdx-select-vue--has-start-icon": !!startIcon.value,
-        ["cdx-select-vue--status-".concat(computedStatus.value)]: true
-      };
-    });
+    const internalClasses = computed(() => ({
+      "cdx-select-vue--enabled": !computedDisabled.value,
+      "cdx-select-vue--disabled": computedDisabled.value,
+      "cdx-select-vue--expanded": expanded.value,
+      "cdx-select-vue--value-selected": !!selectedMenuItem.value,
+      "cdx-select-vue--no-selections": !selectedMenuItem.value,
+      "cdx-select-vue--has-start-icon": !!startIcon.value,
+      ["cdx-select-vue--status-".concat(computedStatus.value)]: true
+    }));
     const {
       rootClasses,
       rootStyle,
@@ -7993,7 +8095,7 @@ const _sfc_main$8 = defineComponent({
       onClick,
       onKeydown,
       startIcon,
-      cdxIconExpand: m4
+      cdxIconExpand: M4
     };
   }
 });
@@ -8150,10 +8252,10 @@ const _sfc_main$7 = defineComponent({
       btnLabelPrev,
       btnLabelLast,
       wrappedItemsPerPage,
-      cdxIconPrevious: d7,
-      cdxIconNext: j6,
-      cdxIconMoveFirst: P6,
-      cdxIconMoveLast: N6
+      cdxIconPrevious: e7,
+      cdxIconNext: X6,
+      cdxIconMoveFirst: N6,
+      cdxIconMoveLast: O6
     };
   }
 });
@@ -8259,9 +8361,9 @@ const CdxTablePager = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_
 const tableTextAlignmentsValidator = makeStringTypeValidator(TableTextAlignments);
 const paginationPositionValidator = makeStringTypeValidator(TablePaginationPositions);
 const iconMap = {
-  none: T7,
-  asc: x8,
-  desc: l4
+  none: Z7,
+  asc: u8,
+  desc: n4
 };
 const sortDirectionMap = {
   none: "none",
@@ -8483,7 +8585,6 @@ const _sfc_main$6 = defineComponent({
      *
      * @property {number} offset Index of the first visible row on the new page.
      * @property {number} rows Number of rows to display.
-     *
      */
     "load-more",
     /**
@@ -8616,12 +8717,10 @@ const _sfc_main$6 = defineComponent({
     const wrappedSelectedRows = useModelWrapper(toRef(props, "selectedRows"), emit, "update:selectedRows");
     const selectAll = ref(totalCount.value === wrappedSelectedRows.value.length);
     const selectAllIndeterminate = ref(false);
-    const activeSortColumn = computed(() => {
-      return Object.keys(props.sort)[0];
-    });
-    const hasSortableColumns = computed(() => {
-      return props.columns.some((column) => column.allowSort);
-    });
+    const activeSortColumn = computed(() => Object.keys(props.sort)[0]);
+    const hasSortableColumns = computed(
+      () => props.columns.some((column) => column.allowSort)
+    );
     const tableClasses = computed(() => {
       var _a;
       const useFixedLayout = (_a = props.columns) == null ? void 0 : _a.some((column) => "width" in column || "minWidth" in column);
@@ -8652,7 +8751,7 @@ const _sfc_main$6 = defineComponent({
     }
     function getRowHeaderScope(columnId) {
       const firstColumn = props.columns[0].id;
-      if (props.useRowHeaders === true && columnId === firstColumn) {
+      if (props.useRowHeaders && columnId === firstColumn) {
         return "row";
       }
     }
@@ -8702,7 +8801,9 @@ const _sfc_main$6 = defineComponent({
     function handleSelectAll(newValue) {
       selectAllIndeterminate.value = false;
       if (newValue) {
-        wrappedSelectedRows.value = props.data.map((row, rowIndex) => getRowKey(row, rowIndex));
+        wrappedSelectedRows.value = props.data.map(
+          (row, rowIndex) => getRowKey(row, rowIndex)
+        );
       } else {
         wrappedSelectedRows.value = [];
       }
@@ -9245,23 +9346,21 @@ const _sfc_main$4 = defineComponent({
       }
       return slotContents;
     });
-    const tabsData = computed(() => {
-      return childTabNodes.value.reduce((map, item) => {
-        var _a;
-        if (((_a = item.props) == null ? void 0 : _a.name) && typeof item.props.name === "string") {
-          if (map.get(item.props.name)) {
-            throw new Error("Tab names must be unique");
-          }
-          map.set(item.props.name, {
-            name: item.props.name,
-            id: useGeneratedId(item.props.name),
-            label: item.props.label || item.props.name,
-            disabled: item.props.disabled
-          });
+    const tabsData = computed(() => childTabNodes.value.reduce((map, item) => {
+      var _a;
+      if (((_a = item.props) == null ? void 0 : _a.name) && typeof item.props.name === "string") {
+        if (map.get(item.props.name)) {
+          throw new Error("Tab names must be unique");
         }
-        return map;
-      }, /* @__PURE__ */ new Map());
-    });
+        map.set(item.props.name, {
+          name: item.props.name,
+          id: useGeneratedId(item.props.name),
+          label: item.props.label || item.props.name,
+          disabled: item.props.disabled
+        });
+      }
+      return map;
+    }, /* @__PURE__ */ new Map()));
     const internalRefForActiveTab = ref(Array.from(tabsData.value.keys())[0]);
     const activeTab = useOptionalModelWrapper(internalRefForActiveTab, toRef(props, "active"), emit, "update:active");
     const tabNames = computed(() => Array.from(tabsData.value.keys()));
@@ -9288,12 +9387,10 @@ const _sfc_main$4 = defineComponent({
         }
       }
     }
-    const rootClasses = computed(() => {
-      return {
-        "cdx-tabs--framed": props.framed,
-        "cdx-tabs--quiet": !props.framed
-      };
-    });
+    const rootClasses = computed(() => ({
+      "cdx-tabs--framed": props.framed,
+      "cdx-tabs--quiet": !props.framed
+    }));
     function focusActiveTab() {
       var _a;
       (_a = tabButtonRefs.value.get(activeTabIndex.value)) == null ? void 0 : _a.focus();
@@ -9370,8 +9467,8 @@ const _sfc_main$4 = defineComponent({
       assignTemplateRefForTabButton,
       scrollTabs,
       focusActiveTab,
-      cdxIconPrevious: d7,
-      cdxIconNext: j6
+      cdxIconPrevious: e7,
+      cdxIconNext: X6
     };
   },
   /**
@@ -9605,6 +9702,13 @@ const _sfc_main$3 = defineComponent({
   name: "CdxTextArea",
   components: { CdxIcon },
   inheritAttrs: false,
+  expose: [
+    "focus",
+    "blur",
+    "checkValidity",
+    "reportValidity",
+    "setCustomValidity"
+  ],
   props: {
     /**
      * Current value of the textarea.
@@ -9664,9 +9768,42 @@ const _sfc_main$3 = defineComponent({
      *
      * @property {string} modelValue The new model value
      */
-    "update:modelValue"
+    "update:modelValue",
+    /**
+     * When the input value changes via direct use of the input
+     *
+     * @property {InputEvent} event
+     */
+    "input",
+    /**
+     * When an input value change is committed by the user (e.g. on blur)
+     *
+     * @property {Event} event
+     */
+    "change",
+    /**
+     * When the input comes into focus
+     *
+     * @property {FocusEvent} event
+     */
+    "focus",
+    /**
+     * When the input loses focus
+     *
+     * @property {FocusEvent} event
+     */
+    "blur",
+    /**
+     * When the textarea value is invalid according to the textarea's constraint
+     * attributes (e.g. minlength, maxlength, or required). See:
+     * https://developer.mozilla.org/en-US/docs/Web/HTML/Constraint_validation#validation-related_attributes
+     *
+     * @property {Event} event
+     */
+    "invalid"
   ],
   setup(props, { attrs, emit }) {
+    const textarea = ref();
     const wrappedModel = useModelWrapper(toRef(props, "modelValue"), emit);
     const idAttribute = attrs.id;
     const {
@@ -9679,20 +9816,16 @@ const _sfc_main$3 = defineComponent({
       idAttribute
     );
     const descriptionId = inject(FieldDescriptionIdKey, void 0);
-    const textareaClasses = computed(() => {
-      return {
-        "cdx-text-area__textarea--has-value": !!wrappedModel.value,
-        "cdx-text-area__textarea--is-autosize": props.autosize
-      };
-    });
-    const internalClasses = computed(() => {
-      return {
-        "cdx-text-area--status-default": computedStatus.value === "default",
-        "cdx-text-area--status-error": computedStatus.value === "error",
-        "cdx-text-area--has-start-icon": !!props.startIcon,
-        "cdx-text-area--has-end-icon": !!props.endIcon
-      };
-    });
+    const textareaClasses = computed(() => ({
+      "cdx-text-area__textarea--has-value": !!wrappedModel.value,
+      "cdx-text-area__textarea--is-autosize": props.autosize
+    }));
+    const internalClasses = computed(() => ({
+      "cdx-text-area--status-default": computedStatus.value === "default",
+      "cdx-text-area--status-error": computedStatus.value === "error",
+      "cdx-text-area--has-start-icon": !!props.startIcon,
+      "cdx-text-area--has-end-icon": !!props.endIcon
+    }));
     const {
       rootClasses,
       rootStyle,
@@ -9702,14 +9835,32 @@ const _sfc_main$3 = defineComponent({
       const _a = otherAttrs.value, { id } = _a, everythingElse = __objRest(_a, ["id"]);
       return everythingElse;
     });
-    const textarea = ref();
-    function onInput() {
+    function onInput(event) {
       if (textarea.value && props.autosize) {
         textarea.value.style.height = "auto";
         textarea.value.style.height = "".concat(textarea.value.scrollHeight, "px");
       }
+      emit("input", event);
     }
+    const onChange = (event) => {
+      emit("change", event);
+    };
+    const onFocus = (event) => {
+      emit("focus", event);
+    };
+    const onBlur = (event) => {
+      emit("blur", event);
+    };
+    const shouldPreventDefault = ref(true);
+    const onInvalid = (event, doPreventDefault) => {
+      if (doPreventDefault) {
+        event.preventDefault();
+      }
+      emit("invalid", event);
+      shouldPreventDefault.value = true;
+    };
     return {
+      textarea,
       rootClasses,
       rootStyle,
       wrappedModel,
@@ -9718,9 +9869,71 @@ const _sfc_main$3 = defineComponent({
       descriptionId,
       textareaClasses,
       otherAttrsMinusId,
-      textarea,
-      onInput
+      onInput,
+      onChange,
+      onFocus,
+      onBlur,
+      onInvalid,
+      shouldPreventDefault
     };
+  },
+  // Public methods
+  // These must be in the methods block, not in the setup function, otherwise their documentation
+  // won't be picked up by vue-docgen
+  methods: {
+    /**
+     * Focus the component's textarea element.
+     *
+     * @public
+     */
+    focus() {
+      const textarea = this.$refs.textarea;
+      textarea.focus();
+    },
+    /**
+     * Blur the component's textarea element.
+     *
+     * @public
+     */
+    blur() {
+      const textarea = this.$refs.textarea;
+      textarea.blur();
+    },
+    /**
+     * Check the validity of the textarea element according to its constraint attributes. Emits
+     * an 'invalid' event if the textarea is invalid. See:
+     * https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/checkValidity
+     *
+     * @public
+     * @return {boolean} Whether the textarea is valid
+     */
+    checkValidity() {
+      const textarea = this.$refs.textarea;
+      return textarea.checkValidity();
+    },
+    /**
+     * Check the validity of the textarea element and report it as a pop up on the UI. See:
+     * https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/reportValidity
+     *
+     * @public
+     * @return {boolean} Whether the textarea is valid
+     */
+    reportValidity() {
+      this.shouldPreventDefault = false;
+      const textarea = this.$refs.textarea;
+      return textarea.reportValidity();
+    },
+    /**
+     * Set custom validity and message for the textarea element. See:
+     * https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/setCustomValidity
+     *
+     * @public
+     * @param {string} message The custom validation message to set
+     */
+    setCustomValidity(message) {
+      const textarea = this.$refs.textarea;
+      textarea.setCustomValidity(message);
+    }
   }
 });
 const _hoisted_1$3 = ["id", "aria-describedby", "disabled"];
@@ -9741,7 +9954,11 @@ function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
         class: [_ctx.textareaClasses, "cdx-text-area__textarea"],
         "aria-describedby": _ctx.descriptionId,
         disabled: _ctx.computedDisabled,
-        onInput: _cache[1] || (_cache[1] = (...args) => _ctx.onInput && _ctx.onInput(...args))
+        onInput: _cache[1] || (_cache[1] = (...args) => _ctx.onInput && _ctx.onInput(...args)),
+        onChange: _cache[2] || (_cache[2] = (...args) => _ctx.onChange && _ctx.onChange(...args)),
+        onFocus: _cache[3] || (_cache[3] = (...args) => _ctx.onFocus && _ctx.onFocus(...args)),
+        onBlur: _cache[4] || (_cache[4] = (...args) => _ctx.onBlur && _ctx.onBlur(...args)),
+        onInvalid: _cache[5] || (_cache[5] = (e) => _ctx.onInvalid(e, _ctx.shouldPreventDefault))
       }), null, 16, _hoisted_1$3), [
         [vModelText, _ctx.wrappedModel]
       ]),
@@ -9975,11 +10192,9 @@ const _sfc_main$1 = defineComponent({
     const input = ref();
     const inputId = useGeneratedId("toggle-switch");
     const descriptionId = useGeneratedId("description");
-    const internalClasses = computed(() => {
-      return {
-        "cdx-toggle-switch--align-switch": props.alignSwitch
-      };
-    });
+    const internalClasses = computed(() => ({
+      "cdx-toggle-switch--align-switch": props.alignSwitch
+    }));
     const {
       rootClasses,
       rootStyle,
@@ -10364,13 +10579,11 @@ const _sfc_main = defineComponent({
     const footer = computed(
       () => props.searchFooterUrl ? { value: MenuFooterValue, url: props.searchFooterUrl } : void 0
     );
-    const internalClasses = computed(() => {
-      return {
-        "cdx-typeahead-search--show-thumbnail": props.showThumbnail,
-        "cdx-typeahead-search--expanded": expanded.value,
-        "cdx-typeahead-search--auto-expand-width": props.showThumbnail && props.autoExpandWidth
-      };
-    });
+    const internalClasses = computed(() => ({
+      "cdx-typeahead-search--show-thumbnail": props.showThumbnail,
+      "cdx-typeahead-search--expanded": expanded.value,
+      "cdx-typeahead-search--auto-expand-width": props.showThumbnail && props.autoExpandWidth
+    }));
     const {
       rootClasses,
       rootStyle,
@@ -10379,15 +10592,13 @@ const _sfc_main = defineComponent({
     function asSearchResult(menuItem) {
       return menuItem;
     }
-    const menuConfig = computed(() => {
-      return {
-        visibleItemLimit: props.visibleItemLimit,
-        showThumbnail: props.showThumbnail,
-        // In case search queries aren't highlighted, default to a bold label.
-        boldLabel: true,
-        hideDescriptionOverflow: true
-      };
-    });
+    const menuConfig = computed(() => ({
+      visibleItemLimit: props.visibleItemLimit,
+      showThumbnail: props.showThumbnail,
+      // In case search queries aren't highlighted, default to a bold label.
+      boldLabel: true,
+      hideDescriptionOverflow: true
+    }));
     let debounceId;
     let pendingDelayId;
     function onUpdateInputValue(newVal, immediate = false) {
@@ -10568,7 +10779,7 @@ const _sfc_main = defineComponent({
       onSubmit,
       onKeydown,
       MenuFooterValue,
-      articleIcon: S3,
+      articleIcon: b3,
       translatedSearchResultsLabel
     };
   },
