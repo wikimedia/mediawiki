@@ -26,5 +26,6 @@
 	"cdx-table-pagination-status-message-indeterminate-long": "Прикажани ставки $1–$2 од многу",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 од многу",
 	"cdx-table-pagination-status-message-indeterminate-final": "{{PLURAL:$1|Прикажана е последната $1 ставка|Прикажани се последните $1 ставки}}",
-	"cdx-table-pagination-status-message-pending": "Го вчитувам исходот..."
+	"cdx-table-pagination-status-message-pending": "Го вчитувам исходот...",
+	"cdx-table-no-data-message": "Нема расположливи податоци."
 }

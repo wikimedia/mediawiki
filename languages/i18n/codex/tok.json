@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Juwan"
+		]
+	},
+	"cdx-chip-input-chip-added": "poki $1 li kama.",
+	"cdx-chip-input-chip-removed": "poki $1 li weka.",
+	"cdx-input-chip-aria-description": "o luka e nena Enter tawa ante. o luka e nena Delete tawa weka.",
+	"cdx-dialog-close-button-label": "o pini",
+	"cdx-label-optional-flag": "(sina ken pana ala e ni)",
+	"cdx-message-dismiss-button-label": "o pini",
+	"cdx-search-input-search-button-label": "o alasa",
+	"cdx-typeahead-search-search-results-label": "jo alasa",
+	"cdx-table-pager-button-first-page": "lipu nanpa open",
+	"cdx-table-pager-button-last-page": "lipu nanpa pini",
+	"cdx-table-pager-button-next-page": "lipu kama",
+	"cdx-table-pager-button-prev-page": "lipu pini",
+	"cdx-table-pagination-status-message-pending": "ijo li kama..."
+}

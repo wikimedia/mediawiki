@@ -2625,6 +2625,8 @@
 	"block-expiry-datetime": "Data e ora specifiche",
 	"block-options": "Opzioni aggiuntive:",
 	"block-reason": "Motivo:",
+	"block-confirm-yes": "Sì",
+	"block-confirm-no": "No",
 	"block-success": "[[Special:Contributions/$1|$1]] è stato bloccato. Consulta la [[Special:BlockList|lista dei blocchi]] per rivedere i blocchi.",
 	"block-user-active-blocks": "Blocchi attivi",
 	"block-user-no-previous-blocks": "Nessun blocco precedente trovato",

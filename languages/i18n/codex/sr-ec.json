@@ -24,5 +24,6 @@
 	"cdx-table-pagination-status-message-indeterminate-long": "Приказани резултати $1–$2 од многих",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1—$2 од многих",
 	"cdx-table-pagination-status-message-indeterminate-final": "Приказ последњих {{PLURAL:$1|$1 резултат|$1 резултата}}",
-	"cdx-table-pagination-status-message-pending": "Учитавање резултата..."
+	"cdx-table-pagination-status-message-pending": "Учитавање резултата...",
+	"cdx-table-no-data-message": "Нема доступних података."
 }

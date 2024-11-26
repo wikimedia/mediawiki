@@ -2513,6 +2513,8 @@
 	"block-expiry-datetime": "Прецизан датум и време",
 	"block-options": "Додатне опције:",
 	"block-reason": "Разлог:",
+	"block-confirm-yes": "Да",
+	"block-confirm-no": "Не",
 	"block-success": "[[Special:Contributions/$1|$1]] је блокиран. Погледајте [[Special:BlockList|списак]] за преглед блокада.",
 	"block-user-active-blocks": "Активне блокаде",
 	"block-user-previous-blocks": "Дневник блокирања",

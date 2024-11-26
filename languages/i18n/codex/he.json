@@ -26,5 +26,6 @@
 	"cdx-table-pagination-status-message-indeterminate-long": "הצגת תוצאות $1 עד $2 מתוך הרבה",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1 עד $2 מתוך הרבה",
 	"cdx-table-pagination-status-message-indeterminate-final": "הצגת {{PLURAL:$1|התוצאה האחרונה|$1 התוצאות האחרונות}}",
-	"cdx-table-pagination-status-message-pending": "טעינת תוצאות..."
+	"cdx-table-pagination-status-message-pending": "טעינת תוצאות...",
+	"cdx-table-no-data-message": "אין נתונים זמינים."
 }

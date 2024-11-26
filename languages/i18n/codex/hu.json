@@ -24,5 +24,6 @@
 	"cdx-table-pagination-status-message-indeterminate-long": "$1–$2. találat megjelenítve a sok találatból",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2/sok",
 	"cdx-table-pagination-status-message-indeterminate-final": "Az utolsó $1 {{PLURAL:$1|találat}} megjelenítve",
-	"cdx-table-pagination-status-message-pending": "Találatok betöltése…"
+	"cdx-table-pagination-status-message-pending": "Találatok betöltése…",
+	"cdx-table-no-data-message": "Nem állnak rendelkezésre adatok."
 }
