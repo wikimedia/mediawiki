@@ -24,6 +24,7 @@ use SearchEngineFactory;
 use SearchResult;
 use SearchSuggestion;
 use StatusValue;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
@@ -403,6 +404,7 @@ class SearchHandler extends Handler {
 				self::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-search-q' ),
 			],
 			'limit' => [
 				self::PARAM_SOURCE => 'query',
@@ -411,6 +413,7 @@ class SearchHandler extends Handler {
 				ParamValidator::PARAM_DEFAULT => self::LIMIT,
 				IntegerDef::PARAM_MIN => 1,
 				IntegerDef::PARAM_MAX => self::MAX_LIMIT,
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-search-limit' ),
 			],
 		];
 	}

@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Rest\Handler;
 
+use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\Handler\Helper\ParsoidFormatHelper;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -40,18 +41,31 @@ class TransformHandler extends ParsoidHandler {
 	/** @inheritDoc */
 	public function getParamSettings() {
 		return [
-			'from' => [ self::PARAM_SOURCE => 'path',
+			'from' => [
+				self::PARAM_SOURCE => 'path',
 				ParamValidator::PARAM_TYPE => 'string',
-				ParamValidator::PARAM_REQUIRED => true, ],
-			'format' => [ self::PARAM_SOURCE => 'path',
+				ParamValidator::PARAM_REQUIRED => true,
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-transform-from' ),
+			],
+			'format' => [
+				self::PARAM_SOURCE => 'path',
 				ParamValidator::PARAM_TYPE => 'string',
-				ParamValidator::PARAM_REQUIRED => true, ],
-			'title' => [ self::PARAM_SOURCE => 'path',
+				ParamValidator::PARAM_REQUIRED => true,
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-transform-format' ),
+			],
+			'title' => [
+				self::PARAM_SOURCE => 'path',
 				ParamValidator::PARAM_TYPE => 'string',
-				ParamValidator::PARAM_REQUIRED => false, ],
-			'revision' => [ self::PARAM_SOURCE => 'path',
+				ParamValidator::PARAM_REQUIRED => false,
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-transform-title' ),
+			],
+			'revision' => [
+				self::PARAM_SOURCE => 'path',
 				ParamValidator::PARAM_TYPE => 'string',
-				ParamValidator::PARAM_REQUIRED => false, ], ];
+				ParamValidator::PARAM_REQUIRED => false,
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-transform-revision' ),
+			],
+		];
 	}
 
 	/**
