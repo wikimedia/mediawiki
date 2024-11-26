@@ -5,6 +5,8 @@ namespace MediaWiki\OutputTransform\Stages;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
+use MediaWiki\Parser\Parsoid\ParsoidParser;
+use MediaWiki\Title\TitleFactory;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\NullLogger;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
@@ -33,7 +35,8 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 	public function createStage(): ParsoidLocalization {
 		return new ParsoidLocalization(
 			new ServiceOptions( [] ),
-			new NullLogger()
+			new NullLogger(),
+			new TitleFactory()
 		);
 	}
 
@@ -48,6 +51,7 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 		$loc = $this->createStage();
 		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle( new PageBundle( $input ) );
 		$po->setLanguage( new Bcp47CodeValue( $pagelang ) );
+		$po->setExtensionData( ParsoidParser::PARSOID_TITLE_KEY, 'Test_page' );
 		$opts = [ 'isParsoidContent' => true ];
 		$transf = $loc->transform( $po, null, $opts );
 		$res = $transf->getContentHolderText();
@@ -67,6 +71,7 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle(
 			new PageBundle( ContentUtils::ppToXML( $doc ) ) );
 		$po->setLanguage( new Bcp47CodeValue( 'en' ) );
+		$po->setExtensionData( ParsoidParser::PARSOID_TITLE_KEY, 'Test_page' );
 		$opts = [ 'isParsoidContent' => true ];
 		$transf = $loc->transform( $po, null, $opts );
 		$res = $transf->getContentHolderText();
@@ -85,6 +90,7 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle(
 			new PageBundle( ContentUtils::ppToXML( $doc ) ) );
 		$po->setLanguage( new Bcp47CodeValue( 'fr' ) );
+		$po->setExtensionData( ParsoidParser::PARSOID_TITLE_KEY, 'Test_page' );
 		$opts = [ 'isParsoidContent' => true ];
 		$transf = $loc->transform( $po, null, $opts );
 		$res = $transf->getContentHolderText();
@@ -155,6 +161,12 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 				[ new MessageValue( 'testlink', [] ) ],
 				'<p><span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"x-user","key":"testparam","params":{"0":{"key":"testlink","params":[],"_type_":"Wikimedia\\\\Message\\\\MessageValue"},"_type_":"array"}}}\'>english english <a href="/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">link</a></span></p>',
 				'span with link in the parameter'
+			],
+			[
+				'testpagename',
+				[],
+				'<p><span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"x-user","key":"testpagename","params":[]}}\'>Test page</span></p>',
+				'{{PAGENAME}} should resolve'
 			]
 		];
 	}

@@ -57,6 +57,9 @@ class DefaultOutputPipelineFactory {
 		],
 		'ParsoidLocalization' => [
 			'class' => ParsoidLocalization::class,
+			'services' => [
+				'TitleFactory',
+			]
 		],
 		'ExecutePostCacheTransformHooks' => [
 			'class' => ExecutePostCacheTransformHooks::class,

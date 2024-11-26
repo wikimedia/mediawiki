@@ -1,5 +1,6 @@
 {
 	"testparam": "english $1",
 	"testblock": "english <div>stuff</div>",
-	"testlink": "english [[link]]"
+	"testlink": "english [[link]]",
+	"testpagename": "{{PAGENAME}}"
 }
