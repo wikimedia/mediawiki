@@ -385,13 +385,11 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	/**
 	 * @return string|null ID of the active explicit transaction round being participating in
 	 */
-	final protected function getTransactionRoundId() {
+	final protected function getTransactionRoundFname() {
 		if ( $this->flagsHolder->hasImplicitTrxFlag() ) {
 			// LoadBalancer transaction round participation is enabled for this DB handle;
-			// get the ID of the active explicit transaction round (if any)
-			$id = $this->getLBInfo( self::LB_TRX_ROUND_ID );
-
-			return is_string( $id ) ? $id : null;
+			// get the owner of the active explicit transaction round (if any)
+			return $this->getLBInfo( self::LB_TRX_ROUND_FNAME );
 		}
 
 		return null;
@@ -1917,7 +1915,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	}
 
 	final public function onTransactionCommitOrIdle( callable $callback, $fname = __METHOD__ ) {
-		if ( !$this->trxLevel() && $this->getTransactionRoundId() ) {
+		if ( !$this->trxLevel() && $this->getTransactionRoundFname() ) {
 			// This DB handle is set to participate in LoadBalancer transaction rounds and
 			// an explicit transaction round is active. Start an implicit transaction on this
 			// DB handle (setting trxAutomatic) similar to how query() does in such situations.
@@ -1935,7 +1933,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	}
 
 	final public function onTransactionPreCommitOrIdle( callable $callback, $fname = __METHOD__ ) {
-		if ( !$this->trxLevel() && $this->getTransactionRoundId() ) {
+		if ( !$this->trxLevel() && $this->getTransactionRoundFname() ) {
 			// This DB handle is set to participate in LoadBalancer transaction rounds and
 			// an explicit transaction round is active. Start an implicit transaction on this
 			// DB handle (setting trxAutomatic) similar to how query() does in such situations.
@@ -2495,7 +2493,12 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	}
 
 	public function flushSnapshot( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
-		$this->transactionManager->onFlushSnapshot( $this, $fname, $flush, $this->getTransactionRoundId() );
+		$this->transactionManager->onFlushSnapshot(
+			$this,
+			$fname,
+			$flush,
+			$this->getTransactionRoundFname()
+		);
 		if (
 			$this->transactionManager->sessionStatus() === TransactionManager::STATUS_SESS_ERROR ||
 			$this->transactionManager->trxStatus() === TransactionManager::STATUS_TRX_ERROR
