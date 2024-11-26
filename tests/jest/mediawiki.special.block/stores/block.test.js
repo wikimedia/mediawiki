@@ -2,6 +2,7 @@
 
 const { nextTick } = require( 'vue' );
 const { setActivePinia, createPinia } = require( 'pinia' );
+const { flushPromises } = require( '@vue/test-utils' );
 const { mockMwConfigGet } = require( '../SpecialBlock.setup.js' );
 const useBlockStore = require( '../../../../resources/src/mediawiki.special.block/stores/block.js' );
 
@@ -87,6 +88,8 @@ describe( 'Block store', () => {
 	} );
 
 	it( 'should only pass the reblock param to the API if there was an "already blocked" error', () => {
+		const jQuery = jest.requireActual( '../../../../resources/lib/jquery/jquery.js' );
+		mw.Api.prototype.postWithEditToken.mockReturnValue( jQuery.Deferred().resolve().promise() );
 		mockMwConfigGet( { blockAlreadyBlocked: false } );
 		const store = useBlockStore();
 		store.$reset();
@@ -109,5 +112,19 @@ describe( 'Block store', () => {
 		store.doBlock();
 		expected.reblock = 1;
 		expect( spy ).toHaveBeenCalledWith( expected );
+	} );
+
+	it( 'should make one API request for the block log and active blocks', async () => {
+		const jQuery = jest.requireActual( '../../../../resources/lib/jquery/jquery.js' );
+		mw.Api.prototype.postWithEditToken.mockReturnValue( jQuery.Deferred().resolve().promise() );
+		const store = useBlockStore();
+		const spy = jest.spyOn( mw.Api.prototype, 'get' );
+		store.$reset();
+		store.getBlockLogData( 'recent' );
+		store.getBlockLogData( 'active' );
+		expect( store.promises.size ).toStrictEqual( 1 );
+		expect( spy ).toHaveBeenCalledTimes( 1 );
+		await flushPromises();
+		expect( store.promises.size ).toStrictEqual( 0 );
 	} );
 } );

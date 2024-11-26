@@ -105,7 +105,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 		// Used in BlockLog
 		{
 			params: {
-				list: 'logevents',
+				list: 'logevents|blocks',
 				letype: 'block',
 				letitle: 'User:ExampleUser'
 			},
@@ -128,13 +128,14 @@ function mockMwApiGet( additionalMocks = [] ) {
 							timestamp: '2024-09-17T14:30:51Z',
 							comment: 'A reason'
 						}
-					]
+					],
+					blocks: []
 				}
 			}
 		},
 		{
 			params: {
-				list: 'logevents',
+				list: 'logevents|blocks',
 				letype: 'block',
 				letitle: 'User:NeverBlocked'
 			},
@@ -146,14 +147,14 @@ function mockMwApiGet( additionalMocks = [] ) {
 		},
 		{
 			params: {
-				list: 'logevents',
+				list: 'logevents|blocks',
 				letype: 'block',
 				letitle: 'User:BlockedALot'
 			},
 			response: {
 				continue: {
 					lecontinue: '20240909144407|979',
-					continue: '-||'
+					continue: '-||blocks'
 				},
 				query: {
 					logevents: [
@@ -317,19 +318,21 @@ function mockMwApiGet( additionalMocks = [] ) {
 							timestamp: '2024-09-26T14:30:51Z',
 							comment: 'A reason'
 						}
-					]
+					],
+					blocks: []
 				}
 			}
 		},
 		{
 			params: {
-				list: 'logevents',
+				list: 'logevents|blocks',
 				letype: 'block',
 				letitle: 'User:BadNameBlocked'
 			},
 			response: {
 				query: {
-					logevents: []
+					logevents: [],
+					blocks: []
 				}
 			}
 		},
