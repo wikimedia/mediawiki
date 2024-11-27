@@ -56,7 +56,7 @@ $defaultDateFormat = 'cdo-latn';
 $dateFormats = [
 	'cdo-latn time' => 'H:i',
 	'cdo-latn date' => 'Y"-nièng" n"-nguŏk" j"-hô̤" (l)',
-	'nan-hant monthonly' => 'Y"-nièng" n"-nguŏk"',
+	'cdo-latn monthonly' => 'Y"-nièng" n"-nguŏk"',
 	'cdo-latn both' => 'Y"-nièng" n"-nguŏk" j"-hô̤" (l) H:i',
-	'nan-hant pretty' => 'n"-nguŏk" j"-hô̤"',
+	'cdo-latn pretty' => 'n"-nguŏk" j"-hô̤"',
 ];

@@ -156,7 +156,7 @@ $defaultDateFormat = 'cdo-hant';
 $dateFormats = [
 	'cdo-hant time' => 'H:i',
 	'cdo-hant date' => 'Y年n月j號（l）',
-	'nan-hant monthonly' => 'Y年n月',
+	'cdo-hant monthonly' => 'Y年n月',
 	'cdo-hant both' => 'Y年n月j號（l）H:i',
-	'nan-hant pretty' => 'n月j號',
+	'cdo-hant pretty' => 'n月j號',
 ];
