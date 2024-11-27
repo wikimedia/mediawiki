@@ -2920,7 +2920,7 @@
 	"movelogpagetext": "Lista stron, które ostatnio zostały przeniesione.",
 	"movesubpage": "{{PLURAL:$1|Podstrona|Podstrony}}",
 	"movesubpagetext": "Ta strona posiada $1 {{PLURAL:$1|podstronę|podstrony|podstron}}:",
-	"movesubpagetalktext": "Odpowiadająca strona dyskusji ma $1 {{PLURAL:$1|podstronę|podstron}} pokazanych poniżej.",
+	"movesubpagetalktext": "Powiązana strona dyskusji ma $1 {{PLURAL:$1|podstronę|podstrony|podstron}} pokazanych poniżej.",
 	"movesubpagetext-truncated": "{{PLURAL:$1|Pierwsza podstrona|Pierwsze $1 podstrony|Pierwszych $1 podstron}} tej strony {{PLURAL:$1|wyświetlona jest|wyświetlone są|wyświetlonych jest}} poniżej.",
 	"movesubpagetalktext-truncated": "{{PLURAL:$1|Pierwsza podstrona|Pierwsze $1 podstrony|Pierwszych $1 podstron}} powiązanej strony dyskusji {{PLURAL:$1|wyświetlona jest|wyświetlone są|wyświetlonych jest}} poniżej.",
 	"movenosubpage": "Ta strona nie posiada podstron.",
