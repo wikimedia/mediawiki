@@ -358,6 +358,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 						$msg = $this->getUser()->isAnon()
 							? 'sp-contributions-concurrency-ip'
 							: 'sp-contributions-concurrency-user';
+						$out->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
 						$out->addHTML(
 							Html::errorBox(
 								$out->msg( $msg )->parse()
@@ -415,6 +416,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 			$isAnon = true;
 		}
 
+		$out = $this->getOutput();
 		if ( $isAnon ) {
 			// Show a warning message that the user being searched for doesn't exist.
 			// UserNameUtils::isIP returns true for IP address and usemod IPs like '123.123.123.xxx',
@@ -423,13 +425,14 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 			if ( !$this->userNameUtils->isIP( $userObj->getName() )
 				&& !IPUtils::isValidRange( $userObj->getName() )
 			) {
-				$this->getOutput()->addHTML( Html::warningBox(
-					$this->getOutput()->msg( 'contributions-userdoesnotexist',
+				$out->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
+				$out->addHTML( Html::warningBox(
+					$out->msg( 'contributions-userdoesnotexist',
 						wfEscapeWikiText( $userObj->getName() ) )->parse(),
 					'mw-userpage-userdoesnotexist'
 				) );
 				if ( !$this->including() ) {
-					$this->getOutput()->setStatusCode( 404 );
+					$out->setStatusCode( 404 );
 				}
 			}
 			$user = htmlspecialchars( $userObj->getName() );
@@ -479,7 +482,6 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 							. ':' . $block->getTargetName();
 					}
 
-					$out = $this->getOutput(); // showLogExtract() wants first parameter by reference
 					if ( $userObj->isAnon() ) {
 						$msgKey = $block->isSitewide() ?
 							'sp-contributions-blocked-notice-anon' :
