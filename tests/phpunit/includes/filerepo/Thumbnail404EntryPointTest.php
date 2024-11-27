@@ -37,7 +37,7 @@ class Thumbnail404EntryPointTest extends MediaWikiIntegrationTestCase {
 		$this->importFileToTestRepo( self::IMAGES_DIR . '/test.jpg', 'Icon.jpg' );
 
 		// Create a second version of Test.png
-		$this->importFileToTestRepo( self::IMAGES_DIR . '/greyscale-na-png.png', 'Test.png' );
+		$this->importFileToTestRepo( self::IMAGES_DIR . '/greyscale-dot-na-png.png', 'Test.png' );
 
 		// Create a redirect
 		$title = Title::makeTitle( NS_FILE, 'Redirect_to_Test.png' );
@@ -227,6 +227,19 @@ class Thumbnail404EntryPointTest extends MediaWikiIntegrationTestCase {
 		$history = $file->getHistory();
 		$oldFile = $history[0];
 
+		$this->assertNotSame(
+			$file->getSize(),
+			$oldFile->getSize(),
+			'Old and latest file version should not have the same size'
+		);
+
+		$curThumbPath = $file->getThumbPath( '13px-Test.png' );
+		$oldThumbPath = $oldFile->getThumbPath( '13px-Test.png' );
+		$this->assertFalse(
+			$file->getRepo()->getBackend()->fileExists( [ 'src' => $oldThumbPath ] ),
+			'Thumbnail for old file version does not exist'
+		);
+
 		$uri = '/w/images/thumb/' . $oldFile->getArchiveRel()
 			. '/' . $oldFile->getArchiveName() . '/13px-Test.png';
 
@@ -236,6 +249,12 @@ class Thumbnail404EntryPointTest extends MediaWikiIntegrationTestCase {
 		$entryPoint->run();
 		$output = $entryPoint->getCapturedOutput();
 		$env->assertStatusCode( 200 );
+
+		$this->assertNotSame(
+			$file->getRepo()->getBackend()->getFileSha1Base36( [ 'src' => $oldThumbPath ] ),
+			$file->getRepo()->getBackend()->getFileSha1Base36( [ 'src' => $curThumbPath ] ),
+			"Thumbnails at $oldThumbPath and $curThumbPath should have different hashes"
+		);
 
 		$this->assertNotSame(
 			$latestThumbnailInfo['data'],
