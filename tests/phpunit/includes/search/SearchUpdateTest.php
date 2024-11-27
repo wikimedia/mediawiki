@@ -1,11 +1,11 @@
 <?php
 
-use MediaWiki\Deferred\SearchUpdate;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Search\SearchUpdate;
 
 /**
  * @group Search
- * @covers \MediaWiki\Deferred\SearchUpdate
+ * @covers \MediaWiki\Search\SearchUpdate
  */
 class SearchUpdateTest extends MediaWikiIntegrationTestCase {
 

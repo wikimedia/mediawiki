@@ -1,10 +1,5 @@
 <?php
 /**
- * Rebuild search index table from scratch.  This may take several
- * hours, depending on the database size and server configuration.
- *
- * Postgres is trigger-based and should never need rebuilding.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,22 +16,24 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Maintenance
- * @todo document
  */
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
-use MediaWiki\Deferred\SearchUpdate;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Search\SearchUpdate;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\DatabaseSqlite;
 
 /**
- * Maintenance script that rebuilds search index table from scratch.
+ * Rebuild search index table from scratch.
  *
+ * This may take several hours, depending on the database size and server configuration.
+ * Postgres is trigger-based and should never need rebuilding.
+ *
+ * @ingroup Search
  * @ingroup Maintenance
  */
 class RebuildTextIndex extends Maintenance {
