@@ -34,7 +34,7 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactory;
  * compress counter increments, and send all data in a few large UDP packets
  * over a single connection.
  *
- * These buffers are sent from MediaWikiEntryPoint::emitBufferedStatsdData. For web requests,
+ * These buffers are sent from MediaWikiEntryPoint::emitBufferedStats. For web requests,
  * this happens post-send. For command-line scripts, this happens periodically from a database
  * callback (see MWLBFactory::applyGlobalState).
  *

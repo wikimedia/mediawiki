@@ -6208,7 +6208,7 @@ config-schema:
             Destination of statsd metrics.
             A host or host:port of a statsd server. Port defaults to 8125.
             If not set, statsd metrics will not be collected.
-            @see MediaWiki::emitBufferedStatsdData()
+            @see MediaWiki::emitBufferedStats()
             @since 1.25
     StatsdMetricPrefix:
         default: MediaWiki
