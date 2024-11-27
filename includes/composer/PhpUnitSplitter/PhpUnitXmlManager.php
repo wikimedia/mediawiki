@@ -5,6 +5,7 @@ declare( strict_types = 1 );
 namespace MediaWiki\Composer\PhpUnitSplitter;
 
 use Composer\Script\Event;
+use MediaWiki\Composer\ComposerLaunchParallel;
 use PHPUnit\Framework\ErrorTestCase;
 
 /**
@@ -156,7 +157,7 @@ class PhpUnitXmlManager {
 	 * @throws MissingNamespaceMatchForTestException
 	 * @throws SuiteGenerationException
 	 */
-	public static function splitTestsList( string $testListFile, Event $event ) {
+	public static function splitTestsList( string $testListFile, ?string $testSuite, Event $event ) {
 		/**
 		 * We split into 8 groups here, because experimentally that generates 100% CPU load
 		 * on developer machines and results in groups that are similar in size to the
@@ -166,7 +167,14 @@ class PhpUnitXmlManager {
 			( new PhpUnitXmlManager( getcwd(), $testListFile ) )->createPhpUnitXml( 8 );
 		} catch ( PhpUnitErrorTestCaseFoundException $tce ) {
 			$event->getIO()->error( $tce->getMessage() );
-			exit( 2 );
+			if ( $testSuite !== null ) {
+				/* Parallel test suite run failed. Run the tests in linear order to work out
+				 * which test actually has an error (see T379764 for some discussion of why this
+				 * is necessary)
+				 */
+				ComposerLaunchParallel::runLinearFallback( $testSuite, $event );
+			}
+			exit( ComposerLaunchParallel::EXIT_STATUS_PHPUNIT_LIST_TESTS_ERROR );
 		}
 		$event->getIO()->write( '' );
 		$event->getIO()->info( 'Created modified `phpunit.xml` with test suite groups' );
@@ -179,7 +187,7 @@ class PhpUnitXmlManager {
 	 * @throws SuiteGenerationException
 	 */
 	public static function splitTestsListExtensions( Event $event ) {
-		self::splitTestsList( 'tests-list-extensions.xml', $event );
+		self::splitTestsList( 'tests-list-extensions.xml', "extensions", $event );
 	}
 
 	/**
@@ -189,7 +197,7 @@ class PhpUnitXmlManager {
 	 * @throws SuiteGenerationException
 	 */
 	public static function splitTestsListDefault( Event $event ) {
-		self::splitTestsList( 'tests-list-default.xml', $event );
+		self::splitTestsList( 'tests-list-default.xml', "default", $event );
 	}
 
 	/**
@@ -204,6 +212,6 @@ class PhpUnitXmlManager {
 			exit( 1 );
 		}
 		$filename = $_SERVER["argv"][2];
-		self::splitTestsList( $filename, $event );
+		self::splitTestsList( $filename, null, $event );
 	}
 }
