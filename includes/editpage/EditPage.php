@@ -2788,9 +2788,12 @@ class EditPage implements IEditObject {
 		$out = $this->context->getOutput();
 
 		$out->addModules( 'mediawiki.action.edit' );
-		$out->addModuleStyles( 'mediawiki.action.edit.styles' );
-		$out->addModuleStyles( 'mediawiki.editfont.styles' );
-		$out->addModuleStyles( 'mediawiki.interface.helpers.styles' );
+		$out->addModuleStyles( [
+			'mediawiki.action.edit.styles',
+			'mediawiki.codex.messagebox.styles',
+			'mediawiki.editfont.styles',
+			'mediawiki.interface.helpers.styles',
+		] );
 
 		$user = $this->context->getUser();
 
