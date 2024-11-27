@@ -101,7 +101,7 @@
 		"nikic/php-parser": "^5.5.0",
 		"php-parallel-lint/php-console-highlighter": "1.0.0",
 		"php-parallel-lint/php-parallel-lint": "1.4.0",
-		"phpunit/phpunit": "9.6.19",
+		"phpunit/phpunit": "9.6.21",
 		"psy/psysh": "^0.12.3",
 		"seld/jsonlint": "1.10.2",
 		"wikimedia/alea": "1.0.0",
