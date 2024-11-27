@@ -30,6 +30,8 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	 *   - flatlist: If given, the options will be displayed on a single line (wrapping to following
 	 *     lines if necessary), rather than each one on a line of its own. This is desirable mostly
 	 *     for very short lists of concisely labelled options.
+	 *   - max: Maximum number of elements that can be selected. On the client-side, this is only
+	 *     enforced when using a dropdown.
 	 */
 	public function __construct( $params ) {
 		parent::__construct( $params );
@@ -70,6 +72,10 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 
 		// Reject nested arrays (T274955)
 		$value = array_filter( $value, 'is_scalar' );
+
+		if ( isset( $this->mParams['max'] ) && ( count( $value ) > $this->mParams['max'] ) ) {
+			return $this->msg( 'htmlform-multiselect-toomany', $this->mParams['max'] );
+		}
 
 		# If all options are valid, array_intersect of the valid options
 		# and the provided options will return the provided options.
@@ -241,11 +247,14 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		}
 
 		if ( !$hasSections && $out ) {
+			$firstFieldData = $out[0]->getData() ?: [];
 			if ( $this->mPlaceholder ) {
-				$out[0]->setData( ( $out[0]->getData() ?: [] ) + [
-					'placeholder' => $this->mPlaceholder,
-				] );
+				$firstFieldData['placeholder'] = $this->mPlaceholder;
 			}
+			if ( isset( $this->mParams['max'] ) ) {
+				$firstFieldData['tagLimit'] = $this->mParams['max'];
+			}
+			$out[0]->setData( $firstFieldData );
 			// Directly return the only OOUI\CheckboxMultiselectInputWidget.
 			// This allows it to be made infusable and later tweaked by JS code.
 			return $out[0];
