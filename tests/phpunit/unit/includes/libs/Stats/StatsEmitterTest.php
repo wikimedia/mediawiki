@@ -41,11 +41,12 @@ class StatsEmitterTest extends TestCase {
 		$transport = $this->createMock( UDPTransport::class );
 		$transport->expects( $this->once() )->method( "emit" )
 			->with(
-				"mediawiki.test.bar:1|c\n" .
-				"mediawiki.test.bar:1|c\n" .
-				"mediawiki.test.foo:3.14|ms\n" .
-				"mediawiki.test.gauge:1|g\n" .
-				"mediawiki.test.stats_buffered_total:4|c\n"
+				"mediawiki.test.foo:1|c\n" .
+				"mediawiki.test.bar:1|c|#mykey:value1\n" .
+				"mediawiki.test.bar:1|c|#mykey:value2\n" .
+				"mediawiki.test.baz:3.14|ms\n" .
+				"mediawiki.test.quux:1|g\n" .
+				"mediawiki.test.stats_buffered_total:5|c\n"
 			);
 		$emitter = $emitter->withTransport( $transport );
 
@@ -55,20 +56,37 @@ class StatsEmitterTest extends TestCase {
 		// inject statsd factory
 		$m->withStatsdDataFactory( $statsd );
 
-		// populate metric with statsd copy
-		$m->getCounter( 'bar' )->copyToStatsdAt( 'test.metric' )->increment();
+		// simple counter
+		$m->getCounter( 'foo' )
+			->increment();
 
-		// fetch same metric from cache and use it
-		$metric = $m->getCounter( 'bar' );
-		$metric->increment();
-		$metric = $m->getTiming( 'foo' )->copyToStatsdAt( 'test.metric.timing' );
-		$metric->observe( 3.14 );
+		// counter with statsd copy
+		// then fetch the same metric from cache and re-use it
+		$m->getCounter( 'bar' )
+			->setLabels( [
+				'mykey' => 'value1'
+			] )
+			->copyToStatsdAt( 'test.old_bar' )
+			->increment();
 
-		// name collision: gauge should not appear in output nor throw exception
-		$metric = @$m->getGauge( 'bar' );
-		$metric->set( 42 );
+		$m->getCounter( 'bar' )
+			->setLabels( [
+				'mykey' => 'value2'
+			] )
+			->increment();
 
-		$m->getGauge( 'gauge' )->copyToStatsdAt( 'test.metric.gauge' )->set( 1 );
+		// timer with statsd copy
+		$m->getTiming( 'baz' )
+			->copyToStatsdAt( 'test.old_baz' )
+			->observe( 3.14 );
+
+		// name collision: bar as gauge should not appear in output nor throw exception
+		@$m->getGauge( 'bar' )
+			->set( 42 );
+
+		$m->getGauge( 'quux' )
+			->copyToStatsdAt( 'test.old_quux' )
+			->set( 1 );
 
 		// send metrics
 		$m->flush();
