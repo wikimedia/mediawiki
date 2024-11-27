@@ -1089,7 +1089,7 @@ class FileModule extends Module {
 		// @TODO: dependency injection
 		if ( !$cache ) {
 			$cache = MediaWikiServices::getInstance()->getObjectCacheFactory()
-				->getLocalServerInstance( CACHE_ANYTHING );
+				->getLocalServerInstance( CACHE_HASH );
 		}
 
 		$skinName = $context->getSkin();
