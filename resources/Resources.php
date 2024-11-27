@@ -861,7 +861,6 @@ return [
 			'autoinfuse.js',
 			'cloner.js',
 			'cond-state.js',
-			'multiselect.js',
 			'selectandother.js',
 			'selectorother.js',
 			'timezone.js',
@@ -3147,6 +3146,14 @@ return [
 	'mediawiki.widgets.TagMultiselectWidget' => [
 		'scripts' => [
 			'resources/src/mediawiki.widgets/mw.widgets.TagMultiselectWidget.js',
+		],
+		'dependencies' => [
+			'oojs-ui-widgets',
+		],
+	],
+	'mediawiki.widgets.MenuTagMultiselectWidget' => [
+		'scripts' => [
+			'resources/src/mediawiki.widgets/mw.widgets.MenuTagMultiselectWidget.js',
 		],
 		'dependencies' => [
 			'oojs-ui-widgets',
