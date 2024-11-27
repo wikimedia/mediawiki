@@ -25,6 +25,7 @@
  * Convenience class for iterating over an array in reverse order.
  *
  * @since 1.27
+ * @deprecated since 1.44 (unused since 1.32)
  */
 class ReverseArrayIterator implements Iterator, Countable {
 	/** @var array */
@@ -38,8 +39,10 @@ class ReverseArrayIterator implements Iterator, Countable {
 	 *
 	 * @phpcs:ignore MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
 	 * @param array|object $array
+	 * @deprecated since 1.44 (unused since 1.32)
 	 */
 	public function __construct( $array = [] ) {
+		wfDeprecated( __METHOD__, '1.44' );
 		if ( is_array( $array ) ) {
 			$this->array = $array;
 		} elseif ( is_object( $array ) ) {
