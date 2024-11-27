@@ -992,6 +992,7 @@ class DifferenceEngine extends ContextSource {
 				'class' => 'mw-diff-revision-history-links'
 			], $breadCrumbs )
 		);
+		$addMessageBoxStyles = false;
 		# If the diff cannot be shown due to a deleted revision, then output
 		# the diff header and links to unhide (if available)...
 		if ( $this->shouldBeHiddenFromUser( $this->getAuthority() ) ) {
@@ -1010,6 +1011,7 @@ class DifferenceEngine extends ContextSource {
 				];
 			}
 			$out->addHTML( Html::warningBox( $this->msg( ...$msg )->parse(), 'plainlinks' ) );
+			$addMessageBoxStyles = true;
 		# Otherwise, output a regular diff...
 		} else {
 			# Add deletion notice if the user is viewing deleted content
@@ -1017,12 +1019,14 @@ class DifferenceEngine extends ContextSource {
 			if ( $deleted ) {
 				$msg = $suppressed ? 'rev-suppressed-diff-view' : 'rev-deleted-diff-view';
 				$notice = Html::warningBox( $this->msg( $msg )->parse(), 'plainlinks' );
+				$addMessageBoxStyles = true;
 			}
 
 			# Add an error if the content can't be loaded
 			$this->getSlotContents();
 			foreach ( $this->getRevisionLoadErrors() as $msg ) {
 				$notice .= Html::warningBox( $msg->parse() );
+				$addMessageBoxStyles = true;
 			}
 
 			// Check if inline switcher will be needed
@@ -1041,6 +1045,9 @@ class DifferenceEngine extends ContextSource {
 				# Add redundant patrol link on bottom...
 				$out->addHTML( $this->markPatrolledLink() );
 			}
+		}
+		if ( $addMessageBoxStyles ) {
+			$out->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
 		}
 	}
 
@@ -1263,6 +1270,7 @@ class DifferenceEngine extends ContextSource {
 						] );
 					}
 				} else {
+					$out->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
 					$out->addHTML(
 						Html::errorBox(
 							$out->parseAsInterface(
