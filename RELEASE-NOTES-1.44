@@ -45,6 +45,8 @@ For notes on 1.43.x and older releases, see HISTORY.
 
 * wgResourceLoaderUseObjectCacheForDeps, deprecated in 1.43, has been removed.
   It is now always enabled (T343492).
+* wgBaseDirectory, unused, has been removed in favour of MW_INSTALL_PATH.
+  If a variable value is needed, inject an optional parameter instead.
 * …
 
 === New user-facing features in 1.44 ===

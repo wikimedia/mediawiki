@@ -17,7 +17,7 @@
  *
  * This file does:
  * - run-time environment checks,
- * - define MW_INSTALL_PATH, $IP, and $wgBaseDirectory,
+ * - define MW_INSTALL_PATH, and $IP,
  * - load autoloaders, constants, default settings, and global functions,
  * - load the site configuration (e.g. LocalSettings.php),
  * - load the enabled extensions (via ExtensionRegistry),
@@ -114,11 +114,9 @@ if ( !defined( 'MW_ENTRY_POINT' ) ) {
 // The $IP variable is defined for use by LocalSettings.php.
 // It is made available as a global variable for backwards compatibility.
 //
-// Source code should instead use the MW_INSTALL_PATH constant, or the
-// MainConfigNames::BaseDirectory setting. The BaseDirectory setting is set further
-// down in Setup.php to the value of MW_INSTALL_PATH.
+// Source code should use the MW_INSTALL_PATH constant instead.
 global $IP;
-$IP = wfDetectInstallPath(); // ensure MW_INSTALL_PATH is defined
+$IP = wfDetectInstallPath(); // ensures MW_INSTALL_PATH is defined
 
 /**
  * Pre-config setup: Before loading LocalSettings.php
@@ -181,9 +179,9 @@ mb_internal_encoding( 'UTF-8' );
 // Initialize some config settings with dynamic defaults, and
 // make default settings available in globals for use in LocalSettings.php.
 $wgSettings->putConfigValues( [
-	MainConfigNames::BaseDirectory => MW_INSTALL_PATH,
 	MainConfigNames::ExtensionDirectory => MW_INSTALL_PATH . '/extensions',
 	MainConfigNames::StyleDirectory => MW_INSTALL_PATH . '/skins',
+	MainConfigNames::UploadDirectory => MW_INSTALL_PATH . '/images',
 	MainConfigNames::ServiceWiringFiles => [ MW_INSTALL_PATH . '/includes/ServiceWiring.php' ],
 	'Version' => MW_VERSION,
 ] );
@@ -270,13 +268,6 @@ require __DIR__ . '/SetupDynamicConfig.php';
 
 if ( defined( 'MW_AUTOLOAD_TEST_CLASSES' ) ) {
 	require_once __DIR__ . '/../tests/common/TestsAutoLoader.php';
-}
-
-if ( $wgBaseDirectory !== MW_INSTALL_PATH ) {
-	throw new FatalError(
-		'$wgBaseDirectory must not be modified in settings files! ' .
-		'Use the MW_INSTALL_PATH environment variable to override the installation root directory.'
-	);
 }
 
 // Start time limit
