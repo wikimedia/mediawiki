@@ -23,5 +23,6 @@
 	"cdx-table-pagination-status-message-determinate-short": "$1–$2 di $3",
 	"cdx-table-pagination-status-message-indeterminate-long": "Visualizzando i risultati $1–$2 di molti",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 di molti",
-	"cdx-table-pagination-status-message-indeterminate-final": "Visualizzando {{PLURAL:$1|l'ultimo risultato|gli ultimi $1 risultati}}"
+	"cdx-table-pagination-status-message-indeterminate-final": "Visualizzando {{PLURAL:$1|l'ultimo risultato|gli ultimi $1 risultati}}",
+	"cdx-table-no-data-message": "Non ci sono dati disponibili."
 }

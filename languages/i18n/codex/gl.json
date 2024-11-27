@@ -26,5 +26,6 @@
 	"cdx-table-pagination-status-message-indeterminate-long": "Amosando os resultados do $1 ao $2 de moitos",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 de moitos",
 	"cdx-table-pagination-status-message-indeterminate-final": "Amosando {{PLURAL:$1|o último resultado|os últimos $1 resultados}}",
-	"cdx-table-pagination-status-message-pending": "Cargando os resultados..."
+	"cdx-table-pagination-status-message-pending": "Cargando os resultados...",
+	"cdx-table-no-data-message": "Non hai datos dispoñibles."
 }

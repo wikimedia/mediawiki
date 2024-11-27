@@ -477,7 +477,6 @@
 	"searchrelated": "Dikɛ makɛ",
 	"searchall": "za'an",
 	"showingresultsinrange": "Pa'ala sɛla n boi tilum ta paɛ {{PLURAL:$1|<strong></strong> result|<strong>$1</strong> results}} innrange #<strong>$2</strong> to #<strong>$3</strong>.",
-	"search-showingresults": "{{PLURAL:$4|Result <strong>$1</strong> of <strong>$3</strong>|Results <strong>$1 – $2</strong> of <strong>$3</strong>}}",
 	"search-nonefound": "Sɛla ka boe wɔna tun eeri sɛla la.",
 	"search-nonefound-thiswiki": "Rezɔɔsi ka boni bini tɔ tuntɔɔ dɔla 'query' n boi zi'an wa.",
 	"powersearch-legend": "Adeŋɛte'ele eere",

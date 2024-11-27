@@ -900,7 +900,7 @@
 	"searchrelated": "Gandego",
 	"searchall": "popolẹpo",
 	"showingresultsinrange": "Dohia to odò kakajẹ {{PLURAL:$1|kọdetọn <strong>1</strong>|kọdetọn lẹ <strong>$1</strong>}} he bẹjẹeji sọn #<strong>$2</strong> jẹ #<strong>$3</strong>.",
-	"search-showingresults": "{{PLURAL:$4|Kọdetọn <strong>$1</strong> na  <strong>$3</strong>|kọdetọn lẹ <strong>$1 - $2</strong> tọn na<strong>$3</strong>}}",
+	"search-showingresults": "{{PLURAL:$4|Kọdetọn <strong>$1</strong> na  <strong>$3</strong>|Kọdetọn lẹ <strong>$1 – $2</strong> tọn na<strong>$3</strong>}}",
 	"search-nonefound": "Kọdetọn de ma tin na nuhe dín a te",
 	"search-nonefound-thiswiki": "Kọdetọn de ma tin na nuhe dín a te",
 	"powersearch-legend": "Din yinukọn",

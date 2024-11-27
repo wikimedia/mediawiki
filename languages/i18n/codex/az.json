@@ -26,5 +26,6 @@
 	"cdx-table-pagination-status-message-indeterminate-long": "Nəticələrdən $1–$2 ədədi göstərilir",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2",
 	"cdx-table-pagination-status-message-indeterminate-final": "Son {{PLURAL:$1|$1 nəticə}} göstərilir",
-	"cdx-table-pagination-status-message-pending": "Nəticələr yüklənir..."
+	"cdx-table-pagination-status-message-pending": "Nəticələr yüklənir...",
+	"cdx-table-no-data-message": "Data yoxdur."
 }

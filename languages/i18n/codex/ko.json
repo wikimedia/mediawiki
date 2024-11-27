@@ -26,5 +26,6 @@
 	"cdx-table-pagination-status-message-indeterminate-long": "많은 결과 중 $1-$2 결과 표시",
 	"cdx-table-pagination-status-message-indeterminate-short": "많은 결과 중 $1-$2",
 	"cdx-table-pagination-status-message-indeterminate-final": "마지막 {{PLURAL:$1|$1개 결과}} 표시",
-	"cdx-table-pagination-status-message-pending": "결과를 불러오는 중..."
+	"cdx-table-pagination-status-message-pending": "결과를 불러오는 중...",
+	"cdx-table-no-data-message": "사용 가능한 데이터가 없습니다."
 }

@@ -20,5 +20,6 @@
 	"cdx-table-pager-items-per-page-default": "Resultater pro Säit",
 	"cdx-table-pagination-status-message-determinate-short": "$1-$2 vu(n) $3",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1-$2 vu villen",
-	"cdx-table-pagination-status-message-pending": "Resultater gi gelueden ..."
+	"cdx-table-pagination-status-message-pending": "Resultater gi gelueden ...",
+	"cdx-table-no-data-message": "Et si keng Donnéeë verfügbar."
 }
