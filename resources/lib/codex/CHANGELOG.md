@@ -1,3 +1,30 @@
+# 1.17.0 / 2024-11-26
+
+## Features
+- TextArea: Expose native validation methods and events (Anne Tomasevich)
+- TextInput: Emit the native DOM 'invalid' event (Itamar Givon)
+- TextInput: Expose native constraint Validation API DOM methods (Itamar Givon)
+
+## Styles
+- styles, images: update outdated error color to match new color palette (Volker E.)
+
+## Code
+- Table: Simplify condition in getRowHeaderScope function (Doğu Abaris)
+- build: Commit 'npm audit fix' changes to at least fix the criticals (Volker E.)
+- build: Point to browserslist-config-wikimedia modern, not deprecated modern-es6-only (James D. Forrester)
+- build: Upgrade eslint-config-wikimedia from 0.26.0 to 0.28.2, & auto-fix to pass (James D. Forrester)
+- build: update 'svglint' to latest v3.1.0 (Volker E.)
+- build: update 'svgo' to latest v3.3.2 (Volker E.)
+
+## Docs
+- IconLookup: Clarify reactive data flow and update watcher (Eric Gardner)
+- docs: Document native validation for TextInput (Anne Tomasevich)
+- docs: Revise colors used for top graphic on Style Guide colors page (Derek Torsani)
+
+## Icons
+- icons: Add 'power' icon (Volker E.)
+
+
 # 1.16.0 / 2024-11-13
 
 ## Features
