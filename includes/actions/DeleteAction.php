@@ -31,7 +31,6 @@ use MediaWiki\Page\DeletePage;
 use MediaWiki\Page\DeletePageFactory;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Session\CsrfTokenSet;
-use MediaWiki\Status\Status;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\Title\TitleFormatter;
@@ -157,9 +156,11 @@ class DeleteAction extends FormAction {
 			$outputPage->setPageTitleMsg(
 				$context->msg( 'cannotdelete-title' )->plaintextParams( $title->getPrefixedText() )
 			);
-			$outputPage->wrapWikiMsg( "<div class=\"error mw-error-cannotdelete\">\n$1\n</div>",
-				[ 'cannotdelete', wfEscapeWikiText( $title->getPrefixedText() ) ]
-			);
+			$outputPage->addHTML( Html::errorBox(
+				$context->msg( 'cannotdelete', wfEscapeWikiText( $title->getPrefixedText() ) )->parse(),
+				'',
+				'mw-error-cannotdelete'
+			) );
 			$this->showLogEntries();
 
 			return;
@@ -208,17 +209,11 @@ class DeleteAction extends FormAction {
 			if ( !$status->isGood() ) {
 				// If the page (and/or its talk) couldn't be found (e.g. because it was deleted in another request),
 				// let the user know.
-				$outputPage->addHTML(
-					Html::warningBox(
-						$outputPage->parseAsContent(
-							Status::wrap( $status )->getWikiText(
-								false,
-								false,
-								$context->getLanguage()
-							)
-						)
-					)
-				);
+				foreach ( $status->getMessages() as $msg ) {
+					$outputPage->addHTML(
+						Html::warningBox( $context->msg( $msg )->parse() )
+					);
+				}
 			}
 
 			$this->showSuccessMessages(
@@ -235,10 +230,14 @@ class DeleteAction extends FormAction {
 				$this->msg( 'cannotdelete-title' )->plaintextParams( $this->getTitle()->getPrefixedText() )
 			);
 
-			$outputPage->wrapWikiTextAsInterface(
-				'error mw-error-cannotdelete',
-				Status::wrap( $status )->getWikiText( false, false, $context->getLanguage() )
-			);
+			foreach ( $status->getMessages() as $msg ) {
+				$outputPage->addHTML( Html::errorBox(
+					$context->msg( $msg )->parse(),
+					'',
+					'mw-error-cannotdelete'
+				) );
+			}
+
 			$this->showLogEntries();
 		}
 
@@ -325,12 +324,11 @@ class DeleteAction extends FormAction {
 		);
 
 		if ( $title->isBigDeletion() ) {
-			$context->getOutput()->wrapWikiMsg( "<div class='error'>\n$1\n</div>\n",
-				[
-					'delete-warning-toobig',
-					$context->getLanguage()->formatNum( $this->deleteRevisionsLimit )
-				]
-			);
+			$context->getOutput()->addHTML( Html::errorBox(
+				$context->msg( 'delete-warning-toobig' )
+					->numParams( $this->deleteRevisionsLimit )
+					->parse()
+			) );
 		}
 	}
 
@@ -566,7 +564,10 @@ class DeleteAction extends FormAction {
 	protected function prepareOutputForForm(): void {
 		$outputPage = $this->getOutput();
 		$outputPage->addModules( 'mediawiki.misc-authed-ooui' );
-		$outputPage->addModuleStyles( 'mediawiki.action.styles' );
+		$outputPage->addModuleStyles( [
+			'mediawiki.action.styles',
+			'mediawiki.codex.messagebox.styles',
+		] );
 		$outputPage->enableOOUI();
 	}
 

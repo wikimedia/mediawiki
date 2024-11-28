@@ -223,6 +223,7 @@ class SpecialUserRights extends SpecialPage {
 		$this->outputHeader();
 
 		$out->addModuleStyles( 'mediawiki.special' );
+		$out->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
 		$this->addHelpLink( 'Help:Assigning permissions' );
 
 		$this->switchForm();
@@ -284,9 +285,11 @@ class SpecialUserRights extends SpecialPage {
 					return;
 				} else {
 					// Print an error message and redisplay the form
-					$out->wrapWikiTextAsInterface(
-						'error', $status->getWikiText( false, false, $this->getLanguage() )
-					);
+					foreach ( $status->getMessages() as $msg ) {
+						$out->addHTML( Html::errorBox(
+							$this->msg( $msg )->parse()
+						) );
+					}
 				}
 			}
 		}

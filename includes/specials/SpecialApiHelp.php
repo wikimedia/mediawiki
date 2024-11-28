@@ -51,6 +51,7 @@ class SpecialApiHelp extends UnlistedSpecialPage {
 	}
 
 	public function execute( $par ) {
+		$this->getOutput()->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
 		if ( !$par ) {
 			$par = 'main';
 		}
@@ -99,7 +100,7 @@ class SpecialApiHelp extends UnlistedSpecialPage {
 		try {
 			$module = $main->getModuleFromPath( $moduleName );
 		} catch ( ApiUsageException $ex ) {
-			$this->getOutput()->addHTML( Html::rawElement( 'span', [ 'class' => 'error' ],
+			$this->getOutput()->addHTML( Html::errorBox(
 				$this->msg( 'apihelp-no-such-module', $moduleName )->inContentLanguage()->parse()
 			) );
 			return;

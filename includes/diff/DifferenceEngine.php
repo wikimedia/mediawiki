@@ -1271,13 +1271,11 @@ class DifferenceEngine extends ContextSource {
 					}
 				} else {
 					$out->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
-					$out->addHTML(
-						Html::errorBox(
-							$out->parseAsInterface(
-								$status->getWikiText( false, false, $this->getLanguage() )
-							)
-						)
-					);
+					foreach ( $status->getMessages() as $msg ) {
+						$out->addHTML( Html::errorBox(
+							$this->msg( $msg )->parse()
+						) );
+					}
 				}
 			}
 		}

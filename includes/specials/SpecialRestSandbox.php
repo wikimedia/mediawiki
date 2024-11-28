@@ -115,20 +115,18 @@ class SpecialRestSandbox extends SpecialPage {
 		}
 
 		$out->addModules( [
+			'mediawiki.codex.messagebox.styles',
 			'mediawiki.special.restsandbox'
 		] );
 
 		$out->addHTML( Html::openElement( 'div', [ 'id' => 'mw-restsandbox' ] ) );
 
 		// Hidden when JS is available
-		$out->wrapWikiMsg(
-			Html::element(
-				'div',
-				[ 'class' => [ 'mw-restsandbox-client-nojs', 'error', ], ],
-				"\n$1\n"
-			),
-			'restsandbox-jsonly'
-		);
+		$out->addHTML( Html::errorBox(
+			$out->msg( 'restsandbox-jsonly' )->parse(),
+			'',
+			'mw-restsandbox-client-nojs'
+		) );
 
 		// To be replaced by Swagger UI.
 		$out->addElement( 'div', [ 'id' => 'mw-restsandbox-swagger-ui' ] );
