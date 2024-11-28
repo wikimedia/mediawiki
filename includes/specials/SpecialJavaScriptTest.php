@@ -176,7 +176,7 @@ JAVASCRIPT
 		] );
 
 		$scriptUrl = $this->getPageTitle( 'qunit/export' )->getFullURL( [
-			'debug' => (string)ResourceLoader::inDebugMode(),
+			'debug' => $req->getRawVal( 'debug' ) ?? '0',
 			'component' => $component,
 		] );
 		$script = implode( "\n", [
