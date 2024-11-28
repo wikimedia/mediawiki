@@ -271,6 +271,12 @@ module.exports = exports = defineComponent( {
 
 .mw-block-log {
 	word-break: auto-phrase;
+
+	// Override Codex's overflow:auto for the table, so the MenuButton displays correctly.
+	// @todo Remove after T379947 is resolved.
+	.cdx-table__table-wrapper {
+		overflow: unset;
+	}
 }
 
 .mw-block-log-nodata {
