@@ -30,7 +30,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use MemoizedCallable;
@@ -246,7 +245,7 @@ class WikiModule extends Module {
 			if ( !$revision ) {
 				return null;
 			}
-			$content = $revision->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
+			$content = $revision->getMainContentRaw();
 
 			if ( !$content ) {
 				$this->getLogger()->error(
@@ -687,14 +686,14 @@ class WikiModule extends Module {
 		// TODO: MCR: differentiate between page functionality and content model!
 		//       Not all pages containing CSS or JS have to be modules! [PageType]
 		if ( $old ) {
-			$oldModel = $old->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )->getModel();
+			$oldModel = $old->getMainContentModel();
 			if ( in_array( $oldModel, $models ) ) {
 				$purge = true;
 			}
 		}
 
 		if ( !$purge && $new ) {
-			$newModel = $new->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )->getModel();
+			$newModel = $new->getMainContentModel();
 			if ( in_array( $newModel, $models ) ) {
 				$purge = true;
 			}

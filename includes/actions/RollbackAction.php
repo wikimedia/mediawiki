@@ -32,7 +32,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\RollbackPageFactory;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
 
@@ -265,8 +264,7 @@ class RollbackAction extends FormAction {
 		if ( !$request->getBool( 'hidediff', false ) &&
 			!$this->userOptionsLookup->getBoolOption( $this->getUser(), 'norollbackdiff' )
 		) {
-			$contentModel = $current->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )
-				->getModel();
+			$contentModel = $current->getMainContentModel();
 			$contentHandler = $this->contentHandlerFactory->getContentHandler( $contentModel );
 			$de = $contentHandler->createDifferenceEngine(
 				$this->getContext(),

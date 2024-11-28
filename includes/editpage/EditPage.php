@@ -683,7 +683,7 @@ class EditPage implements IEditObject {
 		// Disallow editing revisions with content models different from the current one
 		// Undo edits being an exception in order to allow reverting content model changes.
 		$revContentModel = $revRecord ?
-			$revRecord->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )->getModel() :
+			$revRecord->getMainContentModel() :
 			false;
 		if ( $revContentModel && $revContentModel !== $this->contentModel ) {
 			$prevRevRecord = null;
@@ -696,9 +696,7 @@ class EditPage implements IEditObject {
 					null;
 
 				$prevContentModel = $prevRevRecord ?
-					$prevRevRecord
-						->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )
-						->getModel() :
+					$prevRevRecord->getMainContentModel() :
 					'';
 			}
 
@@ -1077,7 +1075,7 @@ class EditPage implements IEditObject {
 
 		// $currentRev is null for non-existing pages, use the page default content model.
 		$revContentModel = $currentRev
-			? $currentRev->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )->getModel()
+			? $currentRev->getMainContentModel()
 			: $this->page->getContentModel();
 
 		return (
@@ -1472,7 +1470,7 @@ class EditPage implements IEditObject {
 				) {
 					if ( WikiPage::hasDifferencesOutsideMainSlot( $undorev, $oldrev )
 						|| !$this->isSupportedContentModel(
-							$oldrev->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )->getModel()
+							$oldrev->getMainContentModel()
 						)
 					) {
 						// Hack for undo while EditPage can't handle multi-slot editing

@@ -1285,7 +1285,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 			$conditions['page_latest'] = $lastRevision;
 		}
 
-		$model = $revision->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )->getModel();
+		$model = $revision->getMainContentModel();
 
 		$row = [ /* SET */
 			'page_latest'        => $revId,

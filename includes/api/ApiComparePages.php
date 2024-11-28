@@ -137,7 +137,7 @@ class ApiComparePages extends ApiBase {
 						);
 						$fromRev->setContent(
 							SlotRecord::MAIN,
-							$toRelRev->getContent( SlotRecord::MAIN, RevisionRecord::RAW )
+							$toRelRev->getMainContentRaw()
 								->getContentHandler()
 								->makeEmptyContent()
 						);

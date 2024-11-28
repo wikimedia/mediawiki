@@ -139,6 +139,18 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	}
 
 	/**
+	 * Returns the Content of the main slot of this revision.
+	 *
+	 * @see getContent()
+	 *
+	 * @return Content|null The content of the main slot, or null on error
+	 * @throws RevisionAccessException
+	 */
+	public function getMainContentRaw(): ?Content {
+		return $this->getContent( SlotRecord::MAIN, self::RAW );
+	}
+
+	/**
 	 * Returns the Content of the given slot of this revision.
 	 * Call getSlotNames() to get a list of available slots.
 	 *
@@ -161,6 +173,16 @@ abstract class RevisionRecord implements WikiAwareEntity {
 			return null;
 		}
 		return $content->copy();
+	}
+
+	/**
+	 * Returns the content model of the main slot of this revision.
+	 *
+	 * @return string The content model
+	 * @throws RevisionAccessException
+	 */
+	public function getMainContentModel(): string {
+		return $this->getSlot( SlotRecord::MAIN, self::RAW )->getModel();
 	}
 
 	/**
