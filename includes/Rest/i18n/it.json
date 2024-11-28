@@ -44,5 +44,8 @@
 	"rest-parsoid-resource-exceeded": "Limite delle risorse superato",
 	"rest-invalid-transform": "Trasformazione non valida: da $1 a $2",
 	"rest-unknown-parsoid-transformation": "Trasformazione sconosciuta.",
-	"rest-param-desc-revision-id": "ID versione"
+	"rest-param-desc-revision-id": "ID versione",
+	"rest-param-desc-compare-to": "Confronta con",
+	"rest-param-desc-transform-format": "Trasforma formato",
+	"rest-param-desc-transform-revision": "Trasforma versione"
 }
