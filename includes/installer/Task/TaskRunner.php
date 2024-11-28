@@ -214,6 +214,7 @@ class TaskRunner {
 			if ( $task->isSkipped() ) {
 				$ret .= ' [SKIPPED]';
 			}
+			$ret .= ': ' . $task->getDescriptionMessage()->text();
 			$ret .= "\n";
 		}
 		return $ret;
