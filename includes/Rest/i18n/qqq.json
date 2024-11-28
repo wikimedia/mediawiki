@@ -6,7 +6,8 @@
 			"Matma Rex",
 			"McDutchie",
 			"Raymond",
-			"Tim Starling"
+			"Tim Starling",
+			"Mahabarata"
 		]
 	},
 	"rest-prefix-mismatch": "Error message for REST API debugging, shown if $wgRestPath is incorrect or otherwise not matched. Parameters:\n* $1: The requested path.\n* $2: The configured root path ($wgRestPath).",
@@ -65,7 +66,7 @@
 	"rest-transform-missing-title": "Error message for REST API debugging, shown when no title or wikitext is provided",
 	"rest-unsupported-target-format": "Error message for REST API debugging, shown when the requested target format is not supported",
 	"rest-parsoid-resource-exceeded": "Error message for REST API debugging, shown when a resource limit is exceeded while converting between wikitext and HTML.",
-	"rest-parsoid-error": "Error message for REST API debugging, indicating the an unspecified backend error occurred while converting between wikitext and HTML.\n\n[[:mw:Parsoid|Parsoid]] is the name of a software library; do not translate that name.",
+	"rest-parsoid-error": "Error message for REST API debugging, indicating an unspecified backend error occurred while converting between wikitext and HTML.\n\n[[:mw:Parsoid|Parsoid]] is the name of a software library; do not translate that name.",
 	"rest-bad-stash-key": "Error message for REST API debugging, shown when When the rednerid or etag given in the request is not a valid stash key.",
 	"rest-html-key-expected": "Error message for REST API debugging, shown when when the \"html\" key is missing from the request body",
 	"rest-invalid-transform": "Error message for REST API debugging, shown when an unsupported transformation is requested from the transform handler. Parameters:\n* $1: The source format \n* $2: The target format",
