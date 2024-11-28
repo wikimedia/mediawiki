@@ -110,7 +110,7 @@
 	"rest-param-desc-pagehistory-count-type": "Page history count type",
 	"rest-param-desc-pagehistory-count-from": "Page history count from",
 	"rest-param-desc-pagehistory-count-to": "Page history count to",
-	"rest-param-desc-pagehistory-title": "Page history tite",
+	"rest-param-desc-pagehistory-title": "Page history title",
 	"rest-param-desc-pagehistory-older-than": "Page history older than",
 	"rest-param-desc-pagehistory-newer-than": "Page history newer than",
 	"rest-param-desc-pagehistory-filter": "Page history filter",
