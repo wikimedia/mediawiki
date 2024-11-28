@@ -29,7 +29,14 @@ class AddWikiRestoredServicesProvider extends Task {
 
 	public function execute(): Status {
 		MediaWikiServices::resetGlobalInstance( null, 'reload' );
-		$this->getContext()->provide( 'services', MediaWikiServices::getInstance() );
+		$services = MediaWikiServices::getInstance();
+		$this->getContext()->provide( 'services', $services );
+
+		// Wait for replication, so that the new database will exist in replica servers
+		$connProvider = $services->getConnectionProvider();
+		$ticket = $connProvider->getEmptyTransactionTicket( __METHOD__ );
+		$connProvider->commitAndWaitForReplication( __METHOD__, $ticket );
+
 		return Status::newGood();
 	}
 }

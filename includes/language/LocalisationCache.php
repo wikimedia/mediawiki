@@ -972,6 +972,7 @@ class LocalisationCache {
 			'rest' => "$IP/includes/Rest/i18n",
 			'oojs-ui' => "$IP/resources/lib/ooui/i18n",
 			'paramvalidator' => "$IP/includes/libs/ParamValidator/i18n",
+			'installer' => "$IP/includes/installer/i18n",
 		] + $this->options->get( MainConfigNames::MessagesDirs );
 	}
 
