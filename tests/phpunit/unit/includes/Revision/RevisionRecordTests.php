@@ -265,6 +265,7 @@ trait RevisionRecordTests {
 		$rev = $this->newRevision( [ 'rev_deleted' => $visibility ] );
 
 		$this->assertNotNull( $rev->getContent( SlotRecord::MAIN, RevisionRecord::RAW ), 'raw can' );
+		$this->assertNotNull( $rev->getMainContentRaw(), 'raw can' );
 
 		$this->assertSame(
 			$publicCan,
@@ -328,13 +329,16 @@ trait RevisionRecordTests {
 	public function testGetContent() {
 		$rev = $this->newRevision();
 
-		$content = $rev->getSlot( SlotRecord::MAIN );
+		$content = $rev->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
 		$this->assertNotNull( $content, 'getContent()' );
 		$this->assertSame(
 			DummyContentForTesting::MODEL_ID,
 			$content->getModel(),
 			'getModel()'
 		);
+
+		$this->assertTrue( $content->equals( $rev->getMainContentRaw() ) );
+		$this->assertSame( DummyContentForTesting::MODEL_ID, $rev->getMainContentModel() );
 	}
 
 	public function provideUserCanBitfield() {

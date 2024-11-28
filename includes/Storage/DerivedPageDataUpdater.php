@@ -817,7 +817,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 */
 	private function revisionIsRedirect( RevisionRecord $rev ) {
 		// NOTE: main slot determines redirect status
-		$mainContent = $rev->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
+		$mainContent = $rev->getMainContentRaw();
 
 		return $mainContent->isRedirect();
 	}

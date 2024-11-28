@@ -1044,7 +1044,7 @@ class Article implements Page {
 		$contentHandler = $services
 			->getContentHandlerFactory()
 			->getContentHandler(
-				$rev->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )->getModel()
+				$rev->getMainContentModel()
 			);
 		$de = $contentHandler->createDifferenceEngine(
 			$context,

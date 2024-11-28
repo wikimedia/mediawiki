@@ -3,7 +3,6 @@
 namespace MediaWiki\Languages;
 
 use MediaWiki\DomainEvent\EventSubscriberBase;
-use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\PageUpdatedEvent;
 use MessageCache;
@@ -45,8 +44,8 @@ class LanguageEventIngress extends EventSubscriberBase {
 		if ( $event->getPage()->getNamespace() === NS_MEDIAWIKI
 			&& $event->isModifiedSlot( SlotRecord::MAIN )
 		) {
-			$slot = $event->getNewRevision()->getSlot( SlotRecord::MAIN, RevisionRecord::RAW );
-			$this->messageCache->updateMessageOverride( $event->getPage(), $slot->getContent() );
+			$content = $event->getNewRevision()->getMainContentRaw();
+			$this->messageCache->updateMessageOverride( $event->getPage(), $content );
 		}
 	}
 

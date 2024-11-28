@@ -423,7 +423,7 @@ class XmlDumpWriter {
 			/** @var Content $content */
 			$content = $this->invokeLenient(
 				static function () use ( $rev ) {
-					return $rev->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
+					return $rev->getMainContentRaw();
 				},
 				'Failed to load main slot content of revision ' . $rev->getId()
 			);

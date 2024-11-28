@@ -266,8 +266,7 @@ class PageContentHelper {
 				'id' => $revision->getId(),
 				'timestamp' => wfTimestampOrNull( TS_ISO_8601, $revision->getTimestamp() )
 			],
-			'content_model' => $revision->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )
-				->getModel(),
+			'content_model' => $revision->getMainContentModel(),
 			'license' => [
 				'url' => $this->options->get( MainConfigNames::RightsUrl ),
 				'title' => $this->options->get( MainConfigNames::RightsText )

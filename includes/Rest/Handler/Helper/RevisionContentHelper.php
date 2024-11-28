@@ -8,7 +8,6 @@ use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -102,14 +101,12 @@ class RevisionContentHelper extends PageContentHelper {
 		$page = $this->getPage();
 		$revision = $this->getTargetRevision();
 
-		$mainSlot = $revision->getSlot( SlotRecord::MAIN, RevisionRecord::RAW );
-
 		$metadata = [
 			'id' => $revision->getId(),
 			'size' => $revision->getSize(),
 			'minor' => $revision->isMinor(),
 			'timestamp' => wfTimestampOrNull( TS_ISO_8601, $revision->getTimestamp() ),
-			'content_model' => $mainSlot->getModel(),
+			'content_model' => $revision->getMainContentModel(),
 			'page' => [
 				'id' => $page->getId(),
 				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
