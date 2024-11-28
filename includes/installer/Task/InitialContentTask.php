@@ -93,7 +93,7 @@ class InitialContentTask extends Task {
 			$status = $updater->getStatus();
 		} catch ( \Exception $e ) {
 			// using raw, because $wgShowExceptionDetails can not be set yet
-			$status->fatal( 'config-install-mainpage-failed', $e->getMessage() );
+			$status->fatal( 'config-install-mainpage-failed', $e->__toString() );
 		}
 
 		return $status;

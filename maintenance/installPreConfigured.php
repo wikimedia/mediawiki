@@ -8,7 +8,7 @@ use MediaWiki\Installer\Task\Task;
 use MediaWiki\Installer\Task\TaskFactory;
 use MediaWiki\Installer\Task\TaskList;
 use MediaWiki\Installer\Task\TaskRunner;
-use MediaWiki\MainConfigNames;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Settings\SettingsBuilder;
 use Symfony\Component\Yaml\Yaml;
@@ -41,12 +41,12 @@ class InstallPreConfigured extends Maintenance {
 			'Show the list of tasks to be executed, do not actually install' );
 	}
 
+	public function getDbType() {
+		return Maintenance::DB_ADMIN;
+	}
+
 	public function finalSetup( SettingsBuilder $settingsBuilder ) {
 		parent::finalSetup( $settingsBuilder );
-
-		// Load installer i18n
-		$settingsBuilder->putConfigValue( MainConfigNames::MessagesDirs,
-			[ MW_INSTALL_PATH . '/includes/installer/i18n' ] );
 
 		// Apply override-config options. Doing this here instead of in
 		// AddWikiTaskContext::setConfigVar() allows the options to be available
@@ -66,13 +66,14 @@ class InstallPreConfigured extends Maintenance {
 		$taskList = $this->createTaskList( $taskFactory );
 		$taskRunner = $this->createTaskRunner( $taskList, $taskFactory );
 
+		Installer::disableStorage( $this->getConfig(), 'en' );
+
 		if ( $this->hasOption( 'show-tasks' ) ) {
 			$taskRunner->loadExtensions();
 			echo $taskRunner->dumpTaskList();
-			return true;
+			return false;
 		}
 
-		Installer::disableStorage( $this->getConfig(), 'en' );
 		if ( $this->hasOption( 'task' ) ) {
 			$status = $taskRunner->runNamedTask( $this->getOption( 'task' ) );
 		} else {
