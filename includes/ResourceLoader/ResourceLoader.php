@@ -2108,8 +2108,8 @@ MESSAGE;
 		}
 
 		$statsFactory = MediaWikiServices::getInstance()->getStatsFactory();
-		$cache = MediaWikiServices::getInstance()->getObjectCacheFactory()
-			->getLocalServerInstance( CACHE_ANYTHING );
+		// Same as ResourceLoader->srvCache
+		$cache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
 
 		$key = $cache->makeGlobalKey(
 			'resourceloader-filter',
