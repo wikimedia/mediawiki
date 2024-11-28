@@ -115,7 +115,7 @@
 	"rest-param-desc-pagehistory-count-type": "{{Experimental}} Page history count type parameter description",
 	"rest-param-desc-pagehistory-count-from": "{{Experimental}} Page history count from parameter description",
 	"rest-param-desc-pagehistory-count-to": "{{Experimental}} Page history count to parameter description",
-	"rest-param-desc-pagehistory-title": "{{Experimental}} Page history tite parameter description",
+	"rest-param-desc-pagehistory-title": "{{Experimental}} Page history title parameter description",
 	"rest-param-desc-pagehistory-older-than": "{{Experimental}} Page history older than parameter description",
 	"rest-param-desc-pagehistory-newer-than": "{{Experimental}} Page history newer than parameter description",
 	"rest-param-desc-pagehistory-filter": "{{Experimental}} Page history filter parameter description",
