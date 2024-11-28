@@ -2380,6 +2380,7 @@ return [
 			'ipb-confirmhideuser',
 			'ipb-disableusertalk',
 			'ipb-hardblock',
+			'block-multiblocks-new-feature',
 			'ipb-namespaces-label',
 			'ipb-needreblock',
 			'ipb-pages-label',
