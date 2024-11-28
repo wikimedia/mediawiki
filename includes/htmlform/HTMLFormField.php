@@ -1282,7 +1282,7 @@ abstract class HTMLFormField {
 			$msg = $this->msg( $key );
 			$msgAsText = $needsParse ? $msg->parse() : $msg->plain();
 			if ( array_key_exists( $msgAsText, $ret ) ) {
-				LoggerFactory::getInstance( 'error' )->error(
+				LoggerFactory::getInstance( 'translation-problem' )->error(
 					'The option that uses the message key {msg_key_one} has the same translation as ' .
 					'another option in {lang}. This means that {msg_key_one} will not be used as an option.',
 					[
