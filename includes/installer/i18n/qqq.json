@@ -314,6 +314,7 @@
 	"config-install-db-success": "Shown after DB is set up. In web installer this is step prior to downloading LocalSettings.php",
 	"config-install-generic": "Shown as a progress message when localisation is not available. Parameter $1 is the internal (English) task name.",
 	"config-install-external-domains": "Shown as a progress message.",
+	"config-skip-shared-domain": "Shown as a warning. Parameter $1 is the database name.",
 	"config-download-localsettings": "The link text used in the download link in config-install-done.",
 	"config-help": "This is used in help boxes.\n{{Identical|Help}}",
 	"config-help-tooltip": "Tooltip for the 'help' links ({{msg-mw|config-help}}), to make it clear they'll expand in place rather than open a new page",

@@ -46,6 +46,7 @@ class CreateExternalDomainsTask extends Task {
 			if ( !$this->shouldDoShared()
 				&& $this->lbFactory->isSharedVirtualDomain( $virtualDomain )
 			) {
+				$status->warning( 'config-skip-shared-domain', $virtualDomain );
 				// Skip update of shared virtual domain
 				continue;
 			}
@@ -63,6 +64,7 @@ class CreateExternalDomainsTask extends Task {
 
 	private function createExternalStoreDomains() {
 		$status = Status::newGood();
+		$localDomainId = $this->lbFactory->getLocalDomainID();
 		foreach ( $this->esFactory->getWriteBaseUrls() as $url ) {
 			$store = $this->esFactory->getStoreForUrl( $url );
 			if ( $store instanceof ExternalStoreDB ) {
@@ -72,8 +74,9 @@ class CreateExternalDomainsTask extends Task {
 				}
 				$lb = $this->lbFactory->getExternalLB( $cluster );
 				$domainId = $store->getDomainIdForCluster( $cluster );
-				if ( $domainId !== false && !$this->shouldDoShared() ) {
+				if ( $domainId !== false && $domainId !== $localDomainId && !$this->shouldDoShared() ) {
 					// Skip potentially shared domain
+					$status->warning( 'config-skip-shared-domain', "$cluster/$domainId" );
 					continue;
 				}
 				$status->merge( $this->maybeCreateDomain( $lb, $domainId ) );
