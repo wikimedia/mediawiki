@@ -146,7 +146,7 @@ class MessageBlobStoreTest extends TestCase {
 		$this->assertEquals( '{"example":"First"}', $blob, 'Blob for v1 again' );
 
 		// Purge everything
-		$blobStore->clear();
+		$blobStore::clearGlobalCacheEntry( $this->wanCache );
 		$this->clock += 20;
 
 		// Assert
