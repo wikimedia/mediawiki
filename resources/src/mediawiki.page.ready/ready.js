@@ -199,20 +199,24 @@ $( () => {
 			url.searchParams.append( 'wasTempUser', 1 );
 			href = url;
 		}
-		api.postWithToken( 'csrf', {
-			action: 'logout'
-		} ).then(
-			() => {
-				location.href = href;
-			},
-			( err, data ) => {
-				mw.notify(
-					api.getErrorMessage( data ),
-					{ type: 'error', tag: 'logout', autoHide: false }
-				);
-			}
-		);
+		// Allow hooks to extend data that is sent along with the logout request.
+		api.prepareExtensibleApiRequest( 'extendLogout' ).then( ( params ) => {
+			// Include any additional params set by implementations of the extendLogout hook
+			const logoutParams = Object.assign( {}, params, { action: 'logout' } );
+			api.postWithToken( 'csrf', logoutParams ).then(
+				() => {
+					location.href = href;
+				},
+				( err, data ) => {
+					mw.notify(
+						api.getErrorMessage( data ),
+						{ type: 'error', tag: 'logout', autoHide: false }
+					);
+				}
+			);
+		} );
 	}
+
 	// Turn logout to a POST action
 	mw.hook( LOGOUT_EVENT ).add( logoutViaPost );
 	$( config.selectorLogoutLink ).on( 'click', function ( e ) {
