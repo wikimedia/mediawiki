@@ -380,12 +380,6 @@ abstract class Installer {
 
 		$configOverrides->set( MainConfigNames::ObjectCaches, $objectCaches );
 
-		// Load the installer's i18n.
-		$messageDirs = $baseConfig->get( MainConfigNames::MessagesDirs );
-		$messageDirs['MediaWikiInstaller'] = __DIR__ . '/i18n';
-
-		$configOverrides->set( MainConfigNames::MessagesDirs, $messageDirs );
-
 		$installerConfig = new MultiConfig( [ $configOverrides, $baseConfig ] );
 
 		// make sure we use the installer config as the main config
