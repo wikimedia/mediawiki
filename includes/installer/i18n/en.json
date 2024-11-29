@@ -290,6 +290,7 @@
 	"config-install-db-success": "Database was successfully set up",
 	"config-install-generic": "Running task \"$1\"",
 	"config-install-external-domains": "Creating external databases",
+	"config-skip-shared-domain": "Skipping potentially shared domain \"$1\"",
 	"config-download-localsettings": "Download <code>LocalSettings.php</code>",
 	"config-help": "help",
 	"config-help-tooltip": "click to expand",
