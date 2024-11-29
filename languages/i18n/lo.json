@@ -668,7 +668,6 @@
 	"viewdeletedpage": "ເບິ່ງໜ້າທີ່ຖືກລຶບ",
 	"skin-action-viewdeleted": "ຕ້ອງການເບິ່ງ $1 ບໍ່?",
 	"undeletepagetext": "ໜ້າຕ່ອໄປນີ້ຖຶກລຶບໄປແຕ່ຍັງຄົງຢູ່ໃນກຸທີ່ສາມາດຮຽກຄືນໄດ້ (ກຸຂໍ້ມູນອາດຖຶກລຶບເປັນລະຍະ)",
-	"cannotundelete": "ບໍ່ສາມາດ ກັບຄືນ ຫາສະບັບກ່ອນການລຶບ; ບາງຄົນອາດເຮັດກ່ອນແລ້ວ.",
 	"undelete-search-submit": "ຊອກຫາ",
 	"namespace": "ຊື່ຂອບເຂດ:",
 	"blanknamespace": "(ຫຼັກ)",

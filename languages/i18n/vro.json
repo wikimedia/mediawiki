@@ -1041,7 +1041,6 @@
 	"undeletelink": "kaeq/tiiq tagasi",
 	"undeleteviewlink": "näütäq",
 	"undeletecomment": "Kommõntaar:",
-	"cannotundelete": "Tagasitegemine lää-s kõrda; kiäki tõõnõ või-ollaq lehe jo tagasi tennüq.",
 	"undeletedpage": "'''$1 om tagasi tett'''\n\nPerämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistutamiisi nimekiräst]].",
 	"undelete-header": "Perämäidsi kistutuisi saat kaiaq [[Special:Log/delete|kistutamiisi nimekiräst]].",
 	"undelete-search-box": "Otsiq kistutõduid lehekülgi",

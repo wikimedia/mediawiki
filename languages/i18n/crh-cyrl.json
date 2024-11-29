@@ -1159,7 +1159,6 @@
 	"pageinfo-language": "Саифе ичиндекисининъ тили",
 	"patrol-log-page": "Тешкерюв журналы",
 	"deletedrevision": "$1 сайылы эски версия ёкъ этильди.",
-	"filedeleteerror-short": "Файл ёкъ эткенде хата чыкъты: $1",
 	"filedelete-missing": "\"$1\" адлы файл ёкъ этилип оламай, чюнки ойле бир файл ёкъ.",
 	"filedelete-old-unregistered": "Малюмат базасында сайлангъан «$1» файл версиясы ёкъ.",
 	"filedelete-current-unregistered": "Малюмат базасында сайлангъан «$1» адлы файл ёкъ.",

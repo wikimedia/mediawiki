@@ -1366,7 +1366,6 @@
 	"pageinfo-toolboxlink": "Esas malümat",
 	"patrol-log-page": "Teşkerüv jurnalı",
 	"deletedrevision": "$1 sayılı eski versiya yoq etildi.",
-	"filedeleteerror-short": "Fayl yoq etkende hata çıqtı: $1",
 	"filedelete-missing": "\"$1\" adlı fayl yoq etilip olamay, çünki öyle bir fayl yoq.",
 	"filedelete-old-unregistered": "Malümat bazasında saylanğan \"$1\" fayl versiyası yoq.",
 	"filedelete-current-unregistered": "Malümat bazasında saylanğan \"$1\" adlı fayl yoq.",

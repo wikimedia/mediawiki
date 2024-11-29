@@ -753,8 +753,6 @@
 	"others": "tše dingwe",
 	"siteusers": "{{SITENAME}} {{PLURAL:$2|mošumiši|bašumiši}} $1",
 	"pageinfo-toolboxlink": "Tsebo ya Letlakala",
-	"filedeleteerror-short": "Phošo go phumuleng faele: $1",
-	"filedeleteerror-long": "Diphošo di hlagile ge go phumulwa faele:\n\n$1",
 	"filedelete-missing": "Faele \"$1\" ga e phumulege ka ge e segona.",
 	"previousdiff": "← Dophapano tšago feta",
 	"nextdiff": "Diphapano tše dimpšha →",

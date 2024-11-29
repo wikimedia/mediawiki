@@ -1178,8 +1178,6 @@
 	"patrol-log-page": "Tikşerü köndälege",
 	"patrol-log-header": "Bu tikşerelgän bitlärneñ köndälege.",
 	"deletedrevision": "$1 biteneñ iske yuraması beterelde",
-	"filedeleteerror-short": "Faylnı beterü xatası: $1",
-	"filedeleteerror-long": "Faylnı beterü waqıtında xatalar çıqtı:\n\n$1",
 	"filedelete-missing": "«$1» isemle faylnı beterergä mömkin tügel, çönki ul yuq.",
 	"previousdiff": "← Aldağı üzgärtü",
 	"nextdiff": "Çirattağı üzgärtü →",

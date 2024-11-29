@@ -1685,8 +1685,6 @@
 	"patrol-log-page": "ಗಸ್ತು ದಾಖಲಾತಿ",
 	"confirm-markpatrolled-button": "ಸರಿ",
 	"deletedrevision": "ಹಳೆ ಆವೃತ್ತಿ $1 ಅನ್ನು ಅಳಿಸಲಾಗಿದೆ",
-	"filedeleteerror-short": "ಈ ಫೈಲನ್ನು ಅಳಿಸುವುದರಲ್ಲಿ ದೋಷ: $1",
-	"filedeleteerror-long": "ಫೈಲನ್ನು ಅಳಿಸುವಾಗ ಉಂಟಾದ ದೋಷಗಳು:\n\n$1",
 	"filedelete-missing": "\"$1\" ಫೈಲು ಅಸ್ಥಿತ್ವದಲ್ಲಿ ಇಲ್ಲದಿರುವುದರಿಂದ ಅದನ್ನು ಅಳಿಸಲು ಬರುವುದಿಲ್ಲ.",
 	"previousdiff": "← ಹಿಂದಿನ ಸಂಪಾದನೆ",
 	"nextdiff": "ನಂತರದ ಸಂಪಾದನೆ →",

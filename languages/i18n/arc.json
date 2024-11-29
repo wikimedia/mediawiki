@@ -1064,8 +1064,6 @@
 	"markedaspatrolled": "ܫܘܕܥܬ ܐܝܟ ܟܪܝܟܬܐ",
 	"markedaspatrollednotify": "ܫܘܚܠܦܐ ܗܢܐ ܥܠ $1 ܐܫܬܘܕܥ ܐܝܟ ܟܪܝܟܐ.",
 	"patrol-log-page": "ܣܓܠܐ ܕܟܪܟܐ",
-	"filedeleteerror-short": "ܦܘܕܐ ܒܫܝܦܐ ܕܠܦܦܐ: $1",
-	"filedeleteerror-long": "ܦܘܕ̈ܐ ܐܫܟܚܬ ܟܕ ܫܝܦܐ ܠܦܦܐ:\n\n$1",
 	"previousdiff": "← ܫܘܚܠܦܐ ܕܩܕܡ",
 	"nextdiff": "ܫܘܚܠܦܐ ܕܒܬܪ →",
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|ܦܐܬܐ|ܦܐܬܬ̈ܐ}}",

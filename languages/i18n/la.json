@@ -1100,7 +1100,6 @@
 	"undeleteviewlink": "inspicere",
 	"undeleteinvert": "Selectionem invertere",
 	"undeletecomment": "Causa:",
-	"cannotundelete": "Abrogatio deletionis fefellit; fortasse aliquis iam paginam restituit.",
 	"undelete-header": "Pro paginis nuper deletis, vide [[Special:Log/delete|indicem deletionum]].",
 	"undelete-search-box": "Quaerere inter paginas iam deletas",
 	"undelete-search-prefix": "Monstrare paginas quibus est praeverbium:",

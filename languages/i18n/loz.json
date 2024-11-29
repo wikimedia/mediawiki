@@ -618,8 +618,6 @@
 	"anonymous": "Sebelu con IP di {{SITENAME}}",
 	"siteuser": "{{SITENAME}} sebelu $1",
 	"siteusers": "{{SITENAME}} sebelu $1",
-	"filedeleteerror-short": "Bufosi di afi kulobala di media/imegi: $1",
-	"filedeleteerror-long": "Bufosi sa, abi sa afi kulobala di media/imegi:\n\n$1",
 	"previousdiff": "← Kona petuho",
 	"nextdiff": "Lila petuho →",
 	"widthheightpage": "$1 × $2, $3 petulo",
