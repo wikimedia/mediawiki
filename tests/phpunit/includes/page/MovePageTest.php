@@ -9,10 +9,11 @@ use MediaWiki\Page\Event\PageUpdatedEvent;
 use MediaWiki\Page\MovePage;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\Tests\Language\LanguageEventIngressSpyTrait;
-use MediaWiki\Tests\recentchanges\ChangeTrackingEventIngressSpyTrait;
+use MediaWiki\Tests\Language\LocalizationUpdateSpyTrait;
+use MediaWiki\Tests\recentchanges\ChangeTrackingUpdateSpyTrait;
+use MediaWiki\Tests\ResourceLoader\ResourceLoaderUpdateSpyTrait;
 use MediaWiki\Tests\Rest\Handler\MediaTestTrait;
-use MediaWiki\Tests\Search\SearchEventIngressSpyTrait;
+use MediaWiki\Tests\Search\SearchUpdateSpyTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -29,9 +30,10 @@ use Wikimedia\Rdbms\IDBAccessObject;
 class MovePageTest extends MediaWikiIntegrationTestCase {
 	use DummyServicesTrait;
 	use MediaTestTrait;
-	use ChangeTrackingEventIngressSpyTrait;
-	use SearchEventIngressSpyTrait;
-	use LanguageEventIngressSpyTrait;
+	use ChangeTrackingUpdateSpyTrait;
+	use SearchUpdateSpyTrait;
+	use LocalizationUpdateSpyTrait;
+	use ResourceLoaderUpdateSpyTrait;
 
 	/**
 	 * @param Title $old
@@ -670,22 +672,63 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 2, $calls );
 	}
 
-	/**
-	 * Regression test for T381225
-	 */
-	public function testEventPropagation() {
-		$old = Title::makeTitle( NS_MEDIAWIKI, 'Foo' );
-		$this->getExistingTestPage( $old );
+	public static function provideUpdatePropagation() {
+		static $counter = 1;
+		$name = __METHOD__ . $counter++;
 
-		$new = Title::makeTitle( NS_MEDIAWIKI, 'Bar' );
+		$script = new JavaScriptContent( 'console.log("testing")' );
+
+		yield 'move article' => [ "$name-OLD", "$name-NEW" ];
+		yield 'move user talk' => [ "User_talk:$name-OLD", "User_talk:$name-NEW" ];
+		yield 'move message' => [ "MediaWiki:$name-OLD", "MediaWiki:$name-NEW" ];
+		yield 'move script' => [ "User:$name/OLD.js", "User:$name/NEW.js", $script ];
+
+		yield 'move from user talk' => [ "User_talk:$name-OLD", "$name-NEW" ];
+		yield 'move from message' => [ "MediaWiki:$name-OLD", "$name-NEW" ];
+		yield 'move from script' => [ "User:$name/OLD.js", "$name/NEW", $script ];
+
+		yield 'move to user talk' => [ "$name-OLD", "User_talk:$name-NEW" ];
+		yield 'move to message' => [ "$name-OLD", "MediaWiki:$name-NEW" ];
+		yield 'move to script' => [ "$name/OLD", "User:$name/NEW.js" ];
+	}
+
+	/**
+	 * Test update propagation.
+	 * Includes regression test for T381225
+	 *
+	 * @dataProvider provideUpdatePropagation
+	 */
+	public function testUpdatePropagation( $old, $new, ?Content $content = null ) {
+		$old = Title::newFromText( $old );
+		$new = Title::newFromText( $new );
+
+		$content ??= new WikitextContent( 'hi' );
+		$this->editPage( $old, $content );
 		$this->getNonexistingTestPage( $new );
 
 		// clear the queue
 		$this->runJobs();
 
-		$this->installChangeTrackingEventIngressSpyForPageMove();
-		$this->installSearchEventIngressSpyForPageMove();
-		$this->installLanguageEventIngressSpyForPageMove();
+		// Should be counted as user contributions (T163966)
+		// Should generate an RC entry for the move log, but not for
+		// the dummy revision or redirect page.
+		$this->expectChangeTrackingUpdates( 0, 1, 1, 0 );
+
+		// The moved page and the redirect should both get re-indexed.
+		$this->expectSearchUpdates( 2 );
+
+		// The localization cache should be reset of any page in the MediaWiki
+		// namespace.
+		$this->expectLocalizationUpdate(
+			( $old->getNamespace() === NS_MEDIAWIKI ? 1 : 0 )
+			+ ( $new->getNamespace() === NS_MEDIAWIKI ? 1 : 0 )
+		);
+
+		// If the content model is JS, the module cache should be reset for the
+		// old and the new title.
+		$this->expectResourceLoaderUpdates(
+			$content->getModel() === CONTENT_MODEL_JAVASCRIPT ? 2 : 0
+		);
 
 		// Now move the page
 		$obj = $this->newMovePageWithMocks( $old, $new, [ 'db' => $this->getDb() ] );

@@ -2,10 +2,13 @@
 
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Page\Event\PageUpdatedEvent;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\Tests\Language\LanguageEventIngressSpyTrait;
-use MediaWiki\Tests\recentchanges\ChangeTrackingEventIngressSpyTrait;
-use MediaWiki\Tests\Search\SearchEventIngressSpyTrait;
+use MediaWiki\Tests\Language\LocalizationUpdateSpyTrait;
+use MediaWiki\Tests\recentchanges\ChangeTrackingUpdateSpyTrait;
+use MediaWiki\Tests\ResourceLoader\ResourceLoaderUpdateSpyTrait;
+use MediaWiki\Tests\Search\SearchUpdateSpyTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use PHPUnit\Framework\Assert;
@@ -17,9 +20,10 @@ use Psr\Log\NullLogger;
  */
 class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 	use TempUserTestTrait;
-	use ChangeTrackingEventIngressSpyTrait;
-	use SearchEventIngressSpyTrait;
-	use LanguageEventIngressSpyTrait;
+	use ChangeTrackingUpdateSpyTrait;
+	use SearchUpdateSpyTrait;
+	use LocalizationUpdateSpyTrait;
+	use ResourceLoaderUpdateSpyTrait;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -191,18 +195,34 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $calls );
 	}
 
+	public static function provideUpdatePropagation() {
+		$name = __METHOD__ . rand();
+
+		yield 'article' => [ PageIdentityValue::localIdentity( 0, NS_MAIN, $name ) ];
+		yield 'user talk' => [ PageIdentityValue::localIdentity( 0, NS_USER_TALK, $name ) ];
+		yield 'message' => [ PageIdentityValue::localIdentity( 0, NS_MEDIAWIKI, $name ) ];
+		yield 'script' => [ PageIdentityValue::localIdentity( 0, NS_USER, "$name/common.js" ) ];
+	}
+
 	/**
-	 * Regression test for T381225
+	 * Test update propagation.
+	 * Includes regression test for T381225
+	 *
+	 * @dataProvider provideUpdatePropagation
 	 */
-	public function testEventPropagation() {
-		// Make sure SearchEventIngress is triggered and tries to re-index the page
-		$this->installChangeTrackingEventIngressSpyForImport();
-		$this->installSearchEventIngressSpyForImport();
-		$this->installLanguageEventIngressSpyForImport();
+	public function testUpdatePropagation( PageIdentity $title ) {
+		$revision = $this->getWikiRevision( Title::castFromPageIdentity( $title ) );
+
+		$this->expectChangeTrackingUpdates( 0, 0, 0, 0 );
+
+		$this->expectSearchUpdates( 1 );
+		$this->expectLocalizationUpdate( $title->getNamespace() === NS_MEDIAWIKI ? 1 : 0 );
+
+		$this->expectResourceLoaderUpdates(
+			$revision->getContent()->getModel() === CONTENT_MODEL_JAVASCRIPT ? 1 : 0
+		);
 
 		// Now perform the import
-		$title = Title::makeTitle( NS_MEDIAWIKI, __CLASS__ . rand() );
-		$revision = $this->getWikiRevision( $title );
 		$importer = $this->getImporter();
 		$importer->import( $revision );
 	}

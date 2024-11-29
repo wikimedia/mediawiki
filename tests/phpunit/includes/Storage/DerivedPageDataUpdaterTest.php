@@ -1561,6 +1561,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	private function editAndUpdate( $page, $content ) {
 		$this->createRevision( $page, $content );
 		$this->getServiceContainer()->resetServiceForTesting( 'BacklinkCacheFactory' );
+		DeferredUpdates::doUpdates();
 		$this->runJobs( [ 'minJobs' => 0 ] );
 	}
 
@@ -1583,6 +1584,66 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->editAndUpdate( $template, '2' );
 		$newTouched = $page->getTouched();
 		$this->assertGreaterThan( $oldTouched, $newTouched );
+	}
+
+	public static function provideNewTalk() {
+		yield 'Talk page edit' => [
+			'NewTalk TestAuthor',
+			'User_talk:NewTalk_TestUser',
+			'NewTalk TestUser',
+			true,
+		];
+		yield 'Own talk page' => [
+			'NewTalk TestUser',
+			'User_talk:NewTalk_TestUser',
+			'NewTalk TestUser',
+			false,
+		];
+		yield 'IP user page' => [
+			'NewTalk TestAuthor',
+			'User_talk:192.168.0.1',
+			'192.168.0.1',
+			true,
+		];
+		yield 'Not talk page' => [
+			'NewTalk TestAuthor',
+			'User:NewTalk_TestUser',
+			'NewTalk TestUser',
+			false,
+		];
+	}
+
+	private function createUser( string $name ) {
+		$userFactory = $this->getServiceContainer()->getUserFactory();
+
+		$user = $userFactory->newFromName( $name );
+		if ( !$user ) {
+			$user = $userFactory->newAnonymous( $name );
+		} elseif ( !$user->getId() ) {
+			$user->addToDatabase();
+		}
+
+		return $user;
+	}
+
+	/**
+	 * @dataProvider provideNewTalk
+	 */
+	public function testNewTalk( string $authorName, string $pageName, string $recipientName, bool $expected ) {
+		$author = $this->createUser( $authorName );
+		$recipient = $this->createUser( $recipientName );
+
+		$notificationManager = $this->getServiceContainer()->getTalkPageNotificationManager();
+		$notificationManager->clearForPageView( $recipient );
+
+		$page = $this->getPage( $pageName );
+
+		$content = new WikitextContent( 'Hi there!' );
+		$this->createRevision( $page, 'Testing', $content, $author );
+		DeferredUpdates::doUpdates();
+
+		$hasNewMessage = $notificationManager->userHasNewMessages( $recipient );
+		$this->assertSame( $expected, $hasNewMessage );
 	}
 
 }

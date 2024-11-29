@@ -5,12 +5,20 @@ namespace MediaWiki\Tests\Language;
 use MessageCache;
 
 /**
- * Trait providing test spies for asserting that listeners in
- * LanguageEventIngress do or do not get called during
- * certain actions.
+ * Trait for asserting that the localization component is getting notified
+ * about changes as expected.
  */
-trait LanguageEventIngressSpyTrait {
-	private function installLanguageEventIngressSpys( int $messageOverrides ) {
+trait LocalizationUpdateSpyTrait {
+
+	/**
+	 * Register expectations about updates that should get triggered.
+	 * The parameters of this method represent known kinds of updates.
+	 * If a parameter is added, tests calling this method should be forced
+	 * to specify their expectations with respect to that kind of update.
+	 * For this reason, this method should not be split, and all parameters
+	 * should be required.
+	 */
+	private function expectLocalizationUpdate( int $messageOverrides ) {
 		// Make sure LanguageEventIngress is triggered and updates the message
 		$messageCache = $this->createNoOpMock(
 			MessageCache::class,
@@ -40,22 +48,6 @@ trait LanguageEventIngressSpyTrait {
 			->willReturn( false );
 
 		$this->setService( 'MessageCache', $messageCache );
-	}
-
-	private function installLanguageEventIngressSpyForEdit() {
-		$this->installLanguageEventIngressSpys( 1 );
-	}
-
-	private function installLanguageEventIngressSpyForPageMove() {
-		$this->installLanguageEventIngressSpys( 2 );
-	}
-
-	private function installLanguageEventIngressSpyForUndeletion() {
-		$this->installLanguageEventIngressSpys( 1 );
-	}
-
-	private function installLanguageEventIngressSpyForImport() {
-		$this->installLanguageEventIngressSpys( 1 );
 	}
 
 }

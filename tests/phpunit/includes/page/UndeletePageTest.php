@@ -1,14 +1,15 @@
 <?php
 
 use MediaWiki\CommentStore\CommentStoreComment;
-use MediaWiki\Content\ContentHandler;
 use MediaWiki\Page\Event\PageUpdatedEvent;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Page\UndeletePage;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\Tests\Language\LanguageEventIngressSpyTrait;
-use MediaWiki\Tests\recentchanges\ChangeTrackingEventIngressSpyTrait;
-use MediaWiki\Tests\Search\SearchEventIngressSpyTrait;
+use MediaWiki\Tests\Language\LocalizationUpdateSpyTrait;
+use MediaWiki\Tests\recentchanges\ChangeTrackingUpdateSpyTrait;
+use MediaWiki\Tests\ResourceLoader\ResourceLoaderUpdateSpyTrait;
+use MediaWiki\Tests\Search\SearchUpdateSpyTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
@@ -22,9 +23,10 @@ use Wikimedia\IPUtils;
 class UndeletePageTest extends MediaWikiIntegrationTestCase {
 
 	use TempUserTestTrait;
-	use ChangeTrackingEventIngressSpyTrait;
-	use SearchEventIngressSpyTrait;
-	use LanguageEventIngressSpyTrait;
+	use ChangeTrackingUpdateSpyTrait;
+	use SearchUpdateSpyTrait;
+	use LocalizationUpdateSpyTrait;
+	use ResourceLoaderUpdateSpyTrait;
 
 	/**
 	 * @var array
@@ -46,16 +48,21 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * Test update propagation.
+	 * Includes regression test for T381225
 	 * @param string $titleText
 	 * @param int $ns
-	 * @param string $content
+	 * @param string|Content $content
 	 */
-	private function setupPage( string $titleText, int $ns, string $content ): void {
+	private function setupPage( string $titleText, int $ns, $content ): void {
+		if ( is_string( $content ) ) {
+			$content = new WikitextContent( $content );
+		}
+
 		$this->disableAutoCreateTempUser();
 		$title = Title::makeTitle( $ns, $titleText );
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 		$performer = static::getTestUser()->getUser();
-		$content = ContentHandler::makeContent( $content, $page->getTitle(), CONTENT_MODEL_WIKITEXT );
 		$updater = $page->newPageUpdater( UserIdentityValue::newAnonymous( $this->ipEditor ) )
 			->setContent( SlotRecord::MAIN, $content );
 
@@ -182,24 +189,46 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $calls );
 	}
 
+	public static function provideUpdatePropagation() {
+		static $counter = 1;
+		$name = __METHOD__ . $counter++;
+
+		yield 'article' => [ PageIdentityValue::localIdentity( 0, NS_MAIN, $name ) ];
+		yield 'user talk' => [ PageIdentityValue::localIdentity( 0, NS_USER_TALK, $name ) ];
+		yield 'message' => [ PageIdentityValue::localIdentity( 0, NS_MEDIAWIKI, $name ) ];
+		yield 'script' => [
+			PageIdentityValue::localIdentity( 0, NS_USER, "$name/common.js" ),
+			new JavaScriptContent( 'console.log("hi")' ),
+		];
+	}
+
 	/**
 	 * Regression test for T381225
+	 *
+	 * @dataProvider provideUpdatePropagation
 	 * @covers \MediaWiki\Page\UndeletePage::undeleteUnsafe
 	 */
-	public function testEventPropagation() {
-		$page = PageIdentityValue::localIdentity( 0, NS_MEDIAWIKI, __METHOD__ );
-
-		$this->setupPage( $page->getDBkey(), $page->getNamespace(), 'Lorem Ipsum' );
+	public function testUpdatePropagation( ProperPageIdentity $page, ?Content $content = null ) {
+		$content ??= new WikitextContent( 'hi' );
+		$this->setupPage( $page->getDBkey(), $page->getNamespace(), $content );
 		$this->runJobs();
 
-		$this->installChangeTrackingEventIngressSpyForUndeletion();
-		$this->installSearchEventIngressSpyForUndeletion();
-		$this->installLanguageEventIngressSpyForUndeletion();
+		$performer = $this->getTestSysop()->getUser();
+
+		// Should generate an RC entry for undeletion,
+		// but not a regular page edit.
+		$this->expectChangeTrackingUpdates( 0, 1, 0, 0 );
+
+		$this->expectSearchUpdates( 1 );
+		$this->expectLocalizationUpdate( $page->getNamespace() === NS_MEDIAWIKI ? 1 : 0 );
+		$this->expectResourceLoaderUpdates(
+			$content->getModel() === CONTENT_MODEL_JAVASCRIPT ? 1 : 0
+		);
 
 		// Now undelete the page
 		$undeletePage = $this->getServiceContainer()->getUndeletePageFactory()->newUndeletePage(
 			$page,
-			$this->getTestSysop()->getUser()
+			$performer
 		);
 
 		$undeletePage->undeleteUnsafe( 'just a test' );
