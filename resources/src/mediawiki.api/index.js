@@ -555,6 +555,42 @@
 				mw.log.warn( 'mw.Api#getErrorMessage could not handle the response:', data );
 				return $( '<div>' ).append( mw.message( 'api-clientside-error-invalidresponse' ).parseDom() );
 			}
+		},
+
+		/**
+		 * Prepare an extensible API request.
+		 *
+		 * This is a utility method to allow mw.hook implementations to add data to params sent
+		 * with an API request.
+		 *
+		 * For example usage, see mediawiki.ready/index.js#logoutViaPost:
+		 *   api.prepareExtensibleApiRequest( 'extendLogout' ).then( ( params ) => { ... } )
+		 *
+		 * Implementations of `hookName` should do something like the following, where `hookName`
+		 * is `extendLogout` in this example:
+		 *
+		 *  mw.hook( 'extendLogout' ).add( ( data ) => {
+		 *    data.promise = data.promise.then( () => {
+		 *      // Return a promise
+		 *      return collectClientHintsData().then( ( userAgentHighEntropyValues ) => {
+		 *        // Set the data.params.{yourUniqueKey} that will be included in the API
+		 *        // request
+		 *        data.params.customData = { clientHints: userAgentHighEntropyValues };
+		 *      } );
+		 *    } );
+		 *  } );
+		 *
+		 * @param {string} hookName Name of the hook to use with mw.hook().fire()
+		 * @return {jQuery.Promise<Object>} Updated parameter data from implementations
+		 *   of `hookName` to include with the API request.
+		 */
+		prepareExtensibleApiRequest: function ( hookName ) {
+			const data = {
+				params: {},
+				promise: $.Deferred().resolve().promise()
+			};
+			mw.hook( hookName ).fire( data );
+			return data.promise.then( () => data.params );
 		}
 	};
 
