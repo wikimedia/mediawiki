@@ -297,7 +297,8 @@ return [
 			$services->getMainConfig()->get( MainConfigNames::Actions ),
 			LoggerFactory::getInstance( 'ActionFactory' ),
 			$services->getObjectFactory(),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getContentHandlerFactory()
 		);
 	},
 

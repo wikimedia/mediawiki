@@ -27,7 +27,8 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 				$overrides['actions'] ?? [],
 				$overrides['logger'] ?? new NullLogger(),
 				$this->getDummyObjectFactory(),
-				$this->createHookContainer( $hooks )
+				$this->createHookContainer( $hooks ),
+				$this->getDummyContentHandlerFactory()
 			] )
 			->onlyMethods( [ 'getArticle' ] )
 			->getMock();

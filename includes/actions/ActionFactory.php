@@ -26,6 +26,7 @@ use InfoAction;
 use MarkpatrolledAction;
 use McrRestoreAction;
 use McrUndoAction;
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
@@ -56,6 +57,7 @@ class ActionFactory {
 	private ObjectFactory $objectFactory;
 	private HookContainer $hookContainer;
 	private HookRunner $hookRunner;
+	private IContentHandlerFactory $contentHandlerFactory;
 
 	/**
 	 * Core default action specifications
@@ -184,18 +186,21 @@ class ActionFactory {
 	 * @param LoggerInterface $logger
 	 * @param ObjectFactory $objectFactory
 	 * @param HookContainer $hookContainer
+	 * @param IContentHandlerFactory $contentHandlerFactory
 	 */
 	public function __construct(
 		array $actionsConfig,
 		LoggerInterface $logger,
 		ObjectFactory $objectFactory,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		IContentHandlerFactory $contentHandlerFactory
 	) {
 		$this->actionsConfig = $actionsConfig;
 		$this->logger = $logger;
 		$this->objectFactory = $objectFactory;
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->contentHandlerFactory = $contentHandlerFactory;
 	}
 
 	/**
@@ -429,6 +434,23 @@ class ActionFactory {
 	 */
 	protected function getArticle( IContextSource $context ): Article {
 		return Article::newFromWikiPage( $context->getWikiPage(), $context );
+	}
+
+	/**
+	 * Get the names of all registered actions, including the ones defined for
+	 * only certain content models.
+	 *
+	 * @since 1.44
+	 * @return string[]
+	 */
+	public function getAllActionNames() {
+		$allActions = array_merge( array_keys( self::CORE_ACTIONS ), array_keys( $this->actionsConfig ) );
+		$models = $this->contentHandlerFactory->getContentModels();
+		foreach ( $models as $model ) {
+			$handler = $this->contentHandlerFactory->getContentHandler( $model );
+			$allActions = array_merge( $allActions, array_keys( $handler->getActionOverrides() ) );
+		}
+		return array_unique( $allActions );
 	}
 
 }
