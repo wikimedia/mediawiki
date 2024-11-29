@@ -1656,34 +1656,11 @@ class PageUpdater implements PageUpdateCauses {
 		$editResult = $this->getEditResult();
 		$hints['editResult'] = $editResult;
 
-		if ( $editResult->isRevert() ) {
-			// Should the reverted tag update be scheduled right away?
-			// The revert is approved if either patrolling is disabled or the
-			// edit is patrolled or autopatrolled.
-			$approved = !$this->serviceOptions->get( MainConfigNames::UseRCPatrol ) ||
-				$this->rcPatrolStatus === RecentChange::PRC_PATROLLED ||
-				$this->rcPatrolStatus === RecentChange::PRC_AUTOPATROLLED;
-
-			// Allow extensions to override the patrolling subsystem.
-			$this->hookRunner->onBeforeRevertedTagUpdate(
-				$wikiPage,
-				$this->author,
-				$summary,
-				$this->flags,
-				$newRevisionRecord,
-				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Not null already checked
-				$editResult,
-				$approved
-			);
-			$hints['approved'] = $approved;
-		}
-
 		// Prepare to update links tables, site stats, etc.
 		$hints['rcPatrolStatus'] = $this->rcPatrolStatus;
 		$hints['tags'] = $tags;
 
 		$this->derivedDataUpdater->setPerformer( $this->author );
-
 		$this->derivedDataUpdater->prepareUpdate( $newRevisionRecord, $hints );
 	}
 

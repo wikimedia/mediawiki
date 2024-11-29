@@ -67,7 +67,6 @@ use ParsoidCachePrewarmJob;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use RevertedTagUpdateJob;
 use Wikimedia\Assert\Assert;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\IDBAccessObject;
@@ -171,7 +170,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 *
 	 * @var array
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-var array{changed:bool,created:bool,moved:bool,cause:string,oldrevision:null|RevisionRecord,triggeringUser:null|UserIdentity,oldredirect:bool|null|string,oldcountable:bool|null|string,causeAction:null|string,causeAgent:null|string,editResult:null|EditResult,approved:bool}
+	 * @phan-var array{changed:bool,created:bool,moved:bool,cause:string,oldrevision:null|RevisionRecord,triggeringUser:null|UserIdentity,oldredirect:bool|null|string,oldcountable:bool|null|string,causeAction:null|string,causeAgent:null|string,editResult:null|EditResult}
 	 */
 	private $options = [
 		'changed' => true,
@@ -193,7 +192,6 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		'tags' => [],
 		'cause' => 'edit',
 		'emitEvents' => true,
-		'approved' => false
 	] + PageRevisionUpdatedEvent::DEFAULT_FLAGS;
 
 	/**
@@ -1202,9 +1200,6 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 *    of ParserOutput objects. (default: null) (since 1.33)
 	 *  - editResult: EditResult object created during the update. Required to perform reverted
 	 *    tag update using RevertedTagUpdateJob. (default: null) (since 1.36)
-	 *  - approved: whether the edit is somehow "approved" and the RevertedTagUpdateJob should
-	 *    be scheduled right away. Required only if EditResult::isRevert() is true. (boolean,
-	 *    default: false) (since 1.36)
 	 */
 	public function prepareUpdate( RevisionRecord $revision, array $options = [] ) {
 		Assert::parameter(
@@ -1674,8 +1669,16 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			);
 		}
 
-		// Schedule a deferred update for marking reverted edits if applicable.
-		$this->maybeEnqueueRevertedTagUpdateJob();
+		$editResult = $event->getEditResult();
+
+		if ( $editResult && !$editResult->isNullEdit() ) {
+			// Cache EditResult for future use, via
+			// RevertTagUpdateManager::approveRevertedTagForRevision().
+			$this->editResultCache->set(
+				$this->revision->getId(),
+				$editResult
+			);
+		}
 
 		$this->doTransition( 'done' );
 	}
@@ -1756,38 +1759,6 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			DeferredUpdates::addCallableUpdate( function () {
 				$this->doParserCacheUpdate();
 			} );
-		}
-	}
-
-	/**
-	 * If the edit was a revert and it is considered "approved", enqueues the
-	 * RevertedTagUpdateJob for it. If the edit is not yet approved, the EditResult is
-	 * persisted in cache for later use.
-	 */
-	private function maybeEnqueueRevertedTagUpdateJob() {
-		if ( $this->options['editResult'] === null ) {
-			return;
-		}
-
-		$editResult = $this->options['editResult'];
-		if ( !$editResult->isRevert() || $editResult->isNullEdit() ) {
-			return;
-		}
-
-		if ( $this->options['approved'] ) {
-			// Enqueue the job
-			$this->jobQueueGroup->lazyPush(
-				RevertedTagUpdateJob::newSpec(
-					$this->revision->getId(),
-					$this->options['editResult']
-				)
-			);
-		} else {
-			// Cache EditResult for later use
-			$this->editResultCache->set(
-				$this->revision->getId(),
-				$this->options['editResult']
-			);
 		}
 	}
 

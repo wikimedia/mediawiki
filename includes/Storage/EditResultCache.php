@@ -86,7 +86,8 @@ class EditResultCache {
 			$this->makeKey( $revisionId ),
 			FormatJson::encode( $editResult ),
 			// Patrol flags are not stored for longer than $wgRCMaxAge
-			$this->options->get( MainConfigNames::RCMaxAge )
+			$this->options->get( MainConfigNames::RCMaxAge ),
+			BagOStuff::WRITE_BACKGROUND
 		);
 	}
 
