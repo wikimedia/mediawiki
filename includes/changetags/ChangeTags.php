@@ -279,11 +279,8 @@ class ChangeTags {
 	 */
 	public static function tagHelpLink( $tag, MessageLocalizer $context ) {
 		$msg = $context->msg( "tag-$tag-helppage" )->inContentLanguage();
-		if ( $msg->exists() && !$msg->isDisabled() ) {
-			$url = Skin::makeInternalOrExternalUrl( $msg->text() );
-			if ( $url ) {
-				return $url;
-			}
+		if ( !$msg->isDisabled() ) {
+			return Skin::makeInternalOrExternalUrl( $msg->text() ) ?: null;
 		}
 		return null;
 	}
@@ -326,16 +323,7 @@ class ChangeTags {
 	 */
 	public static function tagLongDescriptionMessage( $tag, MessageLocalizer $context ) {
 		$msg = $context->msg( "tag-$tag-description" );
-		if ( !$msg->exists() ) {
-			return false;
-		}
-		if ( $msg->isDisabled() ) {
-			// The message exists but is disabled, hide the description.
-			return false;
-		}
-
-		// Message exists and isn't disabled, use it.
-		return $msg;
+		return $msg->isDisabled() ? false : $msg;
 	}
 
 	/**
