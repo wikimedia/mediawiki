@@ -4,8 +4,10 @@ use MediaWiki\Content\TextContent;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleValue;
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\LoggerInterface;
@@ -575,4 +577,55 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $cnt->serialize() );
 	}
 
+	public function testInsertPage() {
+		// NOTE: can't use a data provider, since creating Title or WikiPage instances
+		//       is not safe without the test DB having been initialized.
+		$dataProvider = [
+			'string' => [
+				'title' => 'Test',
+				'expectedFullText' => 'Test'
+			],
+			'string with namespace' => [
+				'title' => 'User:Test',
+				'expectedFullText' => 'User:Test'
+			],
+			'Title object' => [
+				'title' => Title::newFromText( 'Test' ),
+				'expectedFullText' => 'Test'
+			],
+			'Title object with namespace' => [
+				'title' => Title::newFromText( 'User:Test' ),
+				'expectedFullText' => 'User:Test'
+			],
+			'TitleValue object' => [
+				'title' => new TitleValue( NS_MAIN, 'Test' ),
+				'expectedFullText' => 'Test'
+			],
+			'TitleValue object with namespace' => [
+				'title' => new TitleValue( NS_USER, 'Test' ),
+				'expectedFullText' => 'User:Test'
+			],
+			'PageIdentity object' => [
+				'title' => new PageIdentityValue( 0, NS_MAIN, 'Test', PageIdentityValue::LOCAL ),
+				'expectedFullText' => 'Test'
+			],
+			'PageIdentity object with namespace' => [
+				'title' => new PageIdentityValue( 0, NS_USER, 'Test', PageIdentityValue::LOCAL ),
+				'expectedFullText' => 'User:Test'
+			],
+		];
+
+		foreach ( $dataProvider as $testName => $value ) {
+			$title = $value[ 'title' ];
+			$expectedFullText = $value[ 'expectedFullText' ];
+
+			$array = $this->insertPage( $title, 'Test' );
+			$this->assertTrue( $array[ 'title' ] instanceof Title,
+				$testName . ': should return a Title object' );
+			$this->assertIsInt( $array[ 'id' ],
+				$testName . ': should return a valid page ID' );
+			$this->assertSame( $expectedFullText, $array[ 'title' ]->getFullText(),
+				$testName . ': should return the correct full text' );
+		}
+	}
 }
