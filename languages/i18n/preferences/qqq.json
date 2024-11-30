@@ -346,6 +346,7 @@
 	"emailauthenticated": "In user preferences ([[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}) and on [[Special:ConfirmEmail]].\n\nParameters:\n* $1 - (Unused) obsolete, date and time\n* $2 - date\n* $3 - time",
 	"allowemail": "Used in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.",
 	"email-allow-new-users-label": "Used in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.",
+	"prefs-help-email-allow-new-users": "Shown as explanation text on [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.\n\nSee also:\n* {{msg-mw|email-allow-new-users-label}}\n* {{msg-mw|grouppage-autoconfirmed}}\n* {{msg-mw|group-autoconfirmed-member}}",
 	"tog-ccmeonemails": "Option in [[Special:Preferences]] > <bdi>{{int:prefs-personal}}</bdi> > {{int:email}}. {{Gender}}",
 	"email-mutelist-label": "Used in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.",
 	"tog-enotifwatchlistpages": "Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}. {{Gender}}",
