@@ -2162,7 +2162,7 @@
 	"magiclink-tracking-pmid-desc": "This page uses PMID magic links. See [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org] on how to migrate.",
 	"magiclink-tracking-isbn": "Pages using ISBN magic links",
 	"magiclink-tracking-isbn-desc": "This page uses ISBN magic links. See [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org] on how to migrate.",
-	"rfcurl": "https://tools.ietf.org/html/rfc$1",
+	"rfcurl": "https://datatracker.ietf.org/doc/html/rfc$1",
 	"pubmedurl": "//www.ncbi.nlm.nih.gov/pubmed/$1?dopt=Abstract",
 	"specialloguserlabel": "Performer:",
 	"speciallogtitlelabel": "Target (title or {{ns:user}}:username for user):",
