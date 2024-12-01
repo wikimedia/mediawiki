@@ -123,11 +123,13 @@ class GrantsLocalization {
 			}
 			if ( $riskGroupMsg->exists() ) {
 				$riskDescription = $riskGroupMsg->text();
+				$riskDescriptionHTML = ' ' .
+					Html::element( 'span', [ 'class' => "mw-grant mw-grantriskgroup-$riskGroup" ], $riskDescription );
 			} else {
 				$riskDescription = '';
+				$riskDescriptionHTML = '';
 			}
-			$results[] = htmlspecialchars( $description ) . ' ' .
-				Html::element( 'span', [ 'class' => "mw-grant mw-grantriskgroup-$riskGroup" ], $riskDescription );
+			$results[] = htmlspecialchars( $description ) . $riskDescriptionHTML;
 		}
 		return $results;
 	}
