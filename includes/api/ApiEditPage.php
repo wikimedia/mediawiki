@@ -375,6 +375,7 @@ class ApiEditPage extends ApiBase {
 			'wpIgnoreBlankSummary' => true,
 			'wpIgnoreBlankArticle' => true,
 			'wpIgnoreSelfRedirect' => true,
+			'wpIgnoreBrokenRedirects' => true,
 			'bot' => $params['bot'],
 			'wpUnicodeCheck' => EditPage::UNICODE_CHECK,
 		];

@@ -111,11 +111,11 @@ describe( 'Search', () => {
 			const redirectTarget = utils.title( 'redirect_target_' );
 			const uniquePageText = utils.uniq();
 
+			const { title: redirectTargetTitle } = await alice.edit( redirectTarget, { text: `${ uniquePageText }` } );
+
 			await alice.edit( redirectSource,
 				{ text: `#REDIRECT [[ ${ redirectTarget } ]]. ${ uniquePageText }.` }
 			);
-
-			const { title: redirectTargetTitle } = await alice.edit( redirectTarget, { text: `${ uniquePageText }` } );
 
 			await wiki.runAllJobs();
 			const { body, headers } = await client.get( `/search/page?q=${ uniquePageText }` );
@@ -186,11 +186,12 @@ describe( 'Search', () => {
 			const redirectSource = utils.title( 'redirect_source_' );
 			const redirectTarget = utils.title( 'redirect_target_' );
 
+			const { title: redirectTargetTitle } = await alice.edit( redirectTarget, { text: 'foo' } );
+
 			const { title: redirectSourceTitle } = await alice.edit( redirectSource,
 				{ text: `#REDIRECT [[ ${ redirectTarget } ]]` }
 			);
 
-			const { title: redirectTargetTitle } = await alice.edit( redirectTarget, { text: 'foo' } );
 			await wiki.runAllJobs();
 
 			const { body, headers } = await client.get( `/search/title?q=${ redirectSourceTitle }` );
