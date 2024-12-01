@@ -78,7 +78,7 @@
 	"prefs-help-email": "Email address is optional, but is needed for password resets, should you forget your password.",
 	"prefs-help-email-required": "Email address is required.",
 	"prefs-help-email-others": "You can also choose to let others contact you by email through a link on your user or talk page.\nYour email address is not revealed when other users contact you.",
-	"tog-requireemail": "Send password reset emails only when both email address and username are provided.",
+	"tog-requireemail": "Send password reset emails only when both email address and username are provided",
 	"prefs-help-requireemail": "This improves privacy and helps prevent unsolicited emails.",
 	"noemailprefs": "Specify an email address in your preferences for these features to work.",
 	"emailnotauthenticated": "Your email address is not yet confirmed.\nNo email will be sent for any of the following features.",
