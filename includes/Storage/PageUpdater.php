@@ -31,7 +31,6 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\ValidationParams;
 use MediaWiki\Deferred\AtomicSectionUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
-use MediaWiki\DomainEvent\DomainEventDispatcher;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
@@ -127,11 +126,6 @@ class PageUpdater {
 	private $contentHandlerFactory;
 
 	/**
-	 * @var DomainEventDispatcher
-	 */
-	private $eventDispatcher;
-
-	/**
 	 * @var HookRunner
 	 */
 	private $hookRunner;
@@ -223,7 +217,6 @@ class PageUpdater {
 	 * @param RevisionStore $revisionStore
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param DomainEventDispatcher $eventDispatcher
 	 * @param HookContainer $hookContainer
 	 * @param UserGroupManager $userGroupManager
 	 * @param TitleFormatter $titleFormatter
@@ -241,7 +234,6 @@ class PageUpdater {
 		RevisionStore $revisionStore,
 		SlotRoleRegistry $slotRoleRegistry,
 		IContentHandlerFactory $contentHandlerFactory,
-		DomainEventDispatcher $eventDispatcher,
 		HookContainer $hookContainer,
 		UserGroupManager $userGroupManager,
 		TitleFormatter $titleFormatter,
@@ -262,7 +254,6 @@ class PageUpdater {
 		$this->revisionStore = $revisionStore;
 		$this->slotRoleRegistry = $slotRoleRegistry;
 		$this->contentHandlerFactory = $contentHandlerFactory;
-		$this->eventDispatcher = $eventDispatcher;
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->userGroupManager = $userGroupManager;
@@ -1024,7 +1015,6 @@ class PageUpdater {
 
 		// XXX: do we need PST?
 
-		$this->flags |= EDIT_INTERNAL;
 		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable revision is checked
 		$this->status = $this->doUpdate( $revision );
 	}
@@ -1287,6 +1277,20 @@ class PageUpdater {
 
 			// Do secondary updates once the main changes have been committed...
 			$wikiPage = $this->getWikiPage(); // TODO: use for legacy hooks only!
+			$this->prepareDerivedDataUpdater(
+				$wikiPage,
+				$newRevisionRecord,
+				$revision->getComment(),
+				[],
+				[
+					PageUpdatedEvent::FLAG_SILENT => true,
+					PageUpdatedEvent::FLAG_AUTOMATED => true,
+					PageUpdatedEvent::FLAG_DERIVED => true,
+				]
+			);
+
+			$this->dispatchPageUpdatedEvent();
+
 			DeferredUpdates::addUpdate(
 				$this->getAtomicSectionUpdate(
 					$dbw,
@@ -1400,15 +1404,14 @@ class PageUpdater {
 				$tags
 			);
 
-			$this->eventDispatcher->dispatch( new PageUpdatedEvent(
-				$this->slotsUpdate,
+			$this->prepareDerivedDataUpdater(
+				$wikiPage,
 				$newRevisionRecord,
-				$oldRev,
-				$editResult,
-				$tags,
-				$this->flags,
-				$this->rcPatrolStatus
-			), $this->dbProvider );
+				$summary,
+				$tags
+			);
+
+			$this->dispatchPageUpdatedEvent();
 
 			$dbw->endAtomic( __METHOD__ );
 
@@ -1524,15 +1527,14 @@ class PageUpdater {
 			// one for the edit and one for the page creation.
 		}
 
-		$this->eventDispatcher->dispatch( new PageUpdatedEvent(
-			$this->slotsUpdate,
+		$this->prepareDerivedDataUpdater(
+			$wikiPage,
 			$newRevisionRecord,
-			null,
-			null,
-			$tags,
-			$this->flags,
-			$this->rcPatrolStatus
-		), $this->dbProvider );
+			$summary,
+			$tags
+		);
+
+		$this->dispatchPageUpdatedEvent();
 
 		$dbw->endAtomic( __METHOD__ );
 
@@ -1554,6 +1556,68 @@ class PageUpdater {
 		return $status;
 	}
 
+	private function prepareDerivedDataUpdater(
+		WikiPage $wikiPage,
+		RevisionRecord $newRevisionRecord,
+		CommentStoreComment $summary,
+		array $tags,
+		array $hintOverrides = []
+	) {
+		static $flagMap = [
+			EDIT_SUPPRESS_RC => PageUpdatedEvent::FLAG_SILENT,
+			EDIT_FORCE_BOT => PageUpdatedEvent::FLAG_BOT,
+			EDIT_INTERNAL => PageUpdatedEvent::FLAG_AUTOMATED,
+		];
+
+		$hints = [];
+		foreach ( $flagMap as $bit => $name ) {
+			$hints[$name] = ( $this->flags & $bit ) === $bit;
+		}
+
+		$hints += PageUpdatedEvent::DEFAULT_FLAGS;
+		$hints = $hintOverrides + $hints;
+
+		// set debug data
+		$hints['causeAction'] = 'edit-page';
+		$hints['causeAgent'] = $this->author->getName();
+
+		$editResult = $this->getEditResult();
+		$hints['editResult'] = $editResult;
+
+		if ( $editResult->isRevert() ) {
+			$hints[ PageUpdatedEvent::FLAG_REVERTED ] = true;
+
+			// Should the reverted tag update be scheduled right away?
+			// The revert is approved if either patrolling is disabled or the
+			// edit is patrolled or autopatrolled.
+			$approved = !$this->serviceOptions->get( MainConfigNames::UseRCPatrol ) ||
+				$this->rcPatrolStatus === RecentChange::PRC_PATROLLED ||
+				$this->rcPatrolStatus === RecentChange::PRC_AUTOPATROLLED;
+
+			// Allow extensions to override the patrolling subsystem.
+			$this->hookRunner->onBeforeRevertedTagUpdate(
+				$wikiPage,
+				$this->author,
+				$summary,
+				$this->flags,
+				$newRevisionRecord,
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Not null already checked
+				$editResult,
+				$approved
+			);
+			$hints['approved'] = $approved;
+		}
+
+		// Prepare to update links tables, site stats, etc.
+		$hints['rcPatrolStatus'] = $this->rcPatrolStatus;
+		$hints['tags'] = $tags;
+		$this->derivedDataUpdater->prepareUpdate( $newRevisionRecord, $hints );
+	}
+
+	private function dispatchPageUpdatedEvent(): void {
+		$this->derivedDataUpdater->dispatchPageUpdatedEvent();
+	}
+
 	private function getAtomicSectionUpdate(
 		IDatabase $dbw,
 		WikiPage $wikiPage,
@@ -1568,37 +1632,6 @@ class PageUpdater {
 				$wikiPage, $newRevisionRecord,
 				$summary, $hints
 			) {
-				// set debug data
-				$hints['causeAction'] = 'edit-page';
-				$hints['causeAgent'] = $this->author->getName();
-
-				$editResult = $this->getEditResult();
-				$hints['editResult'] = $editResult;
-
-				if ( $editResult->isRevert() ) {
-					// Should the reverted tag update be scheduled right away?
-					// The revert is approved if either patrolling is disabled or the
-					// edit is patrolled or autopatrolled.
-					$approved = !$this->serviceOptions->get( MainConfigNames::UseRCPatrol ) ||
-						$this->rcPatrolStatus === RecentChange::PRC_PATROLLED ||
-						$this->rcPatrolStatus === RecentChange::PRC_AUTOPATROLLED;
-
-					// Allow extensions to override the patrolling subsystem.
-					$this->hookRunner->onBeforeRevertedTagUpdate(
-						$wikiPage,
-						$this->author,
-						$summary,
-						$this->flags,
-						$newRevisionRecord,
-						// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Not null already checked
-						$editResult,
-						$approved
-					);
-					$hints['approved'] = $approved;
-				}
-
-				// Update links tables, site stats, etc.
-				$this->derivedDataUpdater->prepareUpdate( $newRevisionRecord, $hints );
 				$this->derivedDataUpdater->doUpdates();
 
 				$created = $hints['created'] ?? false;
@@ -1613,7 +1646,7 @@ class PageUpdater {
 					$this->flags,
 					$newRevisionRecord,
 					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Not null already checked
-					$editResult
+					$this->getEditResult()
 				);
 			}
 		);

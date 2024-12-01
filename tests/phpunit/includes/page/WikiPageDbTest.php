@@ -187,6 +187,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	}
 
 	public function testDoEditUpdates() {
+		$this->hideDeprecated( 'WikiPage::doEditUpdates' );
 		$user = $this->getTestUser()->getUserIdentity();
 
 		// NOTE: if site stats get out of whack and drop below 0,

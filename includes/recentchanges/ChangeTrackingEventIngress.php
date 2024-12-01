@@ -77,25 +77,31 @@ class ChangeTrackingEventIngress extends EventSubscriberBase {
 	 * @noinspection PhpUnused
 	 */
 	public function handlePageUpdatedEventAfterCommit( PageUpdatedEvent $event ) {
-		if ( !$event->hasFlag( EDIT_SUPPRESS_RC ) ) {
+		if ( $event->isRevisionChange()
+			&& !$event->hasFlag( PageUpdatedEvent::FLAG_SILENT )
+		) {
 			$this->updateRecentChangesAfterPageUpdated(
 				$event->getNewRevision(),
 				$event->getOldRevision(),
-				$event->hasFlag( EDIT_FORCE_BOT ),
+				$event->hasFlag( PageUpdatedEvent::FLAG_BOT ),
 				$event->getPatrolStatus(),
 				$event->getTags(),
 				$event->getEditResult()
 			);
-		} else {
+		} elseif ( $event->getTags() ) {
 			$this->updateChangeTagsAfterPageUpdated(
 				$event->getTags(),
 				$event->getNewRevision()->getId(),
 			);
 		}
 
-		$this->updateUserEditTrackerAfterPageUpdated(
-			$event->getAuthor()
-		);
+		if ( $event->isContentChange()
+			&& !$event->hasFlag( PageUpdatedEvent::FLAG_AUTOMATED )
+		) {
+			$this->updateUserEditTrackerAfterPageUpdated(
+				$event->getAuthor()
+			);
+		}
 	}
 
 	private function updateChangeTagsAfterPageUpdated( array $tags, int $revId ) {

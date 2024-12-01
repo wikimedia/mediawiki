@@ -1801,33 +1801,21 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 * Purges pages that include this page if the text was changed here.
 	 * Every 100th edit, prune the recent changes table.
 	 *
-	 * @deprecated since 1.32 (soft), use DerivedPageDataUpdater::doUpdates instead.
+	 * @deprecated since 1.32, use DerivedPageDataUpdater::doUpdates instead.
+	 *             Emitting warnings since 1.44
 	 *
 	 * @param RevisionRecord $revisionRecord (Switched from the old Revision class to
 	 *    RevisionRecord since 1.35)
 	 * @param UserIdentity $user User object that did the revision
-	 * @param array $options Array of options, following indexes are used:
-	 * - changed: bool, whether the revision changed the content (default true)
-	 * - created: bool, whether the revision created the page (default false)
-	 * - moved: bool, whether the page was moved (default false)
-	 * - restored: bool, whether the page was undeleted (default false)
-	 * - oldrevision: RevisionRecord object for the pre-update revision (default null)
-	 * - oldcountable: bool, null, or string 'no-change' (default null):
-	 *   - bool: whether the page was counted as an article before that
-	 *     revision, only used in changed is true and created is false
-	 *   - null: if created is false, don't update the article count; if created
-	 *     is true, do update the article count
-	 *   - 'no-change': don't update the article count, ever
-	 *  - causeAction: an arbitrary string identifying the reason for the update.
-	 *    See DataUpdate::getCauseAction(). (default 'edit-page')
-	 *  - causeAgent: name of the user who caused the update. See DataUpdate::getCauseAgent().
-	 *    (string, defaults to the passed user)
+	 * @param array $options Array of options, see DerivedPageDataUpdater::prepareUpdate.
 	 */
 	public function doEditUpdates(
 		RevisionRecord $revisionRecord,
 		UserIdentity $user,
 		array $options = []
 	) {
+		wfDeprecated( __METHOD__, '1.32' ); // emitting warnings since 1.44
+
 		$options += [
 			'causeAction' => 'edit-page',
 			'causeAgent' => $user->getName(),

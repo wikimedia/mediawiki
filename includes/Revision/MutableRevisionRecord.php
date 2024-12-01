@@ -86,7 +86,8 @@ class MutableRevisionRecord extends RevisionRecord {
 		$newRevisionRecord->setId( $revision->getId( $revision->getWikiId() ) );
 		$newRevisionRecord->setPageId( $revision->getPageId( $revision->getWikiId() ) );
 		$newRevisionRecord->setParentId( $revision->getParentId( $revision->getWikiId() ) );
-		$newRevisionRecord->setUser( $revision->getUser() );
+		$newRevisionRecord->setUser( $revision->getUser( RevisionRecord::RAW ) );
+		$newRevisionRecord->setComment( $revision->getComment( RevisionRecord::RAW ) );
 
 		foreach ( $revision->getSlots()->getSlots() as $slot ) {
 			$newRevisionRecord->setSlot( $slot );

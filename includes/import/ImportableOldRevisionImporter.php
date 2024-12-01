@@ -7,6 +7,7 @@ use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRoleRegistry;
+use MediaWiki\Storage\PageUpdatedEvent;
 use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;
@@ -195,6 +196,9 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 			// countable/oldcountable stuff is handled in WikiImporter::finishImportPage
 
 			$options = [
+				PageUpdatedEvent::FLAG_IMPORTED => true,
+				PageUpdatedEvent::FLAG_SILENT => true,
+				PageUpdatedEvent::FLAG_AUTOMATED => true,
 				'created' => $mustCreatePage,
 				'oldcountable' => 'no-change',
 				'causeAction' => 'import-page',

@@ -22,8 +22,10 @@ namespace MediaWiki\Storage;
 
 use MediaWiki\DomainEvent\DomainEvent;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\Assert\Assert;
 
 /**
  * Domain event representing a page edit.
@@ -47,14 +49,64 @@ class PageUpdatedEvent extends DomainEvent {
 
 	public const TYPE = 'PageUpdated';
 
+	/**
+	 * @var string The update reverted to an earlier revision.
+	 * Best effort, false negatives are possible.
+	 */
+	public const FLAG_REVERTED = 'revert';
+
+	/** @var string The update should not be reported to users in feeds. */
+	public const FLAG_SILENT = 'silent';
+
+	/** @var string The update should be attributed to a bot. */
+	public const FLAG_BOT = 'bot';
+
+	/**
+	 * @var string The update was automated and should not be counted as
+	 * user activity.
+	 */
+	public const FLAG_AUTOMATED = 'automated';
+
+	/** @var string The update was an undeletion. */
+	public const FLAG_RESTORED = 'restored';
+
+	/** @var string The update was an import. */
+	public const FLAG_IMPORTED = 'imported';
+
+	/** @var string The update was due to a page move. */
+	public const FLAG_MOVED = 'moved';
+
+	/** @var string The update was for a derived slot. */
+	public const FLAG_DERIVED = 'derived';
+
+	/**
+	 * All available flags and their default values.
+	 */
+	public const DEFAULT_FLAGS = [
+		self::FLAG_REVERTED => false,
+		self::FLAG_SILENT => false,
+		self::FLAG_BOT => false,
+		self::FLAG_AUTOMATED => false,
+		self::FLAG_RESTORED => false,
+		self::FLAG_IMPORTED => false,
+		self::FLAG_MOVED => false,
+		self::FLAG_DERIVED => false,
+	];
+
+	private ProperPageIdentity $page;
+	private UserIdentity $author;
 	private RevisionSlotsUpdate $slotsUpdate;
 	private RevisionRecord $newRevision;
 	private ?RevisionRecord $oldRevision;
 	private ?EditResult $editResult;
+	/** @var string[] */
 	private array $tags;
-	private int $flags;
+	/** @var array<string,bool> */
+	private array $flags;
 
 	/**
+	 * @param ProperPageIdentity $page The page affected by the update.
+	 * @param UserIdentity $author The author performing the update.
 	 * @param RevisionSlotsUpdate $slotsUpdate Page content changed by the edit.
 	 * @param RevisionRecord $newRevision The revision object resulting from the
 	 *        edit.
@@ -63,26 +115,50 @@ class PageUpdatedEvent extends DomainEvent {
 	 * @param EditResult|null $editResult An EditResult representing the effects
 	 *        of an edit.
 	 * @param array $tags Applicable tags, see ChangeTags.
-	 * @param int $flags See PageUpdater::setFlags
+	 * @param array<string,bool> $flags See the self::FLAG_XXX constants.
 	 * @param int $patrolStatus See PageUpdater::setRcPatrolStatus()
 	 */
 	public function __construct(
+		ProperPageIdentity $page,
+		UserIdentity $author,
 		RevisionSlotsUpdate $slotsUpdate,
 		RevisionRecord $newRevision,
 		?RevisionRecord $oldRevision,
 		?EditResult $editResult,
 		array $tags = [],
-		int $flags = 0,
+		array $flags = [],
 		int $patrolStatus = 0
 	) {
 		parent::__construct( self::TYPE, $newRevision->getTimestamp() );
 
+		Assert::parameterElementType( 'string', $tags, '$tags' );
+		Assert::parameterKeyType( 'integer', $tags, '$tags' );
+		Assert::parameterElementType( 'boolean', $flags, '$flags' );
+		Assert::parameterKeyType( 'string', $flags, '$flags' );
+
+		Assert::parameter( $page->exists(), '$page', 'must exist' );
+		Assert::parameter(
+			$page->isSamePageAs( $newRevision->getPage() ),
+			'$newRevision',
+			'must belong to $page'
+		);
+
+		if ( $oldRevision ) {
+			Assert::parameter(
+				$page->isSamePageAs( $newRevision->getPage() ),
+				'$oldRevision',
+				'must belong to $page'
+			);
+		}
+
+		$this->page = $page;
+		$this->author = $author;
 		$this->slotsUpdate = $slotsUpdate;
 		$this->newRevision = $newRevision;
 		$this->oldRevision = $oldRevision;
 		$this->editResult = $editResult;
 		$this->tags = $tags;
-		$this->flags = $flags;
+		$this->flags = $flags + self::DEFAULT_FLAGS;
 		$this->patrolStatus = $patrolStatus;
 	}
 
@@ -96,17 +172,45 @@ class PageUpdatedEvent extends DomainEvent {
 	}
 
 	/**
+	 * Whether this is an actual revision change, as opposed to a "null-edit"
+	 * or purge.
+	 * This returns false if no new revision was created and the event was
+	 * generated in order to trigger re-generation of derived data.
+	 * This will also return true for derived data updates, since they do not
+	 * create a new revision. Such updates may however still be relevant to
+	 * listeners.
+	 */
+	public function isRevisionChange(): bool {
+		return $this->oldRevision === null
+			|| $this->oldRevision->getId() !== $this->newRevision->getId();
+	}
+
+	/**
+	 * Whether the update changed the content of the page.
+	 * This will return false for "dummy revisions" that represent an entry
+	 * in the page history but do not modify the content.
+	 * Note that the creation of a dummy revision may not always trigger a
+	 * PageUpdatedEvent. This is only required if there was a change that is
+	 * relevant to the interpretation or association of the content, such as
+	 * a page move.
+	 */
+	public function isContentChange(): bool {
+		return $this->oldRevision === null
+			|| $this->oldRevision->getSha1() !== $this->newRevision->getSha1();
+	}
+
+	/**
 	 * Returns the page that was edited.
 	 */
 	public function getPage(): PageIdentity {
-		return $this->newRevision->getPage();
+		return $this->page;
 	}
 
 	/**
 	 * Returns the user that performed the edit.
 	 */
 	public function getAuthor(): UserIdentity {
-		return $this->newRevision->getUser( RevisionRecord::RAW );
+		return $this->author;
 	}
 
 	/**
@@ -157,25 +261,21 @@ class PageUpdatedEvent extends DomainEvent {
 	}
 
 	/**
-	 * Returns any flags set for the edit.
-	 * @see PageUpdater::setFlags()
-	 * @see global EDIT_XXX constants
+	 * Internal flags describing the page update.
+	 * @see self::FLAG_XXX constants
+	 * @return array<string,bool>
 	 */
-	public function getFlags(): int {
+	public function getFlags(): array {
 		return $this->flags;
 	}
 
 	/**
-	 * Checks flags set for the edit.
-	 * This is a bitmap check.
-	 * This returns true if all bits that are set in $flags were also
-	 * set for the edit.
+	 * Checks flags describing the page update.
 	 *
-	 * @see PageUpdater::setFlags()
-	 * @see global EDIT_XXX constants
+	 * @see self::FLAG_XXX constants
 	 */
-	public function hasFlag( int $flag ): bool {
-		return ( $this->flags & $flag ) === $flag;
+	public function hasFlag( string $name ): bool {
+		return $this->flags[$name] ?? false;
 	}
 
 	/**

@@ -35,12 +35,14 @@ use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Status\Status;
+use MediaWiki\Storage\PageUpdatedEvent;
 use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\Title\NamespaceInfo;
 use Psr\Log\LoggerInterface;
 use ReadOnlyError;
 use RepoGroup;
 use StatusValue;
+use Wikimedia\Assert\Assert;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -561,6 +563,15 @@ class UndeletePage {
 			$previousTimestamp = 0;
 		}
 
+		// Re-create the PageIdentity using $pageId
+		$page = PageIdentityValue::localIdentity(
+			$pageId,
+			$page->getNamespace(),
+			$page->getDBkey()
+		);
+
+		Assert::postcondition( $page->exists(), 'The page should exist now' );
+
 		// Check if a deleted revision will become the current revision...
 		if ( $latestRestorableRow->ar_timestamp > $previousTimestamp ) {
 			// Check the state of the newest to-be version...
@@ -626,9 +637,11 @@ class UndeletePage {
 				// Update site stats, link tables, etc
 				$user = $revision->getUser( RevisionRecord::RAW );
 				$options = [
+					PageUpdatedEvent::FLAG_RESTORED => true,
+					PageUpdatedEvent::FLAG_SILENT => true,
+					PageUpdatedEvent::FLAG_AUTOMATED => true,
 					'created' => $created,
 					'oldcountable' => $oldcountable,
-					'restored' => true,
 					'causeAction' => 'undelete-page',
 					'causeAgent' => $user->getName(),
 				];

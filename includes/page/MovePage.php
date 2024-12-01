@@ -43,6 +43,7 @@ use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
+use MediaWiki\Storage\PageUpdatedEvent;
 use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
@@ -929,11 +930,8 @@ class MovePage {
 		$nullRevision = $this->revisionStore->insertRevisionOn( $nullRevision, $dbw );
 		$logEntry->setAssociatedRevId( $nullRevision->getId() );
 
-		/**
-		 * T163966
-		 * Increment user_editcount during page moves
-		 * Moved from SpecialMovePage.php per T195550
-		 */
+		// NOTE: Page moves should contribute to user edit count (T163966).
+		//       The dummy revision created below will otherwise not be counted.
 		$this->userEditTracker->incrementUserEditCount( $user );
 
 		// Get the old redirect state before clean up
@@ -946,22 +944,28 @@ class MovePage {
 		$this->oldTitle->resetArticleID( 0 ); // 0 == non existing
 		$newpage->loadPageData( IDBAccessObject::READ_LOCKING ); // T48397
 
+		$updater = $this->pageUpdaterFactory->newDerivedPageDataUpdater( $newpage );
+		$updater->grabCurrentRevision();
+
 		$newpage->updateRevisionOn( $dbw, $nullRevision, null, $isRedirect );
 
 		$fakeTags = [];
 		$this->hookRunner->onRevisionFromEditComplete(
 			$newpage, $nullRevision, $nullRevision->getParentId(), $user, $fakeTags );
 
+		// Generate updates for the new dummy revision under the new title.
+		// NOTE: The dummy revision will not be counted as a user contribution.
+		// NOTE: Use FLAG_SILENT to avoid redundant RecentChanges entry.
+		//       The move log already generates one.
 		$options = [
-			'changed' => false,
-			'moved' => true,
+			PageUpdatedEvent::FLAG_MOVED => true,
+			PageUpdatedEvent::FLAG_SILENT => true,
 			'oldtitle' => $this->oldTitle,
 			'oldcountable' => $oldcountable,
 			'causeAction' => 'MovePage',
 			'causeAgent' => $user->getName(),
 		];
 
-		$updater = $this->pageUpdaterFactory->newDerivedPageDataUpdater( $newpage );
 		$updater->prepareUpdate( $nullRevision, $options );
 		$updater->doUpdates();
 
@@ -977,7 +981,7 @@ class MovePage {
 				->addTags( $changeTags )
 				->addSoftwareTag( 'mw-new-redirect' )
 				->setUsePageCreationLog( false )
-				->setFlags( EDIT_SUPPRESS_RC )
+				->setFlags( EDIT_SUPPRESS_RC | EDIT_INTERNAL )
 				->saveRevision( $commentObj );
 		}
 

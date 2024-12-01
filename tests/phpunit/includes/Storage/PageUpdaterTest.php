@@ -18,10 +18,15 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Storage\EditResult;
+use MediaWiki\Storage\PageUpdatedEvent;
+use MediaWiki\Tests\Language\LanguageEventIngressSpyTrait;
+use MediaWiki\Tests\recentchanges\ChangeTrackingEventIngressSpyTrait;
+use MediaWiki\Tests\Search\SearchEventIngressSpyTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWikiIntegrationTestCase;
+use PHPUnit\Framework\Assert;
 use RecentChange;
 use WikiPage;
 
@@ -30,6 +35,10 @@ use WikiPage;
  * @group Database
  */
 class PageUpdaterTest extends MediaWikiIntegrationTestCase {
+
+	use ChangeTrackingEventIngressSpyTrait;
+	use SearchEventIngressSpyTrait;
+	use LanguageEventIngressSpyTrait;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -51,6 +60,9 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 				true
 			);
 		}
+
+		// protect against service container resets
+		$this->setService( 'SlotRoleRegistry', $slotRoleRegistry );
 	}
 
 	private function getDummyTitle( $method ) {
@@ -360,6 +372,203 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 			[ 'test_updated' ],
 			$tagsStore->getTags( $this->getDb(), null, $rev->getId() )
 		);
+	}
+
+	private function makeDomainEventSourceListener(
+		int &$counter,
+		array $flags,
+		?RevisionRecord $old,
+		$revisionChange = true,
+		$contentChange = true
+	) {
+		return static function ( PageUpdatedEvent $event ) use (
+			&$counter, $flags, $old, $revisionChange, $contentChange
+		) {
+			Assert::assertSame(
+				$contentChange,
+				$event->isContentChange(),
+				'isContentChange'
+			);
+			Assert::assertSame(
+				$revisionChange,
+				$event->isRevisionChange(),
+				'isRevisionChange'
+			);
+			Assert::assertSame(
+				$old === null,
+				$event->isNew(),
+				'isNew'
+			);
+
+			if ( $old ) {
+				Assert::assertSame(
+					$old->getId(), $event->getOldRevision()->getId(), 'getOldRevision'
+				);
+			} else {
+				Assert::assertNull( $event->getOldRevision(), 'getOldRevision' );
+			}
+
+			foreach ( $flags as $name => $value ) {
+				Assert::assertSame( $value, $event->hasFlag( $name ), $name );
+			}
+
+			$counter++;
+		};
+	}
+
+	public function testEventEmission_new() {
+		$calls = 0;
+
+		$user = $this->getTestUser()->getUser();
+		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
+
+		$title = $this->getDummyTitle( __METHOD__ );
+		$page = $wikiPageFactory->newFromTitle( $title );
+		$updater = $page->newPageUpdater( $user );
+
+		$content = new TextContent( 'Lorem Ipsum' );
+		$updater->setContent( SlotRecord::MAIN, $content );
+
+		$this->getServiceContainer()->getDomainEventSource()->registerListener(
+			'PageUpdated',
+			$this->makeDomainEventSourceListener( $calls, [], null )
+		);
+
+		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
+		$updater->saveRevision( $summary );
+
+		$this->runDeferredUpdates();
+		$this->assertSame( 1, $calls );
+	}
+
+	public function testEventEmission_edit() {
+		$calls = 0;
+
+		$page = $this->getExistingTestPage();
+		$user = $this->getTestUser()->getUser();
+
+		$updater = $page->newPageUpdater( $user );
+
+		$content = new TextContent( 'Lorem Ipsum' );
+		$updater->setContent( SlotRecord::MAIN, $content );
+
+		$this->getServiceContainer()->getDomainEventSource()->registerListener(
+			'PageUpdated',
+			$this->makeDomainEventSourceListener(
+				$calls, [], $page->getRevisionRecord()
+			)
+		);
+
+		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
+		$updater->saveRevision( $summary );
+
+		$this->runDeferredUpdates();
+		$this->assertSame( 1, $calls );
+	}
+
+	public function testEventEmission_null() {
+		$calls = 0;
+
+		$page = $this->getExistingTestPage();
+		$user = $this->getTestUser()->getUser();
+
+		$updater = $page->newPageUpdater( $user );
+
+		$this->getServiceContainer()->getDomainEventSource()->registerListener(
+			'PageUpdated',
+			$this->makeDomainEventSourceListener(
+				$calls, [], $page->getRevisionRecord(), false, false
+			)
+		);
+
+		// null-edit
+		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
+		$updater->saveRevision( $summary );
+
+		$this->runDeferredUpdates();
+		$this->assertSame( 1, $calls );
+	}
+
+	public function testEventEmission_dummy() {
+		$calls = 0;
+
+		$page = $this->getExistingTestPage();
+		$user = $this->getTestUser()->getUser();
+
+		$updater = $page->newPageUpdater( $user );
+
+		$this->getServiceContainer()->getDomainEventSource()->registerListener(
+			'PageUpdated',
+			$this->makeDomainEventSourceListener(
+				$calls, [], $page->getRevisionRecord(), true, false
+			)
+		);
+
+		// dummy-edit
+		$updater->setForceEmptyRevision( true );
+		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
+		$updater->saveRevision( $summary );
+
+		$this->runDeferredUpdates();
+		$this->assertSame( 1, $calls );
+	}
+
+	public function testEventEmission_derived() {
+		$calls = 0;
+
+		$page = $this->getExistingTestPage();
+		$user = $this->getTestUser()->getUser();
+
+		$updater = $page->newPageUpdater( $user );
+
+		$flags = [
+			PageUpdatedEvent::FLAG_DERIVED => true,
+			PageUpdatedEvent::FLAG_AUTOMATED => true,
+			PageUpdatedEvent::FLAG_SILENT => true,
+		];
+
+		$this->getServiceContainer()->getDomainEventSource()->registerListener(
+			'PageUpdated',
+			$this->makeDomainEventSourceListener(
+				$calls, $flags, $page->getRevisionRecord(), false, false
+			)
+		);
+
+		// derived slot update
+		$content = new WikitextContent( 'A' );
+		$derived = SlotRecord::newDerived( 'derivedslot', $content );
+		$updater->setSlot( $derived );
+		$updater->updateRevision();
+
+		$this->runDeferredUpdates();
+		$this->assertSame( 1, $calls );
+	}
+
+	/**
+	 * Regression test for T381225
+	 * @covers \MediaWiki\Storage\PageUpdater::saveRevision()
+	 */
+	public function testEventPropagation() {
+		$user = $this->getTestUser()->getUser();
+		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
+
+		$title = Title::makeTitle( NS_MEDIAWIKI, __METHOD__ );
+		$page = $wikiPageFactory->newFromTitle( $title );
+
+		$this->installChangeTrackingEventIngressSpyForEdit();
+		$this->installSearchEventIngressSpyForEdit();
+		$this->installLanguageEventIngressSpyForEdit();
+
+		$updater = $page->newPageUpdater( $user );
+
+		$content = new TextContent( 'Lorem Ipsum' );
+		$updater->setContent( SlotRecord::MAIN, $content );
+
+		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
+		$updater->saveRevision( $summary );
+
+		// NOTE: assertions are applied by the spies installed earlier.
+		$this->runDeferredUpdates();
 	}
 
 	public function testSetForceEmptyRevisionSetsOriginalRevisionId() {
@@ -811,6 +1020,12 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$updater->setContent( SlotRecord::MAIN, new TextContent( 'Lorem ipsum' ) );
 		$updater->saveRevision( $summary, EDIT_NEW );
 
+		// Clear pending jobs so the spies don't get confused
+		$this->runJobs();
+
+		$this->installChangeTrackingEventIngressSpyForDerived();
+		$this->installSearchEventIngressSpyForDerived();
+
 		$updater = $page->newPageUpdater( $user );
 		$content = new WikitextContent( 'A' );
 		$derived = SlotRecord::newDerived( 'derivedslot', $content );
@@ -822,6 +1037,9 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$rev = $status->getNewRevision();
 		$slot = $rev->getSlot( 'derivedslot' );
 		$this->assertTrue( $slot->getContent()->equals( $content ) );
+
+		// Make sure all events are processed so the spies are happy
+		$this->runDeferredUpdates();
 	}
 
 	/**

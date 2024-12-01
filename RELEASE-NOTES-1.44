@@ -178,6 +178,8 @@ because of Phabricator reports.
   listExplicitlyDefinedTags(), listSoftwareActivatedTags(),
   listSoftwareDefinedTags(), makeTagSummarySubquery(), modifyDisplayQuery(),
   purgeTagCacheAll(), tagUsageStatistics(), and updateTags().
+* WikiPage::doEditUpdates(), deprecated since 1.32, is now emitting warnings.
+  Use DerivedPageDataUpdater::doUpdates() instead.
 * Maintenance::beginTransaction(), Maintenance::commitTransaction(),
   Maintenance::rollbackTransaction(), and Maintenance::waitForReplication()
   are now deprecated. Use Maintenance::*TransactionRound() instead.
