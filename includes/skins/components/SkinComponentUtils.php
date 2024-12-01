@@ -39,11 +39,15 @@ class SkinComponentUtils {
 	 * @return string[]
 	 */
 	public static function getReturnToParam( $title, $request, $authority ) {
-		// T379295: Preserve authentication query params so they don't get lost
-		// during switching between Login or CreateAccount pages where we need them.
+		// T379295/T381216: Preserve authentication query params so they don't get lost
+		// during switching between Login/Logout or CreateAccount pages where we need them.
 		// See AuthManagerSpecialPage/LoginSignupSpecialPage::getPreservedParams().
 		// This special case also avoids "nesting" returnto values on these pages.
-		if ( $title->isSpecial( 'Userlogin' ) || $title->isSpecial( 'CreateAccount' ) ) {
+		if (
+			$title->isSpecial( 'Userlogin' )
+			|| $title->isSpecial( 'CreateAccount' )
+			|| $title->isSpecial( 'Userlogout' )
+		) {
 			$params = [
 				'uselang' => $request->getVal( 'uselang' ),
 				'variant' => $request->getVal( 'variant' ),
