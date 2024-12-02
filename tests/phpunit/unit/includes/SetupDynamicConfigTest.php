@@ -101,29 +101,29 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 
 	public static function provideGlobals(): Generator {
 		$expectedDefault = [
-			'ScriptPath' => '/wiki',
-			'Script' => '/wiki/index.php',
-			'LoadScript' => '/wiki/load.php',
-			'RestPath' => '/wiki/rest.php',
+			MainConfigNames::ScriptPath => '/wiki',
+			MainConfigNames::Script => '/wiki/index.php',
+			MainConfigNames::LoadScript => '/wiki/load.php',
+			MainConfigNames::RestPath => '/wiki/rest.php',
 			// XXX $wgUsePathInfo set based on PHP_SAPI, no good way to test?
 			// XXX Testing $wgArticlePath doesn't seem to work
-			'ResourceBasePath' => '/wiki',
-			'StylePath' => '/wiki/skins',
-			'LocalStylePath' => '/wiki/skins',
-			'ExtensionAssetsPath' => '/wiki/extensions',
-			'Logo' => '/wiki/resources/assets/change-your-logo.svg',
-			'UploadPath' => '/wiki/images',
-			'UploadDirectory' => '/install/path/images',
-			'ReadOnlyFile' => '/install/path/images/lock_yBgMBwiR',
-			'FileCacheDirectory' => '/install/path/images/cache',
-			'DeletedDirectory' => '/install/path/images/deleted',
-			'SharedPrefix' => '',
-			'SharedSchema' => null,
-			'MetaNamespace' => 'MediaWiki',
-			'EnableUserEmailMuteList' => false,
+			MainConfigNames::ResourceBasePath => '/wiki',
+			MainConfigNames::StylePath => '/wiki/skins',
+			MainConfigNames::LocalStylePath => '/wiki/skins',
+			MainConfigNames::ExtensionAssetsPath => '/wiki/extensions',
+			MainConfigNames::Logo => '/wiki/resources/assets/change-your-logo.svg',
+			MainConfigNames::UploadPath => '/wiki/images',
+			MainConfigNames::UploadDirectory => '/install/path/images',
+			MainConfigNames::ReadOnlyFile => '/install/path/images/lock_yBgMBwiR',
+			MainConfigNames::FileCacheDirectory => '/install/path/images/cache',
+			MainConfigNames::DeletedDirectory => '/install/path/images/deleted',
+			MainConfigNames::SharedPrefix => '',
+			MainConfigNames::SharedSchema => null,
+			MainConfigNames::MetaNamespace => 'MediaWiki',
+			MainConfigNames::EnableUserEmailMuteList => false,
 			'EnableUserEmailBlacklist' => false,
-			'NamespaceProtection' => [ NS_MEDIAWIKI => 'editinterface' ],
-			'LockManagers' => [ [
+			MainConfigNames::NamespaceProtection => [ NS_MEDIAWIKI => 'editinterface' ],
+			MainConfigNames::LockManagers => [ [
 				'name' => 'fsLockManager',
 				'class' => FSLockManager::class,
 				'lockDirectory' => '/install/path/images/lockdir',
@@ -132,8 +132,8 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 				'class' => NullLockManager::class,
 			] ],
 			// Can't really test this properly without being able to mock global functions
-			'ShowEXIF' => function_exists( 'exif_read_data' ),
-			'GalleryOptions' => [
+			MainConfigNames::ShowEXIF => function_exists( 'exif_read_data' ),
+			MainConfigNames::GalleryOptions => [
 				'imagesPerRow' => 0,
 				'imageWidth' => 120,
 				'imageHeight' => 120,
@@ -142,7 +142,7 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 				'showDimensions' => true,
 				'mode' => 'traditional',
 			],
-			'LocalFileRepo' => [
+			MainConfigNames::LocalFileRepo => [
 				'class' => LocalRepo::class,
 				'name' => 'local',
 				'directory' => '/install/path/images',
@@ -158,24 +158,24 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 				'reserializeMetadata' => false,
 				'backend' => 'local-backend',
 			],
-			'CookiePrefix' => 'my_wiki',
-			'Localtimezone' => 'UTC',
-			'LocalTZoffset' => 0,
-			'DBerrorLogTZ' => 'UTC',
-			'CanonicalNamespaceNames' => NamespaceInfo::CANONICAL_NAMES,
-			'DummyLanguageCodes' => self::getExpectedDummyLanguageCodes( [] ),
+			MainConfigNames::CookiePrefix => 'my_wiki',
+			MainConfigNames::Localtimezone => 'UTC',
+			MainConfigNames::LocalTZoffset => 0,
+			MainConfigNames::DBerrorLogTZ => 'UTC',
+			MainConfigNames::CanonicalNamespaceNames => NamespaceInfo::CANONICAL_NAMES,
+			MainConfigNames::DummyLanguageCodes => self::getExpectedDummyLanguageCodes( [] ),
 			'SlaveLagWarning' => 10,
-			'DatabaseReplicaLagWarning' => 10,
+			MainConfigNames::DatabaseReplicaLagWarning => 10,
 			'SlaveLagCritical' => 30,
-			'DatabaseReplicaLagCritical' => 30,
+			MainConfigNames::DatabaseReplicaLagCritical => 30,
 			// This will be wrong if LocalSettings.php was last touched before May 16, 2003.
-			'CacheEpoch' => static function (): string {
+			MainConfigNames::CacheEpoch => static function (): string {
 				// We need a callback that will be evaluated at test time, because otherwise this
 				// doesn't work on CI for some reason.
 				$ret = max( '20030516000000', gmdate( 'YmdHis', @filemtime( MW_CONFIG_FILE ) ) );
 				return $ret;
 			},
-			'RateLimits' => MainConfigSchema::getDefaultValue( 'RateLimits' ),
+			MainConfigNames::RateLimits => MainConfigSchema::getDefaultValue( MainConfigNames::RateLimits ),
 		];
 
 		foreach (
@@ -191,26 +191,26 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 	private static function provideGlobalsInternal( array $expectedDefault ): Generator {
 		yield 'Nothing set' => [ [], [] ];
 		yield '$wgScriptPath set' => [
-			[ 'ScriptPath' => '/mywiki' ],
+			[ MainConfigNames::ScriptPath => '/mywiki' ],
 			array_map( self::recursiveReplaceCallback( '/wiki', '/mywiki' ), $expectedDefault ),
 		];
 		yield '$wgResourceBasePath set' => [
-			[ 'ResourceBasePath' => '/resources' ],
+			[ MainConfigNames::ResourceBasePath => '/resources' ],
 			[
-				'ResourceBasePath' => '/resources',
-				'ExtensionAssetsPath' => '/resources/extensions',
-				'StylePath' => '/resources/skins',
-				'Logo' => '/resources/resources/assets/change-your-logo.svg',
+				MainConfigNames::ResourceBasePath => '/resources',
+				MainConfigNames::ExtensionAssetsPath => '/resources/extensions',
+				MainConfigNames::StylePath => '/resources/skins',
+				MainConfigNames::Logo => '/resources/resources/assets/change-your-logo.svg',
 			],
 		];
 		yield '$wgUploadDirectory set' => [
-			[ 'UploadDirectory' => '/uploads' ],
+			[ MainConfigNames::UploadDirectory => '/uploads' ],
 			[
-				'UploadDirectory' => '/uploads',
-				'ReadOnlyFile' => '/uploads/lock_yBgMBwiR',
-				'FileCacheDirectory' => '/uploads/cache',
-				'DeletedDirectory' => '/uploads/deleted',
-				'LockManagers' => [ [
+				MainConfigNames::UploadDirectory => '/uploads',
+				MainConfigNames::ReadOnlyFile => '/uploads/lock_yBgMBwiR',
+				MainConfigNames::FileCacheDirectory => '/uploads/cache',
+				MainConfigNames::DeletedDirectory => '/uploads/deleted',
+				MainConfigNames::LockManagers => [ [
 					'name' => 'fsLockManager',
 					'class' => FSLockManager::class,
 					'lockDirectory' => '/uploads/lockdir',
@@ -218,7 +218,7 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 					'name' => 'nullLockManager',
 					'class' => NullLockManager::class,
 				] ],
-				'LocalFileRepo' => [
+				MainConfigNames::LocalFileRepo => [
 					'class' => LocalRepo::class,
 					'name' => 'local',
 					'directory' => '/uploads',
@@ -237,147 +237,147 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			],
 		];
 		yield '$wgCacheDirectory set' => [
-			[ 'CacheDirectory' => '/cache' ],
-			[ 'CacheDirectory' => '/cache' ],
+			[ MainConfigNames::CacheDirectory => '/cache' ],
+			[ MainConfigNames::CacheDirectory => '/cache' ],
 		];
 		yield '$wgDBprefix set' => [
-			[ 'DBprefix' => 'prefix_' ],
+			[ MainConfigNames::DBprefix => 'prefix_' ],
 			[
-				'DBprefix' => 'prefix_',
-				'SharedPrefix' => 'prefix_',
-				'CookiePrefix' => 'my_wiki_prefix_',
+				MainConfigNames::DBprefix => 'prefix_',
+				MainConfigNames::SharedPrefix => 'prefix_',
+				MainConfigNames::CookiePrefix => 'my_wiki_prefix_',
 			],
 		];
 		yield '$wgDBmwschema set' => [
-			[ 'DBmwschema' => 'schema' ],
+			[ MainConfigNames::DBmwschema => 'schema' ],
 			[
-				'DBmwschema' => 'schema',
-				'SharedSchema' => 'schema',
+				MainConfigNames::DBmwschema => 'schema',
+				MainConfigNames::SharedSchema => 'schema',
 			],
 		];
 		yield '$wgSitename set' => [
-			[ 'Sitename' => 'my site' ],
+			[ MainConfigNames::Sitename => 'my site' ],
 			[
-				'Sitename' => 'my site',
-				'MetaNamespace' => 'my_site',
+				MainConfigNames::Sitename => 'my site',
+				MainConfigNames::MetaNamespace => 'my_site',
 			],
 		];
 		yield '$wgProhibitedFileExtensions set' => [
-			[ 'ProhibitedFileExtensions' => [ 'evil' ] ],
+			[ MainConfigNames::ProhibitedFileExtensions => [ 'evil' ] ],
 			[
-				'ProhibitedFileExtensions' => [ 'evil' ],
+				MainConfigNames::ProhibitedFileExtensions => [ 'evil' ],
 				'FileBlacklist' => [ 'evil' ],
 			],
 		];
 		yield '$wgProhibitedFileExtensions and $wgFileBlacklist set' => [
 			[
-				'ProhibitedFileExtensions' => [ 'evil' ],
+				MainConfigNames::ProhibitedFileExtensions => [ 'evil' ],
 				'FileBlacklist' => [ 'eviler' ],
 			],
 			[
-				'ProhibitedFileExtensions' => [ 'evil', 'eviler' ],
+				MainConfigNames::ProhibitedFileExtensions => [ 'evil', 'eviler' ],
 				'FileBlacklist' => [ 'eviler' ],
 			],
 		];
 		yield '$wgMimeTypeExclusions set' => [
-			[ 'MimeTypeExclusions' => [ 'evil' ] ],
+			[ MainConfigNames::MimeTypeExclusions => [ 'evil' ] ],
 			[
-				'MimeTypeExclusions' => [ 'evil' ],
+				MainConfigNames::MimeTypeExclusions => [ 'evil' ],
 				'MimeTypeBlacklist' => [ 'evil' ],
 			],
 		];
 		yield '$wgMimeTypeExclusions and $wgMimeTypeBlacklist set' => [
 			[
-				'MimeTypeExclusions' => [ 'evil' ],
+				MainConfigNames::MimeTypeExclusions => [ 'evil' ],
 				'MimeTypeBlacklist' => [ 'eviler' ],
 			],
 			[
-				'MimeTypeExclusions' => [ 'evil', 'eviler' ],
+				MainConfigNames::MimeTypeExclusions => [ 'evil', 'eviler' ],
 				'MimeTypeBlacklist' => [ 'eviler' ],
 			],
 		];
 		yield '$wgEnableUserEmailMuteList set' => [
-			[ 'EnableUserEmailMuteList' => true ],
+			[ MainConfigNames::EnableUserEmailMuteList => true ],
 			[
-				'EnableUserEmailMuteList' => true,
+				MainConfigNames::EnableUserEmailMuteList => true,
 				'EnableUserEmailBlacklist' => true,
 			],
 		];
 		yield '$wgEnableUserEmailMuteList and $wgEnableUserEmailBlacklist both true' => [
 			[
-				'EnableUserEmailMuteList' => true,
+				MainConfigNames::EnableUserEmailMuteList => true,
 				'EnableUserEmailBlacklist' => true,
 			],
 			[
-				'EnableUserEmailMuteList' => true,
+				MainConfigNames::EnableUserEmailMuteList => true,
 				'EnableUserEmailBlacklist' => true,
 			],
 		];
 		yield '$wgEnableUserEmailMuteList true and $wgEnableUserEmailBlacklist false' => [
 			[
-				'EnableUserEmailMuteList' => true,
+				MainConfigNames::EnableUserEmailMuteList => true,
 				'EnableUserEmailBlacklist' => false,
 			],
 			[
-				'EnableUserEmailMuteList' => false,
+				MainConfigNames::EnableUserEmailMuteList => false,
 				'EnableUserEmailBlacklist' => false,
 			],
 		];
 		yield '$wgShortPagesNamespaceExclusions set' => [
-			[ 'ShortPagesNamespaceExclusions' => [ NS_TALK ] ],
+			[ MainConfigNames::ShortPagesNamespaceExclusions => [ NS_TALK ] ],
 			[
-				'ShortPagesNamespaceExclusions' => [ NS_TALK ],
+				MainConfigNames::ShortPagesNamespaceExclusions => [ NS_TALK ],
 				'ShortPagesNamespaceBlacklist' => [ NS_TALK ],
 			],
 		];
 		yield '$wgShortPagesNamespaceBlacklist set' => [
 			[ 'ShortPagesNamespaceBlacklist' => [ NS_PROJECT ] ],
 			[
-				'ShortPagesNamespaceExclusions' => [ NS_PROJECT ],
+				MainConfigNames::ShortPagesNamespaceExclusions => [ NS_PROJECT ],
 				'ShortPagesNamespaceBlacklist' => [ NS_PROJECT ],
 			],
 		];
 		yield '$wgShortPagesNamespaceExclusions and $wgShortPagesNamespaceBlacklist set' => [
 			[
-				'ShortPagesNamespaceExclusions' => [ NS_TALK ],
+				MainConfigNames::ShortPagesNamespaceExclusions => [ NS_TALK ],
 				'ShortPagesNamespaceBlacklist' => [ NS_PROJECT ],
 			],
 			[
-				'ShortPagesNamespaceExclusions' => [ NS_PROJECT ],
+				MainConfigNames::ShortPagesNamespaceExclusions => [ NS_PROJECT ],
 				'ShortPagesNamespaceBlacklist' => [ NS_PROJECT ],
 			],
 		];
 		yield '$wgFileExtension contains something from $wgProhibitedFileExtensions' => [
 			[
-				'FileExtensions' => [ 'a', 'b', 'c' ],
-				'ProhibitedFileExtensions' => [ 'b', 'd' ],
+				MainConfigNames::FileExtensions => [ 'a', 'b', 'c' ],
+				MainConfigNames::ProhibitedFileExtensions => [ 'b', 'd' ],
 			],
 			[
-				'FileExtensions' => [ 'a', 'c' ],
-				'ProhibitedFileExtensions' => [ 'b', 'd' ],
+				MainConfigNames::FileExtensions => [ 'a', 'c' ],
+				MainConfigNames::ProhibitedFileExtensions => [ 'b', 'd' ],
 			],
 		];
 		yield '$wgRightsIcon old path convention' => [
 			[
-				'StylePath' => '/style',
-				'ResourceBasePath' => '/resources',
-				'RightsIcon' => '/style/common/images/rights.png',
+				MainConfigNames::StylePath => '/style',
+				MainConfigNames::ResourceBasePath => '/resources',
+				MainConfigNames::RightsIcon => '/style/common/images/rights.png',
 			],
 			[
-				'StylePath' => '/style',
-				'ResourceBasePath' => '/resources',
-				'ExtensionAssetsPath' => '/resources/extensions',
-				'Logo' => '/resources/resources/assets/change-your-logo.svg',
-				'RightsIcon' => '/resources/resources/assets/licenses/rights.png',
+				MainConfigNames::StylePath => '/style',
+				MainConfigNames::ResourceBasePath => '/resources',
+				MainConfigNames::ExtensionAssetsPath => '/resources/extensions',
+				MainConfigNames::Logo => '/resources/resources/assets/change-your-logo.svg',
+				MainConfigNames::RightsIcon => '/resources/resources/assets/licenses/rights.png',
 			],
 		];
 		yield 'Empty $wgFooterIcons[\'copyright\'][\'copyright\'], $wgRightsIcon set' => [
 			[
-				'RightsIcon' => 'ico',
-				'FooterIcons' => [ 'copyright' => [ 'copyright' => [] ] ],
+				MainConfigNames::RightsIcon => 'ico',
+				MainConfigNames::FooterIcons => [ 'copyright' => [ 'copyright' => [] ] ],
 			],
 			[
-				'FooterIcons' => [ 'copyright' => [ 'copyright' => [
+				MainConfigNames::FooterIcons => [ 'copyright' => [ 'copyright' => [
 					'url' => null,
 					'src' => 'ico',
 					'alt' => null,
@@ -386,11 +386,11 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 		];
 		yield 'Empty $wgFooterIcons[\'copyright\'][\'copyright\'], $wgRightsText set' => [
 			[
-				'RightsText' => 'text',
-				'FooterIcons' => [ 'copyright' => [ 'copyright' => [] ] ],
+				MainConfigNames::RightsText => 'text',
+				MainConfigNames::FooterIcons => [ 'copyright' => [ 'copyright' => [] ] ],
 			],
 			[
-				'FooterIcons' => [ 'copyright' => [ 'copyright' => [
+				MainConfigNames::FooterIcons => [ 'copyright' => [ 'copyright' => [
 					'url' => null,
 					'src' => null,
 					'alt' => 'text',
@@ -399,41 +399,41 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 		];
 		yield '$wgFooterIcons[\'poweredby\'][\'mediawiki\'][\'src\'] === null' => [
 			[
-				'ResourceBasePath' => '/resources',
-				'FooterIcons' => [ 'poweredby' => [ 'mediawiki' => [ 'src' => null ] ] ],
+				MainConfigNames::ResourceBasePath => '/resources',
+				MainConfigNames::FooterIcons => [ 'poweredby' => [ 'mediawiki' => [ 'src' => null ] ] ],
 			],
 			[
-				'ResourceBasePath' => '/resources',
-				'ExtensionAssetsPath' => '/resources/extensions',
-				'StylePath' => '/resources/skins',
-				'Logo' => '/resources/resources/assets/change-your-logo.svg',
-				'FooterIcons' => [ 'poweredby' => [ 'mediawiki' => [
+				MainConfigNames::ResourceBasePath => '/resources',
+				MainConfigNames::ExtensionAssetsPath => '/resources/extensions',
+				MainConfigNames::StylePath => '/resources/skins',
+				MainConfigNames::Logo => '/resources/resources/assets/change-your-logo.svg',
+				MainConfigNames::FooterIcons => [ 'poweredby' => [ 'mediawiki' => [
 					'src' => '/resources/resources/assets/poweredby_mediawiki.svg',
 				] ] ],
 			],
 		];
 		yield '$wgFooterIcons[\'poweredby\'][\'mediawiki\'][\'src\'] === \'\'' => [
-			[ 'FooterIcons' => [ 'poweredby' => [ 'mediawiki' => [ 'src' => '' ] ] ] ],
-			[ 'FooterIcons' => [ 'poweredby' => [ 'mediawiki' => [ 'src' => '' ] ] ] ],
+			[ MainConfigNames::FooterIcons => [ 'poweredby' => [ 'mediawiki' => [ 'src' => '' ] ] ] ],
+			[ MainConfigNames::FooterIcons => [ 'poweredby' => [ 'mediawiki' => [ 'src' => '' ] ] ] ],
 		];
 		yield '$wgFooterIcons[\'poweredby\']=== []' => [
-			[ 'FooterIcons' => [ 'poweredby' => [] ] ],
-			[ 'FooterIcons' => [ 'poweredby' => [] ] ],
+			[ MainConfigNames::FooterIcons => [ 'poweredby' => [] ] ],
+			[ MainConfigNames::FooterIcons => [ 'poweredby' => [] ] ],
 		];
 		yield '$wgNamespaceProtection set only for non-NS_MEDIAWIKI' => [
-			[ 'NamespaceProtection' => [ NS_PROJECT => 'editprotected' ] ],
-			[ 'NamespaceProtection' => [
+			[ MainConfigNames::NamespaceProtection => [ NS_PROJECT => 'editprotected' ] ],
+			[ MainConfigNames::NamespaceProtection => [
 				NS_PROJECT => 'editprotected',
 				NS_MEDIAWIKI => 'editinterface',
 			] ],
 		];
 		yield '$wgNamespaceProtection[NS_MEDIAWIKI] not editinterface' => [
-			[ 'NamespaceProtection' => [ NS_MEDIAWIKI => 'editprotected' ] ],
-			[ 'NamespaceProtection' => [ NS_MEDIAWIKI => 'editinterface' ] ],
+			[ MainConfigNames::NamespaceProtection => [ NS_MEDIAWIKI => 'editprotected' ] ],
+			[ MainConfigNames::NamespaceProtection => [ NS_MEDIAWIKI => 'editinterface' ] ],
 		];
 		yield 'Custom lock manager' => [
-			[ 'LockManagers' => [ [ 'foo' ] ] ],
-			[ 'LockManagers' => [ [ 'foo' ], [
+			[ MainConfigNames::LockManagers => [ [ 'foo' ] ] ],
+			[ MainConfigNames::LockManagers => [ [ 'foo' ], [
 				'name' => 'fsLockManager',
 				'class' => FSLockManager::class,
 				'lockDirectory' => '/install/path/images/lockdir',
@@ -443,14 +443,14 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			] ] ],
 		];
 		yield 'Customize some $wgGalleryOptions' => [
-			[ 'GalleryOptions' => [
+			[ MainConfigNames::GalleryOptions => [
 				'imagesPerRow' => 42,
 				'imageHeight' => -1,
 				'showBytes' => null,
 				'mode' => 'iconoclastic',
 				'custom' => 'Rembrandt',
 			] ],
-			[ 'GalleryOptions' => [
+			[ MainConfigNames::GalleryOptions => [
 				'imagesPerRow' => 42,
 				'imageHeight' => -1,
 				'showBytes' => null,
@@ -462,8 +462,8 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			] ],
 		];
 		yield 'Set $wgLocalFileRepo' => [
-			[ 'LocalFileRepo' => [ 'name' => 'asdfgh' ] ],
-			[ 'LocalFileRepo' => [
+			[ MainConfigNames::LocalFileRepo => [ 'name' => 'asdfgh' ] ],
+			[ MainConfigNames::LocalFileRepo => [
 				'name' => 'asdfgh', 'backend' => 'asdfgh-backend'
 			] ],
 		];
@@ -480,8 +480,8 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			'backend' => 'shared-backend',
 		];
 		yield '$wgUseSharedUploads' => [
-			[ 'UseSharedUploads' => true ],
-			[ 'ForeignFileRepos' => [ $sharedUploadsExpected ] ],
+			[ MainConfigNames::UseSharedUploads => true ],
+			[ MainConfigNames::ForeignFileRepos => [ $sharedUploadsExpected ] ],
 		];
 		$sharedUploadsDBnameExpected = [
 			'class' => ForeignDBRepo::class,
@@ -505,10 +505,10 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 		];
 		yield '$wgUseSharedUploads and $wgSharedUploadDBname' => [
 			[
-				'UseSharedUploads' => true,
-				'SharedUploadDBname' => 'shared_uploads',
+				MainConfigNames::UseSharedUploads => true,
+				MainConfigNames::SharedUploadDBname => 'shared_uploads',
 			],
-			[ 'ForeignFileRepos' => [ $sharedUploadsDBnameExpected ] ],
+			[ MainConfigNames::ForeignFileRepos => [ $sharedUploadsDBnameExpected ] ],
 		];
 		$instantCommonsExpected = [
 			'class' => ForeignAPIRepo::class,
@@ -525,37 +525,37 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			'backend' => 'wikimediacommons-backend',
 		];
 		yield '$wgUseInstantCommons' => [
-			[ 'UseInstantCommons' => true ],
-			[ 'ForeignFileRepos' => [ $instantCommonsExpected ] ],
+			[ MainConfigNames::UseInstantCommons => true ],
+			[ MainConfigNames::ForeignFileRepos => [ $instantCommonsExpected ] ],
 		];
 		yield '$wgUseSharedUploads and $wgUseInstantCommons' => [
 			[
-				'UseSharedUploads' => true,
-				'UseInstantCommons' => true,
+				MainConfigNames::UseSharedUploads => true,
+				MainConfigNames::UseInstantCommons => true,
 			],
-			[ 'ForeignFileRepos' => [
+			[ MainConfigNames::ForeignFileRepos => [
 				$sharedUploadsExpected, $instantCommonsExpected ]
 			],
 		];
 		yield '$wgUseSharedUploads and $wgSharedUploadDBname and $wgUseInstantCommons' => [
 			[
-				'UseSharedUploads' => true,
-				'SharedUploadDBname' => 'shared_uploads',
-				'UseInstantCommons' => true,
+				MainConfigNames::UseSharedUploads => true,
+				MainConfigNames::SharedUploadDBname => 'shared_uploads',
+				MainConfigNames::UseInstantCommons => true,
 			],
-			[ 'ForeignFileRepos' => [
+			[ MainConfigNames::ForeignFileRepos => [
 				$sharedUploadsDBnameExpected, $instantCommonsExpected ]
 			],
 		];
 		yield 'ForeignAPIRepo with no directory' => [
 			[
-				'ForeignFileRepos' => [ [
+				MainConfigNames::ForeignFileRepos => [ [
 					'name' => 'foreigner',
 					'class' => ForeignAPIRepo::class,
 				] ],
-				'UploadDirectory' => '/upload',
+				MainConfigNames::UploadDirectory => '/upload',
 			],
-			[ 'ForeignFileRepos' => [ [
+			[ MainConfigNames::ForeignFileRepos => [ [
 				'name' => 'foreigner',
 				'class' => ForeignAPIRepo::class,
 				'directory' => '/upload',
@@ -566,101 +566,101 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 		];
 		yield '$wgDefaultUserOptions days too high' => [
 			[
-				'DefaultUserOptions' => [
+				MainConfigNames::DefaultUserOptions => [
 					'rcdays' => 100,
 					'watchlistdays' => 75,
 				],
-				'RCMaxAge' => 36 * 3600,
+				MainConfigNames::RCMaxAge => 36 * 3600,
 			],
-			[ 'DefaultUserOptions' => [
+			[ MainConfigNames::DefaultUserOptions => [
 				'rcdays' => 2.0,
 				'watchlistdays' => 2.0,
 				'timecorrection' => 'System|0',
 			] ],
 		];
 		yield '$wgSharedDB set' => [
-			[ 'SharedDB' => 'shared_db' ],
-			[ 'CookiePrefix' => 'shared_db' ],
+			[ MainConfigNames::SharedDB => 'shared_db' ],
+			[ MainConfigNames::CookiePrefix => 'shared_db' ],
 		];
 		yield '$wgSharedDB and $wgSharedPrefix set' => [
-			[ 'SharedDB' => 'shared_db', 'SharedPrefix' => 'shared_prefix' ],
+			[ MainConfigNames::SharedDB => 'shared_db', MainConfigNames::SharedPrefix => 'shared_prefix' ],
 			[
-				'CookiePrefix' => 'shared_db_shared_prefix',
-				'SharedPrefix' => 'shared_prefix',
+				MainConfigNames::CookiePrefix => 'shared_db_shared_prefix',
+				MainConfigNames::SharedPrefix => 'shared_prefix',
 			],
 		];
 		yield '$wgSharedPrefix set with no $wgSharedDB' => [
-			[ 'SharedPrefix' => 'shared_prefix' ],
-			[ 'SharedPrefix' => 'shared_prefix' ],
+			[ MainConfigNames::SharedPrefix => 'shared_prefix' ],
+			[ MainConfigNames::SharedPrefix => 'shared_prefix' ],
 		];
 		yield '$wgSharedDB set but user not in $wgSharedTables' => [
-			[ 'SharedDB' => 'shared_db', 'SharedTables' => [ 'user_properties' ] ],
+			[ MainConfigNames::SharedDB => 'shared_db', MainConfigNames::SharedTables => [ 'user_properties' ] ],
 			[],
 		];
 		yield '$wgSharedDB and $wgSharedPrefix set but user not in $wgSharedTables' => [
 			[
-				'SharedDB' => 'shared_db',
-				'SharedPrefix' => 'shared_prefix',
-				'SharedTables' => [ 'user_properties' ],
+				MainConfigNames::SharedDB => 'shared_db',
+				MainConfigNames::SharedPrefix => 'shared_prefix',
+				MainConfigNames::SharedTables => [ 'user_properties' ],
 			],
-			[ 'SharedPrefix' => 'shared_prefix' ],
+			[ MainConfigNames::SharedPrefix => 'shared_prefix' ],
 		];
 		yield '$wgCookiePrefix with allowed punctuation' => [
-			[ 'CookiePrefix' => "~!@#$%^&*()_-]{}|:<>/?\t\r\n\f" ],
-			[ 'CookiePrefix' => "~!@#$%^&*()_-]{}|:<>/?\t\r\n\f" ],
+			[ MainConfigNames::CookiePrefix => "~!@#$%^&*()_-]{}|:<>/?\t\r\n\f" ],
+			[ MainConfigNames::CookiePrefix => "~!@#$%^&*()_-]{}|:<>/?\t\r\n\f" ],
 		];
 		yield '$wgCookiePrefix with bad characters' => [
-			[ 'CookiePrefix' => 'n=o,t;a l+l.o"w\'e\\d[' ],
-			[ 'CookiePrefix' => 'n_o_t_a_l_l_o_w_e_d_' ],
+			[ MainConfigNames::CookiePrefix => 'n=o,t;a l+l.o"w\'e\\d[' ],
+			[ MainConfigNames::CookiePrefix => 'n_o_t_a_l_l_o_w_e_d_' ],
 		];
 		yield '$wgEnableEmail set to false' => [
 			[
-				'EnableEmail' => false,
-				'AllowHTMLEmail' => true,
-				'EmailAuthentication' => true,
-				'EnableUserEmail' => true,
-				'EnotifFromEditor' => true,
-				'EnotifImpersonal' => true,
-				'EnotifMaxRecips' => 0,
-				'EnotifMinorEdits' => true,
-				'EnotifRevealEditorAddress' => true,
-				'EnotifUseRealName' => true,
-				'EnotifUserTalk' => true,
-				'EnotifWatchlist' => true,
-				'GroupPermissions' => [ 'user' => [ 'sendemail' => true ] ],
-				'UserEmailUseReplyTo' => true,
-				'UsersNotifiedOnAllChanges' => [ 'Admin' ],
+				MainConfigNames::EnableEmail => false,
+				MainConfigNames::AllowHTMLEmail => true,
+				MainConfigNames::EmailAuthentication => true,
+				MainConfigNames::EnableUserEmail => true,
+				MainConfigNames::EnotifFromEditor => true,
+				MainConfigNames::EnotifImpersonal => true,
+				MainConfigNames::EnotifMaxRecips => 0,
+				MainConfigNames::EnotifMinorEdits => true,
+				MainConfigNames::EnotifRevealEditorAddress => true,
+				MainConfigNames::EnotifUseRealName => true,
+				MainConfigNames::EnotifUserTalk => true,
+				MainConfigNames::EnotifWatchlist => true,
+				MainConfigNames::GroupPermissions => [ 'user' => [ 'sendemail' => true ] ],
+				MainConfigNames::UserEmailUseReplyTo => true,
+				MainConfigNames::UsersNotifiedOnAllChanges => [ 'Admin' ],
 			], [
-				'AllowHTMLEmail' => false,
-				'EmailAuthentication' => false,
-				'EnableUserEmail' => false,
-				'EnotifFromEditor' => false,
-				'EnotifImpersonal' => false,
-				'EnotifMaxRecips' => 0,
-				'EnotifMinorEdits' => false,
-				'EnotifRevealEditorAddress' => false,
-				'EnotifUseRealName' => false,
-				'EnotifUserTalk' => false,
-				'EnotifWatchlist' => false,
-				'GroupPermissions' => [ 'user' => [] ],
-				'UserEmailUseReplyTo' => false,
-				'UsersNotifiedOnAllChanges' => [],
+				MainConfigNames::AllowHTMLEmail => false,
+				MainConfigNames::EmailAuthentication => false,
+				MainConfigNames::EnableUserEmail => false,
+				MainConfigNames::EnotifFromEditor => false,
+				MainConfigNames::EnotifImpersonal => false,
+				MainConfigNames::EnotifMaxRecips => 0,
+				MainConfigNames::EnotifMinorEdits => false,
+				MainConfigNames::EnotifRevealEditorAddress => false,
+				MainConfigNames::EnotifUseRealName => false,
+				MainConfigNames::EnotifUserTalk => false,
+				MainConfigNames::EnotifWatchlist => false,
+				MainConfigNames::GroupPermissions => [ 'user' => [] ],
+				MainConfigNames::UserEmailUseReplyTo => false,
+				MainConfigNames::UsersNotifiedOnAllChanges => [],
 			],
 		];
 		yield 'Change PHP default timezone' => [
-			[ 'DefaultUserOptions' => [
+			[ MainConfigNames::DefaultUserOptions => [
 				'rcdays' => 0,
 				'watchlistdays' => 0,
 			] ],
 			[
-				'Localtimezone' => 'America/Phoenix',
-				'LocalTZoffset' => -7 * 60,
-				'DefaultUserOptions' => [
+				MainConfigNames::Localtimezone => 'America/Phoenix',
+				MainConfigNames::LocalTZoffset => -7 * 60,
+				MainConfigNames::DefaultUserOptions => [
 					'rcdays' => 0,
 					'watchlistdays' => 0,
 					'timecorrection' => 'System|' . ( -7 * 60 ),
 				],
-				'DBerrorLogTZ' => 'America/Phoenix',
+				MainConfigNames::DBerrorLogTZ => 'America/Phoenix',
 			],
 			static function ( self $testObj ): void {
 				// Pick a timezone with no DST
@@ -668,112 +668,112 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			},
 		];
 		yield '$wgDBerrorLogTZ set' => [
-			[ 'DBerrorLogTZ' => 'America/Phoenix' ],
-			[ 'DBerrorLogTZ' => 'America/Phoenix' ],
+			[ MainConfigNames::DBerrorLogTZ => 'America/Phoenix' ],
+			[ MainConfigNames::DBerrorLogTZ => 'America/Phoenix' ],
 		];
 		yield 'Setting $wgCanonicalNamespaceNames does nothing' => [
-			[ 'CanonicalNamespaceNames' => [ NS_MAIN => 'abc' ] ],
+			[ MainConfigNames::CanonicalNamespaceNames => [ NS_MAIN => 'abc' ] ],
 			[],
 		];
 		yield 'Setting $wgExtraNamespaces does not affect $wgCanonicalNamespaceNames' => [
-			[ 'ExtraNamespaces' => [ 100 => 'Extra' ] ],
+			[ MainConfigNames::ExtraNamespaces => [ 100 => 'Extra' ] ],
 			[],
 		];
 		yield '$wgDummyLanguageCodes set' => [
-			[ 'DummyLanguageCodes' => [ 'qqq' => 'qqqq', 'foo' => 'bar', 'bh' => 'hb' ] ],
-			[ 'DummyLanguageCodes' => self::getExpectedDummyLanguageCodes(
+			[ MainConfigNames::DummyLanguageCodes => [ 'qqq' => 'qqqq', 'foo' => 'bar', 'bh' => 'hb' ] ],
+			[ MainConfigNames::DummyLanguageCodes => self::getExpectedDummyLanguageCodes(
 				[ 'qqq' => 'qqqq', 'foo' => 'bar', 'bh' => 'hb' ] ) ],
 		];
 		yield '$wgExtraLanguageCodes set' => [
-			[ 'ExtraLanguageCodes' => [ 'foo' => 'bar' ] ],
-			[ 'DummyLanguageCodes' => self::getExpectedDummyLanguageCodes( [],
+			[ MainConfigNames::ExtraLanguageCodes => [ 'foo' => 'bar' ] ],
+			[ MainConfigNames::DummyLanguageCodes => self::getExpectedDummyLanguageCodes( [],
 				[ 'foo' => 'bar' ] ) ],
 		];
 		yield '$wgDummyLanguageCodes and $wgExtraLanguageCodes set' => [
 			[
-				'DummyLanguageCodes' => [ 'foo' => 'bar', 'abc' => 'def' ],
-				'ExtraLanguageCodes' => [ 'foo' => 'baz', 'ghi' => 'jkl' ],
+				MainConfigNames::DummyLanguageCodes => [ 'foo' => 'bar', 'abc' => 'def' ],
+				MainConfigNames::ExtraLanguageCodes => [ 'foo' => 'baz', 'ghi' => 'jkl' ],
 			],
-			[ 'DummyLanguageCodes' => self::getExpectedDummyLanguageCodes(
+			[ MainConfigNames::DummyLanguageCodes => self::getExpectedDummyLanguageCodes(
 				[ 'foo' => 'bar', 'abc' => 'def' ], [ 'foo' => 'baz', 'ghi' => 'jkl' ] ) ],
 		];
 		yield '$wgDatabaseReplicaLagWarning set' => [
-			[ 'DatabaseReplicaLagWarning' => 20 ],
-			[ 'DatabaseReplicaLagWarning' => 20, 'SlaveLagWarning' => 20 ],
+			[ MainConfigNames::DatabaseReplicaLagWarning => 20 ],
+			[ MainConfigNames::DatabaseReplicaLagWarning => 20, 'SlaveLagWarning' => 20 ],
 		];
 		yield '$wgSlaveLagWarning set' => [
 			[ 'SlaveLagWarning' => 20 ],
-			[ 'DatabaseReplicaLagWarning' => 20, 'SlaveLagWarning' => 20 ],
+			[ MainConfigNames::DatabaseReplicaLagWarning => 20, 'SlaveLagWarning' => 20 ],
 		];
 		// XXX The settings are out of sync, this doesn't look intended
 		yield '$wgDatabaseReplicaLagWarning and $wgSlaveLagWarning set' => [
-			[ 'DatabaseReplicaLagWarning' => 20, 'SlaveLagWarning' => 30 ],
-			[ 'DatabaseReplicaLagWarning' => 20, 'SlaveLagWarning' => 30 ],
+			[ MainConfigNames::DatabaseReplicaLagWarning => 20, 'SlaveLagWarning' => 30 ],
+			[ MainConfigNames::DatabaseReplicaLagWarning => 20, 'SlaveLagWarning' => 30 ],
 		];
 		yield '$wgDatabaseReplicaLagCritical set' => [
-			[ 'DatabaseReplicaLagCritical' => 40 ],
-			[ 'DatabaseReplicaLagCritical' => 40, 'SlaveLagCritical' => 40 ],
+			[ MainConfigNames::DatabaseReplicaLagCritical => 40 ],
+			[ MainConfigNames::DatabaseReplicaLagCritical => 40, 'SlaveLagCritical' => 40 ],
 		];
 		yield '$wgSlaveLagCritical set' => [
 			[ 'SlaveLagCritical' => 40 ],
-			[ 'DatabaseReplicaLagCritical' => 40, 'SlaveLagCritical' => 40 ],
+			[ MainConfigNames::DatabaseReplicaLagCritical => 40, 'SlaveLagCritical' => 40 ],
 		];
 		// XXX The settings are out of sync, this doesn't look intended
 		yield '$wgDatabaseReplicaLagCritical and $wgSlaveLagCritical set' => [
-			[ 'DatabaseReplicaLagCritical' => 40, 'SlaveLagCritical' => 60 ],
-			[ 'DatabaseReplicaLagCritical' => 40, 'SlaveLagCritical' => 60 ],
+			[ MainConfigNames::DatabaseReplicaLagCritical => 40, 'SlaveLagCritical' => 60 ],
+			[ MainConfigNames::DatabaseReplicaLagCritical => 40, 'SlaveLagCritical' => 60 ],
 		];
 		yield '$wgCacheEpoch set to before LocalSettings touched' => [
-			[ 'CacheEpoch' => static function () use ( $expectedDefault ): string {
-				return $expectedDefault['CacheEpoch']() - 1;
+			[ MainConfigNames::CacheEpoch => static function () use ( $expectedDefault ): string {
+				return $expectedDefault[MainConfigNames::CacheEpoch]() - 1;
 			} ],
-			[ 'CacheEpoch' => static function () use ( $expectedDefault ): string {
-				$expected = $expectedDefault['CacheEpoch']();
+			[ MainConfigNames::CacheEpoch => static function () use ( $expectedDefault ): string {
+				$expected = $expectedDefault[MainConfigNames::CacheEpoch]();
 				// If the file exists, its mtime is later than what we set $wgCacheEpoch to and so
 				// it should override what we set.
 				return file_exists( MW_CONFIG_FILE ) ? $expected : $expected - 1;
 			} ],
 		];
 		yield '$wgCacheEpoch set to after LocalSettings touched' => [
-			[ 'CacheEpoch' => static function () use ( $expectedDefault ): string {
-				return $expectedDefault['CacheEpoch']() + 1;
+			[ MainConfigNames::CacheEpoch => static function () use ( $expectedDefault ): string {
+				return $expectedDefault[MainConfigNames::CacheEpoch]() + 1;
 			} ],
-			[ 'CacheEpoch' => static function () use ( $expectedDefault ): string {
-				return $expectedDefault['CacheEpoch']() + 1;
+			[ MainConfigNames::CacheEpoch => static function () use ( $expectedDefault ): string {
+				return $expectedDefault[MainConfigNames::CacheEpoch]() + 1;
 			} ],
 		];
 		yield '$wgInvalidateCacheOnLocalSettingsChange false' => [
-			[ 'InvalidateCacheOnLocalSettingsChange' => false ],
-			[ 'CacheEpoch' => '20030516000000' ],
+			[ MainConfigNames::InvalidateCacheOnLocalSettingsChange => false ],
+			[ MainConfigNames::CacheEpoch => '20030516000000' ],
 		];
 		yield '$wgNewUserLog is true' => [
-			[ 'NewUserLog' => true ],
+			[ MainConfigNames::NewUserLog => true ],
 			static function ( self $testObj, array $vars ) use ( $expectedDefault ): array {
-				$testObj->assertContains( 'newusers', $vars['LogTypes'] );
-				$testObj->assertSame( 'newuserlogpage', $vars['LogNames']['newusers'] );
-				$testObj->assertSame( 'newuserlogpagetext', $vars['LogHeaders']['newusers'] );
+				$testObj->assertContains( 'newusers', $vars[MainConfigNames::LogTypes] );
+				$testObj->assertSame( 'newuserlogpage', $vars[MainConfigNames::LogNames]['newusers'] );
+				$testObj->assertSame( 'newuserlogpagetext', $vars[MainConfigNames::LogHeaders]['newusers'] );
 				$testObj->assertSame( NewUsersLogFormatter::class,
-					$vars['LogActionsHandlers']['newusers/newusers'] );
+					$vars[MainConfigNames::LogActionsHandlers]['newusers/newusers'] );
 				$testObj->assertSame( NewUsersLogFormatter::class,
-					$vars['LogActionsHandlers']['newusers/create'] );
+					$vars[MainConfigNames::LogActionsHandlers]['newusers/create'] );
 				$testObj->assertSame( NewUsersLogFormatter::class,
-					$vars['LogActionsHandlers']['newusers/create2'] );
+					$vars[MainConfigNames::LogActionsHandlers]['newusers/create2'] );
 				$testObj->assertSame( NewUsersLogFormatter::class,
-					$vars['LogActionsHandlers']['newusers/byemail'] );
+					$vars[MainConfigNames::LogActionsHandlers]['newusers/byemail'] );
 				$testObj->assertSame( NewUsersLogFormatter::class,
-					$vars['LogActionsHandlers']['newusers/autocreate'] );
+					$vars[MainConfigNames::LogActionsHandlers]['newusers/autocreate'] );
 
 				return $expectedDefault;
 			},
 		];
 		yield '$wgNewUserLog is false`' => [
-			[ 'NewUserLog' => false ],
+			[ MainConfigNames::NewUserLog => false ],
 			static function ( self $testObj, array $vars ) use ( $expectedDefault ): array {
 				// Test that the new user log is not added to any of the various logging globals
-				$testObj->assertNotContains( 'newusers', $vars['LogTypes'] );
-				$testObj->assertArrayNotHasKey( 'newusers', $vars['LogNames'] );
-				$testObj->assertArrayNotHasKey( 'newusers', $vars['LogHeaders'] );
-				foreach ( $vars['LogActionsHandlers'] as $key => $unused ) {
+				$testObj->assertNotContains( 'newusers', $vars[MainConfigNames::LogTypes] );
+				$testObj->assertArrayNotHasKey( 'newusers', $vars[MainConfigNames::LogNames] );
+				$testObj->assertArrayNotHasKey( 'newusers', $vars[MainConfigNames::LogHeaders] );
+				foreach ( $vars[MainConfigNames::LogActionsHandlers] as $key => $unused ) {
 					$testObj->assertStringStartsNotWith( 'newusers', $key );
 				}
 
@@ -781,103 +781,103 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			},
 		];
 		yield '$wgPageCreationLog is true' => [
-			[ 'PageCreationLog' => true ],
+			[ MainConfigNames::PageCreationLog => true ],
 			static function ( self $testObj, array $vars ) use ( $expectedDefault ): array {
-				$testObj->assertContains( 'create', $vars['LogTypes'] );
+				$testObj->assertContains( 'create', $vars[MainConfigNames::LogTypes] );
 				$testObj->assertSame( LogFormatter::class,
-					$vars['LogActionsHandlers']['create/create'] );
+					$vars[MainConfigNames::LogActionsHandlers]['create/create'] );
 
 				return $expectedDefault;
 			},
 		];
 		yield '$wgPageCreationLog is false`' => [
-			[ 'PageCreationLog' => false ],
+			[ MainConfigNames::PageCreationLog => false ],
 			static function ( self $testObj, array $vars ) use ( $expectedDefault ): array {
-				$testObj->assertNotContains( 'create', $vars['LogTypes'] );
-				$testObj->assertArrayNotHasKey( 'create/create', $vars['LogActionsHandlers'] );
+				$testObj->assertNotContains( 'create', $vars[MainConfigNames::LogTypes] );
+				$testObj->assertArrayNotHasKey( 'create/create', $vars[MainConfigNames::LogActionsHandlers] );
 
 				return $expectedDefault;
 			},
 		];
 		yield '$wgPageLanguageUseDB is true' => [
-			[ 'PageLanguageUseDB' => true ],
+			[ MainConfigNames::PageLanguageUseDB => true ],
 			static function ( self $testObj, array $vars ) use ( $expectedDefault ): array {
-				$testObj->assertContains( 'pagelang', $vars['LogTypes'] );
+				$testObj->assertContains( 'pagelang', $vars[MainConfigNames::LogTypes] );
 				$testObj->assertSame( PageLangLogFormatter::class,
-					$vars['LogActionsHandlers']['pagelang/pagelang']['class'] );
+					$vars[MainConfigNames::LogActionsHandlers]['pagelang/pagelang']['class'] );
 
 				return $expectedDefault;
 			},
 		];
 		yield '$wgPageLanguageUseDB is false' => [
-			[ 'PageLanguageUseDB' => false ],
+			[ MainConfigNames::PageLanguageUseDB => false ],
 			static function ( self $testObj, array $vars ) use ( $expectedDefault ): array {
-				$testObj->assertNotContains( 'pagelang', $vars['LogTypes'] );
+				$testObj->assertNotContains( 'pagelang', $vars[MainConfigNames::LogTypes] );
 				$testObj->assertArrayNotHasKey( 'pagelang/pagelang',
-					$vars['LogActionsHandlers'] );
+					$vars[MainConfigNames::LogActionsHandlers] );
 
 				return $expectedDefault;
 			},
 		];
 		yield '$wgForceHTTPS is true, not HTTPS' => [
-			[ 'ForceHTTPS' => true ],
-			[ 'CookieSecure' => true ],
+			[ MainConfigNames::ForceHTTPS => true ],
+			[ MainConfigNames::CookieSecure => true ],
 			static function () {
 				$_SERVER['HTTPS'] = null;
 				$_SERVER['HTTP_X_FORWARDED_PROTO'] = null;
 			}
 		];
 		yield '$wgForceHTTPS is true, HTTPS' => [
-			[ 'ForceHTTPS' => true ],
-			[ 'CookieSecure' => true ],
+			[ MainConfigNames::ForceHTTPS => true ],
+			[ MainConfigNames::CookieSecure => true ],
 			static function () {
 				$_SERVER['HTTPS'] = 'on';
 				$_SERVER['HTTP_X_FORWARDED_PROTO'] = 'https';
 			}
 		];
 		yield '$wgForceHTTPS is false, not HTTPS' => [
-			[ 'ForceHTTPS' => false ],
-			[ 'CookieSecure' => false ],
+			[ MainConfigNames::ForceHTTPS => false ],
+			[ MainConfigNames::CookieSecure => false ],
 			static function () {
 				$_SERVER['HTTPS'] = null;
 				$_SERVER['HTTP_X_FORWARDED_PROTO'] = null;
 			}
 		];
 		yield '$wgForceHTTPS is false, HTTPS off' => [
-			[ 'ForceHTTPS' => false ],
-			[ 'CookieSecure' => false ],
+			[ MainConfigNames::ForceHTTPS => false ],
+			[ MainConfigNames::CookieSecure => false ],
 			static function () {
 				$_SERVER['HTTPS'] = 'off';
 				$_SERVER['HTTP_X_FORWARDED_PROTO'] = null;
 			}
 		];
 		yield '$wgForceHTTPS is false, HTTPS' => [
-			[ 'ForceHTTPS' => false ],
-			[ 'CookieSecure' => true ],
+			[ MainConfigNames::ForceHTTPS => false ],
+			[ MainConfigNames::CookieSecure => true ],
 			static function () {
 				$_SERVER['HTTPS'] = 'on';
 				$_SERVER['HTTP_X_FORWARDED_PROTO'] = null;
 			}
 		];
 		yield '$wgForceHTTPS is false, forwarded HTTPS' => [
-			[ 'ForceHTTPS' => false ],
-			[ 'CookieSecure' => true ],
+			[ MainConfigNames::ForceHTTPS => false ],
+			[ MainConfigNames::CookieSecure => true ],
 			static function () {
 				$_SERVER['HTTPS'] = null;
 				$_SERVER['HTTP_X_FORWARDED_PROTO'] = 'https';
 			}
 		];
 		yield 'Bogus $wgPHPSessionHandling' => [
-			[ 'PHPSessionHandling' => 'bogus' ],
-			[ 'PHPSessionHandling' => 'warn' ],
+			[ MainConfigNames::PHPSessionHandling => 'bogus' ],
+			[ MainConfigNames::PHPSessionHandling => 'warn' ],
 		];
 		yield 'Enable $wgPHPSessionHandling' => [
-			[ 'PHPSessionHandling' => 'enable' ],
-			[ 'PHPSessionHandling' => 'enable' ],
+			[ MainConfigNames::PHPSessionHandling => 'enable' ],
+			[ MainConfigNames::PHPSessionHandling => 'enable' ],
 		];
 		yield 'Disable $wgPHPSessionHandling' => [
-			[ 'PHPSessionHandling' => 'disable' ],
-			[ 'PHPSessionHandling' => 'disable' ],
+			[ MainConfigNames::PHPSessionHandling => 'disable' ],
+			[ MainConfigNames::PHPSessionHandling => 'disable' ],
 		];
 
 		// use old deprecated rate limit names
@@ -892,10 +892,10 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			];
 
 		yield 'renamed $wgRateLimits' => [
-			[ 'RateLimits' => $rateLimits + $expectedDefault['RateLimits'] ],
+			[ MainConfigNames::RateLimits => $rateLimits + $expectedDefault[MainConfigNames::RateLimits] ],
 			static function ( self $testObj, array $vars ) use ( $expectedDefault, $rateLimits ): array {
-				$testObj->assertSame( $rateLimits['emailuser'], $vars['RateLimits']['sendemail'], 'emailuser' );
-				$testObj->assertSame( $rateLimits['changetag'], $vars['RateLimits']['changetags'], 'changetag' );
+				$testObj->assertSame( $rateLimits['emailuser'], $vars[MainConfigNames::RateLimits]['sendemail'], 'emailuser' );
+				$testObj->assertSame( $rateLimits['changetag'], $vars[MainConfigNames::RateLimits]['changetags'], 'changetag' );
 				return [];
 			}
 		];
