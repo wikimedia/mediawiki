@@ -97,8 +97,8 @@
 			}
 
 			// Truncate whole
-			if ( patternDigits.indexOf( '#' ) === -1 ) {
-				valueParts[ 0 ] = valueParts[ 0 ].slice( valueParts[ 0 ].length - padLength );
+			if ( patternDigits.indexOf( '#' ) === -1 && padLength ) {
+				valueParts[ 0 ] = valueParts[ 0 ].slice( -padLength );
 			}
 		}
 
