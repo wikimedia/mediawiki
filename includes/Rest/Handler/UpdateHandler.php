@@ -49,6 +49,7 @@ class UpdateHandler extends EditHandler {
 				self::PARAM_SOURCE => 'path',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
+				self::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-update-title' ),
 			],
 		] + parent::getParamSettings();
 	}
