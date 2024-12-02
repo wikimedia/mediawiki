@@ -84,7 +84,8 @@
 			"Iketsi",
 			"Zakawer2",
 			"Reedy",
-			"Dreamy Jazz"
+			"Dreamy Jazz",
+			"Juwan"
 		]
 	},
 	"tog-underline": "Understregning af links:",
@@ -1653,7 +1654,7 @@
 	"minoreditletter": "m",
 	"newpageletter": "N",
 	"boteditletter": "b",
-	"rc-change-size": "$1 {{PLURAL:$1|Byte|Bytes}}",
+	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} efter ændring",
 	"newsectionsummary": "/* $1 */ nyt afsnit",
 	"rc-old-title": "oprindeligt oprettet som \"$1\"",

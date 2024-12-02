@@ -20,7 +20,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Reedy",
-			"Sławobóg"
+			"Sławobóg",
+			"Juwan"
 		]
 	},
 	"tog-underline": "Wotkazy podšmórnyć:",
@@ -1463,7 +1464,7 @@
 	"minoreditletter": "S",
 	"newpageletter": "N",
 	"boteditletter": "B",
-	"rc-change-size": "$1 {{PLURAL:$1|bajt|bajtaj|bajty|bajtow}}",
+	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bajt|bajtaj|bajty|bajtow}} po změnje",
 	"newsectionsummary": "Nowy wotrězk: /* $1 */",
 	"rc-old-title": "prěnjotnje wutworjeny jako \"$1\"",

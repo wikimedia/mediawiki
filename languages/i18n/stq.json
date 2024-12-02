@@ -16,7 +16,8 @@
 			"Urhixidur",
 			"Vlad5250",
 			"아라",
-			"Murma174"
+			"Murma174",
+			"Juwan"
 		]
 	},
 	"tog-underline": "Ferwiese unnerstriekje:",
@@ -911,7 +912,7 @@
 	"minoreditletter": "L",
 	"newpageletter": "Näi",
 	"boteditletter": "B",
-	"rc-change-size": "$1 {{PLURAL:$1|Byte|Bytes}}",
+	"rc-change-size": "$1",
 	"newsectionsummary": "Näie Apsats /* $1 */",
 	"recentchangeslinked": "Annerengen an ferlinkede Sieden",
 	"recentchangeslinked-feed": "Annerengen an ferlinkede Sieden",
