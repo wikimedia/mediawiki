@@ -83,7 +83,8 @@ class UserFactory implements UserRigorOptions {
 	 *
 	 * @param string $name Username, validated by Title::newFromText
 	 * @param string $validate Validation strategy, one of the RIGOR_* constants. For no
-	 *    validation, use RIGOR_NONE.
+	 *    validation, use RIGOR_NONE. If you just want to create valid user who can be either a named
+	 *    user or an IP, consider using newFromNameOrIp() instead of calling this with RIGOR_NONE.
 	 * @return ?User User object, or null if the username is invalid (e.g. if it contains
 	 *  illegal characters or is an IP address). If the username is not present in the database,
 	 *  the result will be a user object with a name, a user id of 0, and default settings.
@@ -124,6 +125,26 @@ class UserFactory implements UserRigorOptions {
 			$user = new User();
 		}
 		return $user;
+	}
+
+	/**
+	 * Returns either an anonymous or a named User based on the supplied argument
+	 *
+	 * If IP is supplied, an anonymous user will be created, otherwise a valid named user.
+	 * If you don't want to have the named user validated, use self::newFromName().
+	 * If you want to create simple anonymous user without providing the IP, use self::newAnonymous()
+	 *
+	 * @since 1.44
+	 *
+	 * @param string $name IP address or username
+	 * @return User|null
+	 */
+	public function newFromNameOrIp( string $name ): ?User {
+		if ( $this->userNameUtils->isIP( $name ) ) {
+			return $this->newAnonymous( $name );
+		}
+
+		return $this->newFromName( $name );
 	}
 
 	/**
