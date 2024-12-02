@@ -315,6 +315,7 @@
 	"config-install-db-success": "Het installeren van de database is geslaagd",
 	"config-install-generic": "Taak “$1” in uitvoering",
 	"config-install-external-domains": "Externe databases worden aangemaakt",
+	"config-skip-shared-domain": "Het mogelijk gedeelde domein “$1” wordt overgeslagen",
 	"config-download-localsettings": "<code>LocalSettings.php</code> downloaden",
 	"config-help": "hulp",
 	"config-help-tooltip": "klik om uit te vouwen",

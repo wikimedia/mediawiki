@@ -202,7 +202,7 @@
 	"new-messages-from-users": "{{PLURAL:$4|Тееть сась}} $1 лия {{PLURAL:$3|$3 сувайть эзда|$3 сувайхнень эзда|1 = лия сувайть эзда}} ($2).",
 	"new-messages-from-many-users": "$1 тееть сась  ($2) лама тиихнень эзда.",
 	"new-messages-link-plural": "{{PLURAL:$1|1= од нюрьхкяня сёрма|999=од нюрьхкяня сёрмат}}",
-	"new-messages-diff-link-plural": "мекольце {{PLURAL:$1|1= полафнемась|999=полафнематне}}",
+	"new-messages-diff-link-plural": "мекольце {{PLURAL:$1|полафнемась|999=полафнематне}}",
 	"editsection": "петнемс",
 	"editold": "петнемс",
 	"viewsourceold": "ваномс унксть",

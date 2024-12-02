@@ -298,6 +298,7 @@
 	"config-install-db-success": "Базата е успешно поставена",
 	"config-install-generic": "Ја извршувам задачата „$1“",
 	"config-install-external-domains": "Создавање на надворешни бази",
+	"config-skip-shared-domain": "Го прескокнувам потенцијално заедничкиот домен „$1“",
 	"config-download-localsettings": "Преземи го <code>LocalSettings.php</code>",
 	"config-help": "помош",
 	"config-help-tooltip": "стиснете да расклопите",

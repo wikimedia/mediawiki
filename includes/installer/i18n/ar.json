@@ -313,6 +313,7 @@
 	"config-install-db-success": "تم إعداد قاعدة البيانات بنجاح",
 	"config-install-generic": "تشغيل المهمة \"$1\"",
 	"config-install-external-domains": "إنشاء قواعد بيانات خارجية",
+	"config-skip-shared-domain": "تخطي المجال المشترك المحتمل \"$1\"",
 	"config-download-localsettings": "تنزيل <code>LocalSettings.php</code>",
 	"config-help": "مساعدة",
 	"config-help-tooltip": "اضغط للتوسيع",

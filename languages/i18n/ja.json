@@ -2674,6 +2674,8 @@
 	"block-options-description": "これらのオプションは、さらなる問題を防ぐためにこの利用者を監視するのに役立ちます。",
 	"block-reason": "理由:",
 	"block-reason-other": "追加またはその他の理由",
+	"block-confirm-yes": "はい",
+	"block-confirm-no": "いいえ",
 	"block-success": "[[Special:Contributions/$1|$1]]をブロックしました。ブロックを確認するには、[[Special:BlockList|ブロックの一覧]]を参照してください。",
 	"block-user-active-blocks": "有効なブロック",
 	"block-user-previous-blocks": "ブロック記録",

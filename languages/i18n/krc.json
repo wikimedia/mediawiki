@@ -206,7 +206,7 @@
 	"new-messages-from-users": "{{PLURAL:$3|Башха бир къошулуучудан|$3 къошулуучудан}} {{PLURAL:$4|сеннге}} $1 келди ($2).",
 	"new-messages-from-many-users": "Талай къошулуучудан $1 барды. ($2)",
 	"new-messages-link-plural": "{{PLURAL:$1|джангы билдириу|999=джангы билдириуле}}",
-	"new-messages-diff-link-plural": "ахыр {{PLURAL:$1|тюрлениу|999=тюрлениу}}",
+	"new-messages-diff-link-plural": "ахыр {{PLURAL:$1|тюрлениу}}",
 	"editsection": "тюзет",
 	"editold": "тюзет",
 	"viewsourceold": "къайнакъгъа къара",

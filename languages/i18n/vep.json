@@ -204,7 +204,7 @@
 	"new-messages-from-users": "{{PLURAL:$4|Sinai om}} $1 {{PLURAL:$3|toine kävutai|$3 kävutajad}} ($2).",
 	"new-messages-from-many-users": "Sinai om $1 äjil kävutajilpäi ($2).",
 	"new-messages-link-plural": "{{PLURAL:$1|uz' vest'|999=uded vestid}}",
-	"new-messages-diff-link-plural": "jäl'gmäine{{PLURAL:$1|vajehtuz|999=vajehtused}}",
+	"new-messages-diff-link-plural": "jäl'gmäine {{PLURAL:$1|vajehtuz|999=vajehtused}}",
 	"editsection": "vajehta",
 	"editold": "vajehta",
 	"viewsourceold": "kacu tekst",

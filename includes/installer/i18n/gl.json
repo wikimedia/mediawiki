@@ -300,6 +300,7 @@
 	"config-install-db-success": "A base de datos configurouse correctamente",
 	"config-install-generic": "Executando a tarefa \"$1\"",
 	"config-install-external-domains": "Creando as bases de datos externas",
+	"config-skip-shared-domain": "Saltando o dominio probablemente compartido \"$1\"",
 	"config-download-localsettings": "Descargar o <code>LocalSettings.php</code>",
 	"config-help": "axuda",
 	"config-help-tooltip": "prema para expandir",

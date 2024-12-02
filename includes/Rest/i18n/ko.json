@@ -79,8 +79,10 @@
 	"rest-unknown-content-model": "알 수 없는 콘텐츠 모델: $1",
 	"rest-param-desc-revision-id": "판 ID",
 	"rest-param-desc-language-links-title": "언어 링크 제목",
+	"rest-param-desc-media-file-title": "미디어 파일 제목",
 	"rest-param-desc-media-links-title": "미디어 링크 제목",
 	"rest-param-desc-module-spec-version": "모듈 스펙 버전",
+	"rest-param-desc-pagehistory-title": "문서 역사 제목",
 	"rest-param-desc-pagehistory-filter": "문서 역사 필터",
 	"rest-param-desc-search-limit": "반환할 항목 수"
 }

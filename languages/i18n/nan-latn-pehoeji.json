@@ -198,7 +198,7 @@
 	"ok": "Hó ah",
 	"retrievedfrom": "Lâi-goân: \"$1\"",
 	"new-messages": "Lí ū $1 ($2).",
-	"new-messages-diff-link-plural": "choè-kīn kái{{PLURAL:$1|pái|pái}}",
+	"new-messages-diff-link-plural": "choè-kīn kái {{PLURAL:$1|pái}}",
 	"editsection": "siu-kái",
 	"editold": "siu-kái",
 	"viewsourceold": "Khoàⁿ goân-sí lōe-iông",

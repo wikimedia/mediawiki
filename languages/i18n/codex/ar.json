@@ -28,5 +28,6 @@
 	"cdx-table-pagination-status-message-indeterminate-long": "عرض النتائج $1 – $2 من العديد",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1 – $2 من العديد",
 	"cdx-table-pagination-status-message-indeterminate-final": "عرض آخر {{PLURAL:$1|$1 نتيجة|$1 نتائج}}",
-	"cdx-table-pagination-status-message-pending": "جاري تحميل النتائج..."
+	"cdx-table-pagination-status-message-pending": "جاري تحميل النتائج...",
+	"cdx-table-no-data-message": "لا توجد بيانات متاحة."
 }

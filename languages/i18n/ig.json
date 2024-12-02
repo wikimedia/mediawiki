@@ -218,7 +218,7 @@
 	"new-messages-from-users": "{{PLURAL:$4|I nwere}}$1 site na {{PLURAL:$3|Onye ọru ọzọ|$3 ndi ọru}} ($2).",
 	"new-messages-from-many-users": "I nwere $1 si na ọtụtụ ndi ọru ($2)",
 	"new-messages-link-plural": "{{PLURAL:$1|ozi ọhụrụ|999=ozi ọhuru}}",
-	"new-messages-diff-link-plural": "ikpeazu{{PLURAL:$1|mgbanwe|999=mgbanwe}}",
+	"new-messages-diff-link-plural": "ikpeazu {{PLURAL:$1|mgbanwe|999=mgbanwe}}",
 	"editsection": "dezie",
 	"editold": "mèzi",
 	"viewsourceold": "lee ebeosi",

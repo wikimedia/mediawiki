@@ -312,6 +312,7 @@
 	"config-install-db-success": "Die Datenbank wurde erfolgreich aufgesetzt",
 	"config-install-generic": "Aufgabe „$1“ wird ausgeführt",
 	"config-install-external-domains": "Erstellen externer Datenbanken",
+	"config-skip-shared-domain": "Möglicherweise gemeinsam genutzte Domain „$1“ wird übersprungen",
 	"config-download-localsettings": "<code>LocalSettings.php</code> herunterladen",
 	"config-help": "Hilfe",
 	"config-help-tooltip": "Zum Expandieren klicken",

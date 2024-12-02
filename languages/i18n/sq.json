@@ -227,7 +227,7 @@
 	"new-messages-from-users": "Ju keni $1 nga {{PLURAL:$3|një përdorues tjetër|$3 përdorues}} ($2).",
 	"new-messages-from-many-users": "Ju keni $1 nga shumë përdorues ($2).",
 	"new-messages-link-plural": "{{PLURAL:$1|një mesazh i ri|mesazhe të reja}}",
-	"new-messages-diff-link-plural": "{{PLURAL:$1|ndryshimi i|ndryshimet e}} fundit",
+	"new-messages-diff-link-plural": "{{PLURAL:$1|ndryshimi i|999=ndryshimet e}} fundit",
 	"editsection": "redakto",
 	"editold": "redakto",
 	"viewsourceold": "shiko burimin",

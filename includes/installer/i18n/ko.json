@@ -307,6 +307,7 @@
 	"config-install-db-success": "데이터베이스가 성공적으로 구축되었습니다",
 	"config-install-generic": "\"$1\" 작업 실행 중",
 	"config-install-external-domains": "외부 데이터베이스 생성 중",
+	"config-skip-shared-domain": "아마 공유된 주소인 \"$1\" 넘김",
 	"config-download-localsettings": "<code>LocalSettings.php</code> 다운로드",
 	"config-help": "도움말",
 	"config-help-tooltip": "확장하려면 클릭",

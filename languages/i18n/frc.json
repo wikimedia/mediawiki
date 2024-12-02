@@ -184,7 +184,7 @@
 	"new-messages-from-users": "{{PLURAL:$4|Tu as}} $1 {{PLURAL:$3|d'un autre utilisateur|de $3 autres utilisateurs}} ($2).",
 	"new-messages-from-many-users": "Tu as $1 de nombreux utilisateurs ($2).",
 	"new-messages-link-plural": "{{PLURAL:$1|un nouveau message|des nouveaux messages}}",
-	"new-messages-diff-link-plural": "{{PLURAL:$1|dernière modification|dernières modifications}}",
+	"new-messages-diff-link-plural": "{{PLURAL:$1|dernière modification|999=dernières modifications}}",
 	"editsection": "changer",
 	"editold": "changer",
 	"viewsourceold": "Regarde la source",

@@ -204,7 +204,7 @@
 	"new-messages-from-users": "{{PLURAL:$4|Oyɛ}} $1 kɛjɛ {{PLURAL:$3|nɔtsɛmɛi krokomɛi |$3 nɔtsɛmɛi}} ($2).",
 	"new-messages-from-many-users": "Oyɛ $1 kɛjɛ nɔtsɛmɛi krokomɛi srɔtoi aŋɔɔ ($2).",
 	"new-messages-link-plural": "{{PLURAL:$1|Shɛɛ wiemɔ hee |999=shɛɛwiemɔi hee}}",
-	"new-messages-diff-link-plural": "naagbee{{PLURAL:$1| tsakemɔ |999= tsakemɔi}}",
+	"new-messages-diff-link-plural": "naagbee {{PLURAL:$1|tsakemɔ|999=tsakemɔi}}",
 	"editsection": "tsakemɔ",
 	"editold": "tsakemɔ",
 	"viewsourceold": "kwɛmɔ ejɛɛhe",

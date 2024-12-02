@@ -182,7 +182,7 @@
 	"new-messages": "{{PLURAL:$3|{{GENDER:$3|Dark|Darm}}}} $1 ($2).",
 	"new-messages-from-users": "{{PLURAL:$4|Illa dark}} $1 zɣ {{PLURAL:$3|yan umssmrs yaḍn|$3 imssmrsn}} ($2).",
 	"new-messages-link-plural": "{{PLURAL:$1|tuzint tamaynut|999=tuzinin timaynutin}}",
-	"new-messages-diff-link-plural": "{{PLURAL:$1|usnfl iggʷran|isnfiln ggʷranin}}",
+	"new-messages-diff-link-plural": "{{PLURAL:$1|usnfl iggʷran|999=isnfiln ggʷranin}}",
 	"editsection": "ssnfl",
 	"editold": "ssnfl",
 	"viewsourceold": "Ẓr asagm",

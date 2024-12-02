@@ -201,7 +201,7 @@
 	"new-messages-from-users": "Tu è $1 da {{PLURAL:$3|'n'otre utende|$3 utinde}} ($2).",
 	"new-messages-from-many-users": "Tu è $1 da assaije utinde ($2).",
 	"new-messages-link-plural": "{{PLURAL:$1|'nu messàgge nuève|messàgge nuève}}",
-	"new-messages-diff-link-plural": "urteme {{PLURAL:$1|cangiamende|cangiaminde}}",
+	"new-messages-diff-link-plural": "urteme {{PLURAL:$1|cangiamende|999=cangiaminde}}",
 	"editsection": "cange",
 	"editold": "cange",
 	"viewsourceold": "vide sorgende",

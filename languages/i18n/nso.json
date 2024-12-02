@@ -155,7 +155,7 @@
 	"versionrequiredtext": "Version $1 ya MediaWiki ea hlokega go šomiša letlakala le. Lebelela [[Special:Version|letlakala la version]].",
 	"retrievedfrom": "Le tšwa go \"$1\"",
 	"new-messages": "O na le $1 ($2).",
-	"new-messages-diff-link-plural": "{{PLURAL:$1|Phetogo tša|Diphetogo ya}} go feta",
+	"new-messages-diff-link-plural": "{{PLURAL:$1|phetogo tša|999=diphetogo ya}} go feta",
 	"editsection": "lokiša",
 	"editold": "fetola",
 	"viewsourceold": "nyakorela mothopo",
