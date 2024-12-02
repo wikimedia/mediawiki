@@ -82,8 +82,8 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	/** @var bool[] Map of (domain => whether to use "temp tables only" mode) */
 	private $tempTablesOnlyMode = [];
 
-	/** @var string|false Explicit DBO_TRX transaction round active or false if none */
-	private $trxRoundId = false;
+	/** @var string|null Active explicit transaction round owner or false if none */
+	private $trxRoundFname = null;
 	/** @var string Stage of the current transaction round in the transaction round life-cycle */
 	private $trxRoundStage = self::ROUND_CURSORY;
 	/** @var int[] The group replica server indexes keyed by group */
@@ -1042,7 +1042,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		$conn->setIndexAliases( $this->indexAliases );
 		// Account for any active transaction round and listeners
 		if ( $i === ServerInfo::WRITER_INDEX ) {
-			if ( $this->trxRoundId !== false ) {
+			if ( $this->trxRoundFname !== null ) {
 				$this->applyTransactionRoundFlags( $conn );
 			}
 			foreach ( $this->trxRecurringCallbacks as $name => $callback ) {
@@ -1421,10 +1421,10 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	public function beginPrimaryChanges( $fname = __METHOD__ ) {
-		if ( $this->trxRoundId !== false ) {
+		if ( $this->trxRoundFname !== null ) {
 			throw new DBTransactionError(
 				null,
-				"Transaction round '{$this->trxRoundId}' already started"
+				"Transaction round '{$this->trxRoundFname}' already started"
 			);
 		}
 		$this->assertTransactionRoundStage( self::ROUND_CURSORY );
@@ -1434,7 +1434,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		// Clear any empty transactions (no writes/callbacks) from the implicit round
 		$this->flushPrimarySnapshots( $fname );
 
-		$this->trxRoundId = $fname;
+		$this->trxRoundFname = $fname;
 		$this->trxRoundStage = self::ROUND_ERROR; // "failed" until proven otherwise
 		// Mark applicable handles as participating in this explicit transaction round.
 		// For each of these handles, any writes and callbacks will be tied to a single
@@ -1453,8 +1453,8 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 		$failures = [];
 
-		$restore = ( $this->trxRoundId !== false );
-		$this->trxRoundId = false;
+		$restore = ( $this->trxRoundFname !== null );
+		$this->trxRoundFname = null;
 		$this->trxRoundStage = self::ROUND_ERROR; // "failed" until proven otherwise
 		// Commit any writes and clear any snapshots as well (callbacks require AUTOCOMMIT).
 		// Note that callbacks should already be suppressed due to finalizePrimaryChanges().
@@ -1573,8 +1573,8 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = ScopedCallback::newScopedIgnoreUserAbort();
 
-		$restore = ( $this->trxRoundId !== false );
-		$this->trxRoundId = false;
+		$restore = ( $this->trxRoundFname !== null );
+		$this->trxRoundFname = null;
 		$this->trxRoundStage = self::ROUND_ERROR; // "failed" until proven otherwise
 		foreach ( $this->getOpenPrimaryConnections() as $conn ) {
 			$conn->rollback( $fname, $conn::FLUSHING_ALL_PEERS );
@@ -1642,7 +1642,8 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 
 		if ( $conn->getFlag( $conn::DBO_TRX ) ) {
-			$conn->setLBInfo( $conn::LB_TRX_ROUND_ID, $this->trxRoundId );
+			// Set the active explicit transaction round owner name
+			$conn->setLBInfo( $conn::LB_TRX_ROUND_FNAME, $this->trxRoundFname );
 		}
 	}
 
@@ -1655,7 +1656,8 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 
 		if ( $conn->getFlag( $conn::DBO_TRX ) ) {
-			$conn->setLBInfo( $conn::LB_TRX_ROUND_ID, null ); // remove the round ID
+			// Unset the active explicit transaction round owner name
+			$conn->setLBInfo( $conn::LB_TRX_ROUND_FNAME, null );
 		}
 
 		if ( $conn->getFlag( $conn::DBO_DEFAULT ) ) {

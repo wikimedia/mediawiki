@@ -86,10 +86,21 @@ interface IDatabase extends IReadableDatabase {
 	/** Flag to return the lock acquisition timestamp (null if not acquired) */
 	public const LOCK_TIMESTAMP = 1;
 
-	/** Field for getLBInfo()/setLBInfo() */
-	public const LB_TRX_ROUND_ID = 'trxRoundId';
-	/** Field for getLBInfo()/setLBInfo() */
+	/**
+	 * Field for getLBInfo()/setLBInfo()
+	 * @internal For use in the rdbms library only
+	 */
+	public const LB_TRX_ROUND_FNAME = 'trxRoundOwner';
+	/**
+	 * Field for getLBInfo()/setLBInfo()
+	 * @internal For use in the rdbms library only
+	 */
 	public const LB_READ_ONLY_REASON = 'readOnlyReason';
+	/**
+	 * Alias to LB_TRX_ROUND_FNAME
+	 * @deprecated Since 1.44
+	 */
+	public const LB_TRX_ROUND_ID = self::LB_TRX_ROUND_FNAME;
 
 	/** Primary server than can stream writes to replica servers */
 	public const ROLE_STREAMING_MASTER = 'streaming-master';

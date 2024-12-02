@@ -85,8 +85,8 @@ abstract class LBFactory implements ILBFactory {
 
 	/** @var int|null Ticket used to delegate transaction ownership */
 	private $ticket;
-	/** @var string|false String if a requested DBO_TRX transaction round is active */
-	private $trxRoundId = false;
+	/** @var string|null Active explicit transaction round owner or null if none */
+	private $trxRoundFname = null;
 	/** @var string One of the ROUND_* class constants */
 	private $trxRoundStage = self::ROUND_CURSORY;
 	/** @var int Default replication wait timeout */
@@ -267,9 +267,9 @@ abstract class LBFactory implements ILBFactory {
 	abstract protected function getLBsForOwner();
 
 	public function flushReplicaSnapshots( $fname = __METHOD__ ) {
-		if ( $this->trxRoundId !== false && $this->trxRoundId !== $fname ) {
+		if ( $this->trxRoundFname !== null && $this->trxRoundFname !== $fname ) {
 			$this->logger->warning(
-				"$fname: transaction round '{$this->trxRoundId}' still running",
+				"$fname: transaction round '{$this->trxRoundFname}' still running",
 				[ 'exception' => new RuntimeException() ]
 			);
 		}
@@ -288,13 +288,13 @@ abstract class LBFactory implements ILBFactory {
 		}
 
 		$this->trxRoundStage = self::ROUND_BEGINNING;
-		if ( $this->trxRoundId !== false ) {
+		if ( $this->trxRoundFname !== null ) {
 			throw new DBTransactionError(
 				null,
-				"$fname: transaction round '{$this->trxRoundId}' already started"
+				"$fname: transaction round '{$this->trxRoundFname}' already started"
 			);
 		}
-		$this->trxRoundId = $fname;
+		$this->trxRoundFname = $fname;
 		// Flush snapshots and appropriately set DBO_TRX on primary connections
 		foreach ( $this->getLBsForOwner() as $lb ) {
 			$lb->beginPrimaryChanges( $fname );
@@ -308,10 +308,10 @@ abstract class LBFactory implements ILBFactory {
 		$scope = ScopedCallback::newScopedIgnoreUserAbort();
 
 		$this->trxRoundStage = self::ROUND_COMMITTING;
-		if ( $this->trxRoundId !== false && $this->trxRoundId !== $fname ) {
+		if ( $this->trxRoundFname !== null && $this->trxRoundFname !== $fname ) {
 			throw new DBTransactionError(
 				null,
-				"$fname: transaction round '{$this->trxRoundId}' still running"
+				"$fname: transaction round '{$this->trxRoundFname}' still running"
 			);
 		}
 		// Run pre-commit callbacks and suppress post-commit callbacks, aborting on failure
@@ -321,7 +321,7 @@ abstract class LBFactory implements ILBFactory {
 				$count += $lb->finalizePrimaryChanges( $fname );
 			}
 		} while ( $count > 0 );
-		$this->trxRoundId = false;
+		$this->trxRoundFname = null;
 		// Perform pre-commit checks, aborting on failure
 		foreach ( $this->getLBsForOwner() as $lb ) {
 			$lb->approvePrimaryChanges( $maxWriteDuration, $fname );
@@ -351,7 +351,7 @@ abstract class LBFactory implements ILBFactory {
 		$scope = ScopedCallback::newScopedIgnoreUserAbort();
 
 		$this->trxRoundStage = self::ROUND_ROLLING_BACK;
-		$this->trxRoundId = false;
+		$this->trxRoundFname = null;
 		// Actually perform the rollback on all primary DB connections and revert DBO_TRX
 		foreach ( $this->getLBsForOwner() as $lb ) {
 			$lb->rollbackPrimaryChanges( $fname );
@@ -401,7 +401,7 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	public function hasTransactionRound() {
-		return ( $this->trxRoundId !== false );
+		return ( $this->trxRoundFname !== null );
 	}
 
 	public function isReadyForRoundOperations() {
@@ -641,9 +641,9 @@ abstract class LBFactory implements ILBFactory {
 
 		// The transaction owner and any caller with the empty transaction ticket can commit
 		// so that getEmptyTransactionTicket() callers don't risk seeing DBTransactionError.
-		if ( $this->trxRoundId !== false && $fname !== $this->trxRoundId ) {
-			$this->logger->info( "$fname: committing on behalf of {$this->trxRoundId}" );
-			$fnameEffective = $this->trxRoundId;
+		if ( $this->trxRoundFname !== null && $fname !== $this->trxRoundFname ) {
+			$this->logger->info( "$fname: committing on behalf of {$this->trxRoundFname}" );
+			$fnameEffective = $this->trxRoundFname;
 		} else {
 			$fnameEffective = $fname;
 		}
@@ -701,8 +701,8 @@ abstract class LBFactory implements ILBFactory {
 	 * @param ILoadBalancerForOwner $lb
 	 */
 	protected function initLoadBalancer( ILoadBalancerForOwner $lb ) {
-		if ( $this->trxRoundId !== false ) {
-			$lb->beginPrimaryChanges( $this->trxRoundId ); // set DBO_TRX
+		if ( $this->trxRoundFname !== null ) {
+			$lb->beginPrimaryChanges( $this->trxRoundFname ); // set DBO_TRX
 		}
 
 		$lb->setTableAliases( $this->tableAliases );
