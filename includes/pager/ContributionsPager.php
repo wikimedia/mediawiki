@@ -562,6 +562,13 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 	}
 
 	/**
+	 * @inheritDoc
+	 */
+	protected function getEmptyBody() {
+		return $this->msg( 'nocontribs' )->parse();
+	}
+
+	/**
 	 * If the object looks like a revision row, or corresponds to a previously
 	 * cached revision, return the RevisionRecord. Otherwise, return null.
 	 *
