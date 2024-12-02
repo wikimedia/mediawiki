@@ -84,6 +84,11 @@ interface IDatabase extends IReadableDatabase {
 	public const LOCK_TIMESTAMP = 1;
 
 	/**
+	 * Field for getLBInfo()/setLBInfo(); relevant transaction round level (1 or 0)
+	 * @internal For use in the rdbms library only
+	 */
+	public const LB_TRX_ROUND_LEVEL = 'trxRoundLevel';
+	/**
 	 * Field for getLBInfo()/setLBInfo(); relevant transaction round owner name or null
 	 * @internal For use in the rdbms library only
 	 */
