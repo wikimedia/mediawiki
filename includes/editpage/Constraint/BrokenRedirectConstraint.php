@@ -80,7 +80,7 @@ class BrokenRedirectConstraint implements IEditConstraint {
 	public function getLegacyStatus(): StatusValue {
 		$statusValue = StatusValue::newGood();
 		if ( $this->result === self::CONSTRAINT_FAILED ) {
-			$statusValue->fatal( 'brokenredirect' );
+			$statusValue->fatal( 'edit-constraint-brokenredirect' );
 			$statusValue->value = self::AS_BROKEN_REDIRECT;
 		}
 		return $statusValue;
