@@ -26,8 +26,8 @@ use StatusValue;
 
 /**
  * Verify the page does not redirect to a nonexistent page unless
- * 	- the user is okay with a broken redirect, or
- * 	- the page already redirected to a nonexistent page before the edit
+ *  - the user is okay with a broken redirect, or
+ *  - the page already redirected to a nonexistent page before the edit
  *
  * @since 1.44
  * @internal
@@ -59,21 +59,25 @@ class BrokenRedirectConstraint implements IEditConstraint {
 	}
 
 	public function checkConstraint(): string {
-		if (
-			!$this->allowBrokenRedirects
-			&& $this->newContent->isRedirect()
-			&& !$this->newContent->getRedirectTarget()->exists()
-			&& !$this->newContent->getRedirectTarget()->equals( $this->title )
-		) {
-			$currentTarget = $this->originalContent->getRedirectTarget();
+		if ( !$this->allowBrokenRedirects ) {
+			$newRedirectTarget = $this->newContent->getRedirectTarget();
 
-			// fail if there was no previous content or the previous content contained a redirect to an existing page
-			if ( !$currentTarget || $currentTarget->exists() ) {
-				$this->result = self::CONSTRAINT_FAILED;
-				return self::CONSTRAINT_FAILED;
+			if ( $newRedirectTarget !== null && !$newRedirectTarget->exists() &&
+				!$newRedirectTarget->equals( $this->title ) ) {
+				$currentTarget = $this->originalContent->getRedirectTarget();
+
+				// fail if there was no previous content or the previous content contained
+				// a redirect to an existing page
+				if ( !$currentTarget || $currentTarget->exists() ) {
+					$this->result = self::CONSTRAINT_FAILED;
+
+					return self::CONSTRAINT_FAILED;
+				}
 			}
+
 		}
 		$this->result = self::CONSTRAINT_PASSED;
+
 		return self::CONSTRAINT_PASSED;
 	}
 
@@ -83,6 +87,7 @@ class BrokenRedirectConstraint implements IEditConstraint {
 			$statusValue->fatal( 'brokenredirect' );
 			$statusValue->value = self::AS_BROKEN_REDIRECT;
 		}
+
 		return $statusValue;
 	}
 
