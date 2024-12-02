@@ -336,23 +336,19 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 				}
 				$work = new PoolCounterWorkViaCallback( 'Special' . $this->mName, $poolKey, [
 					'doWork' => function () use ( $pager, $out, $target ) {
-						if ( !$pager->getNumRows() ) {
-							$out->addWikiMsg( 'nocontribs', $target );
-						} else {
-							# Show a message about replica DB lag, if applicable
-							$lag = $pager->getDatabase()->getSessionLagStatus()['lag'];
-							if ( $lag > 0 ) {
-								$out->showLagWarning( $lag );
-							}
-
-							$output = $pager->getBody();
-							if ( !$this->including() ) {
-								$output = $pager->getNavigationBar() .
-									$output .
-									$pager->getNavigationBar();
-							}
-							$out->addHTML( $output );
+						# Show a message about replica DB lag, if applicable
+						$lag = $pager->getDatabase()->getSessionLagStatus()['lag'];
+						if ( $lag > 0 ) {
+							$out->showLagWarning( $lag );
 						}
+
+						$output = $pager->getBody();
+						if ( !$this->including() ) {
+							$output = $pager->getNavigationBar() .
+								$output .
+								$pager->getNavigationBar();
+						}
+						$out->addHTML( $output );
 					},
 					'error' => function () use ( $out ) {
 						$msg = $this->getUser()->isAnon()
