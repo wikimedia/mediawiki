@@ -121,30 +121,29 @@ $datePreferenceMigrationMap = [
 ];
 
 $dateFormats = [
-#   Please be cautious not to delete the invisible RLM from the beginning of the strings.
-	'mdy time' => '‏H:i',
-	'mdy date' => '‏xg j، Y "ج."',
-	'mdy both' => '‏H:i، xg j، Y "ج."',
+	'mdy time' => 'H:i',
+	'mdy date' => 'xg j، Y "ج."',
+	'mdy both' => 'H:i، xg j، Y "ج."',
 
-	'dmy time' => '‏H:i',
-	'dmy date' => '‏j F، Y "ج."',
-	'dmy both' => '‏H:i، j F، Y "ج."',
+	'dmy time' => 'H:i',
+	'dmy date' => 'j F، Y "ج."',
+	'dmy both' => 'H:i، j F، Y "ج."',
 
-	'ymd time' => '‏H:i',
-	'ymd date' => '‏Y "ج." xg j',
-	'ymd both' => '‏H:i، Y "ج." xg j',
+	'ymd time' => 'H:i',
+	'ymd date' => 'Y "ج." xg j',
+	'ymd both' => 'H:i، Y "ج." xg j',
 
 	'yyyy-mm-dd time' => 'xnH:xni:xns',
 	'yyyy-mm-dd date' => 'xnY-xnm-xnd',
 	'yyyy-mm-dd both' => 'xnH:xni:xns, xnY-xnm-xnd',
 
-	'persian time' => '‏H:i',
-	'persian date' => '‏xij xiF xiY',
-	'persian both' => '‏xij xiF xiY، H:i',
+	'persian time' => 'H:i',
+	'persian date' => 'xij xiF xiY',
+	'persian both' => 'xij xiF xiY، H:i',
 
-	'hebrew time' => '‏H:i',
-	'hebrew date' => '‏xjj xjF xjY',
-	'hebrew both' => '‏H:i، xjj xjF xjY',
+	'hebrew time' => 'H:i',
+	'hebrew date' => 'xjj xjF xjY',
+	'hebrew both' => 'H:i، xjj xjF xjY',
 
 	'ISO 8601 time' => 'xnH:xni:xns',
 	'ISO 8601 date' => 'xnY-xnm-xnd',

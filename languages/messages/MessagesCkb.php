@@ -155,22 +155,21 @@ $datePreferenceMigrationMap = [
 ];
 
 $dateFormats = [
-	# Please be cautious not to delete the invisible RLM from the beginning of the strings.
-	'dmy time' => '‏H:i',
-	'dmy date' => '‏jی xg Y',
-	'dmy both' => '‏H:i، jی xg Y',
+	'dmy time' => 'H:i',
+	'dmy date' => 'jی xg Y',
+	'dmy both' => 'H:i، jی xg Y',
 
-	'ymd time' => '‏H:i',
-	'ymd date' => '‏Y/n/j',
-	'ymd both' => '‏H:i، Y/n/j',
+	'ymd time' => 'H:i',
+	'ymd date' => 'Y/n/j',
+	'ymd both' => 'H:i، Y/n/j',
 
-	'persian time' => '‏H:i',
-	'persian date' => '‏xijی xiFی xiY',
-	'persian both' => '‏H:i، ‏xijی xiFی xiY',
+	'persian time' => 'H:i',
+	'persian date' => 'xijی xiFی xiY',
+	'persian both' => 'H:i، xijی xiFی xiY',
 
-	'hijri time' => '‏H:i',
-	'hijri date' => '‏xmjی xmFی xmY',
-	'hijri both' => '‏H:i، xmjی xmFی xmY',
+	'hijri time' => 'H:i',
+	'hijri date' => 'xmjی xmFی xmY',
+	'hijri both' => 'H:i، xmjی xmFی xmY',
 ];
 
 $linkTrail = "/^([ئابپتجچحخدرڕزژسشعغفڤقکگلڵمنوۆهھەیێ‌]+)(.*)$/sDu";
