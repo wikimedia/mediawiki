@@ -747,7 +747,7 @@ class ChangeTags {
 	 *       in a new code, as the null value can change in the future
 	 * @param bool $activeOnly Whether to filter for tags that have been used or not
 	 * @param bool $useAllTags Whether to use all known tags or to only use software defined tags
-	 *        These map to ChangeTagsStore->listDefinedTags and ChangeTagsStore->getSoftwareTags respectively
+	 *        These map to ChangeTagsStore->listDefinedTags and ChangeTagsStore->getCoreDefinedTags respectively
 	 * @return array an array of (label, selector)
 	 */
 	public static function buildTagFilterSelector(
@@ -1336,7 +1336,7 @@ class ChangeTags {
 			$tagKeys = $changeTagStore->listDefinedTags();
 			$cacheKey = 'tags-list-summary';
 		} else {
-			$tagKeys = $changeTagStore->getSoftwareTags( true );
+			$tagKeys = $changeTagStore->getCoreDefinedTags();
 			$cacheKey = 'core-software-tags-summary';
 		}
 

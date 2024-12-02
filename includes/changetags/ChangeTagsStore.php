@@ -141,6 +141,16 @@ class ChangeTagsStore {
 	}
 
 	/**
+	 * Expose the codebase-level defined software tags.
+	 * No filtering is available for this function.
+	 *
+	 * @return array Array of all core-defined tags
+	 */
+	public function getCoreDefinedTags(): array {
+		return self::DEFINED_SOFTWARE_TAGS;
+	}
+
+	/**
 	 * Return all the tags associated with the given recent change ID,
 	 * revision ID, and/or log entry ID, along with any data stored with the tag.
 	 *
