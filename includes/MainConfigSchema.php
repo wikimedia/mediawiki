@@ -12681,17 +12681,8 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Local virtual hosts.
-	 *
-	 * This lists domains that are configured as virtual hosts on the same machine.
-	 * It is expected that each domain can be identified by its hostname alone,
-	 * without any ports.
-	 *
-	 * This affects the following:
-	 * - MWHttpRequest: If a request is to be made to a domain listed here, or any
-	 *   subdomain thereof, then $wgLocalHTTPProxy will be used.
-	 *   Command-line scripts are not affected by this setting and will always use
-	 *   the proxy if it is configured.
+	 * A list of URL domains that will be routed to the proxy specified by
+	 * $wgLocalHTTPProxy.
 	 *
 	 * @since 1.25
 	 */
@@ -12701,11 +12692,7 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Reverse proxy to use for requests to domains in $wgLocalVirtualHosts
-	 *
-	 * When used, any port in the request URL will be dropped. The behavior of
-	 * redirects and cookies is dependent upon the reverse proxy actually in use,
-	 * as MediaWiki doesn't implement any special handling for them.
+	 * Proxy to use for requests to domains in $wgLocalVirtualHosts
 	 *
 	 * If set to false, no reverse proxy will be used for local requests.
 	 *
