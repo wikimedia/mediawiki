@@ -4,7 +4,7 @@
 
 THIS IS NOT A RELEASE YET
 
-MediaWiki 1.43 is an alpha-quality development branch, and is not recommended
+MediaWiki 1.43 is a pre-release testing branch, and is not recommended
 for use in production.
 
 == Upgrading notes for 1.43 ==
@@ -33,15 +33,12 @@ Some specific notes for MediaWiki 1.43 upgrades are below:
   be able to run the migration scripts independently from update.php: first
   update to 1.42, then proceed as indicated.
 
-* …
-
 For notes on 1.42.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.43 ===
 
 * $wgBlockTargetMigrationStage, which was introduced in 1.42, is now deprecated
   and has no effect.
-* …
 
 ==== New configuration ====
 
@@ -66,7 +63,6 @@ For notes on 1.42.x and older releases, see HISTORY.
   true to let {{USERLANGUAGE}} magic word return the user's language,
   instead of the page language. Beware that accessing the user language may
   reduce the efficiency of the parser cache.
-* …
 
 ==== Changed configuration ====
 
@@ -87,7 +83,6 @@ For notes on 1.42.x and older releases, see HISTORY.
   instead of a core database table, which can be set to a separate database
   via wgMainStash. If you find issues, please drop a comment on T343492.
   It is now deprecated and will be removed in MediaWiki 1.44.
-* …
 
 ==== Removed configuration ====
 
@@ -110,7 +105,6 @@ For notes on 1.42.x and older releases, see HISTORY.
   by extensions/Linter/maintenance/migrateNamespace.php and
   extensions/Linter/maintenance/migrateTagTemplate.php, which are both called
   by the update script (T367207).
-* …
 
 === New user-facing features in 1.43 ===
 
@@ -128,11 +122,6 @@ For notes on 1.42.x and older releases, see HISTORY.
   of the interface set by the user.
 * (T263513) Special:NamespaceInfo is a new special page that displays a list
   of namespaces available on the wiki, their descriptions and configuration.
-* …
-
-=== New features for sysadmins in 1.43 ===
-
-* …
 
 === New developer features in 1.43 ===
 
@@ -180,16 +169,11 @@ For notes on 1.42.x and older releases, see HISTORY.
   for more information.
 * The SpreadAnyEditBlock hook was added.
 * The ConditionalDefaultOptionsAddCondition hook was added.
-* …
 
 === External library changes in 1.43 ===
 
 * The OOjs Router library has been merged into core and will be archived
   upstream.
-
-==== New external libraries ====
-
-* …
 
 ===== New development-only external libraries =====
 
@@ -203,7 +187,6 @@ For notes on 1.42.x and older releases, see HISTORY.
   * Added @pinia/testing v0.0.12.
   * Codex, already available via ResourceLoader, now has the npm versions, i.e.
     @wikimedia/codex and @wikimedia/codex-icons, also installed for testing.
-* …
 
 ==== Changed external libraries ====
 
@@ -238,7 +221,6 @@ For notes on 1.42.x and older releases, see HISTORY.
 * Updated symfony/polyfill-php81 from 1.29.0 to 1.31.0.
 * Updated symfony/polyfill-php82 from 1.29.0 to 1.31.0.
 * Updated symfony/polyfill-php83 from 1.29.0 to 1.31.0.
-* …
 
 ===== Changed development-only external libraries =====
 
@@ -247,11 +229,6 @@ For notes on 1.42.x and older releases, see HISTORY.
 * Updated mediawiki/mediawiki-codesniffer from 43.0.0 to 45.0.0.
 * Updated phpunit/phpunit from 9.6.16 to 9.6.19.
 * Updated seld/jsonlint from 1.10.1 to 1.10.2.
-* …
-
-==== Removed external libraries ====
-
-* …
 
 === Bug fixes in 1.43 ===
 
@@ -259,17 +236,11 @@ For notes on 1.42.x and older releases, see HISTORY.
   handler, only the script's class name is required, not its path. (T367918)
 * QueryPage::recache() (used by the updateSpecialPages.php maintenance script)
   no longer attempts to ignore database errors. (T278543)
-* …
 
 === Action API changes in 1.43 ===
 
 * APIQueryUserInfo now returns null in the field registrationdate for users
   created before December 2005 (their registration date was not recorded).
-* …
-
-=== Action API internal changes in 1.43 ===
-
-* …
 
 === Languages updated in 1.43 ===
 MediaWiki supports over 350 languages. Many localisations are updated regularly.
@@ -305,7 +276,6 @@ because of Phabricator reports.
 * (T356144) Deprecated the Kanuri language (kr) and replaced it
   with Central Kanuri (knc). The language code kr is kept for
   backwards compatibility and falls back to knc.
-* …
 
 === Breaking changes in 1.43 ===
 
@@ -518,7 +488,6 @@ supported.
   past or present use could be found. hash_hkdf() can be used instead of HKDF().
   While generate() and generateHex() have no direct replacement, random_bytes()
   and MWCryptRand::generateHex() can be used instead.
-* …
 
 === Deprecations in 1.43 ===
 
@@ -1113,7 +1082,6 @@ supported.
     instead)
 * The SkinFactory::getSkinNames deprecated in 1.37 now emits warnings,
    use getInstalledSkins instead.
-* …
 
 === Other changes in 1.43 ===
 
@@ -1145,7 +1113,6 @@ supported.
   username and the email provided by the user, instead of only one of them.
 * (T231827, T249976) Searchindex now uses utf8mb4,
   si_page is marked as PK and si_title can handle longer title values.
-* …
 
 == Compatibility ==
 
