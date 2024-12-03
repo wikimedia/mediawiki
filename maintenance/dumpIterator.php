@@ -28,6 +28,7 @@
 
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Settings\SettingsBuilder;

@@ -29,6 +29,7 @@ require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\User\Options\UserOptionsLookup;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;

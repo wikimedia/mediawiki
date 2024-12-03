@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Category\Category;
+use MediaWiki\Maintenance\LoggedUpdateMaintenance;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';

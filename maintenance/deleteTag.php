@@ -5,6 +5,7 @@
  * @see bug T75181
  */
 
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Storage\NameTableAccessException;
 
 // @codeCoverageIgnoreStart

@@ -16,6 +16,8 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+use MediaWiki\Maintenance\Maintenance;
+
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd

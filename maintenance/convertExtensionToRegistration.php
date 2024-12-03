@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Json\FormatJson;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Registration\ExtensionProcessor;
 use MediaWiki\Registration\ExtensionRegistry;
 use Wikimedia\Composer\ComposerJson;

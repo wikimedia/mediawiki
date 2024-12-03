@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Maintenance\Maintenance;
+
 // NO_AUTOLOAD -- unsafe file-scope code
 
 require_once __DIR__ . '/Maintenance.php';

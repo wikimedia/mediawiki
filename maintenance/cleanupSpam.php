@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\ExternalLinks\LinkFilter;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;

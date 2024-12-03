@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Maintenance\DeleteLocalPasswords;
+
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/includes/DeleteLocalPasswords.php';
 

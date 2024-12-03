@@ -34,6 +34,7 @@
 require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Title\Title;
 
 /**

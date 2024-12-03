@@ -21,6 +21,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\WikiMap\WikiMap;
 
 // @codeCoverageIgnoreStart
