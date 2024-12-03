@@ -51,7 +51,6 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
-use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Xml\Xml;
@@ -1510,8 +1509,9 @@ class Article implements Page {
 			|| $title->getNamespace() === NS_USER_TALK
 		) {
 			$rootPart = $title->getRootText();
-			$user = User::newFromName( $rootPart, false /* allow IP users */ );
-			$ip = $this->userNameUtils->isIP( $rootPart );
+			$userFactory = $services->getUserFactory();
+			$user = $userFactory->newFromNameOrIp( $rootPart );
+
 			$block = $this->blockStore->newFromTarget( $user, $user );
 
 			if ( $user && $user->isRegistered() && $user->isHidden() &&
@@ -1522,7 +1522,7 @@ class Article implements Page {
 				$user = false;
 			}
 
-			if ( !( $user && $user->isRegistered() ) && !$ip ) {
+			if ( !( $user && $user->isRegistered() ) && !$this->userNameUtils->isIP( $rootPart ) ) {
 				$this->addMessageBoxStyles( $outputPage );
 				// User does not exist
 				$outputPage->addHTML( Html::warningBox(
@@ -1543,7 +1543,7 @@ class Article implements Page {
 					]
 				);
 			} elseif (
-				$block !== null &&
+				$user && $block !== null &&
 				$block->getType() != DatabaseBlock::TYPE_AUTO &&
 				(
 					$block->isSitewide() ||
