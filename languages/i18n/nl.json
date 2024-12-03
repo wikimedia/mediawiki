@@ -713,6 +713,7 @@
 	"autocreate-preview-warning": "<em>U bent niet aangemeld. Nadat u een wijziging hebt aangebracht, wordt er een tijdelijk account voor u aangemaakt. [[{{MediaWiki:tempuser-helppage}}|Meer informatie]].</em>",
 	"missingsummary": "'''Let op:''' u hebt geen bewerkingssamenvatting opgegeven.\nAls u nogmaals op \"$1\" klikt wordt de bewerking zonder samenvatting gepubliceerd.",
 	"selfredirect": "<strong>Waarschuwing:</strong> U verwijst deze pagina naar zichzelf.\nMogelijk hebt u de verkeerde bestemming voor de doorverwijzing ingegeven, of bewerkt u de verkeerde pagina. Door nogmaals op \"$1\" te klikken wordt de doorverwijzing alsnog aangemaakt.",
+	"brokenredirect": "<strong>Waarschuwing:</strong> U verwijst deze pagina door naar een pagina die niet bestaat.\nMogelijk hebt u het verkeerde doel voor de doorverwijzing opgegeven.\nAls u nogmaals op “$1” klikt, wordt de doorverwijzing toch aangemaakt.",
 	"missingcommenttext": "Plaats uw reactie.",
 	"missingcommentheader": "<strong>Let op:</strong> u hebt geen onderwerp/kop voor deze opmerking opgegeven.\nAls u opnieuw op \"$1\" klikt, wordt uw wijziging zonder een onderwerp/kop gepubliceerd.",
 	"summary-preview": "Voorvertoning van de bewerkingssamenvatting:",

@@ -634,6 +634,7 @@
 	"autocreate-preview-warning": "<em>Non accediches ao sistema. A edición quedará atribuída a unha conta temporal. [[{{MediaWiki:tempuser-helppage}}|Máis información]].</em>",
 	"missingsummary": "'''Aviso:''' Esqueciches incluír un texto explicativo no campo de resumo.\nSe premes en \"$1\" a túa edición publicarase sen ningunha descrición que sinale en que consistiu a corrección.",
 	"selfredirect": "<strong>Atención:</strong> Estás redirixindo esta páxina sobre si mesma.\nQuizais indicaches a páxina de destino que non era ou poida que esteas a editar unha páxina errónea.\nSe premes en \"$1\" de novo vaise crear a redireción, sexa como for.",
+	"brokenredirect": "<strong>Aviso:</strong> Estás a redirixir esta páxina a unha páxina que non existe.\nSeica especificaches un destino incorrecto para a redirección.\nSe fas clic de novo en \"$1\" crearás a redirección de todos os xeitos.",
 	"missingcommenttext": "Por favor, escribe un comentario.",
 	"missingcommentheader": "<strong>Aviso:</strong> Non escribiches ningún texto no asunto deste comentario.\nSe premes en \"$1\" de novo, a túa edición hase de publicar sen el.",
 	"summary-preview": "Vista previa do resumo de edición:",

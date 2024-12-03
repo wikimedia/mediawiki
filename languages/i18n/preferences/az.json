@@ -90,7 +90,7 @@
 	"prefs-help-email": "E-poçt ünvanı məcburi deyil, lakin parolunuzu unutduğunuz halda parol sıfırlamaları üçün lazımdır.",
 	"prefs-help-email-required": "E-poçt ünvanı tələb olunur.",
 	"prefs-help-email-others": "Həmçinin, istifadəçi və ya müzakirə səhifənizdəki link vasitəsilə başqa istifadəçilərin sizinlə əlaqə yaratmasını seçə bilərsiniz. Bu halda sizin e-poçt ünvanınız heç kimə görünməyəcək.",
-	"tog-requireemail": "Şifrə sıfırlama məktubunu yalnız e-poçt ünvanı və istifadəçi adı qeyd edildikdə göndər.",
+	"tog-requireemail": "Şifrə sıfırlama məktubunu yalnız e-poçt ünvanı və istifadəçi adı qeyd edildikdə göndər",
 	"prefs-help-requireemail": "Bu, məxfiliyi artırır və istənilməyən e-poçtların qarşısını alır.",
 	"noemailprefs": "Bu xidmətlərdən yararlanmaq üçün parametrlərdən e-poçt ünvanınızı əlavə edin.",
 	"emailnotauthenticated": "E-poçt ünvanınız hələ təsdiq edilməyib.\nAşağıdakı funksiyaların heç biri üçün sizə e-məktub göndərilməyəcək.",

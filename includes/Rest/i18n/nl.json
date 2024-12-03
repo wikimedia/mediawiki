@@ -123,5 +123,6 @@
 	"rest-param-desc-transform-from": "Transformeren van",
 	"rest-param-desc-transform-format": "Formaat voor transformeren",
 	"rest-param-desc-transform-title": "Titel voor transformeren",
-	"rest-param-desc-transform-revision": "Te transformeren versie"
+	"rest-param-desc-transform-revision": "Te transformeren versie",
+	"rest-param-desc-update-title": "Bijgewerkte paginatitel"
 }

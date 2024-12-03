@@ -100,7 +100,7 @@
 	"prefs-help-email": "Die Angabe einer E-Mail-Adresse ist optional, ermöglicht aber die Zusendung eines Ersatzpasswortes, wenn du dein Passwort vergessen hast.",
 	"prefs-help-email-required": "Es wird eine gültige E-Mail-Adresse benötigt.",
 	"prefs-help-email-others": "Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt aufnehmen, ohne dass du deine Identität offenlegen musst.",
-	"tog-requireemail": "E-Mail zum Zurücksetzen des Passworts nur senden, wenn sowohl die E-Mail-Adresse als auch der Benutzername angegeben wurden.",
+	"tog-requireemail": "E-Mail zum Zurücksetzen des Passworts nur senden, wenn sowohl die E-Mail-Adresse als auch der Benutzername angegeben wurden",
 	"prefs-help-requireemail": "Dies verbessert die Privatsphäre und verhindert unerwünschte E-Mails.",
 	"noemailprefs": "Gib eine E-Mail-Adresse in den Einstellungen an, damit die nachfolgenden Funktionen zur Verfügung stehen.",
 	"emailnotauthenticated": "Deine E-Mail-Adresse ist noch nicht bestätigt.\nDie folgenden E-Mail-Funktionen stehen erst nach erfolgreicher Bestätigung zur Verfügung.",

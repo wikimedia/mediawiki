@@ -99,7 +99,7 @@
 	"prefs-help-email": "E-mailadres is optioneel, maar maakt het mogelijk om u uw wachtwoord te e-mailen als u het bent vergeten.",
 	"prefs-help-email-required": "Hiervoor is een e-mailadres nodig.",
 	"prefs-help-email-others": "Ook stelt u anderen in staat om per e-mail met u contact op te nemen via een koppeling op uw gebruikers- en overlegpagina's.\nUw e-mailadres wordt niet prijsgegeven als andere gebruikers contact met u opnemen.",
-	"tog-requireemail": "Alleen wachtwoordreset-e-mails versturen wanneer zowel het e-mailadres en de gebruikersnaam worden opgegeven.",
+	"tog-requireemail": "Alleen wachtwoordreset-e-mails versturen wanneer zowel het e-mailadres en de gebruikersnaam worden opgegeven",
 	"prefs-help-requireemail": "Dit verbetert uw privacy en helpt ongewenste e-mails te voorkomen.",
 	"noemailprefs": "Geef een e-mailadres op in uw voorkeuren om deze functies te gebruiken.",
 	"emailnotauthenticated": "Uw e-mailadres is niet bevestigd.\nDe volgende functies verzenden nog geen e-mail.",
