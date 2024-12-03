@@ -506,6 +506,7 @@ class SpecialBlock extends FormSpecialPage {
 			'maxlength-unit' => 'codepoints',
 			'options-message' => 'ipbreason-dropdown',
 			'section' => 'reason',
+			'help-message' => 'block-reason-help',
 		];
 
 		if ( $this->useCodex ) {

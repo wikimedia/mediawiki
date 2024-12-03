@@ -2956,6 +2956,7 @@
 	"block-options": "Label for the checkboxes for specifying additional options for a block on [[Special:Block]]",
 	"block-options-description": "Description for the checkboxes for specifying additional options for a block on [[Special:Block]]",
 	"block-reason": "Label for the input for specifying the reason for a block on [[Special:Block]]\n{{Identical|Reason}}",
+	"block-reason-help": "Help text for the reason field on [[Special:Block]].",
 	"block-reason-other": "Placeholder text for the 'Other' text field on [[Special:Block]].",
 	"block-confirm-yes": "Used in confirmation dialogs at Special:Block.\n{{Identical|Yes}}",
 	"block-confirm-no": "Used in confirmation dialogs at Special:Block.\n{{Identical|No}}",

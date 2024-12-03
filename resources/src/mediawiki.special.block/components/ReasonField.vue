@@ -3,6 +3,9 @@
 		<template #label>
 			{{ $i18n( 'block-reason' ).text() }}
 		</template>
+		<template #help-text>
+			{{ $i18n( 'block-reason-help' ).text() }}
+		</template>
 
 		<cdx-select
 			v-model:selected="wrappedSelected"

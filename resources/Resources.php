@@ -2341,6 +2341,7 @@ return [
 			'block-options-description',
 			'block-pages-placeholder',
 			'block-reason',
+			'block-reason-help',
 			'block-reason-other',
 			'block-success',
 			'block-target',
