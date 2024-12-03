@@ -5,7 +5,8 @@
 			"CorrelMoris38",
 			"FRANCIS5091",
 			"FRANELYA",
-			"Jilorisa"
+			"Jilorisa",
+			"Juwan"
 		]
 	},
 	"preferences": "Pipilion",
@@ -28,7 +29,7 @@
 	"prefs-edits": "Ginumu niditan:",
 	"prefs-registration": "Timpu pomodopitaran:",
 	"yourrealname": "Ngaran otopot:",
-	"prefs-help-realname": "Songkopili no ih ngaran otopot.\n\nNung potoundaon, gunoon iri do ponokotondos toodo nu.",
+	"prefs-help-realname": "Songkopili no ih ngaran otopot.\nNung potoundaon, gunoon iri do ponokotondos toodo nu.",
 	"yourpassword": "Kaatalib:",
 	"prefs-resetpass": "Alanai kaatalib",
 	"passwordtooshort": "Sokukuri do kapaas kiharo {{PLURAL:$1|1 pimato|$1 tongopimato}}.",

@@ -288,7 +288,7 @@
 	"new-messages-from-users": "{{PLURAL:$3|다른 사용자로|사용자 $3명으로}}부터의 $1가 {{PLURAL:$4|있습니다}}. ($2)",
 	"new-messages-from-many-users": "여러 사용자로부터의 $1가 있습니다. ($2)",
 	"new-messages-link-plural": "{{PLURAL:$1|새 메시지|999=새 메시지}}",
-	"new-messages-diff-link-plural": "마지막으로 {{PLURAL:$1|바뀐 내용|999=바뀐 내용}}",
+	"new-messages-diff-link-plural": "마지막으로 {{PLURAL:$1|바뀐 내용}}",
 	"editsection": "편집",
 	"editold": "편집",
 	"viewsourceold": "원본 보기",

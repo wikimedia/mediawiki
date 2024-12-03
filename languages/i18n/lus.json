@@ -178,7 +178,7 @@
 	"new-messages-from-users": "Hmangtu dang {{PLURAL:$3|pakhat|$3}} hnên aṭang $1 i nei ($2)",
 	"new-messages-from-many-users": "Hmangtu dang tamtak hnên aṭang $1 i nei nual ($2)",
 	"new-messages-link-plural": "{{PLURAL:$1|thudawn thar|999=thudawn tharte}}",
-	"new-messages-diff-link-plural": "Hnuhnung ber {{PLURAL:$1|tihdanglamna|999=tihdanglamte}}",
+	"new-messages-diff-link-plural": "hnuhnung ber {{PLURAL:$1|tihdanglamna|999=tihdanglamte}}",
 	"editsection": "siamṭhatna",
 	"editold": "siamṭhatna",
 	"viewsourceold": "A hnar enna",

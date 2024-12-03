@@ -20,7 +20,8 @@
 			"Tlustulimu",
 			"Vlad5250",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Juwan"
 		]
 	},
 	"sunday": "Njedźela",
@@ -206,7 +207,7 @@
 	"new-messages-from-users": "Maš $1 wot {{PLURAL:$3|druheho wužiwarja|$3 wužiwarjow|$3 wužiwarjow|$3 wužiwarjow}} ($2).",
 	"new-messages-from-many-users": "Maš $1 wot wjele wužiwarjow ($2).",
 	"new-messages-link-plural": "{{PLURAL:$1|nowu powěsć|999=nowej powěsći|999=nowe powěsći}}",
-	"new-messages-diff-link-plural": "{{PLURAL:$1|poslednja změna|999=poslednjej změnje|999=poslednje změny}}",
+	"new-messages-diff-link-plural": "{{PLURAL:$1|poslednja změna|999=poslednje změny}}",
 	"editsection": "wobdźěłać",
 	"editold": "wobdźěłać",
 	"viewsourceold": "žórło wobhladać",
@@ -1285,7 +1286,7 @@
 	"minoreditletter": "S",
 	"newpageletter": "N",
 	"boteditletter": "B",
-	"rc-change-size": "$1 {{PLURAL:$1|bajt|bajtaj|bajty|bajtow}}",
+	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bajt|bajtaj|bajty|bajtow}} po změnje",
 	"newsectionsummary": "Nowy wotrězk: /* $1 */",
 	"rc-old-title": "prěnjotnje wutworjeny jako \"$1\"",

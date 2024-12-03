@@ -84,7 +84,8 @@
 			"Urhixidur",
 			"Weblars",
 			"Zakawer2",
-			"아라"
+			"아라",
+			"Juwan"
 		]
 	},
 	"sunday": "søndag",
@@ -1554,7 +1555,7 @@
 	"minoreditletter": "m",
 	"newpageletter": "N",
 	"boteditletter": "b",
-	"rc-change-size": "$1 {{PLURAL:$1|Byte|Bytes}}",
+	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} efter ændring",
 	"newsectionsummary": "/* $1 */ nyt afsnit",
 	"rc-old-title": "oprindeligt oprettet som \"$1\"",

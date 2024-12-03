@@ -205,7 +205,7 @@
 	"new-messages-from-users": "{{PLURAL:$4|Тӥ басьтӥллям}} $1 {{PLURAL:$3|мукет юзчилэсь|$3 юзчиослэсь}} ($2).",
 	"new-messages-from-many-users": "Тӥ басьтӥды  $1,($2) трос юзчиослэсь",
 	"new-messages-link-plural": "{{PLURAL:$1|выль иворыстос|999=выль иворыстосъёс}}",
-	"new-messages-diff-link-plural": "Берлоез {{PLURAL:$1|воштэт|999=воштэтъёс}}",
+	"new-messages-diff-link-plural": "берлоез {{PLURAL:$1|воштэт|999=воштэтъёс}}",
 	"editsection": "Тупатоно",
 	"editold": "Тупатоно",
 	"viewsourceold": "Кылдэмез сярысь тодэтэз учконо",

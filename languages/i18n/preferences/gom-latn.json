@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Isidore Dantas",
-			"The Discoverer"
+			"The Discoverer",
+			"QW90"
 		]
 	},
 	"preferences": "Posonteo",
@@ -40,7 +41,7 @@
 	"tog-shownumberswatching": "Nodor dovorpi vaporpeanche sonkhya dakhoi",
 	"prefs-watchlist": "Sadurvolleri",
 	"rcfilters-watchlist-preference-label": "JavaScript naslelem interface vapor",
-	"rcfilters-watchlist-preference-help": "Gallnneo vo vhodd-uzvaddache kariokxomota nastana Sadurvolleri ugtem korta.",
+	"rcfilters-watchlist-preference-help": "Gallnneo vo vhodd-uzvaddache kariokxomota nastana [[{{#special:Watchlist}}|Sadurvolleri]] ugtem korta.",
 	"tog-watchlisthideminor": "Sadurvollerint dhaktem bodol lipoi",
 	"tog-watchlisthidebots": "Sadurvollerint robotani kel'le bodol lipoi",
 	"tog-watchlisthideown": "Sadurvollerint mhoje bodol lipoi",

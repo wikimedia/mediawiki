@@ -188,7 +188,7 @@
 	"new-messages-from-users": "{{PLURAL:$4|Ou ni}} $1 dé {{PLURAL:$3|ondòt itilizatè|$3 sé lézòt itilizatè-la}} ($2).",
 	"new-messages-from-many-users": "Ou ni $1 dé onlo itilizatè ($2).",
 	"new-messages-link-plural": "{{PLURAL:$1|on nouvo mésaj|999=Nouvo mésaj}}",
-	"new-messages-diff-link-plural": "Dènyé {{PLURAL:$1|modifikasyon|999=}}",
+	"new-messages-diff-link-plural": "dènyé {{PLURAL:$1|modifikasyon}}",
 	"editsection": "Modifyé",
 	"editold": "Modifyé",
 	"viewsourceold": "vwé chouk-la",

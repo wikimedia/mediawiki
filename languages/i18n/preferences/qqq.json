@@ -259,7 +259,8 @@
 			"আফতাবুজ্জামান",
 			"គីមស៊្រុន",
 			"捍粵者",
-			"아라"
+			"아라",
+			"Nemoralis"
 		]
 	},
 	"preferences": "Title of the [[Special:Preferences]] page.\n{{Identical|Preferences}}",
@@ -344,9 +345,9 @@
 	"prefs-emailconfirm-label": "Sub-heading in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.",
 	"emailauthenticated": "In user preferences ([[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}) and on [[Special:ConfirmEmail]].\n\nParameters:\n* $1 - (Unused) obsolete, date and time\n* $2 - date\n* $3 - time",
 	"allowemail": "Used in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.",
-	"email-allow-new-users-label": "Used in [[Special:Preferences]] > {{int:prefs-prohibit}} > {{int:email}}.",
+	"email-allow-new-users-label": "Used in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.",
 	"tog-ccmeonemails": "Option in [[Special:Preferences]] > <bdi>{{int:prefs-personal}}</bdi> > {{int:email}}. {{Gender}}",
-	"email-mutelist-label": "Used in [[Special:Preferences]] > {{int:prefs-prohibit}} > {{int:email}}.",
+	"email-mutelist-label": "Used in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.",
 	"tog-enotifwatchlistpages": "Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}. {{Gender}}",
 	"tog-enotifusertalkpages": "Option in [[Special:Preferences]] > <bdi>{{int:prefs-personal}}</bdi> > {{int:email}}.\n\n{{Gender}}",
 	"tog-enotifminoredits": "Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.\n\nShown only if {{msg-mw|tog-enotifusertalkpages}} or {{msg-mw|tog-enotifwatchlistpages}} are shown.\n\n\"minor edits\" as in {{msg-mw|Minoredit}}\n\n{{Gender}}",

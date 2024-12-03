@@ -83,7 +83,7 @@
 	"rest-missing-revision-html-content-type": "חסר סוג תוכן של ה־html של הגרסה.",
 	"rest-unsupported-profile-conversion": "אנחנו לא יודעים איך לעשות את ההמרה הזאת.",
 	"rest-edit-conflict": "התנגשות עריכה ($1)",
-	"rest-unknown-parsoid-transformation": "המרה לא ידועה.",
+	"rest-unknown-parsoid-transformation": "התמרה לא ידועה.",
 	"rest-target-variant-required": "נדרש הגוון השפה (variant) המיועד.",
 	"rest-unsupported-language-conversion": "המרת שפה לא נתמכת: מהתסדיר $1 לתסדיר $2",
 	"rest-unknown-content-model": "מודל תוכן לא ידוע: $1",

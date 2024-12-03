@@ -175,7 +175,7 @@
 	"new-messages-from-users": "{{PLURAL:$4|تہاݙے کیتے}} {{PLURAL:$3|کہیں ٻئے صارف|$3 صارفین}} دی طرفوں $1 ($2)۔",
 	"new-messages-from-many-users": "کئی ورتݨ آلیْاں ($2) وچوں تساں $1 رکھدے ہو۔",
 	"new-messages-link-plural": "{{PLURAL:$1|نواں سنیہا|999=نویں سنیہے}}",
-	"new-messages-diff-link-plural": "چھیکڑی {{PLURAL:$1|تبدیلی|تبدیلیاں}}",
+	"new-messages-diff-link-plural": "چھیکڑی {{PLURAL:$1|تبدیلی|999=تبدیلیاں}}",
 	"editsection": "لکھو",
 	"editold": "لکھو",
 	"viewsourceold": "ماخذ ݙیکھو",

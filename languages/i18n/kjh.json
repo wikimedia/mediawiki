@@ -198,7 +198,7 @@
 	"new-messages-from-users": "{{PLURAL:$4|Сiрер}} $1 {{PLURAL:$3|пасха араласчыдаң|$3 араласчыдаң}} ($2) алғазар.",
 	"new-messages-from-many-users": "Сiрер кӧп араласчыдаң ($2) $1 алғазар.",
 	"new-messages-link-plural": "{{PLURAL:$1|наа искiрiг}}",
-	"new-messages-diff-link-plural": "Халғанҷы {{PLURAL:$1|алызығ|999=алызығ}}",
+	"new-messages-diff-link-plural": "Халғанҷы {{PLURAL:$1|алызығ}}",
 	"editsection": "тӱзедерге",
 	"editold": "тӱзедерге",
 	"viewsourceold": "пастағы кодты кӧрерге",

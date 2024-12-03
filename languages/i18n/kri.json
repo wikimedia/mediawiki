@@ -154,7 +154,7 @@
 	"ok": "OK",
 	"retrievedfrom": "Dèn dòn ritriv am na\"$1\"",
 	"new-messages": "{{PLURAL:$3|Yu gèt}} $1 ($2).",
-	"new-messages-diff-link-plural": "las {{PLURAL:$1| chenj|999=chenj dɛm}}",
+	"new-messages-diff-link-plural": "las {{PLURAL:$1|chenj|999=chenj dɛm}}",
 	"editsection": "chenj",
 	"editold": "èdit",
 	"viewsourceold": "Luk dhi sòrs",

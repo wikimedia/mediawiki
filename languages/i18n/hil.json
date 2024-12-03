@@ -205,7 +205,7 @@
 	"new-messages-from-users": "May yara ka sang $1 halin sa {{PLURAL:$3|lain nga manuggamit|$3 mga manuggamit}} ($2).",
 	"new-messages-from-many-users": "May yara ka sang $1 halin sa madamo nga manuggamit ($2).",
 	"new-messages-link-plural": "{{PLURAL:$1|isa ka bag-o nga mensahe|bag-o nga mga mensahe}}",
-	"new-messages-diff-link-plural": "pinaka-ulihi nga {{PLURAL:$1|pagbag-o|mga pagbag-o}}",
+	"new-messages-diff-link-plural": "pinaka-ulihi nga {{PLURAL:$1|pagbag-o|999=mga pagbag-o}}",
 	"editsection": "liwaton",
 	"editold": "liwaton",
 	"viewsourceold": "lantawon ang ginhalinan",

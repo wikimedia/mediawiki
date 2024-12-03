@@ -198,7 +198,7 @@
 	"new-messages-from-users": "{{PLURAL:$4|Ті босьтітӧ}} $1  {{PLURAL:$3|мӧд уджкерись|$3 уджкериссез}}-сянь ($2).",
 	"new-messages-from-many-users": "Тіянлӧ локтіс $1 уна уджкерисьсянь ($2).",
 	"new-messages-link-plural": "{{PLURAL:$1|виль юӧр|999=виль юӧр}}",
-	"new-messages-diff-link-plural": "бӧрья {{PLURAL:$1|вежсьӧм|999=вежсьӧм}}",
+	"new-messages-diff-link-plural": "бӧрья {{PLURAL:$1|вежсьӧм}}",
 	"editsection": "вильмӧтны",
 	"editold": "вильмӧтны",
 	"viewsourceold": "Видзöтны öшмöс",

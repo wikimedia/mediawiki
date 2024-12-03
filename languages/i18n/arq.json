@@ -934,7 +934,7 @@
 	"pageinfo-recent-edits": "العُدّة تاع التبدالات الجديدة (فل $1 الاخرين)",
 	"pageinfo-recent-authors": "العُدّة تاع الكتّابين المختالفين الجدُد",
 	"pageinfo-magic-words": "{{PLURAL:$1|ماكانش كلمات سحرية|لكلمة|لكلمات}} السحرية ($1)",
-	"pageinfo-hidden-categories": "التصنيف{{PLURAL:$1|ة|ات}} المخبّية ($1)",
+	"pageinfo-hidden-categories": "{{PLURAL:$1|التصنيفة|التصنيفات}} المخبّية ($1)",
 	"pageinfo-templates": "{{PLURAL:$1|قالب مستعمل|قوالب مستعملة ($1)}}",
 	"pageinfo-toolboxlink": "معلومات على هاد الصفحة",
 	"pageinfo-contentpage": "معدودة كي باجة تاع مضمون",
