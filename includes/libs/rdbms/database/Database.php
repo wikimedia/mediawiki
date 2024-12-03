@@ -383,7 +383,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	}
 
 	/**
-	 * @return string|null ID of the active explicit transaction round being participating in
+	 * @return ?string Owner name of explicit transaction round being participating in; null if none
 	 */
 	final protected function getTransactionRoundFname() {
 		if ( $this->flagsHolder->hasImplicitTrxFlag() ) {
@@ -1915,7 +1915,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	}
 
 	final public function onTransactionCommitOrIdle( callable $callback, $fname = __METHOD__ ) {
-		if ( !$this->trxLevel() && $this->getTransactionRoundFname() ) {
+		if ( !$this->trxLevel() && $this->getTransactionRoundFname() !== null ) {
 			// This DB handle is set to participate in LoadBalancer transaction rounds and
 			// an explicit transaction round is active. Start an implicit transaction on this
 			// DB handle (setting trxAutomatic) similar to how query() does in such situations.
@@ -1933,7 +1933,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	}
 
 	final public function onTransactionPreCommitOrIdle( callable $callback, $fname = __METHOD__ ) {
-		if ( !$this->trxLevel() && $this->getTransactionRoundFname() ) {
+		if ( !$this->trxLevel() && $this->getTransactionRoundFname() !== null ) {
 			// This DB handle is set to participate in LoadBalancer transaction rounds and
 			// an explicit transaction round is active. Start an implicit transaction on this
 			// DB handle (setting trxAutomatic) similar to how query() does in such situations.
