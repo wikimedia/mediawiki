@@ -1683,7 +1683,8 @@ abstract class Skin extends ContextSource {
 					$msgLink = $this->msg( $line[0] )->page( $messageTitle )->inContentLanguage();
 					if ( $msgLink->exists() ) {
 						$link = $msgLink->text();
-						if ( $link == '-' ) {
+						// Extra check in case a message does fancy stuff with {{#if:… and such
+						if ( $link === '-' ) {
 							continue;
 						}
 					} else {

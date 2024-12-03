@@ -91,12 +91,6 @@ class TrackingCategories {
 		'double-px-category',
 	];
 
-	/**
-	 * @param ServiceOptions $options
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param TitleParser $titleParser
-	 * @param LoggerInterface $logger
-	 */
 	public function __construct(
 		ServiceOptions $options,
 		NamespaceInfo $namespaceInfo,
@@ -160,7 +154,7 @@ class TrackingCategories {
 
 			// Match things like {{NAMESPACE}} and {{NAMESPACENUMBER}}.
 			// False positives are ok, this is just an efficiency shortcut
-			if ( strpos( $msgObj->plain(), '{{' ) !== false ) {
+			if ( str_contains( $msgObj->plain(), '{{' ) ) {
 				$ns = $this->namespaceInfo->getValidNamespaces();
 				foreach ( $ns as $namesp ) {
 					$tempTitle = $this->titleParser->makeTitleValueSafe( $namesp, $catMsg );
@@ -170,27 +164,23 @@ class TrackingCategories {
 					// XXX: should be a better way to convert a TitleValue
 					// to a PageReference!
 					$tempTitle = Title::newFromLinkTarget( $tempTitle );
-					$catName = $msgObj->page( $tempTitle )->text();
-					# Allow tracking categories to be disabled by setting them to "-"
-					if ( $catName !== '-' ) {
-						$catTitle = $this->titleParser->makeTitleValueSafe( NS_CATEGORY, $catName );
-						if ( $catTitle ) {
-							$allCats[] = $catTitle;
-						}
-					}
+					$allCats[] = $msgObj->page( $tempTitle )->text();
 				}
 			} else {
-				$catName = $msgObj->text();
-				# Allow tracking categories to be disabled by setting them to "-"
+				$allCats[] = $msgObj->text();
+			}
+			$titles = [];
+			foreach ( $allCats as $catName ) {
+				// Extra check in case a message does fancy stuff with {{#if:… and such
 				if ( $catName !== '-' ) {
 					$catTitle = $this->titleParser->makeTitleValueSafe( NS_CATEGORY, $catName );
 					if ( $catTitle ) {
-						$allCats[] = $catTitle;
+						$titles[] = $catTitle;
 					}
 				}
 			}
 			$trackingCategories[$catMsg] = [
-				'cats' => $allCats,
+				'cats' => $titles,
 				'msg' => $catMsgTitle,
 			];
 		}
