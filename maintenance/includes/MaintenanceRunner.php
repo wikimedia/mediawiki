@@ -820,7 +820,8 @@ class MaintenanceRunner {
 		$profiler->logData();
 		$profiler->logDataPageOutputOnly();
 
-		MediaWiki::emitBufferedStatsdData(
+		MediaWiki::emitBufferedStats(
+			$this->getServiceContainer()->getStatsFactory(),
 			$this->getServiceContainer()->getStatsdDataFactory(),
 			$this->getConfig()
 		);
