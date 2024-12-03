@@ -868,7 +868,7 @@ class TransactionManager {
 		}
 	}
 
-	public function onFlushSnapshot( IDatabase $db, $fname, $flush, $trxRoundId ) {
+	public function onFlushSnapshot( IDatabase $db, $fname, $flush, $trxRoundFname ) {
 		if ( $this->explicitTrxActive() ) {
 			// Committing this transaction would break callers that assume it is still open
 			throw new DBUnexpectedError(
@@ -886,13 +886,13 @@ class TransactionManager {
 			);
 		} elseif (
 			$this->trxLevel() &&
-			$trxRoundId &&
+			$trxRoundFname !== null &&
 			$flush !== IDatabase::FLUSHING_INTERNAL &&
 			$flush !== IDatabase::FLUSHING_ALL_PEERS
 		) {
 			$this->logger->warning(
 				"$fname: Expected mass snapshot flush of all peer transactions " .
-				"in the explicit transactions round '{$trxRoundId}'",
+				"in the explicit transactions round '{$trxRoundFname}'",
 				[
 					'exception' => new RuntimeException(),
 					'db_log_category' => 'trx'
