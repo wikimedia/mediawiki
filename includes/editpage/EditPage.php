@@ -3380,7 +3380,7 @@ class EditPage implements IEditObject {
 			if ( $this->brokenRedirect ) {
 				$out->wrapWikiMsg(
 					"<div id='mw-brokenredirect'>\n$1\n</div>",
-					[ 'brokenredirect', $buttonLabel ]
+					[ 'edit-constraint-brokenredirect', $buttonLabel ]
 				);
 			}
 
