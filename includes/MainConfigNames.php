@@ -1254,6 +1254,12 @@ class MainConfigNames {
 	public const PageLinksSchemaMigrationStage = 'PageLinksSchemaMigrationStage';
 
 	/**
+	 * Name constant for the FileSchemaMigrationStage setting, for use with Config::get()
+	 * @see MainConfigSchema::FileSchemaMigrationStage
+	 */
+	public const FileSchemaMigrationStage = 'FileSchemaMigrationStage';
+
+	/**
 	 * Name constant for the ExternalLinksDomainGaps setting, for use with Config::get()
 	 * @see MainConfigSchema::ExternalLinksDomainGaps
 	 */

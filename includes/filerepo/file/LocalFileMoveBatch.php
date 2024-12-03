@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
@@ -376,6 +377,16 @@ class LocalFileMoveBatch {
 	protected function doDBUpdates() {
 		$dbw = $this->db;
 
+		$migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::FileSchemaMigrationStage
+		);
+		if ( ( $migrationStage & MIGRATION_WRITE_NEW ) && $this->file->getFileIdFromName() ) {
+			$dbw->newUpdateQueryBuilder()
+				->update( 'file' )
+				->set( [ 'file_name' => $this->newName ] )
+				->where( [ 'file_id' => $this->file->getFileIdFromName() ] )
+				->caller( __METHOD__ )->execute();
+		}
 		// Update current image
 		$dbw->newUpdateQueryBuilder()
 			->update( 'image' )

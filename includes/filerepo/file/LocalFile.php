@@ -95,6 +95,12 @@ class LocalFile extends File {
 	/** @var bool Does the file exist on disk? (loadFromXxx) */
 	protected $fileExists;
 
+	/** @var int Id of the file */
+	private $fileId;
+
+	/** @var int Id of the file type */
+	private $fileTypeId;
+
 	/** @var int Image width */
 	protected $width;
 
@@ -191,6 +197,9 @@ class LocalFile extends File {
 
 	/** @var MetadataStorageHelper */
 	private $metadataStorageHelper;
+
+	/** @var int */
+	private $migrationStage = SCHEMA_COMPAT_OLD;
 
 	// @note: higher than IDBAccessObject constants
 	private const LOAD_ALL = 16; // integer; load all the lazy fields too (like metadata)
@@ -304,6 +313,9 @@ class LocalFile extends File {
 	public function __construct( $title, $repo ) {
 		parent::__construct( $title, $repo );
 		$this->metadataStorageHelper = new MetadataStorageHelper( $repo );
+		$this->migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::FileSchemaMigrationStage
+		);
 
 		$this->assertRepoDefined();
 		$this->assertTitleDefined();
@@ -756,6 +768,112 @@ class LocalFile extends File {
 	}
 
 	/**
+	 * This is mostly for the migration period.
+	 *
+	 * Since 1.44
+	 * @return int|false
+	 */
+	public function getFileIdFromName() {
+		if ( !$this->fileId ) {
+			$dbw = $this->repo->getPrimaryDB();
+			$id = $dbw->newSelectQueryBuilder()
+				->select( 'file_id' )
+				->from( 'file' )
+				->where( [
+					'file_name' => $this->getName(),
+					'file_deleted' => 0
+				] )
+				->fetchField();
+			$this->fileId = $id;
+		}
+
+		return $this->fileId;
+	}
+
+	/**
+	 * This is mostly for the migration period.
+	 *
+	 * @internal
+	 * @return int
+	 */
+	public function acquireFileIdFromName() {
+		$dbw = $this->repo->getPrimaryDB();
+		$id = $this->getFileIdFromName();
+		if ( $id ) {
+			return $id;
+		}
+		$id = $dbw->newSelectQueryBuilder()
+			->select( 'file_id' )
+			->from( 'file' )
+			->where( [
+				'file_name' => $this->getName(),
+			] )
+			->fetchField();
+		if ( !$id ) {
+			$dbw->newInsertQueryBuilder()
+				->insertInto( 'file' )
+				->row( [
+					'file_name' => $this->getName(),
+					// The value will be updated later
+					'file_latest' => 0,
+					'file_deleted' => 0,
+					'file_type' => $this->getFileTypeId(),
+				] )
+				->execute();
+			$insertId = $dbw->insertId();
+			if ( !$insertId ) {
+				throw new RuntimeException( 'File entry could not be inserted' );
+			}
+			return $insertId;
+		} else {
+			// Undelete
+			$dbw->newUpdateQueryBuilder()
+				->update( 'file' )
+				->set( [ 'file_deleted' => 0 ] )
+				->where( [ 'file_id' => $id ] )
+				->execute();
+			return $id;
+		}
+	}
+
+	protected function getFileTypeId() {
+		if ( $this->fileTypeId ) {
+			return $this->fileTypeId;
+		}
+		[ $major, $minor ] = self::splitMime( $this->mime );
+		$dbw = $this->repo->getPrimaryDB();
+		$id = $dbw->newSelectQueryBuilder()
+			->select( 'ft_id' )
+			->from( 'filetypes' )
+			->where( [
+				'ft_media_type' => $this->getMediaType(),
+				'ft_major_mime' => $major,
+				'ft_minor_mime' => $minor,
+			] )
+			->fetchField();
+		if ( $id ) {
+			$this->fileTypeId = $id;
+			return $id;
+		}
+		$dbw->newInsertQueryBuilder()
+			->insertInto( 'filetypes' )
+			->row( [
+				'ft_media_type' => $this->getMediaType(),
+				'ft_major_mime' => $major,
+				'ft_minor_mime' => $minor,
+			] )
+			->execute();
+
+		$id = $dbw->insertId();
+		if ( !$id ) {
+			throw new RuntimeException( 'File entry could not be inserted' );
+		}
+
+		$this->fileTypeId = $id;
+		return $id;
+	}
+
+	/**
 	 * Fix assorted version-related problems with the image row by reloading it from the file
 	 * @stable to override
 	 */
@@ -779,6 +897,7 @@ class LocalFile extends File {
 
 		wfDebug( __METHOD__ . ': upgrading ' . $this->getName() . " to the current schema" );
 
+		$metadata = $this->getMetadataForDb( $dbw );
 		$dbw->newUpdateQueryBuilder()
 			->update( 'image' )
 			->set( [
@@ -789,12 +908,28 @@ class LocalFile extends File {
 				'img_media_type' => $this->media_type,
 				'img_major_mime' => $major,
 				'img_minor_mime' => $minor,
-				'img_metadata' => $this->getMetadataForDb( $dbw ),
+				'img_metadata' => $metadata,
 				'img_sha1' => $this->sha1,
 			] )
 			->where( [ 'img_name' => $this->getName() ] )
 			->andWhere( $freshnessCondition )
 			->caller( __METHOD__ )->execute();
+
+		if ( $this->migrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
+			$dbw->newUpdateQueryBuilder()
+				->update( 'filerevision' )
+				->set( [
+					'fr_size' => $this->size,
+					'fr_width' => $this->width,
+					'fr_height' => $this->height,
+					'fr_bits' => $this->bits,
+					'fr_metadata' => $metadata,
+					'fr_sha1' => $this->sha1,
+				] )
+				->where( [ 'fr_file' => $this->acquireFileIdFromName() ] )
+				->andWhere( [ 'fr_timestamp' => $dbw->timestamp( $this->getTimestamp() ) ] )
+				->caller( __METHOD__ )->execute();
+		}
 
 		$this->invalidateCache();
 
@@ -810,14 +945,23 @@ class LocalFile extends File {
 			return;
 		}
 		$dbw = $this->repo->getPrimaryDB();
+		$metadata = $this->getMetadataForDb( $dbw );
 		$dbw->newUpdateQueryBuilder()
 			->update( 'image' )
-			->set( [ 'img_metadata' => $this->getMetadataForDb( $dbw ) ] )
+			->set( [ 'img_metadata' => $metadata ] )
 			->where( [
 				'img_name' => $this->name,
 				'img_timestamp' => $dbw->timestamp( $this->timestamp ),
 			] )
 			->caller( __METHOD__ )->execute();
+		if ( $this->migrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
+			$dbw->newUpdateQueryBuilder()
+				->update( 'filerevision' )
+				->set( [ 'fr_metadata' => $metadata ] )
+				->where( [ 'fr_file' => $this->acquireFileIdFromName() ] )
+				->andWhere( [ 'fr_timestamp' => $dbw->timestamp( $this->getTimestamp() ) ] )
+				->caller( __METHOD__ )->execute();
+		}
 		$this->upgraded = true;
 	}
 
@@ -830,9 +974,10 @@ class LocalFile extends File {
 	 * If major_mime/minor_mime are given, $this->mime will also be set.
 	 *
 	 * @stable to override
+	 * @unstable to call
 	 * @param array $info
 	 */
-	protected function setProps( $info ) {
+	public function setProps( $info ) {
 		$this->dataLoaded = true;
 		$fields = $this->getCacheFields( '' );
 		$fields[] = 'fileExists';
@@ -1788,6 +1933,38 @@ class LocalFile extends File {
 			->caller( __METHOD__ )->execute();
 		$reupload = ( $dbw->affectedRows() == 0 );
 
+		$latestFileRevId = null;
+		if ( $this->migrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
+			if ( $reupload ) {
+				$latestFileRevId = $dbw->newSelectQueryBuilder()
+					->select( 'fr_id' )
+					->from( 'filerevision' )
+					->where( [ 'fr_file' => $this->acquireFileIdFromName() ] )
+					->orderBy( 'fr_timestamp', 'DESC' )
+					->fetchField();
+			}
+			$commentFieldsNew = $commentStore->insert( $dbw, 'fr_description', $comment );
+			$dbw->newInsertQueryBuilder()
+				->insertInto( 'filerevision' )
+				->row( [
+						'fr_file' => $this->getFileIdFromName(),
+						'fr_size' => $this->size,
+						'fr_width' => intval( $this->width ),
+						'fr_height' => intval( $this->height ),
+						'fr_bits' => $this->bits,
+						'fr_actor' => $actorId,
+						'fr_timestamp' => $dbw->timestamp( $timestamp ),
+						'fr_metadata' => $this->getMetadataForDb( $dbw ),
+						'fr_sha1' => $this->sha1
+					] + $commentFieldsNew )
+				->caller( __METHOD__ )->execute();
+			$dbw->newUpdateQueryBuilder()
+				->update( 'file' )
+				->set( [ 'file_latest' => $dbw->insertId() ] )
+				->where( [ 'file_id' => $this->getFileIdFromName() ] )
+				->caller( __METHOD__ )->execute();
+		}
+
 		if ( $reupload ) {
 			$row = $dbw->newSelectQueryBuilder()
 				->select( [ 'img_timestamp', 'img_sha1' ] )
@@ -1831,8 +2008,15 @@ class LocalFile extends File {
 				'oi_sha1' => 'img_sha1',
 				'oi_actor' => 'img_actor',
 			];
-			$joins = [];
 
+			if ( ( $this->migrationStage & SCHEMA_COMPAT_WRITE_NEW ) && $latestFileRevId && $oldver ) {
+				$dbw->newUpdateQueryBuilder()
+					->set( [ 'fr_archive_name' => $oldver ] )
+					->where( [ 'fr_id' => $latestFileRevId ] )
+					->execute();
+			}
+
+			$joins = [];
 			# (T36993) Note: $oldver can be empty here, if the previous
 			# version of the file was broken. Allow registration of the new
 			# version to continue anyway, because that's better than having
