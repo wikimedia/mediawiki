@@ -3,6 +3,7 @@
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Message;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Status\StatusFormatter;
 use MediaWiki\User\User;
 use Psr\Log\Test\TestLogger;

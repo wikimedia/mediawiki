@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Title\Title;
+
 class SpecialSearchTestMockResultSet extends SearchResultSet {
 
 	private ?string $suggestion;
