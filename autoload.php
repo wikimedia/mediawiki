@@ -976,6 +976,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Api\\Hook\\ApiQueryBaseAfterQueryHook' => __DIR__ . '/includes/api/Hook/ApiQueryBaseAfterQueryHook.php',
 	'MediaWiki\\Api\\Hook\\ApiQueryBaseBeforeQueryHook' => __DIR__ . '/includes/api/Hook/ApiQueryBaseBeforeQueryHook.php',
 	'MediaWiki\\Api\\Hook\\ApiQueryBaseProcessRowHook' => __DIR__ . '/includes/api/Hook/ApiQueryBaseProcessRowHook.php',
+	'MediaWiki\\Api\\Hook\\ApiQueryCheckCanExecuteHook' => __DIR__ . '/includes/api/Hook/ApiQueryCheckCanExecuteHook.php',
 	'MediaWiki\\Api\\Hook\\ApiQueryTokensRegisterTypesHook' => __DIR__ . '/includes/api/Hook/ApiQueryTokensRegisterTypesHook.php',
 	'MediaWiki\\Api\\Hook\\ApiQueryWatchlistExtractOutputDataHook' => __DIR__ . '/includes/api/Hook/ApiQueryWatchlistExtractOutputDataHook.php',
 	'MediaWiki\\Api\\Hook\\ApiQueryWatchlistPrepareWatchedItemQueryServiceOptionsHook' => __DIR__ . '/includes/api/Hook/ApiQueryWatchlistPrepareWatchedItemQueryServiceOptionsHook.php',

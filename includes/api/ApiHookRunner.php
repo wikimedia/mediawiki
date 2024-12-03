@@ -37,6 +37,7 @@ class ApiHookRunner implements
 	Hook\ApiQueryBaseAfterQueryHook,
 	Hook\ApiQueryBaseBeforeQueryHook,
 	Hook\ApiQueryBaseProcessRowHook,
+	Hook\ApiQueryCheckCanExecuteHook,
 	Hook\APIQueryGeneratorAfterExecuteHook,
 	Hook\APIQuerySiteInfoGeneralInfoHook,
 	Hook\APIQuerySiteInfoStatisticsInfoHook,
@@ -216,6 +217,13 @@ class ApiHookRunner implements
 		return $this->container->run(
 			'ApiQueryBaseProcessRow',
 			[ $module, $row, &$data, &$hookData ]
+		);
+	}
+
+	public function onApiQueryCheckCanExecute( $modules, $authority, &$message ) {
+		return $this->container->run(
+			'ApiQueryCheckCanExecute',
+			[ $modules, $authority, &$message ]
 		);
 	}
 

@@ -23,6 +23,9 @@
 namespace MediaWiki\Tests\Api\Query;
 
 use Exception;
+use MediaWiki\Api\ApiQueryBase;
+use MediaWiki\Api\ApiUsageException;
+use MediaWiki\Language\RawMessage;
 use MediaWiki\Title\Title;
 
 /**
@@ -348,5 +351,26 @@ class ApiQueryBasicTest extends ApiQueryTestBase {
 				],
 			]
 		] );
+	}
+
+	public function testApiQueryCheckCanExecute() {
+		$this->setTemporaryHook( 'ApiQueryCheckCanExecute',
+			function ( $modules, $authority, &$message ) {
+				$moduleNames = array_map( fn ( ApiQueryBase $module ) => $module->getModuleName(), $modules );
+				$this->assertArrayEquals( [ 'links', 'templates', 'categories' ], $moduleNames );
+				$message = new RawMessage( 'Prevented by hook' );
+				return false;
+			}
+		);
+		$e = null;
+		try {
+			$this->doApiRequest( [
+				'action' => 'query',
+				'prop' => 'links|templates|categories',
+				'titles' => 'Main Page',
+			] );
+		} catch ( ApiUsageException $e ) {
+			$this->assertSame( 'Prevented by hook', $e->getMessage() );
+		}
 	}
 }

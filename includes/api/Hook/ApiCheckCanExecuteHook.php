@@ -16,7 +16,7 @@ use MediaWiki\User\User;
  */
 interface ApiCheckCanExecuteHook {
 	/**
-	 * This hook is called during ApiMain::checkCanExecute. Use this hook to further
+	 * This hook is called during ApiMain::checkExecutePermissions. Use this hook to further
 	 * authenticate and authorize API clients before executing the module.
 	 *
 	 * @since 1.35
@@ -31,6 +31,8 @@ interface ApiCheckCanExecuteHook {
 	 *  * Earlier: A key or key+parameters in ApiBase::$messageMap.
 	 * @return bool|void True or no return value to continue, or false and set a
 	 *  message to cancel the request
+	 *
+	 * @see ApiQueryCheckCanExecuteHook for query modules.
 	 */
 	public function onApiCheckCanExecute( $module, $user, &$message );
 }
