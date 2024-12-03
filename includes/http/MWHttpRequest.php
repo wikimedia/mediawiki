@@ -287,15 +287,12 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Check if the URL can be served by localhost
+	 * Check if the URL can be served by a local endpoint
 	 *
 	 * @param string $url Full url to check
 	 * @return bool
 	 */
 	private static function isLocalURL( $url ) {
-		if ( MW_ENTRY_POINT === 'cli' ) {
-			return false;
-		}
 		$localVirtualHosts = MediaWikiServices::getInstance()->getMainConfig()->get(
 			MainConfigNames::LocalVirtualHosts );
 
