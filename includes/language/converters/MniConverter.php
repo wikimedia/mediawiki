@@ -19,6 +19,9 @@
  * @author Nokib Sarkar
  * @author Haoreima
  */
+
+use MediaWiki\Language\ReplacementArray;
+
 /**
  * Meitei specific converter routines.
  *

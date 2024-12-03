@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Language\ReplacementArray;
+
 /**
  * Kurdish converter routines.
  *

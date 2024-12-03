@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Language\Language;
+use MediaWiki\Language\ReplacementArray;
 use MediaWiki\Languages\Data\CrhExceptions;
 use MediaWiki\StubObject\StubUserLang;
 
