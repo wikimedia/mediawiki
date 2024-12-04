@@ -881,6 +881,7 @@
 	"showhideselectedversions": "Otkrij/sakrij odabrane izmjene",
 	"editundo": "ukloni ovu izmjenu",
 	"diff-empty": "(Nema razlike inačica)",
+	"diff-user-edits": "<span>$1</span> {{PLURAL:$1|uređivanje|uređivanja}}",
 	"diff-multi-sameuser": "({{PLURAL:$1|1=Nije prikazana jedna međuinačica|Nije prikazana $1 međuinačica|Nisu prikazane $1 međuinačice|Nije prikazano $1 međuinačica}} {{GENDER:$3|istoga suradnika|iste suradnice}})",
 	"diff-multi-otherusers": "({{PLURAL:$1|Nije prikazana jedna međuinačica|Nisu prikazane $1 međuinačice|Nije prikazano $1 međuinačica}} {{PLURAL:$2|jednog|$2}} suradnika)",
 	"diff-multi-manyusers": "({{PLURAL:$1|Nije prikazana jedna međuinačica|Nisu prikazane $1 međuinačice|Nije prikazano $1 međuinačica}} više od {{PLURAL:$2|jednog|$2|$2}} suradnika)",

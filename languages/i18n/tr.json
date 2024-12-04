@@ -723,7 +723,7 @@
 	"autocreate-preview-warning": "<em>Oturum açmadınız. Bir düzenleme yaptığınızda, sizin için geçici bir hesap oluşturulur. [[{{MediaWiki:tempuser-helppage}}|Daha fazla bilgi]].</em>",
 	"missingsummary": "<strong>Uyarı:</strong> Bir düzenleme özeti sağlamadınız.\n\"$1\" seçeneği tekrar tıklarsanız, düzenlemeniz bir tane olmadan yayımlanacaktır.",
 	"selfredirect": "<strong>Uyarı:</strong> Bu sayfanın kendisine yönlendirme vardır.\nYönlendirme için yanlış hedef belirtmiş olabilirsiniz, veya yanlış sayfa düzenlemeye çalışmış olabilirsiniz.\n\nTekrar \"$1\" tuşuna tıklarsanız, yönlendirme yine de oluşturulur.",
-	"brokenredirect": "<strong>Uyarı:</strong> Bu sayfayı varolmayan bir sayfaya yönlendiriyorsunuz.\nYönlendirme için yanlış hedef belirtmiş olabilirsiniz.\n\"$1\" düğmesine yine tıklarsanız, yönlendirme yine de oluşturulacaktır.",
+	"edit-constraint-brokenredirect": "<strong>Uyarı:</strong> Bu sayfayı varolmayan bir sayfaya yönlendiriyorsunuz.\nYönlendirme için yanlış hedef belirtmiş olabilirsiniz.\n\"$1\" düğmesine yine tıklarsanız, yönlendirme yine de oluşturulacaktır.",
 	"missingcommenttext": "Lütfen bir yorum yazın.",
 	"missingcommentheader": "<strong>Uyarı:</strong> Bu yorum için bir konu girmediniz.\nEğer \"$1\" seçeneğine tekrar tıklarsanız, düzenlemeniz konu olmadan kaydedilecektir.",
 	"summary-preview": "Değişiklik özetinin önizlemesi:",

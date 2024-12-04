@@ -121,5 +121,6 @@
 	"rest-param-desc-transform-from": "פרמטר from של התמרה",
 	"rest-param-desc-transform-format": "פרמטר format של התמרה",
 	"rest-param-desc-transform-title": "פרמטר title של התמרה",
-	"rest-param-desc-transform-revision": "פרמטר revision של התמרה"
+	"rest-param-desc-transform-revision": "פרמטר revision של התמרה",
+	"rest-param-desc-update-title": "כותרת הדף המעודכנת"
 }

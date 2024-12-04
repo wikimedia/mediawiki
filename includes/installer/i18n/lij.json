@@ -293,6 +293,7 @@
 	"config-install-db-success": "A bànca dæti a l'é stæta configurâ con sucèsso.",
 	"config-install-generic": "In ezecuçión o cónpito \"$1\"",
 	"config-install-external-domains": "Creaçión de bànche dæti estèrne",
+	"config-skip-shared-domain": "Sâta o domìnio potençialménte sconpartîo \"$1\"",
 	"config-download-localsettings": "Scàrega <code>LocalSettings.php</code>",
 	"config-help": "agiùtto",
 	"config-help-tooltip": "sciàcca pe ingrandî",

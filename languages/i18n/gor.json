@@ -798,7 +798,7 @@
 	"search-relatedarticle": "wawayita",
 	"searchrelated": "wayitiyo",
 	"searchall": "nga'amila",
-	"search-showingresults": "{{PLURAL:$4|hASIL <strong>$1</strong> of <strong>$3</strong>|Hasil <strong>$1 - $2</strong> lonto <strong>$3</strong>}}",
+	"search-showingresults": "{{PLURAL:$4|Hasili <strong>$1</strong> of <strong>$3</strong>|Hasil <strong>$1 - $2</strong> lonto <strong>$3</strong>}}",
 	"search-nonefound": "Diya'a hasili mohumayawa lo kriteria",
 	"search-nonefound-thiswiki": "Diya'a hasili mohumayawa lo kuweri to $3.",
 	"powersearch-legend": "Mololohu lebeliyo ma'o",
@@ -1156,5 +1156,11 @@
 	"skin-view-edit-local": "Boli'a deskripsi lokal.",
 	"skin-action-protect": "Dahawa",
 	"skin-action-delete": "Luluta",
-	"skin-action-move": "Heyiya"
+	"skin-action-move": "Heyiya",
+	"blockedtext-made-by": "Lomubulo kilaraja lo $1",
+	"blockedtext-reason-comment": "Alasani u yilohi botiya <em>$1<em>.",
+	"blockedtext-start-time": "Tilumula lomubulo: $1",
+	"blockedtext-expiration-time": "Pulitiyo lomubulo: $1",
+	"blockedtext-intended-blockee": "Taa bubulalo: $1",
+	"blockedtext-block-ip": "Alamat IP ulemu sa'ati botiya $1"
 }

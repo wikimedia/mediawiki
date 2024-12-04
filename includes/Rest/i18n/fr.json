@@ -126,5 +126,6 @@
 	"rest-param-desc-transform-from": "Début de la transformation",
 	"rest-param-desc-transform-format": "Format de la transformation",
 	"rest-param-desc-transform-title": "Titre de la transformation",
-	"rest-param-desc-transform-revision": "Révision de la transformation"
+	"rest-param-desc-transform-revision": "Révision de la transformation",
+	"rest-param-desc-update-title": "Titre de la page mis à jour"
 }

@@ -713,7 +713,7 @@
 	"autocreate-preview-warning": "<em>Nie jesteś zalogowany(a). Kiedy wykonasz pierwszą edycję, zostanie dla Ciebie utworzone konto tymczasowe. [[{{MediaWiki:tempuser-helppage}}|Dowiedz się więcej]].</em>",
 	"missingsummary": "<strong>Uwaga:</strong> Nie wprowadz{{GENDER:|iłeś|iłaś|ono}} opisu zmian.\nJeżeli nie chcesz go wprowadzać, naciśnij przycisk „$1” jeszcze raz.",
 	"selfredirect": "<strong>Ostrzeżenie:</strong> Przekierowujesz tę stronę do niej samej.\nByć może został przez Ciebie wybrany zły cel przekierowania lub edytujesz niewłaściwą stronę.\nJeżeli ponownie klikniesz „$1”, przekierowanie zostanie utworzone.",
-	"brokenredirect": "<strong>Uwaga:</strong> Próbujesz utworzyć przekierowanie do strony, która nie istnieje.\nByć może określono niewłaściwy cel przekierowania.\nJeśli klikniesz „$1” ponownie, przekierowanie zostanie utworzone mimo to.",
+	"edit-constraint-brokenredirect": "<strong>Uwaga:</strong> Próbujesz utworzyć przekierowanie do strony, która nie istnieje.\nByć może określono niewłaściwy cel przekierowania.\nJeśli klikniesz „$1” ponownie, przekierowanie zostanie utworzone mimo to.",
 	"missingcommenttext": "Wprowadź komentarz poniżej.",
 	"missingcommentheader": "<strong>Uwaga:</strong> Nie podano tytułu dla tego komentarza.\nJeśli ponownie klikniesz „$1”, zmiany zostaną opublikowane bez niego.",
 	"summary-preview": "Podgląd opisu zmian:",

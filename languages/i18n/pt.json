@@ -691,7 +691,7 @@
 	"autocreate-preview-warning": "<em>Não está autenticado. Quando fizer uma edição, será criada para si uma conta temporária. [[{{MediaWiki:tempuser-helppage}}|Mais informações]].</em>",
 	"missingsummary": "<strong>Atenção:</strong> não introduziu um resumo da edição.\nSe clicar novamente \"$1\", a sua edição será publicada sem resumo.",
 	"selfredirect": "<strong>Aviso:</strong> Está a redirecionar esta página para si mesma.\nPode ter especificado o destino errado para o redirecionamento ou pode estar a editar a página errada.\nSe clicar novamente \"$1\", o redirecionamento será criado na mesma.",
-	"brokenredirect": "<strong>Aviso:</strong> Você está redirecionando esta página para uma página que não existe.\nVocê pode ter especificado o alvo errado para o redirecionamento.\nSe você clicar em \" $1 \" novamente, o redirecionamento será criado de qualquer maneira.",
+	"edit-constraint-brokenredirect": "<strong>Aviso:</strong> Você está redirecionando esta página para uma página que não existe.\nVocê pode ter especificado o alvo errado para o redirecionamento.\nSe você clicar em \" $1 \" novamente, o redirecionamento será criado de qualquer maneira.",
 	"missingcommenttext": "Introduza um comentário, por favor.",
 	"missingcommentheader": "<strong>Atenção:</strong> não introduziu um assunto para este comentário.\nSe clicar novamente \"$1\", a sua edição será publicada sem assunto.",
 	"summary-preview": "Antevisão do resumo de edição:",

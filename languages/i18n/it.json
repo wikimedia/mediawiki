@@ -732,7 +732,7 @@
 	"autocreate-preview-warning": "<em>Non hai effettuato l'accesso. Quando effettuerai una modifica, verrà creata un'utenza temporanea per te. [[{{MediaWiki:tempuser-helppage}}|Ulteriori informazioni]].</em>",
 	"missingsummary": "<strong>Attenzione:</strong> non è stato specificato l'oggetto di questa modifica. Premendo di nuovo \"$1\" la modifica verrà pubblicata senza.",
 	"selfredirect": "<strong>Attenzione:</strong> stai reindirizzando questa pagina a se stessa.\nPotresti aver indicato la destinazione errata per il redirect, o stai modificando la pagina sbagliata.\nSe fai clic nuovamente su \"$1\", il redirect sarà creato comunque.",
-	"brokenredirect": "<strong>Attenzione:</strong> stai reindirizzando questa pagina a una pagina che non esiste.\nPotresti aver specificato la destinazione sbagliata per il reindirizzamento.\nSe clicchi di nuovo su \"$1\", il reindirizzamento verrà creato comunque.",
+	"edit-constraint-brokenredirect": "<strong>Attenzione:</strong> stai reindirizzando questa pagina a una pagina che non esiste.\nPotresti aver specificato la destinazione sbagliata per il reindirizzamento.\nSe clicchi di nuovo su \"$1\", il reindirizzamento verrà creato comunque.",
 	"missingcommenttext": "Inserisci un commento.",
 	"missingcommentheader": "<strong>Attenzione:</strong> non è stato specificato l'oggetto di questo commento. Premendo di nuovo \"$1\" la modifica verrà pubblicata senza.",
 	"summary-preview": "Anteprima dell'oggetto della modifica:",

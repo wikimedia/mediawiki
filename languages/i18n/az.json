@@ -645,7 +645,7 @@
 	"autocreate-preview-warning": "<em>Siz daxil olmamısınız. Redaktə etdikdən sonra sizin üçün müvəqqəti hesab yaradılacaq. [[{{MediaWiki:tempuser-helppage}}|Ətraflı məlumat]].</em>",
 	"missingsummary": "<strong>Xatırlatma.</strong> Siz dəyişikliklərin qısa şərhini verməmisiniz. \"$1\" düyməsinə təkrar basandan sonra sizin dəyişiklikləriniz şərhsiz qeyd olunacaq.",
 	"selfredirect": "<strong>Xəbərdarlıq:</strong> Bu səhifəni özünüzə istiqamətləndirirsiniz.\nİstiqamətləndirmə üçün yanlış hədəf göstərə bilərsiniz və ya səhv səhifəni redaktə edə bilərsiniz.\nYenidən \"$1\" düyməsinə bassanız, yenidən istiqamətləndirmə yaradılacaq.",
-	"brokenredirect": "<strong>Xəbərdarlıq:</strong> Siz bu səhifəni mövcud olmayan səhifəyə yönləndirirsiniz.\nYönləndirmə üçün səhv hədəf göstərmiş ola bilərsiniz.\nYenidən \"$1\" düyməsinə klikləsəniz, yönləndirmə yaradılacaq.",
+	"edit-constraint-brokenredirect": "<strong>Xəbərdarlıq:</strong> Siz bu səhifəni mövcud olmayan səhifəyə yönləndirirsiniz.\nYönləndirmə üçün səhv hədəf göstərmiş ola bilərsiniz.\nYenidən \"$1\" düyməsinə klikləsəniz, yönləndirmə yaradılacaq.",
 	"missingcommenttext": "Zəhmət olmasa, şərh yazın.",
 	"missingcommentheader": "<strong>Xatırlatma:</strong> Bu şərh üçün bir dəyişiklik izahı yazmadınız.\nYenidən \"$1\" düyməsinə bassanız, düzəlişiniz o olmadan yayımlanacaq.",
 	"summary-preview": "Dəyişikliyin izahının görünüşü:",

@@ -324,6 +324,7 @@
 	"config-install-db-success": "La base de données a été bien installée",
 	"config-install-generic": "Exécution de la tâche « $1 »",
 	"config-install-external-domains": "Création des bases de données externes",
+	"config-skip-shared-domain": "Ignorer le domaine potentiellement partagé « $1 »",
 	"config-download-localsettings": "Télécharger <code>LocalSettings.php</code>",
 	"config-help": "aide",
 	"config-help-tooltip": "cliquer pour agrandir",
