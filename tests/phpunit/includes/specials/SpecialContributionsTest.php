@@ -117,7 +117,7 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 		[ $html ] = $this->executeSpecialPage(
 			self::$hiddenUser->getName()
 		);
-		$this->assertStringNotContainsString( 'mw-pager-body', $html );
+		$this->assertStringNotContainsString( 'mw-contributions-list', $html );
 	}
 
 	public function testExecuteHiddenTargetWithPermissions() {
