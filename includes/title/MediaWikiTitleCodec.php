@@ -28,11 +28,11 @@ use LogicException;
 use MediaWiki\Cache\GenderCache;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Language\Language;
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\Sanitizer;
 use Wikimedia\IPUtils;
+use Wikimedia\Parsoid\Core\LinkTarget;
 
 /**
  * A codec for MediaWiki page titles.

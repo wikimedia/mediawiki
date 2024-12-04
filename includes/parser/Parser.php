@@ -52,7 +52,6 @@ use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
@@ -73,6 +72,7 @@ use MediaWiki\Title\MediaWikiTitleCodec;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
+use MediaWiki\Title\TitleValue;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
@@ -91,6 +91,7 @@ use Wikimedia\IPUtils;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ObjectCache\WANObjectCache;
+use Wikimedia\Parsoid\Core\LinkTarget;
 use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\Parsoid\Core\TOCData;
 use Wikimedia\Parsoid\DOM\Comment;
@@ -3830,6 +3831,7 @@ class Parser {
 			if ( isset( $options['sha1'] ) ) { // get by (sha1,timestamp)
 				$file = $repoGroup->findFileFromKey( $options['sha1'], $options );
 			} else { // get by (name,timestamp)
+				$link = TitleValue::newFromLinkTarget( $link );
 				$file = $repoGroup->findFile( $link, $options );
 			}
 		}

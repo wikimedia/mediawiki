@@ -23,8 +23,8 @@
 
 namespace MediaWiki\Title;
 
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageReference;
+use Wikimedia\Parsoid\Core\LinkTarget;
 
 /**
  * A title formatter service for MediaWiki.

@@ -27,6 +27,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;
+use MediaWiki\Linker\LinkTarget as MWLinkTarget;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\Parser;
@@ -36,6 +37,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Parsoid\Core\LinkTarget;
 
 /**
  * Class that generates HTML for internal links.
@@ -536,9 +538,9 @@ class LinkRenderer {
 	 *
 	 * @internal For use by Linker::getImageLinkMTOParams()
 	 * @param LinkTarget|PageReference $target Page that will be visited when the user clicks on the link.
-	 * @return LinkTarget
+	 * @return MWLinkTarget
 	 */
-	public function normalizeTarget( $target ) {
+	public function normalizeTarget( $target ): MWLinkTarget {
 		$target = $this->castToLinkTarget( $target );
 		if ( $target->getNamespace() === NS_SPECIAL && !$target->isExternal() ) {
 			[ $name, $subpage ] = $this->specialPageFactory->resolveAlias(
@@ -626,13 +628,15 @@ class LinkRenderer {
 
 	/**
 	 * @param LinkTarget|PageReference $target Page that will be visited when the user clicks on the link.
-	 * @return LinkTarget
+	 * @return MWLinkTarget
 	 */
-	private function castToLinkTarget( $target ): LinkTarget {
+	private function castToLinkTarget( $target ): MWLinkTarget {
 		if ( $target instanceof PageReference ) {
 			return Title::newFromPageReference( $target );
 		}
-		// $target instanceof LinkTarget
-		return $target;
+		if ( $target instanceof MWLinkTarget ) {
+			return $target;
+		}
+		return TitleValue::newFromLinkTarget( $target );
 	}
 }
