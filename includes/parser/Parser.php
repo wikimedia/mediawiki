@@ -2252,10 +2252,10 @@ class Parser {
 	 * @internal
 	 * @param string|false $url Optional URL, to extract the domain from for rel =>
 	 *   nofollow if appropriate
-	 * @param LinkTarget|null $title Optional LinkTarget, for wgNoFollowNsExceptions lookups
+	 * @param LinkTarget|PageReference|null $title Optional page, for wgNoFollowNsExceptions lookups
 	 * @return string|null Rel attribute for $url
 	 */
-	public static function getExternalLinkRel( $url = false, ?LinkTarget $title = null ) {
+	public static function getExternalLinkRel( $url = false, $title = null ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
 		$noFollowLinks = $mainConfig->get( MainConfigNames::NoFollowLinks );
 		$noFollowNsExceptions = $mainConfig->get( MainConfigNames::NoFollowNsExceptions );

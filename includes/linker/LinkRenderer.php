@@ -370,7 +370,7 @@ class LinkRenderer {
 	 * @param string|HtmlArmor|Message $text Text of link; will be escaped if
 	 *  a string.
 	 * @param-taint $text escapes_html
-	 * @param LinkTarget $title LinkTarget object used for title specific link attributes
+	 * @param LinkTarget|PageReference $title Where the link is being rendered, used for title specific link attributes
 	 * @param-taint $title none
 	 * @param string $linktype Type of external link. Gets added to the classes
 	 * @param-taint $linktype escapes_html
@@ -379,7 +379,7 @@ class LinkRenderer {
 	 * @return string
 	 */
 	public function makeExternalLink(
-		string $url, $text, LinkTarget $title, $linktype = '', $attribs = []
+		string $url, $text, $title, $linktype = '', $attribs = []
 	) {
 		$class = 'external';
 		if ( $linktype ) {
