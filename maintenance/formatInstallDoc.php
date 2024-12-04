@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Installer\InstallDocFormatter;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Title\Title;
 

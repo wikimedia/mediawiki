@@ -23,6 +23,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Shell\Shell;
 use Wikimedia\FileBackend\FSFile\TempFSFile;
 use Wikimedia\IPUtils;

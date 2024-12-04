@@ -22,6 +22,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Maintenance\SchemaMaintenance;
 use Wikimedia\Rdbms\DoctrineSchemaBuilderFactory;
 
 // @codeCoverageIgnoreStart

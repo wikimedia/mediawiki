@@ -33,6 +33,7 @@
  * @version first release
  */
 
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Shell\Shell;
 
 // @codeCoverageIgnoreStart

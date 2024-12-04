@@ -24,6 +24,7 @@
 use MediaWiki\Installer\Installer;
 use MediaWiki\Installer\InstallerOverrides;
 use MediaWiki\Installer\InstallException;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Settings\SettingsBuilder;
 use Wikimedia\AtEase\AtEase;
 

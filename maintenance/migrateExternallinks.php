@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\ExternalLinks\LinkFilter;
+use MediaWiki\Maintenance\LoggedUpdateMaintenance;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';

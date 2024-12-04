@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Maintenance\LoggedUpdateMaintenance;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 

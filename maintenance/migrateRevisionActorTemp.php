@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Maintenance\LoggedUpdateMaintenance;
+
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd

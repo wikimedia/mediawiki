@@ -23,6 +23,7 @@ require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Maintenance\Maintenance;
 
 /**
  * Diagnostic tool for interacting with memcached.
