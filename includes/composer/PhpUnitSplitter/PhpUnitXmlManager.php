@@ -7,6 +7,7 @@ namespace MediaWiki\Composer\PhpUnitSplitter;
 use Composer\Script\Event;
 use MediaWiki\Composer\ComposerLaunchParallel;
 use PHPUnit\Framework\ErrorTestCase;
+use Shellbox\Shellbox;
 
 /**
  * @license GPL-2.0-or-later
@@ -172,7 +173,10 @@ class PhpUnitXmlManager {
 				 * which test actually has an error (see T379764 for some discussion of why this
 				 * is necessary)
 				 */
-				ComposerLaunchParallel::runLinearFallback( $testSuite, $event );
+				$executor = new SplitGroupExecutor( Shellbox::createUnboxedExecutor(), $event );
+				$executor->runLinearFallback( $testSuite );
+				$event->getIO()->error( "Test suite splitting failed" );
+				exit( ComposerLaunchParallel::EXIT_STATUS_PHPUNIT_LIST_TESTS_ERROR );
 			}
 			exit( ComposerLaunchParallel::EXIT_STATUS_PHPUNIT_LIST_TESTS_ERROR );
 		}

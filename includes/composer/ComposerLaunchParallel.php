@@ -8,8 +8,8 @@ use Composer\Script\Event;
 use MediaWiki\Composer\PhpUnitSplitter\PhpUnitConsoleOutputProcessingException;
 use MediaWiki\Composer\PhpUnitSplitter\PhpUnitConsoleOutputProcessor;
 use MediaWiki\Composer\PhpUnitSplitter\PhpUnitXml;
+use MediaWiki\Composer\PhpUnitSplitter\SplitGroupExecutor;
 use MediaWiki\Maintenance\ForkController;
-use Shellbox\Command\UnboxedResult;
 use Shellbox\Shellbox;
 
 $basePath = getenv( 'MW_INSTALL_PATH' ) !== false ? getenv( 'MW_INSTALL_PATH' ) : __DIR__ . '/../..';
@@ -32,11 +32,14 @@ require_once $basePath . '/maintenance/includes/ForkController.php';
  */
 class ComposerLaunchParallel extends ForkController {
 
+	private SplitGroupExecutor $splitGroupExecutor;
+	private ComposerSystemInterface $composerSystemInterface;
+
 	private const SPLIT_GROUP_COUNT = 8;
 
 	private const ALWAYS_EXCLUDE = [ 'Broken', 'ParserFuzz', 'Stub' ];
-	private const DATABASELESS_GROUPS = [];
-	private const DATABASE_GROUPS = [ 'Database' ];
+	public const DATABASELESS_GROUPS = [];
+	public const DATABASE_GROUPS = [ 'Database' ];
 	private array $groups = [];
 	private array $excludeGroups = [];
 
@@ -46,10 +49,18 @@ class ComposerLaunchParallel extends ForkController {
 
 	public function __construct(
 		array $groups,
-		array $excludeGroups
+		array $excludeGroups,
+		?Event $event,
+		?SplitGroupExecutor $splitGroupExecutor = null,
+		?ComposerSystemInterface $composerSystemInterface = null
 	) {
 		$this->groups = $groups;
 		$this->excludeGroups = $excludeGroups;
+		$this->composerSystemInterface = $composerSystemInterface ?? new ComposerSystemInterface();
+		$this->splitGroupExecutor = $splitGroupExecutor ?? new SplitGroupExecutor(
+			Shellbox::createUnboxedExecutor(), $event, $this->composerSystemInterface
+		);
+
 		/**
 		 * By default, the splitting process splits the tests into 8 groups. 7 of the groups are composed
 		 * of evenly distributed test classes extracted from the `--list-tests-xml` phpunit function. The
@@ -88,77 +99,18 @@ class ComposerLaunchParallel extends ForkController {
 		return $status;
 	}
 
-	private static function exitAfterTestSuiteSplittingFailure( Event $event ) {
-		$event->getIO()->error( "Test suite splitting failed" );
-		exit( self::EXIT_STATUS_PHPUNIT_LIST_TESTS_ERROR );
-	}
-
-	public static function runLinearFallback( string $testSuite, Event $event ) {
-		$event->getIO()->warning( "Test suite splitting failed - falling back to linear run" );
-		$event->getIO()->write( "Running " . $testSuite . " phpunit suite databaseless tests..." );
-		$databaselessResult = self::executeComposerTestSuite(
-			$testSuite,
-			self::DATABASELESS_GROUPS,
-			self::getDatabaselessExcludeGroups()
-		);
-		print( $databaselessResult->getStdout() );
-		if ( $databaselessResult->getExitCode() !== 0 ) {
-			self::exitAfterTestSuiteSplittingFailure( $event );
-		}
-		$event->getIO()->write( "Running " . $testSuite . " phpunit suite database tests..." );
-		$databaseResult = self::executeComposerTestSuite(
-			$testSuite,
-			self::DATABASE_GROUPS,
-			self::getDatabaseExcludeGroups()
-		);
-		print( $databaseResult->getStdout() );
-		// Whether or not the `database` group run was a success, we exit here via the
-		// TestSuiteSplittingFailure path because the linear fallback has been triggered.
-		self::exitAfterTestSuiteSplittingFailure( $event );
-	}
-
 	protected function prepareEnvironment() {
 		// Skip parent class method to avoid errors:
 		// this script does not run inside MediaWiki, so there is no environment to prepare
 	}
 
-	private static function executeComposerTestSuite(
-		string $testSuite,
-		array $groups,
-		array $excludeGroups,
-		?string $resultsCacheFile = null,
-		?int $groupId = null
-	): UnboxedResult {
-		$executor = Shellbox::createUnboxedExecutor();
-		$command = $executor->createCommand()
-			->params(
-				'composer', 'run',
-				'--timeout=0',
-				'phpunit:entrypoint',
-				'--',
-				'--testsuite', $testSuite,
-				'--exclude-group', implode( ",", $excludeGroups )
-			);
-		if ( count( $groups ) ) {
-			$command->params( '--group', implode( ',', $groups ) );
-		}
-		if ( $resultsCacheFile ) {
-			$command->params(
-				"--cache-result-file=$resultsCacheFile"
-			);
-		}
-		$command->includeStderr( true );
-		if ( $groupId !== null ) {
-			$command->environment( [ 'MW_PHPUNIT_SPLIT_GROUP_ID' => $groupId ] );
-		}
-		print( "Running command '" . $command->getCommandString() . "' ..." . PHP_EOL );
-		return $command->execute();
-	}
-
 	private function runTestSuite( int $groupId ) {
 		$excludeGroups = array_diff( $this->excludeGroups, $this->groups );
-		$groupName = self::isDatabaseRunForGroups( $this->groups, $excludeGroups );
-		$result = self::executeComposerTestSuite(
+		$groupName = "database";
+		if ( !self::isDatabaseRunForGroups( $this->groups, $excludeGroups ) ) {
+			$groupName = "databaseless";
+		}
+		$result = $this->splitGroupExecutor->executeSplitGroup(
 			"split_group_$groupId",
 			$this->groups,
 			$excludeGroups,
@@ -166,12 +118,14 @@ class ComposerLaunchParallel extends ForkController {
 			$groupId
 		);
 		$consoleOutput = $result->getStdout();
-		PhpUnitConsoleOutputProcessor::writeOutputToLogFile(
-			"phpunit_output_{$groupId}_{$groupName}.log",
-			$consoleOutput
-		);
-		print( $consoleOutput );
-		exit( $result->getExitCode() );
+		if ( $consoleOutput ) {
+			$this->composerSystemInterface->putFileContents(
+				"phpunit_output_{$groupId}_{$groupName}.log",
+				$consoleOutput
+			);
+		}
+		$this->composerSystemInterface->print( $consoleOutput );
+		$this->composerSystemInterface->exit( $result->getExitCode() );
 	}
 
 	private static function extractArgs(): array {
@@ -208,7 +162,7 @@ class ComposerLaunchParallel extends ForkController {
 			exit( self::EXIT_STATUS_FAILURE );
 		}
 		$event->getIO()->info( "Running 'split_group_X' suites in parallel..." );
-		$launcher = new ComposerLaunchParallel( $groups, $excludeGroups );
+		$launcher = new ComposerLaunchParallel( $groups, $excludeGroups, $event );
 		$launcher->start();
 		if ( $launcher->allSuccessful() ) {
 			$event->getIO()->info( "All split_groups succeeded!" );
@@ -243,7 +197,7 @@ class ComposerLaunchParallel extends ForkController {
 		self::launchTests( $event, $groups, $excludeGroups );
 	}
 
-	private static function getDatabaseExcludeGroups(): array {
+	public static function getDatabaseExcludeGroups(): array {
 		return array_merge( self::ALWAYS_EXCLUDE, [ 'Standalone' ] );
 	}
 
@@ -255,7 +209,7 @@ class ComposerLaunchParallel extends ForkController {
 		);
 	}
 
-	private static function getDatabaselessExcludeGroups(): array {
+	public static function getDatabaselessExcludeGroups(): array {
 		return array_merge( self::ALWAYS_EXCLUDE, [ 'Standalone', 'Database' ] );
 	}
 

@@ -37,15 +37,6 @@ class PhpUnitConsoleOutputProcessor {
 	private int $failureCount = 0;
 	private int $skippedCount = 0;
 
-	public static function writeOutputToLogFile(
-		string $logFilename, ?string $consoleOutput
-	) {
-		if ( !$consoleOutput ) {
-			return;
-		}
-		file_put_contents( $logFilename, $consoleOutput );
-	}
-
 	/**
 	 * @throws PhpUnitConsoleOutputProcessingException
 	 */
