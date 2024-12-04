@@ -124,6 +124,7 @@ Below only new and removed languages are listed, as well as changes to languages
 because of Phabricator reports.
 
 * (T379137) Added language support for Hunde (hke).
+* (T381463) Added language support for Coptic (cop).
 * (T379137) Added language support for Mindong (Traditional Han script)
   (cdo-hant).
 * (T379137) Added language support for Mindong (Latin script) (cdo-latn).

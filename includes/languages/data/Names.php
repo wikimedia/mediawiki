@@ -138,6 +138,7 @@ class Names {
 		'chy' => 'Tsetsêhestâhese', # Cheyenne
 		'ckb' => 'کوردی', # Central Kurdish
 		'co' => 'corsu', # Corsican
+		'cop' => 'ϯⲙⲉⲧⲣⲉⲙⲛ̀ⲭⲏⲙⲓ', # Coptic
 		'cps' => 'Capiceño', # Capiznon
 		'cpx' => '莆仙語 / Pó-sing-gṳ̂', # Puxian (multiple scripts - defaults to Traditional Han)
 		'cpx-hans' => '莆仙语（简体）', # Puxian (Simplified Han script)
