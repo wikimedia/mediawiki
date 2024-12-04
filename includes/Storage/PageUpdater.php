@@ -73,7 +73,7 @@ use WikiPage;
  * @ingroup Page
  * @author Daniel Kinzler
  */
-class PageUpdater {
+class PageUpdater implements PageUpdateCauses {
 
 	/**
 	 * Options that have to be present in the ServiceOptions object passed to the constructor.
@@ -256,6 +256,7 @@ class PageUpdater {
 		$this->pageIdentity = $page;
 		$this->wikiPage = $wikiPageFactory->newFromTitle( $page );
 		$this->derivedDataUpdater = $derivedDataUpdater;
+		$this->derivedDataUpdater->setCause( self::CAUSE_EDIT );
 
 		$this->dbProvider = $dbProvider;
 		$this->revisionStore = $revisionStore;
@@ -280,6 +281,16 @@ class PageUpdater {
 		);
 		$this->softwareTags = $softwareTags;
 		$this->logger = $logger;
+	}
+
+	/**
+	 * Set the cause of the update. Will be used for the PageUpdatedEvent
+	 * and for tracing/logging in jobs, etc.
+	 *
+	 * @param string $cause See PageUpdatedEvent::CAUSE_XXX
+	 */
+	public function setCause( string $cause ): void {
+		$this->derivedDataUpdater->setCause( $cause );
 	}
 
 	/**
@@ -326,8 +337,6 @@ class PageUpdater {
 		$this->setFlags( $flags );
 
 		// Load the data from the primary database if needed. Needed to check flags.
-		$this->derivedDataUpdater->setCause( 'edit-page', $this->author->getName() );
-
 		$this->grabParentRevision();
 		if ( !$this->derivedDataUpdater->isUpdatePrepared() ) {
 			// Avoid statsd noise and wasted cycles check the edit stash (T136678)
@@ -1268,6 +1277,9 @@ class PageUpdater {
 			return PageUpdateStatus::newFatal( 'edit-gone-missing' );
 		}
 
+		// NOTE: this is going away, see https://phabricator.wikimedia.org/T383552#10452660
+		$this->setCause( 'slot-update' );
+
 		$dbw = $this->dbProvider->getPrimaryDatabase( $this->getWikiId() );
 		$dbw->startAtomic( __METHOD__ );
 
@@ -1298,7 +1310,6 @@ class PageUpdater {
 				[
 					PageUpdatedEvent::FLAG_SILENT => true,
 					PageUpdatedEvent::FLAG_AUTOMATED => true,
-					PageUpdatedEvent::FLAG_DERIVED => true,
 				]
 			);
 
@@ -1640,6 +1651,9 @@ class PageUpdater {
 		// Prepare to update links tables, site stats, etc.
 		$hints['rcPatrolStatus'] = $this->rcPatrolStatus;
 		$hints['tags'] = $tags;
+
+		$this->derivedDataUpdater->setPerformer( $this->author );
+
 		$this->derivedDataUpdater->prepareUpdate( $newRevisionRecord, $hints );
 	}
 

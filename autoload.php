@@ -2686,6 +2686,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Storage\\NameTableStore' => __DIR__ . '/includes/Storage/NameTableStore.php',
 	'MediaWiki\\Storage\\NameTableStoreFactory' => __DIR__ . '/includes/Storage/NameTableStoreFactory.php',
 	'MediaWiki\\Storage\\PageEditStash' => __DIR__ . '/includes/Storage/PageEditStash.php',
+	'MediaWiki\\Storage\\PageUpdateCauses' => __DIR__ . '/includes/Storage/PageUpdateCauses.php',
 	'MediaWiki\\Storage\\PageUpdateException' => __DIR__ . '/includes/Storage/PageUpdateException.php',
 	'MediaWiki\\Storage\\PageUpdateStatus' => __DIR__ . '/includes/Storage/PageUpdateStatus.php',
 	'MediaWiki\\Storage\\PageUpdatedEvent' => __DIR__ . '/includes/page/Event/PageUpdatedEvent.php',

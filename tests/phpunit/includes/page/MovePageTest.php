@@ -608,12 +608,14 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		$new = Title::makeTitle( NS_MEDIAWIKI, 'Bar' );
 		$this->getNonexistingTestPage( $new );
 
+		$mover = $this->getTestSysop()->getUser();
+
 		// clear the queue
 		$this->runJobs();
 
 		$this->getServiceContainer()->getDomainEventSource()->registerListener(
 			'PageUpdated',
-			static function ( PageUpdatedEvent $event ) use ( &$calls, $old, $oldPageId, $new, $oldRev ) {
+			static function ( PageUpdatedEvent $event ) use ( &$calls, $old, $oldPageId, $new, $oldRev, $mover ) {
 				// for the existing page under the new title
 				if ( $event->getPage()->isSamePageAs( $new ) ) {
 					Assert::assertFalse( $event->isNew(), 'isNew' );
@@ -621,16 +623,14 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 					Assert::assertFalse( $event->isContentChange(), 'isContentChange' );
 					Assert::assertSame( $oldPageId, $event->getPage()->getId() );
 					Assert::assertSame( $oldRev->getId(), $event->getOldRevision()->getId() );
+					Assert::assertSame( $mover, $event->getPerformer() );
 
 					Assert::assertTrue(
-						$event->hasFlag( PageUpdatedEvent::FLAG_MOVED ),
-						PageUpdatedEvent::FLAG_MOVED
+						$event->hasCause( PageUpdatedEvent::CAUSE_MOVE ),
+						PageUpdatedEvent::CAUSE_MOVE
 					);
 
-					Assert::assertTrue(
-						$event->hasFlag( PageUpdatedEvent::FLAG_SILENT ),
-						PageUpdatedEvent::FLAG_SILENT
-					);
+					Assert::assertTrue( $event->isSilent(), 'isSilent' );
 				}
 
 				// for the redirect page
@@ -638,16 +638,11 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 					Assert::assertTrue( $event->isNew(), 'isNew' );
 					Assert::assertTrue( $event->isRevisionChange(), 'isRevisionChange' );
 					Assert::assertTrue( $event->isContentChange(), 'isContentChange' );
+					Assert::assertSame( $mover, $event->getPerformer() );
+					Assert::assertSame( $mover, $event->getAuthor() );
 
-					Assert::assertTrue(
-						$event->hasFlag( PageUpdatedEvent::FLAG_SILENT ),
-						PageUpdatedEvent::FLAG_SILENT
-					);
-
-					Assert::assertTrue(
-						$event->hasFlag( PageUpdatedEvent::FLAG_AUTOMATED ),
-						PageUpdatedEvent::FLAG_AUTOMATED
-					);
+					Assert::assertTrue( $event->isSilent(), 'isSilent' );
+					Assert::assertTrue( $event->isAutomated(), 'isAutomated' );
 				}
 
 				// TODO: assert more properties
@@ -658,7 +653,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 
 		// Now move the page
 		$obj = $this->newMovePageWithMocks( $old, $new, [ 'db' => $this->getDb() ] );
-		$obj->move( $this->getTestUser()->getUser() );
+		$obj->move( $mover );
 
 		$this->runDeferredUpdates();
 		$this->assertSame( 2, $calls );

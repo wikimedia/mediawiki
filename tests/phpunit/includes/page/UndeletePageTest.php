@@ -145,32 +145,26 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 		$calls = 0;
 
 		$page = PageIdentityValue::localIdentity( 0, NS_MEDIAWIKI, __METHOD__ );
-
 		$this->setupPage( $page->getDBkey(), $page->getNamespace(), 'Lorem Ipsum' );
+
+		$sysop = $this->getTestSysop()->getUser();
 
 		// clear the queue
 		$this->runJobs();
 
 		$this->getServiceContainer()->getDomainEventSource()->registerListener(
 			'PageUpdated',
-			static function ( PageUpdatedEvent $event ) use ( &$calls ) {
+			static function ( PageUpdatedEvent $event ) use ( &$calls, $sysop ) {
 				Assert::assertTrue(
-					$event->hasFlag( PageUpdatedEvent::FLAG_RESTORED ),
-					PageUpdatedEvent::FLAG_RESTORED
+					$event->hasCause( PageUpdatedEvent::CAUSE_UNDELETE ),
+					PageUpdatedEvent::CAUSE_UNDELETE
 				);
 
-				Assert::assertTrue(
-					$event->hasFlag( PageUpdatedEvent::FLAG_AUTOMATED ),
-					PageUpdatedEvent::FLAG_AUTOMATED
-				);
-				Assert::assertTrue(
-					$event->hasFlag( PageUpdatedEvent::FLAG_SILENT ),
-					PageUpdatedEvent::FLAG_SILENT
-				);
-
+				Assert::assertTrue( $event->isSilent(), 'isSilent' );
+				Assert::assertTrue( $event->isAutomated(), 'isAutomated' );
 				Assert::assertTrue( $event->isContentChange(), 'isContentChange' );
-
-				// TODO: assert more properties
+				Assert::assertFalse( $event->getAuthor()->isRegistered(), 'getAuthor' );
+				Assert::assertSame( $event->getPerformer(), $sysop, 'getPerformer' );
 
 				$calls++;
 			}
@@ -179,7 +173,7 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 		// Now undelete the page
 		$undeletePage = $this->getServiceContainer()->getUndeletePageFactory()->newUndeletePage(
 			$page,
-			$this->getTestSysop()->getUser()
+			$sysop
 		);
 
 		$undeletePage->undeleteUnsafe( 'just a test' );

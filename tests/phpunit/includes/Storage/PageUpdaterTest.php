@@ -377,12 +377,15 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	private function makeDomainEventSourceListener(
 		int &$counter,
 		array $flags,
+		string $cause,
+		UserIdentity $performer,
 		?RevisionRecord $old,
 		$revisionChange = true,
 		$contentChange = true
 	) {
 		return static function ( PageUpdatedEvent $event ) use (
-			&$counter, $flags, $old, $revisionChange, $contentChange
+			&$counter, $flags, $cause, $performer, $old,
+			$revisionChange, $contentChange
 		) {
 			Assert::assertSame(
 				$contentChange,
@@ -399,6 +402,21 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 				$event->isNew(),
 				'isNew'
 			);
+			Assert::assertSame(
+				$cause,
+				$event->getCause(),
+				'getCause'
+			);
+			Assert::assertSame(
+				$performer,
+				$event->getPerformer(),
+				'getPerformer'
+			);
+			Assert::assertSame(
+				$event->getNewRevision()->getUser(),
+				$event->getAuthor(),
+				'getAuthor'
+			);
 
 			if ( $old ) {
 				Assert::assertSame(
@@ -409,7 +427,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 			}
 
 			foreach ( $flags as $name => $value ) {
-				Assert::assertSame( $value, $event->hasFlag( $name ), $name );
+				Assert::assertSame( $value, $event->$name(), $name );
 			}
 
 			$counter++;
@@ -431,7 +449,9 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$this->getServiceContainer()->getDomainEventSource()->registerListener(
 			'PageUpdated',
-			$this->makeDomainEventSourceListener( $calls, [], null )
+			$this->makeDomainEventSourceListener(
+				$calls, [], PageUpdatedEvent::CAUSE_EDIT, $user, null
+			)
 		);
 
 		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
@@ -455,7 +475,8 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->getServiceContainer()->getDomainEventSource()->registerListener(
 			'PageUpdated',
 			$this->makeDomainEventSourceListener(
-				$calls, [], $page->getRevisionRecord()
+				$calls, [], PageUpdatedEvent::CAUSE_EDIT,
+					$user, $page->getRevisionRecord()
 			)
 		);
 
@@ -482,7 +503,9 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 			'PageUpdated',
 			$this->makeDomainEventSourceListener(
 				$calls,
-				[ PageUpdatedEvent::FLAG_AUTOMATED => true ],
+				[ 'isAutomated' => true ],
+				PageUpdatedEvent::CAUSE_EDIT,
+				$user,
 				$page->getRevisionRecord()
 			)
 		);
@@ -505,7 +528,8 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->getServiceContainer()->getDomainEventSource()->registerListener(
 			'PageUpdated',
 			$this->makeDomainEventSourceListener(
-				$calls, [], $page->getRevisionRecord(), false, false
+				$calls, [], PageUpdatedEvent::CAUSE_EDIT,
+					$user, $page->getRevisionRecord(), false, false
 			)
 		);
 
@@ -528,13 +552,15 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->getServiceContainer()->getDomainEventSource()->registerListener(
 			'PageUpdated',
 			$this->makeDomainEventSourceListener(
-				$calls, [], $page->getRevisionRecord(), true, false
+				$calls, [], PageUpdatedEvent::CAUSE_UNDELETE,
+					$user, $page->getRevisionRecord(), true, false
 			)
 		);
 
 		// dummy-edit
 		$updater->setForceEmptyRevision( true );
 		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
+		$updater->setCause( PageUpdatedEvent::CAUSE_UNDELETE );
 		$updater->saveRevision( $summary );
 
 		$this->runDeferredUpdates();
@@ -550,15 +576,15 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$updater = $page->newPageUpdater( $user );
 
 		$flags = [
-			PageUpdatedEvent::FLAG_DERIVED => true,
-			PageUpdatedEvent::FLAG_AUTOMATED => true,
-			PageUpdatedEvent::FLAG_SILENT => true,
+			'isAutomated' => true,
+			'isSilent' => true,
 		];
 
 		$this->getServiceContainer()->getDomainEventSource()->registerListener(
 			'PageUpdated',
 			$this->makeDomainEventSourceListener(
-				$calls, $flags, $page->getRevisionRecord(), false, false
+				$calls, $flags, 'slot-update',
+					$user, $page->getRevisionRecord(), false, false
 			)
 		);
 

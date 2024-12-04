@@ -36,6 +36,7 @@ use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Status\Status;
+use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\Title\NamespaceInfo;
 use Psr\Log\LoggerInterface;
@@ -638,18 +639,16 @@ class UndeletePage {
 
 			if ( $created || $wasnew ) {
 				// Update site stats, link tables, etc
-				$user = $revision->getUser( RevisionRecord::RAW );
 				$options = [
-					PageUpdatedEvent::FLAG_RESTORED => true,
 					PageUpdatedEvent::FLAG_SILENT => true,
 					PageUpdatedEvent::FLAG_AUTOMATED => true,
 					'created' => $created,
 					'oldcountable' => $oldcountable,
-					'causeAction' => 'undelete-page',
-					'causeAgent' => $user->getName(),
 				];
 
 				$updater = $this->pageUpdaterFactory->newDerivedPageDataUpdater( $wikiPage );
+				$updater->setCause( PageUpdater::CAUSE_UNDELETE );
+				$updater->setPerformer( $this->performer->getUser() );
 				$updater->prepareUpdate( $revision, $options );
 				$updater->doUpdates();
 			}

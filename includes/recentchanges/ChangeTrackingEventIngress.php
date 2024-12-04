@@ -74,12 +74,12 @@ class ChangeTrackingEventIngress extends EventSubscriberBase {
 	 */
 	public function handlePageUpdatedEventAfterCommit( PageUpdatedEvent $event ) {
 		if ( $event->isRevisionChange()
-			&& !$event->hasFlag( PageUpdatedEvent::FLAG_SILENT )
+			&& !$event->isSilent()
 		) {
 			$this->updateRecentChangesAfterPageUpdated(
 				$event->getNewRevision(),
 				$event->getOldRevision(),
-				$event->hasFlag( PageUpdatedEvent::FLAG_BOT ),
+				$event->isBotUpdate(),
 				$event->getPatrolStatus(),
 				$event->getTags(),
 				$event->getEditResult()
@@ -92,10 +92,10 @@ class ChangeTrackingEventIngress extends EventSubscriberBase {
 		}
 
 		if ( $event->isContentChange()
-			&& !$event->hasFlag( PageUpdatedEvent::FLAG_AUTOMATED )
+			&& !$event->isAutomated()
 		) {
 			$this->updateUserEditTrackerAfterPageUpdated(
-				$event->getAuthor()
+				$event->getPerformer()
 			);
 		}
 	}

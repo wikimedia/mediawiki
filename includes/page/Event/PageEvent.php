@@ -40,6 +40,7 @@ abstract class PageEvent extends DomainEvent {
 
 	public const TYPE = 'Page';
 
+	private string $cause;
 	private ProperPageIdentity $page;
 	private UserIdentity $performer;
 
@@ -50,6 +51,7 @@ abstract class PageEvent extends DomainEvent {
 	private array $tags;
 
 	/**
+	 * @param string $cause See the self::CAUSE_XXX constants.
 	 * @param ProperPageIdentity $page The page affected by the update.
 	 * @param UserIdentity $performer The user performing the update.
 	 * @param array<string> $tags Applicable tags, see ChangeTags.
@@ -57,6 +59,7 @@ abstract class PageEvent extends DomainEvent {
 	 * @param string|ConvertibleTimestamp|false $timestamp
 	 */
 	public function __construct(
+		string $cause,
 		ProperPageIdentity $page,
 		UserIdentity $performer,
 		array $tags = [],
@@ -74,6 +77,7 @@ abstract class PageEvent extends DomainEvent {
 
 		Assert::parameter( $page->exists(), '$page', 'must exist' );
 
+		$this->cause = $cause;
 		$this->page = $page;
 		$this->performer = $performer;
 		$this->tags = $tags;
@@ -103,6 +107,24 @@ abstract class PageEvent extends DomainEvent {
 	 */
 	public function hasFlag( string $name ): bool {
 		return $this->flags[$name] ?? false;
+	}
+
+	/**
+	 * Indicates the cause of the update.
+	 * See the self::CAUSE_XXX constants.
+	 * @return string
+	 */
+	public function getCause(): string {
+		return $this->cause;
+	}
+
+	/**
+	 * Checks whether the update had the given cause.
+	 *
+	 * @see self::CAUSE_XXX constants
+	 */
+	public function hasCause( string $cause ): bool {
+		return $this->cause === $cause;
 	}
 
 	/**
