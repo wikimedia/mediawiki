@@ -96,39 +96,101 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 		$this->testImport( $expectedTags );
 	}
 
+	private function makeDomainEventSourceListener(
+		int &$counter,
+		$new
+	) {
+		$flags = [
+			PageUpdatedEvent::FLAG_IMPORTED => true,
+			PageUpdatedEvent::FLAG_AUTOMATED => true,
+			PageUpdatedEvent::FLAG_SILENT => true,
+		];
+
+		return static function ( PageUpdatedEvent $event ) use (
+			&$counter, $flags, $new
+		) {
+			Assert::assertTrue( $event->isRevisionChange(), 'isPurge' );
+			Assert::assertSame( $new, $event->isNew(), 'isNew' );
+
+			foreach ( $flags as $name => $value ) {
+				Assert::assertSame( $value, $event->hasFlag( $name ), $name );
+			}
+
+			$counter++;
+		};
+	}
+
 	/**
-	 * Regression test for T381225
+	 * Check that importing revisions for a non-existing page emits a
+	 * PageUpdatedEvent indicating page creation.
 	 */
-	public function testEventEmission() {
+	public function testEventEmission_new() {
 		$calls = 0;
 
 		$title = Title::newFromText( __CLASS__ . rand() );
-		$revision = $this->getWikiRevision( $title );
 
 		$this->getServiceContainer()->getDomainEventSource()->registerListener(
 			'PageUpdated',
-			static function ( PageUpdatedEvent $event ) use ( &$calls ) {
-				Assert::assertTrue(
-					$event->hasFlag( PageUpdatedEvent::FLAG_IMPORTED ),
-					PageUpdatedEvent::FLAG_IMPORTED
-				);
-				Assert::assertTrue(
-					$event->hasFlag( PageUpdatedEvent::FLAG_SILENT ),
-					PageUpdatedEvent::FLAG_SILENT
-				);
-				Assert::assertTrue(
-					$event->hasFlag( PageUpdatedEvent::FLAG_AUTOMATED ),
-					PageUpdatedEvent::FLAG_AUTOMATED
-				);
-
-				// TODO: assert more properties
-
-				$calls++;
-			}
+			$this->makeDomainEventSourceListener( $calls, true )
 		);
 
 		// Perform an import
 		$importer = $this->getImporter();
+
+		$revision = $this->getWikiRevision( $title );
+		$importer->import( $revision );
+
+		$this->runDeferredUpdates();
+		$this->assertSame( 1, $calls );
+	}
+
+	/**
+	 * Check that importing an old revision for an existing page does not emit
+	 * a PageUpdatedEvent.
+	 */
+	public function testEventEmission_old() {
+		$calls = 0;
+
+		$page = $this->getExistingTestPage();
+		$title = $page->getTitle();
+
+		$this->getServiceContainer()->getDomainEventSource()->registerListener(
+			'PageUpdated',
+			$this->makeDomainEventSourceListener( $calls, false )
+		);
+
+		// Import an old revision
+		$importer = $this->getImporter();
+
+		$revision = $this->getWikiRevision( $title );
+		$revision->setTimestamp( '20110101223344' );
+		$importer->import( $revision );
+
+		$this->runDeferredUpdates();
+		$this->assertSame( 0, $calls );
+	}
+
+	/**
+	 * Check that importing a new revision for an existing page emits
+	 * a PageUpdatedEvent.
+	 */
+	public function testEventEmission_current() {
+		$calls = 0;
+
+		MWTimestamp::setFakeTime( '20110101223344' );
+		$page = $this->getExistingTestPage();
+		$title = $page->getTitle();
+
+		$this->getServiceContainer()->getDomainEventSource()->registerListener(
+			'PageUpdated',
+			$this->makeDomainEventSourceListener( $calls, false )
+		);
+
+		// Import latest revision
+		$importer = $this->getImporter();
+
+		$revision = $this->getWikiRevision( $title );
+		$revision->setTimestamp( '20240101223344' );
 		$importer->import( $revision );
 
 		$this->runDeferredUpdates();
