@@ -14,5 +14,7 @@ if ( outer ) {
 		Vue.createMwApp( App )
 			.use( createPinia() )
 			.mount( outer );
+		// We keep the wrapping form but never want it to submit.
+		outer.addEventListener( 'submit', ( e ) => e.preventDefault() );
 	} );
 }
