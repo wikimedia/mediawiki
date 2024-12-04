@@ -129,7 +129,8 @@
 			"KimKelting",
 			"TomatoCake",
 			"21 little ducks",
-			"Rye Greenwood"
+			"Rye Greenwood",
+			"Juwan"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -1772,7 +1773,7 @@
 	"minoreditletter": "K",
 	"newpageletter": "N",
 	"boteditletter": "B",
-	"rc-change-size": "$1 {{PLURAL:$1|Byte|Bytes}}",
+	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|Byte|Bytes}} nach der Änderung",
 	"newsectionsummary": "Neuer Abschnitt /* $1 */",
 	"rc-old-title": "ursprünglich erstellt als „$1“",

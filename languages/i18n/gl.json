@@ -1788,7 +1788,7 @@
 	"upload-options": "Opcións de carga",
 	"watchthisupload": "Vixiar este ficheiro",
 	"filewasdeleted": "Un ficheiro con ese nome foi cargado con anterioridade e a continuación borrado.\nDebe comprobar o $1 antes de proceder a cargalo outra vez.",
-	"filename-thumb-name": "Semella que este título é dunha miniatura. Non cargue miniaturas no wiki do que as sacou. Se non é así, corrixa o nome do ficheiro para que sexa máis significativo e non teña o prefixo das miniaturas.",
+	"filename-thumb-name": "Semella que este título é dunha miniatura. Non subas miniaturas no wiki do que as sacaches. Se non é así, corrixe o nome do ficheiro para que sexa máis significativo e non teña o prefixo das miniaturas.",
 	"filename-bad-prefix": "O nome do ficheiro que está cargando comeza con '''\"$1\"''', que é un típico nome non descritivo asignado automaticamente polas cámaras dixitais.\nPor favor, escolla un nome máis descritivo para o seu ficheiro.",
 	"filename-prefix-blacklist": " #<!-- Deixe esta liña tal e como está --> <pre>\n# A sintaxe é a seguinte:\n#   * Todo o que vaia despois dun carácter \"#\" ata o final da liña é un comentario\n#   * Toda liña que non estea en branco é un prefixo para os nomes típicos dos ficheiros asignados automaticamente polas cámaras dixitais\nCIMG # Casio\nDSC_ # Nikon\nDSCF # Fuji\nDSCN # Nikon\nDUW # algúns teléfonos móbiles\nIMG # xenérico\nJD # Jenoptik\nMGP # Pentax\nPICT # varios\n #</pre> <!-- Deixe esta liña tal e como está -->",
 	"upload-proto-error": "Protocolo incorrecto",

@@ -3315,7 +3315,7 @@
 	"pageinfo-recent-edits": "Nombre de modifications récentes (dans les derniers $1)",
 	"pageinfo-recent-authors": "Nombre d’auteurs distincts récents",
 	"pageinfo-magic-words": "Mot{{PLURAL:$1||s}} magique{{PLURAL:$1||s}} ($1)",
-	"pageinfo-hidden-categories": "Catégorie{{PLURAL:$1||s}} cachée{{PLURAL:$1||s}} ($1)",
+	"pageinfo-hidden-categories": "{{PLURAL:$1|Catégorie cachée|Catégories cachées}} ($1)",
 	"pageinfo-templates": "Modèle{{PLURAL:$1| |s}} inclus ($1)",
 	"pageinfo-transclusions": "Page{{PLURAL:$1||s}} dans l{{PLURAL:$1|a|es}}quelle{{PLURAL:$1||s}} cette page est incluse ($1)",
 	"pageinfo-toolboxlink": "Informations sur la page",

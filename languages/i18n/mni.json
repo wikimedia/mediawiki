@@ -1091,5 +1091,7 @@
 	"skin-action-delete": "ꯀꯛꯊꯠꯄꯥ",
 	"skin-action-move": "ꯂꯦꯡꯍꯟꯕꯥ",
 	"blockedtext-made-by": "ꯑꯊꯤꯡꯕ ꯑꯁꯤ $1ꯅꯥ ꯄꯤꯔꯛꯄꯅꯤ ꯫",
-	"blockedtext-reason-comment": "ꯃꯔꯝ ꯑꯁꯤ $1ꯗ ꯂꯩꯔꯦ"
+	"blockedtext-reason-comment": "ꯃꯔꯝ ꯑꯁꯤ $1ꯗ ꯂꯩꯔꯦ",
+	"blockedtext-start-time": "$1:ꯊꯤꯡꯕ ꯍꯧꯈꯤꯕ",
+	"blockedtext-expiration-time": "$1:ꯊꯤꯡꯕ ꯂꯣꯏꯕꯒꯤ ꯃꯇꯝ"
 }

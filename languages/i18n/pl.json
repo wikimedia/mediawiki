@@ -1465,7 +1465,7 @@
 	"grant-import": "Importowanie wersji",
 	"grant-mergehistory": "Scalanie historii stron",
 	"grant-oversight": "Ukrywanie użytkowników i wersji stron",
-	"grant-patrol": "Patrolować zmiany w stronach",
+	"grant-patrol": "Zaznaczanie patrolowania zmian na stronach",
 	"grant-privateinfo": "Dostęp do prywatnych danych",
 	"grant-protect": "Zabezpieczanie i odbezpieczanie stron",
 	"grant-rollback": "Wycofywanie zmian na stronach",

@@ -2546,7 +2546,7 @@
 	"pageinfo-recent-edits": "Fanovana vao haingana (natao tanatin'ny $1)",
 	"pageinfo-recent-authors": "Isa vao haingan'ny mpanoratra misongadina",
 	"pageinfo-magic-words": "Teny majika{{PLURAL:$1|}} ($1)",
-	"pageinfo-hidden-categories": "Sokajy nafenina{{PLURAL:$1}} ($1)",
+	"pageinfo-hidden-categories": "{{PLURAL:$1|Sokajy nafenina}} ($1)",
 	"pageinfo-templates": "Endrika natsofoka{{PLURAL:$1}} ($1)",
 	"pageinfo-transclusions": "Pejy natsofoka tanatin'i ($1){{PLURAL:}}",
 	"pageinfo-toolboxlink": "Fampahalalana mikasika ny pejy",

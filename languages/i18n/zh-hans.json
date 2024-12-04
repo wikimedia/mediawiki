@@ -4000,7 +4000,7 @@
 	"api-error-unknown-warning": "未知警告：“$1”。",
 	"api-error-unknownerror": "未知错误：$1。",
 	"duration-seconds": "$1秒",
-	"duration-minutes": "$1分",
+	"duration-minutes": "$1分钟",
 	"duration-hours": "$1小时",
 	"duration-days": "$1{{PLURAL:$1|天}}",
 	"duration-weeks": "$1周",

@@ -1590,7 +1590,7 @@
 	"pageinfo-authors": "Innùmaru tutari d'autori dibessi",
 	"pageinfo-recent-authors": "Ùlthimu innùmaru d'autori dibessi",
 	"pageinfo-magic-words": "{{PLURAL:$1|Paràura màgica|Paràuri màgichi}} ($1)",
-	"pageinfo-hidden-categories": "{{PLURAL:$1|categuria cuadda|categurì cuaddi}}",
+	"pageinfo-hidden-categories": "{{PLURAL:$1|Categuria cuadda|Categurì cuaddi}} ($1)",
 	"pageinfo-toolboxlink": "Iffuimmaziòni pa la pàgina",
 	"pageinfo-contentpage-yes": "Sì",
 	"pageinfo-protect-cascading-yes": "Sì",

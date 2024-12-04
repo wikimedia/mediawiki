@@ -2516,7 +2516,7 @@
 	"pageinfo-recent-edits": "ߡߊ߬ߦߟߍ߬ߡߊ߲߬ߠߌ߲߬ ߟߊߓߊ߲ ߠߎ߬ ߖߊ߬ߕߋ (ߕߊ߬ߡߌ߲߬ߣߍ߲ ߞߘߐ߫ $1)",
 	"pageinfo-recent-authors": "ߞߐߛߊ߲߫ ߛߓߍߦߟߊ߫ ߓߐߣߍ߲ߢߐ߲߰ߡߊ ߟߎ߫ ߖߊ߬ߕߋ",
 	"pageinfo-magic-words": "ߛߎߓߊ߯ߦߊ߫ {{PLURAL:$1|ߞߎߡߊߘߋ߲|ߞߎߡߊߘߋ߲ ߠߎ߬ }}($1)",
-	"pageinfo-hidden-categories": "ߢߡߊߘߏ߲߰ߠߌ߲ {{PLURAL:$1|ߦߌߟߡߊ|ߦߌߟߡߊ ߟߎ߬(1$)}}",
+	"pageinfo-hidden-categories": "ߢߡߊߘߏ߲߰ߠߌ߲ {{PLURAL:$1|ߦߌߟߡߊ|ߦߌߟߡߊ ߟߎ߬}} (1$)",
 	"pageinfo-templates": "ߞߐ߬ߣߐߡߊ߬-ߕߍߟߐ {{PLURAL:$1|ߞߙߊ߬ߞߏ|ߞߙߊ߬ߞߏ ߟߎ߬}} $1",
 	"pageinfo-transclusions": "{{PLURAL:|ߞߐߜߍ $1|ߞߐߜߍ߫}} ߓߘߊ߫ ߟߊߦߌ߬ߙߌ߲߬ߘߌ߫ ߦߊ߲߬ ($1)",
 	"pageinfo-toolboxlink": "ߞߐߜߍ ߞߎ߲߬ߠߊ߬ߝߎߟߋ߲",

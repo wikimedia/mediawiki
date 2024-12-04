@@ -84,7 +84,7 @@
 	"oct": "kålggmään",
 	"nov": "skamm-mään",
 	"dec": "rosttovmään",
-	"pagecategories": "{{PLURAL:$1|kategoriad|0=Ni õhtt kategoria|1=kategoria|2=kategoria|3=kategoria|4=kategoria|5=kategoria|6=kategoria}}",
+	"pagecategories": "{{PLURAL:$1|Kategoria}}",
 	"category_header": "Seeid, kook lie kategoriast $1",
 	"subcategories": "Vueʹllkategoria",
 	"category-media-header": "Mediateâttõõzz, kook lie kategoriast $1",

@@ -1989,7 +1989,7 @@
 	"pageinfo-recent-edits": "آخیرئین ایڈیٹانی اندازگ (بئ $1 دیما)",
 	"pageinfo-recent-authors": "یکی ئین آخیرین نویسوکان اندازگ",
 	"pageinfo-magic-words": "{{PLURAL:$1|حرف|حروف}} جادویی ($1)",
-	"pageinfo-hidden-categories": "چیهرین {{PLURAL:$1| تهر|تهر هان}} ( $1 )",
+	"pageinfo-hidden-categories": "چیهرین {{PLURAL:$1| تهر|تهر هان}} ($1)",
 	"pageinfo-templates": "{{PLURAL:$1|تراشوان|تراشوان}} استفاده‌ بوته ($1)",
 	"pageinfo-transclusions": "{{PLURAL:$1|تاکدیم|تاکدیمان}} ترانسکلوڈ بوتگ بئ ($1) تا",
 	"pageinfo-toolboxlink": "تاکدیمئ مالومات",
