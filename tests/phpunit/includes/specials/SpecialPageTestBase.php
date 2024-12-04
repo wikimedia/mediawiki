@@ -27,22 +27,21 @@ abstract class SpecialPageTestBase extends MediaWikiIntegrationTestCase {
 		$this->obLevel = ob_get_level();
 	}
 
-	protected function tearDown(): void {
+	protected function assertPostConditions(): void {
 		$obLevel = ob_get_level();
+		if ( $obLevel !== $this->obLevel ) {
+			$this->fail(
+				"Test changed output buffer level: was {$this->obLevel} before test, but $obLevel after test."
+			);
+		}
+		parent::assertPostConditions();
+	}
 
+	protected function tearDown(): void {
 		while ( ob_get_level() > $this->obLevel ) {
 			ob_end_clean();
 		}
-
-		try {
-			if ( $obLevel !== $this->obLevel ) {
-				$this->fail(
-					"Test changed output buffer level: was {$this->obLevel} before test, but $obLevel after test."
-				);
-			}
-		} finally {
-			parent::tearDown();
-		}
+		parent::tearDown();
 	}
 
 	/**

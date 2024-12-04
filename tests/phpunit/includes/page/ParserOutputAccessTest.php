@@ -44,14 +44,14 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	public int $actualCallsToPoolWorkArticleView = 0;
 	public int $expectedCallsToPoolWorkArticleView = 0;
 
-	public function tearDown(): void {
+	public function assertPostConditions(): void {
 		$this->assertSame(
 			$this->expectedCallsToPoolWorkArticleView,
 			$this->actualCallsToPoolWorkArticleView,
 			'Calls to newPoolWorkArticleView'
 		);
 
-		parent::tearDown();
+		parent::assertPostConditions();
 	}
 
 	private function getHtml( $value ) {
