@@ -28,11 +28,11 @@ namespace MediaWiki\Api;
  * @ingroup API
  */
 class ApiOpenSearchFormatJson extends ApiFormatJson {
-	/** @var bool */
-	private $warningsAsError;
 
-	public function __construct( ApiMain $main, string $fm, bool $warningsAsError ) {
-		parent::__construct( $main, "json$fm" );
+	private bool $warningsAsError;
+
+	public function __construct( ApiMain $main, string $format, bool $warningsAsError ) {
+		parent::__construct( $main, $format );
 		$this->warningsAsError = $warningsAsError;
 	}
 
