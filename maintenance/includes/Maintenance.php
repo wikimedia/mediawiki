@@ -495,10 +495,8 @@ abstract class Maintenance {
 		if ( defined( 'MW_SERVICE_BOOTSTRAP_COMPLETE' ) ) {
 			// Flush stats periodically in long-running CLI scripts to avoid OOM (T181385)
 			$stats = $this->getServiceContainer()->getStatsdDataFactory();
-			$statsFactory = $this->getServiceContainer()->getStatsFactory();
-			// FIXME: use sample count from StatsFactory (T381042)
 			if ( $stats->getDataCount() > 1000 ) {
-				MediaWiki::emitBufferedStats( $statsFactory, $stats, $this->getConfig() );
+				MediaWiki::emitBufferedStatsdData( $stats, $this->getConfig() );
 			}
 		}
 
@@ -1319,8 +1317,7 @@ abstract class Maintenance {
 		// Periodically run any deferred updates that accumulate
 		DeferredUpdates::tryOpportunisticExecute();
 		// Flush stats periodically in long-running CLI scripts to avoid OOM (T181385)
-		MediaWikiEntryPoint::emitBufferedStats(
-			$this->getServiceContainer()->getStatsFactory(),
+		MediaWikiEntryPoint::emitBufferedStatsdData(
 			$this->getServiceContainer()->getStatsdDataFactory(),
 			$this->getConfig()
 		);

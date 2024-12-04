@@ -729,8 +729,7 @@ return [
 		$lbFactoryConfigBuilder->applyGlobalState(
 			$instance,
 			$mainConfig,
-			$services->getStatsdDataFactory(),
-			$services->getStatsFactory()
+			$services->getStatsdDataFactory()
 		);
 
 		return $instance;

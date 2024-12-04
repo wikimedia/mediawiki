@@ -678,8 +678,10 @@ abstract class MediaWikiEntryPoint {
 		// Any embedded profiler outputs were already processed in outputResponsePayload().
 		$profiler->logData();
 
-		self::emitBufferedStats(
-			$this->getStatsFactory(),
+		// Send metrics gathered by StatsFactory
+		$this->getStatsFactory()->flush();
+
+		self::emitBufferedStatsdData(
 			$this->getStatsdDataFactory(),
 			$this->config
 		);
@@ -696,7 +698,7 @@ abstract class MediaWikiEntryPoint {
 	}
 
 	/**
-	 * Send out any buffered stats according to sampling rules
+	 * Send out any buffered statsd data according to sampling rules
 	 *
 	 * For web requests, this is called once by MediaWiki::restInPeace(),
 	 * which is post-send (after the response is sent to the client).
@@ -717,20 +719,14 @@ abstract class MediaWikiEntryPoint {
 	 * - Any other long-running scripts will probably report progress to stdout
 	 *   in some way. We also flush from Maintenance::output().
 	 *
-	 * @param StatsFactory $statsFactory
 	 * @param IBufferingStatsdDataFactory $stats
 	 * @param Config $config
 	 * @throws ConfigException
 	 * @since 1.31 (formerly one the MediaWiki class)
 	 */
-	public static function emitBufferedStats(
-		StatsFactory $statsFactory,
-		IBufferingStatsdDataFactory $stats,
-		Config $config
+	public static function emitBufferedStatsdData(
+		IBufferingStatsdDataFactory $stats, Config $config
 	) {
-		// Send metrics gathered by StatsFactory
-		$statsFactory->flush();
-
 		if ( $config->get( MainConfigNames::StatsdServer ) && $stats->hasData() ) {
 			try {
 				$stats->updateCount( 'stats.statsdclient.buffered', $stats->getDataCount() );
