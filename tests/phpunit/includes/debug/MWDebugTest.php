@@ -5,11 +5,13 @@ use MediaWiki\Api\ApiResult;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\Exception\MWExceptionHandler;
+use MediaWiki\Logger\LegacySpi;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\TitleValue;
 use Psr\Log\LoggerInterface;
+use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * @covers \MediaWiki\Debug\MWDebug
@@ -18,6 +20,11 @@ class MWDebugTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		$this->overrideConfigValue( MainConfigNames::DevelopmentWarnings, false );
+
+		// Ensure we're using a logger implementation that forwards to MWDebug.
+		LoggerFactory::registerProvider( ObjectFactory::getObjectFromSpec( [
+			'class' => LegacySpi::class
+		] ) );
 
 		parent::setUp();
 		/** Clear log before each test */

@@ -19,7 +19,6 @@
  * @ingroup Testing
  */
 
-use MediaWiki\Config\ConfigException;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\DeferredUpdatesScopeMediaWikiStack;
@@ -29,7 +28,6 @@ use MediaWiki\Logger\NullSpi;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Settings\SettingsBuilder;
-use PHPUnit\Framework\Exception;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Services\NoSuchServiceException;
@@ -121,26 +119,11 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		MediaWikiServices::disallowGlobalInstanceInUnitTests();
 		ExtensionRegistry::disableForTest();
 		SettingsBuilder::disableAccessForUnitTests();
-	}
 
-	/**
-	 * @inheritDoc
-	 */
-	protected function runTest() {
-		try {
-			// Don't let LoggerFactory::getProvider() access globals or other things we don't want.
-			LoggerFactory::registerProvider( ObjectFactory::getObjectFromSpec( [
-				'class' => NullSpi::class
-			] ) );
-			return parent::runTest();
-		} catch ( ConfigException $exception ) {
-			throw new Exception(
-				'Config variables must be mocked, they cannot be accessed directly in tests which extend '
-				. self::class,
-				$exception->getCode(),
-				$exception
-			);
-		}
+		// Don't let LoggerFactory::getProvider() access globals or other things we don't want.
+		LoggerFactory::registerProvider( ObjectFactory::getObjectFromSpec( [
+			'class' => NullSpi::class
+		] ) );
 	}
 
 	/**
