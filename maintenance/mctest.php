@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Maintenance\Maintenance;
 use Wikimedia\ObjectCache\BagOStuff;
 
 // @codeCoverageIgnoreStart

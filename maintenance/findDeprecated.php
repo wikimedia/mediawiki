@@ -23,6 +23,8 @@
  * @phan-file-suppress PhanUndeclaredProperty Lots of custom properties
  */
 
+use MediaWiki\Maintenance\Maintenance;
+
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
 require_once __DIR__ . '/../vendor/autoload.php';

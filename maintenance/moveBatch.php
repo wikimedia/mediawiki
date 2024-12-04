@@ -26,6 +26,7 @@
  * e.g. immobile_namespace for namespaces which can't be moved
  */
 
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;

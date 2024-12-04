@@ -22,6 +22,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\User\User;
 

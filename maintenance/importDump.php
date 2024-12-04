@@ -25,6 +25,7 @@
  */
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\User\User;
 

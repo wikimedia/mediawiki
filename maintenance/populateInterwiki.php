@@ -24,6 +24,8 @@
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
 
+use MediaWiki\Maintenance\Maintenance;
+
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd

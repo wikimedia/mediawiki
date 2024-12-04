@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\Deferred\SiteStatsUpdate;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\SiteStats\SiteStatsInit;
 
 // @codeCoverageIgnoreStart

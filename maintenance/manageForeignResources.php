@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\ResourceLoader\ForeignResourceManager;
 

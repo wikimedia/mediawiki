@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigSchema;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Settings\Config\ConfigSchemaAggregator;
 use MediaWiki\Settings\Source\ReflectionSchemaSource;
 use Symfony\Component\Yaml\Yaml;

@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Maintenance;
 
-use LoggedUpdateMaintenance;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
 use Wikimedia\Rdbms\SelectQueryBuilder;
