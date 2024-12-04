@@ -37,7 +37,6 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\Stats\IBufferingStatsdDataFactory;
-use Wikimedia\Stats\StatsFactory;
 
 /**
  * MediaWiki-specific class for generating database load balancers
@@ -411,18 +410,16 @@ class MWLBFactory {
 	 * @param ILBFactory $lbFactory
 	 * @param Config $config
 	 * @param IBufferingStatsdDataFactory $stats
-	 * @param StatsFactory $statsFactory
 	 */
 	public function applyGlobalState(
 		ILBFactory $lbFactory,
 		Config $config,
-		IBufferingStatsdDataFactory $stats,
-		StatsFactory $statsFactory
+		IBufferingStatsdDataFactory $stats
 	): void {
 		if ( MW_ENTRY_POINT === 'cli' ) {
 			$lbFactory->getMainLB()->setTransactionListener(
 				__METHOD__,
-				static function ( $trigger ) use ( $statsFactory, $stats, $config ) {
+				static function ( $trigger ) use ( $stats, $config ) {
 					// During maintenance scripts and PHPUnit integration tests, we let
 					// DeferredUpdates run immediately from addUpdate(), unless a transaction
 					// is active. Notify DeferredUpdates after any commit to try now.
@@ -431,14 +428,14 @@ class MWLBFactory {
 						DeferredUpdates::tryOpportunisticExecute();
 					}
 					// Flush stats periodically in long-running CLI scripts to avoid OOM (T181385)
-					MediaWiki::emitBufferedStats( $statsFactory, $stats, $config );
+					MediaWiki::emitBufferedStatsdData( $stats, $config );
 				}
 			);
 			$lbFactory->setWaitForReplicationListener(
 				__METHOD__,
-				static function () use ( $statsFactory, $stats, $config ) {
+				static function () use ( $stats, $config ) {
 					// Flush stats periodically in long-running CLI scripts to avoid OOM (T181385)
-					MediaWiki::emitBufferedStats( $statsFactory, $stats, $config );
+					MediaWiki::emitBufferedStatsdData( $stats, $config );
 				}
 			);
 
