@@ -64,6 +64,7 @@ For notes on 1.43.x and older releases, see HISTORY.
 * The CodexTablePager class was added.
 * UserFactory now has newFromNameOrIp() method to quickly create User object
   for either an IP a named user.
+* The ApiQueryCheckCanExecute hook was added.
 * …
 
 === External library changes in 1.44 ===

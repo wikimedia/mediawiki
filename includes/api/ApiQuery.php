@@ -682,6 +682,12 @@ class ApiQuery extends ApiBase {
 		$modules = $continuationManager->getRunModules();
 		'@phan-var ApiQueryBase[] $modules';
 
+		// Allow extensions to stop execution for arbitrary reasons.
+		$message = 'hookaborted';
+		if ( !$this->getHookRunner()->onApiQueryCheckCanExecute( $modules, $this->getUser(), $message ) ) {
+			$this->dieWithError( $message );
+		}
+
 		$statsFactory = MediaWikiServices::getInstance()->getStatsFactory();
 
 		if ( !$continuationManager->isGeneratorDone() ) {
