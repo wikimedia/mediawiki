@@ -85,6 +85,7 @@ $specialPageAliases = [
 	'Fewestrevisions'           => [ 'AnLyhaAmendyansow' ],
 	'Filepath'                  => [ 'HynsAnFolen' ],
 	'Import'                    => [ 'Ymperthi' ],
+	'Interwiki'                 => [ 'Yntrawiki' ],
 	'Invalidateemail'           => [ 'DigomposaEbost' ],
 	'JavaScriptTest'            => [ 'PrevyansJavaScript' ],
 	'LinkSearch'                => [ 'HwilasKevrennow' ],

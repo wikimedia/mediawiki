@@ -66,6 +66,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'Pretraga_duplikata_datoteka', 'PretragaDuplikataDatoteka', 'PotragaDuplihFajlova' ],
 	'Filepath'                  => [ 'Putanja_do_datoteke', 'PutanjaDoDatoteke', 'PutDoDatoteke' ],
 	'Import'                    => [ 'Uvezi', 'Uvoz' ],
+	'Interwiki'                 => [ 'Medjuwiki' ],
 	'Invalidateemail'           => [ 'Otkaži_potvrdu_emaila', 'OtkažiPotvrduEmaila', 'PogresanEmail' ],
 	'LinkSearch'                => [ 'Pretraga_linkova', 'PretragaLinkova', 'PotragaLinkova' ],
 	'Listadmins'                => [ 'Spisak_administratora', 'SpisakAdministratora', 'ListaAdministratora' ],

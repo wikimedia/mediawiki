@@ -146,6 +146,12 @@ define( 'MW_EDITFILTERMERGED_SUPPORTS_API', 1 );
 /** Support for $wgResourceModules */
 define( 'MW_SUPPORTS_RESOURCE_MODULES', 1 );
 
+/**
+ * Indicate that the Interwiki extension should not be loaded (it is now
+ * in core).
+ */
+define( 'MW_HAS_SPECIAL_INTERWIKI', 1 );
+
 /** @{
  * Allowed values for Parser::$mOutputType
  * Parameter to Parser::startExternalParse().

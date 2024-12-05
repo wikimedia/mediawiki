@@ -79,6 +79,7 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'مسیر_پرونده' ],
 	'GoToInterwiki'             => [ 'برو_به_میان‌ویکی', 'میان‌ویکی' ],
 	'Import'                    => [ 'درون‌ریزی_صفحه' ],
+	'Interwiki'                 => [ 'میان‌ویکی' ],
 	'Invalidateemail'           => [ 'باطل‌کردن_ایمیل', 'باطل‌کردن_رایانامه' ],
 	'JavaScriptTest'            => [ 'تست_جاوااسکریپت' ],
 	'LinkAccounts'              => [ 'اتصال_حساب‌ها' ],

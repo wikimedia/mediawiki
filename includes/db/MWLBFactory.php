@@ -50,7 +50,11 @@ class MWLBFactory {
 	/** Cache of already-logged deprecation messages */
 	private static array $loggedDeprecations = [];
 
-	public const CORE_VIRTUAL_DOMAINS = [ 'virtual-botpasswords' ];
+	public const CORE_VIRTUAL_DOMAINS = [
+		'virtual-botpasswords',
+		'virtual-interwiki',
+		'virtual-interwiki-interlanguage',
+	];
 
 	/**
 	 * @internal For use by ServiceWiring

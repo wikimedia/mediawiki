@@ -126,6 +126,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'Dubbel_Dateie' ],
 	'Filepath'                  => [ 'Dateipaad' ],
 	'Import'                    => [ 'Emport', 'Empocht' ],
+	'Interwiki'                 => [ 'EngerWiki', 'Engerwiki' ],
 	'Invalidateemail'           => [ 'Onjöltije_e-mail_Addräß', 'Onjöltije_E-Mail_Adress' ],
 	'LinkSearch'                => [ 'Websigge_Söke' ],
 	'Listadmins'                => [ 'Köbese', 'Köbeße', 'Wiki-Köbesse' ],

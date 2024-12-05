@@ -61,6 +61,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'Faili_duplikaatide_otsimine', 'Otsi_faili_duplikaate' ],
 	'Filepath'                  => [ 'Failitee' ],
 	'Import'                    => [ 'Lehekülgede_import' ],
+	'Interwiki'                 => [ 'Interviki' ],
 	'Invalidateemail'           => [ 'E-posti_kinnituse_tühistamine', 'Tühista_e-posti_kinnitus' ],
 	'JavaScriptTest'            => [ 'JavaScripti_katsetamine' ],
 	'LinkSearch'                => [ 'Välislinkide_otsimine', 'Otsi_välislinke' ],

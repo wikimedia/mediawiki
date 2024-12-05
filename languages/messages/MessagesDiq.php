@@ -82,6 +82,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'CıgeyrayışêDosyayaKopyakerdiye', 'CıgeyrayışêDosyayaDılete' ],
 	'Filepath'                  => [ 'RayaDosya', 'CayêDosya' ],
 	'Import'                    => [ 'BiyaZerre' ],
+	'Interwiki'                 => [ 'İnterwiki' ],
 	'Invalidateemail'           => [ 'EposteyBıtexelne' ],
 	'JavaScriptTest'            => [ 'TestêJavaScripti' ],
 	'LinkSearch'                => [ 'CıgeyrayışêGırey' ],

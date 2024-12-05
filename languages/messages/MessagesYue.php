@@ -123,6 +123,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ '搵重複文件' ],
 	'Filepath'                  => [ '檔案路徑' ],
 	'Import'                    => [ '匯入' ],
+	'Interwiki'                 => [ '其他維基連接' ],
 	'Invalidateemail'           => [ '錯電郵' ],
 	'LinkSearch'                => [ '搵連結' ],
 	'Listadmins'                => [ '管理員列表' ],

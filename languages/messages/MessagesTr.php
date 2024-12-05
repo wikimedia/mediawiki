@@ -121,6 +121,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'KopyaDosyaArama', 'ÇiftDosyaArama' ],
 	'Filepath'                  => [ 'DosyaYolu', 'DosyaKonumu' ],
 	'Import'                    => [ 'İçeAktar', 'İçeriAktar' ],
+	'Interwiki'                 => [ 'İnterviki' ],
 	'Invalidateemail'           => [ 'E-postaDoğrulamaİptal' ],
 	'JavaScriptTest'            => [ 'JavaScriptTesti' ],
 	'LinkSearch'                => [ 'BağArama', 'BağlantıArama' ],

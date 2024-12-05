@@ -197,6 +197,7 @@ $specialPageAliases = [
 	'Filepath'                   => [ '文件路径' ],
 	'GoToInterwiki'              => [ '去往跨wiki页面' ],
 	'Import'                     => [ '导入页面', '导入' ],
+	'Interwiki'                  => [ '跨wiki', '跨维基' ],
 	'Invalidateemail'            => [ '无效电邮地址' ],
 	'JavaScriptTest'             => [ 'JavaScript测试' ],
 	'LinkAccounts'               => [ '链接账号' ],

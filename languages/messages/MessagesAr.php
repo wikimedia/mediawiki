@@ -360,6 +360,7 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'مسار_ملف' ],
 	'GoToInterwiki'             => [ 'الذهاب_إلى_الإنترويكي' ],
 	'Import'                    => [ 'استيراد' ],
+	'Interwiki'                 => [ 'إنترويكي' ],
 	'Invalidateemail'           => [ 'تعطيل_البريد_الإلكتروني' ],
 	'JavaScriptTest'            => [ 'اختبار_جافا_سكريبت' ],
 	'LinkAccounts'              => [ 'وصل_الحسابات' ],

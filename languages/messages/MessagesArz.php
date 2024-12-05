@@ -79,6 +79,7 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'مسار_ملف' ],
 	'GoToInterwiki'             => [ 'روح_للانترويكى' ],
 	'Import'                    => [ 'استوراد' ],
+	'Interwiki'                 => [ 'إنترويكى' ],
 	'Invalidateemail'           => [ 'تعطيل_الايميل' ],
 	'JavaScriptTest'            => [ 'تجربه_جافا_سكريبت' ],
 	'LinkAccounts'              => [ 'توصيل_الحسابات' ],

@@ -66,6 +66,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'KlaskRestroùEilet' ],
 	'Filepath'                  => [ 'HentRestr' ],
 	'Import'                    => [ 'Enporzhiañ' ],
+	'Interwiki'                 => [ 'Etrewiki' ],
 	'Invalidateemail'           => [ 'NullañPostel' ],
 	'LinkSearch'                => [ 'KlaskLiamm' ],
 	'Listadmins'                => [ 'RollMerourien' ],

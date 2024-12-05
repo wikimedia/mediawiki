@@ -103,6 +103,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'Цхьатера_файлаш_лахар' ],
 	'Filepath'                  => [ 'Файл_йолче' ],
 	'Import'                    => [ 'Импорт' ],
+	'Interwiki'                 => [ 'Юкъарвикаш' ],
 	'Invalidateemail'           => [ 'Адрес_бакъдар_юхадаккха' ],
 	'JavaScriptTest'            => [ 'JavaScript_тестировать_ян' ],
 	'LinkSearch'                => [ 'Хьажоргаш_лахар' ],

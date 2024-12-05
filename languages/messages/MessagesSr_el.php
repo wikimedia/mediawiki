@@ -128,6 +128,7 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'Putanja_do_datoteke', 'Putanja_datoteke', 'PutanjaDatoteke' ],
 	'GoToInterwiki'             => [ 'Poseti_međuviki', 'Posjeti_međuviki', 'PosetiMeđuviki', 'PosjetiMeđuviki' ],
 	'Import'                    => [ 'Uvezi' ],
+	'Interwiki'                 => [ 'Međuviki' ],
 	'Invalidateemail'           => [ 'Otkaži_potvrdu_imejla', 'PoništiImejl' ],
 	'JavaScriptTest'            => [ 'Testiranje_JavaScript-a', 'Testiranje_JavaScripta', 'TestiranjeJavaskripta' ],
 	'LinkAccounts'              => [ 'Poveži_naloge', 'PovežiNaloge' ],

@@ -62,6 +62,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'ChacheFichyeDoub' ],
 	'Filepath'                  => [ 'ChemenFichye' ],
 	'Import'                    => [ 'Enpòte' ],
+	'Interwiki'                 => [ 'Entèwiki' ],
 	'Invalidateemail'           => [ 'EnvalideImèl' ],
 	'LinkSearch'                => [ 'ChacheLyen' ],
 	'Listadmins'                => [ 'LisAdmin' ],

@@ -13,7 +13,7 @@ use Wikimedia\ObjectCache\WANObjectCache;
 class ClassicInterwikiLookupTest extends MediaWikiIntegrationTestCase {
 
 	private function populateDB( $iwrows ) {
-		$this->getDb()->newInsertQueryBuilder()
+		$this->db->newInsertQueryBuilder()
 			->insertInto( 'interwiki' )
 			->rows( $iwrows )
 			->caller( __METHOD__ )
@@ -32,6 +32,8 @@ class ClassicInterwikiLookupTest extends MediaWikiIntegrationTestCase {
 				MainConfigNames::InterwikiCache => $interwikiData,
 				MainConfigNames::InterwikiFallbackSite => 'en',
 				MainConfigNames::InterwikiScopes => 3,
+				MainConfigNames::InterwikiMagic => true,
+				MainConfigNames::VirtualDomainsMapping => [],
 				'wikiId' => WikiMap::getCurrentWikiId(),
 			];
 
@@ -43,7 +45,8 @@ class ClassicInterwikiLookupTest extends MediaWikiIntegrationTestCase {
 			$lang,
 			WANObjectCache::newEmpty(),
 			$services->getHookContainer(),
-			$services->getConnectionProvider()
+			$services->getConnectionProvider(),
+			$services->getLanguageNameUtils()
 		);
 	}
 

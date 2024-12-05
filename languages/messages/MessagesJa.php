@@ -87,6 +87,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ '重複ファイル検索' ],
 	'Filepath'                  => [ 'パスの取得' ],
 	'Import'                    => [ 'データ取り込み', 'データー取り込み', 'インポート' ],
+	'Interwiki'                 => [ 'インターウィキ' ],
 	'Invalidateemail'           => [ 'メール無効化', 'メール無効' ],
 	'JavaScriptTest'            => [ 'JavaScriptテスト', 'JavaScript試験' ],
 	'LinkSearch'                => [ '外部リンク検索' ],

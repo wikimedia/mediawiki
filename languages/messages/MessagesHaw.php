@@ -45,6 +45,7 @@ $specialPageAliases = [
 	'Export'                    => [ 'Kāpuka', 'Kapuka' ],
 	'Filepath'                  => [ 'AlaWaihona' ],
 	'Import'                    => [ 'Kākomo', 'Kakomo' ],
+	'Interwiki'                 => [ 'Waenawiki' ],
 	'LinkSearch'                => [ 'HuliLoulou' ],
 	'Listadmins'                => [ 'HeluKahu' ],
 	'Listbots'                  => [ 'HeluLōpako', 'HeluLopako' ],

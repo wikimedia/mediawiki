@@ -55,6 +55,7 @@ $specialPageAliases = [
 	'CreateAccount'             => [ 'EsapYarat', 'EsapAç' ],
 	'Deadendpages'              => [ 'BaalantısızYazılar', 'BaalantısızSayfalar', 'BaalantısızYapraklar' ],
 	'DoubleRedirects'           => [ 'İkiKeräYönnendirmäler', 'İkiKeräYönnendirmeler' ],
+	'Interwiki'                 => [ 'İnterviki' ],
 	'Listadmins'                => [ 'İzmetliListası' ],
 	'Listbots'                  => [ 'BotListası' ],
 	'Listfiles'                 => [ 'DosyeListası', 'PätretListası' ],

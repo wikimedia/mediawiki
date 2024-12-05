@@ -115,6 +115,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'ស្វែងរកឯកសារដូចគ្នាបេះបិទ' ],
 	'Filepath'                  => [ 'ផ្លូវនៃឯកសារ' ],
 	'Import'                    => [ 'នាំចូល' ],
+	'Interwiki'                 => [ 'អន្តរវិគី' ],
 	'Invalidateemail'           => [ 'អ៊ីមែលមិនត្រឹមត្រូវ' ],
 	'LinkSearch'                => [ 'ស្វែងរកតំណភ្ជាប់' ],
 	'Listadmins'                => [ 'បញ្ជីអ្នកអភិបាល' ],

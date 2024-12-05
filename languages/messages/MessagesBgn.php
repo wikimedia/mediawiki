@@ -70,6 +70,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'گشتین_په_تکرارین_وّرک_ئا' ],
 	'Filepath'                  => [ 'وّرک_ئی_مسیر' ],
 	'Import'                    => [ 'ورق_ئانی_ریتین' ],
+	'Interwiki'                 => [ 'مانجین_ویکی' ],
 	'Invalidateemail'           => [ 'ایمیلی_باتل_کورتین' ],
 	'JavaScriptTest'            => [ 'جاوا_سکریپت_ئی_تست' ],
 	'LinkSearch'                => [ 'گشتین_په_لینکا' ],

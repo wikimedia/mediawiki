@@ -129,6 +129,7 @@ $specialPageAliases = [
 	'Export'                    => [ 'Экспорт' ],
 	'Fewestrevisions'           => [ 'Кечкенә_үзгәртүләр' ],
 	'Import'                    => [ 'Импорт' ],
+	'Interwiki'                 => [ 'Интервики' ],
 	'Listadmins'                => [ 'Идарәчеләр_исемлеге' ],
 	'Listbots'                  => [ 'Ботлар_исемлеге' ],
 	'Listfiles'                 => [ 'Файллар_исемлеге' ],

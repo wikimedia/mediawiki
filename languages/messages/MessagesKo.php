@@ -115,6 +115,7 @@ $specialPageAliases = [
 	'Filepath'                    => [ '파일경로', '그림경로' ],
 	'GoToInterwiki'               => [ '인터위키가기' ],
 	'Import'                      => [ '가져오기' ],
+	'Interwiki'                   => [ '인터위키' ],
 	'Invalidateemail'             => [ '이메일인증취소', '이메일인증해제' ],
 	'JavaScriptTest'              => [ '자바스크립트시험', '자바스크립트테스트' ],
 	'LinkAccounts'                => [ '계정연결' ],

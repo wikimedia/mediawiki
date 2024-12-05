@@ -68,6 +68,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'Duplikátumok_keresése' ],
 	'Filepath'                  => [ 'Fájl_elérési_útja', 'Fájl_elérési_út' ],
 	'Import'                    => [ 'Lapok_importálása' ],
+	'Interwiki'                 => [ 'Wikiközi_hivatkozások' ],
 	'Invalidateemail'           => [ 'E-mail_cím_érvénytelenítése' ],
 	'LinkSearch'                => [ 'Hivatkozás_keresés' ],
 	'Listadmins'                => [ 'Adminisztrátorok', 'Adminisztrátorok_listája', 'Sysopok' ],

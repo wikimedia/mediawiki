@@ -57,6 +57,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'Повтарящи_се_файлове' ],
 	'Filepath'                  => [ 'Път_към_файл' ],
 	'Import'                    => [ 'Внасяне' ],
+	'Interwiki'                 => [ 'Междууикита' ],
 	'Invalidateemail'           => [ 'Отмяна_на_е-поща' ],
 	'LinkSearch'                => [ 'Търсене_на_външни_препратки' ],
 	'Listadmins'                => [ 'Администратори' ],

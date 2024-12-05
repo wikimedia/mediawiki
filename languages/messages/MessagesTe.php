@@ -85,6 +85,7 @@ $specialPageAliases = [
 	'Export'                    => [ 'ఎగుమతి' ],
 	'Fewestrevisions'           => [ 'అతితక్కువకూర్పులు' ],
 	'Import'                    => [ 'దిగుమతి' ],
+	'Interwiki'                 => [ 'అంతర్వికీ' ],
 	'Listfiles'                 => [ 'ఫైళ్లజాబితా', 'బొమ్మలజాబితా' ],
 	'Listgrouprights'           => [ 'గుంపుహక్కులజాబితా', 'వాడుకరులగుంపుహక్కులు' ],
 	'Listusers'                 => [ 'వాడుకరులజాబితా' ],

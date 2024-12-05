@@ -148,6 +148,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'Busca_de_ficheiros_duplicados', 'Busca_de_arquivos_duplicados' ],
 	'Filepath'                  => [ 'Directório_de_ficheiro', 'Diretório_de_ficheiro', 'Diretório_de_arquivo' ],
 	'Import'                    => [ 'Importar' ],
+	'Interwiki'                 => [ 'Interwikis' ],
 	'Invalidateemail'           => [ 'Invalidar_correio_electrónico', 'Invalidar_e-mail' ],
 	'LinkSearch'                => [ 'Pesquisar_links' ],
 	'Listadmins'                => [ 'Administradores', 'Admins', 'Lista_de_administradores', 'Lista_de_admins' ],

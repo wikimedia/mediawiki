@@ -99,6 +99,7 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'راہ_فائل', 'راہ_ملف' ],
 	'GoToInterwiki'             => [ 'بین_الویکی_پر_جائیں' ],
 	'Import'                    => [ 'درآمد', 'درآمدگی' ],
+	'Interwiki'                 => [ 'بین_الویکی' ],
 	'Invalidateemail'           => [ 'ڈاک_تصدیق_منسوخ' ],
 	'JavaScriptTest'            => [ 'تجربہ_جاوا_اسکرپٹ' ],
 	'LinkAccounts'              => [ 'کھاتے_مربوط_کریں' ],

@@ -74,6 +74,7 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ '文件重複尋討' ],
 	'Filepath'                  => [ '文件路徑' ],
 	'Import'                    => [ '導底' ],
+	'Interwiki'                 => [ '跨維基' ],
 	'Invalidateemail'           => [ '無效電子郵件' ],
 	'JavaScriptTest'            => [ 'JavaScript測試' ],
 	'LinkSearch'                => [ '鏈接尋討' ],
