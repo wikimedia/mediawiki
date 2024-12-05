@@ -138,6 +138,18 @@ abstract class Task {
 	}
 
 	/**
+	 * If this returns true, the task will be scheduled after tasks for which
+	 * it returns false. Subclasses can override this to return true for tasks
+	 * that respond to the successful complete installation of the wiki.
+	 *
+	 * @stable to override
+	 * @return bool
+	 */
+	public function isPostInstall() {
+		return false;
+	}
+
+	/**
 	 * Inject the base class dependencies and configuration
 	 *
 	 * @param ITaskContext $context
