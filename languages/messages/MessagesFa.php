@@ -378,6 +378,7 @@ $datePreferences = [
 	'dmy',
 	'ymd',
 	'persian',
+	'hijri',
 	'hebrew',
 	'ISO 8601',
 ];
@@ -426,9 +427,13 @@ $dateFormats = [
 	'persian date' => 'xij xiF xiY',
 	'persian both' => 'xij xiF xiY، ساعت H:i',
 
+	'hijri time' => 'H:i',
+	'hijri date' => 'xmj xmF xmY',
+	'hijri both' => 'xmj xmF xmY، ساعت H:i',
+
 	'hebrew time' => 'H:i',
 	'hebrew date' => 'xij xjF xjY',
-	'hebrew both' => 'H:i, xij xjF xjY',
+	'hebrew both' => 'xij xjF xjY، ساعت H:i',
 
 	'ISO 8601 time' => 'xnH:xni:xns',
 	'ISO 8601 date' => 'xnY-xnm-xnd',
