@@ -156,7 +156,7 @@
 	"new-messages": "{{PLURAL:$3|Fo taa la}} $1 ($2).",
 	"new-messages-from-users": "{{PLURAL:$4|To taa la}} $1 ayi {{PLURAL:$3|neɛ kaŋa|$3 users}} ($2).",
 	"new-messages-link-plural": "{{PLURAL:$1|yelle paala|999=new messages}}",
-	"new-messages-diff-link-plural": "Baaraa\n {{PLURAL:$1|lere|999=changes}}",
+	"new-messages-diff-link-plural": "baaraa {{PLURAL:$1|lere|999=changes}}",
 	"editsection": "maaleŋ",
 	"editold": "maaleŋ e",
 	"viewsourceold": "kaa ayi zie",

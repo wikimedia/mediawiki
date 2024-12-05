@@ -267,7 +267,7 @@
 	"new-messages-from-users": "{{PLURAL:$4|Вы}} атрымалі $1 ад $3 {{PLURAL:$3|удзельніка|удзельнікаў}} ($2).",
 	"new-messages-from-many-users": "Вы атрымалі $1 ад некалькіх удзельнікаў ($2).",
 	"new-messages-link-plural": "{{PLURAL:$1|1=новае паведамленьне|999=новыя паведамленьні}}",
-	"new-messages-diff-link-plural": "{{PLURAL:$1|1=апошняя зьмена|999=апошнія зьмены}}",
+	"new-messages-diff-link-plural": "{{PLURAL:$1|апошняя зьмена|999=апошнія зьмены}}",
 	"editsection": "рэдагаваць",
 	"editold": "рэдагаваць",
 	"viewsourceold": "паказаць крыніцу",

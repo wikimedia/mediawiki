@@ -186,7 +186,7 @@
 	"new-messages-from-users": "{{PLURAL:$4|Lí ū}} tuì {{PLURAL:$3|ê lâng|$3 ê lâng}} ê $1 ($2) ê thong-ti.",
 	"new-messages-from-many-users": "Ū tsiânn-tsuē lâng ($2) hōo lí $1 ê thong-ti.",
 	"new-messages-link-plural": "{{PLURAL:$1|tsi̍t-ê sin thong-ti|999=sin thong-ti}}",
-	"new-messages-diff-link-plural": "$1 {{PLURAL:$1|piàn-king|999=piàn-king}}",
+	"new-messages-diff-link-plural": "{{PLURAL:$1|piàn-king}}",
 	"editsection": "Siu-kái",
 	"editold": "Siu-kái",
 	"viewsourceold": "khuànn guân-sú luē-iông",

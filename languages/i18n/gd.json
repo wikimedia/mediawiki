@@ -245,7 +245,7 @@
 	"new-messages-from-users": "Tha $1 o $3 {{PLURAL:$3|chleachdaiche|chleachdaiche|cleachdaichean|cleachdaiche}} agad ($2).",
 	"new-messages-from-many-users": "Tha $1 agad o iomadh cleachdaiche ($2).",
 	"new-messages-link-plural": "{{PLURAL:$1|teachdaireachd ùr|teachdaireachdan ùra}}",
-	"new-messages-diff-link-plural": "{{PLURAL:$1|am mùthadh|na mùthaidhean}} mu dheireadh",
+	"new-messages-diff-link-plural": "{{PLURAL:$1|am mùthadh|999=na mùthaidhean}} mu dheireadh",
 	"editsection": "deasaich",
 	"editold": "deasaich",
 	"viewsourceold": "seall an tùs",

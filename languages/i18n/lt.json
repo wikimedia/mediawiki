@@ -286,7 +286,7 @@
 	"new-messages-from-users": "{{PLURAL:$4|Jūs gavote}} $1 iš {{PLURAL:$3|kito naudotojo|$3 naudotojų}} ($2).",
 	"new-messages-from-many-users": "Jūs turite $1 iš daugelio vartotojų ( $2 ) .",
 	"new-messages-link-plural": "{{PLURAL:$1|nauja žinutė|999=naujos žinutės}}",
-	"new-messages-diff-link-plural": "paskutinis {{PLURAL:$1|pakeitimas|999=pakeitimai}}",
+	"new-messages-diff-link-plural": "{{PLURAL:$1|paskutinis pakeitimas|999=paskutiniai pakeitimai}}",
 	"editsection": "keisti",
 	"editold": "taisyti",
 	"viewsourceold": "žiūrėti šaltinį",

@@ -134,7 +134,7 @@
 	"new-messages": "{{PLURAL:$3|So’o hayza’}} $1 ($2).",
 	"new-messages-from-users": "{{PLURAL:$4|niSo’}}hayza’ ’inay{{PLURAL:$3|’aroma’ kamamatawaw |$3 ka kamamatawaw }} $1 ($2).",
 	"new-messages-link-plural": "{{PLURAL:$1|pinakSekla’ ka:i’|999=’ima SaSo’ pinakSekla’ ka:i’}}",
-	"new-messages-diff-link-plural": "haysani’ {{PLURAL:$1| sinpih }}",
+	"new-messages-diff-link-plural": "haysani’ {{PLURAL:$1|sinpih}}",
 	"editsection": " bienji",
 	"editold": " bienji",
 	"viewsourceold": " komita’ ka yuensema:",

@@ -3179,7 +3179,7 @@
 	"pageinfo-recent-edits": "Bilangan suntingan terkini (dalam $1 yang lalu)",
 	"pageinfo-recent-authors": "Bilangan pengarang berbeza yang terkini",
 	"pageinfo-magic-words": "Kata sakti ($1)",
-	"pageinfo-hidden-categories": "Kategori tersembunyi ($1)",
+	"pageinfo-hidden-categories": "{{PLURAL:$1|Kategori}} tersembunyi ($1)",
 	"pageinfo-templates": "Templat tertransklusi ($1)",
 	"pageinfo-transclusions": "{{PLURAL:$1|Halaman|Halaman-halaman}} yang tertransklusi pada ($1)",
 	"pageinfo-toolboxlink": "Maklumat laman",

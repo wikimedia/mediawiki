@@ -250,7 +250,7 @@
 	"new-messages-from-users": "{{PLURAL:$4|Tu ave}} $1 de {{PLURAL:$3|un otra usor|$3 usores}} ($2).",
 	"new-messages-from-many-users": "Tu ave $1 de multe usores ($2).",
 	"new-messages-link-plural": "{{PLURAL:$1|un mesaje nova|999=mesajes nova}}",
-	"new-messages-diff-link-plural": "{{PLURAL:$1|cambia|cambias}} resente",
+	"new-messages-diff-link-plural": "{{PLURAL:$1|cambia|999=cambias}} resente",
 	"editsection": "edita",
 	"editold": "edita",
 	"viewsourceold": "regarda vicitesto",

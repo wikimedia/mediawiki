@@ -306,7 +306,7 @@
 	"new-messages-from-users": "{{PLURAL:$4|Vi havas}} $1 de {{PLURAL:$3|alia uzanto|$3 uzantoj}} ($2).",
 	"new-messages-from-many-users": "Riceviĝis $1 de multaj uzantoj ($2).",
 	"new-messages-link-plural": "{{PLURAL:$1|novan mesaĝon|999=novajn mesaĝojn}}",
-	"new-messages-diff-link-plural": "$1 {{PLURAL:$1|ŝanĝo|ŝanĝoj}}",
+	"new-messages-diff-link-plural": "{{PLURAL:$1|lasta ŝanĝo|999=lastaj ŝanĝoj}}",
 	"editsection": "redakti",
 	"editold": "redakti",
 	"viewsourceold": "vidi fonttekston",

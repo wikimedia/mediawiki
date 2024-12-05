@@ -248,7 +248,7 @@
 	"new-messages-from-users": "{{PLURAL:$4|Тӹньӹн}} $1 {{PLURAL:$3|вес пользователь|$3 пользователь}} гӹц ($2) улы.",
 	"new-messages-from-many-users": "Тӹнь шукы пользователь гӹц $1 ($2) нӓлӹнӓт.",
 	"new-messages-link-plural": "{{PLURAL:$1|у сирмӓш|999=у сирмӓш}}",
-	"new-messages-diff-link-plural": "пӹтӓртӹш {{PLURAL:$1|вашталтмаш|999=вашталтмаш}}",
+	"new-messages-diff-link-plural": "пӹтӓртӹш {{PLURAL:$1|вашталтмаш}}",
 	"editsection": "тӧрлӓтӓш",
 	"editold": "тӧрлӓтӓш",
 	"viewsourceold": "источникӹм анжен лӓктӓш",

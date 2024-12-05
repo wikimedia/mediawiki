@@ -268,7 +268,7 @@
 	"new-messages-from-users": "{{PLURAL:$4|თქვა გიღჷნა}} $1 {{PLURAL:$3|შხვა მახვარებუშე|$3 მახვარებუშე}} ($2).",
 	"new-messages-from-many-users": "თქვა გიღჷნა $1 ბრელი მახვარებუშე ($2).",
 	"new-messages-link-plural": "{{PLURAL:$1|ახალი გინაფა|999=ახალი გინაფა}}",
-	"new-messages-diff-link-plural": "ბოლო {{PLURAL:$1|თირუა|999=თირუა}}",
+	"new-messages-diff-link-plural": "ბოლო {{PLURAL:$1|თირუა}}",
 	"editsection": "რედაქტირაფა",
 	"editold": "რედაქტირაფა",
 	"viewsourceold": "წყუშ ძირაფა",

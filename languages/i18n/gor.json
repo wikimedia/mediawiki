@@ -1306,5 +1306,10 @@
 	"skin-view-edit-local": "Boli'a deskripsi lokal.",
 	"skin-action-protect": "Dahawa",
 	"skin-action-delete": "Luluta",
-	"skin-action-move": "Heyiya"
+	"skin-action-move": "Heyiya",
+	"blockedtext-made-by": "Lomubulo kilaraja lo $1",
+	"blockedtext-start-time": "Tilumula lomubulo: $1",
+	"blockedtext-expiration-time": "Pulitiyo lomubulo: $1",
+	"blockedtext-intended-blockee": "Taa bubulalo: $1",
+	"blockedtext-block-ip": "Alamat IP ulemu sa'ati botiya $1"
 }

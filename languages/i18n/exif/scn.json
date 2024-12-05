@@ -6,10 +6,11 @@
 			"Pippinu",
 			"Santu",
 			"Sarvaturi",
-			"Tonyfroio"
+			"Tonyfroio",
+			"Gmelfi"
 		]
 	},
-	"exif-imagewidth": "Larghizza",
+	"exif-imagewidth": "Larichizza",
 	"exif-imagelength": "Autizza",
 	"exif-bitspersample": "Bit pi cumpunenti",
 	"exif-compression": "Miccanismu di cumprissioni",
@@ -42,7 +43,7 @@
 	"exif-colorspace": "Spazziu dî culuri",
 	"exif-componentsconfiguration": "Significatu d'ognuna cumpunenti",
 	"exif-compressedbitsperpixel": "Mudalitati di cumprissioni dâ mmàggini",
-	"exif-pixelxdimension": "Larghizza dâ mmàggini",
+	"exif-pixelxdimension": "Larichizza dâ mmàggini",
 	"exif-pixelydimension": "Autizza dâ mmàggini",
 	"exif-usercomment": "Noti di l'utenti",
 	"exif-relatedsoundfile": "File audiu culligatu",

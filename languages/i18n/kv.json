@@ -249,7 +249,7 @@
 	"new-messages-from-users": "{{PLURAL:$4|Тіянлӧн эм}} $1 {{PLURAL:$3|мӧд пырӧдчысь|$3 пырӧдчысьяс}}-сянь ($2).",
 	"new-messages-from-many-users": "Тіянлы воис $1 уна пырӧдчысьсянь ($2).",
 	"new-messages-link-plural": "{{PLURAL:$1|1=выль юӧр|999=выль юӧр}}",
-	"new-messages-diff-link-plural": "{{PLURAL:$1|1=выльӧн вежӧм|999=выльӧн вежӧм}}",
+	"new-messages-diff-link-plural": "{{PLURAL:$1|выльӧн вежӧм}}",
 	"editsection": "вежны",
 	"editold": "вежны",
 	"viewsourceold": "видзӧдны подув код",

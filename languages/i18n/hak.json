@@ -234,7 +234,6 @@
 	"new-messages-from-users": "汝有來自{{PLURAL:$3|另一位用戶|$3位用戶}}嘅$1（$2）。",
 	"new-messages-from-many-users": "汝有來自多位用戶嘅$1（ $2 ）。",
 	"new-messages-link-plural": "{{PLURAL:$1|yit-thiàu sîn sêu-sit|999=sîn sêu-sit}}",
-	"new-messages-diff-link-plural": "chui-khiun{{PLURAL:$1|kiên-kói|kiên-kói}}",
 	"editsection": "phiên-siá",
 	"editold": "phiên-siá",
 	"viewsourceold": "Khon ngièn-sṳ́-mâ",

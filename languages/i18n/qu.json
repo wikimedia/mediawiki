@@ -233,7 +233,7 @@
 	"new-messages-from-users": "$1 {{PLURAL:$3|huk ruraqmanta|$3 ruraqkunamanta}} qhawanayki kachkan ($2).",
 	"new-messages-from-many-users": "$1 achka ruraqkunamanta qhawanayki kachkan ($2).",
 	"new-messages-link-plural": "{{PLURAL:$1|Musuq willaymi|Musuq willaykunam}}",
-	"new-messages-diff-link-plural": "ñaqha {{PLURAL:$1|hukchasqa|hukchasqakuna}}",
+	"new-messages-diff-link-plural": "ñaqha {{PLURAL:$1|hukchasqa|999=hukchasqakuna}}",
 	"editsection": "llamk'apuy",
 	"editold": "llamk'apuy",
 	"viewsourceold": "pukyu qillqata qhaway",

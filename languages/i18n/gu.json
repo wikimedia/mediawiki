@@ -264,7 +264,7 @@
 	"new-messages-from-users": "{{PLURAL:$4|આપ}}ને માટે {{PLURAL:$3|અન્ય સભ્ય|$3 અન્ય સભ્યો}} તરફથી $1 છે. ($2).",
 	"new-messages-from-many-users": "આપને માટે ઘણાં સભ્યો તરફથી $1 છે ($2).",
 	"new-messages-link-plural": "{{PLURAL:$1|નવો સંદેશો|૯૯૯=નવા સંદેશા}}",
-	"new-messages-diff-link-plural": "છેલ્લા {{PLURAL:$1|ફેરફાર|૯૯૯=ફેરફારો}}",
+	"new-messages-diff-link-plural": "છેલ્લા {{PLURAL:$1|ફેરફાર|999=ફેરફારો}}",
 	"editsection": "ફેરફાર કરો",
 	"editold": "ફેરફાર કરો",
 	"viewsourceold": "મૂળ જુઓ",

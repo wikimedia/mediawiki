@@ -243,7 +243,7 @@
 	"new-messages-from-users": "Maš $1 wót {{PLURAL:$3|drugego wužywarja|$3 wužywarjowu|$3 wužywarjow|$3 wužywarjow}} ($2).",
 	"new-messages-from-many-users": "Maš $1 wót wjele wužywarjow ($2).",
 	"new-messages-link-plural": "{{PLURAL:$1|nowa powěsć|nowej powěsći|nowe powěsći}}",
-	"new-messages-diff-link-plural": "{{PLURAL:$1|slědna změna|slědnej změnje|slědne změny}}",
+	"new-messages-diff-link-plural": "{{PLURAL:$1|slědna změna|999=slědne změny}}",
 	"editsection": "wobźěłaś",
 	"editold": "wobźěłaś",
 	"viewsourceold": "glědaś žrědło",

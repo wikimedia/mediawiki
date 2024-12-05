@@ -256,7 +256,7 @@
 	"new-messages-from-users": "{{PLURAL:$4|Хьога}} $1 бенаб {{PLURAL:$3|1=$3 доакъашхочунгара|1=кхыволча доакъашхочунгара}} ($2).",
 	"new-messages-from-many-users": "Хьога $1 бенаб массехк доакъашхошкара ($2).",
 	"new-messages-link-plural": "{{PLURAL:$1|керда хоам}}",
-	"new-messages-diff-link-plural": "тӀеххьара {{PLURAL:$1|1=хувцам|999=хувцам}}",
+	"new-messages-diff-link-plural": "тӀеххьара {{PLURAL:$1|хувцам}}",
 	"editsection": "тоаде",
 	"editold": "тоаде",
 	"viewsourceold": "Ко́дага хьажа",

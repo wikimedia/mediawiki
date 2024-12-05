@@ -5,7 +5,8 @@
 			"Isidore Dantas",
 			"Matma Rex",
 			"The Discoverer",
-			"아라"
+			"아라",
+			"QW90"
 		]
 	},
 	"tog-underline": "Duvyenche odhorekhon:",
@@ -658,7 +659,7 @@
 	"rcfilters-filter-categorization-label": "Vorgache bodol",
 	"rcfilters-filter-categorization-description": "Vorgant savn panam zoddloleachi vo kaddloleachi nond",
 	"rcfilters-filter-logactions-label": "Sotran nond zal’lem kario",
-	"rcfilters-filter-logactions-description": "Karbhari kario, khatem rochop, pana kaddun uddovp, uploads...",
+	"rcfilters-filter-logactions-description": "Karbhari kario, pana kaddun uddovp, uploads...",
 	"rcfilters-hideminor-conflicts-typeofchange-global": "\"Dhkatte sompadon\" gallnnechem kijil ek vo odik \"Bodolacho prokar\" gallnnek asa, kiteak thoddea bodolache prokarank \"dhaktte\" mhonn nemunk zaina. Kijilacheo gallnneo Kriaxil gallnnechea kxetrant voir khunnaileat.",
 	"rcfilters-hideminor-conflicts-typeofchange": "Thoddea bodolache prokarank \"dhaktte\" mhonn nemunk zaina, hea khatir he gallnnek fuddem ievpi Bodlopache Prokar gallnnent kijil asa: $1",
 	"rcfilters-typeofchange-conflicts-hideminor": "Hea \"Bodolacho prokar\" gallnnechem kijil asa \"Dhaktte sompadon\" gallnnek. Thoddea bodolache prokarank \"dhaktte\" mhonn nemunk zaina.",
@@ -1164,6 +1165,7 @@
 	"diff-form-submit": "Forok dakhoi",
 	"permanentlink-submit": "Uzollnier voch",
 	"newsection-submit": "Panar voch",
+	"htmlform-submit": "Zoma kor",
 	"htmlform-title-not-exists": "$1 ostitvant na.",
 	"logentry-delete-delete": "$1, hannem {{GENDER:$2|kadun udoile}} pan $3",
 	"logentry-delete-restore": "$1 hannem {{GENDER:$2|porot haddlam}} pan $3 ($4)‎",

@@ -2330,7 +2330,7 @@
 	"pageinfo-recent-edits": "ନଗଦବଦଳ ସଂଖ୍ୟା($1 ମଧ୍ୟରେ)",
 	"pageinfo-recent-authors": "ନିଆରା ଲେଖକଙ୍କ ମୋଟସଂଖ୍ୟା",
 	"pageinfo-magic-words": "ମ୍ୟାଜିକ {{PLURAL:$1|ଶବ୍ଦ|ଶବ୍ଦସବୁ}} ($1)",
-	"pageinfo-hidden-categories": "{{PLURAL:$1|category|categories}} ($1) ଲୁଚାଗଲା",
+	"pageinfo-hidden-categories": "{{PLURAL:$1|category|categories}}   ଲୁଚାଗଲା ($1)",
 	"pageinfo-templates": "ଟ୍ରାନ୍ସକ୍ଲୁଡ଼କରା {{PLURAL:$1|ଛାଞ୍ଚ|ଛାଞ୍ଚସବୁ}} ($1)",
 	"pageinfo-transclusions": "{{PLURAL:$1|ପୃଷ୍ଠା|ପୃଷ୍ଠାସବୁ}} ($1)ରେ ଯୋଡାଗଲା",
 	"pageinfo-toolboxlink": "ପୃଷ୍ଠା ସୂଚନା",

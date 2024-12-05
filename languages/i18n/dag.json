@@ -271,7 +271,7 @@
 	"new-messages-from-users": "{{PLURAL:$4|A maala}}$1 n yi{{PLURAL:$3|ŋɔ baɣ su $3 ŋɔ su}}$2",
 	"new-messages-from-many-users": "A mali  $1 niriba pam sani ($2).",
 	"new-messages-link-plural": "{{PLURAL:$1|a satari palli|999=satari pala}}",
-	"new-messages-diff-link-plural": " bahigu {{PLURAL:$1|taɣibu|999=taɣibu nima}}",
+	"new-messages-diff-link-plural": "bahigu {{PLURAL:$1|taɣibu|999=taɣibu nima}}",
 	"editsection": "mali niŋ",
 	"editold": "Mali niŋ",
 	"viewsourceold": "Yulimi di nyabili",

@@ -255,7 +255,7 @@
 	"new-messages-from-users": "{{PLURAL:$4|Силер}} {{PLURAL:$3|бир ажыглакчыдан|$3 ажыглакчыдан}} $1($2) алдыңар.",
 	"new-messages-from-many-users": "Хөй ажыглакчылардан ($2) $1 алган силер.",
 	"new-messages-link-plural": "{{PLURAL:$1|чаа медеглел|999=чаа медеглел}}",
-	"new-messages-diff-link-plural": "сөөлгү {{PLURAL:$1| өскертилге|999=өскертилге}}",
+	"new-messages-diff-link-plural": "сөөлгү {{PLURAL:$1|өскертилге}}",
 	"editsection": "эдер",
 	"editold": "эдер",
 	"viewsourceold": "үндезин кодун көөр",

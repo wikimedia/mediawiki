@@ -259,7 +259,7 @@
 	"new-messages-from-users": "{{PLURAL:$4|侬有}}来自{{PLURAL:$3|其他用户|$3个用户}}个$1（$2）。",
 	"new-messages-from-many-users": "你有从多个用户来个$1（$2）。",
 	"new-messages-link-plural": "{{PLURAL:$1|新消息|999=新消息}}",
-	"new-messages-diff-link-plural": "最后{{PLURAL:$1|改动|999=改动}}",
+	"new-messages-diff-link-plural": "最后{{PLURAL:$1|改动}}",
 	"editsection": "编辑",
 	"editold": "编辑",
 	"viewsourceold": "望源碼",

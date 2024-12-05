@@ -138,7 +138,7 @@
 	"new-messages": "{{PLURAL:$3|Сестә}} $1 ($2) пар.",
 	"new-messages-from-users": "{{PLURAL:$4|Сескә}} {{PLURAL:$3|$3 ҡатнашыуцытан}} $1 килте ($2).",
 	"new-messages-link-plural": "{{PLURAL:$1|1=йаңа ҡәбәр|999=йаңа ҡәбәрләр}}",
-	"new-messages-diff-link-plural": "{{PLURAL:$1|1=суңҡы пашҡартыу|999=суңҡы пашҡартыулар}}",
+	"new-messages-diff-link-plural": "{{PLURAL:$1|суңҡы пашҡартыу|999=суңҡы пашҡартыулар}}",
 	"editsection": "төсәткәле",
 	"editold": "төсәткәле",
 	"viewsourceold": "пашлапҡы кодны ҡарағалы",
