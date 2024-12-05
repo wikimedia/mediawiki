@@ -2576,6 +2576,7 @@
 	"block-options": "אפשרויות נוספות:",
 	"block-options-description": "האפשרויות האלו עשויות לעזור לך לעקוב אחר המשתמש הזה כדי למנוע בעיות נוספות.",
 	"block-reason": "סיבה:",
+	"block-reason-help": "למשל, אפשר לציין דפים מסוימים שהושחתו",
 	"block-reason-other": "סיבה נוספת או אחרת",
 	"block-confirm-yes": "כן",
 	"block-confirm-no": "לא",

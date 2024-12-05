@@ -2647,6 +2647,7 @@
 	"block-options": "Ek seçenekler:",
 	"block-options-description": "Bu seçenekler, başka sorunları önlemek için bu kullanıcıyı izlemenize yardımcı olabilir.",
 	"block-reason": "Sebep:",
+	"block-reason-help": "Örneğin, zarar verilmiş belirli sayfaları alıntılayın",
 	"block-reason-other": "Ek ya da başka bir gerekçe",
 	"block-confirm-yes": "Evet",
 	"block-confirm-no": "Hayır",

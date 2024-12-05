@@ -909,7 +909,6 @@
 	"brokenredirects-edit": "ပလေဝ်ဒါန်",
 	"brokenredirects-delete": "ပလီု",
 	"withoutinterwiki-submit": "ထ္ၜး",
-	"nbytes": "$1 {{PLURAL:$1|byte|bytes}}",
 	"ncategories": "$1{{PLURAL:$1|ကဏ္ဍ|ကဏ္ဍဂမၠိုင်}}",
 	"ninterwikis": "$1 {{PLURAL:$1|အေန်တာဝဳကဳ|အေန်တာဝဳကဳဂမၠိုၚ်}}",
 	"nlinks": "$1 {{PLURAL:$1|link|links}}",

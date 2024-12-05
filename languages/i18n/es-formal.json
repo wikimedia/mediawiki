@@ -301,7 +301,6 @@
 	"filehist-help": "Haga clic sobre una fecha/hora para ver el archivo a esa fecha.",
 	"upload-disallowed-here": "No puede sobrescribir este archivo.",
 	"randompage": "Página aleatoria",
-	"nbytes": "$1 {{PLURAL:$1|byte|bytes}}",
 	"emailuser": "Enviar un correo electrónico a este usuario",
 	"addedwatchtext": "Se han añadido «[[:$1]]» y su página de discusión a su [[Special:Watchlist|lista de seguimiento]].",
 	"removedwatchtext": "Se han eliminado «[[:$1]]» y su página de discusión de tu [[Special:Watchlist|lista de seguimiento]].",

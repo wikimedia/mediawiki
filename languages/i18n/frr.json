@@ -1923,7 +1923,6 @@
 	"ipb_blocked_as_range": "Feeler: Det IP-adres $1 as auer det widjloftag sper $2 speret. Det sper faan $1 alian koon ei apheewen wurd.",
 	"ip_range_invalid": "Ferkiard IP-adresrüm",
 	"ip_range_toolarge": "Adresrümen mut ei grater üs /$1 wees.",
-	"proxyblocker": "Proxy blocker",
 	"proxyblockreason": "Din IP-adres as speret wurden, auer det tu en eebenen proxy hiart.\nFertel det dan ISP of dan süsteemsiinst. Eeben proxys stel det seekerhaid uun fraag.",
 	"sorbsreason": "Din IP-adres as uun det DNSBL faan {{SITENAME}} üs eeben proxy apfeerd.",
 	"sorbs_create_account_reason": "Din IP-adres as uun det DNSBL faan {{SITENAME}} üs eeben proxy apfeerd. Dü könst nian brükerkonto maage.",

@@ -2686,7 +2686,7 @@
 	"ip_range_toolarge": "Blokkering av IP-serier større enn /$1 er ikke tillatt.",
 	"ip_range_exceeded": "IP-intervallet er høyere enn det maksimalt tillatte. Tillatt intervall: /$1.",
 	"ip_range_toolow": "IP-intervaller er i praksis ikke tillatt.",
-	"proxyblocker": "Proxyblokker",
+	"proxyblocker": "Proxyblokkerer",
 	"proxyblockreason": "IP-adressen din ble blokkert fordi den er en åpen proxy. Kontakt internettleverandøren din eller teknisk støtte og informer dem om dette alvorlige sikkerhetsproblemet.",
 	"sorbsreason": "IP-adressen din er listet som en åpen proxy i DNSBL-en brukt av {{SITENAME}}.",
 	"sorbs_create_account_reason": "Din IP-adresse angis som en åpen proxy i DNSBL-en brukt av {{SITENAME}}. Du kan ikke opprette en konto",

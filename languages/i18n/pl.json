@@ -2631,6 +2631,7 @@
 	"block-options": "Opcje dodatkowe:",
 	"block-options-description": "Te opcje mogą pomóc ci w dalszym obserwowaniu działań użytkownika, aby zapobiec dalszym problemom.",
 	"block-reason": "Powód:",
+	"block-reason-help": "Na przykład wymień strony, które zostały zwandalizowane",
 	"block-reason-other": "Dodatkowy lub inny powód",
 	"block-confirm-yes": "Tak",
 	"block-confirm-no": "Nie",

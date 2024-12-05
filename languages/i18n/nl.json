@@ -2631,6 +2631,7 @@
 	"block-options": "Extra opties:",
 	"block-options-description": "Met deze opties kunt u op deze gebruiker een oogje houden ter voorkoming van verdere problemen.",
 	"block-reason": "Reden:",
+	"block-reason-help": "Vermeld bijvoorbeeld bepaalde pagina’s die zijn vernield",
 	"block-reason-other": "Aanvullende of andere reden",
 	"block-confirm-yes": "Ja",
 	"block-confirm-no": "Nee",

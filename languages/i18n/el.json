@@ -1917,7 +1917,6 @@
 	"withoutinterwiki-summary": "Οι ακόλουθες σελίδες δεν συνδέουν σε εκδόσεις σε άλλες γλώσσες.",
 	"withoutinterwiki-submit": "Εμφάνιση",
 	"fewestrevisions": "Σελίδες με τις λιγότερες αναθεωρήσεις",
-	"nbytes": "$1 {{PLURAL:$1|byte|bytes}}",
 	"ncategories": "$1 {{PLURAL:$1|κατηγορία|κατηγορίες}}",
 	"ninterwikis": "$1 {{PLURAL:$1|σύνδεσμος|σύνδεσμοι}} interwiki",
 	"nlinks": "$1 {{PLURAL:$1|σύνδεσμος|σύνδεσμοι}}",
