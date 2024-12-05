@@ -110,6 +110,9 @@
 		"pageSettings": {
 			"file": "../wikimediaui/images/icons/pageSettings.svg"
 		},
+		"power": {
+			"file": "../wikimediaui/images/icons/power.svg"
+		},
 		"printer": {
 			"file": "../wikimediaui/images/icons/printer.svg"
 		},

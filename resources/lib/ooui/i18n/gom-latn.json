@@ -1,12 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
+			"QW90",
 			"The Discoverer"
 		]
 	},
 	"ooui-copytextlayout-copy": "Nokol",
 	"ooui-toolbar-more": "Anik",
 	"ooui-toolgroup-expand": "Anik",
+	"ooui-toolgroup-collapse": "Unnem",
 	"ooui-dialog-message-accept": "Borem",
 	"ooui-dialog-message-reject": "Rodd'dd kor",
 	"ooui-dialog-process-retry": "Porot proyotn kor",

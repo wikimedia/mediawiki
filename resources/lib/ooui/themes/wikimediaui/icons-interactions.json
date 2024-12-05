@@ -139,6 +139,9 @@
 		"pageSettings": {
 			"file": "images/icons/pageSettings.svg"
 		},
+		"power": {
+			"file": "images/icons/power.svg"
+		},
 		"printer": {
 			"file": "images/icons/printer.svg"
 		},

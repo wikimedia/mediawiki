@@ -1,5 +1,30 @@
 # OOUI Release History
 
+## v0.51.4 / 2024-12-05
+
+### Code
+* build: Partly revert SVGO config changes by not enabling pretty output (Volker E.)
+
+## v0.51.3 / 2024-12-04
+
+### Deprecating changes
+* [DEPRECATING CHANGE] Mark Exception class as deprecated (Daimona Eaytoy)
+
+### Styles
+* WikimediaUI theme: fix TextInput invalid focus style (Volker E.)
+
+### Icons
+* icons: Add 'power' to 'interactions' pack (Volker E.)
+
+### Code
+* build: Replace grunt-jsdoc with direct call to jsdoc (James D. Forrester)
+* build: Update SVGO config to follow Codex's (James D. Forrester)
+* build: Update qunit from 2.20.0 to 2.22.0 (James D. Forrester)
+* build: Updating cross-spawn to 7.0.6 ([BOT] libraryupgrader)
+* build: Updating jsdoc to 4.0.4 ([BOT] libraryupgrader)
+* build: Upgrade PHPUnit from 9.6.16 to 9.6.21 (James D. Forrester)
+* build: Upgrade svgo from 3.2.0 to 3.3.2 (James D. Forrester)
+
 ## v0.51.2 / 2024-11-13
 
 ### Deprecating changes
