@@ -52,8 +52,7 @@ class RevisionArchiveRecordTest extends MediaWikiIntegrationTestCase {
 			$comment,
 			(object)$row,
 			$slots,
-			'acmewiki',
-			PreconditionException::class
+			'acmewiki'
 		];
 
 		yield 'all info, local' => [
@@ -131,7 +130,6 @@ class RevisionArchiveRecordTest extends MediaWikiIntegrationTestCase {
 	 * @param stdClass $row
 	 * @param RevisionSlots $slots
 	 * @param string|false $wikiId
-	 * @param string|null $expectedException
 	 */
 	public function testConstructorAndGetters(
 		PageIdentity $page,
@@ -139,8 +137,7 @@ class RevisionArchiveRecordTest extends MediaWikiIntegrationTestCase {
 		CommentStoreComment $comment,
 		$row,
 		RevisionSlots $slots,
-		$wikiId = RevisionRecord::LOCAL,
-		?string $expectedException = null
+		$wikiId = RevisionRecord::LOCAL
 	) {
 		$rec = new RevisionArchiveRecord( $page, $user, $comment, $row, $slots, $wikiId );
 
@@ -177,15 +174,10 @@ class RevisionArchiveRecordTest extends MediaWikiIntegrationTestCase {
 			$this->assertSame( $slots->computeSha1(), $rec->getSha1(), 'getSha1' );
 		}
 
-		if ( $expectedException ) {
-			$this->expectException( $expectedException );
-			$rec->getPageAsLinkTarget();
-		} else {
-			$this->assertTrue(
-				TitleValue::newFromPage( $page )->isSameLinkAs( $rec->getPageAsLinkTarget() ),
-				'getPageAsLinkTarget'
-			);
-		}
+		$this->assertTrue(
+			TitleValue::newFromPage( $page )->isSameLinkAs( $rec->getPageAsLinkTarget() ),
+			'getPageAsLinkTarget'
+		);
 	}
 
 	public static function provideConstructorFailure() {

@@ -1433,13 +1433,13 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 	public function testNewRevisionFromRow_no_user() {
 		$store = $this->getServiceContainer()->getRevisionStore();
-		$title = Title::newFromText( __METHOD__ );
+		$page = PageIdentityValue::localIdentity( 13, NS_MAIN, 'Test' );
 
 		$row = (object)[
 			'rev_id' => '2',
-			'rev_page' => '2',
-			'page_namespace' => '0',
-			'page_title' => $title->getText(),
+			'rev_page' => $page->getId(),
+			'page_namespace' => $page->getNamespace(),
+			'page_title' => $page->getDBkey(),
 			'rev_text_id' => '47',
 			'rev_timestamp' => '20180528192356',
 			'rev_minor_edit' => '0',
@@ -1457,10 +1457,16 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			'rev_content_model' => null,
 		];
 
-		$record = @$store->newRevisionFromRow( $row, 0, $title );
+		$record = @$store->newRevisionFromRow( $row, 0, $page );
 		$this->assertNotNull( $record );
 		$this->assertNotNull( $record->getUser() );
 		$this->assertNotEmpty( $record->getUser()->getName() );
+
+		$this->assertTrue( $record->getPage()->isSamePageAs( $page ) );
+		$this->assertSame( $record->getId(), (int)$row->rev_id );
+		$this->assertSame( $record->getPageId(), $row->rev_page );
+		$this->assertSame( $record->getSize(), (int)$row->rev_len );
+		$this->assertSame( $record->getSha1(), $row->rev_sha1 );
 	}
 
 	public function testNewRevisionFromRow_noPage() {
@@ -1478,10 +1484,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertNotNull( $record );
 		$this->assertTrue( $page->isSamePageAs( $record->getPage() ) );
-
-		// NOTE: This should return a Title object for now, until we no longer have a need
-		//       to frequently convert to Title.
-		$this->assertInstanceOf( Title::class, $record->getPage() );
 	}
 
 	public function testNewRevisionFromRow_noPage_crossWiki() {
@@ -1512,18 +1514,13 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $page->getId(), $record->getPage()->getId( $wikiId ) );
 	}
 
-	/**
-	 * @dataProvider provideInsertRevisionOn
-	 *
-	 * @param callable $getPageIdentity
-	 */
-	public function testInsertRevisionOn_archive( $getPageIdentity ) {
+	public function testInsertRevisionOn_archive() {
 		// This is a round trip test for deletion and undeletion of a
 		// revision row via the archive table.
-		[ $title, $pageIdentity ] = $getPageIdentity();
+		$pageIdentity = PageIdentityValue::localIdentity( 0, NS_MAIN, 'Test_Insert_Revision_On' );
 		$store = $this->getServiceContainer()->getRevisionStore();
 
-		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $pageIdentity );
 		$user = $this->getTestSysop()->getUser();
 		$page->doUserEditContent( new WikitextContent( "First" ), $user, __METHOD__ . '-first' );
 		$orig = $page->doUserEditContent( new WikitextContent( "Foo" ), $user, __METHOD__ )
@@ -1532,6 +1529,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 		// re-create page, so we can later load revisions for it
 		$page->doUserEditContent( new WikitextContent( 'Two' ), $user, __METHOD__ );
+		$pageRecord = $page->toPageRecord();
 
 		$db = $this->getDb();
 		$row = $store->newArchiveSelectQueryBuilder( $db )
@@ -1544,8 +1542,8 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$record = $store->newRevisionFromArchiveRow(
 			$row,
 			0,
-			$pageIdentity,
-			[ 'page_id' => $title->getArticleID() ]
+			$pageRecord,
+			[ 'page_id' => $pageRecord->getId() ]
 		);
 
 		$restored = $store->insertRevisionOn( $record, $db );
@@ -1570,19 +1568,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 		// can we find it directly in the database?
 		$this->assertRevisionExistsInDatabase( $restored );
-	}
-
-	public static function provideInsertRevisionOn() {
-		return [
-			[ static function () {
-				$pageTitle = Title::newFromText( 'Test_Insert_Revision_On' );
-				return [ $pageTitle, $pageTitle ];
-			} ],
-			[ static function () {
-				$pageTitle = Title::newFromText( 'Test_Insert_Revision_On' );
-				return [ $pageTitle, $pageTitle->toPageIdentity() ];
-			} ]
-		];
 	}
 
 	public function testGetParentLengths() {
@@ -2654,16 +2639,12 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			$this->getTestPage()->getId(), $rev1, $rev2 );
 	}
 
-	/**
-	 * @dataProvider provideGetFirstRevision
-	 * @param callable $getPageIdentity
-	 */
-	public function testGetFirstRevision( $getPageIdentity ) {
-		[ $pageTitle, $pageIdentity ] = $getPageIdentity();
-		$editStatus = $this->editPage( $pageTitle->getPrefixedDBkey(), 'First Revision' );
+	public function testGetFirstRevision() {
+		$pageIdentity = PageIdentityValue::localIdentity( 13, NS_MAIN, 'Test_Get_First_Revision' );
+		$editStatus = $this->editPage( $pageIdentity, 'First Revision' );
 		$this->assertStatusGood( $editStatus, 'must create first revision' );
 		$firstRevId = $editStatus->getNewRevision()->getId();
-		$editStatus = $this->editPage( $pageTitle->getPrefixedText(), 'New Revision' );
+		$editStatus = $this->editPage( $pageIdentity, 'New Revision' );
 		$this->assertStatusGood( $editStatus, 'must create new revision' );
 		$this->assertNotSame(
 			$firstRevId,
@@ -2677,19 +2658,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 				->getFirstRevision( $pageIdentity )
 				->getId()
 		);
-	}
-
-	public static function provideGetFirstRevision() {
-		return [
-			[ static function () {
-				$pageTitle = Title::newFromText( 'Test_Get_First_Revision' );
-				return [ $pageTitle, $pageTitle ];
-			} ],
-			[ static function () {
-				$pageTitle = Title::newFromText( 'Test_Get_First_Revision' );
-				return [ $pageTitle, $pageTitle->toPageIdentity() ];
-			} ]
-		];
 	}
 
 	public function testGetFirstRevision_nonexistent_page() {

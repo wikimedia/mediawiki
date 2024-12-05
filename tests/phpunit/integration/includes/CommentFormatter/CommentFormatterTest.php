@@ -186,13 +186,13 @@ class CommentFormatterTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideFormatRevision() {
 		$normal = ' <span class="comment">(' .
-			'comment=hello, selfLinkTarget=Page, !samePage, enableSectionLinks' .
+			'comment=hello, selfLinkTarget=0:Page, !samePage, enableSectionLinks' .
 			')</span>';
 		$deleted = ' <span class="history-deleted comment"> ' .
 			'<span class="comment">(edit summary removed)</span></span>';
 		$deletedAllowed = ' <span class="history-deleted comment"> ' .
 			'<span class="comment">(' .
-			'comment=hello, selfLinkTarget=Page, !samePage, enableSectionLinks' .
+			'comment=hello, selfLinkTarget=0:Page, !samePage, enableSectionLinks' .
 			')</span></span>';
 
 		return [
@@ -298,7 +298,7 @@ class CommentFormatterTest extends MediaWikiIntegrationTestCase {
 		);
 		$this->assertSame(
 			[ 100 => ' <span class="comment">(' .
-				'comment=hello, selfLinkTarget=Page, !samePage, enableSectionLinks' .
+				'comment=hello, selfLinkTarget=0:Page, !samePage, enableSectionLinks' .
 				')</span>'
 			],
 			$result
@@ -336,7 +336,7 @@ class CommentFormatterTest extends MediaWikiIntegrationTestCase {
 			->execute();
 		$this->assertSame(
 			[ 100 => ' <span class="comment">(' .
-				'comment=hello, selfLinkTarget=Page, !samePage, enableSectionLinks' .
+				'comment=hello, selfLinkTarget=0:Page, !samePage, enableSectionLinks' .
 				')</span>'
 			],
 			$result
