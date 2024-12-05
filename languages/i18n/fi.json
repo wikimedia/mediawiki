@@ -2603,6 +2603,7 @@
 	"block-options": "Lisävalinnat:",
 	"block-options-description": "Nämä lisävalinnat voivat auttaa käyttäjän tarkkailemisessa enempien ongelmien ehkäisemiseksi.",
 	"block-reason": "Syy:",
+	"block-reason-help": "Esim. mainitse vandalismin kohteeksi joutuneet sivut",
 	"block-reason-other": "Lisäsyy tai muu syy",
 	"block-confirm-yes": "Kyllä",
 	"block-confirm-no": "Ei",
