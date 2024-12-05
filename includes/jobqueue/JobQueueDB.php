@@ -26,6 +26,7 @@ use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\RawSQLValue;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Rdbms\ServerInfo;
+use Wikimedia\ScopedCallback;
 
 /**
  * Database-backed job queue storage.
@@ -210,7 +211,11 @@ class JobQueueDB extends JobQueue {
 	 * @return void
 	 */
 	protected function doBatchPush( array $jobs, $flags ) {
+		// Silence expectations related to getting a primary DB, as we have to get a primary DB to insert the job.
+		$transactionProfiler = Profiler::instance()->getTransactionProfiler();
+		$scope = $transactionProfiler->silenceForScope();
 		$dbw = $this->getPrimaryDB();
+		ScopedCallback::consume( $scope );
 		// In general, there will be two cases here:
 		// a) sqlite; DB connection is probably a regular round-aware handle.
 		// If the connection is busy with a transaction, then defer the job writes
@@ -280,6 +285,10 @@ class JobQueueDB extends JobQueue {
 			}
 			// Build the full list of job rows to insert
 			$rows = array_merge( $rowList, array_values( $rowSet ) );
+			// Silence expectations related to inserting to the job table, because we have to perform the inserts to
+			// track the job.
+			$transactionProfiler = Profiler::instance()->getTransactionProfiler();
+			$scope = $transactionProfiler->silenceForScope();
 			// Insert the job rows in chunks to avoid replica DB lag...
 			foreach ( array_chunk( $rows, 50 ) as $rowBatch ) {
 				$dbw->newInsertQueryBuilder()
@@ -287,6 +296,7 @@ class JobQueueDB extends JobQueue {
 					->rows( $rowBatch )
 					->caller( $method )->execute();
 			}
+			ScopedCallback::consume( $scope );
 			$this->incrStats( 'inserts', $this->type, count( $rows ) );
 			$this->incrStats( 'dupe_inserts', $this->type,
 				count( $rowSet ) + count( $rowList ) - count( $rows )
