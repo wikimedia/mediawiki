@@ -20,7 +20,6 @@
 namespace MediaWiki\Rest\Handler\Helper;
 
 use InvalidArgumentException;
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Content\Content;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Edit\ParsoidRenderID;
@@ -443,19 +442,8 @@ class HtmlInputTransformHelper {
 
 	/**
 	 * Set metrics sink.
-	 *
-	 * @note Passing a StatsdDataFactoryInterface here has been deprecated
-	 * since 1.43.
-	 *
-	 * @param StatsFactory|StatsdDataFactoryInterface $statsFactory
 	 */
-	public function setMetrics( $statsFactory ) {
-		if ( $statsFactory instanceof StatsdDataFactoryInterface ) {
-			// Uncomment this once all WMF code has been transitioned, but
-			// leave it in for the 1.43 release.
-			wfDeprecated( __METHOD__ . ' with StatsdDataFactoryInterface', '1.43' );
-			return;
-		}
+	public function setMetrics( StatsFactory $statsFactory ) {
 		$this->statsFactory = $statsFactory;
 
 		if ( $this->transform ) {

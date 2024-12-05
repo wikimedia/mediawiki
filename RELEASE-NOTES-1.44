@@ -136,6 +136,9 @@ because of Phabricator reports.
   was marked as an internal constant.
 * The ParsoidOutputAccess class marked @unstable from creation and
   deprecated with all of its methods in 1.43, has been removed.
+* The HtmlToContentTransform::setMetrics() and
+  HtmlInputTransformHelper::setMetrics() methods now require a StatsFactory
+  argument.  Passing a StatsdDataFactoryInterface was deprecated in 1.43.
 * IDatabase::onAtomicSectionCancel() has been removed without deprecation
   as it's completely unused.
 * The method ParserOptions::setupFakeRevision has been marked internal. It
