@@ -217,9 +217,10 @@ abstract class DatabaseUpdater {
 		AutoLoader::registerClasses( $extInfo['autoloaderClasses'] );
 		AutoLoader::registerNamespaces( $extInfo['autoloaderNS'] );
 
+		$legacyHooks = $legacySchemaHooks ? [ 'LoadExtensionSchemaUpdates' => $legacySchemaHooks ] : [];
 		return new HookContainer(
 			new StaticHookRegistry(
-				[ 'LoadExtensionSchemaUpdates' => $legacySchemaHooks ],
+				$legacyHooks,
 				$extInfo['attributes']['Hooks'] ?? [],
 				$extInfo['attributes']['DeprecatedHooks'] ?? []
 			),

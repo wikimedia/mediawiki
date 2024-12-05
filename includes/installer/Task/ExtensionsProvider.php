@@ -35,7 +35,7 @@ class ExtensionsProvider extends Task {
 		// double load extensions
 		define( 'MW_EXTENSIONS_LOADED', true );
 
-		$legacySchemaHooks = $this->getAutoExtensionLegacyHooks();
+		$legacySchemaHooks = $this->getAutoExtensionLegacySchemaHooks();
 		$data = $this->getAutoExtensionData();
 		if ( isset( $data['globals']['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
 			$legacySchemaHooks = array_merge( $legacySchemaHooks,
@@ -43,10 +43,11 @@ class ExtensionsProvider extends Task {
 		}
 		$extDeprecatedHooks = $data['attributes']['DeprecatedHooks'] ?? [];
 
+		$legacyHooks = $legacySchemaHooks ? [ 'LoadExtensionSchemaUpdates' => $legacySchemaHooks ] : [];
 		$this->getContext()->provide( 'HookContainer',
 			new HookContainer(
 				new StaticHookRegistry(
-					[ 'LoadExtensionSchemaUpdates' => $legacySchemaHooks ],
+					$legacyHooks,
 					$data['attributes']['Hooks'] ?? [],
 					$extDeprecatedHooks
 				),
@@ -77,11 +78,11 @@ class ExtensionsProvider extends Task {
 
 	/**
 	 * Auto-detect extensions with an old style .php registration file, load
-	 * the extensions, and return the merged $wgHooks array.
+	 * the extensions, and return the LoadExtensionSchemaUpdates legacy handlers.
 	 *
 	 * @return array
 	 */
-	private function getAutoExtensionLegacyHooks() {
+	private function getAutoExtensionLegacySchemaHooks() {
 		$exts = $this->getOption( 'Extensions' );
 		$extensionsDir = $this->getExtensionsDir();
 		$files = [];
@@ -103,7 +104,7 @@ class ExtensionsProvider extends Task {
 	 * and return the LoadExtensionSchemaUpdates hooks.
 	 *
 	 * @param string[] $files
-	 * @return array LoadExtensionSchemaUpdates legacy hooks
+	 * @return string[] LoadExtensionSchemaUpdates legacy hooks
 	 */
 	private function includeExtensionFiles( $files ) {
 		/**
@@ -128,15 +129,14 @@ class ExtensionsProvider extends Task {
 			require_once $file;
 		}
 
+		// Ignore everyone else's hooks. Lord knows what someone might be doing
+		// in ParserFirstCallInit (see T29171)
 		// @phpcs:disable MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgHooks
 		// @phpcs:ignore Generic.Files.LineLength.TooLong
 		// @phan-suppress-next-line PhanUndeclaredVariable,PhanCoalescingAlwaysNull $wgHooks is defined by MainConfigSchema
 		$hooksWeWant = $wgHooks['LoadExtensionSchemaUpdates'] ?? [];
 		// @phpcs:enable MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgHooks
-
-		// Ignore everyone else's hooks. Lord knows what someone might be doing
-		// in ParserFirstCallInit (see T29171)
-		return [ 'LoadExtensionSchemaUpdates' => $hooksWeWant ];
+		return $hooksWeWant;
 	}
 
 	/**
