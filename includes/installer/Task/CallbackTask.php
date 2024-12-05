@@ -3,6 +3,7 @@
 namespace MediaWiki\Installer\Task;
 
 use MediaWiki\Status\Status;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * An installer task which calls a callback function
@@ -12,12 +13,16 @@ use MediaWiki\Status\Status;
 class CallbackTask extends Task {
 	/** @var string */
 	private $name;
+	/** @var MessageSpecifier|string|null */
+	private $description;
 	/** @var callable */
 	private $callback;
 	/** @var string|string[] */
 	private $dependencies;
 	/** @var string|string[] */
 	private $aliases;
+	/** @var bool */
+	private $postInstall;
 
 	/**
 	 * @see \MediaWiki\Installer\Task\TaskFactory::create
@@ -25,13 +30,22 @@ class CallbackTask extends Task {
 	 */
 	public function __construct( $spec ) {
 		$this->name = $spec['name'];
+		$this->description = $spec['description'] ?? null;
 		$this->callback = $spec['callback'];
 		$this->dependencies = $spec['after'] ?? [];
 		$this->aliases = $spec['aliases'] ?? [];
+		$this->postInstall = $spec['postInstall'] ?? false;
 	}
 
 	public function getName() {
 		return $this->name;
+	}
+
+	public function getDescription() {
+		if ( $this->description !== null ) {
+			return $this->description;
+		}
+		return parent::getDescription();
 	}
 
 	public function getAliases() {
@@ -40,6 +54,10 @@ class CallbackTask extends Task {
 
 	public function getDependencies() {
 		return $this->dependencies;
+	}
+
+	public function isPostInstall() {
+		return $this->postInstall;
 	}
 
 	public function execute(): Status {

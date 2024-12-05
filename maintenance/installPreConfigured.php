@@ -81,6 +81,7 @@ class InstallPreConfigured extends Maintenance {
 		}
 
 		if ( $status->isOK() ) {
+			$this->output( "Installation complete.\n" );
 			return true;
 		} else {
 			$this->error( "Installation failed at task \"" .
@@ -174,7 +175,23 @@ class InstallPreConfigured extends Maintenance {
 				]
 			]
 		) );
+		foreach ( $this->getExtraTaskSpecs() as $spec ) {
+			$taskList->add( $taskFactory->create( $spec ) );
+		}
 		return $taskList;
+	}
+
+	/**
+	 * Subclasses can override this to provide specification arrays for extra
+	 * tasks to run during install.
+	 *
+	 * @see TaskFactory::create()
+	 * @stable to override
+	 *
+	 * @return array
+	 */
+	protected function getExtraTaskSpecs() {
+		return [];
 	}
 
 	/**

@@ -104,7 +104,9 @@ class TaskFactory {
 	 *   ObjectFactory spec and must contain "class" or "factory".
 	 *     - callback: A callable to call when the task is executed
 	 *     - name: The task name (callback only)
+	 *     - description: The task description (callback only)
 	 *     - after: A task or list of tasks that this task must run after (callback only)
+	 *     - postInstall: If true, the task will run after all install tasks (callback only)
 	 *     - class: The class name (ObjectFactory only)
 	 *     - factory: A factory function (ObjectFactory only)
 	 *     - args: Arguments to pass to the constructor (ObjectFactory only)
