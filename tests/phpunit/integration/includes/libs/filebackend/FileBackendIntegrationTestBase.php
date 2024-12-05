@@ -22,7 +22,9 @@ abstract class FileBackendIntegrationTestBase extends MediaWikiIntegrationTestCa
 	}
 
 	protected function tearDown(): void {
-		$this->tearDownFiles();
+		if ( $this->backend ) {
+			$this->tearDownFiles();
+		}
 	}
 
 	private static function baseStorePath() {
