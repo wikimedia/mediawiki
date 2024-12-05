@@ -87,6 +87,13 @@
 					{{ $i18n( 'block-item-remove' ).text() }}
 				</a>
 			</template>
+			<template #item-hide="{ item }">
+				<a
+					:href="mw.util.getUrl( 'Special:RevisionDelete', { type: 'logging', ['ids[' + item + ']']: 1 } )"
+				>
+					{{ $i18n( 'block-change-visibility' ).text() }}
+				</a>
+			</template>
 		</cdx-table>
 		<div v-if="moreBlocks" class="mw-block-log-fulllog">
 			<a
@@ -117,6 +124,10 @@ module.exports = exports = defineComponent( {
 		blockLogType: {
 			type: String,
 			default: 'recent'
+		},
+		canDeleteLogEntry: {
+			type: Boolean,
+			default: false
 		}
 	},
 	emits: [
@@ -146,8 +157,8 @@ module.exports = exports = defineComponent( {
 			{ id: 'blockedby', label: mw.message( 'blocklist-by' ).text(), minWidth: '200px' },
 			{ id: 'parameters', label: mw.message( 'blocklist-params' ).text(), minWidth: '160px' },
 			{ id: 'reason', label: mw.message( 'blocklist-reason' ).text(), minWidth: '160px' },
-			...( props.blockLogType === 'active' ?
-				[ { id: 'modify', label: '', minWidth: '100px' } ] : [] )
+			...( props.blockLogType === 'active' || props.canDeleteLogEntry ?
+				[ { id: props.blockLogType === 'active' ? 'modify' : 'hide', label: '', minWidth: '100px' } ] : [] )
 		];
 
 		const logEntries = ref( [] );
@@ -190,7 +201,8 @@ module.exports = exports = defineComponent( {
 					},
 					blockedby: logevent.user,
 					parameters: logevent.params.flags,
-					reason: logevent.comment
+					reason: logevent.comment,
+					hide: logevent.logid
 				} );
 			}
 			return rows;

@@ -2311,6 +2311,7 @@ return [
 		'messages' => [
 			'blanknamespace',
 			'block-actions',
+			'block-change-visibility',
 			'block-confirm-no',
 			'block-confirm-yes',
 			'block-create',

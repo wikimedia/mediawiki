@@ -2942,6 +2942,7 @@
 	"ipb-blocklist-contribs": "Used in [[Special:Block]].\n* $1 - target username",
 	"ipb-blocklist-duration-left": "Used on [[Special:BlockList]] to show the remaining time (years, months, days, hours, minutes) until the block expires.\n$1 - The duration left",
 	"block-actions": "Label for the checkboxes for specifying the actions that a block affects on [[Special:Block]]",
+	"block-change-visibility": "Label for the link to change visibility in [[Special:Block]]",
 	"block-details": "Label for the checkboxes for specifying the sitewide block details on [[Special:Block]]",
 	"block-details-description": "Description for the checkboxes for specifying the sitewide block details on [[Special:Block]]",
 	"block-expiry": "Label for the input for specifying the expiry time of a block on [[Special:Block]]",

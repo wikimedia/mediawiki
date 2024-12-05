@@ -42,15 +42,18 @@
 				block-log-type="active"
 				@create-block="onCreateBlock"
 				@edit-block="onEditBlock"
+				:can-delete-log-entry="false"
 			></block-log>
 			<block-log
 				:key="`${submitCount}-recent`"
 				block-log-type="recent"
+				:can-delete-log-entry="canDeleteLogEntry"
 			></block-log>
 			<block-log
 				v-if="blockShowSuppressLog"
 				:key="`${submitCount}-suppress`"
 				block-log-type="suppress"
+				:can-delete-log-entry="canDeleteLogEntry"
 			></block-log>
 
 			<div v-if="showForm" class="mw-block__block-form">
@@ -122,6 +125,7 @@ module.exports = exports = defineComponent( {
 		store.$reset();
 		const blockEnableMultiblocks = mw.config.get( 'blockEnableMultiblocks' ) || false;
 		const blockShowSuppressLog = mw.config.get( 'blockShowSuppressLog' ) || false;
+		const canDeleteLogEntry = mw.config.get( 'canDeleteLogEntry' ) || false;
 		const success = ref( false );
 		const showForm = ref( false );
 		const { formErrors, formSubmitted } = storeToRefs( store );
@@ -221,6 +225,7 @@ module.exports = exports = defineComponent( {
 			submitButtonMessage,
 			blockEnableMultiblocks,
 			blockShowSuppressLog,
+			canDeleteLogEntry,
 			confirmationOpen,
 			showForm,
 			onCreateBlock,

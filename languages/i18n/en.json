@@ -2678,6 +2678,7 @@
 	"ipb-blocklist-contribs": "Contributions for {{GENDER:$1|$1}}",
 	"ipb-blocklist-duration-left": "$1 left",
 	"block-actions": "Block type",
+	"block-change-visibility": "Change visibility",
 	"block-details": "Block details",
 	"block-details-description": "Use these options to block the target from making other actions, in addition to editing.",
 	"block-expiry": "Expiration:",
