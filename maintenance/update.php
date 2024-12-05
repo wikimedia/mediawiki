@@ -35,6 +35,8 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Installer\DatabaseInstaller;
 use MediaWiki\Installer\DatabaseUpdater;
 use MediaWiki\Installer\Installer;
+use MediaWiki\Maintenance\LoggedUpdateMaintenance;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\DatabaseSqlite;

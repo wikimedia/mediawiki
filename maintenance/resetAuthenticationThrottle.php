@@ -24,6 +24,7 @@
 use MediaWiki\Auth\Throttler;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Maintenance\Maintenance;
 use Wikimedia\IPUtils;
 
 // @codeCoverageIgnoreStart

@@ -23,6 +23,7 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\SiteStats\SiteStatsInit;
 
 // @codeCoverageIgnoreStart

@@ -39,6 +39,7 @@
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\ConsoleSpi;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LogLevel;
 

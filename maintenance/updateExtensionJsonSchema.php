@@ -2,6 +2,7 @@
 
 use Composer\Semver\VersionParser;
 use MediaWiki\Json\FormatJson;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Registration\ExtensionRegistry;
 
 // @codeCoverageIgnoreStart

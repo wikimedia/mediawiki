@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Search\SearchUpdate;
 use MediaWiki\Title\Title;

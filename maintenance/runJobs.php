@@ -27,6 +27,7 @@ require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Maintenance\ForkController;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Settings\SettingsBuilder;
 
 /**

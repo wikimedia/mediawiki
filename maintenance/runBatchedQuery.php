@@ -27,6 +27,7 @@
 require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
+use MediaWiki\Maintenance\Maintenance;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 /**

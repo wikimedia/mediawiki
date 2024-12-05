@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\User\User;
 
