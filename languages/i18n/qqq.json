@@ -4049,6 +4049,8 @@
 	"tag-mw-blank-description": "Description for \"blank\" change tag",
 	"tag-mw-replace": "Change tag for edits removing more than 90% of the content of a page\n{{Identical|Replaced}}",
 	"tag-mw-replace-description": "Description for \"replace\" change tag",
+	"tag-mw-recreated": "Change tag for edits which create pages that have been previously deleted",
+	"tag-mw-recreated-description": "Description for \"recreated\" change tag",
 	"tag-mw-rollback": "Change tag for rolling back an edit\n{{Identical|Rollback}}",
 	"tag-mw-rollback-description": "Description for \"rollback\" change tag",
 	"tag-mw-undo": "Change tag for undoing an edit\n{{Identical|Undo}}",
