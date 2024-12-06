@@ -501,11 +501,16 @@ abstract class LanguageConverter implements ILanguageConverter {
 			$scriptfix = '<script[^>]*+>[^<]*+(?:(?:(?!<\/script>).)[^<]*+)*+<\/script>|';
 			// disable conversion of <pre> tags
 			$prefix = '<pre[^>]*+>[^<]*+(?:(?:(?!<\/pre>).)[^<]*+)*+<\/pre>|';
+			// disable conversion of <math> tags
+			$mathfix = '<math[^>]*+>[^<]*+(?:(?:(?!<\/math>).)[^<]*+)*+<\/math>|';
+			// disable conversion of <svg> tags
+			$svgfix = '<svg[^>]*+>[^<]*+(?:(?:(?!<\/svg>).)[^<]*+)*+<\/svg>|';
 			// The "|.*+)" at the end, is in case we missed some part of html syntax,
 			// we will fail securely (hopefully) by matching the rest of the string.
 			$htmlFullTag = '<(?:[^>=]*+(?>[^>=]*+=\s*+(?:"[^"]*"|\'[^\']*\'|[^\'">\s]*+))*+[^>=]*+>|.*+)|';
 
-			$reg = '/' . $codefix . $scriptfix . $prefix . $htmlFullTag .
+			$reg = '/' . $codefix . $scriptfix . $prefix . $mathfix . $svgfix .
+				$htmlFullTag .
 				'&[a-zA-Z#][a-z0-9]++;' . $marker . $htmlfix . '|\004$/s';
 		}
 		$startPos = 0;
@@ -811,12 +816,14 @@ abstract class LanguageConverter implements ILanguageConverter {
 
 		$noScript = '<script.*?>.*?<\/script>(*SKIP)(*FAIL)';
 		$noStyle = '<style.*?>.*?<\/style>(*SKIP)(*FAIL)';
+		$noMath = '<math.*?>.*?<\/math>(*SKIP)(*FAIL)';
+		$noSvg = '<svg.*?>.*?<\/svg>(*SKIP)(*FAIL)';
 		// phpcs:ignore Generic.Files.LineLength
 		$noHtml = '<(?:[^>=]*+(?>[^>=]*+=\s*+(?:"[^"]*"|\'[^\']*\'|[^\'">\s]*+))*+[^>=]*+>|.*+)(*SKIP)(*FAIL)';
 		while ( $startPos < $length && $continue ) {
 			$continue = preg_match(
 				// Only match "-{" outside the html.
-				"/$noScript|$noStyle|$noHtml|-\{/",
+				"/$noScript|$noStyle|$noMath|$noSvg|$noHtml|-\{/",
 				$text,
 				$m,
 				PREG_OFFSET_CAPTURE,
