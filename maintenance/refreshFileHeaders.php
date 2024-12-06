@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
+use MediaWiki\Maintenance\Maintenance;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 // @codeCoverageIgnoreStart

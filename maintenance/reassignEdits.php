@@ -23,6 +23,7 @@
  * @license GPL-2.0-or-later
  */
 
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\User\User;
 use Wikimedia\IPUtils;
 

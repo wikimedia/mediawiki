@@ -21,6 +21,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Maintenance\Maintenance;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\DatabaseSqlite;
 use Wikimedia\Rdbms\IMaintainableDatabase;

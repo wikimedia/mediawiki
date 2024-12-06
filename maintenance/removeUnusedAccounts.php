@@ -23,6 +23,7 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\User\UserIdentity;
 
 // @codeCoverageIgnoreStart

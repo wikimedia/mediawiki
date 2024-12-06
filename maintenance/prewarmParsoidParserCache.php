@@ -1,4 +1,5 @@
 <?php
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Page\PageLookup;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\ParserOutputAccess;

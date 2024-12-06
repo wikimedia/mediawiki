@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Maintenance\Maintenance;
+
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
@@ -29,7 +31,6 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  * @author DannyS712
  */
-
 class PurgeExpiredBlocks extends Maintenance {
 	public function __construct() {
 		parent::__construct();

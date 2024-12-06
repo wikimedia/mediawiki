@@ -32,6 +32,7 @@ require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
+use MediaWiki\Maintenance\Maintenance;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Registration\ExtensionJsonValidationError;
 use MediaWiki\Registration\ExtensionJsonValidator;
 

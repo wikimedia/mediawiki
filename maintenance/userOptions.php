@@ -24,6 +24,7 @@
  * @author Antoine Musso <hashar at free dot fr>
  */
 
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\IExpression;
