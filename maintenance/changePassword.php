@@ -40,13 +40,16 @@ class ChangePassword extends Maintenance {
 		parent::__construct();
 		$this->addOption( "user", "The username to operate on", false, true );
 		$this->addOption( "userid", "The user id to operate on", false, true );
-		$this->addOption( "password", "The password to use", true, true );
+		$this->addOption( "password", "The password to use", false, true );
+		// phpcs:ignore Generic.Files.LineLength.TooLong
+		$this->addOption( "passwordstdin", "Makes the script read the password from stdin instead. Cannot be used alongside --password", false, false );
 		$this->addDescription( "Change a user's password" );
 	}
 
 	public function execute() {
 		$user = $this->validateUserOption( "A \"user\" or \"userid\" must be set to change the password for" );
-		$password = $this->getOption( 'password' );
+		// phpcs:ignore Generic.Files.LineLength.TooLong
+		$password = $this->validatePasswordOption( 'Set either --password or --passwordstdin', 'Either --password or --passwordstdin must be set, not both at once' );
 		$status = $user->changeAuthenticationData( [
 			'username' => $user->getName(),
 			'password' => $password,
@@ -56,6 +59,27 @@ class ChangePassword extends Maintenance {
 			$this->output( "Password set for " . $user->getName() . "\n" );
 		} else {
 			$this->fatalError( $status );
+		}
+	}
+
+	/**
+	 * @param string $errorMsgNoPassword Error message to be displayed if neither --password or --stdin are set
+	 * @param string $errorMsgBothPasswords Error message to be displayed if both --password and --stdin are set
+	 *
+	 * @since 1.44
+	 *
+	 * @return string The new password
+	 */
+	private function validatePasswordOption( $errorMsgNoPassword, $errorMsgBothPasswords ) {
+		if ( $this->hasOption( 'password' ) && $this->hasOption( 'passwordstdin' ) ) {
+			$this->fatalError( $errorMsgBothPasswords );
+		}
+		if ( $this->hasOption( 'password' ) ) {
+			return $this->getOption( 'password' );
+		} elseif ( $this->hasOption( 'passwordstdin' ) ) {
+			return $this->getStdin( Maintenance::STDIN_ALL );
+		} else {
+			$this->fatalError( $errorMsgNoPassword );
 		}
 	}
 }
