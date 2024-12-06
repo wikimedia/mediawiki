@@ -25,7 +25,6 @@ use File;
 use LogFormatterFactory;
 use ManualLogEntry;
 use MediaWiki\Collation\CollationFactory;
-use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\IContentHandlerFactory;
@@ -44,7 +43,6 @@ use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
-use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
@@ -54,7 +52,6 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use RepoGroup;
 use StringUtils;
-use Wikimedia\NormalizedException\NormalizedException;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
@@ -908,37 +905,11 @@ class MovePage {
 		// But not $this->oldTitle yet, see below (T47348).
 		$nt->resetArticleID( $oldid );
 
-		$commentObj = CommentStoreComment::newUnsavedComment( $comment );
-		# Save a null revision in the page's history notifying of the move
-		$nullRevision = $this->revisionStore->newNullRevision(
-			$dbw,
-			$nt,
-			$commentObj,
-			true,
-			$user
-		);
-		if ( $nullRevision === null ) {
-			$id = $nt->getArticleID( IDBAccessObject::READ_EXCLUSIVE );
-			// XXX This should be handled more gracefully
-			throw new NormalizedException( 'Failed to create null revision while ' .
-				'moving page ID {oldId} to {prefixedDBkey} (page ID {id})',
-				[
-					'oldId' => $oldid,
-					'prefixedDBkey' => $nt->getPrefixedDBkey(),
-					'id' => $id,
-				]
-			);
-		}
-
-		$nullRevision = $this->revisionStore->insertRevisionOn( $nullRevision, $dbw );
-		$logEntry->setAssociatedRevId( $nullRevision->getId() );
-
 		// NOTE: Page moves should contribute to user edit count (T163966).
 		//       The dummy revision created below will otherwise not be counted.
 		$this->userEditTracker->incrementUserEditCount( $user );
 
 		// Get the old redirect state before clean up
-		$isRedirect = $this->oldTitle->isRedirect();
 		if ( !$redirectContent ) {
 			// Clean up the old title *before* reset article id - T47348
 			WikiPage::onArticleDelete( $this->oldTitle );
@@ -947,30 +918,19 @@ class MovePage {
 		$this->oldTitle->resetArticleID( 0 ); // 0 == non existing
 		$newpage->loadPageData( IDBAccessObject::READ_LOCKING ); // T48397
 
-		$updater = $this->pageUpdaterFactory->newDerivedPageDataUpdater( $newpage );
-		$updater->grabCurrentRevision();
-
-		$newpage->updateRevisionOn( $dbw, $nullRevision, null, $isRedirect );
-
-		$fakeTags = [];
-		$this->hookRunner->onRevisionFromEditComplete(
-			$newpage, $nullRevision, $nullRevision->getParentId(), $user, $fakeTags );
-
 		// Generate updates for the new dummy revision under the new title.
 		// NOTE: The dummy revision will not be counted as a user contribution.
 		// NOTE: Use FLAG_SILENT to avoid redundant RecentChanges entry.
 		//       The move log already generates one.
-		$options = [
-			PageUpdatedEvent::FLAG_SILENT => true,
-			'oldtitle' => $this->oldTitle,
-			'oldcountable' => $oldcountable,
-			'causeAction' => 'MovePage', // override "page-move" based on setCause()
-		];
+		$nullRevision = $newpage->newPageUpdater( $user )
+			->setCause( PageUpdatedEvent::CAUSE_MOVE )
+			->setHints( [
+				'oldtitle' => $this->oldTitle,
+				'oldcountable' => $oldcountable,
+			] )
+			->saveDummyRevision( $comment );
 
-		$updater->setCause( PageUpdater::CAUSE_MOVE );
-		$updater->setPerformer( $user );
-		$updater->prepareUpdate( $nullRevision, $options );
-		$updater->doUpdates();
+		$logEntry->setAssociatedRevId( $nullRevision->getId() );
 
 		WikiPage::onArticleCreate( $nt );
 
@@ -986,7 +946,7 @@ class MovePage {
 				->setUsePageCreationLog( false )
 				->setAutomated( true )
 				->setFlags( EDIT_SUPPRESS_RC | EDIT_INTERNAL )
-				->saveRevision( $commentObj );
+				->saveRevision( $comment );
 		}
 
 		# Log the move

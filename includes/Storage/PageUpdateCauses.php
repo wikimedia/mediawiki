@@ -47,4 +47,7 @@ interface PageUpdateCauses {
 	/** @var string The update was an edit. */
 	public const CAUSE_EDIT = 'edit';
 
+	/** @var string The update was caused by a file upload */
+	public const CAUSE_UPLOAD = 'upload';
+
 }
