@@ -43,7 +43,8 @@
 
 		// Disable autocompletion if this widget only accepts IPs or IP ranges,
 		// since the allusers API won't yield results in this case.
-		if ( this.excludeNamed && this.excludeTemp ) {
+		this.alwaysDisableLookups = this.excludeNamed && this.excludeTemp;
+		if ( this.alwaysDisableLookups ) {
 			this.setLookupsDisabled( true );
 		}
 	};
@@ -52,6 +53,16 @@
 
 	OO.inheritClass( mw.widgets.UserInputWidget, OO.ui.TextInputWidget );
 	OO.mixinClass( mw.widgets.UserInputWidget, OO.ui.mixin.LookupElement );
+
+	/**
+	 * Disable or re-enable lookups, but does not apply the re-enabling of lookups if
+	 * this.alwaysDisableLookups is set to true.
+	 *
+	 * @param {boolean} [disabled=false] Disable lookups
+	 */
+	mw.widgets.UserInputWidget.prototype.setLookupsDisabled = function ( disabled ) {
+		this.lookupsDisabled = !!disabled || this.alwaysDisableLookups;
+	};
 
 	/* Methods */
 

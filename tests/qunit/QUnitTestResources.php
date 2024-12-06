@@ -101,6 +101,7 @@ return [
 			'tests/qunit/resources/mediawiki.widgets/MediaSearch/mediawiki.widgets.APIResultsQueue.test.js',
 			'tests/qunit/resources/mediawiki.widgets/NamespaceInput/mediawiki.widgets.NamespaceInputWidget.test.js',
 			'tests/qunit/resources/mediawiki.widgets/Table/mediawiki.widgets.TableWidget.test.js',
+			'tests/qunit/resources/mediawiki.widgets/UserInputWidget/mediawiki.widgets.UserInputWidget.test.js',
 			'tests/qunit/resources/mediawiki.language.test.js',
 			'tests/qunit/resources/mediawiki.cldr.test.js',
 			'tests/qunit/resources/mediawiki.cookie.test.js',
@@ -139,6 +140,7 @@ return [
 			'mediawiki.visibleTimeout',
 			'mediawiki.widgets.MediaSearch',
 			'mediawiki.widgets.Table',
+			'mediawiki.widgets.UserInputWidget',
 			'mediawiki.qunit-testrunner',
 		],
 	]
