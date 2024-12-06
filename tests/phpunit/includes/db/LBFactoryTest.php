@@ -163,6 +163,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		// throw DBTransactionError due to transaction ROUND_* stages being mismatched.hrow
 		// DBTransactionError due to transaction ROUND_* stages being mismatched.
 		$factory->beginPrimaryChanges( __METHOD__ );
+		// phpcs:ignore MediaWiki.Usage.DbrQueryUsage.DbrQueryFound
 		$dbw->query( "SELECT 1 as t", __METHOD__ );
 		$dbw->onTransactionResolution( static function () use ( $factory, &$called ) {
 			++$called;
@@ -208,6 +209,16 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$dbw->begin( __METHOD__, $dbw::TRANSACTION_INTERNAL );
 		$this->assertSame( 1, $dbr->trxLevel() );
 		$this->assertSame( 1, $dbw->trxLevel() );
+
+		$factory->commitPrimaryChanges( __METHOD__ );
+		$this->assertSame( 0, $dbr->trxLevel() );
+		$this->assertSame( 0, $dbw->trxLevel() );
+
+		$factory->beginPrimaryChanges( __METHOD__ );
+		// phpcs:ignore MediaWiki.Usage.DbrQueryUsage.DbrQueryFound
+		$dbr->query( 'SELECT 1', __METHOD__ );
+		$this->assertSame( 1, $dbr->trxLevel() );
+		$this->assertSame( 0, $dbw->trxLevel() );
 
 		$factory->commitPrimaryChanges( __METHOD__ );
 		$this->assertSame( 0, $dbr->trxLevel() );
