@@ -42,6 +42,7 @@ use MediaWiki\Debug\DeprecationHelper;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
+use MediaWiki\Html\HtmlHelper;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Language\Language;
@@ -99,6 +100,7 @@ use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\DOM\Node;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMUtils;
+use Wikimedia\RemexHtml\Serializer\SerializerNode;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -226,15 +228,6 @@ class Parser {
 	 * but instead use Parser::replaceTableOfContentsMarker().
 	 */
 	public const TOC_PLACEHOLDER = '<meta property="mw:PageProp/toc" />';
-
-	/**
-	 * Permissive regexp matching TOC_PLACEHOLDER.  This allows for some
-	 * minor modifications to the placeholder to be made by extensions
-	 * without breaking the TOC (T317857); note also that Parsoid's version
-	 * of the placeholder might include additional attributes.
-	 * @var string
-	 */
-	private const TOC_PLACEHOLDER_REGEX = '/<meta\\b[^>]*\\bproperty\\s*=\\s*"mw:PageProp\\/toc"[^>]*>/';
 
 	# Persistent:
 	/** @var array<string,callable> */
@@ -4891,20 +4884,24 @@ class Parser {
 	 */
 	public static function replaceTableOfContentsMarker( $text, $toc ) {
 		$replaced = false;
-		// remove the additional metas. while not strictly necessary, this also ensures idempotence if we run
-		// the pass more than once on a given content and TOC markers are not inserted by $toc. At the same time,
-		// if $toc inserts TOC markers (which, as of 2024-05, it shouldn't be able to), these are preserved by the
-		// fact that we run a single pass with a callback (rather than doing a first replacement with the $toc and
-		// a replacement of leftover markers as a second pass).
-		$callback = static function ( array $matches ) use( &$replaced, $toc ): string {
-			if ( !$replaced ) {
+		return HtmlHelper::modifyElements(
+			$text,
+			static function ( SerializerNode $node ): bool {
+				$prop = $node->attrs['property'] ?? '';
+				return $node->name === 'meta' && $prop === 'mw:PageProp/toc';
+			},
+			static function ( SerializerNode $node ) use ( &$replaced, $toc ) {
+				if ( $replaced ) {
+					// Remove the additional metas. While not strictly
+					// necessary, this also ensures idempotence if we
+					// run the pass more than once on a given content.
+					return '';
+				}
 				$replaced = true;
-				return $toc;
-			}
-			return '';
-		};
-
-		return preg_replace_callback( self::TOC_PLACEHOLDER_REGEX, $callback, $text );
+				return $toc; // outerHTML replacement.
+			},
+			false /* use legacy-compatible serialization */
+		);
 	}
 
 	/**
