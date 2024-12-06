@@ -34,7 +34,11 @@ trait HtmlHelperTrait {
 			$node = clone $node;
 			$node->attrs = clone $node->attrs;
 			$newNode = ( $this->modifyCallback )( $node );
-			Assert::parameterType( SerializerNode::class, $newNode, 'return value' );
+			Assert::parameterType( [ SerializerNode::class, 'string' ], $newNode, 'return value' );
+			if ( is_string( $newNode ) ) {
+				// Replace this element with an "outerHTML" string.
+				return $newNode;
+			}
 			return parent::element( $parent, $newNode, $contents );
 		} else {
 			return parent::element( $parent, $node, $contents );
