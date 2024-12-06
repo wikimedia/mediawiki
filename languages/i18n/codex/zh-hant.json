@@ -3,6 +3,7 @@
 		"authors": [
 			"Kly",
 			"Winston Sung",
+			"列维劳德",
 			"沈澄心"
 		]
 	},
@@ -28,5 +29,6 @@
 	"cdx-table-pagination-status-message-indeterminate-long": "顯示 $1 至 $2 的多個結果",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1 至 $2 的多個結果",
 	"cdx-table-pagination-status-message-indeterminate-final": "顯示最後 {{PLURAL:$1|$1}} 個結果",
-	"cdx-table-pagination-status-message-pending": "正在載入結果……"
+	"cdx-table-pagination-status-message-pending": "正在載入結果……",
+	"cdx-table-no-data-message": "暫無資料。"
 }

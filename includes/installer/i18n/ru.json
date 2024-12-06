@@ -325,6 +325,7 @@
 	"config-install-db-success": "База данных была успешно настроена",
 	"config-install-generic": "Выполнение задачи «$1»",
 	"config-install-external-domains": "Создание внешних баз данных",
+	"config-skip-shared-domain": "Пропуск потенциально общего домена «$1»",
 	"config-download-localsettings": "Загрузить <code>LocalSettings.php</code>",
 	"config-help": "справка",
 	"config-help-tooltip": "нажмите, чтобы развернуть",
