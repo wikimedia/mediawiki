@@ -4,6 +4,7 @@
 		"wikimedia/selenium"
 	],
 	"globals": {
-		"mw": "readonly"
+		"mw": "readonly",
+		"document": "readonly"
 	}
 }

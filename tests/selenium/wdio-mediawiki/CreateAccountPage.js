@@ -32,8 +32,8 @@ class CreateAccountPage extends Page {
 		return $( '#wpReason' );
 	}
 
-	open() {
-		super.openTitle( 'Special:CreateAccount' );
+	async open() {
+		await super.openTitle( 'Special:CreateAccount' );
 	}
 
 	/**
