@@ -373,9 +373,10 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	/**
 	 * Get the server index and table name for a given key
 	 * @param string $key
+	 * @param bool $fallback Whether try to fallback to the next db
 	 * @return array (server index, table name)
 	 */
-	private function getKeyLocation( $key ) {
+	private function getKeyLocation( $key, $fallback = false ) {
 		// Pick the same shard for sister keys
 		// Using the same hash stop as mc-router for consistency
 		if ( str_contains( $key, '|#|' ) ) {
@@ -392,6 +393,11 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				$sortedServers = $this->serverTags;
 				ArrayUtils::consistentHashSort( $sortedServers, $key );
 				$shardIndex = array_key_first( $sortedServers );
+				if ( $fallback ) {
+					// Get the second server in line.
+					unset( $sortedServers[$shardIndex] );
+					$shardIndex = array_key_first( $sortedServers );
+				}
 			}
 		}
 
@@ -423,9 +429,10 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	/**
 	 * @param string[] $keys
 	 * @param bool $getCasToken Whether to get a CAS token
-	 * @return array<string,array|null> Order-preserved map of (key => (value,expiry,token) or null)
+	 * @param bool $fallback Whether try to fallback to the next db
+	 * @return array<string,array|null> Map of (key => (value,expiry,token) or null)
 	 */
-	private function fetchBlobs( array $keys, bool $getCasToken = false ) {
+	private function fetchBlobs( array $keys, bool $getCasToken = false, $fallback = false ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$silenceScope = $this->silenceTransactionProfiler();
 
@@ -435,9 +442,10 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$readTime = (int)$this->getCurrentTime();
 		$keysByTableByShard = [];
 		foreach ( $keys as $key ) {
-			[ $shardIndex, $partitionTable ] = $this->getKeyLocation( $key );
+			[ $shardIndex, $partitionTable ] = $this->getKeyLocation( $key, $fallback );
 			$keysByTableByShard[$shardIndex][$partitionTable][] = $key;
 		}
+		$fallbackResult = [];
 
 		foreach ( $keysByTableByShard as $shardIndex => $serverKeys ) {
 			try {
@@ -459,7 +467,16 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 					}
 				}
 			} catch ( DBError $e ) {
-				$this->handleDBError( $e, $shardIndex );
+				if ( $fallback ) {
+					$this->handleDBError( $e, $shardIndex );
+				} else {
+					$fallbackResult += $this->fetchBlobs(
+						array_merge( ...array_values( $serverKeys ) ),
+						$getCasToken,
+						true
+					);
+				}
+
 			}
 		}
 
@@ -484,7 +501,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			}
 		}
 
-		return $dataByKey;
+		return array_merge( $dataByKey, $fallbackResult );
 	}
 
 	/**
@@ -496,7 +513,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 *  - Map of (key => result) [returned]
 	 * @param float $mtime UNIX modification timestamp
 	 * @param array<string,array> $argsByKey Map of (key => list of arguments)
-	 * @param array<string,mixed> &$resByKey Order-preserved map of (key => result) [returned]
+	 * @param array<string,mixed> &$resByKey Map of (key => result) [returned]
+	 * @param bool $fallback Whether try to fallback to the next db
 	 * @return bool Whether all keys were processed
 	 * @param-taint $argsByKey none
 	 */
@@ -504,7 +522,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		callable $tableWriteCallback,
 		float $mtime,
 		array $argsByKey,
-		&$resByKey = []
+		&$resByKey = [],
+		$fallback = false
 	) {
 		// Initialize order-preserved per-key results; callbacks mark successful results
 		$resByKey = array_fill_keys( array_keys( $argsByKey ), false );
@@ -514,7 +533,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 		$argsByKeyByTableByShard = [];
 		foreach ( $argsByKey as $key => $args ) {
-			[ $shardIndex, $partitionTable ] = $this->getKeyLocation( $key );
+			[ $shardIndex, $partitionTable ] = $this->getKeyLocation( $key, $fallback );
 			$argsByKeyByTableByShard[$shardIndex][$partitionTable][$key] = $args;
 		}
 
@@ -526,8 +545,12 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 					$shardIndexesAffected[] = $shardIndex;
 					$tableWriteCallback( $db, $table, $mtime, $ptKeyArgs, $resByKey );
 				} catch ( DBError $e ) {
-					$this->handleDBError( $e, $shardIndex );
-					continue;
+					if ( $fallback ) {
+						$this->handleDBError( $e, $shardIndex );
+						continue;
+					} else {
+						$this->modifyBlobs( $tableWriteCallback, $mtime, $ptKeyArgs, $resByKey, true );
+					}
 				}
 			}
 		}
@@ -1806,7 +1829,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				for ( $i = 0; $i < $this->numTableShards; $i++ ) {
 					$encBaseTable = $db->tableName( 'objectcache' );
 					$encShardTable = $db->tableName( $this->getTableNameByShard( $i ) );
-					$db->query( "CREATE TABLE $encShardTable LIKE $encBaseTable", __METHOD__ );
+					$db->query( "CREATE TABLE IF NOT EXISTS $encShardTable LIKE $encBaseTable", __METHOD__ );
 				}
 			}
 		}
