@@ -422,7 +422,6 @@
 	"userlogout": "Kalua log",
 	"notloggedin": "Alun masuak log",
 	"userlogin-noaccount": "Alun ado akun?",
-	"userlogin-joinproject": "Join {{SITENAME}}",
 	"createaccount": "Buek akun",
 	"userlogin-resetpassword-link": "Lupo kato sandi Sanak?",
 	"userlogin-helplink2": "Bantuan masuak log",

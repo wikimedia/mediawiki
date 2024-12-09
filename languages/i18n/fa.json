@@ -3112,7 +3112,7 @@
 	"pageinfo-recent-edits": "تعداد ویرایش‌های اخیر (در $1 گذشته)",
 	"pageinfo-recent-authors": "تعداد نویسندگان یکتای اخیر",
 	"pageinfo-magic-words": "{{PLURAL:$1|واژه|واژه‌های}} جادویی ($1)",
-	"pageinfo-hidden-categories": "{{PLURAL:$1| ردهٔ|ردهٔ}} پنهان ( $1 )",
+	"pageinfo-hidden-categories": "{{PLURAL:$1|ردهٔ|رده‌های}} پنهان ($1)",
 	"pageinfo-templates": "{{PLURAL:$1|الگوی|الگوهای}} تراگنجانش‌شده ($1)",
 	"pageinfo-transclusions": "{{PLURAL:$1|صفحهٔ|صفحه‌های}} تراگنجانش‌شده در ($1)",
 	"pageinfo-toolboxlink": "اطلاعات صفحه",

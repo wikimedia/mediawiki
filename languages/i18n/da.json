@@ -2302,7 +2302,6 @@
 	"emailsenttext": "Din e-mail er blevet sendt.",
 	"emailuserfooter": "Denne e-mail blev {{GENDER:$1|sendt}} af $1 til {{GENDER:$2|$2}} af funktionen \"{{int:emailuser}}\" på {{SITENAME}}. Hvis {{GENDER:$2|du}} svarer på denne e-mail, {{GENDER:$2|din}} e-mail vil blive sendt direkte til {{GENDER:$1|original afsender}}, afslører {{GENDER:$2|din}} e-mailadresse til {{GENDER:$1|dem}}.",
 	"usermessage-summary": "Efterlader system besked.",
-	"usermessage-editor": "System messenger",
 	"watchlist": "Overvågningsliste",
 	"mywatchlist": "Overvågningsliste",
 	"watchlistfor2": "For $1",

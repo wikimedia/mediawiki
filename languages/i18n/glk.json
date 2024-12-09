@@ -659,7 +659,7 @@
 	"pageinfo-edits": "همته دچينواچينؤنˇ تعداد",
 	"pageinfo-recent-edits": "آخري دچينواچينؤنˇ تعداد ($1 ˇ أخيرˇ ميئن)",
 	"pageinfo-recent-authors": "آخري تنها نويشتنکسؤنˇ تعداد",
-	"pageinfo-hidden-categories": "جخۊته {{PLURAL:$1| جرگه|جرگه}} ( $1 )",
+	"pageinfo-hidden-categories": "جخۊته {{PLURAL:$1|جرگه}} ($1)",
 	"pageinfo-toolboxlink": "ولگˇ اطلاعات",
 	"pageinfo-contentpage-yes": "أهأ",
 	"pageinfo-category-info": "جرگه اطلاعات",

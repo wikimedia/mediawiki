@@ -561,7 +561,6 @@
 	"withoutinterwiki-legend": "Προθέκεμαν",
 	"withoutinterwiki-submit": "Δείξον",
 	"fewestrevisions": "Σελίδας με τ' ασόλων λιγότερα αλλαγάς.",
-	"nbytes": "$1 {{PLURAL:$1|byte|bytes}}",
 	"ncategories": "{{PLURAL:$1|κατηγορίαν|κατηγορίας}}",
 	"nlinks": "$1 {{PLURAL:$1|σύνδεσμον|συνδέσμ}}",
 	"nmembers": "$1 {{PLURAL:$1|μέλος|μέλη}}",

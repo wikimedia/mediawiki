@@ -1155,7 +1155,6 @@
 	"logentry-patrol-patrol-auto": "$1 صفحہ $3 و نسخو $4 خودکار طورا مراجعت شدہ {{GENDER:$2|نشان زد آریر}}",
 	"logentry-newusers-create": "صارف کھاتہ $1 {{GENDER:$2|ساوزیینو ھوئے}}",
 	"logentry-newusers-autocreate": "صارف کھاتہ $1 خودکار طورا {{GENDER:$2|ساوز ہوئے}}",
-	"logentry-upload-upload": "$1 {{GENDER:$2|uploaded}} $3",
 	"logentry-upload-overwrite": "$1 نے $3 و نوغ نسخہ {{GENDER:$2|اپلوڈ آریر}}",
 	"rightsnone": "(نو)",
 	"feedback-message": "پیغام",

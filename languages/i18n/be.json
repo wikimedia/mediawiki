@@ -3053,7 +3053,7 @@
 	"pageinfo-recent-edits": "Колькасць нядаўніх правак (за апошнія $1)",
 	"pageinfo-recent-authors": "Колькасць аўтараў за апошні час",
 	"pageinfo-magic-words": "{{PLURAL:$1|1=Магічнае слова|Магічныя словы}} ($1)",
-	"pageinfo-hidden-categories": "Схаван{{PLURAL:$1|ая катэгорыя|ыя катэгорыі}} ($1)",
+	"pageinfo-hidden-categories": "{{PLURAL:$1|1=Схаваная катэгорыя|Схаваныя катэгорыі}} ($1)",
 	"pageinfo-templates": "Выкарыстаны {{PLURAL:$1|шаблон|шаблоны}} ($1)",
 	"pageinfo-transclusions": "Выкарыстаны на {{PLURAL:$1|старонцы|старонках}} ($1)",
 	"pageinfo-toolboxlink": "Звесткі пра старонку",

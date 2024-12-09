@@ -1007,7 +1007,6 @@
 	"withoutinterwiki-legend": "በቅድመ-ፊደል ለመወሰን",
 	"withoutinterwiki-submit": "ይታዩ",
 	"fewestrevisions": "ለውጦች ያነሱላቸው መጣጥፎች",
-	"nbytes": "$1 {{PLURAL:$1|byte|bytes}}",
 	"ncategories": "$1 {{PLURAL:$1|መደብ|መደቦች}}",
 	"nlinks": "$1 መያያዣዎች",
 	"nmembers": "$1 {{PLURAL:$1|መጣጥፍ|መጣጥፎች}}",

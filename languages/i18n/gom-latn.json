@@ -5,7 +5,8 @@
 			"Isidore Dantas",
 			"Matma Rex",
 			"The Discoverer",
-			"아라"
+			"아라",
+			"QW90"
 		]
 	},
 	"tog-underline": "Duvyenche odhorekhon:",
@@ -1163,6 +1164,7 @@
 	"diff-form-submit": "Forok dakhoi",
 	"permanentlink-submit": "Uzollnier voch",
 	"newsection-submit": "Panar voch",
+	"htmlform-submit": "Zoma kor",
 	"htmlform-title-not-exists": "$1 ostitvant na.",
 	"logentry-delete-delete": "$1, hannem {{GENDER:$2|kadun udoile}} pan $3",
 	"logentry-delete-restore": "$1 hannem {{GENDER:$2|porot haddlam}} pan $3 ($4)‎",

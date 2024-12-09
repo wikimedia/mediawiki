@@ -2814,7 +2814,6 @@
 	"ip_range_toolarge": "Adressbereiche, die größer als /$1 sind, sind nicht erlaubt.",
 	"ip_range_exceeded": "Der IP-Adressbereich überschreitet seinen maximalen Bereich. Erlaubter Bereich: /$1.",
 	"ip_range_toolow": "IP-Adressbereiche sind im Grunde nicht erlaubt.",
-	"proxyblocker": "Proxy blocker",
 	"proxyblockreason": "Deine IP-Adresse wurde gesperrt, da sie ein offener Proxy ist. Bitte kontaktiere deinen Internet-Provider oder deine Systemadministratoren und informiere sie über dieses mögliche Sicherheitsproblem.",
 	"sorbsreason": "Die IP-Adresse ist in der DNSBL von {{SITENAME}} als offener PROXY gelistet.",
 	"sorbs_create_account_reason": "Die IP-Adresse ist in der DNSBL von {{SITENAME}} als offener PROXY gelistet. Das Anlegen neuer Benutzer ist nicht möglich.",

@@ -257,7 +257,6 @@
 	"site-rss-feed": "$1 RSS ຟີດ",
 	"site-atom-feed": "ອະຕອມຟີດ $1",
 	"page-rss-feed": "\"$1\" RSS ຟີດ",
-	"page-atom-feed": "\"$1\" Atom feed",
 	"red-link-title": "$1 (ບໍ່ມີໜ້ານີ້)",
 	"sort-descending": "ລຽງແຕ່ໃຫຍ່ຫານ້ອຍ",
 	"sort-ascending": "ລຽງແຕ່ນ້ອຍຫາໃຫຍ່",

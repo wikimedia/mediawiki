@@ -1144,7 +1144,6 @@
 	"pageinfo-recent-edits": "최근 편집 수 (지난 $1 이내)",
 	"pageinfo-recent-authors": "최근 기여자 수",
 	"pageinfo-magic-words": "특수 {{PLURAL:$1|명령}} ($1개)",
-	"pageinfo-hidden-categories": "숨은 {{PLURAL:$1|분류}} ($1개)",
 	"pageinfo-templates": "포함한 {{PLURAL:$1|틀}} ($1개)",
 	"pageinfo-toolboxlink": "문서 정보",
 	"pageinfo-contentpage": "본문으로 집계",
