@@ -250,6 +250,7 @@ class RecompressTracked {
 			if ( $cmdOption == 'child-id' ) {
 				continue;
 			}
+			// @phan-suppress-next-line MediaWikiNoIssetIfDefined
 			if ( in_array( $cmdOption, self::$optionsWithArgs ) && isset( $this->$classOption ) ) {
 				// @phan-suppress-next-line PhanTypeMismatchArgument False positive
 				$cmd .= " --$cmdOption " . Shell::escape( $this->$classOption );

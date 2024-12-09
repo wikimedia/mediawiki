@@ -218,6 +218,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 			}
 			if ( $this->mOptionsLabelsNotFromMessage ) {
 				foreach ( $groupedOptions as &$option ) {
+					// @phan-suppress-next-line SecurityCheck-XSS
 					$option['label'] = new \OOUI\HtmlSnippet( $option['label'] );
 				}
 			}

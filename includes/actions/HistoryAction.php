@@ -98,6 +98,7 @@ class HistoryAction extends FormlessAction {
 	 */
 	private function preCacheMessages() {
 		// Precache various messages
+		// @phan-suppress-next-line MediaWikiNoIssetIfDefined False positives when documented as nullable
 		if ( !isset( $this->message ) ) {
 			$this->message = [];
 			$msgs = [

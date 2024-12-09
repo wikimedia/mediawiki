@@ -703,12 +703,14 @@ class LocalisationCache {
 			foreach ( self::ALL_KEYS as $key ) {
 				// Not all keys are set in language files, so
 				// check they exist first
+				// @phan-suppress-next-line MediaWikiNoIssetIfDefined  May be set in the included file
 				if ( isset( $$key ) ) {
 					$data[$key] = $$key;
 				}
 			}
 		} elseif ( $_fileType == 'extension' ) {
 			foreach ( self::ALL_EXCEPT_CORE_ONLY_KEYS as $key ) {
+				// @phan-suppress-next-line MediaWikiNoIssetIfDefined  May be set in the included file
 				if ( isset( $$key ) ) {
 					$data[$key] = $$key;
 				}

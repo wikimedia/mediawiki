@@ -1893,6 +1893,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @since 1.38
 	 */
 	public function getPageProperties(): array {
+		// @phan-suppress-next-line MediaWikiNoIssetIfDefined
 		if ( !isset( $this->mProperties ) ) {
 			$this->mProperties = [];
 		}
