@@ -7,7 +7,7 @@
 version: '3.7'
 services:
   mediawiki:
-    image: docker-registry.wikimedia.org/dev/buster-php81-fpm:1.0.1-s2
+    image: docker-registry.wikimedia.org/dev/bookworm-php83-fpm:1.0.0
     user: "${MW_DOCKER_UID}:${MW_DOCKER_GID}"
     volumes:
       - ./:/var/www/html/w:cached
@@ -30,7 +30,7 @@ services:
       XHPROF_ENABLE: '${XHPROF_ENABLE:-true}'
 
   mediawiki-web:
-    image: docker-registry.wikimedia.org/dev/buster-apache2:2.0.1
+    image: docker-registry.wikimedia.org/dev/bookworm-apache2:1.0.0
     user: "${MW_DOCKER_UID}:${MW_DOCKER_GID}"
     ports:
       - "${MW_DOCKER_PORT:-8080}:8080"
@@ -43,7 +43,7 @@ services:
       MW_DOCKER_PORT: "${MW_DOCKER_PORT:-8080}"
 
   mediawiki-jobrunner:
-    image: docker-registry.wikimedia.org/dev/buster-php81-jobrunner:1.0.1-s2
+    image: docker-registry.wikimedia.org/dev/bookworm-php83-jobrunner:1.0.0
     user: "${MW_DOCKER_UID}:${MW_DOCKER_GID}"
     volumes:
       - ./:/var/www/html/w:cached
