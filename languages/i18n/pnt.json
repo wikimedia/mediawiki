@@ -866,5 +866,13 @@
 	"blockedtext-contact-blocker-admin": "Για τ' ασπάλιγμαν επορείτε να συντισένετε με τον $1 ή με τ' αλλτς τοι [[{{MediaWiki:Grouppage-sysop}}|νοματέοις]].",
 	"blockedtext-block-ip": "Τ' ατοριζνόν το IP εσούν εν $1.",
 	"blockedtext-block-id": "Το ID τ' ασπαλιγματί εν #$5.",
-	"blockedtext-include-details-queries": "Ποδεδίζουμε σας να γράφετε τα και τα δυο σο μένεμανεσουν απές."
+	"blockedtext-include-details-queries": "Ποδεδίζουμε σας να γράφετε τα και τα δυο σο μένεμανεσουν απές.",
+	"interwiki_prefix": "Πρόθεμαν",
+	"interwiki-prefix-label": "Πρόθεμαν:",
+	"interwiki_trans": "Υπερκλεισμοί",
+	"interwiki-trans-label": "Υπερκλεισμοί:",
+	"interwiki_1": "ναι",
+	"interwiki_0": "όχι",
+	"interwiki_edit": "Ἀλλαγμαν",
+	"right-interwiki": "Άλλαξον τα δογμενία ιντερβίκι"
 }

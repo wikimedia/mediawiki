@@ -1371,5 +1371,7 @@
 	"renameuser-page-unmoved": "Imkoni kūconidani sahifai $1 ba $2 vuçud nadorad.",
 	"log-name-renameuser": "Guzorişi taƣjiri nomi korbar",
 	"renameuser-move-log": "Sahifa dar vaqti taƣjiri nomi korbar  \"[[User:$1|$1]]\" ba \"[[User:$2|$2]]\" ba tavri xudkor kūconida şud",
-	"right-renameuser": "Taƣjiri nomi korbaron"
+	"right-renameuser": "Taƣjiri nomi korbaron",
+	"interwiki_reasonfield": "Sabab:",
+	"interwiki_addbutton": "Ilova"
 }

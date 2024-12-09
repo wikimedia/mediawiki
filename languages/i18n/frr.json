@@ -2825,5 +2825,6 @@
 	"renameuser-move-log": "Det sidj as bi't amnäämen faan „[[User:$1|$1]]“ tu „[[User:$2|$2]]“ automaatisk fersköwen wurden",
 	"action-renameuser": "brükern amnääm",
 	"right-renameuser": "Brükern amnääm",
-	"renameuser-renamed-notice": "Didiar brüker as amnäämd wurden. Uun't amnääm-logbuk oner stäänt muar diartu."
+	"renameuser-renamed-notice": "Didiar brüker as amnäämd wurden. Uun't amnääm-logbuk oner stäänt muar diartu.",
+	"interwiki-title-norights": "Interwiki-dooten uunluke"
 }

@@ -2023,5 +2023,9 @@
 	"renameuser-page-unmoved": "Имкони кӯчонидани саҳифаи $1 ба $2 вуҷуд надорад.",
 	"log-name-renameuser": "Гузориши тағйири номи корбар",
 	"renameuser-move-log": "Саҳифа дар вақти тағйири номи корбар  \"[[User:$1|$1]]\" ба \"[[User:$2|$2]]\" ба таври худкор кӯчонида шуд",
-	"right-renameuser": "Тағйири номи корбарон"
+	"right-renameuser": "Тағйири номи корбарон",
+	"interwiki_reasonfield": "Сабаб:",
+	"interwiki-addtext-nolang": "Иловаи префикси нави интервики",
+	"interwiki_addbutton": "Илова",
+	"interwiki-global-language-links": "Префиксҳои саросарии бисёрзабонӣ"
 }

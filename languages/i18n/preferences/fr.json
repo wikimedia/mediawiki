@@ -108,7 +108,7 @@
 	"prefs-help-email": "L’adresse de courriel est facultative, mais elle est nécessaire pour réinitialiser votre mot de passe, en cas d’oubli.",
 	"prefs-help-email-required": "Une adresse de courriel est requise.",
 	"prefs-help-email-others": "Vous pouvez aussi choisir de laisser les autres vous contacter par courriel via un lien sur votre page de discussion ou page utilisateur. \nVotre adresse courriel n’est pas révélée quand les autres utilisateurs vous contactent.",
-	"tog-requireemail": "Envoyer les courriels de réinitialisation de mot de passe seulement quand l’adresse de messagerie et le nom d’utilisateur sont tous deux fournis.",
+	"tog-requireemail": "Envoyer les courriels de réinitialisation de mot de passe uniquement quand l’adresse de messagerie et le nom d’utilisateur sont tous les deux fournis",
 	"prefs-help-requireemail": "Cela améliore la confidentialité et aide à éviter les courriels non sollicités.",
 	"noemailprefs": "Indiquez une adresse de courriel dans vos préférences pour utiliser ces fonctions.",
 	"emailnotauthenticated": "Votre adresse de courriel n’est pas encore confirmée.\nAucun courriel ne sera envoyé pour chacune des fonctions suivantes.",

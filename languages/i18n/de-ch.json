@@ -355,5 +355,6 @@
 	"api-error-unknown-warning": "Unbekannte Warnung: «$1»",
 	"api-error-unknownerror": "Unbekannter Fehler: «$1»",
 	"specialmute-email-footer": "Um Deine E-Mail Einstellungen für {{BIDI:$2}} zu verwalten, besuche bitte <$1>.",
-	"nstab-mainpage": "Hauptseite"
+	"nstab-mainpage": "Hauptseite",
+	"interwiki_addintro": "Du fügst ein neues Interwikipräfix hinzu. Beachte, dass es keinen Leerschlag ( ), Et-Zeichen (&), Gleichheitszeichen (=) und keinen Doppelpunkt (:) enthalten darf."
 }

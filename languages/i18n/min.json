@@ -2317,5 +2317,22 @@
 	"log-name-renameuser": "Log panggantian namo pangguno",
 	"log-description-renameuser": "Di bawah ko log panggantian namo pangguno",
 	"renameuser-move-log": "Sacaro otomatih mamindahan laman wakatu mangganti namo pangguno \"[[User:$1|$1]]\" manjadi \"[[User:$2|$2]]\"",
-	"right-renameuser": "Mangganti namo pangguno"
+	"right-renameuser": "Mangganti namo pangguno",
+	"interwiki": "Caliak dan suntiang data interwiki",
+	"interwiki-title-norights": "Caliak data interwiki",
+	"interwiki_intro": "Iko gambaran tabel interwiki.",
+	"interwiki_prefix": "Kode",
+	"interwiki-prefix-label": "Kode:",
+	"interwiki_prefix_intro": "Kode interwiki akan digunoan dalam  <code>[<nowiki />[kode:<em>namo laman</em>]]</code> sintak teks wiki.",
+	"interwiki_local": "Manaruihkan",
+	"interwiki-local-label": "Manaruihkan",
+	"interwiki_trans": "Transklusi",
+	"interwiki-trans-label": "Transklusi",
+	"interwiki_1": "yo",
+	"interwiki_0": "indak",
+	"interwiki_edit": "Suntiang",
+	"interwiki_reasonfield": "Alasan:",
+	"interwiki_addbutton": "Tambahkan",
+	"right-interwiki": "Suntiang data interwiki",
+	"action-interwiki": "ubah masuakan interwiki ko"
 }

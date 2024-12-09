@@ -3456,5 +3456,6 @@
 	"newpages-showhide-redirect": "$1 redirijes",
 	"newpages-showhide-registered": "$1 usores rejistrada",
 	"renameuserreason": "Razona:",
-	"renameusersubmit": "Envia"
+	"renameusersubmit": "Envia",
+	"interwiki-title-norights": "Regarda datos de intervici"
 }

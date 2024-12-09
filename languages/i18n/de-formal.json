@@ -578,5 +578,8 @@
 	"specialmute-error-no-options": "Stummschaltungs-Funktionen sind nicht verfügbar. Gründe dafür könnten sein: Sie haben Ihre E-Mail-Adresse nicht bestätigt, ein Administrator hat die E-Mail-Funktionen deaktiviert oder eine E-Mail-Negativliste in diesem Wiki eingerichtet.",
 	"specialmute-login-required": "Bitte melden Sie sich an, um Ihre Stummschaltungseinstellungen zu ändern.",
 	"userlogout-continue": "Möchten Sie sich abmelden?",
-	"nstab-mainpage": "Hauptseite"
+	"nstab-mainpage": "Hauptseite",
+	"interwiki_deleting": "Sie sind gerade dabei das Präfix „$1“ zu löschen.",
+	"interwiki_addintro": "Sie fügen ein neues Interwikipräfix hinzu. Beachten Sie, dass es kein Leerzeichen ( ), Kaufmännisches Und (&), Gleichheitszeichen (=) und keinen Doppelpunkt (:) enthalten darf.",
+	"interwiki_editintro": "Sie sind gerade dabei ein Präfix zu ändern.\nBeachten Sie bitte, dass dies bereits vorhandene Links ungültig machen kann."
 }

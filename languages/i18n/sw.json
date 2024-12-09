@@ -2330,5 +2330,7 @@
 	"renameuser-page-moved": "Ukurasa wa $1 umehamishwa hadi $2.",
 	"renameuser-page-unmoved": "Ukurasa $1 haungesongezwa hadi $2.",
 	"action-renameuser": "badili jina la mtumiaji",
-	"right-renameuser": "Badili majina ya watumiaji"
+	"right-renameuser": "Badili majina ya watumiaji",
+	"interwiki-legend-label": "Simulizi",
+	"interwiki_1": "ndiyo"
 }

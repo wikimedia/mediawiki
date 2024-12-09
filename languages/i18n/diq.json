@@ -3887,5 +3887,20 @@
 	"renameuser-move-log": "wexta ke {{GENDER:$2|karber}} \"[[User:$1|$1]]\" no name ra kırışiya \"[[User:$2|$2]]\" no name re ya newe ra name diyêne pel zi otomotikmen kırişiya",
 	"action-renameuser": "karberan newe ra name ke",
 	"right-renameuser": "Reyna namekerdışê karberi",
-	"renameuser-renamed-notice": "No karber namey xo vırno, reyna name gırewto.\nQeydê reyna namekerdışi cêr dı referans dı esto."
+	"renameuser-renamed-notice": "No karber namey xo vırno, reyna name gırewto.\nQeydê reyna namekerdışi cêr dı referans dı esto.",
+	"interwiki-title-norights": "Melumatê interwikiya bıvin",
+	"interwiki-legend-label": "Kıtabek",
+	"interwiki_prefix": "Verbend",
+	"interwiki-prefix-label": "Verbend:",
+	"interwiki_local": "Raver",
+	"interwiki-local-label": "Raver",
+	"interwiki_trans": "Şıkıl bıvurne",
+	"interwiki-trans-label": "Şıkıl bıvurne",
+	"interwiki_1": "eya",
+	"interwiki_0": "nê",
+	"interwiki_edit": "Bıvurne",
+	"interwiki_reasonfield": "Sebeb:",
+	"interwiki_addbutton": "Cı ke",
+	"log-name-interwiki": "Qeydê tabloyê interwiki",
+	"right-interwiki": "Daneyanê interwiki bıvurne"
 }

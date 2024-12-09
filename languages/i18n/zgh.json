@@ -864,7 +864,7 @@
 	"allpagessubmit": "ⴷⴷⵓ",
 	"allpages-hide-redirects": "ⵙⵙⵏⵜⵍ ⵉⵙⵡⴰⵍⴰⵜⵏ",
 	"categories": "ⵉⵙⵎⵉⵍⵏ",
-	"sp-deletedcontributions-contribs": "ⵜⵓⵎⵓⵜⵉⵏ",
+	"sp-deletedcontributions-contribs": "ⵜⵉⴱⵣⴰⵔⵉⵏ",
 	"listgrouprights-members": "ⵜⴰⵍⴳⴰⵎⵜ ⵏ ⵉⴳⵎⴰⵎⵏ",
 	"listgrouprights-removegroup": "ⵙⵉⵜⵜⵢ {{PLURAL:$2|ⵜⴰⵔⴰⴱⴱⵓⵜ|ⵜⵉⵔⵓⴱⴱⴰ}}: $1",
 	"listgrouprights-addgroup-all": "ⵔⵏⵓ ⵎⴰⵕⵕⴰ ⵜⵉⵔⴰⴱⴱⵓⵜⵉⵏ",
@@ -909,7 +909,7 @@
 	"tooltip-namespace_association": "ⵙⵎⴰⵜⵔ ⵜⴰⴼⵏⵉⵇⵜ ⴰⴷ ⵃⵎⴰ ⴰⴷ ⵜⵙⵎⵓⵏⴷ ⴰⵍⵜⵓ ⵜⵉⵔⵉⵡⵜ ⵏ ⵉⵙⵎ ⵏ ⵓⵎⵙⴰⵡⴰⵍ ⵏⵖ ⵜⵉⵏ ⵜⵖⴰⵡⵙⴰ ⵉⵣⴷⵉⵏ ⴷ ⵜⵔⵉⵡⵜ ⵏ ⵉⵙⵎ ⵏⵏⴰ ⵜⵙⵜⵉⴷ",
 	"blanknamespace": "(ⴰⴷⵙⵍⴰⵏ)",
 	"contributions": "ⵜⵉⴱⵣⴰⵔⵉⵏ ⵏ ⵓⵏⵙⵙⵎⵔⵙ",
-	"tool-link-contributions": "ⵜⵓⵎⵓⵜⵉⵏ ⵏ {{GENDER:$1|ⵓⵏⵙⵙⵎⵔⵙ|ⵜⵏⵙⵙⵎⵔⵙⵜ}}",
+	"tool-link-contributions": "ⵜⵉⴱⵣⴰⵔⵉⵏ ⵏ {{GENDER:$1|ⵓⵏⵙⵙⵎⵔⵙ|ⵜⵏⵙⵙⵎⵔⵙⵜ}}",
 	"contributions-title": "ⵜⵉⴱⵣⴰⵔⵉⵏ ⵏ {{GENDER:$1|ⵓⵏⵙⵎⵔⵙ|ⵜⵏⵙⵎⵔⵙⵜ|}} $1",
 	"mycontris": "ⵜⵉⴱⵣⴰⵔⵉⵏ",
 	"anoncontribs": "ⵜⵉⴱⵣⴰⵔⵉⵏ",
@@ -1002,7 +1002,7 @@
 	"tooltip-t-whatlinkshere": "ⵓⵎⵓⵖ ⵏ ⵎⴰⵕⵕ ⵜⴰⵙⵏⵉⵡⵉⵏ ⵏ ⵡⵉⴽⵉ ⵉⵣⴷⵉⵏ ⵉ ⴷⴰ",
 	"tooltip-t-recentchangeslinked": "ⵉⵙⵏⴼⵍⵏ ⵉⵏⴳⴳⵓⵔⴰ ⴳ ⵜⴰⵙⵏⵉⵡⵉⵏ ⵉⵣⴷⵉⵏ ⵖⵔ ⵜⴰⵙⵏⴰ ⴰ",
 	"tooltip-feed-atom": "ⴰⵏⴳⵉ ⵏ ⴰⵜⵓⵎ ⵏ ⵜⴰⵙⵏⴰ ⴰⴷ",
-	"tooltip-t-contributions": "ⵢⴰⵜ ⵜⵍⴳⴰⵎⵜ ⵏ ⵜⵓⵎⵓⵜⵉⵏ ⵏ {{GENDER:$1|ⵓⵙⵎⵔⴰⵙ ⴰ}}",
+	"tooltip-t-contributions": "ⵢⴰⵜ ⵜⵍⴳⴰⵎⵜ ⵏ ⵜⴱⵣⴰⵔⵉⵏ ⵏ {{GENDER:$1|ⵓⵙⵎⵔⴰⵙ ⴰ}}",
 	"tooltip-t-emailuser": "ⴰⵣⵏ ⵢⴰⵏ ⵉⵎⴰⵢⵍ ⵉ {{GENDER:$1|ⵓⵏⵙⵙⵎⵔⵙ ⴰ|ⵜⵏⵙⵙⵎⵔⵙⵜ ⴰ}}",
 	"tooltip-t-upload": "ⵙⴽⵜⵔ ⵉⴼⵓⵢⵍⴰ",
 	"tooltip-t-specialpages": "ⵢⴰⵜ ⵜⵍⴳⴰⵎⵜ ⵏ ⵜⴰⵙⵏⵉⵡⵉⵏ ⴰⴽⴽ ⵥⵍⵉⵏⵉⵏ",
@@ -1179,5 +1179,8 @@
 	"blockedtext-intended-blockee": "ⴰⵎⴳⴷⴰⵍ ⵉⵜⵜⵡⴰⵜⵜⵙⵏ: $1",
 	"blockedtext-contact-blocker-admin": "ⵜⵣⵎⵔⴷ ⴰⴷ ⵜⵎⵢⴰⵡⴰⴹⴷ ⴰⴽⴷ $1 ⵏⵖ [[{{MediaWiki:Grouppage-sysop}}|ⴰⵎⵙⵙⵓⴳⵓⵔ]] ⵢⴰⴹⵏ ⵉ ⵓⵎⵙⴳⴷⴰⵍ ⵏ ⵓⴳⴷⴷⵓⵍ.",
 	"blockedtext-block-ip": "ⴰⵏⵙⴰ ⵏ IP ⵏⵏⵓⵏ ⴰⵎⵉⵔⴰⵏ ⵉⴳⴰ $1.",
-	"blockedtext-include-details-queries": "ⵎⴽ ⵜⵓⴼⵉⴷ, ⵙⵙⴰⵎⵓ ⵉⴼⵔⵓⵔⵉⵜⵏ ⴰⴽⴽⵯ ⵏ ⵏⵏⵉⴳ ⴷⴰ ⴳ ⵜⵓⵜⵔⵉⵡⵉⵏ ⴰⴽⴽⵯ ⵏⵏⴰ ⵜⵙⴽⵔⴷ."
+	"blockedtext-include-details-queries": "ⵎⴽ ⵜⵓⴼⵉⴷ, ⵙⵙⴰⵎⵓ ⵉⴼⵔⵓⵔⵉⵜⵏ ⴰⴽⴽⵯ ⵏ ⵏⵏⵉⴳ ⴷⴰ ⴳ ⵜⵓⵜⵔⵉⵡⵉⵏ ⴰⴽⴽⵯ ⵏⵏⴰ ⵜⵙⴽⵔⴷ.",
+	"interwiki_1": "ⵢⴰⵀ",
+	"interwiki_0": "ⵓⵀⵓ",
+	"interwiki_addbutton": "ⵔⵏⵓ"
 }

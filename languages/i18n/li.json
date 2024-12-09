@@ -3384,5 +3384,7 @@
 	"renameuser-move-log": "Automatisch hernömp bie 't wiezige van gebroeker \"[[User:$1|$1]]\" nao \"[[User:$2|$2]]\"",
 	"action-renameuser": "gebroekers van naam te verangere",
 	"right-renameuser": "Gebroekers hernaome",
-	"renameuser-renamed-notice": "Deze gebroeker is herneump.\nRelevante regels oet 't logbook staon hieónger."
+	"renameuser-renamed-notice": "Deze gebroeker is herneump.\nRelevante regels oet 't logbook staon hieónger.",
+	"interwiki": "Tuin en bewirk interwikigegaeves",
+	"interwiki-title-norights": "Toean interwikigegaeves"
 }

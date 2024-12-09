@@ -3795,5 +3795,7 @@
 	"renameuserold": "Nom de l'utent de adessː",
 	"renameusernew": "Nom de l'utent noeuvː",
 	"renameuserreason": "Resonː",
-	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|a l'ha rinominad}} l'utent $4 ({{PLURAL:$6|$6 modifega|$6 modifeghe}}) come $5"
+	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|a l'ha rinominad}} l'utent $4 ({{PLURAL:$6|$6 modifega|$6 modifeghe}}) come $5",
+	"interwiki": "Varda e modìfica i dati interwiki",
+	"interwiki-title-norights": "Varda i dati interwiki"
 }

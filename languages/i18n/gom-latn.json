@@ -1197,5 +1197,7 @@
 	"blockedtext-block-ip": "Tuzo chalont IP pot'to asa $1.",
 	"blockedtext-block-id": "Addavnnecheo ank #$1.",
 	"blockedtext-include-details-queries": "Upkar korun soglleo voileo bariksanno tum kortai tea vicharant aspav kor.",
-	"logentry-renameuser-renameuser": "$1 hannem $4 hachem vaporpeachem nanv bodlun {{GENDER:$7|$5}} {{GENDER:$2|kelem}} ({{PLURAL:$6|$6 bodol}})"
+	"logentry-renameuser-renameuser": "$1 hannem $4 hachem vaporpeachem nanv bodlun {{GENDER:$7|$5}} {{GENDER:$2|kelem}} ({{PLURAL:$6|$6 bodol}})",
+	"interwiki_trans": "Sondorbh-aspav",
+	"interwiki-trans-label": "Sondorbh-aspav"
 }

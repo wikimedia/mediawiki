@@ -2692,5 +2692,10 @@
 	"renameuser-move-log": "ସଭ୍ୟ \"[[User:$1|$1]]\"ରୁ \"[[User:$2|$2]]\"କୁ ନାମ ବଦଳ କଲାବେଳେ ବେଳେ ଛାଏଁ ଛାଏଁ ପୃଷ୍ଠାଟି ଘୁଞ୍ଚାଇ ଦିଆଗଲା",
 	"action-renameuser": "ବ୍ୟବହାରକାରୀଙ୍କ ନାମବଦଳା",
 	"right-renameuser": "ସଭ୍ୟମାନଙ୍କ ନାମଟି ବଦଳାଇବେ",
-	"renameuser-renamed-notice": "ଏହି ସଭ୍ୟଙ୍କ ନାମ ବଦଳାଯାଇଅଛି ।\nତଳେ ଅବଗତି ନିମନ୍ତେ ନାମ ବଦଳ ଇତିହାସ ଦିଆଗଲା ।"
+	"renameuser-renamed-notice": "ଏହି ସଭ୍ୟଙ୍କ ନାମ ବଦଳାଯାଇଅଛି ।\nତଳେ ଅବଗତି ନିମନ୍ତେ ନାମ ବଦଳ ଇତିହାସ ଦିଆଗଲା ।",
+	"interwiki_1": "ହଁ",
+	"interwiki_0": "ନା",
+	"interwiki_edit": "ସମ୍ପାଦନା",
+	"interwiki_reasonfield": "କାରଣ:",
+	"interwiki_deleting": "ଆପଣ \"$1\"ର ପୂର୍ବକୁ ବଦଳାଉଛନ୍ତି"
 }

@@ -1583,5 +1583,8 @@
 	"renameuser-page-moved": "Li pådje $1 a stî displaeceye viè $2.",
 	"renameuser-page-unmoved": "Li pådje $1 èn pout nén esse displaeceye viè $2.",
 	"log-name-renameuser": "Djournå des candjmints d' no d' uzeus",
-	"renameuser-move-log": "Pådje displaeceye otomaticmint tot rlomant l' uzeu «[[User:$1|$1]]» viè «[[User:$2|$2]]»"
+	"renameuser-move-log": "Pådje displaeceye otomaticmint tot rlomant l' uzeu «[[User:$1|$1]]» viè «[[User:$2|$2]]»",
+	"interwiki-legend-label": "Ledjinde",
+	"interwiki_edit": "Candjî",
+	"interwiki_reasonfield": "Råjhon:"
 }

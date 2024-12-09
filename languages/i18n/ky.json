@@ -1662,5 +1662,10 @@
 	"renameusersubmit": "Аткар",
 	"renameusererrorexists": "«<nowiki>$1</nowiki>» деген {{GENDER:$1|колдонуучу}} мурунтан эле бар.",
 	"renameusererrorinvalid": "«<nowiki>$1</nowiki>» деген колдонуучунун аты жараксыз.",
-	"log-name-renameuser": "Колдонуучуну кайра атоо журналы"
+	"log-name-renameuser": "Колдонуучуну кайра атоо журналы",
+	"interwiki_1": "ооба",
+	"interwiki_0": "жок",
+	"interwiki_edit": "Түзөтүү",
+	"interwiki_reasonfield": "Себеп:",
+	"interwiki_addbutton": "Кошуу"
 }

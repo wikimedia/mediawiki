@@ -1837,5 +1837,7 @@
 	"blockedtext-intended-blockee": "Zaszperowany ôstoł: $1",
 	"blockedtext-contact-blocker-admin": "Mogesz skōntaktować sie ze $1 abo inkszym [[{{MediaWiki:Grouppage-sysop}}|adminisztratorym]], coby ôbgŏdać szperã.",
 	"blockedtext-block-ip": "Twōj adres IP to je terŏz $1.",
-	"blockedtext-include-details-queries": "Proszã ô wkludzyniy wszyjskich powyższych informacyji we wszelich spytaniach."
+	"blockedtext-include-details-queries": "Proszã ô wkludzyniy wszyjskich powyższych informacyji we wszelich spytaniach.",
+	"interwiki_reasonfield": "Powōd:",
+	"interwiki_addbutton": "Dodej"
 }

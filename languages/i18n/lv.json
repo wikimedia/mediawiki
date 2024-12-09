@@ -2969,5 +2969,6 @@
 	"log-name-renameuser": "Dalībnieku pārdēvēšanas reģistrs",
 	"log-description-renameuser": "Lietotājvārdu maiņas reģistrs",
 	"action-renameuser": "pārsaukt lietotājus",
-	"right-renameuser": "Pārsaukt dalībniekus"
+	"right-renameuser": "Pārsaukt dalībniekus",
+	"interwiki-legend-label": "Apzīmējumi"
 }

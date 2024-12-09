@@ -1278,5 +1278,6 @@
 	"skin-action-protect": "Pangapinan",
 	"skin-action-undelete": "Dulaon ang pagpanas",
 	"skin-action-delete": "Panason",
-	"skin-action-move": "Saylohon"
+	"skin-action-move": "Saylohon",
+	"interwiki_reasonfield": "Rason:"
 }

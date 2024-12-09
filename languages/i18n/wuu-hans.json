@@ -1679,5 +1679,6 @@
 	"skin-action-protect": "保护",
 	"skin-action-undelete": "取消删除",
 	"skin-action-delete": "删除",
-	"skin-action-move": "移动"
+	"skin-action-move": "移动",
+	"interwiki_reasonfield": "理由："
 }

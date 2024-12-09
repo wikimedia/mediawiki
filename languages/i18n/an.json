@@ -2115,5 +2115,7 @@
 	"log-name-renameuser": "Rechistro de cambios de nombre d'usuarios",
 	"renameuser-move-log": "Pachina tresladata automaticament en renombrar o usuario \"[[User:$1|$1]]\" como \"[[User:$2|$2]]\"",
 	"right-renameuser": "Renombrar usuarios",
-	"renameuser-renamed-notice": "O nombre d'iste usuario s'ha modificau.\nO rechistro de cambeos de nombre d'usuario se proveye debaixo ta mas referencia."
+	"renameuser-renamed-notice": "O nombre d'iste usuario s'ha modificau.\nO rechistro de cambeos de nombre d'usuario se proveye debaixo ta mas referencia.",
+	"interwiki_1": "Sí",
+	"interwiki_reasonfield": "Razón:"
 }

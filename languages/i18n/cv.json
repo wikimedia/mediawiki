@@ -4021,5 +4021,7 @@
 	"benefit-3-description": "Хӑвӑрӑн харпӑр опыта палӑртма май паракан ӗнерлевсем.",
 	"temp-user-unable-to-acquire": "Хутшӑнакан валли вӑхӑтлӑ ят хатӗрлеме май килмерӗ. Каярах тепре туса пӑхӑр.",
 	"table-of-contents-show-button-aria-label": "Тупмаллине кӑтарт",
-	"table-of-contents-hide-button-aria-label": "Тупмаллине пытар"
+	"table-of-contents-hide-button-aria-label": "Тупмаллине пытар",
+	"interwiki_edit": "Тӳрлет",
+	"interwiki_addbutton": "Хуш"
 }

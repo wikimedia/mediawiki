@@ -527,5 +527,6 @@
 	"expand_templates_ok": "OK",
 	"skin-action-protect": "Tambuim",
 	"skin-action-delete": "Rausim",
-	"skin-action-move": "Surikim"
+	"skin-action-move": "Surikim",
+	"interwiki_edit": "Senisim"
 }

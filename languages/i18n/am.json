@@ -1558,5 +1558,6 @@
 	"blockedtext-contact-blocker-admin": "$1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስለ ማገጃ ለመጠይቅ ይችላሉ።",
 	"blockedtext-block-ip": "የአሁኑኑ ቁጥር አድራሻዎ $1።",
 	"blockedtext-block-id": "የማገጃው ቁጥር #$1 ነው።",
-	"blockedtext-include-details-queries": "ምንም ጥያቄ ካለዎ ይህን ቁጥር ይጨምሩ።"
+	"blockedtext-include-details-queries": "ምንም ጥያቄ ካለዎ ይህን ቁጥር ይጨምሩ።",
+	"interwiki_reasonfield": "ምክንያት:"
 }

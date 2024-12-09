@@ -1297,5 +1297,7 @@
 	"renameuserwarnings": "Ngéntị:",
 	"renameusersubmit": "Zibànye",
 	"renameuser-page-moved": "Ihü $1 a páfùrù gá $2.",
-	"renameuser-page-unmoved": "Ihü $1 énweghịkị páfù gá $2."
+	"renameuser-page-unmoved": "Ihü $1 énweghịkị páfù gá $2.",
+	"interwiki_edit": "Mèzi",
+	"interwiki_reasonfield": "Mgbághapụtà:"
 }

@@ -3741,5 +3741,21 @@
 	"action-renameuser": "endurnefna notendur",
 	"right-renameuser": "Endurnefna notendur",
 	"renameuser-renamed-notice": "Þessi notandi hefur verið endurnefndur.\nAtburðaskrá endurnefninga er hér að neðan til viðmiðunar.",
-	"log-unknown-action": "framkvæmdi óþekktu aðgerðina \"$2\" á [[$1]]"
+	"log-unknown-action": "framkvæmdi óþekktu aðgerðina \"$2\" á [[$1]]",
+	"interwiki-title-norights": "Skoða milli-wiki-gögn",
+	"interwiki-legend-label": "Skýring",
+	"interwiki_prefix": "Forskeyti",
+	"interwiki-prefix-label": "Forskeyti:",
+	"interwiki_url": "Vefslóð",
+	"interwiki-url-label": "Vefslóð:",
+	"interwiki_local": "Áfram",
+	"interwiki-local-label": "Áframsenda",
+	"interwiki_trans": "Innifela",
+	"interwiki-trans-label": "Innifela",
+	"interwiki_1": "já",
+	"interwiki_0": "nei",
+	"interwiki_edit": "Breyta",
+	"interwiki_reasonfield": "Ástæða:",
+	"interwiki-logtext": "Skoða aðgerðaskrá",
+	"interwiki_addbutton": "Bæta við"
 }

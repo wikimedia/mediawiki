@@ -799,5 +799,7 @@
 	"renameuserold": "Leina la bjale la mošomiši:",
 	"renameusernew": "Leina le lempsha la mošomiši:",
 	"renameuserreason": "Lebaka:",
-	"renameuser-page-moved": "Letlakala $1 le hudušitšwe go $2"
+	"renameuser-page-moved": "Letlakala $1 le hudušitšwe go $2",
+	"interwiki_reasonfield": "Lebaka:",
+	"interwiki_addbutton": "Lokela"
 }

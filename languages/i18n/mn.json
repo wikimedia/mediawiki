@@ -2193,5 +2193,9 @@
 	"blockedtext-contact-blocker-admin": "Та $1 эсвэл өөр [[{{MediaWiki:Grouppage-sysop}}|администратор]]-той холбогдож блокыг ярилцаж болно.",
 	"blockedtext-block-ip": "Таны одоогийн IP хаяг $1 байна.",
 	"blockedtext-include-details-queries": "Асуултдаа дээрх бүх мэдээллийг оруулна уу.",
-	"renameusersubmit": "Явуулах"
+	"renameusersubmit": "Явуулах",
+	"interwiki_1": "тийм",
+	"interwiki_0": "үгүй",
+	"interwiki_reasonfield": "Шалтгаан:",
+	"interwiki_addbutton": "Нэмэх"
 }

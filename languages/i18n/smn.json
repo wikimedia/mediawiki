@@ -1760,5 +1760,8 @@
 	"renameuserwarnings": "Váruttâsah:",
 	"renameuser-warning-currentblock": "Taat kevtee lii [$1 tääl estum].",
 	"log-name-renameuser": "Kevtteenoomâi molsom loki",
-	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|uđđâsistnomâttij}} kevttee $4 ({{PLURAL:$6|$6 hammiimid|0=Ij ohtâge hammim|1=1 hammim|2=2 hammim|3=3 hammim|4=4 hammim|5=5 hammim|6=6 hammim}}) noomáin {{GENDER:$7|$5}}"
+	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|uđđâsistnomâttij}} kevttee $4 ({{PLURAL:$6|$6 hammiimid|0=Ij ohtâge hammim|1=1 hammim|2=2 hammim|3=3 hammim|4=4 hammim|5=5 hammim|6=6 hammim}}) noomáin {{GENDER:$7|$5}}",
+	"interwiki_reasonfield": "Suijâ:",
+	"interwiki-logtext": "Keejâ loki",
+	"interwiki_addbutton": "Lasseet"
 }

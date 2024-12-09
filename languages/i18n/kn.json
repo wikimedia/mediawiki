@@ -1935,5 +1935,10 @@
 	"log-name-renameuser": "ಸದಸ್ಯರ ಮರುನಾಮಕರಣ ದಾಖಲೆ",
 	"logentry-renameuser-renameuser": "$1 ಅವರು ಸದಸ್ಯ $4 ({{PLURAL:$6|$6 ಸಂಪಾದನೆ|$6ಸಂಪಾದನೆಗಳು}}) ಇಂದ  {{GENDER:$7|$5}} ಗೆ {{GENDER:$2|ಮರುನಾಮಕರಣ}} ಮಾಡಿದ್ದಾರೆ",
 	"action-renameuser": "ಸದಸ್ಯರನ್ನು ಮರುನಾಮಕರಣ ಮಾಡಿ",
-	"right-renameuser": "ಸದಸ್ಯರನ್ನು ಮರುನಾಮಕರಣ ಮಾಡಿ"
+	"right-renameuser": "ಸದಸ್ಯರನ್ನು ಮರುನಾಮಕರಣ ಮಾಡಿ",
+	"interwiki_1": "ಹೌದು",
+	"interwiki_0": "ಇಲ್ಲ",
+	"interwiki_edit": "ಸಂಪಾದಿಸಿ",
+	"interwiki_reasonfield": "ಕಾರಣ:",
+	"interwiki_addbutton": "ಸೇರಿಸು"
 }

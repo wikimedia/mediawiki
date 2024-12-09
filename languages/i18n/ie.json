@@ -1648,5 +1648,8 @@
 	"skin-action-delete": "Deleter",
 	"skin-action-move": "Mover",
 	"renameuserreason": "Rason:",
-	"log-name-renameuser": "Diarium de renomination de usator"
+	"log-name-renameuser": "Diarium de renomination de usator",
+	"interwiki_reasonfield": "Rason:",
+	"interwiki-logtext": "Vider diarium",
+	"log-name-interwiki": "Diarium del tabelle de interwikis"
 }

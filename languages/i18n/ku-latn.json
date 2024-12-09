@@ -2063,5 +2063,8 @@
 	"renameuser-page-unmoved": "Rûpela $1 nikanî çûba ciha $2.",
 	"log-name-renameuser": "Guhartina navê bikarhêner",
 	"renameuser-move-log": "Otomatîk hate guhartin, ji ber ku {{GENDER:$2|bikarhêner}} \"[[User:$1|$1]]\" navê xwe guhart û kir \"[[User:$2|$2]]\"",
-	"right-renameuser": "Navê bikarhêneran biguhêre"
+	"right-renameuser": "Navê bikarhêneran biguhêre",
+	"interwiki_1": "erê",
+	"interwiki_edit": "Biguhêre",
+	"interwiki_reasonfield": "Sedem:"
 }

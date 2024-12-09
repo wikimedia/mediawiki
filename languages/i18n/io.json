@@ -3106,5 +3106,10 @@
 	"log-name-renameuser": "Registro di uzero-rinomizuri",
 	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|rinomizis}} uzero $4 ({{PLURAL:$6|$6 redakto|$6 redakti}}) kom {{GENDER:$7|$5}}",
 	"action-renameuser": "rinomizar uzeri",
-	"right-renameuser": "Rinomizar uzeri"
+	"right-renameuser": "Rinomizar uzeri",
+	"interwiki_1": "yes",
+	"interwiki_0": "no",
+	"interwiki_edit": "Redaktar",
+	"interwiki_reasonfield": "Motivo:",
+	"interwiki_addbutton": "Adjuntar"
 }

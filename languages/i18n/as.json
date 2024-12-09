@@ -2734,5 +2734,12 @@
 	"renameuser-move-log": "সদস্য \"[[User:$1|$1]]\"ক \"[[User:$2|$2]]\"লৈ পুনৰ্নামাকৰণ কৰোঁতে স্বয়ংক্ৰিয়ভাৱে পৃষ্ঠা স্থানান্তৰ হ'ল।",
 	"action-renameuser": "সদস্যৰ পুনৰ্নামাকৰণ কৰক",
 	"right-renameuser": "সদস্যৰ পুনৰ্নামাকৰণ কৰক",
-	"renameuser-renamed-notice": "এই সদস্যজনৰ পুনৰ্নামাকৰণ কৰা হৈছে।\nতথ্যসূত্ৰ হিচাপে পুনৰ্নামাকৰণ ল'গ তলত দিয়া হ'ল।"
+	"renameuser-renamed-notice": "এই সদস্যজনৰ পুনৰ্নামাকৰণ কৰা হৈছে।\nতথ্যসূত্ৰ হিচাপে পুনৰ্নামাকৰণ ল'গ তলত দিয়া হ'ল।",
+	"interwiki": "আন্তঃৱিকি তথ্য চাওক আৰু সম্পাদনা কৰক",
+	"interwiki-title-norights": "আন্তঃৱিকি তথ্য চাওক",
+	"interwiki_1": "হয়",
+	"interwiki_0": "নহয়",
+	"interwiki_edit": "সম্পাদনা কৰক",
+	"interwiki_reasonfield": "কাৰণ:",
+	"interwiki_addbutton": "যোগ"
 }

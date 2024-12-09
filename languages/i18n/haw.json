@@ -1058,5 +1058,8 @@
 	"skin-action-protect": "Hoʻomalu",
 	"skin-action-undelete": "Holoiʻole",
 	"skin-action-delete": "Holoi",
-	"skin-action-move": "E hoʻoneʻe"
+	"skin-action-move": "E hoʻoneʻe",
+	"interwiki_edit": "Hoʻololi",
+	"interwiki_reasonfield": "Kumu:",
+	"interwiki_addbutton": "Ho‘ohui"
 }

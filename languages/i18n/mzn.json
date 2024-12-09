@@ -1002,5 +1002,6 @@
 	"blockedtext-intended-blockee": "کسی که دَوست بیّه: $1",
 	"blockedtext-contact-blocker-admin": "این قطع دسترسی خَوِری گپ بزوئن وسه تونی $1 یا اتی [[{{MediaWiki:Grouppage-sysop\n}}|مدیر]] جه گپ بزنین.",
 	"blockedtext-block-ip": "شمه آی‌پی نشونی إسا $1 هسه.",
-	"blockedtext-include-details-queries": "اگه خانی ات‌چی هاپورسین، این اطلاعات ره اونجه حکماً بلین."
+	"blockedtext-include-details-queries": "اگه خانی ات‌چی هاپورسین، این اطلاعات ره اونجه حکماً بلین.",
+	"interwiki_edit": "دچی‌ین"
 }

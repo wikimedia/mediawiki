@@ -1519,5 +1519,6 @@
 	"renameusernew": "Ног ном:",
 	"renameuserreason": "Ном ивыны аххос:",
 	"renameusersubmit": "Афтæ уæд",
-	"log-name-renameuser": "Архайджыты нæмттæ ивыны лог"
+	"log-name-renameuser": "Архайджыты нæмттæ ивыны лог",
+	"interwiki_reasonfield": "Аххос:"
 }

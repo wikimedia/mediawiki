@@ -3929,5 +3929,13 @@
 	"benefit-1-description": "Kacundlugetišed abutaba sinei kacta da tarkištada melentartuižid lehtpolid.",
 	"benefit-2-description": "Kaikenaigaine tehtud radon lugetiž, miččen sinä panid projektaha.",
 	"benefit-3-description": "Valičused, miččed abutaba ladida sinun tehtud radod.",
-	"temp-user-unable-to-acquire": "Ei sa sada nimed keskaigaižen kävutajan täht. Ole hüvä, tege völ kerdan."
+	"temp-user-unable-to-acquire": "Ei sa sada nimed keskaigaižen kävutajan täht. Ole hüvä, tege völ kerdan.",
+	"interwiki_prefix": "Prefiks",
+	"interwiki-prefix-label": "Prefiks:",
+	"interwiki_1": "ka",
+	"interwiki_0": "ei",
+	"interwiki_edit": "Redaktiruida",
+	"interwiki_reasonfield": "Sü:",
+	"interwiki_addbutton": "Ližata",
+	"interwiki_edittext": "Interwiki-prefiksoiden redaktiruind"
 }

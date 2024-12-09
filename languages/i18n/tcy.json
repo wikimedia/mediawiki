@@ -2041,5 +2041,8 @@
 	"blockedtext-intended-blockee": "ಉದ್ದೇಶಿತೊ ನಿರ್ಬಂದನೆ: $1",
 	"blockedtext-contact-blocker-admin": "ನಿರ್ಬಂದೊದ ಬಗೆಟ್ ಚರ್ಚೆ ಮಲ್ಪೆರೆ ಈರ್ $1 ಅತ್ತಂಡ ನಾನೊರಿ [[{{MediaWiki:Grouppage-sysop}}|ನಿರ್ವಾಹಕೆರೆ]]ನ್ ಸಂಪರ್ಕಿಸವೊಲಿ.",
 	"blockedtext-block-ip": "ಈರೆನ ಇತ್ತೆದ ಐಪಿ ವಿಳಾಸೊ $1 ಆತ್ಂಡ್.",
-	"blockedtext-include-details-queries": "ದಯಮಲ್ತ್ ಈರ್ ಮಾಲ್ಪುನ ಒವ್ವೇ ಪ್ರಶ್ನೆಲೆಡ್ಲ್ ಮಿತ್ತ ಮಾಂತ ವಿವರೊಲೆನ್ ಸೇರಾಲೆ."
+	"blockedtext-include-details-queries": "ದಯಮಲ್ತ್ ಈರ್ ಮಾಲ್ಪುನ ಒವ್ವೇ ಪ್ರಶ್ನೆಲೆಡ್ಲ್ ಮಿತ್ತ ಮಾಂತ ವಿವರೊಲೆನ್ ಸೇರಾಲೆ.",
+	"interwiki_edit": "ತಿದ್ದ್‘ಲೆ",
+	"interwiki_reasonfield": "ಕಾರಣ",
+	"interwiki_addbutton": "ಸೇರಾಲೆ"
 }

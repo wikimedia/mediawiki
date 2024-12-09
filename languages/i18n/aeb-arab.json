@@ -728,5 +728,6 @@
 	"nstab-mainpage": "الپاج الأولانيّة",
 	"skin-action-undelete": "استرجع الحذف",
 	"skin-action-delete": "احذف",
-	"skin-action-move": "حوّل"
+	"skin-action-move": "حوّل",
+	"interwiki_edit": "بدّل"
 }

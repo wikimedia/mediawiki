@@ -761,5 +761,6 @@
 	"skin-view-edit-local": "𐌹𐌽𐌼𐌰𐌹𐌳𐌴𐌹 𐍃𐍄𐌰𐌳𐌹𐍃 𐍃𐌺𐌴𐌹𐍂𐌴𐌹𐌽",
 	"skin-action-protect": "𐍆𐍂𐌹𐌸",
 	"skin-action-delete": "𐍆𐍂𐌰𐌵𐌹𐍃𐍄𐌴𐌹",
-	"skin-action-move": "𐌼𐌹𐌸𐍃𐌰𐍄𐌴𐌹"
+	"skin-action-move": "𐌼𐌹𐌸𐍃𐌰𐍄𐌴𐌹",
+	"interwiki_reasonfield": "𐍆𐌰𐌹𐍂𐌹𐌽𐌰:"
 }

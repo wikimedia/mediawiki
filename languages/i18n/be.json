@@ -3903,5 +3903,9 @@
 	"logentry-renameuser-renameuser-legacier": "$1 {{GENDER:$2|перайменаваў|перайменавала}} {{GENDER:$7|удзельніка|удзельніцу}} $4 у $5",
 	"action-renameuser": "перайменаваць удзельнікаў",
 	"right-renameuser": "Перайменаванне ўдзельнікаў",
-	"temp-user-unable-to-acquire": "Немагчыма атрымаць часовае імя ўдзельніка ўліковага запісу. Калі ласка, паспрабуйце ізноў."
+	"temp-user-unable-to-acquire": "Немагчыма атрымаць часовае імя ўдзельніка ўліковага запісу. Калі ласка, паспрабуйце ізноў.",
+	"interwiki-title-norights": "Прагляд звестак пра інтэрвікі",
+	"interwiki_reasonfield": "Прычына:",
+	"interwiki_addbutton": "Дадаць",
+	"interwiki-badprefix": "Пазначаны прэфікс інтэрвікі «$1» змяшчае няслушныя сімвалы"
 }

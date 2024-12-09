@@ -2858,5 +2858,12 @@
 	"renameuser-error-temp-user-reserved": "ناتوانیت «$1» بەکاربێنیت. بۆ ھەژمارە کاتییەکان تەرخان کراوە.",
 	"log-name-renameuser": "لۆگی گۆڕینی ناوی بەکارھێنەر",
 	"logentry-renameuser-renameuser": "$1 ناوی بەکارھێنەر $4ی ({{PLURAL:$6|$6 دەستکاری}}) {{GENDER:$2|گۆڕی}} بۆ $5",
-	"right-renameuser": "گۆڕینی ناوی بەکارھێنەران"
+	"right-renameuser": "گۆڕینی ناوی بەکارھێنەران",
+	"interwiki_prefix": "پێشگر",
+	"interwiki-prefix-label": "پێشگر:",
+	"interwiki_1": "بەڵێ",
+	"interwiki_0": "نە",
+	"interwiki_edit": "دەستکاری",
+	"interwiki_reasonfield": "هۆکار:",
+	"interwiki_deleted": "پێشگری «$1» سەرکەوتووانە لە خشتەی نێوانویکی لابرا."
 }

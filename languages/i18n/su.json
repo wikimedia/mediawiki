@@ -3054,5 +3054,7 @@
 	"renameuser-page-moved": "Kaca $1 geus dipindahkeun ka $2.",
 	"renameuser-page-unmoved": "Kaca $1 teu bisa dipindahkeun ka $2.",
 	"log-name-renameuser": "Log ganti ngaran",
-	"renameuser-move-log": "Otomatis mindahkeun kaca nalika ngaganti ngaran \"[[User:$1|$1]]\" jadi \"[[User:$2|$2]]\""
+	"renameuser-move-log": "Otomatis mindahkeun kaca nalika ngaganti ngaran \"[[User:$1|$1]]\" jadi \"[[User:$2|$2]]\"",
+	"interwiki_1": "nya",
+	"interwiki_reasonfield": "Alesan:"
 }

@@ -646,5 +646,10 @@
 	"renameuserold": "Current Yuusernaame:",
 	"renameusernew": "Nei Yuuser-Naame",
 	"renameuserreason": "Grund:",
-	"renameuserwarnings": "Warninge:"
+	"renameuserwarnings": "Warninge:",
+	"interwiki_1": "ya",
+	"interwiki_0": "nee",
+	"interwiki_edit": "Ennere",
+	"interwiki_reasonfield": "Grund:",
+	"interwiki_addbutton": "Dezu duh"
 }

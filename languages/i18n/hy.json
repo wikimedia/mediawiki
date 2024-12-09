@@ -2233,5 +2233,7 @@
 	"skin-action-move": "Տեղափոխել այս էջը",
 	"renameuser-linkoncontribs-text": "Վերանվանել այս {{GENDER:$1|մասնակցին}}",
 	"table-of-contents-show-button-aria-label": "Ցույց տալ բովանդակության աղյուսակը",
-	"table-of-contents-hide-button-aria-label": "Թաքցնել բովանդակության աղյուսակը"
+	"table-of-contents-hide-button-aria-label": "Թաքցնել բովանդակության աղյուսակը",
+	"interwiki": "Դիտել և փոխել ինթերվիքիյի տեղեկատվությունը",
+	"interwiki_1": "այո"
 }

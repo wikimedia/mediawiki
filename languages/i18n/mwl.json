@@ -1079,5 +1079,7 @@
 	"skin-action-protect": "Porteger",
 	"skin-action-delete": "Botar fuora",
 	"skin-action-move": "Arrastrar",
-	"renameuser-page-moved": "La páigina $1 fui arrastrada pa $2."
+	"renameuser-page-moved": "La páigina $1 fui arrastrada pa $2.",
+	"interwiki-title-norights": "Dados de prefixos anterwikis",
+	"interwiki_edit": "Eiditar"
 }

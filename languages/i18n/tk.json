@@ -3060,5 +3060,6 @@
 	"log-name-renameuser": "Ulanyjy adyny üýtgetme gündeligi",
 	"renameuser-move-log": "Ulanyjy \"[[User:$1|$1]]\" adyndan \"[[User:$2|$2]]\" adyna täzeden atlandyrylanda, sahypa awtomatik geçirildi",
 	"right-renameuser": "Ulanyjylaryň adyny üýtget",
-	"renameuser-renamed-notice": "Bu ulanyjynyň ady üýtgedilipdir.\nAt üýtgediş gündeligi aşakda salgylanma üçin berilýär."
+	"renameuser-renamed-notice": "Bu ulanyjynyň ady üýtgedilipdir.\nAt üýtgediş gündeligi aşakda salgylanma üçin berilýär.",
+	"interwiki_edit": "Redaktirle"
 }

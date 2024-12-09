@@ -3234,5 +3234,11 @@
 	"skin-action-protect": "Prutegge",
 	"skin-action-undelete": "Arrepiglia",
 	"skin-action-delete": "Scancèlla",
-	"skin-action-move": "Mòve"
+	"skin-action-move": "Mòve",
+	"interwiki": "Vide e cagna 'e date interwiki",
+	"interwiki-title-norights": "Vide 'e date interwiki",
+	"interwiki_local_0_intro": "'E richieste HTTP sterne a 'o wiki lucale ch' 'ausano stu prefisso interwiki dint'a l'URL fernerranno comm'a n'errore \"{{int:badtitle}}\".",
+	"interwiki_addtext": "Azzecca interwiki o prefisso 'e lengua",
+	"interwiki-addtext-local": "Azzecca interwiki lucale o prefisso 'e lengua",
+	"interwiki-links": "Prefisse d'interwiki"
 }

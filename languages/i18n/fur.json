@@ -1226,5 +1226,8 @@
 	"renameuser": "Cambie non par un utent",
 	"renameuserold": "Non utent atuâl:",
 	"renameusernew": "Gnûf non utent:",
-	"renameuserwarnings": "Avîs:"
+	"renameuserwarnings": "Avîs:",
+	"interwiki_1": "sì",
+	"interwiki_0": "no",
+	"interwiki_addbutton": "Zonte"
 }

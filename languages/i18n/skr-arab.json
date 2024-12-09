@@ -2676,5 +2676,15 @@
 	"renameusersubmit": "جمع کرواؤ",
 	"log-name-renameuser": "ورتݨ آلیاں دے ناں وٹاوݨ دا لاگ",
 	"action-renameuser": "ورتݨ ناں وٹاؤ",
-	"right-renameuser": "ورتݨ ناں وٹاؤ"
+	"right-renameuser": "ورتݨ ناں وٹاؤ",
+	"interwiki": "انٹر وکی ڈیٹا وچ تبدیلی کرو تے ݙیکھو",
+	"interwiki-title-norights": "انٹر وکی معلومات ݙیکھو",
+	"interwiki_prefix": "سابقے",
+	"interwiki-prefix-label": "سابقے:",
+	"interwiki_local": "اڳوں تے بھیڄو",
+	"interwiki-local-label": "اڳوں تے بھیڄو:",
+	"interwiki_1": "جیا",
+	"interwiki_0": "کو",
+	"interwiki_edit": "لکھو",
+	"interwiki_reasonfield": "وجہ:"
 }

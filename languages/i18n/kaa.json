@@ -2241,5 +2241,10 @@
 	"log-name-renameuser": "Paydalanıwshı atın ózgertiw jurnalı",
 	"log-description-renameuser": "Bul paydalanıwshılar atlarınıń ózgerisleri jurnalı.",
 	"logentry-renameuser-renameuser": "$1 paydalanıwshı atın $4 degennen({{PLURAL:$6|$6 redaktorlaw|$6 redaktorlaw}}) $5 degenge {{GENDER:$2|ózgertti}}",
-	"logentry-renameuser-renameuser-legacier": "$1 paydalanıwshı atın $4 degennen $5 degenge ózgertti"
+	"logentry-renameuser-renameuser-legacier": "$1 paydalanıwshı atın $4 degennen $5 degenge ózgertti",
+	"interwiki": "Wikiaralıq maǵlıwmat penen tanısıw hám onı dúzetiw",
+	"interwiki-title-norights": "Wikiaralıq maǵlıwmat penen tanısıw",
+	"interwiki_edit": "Redaktorlaw",
+	"interwiki_reasonfield": "Sebebi:",
+	"log-name-interwiki": "Interwiki keste jurnalı"
 }
