@@ -37,7 +37,7 @@
 		"grunt-contrib-watch": "1.1.0",
 		"grunt-eslint": "24.3.0",
 		"grunt-karma": "4.0.2",
-		"grunt-stylelint": "0.20.0",
+		"grunt-stylelint": "0.20.1",
 		"jest": "29.7.0",
 		"jest-environment-jsdom": "29.7.0",
 		"jsdoc": "4.0.2",
