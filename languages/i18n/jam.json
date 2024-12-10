@@ -732,7 +732,6 @@
 	"logentry-delete-delete": "$1 {{GENDER:$2|diliitid}} piej $3‎",
 	"logentry-move-move": "$1 {{GENDER:$2|muuv}} piej $3 tu $4‎",
 	"logentry-newusers-create": "One account {{GENDER:$2|mek}} fi $1",
-	"logentry-upload-upload": "$1 {{GENDER:$2|uploaded}} $3",
 	"searchsuggest-search": "Search {{SITENAME}}",
 	"skin-view-create-local": "Ad luokal diskripshan‎",
 	"nstab-mainpage": "Start",

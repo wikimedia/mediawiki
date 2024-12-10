@@ -886,7 +886,6 @@
 	"withoutinterwiki-summary": "እነዚህ ጽሑፎች «በሌሎች ቋንቋዎች» ሥር ወደሆኑት ሌሎች ትርጉሞች ገና አልተያያዙም።",
 	"withoutinterwiki-submit": "ይታዩ",
 	"fewestrevisions": "ለውጦች ያነሱላቸው መጣጥፎች",
-	"nbytes": "$1 {{PLURAL:$1|byte|bytes}}",
 	"ncategories": "$1 {{PLURAL:$1|መደብ|መደቦች}}",
 	"nlinks": "$1 መያያዣዎች",
 	"nmembers": "$1 {{PLURAL:$1|መጣጥፍ|መጣጥፎች}}",

@@ -748,7 +748,7 @@
 	"specialloguserlabel": "ꯄꯥꯡꯊꯣꯛꯂꯤꯕ ꯃꯤ",
 	"speciallogtitlelabel": "ꯄꯥꯟꯐꯝ (ꯃꯃꯤꯡ ꯅꯠꯇ꯭ꯔꯒ {{ns:user}}:ꯁꯤꯖꯤꯟꯅꯔꯤꯕꯁꯤꯡꯒꯤ ꯁꯤꯖꯤꯟꯅꯔꯤꯕ ꯃꯃꯤꯡ):",
 	"log": "ꯆꯪꯕꯥ",
-	"all-logs-page": "ꯃꯤꯌꯥꯝꯄꯨꯝꯕꯒꯤ ꯆꯪꯂꯛꯄꯁꯤꯡ",
+	"all-logs-page": "ꯑꯄꯨꯟꯕ ꯃꯤꯌꯥꯝꯄꯨꯝꯕꯒꯤ ꯆꯪꯂꯛꯄꯁꯤꯡ",
 	"alllogstext": "{{SITENAME}} ꯑꯁꯤꯒꯤ ꯆꯪꯁꯤꯟꯕ ꯈꯨꯗꯤꯡ ꯄꯨꯂꯞ ꯑꯣꯏꯅ ꯎꯠꯊꯣꯛꯄ ꯫\nꯅꯪꯅ ꯄꯤꯛꯍꯟꯕ ꯌꯥꯒꯅꯤ ꯑꯄꯥꯝꯕ ꯃꯅꯨꯡ ꯆꯪꯁꯤꯟꯕ ꯃꯈꯜꯗꯨ ꯈꯟꯒꯠꯂꯒ, ꯁꯤꯖꯤꯟꯅꯔꯤꯕ ꯃꯃꯤꯡ (ꯍꯛꯆꯤꯟꯅ ꯂꯧꯕ), ꯅꯠꯇ꯭ꯔꯒ ꯁꯣꯛꯍꯟꯂꯕ ꯂꯃꯥꯏ (ꯍꯛꯆꯤꯟꯅ ꯂꯧꯕ ꯑꯁꯤꯁꯨ) ꯫",
 	"logempty": "ꯃꯁꯤꯒ ꯆꯥꯟꯅꯕ ꯄꯣꯠꯂꯝꯁꯤꯡ ꯆꯪꯗꯦ",
 	"allpages": "ꯂꯃꯥꯏꯁꯤꯡ ꯂꯣꯏꯅꯥ",
@@ -988,5 +988,7 @@
 	"skin-action-delete": "ꯀꯛꯊꯠꯄꯥ",
 	"skin-action-move": "ꯂꯦꯡꯍꯟꯕꯥ",
 	"blockedtext-made-by": "ꯑꯊꯤꯡꯕ ꯑꯁꯤ $1ꯅꯥ ꯄꯤꯔꯛꯄꯅꯤ ꯫",
-	"blockedtext-reason-comment": "ꯃꯔꯝ ꯑꯁꯤ <em>$1</em>ꯗ ꯂꯩꯔꯦ꯫"
+	"blockedtext-reason-comment": "ꯃꯔꯝ ꯑꯁꯤ <em>$1</em>ꯗ ꯂꯩꯔꯦ ꯫",
+	"blockedtext-start-time": "$1:ꯊꯤꯡꯕ ꯍꯧꯈꯤꯕ",
+	"blockedtext-expiration-time": "$1:ꯊꯤꯡꯕ ꯂꯣꯏꯕꯒꯤ ꯃꯇꯝ"
 }

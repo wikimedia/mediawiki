@@ -65,5 +65,6 @@
 	"apihelp-revisiondelete-param-show": "ਹਰੇਕ ਸੋਧ ਲਈ ਕੀ ਮੁੜ-ਵਿਖਾਉਣਾ ਹੈ।",
 	"apihelp-setpagelanguage-summary": "ਸਫ਼ੇ ਦੀ ਭਾਸ਼ਾ ਬਦਲੋ।",
 	"apihelp-validatepassword-summary": "ਵਿਕੀ ਦੀਆਂ ਪਾਰਸ਼ਬਦ ਨੀਤੀਆਂ ਦੇ ਖ਼ਿਲਾਫ ਇੱਕ ਪਾਰਸ਼ਬਦ ਦੀ ਤਸਦੀਕ ਕਰੋ।",
-	"apihelp-validatepassword-param-password": "ਤਸਦੀਕ ਕਰਨ ਲਈ ਪਾਰਸ਼ਬਦ"
+	"apihelp-validatepassword-param-password": "ਤਸਦੀਕ ਕਰਨ ਲਈ ਪਾਰਸ਼ਬਦ",
+	"api-help-templatedparams-header": "ਫਰਮੇ ਦੇ ਮਾਪਦੰਡ"
 }

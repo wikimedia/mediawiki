@@ -2571,7 +2571,7 @@
 	"block-pages-placeholder": "Engadir máis páxinas...",
 	"block-namespaces-placeholder": "Engadir máis espazos de nomes...",
 	"unblockip": "Desbloquear un usuario",
-	"unblockiptext": "Use o seguinte formulario para dar de novo acceso de escritura a un enderezo IP ou usuario que estea bloqueado.",
+	"unblockiptext": "Utiliza o seguinte formulario para dar de novo acceso de escritura a un enderezo IP ou usuario que estea bloqueado.",
 	"ipusubmit": "Retirar o bloqueo",
 	"unblocked": "[[User:$1|$1]] foi {{GENDER:$1|desbloqueado|desbloqueada}}.",
 	"unblocked-range": "$1 foi desbloqueado.",

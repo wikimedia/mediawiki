@@ -2166,7 +2166,6 @@
 	"pageinfo-few-watchers": "$1ରୁ କମ {{PLURAL:$1|ଦେଖଣାକାରୀ|ଦେଖଣାକାରୀଗଣ}}",
 	"pageinfo-redirects-name": "ଏହି ପୃଷ୍ଠା ସହ ସମ୍ବନ୍ଧିତ ପୁନର୍ପ୍ରେରଣ",
 	"pageinfo-subpages-name": "ଏହି ପୃଷ୍ଠାରେ ଥିବା ଉପପୃଷ୍ଠା",
-	"pageinfo-subpages-value": "$1 ($2 {{PLURAL:$2|redirect|redirects}}; $3 {{PLURAL:$3|non-redirect|non-redirects}})",
 	"pageinfo-firstuser": "ପୃଷ୍ଠା ତିଆରିକରିଛନ୍ତି",
 	"pageinfo-firsttime": "ପୃଷ୍ଠା ତିଆରି କରିବା ତାରିଖ",
 	"pageinfo-lastuser": "ନୂତନତମ ବଦଳକାରୀ",

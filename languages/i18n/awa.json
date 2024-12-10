@@ -2814,7 +2814,6 @@
 	"metadata-help": "इस फ़ाइल में बढ़ाई हुई जानकारी हैं, हो सकता है कि यह फ़ाइल बनाने में इस्तेमाल किये गए स्कैनर अथवा कैमेरा से यह प्राप्त हुई हैं। अगर यह फ़ाइल बदलदी गई है तो यह जानकारी नई फ़ाइल से मेल नहीं खाने की आशंका है।",
 	"metadata-expand": "अउर विवरण देखावा जाय",
 	"metadata-collapse": "अउर विवरण लुकुआवा जाय",
-	"metadata-fields": "Image metadata fields listed in this message will be included on image page display when the metadata table is collapsed.\nOthers will be hidden by default.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "कुल",
 	"monthsall": "कुल",
 	"confirmemail": "आपन ई-मेल ठहर निश्चित करा जाय",

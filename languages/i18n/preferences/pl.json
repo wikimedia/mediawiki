@@ -29,6 +29,7 @@
 	},
 	"preferences": "Preferencje",
 	"prefsnologintext2": "Zaloguj się, aby zmienić swoje preferencje.",
+	"prefsnologintext2-for-temp-user": "Aby zmienić preferencje, utwórz konto.",
 	"searchprefs": "Wyszukaj ustawienie",
 	"searchprefs-noresults": "Brak wyników",
 	"searchprefs-results": "$1 {{PLURAL:$1|wynik|wyniki|wyników}}",
