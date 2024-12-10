@@ -7720,6 +7720,7 @@ class MainConfigSchema {
 	 *   - serialMapping: (array) Configuration for mapping integer indexes to strings
 	 *     to substitute into genPattern.
 	 *       - type: (string) May be
+	 *         - "readable-numeric" to use ASCII decimal numbers broken up with hyphens
 	 *         - "plain-numeric" to use ASCII decimal numbers
 	 *         - "localized-numeric" to use numbers localized using a specific language
 	 *         - "filtered-radix" to use numbers in an arbitrary base between 2 and 36,
@@ -7734,7 +7735,8 @@ class MainConfigSchema {
 	 *         be zero-based array indexes.
 	 *       - uppercase: (bool) With "filtered-radix", whether to use uppercase
 	 *         letters, default false.
-	 *       - offset: (int) With "plain-numeric", a constant to add to the stored index.
+	 *       - offset: (int) With "plain-numeric" and "readable-numeric", a constant to add to the
+	 *         stored index.
 	 *    - expireAfterDays: (int|null, default 90) If not null, how many days should the temporary
 	 *      accounts expire? Requires expireTemporaryAccounts.php to be periodically executed in
 	 *      order to work.
@@ -7753,7 +7755,7 @@ class MainConfigSchema {
 			'matchPattern' => [ 'type' => 'string|array|null', 'default' => null ],
 			'reservedPattern' => [ 'type' => 'string|null', 'default' => '~$1' ],
 			'serialProvider' => [ 'type' => 'object', 'default' => [ 'type' => 'local', 'useYear' => true ] ],
-			'serialMapping' => [ 'type' => 'object', 'default' => [ 'type' => 'plain-numeric' ] ],
+			'serialMapping' => [ 'type' => 'object', 'default' => [ 'type' => 'readable-numeric' ] ],
 			'expireAfterDays' => [ 'type' => 'int|null', 'default' => 90 ],
 			'notifyBeforeExpirationDays' => [ 'type' => 'int|null', 'default' => 10 ],
 		],
