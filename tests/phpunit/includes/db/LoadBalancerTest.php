@@ -58,7 +58,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testWithoutReplica() {
-		global $wgDBname;
+		global $wgDBname, $wgDBmwschema;
 
 		$called = false;
 		$chronologyProtector = $this->createMock( ChronologyProtector::class );
@@ -72,7 +72,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 			// Simulate web request with DBO_TRX
 			'servers' => [ $this->makeServerConfig( DBO_TRX ) ],
 			'logger' => MediaWiki\Logger\LoggerFactory::getInstance( 'rdbms' ),
-			'localDomain' => new DatabaseDomain( $wgDBname, null, self::dbPrefix() ),
+			'localDomain' => new DatabaseDomain( $wgDBname, $wgDBmwschema, self::dbPrefix() ),
 			'chronologyProtector' => $chronologyProtector,
 			'clusterName' => 'xyz'
 		] );
@@ -218,7 +218,8 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	private function newMultiServerLocalLoadBalancer(
 		$lbExtra = [], $srvExtra = [], $masterOnly = false
 	) {
-		global $wgDBserver, $wgDBport, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype;
+		global $wgDBserver, $wgDBport, $wgDBuser, $wgDBpassword, $wgDBtype;
+		global $wgDBname, $wgDBmwschema;
 		global $wgSQLiteDataDir;
 
 		$servers = [
@@ -345,7 +346,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 
 		return new LoadBalancer( $lbExtra + [
 			'servers' => $servers,
-			'localDomain' => new DatabaseDomain( $wgDBname, null, self::dbPrefix() ),
+			'localDomain' => new DatabaseDomain( $wgDBname, $wgDBmwschema, self::dbPrefix() ),
 			'logger' => MediaWiki\Logger\LoggerFactory::getInstance( 'rdbms' ),
 			'loadMonitor' => [ 'class' => LoadMonitorNull::class ],
 			'clusterName' => 'main-test-cluster'
