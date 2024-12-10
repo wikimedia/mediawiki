@@ -1,6 +1,6 @@
 <template>
 	<!-- @todo Remove after it's no longer new. -->
-	<cdx-message allow-user-dismiss v-if="blockEnableMultiblocks">
+	<cdx-message v-if="blockEnableMultiblocks" allow-user-dismiss>
 		{{ $i18n( 'block-multiblocks-new-feature' ) }}
 	</cdx-message>
 	<cdx-field

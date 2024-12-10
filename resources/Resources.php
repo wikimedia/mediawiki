@@ -2350,8 +2350,6 @@ return [
 			'block-user-label-count-exceeds-limit',
 			'block-user-no-active-blocks',
 			'block-user-no-previous-blocks',
-			'block-user-no-reason-given',
-			'block-user-no-reason-given-aria-details',
 			'block-user-no-suppressed-blocks',
 			'block-user-placeholder',
 			'block-user-previous-blocks',
