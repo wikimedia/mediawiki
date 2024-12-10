@@ -34,9 +34,6 @@
 				{{ $i18n( 'htmlform-optional-flag' ).text() }}
 			</span>
 		</template>
-		<template #description>
-			{{ $i18n( 'block-options-description' ).text() }}
-		</template>
 	</cdx-field>
 </template>
 

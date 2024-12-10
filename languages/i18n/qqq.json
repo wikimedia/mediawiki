@@ -2955,7 +2955,6 @@
 	"block-expiry-custom-years": "Full word for \"years\" when the number of years is unknown.\n\nThis is the label for the input to specify the expiry in number of years at [[Special:Block]]\n{{Identical|Year}}",
 	"block-expiry-datetime": "Label for radio button to specify a specific date and time for a block on [[Special:Block]]",
 	"block-options": "Label for the checkboxes for specifying additional options for a block on [[Special:Block]]",
-	"block-options-description": "Description for the checkboxes for specifying additional options for a block on [[Special:Block]]",
 	"block-reason": "Label for the input for specifying the reason for a block on [[Special:Block]]\n{{Identical|Reason}}",
 	"block-reason-help": "Help text for the reason field on [[Special:Block]].",
 	"block-reason-other": "Placeholder text for the 'Other' text field on [[Special:Block]].",

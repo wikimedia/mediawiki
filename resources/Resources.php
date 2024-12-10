@@ -2339,7 +2339,6 @@ return [
 			'block-log-flags-nousertalk',
 			'block-namespaces-placeholder',
 			'block-options',
-			'block-options-description',
 			'block-pages-placeholder',
 			'block-reason',
 			'block-reason-help',
