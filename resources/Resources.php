@@ -2377,6 +2377,7 @@ return [
 			'ipb-confirmaction',
 			'ipb-confirmhideuser',
 			'ipb-disableusertalk',
+			'ipb-edit-dropdown',
 			'ipb-hardblock',
 			'block-multiblocks-new-feature',
 			'ipb-namespaces-label',
