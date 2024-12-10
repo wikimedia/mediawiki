@@ -9945,7 +9945,7 @@ class MainConfigSchema {
 	 *
 	 * If not set, statsd metrics will not be collected.
 	 *
-	 * @see MediaWiki::emitBufferedStatsdData()
+	 * @see MediaWiki::emitBufferedStats()
 	 * @since 1.25
 	 */
 	public const StatsdServer = [
