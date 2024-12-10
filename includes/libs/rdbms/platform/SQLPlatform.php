@@ -90,7 +90,7 @@ class SQLPlatform implements ISQLPlatform {
 	public function addIdentifierQuotes( $s ) {
 		if ( strcspn( $s, "\0\"`'." ) !== strlen( $s ) ) {
 			throw new DBLanguageError(
-				"Identifier must not contain quote, dot or null characters"
+				"Identifier must not contain quote, dot or null characters: got '$s'"
 			);
 		}
 		$quoteChar = $this->getIdentifierQuoteChar();
@@ -1027,15 +1027,24 @@ class SQLPlatform implements ISQLPlatform {
 			throw new InvalidArgumentException( "Table must be a string or Subquery" );
 		}
 
-		if ( $alias === false || $alias === $table ) {
+		if ( $alias === false ) {
 			if ( $table instanceof Subquery ) {
 				throw new InvalidArgumentException( "Subquery table missing alias" );
 			}
-
-			return $quotedTable;
+			$quotedTableWithAnyAlias = $quotedTable;
+		} elseif (
+			$alias === $table &&
+			(
+				str_contains( $alias, '.' ) ||
+				$this->tableName( $alias, 'raw' ) === $table
+			)
+		) {
+			$quotedTableWithAnyAlias = $quotedTable;
 		} else {
-			return $quotedTable . ' ' . $this->addIdentifierQuotes( $alias );
+			$quotedTableWithAnyAlias = $quotedTable . ' ' . $this->addIdentifierQuotes( $alias );
 		}
+
+		return $quotedTableWithAnyAlias;
 	}
 
 	public function tableName( string $name, $format = 'quoted' ) {

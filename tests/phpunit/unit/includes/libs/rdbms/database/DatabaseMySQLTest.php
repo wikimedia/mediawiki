@@ -542,6 +542,20 @@ class DatabaseMySQLTest extends TestCase {
 
 		/** @var IDatabase $db */
 		$db->setTableAliases( [
+			'meow' => [ 'dbname' => 'feline', 'schema' => null, 'prefix' => '' ]
+		] );
+		$sql = $db->newSelectQueryBuilder()
+			->select( 'field' )
+			->from( 'meow' )
+			->where( [ 'a' => 'x' ] )
+			->caller( __METHOD__ )->getSQL();
+
+		$this->assertSameSql(
+			"SELECT  field  FROM `feline`.`meow` `meow`    WHERE a = 'x'  ",
+			$sql
+		);
+
+		$db->setTableAliases( [
 			'meow' => [ 'dbname' => 'feline', 'schema' => null, 'prefix' => 'cat_' ]
 		] );
 		$sql = $db->newSelectQueryBuilder()
@@ -551,7 +565,7 @@ class DatabaseMySQLTest extends TestCase {
 			->caller( __METHOD__ )->getSQL();
 
 		$this->assertSameSql(
-			"SELECT  field  FROM `feline`.`cat_meow`    WHERE a = 'x'  ",
+			"SELECT  field  FROM `feline`.`cat_meow` `meow`    WHERE a = 'x'  ",
 			$sql
 		);
 

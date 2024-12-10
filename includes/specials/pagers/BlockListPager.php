@@ -487,7 +487,7 @@ class BlockListPager extends TablePager {
 		# With multiblocks we can't just rely on bl_deleted in the row being formatted
 		$info['fields']['hu_deleted'] = $this->hideUserUtils->getExpression(
 			$db,
-			$db->tableName( 'block_target' ) . '.bt_user',
+			'block_target.bt_user',
 			HideUserUtils::HIDDEN_USERS );
 		return $info;
 	}
