@@ -43,7 +43,7 @@ class ThumbnailEntryPointTest extends MediaWikiIntegrationTestCase {
 		$this->importFileToTestRepo( self::IMAGES_DIR . '/test.jpg', 'Icon.jpg' );
 
 		// Create a second version of Test.png and Icon.jpg
-		$this->importFileToTestRepo( self::IMAGES_DIR . '/greyscale-na-png.png', 'Test.png' );
+		$this->importFileToTestRepo( self::IMAGES_DIR . '/greyscale-dot-na-png.png', 'Test.png' );
 		$this->importFileToTestRepo( self::IMAGES_DIR . '/portrait-rotated.jpg', 'Icon.jpg' );
 
 		// Create a redirect
@@ -175,7 +175,7 @@ class ThumbnailEntryPointTest extends MediaWikiIntegrationTestCase {
 
 		$response = $env->getFauxResponse();
 		$this->assertSame( 'image/png', $response->getHeader( 'Content-Type' ) );
-		$this->assertGreaterThan( 500, (int)$response->getHeader( 'Content-Length' ) );
+		$this->assertGreaterThan( 400, (int)$response->getHeader( 'Content-Length' ) );
 
 		$env->assertStatusCode( 200, $output );
 
