@@ -74,7 +74,7 @@ class SpecialDeletedContributionsTest extends SpecialPageTestBase {
 			true
 		);
 		$specialPageDocument = DOMUtils::parseHTML( $html );
-		$contentHtml = DOMCompat::querySelector( $specialPageDocument, '.mw-content-container' )->nodeValue;
+		$contentHtml = DOMCompat::querySelector( $specialPageDocument, '#content' )->nodeValue;
 		$this->assertStringNotContainsString( 'mw-pager-body', $contentHtml );
 		$this->assertStringContainsString( "($expectedPageTitleMessageKey: 127.0.0.1", $contentHtml );
 	}
