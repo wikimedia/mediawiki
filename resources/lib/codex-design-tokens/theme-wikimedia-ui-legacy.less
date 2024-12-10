@@ -1,5 +1,5 @@
 
-// Codex Design Tokens v1.17.0
+// Codex Design Tokens v1.18.0
 // Design System for Wikimedia
 // See https://doc.wikimedia.org/codex/latest/design-tokens/overview.html
 
@@ -121,7 +121,7 @@
 @box-shadow-color-progressive--active: var( --box-shadow-color-progressive--active, #233566 );
 @box-shadow-color-progressive--focus: var( --box-shadow-color-progressive--focus, #36c );
 @box-shadow-color-progressive-selected: var( --box-shadow-color-progressive-selected, #36c );
-@box-shadow-color-progressive-selected--hover: var( --box-shadow-color-progressive-selected--hover, #4b77d6 );
+@box-shadow-color-progressive-selected--hover: var( --box-shadow-color-progressive-selected--hover, #3056a9 );
 @box-shadow-color-progressive-selected--active: var( --box-shadow-color-progressive-selected--active, #233566 );
 @box-shadow-color-destructive--focus: var( --box-shadow-color-destructive--focus, #36c );
 @box-shadow-color-inverted: var( --box-shadow-color-inverted, #fff );
@@ -186,11 +186,15 @@
 @cursor-text: text;
 @cursor-zoom-in: zoom-in;
 @cursor-zoom-out: zoom-out;
+@mix-blend-mode-base: var( --mix-blend-mode-base, normal );
+@mix-blend-mode-blend: var( --mix-blend-mode-blend, multiply );
 @background-color-base: var( --background-color-base, #fff ); // Background Colors for static elements (for page layout, sections, etc.) from here on.
 @background-color-base-fixed: var( --background-color-base-fixed, #fff ); // The same as background-color-base in light mode, but does not change in dark mode. Use this for things that should be white in both modes.
 @background-color-neutral: var( --background-color-neutral, #eaecf0 );
 @background-color-neutral-subtle: var( --background-color-neutral-subtle, #f8f9fa );
 @background-color-interactive: var( --background-color-interactive, #eaecf0 );
+@background-color-interactive--hover: var( --background-color-interactive--hover, #dadde3 );
+@background-color-interactive--active: var( --background-color-interactive--active, #c8ccd1 );
 @background-color-interactive-subtle: var( --background-color-interactive-subtle, #f8f9fa );
 @background-color-interactive-subtle--hover: var( --background-color-interactive-subtle--hover, #eaecf0 );
 @background-color-interactive-subtle--active: var( --background-color-interactive-subtle--active, #dadde3 );
@@ -202,11 +206,15 @@
 @background-color-progressive--active: var( --background-color-progressive--active, #233566 );
 @background-color-progressive--focus: var( --background-color-progressive--focus, #36c );
 @background-color-progressive-subtle: var( --background-color-progressive-subtle, #f1f4fd );
+@background-color-progressive-subtle--hover: var( --background-color-progressive-subtle--hover, #dce3f9 );
+@background-color-progressive-subtle--active: var( --background-color-progressive-subtle--active, #cbd6f6 );
 @background-color-destructive: var( --background-color-destructive, #bf3c2c );
 @background-color-destructive--hover: var( --background-color-destructive--hover, #9f3526 );
 @background-color-destructive--active: var( --background-color-destructive--active, #612419 );
 @background-color-destructive--focus: var( --background-color-destructive--focus, #36c );
 @background-color-destructive-subtle: var( --background-color-destructive-subtle, #ffe9e5 );
+@background-color-destructive-subtle--hover: var( --background-color-destructive-subtle--hover, #ffdad3 );
+@background-color-destructive-subtle--active: var( --background-color-destructive-subtle--active, #ffc8bd );
 @background-color-error: var( --background-color-error, #f54739 );
 @background-color-error--hover: var( --background-color-error--hover, #d74032 );
 @background-color-error--active: var( --background-color-error--active, #bf3c2c );
@@ -273,11 +281,11 @@
 @border-color-interactive--active: var( --border-color-interactive--active, #202122 );
 @border-color-disabled: var( --border-color-disabled, #c8ccd1 );
 @border-color-inverted: var( --border-color-inverted, #fff );
-@border-color-progressive: var( --border-color-progressive, #36c );
+@border-color-progressive: var( --border-color-progressive, #6485d1 );
 @border-color-progressive--hover: var( --border-color-progressive--hover, #3056a9 );
 @border-color-progressive--active: var( --border-color-progressive--active, #233566 );
 @border-color-progressive--focus: var( --border-color-progressive--focus, #36c );
-@border-color-destructive: var( --border-color-destructive, #bf3c2c );
+@border-color-destructive: var( --border-color-destructive, #f54739 );
 @border-color-destructive--hover: var( --border-color-destructive--hover, #9f3526 );
 @border-color-destructive--active: var( --border-color-destructive--active, #612419 );
 @border-color-destructive--focus: var( --border-color-destructive--focus, #36c );

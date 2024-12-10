@@ -1490,6 +1490,13 @@ const _sfc_main$q = defineComponent({
     disabled: {
       type: Boolean,
       default: false
+    },
+    /**
+     * Whether the InputChip is readonly.
+     */
+    readonly: {
+      type: Boolean,
+      default: false
     }
   },
   expose: [
@@ -1516,9 +1523,11 @@ const _sfc_main$q = defineComponent({
     "arrow-right"
   ],
   setup(props, { emit }) {
+    const tabIndex = computed(() => props.disabled ? -1 : 0);
     const rootElement = ref();
     const rootClasses = computed(() => ({
-      "cdx-input-chip--disabled": props.disabled
+      "cdx-input-chip--disabled": props.disabled,
+      "cdx-input-chip--readonly": props.readonly
     }));
     const ariaDescription = useI18n(
       "cdx-input-chip-aria-description",
@@ -1560,7 +1569,8 @@ const _sfc_main$q = defineComponent({
       rootClasses,
       ariaDescription,
       onKeydown,
-      cdxIconClose: _3
+      cdxIconClose: _3,
+      tabIndex
     };
   },
   methods: {
@@ -1574,7 +1584,7 @@ const _sfc_main$q = defineComponent({
     }
   }
 });
-const _hoisted_1$o = ["aria-description"];
+const _hoisted_1$o = ["tabindex", "aria-description"];
 const _hoisted_2$f = { class: "cdx-input-chip__text" };
 function _sfc_render$q(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
@@ -1582,7 +1592,7 @@ function _sfc_render$q(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     ref: "rootElement",
     class: normalizeClass(["cdx-input-chip", _ctx.rootClasses]),
-    tabindex: "0",
+    tabindex: _ctx.tabIndex,
     role: "option",
     "aria-description": _ctx.ariaDescription,
     onKeydown: _cache[1] || (_cache[1] = (...args) => _ctx.onKeydown && _ctx.onKeydown(...args)),
@@ -1693,6 +1703,13 @@ const _sfc_main$p = defineComponent({
     disabled: {
       type: Boolean,
       default: false
+    },
+    /**
+     * Whether the ChipInput is readonly.
+     */
+    readonly: {
+      type: Boolean,
+      default: false
     }
   },
   emits: [
@@ -1739,7 +1756,8 @@ const _sfc_main$p = defineComponent({
       // We need focused and disabled classes on the root element, which contains the
       // chips and the input, since it is styled to look like the input.
       "cdx-chip-input--focused": isFocused.value,
-      "cdx-chip-input--disabled": computedDisabled.value
+      "cdx-chip-input--disabled": computedDisabled.value,
+      "cdx-chip-input--readonly": props.readonly
     }));
     const {
       rootClasses,
@@ -1781,6 +1799,9 @@ const _sfc_main$p = defineComponent({
       }
     }
     function removeChip(chipToRemove) {
+      if (props.readonly || computedDisabled.value) {
+        return;
+      }
       emit("update:input-chips", props.inputChips.filter(
         (chip) => chip.value !== chipToRemove.value
       ));
@@ -1803,6 +1824,9 @@ const _sfc_main$p = defineComponent({
     function handleChipClick(clickedChip) {
       return __async(this, null, function* () {
         var _a;
+        if (props.readonly || computedDisabled.value) {
+          return;
+        }
         addChip();
         yield nextTick();
         removeChip(clickedChip);
@@ -1910,13 +1934,13 @@ const _hoisted_1$n = {
   role: "listbox",
   "aria-orientation": "horizontal"
 };
-const _hoisted_2$e = ["disabled"];
+const _hoisted_2$e = ["readonly", "disabled"];
 const _hoisted_3$a = {
   key: 0,
   ref: "separateInputWrapper",
   class: "cdx-chip-input__separate-input"
 };
-const _hoisted_4$7 = ["disabled"];
+const _hoisted_4$7 = ["readonly", "disabled"];
 const _hoisted_5$7 = {
   class: "cdx-chip-input__aria-status",
   role: "status",
@@ -1930,7 +1954,7 @@ function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
       ref: "rootElement",
       class: normalizeClass(["cdx-chip-input", _ctx.rootClasses]),
       style: normalizeStyle(_ctx.rootStyle),
-      onClick: _cache[8] || (_cache[8] = (...args) => _ctx.focusInput && _ctx.focusInput(...args)),
+      onClick: _cache[8] || (_cache[8] = ($event) => _ctx.disabled || _ctx.readonly ? null : _ctx.focusInput),
       onFocusout: _cache[9] || (_cache[9] = (...args) => _ctx.onFocusOut && _ctx.onFocusOut(...args))
     },
     [
@@ -1948,6 +1972,7 @@ function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
                 ref: (ref2) => _ctx.assignChipTemplateRef(ref2, index),
                 class: "cdx-chip-input__item",
                 icon: chip.icon,
+                readonly: _ctx.readonly,
                 disabled: _ctx.computedDisabled,
                 onClickChip: ($event) => _ctx.handleChipClick(chip),
                 onRemoveChip: (method) => _ctx.handleChipRemove(chip, index, method),
@@ -1966,7 +1991,7 @@ function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
                 }),
                 _: 2
                 /* DYNAMIC */
-              }, 1032, ["icon", "disabled", "onClickChip", "onRemoveChip", "onArrowLeft", "onArrowRight"]);
+              }, 1032, ["icon", "readonly", "disabled", "onClickChip", "onRemoveChip", "onArrowLeft", "onArrowRight"]);
             }),
             128
             /* KEYED_FRAGMENT */
@@ -1976,6 +2001,7 @@ function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
             ref: "input",
             "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.computedInputValue = $event),
             class: "cdx-chip-input__input",
+            readonly: _ctx.readonly,
             disabled: _ctx.computedDisabled
           }, _ctx.otherAttrs, {
             onBlur: _cache[1] || (_cache[1] = (...args) => _ctx.onInputBlur && _ctx.onInputBlur(...args)),
@@ -1996,6 +2022,7 @@ function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
             ref: "input",
             "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => _ctx.computedInputValue = $event),
             class: "cdx-chip-input__input",
+            readonly: _ctx.readonly,
             disabled: _ctx.computedDisabled
           }, _ctx.otherAttrs, {
             onBlur: _cache[5] || (_cache[5] = (...args) => _ctx.onInputBlur && _ctx.onInputBlur(...args)),
@@ -6719,7 +6746,7 @@ const _sfc_main$e = defineComponent({
       validator: (value) => {
         if (value) {
           console.warn(
-            "CdxLookup: prop initialInputValue is deprecated. Use inputValue instead."
+            '[CdxLookup]: prop "initialInputValue" is deprecated. Use "inputValue" instead.'
           );
         }
         return true;
@@ -7292,6 +7319,13 @@ const _sfc_main$b = defineComponent({
       default: false
     },
     /**
+     * Whether the MultiselectLookup is readonly.
+     */
+    readonly: {
+      type: Boolean,
+      default: false
+    },
+    /**
      * `status` attribute of the input.
      */
     status: {
@@ -7511,14 +7545,14 @@ function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
         "aria-expanded": _ctx.expanded,
         "aria-activedescendant": _ctx.highlightedId,
         "separate-input": _ctx.separateInput,
+        readonly: _ctx.readonly,
         disabled: _ctx.computedDisabled,
         status: _ctx.computedStatus,
-        "disallow-arbitrary": true,
         "onUpdate:inputValue": _ctx.onUpdateInputValue,
         onFocus: _ctx.onInputFocus,
         onBlur: _ctx.onInputBlur,
         onKeydown: _ctx.onKeydown
-      }), null, 16, ["input-chips", "input-value", "aria-controls", "aria-expanded", "aria-activedescendant", "separate-input", "disabled", "status", "onUpdate:inputValue", "onFocus", "onBlur", "onKeydown"]),
+      }), null, 16, ["input-chips", "input-value", "aria-controls", "aria-expanded", "aria-activedescendant", "separate-input", "readonly", "disabled", "status", "onUpdate:inputValue", "onFocus", "onBlur", "onKeydown"]),
       createVNode(_component_cdx_menu, mergeProps({
         id: _ctx.menuId,
         ref: "menu",
@@ -8408,7 +8442,7 @@ const _sfc_main$6 = defineComponent({
         const hasUniqueIds = new Set(ids).size === ids.length;
         if (!hasUniqueIds) {
           console.warn(
-            'Each column in the "columns" prop of CdxTable must have a unique "id".'
+            '[CdxTable]: Each column in the "columns" prop must have a unique "id".'
           );
           return false;
         }
@@ -8434,7 +8468,7 @@ const _sfc_main$6 = defineComponent({
         const rowsHaveIds = value.every((row) => TableRowIdentifier in row);
         if (hasSort && props.useRowSelection && !rowsHaveIds) {
           console.warn(
-            'For CdxTables with sorting and row selection, each row in the "data" prop must have a "TableRowIdentifier".'
+            '[CdxTable]: With sorting and row selection, each row in the "data" prop must have a "TableRowIdentifier".'
           );
           return false;
         }
@@ -8543,7 +8577,7 @@ const _sfc_main$6 = defineComponent({
         if (value.every(hasNumberValue)) {
           return true;
         } else {
-          console.warn('"value" property of all menu items in PaginationOptions must be a number.');
+          console.warn('[CdxTable]: "value" property of all menu items in PaginationOptions must be a number.');
           return false;
         }
       }
@@ -8764,7 +8798,7 @@ const _sfc_main$6 = defineComponent({
     }
     function getCellClass(column, hasSort = false) {
       if ("textAlign" in column && !tableTextAlignmentsValidator(column.textAlign)) {
-        console.warn("Invalid value for TableColumn textAlign property.");
+        console.warn('[CdxTable]: Invalid value for TableColumn "textAlign" property.');
         return void 0;
       }
       return {
@@ -10402,6 +10436,12 @@ class Tooltip {
 }
 const CdxTooltip = {
   mounted(el, { value, arg }) {
+    if (!value) {
+      return;
+    }
+    if (typeof value === "string" && value.trim() === "") {
+      return;
+    }
     el.tooltip = new Tooltip(el, {
       textContent: String(value),
       placement: arg

@@ -1,3 +1,35 @@
+# 1.18.0 / 2024-12-10
+
+## Features
+- MultiselectLookup, ChipInput, InputChip: add readonly and disabled support (lwatson)
+
+## Styles
+- styles: Adjust decorative icons to use `@color-subtle` (Derek Torsani)
+- Image: Add rootClasses and rootStyles (Anne Tomasevich)
+- tokens, components: Add new tokens to support button styles also being updated (Derek Torsani)
+- tokens: Add new tokens to support changes also made to unify interactive styles phase 2 (Derek Torsani)
+- Select: unify form element styles (Eric Gardner)
+- Select, MenuItem: Minor style adjustments (Derek Torsani)
+
+## Code
+- components: Unify console log messages to a single style (Volker E.)
+- MultiselectLookup: Remove unneeded prop (Anne Tomasevich)
+- Tooltip: Add guard clauses for undefined and empty string values (Doğu Abaris)
+
+## Docs
+- Image: Add WIP Image and component (Doğu Abaris)
+- docs: Add recent authors (>1 commit) and other contributors (Volker E.)
+
+## New design tokens
+- mix-blend-mode-base
+- mix-blend-mode-blend
+- background-color-interactive--hover
+- background-color-interactive--active
+- background-color-progressive-subtle--hover
+- background-color-progressive-subtle--active
+- background-color-destructive-subtle--hover
+- background-color-destructive-subtle--active
+
 # 1.17.0 / 2024-11-26
 
 ## Features
