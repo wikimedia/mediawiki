@@ -2903,7 +2903,7 @@
 	"blockiptext": "Used in the {{msg-mw|Blockip}} form in [[Special:Block]].\n\nRefers to {{msg-mw|Policy-url}}.\n\nThis message may follow the message {{msg-mw|Ipb-otherblocks-header}} and other block messages.\n\nParameters:\n* $1 - CIDR suffix of the largest allowed IPv4 block (as an integer)\n* $2 - CIDR suffix of the largest allowed IPv6 block (as an integer)\n\nSee also:\n* {{msg-mw|Unblockiptext}}",
 	"block-multiblocks-new-feature": "Notice message at the top of Special:Block when multiblocks is enabled.",
 	"ipaddressorusername": "{{Identical|IP address or username}}",
-	"ipbreason": "Label of the block reason dropdown in [[Special:Block]] and the unblock reason textfield in [{{fullurl:Special:BlockList|action=unblock}} Special:BlockList?action=unblock].\n\n{{Identical|Reason}}",
+	"ipbreason": "Label of the block reason dropdown in [[Special:BlockIP]] and the unblock reason textfield in [{{fullurl:Special:BlockList|action=unblock}} Special:BlockList?action=unblock].\n\n{{Identical|Reason}}",
 	"ipbreason-dropdown": "Used as item list for dropdown on [[Special:Block]].\n\nThe label for this dropdown is {{msg-mw|Ipbreason}}.",
 	"ipb-hardblock": "This is the label for a checkbox in the user block form on [[Special:Block]].\n\nSee also:\n* {{msg-mw|ipbemailban}}\n* {{msg-mw|ipb-disableusertalk}}\n* {{msg-mw|ipbenableautoblock}}\n* {{msg-mw|ipbhidename}}\n* {{msg-mw|ipbwatchuser}}",
 	"ipbcreateaccount": "{{Identical|Prevent account creation}}",

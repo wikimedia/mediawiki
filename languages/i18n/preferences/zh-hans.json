@@ -106,7 +106,7 @@
 	"prefs-help-email": "电子邮件地址是选填项，但是当您忘记您的密码要重置密码时，需要该信息。",
 	"prefs-help-email-required": "电子邮件地址是必填项。",
 	"prefs-help-email-others": "您也可以选择让其他用户通过您的用户或讨论页面上的链接用电子邮件联系您。其他用户联系您时您的电子邮件地址不会显示。",
-	"tog-requireemail": "仅在同时提供电子邮件地址与用户名的情况下发送重置密码的电子邮件。",
+	"tog-requireemail": "仅在同时提供电子邮件地址与用户名的情况下发送重置密码的电子邮件",
 	"prefs-help-requireemail": "这有助于改善隐私并防止未经要求的电子邮件。",
 	"noemailprefs": "在您的参数设置中指定一个电子邮件地址，以使这些功能正常工作。",
 	"emailnotauthenticated": "您的邮件地址尚未确认。\n您将不会收到以下任何功能的邮件。",

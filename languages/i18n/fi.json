@@ -651,7 +651,7 @@
 	"edit-recovery-special-recovered-on": "$1",
 	"edit-recovery-special-recovered-on-tooltip": "Päivämäärä ja kellonaika, jolloin palautustietosi viimeksi tallennettiin",
 	"edit-recovery-loaded-title": "Palauta muutokset?",
-	"edit-recovery-loaded-message": "Sinulla on tallentamattomia muutoksia, jotka on palautettu automaattisesti.",
+	"edit-recovery-loaded-message": "Sinulla on tallentamattomia muutoksia, jotka voidaan palauttaa automaattisesti.",
 	"edit-recovery-loaded-message-different-rev": "<em>Huomaa, että sivu on saattanut muuttua sen jälkeen, kun aloitit muokkaamisen.</em>",
 	"edit-recovery-loaded-message-different-rev-publish": "<em>Tarkista muutokset ennen julkaisemista.</em>",
 	"edit-recovery-loaded-message-different-rev-save": "<em>Tarkista muutokset ennen tallentamista.</em>",

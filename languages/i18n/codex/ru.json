@@ -24,5 +24,6 @@
 	"cdx-table-pagination-status-message-indeterminate-long": "Показ результатов $1—$2 из многих",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1—$2 из многих",
 	"cdx-table-pagination-status-message-indeterminate-final": "Показ {{PLURAL:$1|последнего $1 результата|последних $1 результатов}}",
-	"cdx-table-pagination-status-message-pending": "Загрузка результатов…"
+	"cdx-table-pagination-status-message-pending": "Загрузка результатов…",
+	"cdx-table-no-data-message": "Данные отсутствуют."
 }
