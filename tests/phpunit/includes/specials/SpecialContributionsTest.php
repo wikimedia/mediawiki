@@ -157,7 +157,7 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 		}
 		[ $html ] = $this->executeSpecialPage( '4.3.2.1', null, null, null, true );
 		$specialPageDocument = DOMUtils::parseHTML( $html );
-		$contentHtml = DOMCompat::querySelector( $specialPageDocument, '.mw-content-container' )->nodeValue;
+		$contentHtml = DOMCompat::querySelector( $specialPageDocument, '#content' )->nodeValue;
 		$this->assertStringNotContainsString( 'mw-pager-body', $contentHtml );
 		$this->assertStringContainsString( "($expectedPageTitleMessageKey: 4.3.2.1", $contentHtml );
 	}
