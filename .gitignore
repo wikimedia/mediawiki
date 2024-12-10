@@ -60,6 +60,7 @@ node_modules/
 phpunit.xml
 /tests/selenium/log
 .eslintcache
+.stylelintcache
 .api-testing.config.json
 .phan/local-config.php
 
