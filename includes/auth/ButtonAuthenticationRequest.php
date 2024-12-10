@@ -30,6 +30,7 @@ use RawMessage;
  * @ingroup Auth
  * @since 1.27
  */
+#[\AllowDynamicProperties]
 class ButtonAuthenticationRequest extends AuthenticationRequest {
 	/** @var string */
 	protected $name;
