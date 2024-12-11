@@ -521,13 +521,14 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		 * @see T365130 */
 		$wgTitle = null;
 
-		$jobQueueFactory = MediaWikiServices::getInstance()->getJobQueueGroupFactory();
+		$services = MediaWikiServices::getInstance();
+		$jobQueueGroup = $services->getJobQueueGroupFactory()->makeJobQueueGroup();
 
-		foreach ( $wgJobClasses as $type => $class ) {
-			$jobQueueFactory->makeJobQueueGroup()->get( $type )->delete();
+		foreach ( $wgJobClasses as $type => $_ ) {
+			$jobQueueGroup->get( $type )->delete();
 		}
 
-		MediaWikiServices::getInstance()->getObjectCacheFactory()->clear();
+		$services->getObjectCacheFactory()->clear();
 		DeferredUpdates::clearPendingUpdates();
 
 		// TODO: move global state into MediaWikiServices
