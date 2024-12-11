@@ -7,7 +7,7 @@
 	}
 
 	function trimEnd( s ) {
-		return s.endsWith( ' ' ) ? s.slice( 0, s.length - 1 ) : s;
+		return s.endsWith( ' ' ) ? s.slice( 0, -1 ) : s;
 	}
 
 	$( () => {

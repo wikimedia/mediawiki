@@ -436,7 +436,7 @@ ApiSandboxLayout.prototype.loadParamInfo = function () {
 				deprecatedItems = [],
 				buttons = [],
 				filterFmModules = ( v ) => v.slice( -2 ) !== 'fm' ||
-					!Object.prototype.hasOwnProperty.call( ApiSandbox.availableFormats, v.slice( 0, v.length - 2 ) );
+					!Object.prototype.hasOwnProperty.call( ApiSandbox.availableFormats, v.slice( 0, -2 ) );
 
 			// This is something of a hack. We always want the 'format' and
 			// 'action' parameters from the main module to be specified,
