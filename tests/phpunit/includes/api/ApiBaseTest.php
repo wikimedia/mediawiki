@@ -1405,69 +1405,6 @@ class ApiBaseTest extends ApiTestCase {
 		];
 	}
 
-	public function testErrorArrayToStatus() {
-		$this->expectDeprecationAndContinue( '/errorArrayToStatus/' );
-
-		$mock = new MockApi();
-
-		$msg = new Message( 'mainpage' );
-
-		// Check empty array
-		$expect = Status::newGood();
-		$this->assertEquals( $expect, $mock->errorArrayToStatus( [] ) );
-
-		// No blocked $user, so no special block handling
-		$expect = Status::newGood();
-		$expect->fatal( 'blockedtext' );
-		$expect->fatal( 'autoblockedtext' );
-		$expect->fatal( 'systemblockedtext' );
-		$expect->fatal( 'mainpage' );
-		$expect->fatal( $msg );
-		$expect->fatal( 'parentheses', 'foobar' );
-		$this->assertEquals( $expect, $mock->errorArrayToStatus( [
-			[ 'blockedtext' ],
-			[ 'autoblockedtext' ],
-			[ 'systemblockedtext' ],
-			'mainpage',
-			$msg,
-			[ 'parentheses', 'foobar' ],
-		] ) );
-
-		// Has a blocked $user, so special block handling
-		$user = $this->getMutableTestUser()->getUser();
-		$block = new DatabaseBlock( [
-			'address' => $user,
-			'by' => $this->getTestSysop()->getUser(),
-			'reason' => __METHOD__,
-			'expiry' => time() + 100500,
-		] );
-		$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
-
-		$mockTrait = $this->getMockForTrait( ApiBlockInfoTrait::class );
-		$language = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
-		$mockTrait->method( 'getLanguage' )->willReturn( $language );
-		$userInfoTrait = TestingAccessWrapper::newFromObject( $mockTrait );
-		$blockinfo = [ 'blockinfo' => $userInfoTrait->getBlockDetails( $block ) ];
-
-		$expect = Status::newGood();
-		$expect->fatal( ApiMessage::create( 'blockedtext', 'blocked', $blockinfo ) );
-		// This would normally use the 'autoblocked' code, but the codes are computed from $blockinfo
-		// now rather than the message, and we're not faking it well enough
-		$expect->fatal( ApiMessage::create( 'autoblockedtext', 'blocked', $blockinfo ) );
-		$expect->fatal( ApiMessage::create( 'systemblockedtext', 'blocked', $blockinfo ) );
-		$expect->fatal( 'mainpage' );
-		$expect->fatal( $msg );
-		$expect->fatal( 'parentheses', 'foobar' );
-		$this->assertEquals( $expect, $mock->errorArrayToStatus( [
-			[ 'blockedtext' ],
-			[ 'autoblockedtext' ],
-			[ 'systemblockedtext' ],
-			'mainpage',
-			$msg,
-			[ 'parentheses', 'foobar' ],
-		], $user ) );
-	}
-
 	public function testAddBlockInfoToStatus() {
 		$mock = new MockApi();
 
