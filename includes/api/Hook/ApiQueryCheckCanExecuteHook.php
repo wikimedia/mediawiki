@@ -4,9 +4,8 @@ namespace MediaWiki\Api\Hook;
 
 use MediaWiki\Api\ApiMessage;
 use MediaWiki\Api\ApiQueryBase;
-use MediaWiki\Api\IApiMessage;
-use MediaWiki\Message\Message;
 use MediaWiki\Permissions\Authority;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
@@ -25,7 +24,7 @@ interface ApiQueryCheckCanExecuteHook {
 	 *
 	 * @param ApiQueryBase[] $modules
 	 * @param Authority $authority Current user
-	 * @param IApiMessage|Message|string|array &$message API message to die with.
+	 * @param MessageSpecifier|string|array &$message API message to die with.
 	 * @return bool|void True or no return value to continue, or false and set a
 	 *  message to cancel the request
 	 *
