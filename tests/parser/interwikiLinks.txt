@@ -322,6 +322,30 @@ iwl=Project:Hello_World_2
 !! end
 
 !! test
+{{#interwikilink}} parser function as a means to force an interwiki link v2 (T381977)
+!! options
+iwl
+!! wikitext
+{{#interwikilink:Project|_Hello World}}
+
+{{#interwikilink:Project|Hello World_}}
+
+{{#interwikilink:Project|Hello World
+newline}}
+!! metadata
+!! html/php
+<p>{{#interwikilink:Project|_Hello World}}
+</p><p>{{#interwikilink:Project|Hello World_}}
+</p><p>{{#interwikilink:Project|Hello World
+newline}}
+</p>
+!! html/parsoid+integrated
+<p><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#interwikilink:Project","function":"interwikilink"},"params":{"1":{"wt":"_Hello World"}},"i":0}}]}'>{{#interwikilink:Project|_Hello World}}</span></p>
+<p><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#interwikilink:Project","function":"interwikilink"},"params":{"1":{"wt":"Hello World_"}},"i":0}}]}'>{{#interwikilink:Project|Hello World_}}</span></p>
+<p><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#interwikilink:Project","function":"interwikilink"},"params":{"1":{"wt":"Hello World\nnewline"}},"i":0}}]}'>{{#interwikilink:Project|Hello World newline}}</span></p>
+!! end
+
+!! test
 Interwiki link with percent encoded target
 !! wikitext
 [[:es:Nueva Guip%C3%BAzcoa|Nueva Guipúzcoa]]

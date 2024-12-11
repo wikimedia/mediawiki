@@ -1991,20 +1991,23 @@ class CoreParserFunctions {
 			$prefix !== '' &&
 			$services->getInterwikiLookup()->isValidInterwiki( $prefix )
 		) {
-			if ( $linkText !== null ) {
-				$linkText = Parser::stripOuterParagraph(
-					# FIXME T382287: when using Parsoid this may leave
-					# strip markers behind for embedded extension tags.
-					$parser->recursiveTagParseFully( $linkText )
-				);
+
+			$target = self::getTitleValueSafe( $title, $prefix );
+
+			if ( $target !== null ) {
+				if ( $linkText !== null ) {
+					$linkText = Parser::stripOuterParagraph(
+						# FIXME T382287: when using Parsoid this may leave
+						# strip markers behind for embedded extension tags.
+						$parser->recursiveTagParseFully( $linkText )
+					);
+				}
+				$parser->getOutput()->addInterwikiLink( $target );
+				return [
+					'text' => Linker::link( $target, $linkText ),
+					'isHTML' => true,
+				];
 			}
-			[ $title, $frag ] = array_pad( explode( '#', $title, 2 ), 2, '' );
-			$target = new TitleValue( NS_MAIN, $title, $frag, $prefix );
-			$parser->getOutput()->addInterwikiLink( $target );
-			return [
-				'text' => Linker::link( $target, $linkText ),
-				'isHTML' => true,
-			];
 		}
 		// Invalid interwiki link, render as plain text
 		return [ 'found' => false ];
@@ -2032,16 +2035,40 @@ class CoreParserFunctions {
 			)
 		) {
 			// $linkText is ignored for language links, but fragment is kept
-			[ $title, $frag ] = array_pad( explode( '#', $title, 2 ), 2, '' );
-			$parser->getOutput()->addLanguageLink(
-				new TitleValue(
-					NS_MAIN, $title, $frag, $prefix
-				)
-			);
-			return '';
+			$target = self::getTitleValueSafe( $title, $prefix );
+
+			if ( $target !== null ) {
+				$parser->getOutput()->addLanguageLink( $target );
+				return '';
+			}
 		}
 		// Invalid language link, render as plain text
 		return [ 'found' => false ];
+	}
+
+	/**
+	 * Safely construct TitleValue from user input for use in {{#interlanguagelink}}
+	 * and {{#interwikilink}} parser functions.
+	 *
+	 * We cannot use TitleParser::makeTitleValueSafe because it will fully parse
+	 * anything that looks like interwiki prefix inside the title text and we don't want
+	 * that here. For instance in `{{#interwikilink:Project|Test:Link}}`, we don't want
+	 * to parse 'Test' as interwiki prefix, but we want to ensure the entire 'Test:Link'
+	 * string to be in valid title text form. (T381977)
+	 *
+	 * @param string $title
+	 * @param string $prefix
+	 *
+	 * @return TitleValue|null
+	 */
+	private static function getTitleValueSafe( $title, $prefix ): ?TitleValue {
+		[ $title, $frag ] = array_pad( explode( '#', $title, 2 ), 2, '' );
+
+		try {
+			return new TitleValue( NS_MAIN, $title, $frag, $prefix );
+		} catch ( InvalidArgumentException $_ ) {
+			return null;
+		}
 	}
 }
 

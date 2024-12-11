@@ -410,3 +410,32 @@ ill=mi:Template:Bat#fragment-kept
 <li><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#interlanguagelink:mi","function":"interlanguagelink"},"params":{"1":{"wt":"Template:Bat#fragment-kept"},"2":{"wt":"caption is ignored"}},"i":0}}]}'></span></li>
 </ul>
 !! end
+
+!! test
+{{#interlanguagelink}} parser function as a means to force an interlanguage link, v3 (T381977)
+!! options
+ill
+!! wikitext
+*{{#interlanguagelink:mi|_}}
+*{{#interlanguagelink:mi|_Template:Bar}}
+*{{#interlanguagelink:mi|Template:Bar_}}
+*{{#interlanguagelink:mi|Template:Bar
+newline}}
+!! metadata
+!! html/php
+<ul><li>{{#interlanguagelink:mi|_}}</li>
+<li>{{#interlanguagelink:mi|_Template:Bar}}</li>
+<li>{{#interlanguagelink:mi|Template:Bar_}}</li>
+<li>{{#interlanguagelink:mi|Template:Bar</li></ul>
+<p>newline}}
+</p>
+!! html/parsoid
+<ul typeof="mw:Transclusion" data-mw='{"parts":["*",{"template":{"target":{"wt":"#interlanguagelink:mi","function":"interlanguagelink"},"params":{"1":{"wt":"_"}},"i":0}},"\n*",{"template":{"target":{"wt":"#interlanguagelink:mi","function":"interlanguagelink"},"params":{"1":{"wt":"_Template:Bar"}},"i":1}},"\n*",{"template":{"target":{"wt":"#interlanguagelink:mi","function":"interlanguagelink"},"params":{"1":{"wt":"Template:Bar_"}},"i":2}},"\n*",{"template":{"target":{"wt":"#interlanguagelink:mi","function":"interlanguagelink"},"params":{"1":{"wt":"Template:Bar\nnewline"}},"i":3}}]}'>
+<li>{{#interlanguagelink:mi|_}}</li>
+<li>{{#interlanguagelink:mi|_Template:Bar}}</li>
+<li>{{#interlanguagelink:mi|Template:Bar_}}</li>
+<li>{{#interlanguagelink:mi|Template:Bar</li>
+</ul>
+<span> </span>
+<p>newline}}</p>
+!! end
