@@ -2361,7 +2361,6 @@
 	"metadata-help": "සමහරවිට ඩිජිටල් කැමරාවක් හෝ ස්කෑනරයක් හෝ භාවිතයෙන්, නිමැවා හෝ සංඛ්‍යාංකකරණය (ඩිජිටල්කරණය) කොට එක් කල , අමතර තොරතුරු මෙම ගොනුවේ අඩංගුය.\nගොනුව මුලින්ම පැවැති තත්ත්වයෙහි සිට විකරණය කොට තිබේ නම්, සමහරක් තොරතුරු විකරිත ගොනුව පූර්ණ වශයෙන් පිළිඹිමු නොකරනු ඇත.",
 	"metadata-expand": "විස්තීරණය කරන ලද විස්තර පෙන්වන්න",
 	"metadata-collapse": "විස්තීරණය කරන ලද විස්තර සඟවන්න",
-	"metadata-fields": "Image metadata fields listed in this message will be included on image page display when the metadata table is collapsed.\nOthers will be hidden by default.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "සියල්ල",
 	"monthsall": "සියළු",
 	"confirmemail": "විද්‍යුත්-තැපැල් ලිපිනය තහවුරු කරන්න",

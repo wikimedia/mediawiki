@@ -362,6 +362,7 @@
 	"apihelp-query+allcategories-param-prop": "얻고자 하는 속성:",
 	"apihelp-query+allcategories-paramvalue-prop-size": "페이지 수를 분류에 추가합니다.",
 	"apihelp-query+alldeletedrevisions-summary": "사용자에 의해서나 이름공간 안에서 삭제된 모든 판을 나열합니다.",
+	"apihelp-query+alldeletedrevisions-paraminfo-useronly": "<var>$3user</var>만 사용할 수 있습니다.",
 	"apihelp-query+alldeletedrevisions-paraminfo-nonuseronly": "<var>$3user</var>와 함께 사용할 수 없습니다.",
 	"apihelp-query+alldeletedrevisions-param-start": "나열을 시작할 타임스탬프입니다.",
 	"apihelp-query+alldeletedrevisions-param-end": "나열을 중단할 타임스탬프입니다.",

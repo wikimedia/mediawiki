@@ -2693,7 +2693,7 @@
 	"block-target": "Nome de usuario, enderezo IP ou rango de enderezos IP:",
 	"block-target-placeholder": "NomeDaConta, 1.1.1.42 ou 1.1.1.42/16",
 	"unblockip": "Desbloquear un usuario",
-	"unblockiptext": "Use o seguinte formulario para dar de novo acceso de escritura a un enderezo IP ou usuario que estea bloqueado.",
+	"unblockiptext": "Utiliza o seguinte formulario para dar de novo acceso de escritura a un enderezo IP ou usuario que estea bloqueado.",
 	"ipusubmit": "Retirar o bloqueo",
 	"unblocked": "[[User:$1|$1]] foi {{GENDER:$1|desbloqueado|desbloqueada}}.",
 	"unblocked-range": "$1 foi desbloqueado.",

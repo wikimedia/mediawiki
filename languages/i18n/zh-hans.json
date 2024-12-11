@@ -207,7 +207,8 @@
 			"Matma Rex",
 			"Midleading",
 			"Wang31",
-			"WiiUf"
+			"WiiUf",
+			"Vina"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -2226,7 +2227,6 @@
 	"doubleredirectstext": "本页列出重定向至另一个重定向页的页面。\n每行包含指向第一个和第二个重定向的链接，以及第二个重定向的目标，这通常是第一个重定向应该指向的“真实”目标页面。\n<del>划掉</del>的项目已解决。",
 	"double-redirect-fixed-move": "[[$1]]已被移动。\n它已自动更新，并且现在重定向至[[$2]]。",
 	"double-redirect-fixed-maintenance": "在维护作业中自动修复双重重定向自[[$1]]至[[$2]]",
-	"double-redirect-fixer": "Redirect fixer",
 	"brokenredirects": "受损重定向",
 	"brokenredirectstext": "以下重定向链接至不存在的页面：",
 	"brokenredirects-edit": "编辑",
@@ -4000,7 +4000,7 @@
 	"api-error-unknown-warning": "未知警告：“$1”。",
 	"api-error-unknownerror": "未知错误：$1。",
 	"duration-seconds": "$1秒",
-	"duration-minutes": "$1分钟",
+	"duration-minutes": "$1{{PLURAL:$1|分钟}}",
 	"duration-hours": "$1小时",
 	"duration-days": "$1{{PLURAL:$1|天}}",
 	"duration-weeks": "$1周",

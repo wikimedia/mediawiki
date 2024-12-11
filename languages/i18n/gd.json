@@ -1932,7 +1932,6 @@
 	"nolinkshere": "Chan eil ceangal air duilleag sam bith a tha a' dol gu <strong>$2</strong>.",
 	"nolinkshere-ns": "Chan eil ceangal gu <strong>$2</strong> ann an duilleag sam bith san ainm-spàs a thagh thu.",
 	"isredirect": "duilleag ath-sheòlaidh",
-	"istemplate": "transclusion",
 	"isimage": "ceangal faidhle",
 	"whatlinkshere-prev": "{{PLURAL:$1|an $1 roimhe|an $1 roimhe|na $1 roimhe|am $1 roimhe}}",
 	"whatlinkshere-next": "{{PLURAL:$1|an ath $1|an ath $1|na ath $1|an ath $1}}",

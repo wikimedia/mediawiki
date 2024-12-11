@@ -4122,7 +4122,7 @@
 	"blockedtext-expiration-longest-block": "అత్యంత దీర్ఘమైన నిరోధపు గడువు: $1",
 	"blockedtext-intended-blockee": "ఉద్దేశించిన వాడుకరి: $1",
 	"blockedtext-contact-blocker-admin": "ఈ నిరోధం గురించి చర్చించడానికి మీరు $1 ని గానీ, మరొక [[{{MediaWiki:Grouppage-sysop}}|నిర్వాహకుని]] గానీ సంప్రదించవచ్చు.",
-	"blockedtext-block-ip": "మీ ప్రస్తుత ఐపీ చిరునామా $1",
+	"blockedtext-block-ip": "మీ ప్రస్తుత ఐపీ చిరునామా $1.",
 	"blockedtext-block-id": "నిరోధం ఐడి #$1.",
 	"blockedtext-include-details-queries": "మీరు చేసే సంప్రదింపులలో పైన పేర్కొన్న వివరాలన్నిటినీ చేర్చండి.",
 	"renameuser": "వాడుకరి పేరుమార్చు",

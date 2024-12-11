@@ -261,7 +261,6 @@
 	"feed-invalid": "Tipe penjalukan umpan ora bener.",
 	"feed-unavailable": "Umpan sindikasi (''syndication feeds'') ora disediakna",
 	"site-rss-feed": "$1 ''RSS Feed''",
-	"site-atom-feed": "$1 Atom feed",
 	"page-rss-feed": "\"$1\" ''RSS Feed''",
 	"page-atom-feed": "\"$1\" ''Atom Feed''",
 	"red-link-title": "$1 (kaca ora ana)",
