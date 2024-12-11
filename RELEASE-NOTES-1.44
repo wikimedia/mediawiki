@@ -125,6 +125,7 @@ because of Phabricator reports.
 
 * (T379137) Added language support for Hunde (hke).
 * (T381463) Added language support for Coptic (cop).
+* (T381894) Added language support for Fur (fvr).
 * (T379137) Added language support for Mindong (Traditional Han script)
   (cdo-hant).
 * (T379137) Added language support for Mindong (Latin script) (cdo-latn).

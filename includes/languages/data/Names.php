@@ -199,6 +199,7 @@ class Names {
 		'frp' => 'arpetan', # Franco-Provençal/Arpitan
 		'frr' => 'Nordfriisk', # North Frisian
 		'fur' => 'furlan', # Friulian
+		'fvr' => 'poor’íŋ belé’ŋ', # Fur
 		'fy' => 'Frysk', # Frisian
 		'ga' => 'Gaeilge', # Irish
 		'gaa' => 'Ga', # Ga
