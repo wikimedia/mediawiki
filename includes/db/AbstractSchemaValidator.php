@@ -35,7 +35,7 @@ use function is_object;
  *
  * This is used for static validation from the command-line via
  * generateSchemaSql.php, generateSchemaChangeSql, and the PHPUnit structure test suite
- * (AbstractSchemaValidationTest).
+ * (AbstractSchemaTest).
  *
  * The files are normally read by the generateSchemaSql.php and generateSchemaSqlChange.php maintenance scripts.
  *

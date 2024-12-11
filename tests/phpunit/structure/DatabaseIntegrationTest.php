@@ -72,35 +72,6 @@ class DatabaseIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [], $prefixes );
 	}
 
-	public function automaticSqlGenerationParams() {
-		return [
-			[ 'mysql' ],
-			[ 'sqlite' ],
-			[ 'postgres' ],
-		];
-	}
-
-	/**
-	 * @dataProvider automaticSqlGenerationParams
-	 */
-	public function testAutomaticSqlGeneration( $type ) {
-		global $IP;
-		$abstractSchemaPath = "$IP/sql/tables.json";
-		$oldPath = "$IP/sql/$type/tables-generated.sql";
-		$oldContent = file_get_contents( $oldPath );
-		$newPath = $this->getNewTempFile();
-		$maintenanceScript = new GenerateSchemaSql();
-		$maintenanceScript->loadWithArgv(
-			[ '--json=' . $abstractSchemaPath, '--sql=' . $newPath, '--type=' . $type, '--quiet' ]
-		);
-		$maintenanceScript->execute();
-		$this->assertEquals(
-			$oldContent,
-			file_get_contents( $newPath ),
-			"The generated schema in '$type' type has to be the same"
-		);
-	}
-
 	/**
 	 * T352229
 	 */
