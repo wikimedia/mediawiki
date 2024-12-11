@@ -297,9 +297,7 @@ abstract class SchemaMaintenance extends Maintenance {
 			);
 		}
 
-		$validator = new AbstractSchemaValidator( function ( string $msg ): void {
-			$this->fatalError( $msg );
-		} );
+		$validator = new AbstractSchemaValidator();
 		try {
 			$validator->validate( $jsonPath );
 		} catch ( AbstractSchemaValidationError $e ) {

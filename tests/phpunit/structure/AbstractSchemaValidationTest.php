@@ -34,8 +34,7 @@ class AbstractSchemaValidationTest extends PHPUnit\Framework\TestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->validator = new AbstractSchemaValidator( [ $this, 'markTestSkipped' ] );
-		$this->validator->checkDependencies();
+		$this->validator = new AbstractSchemaValidator();
 	}
 
 	public static function provideSchemas(): Generator {

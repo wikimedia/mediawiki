@@ -30,10 +30,7 @@ class AbstractSchemaValidatorTest extends MediaWikiUnitTestCase {
 	 * @param string|true $expected
 	 */
 	public function testValidate( string $file, $expected ): void {
-		// If a dependency is missing, skip this test.
-		$validator = new AbstractSchemaValidator( function ( $msg ) {
-			$this->markTestSkipped( $msg );
-		} );
+		$validator = new AbstractSchemaValidator();
 
 		if ( is_string( $expected ) ) {
 			$this->expectException( AbstractSchemaValidationError::class );

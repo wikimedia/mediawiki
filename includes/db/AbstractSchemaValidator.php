@@ -42,38 +42,18 @@ use function is_object;
  * @since 1.38
  */
 class AbstractSchemaValidator {
-	/**
-	 * @var callable(string):void
-	 */
-	private $missingDepCallback;
-
-	/**
-	 * @param callable(string):void $missingDepCallback
-	 */
-	public function __construct( callable $missingDepCallback ) {
-		$this->missingDepCallback = $missingDepCallback;
-	}
-
-	/**
-	 * @codeCoverageIgnore
-	 * @return bool
-	 */
-	public function checkDependencies(): bool {
+	public function __construct() {
 		if ( !class_exists( Validator::class ) ) {
-			( $this->missingDepCallback )(
+			throw new AbstractSchemaValidationError(
 				'The JsonSchema library cannot be found, please install it through composer.'
 			);
-			return false;
 		}
 
 		if ( !class_exists( JsonParser::class ) ) {
-			( $this->missingDepCallback )(
+			throw new AbstractSchemaValidationError(
 				'The JSON lint library cannot be found, please install it through composer.'
 			);
-			return false;
 		}
-
-		return true;
 	}
 
 	/**
