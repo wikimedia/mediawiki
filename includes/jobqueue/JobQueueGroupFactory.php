@@ -101,20 +101,20 @@ class JobQueueGroupFactory {
 
 		// Make sure jobs are not getting pushed to bogus wikis. This can confuse
 		// the job runner system into spawning endless RPC requests that fail (T171371).
-		$wikiId = WikiMap::getWikiIdFromDbDomain( $domain );
-		if (
-			!WikiMap::isCurrentWikiDbDomain( $domain ) &&
-			!in_array( $wikiId, $this->options->get( MainConfigNames::LocalDatabases ) )
-		) {
-			// Do not enqueue job that cannot be run (T171371)
-			throw new LogicException( "Domain '{$domain}' is not recognized." );
+		$isCurrentWiki = WikiMap::isCurrentWikiDbDomain( $domain );
+		if ( !$isCurrentWiki ) {
+			$wikiId = WikiMap::getWikiIdFromDbDomain( $domain );
+			if ( !in_array( $wikiId, $this->options->get( MainConfigNames::LocalDatabases ) ) ) {
+				// Do not enqueue job that cannot be run (T171371)
+				throw new LogicException( "Domain '{$domain}' is not recognized." );
+			}
 		}
 
-		$localJobClasses = WikiMap::isCurrentWikiDbDomain( $domain )
-			? $this->options->get( MainConfigNames::JobClasses )
-			: null;
-
 		if ( !isset( $this->instances[$domain] ) ) {
+			$localJobClasses = $isCurrentWiki
+				? $this->options->get( MainConfigNames::JobClasses )
+				: null;
+
 			$this->instances[$domain] = new JobQueueGroup(
 				$domain,
 				$this->readOnlyMode,
