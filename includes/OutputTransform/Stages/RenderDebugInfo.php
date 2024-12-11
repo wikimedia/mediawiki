@@ -72,7 +72,7 @@ class RenderDebugInfo extends ContentTextTransformStage {
 					'cachereport-transientcontent',
 					'limitreport-timingprofile',
 				] ) ) {
-					// These keys are processed separately.
+					// These entries have non-numeric parameters, and therefore are processed separately.
 					continue;
 				}
 
