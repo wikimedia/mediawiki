@@ -110,7 +110,54 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 			$this->userEditTracker,
 			$this->logger,
 			$this->titleFactory,
+			null,
 			$target,
+			$performer,
+			$expiry,
+			$reason,
+			$blockOptions,
+			$blockRestrictions,
+			$tags ?? []
+		);
+	}
+
+	/**
+	 * Create a BlockUser which updates a specified block
+	 *
+	 * @since 1.44
+	 *
+	 * @param DatabaseBlock $block
+	 * @param Authority $performer Performer of the block
+	 * @param string $expiry New expiry of the block (timestamp or 'infinity')
+	 * @param string $reason Reason of the block
+	 * @param array $blockOptions
+	 * @param array $blockRestrictions
+	 * @param array|null $tags Tags that should be assigned to the log entry
+	 * @return BlockUser
+	 */
+	public function newUpdateBlock(
+		DatabaseBlock $block,
+		Authority $performer,
+		string $expiry,
+		string $reason = '',
+		array $blockOptions = [],
+		array $blockRestrictions = [],
+		$tags = []
+	): BlockUser {
+		return new BlockUser(
+			$this->options,
+			$this->blockRestrictionStore,
+			$this->blockPermissionCheckerFactory,
+			$this->blockUtils,
+			$this->blockActionInfo,
+			$this->hookContainer,
+			$this->blockStore,
+			$this->userFactory,
+			$this->userEditTracker,
+			$this->logger,
+			$this->titleFactory,
+			$block,
+			null,
 			$performer,
 			$expiry,
 			$reason,
