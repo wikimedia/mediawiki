@@ -2768,21 +2768,20 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideTransformFilePath
 	 */
-	public function testTransformResourcePath( $baseDir, $basePath, $uploadDir = null,
+	public function testTransformResourcePath( $basePath, $uploadDir = null,
 		$uploadPath = null, $path = null, $expected = null
 	) {
 		if ( $path === null ) {
 			// Skip optional $uploadDir and $uploadPath
 			$path = $uploadDir;
 			$expected = $uploadPath;
-			$uploadDir = "$baseDir/images";
+			$uploadDir = MW_INSTALL_PATH . '/images';
 			$uploadPath = "$basePath/images";
 		}
 		$conf = new HashConfig( [
 			MainConfigNames::ResourceBasePath => $basePath,
 			MainConfigNames::UploadDirectory => $uploadDir,
 			MainConfigNames::UploadPath => $uploadPath,
-			MainConfigNames::BaseDirectory => $baseDir
 		] );
 
 		// Some of these paths don't exist and will cause warnings
@@ -2796,58 +2795,58 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		return [
 			// File that matches basePath, and exists. Hash found and appended.
 			[
-				'baseDir' => $baseDir, 'basePath' => '/w',
-				'/w/test.jpg',
-				'/w/test.jpg?edcf2'
+				'/w',
+				'/w/tests/phpunit/data/media/test.jpg',
+				'/w/tests/phpunit/data/media/test.jpg?edcf2'
 			],
 			// File that matches basePath, but not found on disk. Empty query.
 			[
-				'baseDir' => $baseDir, 'basePath' => '/w',
+				'/w',
 				'/w/unknown.png',
 				'/w/unknown.png'
 			],
 			// File not matching basePath. Ignored.
 			[
-				'baseDir' => $baseDir, 'basePath' => '/w',
+				'/w',
 				'/files/test.jpg'
 			],
 			// Empty string. Ignored.
 			[
-				'baseDir' => $baseDir, 'basePath' => '/w',
+				'/w',
 				'',
 				''
 			],
 			// Similar path, but with domain component. Ignored.
 			[
-				'baseDir' => $baseDir, 'basePath' => '/w',
+				'/w',
 				'//example.org/w/test.jpg'
 			],
 			[
-				'baseDir' => $baseDir, 'basePath' => '/w',
+				'/w',
 				'https://www.example.org/w/test.jpg'
 			],
 			// Unrelated path with domain component. Ignored.
 			[
-				'baseDir' => $baseDir, 'basePath' => '/w',
+				'/w',
 				'https://www.example.org/files/test.jpg'
 			],
 			[
-				'baseDir' => $baseDir, 'basePath' => '/w',
+				'/w',
 				'//example.org/files/test.jpg'
 			],
 			// Unrelated path with domain, and empty base path (root mw install). Ignored.
 			[
-				'baseDir' => $baseDir, 'basePath' => '',
+				'',
 				'https://www.example.org/files/test.jpg'
 			],
+			// T155310
 			[
-				'baseDir' => $baseDir, 'basePath' => '',
-				// T155310
+				'',
 				'//example.org/files/test.jpg'
 			],
 			// Check UploadPath before ResourceBasePath (T155146)
 			[
-				'baseDir' => dirname( $baseDir ), 'basePath' => '',
+				'',
 				'uploadDir' => $baseDir, 'uploadPath' => '/images',
 				'/images/test.jpg',
 				'/images/test.jpg?edcf2'
@@ -3048,12 +3047,11 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 				[
 					MainConfigNames::ResourceBasePath => '/w',
 					MainConfigNames::Logos => [
-						'1x' => '/w/test.jpg',
+						'1x' => '/w/tests/phpunit/data/media/test.jpg',
 					],
 					MainConfigNames::UploadPath => '/w/images',
-					MainConfigNames::BaseDirectory => dirname( __DIR__ ) . '/../data/media'
 				],
-				'Link: </w/test.jpg?edcf2>;rel=preload;as=image',
+				'Link: </w/tests/phpunit/data/media/test.jpg?edcf2>;rel=preload;as=image',
 			],
 		];
 	}

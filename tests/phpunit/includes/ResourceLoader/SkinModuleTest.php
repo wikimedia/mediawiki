@@ -281,7 +281,6 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 		return [
 			'wordmark' => [
 				'config' => [
-					MainConfigNames::BaseDirectory => MW_INSTALL_PATH,
 					MainConfigNames::ResourceBasePath => '/w',
 					MainConfigNames::Logos => [
 						'1x' => '/img/default.png',
@@ -296,7 +295,6 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 			],
 			'simple' => [
 				'config' => [
-					MainConfigNames::BaseDirectory => MW_INSTALL_PATH,
 					MainConfigNames::ResourceBasePath => '/w',
 					MainConfigNames::Logos => [
 						'1x' => '/img/default.png',
@@ -306,7 +304,6 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 			],
 			'default and 2x' => [
 				'config' => [
-					MainConfigNames::BaseDirectory => MW_INSTALL_PATH,
 					MainConfigNames::ResourceBasePath => '/w',
 					MainConfigNames::Logos => [
 						'1x' => '/img/default.png',
@@ -320,7 +317,6 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 			],
 			'default and all HiDPIs' => [
 				'config' => [
-					MainConfigNames::BaseDirectory => MW_INSTALL_PATH,
 					MainConfigNames::ResourceBasePath => '/w',
 					MainConfigNames::Logos => [
 						'1x' => '/img/default.png',
@@ -336,7 +332,6 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 			],
 			'default and SVG' => [
 				'config' => [
-					MainConfigNames::BaseDirectory => MW_INSTALL_PATH,
 					MainConfigNames::ResourceBasePath => '/w',
 					MainConfigNames::Logos => [
 						'1x' => '/img/default.png',
@@ -350,7 +345,6 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 			],
 			'everything' => [
 				'config' => [
-					MainConfigNames::BaseDirectory => MW_INSTALL_PATH,
 					MainConfigNames::ResourceBasePath => '/w',
 					MainConfigNames::Logos => [
 						'1x' => '/img/default.png',
@@ -366,14 +360,13 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 			],
 			'versioned url' => [
 				'config' => [
-					MainConfigNames::BaseDirectory => dirname( dirname( __DIR__ ) ) . '/data/media',
 					MainConfigNames::ResourceBasePath => '/w',
 					MainConfigNames::UploadPath => '/w/images',
 					MainConfigNames::Logos => [
-						'1x' => '/w/test.jpg',
+						'1x' => '/w/tests/phpunit/data/media/test.jpg',
 					],
 				],
-				'expected' => '/w/test.jpg?edcf2',
+				'expected' => '/w/tests/phpunit/data/media/test.jpg?edcf2',
 			],
 		];
 	}
@@ -386,7 +379,6 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 		$ctx->method( 'getLanguage' )->willReturn( $lang );
 		$module = new SkinModule();
 		$module->setConfig( new HashConfig( $config + [
-			MainConfigNames::BaseDirectory => '/dummy',
 			MainConfigNames::ResourceBasePath => '/w',
 			MainConfigNames::Logo => false,
 		] + self::getSettings() ) );
@@ -443,12 +435,11 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 			],
 			[
 				[
-					MainConfigNames::BaseDirectory => dirname( dirname( __DIR__ ) ) . '/data/media',
-					MainConfigNames::Logos => [ '1x' => '/w/test.jpg' ],
+					MainConfigNames::Logos => [ '1x' => '/w/tests/phpunit/data/media/test.jpg' ],
 					MainConfigNames::UploadPath => '/w/images',
 				],
 				'en',
-				'Link: </w/test.jpg?edcf2>;rel=preload;as=image',
+				'Link: </w/tests/phpunit/data/media/test.jpg?edcf2>;rel=preload;as=image',
 			],
 			[
 				[

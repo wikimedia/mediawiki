@@ -4849,7 +4849,7 @@ class OutputPage extends ContextSource {
 	 * @return string URL
 	 */
 	public static function transformResourcePath( Config $config, $path ) {
-		$localDir = $config->get( MainConfigNames::BaseDirectory );
+		$localDir = MW_INSTALL_PATH;
 		$remotePathPrefix = $config->get( MainConfigNames::ResourceBasePath );
 		if ( $remotePathPrefix === '' ) {
 			// The configured base path is required to be empty string for
