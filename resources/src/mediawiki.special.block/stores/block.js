@@ -6,6 +6,7 @@ module.exports = exports = defineStore( 'block', () => {
 	const formErrors = ref( mw.config.get( 'blockPreErrors' ) || [] );
 	const formSubmitted = ref( false );
 	const targetUser = ref( mw.config.get( 'blockTargetUser' ) || '' );
+	const blockId = ref( String );
 	const alreadyBlocked = ref( Boolean );
 	const type = ref( String );
 	const expiry = ref( String );
@@ -116,9 +117,26 @@ module.exports = exports = defineStore( 'block', () => {
 	// ** Actions (exported functions) **
 
 	/**
+	 * Load block data from an action=blocks API response.
+	 *
+	 * @param {Object} blockData The block's item from the API.
+	 */
+	function loadFromData( blockData ) {
+		$reset();
+		blockId.value = blockData.id;
+		type.value = blockData.partial ? 'partial' : 'sitewide';
+		pages.value = blockData.restrictions.pages || [];
+		namespaces.value = blockData.restrictions.namespaces || [];
+		expiry.value = blockData.expiry;
+		reasonOther.value = blockData.reason;
+		// @todo Sort out remaining field values.
+	}
+
+	/**
 	 * Reset the form to its initial state.
 	 */
 	function $reset() {
+		formSubmitted.value = false;
 		alreadyBlocked.value = mw.config.get( 'blockAlreadyBlocked' ) || false;
 		type.value = mw.config.get( 'blockTypePreset' ) || 'sitewide';
 		pages.value = ( mw.config.get( 'blockPageRestrictions' ) || '' )
@@ -268,7 +286,7 @@ module.exports = exports = defineStore( 'block', () => {
 		// Add params needed to fetch block log and active blocks in one request.
 		params.list = 'logevents|blocks';
 		params.letype = 'block';
-		params.bkprop = 'id|user|by|timestamp|expiry|reason|range|flags';
+		params.bkprop = 'id|user|by|timestamp|expiry|reason|range|flags|restrictions';
 		params.bkusers = targetUser.value;
 
 		blockLogPromise = Promise.all( [ api.get( params ) ] );
@@ -299,6 +317,7 @@ module.exports = exports = defineStore( 'block', () => {
 		formErrors,
 		formSubmitted,
 		targetUser,
+		blockId,
 		alreadyBlocked,
 		type,
 		expiry,
@@ -323,6 +342,7 @@ module.exports = exports = defineStore( 'block', () => {
 		promises,
 		confirmationMessage,
 		confirmationNeeded,
+		loadFromData,
 		$reset,
 		doBlock,
 		getBlockLogData

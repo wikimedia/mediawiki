@@ -32,50 +32,59 @@
 		</div>
 		<user-lookup
 			v-model="store.targetUser"
-			@input="store.alreadyBlocked = false"
+			@input="store.alreadyBlocked = false; success = false;"
 		></user-lookup>
-		<block-log
-			:key="`${submitCount}-active`"
-			block-log-type="active"
-		></block-log>
-		<block-log
-			:key="`${submitCount}-recent`"
-			block-log-type="recent"
-		></block-log>
-		<block-log
-			v-if="blockShowSuppressLog"
-			:key="`${submitCount}-suppress`"
-			block-log-type="suppress"
-		></block-log>
-		<block-type-field></block-type-field>
-		<expiry-field></expiry-field>
-		<reason-field
-			v-model:selected="store.reason"
-			v-model:other="store.reasonOther"
-		></reason-field>
-		<block-details-field></block-details-field>
-		<additional-details-field></additional-details-field>
-		<confirmation-dialog
-			v-if="store.confirmationNeeded"
-			v-model:open="confirmationOpen"
-			:title="$i18n( 'ipb-confirm' ).text()"
-			@confirm="doBlock"
-		>
-			<template #default>
-				<!-- eslint-disable-next-line vue/no-v-html -->
-				<p v-html="store.confirmationMessage"></p>
-			</template>
-		</confirmation-dialog>
-		<hr class="mw-block-hr">
-		<cdx-button
-			action="destructive"
-			weight="primary"
-			class="mw-block-submit"
-			:disabled="!!store.promises.size"
-			@click="onFormSubmission"
-		>
-			{{ submitButtonMessage }}
-		</cdx-button>
+
+		<div v-if="store.targetUser">
+			<block-log
+				:key="`${submitCount}-active`"
+				:open="success"
+				block-log-type="active"
+				@create-block="onCreateBlock"
+				@edit-block="onEditBlock"
+			></block-log>
+			<block-log
+				:key="`${submitCount}-recent`"
+				block-log-type="recent"
+			></block-log>
+			<block-log
+				v-if="blockShowSuppressLog"
+				:key="`${submitCount}-suppress`"
+				block-log-type="suppress"
+			></block-log>
+
+			<div v-if="showForm" class="mw-block__block-form">
+				<block-type-field></block-type-field>
+				<expiry-field></expiry-field>
+				<reason-field
+					v-model:selected="store.reason"
+					v-model:other="store.reasonOther"
+				></reason-field>
+				<block-details-field></block-details-field>
+				<additional-details-field></additional-details-field>
+				<confirmation-dialog
+					v-if="store.confirmationNeeded"
+					v-model:open="confirmationOpen"
+					:title="$i18n( 'ipb-confirm' ).text()"
+					@confirm="doBlock"
+				>
+					<template #default>
+						<!-- eslint-disable-next-line vue/no-v-html -->
+						<p v-html="store.confirmationMessage"></p>
+					</template>
+				</confirmation-dialog>
+				<hr class="mw-block-hr">
+				<cdx-button
+					action="destructive"
+					weight="primary"
+					class="mw-block-submit"
+					:disabled="!!store.promises.size"
+					@click="onFormSubmission"
+				>
+					{{ submitButtonMessage }}
+				</cdx-button>
+			</div>
+		</div>
 	</cdx-field>
 </template>
 
@@ -114,6 +123,7 @@ module.exports = exports = defineComponent( {
 		const blockEnableMultiblocks = mw.config.get( 'blockEnableMultiblocks' ) || false;
 		const blockShowSuppressLog = mw.config.get( 'blockShowSuppressLog' ) || false;
 		const success = ref( false );
+		const showForm = ref( false );
 		const { formErrors, formSubmitted } = storeToRefs( store );
 		const messagesContainer = ref();
 		// Value to use for BlockLog component keys, so they reload after saving.
@@ -123,6 +133,24 @@ module.exports = exports = defineComponent( {
 			return mw.message( store.alreadyBlocked ? 'ipb-change-block' : 'ipbsubmit' ).text();
 		} );
 		const confirmationOpen = ref( false );
+
+		function onCreateBlock() {
+			store.$reset();
+			showForm.value = true;
+			scrollToForm();
+		}
+
+		function onEditBlock( event ) {
+			store.loadFromData( event );
+			showForm.value = true;
+			scrollToForm();
+		}
+
+		function scrollToForm() {
+			nextTick( () => {
+				document.querySelector( '.mw-block__block-form' ).scrollIntoView( { behavior: 'smooth' } );
+			} );
+		}
 
 		/**
 		 * Handle form submission. If the form is invalid, show the browser's
@@ -147,6 +175,7 @@ module.exports = exports = defineComponent( {
 					return;
 				}
 				doBlock();
+				showForm.value = false;
 			} else {
 				// nextTick() needed to ensure error messages are rendered before scrolling.
 				nextTick( () => {
@@ -193,6 +222,9 @@ module.exports = exports = defineComponent( {
 			blockEnableMultiblocks,
 			blockShowSuppressLog,
 			confirmationOpen,
+			showForm,
+			onCreateBlock,
+			onEditBlock,
 			onFormSubmission,
 			doBlock
 		};

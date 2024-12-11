@@ -20,9 +20,17 @@ describe( 'SpecialBlock', () => {
 		wrapper = getSpecialBlock( config );
 	};
 
-	it( 'should show no banner and "Block this user" button on page load', () => {
+	it( 'should show no banner and no new-block button on page load', async () => {
 		wrapper = getSpecialBlock();
 		expect( wrapper.find( '.cdx-message__content' ).exists() ).toBeFalsy();
+		expect( wrapper.find( '.mw-block-submit' ).exists() ).toBeFalsy();
+	} );
+
+	it( 'should show no banner and "Block this user" button after selecting a target', async () => {
+		wrapper = getSpecialBlock();
+		expect( wrapper.find( '.cdx-message__content' ).exists() ).toBeFalsy();
+		await wrapper.find( '[name=wpTarget]' ).setValue( 'ExampleUser' );
+		await wrapper.find( '.mw-block-log__create-button' ).trigger( 'click' );
 		expect( wrapper.find( '.mw-block-submit' ).text() ).toStrictEqual( 'ipbsubmit' );
 	} );
 
@@ -34,12 +42,13 @@ describe( 'SpecialBlock', () => {
 			blockPreErrors: [ 'ExampleUser is already blocked.' ]
 		} );
 		expect( wrapper.find( '.mw-block-error' ).exists() ).toBeTruthy();
-		expect( wrapper.find( 'button.cdx-button' ).text() ).toStrictEqual( 'ipb-change-block' );
+		expect( wrapper.find( 'button.cdx-button' ).text() ).toStrictEqual( 'block-create' );
 	} );
 
 	it( 'should submit an API request to block the user', async () => {
 		withSubmission();
 		await wrapper.find( '[name=wpTarget]' ).setValue( 'ExampleUser' );
+		await wrapper.find( '.mw-block-log__create-button' ).trigger( 'click' );
 		await wrapper.find( '.cdx-radio__input[value=datetime]' ).setValue( true );
 		await wrapper.find( '[name=wpExpiry-other]' ).setValue( '2999-01-23T12:34' );
 		await wrapper.find( '[name=wpReason-other]' ).setValue( 'This is a test' );
@@ -65,6 +74,7 @@ describe( 'SpecialBlock', () => {
 	it( 'should add an error state to invalid fields on submission', async () => {
 		withSubmission();
 		await wrapper.find( '[name=wpTarget]' ).setValue( 'ExampleUser' );
+		await wrapper.find( '.mw-block-log__create-button' ).trigger( 'click' );
 		await wrapper.find( '.cdx-radio__input[value=datetime]' ).setValue( true );
 		// Add invalid date
 		await wrapper.find( '[name=wpExpiry-other]' ).setValue( '0000-01-23T12:34:56' );
@@ -81,6 +91,7 @@ describe( 'SpecialBlock', () => {
 		wrapper = getSpecialBlock( { blockHideUser: true } );
 		const store = useBlockStore();
 		await wrapper.find( '[name=wpTarget]' ).setValue( 'ExampleUser' );
+		await wrapper.find( '.mw-block-log__create-button' ).trigger( 'click' );
 		// Assert 'hide username' is not yet visible.
 		expect( wrapper.find( '.mw-block-hideuser input' ).exists() ).toBeFalsy();
 		expect( store.hideNameVisible ).toBeFalsy();
@@ -115,6 +126,7 @@ describe( 'SpecialBlock', () => {
 		expect( store.confirmationNeeded ).toBeFalsy();
 		expect( store.confirmationMessage ).toStrictEqual( '' );
 		await wrapper.find( '[name=wpTarget]' ).setValue( 'ExampleUser' );
+		await wrapper.find( '.mw-block-log__create-button' ).trigger( 'click' );
 		store.expiry = '3 days';
 		expect( store.confirmationNeeded ).toBeTruthy();
 		expect( store.confirmationMessage ).toStrictEqual( 'ipb-blockingself' );

@@ -1,6 +1,7 @@
 <template>
 	<cdx-accordion
 		:class="`mw-block-log mw-block-log__type-${ blockLogType }`"
+		:open="open"
 	>
 		<template #title>
 			{{ title }}
@@ -15,6 +16,18 @@
 			:use-row-headers="true"
 			:hide-caption="true"
 		>
+			<template v-if="blockLogType === 'active'" #header>
+				<cdx-button
+					type="button"
+					action="progressive"
+					weight="primary"
+					class="mw-block-log__create-button"
+					@click="$emit( 'create-block' )"
+				>
+					<cdx-icon :icon="cdxIconCancel"></cdx-icon>
+					{{ $i18n( 'block-create' ).text() }}
+				</cdx-button>
+			</template>
 			<template #empty-state>
 				{{ emptyState }}
 			</template>
@@ -63,17 +76,16 @@
 			<template #item-reason="{ item }">
 				{{ item }}
 			</template>
-			<template v-if="blockLogType === 'active'" #item-modify>
-				<!-- TODO: Ensure dropdown menu uses Right-Top layout (https://w.wiki/BTaj) -->
-				<cdx-menu-button
-					v-model:selected="selection"
-					:menu-items="menuItems"
-					class="mw-block-active-blocks__menu"
-					aria-label="Modify block"
-					type="button"
+			<template #item-modify="{ item }">
+				<a @click="$emit( 'edit-block', item )">
+					{{ $i18n( 'block-item-edit' ).text() }}
+				</a>
+				{{ $i18n( 'pipe-separator' ) }}
+				<a
+					:href="mw.util.getUrl( 'Special:Unblock/' + targetUser )"
 				>
-					<cdx-icon :icon="cdxIconEllipsis"></cdx-icon>
-				</cdx-menu-button>
+					{{ $i18n( 'block-item-remove' ).text() }}
+				</a>
 			</template>
 		</cdx-table>
 		<div v-if="moreBlocks" class="mw-block-log-fulllog">
@@ -89,20 +101,28 @@
 <script>
 const util = require( '../util.js' );
 const { computed, defineComponent, ref, watch } = require( 'vue' );
-const { CdxAccordion, CdxTable, CdxMenuButton, CdxIcon, CdxInfoChip } = require( '@wikimedia/codex' );
+const { CdxAccordion, CdxTable, CdxButton, CdxIcon, CdxInfoChip } = require( '@wikimedia/codex' );
 const { storeToRefs } = require( 'pinia' );
 const useBlockStore = require( '../stores/block.js' );
-const { cdxIconEllipsis, cdxIconEdit, cdxIconTrash, cdxIconClock, cdxIconAlert } = require( '../icons.json' );
+const { cdxIconCancel, cdxIconClock, cdxIconAlert } = require( '../icons.json' );
 
 module.exports = exports = defineComponent( {
 	name: 'BlockLog',
-	components: { CdxAccordion, CdxTable, CdxMenuButton, CdxIcon, CdxInfoChip },
+	components: { CdxAccordion, CdxTable, CdxButton, CdxIcon, CdxInfoChip },
 	props: {
+		open: {
+			type: Boolean,
+			default: false
+		},
 		blockLogType: {
 			type: String,
 			default: 'recent'
 		}
 	},
+	emits: [
+		'create-block',
+		'edit-block'
+	],
 	setup( props ) {
 		const store = useBlockStore();
 		const { targetUser } = storeToRefs( store );
@@ -129,11 +149,6 @@ module.exports = exports = defineComponent( {
 			...( props.blockLogType === 'active' ?
 				[ { id: 'modify', label: '', minWidth: '100px' } ] : [] )
 		];
-		const menuItems = [
-			{ label: mw.message( 'block-item-edit' ).text(), value: 'edit', url: mw.util.getUrl( 'Special:Block/' + targetUser.value ), icon: cdxIconEdit },
-			{ label: mw.message( 'block-item-remove' ).text(), value: 'remove', url: mw.util.getUrl( 'Special:Unblock/' + targetUser.value ), icon: cdxIconTrash }
-		];
-		const selection = ref( null );
 
 		const logEntries = ref( [] );
 		const moreBlocks = ref( false );
@@ -183,9 +198,6 @@ module.exports = exports = defineComponent( {
 
 		watch( targetUser, ( newValue ) => {
 			if ( newValue ) {
-				// Update the URLs for the menu items
-				menuItems[ 0 ].url = mw.util.getUrl( 'Special:Block/' + newValue );
-				menuItems[ 1 ].url = mw.util.getUrl( 'Special:Unblock/' + newValue );
 				store.getBlockLogData( props.blockLogType ).then( ( responses ) => {
 					let newData = [];
 					const data = responses[ 0 ].query;
@@ -208,6 +220,8 @@ module.exports = exports = defineComponent( {
 						// List of active blocks.
 						for ( let i = 0; i < data.blocks.length; i++ ) {
 							newData.push( {
+								// Store the entire API response, for passing in when editing the block.
+								modify: data.blocks[ i ],
 								timestamp: {
 									timestamp: data.blocks[ i ].timestamp,
 									blockid: data.blocks[ i ].id
@@ -246,9 +260,7 @@ module.exports = exports = defineComponent( {
 			title,
 			emptyState,
 			columns,
-			menuItems,
-			selection,
-			cdxIconEllipsis,
+			cdxIconCancel,
 			logEntries,
 			moreBlocks,
 			targetUser,
@@ -265,6 +277,11 @@ module.exports = exports = defineComponent( {
 
 .mw-block-log {
 	word-break: auto-phrase;
+
+	// Align the new-block button to the left, because there's no table caption.
+	.cdx-table__header {
+		justify-content: flex-start;
+	}
 }
 
 .mw-block-log-fulllog {
