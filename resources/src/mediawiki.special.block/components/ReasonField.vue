@@ -5,6 +5,11 @@
 		</template>
 		<template #help-text>
 			{{ $i18n( 'block-reason-help' ).text() }}
+			<div class="mw-block-reason-edit">
+				<a :href="reasonEditUrl">
+					{{ $i18n( 'ipb-edit-dropdown' ) }}
+				</a>
+			</div>
 		</template>
 
 		<cdx-select
@@ -44,6 +49,7 @@ module.exports = exports = defineComponent( {
 		const wrappedSelected = useModelWrapper( toRef( props, 'selected' ), emit, 'update:selected' );
 		const wrappedOther = useModelWrapper( toRef( props, 'other' ), emit, 'update:other' );
 		const reasonPreset = mw.config.get( 'blockReasonPreset' );
+		const reasonEditUrl = mw.util.getUrl( 'MediaWiki:Blockreason-dropdown', { action: 'edit' } );
 
 		if ( reasonPreset !== 'other' && reasonOptions.some( ( option ) => option.value === reasonPreset ) ) {
 			emit( 'update:selected', reasonPreset );
@@ -53,7 +59,8 @@ module.exports = exports = defineComponent( {
 			reasonOptions,
 			reasonMaxLength: mw.config.get( 'blockReasonMaxLength' ),
 			wrappedSelected,
-			wrappedOther
+			wrappedOther,
+			reasonEditUrl
 		};
 	}
 } );
@@ -65,5 +72,11 @@ module.exports = exports = defineComponent( {
 .cdx-select-vue {
 	margin-bottom: @spacing-50;
 	width: 100%;
+}
+
+.mw-block-reason-edit {
+	a {
+		font-size: 90%;
+	}
 }
 </style>
