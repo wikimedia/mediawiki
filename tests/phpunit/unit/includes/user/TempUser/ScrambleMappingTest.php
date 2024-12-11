@@ -3,15 +3,13 @@
 namespace MediaWiki\Tests\User\TempUser;
 
 use MediaWiki\User\TempUser\ScrambleMapping;
-use MediaWikiCoversValidator;
+use MediaWikiUnitTestCase;
 use OutOfBoundsException;
-use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \MediaWiki\User\TempUser\ScrambleMapping
  */
-class ScrambleMappingTest extends TestCase {
-	use MediaWikiCoversValidator;
+class ScrambleMappingTest extends MediaWikiUnitTestCase {
 
 	public function testMap() {
 		if ( !extension_loaded( 'gmp' ) && !extension_loaded( 'bcmath' ) ) {

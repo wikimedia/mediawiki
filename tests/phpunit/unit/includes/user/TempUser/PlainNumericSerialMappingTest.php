@@ -3,14 +3,12 @@
 namespace MediaWiki\Tests\User\TempUser;
 
 use MediaWiki\User\TempUser\PlainNumericSerialMapping;
-use MediaWikiCoversValidator;
-use PHPUnit\Framework\TestCase;
+use MediaWikiUnitTestCase;
 
 /**
  * @covers \MediaWiki\User\TempUser\PlainNumericSerialMapping
  */
-class PlainNumericSerialMappingTest extends TestCase {
-	use MediaWikiCoversValidator;
+class PlainNumericSerialMappingTest extends MediaWikiUnitTestCase {
 
 	public function testGetSerialIdForIndex() {
 		$map = new PlainNumericSerialMapping( [] );
