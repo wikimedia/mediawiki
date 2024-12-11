@@ -13,7 +13,8 @@ describe( 'UserLookup', () => {
 			props: { modelValue: 'UserLookup' },
 			global: {
 				plugins: [ createTestingPinia( { stubActions: false } ) ]
-			}
+			},
+			attachTo: document.body
 		} );
 		// Ensure that the initial search string matches the initial prop value.
 		const input = wrapper.find( '.cdx-text-input__input' );

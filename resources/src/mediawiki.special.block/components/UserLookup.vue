@@ -16,6 +16,7 @@
 			@input="onInput"
 			@change="onChange"
 			@blur="onChange"
+			@clear="onClear"
 			@update:selected="onSelect"
 		>
 		</cdx-lookup>
@@ -31,15 +32,12 @@
 					{{ $i18n( 'ipb-blocklist-contribs', targetUser ) }}
 				</a>
 			</span>
-			<span v-else>
-				&nbsp;
-			</span>
 		</div>
 	</cdx-field>
 </template>
 
 <script>
-const { computed, defineComponent, ref, watch } = require( 'vue' );
+const { computed, defineComponent, onMounted, ref, watch } = require( 'vue' );
 const { CdxLookup, CdxField } = require( '@wikimedia/codex' );
 const { storeToRefs } = require( 'pinia' );
 const { cdxIconSearch } = require( '../icons.json' );
@@ -63,6 +61,14 @@ module.exports = exports = defineComponent( {
 	setup( props ) {
 		const store = useBlockStore();
 		const { targetUser } = storeToRefs( useBlockStore() );
+		let htmlInput;
+
+		onMounted( () => {
+			// Get the input element.
+			htmlInput = document.querySelector( 'input[name="wpTarget"]' );
+			// Focus the input on mount.
+			htmlInput.focus();
+		} );
 
 		// Set a flag to keep track of pending API requests, so we can abort if
 		// the target string changes
@@ -73,13 +79,9 @@ module.exports = exports = defineComponent( {
 		// We instead want to only update the targetUser for non-null values
 		// (made either via selection, or the 'change' event).
 		const selection = ref( props.modelValue || '' );
-		// This handles changes via selection, while onChange() handles changes via input.
-		watch( selection, ( newValue ) => {
-			if ( newValue !== null ) {
-				targetUser.value = newValue;
-			}
-		} );
-
+		// This is the source of truth for what should be the target user,
+		// but it should only change on 'change' or 'select' events,
+		// otherwise we'd fire off API queries for the block log unnecessarily.
 		const currentSearchTerm = ref( props.modelValue || '' );
 		const menuItems = ref( [] );
 		const status = ref( 'default' );
@@ -170,35 +172,50 @@ module.exports = exports = defineComponent( {
 
 		/**
 		 * Handle lookup change.
-		 *
-		 * @param {Event} event
 		 */
-		function onChange( event ) {
-			validate( event.target );
-			targetUser.value = event.target.value;
+		function onChange() {
+			// Use the currentSearchTerm value instead of the event target value,
+			// since the event can be fired before the watcher updates the value.
+			setTarget( currentSearchTerm.value );
+		}
 
-			// Change the address bar to reflect the newly-selected target (while keeping all URL parameters).
+		/**
+		 * When the clear button is clicked.
+		 */
+		function onClear() {
+			targetUser.value = '';
+			store.$reset();
+			// Focus the input after clearing.
+			htmlInput.focus();
+		}
+
+		/**
+		 * Handle lookup selection.
+		 */
+		function onSelect() {
+			if ( selection.value !== null ) {
+				setTarget( selection.value );
+			}
+		}
+
+		/**
+		 * Set the target user and trigger validation.
+		 *
+		 * @param {string} value
+		 */
+		function setTarget( value ) {
+			validate( htmlInput );
+			targetUser.value = value;
+		}
+
+		// Change the address bar to reflect the newly-selected target (while keeping all URL parameters).
+		// Do this when the targetUser changes, which is not necessarily when the CdxLookup selection changes.
+		watch( () => targetUser.value, () => {
 			const specialBlockUrl = mw.util.getUrl( 'Special:Block' + ( targetUser.value ? '/' + targetUser.value : '' ) );
 			if ( window.location.pathname !== specialBlockUrl ) {
 				const newUrl = ( new URL( `${ specialBlockUrl }${ window.location.search }`, window.location.origin ) ).toString();
 				window.history.replaceState( null, '', newUrl );
 			}
-		}
-
-		/**
-		 * Handle lookup selection.
-		 *
-		 * @param {string} value
-		 */
-		function onSelect( value ) {
-			currentSearchTerm.value = value;
-			targetUser.value = value;
-		}
-
-		// Validate the input when the form is submitted.
-		// TODO: Remove once Codex supports native validations (T373872).
-		watch( () => store.formSubmitted, () => {
-			validate( document.querySelector( '[name="wpTarget"]' ) );
 		} );
 
 		const contribsTitle = computed( () => `Special:Contributions/${ targetUser.value }` );
@@ -210,6 +227,7 @@ module.exports = exports = defineComponent( {
 			menuItems,
 			onChange,
 			onInput,
+			onClear,
 			onSelect,
 			cdxIconSearch,
 			currentSearchTerm,

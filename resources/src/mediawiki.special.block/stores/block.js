@@ -5,6 +5,12 @@ const api = new mw.Api();
 module.exports = exports = defineStore( 'block', () => {
 	const formErrors = ref( mw.config.get( 'blockPreErrors' ) || [] );
 	const formSubmitted = ref( false );
+	/**
+	 * Whether the block was successful.
+	 *
+	 * @type {Ref<boolean>}
+	 */
+	const success = ref( false );
 	const targetUser = ref( mw.config.get( 'blockTargetUser' ) || '' );
 	const blockId = ref( String );
 	const alreadyBlocked = ref( Boolean );
@@ -137,6 +143,7 @@ module.exports = exports = defineStore( 'block', () => {
 	 */
 	function $reset() {
 		formSubmitted.value = false;
+		success.value = false;
 		alreadyBlocked.value = mw.config.get( 'blockAlreadyBlocked' ) || false;
 		type.value = mw.config.get( 'blockTypePreset' ) || 'sitewide';
 		pages.value = ( mw.config.get( 'blockPageRestrictions' ) || '' )
@@ -317,6 +324,7 @@ module.exports = exports = defineStore( 'block', () => {
 		formErrors,
 		formSubmitted,
 		targetUser,
+		success,
 		blockId,
 		alreadyBlocked,
 		type,

@@ -32,7 +32,6 @@
 		</div>
 		<user-lookup
 			v-model="store.targetUser"
-			@input="store.alreadyBlocked = false; success = false;"
 		></user-lookup>
 
 		<div v-if="store.targetUser">
@@ -126,9 +125,8 @@ module.exports = exports = defineComponent( {
 		const blockEnableMultiblocks = mw.config.get( 'blockEnableMultiblocks' ) || false;
 		const blockShowSuppressLog = mw.config.get( 'blockShowSuppressLog' ) || false;
 		const canDeleteLogEntry = mw.config.get( 'canDeleteLogEntry' ) || false;
-		const success = ref( false );
 		const showForm = ref( false );
-		const { formErrors, formSubmitted } = storeToRefs( store );
+		const { formErrors, formSubmitted, success } = storeToRefs( store );
 		const messagesContainer = ref();
 		// Value to use for BlockLog component keys, so they reload after saving.
 		const submitCount = ref( 0 );
