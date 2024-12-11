@@ -2590,7 +2590,6 @@
 	"block-expiry-custom-years": "năm",
 	"block-expiry-datetime": "Ngày và giờ cụ thể",
 	"block-options": "Tùy chọn khác:",
-	"block-options-description": "Những tùy chọn này có thể giúp bạn theo dõi thành viên này, để ngăn ngừa các vấn đề tiếp theo.",
 	"block-reason": "Lý do:",
 	"block-reason-other": "Lý do bổ sung hoặc lý do khác",
 	"block-success": "[[Special:Contributions/$1|$1]] đã bị cấm. Xem [[Special:BlockList|danh sách]] để xem lại các lệnh cấm.",

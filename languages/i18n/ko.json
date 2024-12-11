@@ -2615,7 +2615,6 @@
 	"block-expiry-custom-years": "년",
 	"block-expiry-datetime": "특정 날짜 및 시간",
 	"block-options": "추가 옵션:",
-	"block-options-description": "이러한 옵션은 추가적인 문제를 방지하기 위해 이 사용자를 주시하는데 도움이 될 수 있습니다.",
 	"block-reason": "이유:",
 	"block-reason-other": "추가 또는 기타 이유",
 	"block-confirm-yes": "예",

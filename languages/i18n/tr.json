@@ -2646,7 +2646,6 @@
 	"block-expiry-custom-years": "yıl",
 	"block-expiry-datetime": "Belirli tarih ve saat",
 	"block-options": "Ek seçenekler:",
-	"block-options-description": "Bu seçenekler, başka sorunları önlemek için bu kullanıcıyı izlemenize yardımcı olabilir.",
 	"block-reason": "Sebep:",
 	"block-reason-help": "Örneğin, zarar verilmiş belirli sayfaları alıntılayın",
 	"block-reason-other": "Ek ya da başka bir gerekçe",

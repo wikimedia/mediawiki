@@ -2914,7 +2914,7 @@
 	"ipboptions": "Options for the duration of the block.\n\n{{doc-mediawiki-options-list}}\n\n{{Identical|Infinite}}",
 	"ipbhidename": "This is the label for a checkbox in the user block form on [[Special:Block]].\n\nSee also:\n* {{msg-mw|ipbemailban}}\n* {{msg-mw|ipb-disableusertalk}}\n* {{msg-mw|ipbenableautoblock}}\n* {{msg-mw|ipbwatchuser}}\n* {{msg-mw|ipb-hardblock}}",
 	"ipbwatchuser": "This is an option on [[Special:Block]] to watch the user page and talk page of the blocked user or IP address (does not apply to IP ranges).\n\nSee also:\n* {{msg-mw|ipbemailban}}\n* {{msg-mw|ipb-disableusertalk}}\n* {{msg-mw|ipbenableautoblock}}\n* {{msg-mw|ipbhidename}}\n* {{msg-mw|ipb-hardblock}}",
-	"ipb-disableusertalk": "{{Doc-singularthey}}\nUsed as label for checkbox in [[Special:Block]] (this special page is only accessible by administrators that can change user permissions).\n\n* {{msg-mw|ipbemailban}}\n* {{msg-mw|ipbenableautoblock}}\n* {{msg-mw|ipbhidename}}\n* {{msg-mw|ipbwatchuser}}\n* {{msg-mw|ipb-hardblock}}",
+	"ipb-disableusertalk": "Used as label for checkbox in [[Special:Block]] (this special page is only accessible by administrators that can change user permissions).\n\n* {{msg-mw|ipbemailban}}\n* {{msg-mw|ipbenableautoblock}}\n* {{msg-mw|ipbhidename}}\n* {{msg-mw|ipbwatchuser}}\n* {{msg-mw|ipb-hardblock}}",
 	"ipb-change-block": "Confirmation checkbox required for blocks that would override an earlier block. Appears together with {{msg-mw|ipb-needreblock}}.",
 	"ipb-confirm": "Used as hidden field in the form on [[Special:Block]].",
 	"ipb-sitewide": "A type of block the user can select from on [[Special:Block]].",

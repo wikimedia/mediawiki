@@ -2541,7 +2541,6 @@
 	"block-expiry-custom-years": "джыл",
 	"block-expiry-datetime": "Белгили дата эмда заман",
 	"block-options": "Къошакъ сайламла:",
-	"block-options-description": "Бу сайламала, башха проблемаланы аллын тыяр ючюн бу хайырланыучуну ызындан къараргъа болушадыла.",
 	"block-reason": "Чурум:",
 	"block-reason-other": "Къошакъ неда башха чурум",
 	"block-success": "[[Special:Contributions/$1|«$1»]] блокланды.<br />\nБлокланыуланы кёрюр ючюн [[Special:BlockList|блок тизмеге]] къарагъыз.",

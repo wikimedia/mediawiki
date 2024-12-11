@@ -2661,7 +2661,6 @@
 	"block-expiry-custom-years": "年",
 	"block-expiry-datetime": "指定日期與時間",
 	"block-options": "額外選項：",
-	"block-options-description": "這些選項可幫助您監視此使用者，以防止進一步的問題。",
 	"block-reason": "原因：",
 	"block-reason-help": "例如，列舉其破壞的特定頁面",
 	"block-reason-other": "額外或其他原因",

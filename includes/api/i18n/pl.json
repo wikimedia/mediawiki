@@ -830,7 +830,7 @@
 	"api-help-license-unknown": "Licencja: <span class=\"apihelp-unknown\">nieznana</span>",
 	"api-help-parameters": "{{PLURAL:$1|Parametr|Parametry}}:",
 	"api-help-param-deprecated": "Przestarzałe.",
-	"api-help-param-deprecated-label": "przestarzałe",
+	"api-help-param-deprecated-label": "przestarzały",
 	"api-help-param-internal": "Wewnętrzny.",
 	"api-help-param-internal-label": "wewnętrzne",
 	"api-help-datatypes-header": "Typy danych",

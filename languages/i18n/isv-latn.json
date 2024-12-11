@@ -2510,7 +2510,6 @@
 	"block-expiry-custom-years": "lěta",
 	"block-expiry-datetime": "Konkretna data i čas",
 	"block-options": "Dodatočne opcije:",
-	"block-options-description": "Tute opcije mogut vam pomogti slědovati tutogo koristnika, za izběganje daljših problemov.",
 	"block-reason": "Pričina:",
 	"block-reason-other": "Dodatočna ili druga pričina",
 	"block-success": "{{GENDER:$1|Koristnik|Koristnica}} [[Special:Contributions/$1|$1]] jest {{GENDER:$1|zablokovany|zablokovana}}. Gledite [[Special:BlockList|spisok blokad]] za prěgled blokad.",

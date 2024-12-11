@@ -2587,7 +2587,6 @@
 	"block-expiry-custom-years": "år",
 	"block-expiry-datetime": "Angiv dato og klokkeslæt",
 	"block-options": "Yderligere indstillinger:",
-	"block-options-description": "Disse muligheder kan hjælpe dig med at overvåge denne bruger for at forhindre yderligere problemer.",
 	"block-reason": "Begrundelse:",
 	"block-reason-other": "Anden eller yderligere årsag",
 	"block-success": "[[Special:Contributions/$1|$1]] er blevet blokeret. Se [[Special:BlockList|blokeringslisten]] for at gennemgå blokeringer.",

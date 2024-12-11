@@ -2582,7 +2582,6 @@
 	"block-expiry-custom-years": "roky",
 	"block-expiry-datetime": "Konkrétní datum a čas",
 	"block-options": "Další nastavení:",
-	"block-options-description": "Tyto možnosti vám mohou pomoci sledovat tohoto uživatele, abyste předešli dalším problémům.",
 	"block-reason": "Důvod:",
 	"block-reason-other": "Dodatečný nebo jiný důvod",
 	"block-success": "„[[Special:Contributions/$1|$1]]“ je zablokován. Můžete si prohlédnout [[Special:BlockList|seznam zablokovaných uživatelů]].",

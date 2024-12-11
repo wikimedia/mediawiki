@@ -2526,7 +2526,6 @@
 	"block-expiry-custom-years": "annos",
 	"block-expiry-datetime": "Data e hora specific",
 	"block-options": "Optiones additional:",
-	"block-options-description": "Iste optiones pote adjutar te a surveliar iste usator, a fin de evitar ulterior problemas.",
 	"block-reason": "Motivo:",
 	"block-reason-other": "Motivo additional o altere",
 	"block-success": "[[Special:Contributions/$1|$1]] ha essite blocate. Vide le [[Special:BlockList|lista de blocadas]] pro revider le blocadas.",

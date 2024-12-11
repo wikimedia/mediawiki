@@ -2614,7 +2614,6 @@
 	"block-expiry-custom-years": "роки",
 	"block-expiry-datetime": "Конкретна дата і час",
 	"block-options": "Додаткові опції:",
-	"block-options-description": "Ці функції можуть допомогти Вам відстежувати дії цього користувача для запобігання подальшим проблемам.",
 	"block-reason": "Причина:",
 	"block-reason-other": "Додаткова або інша причина",
 	"block-success": "[[Special:Contributions/$1|«$1»]] заблоковано. Див. [[Special:BlockList|список заблокованих]] для перегляду блокувань.",

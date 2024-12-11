@@ -2610,7 +2610,6 @@
 	"block-expiry-custom-years": "år",
 	"block-expiry-datetime": "Specifikt datum och tid",
 	"block-options": "Ytterligare alternativ:",
-	"block-options-description": "Dessa alternativ kan hjälpa dig att övervaka den här användaren för att förhindra ytterligare problem.",
 	"block-reason": "Anledning:",
 	"block-reason-other": "Ytterligare eller annan anledning",
 	"block-success": "[[Special:Contributions/$1|$1]] har blockerats. Se [[Special:BlockList|blockeringslistan]] för att granska blockeringar.",

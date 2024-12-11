@@ -2535,7 +2535,6 @@
 	"block-expiry-custom-years": "metai",
 	"block-expiry-datetime": "Konkreti data ir laikas",
 	"block-options": "Papildomi nustatymai:",
-	"block-options-description": "Šios parinktys gali padėti stebėti šį naudotoją ir užkardyti tolimesnes problemas.",
 	"block-reason": "Priežastis:",
 	"block-reason-other": "Papildoma ar kita priežastis",
 	"block-success": "[[Special:Contributions/$1|$1]] užblokuotas. Žiūrėkite [[Special:BlockList|blokavimų sąrašą]], kad peržiūrėtumėte blokavimus.",

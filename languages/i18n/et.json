@@ -2538,7 +2538,6 @@
 	"block-details-description": "Millised toimingud soovid blokeerida?",
 	"block-expiry": "Aegumistähtaeg:",
 	"block-options": "Lisasuvandid:",
-	"block-options-description": "Need suvandid võivad aidata sul seda kasutajat jälgida, et hoida ära edasisi probleeme.",
 	"block-reason": "Põhjus:",
 	"block-user-placeholder": "Alusta kasutaja sisestamist...",
 	"block-target": "Kasutajanimi, IP-aadress või IP-vahemik:",
