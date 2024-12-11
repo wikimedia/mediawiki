@@ -253,4 +253,8 @@ module.exports = exports = defineComponent( {
 	opacity: @opacity-low;
 	pointer-events: none;
 }
+
+.mw-block-fieldset {
+	min-width: unset;
+}
 </style>
