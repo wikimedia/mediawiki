@@ -349,6 +349,7 @@ class ApiMain extends ApiBase {
 				'WatchedItemStore',
 				'WatchlistManager',
 				'UserOptionsLookup',
+				'DatabaseBlockStore',
 			]
 		],
 		'move' => [

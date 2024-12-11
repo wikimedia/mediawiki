@@ -3068,6 +3068,7 @@
 	"ipb-otherblocks-header": "[[File:Special.Block with other blocks from GlobalBlocking and TorBlocks.png|thumb|Example]]\nUsed on [[Special:Block]] as header for other blocks, i.e. from GlobalBlocking or TorBlocks\n\nParameters:\n* $1 - number of blocks\nSee also:\n* {{msg-mw|Ipblocklist-otherblocks}}",
 	"unblock-hideuser": "{{doc-singularthey}}",
 	"ipb_cant_unblock": "Used as error message in [[Special:Unblock]]. Parameters:\n* $1 - block target, which may be user, IP, IP range or block ID",
+	"ipb_cant_unblock_multiple_blocks": "Used as error message when trying to unblock a target with multiple active blocks. Parameters:\n* $1 - Number of IDs.\n* $2 - List of IDs comma-separated",
 	"ipb_blocked_as_range": "Used when unblock of a single IP fails. Parameters:\n* $1 - IP address\n* $2 - IP address range",
 	"ip_range_invalid": "Used as error message in [[Special:Block]].\n\nSee also:\n* {{msg-mw|Range block disabled}}\n* {{msg-mw|Ip range invalid}}\n* {{msg-mw|Ip range toolarge}}",
 	"ip_range_toolarge": "Used as error message in [[Special:Block]]. Parameters:\n* $1 - a number from 0 to 32 for IPv4 (from 0 to 128 for IPv6); a part of CIDR (Classless Inter-Domain Routing) notation.\nSee also:\n* {{msg-mw|Range block disabled}}\n* {{msg-mw|Ip range invalid}}\n* {{msg-mw|Ip range toolarge}}",

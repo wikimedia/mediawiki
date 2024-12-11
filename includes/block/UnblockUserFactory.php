@@ -42,4 +42,23 @@ interface UnblockUserFactory {
 		string $reason,
 		array $tags = []
 	): UnblockUser;
+
+	/**
+	 * Creates UnblockUser to remove a specific block
+	 *
+	 * @since 1.44
+	 *
+	 * @param DatabaseBlock $block
+	 * @param Authority $performer
+	 * @param string $reason
+	 * @param array $tags
+	 *
+	 * @return UnblockUser
+	 */
+	public function newRemoveBlock(
+		DatabaseBlock $block,
+		Authority $performer,
+		string $reason,
+		array $tags = []
+	): UnblockUser;
 }

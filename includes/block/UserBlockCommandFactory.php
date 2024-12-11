@@ -168,6 +168,10 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 	}
 
 	/**
+	 * Creates UnblockUser
+	 *
+	 * @since 1.44
+	 *
 	 * @param UserIdentity|string $target
 	 * @param Authority $performer
 	 * @param string $reason
@@ -187,7 +191,38 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 			$this->blockUtils,
 			$this->userFactory,
 			$this->hookContainer,
+			null,
 			$target,
+			$performer,
+			$reason,
+			$tags
+		);
+	}
+
+	/**
+	 * Creates UnblockUser to remove a specific block
+	 *
+	 * @param DatabaseBlock $block
+	 * @param Authority $performer
+	 * @param string $reason
+	 * @param array $tags
+	 *
+	 * @return UnblockUser
+	 */
+	public function newRemoveBlock(
+		DatabaseBlock $block,
+		Authority $performer,
+		string $reason,
+		array $tags = []
+	): UnblockUser {
+		return new UnblockUser(
+			$this->blockPermissionCheckerFactory,
+			$this->blockStore,
+			$this->blockUtils,
+			$this->userFactory,
+			$this->hookContainer,
+			$block,
+			null,
 			$performer,
 			$reason,
 			$tags
