@@ -2380,6 +2380,7 @@ class MainConfigNames {
 	/**
 	 * Name constant for the ParserEnableLegacyHeadingDOM setting, for use with Config::get()
 	 * @see MainConfigSchema::ParserEnableLegacyHeadingDOM
+	 * @deprecated since 1.44
 	 */
 	public const ParserEnableLegacyHeadingDOM = 'ParserEnableLegacyHeadingDOM';
 

@@ -34,7 +34,12 @@ For notes on 1.43.x and older releases, see HISTORY.
 
 ==== Changed configuration ====
 
-* …
+* (T13555) $wgParserEnableLegacyHeadingDOM now defaults to `false`.
+  You can set it to `true` to temporarily restore the legacy HTML markup
+  for wikitext headings in the output from the Parser, in case you find
+  that your wiki's content or an extension is incompatible with the new markup.
+  More information: https://www.mediawiki.org/wiki/Heading_HTML_changes
+  This option will be removed in a future release.
 
 ==== Removed configuration ====
 
