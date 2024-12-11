@@ -20,11 +20,10 @@ const util = {
 	 * Format a timestamp
 	 *
 	 * @param {string} timestamp
-	 * @param {string} duration
 	 * @return {string}
 	 */
-	formatTimestamp: function ( timestamp, duration ) {
-		if ( mw.util.isInfinity( duration ) ) {
+	formatTimestamp: function ( timestamp ) {
+		if ( mw.util.isInfinity( timestamp ) ) {
 			return mw.msg( 'infiniteblock' );
 		}
 		return new Date( timestamp ).toLocaleString();

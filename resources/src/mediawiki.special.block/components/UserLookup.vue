@@ -22,7 +22,7 @@
 		<template #label>
 			{{ $i18n( 'block-target' ).text() }}
 		</template>
-		<div class="mw-block-conveniencelinks" >
+		<div class="mw-block-conveniencelinks">
 			<span v-if="!!targetUser">
 				<a
 					:href="mw.util.getUrl( contribsTitle )"

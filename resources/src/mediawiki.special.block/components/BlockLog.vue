@@ -25,6 +25,12 @@
 				>
 					{{ util.formatTimestamp( item.timestamp ) }}
 				</a>
+				<a
+					v-else-if="item.blockid"
+					:href="mw.util.getUrl( 'Special:BlockList', { wpTarget: `#${ item.blockid }` } )"
+				>
+					{{ util.formatTimestamp( item.timestamp ) }}
+				</a>
 				<span v-else>
 					{{ util.formatTimestamp( item.timestamp ) }}
 				</span>
@@ -37,38 +43,25 @@
 				<span v-html="$i18n( 'userlink-with-contribs', item ).parse()"></span>
 			</template>
 			<template #item-expiry="{ item }">
-				<span v-if="item.expires">
-					{{ util.formatTimestamp( item.expires, item.duration ) }}
+				<span v-if="item.expires || item.duration">
+					{{ util.formatTimestamp( item.expires || item.duration ) }}
 				</span>
-				<span v-else class="mw-block-log-nodata">
-					—
-				</span>
+				<span v-else></span>
 			</template>
 			<template #item-blockedby="{ item }">
 				<!-- eslint-disable-next-line vue/no-v-html -->
 				<span v-html="$i18n( 'userlink-with-contribs', item ).parse()"></span>
 			</template>
 			<template #item-parameters="{ item }">
-				<div v-if="!item" class="mw-block-log-params mw-block-log-nodata">
-					—
-				</div>
-				<ul v-else>
+				<ul v-if="item && item.length">
 					<li v-for="( parameter, index ) in item" :key="index">
 						{{ util.getBlockFlagMessage( parameter ) }}
 					</li>
 				</ul>
+				<span v-else></span>
 			</template>
 			<template #item-reason="{ item }">
-				<div
-					v-if="!item"
-					class="mw-block-log-nodata"
-					:aria-label="$i18n( 'block-user-no-reason-given-aria-details' ).text()"
-				>
-					{{ $i18n( 'block-user-no-reason-given' ).text() }}
-				</div>
-				<span v-else>
-					{{ item }}
-				</span>
+				{{ item }}
 			</template>
 			<template v-if="blockLogType === 'active'" #item-modify>
 				<!-- TODO: Ensure dropdown menu uses Right-Top layout (https://w.wiki/BTaj) -->
@@ -216,12 +209,13 @@ module.exports = exports = defineComponent( {
 						for ( let i = 0; i < data.blocks.length; i++ ) {
 							newData.push( {
 								timestamp: {
-									timestamp: data.blocks[ i ].timestamp
+									timestamp: data.blocks[ i ].timestamp,
+									blockid: data.blocks[ i ].id
 								},
 								target: data.blocks[ i ].user,
 								expiry: {
 									expires: data.blocks[ i ].expiry,
-									duration: data.blocks[ i ].expiry === 'infinity' ? 'infinity' : null
+									duration: mw.util.isInfinity( data.blocks[ i ].expiry ) ? 'infinity' : null
 								},
 								blockedby: data.blocks[ i ].by,
 								parameters:
@@ -271,15 +265,6 @@ module.exports = exports = defineComponent( {
 
 .mw-block-log {
 	word-break: auto-phrase;
-}
-
-.mw-block-log-nodata {
-	color: @color-subtle;
-	font-style: italic;
-
-	&.mw-block-log-params {
-		padding-left: @spacing-75;
-	}
 }
 
 .mw-block-log-fulllog {
