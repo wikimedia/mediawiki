@@ -4374,9 +4374,20 @@ class Parser {
 			// conveniently also giving us a way to handle French spaces (T324763)
 			$safeHeadline = $this->tidy->tidy( $safeHeadline, [ Sanitizer::class, 'armorFrenchSpaces' ] );
 
+			// Wrap the safe headline to parse the heading attributes
+			// Literal HTML tags should be sanitized at this point
+			// cleanUpTocLine will strip the headline tag
+			$wrappedHeadline = "<h$level" . $matches['attrib'][$headlineCount] . $safeHeadline . "</h$level>";
+
 			// Parse the heading contents as HTML. This makes it easier to strip out some HTML tags,
 			// and ensures that we generate balanced HTML at the end (T218330).
-			$headlineDom = DOMUtils::parseHTMLToFragment( $domDocument, $safeHeadline );
+			$headlineDom = DOMUtils::parseHTMLToFragment( $domDocument, $wrappedHeadline );
+
+			// Extract a user defined id on the heading
+			// A heading is expected as the first child and could be asserted
+			$h = $headlineDom->firstChild;
+			$headingId = ( $h instanceof Element && DOMUtils::isHeading( $h ) ) ?
+				DOMCompat::getAttribute( $h, 'id' ) : null;
 
 			$this->cleanUpTocLine( $headlineDom );
 
@@ -4385,11 +4396,16 @@ class Parser {
 
 			# For the anchor, strip out HTML-y stuff period
 			$safeHeadline = trim( $headlineDom->textContent );
+
 			# Save headline for section edit hint before it's normalized for the link
 			$headlineHint = htmlspecialchars( $safeHeadline );
 
 			$safeHeadline = Sanitizer::normalizeSectionNameWhitespace( $safeHeadline );
 			$safeHeadline = self::normalizeSectionName( $safeHeadline );
+
+			if ( $headingId !== null && $headingId !== '' ) {
+				$safeHeadline = $headingId;
+			}
 
 			$fallbackHeadline = Sanitizer::escapeIdForAttribute( $safeHeadline, Sanitizer::ID_FALLBACK );
 			$linkAnchor = Sanitizer::escapeIdForLink( $safeHeadline );
