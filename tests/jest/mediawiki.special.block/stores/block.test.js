@@ -98,6 +98,7 @@ describe( 'Block store', () => {
 		const expected = {
 			action: 'block',
 			allowusertalk: 1,
+			anononly: 1,
 			autoblock: 1,
 			errorlang: 'en',
 			errorsuselocal: true,

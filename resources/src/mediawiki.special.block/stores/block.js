@@ -131,11 +131,30 @@ module.exports = exports = defineStore( 'block', () => {
 		$reset();
 		blockId.value = blockData.id;
 		type.value = blockData.partial ? 'partial' : 'sitewide';
-		pages.value = blockData.restrictions.pages || [];
+		pages.value = ( blockData.restrictions.pages || [] ).map( ( i ) => i.title );
 		namespaces.value = blockData.restrictions.namespaces || [];
 		expiry.value = blockData.expiry;
+		partialOptions.value = ( blockData.restrictions.actions || [] ).map( ( i ) => 'ipb-action-' + i );
+		// The reason is a single string that possibly starts with one of the predefined reasons,
+		// and can have an 'other' value separated by a colon.
+		// Here we replicate what's done in PHP in HTMLSelectAndOtherField at https://w.wiki/CPMs
+		reason.value = 'other';
 		reasonOther.value = blockData.reason;
-		// @todo Sort out remaining field values.
+		for ( const opt of mw.config.get( 'blockReasonOptions' ) ) {
+			const possPrefix = opt.value + mw.msg( 'colon-separator' );
+			if ( reasonOther.value.startsWith( possPrefix ) ) {
+				reason.value = opt.value;
+				reasonOther.value = reasonOther.value.slice( possPrefix.length );
+				break;
+			}
+		}
+		createAccount.value = blockData.nocreate;
+		disableEmail.value = blockData.noemail;
+		disableUTEdit.value = !blockData.allowusertalk;
+		hardBlock.value = !blockData.anononly;
+		hideName.value = blockData.hidden;
+		autoBlock.value = blockData.autoblock;
+		// We do not need to set watchUser as its state is never loaded from a block.
 	}
 
 	/**
@@ -246,8 +265,8 @@ module.exports = exports = defineStore( 'block', () => {
 			params.watchuser = 1;
 		}
 
-		if ( hardBlock.value ) {
-			params.nocreate = 1;
+		if ( !hardBlock.value && mw.util.isIPAddress( targetUser.value, true ) ) {
+			params.anononly = 1;
 		}
 
 		// Clear any previous errors.

@@ -39,9 +39,9 @@
 				:key="`${submitCount}-active`"
 				:open="success"
 				block-log-type="active"
+				:can-delete-log-entry="false"
 				@create-block="onCreateBlock"
 				@edit-block="onEditBlock"
-				:can-delete-log-entry="false"
 			></block-log>
 			<block-log
 				:key="`${submitCount}-recent`"
