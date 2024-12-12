@@ -13,7 +13,7 @@
 			:caption="title"
 			:columns="!!logEntries.length ? columns : []"
 			:data="logEntries"
-			:use-row-headers="true"
+			:use-row-headers="false"
 			:hide-caption="true"
 		>
 			<template v-if="blockLogType === 'active'" #header>
@@ -30,6 +30,23 @@
 			</template>
 			<template #empty-state>
 				{{ emptyState }}
+			</template>
+			<template #item-modify="{ item }">
+				<a @click="$emit( 'edit-block', item )">
+					{{ $i18n( 'block-item-edit' ).text() }}
+				</a>
+				<a
+					:href="mw.util.getUrl( 'Special:Unblock/' + targetUser )"
+				>
+					{{ $i18n( 'block-item-remove' ).text() }}
+				</a>
+			</template>
+			<template #item-hide="{ item }">
+				<a
+					:href="mw.util.getUrl( 'Special:RevisionDelete', { type: 'logging', ['ids[' + item + ']']: 1 } )"
+				>
+					{{ $i18n( 'block-change-visibility' ).text() }}
+				</a>
 			</template>
 			<template #item-timestamp="{ item }">
 				<a
@@ -75,24 +92,6 @@
 			</template>
 			<template #item-reason="{ item }">
 				{{ item }}
-			</template>
-			<template #item-modify="{ item }">
-				<a @click="$emit( 'edit-block', item )">
-					{{ $i18n( 'block-item-edit' ).text() }}
-				</a>
-				{{ $i18n( 'pipe-separator' ) }}
-				<a
-					:href="mw.util.getUrl( 'Special:Unblock/' + targetUser )"
-				>
-					{{ $i18n( 'block-item-remove' ).text() }}
-				</a>
-			</template>
-			<template #item-hide="{ item }">
-				<a
-					:href="mw.util.getUrl( 'Special:RevisionDelete', { type: 'logging', ['ids[' + item + ']']: 1 } )"
-				>
-					{{ $i18n( 'block-change-visibility' ).text() }}
-				</a>
 			</template>
 		</cdx-table>
 		<div v-if="moreBlocks" class="mw-block-log-fulllog">
@@ -149,6 +148,8 @@ module.exports = exports = defineComponent( {
 		}
 
 		const columns = [
+			...( props.blockLogType === 'active' || props.canDeleteLogEntry ?
+				[ { id: props.blockLogType === 'active' ? 'modify' : 'hide', label: '', minWidth: '100px' } ] : [] ),
 			{ id: 'timestamp', label: mw.message( 'blocklist-timestamp' ).text(), minWidth: '112px' },
 			props.blockLogType === 'recent' || props.blockLogType === 'suppress' ?
 				{ id: 'type', label: mw.message( 'blocklist-type-header' ).text(), minWidth: '112px' } :
@@ -156,9 +157,7 @@ module.exports = exports = defineComponent( {
 			{ id: 'expiry', label: mw.message( 'blocklist-expiry' ).text(), minWidth: '112px' },
 			{ id: 'blockedby', label: mw.message( 'blocklist-by' ).text(), minWidth: '200px' },
 			{ id: 'parameters', label: mw.message( 'blocklist-params' ).text(), minWidth: '160px' },
-			{ id: 'reason', label: mw.message( 'blocklist-reason' ).text(), minWidth: '160px' },
-			...( props.blockLogType === 'active' || props.canDeleteLogEntry ?
-				[ { id: props.blockLogType === 'active' ? 'modify' : 'hide', label: '', minWidth: '100px' } ] : [] )
+			{ id: 'reason', label: mw.message( 'blocklist-reason' ).text(), minWidth: '160px' }
 		];
 
 		const logEntries = ref( [] );
