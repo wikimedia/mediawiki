@@ -77,7 +77,7 @@ class DatabaseSqliteUpgradeTest extends \MediaWikiIntegrationTestCase {
 	 * @coversNothing
 	 */
 	public function testEntireSchema() {
-		$result = Sqlite::checkSqlSyntax( dirname( __FILE__, 6 ) . "/maintenance/tables.sql" );
+		$result = Sqlite::checkSqlSyntax( dirname( __FILE__, 6 ) . "/sql/sqlite/tables-generated.sql" );
 		if ( $result !== true ) {
 			$this->fail( $result );
 		}
@@ -184,8 +184,7 @@ class DatabaseSqliteUpgradeTest extends \MediaWikiIntegrationTestCase {
 			$updater = DatabaseUpdater::newForDB( $db, false, $maint );
 			$updater->doUpdates( [ 'core' ] );
 		} else {
-			$db->sourceFile( dirname( __FILE__, 6 ) . "/maintenance/tables.sql" );
-			$db->sourceFile( dirname( __FILE__, 6 ) . "/maintenance/sqlite/tables-generated.sql" );
+			$db->sourceFile( dirname( __FILE__, 6 ) . "/sql/sqlite/tables-generated.sql" );
 		}
 
 		return $db;

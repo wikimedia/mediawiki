@@ -330,7 +330,7 @@ class MysqlInstaller extends DatabaseInstaller {
 	}
 
 	/**
-	 * Get variables to substitute into tables.sql and the SQL patch files.
+	 * Get variables to substitute into the SQL schema and patch files.
 	 *
 	 * @return array
 	 */

@@ -1086,7 +1086,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	 * @return bool
 	 */
 	public function isValidMajorMimeType( string $type ): bool {
-		// From maintenance/tables-generated.sql => img_major_mime
+		// See the definition of the `img_major_mime` enum in tables-generated.sql
 		$types = [
 			'unknown',
 			'application',

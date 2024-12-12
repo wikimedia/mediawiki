@@ -1982,8 +1982,8 @@ class SQLPlatform implements ISQLPlatform {
 	/**
 	 * Get schema variables to use if none have been set via setSchemaVars().
 	 *
-	 * Override this in derived classes to provide variables for tables.sql
-	 * and SQL patch files.
+	 * Override this in derived classes to provide variables for SQL schema
+	 * and patch files.
 	 *
 	 * @stable to override
 	 * @return array

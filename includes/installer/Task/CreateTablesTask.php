@@ -32,6 +32,7 @@ class CreateTablesTask extends Task {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
+		// TODO Make this optional, not every DB type has a tables.sql file.
 		$status->merge( $this->applySourceFile( $conn, 'tables.sql' ) );
 		return $status;
 	}

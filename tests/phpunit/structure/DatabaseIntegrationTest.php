@@ -32,7 +32,7 @@ class DatabaseIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	public function testUniformTablePrefix() {
 		global $IP;
-		$path = "$IP/maintenance/tables.json";
+		$path = "$IP/sql/tables.json";
 		$tables = json_decode( file_get_contents( $path ), true );
 
 		// @todo Remove exception once these tables are fixed
@@ -85,12 +85,8 @@ class DatabaseIntegrationTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testAutomaticSqlGeneration( $type ) {
 		global $IP;
-		$abstractSchemaPath = "$IP/maintenance/tables.json";
-		if ( $type === 'mysql' ) {
-			$oldPath = "$IP/maintenance/tables-generated.sql";
-		} else {
-			$oldPath = "$IP/maintenance/$type/tables-generated.sql";
-		}
+		$abstractSchemaPath = "$IP/sql/tables.json";
+		$oldPath = "$IP/sql/$type/tables-generated.sql";
 		$oldContent = file_get_contents( $oldPath );
 		$newPath = $this->getNewTempFile();
 		$maintenanceScript = new GenerateSchemaSql();

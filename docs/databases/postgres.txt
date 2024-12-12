@@ -16,7 +16,7 @@ The current minimum version of PostgreSQL for MediaWiki is 10.
 == Database schema ==
 
 PostgreSQL schema is automatically generated from the abstract schema.
-You can see the generated schema in maintenance/postgres/tables-generated.sql
+You can see the generated schema in sql/postgres/tables-generated.sql
 
 For more information on abstract schema see:
 https://www.mediawiki.org/wiki/Manual:Schema_changes

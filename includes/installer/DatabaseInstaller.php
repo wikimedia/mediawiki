@@ -282,7 +282,7 @@ abstract class DatabaseInstaller implements ITaskContext {
 
 	/**
 	 * Override this to provide DBMS-specific schema variables, to be
-	 * substituted into tables.sql and other schema files.
+	 * substituted into the schema files.
 	 * @return array
 	 */
 	public function getSchemaVars() {
