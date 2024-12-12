@@ -23,12 +23,6 @@
 				"options": { "notnull": true, "length": 255 }
 			},
 			{
-				"name": "page_restrictions",
-				"comment": "Comma-separated set of permission keys indicating who can move or edit the page.",
-				"type": "blob",
-				"options": { "notnull": false, "length": 255 }
-			},
-			{
 				"name": "page_is_redirect",
 				"comment": "1 indicates the article is a redirect.",
 				"type": "mwtinyint",
@@ -144,12 +138,6 @@
 				"comment": "The rest of the title, as text. Spaces are transformed into underscores in title storage.",
 				"type": "binary",
 				"options": { "notnull": true, "length": 255 }
-			},
-			{
-				"name": "page_restrictions",
-				"comment": "Comma-separated set of permission keys indicating who can move or edit the page.",
-				"type": "blob",
-				"options": { "notnull": false, "length": 255 }
 			},
 			{
 				"name": "page_is_redirect",
