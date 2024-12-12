@@ -186,9 +186,10 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	/**
 	 * In which language to get this message. Overrides the $interface setting.
 	 *
-	 * @var Language|null Explicit language object, or null for user language
+	 * @var Language|string|null Explicit language object, a MediaWiki internal language code as a string,
+	 *   or null for user language
 	 */
-	protected ?Language $language = null;
+	protected $language = null;
 
 	/**
 	 * @var callable|null A callable which returns the current user language,
@@ -299,7 +300,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	public function __serialize() {
 		return [
 			'interface' => $this->isInterface,
-			'language' => $this->language ? $this->language->getCode() : null,
+			'language' => $this->language instanceof Language ? $this->language->getCode() : $this->language,
 			'key' => $this->key,
 			'keysToTry' => $this->keysToTry,
 			'parameters' => $this->parameters,
@@ -348,10 +349,8 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 			}
 		}, $data['parameters'] );
 		$this->useDatabase = $data['useDatabase'];
-		$this->language = $data['language']
-			? MediaWikiServices::getInstance()->getLanguageFactory()
-				->getLanguage( $data['language'] )
-			: null;
+		// Until MW 1.39, we used 'false' instead of 'null' to indicate the user language (Idbe21afcea)
+		$this->language = $data['language'] ?: null;
 
 		// Since 1.35, the key 'titlevalue' is set, instead of 'titlestr'.
 		if ( isset( $data['titlevalue'] ) ) {
@@ -424,7 +423,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	public function getLanguage(): Language {
 		// Defaults to null which means current user language
 		if ( $this->language !== null ) {
-			return $this->language;
+			return MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $this->language );
 		} elseif ( $this->userLangCallback ) {
 			return ( $this->userLangCallback )();
 		} else {
@@ -875,14 +874,13 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 		} elseif ( $lang instanceof StubUserLang ) {
 			$this->language = null;
 		} elseif ( $lang instanceof Bcp47Code ) {
-			if ( $this->language === null || !$this->language->isSameCodeAs( $lang ) ) {
+			if ( !( $this->language instanceof Language && $this->language->isSameCodeAs( $lang ) ) ) {
 				$this->language = MediaWikiServices::getInstance()->getLanguageFactory()
 					->getLanguage( $lang );
 			}
 		} elseif ( is_string( $lang ) ) {
-			if ( $this->language === null || $this->language->getCode() != $lang ) {
-				$this->language = MediaWikiServices::getInstance()->getLanguageFactory()
-					->getLanguage( $lang );
+			if ( !( $this->language instanceof Language && $this->language->getCode() === $lang ) ) {
+				$this->language = $lang;
 			}
 		} else {
 			// Always throws. Moved here as an optimization.
