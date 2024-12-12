@@ -63,7 +63,7 @@ function mockMwConfigGet( config = {} ) {
 		blockAllowsEmailBan: true,
 		blockAllowsUTEdit: true,
 		blockAutoblockExpiry: '1 day',
-		blockDetailsPreset: [],
+		blockDetailsPreset: [ 'wpCreateAccount' ],
 		blockExpiryDefault: '',
 		blockExpiryPreset: null,
 		blockHideUser: true,
@@ -141,7 +141,8 @@ function mockMwApiGet( additionalMocks = [] ) {
 			},
 			response: {
 				query: {
-					logevents: []
+					logevents: [],
+					blocks: []
 				}
 			}
 		},

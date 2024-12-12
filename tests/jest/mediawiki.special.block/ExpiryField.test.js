@@ -100,8 +100,6 @@ describe( 'ExpiryField', () => {
 			const wrapper = mount( ExpiryField, {
 				global: { plugins: [ createTestingPinia( { stubActions: false } ) ] }
 			} );
-			const store = useBlockStore();
-			store.$reset();
 			await wrapper.vm.$nextTick();
 
 			Object.keys( expected ).forEach( ( key ) => {

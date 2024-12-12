@@ -25,6 +25,7 @@
 			v-if="hardBlockVisible"
 			v-model="hardBlock"
 			input-value="wpHardBlock"
+			class="mw-block-hardblock"
 		>
 			{{ $i18n( 'ipb-hardblock' ) }}
 		</cdx-checkbox>
@@ -38,7 +39,7 @@
 </template>
 
 <script>
-const { defineComponent } = require( 'vue' );
+const { computed, defineComponent } = require( 'vue' );
 const { storeToRefs } = require( 'pinia' );
 const { CdxCheckbox, CdxField } = require( '@wikimedia/codex' );
 const useBlockStore = require( '../stores/block.js' );
@@ -58,16 +59,22 @@ module.exports = exports = defineComponent( {
 		const store = useBlockStore();
 		const {
 			autoBlock,
-			autoBlockVisible,
 			hideName,
 			hideNameVisible,
 			watchUser,
-			hardBlock,
-			hardBlockVisible
+			hardBlock
 		} = storeToRefs( store );
+		const autoBlockExpiry = mw.config.get( 'blockAutoblockExpiry' ) || '';
+		const autoBlockVisible = computed(
+			() => !mw.util.isIPAddress( store.targetUser, true )
+		);
+		const hardBlockVisible = computed(
+			() => mw.util.isIPAddress( store.targetUser, true ) || false
+		);
+
 		return {
 			autoBlock,
-			autoBlockExpiry: store.autoBlockExpiry,
+			autoBlockExpiry,
 			autoBlockVisible,
 			hideName,
 			hideNameVisible,

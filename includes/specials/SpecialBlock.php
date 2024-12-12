@@ -252,7 +252,8 @@ class SpecialBlock extends FormSpecialPage {
 			$this->codexFormData[ 'blockReasonOtherPreset' ] = $request->getVal( 'wpReason-other' );
 			$blockAdditionalDetailsPreset = $blockDetailsPreset = [];
 
-			if ( $request->getBool( 'wpCreateAccount' ) ) {
+			// Default is to always block account creation.
+			if ( $request->getBool( 'wpCreateAccount', true ) ) {
 				$blockDetailsPreset[] = 'wpCreateAccount';
 			}
 

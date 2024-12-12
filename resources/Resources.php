@@ -2346,6 +2346,7 @@ return [
 			'block-success',
 			'block-target',
 			'block-target-placeholder',
+			'block-update',
 			'block-user-active-blocks',
 			'block-user-label-count-exceeds-limit',
 			'block-user-no-active-blocks',

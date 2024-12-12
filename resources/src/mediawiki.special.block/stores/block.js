@@ -2,77 +2,177 @@ const { defineStore } = require( 'pinia' );
 const { computed, ComputedRef, ref, Ref, watch } = require( 'vue' );
 const api = new mw.Api();
 
+/**
+ * Pinia store for the SpecialBlock application.
+ */
 module.exports = exports = defineStore( 'block', () => {
+	// ** State properties (refs) **
+
+	// Form fields.
+	// TODO: Rid of the `mw.config.get( 'whatever' )` atrocity once we have Codex PHP (T377529)
+
+	/**
+	 * The target user to block. Beyond the initial value,
+	 * this is set only by the UserLookup component.
+	 *
+	 * @type {Ref<string>}
+	 */
+	const targetUser = ref( mw.config.get( 'blockTargetUser' ) || '' );
+	/**
+	 * The block ID of the block to modify.
+	 *
+	 * @type {Ref<number|null>}
+	 */
+	const blockId = ref( mw.config.get( 'blockId' ) || null );
+	/**
+	 * The block type, either `sitewide` or `partial`. This is set by the BlockTypeField component.
+	 *
+	 * @type {Ref<string>}
+	 */
+	const type = ref( mw.config.get( 'blockTypePreset' ) || 'sitewide' );
+	/**
+	 * The pages to restrict the partial block to.
+	 *
+	 * @type {Ref<string[]>}
+	 */
+	const pages = ref( ( mw.config.get( 'blockPageRestrictions' ) || '' )
+		.split( '\n' )
+		.filter( Boolean )
+	);
+	/**
+	 * The namespaces to restrict the partial block to.
+	 *
+	 * @type {Ref<number[]>}
+	 */
+	const namespaces = ref( ( mw.config.get( 'blockNamespaceRestrictions' ) || '' )
+		.split( '\n' )
+		.filter( Boolean )
+		.map( Number )
+	);
+	/**
+	 * Actions to apply the partial block to,
+	 * i.e. `ipb-action-create`, `ipb-action-move`, `ipb-action-upload`.
+	 *
+	 * @type {Ref<string[]>}
+	 */
+	const partialOptions = ref( [] );
+	/**
+	 * The expiry of the block.
+	 *
+	 * @type {Ref<string>}
+	 */
+	const expiry = ref(
+		// From URL, ?wpExpiry=...
+		mw.config.get( 'blockExpiryPreset' ) ||
+		// From [[MediaWiki:ipb-default-expiry]] or [[MediaWiki:ipb-default-expiry-ip]].
+		mw.config.get( 'blockExpiryDefault' ) ||
+		''
+	);
+	/**
+	 * The block summary, as selected from via the dropdown in the ReasonField component.
+	 * These options are ultimately defined by [[MediaWiki:Ipbreason-dropdown]].
+	 *
+	 * @type {Ref<string>}
+	 * @todo Combine with `reasonOther` here within the store.
+	 */
+	const reason = ref( 'other' );
+	/**
+	 * The free-form text for the block summary.
+	 *
+	 * @type {Ref<string>}
+	 * @todo Combine with `reason` here within the store.
+	 */
+	const reasonOther = ref( mw.config.get( 'blockReasonOtherPreset' ) || '' );
+	const details = mw.config.get( 'blockDetailsPreset' ) || [];
+	/**
+	 * Whether to block an IP or IP range from creating accounts.
+	 *
+	 * @type {Ref<boolean>}
+	 */
+	const createAccount = ref( details.indexOf( 'wpCreateAccount' ) !== -1 );
+	/**
+	 * Whether to disable the target's ability to send email via Special:EmailUser.
+	 *
+	 * @type {Ref<boolean>}
+	 */
+	const disableEmail = ref( details.indexOf( 'wpDisableEmail' ) !== -1 );
+	/**
+	 * Whether to disable the target's ability to edit their own user talk page.
+	 *
+	 * @type {Ref<boolean>}
+	 */
+	const disableUTEdit = ref( details.indexOf( 'wpDisableUTEdit' ) !== -1 );
+	const additionalDetails = mw.config.get( 'blockAdditionalDetailsPreset' ) || [];
+	/**
+	 * Whether to autoblock IP addresses used by the target.
+	 *
+	 * @type {Ref<boolean>}
+	 * @see https://www.mediawiki.org/wiki/Autoblock
+	 */
+	const autoBlock = ref( additionalDetails.indexOf( 'wpAutoBlock' ) !== -1 );
+	/**
+	 * Whether to impose a "suppressed" block, hiding the target's username
+	 * from block log, the active block list, and the user list.
+	 *
+	 * @type {Ref<boolean>}
+	 */
+	const hideName = ref( additionalDetails.indexOf( 'wpHideName' ) !== -1 );
+	/**
+	 * Whether to watch the target's user page and talk page.
+	 *
+	 * @type {Ref<boolean>}
+	 */
+	const watchUser = ref( additionalDetails.indexOf( 'wpWatch' ) !== -1 );
+	/**
+	 * Whether to apply a hard block, blocking accounts using the same IP address.
+	 *
+	 * @type {Ref<boolean>}
+	 */
+	const hardBlock = ref( additionalDetails.indexOf( 'wpHardBlock' ) !== -1 );
+
+	// Other refs that don't have corresponding form fields.
+
+	/**
+	 * Errors pertaining the form as a whole, shown at the top.
+	 *
+	 * @type {Ref<string[]>}
+	 */
 	const formErrors = ref( mw.config.get( 'blockPreErrors' ) || [] );
+	/**
+	 * Whether the form has been submitted. This is watched by UserLookup
+	 * and ExpiryField to trigger validation on form submission.
+	 * After submission, this remains true until a form field is altered.
+	 * This is to ensure post-submission formErrors are not prematurely cleared.
+	 *
+	 * @type {Ref<boolean>}
+	 */
 	const formSubmitted = ref( false );
+	/**
+	 * Whether the form is visible. This is set by the SpecialBlock component,
+	 * and unset by a watcher when the target user changes.
+	 *
+	 * @type {Ref<boolean>}
+	 */
+	const formVisible = ref( false );
 	/**
 	 * Whether the block was successful.
 	 *
 	 * @type {Ref<boolean>}
 	 */
 	const success = ref( false );
-	const targetUser = ref( mw.config.get( 'blockTargetUser' ) || '' );
-	const blockId = ref( String );
-	const alreadyBlocked = ref( Boolean );
-	const type = ref( String );
-	const expiry = ref( String );
-	const partialOptions = ref( Array );
-	const pages = ref(
-		( mw.config.get( 'blockPageRestrictions' ) || '' )
-			.split( '\n' )
-			.filter( Boolean )
-	);
-	const namespaces = ref(
-		( mw.config.get( 'blockNamespaceRestrictions' ) || '' )
-			.split( '\n' )
-			.filter( Boolean )
-			.map( Number )
-	);
-	const reason = ref( String );
-	const reasonOther = ref( String );
-	const createAccount = ref( Boolean );
-	const disableEmail = ref( Boolean );
-	const disableEmailVisible = ref( mw.config.get( 'blockDisableEmailVisible' ) || false );
-	const disableUTEdit = ref( Boolean );
-	const disableUTEditVisible = computed( () => {
-		const isVisible = mw.config.get( 'blockDisableUTEditVisible' ) || false;
-		const isPartial = type.value === 'partial';
-		const blocksUT = namespaces.value.indexOf( mw.config.get( 'wgNamespaceIds' ).user_talk ) !== -1;
-		return isVisible && ( !isPartial || ( isPartial && blocksUT ) );
-	} );
-
-	const autoBlock = ref( Boolean );
-	const autoBlockExpiry = mw.config.get( 'blockAutoblockExpiry' ) || '';
-	// eslint-disable-next-line arrow-body-style
-	const autoBlockVisible = computed( () => {
-		return !mw.util.isIPAddress( targetUser.value, true );
-	} );
-
-	const hideName = ref( Boolean );
-	// Hide the 'Hide username' checkbox if the user doesn't have the hideuser right (this is passed from PHP),
-	// and the block is not sitewide and infinite.
-	const hideNameVisible = computed( () => {
-		const typeVal = type.value;
-		return mw.config.get( 'blockHideUser' ) &&
-			typeVal === 'sitewide' &&
-			mw.util.isInfinity( expiry.value );
-	} );
-
-	const watchUser = ref( Boolean );
-
-	const hardBlock = ref( Boolean );
-	// eslint-disable-next-line arrow-body-style
-	const hardBlockVisible = computed( () => {
-		return mw.util.isIPAddress( targetUser.value, true ) || false;
-	} );
-
+	/**
+	 * Whether the target user is already blocked. This is set
+	 * after fetching block log data from the API.
+	 *
+	 * @type {Ref<boolean>}
+	 */
+	const alreadyBlocked = ref( mw.config.get( 'blockAlreadyBlocked' ) || false );
 	/**
 	 * Keep track of all UI-blocking API requests that are currently in flight.
 	 *
 	 * @type {Ref<Set<Promise|jQuery.Promise>>}
 	 */
 	const promises = ref( new Set() );
-
 	/**
 	 * Confirmation dialog message. When not null, the confirmation dialog will be
 	 * shown on submission. This is set automatically by a watcher in the store.
@@ -81,6 +181,26 @@ module.exports = exports = defineStore( 'block', () => {
 	 */
 	const confirmationMessage = ref( '' );
 
+	// ** Getters (computed properties) **
+
+	/**
+	 * Whether the form is disabled due to an in-flight API request.
+	 *
+	 * @type {ComputedRef<boolean>}
+	 */
+	const formDisabled = computed( () => !!promises.value.size );
+	/**
+	 * Controls visibility of the 'Hide username' checkbox. True when the user has the
+	 * hideuser right (this is passed from PHP), and the block is sitewide and infinite.
+	 *
+	 * @type {ComputedRef<boolean>}
+	 */
+	const hideNameVisible = computed( () => {
+		const typeVal = type.value;
+		return mw.config.get( 'blockHideUser' ) &&
+			typeVal === 'sitewide' &&
+			mw.util.isInfinity( expiry.value );
+	} );
 	/**
 	 * Convenience computed prop indicating if confirmation is needed on submission.
 	 *
@@ -88,13 +208,12 @@ module.exports = exports = defineStore( 'block', () => {
 	 */
 	const confirmationNeeded = computed( () => !!confirmationMessage.value );
 
-	// Show confirm checkbox if 'Hide username' is visible and selected,
+	// ** Watchers **
+
+	// Show confirmation dialog if 'Hide username' is visible and selected,
 	// or if the target user is the current user.
-	const computedConfirmation = computed(
-		() => [ targetUser.value, hideName.value, hideNameVisible.value ]
-	);
 	watch(
-		computedConfirmation,
+		computed( () => [ targetUser.value, hideName.value, hideNameVisible.value ] ),
 		( [ newTargetUser, newHideName, newHideNameVisible ] ) => {
 			if ( newHideNameVisible && newHideName ) {
 				confirmationMessage.value = mw.message( 'ipb-confirmhideuser' ).parse();
@@ -107,6 +226,9 @@ module.exports = exports = defineStore( 'block', () => {
 		// Ensure confirmationMessage is set on initial load.
 		{ immediate: true }
 	);
+
+	// Hide the form and clear form-related refs when the target user changes.
+	watch( targetUser, resetFormInternal );
 
 	/**
 	 * The current in-flight API request for block log data. This is used to
@@ -128,7 +250,6 @@ module.exports = exports = defineStore( 'block', () => {
 	 * @param {Object} blockData The block's item from the API.
 	 */
 	function loadFromData( blockData ) {
-		$reset();
 		blockId.value = blockData.id;
 		type.value = blockData.partial ? 'partial' : 'sitewide';
 		pages.value = ( blockData.restrictions.pages || [] ).map( ( i ) => i.title );
@@ -158,35 +279,50 @@ module.exports = exports = defineStore( 'block', () => {
 	}
 
 	/**
-	 * Reset the form to its initial state.
+	 * Reset the form to default values, optionally clearing the target user.
+	 * The values here should be the defaults set on the OOUI elements in SpecialBlock.php.
+	 * These are not the same as the *preset* values fetched from URL parameters.
+	 *
+	 * @param {boolean} [full=false] Whether to clear the target user.
+	 * @todo Infuse default values once we have Codex PHP (T377529).
+	 *   Until then this needs to be manually kept in sync with the PHP defaults.
 	 */
-	function $reset() {
-		formSubmitted.value = false;
-		success.value = false;
-		alreadyBlocked.value = mw.config.get( 'blockAlreadyBlocked' ) || false;
-		type.value = mw.config.get( 'blockTypePreset' ) || 'sitewide';
-		pages.value = ( mw.config.get( 'blockPageRestrictions' ) || '' )
-			.split( '\n' )
-			.filter( Boolean );
-		namespaces.value = ( mw.config.get( 'blockNamespaceRestrictions' ) || '' )
-			.split( '\n' )
-			.filter( Boolean )
-			.map( Number );
-
-		expiry.value = mw.config.get( 'blockExpiryPreset' ) || mw.config.get( 'blockExpiryDefault' ) || '';
-		partialOptions.value = [ 'ipb-action-create' ];
+	function resetForm( full = false ) {
+		// Form fields
+		if ( full ) {
+			targetUser.value = '';
+		}
+		blockId.value = null;
+		type.value = 'sitewide';
+		pages.value = [];
+		namespaces.value = [];
+		partialOptions.value = [];
+		expiry.value = '';
 		reason.value = 'other';
-		reasonOther.value = mw.config.get( 'blockReasonOtherPreset' ) || '';
-		const details = mw.config.get( 'blockDetailsPreset' ) || [];
-		createAccount.value = details.indexOf( 'wpCreateAccount' ) !== -1;
-		disableEmail.value = details.indexOf( 'wpDisableEmail' ) !== -1;
-		disableUTEdit.value = details.indexOf( 'wpDisableUTEdit' ) !== -1;
-		const additionalDetails = mw.config.get( 'blockAdditionalDetailsPreset' ) || [];
-		watchUser.value = additionalDetails.indexOf( 'wpWatch' ) !== -1;
-		hardBlock.value = additionalDetails.indexOf( 'wpHardBlock' ) !== -1;
-		hideName.value = additionalDetails.indexOf( 'wpHideName' ) !== -1;
-		autoBlock.value = additionalDetails.indexOf( 'wpAutoBlock' ) !== -1;
-		autoBlockExpiry.value = mw.config.get( 'blockAutoblockExpiry' ) || '';
+		reasonOther.value = '';
+		createAccount.value = true;
+		disableEmail.value = false;
+		disableUTEdit.value = false;
+		autoBlock.value = true;
+		hideName.value = false;
+		watchUser.value = false;
+		hardBlock.value = false;
+		// Other refs
+		resetFormInternal();
+	}
+
+	/**
+	 * Clear form behavioural refs.
+	 *
+	 * @internal
+	 */
+	function resetFormInternal() {
+		formErrors.value = [];
+		formSubmitted.value = false;
+		formVisible.value = false;
+		success.value = false;
+		alreadyBlocked.value = false;
+		promises.value.clear();
 	}
 
 	/**
@@ -315,7 +451,11 @@ module.exports = exports = defineStore( 'block', () => {
 		params.bkprop = 'id|user|by|timestamp|expiry|reason|range|flags|restrictions';
 		params.bkusers = targetUser.value;
 
-		blockLogPromise = Promise.all( [ api.get( params ) ] );
+		const actualPromise = api.get( params );
+		actualPromise.then( ( data ) => {
+			alreadyBlocked.value = data.query.blocks.length > 0;
+		} );
+		blockLogPromise = Promise.all( [ actualPromise ] );
 		return pushPromise( blockLogPromise );
 	}
 
@@ -340,8 +480,10 @@ module.exports = exports = defineStore( 'block', () => {
 	}
 
 	return {
+		formDisabled,
 		formErrors,
 		formSubmitted,
+		formVisible,
 		targetUser,
 		success,
 		blockId,
@@ -355,22 +497,16 @@ module.exports = exports = defineStore( 'block', () => {
 		reasonOther,
 		createAccount,
 		disableEmail,
-		disableEmailVisible,
 		disableUTEdit,
-		disableUTEditVisible,
 		autoBlock,
-		autoBlockExpiry,
-		autoBlockVisible,
 		hideName,
 		hideNameVisible,
 		watchUser,
 		hardBlock,
-		hardBlockVisible,
-		promises,
 		confirmationMessage,
 		confirmationNeeded,
 		loadFromData,
-		$reset,
+		resetForm,
 		doBlock,
 		getBlockLogData
 	};

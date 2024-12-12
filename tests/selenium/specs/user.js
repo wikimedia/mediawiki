@@ -6,6 +6,7 @@
 const CreateAccountPage = require( 'wdio-mediawiki/CreateAccountPage' );
 const EditPage = require( '../pageobjects/edit.page' );
 const LoginPage = require( 'wdio-mediawiki/LoginPage' );
+const BlockPage = require( '../pageobjects/block.page' );
 const Api = require( 'wdio-mediawiki/Api' );
 const Util = require( 'wdio-mediawiki/Util' );
 
@@ -88,5 +89,17 @@ describe( 'User', () => {
 		const actualUsername = await LoginPage.getActualUsername();
 		expect( actualUsername ).toBe( username );
 		await expect( await CreateAccountPage.heading ).toHaveText( `Welcome, ${ username }!` );
+	} );
+
+	it( 'should be able to block a user', async () => {
+		await Api.createAccount( bot, username, password );
+
+		await LoginPage.loginAdmin();
+
+		const expiry = '31 hours';
+		const reason = Util.getTestString();
+		await BlockPage.block( username, expiry, reason );
+
+		await expect( await BlockPage.messages ).toHaveTextContaining( 'Block succeeded' );
 	} );
 } );
