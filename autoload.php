@@ -1899,6 +1899,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Maintenance\\MaintenanceParameters' => __DIR__ . '/maintenance/includes/MaintenanceParameters.php',
 	'MediaWiki\\Maintenance\\MaintenanceRunner' => __DIR__ . '/maintenance/includes/MaintenanceRunner.php',
 	'MediaWiki\\Maintenance\\OrderedStreamingForkController' => __DIR__ . '/maintenance/includes/OrderedStreamingForkController.php',
+	'MediaWiki\\Maintenance\\SchemaGenerator' => __DIR__ . '/maintenance/includes/SchemaGenerator.php',
 	'MediaWiki\\Maintenance\\SchemaMaintenance' => __DIR__ . '/maintenance/includes/SchemaMaintenance.php',
 	'MediaWiki\\Maintenance\\SevenZipStream' => __DIR__ . '/maintenance/includes/SevenZipStream.php',
 	'MediaWiki\\Maintenance\\TextPassDumper' => __DIR__ . '/maintenance/includes/TextPassDumper.php',
