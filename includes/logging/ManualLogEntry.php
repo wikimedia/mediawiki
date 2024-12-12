@@ -152,6 +152,19 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	}
 
 	/**
+	 * Add a parameter to the list already set.
+	 *
+	 * @see setParameters
+	 * @since 1.44
+	 *
+	 * @param string $name
+	 * @param mixed $value
+	 */
+	public function addParameter( $name, $value ) {
+		$this->parameters[$name] = $value;
+	}
+
+	/**
 	 * Declare arbitrary tag/value relations to this log entry.
 	 * These will be stored in the log_search table and can be used
 	 * to filter log entries later on.

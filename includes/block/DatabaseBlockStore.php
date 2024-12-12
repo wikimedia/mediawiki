@@ -924,7 +924,9 @@ class DatabaseBlockStore {
 	 *   on the specified target. If this is zero but there is an existing
 	 *   block, the insertion will fail.
 	 * @return bool|array False on failure, assoc array on success:
-	 *      ('id' => block ID, 'autoIds' => array of autoblock IDs)
+	 *   - id: block ID
+	 *   - autoIds: array of autoblock IDs
+	 *   - finalTargetCount: The updated number of blocks for the specified target.
 	 */
 	public function insertBlock(
 		DatabaseBlock $block,
@@ -952,18 +954,30 @@ class DatabaseBlockStore {
 
 		$dbw = $this->getPrimaryDB();
 		$dbw->startAtomic( __METHOD__ );
-		$success = $this->attemptInsert( $block, $dbw, $expectedTargetCount );
+		$finalTargetCount = $this->attemptInsert( $block, $dbw, $expectedTargetCount );
+		$purgeDone = false;
 
 		// Don't collide with expired blocks.
 		// Do this after trying to insert to avoid locking.
-		if ( !$success ) {
+		if ( !$finalTargetCount ) {
 			if ( $this->purgeExpiredConflicts( $block, $dbw ) ) {
-				$success = $this->attemptInsert( $block, $dbw, $expectedTargetCount );
+				$finalTargetCount = $this->attemptInsert( $block, $dbw, $expectedTargetCount );
+				$purgeDone = true;
 			}
 		}
 		$dbw->endAtomic( __METHOD__ );
 
-		if ( $success ) {
+		if ( $finalTargetCount > 1 && !$purgeDone ) {
+			// Subtract expired blocks from the target count
+			$expiredBlockCount = $this->getExpiredConflictingBlockRows( $block, $dbw )->count();
+			if ( $expiredBlockCount >= $finalTargetCount ) {
+				$finalTargetCount = 1;
+			} else {
+				$finalTargetCount -= $expiredBlockCount;
+			}
+		}
+
+		if ( $finalTargetCount ) {
 			$autoBlockIds = $this->doRetroactiveAutoblock( $block );
 
 			if ( $this->options->get( MainConfigNames::BlockDisablesLogin ) ) {
@@ -974,7 +988,11 @@ class DatabaseBlockStore {
 				}
 			}
 
-			return [ 'id' => $block->getId( $this->wikiId ), 'autoIds' => $autoBlockIds ];
+			return [
+				'id' => $block->getId( $this->wikiId ),
+				'autoIds' => $autoBlockIds,
+				'finalTargetCount' => $finalTargetCount
+			];
 		}
 
 		return false;
@@ -987,14 +1005,14 @@ class DatabaseBlockStore {
 	 * @param DatabaseBlock $block
 	 * @param IDatabase $dbw
 	 * @param int|null $expectedTargetCount
-	 * @return bool True if block successfully inserted
+	 * @return int|false The updated number of blocks for the target, or false on failure
 	 */
 	private function attemptInsert(
 		DatabaseBlock $block,
 		IDatabase $dbw,
 		$expectedTargetCount
 	) {
-		$targetId = $this->acquireTarget( $block, $dbw, $expectedTargetCount );
+		[ $targetId, $finalCount ] = $this->acquireTarget( $block, $dbw, $expectedTargetCount );
 		if ( !$targetId ) {
 			return false;
 		}
@@ -1018,7 +1036,7 @@ class DatabaseBlockStore {
 			$this->blockRestrictionStore->insert( $restrictions );
 		}
 
-		return true;
+		return $finalCount;
 	}
 
 	/**
@@ -1032,15 +1050,31 @@ class DatabaseBlockStore {
 		DatabaseBlock $block,
 		IDatabase $dbw
 	) {
+		return (bool)$this->deleteBlockRows(
+			$this->getExpiredConflictingBlockRows( $block, $dbw )
+		);
+	}
+
+	/**
+	 * Get rows with bl_id/bl_target for expired blocks that have the same
+	 * target as the specified block.
+	 *
+	 * @param DatabaseBlock $block
+	 * @param IDatabase $dbw
+	 * @return IResultWrapper
+	 */
+	private function getExpiredConflictingBlockRows(
+		DatabaseBlock $block,
+		IDatabase $dbw
+	) {
 		$targetConds = $this->getTargetConds( $block );
-		$res = $dbw->newSelectQueryBuilder()
+		return $dbw->newSelectQueryBuilder()
 			->select( [ 'bl_id', 'bl_target' ] )
 			->from( 'block' )
 			->join( 'block_target', null, [ 'bt_id=bl_target' ] )
 			->where( $targetConds )
 			->andWhere( $dbw->expr( 'bl_expiry', '<', $dbw->timestamp() ) )
 			->caller( __METHOD__ )->fetchResultSet();
-		return (bool)$this->deleteBlockRows( $res );
 	}
 
 	/**
@@ -1061,7 +1095,7 @@ class DatabaseBlockStore {
 
 	/**
 	 * Insert a new block_target row, or update bt_count in the existing target
-	 * row for a given block, and return the target ID.
+	 * row for a given block, and return the target ID and new bt_count.
 	 *
 	 * An atomic section should be active while calling this function.
 	 *
@@ -1071,7 +1105,7 @@ class DatabaseBlockStore {
 	 *   exists, abort the insert and return null. If this is greater than zero
 	 *   and the pre-increment bt_count value does not match, abort the update
 	 *   and return null. If this is null, do not perform any conflict checks.
-	 * @return int|null
+	 * @return array{?int,int}
 	 */
 	private function acquireTarget(
 		DatabaseBlock $block,
@@ -1114,26 +1148,37 @@ class DatabaseBlockStore {
 		$numUpdatedRows = $dbw->affectedRows();
 
 		// Now that the row is locked, find the target ID
-		$ids = $dbw->newSelectQueryBuilder()
-			->select( 'bt_id' )
+		$res = $dbw->newSelectQueryBuilder()
+			->select( [ 'bt_id', 'bt_count' ] )
 			->from( 'block_target' )
 			->where( $targetConds )
 			->caller( __METHOD__ )
-			->fetchFieldValues();
-		if ( count( $ids ) > 1 ) {
+			->fetchResultSet();
+		if ( $res->numRows() > 1 ) {
+			$ids = [];
+			foreach ( $res as $row ) {
+				$ids[] = $row->bt_id;
+			}
 			throw new RuntimeException( "Duplicate block_target rows detected: " .
 				implode( ',', $ids ) );
 		}
-		$id = $ids[0] ?? false;
+		$row = $res->fetchObject();
 
-		if ( $id === false ) {
+		if ( $row ) {
+			$count = (int)$row->bt_count;
+			if ( !$numUpdatedRows ) {
+				// ID found but count update failed -- must be a conflict due to bt_count mismatch
+				return [ null, $count ];
+			}
+			$id = (int)$row->bt_id;
+		} else {
 			if ( $numUpdatedRows ) {
 				throw new RuntimeException(
 					'block_target row unexpectedly missing after we locked it' );
 			}
 			if ( $expectedTargetCount !== 0 && $expectedTargetCount !== null ) {
 				// Conflict (expectation failure)
-				return null;
+				return [ null, 0 ];
 			}
 
 			// Insert new row
@@ -1156,12 +1201,10 @@ class DatabaseBlockStore {
 				throw new RuntimeException(
 					'block_target insert ID is falsey despite unconditional insert' );
 			}
-		} elseif ( !$numUpdatedRows ) {
-			// ID found but count update failed -- must be a conflict due to bt_count mismatch
-			return null;
+			$count = 1;
 		}
 
-		return (int)$id;
+		return [ $id, $count ];
 	}
 
 	/**
@@ -1266,7 +1309,7 @@ class DatabaseBlockStore {
 		$block->setTarget( $newTarget );
 
 		$dbw->startAtomic( __METHOD__ );
-		$targetId = $this->acquireTarget( $block, $dbw, null );
+		[ $targetId, $count ] = $this->acquireTarget( $block, $dbw, null );
 		if ( !$targetId ) {
 			// This is an exotic and unlikely error -- perhaps an exception should be thrown
 			$dbw->endAtomic( __METHOD__ );

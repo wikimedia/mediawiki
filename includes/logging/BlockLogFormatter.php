@@ -338,7 +338,9 @@ class BlockLogFormatter extends LogFormatter {
 	protected function getMessageKey() {
 		$type = $this->entry->getType();
 		$subtype = $this->entry->getSubtype();
-		$sitewide = $this->entry->getParameters()['sitewide'] ?? true;
+		$params = $this->entry->getParameters();
+		$sitewide = $params['sitewide'] ?? true;
+		$count = $params['finalTargetCount'] ?? 0;
 
 		$key = "logentry-$type-$subtype";
 		if ( ( $subtype === 'block' || $subtype === 'reblock' ) && !$sitewide ) {
@@ -353,6 +355,11 @@ class BlockLogFormatter extends LogFormatter {
 			} else {
 				$key = "logentry-non-editing-$type-$subtype";
 			}
+		}
+		if ( $subtype === 'block' && $count > 1 ) {
+			// logentry-block-block-multi, logentry-partialblock-block-multi,
+			// logentry-non-editing-block-block-multi
+			$key .= '-multi';
 		}
 
 		return $key;

@@ -607,6 +607,7 @@ class BlockUser {
 
 		$expectedTargetCount = 0;
 		$priorBlock = null;
+		$priorBlocks = $this->getPriorBlocksForTarget();
 
 		if ( $this->blockToUpdate !== null ) {
 			if ( $block->equals( $this->blockToUpdate ) ) {
@@ -629,37 +630,33 @@ class BlockUser {
 			}
 			$expectedTargetCount = null;
 			$update = false;
+		} elseif ( !$priorBlocks ) {
+			$update = false;
 		} else {
-			// Is there a conflicting block?
-			$priorBlocks = $this->getPriorBlocksForTarget();
-			if ( !$priorBlocks ) {
-				$update = false;
-			} else {
-				// Reblock only if the caller wants so
-				if ( $conflictMode !== self::CONFLICT_REBLOCK ) {
-					$this->logger->debug(
-						'placeBlockInternal: already blocked and reblock not requested' );
-					return Status::newFatal( 'ipb_already_blocked', $block->getTargetName() );
-				}
-
-				// Can't update multiple blocks unless blockToUpdate was given
-				if ( count( $priorBlocks ) > 1 ) {
-					throw new \RuntimeException(
-						"Can\'t reblock a user with multiple blocks already present. " .
-						"Update calling code for multiblocks, providing a specific block to update." );
-				}
-
-				// Check for identical blocks
-				$priorBlock = $priorBlocks[0];
-				if ( $block->equals( $priorBlock ) ) {
-					// Block settings are equal => user is already blocked
-					$this->logger->debug( 'placeBlockInternal: already blocked, no change' );
-					return Status::newFatal( 'ipb_already_blocked', $block->getTargetName() );
-				}
-
-				$update = true;
-				$block = $this->configureBlock( $priorBlock );
+			// Reblock only if the caller wants so
+			if ( $conflictMode !== self::CONFLICT_REBLOCK ) {
+				$this->logger->debug(
+					'placeBlockInternal: already blocked and reblock not requested' );
+				return Status::newFatal( 'ipb_already_blocked', $block->getTargetName() );
 			}
+
+			// Can't update multiple blocks unless blockToUpdate was given
+			if ( count( $priorBlocks ) > 1 ) {
+				throw new \RuntimeException(
+					"Can\'t reblock a user with multiple blocks already present. " .
+					"Update calling code for multiblocks, providing a specific block to update." );
+			}
+
+			// Check for identical blocks
+			$priorBlock = $priorBlocks[0];
+			if ( $block->equals( $priorBlock ) ) {
+				// Block settings are equal => user is already blocked
+				$this->logger->debug( 'placeBlockInternal: already blocked, no change' );
+				return Status::newFatal( 'ipb_already_blocked', $block->getTargetName() );
+			}
+
+			$update = true;
+			$block = $this->configureBlock( $priorBlock );
 		}
 
 		if ( $update ) {
@@ -672,6 +669,9 @@ class BlockUser {
 			if ( !$insertStatus ) {
 				$this->logger->warning( 'Block could not be inserted. No existing block was found.' );
 				return Status::newFatal( 'ipb-block-not-found', $block->getTargetName() );
+			}
+			if ( $insertStatus['finalTargetCount'] > 1 ) {
+				$logEntry->addParameter( 'finalTargetCount', $insertStatus['finalTargetCount'] );
 			}
 		}
 		// Relate log ID to block ID (T27763)
