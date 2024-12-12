@@ -1,4 +1,5 @@
 @import 'mediawiki.mixins.less';
+@import 'mediawiki.skin.variables.less';
 
 /*!
  * Styles for metadata.js.
@@ -9,6 +10,10 @@
  */
 .mw-metadata-show-hide-extended {
 	.user-select( none );
+
+	a {
+		.cdx-mixin-link-base();
+	}
 }
 
 @media print {
