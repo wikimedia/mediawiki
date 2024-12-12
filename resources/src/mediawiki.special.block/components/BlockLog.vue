@@ -19,7 +19,7 @@
 			<template v-if="blockLogType === 'active'" #header>
 				<cdx-button
 					type="button"
-					action="progressive"
+					action="destructive"
 					weight="primary"
 					class="mw-block-log__create-button"
 					@click="$emit( 'create-block' )"
