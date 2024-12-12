@@ -736,7 +736,6 @@
 	"double-redirect-fixer": "Asbded n ubrrem",
 	"brokenredirects-edit": "snfl",
 	"brokenredirects-delete": "kks",
-	"nbytes": "$1 {{PLURAL:$1|byte|bytes}}",
 	"ncategories": "$1 {{PLURAL:$1|taggayt|taggayin}}",
 	"nlinks": "$1 {{PLURAL:$1|ulink|ilinkn}}",
 	"nmembers": "$1 {{PLURAL:$1|ugmam|n igmamn}}",

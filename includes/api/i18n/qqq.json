@@ -1626,7 +1626,7 @@
 	"api-help-parameters": "Label for the API help parameters section listing parameters specific to this API\n\nParameters:\n* $1 - Number of parameters to be displayed",
 	"api-help-parameters-note": "Sub-label for the API help parameters section, explaining that general parameters like 'uselang' are available too.",
 	"api-help-param-deprecated": "Displayed in the API help for any deprecated parameter\n{{Identical|Deprecated}}",
-	"api-help-param-deprecated-label": "Label displayed in dropdown for an API module that is deprecated. An adjective that describes the word \"action\".\n{{Related|api-help-param-deprecated}}",
+	"api-help-param-deprecated-label": "Label displayed in dropdown for an API parameter that is deprecated. An adjective that describes the word \"parameter\".\n{{Related|api-help-param-deprecated}}",
 	"api-help-param-internal": "Displayed in the API help for any internal parameter",
 	"api-help-param-internal-label": "Label displayed in dropdown for an API module that is considered internal or unstable. An adjective that describes the word \"action\".\n{{Related|Api-help-param-internal}}",
 	"api-help-param-templated": "Displayed in the API help for any templated parameter.\n\nParameters:\n* $1 - Count of template variables in the parameter name.\n* $2 - A list, composed using {{msg-mw|comma-separator}} and {{msg-mw|and}}, of the template variables in the parameter name. The first is formatted using {{msg-mw|api-help-param-templated-var-first|notext=1}} and the rest use {{msg-mw|api-help-param-templated-var|notext=1}}.\n\nSee also:\n* {{msg-mw|api-help-param-templated-var-first}}\n* {{msg-mw|api-help-param-templated-var}}",

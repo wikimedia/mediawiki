@@ -267,7 +267,6 @@
 	"accmailtitle": "Parulla secreta inviata.",
 	"accmailtext": "A parulla secreta per \"$1\" hè stata inviata à l'indirizzu $2.",
 	"newarticle": "(Novu)",
-	"anontalkpagetext": "----\n<em>This is the discussion page for an anonymous user who has not created an account yet, or who does not use it.</em>\nWe therefore have to use the numerical IP address to identify them.\nSuch an IP address can be shared by several users.\nIf you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:CreateAccount|create an account]] or [[Special:UserLogin|log in]] to avoid future confusion with other anonymous users.",
 	"previewnote": "'''Attentu: questa ùn hè ch'è una previsualisazzione.'''\nE to mudifiche ùn sò ancora state salvate!",
 	"session_fail_preview": "Sorry! We could not process your edit due to a loss of session data.\n\nYou might have been logged out. <strong>Please verify that you're still logged in and try again</strong>.\nIf it still does not work, try [[Special:UserLogout|logging out]] and logging back in, and check that your browser allows cookies from this site.",
 	"editing": "Mudifica di $1",

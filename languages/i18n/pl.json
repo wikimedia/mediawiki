@@ -115,7 +115,8 @@
 			"아라",
 			"Kaper365",
 			"AramilFeraxa",
-			"IJzeren Jan"
+			"IJzeren Jan",
+			"Yarl"
 		]
 	},
 	"tog-underline": "Podkreślenie linków:",
@@ -2229,7 +2230,7 @@
 	"protectedpages-filters": "Filtry:",
 	"protectedpages-indef": "Tylko strony zabezpieczone na czas nieokreślony",
 	"protectedpages-summary": "Ta strona zawiera listę stron, które są obecnie chronione. Aby uzyskać listę tytułów, których utworzenie jest zabronione, zobacz: [[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]].",
-	"protectedpages-cascade": "Tylko strony zabezpieczone rekursywnie",
+	"protectedpages-cascade": "Tylko strony zabezpieczone kaskadowo",
 	"protectedpages-noredirect": "Ukryj przekierowania",
 	"cachedspecial-viewing-cached-ttl": "Oglądasz buforowaną wersję tej strony, której wiek to maksymalnie  $1.",
 	"protectedpagesempty": "Żadna strona nie jest obecnie zabezpieczona z podanymi parametrami.",

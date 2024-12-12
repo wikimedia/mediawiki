@@ -1866,7 +1866,6 @@
 	"ipb_blocked_as_range": "Fehler: Die IP-Adress $1 woard wie en Tel von der Bereichssperr $2 indirekt gesperrt. En Entsperrung von $1 allein ist net möchlich.",
 	"ip_range_invalid": "Ungülticher IP-Adressbereich.",
 	"ip_range_toolarge": "Adressbereiche, wo grösser als /$1 sind, sind net erlaubt.",
-	"proxyblocker": "Proxy blocker",
 	"proxyblockreason": "Dein IP-Adress woard gesperrt, weil die en offner Proxy ist. Bittschön kontaktier dein Internet-Provider orrer dein Systemadministratore und informiere sie üwer das möchliche Sicherheitsproblem.",
 	"sorbsreason": "Die IP-Adress ist in der DNSBL von {{SITENAME}} wie en offner PROXY gelistet (listiert).",
 	"sorbs_create_account_reason": "Die IP-Adress ist in der DNSBL von {{SITENAME}} wie en offner PROXY gelistet (listiert). Das Oonlehn neier Benutzer ist net möchlich.",

@@ -66,7 +66,7 @@
 	"pagecategories": "{{PLURAL:|སྡེ་ཚན་|སྡེ་ཚན་ $1}}",
 	"category_header": "དབྱེ་རིམ་ \"$1\" ནང་གི་ཤོག་ལེབ་ཚུ།",
 	"subcategories": "ཡན་ལག་དབྱེ་རིམ།",
-	"category-media-header": "དབྱེ་རིམ་ \\\"$1\\\" ནང་གི་བརྡ་བརྒྱུད།",
+	"category-media-header": "དབྱེ་རིམ་ \"$1\" ནང་གི་བརྡ་བརྒྱུད།",
 	"category-empty": "''ད་ལྟོ་དབྱེ་རིམ་དེ་ནང་ ཤོག་ལེབ་དང་བརྡ་བརྒྱུད་ག་ནི་ཡང་མིན་འདུག།''",
 	"hidden-categories": "|སྦ་བའི་སྡེ་ཚན།|སྦ་བའི་སྡེ་ཚན།}}{{PLURAL:$1",
 	"hidden-category-category": "གསང་བའི་དབྱེ་བ་ཚུ",

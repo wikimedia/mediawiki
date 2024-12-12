@@ -470,7 +470,7 @@
 	"createacct-benefit-body3": "maŋemus {{PLURAL:$1|geavaheaddji}}",
 	"badretype": "Beassansánit maid čállet eaba leat seammaláganat.",
 	"usernameinprogress": "Geavaheaddjinamma dán dovddaldahkii lea juo álggahuvvon. Áinnas vuordil.",
-	"userexists": "Geavaheaddjidovddaldat, man evttohit, lea jo anus. Vállje mat eará geavaheaddjidovddaldaga.",
+	"userexists": "Geavaheaddjinamma, man evttohit, lea jo anus.\nVállje nuppe geavaheaddjinama.",
 	"createacct-normalization": "Du geavaheaddjinamma boahtá heivehuvvot \"$2\" teknihkkalaš ráddjehusaid sivas.",
 	"loginerror": "Sisačálihanmeattáhus",
 	"createacct-error": "Dovddaldaga ráhkadeapmi ii lihkostuvvan",
