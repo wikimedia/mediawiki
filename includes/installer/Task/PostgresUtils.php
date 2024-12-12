@@ -43,9 +43,9 @@ class PostgresUtils {
 			return false;
 		}
 		$conn = $status->getDB();
-		$installerId = $conn->selectField( '"pg_catalog"."pg_roles"', 'oid',
+		$installerId = $conn->selectField( 'pg_catalog.pg_roles', 'oid',
 			[ 'rolname' => $this->context->getOption( 'InstallUser' ) ], __METHOD__ );
-		$webId = $conn->selectField( '"pg_catalog"."pg_roles"', 'oid',
+		$webId = $conn->selectField( 'pg_catalog.pg_roles', 'oid',
 			[ 'rolname' => $this->context->getConfigVar( MainConfigNames::DBuser ) ], __METHOD__ );
 
 		return self::isRoleMember( $conn, $installerId, $webId, self::MAX_ROLE_SEARCH_DEPTH );
@@ -59,7 +59,7 @@ class PostgresUtils {
 		$conn = $status->getDB();
 		$superuser = $this->context->getOption( 'InstallUser' );
 
-		$row = $conn->selectRow( '"pg_catalog"."pg_roles"', '*',
+		$row = $conn->selectRow( 'pg_catalog.pg_roles', '*',
 			[ 'rolname' => $superuser ], __METHOD__ );
 
 		return $row;
@@ -79,7 +79,7 @@ class PostgresUtils {
 			return true;
 		}
 		// Get all members of the given group
-		$res = $conn->select( '"pg_catalog"."pg_auth_members"', [ 'member' ],
+		$res = $conn->select( 'pg_catalog.pg_auth_members', [ 'member' ],
 			[ 'roleid' => $group ], __METHOD__ );
 		foreach ( $res as $row ) {
 			if ( $row->member == $targetMember ) {

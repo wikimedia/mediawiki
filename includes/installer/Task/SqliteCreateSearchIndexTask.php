@@ -21,7 +21,7 @@ class SqliteCreateSearchIndexTask extends Task {
 		$module = DatabaseSqlite::getFulltextSearchModule();
 		$searchIndexSql = (string)$db->newSelectQueryBuilder()
 			->select( 'sql' )
-			->from( $db->addIdentifierQuotes( 'sqlite_master' ) )
+			->from( 'sqlite_master' )
 			->where( [ 'tbl_name' => $db->tableName( 'searchindex', 'raw' ) ] )
 			->caller( __METHOD__ )->fetchField();
 		$fts3tTable = ( stristr( $searchIndexSql, 'fts' ) !== false );

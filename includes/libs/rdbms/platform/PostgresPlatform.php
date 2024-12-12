@@ -85,24 +85,23 @@ class PostgresPlatform extends SQLPlatform {
 				reset( $toCheck );
 				while ( $toCheck ) {
 					$alias = key( $toCheck );
-					$name = $toCheck[$alias];
+					$table = $toCheck[$alias];
 					unset( $toCheck[$alias] );
 
-					$hasAlias = !is_numeric( $alias );
-					if ( !$hasAlias && is_string( $name ) ) {
-						$alias = $name;
+					if ( !is_string( $alias ) ) {
+						// No alias? Set it equal to the table name
+						$alias = $table;
 					}
 
 					if ( !isset( $join_conds[$alias] ) ||
 						!preg_match( '/^(?:LEFT|RIGHT|FULL)(?: OUTER)? JOIN$/i', $join_conds[$alias][0] )
 					) {
-						if ( is_array( $name ) ) {
+						if ( is_array( $table ) ) {
 							// It's a parenthesized group, process all the tables inside the group.
-							$toCheck = array_merge( $toCheck, $name );
+							$toCheck = array_merge( $toCheck, $table );
 						} else {
-							// Quote alias names so $this->tableName() won't mangle them
-							$options['FOR UPDATE'][] = $hasAlias ?
-								$this->addIdentifierQuotes( $alias ) : $alias;
+							// If an alias is declared, then any FOR UPDATE FOR must use it
+							$options['FOR UPDATE'][] = $alias;
 						}
 					}
 				}
@@ -135,8 +134,10 @@ class PostgresPlatform extends SQLPlatform {
 		$preLimitTail .= $this->makeOrderBy( $options );
 
 		if ( isset( $options['FOR UPDATE'] ) ) {
-			$postLimitTail .= ' FOR UPDATE OF ' .
-				implode( ', ', array_map( [ $this, 'tableName' ], $options['FOR UPDATE'] ) );
+			$postLimitTail .= ' FOR UPDATE OF ' . implode(
+				', ',
+				array_map( [ $this, 'addIdentifierQuotes' ], $options['FOR UPDATE'] )
+			);
 		} elseif ( isset( $noKeyOptions['FOR UPDATE'] ) ) {
 			$postLimitTail .= ' FOR UPDATE';
 		}

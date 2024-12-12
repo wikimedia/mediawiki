@@ -7,7 +7,7 @@ use Wikimedia\Rdbms\IDatabase;
 
 class PostgresDatabaseCreator extends NetworkedDatabaseCreator {
 	protected function existsInConnection( IDatabase $conn, $database ) {
-		return (bool)$conn->selectField( '"pg_catalog"."pg_database"', '1',
+		return (bool)$conn->selectField( 'pg_catalog.pg_database', '1',
 			[ 'datname' => $database ], __METHOD__ );
 	}
 
