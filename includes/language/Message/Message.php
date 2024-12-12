@@ -306,12 +306,10 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 			'parameters' => $this->parameters,
 			'useDatabase' => $this->useDatabase,
 			// Optimisation: Avoid cost of TitleFormatter on serialize,
-			// and especially cost of TitleParser (via Title::newFromText)
-			// on retrieval.
-			'titlevalue' => ( $this->contextPage
-				? [ 0 => $this->contextPage->getNamespace(), 1 => $this->contextPage->getDBkey() ]
-				: null
-			),
+			// and especially cost of TitleParser on retrieval.
+			'titlevalue' => $this->contextPage
+				? [ $this->contextPage->getNamespace(), $this->contextPage->getDBkey() ]
+				: null,
 		];
 	}
 
@@ -360,8 +358,14 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 				PageReference::LOCAL
 			);
 		} elseif ( isset( $data['titlestr'] ) ) {
-			// TODO: figure out what's needed to remove this codepath
-			$this->contextPage = Title::newFromText( $data['titlestr'] );
+			$titleParser = MediaWikiServices::getInstance()->getTitleParser();
+			$title = $titleParser->parseTitle( $data['titlestr'] );
+			// The title should not have any fragment or interwiki parts
+			$this->contextPage = new PageReferenceValue(
+				$title->getNamespace(),
+				$title->getDBkey(),
+				PageReference::LOCAL
+			);
 		} else {
 			$this->contextPage = null;
 		}

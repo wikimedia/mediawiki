@@ -6,7 +6,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\PageReferenceValue;
-use MediaWiki\Title\Title;
 use Wikimedia\Assert\ParameterTypeException;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Message\MessageSpecifier;
@@ -877,7 +876,7 @@ class MessageTest extends MediaWikiLangTestCase {
 		];
 
 		yield "MW 1.34: 'titlestr' instead of 'titlevalue'" => [
-			( new Message( 'rawmessage', [ '{{PAGENAME}}' ] ) )->title( Title::newFromText( 'Testing' ) ),
+			( new Message( 'rawmessage', [ '{{PAGENAME}}' ] ) )->page( PageReferenceValue::localReference( NS_MAIN, 'Testing' ) ),
 			'C:7:"Message":242:{a:8:{s:9:"interface";b:1;s:8:"language";b:0;s:3:"key";s:10:"rawmessage";s:9:"keysToTry";a:1:{i:0;s:10:"rawmessage";}s:10:"parameters";a:1:{i:0;s:12:"{{PAGENAME}}";}s:6:"format";s:5:"parse";s:11:"useDatabase";b:1;s:8:"titlestr";s:7:"Testing";}}',
 			'Testing',
 		];
