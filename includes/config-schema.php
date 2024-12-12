@@ -1156,7 +1156,7 @@ return [
 					'useYear' => true,
 				],
 				'serialMapping' => [
-					'type' => 'plain-numeric',
+					'type' => 'readable-numeric',
 				],
 				'expireAfterDays' => 90,
 				'notifyBeforeExpirationDays' => 10,

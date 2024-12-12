@@ -50,6 +50,9 @@ class TempUserCreator implements TempUserConfig {
 
 	/** ObjectFactory specs for the core serial maps */
 	private const SERIAL_MAPPINGS = [
+		'readable-numeric' => [
+			'class' => ReadableNumericSerialMapping::class,
+		],
 		'plain-numeric' => [
 			'class' => PlainNumericSerialMapping::class,
 		],

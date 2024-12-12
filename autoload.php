@@ -2787,6 +2787,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\User\\TempUser\\LocalizedNumericSerialMapping' => __DIR__ . '/includes/user/TempUser/LocalizedNumericSerialMapping.php',
 	'MediaWiki\\User\\TempUser\\Pattern' => __DIR__ . '/includes/user/TempUser/Pattern.php',
 	'MediaWiki\\User\\TempUser\\PlainNumericSerialMapping' => __DIR__ . '/includes/user/TempUser/PlainNumericSerialMapping.php',
+	'MediaWiki\\User\\TempUser\\ReadableNumericSerialMapping' => __DIR__ . '/includes/user/TempUser/ReadableNumericSerialMapping.php',
 	'MediaWiki\\User\\TempUser\\RealTempUserConfig' => __DIR__ . '/includes/user/TempUser/RealTempUserConfig.php',
 	'MediaWiki\\User\\TempUser\\ScrambleMapping' => __DIR__ . '/includes/user/TempUser/ScrambleMapping.php',
 	'MediaWiki\\User\\TempUser\\SerialMapping' => __DIR__ . '/includes/user/TempUser/SerialMapping.php',
