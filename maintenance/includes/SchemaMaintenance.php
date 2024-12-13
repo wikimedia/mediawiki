@@ -76,7 +76,7 @@ abstract class SchemaMaintenance extends Maintenance {
 
 	public function execute() {
 		$platform = $this->getOption( 'type', 'mysql' );
-		$jsonPath = $this->getOption( 'json', dirname( __DIR__ ) );
+		$jsonPath = $this->getOption( 'json', '../../sql' );
 
 		if ( $this->hasOption( 'validate' ) ) {
 			try {

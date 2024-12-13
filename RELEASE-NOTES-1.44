@@ -155,6 +155,9 @@ because of Phabricator reports.
   was marked as an internal constant.
 * The ParsoidOutputAccess class marked @unstable from creation and
   deprecated with all of its methods in 1.43, has been removed.
+* (T382030) MediaWiki core database schema and schema changes have been moved
+  to a new top-level sql/ directory. This should only affect code directly
+  referencing the old paths.
 * The HtmlToContentTransform::setMetrics() and
   HtmlInputTransformHelper::setMetrics() methods now require a StatsFactory
   argument.  Passing a StatsdDataFactoryInterface was deprecated in 1.43.

@@ -2,7 +2,7 @@
 -- This is read and executed by the install script; you should
 -- not have to run it by itself unless doing a manual install.
 -- This is the PostgreSQL version.
--- For information about each table, please see the notes in maintenance/tables.sql
+-- For information about each table, please see the notes in sql/tables.json
 -- Please make sure all dollar-quoting uses $mw$ at the start of the line
 -- TODO: Change CHAR/SMALLINT to BOOL (still used in a non-bool fashion in PHP code)
 

@@ -38,9 +38,9 @@ class AbstractSchemaValidationTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public static function provideSchemas(): Generator {
-		yield 'maintenance/tables.json' => [ __DIR__ . '/../../../maintenance/tables.json' ];
+		yield 'sql/tables.json' => [ __DIR__ . '/../../../sql/tables.json' ];
 
-		foreach ( glob( __DIR__ . '/../../../maintenance/abstractSchemaChanges/*.json' ) as $schemaChange ) {
+		foreach ( glob( __DIR__ . '/../../../sql/abstractSchemaChanges/*.json' ) as $schemaChange ) {
 			$fileName = pathinfo( $schemaChange, PATHINFO_BASENAME );
 
 			yield $fileName => [ $schemaChange ];

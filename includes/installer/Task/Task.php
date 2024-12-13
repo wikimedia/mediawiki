@@ -245,7 +245,7 @@ abstract class Task {
 	/**
 	 * Get the absolute base path for SQL schema files.
 	 *
-	 * For core tasks, this is $IP/maintenance. For extension tasks, this will
+	 * For core tasks, this is $IP/sql. For extension tasks, this will
 	 * be sql/ under the extension directory.
 	 *
 	 * It would be possible to make the extension path be configurable, but it
@@ -273,6 +273,7 @@ abstract class Task {
 		if ( file_exists( $dbmsSpecificFilePath ) ) {
 			return $dbmsSpecificFilePath;
 		} else {
+			// Some extensions (and core before T382030) store the MySQL schema in the base schema directory.
 			return "$base/$filename";
 		}
 	}

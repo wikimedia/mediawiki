@@ -136,6 +136,6 @@ class TaskFactory {
 	}
 
 	private function getCoreSchemaBasePath() {
-		return MW_INSTALL_PATH . '/maintenance';
+		return MW_INSTALL_PATH . '/sql';
 	}
 }

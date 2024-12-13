@@ -826,11 +826,12 @@ abstract class DatabaseUpdater {
 		$baseDir = MW_INSTALL_PATH;
 
 		$dbType = $db->getType();
-		if ( file_exists( "$baseDir/maintenance/$dbType/archives/$patch" ) ) {
-			return "$baseDir/maintenance/$dbType/archives/$patch";
+		if ( file_exists( "$baseDir/sql/$dbType/$patch" ) ) {
+			return "$baseDir/sql/$dbType/$patch";
 		}
 
-		return "$baseDir/maintenance/archives/$patch";
+		// TODO: Is the fallback still needed after the changes from T382030?
+		return "$baseDir/sql/mysql/$patch";
 	}
 
 	/**
