@@ -17,6 +17,12 @@ use Wikimedia\TestingAccessWrapper;
  */
 class ComposerLaunchParallelTest extends TestCase {
 
+	public function setUp(): void {
+		if ( !extension_loaded( 'pcntl' ) && !extension_loaded( 'posix' ) ) {
+			$this->markTestSkipped( 'need extension pcntl or posix' );
+		}
+	}
+
 	private function getMockCommandResult(): UnboxedResult {
 		$result = $this->createMock( UnboxedResult::class );
 		$result->method( 'getStdout' )
