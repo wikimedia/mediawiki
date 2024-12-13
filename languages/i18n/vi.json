@@ -2596,8 +2596,6 @@
 	"block-user-active-blocks": "Các lệnh cấm đang có hiệu lực",
 	"block-user-previous-blocks": "Nhật trình cấm",
 	"block-user-no-previous-blocks": "Không tìm thấy lần cấm trước đó",
-	"block-user-no-reason-given": "Không ghi lý do",
-	"block-user-no-reason-given-aria-details": "Không có lý do nào được đưa ra cho mục nhật trình này",
 	"block-user-placeholder": "Nhập tên người dùng...",
 	"block-item-remove": "Loại bỏ",
 	"block-target": "Tên thành viên, địa chỉ IP, hoặc dải IP:",

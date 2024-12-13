@@ -3902,7 +3902,7 @@
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} е създаден от хора като Вас. След като създадете сметка можете да имате постоянна и сигурна самоличност с достъп до функции като:",
 	"interwiki": "Преглед и управление на междууикитата",
 	"interwiki-title-norights": "Преглед на данните за междууикита",
-	"interwiki_intro": "Това е общ преглед на таблицата с междууикита, което дефинира кратките представки, използвани като бързи връзки към различни уикита и други външни уеб сайтове. За препоръчаната употреба, вижте [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Interwiki ръководството на MediaWiki.org].",
+	"interwiki_intro": "Това е общ преглед на таблицата с междууикита, която дефинира кратките представки, използвани като бързи връзки към различни уикита и други външни уеб сайтове. За препоръчаната употреба, вижте [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Interwiki ръководството на MediaWiki.org].",
 	"interwiki-legend-label": "Легенда",
 	"interwiki_prefix": "Представка",
 	"interwiki-prefix-label": "Представка:",

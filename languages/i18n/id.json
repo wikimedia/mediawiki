@@ -2623,8 +2623,6 @@
 	"block-user-active-blocks": "Blokir aktif",
 	"block-user-no-active-blocks": "Tidak ditemukan blokir aktif",
 	"block-user-previous-blocks": "Log pemblokiran",
-	"block-user-no-reason-given": "Tidak ada alasan yang diberikan.",
-	"block-user-no-reason-given-aria-details": "Tidak ada alasan yang diberikan untuk entri log ini",
 	"block-user-placeholder": "Mulai ketikkan nama pengguna...",
 	"block-item-remove": "Hapus",
 	"block-item-edit": "Sunting",

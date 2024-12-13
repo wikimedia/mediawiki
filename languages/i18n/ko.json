@@ -2626,8 +2626,6 @@
 	"block-user-no-previous-blocks": "이전에 차단된 적이 없습니다",
 	"block-user-suppressed-blocks": "억제된 차단 기록",
 	"block-user-no-suppressed-blocks": "이전의 억제된 차단이 발견되지 않았습니다",
-	"block-user-no-reason-given": "이유를 지정하지 않았습니다",
-	"block-user-no-reason-given-aria-details": "이 기록 항목에 대한 이유가 지정되지 않았습니다",
 	"block-user-placeholder": "사용자 입력을 시작하세요...",
 	"block-item-remove": "제거",
 	"block-item-edit": "편집",

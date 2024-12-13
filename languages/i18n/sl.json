@@ -2556,8 +2556,6 @@
 	"block-user-no-previous-blocks": "Ni najdenih prejšnjih blokiranj",
 	"block-user-suppressed-blocks": "Dnevnik ukinjenih blokiranj",
 	"block-user-no-suppressed-blocks": "Ni najdenih predhodnih ukinjenih blokiranj",
-	"block-user-no-reason-given": "Razlog ni naveden",
-	"block-user-no-reason-given-aria-details": "Za ta dnevniški vnos ni bil naveden noben razlog",
 	"block-user-placeholder": "Začnite vnašati uporabnika ...",
 	"block-item-remove": "Odstrani",
 	"block-item-edit": "Uredi",

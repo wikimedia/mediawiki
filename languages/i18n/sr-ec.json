@@ -2518,8 +2518,6 @@
 	"block-user-active-blocks": "Активне блокаде",
 	"block-user-previous-blocks": "Дневник блокирања",
 	"block-user-no-previous-blocks": "Нема претходних блокада",
-	"block-user-no-reason-given": "Разлог није наведен",
-	"block-user-no-reason-given-aria-details": "Није наведен разлог за овај дневнички унос",
 	"block-user-placeholder": "Почните да куцате корисника...",
 	"block-item-edit": "Уреди",
 	"block-target": "Корисничко име, IP адреса, опсег IP адреса:",

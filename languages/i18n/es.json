@@ -2779,8 +2779,6 @@
 	"block-user-no-previous-blocks": "No se encontraron bloqueos anteriores",
 	"block-user-suppressed-blocks": "Registro de bloqueos suprimidos",
 	"block-user-no-suppressed-blocks": "No se encontraron bloqueos suprimidos anteriores",
-	"block-user-no-reason-given": "No se da ninguna razón.",
-	"block-user-no-reason-given-aria-details": "No se dio ninguna razón para esta entrada de registro.",
 	"block-user-placeholder": "Comience a escribir un usuario...",
 	"block-item-remove": "Eliminar",
 	"block-item-edit": "Editar",

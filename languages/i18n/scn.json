@@ -2453,6 +2453,7 @@
 	"autosumm-blank": "Pàggina svacantata",
 	"autosumm-replace": "Pàggina sustituita cu '$1'",
 	"autoredircomment": "Rinnirizzamentu â pàggina [[$1]]",
+	"autosumm-changed-redirect-target": "Distinazzioni di rinnirizzamentu canciata di [[$1]] a [[$2]]",
 	"autosumm-new": "Criata pàggina cu '$1'",
 	"autosumm-newblank": "Criata na pàggina vacanti",
 	"size-bytes": "$1 {{PLURAL:$1|byte}}",

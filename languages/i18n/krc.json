@@ -2550,8 +2550,6 @@
 	"block-user-no-previous-blocks": "Аллында этилген блокла табылмадыла",
 	"block-user-suppressed-blocks": "Басдырылгъан блокланы журналы",
 	"block-user-no-suppressed-blocks": "Аллында басдырылгъан блокла табылмагъандыла",
-	"block-user-no-reason-given": "Чурум берилмегенди",
-	"block-user-no-reason-given-aria-details": "Бу журнал джазыугъа чурум берилмегенди",
 	"block-user-placeholder": "Хайырланыучуну джаза башлагъыз...",
 	"block-item-remove": "Къорат",
 	"block-item-edit": "Тюзет",

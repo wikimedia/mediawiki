@@ -2586,8 +2586,6 @@
 	"block-user-active-blocks": "সক্রিয় বাধা",
 	"block-user-previous-blocks": "বাধাদানের লগ",
 	"block-user-no-previous-blocks": "কোনো পূর্ববর্তী বাধা পাওয়া যায়নি",
-	"block-user-no-reason-given": "কোনো কারণ দেওয়া হয়নি",
-	"block-user-no-reason-given-aria-details": "এই লগ ভুক্তির জন্য কোন কারণ দেওয়া হয়নি",
 	"block-user-placeholder": "একজন ব্যবহারকারীর নাম টাইপ করা শুরু করুন...",
 	"block-item-remove": "সরান",
 	"block-item-edit": "সম্পাদনা",

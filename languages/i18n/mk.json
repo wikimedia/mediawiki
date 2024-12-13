@@ -2560,8 +2560,6 @@
 	"block-user-no-previous-blocks": "Не пронајдов претходни блокови",
 	"block-user-suppressed-blocks": "Дневник на потиснати блокови",
 	"block-user-no-suppressed-blocks": "Не најдов претходни потиснати блокови",
-	"block-user-no-reason-given": "Нема наведено причина",
-	"block-user-no-reason-given-aria-details": "Нема наведено причина за оваа дневнички ставка",
 	"block-user-placeholder": "Почнете да пишувате...",
 	"block-item-remove": "Отстрани",
 	"block-item-edit": "Уреди",

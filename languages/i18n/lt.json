@@ -2542,8 +2542,6 @@
 	"block-user-no-active-blocks": "Aktyvių blokavimų nerasta",
 	"block-user-previous-blocks": "Blokavimų sąrašas",
 	"block-user-no-previous-blocks": "Ankstesnių blokavimų nerasta",
-	"block-user-no-reason-given": "Priežastis nenurodyta",
-	"block-user-no-reason-given-aria-details": "Šio žurnalo įrašo priežastis nenurodyta",
 	"block-user-placeholder": "Įrašykite naudotoją...",
 	"block-item-remove": "Pašalinti",
 	"block-item-edit": "Redaguoti",

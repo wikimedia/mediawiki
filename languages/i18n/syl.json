@@ -292,6 +292,8 @@
 	"createacct-benefit-body3": "recent {{PLURAL:$1|ꠡꠣꠗꠖꠦꠅꠞꠣ|ꠡꠣꠗꠖꠦꠅꠞꠣꠅꠇꠟ}}",
 	"loginerror": "ꠢꠣꠝꠣꠘꠤꠔ ꠛꠦꠋꠉꠣ",
 	"createacct-error": "ꠄꠇꠣꠃꠘ ꠛꠣꠘꠣꠘꠤꠔ ꠛꠦꠋꠉꠣ",
+	"userlogin-authpopup-loggingin-title": "ꠟꠉ ꠁꠘ ꠅꠞ …",
+	"userlogin-authpopup-loggingin-body-link": "ꠀꠞꠇ ꠎꠣꠔꠞ",
 	"userlogin-authpopup-retry": "ꠢꠤꠛ꠆ꠛꠣꠞ ꠌꠦꠡꠐꠣ ꠇꠞꠂꠘ",
 	"userlogin-authpopup-cancel": "ꠛꠣꠖ",
 	"loginsuccesstitle": "ꠢꠣꠝꠣꠁꠟ ꠀꠍꠦ",

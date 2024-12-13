@@ -2620,8 +2620,6 @@
 	"block-user-active-blocks": "Активні блокування",
 	"block-user-previous-blocks": "Журнал блокувань",
 	"block-user-no-previous-blocks": "Попередніх блокувань не знайдено",
-	"block-user-no-reason-given": "Причина не вказана",
-	"block-user-no-reason-given-aria-details": "Для цього запису в журналі не вказано причини",
 	"block-user-placeholder": "Почніть вводити ім'я...",
 	"block-target": "Ім'я користувача, IP-адреса чи діапазон:",
 	"block-target-placeholder": "Ім'я_користувача, 1.1.1.42 або 1.1.1.42/16",

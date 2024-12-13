@@ -2596,8 +2596,6 @@
 	"block-user-no-previous-blocks": "Ingen tidligere blokeringer fundet",
 	"block-user-suppressed-blocks": "Censurerede blokeringer",
 	"block-user-no-suppressed-blocks": "Ingen tidligere censurerede blokeringer fundet",
-	"block-user-no-reason-given": "Ingen begrundelse angivet.",
-	"block-user-no-reason-given-aria-details": "Der blev ikke givet nogen grund til denne logindtastning",
 	"block-user-placeholder": "Begynd at skrive ind et brugernavn…",
 	"block-item-remove": "Fjern",
 	"block-item-edit": "Rediger",

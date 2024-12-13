@@ -2533,8 +2533,6 @@
 	"block-user-no-previous-blocks": "Маларахри блокланисем тупӑнмарӗҫ",
 	"block-user-suppressed-blocks": "Курӑнман блокланисем",
 	"block-user-no-suppressed-blocks": "Маларах тунӑ курӑнман блокланисем тупӑнмарӗҫ",
-	"block-user-no-reason-given": "Сӑлтавне кӑтартман",
-	"block-user-no-reason-given-aria-details": "Журналти ку йӗрке валли сӑлтавне кӑтартман",
 	"block-user-placeholder": "Хутшӑнакана кӗртме тытӑнӑр…",
 	"block-item-remove": "Кӑларса пӑрах",
 	"block-item-edit": "Тӳрлет",
