@@ -3192,7 +3192,9 @@ class Parser {
 			if ( !$title->isExternal() ) {
 				if ( $title->isSpecialPage()
 					&& $this->mOptions->getAllowSpecialInclusion()
-					&& $this->ot['html']
+					&& ( $this->ot['html'] ||
+						// PFragment for Parsoid
+						( !$this->mStripExtTags && $this->ot['pre'] ) )
 				) {
 					$specialPage = $this->specialPageFactory->getPage( $title->getDBkey() );
 					// Pass the template arguments as URL parameters.
