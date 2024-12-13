@@ -167,16 +167,15 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		$revisionRecord->setMinorEdit( $importableRevision->getMinor() );
 		$revisionRecord->setPageId( $pageId );
 
-		$latestRevId = $page->getLatest();
+		$updater = $this->pageUpdaterFactory->newDerivedPageDataUpdater( $page );
+		$latestRev = $updater->grabCurrentRevision();
+		$latestRevId = $latestRev ? $latestRev->getId() : null;
 
 		$inserted = $this->revisionStore->insertRevisionOn( $revisionRecord, $dbw );
-		if ( $latestRevId ) {
+		if ( $latestRev ) {
 			// If not found (false), cast to 0 so that the page is updated
 			// Just to be on the safe side, even though it should always be found
-			$latestRevTimestamp = (int)$this->revisionStore->getTimestampFromId(
-				$latestRevId,
-				IDBAccessObject::READ_LATEST
-			);
+			$latestRevTimestamp = $latestRev->getTimestamp();
 		} else {
 			$latestRevTimestamp = 0;
 		}
@@ -205,7 +204,6 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 				'causeAgent' => $user->getName(),
 			];
 
-			$updater = $this->pageUpdaterFactory->newDerivedPageDataUpdater( $page );
 			$updater->prepareUpdate( $inserted, $options );
 			$updater->doUpdates();
 		}
