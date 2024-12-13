@@ -34,6 +34,7 @@ use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Deferred\RefreshSecondaryDataUpdate;
 use MediaWiki\Deferred\SiteStatsUpdate;
+use MediaWiki\DomainEvent\DomainEventDispatcher;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -41,6 +42,7 @@ use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\ParserOutputAccess;
+use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCache;
 use MediaWiki\Parser\ParserOptions;
@@ -152,6 +154,11 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	private $hookRunner;
 
 	/**
+	 * @var DomainEventDispatcher
+	 */
+	private $eventDispatcher;
+
+	/**
 	 * @var LoggerInterface
 	 */
 	private $logger;
@@ -180,9 +187,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		// as opposed to a null edit or a forced update.
 		'newrev' => false,
 		'created' => false,
-		'moved' => false,
 		'oldtitle' => null,
-		'restored' => false,
 		'oldrevision' => null,
 		'oldcountable' => null,
 		'oldredirect' => null,
@@ -192,8 +197,11 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		'causeAction' => null,
 		'causeAgent' => null,
 		'editResult' => null,
+		'rcPatrolStatus' => 0,
+		'tags' => [],
+		'dispatchPageUpdatedEvent' => true,
 		'approved' => false
-	];
+	] + PageUpdatedEvent::DEFAULT_FLAGS;
 
 	/**
 	 * The state of the relevant row in page table before the edit.
@@ -329,6 +337,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 * @param ILBFactory $loadbalancerFactory
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param HookContainer $hookContainer
+	 * @param DomainEventDispatcher $eventDispatcher
 	 * @param EditResultCache $editResultCache
 	 * @param UserNameUtils $userNameUtils
 	 * @param ContentTransformer $contentTransformer
@@ -351,6 +360,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		ILBFactory $loadbalancerFactory,
 		IContentHandlerFactory $contentHandlerFactory,
 		HookContainer $hookContainer,
+		DomainEventDispatcher $eventDispatcher,
 		EditResultCache $editResultCache,
 		UserNameUtils $userNameUtils,
 		ContentTransformer $contentTransformer,
@@ -375,6 +385,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		$this->loadbalancerFactory = $loadbalancerFactory;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->eventDispatcher = $eventDispatcher;
 		$this->editResultCache = $editResultCache;
 		$this->userNameUtils = $userNameUtils;
 		$this->contentTransformer = $contentTransformer;
@@ -575,9 +586,9 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	/**
 	 * Returns the page being updated.
 	 * @since 1.37
-	 * @return PageIdentity
+	 * @return ProperPageIdentity (narrowed to ProperPageIdentity in 1.44)
 	 */
-	public function getPage(): PageIdentity {
+	public function getPage(): ProperPageIdentity {
 		return $this->wikiPage;
 	}
 
@@ -623,6 +634,18 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			: null;
 
 		return $this->parentRevision;
+	}
+
+	/**
+	 * Returns the revision that was the page's current revision when grabCurrentRevision()
+	 * was first called.
+	 *
+	 * @return RevisionRecord|null the original revision before the update, or null
+	 *         if the page did not yet exist.
+	 */
+	private function getOldRevision() {
+		$this->assertPrepared( __METHOD__ );
+		return $this->pageState['oldRevision'];
 	}
 
 	/**
@@ -1194,12 +1217,9 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 * was the current revision at the time grabCurrentRevision() was called.
 	 *
 	 * @param RevisionRecord $revision
-	 * @param array $options Array of options, following indexes are used:
-	 * - changed: bool, whether the revision changed the content (default true)
-	 * - created: bool, whether the revision created the page (default false)
-	 * - moved: bool, whether the page was moved (default false)
+	 * @param array $options Array of options. Supports the flags defined by
+	 * PageUpdatedEvent. In addition, the following keys are supported used:
 	 * - oldtitle: PageIdentity, if the page was moved this is the source title (default null)
-	 * - restored: bool, whether the page was undeleted (default false)
 	 * - oldrevision: RevisionRecord object for the pre-update revision (default null)
 	 * - triggeringUser: The user triggering the update (UserIdentity, defaults to the
 	 *   user who created the revision)
@@ -1253,6 +1273,22 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			throw new InvalidArgumentException(
 				'Revision must have an ID set for it to be used with prepareUpdate()!'
 			);
+		}
+
+		if ( !$this->wikiPage->exists() ) {
+			// If the ongoing edit is creating the page, the state of $this->wikiPage
+			// may be out of whack. This would only happen if the page creation was
+			// done using a different WikiPage instance, which shouldn't be the case.
+			$this->logger->warning(
+				__METHOD__ . ': Reloading page meta-data after page creation',
+				[
+					'page' => (string)$this->wikiPage,
+					'rev_id' => $revision->getId(),
+				]
+			);
+
+			$this->wikiPage->clear();
+			$this->wikiPage->loadPageData( IDBAccessObject::READ_LATEST );
 		}
 
 		if ( $this->revision && $this->revision->getId() ) {
@@ -1575,7 +1611,11 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	public function doUpdates() {
 		$this->assertTransition( 'done' );
 
-		// TODO: move logic into a PageEventEmitter service
+		if ( $this->options['dispatchPageUpdatedEvent'] ) {
+			$this->dispatchPageUpdatedEvent();
+		}
+
+		// TODO: move more logic into ingress objects!
 
 		$wikiPage = $this->getWikiPage(); // TODO: use only for legacy hooks!
 
@@ -1708,6 +1748,39 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		$this->maybeEnqueueRevertedTagUpdateJob();
 
 		$this->doTransition( 'done' );
+	}
+
+	/**
+	 * @internal
+	 */
+	public function dispatchPageUpdatedEvent(): void {
+		$this->assertHasRevision( __METHOD__ );
+
+		if ( !$this->options['dispatchPageUpdatedEvent'] ) {
+			throw new LogicException( 'dispatchPageUpdatedEvent was disabled on this updater' );
+		}
+
+		$flags = array_intersect_key(
+			$this->options,
+			PageUpdatedEvent::DEFAULT_FLAGS
+		);
+
+		$event = new PageUpdatedEvent(
+			$this->getPage(),
+			$this->user,
+			$this->getRevisionSlotsUpdate(),
+			$this->getRevision(),
+			$this->getOldRevision(),
+			$this->options['editResult'] ?? null,
+			$this->options['tags'] ?? [],
+			$flags,
+			$this->options['rcPatrolStatus'] ?? 0,
+		);
+
+		// don't dispatch again!
+		$this->options['dispatchPageUpdatedEvent'] = false;
+
+		$this->eventDispatcher->dispatch( $event, $this->loadbalancerFactory );
 	}
 
 	private function triggerParserCacheUpdate() {

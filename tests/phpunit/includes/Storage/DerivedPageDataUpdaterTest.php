@@ -30,6 +30,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\DerivedPageDataUpdater;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\EditResultCache;
+use MediaWiki\Storage\PageUpdatedEvent;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -38,6 +39,7 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
 use MockTitleTrait;
+use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
@@ -127,6 +129,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$this->getDerivedPageDataUpdater( $page ); // flush cached instance after.
+		$this->runJobs(); // flush pending updates
 		return $rev;
 	}
 
@@ -963,7 +966,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testIsReusableFor(
 		?UserIdentity $prepUser,
-		?RevisionRecord $prepRevision,
+		?MutableRevisionRecord $prepRevision,
 		?RevisionSlotsUpdate $prepUpdate,
 		?UserIdentity $forUser,
 		?RevisionRecord $forRevision,
@@ -1090,6 +1093,16 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$rev = $this->createRevision( $page, 'first', $content );
 		$pageId = $page->getId();
 
+		$listenerCalled = 0;
+		$this->getServiceContainer()->getDomainEventSource()->registerListener(
+			PageUpdatedEvent::TYPE,
+			static function ( PageUpdatedEvent $event ) use ( &$listenerCalled, $page ) {
+				$listenerCalled++;
+
+				Assert::assertTrue( $page->isSamePageAs( $event->getPage() ) );
+			}
+		);
+
 		$oldStats = $this->getDb()->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'site_stats' )
@@ -1146,6 +1159,9 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $oldStats->ss_total_edits + 1, (int)$stats->ss_total_edits );
 		$this->assertSame( $oldStats->ss_good_articles + 1, (int)$stats->ss_good_articles );
 
+		$this->runDeferredUpdates();
+		$this->assertSame( 1, $listenerCalled, 'PageUpdatedEvent listener' );
+
 		// TODO: MCR: test data updates for additional slots!
 		// TODO: test update for edit without page creation
 		// TODO: test message cache purge
@@ -1155,6 +1171,37 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		// TODO: test search update
 		// TODO: test site stats good_articles while turning the page into (or back from) a redir.
 		// TODO: test category membership update (with setRcWatchCategoryMembership())
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::dispatchPageUpdatedEvent()
+	 */
+	public function testDispatchPageUpdatedEvent() {
+		$page = $this->getPage( __METHOD__ );
+		$content = [ SlotRecord::MAIN => new WikitextContent( 'first [[main]]' ) ];
+		$rev = $this->createRevision( $page, 'first', $content );
+
+		$listenerCalled = 0;
+		$this->getServiceContainer()->getDomainEventSource()->registerListener(
+			PageUpdatedEvent::TYPE,
+			static function ( PageUpdatedEvent $event ) use ( &$listenerCalled, $page ) {
+				$listenerCalled++;
+
+				Assert::assertTrue( $page->isSamePageAs( $event->getPage() ) );
+			}
+		);
+
+		$updater = $this->getDerivedPageDataUpdater( $page, $rev );
+		$updater->prepareUpdate( $rev );
+
+		// Dispatch PageUpdatedEvent explicitly, then assert that doUpdates()
+		// doesn't dispatch it again.
+		$updater->dispatchPageUpdatedEvent();
+
+		$updater->doUpdates();
+
+		$this->runDeferredUpdates();
+		$this->assertSame( 1, $listenerCalled, 'PageUpdatedEvent listener' );
 	}
 
 	/**
@@ -1446,7 +1493,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	private function editAndUpdate( $page, $content ) {
 		$this->createRevision( $page, $content );
 		$this->getServiceContainer()->resetServiceForTesting( 'BacklinkCacheFactory' );
-		$this->runJobs();
+		$this->runJobs( [ 'minJobs' => 0 ] );
 	}
 
 	/**

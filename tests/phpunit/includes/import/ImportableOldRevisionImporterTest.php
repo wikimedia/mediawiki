@@ -2,8 +2,13 @@
 
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Storage\PageUpdatedEvent;
+use MediaWiki\Tests\Language\LanguageEventIngressSpyTrait;
+use MediaWiki\Tests\recentchanges\ChangeTrackingEventIngressSpyTrait;
+use MediaWiki\Tests\Search\SearchEventIngressSpyTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
+use PHPUnit\Framework\Assert;
 use Psr\Log\NullLogger;
 
 /**
@@ -12,6 +17,9 @@ use Psr\Log\NullLogger;
  */
 class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 	use TempUserTestTrait;
+	use ChangeTrackingEventIngressSpyTrait;
+	use SearchEventIngressSpyTrait;
+	use LanguageEventIngressSpyTrait;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -25,19 +33,25 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideTestCases
+	 * @param Title $title
+	 *
+	 * @return WikiRevision
+	 * @throws MWContentSerializationException
+	 * @throws MWUnknownContentModelException
 	 */
-	public function testImport( $expectedTags ) {
-		$services = $this->getServiceContainer();
-
-		$title = Title::newFromText( __CLASS__ . rand() );
+	private function getWikiRevision( Title $title ): WikiRevision {
 		$revision = new WikiRevision();
 		$revision->setTitle( $title );
-		$revision->setTags( $expectedTags );
 		$content = ContentHandler::makeContent( 'dummy edit', $title );
 		$revision->setContent( SlotRecord::MAIN, $content );
 
-		$importer = new ImportableOldRevisionImporter(
+		return $revision;
+	}
+
+	private function getImporter(): ImportableOldRevisionImporter {
+		$services = $this->getServiceContainer();
+
+		return new ImportableOldRevisionImporter(
 			true,
 			new NullLogger(),
 			$services->getConnectionProvider(),
@@ -45,8 +59,20 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 			$services->getSlotRoleRegistry(),
 			$services->getWikiPageFactory(),
 			$services->getPageUpdaterFactory(),
-			$services->getUserFactory()
+			$services->getUserFactory(),
+			$services->getDomainEventDispatcher()
 		);
+	}
+
+	/**
+	 * @dataProvider provideTestCases
+	 */
+	public function testImport( $expectedTags ) {
+		$title = Title::newFromText( __CLASS__ . rand() );
+		$revision = $this->getWikiRevision( $title );
+		$revision->setTags( $expectedTags );
+
+		$importer = $this->getImporter();
 		$result = $importer->import( $revision );
 		$this->assertTrue( $result );
 
@@ -69,4 +95,60 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 		$this->enableAutoCreateTempUser();
 		$this->testImport( $expectedTags );
 	}
+
+	/**
+	 * Regression test for T381225
+	 */
+	public function testEventEmission() {
+		$calls = 0;
+
+		$title = Title::newFromText( __CLASS__ . rand() );
+		$revision = $this->getWikiRevision( $title );
+
+		$this->getServiceContainer()->getDomainEventSource()->registerListener(
+			'PageUpdated',
+			static function ( PageUpdatedEvent $event ) use ( &$calls ) {
+				Assert::assertTrue(
+					$event->hasFlag( PageUpdatedEvent::FLAG_IMPORTED ),
+					PageUpdatedEvent::FLAG_IMPORTED
+				);
+				Assert::assertTrue(
+					$event->hasFlag( PageUpdatedEvent::FLAG_SILENT ),
+					PageUpdatedEvent::FLAG_SILENT
+				);
+				Assert::assertTrue(
+					$event->hasFlag( PageUpdatedEvent::FLAG_AUTOMATED ),
+					PageUpdatedEvent::FLAG_AUTOMATED
+				);
+
+				// TODO: assert more properties
+
+				$calls++;
+			}
+		);
+
+		// Perform an import
+		$importer = $this->getImporter();
+		$importer->import( $revision );
+
+		$this->runDeferredUpdates();
+		$this->assertSame( 1, $calls );
+	}
+
+	/**
+	 * Regression test for T381225
+	 */
+	public function testEventPropagation() {
+		// Make sure SearchEventIngress is triggered and tries to re-index the page
+		$this->installChangeTrackingEventIngressSpyForImport();
+		$this->installSearchEventIngressSpyForImport();
+		$this->installLanguageEventIngressSpyForImport();
+
+		// Now perform the import
+		$title = Title::makeTitle( NS_MEDIAWIKI, __CLASS__ . rand() );
+		$revision = $this->getWikiRevision( $title );
+		$importer = $this->getImporter();
+		$importer->import( $revision );
+	}
+
 }

@@ -8,11 +8,16 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\MovePage;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Storage\PageUpdatedEvent;
+use MediaWiki\Tests\Language\LanguageEventIngressSpyTrait;
+use MediaWiki\Tests\recentchanges\ChangeTrackingEventIngressSpyTrait;
 use MediaWiki\Tests\Rest\Handler\MediaTestTrait;
+use MediaWiki\Tests\Search\SearchEventIngressSpyTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\Watchlist\WatchedItemStore;
+use PHPUnit\Framework\Assert;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
@@ -24,6 +29,9 @@ use Wikimedia\Rdbms\IDBAccessObject;
 class MovePageTest extends MediaWikiIntegrationTestCase {
 	use DummyServicesTrait;
 	use MediaTestTrait;
+	use ChangeTrackingEventIngressSpyTrait;
+	use SearchEventIngressSpyTrait;
+	use LanguageEventIngressSpyTrait;
 
 	/**
 	 * @param Title $old
@@ -584,6 +592,101 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 			->assertResultSet( [
 				[ 'Existent.jpg', NS_PROJECT ]
 			] );
+	}
+
+	/**
+	 * Regression test for T381225
+	 */
+	public function testEventEmission() {
+		$calls = 0;
+
+		$old = Title::makeTitle( NS_MEDIAWIKI, 'Foo' );
+		$oldPage = $this->getExistingTestPage( $old );
+		$oldRev = $oldPage->getRevisionRecord();
+		$oldPageId = $old->getId();
+
+		$new = Title::makeTitle( NS_MEDIAWIKI, 'Bar' );
+		$this->getNonexistingTestPage( $new );
+
+		// clear the queue
+		$this->runJobs();
+
+		$this->getServiceContainer()->getDomainEventSource()->registerListener(
+			'PageUpdated',
+			static function ( PageUpdatedEvent $event ) use ( &$calls, $old, $oldPageId, $new, $oldRev ) {
+				// for the existing page under the new title
+				if ( $event->getPage()->isSamePageAs( $new ) ) {
+					Assert::assertFalse( $event->isNew(), 'isNew' );
+					Assert::assertTrue( $event->isRevisionChange(), 'isRevisionChange' );
+					Assert::assertFalse( $event->isContentChange(), 'isContentChange' );
+					Assert::assertSame( $oldPageId, $event->getPage()->getId() );
+					Assert::assertSame( $oldRev->getId(), $event->getOldRevision()->getId() );
+
+					Assert::assertTrue(
+						$event->hasFlag( PageUpdatedEvent::FLAG_MOVED ),
+						PageUpdatedEvent::FLAG_MOVED
+					);
+
+					Assert::assertTrue(
+						$event->hasFlag( PageUpdatedEvent::FLAG_SILENT ),
+						PageUpdatedEvent::FLAG_SILENT
+					);
+				}
+
+				// for the redirect page
+				if ( $event->getPage()->isSamePageAs( $old ) ) {
+					Assert::assertTrue( $event->isNew(), 'isNew' );
+					Assert::assertTrue( $event->isRevisionChange(), 'isRevisionChange' );
+					Assert::assertTrue( $event->isContentChange(), 'isContentChange' );
+
+					Assert::assertTrue(
+						$event->hasFlag( PageUpdatedEvent::FLAG_SILENT ),
+						PageUpdatedEvent::FLAG_SILENT
+					);
+
+					Assert::assertTrue(
+						$event->hasFlag( PageUpdatedEvent::FLAG_AUTOMATED ),
+						PageUpdatedEvent::FLAG_AUTOMATED
+					);
+				}
+
+				// TODO: assert more properties
+
+				$calls++;
+			}
+		);
+
+		// Now move the page
+		$obj = $this->newMovePageWithMocks( $old, $new, [ 'db' => $this->getDb() ] );
+		$obj->move( $this->getTestUser()->getUser() );
+
+		$this->runDeferredUpdates();
+		$this->assertSame( 2, $calls );
+	}
+
+	/**
+	 * Regression test for T381225
+	 */
+	public function testEventPropagation() {
+		$old = Title::makeTitle( NS_MEDIAWIKI, 'Foo' );
+		$this->getExistingTestPage( $old );
+
+		$new = Title::makeTitle( NS_MEDIAWIKI, 'Bar' );
+		$this->getNonexistingTestPage( $new );
+
+		// clear the queue
+		$this->runJobs();
+
+		$this->installChangeTrackingEventIngressSpyForPageMove();
+		$this->installSearchEventIngressSpyForPageMove();
+		$this->installLanguageEventIngressSpyForPageMove();
+
+		// Now move the page
+		$obj = $this->newMovePageWithMocks( $old, $new, [ 'db' => $this->getDb() ] );
+		$obj->move( $this->getTestUser()->getUser() );
+
+		// NOTE: assertions are applied by the spies installed earlier.
+		$this->runDeferredUpdates();
 	}
 
 }

@@ -2679,10 +2679,25 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * Run update in the deferred update queue.
+	 *
+	 * Call this from a test to run DeferredUpdates. If this is not called,
+	 * the default behaviour is to discard updates between tests.
+	 *
+	 * @since 1.44
+	 */
+	protected function runDeferredUpdates() {
+		DeferredUpdates::doUpdates();
+	}
+
+	/**
 	 * Run jobs in the job queue and assert things about the result.
 	 *
 	 * Call this from a test to run jobs. If this is not called, the default
 	 * behaviour is to discard jobs.
+	 *
+	 * Note that this calls runDeferredUpdates() to ensure that "lazy" queueing
+	 * of jobs gets applied before trying to run jobs.
 	 *
 	 * @param array $assertOptions An associative array with the following options:
 	 *    - minJobs: The minimum number of jobs expected to be run, default 1
@@ -2697,6 +2712,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @since 1.37
 	 */
 	protected function runJobs( array $assertOptions = [], array $runOptions = [] ) {
+		$this->runDeferredUpdates();
+
 		$runner = $this->getServiceContainer()->getJobRunner();
 		$status = $runner->run( $runOptions );
 

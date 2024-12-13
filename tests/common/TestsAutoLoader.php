@@ -114,6 +114,7 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/includes/recentchanges
 	'TestRecentChangesHelper' => "$testDir/phpunit/includes/recentchanges/TestRecentChangesHelper.php",
+	'MediaWiki\Tests\recentchanges\ChangeTrackingEventIngressSpyTrait' => "$testDir/phpunit/includes/recentchanges/ChangeTrackingEventIngressSpyTrait.php",
 
 	# tests/phpunit/includes/config
 	'TestAllServiceOptionsUsed' => "$testDir/phpunit/includes/config/TestAllServiceOptionsUsed.php",
@@ -215,6 +216,9 @@ $wgAutoloadClasses += [
 	# tests/phpunit/unit/includes/ParamValidator
 	'MediaWiki\\Tests\\ParamValidator\\TypeDef\\TypeDefUnitTestCase' => "$testDir/phpunit/unit/includes/ParamValidator/TypeDef/TypeDefUnitTestCase.php",
 
+	# tests/phpunit/unit/includes/Search
+	'MediaWiki\Tests\Search\SearchEventIngressSpyTrait' => "$testDir/phpunit/includes/search/SearchEventIngressSpyTrait.php",
+
 	# tests/phpunit/maintenance
 	'MediaWiki\\Tests\\Maintenance\\DumpAsserter' => "$testDir/phpunit/maintenance/DumpAsserter.php",
 	'MediaWiki\\Tests\\Maintenance\\DumpTestCase' => "$testDir/phpunit/maintenance/DumpTestCase.php",
@@ -294,6 +298,7 @@ $wgAutoloadClasses += [
 	'LanguageCodeTest' => "$testDir/phpunit/unit/includes/language/LanguageCodeTest.php",
 	'LanguageFallbackTestTrait' => "$testDir/phpunit/unit/includes/language/LanguageFallbackTestTrait.php",
 	'LanguageNameUtilsTestTrait' => "$testDir/phpunit/unit/includes/language/LanguageNameUtilsTestTrait.php",
+	'MediaWiki\Tests\Language\LanguageEventIngressSpyTrait' => "$testDir/phpunit/includes/language/LanguageEventIngressSpyTrait.php",
 
 	# tests/phpunit/unit/includes/libs/filebackend/fsfile
 	'Wikimedia\\Tests\\FileBackend\\FSFile\\TempFSFileTestTrait' => "$testDir/phpunit/unit/includes/libs/filebackend/fsfile/TempFSFileTestTrait.php",
