@@ -181,6 +181,7 @@ class HTMLDateTimeField extends HTMLTextField {
 			$this->mParent->getOutput()->addModuleStyles( 'mediawiki.widgets.DateInputWidget.styles' );
 			return new \MediaWiki\Widget\DateInputWidget( $params );
 		} else {
+			$this->mParent->getOutput()->addModuleStyles( 'mediawiki.widgets.DateTimeInputWidget.styles' );
 			return new \MediaWiki\Widget\DateTimeInputWidget( $params );
 		}
 	}

@@ -126,6 +126,7 @@ class DateInputWidget extends TextInputWidget {
 
 		// Initialization
 		$this->addClasses( [ 'mw-widget-dateInputWidget' ] );
+		$this->appendContent( new PendingTextInputWidget() );
 	}
 
 	protected function getJavaScriptClassName() {
