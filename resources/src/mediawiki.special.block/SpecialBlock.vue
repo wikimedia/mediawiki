@@ -6,7 +6,7 @@
 	<cdx-field
 		class="mw-block-fieldset"
 		:is-fieldset="true"
-		:disabled="!!store.promises.size"
+		:disabled="store.formDisabled"
 	>
 		<div ref="messagesContainer" class="mw-block-messages">
 			<cdx-message
@@ -38,8 +38,8 @@
 			<block-log
 				:key="`${submitCount}-active`"
 				:open="success"
-				block-log-type="active"
 				:can-delete-log-entry="false"
+				block-log-type="active"
 				@create-block="onCreateBlock"
 				@edit-block="onEditBlock"
 			></block-log>
@@ -55,7 +55,7 @@
 				:can-delete-log-entry="canDeleteLogEntry"
 			></block-log>
 
-			<div v-if="showForm" class="mw-block__block-form">
+			<div v-if="formVisible" class="mw-block__block-form">
 				<block-type-field></block-type-field>
 				<expiry-field></expiry-field>
 				<reason-field
@@ -80,7 +80,6 @@
 					action="destructive"
 					weight="primary"
 					class="mw-block-submit"
-					:disabled="!!store.promises.size"
 					@click="onFormSubmission"
 				>
 					{{ submitButtonMessage }}
@@ -104,6 +103,9 @@ const BlockDetailsField = require( './components/BlockDetailsField.vue' );
 const AdditionalDetailsField = require( './components/AdditionalDetailsField.vue' );
 const ConfirmationDialog = require( './components/ConfirmationDialog.vue' );
 
+/**
+ * Top-level component for the Special:Block Vue application.
+ */
 module.exports = exports = defineComponent( {
 	name: 'SpecialBlock',
 	components: {
@@ -121,33 +123,49 @@ module.exports = exports = defineComponent( {
 	},
 	setup() {
 		const store = useBlockStore();
-		store.$reset();
 		const blockEnableMultiblocks = mw.config.get( 'blockEnableMultiblocks' ) || false;
 		const blockShowSuppressLog = mw.config.get( 'blockShowSuppressLog' ) || false;
 		const canDeleteLogEntry = mw.config.get( 'canDeleteLogEntry' ) || false;
-		const showForm = ref( false );
-		const { formErrors, formSubmitted, success } = storeToRefs( store );
+		const { formErrors, formSubmitted, formVisible, success } = storeToRefs( store );
 		const messagesContainer = ref();
 		// Value to use for BlockLog component keys, so they reload after saving.
 		const submitCount = ref( 0 );
 		// eslint-disable-next-line arrow-body-style
 		const submitButtonMessage = computed( () => {
-			return mw.message( store.alreadyBlocked ? 'ipb-change-block' : 'ipbsubmit' ).text();
+			return mw.message( store.alreadyBlocked ? 'block-update' : 'ipbsubmit' ).text();
 		} );
 		const confirmationOpen = ref( false );
+		let initialLoad = true;
 
+		/**
+		 * Show the form for a new block.
+		 */
 		function onCreateBlock() {
-			store.$reset();
-			showForm.value = true;
+			// On initial load, we want the preset values from the URL to be set.
+			if ( initialLoad ) {
+				initialLoad = false;
+			} else {
+				// Subsequent loads should reset the form to the established defaults.
+				store.resetForm();
+			}
+			formVisible.value = true;
 			scrollToForm();
 		}
 
-		function onEditBlock( event ) {
-			store.loadFromData( event );
-			showForm.value = true;
+		/**
+		 * Show the form for an existing block.
+		 *
+		 * @param {Object} blockData
+		 */
+		function onEditBlock( blockData ) {
+			store.loadFromData( blockData );
+			formVisible.value = true;
 			scrollToForm();
 		}
 
+		/**
+		 * Animate scrolling to the form.
+		 */
 		function scrollToForm() {
 			nextTick( () => {
 				document.querySelector( '.mw-block__block-form' ).scrollIntoView( { behavior: 'smooth' } );
@@ -177,7 +195,7 @@ module.exports = exports = defineComponent( {
 					return;
 				}
 				doBlock();
-				showForm.value = false;
+				formVisible.value = false;
 			} else {
 				// nextTick() needed to ensure error messages are rendered before scrolling.
 				nextTick( () => {
@@ -193,7 +211,8 @@ module.exports = exports = defineComponent( {
 		}
 
 		/**
-		 * @internal
+		 * Execute the block request, set the success state and form errors,
+		 * and scroll to the messages container.
 		 */
 		function doBlock() {
 			store.doBlock()
@@ -225,7 +244,7 @@ module.exports = exports = defineComponent( {
 			blockShowSuppressLog,
 			canDeleteLogEntry,
 			confirmationOpen,
-			showForm,
+			formVisible,
 			onCreateBlock,
 			onEditBlock,
 			onFormSubmission,

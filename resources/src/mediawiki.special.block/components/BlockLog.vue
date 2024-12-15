@@ -16,7 +16,7 @@
 			:use-row-headers="false"
 			:hide-caption="true"
 		>
-			<template v-if="blockLogType === 'active'" #header>
+			<template v-if="shouldShowAddBlockButton" #header>
 				<cdx-button
 					type="button"
 					action="destructive"
@@ -135,7 +135,7 @@ module.exports = exports = defineComponent( {
 	],
 	setup( props ) {
 		const store = useBlockStore();
-		const { targetUser } = storeToRefs( store );
+		const { targetUser, alreadyBlocked } = storeToRefs( store );
 
 		let title = mw.message( 'block-user-previous-blocks' ).text();
 		let emptyState = mw.message( 'block-user-no-previous-blocks' ).text();
@@ -265,6 +265,15 @@ module.exports = exports = defineComponent( {
 			}
 		}, { immediate: true } );
 
+		// Show the 'Add block' button in the active blocks accordion if:
+		// * Multiblocks is enabled
+		// * Multiblocks is disabled and the user is not already blocked
+		const shouldShowAddBlockButton = computed(
+			() => props.blockLogType === 'active' && (
+				mw.config.get( 'blockEnableMultiblocks' ) || !alreadyBlocked.value
+			)
+		);
+
 		return {
 			mw,
 			util,
@@ -277,7 +286,8 @@ module.exports = exports = defineComponent( {
 			targetUser,
 			logEntriesCount,
 			infoChipIcon,
-			infoChipStatus
+			infoChipStatus,
+			shouldShowAddBlockButton
 		};
 	}
 } );

@@ -33,7 +33,7 @@
 </template>
 
 <script>
-const { defineComponent } = require( 'vue' );
+const { computed, defineComponent } = require( 'vue' );
 const { storeToRefs } = require( 'pinia' );
 const { CdxCheckbox, CdxField } = require( '@wikimedia/codex' );
 const useBlockStore = require( '../stores/block.js' );
@@ -42,13 +42,16 @@ module.exports = exports = defineComponent( {
 	name: 'BlockDetailsField',
 	components: { CdxCheckbox, CdxField },
 	setup() {
-		const {
-			createAccount,
-			disableEmail,
-			disableEmailVisible,
-			disableUTEdit,
-			disableUTEditVisible
-		} = storeToRefs( useBlockStore() );
+		const store = useBlockStore();
+		const { createAccount, disableEmail, disableUTEdit } = storeToRefs( store );
+		const disableEmailVisible = mw.config.get( 'blockDisableEmailVisible' ) || false;
+		const disableUTEditVisible = computed( () => {
+			const isVisible = mw.config.get( 'blockDisableUTEditVisible' ) || false;
+			const isPartial = store.type === 'partial';
+			const blocksUT = store.namespaces.indexOf( mw.config.get( 'wgNamespaceIds' ).user_talk ) !== -1;
+			return isVisible && ( !isPartial || ( isPartial && blocksUT ) );
+		} );
+
 		return {
 			createAccount,
 			disableEmail,

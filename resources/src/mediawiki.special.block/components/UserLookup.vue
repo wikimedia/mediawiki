@@ -7,6 +7,7 @@
 		<cdx-lookup
 			v-model:selected="selection"
 			v-model:input-value="currentSearchTerm"
+			class="mw-block-target"
 			name="wpTarget"
 			required
 			:clearable="true"
@@ -183,9 +184,7 @@ module.exports = exports = defineComponent( {
 		 * When the clear button is clicked.
 		 */
 		function onClear() {
-			targetUser.value = '';
-			store.$reset();
-			// Focus the input after clearing.
+			store.resetForm( true );
 			htmlInput.focus();
 		}
 

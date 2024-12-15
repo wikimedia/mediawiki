@@ -20,13 +20,13 @@ describe( 'SpecialBlock', () => {
 		wrapper = getSpecialBlock( config );
 	};
 
-	it( 'should show no banner and no new-block button on page load', async () => {
+	it( 'should show no banner and no "Add block" button on page load', async () => {
 		wrapper = getSpecialBlock();
 		expect( wrapper.find( '.cdx-message__content' ).exists() ).toBeFalsy();
 		expect( wrapper.find( '.mw-block-submit' ).exists() ).toBeFalsy();
 	} );
 
-	it( 'should show no banner and "Block this user" button after selecting a target', async () => {
+	it( 'should show no banner and an "Add block" button after selecting a target', async () => {
 		wrapper = getSpecialBlock();
 		expect( wrapper.find( '.cdx-message__content' ).exists() ).toBeFalsy();
 		await wrapper.find( '[name=wpTarget]' ).setValue( 'ExampleUser' );
@@ -34,15 +34,16 @@ describe( 'SpecialBlock', () => {
 		expect( wrapper.find( '.mw-block-submit' ).text() ).toStrictEqual( 'ipbsubmit' );
 	} );
 
-	it( 'should show a banner and a submit button with text based on if user is already blocked', () => {
+	it( 'should show a banner and no "New block" button based on if user is already blocked', () => {
 		expect( wrapper.find( '.mw-block-error' ).exists() ).toBeFalsy();
 		wrapper = getSpecialBlock( {
 			blockAlreadyBlocked: true,
 			blockTargetUser: 'ExampleUser',
 			blockPreErrors: [ 'ExampleUser is already blocked.' ]
 		} );
-		expect( wrapper.find( '.mw-block-error' ).exists() ).toBeTruthy();
-		expect( wrapper.find( 'button.cdx-button' ).text() ).toStrictEqual( 'block-create' );
+		// Server-generated message, hence why it's in English.
+		expect( wrapper.find( '.mw-block-error' ).text() ).toStrictEqual( 'ExampleUser is already blocked.' );
+		expect( wrapper.find( '.mw-block-log__create-button' ).exists() ).toBeFalsy();
 	} );
 
 	it( 'should submit an API request to block the user', async () => {
@@ -61,8 +62,9 @@ describe( 'SpecialBlock', () => {
 			user: 'ExampleUser',
 			expiry: '2999-01-23T12:34',
 			reason: 'This is a test',
-			autoblock: 1,
+			nocreate: 1,
 			allowusertalk: 1,
+			autoblock: 1,
 			errorlang: 'en',
 			errorsuselocal: true,
 			uselang: 'en',
@@ -121,7 +123,6 @@ describe( 'SpecialBlock', () => {
 	it( 'should require confirmation for self-blocking', async () => {
 		wrapper = getSpecialBlock( { wgUserName: 'ExampleUser' } );
 		const store = useBlockStore();
-		store.$reset();
 		expect( wrapper.find( '.mw-block-error' ).exists() ).toBeFalsy();
 		expect( store.confirmationNeeded ).toBeFalsy();
 		expect( store.confirmationMessage ).toStrictEqual( '' );

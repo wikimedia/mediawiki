@@ -15,10 +15,11 @@ describe( 'Block store', () => {
 	} );
 
 	it( 'should require confirmation if the target user is the current user', async () => {
-		const store = useBlockStore();
-		mw.util.isInfinity.mockReturnValue( true );
 		mockMwConfigGet( { wgUserName: 'ExampleUser' } );
+		const store = useBlockStore();
 		store.targetUser = 'ExampleUserOther';
+		// Trigger the watchers.
+		await nextTick();
 		expect( store.confirmationMessage ).toStrictEqual( '' );
 		store.targetUser = 'ExampleUser';
 		await nextTick();
@@ -26,8 +27,8 @@ describe( 'Block store', () => {
 	} );
 
 	it( 'should require confirmation for hide user', async () => {
-		const store = useBlockStore();
 		mw.util.isInfinity.mockReturnValue( true );
+		const store = useBlockStore();
 		expect( store.confirmationMessage ).toStrictEqual( '' );
 		store.type = 'sitewide';
 		store.hideName = true;
@@ -58,47 +59,17 @@ describe( 'Block store', () => {
 		expect( store.hideNameVisible ).toStrictEqual( true );
 	} );
 
-	it( 'should set hardBlockVisible when blocking an IP address', () => {
-		const store = useBlockStore();
-		// A username should not have the hardBlock option shown.
-		store.targetUser = 'ExampleUser';
-		mw.util.isIPAddress.mockReturnValue( false );
-		expect( store.hardBlockVisible ).toStrictEqual( false );
-		// An IP address should have hardBlock shown.
-		store.targetUser = '192.0.2.34';
-		mw.util.isIPAddress.mockReturnValue( true );
-		expect( store.hardBlockVisible ).toStrictEqual( true );
-	} );
-
-	it( 'show the wpDisableUTEdit field for partial blocks, unless the block is against the User_talk namespace', () => {
-		mockMwConfigGet( { blockDisableUTEditVisible: true } );
-		const store = useBlockStore();
-		// Visible for sitewide blocks.
-		store.type = 'sitewide';
-		expect( store.disableUTEditVisible ).toStrictEqual( true );
-		// But not visible for partial.
-		store.type = 'partial';
-		expect( store.disableUTEditVisible ).toStrictEqual( false );
-		// Including if they block a different namespace (the Talk NS in this case, ID 1).
-		store.namespaces.push( 1 );
-		expect( store.disableUTEditVisible ).toStrictEqual( false );
-		// But if it's the User_talk NS (ID 3), then it is visible.
-		store.namespaces.push( 3 );
-		expect( store.disableUTEditVisible ).toStrictEqual( true );
-	} );
-
 	it( 'should only pass the reblock param to the API if there was an "already blocked" error', () => {
 		const jQuery = jest.requireActual( '../../../../resources/lib/jquery/jquery.js' );
 		mw.Api.prototype.postWithEditToken.mockReturnValue( jQuery.Deferred().resolve().promise() );
 		mockMwConfigGet( { blockAlreadyBlocked: false } );
 		const store = useBlockStore();
-		store.$reset();
 		store.doBlock();
 		const spy = jest.spyOn( mw.Api.prototype, 'postWithEditToken' );
 		const expected = {
 			action: 'block',
 			allowusertalk: 1,
-			anononly: 1,
+			nocreate: 1,
 			autoblock: 1,
 			errorlang: 'en',
 			errorsuselocal: true,
@@ -119,13 +90,20 @@ describe( 'Block store', () => {
 		const jQuery = jest.requireActual( '../../../../resources/lib/jquery/jquery.js' );
 		mw.Api.prototype.postWithEditToken.mockReturnValue( jQuery.Deferred().resolve().promise() );
 		const store = useBlockStore();
+		mw.Api.prototype.get = jest.fn().mockReturnValue( jQuery.Deferred().resolve( { query: { blocks: [] } } ).promise() );
 		const spy = jest.spyOn( mw.Api.prototype, 'get' );
-		store.$reset();
 		store.getBlockLogData( 'recent' );
 		store.getBlockLogData( 'active' );
-		expect( store.promises.size ).toStrictEqual( 1 );
+		expect( store.formDisabled ).toBeTruthy();
 		expect( spy ).toHaveBeenCalledTimes( 1 );
+		// Flushes the promise created in getBlockLogData()
 		await flushPromises();
-		expect( store.promises.size ).toStrictEqual( 0 );
+		// Flushes the promise returned by getBlockLogData()
+		await flushPromises();
+		expect( store.formDisabled ).toBeFalsy();
+	} );
+
+	afterEach( () => {
+		jest.clearAllMocks();
 	} );
 } );
