@@ -35,6 +35,7 @@
 				<a @click="$emit( 'edit-block', item )">
 					{{ $i18n( 'block-item-edit' ).text() }}
 				</a>
+				{{ $i18n( 'pipe-separator' ).text() }}
 				<a
 					:href="mw.util.getUrl( 'Special:Unblock/' + targetUser )"
 				>
