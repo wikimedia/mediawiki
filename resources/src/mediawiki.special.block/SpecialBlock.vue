@@ -291,5 +291,12 @@ module.exports = exports = defineComponent( {
 
 .mw-block-fieldset {
 	min-width: unset;
+
+	// Uset font-size until T377902 is resolved.
+	font-size: unset;
+
+	legend {
+		font-size: unset;
+	}
 }
 </style>
