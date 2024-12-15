@@ -2970,7 +2970,6 @@
 	"block-user-label-count-exceeds-limit": "{{optional}}\nLabel displaying the total number of blocks or block events, with a '+' sign to indicate additional entries.\n\nParameters:\n* $1 - total number of blocks or log events",
 	"block-user-suppressed-blocks": "Header for the suppressed blocks table",
 	"block-user-no-suppressed-blocks": "Message shown when there are no suppressed block log entries for the user",
-	"block-user-placeholder": "Placeholder text for the input specifying the user of a block on [[Special:Block]]",
 	"block-item-remove": "Menu item label for removing a block on [[Special:Block]]",
 	"block-item-edit": "Menu item label for editing a block on [[Special:Block]]",
 	"block-target": "Label for the input for specifying the target of a block on [[Special:Block]]",

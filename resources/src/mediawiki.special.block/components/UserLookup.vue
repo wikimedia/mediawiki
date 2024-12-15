@@ -11,7 +11,7 @@
 			required
 			:clearable="true"
 			:menu-items="menuItems"
-			:placeholder="$i18n( 'block-user-placeholder' ).text()"
+			:placeholder="$i18n( 'block-target-placeholder' ).text()"
 			:start-icon="cdxIconSearch"
 			@input="onInput"
 			@change="onChange"
