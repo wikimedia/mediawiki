@@ -155,6 +155,10 @@ class HandleSectionLinks extends ContentTextTransformStage {
 		$link, $fallbackAnchor, string $wrapperType
 	) {
 		$anchorEscaped = htmlspecialchars( $anchor, ENT_COMPAT );
+		$idAttr = " id=\"$anchorEscaped\"";
+		if ( isset( $attrs['id'] ) ) {
+			$idAttr = '';
+		}
 		$fallback = '';
 		if ( $fallbackAnchor !== false && $fallbackAnchor !== $anchor ) {
 			$fallbackAnchor = htmlspecialchars( $fallbackAnchor, ENT_COMPAT );
@@ -164,16 +168,16 @@ class HandleSectionLinks extends ContentTextTransformStage {
 		switch ( $wrapperType ) {
 			case 'legacy':
 				return "<h$level" . Html::expandAttributes( $attrs ) . ">"
-					. "$fallback<span class=\"mw-headline\" id=\"$anchorEscaped\">$html</span>"
+					. "$fallback<span class=\"mw-headline\"$idAttr>$html</span>"
 					. $link
 					. "</h$level>";
 			case 'mwheading':
 				return "<div class=\"mw-heading mw-heading$level\">"
-					. "<h$level id=\"$anchorEscaped\"" . Html::expandAttributes( $attrs ) . ">$fallback$html</h$level>"
+					. "<h$level$idAttr" . Html::expandAttributes( $attrs ) . ">$fallback$html</h$level>"
 					. $link
 					. "</div>";
 			case 'none':
-				return "<h$level id=\"$anchorEscaped\"" . Html::expandAttributes( $attrs ) . ">$fallback$html</h$level>"
+				return "<h$level$idAttr" . Html::expandAttributes( $attrs ) . ">$fallback$html</h$level>"
 					. $link;
 			default:
 				throw new LogicException( "Bad wrapper type: $wrapperType" );
