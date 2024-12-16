@@ -31,7 +31,8 @@ use UnexpectedValueException;
  * This is a value object for authentication requests.
  *
  * An AuthenticationRequest represents a set of form fields that are needed on
- * and provided from a login, account creation, password change or similar form.
+ * and provided from a login, account creation, password change or similar form. Form fields can
+ * be shared by multiple AuthenticationRequests (see {@see ::mergeFieldInfo()}).
  *
  * Authentication providers that expect user input need to implement one or more subclasses
  * of this class and return them from AuthenticationProvider::getAuthenticationRequests().
@@ -46,34 +47,54 @@ abstract class AuthenticationRequest {
 	/** Indicates that the request is not required for authentication to proceed. */
 	public const OPTIONAL = 0;
 
-	/** Indicates that the request is required for authentication to proceed.
+	/**
+	 * Indicates that the request is required for authentication to proceed.
 	 * This will only be used for UI purposes; it is the authentication providers'
 	 * responsibility to verify that all required requests are present.
 	 */
 	public const REQUIRED = 1;
 
-	/** Indicates that the request is required by a primary authentication
+	/**
+	 * Indicates that the request is required by a primary authentication
 	 * provider. Since the user can choose which primary to authenticate with,
 	 * the request might or might not end up being actually required.
 	 */
 	public const PRIMARY_REQUIRED = 2;
 
-	/** @var string|null The AuthManager::ACTION_* constant this request was
-	 * created to be used for. The *_CONTINUE constants are not used here, the
-	 * corresponding "begin" constant is used instead.
+	/**
+	 * The AuthManager::ACTION_* constant this request was created to be used for.
+	 * Usually set by AuthManager. The *_CONTINUE constants are not used here,
+	 * the corresponding "begin" constant is used instead.
+	 *
+	 * @var string|null
 	 */
 	public $action = null;
 
-	/** @var int For login, continue, and link actions, one of self::OPTIONAL,
-	 * self::REQUIRED, or self::PRIMARY_REQUIRED
+	/**
+	 * Whether the authentication request is required (for login, continue, and link
+	 * actions). Setting this to optional is roughly equivalent to setting the 'optional' flag for
+	 * all fields in the field info.
+	 *
+	 * Set this to self::OPTIONAL or self::REQUIRED. When coming from a primary provider,
+	 * self::REQUIRED will be automatically modified to self::PRIMARY_REQUIRED.
+	 *
+	 * @var int
 	 */
 	public $required = self::REQUIRED;
 
-	/** @var string|null Return-to URL, in case of redirect */
+	/**
+	 * Return-to URL, in case of a REDIRECT AuthenticationResponse. Set by AuthManager.
+	 * @var string|null
+	 */
 	public $returnToUrl = null;
 
-	/** @var string|null Username. See AuthenticationProvider::getAuthenticationRequests()
+	/**
+	 * Username. Usually set by AuthManager. See AuthenticationProvider::getAuthenticationRequests()
 	 * for details of what this means and how it behaves.
+	 *
+	 * Often this doubles as a normal field (ie. getFieldInfo() has a 'username' key).
+	 *
+	 * @var string|null
 	 */
 	public $username = null;
 
@@ -131,6 +152,9 @@ abstract class AuthenticationRequest {
 	 * in some cases sharing the field with other requests is the right thing to do, e.g. for
 	 * a 'password' field). When multiple fields have the same name, they will be merged (see
 	 * AuthenticationRequests::mergeFieldInfo).
+	 * Typically, AuthenticationRequest subclasses define public properties with names matching
+	 * the field info keys, and those fields will be populated from the submitted data. More
+	 * complex behavior can be implemented by overriding {@see ::loadFromSubmission()}.
 	 *
 	 * @return array As above
 	 * @phan-return array<string,array{type:string,options?:array,value?:string,label:Message,help:Message,optional?:bool,sensitive?:bool,skippable?:bool}>
@@ -323,8 +347,9 @@ abstract class AuthenticationRequest {
 	/**
 	 * Merge the output of multiple AuthenticationRequest::getFieldInfo() calls.
 	 * @param AuthenticationRequest[] $reqs
-	 * @return array
-	 * @throws UnexpectedValueException If fields cannot be merged
+	 * @return array Field info in the same format as getFieldInfo().
+	 * @throws UnexpectedValueException If the requests include fields with the same name but
+	 *   incompatible definitions (e.g. different field types).
 	 */
 	public static function mergeFieldInfo( array $reqs ) {
 		$merged = [];

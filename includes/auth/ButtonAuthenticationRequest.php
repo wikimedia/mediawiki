@@ -25,7 +25,12 @@ use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Message;
 
 /**
- * This is an authentication request that just implements a simple button.
+ * This is an authentication request that just implements a simple button. Can either be
+ * subclassed, or used directly. When used directly, with $required = false in the constructor,
+ * the ButtonAuthenticationRequest will only be included in the set of requests when the button
+ * was clicked; with $required = true, it will always be included and $button->{$name} can be
+ * used to check whether it has been clicked.
+ *
  * @stable to extend
  * @ingroup Auth
  * @since 1.27
@@ -40,7 +45,7 @@ class ButtonAuthenticationRequest extends AuthenticationRequest {
 
 	/**
 	 * @stable to call
-	 * @param string $name Button name
+	 * @param string $name Button name (e.g. HTML "name" attribute)
 	 * @param Message $label Button label
 	 * @param Message $help Button help
 	 * @param bool $required The button is required for authentication to proceed.
