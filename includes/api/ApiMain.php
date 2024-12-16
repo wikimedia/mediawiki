@@ -335,6 +335,7 @@ class ApiMain extends ApiBase {
 				'WatchedItemStore',
 				'BlockUtils',
 				'BlockActionInfo',
+				'DatabaseBlockStore',
 				'WatchlistManager',
 				'UserOptionsLookup',
 			]

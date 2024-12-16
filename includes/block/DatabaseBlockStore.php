@@ -158,21 +158,13 @@ class DatabaseBlockStore {
 	 *
 	 * @since 1.42
 	 * @param int $id ID to search for
+	 * @param bool $fromPrimary Whether to use the DB_PRIMARY database (since 1.44)
+	 * @param bool $includeExpired Whether to include expired blocks (since 1.44)
 	 * @return DatabaseBlock|null
 	 */
-	public function newFromID( $id ) {
-		$dbr = $this->getReplicaDB();
-		$blockQuery = $this->getQueryInfo();
-		$res = $dbr->newSelectQueryBuilder()
-			->queryInfo( $blockQuery )
-			->where( [ 'bl_id' => $id ] )
-			->caller( __METHOD__ )
-			->fetchRow();
-		if ( $res ) {
-			return $this->newFromRow( $dbr, $res );
-		} else {
-			return null;
-		}
+	public function newFromID( $id, $fromPrimary = false, $includeExpired = false ) {
+		$blocks = $this->newListFromConds( [ 'bl_id' => $id ], $fromPrimary, $includeExpired );
+		return $blocks ? $blocks[0] : null;
 	}
 
 	/**
@@ -1175,6 +1167,9 @@ class DatabaseBlockStore {
 	/**
 	 * Update a block in the DB with new parameters.
 	 * The ID field needs to be loaded first. The target must stay the same.
+	 *
+	 * TODO: remove the possibility of false return. The cases where this
+	 *   happens are exotic enough that they should just be exceptions.
 	 *
 	 * @param DatabaseBlock $block
 	 * @return bool|array False on failure, array on success:

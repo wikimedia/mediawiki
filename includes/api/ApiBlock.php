@@ -25,15 +25,19 @@ namespace MediaWiki\Api;
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockPermissionCheckerFactory;
+use MediaWiki\Block\BlockUser;
 use MediaWiki\Block\BlockUserFactory;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\Block\Restriction\Restriction;
 use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\TitleDef;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\Options\UserOptionsLookup;
@@ -41,6 +45,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
+use RuntimeException;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 
@@ -62,6 +67,7 @@ class ApiBlock extends ApiBase {
 	private WatchedItemStoreInterface $watchedItemStore;
 	private BlockUtils $blockUtils;
 	private BlockActionInfo $blockActionInfo;
+	private DatabaseBlockStore $blockStore;
 
 	public function __construct(
 		ApiMain $main,
@@ -73,6 +79,7 @@ class ApiBlock extends ApiBase {
 		WatchedItemStoreInterface $watchedItemStore,
 		BlockUtils $blockUtils,
 		BlockActionInfo $blockActionInfo,
+		DatabaseBlockStore $blockStore,
 		WatchlistManager $watchlistManager,
 		UserOptionsLookup $userOptionsLookup
 	) {
@@ -85,6 +92,7 @@ class ApiBlock extends ApiBase {
 		$this->watchedItemStore = $watchedItemStore;
 		$this->blockUtils = $blockUtils;
 		$this->blockActionInfo = $blockActionInfo;
+		$this->blockStore = $blockStore;
 
 		// Variables needed in ApiWatchlistTrait trait
 		$this->watchlistExpiryEnabled = $this->getConfig()->get( MainConfigNames::WatchlistExpiry );
@@ -103,95 +111,73 @@ class ApiBlock extends ApiBase {
 	public function execute() {
 		$this->checkUserRightsAny( 'block' );
 		$params = $this->extractRequestParams();
-		$this->requireOnlyOneParameter( $params, 'user', 'userid' );
+		$this->requireOnlyOneParameter( $params, 'id', 'user', 'userid' );
+		$this->requireNoConflictingParameters( $params,
+			'id', [ 'newblock', 'reblock' ] );
 
-		// Make sure $target contains a parsed target
-		if ( $params['user'] !== null ) {
-			$target = $params['user'];
+		if ( $params['id'] !== null ) {
+			$block = $this->blockStore->newFromID( $params['id'], true );
+			if ( !$block ) {
+				$this->dieWithError(
+					[ 'apierror-nosuchblockid', $params['id'] ],
+					'nosuchblockid' );
+			}
+			if ( $block->getType() === AbstractBlock::TYPE_AUTO ) {
+				$this->dieWithError( 'apierror-modify-autoblock' );
+			}
+			$status = $this->updateBlock( $block, $params );
 		} else {
-			$target = $this->userIdentityLookup->getUserIdentityByUserId( $params['userid'] );
-			if ( !$target ) {
-				$this->dieWithError( [ 'apierror-nosuchuserid', $params['userid'] ], 'nosuchuserid' );
+			if ( $params['user'] !== null ) {
+				$target = $params['user'];
+			} else {
+				$target = $this->userIdentityLookup->getUserIdentityByUserId( $params['userid'] );
+				if ( !$target ) {
+					$this->dieWithError( [ 'apierror-nosuchuserid', $params['userid'] ], 'nosuchuserid' );
+				}
+			}
+			if ( $params['newblock'] ) {
+				$status = $this->insertBlock( $target, $params );
+			} else {
+				$blocks = $this->blockStore->newListFromTarget( $target );
+				if ( count( $blocks ) === 0 ) {
+					$status = $this->insertBlock( $target, $params );
+				} elseif ( count( $blocks ) === 1 ) {
+					if ( $params['reblock'] ) {
+						$status = $this->updateBlock( $blocks[0], $params );
+					} else {
+						$status = Status::newFatal( 'ipb_already_blocked', $blocks[0]->getTargetName() );
+					}
+				} else {
+					$this->dieWithError( 'apierror-ambiguous-block', 'ambiguous-block' );
+				}
 			}
 		}
-		[ $target, $targetType ] = $this->blockUtils->parseBlockTarget( $target );
-
-		if (
-			$params['noemail'] &&
-			!$this->blockPermissionCheckerFactory
-				->newBlockPermissionChecker(
-					$target,
-					$this->getAuthority()
-				)
-				->checkEmailPermissions()
-		) {
-			$this->dieWithError( 'apierror-cantblock-email' );
-		}
-
-		$restrictions = [];
-		if ( $params['partial'] ) {
-			$pageRestrictions = array_map(
-				[ PageRestriction::class, 'newFromTitle' ],
-				(array)$params['pagerestrictions']
-			);
-
-			$namespaceRestrictions = array_map( static function ( $id ) {
-				return new NamespaceRestriction( 0, $id );
-			}, (array)$params['namespacerestrictions'] );
-			$restrictions = array_merge( $pageRestrictions, $namespaceRestrictions );
-
-			if ( $this->getConfig()->get( MainConfigNames::EnablePartialActionBlocks ) ) {
-				$actionRestrictions = array_map( function ( $action ) {
-					return new ActionRestriction( 0, $this->blockActionInfo->getIdFromAction( $action ) );
-				}, (array)$params['actionrestrictions'] );
-				$restrictions = array_merge( $restrictions, $actionRestrictions );
-			}
-		}
-
-		$status = $this->blockUserFactory->newBlockUser(
-			$target,
-			$this->getAuthority(),
-			$params['expiry'],
-			$params['reason'],
-			[
-				'isCreateAccountBlocked' => $params['nocreate'],
-				'isEmailBlocked' => $params['noemail'],
-				'isHardBlock' => !$params['anononly'],
-				'isAutoblocking' => $params['autoblock'],
-				'isUserTalkEditBlocked' => !$params['allowusertalk'],
-				'isHideUser' => $params['hidename'],
-				'isPartial' => $params['partial'],
-			],
-			$restrictions,
-			$params['tags']
-		)->placeBlock( $params['reblock'] );
 
 		if ( !$status->isOK() ) {
 			$this->dieStatus( $status );
 		}
 
 		$block = $status->value;
+		if ( !( $block instanceof DatabaseBlock ) ) {
+			throw new RuntimeException( "Unexpected block class" );
+		}
 
 		$watchlistExpiry = $this->getExpiryFromParams( $params );
 		$userPage = Title::makeTitle( NS_USER, $block->getTargetName() );
 
-		if ( $params['watchuser'] && $targetType !== AbstractBlock::TYPE_RANGE ) {
+		if ( $params['watchuser'] && $block->getType() !== AbstractBlock::TYPE_RANGE ) {
 			$this->setWatch( 'watch', $userPage, $this->getUser(), null, $watchlistExpiry );
 		}
 
 		$res = [];
 
 		$res['user'] = $block->getTargetName();
-		$res['userID'] = $target instanceof UserIdentity ? $target->getId() : 0;
 
-		if ( $block instanceof DatabaseBlock ) {
-			$res['expiry'] = ApiResult::formatExpiry( $block->getExpiry(), 'infinite' );
-			$res['id'] = $block->getId();
-		} else {
-			# should be unreachable
-			$res['expiry'] = ''; // @codeCoverageIgnore
-			$res['id'] = ''; // @codeCoverageIgnore
-		}
+		$blockedUser = $block->getTargetUserIdentity();
+		$res['userID'] = $blockedUser ? $blockedUser->getId() : 0;
+
+		$res['expiry'] = ApiResult::formatExpiry( $block->getExpiry(), 'infinite' );
+		$res['id'] = $block->getId();
 
 		$res['reason'] = $params['reason'];
 		$res['anononly'] = $params['anononly'];
@@ -219,6 +205,108 @@ class ApiBlock extends ApiBase {
 		$this->getResult()->addValue( null, $this->getModuleName(), $res );
 	}
 
+	/**
+	 * Get the block options to be used for an insert or update
+	 *
+	 * @param array $params
+	 * @return array
+	 */
+	private function getBlockOptions( $params ) {
+		return [
+			'isCreateAccountBlocked' => $params['nocreate'],
+			'isEmailBlocked' => $params['noemail'],
+			'isHardBlock' => !$params['anononly'],
+			'isAutoblocking' => $params['autoblock'],
+			'isUserTalkEditBlocked' => !$params['allowusertalk'],
+			'isHideUser' => $params['hidename'],
+			'isPartial' => $params['partial'],
+		];
+	}
+
+	/**
+	 * Get the new block restrictions
+	 * @param array $params
+	 * @return Restriction[]
+	 */
+	private function getRestrictions( $params ) {
+		$restrictions = [];
+		if ( $params['partial'] ) {
+			$pageRestrictions = array_map(
+				[ PageRestriction::class, 'newFromTitle' ],
+				(array)$params['pagerestrictions']
+			);
+
+			$namespaceRestrictions = array_map( static function ( $id ) {
+				return new NamespaceRestriction( 0, $id );
+			}, (array)$params['namespacerestrictions'] );
+			$restrictions = array_merge( $pageRestrictions, $namespaceRestrictions );
+
+			if ( $this->getConfig()->get( MainConfigNames::EnablePartialActionBlocks ) ) {
+				$actionRestrictions = array_map( function ( $action ) {
+					return new ActionRestriction( 0, $this->blockActionInfo->getIdFromAction( $action ) );
+				}, (array)$params['actionrestrictions'] );
+				$restrictions = array_merge( $restrictions, $actionRestrictions );
+			}
+		}
+		return $restrictions;
+	}
+
+	/**
+	 * Exit with an error if the user wants to block user-to-user email but is not allowed.
+	 *
+	 * @param array $params
+	 */
+	private function checkEmailPermissions( $params ) {
+		if (
+			$params['noemail'] &&
+			!$this->blockPermissionCheckerFactory
+				->newBlockPermissionChecker( null, $this->getAuthority() )
+				->checkEmailPermissions()
+		) {
+			$this->dieWithError( 'apierror-cantblock-email' );
+		}
+	}
+
+	/**
+	 * Update a block
+	 *
+	 * @param DatabaseBlock $block
+	 * @param array $params
+	 * @return Status
+	 */
+	private function updateBlock( DatabaseBlock $block, $params ) {
+		$this->checkEmailPermissions( $params );
+		return $this->blockUserFactory->newUpdateBlock(
+			$block,
+			$this->getAuthority(),
+			$params['expiry'],
+			$params['reason'],
+			$this->getBlockOptions( $params ),
+			$this->getRestrictions( $params ),
+			$params['tags']
+		)->placeBlock();
+	}
+
+	/**
+	 * Insert a block
+	 *
+	 * @param UserIdentity|string $target
+	 * @param array $params
+	 * @return Status
+	 */
+	private function insertBlock( $target, $params ) {
+		$this->checkEmailPermissions( $params );
+		return $this->blockUserFactory->newBlockUser(
+			$target,
+			$this->getAuthority(),
+			$params['expiry'],
+			$params['reason'],
+			$this->getBlockOptions( $params ),
+			$this->getRestrictions( $params ),
+			$params['tags']
+		)->placeBlock( $params['newblock'] ? BlockUser::CONFLICT_NEW : BlockUser::CONFLICT_FAIL );
+	}
+
 	public function mustBePosted() {
 		return true;
 	}
@@ -229,6 +317,7 @@ class ApiBlock extends ApiBase {
 
 	public function getAllowedParams() {
 		$params = [
+			'id' => [ ParamValidator::PARAM_TYPE => 'integer' ],
 			'user' => [
 				ParamValidator::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'temp', 'cidr', 'id' ],
@@ -246,12 +335,12 @@ class ApiBlock extends ApiBase {
 			'hidename' => false,
 			'allowusertalk' => false,
 			'reblock' => false,
+			'newblock' => false,
 			'watchuser' => false,
 		];
 
 		// Params appear in the docs in the order they are defined,
 		// which is why this is here and not at the bottom.
-		// @todo Find better way to support insertion at arbitrary position
 		if ( $this->watchlistExpiryEnabled ) {
 			$params += [
 				'watchlistexpiry' => [

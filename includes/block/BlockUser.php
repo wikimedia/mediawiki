@@ -52,6 +52,13 @@ use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
  * @since 1.36
  */
 class BlockUser {
+	/** On conflict, do not insert the block. The value is false for b/c */
+	public const CONFLICT_FAIL = false;
+	/** On conflict, create a new block. */
+	public const CONFLICT_NEW = 'new';
+	/** On conflict, update the block if there was only one block. The value is true for b/c. */
+	public const CONFLICT_REBLOCK = true;
+
 	/**
 	 * @var UserIdentity|string|null
 	 *
@@ -71,8 +78,14 @@ class BlockUser {
 	 */
 	private $targetType;
 
+	/** @var DatabaseBlock|null */
+	private $blockToUpdate;
+
 	/** @var Authority Performer of the block */
 	private $performer;
+
+	/** @var DatabaseBlock[]|null */
+	private $priorBlocksForTarget;
 
 	private ServiceOptions $options;
 	private BlockRestrictionStore $blockRestrictionStore;
@@ -92,6 +105,7 @@ class BlockUser {
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::HideUserContribLimit,
 		MainConfigNames::BlockAllowsUTEdit,
+		MainConfigNames::EnableMultiBlocks,
 	];
 
 	/**
@@ -167,7 +181,8 @@ class BlockUser {
 	 * @param UserEditTracker $userEditTracker
 	 * @param LoggerInterface $logger
 	 * @param TitleFactory $titleFactory
-	 * @param string|UserIdentity $target Target of the block
+	 * @param DatabaseBlock|null $blockToUpdate
+	 * @param string|UserIdentity|null $target Target of the block
 	 * @param Authority $performer Performer of the block
 	 * @param string $expiry Expiry of the block (timestamp or 'infinity')
 	 * @param string $reason Reason of the block
@@ -197,6 +212,7 @@ class BlockUser {
 		UserEditTracker $userEditTracker,
 		LoggerInterface $logger,
 		TitleFactory $titleFactory,
+		?DatabaseBlock $blockToUpdate,
 		$target,
 		Authority $performer,
 		string $expiry,
@@ -209,11 +225,6 @@ class BlockUser {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->blockRestrictionStore = $blockRestrictionStore;
-		$this->blockPermissionChecker = $blockPermissionCheckerFactory
-			->newBlockPermissionChecker(
-				$target,
-				$performer
-			);
 		$this->blockUtils = $blockUtils;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->blockStore = $databaseBlockStore;
@@ -224,12 +235,25 @@ class BlockUser {
 		$this->blockActionInfo = $blockActionInfo;
 
 		// Process block target
-		[ $this->target, $rawTargetType ] = $this->blockUtils->parseBlockTarget( $target );
-		if ( $rawTargetType !== null ) { // Guard against invalid targets
-			$this->targetType = $rawTargetType;
+		if ( $blockToUpdate !== null ) {
+			$this->blockToUpdate = $blockToUpdate;
+			$this->target = $blockToUpdate->getTargetUserIdentity()
+				?? $blockToUpdate->getTargetName();
+			$this->targetType = $blockToUpdate->getType() ?? -1;
 		} else {
-			$this->targetType = -1;
+			[ $this->target, $rawTargetType ] = $this->blockUtils->parseBlockTarget( $target );
+			if ( $rawTargetType !== null ) { // Guard against invalid targets
+				$this->targetType = $rawTargetType;
+			} else {
+				$this->targetType = -1;
+			}
 		}
+
+		$this->blockPermissionChecker = $blockPermissionCheckerFactory
+			->newBlockPermissionChecker(
+				$this->target,
+				$performer
+			);
 
 		// Process other block parameters
 		$this->performer = $performer;
@@ -371,17 +395,64 @@ class BlockUser {
 	}
 
 	/**
+	 * Get prior blocks matching the current target. If we are updating a block
+	 * by ID, this will include blocks for the same target as that ID.
+	 *
+	 * @return DatabaseBlock[]
+	 */
+	private function getPriorBlocksForTarget() {
+		if ( $this->priorBlocksForTarget === null ) {
+			$priorBlocks = $this->blockStore->newListFromTarget( $this->target, null, true );
+			foreach ( $priorBlocks as $i => $block ) {
+				// If we're blocking an IP, ignore any matching autoblocks (T287798)
+				// TODO: put this in the query conditions
+				if ( $this->targetType !== Block::TYPE_AUTO
+					&& $block->getType() === Block::TYPE_AUTO
+				) {
+					unset( $priorBlocks[$i] );
+				}
+			}
+			$this->priorBlocksForTarget = array_values( $priorBlocks );
+		}
+		return $this->priorBlocksForTarget;
+	}
+
+	/**
+	 * Determine if the target user is hidden (prior to applying pending changes)
+	 * @return bool
+	 */
+	private function wasTargetHidden() {
+		if ( $this->targetType !== AbstractBlock::TYPE_USER ) {
+			return false;
+		}
+		foreach ( $this->getPriorBlocksForTarget() as $block ) {
+			if ( $block->getHideName() ) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Place a block, checking permissions
 	 *
-	 * @param bool $reblock Should this reblock?
+	 * @param string|bool $conflictMode The insertion conflict mode. Ignored if
+	 *   a block to update was specified in the constructor, for example by
+	 *   calling UserBlockCommandFactory::newUpdateBlock(). May be one of:
+	 *    - self::CONFLICT_FAIL: Allow the block only if there are no prior
+	 *      blocks on the same target.
+	 *    - self::CONFLICT_NEW: Create an additional block regardless of
+	 *      pre-existing blocks on the same target. This is allowed only if
+	 *      $wgEnableMultiBlocks is true.
+	 *    - self::CONFLICT_REBLOCK: This value is deprecated. If there is one
+	 *      prior block on the target, update it. If there is more than one block,
+	 *      throw an exception.
 	 *
 	 * @return Status If the block is successful, the value of the returned
 	 *   Status is an instance of a newly placed block.
 	 */
-	public function placeBlock( bool $reblock = false ): Status {
-		$priorBlock = $this->blockStore
-			->newFromTarget( $this->target, null, /*fromPrimary=*/true );
-		$priorHideUser = $priorBlock instanceof DatabaseBlock && $priorBlock->getHideName();
+	public function placeBlock( $conflictMode = self::CONFLICT_FAIL ): Status {
+		$priorHideUser = $this->wasTargetHidden();
 		if (
 			$this->blockPermissionChecker
 				->checkBasePermissions(
@@ -435,18 +506,18 @@ class BlockUser {
 			return $status;
 		}
 
-		return $this->placeBlockUnsafe( $reblock );
+		return $this->placeBlockUnsafe( $conflictMode );
 	}
 
 	/**
 	 * Place a block without any sort of permissions checks.
 	 *
-	 * @param bool $reblock Should this reblock?
+	 * @param string|bool $conflictMode
 	 *
 	 * @return Status If the block is successful, the value of the returned
 	 *   Status is an instance of a newly placed block.
 	 */
-	public function placeBlockUnsafe( bool $reblock = false ): Status {
+	public function placeBlockUnsafe( $conflictMode = self::CONFLICT_FAIL ): Status {
 		$status = $this->blockUtils->validateTarget( $this->target );
 
 		if ( !$status->isOK() ) {
@@ -509,19 +580,19 @@ class BlockUser {
 			}
 		}
 
-		return $this->placeBlockInternal( $reblock );
+		return $this->placeBlockInternal( $conflictMode );
 	}
 
 	/**
 	 * Places a block without any sort of permission or double checking, hooks can still
 	 * abort the block through, as well as already existing block.
 	 *
-	 * @param bool $reblock Should this reblock?
+	 * @param string|bool $conflictMode
 	 *
 	 * @return Status
 	 */
-	private function placeBlockInternal( bool $reblock = true ): Status {
-		$block = $this->configureBlock();
+	private function placeBlockInternal( $conflictMode ): Status {
+		$block = $this->configureBlock( $this->blockToUpdate );
 
 		$denyReason = [ 'hookaborted' ];
 		$legacyUser = $this->userFactory->newFromAuthority( $this->performer );
@@ -534,45 +605,70 @@ class BlockUser {
 			return $status;
 		}
 
-		// Is there a conflicting block?
-		// xxx: there is an identical call at the beginning of ::placeBlock
-		$priorBlock = $this->blockStore
-			->newFromTarget( $this->target, null, /*fromPrimary=*/true );
+		$expectedTargetCount = 0;
+		$priorBlock = null;
 
-		// T287798: we are blocking an IP that is currently autoblocked
-		// we can ignore the block because ipb_address_unique allows the IP address
-		// be both manually blocked and autoblocked
-		// this will work as long as DatabaseBlockStore::newLoad prefers manual IP blocks
-		// over autoblocks
-		if ( $priorBlock !== null
-			&& $priorBlock->getType() === AbstractBlock::TYPE_AUTO
-			&& $this->targetType === AbstractBlock::TYPE_IP
+		if ( $this->blockToUpdate !== null ) {
+			if ( $block->equals( $this->blockToUpdate ) ) {
+				$this->logger->debug( 'placeBlockInternal: ' .
+					'already blocked with same params (blockToUpdate case)' );
+				return Status::newFatal( 'ipb_already_blocked', $block->getTargetName() );
+			}
+			$priorBlock = $this->blockToUpdate;
+			$update = true;
+		} elseif ( $conflictMode === self::CONFLICT_NEW
+			&& $this->options->get( MainConfigNames::EnableMultiBlocks )
 		) {
-			$priorBlock = null;
+			foreach ( $this->getPriorBlocksForTarget() as $priorBlock ) {
+				if ( $block->equals( $priorBlock ) ) {
+					// Block settings are equal => user is already blocked
+					$this->logger->debug( 'placeBlockInternal: ' .
+						'already blocked with same params (CONFLICT_NEW case)' );
+					return Status::newFatal( 'ipb_already_blocked', $block->getTargetName() );
+				}
+			}
+			$expectedTargetCount = null;
+			$update = false;
+		} else {
+			// Is there a conflicting block?
+			$priorBlocks = $this->getPriorBlocksForTarget();
+			if ( !$priorBlocks ) {
+				$update = false;
+			} else {
+				// Reblock only if the caller wants so
+				if ( $conflictMode !== self::CONFLICT_REBLOCK ) {
+					$this->logger->debug(
+						'placeBlockInternal: already blocked and reblock not requested' );
+					return Status::newFatal( 'ipb_already_blocked', $block->getTargetName() );
+				}
+
+				// Can't update multiple blocks unless blockToUpdate was given
+				if ( count( $priorBlocks ) > 1 ) {
+					throw new \RuntimeException(
+						"Can\'t reblock a user with multiple blocks already present. " .
+						"Update calling code for multiblocks, providing a specific block to update." );
+				}
+
+				// Check for identical blocks
+				$priorBlock = $priorBlocks[0];
+				if ( $block->equals( $priorBlock ) ) {
+					// Block settings are equal => user is already blocked
+					$this->logger->debug( 'placeBlockInternal: already blocked, no change' );
+					return Status::newFatal( 'ipb_already_blocked', $block->getTargetName() );
+				}
+
+				$update = true;
+				$block = $this->configureBlock( $priorBlock );
+			}
 		}
 
-		if ( $priorBlock !== null ) {
-			// Reblock only if the caller wants so
-			if ( !$reblock ) {
-				$this->logger->debug(
-					'placeBlockInternal: already blocked and reblock not requested' );
-				return Status::newFatal( 'ipb_already_blocked', $block->getTargetName() );
-			}
-
-			if ( $block->equals( $priorBlock ) ) {
-				// Block settings are equal => user is already blocked
-				$this->logger->debug( 'placeBlockInternal: already blocked, no change' );
-				return Status::newFatal( 'ipb_already_blocked', $block->getTargetName() );
-			}
-
-			$currentBlock = $this->configureBlock( $priorBlock );
+		if ( $update ) {
 			$logEntry = $this->prepareLogEntry( true );
-			$this->blockStore->updateBlock( $currentBlock ); // TODO handle failure
-			$block = $currentBlock;
+			$this->blockStore->updateBlock( $block );
 		} else {
 			$logEntry = $this->prepareLogEntry( false );
 			// Try to insert block.
-			$insertStatus = $this->blockStore->insertBlock( $block );
+			$insertStatus = $this->blockStore->insertBlock( $block, $expectedTargetCount );
 			if ( !$insertStatus ) {
 				$this->logger->warning( 'Block could not be inserted. No existing block was found.' );
 				return Status::newFatal( 'ipb-block-not-found', $block->getTargetName() );

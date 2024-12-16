@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Api;
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
@@ -28,6 +29,8 @@ class ApiBlockTest extends ApiTestCase {
 	protected $mUser = null;
 	/** @var DatabaseBlockStore */
 	private $blockStore;
+	/** @var DatabaseBlock|null */
+	private $block;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -40,6 +43,7 @@ class ApiBlockTest extends ApiTestCase {
 				'IPv6' => 19,
 			]
 		);
+		$this->overrideConfigValue( MainConfigNames::EnableMultiBlocks, true );
 		$this->blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 	}
 
@@ -62,12 +66,12 @@ class ApiBlockTest extends ApiTestCase {
 		}
 		$ret = $this->doApiRequestWithToken( array_merge( $params, $extraParams ), null, $blocker );
 
-		$block = $this->blockStore->newFromTarget( $this->mUser->getName() );
+		$this->block = $this->blockStore->newFromId( $ret[0]['block']['id'] );
 
-		$this->assertInstanceOf( DatabaseBlock::class, $block, 'Block is valid' );
+		$this->assertInstanceOf( DatabaseBlock::class, $this->block, 'Block is valid' );
 
-		$this->assertSame( $this->mUser->getName(), $block->getTargetName() );
-		$this->assertSame( 'Some reason', $block->getReasonComment()->text );
+		$this->assertSame( $this->mUser->getName(), $this->block->getTargetName() );
+		$this->assertSame( 'Some reason', $this->block->getReasonComment()->text );
 
 		return $ret;
 	}
@@ -343,5 +347,90 @@ class ApiBlockTest extends ApiTestCase {
 
 		$this->assertArrayHasKey( 'userID', $blockResult );
 		$this->assertSame( $userId, $blockResult['userID'] );
+	}
+
+	public function testConflict() {
+		$this->doBlock();
+		$this->expectApiErrorCode( 'alreadyblocked' );
+		$this->doBlock( [ 'noemail' => '' ] );
+	}
+
+	public function testReblock() {
+		$this->doBlock();
+		$this->assertFalse( $this->block->isEmailBlocked() );
+		$this->doBlock( [ 'noemail' => '', 'reblock' => true ] );
+		$this->assertTrue( $this->block->isEmailBlocked() );
+	}
+
+	public function testMultiBlocks() {
+		$this->doBlock();
+		$this->doBlock( [ 'noemail' => '', 'newblock' => '' ] );
+		$this->assertTrue( $this->block->isEmailBlocked() );
+		$this->assertCount( 2, $this->blockStore->newListFromTarget( $this->mUser ) );
+	}
+
+	public function testMultiRedundant() {
+		$this->expectApiErrorCode( 'alreadyblocked' );
+		$this->doBlock();
+		$this->doBlock( [ 'newblock' => '' ] );
+	}
+
+	public function testReblockMulti() {
+		$this->doBlock();
+		$this->doBlock( [ 'noemail' => '', 'newblock' => '' ] );
+		$this->expectApiErrorCode( 'ambiguous-block' );
+		$this->doBlock( [ 'reblock' => true ] );
+	}
+
+	public function testId() {
+		$this->doBlock();
+		$this->assertFalse( $this->block->isEmailBlocked() );
+		$this->doBlock( [ 'noemail' => '', 'id' => $this->block->getId(), 'user' => null ] );
+		$this->assertTrue( $this->block->isEmailBlocked() );
+	}
+
+	public function testIdConflictsWithUser() {
+		$this->expectApiErrorCode( 'invalidparammix' );
+		$this->doBlock( [ 'noemail' => '', 'id' => '1' ] );
+	}
+
+	public function testIdConflictsWithNewblock() {
+		$this->expectApiErrorCode( 'invalidparammix' );
+		$this->doBlock( [ 'newblock' => '', 'id' => '1' ] );
+	}
+
+	public function testIdConflictsWithReblock() {
+		$this->expectApiErrorCode( 'invalidparammix' );
+		$this->doBlock( [ 'reblock' => '', 'id' => '1' ] );
+	}
+
+	public function testIdMulti() {
+		$this->doBlock();
+		$block1 = $this->block->getId();
+		$this->doBlock( [ 'allowusertalk' => '', 'newblock' => '' ] );
+		$block2 = $this->block->getId();
+		$this->assertFalse( $this->blockStore->newFromId( $block2 )->isEmailBlocked() );
+
+		$this->doBlock( [ 'id' => $block2, 'user' => null, 'noemail' => '' ] );
+		$this->assertFalse( $this->blockStore->newFromId( $block1 )->isEmailBlocked() );
+		$this->assertTrue( $this->blockStore->newFromId( $block2 )->isEmailBlocked() );
+	}
+
+	public function testNoSuchBlockId() {
+		$this->expectApiErrorCode( 'nosuchblockid' );
+		$this->doBlock( [ 'id' => '1', 'user' => null ] );
+	}
+
+	public function testModifyAutoblock() {
+		$this->doBlock( [ 'autoblock' => '' ] );
+		$autoId = $this->blockStore->doAutoblock( $this->block, '127.0.0.1' );
+		$this->expectApiErrorCode( 'modify-autoblock' );
+		$this->doBlock( [ 'id' => $autoId, 'user' => null, 'noemail' => '' ] );
+	}
+
+	public function testNoOpBlockUpdate() {
+		$this->doBlock();
+		$this->expectApiErrorCode( 'alreadyblocked' );
+		$this->doBlock( [ 'id' => $this->block->getId(), 'user' => null ] );
 	}
 }

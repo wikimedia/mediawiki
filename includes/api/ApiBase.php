@@ -1068,6 +1068,40 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Die with an "invalid param mix" error if the parameters contain the trigger parameter and
+	 * any of the conflicting parameters.
+	 *
+	 * @since 1.44
+	 *
+	 * @param array $params User provided parameters set, as from $this->extractRequestParams()
+	 * @param string $trigger The name of the trigger parameter
+	 * @param string|string[] $conflicts The conflicting parameter or a list
+	 *   of conflicting parameters
+	 */
+	public function requireNoConflictingParameters( $params, $trigger, $conflicts ) {
+		$triggerValue = $params[$trigger] ?? null;
+		if ( $triggerValue === null || $triggerValue === false ) {
+			return;
+		}
+		$intersection = array_intersect(
+			array_keys( array_filter( $params, [ $this, 'parameterNotEmpty' ] ) ),
+			(array)$conflicts
+		);
+		if ( count( $intersection ) ) {
+			$this->dieWithError( [
+				'apierror-invalidparammix-cannotusewith',
+				Message::listParam( array_map(
+					function ( $p ) {
+						return '<var>' . $this->encodeParamName( $p ) . '</var>';
+					},
+					array_values( $intersection )
+				) ),
+				$trigger,
+			] );
+		}
+	}
+
+	/**
 	 * Die if any of the specified parameters were found in the query part of
 	 * the URL rather than the HTTP post body contents.
 	 *
