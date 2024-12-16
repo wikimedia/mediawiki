@@ -473,8 +473,6 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 
 		$parentId = $rev->getParentId() ?? $this->getPreviousRevisionId( $dbw, $rev );
 
-		Assert::precondition( $pageId > 0, 'revision must have an ID' );
-
 		/** @var RevisionRecord $rev */
 		$rev = $dbw->doAtomicSection(
 			__METHOD__,

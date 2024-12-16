@@ -5,7 +5,6 @@ use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Pager\ContribsPager;
 use MediaWiki\Pager\IndexPager;
 use MediaWiki\Permissions\SimpleAuthority;
@@ -216,7 +215,7 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testCreateRevision() {
-		$page = PageIdentityValue::localIdentity( 13, NS_MAIN, __METHOD__ );
+		$title = Title::makeTitle( NS_MAIN, __METHOD__ );
 
 		$pager = $this->getContribsPager( [
 			'target' => '116.17.184.5/32',
@@ -227,17 +226,19 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 		$invalidObject = new class() {
 			public $rev_id;
 		};
-		$this->assertNull( $pager->tryCreatingRevisionRecord( $invalidObject, $page ) );
+		$this->assertNull( $pager->tryCreatingRevisionRecord( $invalidObject, $title ) );
 
 		$invalidRow = (object)[
 			'foo' => 'bar'
 		];
 
-		$this->assertNull( $pager->tryCreatingRevisionRecord( $invalidRow, $page ) );
+		$this->assertNull( $pager->tryCreatingRevisionRecord( $invalidRow, $title ) );
 
 		$validRow = (object)[
 			'rev_id' => '2',
-			'rev_page' => $page->getId(),
+			'rev_page' => '2',
+			'page_namespace' => $title->getNamespace(),
+			'page_title' => $title->getDBkey(),
 			'rev_text_id' => '47',
 			'rev_timestamp' => '20180528192356',
 			'rev_minor_edit' => '0',
@@ -255,7 +256,7 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 			'rev_content_model' => null,
 		];
 
-		$this->assertNotNull( $pager->tryCreatingRevisionRecord( $validRow, $page ) );
+		$this->assertNotNull( $pager->tryCreatingRevisionRecord( $validRow, $title ) );
 	}
 
 	/**

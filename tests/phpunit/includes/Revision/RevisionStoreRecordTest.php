@@ -17,6 +17,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use stdClass;
+use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Timestamp\TimestampException;
 
 /**
@@ -52,7 +53,8 @@ class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 			$comment,
 			(object)$row,
 			$slots,
-			'acmewiki'
+			'acmewiki',
+			PreconditionException::class
 		];
 
 		yield 'all info, local' => [
@@ -121,8 +123,10 @@ class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 		];
 
 		$row = $protoRow;
+		$nonExistingTitle = Title::makeTitle( NS_MAIN, 'DummyDoesNotExist' );
+		$nonExistingTitle->resetArticleID( 0 );
 		yield 'no length, no hash' => [
-			$title,
+			$nonExistingTitle,
 			$user,
 			$comment,
 			(object)$row,
@@ -139,6 +143,7 @@ class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 	 * @param stdClass $row
 	 * @param RevisionSlots $slots
 	 * @param string|false $wikiId
+	 * @param string|null $expectedException
 	 */
 	public function testConstructorAndGetters(
 		PageIdentity $page,
@@ -146,7 +151,8 @@ class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 		CommentStoreComment $comment,
 		$row,
 		RevisionSlots $slots,
-		$wikiId = RevisionRecord::LOCAL
+		$wikiId = RevisionRecord::LOCAL,
+		?string $expectedException = null
 	) {
 		$rec = new RevisionStoreRecord( $page, $user, $comment, $row, $slots, $wikiId );
 
@@ -197,10 +203,15 @@ class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 			);
 		}
 
-		$this->assertTrue(
-			TitleValue::newFromPage( $page )->isSameLinkAs( $rec->getPageAsLinkTarget() ),
-			'getPageAsLinkTarget'
-		);
+		if ( $expectedException ) {
+			$this->expectException( $expectedException );
+			$rec->getPageAsLinkTarget();
+		} else {
+			$this->assertTrue(
+				TitleValue::newFromPage( $page )->isSameLinkAs( $rec->getPageAsLinkTarget() ),
+				'getPageAsLinkTarget'
+			);
+		}
 	}
 
 	public static function provideConstructorFailure() {
@@ -275,17 +286,12 @@ class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 	public function testConstructorBadTimestamp() {
 		$row = (object)[
 			'rev_id' => 42,
-			'rev_page' => 1234,
+			'rev_page' => 'Foobar',
 			'rev_timestamp' => 'kittens',
 		];
 		$this->expectException( TimestampException::class );
 		new RevisionStoreRecord(
-			new PageIdentityValue(
-				$row->rev_page,
-				NS_MAIN,
-				'Foobar',
-				PageIdentityValue::LOCAL
-			),
+			$this->createMock( PageIdentity::class ),
 			new UserIdentityValue( 11, __CLASS__ ),
 			$this->createMock( CommentStoreComment::class ),
 			$row,
