@@ -61,7 +61,7 @@ module.exports = exports = defineComponent( {
 	],
 	setup( props ) {
 		const store = useBlockStore();
-		const { targetUser } = storeToRefs( useBlockStore() );
+		const { targetUser } = storeToRefs( store );
 		let htmlInput;
 
 		onMounted( () => {
@@ -87,6 +87,12 @@ module.exports = exports = defineComponent( {
 		const menuItems = ref( [] );
 		const status = ref( 'default' );
 		const messages = ref( {} );
+
+		watch( targetUser, ( newValue ) => {
+			if ( newValue ) {
+				currentSearchTerm.value = newValue;
+			}
+		} );
 
 		/**
 		 * Get search results.

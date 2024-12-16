@@ -2714,6 +2714,7 @@
 	"block-pages-placeholder": "Add more pages...",
 	"block-namespaces-placeholder": "Add more namespaces...",
 	"block-update": "Update block",
+	"block-invalid-id": "Invalid block ID",
 	"unblockip": "Unblock user",
 	"unblockiptext": "Use the form below to restore write access to a previously blocked IP address or username.",
 	"ipusubmit": "Remove this block",

@@ -248,8 +248,13 @@ module.exports = exports = defineStore( 'block', () => {
 	 * Load block data from an action=blocks API response.
 	 *
 	 * @param {Object} blockData The block's item from the API.
+	 * @param {boolean} [loadingFromParam=false] Whether the data is being loaded from URL parameters.
 	 */
-	function loadFromData( blockData ) {
+	function loadFromData( blockData, loadingFromParam = false ) {
+		if ( loadingFromParam ) {
+			targetUser.value = blockData.user;
+			formVisible.value = true;
+		}
 		blockId.value = blockData.id;
 		type.value = blockData.partial ? 'partial' : 'sitewide';
 		pages.value = ( blockData.restrictions.pages || [] ).map( ( i ) => i.title );
@@ -314,12 +319,15 @@ module.exports = exports = defineStore( 'block', () => {
 	/**
 	 * Clear form behavioural refs.
 	 *
+	 * @param {boolean} [loadingFromParam=false] Whether the data is being loaded from URL parameters.
 	 * @internal
 	 */
-	function resetFormInternal() {
+	function resetFormInternal( loadingFromParam = false ) {
 		formErrors.value = [];
 		formSubmitted.value = false;
-		formVisible.value = false;
+		if ( !loadingFromParam ) {
+			formVisible.value = false;
+		}
 		success.value = false;
 		alreadyBlocked.value = false;
 		promises.value.clear();

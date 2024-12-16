@@ -2329,6 +2329,7 @@ return [
 			'block-expiry-preset',
 			'block-expiry-preset-placeholder',
 			'block-item-edit',
+			'block-invalid-id',
 			'block-item-remove',
 			'block-log-flags-angry-autoblock',
 			'block-log-flags-anononly',
