@@ -29,7 +29,6 @@ require( './autocomplete.js' );
 require( './autoinfuse.js' );
 require( './cloner.js' );
 require( './cond-state.js' );
-require( './multiselect.js' );
 require( './selectandother.js' );
 require( './selectorother.js' );
 require( './timezone.js' );

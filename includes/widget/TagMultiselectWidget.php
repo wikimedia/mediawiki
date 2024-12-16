@@ -3,6 +3,7 @@
 namespace MediaWiki\Widget;
 
 use OOUI\MultilineTextInputWidget;
+use OOUI\Tag;
 use OOUI\Widget;
 
 /**
@@ -50,18 +51,13 @@ class TagMultiselectWidget extends Widget {
 		$this->allowArbitrary = $config['allowArbitrary'] ?? false;
 		$this->allowedValues = $config['allowedValues'] ?? null;
 
-		$textarea = new MultilineTextInputWidget( array_merge( [
-			'name' => $this->inputName,
-			'value' => implode( "\n", $this->selectedArray ),
-			'rows' => min( $this->tagLimit, 10 ) ?? 10,
-			'classes' => [
-				'mw-widgets-tagMultiselectWidget-multilineTextInputWidget'
-			],
-		], $this->input ) );
+		$noJsFallback = ( new Tag( 'div' ) )
+			->addClasses( [ 'mw-widgets-tagMultiselectWidget-nojs' ] )
+			->appendContent( $this->getNoJavaScriptFallback() );
 
 		$pending = new PendingTextInputWidget();
 
-		$this->appendContent( $textarea, $pending );
+		$this->appendContent( $noJsFallback, $pending );
 		$this->addClasses( [ 'mw-widgets-tagMultiselectWidget' ] );
 	}
 
@@ -90,6 +86,23 @@ class TagMultiselectWidget extends Widget {
 
 		$config['$overlay'] = true;
 		return parent::getConfig( $config );
+	}
+
+	/**
+	 * Provide the implementation for clients with JavaScript disabled.
+	 *
+	 * @stable to override
+	 * @since 1.44
+	 * @return Widget[]
+	 */
+	protected function getNoJavaScriptFallback() {
+		$widget = new MultilineTextInputWidget( array_merge( [
+			'name' => $this->inputName,
+			'value' => implode( "\n", $this->selectedArray ),
+			'rows' => min( $this->tagLimit, 10 ) ?? 10,
+		], $this->input ) );
+
+		return [ $widget ];
 	}
 
 	protected function getJavaScriptClassName() {

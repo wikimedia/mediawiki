@@ -6,6 +6,6 @@
  */
 
 .client-nojs .mw-widgets-tagMultiselectWidget .mw-widgets-pendingTextInputWidget,
-.client-js .mw-widgets-tagMultiselectWidget .mw-widgets-tagMultiselectWidget-multilineTextInputWidget {
+.client-js .mw-widgets-tagMultiselectWidget .mw-widgets-tagMultiselectWidget-nojs {
 	display: none;
 }

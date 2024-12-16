@@ -2835,6 +2835,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Widget\\DateInputWidget' => __DIR__ . '/includes/widget/DateInputWidget.php',
 	'MediaWiki\\Widget\\DateTimeInputWidget' => __DIR__ . '/includes/widget/DateTimeInputWidget.php',
 	'MediaWiki\\Widget\\ExpiryInputWidget' => __DIR__ . '/includes/widget/ExpiryInputWidget.php',
+	'MediaWiki\\Widget\\MenuTagMultiselectWidget' => __DIR__ . '/includes/widget/MenuTagMultiselectWidget.php',
 	'MediaWiki\\Widget\\NamespaceInputWidget' => __DIR__ . '/includes/widget/NamespaceInputWidget.php',
 	'MediaWiki\\Widget\\NamespacesMultiselectWidget' => __DIR__ . '/includes/widget/NamespacesMultiselectWidget.php',
 	'MediaWiki\\Widget\\PendingTextInputWidget' => __DIR__ . '/includes/widget/PendingTextInputWidget.php',
