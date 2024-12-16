@@ -150,6 +150,10 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			if ( $totalhits !== null ) {
 				$apiResult->addValue( [ 'query', 'searchinfo' ],
 					'totalhits', $totalhits );
+				if ( $matches->isApproximateTotalHits() ) {
+					$apiResult->addValue( [ 'query', 'searchinfo' ],
+						'approximate_totalhits', $matches->isApproximateTotalHits() );
+				}
 			}
 		}
 		if ( isset( $searchInfo['suggestion'] ) && $matches->hasSuggestion() ) {
@@ -318,10 +322,15 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$section, $type
 	) {
 		$totalhits = null;
+		$approximateTotalHits = false;
 		if ( $matches->hasInterwikiResults( $type ) ) {
 			foreach ( $matches->getInterwikiResults( $type ) as $interwikiMatches ) {
 				// Include number of results if requested
-				$totalhits += $interwikiMatches->getTotalHits();
+				$interwikiTotalHits = $interwikiMatches->getTotalHits();
+				if ( $interwikiTotalHits !== null ) {
+					$totalhits += $interwikiTotalHits;
+					$approximateTotalHits = $approximateTotalHits || $interwikiMatches->isApproximateTotalHits();
+				}
 
 				foreach ( $interwikiMatches as $result ) {
 					$title = $result->getTitle();
@@ -347,6 +356,9 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			}
 			if ( $totalhits !== null ) {
 				$apiResult->addValue( [ 'query', $section . 'searchinfo' ], 'totalhits', $totalhits );
+				if ( $approximateTotalHits ) {
+					$apiResult->addValue( [ 'query', $section . 'searchinfo' ], 'approximate_totalhits', true );
+				}
 				$apiResult->addIndexedTagName( [
 					'query', $section . $this->getModuleName()
 				], 'p' );

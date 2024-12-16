@@ -73,6 +73,7 @@ class SearchFormWidget {
 	 * @param string $term The current search term
 	 * @param int $numResults The number of results shown
 	 * @param int $totalResults The total estimated results found
+	 * @param bool $approximateTotalResults Whether $totalResults is approximate or not
 	 * @param int $offset Current offset in search results
 	 * @param bool $isPowerSearch Is the 'advanced' section open?
 	 * @param array $options Widget options
@@ -83,6 +84,7 @@ class SearchFormWidget {
 		$term,
 		$numResults,
 		$totalResults,
+		$approximateTotalResults,
 		$offset,
 		$isPowerSearch,
 		array $options = []
@@ -101,7 +103,8 @@ class SearchFormWidget {
 				Html::rawElement(
 					'div',
 					[ 'id' => 'mw-search-top-table' ],
-					$this->shortDialogHtml( $profile, $term, $numResults, $totalResults, $offset, $options )
+					$this->shortDialogHtml( $profile, $term, $numResults, $totalResults,
+						$approximateTotalResults, $offset, $options )
 				) .
 				Html::rawElement( 'div', [ 'class' => 'mw-search-visualclear' ] ) .
 				Html::rawElement(
@@ -121,6 +124,7 @@ class SearchFormWidget {
 	 * @param string $term The current search term
 	 * @param int $numResults The number of results shown
 	 * @param int $totalResults The total estimated results found
+	 * @param bool $approximateTotalResults Whether $totalResults is approximate or not
 	 * @param int $offset Current offset in search results
 	 * @param array $options Widget options
 	 * @return string HTML
@@ -130,6 +134,7 @@ class SearchFormWidget {
 		$term,
 		$numResults,
 		$totalResults,
+		$approximateTotalResults,
 		$offset,
 		array $options = []
 	) {
@@ -164,9 +169,11 @@ class SearchFormWidget {
 				[
 					'class' => 'results-info',
 					'data-mw-num-results-offset' => $offset,
-					'data-mw-num-results-total' => $totalResults
+					'data-mw-num-results-total' => $totalResults,
+					'data-mw-num-results-approximate-total' => $approximateTotalResults ? "true" : "false"
 				],
-				$this->specialSearch->msg( 'search-showingresults' )
+				$this->specialSearch
+					->msg( $approximateTotalResults ? 'search-showingresults-approximate' : 'search-showingresults' )
 					->numParams( $offset + 1, $offset + $numResults, $totalResults )
 					->numParams( $numResults )
 					->parse()

@@ -198,6 +198,10 @@ because of Phabricator reports.
 * The ArticleProtect and ArticleProtectComplete hooks are now called when
   WikiPage::doUpdateRestrictions is called to protect a non-existing
   title.
+* Introduce ISearchResultSet::isApproximateTotalHits() (defaults to false
+  in BaseSearchResultSet) to let SearchEngine implementations run optimizations
+  that might lead to innacurate computation of the exact number of pages
+  matching the search query.
 * …
 
 == Compatibility ==
