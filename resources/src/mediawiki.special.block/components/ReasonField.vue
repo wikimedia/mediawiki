@@ -49,7 +49,7 @@ module.exports = exports = defineComponent( {
 		const wrappedSelected = useModelWrapper( toRef( props, 'selected' ), emit, 'update:selected' );
 		const wrappedOther = useModelWrapper( toRef( props, 'other' ), emit, 'update:other' );
 		const reasonPreset = mw.config.get( 'blockReasonPreset' );
-		const reasonEditUrl = mw.util.getUrl( 'MediaWiki:Blockreason-dropdown', { action: 'edit' } );
+		const reasonEditUrl = mw.util.getUrl( 'MediaWiki:Ipbreason-dropdown', { action: 'edit' } );
 
 		if ( reasonPreset !== 'other' && reasonOptions.some( ( option ) => option.value === reasonPreset ) ) {
 			emit( 'update:selected', reasonPreset );
