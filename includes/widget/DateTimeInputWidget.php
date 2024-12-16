@@ -52,6 +52,7 @@ class DateTimeInputWidget extends InputWidget {
 
 		// Initialization
 		$this->addClasses( [ 'mw-widgets-datetime-dateTimeInputWidget' ] );
+		$this->appendContent( new PendingTextInputWidget() );
 	}
 
 	protected function getJavaScriptClassName() {

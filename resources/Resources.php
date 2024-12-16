@@ -2944,6 +2944,13 @@ return [
 			],
 		],
 	],
+	'mediawiki.widgets.DateTimeInputWidget.styles' => [
+		'skinStyles' => [
+			'default' => [
+				'resources/src/mediawiki.widgets/mw.widgets.DateTimeInputWidget.styles.less',
+			],
+		],
+	],
 	'mediawiki.widgets.visibleLengthLimit' => [
 		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.widgets.visibleLengthLimit',
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.widgets.visibleLengthLimit",
@@ -3026,6 +3033,7 @@ return [
 		],
 		'dependencies' => [
 			'mediawiki.util',
+			'mediawiki.widgets.DateTimeInputWidget.styles',
 			'oojs-ui-core',
 			'oojs-ui.styles.icons-moderation',
 			'oojs-ui.styles.icons-movement',

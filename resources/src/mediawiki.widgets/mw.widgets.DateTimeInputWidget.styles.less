@@ -1,0 +1,17 @@
+/*!
+ * MediaWiki Widgets – PHP DateTimeInputWidget styles.
+ *
+ * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
+ * @license The MIT License (MIT); see LICENSE.txt
+ */
+
+// Pending state (T382186)
+.client-nojs .mw-widgets-datetime-dateTimeInputWidget .mw-widgets-pendingTextInputWidget,
+.client-js .mw-widgets-datetime-dateTimeInputWidget input[ type='datetime' ] {
+	display: none;
+}
+
+.mw-widgets-datetime-dateTimeInputWidget .mw-widgets-pendingTextInputWidget {
+	// Hack^2: apply same max-width used by the widget to match the calendar popup.
+	max-width: 24.275em;
+}
