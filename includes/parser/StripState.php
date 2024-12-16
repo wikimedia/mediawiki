@@ -94,6 +94,16 @@ class StripState {
 	}
 
 	/**
+	 * @param string $marker
+	 * @param string|Closure $value
+	 * @since 1.44
+	 * @internal Parsoid use only.
+	 */
+	public function addExtTag( $marker, $value ) {
+		$this->addItem( 'exttag', $marker, $value );
+	}
+
+	/**
 	 * @param string $type
 	 * @param-taint $type none
 	 * @param string $marker

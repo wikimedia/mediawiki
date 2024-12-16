@@ -1694,6 +1694,8 @@ class CoreParserFunctions {
 		) {
 			if ( $linkText !== null ) {
 				$linkText = Parser::stripOuterParagraph(
+					# FIXME T382287: when using Parsoid this may leave
+					# strip markers behind for embedded extension tags.
 					$parser->recursiveTagParseFully( $linkText )
 				);
 			}

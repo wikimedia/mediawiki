@@ -375,7 +375,7 @@ class DataAccess extends IDataAccess {
 			# $wikitext is passed by reference and mutated
 			$parser, $wikitext, $parser->getStripState()
 		);
-		if ( !$this->config->get( MainConfigNames::ParsoidFragmentSupport ) ) {
+		if ( $this->config->get( MainConfigNames::ParsoidFragmentSupport ) === false ) {
 			// Original support: just unstrip (T289545)
 			$wikitext = $parser->replaceVariables( $wikitext, $this->ppFrame );
 			$wikitext = $parser->getStripState()->unstripBoth( $wikitext );
@@ -394,6 +394,13 @@ class DataAccess extends IDataAccess {
 						$pieces[$i] = '';
 					} elseif ( $type === 'nowiki' ) {
 						$pieces[$i] = LiteralStringPFragment::newFromLiteral( $content, null );
+					} elseif ( $type === 'exttag' ) {
+						// Concatenate this extension tag to the
+						// previous wikitext, so that PFragment
+						// doesn't try to add <nowiki>s between the
+						// pieces to prevent token-gluing.
+						$pieces[$i - 1] .= $content;
+						$pieces[$i] = '';
 					} else {
 						$pieces[$i] = HtmlPFragment::newFromHtmlString( $content, null );
 					}

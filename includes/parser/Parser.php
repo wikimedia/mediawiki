@@ -432,6 +432,7 @@ class Parser {
 		MainConfigNames::ParserEnableLegacyMediaDOM,
 		MainConfigNames::EnableParserLimitReporting,
 		MainConfigNames::ParserEnableUserLanguage,
+		MainConfigNames::ParsoidFragmentSupport,
 	];
 
 	/**
@@ -4054,7 +4055,11 @@ class Parser {
 				$output = "<$name$attrText>$content$close";
 			}
 			if ( !$this->mStripExtTags ) {
-				$markerType = 'none';
+				if ( $this->svcOptions->get( MainConfigNames::ParsoidFragmentSupport ) === 'v2' ) {
+					$markerType = 'exttag';
+				} else {
+					$markerType = 'none';
+				}
 			}
 		}
 
@@ -4064,6 +4069,8 @@ class Parser {
 			$this->mStripState->addNoWiki( $marker, $output );
 		} elseif ( $markerType === 'general' ) {
 			$this->mStripState->addGeneral( $marker, $output );
+		} elseif ( $markerType === 'exttag' ) {
+			$this->mStripState->addExtTag( $marker, $output );
 		} else {
 			throw new UnexpectedValueException( __METHOD__ . ': invalid marker type' );
 		}
