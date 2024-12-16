@@ -921,8 +921,6 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 	 *   argument, and a ScopedCallback may optionally be returned.
 	 */
 	public function testGlobals( array $test, $expected, ?callable $setup = null ): void {
-		$IP = '/install/path';
-
 		$configBuilder = new ArrayConfigBuilder();
 		$schemaSource = new ReflectionSchemaSource( MainConfigSchema::class );
 		$schemaDeclarations = $schemaSource->load()['config-schema'];
@@ -937,6 +935,9 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			$configBuilder->set( $key, $val );
 		}
 
+		// Set dependencies normally set by Setup.php
+		$configBuilder->set( MainConfigNames::UploadDirectory, '/install/path/images' );
+
 		// Apply test values
 		foreach ( $test as $key => $val ) {
 			// Some defaults don't work properly on CI if evaluated in the provider,
@@ -947,8 +948,6 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 
 			$configBuilder->set( $key, $val );
 		}
-
-		$configBuilder->set( MainConfigNames::BaseDirectory, $IP );
 
 		if ( $setup ) {
 			$scopedCallback = $setup( $this );

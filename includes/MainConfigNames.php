@@ -130,12 +130,6 @@ class MainConfigNames {
 	public const StyleDirectory = 'StyleDirectory';
 
 	/**
-	 * Name constant for the BaseDirectory setting, for use with Config::get()
-	 * @see MainConfigSchema::BaseDirectory
-	 */
-	public const BaseDirectory = 'BaseDirectory';
-
-	/**
 	 * Name constant for the ArticlePath setting, for use with Config::get()
 	 * @see MainConfigSchema::ArticlePath
 	 */

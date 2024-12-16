@@ -88,7 +88,6 @@ if ( !$hasIntegrationTests ) {
 	fwrite( STDERR, "Running without MediaWiki settings because there are no integration tests\n" );
 	// Faking in lieu of Setup.php
 	$GLOBALS['wgAutoloadClasses'] = [];
-	$GLOBALS['wgBaseDirectory'] = MW_INSTALL_PATH;
 
 	TestSetup::requireOnceInGlobalScope( MW_INSTALL_PATH . "/includes/AutoLoader.php" );
 	TestSetup::requireOnceInGlobalScope( MW_INSTALL_PATH . "/tests/common/TestsAutoLoader.php" );

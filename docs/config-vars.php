@@ -115,12 +115,6 @@ $wgExtensionDirectory = null;
 $wgStyleDirectory = null;
 
 /**
- * Config variable stub for the BaseDirectory setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::BaseDirectory
- */
-$wgBaseDirectory = null;
-
-/**
  * Config variable stub for the ArticlePath setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ArticlePath
  */

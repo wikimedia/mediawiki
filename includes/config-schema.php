@@ -25,7 +25,6 @@ return [
 			'ExtensionAssetsPath' => false,
 			'ExtensionDirectory' => null,
 			'StyleDirectory' => null,
-			'BaseDirectory' => null,
 			'ArticlePath' => false,
 			'UploadPath' => false,
 			'ImgAuthPath' => false,
@@ -2561,6 +2560,11 @@ return [
 				'string',
 				'null',
 			],
+			'UploadDirectory' => [
+				'string',
+				'boolean',
+				'null',
+			],
 			'Logos' => [
 				'object',
 				'boolean',
@@ -3128,15 +3132,6 @@ return [
 				'callback' => [
 					'MediaWiki\\MainConfigSchema',
 					'getDefaultUploadPath',
-				],
-			],
-			'UploadDirectory' => [
-				'use' => [
-					'BaseDirectory',
-				],
-				'callback' => [
-					'MediaWiki\\MainConfigSchema',
-					'getDefaultUploadDirectory',
 				],
 			],
 			'FileCacheDirectory' => [
