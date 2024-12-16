@@ -1,0 +1,107 @@
+{
+	"description": "Revision comparision",
+	"required": [
+		"from",
+		"to",
+		"diff"
+	],
+	"properties": {
+		"from": {
+			"type": "object",
+			"description": "Details of the 'from' revision",
+			"required": [
+				"id",
+				"slot_role",
+				"sections"
+			],
+			"properties": {
+				"id": {
+					"type": "integer",
+					"description": "Revision identifier for the from revision"
+				},
+				"slot_role": {
+					"type": "string",
+					"description": "Role for the slot being compared (currently always 'main')"
+				},
+				"sections": {
+					"type": "array",
+					"description": "Preprocessor sections for the revision, without template expansion",
+					"items": {
+						"type": "object",
+						"required": [
+							"level",
+							"heading",
+							"offset"
+						],
+						"properties": {
+							"level": {
+								"type": "integer",
+								"description": "Section level"
+							},
+							"heading": {
+								"type": "string",
+								"description": "Section heading e.g. 1 for <h1>"
+							},
+							"offset": {
+								"type": "integer",
+								"description": "Byte offset within the wikitext at which the section starts"
+							}
+						}
+					}
+				}
+			}
+		},
+		"to": {
+			"type": "object",
+			"description": "Details of the 'to' revision",
+			"required": [
+				"id",
+				"slot_role",
+				"sections"
+			],
+			"properties": {
+				"id": {
+					"type": "integer",
+					"description": "Revision identifier for the from revision"
+				},
+				"slot_role": {
+					"type": "string",
+					"description": "Role for the slot being compared (currently always 'main')"
+				},
+				"sections": {
+					"type": "array",
+					"description": "Preprocessor sections for the revision, without template expansion",
+					"items": {
+						"type": "object",
+						"required": [
+							"level",
+							"heading",
+							"offset"
+						],
+						"properties": {
+							"level": {
+								"type": "integer",
+								"description": "Section level"
+							},
+							"heading": {
+								"type": "string",
+								"description": "Section heading e.g. 1 for <h1>"
+							},
+							"offset": {
+								"type": "integer",
+								"description": "Byte offset within the wikitext at which the section starts"
+							}
+						}
+					}
+				}
+			}
+		},
+		"diff": {
+			"type": "array",
+			"description": "Differences between revisions",
+			"items": {
+				"type": "object"
+			}
+		}
+	}
+}

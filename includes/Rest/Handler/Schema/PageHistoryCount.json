@@ -1,0 +1,17 @@
+{
+	"description": "Page history edit count",
+	"required": [
+		"count",
+		"limit"
+	],
+	"properties": {
+		"count": {
+			"type": "integer",
+			"description": "Number of edit counts of the specified type"
+		},
+		"limit": {
+			"type": "boolean",
+			"description": "Whether the actual edit count exceeded the allowed limit for that type"
+		}
+	}
+}

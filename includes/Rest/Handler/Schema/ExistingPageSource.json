@@ -32,7 +32,8 @@
 				},
 				"timestamp": {
 					"type": "string",
-					"description": " Timestamp of the latest revision"
+					"description": " Timestamp of the latest revision",
+					"nullable": true
 				}
 			}
 		},

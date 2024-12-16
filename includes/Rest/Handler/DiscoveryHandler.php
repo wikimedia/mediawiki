@@ -106,4 +106,7 @@ class DiscoveryHandler extends Handler {
 		return $module->getModuleDescription();
 	}
 
+	protected function getResponseBodySchemaFileName( string $method ): ?string {
+		return 'docs/rest/discovery-1.0.json';
+	}
 }

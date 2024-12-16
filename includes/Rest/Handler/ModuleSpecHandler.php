@@ -162,6 +162,10 @@ class ModuleSpecHandler extends SimpleHandler {
 		return $components;
 	}
 
+	protected function getResponseBodySchemaFileName( string $method ): ?string {
+		return 'includes/Rest/Handler/Schema/ModuleSpec.json';
+	}
+
 	public function getParamSettings() {
 		return [
 			'module' => [

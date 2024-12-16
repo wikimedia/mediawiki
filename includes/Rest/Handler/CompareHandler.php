@@ -188,6 +188,10 @@ class CompareHandler extends Handler {
 		return false;
 	}
 
+	protected function getResponseBodySchemaFileName( string $method ): ?string {
+		return 'includes/Rest/Handler/Schema/RevisionCompare.json';
+	}
+
 	public function getParamSettings() {
 		return [
 			'from' => [

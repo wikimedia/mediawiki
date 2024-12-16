@@ -696,6 +696,10 @@ class PageHistoryCountHandler extends SimpleHandler {
 		return false;
 	}
 
+	protected function getResponseBodySchemaFileName( string $method ): ?string {
+		return 'includes/Rest/Handler/Schema/PageHistoryCount.json';
+	}
+
 	public function getParamSettings() {
 		return [
 			'title' => [
