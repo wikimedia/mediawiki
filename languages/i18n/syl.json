@@ -154,6 +154,7 @@
 	"jumpto": "ꠡꠞꠣꠡꠞꠤ",
 	"jumptonavigation": "ꠖꠦꠈꠣꠘꠤ",
 	"jumptosearch": "ꠔꠥꠇꠣꠅ",
+	"pool-queuefull": "ꠙꠥꠟꠞ ꠟꠣꠁꠘ ꠙꠥꠞꠣꠙꠥꠞꠤ ꠅꠁꠍꠦ",
 	"pool-errorunknown": "ꠘꠣꠎꠣꠘꠣ ꠛꠦꠠꠣ",
 	"poolcounter-usage-error": "ꠛꠦꠛꠢꠣꠞ ꠇꠞꠣꠔ ꠛꠦꠠꠣ ꠪ $1",
 	"aboutsite": "{{SITENAME}} ꠟꠁꠀ",

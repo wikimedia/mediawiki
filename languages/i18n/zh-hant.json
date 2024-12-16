@@ -143,7 +143,8 @@
 			"PB2008",
 			"SupaplexTW",
 			"Arielyurusova",
-			"Anterdc99"
+			"Anterdc99",
+			"優枰"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -760,7 +761,7 @@
 	"autocreate-edit-warning": "<strong>警告：</strong>您尚未登入。您的編輯將歸於一個<strong>自動生成的名稱</strong>（透過向您的瀏覽器添加一個Cookie）。您的IP位址將對受信任的使用者可見。如果您<strong>[$1 登入]</strong> 或<strong>[$2 建立帳戶]</strong>，您的編輯會歸於您的使用者名稱之下，此外還有其他益處。",
 	"anonpreviewwarning": "您尚未登入。發布頁面會將您的IP位址記錄在此頁面的編輯歷史中。",
 	"autocreate-preview-warning": "<em>警告：您尚未登入。您的編輯將歸於一個自動生成的名稱（透過向您的瀏覽器添加一個Cookie），且管理員可檢視您的IP位址。</em>",
-	"missingsummary": "<strong>提醒：</strong>您未填寫編輯摘要。\n若您再點選 \"$1\" 一次，將略過摘要直接發布您的編輯。",
+	"missingsummary": "<strong>提醒：</strong>您未填寫編輯摘要。若您再點選 \"$1\" 一次，將略過摘要直接發布您的編輯。",
 	"selfredirect": "<strong>警告：</strong> 您正建立連結至自己的重新導向。\n您可能指定錯要重新導向的目標頁面或者編輯錯頁面。\n若您再點選 \"$1\" 一次，將會繼續建立重新導向。",
 	"missingcommenttext": "請輸入一段評論。",
 	"missingcommentheader": "<strong>提醒：</strong>您未填寫此評論的主旨。\n若您再點選 \"$1\" 一次，將略過主旨/標題直接發布您的評論。",

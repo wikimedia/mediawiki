@@ -1587,7 +1587,7 @@
 	"api-help-parameters": "{{PLURAL:$1|Parámetro específico|Parámetros específicos}}:",
 	"api-help-parameters-note": "Hai dispoñibles outros parámetros xerais.",
 	"api-help-param-deprecated": "Obsoleto.",
-	"api-help-param-deprecated-label": "obsoleta",
+	"api-help-param-deprecated-label": "obsoleto",
 	"api-help-param-internal": "Interno.",
 	"api-help-param-internal-label": "interna",
 	"api-help-param-templated": "Este é un [[Special:ApiHelp/main#main/templatedparams|parámetro modelado]]. Ao facer a solicitude, $2.",

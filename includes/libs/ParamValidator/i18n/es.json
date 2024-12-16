@@ -1,16 +1,40 @@
 {
 	"@metadata": {
 		"authors": [
-			"Fitoschido"
+			"Fitoschido",
+			"Dgstranz"
 		]
 	},
+	"paramvalidator-badvalue-enummulti": "Valor no válido «$2» para el parámetro «$1». {{PLURAL:$4|Solo se permite «$3».|Los valores permitidos son $3.}}",
+	"paramvalidator-badvalue-enumnotmulti": "Valor no reconocido para el parámetro «$1»: $2.",
+	"paramvalidator-deprecated-value": "El valor «$2» del parámetro «$1» está marcado como obsoleto.",
 	"paramvalidator-emptystring": "la cadena vacía",
+	"paramvalidator-maxbytes": "El valor del parámetro «$1» no puede ocupar más de $3 {{PLURAL:$3|byte|bytes}} (ocupa $4).",
+	"paramvalidator-maxchars": "El valor del parámetro «$1» no puede ocupar más de $3 {{PLURAL:$3|carácter|caracteres}} (ocupa $4).",
+	"paramvalidator-missingparam": "Se debe establecer el parámetro «$1».",
+	"paramvalidator-notmulti": "El parámetro «$1» solo acepta un valor. La separación multivalor U+001F solo se pueden utilizar en parámetros multivaluados.",
+	"paramvalidator-outofrange-max": "El valor «$2» del parámetro «$1» debe ser no mayor de $4.",
+	"paramvalidator-outofrange-minmax": "El valor «$2» del parámetro «$1» debe estar entre $3 y $4.",
+	"paramvalidator-outofrange-min": "El valor «$2» del parámetro «$1» debe ser no menor de $3.",
+	"paramvalidator-param-deprecated": "El parámetro «$1» está marcado como obsoleto.",
+	"paramvalidator-toomanyvalues": "Se proporcionaron demasiados valores para el parámetro «$1». El límite es $2.",
+	"paramvalidator-unrecognizedvalues": "{{PLURAL:$4|Valor no reconocido|Valores no reconocidos}} para el parámetro «$1»: $3",
 	"paramvalidator-help-default": "Predeterminado: $1",
 	"paramvalidator-help-default-empty": "Predeterminado: (vacío)",
+	"paramvalidator-help-deprecated": "Este parámetro está obsoleto.",
+	"paramvalidator-help-multi-max": "El número máximo de valores es {{PLURAL:$1|$1}} ({{PLURAL:$2|$2}} para clientes con permiso para utilizar límites superiores).",
+	"paramvalidator-help-multi-max-simple": "El número máximo de valores es {{PLURAL:$1|$1}}.",
+	"paramvalidator-help-multi-all": "Para especificar todos los valores, utiliza <kbd>$1</kbd>.",
 	"paramvalidator-help-required": "Este parámetro es obligatorio.",
 	"paramvalidator-help-type-boolean": "Tipo: {{PLURAL:$1|1=booleano|2=lista de booleanos}}",
 	"paramvalidator-help-type-float": "Tipo: {{PLURAL:$1|1=flotante|2=lista de flotantes}}",
 	"paramvalidator-help-type-integer": "Tipo: {{PLURAL:$1|1=entero|2=lista de enteros}}",
+	"paramvalidator-help-type-limit": "Tipo: entero o «max»",
+	"paramvalidator-help-type-number-max": "{{PLURAL:$1|1=El valor debe ser no mayor|2=Los valores deben ser no mayores}} de $3.",
+	"paramvalidator-help-type-number-minmax": "{{PLURAL:$1|1=El valor debe|2=Los valores deben}} estar entre $2 y $3.",
+	"paramvalidator-help-type-number-min": "{{PLURAL:$1|1=El valor debe ser no menor|2=Los valores deben ser no menores}} de $2.",
 	"paramvalidator-help-type-presenceboolean": "Tipo: booleano",
+	"paramvalidator-help-type-string-maxbytes": "No puede ocupar más de $1 {{PLURAL:$1|byte|bytes}}.",
+	"paramvalidator-help-type-string-maxchars": "No puede ocupar más de $1 {{PLURAL:$1|carácter|caracteres}}.",
 	"paramvalidator-help-type-timestamp": "Tipo: {{PLURAL:$1|1=cronomarcador|2=lista de cronomarcadores}}"
 }
