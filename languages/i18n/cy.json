@@ -2385,7 +2385,6 @@
 	"block-options": "Opsiynau ychwanegol:",
 	"block-reason": "Rhesymau:",
 	"block-reason-other": "Rheswm ychwanegol neu reswm arall",
-	"block-user-placeholder": "Dechreuwch deipio defnyddiwr...",
 	"block-target": "Enw defnyddiwr, cyfeiriad IP, neu ystod IP:",
 	"block-target-placeholder": "EnwDefnyddiwr, 1.1.1.42, neu 1.1.1.42/16",
 	"unblockip": "Dadflocio defnyddiwr",

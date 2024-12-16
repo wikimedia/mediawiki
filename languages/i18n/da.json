@@ -2596,7 +2596,6 @@
 	"block-user-no-previous-blocks": "Ingen tidligere blokeringer fundet",
 	"block-user-suppressed-blocks": "Censurerede blokeringer",
 	"block-user-no-suppressed-blocks": "Ingen tidligere censurerede blokeringer fundet",
-	"block-user-placeholder": "Begynd at skrive ind et brugernavn…",
 	"block-item-remove": "Fjern",
 	"block-item-edit": "Rediger",
 	"block-target": "Brugernavn, IP-adresse eller IP-interval:",

@@ -2533,7 +2533,6 @@
 	"block-user-active-blocks": "Blocadas active",
 	"block-user-previous-blocks": "Registro de blocadas",
 	"block-user-no-previous-blocks": "Necun blocada precedente trovate",
-	"block-user-placeholder": "Comencia a scriber un usator…",
 	"block-target": "Nomine de usator, adresse IP o gamma de adresses IP:",
 	"block-target-placeholder": "NomineDeUsator, 1.1.1.42 o 1.1.1.42/16",
 	"unblockip": "Disblocar usator",

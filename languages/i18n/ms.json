@@ -2551,7 +2551,6 @@
 	"block-user-active-blocks": "Sekatan aktif",
 	"block-user-previous-blocks": "Log sekatan",
 	"block-user-no-previous-blocks": "Tiada sekatan sebelumnya dijumpai",
-	"block-user-placeholder": "Mula menaip nama pengguna...",
 	"block-target": "Nama pengguna, alamat IP atau julat IP:",
 	"block-target-placeholder": "NamaPengguna, 1.1.1.42, atau 1.1.1.42/16",
 	"unblockip": "Nyahsekat pengguna",

@@ -2619,7 +2619,6 @@
 	"block-user-no-previous-blocks": "Inga tidigare blockeringar hittades",
 	"block-user-suppressed-blocks": "Censurerade blockeringar",
 	"block-user-no-suppressed-blocks": "Inga tidigare censurerade blockeringar hittades",
-	"block-user-placeholder": "Börja skriva in ett användarnamn …",
 	"block-item-remove": "Ta bort",
 	"block-item-edit": "Redigera",
 	"block-target": "Användarnamn, IP-adress eller intervall av IP-adresser:",

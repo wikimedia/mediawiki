@@ -2596,7 +2596,6 @@
 	"block-user-active-blocks": "Các lệnh cấm đang có hiệu lực",
 	"block-user-previous-blocks": "Nhật trình cấm",
 	"block-user-no-previous-blocks": "Không tìm thấy lần cấm trước đó",
-	"block-user-placeholder": "Nhập tên người dùng...",
 	"block-item-remove": "Loại bỏ",
 	"block-target": "Tên thành viên, địa chỉ IP, hoặc dải IP:",
 	"block-target-placeholder": "Tên thành viên, 1.1.1.42, hoặc 1.1.1.42/16",

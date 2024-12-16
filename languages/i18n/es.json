@@ -2779,7 +2779,6 @@
 	"block-user-no-previous-blocks": "No se encontraron bloqueos anteriores",
 	"block-user-suppressed-blocks": "Registro de bloqueos suprimidos",
 	"block-user-no-suppressed-blocks": "No se encontraron bloqueos suprimidos anteriores",
-	"block-user-placeholder": "Comience a escribir un usuario...",
 	"block-item-remove": "Eliminar",
 	"block-item-edit": "Editar",
 	"block-target": "Nombre de usuario, dirección IP o intervalo de IP:",

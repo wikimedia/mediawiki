@@ -2593,7 +2593,6 @@
 	"block-user-no-previous-blocks": "Ingen tidligere blokkeringer funnet",
 	"block-user-suppressed-blocks": "Logg over sensurerte blokkeringer",
 	"block-user-no-suppressed-blocks": "Ingen tidligere sensurerte blokkeringer funnet",
-	"block-user-placeholder": "Begynn å skrive inn et brukernavn …",
 	"block-item-remove": "Fjern",
 	"block-item-edit": "Rediger",
 	"block-target": "Brukernavn, IP-adresse eller IP-intervall:",

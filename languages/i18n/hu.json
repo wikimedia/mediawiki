@@ -2593,7 +2593,6 @@
 	"block-user-no-previous-blocks": "Nem találhatók korábbi blokkok",
 	"block-user-suppressed-blocks": "Elrejtett blokkok",
 	"block-user-no-suppressed-blocks": "Nem található korábbi elrejtett blokk",
-	"block-user-placeholder": "Kezd el beírni a felhasználó nevét...",
 	"block-item-remove": "Feloldás",
 	"block-item-edit": "Szerkesztés",
 	"block-target": "Felhasználónév, IP-cím vagy IP-cím-tartomány:",

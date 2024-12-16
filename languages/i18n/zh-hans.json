@@ -2745,7 +2745,6 @@
 	"block-user-label-count-exceeds-limit": "$1+",
 	"block-user-suppressed-blocks": "监督隐藏的封禁日志",
 	"block-user-no-suppressed-blocks": "没有找到先前监督隐藏的封禁",
-	"block-user-placeholder": "输入用户…",
 	"block-item-remove": "移除",
 	"block-item-edit": "编辑",
 	"block-target": "用户名、IP地址或IP范围：",

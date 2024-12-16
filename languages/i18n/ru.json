@@ -2726,7 +2726,6 @@
 	"block-user-no-previous-blocks": "Предыдущие блокировки не найдены",
 	"block-user-suppressed-blocks": "Журнал заблокированных блоков",
 	"block-user-no-suppressed-blocks": "Предыдущие скрытые блокировки не найдены",
-	"block-user-placeholder": "Начните вводить участника…",
 	"block-item-remove": "Удалить",
 	"block-item-edit": "Править",
 	"block-target": "Имя участника, IP-адрес или диапазон IP-адресов:",

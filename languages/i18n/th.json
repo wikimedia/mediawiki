@@ -2533,7 +2533,6 @@
 	"block-reason": "เหตุผล:",
 	"block-confirm-yes": "ใช่",
 	"block-confirm-no": "ไม่",
-	"block-user-placeholder": "เริ่มพิมพ์ผู้ใช้...",
 	"block-target": "ชื่อผู้ใช้ ที่อยู่ไอพี หรือพิสัยไอพี:",
 	"block-target-placeholder": "ชื่อผู้ใช้, 1.1.1.42, หรือ 1.1.1.42/16",
 	"unblockip": "ปลดบล็อกผู้ใช้",
