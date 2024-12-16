@@ -2802,7 +2802,10 @@ return [
 			'UrlProtocols' => 'array',
 			'TidyConfig' => 'object',
 			'ParsoidSettings' => 'object',
-			'ParsoidFragmentSupport' => 'boolean',
+			'ParsoidFragmentSupport' => [
+				'boolean',
+				'string',
+			],
 			'NoFollowNsExceptions' => 'array',
 			'NoFollowDomainExceptions' => 'array',
 			'EnableMagicLinks' => 'object',
