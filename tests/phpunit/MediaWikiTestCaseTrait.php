@@ -14,6 +14,8 @@ use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Services\NoSuchServiceException;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
+// phpcs:disable MediaWiki.Commenting.FunctionAnnotations.UnrecognizedAnnotation -- Remove with v46.0.0
+
 /**
  * For code common to both MediaWikiUnitTestCase and MediaWikiIntegrationTestCase.
  */
@@ -178,9 +180,9 @@ trait MediaWikiTestCaseTrait {
 	}
 
 	/**
-	 * @after
+	 * @postCondition
 	 */
-	public function checkExpectedDeprecationsOnTearDown(): void {
+	public function expectedDeprecationsPostConditions(): void {
 		if ( $this->expectedDeprecations ) {
 			$this->assertSame( [],
 				array_diff( $this->expectedDeprecations, $this->actualDeprecations ),
@@ -311,9 +313,9 @@ trait MediaWikiTestCaseTrait {
 	}
 
 	/**
-	 * @after
+	 * @postCondition
 	 */
-	protected function phpErrorFilterTearDown() {
+	protected function phpErrorFilterPostConditions() {
 		$phpErrorFilter = error_reporting();
 
 		if ( $phpErrorFilter !== $this->originalPhpErrorFilter ) {
