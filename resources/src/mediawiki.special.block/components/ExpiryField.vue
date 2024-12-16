@@ -171,9 +171,11 @@ module.exports = exports = defineComponent( {
 					customDurationNumber.value = Number( number );
 					customDurationUnit.value = unitPlural;
 				}
-			} else if ( /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test( given ) ) {
+			} else if ( /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test( given ) ) {
 				expiryType.value = 'datetime';
-				datetime.value = given;
+				// Truncate longer datetime strings to be compatible with input type=datetime-local.
+				// This is also done in SpecialBlock.php
+				datetime.value = given.slice( 0, 16 );
 			} else {
 				// Unsupported format; Reset to defaults.
 				expiryType.value = 'preset-duration';
