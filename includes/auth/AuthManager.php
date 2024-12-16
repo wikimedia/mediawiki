@@ -2530,7 +2530,7 @@ class AuthManager implements LoggerAwareInterface {
 				if (
 					!isset( $reqs[$id] )
 					|| $req->required === AuthenticationRequest::REQUIRED
-					|| $reqs[$id] === AuthenticationRequest::OPTIONAL
+					|| $reqs[$id]->required === AuthenticationRequest::OPTIONAL
 				) {
 					$reqs[$id] = $req;
 				}
