@@ -173,4 +173,8 @@ class MediaFileHandler extends SimpleHandler {
 		$file = $this->getFile();
 		return $file && $file->exists();
 	}
+
+	public function getResponseBodySchemaFileName( string $method ): ?string {
+		return 'includes/Rest/Handler/Schema/MediaFile.json';
+	}
 }

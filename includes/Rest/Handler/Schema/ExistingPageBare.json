@@ -1,26 +1,26 @@
 {
-	"description": "The new page, including source (usually wikitext)",
+	"description": "Page without content",
 	"required": [
 		"id",
-		"title",
 		"key",
+		"title",
 		"latest",
-		"license",
 		"content_model",
-		"source"
+		"license",
+		"html_url"
 	],
 	"properties": {
 		"id": {
 			"type": "integer",
 			"description": "Page identifier"
 		},
-		"title": {
-			"type": "string",
-			"description": "Page title"
-		},
 		"key": {
 			"type": "string",
 			"description": "Page title in URL-friendly format"
+		},
+		"title": {
+			"type": "string",
+			"description": "Page title"
 		},
 		"latest": {
 			"type": "object",
@@ -36,6 +36,10 @@
 				}
 			}
 		},
+		"content_model": {
+			"type": "string",
+			"description": "Page content type"
+		},
 		"license": {
 			"type": "object",
 			"description": "Information about the wiki's license",
@@ -50,13 +54,9 @@
 				}
 			}
 		},
-		"content_model": {
+		"html_url": {
 			"type": "string",
-			"description": "Page content type"
-		},
-		"source": {
-			"type": "string",
-			"description": "Page content in the format specified by the content_model property"
+			"description": "API route to fetch the content of the page in HTML"
 		}
 	}
 }

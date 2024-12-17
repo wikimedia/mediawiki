@@ -1,26 +1,26 @@
 {
-	"description": "The new page, including source (usually wikitext)",
+	"description": "Page with HTML content",
 	"required": [
 		"id",
-		"title",
 		"key",
+		"title",
 		"latest",
-		"license",
 		"content_model",
-		"source"
+		"license",
+		"html"
 	],
 	"properties": {
 		"id": {
 			"type": "integer",
 			"description": "Page identifier"
 		},
-		"title": {
-			"type": "string",
-			"description": "Page title"
-		},
 		"key": {
 			"type": "string",
 			"description": "Page title in URL-friendly format"
+		},
+		"title": {
+			"type": "string",
+			"description": "Page title in reading-friendly format"
 		},
 		"latest": {
 			"type": "object",
@@ -32,9 +32,13 @@
 				},
 				"timestamp": {
 					"type": "string",
-					"description": " Timestamp of the latest revision"
+					"description": " Timestamp of the latest revision in ISO 8601 format"
 				}
 			}
+		},
+		"content_model": {
+			"type": "string",
+			"description": "Type of content on the page"
 		},
 		"license": {
 			"type": "object",
@@ -42,21 +46,17 @@
 			"properties": {
 				"url": {
 					"type": "string",
-					"description": "URL of the applicable license"
+					"description": "URL of the applicable license based on the $wgRightsUrl setting"
 				},
 				"title": {
 					"type": "string",
-					"description": "Name of the applicable license"
+					"description": "Name of the applicable license based on the $wgRightsText setting"
 				}
 			}
 		},
-		"content_model": {
+		"html": {
 			"type": "string",
-			"description": "Page content type"
-		},
-		"source": {
-			"type": "string",
-			"description": "Page content in the format specified by the content_model property"
+			"description": "Latest page content in HTML, following the HTML specification"
 		}
 	}
 }
