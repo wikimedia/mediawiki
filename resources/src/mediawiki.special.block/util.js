@@ -26,7 +26,7 @@ const util = {
 		if ( mw.util.isInfinity( timestamp ) ) {
 			return mw.msg( 'infiniteblock' );
 		}
-		return new Date( timestamp ).toLocaleString();
+		return new Date( timestamp ).toLocaleString( undefined, { timeZone: 'UTC', timeZoneName: 'short' } );
 	},
 	/**
 	 * Get the message for a given block action
