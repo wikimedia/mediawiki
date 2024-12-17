@@ -2846,9 +2846,12 @@ return [
 			[ 'name' => 'data.json', 'callback' => static function ( Context $context ) {
 				// $context only has a language code, we need to look up the language object
 				$langCode = $context->getLanguage();
-				$userLang = MediaWikiServices::getInstance()->getLanguageFactory()
-					->getLanguage( $langCode );
+				$services = MediaWikiServices::getInstance();
+				$userLang = $services->getLanguageFactory()->getLanguage( $langCode );
+				$converter = $services->getLanguageConverterFactory()
+					->getLanguageConverter( $services->getContentLanguage() );
 				return [
+					'isContLangVariant' => $converter->hasVariant( $langCode ),
 					'formattedNamespaces' => $userLang->getFormattedNamespaces(),
 				];
 			} ],
