@@ -26,7 +26,7 @@ use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\Language\Language;
-use MediaWiki\User\User;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
 
 /**
@@ -132,7 +132,7 @@ trait ApiBlockInfoTrait {
 
 	/**
 	 * @see IContextSource::getUser
-	 * @return User
+	 * @return UserIdentity
 	 */
 	abstract public function getUser();
 
