@@ -56,6 +56,7 @@
 
 		// See InputWidget#reusePreInfuseDOM about config.$input
 		if ( config.$input ) {
+			// Hide unused <input> from PHP after infusion is done
 			config.$input.addClass( 'oo-ui-element-hidden' );
 		}
 
@@ -190,6 +191,20 @@
 	mw.widgets.datetime.DateTimeInputWidget.static.supportsSimpleLabel = false;
 
 	/* Events */
+
+	/* Static Methods */
+
+	/**
+	 * @inheritdoc
+	 */
+	mw.widgets.datetime.DateTimeInputWidget.static.reusePreInfuseDOM = function ( node, config ) {
+		config = mw.widgets.datetime.DateTimeInputWidget.super.static.reusePreInfuseDOM( node, config );
+		if ( config.$input ) {
+			// Ignore the extra field from PendingTextInputWidget (T382344)
+			config.$input = config.$input.first();
+		}
+		return config;
+	};
 
 	/* Methods */
 
