@@ -69,6 +69,7 @@ use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\DebugInfo\DebugInfoTrait;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Base class for language-specific code.
@@ -4071,6 +4072,13 @@ class Language implements Bcp47Code {
 				// wfTimestamp() handles 0 as current time instead of epoch.
 				$time = '19700101000000';
 			}
+
+			// Return the timestamp as-is if it is in an unknown format to ConvertibleTimestamp (T354663)
+			$time = ConvertibleTimestamp::convert( TS_MW, $time );
+			if ( $time === false ) {
+				return $str;
+			}
+
 			if ( $user ) {
 				return $this->userTimeAndDate( $time, $user );
 			}
