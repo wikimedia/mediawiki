@@ -1998,6 +1998,12 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 				'partial'
 			],
 			[ 'dummy', 'dummy', 0, 'return garbage as is' ],
+			'Relative timestamp that causes negative number from strtotime' => [
+				'-0.000000000000000001 seconds',
+				'-0.000000000000000001 seconds',
+				wfTimestamp( TS_UNIX, '20200524200807' ),
+				'Relative timestamp that fails to be parsed by strtotime should be returned without modification'
+			],
 		];
 	}
 
