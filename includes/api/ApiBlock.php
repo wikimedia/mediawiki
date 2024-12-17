@@ -57,7 +57,6 @@ use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
  */
 class ApiBlock extends ApiBase {
 
-	use ApiBlockInfoTrait;
 	use ApiWatchlistTrait;
 
 	private BlockPermissionCheckerFactory $blockPermissionCheckerFactory;
