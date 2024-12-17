@@ -4,9 +4,6 @@ namespace Wikimedia\Rdbms;
 
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
-// Very long type annotations :(
-// phpcs:disable Generic.Files.LineLength
-
 /**
  * Build SELECT queries with a fluent interface.
  *
@@ -289,6 +286,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * Add conditions to the query. The supplied conditions will be appended
 	 * to the existing conditions, separated by AND.
 	 *
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
 	 * @param-taint $conds exec_sql_numkey
 	 *
@@ -345,6 +343,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	/**
 	 * Add conditions to the query. Alias for where().
 	 *
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
 	 * @param-taint $conds exec_sql_numkey
 	 * @return $this
@@ -356,6 +355,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	/**
 	 * Add conditions to the query. Alias for where().
 	 *
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
 	 * @param-taint $conds exec_sql_numkey
 	 * @return $this

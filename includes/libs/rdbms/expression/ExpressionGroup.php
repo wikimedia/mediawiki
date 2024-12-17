@@ -5,9 +5,6 @@ namespace Wikimedia\Rdbms;
 use InvalidArgumentException;
 use Wikimedia\Rdbms\Database\DbQuoter;
 
-// Very long type annotations :(
-// phpcs:disable Generic.Files.LineLength
-
 /**
  * A composite node representing a group of expressions.
  *
@@ -35,6 +32,7 @@ abstract class ExpressionGroup implements IExpression {
 
 	/**
 	 * @internal to rdbms
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @param non-empty-array<string,?scalar|RawSQLValue|Blob|LikeValue|non-empty-list<scalar|Blob>>|non-empty-array<int,IExpression> $conds
 	 * @param-taint $conds exec_sql_numkey
 	 * @return static
@@ -47,7 +45,8 @@ abstract class ExpressionGroup implements IExpression {
 		foreach ( $conds as $field => $cond ) {
 			if ( is_numeric( $field ) ) {
 				if ( !$cond instanceof IExpression ) {
-					throw new InvalidArgumentException( __METHOD__ . ": Only IExpression are allowed with numeric key." );
+					throw new InvalidArgumentException(
+						__METHOD__ . ": Only IExpression are allowed with numeric key." );
 				}
 				$exprs[] = $cond;
 			} else {

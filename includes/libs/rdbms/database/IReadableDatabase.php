@@ -25,9 +25,6 @@ use Wikimedia\Rdbms\Database\DbQuoter;
 use Wikimedia\Rdbms\Database\IDatabaseFlags;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
-// Very long type annotations :(
-// phpcs:disable Generic.Files.LineLength
-
 /**
  * A database connection without write operations.
  *
@@ -174,6 +171,7 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 *  use unvalidated user input. Can be an array, but must contain exactly 1 element then.
 	 *  {@see select} for details.
 	 * @param-taint $var exec_sql
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $cond
 	 *  The condition array. {@see select} for details.
 	 * @param-taint $cond exec_sql_numkey
@@ -207,6 +205,7 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 * @param string $var The field name to select. This must be a valid SQL
 	 *   fragment: do not use unvalidated user input.
 	 * @param-taint $var exec_sql
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $cond
 	 *   The condition array. {@see select} for details.
 	 * @param-taint $cond exec_sql_numkey
@@ -299,6 +298,7 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 *
 	 * Untrusted user input must not be passed to this parameter.
 	 *
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
 	 * @param-taint $conds exec_sql_numkey
 	 *
@@ -457,6 +457,7 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 * @param-taint $tables exec_sql
 	 * @param string|array $vars Field names
 	 * @param-taint $vars exec_sql
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
 	 *   Conditions
 	 * @param-taint $conds exec_sql_numkey
@@ -499,6 +500,7 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 * @param string|string[] $tables Table reference(s), using the unqualified name of tables
 	 *   or of the form "information_schema.<identifier>". {@see select} for details.
 	 * @param string $var Column for which NULL values are not counted [default "*"]
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
 	 *   Filters on the table
 	 * @param string $fname Function name for profiling @phan-mandatory-param
@@ -529,6 +531,7 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 * @param-taint $tables exec_sql
 	 * @param string $var Column for which NULL values are not counted [default "*"]
 	 * @param-taint $var exec_sql
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
 	 *   Filters on the table
 	 * @param-taint $conds exec_sql_numkey
@@ -671,6 +674,7 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 * See Expression::__construct()
 	 *
 	 * @since 1.43
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @param non-empty-array<string,?scalar|RawSQLValue|Blob|LikeValue|non-empty-list<scalar|Blob>>|non-empty-array<int,IExpression> $conds
 	 * @param-taint $conds exec_sql_numkey
 	 * @return AndExpressionGroup
@@ -682,6 +686,7 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 * See Expression::__construct()
 	 *
 	 * @since 1.43
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @param non-empty-array<string,?scalar|RawSQLValue|Blob|LikeValue|non-empty-list<scalar|Blob>>|non-empty-array<int,IExpression> $conds
 	 * @param-taint $conds exec_sql_numkey
 	 * @return OrExpressionGroup

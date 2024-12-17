@@ -5,9 +5,6 @@ namespace Wikimedia\Rdbms;
 use InvalidArgumentException;
 use UnexpectedValueException;
 
-// Very long type annotations :(
-// phpcs:disable Generic.Files.LineLength
-
 /**
  * Build UPDATE queries with a fluent interface.
  *
@@ -168,6 +165,7 @@ class UpdateQueryBuilder {
 	 * Add conditions to the query. The supplied conditions will be appended
 	 * to the existing conditions, separated by AND.
 	 *
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
 	 * @param-taint $conds exec_sql_numkey
 	 *
@@ -224,6 +222,7 @@ class UpdateQueryBuilder {
 	/**
 	 * Add conditions to the query. Alias for where().
 	 *
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
 	 * @param-taint $conds exec_sql_numkey
 	 * @return $this
@@ -235,6 +234,7 @@ class UpdateQueryBuilder {
 	/**
 	 * Add conditions to the query. Alias for where().
 	 *
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
 	 * @param-taint $conds exec_sql_numkey
 	 * @return $this
