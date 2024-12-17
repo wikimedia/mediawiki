@@ -1669,7 +1669,7 @@
 	"feedback-subject": "Fáddá:",
 	"feedback-submit": "Vuolgât",
 	"feedback-thanks-title": "Takkâ!",
-	"searchsuggest-search": "Uusâ {{SITENAME}}:st",
+	"searchsuggest-search": "Uusâ {{SITENAME}}st",
 	"searchsuggest-containing": "Uusâ siijđoid, moh siskeldeh",
 	"api-error-unknown-warning": "Tubdâmettum váruttâs: \"$1\".",
 	"api-error-unknownerror": "Tubdâmettum feilâ: \"$1\".",
@@ -1759,5 +1759,5 @@
 	"renameuserwarnings": "Váruttâsah:",
 	"renameuser-warning-currentblock": "Taat kevtee lii [$1 tääl estum].",
 	"log-name-renameuser": "Kevtteenoomâi molsom loki",
-	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|uđđâsistnomâttij}} kevttee $4 ({{PLURAL:$6|$6 hammiimid|0=Ij ohtâge hammim|1=1 hammim|2=2 hammim|3=3 hammim|4=4 hammim|5=5 hammim|6=6 hammim}}) noomáin {{GENDER:$7|$5}}"
+	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|uđđâsistnomâttij}} kevttee $4 ({{PLURAL:$6|$6 hammiimid|0=Ij ohtâgin hammim|1=1 hammim|2=2 hammim|3=3 hammim|4=4 hammim|5=5 hammim|6=6 hammim}}) noomáin {{GENDER:$7|$5}}"
 }

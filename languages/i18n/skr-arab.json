@@ -311,7 +311,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} تہاݙے وانگوں علم دوست افراد دا مرہون منت ہے۔",
 	"createacct-benefit-body1": "$1 {{PLURAL:$1|تبدیلی|تبدیلیاں}}",
 	"createacct-benefit-body2": "\n$1 {{PLURAL:$1|ورقہ|ورقے}}",
-	"createacct-benefit-body3": "ہݨ دے {{PLURAL:$1|کم|کماں}}",
+	"createacct-benefit-body3": "حالیہ {{PLURAL:$1|ونگارو}}",
 	"badretype": "جہڑے پاس ورڈ تساں لکھن ٹھیک کائنی۔",
 	"loginerror": "لاگ ان وچ غلطی",
 	"createacct-error": "کھاتہ بݨاوݨ وچ غلطی",

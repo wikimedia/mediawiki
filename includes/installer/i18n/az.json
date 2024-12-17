@@ -10,7 +10,9 @@
 		]
 	},
 	"config-desc": "MediaWiki yükləyicisi",
+	"config-title": "MediaWiki $1 quraşdırılması",
 	"config-information": "Məlumat",
+	"config-localsettings-upgrade": "<code>LocalSettings.php</code> faylı aşkar edildi.\nBu quraşdırmanı təkmilləşdirmək üçün zəhmət olmasa, aşağıdakı xanaya <code>$wgUpgradeKey</code> dəyərini daxil edin.\nSiz onu <code>LocalSettings.php</code> faylında tapa bilərsiniz.",
 	"config-back": "← Geri",
 	"config-continue": "Davam et →",
 	"config-page-language": "Dil",

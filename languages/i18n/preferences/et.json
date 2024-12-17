@@ -15,6 +15,7 @@
 	},
 	"preferences": "Eelistused",
 	"prefsnologintext2": "Palun logi sisse, et oma eelistusi muuta.",
+	"prefsnologintext2-for-temp-user": "Palun loo konto, et eelistusi muuta.",
 	"searchprefs": "Otsi eelistusi",
 	"searchprefs-noresults": "Tulemusi ei leitud.",
 	"searchprefs-results": "$1 {{PLURAL:$1|tulemus|tulemust}}",
