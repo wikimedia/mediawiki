@@ -698,6 +698,7 @@
 	"autocreate-preview-warning": "<em>Anda belum masuk log. Setelah Anda melakukan penyuntingan, akun sementara untuk Anda akan dibuatkan. [[{{MediaWiki:tempuser-helppage}}|Pelajari lebih lanjut]].</em>",
 	"missingsummary": "<strong>Peringatan:</strong> Anda tidak memasukkan ringkasan penyuntingan. Jika Anda kembali menekan tombol \"$1\", suntingan Anda akan diterbitkan tanpa ringkasan penyuntingan.",
 	"selfredirect": "<strong>Peringatan:</strong> Anda mengalihkan halaman ini kembali ke halaman semula.\nAnda bisa jadi telah memberikan tujuan pengalihan yang salah, atau telah menyunting halaman yang salah.\nJika Anda mengeklik \"$1\" sekali lagi, halaman pengalihan akan dibuat.",
+	"edit-constraint-brokenredirect": "<strong>Peringatan:</strong> Anda mengalihkan halaman ini ke halaman yang tidak ada.\nAnda mungkin telah menentukan target yang salah untuk pengalihan tersebut.\nJika Anda mengklik \"$1\" lagi, pengalihan akan tetap dibuat.",
 	"missingcommenttext": "Tolong masukkan komentar.",
 	"missingcommentheader": "'''Peringatan:''' Anda belum memberikan subjek atau judul untuk komentar Anda. Jika Anda kembali menekan \"$1\", suntingan Anda akan diterbitkan tanpa judul tersebut.",
 	"summary-preview": "Pratayang ringkasan suntingan:",

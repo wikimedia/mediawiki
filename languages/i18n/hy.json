@@ -1564,6 +1564,7 @@
 	"ipb-blocklist": "Դիտել գործող արգելափակումները",
 	"ipb-blocklist-contribs": "$1 մասնակցի ներդրումը",
 	"ipb-blocklist-duration-left": "մնաց $1",
+	"block-change-visibility": "Փոխել տեսանելիությունը",
 	"block-expiry": "Մարման ժամկետ.",
 	"block-reason": "Պատճառ՝",
 	"block-item-edit": "Խմբագրել",

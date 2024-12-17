@@ -1111,6 +1111,7 @@
 	"searchall": "alle",
 	"showingresultsinrange": "Nachfolgend {{PLURAL:$1|wird|werden}} bis zu <strong>$1</strong> {{PLURAL:$1|Ergebnis|Ergebnisse}} im Bereich #<strong>$2</strong> bis #<strong>$3</strong> angezeigt.",
 	"search-showingresults": "{{PLURAL:$4|1=Ergebnis <strong>$1</strong> von <strong>$3</strong>|Ergebnisse <strong>$1 bis $2</strong> von <strong>$3</strong>}}",
+	"search-showingresults-approximate": "{{PLURAL:$4| 1=Ein Ergebnis <strong>$1</strong> von mindestens <strong>$3</strong> |Ergebnisse <strong>$1 – $2</strong> von mindestens <strong>$3</strong> }}",
 	"search-nonefound": "Zu deiner Suchanfrage wurden keine Ergebnisse gefunden.",
 	"search-nonefound-thiswiki": "Es existieren auf dieser Website keine der Suchanfrage entsprechenden Ergebnisse.",
 	"powersearch-legend": "Erweiterte Suche",
