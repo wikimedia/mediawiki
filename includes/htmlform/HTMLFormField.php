@@ -664,6 +664,9 @@ abstract class HTMLFormField {
 		if ( $this->mCondState ) {
 			$rowAttributes['data-cond-state'] = FormatJson::encode( $this->parseCondStateForClient() );
 			$rowClasses .= implode( ' ', $this->mCondStateClass );
+			if ( $this->isHidden( $this->mParent->mFieldData ) ) {
+				$rowClasses .= ' mw-htmlform-hide-if-hidden';
+			}
 		}
 
 		if ( $verticalLabel ) {
@@ -730,6 +733,9 @@ abstract class HTMLFormField {
 		if ( $this->mCondState ) {
 			$wrapperAttributes['data-cond-state'] = FormatJson::encode( $this->parseCondStateForClient() );
 			$wrapperAttributes['class'] = array_merge( $wrapperAttributes['class'], $this->mCondStateClass );
+			if ( $this->isHidden( $this->mParent->mFieldData ) ) {
+				$wrapperAttributes['class'][] = 'mw-htmlform-hide-if-hidden';
+			}
 		}
 		return Html::rawElement( 'div', $wrapperAttributes, $label . $field ) .
 			$helptext;
@@ -794,6 +800,9 @@ abstract class HTMLFormField {
 		}
 		if ( $this->mCondState ) {
 			$config['classes'] = array_merge( $config['classes'], $this->mCondStateClass );
+			if ( $this->isHidden( $this->mParent->mFieldData ) ) {
+				$config['classes'][] = 'mw-htmlform-hide-if-hidden';
+			}
 		}
 
 		// the element could specify, that the label doesn't need to be added
@@ -890,6 +899,9 @@ abstract class HTMLFormField {
 		if ( $this->mCondState ) {
 			$fieldAttributes['data-cond-state'] = FormatJson::encode( $this->parseCondStateForClient() );
 			$fieldClasses = array_merge( $fieldClasses, $this->mCondStateClass );
+			if ( $this->isHidden( $this->mParent->mFieldData ) ) {
+				$fieldClasses[] = 'mw-htmlform-hide-if-hidden';
+			}
 		}
 
 		return Html::rawElement( 'div', [ 'class' => $fieldClasses ] + $fieldAttributes,

@@ -233,6 +233,12 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 				const shouldHide = spec.hide ? test.hide() : false;
 				const shouldDisable = shouldHide || ( spec.disable ? test.disable() : false );
 				if ( spec.hide ) {
+					// Remove server-side CSS class that hides the elements, and re-compute the state
+					if ( $elOrLayout instanceof $ ) {
+						$elOrLayout.removeClass( 'mw-htmlform-hide-if-hidden' );
+					} else {
+						$elOrLayout.$element.removeClass( 'mw-htmlform-hide-if-hidden' );
+					}
 					// The .toggle() method works mostly the same for jQuery objects and OO.ui.Widget
 					$elOrLayout.toggle( !shouldHide );
 				}

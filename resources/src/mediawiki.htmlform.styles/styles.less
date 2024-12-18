@@ -45,3 +45,9 @@ tr.mw-htmlform-vertical-label td.mw-label {
 		false, @background-position-base, initial
 	);
 }
+
+// Hide conditionally-hidden fields only if we have JS enabled (which can show them again when needed)
+.client-js .mw-htmlform-hide-if-hidden {
+	// Override 'display' properties from any field
+	display: none !important; /* stylelint-disable-line declaration-no-important */
+}
