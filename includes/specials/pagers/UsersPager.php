@@ -382,7 +382,7 @@ class UsersPager extends AlphabeticPager {
 		$groupOptions = [ $this->msg( 'group-all' )->text() => '' ];
 		foreach ( $this->getAllGroups() as $group => $groupText ) {
 			if ( array_key_exists( $groupText, $groupOptions ) ) {
-				LoggerFactory::getInstance( 'error' )->error(
+				LoggerFactory::getInstance( 'translation-problem' )->error(
 					'The group {group_one} has the same translation as {group_two} for {lang}. ' .
 					'{group_one} will not be displayed in group dropdown of the UsersPager.',
 					[

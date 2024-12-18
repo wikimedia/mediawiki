@@ -230,7 +230,7 @@ class LogEventsList extends ContextSource {
 			$page = new LogPage( $type );
 			$pageText = $page->getName()->text();
 			if ( in_array( $pageText, $typesByName ) ) {
-				LoggerFactory::getInstance( 'error' )->error(
+				LoggerFactory::getInstance( 'translation-problem' )->error(
 					'The log type {log_type_one} has the same translation as {log_type_two} for {lang}. ' .
 					'{log_type_one} will not be displayed in the drop down menu on Special:Log.',
 					[
