@@ -136,6 +136,13 @@ module.exports = exports = defineStore( 'block', () => {
 	 * @type {Ref<boolean>}
 	 */
 	const hardBlock = ref( additionalDetails.indexOf( 'wpHardBlock' ) !== -1 );
+	/*
+	 * The removal reason, used in the remove-block confirmation dialog.
+	 * Note that the target and watchuser values in that form are shared with the main form.
+	 *
+	 * @type {Ref<string>}
+	 */
+	const removalReason = ref( mw.config.get( 'blockRemovalReasonPreset' ) || '' );
 
 	// Other refs that don't have corresponding form fields.
 
@@ -445,6 +452,29 @@ module.exports = exports = defineStore( 'block', () => {
 	}
 
 	/**
+	 * Send the API request to remove a single block.
+	 *
+	 * @return {Promise|jQuery.Promise}
+	 */
+	function doRemoveBlock() {
+		const params = {
+			action: 'unblock',
+			reason: removalReason.value
+		};
+		if ( blockId.value ) {
+			params.id = blockId.value;
+		} else {
+			params.user = targetUser.value;
+		}
+		if ( watchUser.value ) {
+			params.watchuser = 1;
+		}
+		// Reset the blockLogPromise so the log will be re-requested after the removal.
+		blockLogPromise = null;
+		return pushPromise( api.postWithEditToken( params ) );
+	}
+
+	/**
 	 * Query the API for data needed by the BlockLog component. This method caches the response
 	 * by target user to consolidate API requests across multiple BlockLog components.
 	 * The cache is cleared when the target user changes by a watcher in the store.
@@ -540,9 +570,11 @@ module.exports = exports = defineStore( 'block', () => {
 		hardBlock,
 		confirmationMessage,
 		confirmationNeeded,
+		removalReason,
 		loadFromData,
 		resetForm,
 		doBlock,
+		doRemoveBlock,
 		getBlockLogData
 	};
 } );
