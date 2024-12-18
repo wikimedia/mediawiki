@@ -1534,15 +1534,15 @@ class HTMLForm extends ContextSource {
 		if ( $this->mShowSubmit ) {
 			$attribs = [];
 
-			if ( isset( $this->mSubmitID ) ) {
+			if ( $this->mSubmitID !== null ) {
 				$attribs['id'] = $this->mSubmitID;
 			}
 
-			if ( isset( $this->mSubmitName ) ) {
+			if ( $this->mSubmitName !== null ) {
 				$attribs['name'] = $this->mSubmitName;
 			}
 
-			if ( isset( $this->mSubmitTooltip ) ) {
+			if ( $this->mSubmitTooltip !== null ) {
 				$attribs += Linker::tooltipAndAccesskeyAttribs( $this->mSubmitTooltip );
 			}
 

@@ -102,7 +102,7 @@ class HTMLRestrictionsField extends HTMLFormField {
 			return $statusFormatter->getMessage( $value->validity );
 		}
 
-		if ( isset( $this->mValidationCallback ) ) {
+		if ( $this->mValidationCallback !== null ) {
 			return call_user_func( $this->mValidationCallback, $value, $alldata, $this->mParent );
 		}
 

@@ -74,15 +74,15 @@ class OOUIHTMLForm extends HTMLForm {
 				'flags' => $this->mSubmitFlags,
 			];
 
-			if ( isset( $this->mSubmitID ) ) {
+			if ( $this->mSubmitID !== null ) {
 				$attribs['id'] = $this->mSubmitID;
 			}
 
-			if ( isset( $this->mSubmitName ) ) {
+			if ( $this->mSubmitName !== null ) {
 				$attribs['name'] = $this->mSubmitName;
 			}
 
-			if ( isset( $this->mSubmitTooltip ) ) {
+			if ( $this->mSubmitTooltip !== null ) {
 				$attribs += [
 					'title' => Linker::titleAttrib( $this->mSubmitTooltip ),
 					'accessKey' => Linker::accesskey( $this->mSubmitTooltip ),
