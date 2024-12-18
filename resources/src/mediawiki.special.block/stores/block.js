@@ -12,6 +12,13 @@ module.exports = exports = defineStore( 'block', () => {
 	// TODO: Rid of the `mw.config.get( 'whatever' )` atrocity once we have Codex PHP (T377529)
 
 	/**
+	 * Whether the multiblocks feature is enabled with $wgEnableMultiBlocks.
+	 *
+	 * @type {boolean}
+	 */
+	const enableMultiblocks = mw.config.get( 'blockEnableMultiblocks' ) || false;
+
+	/**
 	 * The target user to block. Beyond the initial value,
 	 * this is set only by the UserLookup component.
 	 *
@@ -350,8 +357,17 @@ module.exports = exports = defineStore( 'block', () => {
 			errorsuselocal: true
 		};
 
-		if ( alreadyBlocked.value ) {
+		if ( !enableMultiblocks && alreadyBlocked.value ) {
 			params.reblock = 1;
+		}
+
+		if ( enableMultiblocks ) {
+			if ( blockId.value ) {
+				params.id = blockId.value;
+				delete params.user;
+			} else {
+				params.newblock = 1;
+			}
 		}
 
 		// Reason selected concatenated with 'Other' field
@@ -488,6 +504,7 @@ module.exports = exports = defineStore( 'block', () => {
 	}
 
 	return {
+		enableMultiblocks,
 		formDisabled,
 		formErrors,
 		formSubmitted,

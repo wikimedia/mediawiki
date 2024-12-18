@@ -1,6 +1,6 @@
 <template>
 	<!-- @todo Remove after it's no longer new. -->
-	<cdx-message v-if="blockEnableMultiblocks" allow-user-dismiss>
+	<cdx-message v-if="enableMultiblocks" allow-user-dismiss>
 		{{ $i18n( 'block-multiblocks-new-feature' ) }}
 	</cdx-message>
 	<cdx-field
@@ -123,16 +123,19 @@ module.exports = exports = defineComponent( {
 	},
 	setup() {
 		const store = useBlockStore();
-		const blockEnableMultiblocks = mw.config.get( 'blockEnableMultiblocks' ) || false;
 		const blockShowSuppressLog = mw.config.get( 'blockShowSuppressLog' ) || false;
 		const canDeleteLogEntry = mw.config.get( 'canDeleteLogEntry' ) || false;
-		const { formErrors, formSubmitted, formVisible, success } = storeToRefs( store );
+		const { formErrors, formSubmitted, formVisible, success, enableMultiblocks } = storeToRefs( store );
 		const messagesContainer = ref();
 		// Value to use for BlockLog component keys, so they reload after saving.
 		const submitCount = ref( 0 );
-		// eslint-disable-next-line arrow-body-style
 		const submitButtonMessage = computed( () => {
-			return mw.message( store.alreadyBlocked ? 'block-update' : 'ipbsubmit' ).text();
+			if ( ( !store.enableMultiblocks && store.alreadyBlocked ) ||
+				( store.enableMultiblocks && store.blockId )
+			) {
+				return mw.message( 'block-update' ).text();
+			}
+			return mw.message( 'ipbsubmit' ).text();
 		} );
 		const confirmationOpen = ref( false );
 		const blockId = computed( () => mw.util.getParamValue( 'id' ) );
@@ -275,7 +278,7 @@ module.exports = exports = defineComponent( {
 			success,
 			submitCount,
 			submitButtonMessage,
-			blockEnableMultiblocks,
+			enableMultiblocks,
 			blockShowSuppressLog,
 			canDeleteLogEntry,
 			confirmationOpen,
