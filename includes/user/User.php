@@ -934,7 +934,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 * @param int $limit Max number of users to return. The actual limit will never exceed 5000
 	 *   records; larger values are ignored.
 	 * @param int|null $after ID the user to start after
-	 * @return UserArrayFromResult|ArrayIterator
+	 * @return UserArray|ArrayIterator
 	 */
 	public static function findUsersByGroup( $groups, $limit = 5000, $after = null ) {
 		if ( $groups === [] ) {

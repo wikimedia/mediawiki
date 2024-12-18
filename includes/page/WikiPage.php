@@ -55,7 +55,6 @@ use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArrayFromResult;
 use MediaWiki\User\User;
-use MediaWiki\User\UserArrayFromResult;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\WikiMap\WikiMap;
@@ -1033,7 +1032,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	/**
 	 * Get a list of users who have edited this article, not including the user who made
 	 * the most recent revision, which you can get from $article->getUser() if you want it
-	 * @return UserArrayFromResult
+	 * @return UserArray
 	 */
 	public function getContributors() {
 		// @todo: This is expensive; cache this info somewhere.

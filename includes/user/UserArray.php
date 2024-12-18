@@ -21,6 +21,7 @@
 namespace MediaWiki\User;
 
 use ArrayIterator;
+use Countable;
 use Iterator;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
@@ -29,7 +30,7 @@ use Wikimedia\Rdbms\IResultWrapper;
 /**
  * Class to walk into a list of User objects.
  */
-abstract class UserArray implements Iterator {
+abstract class UserArray implements Iterator, Countable {
 	/**
 	 * @note Try to avoid in new code, in case getting UserIdentity batch is enough,
 	 * use {@link \MediaWiki\User\UserIdentityLookup::newSelectQueryBuilder()}.
@@ -37,7 +38,7 @@ abstract class UserArray implements Iterator {
 	 * moving towards deprecation.
 	 *
 	 * @param IResultWrapper $res
-	 * @return UserArrayFromResult|ArrayIterator
+	 * @return UserArray|ArrayIterator
 	 */
 	public static function newFromResult( $res ) {
 		$userArray = null;
@@ -55,7 +56,7 @@ abstract class UserArray implements Iterator {
 	 * moving towards deprecation.
 	 *
 	 * @param array $ids
-	 * @return UserArrayFromResult|ArrayIterator
+	 * @return UserArray|ArrayIterator
 	 */
 	public static function newFromIDs( $ids ) {
 		$ids = array_map( 'intval', (array)$ids ); // paranoia
@@ -79,7 +80,7 @@ abstract class UserArray implements Iterator {
 	 *
 	 * @since 1.25
 	 * @param array $names
-	 * @return UserArrayFromResult|ArrayIterator
+	 * @return UserArray|ArrayIterator
 	 */
 	public static function newFromNames( $names ) {
 		$names = array_map( 'strval', (array)$names ); // paranoia
@@ -94,6 +95,11 @@ abstract class UserArray implements Iterator {
 			->fetchResultSet();
 		return self::newFromResult( $res );
 	}
+
+	/**
+	 * @return int
+	 */
+	abstract public function count(): int;
 
 	/**
 	 * @return User

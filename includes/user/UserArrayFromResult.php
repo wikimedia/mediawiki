@@ -20,14 +20,13 @@
 
 namespace MediaWiki\User;
 
-use Countable;
 use stdClass;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
- * Class to walk into a list of User objects.
+ * @internal Call and type against UserArray instead.
  */
-class UserArrayFromResult extends UserArray implements Countable {
+class UserArrayFromResult extends UserArray {
 	/** @var IResultWrapper */
 	public $res;
 
