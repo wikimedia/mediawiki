@@ -749,7 +749,7 @@ class Parser {
 
 		# Information on limits, for the benefit of users who try to skirt them
 		if ( $this->svcOptions->get( MainConfigNames::EnableParserLimitReporting ) ) {
-			$this->makeLimitReport();
+			$this->makeLimitReport( $this->mOptions, $this->mOutput );
 		}
 
 		$this->mOutput->setFromParserOptions( $options );
@@ -769,43 +769,46 @@ class Parser {
 
 	/**
 	 * Set the limit report data in the current ParserOutput.
+	 * @internal
 	 */
-	protected function makeLimitReport() {
-		$maxIncludeSize = $this->mOptions->getMaxIncludeSize();
+	public function makeLimitReport(
+		ParserOptions $parserOptions, ParserOutput $parserOutput
+	) {
+		$maxIncludeSize = $parserOptions->getMaxIncludeSize();
 
-		$cpuTime = $this->mOutput->getTimeProfile( 'cpu' );
+		$cpuTime = $parserOutput->getTimeProfile( 'cpu' );
 		if ( $cpuTime !== null ) {
-			$this->mOutput->setLimitReportData( 'limitreport-cputime',
+			$parserOutput->setLimitReportData( 'limitreport-cputime',
 				sprintf( "%.3f", $cpuTime )
 			);
 		}
 
-		$wallTime = $this->mOutput->getTimeProfile( 'wall' );
-		$this->mOutput->setLimitReportData( 'limitreport-walltime',
+		$wallTime = $parserOutput->getTimeProfile( 'wall' );
+		$parserOutput->setLimitReportData( 'limitreport-walltime',
 			sprintf( "%.3f", $wallTime )
 		);
 
-		$this->mOutput->setLimitReportData( 'limitreport-ppvisitednodes',
-			[ $this->mPPNodeCount, $this->mOptions->getMaxPPNodeCount() ]
+		$parserOutput->setLimitReportData( 'limitreport-ppvisitednodes',
+			[ $this->mPPNodeCount, $parserOptions->getMaxPPNodeCount() ]
 		);
-		$this->mOutput->setLimitReportData( 'limitreport-postexpandincludesize',
+		$parserOutput->setLimitReportData( 'limitreport-postexpandincludesize',
 			[ $this->mIncludeSizes['post-expand'], $maxIncludeSize ]
 		);
-		$this->mOutput->setLimitReportData( 'limitreport-templateargumentsize',
+		$parserOutput->setLimitReportData( 'limitreport-templateargumentsize',
 			[ $this->mIncludeSizes['arg'], $maxIncludeSize ]
 		);
-		$this->mOutput->setLimitReportData( 'limitreport-expansiondepth',
-			[ $this->mHighestExpansionDepth, $this->mOptions->getMaxPPExpandDepth() ]
+		$parserOutput->setLimitReportData( 'limitreport-expansiondepth',
+			[ $this->mHighestExpansionDepth, $parserOptions->getMaxPPExpandDepth() ]
 		);
-		$this->mOutput->setLimitReportData( 'limitreport-expensivefunctioncount',
-			[ $this->mExpensiveFunctionCount, $this->mOptions->getExpensiveParserFunctionLimit() ]
+		$parserOutput->setLimitReportData( 'limitreport-expensivefunctioncount',
+			[ $this->mExpensiveFunctionCount, $parserOptions->getExpensiveParserFunctionLimit() ]
 		);
 
 		foreach ( $this->mStripState->getLimitReport() as [ $key, $value ] ) {
-			$this->mOutput->setLimitReportData( $key, $value );
+			$parserOutput->setLimitReportData( $key, $value );
 		}
 
-		$this->hookRunner->onParserLimitReportPrepare( $this, $this->mOutput );
+		$this->hookRunner->onParserLimitReportPrepare( $this, $parserOutput );
 
 		// Add on template profiling data in human/machine readable way
 		$dataByFunc = $this->mProfiler->getFunctionStats();
@@ -819,18 +822,18 @@ class Parser {
 				htmlspecialchars( $item['name'] ) );
 		}
 
-		$this->mOutput->setLimitReportData( 'limitreport-timingprofile', $profileReport );
+		$parserOutput->setLimitReportData( 'limitreport-timingprofile', $profileReport );
 
 		// Add other cache related metadata
 		if ( $this->svcOptions->get( MainConfigNames::ShowHostnames ) ) {
-			$this->mOutput->setLimitReportData( 'cachereport-origin', wfHostname() );
+			$parserOutput->setLimitReportData( 'cachereport-origin', wfHostname() );
 		}
-		$this->mOutput->setLimitReportData( 'cachereport-timestamp',
-			$this->mOutput->getCacheTime() );
-		$this->mOutput->setLimitReportData( 'cachereport-ttl',
-			$this->mOutput->getCacheExpiry() );
-		$this->mOutput->setLimitReportData( 'cachereport-transientcontent',
-			$this->mOutput->hasReducedExpiry() );
+		$parserOutput->setLimitReportData( 'cachereport-timestamp',
+			$parserOutput->getCacheTime() );
+		$parserOutput->setLimitReportData( 'cachereport-ttl',
+			$parserOutput->getCacheExpiry() );
+		$parserOutput->setLimitReportData( 'cachereport-transientcontent',
+			$parserOutput->hasReducedExpiry() );
 	}
 
 	/**

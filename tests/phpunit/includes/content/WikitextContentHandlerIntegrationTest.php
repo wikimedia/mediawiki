@@ -40,6 +40,11 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 				] + $defaults,
 			] )
 		);
+		// Limit reporting affects the options used
+		$this->overrideConfigValue(
+			MainConfigNames::EnableParserLimitReporting,
+			true
+		);
 	}
 
 	public static function provideGetParserOutput() {
@@ -52,15 +57,15 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 			'suppressSectionEditLinks',
 			'useParsoid',
 			'wrapclass',
+			'expensiveParserFunctionLimit',
+			'maxPPExpandDepth',
+			'maxPPNodeCount',
 		];
 		$commonParsoidOptions = array_merge( $commonOptions, [
 			// Currently no options specific to parsoid parses
 		] );
 		$commonLegacyOptions = array_merge( $commonOptions, [
 			'disableTitleConversion',
-			'expensiveParserFunctionLimit',
-			'maxPPExpandDepth',
-			'maxPPNodeCount',
 			'suppressTOC',
 			'targetLanguage',
 		] );
