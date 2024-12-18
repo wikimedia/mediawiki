@@ -20,7 +20,8 @@
 			"Wikiundeplattsnacker",
 			"Zylbath",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Ameisenigel"
 		]
 	},
 	"tog-underline": "Verwies ünnerstrieken",
@@ -619,7 +620,7 @@
 	"showhideselectedversions": "Utwählt Versionen wiesen/versteken",
 	"editundo": "rutnehmen",
 	"diff-empty": "(Keen Ünnerschied)",
-	"diff-multi-sameuser": "({{PLURAL:$1|Een dortwischenlegende Verschon |$1 dortwischenlegende Verschonen}} vun densölben Bruuker ward nich wiest)",
+	"diff-multi-sameuser": "({{PLURAL:$1|Een dortwischenlegende Verschon |$1 dortwischenlegende Verschonen}} vun densölben {{GENDER:$3|Bruuker}} ward nich wiest)",
 	"diff-multi-otherusers": "({{PLURAL:$1|Een twüschendör Verschoon|$1 twüschendör Verschoonen}} vun {{PLURAL:$2|een anner Bruker|$2 Brukers}} nicht wiest)",
 	"diff-multi-manyusers": "({{PLURAL:$1|Een Twischenversion|$1 Twischenversionen}} von mehr as $2 {{PLURAL:$2|Bruker|Brukers}} warrt nich wiest)",
 	"searchresults": "Söökresultaten",
@@ -933,6 +934,8 @@
 	"recentchangeslinked-summary": "Drag een Sietnaam in, um den Ännern an de Sieden linkt to oder vun disse Siet to sehn. (Um Saken vun een bestimmte Kategorie antokieken, drag  {{ns:category}}:Kategorienaam in). Ännern to Sieden in [[Special:Watchlist|dien Oppasslist]] sind <strong>fett</strong> schreven.",
 	"recentchangeslinked-page": "Siet:",
 	"recentchangeslinked-to": "Wies Ännern op Sieden, de hierher wiest",
+	"recentchanges-page-added-to-category": "[[:$1]] to Kategorie toföögt",
+	"recentchanges-page-removed-from-category": "[[:$1]] ut Kategorie wegmaakt",
 	"upload": "Hoochladen",
 	"uploadbtn": "Datei hoochladen",
 	"reuploaddesc": "Trüch to de Hoochladen-Siet.",

@@ -2032,7 +2032,7 @@
 	"backend-fail-connect": "Impossible de se connecter au serveur de stockage « $1 ».",
 	"backend-fail-internal": "Une erreur inconnue s’est produite dans le serveur de stockage « $1 ».",
 	"backend-fail-contenttype": "Impossible de déterminer le type de contenu du fichier à stocker en « $1 ».",
-	"backend-fail-batchsize": "Un lot de $1 opération{{PLURAL:$1||s}} sur fichiers a été donné au serveur de stockage qui limite à $2 opération{{PLURAL:$2||s}} par lot.",
+	"backend-fail-batchsize": "Un lot de $1 opération{{PLURAL:$1||s}} sur fichiers a été donné au serveur de stockage alors que la limite maximum est de $2.",
 	"backend-fail-usable": "Impossible de lire ou d’écrire le fichier « $1 » en raison de droits insuffisants ou de répertoires/conteneurs manquants.",
 	"backend-fail-stat": "Impossible de lire l’état du fichier « $1 ».",
 	"backend-fail-hash": "Impossible de déterminer le hachage cryptographique du fichier « $1 ».",
