@@ -234,9 +234,9 @@
 		this.textInput.toggle( false );
 		this.calendar.toggle( false );
 
-		// Hide unused <input> from PHP after infusion is done
 		// See InputWidget#reusePreInfuseDOM about config.$input
 		if ( config.$input ) {
+			// Hide unused <input> from PHP after infusion is done
 			config.$input.addClass( 'oo-ui-element-hidden' );
 		}
 	};
@@ -255,6 +255,20 @@
 	 * @event mw.widgets.DateInputWidget.deactivate
 	 * @param {boolean} userSelected Whether the deactivation happened because the user selected a value
 	 */
+
+	/* Static Methods */
+
+	/**
+	 * @inheritdoc
+	 */
+	mw.widgets.DateInputWidget.static.reusePreInfuseDOM = function ( node, config ) {
+		config = mw.widgets.DateInputWidget.super.static.reusePreInfuseDOM( node, config );
+		if ( config.$input ) {
+			// Ignore the extra field from PendingTextInputWidget (T382344)
+			config.$input = config.$input.first();
+		}
+		return config;
+	};
 
 	/* Methods */
 
