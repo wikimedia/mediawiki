@@ -1,7 +1,5 @@
 <?php
 /**
- * Factory for creating User objects without static coupling.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -35,9 +33,14 @@ use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
- * Creates User objects.
+ * Create User objects.
+ *
+ * This creates User objects, and involves all the same global state,
+ * but wraps it in a service class to avoid static coupling, which
+ * eases mocking in unit tests.
  *
  * @since 1.35
+ * @ingroup User
  */
 class UserFactory implements UserRigorOptions {
 

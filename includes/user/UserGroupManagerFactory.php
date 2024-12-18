@@ -34,6 +34,7 @@ use Wikimedia\Rdbms\ReadOnlyMode;
  * cross-wiki access.
  *
  * @since 1.35
+ * @ingroup User
  */
 class UserGroupManagerFactory {
 	private ServiceOptions $options;

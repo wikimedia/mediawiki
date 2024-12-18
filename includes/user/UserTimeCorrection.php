@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @author Derk-Jan Hartman <hartman.wiki@gmail.com>
  */
 
 namespace MediaWiki\User;
@@ -40,6 +38,8 @@ use Wikimedia\RequestTimeout\TimeoutException;
  * taking into account DST etc.
  *
  * @since 1.37
+ * @ingroup User
+ * @author Derk-Jan Hartman <hartman.wiki@gmail.com>
  */
 class UserTimeCorrection implements Stringable {
 

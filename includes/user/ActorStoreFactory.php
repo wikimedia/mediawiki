@@ -30,10 +30,10 @@ use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
- * ActorStore factory for various domains.
+ * ActorStore factory for any wiki domain.
  *
- * @package MediaWiki\User
  * @since 1.36
+ * @ingroup User
  */
 class ActorStoreFactory {
 

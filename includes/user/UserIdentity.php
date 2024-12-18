@@ -1,7 +1,5 @@
 <?php
 /**
- * Interface for objects representing user identity.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -35,6 +33,7 @@ use MediaWiki\DAO\WikiAwareEntity;
  * get an actor ID for a UserIdentity.
  *
  * @since 1.31
+ * @ingroup User
  */
 interface UserIdentity extends WikiAwareEntity {
 

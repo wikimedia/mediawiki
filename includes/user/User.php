@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements the User class for the %MediaWiki software.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -75,19 +73,47 @@ use Wikimedia\ScopedCallback;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
- * The User object encapsulates all of the user-specific settings (user_id,
- * name, rights, email address, options, last login time). Client
- * classes use the getXXX() functions to access these fields. These functions
- * do all the work of determining whether the user is logged in,
- * whether the requested option can be satisfied from cookies or
- * whether a database query is needed. Most of the settings needed
- * for rendering normal pages are set in the cookie to minimize use
- * of the database.
+ * @defgroup User User management
+ */
+
+/**
+ * User class for the %MediaWiki software.
+ *
+ * User objects manage reading and writing of user-specific storage, including:
+ * - `user` table (user_id, user_name, email, password, last login, etc.)
+ * - `user_properties` table (user options)
+ * - `user_groups` table (user rights and permissions)
+ * - `user_newtalk` table (last-seen for your own user talk page)
+ * - `watchlist` table (watched page titles by user, and their last-seen marker)
+ * - `block` table, formerly known as `ipblocks` (user blocks)
+ *
+ * Callers use getter methods (getXXX) to read these fields. These getter functions
+ * manage all higher-level responsibilities such as expanding default user options,
+ * interpreting user groups into specific rights. Most user data needed when
+ * rendering page views are cached (or stored in the session) to minimize repeat
+ * database queries.
+ *
+ * New code is encouraged to use the following narrower classes instead.
+ * If no replacement exist, and the User class method is not deprecated, feel
+ * free to use it in new code (instead of duplicating business logic).
+ *
+ * - UserIdentityValue, to represent a user name/id.
+ * - UserOptionsManager service, to read-write user options.
+ * - Authority via RequestContext::getAuthority, to represent the current user
+ *   with a easy shortcuts to interpret user permissions (can user X do Y on page Z)
+ *   without needing te call low-level PermissionManager and RateLimiter services.
+ *   Authority replaces methods like User::isAllowed, User::definitelyCan,
+ *   and User::pingLimiter.
+ * - PermissionManager service, to interpret rights and permissions of any user.
+ * - TalkPageNotificationManager service, replacing User::getNewtalk.
+ * - WatchlistManager service, replacing methods like User::isWatched,
+ *   User::addWatch, and User::clearNotification.
+ * - BlockManager service, replacing User::getBlock.
  *
  * @note User implements Authority to ease transition. Always prefer
  * using existing Authority or obtaining a proper Authority implementation.
  *
- * @note {@}newable in 1.35 only, the constructor is {@}internal since 1.36
+ * @ingroup User
  */
 #[AllowDynamicProperties]
 class User implements Stringable, Authority, UserIdentity, UserEmailContact {
@@ -232,9 +258,6 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	private $isTemp;
 
 	/**
-	 * Lightweight constructor for an anonymous user.
-	 *
-	 * @stable to call since 1.35
 	 * @internal since 1.36, use the UserFactory service instead
 	 *
 	 * @see MediaWiki\User\UserFactory
@@ -247,6 +270,8 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 * @see newFromRow()
 	 */
 	public function __construct() {
+		// By default, this is a lightweight constructor representing
+		// an anonymous user from the current web request and IP.
 		$this->clearInstanceCache( 'defaults' );
 	}
 

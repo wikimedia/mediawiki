@@ -1,7 +1,5 @@
 <?php
 /**
- * Class to walk into a list of User objects.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -28,6 +26,9 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IResultWrapper;
 
+/**
+ * Class to walk into a list of User objects.
+ */
 abstract class UserArray implements Iterator {
 	/**
 	 * @note Try to avoid in new code, in case getting UserIdentity batch is enough,

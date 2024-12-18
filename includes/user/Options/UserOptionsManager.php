@@ -42,6 +42,7 @@ use Wikimedia\Rdbms\IDBAccessObject;
 /**
  * A service class to control user options
  * @since 1.35
+ * @ingroup User
  */
 class UserOptionsManager extends UserOptionsLookup {
 

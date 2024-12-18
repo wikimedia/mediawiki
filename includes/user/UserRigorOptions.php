@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @author DannyS712
  */
 
 namespace MediaWiki\User;
@@ -26,6 +24,8 @@ namespace MediaWiki\User;
  * Shared interface for rigor levels when dealing with User methods
  *
  * @since 1.36
+ * @ingroup User
+ * @author DannyS712
  */
 interface UserRigorOptions {
 

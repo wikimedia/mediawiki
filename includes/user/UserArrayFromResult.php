@@ -1,7 +1,5 @@
 <?php
 /**
- * Class to walk into a list of User objects.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -26,6 +24,9 @@ use Countable;
 use stdClass;
 use Wikimedia\Rdbms\IResultWrapper;
 
+/**
+ * Class to walk into a list of User objects.
+ */
 class UserArrayFromResult extends UserArray implements Countable {
 	/** @var IResultWrapper */
 	public $res;

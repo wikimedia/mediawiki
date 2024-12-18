@@ -27,8 +27,10 @@ use Wikimedia\Rdbms\IReadableDatabase;
 /**
  * Service for looking up UserIdentity
  *
- * @package MediaWiki\User
+ * Default implementation is MediaWiki\User\ActorStore.
+ *
  * @since 1.36
+ * @ingroup User
  */
 interface UserIdentityLookup {
 
