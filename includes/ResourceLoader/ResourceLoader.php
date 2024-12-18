@@ -1737,6 +1737,10 @@ MESSAGE;
 	 * @param array $configuration List of configuration values keyed by variable name
 	 * @return string JavaScript code
 	 * @throws LogicException
+	 *
+	 * @deprecated since 1.44, Consider using package files instead or
+	 * you can return mw.config.set() combined with RL\Context::encodeJson, if available.
+	 * If not, use FormatJson::encode.
 	 */
 	public static function makeConfigSetScript( array $configuration ) {
 		$json = self::encodeJsonForScript( $configuration );

@@ -194,6 +194,9 @@ because of Phabricator reports.
 * The ReverseArrayIterator class, unused since 1.32, has been deprecated.
 * LinksUpdate::getImages() has been deprecated, like ParserOutput::getImages().
   Instead, use ParserOutput::getLinkList( ParserOutputLinkTypes::MEDIA ).
+* ResourceLoader::makeConfigSetScript() is now deprecated. Consider using
+  package files instead. Or, you can return "mw.config.set()" combined with
+  RL\Context::encodeJson, if available. If not, use FormatJson::encode.
 * ...
 * …
 
