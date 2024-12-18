@@ -757,7 +757,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 		$target = $this->opts['target'] ?? '';
 		$fields['target'] = $this->getTargetField( $target );
 
-		$ns = $this->opts['namespace'] ?? null;
+		$ns = $this->opts['namespace'] ?? 'all';
 		$fields['namespace'] = [
 			'type' => 'namespaceselect',
 			'label' => $this->msg( 'namespace' )->text(),
