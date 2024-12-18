@@ -565,21 +565,21 @@ class SqlBlobStore implements BlobStore {
 				return $this->cache->getWithSetCallback(
 					$this->getCacheKey( $blobAddress ),
 					$this->getCacheTTL(),
-					function () use ( $url, $flags ) {
+					function () use ( $url, $flags, $blobAddress ) {
 						// Ignore $setOpts; blobs are immutable and negatives are not cached
 						$blob = $this->extStoreAccess
 							->fetchFromURL( $url, [ 'domain' => $this->dbDomain ] );
 
-						return $blob === false ? false : $this->decompressData( $blob, $flags );
+						return $blob === false ? false : $this->decompressData( $blob, $flags, $blobAddress );
 					},
 					$this->getCacheOptions()
 				);
 			} else {
 				$blob = $this->extStoreAccess->fetchFromURL( $url, [ 'domain' => $this->dbDomain ] );
-				return $blob === false ? false : $this->decompressData( $blob, $flags );
+				return $blob === false ? false : $this->decompressData( $blob, $flags, $blobAddress );
 			}
 		} else {
-			return $this->decompressData( $raw, $flags );
+			return $this->decompressData( $raw, $flags, $blobAddress );
 		}
 	}
 
@@ -636,10 +636,11 @@ class SqlBlobStore implements BlobStore {
 	 * @param array $blobFlags Compression flags, such as 'gzip'.
 	 *   Note that not including 'utf-8' in $blobFlags will cause the data to be decoded
 	 *   according to the legacy encoding specified via setLegacyEncoding.
+	 * @param string|null $blobAddress Used for log message
 	 *
-	 * @return string|bool Decompressed text, or false on failure
+	 * @return string|false Decompressed text, or false on failure
 	 */
-	public function decompressData( string $blob, array $blobFlags ) {
+	public function decompressData( string $blob, array $blobFlags, ?string $blobAddress = null ) {
 		if ( in_array( 'error', $blobFlags ) ) {
 			// Error row, return false
 			return false;
@@ -649,10 +650,13 @@ class SqlBlobStore implements BlobStore {
 			# Deal with optional compression of archived pages.
 			# This can be done periodically via maintenance/compressOld.php, and
 			# as pages are saved if $wgCompressRevisions is set.
+			AtEase::suppressWarnings();
 			$blob = gzinflate( $blob );
+			AtEase::restoreWarnings();
 
 			if ( $blob === false ) {
-				wfWarn( __METHOD__ . ': gzinflate() failed' );
+				wfWarn( __METHOD__ . ': gzinflate() failed' .
+					( $blobAddress ? ' (at blob address ' . $blobAddress . ')' : '' ) );
 				return false;
 			}
 		}
