@@ -28,9 +28,9 @@ abstract class HTMLFormField {
 	/** @var array|array[] */
 	public $mParams;
 
-	/** @var callable(mixed,array,HTMLForm):(StatusValue|string|bool|Message) */
+	/** @var callable(mixed,array,HTMLForm):(StatusValue|string|bool|Message)|null */
 	protected $mValidationCallback;
-	/** @var callable(mixed,array,HTMLForm):(StatusValue|string|bool|Message) */
+	/** @var callable(mixed,array,HTMLForm):(StatusValue|string|bool|Message)|null */
 	protected $mFilterCallback;
 	/** @var string */
 	protected $mName;
@@ -449,7 +449,7 @@ abstract class HTMLFormField {
 			return $this->msg( 'htmlform-required' );
 		}
 
-		if ( !isset( $this->mValidationCallback ) ) {
+		if ( $this->mValidationCallback === null ) {
 			return true;
 		}
 
@@ -473,7 +473,7 @@ abstract class HTMLFormField {
 	 * @return mixed
 	 */
 	public function filter( $value, $alldata ) {
-		if ( isset( $this->mFilterCallback ) ) {
+		if ( $this->mFilterCallback !== null ) {
 			$value = ( $this->mFilterCallback )( $value, $alldata, $this->mParent );
 		}
 

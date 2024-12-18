@@ -168,7 +168,7 @@ class CodexHTMLForm extends HTMLForm {
 			$submitName = $this->mSubmitName;
 			$submitTooltip = [];
 
-			if ( isset( $this->mSubmitTooltip ) ) {
+			if ( $this->mSubmitTooltip !== null ) {
 				$submitTooltip += Linker::tooltipAndAccesskeyAttribs( $this->mSubmitTooltip );
 			}
 
