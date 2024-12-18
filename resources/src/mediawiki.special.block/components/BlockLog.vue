@@ -304,6 +304,10 @@ module.exports = exports = defineComponent( {
 	.cdx-table__header {
 		justify-content: flex-start;
 	}
+
+	table ul {
+		margin: 0;
+	}
 }
 
 .mw-block-log-fulllog {
