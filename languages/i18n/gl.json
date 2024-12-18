@@ -1017,6 +1017,7 @@
 	"searchall": "todo",
 	"showingresultsinrange": "{{PLURAL:$1|Móstrase <strong>$1</strong> resultado|Móstranse <strong>$1</strong> resultados}}, comezando polo número <strong>$2</strong> e rematando polo número <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|1=Resultado <strong>$1</strong> de <strong>$3</strong>|Resultados do <strong>$1</strong> ao <strong>$2</strong>, dun total de <strong>$3</strong>}}",
+	"search-showingresults-approximate": "{{PLURAL:$4|1=Resultado <strong>$1</strong> de, polo menos, <strong>$3</strong>|Resultados do <strong>$1</strong> ao <strong>$2</strong> de, polo menos, <strong>$3</strong>}}",
 	"search-nonefound": "Non se atopou ningún resultado que coincidise coa procura.",
 	"search-nonefound-thiswiki": "Non hai resultados neste sitio que cumpran os criterios de procura.",
 	"powersearch-legend": "Procura avanzada",

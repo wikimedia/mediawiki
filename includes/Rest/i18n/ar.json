@@ -89,6 +89,8 @@
 	"rest-unknown-content-model": "نموذج محتوى غير معروف: $1",
 	"rest-page-bundle-validation-error": "PageBundle لا يتطابق مع نسخة المحتوى: $1",
 	"rest-param-desc-revision-id": "معرف المراجعة",
+	"rest-param-desc-html-input-title": "تحويل عنوان إدخال HTML",
+	"rest-param-desc-page-content-title": "عنوان محتوى الصفحة",
 	"rest-param-desc-update-source": "محتوى الصفحة بالتنسيق المحدد بواسطة خاصية content_model",
 	"rest-param-desc-update-title": "تم تحديث عنوان الصفحة"
 }

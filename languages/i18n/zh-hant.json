@@ -1126,6 +1126,7 @@
 	"searchall": "全部",
 	"showingresultsinrange": "以下顯示從第 <strong>$2</strong> 筆至第 <strong>$3</strong> 筆中的 {{PLURAL:$1|<strong>$1</strong> 筆結果}}：",
 	"search-showingresults": "{{PLURAL:$4|1=第 <strong>$1</strong> 筆結果，共 <strong>$3</strong> 筆|第 <strong>$1 至 $2</strong> 筆結果，共 <strong>$3</strong> 筆}}",
+	"search-showingresults-approximate": "{{PLURAL:$4|1=第 <strong>$1</strong> 筆結果，共至少 <strong>$3</strong> 筆|第 <strong>$1 至 $2</strong> 筆結果，共至少 <strong>$3</strong> 筆}}",
 	"search-nonefound": "無符合查詢條件的結果。",
 	"search-nonefound-thiswiki": "在此網站沒有符合查詢條件的結果。",
 	"powersearch-legend": "進階搜尋",

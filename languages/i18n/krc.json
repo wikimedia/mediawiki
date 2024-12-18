@@ -1000,7 +1000,8 @@
 	"searchrelated": "бейламлы",
 	"searchall": "бютеу",
 	"showingresultsinrange": "<strong>$2</strong> бла <strong>$3</strong> арасында бютеулей <strong>$1</strong> {{PLURAL:$1|эсеб}} кёргюзюледи.",
-	"search-showingresults": "{{PLURAL:$4|1=<strong>$3</strong> эсебден <strong>$1</strong> sonuç|<strong>$3</strong> эсебден <strong>$1 – $2</strong> арасы}}",
+	"search-showingresults": "{{PLURAL:$4|1=<strong>$3</strong> эсебден <strong>$1</strong> эсеб|<strong>$3</strong> эсебден <strong>$1 – $2</strong> арасы}}",
+	"search-showingresults-approximate": "{{PLURAL:$4|1=Эм азы <strong>$3</strong> эсебден <strong>$1</strong>|Эм азы <strong>$3</strong> эсебден <strong>$1 – $2</strong>}}",
 	"search-nonefound": "Соруу бла келишген эсеб джокъду",
 	"search-nonefound-thiswiki": "Бу сайтда, соруу бла келишген эсеб табылмады.",
 	"powersearch-legend": "Кенг излеу",
@@ -2547,6 +2548,7 @@
 	"block-expiry-datetime": "Белгили дата эмда заман",
 	"block-options": "Къошакъ сайламла:",
 	"block-reason": "Чурум:",
+	"block-reason-help": "Юлгюге, вандализмден заран алгъан кескин бетлени белгилегиз",
 	"block-reason-other": "Къошакъ неда башха чурум",
 	"block-confirm-yes": "Хоу",
 	"block-confirm-no": "Огъай",
@@ -2563,6 +2565,7 @@
 	"block-target-placeholder": "Хайырланыучу ат, IP-адрес неда IP диапазон",
 	"block-pages-placeholder": "Аслам бет къош...",
 	"block-namespaces-placeholder": "Аслам ат аалм къош...",
+	"block-update": "Блокну джангырт",
 	"unblockip": "Къошулуучуну тыйгъыч этиуню тохтат",
 	"unblockiptext": "Алгъаракъ тыйылгъан IP-адресге неда къошулуучюге джазар эркинликни къайтарыргъа излей эсенг, тюбюндеги форманы хайырландыр.",
 	"ipusubmit": "Бу тыйгъычны кетер",
@@ -4242,5 +4245,11 @@
 	"benefit-3-description": "Сынамыгъызны энчилешдирирге амал берген джарашдырыула.",
 	"temp-user-unable-to-acquire": "Болджаллы хыйсаб хайырланыучу ат алыналмайды. Тилейбиз джангыдан сынагъыз.",
 	"table-of-contents-show-button-aria-label": "Ичиндегилени таблицасын кёргюз",
-	"table-of-contents-hide-button-aria-label": "Ичиндегилени таблицасын джашыр"
+	"table-of-contents-hide-button-aria-label": "Ичиндегилени таблицасын джашыр",
+	"interwiki": "Винтервики билгини кёргюз эмда тюзет",
+	"interwiki-title-norights": "Интервики билгини кёргюз",
+	"interwiki_intro": "Бу, тюрлю-тюрлю викилеге эмда башха тыш сайтлагъа къызыу байланыр ючюн хайырландырылгъан префикс къысха джибериулени танытхан интервики таблицагъа тамал къарамды. Хайырланыугъа теджелген ючюн [https://www.mediawiki.org/wiki/Extension:Interwiki/tr MediaWiki.org-да мануалгъа] къарагъыз.",
+	"interwiki-legend-label": "Хапарлау",
+	"interwiki_prefix": "Префикс",
+	"interwiki-prefix-label": "Префикс:"
 }

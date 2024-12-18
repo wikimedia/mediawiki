@@ -1096,6 +1096,7 @@
 	"searchall": "alle",
 	"showingresultsinrange": "Hieronder {{PLURAL:$1|wordt|worden}} maximaal <strong>$1</strong> {{PLURAL:$1|resultaat|resultaten}} weergegeven in het bereik #<strong>$2</strong> tot #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|1=Resultaat <strong>$1</strong>|Resultaten <strong>$1–$2</strong>}} van <strong>$3</strong>",
+	"search-showingresults-approximate": "{{PLURAL:$4|1=Resultaat <strong>$1</strong>|Resultaten <strong>$1 – $2</strong>}} van ten minste <strong>$3</strong>",
 	"search-nonefound": "Er zijn geen resultaten voor uw zoekopdracht.",
 	"search-nonefound-thiswiki": "Er zijn voor uw zoekopdracht geen resultaten op deze site.",
 	"powersearch-legend": "Uitgebreid zoeken",

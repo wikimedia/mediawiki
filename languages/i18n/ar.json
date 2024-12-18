@@ -119,7 +119,7 @@
 		]
 	},
 	"sunday": "الأحد",
-	"monday": "الاثنين",
+	"monday": "الإثنين",
 	"tuesday": "الثلاثاء",
 	"wednesday": "الأربعاء",
 	"thursday": "الخميس",
@@ -1101,6 +1101,7 @@
 	"searchall": "الكل",
 	"showingresultsinrange": "يظهر أدناه ما يصل إلى <strong>$1</strong> {{PLURAL:$1|نتيجة|نتائج}} في النطاق #<strong>$2</strong> إلى #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|1=النتيجة <strong>$1</strong> من <strong>$3</strong>|النتائج <strong>$1 – $2</strong> من <strong>$3</strong>}}",
+	"search-showingresults-approximate": "{{PLURAL:$4|1=النتيجة <strong>$1</strong> من على الأقل <strong>$3</strong>|النتائج <strong>$1 – $2</strong> من على الأقل <strong>$3</strong>}}",
 	"search-nonefound": "لا توجد نتائج تطابق الاستعلام.",
 	"search-nonefound-thiswiki": "لا توجد نتائج تطابق الاستعلام في هذا الموقع.",
 	"powersearch-legend": "بحث متقدم",

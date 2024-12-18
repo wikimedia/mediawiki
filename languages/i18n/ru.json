@@ -1175,6 +1175,7 @@
 	"searchall": "все",
 	"showingresultsinrange": "Ниже показано до <strong>$1</strong> {{PLURAL:$1|результата|результатов}} в диапазоне от <strong>$2</strong> до <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|1=Результат <strong>$1</strong> из <strong>$3</strong>|Результаты <strong>$1—$2</strong> из <strong>$3</strong>}}",
+	"search-showingresults-approximate": "{{PLURAL:$4|1=Результат <strong>$1</strong> из не менее <strong>$3</strong>|Результаты <strong>$1—$2</strong> из не менее <strong>$3</strong>}}",
 	"search-nonefound": "Соответствий запросу не найдено.",
 	"search-nonefound-thiswiki": "На этом сайте нет результатов, соответствующих запросу.",
 	"powersearch-legend": "Расширенный поиск",
