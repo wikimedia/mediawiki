@@ -16,6 +16,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
+use Title;
 use Wikimedia\Assert\PreconditionException;
 
 /**
@@ -90,6 +91,17 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 	) {
 		$this->expectException( $expectedException );
 		new MutableRevisionRecord( $page, $wikiId );
+	}
+
+	/**
+	 * regression test for T381982
+	 */
+	public function testConstructorWithSpecialPage() {
+		$title = Title::makeTitle( NS_SPECIAL, 'Bad' );
+		$rev = new MutableRevisionRecord( $title );
+
+		$this->assertTrue( $title->isSamePageAs( $rev->getPage() ) );
+		$this->assertTrue( $title->isSameLinkAs( $rev->getPageAsLinkTarget() ) );
 	}
 
 	public function testSetGetId() {

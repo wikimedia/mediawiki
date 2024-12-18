@@ -24,6 +24,7 @@ namespace MediaWiki\Revision;
 
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
@@ -90,6 +91,28 @@ class RevisionArchiveRecord extends RevisionRecord {
 		$this->mDeleted = intval( $row->ar_deleted );
 		$this->mSize = isset( $row->ar_len ) ? intval( $row->ar_len ) : null;
 		$this->mSha1 = !empty( $row->ar_sha1 ) ? $row->ar_sha1 : null;
+
+		Assert::parameter(
+			$page->canExist(),
+			'$page',
+			'must represent a proper page'
+		);
+		Assert::postcondition(
+			parent::getPage() instanceof ProperPageIdentity,
+			'The parent constructor should have ensured that we have a ProperPageIdentity now.'
+		);
+	}
+
+	/**
+	 * Returns the page this revision belongs to.
+	 *
+	 * @return ProperPageIdentity (before 1.44, this was returning a PageIdentity)
+	 */
+	public function getPage(): ProperPageIdentity {
+		// Override to narrow the return type.
+		// We checked in the constructor that the page is a proper page.
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
+		return parent::getPage();
 	}
 
 	/**

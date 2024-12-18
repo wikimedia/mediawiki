@@ -10,7 +10,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use MediaWikiIntegrationTestCase;
 use MockTitleTrait;
-use Wikimedia\Assert\PreconditionException;
 
 /**
  * @covers \MediaWiki\Revision\MutableRevisionRecord
@@ -30,7 +29,6 @@ class MutableRevisionRecordTest extends MediaWikiIntegrationTestCase {
 		yield 'foreign wiki' => [
 			new PageIdentityValue( 17, NS_MAIN, 'Dummy', 'acmewiki' ),
 			'acmewiki',
-			PreconditionException::class
 		];
 	}
 
@@ -39,26 +37,19 @@ class MutableRevisionRecordTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @param PageIdentity $page
 	 * @param string|false $wikiId
-	 * @param string|null $expectedException
 	 */
 	public function testConstructorAndGetters(
 		PageIdentity $page,
-		$wikiId = RevisionRecord::LOCAL,
-		?string $expectedException = null
+		$wikiId = RevisionRecord::LOCAL
 	) {
 		$rec = new MutableRevisionRecord( $page, $wikiId );
 
 		$this->assertTrue( $page->isSamePageAs( $rec->getPage() ), 'getPage' );
 		$this->assertSame( $wikiId, $rec->getWikiId(), 'getWikiId' );
 
-		if ( $expectedException ) {
-			$this->expectException( $expectedException );
-			$rec->getPageAsLinkTarget();
-		} else {
-			$this->assertTrue(
-				TitleValue::newFromPage( $page )->isSameLinkAs( $rec->getPageAsLinkTarget() ),
-				'getPageAsLinkTarget'
-			);
-		}
+		$this->assertTrue(
+			TitleValue::newFromPage( $page )->isSameLinkAs( $rec->getPageAsLinkTarget() ),
+			'getPageAsLinkTarget'
+		);
 	}
 }

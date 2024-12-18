@@ -32,8 +32,10 @@ use MediaWiki\Page\LegacyArticleIdAccess;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\NonSerializable\NonSerializableTrait;
+use WikiPage;
 
 /**
  * Page revision base class.
@@ -102,6 +104,19 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 */
 	public function __construct( PageIdentity $page, RevisionSlots $slots, $wikiId = self::LOCAL ) {
 		$this->assertWikiIdParam( $wikiId );
+
+		// Make sure $page is immutable, see T380536. This is a nasty hack.
+		if ( !$page->canExist() ) {
+			// NOTE: We continue to support non-proper Titles for fake
+			// revisions used during parsing (T381982).
+			// TODO: Emit a deprecation warning for non-proper pages once
+			// we have a good alternative (T382341).
+		} elseif ( $page instanceof Title ) {
+			// Hack. Eventually, all PageIdentities should be immutable and "proper".
+			$page = $page->toPageIdentity();
+		} elseif ( $page instanceof WikiPage ) {
+			$page = $page->getTitle()->toPageIdentity();
+		}
 
 		$this->mPage = $page;
 		$this->mSlots = $slots;
@@ -395,9 +410,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * @return LinkTarget
 	 */
 	public function getPageAsLinkTarget() {
-		// TODO: Should be TitleValue::newFromPage( $this->mPage ),
-		// but Title is used too much still, so let's keep propagating it
-		return Title::newFromPageIdentity( $this->mPage );
+		return TitleValue::newFromPage( $this->mPage );
 	}
 
 	/**
