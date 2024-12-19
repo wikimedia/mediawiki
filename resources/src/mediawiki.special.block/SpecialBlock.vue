@@ -241,6 +241,7 @@ module.exports = exports = defineComponent( {
 				action: 'query',
 				list: 'blocks',
 				bkids: mw.util.getParamValue( 'id' ),
+				formatversion: 2,
 				format: 'json',
 				bkprop: 'id|user|by|timestamp|expiry|reason|range|flags|restrictions'
 			};
