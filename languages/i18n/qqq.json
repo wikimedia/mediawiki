@@ -2983,6 +2983,8 @@
 	"block-invalid-id": "Label for an error message shown when an invalid block ID is provided on [[Special:Block]]",
 	"unblockip": "Used as title and legend for the form in [[Special:Unblock]].",
 	"unblockiptext": "Used in the {{msg-mw|Unblockip}} form on [[Special:Unblock]].",
+	"unblock-target": "Used as a title and legend for the form in [[Special:Unblock]]",
+	"unblock-target-label": "Label for the target input on [[Special:Unblock]]",
 	"ipusubmit": "Used as button text on [{{canonicalurl:Special:BlockList|action=unblock}} Special:BlockList?action=unblock]. To see the message:\n* Go to [[Special:BlockList]]\n* Click \"unblock\" for any block (but you can only see \"unblock\" if you have administrator rights)\n* It is now the button below the form",
 	"unblocked": "{{doc-important|Do not translate the namespace \"User:\".}}\nParameters:\n* $1 - the username that was unblocked\nSee also:\n* {{msg-mw|Unblocked-range}}\n* {{msg-mw|Unblocked-id}}\n*{{msg-mw|Unblocked-ip}}",
 	"unblocked-range": "Shown when successfully lifting a rangeblock, so do not link to contributions. Parameters:\n* $1 - the range that was unblocked\nSee also:\n* {{msg-mw|Unblocked}}\n* {{msg-mw|Unblocked-id}}\n*{{msg-mw|Unblocked-ip}}",
