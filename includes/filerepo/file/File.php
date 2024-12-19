@@ -140,10 +140,10 @@ abstract class File implements MediaHandlerState {
 	/** @var Title */
 	protected $redirectedTitle;
 
-	/** @var FSFile|false False if undefined */
+	/** @var FSFile|false|null False if undefined */
 	protected $fsFile;
 
-	/** @var MediaHandler */
+	/** @var MediaHandler|null */
 	protected $handler;
 
 	/** @var string The URL corresponding to one of the four basic zones */
@@ -490,7 +490,7 @@ abstract class File implements MediaHandlerState {
 	 */
 	public function getLocalRefPath() {
 		$this->assertRepoDefined();
-		if ( !isset( $this->fsFile ) ) {
+		if ( !$this->fsFile ) {
 			$timer = MediaWikiServices::getInstance()->getStatsFactory()
 				->getTiming( 'media_thumbnail_generate_fetchoriginal_seconds' )
 				->copyToStatsdAt( 'media.thumbnail.generate.fetchoriginal' );
@@ -1567,7 +1567,7 @@ abstract class File implements MediaHandlerState {
 	 *   or false if none found
 	 */
 	public function getHandler() {
-		if ( !isset( $this->handler ) ) {
+		if ( !$this->handler ) {
 			$this->handler = MediaHandler::getHandler( $this->getMimeType() );
 		}
 

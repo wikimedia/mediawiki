@@ -58,7 +58,7 @@ class Telemetry implements TelemetryHeadersInterface {
 	}
 
 	public static function getInstance(): Telemetry {
-		if ( !isset( self::$instance ) ) {
+		if ( !self::$instance ) {
 			global $wgAllowExternalReqID;
 			self::$instance = new self( $_SERVER, $wgAllowExternalReqID );
 		}

@@ -732,7 +732,7 @@ abstract class ApiBase extends ContextSource {
 	 * @return IReadableDatabase
 	 */
 	protected function getDB() {
-		if ( !isset( $this->mReplicaDB ) ) {
+		if ( !$this->mReplicaDB ) {
 			$this->mReplicaDB = MediaWikiServices::getInstance()
 				->getConnectionProvider()
 				->getReplicaDatabase( false, 'api' );

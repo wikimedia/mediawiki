@@ -1222,7 +1222,7 @@ class Article implements Page {
 		}
 		$redirectTargetUrl = $this->getTitle()->getLinkURL( $query );
 
-		if ( isset( $this->mRedirectedFrom ) ) {
+		if ( $this->mRedirectedFrom ) {
 			// This is an internally redirected page view.
 			// We'll need a backlink to the source page for navigation.
 			if ( $this->getHookRunner()->onArticleViewRedirect( $this ) ) {

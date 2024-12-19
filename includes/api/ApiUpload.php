@@ -68,7 +68,7 @@ class ApiUpload extends ApiBase {
 
 	use ApiWatchlistTrait;
 
-	/** @var UploadBase|UploadFromChunks */
+	/** @var UploadBase|UploadFromChunks|null */
 	protected $mUpload = null;
 
 	/** @var array */
@@ -124,7 +124,7 @@ class ApiUpload extends ApiBase {
 		try {
 			if ( !$this->selectUploadModule() ) {
 				return; // not a true upload, but a status request or similar
-			} elseif ( !isset( $this->mUpload ) ) {
+			} elseif ( !$this->mUpload ) {
 				$this->dieDebug( __METHOD__, 'No upload module set' );
 			}
 		} catch ( UploadStashException $e ) { // XXX: don't spam exception log

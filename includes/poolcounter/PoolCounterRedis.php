@@ -70,7 +70,7 @@ class PoolCounterRedis extends PoolCounter {
 	protected $keySha1;
 	/** @var int TTL for locks to expire (work should finish in this time) */
 	protected $lockTTL;
-	/** @var RedisConnRef */
+	/** @var RedisConnRef|null */
 	protected $conn;
 	/** @var string|null Pool slot value */
 	protected $slot;
@@ -112,7 +112,7 @@ class PoolCounterRedis extends PoolCounter {
 	 * @return Status Uses RediConnRef as value on success
 	 */
 	protected function getConnection() {
-		if ( !isset( $this->conn ) ) {
+		if ( !$this->conn ) {
 			$conn = false;
 			$servers = $this->ring->getLocations( $this->key, 3 );
 			ArrayUtils::consistentHashSort( $servers, $this->key );

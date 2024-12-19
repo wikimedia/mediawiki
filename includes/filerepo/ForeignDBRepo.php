@@ -82,7 +82,7 @@ class ForeignDBRepo extends LocalRepo implements IForeignRepoWithDB {
 	}
 
 	public function getPrimaryDB() {
-		if ( !isset( $this->dbConn ) ) {
+		if ( !$this->dbConn ) {
 			$func = $this->getDBFactory();
 			$this->dbConn = $func( DB_PRIMARY );
 		}

@@ -628,7 +628,7 @@ class ArchivedFile {
 	 * @return MediaHandler
 	 */
 	private function getHandler() {
-		if ( !isset( $this->handler ) ) {
+		if ( !$this->handler ) {
 			$this->handler = MediaHandler::getHandler( $this->getMimeType() );
 		}
 

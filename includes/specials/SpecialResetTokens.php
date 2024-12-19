@@ -56,7 +56,7 @@ class SpecialResetTokens extends FormSpecialPage {
 	 * @return array
 	 */
 	protected function getTokensList() {
-		if ( !isset( $this->tokensList ) ) {
+		if ( !$this->tokensList ) {
 			$tokens = [
 				[ 'preference' => 'watchlisttoken', 'label-message' => 'resettokens-watchlist-token' ],
 			];

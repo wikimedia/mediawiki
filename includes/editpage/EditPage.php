@@ -275,7 +275,7 @@ class EditPage implements IEditObject {
 	/** @var string */
 	private $hookError = '';
 
-	/** @var ParserOutput */
+	/** @var ParserOutput|null */
 	private $mParserOutput;
 
 	/**
@@ -2853,7 +2853,7 @@ class EditPage implements IEditObject {
 		# NOTE: getDisplayTitle() returns HTML while getPrefixedText() returns plain text.
 		#       Escape ::getPrefixedText() so that we have HTML in all cases,
 		#       and pass as a "raw" parameter to ::setPageTitleMsg().
-		$displayTitle = isset( $this->mParserOutput ) ? $this->mParserOutput->getDisplayTitle() : false;
+		$displayTitle = $this->mParserOutput ? $this->mParserOutput->getDisplayTitle() : false;
 		if ( $displayTitle === false ) {
 			$displayTitle = htmlspecialchars(
 				$contextTitle->getPrefixedText(), ENT_QUOTES, 'UTF-8', false
@@ -4275,7 +4275,7 @@ class EditPage implements IEditObject {
 	public function getTemplates() {
 		if ( $this->preview || $this->section !== '' ) {
 			$templates = [];
-			if ( !isset( $this->mParserOutput ) ) {
+			if ( !$this->mParserOutput ) {
 				return $templates;
 			}
 			foreach (
