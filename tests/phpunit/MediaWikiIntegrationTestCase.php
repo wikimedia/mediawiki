@@ -236,6 +236,12 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			die();
 		}
 
+		$reflection = new ReflectionClass( static::class );
+		// TODO: Eventually we should assert for test presence in /integration/
+		if ( str_contains( $reflection->getFileName(), '/unit/' ) ) {
+			self::fail( 'This integration test should not be in "tests/phpunit/unit" !' );
+		}
+
 		// Get the original service locator
 		if ( !self::$originalServices ) {
 			self::$originalServices = MediaWikiServices::getInstance();
@@ -636,11 +642,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				'tearDown() for post-test assertions.' );
 		}
 
-		$reflection = new ReflectionClass( $this );
-		// TODO: Eventually we should assert for test presence in /integration/
-		if ( str_contains( $reflection->getFileName(), '/unit/' ) ) {
-			$this->fail( 'This integration test should not be in "tests/phpunit/unit" !' );
-		}
 		if ( $this->tablesUsed && !self::isTestInDatabaseGroup() ) {
 			throw new LogicException(
 				get_class( $this ) . ' defines $tablesUsed but is not in the Database group'
