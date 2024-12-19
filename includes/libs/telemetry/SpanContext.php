@@ -83,6 +83,34 @@ class SpanContext implements JsonSerializable {
 		$this->sampled = $sampled;
 	}
 
+	/**
+	 * Attempt to create a new SpanContext from a traceparent header.
+	 * It will be suitable for passing as $parentSpanContext when creating spans.
+	 * If the header cannot be parsed, null will be returned.
+	 * (Note that we do not currently support traceparent versions other than 00.)
+	 *
+	 * @see TracerInterface::createSpanWithParent()
+	 * @see https://www.w3.org/TR/trace-context/
+	 * @param ?string $traceparent The traceparent header value.
+	 * @return SpanContext|null
+	 */
+	public static function newFromTraceparentHeader( ?string $traceparent ): ?self {
+		if ( !$traceparent ) {
+			return null;
+		}
+		$matches = [];
+		if ( !preg_match( '/^00-([0-9a-f]{32})-([0-9a-f]{16})-([0-9a-f]{2})$/', $traceparent, $matches ) ) {
+			return null;
+		}
+		return new self(
+			$matches[1],
+			$matches[2],
+			null,
+			'',
+			( hexdec( $matches[3] ) & 1 ) === 1
+		);
+	}
+
 	public function setEndEpochNanos( int $endEpochNanos ): void {
 		$this->endEpochNanos = $endEpochNanos;
 	}
