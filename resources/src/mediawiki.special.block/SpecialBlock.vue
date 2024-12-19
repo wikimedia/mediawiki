@@ -255,7 +255,12 @@ module.exports = exports = defineComponent( {
 		 */
 		function doBlock() {
 			store.doBlock()
-				.done( () => {
+				.done( ( result ) => {
+					// Set the target user to the user that was blocked.
+					// This is primarily for the log entries when blocking a range.
+					if ( result.block && result.block.user ) {
+						store.targetUser = result.block.user;
+					}
 					success.value = true;
 					formErrors.value = [];
 					// Bump the submitCount (to re-render the logs) after scrolling

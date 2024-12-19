@@ -12,10 +12,11 @@ describe( 'SpecialBlock', () => {
 	 * so that jQuery promise chain methods (e.g. always()) will execute in the test.
 	 *
 	 * @param {Object} [config] Configuration to override the defaults.
+	 * @param {Object} [postResponse] Response to return from the postWithEditToken call.
 	 */
-	const withSubmission = ( config ) => {
+	const withSubmission = ( config, postResponse ) => {
 		const jQuery = jest.requireActual( '../../../resources/lib/jquery/jquery.js' );
-		mw.Api.prototype.postWithEditToken = jest.fn( () => jQuery.Deferred().resolve().promise() );
+		mw.Api.prototype.postWithEditToken = jest.fn( () => jQuery.Deferred().resolve( postResponse ).promise() );
 		HTMLFormElement.prototype.checkValidity = jest.fn().mockReturnValue( true );
 		wrapper = getSpecialBlock( config );
 	};
@@ -47,7 +48,7 @@ describe( 'SpecialBlock', () => {
 	} );
 
 	it( 'should submit an API request to block the user', async () => {
-		withSubmission();
+		withSubmission( undefined, { block: { user: 'ExampleUser' } } );
 		await wrapper.find( '[name=wpTarget]' ).setValue( 'ExampleUser' );
 		await wrapper.find( '.mw-block-log__create-button' ).trigger( 'click' );
 		await wrapper.find( '.cdx-radio__input[value=datetime]' ).setValue( true );
