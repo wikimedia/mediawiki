@@ -28,6 +28,7 @@ use Wikimedia\Rdbms\LBFactorySimple;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\RequestTimeout\RequestTimeout;
 use Wikimedia\Stats\NullStatsdDataFactory;
+use Wikimedia\Telemetry\NoopTracer;
 
 /**
  * @covers \Wikimedia\Rdbms\LBFactory
@@ -46,7 +47,8 @@ class MWLBFactoryTest extends MediaWikiUnitTestCase {
 			new WANObjectCache( [ 'cache' => new EmptyBagOStuff() ] ),
 			new CriticalSectionProvider( RequestTimeout::singleton(), 1, null, null ),
 			new NullStatsdDataFactory(),
-			[]
+			[],
+			new NoopTracer(),
 		);
 	}
 

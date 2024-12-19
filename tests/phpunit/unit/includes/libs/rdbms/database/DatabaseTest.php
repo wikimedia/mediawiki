@@ -31,6 +31,7 @@ use Wikimedia\Rdbms\Replication\ReplicationReporter;
 use Wikimedia\Rdbms\ServerInfo;
 use Wikimedia\Rdbms\TransactionManager;
 use Wikimedia\RequestTimeout\CriticalSectionScope;
+use Wikimedia\Telemetry\NoopTracer;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -491,6 +492,7 @@ class DatabaseTest extends TestCase {
 			'user' => 'testuser'
 		];
 		$wdb->replicationReporter = new ReplicationReporter( IDatabase::ROLE_STREAMING_MASTER, new NullLogger(), new HashBagOStuff() );
+		$wdb->tracer = new NoopTracer();
 
 		$db->method( 'getServer' )->willReturn( '*dummy*' );
 		$db->setTransactionManager( new TransactionManager() );

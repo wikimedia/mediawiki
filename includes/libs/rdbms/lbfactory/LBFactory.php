@@ -32,6 +32,8 @@ use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Stats\NullStatsdDataFactory;
+use Wikimedia\Telemetry\NoopTracer;
+use Wikimedia\Telemetry\TracerInterface;
 
 /**
  * @see ILBFactory
@@ -47,6 +49,8 @@ abstract class LBFactory implements ILBFactory {
 	private $profiler;
 	/** @var TransactionProfiler */
 	private $trxProfiler;
+	/** @var TracerInterface */
+	private $tracer;
 	/** @var StatsdDataFactoryInterface */
 	private $statsd;
 	/** @var LoggerInterface */
@@ -147,6 +151,7 @@ abstract class LBFactory implements ILBFactory {
 		$this->profiler = $conf['profiler'] ?? null;
 		$this->trxProfiler = $conf['trxProfiler'] ?? new TransactionProfiler();
 		$this->statsd = $conf['statsdDataFactory'] ?? new NullStatsdDataFactory();
+		$this->tracer = $conf['tracer'] ?? new NoopTracer();
 
 		$this->csProvider = $conf['criticalSectionProvider'] ?? null;
 
@@ -684,6 +689,7 @@ abstract class LBFactory implements ILBFactory {
 			'wanCache' => $this->wanCache,
 			'profiler' => $this->profiler,
 			'trxProfiler' => $this->trxProfiler,
+			'tracer' => $this->tracer,
 			'logger' => $this->logger,
 			'errorLogger' => $this->errorLogger,
 			'deprecationLogger' => $this->deprecationLogger,

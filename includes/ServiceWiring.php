@@ -751,7 +751,8 @@ return [
 			$wanCache,
 			$services->getCriticalSectionProvider(),
 			$services->getStatsdDataFactory(),
-			ExtensionRegistry::getInstance()->getAttribute( 'DatabaseVirtualDomains' )
+			ExtensionRegistry::getInstance()->getAttribute( 'DatabaseVirtualDomains' ),
+			$services->getTracer(),
 		);
 	},
 

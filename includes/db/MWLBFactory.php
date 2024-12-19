@@ -33,6 +33,7 @@ use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
+use Wikimedia\Telemetry\TracerInterface;
 
 /**
  * MediaWiki-specific class for generating database load balancers
@@ -83,6 +84,7 @@ class MWLBFactory {
 	private WANObjectCache $wanCache;
 	private CriticalSectionProvider $csProvider;
 	private StatsdDataFactoryInterface $statsdDataFactory;
+	private TracerInterface $tracer;
 	/** @var string[] */
 	private array $virtualDomains;
 
@@ -95,6 +97,7 @@ class MWLBFactory {
 	 * @param CriticalSectionProvider $csProvider
 	 * @param StatsdDataFactoryInterface $statsdDataFactory
 	 * @param string[] $virtualDomains
+	 * @param TracerInterface $tracer
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -104,7 +107,8 @@ class MWLBFactory {
 		WANObjectCache $wanCache,
 		CriticalSectionProvider $csProvider,
 		StatsdDataFactoryInterface $statsdDataFactory,
-		array $virtualDomains
+		array $virtualDomains,
+		TracerInterface $tracer
 	) {
 		$this->options = $options;
 		$this->readOnlyMode = $readOnlyMode;
@@ -114,6 +118,7 @@ class MWLBFactory {
 		$this->csProvider = $csProvider;
 		$this->statsdDataFactory = $statsdDataFactory;
 		$this->virtualDomains = $virtualDomains;
+		$this->tracer = $tracer;
 	}
 
 	/**
@@ -148,7 +153,7 @@ class MWLBFactory {
 			'cliMode' => MW_ENTRY_POINT === 'cli',
 			'readOnlyReason' => $this->readOnlyMode->getReason(),
 			'defaultGroup' => $this->options->get( MainConfigNames::DBDefaultGroup ),
-			'criticalSectionProvider' => $this->csProvider
+			'criticalSectionProvider' => $this->csProvider,
 		];
 
 		$serversCheck = [];
@@ -210,6 +215,7 @@ class MWLBFactory {
 		$lbConf['chronologyProtector'] = $this->chronologyProtector;
 		$lbConf['srvCache'] = $this->srvCache;
 		$lbConf['wanCache'] = $this->wanCache;
+		$lbConf['tracer'] = $this->tracer;
 		$lbConf['virtualDomains'] = array_merge( $this->virtualDomains, self::CORE_VIRTUAL_DOMAINS );
 		$lbConf['virtualDomainsMapping'] = $this->options->get( MainConfigNames::VirtualDomainsMapping );
 

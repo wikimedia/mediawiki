@@ -24,6 +24,8 @@ use Psr\Log\NullLogger;
 use Throwable;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
+use Wikimedia\Telemetry\NoopTracer;
+use Wikimedia\Telemetry\TracerInterface;
 
 /**
  * Constructs Database objects
@@ -41,6 +43,8 @@ class DatabaseFactory {
 	 * meant to profile the actual query execution in {@see Database::doQuery}
 	 */
 	private $profiler;
+	/** @var TracerInterface */
+	private $tracer;
 	/** @var CriticalSectionProvider|null */
 	private $csProvider;
 	/** @var bool Whether this PHP instance is for a CLI script */
@@ -55,6 +59,7 @@ class DatabaseFactory {
 		};
 		$this->csProvider = $params['criticalSectionProvider'] ?? null;
 		$this->profiler = $params['profiler'] ?? null;
+		$this->tracer = $params['tracer'] ?? new NoopTracer();
 		$this->cliMode = $params['cliMode'] ?? ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
 		$this->debugSql = $params['debugSql'] ?? false;
 	}
@@ -96,6 +101,7 @@ class DatabaseFactory {
 	 *   - connectTimeout: Optional timeout, in seconds, for connection attempts.
 	 *   - receiveTimeout: Optional timeout, in seconds, for receiving query results.
 	 *   - logger: Optional PSR-3 logger interface instance.
+	 *   - tracer: Optional TracerInterface instance.
 	 *   - profiler : Optional callback that takes a section name argument and returns
 	 *      a ScopedCallback instance that ends the profile section in its destructor.
 	 *      These will be called in query(), using a simplified version of the SQL that
@@ -149,6 +155,7 @@ class DatabaseFactory {
 				'profiler' => $this->profiler,
 				'deprecationLogger' => $this->deprecationLogger,
 				'criticalSectionProvider' => $this->csProvider,
+				'tracer' => $this->tracer,
 			];
 
 			/** @var Database $conn */

@@ -34,6 +34,9 @@ use Wikimedia\Rdbms\Replication\ReplicationReporter;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\RequestTimeout\CriticalSectionScope;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Telemetry\NoopTracer;
+use Wikimedia\Telemetry\SpanInterface;
+use Wikimedia\Telemetry\TracerInterface;
 
 /**
  * A single concrete connection to a relational database.
@@ -56,6 +59,8 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	protected $deprecationLogger;
 	/** @var callable|null */
 	protected $profiler;
+	/** @var TracerInterface */
+	private $tracer;
 	/** @var TransactionManager */
 	private $transactionManager;
 
@@ -244,6 +249,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 			$this->currentDomain,
 			$this->errorLogger
 		);
+		$this->tracer = $params['tracer'] ?? new NoopTracer();
 		// Children classes must set $this->replicationReporter.
 	}
 
@@ -778,15 +784,44 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		$this->lastEmulatedAffectedRows = null;
 		$this->lastEmulatedInsertId = null;
 
+		// Record an OTEL span for this query.
+		$writeTableName = $sql->getWriteTable();
+		$spanName = $writeTableName ?
+			"{$sql->getVerb()} {$this->getDBname()}.{$writeTableName}" :
+			"{$sql->getVerb()} {$this->getDBname()}";
+		$span = $this->tracer->createSpan( $spanName )
+			->setSpanKind( SpanInterface::SPAN_KIND_CLIENT )
+			->start();
+		if ( $span->getContext()->isSampled() ) {
+			$span->setAttributes( [
+				'code.function' => $fname,
+				'db.namespace' => $this->getDBname(),
+				'db.operation.name' => $sql->getVerb(),
+				'db.query.text' => $generalizedSql->stringify(),
+				'db.system' => $this->getType(),
+				'server.address' => $this->getServerName(),
+			] );
+		}
+
+		if ( $writeTableName !== null ) {
+			$span->setAttributes( [ 'db.collection.name' => $writeTableName ] );
+		}
+
 		$status = $this->doSingleStatementQuery( $cStatement );
 
 		// End profile section
 		$endTime = microtime( true );
 		$queryRuntime = max( $endTime - $startTime, 0.0 );
 		unset( $ps );
+		$span->end();
 
 		if ( $status->res !== false ) {
 			$this->lastPing = $endTime;
+		} else {
+			$span->setAttributes( [
+				'db.response.status_code' => $status->code,
+				'exception.message' => $status->message,
+			] );
 		}
 
 		$affectedRowCount = $status->rowsAffected;
