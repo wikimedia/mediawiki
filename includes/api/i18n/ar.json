@@ -51,6 +51,8 @@
 	"apihelp-main-paramvalue-errorformat-bc": "التنسيق المستخدم قبل ميدياويكي 1.29. يتم تجاهل <var>errorlang</var> و<var>errorsuselocal</var>.",
 	"apihelp-main-param-errorlang": "اللغة المستخدمة للتحذيرات والأخطاء. <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo&siprop=languages]]</kbd> تعيد قائمة برموز اللغة. حدد <kbd>المحتوى</kbd> لاستخدام لغة محتوى هذه الويكي أو <kbd>uselang</kbd> لاستخدام نفس القيمة كمعلمة <var>uselang</var> .",
 	"apihelp-main-param-errorsuselocal": "إذا ما أعطيت، النصوص الخطأ ستستخدم الرسائل المخصصة محليا من نطاق {{ns:MediaWiki}}.",
+	"apihelp-acquiretempusername-summary": "احصل على اسم مستخدم مؤقت وقم بتخزينه في الجلسة الحالية، إذا تم تمكين إنشاء حساب مؤقت وتم تسجيل خروج المستخدم الحالي. إذا تم تخزين اسم بالفعل، فسيتم إرجاع نفس الاسم.",
+	"apihelp-acquiretempusername-extended-description": "إذا قام المستخدم لاحقًا بإجراء يؤدي إلى إنشاء حساب مؤقت، فسيتم استخدام اسم المستخدم المخزن لحسابه. ويمكن استخدامه أيضًا في المعاينات. ومع ذلك، لم يتم إنشاء الحساب بعد، ولا يمكن للمستخدمين الآخرين رؤية الاسم.",
 	"apihelp-block-summary": "منع مستخدم.",
 	"apihelp-block-param-user": "المستخدم المراد حظره.",
 	"apihelp-block-param-userid": "حدد <kbd>$1user=#<var>ID</var></kbd> بدلاً من ذلك.",

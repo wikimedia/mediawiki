@@ -346,7 +346,7 @@
 	"missingarticle-rev": "(संशोधन #: $1)",
 	"missingarticle-diff": "(परि: $1, $2)",
 	"readonly_lag": "डेटाबेस स्वतः बन्द गरिएको छ जबकि अधिनस्थ डेटाबेस सर्भरले मूल पहिल्याउँदैछ।",
-	"nonwrite-api-promise-error": "'Promise-Non-Write-API-Action' लाई एचटीटीपी शीर्षक द्वारा पठाईयो तर एपीआईमा लेखन मोडल छ ।",
+	"nonwrite-api-promise-error": "'Promise-Non-Write-API-Action' एचटीटीपी हेडर पठाइयो तर त्यो अनुरोध एपीआई अनुरोध थिएन।",
 	"timeouterror": "सर्भर समय समाप्त",
 	"timeouterror-text": "अधिकतम अनुरोध समय $1 {{PLURAL:$1|सेकेन्ड}} नाघ्यो।",
 	"internalerror": "आन्तरिक त्रुटि",

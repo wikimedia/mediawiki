@@ -208,7 +208,8 @@
 			"Chimes",
 			"Wang31",
 			"WiiUf",
-			"Vina"
+			"Vina",
+			"ZhaoFJx"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -1539,9 +1540,9 @@
 	"right-editsitecss": "编辑全站CSS",
 	"right-editsitejson": "编辑全站JSON",
 	"right-editsitejs": "编辑全站JavaScript",
-	"right-editmyusercss": "编辑自己的用户CSS文件",
-	"right-editmyuserjson": "编辑自己的用户JSON文件",
-	"right-editmyuserjs": "编辑自己的用户JavaScript文件",
+	"right-editmyusercss": "编辑用户本人的CSS文件",
+	"right-editmyuserjson": "编辑用户本人的JSON文件",
+	"right-editmyuserjs": "编辑用户本人的JavaScript文件",
 	"right-editmyuserjsredirect": "编辑自己的JavaScript重定向文件",
 	"right-viewmywatchlist": "查看自己的监视列表",
 	"right-editmywatchlist": "编辑自己的监视列表（请留意即使缺少此权限，某些操作仍将添加页面至监视列表）",
