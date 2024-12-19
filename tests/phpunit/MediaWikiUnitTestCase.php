@@ -63,26 +63,22 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 	 * List of allowed globals to allow in MediaWikiUnitTestCase.
 	 *
 	 * Please, keep this list to the bare minimum.
-	 *
-	 * @return string[]
 	 */
-	private static function getAllowedGlobalsList() {
-		return [
-			// The autoloader may change between bootstrap and the first test,
-			// so (lazily) capture these here instead.
-			'wgAutoloadClasses',
-			'wgAutoloadLocalClasses',
-			// Need for LoggerFactory. Default is NullSpi.
-			'wgMWLoggerDefaultSpi',
-			'wgLegalTitleChars',
-			'wgDevelopmentWarnings',
-			// Dependency of wfParseUrl()
-			'wgUrlProtocols',
-			// For LegacyLogger, injected by DevelopmentSettings.php
-			'wgDebugLogFile',
-			'wgDebugLogGroups',
-		];
-	}
+	private const ALLOWED_GLOBALS_LIST = [
+		// The autoloader may change between bootstrap and the first test,
+		// so (lazily) capture these here instead.
+		'wgAutoloadClasses',
+		'wgAutoloadLocalClasses',
+		// Need for LoggerFactory. Default is NullSpi.
+		'wgMWLoggerDefaultSpi',
+		'wgLegalTitleChars',
+		'wgDevelopmentWarnings',
+		// Dependency of wfParseUrl()
+		'wgUrlProtocols',
+		// For LegacyLogger, injected by DevelopmentSettings.php
+		'wgDebugLogFile',
+		'wgDebugLogGroups',
+	];
 
 	/**
 	 * The annotation causes this to be called immediately before setUpBeforeClass()
@@ -97,7 +93,7 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 
 		self::$unitGlobals =& TestSetup::$bootstrapGlobals;
 
-		foreach ( self::getAllowedGlobalsList() as $global ) {
+		foreach ( self::ALLOWED_GLOBALS_LIST as $global ) {
 			self::$unitGlobals[ $global ] =& $GLOBALS[ $global ];
 		}
 
