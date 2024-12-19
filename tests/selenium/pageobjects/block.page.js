@@ -49,7 +49,6 @@ class BlockPage extends Page {
 			async () => ( await this.activeBlocksHeader.isClickable() ),
 			{ timeout: 5000 }
 		);
-		await this.activeBlocksHeader.click();
 		await this.addBlockButton.click();
 		await this.otherReasonInput.setValue( reason );
 		await this.submitButton.click();

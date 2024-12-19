@@ -1,7 +1,7 @@
 <template>
 	<cdx-accordion
 		:class="`mw-block-log mw-block-log__type-${ blockLogType }`"
-		:open="open"
+		:open="open || ( blockLogType === 'active' && !formVisible )"
 	>
 		<template #title>
 			{{ title }}
@@ -136,8 +136,7 @@ module.exports = exports = defineComponent( {
 	],
 	setup( props ) {
 		const store = useBlockStore();
-		const { targetUser, alreadyBlocked } = storeToRefs( store );
-
+		const { alreadyBlocked, formVisible, targetUser } = storeToRefs( store );
 		let title = mw.message( 'block-user-previous-blocks' ).text();
 		let emptyState = mw.message( 'block-user-no-previous-blocks' ).text();
 		if ( props.blockLogType === 'active' ) {
@@ -288,6 +287,7 @@ module.exports = exports = defineComponent( {
 			logEntriesCount,
 			infoChipIcon,
 			infoChipStatus,
+			formVisible,
 			shouldShowAddBlockButton
 		};
 	}
