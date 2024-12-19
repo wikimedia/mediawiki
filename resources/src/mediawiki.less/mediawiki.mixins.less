@@ -69,6 +69,19 @@
 	user-select: @value;
 }
 
+// In the future this can be simply migrated to `margin-block: @start @end;`
+// Since MW 1.44
+.margin-block( @start, @end ) {
+	margin-top: @start;
+	margin-bottom: @end;
+	-webkit-margin-before: @start; // Archaic WebKit/Chrome versions
+	-webkit-margin-after: @end;
+	/* stylelint-disable declaration-block-no-redundant-longhand-properties */
+	margin-block-start: @start; // Firefox 41, Safari 12.1, Chrome 69, Opera 56
+	margin-block-end: @end;
+	/* stylelint-enable declaration-block-no-redundant-longhand-properties */
+}
+
 // In the future this can be simply migrated to `margin-inline: @start @end;`
 // Since MW 1.43
 .margin-inline( @start, @end ) {
@@ -79,6 +92,19 @@
 	/* stylelint-disable declaration-block-no-redundant-longhand-properties */
 	margin-inline-start: @start; // Firefox 41, Safari 12.1, Chrome 69, Opera 56
 	margin-inline-end: @end;
+	/* stylelint-enable declaration-block-no-redundant-longhand-properties */
+}
+
+// In the future this can be simply migrated to `padding-block: @start @end;`
+// Since MW 1.44
+.padding-block( @start, @end ) {
+	padding-top: @start;
+	padding-bottom: @end;
+	-webkit-padding-before: @start; // Archaic WebKit/Chrome versions
+	-webkit-padding-after: @end;
+	/* stylelint-disable declaration-block-no-redundant-longhand-properties */
+	padding-block-start: @start; // Firefox 41, Safari 12.1, Chrome 69, Opera 56
+	padding-block-end: @end;
 	/* stylelint-enable declaration-block-no-redundant-longhand-properties */
 }
 
