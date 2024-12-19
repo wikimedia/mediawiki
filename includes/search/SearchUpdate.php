@@ -173,7 +173,7 @@ class SearchUpdate implements DeferrableUpdate {
 	 * @return ExistingPageRecord|null
 	 */
 	private function getLatestPage() {
-		if ( !isset( $this->latestPage ) ) {
+		if ( !$this->latestPage ) {
 			$this->latestPage = MediaWikiServices::getInstance()->getPageStore()
 				->getPageById( $this->id, IDBAccessObject::READ_LATEST );
 		}

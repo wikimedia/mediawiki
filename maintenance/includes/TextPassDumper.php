@@ -575,7 +575,7 @@ TEXT
 
 				// Trying to get prefetch, if it has not been tried before
 				// @phan-suppress-next-line PhanSuspiciousValueComparisonInLoop
-				if ( $text === false && isset( $this->prefetch ) && $prefetchNotTried ) {
+				if ( $text === false && $this->prefetch && $prefetchNotTried ) {
 					$prefetchNotTried = false;
 					$tryIsPrefetch = true;
 					$text = $this->prefetch->prefetch(

@@ -53,7 +53,7 @@ class PoolCounterClient extends PoolCounter {
 	 * @return Status
 	 */
 	public function getConn() {
-		if ( !isset( $this->conn ) ) {
+		if ( !$this->conn ) {
 			$status = $this->manager->get( $this->key );
 			if ( !$status->isOK() ) {
 				return $status;

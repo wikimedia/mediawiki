@@ -30,7 +30,7 @@ use InvalidArgumentException;
  *       but should use a factory in the future.
  */
 class PoolCounterWorkViaCallback extends PoolCounterWork {
-	/** @var callable */
+	/** @var callable|null */
 	protected $doWork;
 	/** @var callable|null */
 	protected $doCachedWork;
@@ -63,10 +63,10 @@ class PoolCounterWorkViaCallback extends PoolCounterWork {
 				$this->$name = $callbacks[$name];
 			}
 		}
-		if ( !isset( $this->doWork ) ) {
+		if ( !$this->doWork ) {
 			throw new InvalidArgumentException( "No callback provided for 'doWork' function." );
 		}
-		$this->cacheable = isset( $this->doCachedWork );
+		$this->cacheable = (bool)$this->doCachedWork;
 	}
 
 	public function doWork() {

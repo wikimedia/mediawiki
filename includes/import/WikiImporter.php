@@ -73,7 +73,7 @@ class WikiImporter {
 	/** @var array|null */
 	private $foreignNamespaces = null;
 
-	/** @var callable */
+	/** @var callable|null */
 	private $mLogItemCallback;
 
 	/** @var callable */
@@ -569,7 +569,7 @@ class WikiImporter {
 	 * @return mixed|false
 	 */
 	private function siteInfoCallback( $siteInfo ) {
-		if ( isset( $this->mSiteInfoCallback ) ) {
+		if ( $this->mSiteInfoCallback ) {
 			return call_user_func_array(
 				$this->mSiteInfoCallback,
 				[ $siteInfo, $this ]
@@ -584,7 +584,7 @@ class WikiImporter {
 	 * @param array $title
 	 */
 	public function pageCallback( $title ) {
-		if ( isset( $this->mPageCallback ) ) {
+		if ( $this->mPageCallback ) {
 			call_user_func( $this->mPageCallback, $title );
 		}
 	}
@@ -599,7 +599,7 @@ class WikiImporter {
 	 */
 	private function pageOutCallback( PageIdentity $pageIdentity, $foreignTitle, $revCount,
 			$sucCount, $pageInfo ) {
-		if ( isset( $this->mPageOutCallback ) ) {
+		if ( $this->mPageOutCallback ) {
 			call_user_func_array( $this->mPageOutCallback, func_get_args() );
 		}
 	}
@@ -610,7 +610,7 @@ class WikiImporter {
 	 * @return bool|mixed
 	 */
 	private function revisionCallback( $revision ) {
-		if ( isset( $this->mRevisionCallback ) ) {
+		if ( $this->mRevisionCallback ) {
 			return call_user_func_array(
 				$this->mRevisionCallback,
 				[ $revision, $this ]
@@ -626,7 +626,7 @@ class WikiImporter {
 	 * @return mixed|false
 	 */
 	private function logItemCallback( $revision ) {
-		if ( isset( $this->mLogItemCallback ) ) {
+		if ( $this->mLogItemCallback ) {
 			return call_user_func_array(
 				$this->mLogItemCallback,
 				[ $revision, $this ]

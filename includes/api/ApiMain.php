@@ -1336,7 +1336,7 @@ class ApiMain extends ApiBase {
 	 * Create the printer for error output
 	 */
 	private function createErrorPrinter() {
-		if ( !isset( $this->mPrinter ) ) {
+		if ( !$this->mPrinter ) {
 			$value = $this->getRequest()->getVal( 'format', self::API_DEFAULT_FORMAT );
 			if ( !$this->mModuleMgr->isDefined( $value, 'format' ) ) {
 				$value = self::API_DEFAULT_FORMAT;
