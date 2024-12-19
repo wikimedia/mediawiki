@@ -37,7 +37,7 @@ abstract class AlphabeticPager extends IndexPager {
 			return '';
 		}
 
-		if ( isset( $this->mNavigationBar ) ) {
+		if ( $this->mNavigationBar !== null ) {
 			return $this->mNavigationBar;
 		}
 

@@ -455,7 +455,7 @@ class StatusValue implements Stringable {
 		} else {
 			$errorcount = "no errors detected";
 		}
-		if ( isset( $this->value ) ) {
+		if ( $this->value !== null ) {
 			$valstr = get_debug_type( $this->value ) . " value set";
 		} else {
 			$valstr = "no value set";

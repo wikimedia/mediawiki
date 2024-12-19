@@ -134,7 +134,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 *
 	 * Like $mIndexField, $mDefaultDirection will be a single value even if the
 	 * class supports multiple default directions for different order types.
-	 * @var bool
+	 * @var bool|null
 	 */
 	public $mDefaultDirection;
 	/** @var bool */
@@ -151,9 +151,9 @@ abstract class IndexPager extends ContextSource implements Pager {
 	protected $mFirstShown;
 	/** @var array */
 	protected $mPastTheEndIndex;
-	/** @var array */
+	/** @var array|null */
 	protected $mDefaultQuery;
-	/** @var string */
+	/** @var string|null */
 	protected $mNavigationBar;
 
 	/**
@@ -237,7 +237,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 			}
 		}
 
-		if ( !isset( $this->mDefaultDirection ) ) {
+		if ( $this->mDefaultDirection === null ) {
 			$dir = $this->getDefaultDirections();
 			$this->mDefaultDirection = is_array( $dir )
 				? $dir[$this->mOrderType]
@@ -723,7 +723,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * @return array Associative array
 	 */
 	public function getDefaultQuery() {
-		if ( !isset( $this->mDefaultQuery ) ) {
+		if ( $this->mDefaultQuery === null ) {
 			$this->mDefaultQuery = $this->getRequest()->getQueryValues();
 			unset( $this->mDefaultQuery['title'] );
 			unset( $this->mDefaultQuery['dir'] );

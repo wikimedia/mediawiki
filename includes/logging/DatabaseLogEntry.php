@@ -133,7 +133,7 @@ class DatabaseLogEntry extends LogEntryBase {
 	/** @var UserIdentity */
 	protected $performer;
 
-	/** @var array Parameters for log entry */
+	/** @var array|null Parameters for log entry */
 	protected $params;
 
 	/** @var int A rev id associated to the log entry */
@@ -180,7 +180,7 @@ class DatabaseLogEntry extends LogEntryBase {
 	}
 
 	public function getParameters() {
-		if ( !isset( $this->params ) ) {
+		if ( $this->params === null ) {
 			$blob = $this->getRawParameters();
 			AtEase::suppressWarnings();
 			$params = LogEntryBase::extractParams( $blob );

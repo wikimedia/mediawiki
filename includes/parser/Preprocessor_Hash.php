@@ -711,7 +711,7 @@ class Preprocessor_Hash extends Preprocessor {
 					$children[] = $titleNode;
 					$argIndex = 1;
 					foreach ( $parts as $part ) {
-						if ( isset( $part->eqpos ) ) {
+						if ( $part->eqpos !== null ) {
 							$equalsNode = $part->out[$part->eqpos];
 							$nameNode = [ 'name', array_slice( $part->out, 0, $part->eqpos ) ];
 							$valueNode = [ 'value', array_slice( $part->out, $part->eqpos + 1 ) ];

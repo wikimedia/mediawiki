@@ -127,7 +127,7 @@ class LogFormatter {
 
 	/**
 	 * @see LogFormatter::getMessageParameters
-	 * @var array
+	 * @var array|null
 	 */
 	protected $parsedParameters;
 
@@ -659,7 +659,7 @@ class LogFormatter {
 	 * @see ManualLogEntry::setParameters() for how parameters are determined.
 	 */
 	protected function getMessageParameters() {
-		if ( isset( $this->parsedParameters ) ) {
+		if ( $this->parsedParameters !== null ) {
 			return $this->parsedParameters;
 		}
 

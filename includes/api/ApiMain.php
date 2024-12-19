@@ -2452,7 +2452,7 @@ class ApiMain extends ApiBase {
 	 * @return bool
 	 */
 	public function canApiHighLimits() {
-		if ( !isset( $this->mCanApiHighLimits ) ) {
+		if ( $this->mCanApiHighLimits === null ) {
 			$this->mCanApiHighLimits = $this->getAuthority()->isAllowed( 'apihighlimits' );
 		}
 

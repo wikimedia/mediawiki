@@ -186,7 +186,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * @return string Url
 	 */
 	public function getUrl() {
-		if ( !isset( $this->url ) ) {
+		if ( $this->url === null ) {
 			$this->url = $this->getSpecialUrl( 'file/' . $this->getUrlName() );
 		}
 

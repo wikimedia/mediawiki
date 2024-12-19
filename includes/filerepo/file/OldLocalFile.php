@@ -39,7 +39,7 @@ class OldLocalFile extends LocalFile {
 	/** @var string|int Timestamp */
 	protected $requestedTime;
 
-	/** @var string Archive name */
+	/** @var string|null Archive name */
 	protected $archive_name;
 
 	public const CACHE_VERSION = 1;
@@ -185,7 +185,7 @@ class OldLocalFile extends LocalFile {
 	 * @return string
 	 */
 	public function getArchiveName() {
-		if ( !isset( $this->archive_name ) ) {
+		if ( $this->archive_name === null ) {
 			$this->load();
 		}
 

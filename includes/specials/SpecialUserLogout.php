@@ -36,7 +36,7 @@ use MediaWiki\User\TempUser\TempUserConfig;
  */
 class SpecialUserLogout extends FormSpecialPage {
 	/**
-	 * @var string
+	 * @var string|null
 	 */
 	private $oldUserName;
 
@@ -132,7 +132,7 @@ class SpecialUserLogout extends FormSpecialPage {
 
 		$messageKey = 'logouttext';
 		if (
-			( isset( $this->oldUserName ) && $this->tempUserConfig->isTempName( $this->oldUserName ) ) ||
+			( $this->oldUserName !== null && $this->tempUserConfig->isTempName( $this->oldUserName ) ) ||
 			$this->getRequest()->getCheck( 'wasTempUser' )
 		) {
 			// Generates the message key logouttext-for-temporary-account which is used to customise the success
@@ -156,7 +156,7 @@ class SpecialUserLogout extends FormSpecialPage {
 		// Set the page title as "templogout" if the user is (or just was) logged in to a temporary account
 		if (
 			$this->getUser()->isTemp() ||
-			( isset( $this->oldUserName ) && $this->tempUserConfig->isTempName( $this->oldUserName ) ) ||
+			( $this->oldUserName !== null && $this->tempUserConfig->isTempName( $this->oldUserName ) ) ||
 			$this->getRequest()->getCheck( 'wasTempUser' )
 		) {
 			return $this->msg( 'templogout' );

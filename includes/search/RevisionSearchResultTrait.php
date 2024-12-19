@@ -31,7 +31,7 @@ trait RevisionSearchResultTrait {
 	protected $mTitle;
 
 	/**
-	 * @var string
+	 * @var string|null
 	 */
 	protected $mText;
 
@@ -96,7 +96,7 @@ trait RevisionSearchResultTrait {
 	 * Lazy initialization of article text from DB
 	 */
 	protected function initText() {
-		if ( !isset( $this->mText ) ) {
+		if ( $this->mText === null ) {
 			if ( $this->mRevisionRecord != null ) {
 				$content = $this->mRevisionRecord->getContent( SlotRecord::MAIN );
 				$this->mText = $content !== null ? $content->getTextForSearchIndex() : '';

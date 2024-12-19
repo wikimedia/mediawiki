@@ -77,7 +77,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	/** @var string[] Change tags add to the log entry */
 	protected $tags = [];
 
-	/** @var int Deletion state of the log entry */
+	/** @var int|null Deletion state of the log entry */
 	protected $deleted;
 
 	/** @var int ID of the log entry */
@@ -321,7 +321,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 			'log_page' => $this->getTarget()->getArticleID(),
 			'log_params' => LogEntryBase::makeParamBlob( $params ),
 		];
-		if ( isset( $this->deleted ) ) {
+		if ( $this->deleted !== null ) {
 			$row['log_deleted'] = $this->deleted;
 		}
 		$row += $services->getCommentStore()->insert( $dbw, 'log_comment', $comment );
