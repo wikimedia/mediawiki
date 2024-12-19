@@ -2523,7 +2523,7 @@
 	"ipbcreateaccount": "Hesab yaratma",
 	"ipbemailban": "E-poçt göndərmək",
 	"ipbenableautoblock": "Bu hesabın istifadə etdiyi son IP ünvanını və redaktə etməyə çalışdığı sonrakı IP ünvanlarını $1 müddətinə blokla",
-	"ipbsubmit": "Blokla",
+	"ipbsubmit": "Blok əlavə et",
 	"ipbother": "Başqa vaxt",
 	"ipboptions": "2 saat:2 hours,1 gün:1 day,3 gün:3 days,1 həftə:1 week,2 həftə:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 il:1 year,müddətsiz:infinite",
 	"ipbhidename": "İstifadəçi adını redaktələrdə və siyahılarda gizlət",

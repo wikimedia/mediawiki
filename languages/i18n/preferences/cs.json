@@ -91,7 +91,7 @@
 	"prefs-help-email": "Uvedení e-mailu není povinné, ale umožní zaslání nového hesla v případě, že své heslo zapomenete.",
 	"prefs-help-email-required": "Je vyžadována e-mailová adresa.",
 	"prefs-help-email-others": "Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelské stránky kontaktovat.\nVaše adresa v takovém případě není prozrazena.",
-	"tog-requireemail": "Při obnově hesla vyžadovat zadání jak e-mailu, tak i uživatelského jména.",
+	"tog-requireemail": "Při obnově hesla vyžadovat zadání jak e-mailu, tak i uživatelského jména",
 	"prefs-help-requireemail": "Toto zvyšuje soukromí a pomáhá předcházet nevyžádaným e-mailům.",
 	"noemailprefs": "Pro zprovoznění následujících možností musíte zadat svou e-mailovou adresu.",
 	"emailnotauthenticated": "Vaše e-mailová adresa dosud nebyla ověřena.\nU následujících funkcí nebudou zasílány žádné e-maily.",

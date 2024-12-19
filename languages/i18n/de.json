@@ -2670,6 +2670,7 @@
 	"block-pages-placeholder": "Weitere Seiten hinzufügen …",
 	"block-namespaces-placeholder": "Weitere Namensräume hinzufügen …",
 	"block-update": "Sperre aktualisieren",
+	"block-invalid-id": "Ungültige Sperr-ID",
 	"unblockip": "Benutzer freigeben",
 	"unblockiptext": "Mit diesem Formular kannst du eine IP-Adresse oder einen Benutzer freigeben.",
 	"ipusubmit": "Freigeben",

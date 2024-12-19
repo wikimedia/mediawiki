@@ -4251,5 +4251,9 @@
 	"interwiki_intro": "Бу, тюрлю-тюрлю викилеге эмда башха тыш сайтлагъа къызыу байланыр ючюн хайырландырылгъан префикс къысха джибериулени танытхан интервики таблицагъа тамал къарамды. Хайырланыугъа теджелген ючюн [https://www.mediawiki.org/wiki/Extension:Interwiki/tr MediaWiki.org-да мануалгъа] къарагъыз.",
 	"interwiki-legend-label": "Хапарлау",
 	"interwiki_prefix": "Префикс",
-	"interwiki-prefix-label": "Префикс:"
+	"interwiki-prefix-label": "Префикс:",
+	"interwiki_prefix_intro": "<code>[<nowiki />[префикс:<em>бетни аты</em>]]</code> викитекстни синтаксисинде хайырландырыллыкъ интервики префикс.",
+	"interwiki_url_intro": "URL шаблон. $1 орун сакълаучу, <code>[<nowiki />[префикс:<em>бетни аты</em>]]</code>ндагъы <em>бетни аты</em> бла ауушдуруллукъду.",
+	"interwiki_local": "Алгъа",
+	"interwiki-local-label": "Алгъа"
 }
