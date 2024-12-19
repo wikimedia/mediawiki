@@ -282,7 +282,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 	/**
 	 * @param string|null $subPage
-	 * @suppress PhanTypeObjectUnsetDeclaredProperty
 	 */
 	public function execute( $subPage ) {
 		if ( $this->mPosted ) {
@@ -452,7 +451,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			case AuthenticationResponse::FAIL:
 				// fall through
 			case AuthenticationResponse::RESTART:
-				unset( $this->authForm );
+				$this->authForm = null;
 				if ( $response->status === AuthenticationResponse::FAIL ) {
 					$action = $this->getDefaultAction( $subPage );
 					$messageType = 'error';
@@ -465,11 +464,11 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				$this->mainLoginForm( $this->authRequests, $response->message, $messageType );
 				break;
 			case AuthenticationResponse::REDIRECT:
-				unset( $this->authForm );
+				$this->authForm = null;
 				$this->getOutput()->redirect( $response->redirectTarget );
 				break;
 			case AuthenticationResponse::UI:
-				unset( $this->authForm );
+				$this->authForm = null;
 				$this->authAction = $this->isSignup() ? AuthManager::ACTION_CREATE_CONTINUE
 					: AuthManager::ACTION_LOGIN_CONTINUE;
 				$this->authRequests = $response->neededRequests;
@@ -775,7 +774,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	protected function getAuthForm( array $requests, $action ) {
 		// FIXME merge this with parent
 
-		if ( isset( $this->authForm ) ) {
+		if ( $this->authForm ) {
 			return $this->authForm;
 		}
 
