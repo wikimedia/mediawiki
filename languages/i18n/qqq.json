@@ -2978,6 +2978,7 @@
 	"block-pages-placeholder": "Placeholder text for the input specifying the pages the user is blocked from editing on [[Special:Block]]",
 	"block-namespaces-placeholder": "Placeholder text for the input specifying the namespaces the user is blocked from editing on [[Special:Block]]",
 	"block-update": "Button label for the button with which to update a block on [[Special:Block]]",
+	"block-invalid-id": "Label for an error message shown when an invalid block ID is provided on [[Special:Block]]",
 	"unblockip": "Used as title and legend for the form in [[Special:Unblock]].",
 	"unblockiptext": "Used in the {{msg-mw|Unblockip}} form on [[Special:Unblock]].",
 	"ipusubmit": "Used as button text on [{{canonicalurl:Special:BlockList|action=unblock}} Special:BlockList?action=unblock]. To see the message:\n* Go to [[Special:BlockList]]\n* Click \"unblock\" for any block (but you can only see \"unblock\" if you have administrator rights)\n* It is now the button below the form",
