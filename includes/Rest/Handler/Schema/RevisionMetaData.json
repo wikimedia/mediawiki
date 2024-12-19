@@ -1,5 +1,5 @@
 {
-	"description": "revision meta-data",
+	"x-i18n-description": "rest-schema-desc-revision-metadata",
 	"required": [
 		"id",
 		"size",
@@ -14,7 +14,7 @@
 	"properties": {
 		"id": {
 			"type": "integer",
-			"description": "Revision id"
+			"x-i18n-description": "rest-property-desc-revision-id"
 		},
 		"size": {
 			"type": "integer",

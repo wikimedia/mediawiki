@@ -86,6 +86,7 @@
 	"rest-unsupported-language-conversion": "Unsupported language conversion: $1 to $2",
 	"rest-unknown-content-model": "Unknown content model: $1",
 	"rest-page-bundle-validation-error": "PageBundle does not match contentVersion: $1",
+	"rest-param-desc-mock-desc": "Mock description.",
 	"rest-param-desc-revision-id": "Revision id",
 	"rest-param-desc-html-input-title": "HTML input transform title",
 	"rest-param-desc-html-input-oldid": "HTML input transform oldid",
@@ -120,5 +121,9 @@
 	"rest-param-desc-transform-format": "Transform format",
 	"rest-param-desc-transform-title": "Transform title",
 	"rest-param-desc-transform-revision": "Transform revision",
-	"rest-param-desc-update-title": "Updated page title"
+	"rest-param-desc-update-title": "Updated page title",
+	"rest-property-desc-mock-desc": "Mock description.",
+	"rest-property-desc-revision-id": "Revision id",
+	"rest-schema-desc-mock-desc": "Mock description.",
+	"rest-schema-desc-revision-metadata": "Revision meta-data"
 }
