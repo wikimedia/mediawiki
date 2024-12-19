@@ -1439,8 +1439,8 @@ class RecentChange implements Taggable {
 	): UserIdentity {
 		// XXX: Is this logic needed elsewhere? Should it be reusable?
 
-		$userId = isset( $userId ) ? (int)$userId : null;
-		$actorId = isset( $actorId ) ? (int)$actorId : 0;
+		$userId = $userId !== null ? (int)$userId : null;
+		$actorId = $actorId !== null ? (int)$actorId : 0;
 
 		$actorStore = MediaWikiServices::getInstance()->getActorStore();
 		if ( $userName && $actorId ) {

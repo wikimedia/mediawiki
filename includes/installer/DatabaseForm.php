@@ -54,7 +54,7 @@ abstract class DatabaseForm {
 	protected function getTextBox( $var, $label, $attribs = [], $helpData = "" ) {
 		$name = $this->getName() . '_' . $var;
 		$value = $this->getVar( $var );
-		if ( !isset( $attribs ) ) {
+		if ( $attribs === null ) {
 			$attribs = [];
 		}
 
@@ -82,7 +82,7 @@ abstract class DatabaseForm {
 	protected function getPasswordBox( $var, $label, $attribs = [], $helpData = "" ) {
 		$name = $this->getName() . '_' . $var;
 		$value = $this->getVar( $var );
-		if ( !isset( $attribs ) ) {
+		if ( $attribs === null ) {
 			$attribs = [];
 		}
 

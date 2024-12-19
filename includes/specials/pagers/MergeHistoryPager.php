@@ -127,7 +127,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 			$batch->add( NS_USER, $row->rev_user_text );
 			$batch->add( NS_USER_TALK, $row->rev_user_text );
 
-			if ( isset( $rev_id ) ) {
+			if ( $rev_id !== null ) {
 				if ( $rev_id > $row->rev_id ) {
 					$this->prevId[$rev_id] = $row->rev_id;
 				} elseif ( $rev_id < $row->rev_id ) {

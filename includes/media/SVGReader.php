@@ -353,12 +353,12 @@ class SVGReader {
 			$this->metadata['originalHeight'] = $this->reader->getAttribute( 'height' );
 		}
 
-		if ( !isset( $width ) && !isset( $height ) ) {
+		if ( $width === null && $height === null ) {
 			$width = $defaultWidth;
 			$height = $width / $aspect;
-		} elseif ( isset( $width ) && !isset( $height ) ) {
+		} elseif ( $width !== null && $height === null ) {
 			$height = $width / $aspect;
-		} elseif ( isset( $height ) && !isset( $width ) ) {
+		} elseif ( $height !== null && $width === null ) {
 			$width = $height * $aspect;
 		}
 
