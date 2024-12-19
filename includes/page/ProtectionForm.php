@@ -185,7 +185,7 @@ class ProtectionForm {
 			}
 
 			$val = $this->mRequest->getVal( "mwProtect-level-$action" );
-			if ( isset( $val ) && in_array( $val, $levels ) ) {
+			if ( $val !== null && in_array( $val, $levels ) ) {
 				$this->mRestrictions[$action] = $val;
 			}
 		}

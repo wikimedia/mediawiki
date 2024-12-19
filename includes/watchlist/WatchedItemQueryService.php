@@ -210,7 +210,7 @@ class WatchedItemQueryService {
 			'must not be provided, use $startFrom instead'
 		);
 		Assert::parameter(
-			!isset( $startFrom ) || ( is_array( $startFrom ) && count( $startFrom ) === 2 ),
+			$startFrom === null || ( is_array( $startFrom ) && count( $startFrom ) === 2 ),
 			'$startFrom',
 			'must be a two-element array'
 		);

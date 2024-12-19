@@ -257,7 +257,7 @@ class ApiPageSet extends ApiBase {
 	 */
 	private function executeInternal( $isDryRun ) {
 		$generatorName = $this->mAllowGenerator ? $this->mParams['generator'] : null;
-		if ( isset( $generatorName ) ) {
+		if ( $generatorName !== null ) {
 			$dbSource = $this->mDbSource;
 			if ( !$dbSource instanceof ApiQuery ) {
 				// If the parent container of this pageset is not ApiQuery, we must create it to run generator
@@ -306,7 +306,7 @@ class ApiPageSet extends ApiBase {
 				$dataSource = 'titles';
 			}
 			if ( isset( $this->mParams['pageids'] ) ) {
-				if ( isset( $dataSource ) ) {
+				if ( $dataSource !== null ) {
 					$this->dieWithError(
 						[
 							'apierror-invalidparammix-cannotusewith',
@@ -319,7 +319,7 @@ class ApiPageSet extends ApiBase {
 				$dataSource = 'pageids';
 			}
 			if ( isset( $this->mParams['revids'] ) ) {
-				if ( isset( $dataSource ) ) {
+				if ( $dataSource !== null ) {
 					$this->dieWithError(
 						[
 							'apierror-invalidparammix-cannotusewith',

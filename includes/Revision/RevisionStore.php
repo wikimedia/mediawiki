@@ -1661,7 +1661,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 			$page = $overrides['title'];
 		}
 
-		if ( !isset( $page ) ) {
+		if ( $page === null ) {
 			if ( isset( $row->ar_namespace ) && isset( $row->ar_title ) ) {
 				$page = Title::makeTitle( $row->ar_namespace, $row->ar_title );
 			} else {
