@@ -271,7 +271,7 @@ module.exports = exports = defineComponent( {
 		// * Multiblocks is disabled and the user is not already blocked
 		const shouldShowAddBlockButton = computed(
 			() => props.blockLogType === 'active' && (
-				mw.config.get( 'blockEnableMultiblocks' ) || !alreadyBlocked.value
+				store.enableMultiblocks || !alreadyBlocked.value
 			)
 		);
 
