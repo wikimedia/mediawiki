@@ -216,7 +216,6 @@ module.exports = exports = defineComponent( {
 					return;
 				}
 				doBlock();
-				formVisible.value = false;
 			} else {
 				// nextTick() needed to ensure error messages are rendered before scrolling.
 				nextTick( () => {
@@ -266,6 +265,8 @@ module.exports = exports = defineComponent( {
 					// Bump the submitCount (to re-render the logs) after scrolling
 					// because the log tables may change the length of the page.
 					submitCount.value++;
+					// Hide the form if the block was successful.
+					formVisible.value = false;
 				} )
 				.fail( ( _, errorObj ) => {
 					formErrors.value = [ errorObj.error.info ];
