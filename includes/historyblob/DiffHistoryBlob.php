@@ -47,7 +47,7 @@ class DiffHistoryBlob implements HistoryBlob {
 	/** @var array The diff map, see above */
 	public $mDiffMap;
 
-	/** @var string The key for getText()
+	/** @var string|null The key for getText()
 	 */
 	public $mDefaultKey;
 
@@ -118,7 +118,7 @@ class DiffHistoryBlob implements HistoryBlob {
 		if ( !function_exists( 'xdiff_string_rabdiff' ) ) {
 			throw new RuntimeException( "Need xdiff support to write DiffHistoryBlob\n" );
 		}
-		if ( isset( $this->mDiffs ) ) {
+		if ( $this->mDiffs !== null ) {
 			// Already compressed
 			return;
 		}
@@ -306,7 +306,7 @@ class DiffHistoryBlob implements HistoryBlob {
 				'map' => $map
 			];
 		}
-		if ( isset( $this->mDefaultKey ) ) {
+		if ( $this->mDefaultKey !== null ) {
 			$info['default'] = $this->mDefaultKey;
 		}
 		$this->mCompressed = gzdeflate( serialize( $info ) );

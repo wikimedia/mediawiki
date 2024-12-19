@@ -146,36 +146,36 @@ abstract class File implements MediaHandlerState {
 	/** @var MediaHandler */
 	protected $handler;
 
-	/** @var string The URL corresponding to one of the four basic zones */
+	/** @var string|null The URL corresponding to one of the four basic zones */
 	protected $url;
 
-	/** @var string File extension */
+	/** @var string|null File extension */
 	protected $extension;
 
 	/** @var string|null The name of a file from its title object */
 	protected $name;
 
-	/** @var string The storage path corresponding to one of the zones */
+	/** @var string|null The storage path corresponding to one of the zones */
 	protected $path;
 
 	/** @var string|null Relative path including trailing slash */
 	protected $hashPath;
 
-	/** @var int|false Number of pages of a multipage document, or false for
+	/** @var int|false|null Number of pages of a multipage document, or false for
 	 *    documents which aren't multipage documents
 	 */
 	protected $pageCount;
 
-	/** @var string|false URL of transformscript (for example thumb.php) */
+	/** @var string|false|null URL of transformscript (for example thumb.php) */
 	protected $transformScript;
 
 	/** @var Title */
 	protected $redirectTitle;
 
-	/** @var bool Whether the output of transform() for this file is likely to be valid. */
+	/** @var bool|null Whether the output of transform() for this file is likely to be valid. */
 	protected $canRender;
 
-	/** @var bool Whether this media file is in a format that is unlikely to
+	/** @var bool|null Whether this media file is in a format that is unlikely to
 	 *    contain viruses or malicious content
 	 */
 	protected $isSafeFile;
@@ -360,7 +360,7 @@ abstract class File implements MediaHandlerState {
 	 * @return string
 	 */
 	public function getExtension() {
-		if ( !isset( $this->extension ) ) {
+		if ( $this->extension === null ) {
 			$n = strrpos( $this->getName(), '.' );
 			$this->extension = self::normalizeExtension(
 				$n ? substr( $this->getName(), $n + 1 ) : '' );
@@ -398,7 +398,7 @@ abstract class File implements MediaHandlerState {
 	 * @return string
 	 */
 	public function getUrl() {
-		if ( !isset( $this->url ) ) {
+		if ( $this->url === null ) {
 			$this->assertRepoDefined();
 			$ext = $this->getExtension();
 			$this->url = $this->repo->getZoneUrl( 'public', $ext ) . '/' . $this->getUrlRel();
@@ -473,7 +473,7 @@ abstract class File implements MediaHandlerState {
 	 * @return string|false ForeignAPIFile::getPath can return false
 	 */
 	public function getPath() {
-		if ( !isset( $this->path ) ) {
+		if ( $this->path === null ) {
 			$this->assertRepoDefined();
 			$this->path = $this->repo->getZonePath( 'public' ) . '/' . $this->getRel();
 		}
@@ -887,7 +887,7 @@ abstract class File implements MediaHandlerState {
 	 * @return bool
 	 */
 	public function canRender() {
-		if ( !isset( $this->canRender ) ) {
+		if ( $this->canRender === null ) {
 			$this->canRender = $this->getHandler() && $this->handler->canRender( $this ) && $this->exists();
 		}
 
@@ -940,7 +940,7 @@ abstract class File implements MediaHandlerState {
 	 * @return bool
 	 */
 	public function isSafeFile() {
-		if ( !isset( $this->isSafeFile ) ) {
+		if ( $this->isSafeFile === null ) {
 			$this->isSafeFile = $this->getIsSafeFileUncached();
 		}
 
@@ -1051,7 +1051,7 @@ abstract class File implements MediaHandlerState {
 	 * @return string|false
 	 */
 	private function getTransformScript() {
-		if ( !isset( $this->transformScript ) ) {
+		if ( $this->transformScript === null ) {
 			$this->transformScript = false;
 			if ( $this->repo ) {
 				$script = $this->repo->getThumbScriptUrl();
@@ -2193,7 +2193,7 @@ abstract class File implements MediaHandlerState {
 	 * @return int|false
 	 */
 	public function pageCount() {
-		if ( !isset( $this->pageCount ) ) {
+		if ( $this->pageCount === null ) {
 			if ( $this->getHandler() && $this->handler->isMultiPage( $this ) ) {
 				$this->pageCount = $this->handler->pageCount( $this );
 			} else {

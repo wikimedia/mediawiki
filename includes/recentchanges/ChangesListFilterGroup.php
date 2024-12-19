@@ -339,7 +339,7 @@ abstract class ChangesListFilterGroup {
 			'messageKeys' => [ $this->title ]
 		];
 
-		if ( isset( $this->whatsThisHeader ) ) {
+		if ( $this->whatsThisHeader !== null ) {
 			$output['whatsThisHeader'] = $this->whatsThisHeader;
 			$output['whatsThisBody'] = $this->whatsThisBody;
 			$output['whatsThisUrl'] = $this->whatsThisUrl;

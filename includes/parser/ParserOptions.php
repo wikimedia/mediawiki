@@ -1015,7 +1015,7 @@ class ParserOptions {
 	 * @return string TS_MW timestamp
 	 */
 	public function getTimestamp() {
-		if ( !isset( $this->mTimestamp ) ) {
+		if ( $this->mTimestamp === null ) {
 			$this->mTimestamp = wfTimestampNow();
 		}
 		return $this->mTimestamp;

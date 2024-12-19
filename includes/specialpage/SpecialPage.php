@@ -295,7 +295,7 @@ class SpecialPage implements MessageLocalizer {
 	 * @return string
 	 */
 	public function getLocalName() {
-		if ( !isset( $this->mLocalName ) ) {
+		if ( $this->mLocalName === null ) {
 			$this->mLocalName = $this->getSpecialPageFactory()->getLocalNameFor( $this->mName );
 		}
 

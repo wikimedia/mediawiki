@@ -76,7 +76,7 @@ class Telemetry implements TelemetryHeadersInterface {
 	 */
 	public function getRequestId(): string {
 		// This method is called from various error handlers and MUST be kept simple and stateless.
-		if ( !isset( $this->reqId ) ) {
+		if ( $this->reqId === null ) {
 			if ( $this->allowExternalReqID ) {
 				$id = ( $this->server['HTTP_X_REQUEST_ID'] ?? $this->server['UNIQUE_ID'] ?? wfRandomString( 24 ) );
 			} else {

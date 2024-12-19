@@ -38,7 +38,7 @@ class DatabasePostgres extends Database {
 	private $port;
 	/** @var string */
 	private $tempSchema;
-	/** @var float|string */
+	/** @var float|string|null */
 	private $numericVersion;
 
 	/** @var resource|null */
@@ -777,7 +777,7 @@ __INDEXATTR__;
 	}
 
 	public function getServerVersion() {
-		if ( !isset( $this->numericVersion ) ) {
+		if ( $this->numericVersion === null ) {
 			// Works on PG 7.4+
 			$this->numericVersion = pg_version( $this->getBindingHandle() )['server'];
 		}

@@ -90,17 +90,17 @@ class FileRepo {
 	 */
 	protected $transformVia404;
 
-	/** @var string URL of image description pages, e.g.
+	/** @var string|null URL of image description pages, e.g.
 	 *    https://en.wikipedia.org/wiki/File:
 	 */
 	protected $descBaseUrl;
 
-	/** @var string URL of the MediaWiki installation, equivalent to
+	/** @var string|null URL of the MediaWiki installation, equivalent to
 	 *    $wgScriptPath, e.g. https://en.wikipedia.org/w
 	 */
 	protected $scriptDirUrl;
 
-	/** @var string Equivalent to $wgArticlePath, e.g. https://en.wikipedia.org/wiki/$1 */
+	/** @var string|null Equivalent to $wgArticlePath, e.g. https://en.wikipedia.org/wiki/$1 */
 	protected $articleUrl;
 
 	/** @var bool Equivalent to $wgCapitalLinks (or $wgCapitalLinkOverrides[NS_FILE],
@@ -812,7 +812,7 @@ class FileRepo {
 	 * @return string|false False on failure
 	 */
 	public function makeUrl( $query = '', $entry = 'index' ) {
-		if ( isset( $this->scriptDirUrl ) ) {
+		if ( $this->scriptDirUrl !== null ) {
 			return wfAppendQuery( "{$this->scriptDirUrl}/{$entry}.php", $query );
 		}
 
@@ -870,7 +870,7 @@ class FileRepo {
 		if ( $lang !== null ) {
 			$query .= '&uselang=' . urlencode( $lang );
 		}
-		if ( isset( $this->scriptDirUrl ) ) {
+		if ( $this->scriptDirUrl !== null ) {
 			return $this->makeUrl(
 				'title=' .
 				wfUrlencode( 'Image:' . $name ) .
@@ -891,7 +891,7 @@ class FileRepo {
 	 * @return string|false False on failure
 	 */
 	public function getDescriptionStylesheetUrl() {
-		if ( isset( $this->scriptDirUrl ) ) {
+		if ( $this->scriptDirUrl !== null ) {
 			// Must match canonical query parameter order for optimum caching
 			// See HTMLCacheUpdater::getUrls
 			return $this->makeUrl( 'title=MediaWiki:Filepage.css&action=raw&ctype=text/css' );
@@ -2006,11 +2006,11 @@ class FileRepo {
 			'descriptionCacheExpiry',
 		];
 		foreach ( $optionalSettings as $k ) {
-			if ( isset( $this->$k ) ) {
+			if ( $this->$k !== null ) {
 				$ret[$k] = $this->$k;
 			}
 		}
-		if ( isset( $this->favicon ) ) {
+		if ( $this->favicon !== null ) {
 			// Expand any local path to full URL to improve API usability (T77093).
 			$ret['favicon'] = MediaWikiServices::getInstance()->getUrlUtils()
 				->expand( $this->favicon );
