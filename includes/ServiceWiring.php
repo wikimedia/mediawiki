@@ -696,7 +696,10 @@ return [
 
 	'DatabaseFactory' => static function ( MediaWikiServices $services ): DatabaseFactory {
 		return new DatabaseFactory(
-			[ 'debugSql' => $services->getMainConfig()->get( MainConfigNames::DebugDumpSql ) ]
+			[
+				'debugSql' => $services->getMainConfig()->get( MainConfigNames::DebugDumpSql ),
+				'tracer' => $services->getTracer(),
+			]
 		);
 	},
 
