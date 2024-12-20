@@ -40,7 +40,9 @@ use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
+use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupMembership;
 use MediaWiki\User\UserIdentity;
@@ -48,6 +50,7 @@ use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
 use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IExpression;
 
 /**
  * This class is used to get a list of user. The ones with specials
@@ -73,6 +76,9 @@ class UsersPager extends AlphabeticPager {
 	protected $temporaryGroupsOnly;
 
 	/** @var bool */
+	protected $temporaryAccountsOnly;
+
+	/** @var bool */
 	protected $creationSort;
 
 	/** @var bool|null */
@@ -88,6 +94,7 @@ class UsersPager extends AlphabeticPager {
 	private LinkBatchFactory $linkBatchFactory;
 	private UserGroupManager $userGroupManager;
 	private UserIdentityLookup $userIdentityLookup;
+	private TempUserConfig $tempUserConfig;
 
 	/**
 	 * @param IContextSource $context
@@ -137,6 +144,7 @@ class UsersPager extends AlphabeticPager {
 		}
 		$this->editsOnly = $request->getBool( 'editsOnly' );
 		$this->temporaryGroupsOnly = $request->getBool( 'temporaryGroupsOnly' );
+		$this->temporaryAccountsOnly = $request->getBool( 'temporaryAccountsOnly' );
 		$this->creationSort = $request->getBool( 'creationSort' );
 		$this->including = $including;
 		$this->mDefaultDirection = $request->getBool( 'desc' )
@@ -161,6 +169,7 @@ class UsersPager extends AlphabeticPager {
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->userIdentityLookup = $userIdentityLookup;
 		$this->hideUserUtils = $hideUserUtils;
+		$this->tempUserConfig = MediaWikiServices::getInstance()->getTempUserConfig();
 	}
 
 	/**
@@ -205,6 +214,12 @@ class UsersPager extends AlphabeticPager {
 				$cond = $cond->or( 'ug_expiry', '=', null );
 			}
 			$conds[] = $cond;
+		}
+
+		if ( $this->temporaryAccountsOnly && $this->tempUserConfig->isKnown() ) {
+			$conds[] = $this->tempUserConfig->getMatchCondition(
+				$dbr, 'user_name', IExpression::LIKE
+			);
 		}
 
 		if ( $this->requestedGroup != '' ) {
@@ -424,6 +439,23 @@ class UsersPager extends AlphabeticPager {
 				'id' => 'temporaryGroupsOnly',
 				'default' => $this->temporaryGroupsOnly
 			],
+		];
+
+		// If temporary accounts are known, add an option to filter for them
+		if ( $this->tempUserConfig->isKnown() ) {
+			$formDescriptor = array_merge( $formDescriptor, [
+				'temporaryAccountsOnly' => [
+					'type' => 'check',
+					'label' => $this->msg( 'listusers-temporaryaccountsonly' )->text(),
+					'name' => 'temporaryAccountsOnly',
+					'id' => 'temporaryAccountsOnly',
+					'default' => $this->temporaryAccountsOnly
+				]
+			] );
+		}
+
+		// Add sort options
+		$formDescriptor = array_merge( $formDescriptor, [
 			'creationSort' => [
 				'type' => 'check',
 				'label' => $this->msg( 'listusers-creationsort' )->text(),
@@ -442,8 +474,8 @@ class UsersPager extends AlphabeticPager {
 				'class' => HTMLHiddenField::class,
 				'name' => 'limit',
 				'default' => $this->mLimit
-			]
-		];
+			],
+		] );
 
 		$beforeSubmitButtonHookOut = '';
 		$this->hookRunner->onSpecialListusersHeaderForm( $this, $beforeSubmitButtonHookOut );
