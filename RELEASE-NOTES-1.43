@@ -1,5 +1,29 @@
 = MediaWiki 1.43 =
 
+=== Changes since MediaWiki 1.43.0-rc.0 ===
+* (T381728) Use PHP 8.3 in MediaWiki-Docker
+* (T382375) Misaligned label margins on Special:MathStatus
+* (T382196) \overbrace rendered below (not above) in MathML and client-side
+  Mathjax
+* (T381310) Math Popup not working in newer version of Popup-Extension
+* (T380079) This page is using the deprecated ResourceLoader module
+  "mediawiki.Uri" on page load
+* (T381311) Preview has wrong location in MathML mode
+* (T381046) Preview not working with MathML rendering
+* (T381102) <math>\left(a\right)'</math> in MathML and MathJax renders
+  with one prime symbol too much
+* (T380184) <math>\operatorname{vec}</math> crashes with native MathML
+* (T380654) vertical space between multline equations is ignored
+* (T375274) mediawiki_function_names math functions eat the following paren in
+  native MML mode
+* (T373732) Audit SUL3 shared-domain i18n messages for XSS
+* (T381068) PHP Deprecated: Creation of dynamic property
+  MediaWiki\\Auth\\ButtonAuthenticationRequest::$skipReset is deprecated
+  at AuthenticationRequest.php:182
+* (T20110) Define AbuseFilter consequence to display a CAPTCHA
+* (T332743) On private wikis the ellipsis should not appear above 720px
+  (wikitech, office, translate wiki)
+
 == MediaWiki 1.43.0-PRERELEASE ==
 
 THIS IS NOT A RELEASE YET
