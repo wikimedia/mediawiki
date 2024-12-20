@@ -1135,7 +1135,8 @@ class ParserTestRunner {
 				if ( $modeStr === 'selser' && $test->changetree === null ) {
 					// This is an auto-edit test with either a CLI changetree
 					// or a change tree that should be generated
-					$mode = new ParserTestMode( 'selser-auto', json_decode( $runner->options['changetree'] ) );
+					$changetree = $runner->options['changetree'] ? json_decode( $runner->options['changetree'] ) : null;
+					$mode = new ParserTestMode( 'selser-auto', $changetree );
 				}
 				$result = $this->runTestInternal( $test, $mode );
 				$ok = $ok && $result->isSuccess();
