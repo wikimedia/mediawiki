@@ -2597,6 +2597,7 @@
 	"block-pages-placeholder": "הוספת דפים...",
 	"block-namespaces-placeholder": "הוספת מרחבי שם...",
 	"block-update": "עדכון חסימה",
+	"block-invalid-id": "מזהה חסימה בלתי־תקין",
 	"unblockip": "שחרור חסימה של משתמש",
 	"unblockiptext": "ניתן להשתמש בטופס שלהלן כדי להחזיר את הרשאות הכתיבה לכתובת IP חסומה או למשתמש חסום.",
 	"ipusubmit": "הסרת חסימה זו",

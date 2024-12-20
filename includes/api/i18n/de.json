@@ -73,7 +73,7 @@
 	"apihelp-block-param-noemail": "Benutzer davon abhalten, E-Mails auf dem Wiki zu versenden (erfordert das <code>blockemail</code>-Recht).",
 	"apihelp-block-param-hidename": "Den Benutzernamen im Sperr-Logbuch verstecken (erfordert das <code>hideuser</code>-Recht).",
 	"apihelp-block-param-allowusertalk": "Dem Benutzer erlauben, seine eigene Diskussionsseite zu bearbeiten (abhängig von <var>[[mw:Special:MyLanguage/Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
-	"apihelp-block-param-reblock": "Wenn der Benutzer bereits durch eine einzelne Sperre gesperrt ist, überschreibe die vorhandene Sperre. Wenn der Benutzer mehr als einmal gesperrt ist, schlägt dies fehl. Verwende stattdessen den ID-Parameter, um anzugeben, welche Sperre überschrieben werden soll.",
+	"apihelp-block-param-reblock": "Wenn der Benutzer bereits durch eine einzelne Sperre gesperrt ist, überschreibe die vorhandene Sperre. Wenn der Benutzer mehr als einmal gesperrt ist, schlägt dies fehl; verwende stattdessen den Parameter <var>id</var>, um anzugeben, welche Sperre überschrieben werden soll.",
 	"apihelp-block-param-newblock": "Eine weitere Sperre hinzufügen, auch wenn der Benutzer bereits gesperrt ist.",
 	"apihelp-block-param-watchuser": "Benutzer- und Diskussionsseiten des Benutzers oder der IP-Adresse beobachten.",
 	"apihelp-block-param-watchlistexpiry": "Ablaufzeitstempel der Beobachtungsliste. Lasse diesen Parameter vollständig weg, um den aktuellen Ablauf unverändert zu lassen.",

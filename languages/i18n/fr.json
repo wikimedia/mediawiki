@@ -2762,6 +2762,7 @@
 	"block-pages-placeholder": "Ajouter des pages…",
 	"block-namespaces-placeholder": "Ajouter des espaces de noms…",
 	"block-update": "Mettre à jour un blocage",
+	"block-invalid-id": "ID de blocage invalide",
 	"unblockip": "Débloquer un utilisateur",
 	"unblockiptext": "Utilisez le formulaire ci-dessous pour redonner les droits d’écriture à une adresse IP ou un nom d’utilisateur qui a été bloqué auparavant.",
 	"ipusubmit": "Retirer ce blocage",

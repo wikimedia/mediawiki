@@ -2653,6 +2653,7 @@
 	"block-pages-placeholder": "Dodaj więcej stron…",
 	"block-namespaces-placeholder": "Dodaj więcej przestrzeni nazw…",
 	"block-update": "Uaktualnij blokadę",
+	"block-invalid-id": "Nieprawidłowy identyfikator blokady",
 	"unblockip": "Odblokuj użytkownika",
 	"unblockiptext": "Użyj poniższego formularza, by przywrócić możliwość edycji z wcześniej zablokowanego adresu IP lub użytkownikowi.",
 	"ipusubmit": "Odblokuj",

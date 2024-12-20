@@ -67,7 +67,7 @@
 	"apihelp-block-param-noemail": "Het sturen van e-mail via wiki verhinderen. (Vereist het <code>blockemail</code>-recht.)",
 	"apihelp-block-param-hidename": "De gebruikersnaam in het blokkeerlogboek verbergen. (Vereist het <code>hideuser</code>-recht.)",
 	"apihelp-block-param-allowusertalk": "De gebruiker toestaan om de eigen overlegpagina te bewerken (afhankelijk van <var>[[mw:Special:MyLanguage/Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
-	"apihelp-block-param-reblock": "De huidige blokkade overschrijven indien de gebruiker al door een enkele blokkade geblokkeerd is. Als de gebruiker meer dan eens geblokkeerd is, werkt dit niet. Geef dan met de parameter ‘id’ aan welke blokkade overschreven moet worden.",
+	"apihelp-block-param-reblock": "De huidige blokkade overschrijven indien de gebruiker al door een enkele blokkade geblokkeerd is. Als de gebruiker meer dan eens geblokkeerd is, werkt dit niet. Geef dan met de parameter <var>id</var> aan welke blokkade overschreven moet worden.",
 	"apihelp-block-param-newblock": "Nog een blokkade toevoegen, ook als de gebruiker al geblokkeerd is.",
 	"apihelp-block-param-watchuser": "De gebruikers- en overlegpagina's van de gebruiker of het IP-adres volgen.",
 	"apihelp-block-param-watchlistexpiry": "Vervaltijd voor de volglijst. Laat deze parameter volledig weg om de huidige vervaltijd ongewijzigd te laten.",

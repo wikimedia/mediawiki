@@ -2667,6 +2667,7 @@
 	"block-pages-placeholder": "Daha fazla sayfa ekle...",
 	"block-namespaces-placeholder": "Daha fazla ad alanı ekle...",
 	"block-update": "Engelemeyi güncelle",
+	"block-invalid-id": "Geçersiz engelleme kimliği",
 	"unblockip": "Kullanıcının engelini kaldır",
 	"unblockiptext": "Daha önceden engellenmiş bir IP adresine ya da kullanıcı adına yazma erişimini geri vermek için aşağıdaki formu kullanın.",
 	"ipusubmit": "Bu engeli kaldır",

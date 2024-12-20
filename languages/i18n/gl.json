@@ -2578,6 +2578,7 @@
 	"block-pages-placeholder": "Engadir máis páxinas...",
 	"block-namespaces-placeholder": "Engadir máis espazos de nomes...",
 	"block-update": "Actualizar o bloqueo",
+	"block-invalid-id": "O identificador do bloqueo é incorrecto",
 	"unblockip": "Desbloquear un usuario",
 	"unblockiptext": "Utiliza o seguinte formulario para dar de novo acceso de escritura a un enderezo IP ou usuario que estea bloqueado.",
 	"ipusubmit": "Retirar o bloqueo",

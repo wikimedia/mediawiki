@@ -2683,6 +2683,7 @@
 	"block-pages-placeholder": "新增更多頁面……",
 	"block-namespaces-placeholder": "新增更多命名空間……",
 	"block-update": "更新封鎖",
+	"block-invalid-id": "無效封鎖 ID",
 	"unblockip": "解除封鎖使用者",
 	"unblockiptext": "使用以下表單以還原之前被封鎖的IP位址或使用者名稱的寫入權限。",
 	"ipusubmit": "移除此封鎖",

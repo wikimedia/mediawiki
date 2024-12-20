@@ -2589,6 +2589,7 @@
 	"block-pages-placeholder": "Daha çox səhifə əlavə et...",
 	"block-namespaces-placeholder": "Daha çox ad fəzası əlavə et...",
 	"block-update": "Bloku yenilə",
+	"block-invalid-id": "Səhv blok ID-si",
 	"unblockip": "İstifadəçinin blokunu götür",
 	"unblockiptext": "Əvvəlcədən bloklanmış bir IP ünvanına və ya istifadəçi adına yazma geri vermek için aşağıdakı formadan istifadə edin.",
 	"ipusubmit": "Bu bloku götür",
