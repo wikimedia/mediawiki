@@ -377,6 +377,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 			$pageTitle2, null, $user, $edit, $expectedCode, $expectedText, $desc );
 
 		$this->getDb()->commit( __METHOD__ );
+		$this->runDeferredUpdates();
 
 		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount(), 'No deferred updates' );
 
@@ -544,6 +545,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 			"expected successful update with given text" );
 
 		$this->getDb()->commit( __METHOD__ );
+		$this->runDeferredUpdates();
 
 		$this->assertGreaterThan( 0, $checkIds[0], "First event rev ID set" );
 		$this->assertGreaterThan( 0, $checkIds[1], "Second edit hook rev ID set" );

@@ -46,6 +46,7 @@ interface IDatabaseForOwner extends IDatabase {
 	 * @param string $name Callback name
 	 * @param callable|null $callback Use null to unset a listener
 	 * @since 1.28
+	 * @deprecated Since 1.44
 	 */
 	public function setTransactionListener( $name, ?callable $callback = null );
 

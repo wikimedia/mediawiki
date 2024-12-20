@@ -58,6 +58,7 @@ class SiteStatsUpdateTest extends MediaWikiIntegrationTestCase {
 
 		// This also notifies DeferredUpdates to do an opportunistic run
 		$dbw->commit( __METHOD__ );
+		$this->runDeferredUpdates();
 		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount() );
 
 		SiteStats::unload();

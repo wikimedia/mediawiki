@@ -67,6 +67,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 0, $queue->getSize() );
 
 		$dbw->endAtomic( __METHOD__ ); // run updates
+		$this->runDeferredUpdates();
 
 		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount() );
 		$queue->flushCaches();
@@ -147,6 +148,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 		try {
 			// Trigger deferred updates run to execute the update and secondary updates
 			$dbw->endAtomic( __METHOD__ );
+			$this->runDeferredUpdates();
 			// Callback rigged to fail
 			$this->fail( "Expected LogicException" );
 		} catch ( LogicException $e ) {

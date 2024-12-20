@@ -344,9 +344,11 @@ class DeferredUpdates {
 	 *
 	 * How this works:
 	 *
-	 * - When a maintenance script commits a change or waits for replication, such as
-	 *   via IConnectionProvider::commitAndWaitForReplication, then ILBFactory calls
-	 *   tryOpportunisticExecute(). This is injected via MWLBFactory::applyGlobalState.
+	 * - When a maintenance script calls {@link Maintenance::commitTransaction()},
+	 *   tryOpportunisticExecute() will be called after commit.
+	 *
+	 * - When a maintenance script calls {@link Maintenance::commitTransactionRound()},
+	 *   tryOpportunisticExecute() will be called after all the commits.
 	 *
 	 * - For maintenance scripts that don't do much with the database, we also call
 	 *   tryOpportunisticExecute() after every addUpdate() call.
