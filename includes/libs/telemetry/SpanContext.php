@@ -96,7 +96,7 @@ class SpanContext implements JsonSerializable {
 	}
 
 	public function setAttributes( array $attributes ): void {
-		$this->attributes = $attributes;
+		$this->attributes = array_merge( $this->attributes, $attributes );
 	}
 
 	public function isSampled(): bool {

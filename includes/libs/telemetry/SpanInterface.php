@@ -43,6 +43,8 @@ interface SpanInterface {
 
 	/**
 	 * Set attributes (arbitrary metadata) for this span.
+	 * Any existing attributes with the same keys will be overwritten.
+	 * Attributes with a `null` value will be ignored during export.
 	 *
 	 * When deciding on the set of attributes to register as well as their naming, consider following
 	 * <a href="https://opentelemetry.io/docs/specs/semconv/general/trace/">Semantic Conventions</a> where

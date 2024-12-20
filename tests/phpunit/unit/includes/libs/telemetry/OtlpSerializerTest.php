@@ -26,7 +26,8 @@ class OtlpSerializerTest extends MediaWikiUnitTestCase {
 				'float-value' => 1.5,
 				'object-value' => new \stdClass(),
 				'boolean-value' => true,
-				'list-value' => [ 'a', 'b' ]
+				'list-value' => [ 'a', 'b' ],
+				'null-value' => null
 			],
 			[
 				[ 'key' => 'string-value', 'value' => [ 'stringValue' => 'string' ] ],

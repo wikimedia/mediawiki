@@ -7,6 +7,7 @@ use Wikimedia\Telemetry\Clock;
 use Wikimedia\Telemetry\Span;
 use Wikimedia\Telemetry\SpanContext;
 use Wikimedia\Telemetry\TracerState;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \Wikimedia\Telemetry\Span
@@ -160,5 +161,16 @@ class SpanTest extends MediaWikiUnitTestCase {
 		$span->start();
 
 		$span = null;
+	}
+
+	public function testShouldMergeAttributes(): void {
+		$span = $this->createSpan();
+		$context = TestingAccessWrapper::newFromObject( $span->getContext() );
+
+		$span->start();
+		$span->setAttributes( [ 'a' => 1, 'b' => 2 ] );
+		$span->setAttributes( [ 'b' => 3, 'c' => 4 ] );
+
+		$this->assertSame( [ 'a' => 1, 'b' => 3, 'c' => 4 ], $context->attributes );
 	}
 }
