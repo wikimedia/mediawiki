@@ -1685,7 +1685,7 @@ function wfMerge(
 	$mergeLeftovers = '';
 	do {
 		$data = fread( $handle, 8192 );
-		if ( strlen( $data ) == 0 ) {
+		if ( $data === false || $data === '' ) {
 			break;
 		}
 		$mergeLeftovers .= $data;
@@ -1701,7 +1701,7 @@ function wfMerge(
 	$simplisticMergeAttempt = '';
 	do {
 		$data = fread( $handle, 8192 );
-		if ( strlen( $data ) == 0 ) {
+		if ( $data === false || $data === '' ) {
 			break;
 		}
 		$simplisticMergeAttempt .= $data;

@@ -49,7 +49,7 @@ class PageSourceHandler extends SimpleHandler {
 	private function constructHtmlUrl( PageReference $page ): string {
 		// TODO: once legacy "v1" routes are removed, just use the path prefix from the module.
 		$pathPrefix = $this->getModule()->getPathPrefix();
-		if ( strlen( $pathPrefix ) == 0 ) {
+		if ( $pathPrefix === '' ) {
 			$pathPrefix = 'v1';
 		}
 

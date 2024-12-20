@@ -678,7 +678,7 @@ class FileRepo {
 	/**
 	 * Get the URL thumb.php requests are being proxied to
 	 *
-	 * @return string
+	 * @return string|null
 	 */
 	public function getThumbProxyUrl() {
 		return $this->thumbProxyUrl;
@@ -687,7 +687,7 @@ class FileRepo {
 	/**
 	 * Get the secret key for the proxied thumb service
 	 *
-	 * @return string
+	 * @return string|null
 	 */
 	public function getThumbProxySecret() {
 		return $this->thumbProxySecret;

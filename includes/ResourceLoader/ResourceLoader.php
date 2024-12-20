@@ -753,7 +753,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		// error list if we're in debug mode.
 		if ( $context->getDebug() ) {
 			$warnings = ob_get_contents();
-			if ( strlen( $warnings ) ) {
+			if ( $warnings !== false && $warnings !== '' ) {
 				$this->errors[] = $warnings;
 			}
 		}

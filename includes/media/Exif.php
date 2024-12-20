@@ -612,7 +612,7 @@ class Exif {
 
 			// trim and check to make sure not only whitespace.
 			$val = trim( $val );
-			if ( strlen( $val ) === 0 ) {
+			if ( $val === '' ) {
 				// only whitespace.
 				$this->debug( $this->mFilteredExifData[$prop], __FUNCTION__, "$prop: Is only whitespace" );
 				unset( $this->mFilteredExifData[$prop] );

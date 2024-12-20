@@ -202,7 +202,7 @@ class JobQueueRedis extends JobQueue {
 		$items = []; // (job ID => job fields map)
 		foreach ( $jobs as $job ) {
 			$item = $this->getNewJobFields( $job );
-			if ( strlen( $item['sha1'] ) ) { // hash identifier => de-duplicate
+			if ( $item['sha1'] !== '' ) { // hash identifier => de-duplicate
 				$items[$item['sha1']] = $item;
 			} else {
 				$items[$item['uuid']] = $item;

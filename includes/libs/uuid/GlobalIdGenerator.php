@@ -90,7 +90,7 @@ class GlobalIdGenerator {
 			);
 			$shellCallback = func_get_arg( 2 );
 		}
-		if ( !strlen( $tempDirectory ) ) {
+		if ( $tempDirectory === false || $tempDirectory === '' ) {
 			throw new InvalidArgumentException( "No temp directory provided" );
 		}
 		$this->tmpDir = $tempDirectory;

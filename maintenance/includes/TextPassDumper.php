@@ -929,12 +929,12 @@ TEXT
 
 			unset( $attribs['id'] );
 			unset( $attribs['location'] );
-			if ( strlen( $text ) > 0 ) {
+			if ( $text !== '' ) {
 				$attribs['xml:space'] = 'preserve';
 			}
 
 			$this->openElement = [ $name, $attribs ];
-			if ( strlen( $text ) > 0 ) {
+			if ( $text !== '' ) {
 				$this->characterData( $parser, $text );
 			}
 		} else {

@@ -123,7 +123,7 @@ class FileBackendDBRepoWrapper extends FileBackend {
 						->where( [ 'img_name' => $name ] )
 						->caller( __METHOD__ )->fetchField();
 				}
-				if ( $sha1 === null || !strlen( $sha1 ) ) {
+				if ( !is_string( $sha1 ) || $sha1 === '' ) {
 					$resolved[$i] = $path; // give up
 					continue;
 				}

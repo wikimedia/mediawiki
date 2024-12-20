@@ -310,7 +310,7 @@ abstract class UploadBase {
 		$this->mTempPath = $tempPath ?? '';
 		$this->mFileSize = $fileSize ?: null;
 		$this->mFileProps = null;
-		if ( strlen( $this->mTempPath ) && file_exists( $this->mTempPath ) ) {
+		if ( $this->mTempPath !== '' && file_exists( $this->mTempPath ) ) {
 			$this->tempFileObj = new TempFSFile( $this->mTempPath );
 			if ( !$fileSize ) {
 				$this->mFileSize = filesize( $this->mTempPath );

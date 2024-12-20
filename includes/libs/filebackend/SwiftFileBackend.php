@@ -247,7 +247,7 @@ class SwiftFileBackend extends FileBackendStore {
 			} elseif ( preg_match( '/^(x-)?content-(?!length$)/', $name ) ) {
 				// Only allow content-* and x-content-* headers (but not content-length)
 				$contentHeaders[$name] = $value;
-			} elseif ( $name === 'content-type' && strlen( $value ) ) {
+			} elseif ( $name === 'content-type' && $value !== '' ) {
 				// This header can be set to a value but not unset
 				$contentHeaders[$name] = $value;
 			}
@@ -1867,10 +1867,10 @@ class SwiftFileBackend extends FileBackendStore {
 	 */
 	protected function storageUrl( array $creds, $container = null, $object = null ) {
 		$parts = [ $creds['storage_url'] ];
-		if ( strlen( $container ?? '' ) ) {
+		if ( ( $container ?? '' ) !== '' ) {
 			$parts[] = rawurlencode( $container );
 		}
-		if ( strlen( $object ?? '' ) ) {
+		if ( ( $object ?? '' ) !== '' ) {
 			$parts[] = str_replace( "%2F", "/", rawurlencode( $object ) );
 		}
 

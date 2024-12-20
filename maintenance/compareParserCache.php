@@ -103,7 +103,7 @@ class CompareParserCache extends Maintenance {
 				$formatter = new UnifiedDiffFormatter();
 				$unifiedDiff = $formatter->format( $diffs );
 
-				if ( strlen( $unifiedDiff ) ) {
+				if ( $unifiedDiff !== '' ) {
 					$this->output( "differences found:\n\n$unifiedDiff\n\n" );
 					++$withdiff;
 				} else {

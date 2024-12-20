@@ -1689,7 +1689,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 		}
 		$parts[] = $type;
 
-		if ( strlen( $filename ) ) {
+		if ( $filename !== '' ) {
 			$parts[] = "filename*=UTF-8''" . rawurlencode( basename( $filename ) );
 		}
 

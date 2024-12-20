@@ -89,7 +89,7 @@ class SearchPostgres extends SearchDatabase {
 		$m = [];
 		if ( preg_match_all( '/([-!]?)(\S+)\s*/', $term, $m, PREG_SET_ORDER ) ) {
 			foreach ( $m as $terms ) {
-				if ( strlen( $terms[1] ) ) {
+				if ( $terms[1] !== '' ) {
 					$searchstring .= ' & !';
 				}
 				if ( strtolower( $terms[2] ) === 'and' ) {

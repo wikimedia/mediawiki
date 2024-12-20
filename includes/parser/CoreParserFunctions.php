@@ -1171,7 +1171,7 @@ class CoreParserFunctions {
 		$arg = $magicWords->matchStartToEnd( $uarg );
 
 		$text = trim( $text );
-		if ( strlen( $text ) == 0 ) {
+		if ( $text === '' ) {
 			return '';
 		}
 		$old = $parser->getOutput()->getPageProperty( 'defaultsort' );

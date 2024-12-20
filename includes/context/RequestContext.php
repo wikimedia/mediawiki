@@ -679,7 +679,7 @@ class RequestContext implements IContextSource, MutableContext {
 	 * @since 1.21
 	 */
 	public static function importScopedSession( array $params ) {
-		if ( strlen( $params['sessionId'] ) &&
+		if ( $params['sessionId'] !== '' &&
 			SessionManager::getGlobalSession()->isPersistent()
 		) {
 			// Check to avoid sending random cookies for the wrong users.
@@ -715,7 +715,7 @@ class RequestContext implements IContextSource, MutableContext {
 
 			// Get new session, if applicable
 			$session = null;
-			if ( strlen( $params['sessionId'] ) ) { // don't make a new random ID
+			if ( $params['sessionId'] !== '' ) { // don't make a new random ID
 				$manager = SessionManager::singleton();
 				$session = $manager->getSessionById( $params['sessionId'], true )
 					?: $manager->getEmptySession();

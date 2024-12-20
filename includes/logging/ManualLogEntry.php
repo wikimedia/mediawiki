@@ -348,7 +348,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 
 		$rows = [];
 		foreach ( $relations as $tag => $values ) {
-			if ( !strlen( $tag ) ) {
+			if ( $tag === '' ) {
 				throw new UnexpectedValueException( "Got empty log search tag." );
 			}
 
