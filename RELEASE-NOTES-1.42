@@ -7,10 +7,29 @@ PHP 8.4 workboard: https://phabricator.wikimedia.org/tag/php_8.4_support/
 
 == MediaWiki 1.42.4 ==
 
-THIS IS NOT A RELEASE YET
+This is a maintenance release of the MediaWiki 1.42 branch.
 
 === Changes since MediaWiki 1.42.3 ===
 * Localisation updates.
+* (T370380) installer: Support MW_SKIP_EXTERNAL_DEPENDENCIES in update.php.
+* (T372569) installer: Consistently use double quotes when outputting settings.
+* (T368289) rdbms: Reduce log severity of "found writes pending".
+* (T368289) rdbms: only mention write queries in "writes pending" warnings.
+* (T349608) user: Add recursion guard to APCOND_BLOCKED check in
+  UserGroupManager.
+* (T377450) [DatabaseUpdater] Don't interact with updatelog on virtual domains.
+* (T377916) specials: Avoid passing null to str_replace().
+* (T378006, T372500) AutoLoader: Use require_once rather than require.
+* (T378259) SpecialRenameUser: Fix warning display.
+* (T378304) GlobalIdGenerator: Update str_getcsv() call for PHP 8.4.
+* Upgrade php-session-serializer from 2.0.1 to 3.0.0.
+* Upgrade xmp-reader from 0.9.1 to 0.9.2.
+* (T376911) Upgrade AtEase from 2.1.0 to 3.0.0.
+* (T374494) Add DumpableObjectsTest to the database test group.
+* (T362829) Correct range error in regexp of formatmetadata.
+* (T379656) RefreshLinksJob: Don't retry job if "Revision x is not current" is
+  returned.
+* (T381068) ButtonAuthenticationRequest: Add AllowDynamicProperties directive.
 
 == MediaWiki 1.42.3 ==
 
@@ -181,11 +200,14 @@ For notes on 1.41.x and older releases, see HISTORY.
 * Updated symfony/polyfill-php82 from 1.28.0 to 1.29.0.
 * Updated symfony/polyfill-php83 from 1.28.0 to 1.29.0.
 * Updated symfony/yaml from 5.4.23 to 5.4.35.
+* Updated wikimedia/at-ease from 2.1.0 to 3.0.0.
 * Updated wikimedia/less.php from 4.1.1 to 4.2.1.
 * Updated wikimedia/minify from 2.5.1 to 2.7.0.
+* Updated wikimedia/php-session-serializer from 2.0.1 to 3.0.0.
 * Updated wikimedia/relpath from 3.0.0 to 4.0.0.
 * Updated wikimedia/remex-html from 4.0.1 to 4.1.0.
 * Updated wikimedia/shellbox from 4.0.0 to 4.0.1.
+* Updated wikimedia/xmp-reader from 0.9.1 to 0.9.2.
 
 ===== Changed development-only external libraries =====
 * Updated QUnit from v2.19.4 to v2.20.0.
