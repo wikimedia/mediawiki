@@ -216,6 +216,7 @@ use MediaWiki\Storage\PageEditStash;
 use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\Storage\RevertedTagUpdateManager;
 use MediaWiki\Storage\SqlBlobStore;
+use MediaWiki\Telemetry\MediaWikiPropagator;
 use MediaWiki\Tidy\RemexDriver;
 use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\Title\MediaWikiTitleCodec;
@@ -280,12 +281,14 @@ use Wikimedia\Stats\PrefixingStatsdDataFactoryProxy;
 use Wikimedia\Stats\StatsCache;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\Telemetry\Clock;
+use Wikimedia\Telemetry\CompositePropagator;
 use Wikimedia\Telemetry\NoopTracer;
 use Wikimedia\Telemetry\OtlpHttpExporter;
 use Wikimedia\Telemetry\ProbabilisticSampler;
 use Wikimedia\Telemetry\Tracer;
 use Wikimedia\Telemetry\TracerInterface;
 use Wikimedia\Telemetry\TracerState;
+use Wikimedia\Telemetry\W3CTraceContextPropagator;
 use Wikimedia\UUID\GlobalIdGenerator;
 use Wikimedia\WRStats\BagOStuffStatsStore;
 use Wikimedia\WRStats\WRStatsFactory;
@@ -2353,9 +2356,10 @@ return [
 	},
 
 	'Tracer' => static function ( MediaWikiServices $services ): TracerInterface {
+		$xReqIdPropagator = new MediaWikiPropagator( Telemetry::getInstance() );
 		$otelConfig = $services->getMainConfig()->get( MainConfigNames::OpenTelemetryConfig );
 		if ( $otelConfig === null || ( wfIsCLI() && !defined( 'MW_PHPUNIT_TEST' ) ) ) {
-			return new NoopTracer();
+			return new NoopTracer( $xReqIdPropagator );
 		}
 
 		$tracerState = TracerState::getInstance();
@@ -2372,7 +2376,8 @@ return [
 			new Clock(),
 			new ProbabilisticSampler( $otelConfig['samplingProbability'] ),
 			$exporter,
-			$tracerState
+			$tracerState,
+			new CompositePropagator( [ $xReqIdPropagator, new W3CTraceContextPropagator() ] )
 		);
 	},
 

@@ -78,7 +78,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use Psr\Log\LoggerInterface;
 use Wikimedia\RequestTimeout\RequestTimeout;
-use Wikimedia\Telemetry\SpanContext;
 use Wikimedia\Telemetry\SpanInterface;
 use Wikimedia\Telemetry\TracerState;
 
@@ -347,12 +346,8 @@ call_user_func( static function (): void {
 	// Avoid high cardinality URL path as root span name, instead safely use the HTTP method.
 	// Per OTEL Semantic Conventions, https://opentelemetry.io/docs/specs/semconv/http/http-spans/
 	$spanName = "EntryPoint " . MW_ENTRY_POINT . ".php HTTP {$request->getMethod()}";
-	$incomingSpanContext = SpanContext::newFromTraceparentHeader( $request->getHeader( 'traceparent' ) );
-	if ( $incomingSpanContext ) {
-		$rootSpan = $tracer->createSpanWithParent( $spanName, $incomingSpanContext );
-	} else {
-		$rootSpan = $tracer->createRootSpan( $spanName );
-	}
+	global $wgAllowExternalReqID;
+	$rootSpan = $tracer->createRootSpanFromCarrier( $spanName, $wgAllowExternalReqID ? $request->getAllHeaders() : [] );
 	$rootSpan->setSpanKind( SpanInterface::SPAN_KIND_SERVER )
 			->setAttributes( array_filter( [
 				'http.request.method' => $request->getMethod(),

@@ -3,17 +3,25 @@ namespace Wikimedia\Tests\Telemetry;
 
 use MediaWikiUnitTestCase;
 use Wikimedia\Telemetry\SpanContext;
+use Wikimedia\Telemetry\W3CTraceContextPropagator;
 
 /**
- * @covers \Wikimedia\Telemetry\SpanContext
+ * @covers \Wikimedia\Telemetry\W3CTraceContextPropagator
  */
-class SpanContextTest extends MediaWikiUnitTestCase {
+class W3CTraceContextPropagatorTest extends MediaWikiUnitTestCase {
+
+	private W3CTraceContextPropagator $propagator;
+
+	protected function setUp(): void {
+		parent::setUp();
+		$this->propagator = new W3CTraceContextPropagator();
+	}
 
 	/**
 	 * @dataProvider provideValidData
 	 */
-	public function testNewFromTraceparentValidData( string $traceparent, string $traceId, string $spanId, bool $sampled ): void {
-		$spanContext = SpanContext::newFromTraceparentHeader( $traceparent );
+	public function testValidData( string $traceparent, string $traceId, string $spanId, bool $sampled ): void {
+		$spanContext = $this->propagator->extract( [ 'traceparent' => $traceparent ] );
 		$this->assertNotNull( $spanContext );
 		$this->assertInstanceOf( SpanContext::class, $spanContext );
 		$this->assertSame( $traceId, $spanContext->getTraceId() );
@@ -47,10 +55,9 @@ class SpanContextTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideInvalidTraceparents
-	 * @param string|null|false $traceparent
 	 */
-	public function testNewFromTraceparentInvalidData( $traceparent ): void {
-		$this->assertNull( SpanContext::newFromTraceparentHeader( $traceparent ) );
+	public function testInvalidData( $traceparent ): void {
+		$this->assertNull( $this->propagator->extract( [ 'traceparent' => $traceparent ] ) );
 	}
 
 	public static function provideInvalidTraceparents(): array {
