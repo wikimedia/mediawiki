@@ -213,10 +213,10 @@ interface ILoadBalancerForOwner extends ILoadBalancer {
 	 *
 	 * @since 1.39
 	 *
-	 * @param array $conf A configuration array, using the same structure as
+	 * @param array $params A configuration array, using the same structure as
 	 *        the one passed to the LoadBalancer's constructor.
 	 */
-	public function reconfigure( array $conf );
+	public function reconfigure( array $params );
 
 	/**
 	 * Close all connection and redefine the local domain for testing or schema creation
