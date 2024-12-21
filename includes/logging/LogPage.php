@@ -384,30 +384,6 @@ class LogPage {
 	}
 
 	/**
-	 * Add relations to log_search table
-	 *
-	 * @param string $field
-	 * @param array $values
-	 * @param int $logid
-	 * @return bool
-	 */
-	public function addRelations( $field, $values, $logid ) {
-		if ( !strlen( $field ) || !$values ) {
-			return false;
-		}
-		$insert = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase()
-			->newInsertQueryBuilder()
-			->insertInto( 'log_search' )
-			->ignore();
-		foreach ( $values as $value ) {
-			$insert->row( [ 'ls_field' => $field, 'ls_value' => $value, 'ls_log_id' => $logid ] );
-		}
-		$insert->caller( __METHOD__ )->execute();
-
-		return true;
-	}
-
-	/**
 	 * Create a blob from a parameter array
 	 *
 	 * @param array $params
