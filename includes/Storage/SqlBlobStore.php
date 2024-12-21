@@ -32,7 +32,6 @@ use HistoryBlobUtils;
 use InvalidArgumentException;
 use StatusValue;
 use Wikimedia\Assert\Assert;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\DBAccessObjectUtils;
 use Wikimedia\Rdbms\IDatabase;
@@ -646,14 +645,13 @@ class SqlBlobStore implements BlobStore {
 			return false;
 		}
 
+		// Deal with optional compression of archived pages.
+		// This can be done periodically via maintenance/compressOld.php, and
+		// as pages are saved if $wgCompressRevisions is set.
 		if ( in_array( 'gzip', $blobFlags ) ) {
-			# Deal with optional compression of archived pages.
-			# This can be done periodically via maintenance/compressOld.php, and
-			# as pages are saved if $wgCompressRevisions is set.
-			AtEase::suppressWarnings();
-			$blob = gzinflate( $blob );
-			AtEase::restoreWarnings();
-
+			// Silence native warning in favour of more detailed warning (T380347)
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$blob = @gzinflate( $blob );
 			if ( $blob === false ) {
 				wfWarn( __METHOD__ . ': gzinflate() failed' .
 					( $blobAddress ? ' (at blob address ' . $blobAddress . ')' : '' ) );
@@ -675,17 +673,17 @@ class SqlBlobStore implements BlobStore {
 		if ( $blob !== false && $this->legacyEncoding
 			&& !in_array( 'utf-8', $blobFlags ) && !in_array( 'utf8', $blobFlags )
 		) {
-			# Old revisions kept around in a legacy encoding?
-			# Upconvert on demand.
-			# ("utf8" checked for compatibility with some broken
-			#  conversion scripts 2008-12-30)
-			# Even with //IGNORE iconv can whine about illegal characters in
-			# *input* string. We just ignore those too.
-			# REF: https://bugs.php.net/bug.php?id=37166
-			# REF: https://phabricator.wikimedia.org/T18885
-			AtEase::suppressWarnings();
-			$blob = iconv( $this->legacyEncoding, 'UTF-8//IGNORE', $blob );
-			AtEase::restoreWarnings();
+			// - Old revisions kept around in a legacy encoding?
+			//   Upconvert on demand.
+			// - "utf8" checked for compatibility with some broken
+			//   conversion scripts 2008-12-30.
+			// - Even with "//IGNORE" iconv can whine about illegal characters in
+			//   *input* string. We just ignore those too.
+			//   Ref https://bugs.php.net/bug.php?id=37166
+			//   Ref https://phabricator.wikimedia.org/T18885
+			//
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$blob = @iconv( $this->legacyEncoding, 'UTF-8//IGNORE', $blob );
 		}
 
 		return $blob;
