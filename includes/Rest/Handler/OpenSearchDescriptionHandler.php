@@ -185,6 +185,14 @@ class OpenSearchDescriptionHandler extends Handler {
 		return 'application/opensearchdescription+xml';
 	}
 
+	protected function generateResponseSpec( string $method ): array {
+		$spec = parent::generateResponseSpec( $method );
+
+		$spec['200']['content']['application/opensearchdescription+xml']['schema']['type'] = 'string';
+
+		return $spec;
+	}
+
 	public function getParamSettings() {
 		return [
 			'ctype' => [

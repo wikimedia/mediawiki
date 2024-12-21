@@ -9,6 +9,7 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Revision\RevisionRecord;
+use Wikimedia\Message\MessageValue;
 
 /**
  * A handler that returns page source and metadata for the following routes:
@@ -79,9 +80,23 @@ class RevisionSourceHandler extends SimpleHandler {
 		return $response;
 	}
 
+	private function getTargetFormat(): string {
+		return $this->getConfig()['format'];
+	}
+
 	protected function getResponseBodySchemaFileName( string $method ): ?string {
-		// TODO: add fields based on the output mode to the schema
-		return 'includes/Rest/Handler/Schema/RevisionMetaData.json';
+		switch ( $this->getTargetFormat() ) {
+			case 'bare':
+				return 'includes/Rest/Handler/Schema/RevisionMetaDataBare.json';
+
+			case 'source':
+				return 'includes/Rest/Handler/Schema/RevisionMetaDataWithSource.json';
+
+			default:
+				throw new LocalizedHttpException(
+					new MessageValue( "rest-unsupported-target-format" ), 500
+				);
+		}
 	}
 
 	/**

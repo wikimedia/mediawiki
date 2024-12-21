@@ -3,13 +3,15 @@
 	"required": [
 		"id",
 		"size",
-		"delta",
-		"comment",
 		"minor",
 		"timestamp",
 		"content_model",
 		"page",
-		"license"
+		"license",
+		"user",
+		"comment",
+		"delta",
+		"source"
 	],
 	"properties": {
 		"id": {
@@ -18,7 +20,7 @@
 		},
 		"size": {
 			"type": "integer",
-			"description": "The size of the revision, in no particular measure."
+			"description": "Nominal size of this revision, in bogo-bytes"
 		},
 		"delta": {
 			"type": "integer",
@@ -32,15 +34,15 @@
 		},
 		"minor": {
 			"type": "boolean",
-			"description": "Whether the author of the revision conidered it minor."
+			"description": "Whether or not this is a minor edit"
 		},
 		"timestamp": {
 			"type": "string",
-			"format": "date-time"
+			"description": "Revision timestamp"
 		},
 		"content_model": {
 			"type": "string",
-			"format": "mw-content-model"
+			"description": "Type of content"
 		},
 		"page": {
 			"description": "the page the revision belongs to",
@@ -52,22 +54,21 @@
 			"properties": {
 				"id": {
 					"type": "integer",
-					"description": "the page ID"
+					"description": "Page identifier"
 				},
 				"key": {
 					"type": "string",
-					"format": "mw-title",
-					"description": "the page title in URL form (unencoded)"
+					"description": "Page title in URL form (unencoded)"
 				},
 				"title": {
 					"type": "string",
-					"format": "mw-title",
-					"description": "the page title in human readable form"
+					"description": "Page title"
 				}
 			}
 		},
 		"license": {
-			"description": "license information for the revision content",
+			"type": "object",
+			"description": "Information about the wiki's license",
 			"required": [
 				"url",
 				"title"
@@ -75,13 +76,36 @@
 			"properties": {
 				"url": {
 					"type": "string",
-					"format": "url"
+					"description": "URL of the applicable license based on the $wgRightsUrl setting"
 				},
 				"title": {
 					"type": "string",
-					"description": "the name of the license"
+					"description": "Name of the applicable license based on the $wgRightsText setting"
 				}
 			}
+		},
+		"user": {
+			"type": "object",
+			"description": "",
+			"nullable": true,
+			"required": [
+				"id",
+				"name"
+			],
+			"properties": {
+				"id": {
+					"type": "integer",
+					"description": "User identifier"
+				},
+				"name": {
+					"type": "string",
+					"description": "User name"
+				}
+			}
+		},
+		"source": {
+			"type": "string",
+			"description": "The revision source content"
 		}
 	}
 }

@@ -1,0 +1,111 @@
+{
+	"description": "revision meta-data",
+	"required": [
+		"id",
+		"size",
+		"minor",
+		"timestamp",
+		"content_model",
+		"page",
+		"license",
+		"user",
+		"comment",
+		"delta",
+		"html_url"
+	],
+	"properties": {
+		"id": {
+			"type": "integer",
+			"description": "Revision identifier"
+		},
+		"size": {
+			"type": "integer",
+			"description": "Nominal size of this revision, in bogo-bytes"
+		},
+		"delta": {
+			"type": "integer",
+			"nullable": true,
+			"description": "The difference in size compared to the previous revision."
+		},
+		"comment": {
+			"type": "string",
+			"nullable": true,
+			"description": "The comment the author associated with the revision"
+		},
+		"minor": {
+			"type": "boolean",
+			"description": "Whether or not this is a minor edit"
+		},
+		"timestamp": {
+			"type": "string",
+			"description": "Revision timestamp"
+		},
+		"content_model": {
+			"type": "string",
+			"description": "Type of content"
+		},
+		"page": {
+			"description": "the page the revision belongs to",
+			"required": [
+				"id",
+				"key",
+				"title"
+			],
+			"properties": {
+				"id": {
+					"type": "integer",
+					"description": "Page identifier"
+				},
+				"key": {
+					"type": "string",
+					"description": "Page title in URL form (unencoded)"
+				},
+				"title": {
+					"type": "string",
+					"description": "Page title"
+				}
+			}
+		},
+		"license": {
+			"type": "object",
+			"description": "Information about the wiki's license",
+			"required": [
+				"url",
+				"title"
+			],
+			"properties": {
+				"url": {
+					"type": "string",
+					"description": "URL of the applicable license based on the $wgRightsUrl setting"
+				},
+				"title": {
+					"type": "string",
+					"description": "Name of the applicable license based on the $wgRightsText setting"
+				}
+			}
+		},
+		"user": {
+			"type": "object",
+			"description": "",
+			"nullable": true,
+			"required": [
+				"id",
+				"name"
+			],
+			"properties": {
+				"id": {
+					"type": "integer",
+					"description": "User identifier"
+				},
+				"name": {
+					"type": "string",
+					"description": "User name"
+				}
+			}
+		},
+		"html_url": {
+			"type": "string",
+			"description": "Url to retrieve the revision content in html format"
+		}
+	}
+}

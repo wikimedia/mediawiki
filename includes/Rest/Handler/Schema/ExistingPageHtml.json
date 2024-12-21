@@ -32,7 +32,8 @@
 				},
 				"timestamp": {
 					"type": "string",
-					"description": " Timestamp of the latest revision in ISO 8601 format"
+					"description": " Timestamp of the latest revision in ISO 8601 format",
+					"nullable": true
 				}
 			}
 		},
