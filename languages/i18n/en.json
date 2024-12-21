@@ -2639,7 +2639,7 @@
 	"block-create": "Add block",
 	"blockip": "Block {{GENDER:$1|user}}",
 	"blockiptext": "Blocking is used to prevent vandalism and other forms of disruption ([[{{MediaWiki:Policy-url}}|read more]]). You can block IP address ranges using the [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR] syntax. The largest allowed range is /$1 for IPv4 and /$2 for IPv6.",
-	"block-multiblocks-new-feature": "There is a new feature that allows you to issue multiple blocks against a single account",
+	"block-multiblocks-new-feature": "There is a new feature that allows you to issue multiple blocks against a single account.",
 	"ipaddressorusername": "IP address, username or block ID:",
 	"ipbreason": "Reason:",
 	"ipbreason-dropdown": "*Common block reasons\n** Inserting false information\n** Removing content from pages\n** Spamming links to external sites\n** Inserting nonsense/gibberish into pages\n** Intimidating behavior/harassment\n** Abusing multiple accounts\n** Unacceptable username",
