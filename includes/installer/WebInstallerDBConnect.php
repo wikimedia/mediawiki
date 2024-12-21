@@ -73,7 +73,7 @@ class WebInstallerDBConnect extends WebInstallerPage {
 		$settings = '';
 		foreach ( $compiledDBs as $type ) {
 			$installer = $this->parent->getDBInstaller( $type );
-			$types .= "<span class=\"cdx-radio\">";
+			$types .= "<div class=\"cdx-radio\"><div class=\"cdx-radio__wrapper\">";
 			$id = "DBType_$type";
 			$types .=
 				Xml::radio(
@@ -88,7 +88,7 @@ class WebInstallerDBConnect extends WebInstallerPage {
 				) .
 				"\u{00A0}<span class=\"cdx-radio__icon\"></span>" .
 				Xml::label( $installer->getReadableName(), $id, [ 'class' => 'cdx-radio__label' ] );
-			$types .= "</span>";
+			$types .= "</div></div>";
 			// Messages: config-header-mysql, config-header-postgres, config-header-sqlite
 			$settings .= Html::openElement(
 					'div',
