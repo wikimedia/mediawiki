@@ -8,8 +8,8 @@
 			{{ $i18n( 'ipbenableautoblock', autoBlockExpiry ) }}
 		</cdx-checkbox>
 		<cdx-checkbox
-			v-if="hideNameVisible"
-			v-model="hideName"
+			v-if="hideUserVisible"
+			v-model="hideUser"
 			input-value="wpHideUser"
 			class="mw-block-hideuser"
 		>
@@ -47,7 +47,7 @@ const useBlockStore = require( '../stores/block.js' );
 /**
  * The 'additional details' (aka 'block options') section contains:
  *  - AutoBlock (if the target is not an IP)
- *  - HideUser/HideName (if the user has the hideuser right, and the target is not an IP)
+ *  - HideUser (if the user has the hideuser right, and the target is not an IP)
  *  - Watch (if the user is logged in)
  *  - HardBlock (if the target is an IP)
  */
@@ -59,8 +59,8 @@ module.exports = exports = defineComponent( {
 		const store = useBlockStore();
 		const {
 			autoBlock,
-			hideName,
-			hideNameVisible,
+			hideUser,
+			hideUserVisible,
 			watchUser,
 			hardBlock
 		} = storeToRefs( store );
@@ -76,8 +76,8 @@ module.exports = exports = defineComponent( {
 			autoBlock,
 			autoBlockExpiry,
 			autoBlockVisible,
-			hideName,
-			hideNameVisible,
+			hideUser,
+			hideUserVisible,
 			watchUser,
 			hardBlock,
 			hardBlockVisible

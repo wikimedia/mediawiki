@@ -123,7 +123,7 @@ module.exports = exports = defineStore( 'block', () => {
 	 *
 	 * @type {Ref<boolean>}
 	 */
-	const hideName = ref( additionalDetails.indexOf( 'wpHideName' ) !== -1 );
+	const hideUser = ref( additionalDetails.indexOf( 'wpHideUser' ) !== -1 );
 	/**
 	 * Whether to watch the target's user page and talk page.
 	 *
@@ -202,7 +202,7 @@ module.exports = exports = defineStore( 'block', () => {
 	 *
 	 * @type {ComputedRef<boolean>}
 	 */
-	const hideNameVisible = computed( () => {
+	const hideUserVisible = computed( () => {
 		const typeVal = type.value;
 		return mw.config.get( 'blockHideUser' ) &&
 			typeVal === 'sitewide' &&
@@ -220,9 +220,9 @@ module.exports = exports = defineStore( 'block', () => {
 	// Show confirmation dialog if 'Hide username' is visible and selected,
 	// or if the target user is the current user.
 	watch(
-		computed( () => [ targetUser.value, hideName.value, hideNameVisible.value ] ),
-		( [ newTargetUser, newHideName, newHideNameVisible ] ) => {
-			if ( newHideNameVisible && newHideName ) {
+		computed( () => [ targetUser.value, hideUser.value, hideUserVisible.value ] ),
+		( [ newTargetUser, newHideUser, newHideUserVisible ] ) => {
+			if ( newHideUserVisible && newHideUser ) {
 				confirmationMessage.value = mw.message( 'ipb-confirmhideuser' ).parse();
 			} else if ( newTargetUser === mw.config.get( 'wgUserName' ) ) {
 				confirmationMessage.value = mw.msg( 'ipb-blockingself' );
@@ -285,7 +285,7 @@ module.exports = exports = defineStore( 'block', () => {
 		disableEmail.value = blockData.noemail;
 		disableUTEdit.value = !blockData.allowusertalk;
 		hardBlock.value = !blockData.anononly;
-		hideName.value = blockData.hidden;
+		hideUser.value = blockData.hidden;
 		autoBlock.value = blockData.autoblock;
 		// We do not need to set watchUser as its state is never loaded from a block.
 	}
@@ -316,7 +316,7 @@ module.exports = exports = defineStore( 'block', () => {
 		disableEmail.value = false;
 		disableUTEdit.value = false;
 		autoBlock.value = true;
-		hideName.value = false;
+		hideUser.value = false;
 		watchUser.value = false;
 		hardBlock.value = false;
 		// Other refs
@@ -417,7 +417,7 @@ module.exports = exports = defineStore( 'block', () => {
 			params.autoblock = 1;
 		}
 
-		if ( hideNameVisible.value && hideName.value ) {
+		if ( hideUserVisible.value && hideUser.value ) {
 			params.hidename = 1;
 		}
 
@@ -524,8 +524,8 @@ module.exports = exports = defineStore( 'block', () => {
 		disableEmail,
 		disableUTEdit,
 		autoBlock,
-		hideName,
-		hideNameVisible,
+		hideUser,
+		hideUserVisible,
 		watchUser,
 		hardBlock,
 		confirmationMessage,

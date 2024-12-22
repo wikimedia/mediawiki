@@ -31,32 +31,32 @@ describe( 'Block store', () => {
 		const store = useBlockStore();
 		expect( store.confirmationMessage ).toStrictEqual( '' );
 		store.type = 'sitewide';
-		store.hideName = true;
+		store.hideUser = true;
 		await nextTick();
 		expect( store.confirmationMessage ).toStrictEqual( 'ipb-confirmhideuser' );
 	} );
 
-	it( 'should set hideNameVisible only for blocks that are sitewide and with an infinite expiry', () => {
+	it( 'should set hideUserVisible only for blocks that are sitewide and with an infinite expiry', () => {
 		mockMwConfigGet( { blockHideUser: false } );
 		const store = useBlockStore();
 		// Don't have the right.
-		expect( store.hideNameVisible ).toStrictEqual( false );
+		expect( store.hideUserVisible ).toStrictEqual( false );
 		mockMwConfigGet( { blockHideUser: true } );
 		// Partial infinite.
 		store.type = 'partial';
 		store.expiry = 'infinite';
 		mw.util.isInfinity.mockReturnValue( true );
-		expect( store.hideNameVisible ).toStrictEqual( false );
+		expect( store.hideUserVisible ).toStrictEqual( false );
 		// Sitewide time-limited.
 		store.type = 'sitewide';
 		store.expiry = '3 hours';
 		mw.util.isInfinity.mockReturnValue( false );
-		expect( store.hideNameVisible ).toStrictEqual( false );
+		expect( store.hideUserVisible ).toStrictEqual( false );
 		// Sitewide infinite.
 		store.type = 'sitewide';
 		store.expiry = 'infinite';
 		mw.util.isInfinity.mockReturnValue( true );
-		expect( store.hideNameVisible ).toStrictEqual( true );
+		expect( store.hideUserVisible ).toStrictEqual( true );
 	} );
 
 	it( 'should only pass the reblock param to the API if there was an "already blocked" error', () => {
