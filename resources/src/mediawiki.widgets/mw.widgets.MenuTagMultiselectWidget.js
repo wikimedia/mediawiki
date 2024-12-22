@@ -9,7 +9,7 @@
 		const menuTagOptions = [], flatOptions = [], selected = config.selected;
 
 		// MenuTagMultiselectWidget does not support the optgroup config like DropdownInputWidget
-		Object.keys( config.options ).forEach( ( optionGroup ) => {
+		for ( const optionGroup in config.options ) {
 			if ( optionGroup ) {
 				menuTagOptions.push( new OO.ui.MenuSectionOptionWidget( {
 					label: optionGroup
@@ -19,7 +19,7 @@
 				flatOptions.push( option );
 				menuTagOptions.push( new OO.ui.MenuOptionWidget( option ) );
 			} );
-		} );
+		}
 
 		// Parent constructor use these config in a way that is not compatible
 		config.options = [];
@@ -65,10 +65,10 @@
 	mw.widgets.MenuTagMultiselectWidget.prototype.onChangeTags = function ( items ) {
 		if ( '$hiddenInputs' in this ) {
 			const values = this.getValue();
-			Object.keys( this.$hiddenInputs ).forEach( ( name ) => {
+			for ( const name in this.$hiddenInputs ) {
 				const $input = this.$hiddenInputs[ name ];
 				$input.prop( 'checked', values.indexOf( $input.attr( 'value' ) ) >= 0 );
-			} );
+			}
 		}
 
 		mw.widgets.MenuTagMultiselectWidget.super.prototype.onChangeTags.call( this, items );
@@ -76,9 +76,9 @@
 
 	mw.widgets.MenuTagMultiselectWidget.prototype.onDisable = function ( disabled ) {
 		if ( '$hiddenInputs' in this ) {
-			Object.keys( this.$hiddenInputs ).forEach( ( name ) => {
+			for ( const name in this.$hiddenInputs ) {
 				this.$hiddenInputs[ name ].prop( 'disabled', disabled );
-			} );
+			}
 		}
 	};
 }() );

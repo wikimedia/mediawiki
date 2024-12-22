@@ -903,12 +903,12 @@ Parser.prototype = {
  */
 function HtmlEmitter( language, magic ) {
 	this.language = language;
-	Object.keys( magic || {} ).forEach( ( key ) => {
+	for ( const key in ( magic || {} ) ) {
 		const val = magic[ key ];
 		this[ key.toLowerCase() ] = function () {
 			return val;
 		};
-	} );
+	}
 
 	/**
 	 * (We put this method definition here, and not in prototype, to make sure it's not overwritten by any magic.)
