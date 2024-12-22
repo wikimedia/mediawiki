@@ -26,10 +26,11 @@
 	 * @private
 	 */
 	function objectKeysToLowerCase( headers ) {
-		return Object.keys( headers || {} ).reduce( ( updatedHeaders, key ) => {
+		const updatedHeaders = {};
+		for ( const key in headers ) {
 			updatedHeaders[ key.toLowerCase() ] = headers[ key ];
-			return updatedHeaders;
-		}, {} );
+		}
+		return updatedHeaders;
 	}
 
 	/**
@@ -119,7 +120,7 @@
 				body = {};
 			}
 
-			headers = objectKeysToLowerCase( headers );
+			headers = objectKeysToLowerCase( headers || {} );
 			return this.ajax( path, {
 				type: 'POST',
 				headers: Object.assign( headers, { 'content-type': 'application/json' } ),
@@ -139,7 +140,7 @@
 		 * @return {jQuery.Promise}
 		 */
 		put: function ( path, body, headers ) {
-			headers = objectKeysToLowerCase( headers );
+			headers = objectKeysToLowerCase( headers || {} );
 			return this.ajax( path, {
 				type: 'PUT',
 				headers: Object.assign( headers, { 'content-type': 'application/json' } ),
@@ -159,7 +160,7 @@
 		 * @return {jQuery.Promise}
 		 */
 		delete: function ( path, body, headers ) {
-			headers = objectKeysToLowerCase( headers );
+			headers = objectKeysToLowerCase( headers || {} );
 			return this.ajax( path, {
 				type: 'DELETE',
 				headers: Object.assign( headers, { 'content-type': 'application/json' } ),
