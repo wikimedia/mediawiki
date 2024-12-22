@@ -487,14 +487,32 @@ class ConfigSchemaAggregator implements ConfigSchema {
 			}
 		}
 
+		if ( in_array( 'array', $types ) && is_array( $value ) && !array_is_list( $value ) ) {
+			// Lists can become associative arrays along the way as a result of some
+			// operations such as unsetting an element or using array_diff. Cast it back
+			// to list to avoid weird errors. We use array_merge(), instead of array_values(),
+			// so as to not discard (non-numeric) string keys which may have other meaning.
+			$value = array_merge( $value );
+		}
+
 		$this->validator->validate(
 			$value,
 			$schema,
 			Constraint::CHECK_MODE_TYPE_CAST
 		);
+
 		if ( !$this->validator->isValid() ) {
 			foreach ( $this->validator->getErrors() as $error ) {
-				$status->fatal( 'config-invalid-key', $key, $error['message'], var_export( $value, true ) );
+				$errorMsg = $error['message'];
+
+				// In the JSON Schema, 'array' means a list, but the native PHP type
+				// is of course 'array' leading to this spurious error message.
+				// We change the message here to make it more informative.
+				if ( $errorMsg === 'Array value found, but an array is required' ) {
+					$errorMsg = 'Associative array value found, but a list is required';
+				}
+
+				$status->fatal( 'config-invalid-key', $key, $errorMsg, var_export( $value, true ) );
 			}
 		}
 		$this->validator->reset();
