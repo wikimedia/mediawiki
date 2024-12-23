@@ -233,7 +233,7 @@
 	"toolbox": "Алатке",
 	"cactions": "Више",
 	"tool-link-userrights": "Промени {{GENDER:$1|корисничке}} групе",
-	"tool-link-userrights-readonly": "Прикажи {{GENDER:$1|корисничке}} групе",
+	"tool-link-userrights-readonly": "{{GENDER:$1|Корисничке}} групе",
 	"tool-link-emailuser": "Пошаљи имејл {{GENDER:$1|кориснику|корисници}}",
 	"imagepage": "Прикажи страницу датотеке",
 	"mediawikipage": "Прикажи страницу поруке",

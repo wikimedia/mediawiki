@@ -6,6 +6,9 @@
 		]
 	},
 	"apihelp-main-param-action": "ਕਿਹਡ਼ੀ ਕਾਰਵਾਈ ਕਰਨੀ ਹੈ।",
+	"apihelp-main-param-assertuser": "ਤਸਦੀਕ ਕਰੋ ਕਿ ਮੌਜੂਦਾ ਵਰਤੋਂਕਾਰ ਹੀ ਨਾਂ ਵਾਲਾ ਵਰਤੋਂਕਾਰ ਹੈ।",
+	"apihelp-main-param-requestid": "ਇੱਥੇ ਦਿੱਤਾ ਗਿਆ ਕੋਈ ਵੀ ਮੁੱਲ ਜਵਾਬ ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤਾ ਜਾਵੇਗਾ। ਬੇਨਤੀਆਂ ਨੂੰ ਵੱਖ ਕਰਨ ਲਈ ਵਰਤਿਆ ਜਾ ਸਕਦਾ ਹੈ।",
+	"apihelp-main-param-servedby": "ਨਤੀਜਿਆਂ ਵਿੱਚ ਬੇਨਤੀ ਕਰਨ ਵਾਲੇ ਮੇਜ਼ਬਾਨ ਦਾ ਨਾਂ ਸ਼ਾਮਲ ਕਰੋ।",
 	"apihelp-block-summary": "ਵਰਤੋਂਕਾਰ 'ਤੇ ਪਾਬੰਦੀ ਲਾਓ।",
 	"apihelp-block-param-user": "ਪਾਬੰਦੀ ਲਾਉਣ ਲਈ ਵਰਤੋਂਕਾਰ",
 	"apihelp-block-param-reason": "ਪਾਬੰਦੀ ਦਾ ਕਾਰਨ।",

@@ -1738,6 +1738,7 @@
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Kilgool|Kilgoleh}}]]: $2",
 	"tag-mw-new-redirect": "Uđđâ stivrim",
 	"tag-mw-blank": "Siijđo kuorrim",
+	"tag-mw-undo": "Komettem",
 	"tag-mw-reverted": "Macâttum",
 	"tags-title": "Kilgoleh",
 	"tags-tag": "Kilgool nommâ",
