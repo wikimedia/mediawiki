@@ -103,6 +103,40 @@ describe( 'Block store', () => {
 		expect( store.formDisabled ).toBeFalsy();
 	} );
 
+	it( 'should not send the allowusertalk API param when the disableUTEdit field is hidden', () => {
+		const jQuery = jest.requireActual( '../../../../resources/lib/jquery/jquery.js' );
+		mw.Api.prototype.postWithEditToken.mockReturnValue( jQuery.Deferred().resolve().promise() );
+		mockMwConfigGet( { blockDisableUTEditVisible: true } );
+		const store = useBlockStore();
+
+		// Sitewide block can disable user talk page editing.
+		store.type = 'sitewide';
+		store.disableUTEdit = true;
+		store.doBlock();
+		const spy = jest.spyOn( mw.Api.prototype, 'postWithEditToken' );
+		const expected = {
+			action: 'block',
+			nocreate: 1,
+			autoblock: 1,
+			errorlang: 'en',
+			errorsuselocal: true,
+			expiry: '',
+			format: 'json',
+			reason: '',
+			uselang: 'en',
+			user: ''
+		};
+		expect( spy ).toHaveBeenCalledWith( expected );
+
+		// But a partial block cannot.
+		store.type = 'partial';
+		store.doBlock();
+		expected.partial = 1;
+		expected.actionrestrictions = '';
+		expected.allowusertalk = 1;
+		expect( spy ).toHaveBeenCalledWith( expected );
+	} );
+
 	afterEach( () => {
 		jest.clearAllMocks();
 	} );

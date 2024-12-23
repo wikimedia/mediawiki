@@ -209,6 +209,15 @@ module.exports = exports = defineStore( 'block', () => {
 			mw.util.isInfinity( expiry.value );
 	} );
 	/**
+	 * Whether the 'Editing own talk page' checkbox is visible.
+	 */
+	const disableUTEditVisible = computed( () => {
+		const isVisibleByConfig = mw.config.get( 'blockDisableUTEditVisible' ) || false;
+		const isPartial = type.value === 'partial';
+		const blocksUT = namespaces.value.indexOf( mw.config.get( 'wgNamespaceIds' ).user_talk ) !== -1;
+		return isVisibleByConfig && ( !isPartial || ( isPartial && blocksUT ) );
+	} );
+	/**
 	 * Convenience computed prop indicating if confirmation is needed on submission.
 	 *
 	 * @type {ComputedRef<boolean>}
@@ -409,7 +418,7 @@ module.exports = exports = defineStore( 'block', () => {
 			params.noemail = 1;
 		}
 
-		if ( !disableUTEdit.value ) {
+		if ( !disableUTEditVisible.value || !disableUTEdit.value ) {
 			params.allowusertalk = 1;
 		}
 
@@ -523,6 +532,7 @@ module.exports = exports = defineStore( 'block', () => {
 		createAccount,
 		disableEmail,
 		disableUTEdit,
+		disableUTEditVisible,
 		autoBlock,
 		hideUser,
 		hideUserVisible,
