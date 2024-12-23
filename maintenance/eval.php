@@ -57,7 +57,8 @@ class MWEval extends Maintenance {
 
 		$this->addOption(
 			'd',
-			'Enable (some) debug output',
+			'Write debug logs to stdout. Set "1" to enable all channels (aka debug log groups). '
+				. 'Set "2" to also enable Rdbms debugging.',
 			false,
 			true
 		);
