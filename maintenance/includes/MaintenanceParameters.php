@@ -655,17 +655,20 @@ class MaintenanceParameters {
 		$output[] = "$heading:\n";
 
 		foreach ( $items as $name => $info ) {
+			$out = $name;
+
 			if ( $info['shortName'] !== false ) {
-				$name .= ' (-' . $info['shortName'] . ')';
+				$out .= ' (-' . $info['shortName'] . ')';
 			}
+
 			if ( $info['withArg'] ) {
 				$vname = strtoupper( $name );
-				$name .= " <$vname>";
+				$out .= " <$vname>";
 			}
 
 			$output[] =
 				wordwrap(
-					"$tab--$name: " . strtr( $info['desc'], [ "\n" => "\n$tab$tab" ] ),
+					"$tab--$out: " . strtr( $info['desc'], [ "\n" => "\n$tab$tab" ] ),
 					$descWidth,
 					"\n$tab$tab"
 				) . "\n";
