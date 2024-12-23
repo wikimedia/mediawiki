@@ -2652,6 +2652,7 @@
 	"block-pages-placeholder": "Meer pagina’s toevoegen…",
 	"block-namespaces-placeholder": "Meer naamruimten toevoegen…",
 	"block-update": "Blokkade bijwerken",
+	"block-invalid-id": "Ongeldige blokkade-ID",
 	"unblockip": "Gebruiker deblokkeren",
 	"unblockiptext": "Gebruik het onderstaande formulier om opnieuw schrijftoegang te geven aan een geblokkeerde gebruiker of IP-adres.",
 	"ipusubmit": "Blokkade opheffen",

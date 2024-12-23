@@ -93,6 +93,7 @@
 	"rest-unsupported-language-conversion": "Conversion de formats non prise en charge : $1 à $2",
 	"rest-unknown-content-model": "Modèle de contenu inconnu : $1",
 	"rest-page-bundle-validation-error": "PageBundle ne correspond pas à contentVersion : $1",
+	"rest-param-desc-mock-desc": "Description fictive.",
 	"rest-param-desc-revision-id": "Identifiant de la révision",
 	"rest-param-desc-html-input-title": "Titre de la transformation de l'entrée HTML",
 	"rest-param-desc-html-input-oldid": "Ancien id de la transformation de l'entrée HTML",
@@ -127,5 +128,9 @@
 	"rest-param-desc-transform-format": "Format de la transformation",
 	"rest-param-desc-transform-title": "Titre de la transformation",
 	"rest-param-desc-transform-revision": "Révision de la transformation",
-	"rest-param-desc-update-title": "Titre de la page mis à jour"
+	"rest-param-desc-update-title": "Titre de la page mis à jour",
+	"rest-property-desc-mock-desc": "Description fictive.",
+	"rest-property-desc-revision-id": "Identifiant de la révision",
+	"rest-schema-desc-mock-desc": "Description fictive.",
+	"rest-schema-desc-revision-metadata": "Métadonnées de la révision"
 }

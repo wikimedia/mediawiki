@@ -90,6 +90,7 @@
 	"rest-unsupported-language-conversion": "Niet-ondersteunde taalconversie: $1 naar $2",
 	"rest-unknown-content-model": "Onbekend inhoudsmodel: $1",
 	"rest-page-bundle-validation-error": "PageBundle komt niet overeen met contentVersion: $1",
+	"rest-param-desc-mock-desc": "Voorbeeldbeschrijving.",
 	"rest-param-desc-revision-id": "Versie-ID",
 	"rest-param-desc-html-input-title": "HTML-invoer: omzetten titel",
 	"rest-param-desc-html-input-oldid": "HTML-invoer: omzetten oldid",
@@ -124,5 +125,9 @@
 	"rest-param-desc-transform-format": "Formaat voor transformeren",
 	"rest-param-desc-transform-title": "Titel voor transformeren",
 	"rest-param-desc-transform-revision": "Te transformeren versie",
-	"rest-param-desc-update-title": "Bijgewerkte paginatitel"
+	"rest-param-desc-update-title": "Bijgewerkte paginatitel",
+	"rest-property-desc-mock-desc": "Voorbeeldbeschrijving.",
+	"rest-property-desc-revision-id": "Versie-ID",
+	"rest-schema-desc-mock-desc": "Voorbeeldbeschrijving.",
+	"rest-schema-desc-revision-metadata": "Metagegevens van de versie"
 }

@@ -86,7 +86,7 @@
 	"apihelp-block-param-noemail": "Empêcher l’utilisateur d’envoyer des courriels via le wiki (nécessite le droit <code>blockemail</code>).",
 	"apihelp-block-param-hidename": "Masque le nom de l’utilisateur dans le journal des blocages (nécessite le droit <code>hideuser</code>).",
 	"apihelp-block-param-allowusertalk": "Autoriser les utilisateurs à modifier leur propre page de discussion (dépend de <var>[[mw:Special:MyLanguage/Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
-	"apihelp-block-param-reblock": "Si l’utilisateur est actuellement bloqué par un seul blocage, remplace le blocage existant. Si l'utilisateur est bloqué plusieurs fois, cette opération échouera. Utilisez plutôt le paramètre id pour spécifier le blocage à remplacer.",
+	"apihelp-block-param-reblock": "Si l’utilisateur est actuellement bloqué par un seul blocage, remplace le blocage existant. Si l'utilisateur est bloqué plusieurs fois, cette opération échouera. Utilisez plutôt le paramètre <var>id</var> pour spécifier le blocage à remplacer.",
 	"apihelp-block-param-newblock": "Ajouter un autre blocage même si l'utilisateur est déjà bloqué.",
 	"apihelp-block-param-watchuser": "Surveiller les pages utilisateur et de discussion de l’utilisateur ou de l’adresse IP.",
 	"apihelp-block-param-watchlistexpiry": "Horodatage d’expiration de la liste de suivi. Omettre complètement ce paramètre pour laisser l’expiration actuelle inchangée.",

@@ -84,5 +84,7 @@
 	"rest-param-desc-module-spec-version": "모듈 스펙 버전",
 	"rest-param-desc-pagehistory-title": "문서 역사 제목",
 	"rest-param-desc-pagehistory-filter": "문서 역사 필터",
-	"rest-param-desc-search-limit": "반환할 항목 수"
+	"rest-param-desc-search-limit": "반환할 항목 수",
+	"rest-property-desc-revision-id": "판 ID",
+	"rest-schema-desc-revision-metadata": "판 메타데이터"
 }

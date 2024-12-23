@@ -47,5 +47,6 @@
 	"rest-param-desc-revision-id": "ID versione",
 	"rest-param-desc-compare-to": "Confronta con",
 	"rest-param-desc-transform-format": "Trasforma formato",
-	"rest-param-desc-transform-revision": "Trasforma versione"
+	"rest-param-desc-transform-revision": "Trasforma versione",
+	"rest-property-desc-revision-id": "ID versione"
 }

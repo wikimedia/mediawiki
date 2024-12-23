@@ -62,7 +62,7 @@
 	"apihelp-block-param-noemail": "למנוע ממשתמש לשלוח דואר אלקטרוני דרך הוויקי. (דורש את ההרשאה <code>blockemail</code>).",
 	"apihelp-block-param-hidename": "הסרת השם מיומן החסימות. (דורש את ההרשאה <code>hideuser</code>.)",
 	"apihelp-block-param-allowusertalk": "לאפשר למשתמש לערוך את דף השיחה שלו או שלה (תלוי ב־<var>[[mw:Special:MyLanguage/Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
-	"apihelp-block-param-reblock": "אם המשתמש כבר חסום על־ידי חסימה בודדת, להחליף את החסיהמ הקיימת. אם המשתמש נחסם יותר מפעם אחת, זה ייכשל – יש להשתמש בפרמטר id במקום זאת כדי לציין איזו חסימה להחליף.",
+	"apihelp-block-param-reblock": "אם המשתמש כבר חסום על־ידי חסימה בודדת, להחליף את החסיהמ הקיימת. אם המשתמש נחסם יותר מפעם אחת, זה ייכשל – יש להשתמש בפרמטר <var>id</var> במקום זאת כדי לציין איזו חסימה להחליף.",
 	"apihelp-block-param-newblock": "להוסיף חסימה אחרת גם אם המשתמש כבר חסום.",
 	"apihelp-block-param-watchuser": "לעקוב אחרי דף המשתמש ודף השיחה של המשתמש או של כתובת ה־IP.",
 	"apihelp-block-param-watchlistexpiry": "חותם־זמן של תפוגת פריט ברשימת מעקב. אפשר להשמיט את הפרמטר הזה לגמרי כדי שהתפוגה הנוכחית לא תשתנה.",

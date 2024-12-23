@@ -88,6 +88,7 @@
 	"rest-unsupported-language-conversion": "המרת שפה לא נתמכת: מהתסדיר $1 לתסדיר $2",
 	"rest-unknown-content-model": "מודל תוכן לא ידוע: $1",
 	"rest-page-bundle-validation-error": "PageBundle אינו תואם ל־contentVersion‏: $1",
+	"rest-param-desc-mock-desc": "תיאור־דמה.",
 	"rest-param-desc-revision-id": "מזהה גרסה",
 	"rest-param-desc-html-input-title": "פרמטר title של התמרת קלט HTML",
 	"rest-param-desc-html-input-oldid": "פרמטר oldid של התמרת קלט HTML",
@@ -122,5 +123,9 @@
 	"rest-param-desc-transform-format": "פרמטר format של התמרה",
 	"rest-param-desc-transform-title": "פרמטר title של התמרה",
 	"rest-param-desc-transform-revision": "פרמטר revision של התמרה",
-	"rest-param-desc-update-title": "כותרת הדף המעודכנת"
+	"rest-param-desc-update-title": "כותרת הדף המעודכנת",
+	"rest-property-desc-mock-desc": "תיאור־דמה.",
+	"rest-property-desc-revision-id": "מזהה גרסה",
+	"rest-schema-desc-mock-desc": "תיאור־דמה.",
+	"rest-schema-desc-revision-metadata": "מטא־נתונים של גרסה"
 }

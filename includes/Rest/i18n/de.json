@@ -90,6 +90,12 @@
 	"rest-page-bundle-validation-error": "PageBundle stimmt nicht mit contentVersion überein: $1",
 	"rest-param-desc-revision-id": "Versions-ID",
 	"rest-param-desc-update-source": "Seiteninhalt im durch die Eigenschaft content_model angegebenen Format",
+	"rest-param-desc-compare-from": "Vergleich von",
+	"rest-param-desc-compare-to": "Vergleich mit",
+	"rest-param-desc-media-file-title": "Titel der Mediendatei",
+	"rest-param-desc-media-links-title": "Titel der Medienlinks",
+	"rest-param-desc-module-spec-module": "Modulspezifikationsmodul",
+	"rest-param-desc-module-spec-version": "Modulspezifikationsversion",
 	"rest-param-desc-update-title": "Seitentitel aktualisiert",
 	"rest-property-desc-revision-id": "Versions-ID",
 	"rest-schema-desc-revision-metadata": "Metadaten der Version"

@@ -48,5 +48,7 @@
 	"rest-requires-safe-against-csrf": "Denna slutpunkt kräver en CSRF-säker sessionsleverantör.",
 	"rest-badtoken": "Den angivna CSRF-nyckeln är ogiltig.",
 	"rest-badtoken-missing": "Parametern <var>token</var> krävs om inte en CSRF-säker autentiseringsmetod används.",
-	"rest-badtoken-nosession": "CSRF-fel - ingen session."
+	"rest-badtoken-nosession": "CSRF-fel - ingen session.",
+	"rest-property-desc-mock-desc": "Falsk beskrivning.",
+	"rest-schema-desc-mock-desc": "Falsk beskrivning."
 }

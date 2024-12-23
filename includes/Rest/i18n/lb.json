@@ -13,5 +13,7 @@
 	"rest-unsupported-profile-version": "Net ënnerstëtzte Profilversioun: $1",
 	"rest-parsoid-unsupported-media": "Net ënnerstëtzte Medientyp",
 	"rest-edit-conflict": "Ännerungskonflikt ($1)",
-	"rest-unknown-parsoid-transformation": "Onbekannt Transformatioun."
+	"rest-unknown-parsoid-transformation": "Onbekannt Transformatioun.",
+	"rest-property-desc-revision-id": "Versiouns-ID",
+	"rest-schema-desc-revision-metadata": "Revisiounsmetadonnéeën"
 }

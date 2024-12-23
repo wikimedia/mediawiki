@@ -839,7 +839,7 @@
 	"search-thumbnail-alt": "Tamnel untuk $1",
 	"searchrelated": "bukahikan",
 	"searchall": "Unyinna",
-	"search-showingresults": "{{PLURAL:$4|Hasil <strong>$1</strong> jak <strong>$3</strong>|Hasil <strong>$1 - $2</strong> jak <strong>$3</strong>}}",
+	"search-showingresults": "{{PLURAL:$4|1=Hasil <strong>$1</strong> jak <strong>$3</strong>|Hasil <strong>$1 - $2</strong> jak <strong>$3</strong>}}",
 	"search-nonefound": "Makka hasil say sasuway rik kriteria",
 	"search-nonefound-thiswiki": "Makka hasil sai satuluk rik kueri di situs sa.",
 	"powersearch-legend": "Panyopokan tingkat lanjut",
