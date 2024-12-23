@@ -322,7 +322,7 @@ class MaintenanceParametersTest extends TestCase {
 
 		yield 'Missing value short' => [
 			[ '-s', 'arg', '-v' ],
-			[ 'Option --value needs a value after it!' ]
+			[ 'Option -v needs a value after it!' ]
 		];
 	}
 

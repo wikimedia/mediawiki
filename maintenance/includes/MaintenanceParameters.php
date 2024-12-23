@@ -406,15 +406,16 @@ class MaintenanceParameters {
 				# Short options
 				$argLength = strlen( $arg );
 				for ( $p = 1; $p < $argLength; $p++ ) {
-					$option = $arg[$p];
-					if ( !isset( $this->mOptDefs[$option] ) && isset( $this->mShortOptionMap[$option] ) ) {
-						$option = $this->mShortOptionMap[$option];
+					$givenShort = $arg[$p];
+					$option = $givenShort;
+					if ( !isset( $this->mOptDefs[$givenShort] ) && isset( $this->mShortOptionMap[$givenShort] ) ) {
+						$option = $this->mShortOptionMap[$givenShort];
 					}
 
 					if ( isset( $this->mOptDefs[$option]['withArg'] ) && $this->mOptDefs[$option]['withArg'] ) {
 						$param = next( $argv );
 						if ( $param === false ) {
-							$this->error( "Option --$option needs a value after it!" );
+							$this->error( "Option -$givenShort needs a value after it!" );
 						}
 						$this->setOptionValue( $options, $option, $param );
 					} else {
