@@ -430,6 +430,13 @@ return [
 						'UserOptionsLookup',
 					],
 				],
+				'vue' => [
+					'class' => 'MediaWiki\\Content\\VueContentHandler',
+					'services' => [
+						'MainConfig',
+						'ParserFactory',
+					],
+				],
 				'text' => 'MediaWiki\\Content\\TextContentHandler',
 				'unknown' => 'MediaWiki\\Content\\FallbackContentHandler',
 			],

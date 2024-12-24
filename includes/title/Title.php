@@ -1427,7 +1427,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	/**
 	 * Could this MediaWiki namespace page contain custom CSS, JSON, or JavaScript for the
 	 * global UI. This is generally true for pages in the MediaWiki namespace having
-	 * CONTENT_MODEL_CSS, CONTENT_MODEL_JSON, or CONTENT_MODEL_JAVASCRIPT.
+	 * CONTENT_MODEL_CSS, CONTENT_MODEL_JSON, CONTENT_MODEL_JAVASCRIPT or CONTENT_MODEL_VUE.
 	 *
 	 * This method does *not* return true for per-user JS/JSON/CSS. Use isUserConfigPage()
 	 * for that!
@@ -1519,7 +1519,9 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 		return (
 			$this->mNamespace === NS_USER
 			&& $this->isSubpage()
-			&& $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT )
+			&& ( $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) ||
+				$this->hasContentModel( CONTENT_MODEL_VUE )
+			)
 		);
 	}
 
@@ -1569,10 +1571,15 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 		return (
 			$this->mNamespace === NS_MEDIAWIKI
 			&& (
-				$this->hasContentModel( CONTENT_MODEL_JAVASCRIPT )
-				// paranoia - a MediaWiki: namespace page with mismatching extension and content
-				// model is probably by mistake and might get handled incorrectly (see e.g. T112937)
-				|| str_ends_with( $this->mDbkeyform, '.js' )
+				(
+					$this->hasContentModel( CONTENT_MODEL_JAVASCRIPT )
+					// paranoia - a MediaWiki: namespace page with mismatching extension and content
+					// model is probably by mistake and might get handled incorrectly (see e.g. T112937)
+					|| str_ends_with( $this->mDbkeyform, '.js' )
+				) || (
+					$this->hasContentModel( CONTENT_MODEL_VUE )
+					|| str_ends_with( $this->mDbkeyform, '.vue' )
+				)
 			)
 		);
 	}

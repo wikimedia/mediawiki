@@ -23,6 +23,7 @@
 namespace MediaWiki\ResourceLoader;
 
 use FileContentsHasher;
+use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookContainer;
@@ -49,6 +50,8 @@ abstract class Module implements LoggerAwareInterface {
 	protected $config;
 	/** @var LoggerInterface */
 	protected $logger;
+
+	private ?VueComponentParser $vueComponentParser = null;
 
 	/**
 	 * Script and style modules form a hierarchy of trustworthiness, with core modules
@@ -1017,6 +1020,35 @@ abstract class Module implements LoggerAwareInterface {
 				');';
 		}
 		return $contents;
+	}
+
+	/**
+	 * @param Context $context
+	 * @param string $content
+	 * @return array
+	 * @throws InvalidArgumentException If the input is invalid
+	 */
+	protected function parseVueContent( Context $context, string $content ): array {
+		$this->vueComponentParser ??= new VueComponentParser;
+		$parsedComponent = $this->vueComponentParser->parse(
+			$content,
+			[ 'minifyTemplate' => !$context->getDebug() ]
+		);
+		$encodedTemplate = json_encode( $parsedComponent['template'] );
+		if ( $context->getDebug() ) {
+			// Replace \n (backslash-n) with space + backslash-n + backslash-newline in debug mode
+			// The \n has to be preserved to prevent Vue parser issues (T351771)
+			// We only replace \n if not preceded by a backslash, to avoid breaking '\\n'
+			$encodedTemplate = preg_replace( '/(?<!\\\\)\\\\n/', " \\n\\\n", $encodedTemplate );
+			// Expand \t to real tabs in debug mode
+			$encodedTemplate = strtr( $encodedTemplate, [ "\\t" => "\t" ] );
+		}
+		return [
+			'script' => $parsedComponent['script'] .
+				";\nmodule.exports.template = $encodedTemplate;",
+			'style' => $parsedComponent['style'] ?? '',
+			'styleLang' => $parsedComponent['styleLang'] ?? 'css'
+		];
 	}
 
 	/**

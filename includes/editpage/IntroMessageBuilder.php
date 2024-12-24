@@ -214,7 +214,8 @@ class IntroMessageBuilder {
 		}
 		$codeMsg = $localizer->msg( 'editpage-code-message' );
 		$codeMessageText = $codeMsg->isDisabled() ? '' : $codeMsg->parseAsBlock();
-		$isJavaScript = $title->hasContentModel( CONTENT_MODEL_JAVASCRIPT );
+		$isJavaScript = $title->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) ||
+			$title->hasContentModel( CONTENT_MODEL_VUE );
 		$isCSS = $title->hasContentModel( CONTENT_MODEL_CSS );
 
 		if ( $namespace === NS_MEDIAWIKI ) {
@@ -226,7 +227,7 @@ class IntroMessageBuilder {
 				[ 'class' => 'mw-editinginterface' ],
 				$interfaceMsgText
 			) : '';
-			# If this is a default message (but not css, json, or js),
+			# If this is a default message (but not css, json, js or vue),
 			# show a hint that it is translatable on translatewiki.net
 			if (
 				!$isCSS

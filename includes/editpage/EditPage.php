@@ -4206,6 +4206,11 @@ class EditPage implements IEditObject {
 					if ( $level === 'user' && !$config->get( MainConfigNames::AllowUserJs ) ) {
 						$format = false;
 					}
+				} elseif ( $content->getModel() === CONTENT_MODEL_VUE ) {
+					$format = 'vue';
+					if ( $level === 'user' && !$config->get( MainConfigNames::AllowUserJs ) ) {
+						$format = false;
+					}
 				} else {
 					$format = false;
 				}

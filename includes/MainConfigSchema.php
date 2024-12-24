@@ -30,6 +30,7 @@ use MediaWiki\Content\FallbackContentHandler;
 use MediaWiki\Content\JavaScriptContentHandler;
 use MediaWiki\Content\JsonContentHandler;
 use MediaWiki\Content\TextContentHandler;
+use MediaWiki\Content\VueContentHandler;
 use MediaWiki\Content\WikitextContentHandler;
 use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\FileRepo\LocalRepo;
@@ -3396,6 +3397,13 @@ class MainConfigSchema {
 						'ParserFactory',
 						'UserOptionsLookup',
 					],
+				],
+				CONTENT_MODEL_VUE => [
+					'class' => VueContentHandler::class,
+					'services' => [
+						'MainConfig',
+						'ParserFactory',
+					]
 				],
 				// plain text, for use by extensions, etc.
 				CONTENT_MODEL_TEXT => TextContentHandler::class,

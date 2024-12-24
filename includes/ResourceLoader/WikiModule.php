@@ -23,6 +23,7 @@
 namespace MediaWiki\ResourceLoader;
 
 use CSSJanus;
+use InvalidArgumentException;
 use MediaWiki\Content\Content;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Linker\LinkTarget;
@@ -209,6 +210,8 @@ class WikiModule extends Module {
 			$format = CONTENT_FORMAT_JAVASCRIPT;
 		} elseif ( $handler->isSupportedFormat( CONTENT_FORMAT_JSON ) ) {
 			$format = CONTENT_FORMAT_JSON;
+		} elseif ( $handler->isSupportedFormat( CONTENT_FORMAT_VUE ) ) {
+			$format = CONTENT_FORMAT_VUE;
 		} else {
 			return null; // Bad content model
 		}
@@ -290,7 +293,15 @@ class WikiModule extends Module {
 	 */
 	public function getScript( Context $context ) {
 		if ( $this->isPackaged() ) {
-			return $this->getPackageFiles( $context );
+			$packageFiles = $this->getPackageFiles( $context );
+			// TODO deduplicate this from FileModule, move up to Module?
+			foreach ( $packageFiles['files'] as &$file ) {
+				if ( $file['type'] === 'script+style' ) {
+					$file['content'] = $file['content']['script'];
+					$file['type'] = 'script';
+				}
+			}
+			return $packageFiles;
 		} else {
 			$scripts = '';
 			foreach ( $this->getPages( $context ) as $titleText => $options ) {
@@ -358,7 +369,12 @@ class WikiModule extends Module {
 
 		$files = [];
 		foreach ( $this->getPages( $context ) as $titleText => $options ) {
-			if ( $options['type'] !== 'script' && $options['type'] !== 'data' ) {
+
+			if (
+				$options['type'] !== 'script' &&
+				$options['type'] !== 'script-vue' &&
+				$options['type'] !== 'data'
+			) {
 				continue;
 			}
 			$content = $this->getContent( $titleText, $context );
@@ -372,6 +388,27 @@ class WikiModule extends Module {
 					];
 					// First script becomes the "main" script
 					$main ??= $fileKey;
+
+				} elseif ( $options['type'] === 'script-vue' ) {
+					try {
+						$files[$fileKey]['content'] = $this->parseVueContent( $context, $content );
+					} catch ( InvalidArgumentException $e ) {
+						$message = "Failed to parse vue component in $titleText: {$e->getMessage()}";
+						$files[$fileKey]['content'] = [
+							'script' => 'mw.log.error( ' . $context->encodeJson( $message ) . ' )',
+							'style' => ''
+						];
+					}
+					if ( $files[$fileKey]['content']['styleLang'] === 'less' ) {
+						$message = "Failed to parse Vue component in $titleText: Use of LESS styles is not supported.";
+						$files[$fileKey]['content'] = [
+							'script' => 'mw.log.error( ' . $context->encodeJson( $message ) . ' )',
+							'style' => ''
+						];
+					}
+					$files[$fileKey]['content']['titleText'] = $titleText;
+					$files[$fileKey]['type'] = 'script+style';
+
 				} elseif ( $options['type'] === 'data' ) {
 					$data = FormatJson::decode( $content );
 					if ( $data == null ) {
@@ -429,6 +466,26 @@ class WikiModule extends Module {
 			$media = $options['media'] ?? 'all';
 			$style = ResourceLoader::makeComment( $titleText ) . $style;
 			$styles[$media][] = $style;
+		}
+
+		if ( $this->isPackaged() ) {
+			$packageFiles = $this->getPackageFiles( $context );
+			foreach ( $packageFiles['files'] as $fileName => $file ) {
+				if ( $file['type'] === 'script+style' ) {
+					$style = $file['content']['style'];
+					if ( $this->getFlip( $context ) ) {
+						$style = CSSJanus::transform( $style, true, false );
+					}
+
+					$style = MemoizedCallable::call(
+						[ CSSMin::class, 'remap' ],
+						[ $style, false, $remoteDir, true ]
+					);
+
+					$style = ResourceLoader::makeComment( $file['content']['titleText'] ) . $style;
+					$styles['all'][] = $style;
+				}
+			}
 		}
 		return $styles;
 	}
@@ -680,7 +737,7 @@ class WikiModule extends Module {
 		?RevisionRecord $new,
 		string $domain
 	) {
-		static $models = [ CONTENT_MODEL_CSS, CONTENT_MODEL_JAVASCRIPT ];
+		static $models = [ CONTENT_MODEL_CSS, CONTENT_MODEL_JAVASCRIPT, CONTENT_MODEL_VUE ];
 
 		$purge = false;
 		// TODO: MCR: differentiate between page functionality and content model!

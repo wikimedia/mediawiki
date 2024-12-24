@@ -40,7 +40,7 @@ use Wikimedia\Zest\Zest;
  * Parser for Vue single file components (.vue files). See parse() for usage.
  *
  * @ingroup ResourceLoader
- * @internal For use within FileModule.
+ * @internal
  */
 class VueComponentParser {
 	/**

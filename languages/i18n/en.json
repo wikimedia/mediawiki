@@ -698,6 +698,8 @@
 	"content-failed-to-parse": "Failed to parse $2 content for $1 model: $3",
 	"invalid-content-data": "Invalid content data",
 	"invalid-json-data": "Invalid JSON: $1",
+	"vue-invalid-content": "Invalid Vue content: <code>$1</code>",
+	"vue-less-notsupported": "Invalid Vue content: use of LESS is not supported in &lt;style&gt; tag.",
 	"content-not-allowed-here": "\"$1\" content is not allowed on page [[:$2]] in slot \"$3\"",
 	"confirmleave-warning": "Leaving this page may cause you to lose any changes you have made.",
 	"editpage-invalidcontentmodel-title": "Content model not supported",

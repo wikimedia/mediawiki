@@ -121,7 +121,7 @@ class MainSlotRoleHandler extends SlotRoleHandler {
 		}
 
 		// Could this page contain code based on the title?
-		$isCodePage = $ns === NS_MEDIAWIKI && preg_match( '!\.(css|js|json)$!u', $title->getText(), $m );
+		$isCodePage = $ns === NS_MEDIAWIKI && preg_match( '!\.(css|js|json|vue)$!u', $title->getText(), $m );
 		if ( $isCodePage ) {
 			$ext = $m[1];
 		}
@@ -129,7 +129,7 @@ class MainSlotRoleHandler extends SlotRoleHandler {
 		// Is this a user subpage containing code?
 		$isCodeSubpage = $ns === NS_USER
 			&& !$isCodePage
-			&& preg_match( "/\\/.*\\.(js|css|json)$/", $title->getText(), $m );
+			&& preg_match( "/\\/.*\\.(js|css|json|vue)$/", $title->getText(), $m );
 
 		if ( $isCodeSubpage ) {
 			$ext = $m[1];
@@ -147,6 +147,8 @@ class MainSlotRoleHandler extends SlotRoleHandler {
 					return CONTENT_MODEL_CSS;
 				case 'json':
 					return CONTENT_MODEL_JSON;
+				case 'vue':
+					return CONTENT_MODEL_VUE;
 				default:
 					return $model ?? CONTENT_MODEL_TEXT;
 			}

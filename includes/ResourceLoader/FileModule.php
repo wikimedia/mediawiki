@@ -23,7 +23,6 @@
 namespace MediaWiki\ResourceLoader;
 
 use CSSJanus;
-use Exception;
 use FileContentsHasher;
 use InvalidArgumentException;
 use LogicException;
@@ -34,7 +33,6 @@ use MediaWiki\Output\OutputPage;
 use MediaWiki\Registration\ExtensionRegistry;
 use RuntimeException;
 use Wikimedia\Minify\CSSMin;
-use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
  * Module based on local JavaScript/CSS files.
@@ -153,11 +151,6 @@ class FileModule extends Module {
 	 * Used in tests to detect missing dependencies.
 	 */
 	protected $missingLocalFileRefs = [];
-
-	/**
-	 * @var VueComponentParser|null Lazy-created by getVueComponentParser()
-	 */
-	protected $vueComponentParser = null;
 
 	/**
 	 * Construct a new module from an options array.
@@ -640,16 +633,6 @@ class FileModule extends Module {
 		}
 
 		return $summary;
-	}
-
-	/**
-	 * @return VueComponentParser
-	 */
-	protected function getVueComponentParser() {
-		if ( $this->vueComponentParser === null ) {
-			$this->vueComponentParser = new VueComponentParser;
-		}
-		return $this->vueComponentParser;
 	}
 
 	/**
@@ -1445,34 +1428,14 @@ class FileModule extends Module {
 		}
 		if ( $fileInfo['type'] === 'script-vue' ) {
 			try {
-				$parsedComponent = $this->getVueComponentParser()->parse(
 				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
-					$fileInfo['content'],
-					[ 'minifyTemplate' => !$context->getDebug() ]
-				);
-			} catch ( TimeoutException $e ) {
-				throw $e;
-			} catch ( Exception $e ) {
+				$fileInfo[ 'content' ] = $this->parseVueContent( $context, $fileInfo[ 'content' ] );
+			} catch ( InvalidArgumentException $e ) {
 				$msg = "Error parsing file '{$fileInfo['name']}' in module '{$this->getName()}': " .
-					$e->getMessage();
+					"{$e->getMessage()}";
 				$this->getLogger()->error( $msg );
 				throw new RuntimeException( $msg );
 			}
-			$encodedTemplate = json_encode( $parsedComponent['template'] );
-			if ( $context->getDebug() ) {
-				// Replace \n (backslash-n) with space + backslash-n + backslash-newline in debug mode
-				// The \n has to be preserved to prevent Vue parser issues (T351771)
-				// We only replace \n if not preceded by a backslash, to avoid breaking '\\n'
-				$encodedTemplate = preg_replace( '/(?<!\\\\)\\\\n/', " \\n\\\n", $encodedTemplate );
-				// Expand \t to real tabs in debug mode
-				$encodedTemplate = strtr( $encodedTemplate, [ "\\t" => "\t" ] );
-			}
-			$fileInfo['content'] = [
-				'script' => $parsedComponent['script'] .
-					";\nmodule.exports.template = $encodedTemplate;",
-				'style' => $parsedComponent['style'] ?? '',
-				'styleLang' => $parsedComponent['styleLang'] ?? 'css'
-			];
 			$fileInfo['type'] = 'script+style';
 		}
 		if ( !isset( $fileInfo['content'] ) ) {
