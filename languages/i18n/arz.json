@@ -1793,7 +1793,7 @@
 	"markedaspatrollederror": "مش ممكن تعلم علها إنها متراجعة",
 	"markedaspatrollederrortext": "لازم تختار النسخة اللى عاوز تعلم عليها إنها متراجعة",
 	"markedaspatrollederror-noautopatrol": "مش مسموح ليك تعلم على تغييراتك الشخصية كأنها متراجعة.",
-	"patrol-log-page": "سجل المراجعة",
+	"patrol-log-page": "السجل بتاع الخفر",
 	"patrol-log-header": "دا سجل بالنسخ المتراجعة",
 	"deletedrevision": "مسح النسخة القديمة $1",
 	"filedeleteerror-short": "غلط مسح الملف: $1",

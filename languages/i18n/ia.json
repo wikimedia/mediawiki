@@ -2542,6 +2542,8 @@
 	"block-user-placeholder": "Comencia a scriber un usator…",
 	"block-target": "Nomine de usator, adresse IP o gamma de adresses IP:",
 	"block-target-placeholder": "NomineDeUsator, 1.1.1.42 o 1.1.1.42/16",
+	"block-pages-placeholder": "Adder plus paginas…",
+	"block-namespaces-placeholder": "Adder plus spatios de nomines…",
 	"unblockip": "Disblocar usator",
 	"unblockiptext": "Usa le formulario infra pro restaurar le accesso de scriptura a un adresse IP o nomine de usator blocate previemente.",
 	"ipusubmit": "Cancellar iste blocada",

@@ -2687,6 +2687,8 @@
 	"block-user-placeholder": "利用者を入力...",
 	"block-target": "利用者名、IPアドレスまたはIPアドレス範囲:",
 	"block-target-placeholder": "UserName、1.1.1.42または1.1.1.42/16",
+	"block-pages-placeholder": "ページを追加...",
+	"block-namespaces-placeholder": "名前空間を追加...",
 	"unblockip": "ブロックを解除",
 	"unblockiptext": "以下のフォームで利用者またはIPアドレスのブロックを解除できます。",
 	"ipusubmit": "このブロックを解除",
@@ -3980,8 +3982,8 @@
 	"mediastatistics-summary": "アップロードされたファイルの種類に関する統計です。これはファイルの最新バージョンのみを含みます。以前のまたは削除されたバージョンについては除外されています。",
 	"mediastatistics-nfiles": "$1 ($2%)",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 バイト}} ($2; $3%)",
-	"mediastatistics-bytespertype": "このセクションの合計ファイルサイズ{{PLURAL:$4|$4 ファイル}}（$5％）:{{PLURAL:$1|$1B}}（$2;$3％）",
-	"mediastatistics-allbytes": "すべての合計ファイルサイズ {{PLURAL:$3|$3 ファイル}}: {{PLURAL:$1|$1B}} ($2).",
+	"mediastatistics-bytespertype": "この節の全 {{PLURAL:$4|$4 ファイル}} ($5％) の総ファイルサイズは {{PLURAL:$1|$1 バイト}} ($2、$3％) です。",
+	"mediastatistics-allbytes": "全 {{PLURAL:$3|$3 ファイル}}の総ファイルサイズは {{PLURAL:$1|$1 バイト}} ($2) です。",
 	"mediastatistics-table-mimetype": "MIMEタイプ",
 	"mediastatistics-table-extensions": "取りうる拡張子",
 	"mediastatistics-table-count": "ファイル数",
@@ -4330,5 +4332,7 @@
 	"benefit-1-description": "興味のあるページを追跡することができるウォッチリスト。",
 	"benefit-2-description": "自分がそのプロジェクトで行った投稿の永続的な一覧。",
 	"benefit-3-description": "カスタマイズ可能な個人設定。",
-	"temp-user-unable-to-acquire": "臨時アカウントの利用者名を取得できませんでした。もう一度お試しください。"
+	"temp-user-unable-to-acquire": "臨時アカウントの利用者名を取得できませんでした。もう一度お試しください。",
+	"table-of-contents-show-button-aria-label": "目次の表示",
+	"table-of-contents-hide-button-aria-label": "目次の非表示"
 }

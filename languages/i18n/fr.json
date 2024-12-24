@@ -918,7 +918,7 @@
 	"edit-no-change": "Votre modification a été ignorée car aucun changement n’a été apporté au texte.",
 	"edit-slots-cannot-add": "{{PLURAL:$1|L’emplacement suivant n’est|Les emplacements suivants ne sont}} pas pris en charge ici : $2.",
 	"edit-slots-cannot-remove": "{{PLURAL:$1|L’emplacement suivant est nécessaire et ne peut pas être supprimé|Les emplacements suivants sont nécessaires et ne peuvent pas être supprimés}} : $2.",
-	"edit-slots-missing": "{{PLURAL:$1|L’e|Les e}}mplacement{{PLURAL:$1||s}} suivant{{PLURAL:$1||s}} {{PLURAL:$1|es|son}}t manquant{{PLURAL:$1||s}} : $2.",
+	"edit-slots-missing": "{{PLURAL:$1|L’emplacement suivant est manquant|Les emplacements suivants sont manquants}} : $2.",
 	"postedit-confirmation-created": "La page a été [[Special:Diff/$2|créée]].",
 	"postedit-confirmation-restored": "La page a été [[Special:Diff/$2|restaurée]].",
 	"postedit-confirmation-saved": "[[Special:Diff/$2|Votre modification]] a été enregistrée.",

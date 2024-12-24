@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Es Krim 5 Juta Rasa"
+			"Es Krim 5 Juta Rasa",
+			"Jawadywn"
 		]
 	},
 	"config-desc": "Pamasang untuk MediaWiki",
@@ -61,15 +62,15 @@
 	"config-ns-site-name": "Goh-goh rik golar wiki: $1",
 	"config-ns-other": "Barihna (sobutko)",
 	"config-ns-other-default": "MyWiki",
-	"config-admin-box": "Akun pangurus",
+	"config-admin-box": "Akun pangingun",
 	"config-admin-name": "Golar pamakai:",
 	"config-admin-password": "Kata sandi:",
 	"config-admin-password-confirm": "Kata sandi luwot:",
-	"config-admin-name-blank": "Kurukko golar pamakai pangurus.",
-	"config-admin-password-blank": "Kurukko kata sandi untuk akun pangurus.",
+	"config-admin-name-blank": "Kurukko golar pamakay pangingun.",
+	"config-admin-password-blank": "Kurukko kata sandi untuk akun pangingun.",
 	"config-admin-password-mismatch": "Rua kata sandi sai Niku kurukko mak satuluk.",
 	"config-admin-email": "Alamat email:",
-	"config-admin-error-password-invalid": "Kata sandi pangurus wiki salah: $1",
+	"config-admin-error-password-invalid": "Kata sandi pangingun wiki salah: $1",
 	"config-admin-error-bademail": "Niku ngurukko alamat email sai mak sah.",
 	"config-optional-continue": "Unjuki nyak partanyaan luwot.",
 	"config-optional-skip": "Nyak kok malok, instal juga wikina.",

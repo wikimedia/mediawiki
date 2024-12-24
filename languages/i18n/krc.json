@@ -3483,7 +3483,7 @@
 	"tag-filter": "[[Special:Tags|Тег]] фильтр:",
 	"tag-filter-submit": "Фильтрлендир",
 	"tag-hidden": "$1 (таша тег)",
-	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Эн|Энле}}]]: $2",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Белги|Белгиле}}]]: $2",
 	"tag-mw-contentmodelchange": "Ичиндеги модель тюрлениую",
 	"tag-mw-contentmodelchange-description": "Бетни ичиндегисини тюрлендирген моделни тюзетеди",
 	"tag-mw-contentmodelchange-helppage": "https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel",

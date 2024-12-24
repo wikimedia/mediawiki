@@ -3,12 +3,13 @@
 		"authors": [
 			"Gott wisst",
 			"Heahwrita",
-			"Hogweard"
+			"Hogweard",
+			"Rocioun"
 		]
 	},
-	"preferences": "Foreberunga",
+	"preferences": "Þine settunge",
 	"saveprefs": "Horda",
-	"savedprefs": "Þīna foreberunga wurdon gehordod.",
+	"savedprefs": "Þine settunge wurdon gehordod.",
 	"username": "{{GENDER:$1|Brucendnama}}:",
 	"yourrealname": "Þin soða nama:",
 	"yourpassword": "Leafnessword:",
@@ -48,7 +49,7 @@
 	"tog-showrollbackconfirmation": "Yw aseðendlicu gemanung þan þu aþyst on awæltendum hlence",
 	"tog-forcesafemode": "Æfre gecyþ [[mw:Manual:Safemode|hæghalcynn]]",
 	"tog-editsectiononrightclick": "Þafa dæla adihtunge þurh swiðran healfe mys swengas on dæla titulum",
-	"tog-editondblclick": "Adiht trametas mid twifealdum mys swenge",
+	"tog-editondblclick": "Adihtan trametas mid twifealdum mys swenge",
 	"editfont-style": "Adihtunge mearce stæfcynd:",
 	"editfont-monospace": "Anes gemetes gebræded stæfcynd",
 	"editfont-sansserif": "Tægelleas stæfcynd",

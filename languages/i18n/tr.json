@@ -360,7 +360,7 @@
 	"nosuchaction": "Böyle bir eylem yok",
 	"nosuchactiontext": "URL tarafından tanımlanan eylem geçersiz.\nURL'yi yanlış yazmış olabilir, ya da doğru olmayan bir bağlantıyı takip etmiş olabilirsiniz.\nBu, {{SITENAME}} sitesindeki bir hatayı da belirtebilir.",
 	"nosuchspecialpage": "Böyle bir özel sayfa yok",
-	"nospecialpagetext": "<strong>Mevcut olmayan bir özel sayfayı istediniz.</strong>\n\nVarolan tüm özel sayfaları [[Special:SpecialPages|özel sayfalar]] sayfasında görebilirsiniz.",
+	"nospecialpagetext": "<strong>Mevcut olmayan bir özel sayfaya girdiniz.</strong>\n\nVarolan tüm özel sayfaları [[Special:SpecialPages|{{int:specialpages}}]] sayfasında görebilirsiniz.",
 	"error": "Hata",
 	"databaseerror": "Veritabanı hatası",
 	"databaseerror-text": "Bir veritabanı sorgu hatası oluştu.\nBu yazılımdaki bir hatadan kaynaklanıyor olabilir.",

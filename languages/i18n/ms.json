@@ -601,7 +601,7 @@
 	"edit-recovery-special-recovered-on": "daripada $1",
 	"edit-recovery-special-recovered-on-tooltip": "Tarikh dan masa kali terakhir data pemulihan anda disimpan",
 	"edit-recovery-loaded-title": "Pulihkan perubahan?",
-	"edit-recovery-loaded-message": "Perubahan anda yang belum disimpan telah dipulihkan secara automatik.",
+	"edit-recovery-loaded-message": "Anda mempunyai perubahan yang belum disimpan yang boleh dipulihkan secara automatik.",
 	"edit-recovery-loaded-message-different-rev": "<em>Ambil perhatian bahawa halaman mungkin telah berubah sejak anda mula menyunting.</em>",
 	"edit-recovery-loaded-message-different-rev-publish": "<em>Sila semak perubahan anda sebelum diterbitkan.</em>",
 	"edit-recovery-loaded-message-different-rev-save": "<em>Sila semak perubahan anda sebelum menyimpan.</em>",
