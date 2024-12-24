@@ -35,7 +35,6 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
-use Wikimedia\LightweightObjectStore\StorageAwareness;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Stats\StatsFactory;
 

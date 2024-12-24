@@ -70,7 +70,7 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\IPUtils;
-use Wikimedia\LightweightObjectStore\StorageAwareness;
+use Wikimedia\ObjectCache\StorageAwareness;
 
 /**
  * memcached client class implemented using (p)fsockopen()

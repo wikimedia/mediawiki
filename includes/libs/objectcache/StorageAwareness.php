@@ -18,7 +18,7 @@
  * @file
  */
 
-namespace Wikimedia\LightweightObjectStore;
+namespace Wikimedia\ObjectCache;
 
 /**
  * Generic interface providing error code and quality-of-service constants for object stores
