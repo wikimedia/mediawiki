@@ -64,7 +64,7 @@
 	"apihelp-block-param-noemail": "منع المستخدم من إرسال البريد الإلكتروني من خلال الويكي. (يتطلب صلاحية <code>blockemail</code>).",
 	"apihelp-block-param-hidename": "إخفاء اسم المستخدم من سجل المنع. (يتطلب صلاحية <code>hideuser</code>).",
 	"apihelp-block-param-allowusertalk": "تسمح للمستخدم بتحرير صفحة النقاش الخاصة (يعتمد على <var>[[mw:Special:MyLanguage/Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
-	"apihelp-block-param-reblock": "إذا تم حظر المستخدم بالفعل بواسطة عملية منع واحدة، فاستبدل المنع الموجود. إذا تم منع المستخدم أكثر من مرة، فستفشل هذه المحاولة -- استخدم معلمة id بدلاً من ذلك لتحديد المنع الذي سيتم استبداله.",
+	"apihelp-block-param-reblock": "إذا تم منع المستخدم بالفعل بواسطة منع واحد، فاستبدل المنع الموجود. إذا تم منع المستخدم أكثر من مرة، فستفشل هذه الطريقة - استخدم معلمة <var>id</var> بدلاً من ذلك لتحديد المنع الذي سيتم استبداله.",
 	"apihelp-block-param-watchuser": "مشاهدة صفحة المستخدم ونقاش IP.",
 	"apihelp-block-param-watchlistexpiry": "الطابع الزمني لانتهاء صلاحية قائمة المراقبة. احذف هذه المعلمة تمامًا لترك انتهاء الصلاحية الحالي دون تغيير.",
 	"apihelp-block-param-tags": "تغيير الوسوم للتطبيق على الإدخال في سجل الحظر.",

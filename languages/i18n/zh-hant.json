@@ -2651,7 +2651,7 @@
 	"block-actions": "封鎖類型：",
 	"block-change-visibility": "變更可見性",
 	"block-details": "詳細封鎖資訊",
-	"block-details-description": "你想封鎖的操作？",
+	"block-details-description": "使用這些選項以封鎖目標執行除編輯之外的其他操作。",
 	"block-expiry": "到期時間：",
 	"block-expiry-preset": "預設期間",
 	"block-expiry-preset-placeholder": "選擇期間",

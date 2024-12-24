@@ -56,7 +56,7 @@
 	"apihelp-block-param-noemail": "Impedisce all'utente di inviare email mediante il wiki. (Richiede il privilegio <code>blockemail</code>).",
 	"apihelp-block-param-hidename": "Nascondi il nome utente dal registro dei blocchi (Richiede i permessi di <code>hideuser</code>).",
 	"apihelp-block-param-allowusertalk": "Consente all'utente di modificare la sua pagina di discussione (dipende da <var>[[mw:Special:MyLanguage/Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
-	"apihelp-block-param-reblock": "Se l'utente è già bloccato da un singolo blocco, sovrascrivi il blocco esistente. Se l'utente è bloccato più di una volta, questo non funzionerà: usa invece il parametro ID per specificare quale blocco sovrascrivere.",
+	"apihelp-block-param-reblock": "Se l'utente è già bloccato da un singolo blocco, sovrascrivi il blocco esistente. Se l'utente è bloccato più di una volta, questo non funzionerà: usa invece il parametro <var>ID</var> per specificare quale blocco sovrascrivere.",
 	"apihelp-block-param-watchuser": "Segui la pagina utente e le pagine di discussione utente dell'utente o dell'indirizzo IP.",
 	"apihelp-block-param-partial": "Blocca un utente in determinate pagine o namespace anziché nell'intero sito.",
 	"apihelp-block-example-ip-simple": "Blocca l'indirizzo IP <kbd>192.0.2.5</kbd> per tre giorni con una motivazione.",

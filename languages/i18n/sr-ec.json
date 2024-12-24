@@ -1015,7 +1015,7 @@
 	"search-thumbnail-alt": "Минијатура за $1",
 	"searchrelated": "повезано",
 	"searchall": "све",
-	"showingresultsinrange": "{{PLURAL:$1|Приказан је до <strong>$1</strong> резултат|Приказано је до <strong>$1</strong> резултат}}, у опсегу од #<strong>$2</strong> до #<strong>$3</strong>.",
+	"showingresultsinrange": "{{PLURAL:$1|Приказан је до <strong>$1</strong> резултат|Приказано је до <strong>$1</strong> резултат}}, у опсегу од <strong>$2</strong> до <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|1=Резултат <strong>$1</strong> од <strong>$3</strong>|Резултати <strong>$1 — $2</strong> од <strong>$3</strong>}}",
 	"search-showingresults-approximate": "{{PLURAL:$4|1=Резултат <strong>$1</strong> од бар <strong>$3</strong>|Резултати <strong>$1 – $2</strong> од бар <strong>$3</strong>}}",
 	"search-nonefound": "Нису пронађени резултати који одговарају упиту.",

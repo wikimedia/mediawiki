@@ -2615,6 +2615,7 @@
 	"block-expiry-datetime": "Конкретна дата і час",
 	"block-options": "Додаткові опції:",
 	"block-reason": "Причина:",
+	"block-reason-help": "На приклад, наведіть сторінку, яка була вандалізована",
 	"block-reason-other": "Додаткова або інша причина",
 	"block-success": "[[Special:Contributions/$1|«$1»]] заблоковано. Див. [[Special:BlockList|список заблокованих]] для перегляду блокувань.",
 	"block-user-active-blocks": "Активні блокування",
