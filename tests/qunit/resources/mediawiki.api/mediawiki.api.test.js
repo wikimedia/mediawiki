@@ -419,4 +419,81 @@ QUnit.module( 'mediawiki.api', ( hooks ) => {
 			'POST aborted'
 		] );
 	} );
+
+	function assertAbortedByAbortController( assert, promise ) {
+		return promise.then( () => {
+			assert.fail( 'Expected promise to be rejected' );
+		}, ( code, data ) => {
+			assert.true( code instanceof DOMException, 'Got DOMException instead of error code' );
+			assert.strictEqual( code.name, 'AbortError', 'Got an AbortError' );
+			assert.strictEqual( data, code, 'The same object is provided as details' );
+		} );
+	}
+
+	function assertAbortedByAbortablePromise( assert, promise ) {
+		return promise.then( () => {
+			assert.fail( 'Expected promise to be rejected' );
+		}, ( code, data ) => {
+			assert.strictEqual( code, 'http', 'Got "http" error code' );
+			assert.strictEqual( data.textStatus, 'abort', 'Got "textStatus" in error details' );
+		} );
+	}
+
+	const cases = {
+		'Simple promise': ( ajaxOptions ) => new mw.Api().get( {}, ajaxOptions ),
+		'Chained promise': ( ajaxOptions ) => new mw.Api().postWithToken( 'csrf', {}, ajaxOptions )
+	};
+
+	QUnit.test.each( 'Aborting using abortable promise', cases, function ( assert, getPromise ) {
+		this.server.respondImmediately = false;
+		const promise = getPromise();
+		promise.abort();
+		return assertAbortedByAbortablePromise( assert, promise );
+	} );
+
+	QUnit.test.each( 'Aborting using abortable promise with mw.Api.AbortController', cases, function ( assert, getPromise ) {
+		this.server.respondImmediately = false;
+		const abort = new mw.Api.AbortController();
+		const promise = getPromise( { signal: abort.signal } );
+		promise.abort();
+		return assertAbortedByAbortablePromise( assert, promise );
+	} );
+
+	QUnit.test.each( 'Aborting using abortable promise with native AbortController', cases, function ( assert, getPromise ) {
+		this.server.respondImmediately = false;
+		const abort = new AbortController();
+		const promise = getPromise( { signal: abort.signal } );
+		promise.abort();
+		return assertAbortedByAbortablePromise( assert, promise );
+	} );
+
+	QUnit.test.each( 'Aborting using mw.Api.AbortController (pre-aborted signal)', cases, ( assert, getPromise ) => {
+		const abort = new mw.Api.AbortController();
+		abort.abort();
+		const promise = getPromise( { signal: abort.signal } );
+		return assertAbortedByAbortController( assert, promise );
+	} );
+
+	QUnit.test.each( 'Aborting using mw.Api.AbortController (signal abort event)', cases, function ( assert, getPromise ) {
+		this.server.respondImmediately = false;
+		const abort = new mw.Api.AbortController();
+		const promise = getPromise( { signal: abort.signal } );
+		abort.abort();
+		return assertAbortedByAbortController( assert, promise );
+	} );
+
+	QUnit.test.each( 'Aborting using Native AbortController (pre-aborted signal)', cases, ( assert, getPromise ) => {
+		const abort = new AbortController();
+		abort.abort();
+		const promise = getPromise( { signal: abort.signal } );
+		return assertAbortedByAbortController( assert, promise );
+	} );
+
+	QUnit.test.each( 'Aborting using Native AbortController (signal abort event)', cases, function ( assert, getPromise ) {
+		this.server.respondImmediately = false;
+		const abort = new AbortController();
+		const promise = getPromise( { signal: abort.signal } );
+		abort.abort();
+		return assertAbortedByAbortController( assert, promise );
+	} );
 } );
