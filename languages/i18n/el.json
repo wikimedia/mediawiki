@@ -76,7 +76,8 @@
 			"Περίεργος",
 			"לערי ריינהארט",
 			"아라",
-			"KonVog"
+			"KonVog",
+			"PeachyOne"
 		]
 	},
 	"tog-underline": "Υπογράμμιση συνδέσμων:",
@@ -1229,6 +1230,7 @@
 	"linterror-bogus-image-options": "Ψευδής επιλογή αρχείου",
 	"linterror-deletable-table-tag": "Ετικέτα Πίνακα που πρέπει να διαγραφεί",
 	"linterror-html5-misnesting": "Κακή εμφώλευση (τώρα προβληματική)",
+	"linterror-inline-media-caption": "Αόρατη λεζάντα",
 	"linterror-large-tables": "Μεγάλοι πίνακες που σπάνε την εμφάνιση σε κινητές συσκευές",
 	"linterror-misc-tidy-replacement-issues": "Διάφορα λάθη σύνταξης",
 	"linterror-misnested-tag": "Εσφαλμένα εμφωλευμένη ετικέτα που θα πρέπει να εμφωλευθεί σωστά",
@@ -1243,6 +1245,7 @@
 	"linterror-tidy-font-bug": "Ετικέτα font προσπαθεί να αλλάξει χρώμα συνδέσμου",
 	"linterror-tidy-whitespace-bug": "Σφάλμα ανάλυσης χαρακτήρα κενού χώρου",
 	"linterror-unclosed-quotes-in-heading": "Μη εσώκλειστη σημείωση που εξέχει από την λίστα περιεχομένων",
+	"linterror-wikilink-in-extlink": "Σύνδεσμοι σε συνδέσμους",
 	"yourgender": "Πώς προτιμάτε να χαρακτηρίζεστε;",
 	"gender-unknown": "Όταν θα αναφέρει εσάς, το λογισμικό θα χρησιμοποιεί λέξεις ουδέτερες φύλου όποτε είναι δυνατόν.",
 	"gender-notknown": "Άγνωστο",
@@ -1944,6 +1947,12 @@
 	"uploadstash-errclear": "Η εκκαθάριση των αρχείων απέτυχε.",
 	"uploadstash-refresh": "Ανανεώσετε τη λίστα των αρχείων",
 	"uploadstash-exception": "Δεν ήταν δυνατή η αποθήκευση της μεταφόρτωσης στο απόθεμα ($1): «$2».",
+	"uploadstash-nothumb": "Χωρίς μικρογραφία",
+	"uploadstash-header-date": "Ημερομηνία",
+	"uploadstash-header-filekey": "Κλειδί",
+	"uploadstash-header-thumb": "Μικρογραφία",
+	"uploadstash-header-dimensions": "Διαστάσεις",
+	"uploadstash-pager-submit": "Εμφάνιση λίστας αρχείων",
 	"uploadstash-bad-path": "Η διαδρομή δεν υπάρχει.",
 	"uploadstash-bad-path-invalid": "Η διαδρομή δεν είναι έγκυρη.",
 	"uploadstash-bad-path-unknown-type": "Άγνωστος τύπος \"$1\".",

@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Winston Sung",
-			"唐吉訶德的侍從"
+			"唐吉訶德的侍從",
+			"Matma Rex"
 		]
 	},
 	"sunday": "lā̤-bái",
@@ -533,8 +534,8 @@
 	"date-range-from": "Kăi-sṳ̄ nĭk-gĭ:",
 	"date-range-to": "Giék-sók nĭk-gĭ:",
 	"randomrootpage": "Sùi-gĭ gṳ̆ng-hiĕk-miêng",
-	"log-action-filter-delete-delete": "Săng-dṳ̀ hiĕk",
-	"log-action-filter-delete-restore": "Săng-dṳ̀ hiĕk",
+	"log-action-filter-delete-delete": "Page deletion",
+	"log-action-filter-delete-restore": "Page undeletion",
 	"paramvalidator-help-type-user-subtype-name": "ê̤ṳng-hô-miàng",
 	"nstab-mainpage": "Tàu Hiĕk",
 	"skin-action-delete": "Săng-dṳ̀",

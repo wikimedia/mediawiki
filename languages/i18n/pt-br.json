@@ -2720,6 +2720,7 @@
 	"undeletecommentotherlist": "Outro motivo",
 	"undelete-comment-dropdown": "* Motivos comuns para restaurar\n** Pedido do autor",
 	"undelete-edit-commentlist": "Editar motivos de eliminação",
+	"undelete-edit-commentlist-unsuppress": "Editar motivos da reversão",
 	"cannotundelete": "Algumas ou todas as restaurações falharam:\n$1",
 	"undeletedpage": "<strong>$1 foi restaurada</strong>\n\nConsulte o [[Special:Log/delete|registo de eliminações]] para um registo das eliminações e restaurações mais recentes.",
 	"undelete-header": "Veja o [[Special:Log/delete|registro de deleções]] para as páginas recentemente eliminadas.",
