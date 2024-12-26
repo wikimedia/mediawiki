@@ -1,7 +1,11 @@
 QUnit.module( 'mediawiki.api', ( hooks ) => {
+	const originalFormData = window.FormData;
 	hooks.beforeEach( function () {
 		this.server = this.sandbox.useFakeServer();
 		this.server.respondImmediately = true;
+	} );
+	hooks.afterEach( () => {
+		window.FormData = originalFormData;
 	} );
 
 	function sequence( responses ) {
@@ -76,21 +80,37 @@ QUnit.module( 'mediawiki.api', ( hooks ) => {
 			.always( assert.async() );
 	} );
 
-	QUnit.test( 'FormData support', function ( assert ) {
+	QUnit.test.if( 'FormData support [native]', !!window.FormData, async function ( assert ) {
 		const api = new mw.Api();
 
-		this.server.respond( ( request ) => {
-			if ( window.FormData ) {
-				assert.false( /action=/.test( request.url ), 'Request has no query string' );
-				assert.true( request.requestBody instanceof FormData, 'Request uses FormData body' );
-			} else {
-				assert.false( /action=test/.test( request.url ), 'Request has no query string' );
-				assert.strictEqual( request.requestBody, 'action=test&format=json', 'Request uses query string body' );
-			}
-			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
+		let request;
+		this.server.respond( ( req ) => {
+			request = req;
+			req.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
 		} );
 
-		return api.post( { action: 'test' }, { contentType: 'multipart/form-data' } );
+		await api.post( { action: 'test' }, { contentType: 'multipart/form-data' } );
+
+		assert.strictEqual( request.url, '/api.php', 'no query string' );
+		assert.true( request.requestBody instanceof FormData, 'Request uses FormData body' );
+	} );
+
+	QUnit.test( 'FormData support [fallback]', async function ( assert ) {
+		// Disable native (restored in afterEach)
+		window.FormData = undefined;
+
+		const api = new mw.Api();
+
+		let request;
+		this.server.respond( ( req ) => {
+			request = req;
+			req.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
+		} );
+
+		await api.post( { action: 'test' }, { contentType: 'multipart/form-data' } );
+
+		assert.strictEqual( request.url, '/api.php', 'no query string' );
+		assert.strictEqual( request.requestBody, 'action=test&format=json', 'Request uses query string body' );
 	} );
 
 	QUnit.test( 'Converting arrays to pipe-separated (string)', function ( assert ) {
