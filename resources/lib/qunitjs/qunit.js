@@ -1,5 +1,5 @@
 /*!
- * QUnit 2.20.0
+ * QUnit 2.23.1
  * https://qunitjs.com/
  *
  * Copyright OpenJS Foundation and other contributors
@@ -9,145 +9,150 @@
 (function () {
   'use strict';
 
-  function _typeof(obj) {
-    "@babel/helpers - typeof";
-
-    return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
-      return typeof obj;
-    } : function (obj) {
-      return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    }, _typeof(obj);
+  function _arrayLikeToArray(r, a) {
+    (null == a || a > r.length) && (a = r.length);
+    for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
+    return n;
   }
-  function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-      throw new TypeError("Cannot call a class as a function");
+  function _arrayWithHoles(r) {
+    if (Array.isArray(r)) return r;
+  }
+  function _arrayWithoutHoles(r) {
+    if (Array.isArray(r)) return _arrayLikeToArray(r);
+  }
+  function _classCallCheck(a, n) {
+    if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function");
+  }
+  function _defineProperties(e, r) {
+    for (var t = 0; t < r.length; t++) {
+      var o = r[t];
+      o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o);
     }
   }
-  function _defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
+  function _createClass(e, r, t) {
+    return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", {
+      writable: !1
+    }), e;
   }
-  function _createClass(Constructor, protoProps, staticProps) {
-    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) _defineProperties(Constructor, staticProps);
-    Object.defineProperty(Constructor, "prototype", {
-      writable: false
-    });
-    return Constructor;
-  }
-  function _slicedToArray(arr, i) {
-    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
-  }
-  function _toConsumableArray(arr) {
-    return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
-  }
-  function _arrayWithoutHoles(arr) {
-    if (Array.isArray(arr)) return _arrayLikeToArray(arr);
-  }
-  function _arrayWithHoles(arr) {
-    if (Array.isArray(arr)) return arr;
-  }
-  function _iterableToArray(iter) {
-    if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
-  }
-  function _iterableToArrayLimit(arr, i) {
-    var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
-    if (_i == null) return;
-    var _arr = [];
-    var _n = true;
-    var _d = false;
-    var _s, _e;
-    try {
-      for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
-        _arr.push(_s.value);
-        if (i && _arr.length === i) break;
-      }
-    } catch (err) {
-      _d = true;
-      _e = err;
-    } finally {
-      try {
-        if (!_n && _i["return"] != null) _i["return"]();
-      } finally {
-        if (_d) throw _e;
-      }
-    }
-    return _arr;
-  }
-  function _unsupportedIterableToArray(o, minLen) {
-    if (!o) return;
-    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-    var n = Object.prototype.toString.call(o).slice(8, -1);
-    if (n === "Object" && o.constructor) n = o.constructor.name;
-    if (n === "Map" || n === "Set") return Array.from(o);
-    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
-  }
-  function _arrayLikeToArray(arr, len) {
-    if (len == null || len > arr.length) len = arr.length;
-    for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
-    return arr2;
-  }
-  function _nonIterableSpread() {
-    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-  }
-  function _nonIterableRest() {
-    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-  }
-  function _createForOfIteratorHelper(o, allowArrayLike) {
-    var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
-    if (!it) {
-      if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
-        if (it) o = it;
-        var i = 0;
-        var F = function () {};
+  function _createForOfIteratorHelper(r, e) {
+    var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
+    if (!t) {
+      if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) {
+        t && (r = t);
+        var n = 0,
+          F = function () {};
         return {
           s: F,
           n: function () {
-            if (i >= o.length) return {
-              done: true
-            };
-            return {
-              done: false,
-              value: o[i++]
+            return n >= r.length ? {
+              done: !0
+            } : {
+              done: !1,
+              value: r[n++]
             };
           },
-          e: function (e) {
-            throw e;
+          e: function (r) {
+            throw r;
           },
           f: F
         };
       }
       throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
     }
-    var normalCompletion = true,
-      didErr = false,
-      err;
+    var o,
+      a = !0,
+      u = !1;
     return {
       s: function () {
-        it = it.call(o);
+        t = t.call(r);
       },
       n: function () {
-        var step = it.next();
-        normalCompletion = step.done;
-        return step;
+        var r = t.next();
+        return a = r.done, r;
       },
-      e: function (e) {
-        didErr = true;
-        err = e;
+      e: function (r) {
+        u = !0, o = r;
       },
       f: function () {
         try {
-          if (!normalCompletion && it.return != null) it.return();
+          a || null == t.return || t.return();
         } finally {
-          if (didErr) throw err;
+          if (u) throw o;
         }
       }
     };
+  }
+  function _iterableToArray(r) {
+    if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r);
+  }
+  function _iterableToArrayLimit(r, l) {
+    var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
+    if (null != t) {
+      var e,
+        n,
+        i,
+        u,
+        a = [],
+        f = !0,
+        o = !1;
+      try {
+        if (i = (t = t.call(r)).next, 0 === l) {
+          if (Object(t) !== t) return;
+          f = !1;
+        } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0);
+      } catch (r) {
+        o = !0, n = r;
+      } finally {
+        try {
+          if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return;
+        } finally {
+          if (o) throw n;
+        }
+      }
+      return a;
+    }
+  }
+  function _nonIterableRest() {
+    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }
+  function _nonIterableSpread() {
+    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }
+  function _slicedToArray(r, e) {
+    return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest();
+  }
+  function _toConsumableArray(r) {
+    return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread();
+  }
+  function _toPrimitive(t, r) {
+    if ("object" != typeof t || !t) return t;
+    var e = t[Symbol.toPrimitive];
+    if (void 0 !== e) {
+      var i = e.call(t, r || "default");
+      if ("object" != typeof i) return i;
+      throw new TypeError("@@toPrimitive must return a primitive value.");
+    }
+    return ("string" === r ? String : Number)(t);
+  }
+  function _toPropertyKey(t) {
+    var i = _toPrimitive(t, "string");
+    return "symbol" == typeof i ? i : i + "";
+  }
+  function _typeof(o) {
+    "@babel/helpers - typeof";
+
+    return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
+      return typeof o;
+    } : function (o) {
+      return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
+    }, _typeof(o);
+  }
+  function _unsupportedIterableToArray(r, a) {
+    if (r) {
+      if ("string" == typeof r) return _arrayLikeToArray(r, a);
+      var t = {}.toString.call(r).slice(8, -1);
+      return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
+    }
   }
 
   // We don't use global-this-polyfill [1], because it modifies
@@ -191,10 +196,15 @@
   // This avoids a simple `export const` assignment as that would lead Rollup
   // to change getGlobalThis and use the same (generated) variable name there.
   var g = getGlobalThis();
-  var window$1 = g.window;
+
+  // These optional globals are undefined in one or more environments:
+  // modern browser, old browser, Node.js, SpiderMonkey.
+  // Calling code must check these for truthy-ness before use.
   var console$1 = g.console;
   var setTimeout$1 = g.setTimeout;
   var clearTimeout = g.clearTimeout;
+  var process$1 = g.process;
+  var window$1 = g.window;
   var document = window$1 && window$1.document;
   var navigator = window$1 && window$1.navigator;
   var localSessionStorage = function () {
@@ -288,7 +298,7 @@
   };
 
   // Returns a new Array with the elements that are in a but not in b
-  function diff(a, b) {
+  function diff$1(a, b) {
     return a.filter(function (a) {
       return b.indexOf(a) === -1;
     });
@@ -441,6 +451,27 @@
     } else {
       return resultErrorString;
     }
+  }
+  function escapeText(str) {
+    if (!str) {
+      return '';
+    }
+
+    // Both single quotes and double quotes (for attributes)
+    return ('' + str).replace(/['"<>&]/g, function (s) {
+      switch (s) {
+        case "'":
+          return '&#039;';
+        case '"':
+          return '&quot;';
+        case '<':
+          return '&lt;';
+        case '>':
+          return '&gt;';
+        case '&':
+          return '&amp;';
+      }
+    });
   }
 
   var BOXABLE_TYPES = new StringSet(['boolean', 'number', 'string']);
@@ -712,14 +743,24 @@
   var config = {
     // HTML Reporter: Modify document.title when suite is done
     altertitle: true,
+    // TODO: Move here from /src/core.js in QUnit 3.
+    // autostart: true,
+
     // HTML Reporter: collapse every test except the first failing test
     // If false, all failing tests will be expanded
     collapse: true,
+    countStepsAsOne: false,
+    // TODO: Make explicit in QUnit 3.
+    // current: undefined,
+
     // whether or not to fail when there are zero tests
     // defaults to `true`
     failOnZeroTests: true,
     // Select by pattern or case-insensitive substring match against "moduleName: testName"
     filter: undefined,
+    // TODO: Make explicit in QUnit 3.
+    // fixture: undefined,
+
     // Depth up-to which object will be dumped
     maxDepth: 5,
     // Select case-insensitive match of the module name
@@ -733,9 +774,20 @@
     requireExpects: false,
     // By default, scroll to top of the page when suite is done
     scrolltop: true,
+    // TODO: Make explicit in QUnit 3.
+    // seed: undefined,
+
     // The storage module to use for reordering tests
     storage: localSessionStorage,
     testId: undefined,
+    // The updateRate controls how often QUnit will yield the main thread
+    // between tests. This is mainly for the benefit of the HTML Reporter,
+    // so that the browser can visually paint DOM changes with test results.
+    // This also helps avoid causing browsers to prompt a warning about
+    // long-running scripts.
+    // TODO: Move here from /src/core.js in QUnit 3.
+    // updateRate: 1000,
+
     // HTML Reporter: List of URL parameters that are given visual controls
     urlConfig: [],
     // Internal: The first unnamed module
@@ -787,7 +839,15 @@
     // Internal: Exposed to make resets easier
     // Ref https://github.com/qunitjs/qunit/pull/1598
     globalHooks: {},
+    // Internal: ProcessingQueue singleton, created in /src/core.js
+    pq: null,
+    // Internal: Created in /src/core.js
+    // TODO: Move definitions here in QUnit 3.0.
+    // started: 0,
+
     // Internal state
+    _deprecated_timeout_shown: false,
+    _deprecated_countEachStep_shown: false,
     blocking: true,
     callbacks: {},
     modules: [],
@@ -798,6 +858,55 @@
       testCount: 0
     }
   };
+  function readFlatPreconfigBoolean(val, dest) {
+    if (typeof val === 'boolean' || typeof val === 'string' && val !== '') {
+      config[dest] = val === true || val === 'true';
+    }
+  }
+  function readFlatPreconfigNumber(val, dest) {
+    if (typeof val === 'number' || typeof val === 'string' && /^[0-9]+$/.test(val)) {
+      config[dest] = +val;
+    }
+  }
+  function readFlatPreconfigString(val, dest) {
+    if (typeof val === 'string' && val !== '') {
+      config[dest] = val;
+    }
+  }
+  function readFlatPreconfigStringOrBoolean(val, dest) {
+    if (typeof val === 'boolean' || typeof val === 'string' && val !== '') {
+      config[dest] = val;
+    }
+  }
+  function readFlatPreconfigStringArray(val, dest) {
+    if (typeof val === 'string' && val !== '') {
+      config[dest] = [val];
+    }
+  }
+  function readFlatPreconfig(obj) {
+    readFlatPreconfigBoolean(obj.qunit_config_altertitle, 'altertitle');
+    readFlatPreconfigBoolean(obj.qunit_config_autostart, 'autostart');
+    readFlatPreconfigBoolean(obj.qunit_config_collapse, 'collapse');
+    readFlatPreconfigBoolean(obj.qunit_config_failonzerotests, 'failOnZeroTests');
+    readFlatPreconfigString(obj.qunit_config_filter, 'filter');
+    readFlatPreconfigString(obj.qunit_config_fixture, 'fixture');
+    readFlatPreconfigBoolean(obj.qunit_config_hidepassed, 'hidepassed');
+    readFlatPreconfigNumber(obj.qunit_config_maxdepth, 'maxDepth');
+    readFlatPreconfigString(obj.qunit_config_module, 'module');
+    readFlatPreconfigStringArray(obj.qunit_config_moduleid, 'moduleId');
+    readFlatPreconfigBoolean(obj.qunit_config_noglobals, 'noglobals');
+    readFlatPreconfigBoolean(obj.qunit_config_notrycatch, 'notrycatch');
+    readFlatPreconfigBoolean(obj.qunit_config_reorder, 'reorder');
+    readFlatPreconfigBoolean(obj.qunit_config_requireexpects, 'requireExpects');
+    readFlatPreconfigBoolean(obj.qunit_config_scrolltop, 'scrolltop');
+    readFlatPreconfigStringOrBoolean(obj.qunit_config_seed, 'seed');
+    readFlatPreconfigStringArray(obj.qunit_config_testid, 'testId');
+    readFlatPreconfigNumber(obj.qunit_config_testtimeout, 'testTimeout');
+  }
+  if (process$1 && 'env' in process$1) {
+    readFlatPreconfig(process$1.env);
+  }
+  readFlatPreconfig(g);
 
   // Apply a predefined QUnit.config object
   //
@@ -810,6 +919,12 @@
 
   // Push a loose unnamed module to the modules collection
   config.modules.push(config.currentModule);
+  if (config.seed === 'true' || config.seed === true) {
+    // Generate a random seed
+    // Length of `Math.random()` fraction, in base 36, may vary from 6-14.
+    // Pad and take slice to a consistent 10-digit value.
+    config.seed = (Math.random().toString(36) + '0000000000').slice(2, 12);
+  }
 
   var dump = (function () {
     function quote(str) {
@@ -1084,7 +1199,7 @@
         parentSuite.pushChildSuite(this);
       }
     }
-    _createClass(SuiteReport, [{
+    return _createClass(SuiteReport, [{
       key: "start",
       value: function start(recordTime) {
         if (recordTime) {
@@ -1183,7 +1298,6 @@
         }
       }
     }]);
-    return SuiteReport;
   }();
 
   var moduleStack = [];
@@ -1257,10 +1371,10 @@
       module.hooks[hookName].push(callback);
     };
   }
-  function processModule(name, options, executeNow) {
+  function processModule(name, options, scope) {
     var modifiers = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
     if (typeof options === 'function') {
-      executeNow = options;
+      scope = options;
       options = undefined;
     }
     var module = createModule(name, options, modifiers);
@@ -1280,10 +1394,10 @@
     };
     var prevModule = config.currentModule;
     config.currentModule = module;
-    if (typeof executeNow === 'function') {
+    if (typeof scope === 'function') {
       moduleStack.push(module);
       try {
-        var cbReturnValue = executeNow.call(module.testEnvironment, moduleFns);
+        var cbReturnValue = scope.call(module.testEnvironment, moduleFns);
         if (cbReturnValue && typeof cbReturnValue.then === 'function') {
           Logger.warn('Returning a promise from a module callback is not supported. ' + 'Instead, use hooks for async behavior. ' + 'This will become an error in QUnit 3.0.');
         }
@@ -1299,9 +1413,9 @@
   }
   var focused$1 = false; // indicates that the "only" filter was used
 
-  function module$1(name, options, executeNow) {
+  function module$1(name, options, scope) {
     var ignored = focused$1 && !isParentModuleInQueue();
-    processModule(name, options, executeNow, {
+    processModule(name, options, scope, {
       ignored: ignored
     });
   }
@@ -1319,31 +1433,77 @@
     focused$1 = true;
     processModule.apply(void 0, arguments);
   };
-  module$1.skip = function (name, options, executeNow) {
+  module$1.skip = function (name, options, scope) {
     if (focused$1) {
       return;
     }
-    processModule(name, options, executeNow, {
+    processModule(name, options, scope, {
       skip: true
     });
   };
-  module$1.todo = function (name, options, executeNow) {
+  module$1.if = function (name, condition, options, scope) {
     if (focused$1) {
       return;
     }
-    processModule(name, options, executeNow, {
+    processModule(name, options, scope, {
+      skip: !condition
+    });
+  };
+  module$1.todo = function (name, options, scope) {
+    if (focused$1) {
+      return;
+    }
+    processModule(name, options, scope, {
       todo: true
     });
   };
 
-  // Doesn't support IE9, it will return undefined on these browsers
-  // See also https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Error/Stack
-  var fileName = (sourceFromStacktrace(0) || '').replace(/(:\d+)+\)?/, '')
-  // Remove anything prior to the last slash (Unix/Windows)
-  // from the last frame
+  // Stacktrace cleaner to focus on the path from error source to test suite.
+  //
+  // This should reduce a raw stack trace like this:
+  //
+  // > foo.broken()@/src/foo.js
+  // > Bar@/src/bar.js
+  // > @/test/bar.test.js
+  // > @/lib/qunit.js:500:12
+  // > @/lib/qunit.js:100:28
+  // > @/lib/qunit.js:200:56
+  // > setTimeout@
+  // > @/dist/vendor.js
+  //
+  // and shorten it to show up until the end of the user's bar.test.js code.
+  //
+  // > foo.broken()@/src/foo.js
+  // > Bar@/src/bar.js
+  // > @/test/bar.test.js
+  //
+  // QUnit will obtain one example trace (once per process/pageload suffices),
+  // strip off any :<line> and :<line>:<column>, and use that as match needle,
+  // to the first QUnit-internal frames, and then stop at that point.
+  // Any later frames, including those that are outside QUnit again, will be ommitted
+  // as being uninteresting to the test, since QUnit will have either started or
+  // resumed the test. This we also clean away browser built-ins, or other
+  // vendor/bundler that may be higher up the stack.
+  //
+  // Stripping :<line>:<column> is not for prettyness, it is essential for the
+  // match needle to work, since this sample trace will by definitin not be the
+  // same line as e.g. the QUnit.test() call we're trying to identify.
+  //
+  // See also:
+  // - https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Error/Stack
+  //
+  var fileName = (sourceFromStacktrace(0) || ''
+  // Global replace, because a frame like localhost:4000/lib/qunit.js:1234:50,
+  // would otherwise (harmlessly, but uselessly) remove only the port (first match).
+  // https://github.com/qunitjs/qunit/issues/1769
+  ).replace(/(:\d+)+\)?/g, '')
+  // Remove anything prior to the last slash (Unix/Windows) from the last frame,
+  // leaving only "qunit.js".
   .replace(/.+[/\\]/, '');
   function extractStacktrace(e, offset) {
     offset = offset === undefined ? 4 : offset;
+
+    // Support: IE9, e.stack is not supported, we will return undefined
     if (e && e.stack) {
       var stack = e.stack.split('\n');
       if (/^error$/i.test(stack[0])) {
@@ -1384,7 +1544,7 @@
       _classCallCheck(this, Assert);
       this.test = testContext;
     }
-    _createClass(Assert, [{
+    return _createClass(Assert, [{
       key: "timeout",
       value: function timeout(duration) {
         if (typeof duration !== 'number') {
@@ -1428,6 +1588,7 @@
         // Since the steps array is just string values, we can clone with slice
         var actualStepsClone = this.test.steps.slice();
         this.deepEqual(actualStepsClone, steps, message);
+        this.test.stepsCount += this.test.steps.length;
         this.test.steps.length = 0;
       }
     }, {
@@ -1452,13 +1613,24 @@
         var requiredCalls = count;
         return this.test.internalStop(requiredCalls);
       }
+    }, {
+      key: "closeTo",
+      value: function closeTo(actual, expected, delta, message) {
+        if (typeof delta !== 'number') {
+          throw new TypeError('closeTo() requires a delta argument');
+        }
+        this.pushResult({
+          result: Math.abs(actual - expected) <= delta,
+          actual: actual,
+          expected: expected,
+          message: message || "value should be within ".concat(delta, " inclusive")
+        });
+      }
 
-      // Exports test.push() to the user API
       // Alias of pushResult.
     }, {
       key: "push",
       value: function push(result, actual, expected, message, negative) {
-        Logger.warn('assert.push is deprecated and will be removed in QUnit 3.0.' + ' Please use assert.pushResult instead (https://api.qunitjs.com/assert/pushResult).');
         var currentAssert = this instanceof Assert ? this : config.current.assert;
         return currentAssert.pushResult({
           result: result,
@@ -1468,6 +1640,8 @@
           negative: negative
         });
       }
+
+      // Public API to internal test.pushResult()
     }, {
       key: "pushResult",
       value: function pushResult(resultInfo) {
@@ -1737,7 +1911,6 @@
         });
       }
     }]);
-    return Assert;
   }();
   function validateExpectedExceptionArgs(expected, message, assertionMethod) {
     var expectedType = objectType(expected);
@@ -2163,20 +2336,23 @@
     };
 
     // Use polyfill for setImmediate for performance gains
-    Promise._immediateFn =
     // @ts-ignore
-    typeof setImmediate === 'function' && function (fn) {
+    if (typeof setImmediate === 'function') {
       // @ts-ignore
-      setImmediate(fn);
-    } || function (fn) {
-      setTimeoutFunc(fn, 0);
-    };
+      var setImmediateFunc = setImmediate;
+      Promise._immediateFn = function (fn) {
+        setImmediateFunc(fn);
+      };
+    } else {
+      Promise._immediateFn = function (fn) {
+        setTimeoutFunc(fn, 0);
+      };
+    }
     Promise._unhandledRejectionFn = function _unhandledRejectionFn(err) {
       if (typeof console !== 'undefined' && console) {
         console.warn('Possible Unhandled Promise Rejection:', err); // eslint-disable-line no-console
       }
     };
-
     promisePolyfill.exports = Promise;
   })();
   var _Promise = promisePolyfill.exports;
@@ -2226,204 +2402,6 @@
     return promiseChain;
   }
 
-  var priorityCount = 0;
-  var unitSampler;
-
-  // This is a queue of functions that are tasks within a single test.
-  // After tests are dequeued from config.queue they are expanded into
-  // a set of tasks in this queue.
-  var taskQueue = [];
-
-  /**
-   * Advances the taskQueue to the next task. If the taskQueue is empty,
-   * process the testQueue
-   */
-  function advance() {
-    advanceTaskQueue();
-    if (!taskQueue.length && !config.blocking && !config.current) {
-      advanceTestQueue();
-    }
-  }
-
-  /**
-   * Advances the taskQueue with an increased depth
-   */
-  function advanceTaskQueue() {
-    var start = performance.now();
-    config.depth = (config.depth || 0) + 1;
-    processTaskQueue(start);
-    config.depth--;
-  }
-
-  /**
-   * Process the first task on the taskQueue as a promise.
-   * Each task is a function added by Test#queue() in /src/test.js
-   */
-  function processTaskQueue(start) {
-    if (taskQueue.length && !config.blocking) {
-      var elapsedTime = performance.now() - start;
-
-      // The updateRate ensures that a user interface (HTML Reporter) can be updated
-      // at least once every second. This can also prevent browsers from prompting
-      // a warning about long running scripts.
-      if (!setTimeout$1 || config.updateRate <= 0 || elapsedTime < config.updateRate) {
-        var task = taskQueue.shift();
-        _Promise.resolve(task()).then(function () {
-          if (!taskQueue.length) {
-            advance();
-          } else {
-            processTaskQueue(start);
-          }
-        });
-      } else {
-        setTimeout$1(advance);
-      }
-    }
-  }
-
-  /**
-   * Advance the testQueue to the next test to process. Call done() if testQueue completes.
-   */
-  function advanceTestQueue() {
-    if (!config.blocking && !config.queue.length && config.depth === 0) {
-      done();
-      return;
-    }
-    var testTasks = config.queue.shift();
-    addToTaskQueue(testTasks());
-    if (priorityCount > 0) {
-      priorityCount--;
-    }
-    advance();
-  }
-
-  /**
-   * Enqueue the tasks for a test into the task queue.
-   * @param {Array} tasksArray
-   */
-  function addToTaskQueue(tasksArray) {
-    taskQueue.push.apply(taskQueue, _toConsumableArray(tasksArray));
-  }
-
-  /**
-   * Return the number of tasks remaining in the task queue to be processed.
-   * @return {number}
-   */
-  function taskQueueLength() {
-    return taskQueue.length;
-  }
-
-  /**
-   * Adds a test to the TestQueue for execution.
-   * @param {Function} testTasksFunc
-   * @param {boolean} prioritize
-   * @param {string} seed
-   */
-  function addToTestQueue(testTasksFunc, prioritize, seed) {
-    if (prioritize) {
-      config.queue.splice(priorityCount++, 0, testTasksFunc);
-    } else if (seed) {
-      if (!unitSampler) {
-        unitSampler = unitSamplerGenerator(seed);
-      }
-
-      // Insert into a random position after all prioritized items
-      var index = Math.floor(unitSampler() * (config.queue.length - priorityCount + 1));
-      config.queue.splice(priorityCount + index, 0, testTasksFunc);
-    } else {
-      config.queue.push(testTasksFunc);
-    }
-  }
-
-  /**
-   * Creates a seeded "sample" generator which is used for randomizing tests.
-   */
-  function unitSamplerGenerator(seed) {
-    // 32-bit xorshift, requires only a nonzero seed
-    // https://excamera.com/sphinx/article-xorshift.html
-    var sample = parseInt(generateHash(seed), 16) || -1;
-    return function () {
-      sample ^= sample << 13;
-      sample ^= sample >>> 17;
-      sample ^= sample << 5;
-
-      // ECMAScript has no unsigned number type
-      if (sample < 0) {
-        sample += 0x100000000;
-      }
-      return sample / 0x100000000;
-    };
-  }
-
-  /**
-   * This function is called when the ProcessingQueue is done processing all
-   * items. It handles emitting the final run events.
-   */
-  function done() {
-    // We have reached the end of the processing queue and are about to emit the
-    // "runEnd" event after which reporters typically stop listening and exit
-    // the process. First, check if we need to emit one final test.
-    if (config.stats.testCount === 0 && config.failOnZeroTests === true) {
-      var error;
-      if (config.filter && config.filter.length) {
-        error = new Error("No tests matched the filter \"".concat(config.filter, "\"."));
-      } else if (config.module && config.module.length) {
-        error = new Error("No tests matched the module \"".concat(config.module, "\"."));
-      } else if (config.moduleId && config.moduleId.length) {
-        error = new Error("No tests matched the moduleId \"".concat(config.moduleId, "\"."));
-      } else if (config.testId && config.testId.length) {
-        error = new Error("No tests matched the testId \"".concat(config.testId, "\"."));
-      } else {
-        error = new Error('No tests were run.');
-      }
-      test('global failure', extend(function (assert) {
-        assert.pushResult({
-          result: false,
-          message: error.message,
-          source: error.stack
-        });
-      }, {
-        validTest: true
-      }));
-
-      // We do need to call `advance()` in order to resume the processing queue.
-      // Once this new test is finished processing, we'll reach `done` again, and
-      // that time the above condition will evaluate to false.
-      advance();
-      return;
-    }
-    var storage = config.storage;
-    var runtime = Math.round(performance.now() - config.started);
-    var passed = config.stats.all - config.stats.bad;
-    ProcessingQueue.finished = true;
-    emit('runEnd', runSuite.end(true));
-    runLoggingCallbacks('done', {
-      // @deprecated since 2.19.0 Use done() without `details` parameter,
-      // or use `QUnit.on('runEnd')` instead. Parameter to be replaced in
-      // QUnit 3.0 with test counts.
-      passed: passed,
-      failed: config.stats.bad,
-      total: config.stats.all,
-      runtime: runtime
-    }).then(function () {
-      // Clear own storage items if all tests passed
-      if (storage && config.stats.bad === 0) {
-        for (var i = storage.length - 1; i >= 0; i--) {
-          var key = storage.key(i);
-          if (key.indexOf('qunit-test-') === 0) {
-            storage.removeItem(key);
-          }
-        }
-      }
-    });
-  }
-  var ProcessingQueue = {
-    finished: false,
-    add: addToTestQueue,
-    advance: advance,
-    taskCount: taskQueueLength
-  };
-
   var TestReport = /*#__PURE__*/function () {
     function TestReport(name, suite, options) {
       _classCallCheck(this, TestReport);
@@ -2439,7 +2417,7 @@
       this._endTime = 0;
       suite.pushTest(this);
     }
-    _createClass(TestReport, [{
+    return _createClass(TestReport, [{
       key: "start",
       value: function start(recordTime) {
         if (recordTime) {
@@ -2514,7 +2492,6 @@
         });
       }
     }]);
-    return TestReport;
   }();
 
   function Test(settings) {
@@ -2522,6 +2499,9 @@
     this.assertions = [];
     this.module = config.currentModule;
     this.steps = [];
+    // This powers the QUnit.config.countStepsAsOne feature.
+    // https://github.com/qunitjs/qunit/pull/1775
+    this.stepsCount = 0;
     this.timeout = undefined;
     this.data = undefined;
     this.withData = false;
@@ -2557,7 +2537,7 @@
     // Queuing a late test after the run has ended is not allowed.
     // This was once supported for internal use by QUnit.onError().
     // Ref https://github.com/qunitjs/qunit/issues/1377
-    if (ProcessingQueue.finished) {
+    if (config.pq.finished) {
       // Using this for anything other than onError(), such as testing in QUnit.done(),
       // is unstable and will likely result in the added tests being ignored by CI.
       // (Meaning the CI passes irregardless of the added tests).
@@ -2604,7 +2584,7 @@
       skip: !!this.skip
     });
     if (this.skip) {
-      // Skipped tests will fully ignore any sent callback
+      // Skipped tests will fully ignore (and dereference for garbage collect) any sent callback
       this.callback = function () {};
       this.async = false;
       this.expected = 0;
@@ -2743,7 +2723,7 @@
 
         // The 'after' hook should only execute when there are not tests left and
         // when the 'after' and 'finish' tasks are the only tasks left to process
-        if (hookName === 'after' && !lastTestWithinModuleExecuted(hookOwner) && (config.queue.length > 0 || ProcessingQueue.taskCount() > 2)) {
+        if (hookName === 'after' && !lastTestWithinModuleExecuted(hookOwner) && (config.queue.length > 0 || config.pq.taskCount() > 2)) {
           return;
         }
         config.current = _this3;
@@ -2811,11 +2791,24 @@
         var stepsList = this.steps.join(', ');
         this.pushFailure('Expected assert.verifySteps() to be called before end of test ' + "after using assert.step(). Unverified steps: ".concat(stepsList), this.stack);
       }
+      if (!config._deprecated_countEachStep_shown && !config.countStepsAsOne && this.expected !== null && this.stepsCount) {
+        config._deprecated_countEachStep_shown = true;
+        if (config.requireExpects) {
+          Logger.warn('Counting each assert.step() for assert.expect() is changing in QUnit 3.0. You can enable QUnit.config.countStepsAsOne to prepare for the upgrade. https://qunitjs.com/api/assert/expect/');
+        } else {
+          Logger.warn('Counting each assert.step() for assert.expect() is changing in QUnit 3.0. Omit assert.expect() from tests that use assert.step(), or enable QUnit.config.countStepsAsOne to prepare for the upgrade. https://qunitjs.com/api/assert/expect/');
+        }
+      }
+      var actualCountForExpect = config.countStepsAsOne ? this.assertions.length - this.stepsCount : this.assertions.length;
       if (config.requireExpects && this.expected === null) {
         this.pushFailure('Expected number of assertions to be defined, but expect() was ' + 'not called.', this.stack);
-      } else if (this.expected !== null && this.expected !== this.assertions.length) {
-        this.pushFailure('Expected ' + this.expected + ' assertions, but ' + this.assertions.length + ' were run', this.stack);
-      } else if (this.expected === null && !this.assertions.length) {
+      } else if (this.expected !== null && this.expected !== actualCountForExpect && this.stepsCount && this.expected === this.assertions.length - this.stepsCount && !config.countStepsAsOne) {
+        this.pushFailure('Expected ' + this.expected + ' assertions, but ' + actualCountForExpect + ' were run\nIt looks like you might prefer to enable QUnit.config.countStepsAsOne, which will become the default in QUnit 3.0. https://qunitjs.com/api/assert/expect/', this.stack);
+      } else if (this.expected !== null && this.expected !== actualCountForExpect && this.stepsCount && this.expected === this.assertions.length && config.countStepsAsOne) {
+        this.pushFailure('Expected ' + this.expected + ' assertions, but ' + actualCountForExpect + ' were run\nRemember that with QUnit.config.countStepsAsOne and in QUnit 3.0, steps no longer count as separate assertions. https://qunitjs.com/api/assert/expect/', this.stack);
+      } else if (this.expected !== null && this.expected !== actualCountForExpect) {
+        this.pushFailure('Expected ' + this.expected + ' assertions, but ' + actualCountForExpect + ' were run', this.stack);
+      } else if (this.expected === null && !actualCountForExpect) {
         this.pushFailure('Expected at least one assertion, but none were run - call ' + 'expect(0) to accept zero assertions.', this.stack);
       }
       var module = this.module;
@@ -2960,7 +2953,7 @@
       // Prioritize previously failed tests, detected from storage
       var prioritize = config.reorder && !!previousFailCount;
       this.previousFailure = !!previousFailCount;
-      ProcessingQueue.add(runTest, prioritize, config.seed);
+      config.pq.add(runTest, prioritize);
     },
     pushResult: function pushResult(resultInfo) {
       if (this !== config.current) {
@@ -2997,14 +2990,13 @@
         message: resultInfo.message
       });
     },
-    pushFailure: function pushFailure(message, source, actual) {
+    pushFailure: function pushFailure(message, source) {
       if (!(this instanceof Test)) {
         throw new Error('pushFailure() assertion outside test context, was ' + sourceFromStacktrace(2));
       }
       this.pushResult({
         result: false,
         message: message || 'error',
-        actual: actual || null,
         source: source
       });
     },
@@ -3142,11 +3134,20 @@
               pause.cancelled = true;
               test.pauses.delete(pauseId);
               test.pushFailure("Test took longer than ".concat(timeout, "ms; test timed out."), sourceFromStacktrace(2));
-              internalStart(test);
+              internalRecover(test);
             };
           };
           clearTimeout(config.timeout);
           config.timeout = setTimeout$1(config.timeoutHandler(timeoutDuration), timeoutDuration);
+        } else {
+          clearTimeout(config.timeout);
+          config.timeout = setTimeout$1(function () {
+            config.timeout = null;
+            if (!config._deprecated_timeout_shown) {
+              config._deprecated_timeout_shown = true;
+              Logger.warn("Test \"".concat(test.testName, "\" took longer than 3000ms, but no timeout was set. Set QUnit.config.testTimeout or call assert.timeout() to avoid a timeout in QUnit 3. https://qunitjs.com/api/config/testTimeout/"));
+            }
+          }, 3000);
         }
       }
       return release;
@@ -3269,11 +3270,11 @@
   function checkPollution() {
     var old = config.pollution;
     saveGlobal();
-    var newGlobals = diff(config.pollution, old);
+    var newGlobals = diff$1(config.pollution, old);
     if (newGlobals.length > 0) {
       pushFailure('Introduced global variable(s): ' + newGlobals.join(', '));
     }
-    var deletedGlobals = diff(old, config.pollution);
+    var deletedGlobals = diff$1(old, config.pollution);
     if (deletedGlobals.length > 0) {
       pushFailure('Deleted global variable(s): ' + deletedGlobals.join(', '));
     }
@@ -3309,10 +3310,54 @@
   function makeEachTestName(testName, argument) {
     return "".concat(testName, " [").concat(argument, "]");
   }
+
+  // Characters to avoid in test names especially CLI/AP output:
+  // * x00-1F: e.g. NULL, backspace (\b), line breaks (\r\n), ESC.
+  // * x74: DEL.
+  // * xA0: non-breaking space.
+  //
+  // See https://en.wikipedia.org/wiki/ASCII#Character_order
+  //
+  // eslint-disable-next-line no-control-regex
+  var rNonObviousStr = /[\x00-\x1F\x7F\xA0]/;
   function runEach(data, eachFn) {
     if (Array.isArray(data)) {
       for (var i = 0; i < data.length; i++) {
-        eachFn(data[i], i);
+        var value = data[i];
+
+        // Create automatic labels for primitive data in arrays passed to test.each().
+        // We want to avoid the default "example [0], example [1]" where possible since
+        // these are not self-explanatory in results, and are also tedious to locate
+        // the source of since the numerical key of an array isn't literally in the
+        // code (you have to count).
+        //
+        // Design requirements:
+        // * Unique. Each label must be unique and correspond 1:1 with a data value.
+        //   This way each test name will hash to a unique testId with Rerun link,
+        //   without having to rely on Test class enforcing uniqueness with invisible
+        //   space hack.
+        // * Unambigious. While technical uniqueness is a hard requirement above,
+        //   we also want the labels to be obvious and unambiguous to humans.
+        //   For example, abbrebating "foobar" and "foobaz" to "f" and "fo" is
+        //   technically unique, but ambigious to humans which one is which.
+        // * Short and readable. Where possible we omit the array index numbers
+        //   so that in most cases, the value is simply shown as-is.
+        //   We prefer "example [foo], example [bar]"
+        //   over "example [0: foo], example [2: bar]".
+        //   This also has the benefit of being stable and robust against e.g.
+        //   re-ordering data or adding new items during development, without
+        //   invalidating a previous filter or rerun link immediately.
+        var valueType = _typeof(value);
+        var testKey = i;
+        if (valueType === 'string' && value.length <= 40 && !rNonObviousStr.test(value) && !/\s*\d+: /.test(value)) {
+          testKey = value;
+        } else if (valueType === 'string' || valueType === 'number' || valueType === 'boolean' || valueType === 'undefined' || value === null) {
+          var valueForName = String(value);
+          if (!rNonObviousStr.test(valueForName)) {
+            testKey = i + ': ' + (valueForName.length <= 30 ? valueForName : valueForName.slice(0, 29) + '…');
+          }
+        }
+        eachFn(value, testKey);
       }
     } else if (_typeof(data) === 'object' && data !== null) {
       for (var key in data) {
@@ -3334,6 +3379,13 @@
       addTest({
         testName: testName,
         skip: true
+      });
+    },
+    if: function _if(testName, condition, callback) {
+      addTest({
+        testName: testName,
+        callback: callback,
+        skip: !condition
       });
     },
     only: function only(testName, callback) {
@@ -3375,6 +3427,18 @@
       });
     });
   };
+  test.if.each = function (testName, condition, dataset, callback) {
+    runEach(dataset, function (data, testKey) {
+      addTest({
+        testName: makeEachTestName(testName, testKey),
+        callback: callback,
+        withData: true,
+        stackOffset: 5,
+        skip: !condition,
+        data: condition ? data : undefined
+      });
+    });
+  };
   test.only.each = function (testName, dataset, callback) {
     runEach(dataset, function (data, testKey) {
       addOnlyTest({
@@ -3413,11 +3477,11 @@
         clearTimeout(config.timeout);
         config.timeout = null;
         config.blocking = false;
-        ProcessingQueue.advance();
+        config.pq.advance();
       });
     } else {
       config.blocking = false;
-      ProcessingQueue.advance();
+      config.pq.advance();
     }
   }
   function collectTests(module) {
@@ -3521,7 +3585,7 @@
       runner.on('testEnd', this.onTestEnd.bind(this));
       runner.on('runEnd', this.onRunEnd.bind(this));
     }
-    _createClass(ConsoleReporter, [{
+    return _createClass(ConsoleReporter, [{
       key: "onError",
       value: function onError(error) {
         this.log('error', error);
@@ -3552,7 +3616,6 @@
         return new ConsoleReporter(runner, options);
       }
     }]);
-    return ConsoleReporter;
   }();
 
   // TODO: Consider using globalThis instead of window, so that the reporter
@@ -3592,7 +3655,7 @@
       runner.on('testStart', this.onTestStart.bind(this));
       runner.on('testEnd', this.onTestEnd.bind(this));
     }
-    _createClass(PerfReporter, [{
+    return _createClass(PerfReporter, [{
       key: "onRunStart",
       value: function onRunStart() {
         this.perf.mark('qunit_suite_0_start');
@@ -3635,7 +3698,6 @@
         return new PerfReporter(runner, options);
       }
     }]);
-    return PerfReporter;
   }();
 
   var FORCE_COLOR,
@@ -3745,8 +3807,6 @@
       return txt === void 0 ? chain([open], [blk]) : $.enabled ? run([blk], txt + '') : txt + '';
     };
   }
-
-  var hasOwn = Object.prototype.hasOwnProperty;
 
   /**
    * Format a given value into YAML.
@@ -3912,7 +3972,7 @@
       runner.on('testEnd', this.onTestEnd.bind(this));
       runner.on('runEnd', this.onRunEnd.bind(this));
     }
-    _createClass(TapReporter, [{
+    return _createClass(TapReporter, [{
       key: "onRunStart",
       value: function onRunStart(_runSuite) {
         this.log('TAP version 13');
@@ -3929,7 +3989,7 @@
         // Skip this if we're past "runEnd" as it would look odd
         if (!this.ended) {
           this.testCount = this.testCount + 1;
-          this.log($.red("not ok ".concat(this.testCount, " global failure")));
+          this.log("not ok ".concat(this.testCount, " ").concat($.red('global failure')));
           this.logError(error);
         }
         this.log('Bail out! ' + errorString(error).split('\n')[0]);
@@ -3945,14 +4005,14 @@
         if (test.status === 'passed') {
           this.log("ok ".concat(this.testCount, " ").concat(test.fullName.join(' > ')));
         } else if (test.status === 'skipped') {
-          this.log($.yellow("ok ".concat(this.testCount, " # SKIP ").concat(test.fullName.join(' > '))));
+          this.log("ok ".concat(this.testCount, " ").concat($.yellow("# SKIP ".concat(test.fullName.join(' > ')))));
         } else if (test.status === 'todo') {
-          this.log($.cyan("not ok ".concat(this.testCount, " # TODO ").concat(test.fullName.join(' > '))));
+          this.log("not ok ".concat(this.testCount, " ").concat($.cyan("# TODO ".concat(test.fullName.join(' > ')))));
           test.errors.forEach(function (error) {
             return _this.logAssertion(error, 'todo');
           });
         } else {
-          this.log($.red("not ok ".concat(this.testCount, " ").concat(test.fullName.join(' > '))));
+          this.log("not ok ".concat(this.testCount, " ").concat($.red(test.fullName.join(' > '))));
           test.errors.forEach(function (error) {
             return _this.logAssertion(error);
           });
@@ -3960,13 +4020,13 @@
       }
     }, {
       key: "onRunEnd",
-      value: function onRunEnd(runSuite) {
+      value: function onRunEnd(runEnd) {
         this.ended = true;
-        this.log("1..".concat(runSuite.testCounts.total));
-        this.log("# pass ".concat(runSuite.testCounts.passed));
-        this.log($.yellow("# skip ".concat(runSuite.testCounts.skipped)));
-        this.log($.cyan("# todo ".concat(runSuite.testCounts.todo)));
-        this.log($.red("# fail ".concat(runSuite.testCounts.failed)));
+        this.log("1..".concat(runEnd.testCounts.total));
+        this.log("# pass ".concat(runEnd.testCounts.passed));
+        this.log("# ".concat($.yellow("skip ".concat(runEnd.testCounts.skipped))));
+        this.log("# ".concat($.cyan("todo ".concat(runEnd.testCounts.todo))));
+        this.log("# ".concat($.red("fail ".concat(runEnd.testCounts.failed))));
       }
     }, {
       key: "logAssertion",
@@ -3974,10 +4034,13 @@
         var out = '  ---';
         out += "\n  message: ".concat(prettyYamlValue(error.message || 'failed'));
         out += "\n  severity: ".concat(prettyYamlValue(severity || 'failed'));
-        if (hasOwn.call(error, 'actual')) {
+
+        // When pushFailure() is used, actual/expected are initially unset but
+        // eventually in Test#logAssertion, for testReport#pushAssertion, these are
+        // forged into existence as undefined.
+        var hasAny = error.expected !== undefined || error.actual !== undefined;
+        if (hasAny) {
           out += "\n  actual  : ".concat(prettyYamlValue(error.actual));
-        }
-        if (hasOwn.call(error, 'expected')) {
           out += "\n  expected: ".concat(prettyYamlValue(error.expected));
         }
         if (error.stack) {
@@ -4006,7 +4069,6 @@
         return new TapReporter(runner, options);
       }
     }]);
-    return TapReporter;
   }();
 
   var reporters = {
@@ -4029,6 +4091,223 @@
   };
 
   /**
+   * Creates a seeded "sample" generator which is used for randomizing tests.
+   */
+  function unitSamplerGenerator(seed) {
+    // 32-bit xorshift, requires only a nonzero seed
+    // https://excamera.com/sphinx/article-xorshift.html
+    var sample = parseInt(generateHash(seed), 16) || -1;
+    return function () {
+      sample ^= sample << 13;
+      sample ^= sample >>> 17;
+      sample ^= sample << 5;
+
+      // ECMAScript has no unsigned number type
+      if (sample < 0) {
+        sample += 0x100000000;
+      }
+      return sample / 0x100000000;
+    };
+  }
+  var ProcessingQueue = /*#__PURE__*/function () {
+    /**
+     * @param {Function} test Reference to the QUnit.test() method
+     */
+    function ProcessingQueue(test) {
+      _classCallCheck(this, ProcessingQueue);
+      this.test = test;
+      this.priorityCount = 0;
+      this.unitSampler = null;
+
+      // This is a queue of functions that are tasks within a single test.
+      // After tests are dequeued from config.queue they are expanded into
+      // a set of tasks in this queue.
+      this.taskQueue = [];
+      this.finished = false;
+    }
+
+    /**
+     * Advances the taskQueue to the next task. If the taskQueue is empty,
+     * process the testQueue
+     */
+    return _createClass(ProcessingQueue, [{
+      key: "advance",
+      value: function advance() {
+        this.advanceTaskQueue();
+        if (!this.taskQueue.length && !config.blocking && !config.current) {
+          this.advanceTestQueue();
+        }
+      }
+
+      /**
+       * Advances the taskQueue with an increased depth
+       */
+    }, {
+      key: "advanceTaskQueue",
+      value: function advanceTaskQueue() {
+        var start = performance.now();
+        config.depth = (config.depth || 0) + 1;
+        this.processTaskQueue(start);
+        config.depth--;
+      }
+
+      /**
+       * Process the first task on the taskQueue as a promise.
+       * Each task is a function added by Test#queue() in /src/test.js
+       */
+    }, {
+      key: "processTaskQueue",
+      value: function processTaskQueue(start) {
+        var _this = this;
+        if (this.taskQueue.length && !config.blocking) {
+          var elapsedTime = performance.now() - start;
+          if (!setTimeout$1 || config.updateRate <= 0 || elapsedTime < config.updateRate) {
+            var task = this.taskQueue.shift();
+            _Promise.resolve(task()).then(function () {
+              if (!_this.taskQueue.length) {
+                _this.advance();
+              } else {
+                _this.processTaskQueue(start);
+              }
+            });
+          } else {
+            setTimeout$1(function () {
+              _this.advance();
+            });
+          }
+        }
+      }
+
+      /**
+       * Advance the testQueue to the next test to process. Call done() if testQueue completes.
+       */
+    }, {
+      key: "advanceTestQueue",
+      value: function advanceTestQueue() {
+        if (!config.blocking && !config.queue.length && config.depth === 0) {
+          this.done();
+          return;
+        }
+        var testTasks = config.queue.shift();
+        this.addToTaskQueue(testTasks());
+        if (this.priorityCount > 0) {
+          this.priorityCount--;
+        }
+        this.advance();
+      }
+
+      /**
+       * Enqueue the tasks for a test into the task queue.
+       * @param {Array} tasksArray
+       */
+    }, {
+      key: "addToTaskQueue",
+      value: function addToTaskQueue(tasksArray) {
+        var _this$taskQueue;
+        (_this$taskQueue = this.taskQueue).push.apply(_this$taskQueue, _toConsumableArray(tasksArray));
+      }
+
+      /**
+       * Return the number of tasks remaining in the task queue to be processed.
+       * @return {number}
+       */
+    }, {
+      key: "taskCount",
+      value: function taskCount() {
+        return this.taskQueue.length;
+      }
+
+      /**
+       * Adds a test to the TestQueue for execution.
+       * @param {Function} testTasksFunc
+       * @param {boolean} prioritize
+       */
+    }, {
+      key: "add",
+      value: function add(testTasksFunc, prioritize) {
+        if (prioritize) {
+          config.queue.splice(this.priorityCount++, 0, testTasksFunc);
+        } else if (config.seed) {
+          if (!this.unitSampler) {
+            this.unitSampler = unitSamplerGenerator(config.seed);
+          }
+
+          // Insert into a random position after all prioritized items
+          var index = Math.floor(this.unitSampler() * (config.queue.length - this.priorityCount + 1));
+          config.queue.splice(this.priorityCount + index, 0, testTasksFunc);
+        } else {
+          config.queue.push(testTasksFunc);
+        }
+      }
+
+      /**
+       * This function is called when the ProcessingQueue is done processing all
+       * items. It handles emitting the final run events.
+       */
+    }, {
+      key: "done",
+      value: function done() {
+        // We have reached the end of the processing queue and are about to emit the
+        // "runEnd" event after which reporters typically stop listening and exit
+        // the process. First, check if we need to emit one final test.
+        if (config.stats.testCount === 0 && config.failOnZeroTests === true) {
+          var error;
+          if (config.filter && config.filter.length) {
+            error = new Error("No tests matched the filter \"".concat(config.filter, "\"."));
+          } else if (config.module && config.module.length) {
+            error = new Error("No tests matched the module \"".concat(config.module, "\"."));
+          } else if (config.moduleId && config.moduleId.length) {
+            error = new Error("No tests matched the moduleId \"".concat(config.moduleId, "\"."));
+          } else if (config.testId && config.testId.length) {
+            error = new Error("No tests matched the testId \"".concat(config.testId, "\"."));
+          } else {
+            error = new Error('No tests were run.');
+          }
+          this.test('global failure', extend(function (assert) {
+            assert.pushResult({
+              result: false,
+              message: error.message,
+              source: error.stack
+            });
+          }, {
+            validTest: true
+          }));
+
+          // We do need to call `advance()` in order to resume the processing queue.
+          // Once this new test is finished processing, we'll reach `done` again, and
+          // that time the above condition will evaluate to false.
+          this.advance();
+          return;
+        }
+        var storage = config.storage;
+        var runtime = Math.round(performance.now() - config.started);
+        var passed = config.stats.all - config.stats.bad;
+        this.finished = true;
+        emit('runEnd', runSuite.end(true));
+        runLoggingCallbacks('done', {
+          // @deprecated since 2.19.0 Use done() without `details` parameter,
+          // or use `QUnit.on('runEnd')` instead. Parameter to be replaced in
+          // QUnit 3.0 with test counts.
+          passed: passed,
+          failed: config.stats.bad,
+          total: config.stats.all,
+          runtime: runtime
+        }).then(function () {
+          // Clear own storage items if all tests passed
+          if (storage && config.stats.bad === 0) {
+            for (var i = storage.length - 1; i >= 0; i--) {
+              var key = storage.key(i);
+              if (key.indexOf('qunit-test-') === 0) {
+                storage.removeItem(key);
+              }
+            }
+          }
+        });
+      }
+    }]);
+  }();
+
+  /**
    * Handle a global error that should result in a failed test run.
    *
    * Summary:
@@ -4049,6 +4328,7 @@
    */
   function onUncaughtException(error) {
     if (config.current) {
+      // This omits 'actual' and 'expected' (undefined)
       config.current.assert.pushResult({
         result: false,
         message: "global failure: ".concat(errorString(error)),
@@ -4103,6 +4383,1015 @@
     return false;
   }
 
+  /* eslint-disable indent */
+
+  /*
+   * This file is a modified version of google-diff-match-patch's JavaScript implementation
+   * (https://code.google.com/p/google-diff-match-patch/source/browse/trunk/javascript/diff_match_patch_uncompressed.js),
+   * modifications are licensed as more fully set forth in LICENSE.txt.
+   *
+   * The original source of google-diff-match-patch is attributable and licensed as follows:
+   *
+   * Copyright 2006 Google Inc.
+   * https://code.google.com/p/google-diff-match-patch/
+   *
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   * https://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   *
+   * More Info:
+   *  https://code.google.com/p/google-diff-match-patch/
+   *
+   * Usage: QUnit.diff(expected, actual)
+   *
+   */
+  function DiffMatchPatch() {}
+
+  //  DIFF FUNCTIONS
+
+  /**
+   * The data structure representing a diff is an array of tuples:
+   * [[DIFF_DELETE, 'Hello'], [DIFF_INSERT, 'Goodbye'], [DIFF_EQUAL, ' world.']]
+   * which means: delete 'Hello', add 'Goodbye' and keep ' world.'
+   */
+  var DIFF_DELETE = -1;
+  var DIFF_INSERT = 1;
+  var DIFF_EQUAL = 0;
+  var hasOwn = Object.prototype.hasOwnProperty;
+
+  /**
+   * Find the differences between two texts.  Simplifies the problem by stripping
+   * any common prefix or suffix off the texts before diffing.
+   * @param {string} text1 Old string to be diffed.
+   * @param {string} text2 New string to be diffed.
+   * @param {boolean=} optChecklines Optional speedup flag. If present and false,
+   *     then don't run a line-level diff first to identify the changed areas.
+   *     Defaults to true, which does a faster, slightly less optimal diff.
+   * @return {!Array.<!DiffMatchPatch.Diff>} Array of diff tuples.
+   */
+  DiffMatchPatch.prototype.DiffMain = function (text1, text2, optChecklines) {
+    // The diff must be complete in up to 1 second.
+    var deadline = Date.now() + 1000;
+
+    // Check for null inputs.
+    if (text1 === null || text2 === null) {
+      throw new Error('Cannot diff null input.');
+    }
+
+    // Check for equality (speedup).
+    if (text1 === text2) {
+      if (text1) {
+        return [[DIFF_EQUAL, text1]];
+      }
+      return [];
+    }
+    if (typeof optChecklines === 'undefined') {
+      optChecklines = true;
+    }
+
+    // Trim off common prefix (speedup).
+    var commonlength = this.diffCommonPrefix(text1, text2);
+    var commonprefix = text1.substring(0, commonlength);
+    text1 = text1.substring(commonlength);
+    text2 = text2.substring(commonlength);
+
+    // Trim off common suffix (speedup).
+    commonlength = this.diffCommonSuffix(text1, text2);
+    var commonsuffix = text1.substring(text1.length - commonlength);
+    text1 = text1.substring(0, text1.length - commonlength);
+    text2 = text2.substring(0, text2.length - commonlength);
+
+    // Compute the diff on the middle block.
+    var diffs = this.diffCompute(text1, text2, optChecklines, deadline);
+
+    // Restore the prefix and suffix.
+    if (commonprefix) {
+      diffs.unshift([DIFF_EQUAL, commonprefix]);
+    }
+    if (commonsuffix) {
+      diffs.push([DIFF_EQUAL, commonsuffix]);
+    }
+    this.diffCleanupMerge(diffs);
+    return diffs;
+  };
+
+  /**
+   * Reduce the number of edits by eliminating operationally trivial equalities.
+   * @param {!Array.<!DiffMatchPatch.Diff>} diffs Array of diff tuples.
+   */
+  DiffMatchPatch.prototype.diffCleanupEfficiency = function (diffs) {
+    var changes, equalities, equalitiesLength, lastequality, pointer, preIns, preDel, postIns, postDel;
+    changes = false;
+    equalities = []; // Stack of indices where equalities are found.
+    equalitiesLength = 0; // Keeping our own length var is faster in JS.
+    /** @type {?string} */
+    lastequality = null;
+
+    // Always equal to diffs[equalities[equalitiesLength - 1]][1]
+    pointer = 0; // Index of current position.
+
+    // Is there an insertion operation before the last equality.
+    preIns = false;
+
+    // Is there a deletion operation before the last equality.
+    preDel = false;
+
+    // Is there an insertion operation after the last equality.
+    postIns = false;
+
+    // Is there a deletion operation after the last equality.
+    postDel = false;
+    while (pointer < diffs.length) {
+      // Equality found.
+      if (diffs[pointer][0] === DIFF_EQUAL) {
+        if (diffs[pointer][1].length < 4 && (postIns || postDel)) {
+          // Candidate found.
+          equalities[equalitiesLength++] = pointer;
+          preIns = postIns;
+          preDel = postDel;
+          lastequality = diffs[pointer][1];
+        } else {
+          // Not a candidate, and can never become one.
+          equalitiesLength = 0;
+          lastequality = null;
+        }
+        postIns = postDel = false;
+
+        // An insertion or deletion.
+      } else {
+        if (diffs[pointer][0] === DIFF_DELETE) {
+          postDel = true;
+        } else {
+          postIns = true;
+        }
+
+        /*
+         * Five types to be split:
+         * <ins>A</ins><del>B</del>XY<ins>C</ins><del>D</del>
+         * <ins>A</ins>X<ins>C</ins><del>D</del>
+         * <ins>A</ins><del>B</del>X<ins>C</ins>
+         * <ins>A</del>X<ins>C</ins><del>D</del>
+         * <ins>A</ins><del>B</del>X<del>C</del>
+         */
+        if (lastequality && (preIns && preDel && postIns && postDel || lastequality.length < 2 && preIns + preDel + postIns + postDel === 3)) {
+          // Duplicate record.
+          diffs.splice(equalities[equalitiesLength - 1], 0, [DIFF_DELETE, lastequality]);
+
+          // Change second copy to insert.
+          diffs[equalities[equalitiesLength - 1] + 1][0] = DIFF_INSERT;
+          equalitiesLength--; // Throw away the equality we just deleted;
+          lastequality = null;
+          if (preIns && preDel) {
+            // No changes made which could affect previous entry, keep going.
+            postIns = postDel = true;
+            equalitiesLength = 0;
+          } else {
+            equalitiesLength--; // Throw away the previous equality.
+            pointer = equalitiesLength > 0 ? equalities[equalitiesLength - 1] : -1;
+            postIns = postDel = false;
+          }
+          changes = true;
+        }
+      }
+      pointer++;
+    }
+    if (changes) {
+      this.diffCleanupMerge(diffs);
+    }
+  };
+
+  /**
+   * Convert a diff array into a pretty HTML report.
+   * @param {!Array.<!DiffMatchPatch.Diff>} diffs Array of diff tuples.
+   * @param {integer} string to be beautified.
+   * @return {string} HTML representation.
+   */
+  DiffMatchPatch.prototype.diffPrettyHtml = function (diffs) {
+    var html = [];
+    for (var x = 0; x < diffs.length; x++) {
+      var op = diffs[x][0]; // Operation (insert, delete, equal)
+      var data = diffs[x][1]; // Text of change.
+      switch (op) {
+        case DIFF_INSERT:
+          html[x] = '<ins>' + escapeText(data) + '</ins>';
+          break;
+        case DIFF_DELETE:
+          html[x] = '<del>' + escapeText(data) + '</del>';
+          break;
+        case DIFF_EQUAL:
+          html[x] = '<span>' + escapeText(data) + '</span>';
+          break;
+      }
+    }
+    return html.join('');
+  };
+
+  /**
+   * Determine the common prefix of two strings.
+   * @param {string} text1 First string.
+   * @param {string} text2 Second string.
+   * @return {number} The number of characters common to the start of each
+   *     string.
+   */
+  DiffMatchPatch.prototype.diffCommonPrefix = function (text1, text2) {
+    var pointermid, pointermax, pointermin, pointerstart;
+
+    // Quick check for common null cases.
+    if (!text1 || !text2 || text1.charAt(0) !== text2.charAt(0)) {
+      return 0;
+    }
+
+    // Binary search.
+    // Performance analysis: https://neil.fraser.name/news/2007/10/09/
+    pointermin = 0;
+    pointermax = Math.min(text1.length, text2.length);
+    pointermid = pointermax;
+    pointerstart = 0;
+    while (pointermin < pointermid) {
+      if (text1.substring(pointerstart, pointermid) === text2.substring(pointerstart, pointermid)) {
+        pointermin = pointermid;
+        pointerstart = pointermin;
+      } else {
+        pointermax = pointermid;
+      }
+      pointermid = Math.floor((pointermax - pointermin) / 2 + pointermin);
+    }
+    return pointermid;
+  };
+
+  /**
+   * Determine the common suffix of two strings.
+   * @param {string} text1 First string.
+   * @param {string} text2 Second string.
+   * @return {number} The number of characters common to the end of each string.
+   */
+  DiffMatchPatch.prototype.diffCommonSuffix = function (text1, text2) {
+    var pointermid, pointermax, pointermin, pointerend;
+
+    // Quick check for common null cases.
+    if (!text1 || !text2 || text1.charAt(text1.length - 1) !== text2.charAt(text2.length - 1)) {
+      return 0;
+    }
+
+    // Binary search.
+    // Performance analysis: https://neil.fraser.name/news/2007/10/09/
+    pointermin = 0;
+    pointermax = Math.min(text1.length, text2.length);
+    pointermid = pointermax;
+    pointerend = 0;
+    while (pointermin < pointermid) {
+      if (text1.substring(text1.length - pointermid, text1.length - pointerend) === text2.substring(text2.length - pointermid, text2.length - pointerend)) {
+        pointermin = pointermid;
+        pointerend = pointermin;
+      } else {
+        pointermax = pointermid;
+      }
+      pointermid = Math.floor((pointermax - pointermin) / 2 + pointermin);
+    }
+    return pointermid;
+  };
+
+  /**
+   * Find the differences between two texts.  Assumes that the texts do not
+   * have any common prefix or suffix.
+   * @param {string} text1 Old string to be diffed.
+   * @param {string} text2 New string to be diffed.
+   * @param {boolean} checklines Speedup flag.  If false, then don't run a
+   *     line-level diff first to identify the changed areas.
+   *     If true, then run a faster, slightly less optimal diff.
+   * @param {number} deadline Time when the diff should be complete by.
+   * @return {!Array.<!DiffMatchPatch.Diff>} Array of diff tuples.
+   * @private
+   */
+  DiffMatchPatch.prototype.diffCompute = function (text1, text2, checklines, deadline) {
+    var diffs, longtext, shorttext, i, hm, text1A, text2A, text1B, text2B, midCommon, diffsA, diffsB;
+    if (!text1) {
+      // Just add some text (speedup).
+      return [[DIFF_INSERT, text2]];
+    }
+    if (!text2) {
+      // Just delete some text (speedup).
+      return [[DIFF_DELETE, text1]];
+    }
+    longtext = text1.length > text2.length ? text1 : text2;
+    shorttext = text1.length > text2.length ? text2 : text1;
+    i = longtext.indexOf(shorttext);
+    if (i !== -1) {
+      // Shorter text is inside the longer text (speedup).
+      diffs = [[DIFF_INSERT, longtext.substring(0, i)], [DIFF_EQUAL, shorttext], [DIFF_INSERT, longtext.substring(i + shorttext.length)]];
+
+      // Swap insertions for deletions if diff is reversed.
+      if (text1.length > text2.length) {
+        diffs[0][0] = diffs[2][0] = DIFF_DELETE;
+      }
+      return diffs;
+    }
+    if (shorttext.length === 1) {
+      // Single character string.
+      // After the previous speedup, the character can't be an equality.
+      return [[DIFF_DELETE, text1], [DIFF_INSERT, text2]];
+    }
+
+    // Check to see if the problem can be split in two.
+    hm = this.diffHalfMatch(text1, text2);
+    if (hm) {
+      // A half-match was found, sort out the return data.
+      text1A = hm[0];
+      text1B = hm[1];
+      text2A = hm[2];
+      text2B = hm[3];
+      midCommon = hm[4];
+
+      // Send both pairs off for separate processing.
+      diffsA = this.DiffMain(text1A, text2A, checklines, deadline);
+      diffsB = this.DiffMain(text1B, text2B, checklines, deadline);
+
+      // Merge the results.
+      return diffsA.concat([[DIFF_EQUAL, midCommon]], diffsB);
+    }
+    if (checklines && text1.length > 100 && text2.length > 100) {
+      return this.diffLineMode(text1, text2, deadline);
+    }
+    return this.diffBisect(text1, text2, deadline);
+  };
+
+  /**
+   * Do the two texts share a substring which is at least half the length of the
+   * longer text?
+   * This speedup can produce non-minimal diffs.
+   * @param {string} text1 First string.
+   * @param {string} text2 Second string.
+   * @return {Array.<string>} Five element Array, containing the prefix of
+   *     text1, the suffix of text1, the prefix of text2, the suffix of
+   *     text2 and the common middle.  Or null if there was no match.
+   * @private
+   */
+  DiffMatchPatch.prototype.diffHalfMatch = function (text1, text2) {
+    var longtext, shorttext, dmp, text1A, text2B, text2A, text1B, midCommon, hm1, hm2, hm;
+    longtext = text1.length > text2.length ? text1 : text2;
+    shorttext = text1.length > text2.length ? text2 : text1;
+    if (longtext.length < 4 || shorttext.length * 2 < longtext.length) {
+      return null; // Pointless.
+    }
+    dmp = this; // 'this' becomes 'window' in a closure.
+
+    /**
+     * Does a substring of shorttext exist within longtext such that the substring
+     * is at least half the length of longtext?
+     * Closure, but does not reference any external variables.
+     * @param {string} longtext Longer string.
+     * @param {string} shorttext Shorter string.
+     * @param {number} i Start index of quarter length substring within longtext.
+     * @return {Array.<string>} Five element Array, containing the prefix of
+     *     longtext, the suffix of longtext, the prefix of shorttext, the suffix
+     *     of shorttext and the common middle.  Or null if there was no match.
+     * @private
+     */
+    function diffHalfMatchI(longtext, shorttext, i) {
+      var seed, j, bestCommon, prefixLength, suffixLength, bestLongtextA, bestLongtextB, bestShorttextA, bestShorttextB;
+
+      // Start with a 1/4 length substring at position i as a seed.
+      seed = longtext.substring(i, i + Math.floor(longtext.length / 4));
+      j = -1;
+      bestCommon = '';
+      while ((j = shorttext.indexOf(seed, j + 1)) !== -1) {
+        prefixLength = dmp.diffCommonPrefix(longtext.substring(i), shorttext.substring(j));
+        suffixLength = dmp.diffCommonSuffix(longtext.substring(0, i), shorttext.substring(0, j));
+        if (bestCommon.length < suffixLength + prefixLength) {
+          bestCommon = shorttext.substring(j - suffixLength, j) + shorttext.substring(j, j + prefixLength);
+          bestLongtextA = longtext.substring(0, i - suffixLength);
+          bestLongtextB = longtext.substring(i + prefixLength);
+          bestShorttextA = shorttext.substring(0, j - suffixLength);
+          bestShorttextB = shorttext.substring(j + prefixLength);
+        }
+      }
+      if (bestCommon.length * 2 >= longtext.length) {
+        return [bestLongtextA, bestLongtextB, bestShorttextA, bestShorttextB, bestCommon];
+      } else {
+        return null;
+      }
+    }
+
+    // First check if the second quarter is the seed for a half-match.
+    hm1 = diffHalfMatchI(longtext, shorttext, Math.ceil(longtext.length / 4));
+
+    // Check again based on the third quarter.
+    hm2 = diffHalfMatchI(longtext, shorttext, Math.ceil(longtext.length / 2));
+    if (!hm1 && !hm2) {
+      return null;
+    } else if (!hm2) {
+      hm = hm1;
+    } else if (!hm1) {
+      hm = hm2;
+    } else {
+      // Both matched.  Select the longest.
+      hm = hm1[4].length > hm2[4].length ? hm1 : hm2;
+    }
+
+    // A half-match was found, sort out the return data.
+    if (text1.length > text2.length) {
+      text1A = hm[0];
+      text1B = hm[1];
+      text2A = hm[2];
+      text2B = hm[3];
+    } else {
+      text2A = hm[0];
+      text2B = hm[1];
+      text1A = hm[2];
+      text1B = hm[3];
+    }
+    midCommon = hm[4];
+    return [text1A, text1B, text2A, text2B, midCommon];
+  };
+
+  /**
+   * Do a quick line-level diff on both strings, then rediff the parts for
+   * greater accuracy.
+   * This speedup can produce non-minimal diffs.
+   * @param {string} text1 Old string to be diffed.
+   * @param {string} text2 New string to be diffed.
+   * @param {number} deadline Time when the diff should be complete by.
+   * @return {!Array.<!DiffMatchPatch.Diff>} Array of diff tuples.
+   * @private
+   */
+  DiffMatchPatch.prototype.diffLineMode = function (text1, text2, deadline) {
+    var a, diffs, linearray, pointer, countInsert, countDelete, textInsert, textDelete, j;
+
+    // Scan the text on a line-by-line basis first.
+    a = this.diffLinesToChars(text1, text2);
+    text1 = a.chars1;
+    text2 = a.chars2;
+    linearray = a.lineArray;
+    diffs = this.DiffMain(text1, text2, false, deadline);
+
+    // Convert the diff back to original text.
+    this.diffCharsToLines(diffs, linearray);
+
+    // Eliminate freak matches (e.g. blank lines)
+    this.diffCleanupSemantic(diffs);
+
+    // Rediff any replacement blocks, this time character-by-character.
+    // Add a dummy entry at the end.
+    diffs.push([DIFF_EQUAL, '']);
+    pointer = 0;
+    countDelete = 0;
+    countInsert = 0;
+    textDelete = '';
+    textInsert = '';
+    while (pointer < diffs.length) {
+      switch (diffs[pointer][0]) {
+        case DIFF_INSERT:
+          countInsert++;
+          textInsert += diffs[pointer][1];
+          break;
+        case DIFF_DELETE:
+          countDelete++;
+          textDelete += diffs[pointer][1];
+          break;
+        case DIFF_EQUAL:
+          // Upon reaching an equality, check for prior redundancies.
+          if (countDelete >= 1 && countInsert >= 1) {
+            // Delete the offending records and add the merged ones.
+            diffs.splice(pointer - countDelete - countInsert, countDelete + countInsert);
+            pointer = pointer - countDelete - countInsert;
+            a = this.DiffMain(textDelete, textInsert, false, deadline);
+            for (j = a.length - 1; j >= 0; j--) {
+              diffs.splice(pointer, 0, a[j]);
+            }
+            pointer = pointer + a.length;
+          }
+          countInsert = 0;
+          countDelete = 0;
+          textDelete = '';
+          textInsert = '';
+          break;
+      }
+      pointer++;
+    }
+    diffs.pop(); // Remove the dummy entry at the end.
+
+    return diffs;
+  };
+
+  /**
+   * Find the 'middle snake' of a diff, split the problem in two
+   * and return the recursively constructed diff.
+   * See Myers 1986 paper: An O(ND) Difference Algorithm and Its Variations.
+   * @param {string} text1 Old string to be diffed.
+   * @param {string} text2 New string to be diffed.
+   * @param {number} deadline Time at which to bail if not yet complete.
+   * @return {!Array.<!DiffMatchPatch.Diff>} Array of diff tuples.
+   * @private
+   */
+  DiffMatchPatch.prototype.diffBisect = function (text1, text2, deadline) {
+    var text1Length, text2Length, maxD, vOffset, vLength, v1, v2, x, delta, front, k1start, k1end, k2start, k2end, k2Offset, k1Offset, x1, x2, y1, y2, d, k1, k2;
+
+    // Cache the text lengths to prevent multiple calls.
+    text1Length = text1.length;
+    text2Length = text2.length;
+    maxD = Math.ceil((text1Length + text2Length) / 2);
+    vOffset = maxD;
+    vLength = 2 * maxD;
+    v1 = new Array(vLength);
+    v2 = new Array(vLength);
+
+    // Setting all elements to -1 is faster in Chrome & Firefox than mixing
+    // integers and undefined.
+    for (x = 0; x < vLength; x++) {
+      v1[x] = -1;
+      v2[x] = -1;
+    }
+    v1[vOffset + 1] = 0;
+    v2[vOffset + 1] = 0;
+    delta = text1Length - text2Length;
+
+    // If the total number of characters is odd, then the front path will collide
+    // with the reverse path.
+    front = delta % 2 !== 0;
+
+    // Offsets for start and end of k loop.
+    // Prevents mapping of space beyond the grid.
+    k1start = 0;
+    k1end = 0;
+    k2start = 0;
+    k2end = 0;
+    for (d = 0; d < maxD; d++) {
+      // Bail out if deadline is reached.
+      if (Date.now() > deadline) {
+        break;
+      }
+
+      // Walk the front path one step.
+      for (k1 = -d + k1start; k1 <= d - k1end; k1 += 2) {
+        k1Offset = vOffset + k1;
+        if (k1 === -d || k1 !== d && v1[k1Offset - 1] < v1[k1Offset + 1]) {
+          x1 = v1[k1Offset + 1];
+        } else {
+          x1 = v1[k1Offset - 1] + 1;
+        }
+        y1 = x1 - k1;
+        while (x1 < text1Length && y1 < text2Length && text1.charAt(x1) === text2.charAt(y1)) {
+          x1++;
+          y1++;
+        }
+        v1[k1Offset] = x1;
+        if (x1 > text1Length) {
+          // Ran off the right of the graph.
+          k1end += 2;
+        } else if (y1 > text2Length) {
+          // Ran off the bottom of the graph.
+          k1start += 2;
+        } else if (front) {
+          k2Offset = vOffset + delta - k1;
+          if (k2Offset >= 0 && k2Offset < vLength && v2[k2Offset] !== -1) {
+            // Mirror x2 onto top-left coordinate system.
+            x2 = text1Length - v2[k2Offset];
+            if (x1 >= x2) {
+              // Overlap detected.
+              return this.diffBisectSplit(text1, text2, x1, y1, deadline);
+            }
+          }
+        }
+      }
+
+      // Walk the reverse path one step.
+      for (k2 = -d + k2start; k2 <= d - k2end; k2 += 2) {
+        k2Offset = vOffset + k2;
+        if (k2 === -d || k2 !== d && v2[k2Offset - 1] < v2[k2Offset + 1]) {
+          x2 = v2[k2Offset + 1];
+        } else {
+          x2 = v2[k2Offset - 1] + 1;
+        }
+        y2 = x2 - k2;
+        while (x2 < text1Length && y2 < text2Length && text1.charAt(text1Length - x2 - 1) === text2.charAt(text2Length - y2 - 1)) {
+          x2++;
+          y2++;
+        }
+        v2[k2Offset] = x2;
+        if (x2 > text1Length) {
+          // Ran off the left of the graph.
+          k2end += 2;
+        } else if (y2 > text2Length) {
+          // Ran off the top of the graph.
+          k2start += 2;
+        } else if (!front) {
+          k1Offset = vOffset + delta - k2;
+          if (k1Offset >= 0 && k1Offset < vLength && v1[k1Offset] !== -1) {
+            x1 = v1[k1Offset];
+            y1 = vOffset + x1 - k1Offset;
+
+            // Mirror x2 onto top-left coordinate system.
+            x2 = text1Length - x2;
+            if (x1 >= x2) {
+              // Overlap detected.
+              return this.diffBisectSplit(text1, text2, x1, y1, deadline);
+            }
+          }
+        }
+      }
+    }
+
+    // Diff took too long and hit the deadline or
+    // number of diffs equals number of characters, no commonality at all.
+    return [[DIFF_DELETE, text1], [DIFF_INSERT, text2]];
+  };
+
+  /**
+   * Given the location of the 'middle snake', split the diff in two parts
+   * and recurse.
+   * @param {string} text1 Old string to be diffed.
+   * @param {string} text2 New string to be diffed.
+   * @param {number} x Index of split point in text1.
+   * @param {number} y Index of split point in text2.
+   * @param {number} deadline Time at which to bail if not yet complete.
+   * @return {!Array.<!DiffMatchPatch.Diff>} Array of diff tuples.
+   * @private
+   */
+  DiffMatchPatch.prototype.diffBisectSplit = function (text1, text2, x, y, deadline) {
+    var text1a, text1b, text2a, text2b, diffs, diffsb;
+    text1a = text1.substring(0, x);
+    text2a = text2.substring(0, y);
+    text1b = text1.substring(x);
+    text2b = text2.substring(y);
+
+    // Compute both diffs serially.
+    diffs = this.DiffMain(text1a, text2a, false, deadline);
+    diffsb = this.DiffMain(text1b, text2b, false, deadline);
+    return diffs.concat(diffsb);
+  };
+
+  /**
+   * Reduce the number of edits by eliminating semantically trivial equalities.
+   * @param {!Array.<!DiffMatchPatch.Diff>} diffs Array of diff tuples.
+   */
+  DiffMatchPatch.prototype.diffCleanupSemantic = function (diffs) {
+    var changes = false;
+    var equalities = []; // Stack of indices where equalities are found.
+    var equalitiesLength = 0; // Keeping our own length var is faster in JS.
+    /** @type {?string} */
+    var lastequality = null;
+
+    // Always equal to diffs[equalities[equalitiesLength - 1]][1]
+    var pointer = 0; // Index of current position.
+
+    // Number of characters that changed prior to the equality.
+    var lengthInsertions1 = 0;
+    var lengthDeletions1 = 0;
+
+    // Number of characters that changed after the equality.
+    var lengthInsertions2 = 0;
+    var lengthDeletions2 = 0;
+    while (pointer < diffs.length) {
+      if (diffs[pointer][0] === DIFF_EQUAL) {
+        // Equality found.
+        equalities[equalitiesLength++] = pointer;
+        lengthInsertions1 = lengthInsertions2;
+        lengthDeletions1 = lengthDeletions2;
+        lengthInsertions2 = 0;
+        lengthDeletions2 = 0;
+        lastequality = diffs[pointer][1];
+      } else {
+        // An insertion or deletion.
+        if (diffs[pointer][0] === DIFF_INSERT) {
+          lengthInsertions2 += diffs[pointer][1].length;
+        } else {
+          lengthDeletions2 += diffs[pointer][1].length;
+        }
+
+        // Eliminate an equality that is smaller or equal to the edits on both
+        // sides of it.
+        if (lastequality && lastequality.length <= Math.max(lengthInsertions1, lengthDeletions1) && lastequality.length <= Math.max(lengthInsertions2, lengthDeletions2)) {
+          // Duplicate record.
+          diffs.splice(equalities[equalitiesLength - 1], 0, [DIFF_DELETE, lastequality]);
+
+          // Change second copy to insert.
+          diffs[equalities[equalitiesLength - 1] + 1][0] = DIFF_INSERT;
+
+          // Throw away the equality we just deleted.
+          equalitiesLength--;
+
+          // Throw away the previous equality (it needs to be reevaluated).
+          equalitiesLength--;
+          pointer = equalitiesLength > 0 ? equalities[equalitiesLength - 1] : -1;
+
+          // Reset the counters.
+          lengthInsertions1 = 0;
+          lengthDeletions1 = 0;
+          lengthInsertions2 = 0;
+          lengthDeletions2 = 0;
+          lastequality = null;
+          changes = true;
+        }
+      }
+      pointer++;
+    }
+
+    // Normalize the diff.
+    if (changes) {
+      this.diffCleanupMerge(diffs);
+    }
+    var deletion, insertion, overlapLength1, overlapLength2;
+
+    // Find any overlaps between deletions and insertions.
+    // e.g: <del>abcxxx</del><ins>xxxdef</ins>
+    //   -> <del>abc</del>xxx<ins>def</ins>
+    // e.g: <del>xxxabc</del><ins>defxxx</ins>
+    //   -> <ins>def</ins>xxx<del>abc</del>
+    // Only extract an overlap if it is as big as the edit ahead or behind it.
+    pointer = 1;
+    while (pointer < diffs.length) {
+      if (diffs[pointer - 1][0] === DIFF_DELETE && diffs[pointer][0] === DIFF_INSERT) {
+        deletion = diffs[pointer - 1][1];
+        insertion = diffs[pointer][1];
+        overlapLength1 = this.diffCommonOverlap(deletion, insertion);
+        overlapLength2 = this.diffCommonOverlap(insertion, deletion);
+        if (overlapLength1 >= overlapLength2) {
+          if (overlapLength1 >= deletion.length / 2 || overlapLength1 >= insertion.length / 2) {
+            // Overlap found.  Insert an equality and trim the surrounding edits.
+            diffs.splice(pointer, 0, [DIFF_EQUAL, insertion.substring(0, overlapLength1)]);
+            diffs[pointer - 1][1] = deletion.substring(0, deletion.length - overlapLength1);
+            diffs[pointer + 1][1] = insertion.substring(overlapLength1);
+            pointer++;
+          }
+        } else {
+          if (overlapLength2 >= deletion.length / 2 || overlapLength2 >= insertion.length / 2) {
+            // Reverse overlap found.
+            // Insert an equality and swap and trim the surrounding edits.
+            diffs.splice(pointer, 0, [DIFF_EQUAL, deletion.substring(0, overlapLength2)]);
+            diffs[pointer - 1][0] = DIFF_INSERT;
+            diffs[pointer - 1][1] = insertion.substring(0, insertion.length - overlapLength2);
+            diffs[pointer + 1][0] = DIFF_DELETE;
+            diffs[pointer + 1][1] = deletion.substring(overlapLength2);
+            pointer++;
+          }
+        }
+        pointer++;
+      }
+      pointer++;
+    }
+  };
+
+  /**
+   * Determine if the suffix of one string is the prefix of another.
+   * @param {string} text1 First string.
+   * @param {string} text2 Second string.
+   * @return {number} The number of characters common to the end of the first
+   *     string and the start of the second string.
+   * @private
+   */
+  DiffMatchPatch.prototype.diffCommonOverlap = function (text1, text2) {
+    // Cache the text lengths to prevent multiple calls.
+    var text1Length = text1.length;
+    var text2Length = text2.length;
+
+    // Eliminate the null case.
+    if (text1Length === 0 || text2Length === 0) {
+      return 0;
+    }
+
+    // Truncate the longer string.
+    if (text1Length > text2Length) {
+      text1 = text1.substring(text1Length - text2Length);
+    } else if (text1Length < text2Length) {
+      text2 = text2.substring(0, text1Length);
+    }
+    var textLength = Math.min(text1Length, text2Length);
+
+    // Quick check for the worst case.
+    if (text1 === text2) {
+      return textLength;
+    }
+
+    // Start by looking for a single character match
+    // and increase length until no match is found.
+    // Performance analysis: https://neil.fraser.name/news/2010/11/04/
+    var best = 0;
+    var length = 1;
+    while (true) {
+      var pattern = text1.substring(textLength - length);
+      var found = text2.indexOf(pattern);
+      if (found === -1) {
+        return best;
+      }
+      length += found;
+      if (found === 0 || text1.substring(textLength - length) === text2.substring(0, length)) {
+        best = length;
+        length++;
+      }
+    }
+  };
+
+  /**
+   * Split two texts into an array of strings.  Reduce the texts to a string of
+   * hashes where each Unicode character represents one line.
+   * @param {string} text1 First string.
+   * @param {string} text2 Second string.
+   * @return {{chars1: string, chars2: string, lineArray: !Array.<string>}}
+   *     An object containing the encoded text1, the encoded text2 and
+   *     the array of unique strings.
+   *     The zeroth element of the array of unique strings is intentionally blank.
+   * @private
+   */
+  DiffMatchPatch.prototype.diffLinesToChars = function (text1, text2) {
+    var lineArray = []; // E.g. lineArray[4] === 'Hello\n'
+    var lineHash = {}; // E.g. lineHash['Hello\n'] === 4
+
+    // '\x00' is a valid character, but various debuggers don't like it.
+    // So we'll insert a junk entry to avoid generating a null character.
+    lineArray[0] = '';
+
+    /**
+     * Split a text into an array of strings.  Reduce the texts to a string of
+     * hashes where each Unicode character represents one line.
+     * Modifies linearray and linehash through being a closure.
+     * @param {string} text String to encode.
+     * @return {string} Encoded string.
+     * @private
+     */
+    function diffLinesToCharsMunge(text) {
+      var chars = '';
+
+      // Walk the text, pulling out a substring for each line.
+      // text.split('\n') would would temporarily double our memory footprint.
+      // Modifying text would create many large strings to garbage collect.
+      var lineStart = 0;
+      var lineEnd = -1;
+
+      // Keeping our own length variable is faster than looking it up.
+      var lineArrayLength = lineArray.length;
+      while (lineEnd < text.length - 1) {
+        lineEnd = text.indexOf('\n', lineStart);
+        if (lineEnd === -1) {
+          lineEnd = text.length - 1;
+        }
+        var line = text.substring(lineStart, lineEnd + 1);
+        lineStart = lineEnd + 1;
+        if (hasOwn.call(lineHash, line)) {
+          chars += String.fromCharCode(lineHash[line]);
+        } else {
+          chars += String.fromCharCode(lineArrayLength);
+          lineHash[line] = lineArrayLength;
+          lineArray[lineArrayLength++] = line;
+        }
+      }
+      return chars;
+    }
+    var chars1 = diffLinesToCharsMunge(text1);
+    var chars2 = diffLinesToCharsMunge(text2);
+    return {
+      chars1: chars1,
+      chars2: chars2,
+      lineArray: lineArray
+    };
+  };
+
+  /**
+   * Rehydrate the text in a diff from a string of line hashes to real lines of
+   * text.
+   * @param {!Array.<!DiffMatchPatch.Diff>} diffs Array of diff tuples.
+   * @param {!Array.<string>} lineArray Array of unique strings.
+   * @private
+   */
+  DiffMatchPatch.prototype.diffCharsToLines = function (diffs, lineArray) {
+    for (var x = 0; x < diffs.length; x++) {
+      var chars = diffs[x][1];
+      var text = [];
+      for (var y = 0; y < chars.length; y++) {
+        text[y] = lineArray[chars.charCodeAt(y)];
+      }
+      diffs[x][1] = text.join('');
+    }
+  };
+
+  /**
+   * Reorder and merge like edit sections.  Merge equalities.
+   * Any edit section can move as long as it doesn't cross an equality.
+   * @param {!Array.<!DiffMatchPatch.Diff>} diffs Array of diff tuples.
+   */
+  DiffMatchPatch.prototype.diffCleanupMerge = function (diffs) {
+    diffs.push([DIFF_EQUAL, '']); // Add a dummy entry at the end.
+    var pointer = 0;
+    var countDelete = 0;
+    var countInsert = 0;
+    var textDelete = '';
+    var textInsert = '';
+    while (pointer < diffs.length) {
+      switch (diffs[pointer][0]) {
+        case DIFF_INSERT:
+          countInsert++;
+          textInsert += diffs[pointer][1];
+          pointer++;
+          break;
+        case DIFF_DELETE:
+          countDelete++;
+          textDelete += diffs[pointer][1];
+          pointer++;
+          break;
+        case DIFF_EQUAL:
+          // Upon reaching an equality, check for prior redundancies.
+          if (countDelete + countInsert > 1) {
+            if (countDelete !== 0 && countInsert !== 0) {
+              // Factor out any common prefixes.
+              var commonlength = this.diffCommonPrefix(textInsert, textDelete);
+              if (commonlength !== 0) {
+                if (pointer - countDelete - countInsert > 0 && diffs[pointer - countDelete - countInsert - 1][0] === DIFF_EQUAL) {
+                  diffs[pointer - countDelete - countInsert - 1][1] += textInsert.substring(0, commonlength);
+                } else {
+                  diffs.splice(0, 0, [DIFF_EQUAL, textInsert.substring(0, commonlength)]);
+                  pointer++;
+                }
+                textInsert = textInsert.substring(commonlength);
+                textDelete = textDelete.substring(commonlength);
+              }
+
+              // Factor out any common suffixies.
+              commonlength = this.diffCommonSuffix(textInsert, textDelete);
+              if (commonlength !== 0) {
+                diffs[pointer][1] = textInsert.substring(textInsert.length - commonlength) + diffs[pointer][1];
+                textInsert = textInsert.substring(0, textInsert.length - commonlength);
+                textDelete = textDelete.substring(0, textDelete.length - commonlength);
+              }
+            }
+
+            // Delete the offending records and add the merged ones.
+            if (countDelete === 0) {
+              diffs.splice(pointer - countInsert, countDelete + countInsert, [DIFF_INSERT, textInsert]);
+            } else if (countInsert === 0) {
+              diffs.splice(pointer - countDelete, countDelete + countInsert, [DIFF_DELETE, textDelete]);
+            } else {
+              diffs.splice(pointer - countDelete - countInsert, countDelete + countInsert, [DIFF_DELETE, textDelete], [DIFF_INSERT, textInsert]);
+            }
+            pointer = pointer - countDelete - countInsert + (countDelete ? 1 : 0) + (countInsert ? 1 : 0) + 1;
+          } else if (pointer !== 0 && diffs[pointer - 1][0] === DIFF_EQUAL) {
+            // Merge this equality with the previous one.
+            diffs[pointer - 1][1] += diffs[pointer][1];
+            diffs.splice(pointer, 1);
+          } else {
+            pointer++;
+          }
+          countInsert = 0;
+          countDelete = 0;
+          textDelete = '';
+          textInsert = '';
+          break;
+      }
+    }
+    if (diffs[diffs.length - 1][1] === '') {
+      diffs.pop(); // Remove the dummy entry at the end.
+    }
+
+    // Second pass: look for single edits surrounded on both sides by equalities
+    // which can be shifted sideways to eliminate an equality.
+    // e.g: A<ins>BA</ins>C -> <ins>AB</ins>AC
+    var changes = false;
+    pointer = 1;
+
+    // Intentionally ignore the first and last element (don't need checking).
+    while (pointer < diffs.length - 1) {
+      if (diffs[pointer - 1][0] === DIFF_EQUAL && diffs[pointer + 1][0] === DIFF_EQUAL) {
+        var diffPointer = diffs[pointer][1];
+        var position = diffPointer.substring(diffPointer.length - diffs[pointer - 1][1].length);
+
+        // This is a single edit surrounded by equalities.
+        if (position === diffs[pointer - 1][1]) {
+          // Shift the edit over the previous equality.
+          diffs[pointer][1] = diffs[pointer - 1][1] + diffs[pointer][1].substring(0, diffs[pointer][1].length - diffs[pointer - 1][1].length);
+          diffs[pointer + 1][1] = diffs[pointer - 1][1] + diffs[pointer + 1][1];
+          diffs.splice(pointer - 1, 1);
+          changes = true;
+        } else if (diffPointer.substring(0, diffs[pointer + 1][1].length) === diffs[pointer + 1][1]) {
+          // Shift the edit over the next equality.
+          diffs[pointer - 1][1] += diffs[pointer + 1][1];
+          diffs[pointer][1] = diffs[pointer][1].substring(diffs[pointer + 1][1].length) + diffs[pointer + 1][1];
+          diffs.splice(pointer + 1, 1);
+          changes = true;
+        }
+      }
+      pointer++;
+    }
+
+    // If shifts were made, the diff needs reordering and another shift sweep.
+    if (changes) {
+      this.diffCleanupMerge(diffs);
+    }
+  };
+  function diff(o, n) {
+    var diff, output, text;
+    diff = new DiffMatchPatch();
+    output = diff.DiffMain(o, n);
+    diff.diffCleanupEfficiency(output);
+    text = diff.diffPrettyHtml(output);
+    return text;
+  }
+
   var QUnit = {};
 
   // The "currentModule" object would ideally be defined using the createModule()
@@ -4112,6 +5401,7 @@
   // TODO: Consider defining currentModule in core.js or module.js in its entirely
   // rather than partly in config.js and partly here.
   config.currentModule.suiteReport = runSuite;
+  config.pq = new ProcessingQueue(test);
   var globalStartCalled = false;
   var runStarted = false;
 
@@ -4119,9 +5409,10 @@
   QUnit.isLocal = window$1 && window$1.location && window$1.location.protocol === 'file:';
 
   // Expose the current QUnit version
-  QUnit.version = '2.20.0';
+  QUnit.version = '2.23.1';
   extend(QUnit, {
     config: config,
+    diff: diff,
     dump: dump,
     equiv: equiv,
     reporters: reporters,
@@ -4154,15 +5445,22 @@
       if (config.autostart) {
         throw new Error('Called start() outside of a test context when ' + 'QUnit.config.autostart was true');
       }
+
+      // Until we remove QUnit.load() in QUnit 3, we keep `pageLoaded`.
+      // It no longer serves any purpose other than to support old test runners
+      // that still call only QUnit.load(), or that call both it and QUnit.start().
       if (!config.pageLoaded) {
-        // The page isn't completely loaded yet, so we set autostart and then
-        // load if we're in Node or wait for the browser's load event.
+        // If the test runner used `autostart = false` and is calling QUnit.start()
+        // to tell is their resources are ready, but the browser isn't ready yet,
+        // then enable autostart now, and we'll let the tests really start after
+        // the browser's "load" event handler calls autostart().
         config.autostart = true;
 
-        // Starts from Node even if .load was not previously called. We still return
-        // early otherwise we'll wind up "beginning" twice.
+        // If we're in Node or another non-browser environment, we start now as there
+        // won't be any "load" event. We return early either way since autostart
+        // is responsible for calling scheduleBegin (avoid "beginning" twice).
         if (!document) {
-          QUnit.load();
+          QUnit.autostart();
         }
         return;
       }
@@ -4182,9 +5480,17 @@
       return extend.apply(this, args);
     },
     load: function load() {
+      Logger.warn('QUnit.load is deprecated and will be removed in QUnit 3.0.' + ' https://qunitjs.com/api/QUnit/load/');
+      QUnit.autostart();
+    },
+    /**
+     * @internal
+     */
+    autostart: function autostart() {
       config.pageLoaded = true;
 
       // Initialize the configuration options
+      // TODO: Move this to config.js in QUnit 3.
       extend(config, {
         started: 0,
         updateRate: 1000,
@@ -4200,7 +5506,10 @@
     },
     stack: function stack(offset) {
       offset = (offset || 0) + 2;
-      return sourceFromStacktrace(offset);
+      // Support Safari: Use temp variable to avoid TCO for consistent cross-browser result
+      // https://bugs.webkit.org/show_bug.cgi?id=276187
+      var source = sourceFromStacktrace(offset);
+      return source;
     }
   });
   registerLoggingCallbacks(QUnit);
@@ -4218,7 +5527,7 @@
   }
   function unblockAndAdvanceQueue() {
     config.blocking = false;
-    ProcessingQueue.advance();
+    config.pq.advance();
   }
   function begin() {
     if (config.started) {
@@ -4268,6 +5577,7 @@
     // Stores fixture HTML for resetting later
     function storeFixture() {
       // Avoid overwriting user-defined values
+      // TODO: Change to negative null/undefined check once declared in /src/config.js
       if (hasOwn.call(config, 'fixture')) {
         return;
       }
@@ -4306,16 +5616,28 @@
       return;
     }
     var urlParams = getUrlParams();
+
+    // TODO: Move to /src/core/ in QUnit 3
+    // TODO: Document this as public API (read-only)
     QUnit.urlParams = urlParams;
+
+    // TODO: Move to /src/core/config.js in QUnit 3,
+    // in accordance with /docs/api/config.index.md#order
     QUnit.config.filter = urlParams.filter;
+    // NOTE: Based on readFlatPreconfigNumber from QUnit 3.
+    if (/^[0-9]+$/.test(urlParams.maxDepth)) {
+      QUnit.config.maxDepth = QUnit.dump.maxDepth = +urlParams.maxDepth;
+    }
     QUnit.config.module = urlParams.module;
     QUnit.config.moduleId = [].concat(urlParams.moduleId || []);
     QUnit.config.testId = [].concat(urlParams.testId || []);
 
     // Test order randomization
-    if (urlParams.seed === true) {
-      // Generate a random seed if the option is specified without a value
-      QUnit.config.seed = Math.random().toString(36).slice(2);
+    // Generate a random seed if `?seed` is specified without a value (boolean true),
+    // or when set to the string "true".
+    if (urlParams.seed === 'true' || urlParams.seed === true) {
+      // NOTE: This duplicates logic from /src/core/config.js. Consolidated in QUnit 3.
+      QUnit.config.seed = (Math.random().toString(36) + '0000000000').slice(2, 12);
     } else if (urlParams.seed) {
       QUnit.config.seed = urlParams.seed;
     }
@@ -4497,9 +5819,7 @@
             }
             if (resultsLen === 0) return noResults;
             var results = new Array(resultsLen);
-            for (var i = resultsLen - 1; i >= 0; --i) {
-              results[i] = q.poll();
-            }
+            for (var i = resultsLen - 1; i >= 0; --i) results[i] = q.poll();
             results.total = resultsLen + limitedCount;
             return results;
           },
@@ -4630,15 +5950,12 @@
                 }
                 if (resultsLen === 0) return resolve(noResults);
                 var results = new Array(resultsLen);
-                for (var i = resultsLen - 1; i >= 0; --i) {
-                  results[i] = q.poll();
-                }
+                for (var i = resultsLen - 1; i >= 0; --i) results[i] = q.poll();
                 results.total = resultsLen + limitedCount;
                 resolve(results);
               }
               isNode ? setImmediate(step) : step(); //setTimeout here is too slow
             });
-
             p.cancel = function () {
               canceled = true;
             };
@@ -4732,7 +6049,6 @@
               obj: null
             }; // hidden
           },
-
           prepareSlow: function prepareSlow(target) {
             if (!target) return {
               target: '',
@@ -4751,7 +6067,6 @@
               obj: null
             }; // hidden
           },
-
           prepareSearch: function prepareSearch(search) {
             if (!search) search = '';
             return fuzzysort.prepareLowerCodes(search);
@@ -4819,7 +6134,6 @@
                     var searchLowerCodeNew = searchLowerCodes[searchI];
                     if (searchLowerCode === searchLowerCodeNew) continue; // doesn't make sense to transpose a repeat char
                   }
-
                   matchesSimpleLen = searchI;
                   targetI = matchesSimple[matchesSimpleLen - 1] + 1;
                   break;
@@ -4890,13 +6204,10 @@
               } else {
                 if (typoStrictI !== 0) score += -20; /*typoPenalty*/
               }
-
               score -= targetLen - searchLen;
               prepared.score = score;
               prepared.indexes = new Array(matchesBestLen);
-              for (var i = matchesBestLen - 1; i >= 0; --i) {
-                prepared.indexes[i] = matchesBest[i];
-              }
+              for (var i = matchesBestLen - 1; i >= 0; --i) prepared.indexes[i] = matchesBest[i];
               return prepared;
             }
           },
@@ -4922,7 +6233,6 @@
               ++targetI;
               if (targetI >= targetLen) return null; // Failed to find searchI
             }
-
             var searchI = 0;
             var successStrict = false;
             var matchesStrictLen = 0;
@@ -4977,9 +6287,7 @@
               score -= targetLen - searchLen;
               prepared.score = score;
               prepared.indexes = new Array(matchesBestLen);
-              for (var i = matchesBestLen - 1; i >= 0; --i) {
-                prepared.indexes[i] = matchesBest[i];
-              }
+              for (var i = matchesBestLen - 1; i >= 0; --i) prepared.indexes[i] = matchesBest[i];
               return prepared;
             }
           },
@@ -4987,9 +6295,7 @@
             var strLen = str.length;
             var lowerCodes = []; // new Array(strLen)    sparse array is too slow
             var lower = str.toLowerCase();
-            for (var i = 0; i < strLen; ++i) {
-              lowerCodes[i] = lower.charCodeAt(i);
-            }
+            for (var i = 0; i < strLen; ++i) lowerCodes[i] = lower.charCodeAt(i);
             return lowerCodes;
           },
           prepareBeginningIndexes: function prepareBeginningIndexes(target) {
@@ -5080,9 +6386,7 @@
         if (!Array.isArray(prop)) segs = prop.split('.');
         var len = segs.length;
         var i = -1;
-        while (obj && ++i < len) {
-          obj = obj[segs[i]];
-        }
+        while (obj && ++i < len) obj = obj[segs[i]];
         return obj;
       }
       function isObj(x) {
@@ -5099,17 +6403,13 @@
             var f = c + 1;
             e = c, f < o && r[f].score < r[c].score && (e = f), r[e - 1 >> 1] = r[e], c = 1 + (e << 1);
           }
-          for (var a = e - 1 >> 1; e > 0 && n.score < r[a].score; a = (e = a) - 1 >> 1) {
-            r[e] = r[a];
-          }
+          for (var a = e - 1 >> 1; e > 0 && n.score < r[a].score; a = (e = a) - 1 >> 1) r[e] = r[a];
           r[e] = n;
         }
         return e.add = function (e) {
           var n = o;
           r[o++] = e;
-          for (var c = n - 1 >> 1; n > 0 && e.score < r[c].score; c = (n = c) - 1 >> 1) {
-            r[n] = r[c];
-          }
+          for (var c = n - 1 >> 1; n > 0 && e.score < r[c].score; c = (n = c) - 1 >> 1) r[n] = r[c];
           r[n] = e;
         }, e.poll = function () {
           if (0 !== o) {
@@ -5143,29 +6443,6 @@
     defined: 0,
     completed: 0
   };
-
-  // Escape text for attribute or text content.
-  function escapeText(str) {
-    if (!str) {
-      return '';
-    }
-
-    // Both single quotes and double quotes (for attributes)
-    return ('' + str).replace(/['"<>&]/g, function (s) {
-      switch (s) {
-        case "'":
-          return '&#039;';
-        case '"':
-          return '&quot;';
-        case '<':
-          return '&lt;';
-        case '>':
-          return '&gt;';
-        case '&':
-          return '&amp;';
-      }
-    });
-  }
   (function () {
     // Don't load the HTML Reporter on non-browser environments
     if (!window$1 || !document) {
@@ -5268,7 +6545,7 @@
         if (!val.value || typeof val.value === 'string') {
           urlConfigHtml += "<label for='qunit-urlconfig-" + escaped + "' title='" + escapedTooltip + "'><input id='qunit-urlconfig-" + escaped + "' name='" + escaped + "' type='checkbox'" + (val.value ? " value='" + escapeText(val.value) + "'" : '') + (config[val.id] ? " checked='checked'" : '') + " title='" + escapedTooltip + "' />" + escapeText(val.label) + '</label>';
         } else {
-          urlConfigHtml += "<label for='qunit-urlconfig-" + escaped + "' title='" + escapedTooltip + "'>" + val.label + ": </label><select id='qunit-urlconfig-" + escaped + "' name='" + escaped + "' title='" + escapedTooltip + "'><option></option>";
+          urlConfigHtml += "<label for='qunit-urlconfig-" + escaped + "' title='" + escapedTooltip + "'>" + escapeText(val.label) + ": <select id='qunit-urlconfig-" + escaped + "' name='" + escaped + "' title='" + escapedTooltip + "'><option></option>";
           if (Array.isArray(val.value)) {
             for (var j = 0; j < val.value.length; j++) {
               escaped = escapeText(val.value[j]);
@@ -5285,7 +6562,7 @@
             escaped = escapeText(config[val.id]);
             urlConfigHtml += "<option value='" + escaped + "' selected='selected' disabled='disabled'>" + escaped + '</option>';
           }
-          urlConfigHtml += '</select>';
+          urlConfigHtml += '</select></label>';
         }
       }
       return urlConfigHtml;
@@ -5338,9 +6615,8 @@
               _iterator.f();
             }
           } else {
-            var _test;
-            while ((_test = hiddenTests.pop()) != null) {
-              tests.appendChild(_test);
+            while (hiddenTests.length) {
+              tests.appendChild(hiddenTests.shift());
             }
           }
         }
@@ -5837,10 +7113,13 @@
       var diff;
       var showDiff = false;
 
-      // The pushFailure doesn't provide details.expected
-      // when it calls, it's implicit to also not show expected and diff stuff
-      // Also, we need to check details.expected existence, as it can exist and be undefined
-      if (!details.result && hasOwn.call(details, 'expected')) {
+      // When pushFailure() is called, it is implied that no expected value
+      // or diff should be shown, because both expected and actual as undefined.
+      //
+      // This must check details.expected existence. If it exists as undefined,
+      // that's a regular assertion for which to render actual/expected and a diff.
+      var showAnyValues = !details.result && (details.expected !== undefined || details.actual !== undefined);
+      if (showAnyValues) {
         if (details.negative) {
           expected = 'NOT ' + QUnit.dump.parse(details.expected);
         } else {
@@ -5866,9 +7145,9 @@
             message += "<tr class='test-diff'><th>Diff: </th><td><pre>" + diff + '</pre></td></tr>';
           }
         } else if (expected.indexOf('[object Array]') !== -1 || expected.indexOf('[object Object]') !== -1) {
-          message += "<tr class='test-message'><th>Message: </th><td>" + 'Diff suppressed as the depth of object is more than current max depth (' + QUnit.config.maxDepth + ').<p>Hint: Use <code>QUnit.dump.maxDepth</code> to ' + " run with a higher max depth or <a href='" + escapeText(setUrl({
-            maxDepth: -1
-          })) + "'>" + 'Rerun</a> without max depth.</p></td></tr>';
+          message += "<tr class='test-message'><th>Message: </th><td>" + 'Diff suppressed as the depth of object is more than current max depth (' + QUnit.dump.maxDepth + ').<p>Hint: Use <code>QUnit.dump.maxDepth</code> to ' + " run with a higher max depth or <a href='" + escapeText(setUrl({
+            maxDepth: 0
+          })) + "'>" + 'Rerun without max depth</a>.</p></td></tr>';
         } else {
           message += "<tr class='test-message'><th>Message: </th><td>" + 'Diff suppressed as the expected and actual results have an equivalent' + ' serialization</td></tr>';
         }
@@ -6004,9 +7283,9 @@
       console$1.warn('Support for PhantomJS is deprecated and will be removed in QUnit 3.0.');
     }
     if (!usingPhantom && document.readyState === 'complete') {
-      QUnit.load();
+      QUnit.autostart();
     } else {
-      addEvent(window$1, 'load', QUnit.load);
+      addEvent(window$1, 'load', QUnit.autostart);
     }
 
     // Wrap window.onerror. We will call the original window.onerror to see if
@@ -6056,1015 +7335,5 @@
       QUnit.onUncaughtException(event.reason);
     });
   })();
-
-  /*
-   * This file is a modified version of google-diff-match-patch's JavaScript implementation
-   * (https://code.google.com/p/google-diff-match-patch/source/browse/trunk/javascript/diff_match_patch_uncompressed.js),
-   * modifications are licensed as more fully set forth in LICENSE.txt.
-   *
-   * The original source of google-diff-match-patch is attributable and licensed as follows:
-   *
-   * Copyright 2006 Google Inc.
-   * https://code.google.com/p/google-diff-match-patch/
-   *
-   * Licensed under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License.
-   * You may obtain a copy of the License at
-   *
-   * https://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software
-   * distributed under the License is distributed on an "AS IS" BASIS,
-   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   * See the License for the specific language governing permissions and
-   * limitations under the License.
-   *
-   * More Info:
-   *  https://code.google.com/p/google-diff-match-patch/
-   *
-   * Usage: QUnit.diff(expected, actual)
-   *
-   */
-  QUnit.diff = function () {
-    function DiffMatchPatch() {}
-
-    //  DIFF FUNCTIONS
-
-    /**
-     * The data structure representing a diff is an array of tuples:
-     * [[DIFF_DELETE, 'Hello'], [DIFF_INSERT, 'Goodbye'], [DIFF_EQUAL, ' world.']]
-     * which means: delete 'Hello', add 'Goodbye' and keep ' world.'
-     */
-    var DIFF_DELETE = -1;
-    var DIFF_INSERT = 1;
-    var DIFF_EQUAL = 0;
-    var hasOwn = Object.prototype.hasOwnProperty;
-
-    /**
-     * Find the differences between two texts.  Simplifies the problem by stripping
-     * any common prefix or suffix off the texts before diffing.
-     * @param {string} text1 Old string to be diffed.
-     * @param {string} text2 New string to be diffed.
-     * @param {boolean=} optChecklines Optional speedup flag. If present and false,
-     *     then don't run a line-level diff first to identify the changed areas.
-     *     Defaults to true, which does a faster, slightly less optimal diff.
-     * @return {!Array.<!DiffMatchPatch.Diff>} Array of diff tuples.
-     */
-    DiffMatchPatch.prototype.DiffMain = function (text1, text2, optChecklines) {
-      // The diff must be complete in up to 1 second.
-      var deadline = Date.now() + 1000;
-
-      // Check for null inputs.
-      if (text1 === null || text2 === null) {
-        throw new Error('Cannot diff null input.');
-      }
-
-      // Check for equality (speedup).
-      if (text1 === text2) {
-        if (text1) {
-          return [[DIFF_EQUAL, text1]];
-        }
-        return [];
-      }
-      if (typeof optChecklines === 'undefined') {
-        optChecklines = true;
-      }
-
-      // Trim off common prefix (speedup).
-      var commonlength = this.diffCommonPrefix(text1, text2);
-      var commonprefix = text1.substring(0, commonlength);
-      text1 = text1.substring(commonlength);
-      text2 = text2.substring(commonlength);
-
-      // Trim off common suffix (speedup).
-      commonlength = this.diffCommonSuffix(text1, text2);
-      var commonsuffix = text1.substring(text1.length - commonlength);
-      text1 = text1.substring(0, text1.length - commonlength);
-      text2 = text2.substring(0, text2.length - commonlength);
-
-      // Compute the diff on the middle block.
-      var diffs = this.diffCompute(text1, text2, optChecklines, deadline);
-
-      // Restore the prefix and suffix.
-      if (commonprefix) {
-        diffs.unshift([DIFF_EQUAL, commonprefix]);
-      }
-      if (commonsuffix) {
-        diffs.push([DIFF_EQUAL, commonsuffix]);
-      }
-      this.diffCleanupMerge(diffs);
-      return diffs;
-    };
-
-    /**
-     * Reduce the number of edits by eliminating operationally trivial equalities.
-     * @param {!Array.<!DiffMatchPatch.Diff>} diffs Array of diff tuples.
-     */
-    DiffMatchPatch.prototype.diffCleanupEfficiency = function (diffs) {
-      var changes, equalities, equalitiesLength, lastequality, pointer, preIns, preDel, postIns, postDel;
-      changes = false;
-      equalities = []; // Stack of indices where equalities are found.
-      equalitiesLength = 0; // Keeping our own length var is faster in JS.
-      /** @type {?string} */
-      lastequality = null;
-
-      // Always equal to diffs[equalities[equalitiesLength - 1]][1]
-      pointer = 0; // Index of current position.
-
-      // Is there an insertion operation before the last equality.
-      preIns = false;
-
-      // Is there a deletion operation before the last equality.
-      preDel = false;
-
-      // Is there an insertion operation after the last equality.
-      postIns = false;
-
-      // Is there a deletion operation after the last equality.
-      postDel = false;
-      while (pointer < diffs.length) {
-        // Equality found.
-        if (diffs[pointer][0] === DIFF_EQUAL) {
-          if (diffs[pointer][1].length < 4 && (postIns || postDel)) {
-            // Candidate found.
-            equalities[equalitiesLength++] = pointer;
-            preIns = postIns;
-            preDel = postDel;
-            lastequality = diffs[pointer][1];
-          } else {
-            // Not a candidate, and can never become one.
-            equalitiesLength = 0;
-            lastequality = null;
-          }
-          postIns = postDel = false;
-
-          // An insertion or deletion.
-        } else {
-          if (diffs[pointer][0] === DIFF_DELETE) {
-            postDel = true;
-          } else {
-            postIns = true;
-          }
-
-          /*
-           * Five types to be split:
-           * <ins>A</ins><del>B</del>XY<ins>C</ins><del>D</del>
-           * <ins>A</ins>X<ins>C</ins><del>D</del>
-           * <ins>A</ins><del>B</del>X<ins>C</ins>
-           * <ins>A</del>X<ins>C</ins><del>D</del>
-           * <ins>A</ins><del>B</del>X<del>C</del>
-           */
-          if (lastequality && (preIns && preDel && postIns && postDel || lastequality.length < 2 && preIns + preDel + postIns + postDel === 3)) {
-            // Duplicate record.
-            diffs.splice(equalities[equalitiesLength - 1], 0, [DIFF_DELETE, lastequality]);
-
-            // Change second copy to insert.
-            diffs[equalities[equalitiesLength - 1] + 1][0] = DIFF_INSERT;
-            equalitiesLength--; // Throw away the equality we just deleted;
-            lastequality = null;
-            if (preIns && preDel) {
-              // No changes made which could affect previous entry, keep going.
-              postIns = postDel = true;
-              equalitiesLength = 0;
-            } else {
-              equalitiesLength--; // Throw away the previous equality.
-              pointer = equalitiesLength > 0 ? equalities[equalitiesLength - 1] : -1;
-              postIns = postDel = false;
-            }
-            changes = true;
-          }
-        }
-        pointer++;
-      }
-      if (changes) {
-        this.diffCleanupMerge(diffs);
-      }
-    };
-
-    /**
-     * Convert a diff array into a pretty HTML report.
-     * @param {!Array.<!DiffMatchPatch.Diff>} diffs Array of diff tuples.
-     * @param {integer} string to be beautified.
-     * @return {string} HTML representation.
-     */
-    DiffMatchPatch.prototype.diffPrettyHtml = function (diffs) {
-      var html = [];
-      for (var x = 0; x < diffs.length; x++) {
-        var op = diffs[x][0]; // Operation (insert, delete, equal)
-        var data = diffs[x][1]; // Text of change.
-        switch (op) {
-          case DIFF_INSERT:
-            html[x] = '<ins>' + escapeText(data) + '</ins>';
-            break;
-          case DIFF_DELETE:
-            html[x] = '<del>' + escapeText(data) + '</del>';
-            break;
-          case DIFF_EQUAL:
-            html[x] = '<span>' + escapeText(data) + '</span>';
-            break;
-        }
-      }
-      return html.join('');
-    };
-
-    /**
-     * Determine the common prefix of two strings.
-     * @param {string} text1 First string.
-     * @param {string} text2 Second string.
-     * @return {number} The number of characters common to the start of each
-     *     string.
-     */
-    DiffMatchPatch.prototype.diffCommonPrefix = function (text1, text2) {
-      var pointermid, pointermax, pointermin, pointerstart;
-
-      // Quick check for common null cases.
-      if (!text1 || !text2 || text1.charAt(0) !== text2.charAt(0)) {
-        return 0;
-      }
-
-      // Binary search.
-      // Performance analysis: https://neil.fraser.name/news/2007/10/09/
-      pointermin = 0;
-      pointermax = Math.min(text1.length, text2.length);
-      pointermid = pointermax;
-      pointerstart = 0;
-      while (pointermin < pointermid) {
-        if (text1.substring(pointerstart, pointermid) === text2.substring(pointerstart, pointermid)) {
-          pointermin = pointermid;
-          pointerstart = pointermin;
-        } else {
-          pointermax = pointermid;
-        }
-        pointermid = Math.floor((pointermax - pointermin) / 2 + pointermin);
-      }
-      return pointermid;
-    };
-
-    /**
-     * Determine the common suffix of two strings.
-     * @param {string} text1 First string.
-     * @param {string} text2 Second string.
-     * @return {number} The number of characters common to the end of each string.
-     */
-    DiffMatchPatch.prototype.diffCommonSuffix = function (text1, text2) {
-      var pointermid, pointermax, pointermin, pointerend;
-
-      // Quick check for common null cases.
-      if (!text1 || !text2 || text1.charAt(text1.length - 1) !== text2.charAt(text2.length - 1)) {
-        return 0;
-      }
-
-      // Binary search.
-      // Performance analysis: https://neil.fraser.name/news/2007/10/09/
-      pointermin = 0;
-      pointermax = Math.min(text1.length, text2.length);
-      pointermid = pointermax;
-      pointerend = 0;
-      while (pointermin < pointermid) {
-        if (text1.substring(text1.length - pointermid, text1.length - pointerend) === text2.substring(text2.length - pointermid, text2.length - pointerend)) {
-          pointermin = pointermid;
-          pointerend = pointermin;
-        } else {
-          pointermax = pointermid;
-        }
-        pointermid = Math.floor((pointermax - pointermin) / 2 + pointermin);
-      }
-      return pointermid;
-    };
-
-    /**
-     * Find the differences between two texts.  Assumes that the texts do not
-     * have any common prefix or suffix.
-     * @param {string} text1 Old string to be diffed.
-     * @param {string} text2 New string to be diffed.
-     * @param {boolean} checklines Speedup flag.  If false, then don't run a
-     *     line-level diff first to identify the changed areas.
-     *     If true, then run a faster, slightly less optimal diff.
-     * @param {number} deadline Time when the diff should be complete by.
-     * @return {!Array.<!DiffMatchPatch.Diff>} Array of diff tuples.
-     * @private
-     */
-    DiffMatchPatch.prototype.diffCompute = function (text1, text2, checklines, deadline) {
-      var diffs, longtext, shorttext, i, hm, text1A, text2A, text1B, text2B, midCommon, diffsA, diffsB;
-      if (!text1) {
-        // Just add some text (speedup).
-        return [[DIFF_INSERT, text2]];
-      }
-      if (!text2) {
-        // Just delete some text (speedup).
-        return [[DIFF_DELETE, text1]];
-      }
-      longtext = text1.length > text2.length ? text1 : text2;
-      shorttext = text1.length > text2.length ? text2 : text1;
-      i = longtext.indexOf(shorttext);
-      if (i !== -1) {
-        // Shorter text is inside the longer text (speedup).
-        diffs = [[DIFF_INSERT, longtext.substring(0, i)], [DIFF_EQUAL, shorttext], [DIFF_INSERT, longtext.substring(i + shorttext.length)]];
-
-        // Swap insertions for deletions if diff is reversed.
-        if (text1.length > text2.length) {
-          diffs[0][0] = diffs[2][0] = DIFF_DELETE;
-        }
-        return diffs;
-      }
-      if (shorttext.length === 1) {
-        // Single character string.
-        // After the previous speedup, the character can't be an equality.
-        return [[DIFF_DELETE, text1], [DIFF_INSERT, text2]];
-      }
-
-      // Check to see if the problem can be split in two.
-      hm = this.diffHalfMatch(text1, text2);
-      if (hm) {
-        // A half-match was found, sort out the return data.
-        text1A = hm[0];
-        text1B = hm[1];
-        text2A = hm[2];
-        text2B = hm[3];
-        midCommon = hm[4];
-
-        // Send both pairs off for separate processing.
-        diffsA = this.DiffMain(text1A, text2A, checklines, deadline);
-        diffsB = this.DiffMain(text1B, text2B, checklines, deadline);
-
-        // Merge the results.
-        return diffsA.concat([[DIFF_EQUAL, midCommon]], diffsB);
-      }
-      if (checklines && text1.length > 100 && text2.length > 100) {
-        return this.diffLineMode(text1, text2, deadline);
-      }
-      return this.diffBisect(text1, text2, deadline);
-    };
-
-    /**
-     * Do the two texts share a substring which is at least half the length of the
-     * longer text?
-     * This speedup can produce non-minimal diffs.
-     * @param {string} text1 First string.
-     * @param {string} text2 Second string.
-     * @return {Array.<string>} Five element Array, containing the prefix of
-     *     text1, the suffix of text1, the prefix of text2, the suffix of
-     *     text2 and the common middle.  Or null if there was no match.
-     * @private
-     */
-    DiffMatchPatch.prototype.diffHalfMatch = function (text1, text2) {
-      var longtext, shorttext, dmp, text1A, text2B, text2A, text1B, midCommon, hm1, hm2, hm;
-      longtext = text1.length > text2.length ? text1 : text2;
-      shorttext = text1.length > text2.length ? text2 : text1;
-      if (longtext.length < 4 || shorttext.length * 2 < longtext.length) {
-        return null; // Pointless.
-      }
-
-      dmp = this; // 'this' becomes 'window' in a closure.
-
-      /**
-       * Does a substring of shorttext exist within longtext such that the substring
-       * is at least half the length of longtext?
-       * Closure, but does not reference any external variables.
-       * @param {string} longtext Longer string.
-       * @param {string} shorttext Shorter string.
-       * @param {number} i Start index of quarter length substring within longtext.
-       * @return {Array.<string>} Five element Array, containing the prefix of
-       *     longtext, the suffix of longtext, the prefix of shorttext, the suffix
-       *     of shorttext and the common middle.  Or null if there was no match.
-       * @private
-       */
-      function diffHalfMatchI(longtext, shorttext, i) {
-        var seed, j, bestCommon, prefixLength, suffixLength, bestLongtextA, bestLongtextB, bestShorttextA, bestShorttextB;
-
-        // Start with a 1/4 length substring at position i as a seed.
-        seed = longtext.substring(i, i + Math.floor(longtext.length / 4));
-        j = -1;
-        bestCommon = '';
-        while ((j = shorttext.indexOf(seed, j + 1)) !== -1) {
-          prefixLength = dmp.diffCommonPrefix(longtext.substring(i), shorttext.substring(j));
-          suffixLength = dmp.diffCommonSuffix(longtext.substring(0, i), shorttext.substring(0, j));
-          if (bestCommon.length < suffixLength + prefixLength) {
-            bestCommon = shorttext.substring(j - suffixLength, j) + shorttext.substring(j, j + prefixLength);
-            bestLongtextA = longtext.substring(0, i - suffixLength);
-            bestLongtextB = longtext.substring(i + prefixLength);
-            bestShorttextA = shorttext.substring(0, j - suffixLength);
-            bestShorttextB = shorttext.substring(j + prefixLength);
-          }
-        }
-        if (bestCommon.length * 2 >= longtext.length) {
-          return [bestLongtextA, bestLongtextB, bestShorttextA, bestShorttextB, bestCommon];
-        } else {
-          return null;
-        }
-      }
-
-      // First check if the second quarter is the seed for a half-match.
-      hm1 = diffHalfMatchI(longtext, shorttext, Math.ceil(longtext.length / 4));
-
-      // Check again based on the third quarter.
-      hm2 = diffHalfMatchI(longtext, shorttext, Math.ceil(longtext.length / 2));
-      if (!hm1 && !hm2) {
-        return null;
-      } else if (!hm2) {
-        hm = hm1;
-      } else if (!hm1) {
-        hm = hm2;
-      } else {
-        // Both matched.  Select the longest.
-        hm = hm1[4].length > hm2[4].length ? hm1 : hm2;
-      }
-
-      // A half-match was found, sort out the return data.
-      if (text1.length > text2.length) {
-        text1A = hm[0];
-        text1B = hm[1];
-        text2A = hm[2];
-        text2B = hm[3];
-      } else {
-        text2A = hm[0];
-        text2B = hm[1];
-        text1A = hm[2];
-        text1B = hm[3];
-      }
-      midCommon = hm[4];
-      return [text1A, text1B, text2A, text2B, midCommon];
-    };
-
-    /**
-     * Do a quick line-level diff on both strings, then rediff the parts for
-     * greater accuracy.
-     * This speedup can produce non-minimal diffs.
-     * @param {string} text1 Old string to be diffed.
-     * @param {string} text2 New string to be diffed.
-     * @param {number} deadline Time when the diff should be complete by.
-     * @return {!Array.<!DiffMatchPatch.Diff>} Array of diff tuples.
-     * @private
-     */
-    DiffMatchPatch.prototype.diffLineMode = function (text1, text2, deadline) {
-      var a, diffs, linearray, pointer, countInsert, countDelete, textInsert, textDelete, j;
-
-      // Scan the text on a line-by-line basis first.
-      a = this.diffLinesToChars(text1, text2);
-      text1 = a.chars1;
-      text2 = a.chars2;
-      linearray = a.lineArray;
-      diffs = this.DiffMain(text1, text2, false, deadline);
-
-      // Convert the diff back to original text.
-      this.diffCharsToLines(diffs, linearray);
-
-      // Eliminate freak matches (e.g. blank lines)
-      this.diffCleanupSemantic(diffs);
-
-      // Rediff any replacement blocks, this time character-by-character.
-      // Add a dummy entry at the end.
-      diffs.push([DIFF_EQUAL, '']);
-      pointer = 0;
-      countDelete = 0;
-      countInsert = 0;
-      textDelete = '';
-      textInsert = '';
-      while (pointer < diffs.length) {
-        switch (diffs[pointer][0]) {
-          case DIFF_INSERT:
-            countInsert++;
-            textInsert += diffs[pointer][1];
-            break;
-          case DIFF_DELETE:
-            countDelete++;
-            textDelete += diffs[pointer][1];
-            break;
-          case DIFF_EQUAL:
-            // Upon reaching an equality, check for prior redundancies.
-            if (countDelete >= 1 && countInsert >= 1) {
-              // Delete the offending records and add the merged ones.
-              diffs.splice(pointer - countDelete - countInsert, countDelete + countInsert);
-              pointer = pointer - countDelete - countInsert;
-              a = this.DiffMain(textDelete, textInsert, false, deadline);
-              for (j = a.length - 1; j >= 0; j--) {
-                diffs.splice(pointer, 0, a[j]);
-              }
-              pointer = pointer + a.length;
-            }
-            countInsert = 0;
-            countDelete = 0;
-            textDelete = '';
-            textInsert = '';
-            break;
-        }
-        pointer++;
-      }
-      diffs.pop(); // Remove the dummy entry at the end.
-
-      return diffs;
-    };
-
-    /**
-     * Find the 'middle snake' of a diff, split the problem in two
-     * and return the recursively constructed diff.
-     * See Myers 1986 paper: An O(ND) Difference Algorithm and Its Variations.
-     * @param {string} text1 Old string to be diffed.
-     * @param {string} text2 New string to be diffed.
-     * @param {number} deadline Time at which to bail if not yet complete.
-     * @return {!Array.<!DiffMatchPatch.Diff>} Array of diff tuples.
-     * @private
-     */
-    DiffMatchPatch.prototype.diffBisect = function (text1, text2, deadline) {
-      var text1Length, text2Length, maxD, vOffset, vLength, v1, v2, x, delta, front, k1start, k1end, k2start, k2end, k2Offset, k1Offset, x1, x2, y1, y2, d, k1, k2;
-
-      // Cache the text lengths to prevent multiple calls.
-      text1Length = text1.length;
-      text2Length = text2.length;
-      maxD = Math.ceil((text1Length + text2Length) / 2);
-      vOffset = maxD;
-      vLength = 2 * maxD;
-      v1 = new Array(vLength);
-      v2 = new Array(vLength);
-
-      // Setting all elements to -1 is faster in Chrome & Firefox than mixing
-      // integers and undefined.
-      for (x = 0; x < vLength; x++) {
-        v1[x] = -1;
-        v2[x] = -1;
-      }
-      v1[vOffset + 1] = 0;
-      v2[vOffset + 1] = 0;
-      delta = text1Length - text2Length;
-
-      // If the total number of characters is odd, then the front path will collide
-      // with the reverse path.
-      front = delta % 2 !== 0;
-
-      // Offsets for start and end of k loop.
-      // Prevents mapping of space beyond the grid.
-      k1start = 0;
-      k1end = 0;
-      k2start = 0;
-      k2end = 0;
-      for (d = 0; d < maxD; d++) {
-        // Bail out if deadline is reached.
-        if (Date.now() > deadline) {
-          break;
-        }
-
-        // Walk the front path one step.
-        for (k1 = -d + k1start; k1 <= d - k1end; k1 += 2) {
-          k1Offset = vOffset + k1;
-          if (k1 === -d || k1 !== d && v1[k1Offset - 1] < v1[k1Offset + 1]) {
-            x1 = v1[k1Offset + 1];
-          } else {
-            x1 = v1[k1Offset - 1] + 1;
-          }
-          y1 = x1 - k1;
-          while (x1 < text1Length && y1 < text2Length && text1.charAt(x1) === text2.charAt(y1)) {
-            x1++;
-            y1++;
-          }
-          v1[k1Offset] = x1;
-          if (x1 > text1Length) {
-            // Ran off the right of the graph.
-            k1end += 2;
-          } else if (y1 > text2Length) {
-            // Ran off the bottom of the graph.
-            k1start += 2;
-          } else if (front) {
-            k2Offset = vOffset + delta - k1;
-            if (k2Offset >= 0 && k2Offset < vLength && v2[k2Offset] !== -1) {
-              // Mirror x2 onto top-left coordinate system.
-              x2 = text1Length - v2[k2Offset];
-              if (x1 >= x2) {
-                // Overlap detected.
-                return this.diffBisectSplit(text1, text2, x1, y1, deadline);
-              }
-            }
-          }
-        }
-
-        // Walk the reverse path one step.
-        for (k2 = -d + k2start; k2 <= d - k2end; k2 += 2) {
-          k2Offset = vOffset + k2;
-          if (k2 === -d || k2 !== d && v2[k2Offset - 1] < v2[k2Offset + 1]) {
-            x2 = v2[k2Offset + 1];
-          } else {
-            x2 = v2[k2Offset - 1] + 1;
-          }
-          y2 = x2 - k2;
-          while (x2 < text1Length && y2 < text2Length && text1.charAt(text1Length - x2 - 1) === text2.charAt(text2Length - y2 - 1)) {
-            x2++;
-            y2++;
-          }
-          v2[k2Offset] = x2;
-          if (x2 > text1Length) {
-            // Ran off the left of the graph.
-            k2end += 2;
-          } else if (y2 > text2Length) {
-            // Ran off the top of the graph.
-            k2start += 2;
-          } else if (!front) {
-            k1Offset = vOffset + delta - k2;
-            if (k1Offset >= 0 && k1Offset < vLength && v1[k1Offset] !== -1) {
-              x1 = v1[k1Offset];
-              y1 = vOffset + x1 - k1Offset;
-
-              // Mirror x2 onto top-left coordinate system.
-              x2 = text1Length - x2;
-              if (x1 >= x2) {
-                // Overlap detected.
-                return this.diffBisectSplit(text1, text2, x1, y1, deadline);
-              }
-            }
-          }
-        }
-      }
-
-      // Diff took too long and hit the deadline or
-      // number of diffs equals number of characters, no commonality at all.
-      return [[DIFF_DELETE, text1], [DIFF_INSERT, text2]];
-    };
-
-    /**
-     * Given the location of the 'middle snake', split the diff in two parts
-     * and recurse.
-     * @param {string} text1 Old string to be diffed.
-     * @param {string} text2 New string to be diffed.
-     * @param {number} x Index of split point in text1.
-     * @param {number} y Index of split point in text2.
-     * @param {number} deadline Time at which to bail if not yet complete.
-     * @return {!Array.<!DiffMatchPatch.Diff>} Array of diff tuples.
-     * @private
-     */
-    DiffMatchPatch.prototype.diffBisectSplit = function (text1, text2, x, y, deadline) {
-      var text1a, text1b, text2a, text2b, diffs, diffsb;
-      text1a = text1.substring(0, x);
-      text2a = text2.substring(0, y);
-      text1b = text1.substring(x);
-      text2b = text2.substring(y);
-
-      // Compute both diffs serially.
-      diffs = this.DiffMain(text1a, text2a, false, deadline);
-      diffsb = this.DiffMain(text1b, text2b, false, deadline);
-      return diffs.concat(diffsb);
-    };
-
-    /**
-     * Reduce the number of edits by eliminating semantically trivial equalities.
-     * @param {!Array.<!DiffMatchPatch.Diff>} diffs Array of diff tuples.
-     */
-    DiffMatchPatch.prototype.diffCleanupSemantic = function (diffs) {
-      var changes = false;
-      var equalities = []; // Stack of indices where equalities are found.
-      var equalitiesLength = 0; // Keeping our own length var is faster in JS.
-      /** @type {?string} */
-      var lastequality = null;
-
-      // Always equal to diffs[equalities[equalitiesLength - 1]][1]
-      var pointer = 0; // Index of current position.
-
-      // Number of characters that changed prior to the equality.
-      var lengthInsertions1 = 0;
-      var lengthDeletions1 = 0;
-
-      // Number of characters that changed after the equality.
-      var lengthInsertions2 = 0;
-      var lengthDeletions2 = 0;
-      while (pointer < diffs.length) {
-        if (diffs[pointer][0] === DIFF_EQUAL) {
-          // Equality found.
-          equalities[equalitiesLength++] = pointer;
-          lengthInsertions1 = lengthInsertions2;
-          lengthDeletions1 = lengthDeletions2;
-          lengthInsertions2 = 0;
-          lengthDeletions2 = 0;
-          lastequality = diffs[pointer][1];
-        } else {
-          // An insertion or deletion.
-          if (diffs[pointer][0] === DIFF_INSERT) {
-            lengthInsertions2 += diffs[pointer][1].length;
-          } else {
-            lengthDeletions2 += diffs[pointer][1].length;
-          }
-
-          // Eliminate an equality that is smaller or equal to the edits on both
-          // sides of it.
-          if (lastequality && lastequality.length <= Math.max(lengthInsertions1, lengthDeletions1) && lastequality.length <= Math.max(lengthInsertions2, lengthDeletions2)) {
-            // Duplicate record.
-            diffs.splice(equalities[equalitiesLength - 1], 0, [DIFF_DELETE, lastequality]);
-
-            // Change second copy to insert.
-            diffs[equalities[equalitiesLength - 1] + 1][0] = DIFF_INSERT;
-
-            // Throw away the equality we just deleted.
-            equalitiesLength--;
-
-            // Throw away the previous equality (it needs to be reevaluated).
-            equalitiesLength--;
-            pointer = equalitiesLength > 0 ? equalities[equalitiesLength - 1] : -1;
-
-            // Reset the counters.
-            lengthInsertions1 = 0;
-            lengthDeletions1 = 0;
-            lengthInsertions2 = 0;
-            lengthDeletions2 = 0;
-            lastequality = null;
-            changes = true;
-          }
-        }
-        pointer++;
-      }
-
-      // Normalize the diff.
-      if (changes) {
-        this.diffCleanupMerge(diffs);
-      }
-      var deletion, insertion, overlapLength1, overlapLength2;
-
-      // Find any overlaps between deletions and insertions.
-      // e.g: <del>abcxxx</del><ins>xxxdef</ins>
-      //   -> <del>abc</del>xxx<ins>def</ins>
-      // e.g: <del>xxxabc</del><ins>defxxx</ins>
-      //   -> <ins>def</ins>xxx<del>abc</del>
-      // Only extract an overlap if it is as big as the edit ahead or behind it.
-      pointer = 1;
-      while (pointer < diffs.length) {
-        if (diffs[pointer - 1][0] === DIFF_DELETE && diffs[pointer][0] === DIFF_INSERT) {
-          deletion = diffs[pointer - 1][1];
-          insertion = diffs[pointer][1];
-          overlapLength1 = this.diffCommonOverlap(deletion, insertion);
-          overlapLength2 = this.diffCommonOverlap(insertion, deletion);
-          if (overlapLength1 >= overlapLength2) {
-            if (overlapLength1 >= deletion.length / 2 || overlapLength1 >= insertion.length / 2) {
-              // Overlap found.  Insert an equality and trim the surrounding edits.
-              diffs.splice(pointer, 0, [DIFF_EQUAL, insertion.substring(0, overlapLength1)]);
-              diffs[pointer - 1][1] = deletion.substring(0, deletion.length - overlapLength1);
-              diffs[pointer + 1][1] = insertion.substring(overlapLength1);
-              pointer++;
-            }
-          } else {
-            if (overlapLength2 >= deletion.length / 2 || overlapLength2 >= insertion.length / 2) {
-              // Reverse overlap found.
-              // Insert an equality and swap and trim the surrounding edits.
-              diffs.splice(pointer, 0, [DIFF_EQUAL, deletion.substring(0, overlapLength2)]);
-              diffs[pointer - 1][0] = DIFF_INSERT;
-              diffs[pointer - 1][1] = insertion.substring(0, insertion.length - overlapLength2);
-              diffs[pointer + 1][0] = DIFF_DELETE;
-              diffs[pointer + 1][1] = deletion.substring(overlapLength2);
-              pointer++;
-            }
-          }
-          pointer++;
-        }
-        pointer++;
-      }
-    };
-
-    /**
-     * Determine if the suffix of one string is the prefix of another.
-     * @param {string} text1 First string.
-     * @param {string} text2 Second string.
-     * @return {number} The number of characters common to the end of the first
-     *     string and the start of the second string.
-     * @private
-     */
-    DiffMatchPatch.prototype.diffCommonOverlap = function (text1, text2) {
-      // Cache the text lengths to prevent multiple calls.
-      var text1Length = text1.length;
-      var text2Length = text2.length;
-
-      // Eliminate the null case.
-      if (text1Length === 0 || text2Length === 0) {
-        return 0;
-      }
-
-      // Truncate the longer string.
-      if (text1Length > text2Length) {
-        text1 = text1.substring(text1Length - text2Length);
-      } else if (text1Length < text2Length) {
-        text2 = text2.substring(0, text1Length);
-      }
-      var textLength = Math.min(text1Length, text2Length);
-
-      // Quick check for the worst case.
-      if (text1 === text2) {
-        return textLength;
-      }
-
-      // Start by looking for a single character match
-      // and increase length until no match is found.
-      // Performance analysis: https://neil.fraser.name/news/2010/11/04/
-      var best = 0;
-      var length = 1;
-      while (true) {
-        var pattern = text1.substring(textLength - length);
-        var found = text2.indexOf(pattern);
-        if (found === -1) {
-          return best;
-        }
-        length += found;
-        if (found === 0 || text1.substring(textLength - length) === text2.substring(0, length)) {
-          best = length;
-          length++;
-        }
-      }
-    };
-
-    /**
-     * Split two texts into an array of strings.  Reduce the texts to a string of
-     * hashes where each Unicode character represents one line.
-     * @param {string} text1 First string.
-     * @param {string} text2 Second string.
-     * @return {{chars1: string, chars2: string, lineArray: !Array.<string>}}
-     *     An object containing the encoded text1, the encoded text2 and
-     *     the array of unique strings.
-     *     The zeroth element of the array of unique strings is intentionally blank.
-     * @private
-     */
-    DiffMatchPatch.prototype.diffLinesToChars = function (text1, text2) {
-      var lineArray = []; // E.g. lineArray[4] === 'Hello\n'
-      var lineHash = {}; // E.g. lineHash['Hello\n'] === 4
-
-      // '\x00' is a valid character, but various debuggers don't like it.
-      // So we'll insert a junk entry to avoid generating a null character.
-      lineArray[0] = '';
-
-      /**
-       * Split a text into an array of strings.  Reduce the texts to a string of
-       * hashes where each Unicode character represents one line.
-       * Modifies linearray and linehash through being a closure.
-       * @param {string} text String to encode.
-       * @return {string} Encoded string.
-       * @private
-       */
-      function diffLinesToCharsMunge(text) {
-        var chars = '';
-
-        // Walk the text, pulling out a substring for each line.
-        // text.split('\n') would would temporarily double our memory footprint.
-        // Modifying text would create many large strings to garbage collect.
-        var lineStart = 0;
-        var lineEnd = -1;
-
-        // Keeping our own length variable is faster than looking it up.
-        var lineArrayLength = lineArray.length;
-        while (lineEnd < text.length - 1) {
-          lineEnd = text.indexOf('\n', lineStart);
-          if (lineEnd === -1) {
-            lineEnd = text.length - 1;
-          }
-          var line = text.substring(lineStart, lineEnd + 1);
-          lineStart = lineEnd + 1;
-          if (hasOwn.call(lineHash, line)) {
-            chars += String.fromCharCode(lineHash[line]);
-          } else {
-            chars += String.fromCharCode(lineArrayLength);
-            lineHash[line] = lineArrayLength;
-            lineArray[lineArrayLength++] = line;
-          }
-        }
-        return chars;
-      }
-      var chars1 = diffLinesToCharsMunge(text1);
-      var chars2 = diffLinesToCharsMunge(text2);
-      return {
-        chars1: chars1,
-        chars2: chars2,
-        lineArray: lineArray
-      };
-    };
-
-    /**
-     * Rehydrate the text in a diff from a string of line hashes to real lines of
-     * text.
-     * @param {!Array.<!DiffMatchPatch.Diff>} diffs Array of diff tuples.
-     * @param {!Array.<string>} lineArray Array of unique strings.
-     * @private
-     */
-    DiffMatchPatch.prototype.diffCharsToLines = function (diffs, lineArray) {
-      for (var x = 0; x < diffs.length; x++) {
-        var chars = diffs[x][1];
-        var text = [];
-        for (var y = 0; y < chars.length; y++) {
-          text[y] = lineArray[chars.charCodeAt(y)];
-        }
-        diffs[x][1] = text.join('');
-      }
-    };
-
-    /**
-     * Reorder and merge like edit sections.  Merge equalities.
-     * Any edit section can move as long as it doesn't cross an equality.
-     * @param {!Array.<!DiffMatchPatch.Diff>} diffs Array of diff tuples.
-     */
-    DiffMatchPatch.prototype.diffCleanupMerge = function (diffs) {
-      diffs.push([DIFF_EQUAL, '']); // Add a dummy entry at the end.
-      var pointer = 0;
-      var countDelete = 0;
-      var countInsert = 0;
-      var textDelete = '';
-      var textInsert = '';
-      while (pointer < diffs.length) {
-        switch (diffs[pointer][0]) {
-          case DIFF_INSERT:
-            countInsert++;
-            textInsert += diffs[pointer][1];
-            pointer++;
-            break;
-          case DIFF_DELETE:
-            countDelete++;
-            textDelete += diffs[pointer][1];
-            pointer++;
-            break;
-          case DIFF_EQUAL:
-            // Upon reaching an equality, check for prior redundancies.
-            if (countDelete + countInsert > 1) {
-              if (countDelete !== 0 && countInsert !== 0) {
-                // Factor out any common prefixes.
-                var commonlength = this.diffCommonPrefix(textInsert, textDelete);
-                if (commonlength !== 0) {
-                  if (pointer - countDelete - countInsert > 0 && diffs[pointer - countDelete - countInsert - 1][0] === DIFF_EQUAL) {
-                    diffs[pointer - countDelete - countInsert - 1][1] += textInsert.substring(0, commonlength);
-                  } else {
-                    diffs.splice(0, 0, [DIFF_EQUAL, textInsert.substring(0, commonlength)]);
-                    pointer++;
-                  }
-                  textInsert = textInsert.substring(commonlength);
-                  textDelete = textDelete.substring(commonlength);
-                }
-
-                // Factor out any common suffixies.
-                commonlength = this.diffCommonSuffix(textInsert, textDelete);
-                if (commonlength !== 0) {
-                  diffs[pointer][1] = textInsert.substring(textInsert.length - commonlength) + diffs[pointer][1];
-                  textInsert = textInsert.substring(0, textInsert.length - commonlength);
-                  textDelete = textDelete.substring(0, textDelete.length - commonlength);
-                }
-              }
-
-              // Delete the offending records and add the merged ones.
-              if (countDelete === 0) {
-                diffs.splice(pointer - countInsert, countDelete + countInsert, [DIFF_INSERT, textInsert]);
-              } else if (countInsert === 0) {
-                diffs.splice(pointer - countDelete, countDelete + countInsert, [DIFF_DELETE, textDelete]);
-              } else {
-                diffs.splice(pointer - countDelete - countInsert, countDelete + countInsert, [DIFF_DELETE, textDelete], [DIFF_INSERT, textInsert]);
-              }
-              pointer = pointer - countDelete - countInsert + (countDelete ? 1 : 0) + (countInsert ? 1 : 0) + 1;
-            } else if (pointer !== 0 && diffs[pointer - 1][0] === DIFF_EQUAL) {
-              // Merge this equality with the previous one.
-              diffs[pointer - 1][1] += diffs[pointer][1];
-              diffs.splice(pointer, 1);
-            } else {
-              pointer++;
-            }
-            countInsert = 0;
-            countDelete = 0;
-            textDelete = '';
-            textInsert = '';
-            break;
-        }
-      }
-      if (diffs[diffs.length - 1][1] === '') {
-        diffs.pop(); // Remove the dummy entry at the end.
-      }
-
-      // Second pass: look for single edits surrounded on both sides by equalities
-      // which can be shifted sideways to eliminate an equality.
-      // e.g: A<ins>BA</ins>C -> <ins>AB</ins>AC
-      var changes = false;
-      pointer = 1;
-
-      // Intentionally ignore the first and last element (don't need checking).
-      while (pointer < diffs.length - 1) {
-        if (diffs[pointer - 1][0] === DIFF_EQUAL && diffs[pointer + 1][0] === DIFF_EQUAL) {
-          var diffPointer = diffs[pointer][1];
-          var position = diffPointer.substring(diffPointer.length - diffs[pointer - 1][1].length);
-
-          // This is a single edit surrounded by equalities.
-          if (position === diffs[pointer - 1][1]) {
-            // Shift the edit over the previous equality.
-            diffs[pointer][1] = diffs[pointer - 1][1] + diffs[pointer][1].substring(0, diffs[pointer][1].length - diffs[pointer - 1][1].length);
-            diffs[pointer + 1][1] = diffs[pointer - 1][1] + diffs[pointer + 1][1];
-            diffs.splice(pointer - 1, 1);
-            changes = true;
-          } else if (diffPointer.substring(0, diffs[pointer + 1][1].length) === diffs[pointer + 1][1]) {
-            // Shift the edit over the next equality.
-            diffs[pointer - 1][1] += diffs[pointer + 1][1];
-            diffs[pointer][1] = diffs[pointer][1].substring(diffs[pointer + 1][1].length) + diffs[pointer + 1][1];
-            diffs.splice(pointer + 1, 1);
-            changes = true;
-          }
-        }
-        pointer++;
-      }
-
-      // If shifts were made, the diff needs reordering and another shift sweep.
-      if (changes) {
-        this.diffCleanupMerge(diffs);
-      }
-    };
-    return function (o, n) {
-      var diff, output, text;
-      diff = new DiffMatchPatch();
-      output = diff.DiffMain(o, n);
-      diff.diffCleanupEfficiency(output);
-      text = diff.diffPrettyHtml(output);
-      return text;
-    };
-  }();
 
 })();
