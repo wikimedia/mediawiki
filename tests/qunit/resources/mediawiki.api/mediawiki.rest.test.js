@@ -23,9 +23,7 @@ QUnit.module( 'mediawiki.rest', ( hooks ) => {
 			{ MyHeader: 'MyHeaderValue' }
 		);
 
-		assert.propContains( headers, {
-			MyHeader: 'MyHeaderValue'
-		}, 'request headers' );
+		assert.propContains( headers, { MyHeader: 'MyHeaderValue' }, 'request headers' );
 		assert.deepEqual( data, {}, 'succeeds without errors' );
 	} );
 
