@@ -43,7 +43,7 @@ abstract class ImageGalleryBase extends ContextSource {
 
 	/**
 	 * @var array[] Gallery images
-	 * @phan-var array<int,array{0:Title,1:string,2:string,3:string,4:array,5:int}>
+	 * @phan-var array<int,array{0:Title,1:string,2:string,3:string,4:array,5:int,6:?array}>
 	 */
 	protected $mImages;
 
@@ -348,7 +348,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	/**
 	 * Returns the list of images this gallery contains
 	 * @return array[]
-	 * @phan-return array<int,array{0:Title,1:string,2:string,3:string,4:array}>
+	 * @phan-return array<int,array{0:Title,1:string,2:string,3:string,4:array,5:int,6:?array}>
 	 */
 	public function getImages() {
 		return $this->mImages;
