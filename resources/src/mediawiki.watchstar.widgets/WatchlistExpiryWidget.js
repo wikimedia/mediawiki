@@ -60,9 +60,9 @@ function WatchlistExpiryWidget( action, pageTitle, updateWatchLink, config ) {
 	if ( action === 'watch' ) {
 		addTabKeyListener();
 
-		Object.keys( dataExpiryOptions ).forEach( ( key ) => {
+		for ( const key in dataExpiryOptions ) {
 			expiryOptions.push( { data: dataExpiryOptions[ key ], label: key } );
-		} );
+		}
 
 		const dropdownLabel = new OO.ui.LabelWidget( {
 			label: mw.message( 'addedwatchexpiry-options-label' ).parseDom(),

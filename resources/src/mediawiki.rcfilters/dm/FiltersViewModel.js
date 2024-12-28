@@ -427,9 +427,9 @@ FiltersViewModel.prototype.updateStateFromParams = function ( params ) {
 
 	// Update filter values
 	const filtersValue = this.getFiltersFromParameters( params );
-	Object.keys( filtersValue ).forEach( ( filterName ) => {
+	for ( const filterName in filtersValue ) {
 		this.getItemByName( filterName ).setValue( filtersValue[ filterName ] );
-	} );
+	}
 
 	// Update highlight state
 	this.getItemsSupportingHighlights().forEach( ( filterItem ) => {
@@ -484,13 +484,13 @@ FiltersViewModel.prototype.getMinimizedParamRepresentation = function ( paramete
 	} );
 
 	// Highlights
-	Object.keys( this.getEmptyHighlightParameters() ).forEach( ( param ) => {
+	for ( const param in this.getEmptyHighlightParameters() ) {
 		if ( parameters[ param ] ) {
 			// If a highlight parameter is not undefined and not null
 			// add it to the result
 			result[ param ] = parameters[ param ];
 		}
-	} );
+	}
 
 	return result;
 };
@@ -974,9 +974,9 @@ FiltersViewModel.prototype.toggleFilterSelected = function ( name, isSelected ) 
  * @param {Object} filterDef Filter definitions
  */
 FiltersViewModel.prototype.toggleFiltersSelected = function ( filterDef ) {
-	Object.keys( filterDef ).forEach( ( name ) => {
+	for ( const name in filterDef ) {
 		this.toggleFilterSelected( name, filterDef[ name ] );
-	} );
+	}
 };
 
 /**

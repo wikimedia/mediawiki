@@ -60,7 +60,7 @@ function onLoadHandler( $editForm ) {
 	// Store the original data for later comparing to the data-to-save. Use the defaultValue/defaultChecked in order to
 	// avoid using any data remembered by the browser. Note that we have to be careful to store with the same types as
 	// it will be done later, in order to correctly compare it (e.g. checkboxes as booleans).
-	Object.keys( inputFields ).forEach( ( fieldName ) => {
+	for ( const fieldName in inputFields ) {
 		const field = inputFields[ fieldName ];
 		if ( field.nodeName === 'INPUT' || field.nodeName === 'TEXTAREA' ) {
 			if ( field.type === 'checkbox' ) {
@@ -80,7 +80,7 @@ function onLoadHandler( $editForm ) {
 				originalData[ fieldNamePrefix + fieldName ] = field.$input[ 0 ].defaultValue;
 			}
 		}
-	} );
+	}
 
 	// Set a short-lived (5m / see postEdit.js) localStorage item to indicate which section is being edited.
 	if ( section ) {
@@ -152,7 +152,7 @@ function onLoadData( pageData ) {
 	}
 
 	// Add change handlers.
-	Object.keys( inputFields ).forEach( ( fieldName ) => {
+	for ( const fieldName in inputFields ) {
 		const field = inputFields[ fieldName ];
 		if ( field.nodeName !== undefined && field.nodeName === 'TEXTAREA' ) {
 			field.addEventListener( 'input', fieldChangeHandler );
@@ -161,7 +161,7 @@ function onLoadData( pageData ) {
 		} else {
 			field.addEventListener( 'change', fieldChangeHandler );
 		}
-	} );
+	}
 	// Also add handlers for when the window is closed or hidden. Saving the data at these points is not guaranteed to
 	// work, but it often does and the save operation is atomic so there's no harm in trying.
 	window.addEventListener( 'beforeunload', saveFormData );
@@ -179,7 +179,7 @@ function onLoadData( pageData ) {
 }
 
 function loadData( pageData ) {
-	Object.keys( inputFields ).forEach( ( fieldName ) => {
+	for ( const fieldName in inputFields ) {
 		if ( pageData[ fieldNamePrefix + fieldName ] === undefined ) {
 			return;
 		}
@@ -200,7 +200,7 @@ function loadData( pageData ) {
 			// Anything else.
 			field.value = pageData[ fieldNamePrefix + fieldName ];
 		}
-	} );
+	}
 }
 
 function fieldChangeHandler() {
@@ -260,7 +260,7 @@ function saveFormData() {
  */
 function getFormData() {
 	const formData = {};
-	Object.keys( inputFields ).forEach( ( fieldName ) => {
+	for ( const fieldName in inputFields ) {
 		const field = inputFields[ fieldName ];
 		let newValue = null;
 		if ( !( field instanceof OO.ui.Widget ) && field.nodeName !== undefined && field.nodeName === 'TEXTAREA' ) {
@@ -277,6 +277,6 @@ function getFormData() {
 			newValue = field.value;
 		}
 		formData[ fieldNamePrefix + fieldName ] = newValue;
-	} );
+	}
 	return formData;
 }

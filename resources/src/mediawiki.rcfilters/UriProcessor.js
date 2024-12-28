@@ -146,12 +146,12 @@ UriProcessor.prototype.getUnrecognizedParams = function ( params ) {
 		unrecognizedParams = $.extend( true, {}, params );
 
 	// Extract unrecognized parameters
-	Object.keys( this.filtersModel.getEmptyParameterState() ).forEach( ( paramName ) => {
+	for ( const paramName in this.filtersModel.getEmptyParameterState() ) {
 		// Remove recognized params
 		if ( givenParamNames.indexOf( paramName ) > -1 ) {
 			delete unrecognizedParams[ paramName ];
 		}
-	} );
+	}
 
 	return unrecognizedParams;
 };
