@@ -79,7 +79,7 @@ QUnit.module( 'mediawiki.api', ( hooks ) => {
 	} );
 
 	QUnit.test.if( 'FormData support [native]', !!window.FormData, async function ( assert ) {
-		const api = new mw.Api();
+		const api = new mw.Api( { ajax: { url: '/FormData/api.php' } } );
 
 		let request;
 		this.server.respond( ( req ) => {
@@ -89,7 +89,7 @@ QUnit.module( 'mediawiki.api', ( hooks ) => {
 
 		await api.post( { action: 'test' }, { contentType: 'multipart/form-data' } );
 
-		assert.strictEqual( request.url, '/api.php', 'no query string' );
+		assert.strictEqual( request.url, '/FormData/api.php', 'no query string' );
 		assert.true( request.requestBody instanceof FormData, 'Request uses FormData body' );
 	} );
 
@@ -97,7 +97,7 @@ QUnit.module( 'mediawiki.api', ( hooks ) => {
 		// Disable native (restored in afterEach)
 		window.FormData = undefined;
 
-		const api = new mw.Api();
+		const api = new mw.Api( { ajax: { url: '/FormData/api.php' } } );
 
 		let request;
 		this.server.respond( ( req ) => {
@@ -107,7 +107,7 @@ QUnit.module( 'mediawiki.api', ( hooks ) => {
 
 		await api.post( { action: 'test' }, { contentType: 'multipart/form-data' } );
 
-		assert.strictEqual( request.url, '/api.php', 'no query string' );
+		assert.strictEqual( request.url, '/FormData/api.php', 'no query string' );
 		assert.strictEqual( request.requestBody, 'action=test&format=json', 'Request uses query string body' );
 	} );
 
@@ -152,7 +152,7 @@ QUnit.module( 'mediawiki.api', ( hooks ) => {
 	} );
 
 	QUnit.test( 'Omitting false booleans', async function ( assert ) {
-		const api = new mw.Api();
+		const api = new mw.Api( { ajax: { url: '/booleans/api.php' } } );
 
 		let url;
 		this.server.respond( ( request ) => {
@@ -162,7 +162,7 @@ QUnit.module( 'mediawiki.api', ( hooks ) => {
 
 		// "foo" must be absent, "bar" must be present
 		await api.get( { foo: false, bar: true } );
-		assert.strictEqual( url, '/api.php?action=query&format=json&bar=true', 'url' );
+		assert.strictEqual( url, '/booleans/api.php?action=query&format=json&bar=true', 'url' );
 	} );
 
 	QUnit.test( 'getToken() - cached', async function ( assert ) {
