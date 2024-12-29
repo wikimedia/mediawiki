@@ -76,6 +76,13 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		// Reject nested arrays (T274955)
 		$value = array_filter( $value, 'is_scalar' );
 
+		if ( isset( $this->mParams['required'] )
+			&& $this->mParams['required'] !== false
+			&& $value === []
+		) {
+			return $this->msg( 'htmlform-required' );
+		}
+
 		if ( isset( $this->mParams['max'] ) && ( count( $value ) > $this->mParams['max'] ) ) {
 			return $this->msg( 'htmlform-multiselect-toomany', $this->mParams['max'] );
 		}
