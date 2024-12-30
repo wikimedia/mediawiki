@@ -114,10 +114,10 @@
 	"skin-view-foreign": "Seli' di $1",
 	"edit": "Dandani",
 	"skin-view-edit": "Dandani",
-	"edit-local": "Dandani gambaran lokal",
+	"edit-local": "Dandani keterangan lokal",
 	"create": "Ngawé'",
 	"skin-view-create": "Ngawé'",
-	"create-local": "Tamba keterangan sinila",
+	"create-local": "Enju' keterangan lokal",
 	"delete": "Apus",
 	"undelete_short": "Urung ngapus {{PLURAL:$1|$1 robahan}}",
 	"viewdeleted_short": "Seli' {{PLURAL:$1|$1 dandanan}} yang diapus",
@@ -950,7 +950,7 @@
 	"log-action-filter-all": "Galo-galo",
 	"log-action-filter-block-block": "Adang",
 	"paramvalidator-help-type-user-subtype-name": "namo pemakék",
-	"skin-view-create-local": "Imbuh gambaran lokal",
+	"skin-view-create-local": "Enju' keterangan lokal",
 	"skin-action-delete": "Hapus",
 	"skin-action-move": "Pindahke"
 }

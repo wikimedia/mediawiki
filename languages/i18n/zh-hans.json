@@ -209,7 +209,8 @@
 			"Wang31",
 			"WiiUf",
 			"Vina",
-			"ZhaoFJx"
+			"ZhaoFJx",
+			"阿南之人"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -1422,7 +1423,7 @@
 	"right-minoredit": "标记编辑为小编辑",
 	"right-move": "移动页面",
 	"right-move-subpages": "移动页面及其子页面",
-	"right-move-rootuserpages": "移动根用户页面",
+	"right-move-rootuserpages": "移动用户母页面",
 	"right-move-categorypages": "移动分类页面",
 	"right-movefile": "移动文件",
 	"right-suppressredirect": "移动页面时不在原页面创建重定向",
@@ -1544,7 +1545,7 @@
 	"action-minoredit": "标记该编辑为小编辑",
 	"action-move": "移动本页",
 	"action-move-subpages": "移动本页及其子页面",
-	"action-move-rootuserpages": "移动根用户页面",
+	"action-move-rootuserpages": "移动用户母页面",
 	"action-move-categorypages": "移动分类页面",
 	"action-movefile": "移动本文件",
 	"action-upload": "上传本文件",
