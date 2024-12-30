@@ -59,7 +59,7 @@
 	"apihelp-block-param-noemail": "Impide que o usuario envíe correos electrónicos a través da wiki. (Require o permiso <code>blockemail</code>).",
 	"apihelp-block-param-hidename": "Ocultar o nome de usuario do rexistro de bloqueos. (Precisa do permiso <code>hideuser</code>).",
 	"apihelp-block-param-allowusertalk": "Permitir que o usuario edite a súa propia páxina de conversa (depende de <var>[[mw:Special:MyLanguage/Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
-	"apihelp-block-param-reblock": "Se o usuario xa está bloqueado por un só bloqueo, sobrescribir o bloqueo existente. Se o usuario está bloqueado máis dunha vez, isto fallará. Utiliza o parámetro \"id\" para especificar o bloqueo que queres sobrescribir.",
+	"apihelp-block-param-reblock": "Se o usuario xa está bloqueado por un só bloqueo, sobrescribir o bloqueo existente. Se o usuario está bloqueado máis dunha vez, isto fallará. Utiliza o parámetro <var>id</var> para especificar o bloqueo que queres sobrescribir.",
 	"apihelp-block-param-newblock": "Engadir outro bloqueo mesmo se o usuario xa está bloqueado.",
 	"apihelp-block-param-watchuser": "Vixiar a páxina de usuario e a de conversa do usuario ou do enderezo IP.",
 	"apihelp-block-param-watchlistexpiry": "Selo temporal para a caducidade da lista de vixilancia. Omitir este parámetro por completo para deixar a caducidade actual sen cambios.",
