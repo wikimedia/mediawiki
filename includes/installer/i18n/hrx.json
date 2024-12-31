@@ -3,7 +3,8 @@
 		"authors": [
 			"Iohanen",
 			"Macofe",
-			"Paul Beppler"
+			"Paul Beppler",
+			"Krinkle"
 		]
 	},
 	"config-desc": "Das MediaWiki-Installationsprogramm",
@@ -201,7 +202,7 @@
 	"config-cache-options": "Instellunge für die Zwischichspeichrung von Objekte:",
 	"config-cache-help": "Das Objektcaching weard dozu benutzt die Geschwindigkeit von MediaWiki zu verbessre, indem häifich genutzte Date zwischichgespeichert werre.\nEs weard seahr emfohl (rekommendiert) das für mittelgrosse bis grosse Wikis zu nutze, awer ooch für klene Wikis ergewe sich erkennbare Geschwindichkeitsverbessrunge.",
 	"config-cache-none": "Ken Objektcaching (es weard ken Funktion entfernt, trotzdem kann das die Geschwindigkeit grössrer Wikis negativ beeinflusse)",
-	"config-cache-accel": "Objektcaching (Objektfeststelle, Objektufffänge) von PHP (APC, XCache orrer WinCache)",
+	"config-cache-accel": "Objektcaching (Objektfeststelle, Objektufffänge) von PHP (APC orrer APCu)",
 	"config-cache-memcached": "Memcached Cacheserver nutze (erfordert en zusätzliche Installationsvoargang mitsamt Konfiguration)",
 	"config-memcached-servers": "Memcached Cacheserver",
 	"config-memcached-help": "List der für Memcached nutzboore IP-Adresse.\nEs sollt en je Zeil mitsamt das voargesiehne Ports oongeb sin. Beispiele:\n127.0.0.1:11211 orrer\n192.168.1.25:1234 usw.",

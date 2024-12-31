@@ -6,7 +6,8 @@
 			"HairyFotr",
 			"Janezdrilc",
 			"Upwinxp",
-			"Yerpo"
+			"Yerpo",
+			"Krinkle"
 		]
 	},
 	"config-desc": "Namestitveni program za MediaWiki",
@@ -232,7 +233,7 @@
 	"config-cache-options": "Nastavitve za predpomnjenje objektov:",
 	"config-cache-help": "Predpomnjenje objektov se uporablja za izboljšanje hitrosti MediaWikija s predpomnjenjem pogosto uporabljenih podatkov.\nZa srednja do velika mesta je zelo priporočljivo, da to omogočijo, koristi pa bodo opazila tudi majhna mesta.",
 	"config-cache-none": "Brez predpomnjenja (nobena funkcionalnost ni odstranjena, vendar se v večjih viki mestih lahko zmanjša hitrost)",
-	"config-cache-accel": "Predpomnjenje predmetov PHP (APC, APCu ali WinCache)",
+	"config-cache-accel": "Predpomnjenje predmetov PHP (APC, ali APCu)",
 	"config-cache-memcached": "Uporabi Memcached (zahteva dodatno namestitev in konfiguracijo)",
 	"config-memcached-servers": "Strežniki Memcached:",
 	"config-memcached-help": "Seznam IP-naslovov za uporabo za Memcached.\nNavedite enega na vrstico in navedite vrata, ki naj se uporabijo. Na primer:\n 127.0.0.1:11211\n 192.168.1.25:1234",

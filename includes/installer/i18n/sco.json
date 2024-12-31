@@ -6,7 +6,8 @@
 			"CiphriusKane",
 			"John Reid",
 			"Macofe",
-			"Seb35"
+			"Seb35",
+			"Krinkle"
 		]
 	},
 	"config-desc": "The installer fer MediaWiki",
@@ -203,7 +204,7 @@
 	"config-cache-options": "Settins fer object cachin:",
 	"config-cache-help": "Object cachin is uised tae impruiv the speed o MediaWiki bi cachin frequentlie uised data.\nMedium til muckle sites ar heilie encooraged tae enable this, n wee sites will see benefits ava.",
 	"config-cache-none": "Naw caching (nae functionâlitie is remuived, but speed mmicht be impacted oan muckler wiki sites)",
-	"config-cache-accel": "PHP object cachin (APC, XCache or WinCache)",
+	"config-cache-accel": "PHP object cachin (APC or APCu)",
 	"config-cache-memcached": "Uise Memcached (needs addeetional setup n confeegurâtion)",
 	"config-memcached-servers": "Memcached servers:",
 	"config-memcached-help": "Leet o IP addresses tae uise fer Memcached.\nShid speceefie yin per line n speceefie the port tae be uised. Fer example:\n 127.0.0.1:11211\n 192.168.1.25:1234",

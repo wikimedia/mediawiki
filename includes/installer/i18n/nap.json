@@ -6,7 +6,8 @@
 			"Fitoschido",
 			"Macofe",
 			"Reedy",
-			"Ruthven"
+			"Ruthven",
+			"Krinkle"
 		]
 	},
 	"config-desc": "'O prugramma d'istallazione 'e MediaWiki",
@@ -207,7 +208,7 @@
 	"config-cache-options": "Mpustaziune p' 'a cache d'oggette:",
 	"config-cache-help": "'O caching 'uggette s'ausa pe' puté migliurà 'a velocità 'e MediaWiki a fforza 'e ffà caching d' 'e date cchiù spisso ausàte.\nE Mezze a gruosse site se songo ncuraggiate a ll'appiccià chiste, e site piccerilli vedarranno migliuramente pure.",
 	"config-cache-none": "Nisciuna memorizzazione n cache (nisciuna funziunalità è luvata, ma 'a velocità se putesse ffà a meno dint' 'e wiki cchiù gruosse)",
-	"config-cache-accel": "Mettere 'n cache oggette PHP (APC, APCu o WinCache)",
+	"config-cache-accel": "Mettere 'n cache oggette PHP (APC, o APCu)",
 	"config-cache-memcached": "Aúsa 'o Memcached (richiede cchiù mpustaziune 'installazione e configuraziona)",
 	"config-memcached-servers": "Server memcached:",
 	"config-memcached-help": "Elenco 'e ll'indirizzi IP p' 'e putè ausà p' 'o Memcached.\nS'avess'a specificà uno pe' riga e scrivere 'a porta 'e trasuta. P'esempio:\n 127.0.0.1:11211\n 192.168.1.25:1234",

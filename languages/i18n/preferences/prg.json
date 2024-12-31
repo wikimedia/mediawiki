@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Nertiks",
-			"Tīgelika"
+			"Tīgelika",
+			"Kxeo"
 		]
 	},
 	"preferences": "Pirminiskwas",
@@ -22,6 +23,7 @@
 	"prefs-i18n": "Internaciōnalizaciōni",
 	"yourlanguage": "Bilā:",
 	"yourgender": "Twajjan gīmtan:",
+	"gender-notknown": "Tennan redigijja wikins pāusans",
 	"gender-unknown": "Ni patikrinā di",
 	"gender-female": "Genā",
 	"gender-male": "Wīrs",

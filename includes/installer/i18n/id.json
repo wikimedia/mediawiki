@@ -22,7 +22,8 @@
 			"Seb35",
 			"Sumbukompor",
 			"WongKentir",
-			"아라"
+			"아라",
+			"Krinkle"
 		]
 	},
 	"config-desc": "Pemasang MediaWiki",
@@ -242,7 +243,7 @@
 	"config-cache-options": "Pengaturan tembolok objek:",
 	"config-cache-help": "Tembolok objek digunakan untuk meningkatkan kecepatan MediaWiki dengan menyinggahkan data yang sering digunakan.\nSitus berukuran sedang hingga besar sangat dianjurkan untuk mengaktifkan fitur ini, dan situs kecil juga akan merasakan manfaatnya.",
 	"config-cache-none": "Tidak ada tembolok (tidak ada fungsi yang dibuang, tetapi kecepatan dapat terpengaruh pada situs wiki yang besar)",
-	"config-cache-accel": "Penyinggahan objek PHP (APC, APCu, atau WinCache)",
+	"config-cache-accel": "Penyinggahan objek PHP (APC, atau APCu)",
 	"config-cache-memcached": "Gunakan Memcached (memerlukan pengaturan dan konfigurasi tambahan)",
 	"config-memcached-servers": "Peladen Memcached:",
 	"config-memcached-help": "Daftar alamat IP yang digunakan untuk Memcached.\nHarus ditentukan per baris berikut porta yang akan digunakan. Contoh:\n 127.0.0.1:11211\n 192.168.1.25:1234",

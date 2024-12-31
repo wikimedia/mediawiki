@@ -11,7 +11,8 @@
 			"Nghtwlkr",
 			"Seb35",
 			"SuperPotato",
-			"아라"
+			"아라",
+			"Krinkle"
 		]
 	},
 	"config-desc": "Installasjonsprogrammet for MediaWiki",
@@ -67,7 +68,7 @@
 	"config-memory-bad": "'''Advarsel:''' PHPs <code>memory_limit</code> er $1.\nDette er sannsynligvis for lavt.\nInstallasjonen kan mislykkes!",
 	"config-apc": "[https://www.php.net/apc APC] er installert",
 	"config-apcu": "[https://www.php.net/apcu APCu] er installert",
-	"config-no-cache-apcu": "<strong>Advarsel:</strong> Kunne ikke finne [https://www.php.net/apcu APCu] eller [https://www.iis.net/downloads/microsoft/wincache-extension WinCache].\nObjekthurtiglagring er ikke aktivert.",
+	"config-no-cache-apcu": "<strong>Advarsel:</strong> Kunne ikke finne [https://www.php.net/apcu APCu].\nObjekthurtiglagring er ikke aktivert.",
 	"config-mod-security": "'''Advarsel''': Din web-tjener har [https://modsecurity.org/ mod_security] påslått. Hvis denne er feilinnstilt, kan det gi problemer for MediaWiki eller annen programvare som tillater brukere å poste vilkårlig innhold.\nSjekk [https://modsecurity.org/documentation/ mod_security-dokumentasjonen] eller ta kontakt med din nettleverandør hvis du opplever tilfeldige feil.",
 	"config-diff3-bad": "GNU diff3 ikke funnet. Du kan ignorere dette for øyeblikket, men du kan støte på redigeringskonflikter oftere.",
 	"config-git": "Har funnet Git version control software: <code>$1</code>.",
@@ -237,7 +238,7 @@
 	"config-cache-options": "Innstillinger for objekt-mellomlagring:",
 	"config-cache-help": "Objekt-mellomlagring brukes for å forbedre hastigheten for MediaWiki. Ofte forekommende data lagres for gjenbruk.\nMiddels til store nettsteder bør absolutt aktivisere mellomlagring, med også små nettsteder kan ha nytte av dette.",
 	"config-cache-none": "Ingen mellomlagring (ingen funksjonalitet mistes, men hastigheten kan bli dårlig for store wikier-nettsteder)",
-	"config-cache-accel": "Mellomlagring av PHP-objekter (APCu eller WinCache)",
+	"config-cache-accel": "Mellomlagring av PHP-objekter (APCu)",
 	"config-cache-memcached": "Bruk Memcached (krever tilleggsoppsett og -konfigurering)",
 	"config-memcached-servers": "Memcached-servere:",
 	"config-memcached-help": "Liste av IP-adresser for bruk fra Memcached.\nDet bør angis en per linje sammen med porten som brukes. For eksempel:\n 127.0.0.1:11211\n 192.168.1.25:1234",

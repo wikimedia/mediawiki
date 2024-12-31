@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"ChrisPtDe",
-			"Pppery"
+			"Pppery",
+			"Krinkle"
 		]
 	},
 	"config-desc": "La programeria d’enstalacion de MediaWiki",
@@ -101,7 +102,7 @@
 	"config-instantcommons": "Activar Instant Commons",
 	"config-advanced-settings": "Configuracion avanciê",
 	"config-cache-options": "Paramètres por la misa en cache de les chouses :",
-	"config-cache-accel": "Misa en cache de les chouses PHP (APC, XCache ou ben WinCache)",
+	"config-cache-accel": "Misa en cache de les chouses PHP (APC ou ben APCu)",
 	"config-memcached-servers": "Sèrvors por memcached :",
 	"config-extensions": "Èxtensions",
 	"config-install-step-done": "fêt",

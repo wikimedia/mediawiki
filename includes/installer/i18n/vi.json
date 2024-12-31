@@ -221,7 +221,7 @@
 	"config-cache-options": "Thiết lập bộ nhớ đệm đối tượng:",
 	"config-cache-help": "Lưu vào bộ nhớ đệm đối tượng được sử dụng để cải thiện tốc độ của MediaWiki bằng cách lưu vào bộ nhớ đệm những dữ liệu thường xuyên sử dụng.\nCác trang web từ trung bình cho đến các trang web lớn rất được khuyến khích kích hoạt tính năng này, và các trang web nhỏ cũng sẽ nhìn thấy lợi ích tương tự.",
 	"config-cache-none": "Không lưu vào bộ nhớ đệm (không có chức năng nhiệm vụ sẽ được loại bỏ, nhưng tốc độ có thể bị ảnh hưởng trên các trang web wiki lớn hơn)",
-	"config-cache-accel": "Bộ nhớ đệm đối tượng PHP (APC, APCu, hoặc WinCache)",
+	"config-cache-accel": "Bộ nhớ đệm đối tượng PHP (APC hoặc APCu)",
 	"config-cache-memcached": "Sử dụng Memcached (cần thiết lập và cấu hình thêm)",
 	"config-memcached-servers": "Máy chủ Memcached:",
 	"config-memcached-help": "Danh sách các địa chỉ IP để sử dụng cho Memcached .\nNên xác định trên một dòng và chỉ định các cổng được sử dụng. Ví dụ:\n 127.0.0.1:11211\n 192.168.1.25:1234",

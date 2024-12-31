@@ -5,7 +5,8 @@
 			"Milicevic01",
 			"Obsuser",
 			"Zoranzoki21",
-			"Сербијана"
+			"Сербијана",
+			"Krinkle"
 		]
 	},
 	"config-desc": "Instalacioni program za MediaWiki",
@@ -191,7 +192,7 @@
 	"config-advanced-settings": "Napredna konfiguracija",
 	"config-cache-options": "Podešavanja za keširanje objekta:",
 	"config-cache-none": "Nema keširanja (funkcionalnost nije uklonjena, ali brzina može uticati na veće viki projekte)",
-	"config-cache-accel": "Keširanje PHP objekta (APC, APCu or WinCache)",
+	"config-cache-accel": "Keširanje PHP objekta (APC or APCu)",
 	"config-cache-memcached": "Koristi Memcached (zahteva dodatno podešavanje i konfiguraciju)",
 	"config-memcached-servers": "Memcached serveri:",
 	"config-memcached-help": "Lista IP adresa za korišćenje za Memcached.\nTreba da navedete jednu u svaki red i port za korišćenje. Na primer:\n 127.0.0.1:11211\n 192.168.1.25:1234",

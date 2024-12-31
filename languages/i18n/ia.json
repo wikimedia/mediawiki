@@ -4046,5 +4046,7 @@
 	"benefit-1-description": "Le observatorio, que te permitte sequer le paginas de tu interesse.",
 	"benefit-2-description": "Lista permanente del contributiones que tu ha apportate al projecto.",
 	"benefit-3-description": "Preferentias que te permitte personalisar tu experientia.",
-	"temp-user-unable-to-acquire": "Fallimento del acquisition de un nomine de usator pro le conto temporari. Per favor tenta lo de novo."
+	"temp-user-unable-to-acquire": "Fallimento del acquisition de un nomine de usator pro le conto temporari. Per favor tenta lo de novo.",
+	"table-of-contents-show-button-aria-label": "Monstrar le tabula de contento",
+	"table-of-contents-hide-button-aria-label": "Celar le tabula de contento"
 }

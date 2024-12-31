@@ -5,7 +5,8 @@
 			"E THP",
 			"Ebrahimi-amir",
 			"Koroğlu",
-			"Mousa"
+			"Mousa",
+			"Krinkle"
 		]
 	},
 	"config-desc": "مئدیاویکی قوروجوسو",
@@ -44,6 +45,7 @@
 	"config-admin-name": "ایشلدن آدینیز:",
 	"config-admin-password": "رمز:",
 	"config-admin-email": "ایمیل آدرسی:",
+	"config-cache-accel": "کاشهٔ اشیای پی‌اچ‌پی (APC یا APCu)",
 	"config-help": "کؤمک",
 	"config-help-tooltip": "گئنیشلتمک اوچون کلیک ائدین",
 	"config-nofile": "«$1» فایلی تاپیلانمادی. سیلینیبدیرمی؟"

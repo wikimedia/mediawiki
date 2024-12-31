@@ -59,7 +59,7 @@
 	"paramvalidator-help-type-limit": "Type: heltall eller «max»",
 	"paramvalidator-help-type-number-max": "{{PLURAL:$1|1=Verdien|2=Verdiene}} kan ikke være større enn $3.",
 	"paramvalidator-help-type-number-minmax": "{{PLURAL:$1|1=Verdien|2=Verdiene}} må være mellom $2 og $3.",
-	"paramvalidator-help-type-number-min": "{{PLURAL:$1|1=Verdien|2=Verdiene}} må være mindre enn $2.",
+	"paramvalidator-help-type-number-min": "{{PLURAL:$1|1=Verdien|2=Verdiene}} kan ikke være lavere enn $2.",
 	"paramvalidator-help-type-presenceboolean": "Type: boolsk",
 	"paramvalidator-help-type-string-maxbytes": "Kan ikke være lengre enn $1 {{PLURAL:$1|byte}}.",
 	"paramvalidator-help-type-string-maxchars": "Kan ikke være lengre enn $1 {{PLURAL:$1|tegn}}.",

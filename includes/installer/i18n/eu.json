@@ -9,7 +9,8 @@
 			"Sator",
 			"Subi",
 			"Xabier Armendaritz",
-			"පසිඳු කාවින්ද"
+			"පසිඳු කාවින්ද",
+			"Krinkle"
 		]
 	},
 	"config-desc": "MediaWiki instalatzailea",
@@ -212,7 +213,7 @@
 	"config-cache-options": "Objektu cachearen ezarpenak:",
 	"config-cache-help": "Objektuen katxea erabiltzen da MediaWikiko abiadura hobetzeko, sarritan erabiltzen diren datuak gordetzen.\nOso gomendagarria da, webgune handientzako eta ertainentzako, webgune txikiek ere ikusiko dituzte onurak.",
 	"config-cache-none": "Desaktibatu Katxina (ez dira funtzionaltasunak ezabatu, baina wiki orrialde handietan abiaduran eragina izan ahal du)",
-	"config-cache-accel": "PHP objetuen katxea (APC, APCu, edo WinCache)",
+	"config-cache-accel": "PHP objetuen katxea (APC, edo APCu)",
 	"config-cache-memcached": "Memcached erabili (konfigurazio eta instalazio gehiago behar du)",
 	"config-memcached-servers": "Memcached serbidoreak:",
 	"config-memcached-help": "Memcached-ekin erabiltzeko IP helbideen lista.\nLerro bakoitzen bat bakarrik jarri behar da eta zehaztu ze ataka erabiliko den. Adibidez:\n127.0.0.1:11211\n192.168.1.25:1234",

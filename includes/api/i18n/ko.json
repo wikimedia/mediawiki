@@ -431,6 +431,8 @@
 	"apihelp-query+alltransclusions-param-namespace": "열거할 이름공간.",
 	"apihelp-query+alltransclusions-param-limit": "반환할 총 항목 수입니다.",
 	"apihelp-query+alltransclusions-param-dir": "나열할 방향입니다.",
+	"apihelp-query+alltransclusions-example-unique": "끼워넣은 고유한 제목을 나열합니다.",
+	"apihelp-query+alltransclusions-example-generator": "끼워넣은 문서를 포함하는 문서를 가져옵니다.",
 	"apihelp-query+allusers-summary": "등록된 모든 사용자를 열거합니다.",
 	"apihelp-query+allusers-param-from": "열거를 시작할 사용자 이름입니다.",
 	"apihelp-query+allusers-param-to": "열거를 중단할 사용자 이름입니다.",

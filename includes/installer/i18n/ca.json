@@ -13,7 +13,8 @@
 			"SMP",
 			"Toniher",
 			"Xavier Dengra",
-			"පසිඳු කාවින්ද"
+			"පසිඳු කාවින්ද",
+			"Krinkle"
 		]
 	},
 	"config-desc": "L'instal·lador del MediaWiki",
@@ -237,7 +238,7 @@
 	"config-cache-options": "Configuració per a la memòria cau dels objectes:",
 	"config-cache-help": "L'encauament d'objectes s'utilitza per a millorar la rapidesa del MediaWiki afegint a la memòria cau les dades que s'utilitzen de forma freqüent. És recomanable que els llocs web mitjans o grans ho habilitin. També els llocs web petits en veuran els beneficis.",
 	"config-cache-none": "Sense encauament (no se suprimeix cap funcionalitat, però la velocitat pot veure's afectada en els llocs wiki més grans)",
-	"config-cache-accel": "Emmagatzemament en memòria cau d'objectes de PHP (APC, APCu o WinCache)",
+	"config-cache-accel": "Emmagatzemament en memòria cau d'objectes de PHP (APC, o APCu)",
 	"config-cache-memcached": "Utilitza Memcached (requereix una instal·lació i configuració addicionals)",
 	"config-memcached-servers": "Servidors de Memcache:",
 	"config-memcached-help": "Llista d'adreces IP per utilitzar amb Memcached.\nHauríeu d'especificar una per línia juntament amb el port que s'utilitzarà. Per exemple:\n 127.0.0.1:11211\n 192.168.1.25:1234",

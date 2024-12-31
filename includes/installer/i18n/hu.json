@@ -239,7 +239,7 @@
 	"config-cache-options": "Objektum-gyorsítótárazás beállításai:",
 	"config-cache-help": "Az objektum-gyorsítótárazás célja, hogy felgyorsítsa a MediaWiki működését a gyakran használt adatok gyorsítótárazásával.\nKözepes vagy nagyobb oldalak esetén erősen ajánlott a használata, de kisebb oldalak esetén is hasznos lehet.",
 	"config-cache-none": "Nincs gyorsítótárazás (minden funkció működik, de nagyobb wiki esetében lassabb működést eredményezhet)",
-	"config-cache-accel": "PHP-objektumok gyorsítótárazása (APC, APCu vagy WinCache)",
+	"config-cache-accel": "PHP-objektumok gyorsítótárazása (APC vagy APCu)",
 	"config-cache-memcached": "Memcached használata (további telepítés és konfigurálás szükséges)",
 	"config-memcached-servers": "Memcached-szerverek:",
 	"config-memcached-help": "Azon IP-címek listája, melyeket a Memcached használhat.\nSoronként egyet adj meg, és add meg a portot is. Például:\n 127.0.0.1:11211\n 192.168.1.25:1234",
