@@ -2638,7 +2638,7 @@
 	"block-target-placeholder": "Nome utente, indirizzo IP o intervallo di IP",
 	"block-pages-placeholder": "Aggiungi altre pagine...",
 	"block-namespaces-placeholder": "Aggiungi altri namespace...",
-	"unblockip": "Sblocca l'utente",
+	"unblockip": "Sblocca utente",
 	"unblockiptext": "Usare il modulo sottostante per restituire l'accesso in scrittura ad un utente o indirizzo IP bloccato.",
 	"ipusubmit": "Rimuovi questo blocco",
 	"unblocked": "L'utente [[User:$1|$1]] è stato sbloccato",
