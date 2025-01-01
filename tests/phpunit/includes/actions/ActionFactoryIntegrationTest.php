@@ -47,7 +47,8 @@ class ActionFactoryIntegrationTest extends MediaWikiIntegrationTestCase {
 				],
 				new NullLogger(),
 				$this->getServiceContainer()->getObjectFactory(),
-				$this->createHookContainer()
+				$this->createHookContainer(),
+				$this->getServiceContainer()->getContentHandlerFactory()
 			] )
 			->onlyMethods( [ 'getArticle' ] )
 			->getMock();
