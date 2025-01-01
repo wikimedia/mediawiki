@@ -155,12 +155,13 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testAcquireNameOnDuplicate_db() {
+		ConvertibleTimestamp::setFakeTime( '20000101000000' );
 		$this->enableAutoCreateTempUser();
 		$tuc = TestingAccessWrapper::newFromObject(
 			$this->getServiceContainer()->getTempUserCreator()
 		);
 		// Create a temporary account
-		$this->assertSame( '~2024-1', $tuc->create( null, new FauxRequest() )->value->getName() );
+		$this->assertSame( '~2000-1', $tuc->create( null, new FauxRequest() )->value->getName() );
 		// Reset the user_autocreate_serial table
 		$this->truncateTable( 'user_autocreate_serial' );
 		// Because user_autocreate_serial was truncated, the ::acquireName method should
@@ -169,23 +170,24 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testCreateOnDuplicate_db() {
+		ConvertibleTimestamp::setFakeTime( '20000101000000' );
 		$this->enableAutoCreateTempUser();
 		$tuc = $this->getServiceContainer()->getTempUserCreator();
 		// Create a temporary account
-		$this->assertSame( '~2024-1', $tuc->create( null, new FauxRequest() )->value->getName() );
+		$this->assertSame( '~2000-1', $tuc->create( null, new FauxRequest() )->value->getName() );
 		// Create a temporary account with an existing temporary account username.
-		$secondCreateStatus = $tuc->create( '~2024-1', new FauxRequest() );
+		$secondCreateStatus = $tuc->create( '~2000-1', new FauxRequest() );
 		$this->assertStatusError( 'temp-user-unable-to-acquire', $secondCreateStatus );
-		// Assert that only one log entry for autocreation exists for ~2024-1, as the second call should have not
+		// Assert that only one log entry for autocreation exists for ~2000-1, as the second call should have not
 		// created a new log entry.
 		$this->assertSame(
 			1,
 			$this->getDb()->newSelectQueryBuilder()
 				->from( 'logging' )
 				->join( 'actor', null, 'log_actor=actor_id' )
-				->where( [ 'actor_name' => '~2024-1', 'log_action' => 'autocreate' ] )
+				->where( [ 'actor_name' => '~2000-1', 'log_action' => 'autocreate' ] )
 				->fetchRowCount(),
-			'Only one logging entry indicating the autocreation of ~2024-1 was expected.'
+			'Only one logging entry indicating the autocreation of ~2000-1 was expected.'
 		);
 	}
 
@@ -198,6 +200,7 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testAcquireNameThrottled() {
+		ConvertibleTimestamp::setFakeTime( '20000101000000' );
 		$this->enableAutoCreateTempUser();
 		$this->overrideConfigValue(
 			MainConfigNames::TempAccountNameAcquisitionThrottle,
@@ -210,7 +213,7 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getTempUserCreator()
 		);
 		// Create a temporary account
-		$this->assertSame( '~2024-1', $tuc->create( null, new FauxRequest() )->value->getName() );
+		$this->assertSame( '~2000-1', $tuc->create( null, new FauxRequest() )->value->getName() );
 		// Attempt again; name acquisition should be limited
 		$this->assertStatusError( 'temp-user-unable-to-acquire', $tuc->create( null, new FauxRequest() ) );
 	}
