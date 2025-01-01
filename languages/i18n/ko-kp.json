@@ -182,6 +182,7 @@
 	"viewdeleted_short": "{{PLURAL:$1|삭제된 편집 한 개|삭제된 편집 $1개}} 보기",
 	"protect": "보호",
 	"protect_change": "바꾸기",
+	"skin-action-unprotect": "보호설정 바꾸기",
 	"unprotect": "보호 설정 바꾸기",
 	"newpage": "새 문서",
 	"view-missing-pages": "없는 문서 보기",

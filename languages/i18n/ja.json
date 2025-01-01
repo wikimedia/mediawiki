@@ -417,7 +417,7 @@
 	"site-atom-feed": "$1のAtomフィード",
 	"page-rss-feed": "「$1」のRSSフィード",
 	"page-atom-feed": "「$1」のAtomフィード",
-	"red-link-title": "「$1」 (存在しないページ)",
+	"red-link-title": "$1 (存在しないページ)",
 	"sort-descending": "降順に並べ替え",
 	"sort-ascending": "昇順に並べ替え",
 	"sort-initial": "初期状態に並べ替え",
