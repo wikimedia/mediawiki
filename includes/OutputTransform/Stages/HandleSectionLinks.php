@@ -58,6 +58,18 @@ class HandleSectionLinks extends ContentTextTransformStage {
 		}
 	}
 
+	/**
+	 * Check if the heading has attributes that can only be added using HTML syntax.
+	 */
+	private function isHtmlHeading( array $attrs ): bool {
+		foreach ( $attrs as $name => $value ) {
+			if ( !Sanitizer::isReservedDataAttribute( $name ) ) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	private function replaceHeadings( string $text, array $options ): string {
 		$skin = $this->resolveSkin( $options );
 		$useLegacyHeading = $this->options->get( MainConfigNames::ParserEnableLegacyHeadingDOM );
@@ -116,12 +128,15 @@ class HandleSectionLinks extends ContentTextTransformStage {
 					}
 				}
 
-				// Do not add the wrapper if the heading has attributes generated from wikitext (T353489).
-				// In this case it's also guaranteed that there's no edit link, so we don't need wrappers.
-				foreach ( $attrs as $name => $value ) {
-					if ( !Sanitizer::isReservedDataAttribute( $name ) ) {
-						$wrapperType = 'none';
-					}
+				if ( $this->isHtmlHeading( $attrs ) ) {
+					// This is a <h#> tag with attributes added using HTML syntax.
+					// Mark it with a class to make them easier to distinguish (T68637).
+					$attrs['class'] = isset( $attrs['class'] ) ? (array)$attrs['class'] : [];
+					$attrs['class'][] = 'mw-html-heading';
+
+					// Do not add the wrapper if the heading has attributes added using HTML syntax (T353489).
+					// In this case it's also guaranteed that there's no edit link, so we don't need wrappers.
+					$wrapperType = 'none';
 				}
 
 			} else {
