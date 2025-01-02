@@ -1214,7 +1214,7 @@ class SkinTemplate extends Skin {
 							),
 							'href' => $title->getLocalURL( [
 								'action' => 'delete',
-								'oldid' => $out->getRevisionId(),
+								'oldid' => $title->getLatestRevID(),
 							] )
 						];
 					}
