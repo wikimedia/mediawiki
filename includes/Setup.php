@@ -167,7 +167,14 @@ if ( defined( 'MW_USE_CONFIG_SCHEMA_CLASS' ) ) {
 
 require_once MW_INSTALL_PATH . '/includes/GlobalFunctions.php';
 
+// Install callback for normalizing headers.
 HeaderCallback::register();
+
+// Tell HttpStatus to use HeaderCallback for reporting warnings when
+// attempting to set headers after the headers have already been sent.
+HttpStatus::registerHeadersSentCallback(
+	[ HeaderCallback::class, 'warnIfHeadersSent' ]
+);
 
 // Set the encoding used by PHP for reading HTTP input, and writing output.
 // This is also the default for mbstring functions.
