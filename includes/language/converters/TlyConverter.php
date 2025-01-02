@@ -19,6 +19,9 @@
  * @author Amir E. Aharoni
  */
 
+use MediaWiki\Language\LanguageConverter;
+use MediaWiki\Language\ReplacementArray;
+
 /**
  * Talysh specific code.
  *

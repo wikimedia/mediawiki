@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Language\ReplacementArray;
+
 /**
  * A class that extends LanguageConverterSpecific for converts that use
  * ICU rule-based transliterators.

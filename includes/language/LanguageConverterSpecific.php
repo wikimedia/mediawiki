@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Language\LanguageConverter;
 use MediaWiki\Title\Title;
 
 /**

@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Language\LanguageConverter;
+use MediaWiki\Language\ReplacementArray;
 use MediaWiki\Languages\Data\ZhConversion;
 
 /**

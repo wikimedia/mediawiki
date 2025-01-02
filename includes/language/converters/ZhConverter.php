@@ -18,6 +18,9 @@
  * @file
  */
 
+use MediaWiki\Language\LanguageConverter;
+use MediaWiki\Language\ReplacementArray;
+
 /**
  * Chinese converter routine.
  *

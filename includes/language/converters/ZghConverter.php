@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Language\ReplacementArray;
+
 /**
  * Standard Moroccan Amazigh specific code.
  *
