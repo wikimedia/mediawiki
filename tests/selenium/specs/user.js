@@ -76,7 +76,6 @@ describe( 'User', () => {
 		);
 	} );
 
-	// NOTE: This test can't run parallel with other account creation tests (T199393)
 	it( 'temporary user should be able to create account', async () => {
 		const pageTitle = Util.getTestString( 'TempUserSignup-TestPage-' );
 		const pageText = Util.getTestString();
