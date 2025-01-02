@@ -1261,6 +1261,7 @@ return [
 		$wanParams = $mainConfig->get( MainConfigNames::WANObjectCache ) + [
 			'cache' => $store,
 			'logger' => $logger,
+			'tracer' => $services->getTracer(),
 			'secret' => $mainConfig->get( MainConfigNames::SecretKey ),
 		];
 		if ( MW_ENTRY_POINT !== 'cli' ) {
