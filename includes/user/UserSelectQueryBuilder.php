@@ -202,6 +202,9 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 	 * @return UserSelectQueryBuilder
 	 */
 	public function named(): self {
+		// All named accounts must be registered
+		$this->registered();
+
 		if ( !$this->tempUserConfig->isKnown() ) {
 			// nothing to do: getMatchCondition throws if temp accounts aren't known
 			return $this;
