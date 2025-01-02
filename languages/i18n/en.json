@@ -2560,6 +2560,7 @@
 	"undelete-revision-row2": "$1 ($2) $3 . . $4 $5 $6 $7 $8",
 	"undelete-back-to-list": "View all deleted revisions",
 	"undelete-load-more-revisions": "Load more revisions",
+	"undelete-error-loading-diff": "Error loading diff.",
 	"namespace": "Namespace:",
 	"invert": "Invert selection",
 	"tooltip-invert": "Check this box to hide changes to pages within the selected namespace (and the associated namespace if checked)",

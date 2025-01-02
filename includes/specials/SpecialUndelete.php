@@ -823,7 +823,19 @@ class SpecialUndelete extends SpecialPage {
 			$this->diffHeader( $currentRevRecord, 'n' )
 		);
 
-		$this->getOutput()->addHTML( "<div>$formattedDiff</div>\n" );
+		if ( $formattedDiff === false ) {
+			if ( $diffEngine->hasSuppressedRevision() ) {
+				$error = 'rev-suppressed-no-diff';
+			} elseif ( $diffEngine->hasDeletedRevision() ) {
+				$error = 'rev-deleted-no-diff';
+			} else {
+				// Something else went wrong when loading the diff - at least explain that something was wrong ...
+				$error = 'undelete-error-loading-diff';
+			}
+			$this->getOutput()->addHTML( $this->msg( $error )->parse() );
+		} else {
+			$this->getOutput()->addHTML( "<div>$formattedDiff</div>\n" );
+		}
 	}
 
 	/**
@@ -1275,7 +1287,7 @@ class SpecialUndelete extends SpecialPage {
 		if ( $haveRevisions ) {
 			# Show the page's stored (deleted) history
 
-			if ( $this->permissionManager->userHasRight( $this->getUser(), 'deleterevision' ) ) {
+			if ( $this->mAllowed && $this->permissionManager->userHasRight( $this->getUser(), 'deleterevision' ) ) {
 				$history .= Html::element(
 					'button',
 					[
