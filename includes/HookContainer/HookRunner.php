@@ -286,7 +286,6 @@ class HookRunner implements
 	\MediaWiki\Output\Hook\OutputPageBeforeHTMLHook,
 	\MediaWiki\Output\Hook\OutputPageBodyAttributesHook,
 	\MediaWiki\Output\Hook\OutputPageCheckLastModifiedHook,
-	\MediaWiki\Output\Hook\OutputPageMakeCategoryLinksHook,
 	\MediaWiki\Output\Hook\OutputPageParserOutputHook,
 	\MediaWiki\Output\Hook\OutputPageRenderCategoryLinkHook,
 	\MediaWiki\Hook\PageHistoryBeforeListHook,
@@ -2763,13 +2762,6 @@ class HookRunner implements
 		return $this->container->run(
 			'OutputPageCheckLastModified',
 			[ &$modifiedTimes, $out ]
-		);
-	}
-
-	public function onOutputPageMakeCategoryLinks( $out, $categories, &$links ) {
-		return $this->container->run(
-			'OutputPageMakeCategoryLinks',
-			[ $out, $categories, &$links ]
 		);
 	}
 

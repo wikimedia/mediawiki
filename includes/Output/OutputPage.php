@@ -1667,53 +1667,46 @@ class OutputPage extends ContextSource {
 		}
 
 		# Add the remaining categories to the skin
-		if ( $this->getHookRunner()->onOutputPageMakeCategoryLinks(
-			$this, $categories, $this->mCategoryLinks )
-		) {
-			$services = MediaWikiServices::getInstance();
-			$linkRenderer = $services->getLinkRenderer();
-			$languageConverter = $services->getLanguageConverterFactory()
-				->getLanguageConverter( $services->getContentLanguage() );
-			$collation = $services->getCollationFactory()->getCategoryCollation();
-			foreach ( $categories as $category => $type ) {
-				// array keys will cast numeric category names to ints, so cast back to string
-				$category = (string)$category;
-				$origcategory = $category;
-				if ( array_key_exists( $category, $pageData ) ) {
-					$title = Title::newFromRow( $pageData[$category] );
-				} else {
-					$title = Title::makeTitleSafe( NS_CATEGORY, $category );
-				}
-				if ( !$title ) {
-					continue;
-				}
-				$languageConverter->findVariantLink( $category, $title, true );
-
-				if ( $category != $origcategory && array_key_exists( $category, $categories ) ) {
-					continue;
-				}
-				$text = $languageConverter->convertHtml( $title->getText() );
-				$link = null;
-				$this->getHookRunner()->onOutputPageRenderCategoryLink( $this, $title->toPageIdentity(), $text, $link );
-				if ( $link === null ) {
-					$link = $linkRenderer->makeLink( $title, new HtmlArmor( $text ) );
-				}
-				$this->mCategoryData[] = [
-					'sortKey' => $collation->getSortKey( $text ),
-					'type' => $type,
-					'title' => $title->getText(),
-					'link' => $link,
-				];
-				$this->mCategoriesSorted = false;
-				// Setting mCategories and mCategoryLinks is redundant here,
-				// but is needed for compatibility until mCategories and
-				// mCategoryLinks are made private (T301020)
-				$this->mCategories[$type][] = $title->getText();
-				$this->mCategoryLinks[$type][] = $link;
+		$services = MediaWikiServices::getInstance();
+		$linkRenderer = $services->getLinkRenderer();
+		$languageConverter = $services->getLanguageConverterFactory()
+			->getLanguageConverter( $services->getContentLanguage() );
+		$collation = $services->getCollationFactory()->getCategoryCollation();
+		foreach ( $categories as $category => $type ) {
+			// array keys will cast numeric category names to ints, so cast back to string
+			$category = (string)$category;
+			$origcategory = $category;
+			if ( array_key_exists( $category, $pageData ) ) {
+				$title = Title::newFromRow( $pageData[$category] );
+			} else {
+				$title = Title::makeTitleSafe( NS_CATEGORY, $category );
 			}
-		} else {
-			// Conservatively assume the hook left the categories unsorted.
+			if ( !$title ) {
+				continue;
+			}
+			$languageConverter->findVariantLink( $category, $title, true );
+
+			if ( $category != $origcategory && array_key_exists( $category, $categories ) ) {
+				continue;
+			}
+			$text = $languageConverter->convertHtml( $title->getText() );
+			$link = null;
+			$this->getHookRunner()->onOutputPageRenderCategoryLink( $this, $title->toPageIdentity(), $text, $link );
+			if ( $link === null ) {
+				$link = $linkRenderer->makeLink( $title, new HtmlArmor( $text ) );
+			}
+			$this->mCategoryData[] = [
+				'sortKey' => $collation->getSortKey( $text ),
+				'type' => $type,
+				'title' => $title->getText(),
+				'link' => $link,
+			];
 			$this->mCategoriesSorted = false;
+			// Setting mCategories and mCategoryLinks is redundant here,
+			// but is needed for compatibility until mCategories and
+			// mCategoryLinks are made private (T301020)
+			$this->mCategories[$type][] = $title->getText();
+			$this->mCategoryLinks[$type][] = $link;
 		}
 	}
 
