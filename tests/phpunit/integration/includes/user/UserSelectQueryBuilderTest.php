@@ -247,11 +247,16 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 			$this->assertCount( 0, $actors );
 		} else {
 			// With temp users disabled, the temp user is treated as a normal user and included.
+			$userIds = array_map(
+				fn ( $userRow ) => $userRow['actor_user'],
+				array_filter( self::TEST_USERS, static function ( array $testUser ) {
+					return $testUser['actor_user'] !== null;
+				} )
+			);
+			$userIds[] = $tempUser->getId();
+
 			$this->assertArrayEquals(
-				array_merge(
-					array_map( fn ( $userRow ) => $userRow['actor_user'], self::TEST_USERS ),
-					[ $tempUser->getId() ]
-				),
+				$userIds,
 				array_map( fn ( $actor ) => $actor->getId(), $actors )
 			);
 		}
@@ -283,7 +288,7 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 				->fetchUserIdentities()
 		);
 		// The temp user should not appear in the results list.
-		$this->assertCount( 5, $actors );
+		$this->assertCount( 3, $actors );
 		foreach ( $actors as $actor ) {
 			$this->assertNotSame( $tempUser->getId(), $actor->getId() );
 		}
