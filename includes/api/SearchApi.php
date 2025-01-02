@@ -36,16 +36,15 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 trait SearchApi {
 
-	private SearchEngineConfig $searchEngineConfig;
-	private SearchEngineFactory $searchEngineFactory;
+	private ?SearchEngineConfig $searchEngineConfig = null;
+	private ?SearchEngineFactory $searchEngineFactory = null;
 
 	private function checkDependenciesSet() {
 		// Since this is a trait, we can't have a constructor where the services
 		// that we need are injected. Instead, the api modules that use this trait
 		// are responsible for setting them (since api modules *can* have services
 		// injected). Double check that the api module did indeed set them
-		// @phan-suppress-next-line PhanRedundantCondition Phan trusts the type hints too much
-		if ( !isset( $this->searchEngineConfig ) || !isset( $this->searchEngineFactory ) ) {
+		if ( $this->searchEngineConfig === null || $this->searchEngineFactory === null ) {
 			throw new LogicException(
 				'SearchApi requires both a SearchEngineConfig and SearchEngineFactory to be set'
 			);

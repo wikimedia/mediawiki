@@ -31,18 +31,13 @@ trait ApiWatchlistTrait {
 	/** @var string Relative maximum expiry. */
 	private $watchlistMaxDuration;
 
-	private WatchlistManager $watchlistManager;
-	private UserOptionsLookup $userOptionsLookup;
+	private ?WatchlistManager $watchlistManager = null;
+	private ?UserOptionsLookup $userOptionsLookup = null;
 
 	private function initServices() {
-		// @phan-suppress-next-line PhanRedundantCondition Phan trusts the type hints too much
-		if ( isset( $this->watchlistManager ) && isset( $this->userOptionsLookup ) ) {
-			return;
-		}
 		// This trait is used outside of core and therefor fallback to global state - T263904
-		$services = MediaWikiServices::getInstance();
-		$this->watchlistManager ??= $services->getWatchlistManager();
-		$this->userOptionsLookup ??= $services->getUserOptionsLookup();
+		$this->watchlistManager ??= MediaWikiServices::getInstance()->getWatchlistManager();
+		$this->userOptionsLookup ??= MediaWikiServices::getInstance()->getUserOptionsLookup();
 	}
 
 	/**
