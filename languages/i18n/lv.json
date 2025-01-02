@@ -34,7 +34,8 @@
 			"Yyy",
 			"Zuiks",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Marksomnian"
 		]
 	},
 	"tog-underline": "Pasvītrot saites:",
@@ -187,6 +188,7 @@
 	"history_small": "vēsture",
 	"updatedmarker": "atjaunināts kopš tava pēdējā apmeklējuma",
 	"printableversion": "Drukājama versija",
+	"printableversion-deprecated-warning": "Izdrukāmajā versijā vairs nav atbalstīta, un tajā var būt attēlošanas kļūdas. Lūdzu, atjauniniet jūsu grāmatzīmes un izmantojiet jūsu pārlūkprogrammas drukāšanas funkciju.",
 	"permalink": "Pastāvīgā saite",
 	"print": "Drukāt",
 	"view": "Skatīt",
@@ -206,6 +208,7 @@
 	"skin-action-unprotect": "Mainīt aizsardzību",
 	"unprotect": "Mainīt aizsardzību",
 	"newpage": "Jauna lapa",
+	"newpage-desc": "Sākt jaunu lapu par pieprasīto tēmu.",
 	"view-missing-pages": "Skatīt trūkstošās lapas",
 	"talkpagelinktext": "diskusija",
 	"specialpage": "Īpašā Lapa",
@@ -330,9 +333,10 @@
 	"missing-article": "Teksts lapai ar nosaukumu \"$1\" $2 datubāzē nav atrodams.\n\nTas parasti notiek novecojušu saišu gadījumā: pieprasot izmaiņas vai hronoloģiju lapai, kas ir izdzēsta.\n\nJa lapai ir jābūt, tad, iespējams, ir kļūda programmā.\nPar to varat ziņot [[Special:ListUsers/sysop|kādam administratoram]], norādot arī URL.",
 	"missingarticle-rev": "(Pārskatīšana #: $1)",
 	"missingarticle-diff": "(Salīdz.: $1, $2)",
-	"readonly_lag": "Datu bāze automātiski bloķēta, kamēr sekotājserveri sinhronizējas ar vedējserveri",
-	"nonwrite-api-promise-error": "HTTP galvene 'Promise-Non-Write-API-Action' tika nosūtīta, bet pieprasījums tika nosūtīts API rakstīšanas modulim.",
+	"readonly_lag": "Datubāze automātiski bloķēta, kamēr replikas datubāzes serveri sinhronizējas ar primāro",
+	"nonwrite-api-promise-error": "HTTP galvene 'Promise-Non-Write-API-Action' tika nosūtīta, bet pieprasījums nebija API pieprasījums.",
 	"timeouterror": "Servera noildze",
+	"timeouterror-text": "Maksimālais pieprasījuma laiks $1 {{PLURAL:$1|sekunde|sekundes}} tika pārsniegts.",
 	"internalerror": "Iekšēja kļūda",
 	"internalerror_info": "Iekšējā kļūda: $1",
 	"internalerror-fatal-exception": "\"$1\" tipa fatāls izņēmums (kļūda)",

@@ -2825,7 +2825,7 @@
 	"block-save": "Salva blocco",
 	"block-target": "Nome utente, indirizzo IP o intervallo di IP:",
 	"block-target-placeholder": "Nome utente, 1.1.1.42, o 1.1.1.42/16",
-	"unblockip": "Sblocca l'utente",
+	"unblockip": "Sblocca utente",
 	"unblockiptext": "Usare il modulo sottostante per restituire l'accesso in scrittura ad un utente o indirizzo IP bloccato.",
 	"ipusubmit": "Rimuovi questo blocco",
 	"unblocked": "L'utente [[User:$1|$1]] è stato sbloccato",
