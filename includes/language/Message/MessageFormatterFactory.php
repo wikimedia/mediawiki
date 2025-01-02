@@ -13,12 +13,8 @@ use Wikimedia\Message\ITextFormatter;
  * @ingroup Language
  */
 class MessageFormatterFactory implements IMessageFormatterFactory {
-
-	/** @var string */
-	private $format;
-
-	/** @var array */
-	private $textFormatters = [];
+	private string $format;
+	private array $textFormatters = [];
 
 	/**
 	 * @internal For use by ServiceWiring only
