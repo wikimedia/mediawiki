@@ -97,7 +97,7 @@ describe( 'SpecialBlock', () => {
 		await wrapper.find( '.mw-block-log__create-button' ).trigger( 'click' );
 		// Assert 'hide username' is not yet visible.
 		expect( wrapper.find( '.mw-block-hideuser input' ).exists() ).toBeFalsy();
-		expect( store.hideNameVisible ).toBeFalsy();
+		expect( store.hideUserVisible ).toBeFalsy();
 		expect( store.confirmationMessage ).toStrictEqual( '' );
 		// Set the expiry to 'infinite' to enable the hide-user option.
 		store.expiry = 'infinite';
@@ -105,10 +105,10 @@ describe( 'SpecialBlock', () => {
 		await nextTick();
 		// Assert 'hide username' is now clickable.
 		expect( wrapper.find( '.mw-block-hideuser input' ).attributes().disabled ).toBeUndefined();
-		expect( store.hideNameVisible ).toBeTruthy();
-		expect( store.hideName ).toBeFalsy();
+		expect( store.hideUserVisible ).toBeTruthy();
+		expect( store.hideUser ).toBeFalsy();
 		await wrapper.find( '.mw-block-hideuser input' ).trigger( 'click' );
-		expect( store.hideName ).toBeTruthy();
+		expect( store.hideUser ).toBeTruthy();
 		// Assert confirmation is required.
 		expect( store.confirmationMessage ).toStrictEqual( 'ipb-confirmhideuser' );
 		expect( store.confirmationNeeded ).toBeTruthy();
