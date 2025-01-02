@@ -257,9 +257,9 @@ class LocalFileDeleteBatch {
 				->where( [ 'oi_name' => $this->file->getName() ] )
 				->andWhere( [ 'oi_archive_name' => array_map( 'strval', array_keys( $oldRels ) ) ] );
 			$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
-			$rowsInsert = [];
 			if ( $res->numRows() ) {
 				$reason = $commentStore->createComment( $dbw, $this->reason );
+				$rowsInsert = [];
 				foreach ( $res as $row ) {
 					$comment = $commentStore->getComment( 'oi_description', $row );
 					$rowsInsert[] = [
@@ -288,13 +288,12 @@ class LocalFileDeleteBatch {
 					] + $commentStore->insert( $dbw, 'fa_deleted_reason', $reason )
 					+ $commentStore->insert( $dbw, 'fa_description', $comment );
 				}
+				$dbw->newInsertQueryBuilder()
+					->insertInto( 'filearchive' )
+					->ignore()
+					->rows( $rowsInsert )
+					->caller( __METHOD__ )->execute();
 			}
-
-			$dbw->newInsertQueryBuilder()
-				->insertInto( 'filearchive' )
-				->ignore()
-				->rows( $rowsInsert )
-				->caller( __METHOD__ )->execute();
 		}
 	}
 
