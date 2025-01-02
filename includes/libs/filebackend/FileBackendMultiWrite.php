@@ -26,7 +26,6 @@ namespace Wikimedia\FileBackend;
 use InvalidArgumentException;
 use LockManager;
 use LogicException;
-use MediaWiki\Deferred\DeferredUpdates;
 use Shellbox\Command\BoxedCommand;
 use StatusValue;
 use StringUtils;
@@ -202,7 +201,7 @@ class FileBackendMultiWrite extends FileBackend {
 				$realOps = $this->substOpBatchPaths( $ops, $backend );
 				if ( $this->asyncWrites && !$this->hasVolatileSources( $ops ) ) {
 					// Bind $scopeLock to the callback to preserve locks
-					DeferredUpdates::addCallableUpdate(
+					$this->callNowOrLater(
 						function () use (
 							$backend, $realOps, $opts, $scopeLock, $relevantPaths, $fname
 						) {
@@ -567,7 +566,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 			$realOps = $this->substOpBatchPaths( $ops, $backend );
 			if ( $this->asyncWrites && !$this->hasVolatileSources( $ops ) ) {
-				DeferredUpdates::addCallableUpdate(
+				$this->callNowOrLater(
 					static function () use ( $backend, $realOps ) {
 						$backend->doQuickOperations( $realOps );
 					}
@@ -621,7 +620,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 			$realParams = $this->substOpPaths( $params, $backend );
 			if ( $this->asyncWrites ) {
-				DeferredUpdates::addCallableUpdate(
+				$this->callNowOrLater(
 					static function () use ( $backend, $method, $realParams ) {
 						$backend->$method( $realParams );
 					}

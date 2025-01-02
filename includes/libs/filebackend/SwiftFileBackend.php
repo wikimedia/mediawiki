@@ -27,8 +27,6 @@ namespace Wikimedia\FileBackend;
 use Exception;
 use LockManager;
 use MapCacheLRU;
-use MediaWiki\Json\FormatJson;
-use MediaWiki\Utils\MWTimestamp;
 use Psr\Log\LoggerInterface;
 use Shellbox\Command\BoxedCommand;
 use StatusValue;
@@ -42,6 +40,7 @@ use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\RequestTimeout\TimeoutException;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @brief Class for an OpenStack Swift (or Ceph RGW) based file backend.
@@ -798,7 +797,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 */
 	protected function convertSwiftDate( $ts, $format = TS_MW ) {
 		try {
-			$timestamp = new MWTimestamp( $ts );
+			$timestamp = new ConvertibleTimestamp( $ts );
 
 			return $timestamp->getTimestamp( $format );
 		} catch ( TimeoutException $e ) {
@@ -1661,7 +1660,7 @@ class SwiftFileBackend extends FileBackendStore {
 		$params = [ 'cont' => $fullCont, 'prefix' => $prefix, 'delim' => $delim ];
 		if ( $rcode === 200 ) { // good
 			if ( $type === 'info' ) {
-				$status->value = FormatJson::decode( trim( $rbody ) );
+				$status->value = json_decode( trim( $rbody ) );
 			} else {
 				$status->value = explode( "\n", trim( $rbody ) );
 			}

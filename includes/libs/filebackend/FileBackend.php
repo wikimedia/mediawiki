@@ -139,6 +139,8 @@ abstract class FileBackend implements LoggerAwareInterface {
 	private $obResetFunc;
 	/** @var callable */
 	private $headerFunc;
+	/** @var callable */
+	private $asyncHandler;
 	/** @var array Option map for use with HTTPFileStreamer */
 	protected $streamerOptions;
 	/** @var callable|null */
@@ -200,6 +202,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *   - obResetFunc : alternative callback to clear the output buffer
 	 *   - streamMimeFunc : alternative method to determine the content type from the path
 	 *   - headerFunc : alternative callback for sending response headers
+	 *   - asyncHandler : callback for scheduling deferred updated
 	 *   - logger : Optional PSR logger object.
 	 *   - profiler : Optional callback that takes a section name argument and returns
 	 *      a ScopedCallback instance that ends the profile section in its destructor.
@@ -233,6 +236,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 		$this->obResetFunc = $config['obResetFunc']
 			?? [ self::class, 'resetOutputBufferTheDefaultWay' ];
 		$this->headerFunc = $config['headerFunc'] ?? 'header';
+		$this->asyncHandler = $config['asyncHandler'] ?? null;
 		$this->streamerOptions = [
 			'obResetFunc' => $this->obResetFunc,
 			'headerFunc' => $this->headerFunc,
@@ -255,6 +259,19 @@ abstract class FileBackend implements LoggerAwareInterface {
 
 	protected function header( $header ) {
 		( $this->headerFunc )( $header );
+	}
+
+	/**
+	 * @param callable $update
+	 *
+	 * @return void
+	 */
+	protected function callNowOrLater( callable $update ) {
+		if ( $this->asyncHandler ) {
+			( $this->asyncHandler )( $update );
+		} else {
+			$update();
+		}
 	}
 
 	protected function resetOutputBuffer() {
