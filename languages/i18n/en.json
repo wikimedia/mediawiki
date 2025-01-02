@@ -2298,7 +2298,7 @@
 	"emailccsubject": "Copy of your message to $1: $2",
 	"emailsent": "Email sent",
 	"emailsenttext": "Your email message has been sent.",
-	"emailuserfooter": "This email was {{GENDER:$1|sent}} by $1 to {{GENDER:$2|$2}} by the \"{{int:emailuser}}\" function at {{SITENAME}}. If {{GENDER:$2|you}} reply to this email, {{GENDER:$2|your}} email will be sent directly to the {{GENDER:$1|original sender}}, revealing {{GENDER:$2|your}} email address to {{GENDER:$1|them}}.",
+	"emailuserfooter": "This email was {{GENDER:$1|sent}} by $1 to {{GENDER:$2|$2}} by the \"{{int:emailuser}}\" function at {{SITENAME}}. If {{GENDER:$2|you}} reply to this email, {{GENDER:$2|your}} email will be sent directly to the {{GENDER:$1|original sender}}, revealing {{GENDER:$2|your}} email address to {{GENDER:$1|him|her|them}}.",
 	"usermessage-summary": "Leaving system message.",
 	"usermessage-editor": "System messenger",
 	"usermessage-template": "MediaWiki:UserMessage",
