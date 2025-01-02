@@ -15,6 +15,7 @@ use MediaWiki\User\UserNameUtils;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @group Database
@@ -176,17 +177,13 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 * @covers ::__construct
 	 */
 	public function testT28425BlockTimestampDefaultsToTime() {
+		$madeAt = wfTimestamp( TS_MW );
+		ConvertibleTimestamp::setFakeTime( $madeAt );
+
 		$user = $this->getUserForBlocking();
 		$block = $this->addBlockForUser( $user );
-		$madeAt = wfTimestamp( TS_MW );
 
-		// delta to stop one-off errors when things happen to go over a second mark.
-		$delta = abs( $madeAt - $block->getTimestamp() );
-		$this->assertLessThan(
-			2,
-			$delta,
-			"If no timestamp is specified, the block is recorded as time()"
-		);
+		$this->assertSame( $madeAt, $block->getTimestamp() );
 	}
 
 	/**
