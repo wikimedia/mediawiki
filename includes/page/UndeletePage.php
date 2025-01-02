@@ -296,7 +296,12 @@ class UndeletePage {
 		$restoredRevision = null;
 		$restoredPageIds = [];
 		if ( $restoreText ) {
-			$this->revisionStatus = $this->undeleteRevisions( $this->page, $this->timestamps, $comment );
+			// If we already restored files, then don't bail if there isn't any text to restore
+			$acceptNoRevisions = $filesRestored > 0;
+			$this->revisionStatus = $this->undeleteRevisions(
+				$this->page, $this->timestamps,
+				$comment, $acceptNoRevisions
+			);
 			if ( !$this->revisionStatus->isOK() ) {
 				return $this->revisionStatus;
 			}
@@ -313,7 +318,7 @@ class UndeletePage {
 			$talkStatus = $this->canProbablyUndeleteAssociatedTalk();
 			// if undeletion of the page fails we don't want to undelete the talk page
 			if ( $talkStatus->isGood() && $resStatus->isGood() ) {
-				$talkStatus = $this->undeleteRevisions( $this->associatedTalk, [], $comment );
+				$talkStatus = $this->undeleteRevisions( $this->associatedTalk, [], $comment, false );
 				if ( !$talkStatus->isOK() ) {
 					return $talkStatus;
 				}
@@ -442,10 +447,15 @@ class UndeletePage {
 	 * @param ProperPageIdentity $page
 	 * @param string[] $timestamps
 	 * @param string $comment
+	 * @param bool $acceptNoRevisions Whether to return a good status rather than an error
+	 * 	if no revisions are undeleted.
 	 * @throws ReadOnlyError
 	 * @return StatusValue Status object containing the number of revisions restored on success
 	 */
-	private function undeleteRevisions( ProperPageIdentity $page, array $timestamps, string $comment ): StatusValue {
+	private function undeleteRevisions(
+		ProperPageIdentity $page, array $timestamps,
+		string $comment, bool $acceptNoRevisions
+	): StatusValue {
 		if ( $this->readOnlyMode->isReadOnly() ) {
 			throw new ReadOnlyError();
 		}
@@ -477,7 +487,9 @@ class UndeletePage {
 			// Status value is count of revisions, whether the page has been created,
 			// last revision undeleted and all undeleted pages
 			$status = Status::newGood( [ 0, false, null, [] ] );
-			$status->error( "undelete-no-results" );
+			if ( !$acceptNoRevisions ) {
+				$status->error( "undelete-no-results" );
+			}
 			$dbw->endAtomic( __METHOD__ );
 
 			return $status;
