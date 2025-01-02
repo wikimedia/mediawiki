@@ -1246,7 +1246,7 @@ function wfHttpError( $code, $label, $desc ) {
 	print '<!DOCTYPE html>' .
 		'<html><head><title>' .
 		htmlspecialchars( $label ) .
-		'</title></head><body><h1>' .
+		'</title><meta name="color-scheme" content="light dark" /></head><body><h1>' .
 		htmlspecialchars( $label ) .
 		'</h1><p>' .
 		nl2br( htmlspecialchars( $desc ) ) .
