@@ -259,6 +259,11 @@ class MWExceptionHandler {
 		$file = null,
 		$line = null
 	) {
+		// E_STRICT is deprecated since PHP 8.4 (T375707).
+		if ( defined( 'E_STRICT' ) && $level == constant( 'E_STRICT' ) ) {
+			$level = E_USER_NOTICE;
+		}
+
 		// Map PHP error constant to a PSR-3 severity level.
 		// Avoid use of "DEBUG" or "INFO" levels, unless the
 		// error should evade error monitoring and alerts.
@@ -293,10 +298,6 @@ class MWExceptionHandler {
 			case E_USER_WARNING:
 				// Used by wfWarn(), MWDebug::warning()
 				$prefix = 'PHP Warning: ';
-				$severity = LogLevel::WARNING;
-				break;
-			case E_STRICT:
-				$prefix = 'PHP Strict Standards: ';
 				$severity = LogLevel::WARNING;
 				break;
 			case E_DEPRECATED:
