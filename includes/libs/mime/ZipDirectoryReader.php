@@ -20,7 +20,10 @@
  * @file
  */
 
-use MediaWiki\Status\Status;
+namespace Wikimedia\Mime;
+
+use StatusValue;
+use UnexpectedValueException;
 
 /**
  * A class for reading ZIP file directories, for the purposes of upload
@@ -65,7 +68,8 @@ class ZipDirectoryReader {
 	 *        valid ZIP64 file, and working out what non-ZIP64 readers will make
 	 *        of such a file is not trivial.
 	 *
-	 * @return Status A Status object. The following fatal errors are defined:
+	 * @return StatusValue A StatusValue object. The following fatal errors are
+	 *         defined:
 	 *
 	 *      - zip-file-open-error: The file could not be opened.
 	 *
@@ -102,7 +106,7 @@ class ZipDirectoryReader {
 	 * @param resource $file A seekable stream containing the archive
 	 * @param callable $callback
 	 * @param array $options
-	 * @return Status
+	 * @return StatusValue
 	 */
 	public static function readHandle( $file, $callback, $options = [] ) {
 		$zdr = new self( $file, $callback, $options );
@@ -160,14 +164,14 @@ class ZipDirectoryReader {
 	/**
 	 * Read the directory according to settings in $this.
 	 *
-	 * @return Status
+	 * @return StatusValue
 	 */
 	private function execute() {
 		if ( !$this->file ) {
-			return Status::newFatal( 'zip-file-open-error' );
+			return StatusValue::newFatal( 'zip-file-open-error' );
 		}
 
-		$status = Status::newGood();
+		$status = StatusValue::newGood();
 		try {
 			$this->readEndOfCentralDirectoryRecord();
 			if ( $this->zip64 ) {

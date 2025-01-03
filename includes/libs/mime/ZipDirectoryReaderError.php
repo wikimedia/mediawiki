@@ -18,8 +18,13 @@
  * @file
  */
 
+namespace Wikimedia\Mime;
+
+use Exception;
+
 /**
  * Internal exception class. Will be caught by private code.
+ *
  * @newable
  */
 class ZipDirectoryReaderError extends Exception {

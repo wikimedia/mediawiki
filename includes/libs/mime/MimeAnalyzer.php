@@ -25,7 +25,6 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use UnexpectedValueException;
 use Wikimedia\AtEase\AtEase;
-use ZipDirectoryReader;
 
 /**
  * @defgroup Mime Mime
