@@ -82,7 +82,7 @@ class Tracer implements TracerInterface {
 		);
 
 		if ( $this->wasShutdown || !$sampled ) {
-			return new NoopSpan( $spanContext );
+			return new NoopSpan( $this->tracerState, $spanContext );
 		}
 
 		return new Span(
