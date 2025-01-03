@@ -800,11 +800,8 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 				'db.query.text' => $generalizedSql->stringify(),
 				'db.system' => $this->getType(),
 				'server.address' => $this->getServerName(),
+				'db.collection.name' => $writeTableName, # nulls filtered out
 			] );
-		}
-
-		if ( $writeTableName !== null ) {
-			$span->setAttributes( [ 'db.collection.name' => $writeTableName ] );
 		}
 
 		$status = $this->doSingleStatementQuery( $cStatement );
