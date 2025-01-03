@@ -9,10 +9,7 @@ use MediaWiki\Search\SearchUpdate;
  */
 class SearchUpdateTest extends MediaWikiIntegrationTestCase {
 
-	/**
-	 * @var SearchUpdate
-	 */
-	private $su;
+	private SearchUpdate $su;
 
 	protected function setUp(): void {
 		parent::setUp();

@@ -23,31 +23,16 @@ class SearchFormWidget {
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::CapitalLinks,
 	];
-	private ServiceOptions $options;
-	/** @var SpecialSearch */
-	protected $specialSearch;
-	/** @var SearchEngineConfig */
-	protected $searchConfig;
-	/** @var array */
-	protected $profiles;
-	/** @var HookContainer */
-	private $hookContainer;
-	/** @var HookRunner */
-	private $hookRunner;
-	/** @var ILanguageConverter */
-	private $languageConverter;
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
 
-	/**
-	 * @param ServiceOptions $options
-	 * @param SpecialSearch $specialSearch
-	 * @param SearchEngineConfig $searchConfig
-	 * @param HookContainer $hookContainer
-	 * @param ILanguageConverter $languageConverter
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param array $profiles
-	 */
+	private ServiceOptions $options;
+	protected SpecialSearch $specialSearch;
+	protected SearchEngineConfig $searchConfig;
+	private HookContainer $hookContainer;
+	private HookRunner $hookRunner;
+	private ILanguageConverter $languageConverter;
+	private NamespaceInfo $namespaceInfo;
+	protected array $profiles;
+
 	public function __construct(
 		ServiceOptions $options,
 		SpecialSearch $specialSearch,

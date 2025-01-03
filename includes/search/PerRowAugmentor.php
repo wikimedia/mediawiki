@@ -6,10 +6,7 @@
  */
 class PerRowAugmentor implements ResultSetAugmentor {
 
-	/**
-	 * @var ResultAugmentor
-	 */
-	private $rowAugmentor;
+	private ResultAugmentor $rowAugmentor;
 
 	/**
 	 * @param ResultAugmentor $augmentor Per-result augmentor to use.

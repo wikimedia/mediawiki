@@ -9,22 +9,11 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * Allows to create engine of the specific type.
  */
 class SearchEngineFactory {
-	/**
-	 * Configuration for SearchEngine classes.
-	 * @var SearchEngineConfig
-	 */
-	private $config;
 
-	/** @var HookContainer */
-	private $hookContainer;
-
+	private SearchEngineConfig $config;
+	private HookContainer $hookContainer;
 	private IConnectionProvider $dbProvider;
 
-	/**
-	 * @param SearchEngineConfig $config
-	 * @param HookContainer $hookContainer
-	 * @param IConnectionProvider $dbProvider
-	 */
 	public function __construct(
 		SearchEngineConfig $config,
 		HookContainer $hookContainer,

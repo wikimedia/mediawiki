@@ -8,10 +8,7 @@ use MediaWiki\Title\Title;
  * @group Database
  */
 class SearchEnginePrefixTest extends MediaWikiLangTestCase {
-	/**
-	 * @var SearchEngine
-	 */
-	private $search;
+	private SearchEngine $search;
 
 	public function addDBDataOnce() {
 		if ( !$this->isWikitextNS( NS_MAIN ) ) {

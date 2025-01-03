@@ -12,10 +12,7 @@ use MediaWiki\MainConfigNames;
  */
 class SearchEngineTest extends MediaWikiLangTestCase {
 
-	/**
-	 * @var SearchEngine
-	 */
-	protected $search;
+	protected SearchEngine $search;
 
 	/**
 	 * Checks for database type & version.

@@ -29,13 +29,6 @@ class SearchEngineConfig {
 	 * @var Config
 	 */
 	private $config;
-	private ServiceOptions $options;
-
-	/**
-	 * Current language
-	 * @var Language
-	 */
-	private $language;
 
 	/**
 	 * Search Engine Mappings
@@ -47,34 +40,22 @@ class SearchEngineConfig {
 	 */
 	private $engineMappings;
 
-	/**
-	 * @var HookRunner
-	 */
-	private $hookRunner;
+	private ServiceOptions $options;
+	private Language $language;
+	private HookRunner $hookRunner;
+	private UserOptionsLookup $userOptionsLookup;
 
-	/**
-	 * @var UserOptionsLookup
-	 */
-	private $userOptionsLookup;
-
-	/**
-	 * @param ServiceOptions $options
-	 * @param Language $lang
-	 * @param HookContainer $hookContainer
-	 * @param array $mappings
-	 * @param UserOptionsLookup $userOptionsLookup
-	 */
 	public function __construct(
 		ServiceOptions $options,
-		Language $lang,
+		Language $language,
 		HookContainer $hookContainer,
-		array $mappings,
+		array $engineMappings,
 		UserOptionsLookup $userOptionsLookup
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
-		$this->language = $lang;
-		$this->engineMappings = $mappings;
+		$this->language = $language;
+		$this->engineMappings = $engineMappings;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->userOptionsLookup = $userOptionsLookup;
 	}

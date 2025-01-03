@@ -13,12 +13,9 @@ use MediaWiki\Status\Status;
  * along with inline and sidebar secondary (interwiki) results.
  */
 class BasicSearchResultSetWidget {
-	/** @var SpecialSearch */
-	protected $specialPage;
-	/** @var SearchResultWidget */
-	protected $resultWidget;
-	/** @var InterwikiSearchResultSetWidget */
-	protected $sidebarWidget;
+	protected SpecialSearch $specialPage;
+	protected SearchResultWidget $resultWidget;
+	protected SearchResultSetWidget $sidebarWidget;
 
 	public function __construct(
 		SpecialSearch $specialPage,
