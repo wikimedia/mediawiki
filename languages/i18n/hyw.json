@@ -426,7 +426,7 @@
 	"edit-conflict": "Խմբագրման ընհարում։",
 	"postedit-confirmation-created": "Էջը [[Special:Diff/$2|ստեղծուած է]]։",
 	"postedit-confirmation-restored": "Էջը [[Special:Diff/$2|վերականգնուած է]]:",
-	"postedit-confirmation-saved": "Ձեր խմբագրումը պահուած է:",
+	"postedit-confirmation-saved": "[[Special:Diff/$2|Ձեր խմբագրումը]] պահուած է:",
 	"postedit-confirmation-published": "Ձեր խմբագրումը հրատարակուած է:",
 	"edit-already-exists": "Հրարաւոր չէ նոր էջ ստեղծել․ արդէն գոյութիւն ունի։",
 	"invalid-json-data": "Անվավեր JSON: $1",
