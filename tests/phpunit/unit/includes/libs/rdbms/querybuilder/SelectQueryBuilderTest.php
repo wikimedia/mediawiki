@@ -16,11 +16,8 @@ use Wikimedia\TestingAccessWrapper;
  */
 class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 
-	/** @var DatabaseTestHelper */
-	private $db;
-
-	/** @var SelectQueryBuilder */
-	private $sqb;
+	private DatabaseTestHelper $db;
+	private SelectQueryBuilder $sqb;
 
 	protected function setUp(): void {
 		$this->db = new DatabaseTestHelper( __CLASS__ . '::' . $this->getName() );

@@ -25,8 +25,7 @@ class UnionQueryBuilder {
 	 */
 	private $sqbs = [];
 
-	/** @var IDatabase */
-	private $db;
+	private IDatabase $db;
 
 	/** @var bool */
 	private $all = IReadableDatabase::UNION_DISTINCT;

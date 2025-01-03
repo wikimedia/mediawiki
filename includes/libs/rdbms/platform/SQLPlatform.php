@@ -49,14 +49,11 @@ class SQLPlatform implements ISQLPlatform {
 	protected $tableAliases = [];
 	/** @var string[] Current map of (index alias => index) */
 	protected $indexAliases = [];
-	/** @var DatabaseDomain|null */
-	protected $currentDomain;
+	protected DatabaseDomain $currentDomain;
 	/** @var array|null Current variables use for schema element placeholders */
 	protected $schemaVars;
-	/** @var DbQuoter */
-	protected $quoter;
-	/** @var LoggerInterface */
-	protected $logger;
+	protected DbQuoter $quoter;
+	protected LoggerInterface $logger;
 	/** @var callable Error logging callback */
 	protected $errorLogger;
 
@@ -65,11 +62,10 @@ class SQLPlatform implements ISQLPlatform {
 		?LoggerInterface $logger = null,
 		?DatabaseDomain $currentDomain = null,
 		$errorLogger = null
-
 	) {
 		$this->quoter = $quoter;
 		$this->logger = $logger ?? new NullLogger();
-		$this->currentDomain = $currentDomain ?: DatabaseDomain::newUnspecified();
+		$this->currentDomain = $currentDomain ?? DatabaseDomain::newUnspecified();
 		$this->errorLogger = $errorLogger ?? static function ( Throwable $e ) {
 			trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
 		};

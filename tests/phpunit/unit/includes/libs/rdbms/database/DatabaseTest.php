@@ -44,8 +44,7 @@ class DatabaseTest extends TestCase {
 
 	use MediaWikiCoversValidator;
 
-	/** @var DatabaseTestHelper */
-	private $db;
+	private DatabaseTestHelper $db;
 
 	protected function setUp(): void {
 		$this->db = new DatabaseTestHelper( __CLASS__ . '::' . $this->getName() );

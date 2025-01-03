@@ -24,8 +24,7 @@ class SQLPlatformTest extends TestCase {
 	use MediaWikiCoversValidator;
 	use MediaWikiTestCaseTrait;
 
-	/** @var SQLPlatformTestHelper */
-	private $platform;
+	private SQLPlatformTestHelper $platform;
 
 	protected function setUp(): void {
 		parent::setUp();

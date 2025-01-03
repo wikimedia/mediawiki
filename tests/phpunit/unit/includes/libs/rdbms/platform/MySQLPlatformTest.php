@@ -34,8 +34,7 @@ class MySQLPlatformTest extends TestCase {
 
 	use MediaWikiCoversValidator;
 
-	/** @var MySQLPlatform */
-	private $platform;
+	private MySQLPlatform $platform;
 
 	protected function setUp(): void {
 		parent::setUp();

@@ -14,11 +14,8 @@ use Wikimedia\Rdbms\Platform\ISQLPlatform;
 class DeleteQueryBuilderTest extends TestCase {
 	use MediaWikiCoversValidator;
 
-	/** @var DatabaseTestHelper */
-	private $db;
-
-	/** @var DeleteQueryBuilder */
-	private $dqb;
+	private DatabaseTestHelper $db;
+	private DeleteQueryBuilder $dqb;
 
 	protected function setUp(): void {
 		$this->db = new DatabaseTestHelper( __CLASS__ . '::' . $this->getName() );
