@@ -40,10 +40,7 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 		$realNameInput = $root.find( '#wpRealName' ),
 		api = new mw.Api();
 
-	function checkUsername( username ) {
-		const ajaxOptions = {};
-		const abortable = api.makeAbortablePromise( ajaxOptions );
-
+	function checkUsername( username, signal ) {
 		// Leading/trailing/multiple whitespace characters are always stripped in usernames,
 		// this should not require a warning. We do warn about underscores.
 		username = username.replace( / +/g, ' ' ).trim();
@@ -57,7 +54,7 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 			errorformat: 'html',
 			errorsuselocal: true,
 			uselang: mw.config.get( 'wgUserLanguage' )
-		}, ajaxOptions )
+		}, { signal } )
 			.then( ( resp ) => {
 				const userinfo = resp.query.users[ 0 ];
 
@@ -77,16 +74,12 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 				} else {
 					return { valid: true, messages: [] };
 				}
-			} )
-			.promise( abortable );
+			} );
 	}
 
-	function checkPassword() {
-		const ajaxOptions = {};
-		const abortable = api.makeAbortablePromise( ajaxOptions );
-
+	function checkPassword( _password, signal ) {
 		if ( $usernameInput.val().trim() === '' ) {
-			return $.Deferred().resolve( { valid: true, messages: [] } ).promise( abortable );
+			return $.Deferred().resolve( { valid: true, messages: [] } );
 		}
 
 		return api.post( {
@@ -99,7 +92,7 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 			errorformat: 'html',
 			errorsuselocal: true,
 			uselang: mw.config.get( 'wgUserLanguage' )
-		}, ajaxOptions )
+		}, { signal } )
 			.then( ( resp ) => {
 				const pwinfo = resp.validatepassword || {};
 
@@ -107,8 +100,7 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 					valid: pwinfo.validity === 'Good',
 					messages: pwinfo.validitymessages ? pwinfo.validitymessages.map( ( m ) => m.html ) : []
 				};
-			} )
-			.promise( abortable );
+			} );
 	}
 
 	const usernameChecker = new HtmlformChecker( $usernameInput, checkUsername );
