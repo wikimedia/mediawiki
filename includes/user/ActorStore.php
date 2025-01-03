@@ -435,8 +435,9 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			$actorId = $this->findActorIdInternal( $userName, $dbw, true );
 			if ( !$actorId ) {
 				throw new CannotCreateActorException(
-					"Failed to create actor ID for " .
-					"user_id={$userId} user_name=\"{$userName}\""
+					'Failed to create actor ID for ' .
+						'user_id={userId} user_name="{userName}"',
+					[ 'userId' => $userId, 'userName' => $userName ]
 				);
 			}
 		}
@@ -521,7 +522,8 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			if ( $this->userNameUtils->isUsable( $userName ) || $existingActor->isRegistered() ) {
 				throw new CannotCreateActorException(
 					'Cannot replace user for existing actor: ' .
-					"actor_id=$existingActorId, new user_id=$userId"
+						'actor_id={existingActorId}, new user_id={userId}',
+					[ 'existingActorId' => $existingActorId, 'userId' => $userId ]
 				);
 			}
 		}
@@ -535,7 +537,8 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		if ( !$dbw->affectedRows() ) {
 			throw new CannotCreateActorException(
 				'Failed to replace user for actor: ' .
-				"actor_id=$existingActorId, new user_id=$userId"
+					'actor_id={existingActorId}, new user_id={userId}',
+				[ 'existingActorId' => $existingActorId, 'userId' => $userId ]
 			);
 		}
 		$actorId = $dbw->insertId() ?: $existingActorId;
@@ -622,7 +625,8 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			$userIdForErrorMessage = $user->getId( $this->wikiId );
 			throw new CannotCreateActorException(
 				'Cannot create an actor for a user with no name: ' .
-				"user_id={$userIdForErrorMessage} user_name=\"{$user->getName()}\""
+					'user_id={userId} user_name="{userName}"',
+				[ 'userId' => $userIdForErrorMessage, 'userName' => $user->getName() ]
 			);
 		}
 
@@ -630,7 +634,8 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		if ( $userId === null && $this->userNameUtils->isUsable( $user->getName() ) ) {
 			throw new CannotCreateActorException(
 				'Cannot create an actor for a usable name that is not an existing user: ' .
-				"user_name=\"{$user->getName()}\""
+					'user_name="{userName}"',
+				[ 'userName' => $user->getName() ]
 			);
 		}
 
