@@ -291,15 +291,20 @@ class SkinComponentFooter implements SkinComponent {
 	private function getFooterIcons(): array {
 		$dataIcons = [];
 		$skinContext = $this->skinContext;
+		$config = $skinContext->getConfig();
 		// If footer icons are enabled append to the end of the rows
-		$footerIcons = $skinContext->getFooterIcons();
+		$footerIcons = self::getFooterIconsData(
+			$config
+		);
 
 		if ( count( $footerIcons ) > 0 ) {
 			$icons = [];
 			foreach ( $footerIcons as $blockName => $blockIcons ) {
 				$html = '';
 				foreach ( $blockIcons as $icon ) {
-					$html .= $skinContext->makeFooterIcon( $icon );
+					$html .= self::makeFooterIconHTML(
+						$config, $icon
+					);
 				}
 				// For historic reasons this mimics the `icononly` option
 				// for BaseTemplate::getFooterIcons. Empty rows should not be output.

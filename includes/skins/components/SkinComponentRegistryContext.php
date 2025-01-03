@@ -116,36 +116,4 @@ class SkinComponentRegistryContext implements ComponentRegistryContext {
 	public function getWikiPage() {
 		return $this->skin->getWikiPage();
 	}
-
-	/**
-	 * Temporarily allows access to Skin method.
-	 * It exists to support skins overriding the method in MediaWiki 1.40
-	 * (overriding the method is now deprecated)
-	 * It can be removed in 1.41
-	 *
-	 * @unstable
-	 * @internal
-	 * @return array
-	 */
-	public function getFooterIcons() {
-		return $this->skin->getFooterIcons();
-	}
-
-	/**
-	 * Renders a $wgFooterIcons icon according to the method's arguments
-	 * It exists to support skins overriding the method in MediaWiki 1.40
-	 * (overriding the method is now deprecated)
-	 * It can be removed in 1.41
-	 *
-	 * @unstable
-	 * @param array $icon The icon to build the html for, see $wgFooterIcons
-	 *   for the format of this array.
-	 * @param bool|string $withImage Whether to use the icon's image or output
-	 *   a text-only footericon.
-	 * @internal
-	 * @return string HTML
-	 */
-	public function makeFooterIcon( $icon, $withImage = 'withImage' ) {
-		return $this->skin->makeFooterIcon( $icon, $withImage );
-	}
 }

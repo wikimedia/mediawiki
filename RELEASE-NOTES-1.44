@@ -179,6 +179,8 @@ because of Phabricator reports.
   MediaWiki\Config\Config. Implementing MutableConfig without implementing
   Config is no longer possible.
 * The hook OutputPageMakeCategoryLinks, deprecated in 1.43, has been removed.
+* The methods Skin::getFooterIcons and ::makeFooterIcon are final and 
+  overriding is no longer supported.
 * …
 
 === Deprecations in 1.44 ===
