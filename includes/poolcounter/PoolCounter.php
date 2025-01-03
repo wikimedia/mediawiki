@@ -24,6 +24,9 @@ use MediaWiki\Status\Status;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Wikimedia\Telemetry\NoopTracer;
+use Wikimedia\Telemetry\SpanInterface;
+use Wikimedia\Telemetry\TracerInterface;
 
 /**
  * Semaphore semantics to restrict how many workers may concurrently perform a task.
@@ -67,6 +70,7 @@ abstract class PoolCounter implements LoggerAwareInterface {
 
 	/** @var string All workers with the same key share the lock */
 	protected $key;
+	protected string $type;
 	/** @var int Maximum number of workers working on tasks with the same key simultaneously */
 	protected $workers;
 	/**
@@ -81,6 +85,8 @@ abstract class PoolCounter implements LoggerAwareInterface {
 	/** @var int Maximum time in seconds to wait for the lock */
 	protected $timeout;
 	protected LoggerInterface $logger;
+	protected TracerInterface $tracer;
+	protected ?SpanInterface $heldLockSpan = null;
 
 	/**
 	 * @var bool Whether the key is a "might wait" key
@@ -110,11 +116,13 @@ abstract class PoolCounter implements LoggerAwareInterface {
 		}
 		$this->fastStale = $conf['fastStale'] ?? false;
 		$this->logger = new NullLogger();
+		$this->tracer = new NoopTracer();
 
 		if ( $this->slots ) {
 			$key = $this->hashKeyIntoSlots( $type, $key, $this->slots );
 		}
 
+		$this->type = $type;
 		$this->key = $key;
 		$this->isMightWaitKey = !preg_match( '/^nowait:/', $this->key );
 	}
@@ -190,6 +198,13 @@ abstract class PoolCounter implements LoggerAwareInterface {
 	 */
 	final protected function onAcquire() {
 		self::$acquiredMightWaitKey |= $this->isMightWaitKey;
+		$this->heldLockSpan = $this->tracer->createSpan( "PoolCounterLocked::{$this->type}" )->start();
+		$this->heldLockSpan->activate();
+		if ( $this->heldLockSpan->getContext()->isSampled() ) {
+			$this->heldLockSpan->setAttributes( [
+				'org.wikimedia.poolcounter.key' => $this->key,
+			] );
+		}
 	}
 
 	/**
@@ -198,6 +213,10 @@ abstract class PoolCounter implements LoggerAwareInterface {
 	 */
 	final protected function onRelease() {
 		self::$acquiredMightWaitKey &= !$this->isMightWaitKey;
+		if ( $this->heldLockSpan ) {
+			$this->heldLockSpan->end();
+			$this->heldLockSpan = null;
+		}
 	}
 
 	/**
@@ -233,6 +252,15 @@ abstract class PoolCounter implements LoggerAwareInterface {
 	 */
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
+	}
+
+	/**
+	 * @since 1.45
+	 * @param TracerInterface $tracer
+	 * @return void
+	 */
+	public function setTracer( TracerInterface $tracer ) {
+		$this->tracer = $tracer;
 	}
 
 	/**
