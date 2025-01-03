@@ -9,8 +9,13 @@ namespace Wikimedia\Telemetry;
  */
 class NoopSpan implements SpanInterface {
 	private SpanContext $context;
+	private TracerState $tracerState;
 
-	public function __construct( SpanContext $context ) {
+	public function __construct(
+		TracerState $tracerState,
+		SpanContext $context
+	) {
+		$this->tracerState = $tracerState;
 		$this->context = $context;
 	}
 
@@ -41,11 +46,11 @@ class NoopSpan implements SpanInterface {
 
 	/** @inheritDoc */
 	public function activate(): void {
-		// no-op
+		$this->tracerState->activateSpan( $this->context );
 	}
 
 	/** @inheritDoc */
 	public function deactivate(): void {
-		// no-op
+		$this->tracerState->deactivateSpan( $this->context );
 	}
 }
