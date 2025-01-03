@@ -2371,6 +2371,12 @@ class MainConfigNames {
 	public const ParsoidFragmentSupport = 'ParsoidFragmentSupport';
 
 	/**
+	 * Name constant for the ParsoidNewTemplateExpansionMode setting, for use with Config::get()
+	 * @see MainConfigSchema::ParsoidNewTemplateExpansionMode
+	 */
+	public const ParsoidNewTemplateExpansionMode = 'ParsoidNewTemplateExpansionMode';
+
+	/**
 	 * Name constant for the ParserEnableLegacyMediaDOM setting, for use with Config::get()
 	 * @see MainConfigSchema::ParserEnableLegacyMediaDOM
 	 * @deprecated since 1.41

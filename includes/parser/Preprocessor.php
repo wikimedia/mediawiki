@@ -35,6 +35,11 @@ abstract class Preprocessor {
 	public const DOM_LANG_CONVERSION_DISABLED = 2;
 	/** Preprocessor cache bypass flag for Preprocessor::preprocessToObj */
 	public const DOM_UNCACHED = 4;
+	// Does preprocessing start in Start-Of-Line(SOL) state? Only relevant for Parsoid
+	// content, since Parsoid models templates as independent documents in SOL start.
+	// This flag is never set by the legacy parser (but see T2529 which has a similar
+	// effect).
+	public const START_IN_SOL_STATE = 8;
 
 	/** @var Parser */
 	public $parser;

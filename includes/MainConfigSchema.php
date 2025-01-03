@@ -6582,6 +6582,21 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * If set, Parsoid's DataAccess will pass a flag to the preprocessor
+	 * indicating that template expansions are for Parsoid. This lets
+	 * it treat top-level template expansions as starting in Start-Of-Line (SOL)
+	 * context since that is how Parsoid models template transclusions.
+	 *
+	 * This is a temporary flag and will be removed once all the code is
+	 * rolled out to production.
+	 *
+	 * @unstable EXPERIMENTAL
+	 */
+	public const ParsoidNewTemplateExpansionMode = [
+		'default' => false,
+		'type' => 'boolean',
+	];
+	/**
 	 * Enable legacy media HTML structure in the output from the Parser.  The
 	 * alternative modern HTML structure that replaces it is described at
 	 * https://www.mediawiki.org/wiki/Parsing/Media_structure
