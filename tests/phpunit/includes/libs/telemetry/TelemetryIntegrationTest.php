@@ -23,6 +23,12 @@ class TelemetryIntegrationTest extends MediaWikiIntegrationTestCase {
 		'endpoint' => 'http://198.51.100.42:4318/v1/traces'
 	];
 
+	private const EXAMPLE_TRACING_CONFIG_NO_SAMPLING = [
+		'serviceName' => 'test-service',
+		'samplingProbability' => 0,
+		'endpoint' => 'http://198.51.100.42:4318/v1/traces'
+	];
+
 	private MockHandler $handler;
 
 	protected function setUp(): void {
@@ -53,6 +59,30 @@ class TelemetryIntegrationTest extends MediaWikiIntegrationTestCase {
 		$tracer->shutdown();
 
 		$this->assertInstanceOf( NoopTracer::class, $tracer );
+		$this->assertNull( $this->handler->getLastRequest() );
+	}
+
+	public function testShouldDoNothingWhenNotSampled(): void {
+		$this->overrideConfigValue(
+			MainConfigNames::OpenTelemetryConfig,
+			self::EXAMPLE_TRACING_CONFIG_NO_SAMPLING
+		);
+
+		$tracer = $this->getServiceContainer()->getTracer();
+		$span = $tracer->createRootSpan( 'test' )
+			->start();
+		$span->activate();
+
+		$child = $tracer->createSpan( 'child' )
+			->start();
+
+		$child->end();
+
+		$span->end();
+
+		$tracer->shutdown();
+
+		$this->assertInstanceOf( Tracer::class, $tracer );
 		$this->assertNull( $this->handler->getLastRequest() );
 	}
 
