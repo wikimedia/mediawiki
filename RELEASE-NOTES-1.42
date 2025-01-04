@@ -5,6 +5,15 @@ PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 PHP 8.4 workboard: https://phabricator.wikimedia.org/tag/php_8.4_support/
 
+== MediaWiki 1.42.5 ==
+
+THIS IS NOT A RELEASE YET
+
+=== Changes since MediaWiki 1.42.4 ===
+* Localisation updates.
+* (T382987) $wgDnsBlacklistUrls now defaults to an empty array. See the comment
+  in the "Configuration changes for system administrators" section.
+
 == MediaWiki 1.42.4 ==
 
 This is a maintenance release of the MediaWiki 1.42 branch.
@@ -103,6 +112,11 @@ For notes on 1.41.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.42 ===
 * Composer 1.x is no longer supported, and can no longer be used with MediaWiki.
+* (T382987) The default value of 'http.dnsbl.sorbs.net.' in $wgDnsBlacklistUrls
+  has been removed. This is because sorbs.net have stopped providing their
+  services. This means that if you have $wgEnableDnsBlacklist set to true, it
+  will no longer provide any value unless you add other servers to
+  $wgDnsBlacklistUrls.
 
 ==== New configuration ====
 * $wgMicroStashType: This setting allows for control of the object cache backend

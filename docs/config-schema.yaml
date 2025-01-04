@@ -5421,8 +5421,7 @@ config-schema:
             proxies
             @since 1.16
     DnsBlacklistUrls:
-        default:
-            - http.dnsbl.sorbs.net.
+        default: []
         type: array
         description: |-
             List of DNS blacklists to use, if $wgEnableDnsBlacklist is true.
