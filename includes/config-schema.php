@@ -1328,7 +1328,6 @@ return [
 			],
 			'EnableDnsBlacklist' => false,
 			'DnsBlacklistUrls' => [
-				0 => 'http.dnsbl.sorbs.net.',
 			],
 			'ProxyList' => [
 			],

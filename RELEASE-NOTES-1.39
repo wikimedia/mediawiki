@@ -6,6 +6,15 @@ PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 PHP 8.4 workboard: https://phabricator.wikimedia.org/tag/php_8.4_support/
 
+== MediaWiki 1.39.12 ==
+
+This is a maintenance release of the MediaWiki 1.39 branch.
+
+=== Changes since 1.39.11 ===
+* Localisation updates.
+* (T382987) $wgDnsBlacklistUrls now defaults to an empty array. See the comment
+  in the "Configuration changes for system administrators" section.
+
 == MediaWiki 1.39.11 ==
 
 This is a maintenance release of the MediaWiki 1.39 branch.
@@ -439,6 +448,11 @@ Some specific notes for MediaWiki 1.39 upgrades are below:
 For notes on 1.38.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.39 ===
+* (T382987) The default value of 'http.dnsbl.sorbs.net.' in $wgDnsBlacklistUrls
+  has been removed. This is because sorbs.net have stopped providing their
+  services. This means that if you have $wgEnableDnsBlacklist set to true, it
+  will no longer provide any value unless you add other servers to
+  $wgDnsBlacklistUrls.
 
 ==== New configuration ====
 * $wgAutoCreateTempUser – This configures automatic user creation on page save.

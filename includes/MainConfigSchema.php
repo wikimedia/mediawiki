@@ -8239,7 +8239,7 @@ class MainConfigSchema {
 	 * @since 1.16
 	 */
 	public const DnsBlacklistUrls = [
-		'default' => [ 'http.dnsbl.sorbs.net.', ],
+		'default' => [],
 		'type' => 'list',
 	];
 
