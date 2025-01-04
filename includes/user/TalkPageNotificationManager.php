@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,7 +33,9 @@ use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
  * Manages user talk page notifications
+ *
  * @since 1.35
+ * @ingroup User
  */
 class TalkPageNotificationManager {
 

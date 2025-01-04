@@ -30,6 +30,9 @@ use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\LikeValue;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
+/**
+ * @ingroup User
+ */
 class UserSelectQueryBuilder extends SelectQueryBuilder {
 
 	private ActorStore $actorStore;

@@ -29,7 +29,7 @@ use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * @since 1.37
- * @package MediaWiki\User\CentralId
+ * @ingroup User
  */
 class CentralIdLookupFactory {
 

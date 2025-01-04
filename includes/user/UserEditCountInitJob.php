@@ -31,6 +31,7 @@ use MediaWiki\MediaWikiServices;
  *
  * @internal For use by \MediaWiki\User\UserEditTracker
  * @since 1.36
+ * @ingroup User
  */
 class UserEditCountInitJob extends Job implements GenericParameterJob {
 

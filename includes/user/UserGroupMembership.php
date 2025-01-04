@@ -1,7 +1,5 @@
 <?php
 /**
- * Represents the membership of a user to a user group.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -29,13 +27,15 @@ use MediaWiki\Message\Message;
 use MediaWiki\Title\Title;
 
 /**
- * Represents a "user group membership" -- a specific instance of a user belonging
- * to a group. For example, the fact that user Mary belongs to the sysop group is a
- * user group membership.
+ * Represents the membership of one user in one user group.
  *
- * The class is a pure value object. Use UserGroupManager to modify user group memberships.
+ * For example, if user "Mary" belongs to "sysop" and "bureaucrat" groups,
+ * those memberships can be represented by two UserGroupMembership objects.
+ *
+ * The class is a value object. Use UserGroupManager to modify user group memberships.
  *
  * @since 1.29
+ * @ingroup User
  */
 class UserGroupMembership {
 

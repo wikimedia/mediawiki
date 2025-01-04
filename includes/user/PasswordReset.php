@@ -1,7 +1,5 @@
 <?php
 /**
- * User password reset helper for MediaWiki.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -42,7 +40,7 @@ use Psr\Log\LoggerInterface;
 use StatusValue;
 
 /**
- * Helper class for the password reset functionality shared by the web UI and the API.
+ * Password reset helper for functionality shared by the web UI and the API.
  *
  * Requires the TemporaryPasswordPrimaryAuthenticationProvider and the
  * EmailNotificationSecondaryAuthenticationProvider (or something providing equivalent

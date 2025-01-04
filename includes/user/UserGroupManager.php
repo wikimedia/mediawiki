@@ -46,8 +46,10 @@ use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
- * Manages user groups.
+ * Manage user group memberships.
+ *
  * @since 1.35
+ * @ingroup User
  */
 class UserGroupManager {
 

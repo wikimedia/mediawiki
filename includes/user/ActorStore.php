@@ -36,10 +36,10 @@ use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
- * Service for interacting with the actor table.
+ * Service to read or write data in the actor table.
  *
- * @package MediaWiki\User
  * @since 1.36
+ * @ingroup User
  */
 class ActorStore implements UserIdentityLookup, ActorNormalization {
 

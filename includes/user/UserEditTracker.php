@@ -17,6 +17,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * Track info about user edit counts and timings
  *
  * @since 1.35
+ * @ingroup User
  * @author DannyS712
  */
 class UserEditTracker {

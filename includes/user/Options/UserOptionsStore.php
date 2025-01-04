@@ -5,8 +5,39 @@ namespace MediaWiki\User\Options;
 use MediaWiki\User\UserIdentity;
 
 /**
- * @since 1.43
+ * Get or change options for a given user in a given backend store.
+ *
+ * #### Usage
+ *
+ * To read or save a user option, use the UserOptionsManager service instead.
+ * UserOptionsStore is the backend key-value abstraction used to differentiate
+ * between local and global preferences. This interface is considered internal
+ * and should only be called by the UserOptionsManager service. Unless you know
+ * which backend store an option belongs to, do not call this.
+ *
+ * Extension such as GlobalPreferences may implement this interface to create
+ * additional backend stores, but extensions should not instantiate or call
+ * classes with this interface.
+ *
+ * When creating a new implementation, register it via the UserOptionsStoreProviders
+ * extension attribute. The UserOptionsManager service will automatically discover
+ * and merge values from your backend. When calling UserOptionsManager::setOption
+ * or ApiOptions, we automatically write to the appropiate store, based on where
+ * a previous value existed, and the `global` flag.
+ *
+ * Launch task: https://phabricator.wikimedia.org/T323076
+ *
+ * #### See also
+ *
+ * Default implementation is MediaWiki\User\Options\LocalUserOptionsStore.
+ *
+ * For the frontend "Preferences" concept, and for registering and describing
+ * which user options can exist, refer to PreferencesFactory, $wgDefaultUserOptions
+ * and DefaultPreferencesFactory instead.
+ *
  * @stable to implement
+ * @since 1.43
+ * @ingroup User
  */
 interface UserOptionsStore {
 	/**

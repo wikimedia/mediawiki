@@ -30,8 +30,8 @@ namespace MediaWiki\User;
  * in the cache, not keys, and evict them alongside with all their indexes.
  *
  * @since 1.37
- * @internal for use by ActorStore
- * @package MediaWiki\User
+ * @internal For use by ActorStore
+ * @ingroup User
  */
 class ActorCache {
 

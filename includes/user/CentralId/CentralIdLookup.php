@@ -1,7 +1,5 @@
 <?php
 /**
- * A central user id lookup service
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -33,11 +31,13 @@ use Throwable;
 use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
- * The CentralIdLookup service allows for connecting local users with
- * cluster-wide IDs.
+ * Find central user IDs associated with local user IDs, e.g. across a wiki farm.
+ *
+ * Default implementation is MediaWiki\User\CentralId\LocalIdLookup.
  *
  * @since 1.27
  * @stable to extend
+ * @ingroup User
  */
 abstract class CentralIdLookup {
 	// Audience options for accessors
