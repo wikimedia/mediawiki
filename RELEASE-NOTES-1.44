@@ -21,6 +21,11 @@ For notes on 1.43.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.44 ===
 
+* (T382987) The default value of 'http.dnsbl.sorbs.net.' in $wgDnsBlacklistUrls
+  has been removed. This is because sorbs.net have stopped providing their
+  services. This means that if you have $wgEnableDnsBlacklist set to true, it
+  will no longer provide any value unless you add other servers to
+  $wgDnsBlacklistUrls.
 * …
 
 ==== New configuration ====
@@ -40,6 +45,8 @@ For notes on 1.43.x and older releases, see HISTORY.
   that your wiki's content or an extension is incompatible with the new markup.
   More information: https://www.mediawiki.org/wiki/Heading_HTML_changes
   This option will be removed in a future release.
+* (T382987) $wgDnsBlacklistUrls now defaults to an empty array. See the comment
+  in the "Configuration changes for system administrators" section above.
 
 ==== Removed configuration ====
 
