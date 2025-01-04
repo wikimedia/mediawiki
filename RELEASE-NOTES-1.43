@@ -1,5 +1,22 @@
 = MediaWiki 1.43 =
 
+PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
+PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
+PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
+PHP 8.4 workboard: https://phabricator.wikimedia.org/tag/php_8.4_support/
+
+== MediaWiki 1.43.1 ==
+
+THIS IS NOT A RELEASE YET
+
+=== Changes since MediaWiki 1.43.1 ===
+
+* Localisation updates.
+* (T382987) $wgDnsBlacklistUrls now defaults to an empty array. See the comment
+  in the "Configuration changes for system administrators" section.
+
+== MediaWiki 1.43.0 ==
+
 === Changes since MediaWiki 1.43.0-rc.0 ===
 * (T381728) Use PHP 8.3 in MediaWiki-Docker
 * (T382375) Misaligned label margins on Special:MathStatus
@@ -58,6 +75,11 @@ For notes on 1.42.x and older releases, see HISTORY.
 
 * $wgBlockTargetMigrationStage, which was introduced in 1.42, is now deprecated
   and has no effect.
+* (T382987) The default value of 'http.dnsbl.sorbs.net.' in $wgDnsBlacklistUrls
+  has been removed. This is because sorbs.net have stopped providing their
+  services. This means that if you have $wgEnableDnsBlacklist set to true, it
+  will no longer provide any value unless you add other servers to
+  $wgDnsBlacklistUrls.
 
 ==== New configuration ====
 
