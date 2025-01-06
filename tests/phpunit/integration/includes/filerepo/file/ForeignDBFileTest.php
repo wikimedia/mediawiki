@@ -3,7 +3,7 @@
 use MediaWiki\Title\Title;
 
 /** @covers \ForeignDBFile */
-class ForeignDBFileTest extends MediaWikiUnitTestCase {
+class ForeignDBFileTest extends MediaWikiIntegrationTestCase {
 
 	public function testShouldConstructCorrectInstanceFromTitle() {
 		$title = Title::makeTitle( NS_FILE, 'Awesome_file' );

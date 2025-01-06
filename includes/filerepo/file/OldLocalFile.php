@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
@@ -307,6 +308,7 @@ class OldLocalFile extends LocalFile {
 
 		$dbw = $this->repo->getPrimaryDB();
 		[ $major, $minor ] = self::splitMime( $this->mime );
+		$metadata = $this->getMetadataForDb( $dbw );
 
 		wfDebug( __METHOD__ . ': upgrading ' . $this->archive_name . " to the current schema" );
 		$dbw->newUpdateQueryBuilder()
@@ -319,7 +321,7 @@ class OldLocalFile extends LocalFile {
 				'oi_media_type' => $this->media_type,
 				'oi_major_mime' => $major,
 				'oi_minor_mime' => $minor,
-				'oi_metadata' => $this->getMetadataForDb( $dbw ),
+				'oi_metadata' => $metadata,
 				'oi_sha1' => $this->sha1,
 			] )
 			->where( [
@@ -327,6 +329,27 @@ class OldLocalFile extends LocalFile {
 				'oi_archive_name' => $this->archive_name,
 			] )
 			->caller( __METHOD__ )->execute();
+
+		$migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::FileSchemaMigrationStage
+		);
+		if ( $migrationStage & MIGRATION_WRITE_NEW ) {
+			$dbw->newUpdateQueryBuilder()
+				->update( 'filerevision' )
+				->set( [
+					'fr_size' => $this->size,
+					'fr_width' => $this->width,
+					'fr_height' => $this->height,
+					'fr_bits' => $this->bits,
+					'fr_metadata' => $metadata,
+					'fr_sha1' => $this->sha1,
+				] )
+				->where( [
+					'fr_file' => $this->acquireFileIdFromName(),
+					'fr_archive_name' => $this->archive_name,
+				] )
+				->caller( __METHOD__ )->execute();
+		}
 	}
 
 	protected function reserializeMetadata() {
@@ -444,6 +467,28 @@ class OldLocalFile extends LocalFile {
 			->caller( __METHOD__ )->execute();
 		$dbw->endAtomic( __METHOD__ );
 
+		$migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::FileSchemaMigrationStage
+		);
+		if ( $migrationStage & MIGRATION_WRITE_NEW ) {
+			$commentFields = $services->getCommentStore()
+				->insert( $dbw, 'fr_description', $comment );
+			$dbw->newInsertQueryBuilder()
+				->insertInto( 'filerevision' )
+				->ignore()
+				->row( [
+						'fr_file' => $this->acquireFileIdFromName(),
+						'fr_size' => $this->size,
+						'fr_width' => intval( $this->width ),
+						'fr_height' => intval( $this->height ),
+						'fr_bits' => $this->bits,
+						'fr_actor' => $actorId,
+						'fr_timestamp' => $dbw->timestamp( $timestamp ),
+						'fr_metadata' => $this->getMetadataForDb( $dbw ),
+						'fr_sha1' => $this->sha1
+					] + $commentFields )
+				->caller( __METHOD__ )->execute();
+		}
 		return true;
 	}
 

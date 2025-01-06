@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Status\Status;
@@ -299,6 +300,10 @@ class LocalFileDeleteBatch {
 
 	private function doDBDeletes() {
 		$dbw = $this->file->repo->getPrimaryDB();
+		$migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::FileSchemaMigrationStage
+		);
+
 		[ $oldRels, $deleteCurrent ] = $this->getOldRels();
 
 		if ( count( $oldRels ) ) {
@@ -309,6 +314,17 @@ class LocalFileDeleteBatch {
 					'oi_archive_name' => array_map( 'strval', array_keys( $oldRels ) )
 				] )
 				->caller( __METHOD__ )->execute();
+			if ( ( $migrationStage & MIGRATION_WRITE_NEW ) && $this->file->getFileIdFromName() ) {
+				$delete = $dbw->newDeleteQueryBuilder()
+					->deleteFrom( 'filerevision' )
+					->where( [ 'fr_file' => $this->file->getFileIdFromName() ] );
+				if ( !$deleteCurrent ) {
+					// It's not full page deletion.
+					$delete->andWhere( [ 'fr_archive_name' => array_map( 'strval', array_keys( $oldRels ) ) ] );
+				}
+				$delete->execute();
+
+			}
 		}
 
 		if ( $deleteCurrent ) {
@@ -316,6 +332,16 @@ class LocalFileDeleteBatch {
 				->deleteFrom( 'image' )
 				->where( [ 'img_name' => $this->file->getName() ] )
 				->caller( __METHOD__ )->execute();
+			if ( ( $migrationStage & MIGRATION_WRITE_NEW ) && $this->file->getFileIdFromName() ) {
+				$dbw->newUpdateQueryBuilder()
+					->update( 'file' )
+					->set( [
+						'file_deleted' => $this->suppress ? 3 : 1,
+						'file_latest' => 0
+					] )
+					->where( [ 'file_id' => $this->file->getFileIdFromName() ] )
+					->execute();
+			}
 		}
 	}
 
