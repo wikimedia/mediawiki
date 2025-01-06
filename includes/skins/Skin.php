@@ -19,7 +19,6 @@
  */
 
 use MediaWiki\Context\ContextSource;
-use MediaWiki\Debug\MWDebug;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;
@@ -1092,8 +1091,7 @@ abstract class Skin extends ContextSource {
 	 * @internal for use inside SkinComponentRegistryContext
 	 * @return array
 	 */
-	public function getFooterIcons() {
-		MWDebug::detectDeprecatedOverride( $this, __CLASS__, 'getFooterIcons', '1.40' );
+	final public function getFooterIcons() {
 		return SkinComponentFooter::getFooterIconsData(
 			$this->getConfig()
 		);
@@ -1110,8 +1108,7 @@ abstract class Skin extends ContextSource {
 	 *   a text-only footericon.
 	 * @return string HTML
 	 */
-	public function makeFooterIcon( $icon, $withImage = 'withImage' ) {
-		MWDebug::detectDeprecatedOverride( $this, __CLASS__, 'makeFooterIcon', '1.40' );
+	final public function makeFooterIcon( $icon, $withImage = 'withImage' ) {
 		return SkinComponentFooter::makeFooterIconHTML(
 			$this->getConfig(), $icon, $withImage
 		);
