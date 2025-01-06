@@ -1623,7 +1623,8 @@ return [
 			$services->getChronologyProtector(),
 			LoggerFactory::getProvider(),
 			$services->getWikiPageFactory(),
-			$services->getTitleFormatter()
+			$services->getTitleFormatter(),
+			$services->getTracer()
 		);
 	},
 

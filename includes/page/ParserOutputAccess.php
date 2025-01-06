@@ -46,6 +46,8 @@ use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Stats\StatsFactory;
+use Wikimedia\Telemetry\SpanInterface;
+use Wikimedia\Telemetry\TracerInterface;
 
 /**
  * Service for getting rendered output of a given page.
@@ -141,6 +143,7 @@ class ParserOutputAccess {
 	private LoggerSpi $loggerSpi;
 	private WikiPageFactory $wikiPageFactory;
 	private TitleFormatter $titleFormatter;
+	private TracerInterface $tracer;
 
 	public function __construct(
 		ParserCacheFactory $parserCacheFactory,
@@ -151,7 +154,8 @@ class ParserOutputAccess {
 		ChronologyProtector $chronologyProtector,
 		LoggerSpi $loggerSpi,
 		WikiPageFactory $wikiPageFactory,
-		TitleFormatter $titleFormatter
+		TitleFormatter $titleFormatter,
+		TracerInterface $tracer
 	) {
 		$this->parserCacheFactory = $parserCacheFactory;
 		$this->revisionLookup = $revisionLookup;
@@ -162,6 +166,7 @@ class ParserOutputAccess {
 		$this->loggerSpi = $loggerSpi;
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->titleFormatter = $titleFormatter;
+		$this->tracer = $tracer;
 
 		$this->localCache = new MapCacheLRU( 10 );
 	}
@@ -221,6 +226,7 @@ class ParserOutputAccess {
 		?RevisionRecord $revision = null,
 		int $options = 0
 	): ?ParserOutput {
+		$span = $this->startOperationSpan( __FUNCTION__, $page, $revision );
 		$isOld = $revision && $revision->getId() !== $page->getLatest();
 		$useCache = $this->shouldUseCache( $page, $revision );
 		$primaryCache = $this->getPrimaryCache( $parserOptions );
@@ -310,6 +316,7 @@ class ParserOutputAccess {
 		?RevisionRecord $revision = null,
 		int $options = 0
 	): Status {
+		$span = $this->startOperationSpan( __FUNCTION__, $page, $revision );
 		$error = $this->checkPreconditions( $page, $revision, $options );
 		if ( $error ) {
 			$this->statsFactory
@@ -416,6 +423,7 @@ class ParserOutputAccess {
 		int $options,
 		?ParserOutput $previousOutput = null
 	): Status {
+		$span = $this->startOperationSpan( __FUNCTION__, $page, $revision );
 		$this->statsFactory->getCounter( 'parseroutputaccess_poolwork' )
 			->copyToStatsdAt( 'ParserOutputAccess.PoolWork.None' )
 			->setLabel( 'cache', self::CACHE_NONE )
@@ -640,4 +648,26 @@ class ParserOutputAccess {
 		);
 	}
 
+	private function startOperationSpan(
+		string $opName,
+		PageRecord $page,
+		?RevisionRecord $revision = null
+	): SpanInterface {
+		$span = $this->tracer->createSpan( "ParserOutputAccess::$opName" );
+		if ( $span->getContext()->isSampled() ) {
+			$span->setAttributes( [
+				'org.wikimedia.parser.page' => $page->__toString(),
+				'org.wikimedia.parser.page.id' => $page->getId(),
+				'org.wikimedia.parser.page.wiki' => $page->getWikiId(),
+			] );
+			if ( $revision ) {
+				$span->setAttributes( [
+					'org.wikimedia.parser.revision.id' => $revision->getId(),
+					'org.wikimedia.parser.revision.parent_id' => $revision->getParentId(),
+				] );
+			}
+		}
+		$span->start()->activate();
+		return $span;
+	}
 }
