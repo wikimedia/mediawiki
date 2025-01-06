@@ -22,7 +22,7 @@ class SplitGroupExecutor {
 	public function __construct(
 		UnboxedExecutor $shellExecutor,
 		?Event $event,
-		?ComposerSystemInterface $composerSystemInterface
+		?ComposerSystemInterface $composerSystemInterface = null
 	) {
 		$this->executor = $shellExecutor;
 		$this->event = $event;
