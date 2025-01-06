@@ -346,7 +346,7 @@ call_user_func( static function (): void {
 	$startTimeNanos = (int)( 1e9 * $_SERVER['REQUEST_TIME_FLOAT'] );
 	// Avoid high cardinality URL path as root span name, instead safely use the HTTP method.
 	// Per OTEL Semantic Conventions, https://opentelemetry.io/docs/specs/semconv/http/http-spans/
-	$spanName = $request->getMethod();
+	$spanName = "EntryPoint " . MW_ENTRY_POINT . ".php HTTP {$request->getMethod()}";
 	$incomingSpanContext = SpanContext::newFromTraceparentHeader( $request->getHeader( 'traceparent' ) );
 	if ( $incomingSpanContext ) {
 		$rootSpan = $tracer->createSpanWithParent( $spanName, $incomingSpanContext );
