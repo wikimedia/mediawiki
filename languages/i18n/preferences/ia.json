@@ -75,7 +75,7 @@
 	"prefs-help-email": "Le adresse de e-mail es optional, ma es necessari pro le reinitialisation de tu contrasigno, in caso que tu lo oblida.",
 	"prefs-help-email-required": "Un adresse de e-mail es obligatori.",
 	"prefs-help-email-others": "Tu pote etiam optar pro permitter que altere personas te contacta per e-mail via un ligamine sur tu pagina de usator o de discussion.\nTu adresse de e-mail non es revelate quando altere usatores te contacta.",
-	"tog-requireemail": "Inviar messages pro reinitialisar contrasigno solmente quando le adresse de e-mail assi como le nomine de usator es fornite.",
+	"tog-requireemail": "Inviar messages de reinitialisation del contrasigno solmente quando le adresse de e-mail e le nomine de usator es ambes fornite",
 	"prefs-help-requireemail": "Isto meliora le confidentialitate e adjuta a evitar le posta non sollicitate.",
 	"noemailprefs": "Es necessari specificar un adresse de e-mail in tu preferentias pro poter executar iste functiones.",
 	"emailnotauthenticated": "Tu non ha ancora confirmate tu adresse de e-mail.\nNulle e-mail essera inviate pro le sequente functiones.",

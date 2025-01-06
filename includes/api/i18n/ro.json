@@ -5,6 +5,7 @@
 			"Alesaru",
 			"NGC 54",
 			"Paloi Sciurala",
+			"Trotinel Iftode",
 			"Wintereu"
 		]
 	},
@@ -21,6 +22,8 @@
 	"apihelp-expandtemplates-param-text": "Wikitext de convertit.",
 	"apihelp-query+extlinks-param-protocol": "Protocolul URL-ului. Dacă este gol și <var>$1query</var> este setat, protocolul este <kbd>http</kbd> și <kbd>https</kbd>. Lăsați atât aceasta, cât și <var>$1query</var> goale pentru a lista toate legăturile externe.",
 	"apihelp-query+exturlusage-param-protocol": "\nProtocolul URL-ului. Dacă <var>interogarea este goală și $1</var> este setată, protocolul este <kbd>http</kbd> și <kbd>https</kbd> . Lăsați atât aceasta, cât și <var>interogarea $1</var> goale pentru a lista toate linkurile externe.",
+	"apihelp-query+revisions-param-startid": "Începeți enumerarea de la marcajul de timp al revizuirii cu acest ID. Revizia trebuie să existe, dar nu trebuie să aparțină acestei pagini.",
+	"apihelp-query+revisions-param-endid": "Opriți enumerarea la marcajul de timp al revizuirii cu acest ID. Revizia trebuie să existe, dar nu trebuie să aparțină acestei pagini.",
 	"api-help-parameters-note": "Alți parametri generali sunt disponibili.",
 	"apierror-readonly": "Wiki-ul este în prezent în modul doar de citit."
 }

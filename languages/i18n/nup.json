@@ -906,6 +906,7 @@
 	"searchsuggest-search": "Waza {{SITENAME}}",
 	"searchsuggest-containing": "Wiwaza feregi nan fibo nan",
 	"duration-days": "$1 {{pLURAL:$1|efo|efozhi}}",
+	"nstab-mainpage": "Tatacin feregi",
 	"blockedtext-made-by": "Kikan nana yi gwata $1 bo.",
 	"blockedtext-reason-comment": "Dalili yi <em>$1</em>.",
 	"blockedtext-start-time": "Chaba kikan:$1",

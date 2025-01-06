@@ -532,7 +532,7 @@
 	"apihelp-query+redirects-param-namespace": "Includi solo le pagine in questi namespace.",
 	"apihelp-query+redirects-param-limit": "Quanti reindirizzamenti restituire.",
 	"apihelp-query+redirects-example-simple": "Ottieni un elenco di reindirizzamenti a [[{{MediaWiki:Mainpage}}]].",
-	"apihelp-query+revisions-param-startid": "Inizia l'elenco dal timestamp di questa versione. La versione deve esistere, ma non necessariamente deve appartenere a questa pagina.",
+	"apihelp-query+revisions-param-startid": "Inizia l'elenco dal timestamp della versione con questo ID. La versione deve esistere, ma non necessariamente deve appartenere a questa pagina.",
 	"apihelp-query+revisions-param-start": "Il timestamp della versione da cui iniziare l'elenco.",
 	"apihelp-query+revisions-param-tag": "Elenca solo le versioni etichettate con questa etichetta.",
 	"apihelp-query+revisions+base-paramvalue-prop-ids": "L'ID della versione.",

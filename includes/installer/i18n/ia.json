@@ -268,7 +268,7 @@
 	"config-install-user-missing-create": "Le usator specificate, \"$1\", non existe.\nPer favor marca le quadrato \"crear conto\" hic infra si tu vole crear lo.",
 	"config-install-logo-blank": "Insere un URL de logo valide.",
 	"config-install-restore-services": "Restauration del servicios MediaWiki",
-	"config-install-tables": "Creation de tabellas, prime passo",
+	"config-install-tables": "Creation de tabellas",
 	"config-install-tables-exist": "'''Aviso''': Il pare que le tabellas de MediaWiki jam existe.\nLe creation es saltate.",
 	"config-install-tables-failed": "'''Error''': Le creation del tabellas falleva con le sequente error: $1",
 	"config-install-interwiki": "Plena le tabella interwiki predefinite",

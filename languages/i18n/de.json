@@ -2071,6 +2071,7 @@
 	"listusers": "Benutzerverzeichnis",
 	"listusers-editsonly": "Zeige nur Benutzer mit Beiträgen",
 	"listusers-temporarygroupsonly": "Nur Benutzer in temporären Benutzergruppen anzeigen",
+	"listusers-temporaryaccountsonly": "Nur temporäre Konten anzeigen",
 	"listusers-creationsort": "Nach Erstelldatum sortieren",
 	"listusers-desc": "In absteigender Reihenfolge sortieren",
 	"usereditcount": "$1 {{PLURAL:$1|Bearbeitung|Bearbeitungen}}",

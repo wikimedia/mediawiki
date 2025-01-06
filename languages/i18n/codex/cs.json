@@ -26,5 +26,6 @@
 	"cdx-table-pagination-status-message-indeterminate-long": "Zobrazují se výsledky $1–$2 z mnoha",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 z mnoha",
 	"cdx-table-pagination-status-message-indeterminate-final": "{{PLURAL:$1|Zobrazuje se poslední výsledek|Zobrazují se poslední $1 výsledky|Zobrazuje se posledních $1 výsledků}}",
-	"cdx-table-pagination-status-message-pending": "Načítání výsledků…"
+	"cdx-table-pagination-status-message-pending": "Načítání výsledků…",
+	"cdx-table-no-data-message": "Nejsou k dispozici žádné údaje."
 }

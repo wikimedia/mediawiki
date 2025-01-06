@@ -2025,7 +2025,7 @@
 	"seconds": "sekunde {{PLURAL:$1|$1}}",
 	"minutes": "dakika {{PLURAL:$1|$1}}",
 	"hours": "{{PLURAL:$1|saa $1|masaa $1}}",
-	"days": "siku {{PLURAL:$1|$1}}",
+	"days": "{{PLURAL:$1|siku $1}}",
 	"weeks": "{{PLURAL:$1|wiki}} $1",
 	"ago": "$1 zilizopita",
 	"hours-ago": "{{PLURAL:$1|saa $1 iliyo|masaa $1 yaliyo}}pita",

@@ -72,7 +72,7 @@
 	"rest-unmapped-action-error": "Error del modulo de action non assignate: $1",
 	"rest-unsupported-transform-input": "Entrata non supportate: $1",
 	"rest-bad-etag": "Mal ETag: $1",
-	"rest-no-stashed-content": "Necun contento in reserva trovate pro $1",
+	"rest-no-stashed-content": "Necun contento in reserva trovate pro $1. Isto es probabilemente perque tu session de modification ha expirate. Copia tu modificationes, recarga le pagina e tenta lo de novo.",
 	"rest-unsupported-profile-version": "Version de profilo non supportate: $1",
 	"rest-no-json-decode": "Le cargo utile non se decodifica de JSON a un matrice",
 	"rest-parsoid-unsupported-media": "Typo multimedial non supportate",

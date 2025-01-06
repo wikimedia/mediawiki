@@ -3010,7 +3010,7 @@
 	"seconds": "{{PLURAL:$1|$1 секунд}}",
 	"minutes": "{{PLURAL:$1|$1 минут}}",
 	"hours": "{{PLURAL:$1|$1 сәғәт}}",
-	"days": "{{PLURAL:$1|1=$1 көн}}",
+	"days": "{{PLURAL:$1|$1 көн}}",
 	"weeks": "{{PLURAL:$1|$1 аҙна}}",
 	"months": "{{PLURAL:$1|$1 ай}}",
 	"years": "{{PLURAL:$1|$1 йыл}}",

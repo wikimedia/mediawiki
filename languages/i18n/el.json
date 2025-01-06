@@ -2000,6 +2000,7 @@
 	"listusers": "Κατάλογος χρηστών",
 	"listusers-editsonly": "Εμφάνιση μόνο των χρηστών με επεξεργασίες",
 	"listusers-temporarygroupsonly": "Εμφάνιση μόνο χρηστών σε προσωρινές ομάδες",
+	"listusers-temporaryaccountsonly": "Εμφάνιση μόνο προσωρινών λογαριασμών",
 	"listusers-creationsort": "Ταξινόμηση κατά ημερομηνία δημιουργίας",
 	"listusers-desc": "Η ταξινόμηση κατά φθίνουσα σειρά",
 	"usereditcount": "$1 {{PLURAL:$1|επεξεργασία|επεξεργασίες}}",

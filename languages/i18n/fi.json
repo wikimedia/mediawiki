@@ -2024,6 +2024,7 @@
 	"listusers": "Käyttäjäluettelo",
 	"listusers-editsonly": "Näytä vain käyttäjät, joilla on muokkauksia",
 	"listusers-temporarygroupsonly": "Näytä vain väliaikaisten käyttäjäryhmien käyttäjät",
+	"listusers-temporaryaccountsonly": "Näytä vain tilapäiset tunnukset",
 	"listusers-creationsort": "Lajittele tunnuksen luontipäivämäärän mukaan",
 	"listusers-desc": "Lajittele alenevassa järjestyksessä",
 	"usereditcount": "$1 {{PLURAL:$1|muokkaus|muokkausta}}",
