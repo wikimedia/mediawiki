@@ -31,20 +31,15 @@ class FullSearchResultWidget implements SearchResultWidget {
 
 	public const THUMBNAIL_SIZE = 90;
 
-	/** @var SpecialSearch */
-	protected $specialPage;
-	/** @var LinkRenderer */
-	protected $linkRenderer;
-	/** @var HookRunner */
-	private $hookRunner;
-	/** @var RepoGroup */
-	private $repoGroup;
-	/** @var SearchResultThumbnailProvider */
-	private $thumbnailProvider;
+	protected SpecialSearch $specialPage;
+	protected LinkRenderer $linkRenderer;
+	private HookRunner $hookRunner;
+	private RepoGroup $repoGroup;
+	private SearchResultThumbnailProvider $thumbnailProvider;
+	private UserOptionsManager $userOptionsManager;
+
 	/** @var string */
 	private $thumbnailPlaceholderHtml;
-	/** @var UserOptionsManager */
-	private $userOptionsManager;
 
 	public function __construct(
 		SpecialSearch $specialPage,

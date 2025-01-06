@@ -18,22 +18,19 @@ use OOUI;
  * the results are from.
  */
 class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
-	/** @var SpecialSearch */
-	protected $specialSearch;
-	/** @var SearchResultWidget */
-	protected $resultWidget;
-	/** @var array<string,string>|null */
-	protected $customCaptions;
-	/** @var LinkRenderer */
-	protected $linkRenderer;
-	/** @var InterwikiLookup */
-	protected $iwLookup;
-	/** @var OutputPage */
-	protected $output;
+	protected SpecialSearch $specialSearch;
+	protected SearchResultWidget $resultWidget;
+	protected LinkRenderer $linkRenderer;
+	protected InterwikiLookup $iwLookup;
+	protected OutputPage $output;
+
 	/** @var bool */
 	protected $showMultimedia;
 	/** @var array */
 	protected $iwLogoOverrides;
+
+	/** @var array<string,string>|null */
+	protected $customCaptions;
 
 	public function __construct(
 		SpecialSearch $specialSearch,

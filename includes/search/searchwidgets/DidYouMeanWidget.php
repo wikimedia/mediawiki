@@ -11,8 +11,7 @@ use MediaWiki\Specials\SpecialSearch;
  * a suggested search was run instead of the one provided.
  */
 class DidYouMeanWidget {
-	/** @var SpecialSearch */
-	protected $specialSearch;
+	protected SpecialSearch $specialSearch;
 
 	public function __construct( SpecialSearch $specialSearch ) {
 		$this->specialSearch = $specialSearch;

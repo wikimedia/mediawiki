@@ -28,55 +28,15 @@ class TitleMatcher {
 		MainConfigNames::EnableSearchContributorsByIP,
 	];
 
-	/**
-	 * @var ServiceOptions
-	 */
-	private $options;
-
-	/**
-	 * Current language
-	 * @var Language
-	 */
-	private $language;
-
-	/**
-	 * Current language converter
-	 * @var ILanguageConverter
-	 */
-	private $languageConverter;
-
-	/**
-	 * @var HookRunner
-	 */
-	private $hookRunner;
-
-	/**
-	 * @var WikiPageFactory
-	 */
-	private $wikiPageFactory;
-
-	/**
-	 * @var UserNameUtils
-	 */
-	private $userNameUtils;
-
-	/**
-	 * @var RepoGroup
-	 */
-	private $repoGroup;
-
+	private ServiceOptions $options;
+	private Language $language;
+	private ILanguageConverter $languageConverter;
+	private HookRunner $hookRunner;
+	private WikiPageFactory $wikiPageFactory;
+	private UserNameUtils $userNameUtils;
+	private RepoGroup $repoGroup;
 	private TitleFactory $titleFactory;
 
-	/**
-	 * @param ServiceOptions $options
-	 * @param Language $contentLanguage
-	 * @param LanguageConverterFactory $languageConverterFactory
-	 * @param HookContainer $hookContainer
-	 * @param WikiPageFactory $wikiPageFactory
-	 * @param UserNameUtils $userNameUtils
-	 * @param RepoGroup $repoGroup
-	 * @param TitleFactory $titleFactory
-	 */
 	public function __construct(
 		ServiceOptions $options,
 		Language $contentLanguage,

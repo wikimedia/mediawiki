@@ -36,9 +36,7 @@ class SearchResultThumbnailProviderTest extends MediaWikiIntegrationTestCase {
 		self::TITLES['article_with_thumb']['id'] => self::TITLES['file']['id'],
 	];
 
-	/** @var SearchResultThumbnailProvider */
-	private $thumbnailProvider;
-
+	private SearchResultThumbnailProvider $thumbnailProvider;
 	/** @var Title[] */
 	private $titles = [];
 

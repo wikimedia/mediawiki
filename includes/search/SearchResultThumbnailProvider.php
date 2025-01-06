@@ -19,16 +19,9 @@ class SearchResultThumbnailProvider {
 
 	public const THUMBNAIL_SIZE = 60;
 
-	/** @var RepoGroup */
-	private $repoGroup;
+	private RepoGroup $repoGroup;
+	private HookRunner $hookRunner;
 
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/**
-	 * @param RepoGroup $repoGroup
-	 * @param HookContainer $hookContainer
-	 */
 	public function __construct( RepoGroup $repoGroup, HookContainer $hookContainer ) {
 		$this->repoGroup = $repoGroup;
 		$this->hookRunner = new HookRunner( $hookContainer );
