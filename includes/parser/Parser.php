@@ -4342,6 +4342,7 @@ class Parser {
 		$maxTocLevel = $this->svcOptions->get( MainConfigNames::MaxTocLevel );
 		$domDocument = DOMUtils::parseHTML( '' );
 		foreach ( $headlines as $headline ) {
+			// $headline is half-parsed HTML
 			$isTemplate = false;
 			$titleText = false;
 			$sectionIndex = false;
@@ -4368,26 +4369,24 @@ class Parser {
 				$haveTocEntries = true;
 			}
 
-			# The safe header is a version of the header text safe to use for links
-
 			# Remove link placeholders by the link text.
 			#     <!--LINK number-->
 			# turns into
 			#     link text with suffix
 			# Do this before unstrip since link text can contain strip markers
-			$safeHeadline = $this->replaceLinkHoldersText( $headline );
+			$fullyParsedHeadline = $this->replaceLinkHoldersText( $headline );
 
 			# Avoid insertion of weird stuff like <math> by expanding the relevant sections
-			$safeHeadline = $this->mStripState->unstripBoth( $safeHeadline );
+			$fullyParsedHeadline = $this->mStripState->unstripBoth( $fullyParsedHeadline );
 
 			// Run Tidy to convert wikitext entities to HTML entities (T355386),
 			// conveniently also giving us a way to handle French spaces (T324763)
-			$safeHeadline = $this->tidy->tidy( $safeHeadline, [ Sanitizer::class, 'armorFrenchSpaces' ] );
+			$fullyParsedHeadline = $this->tidy->tidy( $fullyParsedHeadline, [ Sanitizer::class, 'armorFrenchSpaces' ] );
 
 			// Wrap the safe headline to parse the heading attributes
 			// Literal HTML tags should be sanitized at this point
 			// cleanUpTocLine will strip the headline tag
-			$wrappedHeadline = "<h$level" . $matches['attrib'][$headlineCount] . $safeHeadline . "</h$level>";
+			$wrappedHeadline = "<h$level" . $matches['attrib'][$headlineCount] . $fullyParsedHeadline . "</h$level>";
 
 			// Parse the heading contents as HTML. This makes it easier to strip out some HTML tags,
 			// and ensures that we generate balanced HTML at the end (T218330).
@@ -4402,40 +4401,34 @@ class Parser {
 			$this->cleanUpTocLine( $headlineDom );
 
 			// Serialize back to HTML
+			// $tocline is for the TOC display, fully-parsed HTML with some tags removed
 			$tocline = trim( DOMUtils::getFragmentInnerHTML( $headlineDom ) );
 
-			# For the anchor, strip out HTML-y stuff period
-			$safeHeadline = trim( $headlineDom->textContent );
+			// $headlineText is for the "Edit section: $1" tooltip, plain text
+			$headlineText = trim( $headlineDom->textContent );
 
-			# Save headline for section edit hint before it's normalized for the link
-			$headlineHint = htmlspecialchars( $safeHeadline );
-
-			$safeHeadline = Sanitizer::normalizeSectionNameWhitespace( $safeHeadline );
-			$safeHeadline = self::normalizeSectionName( $safeHeadline );
-
-			if ( $headingId !== null && $headingId !== '' ) {
-				$safeHeadline = $headingId;
-			}
-
-			$fallbackHeadline = Sanitizer::escapeIdForAttribute( $safeHeadline, Sanitizer::ID_FALLBACK );
-			$linkAnchor = Sanitizer::escapeIdForLink( $safeHeadline );
-			$safeHeadline = Sanitizer::escapeIdForAttribute( $safeHeadline, Sanitizer::ID_PRIMARY );
-			if ( $fallbackHeadline === $safeHeadline ) {
-				# No reason to have both (in fact, we can't)
-				$fallbackHeadline = false;
-			}
-
-			# HTML IDs must be case-insensitively unique for IE compatibility (T12721).
-			$arrayKey = strtolower( $safeHeadline );
-			if ( $fallbackHeadline === false ) {
-				$fallbackArrayKey = false;
-			} else {
-				$fallbackArrayKey = strtolower( $fallbackHeadline );
+			if ( $headingId === null || $headingId === '' ) {
+				$headingId = Sanitizer::normalizeSectionNameWhitespace( $headlineText );
+				$headingId = self::normalizeSectionName( $headingId );
 			}
 
 			# Create the anchor for linking from the TOC to the section
-			$anchor = $safeHeadline;
-			$fallbackAnchor = $fallbackHeadline;
+			$fallbackAnchor = Sanitizer::escapeIdForAttribute( $headingId, Sanitizer::ID_FALLBACK );
+			$linkAnchor = Sanitizer::escapeIdForLink( $headingId );
+			$anchor = Sanitizer::escapeIdForAttribute( $headingId, Sanitizer::ID_PRIMARY );
+			if ( $fallbackAnchor === $anchor ) {
+				# No reason to have both (in fact, we can't)
+				$fallbackAnchor = false;
+			}
+
+			# HTML IDs must be case-insensitively unique for IE compatibility (T12721).
+			$arrayKey = strtolower( $anchor );
+			if ( $fallbackAnchor === false ) {
+				$fallbackArrayKey = false;
+			} else {
+				$fallbackArrayKey = strtolower( $fallbackAnchor );
+			}
+
 			if ( isset( $refers[$arrayKey] ) ) {
 				for ( $i = 2; isset( $refers["{$arrayKey}_$i"] ); ++$i );
 				$anchor .= "_$i";
@@ -4444,7 +4437,7 @@ class Parser {
 			} else {
 				$refers[$arrayKey] = true;
 			}
-			if ( $fallbackHeadline !== false && isset( $refers[$fallbackArrayKey] ) ) {
+			if ( $fallbackAnchor !== false && isset( $refers[$fallbackArrayKey] ) ) {
 				for ( $i = 2; isset( $refers["{$fallbackArrayKey}_$i"] ); ++$i );
 				$fallbackAnchor .= "_$i";
 				$refers["{$fallbackArrayKey}_$i"] = true;
@@ -4496,7 +4489,7 @@ class Parser {
 				// because it is supposed to be able to convert that.
 				$editlink = '<mw:editsection page="' . htmlspecialchars( $editsectionPage, ENT_COMPAT );
 				$editlink .= '" section="' . htmlspecialchars( $editsectionSection, ENT_COMPAT ) . '"';
-				$editlink .= '>' . $headlineHint . '</mw:editsection>';
+				$editlink .= '>' . htmlspecialchars( $headlineText ) . '</mw:editsection>';
 			} else {
 				$editlink = '';
 			}
