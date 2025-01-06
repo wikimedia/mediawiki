@@ -49,7 +49,7 @@ class AttachLatest extends Maintenance {
 		$dbw = $this->getDB( DB_PRIMARY );
 		$conds = [ 'page_latest' => 0 ];
 		if ( $this->hasOption( 'regenerate-all' ) ) {
-			$conds = '';
+			$conds = [];
 		}
 		$result = $dbw->newSelectQueryBuilder()
 			->select( [ 'page_id', 'page_namespace', 'page_title' ] )
