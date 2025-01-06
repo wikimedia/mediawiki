@@ -33,6 +33,7 @@ use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Stats\StatsFactory;
+use Wikimedia\Telemetry\TracerInterface;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -210,6 +211,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 				LoggerFactory::getProvider(),
 				$this->getServiceContainer()->getWikiPageFactory(),
 				$this->getServiceContainer()->getTitleFormatter(),
+				$this->getServiceContainer()->getTracer(),
 				$this
 		) extends ParserOutputAccess {
 			private ParserOutputAccessTest $test;
@@ -224,6 +226,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 				LoggerSpi $loggerSpi,
 				WikiPageFactory $wikiPageFactory,
 				TitleFormatter $titleFormatter,
+				TracerInterface $tracer,
 				ParserOutputAccessTest $test
 			) {
 				parent::__construct(
@@ -235,7 +238,8 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 					$chronologyProtector,
 					$loggerSpi,
 					$wikiPageFactory,
-					$titleFormatter
+					$titleFormatter,
+					$tracer
 				);
 
 				$this->test = $test;
