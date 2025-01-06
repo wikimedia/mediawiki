@@ -153,6 +153,12 @@ class PageUpdater {
 	private $rcPatrolStatus = RecentChange::PRC_UNPATROLLED;
 
 	/**
+	 * @var bool Whether this is an automated update that was not explicitly
+	 *      initiated by the revision author.
+	 */
+	private $automated = false;
+
+	/**
 	 * @var bool whether to create a log entry for new page creations.
 	 */
 	private $usePageCreationLog = true;
@@ -386,6 +392,16 @@ class PageUpdater {
 	 */
 	public function setRcPatrolStatus( $status ) {
 		$this->rcPatrolStatus = $status;
+		return $this;
+	}
+
+	/**
+	 * @param bool $automated
+	 *
+	 * @return $this
+	 */
+	public function setAutomated( bool $automated ) {
+		$this->automated = $automated;
 		return $this;
 	}
 
@@ -1577,14 +1593,15 @@ class PageUpdater {
 	) {
 		static $flagMap = [
 			EDIT_SUPPRESS_RC => PageUpdatedEvent::FLAG_SILENT,
-			EDIT_FORCE_BOT => PageUpdatedEvent::FLAG_BOT,
-			EDIT_INTERNAL => PageUpdatedEvent::FLAG_AUTOMATED,
+			EDIT_FORCE_BOT => PageUpdatedEvent::FLAG_BOT
 		];
 
 		$hints = [];
 		foreach ( $flagMap as $bit => $name ) {
 			$hints[$name] = ( $this->flags & $bit ) === $bit;
 		}
+
+		$hints[ PageUpdatedEvent::FLAG_AUTOMATED ] = $this->automated;
 
 		$hints += PageUpdatedEvent::DEFAULT_FLAGS;
 		$hints = $hintOverrides + $hints;

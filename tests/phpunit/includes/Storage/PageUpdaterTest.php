@@ -466,6 +466,34 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $calls );
 	}
 
+	public function testEventEmission_automated() {
+		$calls = 0;
+
+		$page = $this->getExistingTestPage();
+		$user = $this->getTestUser()->getUser();
+
+		$updater = $page->newPageUpdater( $user );
+
+		$content = new TextContent( 'Lorem Ipsum' );
+		$updater->setContent( SlotRecord::MAIN, $content );
+		$updater->setAutomated( true );
+
+		$this->getServiceContainer()->getDomainEventSource()->registerListener(
+			'PageUpdated',
+			$this->makeDomainEventSourceListener(
+				$calls,
+				[ PageUpdatedEvent::FLAG_AUTOMATED => true ],
+				$page->getRevisionRecord()
+			)
+		);
+
+		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
+		$updater->saveRevision( $summary );
+
+		$this->runDeferredUpdates();
+		$this->assertSame( 1, $calls );
+	}
+
 	public function testEventEmission_null() {
 		$calls = 0;
 

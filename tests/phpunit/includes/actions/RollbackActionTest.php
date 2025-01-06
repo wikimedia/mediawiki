@@ -92,6 +92,9 @@ class RollbackActionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testRollback() {
+		$editTracker = $this->getServiceContainer()->getUserEditTracker();
+		$editCount = $editTracker->getUserEditCount( $this->sysop );
+
 		$request = new FauxRequest( [
 			'from' => $this->vandal->getName(),
 			'token' => $this->sysop->getEditToken( 'rollback' ),
@@ -110,6 +113,11 @@ class RollbackActionTest extends MediaWikiIntegrationTestCase {
 		$recentChange = $revisionStore->getRecentChange( $latestRev );
 		$this->assertSame( '0', $recentChange->getAttribute( 'rc_bot' ) );
 		$this->assertSame( $this->sysop->getName(), $recentChange->getAttribute( 'rc_user_text' ) );
+
+		// T382592
+		$editTracker->clearUserEditCache( $this->sysop );
+		$this->runDeferredUpdates();
+		$this->assertSame( $editCount + 1, $editTracker->getUserEditCount( $this->sysop ) );
 	}
 
 	public function testRollbackMarkBot() {
