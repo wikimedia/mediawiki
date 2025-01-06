@@ -152,6 +152,9 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'dropTable', 'ipblocks' ],
 			[ 'dropField', 'pagelinks', 'pl_title', 'patch-pagelinks-drop-pl_title.sql' ],
 			[ 'addPostDatabaseUpdateMaintenance', FixAutoblockLogTitles::class ],
+
+			// 1.44
+			[ 'addTable', 'file', 'patch-file.sql' ],
 		];
 	}
 

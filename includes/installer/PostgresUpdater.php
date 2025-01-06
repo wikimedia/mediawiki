@@ -444,6 +444,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'migrateSearchindex' ],
 
 			// 1.44
+			[ 'addTable', 'file', 'patch-file.sql' ],
 		];
 	}
 
