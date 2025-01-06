@@ -290,7 +290,7 @@
 	"history-title": "$1: Ebyaira by'empindura",
 	"difference-title": "$1: Okubaganizaamu empindura",
 	"lineno": "Omusorongo $1:",
-	"compareselectedversions": "Sisaniza empindura zinu",
+	"compareselectedversions": "Rorraniza empindura zinu",
 	"editundo": "garramu",
 	"diff-empty": "(Embaganiza teroho)",
 	"diff-multi-otherusers": "({{PLURAL:$1|Oruhindura rumu rwa hagati oru|Empindura $1 za hagati ezi}}foirwe {{PLURAL:$2|omukozesa ondi|abakozesa $2}} {{PLURAL:$1|tirwolekirwe|tizolekirwe}})",
