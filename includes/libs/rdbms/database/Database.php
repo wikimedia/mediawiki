@@ -787,8 +787,8 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		// Record an OTEL span for this query.
 		$writeTableName = $sql->getWriteTable();
 		$spanName = $writeTableName ?
-			"{$sql->getVerb()} {$this->getDBname()}.{$writeTableName}" :
-			"{$sql->getVerb()} {$this->getDBname()}";
+			"Database {$sql->getVerb()} {$this->getDBname()}.{$writeTableName}" :
+			"Database {$sql->getVerb()} {$this->getDBname()}";
 		$span = $this->tracer->createSpan( $spanName )
 			->setSpanKind( SpanInterface::SPAN_KIND_CLIENT )
 			->start();
