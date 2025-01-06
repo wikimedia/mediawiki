@@ -29,7 +29,7 @@ services:
       XHPROF_ENABLE: '${XHPROF_ENABLE:-true}'
 
   mediawiki-web:
-    image: docker-registry.wikimedia.org/dev/bookworm-apache2:1.0.0
+    image: docker-registry.wikimedia.org/dev/bookworm-apache2:1.0.1
     user: "${MW_DOCKER_UID}:${MW_DOCKER_GID}"
     ports:
       - "${MW_DOCKER_PORT:-8080}:8080"
