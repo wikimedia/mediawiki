@@ -1776,7 +1776,8 @@ return [
 		return new PoolCounterFactory(
 			$mainConfig->get( MainConfigNames::PoolCounterConf ),
 			$mainConfig->get( MainConfigNames::PoolCountClientConf ),
-			LoggerFactory::getInstance( 'poolcounter' )
+			LoggerFactory::getInstance( 'poolcounter' ),
+			$services->getTracer()
 		);
 	},
 
