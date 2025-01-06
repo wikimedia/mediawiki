@@ -69,7 +69,6 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 
 		session_write_close();
 		ini_set( 'session.use_cookies', 1 );
-		ini_set( 'session.use_trans_sid', 1 );
 
 		$store = new TestBagOStuff();
 		// Tolerate debug message, anything else is unexpected
@@ -86,7 +85,6 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( PHPSessionHandler::isInstalled() );
 
 		$this->assertFalse( wfIniGetBool( 'session.use_cookies' ) );
-		$this->assertFalse( wfIniGetBool( 'session.use_trans_sid' ) );
 
 		$this->assertNotNull( $staticAccess->instance );
 		$priv = TestingAccessWrapper::newFromObject( $staticAccess->instance );
