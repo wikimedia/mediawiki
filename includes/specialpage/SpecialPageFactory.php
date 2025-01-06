@@ -552,6 +552,7 @@ class SpecialPageFactory {
 				'HideUserUtils',
 				'BlockActionInfo',
 				'RowCommentFormatter',
+				'TempUserConfig',
 			],
 		],
 		'AutoblockList' => [

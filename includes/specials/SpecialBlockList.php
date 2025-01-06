@@ -33,8 +33,10 @@ use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Pager\BlockListPager;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\User\TempUser\TempUserConfig;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
@@ -63,6 +65,7 @@ class SpecialBlockList extends SpecialPage {
 	private HideUserUtils $hideUserUtils;
 	private BlockActionInfo $blockActionInfo;
 	private RowCommentFormatter $rowCommentFormatter;
+	private TempUserConfig $tempUserConfig;
 
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
@@ -73,7 +76,8 @@ class SpecialBlockList extends SpecialPage {
 		BlockUtils $blockUtils,
 		HideUserUtils $hideUserUtils,
 		BlockActionInfo $blockActionInfo,
-		RowCommentFormatter $rowCommentFormatter
+		RowCommentFormatter $rowCommentFormatter,
+		TempUserConfig $tempUserConfig
 	) {
 		parent::__construct( 'BlockList' );
 
@@ -86,6 +90,7 @@ class SpecialBlockList extends SpecialPage {
 		$this->hideUserUtils = $hideUserUtils;
 		$this->blockActionInfo = $blockActionInfo;
 		$this->rowCommentFormatter = $rowCommentFormatter;
+		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	/**
@@ -119,6 +124,22 @@ class SpecialBlockList extends SpecialPage {
 		// Setup BlockListPager here to get the actual default Limit
 		$pager = $this->getBlockListPager();
 
+		$blockFilterOptions = [
+			'blocklist-tempblocks' => 'tempblocks',
+			'blocklist-indefblocks' => 'indefblocks',
+			'blocklist-autoblocks' => 'autoblocks',
+			'blocklist-addressblocks' => 'addressblocks',
+			'blocklist-rangeblocks' => 'rangeblocks',
+		];
+
+		if ( $this->tempUserConfig->isKnown() ) {
+			// Clarify that "userblocks" excludes named users only if temporary accounts are known (T380266)
+			$blockFilterOptions['blocklist-nameduserblocks'] = 'userblocks';
+			$blockFilterOptions['blocklist-tempuserblocks'] = 'tempuserblocks';
+		} else {
+			$blockFilterOptions['blocklist-userblocks'] = 'userblocks';
+		}
+
 		// Just show the block list
 		$fields = [
 			'Target' => [
@@ -130,14 +151,7 @@ class SpecialBlockList extends SpecialPage {
 			],
 			'Options' => [
 				'type' => 'multiselect',
-				'options-messages' => [
-					'blocklist-tempblocks' => 'tempblocks',
-					'blocklist-indefblocks' => 'indefblocks',
-					'blocklist-autoblocks' => 'autoblocks',
-					'blocklist-userblocks' => 'userblocks',
-					'blocklist-addressblocks' => 'addressblocks',
-					'blocklist-rangeblocks' => 'rangeblocks',
-				],
+				'options-messages' => $blockFilterOptions,
 				'flatlist' => true,
 			],
 		];
@@ -214,7 +228,17 @@ class SpecialBlockList extends SpecialPage {
 
 		// Apply filters
 		if ( in_array( 'userblocks', $this->options ) ) {
-			$conds['bt_user'] = null;
+			$namedUserConds = $db->expr( 'bt_user', '=', null );
+
+			// If temporary accounts are a known concept on this wiki,
+			// have the "Hide account blocks" filter exclude only named users (T380266).
+			if ( $this->tempUserConfig->isKnown() ) {
+				$namedUserConds = $namedUserConds->orExpr(
+					$this->tempUserConfig->getMatchCondition( $db, 'bt_user_text', IExpression::LIKE )
+				);
+			}
+
+			$conds[] = $namedUserConds;
 		}
 		if ( in_array( 'autoblocks', $this->options ) ) {
 			$conds['bl_parent_block_id'] = null;
@@ -228,6 +252,16 @@ class SpecialBlockList extends SpecialPage {
 			$conds[] = $db->expr( 'bt_user', '!=', null )->or( 'bt_range_start', '!=', null );
 		} elseif ( in_array( 'rangeblocks', $this->options ) ) {
 			$conds['bt_range_start'] = null;
+		}
+
+		if (
+			in_array( 'tempuserblocks', $this->options ) &&
+			$this->tempUserConfig->isKnown()
+		) {
+			$conds[] = $db->expr( 'bt_user', '=', null )
+				->orExpr(
+					$this->tempUserConfig->getMatchCondition( $db, 'bt_user_text', IExpression::NOT_LIKE )
+				);
 		}
 
 		$hideTemp = in_array( 'tempblocks', $this->options );
