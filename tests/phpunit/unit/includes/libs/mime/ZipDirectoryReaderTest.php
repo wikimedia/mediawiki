@@ -6,6 +6,7 @@ use MediaWikiUnitTestCase;
 use Wikimedia\Mime\ZipDirectoryReader;
 
 /**
+ * @group Mime
  * @covers \Wikimedia\Mime\ZipDirectoryReader
  */
 class ZipDirectoryReaderTest extends MediaWikiUnitTestCase {
