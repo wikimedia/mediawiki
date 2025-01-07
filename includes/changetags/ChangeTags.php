@@ -358,7 +358,7 @@ class ChangeTags {
 	 * have registered using the ListDefinedTags hook. When dealing with user
 	 * input, call updateTagsWithChecks() instead.
 	 *
-	 * @deprecated since 1.41 use ChangeTagStore::updateTags(). Hard-deprecated since 1.44.
+	 * @deprecated since 1.41 use ChangeTagsStore::updateTags(). Hard-deprecated since 1.44.
 	 * @param string|array|null $tagsToAdd Tags to add to the change
 	 * @param string|array|null $tagsToRemove Tags to remove from the change
 	 * @param int|null &$rc_id The rc_id of the change to add the tags to.
@@ -393,7 +393,7 @@ class ChangeTags {
 	 * Return all the tags associated with the given recent change ID,
 	 * revision ID, and/or log entry ID, along with any data stored with the tag.
 	 *
-	 * @deprecated since 1.41 use ChangeTagStore::getTagsWithData(). Hard-deprecated since 1.44.
+	 * @deprecated since 1.41 use ChangeTagsStore::getTagsWithData(). Hard-deprecated since 1.44.
 	 * @param IReadableDatabase $db the database to query
 	 * @param int|null $rc_id
 	 * @param int|null $rev_id
@@ -412,7 +412,7 @@ class ChangeTags {
 	 * Return all the tags associated with the given recent change ID,
 	 * revision ID, and/or log entry ID.
 	 *
-	 * @deprecated since 1.41 use ChangeTagStore::getTags(). Hard-deprecated since 1.44.
+	 * @deprecated since 1.41 use ChangeTagsStore::getTags(). Hard-deprecated since 1.44.
 	 * @param IReadableDatabase $db the database to query
 	 * @param int|null $rc_id
 	 * @param int|null $rev_id
@@ -525,11 +525,11 @@ class ChangeTags {
 			}
 		}
 
-		$changeTagStore = MediaWikiServices::getInstance()->getChangeTagsStore();
+		$changeTagsStore = MediaWikiServices::getInstance()->getChangeTagsStore();
 		if ( $tagsToAdd ) {
 			// to be added, a tag has to be explicitly defined
 			// @todo Allow extensions to define tags that can be applied by users...
-			$explicitlyDefinedTags = $changeTagStore->listExplicitlyDefinedTags();
+			$explicitlyDefinedTags = $changeTagsStore->listExplicitlyDefinedTags();
 			$diff = array_diff( $tagsToAdd, $explicitlyDefinedTags );
 			if ( $diff ) {
 				return self::restrictedTagError( 'tags-update-add-not-allowed-one',
@@ -541,7 +541,7 @@ class ChangeTags {
 			// to be removed, a tag must not be defined by an extension, or equivalently it
 			// has to be either explicitly defined or not defined at all
 			// (assuming no edge case of a tag both explicitly-defined and extension-defined)
-			$softwareDefinedTags = $changeTagStore->listSoftwareDefinedTags();
+			$softwareDefinedTags = $changeTagsStore->listSoftwareDefinedTags();
 			$intersect = array_intersect( $tagsToRemove, $softwareDefinedTags );
 			if ( $intersect ) {
 				return self::restrictedTagError( 'tags-update-remove-not-allowed-one',
@@ -611,8 +611,8 @@ class ChangeTags {
 		}
 
 		// do it!
-		$changeTagStore = MediaWikiServices::getInstance()->getChangeTagsStore();
-		[ $tagsAdded, $tagsRemoved, $initialTags ] = $changeTagStore->updateTags( $tagsToAdd,
+		$changeTagsStore = MediaWikiServices::getInstance()->getChangeTagsStore();
+		[ $tagsAdded, $tagsRemoved, $initialTags ] = $changeTagsStore->updateTags( $tagsToAdd,
 			$tagsToRemove, $rc_id, $rev_id, $log_id, $params, null, $performer->getUser() );
 		if ( !$tagsAdded && !$tagsRemoved ) {
 			// no-op, don't log it
@@ -725,7 +725,7 @@ class ChangeTags {
 	/**
 	 * Make the tag summary subquery based on the given tables and return it.
 	 *
-	 * @deprecated since 1.41 use ChangeTagStore instead. Hard-deprecated since 1.44.
+	 * @deprecated since 1.41 use ChangeTagsStore instead. Hard-deprecated since 1.44.
 	 * @param string|array $tables Table names, see Database::select
 	 *
 	 * @return string tag summary subqeury
@@ -760,9 +760,9 @@ class ChangeTags {
 		}
 
 		$config = $context->getConfig();
-		$changeTagStore = MediaWikiServices::getInstance()->getChangeTagsStore();
+		$changeTagsStore = MediaWikiServices::getInstance()->getChangeTagsStore();
 		if ( !$config->get( MainConfigNames::UseTagFilter ) ||
-		!count( $changeTagStore->listDefinedTags() ) ) {
+		!count( $changeTagsStore->listDefinedTags() ) ) {
 			return [];
 		}
 
@@ -856,14 +856,14 @@ class ChangeTags {
 		// defined tags cannot be activated (a defined tag is either extension-
 		// defined, in which case the extension chooses whether or not to active it;
 		// or user-defined, in which case it is considered active)
-		$changeTagStore = MediaWikiServices::getInstance()->getChangeTagsStore();
-		$definedTags = $changeTagStore->listDefinedTags();
+		$changeTagsStore = MediaWikiServices::getInstance()->getChangeTagsStore();
+		$definedTags = $changeTagsStore->listDefinedTags();
 		if ( in_array( $tag, $definedTags ) ) {
 			return Status::newFatal( 'tags-activate-not-allowed', $tag );
 		}
 
 		// non-existing tags cannot be activated
-		if ( !isset( $changeTagStore->tagUsageStatistics()[$tag] ) ) { // we already know the tag is undefined
+		if ( !isset( $changeTagsStore->tagUsageStatistics()[$tag] ) ) { // we already know the tag is undefined
 			return Status::newFatal( 'tags-activate-not-found', $tag );
 		}
 
@@ -896,11 +896,11 @@ class ChangeTags {
 			$result->value = null;
 			return $result;
 		}
-		$changeTagStore = MediaWikiServices::getInstance()->getChangeTagsStore();
+		$changeTagsStore = MediaWikiServices::getInstance()->getChangeTagsStore();
 
-		$changeTagStore->defineTag( $tag );
+		$changeTagsStore->defineTag( $tag );
 
-		$logId = $changeTagStore->logTagManagementAction( 'activate', $tag, $reason, $performer->getUser(),
+		$logId = $changeTagsStore->logTagManagementAction( 'activate', $tag, $reason, $performer->getUser(),
 			null, $logEntryTags );
 
 		return Status::newGood( $logId );
@@ -962,11 +962,11 @@ class ChangeTags {
 			$result->value = null;
 			return $result;
 		}
-		$changeTagStore = MediaWikiServices::getInstance()->getChangeTagsStore();
+		$changeTagsStore = MediaWikiServices::getInstance()->getChangeTagsStore();
 
-		$changeTagStore->undefineTag( $tag );
+		$changeTagsStore->undefineTag( $tag );
 
-		$logId = $changeTagStore->logTagManagementAction( 'deactivate', $tag, $reason,
+		$logId = $changeTagsStore->logTagManagementAction( 'deactivate', $tag, $reason,
 			$performer->getUser(), null, $logEntryTags );
 
 		return Status::newGood( $logId );
@@ -1038,10 +1038,10 @@ class ChangeTags {
 		}
 
 		// does the tag already exist?
-		$changeTagStore = $services->getChangeTagsStore();
+		$changeTagsStore = $services->getChangeTagsStore();
 		if (
-			isset( $changeTagStore->tagUsageStatistics()[$tag] ) ||
-			in_array( $tag, $changeTagStore->listDefinedTags() )
+			isset( $changeTagsStore->tagUsageStatistics()[$tag] ) ||
+			in_array( $tag, $changeTagsStore->listDefinedTags() )
 		) {
 			return Status::newFatal( 'tags-create-already-exists', $tag );
 		}
@@ -1081,9 +1081,9 @@ class ChangeTags {
 			return $result;
 		}
 
-		$changeTagStore = MediaWikiServices::getInstance()->getChangeTagsStore();
-		$changeTagStore->defineTag( $tag );
-		$logId = $changeTagStore->logTagManagementAction( 'create', $tag, $reason,
+		$changeTagsStore = MediaWikiServices::getInstance()->getChangeTagsStore();
+		$changeTagsStore->defineTag( $tag );
+		$logId = $changeTagsStore->logTagManagementAction( 'create', $tag, $reason,
 			$performer->getUser(), null, $logEntryTags );
 
 		return Status::newGood( $logId );
@@ -1136,11 +1136,11 @@ class ChangeTags {
 			$user = $services->getUserFactory()->newFromAuthority( $performer );
 		}
 
-		$changeTagStore = $services->getChangeTagsStore();
-		$tagUsage = $changeTagStore->tagUsageStatistics();
+		$changeTagsStore = $services->getChangeTagsStore();
+		$tagUsage = $changeTagsStore->tagUsageStatistics();
 		if (
 			!isset( $tagUsage[$tag] ) &&
-			!in_array( $tag, $changeTagStore->listDefinedTags() )
+			!in_array( $tag, $changeTagsStore->listDefinedTags() )
 		) {
 			return Status::newFatal( 'tags-delete-not-found', $tag );
 		}
@@ -1152,7 +1152,7 @@ class ChangeTags {
 			return Status::newFatal( 'tags-delete-too-many-uses', $tag, self::MAX_DELETE_USES );
 		}
 
-		$softwareDefined = $changeTagStore->listSoftwareDefinedTags();
+		$softwareDefined = $changeTagsStore->listSoftwareDefinedTags();
 		if ( in_array( $tag, $softwareDefined ) ) {
 			// extension-defined tags can't be deleted unless the extension
 			// specifically allows it
@@ -1186,7 +1186,7 @@ class ChangeTags {
 	public static function deleteTagWithChecks( string $tag, string $reason, Authority $performer,
 		bool $ignoreWarnings = false, array $logEntryTags = []
 	) {
-		$changeTagStore = MediaWikiServices::getInstance()->getChangeTagsStore();
+		$changeTagsStore = MediaWikiServices::getInstance()->getChangeTagsStore();
 		// are we allowed to do this?
 		$result = self::canDeleteTag( $tag, $performer );
 		if ( $ignoreWarnings ? !$result->isOK() : !$result->isGood() ) {
@@ -1195,17 +1195,17 @@ class ChangeTags {
 		}
 
 		// store the tag usage statistics
-		$hitcount = $changeTagStore->tagUsageStatistics()[$tag] ?? 0;
+		$hitcount = $changeTagsStore->tagUsageStatistics()[$tag] ?? 0;
 
 		// do it!
-		$deleteResult = $changeTagStore->deleteTagEverywhere( $tag );
+		$deleteResult = $changeTagsStore->deleteTagEverywhere( $tag );
 		if ( !$deleteResult->isOK() ) {
 			return $deleteResult;
 		}
 
 		// log it
-		$changeTagStore = MediaWikiServices::getInstance()->getChangeTagsStore();
-		$logId = $changeTagStore->logTagManagementAction( 'delete', $tag, $reason, $performer->getUser(),
+		$changeTagsStore = MediaWikiServices::getInstance()->getChangeTagsStore();
+		$logId = $changeTagsStore->logTagManagementAction( 'delete', $tag, $reason, $performer->getUser(),
 			$hitcount, $logEntryTags );
 
 		$deleteResult->value = $logId;
@@ -1330,20 +1330,20 @@ class ChangeTags {
 		bool $activeOnly = self::TAG_SET_ACTIVE_ONLY,
 		bool $useAllTags = self::USE_ALL_TAGS
 	) {
-		$changeTagStore = MediaWikiServices::getInstance()->getChangeTagsStore();
+		$changeTagsStore = MediaWikiServices::getInstance()->getChangeTagsStore();
 
 		if ( $useAllTags ) {
-			$tagKeys = $changeTagStore->listDefinedTags();
+			$tagKeys = $changeTagsStore->listDefinedTags();
 			$cacheKey = 'tags-list-summary';
 		} else {
-			$tagKeys = $changeTagStore->getCoreDefinedTags();
+			$tagKeys = $changeTagsStore->getCoreDefinedTags();
 			$cacheKey = 'core-software-tags-summary';
 		}
 
 		// if $tagHitCounts exists, check against it later to determine whether or not to omit tags
 		$tagHitCounts = null;
 		if ( $activeOnly ) {
-			$tagHitCounts = $changeTagStore->tagUsageStatistics();
+			$tagHitCounts = $changeTagsStore->tagUsageStatistics();
 		} else {
 			// The full set of tags should use a different cache key than the subset
 			$cacheKey .= '-all';
@@ -1445,7 +1445,7 @@ class ChangeTags {
 	 * @return bool
 	 */
 	public static function showTagEditingUI( Authority $performer ) {
-		$changeTagStore = MediaWikiServices::getInstance()->getChangeTagsStore();
-		return $performer->isAllowed( 'changetags' ) && (bool)$changeTagStore->listExplicitlyDefinedTags();
+		$changeTagsStore = MediaWikiServices::getInstance()->getChangeTagsStore();
+		return $performer->isAllowed( 'changetags' ) && (bool)$changeTagsStore->listExplicitlyDefinedTags();
 	}
 }

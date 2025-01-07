@@ -56,7 +56,7 @@ class PageRestHelperFactory {
 	private LanguageConverterFactory $languageConverterFactory;
 	private TitleFactory $titleFactory;
 	private IConnectionProvider $dbProvider;
-	private ChangeTagsStore $changeTagStore;
+	private ChangeTagsStore $changeTagsStore;
 	private StatsFactory $statsFactory;
 
 	public function __construct(
@@ -76,7 +76,7 @@ class PageRestHelperFactory {
 		LanguageConverterFactory $languageConverterFactory,
 		TitleFactory $titleFactory,
 		IConnectionProvider $dbProvider,
-		ChangeTagsStore $changeTagStore,
+		ChangeTagsStore $changeTagsStore,
 		StatsFactory $statsFactory
 	) {
 		$this->options = $options;
@@ -96,7 +96,7 @@ class PageRestHelperFactory {
 		$this->statsFactory = $statsFactory;
 		$this->titleFactory = $titleFactory;
 		$this->dbProvider = $dbProvider;
-		$this->changeTagStore = $changeTagStore;
+		$this->changeTagsStore = $changeTagsStore;
 	}
 
 	public function newRevisionContentHelper(): RevisionContentHelper {
@@ -107,7 +107,7 @@ class PageRestHelperFactory {
 			$this->pageLookup,
 			$this->titleFactory,
 			$this->dbProvider,
-			$this->changeTagStore
+			$this->changeTagsStore
 		);
 	}
 
@@ -119,7 +119,7 @@ class PageRestHelperFactory {
 			$this->pageLookup,
 			$this->titleFactory,
 			$this->dbProvider,
-			$this->changeTagStore
+			$this->changeTagsStore
 		);
 	}
 
