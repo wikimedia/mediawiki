@@ -545,8 +545,8 @@ supported.
   speed up general code loading of MediaWiki. The old global namespace class
   names are being left behind as deprecated aliases.
 
-  In this release of MediaWiki, XYZ classes now have a namespace and XYZ do
-  not yet (XYZ% done, up from 69% in MediaWiki 1.42.0). The following have newly
+  In this release of MediaWiki, 2236 classes now have a namespace and 509 do
+  not yet (81% done, up from 69% in MediaWiki 1.42.0). The following have newly
   been moved:
   - MediaWiki\Api:
     - ApiAMCreateAccount
