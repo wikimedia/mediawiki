@@ -2772,6 +2772,8 @@
 	"blocklink": "block",
 	"unblocklink": "unblock",
 	"change-blocklink": "change block",
+	"remove-blocklink": "remove block",
+	"manage-blocklink": "manage blocks",
 	"empty-username": "(no username available)",
 	"blocklist-hidden-placeholder": "(username hidden)",
 	"blocklist-hidden-param": "username hidden",
