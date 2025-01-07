@@ -1,3 +1,68 @@
+# 1.19.1 / 2025-01-07
+Dummy release to fix a publishing problem with 1.19.0.
+
+# 1.19.0 / 2025-01-07
+
+## Styles
+- MenuItem: fix selected destructive icon color (Derek Torsani)
+- component: Fix icon colors in MenuItem (Derek Torsani)
+
+## Code
+- InputChip: Disable the delete button in read-only mode (Roan Kattouw)
+- nvmrc: Update to Node 20 (Volker E.)
+- build: Update 'browserslist-db' to 1.0.30001687 (Volker E.)
+- build: Update 'prismjs' and '@types/prismjs' packages to latest (Volker E.)
+- build: Update 'postcss' and plugins to latest (Volker E.)
+- build: Update 'less', 'rtlcss' and 'autoprefixer' dependencies (Volker E.)
+- build: Update 'glob' to latest (Volker E.)
+- build: update 'npm-watch' to latest (Volker E.)
+- build: Update 'netlify-cli' to v17.38.0 (Volker E.)
+- build: Update 'change-case' to latest (Volker E.)
+- build: update Node and npm respectively to CI (Volker E.)
+- build: Raise target to ES2016 and make use of `includes()` (Volker E.)
+- build: Fix build-if-missing command in the codex package (Roan Kattouw)
+- build: Update ESLint config for ES2016 build target (Roan Kattouw)
+- build: Update 'stylelint-config-wikimedia' and plugins to latest (Volker E.)
+- tests: Add a test for expandDeprecationMessage (Roan Kattouw)
+- build: Update Vue to 3.4.28 (Roan Kattouw)
+- build: Update TypeScript to 5.7.2 (Roan Kattouw)
+- build: Make updating codex-icons dependency work again (Roan Kattouw)
+- build: Update 'postcss-rtlcss' to 5.6.0 (Volker E.)
+- build: Update 'concurrently' to 9.1.0 (Volker E.)
+- build: Update further '@types' packages (Volker E.)
+- build: Update 'netlify-cli' to 17.38.1 (Volker E.)
+- build: Update 'vue-docgen-cli' to 4.79.0 (Volker E.)
+- build: Update 'concurrently' to 9.1.2 (Volker E.)
+- build: Update '@rollup/plugin-typescript' to 12.1.2 (Volker E.)
+- build: Update `@typescript-eslint` plugins to 8.19.0 (Volker E.)
+- build: Use new @import directive in jsdoc comments (Roan Kattouw)
+
+## Docs
+- docs: Update component page styles to prepare for simplification (Anne Tomasevich)
+- docs: Simplify Checkbox, Radio, and ToggleSwitch pages (Derek Torsani)
+- docs: Simplify Combobox, SearchInput, Select, and TypeaheadSearch (Anne Tomasevich)
+- docs: Simplify Button, ButtonGroup, Link, ToggleButton, and ToggleButtonGroup pages (Derek Torsani)
+- docs: Simplify Tooltip, Tab, and Tabs pages (Derek Torsani)
+- docs: Simplify Accordion, Card, InfoChip, Message, and ProgressBar pages (Derek Torsani)
+- docs: Simplify Icon, Image, and Thumbnail pages (Derek Torsani)
+- docs: Simplify Dialog and Table demo pages (Anne Tomasevich)
+- docs: Simplify Menu, MenuItem, and MenuButton pages (Anne Tomasevich)
+- docs: Simplify Field, Label, Lookup, and MultiselectLookup pages (Anne Tomasevich)
+- docs: Simplify demo pages for TextInput, TextArea, and ChipInput (Anne Tomasevich)
+- docs: Update Button, ToggleButton, and group demos (Anne Tomasevich)
+- docs: Delete removed component page images (Anne Tomasevich)
+- docs: Update and standardize anchor links (Anne Tomasevich)
+- docs: Add changes to MenuItem page back in (Anne Tomasevich)
+- docs: Remove references to deleted demo files (Anne Tomasevich)
+- docs: Remove remaining demo text (Anne Tomasevich)
+- docs: Enable local search (Anne Tomasevich)
+- docs: Update ADR page titles to be clearer (Volker E.)
+- docs, images: remove metadata from embedded images (Volker E.)
+
+## Icons
+- icons: Minor SVG optimization of 'logo-Wikiquote' (Volker E.)
+- icons: Rename to 'fullscreen' and deprecate cdxIconFullScreen (Volker E.)
+
 # 1.18.0 / 2024-12-10
 
 ## Features

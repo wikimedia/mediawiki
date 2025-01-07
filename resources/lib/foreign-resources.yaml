@@ -125,11 +125,11 @@ codex:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
   authors: Design System team, Wikimedia Foundation
-  version: 1.18.0
-  purl: pkg:npm/@wikimedia/codex@1.18.0
+  version: 1.19.1
+  purl: pkg:npm/@wikimedia/codex@1.19.1
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-1.18.0.tgz
-  integrity: sha384-hIHDvtu2GpT8nbSfSNIqTUcK6NLFX1bebg7YmNfY4/AfRihR+DpEDD7TEqAXDs+j
+  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-1.19.1.tgz
+  integrity: sha384-6yLpxCV4GDXL0AlBLwn0I/tx8kxnxeXhdnBR4Q0h/IaQHEZoc6keOoAnqw8A4+Ua
   dest:
     package/dist/codex.cjs:
     package/dist/codex.js:
@@ -146,11 +146,11 @@ codex-design-tokens:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
   authors: Design System team, Wikimedia Foundation
-  version: 1.18.0
-  purl: pkg:npm/@wikimedia/codex-design-tokens@1.18.0
+  version: 1.19.1
+  purl: pkg:npm/@wikimedia/codex-design-tokens@1.19.1
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-1.18.0.tgz
-  integrity: sha384-/9LDUY4xMAkV9y6BXZIHXvQ4Eip29u362ilrcIgLT0qy/UUVxQmuP1YBxCbEuuyH
+  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-1.19.1.tgz
+  integrity: sha384-NU96WVzT6PGalUAJNOCCA8+D7n50avU3Ym84BzA2TCOfOybQ6Q92TMoiNMtSbV28
   dest:
     package/dist/theme-*.less:
     package/dist/theme-wikimedia-ui-root.css:
@@ -162,11 +162,11 @@ codex-icons:
   license: MIT
   homepage: https://doc.wikimedia.org/codex/
   authors: Design System team, Wikimedia Foundation
-  version: 1.18.0
-  purl: pkg:npm/@wikimedia/codex-icons@1.18.0
+  version: 1.19.1
+  purl: pkg:npm/@wikimedia/codex-icons@1.19.1
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-1.18.0.tgz
-  integrity: sha384-vQcpR6Uudxf1pJD7kkAuFkZy79hAi1d+HkP6VUofRm9np6WBoiMmda1tWtcX/DNU
+  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-1.19.1.tgz
+  integrity: sha384-GF9StKOwxbngBbd7ITlAORYd+CIhGd/Ul8c0yTu4BUXm57qdOIcogUqeErCCusnF
   dest:
     package/dist/codex-icons.json:
     package/dist/codex-icon-paths.less:
@@ -474,11 +474,11 @@ vue:
   license: MIT
   homepage: https://vuejs.org/
   authors: Yuxi (Evan) You
-  version: 3.4.27
-  purl: pkg:npm/vue@3.4.27
+  version: 3.4.28
+  purl: pkg:npm/vue@3.4.28
   type: tar
-  src: https://registry.npmjs.org/vue/-/vue-3.4.27.tgz
-  integrity: sha384-NI/upbRDNmqZCbvCtpncGt32Iw2gOsS6j/l3D4wSfz9IVnSXqLhO5mHLbVblRHet
+  src: https://registry.npmjs.org/vue/-/vue-3.4.28.tgz
+  integrity: sha384-DpV4I2AzFcTINM573xahzqvAKkdQW3pTvc5/57zMIBSmkFJ2s7rBjgwOavpXYi6k
   dest:
     package/README.md:
     package/LICENSE:
