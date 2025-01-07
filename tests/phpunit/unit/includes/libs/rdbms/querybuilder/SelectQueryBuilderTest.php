@@ -132,7 +132,7 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 			->table( 't' )
 			->field( 'f' )
 			->field( 'f' );
-		$this->assertSQL( 'SELECT f,f FROM t' );
+		$this->assertSQL( 'SELECT f FROM t' );
 	}
 
 	public function testFieldsRepeatingAlias() {
@@ -144,11 +144,11 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testFieldsConflictingAlias() {
+		$this->expectException( LogicException::class );
 		$this->sqb
 			->table( 't' )
 			->field( 'x', 'f' )
 			->field( 'y', 'f' );
-		$this->assertSQL( 'SELECT y AS f FROM t' );
 	}
 
 	public function testRawTables() {
