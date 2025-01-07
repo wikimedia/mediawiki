@@ -124,9 +124,12 @@ class TracerStateTest extends MediaWikiUnitTestCase {
 		$rootSpan = $this->createMock( SpanInterface::class );
 		$rootSpan->expects( $this->once() )
 			->method( 'end' );
+		$rootSpan->expects( $this->once() )
+			->method( 'setSpanStatus' )
+			->with( SpanInterface::SPAN_STATUS_ERROR );
 
 		$this->tracerState->setRootSpan( $rootSpan );
-		$this->tracerState->endRootSpan();
+		$this->tracerState->endRootSpan( SpanInterface::SPAN_STATUS_ERROR );
 	}
 
 	public function testCannotSetRootSpanAgain(): void {
