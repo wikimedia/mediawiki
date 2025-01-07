@@ -49,11 +49,12 @@ abstract class BundleSizeTestBase extends MediaWikiIntegrationTestCase {
 	 * @coversNothing
 	 */
 	public function testBundleSize( $testCase ) {
-		$maxSize = $testCase['maxSize'];
+		$maxSize = $testCase['maxSize'] ?? null;
 		$projectName = $testCase['projectName'] ?? '';
 		$moduleName = $testCase['resourceModule'];
 		if ( $maxSize === null ) {
 			$this->markTestSkipped( "The module $moduleName has opted out of bundle size testing." );
+			return;
 		}
 		if ( is_string( $maxSize ) ) {
 			if ( str_contains( $maxSize, 'KB' ) || str_contains( $maxSize, 'kB' ) ) {
