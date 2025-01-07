@@ -814,8 +814,10 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 
 		if ( $status->res !== false ) {
 			$this->lastPing = $endTime;
+			$span->setSpanStatus( SpanInterface::SPAN_STATUS_OK );
 		} else {
-			$span->setAttributes( [
+			$span->setSpanStatus( SpanInterface::SPAN_STATUS_ERROR )
+				->setAttributes( [
 				'db.response.status_code' => $status->code,
 				'exception.message' => $status->message,
 			] );
