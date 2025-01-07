@@ -308,6 +308,10 @@ module.exports = exports = defineComponent( {
 	table ul {
 		margin: 0;
 	}
+
+	.cdx-accordion__content {
+		font-size: unset;
+	}
 }
 
 .mw-block-log-fulllog {
