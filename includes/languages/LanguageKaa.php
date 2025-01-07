@@ -45,25 +45,25 @@ class LanguageKaa extends Language {
 	}
 
 	/**
-	 * Fixes an issue with ucfirst for transforming 'i' to 'İ'
+	 * Fixes an issue with ucfirst for transforming 'ı' to 'Í'
 	 *
 	 * @inheritDoc
 	 */
 	public function ucfirst( $str ) {
-		if ( substr( $str, 0, 1 ) === 'i' ) {
-			return 'İ' . substr( $str, 1 );
+		if ( str_starts_with( $str, 'ı' ) ) {
+			return 'Í' . mb_substr( $str, 1 );
 		}
 		return parent::ucfirst( $str );
 	}
 
 	/**
-	 * Fixes an issue with lcfirst for transforming 'I' to 'ı'
+	 * Fixes an issue with lcfirst for transforming 'Í' to 'ı'
 	 *
 	 * @inheritDoc
 	 */
 	public function lcfirst( $str ) {
-		if ( substr( $str, 0, 1 ) === 'I' ) {
-			return 'ı' . substr( $str, 1 );
+		if ( str_starts_with( $str, 'Í' ) ) {
+			return 'ı' . mb_substr( $str, 1 );
 		}
 		return parent::lcfirst( $str );
 	}
