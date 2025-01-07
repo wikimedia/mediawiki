@@ -53,6 +53,12 @@ class Span implements SpanInterface {
 	}
 
 	/** @inheritDoc */
+	public function setSpanStatus( int $status ): SpanInterface {
+		$this->context->setSpanStatus( $status );
+		return $this;
+	}
+
+	/** @inheritDoc */
 	public function start( ?int $epochNanos = null ): SpanInterface {
 		Assert::precondition(
 			!$this->context->wasStarted(),

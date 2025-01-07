@@ -56,6 +56,13 @@ class SpanContext implements JsonSerializable {
 	private int $spanKind = SpanInterface::SPAN_KIND_INTERNAL;
 
 	/**
+	 * The success or failure of this span.
+	 * @see Span::setSpanStatus()
+	 * @var int
+	 */
+	private int $spanStatus = SpanInterface::SPAN_STATUS_UNSET;
+
+	/**
 	 * UNIX epoch timestamp in nanoseconds at which this span was started,
 	 * or `null` if this span was not started yet.
 	 * @var int|null
@@ -123,6 +130,10 @@ class SpanContext implements JsonSerializable {
 		$this->spanKind = $spanKind;
 	}
 
+	public function setSpanStatus( int $status ): void {
+		$this->spanStatus = $status;
+	}
+
 	public function setAttributes( array $attributes ): void {
 		$this->attributes = array_merge( $this->attributes, $attributes );
 	}
@@ -161,6 +172,10 @@ class SpanContext implements JsonSerializable {
 			'endTimeUnixNano' => $this->endEpochNanos,
 			'kind' => $this->spanKind
 		];
+
+		if ( $this->spanStatus !== SpanInterface::SPAN_STATUS_UNSET ) {
+			$json['status'] = [ 'code' => $this->spanStatus ];
+		}
 
 		if ( $this->attributes ) {
 			$json['attributes'] = OtlpSerializer::serializeKeyValuePairs( $this->attributes );

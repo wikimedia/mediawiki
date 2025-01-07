@@ -45,6 +45,9 @@
 							"parentSpanId": null,
 							"spanId": "<SPAN-1-ID>",
 							"name": "test",
+							"status": {
+								"code": 2
+							},
 							"startTimeUnixNano": 5481675965496,
 							"endTimeUnixNano": 5481675965920,
 							"kind": 2

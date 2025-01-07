@@ -35,6 +35,11 @@ class NoopSpan implements SpanInterface {
 	}
 
 	/** @inheritDoc */
+	public function setSpanStatus( int $status ): SpanInterface {
+		return $this;
+	}
+
+	/** @inheritDoc */
 	public function start( ?int $epochNanos = null ): SpanInterface {
 		return $this;
 	}

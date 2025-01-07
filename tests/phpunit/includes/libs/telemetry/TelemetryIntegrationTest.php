@@ -139,6 +139,7 @@ class TelemetryIntegrationTest extends MediaWikiIntegrationTestCase {
 		$mockTime += 74;
 		Clock::setMockTime( $mockTime );
 
+		$span->setSpanStatus( SpanInterface::SPAN_STATUS_ERROR );
 		$span->end();
 
 		$this->assertNull(
