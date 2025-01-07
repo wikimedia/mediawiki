@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"GuoPC",
 			"Lakejason0",
 			"LittlePaw365",
 			"Winston Sung",
@@ -29,5 +30,6 @@
 	"cdx-table-pagination-status-message-indeterminate-long": "显示$1至$2的多个结果",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1至$2的多个结果",
 	"cdx-table-pagination-status-message-indeterminate-final": "显示最后{{PLURAL:$1|$1}}个结果",
-	"cdx-table-pagination-status-message-pending": "正在加载结果……"
+	"cdx-table-pagination-status-message-pending": "正在加载结果……",
+	"cdx-table-no-data-message": "无可用数据。"
 }

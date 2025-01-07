@@ -24,7 +24,7 @@
 	"prefs-help-prefershttps": "Diese Einstellung wird bei Ihrer nächsten Anmeldung wirksam.",
 	"gender-unknown": "Wenn Sie erwähnt werden, verwendet die Software nach Möglichkeit geschlechtsneutrale Wörter",
 	"prefs-help-gender": "Dies ist eine freiwillige Angabe.\nDie Software nutzt sie, um Sie anzureden sowie als Hinweis für andere durch Verwendung des zutreffenden grammatikalischen Geschlechts.\nDiese Information ist öffentlich.",
-	"tog-oldsig": "Ihre genutzte Signatur",
+	"tog-oldsig": "Die genutzte Signatur:",
 	"tog-fancysig": "Signatur als Wikitext behandeln (ohne automatische Verlinkung zu Ihrer Benutzerseite)",
 	"prefs-signature-invalid-warning": "Ihre Unterschrift kann bei einigen Tools Probleme verursachen.",
 	"prefs-signature-invalid-new": "Ihre aktuelle Unterschrift ist ungültig. Sie können sie zwar noch verwenden, aber nicht mehr ändern, bis Sie sie korrigiert haben.",

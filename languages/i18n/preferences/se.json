@@ -33,7 +33,7 @@
 	"yourrealname": "Rievttes namma:",
 	"prefs-help-realname": "Albma namma lea eaktodáhtolaš.\nJus almmuhat, de lea vejolaš iežat namain rámidit iežat buvttademiid.",
 	"yourpassword": "Beassansátni:",
-	"prefs-resetpass": "Rievdat beassansáni",
+	"prefs-resetpass": "Molsso beassansáni",
 	"passwordtooshort": "Beassansániin ferte leat unnimusat {{PLURAL:$1|1 čállinmearka|$1 čállinmearkka}}",
 	"passwordtoolong": "Beassansániin ferte leat eanemusat {{PLURAL:$1|1 čállinmearka|$1 čállinmearkka}}.",
 	"password-substring-username-match": "Du geavaheaddjinamas ii sáhte gávdnot du beassansátni.",
