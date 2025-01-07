@@ -2640,7 +2640,9 @@ return [
 		MediaWikiServices $services
 	): ConditionalDefaultsLookup {
 		$extraConditions = [];
-		$services->getHookContainer()->run( 'ConditionalDefaultOptionsAddCondition', [ &$extraConditions ] );
+		( new HookRunner( $services->getHookContainer() ) )->onConditionalDefaultOptionsAddCondition(
+			$extraConditions
+		);
 		return new ConditionalDefaultsLookup(
 			new ServiceOptions(
 				ConditionalDefaultsLookup::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
