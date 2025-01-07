@@ -55,6 +55,7 @@ use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\StatsFactory;
+use Wikimedia\Telemetry\SpanInterface;
 use Wikimedia\Telemetry\TracerState;
 
 /**
@@ -689,7 +690,11 @@ abstract class MediaWikiEntryPoint {
 		$lbFactory->shutdown( $lbFactory::SHUTDOWN_NO_CHRONPROT );
 
 		// End the root span of this request or process and export trace data.
-		TracerState::getInstance()->endRootSpan();
+		$isServerError = $this->getStatusCode() >= 500 && $this->getStatusCode() < 600;
+		// This is too generic a place to determine if the request was truly successful.
+		// Err on the side of unset.
+		$spanStatus = $isServerError ? SpanInterface::SPAN_STATUS_ERROR : SpanInterface::SPAN_STATUS_UNSET;
+		TracerState::getInstance()->endRootSpan( $spanStatus );
 		$this->mediaWikiServices->getTracer()->shutdown();
 
 		wfDebug( "Request ended normally" );

@@ -134,10 +134,15 @@ class TracerState {
 
 	/**
 	 * End the root span associated with the current request or process.
+	 *
 	 * @since 1.44
+	 * @param int $spanStatus The status of the root span. One of the SpanInterface::SPAN_STATUS_** constants.
 	 */
-	public function endRootSpan(): void {
+	public function endRootSpan( int $spanStatus = SpanInterface::SPAN_STATUS_UNSET ): void {
 		if ( $this->rootSpan !== null ) {
+			if ( $spanStatus !== SpanInterface::SPAN_STATUS_UNSET ) {
+				$this->rootSpan->setSpanStatus( $spanStatus );
+			}
 			$this->rootSpan->end();
 		}
 	}
