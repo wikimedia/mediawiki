@@ -45,12 +45,14 @@ class NoopSpan implements SpanInterface {
 	}
 
 	/** @inheritDoc */
-	public function activate(): void {
+	public function activate(): SpanInterface {
 		$this->tracerState->activateSpan( $this->context );
+		return $this;
 	}
 
 	/** @inheritDoc */
-	public function deactivate(): void {
+	public function deactivate(): SpanInterface {
 		$this->tracerState->deactivateSpan( $this->context );
+		return $this;
 	}
 }

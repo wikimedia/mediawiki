@@ -85,13 +85,13 @@ interface SpanInterface {
 	 * This will cause any spans started without specifying an explicit parent to automatically
 	 * become children of this span as long as it remains active.
 	 *
-	 * @return void
+	 * @return SpanInterface fluent interface
 	 */
-	public function activate(): void;
+	public function activate(): SpanInterface;
 
 	/**
 	 * Deactivate this span.
-	 * @return void
+	 * @return SpanInterface fluent interface
 	 */
-	public function deactivate(): void;
+	public function deactivate(): SpanInterface;
 }

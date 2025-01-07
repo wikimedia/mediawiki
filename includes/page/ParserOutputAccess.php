@@ -667,7 +667,6 @@ class ParserOutputAccess {
 				] );
 			}
 		}
-		$span->start()->activate();
-		return $span;
+		return $span->start()->activate();
 	}
 }
