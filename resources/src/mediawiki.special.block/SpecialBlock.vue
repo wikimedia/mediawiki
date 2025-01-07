@@ -3,6 +3,13 @@
 	<cdx-message v-if="enableMultiblocks" allow-user-dismiss>
 		{{ $i18n( 'block-multiblocks-new-feature' ) }}
 	</cdx-message>
+	<!-- @todo Remove some time after deprecation -->
+	<cdx-message
+		v-if="wasRedirected"
+		allow-user-dismiss
+	>
+		{{ $i18n( 'block-unblock-redirected' ) }}
+	</cdx-message>
 	<cdx-field
 		class="mw-block-fieldset"
 		:is-fieldset="true"
@@ -176,6 +183,11 @@ module.exports = exports = defineComponent( {
 		const showBlockLogs = computed( () => store.targetUser || store.blockId );
 		const showBlockForm = computed( () => formVisible.value || blockId.value );
 		const removalConfirmationOpen = ref( false );
+
+		// TODO: Remove some time after deprecation
+		// T382539: Check if we've been redirected from Special:Unblock
+		const wasRedirected = mw.util.getParamValue( 'redirected' );
+
 		let initialLoad = true;
 
 		if ( blockId.value ) {
@@ -362,7 +374,8 @@ module.exports = exports = defineComponent( {
 			onRemoveBlock,
 			doRemoveBlock,
 			showBlockLogs,
-			showBlockForm
+			showBlockForm,
+			wasRedirected
 		};
 	}
 } );

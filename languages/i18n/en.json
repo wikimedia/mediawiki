@@ -2716,6 +2716,7 @@
 	"block-pages-placeholder": "Add more pages...",
 	"block-namespaces-placeholder": "Add more namespaces...",
 	"block-update": "Update block",
+	"block-unblock-redirected": "You were redirected from Special:Unblock to Special:Block, where administrators can create, edit, and remove blocks for any given target.",
 	"block-invalid-id": "Invalid block ID",
 	"block-removal-title": "Confirm block removal",
 	"block-removal-reason-placeholder": "Type a reason",

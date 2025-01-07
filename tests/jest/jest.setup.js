@@ -76,7 +76,8 @@ const mw = {
 	util: {
 		getUrl: jest.fn( ( pageName ) => '/wiki/' + pageName ),
 		isIPAddress: jest.fn(),
-		isInfinity: jest.fn()
+		isInfinity: jest.fn(),
+		getParamValue: jest.fn().mockReturnValue( null )
 	},
 	Rest: RestMock
 	// Add more mw properties as needed…

@@ -2980,6 +2980,7 @@
 	"block-pages-placeholder": "Placeholder text for the input specifying the pages the user is blocked from editing on [[Special:Block]]",
 	"block-namespaces-placeholder": "Placeholder text for the input specifying the namespaces the user is blocked from editing on [[Special:Block]]",
 	"block-update": "Button label for the button with which to update a block on [[Special:Block]]",
+	"block-unblock-redirected": "Notice to show to user when they are redirected to [[Special:Block]] from [[Special:Unblock]]",
 	"block-invalid-id": "Label for an error message shown when an invalid block ID is provided on [[Special:Block]]",
 	"block-removal-title": "Confirm block removal",
 	"block-removal-reason-placeholder": "Type a reason",

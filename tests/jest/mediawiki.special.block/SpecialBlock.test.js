@@ -145,8 +145,4 @@ describe( 'SpecialBlock', () => {
 	afterEach( () => {
 		wrapper.unmount();
 	} );
-
-	beforeEach( () => {
-		mw.util.getParamValue = jest.fn().mockReturnValue( null );
-	} );
 } );

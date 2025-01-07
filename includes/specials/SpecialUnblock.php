@@ -27,6 +27,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
@@ -60,6 +61,9 @@ class SpecialUnblock extends SpecialPage {
 	private UserNamePrefixSearch $userNamePrefixSearch;
 	private WatchlistManager $watchlistManager;
 
+	/** @var bool */
+	protected bool $useCodex = false;
+
 	/**
 	 * @param UnblockUserFactory $unblockUserFactory
 	 * @param BlockUtils $blockUtils
@@ -83,6 +87,8 @@ class SpecialUnblock extends SpecialPage {
 		$this->userNameUtils = $userNameUtils;
 		$this->userNamePrefixSearch = $userNamePrefixSearch;
 		$this->watchlistManager = $watchlistManager;
+		$this->useCodex = $this->getConfig()->get( MainConfigNames::UseCodexSpecialBlock ) ||
+			$this->getRequest()->getBool( 'usecodex' );
 	}
 
 	public function doesWrites() {
@@ -94,6 +100,20 @@ class SpecialUnblock extends SpecialPage {
 		$this->checkReadOnly();
 
 		[ $this->target, $this->type ] = $this->getTargetAndType( $par, $this->getRequest() );
+
+		// T382539
+		if ( $this->useCodex ) {
+			// If target is null, redirect to Special:Block
+			if ( $this->target === null ) {
+				// Use 301 (Moved Permanently) as this is a deprecation
+				$this->getOutput()->redirect(
+					SpecialPage::getTitleFor( 'Block' )->getFullURL( 'redirected=1' ),
+					'301'
+				);
+				return;
+			}
+		}
+
 		$this->block = $this->blockStore->newFromTarget( $this->target );
 		if ( $this->target instanceof UserIdentity ) {
 			// Set the 'relevant user' in the skin, so it displays links like Contributions,
