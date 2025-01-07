@@ -2486,7 +2486,7 @@
 	"sp-contributions-uploads": "opplastinger",
 	"sp-contributions-logs": "logger",
 	"sp-contributions-talk": "diskusjon",
-	"sp-contributions-userrights": "{{GENDER:$1|bruker&shy;rettighets&shy;kontroll}}",
+	"sp-contributions-userrights": "{{GENDER:$1|bruker&shy;rettighets&shy;behandling}}",
 	"sp-contributions-blocked-notice": "Denne {{GENDER:$1|brukeren}} er for tiden blokkert.\nSiste blokkeringsloggelement kan sees nedenfor.",
 	"sp-contributions-blocked-notice-partial": "Denne {{GENDER:$1|brukeren}} er for tiden delvis blokkert.\nDen siste blokkeringsloggoppføringen vises nedenfor som referanse:",
 	"sp-contributions-blocked-notice-anon": "Denne IP-adressen er for tiden blokkert.\nDen siste oppføringen i blokkeringsloggen er vist nedenfor som referanse:",

@@ -25,7 +25,8 @@
 			"أَحمد",
 			"ديفيد",
 			"علاء",
-			"محمد أحمد عبد الفتاح"
+			"محمد أحمد عبد الفتاح",
+			"Cigaryno"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|التوثيق]]\n* [[mw:Special:MyLanguage/API:Etiquette|الآداب وإرشادات الاستخدام]]\n* [[mw:Special:MyLanguage/API:FAQ|الأسئلة الأكثر تكرارا]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ القائمة البريدية]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ إعلانات API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R الأخطاء والطلبات]\n</div>\n<strong>الحالة:</strong> API ميدياويكي هي واجهة ناضجة ومستقرة يتم دعمها وتحسينها بشكل نشط، في حين أننا نحاول تجنب ذلك، قد نحتاج في بعض الأحيان إلى إجراء تغييرات في التكسير، اشترك في [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ القائمة البريدية لإعلان API ميدياويكي] لإشعارات التحديثات.\n\n<strong>الطلبات الخاطئة:</strong>عندما يتم إرسال طلبات خاطئة إلى API، سيتم إرسال رأس HTTP مع مفتاح \"خطأ-API-ميدياويكي\"، وبعد ذلك سترجع قيمة الرأس ورمز الخطأ المرتجع إلى يتم تعيينه على نفس القيمة، لمزيد من المعلومات; راجع [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]].\n\n<p class=\"mw-apisandbox-link\"><strong>الاختبار:</strong>لسهولة اختبار طلبات API ; انظر [[Special:ApiSandbox]].</p>",
@@ -133,6 +134,7 @@
 	"apihelp-compare-paramvalue-prop-comment": "التعليق على المراجعات 'من' و'إلى'، إذا كان التعليق محذوفا، سيتم إرجاع خاصية <samp>fromuserhidden</samp> أو <samp>touserhidden</samp>.",
 	"apihelp-compare-paramvalue-prop-parsedcomment": "التعليق المحلل على المراجعات 'من' و'إلى'. لو أن التعليق قد تم إخفاؤه، فخاصية <samp>fromcommenthidden</samp> أو <samp>tocommenthidden</samp> سيتم إرجاعها.",
 	"apihelp-compare-paramvalue-prop-size": "حجم المراجعات 'من' و'إلى'.",
+	"apihelp-compare-paramvalue-prop-timestamp": "حجم المراجعات 'من' و'إلى'.",
 	"apihelp-compare-param-slots": "إرجاع فرق فردي لهذه الفتحات، بدلا من فرق واحد مشترك لجميع فتحات.",
 	"apihelp-compare-example-1": "إنشاء فرق بين المراجعة 1 و2.",
 	"apihelp-createaccount-summary": "إنشاء حساب مستخدم جديد",
@@ -1799,6 +1801,8 @@
 	"apierror-stashwrongowner": "مالك غير صحيح: $1",
 	"apierror-stashzerolength": "الملف ذو طول صفري، ولا يمكن تخزينه في المخبأ: $1.",
 	"apierror-systemblocked": "لقد تم منعك تلقائيا بواسطة ميدياويكي.",
+	"apierror-tempuserdisabled": "تم تعطيل إنشاء حساب مستخدم مؤقت.",
+	"apierror-tempuseracquirefailed": "عذر الحصول على اسم مستخدم للحساب المؤقت.",
 	"apierror-templateexpansion-notwikitext": "توسيع القالب مدعوم لمحتوى نص الويكي فقط، يستخدم $1 نموذج المحتوى $2.",
 	"apierror-toofewexpiries": "$1 انتهت صلاحية {{PLURAL:$1|الطابع الزمني المقدم|الطوابع الزمنية المقدمة}} حيث كان يلزم توفر $2 {{PLURAL:$2|ه|ها}}.",
 	"apierror-toomanyvalues": "تم توفير قيم كثيرة جدا للوسيط <var>$1</var>، الحد هو $2.",

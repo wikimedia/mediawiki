@@ -3039,7 +3039,7 @@
 	"duration-hours": "$1 ora{{PLURAL:$1||s}}",
 	"duration-days": "$1 {{PLURAL:$1|jorn|jorns}}",
 	"duration-weeks": "$1 setmana{{PLURAL:$1||s}}",
-	"duration-months": "$1{{PLURAL:$1|mes|mes}}",
+	"duration-months": "$1 {{PLURAL:$1|mes|meses}}",
 	"duration-years": "$1 annada{{PLURAL:$1||s}}",
 	"duration-decades": "$1 decenni{{PLURAL:$1||s}}",
 	"duration-centuries": "$1 sègle{{PLURAL:$1||s}}",

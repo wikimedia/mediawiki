@@ -763,6 +763,7 @@
 	"rcfilters-filtergroup-lastrevision": "မူမဒါန်လဝ် လက္ကရဴအိုတ်ဂမၠိုၚ်",
 	"rcfilters-filter-lastrevision-label": "မူမဒါန်လဝ် လက္ကရဴအိုတ်",
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:ဟွံသေၚ်</strong> $1",
+	"rcfilters-watchlist-showupdated": "ဇကုမရံၚ်ဏာလက္ကရဴတုဲ မုက်လိက်မနွံကဵုပရေၚ်အပြံၚ်လှာဲဂှ် မထ္ၜးလဝ်ကဵု<strong>မလိက်အရံၚ်လမ္စံက်</strong> ရ။",
 	"rcfilters-target-page-placeholder": "စုတ်ယၟုမုက်လိက် (ဟွံသေၚ် ကဏ္ဍ)",
 	"rcnotefrom": "ဗွဲသၟဝ်ဝွံ {{PLURAL:$5|ဒှ် အရာမပြံင်လှာဲ|ဒှ် အရာမပြံင်လှာဲဂမၠိုင်}} စနူ<strong>$3, $4</strong> (စဵုကဵု <strong>$1</strong> ဂှ် ထ္ၜးလဝ်ရ)၊၊",
 	"rclistfrom": "ထ္ၜး အရာမပြံင်လှာဲတၟိတၟိ စနူ $2, $3",

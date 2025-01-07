@@ -27,7 +27,8 @@
 			"Sjoerddebruin",
 			"Southparkfan",
 			"Strepulah",
-			"Valhallasw"
+			"Valhallasw",
+			"Jeroen N"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentatie]]\n* [[mw:Special:MyLanguage/API:Etiquette|Etiquette & gebruiksrichtlijnen]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ E-maillijst]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ API-aankondigingen]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bugs & verzoeken]\n</div>\n<strong>Status:</strong> De MediaWiki-API is een stabiele interface die actief ondersteund en verbeterd wordt. Hoewel we het proberen te vermijden, moeten we af en toe toch ingrijpende wijzigingen doorvoeren. Abonneer u op de [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ e-maillijst mediawiki-api-announce] voor meldingen over wijzigingen.\n\n<strong>Foutieve verzoeken:</strong> als de API foutieve verzoeken ontvangt, wordt er geantwoord met een HTTP-header met de sleutel \"MediaWiki-API-Error\" en dan worden de waarde van de header en de foutcode op dezelfde waarde ingesteld. Zie [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Foutmeldingen en waarschuwingen]] voor meer informatie.\n\n<p class=\"mw-apisandbox-link\"><strong>Testen:</strong> u kunt [[Special:ApiSandbox|eenvoudig API-verzoeken testen]].</p>",

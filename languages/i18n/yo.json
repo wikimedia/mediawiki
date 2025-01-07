@@ -2180,7 +2180,7 @@
 	"ilsubmit": "Ṣàwárí",
 	"bydate": "bíi ọjọ́ọdún",
 	"sp-newimages-showfrom": "Ìfihàn àwọn fáìlì tuntun nípa bíbẹ̀rẹ̀ láti ago $2, ọjọ́ $1",
-	"seconds": "{{PLURAL:$1| ìṣẹ́júàáyá $1}}",
+	"seconds": "{{PLURAL:$1|ìṣẹ́júàáyá $1}}",
 	"minutes": "{{PLURAL:$1|ìṣẹ́jú $1}}",
 	"hours": "{{PLURAL:$1|wákàtí $1}}",
 	"days": "{{PLURAL:$1|ọjọ́ $1}}",

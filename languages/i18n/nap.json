@@ -2599,7 +2599,7 @@
 	"ilsubmit": "Ascia",
 	"bydate": "pe' data",
 	"sp-newimages-showfrom": "Faje vedé 'e file nuove fatte a partì 'a $3 $2",
-	"seconds": "{{PLURAL:$1|secondo|seconde}}",
+	"seconds": "$1 {{PLURAL:$1|secondo|seconde}}",
 	"minutes": "{{PLURAL:$1|$1 minuto|$1 minute}}",
 	"hours": "{{PLURAL:$1|n'ora|$1 ore}}",
 	"days": "{{PLURAL:$1|$1 juorno|$1 ghiuorne}}",
