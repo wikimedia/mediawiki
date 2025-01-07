@@ -49,30 +49,30 @@ var __async = (__this, __arguments, generator) => {
         reject(e);
       }
     };
-    var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+    var step = (x2) => x2.done ? resolve(x2.value) : Promise.resolve(x2.value).then(fulfilled, rejected);
     step((generator = generator.apply(__this, __arguments)).next());
   });
 };
 import { ref, onMounted, defineComponent, computed, openBlock, createElementBlock, normalizeClass, toDisplayString, createCommentVNode, Comment, warn, watch, withKeys, withModifiers, renderSlot, resolveComponent, createElementVNode, createBlock, resolveDynamicComponent, withCtx, createVNode, toRef, Fragment, renderList, createTextVNode, Transition, normalizeStyle, inject, mergeProps, getCurrentInstance, withDirectives, vModelCheckbox, createSlots, nextTick, vModelDynamic, onUnmounted, toHandlers, vShow, unref, shallowRef, getCurrentScope, onScopeDispose, shallowReadonly, Teleport, toRefs, provide, vModelRadio, vModelText } from "vue";
-const g = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', q = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', s1 = '<path d="M7 14.17 2.83 10l-1.41 1.41L7 17 19 5l-1.41-1.42z"/>', n1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0m5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', d1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', g1 = '<path d="M10 15 2 5h16z"/>', k1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', F1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', t0 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', p = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7"/>', e0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0M9 5h2v2H9zm0 4h2v6H9z"/>', z2 = '<path d="M3 1h2v18H3zm13.5 1.5L15 1l-9 9 9 9 1.5-1.5L9 10z"/>', i2 = '<path d="M15 1h2v18h-2zM3.5 2.5 11 10l-7.5 7.5L5 19l9-9-9-9z"/>', V2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', b2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', Y2 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"/>', o5 = '<path d="M10 0 3 8h14zm0 18-7-8h14z"/>', H5 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20m-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10z"/>', K5 = '<path d="m10 5 8 10H2z"/>', H3 = g, b3 = q, J3 = s1, j3 = n1, _3 = d1, n4 = g1, p4 = k1, M4 = F1, N4 = t0, j4 = {
+const x = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', T = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', l1 = '<path d="M7 14.17 2.83 10l-1.41 1.41L7 17 19 5l-1.41-1.42z"/>', v1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0m5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', e1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', x1 = '<path d="M10 15 2 5h16z"/>', y1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', f1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', t0 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', m = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7"/>', e0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0M9 5h2v2H9zm0 4h2v6H9z"/>', z2 = '<path d="M3 1h2v18H3zm13.5 1.5L15 1l-9 9 9 9 1.5-1.5L9 10z"/>', i2 = '<path d="M15 1h2v18h-2zM3.5 2.5 11 10l-7.5 7.5L5 19l9-9-9-9z"/>', V2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', b2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', Y2 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"/>', o5 = '<path d="M10 0 3 8h14zm0 18-7-8h14z"/>', H5 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20m-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10z"/>', K5 = '<path d="m10 5 8 10H2z"/>', H3 = x, b3 = T, J3 = l1, j3 = v1, _3 = e1, n4 = x1, p4 = y1, M4 = f1, O4 = t0, X4 = {
   langCodeMap: {
-    ar: p
+    ar: m
   },
   default: e0
-}, N6 = {
+}, O6 = {
   ltr: z2,
   shouldFlip: true
-}, O6 = {
+}, Q6 = {
   ltr: i2,
   shouldFlip: true
-}, X6 = {
+}, _6 = {
   ltr: V2,
   shouldFlip: true
-}, e7 = {
+}, r7 = {
   ltr: b2,
   shouldFlip: true
-}, k7 = Y2, Z7 = o5, G7 = H5, u8 = K5;
-function Q8(c, s, h) {
+}, y7 = Y2, w7 = o5, K7 = H5, L8 = K5;
+function G8(c, s, h) {
   if (typeof c == "string" || "path" in c)
     return c;
   if ("shouldFlip" in c)
@@ -82,7 +82,7 @@ function Q8(c, s, h) {
   const n = s in c.langCodeMap ? c.langCodeMap[s] : c.default;
   return typeof n == "string" || "path" in n ? n : n.ltr;
 }
-function G8(c, s) {
+function K8(c, s) {
   if (typeof c == "string")
     return false;
   if ("langCodeMap" in c) {
@@ -117,7 +117,7 @@ function useComputedLanguage(root) {
   return computedLang;
 }
 function makeStringTypeValidator(allowedValues) {
-  return (s) => typeof s === "string" && allowedValues.indexOf(s) !== -1;
+  return (s) => typeof s === "string" && allowedValues.includes(s);
 }
 const LibraryPrefix = "cdx";
 const ButtonActions = [
@@ -251,13 +251,13 @@ const _sfc_main$y = defineComponent({
       return (_a = props.lang) != null ? _a : computedLang.value;
     });
     const rootClasses = computed(() => ({
-      "cdx-icon--flipped": overriddenDir.value === "rtl" && overriddenLang.value !== null && G8(props.icon, overriddenLang.value),
+      "cdx-icon--flipped": overriddenDir.value === "rtl" && overriddenLang.value !== null && K8(props.icon, overriddenLang.value),
       ["cdx-icon--".concat(props.size)]: true
     }));
     const resolvedIcon = computed(
       () => {
         var _a, _b;
-        return Q8(props.icon, (_a = overriddenLang.value) != null ? _a : "", (_b = overriddenDir.value) != null ? _b : "ltr");
+        return G8(props.icon, (_a = overriddenLang.value) != null ? _a : "", (_b = overriddenDir.value) != null ? _b : "ltr");
       }
     );
     const iconSvg = computed(() => typeof resolvedIcon.value === "string" ? resolvedIcon.value : "");
@@ -816,7 +816,7 @@ const _sfc_main$u = defineComponent({
      */
     placeholderIcon: {
       type: [String, Object],
-      default: N4
+      default: O4
     }
   },
   setup: (props) => {
@@ -1048,7 +1048,7 @@ function useSplitAttributes(attrs, internalClasses = computed(() => ({}))) {
 function useI18n(messageKey, defaultValue, params = []) {
   const providedI18nFunc = inject("CdxI18nFunction", void 0);
   return computed(() => {
-    const unwrappedParams = params.map((p2) => typeof p2 === "function" ? p2() : p2.value);
+    const unwrappedParams = params.map((p) => typeof p === "function" ? p() : p.value);
     const fromProvidedFunc = providedI18nFunc == null ? void 0 : providedI18nFunc(messageKey, ...unwrappedParams);
     if (fromProvidedFunc !== void 0 && fromProvidedFunc !== null) {
       return fromProvidedFunc;
@@ -1611,7 +1611,7 @@ function _sfc_render$q(_ctx, _cache, $props, $setup, $data, $options) {
       weight: "quiet",
       tabindex: "-1",
       "aria-hidden": "true",
-      disabled: _ctx.disabled,
+      disabled: _ctx.disabled || _ctx.readonly,
       onClick: _cache[0] || (_cache[0] = withModifiers(($event) => _ctx.$emit("remove-chip", "button"), ["stop"]))
     }, {
       default: withCtx(() => [
@@ -1769,12 +1769,12 @@ const _sfc_main$p = defineComponent({
     const computedChipToRemove = computed(() => currentChipToRemove.value ? currentChipToRemove.value.value : "");
     const chipAddedMessage = useI18n(
       "cdx-chip-input-chip-added",
-      (x) => "Chip ".concat(x, " was added."),
+      (x2) => "Chip ".concat(x2, " was added."),
       [computedInputValue]
     );
     const chipRemovedMessage = useI18n(
       "cdx-chip-input-chip-removed",
-      (x) => "Chip ".concat(x, " was removed."),
+      (x2) => "Chip ".concat(x2, " was removed."),
       [computedChipToRemove]
     );
     function assignChipTemplateRef(chip, index) {
@@ -2822,23 +2822,23 @@ const _sfc_main$l = defineComponent({
     function findFirstSelectedMenuItem() {
       var _a;
       return (_a = computedMenuItems.value.find(
-        (menuItem) => selectedIsArray(props.selected) ? props.selected.indexOf(menuItem.value) !== -1 : menuItem.value === props.selected
+        (menuItem) => selectedIsArray(props.selected) ? props.selected.includes(menuItem.value) : menuItem.value === props.selected
       )) != null ? _a : null;
     }
     const isMultiselect = computed(() => selectedIsArray(props.selected));
     function isItemSelected(value) {
-      return selectedIsArray(props.selected) ? props.selected.indexOf(value) !== -1 : value === props.selected;
+      return selectedIsArray(props.selected) ? props.selected.includes(value) : value === props.selected;
     }
     function updateSelected(value) {
       if (selectedIsArray(props.selected)) {
-        const newSelected = props.selected.indexOf(value) === -1 ? props.selected.concat(value) : props.selected.filter((item) => item !== value);
+        const newSelected = !props.selected.includes(value) ? props.selected.concat(value) : props.selected.filter((item) => item !== value);
         emit("update:selected", newSelected);
       } else {
         emit("update:selected", value);
       }
     }
     function handleMenuItemChange(menuState, menuItem) {
-      if (menuItem && menuItem.disabled) {
+      if (menuItem == null ? void 0 : menuItem.disabled) {
         return;
       }
       switch (menuState) {
@@ -3864,7 +3864,7 @@ function getPaddingObject(padding) {
 }
 function rectToClientRect(rect) {
   const {
-    x,
+    x: x2,
     y,
     width,
     height
@@ -3873,10 +3873,10 @@ function rectToClientRect(rect) {
     width,
     height,
     top: y,
-    left: x,
-    right: x + width,
+    left: x2,
+    right: x2 + width,
     bottom: y + height,
-    x,
+    x: x2,
     y
   };
 }
@@ -3950,7 +3950,7 @@ const computePosition$1 = (reference, floating, config) => __async(void 0, null,
     strategy
   });
   let {
-    x,
+    x: x2,
     y
   } = computeCoordsFromPlacement(rects, placement, rtl);
   let statefulPlacement = placement;
@@ -3967,7 +3967,7 @@ const computePosition$1 = (reference, floating, config) => __async(void 0, null,
       data,
       reset
     } = yield fn({
-      x,
+      x: x2,
       y,
       initialPlacement: placement,
       placement: statefulPlacement,
@@ -3980,7 +3980,7 @@ const computePosition$1 = (reference, floating, config) => __async(void 0, null,
         floating
       }
     });
-    x = nextX != null ? nextX : x;
+    x2 = nextX != null ? nextX : x2;
     y = nextY != null ? nextY : y;
     middlewareData = __spreadProps(__spreadValues({}, middlewareData), {
       [name]: __spreadValues(__spreadValues({}, middlewareData[name]), data)
@@ -3999,7 +3999,7 @@ const computePosition$1 = (reference, floating, config) => __async(void 0, null,
           }) : reset.rects;
         }
         ({
-          x,
+          x: x2,
           y
         } = computeCoordsFromPlacement(rects, statefulPlacement, rtl));
       }
@@ -4007,7 +4007,7 @@ const computePosition$1 = (reference, floating, config) => __async(void 0, null,
     }
   }
   return {
-    x,
+    x: x2,
     y,
     placement: statefulPlacement,
     strategy,
@@ -4021,7 +4021,7 @@ function detectOverflow(state, options) {
       options = {};
     }
     const {
-      x,
+      x: x2,
       y,
       platform: platform2,
       rects,
@@ -4045,7 +4045,7 @@ function detectOverflow(state, options) {
       strategy
     }));
     const rect = elementContext === "floating" ? {
-      x,
+      x: x2,
       y,
       width: rects.floating.width,
       height: rects.floating.height
@@ -4295,7 +4295,7 @@ const offset$1 = function(options) {
       return __async(this, null, function* () {
         var _middlewareData$offse, _middlewareData$arrow;
         const {
-          x,
+          x: x2,
           y,
           placement,
           middlewareData
@@ -4305,7 +4305,7 @@ const offset$1 = function(options) {
           return {};
         }
         return {
-          x: x + diffCoords.x,
+          x: x2 + diffCoords.x,
           y: y + diffCoords.y,
           data: __spreadProps(__spreadValues({}, diffCoords), {
             placement
@@ -4325,7 +4325,7 @@ const shift$1 = function(options) {
     fn(state) {
       return __async(this, null, function* () {
         const {
-          x,
+          x: x2,
           y,
           placement
         } = state;
@@ -4335,11 +4335,11 @@ const shift$1 = function(options) {
           limiter = {
             fn: (_ref) => {
               let {
-                x: x2,
+                x: x3,
                 y: y2
               } = _ref;
               return {
-                x: x2,
+                x: x3,
                 y: y2
               };
             }
@@ -4350,7 +4350,7 @@ const shift$1 = function(options) {
           "limiter"
         ]);
         const coords = {
-          x,
+          x: x2,
           y
         };
         const overflow = yield detectOverflow(state, detectOverflowOptions);
@@ -4378,7 +4378,7 @@ const shift$1 = function(options) {
         }));
         return __spreadProps(__spreadValues({}, limitedCoords), {
           data: {
-            x: limitedCoords.x - x,
+            x: limitedCoords.x - x2,
             y: limitedCoords.y - y,
             enabled: {
               [mainAxis]: checkMainAxis,
@@ -4647,16 +4647,16 @@ function getScale(element) {
     height,
     $
   } = getCssDimensions(domElement);
-  let x = ($ ? round(rect.width) : rect.width) / width;
+  let x2 = ($ ? round(rect.width) : rect.width) / width;
   let y = ($ ? round(rect.height) : rect.height) / height;
-  if (!x || !Number.isFinite(x)) {
-    x = 1;
+  if (!x2 || !Number.isFinite(x2)) {
+    x2 = 1;
   }
   if (!y || !Number.isFinite(y)) {
     y = 1;
   }
   return {
-    x,
+    x: x2,
     y
   };
 }
@@ -4700,7 +4700,7 @@ function getBoundingClientRect(element, includeScale, isFixedStrategy, offsetPar
     }
   }
   const visualOffsets = shouldAddVisualOffsets(domElement, isFixedStrategy, offsetParent) ? getVisualOffsets(domElement) : createCoords(0);
-  let x = (clientRect.left + visualOffsets.x) / scale.x;
+  let x2 = (clientRect.left + visualOffsets.x) / scale.x;
   let y = (clientRect.top + visualOffsets.y) / scale.y;
   let width = clientRect.width / scale.x;
   let height = clientRect.height / scale.y;
@@ -4715,11 +4715,11 @@ function getBoundingClientRect(element, includeScale, isFixedStrategy, offsetPar
       const css = getComputedStyle(currentIFrame);
       const left = iframeRect.left + (currentIFrame.clientLeft + parseFloat(css.paddingLeft)) * iframeScale.x;
       const top = iframeRect.top + (currentIFrame.clientTop + parseFloat(css.paddingTop)) * iframeScale.y;
-      x *= iframeScale.x;
+      x2 *= iframeScale.x;
       y *= iframeScale.y;
       width *= iframeScale.x;
       height *= iframeScale.y;
-      x += left;
+      x2 += left;
       y += top;
       currentWin = getWindow(currentIFrame);
       currentIFrame = getFrameElement(currentWin);
@@ -4728,7 +4728,7 @@ function getBoundingClientRect(element, includeScale, isFixedStrategy, offsetPar
   return rectToClientRect({
     width,
     height,
-    x,
+    x: x2,
     y
   });
 }
@@ -4744,13 +4744,13 @@ function getHTMLOffset(documentElement, scroll, ignoreScrollbarX) {
     ignoreScrollbarX = false;
   }
   const htmlRect = documentElement.getBoundingClientRect();
-  const x = htmlRect.left + scroll.scrollLeft - (ignoreScrollbarX ? 0 : (
+  const x2 = htmlRect.left + scroll.scrollLeft - (ignoreScrollbarX ? 0 : (
     // RTL <body> scrollbar.
     getWindowScrollBarX(documentElement, htmlRect)
   ));
   const y = htmlRect.top + scroll.scrollTop;
   return {
-    x,
+    x: x2,
     y
   };
 }
@@ -4802,15 +4802,15 @@ function getDocumentRect(element) {
   const body = element.ownerDocument.body;
   const width = max(html.scrollWidth, html.clientWidth, body.scrollWidth, body.clientWidth);
   const height = max(html.scrollHeight, html.clientHeight, body.scrollHeight, body.clientHeight);
-  let x = -scroll.scrollLeft + getWindowScrollBarX(element);
+  let x2 = -scroll.scrollLeft + getWindowScrollBarX(element);
   const y = -scroll.scrollTop;
   if (getComputedStyle(body).direction === "rtl") {
-    x += max(html.clientWidth, body.clientWidth) - width;
+    x2 += max(html.clientWidth, body.clientWidth) - width;
   }
   return {
     width,
     height,
-    x,
+    x: x2,
     y
   };
 }
@@ -4820,21 +4820,21 @@ function getViewportRect(element, strategy) {
   const visualViewport = win.visualViewport;
   let width = html.clientWidth;
   let height = html.clientHeight;
-  let x = 0;
+  let x2 = 0;
   let y = 0;
   if (visualViewport) {
     width = visualViewport.width;
     height = visualViewport.height;
     const visualViewportBased = isWebKit();
     if (!visualViewportBased || visualViewportBased && strategy === "fixed") {
-      x = visualViewport.offsetLeft;
+      x2 = visualViewport.offsetLeft;
       y = visualViewport.offsetTop;
     }
   }
   return {
     width,
     height,
-    x,
+    x: x2,
     y
   };
 }
@@ -4845,12 +4845,12 @@ function getInnerBoundingClientRect(element, strategy) {
   const scale = isHTMLElement(element) ? getScale(element) : createCoords(1);
   const width = element.clientWidth * scale.x;
   const height = element.clientHeight * scale.y;
-  const x = left * scale.x;
+  const x2 = left * scale.x;
   const y = top * scale.y;
   return {
     width,
     height,
-    x,
+    x: x2,
     y
   };
 }
@@ -4964,10 +4964,10 @@ function getRectRelativeToOffsetParent(element, offsetParent, strategy) {
     }
   }
   const htmlOffset = documentElement && !isOffsetParentAnElement && !isFixed ? getHTMLOffset(documentElement, scroll) : createCoords(0);
-  const x = rect.left + scroll.scrollLeft - offsets.x - htmlOffset.x;
+  const x2 = rect.left + scroll.scrollLeft - offsets.x - htmlOffset.x;
   const y = rect.top + scroll.scrollTop - offsets.y - htmlOffset.y;
   return {
-    x,
+    x: x2,
     y,
     width: rect.width,
     height: rect.height
@@ -5243,7 +5243,7 @@ function useFloating(reference, floating, options) {
   });
   const referenceElement = computed(() => unwrapElement$1(reference.value));
   const floatingElement = computed(() => unwrapElement$1(floating.value));
-  const x = ref(0);
+  const x2 = ref(0);
   const y = ref(0);
   const strategy = ref(strategyOption.value);
   const placement = ref(placementOption.value);
@@ -5258,7 +5258,7 @@ function useFloating(reference, floating, options) {
     if (!floatingElement.value) {
       return initialStyles;
     }
-    const xVal = roundByDPR(floatingElement.value, x.value);
+    const xVal = roundByDPR(floatingElement.value, x2.value);
     const yVal = roundByDPR(floatingElement.value, y.value);
     if (transformOption.value) {
       return __spreadValues(__spreadProps(__spreadValues({}, initialStyles), {
@@ -5283,7 +5283,7 @@ function useFloating(reference, floating, options) {
       placement: placementOption.value,
       strategy: strategyOption.value
     }).then((position) => {
-      x.value = position.x;
+      x2.value = position.x;
       y.value = position.y;
       strategy.value = position.strategy;
       placement.value = position.placement;
@@ -5326,7 +5326,7 @@ function useFloating(reference, floating, options) {
     onScopeDispose(cleanup);
   }
   return {
-    x: shallowReadonly(x),
+    x: shallowReadonly(x2),
     y: shallowReadonly(y),
     strategy: shallowReadonly(strategy),
     placement: shallowReadonly(placement),
@@ -6253,10 +6253,10 @@ function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
 }
 const Dialog = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$i]]);
 const iconMap$2 = {
-  notice: j4,
+  notice: X4,
   error: p4,
   warning: H3,
-  success: G7
+  success: K7
 };
 const _sfc_main$h = defineComponent({
   name: "CdxMessage",
@@ -6628,10 +6628,10 @@ function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
 }
 const Field = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$g]]);
 const iconMap$1 = {
-  notice: j4,
+  notice: X4,
   error: p4,
   warning: H3,
-  success: G7
+  success: K7
 };
 const _sfc_main$f = defineComponent({
   name: "CdxInfoChip",
@@ -7873,7 +7873,7 @@ const _sfc_main$9 = defineComponent({
       rootStyle,
       otherAttrs,
       handleSubmit,
-      searchIcon: k7,
+      searchIcon: y7,
       translatedSearchButtonLabel,
       useButtonOrLabel
     };
@@ -8286,10 +8286,10 @@ const _sfc_main$7 = defineComponent({
       btnLabelPrev,
       btnLabelLast,
       wrappedItemsPerPage,
-      cdxIconPrevious: e7,
-      cdxIconNext: X6,
-      cdxIconMoveFirst: N6,
-      cdxIconMoveLast: O6
+      cdxIconPrevious: r7,
+      cdxIconNext: _6,
+      cdxIconMoveFirst: O6,
+      cdxIconMoveLast: Q6
     };
   }
 });
@@ -8395,8 +8395,8 @@ const CdxTablePager = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_
 const tableTextAlignmentsValidator = makeStringTypeValidator(TableTextAlignments);
 const paginationPositionValidator = makeStringTypeValidator(TablePaginationPositions);
 const iconMap = {
-  none: Z7,
-  asc: u8,
+  none: w7,
+  asc: L8,
   desc: n4
 };
 const sortDirectionMap = {
@@ -8663,27 +8663,27 @@ const _sfc_main$6 = defineComponent({
     });
     const paginationStatusMessageDeterminateShort = useI18n(
       "cdx-table-pagination-status-message-determinate-short",
-      (x, y, z) => "".concat(x, "–").concat(y, " of ").concat(z),
+      (x2, y, z) => "".concat(x2, "–").concat(y, " of ").concat(z),
       [firstOrdinal, lastOrdinal, totalCount]
     );
     const paginationStatusMessageDeterminateLong = useI18n(
       "cdx-table-pagination-status-message-determinate-long",
-      (x, y, z) => "Showing results ".concat(x, "–").concat(y, " of ").concat(z),
+      (x2, y, z) => "Showing results ".concat(x2, "–").concat(y, " of ").concat(z),
       [firstOrdinal, lastOrdinal, totalCount]
     );
     const paginationStatusMessageIndeterminateShort = useI18n(
       "cdx-table-pagination-status-message-indeterminate-short",
-      (x, y) => "".concat(x, "–").concat(y, " of many"),
+      (x2, y) => "".concat(x2, "–").concat(y, " of many"),
       [firstOrdinal, lastOrdinal]
     );
     const paginationStatusMessageIndeterminateLong = useI18n(
       "cdx-table-pagination-status-message-indeterminate-long",
-      (x, y) => "Showing results ".concat(x, "–").concat(y, " of many"),
+      (x2, y) => "Showing results ".concat(x2, "–").concat(y, " of many"),
       [firstOrdinal, lastOrdinal]
     );
     const paginationStatusMessageIndeterminateFinal = useI18n(
       "cdx-table-pagination-status-message-indeterminate-final",
-      (x) => "Showing the last ".concat(x, " results"),
+      (x2) => "Showing the last ".concat(x2, " results"),
       [currentCount]
     );
     const paginationStatusMessagePending = useI18n(
@@ -8780,7 +8780,7 @@ const _sfc_main$6 = defineComponent({
     function getRowClass(row, rowIndex) {
       const rowKey = getRowKey(row, rowIndex);
       return {
-        "cdx-table__row--selected": wrappedSelectedRows.value.indexOf(rowKey) !== -1
+        "cdx-table__row--selected": wrappedSelectedRows.value.includes(rowKey)
       };
     }
     function getRowHeaderScope(columnId) {
@@ -9501,8 +9501,8 @@ const _sfc_main$4 = defineComponent({
       assignTemplateRefForTabButton,
       scrollTabs,
       focusActiveTab,
-      cdxIconPrevious: e7,
-      cdxIconNext: X6
+      cdxIconPrevious: r7,
+      cdxIconNext: _6
     };
   },
   /**
@@ -10071,7 +10071,7 @@ const _sfc_main$2 = defineComponent({
     } = useButtonGroupKeyboardNav(toRef(props, "buttons"));
     function isSelected(button) {
       if (Array.isArray(props.modelValue)) {
-        return props.modelValue.indexOf(button.value) !== -1;
+        return props.modelValue.includes(button.value);
       } else if (props.modelValue !== null) {
         return props.modelValue === button.value;
       }
@@ -10079,7 +10079,7 @@ const _sfc_main$2 = defineComponent({
     }
     function onUpdate(button, nowSelected) {
       if (Array.isArray(props.modelValue)) {
-        const wasSelected = props.modelValue.indexOf(button.value) !== -1;
+        const wasSelected = props.modelValue.includes(button.value);
         if (nowSelected && !wasSelected) {
           emit("update:modelValue", props.modelValue.concat(button.value));
         } else if (!nowSelected && wasSelected) {
@@ -10403,7 +10403,7 @@ class Tooltip {
         shift(),
         hide()
       ]
-    }).then(({ x, y, middlewareData }) => {
+    }).then(({ x: x2, y, middlewareData }) => {
       var _a, _b, _c;
       const finalPlacement = (_b = (_a = middlewareData.offset) == null ? void 0 : _a.placement) != null ? _b : this.placement;
       const opposites = {
@@ -10421,7 +10421,7 @@ class Tooltip {
         "right-end": "left"
       };
       Object.assign(this.tooltipElement.style, {
-        left: "".concat(x, "px"),
+        left: "".concat(x2, "px"),
         top: "".concat(y, "px"),
         visibility: ((_c = middlewareData.hide) == null ? void 0 : _c.referenceHidden) ? "hidden" : "visible",
         transformOrigin: opposites[finalPlacement]
