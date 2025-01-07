@@ -137,6 +137,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Message\MessageFormatterFactory;
+use MediaWiki\Notification\NotificationService;
 use MediaWiki\OutputTransform\DefaultOutputPipelineFactory;
 use MediaWiki\OutputTransform\OutputTransformPipeline;
 use MediaWiki\Page\ContentModelChangeFactory;
@@ -1411,6 +1412,14 @@ return [
 			$services->getDBLoadBalancerFactory(),
 			$services->getMainWANObjectCache(),
 			LoggerFactory::getInstance( 'NameTableSqlStore' )
+		);
+	},
+
+	'NotificationService' => static function ( MediaWikiServices $services ): NotificationService {
+		return new NotificationService(
+			LoggerFactory::getInstance( 'Notification' ),
+			$services->getObjectFactory(),
+			ExtensionRegistry::getInstance()->getAttribute( 'NotificationHandlers' )
 		);
 	},
 
