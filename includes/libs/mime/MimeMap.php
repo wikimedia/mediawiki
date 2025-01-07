@@ -225,6 +225,8 @@ class MimeMap {
 		'application/vnd.ms-excel.template.macroenabled.12' => [ 'xltm' ],
 		'application/vnd.ms-excel.addin.macroenabled.12' => [ 'xlam' ],
 		'application/vnd.ms-excel.sheet.binary.macroenabled.12' => [ 'xlsb' ],
+		'model/gltf-binary' => [ 'glb' ],
+		'model/gltf+json' => [ 'gltf' ],
 		'model/vnd.dwfx+xps' => [ 'dwfx' ],
 		'application/vnd.ms-xpsdocument' => [ 'xps' ],
 		'chemical/x-mdl-molfile' => [ 'mol' ],
@@ -471,6 +473,8 @@ class MimeMap {
 		],
 		MEDIATYPE_3D => [
 			'application/sla',
+			'model/gltf-binary',
+			'model/gltf+json',
 		],
 	];
 
