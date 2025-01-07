@@ -1,6 +1,7 @@
 <?php
 
 use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * This program is free software; you can redistribute it and/or modify
@@ -32,15 +33,7 @@ use Wikimedia\Rdbms\IReadableDatabase;
  */
 class BatchRowIterator implements RecursiveIterator {
 
-	/**
-	 * @var IReadableDatabase
-	 */
-	protected $db;
-
-	/**
-	 * @var string|array The name or names of the table to read from
-	 */
-	protected $table;
+	protected IReadableDatabase $db;
 
 	/**
 	 * @var array The name of the primary key(s)
@@ -53,27 +46,6 @@ class BatchRowIterator implements RecursiveIterator {
 	protected $batchSize;
 
 	/**
-	 * @var array Array of strings containing SQL conditions to add to the query
-	 */
-	protected $conditions = [];
-
-	/**
-	 * @var array
-	 */
-	protected $joinConditions = [];
-
-	/**
-	 * @var array List of column names to select from the table suitable for use
-	 *  with IDatabase::select()
-	 */
-	protected $fetchColumns;
-
-	/**
-	 * @var string SQL Order by condition generated from $this->primaryKey
-	 */
-	protected $orderBy;
-
-	/**
 	 * @var array The current iterator value
 	 */
 	private $current = [];
@@ -84,85 +56,92 @@ class BatchRowIterator implements RecursiveIterator {
 	private $key = -1;
 
 	/**
-	 * @var array Additional query options
+	 * Underlying database query builder, may be mutated before iteration begins.
 	 */
-	protected $options = [];
-
-	/**
-	 * @var string|null For debugging which method is using this class.
-	 */
-	protected $caller;
+	public SelectQueryBuilder $sqb;
 
 	/**
 	 * @stable to call
 	 *
 	 * @param IReadableDatabase $db
-	 * @param string|array $table The name or names of the table to read from
+	 * @param SelectQueryBuilder|string|array $sqb The query to split into batches (or table name/names)
 	 * @param string|array $primaryKey The name or names of the primary key columns
 	 * @param int $batchSize The number of rows to fetch per iteration
 	 */
-	public function __construct( IReadableDatabase $db, $table, $primaryKey, $batchSize ) {
+	public function __construct( IReadableDatabase $db, $sqb, $primaryKey, $batchSize ) {
 		if ( $batchSize < 1 ) {
 			throw new InvalidArgumentException( 'Batch size must be at least 1 row.' );
 		}
 		$this->db = $db;
-		$this->table = $table;
 		$this->primaryKey = (array)$primaryKey;
-		$this->fetchColumns = $this->primaryKey;
-		$this->orderBy = implode( ' ASC,', $this->primaryKey ) . ' ASC';
 		$this->batchSize = $batchSize;
+
+		if ( $sqb instanceof SelectQueryBuilder ) {
+			$this->sqb = $sqb;
+		} else {
+			$this->sqb = $db->newSelectQueryBuilder()
+				->tables( is_array( $sqb ) ? $sqb : [ $sqb ] )
+				->caller( __CLASS__ );
+		}
+		$this->sqb->fields( $this->primaryKey );
 	}
 
 	/**
+	 * @deprecated since 1.44 Use the SelectQueryBuilder object directly
 	 * @param array $conditions Query conditions suitable for use with
 	 *  IDatabase::select
 	 */
 	public function addConditions( array $conditions ) {
-		$this->conditions = array_merge( $this->conditions, $conditions );
+		$this->sqb->conds( $conditions );
 	}
 
 	/**
+	 * @deprecated since 1.44 Use the SelectQueryBuilder object directly
 	 * @param array $options Query options suitable for use with
 	 *  IDatabase::select
 	 */
 	public function addOptions( array $options ) {
-		$this->options = array_merge( $this->options, $options );
+		$this->sqb->options( $options );
 	}
 
 	/**
+	 * @deprecated since 1.44 Use the SelectQueryBuilder object directly
 	 * @param array $conditions Query join conditions suitable for use
 	 *  with IDatabase::select
 	 */
 	public function addJoinConditions( array $conditions ) {
-		$this->joinConditions = array_merge( $this->joinConditions, $conditions );
+		$this->sqb->joinConds( $conditions );
 	}
 
 	/**
+	 * @deprecated since 1.44 Use the SelectQueryBuilder object directly
 	 * @param array $columns List of column names to select from the
 	 *  table suitable for use with IDatabase::select()
 	 */
 	public function setFetchColumns( array $columns ) {
 		// If it's not the all column selector merge in the primary keys we need
 		if ( count( $columns ) === 1 && reset( $columns ) === '*' ) {
-			$this->fetchColumns = $columns;
+			$fetchColumns = $columns;
 		} else {
-			$this->fetchColumns = array_unique( array_merge(
+			$fetchColumns = array_unique( array_merge(
 				$this->primaryKey,
 				$columns
 			) );
 		}
+		$this->sqb->clearFields()->fields( $fetchColumns );
 	}
 
 	/**
 	 * Use ->setCaller( __METHOD__ ) to indicate which code is using this
 	 * class. Only used in debugging output.
 	 * @since 1.36
+	 * @deprecated since 1.44 Use the SelectQueryBuilder object directly
 	 *
 	 * @param string $caller
 	 * @return self
 	 */
 	public function setCaller( $caller ) {
-		$this->caller = $caller;
+		$this->sqb->caller( $caller );
 
 		return $this;
 	}
@@ -230,20 +209,10 @@ class BatchRowIterator implements RecursiveIterator {
 	 * Fetch the next set of rows from the database.
 	 */
 	public function next(): void {
-		$caller = __METHOD__;
-		if ( (string)$this->caller !== '' ) {
-			$caller .= " (for {$this->caller})";
-		}
-
-		$res = $this->db->newSelectQueryBuilder()
-			->tables( is_array( $this->table ) ? $this->table : [ $this->table ] )
-			->fields( $this->fetchColumns )
-			->where( $this->buildConditions() )
-			->caller( $caller )
+		$res = ( clone $this->sqb )
+			->andWhere( $this->buildConditions() )
 			->limit( $this->batchSize )
-			->orderBy( $this->orderBy )
-			->options( $this->options )
-			->joinConds( $this->joinConditions )
+			->orderBy( $this->primaryKey, SelectQueryBuilder::SORT_ASC )
 			->fetchResultSet();
 
 		// The iterator is converted to an array because in addition to
@@ -263,7 +232,7 @@ class BatchRowIterator implements RecursiveIterator {
 	 */
 	protected function buildConditions() {
 		if ( !$this->current ) {
-			return $this->conditions;
+			return [];
 		}
 
 		$maxRow = end( $this->current );
@@ -273,9 +242,6 @@ class BatchRowIterator implements RecursiveIterator {
 			$maximumValues[$column] = $maxRow->$name;
 		}
 
-		$conditions = $this->conditions;
-		$conditions[] = $this->db->buildComparison( '>', $maximumValues );
-
-		return $conditions;
+		return [ $this->db->buildComparison( '>', $maximumValues ) ];
 	}
 }

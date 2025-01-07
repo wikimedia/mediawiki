@@ -233,45 +233,32 @@ SPARQL;
 	 * Set up standard iterator for retrieving category changes.
 	 * @param IReadableDatabase $dbr
 	 * @param string[] $columns List of additional fields to get
-	 * @param string[] $extra_tables List of additional tables to join
 	 * @param string $fname Name of the calling function
 	 * @return BatchRowIterator
 	 */
 	private function setupChangesIterator(
 		IReadableDatabase $dbr,
 		array $columns,
-		array $extra_tables,
 		string $fname
 	) {
-		$tables = [ 'recentchanges', 'page_props', 'category' ];
-		if ( $extra_tables ) {
-			$tables = array_merge( $tables, $extra_tables );
-		}
 		$it = new BatchRowIterator( $dbr,
-			$tables,
+			$dbr->newSelectQueryBuilder()
+				->from( 'recentchanges' )
+				->leftJoin( 'page_props', null, [ 'pp_propname' => 'hiddencat', 'pp_page = rc_cur_id' ] )
+				->leftJoin( 'category', null, [ 'cat_title = rc_title' ] )
+				->select( array_merge( $columns, [
+					'rc_title',
+					'rc_cur_id',
+					'pp_propname',
+					'cat_pages',
+					'cat_subcats',
+					'cat_files'
+				] ) )
+				->caller( $fname ),
 			[ 'rc_timestamp' ],
 			$this->mBatchSize
 		);
 		$this->addTimestampConditions( $it, $dbr );
-		$it->addJoinConditions(
-			[
-				'page_props' => [
-					'LEFT JOIN', [ 'pp_propname' => 'hiddencat', 'pp_page = rc_cur_id' ]
-				],
-				'category' => [
-					'LEFT JOIN', [ 'cat_title = rc_title' ]
-				]
-			]
-		);
-		$it->setFetchColumns( array_merge( $columns, [
-			'rc_title',
-			'rc_cur_id',
-			'pp_propname',
-			'cat_pages',
-			'cat_subcats',
-			'cat_files'
-		] ) );
-		$it->setCaller( $fname );
 		return $it;
 	}
 
@@ -282,8 +269,8 @@ SPARQL;
 	 * @return BatchRowIterator
 	 */
 	protected function getNewCatsIterator( IReadableDatabase $dbr, $fname ) {
-		$it = $this->setupChangesIterator( $dbr, [], [], $fname );
-		$it->addConditions( [
+		$it = $this->setupChangesIterator( $dbr, [], $fname );
+		$it->sqb->conds( [
 			'rc_namespace' => NS_CATEGORY,
 			'rc_new' => 1,
 		] );
@@ -300,18 +287,15 @@ SPARQL;
 		$it = $this->setupChangesIterator(
 			$dbr,
 			[ 'page_title', 'page_namespace' ],
-			[ 'page' ],
 			$fname
 		);
-		$it->addConditions( [
+		$it->sqb->conds( [
 			'rc_namespace' => NS_CATEGORY,
 			'rc_new' => 0,
 			'rc_log_type' => 'move',
 			'rc_type' => RC_LOG,
 		] );
-		$it->addJoinConditions( [
-			'page' => [ 'JOIN', 'rc_cur_id = page_id' ],
-		] );
+		$it->sqb->join( 'page', null, 'rc_cur_id = page_id' );
 		$this->addIndex( $it );
 		return $it;
 	}
@@ -324,24 +308,25 @@ SPARQL;
 	 */
 	protected function getDeletedCatsIterator( IReadableDatabase $dbr, $fname ) {
 		$it = new BatchRowIterator( $dbr,
-			'recentchanges',
+			$dbr->newSelectQueryBuilder()
+				->from( 'recentchanges' )
+				->select( [ 'rc_cur_id', 'rc_title' ] )
+				->where( [
+					'rc_namespace' => NS_CATEGORY,
+					'rc_new' => 0,
+					'rc_log_type' => 'delete',
+					'rc_log_action' => 'delete',
+					'rc_type' => RC_LOG,
+					// We will fetch ones that do not have page record. If they do,
+					// this means they were restored, thus restoring handler will pick it up.
+					'NOT EXISTS (SELECT * FROM page WHERE page_id = rc_cur_id)',
+				] )
+				->caller( $fname ),
 			[ 'rc_timestamp' ],
 			$this->mBatchSize
 		);
 		$this->addTimestampConditions( $it, $dbr );
-		$it->addConditions( [
-			'rc_namespace' => NS_CATEGORY,
-			'rc_new' => 0,
-			'rc_log_type' => 'delete',
-			'rc_log_action' => 'delete',
-			'rc_type' => RC_LOG,
-			// We will fetch ones that do not have page record. If they do,
-			// this means they were restored, thus restoring handler will pick it up.
-			'NOT EXISTS (SELECT * FROM page WHERE page_id = rc_cur_id)',
-		] );
 		$this->addIndex( $it );
-		$it->setFetchColumns( [ 'rc_cur_id', 'rc_title' ] );
-		$it->setCaller( $fname );
 		return $it;
 	}
 
@@ -352,8 +337,8 @@ SPARQL;
 	 * @return BatchRowIterator
 	 */
 	protected function getRestoredCatsIterator( IReadableDatabase $dbr, $fname ) {
-		$it = $this->setupChangesIterator( $dbr, [], [], $fname );
-		$it->addConditions( [
+		$it = $this->setupChangesIterator( $dbr, [], $fname );
+		$it->sqb->conds( [
 			'rc_namespace' => NS_CATEGORY,
 			'rc_new' => 0,
 			'rc_log_type' => 'delete',
@@ -374,8 +359,8 @@ SPARQL;
 	 * @return BatchRowIterator
 	 */
 	protected function getChangedCatsIterator( IReadableDatabase $dbr, $type, $fname ) {
-		$it = $this->setupChangesIterator( $dbr, [], [], $fname );
-		$it->addConditions( [
+		$it = $this->setupChangesIterator( $dbr, [], $fname );
+		$it->sqb->conds( [
 			'rc_namespace' => NS_CATEGORY,
 			'rc_new' => 0,
 			'rc_type' => $type,
@@ -390,7 +375,7 @@ SPARQL;
 	 * @param IReadableDatabase $dbr
 	 */
 	private function addTimestampConditions( BatchRowIterator $it, IReadableDatabase $dbr ) {
-		$it->addConditions( [
+		$it->sqb->conds( [
 			$dbr->expr( 'rc_timestamp', '>=', $dbr->timestamp( $this->startTS ) ),
 			$dbr->expr( 'rc_timestamp', '<', $dbr->timestamp( $this->endTS ) ),
 		] );
@@ -401,7 +386,7 @@ SPARQL;
 	 * @param BatchRowIterator $it
 	 */
 	private function addIndex( BatchRowIterator $it ) {
-		$it->addOptions( [
+		$it->sqb->options( [
 			'USE INDEX' => [ 'recentchanges' => 'rc_new_name_timestamp' ]
 		] );
 	}
@@ -416,16 +401,17 @@ SPARQL;
 	protected function getCategoryLinksIterator( IReadableDatabase $dbr, array $ids, $fname ) {
 		$it = new BatchRowIterator(
 			$dbr,
-			'categorylinks',
+			$dbr->newSelectQueryBuilder()
+				->from( 'categorylinks' )
+				->select( [ 'cl_from', 'cl_to' ] )
+				->where( [
+					'cl_type' => 'subcat',
+					'cl_from' => $ids
+				] )
+				->caller( $fname ),
 			[ 'cl_from', 'cl_to' ],
 			$this->mBatchSize
 		);
-		$it->addConditions( [
-			'cl_type' => 'subcat',
-			'cl_from' => $ids
-		] );
-		$it->setFetchColumns( [ 'cl_from', 'cl_to' ] );
-		$it->setCaller( $fname );
 		return new RecursiveIteratorIterator( $it );
 	}
 
