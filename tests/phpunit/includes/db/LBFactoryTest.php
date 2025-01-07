@@ -683,6 +683,10 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 			$db1->getDomainID()
 		);
 		$this->assertEquals(
+			'extdomain',
+			$factory->getAutoCommitPrimaryConnection( 'virtualdomain1' )->getDomainID()
+		);
+		$this->assertEquals(
 			'extension1',
 			$factory->getLoadBalancer( 'virtualdomain1' )->getClusterName()
 		);
@@ -691,6 +695,10 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals(
 			'localdomain',
 			$db2->getDomainID()
+		);
+		$this->assertEquals(
+			'localdomain',
+			$factory->getAutoCommitPrimaryConnection( 'virtualdomain2' )->getDomainID()
 		);
 		$this->assertEquals(
 			'extension1',
@@ -703,14 +711,22 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 			$db3->getDomainID()
 		);
 		$this->assertEquals(
+			'shareddb',
+			$factory->getAutoCommitPrimaryConnection( 'virtualdomain3' )->getDomainID()
+		);
+		$this->assertEquals(
 			'DEFAULT',
 			$factory->getLoadBalancer( 'virtualdomain3' )->getClusterName()
 		);
 
-		$db3 = $factory->getPrimaryDatabase( 'virtualdomain4' );
+		$db4 = $factory->getPrimaryDatabase( 'virtualdomain4' );
 		$this->assertEquals(
 			'localdomain',
-			$db3->getDomainID()
+			$db4->getDomainID()
+		);
+		$this->assertEquals(
+			'localdomain',
+			$factory->getAutoCommitPrimaryConnection( 'virtualdomain4' )->getDomainID()
 		);
 		$this->assertEquals(
 			'DEFAULT',

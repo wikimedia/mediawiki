@@ -540,6 +540,11 @@ abstract class LBFactory implements ILBFactory {
 		return $this->getMappedDatabase( DB_PRIMARY, [], $domain );
 	}
 
+	public function getAutoCommitPrimaryConnection( $domain = false ): IDatabase {
+		return $this->getLoadBalancer( $domain )
+			->getConnection( DB_PRIMARY, [], $this->getMappedDomain( $domain ), ILoadBalancer::CONN_TRX_AUTOCOMMIT );
+	}
+
 	public function getReplicaDatabase( $domain = false, $group = null ): IReadableDatabase {
 		if ( $group === null ) {
 			$groups = [];
