@@ -2354,7 +2354,7 @@ return [
 
 	'Tracer' => static function ( MediaWikiServices $services ): TracerInterface {
 		$otelConfig = $services->getMainConfig()->get( MainConfigNames::OpenTelemetryConfig );
-		if ( $otelConfig === null ) {
+		if ( $otelConfig === null || ( wfIsCLI() && !defined( 'MW_PHPUNIT_TEST' ) ) ) {
 			return new NoopTracer();
 		}
 
