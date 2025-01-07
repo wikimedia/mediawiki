@@ -3,11 +3,11 @@
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\Event\PageUpdatedEvent;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRoleRegistry;
-use MediaWiki\Storage\PageUpdatedEvent;
 use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;

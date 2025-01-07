@@ -3,8 +3,8 @@
 namespace MediaWiki\Languages;
 
 use MediaWiki\DomainEvent\EventSubscriberBase;
+use MediaWiki\Page\Event\PageUpdatedEvent;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\Storage\PageUpdatedEvent;
 use MessageCache;
 
 /**

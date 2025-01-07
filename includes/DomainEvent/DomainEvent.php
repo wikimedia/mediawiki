@@ -2,6 +2,7 @@
 
 namespace MediaWiki\DomainEvent;
 
+use LogicException;
 use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -27,24 +28,56 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  */
 abstract class DomainEvent {
 
-	private string $type;
+	public const ANY = '*';
+
+	private string $eventType = self::ANY;
+	private array $compatibleWithTypes = [ self::ANY ];
 	private ConvertibleTimestamp $timestamp;
 
 	/**
 	 * @stable to call
-	 * @param string $type
 	 * @param string|ConvertibleTimestamp|false $timestamp
 	 */
-	public function __construct( string $type, $timestamp = false ) {
-		$this->type = $type;
-
+	public function __construct( $timestamp = false ) {
 		$this->timestamp = $timestamp instanceof ConvertibleTimestamp
 			? $timestamp
 			: MWTimestamp::getInstance( $timestamp );
 	}
 
+	/**
+	 * Declares the event type. Must be called from the constructors of
+	 * all subclasses of DomainEvent!
+	 *
+	 * @param string $eventType
+	 */
+	protected function declareEventType( string $eventType ) {
+		$this->eventType = $eventType;
+		$this->compatibleWithTypes[] = $eventType;
+	}
+
 	public function getEventType(): string {
-		return $this->type;
+		if ( $this->eventType === self::ANY ) {
+			throw new LogicException(
+				'Constructor did not call the declareEventType() method!'
+			);
+		}
+		return $this->eventType;
+	}
+
+	/**
+	 * Returns the event types this event is compatible with.
+	 *
+	 * @internal for use in EventDispatchEngine.
+	 *
+	 * @return array An array containing the event's type and all parent types.
+	 */
+	public function getEventTypeChain(): array {
+		if ( count( $this->compatibleWithTypes ) < 2 ) {
+			throw new LogicException(
+				'Constructor did not call the declareEventType() method!'
+			);
+		}
+		return $this->compatibleWithTypes;
 	}
 
 	/**

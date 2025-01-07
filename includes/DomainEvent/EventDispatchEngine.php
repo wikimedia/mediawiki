@@ -50,8 +50,14 @@ class EventDispatchEngine implements DomainEventDispatcher, DomainEventSource {
 	 * See the INVOKE_XXX constants on DomainEventSource for details.
 	 */
 	public function dispatch( DomainEvent $event, IConnectionProvider $dbProvider ): void {
-		$this->resolveSubscribers( $event->getEventType() );
-		$listeners = $this->listeners[ $event->getEventType() ] ?? [];
+		foreach ( $event->getEventTypeChain() as $type ) {
+			$this->dispatchAs( $type, $event, $dbProvider );
+		}
+	}
+
+	private function dispatchAs( string $type, DomainEvent $event, IConnectionProvider $dbProvider ): void {
+		$this->resolveSubscribers( $type );
+		$listeners = $this->listeners[ $type ] ?? [];
 
 		// Invoke listeners registered for handling DURING_TRANSACTION.
 		foreach ( $listeners[ DomainEventSource::INVOKE_BEFORE_COMMIT ] ?? [] as $callback ) {
