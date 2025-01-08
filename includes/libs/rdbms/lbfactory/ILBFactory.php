@@ -492,4 +492,16 @@ interface ILBFactory extends IConnectionProvider {
 	 * @since 1.35
 	 */
 	public function getTransactionProfiler(): TransactionProfiler;
+
+	/**
+	 * Like {@link IConnectionProvider::getPrimaryDatabase()} but using CONN_TRX_AUTOCOMMIT.
+	 *
+	 * This method accepts virtual domains
+	 * ({@see \MediaWiki\MainConfigSchema::VirtualDomainsMapping}).
+	 *
+	 * @since 1.44
+	 * @param string|false $domain Domain ID, or false for the current domain
+	 * @return IDatabase
+	 */
+	public function getAutoCommitPrimaryConnection( $domain = false ): IDatabase;
 }
