@@ -4,12 +4,14 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\User;
 use Psr\Log\NullLogger;
 use Wikimedia\IPUtils;
+use Wikimedia\ScopedCallback;
 
 /**
  * Integration tests for DatabaseBlockStore.
@@ -641,6 +643,45 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$store->purgeExpiredBlocks();
 
 		$this->assertPurgeWorked( $this->expiredBlockId, true );
+	}
+
+	/**
+	 * Regression test for T382881
+	 */
+	public function testPurgeExpiredBlocksMulti() {
+		// Make deferred updates be actually deferred
+		$scope = DeferredUpdates::preventOpportunisticUpdates();
+
+		// Add a second block
+		$store = $this->getStore();
+		$block = new DatabaseBlock( [
+			'address' => '1.1.1.1',
+			'expiry' => '2001-01-01T00:00:00',
+			'reason' => 'additional expired block',
+			'by' => $this->sysop,
+		] );
+		$res = $store->insertBlock( $block, 1 );
+		$this->assertNotFalse( $res );
+
+		// Check that there are really two blocks on that user now
+		$this->newSelectQueryBuilder()
+			->select( 'bt_count' )
+			->from( 'block_target' )
+			->where( [ 'bt_address' => '1.1.1.1' ] )
+			->caller( __METHOD__ )
+			->assertFieldValue( '2' );
+
+		// Run deferred updates, purging them both
+		ScopedCallback::consume( $scope );
+		$this->runDeferredUpdates();
+
+		// Now the block_target row should be gone
+		$this->newSelectQueryBuilder()
+			->select( 'bt_count' )
+			->from( 'block_target' )
+			->where( [ 'bt_address' => '1.1.1.1' ] )
+			->caller( __METHOD__ )
+			->assertEmptyResult();
 	}
 
 	/**
