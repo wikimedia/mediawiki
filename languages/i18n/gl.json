@@ -2128,7 +2128,7 @@
 	"protectedtitles-submit": "Amosar os títulos",
 	"listusers": "Lista de usuarios",
 	"listusers-editsonly": "Amosar só os usuarios con edicións",
-	"listusers-temporarygroupsonly": "Amosar só usuarios en grupos de usuario temporais",
+	"listusers-temporarygroupsonly": "Amosar só os usuarios en grupos de usuario temporais",
 	"listusers-creationsort": "Ordenar por data de creación",
 	"listusers-desc": "Ordenar de xeito descendente",
 	"usereditcount": "$1 {{PLURAL:$1|edición|edicións}}",
