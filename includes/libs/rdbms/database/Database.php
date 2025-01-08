@@ -827,6 +827,13 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		$returnedRowCount = $status->rowsReturned;
 		$this->lastQueryAffectedRows = $affectedRowCount;
 
+		if ( $span->getContext()->isSampled() ) {
+			$span->setAttributes( [
+				'db.response.affected_rows' => $affectedRowCount,
+				'db.response.returned_rows' => $returnedRowCount,
+			] );
+		}
+
 		if ( $status->res !== false ) {
 			if ( $isPermWrite ) {
 				if ( $this->trxLevel() ) {
