@@ -155,12 +155,12 @@ class CodexModule extends FileModule {
 	 *         }
 	 *     ]
 	 *
-	 * @param Context $context
+	 * @param Context|null $context
 	 * @param Config $config
 	 * @param string[] $iconNames Names of icons to fetch
 	 * @return array
 	 */
-	public static function getIcons( Context $context, Config $config, array $iconNames = [] ): array {
+	public static function getIcons( ?Context $context, Config $config, array $iconNames = [] ): array {
 		static $cachedIcons = null;
 		static $cachedIconFilePath = null;
 
