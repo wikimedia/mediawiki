@@ -30,7 +30,7 @@ use Wikimedia\Rdbms\IDBAccessObject;
  *   - options: a map of (option => value)
  *
  * @since 1.33
- * @ingroup JobQueue
+ * @ingroup User
  */
 class UserOptionsUpdateJob extends Job implements GenericParameterJob {
 	public function __construct( array $params ) {
