@@ -26,7 +26,6 @@ namespace Wikimedia\FileBackend;
 use InvalidArgumentException;
 use LockManager;
 use MapCacheLRU;
-use MediaWiki\Json\FormatJson;
 use Shellbox\Command\BoxedCommand;
 use StatusValue;
 use Traversable;
@@ -1338,8 +1337,9 @@ abstract class FileBackendStore extends FileBackend {
 				$subStatus->success[$i] = false;
 				++$subStatus->failCount;
 			}
-			$this->logger->error( static::class . "-{$this->name} " .
-				" stat failure; aborted operations: " . FormatJson::encode( $ops ) );
+			$this->logger->error( static::class . "-{$this->name} stat failure",
+				[ 'aborted_operations' => $ops ]
+			);
 		}
 
 		// Merge errors into StatusValue fields

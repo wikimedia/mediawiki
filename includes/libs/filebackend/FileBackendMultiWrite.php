@@ -27,7 +27,6 @@ use InvalidArgumentException;
 use LockManager;
 use LogicException;
 use MediaWiki\Deferred\DeferredUpdates;
-use MediaWiki\Json\FormatJson;
 use Shellbox\Command\BoxedCommand;
 use StatusValue;
 use StringUtils;
@@ -175,7 +174,7 @@ class FileBackendMultiWrite extends FileBackend {
 		$syncStatus = $this->consistencyCheck( $relevantPaths );
 		if ( !$syncStatus->isOK() ) {
 			$this->logger->error(
-				"$fname: failed sync check: " . FormatJson::encode( $relevantPaths )
+				"$fname: failed sync check: " . implode( ', ', $relevantPaths )
 			);
 			// Try to resync the clone backends to the master on the spot
 			if (
@@ -209,7 +208,7 @@ class FileBackendMultiWrite extends FileBackend {
 						) {
 							$this->logger->debug(
 								"$fname: '{$backend->getName()}' async replication; paths: " .
-								FormatJson::encode( $relevantPaths )
+								implode( ', ', $relevantPaths )
 							);
 							$backend->doOperations( $realOps, $opts );
 						}
@@ -217,7 +216,7 @@ class FileBackendMultiWrite extends FileBackend {
 				} else {
 					$this->logger->debug(
 						"$fname: '{$backend->getName()}' sync replication; paths: " .
-						FormatJson::encode( $relevantPaths )
+						implode( ', ', $relevantPaths )
 					);
 					$status->merge( $backend->doOperations( $realOps, $opts ) );
 				}
@@ -239,7 +238,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 * This method should only be called if the files are locked or the backend
 	 * is in read-only mode
 	 *
-	 * @param array $paths List of storage paths
+	 * @param string[] $paths List of storage paths
 	 * @return StatusValue
 	 */
 	public function consistencyCheck( array $paths ) {
@@ -327,7 +326,7 @@ class FileBackendMultiWrite extends FileBackend {
 	/**
 	 * Check that a set of file paths are usable across all internal backends
 	 *
-	 * @param array $paths List of storage paths
+	 * @param string[] $paths List of storage paths
 	 * @return StatusValue
 	 */
 	public function accessibilityCheck( array $paths ) {
@@ -354,7 +353,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 *
 	 * This method should only be called if the files are locked
 	 *
-	 * @param array $paths List of storage paths
+	 * @param string[] $paths List of storage paths
 	 * @param string|bool $resyncMode False, True, or "conservative"; see __construct()
 	 * @return StatusValue
 	 */
@@ -439,7 +438,7 @@ class FileBackendMultiWrite extends FileBackend {
 		}
 
 		if ( !$status->isOK() ) {
-			$this->logger->error( "$fname: failed to resync: " . FormatJson::encode( $paths ) );
+			$this->logger->error( "$fname: failed to resync: " . implode( ', ', $paths ) );
 		}
 
 		return $status;
@@ -513,7 +512,7 @@ class FileBackendMultiWrite extends FileBackend {
 	/**
 	 * Substitute the backend of storage paths with an internal backend's name
 	 *
-	 * @param array|string $paths List of paths or single string path
+	 * @param string[]|string $paths List of paths or single string path
 	 * @param FileBackendStore $backend
 	 * @return string[]|string
 	 */
@@ -528,7 +527,7 @@ class FileBackendMultiWrite extends FileBackend {
 	/**
 	 * Substitute the backend of internal storage paths with the proxy backend's name
 	 *
-	 * @param array|string $paths List of paths or single string path
+	 * @param string[]|string $paths List of paths or single string path
 	 * @param FileBackendStore $backend internal storage backend
 	 * @return string[]|string
 	 */

@@ -26,7 +26,6 @@ namespace Wikimedia\FileBackend\FileOps;
 use Closure;
 use Exception;
 use InvalidArgumentException;
-use MediaWiki\Json\FormatJson;
 use Psr\Log\LoggerInterface;
 use StatusValue;
 use Wikimedia\FileBackend\FileBackend;
@@ -470,11 +469,10 @@ abstract class FileOp {
 	 * @param string $action
 	 */
 	final public function logFailure( $action ) {
-		$params = $this->params;
-		$params['failedAction'] = $action;
 		try {
-			$this->logger->error( static::class .
-				" failed: " . FormatJson::encode( $params ) );
+			$this->logger->error( static::class . ' failed: ' . $action,
+				[ 'params' => $this->params ]
+			);
 		} catch ( TimeoutException $e ) {
 			throw $e;
 		} catch ( Exception $e ) {

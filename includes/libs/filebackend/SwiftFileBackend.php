@@ -2020,12 +2020,12 @@ class SwiftFileBackend extends FileBackendStore {
 		if ( $status instanceof StatusValue ) {
 			$status->fatal( 'backend-fail-internal', $this->name );
 		}
-		$msg = "HTTP {code} ({desc}) in '{func}' (given '{req_params}')";
+		$msg = "HTTP {code} ({desc}) in '{func}'";
 		$msgParams = [
 			'code'   => $code,
 			'desc'   => $desc,
 			'func'   => $func,
-			'req_params' => FormatJson::encode( $params ),
+			'req_params' => $params,
 		];
 		if ( $err ) {
 			$msg .= ': {err}';
