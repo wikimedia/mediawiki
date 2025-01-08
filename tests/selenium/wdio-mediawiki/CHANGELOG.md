@@ -1,8 +1,11 @@
 # Changelog
 
-## UNRELEASED
+## 2.6.0 / 2025-01-09
+* Skip wikitext-specific tests if NS_MAIN isn't wikitext. (T358530)
+* Add LoginPage.getActualUsername().
 * Wait for form submission in `LoginPage.login()`.
 * Wait for the page to be fully loaded in `Page.openTitle()`. (T381739)
+* Add random element to junit-reporter file name.
 
 ## 2.5.0 / 2024-01-24
 

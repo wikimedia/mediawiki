@@ -46,6 +46,7 @@ making assertions that depend on its outcome.
 `Util` is a collection of popular utility methods.
 
 * `getTestString([ string prefix ])`
+* `isTargetNotWikitext(string target)`
 * `waitForModuleState(string moduleName [, string moduleStatus [, number timeout ] ])`
 
 ## Versioning
