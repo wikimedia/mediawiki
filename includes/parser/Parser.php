@@ -4323,7 +4323,6 @@ class Parser {
 
 		# Ugh .. the TOC should have neat indentation levels which can be
 		# passed to the skin functions. These are determined here
-		$full = '';
 		$head = [];
 		$level = 0;
 		$tocData = new TOCData();
@@ -4571,9 +4570,7 @@ class Parser {
 			$sections[0] .= self::TOC_PLACEHOLDER . "\n";
 		}
 
-		$full .= implode( '', $sections );
-
-		return $full;
+		return implode( '', $sections );
 	}
 
 	/**
