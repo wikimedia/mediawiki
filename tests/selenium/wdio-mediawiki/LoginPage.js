@@ -35,6 +35,17 @@ class LoginPage extends Page {
 		await this.username.setValue( username );
 		await this.password.setValue( password );
 		await this.loginButton.click();
+		await browser.waitUntil(
+			async () => await browser.execute(
+				( expectedUsername ) => typeof mw !== 'undefined' &&
+					mw.config.get( 'wgUserName' ) === expectedUsername,
+				username
+			),
+			{
+				timeout: 15000,
+				timeoutMsg: 'Cannot submit login form'
+			}
+		);
 	}
 
 	async loginAdmin() {
