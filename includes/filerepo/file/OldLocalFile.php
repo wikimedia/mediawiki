@@ -333,7 +333,7 @@ class OldLocalFile extends LocalFile {
 		$migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
 			MainConfigNames::FileSchemaMigrationStage
 		);
-		if ( $migrationStage & MIGRATION_WRITE_NEW ) {
+		if ( $migrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
 			$dbw->newUpdateQueryBuilder()
 				->update( 'filerevision' )
 				->set( [
@@ -470,7 +470,7 @@ class OldLocalFile extends LocalFile {
 		$migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
 			MainConfigNames::FileSchemaMigrationStage
 		);
-		if ( $migrationStage & MIGRATION_WRITE_NEW ) {
+		if ( $migrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
 			$commentFields = $services->getCommentStore()
 				->insert( $dbw, 'fr_description', $comment );
 			$dbw->newInsertQueryBuilder()
