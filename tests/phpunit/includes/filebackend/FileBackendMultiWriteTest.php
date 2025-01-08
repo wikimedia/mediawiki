@@ -63,6 +63,7 @@ class FileBackendMultiWriteTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testAsyncWrites() {
+		$deferredUpdates = [];
 		$be = TestingAccessWrapper::newFromObject(
 			new FileBackendMultiWrite( [
 				'name' => 'localtesting',
@@ -79,7 +80,10 @@ class FileBackendMultiWriteTest extends MediaWikiIntegrationTestCase {
 						'isMultiMaster' => true
 					]
 				],
-				'replication' => 'async'
+				'replication' => 'async',
+				'asyncHandler' => static function ( $update ) use ( &$deferredUpdates ) {
+					$deferredUpdates[] = $update;
+				}
 			] )
 		);
 
@@ -99,7 +103,9 @@ class FileBackendMultiWriteTest extends MediaWikiIntegrationTestCase {
 			"File already written to backend 1"
 		);
 
-		DeferredUpdates::doUpdates();
+		foreach ( $deferredUpdates as $update ) {
+			$update();
+		}
 
 		$this->assertEquals(
 			'cattitude',

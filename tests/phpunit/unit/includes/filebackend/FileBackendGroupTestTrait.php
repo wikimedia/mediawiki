@@ -259,6 +259,10 @@ trait FileBackendGroupTestTrait {
 			'class' => FSFileBackend::class,
 			'lockManager' =>
 				$this->lmgFactory->getLockManagerGroup( self::getWikiID() )->get( 'fsLockManager' ),
+			'asyncHandler' => [
+				MediaWiki\Deferred\DeferredUpdates::class,
+				'addCallableUpdate'
+			]
 		], $config );
 
 		// For config values that are objects, check object identity.

@@ -26,6 +26,7 @@ namespace MediaWiki\FileBackend;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Logger\LoggerFactory;
@@ -234,6 +235,7 @@ class FileBackendGroup {
 			[
 				'mimeCallback' => [ $this, 'guessMimeInternal' ],
 				'obResetFunc' => 'wfResetOutputBuffers',
+				'asyncHandler' => [ DeferredUpdates::class, 'addCallableUpdate' ],
 				'streamMimeFunc' => [ StreamFile::class, 'contentTypeFromPath' ],
 				'tmpFileFactory' => $this->tmpFileFactory,
 				'statusWrapper' => [ Status::class, 'wrap' ],
