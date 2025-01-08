@@ -26,6 +26,8 @@ class TagMultiselectWidget extends Widget {
 	protected $tagLimit;
 	/** @var bool */
 	protected $allowArbitrary;
+	/** @var bool */
+	protected $allowReordering;
 	/** @var string[]|null */
 	protected $allowedValues;
 
@@ -37,6 +39,7 @@ class TagMultiselectWidget extends Widget {
 	 *   - array $config['input'] Config options for the input widget
 	 *   - int $config['tagLimit'] Maximum number of selected items
 	 *   - bool $config['allowArbitrary'] Allow data items not present in the menu.
+	 *   - bool $config['allowReordering'] Allow reordering of the items
 	 *   - array $config['allowedValues'] Allowed items
 	 */
 	public function __construct( array $config = [] ) {
@@ -49,6 +52,7 @@ class TagMultiselectWidget extends Widget {
 		$this->input = $config['input'] ?? [];
 		$this->tagLimit = $config['tagLimit'] ?? null;
 		$this->allowArbitrary = $config['allowArbitrary'] ?? false;
+		$this->allowReordering = $config['allowReordering'] ?? true;
 		$this->allowedValues = $config['allowedValues'] ?? null;
 
 		$noJsFallback = ( new Tag( 'div' ) )
@@ -79,6 +83,9 @@ class TagMultiselectWidget extends Widget {
 		}
 		if ( $this->allowArbitrary !== null ) {
 			$config['allowArbitrary'] = $this->allowArbitrary;
+		}
+		if ( $this->allowReordering !== null ) {
+			$config['allowReordering'] = $this->allowReordering;
 		}
 		if ( $this->allowedValues !== null ) {
 			$config['allowedValues'] = $this->allowedValues;
