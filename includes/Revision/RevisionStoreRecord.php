@@ -25,9 +25,11 @@ namespace MediaWiki\Revision;
 use InvalidArgumentException;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
+use Wikimedia\Assert\Assert;
 
 /**
  * A RevisionRecord representing an existing revision persisted in the revision table.
@@ -66,6 +68,21 @@ class RevisionStoreRecord extends RevisionRecord {
 		$this->mPageId = intval( $row->rev_page );
 		$this->mComment = $comment;
 
+		Assert::parameter(
+			$page->exists(),
+			'$page',
+			'must represent an existing page'
+		);
+		Assert::parameter(
+			$page->getId( $wikiId ) === $this->mPageId,
+			'$page',
+			'must match the rev_page field in $row'
+		);
+		Assert::postcondition(
+			parent::getPage() instanceof ProperPageIdentity,
+			'The parent constructor should have ensured that we have a ProperPageIdentity now.'
+		);
+
 		// Don't use MWTimestamp::convert, instead let any detailed exception from MWTimestamp
 		// bubble up (T254210)
 		$timestamp = ( new MWTimestamp( $row->rev_timestamp ) )->getTimestamp( TS_MW );
@@ -98,6 +115,18 @@ class RevisionStoreRecord extends RevisionRecord {
 				' but actually belongs to ' . $this->getArticleId( $this->mPage )
 			);
 		}
+	}
+
+	/**
+	 * Returns the page this revision belongs to.
+	 *
+	 * @return ProperPageIdentity (before 1.44, this was returning a PageIdentity)
+	 */
+	public function getPage(): ProperPageIdentity {
+		// Override to narrow the return type.
+		// We checked in the constructor that the page is a proper page.
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
+		return parent::getPage();
 	}
 
 	/**

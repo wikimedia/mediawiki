@@ -180,6 +180,27 @@ class SignatureValidatorTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $result );
 	}
 
+	/**
+	 * Regression test for T381982
+	 * @covers \MediaWiki\Preferences\SignatureValidator::validateSignature()
+	 */
+	public function testValidateWithSpecialPage() {
+		$titleFactory = $this->createNoOpMock( TitleFactory::class, [ 'newMainPage' ] );
+		$titleFactory->method( 'newMainPage' )->willReturn(
+			Title::makeTitle( NS_SPECIAL, 'MainPage' )
+		);
+
+		$this->setService( 'TitleFactory', $titleFactory );
+
+		$this->validator = $this->getSignatureValidator();
+
+		$signature = '[[User:SignatureValidatorTest|Signature]] ([[User talk:SignatureValidatorTest|talk]])';
+		$result = $this->validator->validateSignature( $signature );
+
+		// This is a dummy, we are mainly checking that nothing epxlodes
+		$this->assertFalse( $result );
+	}
+
 	public function provideValidateSignature() {
 		yield 'Perfect' => [
 			'[[User:SignatureValidatorTest|Signature]] ([[User talk:SignatureValidatorTest|talk]])',
