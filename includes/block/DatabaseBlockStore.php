@@ -869,7 +869,9 @@ class DatabaseBlockStore {
 		$maxTargetCount = max( $deltasByTarget );
 		for ( $delta = 1; $delta <= $maxTargetCount; $delta++ ) {
 			$targetsWithThisDelta = array_keys( $deltasByTarget, $delta, true );
-			$this->releaseTargets( $dbw, $targetsWithThisDelta, $delta );
+			if ( $targetsWithThisDelta ) {
+				$this->releaseTargets( $dbw, $targetsWithThisDelta, $delta );
+			}
 		}
 
 		$dbw->newDeleteQueryBuilder()
@@ -891,6 +893,9 @@ class DatabaseBlockStore {
 	 * @param int $delta The amount to decrement by
 	 */
 	private function releaseTargets( IDatabase $dbw, $targetIds, int $delta = 1 ) {
+		if ( !$targetIds ) {
+			return;
+		}
 		$dbw->newUpdateQueryBuilder()
 			->update( 'block_target' )
 			->set( [ 'bt_count' => new RawSQLValue( "bt_count-$delta" ) ] )
