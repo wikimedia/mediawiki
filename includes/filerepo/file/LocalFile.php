@@ -1947,7 +1947,7 @@ class LocalFile extends File {
 			$dbw->newInsertQueryBuilder()
 				->insertInto( 'filerevision' )
 				->row( [
-						'fr_file' => $this->getFileIdFromName(),
+						'fr_file' => $this->acquireFileIdFromName(),
 						'fr_size' => $this->size,
 						'fr_width' => intval( $this->width ),
 						'fr_height' => intval( $this->height ),
