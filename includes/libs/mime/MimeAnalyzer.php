@@ -437,7 +437,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 			'svg',
 
 			// 3D formats
-			'stl',
+			'stl', 'glb',
 		];
 		return in_array( strtolower( $extension ), $types );
 	}
@@ -586,6 +586,9 @@ class MimeAnalyzer implements LoggerAwareInterface {
 			"\xd7\xcd\xc6\x9a" => 'application/x-msmetafile',
 			'%PDF'             => 'application/pdf',
 			'gimp xcf'         => 'image/x-xcf',
+
+			// 3D
+			"glTF"             => 'model/gltf-binary',
 
 			// Some forbidden fruit...
 			'MZ'               => 'application/octet-stream', // DOS/Windows executable
