@@ -22,8 +22,8 @@ class LoginPage extends Page {
 		return $( '#pt-userpage' );
 	}
 
-	open() {
-		super.openTitle( 'Special:UserLogin' );
+	async open() {
+		await super.openTitle( 'Special:UserLogin' );
 	}
 
 	async getActualUsername() {

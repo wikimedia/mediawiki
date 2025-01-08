@@ -23,20 +23,20 @@ function runThroughMainPageRequests( runCount = 1 ) {
 	const page = new Page();
 	log( `through requests to the main page (run ${ runCount }).` );
 
-	page.openTitle( '' );
-
-	return getJobCount().then( ( jobCount ) => {
-		if ( jobCount === 0 ) {
-			log( 'found no more queued jobs.' );
-			return;
-		}
-		log( `detected ${ jobCount } more queued job(s).` );
-		if ( runCount >= MAINPAGE_REQUESTS_MAX_RUNS ) {
-			log( 'stopping requests to the main page due to reached limit.' );
-			return;
-		}
-		return runThroughMainPageRequests( ++runCount );
-	} );
+	return page.openTitle( '' ).then(
+		() => getJobCount().then( ( jobCount ) => {
+			if ( jobCount === 0 ) {
+				log( 'found no more queued jobs.' );
+				return;
+			}
+			log( `detected ${ jobCount } more queued job(s).` );
+			if ( runCount >= MAINPAGE_REQUESTS_MAX_RUNS ) {
+				log( 'stopping requests to the main page due to reached limit.' );
+				return;
+			}
+			return runThroughMainPageRequests( ++runCount );
+		} )
+	);
 }
 
 /**
