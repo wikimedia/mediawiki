@@ -314,7 +314,7 @@ class LocalFileDeleteBatch {
 					'oi_archive_name' => array_map( 'strval', array_keys( $oldRels ) )
 				] )
 				->caller( __METHOD__ )->execute();
-			if ( ( $migrationStage & MIGRATION_WRITE_NEW ) && $this->file->getFileIdFromName() ) {
+			if ( ( $migrationStage & SCHEMA_COMPAT_WRITE_NEW ) && $this->file->getFileIdFromName() ) {
 				$delete = $dbw->newDeleteQueryBuilder()
 					->deleteFrom( 'filerevision' )
 					->where( [ 'fr_file' => $this->file->getFileIdFromName() ] );
@@ -332,7 +332,7 @@ class LocalFileDeleteBatch {
 				->deleteFrom( 'image' )
 				->where( [ 'img_name' => $this->file->getName() ] )
 				->caller( __METHOD__ )->execute();
-			if ( ( $migrationStage & MIGRATION_WRITE_NEW ) && $this->file->getFileIdFromName() ) {
+			if ( ( $migrationStage & SCHEMA_COMPAT_WRITE_NEW ) && $this->file->getFileIdFromName() ) {
 				$dbw->newUpdateQueryBuilder()
 					->update( 'file' )
 					->set( [

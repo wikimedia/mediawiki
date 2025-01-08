@@ -354,7 +354,7 @@ class LocalFileRestoreBatch {
 				->insertInto( 'image' )
 				->row( $insertCurrent )
 				->caller( __METHOD__ )->execute();
-			if ( $migrationStage & MIGRATION_WRITE_NEW ) {
+			if ( $migrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
 				$dbw->newUpdateQueryBuilder()
 					->update( 'file' )
 					->set( [ 'file_deleted' => 0 ] )
@@ -377,7 +377,7 @@ class LocalFileRestoreBatch {
 				->caller( __METHOD__ )->execute();
 		}
 
-		if ( $insertFileRevisions && ( $migrationStage & MIGRATION_WRITE_NEW ) ) {
+		if ( $insertFileRevisions && ( $migrationStage & SCHEMA_COMPAT_WRITE_NEW ) ) {
 			// reverse the order to make the newest have the highest id
 			$insertFileRevisions = array_reverse( $insertFileRevisions );
 

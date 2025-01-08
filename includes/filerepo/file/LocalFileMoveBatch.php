@@ -380,7 +380,7 @@ class LocalFileMoveBatch {
 		$migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
 			MainConfigNames::FileSchemaMigrationStage
 		);
-		if ( ( $migrationStage & MIGRATION_WRITE_NEW ) && $this->file->getFileIdFromName() ) {
+		if ( ( $migrationStage & SCHEMA_COMPAT_WRITE_NEW ) && $this->file->getFileIdFromName() ) {
 			$dbw->newUpdateQueryBuilder()
 				->update( 'file' )
 				->set( [ 'file_name' => $this->newName ] )
