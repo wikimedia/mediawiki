@@ -130,16 +130,23 @@ class StatsFactory {
 	}
 
 	/**
-	 * Create a metric totaling all samples in the cache.
+	 * Get a total of the number of samples in cache.
 	 */
-	private function trackUsage(): void {
+	public function getCacheCount(): int {
 		$accumulator = 0;
 		foreach ( $this->cache->getAllMetrics() as $metric ) {
 			$accumulator += $metric->getSampleCount();
 		}
+		return $accumulator;
+	}
+
+	/**
+	 * Create a metric totaling all samples in the cache.
+	 */
+	private function trackUsage(): void {
 		$this->getCounter( 'stats_buffered_total' )
 			->copyToStatsdAt( 'stats.statslib.buffered' )
-			->incrementBy( $accumulator );
+			->incrementBy( $this->getCacheCount() );
 	}
 
 	/**
