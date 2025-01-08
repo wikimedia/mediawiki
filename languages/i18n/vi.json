@@ -1947,7 +1947,7 @@
 	"ncategories": "$1 thể loại",
 	"ninterwikis": "$1 liên kết liên wiki",
 	"nlinks": "$1 liên kết",
-	"nmembers": "$1 {{PLURAL:$1}}trang",
+	"nmembers": "$1 {{PLURAL:$1|trang}}",
 	"nmemberschanged": "$1 → $2 trang",
 	"nrevisions": "$1 phiên bản",
 	"nimagelinks": "Được sử dụng trong $1 trang",

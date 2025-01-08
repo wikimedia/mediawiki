@@ -970,6 +970,7 @@
 	"http-invalid-url": "Feilâlâš URL: $1",
 	"license": "Liiseens:",
 	"license-header": "Liiseens",
+	"nolicense": "Ohtâgin liiseens ij lah väljejum",
 	"listfiles-delete": "siho",
 	"imgfile": "tiätuvuárkká",
 	"listfiles": "Tiätuvuárkkáluvâttâllâm",

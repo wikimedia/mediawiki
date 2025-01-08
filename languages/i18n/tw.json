@@ -718,7 +718,7 @@
 	"brokenredirects-delete": "pepa",
 	"withoutinterwiki-submit": "Yi kyerɛ",
 	"ncategories": "{{PLURAL:$1|Nkyekyɛmu}}",
-	"nmembers": "$1 {{PLURAL:$1|Ɛkuo ba|ɛkuo mma}}",
+	"nmembers": "$1 {{PLURAL:$1|ɛkuo ba|ɛkuo mma}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|Ekuoba|Ekuomma}}",
 	"nimagelinks": "Ɛwɔ {{PLURAL:$1|kratafa|nkratafa}} $1 so",
 	"ntransclusions": "ɛwɔ {{PLURAL:$1|kratafa|nkratafa}} $1 so",

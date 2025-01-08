@@ -1972,6 +1972,7 @@
 	"listusers": "Список на корисници",
 	"listusers-editsonly": "Прикажи само корисници кои уредувале",
 	"listusers-temporarygroupsonly": "Прикажи само корисници во привремени кориснички групи",
+	"listusers-temporaryaccountsonly": "Прикажи само привремени сметки",
 	"listusers-creationsort": "Подреди по датум на создавање",
 	"listusers-desc": "Подреди по надолен редослед",
 	"usereditcount": "$1 {{PLURAL:$1|уредување|уредувања}}",

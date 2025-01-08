@@ -602,7 +602,7 @@
 	"double-redirect-fixer": "malumtee daana",
 	"withoutinterwiki-submit": "Pa’alɛ",
 	"nbytes": "$1 {{PLURAL:$1|biire|bɛa}}",
-	"nmembers": "{{PLURAL:$1|$1 mɛmba|Mɛmbaduma $1}}",
+	"nmembers": "{{PLURAL:$1|$1 mɛmba|mɛmbaduma $1}}",
 	"prefixindex": "Pɛga wuu la nɛŋa bɛ̃gelesi",
 	"prefixindex-submit": "Pa’alɛ",
 	"protectedpages-filters": "Lɛɛsi:",

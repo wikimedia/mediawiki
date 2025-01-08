@@ -2551,6 +2551,7 @@
 	"undelete-revision-row2": "$1 ($2) $3 . . $4 $5 $6 $7 $8",
 	"undelete-back-to-list": "削除された版をすべて見る",
 	"undelete-load-more-revisions": "リビジョンをさらに読み込む",
+	"undelete-error-loading-diff": "差分の読み込み中にエラーが発生しました。",
 	"namespace": "名前空間:",
 	"invert": "選択したものを除く",
 	"tooltip-invert": "選択した名前空間 (チェックを入れている場合は、関連付けられた名前空間も含む) のページの変更を非表示にするには、このボックスにチェックを入れる",

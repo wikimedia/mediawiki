@@ -2056,6 +2056,7 @@
 	"listusers": "Elenco degli utenti",
 	"listusers-editsonly": "Mostra solo utenti con dei contributi",
 	"listusers-temporarygroupsonly": "Mostra solo utenti in gruppi utenti temporanei",
+	"listusers-temporaryaccountsonly": "Mostra solo utenze temporanee",
 	"listusers-creationsort": "Ordina per data di creazione",
 	"listusers-desc": "Ordina in senso decrescente",
 	"usereditcount": "$1 {{PLURAL:$1|contributo|contributi}}",

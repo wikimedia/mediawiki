@@ -2000,6 +2000,7 @@
 	"listusers": "ব্যবহারকারীর তালিকা",
 	"listusers-editsonly": "শুধুমাত্র এমন ব্যবহারকারীদের দেখাও যাদের অবদান আছে",
 	"listusers-temporarygroupsonly": "শুধুমাত্র অস্থায়ী ব্যবহারকারী দলের ব্যবহারকারীদের দেখান",
+	"listusers-temporaryaccountsonly": "কেবল অস্থায়ী অ্যাকাউন্ট দেখান",
 	"listusers-creationsort": "তৈরির তারিখ অনুসারে সাজাও",
 	"listusers-desc": "বড় থেকে ছোট ক্রম অনুযায়ী সাজাও",
 	"usereditcount": "$1 {{PLURAL:$1|সম্পাদনা|সম্পাদনা}}",

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Cigaryno",
 			"Meno25",
 			"Mohammed Qays",
 			"SaldırganSincap",
@@ -88,6 +89,7 @@
 	"rest-unsupported-language-conversion": "تحويل اللغة غير المدعومة: $1 إلى $2",
 	"rest-unknown-content-model": "نموذج محتوى غير معروف: $1",
 	"rest-page-bundle-validation-error": "PageBundle لا يتطابق مع نسخة المحتوى: $1",
+	"rest-param-desc-mock-desc": "وصف الوهمي",
 	"rest-param-desc-revision-id": "معرف المراجعة",
 	"rest-param-desc-html-input-title": "تحويل عنوان إدخال HTML",
 	"rest-param-desc-page-content-title": "عنوان محتوى الصفحة",
