@@ -31,9 +31,14 @@
 				{{ emptyState }}
 			</template>
 			<template #item-modify="{ item }">
-				<a @click="$emit( 'edit-block', item )">
+				<cdx-button
+					type="button"
+					action="progressive"
+					weight="quiet"
+					@click="$emit( 'edit-block', item )"
+				>
 					{{ $i18n( 'block-item-edit' ).text() }}
-				</a>
+				</cdx-button>
 				<cdx-button
 					action="progressive"
 					weight="quiet"
