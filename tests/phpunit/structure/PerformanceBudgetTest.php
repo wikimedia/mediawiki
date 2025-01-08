@@ -173,6 +173,8 @@ class PerformanceBudgetTest extends MediaWikiIntegrationTestCase {
 					'ext.checkUser.clientHints',
 					// Wikibase
 					'wikibase.client.init', 'wikibase.client.data-bridge.externalModifiers', 'wikibase.vector.searchClient', 'wikibase.client.data-bridge.init',
+					// WikimediaBadges
+					'ext.wikimediaBadges',
 					// </exclusions>
 				] )
 			) {
