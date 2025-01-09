@@ -188,13 +188,13 @@ class BatchRowUpdateTest extends MediaWikiIntegrationTestCase {
 		$buildConditions->setAccessible( true );
 
 		// On first iteration only the passed conditions must be used
-		$this->assertEquals( $conditions, $buildConditions->invoke( $reader ),
-			'First iteration must return only the conditions passed in addConditions' );
+		$this->assertEquals( [], $buildConditions->invoke( $reader ),
+			'First iteration must return no extra conditions' );
 		$reader->rewind();
 
 		// Second iteration must use the maximum primary key of last set
 		$this->assertEquals(
-			$conditions + $expectedSecondIteration,
+			$expectedSecondIteration,
 			$buildConditions->invoke( $reader ),
 			$message
 		);

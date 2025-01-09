@@ -65,33 +65,25 @@ class DumpCategoriesAsRdf extends Maintenance {
 	public function getCategoryIterator( IReadableDatabase $dbr, $fname ) {
 		$it = new BatchRowIterator(
 			$dbr,
-			[ 'page', 'page_props', 'category' ],
+			$dbr->newSelectQueryBuilder()
+				->from( 'page' )
+				->leftJoin( 'page_props', null, [ 'pp_propname' => 'hiddencat', 'pp_page = page_id' ] )
+				->leftJoin( 'category', null, [ 'cat_title = page_title' ] )
+				->select( [
+					'page_title',
+					'page_id',
+					'pp_propname',
+					'cat_pages',
+					'cat_subcats',
+					'cat_files'
+				] )
+				->where( [
+					'page_namespace' => NS_CATEGORY,
+				] )
+				->caller( $fname ),
 			[ 'page_title' ],
 			$this->getBatchSize()
 		);
-		$it->addConditions( [
-			'page_namespace' => NS_CATEGORY,
-		] );
-		$it->setFetchColumns( [
-			'page_title',
-			'page_id',
-			'pp_propname',
-			'cat_pages',
-			'cat_subcats',
-			'cat_files'
-		] );
-		$it->addJoinConditions(
-			[
-				'page_props' => [
-					'LEFT JOIN', [ 'pp_propname' => 'hiddencat', 'pp_page = page_id' ]
-				],
-				'category' => [
-					'LEFT JOIN', [ 'cat_title = page_title' ]
-				]
-			]
-
-		);
-		$it->setCaller( $fname );
 		return $it;
 	}
 
@@ -105,16 +97,17 @@ class DumpCategoriesAsRdf extends Maintenance {
 	public function getCategoryLinksIterator( IReadableDatabase $dbr, array $ids, $fname ) {
 		$it = new BatchRowIterator(
 			$dbr,
-			'categorylinks',
+			$dbr->newSelectQueryBuilder()
+				->from( 'categorylinks' )
+				->select( [ 'cl_from', 'cl_to' ] )
+				->where( [
+					'cl_type' => 'subcat',
+					'cl_from' => $ids
+				] )
+				->caller( $fname ),
 			[ 'cl_from', 'cl_to' ],
 			$this->getBatchSize()
 		);
-		$it->addConditions( [
-			'cl_type' => 'subcat',
-			'cl_from' => $ids
-		] );
-		$it->setFetchColumns( [ 'cl_from', 'cl_to' ] );
-		$it->setCaller( $fname );
 		return new RecursiveIteratorIterator( $it );
 	}
 

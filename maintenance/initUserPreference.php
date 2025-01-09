@@ -46,17 +46,18 @@ class InitUserPreference extends Maintenance {
 
 		$iterator = new BatchRowIterator(
 			$dbr,
-			'user_properties',
+			$dbr->newSelectQueryBuilder()
+				->from( 'user_properties' )
+				->select( [ 'up_user', 'up_value' ] )
+				->where( [
+					'up_property' => $source,
+					$dbr->expr( 'up_value', '!=', null ),
+					$dbr->expr( 'up_value', '!=', '0' ),
+				] )
+				->caller( __METHOD__ ),
 			[ 'up_user', 'up_property' ],
 			$this->getBatchSize()
 		);
-		$iterator->setFetchColumns( [ 'up_user', 'up_value' ] );
-		$iterator->addConditions( [
-			'up_property' => $source,
-			$dbr->expr( 'up_value', '!=', null ),
-			$dbr->expr( 'up_value', '!=', '0' ),
-		] );
-		$iterator->setCaller( __METHOD__ );
 
 		$processed = 0;
 		foreach ( $iterator as $batch ) {

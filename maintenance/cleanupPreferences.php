@@ -105,17 +105,16 @@ class CleanupPreferences extends Maintenance {
 
 		$iterator = new BatchRowIterator(
 			$dbr,
-			'user_properties',
+			$dbr->newSelectQueryBuilder()
+				->from( 'user_properties' )
+				->select( $dryRun ?
+					[ 'up_user', 'up_property', 'up_value' ] :
+					[ 'up_user', 'up_property' ] )
+				->where( $where )
+				->caller( __METHOD__ ),
 			[ 'up_user', 'up_property' ],
 			$this->getBatchSize()
 		);
-		if ( $dryRun ) {
-			$iterator->setFetchColumns( [ 'up_user', 'up_property', 'up_value' ] );
-		} else {
-			$iterator->setFetchColumns( [ 'up_user', 'up_property' ] );
-		}
-		$iterator->addConditions( $where );
-		$iterator->setCaller( __METHOD__ );
 
 		$dbw = $this->getPrimaryDB();
 		$total = 0;
