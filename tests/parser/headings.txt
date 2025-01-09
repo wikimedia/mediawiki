@@ -1098,7 +1098,7 @@ wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __NOTOC__
 !! metadata
-flags=no-toc
+flags=
 !! html/php
 !! html/parsoid
 <section data-mw-section-id="0"><meta property="mw:PageProp/notoc"/></section>

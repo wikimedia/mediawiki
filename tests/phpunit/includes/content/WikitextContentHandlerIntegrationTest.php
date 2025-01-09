@@ -66,7 +66,6 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 		] );
 		$commonLegacyOptions = array_merge( $commonOptions, [
 			'disableTitleConversion',
-			'suppressTOC',
 			'targetLanguage',
 		] );
 		$parsoidVersion =
