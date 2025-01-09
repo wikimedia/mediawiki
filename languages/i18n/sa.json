@@ -2322,7 +2322,6 @@
 	"ilsubmit": "अन्वेषणम्",
 	"bydate": "दिनाङ्कानुगुणम्",
 	"sp-newimages-showfrom": " $2 $1 तः आरब्धाः सञ्चिकाः दर्शयतु ।",
-	"seconds": "{{PLURAL:$1|$1 second|$1 seconds}}",
 	"minutes": "{{PLURAL:$1|$1 निमेषः|$1 निमेषाः}}",
 	"hours": "{{PLURAL:$1|$1होरा|$1 होराः}}",
 	"days": "{{PLURAL:$1|$1 दिनम्|$1 दिनानि}}",

@@ -293,6 +293,7 @@
 	"databaseerror-error": "pakala: $1",
 	"laggedreplicamode": "<strong>o lukin:</strong> lipu li ken sin ala.",
 	"readonly": "ilo nanpa awen li ken ala ante",
+	"missingarticle-rev": "(#ante: $1)",
 	"missingarticle-diff": "(ante: $1, $2)",
 	"timeouterror": "wile sina li kepeken tenpo mute. mi pakala.",
 	"internalerror": "pakala insa",

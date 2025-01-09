@@ -124,7 +124,7 @@
 	"apihelp-query+iwlinks-paramvalue-prop-url": "Setzt déi komplett URL dobäi.",
 	"apihelp-query+langlinks-param-lang": "Nëmme Sproochlinke mat dësem Sproochcode zréckginn.",
 	"apihelp-query+links-param-namespace": "Nëmme Linken an dësen Nummraim weisen.",
-	"apihelp-query+linkshere-summary": "All Säite fannen déi op déi Säit linken déi ugi gouf.",
+	"apihelp-query+linkshere-summary": "All Säite fannen, déi op déi Säit verlinken, déi ugi gouf.",
 	"apihelp-query+linkshere-paramvalue-prop-title": "Titel vun all Säit.",
 	"apihelp-query+linkshere-paramvalue-prop-redirect": "Markéiere wann d'Säit eng Viruleedung ass.",
 	"apihelp-query+pageswithprop-example-generator": "Zousätzlech Informatiounen iwwer déi 10 éischt Säite kréie mat <code>_&#95;NOTOC_&#95;</code>.",

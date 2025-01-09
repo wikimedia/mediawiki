@@ -2366,16 +2366,16 @@
 	"unwatching": "Престајем да надгледам...",
 	"enotif_reset": "Означи све странице као посећене",
 	"enotif_impersonal_salutation": "{{SITENAME}} корисник",
-	"enotif_subject_deleted": "Страницу $1 на {{SITENAME}} {{GENDER:$2|обрисао је|обрисала је|обрисао је}} $2",
+	"enotif_subject_deleted": "$2 је {{GENDER:$2|обрисао|обрисала}} страницу $1 на {{SITENAME}}",
 	"enotif_subject_created": "$2 је {{GENDER:$2|направио|направила}} страницу $1 на {{SITENAME}}",
 	"enotif_subject_moved": "$2 је {{GENDER:$2|преместио|преместила}} страницу $1 на {{SITENAME}}",
 	"enotif_subject_restored": "$2 је {{GENDER:$2|вратио|вратила}} страницу $1 на {{SITENAME}}",
 	"enotif_subject_changed": "Страницу $1 на {{SITENAME}} {{GENDER:$2|променио|променила}} је $2",
 	"enotif_body_intro_deleted": "Страницу $1 на {{SITENAME}} {{GENDER:$2|обрисао|обрисала}} је $2 дана $PAGEEDITDATE Погледајте $3.",
-	"enotif_body_intro_created": "Страницу $1 на пројекту {{SITENAME}} је {{GENDER:$2|направио корисник|направила корисница}} $2 на датум $PAGEEDITDATE Актуелна измена се налази на $3.",
-	"enotif_body_intro_moved": "Страницу $1 на {{SITENAME}} је {{GENDER:$2|преместио корисник|преместила корисница}} $2 на датум $PAGEEDITDATE Актуелна измена се налази на $3.",
-	"enotif_body_intro_restored": "Страницу $1 на пројекту {{SITENAME}} је {{GENDER:$2|вратио корисник|вратила корисница}} $2 на датум $PAGEEDITDATE Актуелна измена се налази на $3.",
-	"enotif_body_intro_changed": "Страницу $1 на пројекту {{SITENAME}} је {{GENDER:$2|променио корисник|променила корисница}} $2 на датум $PAGEEDITDATE Актуелна измена се налази на $3.",
+	"enotif_body_intro_created": "Страницу $1 на пројекту {{SITENAME}} је {{GENDER:$2|направио|направила}} $2 на датум $PAGEEDITDATE Актуелна измена се налази на $3.",
+	"enotif_body_intro_moved": "Страницу $1 на {{SITENAME}} је {{GENDER:$2|преместио|преместила}} $2 на датум $PAGEEDITDATE Актуелна измена се налази на $3.",
+	"enotif_body_intro_restored": "Страницу $1 на пројекту {{SITENAME}} је {{GENDER:$2|вратио|вратила}} $2 на датум $PAGEEDITDATE Актуелна измена се налази на $3.",
+	"enotif_body_intro_changed": "Страницу $1 на пројекту {{SITENAME}} је {{GENDER:$2|променио|променила}} $2 на датум $PAGEEDITDATE Актуелна измена се налази на $3.",
 	"enotif_lastvisited": "За све измене од последње посете, погледајте $1.",
 	"enotif_lastdiff": "Да бисте видели ову измену, погледајте $1.",
 	"enotif_anon_editor": "анониман корисник $1",
@@ -4192,5 +4192,5 @@
 	"action-renameuser": "преименујете кориснике",
 	"right-renameuser": "преименовање корисника",
 	"renameuser-renamed-notice": "Овом кориснику је промењено име.\nИсторија промена имена је приложена испод, као информација.",
-	"log-unknown-action": "извршио непознату радњу „$2” на [[$1]]"
+	"log-unknown-action": "извршио је непознату радњу „$2” на [[$1]]"
 }
