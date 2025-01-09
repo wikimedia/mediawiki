@@ -323,7 +323,7 @@
 	"history-title": "$1: Ebyaira by'empindura",
 	"difference-title": "$1: Okubaganiza empindura",
 	"lineno": "Orukarra $1:",
-	"compareselectedversions": "Lengesaniza empindura zinu",
+	"compareselectedversions": "Sisaniza empindura zinu",
 	"editundo": "garramu",
 	"diff-empty": "(Tiharoho mbaganiza)",
 	"diff-multi-sameuser": "({{PLURAL:$1|Oruhindura rumu rwa hagati rw'|Empindura $1 za hagati z'}}{{GENDER:$3|omukozesa omu}} {{PLURAL:$1|tirwolekirwe|tizolekirwe}})",
