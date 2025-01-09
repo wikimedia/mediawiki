@@ -731,7 +731,7 @@ class ApiMain extends ApiBase {
 		// JSONP mode
 		if ( $request->getCheck( 'callback' ) ||
 			// Anonymous CORS
-			$request->getVal( 'origin' ) === '*' ||
+			$request->getRawVal( 'origin' ) === '*' ||
 			// Header to be used from XMLHTTPRequest when the request might
 			// otherwise be used for XSS.
 			$request->getHeader( 'Treat-as-Untrusted' ) !== false
