@@ -154,25 +154,32 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		$this->changeTags->updateTags( [ 'foo', 'bar', '0' ], [], $rcId );
 		// HACK resolve deferred group concats (see comment in provideModifyDisplayQuery)
 		if ( isset( $modifiedQuery['fields']['ts_tags'] ) ) {
+			[ $delim, $table, $join, $field, $where ] = $modifiedQuery['fields']['ts_tags'];
 			$modifiedQuery['fields']['ts_tags'] = $this->getDb()
-				->buildGroupConcatField( ...$modifiedQuery['fields']['ts_tags'] );
+				->newSelectQueryBuilder()
+				->table( $table )
+				->join( ...$join )
+				->field( $field )
+				->where( $where )
+				->buildGroupConcatField( $delim );
 		}
 		if ( isset( $modifiedQuery['exception'] ) ) {
 			$this->expectException( $modifiedQuery['exception'] );
 		}
+		$actualQuery = $origQuery;
 		$this->changeTags->modifyDisplayQuery(
-			$origQuery['tables'],
-			$origQuery['fields'],
-			$origQuery['conds'],
-			$origQuery['join_conds'],
-			$origQuery['options'],
+			$actualQuery['tables'],
+			$actualQuery['fields'],
+			$actualQuery['conds'],
+			$actualQuery['join_conds'],
+			$actualQuery['options'],
 			$filter_tag,
 			$exclude
 		);
 		if ( !isset( $modifiedQuery['exception'] ) ) {
 			$this->assertArrayEquals(
 				$modifiedQuery,
-				$origQuery,
+				$actualQuery,
 				/* ordered = */ false,
 				/* named = */ true
 			);
@@ -180,15 +187,19 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideModifyDisplayQuery() {
-		// HACK if we call $dbr->buildGroupConcatField() now, it will return the wrong table names
+		// HACK if we call buildGroupConcatField() now, it will return the wrong table names
 		// We have to have the test runner call it instead
-		$baseConcats = [ ',', [ 'change_tag', 'change_tag_def' ], 'ctd_name' ];
-		$joinConds = [ 'change_tag_def' => [ 'JOIN', 'ct_tag_id=ctd_id' ] ];
+		$baseConcats = [
+			',',
+			'change_tag',
+			[ 'change_tag_def', null, 'ct_tag_id=ctd_id' ],
+			'ctd_name'
+		];
 		$groupConcats = [
-			'recentchanges' => array_merge( $baseConcats, [ [ 'ct_rc_id=rc_id' ], $joinConds ] ),
-			'logging' => array_merge( $baseConcats, [ [ 'ct_log_id=log_id' ], $joinConds ] ),
-			'revision' => array_merge( $baseConcats, [ [ 'ct_rev_id=rev_id' ], $joinConds ] ),
-			'archive' => array_merge( $baseConcats, [ [ 'ct_rev_id=ar_rev_id' ], $joinConds ] ),
+			'recentchanges' => array_merge( $baseConcats, [ [ 'ct_rc_id=rc_id' ] ] ),
+			'logging' => array_merge( $baseConcats, [ [ 'ct_log_id=log_id' ] ] ),
+			'revision' => array_merge( $baseConcats, [ [ 'ct_rev_id=rev_id' ] ] ),
+			'archive' => array_merge( $baseConcats, [ [ 'ct_rev_id=ar_rev_id' ] ] ),
 		];
 
 		return [

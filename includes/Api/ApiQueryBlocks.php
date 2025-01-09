@@ -65,7 +65,11 @@ class ApiQueryBlocks extends ApiQueryBase {
 
 		$result = $this->getResult();
 
-		$this->addTables( [ 'block', 'block_target', 'block_target_user' => 'user' ] );
+		$this->addTables( [
+			'block',
+			'block_target' => 'block_target',
+			'block_target_user' => 'user'
+		] );
 		$this->addJoinConds( [
 			'block_target' => [ 'JOIN', 'bt_id=bl_target' ],
 			'block_target_user' => [ 'LEFT JOIN', 'user_id=bt_user' ]

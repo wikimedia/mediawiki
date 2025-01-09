@@ -439,7 +439,7 @@ class BlockListPager extends TablePager {
 			'tables' => [
 				'block',
 				'block_by_actor' => 'actor',
-				'block_target',
+				'block_target' => 'block_target',
 				...$commentQuery['tables'],
 			],
 			'fields' => [
