@@ -1044,10 +1044,11 @@ class EditPage implements IEditObject {
 			// security reasons
 			return false;
 		}
-		if ( $request->getVal( 'preview' ) === 'yes' ) {
+		$preview = $request->getRawVal( 'preview' );
+		if ( $preview === 'yes' ) {
 			// Explicit override from request
 			return true;
-		} elseif ( $request->getVal( 'preview' ) === 'no' ) {
+		} elseif ( $preview === 'no' ) {
 			// Explicit override from request
 			return false;
 		} elseif ( $this->section === 'new' ) {
@@ -1132,7 +1133,7 @@ class EditPage implements IEditObject {
 			if ( $this->section === 'new' && $request->getCheck( 'preloadtitle' ) ) {
 				$this->sectiontitle = $request->getVal( 'preloadtitle' );
 				$this->setNewSectionSummary();
-			} elseif ( $this->section !== 'new' && $request->getVal( 'summary' ) !== '' ) {
+			} elseif ( $this->section !== 'new' && $request->getRawVal( 'summary' ) !== '' ) {
 				$this->summary = $request->getText( 'summary' );
 				if ( $this->summary !== '' ) {
 					// If a summary has been preset using &summary= we don't want to prompt for

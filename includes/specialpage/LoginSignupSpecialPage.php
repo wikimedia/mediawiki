@@ -166,7 +166,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$this->mReturnTo = $request->getVal( 'returnto', '' );
 		$this->mReturnToQuery = $request->getVal( 'returntoquery', '' );
 		$this->mReturnToAnchor = $request->getVal( 'returntoanchor', '' );
-		if ( $request->getVal( 'display' ) === 'popup' ) {
+		if ( $request->getRawVal( 'display' ) === 'popup' ) {
 			$this->mDisplay = 'popup';
 		}
 	}

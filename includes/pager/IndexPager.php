@@ -200,7 +200,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 				->getLimitOffsetForUser( $this->getUser() );
 		}
 
-		$this->mIsBackwards = ( $this->mRequest->getVal( 'dir' ) == 'prev' );
+		$this->mIsBackwards = ( $this->mRequest->getRawVal( 'dir' ) === 'prev' );
 		// Let the subclass set the DB here; otherwise use a replica DB for the current wiki
 		if ( !$this->mDb ) {
 			$this->mDb = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();

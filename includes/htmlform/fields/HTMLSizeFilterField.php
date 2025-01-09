@@ -87,7 +87,7 @@ class HTMLSizeFilterField extends HTMLIntField {
 		$size = abs( $request->getInt( $this->mName, $this->getDefault() ) );
 
 		// negative numbers represent "max", positive numbers represent "min"
-		if ( $request->getVal( $this->mName . '-mode' ) === 'max' ) {
+		if ( $request->getRawVal( $this->mName . '-mode' ) === 'max' ) {
 			$this->mSelectMin = false;
 			return -$size;
 		} else {
