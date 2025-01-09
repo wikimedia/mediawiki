@@ -494,7 +494,11 @@ interface ILBFactory extends IConnectionProvider {
 	public function getTransactionProfiler(): TransactionProfiler;
 
 	/**
-	 * Like {@link IConnectionProvider::getPrimaryDatabase()} but using CONN_TRX_AUTOCOMMIT.
+	 * Like {@link IConnectionProvider::getPrimaryDatabase()} but with AUTOCOMMIT mode.
+	 *
+	 * This is useful for whether the caller needs to use AUTOCOMMIT (no transaction wrapping)
+	 * or it needs a new connection outside of the current transaction to bypass REPEATABLE READ
+	 * isolation.
 	 *
 	 * This method accepts virtual domains
 	 * ({@see \MediaWiki\MainConfigSchema::VirtualDomainsMapping}).
