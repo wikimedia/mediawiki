@@ -2012,6 +2012,7 @@ class LocalFile extends File {
 
 			if ( ( $this->migrationStage & SCHEMA_COMPAT_WRITE_NEW ) && $latestFileRevId && $oldver ) {
 				$dbw->newUpdateQueryBuilder()
+					->update( 'filerevision' )
 					->set( [ 'fr_archive_name' => $oldver ] )
 					->where( [ 'fr_id' => $latestFileRevId ] )
 					->execute();
