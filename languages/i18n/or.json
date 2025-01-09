@@ -1100,6 +1100,8 @@
 	"recentchangeslinked-summary": "ଏଇଟି କିଛିସମୟ ଆଗରୁ ନିର୍ଦ୍ଦିଷ୍ଟ ପୃଷ୍ଠାରୁ ଲିଙ୍କ ହୋଇଥିବା ଆଉ ବଦଳାଯାଇଥିବା (ଅବା ଗୋଟିଏ ନିର୍ଦ୍ଦିଷ୍ଟ ଶ୍ରେଣୀର) ପୃଷ୍ଠାସବୁର ତାଲିକା ।  [[Special:Watchlist|ମୋର ଦେଖାତାଲିକା]]ର ପୃଷ୍ଠା ସବୁ '''ବୋଲଡ଼'''।",
 	"recentchangeslinked-page": "ଫରଦର ନାଆଁ",
 	"recentchangeslinked-to": "ଏହାର ବଦଳରେ ଦିଆଯାଇଥିବା ପୃଷ୍ଠା ସହ ଯୋଡ଼ା ବାକି ପୃଷ୍ଠାମାନଙ୍କର ବଦଳମାନ ଦେଖାନ୍ତୁ",
+	"recentchanges-page-added-to-category": "[[:$1]] ଶ୍ରେଣୀରେ ଯୋଡା ଯାଇଛି ।",
+	"recentchanges-page-removed-from-category": "[[:$1]] ଶ୍ରେଣୀରୁ କାଢି ଦିଆଯାଇଛି ।",
 	"upload": "ଫାଇଲ ଅପଲୋଡ଼ କରିବେ",
 	"uploadbtn": "ଫାଇଲ ଅପଲୋଡ଼ କରିବେ",
 	"reuploaddesc": "ଅପଲୋଡ଼କୁ ନାକଚ କରିବେ ଓ ଅପଲୋଡ଼ ଫର୍ମକୁ ଫେରିବେ",
