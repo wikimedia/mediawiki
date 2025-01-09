@@ -69,10 +69,6 @@
 			<template v-if="blockLogType !== 'active'" #item-type="{ item }">
 				{{ util.getBlockActionMessage( item ) }}
 			</template>
-			<template v-if="blockLogType === 'active'" #item-target="{ item }">
-				<!-- eslint-disable-next-line vue/no-v-html -->
-				<span v-html="$i18n( 'userlink-with-contribs', item ).parse()"></span>
-			</template>
 			<template #item-expiry="{ item }">
 				<span v-if="item.expires || item.duration">
 					{{ util.formatTimestamp( item.expires || item.duration ) }}
@@ -150,15 +146,19 @@ module.exports = exports = defineComponent( {
 		const columns = [
 			...( props.blockLogType === 'active' || props.canDeleteLogEntry ?
 				[ { id: props.blockLogType === 'active' ? 'modify' : 'hide', label: '', minWidth: '100px' } ] : [] ),
-			{ id: 'timestamp', label: mw.message( 'blocklist-timestamp' ).text(), minWidth: '112px' },
-			props.blockLogType === 'recent' || props.blockLogType === 'suppress' ?
-				{ id: 'type', label: mw.message( 'blocklist-type-header' ).text(), minWidth: '112px' } :
-				{ id: 'target', label: mw.message( 'blocklist-target' ).text(), minWidth: '200px' },
+			{ id: 'timestamp', label: mw.message( 'blocklist-timestamp' ).text(), minWidth: '112px' }
+		];
+		if ( props.blockLogType === 'recent' || props.blockLogType === 'suppress' ) {
+			columns.push(
+				{ id: 'type', label: mw.message( 'blocklist-type-header' ).text(), minWidth: '112px' }
+			);
+		}
+		columns.push(
 			{ id: 'expiry', label: mw.message( 'blocklist-expiry' ).text(), minWidth: '112px' },
 			{ id: 'blockedby', label: mw.message( 'blocklist-by' ).text(), minWidth: '200px' },
 			{ id: 'parameters', label: mw.message( 'blocklist-params' ).text(), minWidth: '160px' },
 			{ id: 'reason', label: mw.message( 'blocklist-reason' ).text(), minWidth: '160px' }
-		];
+		);
 
 		const logEntries = ref( [] );
 		const moreBlocks = ref( false );
