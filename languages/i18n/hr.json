@@ -3665,7 +3665,7 @@
 	"specialmute-header": "Molimo Vas, odaberite Vaše postavke utišavanja obavijesti za suradnicu/suradnika <b>{{BIDI:[[User:$1]]}}</b>.",
 	"specialmute-error-invalid-user": "Suradničko ime koje ste tražili nije moguće pronaći.",
 	"specialmute-error-no-options": "Mogućnosti utišavanja nisu dostupne.",
-	"specialmute-email-footer": "Za upravljanje postavkama e-pošte suradnice/suradnika {{BIDI:$2}}, molimo Vas, pođite na <$1>.",
+	"specialmute-email-footer": "Za upravljanje postavkama e-pošte suradnice/suradnika {{BIDI:$2}}, molimo Vas, posjetite sljedeći URL:\n$1",
 	"specialmute-login-required": "Molimo Vas, prijavite se da biste promijenili postavke.",
 	"mute-preferences": "Postavke utišavanja",
 	"gotointerwiki": "Napuštate projekt {{SITENAME}}",

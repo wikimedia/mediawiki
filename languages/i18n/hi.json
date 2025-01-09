@@ -3073,7 +3073,6 @@
 	"ilsubmit": "खोजें",
 	"bydate": "तिथि अनुसार",
 	"sp-newimages-showfrom": "$2, $1 से नई फ़ाइलें दिखाएँ",
-	"seconds": "{{PLURAL:$1|$1 second|$1 seconds}}",
 	"minutes": "{{PLURAL:$1|$1 minute|$1 minutes}}",
 	"hours": "{{PLURAL:$1|$1 hour|$1 hours}}",
 	"days": "{{PLURAL:$1|$1 day|$1 days}}",

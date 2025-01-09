@@ -327,6 +327,8 @@
 	"createaccount": "Teīkeis nāunan rekkenan",
 	"userlogin-resetpassword-link": "Izmīrsa Tu swajjan kliptaswīrdan?",
 	"userlogin-helplink2": "Pagalba prei enēisnan",
+	"userlogin-loggedin": "Tū jāu engūbuns kāigi {{GENDER:$1|$1}}.\nDedeis twajjan tērpautajs dātan ēn zemmai laūkans.",
+	"userlogin-createanother": "Teīkeis kittan rekkenan",
 	"createacct-emailrequired": "E-mail adressi",
 	"createacct-emailoptional": "E-mail adressi (opciōnalai)",
 	"createacct-email-ph": "Enpeisāis swajjan e-mail adressin.",

@@ -619,6 +619,8 @@
 	"recentchangeslinked-summary": "Bə ym səhifonədə oxonə ovaxtijon sijohije, bə kom səhifon link vardə ym səhifə (jaanki daxyl kardə byən bə nišo doə byə kategorijə).\n[[Special:Watchlist|Šymə noǧo doə sijohijədə]] byə səhifonədə, de <strong>ǧalinə</strong> šrifti nišo doə byən.",
 	"recentchangeslinked-page": "Səhifə nom:",
 	"recentchangeslinked-to": "Bə nišo doə səhifə link vardə səhifonədə ovaxtə cijon nišo doj",
+	"recentchanges-page-added-to-category": "[[:$1]] bə kategorijə əlovə kardə be",
+	"recentchanges-page-removed-from-category": "[[:$1]] molə be kategorijəku",
 	"upload": "Fajli əlovə bykə",
 	"uploadlogpage": "Бо кардә быә чијон журнал",
 	"filedesc": "Xylosə",

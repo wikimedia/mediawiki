@@ -3331,7 +3331,7 @@
 	"hours": "$1시간",
 	"days": "$1일",
 	"weeks": "$1주",
-	"months": "$1개월",
+	"months": "{{PLURAL:$1|$1개월}}",
 	"years": "$1년",
 	"ago": "$1 전",
 	"just-now": "방금",

@@ -753,7 +753,7 @@
 	"editpage-notsupportedcontentformat-title": "Innhaldsformatet ikkje stødd",
 	"editpage-notsupportedcontentformat-text": "Innhaldsformatet $1 er ikkje stødd av innhaldsmodellen $2.",
 	"slot-name-main": "Hovud",
-	"content-model-wikitext": "WikiTekst",
+	"content-model-wikitext": "wikitekst",
 	"content-model-text": "Rein tekst",
 	"content-json-empty-object": "Tomt objekt",
 	"content-json-empty-array": "Tom matrise",

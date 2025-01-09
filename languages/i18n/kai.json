@@ -60,7 +60,6 @@
 	"period-pm": "ZB",
 	"pagecategories": "{{PLURAL:$1|Kumu}}",
 	"category_header": "Shafi à katigori \"$1\"",
-	"subcategories": "Subcategories",
 	"category-media-header": "Media à kàtigori \"$1\"",
 	"hidden-categories": "{{PLURAL:$1|Hidden category|Hidden categories}}",
 	"category-subcat-count": "{{PLURAL:$2|This category has only the following subcategory.|This category has the following {{PLURAL:$1|subcategory|$1 subcategories}}, out of $2 total.}}",

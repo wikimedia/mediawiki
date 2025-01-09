@@ -1555,7 +1555,7 @@
 	"ilsubmit": "ፍለጋ",
 	"bydate": "በተጨመሩበት ወቅት",
 	"sp-newimages-showfrom": "ከ$2፣ $1 እ.ኤ.አ. ጀምሮ አዲስ ይታዩ",
-	"seconds": "$1 ሴኮንድ",
+	"seconds": "$1 {{PLURAL:$1|ሴኮንድ}}",
 	"minutes": "$1 ደቂቃ",
 	"hours": "$1 ሰዓት",
 	"days": "$1 ቀን",
