@@ -27,6 +27,7 @@ use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
@@ -48,6 +49,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 	private BlockRestrictionStore $blockRestrictionStore;
 	private CommentStore $commentStore;
 	private HideUserUtils $hideUserUtils;
+	private CommentFormatter $commentFormatter;
 
 	public function __construct(
 		ApiQuery $query,
@@ -56,7 +58,8 @@ class ApiQueryBlocks extends ApiQueryBase {
 		BlockActionInfo $blockActionInfo,
 		BlockRestrictionStore $blockRestrictionStore,
 		CommentStore $commentStore,
-		HideUserUtils $hideUserUtils
+		HideUserUtils $hideUserUtils,
+		CommentFormatter $commentFormatter
 	) {
 		parent::__construct( $query, $moduleName, 'bk' );
 		$this->blockStore = $blockStore;
@@ -64,6 +67,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		$this->blockRestrictionStore = $blockRestrictionStore;
 		$this->commentStore = $commentStore;
 		$this->hideUserUtils = $hideUserUtils;
+		$this->commentFormatter = $commentFormatter;
 	}
 
 	public function execute() {
@@ -80,6 +84,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		$fld_timestamp = isset( $prop['timestamp'] );
 		$fld_expiry = isset( $prop['expiry'] );
 		$fld_reason = isset( $prop['reason'] );
+		$fld_parsedreason = isset( $prop['parsedreason'] );
 		$fld_range = isset( $prop['range'] );
 		$fld_flags = isset( $prop['flags'] );
 		$fld_restrictions = isset( $prop['restrictions'] );
@@ -113,7 +118,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 			$fld_flags );
 		$this->addFieldsIf( 'bl_sitewide', $fld_restrictions );
 
-		if ( $fld_reason ) {
+		if ( $fld_reason || $fld_parsedreason ) {
 			$commentQuery = $this->commentStore->getJoin( 'bl_reason' );
 			$this->addTables( $commentQuery['tables'] );
 			$this->addFields( $commentQuery['fields'] );
@@ -283,6 +288,11 @@ class ApiQueryBlocks extends ApiQueryBase {
 			if ( $fld_reason ) {
 				$block['reason'] = $this->commentStore->getComment( 'bl_reason', $row )->text;
 			}
+			if ( $fld_parsedreason ) {
+				$block['parsedreason'] = $this->commentFormatter->format(
+					$this->commentStore->getComment( 'bl_reason', $row )->text
+				);
+			}
 			if ( $fld_range && !$row->bt_auto && $row->bt_range_start !== null ) {
 				$block['rangestart'] = IPUtils::formatHex( $row->bt_range_start );
 				$block['rangeend'] = IPUtils::formatHex( $row->bt_range_end );
@@ -428,6 +438,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 					'timestamp',
 					'expiry',
 					'reason',
+					'parsedreason',
 					'range',
 					'flags',
 					'restrictions',
