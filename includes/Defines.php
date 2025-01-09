@@ -306,6 +306,10 @@ define( 'SCHEMA_COMPAT_NEW', SCHEMA_COMPAT_WRITE_NEW | SCHEMA_COMPAT_READ_NEW );
  * SCHEMA_COMPAT_XXX bitfield semantics. High bits are used to ensure that the numeric
  * ordering follows the order in which the migration stages should be used.
  *
+ * Do not use these constants to query the feature flag.  If you wish to check if your
+ * code should perform a particular kind of read or write operation, use the appropriate
+ * SCHEMA_COMPAT_XXX flag.  It is generally an error to use MIGRATION_XXX constants in a bitwise operation.
+ *
  * - MIGRATION_OLD: Only read and write the old schema. The new schema need not
  *   even exist. This is used from when the patch is merged until the schema
  *   change is actually applied to the database.
