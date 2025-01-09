@@ -244,9 +244,8 @@ class SpecialBlock extends FormSpecialPage {
 			}
 
 			$this->codexFormData[ 'blockTypePreset' ] =
-				$request->getVal( 'wpEditingRestriction' ) === 'sitewide' ||
-				$request->getVal( 'wpEditingRestriction' ) === 'partial' ?
-				$request->getVal( 'wpEditingRestriction' ) :
+				$request->getRawVal( 'wpEditingRestriction' ) === 'partial' ?
+				'partial' :
 				'sitewide';
 			$this->codexFormData[ 'blockReasonPreset' ] = $request->getVal( 'wpReason' );
 			$this->codexFormData[ 'blockReasonOtherPreset' ] = $request->getVal( 'wpReason-other' );
@@ -265,7 +264,7 @@ class SpecialBlock extends FormSpecialPage {
 				$blockDetailsPreset[] = 'wpDisableUTEdit';
 			}
 
-			if ( $request->getVal( 'wpAutoBlock' ) !== '0' ) {
+			if ( $request->getRawVal( 'wpAutoBlock' ) !== '0' ) {
 				$blockAdditionalDetailsPreset[] = 'wpAutoBlock';
 			}
 
