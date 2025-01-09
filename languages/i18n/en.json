@@ -3649,7 +3649,6 @@
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|talk]])",
 	"signature-anon": "[[{{#special:Contributions}}/$1|$2]]",
 	"signature-temp": "[[{{#special:Contributions}}/$1|$2]] ([[{{ns:user_talk}}:$1|talk]])",
-	"userlink-with-contribs": "[[{{ns:user}}:$1|$1]] ([[{{ns:user_talk}}:$1|{{int:talkpagelinktext}}]] {{int:pipe-separator}} [[{{ns:special}}:Contributions/$1|{{int:contribslink}}]])",
 	"timezone-utc": "UTC",
 	"timezone-local": "Local",
 	"duplicate-defaultsort": "<strong>Warning:</strong> Default sort key \"$2\" overrides earlier default sort key \"$1\".",

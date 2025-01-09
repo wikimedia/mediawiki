@@ -2404,7 +2404,6 @@ return [
 			'parentheses-start',
 			'pipe-separator',
 			'talkpagelinktext',
-			'userlink-with-contribs',
 		],
 	],
 	'mediawiki.protectionIndicators.styles' => [
