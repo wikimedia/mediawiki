@@ -2,7 +2,7 @@
 
 namespace MediaWiki\User\TempUser;
 
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\ILBFactory;
 
 /**
  * A serial provider which allocates IDs from the local database, or from a
@@ -12,31 +12,26 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * @since 1.39
  */
 class LocalSerialProvider extends DBSerialProvider {
-	private ILoadBalancer $lb;
+	private ILBFactory $lbf;
 
 	/**
 	 * @param array $config
 	 *   - numShards (int, default 1): A small integer. This can be set to a
 	 *     value greater than 1 to avoid acquiring a global lock when
 	 *     allocating IDs, at the expense of making the IDs be non-monotonic.
-	 * @param ILoadBalancer $lb
+	 * @param ILBFactory $lbf
 	 */
-	public function __construct( $config, ILoadBalancer $lb ) {
+	public function __construct( $config, ILBFactory $lbf ) {
 		parent::__construct( $config );
-		$this->lb = $lb;
+		$this->lbf = $lbf;
 	}
 
 	protected function getDB() {
-		return $this->lb->getConnection(
-			DB_PRIMARY,
-			[],
-			false,
-			// So that startAtomic() will start a commit, reducing lock time.
-			// Without this flag, the transaction will be open until the start
-			// of request shutdown. This could be omitted to reduce the
-			// connection overhead, with numShards tuned upwards to compensate.
-			ILoadBalancer::CONN_TRX_AUTOCOMMIT
-		);
+		// So that startAtomic() will start a commit, reducing lock time.
+		// Without this flag, the transaction will be open until the start
+		// of request shutdown. This could be omitted to reduce the
+		// connection overhead, with numShards tuned upwards to compensate.
+		return $this->lbf->getAutoCommitPrimaryConnection();
 	}
 
 	protected function getTableName() {

@@ -44,7 +44,7 @@ class TempUserCreator implements TempUserConfig {
 	private const SERIAL_PROVIDERS = [
 		'local' => [
 			'class' => LocalSerialProvider::class,
-			'services' => [ 'DBLoadBalancer' ],
+			'services' => [ 'DBLoadBalancerFactory' ],
 		]
 	];
 
