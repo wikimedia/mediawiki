@@ -30,7 +30,6 @@ use Psr\Log\NullLogger;
 use RuntimeException;
 use UnexpectedValueException;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
-use Wikimedia\LightweightObjectStore\StorageAwareness;
 use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\StatsFactory;
 

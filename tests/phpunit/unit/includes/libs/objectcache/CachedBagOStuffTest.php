@@ -4,7 +4,7 @@ namespace Wikimedia\Tests\ObjectCache;
 
 use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
-use Wikimedia\LightweightObjectStore\StorageAwareness;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\CachedBagOStuff;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\TestingAccessWrapper;
@@ -133,22 +133,22 @@ class CachedBagOStuffTest extends TestCase {
 
 		$wp = $cache->watchErrors();
 		$cache->get( $key );
-		$this->assertSame( StorageAwareness::ERR_NONE, $cache->getLastError( $wp ) );
+		$this->assertSame( BagOStuff::ERR_NONE, $cache->getLastError( $wp ) );
 
-		$wrapper->setLastError( StorageAwareness::ERR_UNREACHABLE );
-		$this->assertSame( StorageAwareness::ERR_UNREACHABLE, $cache->getLastError() );
-		$this->assertSame( StorageAwareness::ERR_UNREACHABLE, $cache->getLastError( $wp ) );
+		$wrapper->setLastError( BagOStuff::ERR_UNREACHABLE );
+		$this->assertSame( BagOStuff::ERR_UNREACHABLE, $cache->getLastError() );
+		$this->assertSame( BagOStuff::ERR_UNREACHABLE, $cache->getLastError( $wp ) );
 
 		$wp = $cache->watchErrors();
-		$wrapper->setLastError( StorageAwareness::ERR_UNEXPECTED );
+		$wrapper->setLastError( BagOStuff::ERR_UNEXPECTED );
 		$wp2 = $cache->watchErrors();
-		$this->assertSame( StorageAwareness::ERR_UNEXPECTED, $cache->getLastError() );
-		$this->assertSame( StorageAwareness::ERR_UNEXPECTED, $cache->getLastError( $wp ) );
-		$this->assertSame( StorageAwareness::ERR_NONE, $cache->getLastError( $wp2 ) );
+		$this->assertSame( BagOStuff::ERR_UNEXPECTED, $cache->getLastError() );
+		$this->assertSame( BagOStuff::ERR_UNEXPECTED, $cache->getLastError( $wp ) );
+		$this->assertSame( BagOStuff::ERR_NONE, $cache->getLastError( $wp2 ) );
 
 		$cache->get( $key );
-		$this->assertSame( StorageAwareness::ERR_UNEXPECTED, $cache->getLastError() );
-		$this->assertSame( StorageAwareness::ERR_UNEXPECTED, $cache->getLastError( $wp ) );
-		$this->assertSame( StorageAwareness::ERR_NONE, $cache->getLastError( $wp2 ) );
+		$this->assertSame( BagOStuff::ERR_UNEXPECTED, $cache->getLastError() );
+		$this->assertSame( BagOStuff::ERR_UNEXPECTED, $cache->getLastError( $wp ) );
+		$this->assertSame( BagOStuff::ERR_NONE, $cache->getLastError( $wp2 ) );
 	}
 }
