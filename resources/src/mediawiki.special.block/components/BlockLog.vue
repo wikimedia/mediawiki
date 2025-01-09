@@ -100,7 +100,8 @@
 				<span v-else></span>
 			</template>
 			<template #item-reason="{ item }">
-				{{ item }}
+				<!-- eslint-disable-next-line vue/no-v-html -->
+				<span v-html="item"></span>
 			</template>
 		</cdx-table>
 		<div v-if="moreBlocks" class="mw-block-log-fulllog">
@@ -212,7 +213,7 @@ module.exports = exports = defineComponent( {
 					},
 					blockedby: logevent.user,
 					parameters: logevent.params.flags,
-					reason: logevent.comment,
+					reason: logevent.parsedcomment,
 					hide: logevent.logid
 				} );
 			}
@@ -264,7 +265,7 @@ module.exports = exports = defineComponent( {
 										data.blocks[ i ].allowusertalk ? null : 'nousertalk',
 										data.blocks[ i ].hidden ? 'hiddenname' : null
 									].filter( ( e ) => e !== null ),
-								reason: data.blocks[ i ].reason
+								reason: data.blocks[ i ].parsedreason
 							} );
 						}
 					}
