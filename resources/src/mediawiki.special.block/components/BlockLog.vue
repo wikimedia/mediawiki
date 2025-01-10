@@ -76,8 +76,20 @@
 				<span v-else></span>
 			</template>
 			<template #item-blockedby="{ item }">
-				<!-- eslint-disable-next-line vue/no-v-html -->
-				<span v-html="$i18n( 'userlink-with-contribs', item ).parse()"></span>
+				<a :href="mw.util.getUrl( `User:${ item }` )">
+					{{ item }}
+				</a>
+				<span class="mw-usertoollinks">
+					{{ $i18n( 'parentheses-start' ).text() }}<a :href="mw.util.getUrl( `User talk:${ item }` )">
+						{{ $i18n( 'talkpagelinktext' ).text() }}
+					</a>
+					<span>
+						{{ $i18n( 'pipe-separator' ).text() }}
+						<a :href="mw.util.getUrl( `Special:Contributions/${ item }` )">
+							{{ $i18n( 'contribslink' ).text() }}
+						</a>
+					</span>{{ $i18n( 'parentheses-end' ).text() }}
+				</span>
 			</template>
 			<template #item-parameters="{ item }">
 				<ul v-if="item && item.length">
@@ -311,6 +323,10 @@ module.exports = exports = defineComponent( {
 
 	.cdx-accordion__content {
 		font-size: unset;
+	}
+
+	.mw-usertoollinks {
+		white-space: nowrap;
 	}
 }
 

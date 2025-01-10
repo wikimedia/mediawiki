@@ -3913,7 +3913,6 @@
 	"signature": "This will be substituted in the signature (~<nowiki></nowiki>~~ or ~~<nowiki></nowiki>~~ excluding timestamp).\n\n'''Translate the word \"talk\" towards the end.''' It's probably the same as {{mw-msg|Sp-contributions-talk}}.\n\nParameters:\n* $1 - the username that is currently login\n* $2 - the customized signature which is specified in [[Special:Preferences|user's preferences]] as non-raw\n\nUse your language default parentheses ({{msg-mw|parentheses}}), but not use the message direct.\n\nSee also:\n* {{msg-mw|Signature-anon}} - signature for anonymous user",
 	"signature-anon": "{{notranslate}}\nUsed as signature for anonymous user. Parameters:\n* $1 - username (IP address?)\n* $2 - nickname (IP address?)\nSee also:\n* {{msg-mw|Signature}} - signature for registered user",
 	"signature-temp": "Used as a signature for automatically created temporary users (when IP masking is enabled).",
-	"userlink-with-contribs": "A link to a userpage, the talk page and the contributions page, in the format User (talk | contribs). Parameters:\n* $1 - the username",
 	"timezone-utc": "{{optional}}",
 	"timezone-local": "Label to indicate that a time is in the user's local timezone.\n{{Identical|Local}}",
 	"duplicate-defaultsort": "<strong>Warning:</strong> Default sort key \"$2\" overrides earlier default sort key \"$1\".",
