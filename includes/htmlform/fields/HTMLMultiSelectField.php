@@ -266,6 +266,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 				'options' => $optionsSections,
 				'default' => $value,
 				'noJsFallback' => $out,
+				'allowReordering' => false,
 			] + $params );
 		} elseif ( count( $out ) === 1 ) {
 			$firstFieldData = $out[0]->getData() ?: [];
