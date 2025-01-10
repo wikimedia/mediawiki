@@ -47,9 +47,11 @@ class PagerTools {
 		$tools = [];
 		$authority = $context->getAuthority();
 		# Rollback and undo links
-		$userCanEditTitle = $authority->probablyCan( 'edit', $title );
-		if ( $showRollbackLink && $userCanEditTitle ) {
-			if ( $authority->probablyCan( 'rollback', $title ) ) {
+		if ( ( $showRollbackLink || $previousRevRecord )
+			// probablyCan loads page restriction data, call only when needed
+			&& $authority->probablyCan( 'edit', $title )
+		) {
+			if ( $showRollbackLink && $authority->probablyCan( 'rollback', $title ) ) {
 				// Get a rollback link without the brackets
 				$rollbackLink = Linker::generateRollback(
 					$revRecord,
@@ -61,9 +63,8 @@ class PagerTools {
 					$tools['mw-rollback'] = $rollbackLink;
 				}
 			}
-		}
-		if ( $userCanEditTitle && $previousRevRecord ) {
-			if ( !$revRecord->isDeleted( RevisionRecord::DELETED_TEXT )
+			if ( $previousRevRecord
+				&& !$revRecord->isDeleted( RevisionRecord::DELETED_TEXT )
 				&& !$previousRevRecord->isDeleted( RevisionRecord::DELETED_TEXT )
 			) {
 				# Create undo tooltip for the first (=latest) line only
