@@ -215,6 +215,7 @@ class ChangesList extends ContextSource {
 	 * they are called often, we call them once and save them in $this->message
 	 */
 	private function preCacheMessages() {
+		// @phan-suppress-next-line MediaWikiNoIssetIfDefined False positives when documented as nullable
 		if ( !isset( $this->message ) ) {
 			$this->message = [];
 			foreach ( [
@@ -647,6 +648,7 @@ class ChangesList extends ContextSource {
 
 		// Watchlist expiry icon.
 		$watchlistExpiry = '';
+		// @phan-suppress-next-line MediaWikiNoIssetIfDefined
 		if ( isset( $rc->watchlistExpiry ) && $rc->watchlistExpiry ) {
 			$watchlistExpiry = $this->getWatchlistExpiry( $rc );
 		}

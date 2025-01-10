@@ -1218,7 +1218,7 @@ function wfSetBit( &$dest, $bit, $state = true ) {
 function wfVarDump( $var ) {
 	global $wgOut;
 	$s = str_replace( "\n", "<br />\n", var_export( $var, true ) . "\n" );
-	if ( headers_sent() || !isset( $wgOut ) || !is_object( $wgOut ) ) {
+	if ( headers_sent() || $wgOut === null || !is_object( $wgOut ) ) {
 		print $s;
 	} else {
 		$wgOut->addHTML( $s );
