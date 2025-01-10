@@ -406,6 +406,7 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	public function hasTransactionRound() {
+		// TODO: check for implicit rounds or rename and check for implicit rounds with writes?
 		return ( $this->trxRoundFname !== null );
 	}
 

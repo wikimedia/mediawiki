@@ -49,7 +49,7 @@ interface ILBFactory extends IConnectionProvider {
 	/** Do not save "session consistency" DB replication positions */
 	public const SHUTDOWN_NO_CHRONPROT = 1;
 
-	/** @var string Default main cluster name (do not change this) */
+	/** Default main cluster name (do not change this) */
 	public const CLUSTER_MAIN_DEFAULT = 'DEFAULT';
 
 	/**
