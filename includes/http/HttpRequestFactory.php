@@ -30,6 +30,7 @@ use MWHttpRequest;
 use Profiler;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Http\MultiHttpClient;
+use Wikimedia\Http\TelemetryHeadersInterface;
 
 /**
  * Factory creating MWHttpRequest objects.
@@ -39,7 +40,7 @@ class HttpRequestFactory {
 	private $options;
 	/** @var LoggerInterface */
 	private $logger;
-	/** @var Telemetry|null */
+	/** @var TelemetryHeadersInterface|null */
 	private $telemetry;
 
 	/**
@@ -57,7 +58,7 @@ class HttpRequestFactory {
 	public function __construct(
 		ServiceOptions $options,
 		LoggerInterface $logger,
-		?Telemetry $telemetry = null
+		?TelemetryHeadersInterface $telemetry = null
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
