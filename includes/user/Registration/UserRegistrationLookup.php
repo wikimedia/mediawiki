@@ -72,7 +72,7 @@ class UserRegistrationLookup {
 	/**
 	 * @param UserIdentity $user User for which registration should be fetched.
 	 * @param string $type Name of a registered registration provider
-	 * @return string|null|false Registration timestamp, null if not available or false if it
+	 * @return string|null|false Registration timestamp (TS_MW), null if not available or false if it
 	 * cannot be fetched (anonymous users, for example).
 	 */
 	public function getRegistration(
@@ -88,24 +88,24 @@ class UserRegistrationLookup {
 	 * Note this invokes _all_ registered providers.
 	 *
 	 * @param UserIdentity $user
-	 * @return string|null Earliest registration timestamp, null if not available.
+	 * @return string|null Earliest registration timestamp (TS_MW), null if not available.
 	 */
 	public function getFirstRegistration( UserIdentity $user ): ?string {
-		$registrationTimestampsUnix = [];
+		$firstRegistrationTimestamp = null;
 		foreach ( $this->providersSpecs as $providerKey => $_ ) {
-			$registrationTimestampRaw = $this->getRegistration( $user, $providerKey );
-			if ( !is_string( $registrationTimestampRaw ) ) {
+			$registrationTimestamp = $this->getRegistration( $user, $providerKey );
+			if ( $registrationTimestamp === null || $registrationTimestamp === false ) {
 				// Provider was unable to return a registration timestamp for $providerKey, skip
 				// them.
 				continue;
 			}
-			$registrationTimestampsUnix[] = (int)wfTimestamp( TS_UNIX, $registrationTimestampRaw );
+			if ( $firstRegistrationTimestamp === null ||
+				$registrationTimestamp < $firstRegistrationTimestamp
+			) {
+				$firstRegistrationTimestamp = $registrationTimestamp;
+			}
 		}
 
-		if ( $registrationTimestampsUnix === [] ) {
-			return null;
-		}
-
-		return wfTimestamp( TS_MW, min( $registrationTimestampsUnix ) );
+		return $firstRegistrationTimestamp;
 	}
 }

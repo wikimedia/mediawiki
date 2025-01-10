@@ -14,7 +14,7 @@ interface IUserRegistrationProvider {
 	 * Get user registration timestamp
 	 *
 	 * @param UserIdentity $user
-	 * @return string|false|null Registration timestamp, null if not available or false if it
+	 * @return string|false|null Registration timestamp (TS_MW), null if not available or false if it
 	 * cannot be fetched (anonymous users, for example).
 	 */
 	public function fetchRegistration( UserIdentity $user );

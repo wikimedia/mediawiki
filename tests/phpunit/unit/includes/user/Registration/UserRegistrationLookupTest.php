@@ -76,4 +76,53 @@ class UserRegistrationLookupTest extends MediaWikiUnitTestCase {
 		);
 		$lookup->getRegistration( $userIdentity, 'invalid' );
 	}
+
+	/** @dataProvider provideGetFirstRegistration */
+	public function testGetFirstRegistration( $valueLocal, $valueFoo, $expected ) {
+		$userIdentity = new UserIdentityValue( 123, 'Admin' );
+		$userRegistrationProviderMockLocal = $this->createMock( IUserRegistrationProvider::class );
+		$userRegistrationProviderMockLocal->expects( $this->once() )
+			->method( 'fetchRegistration' )
+			->with( $userIdentity )
+			->willReturn( $valueLocal );
+		$userRegistrationProviderMockFoo = $this->createMock( IUserRegistrationProvider::class );
+		$userRegistrationProviderMockFoo->expects( $this->once() )
+			->method( 'fetchRegistration' )
+			->with( $userIdentity )
+			->willReturn( $valueFoo );
+		$objectFactoryMock = $this->createMock( ObjectFactory::class );
+		$objectFactoryMock->expects( $this->exactly( 2 ) )
+			->method( 'createObject' )
+			->willReturnCallback( static function ( $arg ) use ( $userRegistrationProviderMockLocal, $userRegistrationProviderMockFoo ) {
+				if ( $arg === [ 'class' => LocalUserRegistrationProvider::class ] ) {
+					return $userRegistrationProviderMockLocal;
+				}
+				return $userRegistrationProviderMockFoo;
+			} );
+
+		$lookup = new UserRegistrationLookup(
+			new ServiceOptions( UserRegistrationLookup::CONSTRUCTOR_OPTIONS, [
+				MainConfigNames::UserRegistrationProviders => [
+					'local' => [
+						'class' => LocalUserRegistrationProvider::class
+					],
+					'foo' => [
+						'class' => 'FooUserRegistrationLookup'
+					],
+				]
+			] ),
+			$objectFactoryMock
+		);
+
+		$this->assertSame( $expected, $lookup->getFirstRegistration( $userIdentity ) );
+	}
+
+	public static function provideGetFirstRegistration() {
+		return [
+			[ '20200101000000', '20190101000000', '20190101000000' ],
+			[ null, false, null ],
+			[ null, '20190101000000', '20190101000000' ],
+			[ '20200101000000', null, '20200101000000' ],
+		];
+	}
 }
