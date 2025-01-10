@@ -48,9 +48,18 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 			return true;
 		}
 
+		// Fandom-start PLATFORM-10268
+		// log execution time of each migration script, so we could easily find migration bottlenecks
+		$start = microtime( true );
+		$this->output( "Running '$key'\n" );
 		if ( !$this->doDBUpdates() ) {
+			$elapsed = microtime( true ) - $start;
+			$this->output( "'$key' failed after {$elapsed}s\n" );
 			return false;
 		}
+		$elapsed = microtime( true ) - $start;
+		$this->output( "'$key' finished after {$elapsed}s\n" );
+		// Fandom-end
 
 		$db->newInsertQueryBuilder()
 			->insertInto( 'updatelog' )

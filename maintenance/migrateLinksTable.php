@@ -75,6 +75,18 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 		}
 		$highestPageId = $highestPageId[0];
 		$pageId = 0;
+
+		if ( $table === 'pagelinks' ) {
+			$createdLinkTargetRows = $this->fillLinkTargetTable();
+			$this->output( "In total created $createdLinkTargetRows linktarget rows\n" );
+
+			$updatedPageLinksRows = $this->handlePagelinksUpdate();
+			$this->output( "In total updated $updatedPageLinksRows pagelinks rows\n" );
+
+			$updated = $updatedPageLinksRows + $createdLinkTargetRows;
+			$this->output( "Completed normalization of $table, $updated rows updated.\n" );
+			return true;
+		}
 		while ( $pageId <= $highestPageId ) {
 			// Given the indexes and the structure of links tables,
 			// we need to split the update into batches of pages.
@@ -86,6 +98,47 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 		$this->output( "Completed normalization of $table, $updated rows updated.\n" );
 
 		return true;
+	}
+
+	private function fillLinkTargetTable(): int {
+		$batchSize = $this->getBatchSize();
+		$query = "INSERT INTO linktarget(lt_namespace, lt_title)
+					SELECT pl_namespace, pl_title FROM pagelinks
+					WHERE NOT exists (SELECT * FROM linktarget WHERE pl_namespace = lt_namespace AND pl_title = lt_title)
+					GROUP BY pl_namespace, pl_title
+					LIMIT $batchSize";
+		$dbw = $this->getPrimaryDB();
+		$createdRows = 0;
+		while ( true ) {
+			$dbw->query( $query, __METHOD__ );
+			$affectedRows = $dbw->affectedRows();
+			$createdRows += $affectedRows;
+			$this->output( "Created $affectedRows linktarget rows\n" );
+			$this->waitForReplication();
+			if ( $batchSize > $affectedRows ) {
+				return $createdRows;
+			}
+		}
+	}
+
+	private function handlePagelinksUpdate(): int {
+		$batchSize = $this->getBatchSize();
+		$query = "UPDATE pagelinks
+					SET pl_target_id = (SELECT lt_id FROM linktarget WHERE pl_namespace = lt_namespace AND pl_title = lt_title)
+					WHERE pl_target_id IS NULL OR pl_target_id = 0
+					LIMIT $batchSize";
+		$dbw = $this->getPrimaryDB();
+		$updatedRows = 0;
+		while ( true ) {
+			$dbw->query( $query, __METHOD__ );
+			$affectedRows = $dbw->affectedRows();
+			$updatedRows += $affectedRows;
+			$this->output( "Updated $affectedRows pagelinks rows\n" );
+			$this->waitForReplication();
+			if ( $batchSize > $affectedRows ) {
+				return $updatedRows;
+			}
+		}
 	}
 
 	private function handlePageBatch( $lowPageId, $mapping, $table ) {

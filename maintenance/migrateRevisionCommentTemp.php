@@ -48,8 +48,6 @@ class MigrateRevisionCommentTemp extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
-		$batchSize = $this->getBatchSize();
-
 		$dbw = $this->getDB( DB_PRIMARY );
 		if ( !$dbw->fieldExists( 'revision', 'rev_comment_id', __METHOD__ ) ) {
 			$this->output( "Run update.php to create rev_comment_id.\n" );
@@ -61,48 +59,41 @@ class MigrateRevisionCommentTemp extends LoggedUpdateMaintenance {
 		}
 
 		$this->output( "Merging the revision_comment_temp table into the revision table...\n" );
-		$conds = [];
 		$updated = 0;
-		$sleep = (int)$this->getOption( 'sleep', 0 );
+		$highestRevId = (int)$dbw->newSelectQueryBuilder()
+			->select( 'rev_id' )
+			->from( 'revision' )
+			->limit( 1 )
+			->caller( __METHOD__ )
+			->orderBy( 'rev_id', 'DESC' )
+			->fetchField();
+		$this->output( "Max rev_id $highestRevId.\n" );
+		// Default batchSize from "$this->getBatchSize()" is 200, use 1000 to speed migration up
+		// There is "$this->waitForReplication()" after each batch anyway
+		$batchSize = 1000;
+		$lowId = -1;
+		$highId = $batchSize;
 		while ( true ) {
-			$res = $dbw->newSelectQueryBuilder()
-				->select( [ 'rev_id', 'revcomment_comment_id' ] )
-				->from( 'revision' )
-				->join( 'revision_comment_temp', null, 'rev_id=revcomment_rev' )
-				->where( [ 'rev_comment_id' => 0 ] )
-				->andWhere( $conds )
-				->limit( $batchSize )
-				->orderBy( 'rev_id' )
-				->caller( __METHOD__ )
-				->fetchResultSet();
+			// `coalesce` covers case when some row is missing in revision_comment_temp.
+			// Original script used `join` which skipped revision row when `revision_comment_temp` was null.
+			//
+			// Not sure whether we should try to fix the data first
+			// RevisionSelectQueryBuilder::joinComment suggest that all revisions should have rev_comment_id set
+			$query = "UPDATE revision
+				SET rev_comment_id = COALESCE((SELECT revcomment_comment_id FROM revision_comment_temp WHERE rev_id=revcomment_rev), rev_comment_id)
+				WHERE rev_id > $lowId AND rev_id <= $highId";
+			$dbw->query( $query, __METHOD__ );
+			$affected = $dbw->affectedRows();
+			$updated += $affected;
+			$this->output( "Updated $affected revision rows from $lowId to $highId\n" );
+			$this->waitForReplication();
 
-			$numRows = $res->numRows();
-
-			$last = null;
-			foreach ( $res as $row ) {
-				$last = $row->rev_id;
-				$dbw->newUpdateQueryBuilder()
-					->update( 'revision' )
-					->set( [ 'rev_comment_id' => $row->revcomment_comment_id ] )
-					->where( [ 'rev_id' => $row->rev_id ] )
-					->caller( __METHOD__ )->execute();
-				$updated += $dbw->affectedRows();
-			}
-
-			if ( $numRows < $batchSize ) {
-				// We must have reached the end
+			if ( $highId > $highestRevId ) {
+				// We reached the end
 				break;
 			}
-
-			// @phan-suppress-next-line PhanTypeSuspiciousStringExpression last is not-null when used
-			$this->output( "... rev_id=$last, updated $updated\n" );
-			$conds = [ $dbw->expr( 'rev_id', '>', $last ) ];
-
-			// Sleep between batches for replication to catch up
-			$this->waitForReplication();
-			if ( $sleep > 0 ) {
-				sleep( $sleep );
-			}
+			$lowId = $highId;
+			$highId = $lowId + $batchSize;
 		}
 		$this->output(
 			"Completed merge of revision_comment_temp into the revision table, "
