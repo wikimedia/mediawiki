@@ -33,9 +33,13 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * changes to the page's revision history (except for changes to the latest
  * revision).
  *
- * The basic page state before and after the change is represented by
- * PageRecord objects. However, not all changes that trigger a PageStateEvents
- * will cause differences in the page record.
+ * Listeners registered for the "PageState" event type will receive a
+ * complete history of changes to pages' PageRecord. However, some subtypes
+ * may represent changes that do not affect the PageRecord. Also, state
+ * changes may overlap, so the PageRecord returned by getPageRecordBefore()
+ * doesn't always match the return value of getPageRecordAfter() of the previous
+ * event for the same page ID. The return values of getPageRecordAfter() however
+ * form a complete history.
  *
  * @unstable until 1.45
  */

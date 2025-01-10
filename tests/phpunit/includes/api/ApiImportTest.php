@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Api;
 
+use MediaWiki\Page\Event\PageCreatedEvent;
 use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Tests\ExpectCallbackTrait;
 use MediaWiki\Tests\recentchanges\ChangeTrackingUpdateSpyTrait;
@@ -89,6 +90,8 @@ class ApiImportTest extends ApiUploadTestCase {
 				}
 			}
 		);
+
+		$this->expectDomainEvent( PageCreatedEvent::TYPE, 1 );
 
 		// Hooks fired by PageUpdater
 		$this->expectHook( 'RevisionFromEditComplete', 1 );

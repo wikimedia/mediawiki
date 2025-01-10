@@ -648,6 +648,7 @@ class UndeletePage {
 					PageRevisionUpdatedEvent::FLAG_IMPLICIT => true,
 					'created' => $created,
 					'oldcountable' => $oldcountable,
+					'reason' => $comment
 				];
 
 				$updater->setCause( PageUpdater::CAUSE_UNDELETE );

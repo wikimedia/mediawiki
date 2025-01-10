@@ -42,6 +42,7 @@ use MediaWiki\JobQueue\Jobs\ParsoidCachePrewarmJob;
 use MediaWiki\Language\Language;
 use MediaWiki\Logging\LogPage;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\Event\PageCreatedEvent;
 use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\ParserOutputAccess;
@@ -184,6 +185,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		'rcPatrolStatus' => 0,
 		'tags' => [],
 		'cause' => 'edit',
+		'reason' => null,
 		'emitEvents' => true,
 	] + PageRevisionUpdatedEvent::DEFAULT_FLAGS;
 
@@ -1548,9 +1550,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	public function doUpdates() {
 		$this->assertTransition( 'done' );
 
-		if ( $this->options['emitEvents'] ) {
-			$this->emitEvents();
-		}
+		$this->emitEventsIfNeeded();
 
 		// TODO: move more logic into ingress objects subscribed to PageRevisionUpdatedEvent!
 		$event = $this->getPageRevisionUpdatedEvent();
@@ -1654,20 +1654,49 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		$this->doTransition( 'done' );
 	}
 
+	private function emitEventsIfNeeded(): void {
+		if ( !$this->options['emitEvents'] ) {
+			return;
+		}
+
+		$this->emitEvents();
+	}
+
 	/**
 	 * @internal
 	 */
 	public function emitEvents(): void {
-		if ( !$this->options['emitEvents'] ) {
-			throw new LogicException( 'emitEvents was disabled on this updater' );
+		if ( !( $this->options['allowEvents'] ?? true ) ) {
+			throw new LogicException( 'dispatchPageUpdatedEvent was disabled on this updater' );
 		}
-
-		$event = $this->getPageRevisionUpdatedEvent();
 
 		// don't dispatch again!
 		$this->options['emitEvents'] = false;
+		$this->options['allowEvents'] = false;
 
-		$this->eventDispatcher->dispatch( $event, $this->loadbalancerFactory );
+		$pageRevisionUpdatedEvent = $this->getPageRevisionUpdatedEvent();
+		$pageCreatedEvent = $this->getPageCreatedEvent();
+
+		if ( $pageRevisionUpdatedEvent->getPageRecordBefore() === null && !$this->options['created'] ) {
+			// if the page wasn't just created, we need the state before
+			throw new LogicException( 'Missing page state before update' );
+		}
+
+		$this->eventDispatcher->dispatch( $pageRevisionUpdatedEvent, $this->loadbalancerFactory );
+
+		if ( $pageCreatedEvent ) {
+			// NOTE: Emit PageCreated after PageRevisionUpdated, because the creation
+			// is only finished after the revision has been set.
+			$this->eventDispatcher->dispatch( $pageCreatedEvent, $this->loadbalancerFactory );
+		}
+	}
+
+	private function getNominalPerformer(): UserIdentity {
+		/** @var UserIdentity $performer */
+		$performer = $this->options['triggeringUser'] ?? $this->user;
+		'@phan-var UserIdentity $performer';
+
+		return $performer;
 	}
 
 	private function getPageRevisionUpdatedEvent(): PageRevisionUpdatedEvent {
@@ -1718,10 +1747,6 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			}
 		}
 
-		/** @var UserIdentity $performer */
-		$performer = $this->options['triggeringUser'] ?? $this->user;
-		'@phan-var UserIdentity $performer';
-
 		$this->pageRevisionUpdatedEvent = new PageRevisionUpdatedEvent(
 			$this->options['cause'] ?? PageUpdateCauses::CAUSE_EDIT,
 			$pageRecordBefore,
@@ -1730,13 +1755,29 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			$revisionAfter,
 			$this->getRevisionSlotsUpdate(),
 			$this->options['editResult'] ?? null,
-			$performer,
+			$this->getNominalPerformer(),
 			$this->options['tags'] ?? [],
 			$flags,
 			$this->options['rcPatrolStatus'] ?? 0,
 		);
 
 		return $this->pageRevisionUpdatedEvent;
+	}
+
+	private function getPageCreatedEvent(): ?PageCreatedEvent {
+		if ( !$this->options['created'] ) {
+			return null;
+		}
+
+		$pageRecordAfter = $this->getWikiPage()->toPageRecord();
+
+		return new PageCreatedEvent(
+			$this->options['cause'] ?? PageUpdateCauses::CAUSE_EDIT,
+			$pageRecordAfter,
+			$this->getRevision(),
+			$this->getNominalPerformer(),
+			$this->options['reason'] ?? $this->getRevision()->getComment()->text,
+		);
 	}
 
 	private function triggerParserCacheUpdate() {

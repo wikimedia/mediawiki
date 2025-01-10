@@ -12,6 +12,7 @@ use MediaWiki\FileRepo\File\OldLocalFile;
 use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\Event\PageCreatedEvent;
 use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Tests\ExpectCallbackTrait;
 use MediaWiki\Tests\recentchanges\ChangeTrackingUpdateSpyTrait;
@@ -972,6 +973,17 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 			}
 		);
 
+		$this->expectDomainEvent(
+			PageCreatedEvent::TYPE, 1,
+			static function ( PageCreatedEvent $event ) {
+				Assert::assertSame(
+					PageRevisionUpdatedEvent::CAUSE_UPLOAD,
+					$event->getCause(),
+					'getCause'
+				);
+			}
+		);
+
 		// Hooks fired by PageUpdater::saveRevision
 		$this->expectHook( 'RevisionFromEditComplete' );
 		$this->expectHook( 'PageSaveComplete' );
@@ -1037,6 +1049,8 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 				);
 			}
 		);
+
+		$this->expectDomainEvent( PageCreatedEvent::TYPE, 0 );
 
 		// Hooks fired by PageUpdater
 		$this->expectHook( 'RevisionFromEditComplete' );

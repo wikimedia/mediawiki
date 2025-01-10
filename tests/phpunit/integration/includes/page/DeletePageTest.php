@@ -424,10 +424,17 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 			PageDeletedEvent::TYPE,
 			static function ( PageDeletedEvent $event ) use ( &$calls, $suppress, $tags, $id, $content
 			) {
+				Assert::assertNotSame(
+					0,
+					$event->getPageRecordBefore()->getId(),
+					'getPageRecordBefore should return a valid PageRecord'
+				);
+
 				Assert::assertNull(
 					$event->getPageRecordAfter(),
-					'Expected getPageStateAfter() to be null.'
+					'getPageRecordAfter should return null'
 				);
+
 				Assert::assertTrue(
 					$event->getPageRecordBefore()->getId() === $event->getPageId(),
 					'Expected getPageId() and getPageStateBefore()->getId() to be the same'

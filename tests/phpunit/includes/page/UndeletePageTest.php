@@ -4,11 +4,13 @@ use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\WikitextContent;
+use MediaWiki\Page\Event\PageCreatedEvent;
 use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Page\UndeletePage;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Storage\PageUpdateCauses;
 use MediaWiki\Tests\ExpectCallbackTrait;
 use MediaWiki\Tests\Language\LocalizationUpdateSpyTrait;
 use MediaWiki\Tests\recentchanges\ChangeTrackingUpdateSpyTrait;
@@ -197,13 +199,31 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 			}
 		);
 
+		$this->expectDomainEvent(
+			PageCreatedEvent::TYPE, 1,
+			static function ( PageCreatedEvent $event ) use ( $sysop ) {
+				Assert::assertTrue(
+					$event->hasCause( PageUpdateCauses::CAUSE_UNDELETE ),
+					PageUpdateCauses::CAUSE_UNDELETE
+				);
+
+				Assert::assertSame( $sysop, $event->getPerformer(), 'getPerformer' );
+				Assert::assertSame( 'just some reason', $event->getReason(), 'getReason' );
+
+				Assert::assertSame(
+					'Lorem Ipsum',
+					$event->getLatestRevisionAfter()->getMainContentRaw()->getText()
+				);
+			}
+		);
+
 		// Now undelete the page
 		$undeletePage = $this->getServiceContainer()->getUndeletePageFactory()->newUndeletePage(
 			$page,
 			$sysop
 		);
 
-		$undeletePage->undeleteUnsafe( 'just a test' );
+		$undeletePage->undeleteUnsafe( 'just some reason' );
 	}
 
 	public static function provideEventEmission_existing() {
