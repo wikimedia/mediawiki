@@ -21,7 +21,6 @@
 namespace MediaWiki\Search;
 
 use MediaWiki\Content\Content;
-use MediaWiki\Deferred\DeferrableUpdate;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -37,7 +36,7 @@ use Wikimedia\Rdbms\IDBAccessObject;
  * @internal
  * @ingroup Search
  */
-class SearchUpdate implements DeferrableUpdate {
+class SearchUpdate {
 	/** @var int Page id being updated */
 	private $id = 0;
 

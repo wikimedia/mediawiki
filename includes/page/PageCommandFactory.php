@@ -30,6 +30,7 @@ use MediaWiki\Config\Config;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\ContentModelChange;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\DomainEvent\DomainEventDispatcher;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkTargetLookup;
@@ -80,6 +81,7 @@ class PageCommandFactory implements
 	private SpamChecker $spamChecker;
 	private TitleFormatter $titleFormatter;
 	private HookContainer $hookContainer;
+	private DomainEventDispatcher $eventDispatcher;
 	private WikiPageFactory $wikiPageFactory;
 	private UserFactory $userFactory;
 	private ActorMigration $actorMigration;
@@ -114,6 +116,7 @@ class PageCommandFactory implements
 		SpamChecker $spamChecker,
 		TitleFormatter $titleFormatter,
 		HookContainer $hookContainer,
+		DomainEventDispatcher $eventDispatcher,
 		WikiPageFactory $wikiPageFactory,
 		UserFactory $userFactory,
 		ActorMigration $actorMigration,
@@ -147,6 +150,7 @@ class PageCommandFactory implements
 		$this->spamChecker = $spamChecker;
 		$this->titleFormatter = $titleFormatter;
 		$this->hookContainer = $hookContainer;
+		$this->eventDispatcher = $eventDispatcher;
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->userFactory = $userFactory;
 		$this->actorMigration = $actorMigration;
@@ -200,6 +204,7 @@ class PageCommandFactory implements
 	public function newDeletePage( ProperPageIdentity $page, Authority $deleter ): DeletePage {
 		return new DeletePage(
 			$this->hookContainer,
+			$this->eventDispatcher,
 			$this->revisionStoreFactory->getRevisionStore(),
 			$this->lbFactory,
 			$this->jobQueueGroup,

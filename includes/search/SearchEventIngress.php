@@ -3,6 +3,7 @@
 namespace MediaWiki\Search;
 
 use MediaWiki\DomainEvent\EventSubscriberBase;
+use MediaWiki\Page\Event\PageDeletedEvent;
 use MediaWiki\Page\Event\PageUpdatedEvent;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -20,7 +21,8 @@ class SearchEventIngress extends EventSubscriberBase {
 		'class' => self::class,
 		'services' => [],
 		'events' => [
-			PageUpdatedEvent::TYPE
+			PageUpdatedEvent::TYPE,
+			PageDeletedEvent::TYPE,
 		],
 	];
 
@@ -39,18 +41,29 @@ class SearchEventIngress extends EventSubscriberBase {
 			$event->hasCause( PageUpdatedEvent::CAUSE_MOVE ) ||
 			$event->isReconciliationRequest()
 		) {
-			// NOTE: no need to go through DeferredUpdates,
-			// we are already deferred.
 			$update = new SearchUpdate(
 				$event->getPage()->getId(),
 				$event->getPage(),
 				$mainSlot ? $mainSlot->getContent() : null
 			);
 
-			// No need to schedule a DeferredUpdate, listeners use deferred
-			// delivery anyway.
 			$update->doUpdate();
 		}
+	}
+
+	/**
+	 * Listener method for PageDeletedEvent, to be registered with a DomainEventSource.
+	 *
+	 * @noinspection PhpUnused
+	 */
+	public function handlePageDeletedEventAfterCommit( PageDeletedEvent $event ) {
+		$update = new SearchUpdate(
+			$event->getPageStateBefore()->getId(),
+			$event->getPage(),
+			null
+		);
+
+		$update->doUpdate();
 	}
 
 }

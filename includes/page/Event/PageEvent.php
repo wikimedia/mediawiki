@@ -86,8 +86,6 @@ abstract class PageEvent extends DomainEvent {
 		Assert::parameterElementType( 'boolean', $flags, '$flags' );
 		Assert::parameterKeyType( 'string', $flags, '$flags' );
 
-		Assert::parameter( $page->exists(), '$page', 'must exist' );
-
 		$this->cause = $cause;
 		$this->page = $page;
 		$this->performer = $performer;

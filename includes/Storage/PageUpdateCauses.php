@@ -35,6 +35,9 @@ namespace MediaWiki\Storage;
  */
 interface PageUpdateCauses {
 
+	/** @var string The update was a deletion. */
+	public const CAUSE_DELETE = 'delete';
+
 	/** @var string The update was an undeletion. */
 	public const CAUSE_UNDELETE = 'undelete';
 

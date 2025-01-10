@@ -11,6 +11,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\DeletePage;
+use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\ProperPageIdentity;
@@ -47,14 +48,28 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 		$ret->method( 'canExist' )->willReturn( true );
 		$ret->method( 'exists' )->willReturn( true );
 		$ret->method( 'getId' )->willReturn( 123 );
-		$ret->method( 'getRevisionRecord' )->willReturn( $this->createMock( RevisionRecord::class ) );
+		$ret->method( 'getRevisionRecord' )->willReturn(
+			$this->createMock( RevisionRecord::class )
+		);
 
 		$title = $this->createMock( Title::class );
 		$title->method( 'getPrefixedText' )->willReturn( 'Foo' );
 		$title->method( 'getText' )->willReturn( 'Foo' );
 		$title->method( 'getDBkey' )->willReturn( 'Foo' );
 		$title->method( 'getNamespace' )->willReturn( 0 );
+		$title->method( 'getId' )->willReturn( 123 );
+
 		$ret->method( 'getTitle' )->willReturn( $title );
+		$ret->method( 'getNamespace' )->willReturn( $title->getNamespace() );
+		$ret->method( 'getDBkey' )->willReturn( $title->getDBkey() );
+
+		$rec = $this->createMock( ExistingPageRecord::class );
+		$rec->method( 'exists' )->willReturn( true );
+		$rec->method( 'getId' )->willReturn( 123 );
+		$rec->method( 'getNamespace' )->willReturn( $title->getNamespace() );
+		$rec->method( 'getDBkey' )->willReturn( $title->getDBkey() );
+
+		$ret->method( 'toPageRecord' )->willReturn( $rec );
 		return $ret;
 	}
 
@@ -101,6 +116,7 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 
 		$ret = new DeletePage(
 			$this->createHookContainer(),
+			$this->createEventDispatcher(),
 			$revStore ?? $this->getMockRevisionStore(),
 			$lbFactory,
 			$this->createMock( JobQueueGroup::class ),
