@@ -125,6 +125,8 @@ For notes on 1.43.x and older releases, see HISTORY.
 
 === Action API changes in 1.44 ===
 
+* The list=blocks API now accepts a `parsedreason` parameter to get the block
+  reason as parsed HTML.
 * …
 
 === Action API internal changes in 1.44 ===
@@ -189,7 +191,7 @@ because of Phabricator reports.
   MediaWiki\Config\Config. Implementing MutableConfig without implementing
   Config is no longer possible.
 * The hook OutputPageMakeCategoryLinks, deprecated in 1.43, has been removed.
-* The methods Skin::getFooterIcons and ::makeFooterIcon are final and 
+* The methods Skin::getFooterIcons and ::makeFooterIcon are final and
   overriding is no longer supported.
 * …
 

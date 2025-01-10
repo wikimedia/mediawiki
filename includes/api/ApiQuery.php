@@ -340,6 +340,7 @@ class ApiQuery extends ApiBase {
 				'BlockRestrictionStore',
 				'CommentStore',
 				'HideUserUtils',
+				'CommentFormatter',
 			],
 		],
 		'categorymembers' => [

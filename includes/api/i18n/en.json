@@ -725,6 +725,7 @@
 	"apihelp-query+blocks-paramvalue-prop-timestamp": "Adds the timestamp of when the block was given.",
 	"apihelp-query+blocks-paramvalue-prop-expiry": "Adds the timestamp of when the block expires.",
 	"apihelp-query+blocks-paramvalue-prop-reason": "Adds the reason given for the block.",
+	"apihelp-query+blocks-paramvalue-prop-parsedreason": "Adds the parsed reason given for the block.",
 	"apihelp-query+blocks-paramvalue-prop-range": "Adds the range of IP addresses affected by the block.",
 	"apihelp-query+blocks-paramvalue-prop-flags": "Tags the ban with (autoblock, anononly, etc.).",
 	"apihelp-query+blocks-paramvalue-prop-restrictions": "Adds the partial block restrictions if the block is not sitewide.",
