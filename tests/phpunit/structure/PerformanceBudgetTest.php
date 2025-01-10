@@ -48,8 +48,10 @@ class PerformanceBudgetTest extends MediaWikiIntegrationTestCase {
 		);
 		// Create a module response for the given module and calculate the size
 		$content = $resourceLoader->makeModuleResponse( $contentContext, $modules );
-		$contentTransferSize = strlen( gzencode( $content, 9 ) );
-		return $contentTransferSize;
+		return [
+			'compressed' => strlen( gzencode( $content, 9 ) ),
+			'uncompressed' => strlen( $content ),
+		];
 	}
 
 	/**
@@ -105,12 +107,12 @@ class PerformanceBudgetTest extends MediaWikiIntegrationTestCase {
 		$size = $this->getContentTransferSize( $moduleNames, $skinName, $isScripts );
 
 		$moduleType = $isScripts ? 'scripts' : 'styles';
-		$sizeKb = ceil( ( $size * 10 ) / 1024 ) / 10;
-		$warning = "Total size of $moduleType modules is " . $sizeKb . "kB.\n" .
+		$sizeKb = ceil( ( $size['compressed'] * 10 ) / 1024 ) / 10;
+		$sizeKbUncompressed = ceil( ( $size['uncompressed'] * 10 ) / 1024 ) / 10;
+		$warning = "Total size of $moduleType modules is " . $sizeKb . "kB ( $sizeKbUncompressed kB uncompressed).\n" .
 			"If you are adding code on page load, please reduce $moduleType that you are loading on page load.\n" .
 			"Read https://www.mediawiki.org/wiki/Performance_budgeting for more context on this number.\n\n";
 		print( $warning );
-		$this->markTestSkipped( 'Tests are non-blocking for now.' );
 	}
 
 	/**
@@ -185,5 +187,6 @@ class PerformanceBudgetTest extends MediaWikiIntegrationTestCase {
 		$this->testForUnexpectedModules( $skinName, $moduleScripts, true );
 		$this->testModuleSizes( $skinName, $moduleStyles );
 		$this->testModuleSizes( $skinName, $moduleScripts, true );
+		$this->markTestSkipped( 'Tests are non-blocking for now.' );
 	}
 }
