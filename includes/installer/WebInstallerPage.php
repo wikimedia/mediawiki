@@ -175,8 +175,8 @@ abstract class WebInstallerPage {
 	 * @return string
 	 */
 	protected function getFieldsetStart( $legend ) {
-		return "\n<span class=\"cdx-card\"><span class=\"cdx-card__text\"><span class=\"cdx-card__text__title\">" .
-			wfMessage( $legend )->escaped() . "</span><span class=\"cdx-card__text__description\">\n";
+		return "\n<div class=\"cdx-card\"><div class=\"cdx-card__text\"><div class=\"cdx-card__text__title\">" .
+			wfMessage( $legend )->escaped() . "</div><div class=\"cdx-card__text__description\">\n";
 	}
 
 	/**
@@ -185,7 +185,7 @@ abstract class WebInstallerPage {
 	 * @return string
 	 */
 	protected function getFieldsetEnd() {
-		return "</span></span></span>\n";
+		return "</div></div></div>\n";
 	}
 
 	/**

@@ -901,10 +901,12 @@ class WebInstaller extends Installer {
 			$params['labelAttribs'] = [];
 		}
 		$labelText = $params['rawtext'] ?? $this->parse( wfMessage( $params['label'] )->plain() );
+		$labelText = '<span class="cdx-label__label__text"> ' . $labelText . '</span>';
 		self::addClassAttrib( $params['attribs'], 'cdx-checkbox__input' );
-		self::addClassAttrib( $params['labelAttribs'], 'cdx-checkbox__label' );
+		self::addClassAttrib( $params['labelAttribs'], 'cdx-label__label' );
 
-		return "<div class=\"cdx-checkbox\" style=\"margin-top: 12px; margin-bottom: 2px;\">\n" .
+		return "<div class=\"cdx-checkbox\" style=\"margin-top: 12px; margin-bottom: 2px;\">" .
+			"<div class=\"cdx-checkbox__wrapper\">\n" .
 			Xml::check(
 				$params['controlName'],
 				$params['value'],
@@ -914,6 +916,7 @@ class WebInstaller extends Installer {
 				]
 			) .
 			"<span class=\"cdx-checkbox__icon\"></span>" .
+			"<div class=\"cdx-checkbox__label cdx-label\">" .
 			Html::rawElement(
 				'label',
 				$params['labelAttribs'] + [
@@ -921,7 +924,7 @@ class WebInstaller extends Installer {
 				],
 				$labelText
 				) .
-			"</div>\n" . $params['help'];
+			"</div></div></div>\n" . $params['help'];
 	}
 
 	/**
@@ -1002,15 +1005,22 @@ class WebInstaller extends Installer {
 			$itemAttribs['tabindex'] = $this->nextTabIndex();
 			self::addClassAttrib( $itemAttribs, 'cdx-radio__input' );
 
+			$radioText = $this->parse(
+				isset( $params['itemLabels'] ) ?
+					wfMessage( $params['itemLabels'][$value] )->plain() :
+					wfMessage( $params['itemLabelPrefix'] . strtolower( $value ) )->plain()
+			);
 			$items[$value] =
 				'<span class="cdx-radio">' .
+				'<span class="cdx-radio__wrapper">' .
 				Xml::radio( $params['controlName'], $value, $checked, $itemAttribs ) .
-				"<span class=\"cdx-radio__icon\"></span>\u{00A0}" .
-				Xml::tags( 'label', [ 'for' => $id, 'class' => 'cdx-radio__label' ], $this->parse(
-					isset( $params['itemLabels'] ) ?
-						wfMessage( $params['itemLabels'][$value] )->plain() :
-						wfMessage( $params['itemLabelPrefix'] . strtolower( $value ) )->plain()
-				) ) . '</span>';
+				'<span class="cdx-radio__icon"></span>' .
+				'<span class="cdx-radio__label cdx-label">' .
+				Xml::tags(
+					'label',
+					[ 'for' => $id, 'class' => 'cdx-label__label' ],
+					'<span class="cdx-label__label__text">' . $radioText . '</span>'
+				) . '</span></span></span>';
 		}
 
 		return $items;
