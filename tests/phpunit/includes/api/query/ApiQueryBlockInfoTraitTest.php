@@ -61,7 +61,8 @@ class ApiQueryBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 					'fields' => [ 'hu_deleted' => '1=0' ],
 					'conds' => [ '(SELECT  1  FROM "block_target" "hu_block_target" ' .
 						'JOIN "block" "hu_block" ON ((hu_block.bl_target=hu_block_target.bt_id))   ' .
-						'WHERE (hu_block_target.bt_user=user_id) AND hu_block.bl_deleted = 1  ) IS NULL' ],
+						'WHERE (hu_block_target.bt_user=user_id) AND hu_block.bl_deleted = 1  ' .
+						'LIMIT 1  ) IS NULL' ],
 					'options' => [],
 					'join_conds' => [],
 				],
@@ -72,7 +73,8 @@ class ApiQueryBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 					'tables' => [ 'table' ],
 					'fields' => [ 'hu_deleted' => '(SELECT  1  FROM "block_target" "hu_block_target" ' .
 						'JOIN "block" "hu_block" ON ((hu_block.bl_target=hu_block_target.bt_id))   ' .
-						'WHERE (hu_block_target.bt_user=user_id) AND hu_block.bl_deleted = 1  ) IS NOT NULL' ],
+						'WHERE (hu_block_target.bt_user=user_id) AND hu_block.bl_deleted = 1  ' .
+						'LIMIT 1  ) IS NOT NULL' ],
 					'conds' => [],
 					'options' => [],
 					'join_conds' => []

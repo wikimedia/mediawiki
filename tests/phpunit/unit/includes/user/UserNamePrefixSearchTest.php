@@ -85,7 +85,8 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 		if ( $excludeHidden ) {
 			$conds[] = '(SELECT  1  FROM block_target hu_block_target ' .
 				'JOIN block hu_block ON ((hu_block.bl_target=hu_block_target.bt_id))   ' .
-				'WHERE (hu_block_target.bt_user=user_id) AND hu_block.bl_deleted = 1  ) IS NULL';
+				'WHERE (hu_block_target.bt_user=user_id) AND hu_block.bl_deleted = 1  ' .
+				'LIMIT 1  ) IS NULL';
 		}
 		$options = [
 			'LIMIT' => $limit,
