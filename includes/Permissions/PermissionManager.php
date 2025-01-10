@@ -443,6 +443,11 @@ class PermissionManager {
 			$user = $this->userFactory->newTempPlaceholder();
 		}
 
+		// Use [ $this, 'methodName' ] for dynamic callbacks instead of just
+		// $methodName. Doing so lets code analyzers immediately infer that
+		// the value is used as a callable. Note: This can be changed to use
+		// first-class callable syntax when we require PHP 8.1.
+
 		# Read has special handling
 		if ( $action === 'read' ) {
 			$checks = [
@@ -507,8 +512,8 @@ class PermissionManager {
 		}
 
 		$status = PermissionStatus::newEmpty();
-		foreach ( $checks as $method ) {
-			$method( $action, $user, $status, $rigor, $short, $page );
+		foreach ( $checks as $callback ) {
+			$callback( $action, $user, $status, $rigor, $short, $page );
 
 			if ( $short && !$status->isGood() ) {
 				break;
