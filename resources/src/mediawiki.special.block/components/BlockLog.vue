@@ -76,16 +76,16 @@
 				<span v-else></span>
 			</template>
 			<template #item-blockedby="{ item }">
-				<a :href="mw.util.getUrl( `User:${ item }` )">
+				<a :href="mw.Title.makeTitle( 2, item ).getUrl()">
 					{{ item }}
 				</a>
 				<span class="mw-usertoollinks">
-					{{ $i18n( 'parentheses-start' ).text() }}<a :href="mw.util.getUrl( `User talk:${ item }` )">
+					{{ $i18n( 'parentheses-start' ).text() }}<a :href="mw.Title.makeTitle( 3, item ).getUrl()">
 						{{ $i18n( 'talkpagelinktext' ).text() }}
 					</a>
 					<span>
 						{{ $i18n( 'pipe-separator' ).text() }}
-						<a :href="mw.util.getUrl( `Special:Contributions/${ item }` )">
+						<a :href="mw.Title.makeTitle( 2, `Contributions/${ item }` ).getUrl()">
 							{{ $i18n( 'contribslink' ).text() }}
 						</a>
 					</span>{{ $i18n( 'parentheses-end' ).text() }}
