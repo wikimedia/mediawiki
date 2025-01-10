@@ -155,32 +155,6 @@ class PerformanceBudgetTest extends MediaWikiIntegrationTestCase {
 		$budgetConfig = $this->getBudgetConfig();
 		$undefinedModules = [];
 		foreach ( $moduleNames as $moduleName ) {
-			// Skip these modules as they are not static.
-			if (
-				in_array( $moduleName, [
-					// <exclusions>
-					// Important: DO NOT EXPAND THIS ARRAY with modules defined outside MediaWiki core, these
-					// entries exist here only during roll out.
-					// Instead fix failures using guidelines on https://www.mediawiki.org/wiki/Performance_budgeting
-					'ext.navigationTiming',
-					// [[phab:T378772]]
-					'ext.eventLogging',
-					// WikimediaEvents
-					'ext.wikimediaEvents', 'ext.wikimediaEvents.wikibase',
-					// [[phab:T378773]]
-					'ext.visualEditor.desktopArticleTarget.noscript', 'ext.visualEditor.desktopArticleTarget.init',
-					'ext.visualEditor.targetLoader',
-					// CheckUser
-					'ext.checkUser.clientHints',
-					// Wikibase
-					'wikibase.client.init', 'wikibase.client.data-bridge.externalModifiers', 'wikibase.vector.searchClient', 'wikibase.client.data-bridge.init',
-					// WikimediaBadges
-					'ext.wikimediaBadges',
-					// </exclusions>
-				] )
-			) {
-				continue;
-			}
 			$expectedModuleSize = $budgetConfig[ $moduleName ] ?? false;
 			if ( $expectedModuleSize === false ) {
 				$undefinedModules[] = $moduleName;
