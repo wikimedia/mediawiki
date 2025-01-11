@@ -114,7 +114,7 @@ abstract class WebInstallerPage {
 				[
 					'name' => "submit-$back",
 					'tabindex' => $this->parent->nextTabIndex(),
-					'class' => 'cdx-button cdx-button--action-destructive'
+					'class' => 'cdx-button cdx-button--action-default'
 				]
 			) . "\n";
 		}
