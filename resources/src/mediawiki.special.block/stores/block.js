@@ -461,7 +461,7 @@ module.exports = exports = defineStore( 'block', () => {
 		const params = {
 			action: 'query',
 			format: 'json',
-			leprop: 'ids|title|type|user|timestamp|comment|details',
+			leprop: 'ids|title|type|user|timestamp|parsedcomment|details',
 			letitle: `User:${ targetUser.value }`,
 			list: 'logevents',
 			formatversion: 2
@@ -481,7 +481,7 @@ module.exports = exports = defineStore( 'block', () => {
 		// Add params needed to fetch block log and active blocks in one request.
 		params.list = 'logevents|blocks';
 		params.letype = 'block';
-		params.bkprop = 'id|user|by|timestamp|expiry|reason|range|flags|restrictions';
+		params.bkprop = 'id|user|by|timestamp|expiry|parsedreason|range|flags|restrictions';
 		params.bkusers = targetUser.value;
 
 		const actualPromise = api.get( params );
