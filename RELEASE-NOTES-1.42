@@ -7,12 +7,18 @@ PHP 8.4 workboard: https://phabricator.wikimedia.org/tag/php_8.4_support/
 
 == MediaWiki 1.42.5 ==
 
-THIS IS NOT A RELEASE YET
+This is a maintenance release of the MediaWiki 1.42 branch.
 
 === Changes since MediaWiki 1.42.4 ===
 * Localisation updates.
+* (T382783) Update wikimedia/parsoid to 0.19.1.
+* (T382590) PaserTestRunner: Avoid json_decode deprecation warning.
+* (T375707) exception: Convert E_STRICT errors to E_USER_NOTICE.
+* (T380755) session: Do not set session.use_trans_sid.
 * (T382987) $wgDnsBlacklistUrls now defaults to an empty array. See the comment
   in the "Configuration changes for system administrators" section.
+* (T382484) dumps: Use proc_close() to close proc_open() subprocess.
+* (T375707) MWExceptionHandler: Add error suppression to constant( 'E_STRICT' ).
 
 == MediaWiki 1.42.4 ==
 
