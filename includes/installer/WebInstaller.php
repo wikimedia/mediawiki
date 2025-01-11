@@ -630,17 +630,13 @@ class WebInstaller extends Installer {
 	 * Get HTML for an information message box with an icon.
 	 *
 	 * @param string|HtmlArmor $text Wikitext to be parsed (from Message::plain) or raw HTML.
-	 * @param string|false $icon Icon name, file in mw-config/images. Default: false
-	 * @param string $class Additional class name to add to the wrapper div. Default: Empty string.
 	 * @return string HTML
 	 */
-	public function getInfoBox( $text, $icon = false, $class = '' ) {
+	public function getInfoBox( $text ) {
 		$html = ( $text instanceof HtmlArmor ) ?
 			HtmlArmor::getHtml( $text ) :
 			$this->parse( $text, true );
-		$alt = wfMessage( 'config-information' )->text();
-
-		return self::infoBox( $html, '', $alt, $class );
+		return self::infoBox( $html, wfMessage( 'config-information' )->text() );
 	}
 
 	/**
@@ -1235,19 +1231,13 @@ class WebInstaller extends Installer {
 	 *
 	 * @since 1.36
 	 * @param string $rawHtml HTML
-	 * @param string $icon Path to icon file (used as 'src' attribute)
-	 * @param string $alt Alternate text for the icon
+	 * @param string $text text for the icon
 	 * @param string $class Additional class name to add to the wrapper div
 	 * @return string HTML
 	 */
-	protected static function infoBox( $rawHtml, $icon, $alt, $class = '' ) {
+	protected static function infoBox( $rawHtml, $text, $class = '' ) {
 		$s = Html::openElement( 'div', [ 'class' => 'mw-installer-box-left' ] ) .
-			Html::element( 'img',
-				[
-					'src' => $icon,
-					'alt' => $alt,
-				]
-			) .
+			Html::element( 'strong', [ 'class' => 'mw-installer-infobox-title' ], $text ) .
 			Html::closeElement( 'div' ) .
 			Html::openElement( 'div', [ 'class' => 'mw-installer-box-right' ] ) .
 			$rawHtml .
