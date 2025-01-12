@@ -329,7 +329,6 @@ class PPFrame_Hash implements Stringable, PPFrame {
 				# OT_WIKI will only respect <ignore> in substed templates.
 				# The other output types respect it unless NO_IGNORE is set.
 				# extractSections() sets NO_IGNORE and so never respects it.
-				// @phan-suppress-next-line MediaWikiNoIssetIfDefined
 				if ( ( !isset( $this->parent ) && $this->parser->getOutputType() === Parser::OT_WIKI )
 					|| ( $flags & PPFrame::NO_IGNORE )
 				) {
