@@ -420,7 +420,7 @@ class RollbackPage {
 			if ( $unpatrolled ) {
 				$dbw->newUpdateQueryBuilder()
 					->update( 'recentchanges' )
-					->set( [ 'rc_bot' => 1, 'rc_patrolled' => RecentChange::PRC_AUTOPATROLLED ] )
+					->set( [ 'rc_bot' => 1, 'rc_patrolled' => RecentChange::PRC_PATROLLED ] )
 					->where( [ 'rc_id' => $unpatrolled ] )
 					->caller( __METHOD__ )->execute();
 			}
@@ -436,7 +436,7 @@ class RollbackPage {
 			if ( $unpatrolled ) {
 				$dbw->newUpdateQueryBuilder()
 					->update( 'recentchanges' )
-					->set( [ 'rc_patrolled' => RecentChange::PRC_AUTOPATROLLED ] )
+					->set( [ 'rc_patrolled' => RecentChange::PRC_PATROLLED ] )
 					->where( [ 'rc_id' => $unpatrolled ] )
 					->caller( __METHOD__ )->execute();
 			}

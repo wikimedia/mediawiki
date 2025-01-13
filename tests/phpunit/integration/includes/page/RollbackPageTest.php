@@ -179,7 +179,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 			'rc_patrolled'
 		);
 		$this->assertEquals(
-			RecentChange::PRC_AUTOPATROLLED,
+			RecentChange::PRC_PATROLLED,
 			$rc3->getAttribute( 'rc_patrolled' )
 		);
 
@@ -369,7 +369,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 
 		$rc3 = $revisionStore->getRecentChange( $rev3 );
 		$this->assertEquals(
-			RecentChange::PRC_AUTOPATROLLED,
+			RecentChange::PRC_PATROLLED,
 			$rc3->getAttribute( 'rc_patrolled' )
 		);
 		$this->assertSame( $markAsBot, (bool)$rc3->getAttribute( 'rc_bot' ) );
