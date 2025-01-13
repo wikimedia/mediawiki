@@ -24,6 +24,7 @@ namespace Wikimedia\LightweightObjectStore;
  * Generic interface providing Time-To-Live constants for expirable object storage
  *
  * @ingroup Cache
+ * @internal
  * @since 1.35
  */
 interface ExpirationAwareness {
