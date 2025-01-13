@@ -342,15 +342,12 @@ module.exports = exports = defineStore( 'block', () => {
 	/**
 	 * Clear form behavioural refs.
 	 *
-	 * @param {boolean} [loadingFromParam=false] Whether the data is being loaded from URL parameters.
 	 * @internal
 	 */
-	function resetFormInternal( loadingFromParam = false ) {
+	function resetFormInternal() {
 		formErrors.value = [];
 		formSubmitted.value = false;
-		if ( !loadingFromParam ) {
-			formVisible.value = false;
-		}
+		formVisible.value = false;
 		success.value = false;
 		alreadyBlocked.value = false;
 		promises.value.clear();
