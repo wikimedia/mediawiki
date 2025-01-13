@@ -314,7 +314,7 @@
 	"new-messages-from-many-users": "Birçok kullanıcıdan $1 var ($2).",
 	"new-messages-link-plural": "{{PLURAL:$1|yeni mesajınız|yeni mesajlarınız}}",
 	"new-messages-diff-link-plural": "son {{PLURAL:$1|değişiklik|değişiklik}}",
-	"editsection": "değiştir",
+	"editsection": "düzenle",
 	"editold": "değiştir",
 	"viewsourceold": "kaynağı gör",
 	"editlink": "değiştir",

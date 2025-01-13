@@ -2045,7 +2045,7 @@
 	"allpagessubmit": "Oza",
 	"allpagesprefix": "Čájet siidduid prefiksain:",
 	"allpagesbadtitle": "Čállojuvvon siidonamma lei boastut, dahje das lei prefiksa, mii čujuha eará wikiprošektii dahje earágielat wikii.\nNamas sáhttet leat okta dahje eanet mearkkat, maid ii oaččo geavahit siidonamain.",
-	"allpages-bad-ns": "{{GRAMMAR:inessive|{{SITENAME}}}} ii leat nammagomuvuohta \"$1\".",
+	"allpages-bad-ns": "{{GRAMMAR:locative|{{SITENAME}}}} ii leat nammagomuvuohta \"$1\".",
 	"allpages-hide-redirects": "Čiega ođđasitstivremiid",
 	"categories": "Kategoriijat",
 	"categories-submit": "Čájet",

@@ -698,6 +698,7 @@
 	"apihelp-query+blocks-paramvalue-prop-timestamp": "Fügt den Zeitstempel, wann die Sperre gesetzt wurde, hinzu.",
 	"apihelp-query+blocks-paramvalue-prop-expiry": "Fügt den Zeitstempel, wann die Sperre abläuft, hinzu.",
 	"apihelp-query+blocks-paramvalue-prop-reason": "Fügt den angegebenen Grund für die Sperrung hinzu.",
+	"apihelp-query+blocks-paramvalue-prop-parsedreason": "Fügt den geparsten Grund für die Sperre hinzu",
 	"apihelp-query+blocks-paramvalue-prop-range": "Fügt den von der Sperrung betroffenen Bereich von IP-Adressen hinzu.",
 	"apihelp-query+blocks-paramvalue-prop-flags": "Markiert die Sperre mit (autoblock, anononly, etc.).",
 	"apihelp-query+blocks-paramvalue-prop-restrictions": "Ergänzt die Beschränkungen der teilweisen Sperre, falls diese nicht für die gesamte Website gilt.",
