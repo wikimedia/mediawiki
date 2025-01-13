@@ -2673,8 +2673,7 @@ return [
 
 	'_DomainEventDispatcher' => static function ( MediaWikiServices $services ): EventDispatchEngine {
 		$dispatcher = new EventDispatchEngine(
-			$services->getObjectFactory(),
-			$services->getHookContainer()
+			$services->getObjectFactory()
 		);
 
 		// Core event wiring.

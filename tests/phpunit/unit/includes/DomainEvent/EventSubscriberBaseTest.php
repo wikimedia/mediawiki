@@ -5,8 +5,6 @@ namespace MediaWiki\Tests\DomainEvent;
 use MediaWiki\DomainEvent\DomainEventSource;
 use MediaWiki\DomainEvent\EventDispatchEngine;
 use MediaWiki\DomainEvent\EventSubscriberBase;
-use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWikiUnitTestCase;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Services\ServiceContainer;
@@ -21,13 +19,8 @@ class EventSubscriberBaseTest extends MediaWikiUnitTestCase {
 			$this->createNoOpMock( ServiceContainer::class )
 		);
 
-		$hookContainer = new HookContainer(
-			new StaticHookRegistry(),
-			$objectFactory
-		);
-
 		$dispatcher = $this->getMockBuilder( EventDispatchEngine::class )
-			->setConstructorArgs( [ $objectFactory, $hookContainer ] )
+			->setConstructorArgs( [ $objectFactory ] )
 			->onlyMethods( [ 'registerListener' ] )
 			->getMock();
 
@@ -55,7 +48,7 @@ class EventSubscriberBaseTest extends MediaWikiUnitTestCase {
 				// no-op
 			}
 
-			public function handleBarEventAfterCommit() {
+			public function handleBarEventBeforeCommit() {
 				// no-op
 			}
 
@@ -66,10 +59,20 @@ class EventSubscriberBaseTest extends MediaWikiUnitTestCase {
 
 		$subscriber->registerListeners( $source );
 
-		$this->assertSame( [
-			[ 'Foo', [ $subscriber, 'handleFooEventAfterCommit' ] ],
-			[ 'Bar', [ $subscriber, 'handleBarEventAfterCommit' ] ],
-		], $trace );
+		$this->assertSame(
+			[
+				[ 'Foo',
+					[ $subscriber, 'handleFooEventAfterCommit', ],
+					[ DomainEventSource::INVOCATION_MODE => DomainEventSource::INVOKE_AFTER_COMMIT ],
+				],
+				[
+					'Bar',
+					[ $subscriber, 'handleBarEventBeforeCommit', ],
+					[ DomainEventSource::INVOCATION_MODE => DomainEventSource::INVOKE_BEFORE_COMMIT ],
+				],
+			],
+			$trace
+		);
 	}
 
 	public function testAutoSubscribe_init() {
@@ -84,7 +87,7 @@ class EventSubscriberBaseTest extends MediaWikiUnitTestCase {
 				// no-op
 			}
 
-			public function handleBarEventAfterCommit() {
+			public function handleBarEventBeforeCommit() {
 				// no-op
 			}
 
@@ -96,9 +99,19 @@ class EventSubscriberBaseTest extends MediaWikiUnitTestCase {
 		$subscriber->initSubscriber( [ 'events' => $events ] );
 		$subscriber->registerListeners( $source );
 
-		$this->assertSame( [
-			[ 'Foo', [ $subscriber, 'handleFooEventAfterCommit' ] ],
-			[ 'Bar', [ $subscriber, 'handleBarEventAfterCommit' ] ],
-		], $trace );
+		$this->assertSame(
+			[
+				[ 'Foo',
+					[ $subscriber, 'handleFooEventAfterCommit', ],
+					[ DomainEventSource::INVOCATION_MODE => DomainEventSource::INVOKE_AFTER_COMMIT ],
+				],
+				[
+					'Bar',
+					[ $subscriber, 'handleBarEventBeforeCommit', ],
+					[ DomainEventSource::INVOCATION_MODE => DomainEventSource::INVOKE_BEFORE_COMMIT ],
+				],
+			],
+			$trace
+		);
 	}
 }

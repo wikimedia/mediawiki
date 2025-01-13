@@ -12,7 +12,7 @@ use LogicException;
  * attempt to find listener methods for the events defined in the constructor.
  * Listener methods must have a name based on the event type, following the
  * pattern "handle{$eventType}EventAfterCommit". The "AfterCommit" suffix
- * specifies the dispatch mode. More dispatch modes will be defined in the
+ * specifies the invocation mode. More invocation modes will be defined in the
  * future.
  *
  * Subclasses can either override registerListeners() and register listeners
@@ -62,21 +62,58 @@ abstract class EventSubscriberBase implements InitializableDomainEventSubscriber
 		$this->eventTypes = $options['events'];
 	}
 
-	protected function registerListenerMethod(
+	/**
+	 * Registered any listener methods for the given event.
+	 *
+	 * @param DomainEventSource $eventSource
+	 * @param string $eventType
+	 *
+	 * @return void
+	 */
+	protected function registerForEvent(
 		DomainEventSource $eventSource,
-		string $eventType,
-		?string $method = null
+		string $eventType
 	) {
-		// TODO: use a different prefix, dispatch on dispatch mode
-		$method ??= "handle{$eventType}EventAfterCommit";
+		$found = false;
 
-		if ( !method_exists( $this, $method ) ) {
-			throw new LogicException(
-				"Missing listener method $method on " . get_class( $this )
-			);
+		$modes = [ DomainEventSource::INVOKE_BEFORE_COMMIT, DomainEventSource::INVOKE_AFTER_COMMIT ];
+
+		foreach ( $modes as $mode ) {
+			if ( $this->registerForEventAndMode( $eventSource, $eventType, $mode ) ) {
+				$found = true;
+			}
 		}
 
-		$eventSource->registerListener( $eventType, [ $this, $method ] );
+		if ( !$found ) {
+			throw new LogicException(
+				"No listener methods found for $eventType on " . get_class( $this )
+			);
+		}
+	}
+
+	private function registerForEventAndMode(
+		DomainEventSource $eventSource,
+		string $eventType,
+		string $mode
+	) {
+		$method = "handle{$eventType}Event{$mode}";
+		if ( !method_exists( $this, $method ) ) {
+			return false;
+		}
+
+		$eventSource->registerListener(
+			$eventType,
+			[ $this, $method ],
+			$this->getListenerOptions( $eventType, $mode )
+		);
+		return true;
+	}
+
+	protected function getListenerOptions(
+		string $eventType,
+		string $mode
+	) {
+		return [ DomainEventSource::INVOCATION_MODE => $mode ];
 	}
 
 	/**
@@ -89,6 +126,8 @@ abstract class EventSubscriberBase implements InitializableDomainEventSubscriber
 	 * @stable to override
 	 */
 	public function registerListeners( DomainEventSource $eventSource ): void {
+		// TODO: look at static::EVENTS too?
+
 		if ( !$this->eventTypes ) {
 			throw new LogicException(
 				'Subclassed of EventSubscriberBase must either override ' .
@@ -98,7 +137,7 @@ abstract class EventSubscriberBase implements InitializableDomainEventSubscriber
 		}
 
 		foreach ( $this->eventTypes as $type ) {
-			$this->registerListenerMethod( $eventSource, $type );
+			$this->registerForEvent( $eventSource, $type );
 		}
 	}
 

@@ -4,7 +4,6 @@ namespace MediaWiki\DomainEvent;
 use InvalidArgumentException;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\MWCallableUpdate;
-use MediaWiki\HookContainer\HookContainer;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\IConnectionProvider;
 
@@ -23,8 +22,9 @@ use Wikimedia\Rdbms\IConnectionProvider;
 class EventDispatchEngine implements DomainEventDispatcher, DomainEventSource {
 
 	/**
-	 * An associative array mapping event names to lists of listeners.
-	 * @var array<string,array<callable>>
+	 * An associative array mapping event names and invocation modes to
+	 * lists of listeners.
+	 * @var array<string,array<string,array<callable>>>
 	 */
 	private array $listeners = [];
 
@@ -35,29 +35,33 @@ class EventDispatchEngine implements DomainEventDispatcher, DomainEventSource {
 	 */
 	private array $pendingSubscribers = [];
 
-	private HookContainer $hookContainer;
-
 	private ObjectFactory $objectFactory;
 
-	public function __construct( ObjectFactory $objectFactory, HookContainer $hookContainer ) {
-		$this->hookContainer = $hookContainer;
+	public function __construct( ObjectFactory $objectFactory ) {
 		$this->objectFactory = $objectFactory;
 	}
 
 	/**
 	 * Emit the given event to any listeners that have been registered for
-	 * the respective event type. Listeners will be invoked later, in a deferred
-	 * update. If the transaction currently active in $dbProvider fails,
-	 * the event will not be dispatched to listeners.
+	 * the respective event type.
 	 *
-	 * Note that any hook handlers registered for a hook that has the same as
-	 * the event type will be invoked immediately, before this method returns.
+	 * Dispatches the given event to any registered listeners, according to the
+	 * invocation mode specified when the listener was registered.
+	 * See the INVOKE_XXX constants on DomainEventSource for details.
 	 */
 	public function dispatch( DomainEvent $event, IConnectionProvider $dbProvider ): void {
-		$this->hookContainer->run(
-			$event->getEventType(),
-			[ $event, $dbProvider, ]
-		);
+		$this->resolveSubscribers( $event->getEventType() );
+		$listeners = $this->listeners[ $event->getEventType() ] ?? [];
+
+		// Invoke listeners registered for handling DURING_TRANSACTION.
+		foreach ( $listeners[ DomainEventSource::INVOKE_BEFORE_COMMIT ] ?? [] as $callback ) {
+			$this->invoke( $callback, $event, $dbProvider );
+		}
+
+		// Push a DeferredUpdate for listeners registered for handling AFTER_COMMIT.
+		foreach ( $listeners[ DomainEventSource::INVOKE_AFTER_COMMIT ] ?? [] as $callback ) {
+			$this->push( $callback, $event, $dbProvider );
+		}
 	}
 
 	/**
@@ -65,14 +69,24 @@ class EventDispatchEngine implements DomainEventDispatcher, DomainEventSource {
 	 *
 	 * @param string $eventType
 	 * @param callable $listener
+	 * @param array $options Options that control how the listener is invoked.
+	 *        Well known keys:
+	 *        - self::DISPATCH_MODE: one of the invocation mode constants defined
+	 *          in DomainEventSource, e.g. self::AFTER_COMMIT.
 	 */
-	public function registerListener( string $eventType, $listener ): void {
+	public function registerListener(
+		string $eventType,
+		$listener,
+		array $options = self::DEFAULT_LISTENER_OPTIONS
+	): void {
+		$options += self::DEFAULT_LISTENER_OPTIONS;
+		$mode = $options[ self::INVOCATION_MODE ];
+
 		if ( !is_callable( $listener ) ) {
 			throw new InvalidArgumentException( '$listener must be callable' );
 		}
 
-		$this->registerTriggerIfNeeded( $eventType );
-		$this->listeners[$eventType][] = $listener;
+		$this->listeners[$eventType][$mode][] = $listener;
 	}
 
 	/**
@@ -109,7 +123,6 @@ class EventDispatchEngine implements DomainEventDispatcher, DomainEventSource {
 		// Register the spec for lazy instantiation when any of the relevant
 		// events is triggered.
 		foreach ( $subscriber['events'] as $eventType ) {
-			$this->registerTriggerIfNeeded( $eventType );
 			// NOTE: must be by reference, so the spec can be resolved for all
 			// events that trigger instantiation at once.
 			$this->pendingSubscribers[$eventType][] =& $subscriber;
@@ -163,41 +176,6 @@ class EventDispatchEngine implements DomainEventDispatcher, DomainEventSource {
 		}
 
 		$subscriber->registerListeners( $this );
-	}
-
-	/**
-	 * Register a hook handler that will invoke dispatch() when the event's hook
-	 * is run.
-	 */
-	private function registerTriggerIfNeeded( string $eventName ) {
-		if (
-			isset( $this->listeners[ $eventName ] ) ||
-			isset( $this->pendingSubscribers[ $eventName ] )
-		) {
-			// If there is already a listener or subscriber, then we assume
-			// we already registered a trigger.
-			return;
-		}
-
-		$this->hookContainer->register(
-			$eventName,
-			function ( DomainEvent $event, IConnectionProvider $dbProvider ) {
-				$this->dispatchInternal( $event, $dbProvider );
-			}
-		);
-	}
-
-	/**
-	 * Dispatches the given event to any registered listeners by
-	 * capping push() for each listener.
-	 */
-	private function dispatchInternal( DomainEvent $event, IConnectionProvider $dbProvider ) {
-		$this->resolveSubscribers( $event->getEventType() );
-		$listeners = $this->listeners[ $event->getEventType() ] ?? [];
-
-		foreach ( $listeners as $callback ) {
-			$this->push( $callback, $event, $dbProvider );
-		}
 	}
 
 	/**
