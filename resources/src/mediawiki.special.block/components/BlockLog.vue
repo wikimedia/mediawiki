@@ -24,7 +24,6 @@
 					class="mw-block-log__create-button"
 					@click="$emit( 'create-block' )"
 				>
-					<cdx-icon :icon="cdxIconCancel"></cdx-icon>
 					{{ $i18n( 'block-create' ).text() }}
 				</cdx-button>
 			</template>
@@ -117,14 +116,14 @@
 <script>
 const util = require( '../util.js' );
 const { computed, defineComponent, ref, watch } = require( 'vue' );
-const { CdxAccordion, CdxTable, CdxButton, CdxIcon, CdxInfoChip } = require( '@wikimedia/codex' );
+const { CdxAccordion, CdxTable, CdxButton, CdxInfoChip } = require( '@wikimedia/codex' );
 const { storeToRefs } = require( 'pinia' );
 const useBlockStore = require( '../stores/block.js' );
-const { cdxIconCancel, cdxIconClock, cdxIconAlert } = require( '../icons.json' );
+const { cdxIconClock, cdxIconAlert } = require( '../icons.json' );
 
 module.exports = exports = defineComponent( {
 	name: 'BlockLog',
-	components: { CdxAccordion, CdxTable, CdxButton, CdxIcon, CdxInfoChip },
+	components: { CdxAccordion, CdxTable, CdxButton, CdxInfoChip },
 	props: {
 		open: {
 			type: Boolean,
@@ -293,7 +292,6 @@ module.exports = exports = defineComponent( {
 			title,
 			emptyState,
 			columns,
-			cdxIconCancel,
 			logEntries,
 			moreBlocks,
 			targetUser,
