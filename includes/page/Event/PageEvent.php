@@ -39,6 +39,14 @@ abstract class PageEvent extends DomainEvent {
 
 	public const TYPE = 'Page';
 
+	/**
+	 * @var string This is a reconciliation event, triggered in order to give
+	 *      listeners an opportunity to catch up on missed events or recreate
+	 *      corrupted data. Can be triggered by a user action such as a null
+	 *      edit, or by a maintenance script.
+	 */
+	public const FLAG_RECONCILIATION_REQUEST = 'reconciliation';
+
 	private string $cause;
 	private ProperPageIdentity $page;
 	private UserIdentity $performer;
@@ -65,7 +73,11 @@ abstract class PageEvent extends DomainEvent {
 		array $flags = [],
 		$timestamp = false
 	) {
-		parent::__construct( $timestamp );
+		parent::__construct(
+			$timestamp,
+			$flags[ self::FLAG_RECONCILIATION_REQUEST ] ?? false
+		);
+
 		$this->declareEventType( self::TYPE );
 
 		Assert::parameterElementType( 'string', $tags, '$tags' );
@@ -104,7 +116,7 @@ abstract class PageEvent extends DomainEvent {
 	 * Checks flags describing the page update.
 	 * Use with FLAG_XXX constants declared by subclasses.
 	 */
-	public function hasFlag( string $name ): bool {
+	protected function hasFlag( string $name ): bool {
 		return $this->flags[$name] ?? false;
 	}
 

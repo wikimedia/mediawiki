@@ -197,7 +197,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 
 			$options = [
 				PageUpdatedEvent::FLAG_SILENT => true,
-				PageUpdatedEvent::FLAG_AUTOMATED => true,
+				PageUpdatedEvent::FLAG_IMPLICIT => true,
 				'created' => $mustCreatePage,
 				'oldcountable' => 'no-change',
 			];

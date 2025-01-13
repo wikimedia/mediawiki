@@ -631,7 +631,8 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 			static function ( PageUpdatedEvent $event ) use ( $old, $oldPageId, $new, $oldRev, $mover ) {
 				// for the existing page under the new title
 				if ( $event->getPage()->isSamePageAs( $new ) ) {
-					Assert::assertFalse( $event->isNew(), 'isNew' );
+					Assert::assertFalse( $event->isCreation(), 'isNew' );
+					Assert::assertFalse( $event->isReconciliationRequest(), 'isReconciliationRequest' );
 					Assert::assertTrue( $event->isRevisionChange(), 'isRevisionChange' );
 					Assert::assertFalse( $event->isContentChange(), 'isContentChange' );
 					Assert::assertSame( $oldPageId, $event->getPage()->getId() );
@@ -648,14 +649,15 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 
 				// for the redirect page
 				if ( $event->getPage()->isSamePageAs( $old ) ) {
-					Assert::assertTrue( $event->isNew(), 'isNew' );
+					Assert::assertTrue( $event->isCreation(), 'isNew' );
+					Assert::assertFalse( $event->isReconciliationRequest(), 'isReconciliationRequest' );
 					Assert::assertTrue( $event->isRevisionChange(), 'isRevisionChange' );
 					Assert::assertTrue( $event->isContentChange(), 'isContentChange' );
 					Assert::assertSame( $mover, $event->getPerformer() );
 					Assert::assertSame( $mover, $event->getAuthor() );
 
 					Assert::assertTrue( $event->isSilent(), 'isSilent' );
-					Assert::assertTrue( $event->isAutomated(), 'isAutomated' );
+					Assert::assertTrue( $event->isImplicit(), 'isImplicit' );
 				}
 
 				// TODO: assert more properties

@@ -1533,66 +1533,14 @@ class WikiPage implements Stringable, Page, PageRecord {
 	}
 
 	/**
-	 * Returns a PageUpdater for creating new revisions on this page (or creating the page).
-	 *
-	 * The PageUpdater can also be used to detect the need for edit conflict resolution,
-	 * and to protected such conflict resolution from concurrent edits using a check-and-set
-	 * mechanism.
-	 *
-	 * @since 1.32
-	 *
-	 * @note Once extensions no longer rely on WikiPage to get access to the state of an ongoing
-	 * edit via prepareContentForEdit() and WikiPage::getCurrentUpdate(),
-	 * this method should be deprecated and callers should be migrated to using
-	 * PageUpdaterFactory::newPageUpdater() instead.
-	 *
-	 * @param Authority|UserIdentity $performer
-	 * @param RevisionSlotsUpdate|null $forUpdate If given, allows any cached ParserOutput
-	 *        that may already have been returned via getDerivedDataUpdater to be re-used.
-	 *
-	 * @return PageUpdater
-	 */
-	public function newPageUpdater( $performer, ?RevisionSlotsUpdate $forUpdate = null ) {
-		if ( $performer instanceof Authority ) {
-			// TODO: Deprecate this. But better get rid of this method entirely.
-			$performer = $performer->getUser();
-		}
-
-		$pageUpdater = $this->getPageUpdaterFactory()->newPageUpdaterForDerivedPageDataUpdater(
-			$this,
-			$performer,
-			$this->getDerivedDataUpdater( $performer, null, $forUpdate, true )
-		);
-
-		return $pageUpdater;
-	}
-
-	/**
 	 * Change an existing article or create a new article. Updates RC and all necessary caches,
 	 * optionally via the deferred update array.
-	 *
-	 * @deprecated since 1.36, use PageUpdater::saveRevision instead. Note that the new method
-	 * expects callers to take care of checking EDIT_MINOR against the minoredit right, and to
-	 * apply the autopatrol right as appropriate.
 	 *
 	 * @param Content $content New content
 	 * @param Authority $performer doing the edit
 	 * @param string|CommentStoreComment $summary Edit summary
-	 * @param int $flags Bitfield:
-	 *      EDIT_NEW
-	 *          Article is known or assumed to be non-existent, create a new one
-	 *      EDIT_UPDATE
-	 *          Article is known or assumed to be pre-existing, update it
-	 *      EDIT_MINOR
-	 *          Mark this edit minor, if the user is allowed to do so
-	 *      EDIT_SUPPRESS_RC
-	 *          Do not log the change in recentchanges
-	 *      EDIT_FORCE_BOT
-	 *          Mark the edit a "bot" edit regardless of user rights
-	 *      EDIT_AUTOSUMMARY
-	 *          Fill in blank summaries with generated text where possible
-	 *      EDIT_INTERNAL
-	 *          Signal that the page retrieve/save cycle happened entirely in this request.
+	 * @param int $flags Bitfield, see the EDIT_XXX constants such as EDIT_NEW
+	 *        or EDIT_FORCE_BOT.
 	 *
 	 * If neither EDIT_NEW nor EDIT_UPDATE is specified, the status of the
 	 * article will be detected. If EDIT_UPDATE is specified and the article
@@ -1624,6 +1572,10 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 *  $return->value will contain an associative array with members as follows:
 	 *     new: Boolean indicating if the function attempted to create a new article.
 	 *     revision-record: The revision record object for the inserted revision, or null.
+	 *
+	 * @deprecated since 1.36, use PageUpdater::saveRevision instead. Note that the new method
+	 * expects callers to take care of checking EDIT_MINOR against the minoredit right, and to
+	 * apply the autopatrol right as appropriate.
 	 *
 	 * @since 1.36
 	 */
@@ -1658,7 +1610,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 		// prepareContentForEdit will generally use the DerivedPageDataUpdater that is also
 		// used by this PageUpdater. However, there is no guarantee for this.
 		$updater = $this->newPageUpdater( $performer, $slotsUpdate )
-				->setContent( SlotRecord::MAIN, $content )
+			->setContent( SlotRecord::MAIN, $content )
 			->setOriginalRevisionId( $originalRevId );
 		if ( $undidRevId ) {
 			$updater->markAsRevert(
@@ -1695,6 +1647,41 @@ class WikiPage implements Stringable, Page, PageRecord {
 		}
 
 		return $updater->getStatus();
+	}
+
+	/**
+	 * Returns a PageUpdater for creating new revisions on this page (or creating the page).
+	 *
+	 * The PageUpdater can also be used to detect the need for edit conflict resolution,
+	 * and to protected such conflict resolution from concurrent edits using a check-and-set
+	 * mechanism.
+	 *
+	 * @since 1.32
+	 *
+	 * @note Once extensions no longer rely on WikiPage to get access to the state of an ongoing
+	 * edit via prepareContentForEdit() and WikiPage::getCurrentUpdate(),
+	 * this method should be deprecated and callers should be migrated to using
+	 * PageUpdaterFactory::newPageUpdater() instead.
+	 *
+	 * @param Authority|UserIdentity $performer
+	 * @param RevisionSlotsUpdate|null $forUpdate If given, allows any cached ParserOutput
+	 *        that may already have been returned via getDerivedDataUpdater to be re-used.
+	 *
+	 * @return PageUpdater
+	 */
+	public function newPageUpdater( $performer, ?RevisionSlotsUpdate $forUpdate = null ) {
+		if ( $performer instanceof Authority ) {
+			// TODO: Deprecate this. But better get rid of this method entirely.
+			$performer = $performer->getUser();
+		}
+
+		$pageUpdater = $this->getPageUpdaterFactory()->newPageUpdaterForDerivedPageDataUpdater(
+			$this,
+			$performer,
+			$this->getDerivedDataUpdater( $performer, null, $forUpdate, true )
+		);
+
+		return $pageUpdater;
 	}
 
 	/**

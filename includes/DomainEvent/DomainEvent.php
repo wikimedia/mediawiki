@@ -33,15 +33,32 @@ abstract class DomainEvent {
 	private string $eventType = self::ANY;
 	private array $compatibleWithTypes = [ self::ANY ];
 	private ConvertibleTimestamp $timestamp;
+	private bool $isReconciliationRequest;
 
 	/**
 	 * @stable to call
+	 *
 	 * @param string|ConvertibleTimestamp|false $timestamp
+	 * @param bool $isReconciliationRequest see isReconciliationRequest()
 	 */
-	public function __construct( $timestamp = false ) {
+	public function __construct( $timestamp = false, bool $isReconciliationRequest = false ) {
 		$this->timestamp = $timestamp instanceof ConvertibleTimestamp
 			? $timestamp
 			: MWTimestamp::getInstance( $timestamp );
+
+		$this->isReconciliationRequest = $isReconciliationRequest;
+	}
+
+	/**
+	 * Determines whether this is a reconciliation event, triggered artificially
+	 * in order to give listeners an opportunity to catch up on missed events or
+	 * recreate corrupted data.
+	 *
+	 * Reconciliation requests are typically issued by maintenance scripts,
+	 * but can also be caused by user actions such as null-edits.
+	 */
+	public function isReconciliationRequest(): bool {
+		return $this->isReconciliationRequest;
 	}
 
 	/**

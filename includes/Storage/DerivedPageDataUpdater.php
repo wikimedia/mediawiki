@@ -1589,7 +1589,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		// TODO: MCR: check if *any* changed slot supports categories!
 		if ( $this->rcWatchCategoryMembership
 			&& $this->getContentHandler( SlotRecord::MAIN )->supportsCategories() === true
-			&& ( $event->isContentChange() || $event->isNew() )
+			&& ( $event->isContentChange() || $event->isCreation() )
 			&& !$event->hasCause( PageUpdatedEvent::CAUSE_UNDELETE )
 		) {
 			// Note: jobs are pushed after deferred updates, so the job should be able to see
@@ -1621,7 +1621,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 				( !$event->isContentChange() && !$event->hasCause( PageUpdatedEvent::CAUSE_MOVE ) )
 			) {
 				$good = 0;
-			} elseif ( $event->isNew() ) {
+			} elseif ( $event->isCreation() ) {
 				$good = (int)$this->isCountable();
 			} elseif ( $this->options['oldcountable'] !== null ) {
 				$good = (int)$this->isCountable()
@@ -1633,7 +1633,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 				$good = 0;
 			}
 			$edits = $event->isContentChange() ? 1 : 0;
-			$pages = $event->isNew() ? 1 : 0;
+			$pages = $event->isCreation() ? 1 : 0;
 
 			DeferredUpdates::addUpdate( SiteStatsUpdate::factory(
 				[ 'edits' => $edits, 'articles' => $good, 'pages' => $pages ]
@@ -1641,7 +1641,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		} );
 
 		// TODO: move onArticleCreate and onArticleEdit into a PageEventEmitter service
-		if ( $event->isNew() ) {
+		if ( $event->isCreation() ) {
 			// Deferred update that adds a mw-recreated tag to edits that create new pages
 			// which have an associated deletion log entry for the specific namespace/title combination
 			// and which are not undeletes
@@ -1701,6 +1701,14 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			PageUpdatedEvent::DEFAULT_FLAGS
 		);
 
+		$newRevision = $this->getRevision();
+		$oldRevision = $this->getOldRevision();
+
+		if ( $oldRevision && $newRevision->getId() === $oldRevision->getId() ) {
+			// This is a null edit, flag it as a reconciliation request.
+			$flags[ PageUpdatedEvent::FLAG_RECONCILIATION_REQUEST ] = true;
+		}
+
 		/** @var UserIdentity $performer */
 		$performer = $this->options['triggeringUser'] ?? $this->user;
 
@@ -1710,8 +1718,8 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable $this->user is already set
 			$performer,
 			$this->getRevisionSlotsUpdate(),
-			$this->getRevision(),
-			$this->getOldRevision(),
+			$newRevision,
+			$oldRevision,
 			$this->options['editResult'] ?? null,
 			$this->options['tags'] ?? [],
 			$flags,

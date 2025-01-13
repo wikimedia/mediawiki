@@ -305,24 +305,9 @@ class PageUpdater implements PageUpdateCauses {
 	 * Flags passed in subsequent calls to this method as well as calls to prepareUpdate()
 	 * or saveRevision() are aggregated using bitwise OR.
 	 *
-	 * Known flags:
+	 * @param int $flags Bitfield, see the EDIT_XXX constants such as EDIT_NEW
+	 *        or EDIT_FORCE_BOT.
 	 *
-	 *      EDIT_NEW
-	 *          Create a new page, or fail with "edit-already-exists" if the page exists.
-	 *      EDIT_UPDATE
-	 *          Create a new revision, or fail with "edit-gone-missing" if the page does not exist.
-	 *      EDIT_MINOR
-	 *          Mark this revision as minor
-	 *      EDIT_SUPPRESS_RC
-	 *          Do not log the change in recentchanges
-	 *      EDIT_FORCE_BOT
-	 *          Mark the revision as automated ("bot edit")
-	 *      EDIT_AUTOSUMMARY
-	 *          Fill in blank summaries with generated text where possible
-	 *      EDIT_INTERNAL
-	 *          Signal that the page retrieve/save cycle happened entirely in this request.
-	 *
-	 * @param int $flags Bitfield
 	 * @return $this
 	 */
 	public function setFlags( int $flags ) {
@@ -410,19 +395,6 @@ class PageUpdater implements PageUpdateCauses {
 	public function setRcPatrolStatus( $status ) {
 		$this->rcPatrolStatus = $status;
 		return $this;
-	}
-
-	/**
-	 * Indicate that the page update was not explicitly performed by the user.
-	 *
-	 * @param bool $automated
-	 *
-	 * @return $this
-	 *
-	 * @since 1.44
-	 */
-	public function setAutomated( bool $automated ) {
-		return $this->setHints( [ PageUpdatedEvent::FLAG_AUTOMATED => $automated ] );
 	}
 
 	/**
@@ -837,9 +809,8 @@ class PageUpdater implements PageUpdateCauses {
 	 * @since 1.44
 	 */
 	public function saveDummyRevision( $summary ) {
-		$flags = EDIT_UPDATE | EDIT_SUPPRESS_RC | EDIT_INTERNAL;
+		$flags = EDIT_UPDATE | EDIT_SILENT | EDIT_INTERNAL | EDIT_IMPLICIT;
 
-		$this->setAutomated( true );
 		$this->setForceEmptyRevision( true );
 		$rev = $this->saveRevision( $summary, $flags );
 
@@ -1358,7 +1329,7 @@ class PageUpdater implements PageUpdateCauses {
 				[],
 				[
 					PageUpdatedEvent::FLAG_SILENT => true,
-					PageUpdatedEvent::FLAG_AUTOMATED => true,
+					PageUpdatedEvent::FLAG_IMPLICIT => true,
 					'dispatchPageUpdatedEvent' => false,
 				]
 			);
@@ -1650,8 +1621,9 @@ class PageUpdater implements PageUpdateCauses {
 		array $hintOverrides = []
 	) {
 		static $flagMap = [
-			EDIT_SUPPRESS_RC => PageUpdatedEvent::FLAG_SILENT,
-			EDIT_FORCE_BOT => PageUpdatedEvent::FLAG_BOT
+			EDIT_SILENT => PageUpdatedEvent::FLAG_SILENT,
+			EDIT_FORCE_BOT => PageUpdatedEvent::FLAG_BOT,
+			EDIT_IMPLICIT => PageUpdatedEvent::FLAG_IMPLICIT,
 		];
 
 		$hints = $this->hints;
@@ -1670,8 +1642,6 @@ class PageUpdater implements PageUpdateCauses {
 		$hints['editResult'] = $editResult;
 
 		if ( $editResult->isRevert() ) {
-			$hints[ PageUpdatedEvent::FLAG_REVERTED ] = true;
-
 			// Should the reverted tag update be scheduled right away?
 			// The revert is approved if either patrolling is disabled or the
 			// edit is patrolled or autopatrolled.

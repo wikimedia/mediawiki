@@ -124,14 +124,35 @@ define( 'RC_CATEGORIZE', 6 );
 /** @{
  * Article edit flags
  */
+/** Article is assumed to be non-existent, fail if it exists. */
 define( 'EDIT_NEW', 1 );
+
+/** Article is assumed to be pre-existing, fail if it doesn't exist. */
 define( 'EDIT_UPDATE', 2 );
+
+/** Mark this edit minor, if the user is allowed to do so */
 define( 'EDIT_MINOR', 4 );
-define( 'EDIT_SUPPRESS_RC', 8 );
+
+/** Do not notify other users (e.g. via RecentChanges or watchlist) */
+define( 'EDIT_SILENT', 8 );
+
+/** @deprecated since 1.44, use EDIT_SILENT instead */
+define( 'EDIT_SUPPRESS_RC', EDIT_SILENT );
+
+/** Mark the edit a "bot" edit regardless of user rights */
 define( 'EDIT_FORCE_BOT', 16 );
-define( 'EDIT_DEFER_UPDATES', 32 ); // Unused since 1.27
+
+/** @deprecated since 1.27, updates are always deferred */
+define( 'EDIT_DEFER_UPDATES', 32 );
+
+/** Fill in blank summaries with generated text where possible */
 define( 'EDIT_AUTOSUMMARY', 64 );
+
+/** Signal that the page retrieve/save cycle happened entirely in this request. */
 define( 'EDIT_INTERNAL', 128 );
+
+/** The edit is a side effect and does not represent an active user contribution. */
+define( 'EDIT_IMPLICIT', 256 );
 /** @} */
 
 /** @{

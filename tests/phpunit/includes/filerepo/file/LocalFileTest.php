@@ -947,7 +947,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 			static function ( PageUpdatedEvent $event ) use ( &$calls, $file ) {
 				Assert::assertSame( $file->getName(), $event->getPage()->getDBkey() );
 
-				Assert::assertTrue( $event->isNew(), 'isNew' );
+				Assert::assertTrue( $event->isCreation(), 'isCreation' );
 				Assert::assertTrue( $event->isRevisionChange(), 'isRevisionChange' );
 				Assert::assertTrue( $event->isContentChange(), 'isContentChange' );
 
@@ -957,7 +957,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 				);
 
 				Assert::assertTrue( $event->isSilent(), 'isSilent' );
-				Assert::assertFalse( $event->isAutomated(), 'isAutomated' );
+				Assert::assertFalse( $event->isImplicit(), 'isImplicit' );
 			}
 		);
 
@@ -1017,7 +1017,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 				);
 
 				Assert::assertTrue( $event->isSilent(), 'isSilent' );
-				Assert::assertTrue( $event->isAutomated(), 'isAutomated' );
+				Assert::assertTrue( $event->isImplicit(), 'isImplicit' );
 			}
 		);
 

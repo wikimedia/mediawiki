@@ -29,17 +29,27 @@ use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 
 /**
- * Domain event representing a page edit.
+ * Domain event representing a page updated. A PageUpdatedEvent is triggered
+ * when a page's current revision changes, even if the content did not change
+ * (for a dummy revision). A reconciliation version of this event may be
+ * triggered even when the page's current version did not change (on null edits),
+ * to provide an opportunity to listeners to recover from data loss and
+ * corruption by re-generating any derived data.
  *
- * This event is emitted by PageUpdater. It can be used by core components and
- * extensions to follow up on page edits.
+ * PageUpdatedEvent is emitted by DerivedPageDataUpdater, typically triggered by
+ * PageUpdater. User activities that trigger a PageUpdated event include:
+ * - editing, including page creation and null-edits
+ * - moving pages
+ * - undeleting pages
+ * - importing revisions
+ * - Any activity that creates a dummy revision, such as changing the page's
+ *   protection level.
  *
- * Extensions that want to subscribe to this event should list "PageUpdated"
- * as a subscribed event type.
- *
+ * Extensions that want to subscribe to this event should list
+ * "PageUpdated" as a subscribed event type.
  * Subscribers based on EventSubscriberBase should implement the
  * handlePageUpdatedEventAfterCommit() listener method to be informed when
- * a page edit has been committed to the database.
+ * a page update has been committed to the database.
  *
  * See the documentation of EventSubscriberBase and DomainEventSource for
  * more options and details.
@@ -54,31 +64,32 @@ class PageUpdatedEvent extends PageEvent implements PageUpdateCauses {
 	public const TYPE = 'PageUpdated';
 
 	/**
-	 * @var string The update reverted to an earlier revision.
-	 * Best effort, false negatives are possible.
+	 * @var string Do not notify other users (e.g. via RecentChanges or
+	 * watchlist).
+	 * See EDIT_SILENT.
 	 */
-	public const FLAG_REVERTED = 'revert';
-
-	/** @var string The update should not be reported to users in feeds. */
 	public const FLAG_SILENT = 'silent';
 
-	/** @var string The update should be attributed to a bot. */
+	/**
+	 * @var string The update was performed by a bot.
+	 * See EDIT_FORCE_BOT.
+	 */
 	public const FLAG_BOT = 'bot';
 
 	/**
-	 * @var string The update was automated and should not be counted as
-	 * user activity.
+	 * @var string The page update is a side effect and does not represent an
+	 * active user contribution.
+	 * See EDIT_IMPLICIT.
 	 */
-	public const FLAG_AUTOMATED = 'automated';
+	public const FLAG_IMPLICIT = 'implicit';
 
 	/**
 	 * All available flags and their default values.
 	 */
 	public const DEFAULT_FLAGS = [
-		self::FLAG_REVERTED => false,
 		self::FLAG_SILENT => false,
 		self::FLAG_BOT => false,
-		self::FLAG_AUTOMATED => false,
+		self::FLAG_IMPLICIT => false,
 	];
 
 	private RevisionSlotsUpdate $slotsUpdate;
@@ -86,15 +97,17 @@ class PageUpdatedEvent extends PageEvent implements PageUpdateCauses {
 	private ?RevisionRecord $oldRevision;
 	private ?EditResult $editResult;
 
+	private int $patrolStatus;
+
 	/**
 	 * @param string $cause See the self::CAUSE_XXX constants.
 	 * @param ProperPageIdentity $page The page affected by the update.
 	 * @param UserIdentity $performer The user performing the update.
-	 * @param RevisionSlotsUpdate $slotsUpdate Page content changed by the edit.
+	 * @param RevisionSlotsUpdate $slotsUpdate Page content changed by the update.
 	 * @param RevisionRecord $newRevision The revision object resulting from the
-	 *        edit.
+	 *        update.
 	 * @param RevisionRecord|null $oldRevision The revision that used to be
-	 *        current before the edit.
+	 *        current before the updated.
 	 * @param EditResult|null $editResult An EditResult representing the effects
 	 *        of an edit.
 	 * @param array<string> $tags Applicable tags, see ChangeTags.
@@ -138,12 +151,21 @@ class PageUpdatedEvent extends PageEvent implements PageUpdateCauses {
 		$this->patrolStatus = $patrolStatus;
 	}
 
-	private int $patrolStatus;
-
 	/**
-	 * Whether the edit created the page.
+	 * @deprecated since 1.44, use isCreation() instead.
+	 * @note Unreleased but used in GrowthExperiments
 	 */
 	public function isNew(): bool {
+		return $this->isCreation();
+	}
+
+	/**
+	 * Whether the updated created the page.
+	 * A deleted/archived page is not considered to "exist".
+	 * When undeleting a page, the page will be restored using its old page ID,
+	 * so the "created" page may have an ID that was seen previously.
+	 */
+	public function isCreation(): bool {
 		return $this->oldRevision === null;
 	}
 
@@ -152,9 +174,6 @@ class PageUpdatedEvent extends PageEvent implements PageUpdateCauses {
 	 * or purge.
 	 * This returns false if no new revision was created and the event was
 	 * generated in order to trigger re-generation of derived data.
-	 * This will also return true for derived data updates, since they do not
-	 * create a new revision. Such updates may however still be relevant to
-	 * listeners.
 	 */
 	public function isRevisionChange(): bool {
 		return $this->oldRevision === null
@@ -186,54 +205,60 @@ class PageUpdatedEvent extends PageEvent implements PageUpdateCauses {
 	}
 
 	/**
-	 * Page content changed by the edit. Can be used to determine which slots
-	 * were changed, and whether slots were added or removed.
+	 * Returns which slots were changed, added, or removed by the update.
 	 */
 	public function getSlotsUpdate(): RevisionSlotsUpdate {
 		return $this->slotsUpdate;
 	}
 
 	/**
-	 * Whether the given slot was modified by the edit.
+	 * Whether the given slot was modified by the page update.
 	 * Slots that were removed do not count as modified.
+	 * This is a convenience method for
+	 * $this->getSlotsUpdate()->isModifiedSlot( $slotRole ).
 	 */
 	public function isModifiedSlot( string $slotRole ): bool {
 		return $this->getSlotsUpdate()->isModifiedSlot( $slotRole );
 	}
 
 	/**
-	 * An EditResult representing the effects of an edit.
+	 * An EditResult representing the effects of the update.
 	 * Can be used to determine whether the edit was a revert
 	 * and which edits were reverted.
-	 * Will be null for page creations.
+	 *
+	 * This may return null for updates that do not result from edits,
+	 * such as imports or undeletions.
 	 */
 	public function getEditResult(): ?EditResult {
 		return $this->editResult;
 	}
 
 	/**
-	 * Returned the revision that used to be current before the edit.
+	 * Returned the revision that used to be current before the update.
 	 * Will be null if the edit created the page.
-	 * Will be the same as $newRevision if the edit was a "null-edit".
-	 * Note that this is not necessarily the revision the edit was based
-	 * on: in the case of edit conflicts, manual reverts, or imports,
-	 * the base revision at the beginning of the edit process may be
-	 * different from the parent revision after the conclusion of the edit
-	 * process.
+	 * Will be the same as getNewRevision() if the edit was a "null-edit".
+	 *
+	 * Note that this is not necessarily the new revision's parent revision.
+	 * For instance, when undeleting a page, the old revision will be null
+	 * because the page didn't exist before, even if the undeleted page has
+	 * many revisions and the new current revision indeed has a parent revision.
+	 *
+	 * The parent revision can be determined by calling
+	 * getNewRevision()->getParentId().
 	 */
 	public function getOldRevision(): ?RevisionRecord {
 		return $this->oldRevision;
 	}
 
 	/**
-	 * The revision that became the current one because of the edit.
+	 * The revision that became the current one because of the update.
 	 */
 	public function getNewRevision(): RevisionRecord {
 		return $this->newRevision;
 	}
 
 	/**
-	 * Returns the edit's initial patrol status.
+	 * Returns the page update's initial patrol status.
 	 * @see PageUpdater::setRcPatrolStatus()
 	 * @see RecentChange::PRC_XXX
 	 */
@@ -253,16 +278,15 @@ class PageUpdatedEvent extends PageEvent implements PageUpdateCauses {
 	 * Whether the update was performed automatically without the user's
 	 * initiative.
 	 */
-	public function isAutomated(): bool {
-		return $this->hasFlag( self::FLAG_AUTOMATED );
+	public function isImplicit(): bool {
+		return $this->hasFlag( self::FLAG_IMPLICIT );
 	}
 
 	/**
 	 * Whether the update is a revert to a previous state of the page.
 	 */
 	public function isRevert(): bool {
-		return ( $this->editResult && $this->editResult->isRevert() )
-			|| $this->hasFlag( self::FLAG_REVERTED );
+		return $this->editResult && $this->editResult->isRevert();
 	}
 
 	/**
