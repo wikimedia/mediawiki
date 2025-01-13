@@ -1,8 +1,5 @@
 <?php
 
-namespace phpunit\includes\filebackend;
-
-use MediaWikiIntegrationTestCase;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\MemoryFileBackend;
 use Wikimedia\TestingAccessWrapper;
@@ -13,7 +10,7 @@ use Wikimedia\TestingAccessWrapper;
 class FileBackendStoreTest extends MediaWikiIntegrationTestCase {
 
 	/**
-	 * @dataProvider provider_testGetContentType
+	 * @dataProvider provideGetContentType
 	 */
 	public function testGetContentType( $mimeFromString ) {
 		global $IP;
@@ -43,7 +40,7 @@ class FileBackendStoreTest extends MediaWikiIntegrationTestCase {
 			$be->getContentType( $dst, file_get_contents( $src ), null ) );
 	}
 
-	public static function provider_testGetContentType() {
+	public static function provideGetContentType() {
 		return [
 			[ false ],
 			[ true ],
