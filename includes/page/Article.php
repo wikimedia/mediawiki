@@ -55,7 +55,6 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Xml\Xml;
 use Wikimedia\IPUtils;
-use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 use Wikimedia\Rdbms\IConnectionProvider;
 
@@ -565,9 +564,12 @@ class Article implements Page {
 			}
 		}
 
-		# Use adaptive TTLs for CDN so delayed/failed purges are noticed less often.
-		# This could use getTouched(), but that could be scary for major template edits.
-		$outputPage->adaptCdnTTL( $this->mPage->getTimestamp(), ExpirationAwareness::TTL_DAY );
+		// Enable 1-day CDN cache on this response
+		//
+		// To reduce impact of lost or delayed HTTP purges, the adaptive TTL will
+		// raise the TTL for pages not recently edited, upto $wgCdnMaxAge.
+		// This could use getTouched(), but that could be scary for major template edits.
+		$outputPage->adaptCdnTTL( $this->mPage->getTimestamp(), 86_400 );
 
 		$this->showViewFooter();
 		$this->mPage->doViewUpdates( $authority, $oldid, $this->fetchRevisionRecord() );

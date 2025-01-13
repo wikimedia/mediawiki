@@ -34,7 +34,6 @@ use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\DependencyStore\DependencyStore;
-use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\TestingAccessWrapper;
 
@@ -2175,24 +2174,25 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		global $wgCdnMaxAge;
 		$now = time();
 		self::$fakeTime = $now;
+		$oneMinute = 60;
 		return [
 			'Five minutes ago' => [ [ $now - 300 ], 270 ],
-			'Now' => [ [ +0 ], ExpirationAwareness::TTL_MINUTE ],
-			'Five minutes from now' => [ [ $now + 300 ], ExpirationAwareness::TTL_MINUTE ],
+			'Now' => [ [ +0 ], $oneMinute ],
+			'Five minutes from now' => [ [ $now + 300 ], $oneMinute ],
 			'Five minutes ago, initial maxage four minutes' =>
 				[ [ $now - 300 ], 270, [ 'initialMaxage' => 240 ] ],
 			'A very long time ago' => [ [ $now - 1000000000 ], $wgCdnMaxAge ],
 			'Initial maxage zero' => [ [ $now - 300 ], 270, [ 'initialMaxage' => 0 ] ],
 
-			'false' => [ [ false ], ExpirationAwareness::TTL_MINUTE ],
-			'null' => [ [ null ], ExpirationAwareness::TTL_MINUTE ],
-			"'0'" => [ [ '0' ], ExpirationAwareness::TTL_MINUTE ],
-			'Empty string' => [ [ '' ], ExpirationAwareness::TTL_MINUTE ],
+			'false' => [ [ false ], $oneMinute ],
+			'null' => [ [ null ], $oneMinute ],
+			"'0'" => [ [ '0' ], $oneMinute ],
+			'Empty string' => [ [ '' ], $oneMinute ],
 			// @todo These give incorrect results due to timezones, how to test?
-			//"'now'" => [ [ 'now' ], ExpirationAwareness::TTL_MINUTE ],
-			//"'parse error'" => [ [ 'parse error' ], ExpirationAwareness::TTL_MINUTE ],
+			//"'now'" => [ [ 'now' ], $oneMinute ],
+			//"'parse error'" => [ [ 'parse error' ], $oneMinute ],
 
-			'Now, minTTL 0' => [ [ $now, 0 ], ExpirationAwareness::TTL_MINUTE ],
+			'Now, minTTL 0' => [ [ $now, 0 ], $oneMinute ],
 			'Now, minTTL 0.000001' => [ [ $now, 0.000001 ], 0 ],
 			'A very long time ago, maxTTL even longer' =>
 				[ [ $now - 1000000000, 0, 1000000001 ], 900000000 ],
