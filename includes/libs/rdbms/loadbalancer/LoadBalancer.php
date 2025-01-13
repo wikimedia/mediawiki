@@ -1045,8 +1045,8 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		$conn->setTableAliases( $this->tableAliases );
 		$conn->setIndexAliases( $this->indexAliases );
 		// Account for any active transaction round and listeners
+		$this->syncConnectionRoundState( $conn );
 		if ( $i === ServerInfo::WRITER_INDEX ) {
-			$this->updateConnectionRoundState( $conn );
 			foreach ( $this->trxRecurringCallbacks as $name => $callback ) {
 				$conn->setTransactionListener( $name, $callback );
 			}
@@ -1443,8 +1443,8 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		// For each of these handles, any writes and callbacks will be tied to a single
 		// transaction. The (peer) handles will reject begin()/commit() calls unless they
 		// are part of an en masse commit or an en masse rollback.
-		foreach ( $this->getOpenPrimaryConnections() as $conn ) {
-			$this->updateConnectionRoundState( $conn );
+		foreach ( $this->getOpenConnections() as $conn ) {
+			$this->syncConnectionRoundState( $conn );
 		}
 		$this->trxRoundStage = self::ROUND_CURSORY;
 	}
@@ -1475,8 +1475,8 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			);
 		}
 		// Unmark handles as participating in this explicit transaction round
-		foreach ( $this->getOpenPrimaryConnections() as $conn ) {
-			$this->updateConnectionRoundState( $conn );
+		foreach ( $this->getOpenConnections() as $conn ) {
+			$this->syncConnectionRoundState( $conn );
 		}
 		$this->trxRoundStage = self::ROUND_COMMIT_CALLBACKS;
 	}
@@ -1579,8 +1579,8 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			$conn->rollback( $fname, $conn::FLUSHING_ALL_PEERS );
 		}
 		// Unmark handles as participating in this explicit transaction round
-		foreach ( $this->getOpenPrimaryConnections() as $conn ) {
-			$this->updateConnectionRoundState( $conn );
+		foreach ( $this->getOpenConnections() as $conn ) {
+			$this->syncConnectionRoundState( $conn );
 		}
 		$this->trxRoundStage = self::ROUND_ROLLBACK_CALLBACKS;
 	}
@@ -1627,7 +1627,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 *
 	 * @param Database $conn
 	 */
-	private function updateConnectionRoundState( Database $conn ) {
+	private function syncConnectionRoundState( Database $conn ) {
 		if ( $conn->getLBInfo( self::INFO_CONN_CATEGORY ) !== self::CATEGORY_ROUND ) {
 			return; // transaction rounds do not apply to these connections
 		}
