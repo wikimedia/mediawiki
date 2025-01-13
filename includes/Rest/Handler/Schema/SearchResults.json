@@ -33,6 +33,7 @@
 					},
 					"excerpt": {
 						"type": "string",
+						"nullable": true,
 						"description": "Excerpt of the page content matching the search query"
 					},
 					"matched_title": {
