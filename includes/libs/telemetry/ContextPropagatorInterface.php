@@ -13,8 +13,9 @@ interface ContextPropagatorInterface {
 	 * Inject the given SpanContext into the given carrier.
 	 * SpanContext may be null, in which case the propagator might
 	 * still inject non-span-specific data.
+	 * @return array carrier with SpanContext injected
 	 */
-	public function inject( ?SpanContext $spanContext, array &$carrier ): void;
+	public function inject( ?SpanContext $spanContext, array $carrier ): array;
 
 	/**
 	 * Attempt to extract a SpanContext from the given carrier.

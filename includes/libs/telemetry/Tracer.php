@@ -78,10 +78,8 @@ class Tracer implements TracerInterface {
 
 	/** @inheritDoc */
 	public function getRequestHeaders(): array {
-		$rv = [];
 		$activeSpanContext = $this->tracerState->getActiveSpanContext();
-		$this->contextPropagator->inject( $activeSpanContext, $rv );
-		return $rv;
+		return $this->contextPropagator->inject( $activeSpanContext, [] );
 	}
 
 	private function newSpan( string $spanName, ?SpanContext $parentSpanContext ): SpanInterface {
