@@ -227,6 +227,9 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 			$out->addHTML( $this->getForm( $this->opts ) );
 			return;
 		}
+		// Add warning message if user doesn't exist
+		$this->addContributionsSubWarning( $userObj );
+
 		$out->addSubtitle( $this->contributionsSub( $userObj, $target ) );
 		$out->setPageTitleMsg( $this->msg( $this->getResultsPageTitleMessageKey( $userObj ), $target ) );
 
@@ -414,40 +417,14 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 
 		$out = $this->getOutput();
 		if ( $isAnon ) {
-			// Show a warning message that the user being searched for doesn't exist.
-			// UserNameUtils::isIP returns true for IP address and usemod IPs like '123.123.123.xxx',
-			// but returns false for IP ranges. We don't want to suggest either of these are
-			// valid usernames which we would with the 'contributions-userdoesnotexist' message.
-			if ( !$this->userNameUtils->isIP( $userObj->getName() )
-				&& !IPUtils::isValidRange( $userObj->getName() )
-			) {
-				$out->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
-				$out->addHTML( Html::warningBox(
-					$out->msg( 'contributions-userdoesnotexist',
-						wfEscapeWikiText( $userObj->getName() ) )->parse(),
-					'mw-userpage-userdoesnotexist'
-				) );
-				if ( !$this->including() ) {
-					$out->setStatusCode( 404 );
-				}
-			}
 			$user = htmlspecialchars( $userObj->getName() );
 		} else {
 			$user = $this->getLinkRenderer()->makeLink( $userObj->getUserPage(), $userObj->getName() );
 		}
 		$nt = $userObj->getUserPage();
-		$talk = $userObj->getTalkPage();
+
 		$links = '';
-
-		// T211910. Don't show action links if a range is outside block limit
-		$showForIp = $this->isValidIPOrQueryableRange( $userObj, $this->getConfig() );
-
-		// T276306. if the user is hidden and the viewer cannot see hidden, pretend that it does not exist
-		$registeredAndVisible = $userObj->isRegistered() && ( !$userObj->isHidden()
-				|| $this->permissionManager->userHasRight( $this->getUser(), 'hideuser' ) );
-
-		$shouldShowLinks = $talk && ( $registeredAndVisible || $showForIp );
-		if ( $shouldShowLinks ) {
+		if ( $this->shouldDisplayActionLinks( $userObj ) ) {
 			$tools = $this->getUserLinks(
 				$this,
 				$userObj
@@ -523,7 +500,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 		);
 
 		// Second subheading. "A user with 37,208 edits. Account created on 2008-09-17."
-		if ( $talk && $registeredAndVisible ) {
+		if ( $this->shouldDisplayAccountInformation( $userObj ) ) {
 			$editCount = $userObj->getEditCount();
 			$userInfo = $this->msg( 'contributions-edit-count' )
 				->params( $userName )
@@ -548,6 +525,73 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 		}
 
 		return $subHeadingsHtml;
+	}
+
+	/**
+	 * Generate and append the "user not registered" warning message if the target does not exist and is a username
+	 *
+	 * @param User $userObj User object for the target
+	 */
+	protected function addContributionsSubWarning( $userObj ) {
+		$out = $this->getOutput();
+		$isAnon = $userObj->isAnon();
+
+		// Show a warning message that the user being searched for doesn't exist.
+		// UserNameUtils::isIP returns true for IP address and usemod IPs like '123.123.123.xxx',
+		// but returns false for IP ranges. We don't want to suggest either of these are
+		// valid usernames which we would with the 'contributions-userdoesnotexist' message.
+		if (
+			$isAnon &&
+			!$this->userNameUtils->isIP( $userObj->getName() )
+			&& !IPUtils::isValidRange( $userObj->getName() )
+		) {
+			$out->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
+			$out->addHTML( Html::warningBox(
+				$out->msg( 'contributions-userdoesnotexist',
+					wfEscapeWikiText( $userObj->getName() ) )->parse(),
+				'mw-userpage-userdoesnotexist'
+			) );
+			if ( !$this->including() ) {
+				$out->setStatusCode( 404 );
+			}
+		}
+	}
+
+	/**
+	 * Determine whether or not to show the user action links
+	 *
+	 * @param User $userObj User object for the target
+	 * @return bool
+	 */
+	protected function shouldDisplayActionLinks( User $userObj ): bool {
+		// T211910. Don't show action links if a range is outside block limit
+		$showForIp = $this->isValidIPOrQueryableRange( $userObj, $this->getConfig() );
+
+		$talk = $userObj->getTalkPage();
+
+		// T276306. if the user is hidden and the viewer cannot see hidden, pretend that it does not exist
+		$registeredAndVisible = $userObj->isRegistered() && ( !$userObj->isHidden()
+				|| $this->permissionManager->userHasRight( $this->getUser(), 'hideuser' ) );
+
+		return $talk && ( $registeredAndVisible || $showForIp );
+	}
+
+	/**
+	 * Determine whether or not to show account information
+	 *
+	 * @param User $userObj User object for the target
+	 * @return bool
+	 */
+	protected function shouldDisplayAccountInformation( User $userObj ): bool {
+		$talk = $userObj->getTalkPage();
+
+		// T276306. if the user is hidden and the viewer cannot see hidden, pretend that it does not exist
+		$registeredAndVisible = $userObj->isRegistered() && (
+			!$userObj->isHidden() ||
+			$this->permissionManager->userHasRight( $this->getUser(), 'hideuser' )
+		);
+
+		return $talk && $registeredAndVisible;
 	}
 
 	/**
