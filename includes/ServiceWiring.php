@@ -984,7 +984,7 @@ return [
 				$services->getMainConfig()
 			),
 			LoggerFactory::getInstance( 'http' ),
-			Telemetry::getInstance()
+			$services->getTracer()
 		);
 	},
 
