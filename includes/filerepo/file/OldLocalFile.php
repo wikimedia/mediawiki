@@ -443,6 +443,7 @@ class OldLocalFile extends LocalFile {
 		$this->setProps( $props );
 
 		$dbw->startAtomic( __METHOD__ );
+
 		$commentFields = $services->getCommentStore()
 			->insert( $dbw, 'oi_description', $comment );
 		$actorId = $services->getActorNormalization()
@@ -465,7 +466,6 @@ class OldLocalFile extends LocalFile {
 				'oi_sha1' => $props['sha1'],
 			] + $commentFields )
 			->caller( __METHOD__ )->execute();
-		$dbw->endAtomic( __METHOD__ );
 
 		$migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
 			MainConfigNames::FileSchemaMigrationStage
@@ -490,6 +490,9 @@ class OldLocalFile extends LocalFile {
 					] + $commentFields )
 				->caller( __METHOD__ )->execute();
 		}
+
+		$dbw->endAtomic( __METHOD__ );
+
 		return true;
 	}
 
