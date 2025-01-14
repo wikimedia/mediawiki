@@ -249,6 +249,7 @@ class SpecialBlock extends FormSpecialPage {
 				'sitewide';
 			$this->codexFormData[ 'blockReasonPreset' ] = $request->getVal( 'wpReason' );
 			$this->codexFormData[ 'blockReasonOtherPreset' ] = $request->getVal( 'wpReason-other' );
+			$this->codexFormData[ 'blockRemovalReasonPreset' ] = $request->getVal( 'wpRemovalReason' );
 			$blockAdditionalDetailsPreset = $blockDetailsPreset = [];
 
 			// Default is to always block account creation.

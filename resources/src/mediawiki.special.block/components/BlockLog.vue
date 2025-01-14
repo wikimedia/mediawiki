@@ -35,12 +35,13 @@
 				<a @click="$emit( 'edit-block', item )">
 					{{ $i18n( 'block-item-edit' ).text() }}
 				</a>
-				{{ $i18n( 'pipe-separator' ).text() }}
-				<a
-					:href="mw.util.getUrl( 'Special:Unblock/' + targetUser )"
+				<cdx-button
+					action="progressive"
+					weight="quiet"
+					@click="$emit( 'remove-block', item.id )"
 				>
 					{{ $i18n( 'block-item-remove' ).text() }}
-				</a>
+				</cdx-button>
 			</template>
 			<template #item-hide="{ item }">
 				<a
@@ -141,7 +142,8 @@ module.exports = exports = defineComponent( {
 	},
 	emits: [
 		'create-block',
-		'edit-block'
+		'edit-block',
+		'remove-block'
 	],
 	setup( props ) {
 		const store = useBlockStore();

@@ -42,6 +42,7 @@
 				block-log-type="active"
 				@create-block="onCreateBlock"
 				@edit-block="onEditBlock"
+				@remove-block="onRemoveBlock"
 			></block-log>
 			<block-log
 				:key="`${submitCount}-recent`"
@@ -68,6 +69,9 @@
 					v-if="store.confirmationNeeded"
 					v-model:open="confirmationOpen"
 					:title="$i18n( 'ipb-confirm' ).text()"
+					primary-action-type="destructive"
+					:primary-action-label=" $i18n( 'block-confirm-yes' ).text()"
+					:default-action-label=" $i18n( 'block-confirm-no' ).text()"
 					@confirm="doBlock"
 				>
 					<template #default>
@@ -87,12 +91,40 @@
 			</div>
 		</div>
 	</cdx-field>
+	<confirmation-dialog
+		v-model:open="removalConfirmationOpen"
+		:title="$i18n( 'block-removal-title' ).text()"
+		primary-action-type="progressive"
+		:primary-action-label=" $i18n( 'block-removal-confirm-yes' ).text()"
+		:default-action-label=" $i18n( 'block-removal-confirm-no' ).text()"
+		@confirm="doRemoveBlock"
+	>
+		<template #default>
+			<cdx-field>
+				<template #label>
+					{{ $i18n( 'block-reason' ).text() }}
+				</template>
+				<cdx-text-input
+					v-model="store.removalReason"
+					name="wpRemovalReason"
+					:placeholder="$i18n( 'block-removal-reason-placeholder' ).text()"
+				></cdx-text-input>
+			</cdx-field>
+			<cdx-field>
+				<cdx-checkbox
+					v-model="store.watchUser"
+				>
+					{{ $i18n( 'ipbwatchuser' ) }}
+				</cdx-checkbox>
+			</cdx-field>
+		</template>
+	</confirmation-dialog>
 </template>
 
 <script>
 const { computed, defineComponent, nextTick, ref } = require( 'vue' );
 const { storeToRefs } = require( 'pinia' );
-const { CdxButton, CdxField, CdxMessage } = require( '@wikimedia/codex' );
+const { CdxButton, CdxTextInput, CdxCheckbox, CdxField, CdxMessage } = require( '@wikimedia/codex' );
 const useBlockStore = require( './stores/block.js' );
 const UserLookup = require( './components/UserLookup.vue' );
 const BlockLog = require( './components/BlockLog.vue' );
@@ -118,6 +150,8 @@ module.exports = exports = defineComponent( {
 		AdditionalDetailsField,
 		ConfirmationDialog,
 		CdxButton,
+		CdxTextInput,
+		CdxCheckbox,
 		CdxField,
 		CdxMessage
 	},
@@ -141,6 +175,7 @@ module.exports = exports = defineComponent( {
 		const blockId = computed( () => mw.util.getParamValue( 'id' ) );
 		const showBlockLogs = computed( () => store.targetUser || store.blockId );
 		const showBlockForm = computed( () => formVisible.value || blockId.value );
+		const removalConfirmationOpen = ref( false );
 		let initialLoad = true;
 
 		if ( blockId.value ) {
@@ -182,6 +217,36 @@ module.exports = exports = defineComponent( {
 			store.loadFromData( blockData, false );
 			formVisible.value = true;
 			scrollToForm();
+		}
+
+		/**
+		 * Click handler for the 'remove' links, to open the removal confirmation dialog.
+		 *
+		 * @param {number} currentBlockId
+		 */
+		function onRemoveBlock( currentBlockId ) {
+			store.blockId = currentBlockId;
+			store.removalReason = '';
+			store.watchUser = false;
+			removalConfirmationOpen.value = true;
+		}
+
+		/**
+		 * Handler for the primary action of the removal confirmation dialog.
+		 */
+		function doRemoveBlock() {
+			store.doRemoveBlock()
+				.then( () => {
+					removalConfirmationOpen.value = false;
+					submitCount.value++;
+				} )
+				.fail( ( _, errorObj ) => {
+					formErrors.value = [ errorObj.error.info ];
+				} )
+				.always( () => {
+					success.value = false;
+					formSubmitted.value = false;
+				} );
 		}
 
 		/**
@@ -289,10 +354,13 @@ module.exports = exports = defineComponent( {
 			blockShowSuppressLog,
 			canDeleteLogEntry,
 			confirmationOpen,
+			removalConfirmationOpen,
 			onCreateBlock,
 			onEditBlock,
 			onFormSubmission,
 			doBlock,
+			onRemoveBlock,
+			doRemoveBlock,
 			showBlockLogs,
 			showBlockForm
 		};

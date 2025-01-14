@@ -36,6 +36,18 @@ module.exports = exports = defineComponent( {
 		title: {
 			type: String,
 			required: true
+		},
+		primaryActionType: {
+			type: String,
+			required: true
+		},
+		primaryActionLabel: {
+			type: String,
+			required: true
+		},
+		defaultActionLabel: {
+			type: String,
+			required: true
 		}
 	},
 	emits: [ 'update:open', 'confirm' ],
@@ -44,13 +56,13 @@ module.exports = exports = defineComponent( {
 
 		/** @type {PrimaryDialogAction} */
 		const primaryAction = {
-			label: mw.msg( 'block-confirm-yes' ),
-			actionType: 'destructive'
+			label: props.primaryActionLabel,
+			actionType: props.primaryActionType
 		};
 
 		/** @type {DialogAction} */
 		const defaultAction = {
-			label: mw.msg( 'block-confirm-no' ),
+			label: props.defaultActionLabel,
 			actionType: 'default'
 		};
 
