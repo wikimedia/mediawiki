@@ -72,7 +72,6 @@ use RuntimeException;
 use Skin;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Bcp47Code\Bcp47Code;
-use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
@@ -2734,7 +2733,7 @@ class OutputPage extends ContextSource {
 	 * @since 1.28
 	 */
 	public function adaptCdnTTL( $mtime, $minTTL = 0, $maxTTL = 0 ) {
-		$minTTL = $minTTL ?: ExpirationAwareness::TTL_MINUTE;
+		$minTTL = $minTTL ?: 60;
 		$maxTTL = $maxTTL ?: $this->getConfig()->get( MainConfigNames::CdnMaxAge );
 
 		if ( $mtime === null || $mtime === false ) {

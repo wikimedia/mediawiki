@@ -9,7 +9,6 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\User\UserSelectQueryBuilder;
-use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 // @codeCoverageIgnoreStart
@@ -102,7 +101,7 @@ class ExpireTemporaryAccounts extends Maintenance {
 			), true )
 			->whereRegisteredTimestamp( wfTimestamp(
 				TS_MW,
-				$registeredBeforeUnix - ExpirationAwareness::TTL_DAY * $frequencyDays
+				$registeredBeforeUnix - ( 86_400 * $frequencyDays )
 			), false );
 	}
 
@@ -166,7 +165,7 @@ class ExpireTemporaryAccounts extends Maintenance {
 			$this->output( 'Temporary account expiry is not enabled' . PHP_EOL );
 			return;
 		}
-		$registeredBeforeUnix = (int)wfTimestamp( TS_UNIX ) - ExpirationAwareness::TTL_DAY * $expiryAfterDays;
+		$registeredBeforeUnix = (int)wfTimestamp( TS_UNIX ) - ( 86_400 * $expiryAfterDays );
 
 		$tempAccounts = $this->queryBuilderToUserIdentities( $this->getTempAccountsToExpireQueryBuilder(
 			$registeredBeforeUnix,
