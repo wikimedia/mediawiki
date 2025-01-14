@@ -577,7 +577,7 @@
 	"pageinfo-toolboxlink": "Page information",
 	"patrol-log-page": "Patrol log",
 	"previousdiff": "← Older edit",
-	"nextdiff": "Fresh edit",
+	"nextdiff": "Fresh edit →",
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|page|pages}}",
 	"file-info-size": "$1 × $2 pixels, file size: $3, MIME type: $4",
 	"file-nohires": "No higher resolution dey.",

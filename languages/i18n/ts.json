@@ -407,7 +407,7 @@
 	"randompage": "Tluka rin'wana na rin'wana",
 	"statistics": "Mintsengo",
 	"nbytes": "$1 {{PLURAL:$1|wa bayiti|wa tibayit}}",
-	"nmembers": "$1 {{PLURAL:$1|museketeri| wa vaseketeri}}",
+	"nmembers": "$1 {{PLURAL:$1|museketeri|wa vaseketeri}}",
 	"prefixindex": "Matluka hinkwawo lama sungulaka hi",
 	"usercreated": "{{GENDER:$3|u tumbuluxe}} hi siku ra $1 hinkarhi wa $2",
 	"newpages": "Matluka mantswa",

@@ -1821,7 +1821,7 @@
 	"ncategories": "$1 catègori{{PLURAL:$1|a|es}}",
 	"ninterwikis": "$1 {{PLURAL:$1|lim entèrvouiqui|lims entèrvouiquis}}",
 	"nlinks": "$1 lim{{PLURAL:$1||s}}",
-	"nmembers": "$1 membro{{PLURAL:$1||s}}",
+	"nmembers": "$1 {{PLURAL:$1|membro|membros}}",
 	"nmemberschanged": "$1 → $2 membro{{PLURAL:$2||s}}",
 	"nrevisions": "$1 vèrsion{{PLURAL:$1||s}}",
 	"nimagelinks": "Empleyê dessus $1 pâge{{PLURAL:$1||s}}",

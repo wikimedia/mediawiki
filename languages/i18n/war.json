@@ -1756,7 +1756,7 @@
 	"filedeleteerror-long": "Mga sayop nga ginengkwentro samtang nagpapara hin paypay:\n\n$1",
 	"filedelete-missing": "An paypay nga \"$1\" in diri mapapara, tunogd nga waray ini dida.",
 	"previousdiff": "← Durudaan nga pagliwat",
-	"nextdiff": "Burubag-o nga pagliwat",
+	"nextdiff": "Burubag-o nga pagliwat →",
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|pakli|mga pakli}}",
 	"file-info": "Kadako han paypay: $1, klase han MIME: $2",
 	"file-info-size": "$1 × $2 nga pixel, kadako han fayl: $3, MIME nga tipo: $4",

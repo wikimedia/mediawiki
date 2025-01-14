@@ -915,7 +915,7 @@
 	"pageinfo-hidden-categories": "پنهون ِ{{PLURAL:$1|رج}} پنهان ($1)",
 	"pageinfo-toolboxlink": "صفحه‌ی ِاطلاعات",
 	"patrol-log-page": "پاسبونی سیاهه",
-	"previousdiff": "قدیمی‌ته دچی‌یه ←",
+	"previousdiff": "→ قدیمی‌ته دچی‌یه",
 	"nextdiff": "نوتر دچی‌یه ←",
 	"widthheightpage": "$1×$2، $3 {{PLURAL:$3|صفحه|صفحه}}",
 	"file-info-size": "$1 × $2 پـیـکـسه‌ل, فـایـل گـأتـی: $3, MIME مـونـد: $4",

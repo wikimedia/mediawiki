@@ -264,7 +264,7 @@
 	"uploadnewversion-linktext": "Chèrga so una versiòn nova d'ste file",
 	"statistics": "Statistich",
 	"nbytes": "$1 {{PLURAL:$1|byte|byte}}",
-	"nmembers": "Lumbaart (lmo)\n$1 {{PLURAL:$1|elemént|elemént}}",
+	"nmembers": "$1 {{PLURAL:$1|elemént|elemént}}",
 	"prefixindex": "Tòti al pàgin cun e' prefess",
 	"newpages": "Pàgin növi",
 	"move": "Chèmbia nòm",

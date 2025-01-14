@@ -619,7 +619,7 @@
 	"ncategories": "$1 classe{{PLURAL:$1||s}}",
 	"ninterwikis": "$1 {{PLURAL:$1|interwiki|interwikis}}",
 	"nlinks": "$1 {{PLURAL:$1|page liée|pages liées}}",
-	"nmembers": "$1 membre{{PLURAL:$1||s}}",
+	"nmembers": "$1 {{PLURAL:$1|membre|membres}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|membre|membres}}",
 	"unusedcategories": "Classes inutilisées",
 	"unusedimages": "Fichiers orphelins",

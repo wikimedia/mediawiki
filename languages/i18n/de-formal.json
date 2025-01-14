@@ -149,7 +149,6 @@
 	"confirmable-confirm": "Sind {{GENDER:$1|Sie}} sicher?",
 	"red-link-title": "$1 (Seite nicht vorhanden)",
 	"sort-rowspan-error": "Diese Seite enthält eine Tabelle mit einem rowspan-Attribut, das sich über mehr Zeilen erstreckt, als die Tabelle tatsächlich hat. Sie können dies beheben, indem Sie die Seite bearbeiten.",
-	"nstab-main": "Seite",
 	"nstab-category": "Kategorie",
 	"mainpage-nstab": "Hauptseite",
 	"transaction-duration-limit-exceeded": "Um eine große Verzögerung in der Datenreplikation zu vermeiden, wurde diese Transaktion abgebrochen. Die Schreibdauer ($1) hat die Grenze von $2 Sekunden überschritten. Falls Sie viele Objekte auf einmal ändern, versuchen Sie stattdessen, die Änderungen auf mehrere Operationen aufzuteilen.",

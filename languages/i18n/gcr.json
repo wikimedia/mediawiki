@@ -723,7 +723,7 @@
 	"statistics-users-active-desc": "Itilizatò ki fè onmwen roun aksyon pannan {{PLURAL:$1|dannyé jou|$1 dannyé jou-ya}}",
 	"double-redirect-fixer": "Korègtò di roudirègsyon",
 	"nbytes": "$1 {{PLURAL:$1|ògtè}}",
-	"nmembers": "$1 manm{{PLURAL:$1|}}",
+	"nmembers": "$1 {{PLURAL:$1|manm}}",
 	"prefixindex": "Tout paj ki ka koumansé pa...",
 	"listusers": "Lis di itilizatò-ya",
 	"newpages": "Paj nòv",

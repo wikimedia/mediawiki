@@ -1872,7 +1872,7 @@
 	"ncategories": "$1 {{PLURAL:$1|категорий}}",
 	"ninterwikis": "$1 {{PLURAL:$1|интервики-кылвер}}",
 	"nlinks": "$1 {{PLURAL:$1|кылвер}}",
-	"nmembers": "$1 {{PLURAL:$1|1=ушнышо}}",
+	"nmembers": "$1 {{PLURAL:$1|ушнышо}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|объект}}",
 	"nrevisions": "$1 {{PLURAL:$1|версий}}",
 	"nimagelinks": "$1 {{PLURAL:$1|велыжыште}} кучылталтеш",
