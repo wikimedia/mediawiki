@@ -48,6 +48,7 @@ class HideUserUtils {
 				->from( 'block_target', 'hu_block_target' )
 				->join( 'block', 'hu_block', 'hu_block.bl_target=hu_block_target.bt_id' )
 				->where( [ "hu_block_target.bt_user=$userIdField", 'hu_block.bl_deleted' => 1 ] )
+				->limit( 1 )
 				->caller( __METHOD__ )
 				->getSQL() .
 			') ' .
@@ -58,13 +59,9 @@ class HideUserUtils {
 	 * Add a field and related joins to the query builder. The field in the
 	 * query result will be true if the user is hidden or false otherwise.
 	 *
-	 * Note that a GROUP BY option will be set, to avoid duplicating the result
-	 * row if the user is hidden by more than one block.
-	 *
 	 * @param SelectQueryBuilder $qb The query builder to be modified
 	 * @param string $userIdField The name of the user_id field to use in the join
-	 * @param string $deletedFieldAlias The field alias which will contain the
-	 *   true if the user is deleted.
+	 * @param string $deletedFieldAlias The field alias which will be true if the user is hidden.
 	 */
 	public function addFieldToBuilder(
 		SelectQueryBuilder $qb,
@@ -80,6 +77,7 @@ class HideUserUtils {
 				->from( 'block_target', 'hu_block_target' )
 				->join( 'block', 'hu_block', 'hu_block.bl_target=hu_block_target.bt_id' )
 				->where( [ "hu_block_target.bt_user=$userIdField", 'hu_block.bl_deleted' => 1 ] )
+				->limit( 1 )
 				->caller( __METHOD__ )
 				->getSQL() .
 			') IS NOT NULL';
