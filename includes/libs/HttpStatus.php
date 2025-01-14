@@ -26,6 +26,18 @@
 class HttpStatus {
 
 	/**
+	 * @var null|callable
+	 */
+	private static $headersSentCallback = null;
+
+	public static function registerHeadersSentCallback( callable $callback ): ?callable {
+		$old = self::$headersSentCallback;
+		self::$headersSentCallback = $callback;
+
+		return $old;
+	}
+
+	/**
 	 * Get the message associated with an HTTP response status code
 	 *
 	 * @param int $code Status code
@@ -118,7 +130,15 @@ class HttpStatus {
 	 * @param int $code Status code
 	 */
 	public static function header( $code ) {
-		\MediaWiki\Request\HeaderCallback::warnIfHeadersSent();
+		if ( headers_sent() ) {
+			if ( self::$headersSentCallback ) {
+				( self::$headersSentCallback )();
+				return;
+			}
+
+			// NOTE: If there is no custom callback, we continue normally and
+			//       rely on the implementation of header() to emit a warning.
+		}
 
 		try {
 			header( self::getHeader( $code ) );
