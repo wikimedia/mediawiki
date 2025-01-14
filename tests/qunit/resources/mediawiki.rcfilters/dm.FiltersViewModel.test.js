@@ -519,9 +519,9 @@
 			model = new rcfilters.dm.FiltersViewModel(),
 			extractNames = function ( matches ) {
 				const result = {};
-				Object.keys( matches ).forEach( ( groupName ) => {
+				for ( const groupName in matches ) {
 					result[ groupName ] = matches[ groupName ].map( ( item ) => item.getName() );
-				} );
+				}
 				return result;
 			};
 
