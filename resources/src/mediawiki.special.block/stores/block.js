@@ -511,7 +511,7 @@ module.exports = exports = defineStore( 'block', () => {
 		// Add params needed to fetch block log and active blocks in one request.
 		params.list = 'logevents|blocks';
 		params.letype = 'block';
-		params.bkprop = 'id|user|by|timestamp|expiry|parsedreason|range|flags|restrictions';
+		params.bkprop = 'id|user|by|timestamp|expiry|reason|parsedreason|range|flags|restrictions';
 		params.bkusers = targetUser.value;
 
 		const actualPromise = api.get( params );
