@@ -142,7 +142,7 @@ module.exports = exports = defineStore( 'block', () => {
 	 *
 	 * @type {Ref<string>}
 	 */
-	const removalReason = ref( mw.config.get( 'blockRemovalReasonPreset' ) || '' );
+	const removalReason = ref( '' );
 
 	// Other refs that don't have corresponding form fields.
 

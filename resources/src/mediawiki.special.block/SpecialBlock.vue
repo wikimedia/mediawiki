@@ -226,7 +226,7 @@ module.exports = exports = defineComponent( {
 		 */
 		function onRemoveBlock( currentBlockId ) {
 			store.blockId = currentBlockId;
-			store.removalReason = '';
+			store.removalReason = mw.config.get( 'blockRemovalReasonPreset' ) || '';
 			store.watchUser = false;
 			removalConfirmationOpen.value = true;
 		}
