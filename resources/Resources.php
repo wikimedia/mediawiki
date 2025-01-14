@@ -1602,6 +1602,7 @@ return [
 		],
 		'dependencies' => 'mediawiki.language',
 		'messages' => [
+			'special-characters-recently-used',
 			'special-characters-group-latin',
 			'special-characters-group-latinextended',
 			'special-characters-group-ipa',

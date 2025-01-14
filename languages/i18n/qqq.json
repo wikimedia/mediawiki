@@ -4500,6 +4500,7 @@
 	"headline-anchor-title": "Title tooltip for the section anchor symbol, which is a link to the current section. Can be interpreted both as a noun (\"this is a link\") or as a verb (\"use this to link\").",
 	"special-tab-contribute-short": "The tab text to Special:Contribute page cards",
 	"special-tab-contributions-short": "The tab text to View contributions on Special:Contribute page",
+	"special-characters-recently-used": "Page label for the 'recently used' feature",
 	"special-characters-group-latin": "This is the name of a script, or alphabet, not a language.",
 	"special-characters-group-latinextended": "The name of the Latin Extended character set.",
 	"special-characters-group-ipa": "IPA means a script: \"international phonetic alphabet\" here, and not \"international phonetic association\", the organization behind it.",
