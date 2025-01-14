@@ -3,6 +3,8 @@
 namespace MediaWiki\Tests\Storage;
 
 use DummyContentHandlerForTesting;
+use LogPage;
+use ManualLogEntry;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\Content;
@@ -1269,6 +1271,101 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount(), 'No pending updates' );
 		$this->assertNotFalse( $pcache->get( $page, $updater->getCanonicalParserOptions() ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doUpdates()
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::maybeAddRecreateChangeTag
+	 */
+	public function testDoUpdatesTagsEditAsRecreatedWhenDeletedLogEntry() {
+		$page = $this->getPage( __METHOD__ );
+		$title = $this->getTitle( __METHOD__ );
+
+		$content = [ SlotRecord::MAIN => new WikitextContent( 'rev ID ver #1: {{REVISIONID}}' ) ];
+		$rev = $this->createRevision( $page, 'first', $content );
+
+		// create a deletion log entry
+		$deleteLogEntry = new ManualLogEntry( 'delete', 'delete' );
+		$deleteLogEntry->setPerformer( $this->getTestUser()->getUser() );
+		$deleteLogEntry->setTarget( $title );
+		$deleteLogEntry->setDeleted( LogPage::DELETED_ACTION );
+		$logId = $deleteLogEntry->insert( $this->getDb() );
+		$deleteLogEntry->publish( $logId );
+
+		$this->getDb()->startAtomic( __METHOD__ ); // let deferred updates queue up
+
+		$derivedUpdater = $this->getDerivedPageDataUpdater( $page, $rev );
+		$derivedUpdater->prepareUpdate( $rev );
+		$derivedUpdater->doUpdates();
+		$this->assertGreaterThan( 0, DeferredUpdates::pendingUpdatesCount(), 'Pending updates' );
+
+		$this->getDb()->endAtomic( __METHOD__ ); // run deferred updates
+		$this->runDeferredUpdates();
+
+		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount(), 'No pending updates' );
+		$this->assertSame( [ 'mw-recreated' ], $this->getServiceContainer()->getChangeTagsStore()->getTags(
+			$this->getDb(), null, $rev->getId() ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doUpdates()
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::maybeAddRecreateChangeTag
+	 */
+	public function testDoUpdatesDoesNotTagEditAsRecreatedWhenNotNewPageCreation() {
+		$page = $this->getPage( __METHOD__ );
+		$title = $this->getTitle( __METHOD__ );
+
+		$content = [ SlotRecord::MAIN => new WikitextContent( 'rev ID ver #1: {{REVISIONID}}' ) ];
+		$content2 = [ SlotRecord::MAIN => new WikitextContent( 'rev ID ver #2: {{REVISIONID}}' ) ];
+		$this->createRevision( $page, 'first', $content );
+		$rev = $this->createRevision( $page, 'second', $content2 );
+
+		// create a deletion log entry
+		$deleteLogEntry = new ManualLogEntry( 'delete', 'delete' );
+		$deleteLogEntry->setPerformer( $this->getTestUser()->getUser() );
+		$deleteLogEntry->setTarget( $title );
+		$deleteLogEntry->setDeleted( LogPage::DELETED_ACTION );
+		$logId = $deleteLogEntry->insert( $this->getDb() );
+		$deleteLogEntry->publish( $logId );
+
+		$this->getDb()->startAtomic( __METHOD__ ); // let deferred updates queue up
+
+		$derivedUpdater = $this->getDerivedPageDataUpdater( $page, $rev );
+		$derivedUpdater->prepareUpdate( $rev );
+		$derivedUpdater->doUpdates();
+		$this->assertGreaterThan( 0, DeferredUpdates::pendingUpdatesCount(), 'Pending updates' );
+
+		$this->getDb()->endAtomic( __METHOD__ ); // run deferred updates
+		$this->runDeferredUpdates();
+
+		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount(), 'No pending updates' );
+		$this->assertSame( [], $this->getServiceContainer()->getChangeTagsStore()->getTags(
+			$this->getDb(), null, $rev->getId() ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doUpdates()
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::maybeAddRecreateChangeTag
+	 */
+	public function testDoUpdatesDoesNotTagEditAsRecreatedWhenNoDeletedLogEntry() {
+		$page = $this->getPage( __METHOD__ );
+
+		$content = [ SlotRecord::MAIN => new WikitextContent( 'rev ID ver #1: {{REVISIONID}}' ) ];
+		$rev = $this->createRevision( $page, 'first', $content );
+
+		$this->getDb()->startAtomic( __METHOD__ ); // let deferred updates queue up
+
+		$derivedUpdater = $this->getDerivedPageDataUpdater( $page, $rev );
+		$derivedUpdater->prepareUpdate( $rev );
+		$derivedUpdater->doUpdates();
+		$this->assertGreaterThan( 0, DeferredUpdates::pendingUpdatesCount(), 'Pending updates' );
+
+		$this->getDb()->endAtomic( __METHOD__ ); // run deferred updates
+		$this->runDeferredUpdates();
+
+		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount(), 'No pending updates' );
+		$this->assertSame( [], $this->getServiceContainer()->getChangeTagsStore()->getTags(
+			$this->getDb(), null, $rev->getId() ) );
 	}
 
 	public static function provideEnqueueRevertedTagUpdateJob() {

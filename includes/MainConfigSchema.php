@@ -10799,6 +10799,7 @@ class MainConfigSchema {
 	 * @see \ChangeTags::TAG_CHANGED_REDIRECT_TARGET
 	 * @see \ChangeTags::TAG_BLANK
 	 * @see \ChangeTags::TAG_REPLACE
+	 * @see \ChangeTags::TAG_RECREATE
 	 * @see \ChangeTags::TAG_ROLLBACK
 	 * @see \ChangeTags::TAG_UNDO
 	 * @see \ChangeTags::TAG_MANUAL_REVERT
@@ -10813,6 +10814,7 @@ class MainConfigSchema {
 			'mw-changed-redirect-target' => true,
 			'mw-blank' => true,
 			'mw-replace' => true,
+			'mw-recreated' => true,
 			'mw-rollback' => true,
 			'mw-undo' => true,
 			'mw-manual-revert' => true,

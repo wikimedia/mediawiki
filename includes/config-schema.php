@@ -2022,6 +2022,7 @@ return [
 				'mw-changed-redirect-target' => true,
 				'mw-blank' => true,
 				'mw-replace' => true,
+				'mw-recreated' => true,
 				'mw-rollback' => true,
 				'mw-undo' => true,
 				'mw-manual-revert' => true,

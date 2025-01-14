@@ -3789,6 +3789,8 @@
 	"tag-mw-blank-description": "Edits that blank a page",
 	"tag-mw-replace": "Replaced",
 	"tag-mw-replace-description": "Edits that remove more than 90% of the content of a page",
+	"tag-mw-recreated": "Recreated",
+	"tag-mw-recreated-description": "Edits which create pages that have been previously deleted",
 	"tag-mw-rollback": "Rollback",
 	"tag-mw-rollback-description": "Edits that roll back previous edits using the rollback link",
 	"tag-mw-undo": "Undo",

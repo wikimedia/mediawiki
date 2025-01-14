@@ -82,6 +82,10 @@ class ChangeTags {
 	 */
 	public const TAG_REPLACE = 'mw-replace';
 	/**
+	 * The tagged edit recreates a page that has been previously deleted.
+	 */
+	public const TAG_RECREATE = 'mw-recreated';
+	/**
 	 * The tagged edit is a rollback (undoes the previous edit and all immediately preceding edits
 	 * by the same user, and was performed via the "rollback" link available to advanced users
 	 * or via the rollback API).

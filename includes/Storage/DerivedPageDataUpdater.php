@@ -21,9 +21,11 @@
 namespace MediaWiki\Storage;
 
 use CategoryMembershipChangeJob;
+use ChangeTags;
 use InvalidArgumentException;
 use JobQueueGroup;
 use LogicException;
+use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\ContentHandler;
@@ -324,6 +326,9 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	/** @var bool */
 	private $warmParsoidParserCache;
 
+	/** @var ChangeTagsStore */
+	private ChangeTagsStore $changeTagsStore;
+
 	/**
 	 * @param ServiceOptions $options
 	 * @param PageIdentity $page
@@ -346,6 +351,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 * @param WANObjectCache $mainWANObjectCache
 	 * @param PermissionManager $permissionManager
 	 * @param WikiPageFactory $wikiPageFactory
+	 * @param ChangeTagsStore $changeTagsStore
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -368,7 +374,8 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		TalkPageNotificationManager $talkPageNotificationManager,
 		WANObjectCache $mainWANObjectCache,
 		PermissionManager $permissionManager,
-		WikiPageFactory $wikiPageFactory
+		WikiPageFactory $wikiPageFactory,
+		ChangeTagsStore $changeTagsStore
 	) {
 		// TODO: Remove this cast eventually
 		$this->wikiPage = $wikiPageFactory->newFromTitle( $page );
@@ -393,6 +400,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		$this->talkPageNotificationManager = $talkPageNotificationManager;
 		$this->mainWANObjectCache = $mainWANObjectCache;
 		$this->permissionManager = $permissionManager;
+		$this->changeTagsStore = $changeTagsStore;
 
 		$this->logger = new NullLogger();
 		$this->warmParsoidParserCache = $options
@@ -1718,6 +1726,12 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 
 		// TODO: move onArticleCreate and onArticleEdit into a PageEventEmitter service
 		if ( $this->options['created'] ) {
+			// Deferred update that adds a mw-recreated tag to edits that create new pages
+			// and which have an associated deletion log entry for the specific namespace/title combination.
+			$revision = $this->revision;
+			DeferredUpdates::addCallableUpdate( function () use ( $revision, $wikiPage ) {
+				$this->maybeAddRecreateChangeTag( $wikiPage, $revision->getId() );
+			} );
 			WikiPage::onArticleCreate( $title, $this->isRedirect() );
 		} elseif ( $this->options['changed'] ) { // T52785
 			WikiPage::onArticleEdit(
@@ -1835,6 +1849,30 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 				$this->revision->getId(),
 				$this->options['editResult']
 			);
+		}
+	}
+
+	/**
+	 * Checks deletion logs for the specific article title and namespace combination
+	 * if a deletion log exists, we can assume this is a new page recreation and are tagging it with `mw-recreated`.
+	 * This does not consider deletions that were suppressed and therefore will not tag those.
+	 *
+	 * @param WikiPage $wikiPage
+	 * @param int $revisionId
+	 */
+	private function maybeAddRecreateChangeTag( WikiPage $wikiPage, int $revisionId ) {
+		if ( $this->loadbalancerFactory->getReplicaDatabase()->newSelectQueryBuilder()
+				->select( [ '1' ] )
+				->from( 'logging' )
+				->where( [
+					'log_type' => 'delete',
+					'log_title' => $wikiPage->getTitle()->getDBkey(),
+					'log_namespace' => $wikiPage->getNamespace(),
+				] )->caller( __METHOD__ )->limit( 1 )->fetchField() ) {
+			$this->changeTagsStore->addTags(
+				[ ChangeTags::TAG_RECREATE ],
+				null,
+				$revisionId );
 		}
 	}
 

@@ -21,6 +21,7 @@
 namespace MediaWiki\Storage;
 
 use JobQueueGroup;
+use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Transform\ContentTransformer;
@@ -140,6 +141,9 @@ class PageUpdaterFactory {
 	/** @var string[] */
 	private $softwareTags;
 
+	/** @var ChangeTagsStore */
+	private ChangeTagsStore $changeTagsStore;
+
 	/**
 	 * @param RevisionStore $revisionStore
 	 * @param RevisionRenderer $revisionRenderer
@@ -164,6 +168,7 @@ class PageUpdaterFactory {
 	 * @param WANObjectCache $mainWANObjectCache
 	 * @param PermissionManager $permissionManager
 	 * @param WikiPageFactory $wikiPageFactory
+	 * @param ChangeTagsStore $changeTagsStore
 	 * @param string[] $softwareTags
 	 */
 	public function __construct(
@@ -190,6 +195,7 @@ class PageUpdaterFactory {
 		WANObjectCache $mainWANObjectCache,
 		PermissionManager $permissionManager,
 		WikiPageFactory $wikiPageFactory,
+		ChangeTagsStore $changeTagsStore,
 		array $softwareTags
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -218,6 +224,7 @@ class PageUpdaterFactory {
 		$this->permissionManager = $permissionManager;
 		$this->softwareTags = $softwareTags;
 		$this->wikiPageFactory = $wikiPageFactory;
+		$this->changeTagsStore = $changeTagsStore;
 	}
 
 	/**
@@ -323,7 +330,8 @@ class PageUpdaterFactory {
 			$this->talkPageNotificationManager,
 			$this->mainWANObjectCache,
 			$this->permissionManager,
-			$this->wikiPageFactory
+			$this->wikiPageFactory,
+			$this->changeTagsStore,
 		);
 
 		$derivedDataUpdater->setLogger( $this->logger );

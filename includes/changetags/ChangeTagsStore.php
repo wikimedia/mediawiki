@@ -79,6 +79,7 @@ class ChangeTagsStore {
 		'mw-changed-redirect-target',
 		'mw-blank',
 		'mw-replace',
+		'mw-recreated',
 		'mw-rollback',
 		'mw-undo',
 		'mw-manual-revert',
