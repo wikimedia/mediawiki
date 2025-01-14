@@ -688,6 +688,7 @@
 	"apihelp-query+blocks-paramvalue-prop-timestamp": "Engade o selo de tempo de cando se realizou o bloqueo.",
 	"apihelp-query+blocks-paramvalue-prop-expiry": "Engade o selo de tempo de cando remata o bloqueo.",
 	"apihelp-query+blocks-paramvalue-prop-reason": "Engade a razón dada para o bloqueo.",
+	"apihelp-query+blocks-paramvalue-prop-parsedreason": "Engade a razón analizada dada para o bloqueo.",
 	"apihelp-query+blocks-paramvalue-prop-range": "Engade o rango de enderezos IP afectados polo bloqueo.",
 	"apihelp-query+blocks-paramvalue-prop-flags": "Etiqueta o bloqueo con (autoblock, anononly, etc.).",
 	"apihelp-query+blocks-paramvalue-prop-restrictions": "Engade as restricións de bloqueo parciais se o bloqueo non é en todo o sitio.",
