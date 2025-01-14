@@ -4,6 +4,8 @@ namespace MediaWiki\Tests\Api;
 
 use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\DatabaseBlockStore;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 
@@ -21,35 +23,46 @@ class ApiUnblockTest extends ApiTestCase {
 	/** @var User */
 	private $blockee;
 
+	private DatabaseBlockStore $blockStore;
+
 	protected function setUp(): void {
 		parent::setUp();
 
 		$this->blocker = $this->getTestSysop()->getUser();
 		$this->blockee = $this->getMutableTestUser()->getUser();
+		$this->blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+
+		$this->overrideConfigValue( MainConfigNames::EnableMultiBlocks, true );
 
 		// Initialize a blocked user (used by most tests, although not all)
-		$block = new DatabaseBlock( [
-			'address' => $this->blockee->getName(),
-			'by' => $this->blocker,
-		] );
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-		$result = $blockStore->insertBlock( $block );
-		$this->assertNotFalse( $result, 'Could not insert block' );
-		$blockFromDB = $blockStore->newFromID( $result['id'] );
-		$this->assertInstanceOf( DatabaseBlock::class, $blockFromDB, 'Could not retrieve block' );
+		$this->insertBlock();
 	}
 
-	private function getBlockFromParams( array $params ) {
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+	private function insertBlock( $options = [] ) {
+		$options = array_merge( [
+			'address' => $this->blockee->getName(),
+			'by' => $this->blocker,
+		], $options );
+
+		$block = new DatabaseBlock( $options );
+		$result = $this->blockStore->insertBlock( $block, null );
+
+		$this->assertNotFalse( $result, 'Could not insert block' );
+		return $result;
+	}
+
+	private function getBlocksFromParams( array $params ): array {
 		if ( array_key_exists( 'user', $params ) ) {
-			return $blockStore->newFromTarget( $params['user'] );
+			return $this->blockStore->newListFromTarget( $params['user'] );
 		}
 		if ( array_key_exists( 'userid', $params ) ) {
-			return $blockStore->newFromTarget(
+			return $this->blockStore->newListFromTarget(
 				$this->getServiceContainer()->getUserFactory()->newFromId( $params['userid'] )
 			);
 		}
-		return $blockStore->newFromID( $params['id'] );
+
+		$block = $this->blockStore->newFromID( $params['id'] );
+		return $block ? [ $block ] : [];
 	}
 
 	/**
@@ -63,15 +76,15 @@ class ApiUnblockTest extends ApiTestCase {
 			$params += [ 'user' => $this->blockee->getName() ];
 		}
 
-		$originalBlock = $this->getBlockFromParams( $params );
+		$originalBlocks = $this->getBlocksFromParams( $params );
 
 		$this->doApiRequestWithToken( $params );
 
-		// We only check later on whether the block existed to begin with, because maybe the caller
-		// expects doApiRequestWithToken to throw, in which case the block might not be expected to
+		// We only check later on whether the blocks existed to begin with, because maybe the caller
+		// expects doApiRequestWithToken to throw, in which case the block(s) might not be expected to
 		// exist to begin with.
-		$this->assertInstanceOf( DatabaseBlock::class, $originalBlock, 'Block should initially exist' );
-		$this->assertNull( $this->getBlockFromParams( $params ), 'Block should have been removed' );
+		$this->assertTrue( count( $originalBlocks ) > 0, 'Block(s) should initially exist' );
+		$this->assertTrue( !$this->getBlocksFromParams( $params ), 'Block(s)h should have been removed' );
 	}
 
 	public function testWithNoToken() {
@@ -98,21 +111,19 @@ class ApiUnblockTest extends ApiTestCase {
 	public function testUnblockWhenBlocked() {
 		$this->expectApiErrorCode( 'ipbblocked' );
 
-		$block = new DatabaseBlock( [
+		$this->insertBlock( [
 			'address' => $this->blocker->getName(),
 			'by' => $this->getTestUser( 'sysop' )->getUser(),
 		] );
-		$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
 
 		$this->doUnblock();
 	}
 
 	public function testUnblockSelfWhenBlocked() {
-		$block = new DatabaseBlock( [
+		$result = $this->insertBlock( [
 			'address' => $this->blocker->getName(),
 			'by' => $this->getTestUser( 'sysop' )->getUser(),
 		] );
-		$result = $this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
 		$this->assertNotFalse( $result, 'Could not insert block' );
 
 		$this->doUnblock( [ 'user' => $this->blocker->getName() ] );
@@ -142,20 +153,28 @@ class ApiUnblockTest extends ApiTestCase {
 		$this->doUnblock( [ 'tags' => 'custom tag' ] );
 	}
 
-	public function testUnblockById() {
+	public function testUnblockByUserId() {
 		$this->doUnblock( [ 'userid' => $this->blockee->getId() ] );
 	}
 
-	public function testUnblockByInvalidId() {
+	public function testUnblockByInvalidUserId() {
 		$this->expectApiErrorCode( 'nosuchuserid' );
-
 		$this->doUnblock( [ 'userid' => 1234567890 ] );
 	}
 
 	public function testUnblockNonexistentBlock() {
 		$this->expectApiErrorCode( 'cantunblock' );
-
 		$this->doUnblock( [ 'user' => $this->blocker ] );
+	}
+
+	public function testNoSuchBlockId() {
+		$this->expectApiErrorCode( 'nosuchblockid' );
+		$this->doUnblock( [ 'id' => 12345 ] );
+	}
+
+	public function testUnblockByBlockId() {
+		$result = $this->insertBlock();
+		$this->doUnblock( [ 'id' => $result['id'] ] );
 	}
 
 	public function testWatched() {

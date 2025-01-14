@@ -22,8 +22,10 @@
 
 namespace MediaWiki\Api;
 
+use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockPermissionCheckerFactory;
+use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
@@ -50,6 +52,7 @@ class ApiUnblock extends ApiBase {
 	private UnblockUserFactory $unblockUserFactory;
 	private UserIdentityLookup $userIdentityLookup;
 	private WatchedItemStoreInterface $watchedItemStore;
+	private DatabaseBlockStore $blockStore;
 
 	public function __construct(
 		ApiMain $main,
@@ -59,7 +62,8 @@ class ApiUnblock extends ApiBase {
 		UserIdentityLookup $userIdentityLookup,
 		WatchedItemStoreInterface $watchedItemStore,
 		WatchlistManager $watchlistManager,
-		UserOptionsLookup $userOptionsLookup
+		UserOptionsLookup $userOptionsLookup,
+		DatabaseBlockStore $blockStore
 	) {
 		parent::__construct( $main, $action );
 
@@ -74,6 +78,7 @@ class ApiUnblock extends ApiBase {
 			$this->getConfig()->get( MainConfigNames::WatchlistExpiryMaxDuration );
 		$this->watchlistManager = $watchlistManager;
 		$this->userOptionsLookup = $userOptionsLookup;
+		$this->blockStore = $blockStore;
 	}
 
 	/**
@@ -97,7 +102,23 @@ class ApiUnblock extends ApiBase {
 			$params['user'] = $identity->getName();
 		}
 
-		$target = $params['id'] === null ? $params['user'] : "#{$params['id']}";
+		$blockToRemove = null;
+		if ( $params['id'] !== null ) {
+			$blockToRemove = $this->blockStore->newFromID( $params['id'], true );
+			if ( !$blockToRemove ) {
+				$this->dieWithError(
+					[ 'apierror-nosuchblockid', $params['id'] ],
+					'nosuchblockid' );
+			}
+
+			if ( $blockToRemove->getType() === AbstractBlock::TYPE_AUTO ) {
+				$target = '#' . $params['id'];
+			} else {
+				$target = $blockToRemove->getTargetName();
+			}
+		} else {
+			$target = $params['user'];
+		}
 
 		# T17810: blocked admins should have limited access here
 		$status = $this->permissionCheckerFactory
@@ -105,6 +126,7 @@ class ApiUnblock extends ApiBase {
 				$target,
 				$this->getAuthority()
 			)->checkBlockPermissions();
+
 		if ( $status !== true ) {
 			$this->dieWithError(
 				$status,
@@ -114,12 +136,21 @@ class ApiUnblock extends ApiBase {
 			);
 		}
 
-		$status = $this->unblockUserFactory->newUnblockUser(
-			$target,
-			$this->getAuthority(),
-			$params['reason'],
-			$params['tags'] ?? []
-		)->unblock();
+		if ( $blockToRemove !== null ) {
+			$status = $this->unblockUserFactory->newRemoveBlock(
+				$blockToRemove,
+				$this->getAuthority(),
+				$params['reason'],
+				$params['tags'] ?? []
+			)->unblock();
+		} else {
+			$status = $this->unblockUserFactory->newUnblockUser(
+				$target,
+				$this->getAuthority(),
+				$params['reason'],
+				$params['tags'] ?? []
+			)->unblock();
+		}
 
 		if ( !$status->isOK() ) {
 			$this->dieStatus( $status );
@@ -147,6 +178,7 @@ class ApiUnblock extends ApiBase {
 			'reason' => $params['reason'],
 			'watchuser' => $watchuser,
 		];
+
 		if ( $watchlistExpiry !== null ) {
 			$res['watchlistexpiry'] = $this->getWatchlistExpiry(
 				$this->watchedItemStore,
@@ -154,6 +186,7 @@ class ApiUnblock extends ApiBase {
 				$this->getUser()
 			);
 		}
+
 		$this->getResult()->addValue( null, $this->getModuleName(), $res );
 	}
 
