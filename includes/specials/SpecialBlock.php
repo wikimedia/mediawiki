@@ -576,7 +576,11 @@ class SpecialBlock extends FormSpecialPage {
 			'cssclass' => 'mw-block-confirm',
 		];
 
-		$this->maybeAlterFormDefaults( $a );
+		// (T382496) Only load the modified defaults from a previous
+		// block if multiblocks are not enabled
+		if ( !$this->useMultiblocks ) {
+			$this->maybeAlterFormDefaults( $a );
+		}
 
 		// Allow extensions to add more fields
 		$this->getHookRunner()->onSpecialBlockModifyFormFields( $this, $a );
