@@ -102,7 +102,7 @@ describe( 'ExpiryField', () => {
 			} );
 			await wrapper.vm.$nextTick();
 
-			Object.keys( expected ).forEach( ( key ) => {
+			for ( const key in expected ) {
 				// Test against the app instance
 				expect( wrapper.vm[ key ] ).toStrictEqual( expected[ key ] );
 
@@ -127,7 +127,7 @@ describe( 'ExpiryField', () => {
 							.toStrictEqual( expected[ key ] );
 						break;
 				}
-			} );
+			}
 		}
 	);
 } );
