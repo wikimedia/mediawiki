@@ -2878,7 +2878,7 @@
 	"years": "{{PLURAL:$1|ee Joer|$1 Joer}}",
 	"ago": "viru(n) $1",
 	"just-now": "grad elo",
-	"hours-ago": "{{PLURAL:$1|virun 1 Stonn| viru(n) $1 Stonnen}}",
+	"hours-ago": "{{PLURAL:$1|virun 1 Stonn|viru(n) $1 Stonnen}}",
 	"minutes-ago": "{{PLURAL:$1|virun 1 Minutt| viru(n) $1 Minutten}}",
 	"seconds-ago": "{{PLURAL:$1|virun 1 Sekonn|viru(n) $1 Sekonnen}}",
 	"monday-at": "Méindes ëm $1",

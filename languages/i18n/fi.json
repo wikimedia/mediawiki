@@ -3012,7 +3012,7 @@
 	"tooltip-t-contributions": "Näytä lista {{GENDER:$1|tämän käyttäjän}} muokkauksista",
 	"tooltip-t-emailuser": "Lähetä sähköpostia {{GENDER:$1|tälle käyttäjälle}}",
 	"tooltip-t-info": "Enemmän tietoa tästä sivusta",
-	"tooltip-t-upload": "Lähetä tiedostoja",
+	"tooltip-t-upload": "Tallenna tiedostoja",
 	"tooltip-t-specialpages": "Näytä toimintosivut",
 	"tooltip-t-print": "Tulostettava versio",
 	"tooltip-t-permalink": "Ikilinkki tämän sivun tähän versioon",

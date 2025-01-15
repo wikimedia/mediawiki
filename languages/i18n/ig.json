@@ -888,7 +888,7 @@
 	"nbytes": "$1 {{PLURAL:$1|byte|byte di}}",
 	"ncategories": "{{PLURAL:$1|ụdàkọ}} $1",
 	"nlinks": "{{PLURAL:$1|jikodo|jikodo}} $1",
-	"nmembers": "{{PLURAL:$1|ọ'bànifé|Ndi n'bànifé}} $1",
+	"nmembers": "{{PLURAL:$1|ọ'bànifé|ndi n'bànifé}} $1",
 	"nrevisions": "{{PLURAL:$1|orübà|orübà}} $1",
 	"lonelypages": "Ihü nke ogbènyè",
 	"wantedpages": "Ihü há chọrọ",
