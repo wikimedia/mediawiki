@@ -50,7 +50,6 @@ interface Block extends WikiAwareEntity {
 	public const TYPE_IP = 2;
 	public const TYPE_RANGE = 3;
 	public const TYPE_AUTO = 4;
-	public const TYPE_ID = 5;
 
 	/**
 	 * Map block types to strings, to allow convenient logging.
@@ -60,7 +59,6 @@ interface Block extends WikiAwareEntity {
 		self::TYPE_IP => 'ip',
 		self::TYPE_RANGE => 'range',
 		self::TYPE_AUTO => 'autoblock',
-		self::TYPE_ID => 'id',
 	];
 
 	/**
@@ -95,6 +93,27 @@ interface Block extends WikiAwareEntity {
 	 * @return CommentStoreComment
 	 */
 	public function getReasonComment(): CommentStoreComment;
+
+	/**
+	 * Get the target as an object.
+	 *
+	 * For autoblocks this can be either the IP address or the autoblock ID
+	 * depending on how the block was loaded. Use getRedactedTarget() to safely
+	 * get a target for display.
+	 *
+	 * @since 1.44
+	 * @return BlockTarget|null
+	 */
+	public function getTarget(): ?BlockTarget;
+
+	/**
+	 * Get the target, with the IP address hidden behind an AutoBlockTarget
+	 * if the block is an autoblock.
+	 *
+	 * @since 1.44
+	 * @return BlockTarget|null
+	 */
+	public function getRedactedTarget(): ?BlockTarget;
 
 	/**
 	 * Get the UserIdentity identifying the blocked user,
@@ -139,7 +158,7 @@ interface Block extends WikiAwareEntity {
 
 	/**
 	 * Get the type of target for this particular block.
-	 * @return int|null Block::TYPE_ constant, will never be TYPE_ID
+	 * @return int|null Block::TYPE_ constant
 	 */
 	public function getType(): ?int;
 

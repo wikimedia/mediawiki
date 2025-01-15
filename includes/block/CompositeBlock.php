@@ -57,7 +57,7 @@ class CompositeBlock extends AbstractBlock {
 			throw new InvalidArgumentException( 'No blocks given' );
 		}
 		return new self( [
-			'address' => $originalBlocks[0]->target,
+			'target' => $originalBlocks[0]->target,
 			'reason' => new Message( 'blockedtext-composite-reason' ),
 			'originalBlocks' => $originalBlocks,
 		] );

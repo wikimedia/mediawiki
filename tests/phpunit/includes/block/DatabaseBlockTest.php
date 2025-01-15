@@ -1,10 +1,10 @@
 <?php
 
 use MediaWiki\Block\BlockRestrictionStore;
-use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\Block\UserBlockTarget;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
@@ -122,14 +122,9 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 			->willReturn( $lbMock );
 		$this->setService( 'DBLoadBalancerFactory', $lbFactoryMock );
 
-		$target = UserIdentityValue::newExternal( 'm', 'UserOnForeignWiki', 'm' );
-
-		$blockUtilsMock = $this->createMock( BlockUtils::class );
-		$blockUtilsMock
-			->method( 'parseBlockTarget' )
-			->with( $target )
-			->willReturn( [ $target, DatabaseBlock::TYPE_USER ] );
-		$this->setService( 'BlockUtils', $blockUtilsMock );
+		$target = new UserBlockTarget(
+			UserIdentityValue::newExternal( 'm', 'UserOnForeignWiki', 'm' )
+		);
 
 		$blocker = UserIdentityValue::newExternal( 'm', 'MetaWikiUser', 'm' );
 
@@ -141,7 +136,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->setService( 'UserNameUtils', $userNameUtilsMock );
 
 		$blockOptions = [
-			'address' => $target,
+			'target' => $target,
 			'wiki' => 'm',
 			'reason' => 'testing crosswiki blocking',
 			'timestamp' => wfTimestampNow(),

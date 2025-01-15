@@ -22,7 +22,7 @@ namespace MediaWiki\Specials;
 
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockRestrictionStore;
-use MediaWiki\Block\BlockUtils;
+use MediaWiki\Block\BlockTargetFactory;
 use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
@@ -45,7 +45,7 @@ class SpecialAutoblockList extends SpecialPage {
 	private BlockRestrictionStore $blockRestrictionStore;
 	private IConnectionProvider $dbProvider;
 	private CommentStore $commentStore;
-	private BlockUtils $blockUtils;
+	private BlockTargetFactory $blockTargetFactory;
 	private HideUserUtils $hideUserUtils;
 	private BlockActionInfo $blockActionInfo;
 	private RowCommentFormatter $rowCommentFormatter;
@@ -55,7 +55,7 @@ class SpecialAutoblockList extends SpecialPage {
 	 * @param BlockRestrictionStore $blockRestrictionStore
 	 * @param IConnectionProvider $dbProvider
 	 * @param CommentStore $commentStore
-	 * @param BlockUtils $blockUtils
+	 * @param BlockTargetFactory $blockTargetFactory
 	 * @param HideUserUtils $hideUserUtils
 	 * @param BlockActionInfo $blockActionInfo
 	 * @param RowCommentFormatter $rowCommentFormatter
@@ -65,7 +65,7 @@ class SpecialAutoblockList extends SpecialPage {
 		BlockRestrictionStore $blockRestrictionStore,
 		IConnectionProvider $dbProvider,
 		CommentStore $commentStore,
-		BlockUtils $blockUtils,
+		BlockTargetFactory $blockTargetFactory,
 		HideUserUtils $hideUserUtils,
 		BlockActionInfo $blockActionInfo,
 		RowCommentFormatter $rowCommentFormatter
@@ -76,7 +76,7 @@ class SpecialAutoblockList extends SpecialPage {
 		$this->blockRestrictionStore = $blockRestrictionStore;
 		$this->dbProvider = $dbProvider;
 		$this->commentStore = $commentStore;
-		$this->blockUtils = $blockUtils;
+		$this->blockTargetFactory = $blockTargetFactory;
 		$this->hideUserUtils = $hideUserUtils;
 		$this->blockActionInfo = $blockActionInfo;
 		$this->rowCommentFormatter = $rowCommentFormatter;
@@ -136,7 +136,7 @@ class SpecialAutoblockList extends SpecialPage {
 			$this->getContext(),
 			$this->blockActionInfo,
 			$this->blockRestrictionStore,
-			$this->blockUtils,
+			$this->blockTargetFactory,
 			$this->hideUserUtils,
 			$this->commentStore,
 			$this->linkBatchFactory,

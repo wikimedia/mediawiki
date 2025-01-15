@@ -2,7 +2,7 @@
 
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockRestrictionStore;
-use MediaWiki\Block\BlockUtils;
+use MediaWiki\Block\BlockTargetFactory;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
@@ -34,8 +34,8 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 	/** @var BlockRestrictionStore */
 	private $blockRestrictionStore;
 
-	/** @var BlockUtils */
-	private $blockUtils;
+	/** @var BlockTargetFactory */
+	private $blockTargetFactory;
 
 	/** @var HideUserUtils */
 	private $hideUserUtils;
@@ -64,7 +64,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		$services = $this->getServiceContainer();
 		$this->blockActionInfo = $services->getBlockActionInfo();
 		$this->blockRestrictionStore = $services->getBlockRestrictionStore();
-		$this->blockUtils = $services->getBlockUtils();
+		$this->blockTargetFactory = $services->getBlockTargetFactory();
 		$this->hideUserUtils = $services->getHideUserUtils();
 		$this->commentStore = $services->getCommentStore();
 		$this->linkBatchFactory = $services->getLinkBatchFactory();
@@ -79,7 +79,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 			RequestContext::getMain(),
 			$this->blockActionInfo,
 			$this->blockRestrictionStore,
-			$this->blockUtils,
+			$this->blockTargetFactory,
 			$this->hideUserUtils,
 			$this->commentStore,
 			$this->linkBatchFactory,

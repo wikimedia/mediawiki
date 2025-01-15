@@ -5,8 +5,8 @@ namespace MediaWiki\Tests\Block;
 use MediaWiki\Block\AutoblockExemptionList;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockRestrictionStoreFactory;
-use MediaWiki\Block\BlockUtils;
-use MediaWiki\Block\BlockUtilsFactory;
+use MediaWiki\Block\BlockTargetFactory;
+use MediaWiki\Block\CrossWikiBlockTargetFactory;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\DatabaseBlockStoreFactory;
 use MediaWiki\CommentStore\CommentStore;
@@ -43,12 +43,12 @@ class DatabaseBlockStoreFactoryTest extends MediaWikiUnitTestCase {
 			->with( $domain )
 			->willReturn( $blockRestrictionStore );
 
-		$blockUtils = $this->createMock( BlockUtils::class );
-		$blockUtilsFactory = $this->createMock( BlockUtilsFactory::class );
-		$blockUtilsFactory
-			->method( 'getBlockUtils' )
+		$blockTargetFactory = $this->createNoOpMock( BlockTargetFactory::class );
+		$crossWikiBlockTargetFactory = $this->createMock( CrossWikiBlockTargetFactory::class );
+		$crossWikiBlockTargetFactory
+			->method( 'getFactory' )
 			->with( $domain )
-			->willReturn( $blockUtils );
+			->willReturn( $blockTargetFactory );
 
 		$factory = new DatabaseBlockStoreFactory(
 			new ServiceOptions(
@@ -66,7 +66,7 @@ class DatabaseBlockStoreFactoryTest extends MediaWikiUnitTestCase {
 			$this->createMock( ReadOnlyMode::class ),
 			$this->createMock( UserFactory::class ),
 			$this->createMock( TempUserConfig::class ),
-			$blockUtilsFactory,
+			$crossWikiBlockTargetFactory,
 			$this->createMock( AutoblockExemptionList::class )
 		);
 

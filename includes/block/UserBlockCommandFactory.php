@@ -32,7 +32,7 @@ use Psr\Log\LoggerInterface;
 
 class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 	private BlockPermissionCheckerFactory $blockPermissionCheckerFactory;
-	private BlockUtils $blockUtils;
+	private BlockTargetFactory $blockTargetFactory;
 	private HookContainer $hookContainer;
 	private BlockRestrictionStore $blockRestrictionStore;
 	private ServiceOptions $options;
@@ -52,7 +52,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 		ServiceOptions $options,
 		HookContainer $hookContainer,
 		BlockPermissionCheckerFactory $blockPermissionCheckerFactory,
-		BlockUtils $blockUtils,
+		BlockTargetFactory $blockTargetFactory,
 		DatabaseBlockStore $blockStore,
 		BlockRestrictionStore $blockRestrictionStore,
 		UserFactory $userFactory,
@@ -66,7 +66,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 		$this->options = $options;
 		$this->hookContainer = $hookContainer;
 		$this->blockPermissionCheckerFactory = $blockPermissionCheckerFactory;
-		$this->blockUtils = $blockUtils;
+		$this->blockTargetFactory = $blockTargetFactory;
 		$this->blockStore = $blockStore;
 		$this->blockRestrictionStore = $blockRestrictionStore;
 		$this->userFactory = $userFactory;
@@ -79,7 +79,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 	/**
 	 * Create BlockUser
 	 *
-	 * @param string|UserIdentity $target Target of the block
+	 * @param BlockTarget|string|UserIdentity $target Target of the block
 	 * @param Authority $performer Performer of the block
 	 * @param string $expiry Expiry of the block (timestamp or 'infinity')
 	 * @param string $reason Reason of the block
@@ -102,7 +102,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 			$this->options,
 			$this->blockRestrictionStore,
 			$this->blockPermissionCheckerFactory,
-			$this->blockUtils,
+			$this->blockTargetFactory,
 			$this->blockActionInfo,
 			$this->hookContainer,
 			$this->blockStore,
@@ -148,7 +148,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 			$this->options,
 			$this->blockRestrictionStore,
 			$this->blockPermissionCheckerFactory,
-			$this->blockUtils,
+			$this->blockTargetFactory,
 			$this->blockActionInfo,
 			$this->hookContainer,
 			$this->blockStore,
@@ -172,7 +172,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 	 *
 	 * @since 1.44
 	 *
-	 * @param UserIdentity|string $target
+	 * @param BlockTarget|UserIdentity|string $target
 	 * @param Authority $performer
 	 * @param string $reason
 	 * @param string[] $tags
@@ -188,7 +188,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 		return new UnblockUser(
 			$this->blockPermissionCheckerFactory,
 			$this->blockStore,
-			$this->blockUtils,
+			$this->blockTargetFactory,
 			$this->userFactory,
 			$this->hookContainer,
 			null,
@@ -218,7 +218,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 		return new UnblockUser(
 			$this->blockPermissionCheckerFactory,
 			$this->blockStore,
-			$this->blockUtils,
+			$this->blockTargetFactory,
 			$this->userFactory,
 			$this->hookContainer,
 			$block,

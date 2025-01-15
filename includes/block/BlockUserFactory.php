@@ -31,7 +31,7 @@ interface BlockUserFactory {
 	/**
 	 * Create BlockUser
 	 *
-	 * @param string|UserIdentity $target Target of the block
+	 * @param BlockTarget|string|UserIdentity $target Target of the block
 	 * @param Authority $performer Performer of the block
 	 * @param string $expiry Expiry of the block (timestamp or 'infinity')
 	 * @param string $reason Reason of the block

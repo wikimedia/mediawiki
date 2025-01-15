@@ -21,40 +21,22 @@
 
 namespace MediaWiki\Block;
 
-use MediaWiki\Config\ServiceOptions;
-use MediaWiki\User\ActorStoreFactory;
-use MediaWiki\User\UserNameUtils;
-use Wikimedia\Rdbms\LBFactory;
+use MediaWiki\WikiMap\WikiMap;
 
 /**
+ * @deprecated since 1.44 use CrossWikiBlockTargetFactory
  * @since 1.42
  */
 class BlockUtilsFactory {
-	/**
-	 * @internal For use by ServiceWiring
-	 */
-	public const CONSTRUCTOR_OPTIONS = BlockUtils::CONSTRUCTOR_OPTIONS;
-
-	private ServiceOptions $options;
-	private ActorStoreFactory $actorStoreFactory;
-	private UserNameUtils $userNameUtils;
-	private LBFactory $loadBalancerFactory;
+	private CrossWikiBlockTargetFactory $crossWikiBlockTargetFactory;
 
 	/** @var BlockUtils[] */
 	private array $storeCache = [];
 
 	public function __construct(
-		ServiceOptions $options,
-		ActorStoreFactory $actorStoreFactory,
-		UserNameUtils $userNameUtils,
-		LBFactory $loadBalancerFactory
+		CrossWikiBlockTargetFactory $crossWikiBlockTargetFactory
 	) {
-		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-
-		$this->options = $options;
-		$this->actorStoreFactory = $actorStoreFactory;
-		$this->userNameUtils = $userNameUtils;
-		$this->loadBalancerFactory = $loadBalancerFactory;
+		$this->crossWikiBlockTargetFactory = $crossWikiBlockTargetFactory;
 	}
 
 	/**
@@ -62,17 +44,14 @@ class BlockUtilsFactory {
 	 * @return BlockUtils
 	 */
 	public function getBlockUtils( $wikiId = Block::LOCAL ): BlockUtils {
-		if ( is_string( $wikiId ) && $this->loadBalancerFactory->getLocalDomainID() === $wikiId ) {
+		if ( is_string( $wikiId ) && WikiMap::getCurrentWikiId() === $wikiId ) {
 			$wikiId = Block::LOCAL;
 		}
 
 		$storeCacheKey = $wikiId === Block::LOCAL ? 'LOCAL' : 'crosswikistore-' . $wikiId;
 		if ( !isset( $this->storeCache[$storeCacheKey] ) ) {
 			$this->storeCache[$storeCacheKey] = new BlockUtils(
-				$this->options,
-				$this->actorStoreFactory->getUserIdentityLookup( $wikiId ),
-				$this->userNameUtils,
-				$wikiId
+				$this->crossWikiBlockTargetFactory->getFactory( $wikiId )
 			);
 		}
 		return $this->storeCache[$storeCacheKey];

@@ -54,9 +54,11 @@ use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockPermissionCheckerFactory;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockRestrictionStoreFactory;
+use MediaWiki\Block\BlockTargetFactory;
 use MediaWiki\Block\BlockUserFactory;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\BlockUtilsFactory;
+use MediaWiki\Block\CrossWikiBlockTargetFactory;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\DatabaseBlockStoreFactory;
@@ -452,7 +454,7 @@ return [
 				BlockPermissionCheckerFactory::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig()
 			),
-			$services->getBlockUtils()
+			$services->getBlockTargetFactory()
 		);
 	},
 
@@ -466,6 +468,10 @@ return [
 		);
 	},
 
+	'BlockTargetFactory' => static function ( MediaWikiServices $services ): BlockTargetFactory {
+		return $services->getCrossWikiBlockTargetFactory()->getFactory();
+	},
+
 	'BlockUserFactory' => static function ( MediaWikiServices $services ): BlockUserFactory {
 		return $services->getService( '_UserBlockCommandFactory' );
 	},
@@ -476,13 +482,7 @@ return [
 
 	'BlockUtilsFactory' => static function ( MediaWikiServices $services ): BlockUtilsFactory {
 		return new BlockUtilsFactory(
-			new ServiceOptions(
-				BlockUtilsFactory::CONSTRUCTOR_OPTIONS,
-				$services->getMainConfig()
-			),
-			$services->getActorStoreFactory(),
-			$services->getUserNameUtils(),
-			$services->getDBLoadBalancerFactory()
+			$services->getCrossWikiBlockTargetFactory()
 		);
 	},
 
@@ -682,6 +682,14 @@ return [
 		return RequestTimeout::singleton()->createCriticalSectionProvider( $limit );
 	},
 
+	'CrossWikiBlockTargetFactory' => static function ( MediaWikiServices $services ): CrossWikiBlockTargetFactory {
+		return new CrossWikiBlockTargetFactory(
+			new ServiceOptions( CrossWikiBlockTargetFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+			$services->getActorStoreFactory(),
+			$services->getUserNameUtils()
+		);
+	},
+
 	'DatabaseBlockStore' => static function ( MediaWikiServices $services ): DatabaseBlockStore {
 		return $services->getDatabaseBlockStoreFactory()->getDatabaseBlockStore( DatabaseBlock::LOCAL );
 	},
@@ -701,7 +709,7 @@ return [
 			$services->getReadOnlyMode(),
 			$services->getUserFactory(),
 			$services->getTempUserConfig(),
-			$services->getBlockUtilsFactory(),
+			$services->getCrossWikiBlockTargetFactory(),
 			$services->getAutoblockExemptionList()
 		);
 	},
@@ -2828,7 +2836,7 @@ return [
 			new ServiceOptions( UserBlockCommandFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getHookContainer(),
 			$services->getBlockPermissionCheckerFactory(),
-			$services->getBlockUtils(),
+			$services->getBlockTargetFactory(),
 			$services->getDatabaseBlockStore(),
 			$services->getBlockRestrictionStore(),
 			$services->getUserFactory(),

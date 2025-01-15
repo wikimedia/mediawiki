@@ -35,7 +35,6 @@ use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\User\UserIdentityValue;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
 use stdClass;
@@ -82,7 +81,7 @@ class DatabaseBlockStore {
 	private ReadOnlyMode $readOnlyMode;
 	private UserFactory $userFactory;
 	private TempUserConfig $tempUserConfig;
-	private BlockUtils $blockUtils;
+	private BlockTargetFactory $blockTargetFactory;
 	private AutoblockExemptionList $autoblockExemptionList;
 
 	public function __construct(
@@ -96,7 +95,7 @@ class DatabaseBlockStore {
 		ReadOnlyMode $readOnlyMode,
 		UserFactory $userFactory,
 		TempUserConfig $tempUserConfig,
-		BlockUtils $blockUtils,
+		BlockTargetFactory $blockTargetFactory,
 		AutoblockExemptionList $autoblockExemptionList,
 		/* string|false */ $wikiId = DatabaseBlock::LOCAL
 	) {
@@ -114,7 +113,7 @@ class DatabaseBlockStore {
 		$this->readOnlyMode = $readOnlyMode;
 		$this->userFactory = $userFactory;
 		$this->tempUserConfig = $tempUserConfig;
-		$this->blockUtils = $blockUtils;
+		$this->blockTargetFactory = $blockTargetFactory;
 		$this->autoblockExemptionList = $autoblockExemptionList;
 	}
 
@@ -191,16 +190,15 @@ class DatabaseBlockStore {
 	 * Load blocks from the database which target the specific target exactly, or which cover the
 	 * vague target.
 	 *
-	 * @param UserIdentity|string|null $specificTarget
-	 * @param int|null $specificType
+	 * @param BlockTarget|null $specificTarget
 	 * @param bool $fromPrimary
-	 * @param UserIdentity|string|null $vagueTarget Also search for blocks affecting this target.
-	 *     Doesn't make any sense to use TYPE_AUTO / TYPE_ID here. Leave blank to skip IP lookups.
+	 * @param BlockTarget|null $vagueTarget Also search for blocks affecting
+	 *     this target. Doesn't make any sense to use TYPE_AUTO here. Leave blank to
+	 *     skip IP lookups.
 	 * @return DatabaseBlock[] Any relevant blocks
 	 */
 	private function newLoad(
 		$specificTarget,
-		$specificType,
 		$fromPrimary,
 		$vagueTarget = null
 	) {
@@ -214,49 +212,37 @@ class DatabaseBlockStore {
 		$userNames = [];
 		$addresses = [];
 		$ranges = [];
-		if ( $specificType === Block::TYPE_USER ) {
-			if ( $specificTarget instanceof UserIdentity ) {
-				$userId = $specificTarget->getId( $this->wikiId );
-				if ( $userId ) {
-					$userIds[] = $specificTarget->getId( $this->wikiId );
-				} else {
-					// A nonexistent user can have no blocks.
-					// This case is hit in testing, possibly production too.
-					// Ignoring the user is optimal for production performance.
-				}
+		if ( $specificTarget instanceof UserBlockTarget ) {
+			$userId = $specificTarget->getUserIdentity()->getId( $this->wikiId );
+			if ( $userId ) {
+				$userIds[] = $userId;
 			} else {
-				$userNames[] = (string)$specificTarget;
+				// A nonexistent user can have no blocks.
+				// This case is hit in testing, possibly production too.
+				// Ignoring the user is optimal for production performance.
 			}
-		} elseif ( in_array( $specificType, [ Block::TYPE_IP, Block::TYPE_RANGE ], true ) ) {
+		} elseif ( $specificTarget instanceof AnonIpBlockTarget
+			|| $specificTarget instanceof RangeBlockTarget
+		) {
 			$addresses[] = (string)$specificTarget;
 		}
 
 		// Be aware that the != '' check is explicit, since empty values will be
 		// passed by some callers (T31116)
-		if ( $vagueTarget != '' ) {
-			[ $target, $type ] = $this->blockUtils->parseBlockTarget( $vagueTarget );
-			switch ( $type ) {
-				case Block::TYPE_USER:
-					// Slightly weird, but who are we to argue?
-					/** @var UserIdentity $vagueUser */
-					$vagueUser = $target;
-					if ( $vagueUser->getId( $this->wikiId ) ) {
-						$userIds[] = $vagueUser->getId( $this->wikiId );
-					} else {
-						$userNames[] = $vagueUser->getName();
-					}
-					break;
-
-				case Block::TYPE_IP:
-					$ranges[] = [ IPUtils::toHex( $target ), null ];
-					break;
-
-				case Block::TYPE_RANGE:
-					$ranges[] = IPUtils::parseRange( $target );
-					break;
-
-				default:
-					$this->logger->debug( "Ignoring invalid vague target" );
+		if ( $vagueTarget !== null ) {
+			if ( $vagueTarget instanceof UserBlockTarget ) {
+				// Slightly weird, but who are we to argue?
+				$vagueUser = $vagueTarget->getUserIdentity();
+				$userId = $vagueUser->getId( $this->wikiId );
+				if ( $userId ) {
+					$userIds[] = $userId;
+				} else {
+					$userNames[] = $vagueUser->getName();
+				}
+			} elseif ( $vagueTarget instanceof BlockTargetWithIp ) {
+				$ranges[] = $vagueTarget->toHexRange();
+			} else {
+				$this->logger->debug( "Ignoring invalid vague target" );
 			}
 		}
 
@@ -302,9 +288,9 @@ class DatabaseBlockStore {
 
 			// Don't use anon only blocks on users
 			if (
-				$specificType == Block::TYPE_USER && $specificTarget &&
+				$specificTarget instanceof UserBlockTarget &&
 				!$block->isHardblock() &&
-				!$this->tempUserConfig->isTempName( $specificTarget )
+				!$this->tempUserConfig->isTempName( $specificTarget->toString() )
 			) {
 				continue;
 			}
@@ -348,21 +334,7 @@ class DatabaseBlockStore {
 		// Lower will be better
 		$bestBlockScore = 100;
 		foreach ( $blocks as $block ) {
-			if ( $block->getType() == Block::TYPE_RANGE ) {
-				// This is the number of bits that are allowed to vary in the block, give
-				// or take some floating point errors
-				$target = $block->getTargetName();
-				$max = IPUtils::isIPv6( $target ) ? 128 : 32;
-				[ , $bits ] = IPUtils::parseCIDR( $target );
-				$size = $max - $bits;
-
-				// Rank a range block covering a single IP equally with a single-IP block
-				$score = Block::TYPE_RANGE - 1 + ( $size / $max );
-
-			} else {
-				$score = $block->getType();
-			}
-
+			$score = $block->getTarget()->getSpecificity();
 			if ( $score < $bestBlockScore ) {
 				$bestBlockScore = $score;
 				$bestBlock = $block;
@@ -434,10 +406,8 @@ class DatabaseBlockStore {
 	 * @return DatabaseBlock
 	 */
 	public function newFromRow( IReadableDatabase $db, $row ) {
-		$address = $row->bt_address
-			?? new UserIdentityValue( $row->bt_user, $row->bt_user_text, $this->wikiId );
 		return new DatabaseBlock( [
-			'address' => $address,
+			'target' => $this->blockTargetFactory->newFromRowRaw( $row ),
 			'wiki' => $this->wikiId,
 			'timestamp' => $row->bl_timestamp,
 			'auto' => (bool)$row->bt_auto,
@@ -465,7 +435,7 @@ class DatabaseBlockStore {
 	 * Given a target and the target's type, get an existing block object if possible.
 	 *
 	 * @since 1.42
-	 * @param string|UserIdentity|int|null $specificTarget A block target, which may be one of
+	 * @param BlockTarget|string|UserIdentity|int|null $specificTarget A block target, which may be one of
 	 *   several types:
 	 *     * A user to block, in which case $target will be a User
 	 *     * An IP to block, in which case $target will be a User generated by using
@@ -476,7 +446,7 @@ class DatabaseBlockStore {
 	 *     Calling this with a user, IP address or range will not select autoblocks, and will
 	 *     only select a block where the targets match exactly (so looking for blocks on
 	 *     1.2.3.4 will not select 1.2.0.0/16 or even 1.2.3.4/32)
-	 * @param string|UserIdentity|int|null $vagueTarget As above, but we will search for *any*
+	 * @param BlockTarget|string|UserIdentity|int|null $vagueTarget As above, but we will search for *any*
 	 *     block which affects that target (so for an IP address, get ranges containing that IP;
 	 *     and also get any relevant autoblocks). Leave empty or blank to skip IP-based lookups.
 	 * @param bool $fromPrimary Whether to use the DB_PRIMARY database
@@ -497,8 +467,8 @@ class DatabaseBlockStore {
 	 * This is similar to DatabaseBlockStore::newFromTarget, but it returns all the relevant blocks.
 	 *
 	 * @since 1.42
-	 * @param string|UserIdentity|int|null $specificTarget
-	 * @param string|UserIdentity|int|null $vagueTarget
+	 * @param BlockTarget|string|UserIdentity|int|null $specificTarget
+	 * @param BlockTarget|string|UserIdentity|int|null $vagueTarget
 	 * @param bool $fromPrimary
 	 * @return DatabaseBlock[] Any relevant blocks
 	 */
@@ -507,22 +477,21 @@ class DatabaseBlockStore {
 		$vagueTarget = null,
 		$fromPrimary = false
 	) {
-		[ $target, $type ] = $this->blockUtils->parseBlockTarget( $specificTarget );
-		if ( $type == Block::TYPE_ID || $type == Block::TYPE_AUTO ) {
-			$block = $this->newFromID( $target );
-			return $block ? [ $block ] : [];
-		} elseif ( $target === null && $vagueTarget == '' ) {
-			// We're not going to find anything useful here
-			// Be aware that the == '' check is explicit, since empty values will be
-			// passed by some callers (T31116)
-			return [];
-		} elseif ( in_array(
-			$type,
-			[ Block::TYPE_USER, Block::TYPE_IP, Block::TYPE_RANGE, null ] )
-		) {
-			return $this->newLoad( $target, $type, $fromPrimary, $vagueTarget );
+		if ( !( $specificTarget instanceof BlockTarget ) ) {
+			$specificTarget = $this->blockTargetFactory->newFromLegacyUnion( $specificTarget );
 		}
-		return [];
+		if ( $vagueTarget !== null && !( $vagueTarget instanceof BlockTarget ) ) {
+			$vagueTarget = $this->blockTargetFactory->newFromLegacyUnion( $vagueTarget );
+		}
+		if ( $specificTarget instanceof AutoBlockTarget ) {
+			$block = $this->newFromID( $specificTarget->getId() );
+			return $block ? [ $block ] : [];
+		} elseif ( $specificTarget === null && $vagueTarget === null ) {
+			// We're not going to find anything useful here
+			return [];
+		} else {
+			return $this->newLoad( $specificTarget, $fromPrimary, $vagueTarget );
+		}
 	}
 
 	/**
@@ -610,6 +579,32 @@ class DatabaseBlockStore {
 	/***************************************************************************/
 	// region   Database write methods
 	/** @name   Database write methods */
+
+	/**
+	 * Create a DatabaseBlock representing an unsaved block. Pass the returned
+	 * object to insertBlock().
+	 *
+	 * @since 1.44
+	 *
+	 * @param array $options Options as documented in DatabaseBlock and
+	 *   AbstractBlock, and additionally:
+	 *   - targetUser: (UserIdentity) The UserIdentity to block
+	 *   - targetString (string) A string specifying the block target
+	 * @return DatabaseBlock
+	 */
+	public function newUnsaved( array $options ): DatabaseBlock {
+		if ( isset( $options['targetUser'] ) ) {
+			$options['target'] = $this->blockTargetFactory
+				->newUserBlockTarget( $options['targetUser'] );
+			unset( $options['targetUser'] );
+		}
+		if ( isset( $options['targetString'] ) ) {
+			$options['target'] = $this->blockTargetFactory
+				->newFromString( $options['targetString'] );
+			unset( $options['targetString'] );
+		}
+		return new DatabaseBlock( $options );
+	}
 
 	/**
 	 * Delete expired blocks from the block table
@@ -953,18 +948,19 @@ class DatabaseBlockStore {
 	}
 
 	/**
-	 * Get conditions matching the block's block_target row
+	 * Get conditions matching an existing block's block_target row
 	 *
 	 * @param DatabaseBlock $block
 	 * @return array
 	 */
 	private function getTargetConds( DatabaseBlock $block ) {
-		if ( $block->getType() === Block::TYPE_USER ) {
+		$target = $block->getTarget();
+		if ( $target instanceof UserBlockTarget ) {
 			return [
-				'bt_user' => $block->getTargetUserIdentity()->getId( $this->wikiId )
+				'bt_user' => $target->getUserIdentity()->getId( $this->wikiId )
 			];
 		} else {
-			return [ 'bt_address' => $block->getTargetName() ];
+			return [ 'bt_address' => $target->toString() ];
 		}
 	}
 
@@ -987,24 +983,24 @@ class DatabaseBlockStore {
 		IDatabase $dbw,
 		$expectedTargetCount
 	) {
-		$isUser = $block->getType() === Block::TYPE_USER;
-		$isRange = $block->getType() === Block::TYPE_RANGE;
+		$target = $block->getTarget();
+		// Note: for new autoblocks, the target is an IpBlockTarget
 		$isAuto = $block->getType() === Block::TYPE_AUTO;
-		$isSingle = !$isUser && !$isRange;
-		$targetAddress = $isUser ? null : $block->getTargetName();
-		$targetUserName = $isUser ? $block->getTargetName() : null;
-		$targetUserId = $isUser
-			? $block->getTargetUserIdentity()->getId( $this->wikiId ) : null;
-
-		// Update bt_count field in existing target, if there is one
-		if ( $isUser ) {
+		if ( $target instanceof UserBlockTarget ) {
+			$targetAddress = null;
+			$targetUserName = (string)$target;
+			$targetUserId = $target->getUserIdentity()->getId( $this->wikiId );
 			$targetConds = [ 'bt_user' => $targetUserId ];
 		} else {
+			$targetAddress = (string)$target;
+			$targetUserName = null;
+			$targetUserId = null;
 			$targetConds = [
 				'bt_address' => $targetAddress,
 				'bt_auto' => $isAuto,
 			];
 		}
+
 		$condsWithCount = $targetConds;
 		if ( $expectedTargetCount !== null ) {
 			$condsWithCount['bt_count'] = $expectedTargetCount;
@@ -1062,9 +1058,9 @@ class DatabaseBlockStore {
 				'bt_user' => $targetUserId,
 				'bt_user_text' => $targetUserName,
 				'bt_auto' => $isAuto,
-				'bt_range_start' => $isRange ? $block->getRangeStart() : null,
-				'bt_range_end' => $isRange ? $block->getRangeEnd() : null,
-				'bt_ip_hex' => $isSingle || $isRange ? $block->getRangeStart() : null,
+				'bt_range_start' => $block->getRangeStart(),
+				'bt_range_end' => $block->getRangeEnd(),
+				'bt_ip_hex' => $block->getIpHex(),
 				'bt_count' => 1
 			];
 			$dbw->newInsertQueryBuilder()
@@ -1167,7 +1163,7 @@ class DatabaseBlockStore {
 	 *
 	 * @since 1.42
 	 * @param DatabaseBlock $block
-	 * @param UserIdentity|string $newTarget
+	 * @param BlockTarget|UserIdentity|string $newTarget
 	 * @return bool True if the update was successful, false if there was no
 	 *   match for the block ID.
 	 */
@@ -1178,6 +1174,9 @@ class DatabaseBlockStore {
 			throw new InvalidArgumentException(
 				__METHOD__ . " requires that a block id be set\n"
 			);
+		}
+		if ( !( $newTarget instanceof BlockTarget ) ) {
+			$newTarget = $this->blockTargetFactory->newFromLegacyUnion( $newTarget );
 		}
 
 		$oldTargetConds = $this->getTargetConds( $block );
@@ -1383,18 +1382,17 @@ class DatabaseBlockStore {
 			return [];
 		}
 
-		$type = $block->getType();
-		if ( $type !== AbstractBlock::TYPE_USER ) {
+		$target = $block->getTarget();
+		if ( !( $target instanceof UserBlockTarget ) ) {
 			// Autoblocks only apply to users
 			return [];
 		}
 
 		$dbr = $this->getReplicaDB();
 
-		$targetUser = $block->getTargetUserIdentity();
-		$actor = $targetUser ? $this->actorStoreFactory
+		$actor = $this->actorStoreFactory
 			->getActorNormalization( $this->wikiId )
-			->findActorId( $targetUser, $dbr ) : null;
+			->findActorId( $target->getUserIdentity(), $dbr );
 
 		if ( !$actor ) {
 			$this->logger->debug( 'No actor found to retroactively autoblock' );
@@ -1435,20 +1433,19 @@ class DatabaseBlockStore {
 		}
 		$parentBlock->assertWiki( $this->wikiId );
 
-		[ $target, $type ] = $this->blockUtils->parseBlockTarget( $autoblockIP );
-		if ( $type != Block::TYPE_IP ) {
-			$this->logger->debug( "Autoblock not supported for ip ranges." );
+		if ( !IPUtils::isValid( $autoblockIP ) ) {
+			$this->logger->debug( "Invalid autoblock IP" );
 			return false;
 		}
-		$target = (string)$target;
+		$target = $this->blockTargetFactory->newAnonIpBlockTarget( $autoblockIP );
 
 		// Check if autoblock exempt.
-		if ( $this->autoblockExemptionList->isExempt( $target ) ) {
+		if ( $this->autoblockExemptionList->isExempt( $autoblockIP ) ) {
 			return false;
 		}
 
 		// Allow hooks to cancel the autoblock.
-		if ( !$this->hookRunner->onAbortAutoblock( $target, $parentBlock ) ) {
+		if ( !$this->hookRunner->onAbortAutoblock( $autoblockIP, $parentBlock ) ) {
 			$this->logger->debug( "Autoblock aborted by hook." );
 			return false;
 		}
@@ -1456,7 +1453,7 @@ class DatabaseBlockStore {
 		// It's okay to autoblock. Go ahead and insert/update the block...
 
 		// Do not add a *new* block if the IP is already blocked.
-		$blocks = $this->newLoad( $target, Block::TYPE_IP, false );
+		$blocks = $this->newLoad( $target, false );
 		if ( $blocks ) {
 			foreach ( $blocks as $ipblock ) {
 				// Check if the block is an autoblock and would exceed the user block
@@ -1480,7 +1477,7 @@ class DatabaseBlockStore {
 		$expiry = $this->getAutoblockExpiry( $timestamp, $parentBlock->getExpiry() );
 		$autoblock = new DatabaseBlock( [
 			'wiki' => $this->wikiId,
-			'address' => UserIdentityValue::newAnonymous( $target, $this->wikiId ),
+			'target' => $target,
 			'by' => $blocker,
 			'reason' => $this->getAutoblockReason( $parentBlock ),
 			'decodedTimestamp' => $timestamp,

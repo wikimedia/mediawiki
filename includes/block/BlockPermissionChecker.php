@@ -40,14 +40,14 @@ use Wikimedia\Rdbms\IDBAccessObject;
 class BlockPermissionChecker {
 	/**
 	 * Legacy target state
-	 * @var UserIdentity|string|null Block target or null when unknown
+	 * @var BlockTarget|null Block target or null when unknown
 	 */
 	private $target;
 
 	/**
-	 * @var BlockUtils
+	 * @var BlockTargetFactory
 	 */
-	private $blockUtils;
+	private $blockTargetFactory;
 
 	/**
 	 * @var Authority Block performer
@@ -65,17 +65,17 @@ class BlockPermissionChecker {
 
 	/**
 	 * @param ServiceOptions $options
-	 * @param BlockUtils $blockUtils
+	 * @param BlockTargetFactory $blockTargetFactory For legacy branches only
 	 * @param Authority $performer
 	 */
 	public function __construct(
 		ServiceOptions $options,
-		BlockUtils $blockUtils,
+		BlockTargetFactory $blockTargetFactory,
 		Authority $performer
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
-		$this->blockUtils = $blockUtils;
+		$this->blockTargetFactory = $blockTargetFactory;
 		$this->performer = $performer;
 	}
 
@@ -85,7 +85,7 @@ class BlockPermissionChecker {
 	 * @return void
 	 */
 	public function setTarget( $target ) {
-		[ $this->target, ] = $this->blockUtils->parseBlockTarget( $target );
+		$this->target = $this->blockTargetFactory->newFromLegacyUnion( $target );
 	}
 
 	/**
@@ -119,9 +119,11 @@ class BlockPermissionChecker {
 	 *
 	 * T208965: Partially blocked admins can block and unblock others as normal.
 	 *
-	 * @param UserIdentity|string|null $target Passing null for this parameter
-	 *   is deprecated. This parameter will soon be required. It is the target
-	 *   of the proposed block.
+	 * @param BlockTarget|UserIdentity|string|null $target The target of the
+	 *   proposed block or unblock operation. Passing null for this parameter
+	 *   is deprecated. This parameter will soon be required. Passing a
+	 *   UserIdentity or string for this parameter is deprecated. Pass a
+	 *   BlockTarget in new code.
 	 * @param int $freshness Indicates whether slightly stale data is acceptable
 	 *   in exchange for a fast response.
 	 * @return bool|string True when checks passed, message code for failures
@@ -139,9 +141,13 @@ class BlockPermissionChecker {
 			} else {
 				throw new InvalidArgumentException( 'A target is required' );
 			}
-		} else {
-			[ $target, ] = $this->blockUtils->parseBlockTarget( $target );
+		} elseif ( !( $target instanceof BlockTarget ) ) {
+			$target = $this->blockTargetFactory->newFromLegacyUnion( $target );
+			if ( !$target ) {
+				throw new InvalidArgumentException( 'Invalid block target' );
+			}
 		}
+
 		$block = $this->performer->getBlock( $freshness );
 		if ( !$block ) {
 			// User is not blocked, process as normal
@@ -156,8 +162,8 @@ class BlockPermissionChecker {
 		$performerIdentity = $this->performer->getUser();
 
 		if (
-			$target instanceof UserIdentity &&
-			$target->getId() === $performerIdentity->getId()
+			$target instanceof UserBlockTarget &&
+			$target->getUserIdentity()->getId() === $performerIdentity->getId()
 		) {
 			// Blocked admin is trying to alter their own block
 
@@ -175,9 +181,9 @@ class BlockPermissionChecker {
 		}
 
 		if (
-			$target instanceof UserIdentity &&
+			$target instanceof UserBlockTarget &&
 			$block->getBlocker() &&
-			$target->equals( $block->getBlocker() )
+			$target->getUserIdentity()->equals( $block->getBlocker() )
 		) {
 			// T150826: Blocked admins can always block the admin who blocked them
 			return true;

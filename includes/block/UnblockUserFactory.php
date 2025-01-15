@@ -29,7 +29,7 @@ use MediaWiki\User\UserIdentity;
  */
 interface UnblockUserFactory {
 	/**
-	 * @param UserIdentity|string $target
+	 * @param BlockTarget|UserIdentity|string $target
 	 * @param Authority $performer
 	 * @param string $reason
 	 * @param string[] $tags

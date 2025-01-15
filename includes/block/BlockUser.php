@@ -60,23 +60,12 @@ class BlockUser {
 	public const CONFLICT_REBLOCK = true;
 
 	/**
-	 * @var UserIdentity|string|null
+	 * @var BlockTarget|null
 	 *
-	 * Target of the block
-	 *
-	 * This is null in case BlockUtils::parseBlockTarget failed to parse the target.
-	 * Such case is detected in placeBlockUnsafe, by calling validateTarget from SpecialBlock.
+	 * Target of the block. This is null in case BlockTargetFactory failed to
+	 * parse the target.
 	 */
 	private $target;
-
-	/**
-	 * @var int
-	 *
-	 * One of AbstractBlock::TYPE_* constants
-	 *
-	 * This will be -1 if BlockUtils::parseBlockTarget failed to parse the target.
-	 */
-	private $targetType;
 
 	/** @var DatabaseBlock|null */
 	private $blockToUpdate;
@@ -90,7 +79,7 @@ class BlockUser {
 	private ServiceOptions $options;
 	private BlockRestrictionStore $blockRestrictionStore;
 	private BlockPermissionChecker $blockPermissionChecker;
-	private BlockUtils $blockUtils;
+	private BlockTargetFactory $blockTargetFactory;
 	private BlockActionInfo $blockActionInfo;
 	private HookRunner $hookRunner;
 	private DatabaseBlockStore $blockStore;
@@ -173,7 +162,7 @@ class BlockUser {
 	 * @param ServiceOptions $options
 	 * @param BlockRestrictionStore $blockRestrictionStore
 	 * @param BlockPermissionCheckerFactory $blockPermissionCheckerFactory
-	 * @param BlockUtils $blockUtils
+	 * @param BlockTargetFactory $blockTargetFactory
 	 * @param BlockActionInfo $blockActionInfo
 	 * @param HookContainer $hookContainer
 	 * @param DatabaseBlockStore $databaseBlockStore
@@ -182,7 +171,7 @@ class BlockUser {
 	 * @param LoggerInterface $logger
 	 * @param TitleFactory $titleFactory
 	 * @param DatabaseBlock|null $blockToUpdate
-	 * @param string|UserIdentity|null $target Target of the block
+	 * @param BlockTarget|string|UserIdentity|null $target Target of the block
 	 * @param Authority $performer Performer of the block
 	 * @param string $expiry Expiry of the block (timestamp or 'infinity')
 	 * @param string $reason Reason of the block
@@ -204,7 +193,7 @@ class BlockUser {
 		ServiceOptions $options,
 		BlockRestrictionStore $blockRestrictionStore,
 		BlockPermissionCheckerFactory $blockPermissionCheckerFactory,
-		BlockUtils $blockUtils,
+		BlockTargetFactory $blockTargetFactory,
 		BlockActionInfo $blockActionInfo,
 		HookContainer $hookContainer,
 		DatabaseBlockStore $databaseBlockStore,
@@ -225,7 +214,7 @@ class BlockUser {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->blockRestrictionStore = $blockRestrictionStore;
-		$this->blockUtils = $blockUtils;
+		$this->blockTargetFactory = $blockTargetFactory;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->blockStore = $databaseBlockStore;
 		$this->userFactory = $userFactory;
@@ -237,16 +226,15 @@ class BlockUser {
 		// Process block target
 		if ( $blockToUpdate !== null ) {
 			$this->blockToUpdate = $blockToUpdate;
-			$this->target = $blockToUpdate->getTargetUserIdentity()
-				?? $blockToUpdate->getTargetName();
-			$this->targetType = $blockToUpdate->getType() ?? -1;
+			$this->target = $blockToUpdate->getTarget();
+		} elseif ( $target instanceof BlockTarget ) {
+			$this->target = $target;
+		} elseif ( $target === null ) {
+			throw new \InvalidArgumentException(
+				'Either $target or $blockToUpdate must be specified' );
 		} else {
-			[ $this->target, $rawTargetType ] = $this->blockUtils->parseBlockTarget( $target );
-			if ( $rawTargetType !== null ) { // Guard against invalid targets
-				$this->targetType = $rawTargetType;
-			} else {
-				$this->targetType = -1;
-			}
+			// TODO: deprecate
+			$this->target = $this->blockTargetFactory->newFromLegacyUnion( $target );
 		}
 
 		$this->blockPermissionChecker = $blockPermissionCheckerFactory
@@ -302,10 +290,7 @@ class BlockUser {
 
 		}
 
-		if (
-			isset( $blockOptions['isHideUser'] ) &&
-			$this->targetType === AbstractBlock::TYPE_USER
-		) {
+		if ( isset( $blockOptions['isHideUser'] ) && $this->target instanceof UserBlockTarget ) {
 			$this->isHideUser = $blockOptions['isHideUser'];
 		}
 	}
@@ -403,7 +388,7 @@ class BlockUser {
 			foreach ( $priorBlocks as $i => $block ) {
 				// If we're blocking an IP, ignore any matching autoblocks (T287798)
 				// TODO: put this in the query conditions
-				if ( $this->targetType !== Block::TYPE_AUTO
+				if ( $this->target->getType() !== Block::TYPE_AUTO
 					&& $block->getType() === Block::TYPE_AUTO
 				) {
 					unset( $priorBlocks[$i] );
@@ -419,7 +404,7 @@ class BlockUser {
 	 * @return bool
 	 */
 	private function wasTargetHidden() {
-		if ( $this->targetType !== AbstractBlock::TYPE_USER ) {
+		if ( $this->target->getType() !== AbstractBlock::TYPE_USER ) {
 			return false;
 		}
 		foreach ( $this->getPriorBlocksForTarget() as $block ) {
@@ -515,7 +500,7 @@ class BlockUser {
 	 *   Status is an instance of a newly placed block.
 	 */
 	public function placeBlockUnsafe( $conflictMode = self::CONFLICT_FAIL ): Status {
-		$status = $this->blockUtils->validateTarget( $this->target );
+		$status = Status::wrap( $this->target->validateForCreation() );
 
 		if ( !$status->isOK() ) {
 			$this->logger->debug( 'placeBlockUnsafe: invalid target' );
@@ -544,7 +529,8 @@ class BlockUser {
 			return Status::newFatal( 'ipb_expiry_old' );
 		}
 
-		if ( $this->isHideUser ) {
+		$hideUserTarget = $this->getHideUserTarget();
+		if ( $hideUserTarget ) {
 			if ( $this->isPartial() ) {
 				$this->logger->debug( 'placeBlockUnsafe: partial block cannot hide user' );
 				return Status::newFatal( 'ipb_hide_partial' );
@@ -558,7 +544,7 @@ class BlockUser {
 			$hideUserContribLimit = $this->options->get( MainConfigNames::HideUserContribLimit );
 			if (
 				$hideUserContribLimit !== false &&
-				$this->userEditTracker->getUserEditCount( $this->target ) > $hideUserContribLimit
+				$this->userEditTracker->getUserEditCount( $hideUserTarget ) > $hideUserContribLimit
 			) {
 				$this->logger->debug( 'placeBlockUnsafe: hide user with too many contribs' );
 				return Status::newFatal( 'ipb_hide_invalid', Message::numParam( $hideUserContribLimit ) );
@@ -677,10 +663,9 @@ class BlockUser {
 		$logEntry->addParameter( 'blockId', $block->getId() );
 
 		// Set *_deleted fields if requested
-		if ( $this->isHideUser ) {
-			// This should only be the case of $this->target is a user, so we can
-			// safely call ->getId()
-			RevisionDeleteUser::suppressUserName( $this->target->getName(), $this->target->getId() );
+		$hideUserTarget = $this->getHideUserTarget();
+		if ( $hideUserTarget ) {
+			RevisionDeleteUser::suppressUserName( $hideUserTarget->getName(), $hideUserTarget->getId() );
 		}
 
 		DeferredUpdates::addCallableUpdate( function () use ( $block, $legacyUser, $priorBlock ) {
@@ -695,6 +680,22 @@ class BlockUser {
 
 		$this->logger->debug( 'placeBlockInternal: success' );
 		return Status::newGood( $block );
+	}
+
+	/**
+	 * If the operation is hiding a user, get the user being hidden
+	 *
+	 * @return UserIdentity|null
+	 */
+	private function getHideUserTarget(): ?UserIdentity {
+		if ( !$this->isHideUser ) {
+			return null;
+		}
+		if ( !( $this->target instanceof UserBlockTarget ) ) {
+			// Should be unreachable -- constructor checks this
+			throw new \LogicException( 'Wrong target type used with hide user option' );
+		}
+		return $this->target->getUserIdentity();
 	}
 
 	/**
@@ -820,7 +821,7 @@ class BlockUser {
 	private function blockLogFlags(): string {
 		$flags = [];
 
-		if ( $this->targetType != AbstractBlock::TYPE_USER && !$this->isHardBlock ) {
+		if ( $this->target->getType() != AbstractBlock::TYPE_USER && !$this->isHardBlock ) {
 			// For grepping: message block-log-flags-anononly
 			$flags[] = 'anononly';
 		}
@@ -830,7 +831,7 @@ class BlockUser {
 			$flags[] = 'nocreate';
 		}
 
-		if ( $this->targetType == AbstractBlock::TYPE_USER && !$this->isAutoblocking ) {
+		if ( $this->target->getType() == AbstractBlock::TYPE_USER && !$this->isAutoblocking ) {
 			// For grepping: message block-log-flags-noautoblock
 			$flags[] = 'noautoblock';
 		}

@@ -333,7 +333,7 @@ class ApiMain extends ApiBase {
 				'TitleFactory',
 				'UserIdentityLookup',
 				'WatchedItemStore',
-				'BlockUtils',
+				'BlockTargetFactory',
 				'BlockActionInfo',
 				'DatabaseBlockStore',
 				'WatchlistManager',
@@ -350,6 +350,7 @@ class ApiMain extends ApiBase {
 				'WatchlistManager',
 				'UserOptionsLookup',
 				'DatabaseBlockStore',
+				'BlockTargetFactory',
 			]
 		],
 		'move' => [

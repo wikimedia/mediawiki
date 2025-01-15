@@ -21,11 +21,12 @@
 
 namespace MediaWiki\Pager;
 
-use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockRestrictionStore;
-use MediaWiki\Block\BlockUtils;
+use MediaWiki\Block\BlockTargetFactory;
+use MediaWiki\Block\BlockTargetWithUserPage;
 use MediaWiki\Block\HideUserUtils;
+use MediaWiki\Block\RangeBlockTarget;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
@@ -39,7 +40,6 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPageFactory;
-use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
 use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -62,7 +62,7 @@ class BlockListPager extends TablePager {
 
 	private BlockActionInfo $blockActionInfo;
 	private BlockRestrictionStore $blockRestrictionStore;
-	private BlockUtils $blockUtils;
+	private BlockTargetFactory $blockTargetFactory;
 	private HideUserUtils $hideUserUtils;
 	private CommentStore $commentStore;
 	private LinkBatchFactory $linkBatchFactory;
@@ -79,7 +79,7 @@ class BlockListPager extends TablePager {
 	 * @param IContextSource $context
 	 * @param BlockActionInfo $blockActionInfo
 	 * @param BlockRestrictionStore $blockRestrictionStore
-	 * @param BlockUtils $blockUtils
+	 * @param BlockTargetFactory $blockTargetFactory
 	 * @param HideUserUtils $hideUserUtils
 	 * @param CommentStore $commentStore
 	 * @param LinkBatchFactory $linkBatchFactory
@@ -93,7 +93,7 @@ class BlockListPager extends TablePager {
 		IContextSource $context,
 		BlockActionInfo $blockActionInfo,
 		BlockRestrictionStore $blockRestrictionStore,
-		BlockUtils $blockUtils,
+		BlockTargetFactory $blockTargetFactory,
 		HideUserUtils $hideUserUtils,
 		CommentStore $commentStore,
 		LinkBatchFactory $linkBatchFactory,
@@ -110,7 +110,7 @@ class BlockListPager extends TablePager {
 
 		$this->blockActionInfo = $blockActionInfo;
 		$this->blockRestrictionStore = $blockRestrictionStore;
-		$this->blockUtils = $blockUtils;
+		$this->blockTargetFactory = $blockTargetFactory;
 		$this->hideUserUtils = $hideUserUtils;
 		$this->commentStore = $commentStore;
 		$this->linkBatchFactory = $linkBatchFactory;
@@ -295,11 +295,11 @@ class BlockListPager extends TablePager {
 			return $this->msg( 'autoblockid', $row->bl_id )->parse();
 		}
 
-		[ $target, $type ] = $this->blockUtils->parseBlockTargetRow( $row );
+		$target = $this->blockTargetFactory->newFromRowRedacted( $row );
 
-		if ( $type === Block::TYPE_RANGE ) {
+		if ( $target instanceof RangeBlockTarget ) {
 			$userId = 0;
-			$userName = $target;
+			$userName = $target->toString();
 		} elseif ( ( $row->hu_deleted ?? null )
 			&& !$this->getAuthority()->isAllowed( 'hideuser' )
 		) {
@@ -308,11 +308,10 @@ class BlockListPager extends TablePager {
 				[ 'class' => 'mw-blocklist-hidden' ],
 				$this->messages['blocklist-hidden-placeholder']
 			);
-		} elseif ( $target instanceof UserIdentity ) {
-			$userId = $target->getId();
-			$userName = $target->getName();
-		} elseif ( is_string( $target ) ) {
-			return htmlspecialchars( $target );
+		} elseif ( $target instanceof BlockTargetWithUserPage ) {
+			$user = $target->getUserIdentity();
+			$userId = $user->getId();
+			$userName = $user->getName();
 		} else {
 			return $this->msg( 'empty-username' )->escaped();
 		}
@@ -334,11 +333,7 @@ class BlockListPager extends TablePager {
 	private function getBlockChangeLinks( $row ): array {
 		$linkRenderer = $this->getLinkRenderer();
 		$links = [];
-		if ( $row->bt_auto ) {
-			$target = "#{$row->bl_id}";
-		} else {
-			$target = $row->bt_address ?? $row->bt_user_text;
-		}
+		$target = $this->blockTargetFactory->newFromRowRedacted( $row )->toString();
 		if ( $this->getConfig()->get( MainConfigNames::UseCodexSpecialBlock ) ) {
 			$query = [ 'id' => $row->bl_id ];
 			if ( $row->bt_auto ) {
@@ -498,7 +493,7 @@ class BlockListPager extends TablePager {
 				$commentQuery['tables']
 			),
 			'fields' => [
-				// The target fields should be those accepted by BlockUtils::parseBlockTargetRow()
+				// The target fields should be those accepted by BlockTargetFactory::newFromRowRedacted()
 				'bt_address',
 				'bt_user_text',
 				'bt_user',

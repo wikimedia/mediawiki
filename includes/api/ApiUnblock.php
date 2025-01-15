@@ -22,9 +22,9 @@
 
 namespace MediaWiki\Api;
 
-use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockPermissionCheckerFactory;
+use MediaWiki\Block\BlockTargetFactory;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\MainConfigNames;
@@ -34,6 +34,7 @@ use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
+use RuntimeException;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 
@@ -53,6 +54,7 @@ class ApiUnblock extends ApiBase {
 	private UserIdentityLookup $userIdentityLookup;
 	private WatchedItemStoreInterface $watchedItemStore;
 	private DatabaseBlockStore $blockStore;
+	private BlockTargetFactory $blockTargetFactory;
 
 	public function __construct(
 		ApiMain $main,
@@ -63,7 +65,8 @@ class ApiUnblock extends ApiBase {
 		WatchedItemStoreInterface $watchedItemStore,
 		WatchlistManager $watchlistManager,
 		UserOptionsLookup $userOptionsLookup,
-		DatabaseBlockStore $blockStore
+		DatabaseBlockStore $blockStore,
+		BlockTargetFactory $blockTargetFactory
 	) {
 		parent::__construct( $main, $action );
 
@@ -79,6 +82,7 @@ class ApiUnblock extends ApiBase {
 		$this->watchlistManager = $watchlistManager;
 		$this->userOptionsLookup = $userOptionsLookup;
 		$this->blockStore = $blockStore;
+		$this->blockTargetFactory = $blockTargetFactory;
 	}
 
 	/**
@@ -99,7 +103,7 @@ class ApiUnblock extends ApiBase {
 			if ( !$identity ) {
 				$this->dieWithError( [ 'apierror-nosuchuserid', $params['userid'] ], 'nosuchuserid' );
 			}
-			$params['user'] = $identity->getName();
+			$params['user'] = $identity;
 		}
 
 		$blockToRemove = null;
@@ -110,15 +114,12 @@ class ApiUnblock extends ApiBase {
 					[ 'apierror-nosuchblockid', $params['id'] ],
 					'nosuchblockid' );
 			}
-
-			if ( $blockToRemove->getType() === AbstractBlock::TYPE_AUTO ) {
-				$target = '#' . $params['id'];
-			} else {
-				$target = $blockToRemove->getTargetUserIdentity()
-					?? $blockToRemove->getTargetName();
+			$target = $blockToRemove->getRedactedTarget();
+			if ( !$target ) {
+				throw new RuntimeException( 'Block has no target' );
 			}
 		} else {
-			$target = $params['user'];
+			$target = $this->blockTargetFactory->newFromUser( $params['user'] );
 		}
 
 		# T17810: blocked admins should have limited access here
@@ -206,6 +207,7 @@ class ApiUnblock extends ApiBase {
 			'user' => [
 				ParamValidator::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'temp', 'cidr', 'id' ],
+				UserDef::PARAM_RETURN_OBJECT => true,
 			],
 			'userid' => [
 				ParamValidator::PARAM_TYPE => 'integer',

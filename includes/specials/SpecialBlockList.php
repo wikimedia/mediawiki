@@ -20,12 +20,16 @@
 
 namespace MediaWiki\Specials;
 
+use InvalidArgumentException;
+use MediaWiki\Block\AutoBlockTarget;
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockRestrictionStore;
-use MediaWiki\Block\BlockUtils;
-use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\BlockTarget;
+use MediaWiki\Block\BlockTargetFactory;
+use MediaWiki\Block\BlockTargetWithIp;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\HideUserUtils;
+use MediaWiki\Block\UserBlockTarget;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
@@ -34,7 +38,6 @@ use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Pager\BlockListPager;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\TempUser\TempUserConfig;
-use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -61,7 +64,7 @@ class SpecialBlockList extends SpecialPage {
 	private BlockRestrictionStore $blockRestrictionStore;
 	private IConnectionProvider $dbProvider;
 	private CommentStore $commentStore;
-	private BlockUtils $blockUtils;
+	private BlockTargetFactory $blockTargetFactory;
 	private HideUserUtils $hideUserUtils;
 	private BlockActionInfo $blockActionInfo;
 	private RowCommentFormatter $rowCommentFormatter;
@@ -73,7 +76,7 @@ class SpecialBlockList extends SpecialPage {
 		BlockRestrictionStore $blockRestrictionStore,
 		IConnectionProvider $dbProvider,
 		CommentStore $commentStore,
-		BlockUtils $blockUtils,
+		BlockTargetFactory $blockTargetFactory,
 		HideUserUtils $hideUserUtils,
 		BlockActionInfo $blockActionInfo,
 		RowCommentFormatter $rowCommentFormatter,
@@ -86,7 +89,7 @@ class SpecialBlockList extends SpecialPage {
 		$this->blockRestrictionStore = $blockRestrictionStore;
 		$this->dbProvider = $dbProvider;
 		$this->commentStore = $commentStore;
-		$this->blockUtils = $blockUtils;
+		$this->blockTargetFactory = $blockTargetFactory;
 		$this->hideUserUtils = $hideUserUtils;
 		$this->blockActionInfo = $blockActionInfo;
 		$this->rowCommentFormatter = $rowCommentFormatter;
@@ -198,31 +201,11 @@ class SpecialBlockList extends SpecialPage {
 		$conds = [];
 		$db = $this->getDB();
 
+		// Add target conditions
 		if ( $this->target !== '' ) {
-			[ $target, $type ] = $this->blockUtils->parseBlockTarget( $this->target );
-
-			switch ( $type ) {
-				case DatabaseBlock::TYPE_ID:
-				case DatabaseBlock::TYPE_AUTO:
-					$conds['bl_id'] = $target;
-					break;
-
-				case DatabaseBlock::TYPE_IP:
-				case DatabaseBlock::TYPE_RANGE:
-					[ $start, $end ] = IPUtils::parseRange( $target );
-					$conds[] = $this->blockStore->getRangeCond( $start, $end );
-					$conds['bt_auto'] = 0;
-					break;
-
-				case DatabaseBlock::TYPE_USER:
-					if ( $target->getId() ) {
-						$conds['bt_user'] = $target->getId();
-						$conds['bt_auto'] = 0;
-					} else {
-						// No such user
-						$conds[] = '1=0';
-					}
-					break;
+			$target = $this->blockTargetFactory->newFromString( $this->target );
+			if ( $target ) {
+				$conds = $this->getTargetConds( $target );
 			}
 		}
 
@@ -285,7 +268,7 @@ class SpecialBlockList extends SpecialPage {
 			$this->getContext(),
 			$this->blockActionInfo,
 			$this->blockRestrictionStore,
-			$this->blockUtils,
+			$this->blockTargetFactory,
 			$this->hideUserUtils,
 			$this->commentStore,
 			$this->linkBatchFactory,
@@ -295,6 +278,45 @@ class SpecialBlockList extends SpecialPage {
 			$this->getSpecialPageFactory(),
 			$conds
 		);
+	}
+
+	/**
+	 * Get conditions matching a parsed block target.
+	 *
+	 * The details are different from other similarly named functions elsewhere:
+	 *   - If an IP address or range is requested, autoblocks are not shown.
+	 *   - Requests for single IP addresses include range blocks covering the
+	 *     address. This is like a "vague target" query in DatabaseBlockStore,
+	 *     except that autoblocks are excluded.
+	 *   - If a named user doesn't exist, it is assumed that there are no blocks.
+	 *
+	 * @param BlockTarget $target
+	 * @return array
+	 */
+	private function getTargetConds( BlockTarget $target ) {
+		if ( $target instanceof AutoBlockTarget ) {
+			return [ 'bl_id' => $target ];
+		}
+		if ( $target instanceof BlockTargetWithIp ) {
+			$range = $target->toHexRange();
+			return [
+				$this->blockStore->getRangeCond( $range[0], $range[1] ),
+				'bt_auto' => 0
+			];
+		}
+		if ( $target instanceof UserBlockTarget ) {
+			$user = $target->getUserIdentity();
+			if ( $user->getId() ) {
+				return [
+					'bt_user' => $user->getId(),
+					'bt_auto' => 0
+				];
+			} else {
+				// No such user
+				return [ '1=0' ];
+			}
+		}
+		throw new InvalidArgumentException( 'Invalid block target type' );
 	}
 
 	/**

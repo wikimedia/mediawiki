@@ -35,7 +35,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	protected function newSpecialPage() {
 		$services = $this->getServiceContainer();
 		return new SpecialBlock(
-			$services->getBlockUtils(),
+			$services->getBlockTargetFactory(),
 			$services->getBlockPermissionCheckerFactory(),
 			$services->getBlockUserFactory(),
 			$this->blockStore,
@@ -166,7 +166,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$page = $this->newSpecialPage();
 
 		$wrappedPage = TestingAccessWrapper::newFromObject( $page );
-		$wrappedPage->target = $block->getTargetUserIdentity();
+		$wrappedPage->target = $block->getTarget();
 		$fields = $wrappedPage->getFormFields();
 
 		$this->assertSame( $block->getTargetName(), $fields['Target']['default'] );
@@ -214,7 +214,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$page = $this->newSpecialPage();
 
 		$wrappedPage = TestingAccessWrapper::newFromObject( $page );
-		$wrappedPage->target = $block->getTargetUserIdentity();
+		$wrappedPage->target = $block->getTarget();
 		$fields = $wrappedPage->getFormFields();
 
 		$titles = [
@@ -881,18 +881,18 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @dataProvider provideGetTargetAndType
-	 * @covers ::getTargetAndTypeInternal
+	 * @dataProvider provideGetTargetInternal
+	 * @covers ::getTargetInternal
 	 */
-	public function testGetTargetAndType( $par, $requestData, $expectedTarget ) {
+	public function testGetTargetInternal( $par, $requestData, $expectedTarget ) {
 		$request = new FauxRequest( $requestData );
 		/** @var SpecialBlock $page */
 		$page = TestingAccessWrapper::newFromObject( $this->newSpecialPage() );
-		[ $target, $type ] = $page->getTargetAndTypeInternal( $par, $request );
-		$this->assertSame( $expectedTarget, $target );
+		$target = $page->getTargetInternal( $par, $request );
+		$this->assertSame( $expectedTarget, $target ? (string)$target : $target );
 	}
 
-	public static function provideGetTargetAndType() {
+	public static function provideGetTargetInternal() {
 		$invalidTarget = '';
 		return [
 			'Choose \'wpTarget\' parameter first' => [

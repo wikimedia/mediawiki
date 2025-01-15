@@ -518,7 +518,7 @@ class SpecialPageFactory {
 		'Block' => [
 			'class' => SpecialBlock::class,
 			'services' => [
-				'BlockUtils',
+				'BlockTargetFactory',
 				'BlockPermissionCheckerFactory',
 				'BlockUserFactory',
 				'DatabaseBlockStore',
@@ -533,7 +533,7 @@ class SpecialPageFactory {
 			'class' => SpecialUnblock::class,
 			'services' => [
 				'UnblockUserFactory',
-				'BlockUtils',
+				'BlockTargetFactory',
 				'DatabaseBlockStore',
 				'UserNameUtils',
 				'UserNamePrefixSearch',
@@ -548,7 +548,7 @@ class SpecialPageFactory {
 				'BlockRestrictionStore',
 				'ConnectionProvider',
 				'CommentStore',
-				'BlockUtils',
+				'BlockTargetFactory',
 				'HideUserUtils',
 				'BlockActionInfo',
 				'RowCommentFormatter',
@@ -562,7 +562,7 @@ class SpecialPageFactory {
 				'BlockRestrictionStore',
 				'ConnectionProvider',
 				'CommentStore',
-				'BlockUtils',
+				'BlockTargetFactory',
 				'HideUserUtils',
 				'BlockActionInfo',
 				'RowCommentFormatter',

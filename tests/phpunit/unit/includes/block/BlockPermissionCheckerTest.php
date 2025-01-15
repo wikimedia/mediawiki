@@ -1,8 +1,9 @@
 <?php
 
 use MediaWiki\Block\BlockPermissionChecker;
-use MediaWiki\Block\BlockUtils;
+use MediaWiki\Block\BlockTargetFactory;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\UserBlockTarget;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
@@ -33,15 +34,18 @@ class BlockPermissionCheckerTest extends MediaWikiUnitTestCase {
 			[ MainConfigNames::EnableUserEmail => $enableUserEmail ]
 		);
 
-		$blockUtils = $this->createNoOpMock( BlockUtils::class, [ 'parseBlockTarget' ] );
-		$blockUtils->expects( $this->any() )
-			->method( 'parseBlockTarget' )
+		$blockTargetFactory = $this->createNoOpMock(
+			BlockTargetFactory::class,
+			[ 'newFromLegacyUnion' ]
+		);
+		$blockTargetFactory->expects( $this->any() )
+			->method( 'newFromLegacyUnion' )
 			->willReturnCallback( static function ( $target ) {
-				return [ $target, 0 ];
+				return new UserBlockTarget( $target );
 			} );
 		return new BlockPermissionChecker(
 			$options,
-			$blockUtils,
+			$blockTargetFactory,
 			$performer
 		);
 	}

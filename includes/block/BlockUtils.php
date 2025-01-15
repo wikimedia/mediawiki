@@ -21,14 +21,8 @@
 
 namespace MediaWiki\Block;
 
-use MediaWiki\Config\ServiceOptions;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Status\Status;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\User\UserIdentityLookup;
-use MediaWiki\User\UserIdentityValue;
-use MediaWiki\User\UserNameUtils;
-use Wikimedia\IPUtils;
 
 /**
  * Backend class for blocking utils
@@ -42,34 +36,14 @@ use Wikimedia\IPUtils;
  * - block target validation
  * - parsing the target and type of a block in the database
  *
+ * @deprecated since 1.44 use BlockTargetFactory
  * @since 1.36
  */
 class BlockUtils {
-	private ServiceOptions $options;
-	private UserIdentityLookup $userIdentityLookup;
-	private UserNameUtils $userNameUtils;
+	private BlockTargetFactory $blockTargetFactory;
 
-	/** @var string|false */
-	private $wikiId;
-
-	/**
-	 * @internal Only for use by ServiceWiring
-	 */
-	public const CONSTRUCTOR_OPTIONS = [
-		MainConfigNames::BlockCIDRLimit,
-	];
-
-	public function __construct(
-		ServiceOptions $options,
-		UserIdentityLookup $userIdentityLookup,
-		UserNameUtils $userNameUtils,
-		/* string|false */ $wikiId = Block::LOCAL
-	) {
-		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->options = $options;
-		$this->userIdentityLookup = $userIdentityLookup;
-		$this->userNameUtils = $userNameUtils;
-		$this->wikiId = $wikiId;
+	public function __construct( BlockTargetFactory $blockTargetFactory ) {
+		$this->blockTargetFactory = $blockTargetFactory;
 	}
 
 	/**
@@ -91,55 +65,12 @@ class BlockUtils {
 	 * @return array [ UserIdentity|String|null, int|null ]
 	 */
 	public function parseBlockTarget( $target ): array {
-		// We may have been through this before
-		if ( $target instanceof UserIdentity ) {
-			if ( IPUtils::isValid( $target->getName() ) ) {
-				return [ $target, AbstractBlock::TYPE_IP ];
-			} else {
-				return [ $target, AbstractBlock::TYPE_USER ];
-			}
-		} elseif ( $target === null ) {
+		$targetObj = $this->blockTargetFactory->newFromLegacyUnion( $target );
+		if ( $targetObj ) {
+			return $targetObj->getLegacyTuple();
+		} else {
 			return [ null, null ];
 		}
-
-		$target = trim( $target );
-
-		if ( IPUtils::isValid( $target ) ) {
-			return [
-				UserIdentityValue::newAnonymous( IPUtils::sanitizeIP( $target ), $this->wikiId ),
-				AbstractBlock::TYPE_IP
-			];
-
-		} elseif ( IPUtils::isValidRange( $target ) ) {
-			// Can't create a UserIdentity from an IP range
-			return [ IPUtils::sanitizeRange( $target ), AbstractBlock::TYPE_RANGE ];
-		}
-
-		if ( preg_match( '/^#\d+$/', $target ) ) {
-			// Autoblock reference in the form "#12345"
-			return [ substr( $target, 1 ), AbstractBlock::TYPE_AUTO ];
-		}
-
-		$userFromDB = $this->userIdentityLookup->getUserIdentityByName( $target );
-		if ( $userFromDB instanceof UserIdentity ) {
-			// Note that since numbers are valid usernames, a $target of "12345" will be
-			// considered a UserIdentity. If you want to pass a block ID, prepend a hash "#12345",
-			// since hash characters are not valid in usernames or titles generally.
-			return [ $userFromDB, AbstractBlock::TYPE_USER ];
-		}
-
-		// Wrap the invalid user in a UserIdentityValue.
-		// This allows validateTarget() to return a "nosuchusershort" message,
-		// which is needed for Special:Block.
-		$canonicalName = $this->userNameUtils->getCanonical( $target );
-		if ( $canonicalName !== false ) {
-			return [
-				new UserIdentityValue( 0, $canonicalName ),
-				AbstractBlock::TYPE_USER
-			];
-		}
-
-		return [ null, null ];
 	}
 
 	/**
@@ -151,25 +82,9 @@ class BlockUtils {
 	 * @return array [ UserIdentity|String|null, int|null ]
 	 */
 	public function parseBlockTargetRow( $row ) {
-		if ( $row->bt_auto ) {
-			return [ $row->bl_id, AbstractBlock::TYPE_AUTO ];
-		} elseif ( isset( $row->bt_user ) ) {
-			if ( isset( $row->bt_user_text ) ) {
-				$user = new UserIdentityValue( $row->bt_user, $row->bt_user_text, $this->wikiId );
-			} else {
-				$user = $this->userIdentityLookup->getUserIdentityByUserId( $row->bt_user );
-			}
-			return [ $user, AbstractBlock::TYPE_USER ];
-		} elseif ( $row->bt_address === null ) {
-			return [ null, null ];
-		} elseif ( IPUtils::isValid( $row->bt_address ) ) {
-			return [
-				UserIdentityValue::newAnonymous( IPUtils::sanitizeIP( $row->bt_address ), $this->wikiId ),
-				AbstractBlock::TYPE_IP
-			];
-		} elseif ( IPUtils::isValidRange( $row->bt_address ) ) {
-			// Can't create a UserIdentity from an IP range
-			return [ IPUtils::sanitizeRange( $row->bt_address ), AbstractBlock::TYPE_RANGE ];
+		$target = $this->blockTargetFactory->newFromRowRedacted( $row );
+		if ( $target ) {
+			return $target->getLegacyTuple();
 		} else {
 			return [ null, null ];
 		}
@@ -183,90 +98,12 @@ class BlockUtils {
 	 * @return Status
 	 */
 	public function validateTarget( $value ): Status {
-		[ $target, $type ] = $this->parseBlockTarget( $value );
-
-		$status = Status::newGood( $target );
-
-		switch ( $type ) {
-			case AbstractBlock::TYPE_USER:
-				if ( !$target->isRegistered() ) {
-					$status->fatal(
-						'nosuchusershort',
-						wfEscapeWikiText( $target->getName() )
-					);
-				}
-				break;
-
-			case AbstractBlock::TYPE_RANGE:
-				[ $ip, $range ] = explode( '/', $target, 2 );
-
-				if ( IPUtils::isIPv4( $ip ) ) {
-					$status->merge( $this->validateIPv4Range( (int)$range ) );
-				} elseif ( IPUtils::isIPv6( $ip ) ) {
-					$status->merge( $this->validateIPv6Range( (int)$range ) );
-				} else {
-					// Something is FUBAR
-					$status->fatal( 'badipaddress' );
-				}
-				break;
-
-			case AbstractBlock::TYPE_IP:
-				// All is well
-				break;
-
-			default:
-				$status->fatal( 'badipaddress' );
-				break;
+		$target = $this->blockTargetFactory->newFromLegacyUnion( $value );
+		if ( $target ) {
+			return Status::wrap( $target->validateForCreation() );
+		} else {
+			return Status::newFatal( 'badipaddress' );
 		}
-
-		return $status;
 	}
 
-	/**
-	 * Validate an IPv4 range
-	 *
-	 * @param int $range
-	 *
-	 * @return Status
-	 */
-	private function validateIPv4Range( int $range ): Status {
-		$status = Status::newGood();
-		$blockCIDRLimit = $this->options->get( MainConfigNames::BlockCIDRLimit );
-
-		if ( $blockCIDRLimit['IPv4'] == 32 ) {
-			// Range block effectively disabled
-			$status->fatal( 'range_block_disabled' );
-		} elseif ( $range > 32 ) {
-			// Such a range cannot exist
-			$status->fatal( 'ip_range_invalid' );
-		} elseif ( $range < $blockCIDRLimit['IPv4'] ) {
-			$status->fatal( 'ip_range_toolarge', $blockCIDRLimit['IPv4'] );
-		}
-
-		return $status;
-	}
-
-	/**
-	 * Validate an IPv6 range
-	 *
-	 * @param int $range
-	 *
-	 * @return Status
-	 */
-	private function validateIPv6Range( int $range ): Status {
-		$status = Status::newGood();
-		$blockCIDRLimit = $this->options->get( MainConfigNames::BlockCIDRLimit );
-
-		if ( $blockCIDRLimit['IPv6'] == 128 ) {
-			// Range block effectively disabled
-			$status->fatal( 'range_block_disabled' );
-		} elseif ( $range > 128 ) {
-			// Dodgy range - such a range cannot exist
-			$status->fatal( 'ip_range_invalid' );
-		} elseif ( $range < $blockCIDRLimit['IPv6'] ) {
-			$status->fatal( 'ip_range_toolarge', $blockCIDRLimit['IPv6'] );
-		}
-
-		return $status;
-	}
 }

@@ -21,6 +21,7 @@
 namespace MediaWiki\Block;
 
 use InvalidArgumentException;
+use LogicException;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\MainConfigNames;
@@ -61,14 +62,8 @@ abstract class AbstractBlock implements Block {
 	/** @var bool */
 	protected $isHardblock;
 
-	/** @var UserIdentity|string|null */
+	/** @var BlockTarget|null */
 	protected $target;
-
-	/**
-	 * @var int|null AbstractBlock::TYPE_ constant. After the block has been loaded
-	 * from the database, this can only be USER, IP or RANGE.
-	 */
-	protected $type;
 
 	/** @var bool */
 	protected $isSitewide = true;
@@ -80,8 +75,9 @@ abstract class AbstractBlock implements Block {
 	 * Create a new block with specified parameters on a user, IP or IP range.
 	 *
 	 * @param array $options Parameters of the block, with supported options:
+	 *  - target: (BlockTarget) The target object (since 1.44)
 	 *  - address: (string|UserIdentity) Target user name, user identity object,
-	 *    IP address or IP range
+	 *     IP address or IP range.
 	 *  - wiki: (string|false) The wiki the block has been issued in,
 	 *    self::LOCAL for the local wiki (since 1.38)
 	 *  - reason: (string|Message|CommentStoreComment) Reason for the block
@@ -95,7 +91,6 @@ abstract class AbstractBlock implements Block {
 	 */
 	public function __construct( array $options = [] ) {
 		$defaults = [
-			'address'         => '',
 			'wiki'            => self::LOCAL,
 			'reason'          => '',
 			'timestamp'       => '',
@@ -106,7 +101,16 @@ abstract class AbstractBlock implements Block {
 		$options += $defaults;
 
 		$this->wikiId = $options['wiki'];
-		$this->setTarget( $options['address'] );
+		if ( isset( $options['target'] ) ) {
+			if ( !( $options['target'] instanceof BlockTarget ) ) {
+				throw new InvalidArgumentException( 'Invalid block target' );
+			}
+			$this->setTarget( $options['target'] );
+		} elseif ( isset( $options['address'] ) ) {
+			$this->setTarget( $options['address'] );
+		} else {
+			$this->setTarget( null );
+		}
 		$this->setReason( $options['reason'] );
 		if ( isset( $options['decodedTimestamp'] ) ) {
 			$this->setTimestamp( $options['decodedTimestamp'] );
@@ -297,12 +301,30 @@ abstract class AbstractBlock implements Block {
 		return $res;
 	}
 
+	public function getTarget(): ?BlockTarget {
+		return $this->target;
+	}
+
+	public function getRedactedTarget(): ?BlockTarget {
+		$target = $this->getTarget();
+		if ( $this->getType() === Block::TYPE_AUTO
+			&& !( $target instanceof AutoBlockTarget )
+		) {
+			$id = $this->getId( $this->wikiId );
+			if ( $id === null ) {
+				throw new LogicException( 'no ID available for autoblock redaction' );
+			}
+			$target = new AutoBlockTarget( $id, $this->wikiId );
+		}
+		return $target;
+	}
+
 	/**
 	 * Get the type of target for this particular block.
-	 * @return int|null AbstractBlock::TYPE_ constant, will never be TYPE_ID
+	 * @return int|null AbstractBlock::TYPE_ constant
 	 */
 	public function getType(): ?int {
-		return $this->type;
+		return $this->target ? $this->target->getType() : null;
 	}
 
 	/**
@@ -310,7 +332,8 @@ abstract class AbstractBlock implements Block {
 	 * @return ?UserIdentity
 	 */
 	public function getTargetUserIdentity(): ?UserIdentity {
-		return $this->target instanceof UserIdentity ? $this->target : null;
+		return $this->target instanceof BlockTargetWithUserIdentity
+			? $this->target->getUserIdentity() : null;
 	}
 
 	/**
@@ -318,13 +341,11 @@ abstract class AbstractBlock implements Block {
 	 * @return string
 	 */
 	public function getTargetName(): string {
-		return $this->target instanceof UserIdentity
-			? $this->target->getName()
-			: (string)$this->target;
+		return (string)$this->target;
 	}
 
 	/**
-	 * @param UserIdentity|string $target
+	 * @param BlockTarget|UserIdentity|string $target
 	 *
 	 * @return bool
 	 * @since 1.37
@@ -385,22 +406,22 @@ abstract class AbstractBlock implements Block {
 	}
 
 	/**
-	 * Set the target for this block, and update $this->type accordingly
-	 * @param string|UserIdentity|null $target
+	 * Set the target for this block
+	 * @param BlockTarget|string|UserIdentity|null $target
 	 */
 	public function setTarget( $target ) {
 		// Small optimization to make this code testable, this is what would happen anyway
-		if ( $target === '' ) {
+		if ( $target === '' || $target === null ) {
 			$this->target = null;
-			$this->type = null;
+		} elseif ( $target instanceof BlockTarget ) {
+			$this->assertWiki( $target->getWikiId() );
+			$this->target = $target;
 		} else {
-			[ $parsedTarget, $this->type ] = MediaWikiServices::getInstance()
-				->getBlockUtilsFactory()
-				->getBlockUtils( $this->wikiId )
-				->parseBlockTarget( $target );
-			if ( $parsedTarget !== null ) {
-				$this->assertWiki( is_string( $parsedTarget ) ? self::LOCAL : $parsedTarget->getWikiId() );
-			}
+			$parsedTarget = MediaWikiServices::getInstance()
+				->getCrossWikiBlockTargetFactory()
+				->getFactory( $this->wikiId )
+				->newFromLegacyUnion( $target );
+			$this->assertWiki( $parsedTarget->getWikiId() );
 			$this->target = $parsedTarget;
 		}
 	}
@@ -442,10 +463,10 @@ abstract class AbstractBlock implements Block {
 	 */
 	public function appliesToUsertalk( ?Title $usertalk = null ) {
 		if ( !$usertalk ) {
-			if ( $this->target instanceof UserIdentity ) {
+			if ( $this->target instanceof BlockTargetWithUserPage ) {
 				$usertalk = Title::makeTitle(
 					NS_USER_TALK,
-					$this->target->getName()
+					$this->target->getUserPage()->getDBkey()
 				);
 			} else {
 				throw new InvalidArgumentException(

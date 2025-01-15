@@ -28,7 +28,6 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Status\Status;
-use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use RevisionDeleteUser;
@@ -41,15 +40,12 @@ use RevisionDeleteUser;
 class UnblockUser {
 	private BlockPermissionChecker $blockPermissionChecker;
 	private DatabaseBlockStore $blockStore;
-	private BlockUtils $blockUtils;
+	private BlockTargetFactory $blockTargetFactory;
 	private UserFactory $userFactory;
 	private HookRunner $hookRunner;
 
-	/** @var UserIdentity|string */
+	/** @var BlockTarget|null */
 	private $target;
-
-	/** @var int */
-	private $targetType;
 
 	private ?DatabaseBlock $block;
 
@@ -67,7 +63,7 @@ class UnblockUser {
 	/**
 	 * @param BlockPermissionCheckerFactory $blockPermissionCheckerFactory
 	 * @param DatabaseBlockStore $blockStore
-	 * @param BlockUtils $blockUtils
+	 * @param BlockTargetFactory $blockTargetFactory
 	 * @param UserFactory $userFactory
 	 * @param HookContainer $hookContainer
 	 * @param DatabaseBlock|null $blockToRemove
@@ -79,7 +75,7 @@ class UnblockUser {
 	public function __construct(
 		BlockPermissionCheckerFactory $blockPermissionCheckerFactory,
 		DatabaseBlockStore $blockStore,
-		BlockUtils $blockUtils,
+		BlockTargetFactory $blockTargetFactory,
 		UserFactory $userFactory,
 		HookContainer $hookContainer,
 		?DatabaseBlock $blockToRemove,
@@ -90,25 +86,19 @@ class UnblockUser {
 	) {
 		// Process dependencies
 		$this->blockStore = $blockStore;
-		$this->blockUtils = $blockUtils;
+		$this->blockTargetFactory = $blockTargetFactory;
 		$this->userFactory = $userFactory;
 		$this->hookRunner = new HookRunner( $hookContainer );
 
 		// Process params
 		if ( $blockToRemove !== null ) {
 			$this->blockToRemove = $blockToRemove;
-			$this->target = $blockToRemove->getTargetUserIdentity()
-				?? $blockToRemove->getTargetName();
-			$this->targetType = $blockToRemove->getType() ?? -1;
+			$this->target = $blockToRemove->getTarget();
+		} elseif ( $target instanceof BlockTarget ) {
+			$this->target = $target;
 		} else {
-			[ $this->target, $this->targetType ] = $this->blockUtils->parseBlockTarget( $target );
-			if (
-				$this->targetType === AbstractBlock::TYPE_AUTO &&
-				is_numeric( $this->target )
-			) {
-				// Needed, because BlockUtils::parseBlockTarget will strip the # from autoblocks.
-				$this->target = '#' . $this->target;
-			}
+			// TODO: deprecate (T382106)
+			$this->target = $this->blockTargetFactory->newFromLegacyUnion( $target );
 		}
 
 		$this->blockPermissionChecker = $blockPermissionCheckerFactory
@@ -181,7 +171,7 @@ class UnblockUser {
 
 		if (
 			$this->block->getType() === AbstractBlock::TYPE_RANGE &&
-			$this->targetType === AbstractBlock::TYPE_IP
+			$this->target->getType() === AbstractBlock::TYPE_IP
 		) {
 			return $status->fatal( 'ipb_blocked_as_range', $this->target, $this->block->getTargetName() );
 		}
@@ -219,18 +209,10 @@ class UnblockUser {
 	 * Log the unblock to Special:Log/block
 	 */
 	private function log() {
-		// Redact IP for autoblocks
-		if ( $this->block->getType() === DatabaseBlock::TYPE_AUTO ) {
-			$page = TitleValue::tryNew( NS_USER, '#' . $this->block->getId() );
-		} else {
-			$page = TitleValue::tryNew( NS_USER, $this->block->getTargetName() );
-		}
-
+		$page = $this->block->getRedactedTarget()->getLogPage();
 		$logEntry = new ManualLogEntry( 'block', 'unblock' );
 
-		if ( $page !== null ) {
-			$logEntry->setTarget( $page );
-		}
+		$logEntry->setTarget( $page );
 		$logEntry->setComment( $this->reason );
 		$logEntry->setPerformer( $this->performer->getUser() );
 		$logEntry->addTags( $this->tags );

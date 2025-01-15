@@ -75,7 +75,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 			'readOnlyMode' => $readOnlyMode,
 			'userFactory' => $services->getUserFactory(),
 			'tempUserConfig' => $services->getTempUserConfig(),
-			'blockUtils' => $services->getBlockUtils(),
+			'blockTargetFactory' => $services->getBlockTargetFactory(),
 			'autoblockExemptionList' => $services->getAutoblockExemptionList(),
 		];
 		$constructorArgs = array_merge( $defaultConstructorArgs, $overrideConstructorArgs );

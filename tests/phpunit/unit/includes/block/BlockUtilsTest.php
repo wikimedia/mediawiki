@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Block\AbstractBlock;
+use MediaWiki\Block\BlockTargetFactory;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
@@ -35,14 +36,16 @@ class BlockUtilsTest extends MediaWikiUnitTestCase {
 			]
 		];
 		$serviceOptions = new ServiceOptions(
-			BlockUtils::CONSTRUCTOR_OPTIONS,
+			BlockTargetFactory::CONSTRUCTOR_OPTIONS,
 			$options + $baseOptions
 		);
 
 		return TestingAccessWrapper::newFromObject( new BlockUtils(
-			$serviceOptions,
-			$userIdentityLookup ?? $this->createMock( UserIdentityLookup::class ),
-			$this->getDummyUserNameUtils()
+			new BlockTargetFactory(
+				$serviceOptions,
+				$userIdentityLookup ?? $this->createMock( UserIdentityLookup::class ),
+				$this->getDummyUserNameUtils()
+			)
 		) );
 	}
 
@@ -57,10 +60,15 @@ class BlockUtilsTest extends MediaWikiUnitTestCase {
 		// - target name is not a valid IP, TYPE_USER
 		$userIdentity = new UserIdentityValue( $type === AbstractBlock::TYPE_IP ? 0 : 1, $name );
 
-		$this->assertSame(
-			[ $userIdentity, $type ],
-			$this->getUtils()->parseBlockTarget( $userIdentity )
-		);
+		[ $resTarget, $resType ] = $this->getUtils()->parseBlockTarget( $userIdentity );
+		$this->assertSame( $type, $resType );
+		if ( $type === AbstractBlock::TYPE_IP ) {
+			// With the migration to BlockTargetFactory, preservation of the
+			// UserIdentity object for an IP is no longer guaranteed.
+			$this->assertTrue( $userIdentity->equals( $resTarget ) );
+		} else {
+			$this->assertSame( $userIdentity, $resTarget );
+		}
 	}
 
 	public static function provideTestParseBlockTargetUserIdentity() {

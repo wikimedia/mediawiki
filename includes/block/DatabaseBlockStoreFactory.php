@@ -51,7 +51,7 @@ class DatabaseBlockStoreFactory {
 	private ReadOnlyMode $readOnlyMode;
 	private UserFactory $userFactory;
 	private TempUserConfig $tempUserConfig;
-	private BlockUtilsFactory $blockUtilsFactory;
+	private CrossWikiBlockTargetFactory $crossWikiBlockTargetFactory;
 	private AutoblockExemptionList $autoblockExemptionList;
 
 	/** @var DatabaseBlockStore[] */
@@ -68,7 +68,7 @@ class DatabaseBlockStoreFactory {
 		ReadOnlyMode $readOnlyMode,
 		UserFactory $userFactory,
 		TempUserConfig $tempUserConfig,
-		BlockUtilsFactory $blockUtilsFactory,
+		CrossWikiBlockTargetFactory $crossWikiBlockTargetFactory,
 		AutoblockExemptionList $autoblockExemptionList
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -83,7 +83,7 @@ class DatabaseBlockStoreFactory {
 		$this->readOnlyMode = $readOnlyMode;
 		$this->userFactory = $userFactory;
 		$this->tempUserConfig = $tempUserConfig;
-		$this->blockUtilsFactory = $blockUtilsFactory;
+		$this->crossWikiBlockTargetFactory = $crossWikiBlockTargetFactory;
 		$this->autoblockExemptionList = $autoblockExemptionList;
 	}
 
@@ -109,7 +109,7 @@ class DatabaseBlockStoreFactory {
 				$this->readOnlyMode,
 				$this->userFactory,
 				$this->tempUserConfig,
-				$this->blockUtilsFactory->getBlockUtils( $wikiId ),
+				$this->crossWikiBlockTargetFactory->getFactory( $wikiId ),
 				$this->autoblockExemptionList,
 				$wikiId
 			);

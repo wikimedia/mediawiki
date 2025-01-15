@@ -33,8 +33,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use stdClass;
-use UnexpectedValueException;
-use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -151,8 +149,7 @@ class DatabaseBlock extends AbstractBlock {
 	 */
 	public function equals( DatabaseBlock $block ) {
 		return (
-			(string)$this->target == (string)$block->target
-			&& $this->type == $block->type
+			( $this->target ? $this->target->equals( $block->target ) : $block->target === null )
 			&& $this->auto == $block->auto
 			&& $this->isHardblock() == $block->isHardblock()
 			&& $this->isCreateAccountBlocked() == $block->isCreateAccountBlocked()
@@ -290,38 +287,41 @@ class DatabaseBlock extends AbstractBlock {
 	}
 
 	/**
-	 * Get the IP address at the start of the range in Hex form
-	 * @return string IP in Hex form
+	 * Get the IP address at the start of the range in hex form, or null if
+	 * the target is not a range.
+	 *
+	 * @return string|null
 	 */
 	public function getRangeStart() {
-		switch ( $this->type ) {
-			case self::TYPE_USER:
-				return '';
-			case self::TYPE_IP:
-				return IPUtils::toHex( $this->target );
-			case self::TYPE_RANGE:
-				[ $start, /*...*/ ] = IPUtils::parseRange( $this->target );
-				return $start;
-			default:
-				throw new UnexpectedValueException( "Block with invalid type" );
-		}
+		return $this->target instanceof RangeBlockTarget
+			? $this->target->getHexRangeStart() : null;
 	}
 
 	/**
-	 * Get the IP address at the end of the range in Hex form
-	 * @return string IP in Hex form
+	 * Get the IP address at the end of the range in hex form, or null if
+	 * the target is not a range.
+	 *
+	 * @return string|null
 	 */
 	public function getRangeEnd() {
-		switch ( $this->type ) {
-			case self::TYPE_USER:
-				return '';
-			case self::TYPE_IP:
-				return IPUtils::toHex( $this->target );
-			case self::TYPE_RANGE:
-				[ /*...*/, $end ] = IPUtils::parseRange( $this->target );
-				return $end;
-			default:
-				throw new UnexpectedValueException( "Block with invalid type" );
+		return $this->target instanceof RangeBlockTarget
+			? $this->target->getHexRangeEnd() : null;
+	}
+
+	/**
+	 * Get the IP address of the single-IP block or the start of the range in
+	 * hexadecimal form, or null if the target is not an IP.
+	 *
+	 * @since 1.44
+	 * @return string|null
+	 */
+	public function getIpHex() {
+		if ( $this->target instanceof RangeBlockTarget ) {
+			return $this->target->getHexRangeStart();
+		} elseif ( $this->target instanceof AnonIpBlockTarget ) {
+			return $this->target->toHex();
+		} else {
+			return null;
 		}
 	}
 
@@ -501,7 +501,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * @inheritDoc
 	 *
 	 * Autoblocks have whichever type corresponds to their target, so to detect if a block is an
-	 * autoblock, we have to check the mAuto property instead.
+	 * autoblock, we have to check the auto property instead.
 	 */
 	public function getType(): ?int {
 		return $this->auto

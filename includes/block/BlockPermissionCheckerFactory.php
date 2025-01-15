@@ -37,15 +37,15 @@ class BlockPermissionCheckerFactory {
 	public const CONSTRUCTOR_OPTIONS = BlockPermissionChecker::CONSTRUCTOR_OPTIONS;
 
 	private ServiceOptions $options;
-	private BlockUtils $blockUtils;
+	private BlockTargetFactory $blockTargetFactory;
 
 	public function __construct(
 		ServiceOptions $options,
-		BlockUtils $blockUtils
+		BlockTargetFactory $blockTargetFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
-		$this->blockUtils = $blockUtils;
+		$this->blockTargetFactory = $blockTargetFactory;
 	}
 
 	/**
@@ -73,7 +73,7 @@ class BlockPermissionCheckerFactory {
 	public function newChecker( Authority $performer ) {
 		return new BlockPermissionChecker(
 			$this->options,
-			$this->blockUtils,
+			$this->blockTargetFactory,
 			$performer
 		);
 	}

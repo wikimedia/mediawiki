@@ -38,9 +38,11 @@ use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockPermissionCheckerFactory;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockRestrictionStoreFactory;
+use MediaWiki\Block\BlockTargetFactory;
 use MediaWiki\Block\BlockUserFactory;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\BlockUtilsFactory;
+use MediaWiki\Block\CrossWikiBlockTargetFactory;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\DatabaseBlockStoreFactory;
 use MediaWiki\Block\HideUserUtils;
@@ -829,6 +831,13 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.44
+	 */
+	public function getBlockTargetFactory(): BlockTargetFactory {
+		return $this->getService( 'BlockTargetFactory' );
+	}
+
+	/**
 	 * @since 1.36
 	 */
 	public function getBlockUserFactory(): BlockUserFactory {
@@ -836,6 +845,7 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @deprecated since 1.44
 	 * @since 1.36
 	 */
 	public function getBlockUtils(): BlockUtils {
@@ -843,6 +853,7 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @deprecated since 1.44
 	 * @since 1.42
 	 */
 	public function getBlockUtilsFactory(): BlockUtilsFactory {
@@ -1027,6 +1038,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getCriticalSectionProvider(): CriticalSectionProvider {
 		return $this->getService( 'CriticalSectionProvider' );
+	}
+
+	/**
+	 * @since 1.44
+	 */
+	public function getCrossWikiBlockTargetFactory(): CrossWikiBlockTargetFactory {
+		return $this->getService( 'CrossWikiBlockTargetFactory' );
 	}
 
 	/**

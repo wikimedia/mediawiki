@@ -25,9 +25,10 @@ namespace MediaWiki\Api;
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockPermissionCheckerFactory;
+use MediaWiki\Block\BlockTarget;
+use MediaWiki\Block\BlockTargetFactory;
 use MediaWiki\Block\BlockUser;
 use MediaWiki\Block\BlockUserFactory;
-use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\Restriction\ActionRestriction;
@@ -41,7 +42,6 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\Options\UserOptionsLookup;
-use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
@@ -64,9 +64,9 @@ class ApiBlock extends ApiBase {
 	private TitleFactory $titleFactory;
 	private UserIdentityLookup $userIdentityLookup;
 	private WatchedItemStoreInterface $watchedItemStore;
-	private BlockUtils $blockUtils;
 	private BlockActionInfo $blockActionInfo;
 	private DatabaseBlockStore $blockStore;
+	private BlockTargetFactory $blockTargetFactory;
 
 	public function __construct(
 		ApiMain $main,
@@ -76,7 +76,7 @@ class ApiBlock extends ApiBase {
 		TitleFactory $titleFactory,
 		UserIdentityLookup $userIdentityLookup,
 		WatchedItemStoreInterface $watchedItemStore,
-		BlockUtils $blockUtils,
+		BlockTargetFactory $blockTargetFactory,
 		BlockActionInfo $blockActionInfo,
 		DatabaseBlockStore $blockStore,
 		WatchlistManager $watchlistManager,
@@ -89,7 +89,7 @@ class ApiBlock extends ApiBase {
 		$this->titleFactory = $titleFactory;
 		$this->userIdentityLookup = $userIdentityLookup;
 		$this->watchedItemStore = $watchedItemStore;
-		$this->blockUtils = $blockUtils;
+		$this->blockTargetFactory = $blockTargetFactory;
 		$this->blockActionInfo = $blockActionInfo;
 		$this->blockStore = $blockStore;
 
@@ -127,12 +127,13 @@ class ApiBlock extends ApiBase {
 			$status = $this->updateBlock( $block, $params );
 		} else {
 			if ( $params['user'] !== null ) {
-				$target = $params['user'];
+				$target = $this->blockTargetFactory->newFromUser( $params['user'] );
 			} else {
-				$target = $this->userIdentityLookup->getUserIdentityByUserId( $params['userid'] );
-				if ( !$target ) {
+				$targetUser = $this->userIdentityLookup->getUserIdentityByUserId( $params['userid'] );
+				if ( !$targetUser ) {
 					$this->dieWithError( [ 'apierror-nosuchuserid', $params['userid'] ], 'nosuchuserid' );
 				}
+				$target = $this->blockTargetFactory->newUserBlockTarget( $targetUser );
 			}
 			if ( $params['newblock'] ) {
 				$status = $this->insertBlock( $target, $params );
@@ -289,7 +290,7 @@ class ApiBlock extends ApiBase {
 	/**
 	 * Insert a block
 	 *
-	 * @param UserIdentity|string $target
+	 * @param BlockTarget $target
 	 * @param array $params
 	 * @return Status
 	 */
@@ -320,6 +321,7 @@ class ApiBlock extends ApiBase {
 			'user' => [
 				ParamValidator::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'temp', 'cidr', 'id' ],
+				UserDef::PARAM_RETURN_OBJECT => true,
 			],
 			'userid' => [
 				ParamValidator::PARAM_TYPE => 'integer',
