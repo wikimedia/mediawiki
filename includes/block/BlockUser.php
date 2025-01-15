@@ -676,6 +676,8 @@ class BlockUser {
 		}
 		// Relate log ID to block ID (T27763)
 		$logEntry->setRelations( [ 'ipb_id' => $block->getId() ] );
+		// Also save the ID to log_params, since MW 1.44
+		$logEntry->addParameter( 'blockId', $block->getId() );
 
 		// Set *_deleted fields if requested
 		if ( $this->isHideUser ) {

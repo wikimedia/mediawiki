@@ -180,25 +180,58 @@ class BlockLogFormatter extends LogFormatter {
 	public function getActionLinks() {
 		$subtype = $this->entry->getSubtype();
 		$linkRenderer = $this->getLinkRenderer();
-		if ( $this->entry->isDeleted( LogPage::DELETED_ACTION ) // Action is hidden
+
+		// Don't show anything if the action is hidden
+		if ( $this->entry->isDeleted( LogPage::DELETED_ACTION )
 			|| !( $subtype === 'block' || $subtype === 'reblock' )
 			|| !$this->context->getAuthority()->isAllowed( 'block' )
 		) {
 			return '';
 		}
 
-		// Show unblock/change block link
 		$title = $this->entry->getTarget();
-		$links = [
-			$linkRenderer->makeKnownLink(
-				SpecialPage::getTitleFor( 'Unblock', $title->getDBkey() ),
-				$this->msg( 'unblocklink' )->text()
-			),
-			$linkRenderer->makeKnownLink(
-				SpecialPage::getTitleFor( 'Block', $title->getDBkey() ),
-				$this->msg( 'change-blocklink' )->text()
-			)
-		];
+		if ( $this->context->getConfig()->get( MainConfigNames::UseCodexSpecialBlock ) ) {
+			$params = $this->entry->getParameters();
+			if ( isset( $params['blockId'] ) ) {
+				// If we have a block ID, show remove/change links
+				$query = isset( $params['blockId'] ) ? [ 'id' => $params['blockId'] ] : [];
+				$links = [
+					$linkRenderer->makeKnownLink(
+						SpecialPage::getTitleFor( 'Block', $title->getDBkey() ),
+						$this->msg( 'remove-blocklink' )->text(),
+						[],
+						$query + [ 'remove' => '1' ]
+					),
+					$linkRenderer->makeKnownLink(
+						SpecialPage::getTitleFor( 'Block', $title->getDBkey() ),
+						$this->msg( 'change-blocklink' )->text(),
+						[],
+						$query
+					)
+				];
+			} else {
+				// For legacy log entries, just show "manage blocks" since the
+				// Codex block page doesn't have an "unblock by target" mode
+				$links = [
+					$linkRenderer->makeKnownLink(
+						SpecialPage::getTitleFor( 'Block', $title->getDBkey() ),
+						$this->msg( 'manage-blocklink' )->text(),
+					),
+				];
+			}
+		} else {
+			// Show unblock/change links
+			$links = [
+				$linkRenderer->makeKnownLink(
+					SpecialPage::getTitleFor( 'Unblock', $title->getDBkey() ),
+					$this->msg( 'unblocklink' )->text()
+				),
+				$linkRenderer->makeKnownLink(
+					SpecialPage::getTitleFor( 'Block', $title->getDBkey() ),
+					$this->msg( 'change-blocklink' )->text()
+				)
+			];
+		}
 
 		return $this->msg( 'parentheses' )->rawParams(
 			$this->context->getLanguage()->pipeList( $links ) )->escaped();

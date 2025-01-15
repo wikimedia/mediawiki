@@ -29,6 +29,7 @@ use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\Field\HTMLMultiSelectField;
 use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Pager\ContribsPager;
 use MediaWiki\Pager\ContributionsPager;
 use MediaWiki\Permissions\PermissionManager;
@@ -625,19 +626,27 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 			);
 		}
 
-		# Block / Change block / Unblock links
+		# Block links
 		if ( $this->permissionManager->userHasRight( $sp->getUser(), 'block' ) ) {
 			if ( $target->getBlock() && $target->getBlock()->getType() != Block::TYPE_AUTO ) {
-				$tools['block'] = $linkRenderer->makeKnownLink( # Change block link
-					SpecialPage::getTitleFor( 'Block', $username ),
-					$sp->msg( 'change-blocklink' )->text(),
-					[ 'class' => 'mw-contributions-link-change-block' ]
-				);
-				$tools['unblock'] = $linkRenderer->makeKnownLink( # Unblock link
-					SpecialPage::getTitleFor( 'Unblock', $username ),
-					$sp->msg( 'unblocklink' )->text(),
-					[ 'class' => 'mw-contributions-link-unblock' ]
-				);
+				if ( $this->getConfig()->get( MainConfigNames::UseCodexSpecialBlock ) ) {
+					$tools['block'] = $linkRenderer->makeKnownLink( # Manage block link
+						SpecialPage::getTitleFor( 'Block', $username ),
+						$sp->msg( 'manage-blocklink' )->text(),
+						[ 'class' => 'mw-contributions-link-manage-block' ]
+					);
+				} else {
+					$tools['block'] = $linkRenderer->makeKnownLink( # Change block link
+						SpecialPage::getTitleFor( 'Block', $username ),
+						$sp->msg( 'change-blocklink' )->text(),
+						[ 'class' => 'mw-contributions-link-change-block' ]
+					);
+					$tools['unblock'] = $linkRenderer->makeKnownLink( # Unblock link
+						SpecialPage::getTitleFor( 'Unblock', $username ),
+						$sp->msg( 'unblocklink' )->text(),
+						[ 'class' => 'mw-contributions-link-unblock' ]
+					);
+				}
 			} else { # User is not blocked
 				$tools['block'] = $linkRenderer->makeKnownLink( # Block link
 					SpecialPage::getTitleFor( 'Block', $username ),

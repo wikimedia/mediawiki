@@ -237,6 +237,8 @@ class UnblockUser {
 		$logEntry->setPerformer( $this->performer->getUser() );
 		$logEntry->addTags( $this->tags );
 		$logEntry->setRelations( [ 'ipb_id' => $this->block->getId() ] );
+		// Save the ID to log_params, since MW 1.44
+		$logEntry->addParameter( 'blockId', $this->block->getId() );
 		$logId = $logEntry->insert();
 		$logEntry->publish( $logId );
 	}
