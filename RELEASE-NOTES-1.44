@@ -220,7 +220,8 @@ because of Phabricator reports.
 * ResourceLoader::makeConfigSetScript() is now deprecated. Consider using
   package files instead. Or, you can return "mw.config.set()" combined with
   RL\Context::encodeJson, if available. If not, use FormatJson::encode.
-* ...
+* The parameter $default in WebRequest::getRawVal(), deprecated since 1.43,
+  is now emitting warnings.
 * …
 
 === Other changes in 1.44 ===

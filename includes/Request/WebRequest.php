@@ -497,6 +497,9 @@ class WebRequest {
 	 * @return-taint tainted
 	 */
 	public function getRawVal( $name, $default = null ): ?string {
+		if ( $default !== null ) {
+			wfDeprecated( __METHOD__ . ' with parameter $default', '1.43' );
+		}
 		$name = strtr( $name, '.', '_' ); // See comment in self::getGPCVal()
 		if ( isset( $this->data[$name] ) && !is_array( $this->data[$name] ) ) {
 			$val = $this->data[$name];
