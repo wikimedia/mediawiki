@@ -59,6 +59,7 @@
 	"apihelp-acquiretempusername-summary": "啟用建立臨時帳號功能且目前使用者已登出時，取得臨時使用者的使用者名稱並將其儲存在目前連線階段中。如果已儲存名稱則回傳相同名稱。",
 	"apihelp-acquiretempusername-extended-description": "如果使用者稍後執行了會導致臨時帳號建立的操作，則儲存的使用者名稱將會直接用於建立該臨時帳號。相關名稱也可以在預覽中使用。但要注意，此時該帳號依然尚未建立，並且該名稱對其他使用者不可見。",
 	"apihelp-block-summary": "封鎖使用者。",
+	"apihelp-block-param-id": "所修改的封鎖 ID。",
 	"apihelp-block-param-user": "要封鎖的使用者。",
 	"apihelp-block-param-userid": "改成指定<kbd>$1user=#<var>ID</var></kbd>。",
 	"apihelp-block-param-expiry": "到期時間。可以是相對時間（例如：<kbd>5 months</kbd> 或 <kbd>2 weeks</kbd>）或是絕對時間（例如：<kbd>2014-09-18T12:34:56Z</kbd>）。如果設定成<kbd>infinite</kbd>、<kbd>indefinite</kbd>或<kbd>never</kbd>，封鎖將會無期限。",

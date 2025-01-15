@@ -697,6 +697,7 @@
 	"apihelp-query+blocks-paramvalue-prop-timestamp": "Voegt het tijdstip toe waarop de blokkade is ingesteld.",
 	"apihelp-query+blocks-paramvalue-prop-expiry": "Voegt het tijdstip toe waarop de blokkade vervalt.",
 	"apihelp-query+blocks-paramvalue-prop-reason": "Voegt de reden voor de blokkade toe.",
+	"apihelp-query+blocks-paramvalue-prop-parsedreason": "Voegt de geparsete reden voor de blokkade toe.",
 	"apihelp-query+blocks-paramvalue-prop-range": "Voegt het bereik van IP-adressen toe waarop de blokkade van toepassing is.",
 	"apihelp-query+blocks-paramvalue-prop-flags": "Labelt de blokkade met (automatische blokkade, alleen anoniem, enzovoort).",
 	"apihelp-query+blocks-paramvalue-prop-restrictions": "Voegt de gedeeltelijke blokkadebeperkingen toe als de blokkade niet voor de hele site geldt.",

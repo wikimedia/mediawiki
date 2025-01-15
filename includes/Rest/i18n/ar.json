@@ -92,7 +92,7 @@
 	"rest-param-desc-mock-desc": "وصف الوهمي",
 	"rest-param-desc-revision-id": "معرف المراجعة",
 	"rest-param-desc-html-input-title": "تحويل عنوان إدخال HTML",
-	"rest-param-desc-page-content-title": "عنوان محتوى الصفحة",
+	"rest-param-desc-page-content-title": "عنوان الصفحة بتنسيق سهل القراءة",
 	"rest-param-desc-update-source": "محتوى الصفحة بالتنسيق المحدد بواسطة خاصية content_model",
 	"rest-param-desc-update-title": "تم تحديث عنوان الصفحة"
 }
