@@ -9,7 +9,6 @@ module.exports = exports = defineStore( 'block', () => {
 	// ** State properties (refs) **
 
 	// Form fields.
-	// TODO: Rid of the `mw.config.get( 'whatever' )` atrocity once we have Codex PHP (T377529)
 
 	/**
 	 * Whether the multiblocks feature is enabled with $wgEnableMultiBlocks.

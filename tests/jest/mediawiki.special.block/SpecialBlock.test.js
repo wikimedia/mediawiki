@@ -36,14 +36,15 @@ describe( 'SpecialBlock', () => {
 	} );
 
 	it( 'should show a banner and no "New block" button based on if user is already blocked', () => {
-		expect( wrapper.find( '.mw-block-error' ).exists() ).toBeFalsy();
+		expect( wrapper.find( '.mw-block-messages .cdx-message--error' ).exists() ).toBeFalsy();
 		wrapper = getSpecialBlock( {
 			blockAlreadyBlocked: true,
 			blockTargetUser: 'ExampleUser',
 			blockPreErrors: [ 'ExampleUser is already blocked.' ]
 		} );
 		// Server-generated message, hence why it's in English.
-		expect( wrapper.find( '.mw-block-error' ).text() ).toStrictEqual( 'ExampleUser is already blocked.' );
+		expect( wrapper.find( '.mw-block-messages .cdx-message--error' ).text() )
+			.toStrictEqual( 'ExampleUser is already blocked.' );
 		expect( wrapper.find( '.mw-block-log__create-button' ).exists() ).toBeFalsy();
 	} );
 
@@ -124,7 +125,7 @@ describe( 'SpecialBlock', () => {
 	it( 'should require confirmation for self-blocking', async () => {
 		wrapper = getSpecialBlock( { wgUserName: 'ExampleUser' } );
 		const store = useBlockStore();
-		expect( wrapper.find( '.mw-block-error' ).exists() ).toBeFalsy();
+		expect( wrapper.find( '.cdx-message--error' ).exists() ).toBeFalsy();
 		expect( store.confirmationNeeded ).toBeFalsy();
 		expect( store.confirmationMessage ).toStrictEqual( '' );
 		await wrapper.find( '[name=wpTarget]' ).setValue( 'ExampleUser' );

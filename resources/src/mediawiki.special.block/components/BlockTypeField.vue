@@ -91,10 +91,6 @@ module.exports = exports = defineComponent( {
 <style lang="less">
 @import 'mediawiki.skin.variables.less';
 
-.mw-block-form {
-	margin-top: @spacing-100;
-}
-
 .mw-block-partial-options {
 	padding-left: calc( @size-125 + @spacing-50 );
 

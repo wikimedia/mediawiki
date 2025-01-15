@@ -83,7 +83,9 @@ module.exports = exports = defineComponent( {
 		// This is the source of truth for what should be the target user,
 		// but it should only change on 'change' or 'select' events,
 		// otherwise we'd fire off API queries for the block log unnecessarily.
-		const currentSearchTerm = ref( props.modelValue || '' );
+		const currentSearchTerm = ref(
+			props.modelValue || mw.config.get( 'blockTargetUserInput' ) || ''
+		);
 		const menuItems = ref( [] );
 		const status = ref( 'default' );
 		const messages = ref( {} );
