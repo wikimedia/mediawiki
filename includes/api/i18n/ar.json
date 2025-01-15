@@ -748,6 +748,7 @@
 	"apihelp-query+deletedrevs-param-namespace": "إدراج الصفحات في هذا النطاق فقط.",
 	"apihelp-query+deletedrevs-param-limit": "الحد الأقصى لكمية المراجعات للإدراج.",
 	"apihelp-query+deletedrevs-param-prop": "ما هي الخصائص التي يجب الحصول عليها:",
+	"apihelp-query+deletedrevs-paramvalue-prop-tags": "وسوم للمراجعة.",
 	"apihelp-query+deletedrevs-example-mode1": "قم بإدراج آخر المراجعات المحذوفة لصفحات [[{{MediaWiki:Mainpage}}]] و <kbd>Talk:Main Page</kbd> ، مع المحتوى (الوضع 1).",
 	"apihelp-query+deletedrevs-example-mode2": "إدراج آخر 50 مساهمة محذوفة بواسطة <kbd>Bob</kbd> (الوضع 2).",
 	"apihelp-query+deletedrevs-example-mode3-main": "إدراج آخر 50 مراجعة محذوفة في النطاق الرئيسي (الوضع 3).",

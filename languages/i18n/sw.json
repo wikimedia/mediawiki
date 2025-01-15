@@ -617,7 +617,7 @@
 	"session_fail_preview_html": "'''Kumradhi! Hatukuweza kushughulikia haririo lako kwa kufuatia upungufu wa ukaaji wa data.'''\n\n''Kwa sababu {{SITENAME}} ina HTML zilizowezeshwa, hakikio limefichwa ikiwa kama tahadhari dhidi ya mashambulio ya JavaScript.''\n\n'''Iwapo hili ni haririo la jaribio halali, tafadhali jaribu tena.'''\nIwapo bado haifanyikazi, jaribu [[Special:UserLogout|kutoka]] na uingie tena.",
 	"edit_form_incomplete": "'''Baadhi ya sehemu za fomu ya kuhariria hazikufikia seva. Hakikisha kwamba haririo lako bado lipo na kisha jaribu tena.'''",
 	"editing": "Kuhariri $1",
-	"creating": "$1 inaanzishwa",
+	"creating": "Kuanzisha $1",
 	"editingsection": "Unahariri $1 (fungu)",
 	"editingcomment": "Una hariri $1 (sehemu mpya)",
 	"editconflict": "Mgongano wa kuhariri: $1",

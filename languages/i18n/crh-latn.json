@@ -1079,7 +1079,7 @@
 	"nbytes": "{{PLURAL:$1|1 bayt|$1 bayt}}",
 	"ncategories": "{{PLURAL:$1|1 kategoriya|$1 kategoriya}}",
 	"nlinks": "{{PLURAL:$1|1 bağlantı|$1 bağlantı}}",
-	"nmembers": "{{PLURAL:$1|1 aza|$1 aza}}",
+	"nmembers": "{{PLURAL:$1|$1 aza}}",
 	"nrevisions": "{{PLURAL:$1|1 versiya|$1 versiya}}",
 	"specialpage-empty": "Bu soratma içün iç netice yoq.",
 	"lonelypages": "Özüne iç bağlantı olmağan saifeler",

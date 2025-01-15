@@ -3124,7 +3124,7 @@
 	"filedelete-current-unregistered": "Mugošt failad \"$1\" ei ole tedokaičuses.",
 	"filedelete-archive-read-only": "Webserver ei voi kirjutada arhivlugetišt \"$1\".",
 	"previousdiff": "← Vanhemb vajehtuz",
-	"nextdiff": "Udemb vajehtuz→",
+	"nextdiff": "Udemb vajehtuz →",
 	"mediawarning": "<strong>Varutuz:</strong> Necen failan tipal voib olda paha kod.\nAvaites sidä, sinun sistem voib muretas.",
 	"imagemaxsize": "Kuvan suruden ülimär failan kirjutuzlehtpolil:",
 	"thumbsize": "Kuvaižen suruz':",

@@ -395,7 +395,7 @@
 	"statistics": "Bipeta bia bunyi",
 	"pageswithprop-submit": "Kwendaa",
 	"withoutinterwiki-submit": "Kuleeja",
-	"nmembers": "$1 udi mu{{PLURAL:$1||s}}",
+	"nmembers": "$1 {{PLURAL:$1|udi mu}}",
 	"prefixindex": "Mabeji onso adi abanga ne...",
 	"prefixindex-submit": "Kuleeja",
 	"protectedpages-reason": "Bua tshinyi",
