@@ -3,6 +3,7 @@
 namespace MediaWiki\Api\Hook;
 
 use MediaWiki\Api\ApiBase;
+use MediaWiki\Rest\Hook\RestCheckCanExecuteHook;
 use MediaWiki\User\User;
 use Wikimedia\Message\MessageSpecifier;
 
@@ -35,6 +36,7 @@ interface ApiCheckCanExecuteHook {
 	 *
 	 * @see ApiMessage::create() for how the $message parameter is interpreted.
 	 * @see ApiQueryCheckCanExecuteHook for query modules.
+	 * @see RestCheckCanExecuteHook for REST API modules.
 	 */
 	public function onApiCheckCanExecute( $module, $user, &$message );
 }

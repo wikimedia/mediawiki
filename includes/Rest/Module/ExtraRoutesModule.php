@@ -5,6 +5,7 @@ namespace MediaWiki\Rest\Module;
 use AppendIterator;
 use ArrayIterator;
 use Iterator;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Rest\BasicAccess\BasicAuthorizerInterface;
 use MediaWiki\Rest\Handler\RedirectHandler;
 use MediaWiki\Rest\PathTemplateMatcher\ModuleConfigurationException;
@@ -97,7 +98,8 @@ class ExtraRoutesModule extends MatcherBasedModule {
 		BasicAuthorizerInterface $basicAuth,
 		ObjectFactory $objectFactory,
 		Validator $restValidator,
-		ErrorReporter $errorReporter
+		ErrorReporter $errorReporter,
+		HookContainer $hookContainer
 	) {
 		parent::__construct(
 			$router,
@@ -106,7 +108,8 @@ class ExtraRoutesModule extends MatcherBasedModule {
 			$basicAuth,
 			$objectFactory,
 			$restValidator,
-			$errorReporter
+			$errorReporter,
+			$hookContainer
 		);
 		$this->routeFiles = $routeFiles;
 		$this->extraRoutes = $extraRoutes;
