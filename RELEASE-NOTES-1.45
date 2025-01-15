@@ -179,6 +179,8 @@ because of Phabricator reports.
   enumeration.  Any calls to ParserOutputStringSets::cases() should be
   converted to ParserOutputStringSets::values() if you wish to still
   obtain a list of strings.
+* The parameter $default of WebRequest::getRawVal(), deprecated since 1.43,
+  is now removed.
 * …
 
 === Deprecations in 1.45 ===
