@@ -72,6 +72,9 @@ For notes on 1.43.x and older releases, see HISTORY.
   $wgInterwikiViewOnly has been removed, (un)assign "interwiki" right instead.
 * (T302140) Rollbacked edits are marked as manually patrolled instead of
   auto-patrolled since the rollback action was a manual patrol of the edit.
+* (T56145) Introduces a new tag 'mw-recreated' to note edits which create pages
+ that have been previously deleted by having an associated deletion log entry.
+ This does not consider deletion log entries that were suppressed.
 * …
 
 === New features for sysadmins in 1.44 ===
