@@ -823,8 +823,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideSerializationRoundtrip
 	 */
-	public function testSerialization( $msgCallback, $serialized, $parsed ) {
-		$msg = $msgCallback();
+	public function testSerialization( Message $msg, $serialized, $parsed ) {
 		$this->assertSame( $serialized, serialize( $msg ) );
 		$this->assertSame( $parsed, $msg->parse() );
 	}
@@ -833,10 +832,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideSerializationRoundtrip
 	 * @dataProvider provideSerializationLegacy
 	 */
-	public function testUnserialization( $msgCallback, $serialized, $parsed ) {
-		// Message objects hold references to lots of global state which is different in the provider
-		// and in the test, so we need to delay constructing the expected object, hence the callback.
-		$msg = $msgCallback();
+	public function testUnserialization( Message $msg, $serialized, $parsed ) {
 		$this->assertEquals( $msg, unserialize( $serialized ) );
 		$this->assertSame( $parsed, unserialize( $serialized )->parse() );
 	}
@@ -847,19 +843,19 @@ class MessageTest extends MediaWikiLangTestCase {
 		// doing so is complicated (T373719).
 
 		yield "Serializing raw parameters" => [
-			fn () => ( new Message( 'parentheses' ) )->rawParams( '<a>foo</a>' ),
+			( new Message( 'parentheses' ) )->rawParams( '<a>foo</a>' ),
 			'O:25:"MediaWiki\Message\Message":7:{s:9:"interface";b:1;s:8:"language";N;s:3:"key";s:11:"parentheses";s:9:"keysToTry";a:1:{i:0;s:11:"parentheses";}s:10:"parameters";a:1:{i:0;O:29:"Wikimedia\Message\ScalarParam":2:{s:7:"' . chr( 0 ) . '*' . chr( 0 ) . 'type";s:3:"raw";s:8:"' . chr( 0 ) . '*' . chr( 0 ) . 'value";s:10:"<a>foo</a>";}}s:11:"useDatabase";b:1;s:10:"titlevalue";N;}',
 			'(<a>foo</a>)',
 		];
 
 		yield "Serializing message with a context page" => [
-			fn () => ( new Message( 'rawmessage', [ '{{PAGENAME}}' ] ) )->page( PageReferenceValue::localReference( NS_MAIN, 'Testing' ) ),
+			( new Message( 'rawmessage', [ '{{PAGENAME}}' ] ) )->page( PageReferenceValue::localReference( NS_MAIN, 'Testing' ) ),
 			'O:25:"MediaWiki\Message\Message":7:{s:9:"interface";b:1;s:8:"language";N;s:3:"key";s:10:"rawmessage";s:9:"keysToTry";a:1:{i:0;s:10:"rawmessage";}s:10:"parameters";a:1:{i:0;s:12:"{{PAGENAME}}";}s:11:"useDatabase";b:1;s:10:"titlevalue";a:2:{i:0;i:0;i:1;s:7:"Testing";}}',
 			'Testing',
 		];
 
 		yield "Serializing language" => [
-			fn () => ( new Message( 'mainpage' ) )->inLanguage( 'de' ),
+			( new Message( 'mainpage' ) )->inLanguage( 'de' ),
 			'O:25:"MediaWiki\Message\Message":7:{s:9:"interface";b:0;s:8:"language";s:2:"de";s:3:"key";s:8:"mainpage";s:9:"keysToTry";a:1:{i:0;s:8:"mainpage";}s:10:"parameters";a:0:{}s:11:"useDatabase";b:1;s:10:"titlevalue";N;}',
 			'Hauptseite',
 		];
@@ -869,19 +865,19 @@ class MessageTest extends MediaWikiLangTestCase {
 		// Test cases where we can test only unserialization, because the serialization format changed.
 
 		yield "MW 1.42: Magic arrays instead of MessageParam objects" => [
-			fn () => ( new Message( 'parentheses' ) )->rawParams( '<a>foo</a>' ),
+			( new Message( 'parentheses' ) )->rawParams( '<a>foo</a>' ),
 			'O:25:"MediaWiki\Message\Message":7:{s:9:"interface";b:1;s:8:"language";N;s:3:"key";s:11:"parentheses";s:9:"keysToTry";a:1:{i:0;s:11:"parentheses";}s:10:"parameters";a:1:{i:0;a:1:{s:3:"raw";s:10:"<a>foo</a>";}}s:11:"useDatabase";b:1;s:10:"titlevalue";N;}',
 			'(<a>foo</a>)',
 		];
 
 		yield "MW 1.41: Un-namespaced class" => [
-			fn () => new Message( 'mainpage' ),
+			new Message( 'mainpage' ),
 			'O:7:"Message":7:{s:9:"interface";b:1;s:8:"language";N;s:3:"key";s:8:"mainpage";s:9:"keysToTry";a:1:{i:0;s:8:"mainpage";}s:10:"parameters";a:0:{}s:11:"useDatabase";b:1;s:10:"titlevalue";N;}',
 			'Main Page',
 		];
 
 		yield "MW 1.34: 'titlestr' instead of 'titlevalue'" => [
-			fn () => ( new Message( 'rawmessage', [ '{{PAGENAME}}' ] ) )->title( Title::newFromText( 'Testing' ) ),
+			( new Message( 'rawmessage', [ '{{PAGENAME}}' ] ) )->title( Title::newFromText( 'Testing' ) ),
 			'C:7:"Message":242:{a:8:{s:9:"interface";b:1;s:8:"language";b:0;s:3:"key";s:10:"rawmessage";s:9:"keysToTry";a:1:{i:0;s:10:"rawmessage";}s:10:"parameters";a:1:{i:0;s:12:"{{PAGENAME}}";}s:6:"format";s:5:"parse";s:11:"useDatabase";b:1;s:8:"titlestr";s:7:"Testing";}}',
 			'Testing',
 		];

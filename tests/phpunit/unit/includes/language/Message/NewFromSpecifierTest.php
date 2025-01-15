@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Unit\Message;
 
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Message;
@@ -124,8 +125,9 @@ class NewFromSpecifierTest extends MediaWikiUnitTestCase {
 		// Tests for unidirectional conversion from RawMessage.
 		// The result doesn't roundtrip, but it at least renders the same output.
 		// Avoid service container access in the multiple param case
-		$lang = $this->createMock( Language::class );
-		$m->inLanguage( $lang );
+		$ctx = $this->createMock( IContextSource::class );
+		$ctx->method( 'getLanguage' )->willReturn( $this->createMock( Language::class ) );
+		$m->setContext( $ctx );
 		$this->assertEquals( $mv, MessageValue::newFromSpecifier( $m ) );
 	}
 
