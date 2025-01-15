@@ -768,10 +768,11 @@ class ChangesList extends ContextSource {
 	 * Insert a formatted action
 	 *
 	 * @param RecentChange $rc
-	 * @return string
+	 * @return string HTML
 	 */
 	public function insertLogEntry( $rc ) {
-		$formatter = $this->logFormatterFactory->newFromRow( $rc->mAttribs );
+		$entry = DatabaseLogEntry::newFromRow( $rc->mAttribs );
+		$formatter = $this->logFormatterFactory->newFromEntry( $entry );
 		$formatter->setContext( $this->getContext() );
 		$formatter->setShowUserToolLinks( true );
 
@@ -781,13 +782,20 @@ class ChangesList extends ContextSource {
 			$comment = Html::rawElement( 'bdi', [ 'dir' => $dir ], $comment );
 		}
 
-		return Html::openElement( 'span', [ 'class' => 'mw-changeslist-log-entry' ] )
-			. $formatter->getActionText()
-			. $this->message['word-separator']
-			. $comment
-			. $this->message['word-separator']
-			. $formatter->getActionLinks()
-			. Html::closeElement( 'span' );
+		$html = $formatter->getActionText() . $this->message['word-separator'] . $comment .
+			$this->message['word-separator'] . $formatter->getActionLinks();
+		$classes = [ 'mw-changeslist-log-entry' ];
+		$attribs = [];
+
+		// Let extensions add data to the outputted log entry in a similar way to the LogEventsListLineEnding hook
+		$this->getHookRunner()->onChangesListInsertLogEntry( $entry, $this->getContext(), $html, $classes, $attribs );
+		$attribs = array_filter( $attribs,
+			[ Sanitizer::class, 'isReservedDataAttribute' ],
+			ARRAY_FILTER_USE_KEY
+		);
+		$attribs['class'] = $classes;
+
+		return Html::openElement( 'span', $attribs ) . $html . Html::closeElement( 'span' );
 	}
 
 	/**

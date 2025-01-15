@@ -1423,6 +1423,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Hook\\ChangeUserGroupsHook' => __DIR__ . '/includes/specials/Hook/ChangeUserGroupsHook.php',
 	'MediaWiki\\Hook\\ChangesListInitRowsHook' => __DIR__ . '/includes/recentchanges/Hook/ChangesListInitRowsHook.php',
 	'MediaWiki\\Hook\\ChangesListInsertArticleLinkHook' => __DIR__ . '/includes/recentchanges/Hook/ChangesListInsertArticleLinkHook.php',
+	'MediaWiki\\Hook\\ChangesListInsertLogEntryHook' => __DIR__ . '/includes/recentchanges/Hook/ChangesListInsertLogEntryHook.php',
 	'MediaWiki\\Hook\\Collation__factoryHook' => __DIR__ . '/includes/collation/Hook/Collation__factoryHook.php',
 	'MediaWiki\\Hook\\ContentSecurityPolicyDefaultSourceHook' => __DIR__ . '/includes/Hook/ContentSecurityPolicyDefaultSourceHook.php',
 	'MediaWiki\\Hook\\ContentSecurityPolicyDirectivesHook' => __DIR__ . '/includes/Hook/ContentSecurityPolicyDirectivesHook.php',
