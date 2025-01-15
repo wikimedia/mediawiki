@@ -3038,6 +3038,18 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 			// Only resolve LinkTarget to a Title when operating in the context of the local wiki (T248756)
 			$page = $this->wikiId === WikiAwareEntity::LOCAL ? Title::castFromLinkTarget( $page ) : null;
 		}
+
+		if ( $page && !$page->exists() ) {
+			// Protect against T380677#10461083:
+			// During a page move, we are creating a new page with the name of a
+			// page that we just renamed. If we look up revisions by name on a
+			// stale replica/snapshot, we may find the revisions of the old page,
+			// while the new page doesn't exist yet.
+			// This is a work-around. Ideally, we'd just do the lookup based on page ID,
+			// or make sure we are not running into replication lag or stale snapshots.
+			return null;
+		}
+
 		return $this->newRevisionFromConds(
 			[
 				'page_namespace' => $page->getNamespace(),
