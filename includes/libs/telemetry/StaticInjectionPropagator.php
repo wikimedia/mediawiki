@@ -21,10 +21,11 @@ class StaticInjectionPropagator implements ContextPropagatorInterface {
 	/**
 	 * @inheritDoc
 	 */
-	public function inject( ?SpanContext $spanContext, array &$carrier ): void {
+	public function inject( ?SpanContext $spanContext, array $carrier ): array {
 		foreach ( $this->headers as $key => $value ) {
 			$carrier[$key] = $value;
 		}
+		return $carrier;
 	}
 
 	/**

@@ -50,7 +50,7 @@ class NoopTracer implements TracerInterface {
 	public function getRequestHeaders(): array {
 		$rv = [];
 		if ( $this->contextPropagator ) {
-			$this->contextPropagator->inject( $this->noopSpanContext, $rv );
+			$rv = $this->contextPropagator->inject( $this->noopSpanContext, $rv );
 		}
 		return $rv;
 	}

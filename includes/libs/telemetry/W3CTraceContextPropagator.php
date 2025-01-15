@@ -18,18 +18,18 @@ class W3CTraceContextPropagator implements ContextPropagatorInterface {
 	/**
 	 * @inheritDoc
 	 */
-	public function inject( ?SpanContext $spanContext, array &$carrier ): void {
+	public function inject( ?SpanContext $spanContext, array $carrier ): array {
 		if ( $spanContext === null ) {
-			return;
+			return $carrier;
 		}
 		$traceId = $spanContext->getTraceId();
 		$spanId = $spanContext->getSpanId();
 		$sampled = $spanContext->isSampled() ? '01' : '00';
-		if ( strlen( $traceId ) !== 32 || strlen( $spanId ) !== 16 ) {
-			return;
+		if ( strlen( $traceId ) === 32 && strlen( $spanId ) === 16 ) {
+			$carrier['traceparent'] = "00-{$traceId}-{$spanId}-{$sampled}";
 		}
 
-		$carrier['traceparent'] = "00-{$traceId}-{$spanId}-{$sampled}";
+		return $carrier;
 	}
 
 	/**

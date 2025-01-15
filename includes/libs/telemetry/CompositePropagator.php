@@ -42,9 +42,10 @@ class CompositePropagator implements ContextPropagatorInterface {
 	/**
 	 * @inheritDoc
 	 */
-	public function inject( ?SpanContext $context, array &$carrier ): void {
+	public function inject( ?SpanContext $context, array $carrier ): array {
 		foreach ( $this->propagators as $propagator ) {
-			$propagator->inject( $context, $carrier );
+			$carrier = $propagator->inject( $context, $carrier );
 		}
+		return $carrier;
 	}
 }

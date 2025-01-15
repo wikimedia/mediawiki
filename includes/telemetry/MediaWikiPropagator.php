@@ -24,10 +24,11 @@ class MediaWikiPropagator implements ContextPropagatorInterface {
 	/**
 	 * @inheritDoc
 	 */
-	public function inject( ?SpanContext $spanContext, array &$carrier ): void {
+	public function inject( ?SpanContext $spanContext, array $carrier ): array {
 		foreach ( $this->mwTelemetry->getRequestHeaders() as $key => $value ) {
 			$carrier[$key] = $value;
 		}
+		return $carrier;
 	}
 
 	/**
