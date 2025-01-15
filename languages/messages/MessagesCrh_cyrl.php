@@ -5,7 +5,7 @@
  * @ingroup Languages
  */
 
-$fallback = 'ru';
+$fallback = 'tr';
 
 $fallback8bitEncoding = 'windows-1251';
 

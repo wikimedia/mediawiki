@@ -5,6 +5,7 @@
  * @ingroup Languages
  */
 
+$fallback = 'tr';
 $fallback8bitEncoding = 'windows-1254';
 
 $namespaceNames = [
