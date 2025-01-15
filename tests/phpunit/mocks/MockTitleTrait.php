@@ -63,6 +63,7 @@ trait MockTitleTrait {
 		$title->method( 'inNamespace' )->willReturnCallback( static function ( $namespace ) use ( $ns ) {
 			return $namespace === $ns;
 		} );
+		$title->method( 'isSpecialPage' )->willReturn( $ns === NS_SPECIAL );
 		$title->method( 'getFragment' )->willReturn( $props['fragment'] ?? '' );
 		$title->method( 'hasFragment' )->willReturn( !empty( $props['fragment'] ) );
 		$title->method( 'getInterwiki' )->willReturn( $props['interwiki'] ?? '' );
