@@ -2663,6 +2663,21 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 				->getFirstRevision( $pageIdentity )
 				->getId()
 		);
+
+		// Protect against T380677#10461083:
+		// Expect null if the page ID is 0, even if revisions exist
+		// for a page with the given title.
+		$nonExistingPage = new PageIdentityValue(
+			0,
+			$pageIdentity->getNamespace(),
+			$pageIdentity->getDBkey(),
+			$pageIdentity->getWikiId()
+		);
+		$this->assertNull(
+			$this->getServiceContainer()
+				->getRevisionStore()
+				->getFirstRevision( $nonExistingPage )
+		);
 	}
 
 	public function testGetFirstRevision_nonexistent_page() {
