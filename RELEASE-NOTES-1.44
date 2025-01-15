@@ -220,6 +220,12 @@ because of Phabricator reports.
 * ResourceLoader::makeConfigSetScript() is now deprecated. Consider using
   package files instead. Or, you can return "mw.config.set()" combined with
   RL\Context::encodeJson, if available. If not, use FormatJson::encode.
+* BlockManager::getUserBlock(), deprecated since 1.42, now emits warnings.
+* DatabaseBlock methods newFromRow(), delete(), insert(), update(),
+  doAutoblock(), isExemptedFromAutoblocks(), doAutoblock(), updateTimestamp(),
+  newFromTarget(), newListFromTarget() and getBlocksForIPList() are now
+  deprecated and emit deprecation warnings. Use the corresponding method in
+  DatabaseBlockStore, except for getBlocksForIPList() which is in BlockManager.
 * The parameter $default in WebRequest::getRawVal(), deprecated since 1.43,
   is now emitting warnings.
 * …

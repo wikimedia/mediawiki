@@ -10,6 +10,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\FauxResponse;
 use MediaWiki\User\User;
+use MediaWiki\User\UserIdentityValue;
 use Psr\Log\NullLogger;
 use Wikimedia\TestingAccessWrapper;
 
@@ -987,4 +988,183 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 	public function testAllServiceOptionsUsed() {
 		$this->assertAllServiceOptionsUsed();
 	}
+
+	/**
+	 * Test ported from DatabaseBlock
+	 */
+	public function testBlockedUserCanNotCreateAccount() {
+		$username = 'BlockedUserToCreateAccountWith';
+		$u = User::createNew( $username );
+		$userId = $u->getId();
+		$this->assertNotEquals( 0, $userId, 'Check user id is not 0' );
+		TestUser::setPasswordForUser( $u, 'NotRandomPass' );
+		unset( $u );
+
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$this->assertNull(
+			$blockStore->newFromTarget( $username ),
+			"$username should not be blocked"
+		);
+
+		// Reload user
+		$userFactory = $this->getServiceContainer()->getUserFactory();
+		$u = $userFactory->newFromName( $username );
+		$this->assertTrue(
+			$u->isDefinitelyAllowed( 'createaccount' ),
+			"Our sandbox user should be able to create account before being blocked"
+		);
+
+		// Foreign perspective (blockee not on current wiki)...
+		$blockOptions = [
+			'address' => $username,
+			'reason' => 'crosswiki block...',
+			'timestamp' => wfTimestampNow(),
+			'expiry' => $this->getDb()->getInfinity(),
+			'createAccount' => true,
+			'enableAutoblock' => true,
+			'hideName' => true,
+			'blockEmail' => true,
+			'by' => UserIdentityValue::newExternal( 'm', 'MetaWikiUser' ),
+		];
+		$block = new DatabaseBlock( $blockOptions );
+		$blockStore->insertBlock( $block );
+
+		// Reload block from DB
+		$userBlock = $blockStore->newFromTarget( $username );
+		$this->assertTrue(
+			(bool)$block->appliesToRight( 'createaccount' ),
+			"Block object in DB should block right 'createaccount'"
+		);
+
+		$this->assertInstanceOf(
+			DatabaseBlock::class,
+			$userBlock,
+			"'$username' block block object should be existent"
+		);
+
+		// Reload user
+		$u = $userFactory->newFromName( $username );
+		$this->assertFalse(
+			$u->isDefinitelyAllowed( 'createaccount' ),
+			"Our sandbox user '$username' should NOT be able to create account"
+		);
+	}
+
+	public static function providerXff() {
+		return [
+			[ 'xff' => '1.2.3.4, 70.2.1.1, 60.2.1.1, 2.3.4.5',
+				'count' => 2,
+				'result' => 'Range Hardblock'
+			],
+			[ 'xff' => '1.2.3.4, 50.2.1.1, 60.2.1.1, 2.3.4.5',
+				'count' => 2,
+				'result' => 'Range Softblock with AC Disabled'
+			],
+			[ 'xff' => '1.2.3.4, 70.2.1.1, 50.1.1.1, 2.3.4.5',
+				'count' => 2,
+				'result' => 'Exact Softblock'
+			],
+			[ 'xff' => '1.2.3.4, 70.2.1.1, 50.2.1.1, 50.1.1.1, 2.3.4.5',
+				'count' => 3,
+				'result' => 'Exact Softblock'
+			],
+			[ 'xff' => '1.2.3.4, 70.2.1.1, 50.2.1.1, 2.3.4.5',
+				'count' => 2,
+				'result' => 'Range Hardblock'
+			],
+			[ 'xff' => '1.2.3.4, 70.2.1.1, 60.2.1.1, 2.3.4.5',
+				'count' => 2,
+				'result' => 'Range Hardblock'
+			],
+			[ 'xff' => '50.2.1.1, 60.2.1.1, 2.3.4.5',
+				'count' => 2,
+				'result' => 'Range Softblock with AC Disabled'
+			],
+			[ 'xff' => '1.2.3.4, 50.1.1.1, 60.2.1.1, 2.3.4.5',
+				'count' => 2,
+				'result' => 'Exact Softblock'
+			],
+			[ 'xff' => '1.2.3.4, <$A_BUNCH-OF{INVALID}TEXT\>, 60.2.1.1, 2.3.4.5',
+				'count' => 1,
+				'result' => 'Range Softblock with AC Disabled'
+			],
+			[ 'xff' => '1.2.3.4, 50.2.1.1, 2001:4860:4001:802::1003, 2.3.4.5',
+				'count' => 2,
+				'result' => 'Range6 Hardblock'
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider providerXff
+	 */
+	public function testBlocksOnXff( $xff, $exCount, $exResult ) {
+		$this->setupForXff();
+		$block = new DatabaseBlock( [
+			'address' => $this->getTestUser()->getUserIdentity(),
+			'by' => $this->getTestSysop()->getUserIdentity()
+		] );
+		$store = $this->getServiceContainer()->getDatabaseBlockStore();
+		$this->assertNotFalse( $store->insertBlock( $block ) );
+
+		$list = array_map( 'trim', explode( ',', $xff ) );
+		$manager = $this->getBlockManager( [] );
+		$xffblocks = $manager->getBlocksForIPList( $list, true, false );
+		$this->assertCount( $exCount, $xffblocks, 'Number of blocks for ' . $xff );
+	}
+
+	private function setupForXff() {
+		$blockList = [
+			[ 'target' => '70.2.0.0/16',
+				'type' => DatabaseBlock::TYPE_RANGE,
+				'desc' => 'Range Hardblock',
+				'ACDisable' => false,
+				'isHardblock' => true,
+				'isAutoBlocking' => false,
+			],
+			[ 'target' => '2001:4860:4001:0:0:0:0:0/48',
+				'type' => DatabaseBlock::TYPE_RANGE,
+				'desc' => 'Range6 Hardblock',
+				'ACDisable' => false,
+				'isHardblock' => true,
+				'isAutoBlocking' => false,
+			],
+			[ 'target' => '60.2.0.0/16',
+				'type' => DatabaseBlock::TYPE_RANGE,
+				'desc' => 'Range Softblock with AC Disabled',
+				'ACDisable' => true,
+				'isHardblock' => false,
+				'isAutoBlocking' => false,
+			],
+			[ 'target' => '50.2.0.0/16',
+				'type' => DatabaseBlock::TYPE_RANGE,
+				'desc' => 'Range Softblock',
+				'ACDisable' => false,
+				'isHardblock' => false,
+				'isAutoBlocking' => false,
+			],
+			[ 'target' => '50.1.1.1',
+				'type' => DatabaseBlock::TYPE_IP,
+				'desc' => 'Exact Softblock',
+				'ACDisable' => false,
+				'isHardblock' => false,
+				'isAutoBlocking' => false,
+			],
+		];
+
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$blocker = $this->getTestUser()->getUser();
+		foreach ( $blockList as $insBlock ) {
+			$block = new DatabaseBlock();
+			$block->setTarget( $insBlock['target'] );
+			$block->setBlocker( $blocker );
+			$block->setReason( $insBlock['desc'] );
+			$block->setExpiry( 'infinity' );
+			$block->isCreateAccountBlocked( $insBlock['ACDisable'] );
+			$block->isHardblock( $insBlock['isHardblock'] );
+			$block->isAutoblocking( $insBlock['isAutoBlocking'] );
+			$blockStore->insertBlock( $block );
+		}
+	}
+
 }

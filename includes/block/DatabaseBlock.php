@@ -214,10 +214,14 @@ class DatabaseBlock extends AbstractBlock {
 
 	/**
 	 * Create a new DatabaseBlock object from a database row
+	 *
+	 * @deprecated since 1.44 use DatabaseBlockStore::newFromRow
+	 *
 	 * @param stdClass $row Row from the ipblocks table
 	 * @return DatabaseBlock
 	 */
 	public static function newFromRow( $row ) {
+		wfDeprecated( __METHOD__, '1.44' );
 		$services = MediaWikiServices::getInstance();
 		$db = $services->getConnectionProvider()->getReplicaDatabase();
 		return $services->getDatabaseBlockStore()->newFromRow( $db, $row );
@@ -230,6 +234,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * @return bool
 	 */
 	public function delete() {
+		wfDeprecated( __METHOD__, '1.36' );
 		return MediaWikiServices::getInstance()
 			->getDatabaseBlockStoreFactory()
 			->getDatabaseBlockStore( $this->getWikiId() )
@@ -247,6 +252,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * 	('id' => block ID, 'autoIds' => array of autoblock IDs)
 	 */
 	public function insert() {
+		wfDeprecated( __METHOD__, '1.36' );
 		return MediaWikiServices::getInstance()
 			->getDatabaseBlockStoreFactory()
 			->getDatabaseBlockStore( $this->getWikiId() )
@@ -262,6 +268,7 @@ class DatabaseBlock extends AbstractBlock {
 	 *   ('id' => block ID, 'autoIds' => array of autoblock IDs)
 	 */
 	public function update() {
+		wfDeprecated( __METHOD__, '1.36' );
 		return MediaWikiServices::getInstance()
 			->getDatabaseBlockStoreFactory()
 			->getDatabaseBlockStore( $this->getWikiId() )
@@ -272,11 +279,13 @@ class DatabaseBlock extends AbstractBlock {
 	 * Checks whether a given IP is on the autoblock exemption list.
 	 *
 	 * @since 1.36
+	 * @deprecated since 1.44 use AutoblockExemptionList::isExempt
 	 *
 	 * @param string $ip The IP to check
 	 * @return bool
 	 */
 	public static function isExemptedFromAutoblocks( $ip ) {
+		wfDeprecated( __METHOD__, '1.44' );
 		return MediaWikiServices::getInstance()->getAutoblockExemptionList()
 			->isExempt( $ip );
 	}
@@ -290,6 +299,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * @return int|false ID if an autoblock was inserted, false if not.
 	 */
 	public function doAutoblock( $autoblockIP ) {
+		wfDeprecated( __METHOD__, '1.42' );
 		return MediaWikiServices::getInstance()
 			->getDatabaseBlockStoreFactory()
 			->getDatabaseBlockStore( $this->getWikiId() )
@@ -313,6 +323,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * @deprecated since 1.42, use DatabaseBlockStore::updateTimestamp instead
 	 */
 	public function updateTimestamp() {
+		wfDeprecated( __METHOD__, '1.42' );
 		MediaWikiServices::getInstance()
 			->getDatabaseBlockStoreFactory()
 			->getDatabaseBlockStore( $this->getWikiId() )
@@ -455,6 +466,9 @@ class DatabaseBlock extends AbstractBlock {
 
 	/**
 	 * Given a target and the target's type, get an existing block object if possible.
+	 *
+	 * @deprecated since 1.44
+	 *
 	 * @param string|UserIdentity|int|null $specificTarget A block target, which may be one of
 	 *   several types:
 	 *     * A user to block, in which case $target will be a User
@@ -479,12 +493,15 @@ class DatabaseBlock extends AbstractBlock {
 		$vagueTarget = null,
 		$fromPrimary = false
 	) {
+		wfDeprecated( __METHOD__, '1.44' );
 		return MediaWikiServices::getInstance()->getDatabaseBlockStore()
 			->newFromTarget( $specificTarget, $vagueTarget, $fromPrimary );
 	}
 
 	/**
 	 * This is similar to DatabaseBlock::newFromTarget, but it returns all the relevant blocks.
+	 *
+	 * @deprecated since 1.44
 	 *
 	 * @since 1.34
 	 * @param string|UserIdentity|int|null $specificTarget
@@ -497,12 +514,15 @@ class DatabaseBlock extends AbstractBlock {
 		$vagueTarget = null,
 		$fromPrimary = false
 	) {
+		wfDeprecated( __METHOD__, '1.44' );
 		return MediaWikiServices::getInstance()->getDatabaseBlockStore()
 			->newListFromTarget( $specificTarget, $vagueTarget, $fromPrimary );
 	}
 
 	/**
 	 * Get all blocks that match any IP from an array of IP addresses
+	 *
+	 * @deprecated since 1.44
 	 *
 	 * @param array $ipChain List of IPs (strings), usually retrieved from the
 	 *     X-Forwarded-For header of the request
@@ -513,6 +533,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * @since 1.22
 	 */
 	public static function getBlocksForIPList( array $ipChain, $applySoftBlocks, $fromPrimary = false ) {
+		wfDeprecated( __METHOD__, '1.44' );
 		return MediaWikiServices::getInstance()->getBlockManager()
 			->getBlocksForIPList( $ipChain, $applySoftBlocks, $fromPrimary );
 	}

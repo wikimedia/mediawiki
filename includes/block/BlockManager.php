@@ -135,6 +135,7 @@ class BlockManager {
 		$fromReplica,
 		$disableIpBlockExemptChecking = false
 	) {
+		wfDeprecated( __METHOD__, '1.42' );
 		// If this is the global user, they may be affected by IP blocks (case #1),
 		// or they may be exempt (case #2). If affected, look for additional blocks
 		// against the IP address and referenced in a cookie.
