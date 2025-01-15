@@ -47,7 +47,7 @@ class WebInstallerComplete extends WebInstallerPage {
 						$this->getVar( 'wgScriptPath' ) . '/index.php',
 					Message::rawParam( $this->parent->makeDownloadLinkHtml() ),
 					$location ?: ''
-				)->parse() ), 'tick-32.png'
+				)->parse() )
 			)
 		);
 		$this->addHTML( $this->parent->getInfoBox(

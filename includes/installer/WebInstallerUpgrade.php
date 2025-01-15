@@ -92,7 +92,7 @@ class WebInstallerUpgrade extends WebInstallerPage {
 				wfMessage( $msg,
 					$this->getVar( 'wgServer' ) .
 					$this->getVar( 'wgScriptPath' ) . '/index.php'
-				)->plain(), 'tick-32.png'
+				)->plain()
 			)
 		);
 		$this->parent->restoreLinkPopups();
