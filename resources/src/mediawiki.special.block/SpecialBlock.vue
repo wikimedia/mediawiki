@@ -444,5 +444,10 @@ module.exports = exports = defineComponent( {
 	legend {
 		font-size: unset;
 	}
+
+	legend .cdx-label__label,
+	legend .cdx-label__description {
+		margin-bottom: @spacing-50;
+	}
 }
 </style>
