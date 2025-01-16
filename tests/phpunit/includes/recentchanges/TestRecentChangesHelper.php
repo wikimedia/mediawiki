@@ -3,7 +3,7 @@
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
-use MediaWiki\User\User;
+use MediaWiki\User\UserIdentity;
 
 /**
  * Helper for generating test recent changes entries.
@@ -12,7 +12,7 @@ use MediaWiki\User\User;
  */
 class TestRecentChangesHelper {
 
-	public function makeEditRecentChange( User $user, $titleText, $curid, $thisid, $lastid,
+	public function makeEditRecentChange( UserIdentity $user, $titleText, $curid, $thisid, $lastid,
 		$timestamp, $counter, $watchingUsers
 	) {
 		$attribs = array_merge(
@@ -30,7 +30,8 @@ class TestRecentChangesHelper {
 	}
 
 	public function makeLogRecentChange(
-		$logType, $logAction, User $user, $titleText, $timestamp, $counter, $watchingUsers
+		$logType, $logAction, UserIdentity $user, $titleText, $timestamp, $counter, $watchingUsers,
+		$additionalAttribs = []
 	) {
 		$attribs = array_merge(
 			$this->getDefaultAttributes( $titleText, $timestamp ),
@@ -47,13 +48,14 @@ class TestRecentChangesHelper {
 				'rc_log_type' => $logType,
 				'rc_log_action' => $logAction,
 				'rc_source' => 'mw.log'
-			]
+			],
+			$additionalAttribs
 		);
 
 		return $this->makeRecentChange( $attribs, $counter, $watchingUsers );
 	}
 
-	public function makeDeletedEditRecentChange( User $user, $titleText, $timestamp, $curid,
+	public function makeDeletedEditRecentChange( UserIdentity $user, $titleText, $timestamp, $curid,
 		$thisid, $lastid, $counter, $watchingUsers
 	) {
 		$attribs = array_merge(
@@ -71,7 +73,7 @@ class TestRecentChangesHelper {
 		return $this->makeRecentChange( $attribs, $counter, $watchingUsers );
 	}
 
-	public function makeNewBotEditRecentChange( User $user, $titleText, $curid, $thisid, $lastid,
+	public function makeNewBotEditRecentChange( UserIdentity $user, $titleText, $curid, $thisid, $lastid,
 		$timestamp, $counter, $watchingUsers
 	) {
 		$attribs = array_merge(
@@ -110,7 +112,7 @@ class TestRecentChangesHelper {
 	}
 
 	public function makeCategorizationRecentChange(
-		User $user, $titleText, $curid, $thisid, $lastid, $timestamp
+		UserIdentity $user, $titleText, $curid, $thisid, $lastid, $timestamp
 	) {
 		$attribs = array_merge(
 			$this->getDefaultAttributes( $titleText, $timestamp ),
@@ -159,7 +161,7 @@ class TestRecentChangesHelper {
 		];
 	}
 
-	public function getTestContext( User $user ) {
+	public function getTestContext( User $user ): RequestContext {
 		$context = new RequestContext();
 		$context->setLanguage( 'en' );
 

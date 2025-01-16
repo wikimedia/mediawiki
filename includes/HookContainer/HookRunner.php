@@ -148,6 +148,7 @@ class HookRunner implements
 	\MediaWiki\Hook\CategoryViewer__generateLinkHook,
 	\MediaWiki\Hook\ChangesListInitRowsHook,
 	\MediaWiki\Hook\ChangesListInsertArticleLinkHook,
+	\MediaWiki\Hook\ChangesListInsertLogEntryHook,
 	\MediaWiki\Hook\ChangeUserGroupsHook,
 	\MediaWiki\Hook\Collation__factoryHook,
 	\MediaWiki\Hook\ContentSecurityPolicyDefaultSourceHook,
@@ -1139,6 +1140,13 @@ class HookRunner implements
 		return $this->container->run(
 			'ChangesListInsertArticleLink',
 			[ $changesList, &$articlelink, &$s, $rc, $unpatrolled, $watched ]
+		);
+	}
+
+	public function onChangesListInsertLogEntry( $entry, $context, &$html, &$classes, &$attribs ) {
+		return $this->container->run(
+			'ChangesListInsertLogEntry',
+			[ $entry, $context, &$html, &$classes, &$attribs ]
 		);
 	}
 
