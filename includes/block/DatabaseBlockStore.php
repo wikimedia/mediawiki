@@ -58,13 +58,6 @@ use function array_key_exists;
  * @author DannyS712
  */
 class DatabaseBlockStore {
-	/** The old schema */
-	public const SCHEMA_IPBLOCKS = 'ipblocks';
-	/** The new schema */
-	public const SCHEMA_BLOCK = 'block';
-	/** The schema currently selected by the read stage */
-	public const SCHEMA_CURRENT = 'current';
-
 	/**
 	 * @internal For use by ServiceWiring
 	 */
@@ -125,30 +118,6 @@ class DatabaseBlockStore {
 		$this->autoblockExemptionList = $autoblockExemptionList;
 	}
 
-	/**
-	 * Get the read stage of the block_target migration
-	 *
-	 * @since 1.42
-	 * @deprecated since 1.43
-	 * @return int
-	 */
-	public function getReadStage() {
-		wfDeprecated( __METHOD__, '1.43' );
-		return SCHEMA_COMPAT_NEW;
-	}
-
-	/**
-	 * Get the write stage of the block_target migration
-	 *
-	 * @since 1.42
-	 * @deprecated since 1.43
-	 * @return int
-	 */
-	public function getWriteStage() {
-		wfDeprecated( __METHOD__, '1.43' );
-		return SCHEMA_COMPAT_NEW;
-	}
-
 	/***************************************************************************/
 	// region   Database read methods
 	/** @name   Database read methods */
@@ -171,18 +140,9 @@ class DatabaseBlockStore {
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new block object.
 	 *
-	 * Since 1.34, ipb_by and ipb_by_text have not been present in the
-	 * database, but they continue to be available in query results as
-	 * aliases.
-	 *
 	 * @since 1.42
-	 * @internal Avoid this method and DatabaseBlock::getQueryInfo() in new
-	 *   external code, since they are not schema-independent. Use
-	 *   newListFromConds() and deleteBlocksMatchingConds().
+	 * @internal Prefer newListFromConds() and deleteBlocksMatchingConds().
 	 *
-	 * @param string $schema What schema to use for field aliases. May be either
-	 *   self::SCHEMA_IPBLOCKS or self::SCHEMA_BLOCK. This parameter will soon be
-	 *   removed.
 	 * @return array[] With three keys:
 	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
 	 *     or `SelectQueryBuilder::tables`
@@ -192,74 +152,39 @@ class DatabaseBlockStore {
 	 *     or `SelectQueryBuilder::joinConds`
 	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
-	public function getQueryInfo( $schema = self::SCHEMA_BLOCK ) {
+	public function getQueryInfo() {
 		$commentQuery = $this->commentStore->getJoin( 'bl_reason' );
-		if ( $schema === self::SCHEMA_IPBLOCKS ) {
-			return [
-				'tables' => [
-					'block',
-					'block_by_actor' => 'actor',
-				] + $commentQuery['tables'],
-				'fields' => [
-					'ipb_id' => 'bl_id',
-					'ipb_address' => 'COALESCE(bt_address, bt_user_text)',
-					'ipb_timestamp' => 'bl_timestamp',
-					'ipb_auto' => 'bt_auto',
-					'ipb_anon_only' => 'bl_anon_only',
-					'ipb_create_account' => 'bl_create_account',
-					'ipb_enable_autoblock' => 'bl_enable_autoblock',
-					'ipb_expiry' => 'bl_expiry',
-					'ipb_deleted' => 'bl_deleted',
-					'ipb_block_email' => 'bl_block_email',
-					'ipb_allow_usertalk' => 'bl_allow_usertalk',
-					'ipb_parent_block_id' => 'bl_parent_block_id',
-					'ipb_sitewide' => 'bl_sitewide',
-					'ipb_by_actor' => 'bl_by_actor',
-					'ipb_by' => 'block_by_actor.actor_user',
-					'ipb_by_text' => 'block_by_actor.actor_name',
-					'ipb_reason_text' => $commentQuery['fields']['bl_reason_text'],
-					'ipb_reason_data' => $commentQuery['fields']['bl_reason_data'],
-					'ipb_reason_cid' => $commentQuery['fields']['bl_reason_cid'],
-				],
-				'joins' => [
-					'block_by_actor' => [ 'JOIN', 'actor_id=bl_by_actor' ],
-				] + $commentQuery['joins'],
-			];
-		} elseif ( $schema === self::SCHEMA_BLOCK ) {
-			return [
-				'tables' => [
-					'block',
-					'block_target',
-					'block_by_actor' => 'actor',
-				] + $commentQuery['tables'],
-				'fields' => [
-					'bl_id',
-					'bt_address',
-					'bt_user',
-					'bt_user_text',
-					'bl_timestamp',
-					'bt_auto',
-					'bl_anon_only',
-					'bl_create_account',
-					'bl_enable_autoblock',
-					'bl_expiry',
-					'bl_deleted',
-					'bl_block_email',
-					'bl_allow_usertalk',
-					'bl_parent_block_id',
-					'bl_sitewide',
-					'bl_by_actor',
-					'bl_by' => 'block_by_actor.actor_user',
-					'bl_by_text' => 'block_by_actor.actor_name',
-				] + $commentQuery['fields'],
-				'joins' => [
-					'block_target' => [ 'JOIN', 'bt_id=bl_target' ],
-					'block_by_actor' => [ 'JOIN', 'actor_id=bl_by_actor' ],
-				] + $commentQuery['joins'],
-			];
-		}
-		throw new InvalidArgumentException(
-			'$schema must be SCHEMA_IPBLOCKS or SCHEMA_BLOCK' );
+		return [
+			'tables' => [
+				'block',
+				'block_target',
+				'block_by_actor' => 'actor',
+			] + $commentQuery['tables'],
+			'fields' => [
+				'bl_id',
+				'bt_address',
+				'bt_user',
+				'bt_user_text',
+				'bl_timestamp',
+				'bt_auto',
+				'bl_anon_only',
+				'bl_create_account',
+				'bl_enable_autoblock',
+				'bl_expiry',
+				'bl_deleted',
+				'bl_block_email',
+				'bl_allow_usertalk',
+				'bl_parent_block_id',
+				'bl_sitewide',
+				'bl_by_actor',
+				'bl_by' => 'block_by_actor.actor_user',
+				'bl_by_text' => 'block_by_actor.actor_name',
+			] + $commentQuery['fields'],
+			'joins' => [
+				'block_target' => [ 'JOIN', 'bt_id=bl_target' ],
+				'block_by_actor' => [ 'JOIN', 'actor_id=bl_by_actor' ],
+			] + $commentQuery['joins'],
+		];
 	}
 
 	/**
@@ -455,15 +380,9 @@ class DatabaseBlockStore {
 	 * @since 1.42
 	 * @param string $start Hexadecimal IP representation
 	 * @param string|null $end Hexadecimal IP representation, or null to use $start = $end
-	 * @param string $schema What schema to use for field aliases. Can be one of:
-	 *    - self::SCHEMA_IPBLOCKS for the old schema
-	 *    - self::SCHEMA_BLOCK for the new schema
-	 *    - self::SCHEMA_CURRENT formerly used the configured schema, but now
-	 *      acts the same as SCHEMA_BLOCK
-	 *   In future this parameter will be removed.
 	 * @return string
 	 */
-	public function getRangeCond( $start, $end, $schema = self::SCHEMA_BLOCK ) {
+	public function getRangeCond( $start, $end ) {
 		// Per T16634, we want to include relevant active range blocks; for
 		// range blocks, we want to include larger ranges which enclose the given
 		// range. We know that all blocks must be smaller than $wgBlockCIDRLimit,
@@ -472,41 +391,22 @@ class DatabaseBlockStore {
 		$dbr = $this->getReplicaDB();
 		$end ??= $start;
 
-		if ( $schema === self::SCHEMA_CURRENT ) {
-			$schema = self::SCHEMA_BLOCK;
+		$expr = $dbr->expr(
+				'bt_range_start',
+				IExpression::LIKE,
+				new LikeValue( $chunk, $dbr->anyString() )
+			)
+			->and( 'bt_range_start', '<=', $start )
+			->and( 'bt_range_end', '>=', $end );
+		if ( $start === $end ) {
+			// Also select single IP blocks for this target
+			$expr = $dbr->orExpr( [
+				$dbr->expr( 'bt_ip_hex', '=', $start )
+					->and( 'bt_range_start', '=', null ),
+				$expr
+			] );
 		}
-
-		if ( $schema === self::SCHEMA_IPBLOCKS ) {
-			return $dbr->makeList(
-				[
-					$dbr->expr( 'ipb_range_start', IExpression::LIKE,
-						new LikeValue( $chunk, $dbr->anyString() ) ),
-					$dbr->expr( 'ipb_range_start', '<=', $start ),
-					$dbr->expr( 'ipb_range_end', '>=', $end ),
-				],
-				LIST_AND
-			);
-		} elseif ( $schema === self::SCHEMA_BLOCK ) {
-			$expr = $dbr->expr(
-					'bt_range_start',
-					IExpression::LIKE,
-					new LikeValue( $chunk, $dbr->anyString() )
-				)
-				->and( 'bt_range_start', '<=', $start )
-				->and( 'bt_range_end', '>=', $end );
-			if ( $start === $end ) {
-				// Also select single IP blocks for this target
-				$expr = $dbr->orExpr( [
-					$dbr->expr( 'bt_ip_hex', '=', $start )
-						->and( 'bt_range_start', '=', null ),
-					$expr
-				] );
-			}
-			return $expr->toSql( $dbr );
-		} else {
-			throw new InvalidArgumentException(
-				'$schema must be SCHEMA_IPBLOCKS or SCHEMA_BLOCK' );
-		}
+		return $expr->toSql( $dbr );
 	}
 
 	/**
@@ -530,63 +430,35 @@ class DatabaseBlockStore {
 	 *
 	 * @since 1.42
 	 * @param IReadableDatabase $db The database you got the row from
-	 * @param stdClass $row Row from the ipblocks table
+	 * @param stdClass $row Row from the block table
 	 * @return DatabaseBlock
 	 */
 	public function newFromRow( IReadableDatabase $db, $row ) {
-		if ( isset( $row->ipb_id ) ) {
-			return new DatabaseBlock( [
-				'address' => $row->ipb_address,
-				'wiki' => $this->wikiId,
-				'timestamp' => $row->ipb_timestamp,
-				'auto' => (bool)$row->ipb_auto,
-				'hideName' => (bool)$row->ipb_deleted,
-				'id' => (int)$row->ipb_id,
-				// Blocks with no parent ID should have ipb_parent_block_id as null,
-				// don't save that as 0 though, see T282890
-				'parentBlockId' => $row->ipb_parent_block_id
-					? (int)$row->ipb_parent_block_id : null,
-				'by' => $this->actorStoreFactory
-					->getActorStore( $this->wikiId )
-					->newActorFromRowFields( $row->ipb_by, $row->ipb_by_text, $row->ipb_by_actor ),
-				'decodedExpiry' => $db->decodeExpiry( $row->ipb_expiry ),
-				'reason' => $this->commentStore
-					// Legacy because $row may have come from self::selectFields()
-					->getCommentLegacy( $db, 'ipb_reason', $row ),
-				'anonOnly' => $row->ipb_anon_only,
-				'enableAutoblock' => (bool)$row->ipb_enable_autoblock,
-				'sitewide' => (bool)$row->ipb_sitewide,
-				'createAccount' => (bool)$row->ipb_create_account,
-				'blockEmail' => (bool)$row->ipb_block_email,
-				'allowUsertalk' => (bool)$row->ipb_allow_usertalk
-			] );
-		} else {
-			$address = $row->bt_address
-				?? new UserIdentityValue( $row->bt_user, $row->bt_user_text, $this->wikiId );
-			return new DatabaseBlock( [
-				'address' => $address,
-				'wiki' => $this->wikiId,
-				'timestamp' => $row->bl_timestamp,
-				'auto' => (bool)$row->bt_auto,
-				'hideName' => (bool)$row->bl_deleted,
-				'id' => (int)$row->bl_id,
-				// Blocks with no parent ID should have ipb_parent_block_id as null,
-				// don't save that as 0 though, see T282890
-				'parentBlockId' => $row->bl_parent_block_id
-					? (int)$row->bl_parent_block_id : null,
-				'by' => $this->actorStoreFactory
-					->getActorStore( $this->wikiId )
-					->newActorFromRowFields( $row->bl_by, $row->bl_by_text, $row->bl_by_actor ),
-				'decodedExpiry' => $db->decodeExpiry( $row->bl_expiry ),
-				'reason' => $this->commentStore->getComment( 'bl_reason', $row ),
-				'anonOnly' => $row->bl_anon_only,
-				'enableAutoblock' => (bool)$row->bl_enable_autoblock,
-				'sitewide' => (bool)$row->bl_sitewide,
-				'createAccount' => (bool)$row->bl_create_account,
-				'blockEmail' => (bool)$row->bl_block_email,
-				'allowUsertalk' => (bool)$row->bl_allow_usertalk
-			] );
-		}
+		$address = $row->bt_address
+			?? new UserIdentityValue( $row->bt_user, $row->bt_user_text, $this->wikiId );
+		return new DatabaseBlock( [
+			'address' => $address,
+			'wiki' => $this->wikiId,
+			'timestamp' => $row->bl_timestamp,
+			'auto' => (bool)$row->bt_auto,
+			'hideName' => (bool)$row->bl_deleted,
+			'id' => (int)$row->bl_id,
+			// Blocks with no parent ID should have bl_parent_block_id as null,
+			// don't save that as 0 though, see T282890
+			'parentBlockId' => $row->bl_parent_block_id
+				? (int)$row->bl_parent_block_id : null,
+			'by' => $this->actorStoreFactory
+				->getActorStore( $this->wikiId )
+				->newActorFromRowFields( $row->bl_by, $row->bl_by_text, $row->bl_by_actor ),
+			'decodedExpiry' => $db->decodeExpiry( $row->bl_expiry ),
+			'reason' => $this->commentStore->getComment( 'bl_reason', $row ),
+			'anonOnly' => $row->bl_anon_only,
+			'enableAutoblock' => (bool)$row->bl_enable_autoblock,
+			'sitewide' => (bool)$row->bl_sitewide,
+			'createAccount' => (bool)$row->bl_create_account,
+			'blockEmail' => (bool)$row->bl_block_email,
+			'allowUsertalk' => (bool)$row->bl_allow_usertalk
+		] );
 	}
 
 	/**
@@ -709,9 +581,8 @@ class DatabaseBlockStore {
 	 * Construct an array of blocks from database conditions.
 	 *
 	 * @since 1.42
-	 * @param array $conds For schema-independence this should be an associative
-	 *   array mapping field names to values. Field names from the new schema
-	 *   should be used.
+	 * @param array $conds Query conditions, given as an associative array
+	 *   mapping field names to values.
 	 * @param bool $fromPrimary
 	 * @param bool $includeExpired
 	 * @return DatabaseBlock[]
@@ -741,7 +612,7 @@ class DatabaseBlockStore {
 	/** @name   Database write methods */
 
 	/**
-	 * Delete expired blocks from the ipblocks table
+	 * Delete expired blocks from the block table
 	 *
 	 * @internal only public for use in DatabaseBlock
 	 */
@@ -774,8 +645,7 @@ class DatabaseBlockStore {
 	 *
 	 * @since 1.42
 	 * @param array $conds An associative array mapping the field name to the
-	 *   matched value. Some limited schema abstractions are implemented, to
-	 *   allow new field names to be used with the old schema.
+	 *   matched value.
 	 * @param int|null $limit The maximum number of blocks to delete
 	 * @return int The number of blocks deleted
 	 */
@@ -1004,8 +874,8 @@ class DatabaseBlockStore {
 	}
 
 	/**
-	 * Attempt to insert rows into ipblocks/block, block_target and
-	 * ipblocks_restrictions. If there is a conflict, return false.
+	 * Attempt to insert rows into block, block_target and ipblocks_restrictions.
+	 * If there is a conflict, return false.
 	 *
 	 * @param DatabaseBlock $block
 	 * @param IDatabase $dbw
