@@ -350,7 +350,11 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 				// Left-pad with zeroes, because these values will be sorted as strings
 				$index = str_pad( (string)$index, strlen( (string)$limit ), '0', STR_PAD_LEFT );
 				// use index column as key, allowing us to easily sort in PHP
-				$result[$row->{$this->getIndexField()} . "-$index"] = $row;
+				$indexFieldValues = array_map(
+					static fn ( $fieldName ) => $row->$fieldName,
+					(array)$this->mIndexField
+				);
+				$result[implode( '-', $indexFieldValues ) . "-$index"] = $row;
 			}
 		}
 
@@ -411,10 +415,17 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 				) . ' != ' . RevisionRecord::SUPPRESSED_USER;
 		}
 
-		// $this->getIndexField() must be in the result rows, as reallyDoQuery() tries to access it.
-		$indexField = $this->getIndexField();
-		if ( $indexField !== $this->revisionTimestampField ) {
-			$queryInfo['fields'][] = $indexField;
+		// Index fields must be present in the result rows, as reallyDoQuery() tries to access them.
+		$indexFields = array_diff(
+			(array)$this->mIndexField,
+			$queryInfo['fields']
+		);
+
+		foreach ( $indexFields as $indexField ) {
+			// Skip if already added as an alias
+			if ( !array_key_exists( $indexField, $queryInfo['fields'] ) ) {
+				$queryInfo['fields'][] = $indexField;
+			}
 		}
 
 		MediaWikiServices::getInstance()->getChangeTagsStore()->modifyDisplayQuery(
