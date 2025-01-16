@@ -168,11 +168,17 @@ module.exports = exports = defineStore( 'block', () => {
 	 */
 	const formVisible = ref( false );
 	/**
-	 * Whether the block was successful.
+	 * Whether the block was added successfully.
 	 *
 	 * @type {Ref<boolean>}
 	 */
-	const success = ref( false );
+	const blockAdded = ref( false );
+	/**
+	 * Whether the block was removed successfully.
+	 *
+	 * @type {Ref<boolean>}
+	 */
+	const blockRemoved = ref( false );
 	/**
 	 * Whether the target user is already blocked. This is set
 	 * after fetching block log data from the API.
@@ -347,7 +353,8 @@ module.exports = exports = defineStore( 'block', () => {
 		formErrors.value = [];
 		formSubmitted.value = false;
 		formVisible.value = false;
-		success.value = false;
+		blockAdded.value = false;
+		blockRemoved.value = false;
 		alreadyBlocked.value = false;
 		promises.value.clear();
 	}
@@ -545,7 +552,8 @@ module.exports = exports = defineStore( 'block', () => {
 		formSubmitted,
 		formVisible,
 		targetUser,
-		success,
+		blockAdded,
+		blockRemoved,
 		blockId,
 		alreadyBlocked,
 		type,

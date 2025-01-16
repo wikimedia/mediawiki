@@ -17,7 +17,7 @@
 	>
 		<div ref="messagesContainer" class="mw-block-messages">
 			<cdx-message
-				v-if="success"
+				v-if="blockAdded"
 				type="success"
 				:allow-user-dismiss="true"
 				class="mw-block-success"
@@ -25,6 +25,13 @@
 				<p><strong>{{ $i18n( 'blockipsuccesssub' ) }}</strong></p>
 				<!-- eslint-disable-next-line vue/no-v-html -->
 				<p v-html="$i18n( 'block-success', store.targetUser ).parse()"></p>
+			</cdx-message>
+			<cdx-message
+				v-if="blockRemoved"
+				type="success"
+				:allow-user-dismiss="true"
+			>
+				<p>{{ $i18n( 'block-removed' ) }}</p>
 			</cdx-message>
 			<cdx-message
 				v-for="( formError, index ) in formErrors"
@@ -43,7 +50,7 @@
 		<div v-if="showBlockLogs">
 			<block-log
 				:key="`${submitCount}-active`"
-				:open="success"
+				:open="blockAdded || blockRemoved"
 				:can-delete-log-entry="false"
 				block-log-type="active"
 				@create-block="onCreateBlock"
@@ -165,7 +172,7 @@ module.exports = exports = defineComponent( {
 		const store = useBlockStore();
 		const blockShowSuppressLog = mw.config.get( 'blockShowSuppressLog' ) || false;
 		const canDeleteLogEntry = mw.config.get( 'canDeleteLogEntry' ) || false;
-		const { formErrors, formSubmitted, formVisible, success, enableMultiblocks } = storeToRefs( store );
+		const { formErrors, formSubmitted, formVisible, blockAdded, blockRemoved, enableMultiblocks } = storeToRefs( store );
 		const messagesContainer = ref();
 		// Value to use for BlockLog component keys, so they reload after saving.
 		const submitCount = ref( 0 );
@@ -250,12 +257,13 @@ module.exports = exports = defineComponent( {
 				.then( () => {
 					removalConfirmationOpen.value = false;
 					submitCount.value++;
+					blockRemoved.value = true;
 				} )
 				.fail( ( _, errorObj ) => {
 					formErrors.value = [ errorObj.error.info ];
 				} )
 				.always( () => {
-					success.value = false;
+					blockAdded.value = false;
 					formSubmitted.value = false;
 				} );
 		}
@@ -282,7 +290,7 @@ module.exports = exports = defineComponent( {
 		function onFormSubmission( event ) {
 			event.preventDefault();
 			formSubmitted.value = true;
-			success.value = false;
+			blockAdded.value = false;
 
 			// checkValidity() executes browser form validation, which triggers automatic
 			// validation states on applicable components (e.g. fields with `required` attr).
@@ -336,7 +344,7 @@ module.exports = exports = defineComponent( {
 					if ( result.block && result.block.user ) {
 						store.targetUser = result.block.user;
 					}
-					success.value = true;
+					blockAdded.value = true;
 					formErrors.value = [];
 					// Bump the submitCount (to re-render the logs) after scrolling
 					// because the log tables may change the length of the page.
@@ -346,10 +354,11 @@ module.exports = exports = defineComponent( {
 				} )
 				.fail( ( _, errorObj ) => {
 					formErrors.value = [ errorObj.error.info ];
-					success.value = false;
+					blockAdded.value = false;
 				} )
 				.always( () => {
 					formSubmitted.value = false;
+					blockRemoved.value = false;
 					messagesContainer.value.scrollIntoView( { behavior: 'smooth' } );
 				} );
 		}
@@ -358,7 +367,8 @@ module.exports = exports = defineComponent( {
 			store,
 			messagesContainer,
 			formErrors,
-			success,
+			blockAdded,
+			blockRemoved,
 			submitCount,
 			submitButtonMessage,
 			enableMultiblocks,

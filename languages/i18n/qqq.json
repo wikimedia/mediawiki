@@ -2987,6 +2987,7 @@
 	"block-removal-confirm-yes": "Button text for the 'confirm' button when removing a block in the Special:Block dialog.",
 	"block-removal-confirm-no": "Button text for the 'cancel' button when cancelling the removal of a block in the Special:Block dialog. {{identical|cancel}}",
 	"block-javascript-required": "Error message shown when JavaScript is disabled on [[Special:Block]]",
+	"block-removed": "Success message shown after a block has been removed.",
 	"unblockip": "Used as title and legend for the form in [[Special:Unblock]].",
 	"unblockiptext": "Used in the {{msg-mw|Unblockip}} form on [[Special:Unblock]].",
 	"unblock-target": "Used as a title and legend for the form in [[Special:Unblock]]",

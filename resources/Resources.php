@@ -2350,6 +2350,7 @@ return [
 			'block-removal-confirm-yes',
 			'block-removal-title',
 			'block-removal-reason-placeholder',
+			'block-removed',
 			'block-success',
 			'block-target',
 			'block-target-placeholder',
