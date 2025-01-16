@@ -26,9 +26,6 @@ class SpecialLinkAccounts extends AuthManagerSpecialPage {
 		AuthManager::ACTION_LINK, AuthManager::ACTION_LINK_CONTINUE,
 	];
 
-	/**
-	 * @param AuthManager $authManager
-	 */
 	public function __construct( AuthManager $authManager ) {
 		parent::__construct( 'LinkAccounts' );
 		$this->setAuthManager( $authManager );

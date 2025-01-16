@@ -132,9 +132,6 @@ class RenderedRevision implements SlotRenderingProvider {
 		$this->performer = $performer;
 	}
 
-	/**
-	 * @param LoggerInterface $saveParseLogger
-	 */
 	public function setSaveParseLogger( LoggerInterface $saveParseLogger ) {
 		$this->saveParseLogger = $saveParseLogger;
 	}
@@ -344,9 +341,6 @@ class RenderedRevision implements SlotRenderingProvider {
 		}
 	}
 
-	/**
-	 * @param RevisionRecord $revision
-	 */
 	private function setRevisionInternal( RevisionRecord $revision ) {
 		$this->revision = $revision;
 

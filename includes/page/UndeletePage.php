@@ -232,9 +232,6 @@ class UndeletePage {
 		return $this->undeleteUnsafe( $comment );
 	}
 
-	/**
-	 * @return PermissionStatus
-	 */
 	private function authorizeUndeletion(): PermissionStatus {
 		$status = PermissionStatus::newEmpty();
 		$this->performer->authorizeWrite( 'undelete', $this->page, $status );

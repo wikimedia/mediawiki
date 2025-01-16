@@ -35,9 +35,6 @@ use RecentChange;
 abstract class FormattedRCFeed extends RCFeed {
 	private array $params;
 
-	/**
-	 * @param array $params
-	 */
 	public function __construct( array $params ) {
 		$this->params = $params;
 	}

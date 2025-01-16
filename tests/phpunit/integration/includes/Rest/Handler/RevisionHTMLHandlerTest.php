@@ -50,9 +50,6 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->parserCacheBagOStuff = new HashBagOStuff();
 	}
 
-	/**
-	 * @return RevisionHTMLHandler
-	 */
 	private function newHandler(): RevisionHTMLHandler {
 		$services = $this->getServiceContainer();
 		$config = [

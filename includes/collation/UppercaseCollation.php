@@ -30,9 +30,6 @@ class UppercaseCollation extends Collation {
 	 */
 	private $lang;
 
-	/**
-	 * @param LanguageFactory $languageFactory
-	 */
 	public function __construct( LanguageFactory $languageFactory ) {
 		$this->lang = $languageFactory->getLanguage( 'en' );
 	}

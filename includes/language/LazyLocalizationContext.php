@@ -33,9 +33,6 @@ class LazyLocalizationContext implements LocalizationContext {
 
 	private ?LocalizationContext $context = null;
 
-	/**
-	 * @param callable $instantiator
-	 */
 	public function __construct( callable $instantiator ) {
 		$this->instantiator = $instantiator;
 	}

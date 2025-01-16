@@ -33,9 +33,6 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialMostImages extends ImageQueryPage {
 
-	/**
-	 * @param IConnectionProvider $dbProvider
-	 */
 	public function __construct( IConnectionProvider $dbProvider ) {
 		parent::__construct( 'Mostimages' );
 		$this->setDatabaseProvider( $dbProvider );

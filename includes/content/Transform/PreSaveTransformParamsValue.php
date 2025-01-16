@@ -25,26 +25,14 @@ class PreSaveTransformParamsValue implements PreSaveTransformParams {
 		$this->parserOptions = $parserOptions;
 	}
 
-	/**
-	 *
-	 * @return PageReference
-	 */
 	public function getPage(): PageReference {
 		return $this->page;
 	}
 
-	/**
-	 *
-	 * @return UserIdentity
-	 */
 	public function getUser(): UserIdentity {
 		return $this->user;
 	}
 
-	/**
-	 *
-	 * @return ParserOptions
-	 */
 	public function getParserOptions(): ParserOptions {
 		return $this->parserOptions;
 	}

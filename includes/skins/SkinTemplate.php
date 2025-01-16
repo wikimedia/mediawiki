@@ -1602,9 +1602,6 @@ class SkinTemplate extends Skin {
 		}
 	}
 
-	/**
-	 * @return bool
-	 */
 	private function isSpecialContributeShowable(): bool {
 		return ContributeFactory::isEnabledOnCurrentSkin(
 			$this,

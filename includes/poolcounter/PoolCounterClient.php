@@ -42,9 +42,6 @@ class PoolCounterClient extends PoolCounter {
 	 */
 	private $manager;
 
-	/**
-	 * @param PoolCounterConnectionManager $manager
-	 */
 	public function setManager( PoolCounterConnectionManager $manager ): void {
 		$this->manager = $manager;
 	}

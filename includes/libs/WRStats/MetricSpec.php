@@ -18,9 +18,6 @@ class MetricSpec {
 	/** @var array<string,SequenceSpec> Sequences in ascending order of expiry */
 	public $sequences;
 
-	/**
-	 * @param array $spec
-	 */
 	public function __construct( array $spec ) {
 		$this->type = $spec['type'] ?? 'counter';
 		$this->resolution = $spec['resolution'] ?? self::DEFAULT_RESOLUTION;

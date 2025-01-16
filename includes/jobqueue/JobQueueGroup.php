@@ -439,9 +439,6 @@ class JobQueueGroup {
 		return $this->coalescedQueues;
 	}
 
-	/**
-	 * @param array $jobs
-	 */
 	private function assertValidJobs( array $jobs ) {
 		foreach ( $jobs as $job ) {
 			if ( !( $job instanceof IJobSpecification ) ) {

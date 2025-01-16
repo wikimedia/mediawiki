@@ -163,9 +163,6 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 */
 	private $derivedDataUpdater = null;
 
-	/**
-	 * @param PageIdentity $pageIdentity
-	 */
 	public function __construct( PageIdentity $pageIdentity ) {
 		$pageIdentity->assertWiki( PageIdentity::LOCAL );
 
@@ -206,9 +203,6 @@ class WikiPage implements Stringable, Page, PageRecord {
 		}
 	}
 
-	/**
-	 * @return PageUpdaterFactory
-	 */
 	private function getPageUpdaterFactory(): PageUpdaterFactory {
 		return MediaWikiServices::getInstance()->getPageUpdaterFactory();
 	}

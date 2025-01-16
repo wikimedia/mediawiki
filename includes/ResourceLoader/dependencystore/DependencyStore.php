@@ -103,9 +103,6 @@ class DependencyStore {
 		return $results;
 	}
 
-	/**
-	 * @param array $pathByEntity
-	 */
 	public function storeMulti( array $pathByEntity ): void {
 		$hasPendingUpdate = (bool)$this->updateBuffer;
 

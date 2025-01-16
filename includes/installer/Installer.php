@@ -425,9 +425,6 @@ abstract class Installer {
 		$this->parserTitle = Title::newFromText( 'Installer' );
 	}
 
-	/**
-	 * @return array
-	 */
 	private function getDefaultSettings(): array {
 		global $wgLocaltimezone;
 

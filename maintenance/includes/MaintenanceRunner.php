@@ -739,9 +739,6 @@ class MaintenanceRunner {
 		exit( $exitCode );
 	}
 
-	/**
-	 * @param string $msg
-	 */
 	protected function error( string $msg ) {
 		// Print to stderr if possible, don't mix it in with stdout output.
 		if ( defined( 'STDERR' ) ) {

@@ -74,9 +74,6 @@ class Command extends UnboxedCommand implements Stringable {
 		}
 	}
 
-	/**
-	 * @param LoggerInterface $logger
-	 */
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
 		if ( $this->executor ) {

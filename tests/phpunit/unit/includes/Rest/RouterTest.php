@@ -839,9 +839,6 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( 'bar', $validatedParams[ 'pathParam' ], (string)$response->getBody() );
 	}
 
-	/**
-	 * @return CorsUtils
-	 */
 	private function getCorsUtils(): CorsUtils {
 		$cors = new CorsUtils(
 			new ServiceOptions(

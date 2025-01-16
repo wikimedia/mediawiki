@@ -28,9 +28,6 @@ class LanguageEventIngress extends EventSubscriberBase {
 		],
 	];
 
-	/**
-	 * @param MessageCache $messageCache
-	 */
 	public function __construct( MessageCache $messageCache ) {
 		$this->messageCache = $messageCache;
 	}

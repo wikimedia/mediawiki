@@ -705,9 +705,6 @@ class MaintenanceParameters {
 		return $this->optionsSequence;
 	}
 
-	/**
-	 * @param string $usagePrefix
-	 */
 	public function setUsagePrefix( string $usagePrefix ) {
 		$this->usagePrefix = $usagePrefix;
 	}

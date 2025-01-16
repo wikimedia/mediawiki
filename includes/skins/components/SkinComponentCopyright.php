@@ -25,9 +25,6 @@ class SkinComponentCopyright implements SkinComponent {
 	/** @var User */
 	private $user;
 
-	/**
-	 * @param SkinComponentRegistryContext $skinContext
-	 */
 	public function __construct( SkinComponentRegistryContext $skinContext ) {
 		$this->skinContext = $skinContext;
 		$this->config = $skinContext->getConfig();

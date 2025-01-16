@@ -11,9 +11,6 @@ namespace Wikimedia\Telemetry;
 class StaticInjectionPropagator implements ContextPropagatorInterface {
 	private array $headers;
 
-	/**
-	 * @param array $headers
-	 */
 	public function __construct( array $headers ) {
 		$this->headers = $headers;
 	}

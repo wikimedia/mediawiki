@@ -33,9 +33,6 @@ class IdentityCollation extends Collation {
 	/** @var Language */
 	private $contentLanguage;
 
-	/**
-	 * @param Language $contentLanguage
-	 */
 	public function __construct( Language $contentLanguage ) {
 		$this->contentLanguage = $contentLanguage;
 	}

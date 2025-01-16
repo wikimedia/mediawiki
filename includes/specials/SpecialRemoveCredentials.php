@@ -20,9 +20,6 @@ class SpecialRemoveCredentials extends SpecialChangeCredentials {
 	/** @inheritDoc */
 	protected static $loadUserData = false;
 
-	/**
-	 * @param AuthManager $authManager
-	 */
 	public function __construct( AuthManager $authManager ) {
 		parent::__construct( $authManager );
 		$this->mName = 'RemoveCredentials';

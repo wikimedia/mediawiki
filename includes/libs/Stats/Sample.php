@@ -47,7 +47,6 @@ class Sample {
 		return $this->labelValues;
 	}
 
-	/** @return float */
 	public function getValue(): float {
 		return $this->value;
 	}

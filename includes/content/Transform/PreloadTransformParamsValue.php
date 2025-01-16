@@ -24,26 +24,14 @@ class PreloadTransformParamsValue implements PreloadTransformParams {
 		$this->params = $params;
 	}
 
-	/**
-	 *
-	 * @return PageReference
-	 */
 	public function getPage(): PageReference {
 		return $this->page;
 	}
 
-	/**
-	 *
-	 * @return array
-	 */
 	public function getParams(): array {
 		return $this->params;
 	}
 
-	/**
-	 *
-	 * @return ParserOptions
-	 */
 	public function getParserOptions(): ParserOptions {
 		return $this->parserOptions;
 	}

@@ -28,9 +28,7 @@ use MediaWiki\Languages\LanguageFactory;
  * @since 1.23
  */
 class CollationCkb extends IcuCollation {
-	/**
-	 * @param LanguageFactory $languageFactory
-	 */
+
 	public function __construct( LanguageFactory $languageFactory ) {
 		// This will set $locale and collators, which affect the actual sorting order
 		parent::__construct( $languageFactory, 'fa' );

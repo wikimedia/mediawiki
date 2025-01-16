@@ -55,9 +55,6 @@ class SkinComponentSearch implements SkinComponent {
 		$this->cachedData = null;
 	}
 
-	/**
-	 * @return MessageLocalizer
-	 */
 	private function getMessageLocalizer(): MessageLocalizer {
 		return $this->localizer;
 	}
@@ -70,9 +67,6 @@ class SkinComponentSearch implements SkinComponent {
 		return $this->localizer->msg( $key );
 	}
 
-	/**
-	 * @return Config
-	 */
 	private function getConfig(): Config {
 		return $this->config;
 	}

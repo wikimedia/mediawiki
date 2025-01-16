@@ -18,9 +18,6 @@ class SkinFallback extends SkinMustache {
 	/** @inheritDoc */
 	public $skinname = 'fallback';
 
-	/**
-	 * @param OutputPage $out
-	 */
 	public function initPage( OutputPage $out ) {
 		parent::initPage( $out );
 		$out->disableClientCache();

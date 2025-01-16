@@ -33,9 +33,6 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 		return $settings;
 	}
 
-	/**
-	 * @return SettingsBuilder
-	 */
 	private function getSettingsBuilderWithSchema(): SettingsBuilder {
 		$configBuilder = new ArrayConfigBuilder();
 		$settingsBuilder = new SettingsBuilder(

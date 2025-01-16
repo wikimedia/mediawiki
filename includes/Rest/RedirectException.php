@@ -31,9 +31,6 @@ class RedirectException extends HttpException {
 		$this->target = $target;
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getTarget(): string {
 		return $this->target;
 	}

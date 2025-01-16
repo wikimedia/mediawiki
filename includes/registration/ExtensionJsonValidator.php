@@ -45,9 +45,6 @@ class ExtensionJsonValidator {
 	 */
 	private $missingDepCallback;
 
-	/**
-	 * @param callable $missingDepCallback
-	 */
 	public function __construct( callable $missingDepCallback ) {
 		$this->missingDepCallback = $missingDepCallback;
 	}

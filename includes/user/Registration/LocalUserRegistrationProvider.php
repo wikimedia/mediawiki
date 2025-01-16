@@ -11,9 +11,6 @@ class LocalUserRegistrationProvider implements IUserRegistrationProvider {
 
 	private UserFactory $userFactory;
 
-	/**
-	 * @param UserFactory $userFactory
-	 */
 	public function __construct( UserFactory $userFactory ) {
 		$this->userFactory = $userFactory;
 	}

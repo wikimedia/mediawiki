@@ -99,9 +99,6 @@ class ExplodeIterator implements Iterator {
 		return $this->curPos;
 	}
 
-	/**
-	 * @return void
-	 */
 	public function next(): void {
 		if ( $this->endPos === false ) {
 			$this->curPos = false;
@@ -116,9 +113,6 @@ class ExplodeIterator implements Iterator {
 		$this->refreshCurrent();
 	}
 
-	/**
-	 * @return bool
-	 */
 	public function valid(): bool {
 		return $this->curPos !== false;
 	}

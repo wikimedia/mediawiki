@@ -20,9 +20,6 @@ use Wikimedia\Rdbms\LoadBalancer;
  */
 class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 
-	/**
-	 * @return DerivativeContext
-	 */
 	private function getContext(): DerivativeContext {
 		$context = new DerivativeContext( RequestContext::getMain() );
 

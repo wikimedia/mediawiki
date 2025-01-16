@@ -31,9 +31,6 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialUnusedImages extends ImageQueryPage {
 
-	/**
-	 * @param IConnectionProvider $dbProvider
-	 */
 	public function __construct( IConnectionProvider $dbProvider ) {
 		parent::__construct( 'Unusedimages' );
 		$this->setDatabaseProvider( $dbProvider );

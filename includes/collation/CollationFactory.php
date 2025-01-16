@@ -125,9 +125,6 @@ class CollationFactory {
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
-	/**
-	 * @return Collation
-	 */
 	public function getCategoryCollation(): Collation {
 		return $this->makeCollation( $this->getDefaultCollationName() );
 	}

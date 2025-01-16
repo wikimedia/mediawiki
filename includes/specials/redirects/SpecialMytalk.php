@@ -34,9 +34,6 @@ class SpecialMytalk extends RedirectSpecialArticle {
 
 	private TempUserConfig $tempUserConfig;
 
-	/**
-	 * @param TempUserConfig $tempUserConfig
-	 */
 	public function __construct( TempUserConfig $tempUserConfig ) {
 		parent::__construct( 'Mytalk' );
 

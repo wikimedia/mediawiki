@@ -40,16 +40,10 @@ class SelserContext {
 		$this->content = $content;
 	}
 
-	/**
-	 * @return PageBundle
-	 */
 	public function getPageBundle(): PageBundle {
 		return $this->pageBundle;
 	}
 
-	/**
-	 * @return int
-	 */
 	public function getRevisionID(): int {
 		return $this->revId;
 	}

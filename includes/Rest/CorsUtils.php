@@ -75,9 +75,6 @@ class CorsUtils implements BasicAuthorizerInterface {
 		return $origin->match( $allowed, $excluded );
 	}
 
-	/**
-	 * @return string
-	 */
 	private function getCanonicalDomain(): string {
 		$res = parse_url( $this->options->get( MainConfigNames::CanonicalServer ) );
 		'@phan-var array $res';

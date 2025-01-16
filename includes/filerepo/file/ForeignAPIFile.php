@@ -193,9 +193,6 @@ class ForeignAPIFile extends File {
 		return false;
 	}
 
-	/**
-	 * @return array
-	 */
 	public function getMetadataArray(): array {
 		if ( isset( $this->mInfo['metadata'] ) ) {
 			return self::parseMetadata( $this->mInfo['metadata'] );

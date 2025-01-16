@@ -432,16 +432,10 @@ class DeleteAction extends FormAction {
 		}
 	}
 
-	/**
-	 * @return bool
-	 */
 	protected function isSuppressionAllowed(): bool {
 		return $this->getAuthority()->isAllowed( 'suppressrevision' );
 	}
 
-	/**
-	 * @return array
-	 */
 	protected function getFormFields(): array {
 		$user = $this->getUser();
 		$title = $this->getTitle();
@@ -533,9 +527,6 @@ class DeleteAction extends FormAction {
 		return $fields;
 	}
 
-	/**
-	 * @return string
-	 */
 	protected function getDeleteReason(): string {
 		$deleteReasonList = $this->getRequest()->getText( 'wpDeleteReasonList', 'other' );
 		$deleteReason = $this->getRequest()->getText( 'wpReason' );
@@ -600,9 +591,6 @@ class DeleteAction extends FormAction {
 		return $this->msg( $messages[$field] );
 	}
 
-	/**
-	 * @return string
-	 */
 	protected function getFormAction(): string {
 		return $this->getTitle()->getLocalURL( 'action=delete' );
 	}

@@ -447,16 +447,10 @@ class StartUpModule extends Module {
 		];
 	}
 
-	/**
-	 * @return bool
-	 */
 	public function supportsURLLoading(): bool {
 		return false;
 	}
 
-	/**
-	 * @return bool
-	 */
 	public function enableModuleContentVersion(): bool {
 		// Enabling this means that ResourceLoader::getVersionHash will simply call getScript()
 		// and hash it to determine the version (as used by E-Tag HTTP response header).

@@ -202,9 +202,6 @@ class PageContentHelper {
 		return $content;
 	}
 
-	/**
-	 * @return bool
-	 */
 	public function isAccessible(): bool {
 		$page = $this->getPageIdentity();
 		return $page && $this->authority->probablyCan( 'read', $page );
@@ -251,9 +248,6 @@ class PageContentHelper {
 		return $this->useDefaultSystemMessage() || (bool)$this->getPage();
 	}
 
-	/**
-	 * @return array
-	 */
 	public function constructMetadata(): array {
 		$revision = $this->getRevisionRecordForMetadata();
 
@@ -274,9 +268,6 @@ class PageContentHelper {
 		];
 	}
 
-	/**
-	 * @return array
-	 */
 	public function constructRestbaseCompatibleMetadata(): array {
 		$revision = $this->getRevisionRecordForMetadata();
 

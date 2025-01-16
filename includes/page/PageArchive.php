@@ -36,9 +36,6 @@ class PageArchive {
 
 	protected Title $title;
 
-	/**
-	 * @param Title $title
-	 */
 	public function __construct( Title $title ) {
 		$this->title = $title;
 	}

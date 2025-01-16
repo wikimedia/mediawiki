@@ -16,9 +16,6 @@ class WikiFarmSettingsLoader {
 
 	private SettingsBuilder $settingsBuilder;
 
-	/**
-	 * @param SettingsBuilder $settingsBuilder
-	 */
 	public function __construct( SettingsBuilder $settingsBuilder ) {
 		$this->settingsBuilder = $settingsBuilder;
 	}

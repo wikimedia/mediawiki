@@ -40,9 +40,6 @@ class SpecialApiHelp extends UnlistedSpecialPage {
 
 	private UrlUtils $urlUtils;
 
-	/**
-	 * @param UrlUtils $urlUtils
-	 */
 	public function __construct(
 		UrlUtils $urlUtils
 	) {

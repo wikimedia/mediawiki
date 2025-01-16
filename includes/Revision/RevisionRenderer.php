@@ -78,9 +78,6 @@ class RevisionRenderer {
 		$this->saveParseLogger = new NullLogger();
 	}
 
-	/**
-	 * @param LoggerInterface $saveParseLogger
-	 */
 	public function setLogger( LoggerInterface $saveParseLogger ) {
 		$this->saveParseLogger = $saveParseLogger;
 	}

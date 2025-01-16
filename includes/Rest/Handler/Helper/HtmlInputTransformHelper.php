@@ -133,9 +133,6 @@ class HtmlInputTransformHelper {
 		}
 	}
 
-	/**
-	 * @return array
-	 */
 	public function getParamSettings(): array {
 		// JSON body schema:
 		/*

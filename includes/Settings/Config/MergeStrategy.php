@@ -46,9 +46,6 @@ class MergeStrategy {
 		$this->reversed = $reversed;
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getName(): string {
 		return $this->name;
 	}

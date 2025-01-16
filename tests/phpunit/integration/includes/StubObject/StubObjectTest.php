@@ -172,16 +172,10 @@ class DemoStubbed {
 	/** @var int */
 	public $num;
 
-	/**
-	 * @param int $num
-	 */
 	public function __construct( int $num ) {
 		$this->num = $num;
 	}
 
-	/**
-	 * @return int
-	 */
 	public function getNum(): int {
 		return $this->num;
 	}

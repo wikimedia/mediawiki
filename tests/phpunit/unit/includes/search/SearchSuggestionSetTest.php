@@ -132,7 +132,6 @@ class SearchSuggestionSetTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( 0, $set->getSize() );
 	}
 
-	/** @return iterable */
 	public static function provideNoTitles(): iterable {
 		yield 'Empty Array' => [ [] ];
 	}

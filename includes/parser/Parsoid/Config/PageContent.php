@@ -31,9 +31,6 @@ use Wikimedia\Parsoid\Config\PageContent as IPageContent;
 class PageContent extends IPageContent {
 	private RevisionRecord $rev;
 
-	/**
-	 * @param RevisionRecord $rev
-	 */
 	public function __construct( RevisionRecord $rev ) {
 		$this->rev = $rev;
 	}

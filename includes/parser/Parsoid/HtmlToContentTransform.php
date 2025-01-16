@@ -106,9 +106,6 @@ class HtmlToContentTransform {
 		$this->options = $options;
 	}
 
-	/**
-	 * @param RevisionRecord $rev
-	 */
 	public function setOriginalRevision( RevisionRecord $rev ): void {
 		if ( $this->pageConfig ) {
 			throw new LogicException( 'Cannot set revision after using the PageConfig' );
@@ -121,9 +118,6 @@ class HtmlToContentTransform {
 		$this->oldid = $rev->getId();
 	}
 
-	/**
-	 * @param int $oldid
-	 */
 	public function setOriginalRevisionId( int $oldid ): void {
 		if ( $this->pageConfig ) {
 			throw new LogicException( 'Cannot set revision ID after using the PageConfig' );
@@ -135,9 +129,6 @@ class HtmlToContentTransform {
 		$this->oldid = $oldid;
 	}
 
-	/**
-	 * @param Bcp47Code $lang
-	 */
 	public function setContentLanguage( Bcp47Code $lang ): void {
 		if ( $this->pageConfig ) {
 			throw new LogicException( 'Cannot set content language after using the PageConfig' );
@@ -199,16 +190,10 @@ class HtmlToContentTransform {
 		$this->modifiedPageBundle->mw = $modifiedDataMW;
 	}
 
-	/**
-	 * @param string $originalSchemaVeraion
-	 */
 	public function setOriginalSchemaVersion( string $originalSchemaVeraion ): void {
 		$this->originalPageBundle->version = $originalSchemaVeraion;
 	}
 
-	/**
-	 * @param string $originalHtml
-	 */
 	public function setOriginalHtml( string $originalHtml ): void {
 		if ( $this->doc ) {
 			throw new LogicException( __FUNCTION__ . ' cannot be called after' .
@@ -218,9 +203,6 @@ class HtmlToContentTransform {
 		$this->originalPageBundle->html = $originalHtml;
 	}
 
-	/**
-	 * @param array $originalDataMW
-	 */
 	public function setOriginalDataMW( array $originalDataMW ): void {
 		if ( $this->doc ) {
 			throw new LogicException( __FUNCTION__ . ' cannot be called after getModifiedDocument()' );
@@ -235,9 +217,6 @@ class HtmlToContentTransform {
 		}
 	}
 
-	/**
-	 * @param array $originalDataParsoid
-	 */
 	public function setOriginalDataParsoid( array $originalDataParsoid ): void {
 		if ( $this->doc ) {
 			throw new LogicException( __FUNCTION__ . ' cannot be called after getModifiedDocument()' );
@@ -248,9 +227,6 @@ class HtmlToContentTransform {
 		$this->modifiedPageBundle->parsoid = $originalDataParsoid;
 	}
 
-	/**
-	 * @return PageConfig
-	 */
 	private function getPageConfig(): PageConfig {
 		if ( !$this->pageConfig ) {
 

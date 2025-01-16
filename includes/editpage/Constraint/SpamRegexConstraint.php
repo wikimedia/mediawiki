@@ -106,9 +106,6 @@ class SpamRegexConstraint implements IEditConstraint {
 		return $statusValue;
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getMatch(): string {
 		return $this->match;
 	}

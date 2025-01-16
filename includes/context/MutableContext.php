@@ -37,24 +37,12 @@ use WikiPage;
  */
 interface MutableContext {
 
-	/**
-	 * @param Config $config
-	 */
 	public function setConfig( Config $config );
 
-	/**
-	 * @param WebRequest $request
-	 */
 	public function setRequest( WebRequest $request );
 
-	/**
-	 * @param Title $title
-	 */
 	public function setTitle( Title $title );
 
-	/**
-	 * @param WikiPage $wikiPage
-	 */
 	public function setWikiPage( WikiPage $wikiPage );
 
 	/**
@@ -63,14 +51,8 @@ interface MutableContext {
 	 */
 	public function setActionName( string $action ): void;
 
-	/**
-	 * @param OutputPage $output
-	 */
 	public function setOutput( OutputPage $output );
 
-	/**
-	 * @param User $user
-	 */
 	public function setUser( User $user );
 
 	/**
@@ -84,9 +66,6 @@ interface MutableContext {
 	 */
 	public function setLanguage( $language );
 
-	/**
-	 * @param Skin $skin
-	 */
 	public function setSkin( Skin $skin );
 
 }

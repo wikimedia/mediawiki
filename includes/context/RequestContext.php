@@ -143,9 +143,6 @@ class RequestContext implements IContextSource, MutableContext {
 	/** @var string|null */
 	private $skinName;
 
-	/**
-	 * @param Config $config
-	 */
 	public function setConfig( Config $config ) {
 		$this->config = $config;
 	}
@@ -161,9 +158,6 @@ class RequestContext implements IContextSource, MutableContext {
 		return $this->config;
 	}
 
-	/**
-	 * @param WebRequest $request
-	 */
 	public function setRequest( WebRequest $request ) {
 		$this->request = $request;
 	}
@@ -341,9 +335,6 @@ class RequestContext implements IContextSource, MutableContext {
 		}
 	}
 
-	/**
-	 * @param OutputPage $output
-	 */
 	public function setOutput( OutputPage $output ) {
 		$this->output = $output;
 	}
@@ -357,9 +348,6 @@ class RequestContext implements IContextSource, MutableContext {
 		return $this->output;
 	}
 
-	/**
-	 * @param User $user
-	 */
 	public function setUser( User $user ) {
 		$this->user = $user;
 		// Keep authority consistent
@@ -395,9 +383,6 @@ class RequestContext implements IContextSource, MutableContext {
 		return $this->user !== null;
 	}
 
-	/**
-	 * @param Authority $authority
-	 */
 	public function setAuthority( Authority $authority ) {
 		$this->authority = $authority;
 		// If needed, a User object is constructed from this authority
@@ -524,9 +509,6 @@ class RequestContext implements IContextSource, MutableContext {
 		return $this->getLanguage();
 	}
 
-	/**
-	 * @param Skin $skin
-	 */
 	public function setSkin( Skin $skin ) {
 		$this->skin = clone $skin;
 		$this->skin->setContext( $this );

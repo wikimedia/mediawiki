@@ -48,9 +48,6 @@ class WikiFilePage extends WikiPage {
 		$this->mRepo = null;
 	}
 
-	/**
-	 * @param File $file
-	 */
 	public function setFile( File $file ) {
 		$this->mFile = $file;
 		$this->mFileLoaded = true;
@@ -116,9 +113,6 @@ class WikiFilePage extends WikiPage {
 		return $this->mFile->isLocal();
 	}
 
-	/**
-	 * @return File
-	 */
 	public function getFile(): File {
 		$this->loadFile();
 		return $this->mFile;

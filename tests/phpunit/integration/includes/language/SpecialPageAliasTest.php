@@ -33,7 +33,6 @@ class SpecialPageAliasTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	/** @return void */
 	public static function tearDownAfterClass(): void {
 		self::$langNames = null;
 	}

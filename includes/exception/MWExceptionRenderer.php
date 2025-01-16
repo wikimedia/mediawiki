@@ -394,9 +394,6 @@ class MWExceptionRenderer {
 		}
 	}
 
-	/**
-	 * @param Throwable $e
-	 */
 	private static function reportOutageHTML( Throwable $e ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
 		$showExceptionDetails = $mainConfig->get( MainConfigNames::ShowExceptionDetails );

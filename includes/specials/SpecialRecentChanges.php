@@ -1056,30 +1056,18 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		return $systemPrefValue;
 	}
 
-	/**
-	 * @return string
-	 */
 	protected function getLimitPreferenceName(): string {
 		return 'rcfilters-limit'; // Use RCFilters-specific preference
 	}
 
-	/**
-	 * @return string
-	 */
 	protected function getSavedQueriesPreferenceName(): string {
 		return 'rcfilters-saved-queries';
 	}
 
-	/**
-	 * @return string
-	 */
 	protected function getDefaultDaysPreferenceName(): string {
 		return 'rcdays'; // Use general RecentChanges preference
 	}
 
-	/**
-	 * @return string
-	 */
 	protected function getCollapsedPreferenceName(): string {
 		return 'rcfilters-rc-collapsed';
 	}

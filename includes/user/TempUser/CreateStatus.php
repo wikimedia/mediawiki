@@ -12,9 +12,7 @@ use MediaWiki\User\User;
  * @internal
  */
 class CreateStatus extends Status {
-	/**
-	 * @return User
-	 */
+
 	public function getUser(): User {
 		return $this->value;
 	}

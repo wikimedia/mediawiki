@@ -54,9 +54,6 @@ class SkinComponentListItem implements SkinComponent {
 		$this->defaultLinkOptions = $defaultLinkOptions;
 	}
 
-	/**
-	 * @return MessageLocalizer
-	 */
 	private function getMessageLocalizer(): MessageLocalizer {
 		return $this->localizer;
 	}

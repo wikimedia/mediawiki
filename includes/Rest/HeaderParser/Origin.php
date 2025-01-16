@@ -58,9 +58,6 @@ class Origin extends HeaderParserBase {
 		return $this->origins;
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getSingleOrigin(): string {
 		Assert::precondition( !$this->isMultiOrigin(),
 			'Cannot get single origin, header specifies multiple' );

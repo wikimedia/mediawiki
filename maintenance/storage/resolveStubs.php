@@ -85,9 +85,6 @@ class ResolveStubs extends Maintenance {
 		$this->output( "$numResolved of $numTotal stubs resolved\n" );
 	}
 
-	/**
-	 * @param UndoLog $undoLog
-	 */
 	public function setUndoLog( UndoLog $undoLog ) {
 		$this->undoLog = $undoLog;
 	}

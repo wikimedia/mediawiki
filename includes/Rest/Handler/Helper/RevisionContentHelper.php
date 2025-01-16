@@ -55,9 +55,6 @@ class RevisionContentHelper extends PageContentHelper {
 		return $this->targetRevision;
 	}
 
-	/**
-	 * @return bool
-	 */
 	public function isAccessible(): bool {
 		if ( !parent::isAccessible() ) {
 			return false;
@@ -76,9 +73,6 @@ class RevisionContentHelper extends PageContentHelper {
 		return true;
 	}
 
-	/**
-	 * @return bool
-	 */
 	public function hasContent(): bool {
 		return (bool)$this->getTargetRevision();
 	}
@@ -94,9 +88,6 @@ class RevisionContentHelper extends PageContentHelper {
 		parent::setCacheControl( $response, $expiry );
 	}
 
-	/**
-	 * @return array
-	 */
 	public function constructMetadata(): array {
 		$page = $this->getPage();
 		$revision = $this->getTargetRevision();

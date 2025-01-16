@@ -16,9 +16,6 @@ class ContentTransformer {
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
 
-	/**
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 */
 	public function __construct( IContentHandlerFactory $contentHandlerFactory ) {
 		$this->contentHandlerFactory = $contentHandlerFactory;
 	}

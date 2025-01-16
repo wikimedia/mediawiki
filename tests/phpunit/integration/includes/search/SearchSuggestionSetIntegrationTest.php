@@ -22,7 +22,7 @@
 use MediaWiki\Title\Title;
 
 class SearchSuggestionSetIntegrationTest extends MediaWikiIntegrationTestCase {
-	/** @return iterable */
+
 	public static function provideTitles(): iterable {
 		$mainspaceTitle1 = Title::makeTitle( NS_MAIN, 'Title' );
 		$mainspaceTitle1->resetArticleID( 10 );

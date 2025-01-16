@@ -13,9 +13,6 @@ use Wikimedia\Rdbms\DBReadOnlyError;
  */
 class NoWriteWatchedItemStoreUnitTest extends \MediaWikiUnitTestCase {
 
-	/**
-	 * @return NoWriteWatchedItemStore
-	 */
 	private function getNoWriteStoreForErrors(): NoWriteWatchedItemStore {
 		// NoWriteWatchedItemStore where the inner actual store should never be called,
 		// because we are testing the methods that throw exceptions instead

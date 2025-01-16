@@ -785,9 +785,6 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		return $this->wikiPage->wasLoadedFrom( IDBAccessObject::READ_LATEST );
 	}
 
-	/**
-	 * @return bool
-	 */
 	public function isCountable(): bool {
 		// NOTE: Keep in sync with WikiPage::isCountable.
 
@@ -830,9 +827,6 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		return false;
 	}
 
-	/**
-	 * @return bool
-	 */
 	public function isRedirect(): bool {
 		// NOTE: main slot determines redirect status
 		// TODO: MCR: this should be controlled by a PageTypeHandler
@@ -1064,9 +1058,6 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		return $this->revision;
 	}
 
-	/**
-	 * @return RenderedRevision
-	 */
 	public function getRenderedRevision(): RenderedRevision {
 		$this->assertPrepared( __METHOD__ );
 
@@ -1494,9 +1485,6 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		return $this->getRenderedRevision()->getRevisionParserOutput();
 	}
 
-	/**
-	 * @return ParserOptions
-	 */
 	public function getCanonicalParserOptions(): ParserOptions {
 		return $this->getRenderedRevision()->getOptions();
 	}

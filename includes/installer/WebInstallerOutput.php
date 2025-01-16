@@ -68,9 +68,6 @@ class WebInstallerOutput {
 	 */
 	public $redirectTarget;
 
-	/**
-	 * @param WebInstaller $parent
-	 */
 	public function __construct( WebInstaller $parent ) {
 		$this->parent = $parent;
 	}

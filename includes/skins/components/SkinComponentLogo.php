@@ -48,9 +48,6 @@ class SkinComponentLogo implements SkinComponent {
 		return $this->language;
 	}
 
-	/**
-	 * @return Config
-	 */
 	private function getConfig(): Config {
 		return $this->config;
 	}

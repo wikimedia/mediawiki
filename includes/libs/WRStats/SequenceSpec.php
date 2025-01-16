@@ -23,9 +23,6 @@ class SequenceSpec {
 	/** @var int */
 	public $hardExpiry;
 
-	/**
-	 * @param array $spec
-	 */
 	public function __construct( array $spec ) {
 		$this->timeStep = $spec['timeStep'] ?? self::DEFAULT_TIME_STEP;
 		$this->softExpiry = $spec['expiry'] ?? self::DEFAULT_EXPIRY;

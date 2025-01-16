@@ -37,9 +37,6 @@ class CsrfTokenSet {
 
 	private WebRequest $request;
 
-	/**
-	 * @param WebRequest $request
-	 */
 	public function __construct( WebRequest $request ) {
 		$this->request = $request;
 	}

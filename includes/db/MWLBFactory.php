@@ -222,9 +222,6 @@ class MWLBFactory {
 		return $lbConf;
 	}
 
-	/**
-	 * @return array
-	 */
 	private function getDbTypesWithSchemas(): array {
 		return [ 'postgres' ];
 	}
@@ -380,9 +377,6 @@ class MWLBFactory {
 		return $compat[$class] ?? $class;
 	}
 
-	/**
-	 * @param ILBFactory $lbFactory
-	 */
 	public function setDomainAliases( ILBFactory $lbFactory ): void {
 		$domain = DatabaseDomain::newFromId( $lbFactory->getLocalDomainID() );
 		// For compatibility with hyphenated $wgDBname values on older wikis, handle callers

@@ -30,9 +30,6 @@ class RemexDriver extends TidyDriverBase {
 		MainConfigNames::ParserEnableLegacyMediaDOM,
 	];
 
-	/**
-	 * @param ServiceOptions $options
-	 */
 	public function __construct( ServiceOptions $options ) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$config = $options->get( MainConfigNames::TidyConfig );

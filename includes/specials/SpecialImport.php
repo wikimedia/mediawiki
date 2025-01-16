@@ -47,9 +47,6 @@ class SpecialImport extends SpecialPage {
 
 	private WikiImporterFactory $wikiImporterFactory;
 
-	/**
-	 * @param WikiImporterFactory $wikiImporterFactory
-	 */
 	public function __construct(
 		WikiImporterFactory $wikiImporterFactory
 	) {

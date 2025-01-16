@@ -488,9 +488,6 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 		return $this->parameters;
 	}
 
-	/**
-	 * @return UserIdentity
-	 */
 	public function getPerformerIdentity(): UserIdentity {
 		return $this->performer;
 	}

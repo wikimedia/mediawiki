@@ -88,9 +88,6 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @return array
-	 */
 	private function getDummyUsedOptions(): array {
 		return array_slice(
 			ParserOptions::allCacheVaryingOptions(),
@@ -99,9 +96,6 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @return ParserOutput
-	 */
 	private function createDummyParserOutput(): ParserOutput {
 		$parserOutput = new ParserOutput();
 		$parserOutput->setRawText( 'TEST' );

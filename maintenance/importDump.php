@@ -191,9 +191,6 @@ TEXT
 		$this->pageCount++;
 	}
 
-	/**
-	 * @param WikiRevision $rev
-	 */
 	public function handleRevision( WikiRevision $rev ) {
 		$title = $rev->getTitle();
 		if ( !$title ) {
@@ -240,9 +237,6 @@ TEXT
 		return false;
 	}
 
-	/**
-	 * @param WikiRevision $rev
-	 */
 	public function handleLogItem( WikiRevision $rev ) {
 		if ( $this->skippedNamespace( $rev->getTitle() ) ) {
 			return;
