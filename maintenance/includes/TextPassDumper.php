@@ -846,7 +846,7 @@ TEXT
 		}
 		$this->spawnErr = false;
 		if ( $this->spawnProc ) {
-			pclose( $this->spawnProc );
+			proc_close( $this->spawnProc );
 		}
 		$this->spawnProc = false;
 		AtEase::restoreWarnings();
