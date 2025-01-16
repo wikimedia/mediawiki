@@ -109,7 +109,7 @@
 	"rest-param-desc-opensearch-ctype": "Open search description ctype",
 	"rest-param-desc-pagehistory-count-title": "Wiki page title",
 	"rest-param-desc-pagehistory-count-type": "Type of count (anonymous, bot, editors, edits, minor, reverted)",
-	"rest-param-desc-pagehistory-count-from": "Restricts te count to between two revisions, specified by revision ID. Must be used with \"to\" parameter.",
+	"rest-param-desc-pagehistory-count-from": "Restricts the count to between two revisions, specified by revision ID. Must be used with \"to\" parameter.",
 	"rest-param-desc-pagehistory-count-to": "Restricts the count to between two revisions, specified by revision ID. Must be used with \"from\" parameter.",
 	"rest-param-desc-pagehistory-title": "Wiki page title",
 	"rest-param-desc-pagehistory-older-than": "Accepts a revision ID. Returns the next 20 revisions older than the given revision ID.",
