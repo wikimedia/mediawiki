@@ -69,7 +69,7 @@
 				:can-delete-log-entry="canDeleteLogEntry"
 			></block-log>
 
-			<div v-if="showBlockForm" class="mw-block__block-form">
+			<div v-if="formVisible" class="mw-block__block-form">
 				<block-type-field></block-type-field>
 				<expiry-field></expiry-field>
 				<reason-field
@@ -185,9 +185,7 @@ module.exports = exports = defineComponent( {
 			return mw.message( 'ipbsubmit' ).text();
 		} );
 		const confirmationOpen = ref( false );
-		const blockId = computed( () => mw.util.getParamValue( 'id' ) );
 		const showBlockLogs = computed( () => store.targetUser || store.blockId );
-		const showBlockForm = computed( () => formVisible.value || blockId.value );
 		const removalConfirmationOpen = ref( false );
 
 		// TODO: Remove some time after deprecation
@@ -196,14 +194,21 @@ module.exports = exports = defineComponent( {
 
 		let initialLoad = true;
 
-		if ( blockId.value ) {
-			loadFromIdParam().then( ( data ) => {
+		// If we're editing or removing via a URL parameter, check that the block exists.
+		const blockId = mw.util.getParamValue( 'id' );
+		if ( blockId ) {
+			loadFromId( blockId ).then( ( data ) => {
 				if ( data && data.blocks.length ) {
-					// Load the block form content.
-					const block = data.blocks[ 0 ];
-					store.loadFromData( block, true );
-					formVisible.value = true;
-					scrollToForm();
+					if ( mw.util.getParamValue( 'remove' ) === '1' ) {
+						// Fire the remove click handler manually.
+						onRemoveBlock( blockId );
+					} else {
+						// Load the block form content.
+						const block = data.blocks[ 0 ];
+						store.loadFromData( block, true );
+						formVisible.value = true;
+						scrollToForm();
+					}
 				} else {
 					// If the block ID is invalid, show an error message.
 					formErrors.value = [ mw.msg( 'block-invalid-id' ) ];
@@ -243,6 +248,7 @@ module.exports = exports = defineComponent( {
 		 * @param {number} currentBlockId
 		 */
 		function onRemoveBlock( currentBlockId ) {
+			formVisible.value = false;
 			store.blockId = currentBlockId;
 			store.removalReason = mw.config.get( 'blockRemovalReasonPreset' ) || '';
 			store.watchUser = false;
@@ -315,15 +321,16 @@ module.exports = exports = defineComponent( {
 		}
 
 		/**
-		 * Load the block form content from the 'id' URL parameter.
+		 * Load data for a given block.
 		 *
+		 * @param {string} id The block ID to load.
 		 * @return {Promise<Object>} A promise that resolves to the block query response.
 		 */
-		function loadFromIdParam() {
+		function loadFromId( id ) {
 			const params = {
 				action: 'query',
 				list: 'blocks',
-				bkids: mw.util.getParamValue( 'id' ),
+				bkids: id,
 				formatversion: 2,
 				format: 'json',
 				bkprop: 'id|user|by|timestamp|expiry|reason|range|flags|restrictions'
@@ -383,7 +390,7 @@ module.exports = exports = defineComponent( {
 			onRemoveBlock,
 			doRemoveBlock,
 			showBlockLogs,
-			showBlockForm,
+			formVisible,
 			wasRedirected
 		};
 	}
