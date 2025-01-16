@@ -356,7 +356,8 @@ class SpecialVersion extends SpecialPage {
 			'Bartosz Dziewoński', 'Ed Sanders', 'Moriel Schottlender',
 			'Kunal Mehta', 'James D. Forrester', 'Brian Wolff', 'Adam Shorland',
 			'DannyS712', 'Ori Livneh', 'Max Semenik', 'Amir Sarabadani',
-			'Derk-Jan Hartman', 'Petr Pchelko',
+			'Derk-Jan Hartman', 'Petr Pchelko', 'Umherirrender', 'C. Scott Ananian',
+			'fomafix', 'Thiemo Kreuz', 'Gergő Tisza', 'Volker E.',
 			$othersLink, $translatorsLink
 		];
 
