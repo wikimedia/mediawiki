@@ -61,9 +61,6 @@ class SpecialPagesWithProp extends QueryPage {
 	 */
 	private $sortByValue = false;
 
-	/**
-	 * @param IConnectionProvider $dbProvider
-	 */
 	public function __construct( IConnectionProvider $dbProvider ) {
 		parent::__construct( 'PagesWithProp' );
 		$this->setDatabaseProvider( $dbProvider );

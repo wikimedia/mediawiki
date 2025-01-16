@@ -57,9 +57,6 @@ class GroupPermissionsLookup {
 	/** @var string[] */
 	private $groupInheritance;
 
-	/**
-	 * @param ServiceOptions $options
-	 */
 	public function __construct( ServiceOptions $options ) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->groupPermissions = $options->get( MainConfigNames::GroupPermissions );

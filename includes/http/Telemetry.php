@@ -34,7 +34,6 @@ class Telemetry implements TelemetryHeadersInterface {
 	private static ?Telemetry $instance = null;
 
 	/**
-	 *
 	 * @var string|null Request id
 	 */
 	private ?string $reqId = null;

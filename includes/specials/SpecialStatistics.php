@@ -46,9 +46,6 @@ class SpecialStatistics extends SpecialPage {
 
 	private UserGroupManager $userGroupManager;
 
-	/**
-	 * @param UserGroupManager $userGroupManager
-	 */
 	public function __construct( UserGroupManager $userGroupManager ) {
 		parent::__construct( 'Statistics' );
 		$this->userGroupManager = $userGroupManager;

@@ -102,9 +102,6 @@ abstract class AbstractContent implements Content {
 		return $this->getContentHandlerFactory()->getContentHandler( $this->getModel() );
 	}
 
-	/**
-	 * @return IContentHandlerFactory
-	 */
 	protected function getContentHandlerFactory(): IContentHandlerFactory {
 		return MediaWikiServices::getInstance()->getContentHandlerFactory();
 	}

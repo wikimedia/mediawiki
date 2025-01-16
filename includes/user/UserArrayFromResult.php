@@ -57,9 +57,6 @@ class UserArrayFromResult extends UserArray {
 		}
 	}
 
-	/**
-	 * @return int
-	 */
 	public function count(): int {
 		return $this->res->numRows();
 	}
@@ -84,9 +81,6 @@ class UserArrayFromResult extends UserArray {
 		$this->setCurrent( $this->res->current() );
 	}
 
-	/**
-	 * @return bool
-	 */
 	public function valid(): bool {
 		return $this->current !== false;
 	}

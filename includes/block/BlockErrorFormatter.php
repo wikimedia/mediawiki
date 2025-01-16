@@ -61,9 +61,6 @@ class BlockErrorFormatter {
 		$this->uiContext = $uiContext;
 	}
 
-	/**
-	 * @return Language
-	 */
 	private function getLanguage(): Language {
 		return $this->languageFactory->getLanguage( $this->uiContext->getLanguageCode() );
 	}

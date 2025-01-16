@@ -31,9 +31,6 @@ use SearchEngineFactory;
  */
 class SpecialPageInfo extends SpecialRedirectWithAction {
 
-	/**
-	 * @param SearchEngineFactory $searchEngineFactory
-	 */
 	public function __construct(
 		SearchEngineFactory $searchEngineFactory
 	) {

@@ -23,18 +23,10 @@ class ValidationParams {
 		$this->parentRevId = $parentRevId;
 	}
 
-	/**
-	 *
-	 * @return PageIdentity
-	 */
 	public function getPageIdentity(): PageIdentity {
 		return $this->pageIdentity;
 	}
 
-	/**
-	 *
-	 * @return int
-	 */
 	public function getFlags(): int {
 		return $this->flags;
 	}

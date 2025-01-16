@@ -26,9 +26,6 @@ class RevisionCommentBatch {
 	/** @var bool */
 	private $indexById = false;
 
-	/**
-	 * @param CommentFormatter $formatter
-	 */
 	public function __construct( CommentFormatter $formatter ) {
 		$this->formatter = $formatter;
 	}

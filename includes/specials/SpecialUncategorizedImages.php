@@ -33,9 +33,6 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialUncategorizedImages extends ImageQueryPage {
 
-	/**
-	 * @param IConnectionProvider $dbProvider
-	 */
 	public function __construct( IConnectionProvider $dbProvider ) {
 		parent::__construct( 'Uncategorizedimages' );
 		$this->setDatabaseProvider( $dbProvider );

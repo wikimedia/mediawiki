@@ -212,9 +212,6 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 		);
 	}
 
-	/**
-	 * @param WatchedItem $item
-	 */
 	private function cache( WatchedItem $item ) {
 		$user = $item->getUserIdentity();
 		$target = $item->getTarget();
@@ -259,9 +256,6 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 		}
 	}
 
-	/**
-	 * @param UserIdentity $user
-	 */
 	private function uncacheUser( UserIdentity $user ) {
 		$this->statsFactory->getCounter( 'WatchedItemStore_uncacheUser_total' )
 			->copyToStatsdAt( 'WatchedItemStore.uncacheUser' )
@@ -369,9 +363,6 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 		return $this->countWatchedItems( $user ) > $this->updateRowsPerQuery;
 	}
 
-	/**
-	 * @param UserIdentity $user
-	 */
 	private function uncacheAllItemsForUser( UserIdentity $user ) {
 		$userId = $user->getId();
 		foreach ( $this->cacheIndex as $ns => $dbKeyIndex ) {

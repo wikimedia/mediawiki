@@ -134,9 +134,6 @@ class PageConfig extends IPageConfig {
 		return $stuff['revision-record'] ?? null;
 	}
 
-	/**
-	 * @return ?RevisionRecord
-	 */
 	private function getRevision(): ?RevisionRecord {
 		return $this->revision;
 	}

@@ -36,44 +36,26 @@ class ContributeCardAction {
 		$this->actionType = $actionType;
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getActionType(): string {
 		return $this->actionType;
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getAction(): string {
 		return $this->action;
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getActionText(): string {
 		return $this->actionText;
 	}
 
-	/**
-	 * @param string $action
-	 */
 	public function setAction( string $action ): void {
 		$this->action = $action;
 	}
 
-	/**
-	 * @param string $actionText
-	 */
 	public function setActionText( string $actionText ): void {
 		$this->actionText = $actionText;
 	}
 
-	/**
-	 * @return array
-	 */
 	public function toArray(): array {
 		return [
 			'action' => $this->action,

@@ -807,7 +807,6 @@ class SiteConfig extends ISiteConfig {
 		return $this->config->get( MainConfigNames::UrlProtocols );
 	}
 
-	/** @return array */
 	public function getNoFollowConfig(): array {
 		return [
 			'nofollow' => $this->config->get( MainConfigNames::NoFollowLinks ),

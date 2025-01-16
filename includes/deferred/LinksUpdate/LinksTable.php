@@ -262,9 +262,6 @@ abstract class LinksTable {
 		return $this->db;
 	}
 
-	/**
-	 * @return LBFactory
-	 */
 	protected function getLBFactory(): LBFactory {
 		return $this->lbFactory;
 	}

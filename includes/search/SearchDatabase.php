@@ -38,9 +38,6 @@ abstract class SearchDatabase extends SearchEngine {
 	protected $searchTerms = [];
 	protected IConnectionProvider $dbProvider;
 
-	/**
-	 * @param IConnectionProvider $dbProvider
-	 */
 	public function __construct( IConnectionProvider $dbProvider ) {
 		$this->dbProvider = $dbProvider;
 	}

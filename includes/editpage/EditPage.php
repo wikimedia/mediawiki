@@ -1184,9 +1184,6 @@ class EditPage implements IEditObject {
 		$this->getHookRunner()->onEditPage__importFormData( $this, $request );
 	}
 
-	/**
-	 * @param WebRequest $request
-	 */
 	private function importFormDataPosted( WebRequest $request ): void {
 		# These fields need to be checked for encoding.
 		# Also remove trailing whitespace, but don't remove _initial_
@@ -3930,9 +3927,6 @@ class EditPage implements IEditObject {
 		$this->getEditConflictHelper()->incrementConflictStats( $this->context->getUser() );
 	}
 
-	/**
-	 * @return string
-	 */
 	private function getHelpLink(): string {
 		$message = $this->context->msg( 'edithelppage' )->inContentLanguage()->text();
 		$editHelpUrl = Skin::makeInternalOrExternalUrl( $message );

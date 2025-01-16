@@ -43,9 +43,6 @@ abstract class DomainEvent {
 			: MWTimestamp::getInstance( $timestamp );
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getEventType(): string {
 		return $this->type;
 	}

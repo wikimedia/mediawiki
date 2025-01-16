@@ -45,7 +45,6 @@ class ApiUsageException extends MWException implements Stringable, ILocalizedExc
 	protected $status;
 
 	/**
-	 *
 	 * @stable to call
 	 * @param ApiBase|null $module API module responsible for the error, if known
 	 * @param StatusValue $status Status holding errors

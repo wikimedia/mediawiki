@@ -88,9 +88,6 @@ class JobSpecification implements IJobSpecification {
 		$this->opts = $opts;
 	}
 
-	/**
-	 * @param array $params
-	 */
 	protected function validateParams( array $params ) {
 		foreach ( $params as $p => $v ) {
 			if ( is_array( $v ) ) {

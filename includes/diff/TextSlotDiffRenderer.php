@@ -205,9 +205,6 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 		$this->format = $format;
 	}
 
-	/**
-	 * @param TextDiffer $textDiffer
-	 */
 	public function setTextDiffer( TextDiffer $textDiffer ) {
 		$this->textDiffer = $textDiffer;
 	}
@@ -215,8 +212,6 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	/**
 	 * Get the current TextDiffer, or throw an exception if setTextDiffer() has
 	 * not been called.
-	 *
-	 * @return TextDiffer
 	 */
 	private function getTextDiffer(): TextDiffer {
 		return $this->textDiffer;

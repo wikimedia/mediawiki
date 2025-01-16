@@ -177,9 +177,6 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 		$this->profileName = $caller;
 	}
 
-	/**
-	 * @param LoggerInterface $logger
-	 */
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
 	}

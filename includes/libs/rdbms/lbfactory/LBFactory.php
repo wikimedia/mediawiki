@@ -709,9 +709,6 @@ abstract class LBFactory implements ILBFactory {
 		];
 	}
 
-	/**
-	 * @param ILoadBalancerForOwner $lb
-	 */
 	protected function initLoadBalancer( ILoadBalancerForOwner $lb ) {
 		if ( $this->trxRoundFname !== null ) {
 			$lb->beginPrimaryChanges( $this->trxRoundFname ); // set DBO_TRX

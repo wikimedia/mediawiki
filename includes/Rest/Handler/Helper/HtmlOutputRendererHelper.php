@@ -619,9 +619,6 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		return $title->getPageLanguage();
 	}
 
-	/**
-	 * @return ParserOutput
-	 */
 	private function getParserOutput(): ParserOutput {
 		if ( !$this->parserOutput ) {
 			$this->parserOptions->setRenderReason( __METHOD__ );
@@ -809,9 +806,6 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		}
 	}
 
-	/**
-	 * @return Status
-	 */
 	private function getParserOutputInternal(): Status {
 		// NOTE: ParserOutputAccess::getParserOutput() should be used for revisions
 		//       that come from the database. Either this revision is null to indicate

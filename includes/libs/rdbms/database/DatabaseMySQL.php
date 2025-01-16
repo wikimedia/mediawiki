@@ -437,9 +437,6 @@ class DatabaseMySQL extends Database {
 		return $version;
 	}
 
-	/**
-	 * @param array $options
-	 */
 	public function setSessionOptions( array $options ) {
 		$sqlAssignments = [];
 

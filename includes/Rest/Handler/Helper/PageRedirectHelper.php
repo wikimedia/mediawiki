@@ -50,16 +50,10 @@ class PageRedirectHelper {
 		$this->languageConverterFactory = $languageConverterFactory;
 	}
 
-	/**
-	 * @param bool $useRelativeRedirects
-	 */
 	public function setUseRelativeRedirects( bool $useRelativeRedirects ): void {
 		$this->useRelativeRedirects = $useRelativeRedirects;
 	}
 
-	/**
-	 * @param bool $followWikiRedirects
-	 */
 	public function setFollowWikiRedirects( bool $followWikiRedirects ): void {
 		$this->followWikiRedirects = $followWikiRedirects;
 	}

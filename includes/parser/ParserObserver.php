@@ -49,9 +49,6 @@ class ParserObserver {
 
 	private MapCacheLRU $previousParseStackTraces;
 
-	/**
-	 * @param LoggerInterface $logger
-	 */
 	public function __construct( LoggerInterface $logger ) {
 		$this->logger = $logger;
 		$this->previousParseStackTraces = new MapCacheLRU( 10 );

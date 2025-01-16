@@ -400,25 +400,16 @@ class LinksUpdate extends DataUpdate {
 		return $this->user;
 	}
 
-	/**
-	 * @return PageLinksTable
-	 */
 	protected function getPageLinksTable(): PageLinksTable {
 		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 		return $this->tableFactory->get( 'pagelinks' );
 	}
 
-	/**
-	 * @return ExternalLinksTable
-	 */
 	protected function getExternalLinksTable(): ExternalLinksTable {
 		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 		return $this->tableFactory->get( 'externallinks' );
 	}
 
-	/**
-	 * @return PagePropsTable
-	 */
 	protected function getPagePropsTable(): PagePropsTable {
 		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 		return $this->tableFactory->get( 'page_props' );

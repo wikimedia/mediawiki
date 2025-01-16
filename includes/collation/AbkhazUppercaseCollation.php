@@ -24,9 +24,6 @@ use MediaWiki\Languages\LanguageFactory;
 
 class AbkhazUppercaseCollation extends CustomUppercaseCollation {
 
-	/**
-	 * @param LanguageFactory $languageFactory
-	 */
 	public function __construct( LanguageFactory $languageFactory ) {
 		parent::__construct(
 			$languageFactory,

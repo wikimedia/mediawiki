@@ -390,9 +390,6 @@ class WANObjectCache implements
 		$this->missLog = array_fill( 0, 10, [ '', 0.0 ] );
 	}
 
-	/**
-	 * @param LoggerInterface $logger
-	 */
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
 	}

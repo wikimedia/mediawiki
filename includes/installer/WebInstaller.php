@@ -148,9 +148,6 @@ class WebInstaller extends Installer {
 	 */
 	protected $currentPageName;
 
-	/**
-	 * @param WebRequest $request
-	 */
 	public function __construct( WebRequest $request ) {
 		parent::__construct();
 		$this->output = new WebInstallerOutput( $this );

@@ -32,9 +32,6 @@ class ResponseException extends HttpException {
 		$this->response = $response;
 	}
 
-	/**
-	 * @return Response
-	 */
 	public function getResponse(): Response {
 		// TODO: Allow this method to return a ResponseInterface.
 		//       But that would be a breaking change.

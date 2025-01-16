@@ -39,42 +39,22 @@ class ContentParseParams {
 		$this->previousOutput = $previousOutput;
 	}
 
-	/**
-	 *
-	 * @return PageReference
-	 */
 	public function getPage(): PageReference {
 		return $this->page;
 	}
 
-	/**
-	 *
-	 * @return int|null
-	 */
 	public function getRevId(): ?int {
 		return $this->revId;
 	}
 
-	/**
-	 *
-	 * @return ParserOptions
-	 */
 	public function getParserOptions(): ParserOptions {
 		return $this->parserOptions;
 	}
 
-	/**
-	 *
-	 * @return bool
-	 */
 	public function getGenerateHtml(): bool {
 		return $this->generateHtml;
 	}
 
-	/**
-	 *
-	 * @return ?ParserOutput
-	 */
 	public function getPreviousOutput(): ?ParserOutput {
 		return $this->previousOutput;
 	}

@@ -68,9 +68,6 @@ class TitleArrayFromResult implements Countable, Iterator {
 		}
 	}
 
-	/**
-	 * @return int
-	 */
 	public function count(): int {
 		return $this->res->numRows();
 	}
@@ -95,9 +92,6 @@ class TitleArrayFromResult implements Countable, Iterator {
 		$this->setCurrent( $this->res->current() );
 	}
 
-	/**
-	 * @return bool
-	 */
 	public function valid(): bool {
 		return $this->current !== false;
 	}

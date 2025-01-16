@@ -359,9 +359,6 @@ class MainConfigSchema {
 		'dynamicDefault' => true,
 	];
 
-	/**
-	 * @return bool
-	 */
 	public static function getDefaultUsePathInfo(): bool {
 		// These often break when PHP is set up in CGI mode.
 		// PATH_INFO *may* be correct if cgi.fix_pathinfo is set, but then again it may not;
@@ -1378,9 +1375,6 @@ class MainConfigSchema {
 		'dynamicDefault' => [ 'callback' => [ self::class, 'getDefaultShowEXIF' ] ],
 	];
 
-	/**
-	 * @return bool
-	 */
 	public static function getDefaultShowEXIF(): bool {
 		return function_exists( 'exif_read_data' );
 	}

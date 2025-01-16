@@ -37,9 +37,6 @@ class SpecialEmailInvalidate extends UnlistedSpecialPage {
 
 	private UserFactory $userFactory;
 
-	/**
-	 * @param UserFactory $userFactory
-	 */
 	public function __construct( UserFactory $userFactory ) {
 		parent::__construct( 'Invalidateemail', 'editmyprivateinfo' );
 

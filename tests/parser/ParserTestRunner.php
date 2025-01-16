@@ -281,9 +281,6 @@ class ParserTestRunner {
 		$this->uploadDir = $this->options['upload-dir'];
 	}
 
-	/**
-	 * @return array
-	 */
 	public function getOptions(): array {
 		return $this->options;
 	}

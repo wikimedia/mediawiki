@@ -35,9 +35,6 @@ class ReadOnlyConstraint implements IEditConstraint {
 	private ReadOnlyMode $readOnlyMode;
 	private string $result;
 
-	/**
-	 * @param ReadOnlyMode $readOnlyMode
-	 */
 	public function __construct( ReadOnlyMode $readOnlyMode ) {
 		$this->readOnlyMode = $readOnlyMode;
 	}

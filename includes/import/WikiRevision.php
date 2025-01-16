@@ -196,9 +196,6 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 		$this->slots = new MutableRevisionSlots();
 	}
 
-	/**
-	 * @param Title $title
-	 */
 	public function setTitle( Title $title ) {
 		$this->title = $title;
 	}

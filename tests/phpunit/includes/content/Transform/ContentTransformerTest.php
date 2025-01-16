@@ -21,7 +21,6 @@ class ContentTransformerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 *
 	 * @dataProvider preSaveTransformProvider
 	 */
 	public function testPreSaveTransform( $content, $expectedContainText ) {

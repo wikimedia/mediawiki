@@ -45,9 +45,6 @@ abstract class WebInstallerPage {
 	 */
 	abstract public function execute();
 
-	/**
-	 * @param WebInstaller $parent
-	 */
 	public function __construct( WebInstaller $parent ) {
 		$this->parent = $parent;
 	}

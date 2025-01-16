@@ -209,9 +209,6 @@ class SearchDump extends DumpIterator {
 		return Maintenance::DB_NONE;
 	}
 
-	/**
-	 * @param WikiRevision $rev
-	 */
 	public function processRevision( WikiRevision $rev ) {
 		if ( preg_match( $this->getOption( 'regex' ), $rev->getContent()->getTextForSearchIndex() ) ) {
 			$this->output( $rev->getTitle() . " matches at edit from " . $rev->getTimestamp() . "\n" );

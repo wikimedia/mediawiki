@@ -37,9 +37,6 @@ abstract class DatabaseCreator {
 		}
 	}
 
-	/**
-	 * @param ITaskContext $context
-	 */
 	protected function __construct( ITaskContext $context ) {
 		$this->context = $context;
 	}

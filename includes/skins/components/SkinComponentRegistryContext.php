@@ -40,16 +40,10 @@ class SkinComponentRegistryContext implements ComponentRegistryContext {
 	/** @var MessageLocalizer|null */
 	private $localizer = null;
 
-	/**
-	 * @param Skin $skin
-	 */
 	public function __construct( Skin $skin ) {
 		$this->skin = $skin;
 	}
 
-	/**
-	 * @return IContextSource
-	 */
 	public function getContextSource(): IContextSource {
 		return $this->skin->getContext();
 	}
@@ -75,9 +69,6 @@ class SkinComponentRegistryContext implements ComponentRegistryContext {
 		return $this->skin->getRelevantTitle() ?? $this->getTitle();
 	}
 
-	/**
-	 * @return OutputPage
-	 */
 	public function getOutput(): OutputPage {
 		return $this->skin->getOutput();
 	}
@@ -96,9 +87,6 @@ class SkinComponentRegistryContext implements ComponentRegistryContext {
 		return $this->skin->getLanguage();
 	}
 
-	/**
-	 * @return MessageLocalizer
-	 */
 	public function getMessageLocalizer(): MessageLocalizer {
 		if ( $this->localizer === null ) {
 			// Cannot call getContext in constructor,

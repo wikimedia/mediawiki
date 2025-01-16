@@ -23,9 +23,6 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	/** @var DummyConverter */
 	protected $lc;
 
-	/**
-	 * @param User $user
-	 */
 	private function setContextUser( User $user ) {
 		// LanguageConverter::getPreferredVariant() reads the user from
 		// RequestContext::getMain(), so set it occordingly

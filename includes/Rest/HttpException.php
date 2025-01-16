@@ -26,9 +26,6 @@ class HttpException extends \Exception {
 		$this->errorData = $errorData;
 	}
 
-	/**
-	 * @return array
-	 */
 	public function getErrorData(): array {
 		return $this->errorData;
 	}

@@ -17,9 +17,6 @@ class WRStatsFactory {
 	/** @var float|int|null */
 	private $now;
 
-	/**
-	 * @param StatsStore $store
-	 */
 	public function __construct( StatsStore $store ) {
 		$this->store = $store;
 	}

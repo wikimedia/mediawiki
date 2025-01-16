@@ -199,18 +199,12 @@ class DatabaseDomain implements Stringable {
 		return $this->prefix;
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getId(): string {
 		$this->equivalentString ??= $this->convertToString();
 
 		return $this->equivalentString;
 	}
 
-	/**
-	 * @return string
-	 */
 	private function convertToString(): string {
 		$parts = [ (string)$this->database ];
 		if ( $this->schema !== null ) {

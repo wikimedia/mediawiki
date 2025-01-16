@@ -18,9 +18,6 @@ class SkinComponentFooter implements SkinComponent {
 	/** @var SkinComponentRegistryContext */
 	private $skinContext;
 
-	/**
-	 * @param SkinComponentRegistryContext $skinContext
-	 */
 	public function __construct( SkinComponentRegistryContext $skinContext ) {
 		$this->skinContext = $skinContext;
 	}

@@ -34,9 +34,6 @@ class SpecialFilepath extends RedirectSpecialPage {
 
 	private SearchEngineFactory $searchEngineFactory;
 
-	/**
-	 * @param SearchEngineFactory $searchEngineFactory
-	 */
 	public function __construct(
 		SearchEngineFactory $searchEngineFactory
 	) {

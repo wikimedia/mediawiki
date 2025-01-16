@@ -91,9 +91,6 @@ class LinkCache implements LoggerAwareInterface {
 		$this->logger = new NullLogger();
 	}
 
-	/**
-	 * @param LoggerInterface $logger
-	 */
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
 	}

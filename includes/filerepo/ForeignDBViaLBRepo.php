@@ -64,9 +64,6 @@ class ForeignDBViaLBRepo extends LocalRepo implements IForeignRepoWithDB {
 		};
 	}
 
-	/**
-	 * @return IConnectionProvider
-	 */
 	protected function getDbProvider(): IConnectionProvider {
 		return MediaWikiServices::getInstance()->getConnectionProvider();
 	}

@@ -92,7 +92,6 @@ class FilePath {
 		return $this->remoteBasePath;
 	}
 
-	/** @return string */
 	public function getPath(): string {
 		return $this->path;
 	}

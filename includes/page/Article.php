@@ -1725,9 +1725,6 @@ class Article implements Page {
 		}
 	}
 
-	/**
-	 * @param OutputPage $outputPage
-	 */
 	private function addMessageBoxStyles( OutputPage $outputPage ) {
 		$outputPage->addModuleStyles( [
 			'mediawiki.codex.messagebox.styles',

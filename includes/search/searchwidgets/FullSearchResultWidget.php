@@ -431,9 +431,6 @@ class FullSearchResultWidget implements SearchResultWidget {
 		return $img->transform( [ 'width' => $optimalThumbnailWidth ] );
 	}
 
-	/**
-	 * @return string
-	 */
 	private function generateThumbnailPlaceholderHtml(): string {
 		if ( $this->thumbnailPlaceholderHtml ) {
 			return $this->thumbnailPlaceholderHtml;

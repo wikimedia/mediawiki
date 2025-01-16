@@ -218,9 +218,6 @@ class FileDeleteAction extends DeleteAction {
 		}
 	}
 
-	/**
-	 * @return string
-	 */
 	protected function getFormAction(): string {
 		$q = [];
 		$q['action'] = 'delete';

@@ -37,9 +37,6 @@ class DifferenceEngineSlotDiffRenderer extends SlotDiffRenderer {
 	/** @var DifferenceEngine */
 	private $differenceEngine;
 
-	/**
-	 * @param DifferenceEngine $differenceEngine
-	 */
 	public function __construct( DifferenceEngine $differenceEngine ) {
 		$this->differenceEngine = clone $differenceEngine;
 

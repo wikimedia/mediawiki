@@ -42,9 +42,6 @@ class ContributeFactory {
 		$this->hookRunner = $hookRunner;
 	}
 
-	/**
-	 * @return array
-	 */
 	public function getCards(): array {
 		$cards = [];
 

@@ -57,9 +57,6 @@ class WikiTextStructure {
 		'.searchaux',
 	];
 
-	/**
-	 * @param ParserOutput $parserOutput
-	 */
 	public function __construct( ParserOutput $parserOutput ) {
 		$this->parserOutput = $parserOutput;
 	}

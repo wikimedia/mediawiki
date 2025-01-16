@@ -29,9 +29,6 @@ class SkinComponentTableOfContents implements SkinComponent {
 	/** @var OutputPage */
 	private $output;
 
-	/**
-	 * @param OutputPage $output
-	 */
 	public function __construct( OutputPage $output ) {
 		$this->output = $output;
 	}

@@ -998,30 +998,18 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		);
 	}
 
-	/**
-	 * @return string
-	 */
 	protected function getLimitPreferenceName(): string {
 		return 'wllimit';
 	}
 
-	/**
-	 * @return string
-	 */
 	protected function getSavedQueriesPreferenceName(): string {
 		return 'rcfilters-wl-saved-queries';
 	}
 
-	/**
-	 * @return string
-	 */
 	protected function getDefaultDaysPreferenceName(): string {
 		return 'watchlistdays';
 	}
 
-	/**
-	 * @return string
-	 */
 	protected function getCollapsedPreferenceName(): string {
 		return 'rcfilters-wl-collapsed';
 	}

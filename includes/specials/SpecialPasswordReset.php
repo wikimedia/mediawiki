@@ -41,9 +41,6 @@ use ThrottledError;
 class SpecialPasswordReset extends FormSpecialPage {
 	private PasswordReset $passwordReset;
 
-	/**
-	 * @param PasswordReset $passwordReset
-	 */
 	public function __construct( PasswordReset $passwordReset ) {
 		parent::__construct( 'PasswordReset', 'editmyprivateinfo' );
 

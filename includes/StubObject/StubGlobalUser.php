@@ -41,9 +41,6 @@ class StubGlobalUser extends StubObject {
 	/** @var User */
 	public $realUser;
 
-	/**
-	 * @param User $realUser
-	 */
 	public function __construct( User $realUser ) {
 		parent::__construct( 'wgUser' );
 		$this->realUser = $realUser;

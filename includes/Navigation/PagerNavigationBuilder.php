@@ -64,9 +64,6 @@ class PagerNavigationBuilder {
 	/** @var string|null */
 	private $limitTooltipMsg = null;
 
-	/**
-	 * @param MessageLocalizer $messageLocalizer
-	 */
 	public function __construct( MessageLocalizer $messageLocalizer ) {
 		$this->messageLocalizer = $messageLocalizer;
 	}

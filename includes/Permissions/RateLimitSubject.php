@@ -64,9 +64,6 @@ class RateLimitSubject {
 		$this->flags = $flags;
 	}
 
-	/**
-	 * @return UserIdentity
-	 */
 	public function getUser(): UserIdentity {
 		return $this->user;
 	}

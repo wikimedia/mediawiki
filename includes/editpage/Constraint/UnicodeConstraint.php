@@ -40,9 +40,6 @@ class UnicodeConstraint implements IEditConstraint {
 	 */
 	private string $input;
 
-	/**
-	 * @param string $inputUnicode
-	 */
 	public function __construct( string $inputUnicode ) {
 		$this->input = $inputUnicode;
 	}

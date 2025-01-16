@@ -1054,9 +1054,6 @@ abstract class Skin extends ContextSource {
 		return '';
 	}
 
-	/**
-	 * @return string
-	 */
 	final public function getCopyright(): string {
 		return $this->getFooterTemplateDataItem( 'data-info', 'copyright' );
 	}

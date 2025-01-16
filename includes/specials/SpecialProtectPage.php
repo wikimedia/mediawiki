@@ -32,9 +32,6 @@ use SearchEngineFactory;
  */
 class SpecialProtectPage extends SpecialRedirectWithAction {
 
-	/**
-	 * @param SearchEngineFactory $searchEngineFactory
-	 */
 	public function __construct(
 		SearchEngineFactory $searchEngineFactory
 	) {

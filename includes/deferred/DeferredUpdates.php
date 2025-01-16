@@ -115,9 +115,6 @@ class DeferredUpdates {
 	 */
 	private static $preventOpportunisticUpdates = 0;
 
-	/**
-	 * @return DeferredUpdatesScopeStack
-	 */
 	private static function getScopeStack(): DeferredUpdatesScopeStack {
 		self::$scopeStack ??= new DeferredUpdatesScopeMediaWikiStack();
 		return self::$scopeStack;

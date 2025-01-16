@@ -73,9 +73,6 @@ class ReplacementArray {
 		$this->data = $data + $this->data;
 	}
 
-	/**
-	 * @param ReplacementArray $other
-	 */
 	public function merge( ReplacementArray $other ) {
 		$this->data = $other->data + $this->data;
 	}

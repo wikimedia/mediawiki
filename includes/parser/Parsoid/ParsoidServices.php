@@ -34,9 +34,6 @@ use Wikimedia\Parsoid\Config\SiteConfig;
 class ParsoidServices {
 	private MediaWikiServices $services;
 
-	/**
-	 * @param MediaWikiServices $services
-	 */
 	public function __construct( MediaWikiServices $services ) {
 		$this->services = $services;
 	}

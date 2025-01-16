@@ -19,9 +19,6 @@ abstract class BaseTextDiffer implements TextDiffer {
 	/** @var MessageLocalizer */
 	private $localizer;
 
-	/**
-	 * @param MessageLocalizer $localizer
-	 */
 	public function setLocalizer(
 		MessageLocalizer $localizer
 	) {
@@ -30,8 +27,6 @@ abstract class BaseTextDiffer implements TextDiffer {
 
 	/**
 	 * Provide a MessageLocalizer, or throw if setLocalizer() has not been called.
-	 *
-	 * @return MessageLocalizer
 	 */
 	protected function getLocalizer(): MessageLocalizer {
 		return $this->localizer;

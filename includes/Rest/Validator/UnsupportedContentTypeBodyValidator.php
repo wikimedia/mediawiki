@@ -23,9 +23,6 @@ class UnsupportedContentTypeBodyValidator implements BodyValidator {
 	/** @var string */
 	private string $contentType;
 
-	/**
-	 * @param string $contentType
-	 */
 	public function __construct( string $contentType ) {
 		$this->contentType = $contentType;
 	}

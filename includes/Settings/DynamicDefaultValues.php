@@ -15,9 +15,6 @@ class DynamicDefaultValues {
 	 */
 	private $declarations;
 
-	/**
-	 * @param ConfigSchema $configSchema
-	 */
 	public function __construct( ConfigSchema $configSchema ) {
 		$this->configSchema = $configSchema;
 		$this->declarations = $this->configSchema->getDynamicDefaults();

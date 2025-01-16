@@ -68,9 +68,6 @@ class SpecialRandomInCategory extends FormSpecialPage {
 
 	private IConnectionProvider $dbProvider;
 
-	/**
-	 * @param IConnectionProvider $dbProvider
-	 */
 	public function __construct( IConnectionProvider $dbProvider ) {
 		parent::__construct( 'RandomInCategory' );
 		$this->dbProvider = $dbProvider;

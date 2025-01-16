@@ -9,9 +9,6 @@ use MediaWikiUnitTestCase;
 
 class GroupPermissionsLookupTest extends MediaWikiUnitTestCase {
 
-	/**
-	 * @return GroupPermissionsLookup
-	 */
 	private function createGroupPermissionsLookup(): GroupPermissionsLookup {
 		return new GroupPermissionsLookup(
 			new ServiceOptions( GroupPermissionsLookup::CONSTRUCTOR_OPTIONS, [

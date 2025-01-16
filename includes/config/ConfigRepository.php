@@ -41,9 +41,6 @@ class ConfigRepository implements SalvageableService {
 		'public' => [],
 	];
 
-	/**
-	 * @param ConfigFactory $configFactory
-	 */
 	public function __construct( ConfigFactory $configFactory ) {
 		$this->configFactory = $configFactory;
 	}

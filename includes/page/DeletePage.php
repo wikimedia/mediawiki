@@ -336,9 +336,6 @@ class DeletePage {
 		return $this->deleteUnsafe( $reason );
 	}
 
-	/**
-	 * @return PermissionStatus
-	 */
 	private function authorizeDeletion(): PermissionStatus {
 		$status = PermissionStatus::newEmpty();
 		$this->deleter->authorizeWrite( 'delete', $this->page, $status );
@@ -357,9 +354,6 @@ class DeletePage {
 		return $status;
 	}
 
-	/**
-	 * @return bool
-	 */
 	private function isBigDeletion(): bool {
 		$revLimit = $this->options->get( MainConfigNames::DeleteRevisionsLimit );
 		if ( !$revLimit ) {

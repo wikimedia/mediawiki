@@ -155,9 +155,6 @@ class EditConstraintFactory {
 		);
 	}
 
-	/**
-	 * @return ReadOnlyConstraint
-	 */
 	public function newReadOnlyConstraint(): ReadOnlyConstraint {
 		return new ReadOnlyConstraint(
 			$this->readOnlyMode

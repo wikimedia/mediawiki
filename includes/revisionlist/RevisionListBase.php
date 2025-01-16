@@ -72,9 +72,6 @@ abstract class RevisionListBase extends ContextSource implements Iterator {
 		);
 	}
 
-	/**
-	 * @return PageIdentity
-	 */
 	public function getPage(): PageIdentity {
 		return $this->page;
 	}

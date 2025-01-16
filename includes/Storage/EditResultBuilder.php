@@ -100,9 +100,6 @@ class EditResultBuilder {
 		$this->options = $options;
 	}
 
-	/**
-	 * @return EditResult
-	 */
 	public function buildEditResult(): EditResult {
 		if ( $this->revisionRecord === null ) {
 			throw new PageUpdateException(

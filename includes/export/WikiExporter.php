@@ -226,9 +226,6 @@ class WikiExporter {
 		$this->dumpFrom( $condition );
 	}
 
-	/**
-	 * @param PageIdentity $page
-	 */
 	public function pageByTitle( PageIdentity $page ) {
 		$this->dumpFrom(
 			'page_namespace=' . $page->getNamespace() .

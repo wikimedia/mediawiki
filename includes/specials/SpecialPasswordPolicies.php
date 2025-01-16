@@ -42,9 +42,6 @@ class SpecialPasswordPolicies extends SpecialPage {
 
 	private UserGroupManager $userGroupManager;
 
-	/**
-	 * @param UserGroupManager $userGroupManager
-	 */
 	public function __construct( UserGroupManager $userGroupManager ) {
 		parent::__construct( 'PasswordPolicies' );
 		$this->userGroupManager = $userGroupManager;
