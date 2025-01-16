@@ -97,8 +97,53 @@
 				</span>
 			</template>
 			<template #item-parameters="{ item }">
-				<ul v-if="item && item.length">
-					<li v-for="( parameter, index ) in item" :key="index">
+				<ul v-if="item.flags && item.flags.length">
+					<li v-if="item.restrictions">
+						{{ mw.message( 'blocklist-editing' ).text() }}
+						<ul>
+							<li v-for="( parameter, index ) in item.restrictions" :key="index">
+								<div v-if="index === 'pages'">
+									{{ mw.message( 'blocklist-editing-page' ).text() }}
+									<ul class="mw-block-parameters">
+										<li v-for="page in parameter" :key="page">
+											<a v-if="page.title" :href="mw.util.getUrl( page.title )">
+												{{ page.title }}
+											</a>
+											<a v-else-if="page.page_title" :href="mw.util.getUrl( page.page_title )">
+												{{ page.page_title }}
+											</a>
+										</li>
+									</ul>
+								</div>
+								<div v-else-if="index === 'namespaces'">
+									{{ mw.message( 'blocklist-editing-ns' ).text() }}
+									<ul class="mw-block-parameters">
+										<li v-for="namespace in parameter" :key="namespace">
+											<a :href="mw.util.getUrl( 'Special:AllPages', { namespace: namespace } )">
+												{{ mw.config.get( 'wgFormattedNamespaces' )[ namespace ] }}
+											</a>
+										</li>
+									</ul>
+								</div>
+								<div v-else-if="index === 'actions'">
+									{{ mw.message( 'blocklist-editing-action' ).text() }}
+									<ul class="mw-block-parameters">
+										<li v-for="action in parameter" :key="action">
+											<!-- Potential messages: -->
+											<!-- * ipb-action-create -->
+											<!-- * ipb-action-move -->
+											<!-- * ipb-action-upload -->
+											{{ mw.message( 'ipb-action-' + action ).text() }}
+										</li>
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</li>
+					<li v-else>
+						{{ mw.message( 'blocklist-editing-sitewide' ).text() }}
+					</li>
+					<li v-for="( parameter, index ) in item.flags" :key="index">
 						{{ util.getBlockFlagMessage( parameter ) }}
 					</li>
 				</ul>
@@ -218,7 +263,10 @@ module.exports = exports = defineComponent( {
 						type: logevent.action
 					},
 					blockedby: logevent.user,
-					parameters: logevent.params.flags,
+					parameters: {
+						flags: logevent.params.flags,
+						restrictions: logevent.params.restrictions ? logevent.params.restrictions : null
+					},
 					reason: logevent.parsedcomment,
 					hide: logevent.logid
 				} );
@@ -262,8 +310,8 @@ module.exports = exports = defineComponent( {
 									duration: mw.util.isInfinity( data.blocks[ i ].expiry ) ? 'infinity' : null
 								},
 								blockedby: data.blocks[ i ].by,
-								parameters:
-									[
+								parameters: {
+									flags: [
 										data.blocks[ i ].anononly ? 'anononly' : null,
 										data.blocks[ i ].nocreate ? 'nocreate' : null,
 										data.blocks[ i ].autoblock ? null : 'noautoblock',
@@ -271,6 +319,8 @@ module.exports = exports = defineComponent( {
 										data.blocks[ i ].allowusertalk ? null : 'nousertalk',
 										data.blocks[ i ].hidden ? 'hiddenname' : null
 									].filter( ( e ) => e !== null ),
+									restrictions: Object.keys( data.blocks[ i ].restrictions ).length ? data.blocks[ i ].restrictions : null
+								},
 								reason: data.blocks[ i ].parsedreason
 							} );
 						}
@@ -333,6 +383,10 @@ module.exports = exports = defineComponent( {
 
 	.mw-usertoollinks {
 		white-space: nowrap;
+	}
+
+	table ul.mw-block-parameters {
+		margin-left: 1.7em;
 	}
 }
 
