@@ -70,4 +70,44 @@ class W3CTraceContextPropagatorTest extends MediaWikiUnitTestCase {
 			'unsupported version' => [ '02-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01' ],
 		];
 	}
+
+	/**
+	 * @dataProvider provideInjectData
+	 */
+	public function testShouldInjectContext( ?array $spanData, array $expected ): void {
+		$spanContext = null;
+
+		if ( $spanData !== null ) {
+			[ $traceId, $spanId, $sampled ] = $spanData;
+
+			$spanContext = new SpanContext(
+				$traceId,
+				$spanId,
+				null,
+				'',
+				$sampled
+			);
+		}
+
+		$carrier = $this->propagator->inject( $spanContext, [] );
+
+		$this->assertSame( $expected, $carrier );
+	}
+
+	public function provideInjectData(): iterable {
+		yield 'no active span context' => [
+			null,
+			[]
+		];
+
+		yield 'unsampled span' => [
+			[ '0af7651916cd43dd8448eb211c80319c', 'b7ad6b7169203331', false ],
+			[ 'traceparent' => '00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-00' ]
+		];
+
+		yield 'sampled span' => [
+			[ '0af7651916cd43dd8448eb211c80319c', 'b7ad6b7169203331', true ],
+			[ 'traceparent' => '00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01' ]
+		];
+	}
 }

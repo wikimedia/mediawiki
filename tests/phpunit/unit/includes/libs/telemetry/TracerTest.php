@@ -257,4 +257,26 @@ class TracerTest extends MediaWikiUnitTestCase {
 		$this->assertStringContainsString( $activeSpan->getContext()->getTraceId(), $reqHdrs['traceparent'] );
 		$this->assertStringContainsString( $activeSpan->getContext()->getSpanId(), $reqHdrs['traceparent'] );
 	}
+
+	public function testCreateSpanFromCarrierWithoutContext(): void {
+		$span = $this->tracer->createRootSpanFromCarrier( 'test span', [] );
+
+		$this->assertNull( $span->getContext()->getParentSpanId() );
+	}
+
+	public function testCreateRootSpanFromValidCarrier(): void {
+		$traceId = '0af7651916cd43dd8448eb211c80319c';
+		$spanId = 'b7ad6b7169203331';
+		$traceparent = "00-$traceId-$spanId-01";
+
+		$this->sampler->method( 'shouldSample' )
+			->willReturn( true );
+
+		$span = $this->tracer->createRootSpanFromCarrier( 'test span', [ 'traceparent' => $traceparent ] )
+			->start();
+
+		$this->assertSame( $traceId, $span->getContext()->getTraceId() );
+		$this->assertSame( $spanId, $span->getContext()->getParentSpanId() );
+		$this->assertTrue( $span->getContext()->isSampled() );
+	}
 }
