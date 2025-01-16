@@ -162,6 +162,8 @@ class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
 			$user
 			? ParserOptions::newFromUser( $user )
 			: ParserOptions::newFromAnon();
+		// Parsoid parser options should always have useParsoid set
+		$parserOptions->setUseParsoid();
 
 		// Turn off some options since Parsoid/JS currently doesn't
 		// do anything with this. As we proceed with closer integration,
