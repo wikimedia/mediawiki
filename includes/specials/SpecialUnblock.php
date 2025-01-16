@@ -126,11 +126,11 @@ class SpecialUnblock extends SpecialPage {
 		$this->addHelpLink( 'Help:Blocking users' );
 
 		$out = $this->getOutput();
-		$out->setPageTitleMsg( $this->msg( 'unblockip' ) );
+		$out->setPageTitleMsg( $this->msg( 'unblock-target' ) );
 		$out->addModules( [ 'mediawiki.userSuggest', 'mediawiki.special.block' ] );
 
 		$form = HTMLForm::factory( 'ooui', $this->getFields(), $this->getContext() )
-			->setWrapperLegendMsg( 'unblockip' )
+			->setWrapperLegendMsg( 'unblock-target' )
 			->setSubmitCallback( function ( array $data, HTMLForm $form ) {
 				if ( $this->type != Block::TYPE_RANGE
 					&& $this->type != Block::TYPE_AUTO
@@ -266,7 +266,7 @@ class SpecialUnblock extends SpecialPage {
 		$fields = [
 			'Target' => [
 				'type' => 'text',
-				'label-message' => 'ipaddressorusername',
+				'label-message' => 'unblock-target-label',
 				'autofocus' => true,
 				'size' => '45',
 				'required' => true,
@@ -274,7 +274,7 @@ class SpecialUnblock extends SpecialPage {
 			],
 			'Name' => [
 				'type' => 'info',
-				'label-message' => 'ipaddressorusername',
+				'label-message' => 'unblock-target-label',
 			],
 			'Reason' => [
 				'type' => 'text',
