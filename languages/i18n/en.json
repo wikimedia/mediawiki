@@ -2722,6 +2722,7 @@
 	"block-removal-reason-placeholder": "Type a reason",
 	"block-removal-confirm-yes": "Remove block",
 	"block-removal-confirm-no": "Cancel",
+	"block-javascript-required": "JavaScript is required to use the Special:Block interface.",
 	"unblockip": "Unblock user",
 	"unblockiptext": "Use the form below to restore write access to a previously blocked IP address or username.",
 	"ipusubmit": "Remove this block",

@@ -30,7 +30,6 @@
 				v-for="( formError, index ) in formErrors"
 				:key="index"
 				type="error"
-				class="mw-block-error"
 				inline
 			>
 				<!-- eslint-disable-next-line vue/no-v-html -->
@@ -397,8 +396,14 @@ module.exports = exports = defineComponent( {
 
 // HACK: CdxMessage doesn't support v-html, so we need an inner div,
 // and apply the expected styling to the contents therein.
-.mw-block-messages .cdx-message__content > div > :first-child {
-	margin-top: 0;
+.mw-block-messages .cdx-message__content > div {
+	> :first-child {
+		margin-top: 0;
+	}
+
+	> :last-child {
+		margin-bottom: 0;
+	}
 }
 
 .mw-block-hideuser .cdx-checkbox__label .cdx-label__label__text {
@@ -413,18 +418,8 @@ module.exports = exports = defineComponent( {
 	margin-top: @spacing-100;
 }
 
-.mw-block-error {
-	margin-left: @spacing-75;
-}
-
 .mw-block-confirm {
 	font-weight: @font-weight-normal;
-}
-
-// Hide the log and convenience links showing at the bottom of page.
-.mw-ipb-conveniencelinks,
-.mw-warning-with-logexcerpt {
-	display: none;
 }
 
 // Lower opacity and remove pointer events from accordions while the disabled state is active.
@@ -438,7 +433,7 @@ module.exports = exports = defineComponent( {
 .mw-block-fieldset {
 	min-width: unset;
 
-	// Uset font-size until T377902 is resolved.
+	// Unset font-size until T377902 is resolved.
 	font-size: unset;
 
 	legend {
@@ -448,6 +443,12 @@ module.exports = exports = defineComponent( {
 	legend .cdx-label__label,
 	legend .cdx-label__description {
 		margin-bottom: @spacing-50;
+	}
+
+	// We need :is-fieldset="true" on the outer <fieldset> for disabled state to propagate
+	// to children. :is-fieldset="true" forces a <legend> which we don't want.
+	& > legend:first-of-type {
+		display: none;
 	}
 }
 </style>

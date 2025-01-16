@@ -1,49 +1,83 @@
+@import 'mediawiki.skin.variables.less';
+
 /*!
- * Styles for Special:Block
+ * Styles for Codex Special:Block
  */
 
-.mw-special-Block .mw-htmlform {
-	> .oo-ui-panelLayout-framed {
-		border: 0;
+.mw-special-Block:not( .mw-special-Block--legacy ) {
+	noscript {
+		color: @color-error;
+		font-weight: @font-weight-bold;
+		display: block;
 	}
 
-	> .oo-ui-panelLayout-padded {
-		padding: 0;
+	.mw-block-messages {
+		margin-top: @spacing-100;
+	}
+
+	.mw-htmlform-submit-buttons {
+		display: none;
+	}
+
+	// Hide the log and convenience links showing at the bottom of page.
+	.mw-ipb-conveniencelinks,
+	.mw-warning-with-logexcerpt {
+		display: none;
 	}
 }
 
-// Affects sitewide/partial radio, partial action checkboxes, and block detail checkboxes
-.mw-block-editing-restriction.oo-ui-fieldLayout,
-.mw-block-action-restriction .oo-ui-checkboxMultioptionWidget,
-.mw-block-restriction.oo-ui-labelElement {
-	margin-top: 12px;
-}
-
-.mw-block-partial-restriction.oo-ui-fieldLayout {
-	// Match spacing of partial action checkboxes to block detail checkboxes
-	.oo-ui-checkboxMultioptionWidget {
-		padding: 0;
-	}
-}
+/*!
+ * Styles for both Codex and OOUI
+ */
 
 .mw-block-hideuser,
 .mw-block-confirm {
 	font-weight: bold;
 }
 
-#mw-input-wpReason {
-	.oo-ui-dropdownInputWidget,
-	.oo-ui-textInputWidget {
-		display: block;
-		max-width: 50em;
+/*!
+ * Styles specific to legacy OOUI Special:Block
+ */
+
+.mw-special-Block--legacy {
+	.mw-special-Block .mw-htmlform {
+		> .oo-ui-panelLayout-framed {
+			border: 0;
+		}
+
+		> .oo-ui-panelLayout-padded {
+			padding: 0;
+		}
 	}
 
-	.oo-ui-textInputWidget {
-		margin-top: 0.5em;
+	// Affects sitewide/partial radio, partial action checkboxes, and block detail checkboxes
+	.mw-block-editing-restriction.oo-ui-fieldLayout,
+	.mw-block-action-restriction .oo-ui-checkboxMultioptionWidget,
+	.mw-block-restriction.oo-ui-labelElement {
+		margin-top: 12px;
 	}
-}
 
-.mw-ipb-conveniencelinks {
-	font-size: 90%;
-	text-align: right;
+	.mw-block-partial-restriction.oo-ui-fieldLayout {
+		// Match spacing of partial action checkboxes to block detail checkboxes
+		.oo-ui-checkboxMultioptionWidget {
+			padding: 0;
+		}
+	}
+
+	#mw-input-wpReason {
+		.oo-ui-dropdownInputWidget,
+		.oo-ui-textInputWidget {
+			display: block;
+			max-width: 50em;
+		}
+
+		.oo-ui-textInputWidget {
+			margin-top: 0.5em;
+		}
+	}
+
+	.mw-ipb-conveniencelinks {
+		font-size: 90%;
+		text-align: right;
+	}
 }
