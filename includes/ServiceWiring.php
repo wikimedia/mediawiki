@@ -2646,10 +2646,8 @@ return [
 		MediaWikiServices $services
 	): ConditionalDefaultsLookup {
 		$extraConditions = [];
-		( new HookRunner( $services->getHookContainer() ) )->onConditionalDefaultOptionsAddCondition(
-			$extraConditions
-		);
 		return new ConditionalDefaultsLookup(
+			new HookRunner( $services->getHookContainer() ),
 			new ServiceOptions(
 				ConditionalDefaultsLookup::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
 			),
@@ -2657,8 +2655,7 @@ return [
 			$services->getUserIdentityUtils(),
 			static function () use ( $services ) {
 				return $services->getUserGroupManager();
-			},
-			$extraConditions
+			}
 		);
 	},
 
