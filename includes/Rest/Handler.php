@@ -834,6 +834,17 @@ abstract class Handler {
 		return $schema;
 	}
 
+	private function resolveResponseDescriptions( array $schema ): array {
+		foreach ( $schema as &$value ) {
+			if ( is_array( $value ) ) {
+				$value = $this->resolveResponseDescriptions( $value );
+			} else {
+				$schema = $this->resolveResponseDescription( $schema );
+			}
+		}
+		return $schema;
+	}
+
 	/**
 	 * Returns an OpenAPI Responses Object specification structure as an associative array.
 	 *
@@ -855,14 +866,7 @@ abstract class Handler {
 		$bodySchema = $this->getResponseBodySchema( $method );
 
 		if ( $bodySchema ) {
-			$bodySchema = $this->resolveResponseDescription( $bodySchema );
-			if ( array_key_exists( 'properties', $bodySchema ) ) {
-				// TODO: each property can be an object with its own properties, and so on.
-				//  Consider recursively resolving nested descriptions.
-				foreach ( $bodySchema['properties'] as &$definition ) {
-					$definition = $this->resolveResponseDescription( $definition );
-				}
-			}
+			$bodySchema = $this->resolveResponseDescriptions( $bodySchema );
 
 			$ok['content']['application/json']['schema'] = $bodySchema;
 		}

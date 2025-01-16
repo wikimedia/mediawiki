@@ -1623,17 +1623,27 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			'$responseBodySchema' => [
 				'x-i18n-description' => 'rest-schema-desc-mock-desc',
 				'properties' => [
-					'foo' => [
+					'a' => [
 						'type' => 'string'
 					],
-					'bar' => [
+					'b' => [
 						'type' => 'string',
-						'description' => 'baz'
+						'description' => 'plaintext description'
 					],
-					'qux' => [
+					'c' => [
 						'type' => 'string',
 						'x-i18n-description' => 'rest-property-desc-mock-desc',
-					]
+					],
+					'd' => [
+						'type' => 'object',
+						'description' => "mock description",
+						'properties' => [
+							'example' => [
+								'type' => 'string',
+								'x-i18n-description' => 'rest-property-desc-mock-desc',
+							]
+						]
+					],
 				]
 			],
 			'$routeConfig' => [ 'path' => 'test' ],
@@ -1643,21 +1653,27 @@ class HandlerTest extends MediaWikiUnitTestCase {
 					self::assertWellFormedOAS( $spec, [ 'responses' ] );
 
 					$schema = $spec['responses'][200]['content']['application/json']['schema'];
+					// Body
 					Assert::assertArrayHasKey( 'description', $schema );
 					Assert::assertSame(
 						'<message key="rest-schema-desc-mock-desc"></message>',
 						$schema['description']
 					);
-
+					// First level properties
 					$props = $schema['properties'];
-					Assert::assertArrayNotHasKey( 'description', $props['foo'] );
-					Assert::assertArrayHasKey( 'description', $props['bar'] );
-					Assert::assertSame( 'baz', $props['bar']['description'] );
-					Assert::assertArrayHasKey( 'description', $props['qux'] );
+					Assert::assertArrayNotHasKey( 'description', $props['a'] );
+					Assert::assertArrayHasKey( 'description', $props['b'] );
+					Assert::assertSame( 'plaintext description', $props['b']['description'] );
+					Assert::assertArrayHasKey( 'description', $props['c'] );
 					Assert::assertSame(
 						'<message key="rest-property-desc-mock-desc"></message>',
-						$schema['properties']['qux']['description']
+						$schema['properties']['c']['description']
 					);
+					// Nested properties
+					Assert::assertArrayHasKey( 'description', $props['d']['properties']['example'] );
+					Assert::assertSame(
+						'<message key="rest-property-desc-mock-desc"></message>',
+						$props['d']['properties']['example']['description'] );
 				},
 		];
 
