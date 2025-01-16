@@ -25,7 +25,7 @@
 			{{ $i18n( 'block-target' ).text() }}
 		</template>
 		<div class="mw-block-conveniencelinks">
-			<span v-if="!!targetUser">
+			<span v-if="status !== 'error' && !!targetUser">
 				<a
 					:href="mw.util.getUrl( contribsTitle )"
 					:title="contribsTitle"
@@ -95,6 +95,33 @@ module.exports = exports = defineComponent( {
 				currentSearchTerm.value = newValue;
 			}
 		} );
+
+		/**
+		 * Check if a given target is valid
+		 *
+		 * @param {string} target
+		 */
+		function checkTargetExists( target ) {
+			// Check if the target is a valid IP
+			if ( mw.util.isIPAddress( target, true ) ) {
+				status.value = 'default';
+				store.formErrors = [];
+				store.targetExists = true;
+				return;
+			}
+			// Check if the target is a valid user
+			fetchResults( target ).then( ( data ) => {
+				if ( !data || data.allusers.length === 0 ) {
+					status.value = 'error';
+					store.formErrors = [ mw.message( 'nosuchusershort', target ).text() ];
+					store.targetExists = false;
+				} else {
+					status.value = 'default';
+					store.formErrors = [];
+					store.targetExists = true;
+				}
+			} );
+		}
 
 		/**
 		 * Get search results.
@@ -211,6 +238,7 @@ module.exports = exports = defineComponent( {
 		 * @param {string} value
 		 */
 		function setTarget( value ) {
+			checkTargetExists( value );
 			validate( htmlInput );
 			targetUser.value = value;
 		}
