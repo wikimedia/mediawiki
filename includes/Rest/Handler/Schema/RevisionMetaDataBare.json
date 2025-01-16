@@ -1,17 +1,7 @@
 {
 	"description": "revision meta-data",
 	"required": [
-		"id",
-		"size",
-		"minor",
-		"timestamp",
-		"content_model",
-		"page",
-		"license",
-		"user",
-		"comment",
-		"delta",
-		"html_url"
+		"timestamp"
 	],
 	"properties": {
 		"id": {
@@ -38,6 +28,7 @@
 		},
 		"timestamp": {
 			"type": "string",
+			"format": "date-time",
 			"description": "Revision timestamp"
 		},
 		"content_model": {
@@ -106,6 +97,54 @@
 		"html_url": {
 			"type": "string",
 			"description": "Url to retrieve the revision content in html format"
+		},
+		"html": {
+			"type": "string",
+			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+		},
+		"title": {
+			"type": "string",
+			"description": "Revision Title. Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+		},
+		"page_id": {
+			"type": "integer",
+			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+		},
+		"rev": {
+			"type": "integer",
+			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+		},
+		"tid": {
+			"type": "string",
+			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+		},
+		"namespace": {
+			"type": "integer",
+			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+		},
+		"user_id": {
+			"type": "integer",
+			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+		},
+		"user_text": {
+			"type": "string",
+			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+		},
+		"tags": {
+			"type": "array",
+			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+		},
+		"restrictions": {
+			"type": "array",
+			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+		},
+		"page_language": {
+			"type": "string",
+			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+		},
+		"redirect": {
+			"type": "boolean",
+			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
 		}
 	}
 }

@@ -28,6 +28,7 @@
 		},
 		"timestamp": {
 			"type": "string",
+			"format": "date-time",
 			"description": "Revision timestamp"
 		},
 		"content_model": {

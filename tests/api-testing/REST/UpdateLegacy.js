@@ -5,6 +5,6 @@ describe( 'legacy PUT /page/{title}', () => {
 	// Doing this twice protects against changes in test execution order
 	const testsFile = __dirname + '/content.v1/Update.js';
 	delete require.cache[ testsFile ];
-	require( testsFile ).init( 'rest.php/v1' );
+	require( testsFile ).init( '/v1', '/-' );
 	delete require.cache[ testsFile ];
 } );

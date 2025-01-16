@@ -168,8 +168,6 @@ class PageSourceHandler extends SimpleHandler {
 	}
 
 	public function getResponseBodySchemaFileName( string $method ): ?string {
-		// This does not include restbase compatibility mode, which is triggered by request
-		// headers. Presumably, such callers will look at the RESTBase spec instead.
 		switch ( $this->getConfig()['format'] ) {
 			case 'bare':
 				$schema = 'includes/Rest/Handler/Schema/ExistingPageBare.json';
