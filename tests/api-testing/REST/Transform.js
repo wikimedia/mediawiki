@@ -2301,7 +2301,7 @@ describe( '/transform/ endpoint', () => {
 				.expect( 404 )
 				.expect( ( res ) => {
 					JSON.parse( res.error.text ).errorKey.should.equal(
-						'rest-invalid-transform'
+						'rest-no-match'
 					);
 				} )
 				.end( done );

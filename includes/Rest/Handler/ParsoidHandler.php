@@ -40,6 +40,7 @@ use MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper;
 use MediaWiki\Rest\Handler\Helper\ParsoidFormatHelper;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
+use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\Response;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
@@ -200,6 +201,13 @@ abstract class ParsoidHandler extends Handler {
 		}
 	}
 
+	protected function getOpts( array $body, RequestInterface $request ): array {
+		return array_merge(
+			$body,
+			array_intersect_key( $request->getPathParams(), [ 'from' => true, 'format' => true ] )
+		);
+	}
+
 	/**
 	 * Rough equivalent of req.local from Parsoid-JS.
 	 * FIXME most of these should be replaced with more native ways of handling the request.
@@ -212,8 +220,7 @@ abstract class ParsoidHandler extends Handler {
 
 		$request = $this->getRequest();
 		$body = ( $request->getMethod() === 'POST' ) ? $this->getParsedBody() : [];
-		$opts = array_merge( $body, array_intersect_key( $request->getPathParams(),
-			[ 'from' => true, 'format' => true ] ) );
+		$opts = $this->getOpts( $body, $request );
 		'@phan-var array<string,array|bool|string> $opts'; // @var array<string,array|bool|string> $opts
 		$contentLanguage = $request->getHeaderLine( 'Content-Language' ) ?: null;
 		if ( $contentLanguage ) {
