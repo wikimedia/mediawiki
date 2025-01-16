@@ -2877,6 +2877,7 @@ $wgAutoloadLocalClasses = [
 	'MigrateBlocks' => __DIR__ . '/maintenance/migrateBlocks.php',
 	'MigrateExternallinks' => __DIR__ . '/maintenance/migrateExternallinks.php',
 	'MigrateFileRepoLayout' => __DIR__ . '/maintenance/migrateFileRepoLayout.php',
+	'MigrateFileTables' => __DIR__ . '/maintenance/migrateFileTables.php',
 	'MigrateLinksTable' => __DIR__ . '/maintenance/migrateLinksTable.php',
 	'MigrateRevisionActorTemp' => __DIR__ . '/maintenance/migrateRevisionActorTemp.php',
 	'MigrateRevisionCommentTemp' => __DIR__ . '/maintenance/migrateRevisionCommentTemp.php',
