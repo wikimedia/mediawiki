@@ -3826,6 +3826,7 @@
 	"restrictionsfield-badip": "Chomlec'h IP pe lijorenn direizh : $1",
 	"restrictionsfield-label": "Lijorennoù IP aotreet :",
 	"restrictionsfield-help": "Ur chomlec'h IP pe un esaouenn CIDR dre linenn. Evit gweredekaat pep tra, ober gant <pre>0.0.0.0/0\n::/0</pre>",
+	"restrictionsfields-pages-help": "Lezel goullo evit aotren kemmañ an holl bajennoù",
 	"specialmute": "Didrouzañ",
 	"specialmute-success": "Hizivaet eo bet ho penndibaboù didrouzañ. Gwelet an holl implijerien didrouzet en [[Special:Preferences|ho penndibaboù]].",
 	"specialmute-submit": "Kadarnaat",

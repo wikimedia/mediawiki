@@ -1538,7 +1538,7 @@
 	"filedelete-missing": "ፋይሉ «$1» ሰለማይኖር ሊጠፋ አይችልም።",
 	"filedelete-old-unregistered": "የተወሰነው ፋይል ዕትም «$1» በመረጃ-ቤቱ የለም።",
 	"filedelete-current-unregistered": "የተወሰነው ፋይል «$1» በመረጃ-ቤቱ የለም።",
-	"previousdiff": "የፊተኛው ለውጥ",
+	"previousdiff": "← የፊተኛው ለውጥ",
 	"nextdiff": "የሚቀጥለው ለውጥ →",
 	"imagemaxsize": "በፋይል መግለጫ ገጽ ላይ የስዕል መጠን ወሰን ቢበዛ፦",
 	"thumbsize": "የናሙና መጠን፦",

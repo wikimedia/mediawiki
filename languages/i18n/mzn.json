@@ -984,7 +984,7 @@
 	"pageinfo-hidden-categories": "پنهون ِ{{PLURAL:$1|رج}} پنهان ($1)",
 	"pageinfo-toolboxlink": "صفحه‌ی ِاطلاعات",
 	"patrol-log-page": "پاسبونی سیاهه",
-	"previousdiff": "قدیمی‌ته دچی‌یه ←",
+	"previousdiff": "→ قدیمی‌ته دچی‌یه",
 	"nextdiff": "نوتر دچی‌یه ←",
 	"thumbsize": "أنـگـوسـی گأتی:",
 	"widthheightpage": "$1×$2، $3 {{PLURAL:$3|صفحه|صفحه}}",

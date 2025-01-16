@@ -862,7 +862,7 @@
 	"tooltip-summary": "Mubong sugid",
 	"simpleantispam-label": "Pagkontra sa <i>spam</i>.\n<strong>Ayaw</stong> ni sudli!",
 	"pageinfo-toolboxlink": "Impormasyon kabahin sa panid",
-	"previousdiff": "Mas daang pag-usab",
+	"previousdiff": "← Mas daang pag-usab",
 	"nextdiff": "Mas bag-ong pag-usab →",
 	"file-info-size": "$1 × $2 pixels, size sa payl: $3, MIME type: $4",
 	"file-nohires": "Walay mas taas nga resolusyon.",

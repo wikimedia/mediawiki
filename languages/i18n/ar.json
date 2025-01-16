@@ -2187,7 +2187,7 @@
 	"fewestrevisions": "الصفحات ذات أقل تعديل",
 	"nbytes": "$1 {{PLURAL:$1|بايت|بايت}}",
 	"ncategories": "$1 {{PLURAL:$1|تصنيف واحد|تصنيفان|تصنيفات|تصنيف|تصنيفا}}",
-	"ninterwikis": "$1 {{PLURAL:$1|interwiki|interwikis}}",
+	"ninterwikis": "$1 {{PLURAL:$1|وصلة إنترويكي}}",
 	"nlinks": "{{PLURAL:$1|لا وصلات|وصلة واحدة|وصلتان|$1 وصلات|$1 وصلة}}",
 	"nmembers": "{{PLURAL:$1|لا أعضاء|عضو واحد|عضوان|$1 أعضاء|$1 عضوا|$1 عضو}}",
 	"nmemberschanged": "$1 ← $2 {{PLURAL:$2|عضو|أعضاء}}",

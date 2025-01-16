@@ -140,7 +140,7 @@
 	"apihelp-query+revisions+base-paramvalue-prop-ids": "D'Nummer vun der Versioun.",
 	"apihelp-query+revisions+base-paramvalue-prop-timestamp": "Den Zäitstempel vun der Versioun.",
 	"apihelp-query+revisions+base-paramvalue-prop-user": "Benotzer deen d'Versioun gemaach huet.",
-	"apihelp-query+revisions+base-paramvalue-prop-size": "Längt (Bytes) vun der Versioun.",
+	"apihelp-query+revisions+base-paramvalue-prop-size": "Längt (Byte) vun der Versioun.",
 	"apihelp-query+revisions+base-paramvalue-prop-sha1": "SHA-1 (base 16) vun der Versioun.",
 	"apihelp-query+revisions+base-paramvalue-prop-comment": "Bemierkung vum Benotzer fir dës Versioun.",
 	"apihelp-query+revisions+base-paramvalue-prop-content": "Inhalt vun all Versioun's-Slot.",

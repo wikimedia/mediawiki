@@ -1313,7 +1313,7 @@
 	"group-sysop-member": "{{GENDER:$1|inzibatçı}}",
 	"group-interface-admin-member": "{{GENDER:$1|interfeys inzibatçısı}}",
 	"group-bureaucrat-member": "{{GENDER:$1|bürokrat}}",
-	"group-suppress-member": "{{GENDER:$1|gizlədən}}",
+	"group-suppress-member": "{{GENDER:$1|gizlədici}}",
 	"grouppage-user": "{{ns:project}}:İstifadəçilər",
 	"grouppage-named": "{{ns:project}}:Qeydiyyatdan keçmiş istifadəçilər",
 	"grouppage-temp": "{{ns:project}}:Müvəqqəti istifadəçilər",
