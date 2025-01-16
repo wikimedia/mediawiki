@@ -40,6 +40,7 @@
 					{{ $i18n( 'block-item-edit' ).text() }}
 				</cdx-button>
 				<cdx-button
+					type="button"
 					action="progressive"
 					weight="quiet"
 					@click="$emit( 'remove-block', item.id )"
