@@ -5,6 +5,7 @@ declare( strict_types = 1 );
 namespace MediaWiki\Composer;
 
 use Composer\Script\Event;
+use MediaWiki\Composer\PhpUnitSplitter\InvalidSplitGroupCountException;
 use MediaWiki\Composer\PhpUnitSplitter\PhpUnitConsoleOutputProcessingException;
 use MediaWiki\Composer\PhpUnitSplitter\PhpUnitConsoleOutputProcessor;
 use MediaWiki\Composer\PhpUnitSplitter\PhpUnitXml;
@@ -35,7 +36,7 @@ class ComposerLaunchParallel extends ForkController {
 	private SplitGroupExecutor $splitGroupExecutor;
 	private ComposerSystemInterface $composerSystemInterface;
 
-	private const SPLIT_GROUP_COUNT = 8;
+	private const DEFAULT_SPLIT_GROUP_COUNT = 8;
 
 	private const ALWAYS_EXCLUDE = [ 'Broken', 'ParserFuzz', 'Stub' ];
 	public const DATABASELESS_GROUPS = [];
@@ -64,17 +65,19 @@ class ComposerLaunchParallel extends ForkController {
 		/**
 		 * By default, the splitting process splits the tests into 8 groups. 7 of the groups are composed
 		 * of evenly distributed test classes extracted from the `--list-tests-xml` phpunit function. The
-		 * 8th group contains just the ExtensionsParserTestSuite.
+		 * last group contains just the ExtensionsParserTestSuite.  We first check if
+		 * QUIBBLE_PHPUNIT_PARALLEL_GROUP_COUNT is set in the environment, and override the group count
+		 * if so.
 		 */
-		$splitGroupCount = self::SPLIT_GROUP_COUNT - 1;
-		if ( $this->isDatabaseRun() ) {
+		$splitGroupCount = self::getSplitGroupCount();
+		if ( !$this->isDatabaseRun() ) {
 			/**
 			 * In the splitting, we put ExtensionsParserTestSuite in `split_group_7` on its own. We only
 			 * need to run `split_group_7` when we run Database tests, since all Parser tests use the
 			 * database. Running `split_group_7` when no matches tests get executed results in a phpunit
 			 * error code.
 			 */
-			$splitGroupCount = self::SPLIT_GROUP_COUNT;
+			$splitGroupCount = $splitGroupCount - 1;
 		}
 		parent::__construct( $splitGroupCount );
 	}
@@ -175,7 +178,7 @@ class ComposerLaunchParallel extends ForkController {
 			$event->getIO()->write( PHP_EOL );
 			PhpUnitConsoleOutputProcessor::collectAndDumpFailureSummary(
 				"phpunit_output_%d_{$groupName}.log",
-				self::SPLIT_GROUP_COUNT,
+				self::getSplitGroupCount(),
 				$event->getIO()
 			);
 			exit( self::EXIT_STATUS_FAILURE );
@@ -220,4 +223,29 @@ class ComposerLaunchParallel extends ForkController {
 			self::getDatabaselessExcludeGroups()
 		);
 	}
+
+	/**
+	 * Get a split group count, either from the default defined on this class, or from
+	 * QUIBBLE_PHPUNIT_PARALLEL_GROUP_COUNT in the environment.
+	 *
+	 * Throws InvalidSplitGroupCountException for an invalid count.
+	 */
+	public static function getSplitGroupCount(): int {
+		$splitGroupCount = self::DEFAULT_SPLIT_GROUP_COUNT;
+
+		$envSplitGroupCount = getenv( 'QUIBBLE_PHPUNIT_PARALLEL_GROUP_COUNT' );
+		if ( $envSplitGroupCount !== false ) {
+			if ( !preg_match( '/^\d+$/', $envSplitGroupCount ) ) {
+				throw new InvalidSplitGroupCountException( $envSplitGroupCount );
+			}
+			$splitGroupCount = (int)$envSplitGroupCount;
+		}
+
+		if ( $splitGroupCount < 2 ) {
+			throw new InvalidSplitGroupCountException( $splitGroupCount );
+		}
+
+		return $splitGroupCount;
+	}
+
 }

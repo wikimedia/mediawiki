@@ -1118,6 +1118,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Composer\\ComposerSystemInterface' => __DIR__ . '/includes/composer/ComposerSystemInterface.php',
 	'MediaWiki\\Composer\\ComposerVendorHtaccessCreator' => __DIR__ . '/includes/composer/ComposerVendorHtaccessCreator.php',
 	'MediaWiki\\Composer\\LockFileChecker' => __DIR__ . '/includes/composer/LockFileChecker.php',
+	'MediaWiki\\Composer\\PhpUnitSplitter\\InvalidSplitGroupCountException' => __DIR__ . '/includes/composer/PhpUnitSplitter/InvalidSplitGroupCountException.php',
 	'MediaWiki\\Composer\\PhpUnitSplitter\\MissingNamespaceMatchForTestException' => __DIR__ . '/includes/composer/PhpUnitSplitter/MissingNamespaceMatchForTestException.php',
 	'MediaWiki\\Composer\\PhpUnitSplitter\\PhpUnitConsoleOutputProcessingException' => __DIR__ . '/includes/composer/PhpUnitSplitter/PhpUnitConsoleOutputProcessingException.php',
 	'MediaWiki\\Composer\\PhpUnitSplitter\\PhpUnitConsoleOutputProcessor' => __DIR__ . '/includes/composer/PhpUnitSplitter/PhpUnitConsoleOutputProcessor.php',
