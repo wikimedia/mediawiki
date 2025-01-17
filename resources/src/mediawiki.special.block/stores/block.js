@@ -404,19 +404,10 @@ module.exports = exports = defineStore( 'block', () => {
 		}
 
 		if ( type.value === 'partial' ) {
-			const actionRestrictions = [];
 			params.partial = 1;
-			if ( partialOptions.value.indexOf( 'ipb-action-upload' ) !== -1 ) {
-				actionRestrictions.push( 'upload' );
-			}
-			if ( partialOptions.value.indexOf( 'ipb-action-move' ) !== -1 ) {
-				actionRestrictions.push( 'move' );
-			}
-			if ( partialOptions.value.indexOf( 'ipb-action-create' ) !== -1 ) {
-				actionRestrictions.push( 'create' );
-			}
-			params.actionrestrictions = actionRestrictions.join( '|' );
-
+			params.actionrestrictions = Object.keys( partialOptions.value )
+				.map( ( i ) => partialOptions.value[ i ].replace( 'ipb-action-', '' ) )
+				.join( '|' );
 			if ( pages.value.length ) {
 				params.pagerestrictions = pages.value.join( '|' );
 			}
