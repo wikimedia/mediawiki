@@ -58,8 +58,6 @@ trait UploadJobTrait {
 
 	/**
 	 * Do not allow retries on jobs by default.
-	 *
-	 * @return bool
 	 */
 	public function allowRetries(): bool {
 		return false;
@@ -67,8 +65,6 @@ trait UploadJobTrait {
 
 	/**
 	 * Run the job
-	 *
-	 * @return bool
 	 */
 	public function run(): bool {
 		$this->user = $this->getUserFromSession();
@@ -182,8 +178,6 @@ trait UploadJobTrait {
 
 	/**
 	 * Ensure we have the file available. A noop here.
-	 *
-	 * @return bool
 	 */
 	protected function fetchFile(): bool {
 		$this->setStatus( 'fetching' );
@@ -202,8 +196,6 @@ trait UploadJobTrait {
 
 	/**
 	 * Verify the upload is ok
-	 *
-	 * @return bool
 	 */
 	private function verifyUpload(): bool {
 		// Check if the local file checks out (this is generally a no-op)
@@ -249,8 +241,6 @@ trait UploadJobTrait {
 
 	/**
 	 * Upload the stashed file to a permanent location
-	 *
-	 * @return bool
 	 */
 	private function performUpload(): bool {
 		if ( $this->user === null ) {

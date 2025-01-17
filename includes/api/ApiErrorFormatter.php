@@ -127,7 +127,6 @@ class ApiErrorFormatter {
 
 	/**
 	 * Fetch a dummy title to set on Messages
-	 * @return PageReference
 	 */
 	protected function getDummyTitle(): PageReference {
 		if ( self::$dummyTitle === null ) {

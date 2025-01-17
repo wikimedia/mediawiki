@@ -243,8 +243,6 @@ abstract class Handler {
 	/**
 	 * Returns the path this handler is bound to relative to the module prefix.
 	 * Includes path variables.
-	 *
-	 * @return string
 	 */
 	public function getPath(): string {
 		return $this->path;
@@ -267,11 +265,6 @@ abstract class Handler {
 		return $matches[1] ?? [];
 	}
 
-	/**
-	 * Get the Router.
-	 *
-	 * @return Router
-	 */
 	protected function getRouter(): Router {
 		return $this->module->getRouter();
 	}
@@ -279,8 +272,6 @@ abstract class Handler {
 	/**
 	 * Get the Module this handler belongs to.
 	 * Will fail hard if called before initContext().
-	 *
-	 * @return Module
 	 */
 	protected function getModule(): Module {
 		return $this->module;
@@ -330,8 +321,6 @@ abstract class Handler {
 	/**
 	 * Get the current request. The return type declaration causes it to raise
 	 * a fatal error if initForExecute() has not yet been called.
-	 *
-	 * @return RequestInterface
 	 */
 	public function getRequest(): RequestInterface {
 		return $this->request;
@@ -352,8 +341,6 @@ abstract class Handler {
 	 * Get the configuration array for the current route. The return type
 	 * declaration causes it to raise a fatal error if initContext() has not
 	 * been called.
-	 *
-	 * @return array
 	 */
 	public function getConfig(): array {
 		return $this->config;
@@ -363,8 +350,6 @@ abstract class Handler {
 	 * Get the ResponseFactory which can be used to generate Response objects.
 	 * This will raise a fatal error if initServices() has not been
 	 * called.
-	 *
-	 * @return ResponseFactory
 	 */
 	public function getResponseFactory(): ResponseFactory {
 		return $this->responseFactory;
@@ -374,8 +359,6 @@ abstract class Handler {
 	 * Get the Session.
 	 * This will raise a fatal error if initSession() has not been
 	 * called.
-	 *
-	 * @return Session
 	 */
 	public function getSession(): Session {
 		return $this->session;
@@ -535,8 +518,6 @@ abstract class Handler {
 
 	/**
 	 * Apply cache control to enforce privacy.
-	 *
-	 * @param ResponseInterface $response
 	 */
 	public function applyCacheControl( ResponseInterface $response ) {
 		// NOTE: keep this consistent with the logic in OutputPage::sendCacheControl

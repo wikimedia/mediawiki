@@ -90,7 +90,6 @@ class SparqlClient {
 
 	/**
 	 * Get current user agent.
-	 * @return string
 	 */
 	public function getUserAgent(): string {
 		return $this->userAgent;
@@ -113,8 +112,6 @@ class SparqlClient {
 	 * This is the recommended way of specifying the user agent
 	 * for specific applications of the SparqlClient inside MediaWiki
 	 * and extension code.
-	 *
-	 * @param string $agent
 	 */
 	public function appendUserAgent( string $agent ) {
 		$this->userAgent .= ' ' . $agent;

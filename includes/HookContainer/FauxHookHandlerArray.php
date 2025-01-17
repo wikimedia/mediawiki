@@ -17,10 +17,6 @@ class FauxHookHandlerArray implements \ArrayAccess, \IteratorAggregate {
 
 	private ?array $handlers = null;
 
-	/**
-	 * @param HookContainer $hookContainer
-	 * @param string $name
-	 */
 	public function __construct( HookContainer $hookContainer, string $name ) {
 		$this->hookContainer = $hookContainer;
 		$this->name = $name;

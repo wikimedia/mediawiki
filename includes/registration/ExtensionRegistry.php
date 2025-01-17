@@ -159,9 +159,6 @@ class ExtensionRegistry implements DomainEventSubscriber {
 	 */
 	private $cache = null;
 
-	/**
-	 * @var ?SettingsBuilder
-	 */
 	private ?SettingsBuilder $settingsBuilder = null;
 
 	private static bool $accessDisabledForUnitTests = false;

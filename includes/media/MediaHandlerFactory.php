@@ -64,10 +64,6 @@ class MediaHandlerFactory {
 	 */
 	private $handlers;
 
-	/**
-	 * @param LoggerInterface $logger
-	 * @param array $registry
-	 */
 	public function __construct(
 		LoggerInterface $logger,
 		array $registry

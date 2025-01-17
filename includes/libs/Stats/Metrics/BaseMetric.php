@@ -42,13 +42,8 @@ use Wikimedia\Stats\StatsUtils;
  */
 class BaseMetric implements BaseMetricInterface {
 
-	/** @var float */
 	private float $sampleRate = StatsUtils::DEFAULT_SAMPLE_RATE;
-
-	/** @var string */
 	private string $name;
-
-	/** @var string */
 	private string $component;
 
 	/** @var array key-value pairs of metric-specific labels */
@@ -60,7 +55,6 @@ class BaseMetric implements BaseMetricInterface {
 	/** @var Sample[] */
 	private array $samples = [];
 
-	/** @var IBufferingStatsdDataFactory|null */
 	private ?IBufferingStatsdDataFactory $statsdDataFactory = null;
 
 	/** @var string[] */

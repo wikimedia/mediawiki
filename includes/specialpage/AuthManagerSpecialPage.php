@@ -798,7 +798,6 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * Sort the fields of a form descriptor by their 'weight' property. (Fields with higher weight
 	 * are shown closer to the bottom; weight defaults to 0. Negative weight is allowed.)
 	 * Keep order if weights are equal.
-	 * @param array &$formDescriptor
 	 */
 	protected static function sortFormDescriptorFields( array &$formDescriptor ) {
 		$i = 0;

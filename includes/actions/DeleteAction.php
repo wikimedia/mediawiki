@@ -597,8 +597,6 @@ class DeleteAction extends FormAction {
 
 	/**
 	 * Default reason to be used for the deletion form
-	 *
-	 * @return string
 	 */
 	protected function getDefaultReason(): string {
 		$requestReason = $this->getRequest()->getText( 'wpReason' );

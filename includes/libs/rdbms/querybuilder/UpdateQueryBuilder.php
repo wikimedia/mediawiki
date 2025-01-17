@@ -50,8 +50,6 @@ class UpdateQueryBuilder {
 	/**
 	 * Only for use in subclasses. To create a UpdateQueryBuilder instance,
 	 * use `$db->newUpdateQueryBuilder()` instead.
-	 *
-	 * @param IDatabase $db
 	 */
 	public function __construct( IDatabase $db ) {
 		$this->db = $db;

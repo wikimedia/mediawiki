@@ -14,10 +14,6 @@ use Wikimedia\Message\ScalarParam;
 class DataMessageValueTest extends MediaWikiUnitTestCase {
 	use MessageSerializationTestTrait;
 
-	/**
-	 * Overrides SerializationTestTrait::getClassToTest
-	 * @return string
-	 */
 	public static function getClassToTest(): string {
 		return DataMessageValue::class;
 	}

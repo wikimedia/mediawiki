@@ -1660,8 +1660,6 @@ class Parser {
 
 	/**
 	 * Shorthand for getting a Language Converter for Content language
-	 *
-	 * @return ILanguageConverter
 	 */
 	private function getContentLanguageConverter(): ILanguageConverter {
 		return $this->languageConverterFactory->getLanguageConverter(
@@ -3956,10 +3954,6 @@ class Parser {
 		return $ret;
 	}
 
-	/**
-	 * @param string $lowerTagName
-	 * @return bool
-	 */
 	public function tagNeedsNowikiStrippedInTagPF( string $lowerTagName ): bool {
 		$parsoidSiteConfig = MediaWikiServices::getInstance()->getParsoidSiteConfig();
 		return $parsoidSiteConfig->tagNeedsNowikiStrippedInTagPF( $lowerTagName );

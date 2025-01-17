@@ -965,10 +965,6 @@ class SpecialUndelete extends SpecialPage {
 		$this->localRepo->streamFileWithStatus( $path );
 	}
 
-	/**
-	 * @param LinkBatch $batch
-	 * @param IResultWrapper $revisions
-	 */
 	private function addRevisionsToBatch( LinkBatch $batch, IResultWrapper $revisions ) {
 		foreach ( $revisions as $row ) {
 			$batch->add( NS_USER, $row->ar_user_text );
@@ -976,10 +972,6 @@ class SpecialUndelete extends SpecialPage {
 		}
 	}
 
-	/**
-	 * @param LinkBatch $batch
-	 * @param IResultWrapper $files
-	 */
 	private function addFilesToBatch( LinkBatch $batch, IResultWrapper $files ) {
 		foreach ( $files as $row ) {
 			$batch->add( NS_USER, $row->fa_user_text );

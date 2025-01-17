@@ -133,8 +133,6 @@ class CommandFactory {
 
 	/**
 	 * Instantiates a new Command
-	 *
-	 * @return Command
 	 */
 	public function create(): Command {
 		$allUsers = false;

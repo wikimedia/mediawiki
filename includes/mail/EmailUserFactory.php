@@ -81,10 +81,6 @@ class EmailUserFactory {
 		$this->contLangMsgFormatter = $contLangMsgFormatter;
 	}
 
-	/**
-	 * @param Authority $sender
-	 * @return EmailUser
-	 */
 	public function newEmailUser( Authority $sender ): EmailUser {
 		return new EmailUser(
 			$this->options,

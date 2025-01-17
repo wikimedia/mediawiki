@@ -91,8 +91,6 @@ class SpecialContribute extends IncludableSpecialPage {
 	/**
 	 * Check if skin is allowed to access the Special:Contribute page
 	 * and the page have enough cards to be enabled
-	 *
-	 * @return bool
 	 */
 	public function isShowable(): bool {
 		return ContributeFactory::isEnabledOnCurrentSkin(

@@ -40,10 +40,6 @@ class SpecialTrackingCategories extends SpecialPage {
 	private LinkBatchFactory $linkBatchFactory;
 	private TrackingCategories $trackingCategories;
 
-	/**
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param TrackingCategories $trackingCategories
-	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		TrackingCategories $trackingCategories

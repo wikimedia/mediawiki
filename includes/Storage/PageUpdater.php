@@ -455,7 +455,6 @@ class PageUpdater {
 
 	/**
 	 * Get the page we're currently updating.
-	 * @return PageIdentity
 	 */
 	public function getPage(): PageIdentity {
 		return $this->pageIdentity;
@@ -1709,10 +1708,6 @@ class PageUpdater {
 		}
 	}
 
-	/**
-	 * @param array $roles
-	 * @param PageUpdateStatus $status
-	 */
 	private function checkAllRolesAllowed( array $roles, PageUpdateStatus $status ) {
 		$allowedRoles = $this->getAllowedSlotRoles();
 
@@ -1726,10 +1721,6 @@ class PageUpdater {
 		}
 	}
 
-	/**
-	 * @param array $roles
-	 * @param PageUpdateStatus $status
-	 */
 	private function checkAllRolesDerived( array $roles, PageUpdateStatus $status ) {
 		$notDerived = array_filter(
 			$roles,
@@ -1746,10 +1737,6 @@ class PageUpdater {
 		}
 	}
 
-	/**
-	 * @param array $roles
-	 * @param PageUpdateStatus $status
-	 */
 	private function checkNoRolesRequired( array $roles, PageUpdateStatus $status ) {
 		$requiredRoles = $this->getRequiredSlotRoles();
 
@@ -1763,10 +1750,6 @@ class PageUpdater {
 		}
 	}
 
-	/**
-	 * @param array $roles
-	 * @param PageUpdateStatus $status
-	 */
 	private function checkAllRequiredRoles( array $roles, PageUpdateStatus $status ) {
 		$requiredRoles = $this->getRequiredSlotRoles();
 

@@ -729,8 +729,6 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 
 	/**
 	 * Returns the rendered HTML as a PageBundle object.
-	 *
-	 * @return PageBundle
 	 */
 	public function getPageBundle(): PageBundle {
 		// XXX: converting between PageBundle and ParserOutput is inefficient!
@@ -759,8 +757,6 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 *
 	 * This wil return null if RevisionRecord has been set but that RevisionRecord
 	 * does not have a revision ID, e.g. when rendering a preview.
-	 *
-	 * @return ?int
 	 */
 	public function getRevisionId(): ?int {
 		if ( !$this->revisionOrId ) {
@@ -783,8 +779,6 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 * TODO: Should we move this to Parsoid's ContentUtils class?
 	 * There already is a stripUnnecessaryWrappersAndSyntheticNodes but
 	 * it targets html2wt and does a lot more than just section unwrapping.
-	 *
-	 * @param Element $elt
 	 */
 	private function stripParsoidSectionTags( Element $elt ): void {
 		$n = $elt->firstChild;

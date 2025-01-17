@@ -54,11 +54,6 @@ class UploadFromUrlJob extends Job implements GenericParameterJob {
 		return $info;
 	}
 
-	/**
-	 * getter for the upload
-	 *
-	 * @return UploadBase
-	 */
 	protected function getUpload(): UploadBase {
 		if ( $this->upload === null ) {
 			$this->upload = new UploadFromUrl;

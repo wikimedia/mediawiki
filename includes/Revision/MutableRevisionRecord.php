@@ -378,8 +378,6 @@ class MutableRevisionRecord extends RevisionRecord {
 	/**
 	 * Returns the slots defined for this revision as a MutableRevisionSlots instance,
 	 * which can be modified to defined the slots for this revision.
-	 *
-	 * @return MutableRevisionSlots
 	 */
 	public function getSlots(): MutableRevisionSlots {
 		// Overwritten just to guarantee the more narrow return type.

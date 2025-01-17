@@ -285,11 +285,6 @@ class SettingsBuilder {
 		return file_exists( $path );
 	}
 
-	/**
-	 * @param SettingsSource $source
-	 *
-	 * @return SettingsSource
-	 */
 	private function wrapSource( SettingsSource $source ): SettingsSource {
 		if ( $this->cache !== null && $source instanceof CacheableSource ) {
 			$source = new CachedSource( $this->cache, $source );
@@ -587,8 +582,6 @@ class SettingsBuilder {
 
 	/**
 	 * Apply the settings array.
-	 *
-	 * @param array $settings
 	 */
 	private function applySettings( array $settings ) {
 		// First extract config variables that change the behavior of SettingsBuilder.
@@ -835,8 +828,6 @@ class SettingsBuilder {
 	 * In addition, the updater will fail if it finds any warnings.
 	 * This allows us to warn about deprecated settings, and make sure they are
 	 * replaced before the update proceeds.
-	 *
-	 * @param string $msg
 	 */
 	public function warning( string $msg ) {
 		$this->assertNotReadOnly( __METHOD__ );

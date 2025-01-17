@@ -2239,8 +2239,6 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 
 	/**
 	 * Get the WebRequest object to use with this object
-	 *
-	 * @return WebRequest
 	 */
 	public function getRequest(): WebRequest {
 		return $this->mRequest ?? RequestContext::getMain()->getRequest();
@@ -3352,7 +3350,6 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	/**
 	 * Returns the Authority of this User if it's the main request context user.
 	 * This is intended to exist only for the period of transition to Authority.
-	 * @return UserAuthority
 	 */
 	private function getThisAsAuthority(): UserAuthority {
 		if ( !$this->mThisAsAuthority ) {
@@ -3381,7 +3378,6 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 
 	/**
 	 * Check whether this is the global session user.
-	 * @return bool
 	 */
 	private function isGlobalSessionUser(): bool {
 		// The session user is set up towards the end of Setup.php. Until then,

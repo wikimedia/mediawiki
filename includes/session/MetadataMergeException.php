@@ -63,7 +63,6 @@ class MetadataMergeException extends UnexpectedValueException {
 
 	/**
 	 * Set context data.
-	 * @param array $context
 	 */
 	public function setContext( array $context ) {
 		$this->context = $context;

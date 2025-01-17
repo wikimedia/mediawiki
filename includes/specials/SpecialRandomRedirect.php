@@ -31,10 +31,6 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialRandomRedirect extends SpecialRandomPage {
 
-	/**
-	 * @param IConnectionProvider $dbProvider
-	 * @param NamespaceInfo $nsInfo
-	 */
 	public function __construct(
 		IConnectionProvider $dbProvider,
 		NamespaceInfo $nsInfo

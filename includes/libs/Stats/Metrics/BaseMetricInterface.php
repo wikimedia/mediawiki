@@ -55,11 +55,6 @@ interface BaseMetricInterface {
 	 */
 	public function getSampleRate(): float;
 
-	/**
-	 * Sets the sample rate.
-	 *
-	 * @param float $sampleRate
-	 */
 	public function setSampleRate( float $sampleRate ): void;
 
 	/**

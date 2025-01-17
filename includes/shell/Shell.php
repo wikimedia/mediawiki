@@ -133,8 +133,6 @@ class Shell {
 
 	/**
 	 * Check if this class is effectively disabled via php.ini config
-	 *
-	 * @return bool
 	 */
 	public static function isDisabled(): bool {
 		static $disabled = null;

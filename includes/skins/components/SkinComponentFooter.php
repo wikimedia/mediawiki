@@ -24,8 +24,6 @@ class SkinComponentFooter implements SkinComponent {
 
 	/**
 	 * Run SkinAddFooterLinks hook on menu data to insert additional menu items specifically in footer.
-	 *
-	 * @return array
 	 */
 	private function getTemplateDataFooter(): array {
 		$data = [

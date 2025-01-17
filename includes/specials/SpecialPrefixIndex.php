@@ -53,10 +53,6 @@ class SpecialPrefixIndex extends SpecialAllPages {
 	private IConnectionProvider $dbProvider;
 	private LinkCache $linkCache;
 
-	/**
-	 * @param IConnectionProvider $dbProvider
-	 * @param LinkCache $linkCache
-	 */
 	public function __construct(
 		IConnectionProvider $dbProvider,
 		LinkCache $linkCache

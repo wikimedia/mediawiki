@@ -65,8 +65,6 @@ class MessageValue implements MessageSpecifier, JsonCodecable {
 
 	/**
 	 * Get the message key
-	 *
-	 * @return string
 	 */
 	public function getKey(): string {
 		return $this->key;

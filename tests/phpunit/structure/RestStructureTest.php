@@ -61,8 +61,6 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Constructs a fake MediaWikiServices instance for use in data providers.
-	 *
-	 * @return MediaWikiServices
 	 */
 	private function getFakeServiceContainer(): MediaWikiServices {
 		$realConfig = MediaWikiServices::getInstance()->getMainConfig();

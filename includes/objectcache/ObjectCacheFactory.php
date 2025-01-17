@@ -123,8 +123,6 @@ class ObjectCacheFactory {
 	 * This is either the value of the MainConfigNames::CachePrefix setting
 	 * or (if the former is unset) the MainConfigNames::DBname setting, with
 	 * MainConfigNames::DBprefix (if defined).
-	 *
-	 * @return string
 	 */
 	private function getDefaultKeyspace(): string {
 		$cachePrefix = $this->options->get( MainConfigNames::CachePrefix );

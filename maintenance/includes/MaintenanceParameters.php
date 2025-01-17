@@ -243,7 +243,6 @@ class MaintenanceParameters {
 
 	/**
 	 * Set a short description of what the script does.
-	 * @param string $text
 	 */
 	public function setDescription( string $text ) {
 		$this->mDescription = $text;
@@ -345,8 +344,6 @@ class MaintenanceParameters {
 
 	/**
 	 * Merge options declarations from $other into this instance.
-	 *
-	 * @param MaintenanceParameters $other
 	 */
 	public function mergeOptions( MaintenanceParameters $other ) {
 		$this->mOptDefs = $other->mOptDefs + $this->mOptDefs;
@@ -477,8 +474,6 @@ class MaintenanceParameters {
 
 	/**
 	 * Whether any errors have been recorded so far.
-	 *
-	 * @return bool
 	 */
 	public function hasErrors(): bool {
 		return (bool)$this->errors;
@@ -486,8 +481,6 @@ class MaintenanceParameters {
 
 	/**
 	 * Set the script name, for use in the help message
-	 *
-	 * @param string $name
 	 */
 	public function setName( string $name ) {
 		$this->mName = $name;
@@ -495,8 +488,6 @@ class MaintenanceParameters {
 
 	/**
 	 * Get the script name, as shown in the help message
-	 *
-	 * @return string
 	 */
 	public function getName(): string {
 		return $this->mName;
@@ -562,8 +553,6 @@ class MaintenanceParameters {
 
 	/**
 	 * Get help text.
-	 *
-	 * @return string
 	 */
 	public function getHelp(): string {
 		$screenWidth = 80; // TODO: Calculate this!
@@ -690,7 +679,6 @@ class MaintenanceParameters {
 
 	/**
 	 * Returns any option values
-	 * @return array
 	 */
 	public function getOptions(): array {
 		return $this->mOptions;
@@ -709,11 +697,6 @@ class MaintenanceParameters {
 		$this->usagePrefix = $usagePrefix;
 	}
 
-	/**
-	 * @param array $argInfo
-	 *
-	 * @return string
-	 */
 	private function getArgRepresentation( array $argInfo ): string {
 		if ( $argInfo['require'] ) {
 			$rep = '<' . $argInfo['name'] . '>';

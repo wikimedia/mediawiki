@@ -377,8 +377,6 @@ WARN
 
 	/**
 	 * The warning message and countdown
-	 *
-	 * @param string $message
 	 */
 	private function warn( string $message ) {
 		if ( $this->hasOption( 'nowarn' ) ) {

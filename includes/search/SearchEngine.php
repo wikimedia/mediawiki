@@ -836,8 +836,6 @@ abstract class SearchEngine {
 
 	/**
 	 * Augment search results with extra data.
-	 *
-	 * @param ISearchResultSet $resultSet
 	 */
 	public function augmentSearchResults( ISearchResultSet $resultSet ) {
 		$setAugmentors = [];

@@ -360,7 +360,6 @@ class EmailNotification {
 
 	/**
 	 * Generate the generic "this page has been changed" e-mail text.
-	 * @param MessageCache $messageCache
 	 */
 	private function composeCommonMailtext( MessageCache $messageCache ) {
 		$services = MediaWikiServices::getInstance();

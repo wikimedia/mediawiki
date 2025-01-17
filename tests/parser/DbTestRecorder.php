@@ -66,8 +66,6 @@ class DbTestRecorder extends TestRecorder {
 
 	/**
 	 * Record an individual test item's success or failure to the db
-	 *
-	 * @param ParserTestResult $result
 	 */
 	public function record( ParserTestResult $result ) {
 		$desc = $result->getDescription();

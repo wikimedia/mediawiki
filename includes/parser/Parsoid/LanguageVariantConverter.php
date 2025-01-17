@@ -187,7 +187,6 @@ class LanguageVariantConverter {
 
 	/**
 	 * Disable fallback language variant converter
-	 * @return void
 	 */
 	public function disableFallbackLanguageConverter(): void {
 		$this->isFallbackLanguageConverterEnabled = false;

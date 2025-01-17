@@ -327,10 +327,6 @@ class ImageModule extends Module {
 		return $this->globalVariants[$skin];
 	}
 
-	/**
-	 * @param Context $context
-	 * @return array
-	 */
 	public function getStyles( Context $context ): array {
 		$this->loadFromDefinition();
 

@@ -82,10 +82,6 @@ class LocalFileMoveBatch {
 	/** @var LocalFile|null */
 	private $targetFile;
 
-	/**
-	 * @param LocalFile $file
-	 * @param Title $target
-	 */
 	public function __construct( LocalFile $file, Title $target ) {
 		$this->file = $file;
 		$this->target = $target;

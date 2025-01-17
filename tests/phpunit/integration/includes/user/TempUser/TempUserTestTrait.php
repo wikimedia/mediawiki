@@ -15,8 +15,6 @@ trait TempUserTestTrait {
 
 	/**
 	 * Array of default configuration to use in tests.
-	 *
-	 * @return array
 	 */
 	private function getTempAccountConfigTestDefaults(): array {
 		return [

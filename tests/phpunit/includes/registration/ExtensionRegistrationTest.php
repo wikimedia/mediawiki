@@ -629,11 +629,6 @@ class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @param array $manifest
-	 *
-	 * @return string
-	 */
 	private function makeManifestFile( array $manifest ): string {
 		$manifest += [
 			'name' => 'Test',

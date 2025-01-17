@@ -86,10 +86,6 @@ class LanguageNameUtils {
 	/** @var HookRunner */
 	private $hookRunner;
 
-	/**
-	 * @param ServiceOptions $options
-	 * @param HookContainer $hookContainer
-	 */
 	public function __construct( ServiceOptions $options, HookContainer $hookContainer ) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;

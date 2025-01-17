@@ -29,7 +29,6 @@ trait EditConstraintTestTrait {
 
 	/**
 	 * Assert that the constraint passes and that the status is good
-	 * @param IEditConstraint $constraint
 	 */
 	public function assertConstraintPassed( IEditConstraint $constraint ) {
 		$this->assertSame(

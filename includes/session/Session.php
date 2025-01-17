@@ -172,7 +172,6 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 
 	/**
 	 * Returns the authenticated user for this session
-	 * @return User
 	 */
 	public function getUser(): User {
 		return $this->backend->getUser();

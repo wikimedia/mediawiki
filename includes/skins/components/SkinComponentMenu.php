@@ -62,11 +62,6 @@ class SkinComponentMenu implements SkinComponent {
 		$this->htmlBeforeContent = $htmlBeforeContent;
 	}
 
-	/**
-	 * @param string $key
-	 *
-	 * @return Message
-	 */
 	private function msg( string $key ): Message {
 		return $this->localizer->msg( $key );
 	}

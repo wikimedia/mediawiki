@@ -199,8 +199,6 @@ class EtcdSourceTest extends TestCase {
 
 	/**
 	 * All possible server-side exceptions.
-	 *
-	 * @return array
 	 */
 	public function serverFailures(): array {
 		return [
@@ -220,11 +218,6 @@ class EtcdSourceTest extends TestCase {
 		];
 	}
 
-	/**
-	 * @param array $responses
-	 *
-	 * @return Client
-	 */
 	private function mockClientWithResponses( array $responses ): Client {
 		return new Client( [
 			'handler' => HandlerStack::create(

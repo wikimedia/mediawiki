@@ -131,8 +131,6 @@ class LinksUpdate extends DataUpdate {
 	/**
 	 * Notify LinksUpdate that a move has just been completed and set the
 	 * original title
-	 *
-	 * @param PageReference $oldPage
 	 */
 	public function setMoveDetails( PageReference $oldPage ) {
 		$this->tableFactory->setMoveDetails( $oldPage );

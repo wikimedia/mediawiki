@@ -1606,7 +1606,6 @@ class ParserOptions {
 	/**
 	 * Returns reason for rendering the content. This human-readable, intended for logging and debugging only.
 	 * Expected values include "edit", "view", "purge", "LinksUpdate", etc.
-	 * @return string
 	 */
 	public function getRenderReason(): string {
 		return $this->renderReason;
@@ -1615,7 +1614,6 @@ class ParserOptions {
 	/**
 	 * Sets reason for rendering the content. This human-readable, intended for logging and debugging only.
 	 * Expected values include "edit", "view", "purge", "LinksUpdate", etc.
-	 * @param string $renderReason
 	 */
 	public function setRenderReason( string $renderReason ): void {
 		$this->renderReason = $renderReason;

@@ -111,9 +111,6 @@ class PageContentHelper {
 		return $this->parameters['title'] ?? null;
 	}
 
-	/**
-	 * @return ExistingPageRecord|null
-	 */
 	public function getPage(): ?ExistingPageRecord {
 		if ( $this->pageRecord === false ) {
 			$titleText = $this->getTitleText();
@@ -224,9 +221,6 @@ class PageContentHelper {
 		return '"' . sha1( $revisionTag ) . '"';
 	}
 
-	/**
-	 * @return string|null
-	 */
 	public function getLastModified(): ?string {
 		if ( !$this->isAccessible() ) {
 			return null;
@@ -241,8 +235,6 @@ class PageContentHelper {
 
 	/**
 	 * Checks whether content exists. Permission checks are not considered.
-	 *
-	 * @return bool
 	 */
 	public function hasContent(): bool {
 		return $this->useDefaultSystemMessage() || (bool)$this->getPage();
@@ -339,8 +331,6 @@ class PageContentHelper {
 	 *
 	 * Handlers that can follow wiki redirects can use this to give clients
 	 * control over the redirect handling behavior.
-	 *
-	 * @return bool
 	 */
 	public function getRedirectsAllowed(): bool {
 		return $this->parameters['redirect'] ?? true;
@@ -366,16 +356,11 @@ class PageContentHelper {
 	/**
 	 * If the page is a system message page. When the content gets
 	 * overridden to create an actual page, this method returns false.
-	 *
-	 * @return bool
 	 */
 	public function useDefaultSystemMessage(): bool {
 		return $this->getDefaultSystemMessage() !== null && $this->getPage() === null;
 	}
 
-	/**
-	 * @return Message|null
-	 */
 	public function getDefaultSystemMessage(): ?Message {
 		$title = Title::newFromText( $this->getTitleText() );
 

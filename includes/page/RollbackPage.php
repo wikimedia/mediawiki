@@ -162,11 +162,6 @@ class RollbackPage {
 		return $this;
 	}
 
-	/**
-	 * Authorize the rollback.
-	 *
-	 * @return PermissionStatus
-	 */
 	public function authorizeRollback(): PermissionStatus {
 		$permissionStatus = PermissionStatus::newEmpty();
 		$this->performer->authorizeWrite( 'edit', $this->page, $permissionStatus );

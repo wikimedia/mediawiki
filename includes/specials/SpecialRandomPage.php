@@ -41,10 +41,6 @@ class SpecialRandomPage extends SpecialPage {
 
 	private IConnectionProvider $dbProvider;
 
-	/**
-	 * @param IConnectionProvider $dbProvider
-	 * @param NamespaceInfo $nsInfo
-	 */
 	public function __construct(
 		IConnectionProvider $dbProvider,
 		NamespaceInfo $nsInfo

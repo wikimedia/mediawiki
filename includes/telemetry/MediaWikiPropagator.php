@@ -12,9 +12,7 @@ use Wikimedia\Telemetry\SpanContext;
  * @internal
  */
 class MediaWikiPropagator implements ContextPropagatorInterface {
-	/**
-	 * @var TelemetryHeadersInterface
-	 */
+
 	private TelemetryHeadersInterface $mwTelemetry;
 
 	public function __construct( TelemetryHeadersInterface $mwTelemetry ) {

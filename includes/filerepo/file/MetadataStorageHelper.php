@@ -102,10 +102,6 @@ class MetadataStorageHelper {
 		return $s;
 	}
 
-	/**
-	 * @param array $addresses
-	 * @return array
-	 */
 	public function getMetadataFromBlobStore( array $addresses ): array {
 		$result = [];
 		if ( $addresses ) {

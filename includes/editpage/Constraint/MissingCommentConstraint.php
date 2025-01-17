@@ -34,10 +34,6 @@ class MissingCommentConstraint implements IEditConstraint {
 	private string $section;
 	private string $userComment;
 
-	/**
-	 * @param string $section
-	 * @param string $userComment
-	 */
 	public function __construct( string $section, string $userComment ) {
 		$this->section = $section;
 		$this->userComment = $userComment;

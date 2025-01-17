@@ -116,8 +116,6 @@ class PerformanceBudgetTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Find all bundle size configs in all repos and create a way to look up
 	 * the bundle size for a given module.
-	 *
-	 * @return array
 	 */
 	private function getBudgetConfig(): array {
 		$installed = ExtensionRegistry::getInstance()->getAllThings();

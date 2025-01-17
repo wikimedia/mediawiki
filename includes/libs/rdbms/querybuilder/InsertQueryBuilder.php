@@ -60,8 +60,6 @@ class InsertQueryBuilder {
 	/**
 	 * Only for use in subclasses. To create a InsertQueryBuilder instance,
 	 * use `$db->newInsertQueryBuilder()` instead.
-	 *
-	 * @param IDatabase $db
 	 */
 	public function __construct( IDatabase $db ) {
 		$this->db = $db;

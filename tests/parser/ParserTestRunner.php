@@ -670,7 +670,6 @@ class ParserTestRunner {
 
 	/**
 	 * Ensure one of the given setup stages has been done, throw an exception otherwise.
-	 * @param string $funcName
 	 */
 	protected function checkSetupDone( string $funcName ) {
 		if ( !$this->setupDone[$funcName] ) {
@@ -1239,10 +1238,6 @@ class ParserTestRunner {
 		file_put_contents( $filename, $fileContent );
 	}
 
-	/**
-	 * @param string $wikitext
-	 * @return array
-	 */
 	private function getRevRecordProperties( string $wikitext ): array {
 		return [
 			'pageid' => 187, // Some random fake page id

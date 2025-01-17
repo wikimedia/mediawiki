@@ -48,10 +48,6 @@ class ChangeTrackingEventIngress extends EventSubscriberBase {
 	private ChangeTagsStore $changeTagsStore;
 	private UserEditTracker $userEditTracker;
 
-	/**
-	 * @param ChangeTagsStore $changeTagsStore
-	 * @param UserEditTracker $userEditTracker
-	 */
 	public function __construct(
 		ChangeTagsStore $changeTagsStore,
 		UserEditTracker $userEditTracker

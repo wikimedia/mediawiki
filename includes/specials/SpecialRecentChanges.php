@@ -239,8 +239,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	/**
 	 * Whether or not the current query needs to use watchlist data: check that the current user can
 	 * use their watchlist and that this special page isn't being transcluded.
-	 *
-	 * @return bool
 	 */
 	private function needsWatchlistFeatures(): bool {
 		return !$this->including()

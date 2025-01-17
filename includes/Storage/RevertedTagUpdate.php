@@ -166,8 +166,6 @@ class RevertedTagUpdate implements DeferrableUpdate {
 
 	/**
 	 * Performs checks to determine whether the update should execute.
-	 *
-	 * @return bool
 	 */
 	private function shouldExecute(): bool {
 		$maxDepth = $this->options->get( MainConfigNames::RevertedTagMaxDepth );
@@ -251,8 +249,6 @@ class RevertedTagUpdate implements DeferrableUpdate {
 	 *
 	 * This is a much simpler case requiring less DB queries than when dealing with multiple
 	 * reverted edits.
-	 *
-	 * @return bool
 	 */
 	private function handleSingleRevertedEdit(): bool {
 		if ( $this->editResult->getOldestRevertedRevisionId() !==
@@ -293,8 +289,6 @@ class RevertedTagUpdate implements DeferrableUpdate {
 	 * Returns additional data to be saved in ct_params field of table 'change_tag'.
 	 *
 	 * Effectively a superset of what EditResult::jsonSerialize() returns.
-	 *
-	 * @return array
 	 */
 	private function getTagExtraParams(): array {
 		return array_merge(

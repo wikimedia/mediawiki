@@ -40,7 +40,6 @@ class TracerState {
 
 	/**
 	 * Get or initialize the shared tracer state for the current process or web request.
-	 * @return TracerState
 	 */
 	public static function getInstance(): TracerState {
 		self::$instance ??= new self();
@@ -49,7 +48,6 @@ class TracerState {
 
 	/**
 	 * Reset shared tracer state. Useful for testing.
-	 * @return void
 	 */
 	public static function destroyInstance(): void {
 		Assert::precondition(

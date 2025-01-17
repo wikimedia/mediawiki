@@ -43,10 +43,6 @@ class TitleDef extends TypeDef {
 	/** @var TitleFactory */
 	private $titleFactory;
 
-	/**
-	 * @param Callbacks $callbacks
-	 * @param TitleFactory $titleFactory
-	 */
 	public function __construct( Callbacks $callbacks, TitleFactory $titleFactory ) {
 		parent::__construct( $callbacks );
 		$this->titleFactory = $titleFactory;

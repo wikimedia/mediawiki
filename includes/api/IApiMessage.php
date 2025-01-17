@@ -67,7 +67,6 @@ interface IApiMessage extends MessageSpecifier {
 
 	/**
 	 * Sets additional machine-readable data about the error condition
-	 * @param array $data
 	 */
 	public function setApiData( array $data );
 }

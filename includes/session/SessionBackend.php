@@ -413,7 +413,6 @@ final class SessionBackend {
 
 	/**
 	 * Returns the authenticated user for this session
-	 * @return User
 	 */
 	public function getUser(): User {
 		return $this->user;

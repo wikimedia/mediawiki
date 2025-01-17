@@ -28,9 +28,6 @@ use Wikimedia\Http\TelemetryHeadersInterface;
  */
 class Telemetry implements TelemetryHeadersInterface {
 
-	/**
-	 * @var Telemetry|null
-	 */
 	private static ?Telemetry $instance = null;
 
 	/**
@@ -70,8 +67,6 @@ class Telemetry implements TelemetryHeadersInterface {
 	 *
 	 * This is usually based on the `X-Request-Id` header, or the `UNIQUE_ID`
 	 * environment variable, falling back to (process cached) randomly-generated string.
-	 *
-	 * @return string
 	 */
 	public function getRequestId(): string {
 		// This method is called from various error handlers and MUST be kept simple and stateless.
@@ -91,8 +86,6 @@ class Telemetry implements TelemetryHeadersInterface {
 	/**
 	 * Override the unique request ID. This is for sub-requests, such as jobs,
 	 * that wish to use the same id but are not part of the same execution context.
-	 *
-	 * @param string $newId
 	 */
 	public function overrideRequestId( string $newId ): void {
 		$this->reqId = $newId;
@@ -129,7 +122,6 @@ class Telemetry implements TelemetryHeadersInterface {
 
 	/**
 	 * Return Telemetry data in form of request headers
-	 * @return array
 	 */
 	public function getRequestHeaders(): array {
 		return array_filter( [

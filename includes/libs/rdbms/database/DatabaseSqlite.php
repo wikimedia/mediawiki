@@ -80,7 +80,6 @@ class DatabaseSqlite extends Database {
 	 *   - dbDirectory : directory containing the DB and the lock file directory
 	 *   - dbFilePath  : use this to force the path of the DB file
 	 *   - trxMode     : one of (deferred, immediate, exclusive)
-	 * @param array $params
 	 */
 	public function __construct( array $params ) {
 		if ( isset( $params['dbFilePath'] ) ) {

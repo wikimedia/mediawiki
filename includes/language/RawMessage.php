@@ -78,7 +78,6 @@ class RawMessage extends Message {
 	/**
 	 * To conform to the MessageSpecifier interface, always return 'rawmessage',
 	 * which is a real message key that can be used with MessageValue and other classes.
-	 * @return string
 	 */
 	public function getKey(): string {
 		return 'rawmessage';

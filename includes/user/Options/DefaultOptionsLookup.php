@@ -81,8 +81,6 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 
 	/**
 	 * Get default user options from $wgDefaultUserOptions (ignoring any conditional defaults)
-	 *
-	 * @return array
 	 */
 	private function getGenericDefaultOptions(): array {
 		if ( $this->defaultOptions !== null ) {

@@ -75,7 +75,6 @@ class SpecialRandomInCategory extends FormSpecialPage {
 
 	/**
 	 * Set which category to use.
-	 * @param Title $cat
 	 */
 	public function setCategory( Title $cat ) {
 		$this->category = $cat;

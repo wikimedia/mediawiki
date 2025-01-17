@@ -41,34 +41,18 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	/**
-	 * Overrides SerializationTestTrait::getClassToTest
-	 * @return string
-	 */
 	public static function getClassToTest(): string {
 		return ParserOutput::class;
 	}
 
-	/**
-	 * Overrides SerializationTestTrait::getSerializedDataPath
-	 * @return string
-	 */
 	public static function getSerializedDataPath(): string {
 		return __DIR__ . '/../../data/ParserCache';
 	}
 
-	/**
-	 * Overrides SerializationTestTrait::getTestInstancesAndAssertions
-	 * @return array
-	 */
 	public static function getTestInstancesAndAssertions(): array {
 		return ParserCacheSerializationTestCases::getParserOutputTestCases();
 	}
 
-	/**
-	 * Overrides SerializationTestTrait::getSupportedSerializationFormats
-	 * @return array
-	 */
 	public static function getSupportedSerializationFormats(): array {
 		return ParserCacheSerializationTestCases::getSupportedSerializationFormats(
 			self::getClassToTest() );

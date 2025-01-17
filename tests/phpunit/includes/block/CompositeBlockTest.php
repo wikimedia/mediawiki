@@ -288,11 +288,6 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 		$this->assertSame( $block3->getSystemBlockType(), $actualBlock3->getSystemBlockType() );
 	}
 
-	/**
-	 * Get an instance of BlockRestrictionStore
-	 *
-	 * @return BlockRestrictionStore
-	 */
 	protected function getBlockRestrictionStore(): BlockRestrictionStore {
 		return $this->getServiceContainer()->getBlockRestrictionStore();
 	}

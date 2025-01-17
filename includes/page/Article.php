@@ -233,7 +233,6 @@ class Article implements Page {
 	/**
 	 * Tell the page view functions that this view was redirected
 	 * from another page on the wiki.
-	 * @param Title $from
 	 */
 	public function setRedirectedFrom( Title $from ) {
 		$this->mRedirectedFrom = $from;
@@ -878,10 +877,6 @@ class Article implements Page {
 		return true;
 	}
 
-	/**
-	 * @param ?ParserOutput $pOutput
-	 * @param OutputPage $outputPage
-	 */
 	private function doOutputMetaData( ?ParserOutput $pOutput, OutputPage $outputPage ) {
 		# Adjust title for main page & pages with displaytitle
 		if ( $pOutput ) {
@@ -991,7 +986,6 @@ class Article implements Page {
 
 	/**
 	 * Adjust title for pages with displaytitle, -{T|}- or language conversion
-	 * @param ParserOutput $pOutput
 	 */
 	public function adjustDisplayTitle( ParserOutput $pOutput ) {
 		$out = $this->getContext()->getOutput();

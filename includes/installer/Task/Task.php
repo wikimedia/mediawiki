@@ -165,8 +165,6 @@ abstract class Task {
 
 	/**
 	 * Get the execution context. This will throw if initBase() has not been called.
-	 *
-	 * @return ITaskContext
 	 */
 	protected function getContext(): ITaskContext {
 		return $this->context;
@@ -290,8 +288,6 @@ abstract class Task {
 	/**
 	 * Get the restored services. Subclasses that want to call this must declare
 	 * a dependency on "services".
-	 *
-	 * @return MediaWikiServices
 	 */
 	public function getServices(): MediaWikiServices {
 		$this->assertDependsOn( 'services' );
@@ -302,8 +298,6 @@ abstract class Task {
 	 * Get a HookContainer suitable for calling LoadExtensionSchemaUpdates.
 	 * Subclasses that want to call this must declare a dependency on
 	 * "HookContainer".
-	 *
-	 * @return HookContainer
 	 */
 	public function getHookContainer(): HookContainer {
 		$this->assertDependsOn( 'HookContainer' );
@@ -314,8 +308,6 @@ abstract class Task {
 	 * Get the array of database virtual domains declared in extensions.
 	 * Subclasses that want to call this must declare a dependency on
 	 * "VirtualDomains".
-	 *
-	 * @return array
 	 */
 	public function getVirtualDomains(): array {
 		$this->assertDependsOn( 'VirtualDomains' );

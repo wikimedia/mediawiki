@@ -43,13 +43,10 @@ class TimingMetric implements MetricInterface {
 	 */
 	private const TYPE_INDICATOR = "ms";
 
-	/** @var float|null */
 	private ?float $startTime = null;
 
 	/**
 	 * Starts a timer.
-	 *
-	 * @return void
 	 */
 	public function start(): void {
 		$this->startTime = hrtime( true );
@@ -57,8 +54,6 @@ class TimingMetric implements MetricInterface {
 
 	/**
 	 * Stops a running timer.
-	 *
-	 * @return void
 	 */
 	public function stop(): void {
 		if ( $this->startTime === null ) {

@@ -360,11 +360,6 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		);
 	}
 
-	/**
-	 * @param PageIdentity $page
-	 *
-	 * @return PageIdentity
-	 */
 	private function wrapPage( PageIdentity $page ): PageIdentity {
 		if ( $this->wikiId === WikiAwareEntity::LOCAL ) {
 			// NOTE: since there is still a lot of code that needs a full Title,
@@ -2373,8 +2368,6 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	/**
 	 * Throws an exception if the given database connection does not belong to the wiki this
 	 * RevisionStore is bound to.
-	 *
-	 * @param IReadableDatabase $db
 	 */
 	private function checkDatabaseDomain( IReadableDatabase $db ) {
 		$dbDomain = $db->getDomainID();

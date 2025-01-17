@@ -94,8 +94,6 @@ class SpecialPageExecutor {
 
 	/**
 	 * If we are trying to edit and no token is set, supply one.
-	 *
-	 * @param DerivativeContext $context
 	 */
 	private function setEditTokenFromUser( DerivativeContext $context ) {
 		$request = $context->getRequest();

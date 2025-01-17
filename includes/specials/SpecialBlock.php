@@ -101,10 +101,7 @@ class SpecialBlock extends FormSpecialPage {
 	 */
 	protected $preErrors = [];
 
-	/** @var bool */
 	protected bool $useCodex = false;
-
-	/** @var bool */
 	protected bool $useMultiblocks = false;
 
 	/**
@@ -290,8 +287,6 @@ class SpecialBlock extends FormSpecialPage {
 
 	/**
 	 * Customizes the HTMLForm a bit
-	 *
-	 * @param HTMLForm $form
 	 */
 	protected function alterForm( HTMLForm $form ) {
 		$form->setHeaderHtml( '' );

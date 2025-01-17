@@ -123,8 +123,6 @@ class UnblockUser {
 
 	/**
 	 * Unblock user
-	 *
-	 * @return Status
 	 */
 	public function unblock(): Status {
 		$status = Status::newGood();

@@ -350,7 +350,6 @@ abstract class Installer {
 
 	/**
 	 * Show a message to the installing user by using a Status object
-	 * @param Status $status
 	 */
 	abstract public function showStatusMessage( Status $status );
 
@@ -1476,8 +1475,6 @@ abstract class Installer {
 
 	/**
 	 * Override the necessary bits of the config to run an installation.
-	 *
-	 * @param SettingsBuilder $settings
 	 */
 	public static function overrideConfig( SettingsBuilder $settings ) {
 		// Use PHP's built-in session handling, since MediaWiki's

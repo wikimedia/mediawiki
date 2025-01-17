@@ -1369,7 +1369,6 @@ class HTMLForm extends ContextSource {
 
 	/**
 	 * Get a hidden field for the title of the page if necessary (empty string otherwise)
-	 * @return string
 	 */
 	private function getHiddenTitle(): string {
 		if ( $this->hiddenTitleAddedToForm ) {

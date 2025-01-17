@@ -161,7 +161,6 @@ class UploadStashPager extends TablePager {
 
 	/**
 	 * Escape the options list
-	 * @return array
 	 */
 	private function getEscapedLimitSelectList(): array {
 		$list = $this->getLimitSelectList();

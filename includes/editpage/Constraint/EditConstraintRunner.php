@@ -67,8 +67,6 @@ class EditConstraintRunner {
 	 * an edit
 	 *
 	 * For constraints that have dependencies, use the EditConstraintFactory.
-	 *
-	 * @param IEditConstraint $constraint
 	 */
 	public function addConstraint( IEditConstraint $constraint ) {
 		$this->constraints[] = $constraint;
@@ -79,8 +77,6 @@ class EditConstraintRunner {
 	 *
 	 * Returns true if all constraints pass, false otherwise.
 	 * Check getLegacyStatus for the reason
-	 *
-	 * @return bool
 	 */
 	public function checkConstraints(): bool {
 		foreach ( $this->constraints as $constraint ) {
@@ -111,10 +107,6 @@ class EditConstraintRunner {
 		return true;
 	}
 
-	/**
-	 * @param IEditConstraint $constraint
-	 * @return string
-	 */
 	private function getConstraintName( IEditConstraint $constraint ): string {
 		// Used for debug logging
 		$fullClassName = explode( '\\', get_class( $constraint ) );
@@ -131,8 +123,6 @@ class EditConstraintRunner {
 
 	/**
 	 * Get the constraint that failed
-	 *
-	 * @return IEditConstraint
 	 */
 	public function getFailedConstraint(): IEditConstraint {
 		Assert::precondition(

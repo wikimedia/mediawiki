@@ -491,10 +491,6 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		return $mock;
 	}
 
-	/**
-	 * @param MockObject $userMock
-	 * @return MockObject
-	 */
 	private function getUserMockWithSession( MockObject $userMock ): MockObject {
 		// We're mocking a stdClass because the Session class is final, and thus not mockable.
 		$mock = $this->getMockBuilder( stdClass::class )

@@ -133,10 +133,6 @@ class CollationFactory {
 		return $this->options->get( MainConfigNames::CategoryCollation );
 	}
 
-	/**
-	 * @param string $collationName
-	 * @return Collation
-	 */
 	public function makeCollation( string $collationName ): Collation {
 		if ( isset( self::CORE_COLLATIONS[$collationName] ) ) {
 			return $this->instantiateCollation( self::CORE_COLLATIONS[$collationName] );

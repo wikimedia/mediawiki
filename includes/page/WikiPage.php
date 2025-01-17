@@ -729,7 +729,6 @@ class WikiPage implements Stringable, Page, PageRecord {
 
 	/**
 	 * Set the latest revision
-	 * @param RevisionRecord $revRecord
 	 */
 	private function setLastEdit( RevisionRecord $revRecord ) {
 		$this->mLastRevision = $revRecord;
@@ -2483,8 +2482,6 @@ class WikiPage implements Stringable, Page, PageRecord {
 
 	/**
 	 * Clears caches when article is deleted
-	 *
-	 * @param Title $title
 	 */
 	public static function onArticleDelete( Title $title ) {
 		// TODO: move this into a PageEventEmitter service
@@ -2619,8 +2616,6 @@ class WikiPage implements Stringable, Page, PageRecord {
 
 	/**
 	 * Purge the check key for cross-wiki cache entries referencing this page
-	 *
-	 * @param Title $title
 	 */
 	private static function purgeInterwikiCheckKey( Title $title ) {
 		$enableScaryTranscluding = MediaWikiServices::getInstance()->getMainConfig()->get(

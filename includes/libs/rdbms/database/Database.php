@@ -300,8 +300,6 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 
 	/**
 	 * Set the PSR-3 logger interface to use.
-	 *
-	 * @param LoggerInterface $logger
 	 */
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
@@ -604,8 +602,6 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 
 	/**
 	 * Register creation and dropping of temporary tables
-	 *
-	 * @param Query $query
 	 */
 	protected function registerTempTables( Query $query ) {
 		$table = $query->getWriteTable();
@@ -1260,8 +1256,6 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	/**
 	 * Get a SelectQueryBuilder bound to this connection. This is overridden by
 	 * DBConnRef.
-	 *
-	 * @return SelectQueryBuilder
 	 */
 	public function newSelectQueryBuilder(): SelectQueryBuilder {
 		return new SelectQueryBuilder( $this );
@@ -1270,8 +1264,6 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	/**
 	 * Get a UnionQueryBuilder bound to this connection. This is overridden by
 	 * DBConnRef.
-	 *
-	 * @return UnionQueryBuilder
 	 */
 	public function newUnionQueryBuilder(): UnionQueryBuilder {
 		return new UnionQueryBuilder( $this );
@@ -1280,8 +1272,6 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	/**
 	 * Get an UpdateQueryBuilder bound to this connection. This is overridden by
 	 * DBConnRef.
-	 *
-	 * @return UpdateQueryBuilder
 	 */
 	public function newUpdateQueryBuilder(): UpdateQueryBuilder {
 		return new UpdateQueryBuilder( $this );
@@ -1290,8 +1280,6 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	/**
 	 * Get a DeleteQueryBuilder bound to this connection. This is overridden by
 	 * DBConnRef.
-	 *
-	 * @return DeleteQueryBuilder
 	 */
 	public function newDeleteQueryBuilder(): DeleteQueryBuilder {
 		return new DeleteQueryBuilder( $this );
@@ -1300,8 +1288,6 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	/**
 	 * Get a InsertQueryBuilder bound to this connection. This is overridden by
 	 * DBConnRef.
-	 *
-	 * @return InsertQueryBuilder
 	 */
 	public function newInsertQueryBuilder(): InsertQueryBuilder {
 		return new InsertQueryBuilder( $this );
@@ -1310,8 +1296,6 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	/**
 	 * Get a ReplaceQueryBuilder bound to this connection. This is overridden by
 	 * DBConnRef.
-	 *
-	 * @return ReplaceQueryBuilder
 	 */
 	public function newReplaceQueryBuilder(): ReplaceQueryBuilder {
 		return new ReplaceQueryBuilder( $this );

@@ -66,8 +66,6 @@ trait TokenAwareHandlerTrait {
 	 *
 	 * Returns false if the request has been authenticated in a way that
 	 * protects against CSRF, such as OAuth.
-	 *
-	 * @return bool
 	 */
 	protected function needsToken(): bool {
 		return !$this->getSession()->getProvider()->safeAgainstCsrf();
@@ -76,8 +74,6 @@ trait TokenAwareHandlerTrait {
 	/**
 	 * Returns a standard error message to use when the given CSRF token is invalid.
 	 * In the future, this trait may also provide a method for checking the token.
-	 *
-	 * @return MessageValue
 	 */
 	protected function getBadTokenMessage(): MessageValue {
 		return DataMessageValue::new( 'rest-badtoken' );

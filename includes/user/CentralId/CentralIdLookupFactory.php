@@ -79,8 +79,6 @@ class CentralIdLookupFactory {
 
 	/**
 	 * Get the ID of the default central ID provider.
-	 *
-	 * @return string
 	 */
 	public function getDefaultProviderId(): string {
 		return $this->defaultProvider;

@@ -68,9 +68,6 @@ class RateLimitSubject {
 		return $this->user;
 	}
 
-	/**
-	 * @return string|null
-	 */
 	public function getIP(): ?string {
 		return $this->ip;
 	}

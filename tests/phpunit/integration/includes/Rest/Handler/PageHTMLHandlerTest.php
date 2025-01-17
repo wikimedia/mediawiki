@@ -469,10 +469,6 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->executeHandler( $handler, $request, [ 'format' => 'html' ] );
 	}
 
-	/**
-	 * @param WikiPage $page
-	 * @param array $data
-	 */
 	private function assertResponseData( WikiPage $page, array $data ): void {
 		$this->assertSame( $page->getId(), $data['id'] );
 		$this->assertSame( $page->getTitle()->getPrefixedDBkey(), $data['key'] );

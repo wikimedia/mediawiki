@@ -467,10 +467,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			->assertResultSet( [ array_values( $row ) ] );
 	}
 
-	/**
-	 * @param SlotRecord $a
-	 * @param SlotRecord $b
-	 */
 	protected function assertSameSlotContent( SlotRecord $a, SlotRecord $b ) {
 		// Assert that the same blob address has been used.
 		$this->assertSame( $a->getAddress(), $b->getAddress() );

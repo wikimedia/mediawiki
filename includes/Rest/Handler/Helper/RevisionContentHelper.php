@@ -32,9 +32,6 @@ class RevisionContentHelper extends PageContentHelper {
 			: null;
 	}
 
-	/**
-	 * @return ExistingPageRecord|null
-	 */
 	public function getPage(): ?ExistingPageRecord {
 		$revision = $this->getTargetRevision();
 		return $revision ? $this->pageLookup->getPageByReference( $revision->getPage() ) : null;

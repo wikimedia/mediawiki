@@ -136,9 +136,6 @@ class SpecialMute extends FormSpecialPage {
 		return $this->msg( 'specialmute' );
 	}
 
-	/**
-	 * @return UserIdentity|null
-	 */
 	private function getTarget(): ?UserIdentity {
 		return $this->target;
 	}

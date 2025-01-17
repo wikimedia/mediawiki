@@ -82,8 +82,6 @@ class DeferredUpdatesScopeStack {
 
 	/**
 	 * Whether DeferredUpdates::addUpdate() may run the update right away
-	 *
-	 * @return bool
 	 */
 	public function allowOpportunisticUpdates(): bool {
 		// Overridden in DeferredUpdatesScopeMediaWikiStack::allowOpportunisticUpdates

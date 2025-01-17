@@ -30,10 +30,6 @@ class SectionProfileCallback extends ScopedCallback {
 	protected SectionProfiler $profiler;
 	protected string $section;
 
-	/**
-	 * @param SectionProfiler $profiler
-	 * @param string $section
-	 */
 	public function __construct( SectionProfiler $profiler, string $section ) {
 		parent::__construct( null );
 		$this->profiler = $profiler;

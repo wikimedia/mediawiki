@@ -32,7 +32,6 @@ class Clock {
 
 	/**
 	 * Get the current time, represented as the number of nanoseconds since the UNIX epoch.
-	 * @return int
 	 */
 	public function getCurrentNanoTime(): int {
 		$this->referenceTime ??= (int)( 1e9 * microtime( true ) ) - hrtime( true );

@@ -33,8 +33,6 @@ class UpdateHandler extends EditHandler {
 
 	/**
 	 * Sets the function to use for JSON diffs, for testing.
-	 *
-	 * @param callable $jsonDiffFunction
 	 */
 	public function setJsonDiffFunction( callable $jsonDiffFunction ) {
 		$this->jsonDiffFunction = $jsonDiffFunction;

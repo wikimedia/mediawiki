@@ -144,8 +144,6 @@ class ParserTestPrinter extends TestRecorder {
 	/**
 	 * Print a failure message and provide some explanatory output
 	 * about what went wrong if so configured.
-	 *
-	 * @param ParserTestResult $testResult
 	 */
 	private function showFailure( ParserTestResult $testResult ): void {
 		if ( $this->showFailure ) {
@@ -307,7 +305,6 @@ class ParserTestPrinter extends TestRecorder {
 
 	/**
 	 * Show a warning to the user
-	 * @param string $message
 	 */
 	public function warning( string $message ) {
 		echo "$message\n";

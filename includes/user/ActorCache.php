@@ -99,10 +99,6 @@ class ActorCache {
 		$this->cache[self::KEY_USER_NAME][$actor->getName()] = $value;
 	}
 
-	/**
-	 * Remove $actor from cache.
-	 * @param UserIdentity $actor
-	 */
 	public function remove( UserIdentity $actor ) {
 		$oldByName = $this->cache[self::KEY_USER_NAME][$actor->getName()] ?? null;
 		$oldByUserId = $this->cache[self::KEY_USER_ID][$actor->getId( $actor->getWikiId() )] ?? null;

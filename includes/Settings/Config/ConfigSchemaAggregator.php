@@ -253,8 +253,6 @@ class ConfigSchemaAggregator implements ConfigSchema {
 
 	/**
 	 * Get all defined default values.
-	 *
-	 * @return array
 	 */
 	public function getDefaults(): array {
 		return $this->defaults;

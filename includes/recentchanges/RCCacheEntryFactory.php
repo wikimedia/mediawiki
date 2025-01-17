@@ -44,14 +44,7 @@ class RCCacheEntryFactory {
 	 */
 	private $linkRenderer;
 
-	/**
-	 * @var MapCacheLRU
-	 */
 	private MapCacheLRU $userLinkCache;
-
-	/**
-	 * @var MapCacheLRU
-	 */
 	private MapCacheLRU $toolLinkCache;
 
 	/**

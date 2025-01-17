@@ -173,9 +173,6 @@ class DerivativeContext extends Context {
 		return $this->userObj;
 	}
 
-	/**
-	 * @param string|null $user
-	 */
 	public function setUser( ?string $user ) {
 		$this->user = $user;
 		$this->hash = null;
@@ -203,9 +200,6 @@ class DerivativeContext extends Context {
 		return $this->only;
 	}
 
-	/**
-	 * @param string|null $only
-	 */
 	public function setOnly( ?string $only ) {
 		$this->only = $only;
 		$this->hash = null;
@@ -218,9 +212,6 @@ class DerivativeContext extends Context {
 		return $this->version;
 	}
 
-	/**
-	 * @param string|null $version
-	 */
 	public function setVersion( ?string $version ) {
 		$this->version = $version;
 		$this->hash = null;

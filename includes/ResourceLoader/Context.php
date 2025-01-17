@@ -170,8 +170,6 @@ class Context implements MessageLocalizer {
 	 *
 	 * Use cases:
 	 * - Unit tests (deprecated, create empty instance directly or use RLTestCase).
-	 *
-	 * @return Context
 	 */
 	public static function newDummyContext(): Context {
 		// This currently creates a non-empty instance of ResourceLoader (all modules registered),
@@ -243,9 +241,6 @@ class Context implements MessageLocalizer {
 		return $this->skin;
 	}
 
-	/**
-	 * @return string|null
-	 */
 	public function getUser(): ?string {
 		return $this->user;
 	}
@@ -322,9 +317,6 @@ class Context implements MessageLocalizer {
 		return $this->debug;
 	}
 
-	/**
-	 * @return string|null
-	 */
 	public function getOnly(): ?string {
 		return $this->only;
 	}
@@ -350,23 +342,14 @@ class Context implements MessageLocalizer {
 		return $this->sourcemap;
 	}
 
-	/**
-	 * @return string|null
-	 */
 	public function getImage(): ?string {
 		return $this->image;
 	}
 
-	/**
-	 * @return string|null
-	 */
 	public function getVariant(): ?string {
 		return $this->variant;
 	}
 
-	/**
-	 * @return string|null
-	 */
 	public function getFormat(): ?string {
 		return $this->format;
 	}
@@ -442,8 +425,6 @@ class Context implements MessageLocalizer {
 	 * the cache and decrease its usefulness.
 	 *
 	 * E.g. Used by RequestFileCache to form a cache key for storing the response output.
-	 *
-	 * @return string
 	 */
 	public function getHash(): string {
 		if ( $this->hash === null ) {

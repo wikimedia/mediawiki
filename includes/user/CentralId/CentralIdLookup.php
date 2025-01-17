@@ -85,11 +85,6 @@ abstract class CentralIdLookup {
 		$this->userFactory = $userFactory;
 	}
 
-	/**
-	 * Get the provider id.
-	 *
-	 * @return string
-	 */
 	public function getProviderId(): string {
 		return $this->providerId;
 	}

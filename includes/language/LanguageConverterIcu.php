@@ -35,8 +35,6 @@ abstract class LanguageConverterIcu extends LanguageConverterSpecific {
 
 	/**
 	 * Creates empty tables. mTransliterators will be used instead.
-	 *
-	 * @return array
 	 */
 	protected function loadDefaultTables(): array {
 		$tables = [];

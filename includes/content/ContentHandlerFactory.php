@@ -152,11 +152,6 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 		return array_keys( $formats );
 	}
 
-	/**
-	 * @param string $modelID
-	 *
-	 * @return bool
-	 */
 	public function isDefinedModel( string $modelID ): bool {
 		return in_array( $modelID, $this->getContentModels(), true );
 	}

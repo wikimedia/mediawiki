@@ -116,8 +116,6 @@ class CachedSource implements Stringable, SettingsSource, SettingsIncludeLocator
 
 	/**
 	 * Returns the string representation of the encapsulated source.
-	 *
-	 * @return string
 	 */
 	public function __toString(): string {
 		return $this->source->__toString();
@@ -213,8 +211,6 @@ class CachedSource implements Stringable, SettingsSource, SettingsIncludeLocator
 	/**
 	 * Wraps cached source with the metadata needed to perform probabilistic
 	 * early expiration to help mitigate cache stampedes.
-	 *
-	 * @return array
 	 */
 	private function loadWithMetadata(): array {
 		$start = microtime( true );

@@ -228,8 +228,6 @@ class BlockManager {
 
 	/**
 	 * Clear the cache of any blocks that refer to the specified user
-	 *
-	 * @param UserIdentity $user
 	 */
 	public function clearUserCache( UserIdentity $user ) {
 		$this->userBlockCache->clearUser( $user );

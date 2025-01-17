@@ -81,8 +81,6 @@ interface SessionManagerInterface extends LoggerAwareInterface {
 	 * After calling this, existing sessions should be invalid. For mutable
 	 * session providers, this generally means the user has to log in again;
 	 * for immutable providers, it generally means the loss of session data.
-	 *
-	 * @param User $user
 	 */
 	public function invalidateSessionsForUser( User $user );
 

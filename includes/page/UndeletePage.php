@@ -178,8 +178,6 @@ class UndeletePage {
 	/**
 	 * Tests whether it's probably possible to undelete the associated talk page. This checks the replica,
 	 * so it may not see the latest master change, and is useful e.g. for building the UI.
-	 *
-	 * @return StatusValue
 	 */
 	public function canProbablyUndeleteAssociatedTalk(): StatusValue {
 		if ( $this->namespaceInfo->isTalk( $this->page->getNamespace() ) ) {
@@ -377,10 +375,6 @@ class UndeletePage {
 		return $resStatus;
 	}
 
-	/**
-	 * @param string $comment
-	 * @return StatusValue
-	 */
 	private function runPreUndeleteHook( string $comment ): StatusValue {
 		$checkPages = [ $this->page ];
 		if ( $this->associatedTalk ) {

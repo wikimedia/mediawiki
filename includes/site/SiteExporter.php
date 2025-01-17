@@ -75,8 +75,6 @@ class SiteExporter {
 
 	/**
 	 * Writes a <site> tag representing the given Site object.
-	 *
-	 * @param Site $site
 	 */
 	private function exportSite( Site $site ) {
 		if ( $site->getType() !== Site::TYPE_UNKNOWN ) {

@@ -405,8 +405,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * Returns the calling method, in a format suitable for page titles etc.
-	 *
-	 * @return string
 	 */
 	private function getCallerName(): string {
 		$classWithoutNamespace = ( new ReflectionClass( $this ) )->getShortName();
@@ -1985,7 +1983,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * Applies the schema overrides returned by getSchemaOverrides(),
 	 * after undoing any previously applied schema overrides.
 	 * Called once per test class, just before addDataOnce().
-	 * @param IMaintainableDatabase $db
 	 */
 	private function setUpSchema( IMaintainableDatabase $db ) {
 		// Undo any active overrides.

@@ -41,9 +41,6 @@ class MediaFileHandler extends SimpleHandler {
 		$this->pageLookup = $pageLookup;
 	}
 
-	/**
-	 * @return ExistingPageRecord|null
-	 */
 	private function getPage(): ?ExistingPageRecord {
 		if ( $this->page === false ) {
 			$this->page = $this->pageLookup->getExistingPageByText(
@@ -53,9 +50,6 @@ class MediaFileHandler extends SimpleHandler {
 		return $this->page;
 	}
 
-	/**
-	 * @return File|null
-	 */
 	private function getFile(): ?File {
 		if ( $this->file === false ) {
 			$page = $this->getPage();

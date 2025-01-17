@@ -106,8 +106,6 @@ final class PasswordFactory {
 
 	/**
 	 * Get the default password type
-	 *
-	 * @return string
 	 */
 	public function getDefaultType(): string {
 		return $this->default;
@@ -256,8 +254,6 @@ final class PasswordFactory {
 
 	/**
 	 * Create an InvalidPassword
-	 *
-	 * @return InvalidPassword
 	 */
 	public static function newInvalidPassword(): InvalidPassword {
 		static $password = null;

@@ -28,10 +28,6 @@ class RevisionSourceHandler extends SimpleHandler {
 		$this->contentHelper->init( $this->getAuthority(), $this->getValidatedParams() );
 	}
 
-	/**
-	 * @param RevisionRecord $rev
-	 * @return string
-	 */
 	private function constructHtmlUrl( RevisionRecord $rev ): string {
 		// TODO: once legacy "v1" routes are removed, just use the path prefix from the module.
 		$pathPrefix = $this->getModule()->getPathPrefix();
@@ -99,16 +95,10 @@ class RevisionSourceHandler extends SimpleHandler {
 		}
 	}
 
-	/**
-	 * @return string|null
-	 */
 	protected function getETag(): ?string {
 		return $this->contentHelper->getETag();
 	}
 
-	/**
-	 * @return string|null
-	 */
 	protected function getLastModified(): ?string {
 		return $this->contentHelper->getLastModified();
 	}

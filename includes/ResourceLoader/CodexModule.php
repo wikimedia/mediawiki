@@ -575,8 +575,6 @@ class CodexModule extends FileModule {
 
 	/**
 	 * For loading the entire Codex library, rather than a subset module of it.
-	 *
-	 * @param Context $context
 	 */
 	private function loadFullCodexLibrary( Context $context ) {
 		// Add all Codex JS files to the module's package

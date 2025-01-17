@@ -40,10 +40,6 @@ class RevertedTagUpdateManager {
 	/** @var EditResultCache */
 	private $editResultCache;
 
-	/**
-	 * @param EditResultCache $editResultCache
-	 * @param JobQueueGroup $jobQueueGroup
-	 */
 	public function __construct(
 		EditResultCache $editResultCache,
 		JobQueueGroup $jobQueueGroup

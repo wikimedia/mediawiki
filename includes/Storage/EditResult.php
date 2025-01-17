@@ -161,8 +161,6 @@ class EditResult implements JsonSerializable {
 	/**
 	 * If the edit was an undo, returns the oldest revision that was undone.
 	 * Method kept for compatibility reasons.
-	 *
-	 * @return int
 	 */
 	public function getUndidRevId(): int {
 		if ( $this->getRevertMethod() !== self::REVERT_UNDO ) {
@@ -188,8 +186,6 @@ class EditResult implements JsonSerializable {
 
 	/**
 	 * Whether the edit created a new page
-	 *
-	 * @return bool
 	 */
 	public function isNew(): bool {
 		return $this->isNew;
@@ -209,8 +205,6 @@ class EditResult implements JsonSerializable {
 	 * To check whether the edit was an exact revert, please use the isExactRevert() method.
 	 * The getRevertMethod() will provide additional information about which kind of revert
 	 * was made.
-	 *
-	 * @return bool
 	 */
 	public function isRevert(): bool {
 		return !$this->isNew() && $this->getOldestRevertedRevisionId();
@@ -233,8 +227,6 @@ class EditResult implements JsonSerializable {
 	/**
 	 * Whether the edit was an exact revert,
 	 * i.e. the contents of the revert revision and restored revision match
-	 *
-	 * @return bool
 	 */
 	public function isExactRevert(): bool {
 		return $this->isExactRevert;
@@ -243,8 +235,6 @@ class EditResult implements JsonSerializable {
 	/**
 	 * An edit is a null edit if the original revision is equal to the parent revision,
 	 * i.e. no changes were made.
-	 *
-	 * @return bool
 	 */
 	public function isNullEdit(): bool {
 		return $this->isNullEdit;

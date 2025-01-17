@@ -262,8 +262,6 @@ abstract class BaseTemplate extends QuickTemplate {
 	/**
 	 * Unsets any elements in an array of icon definitions which do
 	 * not have src attributes or are not strings.
-	 *
-	 * @param array &$icons
 	 */
 	private function unsetIconsWithoutImages( array &$icons ) {
 		// Unset any icons which don't have an image

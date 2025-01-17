@@ -63,10 +63,6 @@ class CorsUtils implements BasicAuthorizerInterface {
 		return null;
 	}
 
-	/**
-	 * @param Origin $origin
-	 * @return bool
-	 */
 	private function allowOrigin( Origin $origin ): bool {
 		$allowed = array_merge( [ $this->getCanonicalDomain() ],
 			$this->options->get( MainConfigNames::CrossSiteAJAXdomains ) );

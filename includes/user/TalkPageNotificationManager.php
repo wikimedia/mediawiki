@@ -181,7 +181,6 @@ class TalkPageNotificationManager {
 
 	/**
 	 * Remove the new messages status
-	 * @param UserIdentity $user
 	 */
 	public function removeUserHasNewMessages( UserIdentity $user ): void {
 		if ( $this->isTalkDisabled( $user ) ) {
@@ -339,7 +338,6 @@ class TalkPageNotificationManager {
 
 	/**
 	 * Update the user touched timestamp
-	 * @param UserIdentity $user
 	 */
 	private function touchUser( UserIdentity $user ) {
 		// Ideally this would not be in User, it would be in its own service

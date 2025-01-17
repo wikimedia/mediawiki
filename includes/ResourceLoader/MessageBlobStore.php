@@ -200,8 +200,6 @@ class MessageBlobStore implements LoggerAwareInterface {
 	 *
 	 * Used by LocalisationCache, DatabaseUpdater and purgeMessageBlobStore.php script
 	 * after regenerating l10n cache.
-	 *
-	 * @param WANObjectCache $cache
 	 */
 	public static function clearGlobalCacheEntry( WANObjectCache $cache ) {
 		// Disable holdoff TTL because:

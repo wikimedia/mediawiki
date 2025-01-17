@@ -200,8 +200,6 @@ abstract class LanguageConverter implements ILanguageConverter {
 	/**
 	 * Provides additional flags for converter. By default, it returns empty array and
 	 * typically should be overridden by implementation of converter.
-	 *
-	 * @return array
 	 */
 	protected function getAdditionalFlags(): array {
 		return [];
@@ -259,11 +257,6 @@ abstract class LanguageConverter implements ILanguageConverter {
 		return ';';
 	}
 
-	/**
-	 * Get variant names.
-	 *
-	 * @return array
-	 */
 	public function getVariantNames(): array {
 		return MediaWikiServices::getInstance()
 			->getLanguageNameUtils()
@@ -677,8 +670,6 @@ abstract class LanguageConverter implements ILanguageConverter {
 
 	/**
 	 * Apply manual conversion rules.
-	 *
-	 * @param ConverterRule $convRule
 	 */
 	protected function applyManualConv( ConverterRule $convRule ) {
 		// Use syntax -{T|zh-cn:TitleCN; zh-tw:TitleTw}- to custom

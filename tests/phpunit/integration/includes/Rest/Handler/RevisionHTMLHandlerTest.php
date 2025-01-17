@@ -313,10 +313,6 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->executeHandler( $handler, $request );
 	}
 
-	/**
-	 * @param RevisionRecord $rev
-	 * @param array $data
-	 */
 	private function assertResponseData( RevisionRecord $rev, array $data ): void {
 		$page = $rev->getPage();
 		$link = $rev->getPageAsLinkTarget();

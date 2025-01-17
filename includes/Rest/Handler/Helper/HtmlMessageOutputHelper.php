@@ -58,9 +58,6 @@ class HtmlMessageOutputHelper implements HtmlOutputHelper {
 		$this->page = $page;
 	}
 
-	/**
-	 * @return Message|null
-	 */
 	private function getDefaultSystemMessage(): ?Message {
 		$title = Title::castFromPageIdentity( $this->page );
 

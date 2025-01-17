@@ -41,8 +41,6 @@ class UnionQueryBuilder {
 
 	/**
 	 * To create a UnionQueryBuilder instance, use `$db->newUnionQueryBuilder()` instead.
-	 *
-	 * @param IDatabase $db
 	 */
 	public function __construct( IDatabase $db ) {
 		$this->db = $db;

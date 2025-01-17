@@ -99,7 +99,6 @@ class DumpRenderer extends Maintenance {
 
 	/**
 	 * Callback function for each revision, turn into HTML and save
-	 * @param WikiRevision $rev
 	 */
 	public function handleRevision( WikiRevision $rev ) {
 		$title = $rev->getTitle();

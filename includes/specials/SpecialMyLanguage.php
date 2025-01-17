@@ -41,10 +41,6 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 	private LanguageNameUtils $languageNameUtils;
 	private RedirectLookup $redirectLookup;
 
-	/**
-	 * @param LanguageNameUtils $languageNameUtils
-	 * @param RedirectLookup $redirectLookup
-	 */
 	public function __construct(
 		LanguageNameUtils $languageNameUtils,
 		RedirectLookup $redirectLookup

@@ -50,8 +50,6 @@ trait ApiCreateTempUserTrait {
 
 	/**
 	 * Add params needed for TempUserCreatedRedirectHook.
-	 *
-	 * @return array
 	 */
 	protected function getCreateTempUserParams(): array {
 		return [

@@ -129,7 +129,6 @@ class UserTimeCorrection implements Stringable {
 
 	/**
 	 * Was the original correction specification valid
-	 * @return bool
 	 */
 	public function isValid(): bool {
 		return $this->valid;

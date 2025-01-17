@@ -148,10 +148,6 @@ class PasswordReset implements LoggerAwareInterface {
 		return StatusValue::newGood();
 	}
 
-	/**
-	 * @param User $user
-	 * @return StatusValue
-	 */
 	private function computeIsAllowed( User $user ): StatusValue {
 		$enabledStatus = $this->isEnabled();
 		if ( !$enabledStatus->isGood() ) {

@@ -41,10 +41,6 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 	private JobRunner $jobRunner;
 	private ReadOnlyMode $readOnlyMode;
 
-	/**
-	 * @param JobRunner $jobRunner
-	 * @param ReadOnlyMode $readOnlyMode
-	 */
 	public function __construct(
 		JobRunner $jobRunner,
 		ReadOnlyMode $readOnlyMode

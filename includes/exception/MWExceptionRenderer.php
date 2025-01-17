@@ -172,8 +172,6 @@ class MWExceptionRenderer {
 
 	/**
 	 * Output the throwable report using HTML
-	 *
-	 * @param Throwable $e
 	 */
 	private static function reportHTML( Throwable $e ) {
 		if ( self::useOutputPage( $e ) ) {

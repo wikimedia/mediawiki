@@ -24,8 +24,6 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Returns the main configuration schema as a settings array.
-	 *
-	 * @return array
 	 */
 	private static function getSchemaData(): array {
 		$source = new ReflectionSchemaSource( MainConfigSchema::class, true );

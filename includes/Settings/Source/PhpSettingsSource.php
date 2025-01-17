@@ -73,8 +73,6 @@ class PhpSettingsSource implements Stringable, SettingsSource, SettingsIncludeLo
 
 	/**
 	 * Returns this file source as a string.
-	 *
-	 * @return string
 	 */
 	public function __toString(): string {
 		return $this->path;

@@ -124,10 +124,6 @@ class RevisionSourceHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->executeHandler( $handler, $request );
 	}
 
-	/**
-	 * @param RevisionRecord $rev
-	 * @param array $data
-	 */
 	private function assertResponseData( RevisionRecord $rev, array $data ): void {
 		$this->assertSame( $rev->getId(), $data['id'] );
 		$this->assertSame( $rev->getSize(), $data['size'] );
@@ -150,10 +146,6 @@ class RevisionSourceHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $rev->getUser()->getName(), $data['user']['name'] );
 	}
 
-	/**
-	 * @param RevisionRecord $rev
-	 * @param array $data
-	 */
 	private function assertRestbaseCompatibleResponseData( RevisionRecord $rev, array $data ): void {
 		$page = $this->getServiceContainer()->getWikiPageFactory()
 			->newFromTitle( $rev->getPage() );

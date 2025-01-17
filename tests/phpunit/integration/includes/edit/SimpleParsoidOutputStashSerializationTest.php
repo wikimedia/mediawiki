@@ -21,26 +21,14 @@ use Wikimedia\Tests\SerializationTestTrait;
 class SimpleParsoidOutputStashSerializationTest extends MediaWikiIntegrationTestCase {
 	use SerializationTestTrait;
 
-	/**
-	 * Overrides SerializationTestTrait::getClassToTest
-	 * @return string
-	 */
 	public static function getClassToTest(): string {
 		return SelserContext::class;
 	}
 
-	/**
-	 * Overrides SerializationTestTrait::getSerializedDataPath
-	 * @return string
-	 */
 	public static function getSerializedDataPath(): string {
 		return __DIR__ . '/../../../data/SelserContext';
 	}
 
-		/**
-		 * Overrides SerializationTestTrait::getTestInstancesAndAssertions
-		 * @return array
-		 */
 	public static function getTestInstancesAndAssertions(): array {
 		return [
 			'basic' => [
@@ -99,10 +87,6 @@ class SimpleParsoidOutputStashSerializationTest extends MediaWikiIntegrationTest
 		];
 	}
 
-	/**
-	 * Overrides SerializationTestTrait::getSupportedSerializationFormats
-	 * @return array
-	 */
 	public static function getSupportedSerializationFormats(): array {
 		$stash = new SimpleParsoidOutputStash(
 			new class implements IContentHandlerFactory {

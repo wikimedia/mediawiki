@@ -829,8 +829,6 @@ class EditPage implements IEditObject {
 	 * This is a helper for internalAttemptSavePrivate().
 	 *
 	 * If the edit is a null edit, the user will not be created.
-	 *
-	 * @return Status
 	 */
 	private function createTempUser(): Status {
 		if ( !$this->tempUserCreateActive ) {
@@ -858,8 +856,6 @@ class EditPage implements IEditObject {
 	 * are unsuitable for anything that uses or exposes the name, like
 	 * throttling. The only thing a placeholder user is good for is fooling the
 	 * permissions system into allowing edits by anons.
-	 *
-	 * @return Authority
 	 */
 	private function getAuthority(): Authority {
 		return $this->getUserForPermissions();
@@ -2593,8 +2589,6 @@ class EditPage implements IEditObject {
 	 * failed, rather than interspersing this logic throughout internalAttemptSavePrivate at
 	 * each of the points the constraints are checked. Eventually, this will act on the
 	 * result from the backend.
-	 *
-	 * @param IEditConstraint $failed
 	 */
 	private function handleFailedConstraint( IEditConstraint $failed ): void {
 		if ( $failed instanceof PageSizeConstraint ) {
@@ -3977,7 +3971,6 @@ class EditPage implements IEditObject {
 	 * Note that we rely on the logging table, which hasn't been always there,
 	 * but that doesn't matter, because this only applies to brand new
 	 * deletes.
-	 * @return bool
 	 */
 	private function wasDeletedSinceLastEdit(): bool {
 		if ( $this->deletedSinceEdit !== null ) {
@@ -4458,8 +4451,6 @@ class EditPage implements IEditObject {
 
 	/**
 	 * Get the message key of the label for the button to save the page
-	 *
-	 * @return string
 	 */
 	private function getSubmitButtonLabel(): string {
 		$labelAsPublish =

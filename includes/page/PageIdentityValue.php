@@ -119,7 +119,6 @@ class PageIdentityValue extends PageReferenceValue implements ProperPageIdentity
 	/**
 	 * Returns whether the page currently exists.
 	 * Returns true if getId() returns a value greater than zero.
-	 * @return bool
 	 */
 	public function exists(): bool {
 		return $this->getId( $this->getWikiId() ) > 0;

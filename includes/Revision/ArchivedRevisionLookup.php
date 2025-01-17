@@ -37,10 +37,6 @@ class ArchivedRevisionLookup {
 	/** @var RevisionStore */
 	private $revisionStore;
 
-	/**
-	 * @param IConnectionProvider $dbProvider
-	 * @param RevisionStore $revisionStore
-	 */
 	public function __construct(
 		IConnectionProvider $dbProvider,
 		RevisionStore $revisionStore

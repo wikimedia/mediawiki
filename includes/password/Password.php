@@ -126,8 +126,6 @@ abstract class Password {
 
 	/**
 	 * Whether current password type is supported on this system.
-	 *
-	 * @return bool
 	 */
 	protected function isSupported(): bool {
 		return true;

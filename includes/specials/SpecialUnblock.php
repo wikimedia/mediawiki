@@ -61,7 +61,6 @@ class SpecialUnblock extends SpecialPage {
 	private UserNamePrefixSearch $userNamePrefixSearch;
 	private WatchlistManager $watchlistManager;
 
-	/** @var bool */
 	protected bool $useCodex = false;
 
 	/**

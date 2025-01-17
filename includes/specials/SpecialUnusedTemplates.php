@@ -41,10 +41,6 @@ class SpecialUnusedTemplates extends QueryPage {
 
 	private LinksMigration $linksMigration;
 
-	/**
-	 * @param IConnectionProvider $dbProvider
-	 * @param LinksMigration $linksMigration
-	 */
 	public function __construct(
 		IConnectionProvider $dbProvider,
 		LinksMigration $linksMigration

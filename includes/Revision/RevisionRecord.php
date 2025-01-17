@@ -291,8 +291,6 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 *
 	 * To find all slots modified by this revision against its immediate parent
 	 * revision, use RevisionSlotsUpdate::newFromRevisionSlots().
-	 *
-	 * @return RevisionSlots
 	 */
 	public function getOriginalSlots(): RevisionSlots {
 		return new RevisionSlots( $this->mSlots->getOriginalSlots() );
@@ -306,8 +304,6 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * This is the case for rollbacks: slots of a rollback revision are inherited from
 	 * the rollback target, and are different from the slots in the parent revision,
 	 * which was rolled back.
-	 *
-	 * @return RevisionSlots
 	 */
 	public function getInheritedSlots(): RevisionSlots {
 		return new RevisionSlots( $this->mSlots->getInheritedSlots() );

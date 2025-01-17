@@ -44,10 +44,6 @@ abstract class RCFeed {
 	 */
 	abstract public function notify( RecentChange $rc, $actionComment = null );
 
-	/**
-	 * @param array $params
-	 * @return RCFeed
-	 */
 	final public static function factory( array $params ): RCFeed {
 		if ( !isset( $params['class'] ) ) {
 			if ( !isset( $params['uri'] ) ) {

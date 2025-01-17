@@ -50,10 +50,6 @@ class SkinComponentLink implements SkinComponent {
 		$this->options = $options;
 	}
 
-	/**
-	 * @param string $key
-	 * @return Message
-	 */
 	private function msg( string $key ): Message {
 		return $this->localizer->msg( $key );
 	}

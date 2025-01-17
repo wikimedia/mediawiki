@@ -33,8 +33,6 @@ class Origin extends HeaderParserBase {
 
 	/**
 	 * Whether the Origin header was explicitly set to `null`.
-	 *
-	 * @return bool
 	 */
 	public function isNullOrigin(): bool {
 		return $this->isNullOrigin;
@@ -42,8 +40,6 @@ class Origin extends HeaderParserBase {
 
 	/**
 	 * Whether the Origin header contains multiple origins.
-	 *
-	 * @return bool
 	 */
 	public function isMultiOrigin(): bool {
 		return count( $this->getOriginList() ) > 1;

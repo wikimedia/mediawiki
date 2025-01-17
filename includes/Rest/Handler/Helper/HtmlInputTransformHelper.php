@@ -431,7 +431,6 @@ class HtmlInputTransformHelper {
 
 	/**
 	 * Return HTMLTransform object, so additional context can be provided by calling setters on it.
-	 * @return HtmlToContentTransform
 	 */
 	public function getTransform(): HtmlToContentTransform {
 		return $this->transform;
@@ -616,8 +615,6 @@ class HtmlInputTransformHelper {
 	/**
 	 * Creates a response containing the content derived from the input HTML.
 	 * This will set the appropriate Content-Type header.
-	 *
-	 * @param ResponseInterface $response
 	 */
 	public function putContent( ResponseInterface $response ) {
 		$content = $this->getContent();

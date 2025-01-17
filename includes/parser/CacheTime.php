@@ -148,7 +148,6 @@ class CacheTime implements ParserCacheMetadata, JsonDeserializable {
 	 * The value returned by getCacheExpiry is smaller or equal to the smallest number
 	 * that was provided to a call of updateCacheExpiry(), and smaller or equal to the
 	 * value of $wgParserCacheExpireTime.
-	 * @return int
 	 */
 	public function getCacheExpiry(): int {
 		$parserCacheExpireTime = MediaWikiServices::getInstance()->getMainConfig()

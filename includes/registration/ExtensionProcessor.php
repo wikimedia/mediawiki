@@ -587,8 +587,6 @@ class ExtensionProcessor implements Processor {
 
 	/**
 	 * Register namespaces with the appropriate global settings
-	 *
-	 * @param array $info
 	 */
 	protected function extractNamespaces( array $info ) {
 		if ( isset( $info['namespaces'] ) ) {
@@ -761,8 +759,6 @@ class ExtensionProcessor implements Processor {
 
 	/**
 	 * Extract any user rights that should be granted implicitly.
-	 *
-	 * @param array $info
 	 */
 	protected function extractImplicitRights( array $info ) {
 		// Rate limits are only configurable for rights that are either in wgImplicitRights
@@ -1036,10 +1032,6 @@ class ExtensionProcessor implements Processor {
 		return $autoload;
 	}
 
-	/**
-	 * @param array $info
-	 * @param string $dir
-	 */
 	private function extractAutoload( array $info, string $dir ) {
 		if ( isset( $info['load_composer_autoloader'] ) && $info['load_composer_autoloader'] === true ) {
 			$file = "$dir/vendor/autoload.php";

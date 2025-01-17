@@ -1591,8 +1591,6 @@ MESSAGE;
 	 * - new HtmlJsCode( '{}' )
 	 * - new stdClass()
 	 * - (object)[]
-	 *
-	 * @param array &$array
 	 */
 	private static function trimArray( array &$array ): void {
 		$i = count( $array );

@@ -36,8 +36,6 @@ abstract class ActionModuleBasedHandler extends Handler {
 
 	/**
 	 * Set main action API entry point for testing.
-	 *
-	 * @param ApiMain $apiMain
 	 */
 	public function setApiMain( ApiMain $apiMain ) {
 		$this->apiMain = $apiMain;

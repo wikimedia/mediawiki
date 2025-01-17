@@ -202,8 +202,6 @@ class TransactionManager {
 
 	/**
 	 * Mark the transaction as requiring rollback (STATUS_TRX_ERROR) due to an error
-	 *
-	 * @param Throwable $trxError
 	 */
 	public function setTransactionError( Throwable $trxError ) {
 		if ( $this->trxStatus !== self::STATUS_TRX_ERROR ) {
@@ -212,9 +210,6 @@ class TransactionManager {
 		}
 	}
 
-	/**
-	 * @param array|null $trxStatusIgnoredCause
-	 */
 	public function setTrxStatusIgnoredCause( ?array $trxStatusIgnoredCause ): void {
 		$this->trxStatusIgnoredCause = $trxStatusIgnoredCause;
 	}
@@ -231,8 +226,6 @@ class TransactionManager {
 
 	/**
 	 * Flag the session as needing a reset due to an error, if not already flagged
-	 *
-	 * @param Throwable $sessionError
 	 */
 	public function setSessionError( Throwable $sessionError ) {
 		$this->sessionError ??= $sessionError;

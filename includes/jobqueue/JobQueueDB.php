@@ -62,7 +62,6 @@ class JobQueueDB extends JobQueue {
 	 *               If not specified, the primary DB cluster for the wiki will be used.
 	 *               This can be overridden with a custom cluster so that DB handles will
 	 *               be retrieved via LBFactory::getExternalLB() and getConnection().
-	 * @param array $params
 	 */
 	protected function __construct( array $params ) {
 		parent::__construct( $params );

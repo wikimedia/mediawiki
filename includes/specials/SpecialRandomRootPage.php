@@ -34,10 +34,6 @@ use Wikimedia\Rdbms\LikeValue;
  */
 class SpecialRandomRootPage extends SpecialRandomPage {
 
-	/**
-	 * @param IConnectionProvider $dbProvider
-	 * @param NamespaceInfo $nsInfo
-	 */
 	public function __construct(
 		IConnectionProvider $dbProvider,
 		NamespaceInfo $nsInfo

@@ -29,10 +29,7 @@ use Wikimedia\Stats\Sample;
  * @since 1.41
  */
 interface MetricInterface {
-	/**
-	 * @param BaseMetricInterface $baseMetric
-	 * @param LoggerInterface $logger
-	 */
+
 	public function __construct( BaseMetricInterface $baseMetric, LoggerInterface $logger );
 
 	/** @return string */

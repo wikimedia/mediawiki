@@ -157,8 +157,6 @@ class BenchmarkParse extends Maintenance {
 
 	/**
 	 * Parse the text from a given RevisionRecord
-	 *
-	 * @param RevisionRecord $revision
 	 */
 	private function runParser( RevisionRecord $revision ) {
 		$content = $revision->getContent( SlotRecord::MAIN );

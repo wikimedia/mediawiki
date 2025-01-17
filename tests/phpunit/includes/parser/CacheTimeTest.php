@@ -25,34 +25,18 @@ class CacheTimeTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * Overrides SerializationTestTrait::getClassToTest
-	 * @return string
-	 */
 	public static function getClassToTest(): string {
 		return CacheTime::class;
 	}
 
-	/**
-	 * Overrides SerializationTestTrait::getSerializedDataPath
-	 * @return string
-	 */
 	public static function getSerializedDataPath(): string {
 		return __DIR__ . '/../../data/ParserCache';
 	}
 
-	/**
-	 * Overrides SerializationTestTrait::getTestInstancesAndAssertions
-	 * @return array
-	 */
 	public static function getTestInstancesAndAssertions(): array {
 		return ParserCacheSerializationTestCases::getCacheTimeTestCases();
 	}
 
-	/**
-	 * Overrides SerializationTestTrait::getSupportedSerializationFormats
-	 * @return array
-	 */
 	public static function getSupportedSerializationFormats(): array {
 		return ParserCacheSerializationTestCases::getSupportedSerializationFormats(
 			self::getClassToTest()

@@ -41,10 +41,6 @@ class CachingSiteStore implements SiteStore {
 	/** @var SiteList|null */
 	private $sites = null;
 
-	/**
-	 * @param SiteStore $siteStore
-	 * @param BagOStuff $cache
-	 */
 	public function __construct(
 		SiteStore $siteStore,
 		BagOStuff $cache
