@@ -210,19 +210,19 @@ module.exports = exports = defineComponent( {
 
 		const columns = [
 			...( props.blockLogType === 'active' || props.canDeleteLogEntry ?
-				[ { id: props.blockLogType === 'active' ? 'modify' : 'hide', label: '', minWidth: '100px' } ] : [] ),
-			{ id: 'timestamp', label: mw.message( 'blocklist-timestamp' ).text(), minWidth: '112px' }
+				[ { id: props.blockLogType === 'active' ? 'modify' : 'hide', label: '' } ] : [] ),
+			{ id: 'timestamp', label: mw.message( 'blocklist-timestamp' ).text() }
 		];
 		if ( props.blockLogType === 'recent' || props.blockLogType === 'suppress' ) {
 			columns.push(
-				{ id: 'type', label: mw.message( 'blocklist-type-header' ).text(), minWidth: '112px' }
+				{ id: 'type', label: mw.message( 'blocklist-type-header' ).text() }
 			);
 		}
 		columns.push(
-			{ id: 'expiry', label: mw.message( 'blocklist-expiry' ).text(), minWidth: '112px' },
-			{ id: 'blockedby', label: mw.message( 'blocklist-by' ).text(), minWidth: '200px' },
-			{ id: 'parameters', label: mw.message( 'blocklist-params' ).text(), minWidth: '160px' },
-			{ id: 'reason', label: mw.message( 'blocklist-reason' ).text(), minWidth: '160px' }
+			{ id: 'expiry', label: mw.message( 'blocklist-expiry' ).text() },
+			{ id: 'blockedby', label: mw.message( 'blocklist-by' ).text() },
+			{ id: 'parameters', label: mw.message( 'blocklist-params' ).text() },
+			{ id: 'reason', label: mw.message( 'blocklist-reason' ).text() }
 		);
 
 		const logEntries = ref( [] );
