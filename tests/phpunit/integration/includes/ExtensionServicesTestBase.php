@@ -18,8 +18,8 @@ use ReflectionType;
  * They usually have one method like this for each service they register:
  *
  * ```php
- * public static function getService1( ContainerInterface $services = null ): Service1 {
- * 	return ( $services ?: MediaWikiServices::getInstance() )
+ * public static function getService1( ?ContainerInterface $services = null ): Service1 {
+ * 	return ( $services ?? MediaWikiServices::getInstance() )
  * 		->get( 'ExtensionName.Service1' );
  * }
  * ```
