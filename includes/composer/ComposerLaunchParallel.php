@@ -66,7 +66,7 @@ class ComposerLaunchParallel extends ForkController {
 		 * By default, the splitting process splits the tests into 8 groups. 7 of the groups are composed
 		 * of evenly distributed test classes extracted from the `--list-tests-xml` phpunit function. The
 		 * last group contains just the ExtensionsParserTestSuite.  We first check if
-		 * QUIBBLE_PHPUNIT_PARALLEL_GROUP_COUNT is set in the environment, and override the group count
+		 * PHPUNIT_PARALLEL_GROUP_COUNT is set in the environment, and override the group count
 		 * if so.
 		 */
 		$splitGroupCount = self::getSplitGroupCount();
@@ -226,14 +226,14 @@ class ComposerLaunchParallel extends ForkController {
 
 	/**
 	 * Get a split group count, either from the default defined on this class, or from
-	 * QUIBBLE_PHPUNIT_PARALLEL_GROUP_COUNT in the environment.
+	 * PHPUNIT_PARALLEL_GROUP_COUNT in the environment.
 	 *
 	 * Throws InvalidSplitGroupCountException for an invalid count.
 	 */
 	public static function getSplitGroupCount(): int {
 		$splitGroupCount = self::DEFAULT_SPLIT_GROUP_COUNT;
 
-		$envSplitGroupCount = getenv( 'QUIBBLE_PHPUNIT_PARALLEL_GROUP_COUNT' );
+		$envSplitGroupCount = getenv( 'PHPUNIT_PARALLEL_GROUP_COUNT' );
 		if ( $envSplitGroupCount !== false ) {
 			if ( !preg_match( '/^\d+$/', $envSplitGroupCount ) ) {
 				throw new InvalidSplitGroupCountException( $envSplitGroupCount );
