@@ -11,10 +11,15 @@ use OutOfBoundsException;
  */
 class ScrambleMappingTest extends MediaWikiUnitTestCase {
 
-	public function testMap() {
+	protected function setUp(): void {
+		parent::setUp();
+
 		if ( !extension_loaded( 'gmp' ) && !extension_loaded( 'bcmath' ) ) {
-			$this->markTestSkipped( 'need extension gmp or bcmath' );
+			$this->markTestSkipped( 'ScrambleMapping requires the gmp or bcmath PHP extensions' );
 		}
+	}
+
+	public function testMap() {
 		$map = new ScrambleMapping( [] );
 		$duplicates = 0;
 		// This has been verified up to 1e8 but for CI purposes we will use 200
