@@ -25,6 +25,7 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\ResourceLoader;
+use MediaWiki\Session\SessionManager;
 use MediaWiki\Tests\ResourceLoader\ResourceLoaderTestCase;
 use MediaWiki\Tests\ResourceLoader\ResourceLoaderTestModule;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
@@ -2234,22 +2235,26 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetCacheVaryCookies() {
-		global $wgCookiePrefix, $wgDBname;
 		$op = $this->newInstance();
-		$prefix = $wgCookiePrefix !== false ? $wgCookiePrefix : $wgDBname;
-		$expectedCookies = [
-			"{$prefix}Token",
-			"{$prefix}LoggedOut",
-			"{$prefix}_session",
-			'forceHTTPS',
-			'cookie1',
-			'cookie2',
-		];
+
+		$expectedCookies = array_merge(
+			SessionManager::singleton()->getVaryCookies(),
+			[
+				'forceHTTPS',
+				'cookie1',
+				'cookie2',
+			]
+		);
+
+		$expectedCookies = array_values( array_unique( $expectedCookies ) );
 
 		// We have to reset the cookies because getCacheVaryCookies may have already been called
 		TestingAccessWrapper::newFromClass( OutputPage::class )->cacheVaryCookies = null;
 
 		$this->overrideConfigValue( MainConfigNames::CacheVaryCookies, [ 'cookie1' ] );
+
+		// Clear out any extension hooks that may interfere with cookies.
+		$this->clearHook( 'GetCacheVaryCookies' );
 		$this->setTemporaryHook( 'GetCacheVaryCookies',
 			function ( $innerOP, &$cookies ) use ( $op, $expectedCookies ) {
 				$this->assertSame( $op, $innerOP );
