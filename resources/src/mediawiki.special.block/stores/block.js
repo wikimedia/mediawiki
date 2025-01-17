@@ -199,9 +199,14 @@ module.exports = exports = defineStore( 'block', () => {
 	 * @type {Ref<string>}
 	 */
 	const confirmationMessage = ref( '' );
+	/**
+	 * Whether the target user exists. This is set by the UserLookup component.
+	 *
+	 * @type {Ref<boolean>}
+	 */
+	const targetExists = ref( false );
 
 	// ** Getters (computed properties) **
-
 	/**
 	 * Whether the form is disabled due to an in-flight API request.
 	 *
@@ -579,6 +584,7 @@ module.exports = exports = defineStore( 'block', () => {
 		resetForm,
 		doBlock,
 		doRemoveBlock,
-		getBlockLogData
+		getBlockLogData,
+		targetExists
 	};
 } );

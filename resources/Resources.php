@@ -2411,6 +2411,7 @@ return [
 			'log-action-filter-block-reblock',
 			'log-action-filter-block-unblock',
 			'log-fulllog',
+			'nosuchusershort',
 			'parentheses-end',
 			'parentheses-start',
 			'pipe-separator',

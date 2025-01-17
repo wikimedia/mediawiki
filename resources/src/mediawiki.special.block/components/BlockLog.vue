@@ -336,10 +336,12 @@ module.exports = exports = defineComponent( {
 		}, { immediate: true } );
 
 		// Show the 'Add block' button in the active blocks accordion if:
-		// * Multiblocks is enabled
-		// * Multiblocks is disabled and the user is not already blocked
+		// * blockLogType is 'active' AND
+		// * the target user exists AND EITHER
+		//   * multiblocks is enabled, OR
+		//   * multiblocks is disabled AND the user is not already blocked
 		const shouldShowAddBlockButton = computed(
-			() => props.blockLogType === 'active' && (
+			() => props.blockLogType === 'active' && store.targetExists && (
 				store.enableMultiblocks || !alreadyBlocked.value
 			)
 		);
