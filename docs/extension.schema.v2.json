@@ -324,11 +324,11 @@
 							"properties": {
 								"localBasePath": {
 									"type": "string",
-									"description": "Base path to prepend to all local paths in $options. Defaults to $IP"
+									"description": "Base path to prepend to all local paths. Defaults to $IP"
 								},
 								"remoteBasePath": {
 									"type": "string",
-									"description": "Base path to prepend to all remote paths in $options. Defaults to $wgScriptPath"
+									"description": "Base path to prepend to all remote paths. Defaults to $wgScriptPath"
 								},
 								"remoteExtPath": {
 									"type": "string",
@@ -603,11 +603,11 @@
 					"properties": {
 						"localBasePath": {
 							"type": "string",
-							"description": "Base path to prepend to all local paths in $options. Defaults to $IP"
+							"description": "Base path to prepend to all local paths. Defaults to $IP"
 						},
 						"remoteBasePath": {
 							"type": "string",
-							"description": "Base path to prepend to all remote paths in $options. Defaults to $wgScriptPath"
+							"description": "Base path to prepend to all remote paths. Defaults to $wgScriptPath"
 						},
 						"remoteExtPath": {
 							"type": "string",
@@ -777,7 +777,7 @@
 			"properties": {
 				"localBasePath": {
 					"type": "string",
-					"description": "Prefix for local paths to files in $options, relative to extension directory"
+					"description": "Prefix for local paths to files, relative to extension directory"
 				},
 				"scripts": {
 					"type": "array",

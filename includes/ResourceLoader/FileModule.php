@@ -304,6 +304,10 @@ class FileModule extends Module {
 			$remoteBasePath = (string)$options['remoteBasePath'];
 		}
 
+		if ( $localBasePath === null ) {
+			$localBasePath = MW_INSTALL_PATH;
+		}
+
 		if ( $remoteBasePath === '' ) {
 			// If MediaWiki is installed at the document root (not recommended),
 			// then wgScriptPath is set to the empty string by the installer to
@@ -316,7 +320,7 @@ class FileModule extends Module {
 			$remoteBasePath = '/';
 		}
 
-		return [ $localBasePath ?? MW_INSTALL_PATH, $remoteBasePath ];
+		return [ $localBasePath, $remoteBasePath ];
 	}
 
 	public function getScript( Context $context ) {

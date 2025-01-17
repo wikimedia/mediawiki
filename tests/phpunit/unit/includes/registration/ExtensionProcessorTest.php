@@ -830,15 +830,11 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 	 */
 	public function testExtractResourceLoaderModules(
 		$input,
-		array $expectedGlobals,
 		array $expectedAttribs = []
 	) {
 		$processor = new ExtensionProcessor();
 		$processor->extractInfo( $this->extensionPath, $input + self::$default, 1 );
 		$out = $processor->getExtractedInfo();
-		foreach ( $expectedGlobals as $key => $value ) {
-			$this->assertEquals( $value, $out['globals'][$key] );
-		}
 		foreach ( $expectedAttribs as $key => $value ) {
 			$this->assertEquals( $value, $out['attributes'][$key] );
 		}
@@ -847,8 +843,7 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 	public static function provideExtractResourceLoaderModules() {
 		$dir = dirname( self::getExtensionPath() );
 		return [
-			// Generic module with localBasePath/remoteExtPath specified
-			[
+			'Generic module with localBasePath/remoteExtPath specified' => [
 				// Input
 				[
 					'ResourceModules' => [
@@ -860,7 +855,6 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 					],
 				],
 				// Expected
-				[],
 				[
 					'ResourceModules' => [
 						'test.foo' => [
@@ -871,8 +865,7 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 					],
 				],
 			],
-			// ResourceFileModulePaths specified:
-			[
+			'ResourceFileModulePaths specified' => [
 				// Input
 				[
 					'ResourceFileModulePaths' => [
@@ -904,7 +897,6 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 					],
 				],
 				// Expected
-				[],
 				[
 					'ResourceModules' => [
 						'test.foo' => [
@@ -932,8 +924,7 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 					],
 				],
 			],
-			// ResourceModuleSkinStyles with file module paths
-			[
+			'ResourceModuleSkinStyles with file module paths' => [
 				// Input
 				[
 					'ResourceFileModulePaths' => [
@@ -947,7 +938,6 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 					],
 				],
 				// Expected
-				[],
 				[
 					'ResourceModuleSkinStyles' => [
 						'foobar' => [
@@ -958,8 +948,7 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 					],
 				],
 			],
-			// ResourceModuleSkinStyles with file module paths and an override
-			[
+			'ResourceModuleSkinStyles with file module paths and an override' => [
 				// Input
 				[
 					'ResourceFileModulePaths' => [
@@ -974,7 +963,6 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 					],
 				],
 				// Expected
-				[],
 				[
 					'ResourceModuleSkinStyles' => [
 						'foobar' => [
@@ -995,7 +983,6 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 					],
 				],
 				// Expected
-				[],
 				[
 					'QUnitTestModules' => [
 						'test.FooBar' => [
