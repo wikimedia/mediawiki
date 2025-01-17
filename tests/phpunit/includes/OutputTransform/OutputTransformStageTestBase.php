@@ -33,6 +33,9 @@ abstract class OutputTransformStageTestBase extends MediaWikiIntegrationTestCase
 			MainConfigNames::Server => '//TEST_SERVER',
 			MainConfigNames::DefaultSkin => 'fallback'
 		] );
+
+		// Prevent extensions from interfering with the output
+		$this->clearHook( 'SkinEditSectionLinks' );
 	}
 
 	/**
