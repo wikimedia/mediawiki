@@ -156,8 +156,6 @@ class Pingback {
 
 	/**
 	 * Was a pingback sent in the last month for this MediaWiki version?
-	 *
-	 * @return bool
 	 */
 	private function wasRecentlySent(): bool {
 		$timestamp = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()

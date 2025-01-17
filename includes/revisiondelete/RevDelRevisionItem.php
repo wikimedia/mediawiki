@@ -55,8 +55,6 @@ class RevDelRevisionItem extends RevDelItem {
 
 	/**
 	 * Get the RevisionRecord for the item
-	 *
-	 * @return RevisionRecord
 	 */
 	protected function getRevisionRecord(): RevisionRecord {
 		return $this->revisionRecord;

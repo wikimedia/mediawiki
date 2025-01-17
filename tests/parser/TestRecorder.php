@@ -53,28 +53,24 @@ class TestRecorder {
 
 	/**
 	 * Called before starting an input file
-	 * @param string $path
 	 */
 	public function startSuite( string $path ) {
 	}
 
 	/**
 	 * Called after ending an input file
-	 * @param string $path
 	 */
 	public function endSuite( string $path ) {
 	}
 
 	/**
 	 * Called after each test
-	 * @param ParserTestResult $result
 	 */
 	public function record( ParserTestResult $result ) {
 	}
 
 	/**
 	 * Show a warning to the user
-	 * @param string $message
 	 */
 	public function warning( string $message ) {
 	}

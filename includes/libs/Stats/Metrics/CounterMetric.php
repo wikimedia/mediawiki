@@ -44,8 +44,6 @@ class CounterMetric implements MetricInterface {
 
 	/**
 	 * Increments metric by one.
-	 *
-	 * @return void
 	 */
 	public function increment(): void {
 		$this->incrementBy( 1 );

@@ -87,7 +87,6 @@ class MultiHttpClient implements LoggerAwareInterface {
 	protected $userAgent = 'wikimedia/multi-http-client v1.1';
 	/** @var LoggerInterface */
 	protected $logger;
-	/** @var array */
 	protected array $headers = [];
 
 	// In PHP 7 due to https://bugs.php.net/bug.php?id=76480 the request/connect
@@ -846,8 +845,6 @@ class MultiHttpClient implements LoggerAwareInterface {
 
 	/**
 	 * Register a logger
-	 *
-	 * @param LoggerInterface $logger
 	 */
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;

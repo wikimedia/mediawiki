@@ -566,8 +566,6 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * Tells the MWHttpRequest object to use this pre-loaded CookieJar.
 	 *
 	 * To read response cookies from the jar, getCookieJar must be called first.
-	 *
-	 * @param CookieJar $jar
 	 */
 	public function setCookieJar( CookieJar $jar ) {
 		$this->cookieJar = $jar;

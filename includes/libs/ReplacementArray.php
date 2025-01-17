@@ -44,7 +44,6 @@ class ReplacementArray {
 
 	/**
 	 * Set the whole replacement array at once
-	 * @param array $data
 	 */
 	public function setArray( array $data ) {
 		$this->data = $data;

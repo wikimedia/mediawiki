@@ -231,8 +231,6 @@ trait PageDumpTestDataTrait {
 
 	/**
 	 * Register variables for use with DumpAsserter::assertDOM().
-	 *
-	 * @param DumpAsserter $asserter
 	 */
 	protected function setCurrentRevisionsVarMappings( DumpAsserter $asserter ) {
 		$this->setRevisionVarMappings( 'rev1_1_', $this->rev1_1, $asserter );
@@ -244,8 +242,6 @@ trait PageDumpTestDataTrait {
 
 	/**
 	 * Register variables for use with DumpAsserter::assertDOM().
-	 *
-	 * @param DumpAsserter $asserter
 	 */
 	protected function setAllRevisionsVarMappings( DumpAsserter $asserter ) {
 		$this->setRevisionVarMappings( 'rev1_1_', $this->rev1_1, $asserter );

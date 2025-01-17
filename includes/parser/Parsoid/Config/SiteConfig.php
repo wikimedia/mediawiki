@@ -254,7 +254,6 @@ class SiteConfig extends ISiteConfig {
 
 	/**
 	 * Create a prefixed StatsFactory for parsoid stats
-	 * @return StatsFactory
 	 */
 	public function prefixedStatsFactory(): StatsFactory {
 		$component = $this->getStatsPrefix( true );
@@ -558,10 +557,6 @@ class SiteConfig extends ISiteConfig {
 		return $this->contLang->isRTL();
 	}
 
-	/**
-	 * @param Bcp47Code $lang
-	 * @return bool
-	 */
 	public function langConverterEnabledBcp47( Bcp47Code $lang ): bool {
 		if ( $this->languageConverterFactory->isConversionDisabled() ) {
 			return false;
@@ -759,7 +754,6 @@ class SiteConfig extends ISiteConfig {
 
 	/**
 	 * Overrides the max template depth in the MediaWiki configuration.
-	 * @param int $depth
 	 */
 	public function setMaxTemplateDepth( int $depth ): void {
 		// Parsoid's command-line tools let you set the max template depth

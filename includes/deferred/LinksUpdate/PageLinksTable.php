@@ -63,7 +63,6 @@ class PageLinksTable extends GenericPageLinksTable {
 
 	/**
 	 * Normalization stage of the links table (see T222224)
-	 * @return int
 	 */
 	protected function linksTargetNormalizationStage(): int {
 		return $this->migrationStage;

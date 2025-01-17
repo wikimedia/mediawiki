@@ -77,8 +77,6 @@ class BlockCacheKey implements Stringable {
 	/**
 	 * Get the bucket for the cache entry associated with this key.
 	 * Entries with the same partial key will replace each other in the cache.
-	 *
-	 * @return string
 	 */
 	public function getPartialKey(): string {
 		if ( $this->hasRequest ) {
@@ -120,8 +118,6 @@ class BlockCacheKey implements Stringable {
 
 	/**
 	 * Convert to a string, for debugging
-	 *
-	 * @return string
 	 */
 	public function __toString(): string {
 		return 'BlockCacheKey{' .

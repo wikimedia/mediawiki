@@ -34,10 +34,6 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialUnusedCategories extends QueryPage {
 
-	/**
-	 * @param IConnectionProvider $dbProvider
-	 * @param LinkBatchFactory $linkBatchFactory
-	 */
 	public function __construct(
 		IConnectionProvider $dbProvider,
 		LinkBatchFactory $linkBatchFactory

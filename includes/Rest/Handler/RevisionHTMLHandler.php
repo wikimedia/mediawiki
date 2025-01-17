@@ -111,9 +111,6 @@ class RevisionHTMLHandler extends SimpleHandler {
 		return $this->htmlHelper->getETag( $this->getOutputMode() );
 	}
 
-	/**
-	 * @return string|null
-	 */
 	protected function getLastModified(): ?string {
 		if ( !$this->contentHelper->isAccessible() ) {
 			return null;

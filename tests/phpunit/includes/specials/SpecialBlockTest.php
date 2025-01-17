@@ -961,11 +961,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		return $block;
 	}
 
-	/**
-	 * Get a BlockRestrictionStore instance
-	 *
-	 * @return BlockRestrictionStore
-	 */
 	private function getBlockRestrictionStore(): BlockRestrictionStore {
 		$dbProvider = $this->createMock( IConnectionProvider::class );
 

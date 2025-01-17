@@ -128,8 +128,6 @@ class EditResultBuilder {
 	/**
 	 * Set the revision associated with this edit.
 	 * Should only be called by PageUpdater when saving an edit.
-	 *
-	 * @param RevisionRecord $revisionRecord
 	 */
 	public function setRevisionRecord( RevisionRecord $revisionRecord ) {
 		$this->revisionRecord = $revisionRecord;
@@ -138,8 +136,6 @@ class EditResultBuilder {
 	/**
 	 * Set whether the edit created a new page.
 	 * Should only be called by PageUpdater when saving an edit.
-	 *
-	 * @param bool $isNew
 	 */
 	public function setIsNew( bool $isNew ) {
 		$this->isNew = $isNew;
@@ -289,8 +285,6 @@ class EditResultBuilder {
 	/**
 	 * Whether the edit was an exact revert, i.e. the contents of the revert
 	 * revision and restored revision match
-	 *
-	 * @return bool
 	 */
 	private function isExactRevert(): bool {
 		if ( $this->isNew || $this->oldestRevertedRevId === null ) {
@@ -308,8 +302,6 @@ class EditResultBuilder {
 
 	/**
 	 * An edit is a null edit if the original revision is equal to the parent revision.
-	 *
-	 * @return bool
 	 */
 	private function isNullEdit(): bool {
 		if ( $this->isNew ) {

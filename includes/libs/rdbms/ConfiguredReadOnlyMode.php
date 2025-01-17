@@ -34,8 +34,6 @@ class ConfiguredReadOnlyMode {
 
 	/**
 	 * Check whether the site is in read-only mode.
-	 *
-	 * @return bool
 	 */
 	public function isReadOnly(): bool {
 		return $this->getReason() !== false;

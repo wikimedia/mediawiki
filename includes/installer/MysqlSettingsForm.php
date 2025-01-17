@@ -90,7 +90,6 @@ class MysqlSettingsForm extends DatabaseSettingsForm {
 
 	/**
 	 * Downcast the DatabaseInstaller
-	 * @return MysqlInstaller
 	 */
 	private function getMysqlInstaller(): MysqlInstaller {
 		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType

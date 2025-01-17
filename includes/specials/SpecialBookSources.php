@@ -43,10 +43,6 @@ class SpecialBookSources extends SpecialPage {
 	private RevisionLookup $revisionLookup;
 	private TitleFactory $titleFactory;
 
-	/**
-	 * @param RevisionLookup $revisionLookup
-	 * @param TitleFactory $titleFactory
-	 */
 	public function __construct(
 		RevisionLookup $revisionLookup,
 		TitleFactory $titleFactory

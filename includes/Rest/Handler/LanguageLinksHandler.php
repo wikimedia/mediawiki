@@ -73,9 +73,6 @@ class LanguageLinksHandler extends SimpleHandler {
 		);
 	}
 
-	/**
-	 * @return ExistingPageRecord|null
-	 */
 	private function getPage(): ?ExistingPageRecord {
 		if ( $this->page === false ) {
 			$this->page = $this->pageLookup->getExistingPageByText(
@@ -164,9 +161,6 @@ class LanguageLinksHandler extends SimpleHandler {
 		];
 	}
 
-	/**
-	 * @return string|null
-	 */
 	protected function getETag(): ?string {
 		$page = $this->getPage();
 		if ( !$page ) {
@@ -177,9 +171,6 @@ class LanguageLinksHandler extends SimpleHandler {
 		return '"' . $page->getLatest() . '@' . wfTimestamp( TS_MW, $page->getTouched() ) . '"';
 	}
 
-	/**
-	 * @return string|null
-	 */
 	protected function getLastModified(): ?string {
 		$page = $this->getPage();
 		return $page ? $page->getTouched() : null;

@@ -44,10 +44,6 @@ class SpecialComparePages extends SpecialPage {
 	/** @var DifferenceEngine */
 	private $differenceEngine;
 
-	/**
-	 * @param RevisionLookup $revisionLookup
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 */
 	public function __construct(
 		RevisionLookup $revisionLookup,
 		IContentHandlerFactory $contentHandlerFactory

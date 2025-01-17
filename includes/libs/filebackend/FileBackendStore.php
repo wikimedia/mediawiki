@@ -1849,8 +1849,6 @@ abstract class FileBackendStore extends FileBackend {
 	 * Do a batch lookup from cache for container stats for all containers
 	 * used in a list of container names or storage paths objects.
 	 * This loads the persistent cache values into the process cache.
-	 *
-	 * @param array $items
 	 */
 	final protected function primeContainerCache( array $items ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */

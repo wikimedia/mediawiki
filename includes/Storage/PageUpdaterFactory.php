@@ -141,7 +141,6 @@ class PageUpdaterFactory {
 	/** @var string[] */
 	private $softwareTags;
 
-	/** @var ChangeTagsStore */
 	private ChangeTagsStore $changeTagsStore;
 
 	/**

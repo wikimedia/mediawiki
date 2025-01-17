@@ -314,9 +314,6 @@ class PageHistoryCountHandler extends SimpleHandler {
 		return $this->revision;
 	}
 
-	/**
-	 * @return ExistingPageRecord|null
-	 */
 	private function getPage(): ?ExistingPageRecord {
 		if ( $this->page === false ) {
 			$this->page = $this->pageLookup->getExistingPageByText(

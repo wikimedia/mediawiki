@@ -18,10 +18,6 @@ use Wikimedia\Message\ScalarParam;
 class ListParamTest extends MediaWikiUnitTestCase {
 	use MessageSerializationTestTrait;
 
-	/**
-	 * Overrides SerializationTestTrait::getClassToTest
-	 * @return string
-	 */
 	public static function getClassToTest(): string {
 		return ListParam::class;
 	}

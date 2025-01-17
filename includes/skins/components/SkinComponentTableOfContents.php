@@ -72,8 +72,6 @@ class SkinComponentTableOfContents implements SkinComponent {
 	 *
 	 * For an example of how to render the data, see TableOfContents.mustache in
 	 * the Vector skin.
-	 *
-	 * @return array
 	 */
 	private function getTOCDataInternal(): array {
 		$tocData = $this->output->getTOCData();

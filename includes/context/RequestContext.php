@@ -606,8 +606,6 @@ class RequestContext implements IContextSource, MutableContext {
 
 	/**
 	 * Get the RequestContext object associated with the main request
-	 *
-	 * @return RequestContext
 	 */
 	public static function getMain(): RequestContext {
 		self::$instance ??= new self;

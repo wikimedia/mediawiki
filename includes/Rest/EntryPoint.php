@@ -194,8 +194,6 @@ class EntryPoint extends MediaWikiEntryPoint {
 	/**
 	 * Sets the router to use.
 	 * Intended for testing.
-	 *
-	 * @param Router $router
 	 */
 	public function setRouter( Router $router ): void {
 		$this->router = $router;

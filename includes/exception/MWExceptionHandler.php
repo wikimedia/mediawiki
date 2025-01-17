@@ -121,7 +121,6 @@ class MWExceptionHandler {
 
 	/**
 	 * Report a throwable to the user
-	 * @param Throwable $e
 	 */
 	protected static function report( Throwable $e ) {
 		try {

@@ -152,8 +152,6 @@ class LinkRenderer {
 
 	/**
 	 * True when the links will be rendered in an edit summary or log comment.
-	 *
-	 * @return bool
 	 */
 	public function isForComment(): bool {
 		// This option only exists to power a hack in Wikibase's onHtmlPageLinkRendererEnd hook.

@@ -341,8 +341,6 @@ class BlockUser {
 
 	/**
 	 * Is the to-be-placed block partial?
-	 *
-	 * @return bool
 	 */
 	private function isPartial(): bool {
 		return $this->blockRestrictions !== [] || $this->isPartialRaw;
@@ -755,8 +753,6 @@ class BlockUser {
 	 * Prepare $logParams
 	 *
 	 * Helper method for $this->log()
-	 *
-	 * @return array
 	 */
 	private function constructLogParams(): array {
 		$logExpiry = wfIsInfinity( $this->rawExpiry ) ? 'infinity' : $this->rawExpiry;
@@ -812,8 +808,6 @@ class BlockUser {
 
 	/**
 	 * Log the block to Special:Log
-	 *
-	 * @param ManualLogEntry $logEntry
 	 */
 	private function log( ManualLogEntry $logEntry ) {
 		$logId = $logEntry->insert();
@@ -823,8 +817,6 @@ class BlockUser {
 	/**
 	 * Return a comma-delimited list of flags to be passed to the log
 	 * reader for this block, to provide more information in the logs.
-	 *
-	 * @return string
 	 */
 	private function blockLogFlags(): string {
 		$flags = [];

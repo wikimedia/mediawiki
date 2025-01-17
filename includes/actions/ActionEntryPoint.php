@@ -42,7 +42,6 @@ class ActionEntryPoint extends MediaWikiEntryPoint {
 
 	/**
 	 * Overwritten to narrow the return type to RequestContext
-	 * @return RequestContext
 	 */
 	protected function getContext(): RequestContext {
 		/** @var RequestContext $context */

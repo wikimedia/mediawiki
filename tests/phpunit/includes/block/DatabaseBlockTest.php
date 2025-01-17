@@ -786,11 +786,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->assertFalse( $block->appliesToRight( 'read' ) );
 	}
 
-	/**
-	 * Get an instance of BlockRestrictionStore
-	 *
-	 * @return BlockRestrictionStore
-	 */
 	protected function getBlockRestrictionStore(): BlockRestrictionStore {
 		return $this->getServiceContainer()->getBlockRestrictionStore();
 	}

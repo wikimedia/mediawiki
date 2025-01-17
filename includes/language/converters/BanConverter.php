@@ -1022,7 +1022,6 @@ EOF;
 
 	/**
 	 * Guess if a text is written in Balinese or Latin.
-	 * Overrides LanguageConverter::guessVariant()
 	 *
 	 * @param string $text The text to be checked
 	 * @param string $variant Language code of the variant to be checked for

@@ -20,10 +20,6 @@ class ContentRenderer {
 
 	private GlobalIdGenerator $globalIdGenerator;
 
-	/**
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param GlobalIdGenerator $globalIdGenerator
-	 */
 	public function __construct(
 		IContentHandlerFactory $contentHandlerFactory,
 		GlobalIdGenerator $globalIdGenerator

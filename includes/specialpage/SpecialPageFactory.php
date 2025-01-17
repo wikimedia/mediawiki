@@ -1359,8 +1359,6 @@ class SpecialPageFactory {
 
 	/**
 	 * Get the special page list as an array
-	 *
-	 * @return array
 	 */
 	private function getPageList(): array {
 		if ( !is_array( $this->list ) ) {
@@ -1464,7 +1462,6 @@ class SpecialPageFactory {
 	 * Initialise and return the list of special page aliases. Returns an array where
 	 * the key is an alias, and the value is the canonical name of the special page.
 	 * All registered special pages are guaranteed to map to themselves.
-	 * @return array
 	 */
 	private function getAliasList(): array {
 		if ( $this->aliases === null ) {

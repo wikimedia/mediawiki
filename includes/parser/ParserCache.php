@@ -317,10 +317,6 @@ class ParserCache {
 		return $metadata;
 	}
 
-	/**
-	 * @param PageRecord $page
-	 * @return string
-	 */
 	private function makeMetadataKey( PageRecord $page ): string {
 		return $this->cache->makeKey( $this->name, $page->getId( PageRecord::LOCAL ), '|#|', 'idoptions' );
 	}

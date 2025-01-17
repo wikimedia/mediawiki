@@ -48,8 +48,6 @@ class ArrayConfigBuilder extends ConfigBuilderBase {
 
 	/**
 	 * Build the configuration.
-	 *
-	 * @return IterableConfig
 	 */
 	public function build(): IterableConfig {
 		return new HashConfig( $this->config );

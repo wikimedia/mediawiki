@@ -183,7 +183,6 @@ class SerializationTestUtils {
 	/**
 	 * Get test objects of $class, serialized using $serializer,
 	 * keyed by test case name.
-	 * @return array
 	 */
 	public function getSerializedInstances(): array {
 		$instances = $this->getTestInstances();
@@ -239,7 +238,6 @@ class SerializationTestUtils {
 
 	/**
 	 * Returns the current version of MediaWiki in `1.xx` format.
-	 * @return string
 	 */
 	private function getCurrentVersion(): string {
 		return preg_replace( '/^(\d\.\d+).*$/', '$1', MW_VERSION );

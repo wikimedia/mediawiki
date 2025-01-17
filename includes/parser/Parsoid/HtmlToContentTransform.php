@@ -139,8 +139,6 @@ class HtmlToContentTransform {
 
 	/**
 	 * Sets the original source text (usually wikitext).
-	 *
-	 * @param string $text
 	 */
 	public function setOriginalText( string $text ): void {
 		$content = $this->getContentHandler()->unserializeContent( $text );
@@ -149,8 +147,6 @@ class HtmlToContentTransform {
 
 	/**
 	 * Sets the original content (such as wikitext).
-	 *
-	 * @param Content $content
 	 */
 	public function setOriginalContent( Content $content ): void {
 		if ( $this->pageConfig ) {
@@ -270,8 +266,6 @@ class HtmlToContentTransform {
 
 	/**
 	 * The size of the modified HTML in characters.
-	 *
-	 * @return int
 	 */
 	public function getModifiedHtmlSize(): int {
 		return mb_strlen( $this->modifiedPageBundle->html );
@@ -301,8 +295,6 @@ class HtmlToContentTransform {
 	/**
 	 * NOTE: The return value of this method depends on
 	 *    setOriginalData() having been called first.
-	 *
-	 * @return bool
 	 */
 	public function hasOriginalHtml(): bool {
 		return $this->originalPageBundle->html !== '';
@@ -311,8 +303,6 @@ class HtmlToContentTransform {
 	/**
 	 * NOTE: The return value of this method depends on
 	 *    setOriginalData() having been called first.
-	 *
-	 * @return bool
 	 */
 	public function hasOriginalDataParsoid(): bool {
 		return $this->originalPageBundle->parsoid !== null;
@@ -410,8 +400,6 @@ class HtmlToContentTransform {
 	/**
 	 * NOTE: The return value of this method depends on
 	 *    setOriginalData() having been called first.
-	 *
-	 * @return string
 	 */
 	public function getSchemaVersion(): string {
 		// Get the content version of the edited doc, if available.
@@ -581,8 +569,6 @@ class HtmlToContentTransform {
 
 	/**
 	 * Returns a Content object derived from the supplied HTML.
-	 *
-	 * @return Content
 	 */
 	public function htmlToContent(): Content {
 		$text = $this->htmlToText();

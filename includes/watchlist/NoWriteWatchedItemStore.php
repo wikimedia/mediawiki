@@ -37,7 +37,6 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 
 	/**
 	 * Initially set WatchedItemStore that will be used in cases where writing is not needed.
-	 * @param WatchedItemStoreInterface $actualStore
 	 */
 	public function __construct( WatchedItemStoreInterface $actualStore ) {
 		$this->actualStore = $actualStore;

@@ -40,8 +40,6 @@ class BlockCache {
 
 	/**
 	 * Clear all block cache entries associated with a user
-	 *
-	 * @param UserIdentity $user
 	 */
 	public function clearUser( UserIdentity $user ) {
 		foreach ( $this->cache as $partialKey => $entry ) {

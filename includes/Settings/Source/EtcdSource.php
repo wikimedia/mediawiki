@@ -144,8 +144,6 @@ class EtcdSource implements Stringable, CacheableSource {
 	/**
 	 * Allow stale results from etcd sources in case all servers become
 	 * temporarily unavailable.
-	 *
-	 * @return bool
 	 */
 	public function allowsStaleLoad(): bool {
 		return true;
@@ -179,8 +177,6 @@ class EtcdSource implements Stringable, CacheableSource {
 
 	/**
 	 * The cache expiry TTL (in seconds) for this source.
-	 *
-	 * @return int
 	 */
 	public function getExpiryTtl(): int {
 		return self::EXPIRY_TTL;
@@ -189,8 +185,6 @@ class EtcdSource implements Stringable, CacheableSource {
 	/**
 	 * Coefficient used in determining early expiration of cached settings to
 	 * avoid stampedes.
-	 *
-	 * @return float
 	 */
 	public function getExpiryWeight(): float {
 		return self::EXPIRY_WEIGHT;
@@ -201,8 +195,6 @@ class EtcdSource implements Stringable, CacheableSource {
 	 * URL constructed using the etcd request URL. In the case where SRV
 	 * discovery is performed, the host in the URL will be the SRV record
 	 * name.
-	 *
-	 * @return string
 	 */
 	public function getHashKey(): string {
 		return (string)$this->uri;
@@ -210,8 +202,6 @@ class EtcdSource implements Stringable, CacheableSource {
 
 	/**
 	 * Returns this etcd source as a string.
-	 *
-	 * @return string
 	 */
 	public function __toString(): string {
 		return (string)$this->uri;

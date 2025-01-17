@@ -132,8 +132,6 @@ class DnsSrvDiscoverer {
 
 	/**
 	 * Returns the SRV resource record name.
-	 *
-	 * @return string
 	 */
 	public function getSrvName(): string {
 		$srv = "_{$this->service}._{$this->protocol}";

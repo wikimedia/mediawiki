@@ -68,10 +68,6 @@ class LinksMigration {
 		'pl' => 'pagelinks',
 	];
 
-	/**
-	 * @param Config $config
-	 * @param LinkTargetLookup $linktargetLookup
-	 */
 	public function __construct( Config $config, LinkTargetLookup $linktargetLookup ) {
 		$this->config = $config;
 		$this->linkTargetLookup = $linktargetLookup;

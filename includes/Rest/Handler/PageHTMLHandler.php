@@ -148,9 +148,6 @@ class PageHTMLHandler extends SimpleHandler {
 		return $this->htmlHelper->getETag( $this->getOutputMode() );
 	}
 
-	/**
-	 * @return string|null
-	 */
 	protected function getLastModified(): ?string {
 		if ( !$this->contentHelper->isAccessible() || !$this->contentHelper->hasContent() ) {
 			return null;

@@ -1302,8 +1302,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 *
 	 * Using this function makes sure the LoadBalancer knows the connection is closed.
 	 * If you use $conn->close() directly, the load balancer won't update its state.
-	 *
-	 * @param IDatabaseForOwner $conn
 	 */
 	private function closeConnection( IDatabaseForOwner $conn ) {
 		if ( $conn instanceof DBConnRef ) {

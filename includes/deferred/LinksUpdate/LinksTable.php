@@ -139,8 +139,6 @@ abstract class LinksTable {
 
 	/**
 	 * Set the revision associated with the edit.
-	 *
-	 * @param RevisionRecord $revision
 	 */
 	public function setRevision( RevisionRecord $revision ) {
 		$this->revision = $revision;
@@ -149,8 +147,6 @@ abstract class LinksTable {
 	/**
 	 * Notify the object that the operation is a page move, and set the
 	 * original title.
-	 *
-	 * @param PageReference $movedPage
 	 */
 	public function setMoveDetails( PageReference $movedPage ) {
 		$this->movedPage = $movedPage;
@@ -162,8 +158,6 @@ abstract class LinksTable {
 	 *
 	 * To support a future refactor of LinksDeletionUpdate, if this method is
 	 * not called, the subclass should assume that the new state is empty.
-	 *
-	 * @param ParserOutput $parserOutput
 	 */
 	abstract public function setParserOutput( ParserOutput $parserOutput );
 
@@ -268,8 +262,6 @@ abstract class LinksTable {
 
 	/**
 	 * Get the page_id of the source page
-	 *
-	 * @return int
 	 */
 	protected function getSourcePageId(): int {
 		return $this->sourcePage->getId();
@@ -278,8 +270,6 @@ abstract class LinksTable {
 	/**
 	 * Get the source page, i.e. the page which is being updated and is the
 	 * source of links.
-	 *
-	 * @return PageIdentity
 	 */
 	protected function getSourcePage(): PageIdentity {
 		return $this->sourcePage;
@@ -307,8 +297,6 @@ abstract class LinksTable {
 	/**
 	 * Assuming the page was moved, get the original page title before the move.
 	 * This will throw an exception if the page wasn't moved.
-	 *
-	 * @return PageReference
 	 */
 	protected function getMovedPage(): PageReference {
 		return $this->movedPage;
@@ -316,8 +304,6 @@ abstract class LinksTable {
 
 	/**
 	 * Get the maximum number of rows to update in a batch.
-	 *
-	 * @return int
 	 */
 	protected function getBatchSize(): int {
 		return $this->batchSize;
@@ -355,8 +341,6 @@ abstract class LinksTable {
 	/**
 	 * Do a select query to fetch the existing rows. This is a helper for
 	 * subclasses.
-	 *
-	 * @return IResultWrapper
 	 */
 	protected function fetchExistingRows(): IResultWrapper {
 		return $this->getDB()->newSelectQueryBuilder()
@@ -534,7 +518,6 @@ abstract class LinksTable {
 
 	/**
 	 * Normalization stage of the links table (see T222224)
-	 * @return int
 	 */
 	protected function linksTargetNormalizationStage(): int {
 		return SCHEMA_COMPAT_OLD;

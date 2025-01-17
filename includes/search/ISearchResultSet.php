@@ -157,7 +157,6 @@ interface ISearchResultSet extends \Countable, \IteratorAggregate {
 
 	/**
 	 * Returns extra data for specific result and store it in SearchResult object.
-	 * @param SearchResult $result
 	 */
 	public function augmentResult( SearchResult $result );
 

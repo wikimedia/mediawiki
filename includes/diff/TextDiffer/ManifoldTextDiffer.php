@@ -157,8 +157,6 @@ class ManifoldTextDiffer implements TextDiffer {
 
 	/**
 	 * Disable text differs apart from the one with the given name.
-	 *
-	 * @param string $name
 	 */
 	public function setEngine( string $name ) {
 		$this->diffEngine = $name;
@@ -212,8 +210,6 @@ class ManifoldTextDiffer implements TextDiffer {
 	/**
 	 * Initialize an object which may be a subclass of BaseTextDiffer, passing
 	 * down injected dependencies.
-	 *
-	 * @param TextDiffer $differ
 	 */
 	public function injectDeps( TextDiffer $differ ) {
 		if ( $differ instanceof BaseTextDiffer ) {

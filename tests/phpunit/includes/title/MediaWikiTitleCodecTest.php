@@ -75,8 +75,6 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Returns a InterwikiLookup where the only valid interwikis are 'localtestiw' and 'remotetestiw'.
 	 * Only `isValidInterwiki` should actually be needed.
-	 *
-	 * @return InterwikiLookup
 	 */
 	private function getInterwikiLookup(): InterwikiLookup {
 		return $this->getDummyInterwikiLookup( [ 'localtestiw', 'remotetestiw' ] );
@@ -86,8 +84,6 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 	 * Returns a NamespaceInfo where the only namespaces that exist are NS_SPECIAL, NS_MAIN, NS_TALK,
 	 * NS_USER, and NS_USER_TALK. As per the real NamespaceInfo, NS_USER and NS_USER_TALK have
 	 * gender distinctions. All namespaces are capitalized.
-	 *
-	 * @return NamespaceInfo
 	 */
 	private function getNamespaceInfo(): NamespaceInfo {
 		return $this->getDummyNamespaceInfo( [

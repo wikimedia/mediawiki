@@ -126,8 +126,6 @@ class PageReferenceValue implements Stringable, PageReference {
 	/**
 	 * Returns a string representation of the title, for logging. This is purely informative
 	 * and must not be used programmatically.
-	 *
-	 * @return string
 	 */
 	public function __toString(): string {
 		$s = '[' . $this->namespace . ':' . $this->dbKey . ']';

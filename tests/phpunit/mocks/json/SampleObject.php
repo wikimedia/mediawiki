@@ -12,12 +12,10 @@ use Wikimedia\JsonCodec\JsonCodecableTrait;
 class SampleObject implements JsonCodecable {
 	use JsonCodecableTrait;
 
-	/** @var string */
 	public string $property;
 
 	/**
 	 * Create a new SampleObject which stores $property.
-	 * @param string $property
 	 */
 	public function __construct( string $property ) {
 		$this->property = $property;

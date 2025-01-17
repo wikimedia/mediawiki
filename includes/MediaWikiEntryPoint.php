@@ -216,8 +216,6 @@ abstract class MediaWikiEntryPoint {
 	 * Subclasses in core may override this to handle errors according
 	 * to the expected output format.
 	 * This method is not safe to override for extensions.
-	 *
-	 * @param Throwable $e
 	 */
 	protected function handleTopLevelError( Throwable $e ) {
 		// Type errors and such: at least handle it now and clean up the LBFactory state
@@ -841,8 +839,6 @@ abstract class MediaWikiEntryPoint {
 	 * This is intended as a stepping stone for migration.
 	 * Ideally, individual service objects should be injected
 	 * via the constructor.
-	 *
-	 * @return MediaWikiServices
 	 */
 	protected function getServiceContainer(): MediaWikiServices {
 		return $this->mediaWikiServices;

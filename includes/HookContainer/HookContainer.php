@@ -86,10 +86,6 @@ class HookContainer implements SalvageableService {
 	/** @var int The next ID to be used by scopedRegister() */
 	private $nextScopedRegisterId = 0;
 
-	/**
-	 * @param HookRegistry $hookRegistry
-	 * @param ObjectFactory $objectFactory
-	 */
 	public function __construct(
 		HookRegistry $hookRegistry,
 		ObjectFactory $objectFactory

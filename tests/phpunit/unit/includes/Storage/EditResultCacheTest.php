@@ -22,8 +22,6 @@ class EditResultCacheTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * Returns an EditResult for testing.
-	 *
-	 * @return EditResult
 	 */
 	private function getEditResult(): EditResult {
 		return new EditResult(

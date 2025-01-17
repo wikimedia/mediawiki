@@ -148,8 +148,6 @@ interface SecondaryAuthenticationProvider extends AuthenticationProvider {
 	 * It can be assumed that providerAllowsAuthenticationDataChange with $checkData === true
 	 * was called before this, and passed. This method should never fail (other than throwing an
 	 * exception).
-	 *
-	 * @param AuthenticationRequest $req
 	 */
 	public function providerChangeAuthenticationData( AuthenticationRequest $req );
 

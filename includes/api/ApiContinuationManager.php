@@ -265,7 +265,6 @@ class ApiContinuationManager {
 
 	/**
 	 * Store the continuation data into the result
-	 * @param ApiResult $result
 	 */
 	public function setContinuationIntoResult( ApiResult $result ) {
 		[ $data, $batchcomplete ] = $this->getContinuation();

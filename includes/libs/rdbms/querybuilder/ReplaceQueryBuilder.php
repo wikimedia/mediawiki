@@ -45,8 +45,6 @@ class ReplaceQueryBuilder {
 	/**
 	 * Only for use in subclasses. To create a ReplaceQueryBuilder instance,
 	 * use `$db->newReplaceQueryBuilder()` instead.
-	 *
-	 * @param IDatabase $db
 	 */
 	public function __construct( IDatabase $db ) {
 		$this->db = $db;

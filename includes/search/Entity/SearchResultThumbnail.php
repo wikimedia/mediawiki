@@ -86,7 +86,6 @@ class SearchResultThumbnail {
 
 	/**
 	 * Full URL to the contents of the file
-	 * @return string
 	 */
 	public function getUrl(): string {
 		return $this->url;

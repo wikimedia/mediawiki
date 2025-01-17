@@ -32,10 +32,8 @@ use Wikimedia\Stats\Exceptions\IllegalOperationException;
  * @since 1.43
  */
 trait MetricTrait {
-	/** @var BaseMetricInterface */
-	private BaseMetricInterface $baseMetric;
 
-	/** @var LoggerInterface */
+	private BaseMetricInterface $baseMetric;
 	private LoggerInterface $logger;
 
 	/** @inheritDoc */

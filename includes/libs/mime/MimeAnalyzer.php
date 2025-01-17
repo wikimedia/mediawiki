@@ -250,8 +250,6 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	 *
 	 * As an extension author, you are encouraged to submit patches to
 	 * MediaWiki's core to add new MIME types to MimeMap.php.
-	 *
-	 * @param string $types
 	 */
 	public function addExtraTypes( string $types ): void {
 		$this->extraTypes .= "\n" . $types;
@@ -262,8 +260,6 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	 *
 	 * As an extension author, you are encouraged to submit patches to
 	 * MediaWiki's core to add new MIME info to MimeMap.php.
-	 *
-	 * @param string $info
 	 */
 	public function addExtraInfo( string $info ): void {
 		$this->extraInfo .= "\n" . $info;

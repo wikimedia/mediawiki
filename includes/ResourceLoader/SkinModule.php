@@ -537,10 +537,6 @@ class SkinModule extends LessVarFileModule {
 		return $this->combineFeatureAndParentStyles( $featureStyles, $parentStyles );
 	}
 
-	/**
-	 * @param Context $context
-	 * @return array
-	 */
 	public function getPreloadLinks( Context $context ): array {
 		if ( !in_array( 'logo', $this->features ) ) {
 			return [];

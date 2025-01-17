@@ -176,8 +176,6 @@ abstract class ParsoidHandler extends Handler {
 
 	/**
 	 * Get the parsed body by content-type
-	 *
-	 * @return array
 	 */
 	protected function getParsedBody(): array {
 		$request = $this->getRequest();

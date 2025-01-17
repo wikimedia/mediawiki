@@ -48,9 +48,6 @@ class SelserContext {
 		return $this->revId;
 	}
 
-	/**
-	 * @return Content|null
-	 */
 	public function getContent(): ?Content {
 		return $this->content;
 	}

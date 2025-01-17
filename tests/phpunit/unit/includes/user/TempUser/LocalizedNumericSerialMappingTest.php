@@ -33,7 +33,6 @@ class LocalizedNumericSerialMappingTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * Provide data for testGetSerialIdForIndex
-	 * @return array
 	 */
 	public static function provideGetSerialIdForIndex(): array {
 		return [

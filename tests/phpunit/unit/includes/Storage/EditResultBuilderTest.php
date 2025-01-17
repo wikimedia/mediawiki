@@ -328,8 +328,6 @@ class EditResultBuilderTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * Returns an empty RevisionRecord
-	 *
-	 * @return MutableRevisionRecord
 	 */
 	private function getDummyRevision(): MutableRevisionRecord {
 		return new MutableRevisionRecord(

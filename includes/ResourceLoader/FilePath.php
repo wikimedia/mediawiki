@@ -82,12 +82,10 @@ class FilePath {
 		return "{$this->remoteBasePath}/{$this->path}";
 	}
 
-	/** @return string|null */
 	public function getLocalBasePath(): ?string {
 		return $this->localBasePath;
 	}
 
-	/** @return string|null */
 	public function getRemoteBasePath(): ?string {
 		return $this->remoteBasePath;
 	}

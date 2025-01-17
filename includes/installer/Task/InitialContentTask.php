@@ -101,8 +101,6 @@ class InitialContentTask extends Task {
 
 	/**
 	 * Get services from the restored service container
-	 *
-	 * @param MediaWikiServices $services
 	 */
 	private function initServices( MediaWikiServices $services ) {
 		$this->wikiPageFactory = $services->getWikiPageFactory();

@@ -41,10 +41,6 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class SpecialListDuplicatedFiles extends QueryPage {
 
-	/**
-	 * @param IConnectionProvider $dbProvider
-	 * @param LinkBatchFactory $linkBatchFactory
-	 */
 	public function __construct(
 		IConnectionProvider $dbProvider,
 		LinkBatchFactory $linkBatchFactory

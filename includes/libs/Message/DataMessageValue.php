@@ -66,7 +66,6 @@ class DataMessageValue extends MessageValue {
 
 	/**
 	 * Get the message code
-	 * @return string
 	 */
 	public function getCode(): string {
 		return $this->code;

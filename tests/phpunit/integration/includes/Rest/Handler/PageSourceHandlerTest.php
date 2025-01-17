@@ -138,10 +138,6 @@ class PageSourceHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->executeHandler( $handler, $request, $config );
 	}
 
-	/**
-	 * @param WikiPage $page
-	 * @param array $data
-	 */
 	private function assertResponseData( WikiPage $page, array $data ): void {
 		$this->assertSame( $page->getId(), $data['id'] );
 		$this->assertSame( $page->getTitle()->getPrefixedDBkey(), $data['key'] );
@@ -156,10 +152,6 @@ class PageSourceHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'some rights', $data['license']['title'] );
 	}
 
-	/**
-	 * @param WikiPage $page
-	 * @param array $data
-	 */
 	private function assertRestbaseCompatibleResponseData( WikiPage $page, array $data ): void {
 		$this->assertArrayHasKey( 'items', $data );
 		$this->assertSame( $page->getTitle()->getPrefixedDBkey(), $data['items'][0]['title'] );

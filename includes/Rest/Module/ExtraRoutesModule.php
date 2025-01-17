@@ -78,7 +78,6 @@ class ExtraRoutesModule extends MatcherBasedModule {
 	/** @var int[]|null */
 	private ?array $routeFileTimestamps = null;
 
-	/** @var string|null */
 	private ?string $configHash = null;
 
 	/**
@@ -114,8 +113,6 @@ class ExtraRoutesModule extends MatcherBasedModule {
 
 	/**
 	 * Get a config version hash for cache invalidation
-	 *
-	 * @return string
 	 */
 	protected function getConfigHash(): string {
 		if ( $this->configHash === null ) {

@@ -106,7 +106,6 @@ class PHPSessionHandler implements SessionHandlerInterface {
 
 	/**
 	 * Install a session handler for the current web request
-	 * @param SessionManager $manager
 	 */
 	public static function install( SessionManager $manager ) {
 		if ( self::$instance ) {

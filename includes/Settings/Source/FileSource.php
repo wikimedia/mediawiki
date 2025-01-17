@@ -94,8 +94,6 @@ class FileSource implements Stringable, CacheableSource, SettingsIncludeLocator 
 	 * Disallow stale results from file sources in the case of load failure as
 	 * failing to read from disk would be quite catastrophic and worthy of
 	 * propagation.
-	 *
-	 * @return bool
 	 */
 	public function allowsStaleLoad(): bool {
 		return false;
@@ -133,8 +131,6 @@ class FileSource implements Stringable, CacheableSource, SettingsIncludeLocator 
 
 	/**
 	 * The cache expiry TTL (in seconds) for this file source.
-	 *
-	 * @return int
 	 */
 	public function getExpiryTtl(): int {
 		return self::EXPIRY_TTL;
@@ -143,8 +139,6 @@ class FileSource implements Stringable, CacheableSource, SettingsIncludeLocator 
 	/**
 	 * Coefficient used in determining early expiration of cached settings to
 	 * avoid stampedes.
-	 *
-	 * @return float
 	 */
 	public function getExpiryWeight(): float {
 		return self::EXPIRY_WEIGHT;
@@ -153,8 +147,6 @@ class FileSource implements Stringable, CacheableSource, SettingsIncludeLocator 
 	/**
 	 * Returns a hash key computed from the file's inode, size, and last
 	 * modified timestamp.
-	 *
-	 * @return string
 	 */
 	public function getHashKey(): string {
 		$stat = stat( $this->path );
@@ -171,8 +163,6 @@ class FileSource implements Stringable, CacheableSource, SettingsIncludeLocator 
 
 	/**
 	 * Returns this file source as a string.
-	 *
-	 * @return string
 	 */
 	public function __toString(): string {
 		return $this->path;

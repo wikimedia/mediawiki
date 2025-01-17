@@ -1202,8 +1202,6 @@ class UserGroupManager {
 
 	/**
 	 * Cleans cached group memberships for a given user
-	 *
-	 * @param UserIdentity $user
 	 */
 	public function clearCache( UserIdentity $user ) {
 		$user->assertWiki( $this->wikiId );

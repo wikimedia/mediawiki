@@ -44,8 +44,6 @@ class ImportSites extends Maintenance {
 
 	/**
 	 * Outputs a message via the output() method.
-	 *
-	 * @param Exception $ex
 	 */
 	public function reportException( Exception $ex ) {
 		$msg = $ex->getMessage();

@@ -99,8 +99,6 @@ class FileBackendMultiWrite extends FileBackend {
 	 *   - replication    : Set to 'async' to defer file operations on the non-master backends.
 	 *                      This will apply such updates post-send for web requests. Note that
 	 *                      any checks from "syncChecks" are still synchronous.
-	 *
-	 * @param array $config
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );

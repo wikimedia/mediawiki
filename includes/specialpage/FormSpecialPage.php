@@ -97,7 +97,6 @@ abstract class FormSpecialPage extends SpecialPage {
 
 	/**
 	 * Play with the HTMLForm if you need to more substantially
-	 * @param HTMLForm $form
 	 */
 	protected function alterForm( HTMLForm $form ) {
 	}

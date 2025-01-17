@@ -529,8 +529,6 @@ class MergeHistory {
 
 	/**
 	 * Get the maximum timestamp that we can use (oldest timestamp of dest)
-	 *
-	 * @return MWTimestamp
 	 */
 	private function getMaxTimestamp(): MWTimestamp {
 		if ( $this->maxTimestamp === false ) {
@@ -542,8 +540,6 @@ class MergeHistory {
 	/**
 	 * Get the timestamp upto which history from the source will be merged,
 	 * or null if something went wrong
-	 *
-	 * @return ?MWTimestamp
 	 */
 	private function getTimestampLimit(): ?MWTimestamp {
 		if ( $this->timestampLimit === false ) {
@@ -555,8 +551,6 @@ class MergeHistory {
 	/**
 	 * Get the SQL WHERE condition that selects source revisions to insert into destination,
 	 * or null if something went wrong
-	 *
-	 * @return ?string
 	 */
 	private function getTimeWhere(): ?string {
 		if ( $this->timeWhere === false ) {

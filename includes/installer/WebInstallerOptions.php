@@ -103,7 +103,6 @@ class WebInstallerOptions extends WebInstallerPage {
 
 	/**
 	 * Wiki mode - user rights and copyright model.
-	 * @return void
 	 */
 	private function addModeOptions(): void {
 		$this->addHTML(
@@ -138,7 +137,6 @@ class WebInstallerOptions extends WebInstallerPage {
 
 	/**
 	 * User email options.
-	 * @return void
 	 */
 	private function addEmailOptions(): void {
 		$emailwrapperStyle = $this->getVar( 'wgEnableEmail' ) ? '' : 'display: none';
@@ -183,7 +181,6 @@ class WebInstallerOptions extends WebInstallerPage {
 
 	/**
 	 * Opt-in for bundled skins.
-	 * @return void
 	 */
 	private function addSkinOptions(): void {
 		$skins = $this->parent->findExtensions( 'skins' )->value;
@@ -230,7 +227,6 @@ class WebInstallerOptions extends WebInstallerPage {
 
 	/**
 	 * Opt-in for bundled extensions.
-	 * @return void
 	 */
 	private function addExtensionOptions(): void {
 		global $wgLang;
@@ -325,7 +321,6 @@ class WebInstallerOptions extends WebInstallerPage {
 
 	/**
 	 * Image and file upload options.
-	 * @return void
 	 */
 	private function addFileOptions(): void {
 		// Having / in paths in Windows looks funny :)
@@ -367,7 +362,6 @@ class WebInstallerOptions extends WebInstallerPage {
 
 	/**
 	 * System administration related options.
-	 * @return void
 	 */
 	private function addAdvancedOptions(): void {
 		$caches = [ 'none' ];

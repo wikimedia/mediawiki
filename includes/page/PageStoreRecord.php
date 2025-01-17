@@ -79,8 +79,6 @@ class PageStoreRecord extends PageIdentityValue implements ExistingPageRecord {
 
 	/**
 	 * False if the page has had more than one edit.
-	 *
-	 * @return bool
 	 */
 	public function isNew(): bool {
 		return (bool)$this->row->page_is_new;
@@ -88,8 +86,6 @@ class PageStoreRecord extends PageIdentityValue implements ExistingPageRecord {
 
 	/**
 	 * True if the page is a redirect.
-	 *
-	 * @return bool
 	 */
 	public function isRedirect(): bool {
 		return (bool)$this->row->page_is_redirect;
@@ -109,8 +105,6 @@ class PageStoreRecord extends PageIdentityValue implements ExistingPageRecord {
 
 	/**
 	 * Timestamp at which the page was last rerendered.
-	 *
-	 * @return string
 	 */
 	public function getTouched(): string {
 		return MWTimestamp::convert( TS_MW, $this->row->page_touched );
@@ -118,8 +112,6 @@ class PageStoreRecord extends PageIdentityValue implements ExistingPageRecord {
 
 	/**
 	 * Language in which the page is written.
-	 *
-	 * @return ?string
 	 */
 	public function getLanguage(): ?string {
 		return $this->getField( 'page_lang' );

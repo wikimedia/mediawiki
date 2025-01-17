@@ -28,7 +28,6 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class RevDelArchivedRevisionItem extends RevDelArchiveItem {
 
-	/** @var IConnectionProvider */
 	protected IConnectionProvider $dbProvider;
 
 	/**

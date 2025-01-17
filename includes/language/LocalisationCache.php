@@ -934,10 +934,6 @@ class LocalisationCache {
 		}
 	}
 
-	/**
-	 * @param array &$value
-	 * @param array $fallbackValue
-	 */
 	private function mergeMagicWords( array &$value, array $fallbackValue ): void {
 		foreach ( $fallbackValue as $magicName => $fallbackInfo ) {
 			if ( !isset( $value[$magicName] ) ) {

@@ -383,7 +383,6 @@ SPARQL;
 
 	/**
 	 * Need to force index, somehow on terbium the optimizer chooses wrong one
-	 * @param BatchRowIterator $it
 	 */
 	private function addIndex( BatchRowIterator $it ) {
 		$it->sqb->options( [

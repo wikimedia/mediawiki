@@ -85,16 +85,10 @@ class ContributionsSegment {
 		return $this->revisions;
 	}
 
-	/**
-	 * @return string|null
-	 */
 	public function getBefore(): ?string {
 		return $this->before;
 	}
 
-	/**
-	 * @return string|null
-	 */
 	public function getAfter(): ?string {
 		return $this->after;
 	}
@@ -112,8 +106,6 @@ class ContributionsSegment {
 	/**
 	 * The value of the 'newest' field of the flags passed to the constructor, or false
 	 * if that field was not set.
-	 *
-	 * @return bool
 	 */
 	public function isNewest(): bool {
 		return $this->flags['newest'] ?? false;
@@ -122,8 +114,6 @@ class ContributionsSegment {
 	/**
 	 * The value of the 'oldest' field of the flags passed to the constructor, or false
 	 * if that field was not set.
-	 *
-	 * @return bool
 	 */
 	public function isOldest(): bool {
 		return $this->flags['oldest'] ?? false;

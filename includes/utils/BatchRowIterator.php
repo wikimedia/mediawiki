@@ -198,9 +198,6 @@ class BatchRowIterator implements RecursiveIterator {
 		return $this->current && count( $this->current );
 	}
 
-	/**
-	 * @return null|RecursiveIterator
-	 */
 	public function getChildren(): ?RecursiveIterator {
 		return new NotRecursiveIterator( new ArrayIterator( $this->current ) );
 	}

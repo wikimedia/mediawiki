@@ -482,7 +482,6 @@ class OutputPage extends ContextSource {
 	 * Constructor for OutputPage. This should not be called directly.
 	 * Instead, a new RequestContext should be created, and it will implicitly create
 	 * an OutputPage tied to that context.
-	 * @param IContextSource $context
 	 */
 	public function __construct( IContextSource $context ) {
 		$this->deprecatePublicProperty( 'mCategoryLinks', '1.38', __CLASS__ );
@@ -553,7 +552,6 @@ class OutputPage extends ContextSource {
 	/**
 	 * Return a ParserOutput that can be used to set metadata properties
 	 * for the current page.
-	 * @return ParserOutput
 	 */
 	public function getMetadata(): ParserOutput {
 		// We can deprecate the redundant
@@ -1056,8 +1054,6 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get the robots policy content attribute for the page
 	 * as a string in the form <index policy>,<follow policy>,<options>.
-	 *
-	 * @return string
 	 */
 	private function getRobotsContent(): string {
 		$robotOptionString = $this->formatRobotsOptions();
@@ -1162,8 +1158,6 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * Set $mRedirectedFrom, the page which redirected us to the current page.
-	 *
-	 * @param PageReference $t
 	 */
 	public function setRedirectedFrom( PageReference $t ) {
 		$this->mRedirectedFrom = $t;
@@ -1301,8 +1295,6 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * Set the Title object to use
-	 *
-	 * @param PageReference $t
 	 */
 	public function setTitle( PageReference $t ) {
 		$t = Title::newFromPageReference( $t );
@@ -2064,8 +2056,6 @@ class OutputPage extends ContextSource {
 	/**
 	 * Set whether the revision displayed (as set in ::setRevisionId())
 	 * is the latest revision of the page.
-	 *
-	 * @param bool $isCurrent
 	 */
 	public function setRevisionIsCurrent( bool $isCurrent ): void {
 		$this->mRevisionIsCurrent = $isCurrent;

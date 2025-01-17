@@ -667,8 +667,6 @@ class LocalRepo extends FileRepo {
 	/**
 	 * Get a BlobStore for storing and retrieving large metadata, or null if
 	 * that can't be done.
-	 *
-	 * @return ?BlobStore
 	 */
 	public function getBlobStore(): ?BlobStore {
 		if ( !$this->blobStore ) {

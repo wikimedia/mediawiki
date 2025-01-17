@@ -3362,8 +3362,6 @@ class Language implements Bcp47Code {
 	 * For example, Polish has minimumGroupingDigits = 2, which with a grouping
 	 * size of 3 causes 4-digit numbers to be written like 9999, but 5-digit
 	 * numbers are written like "10 000".
-	 *
-	 * @return int
 	 */
 	public function minimumGroupingDigits(): int {
 		return $this->localisationCache->getItem( $this->mCode, 'minimumGroupingDigits' ) ?? 1;
@@ -4143,8 +4141,6 @@ class Language implements Bcp47Code {
 	 *
 	 * NOTE: The return value of this function is NOT HTML-safe and must be escaped with
 	 * htmlspecialchars() or similar
-	 *
-	 * @return string
 	 */
 	public function getCode(): string {
 		return $this->mCode;

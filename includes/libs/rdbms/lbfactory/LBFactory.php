@@ -123,10 +123,6 @@ abstract class LBFactory implements ILBFactory {
 		}
 	}
 
-	/**
-	 * @param array $conf
-	 * @return void
-	 */
 	protected function configure( array $conf ): void {
 		$this->localDomain = isset( $conf['localDomain'] )
 			? DatabaseDomain::newFromId( $conf['localDomain'] )

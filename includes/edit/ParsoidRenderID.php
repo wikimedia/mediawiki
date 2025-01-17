@@ -91,8 +91,6 @@ class ParsoidRenderID implements Stringable {
 	/**
 	 * This returns the canonical string representation from
 	 * the parsoid render ID which can be used to in newFromString().
-	 *
-	 * @return string
 	 */
 	public function getKey(): string {
 		return $this->stashKey;
@@ -104,8 +102,6 @@ class ParsoidRenderID implements Stringable {
 
 	/**
 	 * Get the revision ID from the parsoid render ID object.
-	 *
-	 * @return int
 	 */
 	public function getRevisionID(): int {
 		return $this->revisionID;
@@ -113,8 +109,6 @@ class ParsoidRenderID implements Stringable {
 
 	/**
 	 * Get the unique identifier from the parsoid render ID object.
-	 *
-	 * @return string
 	 */
 	public function getUniqueID(): string {
 		return $this->uniqueID;

@@ -55,8 +55,6 @@ class StubObjectTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Static factory method for creating the underlying global, which is
 	 * a DemoStubbed with the starting value of 5
-	 *
-	 * @return DemoStubbed
 	 */
 	public static function factory(): DemoStubbed {
 		return new DemoStubbed( 5 );

@@ -66,14 +66,11 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 */
 	private $isCallerOverridden = false;
 
-	/** @var IReadableDatabase */
 	protected IReadableDatabase $db;
 
 	/**
 	 * Only for use in subclasses. To create a SelectQueryBuilder instance,
 	 * use `$db->newSelectQueryBuilder()` instead.
-	 *
-	 * @param IReadableDatabase $db
 	 */
 	public function __construct( IReadableDatabase $db ) {
 		$this->db = $db;
@@ -822,8 +819,6 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * COUNT() expression, for example:
 	 *
 	 *   $queryBuilder->select( 'COUNT(*)' )->from( 'page' )->fetchField()
-	 *
-	 * @return int
 	 */
 	public function fetchRowCount(): int {
 		return $this->db->selectRowCount( $this->tables, $this->getRowCountVar(), $this->conds,
@@ -837,8 +832,6 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * by a SELECT query, using EXPLAIN SELECT. The estimate is provided using
 	 * index cardinality statistics, and is notoriously inaccurate, especially
 	 * when large numbers of rows have recently been added or deleted.
-	 *
-	 * @return int
 	 */
 	public function estimateRowCount(): int {
 		return $this->db->estimateRowCount( $this->tables, $this->getRowCountVar(), $this->conds,

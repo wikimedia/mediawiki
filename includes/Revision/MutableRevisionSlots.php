@@ -73,8 +73,6 @@ class MutableRevisionSlots extends RevisionSlots {
 	/**
 	 * Sets the given slot.
 	 * If a slot with the same role is already present, it is replaced.
-	 *
-	 * @param SlotRecord $slot
 	 */
 	public function setSlot( SlotRecord $slot ) {
 		if ( !is_array( $this->slots ) ) {
@@ -89,8 +87,6 @@ class MutableRevisionSlots extends RevisionSlots {
 	/**
 	 * Sets the given slot to an inherited version of $slot.
 	 * If a slot with the same role is already present, it is replaced.
-	 *
-	 * @param SlotRecord $slot
 	 */
 	public function inheritSlot( SlotRecord $slot ) {
 		$this->setSlot( SlotRecord::newInherited( $slot ) );

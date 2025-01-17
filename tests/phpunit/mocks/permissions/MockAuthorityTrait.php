@@ -32,8 +32,6 @@ trait MockAuthorityTrait {
 
 	/**
 	 * Create mock ultimate Authority for anon user.
-	 *
-	 * @return Authority
 	 */
 	private function mockAnonUltimateAuthority(): Authority {
 		return new UltimateAuthority( new UserIdentityValue( 0, '127.0.0.1' ) );
@@ -41,8 +39,6 @@ trait MockAuthorityTrait {
 
 	/**
 	 * Create mock ultimate Authority for a temp user.
-	 *
-	 * @return Authority
 	 */
 	private function mockTempUltimateAuthority(): Authority {
 		return new UltimateAuthority( new UserIdentityValue( 42, '~2024-1' ), true );
@@ -50,8 +46,6 @@ trait MockAuthorityTrait {
 
 	/**
 	 * Create mock ultimate Authority for registered user.
-	 *
-	 * @return Authority
 	 */
 	private function mockRegisteredUltimateAuthority(): Authority {
 		return new UltimateAuthority( new UserIdentityValue( 9999, 'Petr' ) );
@@ -59,8 +53,6 @@ trait MockAuthorityTrait {
 
 	/**
 	 * Create mock Authority for anon user with no permissions.
-	 *
-	 * @return Authority
 	 */
 	private function mockAnonNullAuthority(): Authority {
 		return new SimpleAuthority( new UserIdentityValue( 0, '127.0.0.1' ), [] );
@@ -68,8 +60,6 @@ trait MockAuthorityTrait {
 
 	/**
 	 * Create mock Authority for a temp user with no permissions.
-	 *
-	 * @return Authority
 	 */
 	private function mockTempNullAuthority(): Authority {
 		return new SimpleAuthority( new UserIdentityValue( 42, '~2024-1' ), [], true );
@@ -77,8 +67,6 @@ trait MockAuthorityTrait {
 
 	/**
 	 * Create mock Authority for a registered user with no permissions.
-	 *
-	 * @return Authority
 	 */
 	private function mockRegisteredNullAuthority(): Authority {
 		return new SimpleAuthority( new UserIdentityValue( 9999, 'Petr' ), [] );

@@ -186,8 +186,6 @@ abstract class DumpIterator extends Maintenance {
 
 	/**
 	 * Core function which does whatever the maintenance script is designed to do
-	 *
-	 * @param WikiRevision $rev
 	 */
 	abstract public function processRevision( WikiRevision $rev );
 }

@@ -8,18 +8,10 @@ use Wikimedia\Tests\SerializationTestTrait;
 trait MessageSerializationTestTrait {
 	use SerializationTestTrait;
 
-	/**
-	 * Overrides SerializationTestTrait::getSerializedDataPath
-	 * @return string
-	 */
 	public static function getSerializedDataPath(): string {
 		return __DIR__ . '/../../../../data/MessageValue';
 	}
 
-	/**
-	 * Overrides SerializationTestTrait::getTestInstancesAndAssertions
-	 * @return array
-	 */
 	public static function getTestInstancesAndAssertions(): array {
 		$className = self::getClassToTest();
 		return array_map( static function ( $test ) use ( $className ) {
@@ -34,10 +26,6 @@ trait MessageSerializationTestTrait {
 		}, self::provideConstruct() );
 	}
 
-	/**
-	 * Overrides SerializationTestTrait::getSupportedSerializationFormats
-	 * @return array
-	 */
 	public static function getSupportedSerializationFormats(): array {
 		$jsonCodec = new JsonCodec();
 		return [ [

@@ -129,7 +129,6 @@ class SpecialResetTokens extends FormSpecialPage {
 	/**
 	 * Suppress the submit button if there's nothing to do;
 	 * provide additional message on it otherwise.
-	 * @param HTMLForm $form
 	 */
 	protected function alterForm( HTMLForm $form ) {
 		$form->setSubmitDestructive();

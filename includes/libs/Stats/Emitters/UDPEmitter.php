@@ -38,19 +38,10 @@ use Wikimedia\Stats\StatsUtils;
  */
 class UDPEmitter implements EmitterInterface {
 
-	/** @var string */
 	private string $prefix;
-
-	/** @var StatsCache */
 	private StatsCache $cache;
-
-	/** @var FormatterInterface */
 	private FormatterInterface $formatter;
-
-	/** @var UDPTransport|null */
 	private ?UDPTransport $transport;
-
-	/** @var int */
 	private int $payloadSize;
 
 	public function __construct( string $prefix, StatsCache $cache, FormatterInterface $formatter, ?string $target ) {
@@ -92,8 +83,6 @@ class UDPEmitter implements EmitterInterface {
 
 	/**
 	 * Renders metrics and samples through the formatter and returns a string[] of wire-formatted metric samples.
-	 *
-	 * @return array
 	 */
 	private function render(): array {
 		$output = [];

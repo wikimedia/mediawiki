@@ -42,10 +42,6 @@ class PageProps {
 	private IConnectionProvider $dbProvider;
 	private MapCacheLRU $cache;
 
-	/**
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param IConnectionProvider $dbProvider
-	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		IConnectionProvider $dbProvider

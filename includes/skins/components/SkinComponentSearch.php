@@ -59,10 +59,6 @@ class SkinComponentSearch implements SkinComponent {
 		return $this->localizer;
 	}
 
-	/**
-	 * @param string $key
-	 * @return Message
-	 */
 	private function msg( string $key ): Message {
 		return $this->localizer->msg( $key );
 	}

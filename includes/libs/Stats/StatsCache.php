@@ -82,8 +82,6 @@ class StatsCache {
 
 	/**
 	 * Clears the cache.
-	 *
-	 * @return void
 	 */
 	public function clear(): void {
 		$this->cache = [];

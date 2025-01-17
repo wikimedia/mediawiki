@@ -115,8 +115,6 @@ class EnhancedChangesList extends ChangesList {
 	/**
 	 * Put accumulated information into the cache, for later display.
 	 * Page moves go on their own line.
-	 *
-	 * @param RCCacheEntry $cacheEntry
 	 */
 	protected function addCacheEntry( RCCacheEntry $cacheEntry ) {
 		$cacheGroupingKey = $this->makeCacheGroupingKey( $cacheEntry );

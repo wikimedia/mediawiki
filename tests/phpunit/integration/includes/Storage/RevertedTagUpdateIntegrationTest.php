@@ -344,8 +344,6 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Ensures that the reverted tag is not set for given revisions.
-	 *
-	 * @param array $revisionIds
 	 */
 	private function verifyNoRevertedTags( array $revisionIds ) {
 		$dbw = $this->getDb();

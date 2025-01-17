@@ -51,11 +51,7 @@ class MaintenanceRunner {
 
 	/** @var bool */
 	private $runFromWrapper = false;
-
-	/** @var bool */
 	private bool $withoutLocalSettings = false;
-
-	/** @var ?Config */
 	private ?Config $config = null;
 
 	/**
@@ -439,8 +435,6 @@ class MaintenanceRunner {
 
 	/**
 	 * MW_FINAL_SETUP_CALLBACK handler, for setting up the Maintenance object.
-	 *
-	 * @param SettingsBuilder $settings
 	 */
 	public function setup( SettingsBuilder $settings ) {
 		// NOTE: this has to happen after the autoloader has been initialized.
@@ -494,8 +488,6 @@ class MaintenanceRunner {
 
 	/**
 	 * Returns the maintenance script name to show in the help message.
-	 *
-	 * @return string
 	 */
 	public function getName(): string {
 		// Once one of the init methods was called, getArg( 0 ) should always

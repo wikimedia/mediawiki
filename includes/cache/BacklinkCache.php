@@ -474,8 +474,6 @@ class BacklinkCache {
 	 * Modify an array of batches, setting the start of the first batch to
 	 * false, and the end of the last batch to false, so that the complete
 	 * set of batches covers the entire ID range from 0 to infinity.
-	 *
-	 * @param array &$batches
 	 */
 	private function openBatchEnds( array &$batches ) {
 		if ( !count( $batches ) ) {

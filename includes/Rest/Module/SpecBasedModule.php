@@ -73,8 +73,6 @@ class SpecBasedModule extends MatcherBasedModule {
 
 	/**
 	 * Get a config version hash for cache invalidation
-	 *
-	 * @return string
 	 */
 	protected function getConfigHash(): string {
 		if ( $this->configHash === null ) {
@@ -89,8 +87,6 @@ class SpecBasedModule extends MatcherBasedModule {
 
 	/**
 	 * Load the module definition file.
-	 *
-	 * @return array
 	 */
 	private function getModuleDefinition(): array {
 		if ( $this->moduleDef !== null ) {

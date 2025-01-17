@@ -117,8 +117,6 @@ class CategoryMembershipChange {
 
 	/**
 	 * Create a recentchanges entry for category additions
-	 *
-	 * @param PageIdentity $categoryPage
 	 */
 	public function triggerCategoryAddedNotification( PageIdentity $categoryPage ) {
 		$this->createRecentChangesEntry( $categoryPage, self::CATEGORY_ADDITION );
@@ -126,8 +124,6 @@ class CategoryMembershipChange {
 
 	/**
 	 * Create a recentchanges entry for category removals
-	 *
-	 * @param PageIdentity $categoryPage
 	 */
 	public function triggerCategoryRemovedNotification( PageIdentity $categoryPage ) {
 		$this->createRecentChangesEntry( $categoryPage, self::CATEGORY_REMOVAL );

@@ -15,10 +15,6 @@ class LocalSettingsLoader {
 
 	private string $baseDir;
 
-	/**
-	 * @param SettingsBuilder $settingsBuilder
-	 * @param string $baseDir
-	 */
 	public function __construct( SettingsBuilder $settingsBuilder, string $baseDir ) {
 		$this->settingsBuilder = $settingsBuilder;
 		$this->baseDir = $baseDir;

@@ -25,7 +25,6 @@ class DiscoveryHandler extends Handler {
 		MainConfigNames::Server,
 	];
 
-	/** @var ServiceOptions */
 	private ServiceOptions $options;
 
 	public function __construct( Config $config ) {

@@ -175,7 +175,6 @@ trait LanguageNameUtilsTestTrait {
 
 	/**
 	 * Clear hook for the current test.
-	 * @param string $hookName
 	 */
 	abstract protected function clearLanguageHook( string $hookName ): void;
 

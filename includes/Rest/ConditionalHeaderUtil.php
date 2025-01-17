@@ -125,8 +125,6 @@ class ConditionalHeaderUtil {
 	 *
 	 * If the headers are already present in the response, the existing headers
 	 * take precedence.
-	 *
-	 * @param ResponseInterface $response
 	 */
 	public function applyResponseHeaders( ResponseInterface $response ) {
 		if ( $this->lastModified !== null && !$response->hasHeader( 'Last-Modified' ) ) {

@@ -260,8 +260,6 @@ abstract class ApiOptionsBase extends ApiBase {
 	/**
 	 * Load the user from the primary to reduce CAS errors on double post (T95839)
 	 * Will throw if the user is anonymous.
-	 *
-	 * @return User
 	 */
 	protected function getUserForUpdates(): User {
 		// @phan-suppress-next-line PhanTypeMismatchReturnNullable

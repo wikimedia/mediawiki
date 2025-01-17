@@ -19,7 +19,6 @@ class TaskList implements \IteratorAggregate {
 
 	/**
 	 * Add a task to the list
-	 * @param Task $task
 	 */
 	public function add( Task $task ) {
 		$this->unsortedTasks[] = $task;

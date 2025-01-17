@@ -582,8 +582,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * Returns the class (or classes) to be used with the wrapper div for this output.
 	 * If there is no wrapper class given, no wrapper div should be added.
 	 * The wrapper div is added automatically by getText().
-	 *
-	 * @return string
 	 */
 	public function getWrapperDivClass(): string {
 		return implode( ' ', array_keys( $this->mWrapperDivClasses ) );
@@ -2475,7 +2473,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * Transfer parser options which affect post-processing from ParserOptions
 	 * to this ParserOutput.
-	 * @param ParserOptions $parserOptions
 	 */
 	public function setFromParserOptions( ParserOptions $parserOptions ) {
 		// Copied from Parser.php::parse and should probably be abstracted
@@ -2522,8 +2519,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * Merges internal metadata such as flags, accessed options, and profiling info
 	 * from $source into this ParserOutput. This should be used whenever the state of $source
 	 * has any impact on the state of this ParserOutput.
-	 *
-	 * @param ParserOutput $source
 	 */
 	public function mergeInternalMetaDataFrom( ParserOutput $source ): void {
 		$this->mWarnings = self::mergeMap( $this->mWarnings, $source->mWarnings ); // don't use getter
@@ -2596,8 +2591,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * Merges HTML metadata such as head items, JS config vars, and HTTP cache control info
 	 * from $source into this ParserOutput. This should be used whenever the HTML in $source
 	 * has been somehow merged into the HTML of this ParserOutput.
-	 *
-	 * @param ParserOutput $source
 	 */
 	public function mergeHtmlMetaDataFrom( ParserOutput $source ): void {
 		// HTML and HTTP
@@ -2674,8 +2667,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * Merges dependency tracking metadata such as backlinks, images used, and extension data
 	 * from $source into this ParserOutput. This allows dependency tracking to be done for the
 	 * combined output of multiple content slots.
-	 *
-	 * @param ParserOutput $source
 	 */
 	public function mergeTrackingMetaDataFrom( ParserOutput $source ): void {
 		foreach (

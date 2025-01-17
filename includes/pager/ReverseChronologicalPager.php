@@ -47,10 +47,6 @@ abstract class ReverseChronologicalPager extends IndexPager {
 	/** @var string */
 	protected $endOffset;
 
-	/**
-	 * @param string $date
-	 * @return string
-	 */
 	protected function getHeaderRow( string $date ): string {
 		$headingClass = $this->isFirstHeaderRow() ?
 			// We use mw-index-pager- prefix here on the anticipation that this method will

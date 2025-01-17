@@ -299,8 +299,6 @@ class StartUpModule extends Module {
 
 	/**
 	 * Base modules implicitly available to all modules.
-	 *
-	 * @return array
 	 */
 	private function getBaseModules(): array {
 		return [ 'jquery', 'mediawiki.base' ];

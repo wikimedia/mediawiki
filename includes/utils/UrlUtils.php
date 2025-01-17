@@ -212,7 +212,6 @@ class UrlUtils {
 	/**
 	 * Get the canonical server, i.e. the canonical protocol and host part of
 	 * the wiki's URL.
-	 * @return string
 	 */
 	public function getCanonicalServer(): string {
 		// @phan-suppress-next-line PhanTypeMismatchReturnNullable -- throw if unconfigured

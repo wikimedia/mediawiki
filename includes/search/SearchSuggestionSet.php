@@ -104,8 +104,6 @@ class SearchSuggestionSet {
 	 * Add a new suggestion at the end.
 	 * If the score of the new suggestion is greater than the worst one,
 	 * the new suggestion score will be updated (worst - 1).
-	 *
-	 * @param SearchSuggestion $suggestion
 	 */
 	public function append( SearchSuggestion $suggestion ) {
 		$pageID = $suggestion->getSuggestedTitleID();
@@ -123,7 +121,6 @@ class SearchSuggestionSet {
 
 	/**
 	 * Add suggestion set to the end of the current one.
-	 * @param SearchSuggestionSet $set
 	 */
 	public function appendAll( SearchSuggestionSet $set ) {
 		foreach ( $set->getSuggestions() as $sugg ) {
@@ -144,7 +141,6 @@ class SearchSuggestionSet {
 	/**
 	 * Add a new suggestion at the top. If the new suggestion score
 	 * is lower than the best one its score will be updated (best + 1)
-	 * @param SearchSuggestion $suggestion
 	 */
 	public function prepend( SearchSuggestion $suggestion ) {
 		$pageID = $suggestion->getSuggestedTitleID();

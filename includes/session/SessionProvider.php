@@ -224,11 +224,6 @@ abstract class SessionProvider implements Stringable, SessionProviderInterface {
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
-	/**
-	 * Get the HookContainer
-	 *
-	 * @return HookContainer
-	 */
 	protected function getHookContainer(): HookContainer {
 		return $this->hookContainer;
 	}

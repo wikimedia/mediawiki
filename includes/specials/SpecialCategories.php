@@ -36,10 +36,6 @@ class SpecialCategories extends SpecialPage {
 	private LinkBatchFactory $linkBatchFactory;
 	private IConnectionProvider $dbProvider;
 
-	/**
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param IConnectionProvider $dbProvider
-	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		IConnectionProvider $dbProvider

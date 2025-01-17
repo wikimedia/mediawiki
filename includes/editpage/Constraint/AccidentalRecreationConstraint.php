@@ -34,10 +34,6 @@ class AccidentalRecreationConstraint implements IEditConstraint {
 	private bool $deletedSinceLastEdit;
 	private bool $allowRecreation;
 
-	/**
-	 * @param bool $deletedSinceLastEdit
-	 * @param bool $allowRecreation
-	 */
 	public function __construct(
 		bool $deletedSinceLastEdit,
 		bool $allowRecreation

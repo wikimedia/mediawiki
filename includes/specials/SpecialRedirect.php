@@ -64,10 +64,6 @@ class SpecialRedirect extends FormSpecialPage {
 	private RepoGroup $repoGroup;
 	private UserFactory $userFactory;
 
-	/**
-	 * @param RepoGroup $repoGroup
-	 * @param UserFactory $userFactory
-	 */
 	public function __construct(
 		RepoGroup $repoGroup,
 		UserFactory $userFactory

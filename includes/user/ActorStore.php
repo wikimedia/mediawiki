@@ -677,8 +677,6 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	/**
 	 * Throws an exception if the given database connection does not belong to the wiki this
 	 * ActorStore is bound to.
-	 *
-	 * @param IReadableDatabase $db
 	 */
 	private function checkDatabaseDomain( IReadableDatabase $db ) {
 		$dbDomain = $db->getDomainID();
@@ -693,8 +691,6 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	/**
 	 * In case all reasonable attempts of initializing a proper actor from the
 	 * database have failed, entities can be attributed to special 'Unknown user' actor.
-	 *
-	 * @return UserIdentity
 	 */
 	public function getUnknownActor(): UserIdentity {
 		$actor = $this->getUserIdentityByName( self::UNKNOWN_USER_NAME );
@@ -748,8 +744,6 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	/**
 	 * Emits a deprecation warning if $user does not belong to the
 	 * same wiki this store belongs to.
-	 *
-	 * @param UserIdentity $user
 	 */
 	private function deprecateInvalidCrossWikiParam( UserIdentity $user ) {
 		if ( $user->getWikiId() !== $this->wikiId ) {

@@ -32,18 +32,11 @@ class SkinComponentLogo implements SkinComponent {
 	/** @var string|null */
 	private $language;
 
-	/**
-	 * @param Config $config
-	 * @param Language $language
-	 */
 	public function __construct( Config $config, Language $language ) {
 		$this->config = $config;
 		$this->language = $language->getCode();
 	}
 
-	/**
-	 * @return string|null
-	 */
 	private function getLanguage(): ?string {
 		return $this->language;
 	}

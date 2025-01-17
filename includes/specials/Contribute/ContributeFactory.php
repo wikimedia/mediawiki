@@ -33,10 +33,6 @@ class ContributeFactory {
 	private MessageLocalizer $localizer;
 	private HookRunner $hookRunner;
 
-	/**
-	 * @param MessageLocalizer $localizer
-	 * @param HookRunner $hookRunner
-	 */
 	public function __construct( MessageLocalizer $localizer, HookRunner $hookRunner ) {
 		$this->localizer = $localizer;
 		$this->hookRunner = $hookRunner;

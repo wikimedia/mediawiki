@@ -11,9 +11,7 @@ use Wikimedia\JsonCodec\JsonCodecInterface;
  */
 class ManagedObject implements JsonCodecable {
 
-	/** @var string */
 	public string $name;
-	/** @var int */
 	public int $data;
 
 	/**

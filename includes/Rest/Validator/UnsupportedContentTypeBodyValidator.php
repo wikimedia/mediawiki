@@ -20,7 +20,6 @@ use Wikimedia\Message\MessageValue;
  */
 class UnsupportedContentTypeBodyValidator implements BodyValidator {
 
-	/** @var string */
 	private string $contentType;
 
 	public function __construct( string $contentType ) {

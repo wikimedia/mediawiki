@@ -71,10 +71,6 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @param PageIdentity $expected
-	 * @param PageIdentity $actual
-	 */
 	private function assertSamePage( PageIdentity $expected, PageIdentity $actual ) {
 		// NOTE: Leave it to the caller to compare the wiki IDs. $expected may be local
 		//       even if $actual belongs to a (pretend) sister site.

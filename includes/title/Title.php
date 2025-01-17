@@ -210,7 +210,6 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 
 	/**
 	 * Shorthand for getting a Language Converter for page's language
-	 * @return ILanguageConverter
 	 */
 	private function getPageLanguageConverter(): ILanguageConverter {
 		return $this->getLanguageConverter( $this->getPageLanguage() );
@@ -218,7 +217,6 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 
 	/**
 	 * Shorthand for getting a database connection provider
-	 * @return IConnectionProvider
 	 */
 	private function getDbProvider(): IConnectionProvider {
 		return MediaWikiServices::getInstance()->getConnectionProvider();

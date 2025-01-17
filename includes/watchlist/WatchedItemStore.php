@@ -355,10 +355,6 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 		return true;
 	}
 
-	/**
-	 * @param UserIdentity $user
-	 * @return bool
-	 */
 	public function mustClearWatchedItemsUsingJobQueue( UserIdentity $user ): bool {
 		return $this->countWatchedItems( $user ) > $this->updateRowsPerQuery;
 	}
@@ -1504,10 +1500,6 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 		return $cache;
 	}
 
-	/**
-	 * @param UserIdentity $user
-	 * @return string
-	 */
 	private function getPageSeenTimestampsKey( UserIdentity $user ): string {
 		return $this->stash->makeGlobalKey(
 			'watchlist-recent-updates',

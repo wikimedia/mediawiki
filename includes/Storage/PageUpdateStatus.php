@@ -62,8 +62,6 @@ class PageUpdateStatus extends Status {
 	 * or because the content didn't change (null edit or derived slot update).
 	 *
 	 * Call isOK() to distinguish these cases.
-	 *
-	 * @return ?RevisionRecord
 	 */
 	public function getNewRevision(): ?RevisionRecord {
 		if ( !$this->isOK() ) {
@@ -78,8 +76,6 @@ class PageUpdateStatus extends Status {
 	 * If this returns false even though isOK() returns true, this means that
 	 * no new revision was created because the content didn't change,
 	 * including updates to derived slots.
-	 *
-	 * @return bool
 	 */
 	public function wasRevisionCreated(): bool {
 		return $this->getNewRevision() !== null;
@@ -87,7 +83,6 @@ class PageUpdateStatus extends Status {
 
 	/**
 	 * Whether the update created the page.
-	 * @return bool
 	 */
 	public function wasPageCreated(): bool {
 		return $this->wasRevisionCreated()
@@ -96,7 +91,6 @@ class PageUpdateStatus extends Status {
 
 	/**
 	 * Whether the update failed because page creation was required, but the page already exists.
-	 * @return bool
 	 */
 	public function failedBecausePageExists(): bool {
 		return !$this->isOK() && $this->hasMessage( 'edit-already-exists' );
@@ -104,7 +98,6 @@ class PageUpdateStatus extends Status {
 
 	/**
 	 * Whether the update failed because page modification was required, but the page does not exist.
-	 * @return bool
 	 */
 	public function failedBecausePageMissing(): bool {
 		return !$this->isOK() && $this->hasMessage( 'edit-gone-missing' );
@@ -112,7 +105,6 @@ class PageUpdateStatus extends Status {
 
 	/**
 	 * Whether the update failed because a conflicting update happened concurrently.
-	 * @return bool
 	 */
 	public function failedBecauseOfConflict(): bool {
 		return !$this->isOK() && $this->hasMessage( 'edit-conflict' );

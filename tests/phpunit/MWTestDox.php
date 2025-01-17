@@ -9,10 +9,6 @@ use PHPUnit\Util\TestDox\CliTestDoxPrinter;
  */
 class MWTestDox extends CliTestDoxPrinter {
 
-	/**
-	 * @param TestFailure $defect
-	 * @return void
-	 */
 	protected function printDefectTrace( TestFailure $defect ): void {
 		parent::printDefectTrace( $defect );
 		$test = $defect->getTestName();

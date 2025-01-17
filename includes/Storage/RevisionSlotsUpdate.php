@@ -162,8 +162,6 @@ class RevisionSlotsUpdate {
 	 *
 	 * The roles used with modifySlot() will be returned from getModifiedRoles(),
 	 * unless overwritten with removeSlot().
-	 *
-	 * @param SlotRecord $slot
 	 */
 	public function modifySlot( SlotRecord $slot ) {
 		$role = $slot->getRole();
@@ -286,8 +284,6 @@ class RevisionSlotsUpdate {
 	/**
 	 * Applies this update to the given MutableRevisionSlots, setting all modified slots,
 	 * and removing all removed roles.
-	 *
-	 * @param MutableRevisionSlots $slots
 	 */
 	public function apply( MutableRevisionSlots $slots ) {
 		foreach ( $this->getModifiedRoles() as $role ) {

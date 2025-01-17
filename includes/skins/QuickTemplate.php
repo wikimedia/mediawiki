@@ -120,8 +120,6 @@ abstract class QuickTemplate {
 
 	/**
 	 * Checks if the template key is deprecated
-	 *
-	 * @param string $name
 	 */
 	private function checkDeprecationStatus( string $name ) {
 		$deprecated = $this->deprecated[ $name ] ?? false;

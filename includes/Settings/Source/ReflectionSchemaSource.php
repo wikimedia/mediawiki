@@ -158,8 +158,6 @@ class ReflectionSchemaSource implements Stringable, SettingsSource {
 
 	/**
 	 * Returns this file source as a string.
-	 *
-	 * @return string
 	 */
 	public function __toString(): string {
 		return 'class ' . $this->class;

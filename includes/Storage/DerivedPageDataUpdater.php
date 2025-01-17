@@ -326,7 +326,6 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	/** @var bool */
 	private $warmParsoidParserCache;
 
-	/** @var ChangeTagsStore */
 	private ChangeTagsStore $changeTagsStore;
 
 	/**

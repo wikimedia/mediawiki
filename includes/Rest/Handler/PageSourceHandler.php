@@ -46,10 +46,6 @@ class PageSourceHandler extends SimpleHandler {
 		$this->contentHelper->init( $this->getAuthority(), $this->getValidatedParams() );
 	}
 
-	/**
-	 * @param PageReference $page
-	 * @return string
-	 */
 	private function constructHtmlUrl( PageReference $page ): string {
 		// TODO: once legacy "v1" routes are removed, just use the path prefix from the module.
 		$pathPrefix = $this->getModule()->getPathPrefix();
@@ -138,9 +134,6 @@ class PageSourceHandler extends SimpleHandler {
 		return $this->contentHelper->getETag();
 	}
 
-	/**
-	 * @return string|null
-	 */
 	protected function getLastModified(): ?string {
 		return $this->contentHelper->getLastModified();
 	}

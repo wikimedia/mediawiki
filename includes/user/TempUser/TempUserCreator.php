@@ -252,10 +252,6 @@ class TempUserCreator implements TempUserConfig {
 		return null;
 	}
 
-	/**
-	 * Get the serial provider
-	 * @return SerialProvider
-	 */
 	private function getSerialProvider(): SerialProvider {
 		if ( !isset( $this->serialProvider ) ) {
 			$this->serialProvider = $this->createSerialProvider();
@@ -263,10 +259,6 @@ class TempUserCreator implements TempUserConfig {
 		return $this->serialProvider;
 	}
 
-	/**
-	 * Create the serial provider
-	 * @return SerialProvider
-	 */
 	private function createSerialProvider(): SerialProvider {
 		$type = $this->serialProviderConfig['type'];
 		if ( isset( self::SERIAL_PROVIDERS[$type] ) ) {
@@ -292,10 +284,6 @@ class TempUserCreator implements TempUserConfig {
 		);
 	}
 
-	/**
-	 * Get the serial mapping
-	 * @return SerialMapping
-	 */
 	private function getSerialMapping(): SerialMapping {
 		if ( !isset( $this->serialMapping ) ) {
 			$this->serialMapping = $this->createSerialMapping();
@@ -303,10 +291,6 @@ class TempUserCreator implements TempUserConfig {
 		return $this->serialMapping;
 	}
 
-	/**
-	 * Create the serial map
-	 * @return SerialMapping
-	 */
 	private function createSerialMapping(): SerialMapping {
 		$type = $this->serialMappingConfig['type'];
 		if ( isset( self::SERIAL_MAPPINGS[$type] ) ) {

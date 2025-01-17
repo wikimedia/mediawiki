@@ -38,8 +38,6 @@ class DeleteQueryBuilder {
 	/**
 	 * Only for use in subclasses and Database::newDeleteQueryBuilder.
 	 * To create a DeleteQueryBuilder instance, use `$db->newDeleteQueryBuilder()` instead.
-	 *
-	 * @param IDatabase $db
 	 */
 	public function __construct( IDatabase $db ) {
 		$this->db = $db;

@@ -775,10 +775,6 @@ class ApiMain extends ApiBase {
 		$this->mContinuationManager = $manager;
 	}
 
-	/**
-	 * Get the parameter validator
-	 * @return ApiParamValidator
-	 */
 	public function getParamValidator(): ApiParamValidator {
 		return $this->mParamValidator;
 	}
@@ -1988,7 +1984,6 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Set database connection, query, and write expectations given this module request
-	 * @param ApiBase $module
 	 */
 	protected function setRequestExpectations( ApiBase $module ) {
 		$request = $this->getRequest();

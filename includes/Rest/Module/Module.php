@@ -396,10 +396,6 @@ abstract class Module {
 		return $response;
 	}
 
-	/**
-	 * @param CorsUtils $cors
-	 * @return self
-	 */
 	public function setCors( CorsUtils $cors ): self {
 		$this->cors = $cors;
 

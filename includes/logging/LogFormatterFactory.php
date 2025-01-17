@@ -42,10 +42,6 @@ class LogFormatterFactory {
 		$this->userEditTracker = $userEditTracker;
 	}
 
-	/**
-	 * @param LogEntry $entry
-	 * @return LogFormatter
-	 */
 	public function newFromEntry( LogEntry $entry ): LogFormatter {
 		$logActionsHandlers = $this->serviceOptions->get( MainConfigNames::LogActionsHandlers );
 		$fulltype = $entry->getFullType();

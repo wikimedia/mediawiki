@@ -681,11 +681,6 @@ class DatabaseBlock extends AbstractBlock {
 		return null;
 	}
 
-	/**
-	 * Get a BlockRestrictionStore instance
-	 *
-	 * @return BlockRestrictionStore
-	 */
 	private function getBlockRestrictionStore(): BlockRestrictionStore {
 		// TODO: get rid of global state here
 		return MediaWikiServices::getInstance()
