@@ -59,10 +59,10 @@ class EventDispatchEngine implements DomainEventDispatcher, DomainEventSource {
 		$this->resolveSubscribers( $type );
 		$listeners = $this->listeners[ $type ] ?? [];
 
-		// Invoke listeners registered for handling DURING_TRANSACTION.
-		foreach ( $listeners[ DomainEventSource::INVOKE_BEFORE_COMMIT ] ?? [] as $callback ) {
-			$this->invoke( $callback, $event, $dbProvider );
-		}
+		// NOTE: If we want to introduce a synchronous or pre-commit invocation mode
+		//       here, it should only be used if the emitter opts into this.
+		//       The contract of the dispatch() method doesn't allow listeners
+		//       to be invoked within the current transaction.
 
 		// Push a DeferredUpdate for listeners registered for handling AFTER_COMMIT.
 		foreach ( $listeners[ DomainEventSource::INVOKE_AFTER_COMMIT ] ?? [] as $callback ) {

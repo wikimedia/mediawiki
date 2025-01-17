@@ -76,7 +76,7 @@ abstract class EventSubscriberBase implements InitializableDomainEventSubscriber
 	) {
 		$found = false;
 
-		$modes = [ DomainEventSource::INVOKE_BEFORE_COMMIT, DomainEventSource::INVOKE_AFTER_COMMIT ];
+		$modes = [ DomainEventSource::INVOKE_AFTER_COMMIT ];
 
 		foreach ( $modes as $mode ) {
 			if ( $this->registerForEventAndMode( $eventSource, $eventType, $mode ) ) {

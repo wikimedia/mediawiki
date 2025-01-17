@@ -14,7 +14,7 @@ use Wikimedia\Services\ServiceContainer;
  */
 class EventSubscriberBaseTest extends MediaWikiUnitTestCase {
 
-	private function newSpyEvenSource( &$trace ): DomainEventSource {
+	private function newSpyEventSource( &$trace ): DomainEventSource {
 		$objectFactory = new ObjectFactory(
 			$this->createNoOpMock( ServiceContainer::class )
 		);
@@ -34,7 +34,7 @@ class EventSubscriberBaseTest extends MediaWikiUnitTestCase {
 
 	public function testAutoSubscribe_constructor() {
 		$trace = [];
-		$source = $this->newSpyEvenSource( $trace );
+		$source = $this->newSpyEventSource( $trace );
 
 		$events = [ 'Foo', 'Bar' ];
 
@@ -48,7 +48,7 @@ class EventSubscriberBaseTest extends MediaWikiUnitTestCase {
 				// no-op
 			}
 
-			public function handleBarEventBeforeCommit() {
+			public function handleBarEventAfterCommit() {
 				// no-op
 			}
 
@@ -67,8 +67,8 @@ class EventSubscriberBaseTest extends MediaWikiUnitTestCase {
 				],
 				[
 					'Bar',
-					[ $subscriber, 'handleBarEventBeforeCommit', ],
-					[ DomainEventSource::INVOCATION_MODE => DomainEventSource::INVOKE_BEFORE_COMMIT ],
+					[ $subscriber, 'handleBarEventAfterCommit', ],
+					[ DomainEventSource::INVOCATION_MODE => DomainEventSource::INVOKE_AFTER_COMMIT ],
 				],
 			],
 			$trace
@@ -77,7 +77,7 @@ class EventSubscriberBaseTest extends MediaWikiUnitTestCase {
 
 	public function testAutoSubscribe_init() {
 		$trace = [];
-		$source = $this->newSpyEvenSource( $trace );
+		$source = $this->newSpyEventSource( $trace );
 
 		$events = [ 'Foo', 'Bar' ];
 
@@ -87,7 +87,7 @@ class EventSubscriberBaseTest extends MediaWikiUnitTestCase {
 				// no-op
 			}
 
-			public function handleBarEventBeforeCommit() {
+			public function handleBarEventAfterCommit() {
 				// no-op
 			}
 
@@ -107,8 +107,8 @@ class EventSubscriberBaseTest extends MediaWikiUnitTestCase {
 				],
 				[
 					'Bar',
-					[ $subscriber, 'handleBarEventBeforeCommit', ],
-					[ DomainEventSource::INVOCATION_MODE => DomainEventSource::INVOKE_BEFORE_COMMIT ],
+					[ $subscriber, 'handleBarEventAfterCommit', ],
+					[ DomainEventSource::INVOCATION_MODE => DomainEventSource::INVOKE_AFTER_COMMIT ],
 				],
 			],
 			$trace

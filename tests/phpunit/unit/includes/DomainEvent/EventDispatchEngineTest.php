@@ -57,21 +57,11 @@ class EventDispatchEngineTest extends MediaWikiUnitTestCase {
 		return $engine;
 	}
 
-	public function testSend() {
+	public function testDispatch() {
 		$engine = $this->newDispatchEngine();
 		$conProv = $this->newConnectionProvider();
 
 		$callCount = 0;
-		$engine->registerListener(
-			'Tested',
-			static function (
-				DomainEvent $event,
-				IConnectionProvider $conProv
-			) use ( &$callCount ) {
-				$callCount++;
-			},
-			[ DomainEventSource::INVOCATION_MODE => DomainEventSource::INVOKE_BEFORE_COMMIT ]
-		);
 
 		$engine->registerListener(
 			'Tested',
@@ -88,13 +78,11 @@ class EventDispatchEngineTest extends MediaWikiUnitTestCase {
 		$dbw->begin();
 		$event = $this->newEvent( 'Tested' );
 		$engine->dispatch( $event, $conProv );
-
-		$this->assertSame( 1, $callCount, 'Hook handler should have been called' );
-
 		$dbw->commit();
+
 		DeferredUpdates::doUpdates();
 
-		$this->assertSame( 2, $callCount, 'Listener should have been called' );
+		$this->assertSame( 1, $callCount, 'Listener should have been called' );
 	}
 
 	public function testWildcardListener() {
@@ -106,16 +94,22 @@ class EventDispatchEngineTest extends MediaWikiUnitTestCase {
 			DomainEvent::ANY, // register for any event
 			static function () use ( &$callCount ) {
 				$callCount++;
-			},
-			[ DomainEventSource::INVOCATION_MODE => DomainEventSource::INVOKE_BEFORE_COMMIT ]
+			}
 		);
 
 		$engine->dispatch( $this->newEvent( 'Tested1' ), $conProv );
 		$engine->dispatch( $this->newEvent( 'Tested2' ), $conProv );
 
+		DeferredUpdates::doUpdates();
+
 		$this->assertSame( 2, $callCount, 'Listener should have been called' );
 	}
 
+	/**
+	 * Assert that listeners registered in INVOKE_AFTER_COMMIT mode will
+	 * not be invoked if the transaction is rolled back, but listeners
+	 * registered as INVOKE_BEFORE_COMMIT are still invoked.
+	 */
 	public function testRollback() {
 		$engine = $this->newDispatchEngine();
 
@@ -130,17 +124,6 @@ class EventDispatchEngineTest extends MediaWikiUnitTestCase {
 			) use ( &$callCount ) {
 				$callCount++;
 			},
-			[ DomainEventSource::INVOCATION_MODE => DomainEventSource::INVOKE_BEFORE_COMMIT ]
-		);
-
-		$engine->registerListener(
-			'Tested',
-			static function (
-				DomainEvent $event,
-				IConnectionProvider $conProv
-			) use ( &$callCount ) {
-				$callCount++;
-			},
 			[ DomainEventSource::INVOCATION_MODE => DomainEventSource::INVOKE_AFTER_COMMIT ]
 		);
 
@@ -149,12 +132,10 @@ class EventDispatchEngineTest extends MediaWikiUnitTestCase {
 		$event = $this->newEvent( 'Tested' );
 		$engine->dispatch( $event, $conProv );
 
-		$this->assertSame( 1, $callCount, 'Hook handler should have been called' );
-
 		$dbw->rollback();
 		DeferredUpdates::doUpdates();
 
-		$this->assertSame( 1, $callCount, 'Listener should not have been called' );
+		$this->assertSame( 0, $callCount, 'After-commit listener should not have been called' );
 	}
 
 	public function testRegisterSubscriber() {

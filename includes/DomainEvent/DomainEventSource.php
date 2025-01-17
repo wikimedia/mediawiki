@@ -10,16 +10,6 @@ namespace MediaWiki\DomainEvent;
 interface DomainEventSource {
 
 	/**
-	 * Listeners will be invoked before the transaction that produced the event
-	 * is committed. Delivery guarantees depend on the DomainEventDispatcher
-	 * implementation.
-	 *
-	 * Listeners may be invoked immediately, before the call to
-	 * DomainEventDispatcher::dispatch() returns, or later.
-	 */
-	public const INVOKE_BEFORE_COMMIT = 'BeforeCommit';
-
-	/**
 	 * Listeners will be invoked after the transaction that produced the event
 	 * was committed successfully. Delivery guarantees depend on the
 	 * DomainEventDispatcher implementation.
