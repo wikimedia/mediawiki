@@ -817,6 +817,14 @@ TXT;
 	 */
 	private static function callLogExceptionHook( Throwable $e, bool $suppressed ) {
 		try {
+			// It's possible for the exception handler to be triggered during service container
+			// initialization, e.g. if an autoloaded file triggers deprecation warnings.
+			// To avoid a difficult-to-debug autoload loop, avoid attempting to initialize the service
+			// container here. (T380456).
+			if ( !MediaWikiServices::hasInstance() ) {
+				return;
+			}
+
 			Hooks::runner()->onLogException( $e, false );
 		} catch ( RecursiveServiceDependencyException $e ) {
 			// An error from the HookContainer wiring will lead here (T379125)
