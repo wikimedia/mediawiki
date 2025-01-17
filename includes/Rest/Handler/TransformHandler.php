@@ -125,9 +125,8 @@ class TransformHandler extends ParsoidHandler {
 				return $spec;
 
 			default:
-				throw new LocalizedHttpException(
-					new MessageValue( "rest-unsupported-target-format" ), 500
-				);
+				// Additional formats may be supported by subclasses, just do nothing.
+				return parent::generateResponseSpec( $method );
 		}
 	}
 
