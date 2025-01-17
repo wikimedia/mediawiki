@@ -438,6 +438,10 @@ function mockMwApiGet( additionalMocks = [] ) {
 	} );
 }
 
+mw.Title.makeTitle = jest.fn().mockReturnValue( {
+	getUrl: jest.fn()
+} );
+
 module.exports = {
 	getSpecialBlock,
 	mockMwApiGet,
