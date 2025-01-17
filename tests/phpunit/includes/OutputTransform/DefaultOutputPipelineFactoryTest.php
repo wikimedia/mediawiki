@@ -25,8 +25,9 @@ class DefaultOutputPipelineFactoryTest extends MediaWikiLangTestCase {
 	 * @param string $expect Expected output
 	 */
 	public function testTransform( $options, $text, $expect ) {
-		// Avoid other skins affecting the section edit links
+		// Avoid other skins or extensions affecting the section edit links
 		$this->overrideConfigValue( MainConfigNames::DefaultSkin, 'fallback' );
+		$this->clearHook( 'SkinEditSectionLinks' );
 		RequestContext::resetMain();
 
 		$this->overrideConfigValues( [
