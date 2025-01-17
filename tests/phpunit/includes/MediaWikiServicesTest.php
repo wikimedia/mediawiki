@@ -393,8 +393,11 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 
 		foreach ( $names as $name ) {
 			$this->assertTrue( $services->hasService( $name ) );
-			$service = $services->getService( $name );
-			$this->assertIsObject( $service );
+
+			// Check that the service can be instantiated without errors.
+			// Make no assumption about the value returned by the instantiator
+			// as extensions may be putting all manners of values in the container.
+			$services->getService( $name );
 		}
 	}
 
