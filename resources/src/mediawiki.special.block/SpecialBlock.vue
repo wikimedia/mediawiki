@@ -258,6 +258,7 @@ module.exports = exports = defineComponent( {
 					removalConfirmationOpen.value = false;
 					submitCount.value++;
 					blockRemoved.value = true;
+					formErrors.value = [];
 				} )
 				.fail( ( _, errorObj ) => {
 					formErrors.value = [ errorObj.error.info ];
