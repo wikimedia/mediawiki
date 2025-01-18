@@ -55,6 +55,10 @@ const mw = {
 	config: {
 		get: jest.fn()
 	},
+	hook: jest.fn().mockReturnValue( {
+		add: jest.fn(),
+		fire: jest.fn()
+	} ),
 	message: jest.fn( ( key ) => ( {
 		text: jest.fn( () => key ),
 		parse: jest.fn( () => key )

@@ -1,8 +1,8 @@
 'use strict';
 
-const outer = document.querySelector( '.mw-htmlform' );
-if ( outer ) {
-	outer.classList.add( 'mw-block-form' );
+const form = document.querySelector( '.mw-htmlform' );
+if ( form ) {
+	form.id = 'mw-block-form';
 	const Vue = require( 'vue' );
 	const App = require( './SpecialBlock.vue' );
 	const { createPinia } = require( 'pinia' );
@@ -23,8 +23,8 @@ if ( outer ) {
 
 		Vue.createMwApp( App )
 			.use( createPinia() )
-			.mount( outer );
+			.mount( form );
 		// We keep the wrapping form but never want it to submit.
-		outer.addEventListener( 'submit', ( e ) => e.preventDefault() );
+		form.addEventListener( 'submit', ( e ) => e.preventDefault() );
 	} );
 }
