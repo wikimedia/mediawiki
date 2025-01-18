@@ -423,6 +423,12 @@ class MediaWikiServices extends ServiceContainer {
 		self::failIfResetNotAllowed( __METHOD__ );
 
 		$oldInstance = self::$instance;
+		/* fandom change start */
+		// MW 1.43 uses StaticHookRegistry which is supposed to be initialized once and after all
+		// extensions are loaded, while at Fandom we initialize it early and some of the hooks
+		// (eg. MediawikiServices) do not trigger all the handlers in the end
+		$oldInstance->resetService( 'HookContainer' );
+		/* fandom change end */
 		self::$instance = self::newInstance(
 			$bootstrapConfig ?? self::$instance->getBootstrapConfig(),
 			'load'
