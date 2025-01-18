@@ -8,6 +8,8 @@
 	 * @property {boolean} [useUS] Whether to use U+001F when joining multi-valued
 	 *  parameters (since 1.28). Default is true if ajax.url is not set, false otherwise for
 	 *  compatibility.
+	 * @property {string} [userAgent] User agent string to use for API requests (since 1.44).
+	 *  This should identify what component (extension, gadget, user script) is making the request.
 	 */
 
 	/**
@@ -61,6 +63,7 @@
 
 		defaults.parameters = Object.assign( {}, defaultOptions.parameters, defaults.parameters );
 		defaults.ajax = Object.assign( {}, defaultOptions.ajax, defaults.ajax );
+		defaults.userAgent = defaults.userAgent || ( 'MediaWiki-JS/' + mw.config.get( 'wgVersion' ) );
 
 		// Force a string if we got a mw.Uri object
 		if ( setsUrl ) {
@@ -297,6 +300,12 @@
 					// it'll be wrong and the server will fail to decode the POST body
 					delete ajaxOptions.contentType;
 				}
+			}
+
+			ajaxOptions.headers = ajaxOptions.headers || {};
+			const lowercaseHeaders = Object.keys( ajaxOptions.headers || {} ).map( ( k ) => k.toLowerCase() );
+			if ( lowercaseHeaders.indexOf( 'api-user-agent' ) === -1 ) {
+				ajaxOptions.headers[ 'Api-User-Agent' ] = this.defaults.userAgent;
 			}
 
 			// Make the AJAX request
