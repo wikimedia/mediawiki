@@ -637,18 +637,20 @@ class IntroMessageBuilder {
 		}
 		if ( $this->restrictionStore->isCascadeProtected( $page ) ) {
 			# Is this page under cascading protection from some source pages?
-			$cascadeSources = $this->restrictionStore->getCascadeProtectionSources( $page )[0];
-			$htmlList = '';
-			# Explain, and list the titles responsible
-			foreach ( $cascadeSources as $source ) {
-				$htmlList .= Html::rawElement( 'li', [], $this->linkRenderer->makeLink( $source ) );
+			$tlCascadeSources = $this->restrictionStore->getCascadeProtectionSources( $page )[2];
+			if ( $tlCascadeSources ) {
+				$htmlList = '';
+				# Explain, and list the titles responsible
+				foreach ( $tlCascadeSources as $source ) {
+					$htmlList .= Html::rawElement( 'li', [], $this->linkRenderer->makeLink( $source ) );
+				}
+				$messages->addWithKey(
+					'cascadeprotectedwarning',
+					$localizer->msg( 'cascadeprotectedwarning', count( $tlCascadeSources ) )->parse() .
+						( $htmlList ? Html::rawElement( 'ul', [], $htmlList ) : '' ),
+					Html::warningBox( '$1', 'mw-cascadeprotectedwarning' )
+				);
 			}
-			$messages->addWithKey(
-				'cascadeprotectedwarning',
-				$localizer->msg( 'cascadeprotectedwarning', count( $cascadeSources ) )->parse() .
-					( $htmlList ? Html::rawElement( 'ul', [], $htmlList ) : '' ),
-				Html::warningBox( '$1', 'mw-cascadeprotectedwarning' )
-			);
 		}
 		if ( !$page->exists() && $this->restrictionStore->getRestrictions( $page, 'create' ) ) {
 			$messages->addWithKey(
