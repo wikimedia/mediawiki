@@ -1172,14 +1172,32 @@ class PermissionManager {
 	): array {
 		// TODO: remove & rework upon further use of LinkTarget
 		$title = Title::newFromLinkTarget( $page );
+
 		if ( $rigor !== self::RIGOR_QUICK && !$title->isUserConfigPage() ) {
-			[ $cascadingSources, $restrictions ] = $this->restrictionStore->getCascadeProtectionSources( $title );
+			[ $sources, $restrictions, $tlSources, $ilSources ] = $this->restrictionStore
+				->getCascadeProtectionSources( $title );
+
+			// If the file Wikitext isn't transcluded then we
+			// don't care about edit cascade restrictions for edit action
+			if ( $action === 'edit' && $page->getNamespace() === NS_FILE && !$tlSources ) {
+				return [];
+			}
+
+			// For the purposes of cascading protection, edit restrictions should apply to uploads or moves
+			// Thus remap upload and move to edit
+			// Unless the file content itself is not transcluded
+			if ( $ilSources && ( $action === 'upload' || $action === 'move' ) ) {
+				$restrictedAction = 'edit';
+			} else {
+				$restrictedAction = $action;
+			}
+
 			// Cascading protection depends on more than this page...
 			// Several cascading protected pages may include this page...
 			// Check each cascading level
 			// This is only for protection restrictions, not for all actions
-			if ( isset( $restrictions[$action] ) ) {
-				foreach ( $restrictions[$action] as $right ) {
+			if ( isset( $restrictions[$restrictedAction] ) ) {
+				foreach ( $restrictions[$restrictedAction] as $right ) {
 					// Backwards compatibility, rewrite sysop -> editprotected
 					if ( $right === 'sysop' ) {
 						$right = 'editprotected';
@@ -1190,10 +1208,10 @@ class PermissionManager {
 					}
 					if ( $right != '' && !$this->userHasAllRights( $user, 'protect', $right ) ) {
 						$wikiPages = '';
-						foreach ( $cascadingSources as $pageIdentity ) {
+						foreach ( $sources as $pageIdentity ) {
 							$wikiPages .= '* [[:' . $this->titleFormatter->getPrefixedText( $pageIdentity ) . "]]\n";
 						}
-						$errors[] = [ 'cascadeprotected', count( $cascadingSources ), $wikiPages, $action ];
+						$errors[] = [ 'cascadeprotected', count( $sources ), $wikiPages, $action ];
 					}
 				}
 			}

@@ -255,9 +255,15 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 				[
 					Title::makeTitle( NS_MAIN, "Bogus" ),
 					Title::makeTitle( NS_MAIN, "UnBogus" )
-				], [
+				],
+				[
 					"bogus" => [ 'bogus', "sysop", "protect", "" ],
-				]
+				],
+				[
+					Title::makeTitle( NS_MAIN, "Bogus" ),
+					Title::makeTitle( NS_MAIN, "UnBogus" )
+				],
+				[]
 			],
 		] ];
 
@@ -272,6 +278,51 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $permissionManager->userCan( 'edit', $this->user, $this->title ) );
 		$this->assertEquals(
 			[],
+			$permissionManager->getPermissionErrors( 'edit', $this->user, $this->title )
+		);
+	}
+
+	public function testCascadingSourcesRestrictionsForFile() {
+		$this->setTitle( NS_FILE, 'Test.jpg' );
+		$this->overrideUserPermissions( $this->user, [ 'edit', 'move', 'upload', 'movefile', 'createpage' ] );
+
+		$rs = $this->getServiceContainer()->getRestrictionStore();
+		$wrapper = TestingAccessWrapper::newFromObject( $rs );
+		$wrapper->cache = [ CacheKeyHelper::getKeyForPage( $this->title ) => [
+				'cascade_sources' => [
+					[
+						Title::makeTitle( NS_MAIN, 'FileTemplate' ),
+						Title::makeTitle( NS_MAIN, 'FileUser' )
+					],
+					[
+						'edit' => [ 'sysop' ],
+					],
+					[
+						Title::makeTitle( NS_MAIN, 'FileTemplate' )
+					],
+					[
+						Title::makeTitle( NS_MAIN, 'FileUser' )
+					]
+				],
+			] ];
+
+		$permissionManager = $this->getServiceContainer()->getPermissionManager();
+
+		$this->assertFalse( $permissionManager->userCan( 'upload', $this->user, $this->title ) );
+		$this->assertEquals( [
+			[ 'cascadeprotected', 2, "* [[:FileTemplate]]\n* [[:FileUser]]\n", 'upload' ] ],
+			$permissionManager->getPermissionErrors( 'upload', $this->user, $this->title )
+		);
+
+		$this->assertFalse( $permissionManager->userCan( 'move', $this->user, $this->title ) );
+		$this->assertEquals( [
+			[ 'cascadeprotected', 2, "* [[:FileTemplate]]\n* [[:FileUser]]\n", 'move' ] ],
+			$permissionManager->getPermissionErrors( 'move', $this->user, $this->title )
+		);
+
+		$this->assertFalse( $permissionManager->userCan( 'edit', $this->user, $this->title ) );
+		$this->assertEquals( [
+			[ 'cascadeprotected', 2, "* [[:FileTemplate]]\n* [[:FileUser]]\n", 'edit' ] ],
 			$permissionManager->getPermissionErrors( 'edit', $this->user, $this->title )
 		);
 	}
