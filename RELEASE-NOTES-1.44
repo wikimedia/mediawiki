@@ -94,6 +94,10 @@ For notes on 1.43.x and older releases, see HISTORY.
   this permits authenticated cross-origin requests against the Action API,
   similar to how origin=* allows unauthenticated cross-origin requests.
   This feature is currently considered experimental.
+* (T24521, T62109) Embedding a file (e.g., [[File:MediaWiki.png]]) on a page
+  protected with cascading protection will no longer restrict edits to the
+  file description page, only file uploads. Transcluding a file description
+  page (e.g., {{:File:MediaWiki.png}}) will now restrict edits to the page.
 * …
 
 === New features for sysadmins in 1.44 ===
@@ -154,6 +158,7 @@ For notes on 1.43.x and older releases, see HISTORY.
 === Bug fixes in 1.44 ===
 
 * File reverts now check for 'reupload' or 'reupload-own' rights. (T304474)
+* File reverts now check for cascading edit protection. (T140010)
 * …
 
 === Action API changes in 1.44 ===
