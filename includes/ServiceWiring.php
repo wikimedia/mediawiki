@@ -198,6 +198,7 @@ use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Search\SearchEventIngress;
 use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Search\TitleMatcher;
+use MediaWiki\Session\SessionManager;
 use MediaWiki\Settings\Config\ConfigSchema;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Shell\CommandFactory;
@@ -2048,6 +2049,11 @@ return [
 			$services->getRepoGroup(),
 			$services->getHookContainer()
 		);
+	},
+
+	'SessionManager' => static function ( MediaWikiServices $services ): SessionManager {
+		// TODO use proper dependency injection
+		return SessionManager::singleton();
 	},
 
 	'ShellboxClientFactory' => static function ( MediaWikiServices $services ): ShellboxClientFactory {
