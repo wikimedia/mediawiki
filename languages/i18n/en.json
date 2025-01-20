@@ -1072,7 +1072,6 @@
 	"search-warning": "A warning has occurred while searching: $1",
 	"opensearch-desc": "{{SITENAME}} ({{CONTENTLANGUAGE}})",
 	"mypreferences": "Preferences",
-	"prefs-labs": "Labs features",
 	"prefs-misc": "Misc",
 	"searchresultshead": "Search",
 	"prefs-description-misc": "Customize the table of contents.",

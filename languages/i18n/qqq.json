@@ -1336,7 +1336,6 @@
 	"search-warning": "Shown when a warning has occurred when performing a search. Parameters:\n* $1 - the localized warning that was returned.",
 	"opensearch-desc": "{{ignored}}Link description of the [www.opensearch.org/ OpenSearch] link in the HTML head of pages.",
 	"mypreferences": "Action link label that leads to [[Special:Preferences]]; appears in the top menu (e.g. \"Username Talk Preferences Watchlist Contributions Log out\").\n\nSee also:\n* {{msg-mw|Mypreferences}}\n* {{msg-mw|Accesskey-pt-preferences}}\n* {{msg-mw|Tooltip-pt-preferences}}\n{{Identical|Preferences}}",
-	"prefs-labs": "Header of a subsection at [[Special:Preferences]], tab ''{{int:prefs-editing}}'', listing features that are experimental",
 	"prefs-misc": "Tab used on the [[Special:Preferences|user preferences]] special page.",
 	"searchresultshead": "Replaced by {{msg-mw|prefs-searchoptions}}, though may still be used in some extensions. DEPRECATED.\n\n{{Identical|Search}}",
 	"prefs-description-misc": "Used in [[Special:Preferences]] for mobile to describe the Misc section.",
