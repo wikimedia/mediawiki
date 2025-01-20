@@ -2419,6 +2419,8 @@
 	"block-item-edit": "सम्पादन",
 	"block-target": "सदस्यनाम, IP पता या IP रेंज:",
 	"block-pages-placeholder": "अधिक पृष्ठ जोड़ें...",
+	"block-removal-reason-placeholder": "कारण लिखें",
+	"block-removal-confirm-no": "रद्द करें",
 	"unblockip": "सदस्य को अनब्लॉक करें",
 	"unblockiptext": "पहले ब्लॉक किये हुए आईपी एड्रेस या सदस्यनाम को अनब्लॉक करने के लिये नीचे दिया गया फार्म भरें।",
 	"ipusubmit": "यह अवरोध हटाएँ",

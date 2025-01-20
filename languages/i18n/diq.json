@@ -3524,7 +3524,7 @@
 	"duration-hours": "($1 {{PLURAL:$1|saete|saeti}})",
 	"duration-days": "($1 {{PLURAL:$1|roce|roci}})",
 	"duration-weeks": "$1 {{PLURAL:$1|hefte|hefteyi}}",
-	"duration-months": "{{PLURAL:$1|aşm|aşmi}}",
+	"duration-months": "$1 {{PLURAL:$1|aşm|aşmi}}",
 	"duration-years": "$1 {{PLURAL:$1|serre|serri}}",
 	"duration-decades": "$1 {{PLURAL:$1|dades|dadesi}}",
 	"duration-centuries": "$1 {{PLURAL:$1|seserre|seserri}}",

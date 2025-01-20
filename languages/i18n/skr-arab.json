@@ -4,7 +4,8 @@
 			"BaRaN6161 TURK",
 			"BukhariSaeed",
 			"Matma Rex",
-			"Saraiki"
+			"Saraiki",
+			"Umar Shahid"
 		]
 	},
 	"sunday": "اتوار",
@@ -1743,6 +1744,8 @@
 	"block-target": "ورتݨ ناں یا آئی پی پتہ، یا آئی پی رینج:",
 	"block-pages-placeholder": "ٻئے ورقے شامل کرو۔۔۔",
 	"block-update": "بلاک اپ ڈیٹ کرو",
+	"block-removal-confirm-no": "منسوخ",
+	"block-javascript-required": "اسپیشل بلاک انٹرفیس کوں استعمال کرݨ کیتے جاوا سکرپٹ دی لوڑ ہے۔",
 	"unblockip": "ورتُو توں پابندی ہٹاؤ",
 	"ipusubmit": "ایں پابندی کوں ہٹاؤ",
 	"unblocked": "[[User:$1|$1]] کنوں پابندی ہٹاݙتی ڳئی۔",

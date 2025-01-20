@@ -11,6 +11,7 @@
 	"apihelp-main-param-assertuser": "Iwwerpréifen ob den aktuelle Benotzer, de Benotzer mat deem Numm ass.",
 	"apihelp-main-param-curtimestamp": "Den aktuellen Zäitstempel an d'Resultat integréieren.",
 	"apihelp-block-summary": "E Benotzer spären.",
+	"apihelp-block-param-id": "D'Spär-ID fir z'änneren.",
 	"apihelp-block-param-user": "Benotzer fir ze spären",
 	"apihelp-block-param-reason": "Grond fir ze spären.",
 	"apihelp-block-param-anononly": "Nëmmen anonym Benotzer spären (z. B. anonym Ännerunge vun dëser IP-Adress ausschalten)",
