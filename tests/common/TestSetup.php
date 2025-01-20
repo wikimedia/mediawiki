@@ -50,6 +50,7 @@ class TestSetup {
 		global $wgShowExceptionDetails, $wgShowHostnames;
 		global $wgDBStrictWarnings, $wgUsePigLatinVariant;
 		global $wgOpenTelemetryConfig;
+		global $wgVirtualDomainsMapping;
 
 		$wgShowExceptionDetails = true;
 		$wgShowHostnames = true;
@@ -154,6 +155,10 @@ class TestSetup {
 
 		// Disable tracing in tests.
 		$wgOpenTelemetryConfig = null;
+
+		// Ensure code using virtual domains uses the local database for integration tests,
+		// since most test code isn't aware of virtual domains (T384238).
+		$wgVirtualDomainsMapping = [];
 
 		// xdebug's default of 100 is too low for MediaWiki
 		ini_set( 'xdebug.max_nesting_level', 1000 );
