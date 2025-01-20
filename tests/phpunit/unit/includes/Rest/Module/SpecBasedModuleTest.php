@@ -86,7 +86,8 @@ class SpecBasedModuleTest extends \MediaWikiUnitTestCase {
 			$auth,
 			$objectFactory,
 			$validator,
-			$mockErrorReporter
+			$mockErrorReporter,
+			$this->createHookContainer()
 		);
 
 		return $module;

@@ -532,7 +532,8 @@ class Router {
 				$this->basicAuth,
 				$this->objectFactory,
 				$this->restValidator,
-				$this->errorReporter
+				$this->errorReporter,
+				$this->hookContainer
 			);
 		} else {
 			$module = new ExtraRoutesModule(
@@ -543,7 +544,8 @@ class Router {
 				$this->basicAuth,
 				$this->objectFactory,
 				$this->restValidator,
-				$this->errorReporter
+				$this->errorReporter,
+				$this->hookContainer
 			);
 		}
 

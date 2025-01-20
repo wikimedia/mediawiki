@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Rest\Module;
 use GuzzleHttp\Psr7\Uri;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
+use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\Module\ExtraRoutesModule;
 use MediaWiki\Rest\Module\Module;
 use MediaWiki\Rest\Reporter\ErrorReporter;
@@ -12,6 +13,7 @@ use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Validator\Validator;
+use MediaWiki\Tests\Rest\Handler\HelloHandler;
 use MediaWiki\Tests\Rest\RestTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -40,15 +42,13 @@ class ExtraRoutesModuleTest extends \MediaWikiUnitTestCase {
 
 	/**
 	 * @param RequestInterface $request
-	 * @param string|null $authError
-	 * @param array<int,array> $extraRoutes
+	 * @param array $constructorOverrides Supported keys: basicAuth, extraRoutes, hookContainer
 	 *
 	 * @return ExtraRoutesModule
 	 */
 	private function createRouteFileModule(
 		RequestInterface $request,
-		$authError = null,
-		$extraRoutes = []
+		$constructorOverrides = []
 	) {
 		$routeFiles = [
 			__DIR__ . '/moduleFlatRoutes.json', // old, flat format
@@ -67,7 +67,7 @@ class ExtraRoutesModuleTest extends \MediaWikiUnitTestCase {
 			MainConfigNames::RestPath => '/rest',
 		];
 
-		$auth = new StaticBasicAuthorizer( $authError );
+		$auth = $constructorOverrides['basicAuth'] ?? new StaticBasicAuthorizer();
 		$objectFactory = $this->getDummyObjectFactory();
 
 		$authority = $this->mockAnonUltimateAuthority();
@@ -87,13 +87,14 @@ class ExtraRoutesModuleTest extends \MediaWikiUnitTestCase {
 
 		$module = new ExtraRoutesModule(
 			$routeFiles,
-			$extraRoutes,
+			$constructorOverrides['extraRoutes'] ?? [],
 			$router,
 			$responseFactory,
 			$auth,
 			$objectFactory,
 			$validator,
-			$mockErrorReporter
+			$mockErrorReporter,
+			$constructorOverrides['hookContainer'] ?? $this->createHookContainer()
 		);
 
 		return $module;
@@ -213,7 +214,9 @@ class ExtraRoutesModuleTest extends \MediaWikiUnitTestCase {
 	public function testBasicAccess() {
 		// Using the throwing handler is a way to assert that the handler is not executed
 		$request = new RequestData( [ 'uri' => new Uri( '/rest/ModuleTest/throw' ) ] );
-		$module = $this->createRouteFileModule( $request, 'test-error', [] );
+		$module = $this->createRouteFileModule( $request, [
+			'basicAuth' => new StaticBasicAuthorizer( 'test-error' ),
+		] );
 		$response = $module->execute( '/ModuleTest/throw', $request );
 		$this->assertSame( 403, $response->getStatusCode() );
 		$body = $response->getBody();
@@ -226,14 +229,12 @@ class ExtraRoutesModuleTest extends \MediaWikiUnitTestCase {
 		$request = new RequestData( [
 			'uri' => new Uri( '/rest/ModuleTest/hello-again' )
 		] );
-		$module = $this->createRouteFileModule(
-			$request,
-			null,
-			[ [
+		$module = $this->createRouteFileModule( $request, [
+			'extraRoutes' => [ [
 				'path' => '/ModuleTest/hello-again',
 				'class' => 'MediaWiki\\Tests\\Rest\\Handler\\HelloHandler'
-			] ]
-		);
+			] ],
+		] );
 		$response = $module->execute( '/ModuleTest/hello-again', $request );
 		$this->assertSame( 200, $response->getStatusCode() );
 	}
@@ -286,6 +287,32 @@ class ExtraRoutesModuleTest extends \MediaWikiUnitTestCase {
 
 		// Check that the matcher tree is still deep-equal.
 		$this->assertEquals( $module1wrapper->getMatchers(), $module2wrapper->getMatchers() );
+	}
+
+	public function testRestCheckCanExecuteHook() {
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/ModuleTest/hello/foo' ) ] );
+		$module = $this->createRouteFileModule( $request, [
+			'hookContainer' => $this->createHookContainer( [
+				'RestCheckCanExecute' =>
+					function ( $module1, $handler, $path, $request1, &$error ) use ( $request, &$module ) {
+						$this->assertSame( $module, $module1 );
+						$this->assertInstanceOf( HelloHandler::class, $handler );
+						$this->assertSame( '/ModuleTest/hello/foo', $path );
+						$this->assertSame( $request, $request1 );
+						$this->assertSame( null, $error );
+						$error = new HttpException( 'Denied by hook', 403 );
+						return false;
+					},
+			] ),
+		] );
+
+		$response = $module->execute( '/ModuleTest/hello/foo', $request );
+
+		$this->assertSame( 403, $response->getStatusCode() );
+		$body = $response->getBody();
+		$body->rewind();
+		$data = json_decode( $body->getContents(), true );
+		$this->assertSame( 'Denied by hook', $data['message'] );
 	}
 
 }

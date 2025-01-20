@@ -96,7 +96,8 @@ trait RestTestTrait {
 				$params['basicAuth'] ?? new StaticBasicAuthorizer(),
 				$params['objectFactory'] ?? $objectFactory,
 				$params['restValidator'] ?? new Validator( $objectFactory, $request, $authority ),
-				$params['errorReporter'] ?? new PHPErrorReporter()
+				$params['errorReporter'] ?? new PHPErrorReporter(),
+				$params['hookContainer'] ?? $this->createHookContainer(),
 			] )
 			->onlyMethods( [] )
 			->getMockForAbstractClass();

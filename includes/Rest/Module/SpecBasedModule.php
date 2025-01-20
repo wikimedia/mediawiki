@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Rest\Module;
 
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Rest\BasicAccess\BasicAuthorizerInterface;
 use MediaWiki\Rest\Handler\RedirectHandler;
 use MediaWiki\Rest\PathTemplateMatcher\ModuleConfigurationException;
@@ -57,7 +58,8 @@ class SpecBasedModule extends MatcherBasedModule {
 		BasicAuthorizerInterface $basicAuth,
 		ObjectFactory $objectFactory,
 		Validator $restValidator,
-		ErrorReporter $errorReporter
+		ErrorReporter $errorReporter,
+		HookContainer $hookContainer
 	) {
 		parent::__construct(
 			$router,
@@ -66,7 +68,8 @@ class SpecBasedModule extends MatcherBasedModule {
 			$basicAuth,
 			$objectFactory,
 			$restValidator,
-			$errorReporter
+			$errorReporter,
+			$hookContainer
 		);
 		$this->definitionFile = $definitionFile;
 	}
