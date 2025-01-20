@@ -80,7 +80,7 @@
 	"rest-param-desc-revision-id": "판 식별자",
 	"rest-param-desc-language-links-title": "위키 문서 제목",
 	"rest-param-desc-media-file-title": "위키 문서 제목",
-	"rest-param-desc-media-links-title": "미디어 링크 제목",
+	"rest-param-desc-media-links-title": "위키 문서 제목",
 	"rest-param-desc-module-spec-version": "모듈 스펙 버전",
 	"rest-param-desc-pagehistory-count-title": "위키 문서 제목",
 	"rest-param-desc-pagehistory-title": "위키 문서 제목",

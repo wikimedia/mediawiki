@@ -2590,7 +2590,7 @@
 	"duration-hours": "$1 {{PLURAL:$1|ساعت |ساعتیا}}",
 	"duration-days": "$1{{PLURAL:$1|رۊز|رۊزؽا}}",
 	"duration-weeks": "$1 {{PLURAL:$1|هفته|هفته یا}}",
-	"duration-years": "$1{{PLURAL:$1| سال|سالیا}}",
+	"duration-years": "$1 {{PLURAL:$1|سال|سالیا}}",
 	"duration-decades": "$1 {{PLURAL:$1|دأھە|دأھە یا}}",
 	"duration-centuries": "$1 {{PLURAL:$1|سده|سده یا}}",
 	"duration-millennia": "$1 {{PLURAL:$1|میلینیوم|ملینا}}",
