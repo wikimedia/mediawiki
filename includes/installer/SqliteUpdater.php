@@ -155,6 +155,9 @@ class SqliteUpdater extends DatabaseUpdater {
 
 			// 1.44
 			[ 'addTable', 'file', 'patch-file.sql' ],
+			[ 'addField', 'categorylinks', 'cl_target_id', 'patch-categorylinks-target_id.sql' ],
+			[ 'addTable', 'collation', 'patch-collation.sql' ],
+
 		];
 	}
 

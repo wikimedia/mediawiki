@@ -458,10 +458,16 @@ CREATE TABLE /*_*/categorylinks (
   cl_timestamp TIMESTAMP NOT NULL,
   cl_collation VARBINARY(32) DEFAULT '' NOT NULL,
   cl_type ENUM('page', 'subcat', 'file') DEFAULT 'page' NOT NULL,
+  cl_collation_id SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
+  cl_target_id BIGINT UNSIGNED DEFAULT NULL,
   INDEX cl_sortkey (
     cl_to, cl_type, cl_sortkey, cl_from
   ),
   INDEX cl_timestamp (cl_to, cl_timestamp),
+  INDEX cl_sortkey_id (
+    cl_target_id, cl_type, cl_sortkey,
+    cl_from
+  ),
   PRIMARY KEY(cl_from, cl_to)
 ) /*$wgDBTableOptions*/;
 
@@ -922,4 +928,12 @@ CREATE TABLE /*_*/filetypes (
     ft_media_type, ft_major_mime, ft_minor_mime
   ),
   PRIMARY KEY(ft_id)
+) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/collation (
+  collation_id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL,
+  collation_name VARBINARY(64) NOT NULL,
+  UNIQUE INDEX collation_name (collation_name),
+  PRIMARY KEY(collation_id)
 ) /*$wgDBTableOptions*/;

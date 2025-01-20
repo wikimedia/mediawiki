@@ -509,6 +509,8 @@ CREATE TABLE categorylinks (
   cl_timestamp TIMESTAMPTZ NOT NULL,
   cl_collation TEXT DEFAULT '' NOT NULL,
   cl_type TEXT DEFAULT 'page' NOT NULL,
+  cl_collation_id SMALLINT DEFAULT 0 NOT NULL,
+  cl_target_id BIGINT DEFAULT NULL,
   PRIMARY KEY(cl_from, cl_to)
 );
 
@@ -517,6 +519,11 @@ CREATE INDEX cl_sortkey ON categorylinks (
 );
 
 CREATE INDEX cl_timestamp ON categorylinks (cl_to, cl_timestamp);
+
+CREATE INDEX cl_sortkey_id ON categorylinks (
+  cl_target_id, cl_type, cl_sortkey,
+  cl_from
+);
 
 
 CREATE TABLE logging (
@@ -993,3 +1000,12 @@ CREATE TABLE filetypes (
 CREATE UNIQUE INDEX ft_media_mime ON filetypes (
   ft_media_type, ft_major_mime, ft_minor_mime
 );
+
+
+CREATE TABLE "collation" (
+  collation_id SMALLSERIAL NOT NULL,
+  collation_name TEXT NOT NULL,
+  PRIMARY KEY(collation_id)
+);
+
+CREATE UNIQUE INDEX collation_name ON "collation" (collation_name);

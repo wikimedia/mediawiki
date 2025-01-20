@@ -1529,6 +1529,18 @@
 						"enum_values": [ "page", "subcat", "file" ]
 					}
 				}
+			},
+			{
+				"name": "cl_collation_id",
+				"comment": "FK to collation_id",
+				"type": "smallint",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "cl_target_id",
+				"type": "bigint",
+				"comment": "Foreign key to linktarget.lt_id",
+				"options": { "notnull": false, "unsigned": true }
 			}
 		],
 		"indexes": [
@@ -1542,6 +1554,12 @@
 				"name": "cl_timestamp",
 				"comment": "Used by the API (and some extensions)",
 				"columns": [ "cl_to", "cl_timestamp" ],
+				"unique": false
+			},
+			{
+				"name": "cl_sortkey_id",
+				"comment": "We always sort within a given category, and within a given type.  FIXME: Formerly this index didn't cover cl_type (since that didn't exist), so old callers won't be using an index: fix this?",
+				"columns": [ "cl_target_id", "cl_type", "cl_sortkey", "cl_from" ],
 				"unique": false
 			}
 		],
@@ -3977,5 +3995,30 @@
 			}
 		],
 		"pk": [ "ft_id" ]
+	},
+	{
+		"name": "collation",
+		"comment": "Normalization table for collation names",
+		"columns": [
+			{
+				"name": "collation_id",
+				"type": "smallint",
+				"options": { "notnull": true, "unsigned": true, "autoincrement": true }
+			},
+			{
+				"name": "collation_name",
+				"type": "binary",
+				"options": { "notnull": true, "length": 64 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "collation_name",
+				"columns": [ "collation_name" ],
+				"comment": "Index for looking up the internal ID of a collation",
+				"unique": true
+			}
+		],
+		"pk": [ "collation_id" ]
 	}
 ]
