@@ -32,16 +32,12 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCache;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Title\TitleFormatter;
-use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\User\UserNameUtils;
-use MessageCache;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\ILBFactory;
@@ -84,9 +80,6 @@ class PageUpdaterFactory {
 	/** @var JobQueueGroup */
 	private $jobQueueGroup;
 
-	/** @var MessageCache */
-	private $messageCache;
-
 	/** @var Language */
 	private $contLang;
 
@@ -104,9 +97,6 @@ class PageUpdaterFactory {
 
 	/** @var EditResultCache */
 	private $editResultCache;
-
-	/** @var UserNameUtils */
-	private $userNameUtils;
 
 	/** @var LoggerInterface */
 	private $logger;
@@ -126,14 +116,8 @@ class PageUpdaterFactory {
 	/** @var PageEditStash */
 	private $pageEditStash;
 
-	/** @var TalkPageNotificationManager */
-	private $talkPageNotificationManager;
-
 	/** @var WANObjectCache */
 	private $mainWANObjectCache;
-
-	/** @var PermissionManager */
-	private $permissionManager;
 
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
@@ -143,56 +127,25 @@ class PageUpdaterFactory {
 
 	private ChangeTagsStore $changeTagsStore;
 
-	/**
-	 * @param RevisionStore $revisionStore
-	 * @param RevisionRenderer $revisionRenderer
-	 * @param SlotRoleRegistry $slotRoleRegistry
-	 * @param ParserCache $parserCache
-	 * @param JobQueueGroup $jobQueueGroup
-	 * @param MessageCache $messageCache
-	 * @param Language $contLang
-	 * @param ILBFactory $loadbalancerFactory
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param DomainEventDispatcher $eventDispatcher
-	 * @param HookContainer $hookContainer
-	 * @param EditResultCache $editResultCache
-	 * @param UserNameUtils $userNameUtils
-	 * @param LoggerInterface $logger
-	 * @param ServiceOptions $options
-	 * @param UserGroupManager $userGroupManager
-	 * @param TitleFormatter $titleFormatter
-	 * @param ContentTransformer $contentTransformer
-	 * @param PageEditStash $pageEditStash
-	 * @param TalkPageNotificationManager $talkPageNotificationManager
-	 * @param WANObjectCache $mainWANObjectCache
-	 * @param PermissionManager $permissionManager
-	 * @param WikiPageFactory $wikiPageFactory
-	 * @param ChangeTagsStore $changeTagsStore
-	 * @param string[] $softwareTags
-	 */
 	public function __construct(
 		RevisionStore $revisionStore,
 		RevisionRenderer $revisionRenderer,
 		SlotRoleRegistry $slotRoleRegistry,
 		ParserCache $parserCache,
 		JobQueueGroup $jobQueueGroup,
-		MessageCache $messageCache,
 		Language $contLang,
 		ILBFactory $loadbalancerFactory,
 		IContentHandlerFactory $contentHandlerFactory,
 		DomainEventDispatcher $eventDispatcher,
 		HookContainer $hookContainer,
 		EditResultCache $editResultCache,
-		UserNameUtils $userNameUtils,
 		LoggerInterface $logger,
 		ServiceOptions $options,
 		UserGroupManager $userGroupManager,
 		TitleFormatter $titleFormatter,
 		ContentTransformer $contentTransformer,
 		PageEditStash $pageEditStash,
-		TalkPageNotificationManager $talkPageNotificationManager,
 		WANObjectCache $mainWANObjectCache,
-		PermissionManager $permissionManager,
 		WikiPageFactory $wikiPageFactory,
 		ChangeTagsStore $changeTagsStore,
 		array $softwareTags
@@ -204,23 +157,19 @@ class PageUpdaterFactory {
 		$this->slotRoleRegistry = $slotRoleRegistry;
 		$this->parserCache = $parserCache;
 		$this->jobQueueGroup = $jobQueueGroup;
-		$this->messageCache = $messageCache;
 		$this->contLang = $contLang;
 		$this->loadbalancerFactory = $loadbalancerFactory;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->eventDispatcher = $eventDispatcher;
 		$this->hookContainer = $hookContainer;
 		$this->editResultCache = $editResultCache;
-		$this->userNameUtils = $userNameUtils;
 		$this->logger = $logger;
 		$this->options = $options;
 		$this->userGroupManager = $userGroupManager;
 		$this->titleFormatter = $titleFormatter;
 		$this->contentTransformer = $contentTransformer;
 		$this->pageEditStash = $pageEditStash;
-		$this->talkPageNotificationManager = $talkPageNotificationManager;
 		$this->mainWANObjectCache = $mainWANObjectCache;
-		$this->permissionManager = $permissionManager;
 		$this->softwareTags = $softwareTags;
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->changeTagsStore = $changeTagsStore;
@@ -316,19 +265,15 @@ class PageUpdaterFactory {
 			$this->slotRoleRegistry,
 			$this->parserCache,
 			$this->jobQueueGroup,
-			$this->messageCache,
 			$this->contLang,
 			$this->loadbalancerFactory,
 			$this->contentHandlerFactory,
 			$this->hookContainer,
 			$this->eventDispatcher,
 			$this->editResultCache,
-			$this->userNameUtils,
 			$this->contentTransformer,
 			$this->pageEditStash,
-			$this->talkPageNotificationManager,
 			$this->mainWANObjectCache,
-			$this->permissionManager,
 			$this->wikiPageFactory,
 			$this->changeTagsStore,
 		);

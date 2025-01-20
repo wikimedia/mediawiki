@@ -49,8 +49,6 @@ use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCache;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\ResourceLoader as RL;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RenderedRevision;
 use MediaWiki\Revision\RevisionRecord;
@@ -60,12 +58,8 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Title\Title;
-use MediaWiki\User\TalkPageNotificationManager;
-use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\User\UserNameUtils;
 use MediaWiki\Utils\MWTimestamp;
-use MessageCache;
 use MWUnknownContentModelException;
 use ParsoidCachePrewarmJob;
 use Psr\Log\LoggerAwareInterface;
@@ -139,11 +133,6 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 * @var JobQueueGroup
 	 */
 	private $jobQueueGroup;
-
-	/**
-	 * @var MessageCache
-	 */
-	private $messageCache;
 
 	/**
 	 * @var ILBFactory
@@ -309,53 +298,20 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	/** @var EditResultCache */
 	private $editResultCache;
 
-	/** @var UserNameUtils */
-	private $userNameUtils;
-
 	/** @var ContentTransformer */
 	private $contentTransformer;
 
 	/** @var PageEditStash */
 	private $pageEditStash;
 
-	/** @var TalkPageNotificationManager */
-	private $talkPageNotificationManager;
-
 	/** @var WANObjectCache */
 	private $mainWANObjectCache;
-
-	/** @var PermissionManager */
-	private $permissionManager;
 
 	/** @var bool */
 	private $warmParsoidParserCache;
 
 	private ChangeTagsStore $changeTagsStore;
 
-	/**
-	 * @param ServiceOptions $options
-	 * @param PageIdentity $page
-	 * @param RevisionStore $revisionStore
-	 * @param RevisionRenderer $revisionRenderer
-	 * @param SlotRoleRegistry $slotRoleRegistry
-	 * @param ParserCache $parserCache
-	 * @param JobQueueGroup $jobQueueGroup
-	 * @param MessageCache $messageCache
-	 * @param Language $contLang
-	 * @param ILBFactory $loadbalancerFactory
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param HookContainer $hookContainer
-	 * @param DomainEventDispatcher $eventDispatcher
-	 * @param EditResultCache $editResultCache
-	 * @param UserNameUtils $userNameUtils
-	 * @param ContentTransformer $contentTransformer
-	 * @param PageEditStash $pageEditStash
-	 * @param TalkPageNotificationManager $talkPageNotificationManager
-	 * @param WANObjectCache $mainWANObjectCache
-	 * @param PermissionManager $permissionManager
-	 * @param WikiPageFactory $wikiPageFactory
-	 * @param ChangeTagsStore $changeTagsStore
-	 */
 	public function __construct(
 		ServiceOptions $options,
 		PageIdentity $page,
@@ -364,19 +320,15 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		SlotRoleRegistry $slotRoleRegistry,
 		ParserCache $parserCache,
 		JobQueueGroup $jobQueueGroup,
-		MessageCache $messageCache,
 		Language $contLang,
 		ILBFactory $loadbalancerFactory,
 		IContentHandlerFactory $contentHandlerFactory,
 		HookContainer $hookContainer,
 		DomainEventDispatcher $eventDispatcher,
 		EditResultCache $editResultCache,
-		UserNameUtils $userNameUtils,
 		ContentTransformer $contentTransformer,
 		PageEditStash $pageEditStash,
-		TalkPageNotificationManager $talkPageNotificationManager,
 		WANObjectCache $mainWANObjectCache,
-		PermissionManager $permissionManager,
 		WikiPageFactory $wikiPageFactory,
 		ChangeTagsStore $changeTagsStore
 	) {
@@ -388,7 +340,6 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		$this->revisionRenderer = $revisionRenderer;
 		$this->slotRoleRegistry = $slotRoleRegistry;
 		$this->jobQueueGroup = $jobQueueGroup;
-		$this->messageCache = $messageCache;
 		$this->contLang = $contLang;
 		// XXX only needed for waiting for replicas to catch up; there should be a narrower
 		// interface for that.
@@ -397,12 +348,9 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->eventDispatcher = $eventDispatcher;
 		$this->editResultCache = $editResultCache;
-		$this->userNameUtils = $userNameUtils;
 		$this->contentTransformer = $contentTransformer;
 		$this->pageEditStash = $pageEditStash;
-		$this->talkPageNotificationManager = $talkPageNotificationManager;
 		$this->mainWANObjectCache = $mainWANObjectCache;
-		$this->permissionManager = $permissionManager;
 		$this->changeTagsStore = $changeTagsStore;
 
 		$this->logger = new NullLogger();
@@ -1605,9 +1553,13 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 
 	/**
 	 * Do standard updates after page edit, purge, or import.
-	 * Update links tables, site stats, search index, title cache, message cache, etc.
+	 * Update links tables and other derived data.
 	 * Purges pages that depend on this page when appropriate.
 	 * With a 10% chance, triggers pruning the recent changes table.
+	 *
+	 * Further updates may be triggered by core components and extensions
+	 * that listen to the PageUpdated event. Search for method names starting
+	 * with "handlePageUpdatedEvent" to find listeners.
 	 *
 	 * @note prepareUpdate() must be called before calling this method!
 	 *
@@ -1622,8 +1574,6 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 
 		// TODO: move more logic into ingress objects subscribed to PageUpdatedEvent!
 		$event = $this->getPageUpdatedEvent();
-
-		$wikiPage = $this->getWikiPage(); // TODO: use only for legacy hooks!
 
 		if ( $this->shouldGenerateHTMLOnEdit() ) {
 			$this->triggerParserCacheUpdate();
@@ -1656,7 +1606,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 
 		$id = $this->getPageId();
 		$title = $this->getTitle();
-		$shortTitle = $title->getDBkey();
+		$wikiPage = $this->getWikiPage();
 
 		if ( !$title->exists() ) {
 			wfDebug( __METHOD__ . ": Page doesn't exist any more, bailing out" );
@@ -1690,38 +1640,6 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			) );
 		} );
 
-		// If this is another user's talk page, update newtalk.
-		// Don't do this if $options['changed'] = false (null-edits) nor if
-		// it's a minor edit and the user making the edit doesn't generate notifications for those.
-		// TODO: the permission check should be performed by the callers, see T276181.
-		if ( $event->isContentChange()
-			&& $title->getNamespace() === NS_USER_TALK
-			&& $title->getText() != $this->user->getName()
-			&& !( $this->revision->isMinor() && $this->permissionManager
-				->userHasRight( $this->user, 'nominornewtalk' )
-			)
-		) {
-			$recipient = User::newFromName( $shortTitle, false );
-			if ( !$recipient ) {
-				wfDebug( __METHOD__ . ": invalid username" );
-			} else {
-				// Allow extensions to prevent user notification
-				// when a new message is added to their talk page
-				// TODO: replace legacy hook!  Use a listener on PageEventEmitter instead!
-				if ( $this->hookRunner->onArticleEditUpdateNewTalk( $wikiPage, $recipient ) ) {
-					$revRecord = $this->revision;
-					if ( $this->userNameUtils->isIP( $shortTitle ) ) {
-						// An anonymous user
-						$this->talkPageNotificationManager->setUserHasNewMessages( $recipient, $revRecord );
-					} elseif ( $recipient->isRegistered() ) {
-						$this->talkPageNotificationManager->setUserHasNewMessages( $recipient, $revRecord );
-					} else {
-						wfDebug( __METHOD__ . ": don't need to notify a nonexistent user" );
-					}
-				}
-			}
-		}
-
 		// TODO: move onArticleCreate and onArticleEdit into a PageEventEmitter service
 		if ( $event->isNew() ) {
 			// Deferred update that adds a mw-recreated tag to edits that create new pages
@@ -1745,16 +1663,6 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 				"DerivedPageDataUpdater:restore:page:$id"
 			);
 		}
-
-		$oldRevisionRecord = $this->getParentRevision();
-
-		// TODO: In the wiring, register a listener for this on the new PageEventEmitter
-		RL\WikiModule::invalidateModuleCache(
-			$title,
-			$oldRevisionRecord,
-			$this->revision,
-			$this->loadbalancerFactory->getLocalDomainID()
-		);
 
 		// Schedule a deferred update for marking reverted edits if applicable.
 		$this->maybeEnqueueRevertedTagUpdateJob();
