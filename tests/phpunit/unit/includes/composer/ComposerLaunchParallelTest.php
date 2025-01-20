@@ -44,6 +44,7 @@ class ComposerLaunchParallelTest extends TestCase {
 	}
 
 	public function testExecuteDatabaseSuite() {
+		$logDir = getenv( 'MW_LOG_DIR' ) ?? '.';
 		$executor = $this->createMock( SplitGroupExecutor::class );
 		$systemInterface = $this->getMockSystemInterface( 'phpunit_output_1_database.log' );
 		$composerLaunchParallel = new ComposerLaunchParallel(
@@ -59,7 +60,7 @@ class ComposerLaunchParallelTest extends TestCase {
 			->with( 'split_group_1',
 				[ 'Database' ],
 				[ 'Broken' ],
-				".phpunit_group_1_database.result.cache",
+				$logDir . "/phpunit_group_1_database.result.cache",
 				1
 			)
 			->willReturn( $result );
@@ -68,6 +69,7 @@ class ComposerLaunchParallelTest extends TestCase {
 	}
 
 	public function testExecuteDatabaselessSuite() {
+		$logDir = getenv( 'MW_LOG_DIR' ) ?? '.';
 		$executor = $this->createMock( SplitGroupExecutor::class );
 		$systemInterface = $this->getMockSystemInterface( 'phpunit_output_1_databaseless.log' );
 		$composerLaunchParallel = new ComposerLaunchParallel(
@@ -83,7 +85,7 @@ class ComposerLaunchParallelTest extends TestCase {
 			->with( 'split_group_1',
 				[],
 				[ 'Broken', 'Standalone', 'Database' ],
-				".phpunit_group_1_databaseless.result.cache",
+				$logDir . "/phpunit_group_1_databaseless.result.cache",
 				1
 			)
 			->willReturn( $result );
