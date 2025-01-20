@@ -26,6 +26,7 @@ use Psr\Log\NullLogger;
 use ReflectionClass;
 use stdClass;
 use TestLogger;
+use TypeError;
 use UnexpectedValueException;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
@@ -148,15 +149,15 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $this->store, $manager->store );
 
 		foreach ( [
-			'config' => '$options[\'config\'] must be an instance of Config',
-			'logger' => '$options[\'logger\'] must be an instance of LoggerInterface',
-			'store' => '$options[\'store\'] must be an instance of BagOStuff',
+			'config' => 'MediaWiki\Config\Config',
+			'logger' => 'Psr\Log\LoggerInterface',
+			'store' => 'Wikimedia\ObjectCache\BagOStuff',
 		] as $key => $error ) {
 			try {
 				new SessionManager( [ $key => new stdClass ] );
 				$this->fail( 'Expected exception not thrown' );
-			} catch ( InvalidArgumentException $ex ) {
-				$this->assertSame( $error, $ex->getMessage() );
+			} catch ( TypeError $ex ) {
+				$this->assertStringContainsString( $error, $ex->getMessage() );
 			}
 		}
 	}

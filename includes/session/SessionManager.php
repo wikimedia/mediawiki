@@ -88,9 +88,7 @@ class SessionManager implements SessionManagerInterface {
 	private HookRunner $hookRunner;
 	private Config $config;
 	private UserNameUtils $userNameUtils;
-
-	/** @var CachedBagOStuff|null */
-	private $store;
+	private CachedBagOStuff $store;
 
 	/** @var SessionProvider[] */
 	private $sessionProviders = null;
@@ -168,48 +166,16 @@ class SessionManager implements SessionManagerInterface {
 	 */
 	public function __construct( $options = [] ) {
 		$services = MediaWikiServices::getInstance();
-		if ( isset( $options['config'] ) ) {
-			if ( !$options['config'] instanceof Config ) {
-				throw new InvalidArgumentException(
-					'$options[\'config\'] must be an instance of Config'
-				);
-			}
-			$this->config = $options['config'];
-		} else {
-			$this->config = $services->getMainConfig();
-		}
 
-		if ( isset( $options['logger'] ) ) {
-			if ( !$options['logger'] instanceof LoggerInterface ) {
-				throw new InvalidArgumentException(
-					'$options[\'logger\'] must be an instance of LoggerInterface'
-				);
-			}
-			$this->setLogger( $options['logger'] );
-		} else {
-			$this->setLogger( \MediaWiki\Logger\LoggerFactory::getInstance( 'session' ) );
-		}
+		$this->config = $options['config'] ?? $services->getMainConfig();
+		$this->setLogger( $options['logger'] ?? \MediaWiki\Logger\LoggerFactory::getInstance( 'session' ) );
+		$this->setHookContainer( $options['hookContainer'] ?? $services->getHookContainer() );
 
-		if ( isset( $options['hookContainer'] ) ) {
-			$this->setHookContainer( $options['hookContainer'] );
-		} else {
-			$this->setHookContainer( $services->getHookContainer() );
-		}
-
-		if ( isset( $options['store'] ) ) {
-			if ( !$options['store'] instanceof BagOStuff ) {
-				throw new InvalidArgumentException(
-					'$options[\'store\'] must be an instance of BagOStuff'
-				);
-			}
-			$store = $options['store'];
-		} else {
-			$store = $services->getObjectCacheFactory()
-				->getInstance( $this->config->get( MainConfigNames::SessionCacheType ) );
-		}
-
+		$store = $options['store'] ?? $services->getObjectCacheFactory()
+			->getInstance( $this->config->get( MainConfigNames::SessionCacheType ) );
 		$this->logger->debug( 'SessionManager using store ' . get_class( $store ) );
 		$this->store = $store instanceof CachedBagOStuff ? $store : new CachedBagOStuff( $store );
+
 		$this->userNameUtils = $services->getUserNameUtils();
 
 		register_shutdown_function( [ $this, 'shutdown' ] );
