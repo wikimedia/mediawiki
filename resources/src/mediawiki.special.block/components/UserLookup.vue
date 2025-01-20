@@ -131,8 +131,8 @@ module.exports = exports = defineComponent( {
 				return;
 			}
 			// Check if the target is a valid user
-			fetchResults( target ).then( ( data ) => {
-				if ( !data || data.allusers.length === 0 ) {
+			getUser( target ).then( ( data ) => {
+				if ( !data || !data.users[ 0 ] || data.users[ 0 ].missing === true ) {
 					status.value = 'error';
 					store.formErrors = [ mw.message( 'nosuchusershort', target ).text() ];
 					store.targetExists = false;
@@ -142,6 +142,25 @@ module.exports = exports = defineComponent( {
 					store.targetExists = true;
 				}
 			} );
+		}
+
+		/**
+		 * Get a single user
+		 *
+		 * @param {string} target
+		 * @return {Promise}
+		 */
+		function getUser( target ) {
+			const params = {
+				action: 'query',
+				format: 'json',
+				formatversion: 2,
+				list: 'users',
+				ususers: target
+			};
+
+			return api.get( params )
+				.then( ( response ) => response.query );
 		}
 
 		/**

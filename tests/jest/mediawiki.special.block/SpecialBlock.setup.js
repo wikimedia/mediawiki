@@ -416,6 +416,19 @@ function mockMwApiGet( additionalMocks = [] ) {
 				}
 			}
 		},
+		{
+			params: {
+				list: 'users'
+			},
+			response: {
+				query: {
+					users: [
+						{ name: 'UserLookup1', missing: false },
+						{ name: 'UserLookup2', missing: false }
+					]
+				}
+			}
+		},
 		// Add more mocks as needed above this line.
 		...additionalMocks
 	];
