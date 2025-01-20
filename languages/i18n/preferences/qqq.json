@@ -483,6 +483,7 @@
 	"search-thumbnail-extra-namespaces-label": "Label for user preference to enable thumbnails for additional namespaces",
 	"search-thumbnail-extra-namespaces-message": "{{doc-important|1=Do not translate the <code><nowiki>{{#special:search}}</nowiki></code> parser function in this message.}}\nHelp text for user preference to enable thumbnails for additional namespaces. Parameters:\n* $1 - formatted list of extra namespaces for which thumbnails can be enabled\n* $2 - number of extra namespaces, used for PLURAL",
 	"prefs-advancedsearchoptions": "Used in [[Special:Preferences]], tab \"Search options\".\n{{Identical|Advanced options}}",
+	"prefs-misc": "Tab used on the [[Special:Preferences|user preferences]] special page.",
 	"prefs-reset-intro": "Used in [[Special:Preferences/reset]].",
 	"prefs-reset-confirm": "Used as a checkbox label on [[Special:Preferences/reset]].",
 	"restoreprefs": "Used as label for the Submit button in [[Special:Preferences/reset]]."
