@@ -24,7 +24,8 @@
 			"Verdy p",
 			"Waldir",
 			"Waldyrious",
-			"Zoranzoki21"
+			"Zoranzoki21",
+			"Stjn"
 		]
 	},
 	"config-desc": "Short description of the installer.",
@@ -234,7 +235,7 @@
 	"config-upload-enable": "Label for the option to enable the file and image upload system.",
 	"config-upload-help": "The word \"mode\" here refers to the access rights given to various user groups when attempting to create and store files and/or sub-directories in the said directory on the server. It also refers to the <code>mode</code> command used to manipulate said right mask under Unix, Linux, and similar operating systems. A less OS-centric translation is fine.",
 	"config-upload-deleted": "Prompt for the server directory into which deleted files should be moved.",
-	"config-upload-deleted-help": "Explanation for {{msg|config-upload-deleted}}.",
+	"config-upload-deleted-help": "Explanation for {{msg-mw|config-upload-deleted}}.",
 	"config-personalization-settings": "Section for personalizing the theme e.g. logo",
 	"config-logo-summary": "Describes all the different logo fields and how they can be updated.",
 	"config-logo-preview-main": "Used in logo live preview to show main page link.",
@@ -254,7 +255,7 @@
 	"config-cc-not-chosen": "{{doc-important|Do not translate the \"<code>proceed</code>\" part.}}\nThis message refers to a block of HTML being embedded into the installer page. It comes from the Creative Commons Web site. The block is in the English language. It is a scripted license chooser. When an individual license has been selected, it asks you to click \"proceed\" so as to return to the MediaWiki installer page.",
 	"config-advanced-settings": "Label for the advanced configuration settings page.",
 	"config-cache-options": "Prompt for the object caching options.",
-	"config-cache-help": "Explanation for what object caching is, next to {{msg|config-cache-options}}.",
+	"config-cache-help": "Explanation for what object caching is, next to {{msg-mw|config-cache-options}}.",
 	"config-cache-none": "Label for the object caching disabled option.",
 	"config-cache-accel": "Label for the object caching via PHP option.",
 	"config-cache-memcached": "{{doc-important|Do not translate \"memcached\".}}\nLabel for the object caching via memcached option.",

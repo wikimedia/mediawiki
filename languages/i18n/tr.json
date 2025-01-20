@@ -362,7 +362,7 @@
 	"youhavenewmessagesmanyusers": "Birçok kullanıcıdan $1 var ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|yeni mesajınız|yeni mesajlarınız}}",
 	"newmessagesdifflinkplural": "son {{PLURAL:$1|değişiklik|değişiklik}}",
-	"editsection": "değiştir",
+	"editsection": "düzenle",
 	"editold": "değiştir",
 	"viewsourceold": "kaynağı gör",
 	"editlink": "değiştir",
