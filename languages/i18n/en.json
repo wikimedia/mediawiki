@@ -1072,7 +1072,6 @@
 	"search-warning": "A warning has occurred while searching: $1",
 	"opensearch-desc": "{{SITENAME}} ({{CONTENTLANGUAGE}})",
 	"mypreferences": "Preferences",
-	"prefs-misc": "Misc",
 	"searchresultshead": "Search",
 	"prefs-description-misc": "Customize the table of contents.",
 	"prefs-help-watchlist-token2": "This is the secret key to the web feed of your watchlist.\nAnyone who knows it will be able to read your watchlist, so do not share it.\nIf you need to, [[Special:ResetTokens|you can reset it]].",

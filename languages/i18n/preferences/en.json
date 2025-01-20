@@ -224,6 +224,7 @@
 	"search-thumbnail-extra-namespaces-label": "Show thumbnails in Special:Search on Desktop",
 	"search-thumbnail-extra-namespaces-message": "Displays thumbnails for $1 {{PLURAL:$2|namespace|namespaces}} results on the {{#special:search}} page",
 	"prefs-advancedsearchoptions": "Advanced options",
+	"prefs-misc": "Misc",
 	"prefs-reset-intro": "You can use this page to reset your preferences to the site defaults.\nThis cannot be undone.",
 	"prefs-reset-confirm": "Yes, I want to reset my preferences.",
 	"restoreprefs": "Restore all default settings"
