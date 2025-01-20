@@ -25,7 +25,7 @@
 			{{ $i18n( 'block-target' ).text() }}
 		</template>
 		<div class="mw-block-conveniencelinks">
-			<span v-if="status !== 'error' && !!targetUser">
+			<span v-if="status !== 'error' && targetExists">
 				<a
 					:href="mw.util.getUrl( contribsTitle )"
 					:title="contribsTitle"
@@ -35,16 +35,25 @@
 			</span>
 		</div>
 		<component
-			v-for="customComponent in customComponents"
 			:is="customComponent"
+			v-for="customComponent in customComponents"
 			:key="customComponent.name"
-			:target-user="targetUser"
+			:target-user="targetExists ? targetUser : null"
 		></component>
 	</cdx-field>
 </template>
 
 <script>
-const { computed, defineComponent, onMounted, ref, shallowRef, watch, DefineSetupFnComponent } = require( 'vue' );
+const {
+	computed,
+	defineComponent,
+	onMounted,
+	ref,
+	shallowRef,
+	watch,
+	DefineSetupFnComponent,
+	Ref
+} = require( 'vue' );
 const { CdxLookup, CdxField } = require( '@wikimedia/codex' );
 const { storeToRefs } = require( 'pinia' );
 const { cdxIconSearch } = require( '../icons.json' );
@@ -67,11 +76,11 @@ module.exports = exports = defineComponent( {
 	],
 	setup( props ) {
 		const store = useBlockStore();
-		const { targetUser } = storeToRefs( store );
+		const { targetExists, targetUser } = storeToRefs( store );
 		/**
 		 * Custom components to be added to the bottom of the field.
 		 *
-		 * @type {Ref<DefineSetupFnComponent> & {[ShallowRefMarker]?: true}}
+		 * @type {Ref<DefineSetupFnComponent>}
 		 */
 		const customComponents = shallowRef( [] );
 		let htmlInput;
@@ -127,7 +136,13 @@ module.exports = exports = defineComponent( {
 			if ( mw.util.isIPAddress( target, true ) ) {
 				status.value = 'default';
 				store.formErrors = [];
-				store.targetExists = true;
+				targetExists.value = true;
+				return;
+			}
+			if ( !target ) {
+				status.value = 'default';
+				store.formErrors = [];
+				targetExists.value = false;
 				return;
 			}
 			// Check if the target is a valid user
@@ -135,11 +150,11 @@ module.exports = exports = defineComponent( {
 				if ( !data || !data.users[ 0 ] || data.users[ 0 ].missing === true ) {
 					status.value = 'error';
 					store.formErrors = [ mw.message( 'nosuchusershort', target ).text() ];
-					store.targetExists = false;
+					targetExists.value = false;
 				} else {
 					status.value = 'default';
 					store.formErrors = [];
-					store.targetExists = true;
+					targetExists.value = true;
 				}
 			} );
 		}
@@ -298,6 +313,7 @@ module.exports = exports = defineComponent( {
 		return {
 			mw,
 			contribsTitle,
+			targetExists,
 			targetUser,
 			menuItems,
 			onChange,
