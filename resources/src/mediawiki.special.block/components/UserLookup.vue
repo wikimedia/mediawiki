@@ -34,11 +34,17 @@
 				</a>
 			</span>
 		</div>
+		<component
+			v-for="customComponent in customComponents"
+			:is="customComponent"
+			:key="customComponent.name"
+			:target-user="targetUser"
+		></component>
 	</cdx-field>
 </template>
 
 <script>
-const { computed, defineComponent, onMounted, ref, watch } = require( 'vue' );
+const { computed, defineComponent, onMounted, ref, shallowRef, watch, DefineSetupFnComponent } = require( 'vue' );
 const { CdxLookup, CdxField } = require( '@wikimedia/codex' );
 const { storeToRefs } = require( 'pinia' );
 const { cdxIconSearch } = require( '../icons.json' );
@@ -62,6 +68,12 @@ module.exports = exports = defineComponent( {
 	setup( props ) {
 		const store = useBlockStore();
 		const { targetUser } = storeToRefs( store );
+		/**
+		 * Custom components to be added to the bottom of the field.
+		 *
+		 * @type {Ref<DefineSetupFnComponent> & {[ShallowRefMarker]?: true}}
+		 */
+		const customComponents = shallowRef( [] );
 		let htmlInput;
 
 		onMounted( () => {
@@ -69,6 +81,15 @@ module.exports = exports = defineComponent( {
 			htmlInput = document.querySelector( 'input[name="wpTarget"]' );
 			// Focus the input on mount.
 			htmlInput.focus();
+			/**
+			 * Hook for custom components to be added to the UserLookup component.
+			 *
+			 * @event codex.userlookup
+			 * @param {Ref<DefineSetupFnComponent[]>} customComponents
+			 * @private
+			 * @internal
+			 */
+			mw.hook( 'codex.userlookup' ).fire( customComponents );
 		} );
 
 		// Set a flag to keep track of pending API requests, so we can abort if
@@ -268,7 +289,8 @@ module.exports = exports = defineComponent( {
 			currentSearchTerm,
 			selection,
 			status,
-			messages
+			messages,
+			customComponents
 		};
 	}
 } );

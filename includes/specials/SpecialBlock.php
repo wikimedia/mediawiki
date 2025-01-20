@@ -161,6 +161,8 @@ class SpecialBlock extends FormSpecialPage {
 		parent::execute( $par );
 
 		if ( $this->useCodex ) {
+			// Ensure wgUseCodexSpecialBlock is set when ?usecodex=1 is used.
+			$this->codexFormData[ 'wgUseCodexSpecialBlock' ] = true;
 			$this->codexFormData[ 'blockEnableMultiblocks' ] = $this->useMultiblocks;
 			$this->codexFormData[ 'blockTargetUser' ] = $this->target instanceof UserIdentity ?
 				$this->target->getName() :
@@ -291,6 +293,7 @@ class SpecialBlock extends FormSpecialPage {
 	protected function alterForm( HTMLForm $form ) {
 		$form->setHeaderHtml( '' );
 		$form->setSubmitDestructive();
+		$form->setId( 'mw-block-form' );
 
 		$msg = $this->alreadyBlocked ? 'ipb-change-block' : 'ipbsubmit';
 		$form->setSubmitTextMsg( $msg );
