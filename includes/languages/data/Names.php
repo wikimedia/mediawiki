@@ -334,6 +334,7 @@ class Names {
 		'li' => 'Limburgs', # Limburgian
 		'lij' => 'Ligure', # Ligurian
 		'liv' => 'Līvõ kēļ', # Livonian
+		'ljp' => 'Lampung Api', # Lampung Api
 		'lki' => 'لەکی', # Laki
 		'lld' => 'Ladin', # Ladin
 		'lmo' => 'lombard', # Lombard - T283423
@@ -576,6 +577,7 @@ class Names {
 		'wal' => 'wolaytta', # Wolaytta
 		'war' => 'Winaray', # Waray-Waray
 		'wls' => 'Fakaʻuvea', # Wallisian
+		'wlx' => 'waale', # Wali
 		'wo' => 'Wolof', # Wolof
 		'wuu' => '吴语', # Wu (multiple scripts - defaults to Simplified Han)
 		'wuu-hans' => '吴语（简体）', # Wu (Simplified Han)
