@@ -60,12 +60,21 @@ class LinksMigration {
 				SCHEMA_COMPAT_READ_OLD
 			],
 		],
+		'categorylinks' => [
+			'config' => MainConfigNames::CategoryLinksSchemaMigrationStage,
+			'page_id' => 'cl_from',
+			'ns' => 14,
+			'title' => 'cl_to',
+			'target_id' => 'cl_target_id',
+			'deprecated_configs' => [],
+		],
 	];
 
 	/** @var string[] */
 	public static $prefixToTableMapping = [
 		'tl' => 'templatelinks',
 		'pl' => 'pagelinks',
+		'cl' => 'categorylinks',
 	];
 
 	public function __construct( Config $config, LinkTargetLookup $linktargetLookup ) {
