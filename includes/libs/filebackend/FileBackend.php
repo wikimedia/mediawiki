@@ -33,7 +33,6 @@ namespace Wikimedia\FileBackend;
 
 use InvalidArgumentException;
 use LockManager;
-use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use NullLockManager;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
@@ -43,6 +42,7 @@ use Shellbox\Command\BoxedCommand;
 use StatusValue;
 use Wikimedia\FileBackend\FSFile\FSFile;
 use Wikimedia\FileBackend\FSFile\TempFSFile;
+use Wikimedia\FileBackend\FSFile\TempFSFileFactory;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ScopedCallback;

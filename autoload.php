@@ -3490,6 +3490,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\FileBackend\\FSFileBackend' => __DIR__ . '/includes/libs/filebackend/FSFileBackend.php',
 	'Wikimedia\\FileBackend\\FSFile\\FSFile' => __DIR__ . '/includes/libs/filebackend/fsfile/FSFile.php',
 	'Wikimedia\\FileBackend\\FSFile\\TempFSFile' => __DIR__ . '/includes/libs/filebackend/fsfile/TempFSFile.php',
+	'Wikimedia\\FileBackend\\FSFile\\TempFSFileFactory' => __DIR__ . '/includes/libs/filebackend/fsfile/TempFSFileFactory.php',
 	'Wikimedia\\FileBackend\\FileBackend' => __DIR__ . '/includes/libs/filebackend/FileBackend.php',
 	'Wikimedia\\FileBackend\\FileBackendError' => __DIR__ . '/includes/libs/filebackend/FileBackendError.php',
 	'Wikimedia\\FileBackend\\FileBackendMultiWrite' => __DIR__ . '/includes/libs/filebackend/FileBackendMultiWrite.php',
