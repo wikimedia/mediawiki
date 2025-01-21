@@ -9873,7 +9873,6 @@ Mixing markup for italics and bold
 </p>
 !! end
 
-
 !! article
 Xyzzyx
 !! text
@@ -9908,6 +9907,27 @@ Special page transclusion twice (T7021)
 <li><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></li>
 </ul>
 <ul class="mw-prefixindex-list" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"Special:Prefixindex/Xyzzyx","href":"./Special:PrefixIndex/Xyzzyx"},"params":{},"i":0}}]}'>
+<li><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></li>
+</ul>
+!! end
+
+!! article
+Template:Nested special
+!! text
+{{Special:Prefixindex/Xyzzyx}}
+!! endarticle
+
+!! test
+Nested special page transclusion
+!! config
+wgParsoidFragmentSupport=true
+!! wikitext
+{{nested special}}
+!! html/php
+<ul class="mw-prefixindex-list"><li><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></li>
+</ul>
+!! html/parsoid+integrated
+<ul class="mw-prefixindex-list" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"nested special","href":"./Template:Nested_special"},"params":{},"i":0}}]}'>
 <li><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></li>
 </ul>
 !! end
