@@ -314,8 +314,12 @@ module.exports = exports = defineComponent( {
 					// Scrolling to `cdx-message--error` is merely future-proofing to
 					// ensure the user sees the error message, wherever it may be.
 					// Actual validation logic should live in the respective component.
-					document.querySelector( '.cdx-message--error' )
-						.scrollIntoView( { behavior: 'smooth' } );
+					const firstError = document.querySelector( '.cdx-message--error' );
+					if ( firstError ) {
+						// Guard against there not being any parent field.
+						const firstErrorField = firstError.closest( '.cdx-field' );
+						( firstErrorField || firstError ).scrollIntoView( { behavior: 'smooth' } );
+					}
 					formSubmitted.value = false;
 				} );
 			}
