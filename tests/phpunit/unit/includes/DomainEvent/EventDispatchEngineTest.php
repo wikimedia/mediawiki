@@ -21,6 +21,10 @@ class EventDispatchEngineTest extends MediaWikiUnitTestCase {
 
 	private function newEvent( string $type ): DomainEvent {
 		return new class ( $type ) extends DomainEvent {
+			public function __construct( string $type ) {
+				parent::__construct();
+				$this->declareEventType( $type );
+			}
 		};
 	}
 
@@ -89,6 +93,25 @@ class EventDispatchEngineTest extends MediaWikiUnitTestCase {
 
 		$dbw->commit();
 		DeferredUpdates::doUpdates();
+
+		$this->assertSame( 2, $callCount, 'Listener should have been called' );
+	}
+
+	public function testWildcardListener() {
+		$engine = $this->newDispatchEngine();
+		$conProv = $this->newConnectionProvider();
+
+		$callCount = 0;
+		$engine->registerListener(
+			DomainEvent::ANY, // register for any event
+			static function () use ( &$callCount ) {
+				$callCount++;
+			},
+			[ DomainEventSource::INVOCATION_MODE => DomainEventSource::INVOKE_BEFORE_COMMIT ]
+		);
+
+		$engine->dispatch( $this->newEvent( 'Tested1' ), $conProv );
+		$engine->dispatch( $this->newEvent( 'Tested2' ), $conProv );
 
 		$this->assertSame( 2, $callCount, 'Listener should have been called' );
 	}

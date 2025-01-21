@@ -3,9 +3,9 @@
 namespace MediaWiki\Search;
 
 use MediaWiki\DomainEvent\EventSubscriberBase;
+use MediaWiki\Page\Event\PageUpdatedEvent;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\Storage\PageUpdatedEvent;
 
 /**
  * The ingres adapter for the search component. It updates search related state

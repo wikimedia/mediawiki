@@ -4,9 +4,9 @@ namespace MediaWiki\RecentChanges;
 
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\DomainEvent\EventSubscriberBase;
+use MediaWiki\Page\Event\PageUpdatedEvent;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\EditResult;
-use MediaWiki\Storage\PageUpdatedEvent;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserIdentity;
 use RecentChange;

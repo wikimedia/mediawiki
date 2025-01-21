@@ -2,10 +2,10 @@
 
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\ContentHandler;
+use MediaWiki\Page\Event\PageUpdatedEvent;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\UndeletePage;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\Storage\PageUpdatedEvent;
 use MediaWiki\Tests\Language\LanguageEventIngressSpyTrait;
 use MediaWiki\Tests\recentchanges\ChangeTrackingEventIngressSpyTrait;
 use MediaWiki\Tests\Search\SearchEventIngressSpyTrait;

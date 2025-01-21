@@ -25,7 +25,7 @@ describe( 'POST /page', () => {
 
 		const specPath = '/specs/v0/module' + specModule;
 		const { status, text } = await client.get( specPath );
-		assert.deepEqual( status, 200 );
+		assert.deepEqual( status, 200, text );
 
 		openApiSpec = JSON.parse( text );
 		chai.use( chaiResponseValidator( openApiSpec ) );

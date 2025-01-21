@@ -18,12 +18,12 @@
  * @file
  */
 
-namespace MediaWiki\Storage;
+namespace MediaWiki\Page\Event;
 
-use MediaWiki\DomainEvent\DomainEvent;
-use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Storage\EditResult;
+use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 
@@ -43,9 +43,12 @@ use Wikimedia\Assert\Assert;
  * See the documentation of EventSubscriberBase and DomainEventSource for
  * more options and details.
  *
+ * @todo: rename to something more descriptive, like
+ * PageContentUpdatedEvent.
+ *
  * @unstable until 1.45
  */
-class PageUpdatedEvent extends DomainEvent {
+class PageUpdatedEvent extends PageEvent {
 
 	public const TYPE = 'PageUpdated';
 
@@ -93,20 +96,14 @@ class PageUpdatedEvent extends DomainEvent {
 		self::FLAG_DERIVED => false,
 	];
 
-	private ProperPageIdentity $page;
-	private UserIdentity $author;
 	private RevisionSlotsUpdate $slotsUpdate;
 	private RevisionRecord $newRevision;
 	private ?RevisionRecord $oldRevision;
 	private ?EditResult $editResult;
-	/** @var string[] */
-	private array $tags;
-	/** @var array<string,bool> */
-	private array $flags;
 
 	/**
 	 * @param ProperPageIdentity $page The page affected by the update.
-	 * @param UserIdentity $author The author performing the update.
+	 * @param UserIdentity $performer The user performing the update.
 	 * @param RevisionSlotsUpdate $slotsUpdate Page content changed by the edit.
 	 * @param RevisionRecord $newRevision The revision object resulting from the
 	 *        edit.
@@ -114,13 +111,13 @@ class PageUpdatedEvent extends DomainEvent {
 	 *        current before the edit.
 	 * @param EditResult|null $editResult An EditResult representing the effects
 	 *        of an edit.
-	 * @param array $tags Applicable tags, see ChangeTags.
+	 * @param array<string> $tags Applicable tags, see ChangeTags.
 	 * @param array<string,bool> $flags See the self::FLAG_XXX constants.
 	 * @param int $patrolStatus See PageUpdater::setRcPatrolStatus()
 	 */
 	public function __construct(
 		ProperPageIdentity $page,
-		UserIdentity $author,
+		UserIdentity $performer,
 		RevisionSlotsUpdate $slotsUpdate,
 		RevisionRecord $newRevision,
 		?RevisionRecord $oldRevision,
@@ -129,12 +126,8 @@ class PageUpdatedEvent extends DomainEvent {
 		array $flags = [],
 		int $patrolStatus = 0
 	) {
-		parent::__construct( self::TYPE, $newRevision->getTimestamp() );
-
-		Assert::parameterElementType( 'string', $tags, '$tags' );
-		Assert::parameterKeyType( 'integer', $tags, '$tags' );
-		Assert::parameterElementType( 'boolean', $flags, '$flags' );
-		Assert::parameterKeyType( 'string', $flags, '$flags' );
+		parent::__construct( $page, $performer, $tags, $flags, $newRevision->getTimestamp() );
+		$this->declareEventType( self::TYPE );
 
 		Assert::parameter( $page->exists(), '$page', 'must exist' );
 		Assert::parameter(
@@ -151,14 +144,10 @@ class PageUpdatedEvent extends DomainEvent {
 			);
 		}
 
-		$this->page = $page;
-		$this->author = $author;
 		$this->slotsUpdate = $slotsUpdate;
 		$this->newRevision = $newRevision;
 		$this->oldRevision = $oldRevision;
 		$this->editResult = $editResult;
-		$this->tags = $tags;
-		$this->flags = $flags + self::DEFAULT_FLAGS;
 		$this->patrolStatus = $patrolStatus;
 	}
 
@@ -200,17 +189,10 @@ class PageUpdatedEvent extends DomainEvent {
 	}
 
 	/**
-	 * Returns the page that was edited.
-	 */
-	public function getPage(): PageIdentity {
-		return $this->page;
-	}
-
-	/**
 	 * Returns the user that performed the edit.
 	 */
 	public function getAuthor(): UserIdentity {
-		return $this->author;
+		return $this->newRevision->getUser( RevisionRecord::RAW );
 	}
 
 	/**
@@ -261,32 +243,6 @@ class PageUpdatedEvent extends DomainEvent {
 	}
 
 	/**
-	 * Internal flags describing the page update.
-	 * @see self::FLAG_XXX constants
-	 * @return array<string,bool>
-	 */
-	public function getFlags(): array {
-		return $this->flags;
-	}
-
-	/**
-	 * Checks flags describing the page update.
-	 *
-	 * @see self::FLAG_XXX constants
-	 */
-	public function hasFlag( string $name ): bool {
-		return $this->flags[$name] ?? false;
-	}
-
-	/**
-	 * Returns any tags applied to the edit.
-	 * @see ChangeTags
-	 */
-	public function getTags(): array {
-		return $this->tags;
-	}
-
-	/**
 	 * Returns the edit's initial patrol status.
 	 * @see PageUpdater::setRcPatrolStatus()
 	 * @see RecentChange::PRC_XXX
@@ -296,3 +252,6 @@ class PageUpdatedEvent extends DomainEvent {
 	}
 
 }
+
+/** @deprecated temporary alias, remove before 1.44 release */
+class_alias( PageUpdatedEvent::class, 'MediaWiki\Storage\PageUpdatedEvent' );
