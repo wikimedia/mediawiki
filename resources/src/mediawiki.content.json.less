@@ -17,12 +17,12 @@
 	td {
 		border: @border-base;
 		font-size: 1em;
-		padding: 0.5em 1em;
+		padding: @spacing-50 @spacing-100;
 	}
 
 	tr {
 		background-color: @background-color-neutral;
-		margin-bottom: 0.5em;
+		margin-bottom: @spacing-50;
 	}
 
 	th {
@@ -40,7 +40,7 @@
 .mw-json-value,
 .mw-json-single-value {
 	background-color: #dcfae3;
-	font-family: monospace, monospace;
+	font-family: @font-family-monospace--fallback;
 	white-space: pre-wrap;
 
 	html.skin-theme-clientpref-night & {
