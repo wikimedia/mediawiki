@@ -70,6 +70,13 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 				// T353489: don't wrap bare <h> tags
 				continue;
 			}
+			if ( $section->anchor === '' ) {
+				// T375002 / T368722: The empty string isn't a valid id so
+				// Parsoid will have reassigned it and we'll never be able
+				// to select by it below.  There's no sense in logging an
+				// error since it's a common enough occurrence at present.
+				continue;
+			}
 			$h = $dom->getElementById( $section->anchor );
 			if ( $h === null ) {
 				$this->logger->error(
