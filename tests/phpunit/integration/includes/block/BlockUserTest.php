@@ -207,10 +207,12 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 			[ 'isAutoblocking' => true ]
 		)->placeBlockUnsafe();
 		$this->assertStatusGood( $blockStatus );
+		/** @var DatabaseBlock $block */
 		$block = $blockStatus->getValue();
 
 		$target = '1.2.3.4';
-		$autoBlockId = $block->doAutoblock( $target );
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$autoBlockId = $blockStore->doAutoblock( $block, $target );
 		$this->assertNotFalse( $autoBlockId );
 
 		$hookPriorBlock = false;
@@ -238,8 +240,7 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 			static function ( DatabaseBlock $block ) {
 				return $block->getId();
 			},
-			$this->getServiceContainer()->getDatabaseBlockStore()
-				->newListFromTarget( $target, null, /*fromPrimary=*/true )
+			$blockStore->newListFromTarget( $target, null, /*fromPrimary=*/true )
 		);
 		$this->assertContains( $autoBlockId, $blockIds );
 		$this->assertContains( $IPBlock->getId(), $blockIds );

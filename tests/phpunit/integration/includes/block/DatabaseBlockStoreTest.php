@@ -3,11 +3,13 @@
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
+use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\User;
 use Psr\Log\NullLogger;
 use Wikimedia\IPUtils;
@@ -24,6 +26,7 @@ use Wikimedia\ScopedCallback;
  */
 class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	use DummyServicesTrait;
+	use TempUserTestTrait;
 
 	private User $sysop;
 	private int $expiredBlockId = 11111;
@@ -206,6 +209,40 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 			$newListRes,
 			'newListFromTarget with a block id for a missing block'
 		);
+	}
+
+	/**
+	 * @covers ::newFromRow
+	 */
+	public function testNewFromRow() {
+		$badActor = $this->getTestUser()->getUser();
+		$sysop = $this->getTestSysop()->getUser();
+
+		$block = new DatabaseBlock( [
+			'address' => $badActor,
+			'by' => $sysop,
+			'expiry' => 'infinity',
+		] );
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $block );
+
+		$blockQuery = $blockStore->getQueryInfo();
+		$db = $this->getDb();
+		$row = $db->newSelectQueryBuilder()
+			->queryInfo( $blockQuery )
+			->where( [
+				'bl_id' => $block->getId(),
+			] )
+			->caller( __METHOD__ )
+			->fetchRow();
+
+		$block = $blockStore->newFromRow( $db, $row );
+		$this->assertInstanceOf( DatabaseBlock::class, $block );
+		$this->assertEquals( $block->getBy(), $sysop->getId() );
+		$this->assertEquals( $block->getTargetName(), $badActor->getName() );
+		$this->assertEquals( $block->getTargetName(), $badActor->getName() );
+		$this->assertTrue( $block->isBlocking( $badActor ), 'Is blocking expected user' );
+		$this->assertEquals( $block->getTargetUserIdentity()->getId(), $badActor->getId() );
 	}
 
 	/**
@@ -490,6 +527,35 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 
 		$store = $this->getStore();
 		$store->insertBlock( $block );
+	}
+
+	public function testInsertExistingBlock() {
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$badActor = $this->getTestUser()->getUser();
+		$sysop = $this->getTestSysop()->getUser();
+
+		$block = new DatabaseBlock( [
+			'address' => $badActor,
+			'by' => $sysop,
+			'expiry' => 'infinity',
+		] );
+		$page = $this->getExistingTestPage( 'Foo' );
+		$restriction = new PageRestriction( 0, $page->getId() );
+		$block->setRestrictions( [ $restriction ] );
+		$blockStore->insertBlock( $block );
+
+		// Insert the block again, which should result in a failure
+		$result = $blockStore->insertBlock( $block );
+
+		$this->assertFalse( $result );
+
+		// Ensure that there are no restrictions where the blockId is 0.
+		$count = $this->getDb()->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'ipblocks_restrictions' )
+			->where( [ 'ir_ipb_id' => 0 ] )
+			->caller( __METHOD__ )->fetchRowCount();
+		$this->assertSame( 0, $count );
 	}
 
 	public function testUpdateBlock() {
@@ -813,6 +879,130 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 			->rows( $restrictionData )
 			->caller( __METHOD__ )
 			->execute();
+	}
+
+	public function testHardBlocks() {
+		// Set up temp user config
+		$this->enableAutoCreateTempUser();
+
+		$store = $this->getStore();
+		$blocker = $this->getTestUser()->getUser();
+
+		$block = new DatabaseBlock();
+		$block->setTarget( '1.2.3.4' );
+		$block->setBlocker( $blocker );
+		$block->setReason( 'test' );
+		$block->setExpiry( 'infinity' );
+		$block->isHardblock( false );
+		$store->insertBlock( $block );
+
+		$this->assertFalse(
+			(bool)$store->newFromTarget( '~1' ),
+			'Temporary user is not blocked directly'
+		);
+		$this->assertTrue(
+			(bool)$store->newFromTarget( '~1', '1.2.3.4' ),
+			'Temporary user is blocked by soft block'
+		);
+		$this->assertFalse(
+			(bool)$store->newFromTarget( $blocker, '1.2.3.4' ),
+			'Logged-in user is not blocked by soft block'
+		);
+	}
+
+	/**
+	 * Regression test for T31116 which relates to CheckUser asking for blocks with an
+	 * empty string for a vague target.
+	 *
+	 * @dataProvider provideT31116Data
+	 */
+	public function testT31116NewFromTargetWithEmptyIp( $vagueTarget ) {
+		$store = $this->getStore();
+		$target = $this->getTestUser()->getUser();
+		$initialBlock = $this->getBlock( [ 'target' => $target ] );
+		$store->insertBlock( $initialBlock );
+		$block = $this->getStore()->newFromTarget( $target->getName(), $vagueTarget );
+
+		$this->assertTrue(
+			$initialBlock->equals( $block ),
+			"newFromTarget() returns the same block as the one that was made when "
+			. "given empty vagueTarget param " . var_export( $vagueTarget, true )
+		);
+	}
+
+	public static function provideT31116Data() {
+		return [
+			[ null ],
+			[ '' ],
+			[ false ]
+		];
+	}
+
+	public static function provideNewFromTargetRangeBlocks() {
+		return [
+			'Blocks to IPv4 ranges' => [
+				[ '0.0.0.0/20', '0.0.0.0/30', '0.0.0.0/25' ],
+				'0.0.0.0',
+				'0.0.0.0/30'
+			],
+			'Blocks to IPv6 ranges' => [
+				[ '0:0:0:0:0:0:0:0/20', '0:0:0:0:0:0:0:0/30', '0:0:0:0:0:0:0:0/25' ],
+				'0:0:0:0:0:0:0:0',
+				'0:0:0:0:0:0:0:0/30'
+			],
+			'Blocks to wide IPv4 range and IP' => [
+				[ '0.0.0.0/16', '0.0.0.0' ],
+				'0.0.0.0',
+				'0.0.0.0'
+			],
+			'Blocks to narrow IPv4 range and IP' => [
+				[ '0.0.0.0/31', '0.0.0.0' ],
+				'0.0.0.0',
+				'0.0.0.0'
+			],
+			'Blocks to wide IPv6 range and IP' => [
+				[ '0:0:0:0:0:0:0:0/19', '0:0:0:0:0:0:0:0' ],
+				'0:0:0:0:0:0:0:0',
+				'0:0:0:0:0:0:0:0'
+			],
+			'Blocks to narrow IPv6 range and IP' => [
+				[ '0:0:0:0:0:0:0:0/127', '0:0:0:0:0:0:0:0' ],
+				'0:0:0:0:0:0:0:0',
+				'0:0:0:0:0:0:0:0'
+			],
+			'Blocks to wide IPv6 range and IP, large numbers' => [
+				[ '2000:DEAD:BEEF:A:0:0:0:0/19', '2000:DEAD:BEEF:A:0:0:0:0' ],
+				'2000:DEAD:BEEF:A:0:0:0:0',
+				'2000:DEAD:BEEF:A:0:0:0:0'
+			],
+			'Blocks to narrow IPv6 range and IP, large numbers' => [
+				[ '2000:DEAD:BEEF:A:0:0:0:0/127', '2000:DEAD:BEEF:A:0:0:0:0' ],
+				'2000:DEAD:BEEF:A:0:0:0:0',
+				'2000:DEAD:BEEF:A:0:0:0:0'
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideNewFromTargetRangeBlocks
+	 */
+	public function testNewFromTargetRangeBlocks( $targets, $ip, $expectedTarget ) {
+		$blockStore = $this->getStore();
+		$blocker = $this->getTestSysop()->getUser();
+
+		foreach ( $targets as $target ) {
+			$block = new DatabaseBlock();
+			$block->setTarget( $target );
+			$block->setBlocker( $blocker );
+			$blockStore->insertBlock( $block );
+		}
+
+		// Should find the block with the narrowest range
+		$block = $blockStore->newFromTarget( $this->getTestUser()->getUserIdentity(), $ip );
+		$this->assertSame(
+			$expectedTarget,
+			$block->getTargetName()
+		);
 	}
 
 }
