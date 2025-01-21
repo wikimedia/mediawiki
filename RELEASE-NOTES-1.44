@@ -205,6 +205,13 @@ because of Phabricator reports.
 * The hook OutputPageMakeCategoryLinks, deprecated in 1.43, has been removed.
 * The methods Skin::getFooterIcons and ::makeFooterIcon are final and
   overriding is no longer supported.
+* DatabaseBlock::getQueryInfo and ::getRangeCond, deprecated since 1.43, have
+  been removed.
+* The $schema parameters to DatabaseBlockStore::getQueryInfo() and
+  ::getRangeCond() have been removed. They were documented as temporary
+  migration support parameters. Support for ipb_* field aliases in
+  DatabaseBlockStore::newFromRow(), which was meant to support the use of
+  $schema, has been removed.
 * …
 
 === Deprecations in 1.44 ===

@@ -143,32 +143,6 @@ class DatabaseBlock extends AbstractBlock {
 	}
 
 	/**
-	 * Return the tables, fields, and join conditions to be selected to create
-	 * a new block object.
-	 *
-	 * Since 1.34, ipb_by and ipb_by_text have not been present in the
-	 * database, but they continue to be available in query results as
-	 * aliases.
-	 *
-	 * @deprecated since 1.43, use DatabaseBlockStore::getQueryInfo()
-	 * @since 1.31
-	 *
-	 * @return array[] With three keys:
-	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
-	 *     or `SelectQueryBuilder::tables`
-	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
-	 *     or `SelectQueryBuilder::fields`
-	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
-	 *     or `SelectQueryBuilder::joinConds`
-	 * @phan-return array{tables:string[],fields:string[],joins:array}
-	 */
-	public static function getQueryInfo() {
-		wfDeprecated( __METHOD__, '1.43' );
-		return MediaWikiServices::getInstance()->getDatabaseBlockStore()
-			->getQueryInfo( DatabaseBlockStore::SCHEMA_IPBLOCKS );
-	}
-
-	/**
 	 * Check if two blocks are effectively equal.  Doesn't check irrelevant things like
 	 * the blocking user or the block timestamp, only things which affect the blocked user
 	 *
@@ -195,21 +169,6 @@ class DatabaseBlock extends AbstractBlock {
 				$this->getRestrictions(), $block->getRestrictions()
 			)
 		);
-	}
-
-	/**
-	 * Get a set of SQL conditions which will select range blocks encompassing a given range
-	 *
-	 * @deprecated since 1.43 use DatabaseBlockStore::getRangeCond
-	 *
-	 * @param string $start Hexadecimal IP representation
-	 * @param string|null $end Hexadecimal IP representation, or null to use $start = $end
-	 * @return string
-	 */
-	public static function getRangeCond( $start, $end = null ) {
-		wfDeprecated( __METHOD__, '1.43' );
-		return MediaWikiServices::getInstance()->getDatabaseBlockStore()
-			->getRangeCond( $start, $end, DatabaseBlockStore::SCHEMA_IPBLOCKS );
 	}
 
 	/**
