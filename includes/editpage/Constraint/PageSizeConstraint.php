@@ -22,6 +22,7 @@ namespace MediaWiki\EditPage\Constraint;
 
 use InvalidArgumentException;
 use StatusValue;
+use Wikimedia\Message\MessageValue;
 
 /**
  * Verify the page isn't larger than the maximum
@@ -48,7 +49,7 @@ class PageSizeConstraint implements IEditConstraint {
 	private string $type;
 
 	/**
-	 * @param int $maxSize In kibibytes, from $wgMaxArticleSize
+	 * @param int $maxSize In kilobytes, from $wgMaxArticleSize
 	 * @param int $contentSize
 	 * @param string $type
 	 */
@@ -57,7 +58,7 @@ class PageSizeConstraint implements IEditConstraint {
 		int $contentSize,
 		string $type
 	) {
-		$this->maxSize = $maxSize * 1024; // Convert from kibibytes
+		$this->maxSize = $maxSize * 1024; // Convert from kilobytes
 		$this->contentSize = $contentSize;
 
 		if ( $type === self::BEFORE_MERGE ) {
@@ -83,6 +84,9 @@ class PageSizeConstraint implements IEditConstraint {
 			// Either self::AS_CONTENT_TOO_BIG, if it was too big before merging,
 			// or self::AS_MAX_ARTICLE_SIZE_EXCEEDED, if it was too big after merging
 			$statusValue->setResult( false, $this->errorCode );
+			$statusValue->fatal( MessageValue::new( 'longpageerror' )
+				->numParams( round( $this->contentSize / 1024, 3 ), $this->maxSize / 1024 )
+			);
 		}
 		return $statusValue;
 	}

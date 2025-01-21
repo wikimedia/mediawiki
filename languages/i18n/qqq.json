@@ -945,7 +945,7 @@
 	"editpage-cannot-use-custom-model": "Error message shown if the database does not support changing the content model of a page.",
 	"editpage-code-message": "{{notranslate}} Message that shows when editing code (E.g. CSS, JS or JSON). Should be configured on a site-level.",
 	"longpage-hint": "{{notranslate}}\n* $1: Size of the textbox formatted for output, using an appropriate unit ({{msg-mw|size-bytes}}, {{msg-mw|size-kilobytes}}, {{msg-mw|size-megabytes}}, {{msg-mw|size-gigabytes}})\n* $2: Size of the textbox in bytes, not formatnum",
-	"longpageerror": "Warning displayed when trying to save a text larger than the maximum size allowed.\n\nParameters:\n* $1 - submitted size (in kilobytes)\n* $2 - maximum size (in kilobytes)",
+	"longpageerror": "Error displayed when trying to save a text larger than the maximum size allowed.\n\nParameters:\n* $1 - submitted size (in kilobytes)\n* $2 - maximum size (in kilobytes)",
 	"readonlywarning": "Parameters:\n* $1 - reason",
 	"protectedpagewarning": "{{Related|Semiprotectedpagewarning}}",
 	"semiprotectedpagewarning": "{{Related|Semiprotectedpagewarning}}",

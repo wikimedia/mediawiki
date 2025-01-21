@@ -641,11 +641,6 @@ class ApiEditPage extends ApiBase {
 						case EditPage::AS_IMAGE_REDIRECT_LOGGED:
 							$status->fatal( 'apierror-noimageredirect' );
 							break;
-						case EditPage::AS_CONTENT_TOO_BIG:
-						case EditPage::AS_MAX_ARTICLE_SIZE_EXCEEDED:
-							$status->fatal( 'apierror-contenttoobig',
-								$this->getConfig()->get( MainConfigNames::MaxArticleSize ) );
-							break;
 						case EditPage::AS_READ_ONLY_PAGE_ANON:
 							$status->fatal( 'apierror-noedit-anon' );
 							break;
