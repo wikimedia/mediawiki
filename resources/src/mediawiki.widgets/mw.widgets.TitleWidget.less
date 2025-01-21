@@ -1,15 +1,17 @@
 /*!
  * MediaWiki Widgets - TitleWidget styles.
  *
- * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
+ * @copyright 2011-2025 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
+@import 'mediawiki.skin.variables.less';
+
 .mw-widget-titleWidget-menu {
 	.mw-widget-titleOptionWidget {
 		line-height: normal;
 
 		&-description {
-			color: #72777d;
+			color: @color-subtle;
 		}
 	}
 
@@ -18,8 +20,8 @@
 			box-sizing: border-box;
 			min-height: 3.75em;
 			padding-left: 4.75em;
-			padding-top: 0.5em;
-			padding-bottom: 0.5em;
+			padding-top: @spacing-50;
+			padding-bottom: @spacing-50;
 
 			&:not( :last-child ) {
 				margin-bottom: 2px;

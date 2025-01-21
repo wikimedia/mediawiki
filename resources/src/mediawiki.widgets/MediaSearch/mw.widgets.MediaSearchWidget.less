@@ -1,9 +1,11 @@
 /*!
  * MediaWiki Widgets - MediaSearchWidget styles.
  *
- * @copyright 2011-2024 VisualEditor Team and others; see AUTHORS.txt
+ * @copyright 2011-2025 MediaWiki Widgets Team; see AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
+
+@import 'mediawiki.skin.variables.less';
 
 .mw-widget-mediaSearchWidget {
 	.oo-ui-searchWidget-query .oo-ui-inputWidget {
@@ -20,8 +22,8 @@
 	}
 
 	&-recentUploads {
-		margin: 0.5em 0 1em 0;
-		font-weight: bold;
+		margin: @spacing-50 0 @spacing-100 0;
+		font-weight: @font-weight-bold;
 	}
 
 	&-noResults,
