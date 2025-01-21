@@ -114,6 +114,12 @@
 		"symfony/polyfill-intl-normalizer": "1.17.1",
 		"symfony/polyfill-mbstring": "1.99"
 	},
+	"repositories": [
+		{
+			"type": "git",
+			"url": "https://github.com/ejegg/login-and-pay-with-amazon-sdk-php"
+		}
+	],
 	"suggest": {
 		"ext-apcu": "Faster web responses overall.",
 		"ext-bcmath": "Increased performance of some operations. Required especially on 32 bit machines. This or ext-gmp are needed for scrambling Temporary Accounts.",
@@ -205,12 +211,16 @@
 			"wikimedia/composer-merge-plugin": true,
 			"composer/installers": true,
 			"dealerdirect/phpcodesniffer-composer-installer": true
+		},
+		"platform": {
+			"php": "8.2.26"
 		}
 	},
 	"extra": {
 		"merge-plugin": {
 			"include": [
-				"composer.local.json"
+				"composer.local.json",
+				"extensions/*/composer.json"
 			],
 			"merge-dev": false
 		}

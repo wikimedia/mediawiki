@@ -32,4 +32,4 @@
 [submodule "vendor"]
 	path = vendor
 	url = https://gerrit.wikimedia.org/r/mediawiki/vendor
-	branch = REL1_43
+	branch = fundraising/REL1_43
