@@ -1279,6 +1279,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\EditPage\\Constraint\\ChangeTagsConstraint' => __DIR__ . '/includes/editpage/Constraint/ChangeTagsConstraint.php',
 	'MediaWiki\\EditPage\\Constraint\\ContentModelChangeConstraint' => __DIR__ . '/includes/editpage/Constraint/ContentModelChangeConstraint.php',
 	'MediaWiki\\EditPage\\Constraint\\DefaultTextConstraint' => __DIR__ . '/includes/editpage/Constraint/DefaultTextConstraint.php',
+	'MediaWiki\\EditPage\\Constraint\\DoubleRedirectConstraint' => __DIR__ . '/includes/editpage/Constraint/DoubleRedirectConstraint.php',
 	'MediaWiki\\EditPage\\Constraint\\EditConstraintFactory' => __DIR__ . '/includes/editpage/Constraint/EditConstraintFactory.php',
 	'MediaWiki\\EditPage\\Constraint\\EditConstraintRunner' => __DIR__ . '/includes/editpage/Constraint/EditConstraintRunner.php',
 	'MediaWiki\\EditPage\\Constraint\\EditFilterMergedContentHookConstraint' => __DIR__ . '/includes/editpage/Constraint/EditFilterMergedContentHookConstraint.php',

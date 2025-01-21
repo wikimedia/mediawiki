@@ -75,6 +75,8 @@ For notes on 1.43.x and older releases, see HISTORY.
 * (T56145) Introduces a new tag 'mw-recreated' to note edits which create pages
  that have been previously deleted by having an associated deletion log entry.
  This does not consider deletion log entries that were suppressed.
+* (T326056) Attempting to create a redirect to another redirect will now
+  result in a warning.
 * …
 
 === New features for sysadmins in 1.44 ===
