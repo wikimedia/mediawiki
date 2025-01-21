@@ -176,6 +176,11 @@ because of Phabricator reports.
   require compatibility patches to support these changes.
 * IDatabase::LB_TRX_ROUND_ID was removed and IDatabase::LB_READ_ONLY_REASON
   was marked as an internal constant.
+* IDatabase::onAtomicSectionCancel() has been removed without deprecation
+  as it's completely unused.
+* ISQLPlatform::tableNames(), deprecated since 1.39, has been removed.
+* The Wikimedia\LightweightObjectStore\ExpirationAwareness interface is now
+  considered internal. Use BagOStuff to access TTL constants instead.
 * The ParsoidOutputAccess class marked @unstable from creation and
   deprecated with all of its methods in 1.43, has been removed.
 * (T382030) MediaWiki core database schema and schema changes have been moved
@@ -184,12 +189,9 @@ because of Phabricator reports.
 * The HtmlToContentTransform::setMetrics() and
   HtmlInputTransformHelper::setMetrics() methods now require a StatsFactory
   argument.  Passing a StatsdDataFactoryInterface was deprecated in 1.43.
-* IDatabase::onAtomicSectionCancel() has been removed without deprecation
-  as it's completely unused.
 * The method ParserOptions::setupFakeRevision has been marked internal. It
   will remain backwards compatible in 1.44 but may change without notice in
   1.45 or later.
-* ISQLPlatform::tableNames(), deprecated since 1.39, has been removed.
 * The Less mixin .column-break-after-avoid(), deprecated in 1.43, has been
   removed. Use just the CSS rule `break-after: avoid-column;` instead now.
 * ApiBase::errorArrayToStatus(), deprecated in 1.43, has been removed.
