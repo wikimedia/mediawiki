@@ -3235,7 +3235,7 @@
 	"searchsuggest-containing": "Traži stranice koje sadrže",
 	"search-match-redirect-label": "Tijekom pretrage idi na točna podudaranja",
 	"search-match-redirect-help": "Odaberite za preusmjeravanje na stranicu kada se taj naslov podudara s onim što tražite",
-	"api-clientside-error-noconnect": "Nije bilo moguće nastaviti zbog problema s mrežnim povezivanjem. Pobrinite se da imate internet konekciju koja radi i pokušajte ponovo.",
+	"api-clientside-error-noconnect": "Nije bilo moguće nastaviti zbog problema s povezivanjem na mrežni poslužitelj. Pobrinite se da imate vezu s internetom i pokušajte ponovo.",
 	"api-clientside-error-timeout": "Poslužitelj nije odgovorio unutar očekivanog vremena.",
 	"api-error-badtoken": "Interna pogreška: Token nije ispravan.",
 	"api-error-emptypage": "Stvaranje praznih novih stranica nije dopušteno.",

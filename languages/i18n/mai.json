@@ -2825,7 +2825,7 @@
 	"duration-hours": "$1 {{PLURAL:$1|घंटा}} पहिने",
 	"duration-days": "$1 {{PLURAL:$1|दिन}} पहिने",
 	"duration-weeks": "{{PLURAL:$1|सप्ताह|सप्ताहसभ}}",
-	"duration-years": "{{PLURAL:$1|वर्ष|वर्षमे}}",
+	"duration-years": "$1 {{PLURAL:$1|वर्ष|वर्षमे}}",
 	"limitreport-title": "पार्सर क विवरण डाटा:",
 	"limitreport-cputime": "सी०पी०यू० समय क प्रयोग",
 	"limitreport-cputime-value": "$1 {{PLURAL:$1|सॅकेंड|सॅकेंडसभ}}",

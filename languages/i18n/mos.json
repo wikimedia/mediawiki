@@ -1274,7 +1274,6 @@
 	"rcfilters-days-title": "Sẽn kaoos rasem a wãn",
 	"rcfilters-hours-title": "Saas sẽn kaoos",
 	"rcfilters-days-show-days": "$1 {{PLURAL:$1|daare|rata}}",
-	"rcfilters-days-show-hours": "$1 {{PLURAL:$1|hour|hours}}",
 	"rcfilters-highlighted-filters-list": "A sẽn wilg tɩ: $1",
 	"rcfilters-quickfilters": "D sẽn talld filterã",
 	"rcfilters-quickfilters-placeholder-title": "Pa tar filter sẽn ket n be ye",

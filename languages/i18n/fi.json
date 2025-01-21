@@ -788,7 +788,7 @@
 	"edit-conflict": "Päällekkäinen muokkaus.",
 	"edit-no-change": "Muokkauksesi sivuutettiin, koska tekstiin ei tehty mitään muutoksia.",
 	"edit-slots-cannot-add": "{{PLURAL:$1|Seuraava slotti ei ole tuettu|Seuraavat slotit eivät ole tuettuja}} täällä: $2.",
-	"edit-slots-cannot-remove": "{{PLURAL:$1|Seuraava slotti vaaditaan eikä sitä voi poistaa|Seuraavat alueet vaaditaan eikä niitä voida poistaa}}: $2.",
+	"edit-slots-cannot-remove": "{{PLURAL:$1|Seuraava slotti vaaditaan eikä sitä voi poistaa|Seuraavat slotit vaaditaan eikä niitä voi poistaa}}: $2.",
 	"edit-slots-missing": "{{PLURAL:$1|Seuraava slotti puuttuu|Seuraavat slotit puuttuvat}}: $2.",
 	"postedit-confirmation-created": "Sivu on nyt [[Special:Diff/$2|luotu]].",
 	"postedit-confirmation-restored": "Sivu on [[Special:Diff/$2|palautettu]].",
