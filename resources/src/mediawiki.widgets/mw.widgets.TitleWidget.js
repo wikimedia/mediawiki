@@ -132,11 +132,12 @@
 				smaxage: 60 * 60 * 24,
 				// Workaround T97096 by setting uselang=content
 				uselang: 'content'
-			} ).then( ( data ) => data.query.interwikimap.map( ( iw ) => iw.prefix ) );
-			// Do not cache errors
-			cache[ key ].catch( () => {
-				delete cache[ key ];
-			} );
+			} )
+				.then( ( data ) => data.query.interwikimap.map( ( iw ) => iw.prefix ) )
+				// Do not cache errors
+				.catch( () => {
+					delete cache[ key ];
+				} );
 		}
 		return cache[ key ];
 	};
