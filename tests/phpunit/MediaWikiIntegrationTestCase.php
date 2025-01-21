@@ -243,9 +243,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		// Get the original service locator
-		if ( !self::$originalServices ) {
-			self::$originalServices = MediaWikiServices::getInstance();
-		}
+		self::$originalServices ??= MediaWikiServices::getInstance();
 	}
 
 	/**
@@ -436,13 +434,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	): array {
 		$overrides = [];
 
-		if ( !$baseConfig ) {
-			if ( self::$originalServices ) {
-				$baseConfig = self::$originalServices->getMainConfig();
-			} else {
-				$baseConfig = MediaWikiServices::getInstance()->getMainConfig();
-			}
-		}
+		$baseConfig ??= ( self::$originalServices ?? MediaWikiServices::getInstance() )->getMainConfig();
 
 		/* Some functions require some kind of caching, and will end up using the db,
 		 * which we can't allow, as that would open a new connection for mysql.
@@ -1548,10 +1540,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$provider = LoggerFactory::getProvider();
 		if ( $provider instanceof LegacySpi || $provider instanceof LogCapturingSpi ) {
 			$prev = $provider->setLoggerForTest( $channel, $logger );
-			if ( !isset( $this->loggers[$channel] ) ) {
-				// Remember for restoreLoggers()
-				$this->loggers[$channel] = $prev;
-			}
+			// Remember for restoreLoggers()
+			$this->loggers[$channel] ??= $prev;
 		} else {
 			throw new LogicException( __METHOD__ . ': cannot set logger for ' . get_class( $provider ) );
 		}
@@ -1656,9 +1646,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$title = Title::newFromText( $title, $namespace );
 		}
 
-		if ( !$user ) {
-			$user = static::getTestSysop()->getUser();
-		}
+		$user ??= static::getTestSysop()->getUser();
 		$comment = __METHOD__ . ': Sample page for unit test.';
 
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
