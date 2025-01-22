@@ -209,11 +209,11 @@ class FileSelectQueryBuilder extends SelectQueryBuilder {
 		$subquery->table( 'filerevision' )
 			->join( 'file', null, 'fr_file = file_id' )
 			->join( 'filetypes', null, 'file_type = ft_id' )
-			->join( 'actor', 'oldimage_actor', 'actor_id=oi_actor' )
+			->join( 'actor', 'oldimage_actor', 'actor_id = fr_actor' )
 			->join(
 				'comment',
 				'comment_oi_description',
-				'comment_oi_description.comment_id = oi_description_id'
+				'comment_oi_description.comment_id = fr_description_id'
 			);
 
 		if ( !in_array( 'omit-nonlazy', $options, true ) ) {
