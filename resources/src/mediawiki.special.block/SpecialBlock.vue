@@ -365,7 +365,7 @@ module.exports = exports = defineComponent( {
 					formVisible.value = false;
 				} )
 				.fail( ( _, errorObj ) => {
-					formErrors.value = [ errorObj.error.info ];
+					formErrors.value = errorObj.errors.map( ( e ) => e.html );
 					blockAdded.value = false;
 				} )
 				.always( () => {
