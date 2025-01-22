@@ -2664,7 +2664,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetFirstRevision() {
-		$pageIdentity = PageIdentityValue::localIdentity( 13, NS_MAIN, 'Test_Get_First_Revision' );
+		$pageIdentity = Title::newFromText( __FUNCTION__ );
 		$editStatus = $this->editPage( $pageIdentity, 'First Revision' );
 		$this->assertStatusGood( $editStatus, 'must create first revision' );
 		$firstRevId = $editStatus->getNewRevision()->getId();

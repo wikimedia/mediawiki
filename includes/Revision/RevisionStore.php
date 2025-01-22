@@ -1277,14 +1277,12 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * @return RevisionRecord|null
 	 */
 	public function getRevisionByTitle( $page, $revId = 0, $flags = 0 ) {
-		$conds = [
-			'page_namespace' => $page->getNamespace(),
-			'page_title' => $page->getDBkey()
-		];
-
-		if ( $page instanceof LinkTarget ) {
-			// Only resolve LinkTarget to a Title when operating in the context of the local wiki (T248756)
-			$page = $this->wikiId === WikiAwareEntity::LOCAL ? Title::castFromLinkTarget( $page ) : null;
+		$conds = $this->getPageConditions( $page );
+		if ( !$conds ) {
+			return null;
+		}
+		if ( !( $page instanceof PageIdentity ) ) {
+			$page = null;
 		}
 
 		if ( $revId ) {
@@ -1367,20 +1365,17 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		string $timestamp,
 		int $flags = IDBAccessObject::READ_NORMAL
 	): ?RevisionRecord {
-		if ( $page instanceof LinkTarget ) {
-			// Only resolve LinkTarget to a Title when operating in the context of the local wiki (T248756)
-			$page = $this->wikiId === WikiAwareEntity::LOCAL ? Title::castFromLinkTarget( $page ) : null;
+		$conds = $this->getPageConditions( $page );
+		if ( !$conds ) {
+			return null;
 		}
+		if ( !( $page instanceof PageIdentity ) ) {
+			$page = null;
+		}
+
 		$db = $this->getDBConnectionRefForQueryFlags( $flags );
-		return $this->newRevisionFromConds(
-			[
-				'rev_timestamp' => $db->timestamp( $timestamp ),
-				'page_namespace' => $page->getNamespace(),
-				'page_title' => $page->getDBkey()
-			],
-			$flags,
-			$page
-		);
+		$conds['rev_timestamp'] = $db->timestamp( $timestamp );
+		return $this->newRevisionFromConds( $conds, $flags, $page );
 	}
 
 	/**
@@ -3023,29 +3018,15 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		$page,
 		int $flags = IDBAccessObject::READ_NORMAL
 	): ?RevisionRecord {
-		if ( $page instanceof LinkTarget ) {
-			// Only resolve LinkTarget to a Title when operating in the context of the local wiki (T248756)
-			$page = $this->wikiId === WikiAwareEntity::LOCAL ? Title::castFromLinkTarget( $page ) : null;
-		}
-
-		if ( $page && !$page->exists() ) {
-			// Protect against T380677#10461083:
-			// During a page move, we are creating a new page with the name of a
-			// page that we just renamed. If we look up revisions by name on a
-			// stale replica/snapshot, we may find the revisions of the old page,
-			// while the new page doesn't exist yet.
-			// This is a work-around. Ideally, we'd just do the lookup based on page ID,
-			// or make sure we are not running into replication lag or stale snapshots.
+		$conds = $this->getPageConditions( $page );
+		if ( !$conds ) {
 			return null;
 		}
+		if ( !( $page instanceof PageIdentity ) ) {
+			$page = null;
+		}
 
-		return $this->newRevisionFromConds(
-			[
-				'page_namespace' => $page->getNamespace(),
-				'page_title' => $page->getDBkey()
-			],
-			$flags,
-			$page,
+		return $this->newRevisionFromConds( $conds, $flags, $page,
 			[
 				'ORDER BY' => [ 'rev_timestamp ASC', 'rev_id ASC' ],
 				'IGNORE INDEX' => [ 'revision' => 'rev_timestamp' ], // See T159319
@@ -3089,6 +3070,25 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 					"Revision {$rev->getId( $this->wikiId )} doesn't belong to page {$pageId}"
 				);
 			}
+		}
+	}
+
+	/**
+	 * @param LinkTarget|PageIdentity $page Calling with LinkTarget is deprecated since 1.36
+	 * @return array|null
+	 */
+	private function getPageConditions( object $page ): ?array {
+		if ( $page instanceof PageIdentity ) {
+			return $page->exists() ? [ 'page_id' => $page->getId( $this->wikiId ) ] : null;
+		} else {
+			// Only resolve LinkTarget when operating in the context of the local wiki (T248756)
+			if ( $this->wikiId !== WikiAwareEntity::LOCAL ) {
+				throw new InvalidArgumentException( 'Cannot use non-local LinkTarget' );
+			}
+			return [
+				'page_namespace' => $page->getNamespace(),
+				'page_title' => $page->getDBkey(),
+			];
 		}
 	}
 
