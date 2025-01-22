@@ -110,6 +110,10 @@ class ExpiryDefTest extends TypeDefTestCase {
 					ExpiryDef::PARAM_MAX => '6 months',
 				]
 			),
+			'Expiry exceeds Y10K' => $this->getValidationAssertion(
+				'50000 years',
+				'badexpiry'
+			),
 			'Not a string' => [
 				[ 1, 2, 3 ],
 				new ValidationException(
