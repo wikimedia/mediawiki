@@ -153,6 +153,12 @@ class LocalFile extends File {
 	/** @var int Bitfield akin to rev_deleted */
 	protected $deleted;
 
+	/** @var int id in file table, null on read old */
+	protected $file_id;
+
+	/** @var int id in filerevision table, null on read old */
+	protected $filerevision_id;
+
 	/** @var string */
 	protected $repoClass = LocalRepo::class;
 
@@ -668,7 +674,7 @@ class LocalFile extends File {
 				'name', 'media_type', 'description_text', 'description_data',
 				'description_cid', 'user', 'user_text', 'actor', 'timestamp',
 				'metadata', 'major_mime', 'minor_mime', 'sha1', 'size', 'width',
-				'height', 'bits'
+				'height', 'bits', 'file_id', 'filerevision_id'
 			]
 		);
 		if ( $extraFields ) {
