@@ -424,10 +424,8 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	 */
 	private function getSecretKeys() {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$sessionSecret = $mainConfig->get( MainConfigNames::SessionSecret );
-		$secretKey = $mainConfig->get( MainConfigNames::SecretKey );
-		$sessionPbkdf2Iterations = $mainConfig->get( MainConfigNames::SessionPbkdf2Iterations );
-		$wikiSecret = $sessionSecret ?: $secretKey;
+		$wikiSecret = $mainConfig->get( MainConfigNames::SessionSecret )
+			?: $mainConfig->get( MainConfigNames::SecretKey );
 		$userSecret = $this->get( 'wsSessionSecret', null );
 		if ( $userSecret === null ) {
 			$userSecret = \MWCryptRand::generateHex( 32 );
@@ -435,7 +433,7 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 		}
 		$iterations = $this->get( 'wsSessionPbkdf2Iterations', null );
 		if ( $iterations === null ) {
-			$iterations = $sessionPbkdf2Iterations;
+			$iterations = $mainConfig->get( MainConfigNames::SessionPbkdf2Iterations );
 			$this->set( 'wsSessionPbkdf2Iterations', $iterations );
 		}
 
