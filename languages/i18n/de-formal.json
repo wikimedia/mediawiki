@@ -40,7 +40,8 @@
 			"Wnme",
 			"Zabe",
 			"Nikki",
-			"Woytecr"
+			"Woytecr",
+			"PerfektesChaos"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -212,7 +213,7 @@
 	"translateinterface": "Um Übersetzungen für alle Wikis hinzuzufügen oder zu ändern, verwenden Sie bitte [//translatewiki.net/ translatewiki.net], das MediaWiki-Lokalisierungsprojekt.",
 	"namespaceprotected": "Sie haben nicht die erforderliche Berechtigung, um Seiten im Namensraum '''$1''' bearbeiten zu können.",
 	"customcssprotected": "Sie haben nicht die Berechtigung, diese CSS enthaltende Seite zu bearbeiten, da sie die persönlichen Einstellungen eines anderen Benutzers enthält.",
-	"customjsonprotected": "Sie haben nicht die Berechtigung, diese CSS enthaltende Seite zu bearbeiten, da sie die persönlichen Einstellungen eines anderen Benutzers enthält.",
+	"customjsonprotected": "Sie haben nicht die Berechtigung, diese JSON enthaltende Seite zu bearbeiten, da sie die persönlichen Einstellungen eines anderen Benutzers enthält.",
 	"customjsprotected": "Sie haben nicht die Berechtigung, diese JavaScript enthaltende Seite zu bearbeiten, da es sich hierbei um die persönlichen Einstellungen eines anderen Benutzers handelt.",
 	"sitecssprotected": "Sie haben nicht die Berechtigung, diese CSS-Seite zu bearbeiten, da sie alle Besucher betreffen könnte.",
 	"sitejsonprotected": "Sie haben nicht die Berechtigung, diese JSON-Seite zu bearbeiten, da sie alle Besucher betreffen könnte.",

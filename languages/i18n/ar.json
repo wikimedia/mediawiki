@@ -1074,7 +1074,7 @@
 	"diff-paragraph-moved-tonew": "نُقلت الفقرة. اضغط للذهاب للموقع الجديد.",
 	"diff-paragraph-moved-toold": "الفقرة تم نقلها. اضغط للذهاب للموقع القديم.",
 	"diff-inline-tooltip-ins": "تمت إضافة المحتوى",
-	"diff-inline-tooltip-del": "تم حذف المحتوى",
+	"diff-inline-tooltip-del": "محتوًى محذوف",
 	"diff-inline-format-label": " مضمن",
 	"diff-table-format-label": "جدول",
 	"diff-line-deleted": "⟵ حذف",

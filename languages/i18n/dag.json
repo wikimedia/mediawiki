@@ -1031,8 +1031,6 @@
 	"rcfilters-activefilters-hide": "Sɔɣabu",
 	"rcfilters-activefilters-show": "Zaŋ wuhi",
 	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|change|changes}}, $2",
-	"rcfilters-days-show-days": "$1 {{PLURAL:$1|day|days}}",
-	"rcfilters-days-show-hours": "$1 {{PLURAL:$1|hour|hours}}",
 	"rcfilters-savedqueries-remove": "Yihima",
 	"rcfilters-savedqueries-new-name-label": "Yuli",
 	"rcfilters-savedqueries-cancel-label": "Nyahabu",
