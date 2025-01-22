@@ -825,7 +825,7 @@ class LocalFile extends File {
 					'file_deleted' => 0,
 					'file_type' => $this->getFileTypeId(),
 				] )
-				->execute();
+				->caller( __METHOD__ )->execute();
 			$insertId = $dbw->insertId();
 			if ( !$insertId ) {
 				throw new RuntimeException( 'File entry could not be inserted' );
@@ -837,7 +837,7 @@ class LocalFile extends File {
 				->update( 'file' )
 				->set( [ 'file_deleted' => 0 ] )
 				->where( [ 'file_id' => $id ] )
-				->execute();
+				->caller( __METHOD__ )->execute();
 			return $id;
 		}
 	}
@@ -868,7 +868,7 @@ class LocalFile extends File {
 				'ft_major_mime' => $major,
 				'ft_minor_mime' => $minor,
 			] )
-			->execute();
+			->caller( __METHOD__ )->execute();
 
 		$id = $dbw->insertId();
 		if ( !$id ) {
@@ -2021,7 +2021,7 @@ class LocalFile extends File {
 					->update( 'filerevision' )
 					->set( [ 'fr_archive_name' => $oldver ] )
 					->where( [ 'fr_id' => $latestFileRevId ] )
-					->execute();
+					->caller( __METHOD__ )->execute();
 			}
 
 			$joins = [];
