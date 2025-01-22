@@ -221,6 +221,7 @@
 	"search-thumbnail-extra-namespaces-label": "Pokazyvati miniatury v {{#special:search}} v kompjuternoj versiji",
 	"search-thumbnail-extra-namespaces-message": "Pokazyvaje miniatury za rezultaty v {{PLURAL:$2|imennom prostoru|imennyh prostorah}} $1 na stranici {{#special:search}}",
 	"prefs-advancedsearchoptions": "Razširjene opcije",
+	"prefs-misc": "Razne",
 	"prefs-reset-intro": "Na tutoj stranici možete resetovati svoje nastavjenja, vračajuči prědustavjene nastavjenja sajta. \nČuvanje: odčinjenje togo dějanja bude nemožno.",
 	"prefs-reset-confirm": "Da, ja hoču resetovati svoje nastavjenja.",
 	"restoreprefs": "Vratiti vse prědustavjene nastavjenja"

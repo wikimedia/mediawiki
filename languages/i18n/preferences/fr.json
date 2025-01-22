@@ -254,6 +254,7 @@
 	"search-thumbnail-extra-namespaces-label": "Afficher les vignettes dans Spécial:Recherche sur ordinateur de bureau",
 	"search-thumbnail-extra-namespaces-message": "Afficher les vignettes pour $1 espace{{PLURAL:$2||s}} de noms sur la page {{#special:search}}.",
 	"prefs-advancedsearchoptions": "Options avancées",
+	"prefs-misc": "Préférences diverses",
 	"prefs-reset-intro": "Vous pouvez utiliser cette page pour restaurer vos préférences aux valeurs par défaut du site.\nCeci ne peut pas être annulé.",
 	"prefs-reset-confirm": "Oui, je veux réinitialiser mes préférences.",
 	"restoreprefs": "Restaurer tous les paramètres par défaut"

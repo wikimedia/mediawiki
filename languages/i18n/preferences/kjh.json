@@ -216,6 +216,7 @@
 	"search-thumbnail-extra-namespaces-label": "Special: Search компьютердегi версияда миниатюраларны кӧзідерге",
 	"search-thumbnail-extra-namespaces-message": "$1 {{PLURAL:$2|аттар орнына}} {{#special:search}} салтарлар страницазында миниатюралар кӧзітче",
 	"prefs-advancedsearchoptions": "Алғыдылған настройкалар",
+	"prefs-misc": "Пасха настройкалар",
 	"prefs-reset-intro": "Пу страницада сiрер иткен настройкаларыңны пастап полғанына айландыр поларзар. Піліңер, иділ парған ниме айландырылбас.",
 	"prefs-reset-confirm": "Я, мин иткен настройкаларымны чох идерге итчем.",
 	"restoreprefs": "Программа хоостыра турғызылған найстройкаларны айландырарға"

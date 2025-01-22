@@ -197,6 +197,7 @@
 	"prefs-searchmisc": "一般",
 	"searchlimit-label": "每頁顯示嘅搜尋結果數：",
 	"prefs-advancedsearchoptions": "進階選項",
+	"prefs-misc": "雜項",
 	"prefs-reset-intro": "你可以用呢版去重設你嘅喜好設定到網站預設值。呢個動作無得番轉頭。",
 	"prefs-reset-confirm": "係，我想重設我嘅設定。",
 	"restoreprefs": "回復全部預設設定"

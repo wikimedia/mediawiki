@@ -228,6 +228,7 @@
 	"search-thumbnail-extra-namespaces-label": "Afiche viyèt yo nan Espesyal:Chache sou òdinatè",
 	"search-thumbnail-extra-namespaces-message": "Afiche viyèt pou $1 {{PLURAL:$2| }} espas non sou paj {{#special:search}} la.",
 	"prefs-advancedsearchoptions": "Opsyon avanse",
+	"prefs-misc": "Divès",
 	"prefs-reset-intro": "Ou ka itilize paj sa a pou retabli preferans ou yo ak valè padefo sou sit la. Sa pa ka anile anile ankò.",
 	"prefs-reset-confirm": "Wi, mwen vle retabli preferans mwen yo.",
 	"restoreprefs": "Retabli tout paramèt yo pa defo"

@@ -220,6 +220,7 @@
 	"search-thumbnail-extra-namespaces-label": "Показывати миниатуры в {{#special:search}} в компјутерној версији",
 	"search-thumbnail-extra-namespaces-message": "Показываје миниатуры за резултаты в {{PLURAL:$2|именном простору|именных просторах}} $1 на страници {{#special:search}}",
 	"prefs-advancedsearchoptions": "Разширјене опције",
+	"prefs-misc": "Разне",
 	"prefs-reset-intro": "На тутој страници можете ресетовати своје наставјенја, врачајучи прєдуставјене наставјенја сајта. Чуванје: одчињенје того дєјанја буде неможно.",
 	"prefs-reset-confirm": "Да, ја хочу ресетовати своје наставјенја.",
 	"restoreprefs": "Вратити все прєдуставјене наставјенја"

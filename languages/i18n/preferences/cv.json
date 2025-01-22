@@ -223,6 +223,7 @@
 	"search-thumbnail-extra-namespaces-label": "Сӗтелҫи версинчи Special:Search-ра миниатюрӑсене кӑтартмалла",
 	"search-thumbnail-extra-namespaces-message": "{{#special:search}} результатсен страницинче $1 {{PLURAL:$2|ятсен уҫлӑхӗ}} валли миниатюрӑсене кӑтартмалла",
 	"prefs-advancedsearchoptions": "Анлӑ ӗнерлевсем",
+	"prefs-misc": "Ытти ĕнерлевсем",
 	"prefs-reset-intro": "Ку страницӑра эсир хӑвӑр валли тунӑ ӗнерлевсене стандартлисем ҫине улӑштарма пултаратӑр.\nАсӑрхӑр, улшӑнусене каялла тавӑрма май ҫук.",
 	"prefs-reset-confirm": "Тӗрӗс, эпӗ хамӑн ӗнерлевсене пӑрахӑҫласшӑн.",
 	"restoreprefs": "Пуҫламӑш ӗнерлевсене каялла тавӑрмалла"

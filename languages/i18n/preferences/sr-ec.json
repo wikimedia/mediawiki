@@ -232,6 +232,7 @@
 	"search-thumbnail-extra-namespaces-label": "Прикажи минијатуру у Посебно:Претражи",
 	"search-thumbnail-extra-namespaces-message": "Приказује минијатуру за $1 {{PLURAL:$2|именски простор|именске просторе}} у резултатима на {{#special:search}}",
 	"prefs-advancedsearchoptions": "Напредне опције",
+	"prefs-misc": "Разно",
 	"prefs-reset-intro": "Можете користити ову страницу да поново поставите своја подешавања на подразумеване вредности сајта.\nОво се не може опозвати.",
 	"prefs-reset-confirm": "Да, желим да вратим подешавања на подразумеване вредности.",
 	"restoreprefs": "Врати све на подразумевано"

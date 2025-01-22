@@ -227,6 +227,7 @@
 	"searchlimit-label": "Paieškos rezultatų, kurie bus rodomi kiekviename puslapyje, skaičius:",
 	"searchlimit-help": "Maksimalus skaičius: $1",
 	"prefs-advancedsearchoptions": "Papildomi nustatymai",
+	"prefs-misc": "Įvairūs nustatymai",
 	"prefs-reset-intro": "Jūs galite pasinaudoti šiuo puslapiu, kad grąžintumėte savo nustatymus į svetainės numatytuosius.\nTai nebeatšaukiama.",
 	"prefs-reset-confirm": "Taip, noriu iš naujo nustatyti savo nuostatas.",
 	"restoreprefs": "Grąžinti visus numatytuosius nustatymus"

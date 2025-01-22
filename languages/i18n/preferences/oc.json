@@ -199,6 +199,7 @@
 	"prefs-searchmisc": "General",
 	"searchlimit-help": "Nombre maximom : $1",
 	"prefs-advancedsearchoptions": "Opcions avançadas",
+	"prefs-misc": "Preferéncias divèrsas",
 	"prefs-reset-intro": "Podètz utilizar aquesta pagina per restablir vòstras preferéncias a las valors per defaut del site. Aquò pòt pas èsser desfait.",
 	"restoreprefs": "Restablir totes los paramètres per defaut (dins totas las seccions)"
 }

@@ -187,6 +187,7 @@
 	"prefs-help-tokenmanagement": "Puedes ver y restaurar la clave secreta pa la to cuenta que puede entrar na canal web de la llista de siguimientu. Cualquiera que sepa la clave podrá lleer la to llista de siguimientu, nun la compartas.",
 	"prefs-searchoptions": "Gueta",
 	"prefs-advancedsearchoptions": "Opciones avanzaes",
+	"prefs-misc": "Varios",
 	"prefs-reset-intro": "Pues usar esta páxina pa reaniciar les preferencies a los valores predeterminaos del sitiu.\nEsto nun se pue desfacer.",
 	"restoreprefs": "Restaurar tolos axustes predeterminaos (en toles seiciones)"
 }

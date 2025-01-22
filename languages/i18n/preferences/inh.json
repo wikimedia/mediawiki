@@ -219,6 +219,7 @@
 	"search-thumbnail-extra-namespaces-label": "Экрана доккхача куцагахьа Special:Search чухьа миниатюраш гойташ хилийта",
 	"search-thumbnail-extra-namespaces-message": "{{PLURAL:$2|ЦӀерий арен|ЦӀерий арений}} $1 миниатюраш гойт лахача корадаьча хӀамай оагӀон тӀа {{#special:search}}",
 	"prefs-advancedsearchoptions": "Шердаь оттамаш",
+	"prefs-misc": "Кхыдола оттамаш",
 	"prefs-reset-intro": "Ер оагӀув лелае мегаш я хьа оттамаш тӀеракхоссар духьа юххьанца мо хьаувттаеш.\nХовш хила, из кхоачашдича юхадаккха йиш хургьяц.",
 	"prefs-reset-confirm": "ХӀаъа, сай оттамаш тӀеракхосса лов сона.",
 	"restoreprefs": "Юххьанца хинна оттамаш юхаметтаоттаде"

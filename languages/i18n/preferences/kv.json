@@ -218,6 +218,7 @@
 	"search-thumbnail-extra-namespaces-label": "Петкӧдлыны миниатюрасӧ Special:Search-ын пызанвывса версияын",
 	"search-thumbnail-extra-namespaces-message": "Петкӧдлӧ аддзӧмтор миниатюраяссӧ $1 {{PLURAL:$2|ним пространстволы|ним пространствояслы}} {{#special:search}} лист бокын",
 	"prefs-advancedsearchoptions": "Паськӧдӧм параметръяс",
+	"prefs-misc": "Мӧдтор",
 	"prefs-reset-intro": "Ті верманныд вӧдитчыны тайӧ лист бокӧн, медым вежны ассьыныд ладмӧдӧмъяссӧ стандартнӧйяс вылӧ.\nТайӧ вӧчӧмторсӧ киритны оз позь.",
 	"prefs-reset-confirm": "Да, ме кӧсъя чӧвтны ассьым ладмӧдӧмъяс.",
 	"restoreprefs": "Бӧр вайӧдны висьтавтӧг став ладмӧдӧмсӧ"

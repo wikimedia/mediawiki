@@ -252,6 +252,7 @@
 	"search-thumbnail-extra-namespaces-label": "Mostra le miniature in Speciale:Ricerca sul Desktop",
 	"search-thumbnail-extra-namespaces-message": "Mostra le miniature nella pagina {{#special:search}} per i risultati {{PLURAL:$2|del|dei}} namespace $1",
 	"prefs-advancedsearchoptions": "Opzioni avanzate",
+	"prefs-misc": "Varie",
 	"prefs-reset-intro": "È possibile usare questa pagina per reimpostare le proprie preferenze a quelle predefinite del sito.\nL'operazione non può essere annullata.",
 	"prefs-reset-confirm": "Si, voglio ripristinare le mie preferenze.",
 	"restoreprefs": "Ripristina tutte le impostazioni predefinite"

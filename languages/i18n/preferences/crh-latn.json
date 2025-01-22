@@ -220,6 +220,7 @@
 	"search-thumbnail-extra-namespaces-label": "İş masası rejiminde kiçik resimlerni Special:Search saifesinde köster",
 	"search-thumbnail-extra-namespaces-message": "{{#special:search}} saifesindeki $1 {{PLURAL:$2|isim fezası}} neticesiniñ kiçik resimlerini köstere",
 	"prefs-advancedsearchoptions": "Tafsilâtlı sazlamalar",
+	"prefs-misc": "Diger sazlamalar",
 	"prefs-reset-intro": "Bu saifeni sazlamalarıñıznı saytnıñ ögünden tayinlengen sazlamalarına qaytarmaq içün qullana bilesiñiz. Bu lâğu etilip olamaz.",
 	"prefs-reset-confirm": "Ebet, sazlamalarımnı sıfırlamağa isteyim.",
 	"restoreprefs": "Bütün ögünden tayinlengen sazlamalarnı qaytar"

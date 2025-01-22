@@ -240,6 +240,7 @@
 	"search-thumbnail-extra-namespaces-label": "Bélyegképek megjelenítése az asztali Speciális:Keresés lapon",
 	"search-thumbnail-extra-namespaces-message": "Bélyegképek megjelenítése a(z) $1 {{PLURAL:$2|névtérbeli}} találatok mellett a {{#special:search}} lapon",
 	"prefs-advancedsearchoptions": "Haladó beállítások",
+	"prefs-misc": "Egyéb",
 	"prefs-reset-intro": "Ezen a lapon állíthatod vissza a beállításaidat az oldal alapértelmezett értékeire.\nA műveletet nem lehet visszavonni.",
 	"prefs-reset-confirm": "Igen, vissza akarom állítani a beállításaimat.",
 	"restoreprefs": "A beállítások alaphelyzetbe állítása mindenhol"

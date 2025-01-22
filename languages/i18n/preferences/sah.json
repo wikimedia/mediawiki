@@ -220,6 +220,7 @@
 	"search-thumbnail-extra-namespaces-label": "Ойуучааннары остуолга сытар көрүҥҥэ Special:Search көрдөр",
 	"search-thumbnail-extra-namespaces-message": "Ойуучааннары $1 {{PLURAL:$2|аат далыгар|аат далларыгар}}   {{#special:search}} көрдөөһүн түмүгэр көрдөрөр",
 	"prefs-advancedsearchoptions": "Дириҥэтиллибит туруоруулар",
+	"prefs-misc": "Атын туруоруулар",
 	"prefs-reset-intro": "Бу сирэй көмөтүнэн туруорууларгын саҥаттан туруорар турукка төннөрүөххүн сөп.\nМаны бигэргэттэххинэ билигин баар туруоруулары дэбигис сөргүппэккин.",
 	"prefs-reset-confirm": "Оннук, туруорууларбын соттороору гынабын.",
 	"restoreprefs": "Туруоруулары саҥаттан"

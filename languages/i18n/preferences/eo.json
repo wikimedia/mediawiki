@@ -241,6 +241,7 @@
 	"search-thumbnail-extra-namespaces-label": "Montru bildetojn en Special:Search on Desktop",
 	"search-thumbnail-extra-namespaces-message": "Montras bildetojn por $1 {{PLURAL:$2| nomspaco|nomspacoj}}-rezultoj sur la paĝo {{#special:search}}",
 	"prefs-advancedsearchoptions": "Progresaj opcioj",
+	"prefs-misc": "Miksitaĵoj",
 	"prefs-reset-intro": "Vi povas uzi ĉi tiun paĝon por restarigi viajn agordojn al la originalaj implicitaĵoj.\nĈi tiel ne estus malfarebla.",
 	"prefs-reset-confirm": "Jes, mi volas restarigi miajn preferojn.",
 	"restoreprefs": "Restarigi ĉiujn implicitajn preferojn"

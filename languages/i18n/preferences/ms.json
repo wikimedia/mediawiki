@@ -233,6 +233,7 @@
 	"search-thumbnail-extra-namespaces-label": "Tunjukkan lakaran kenit dalam Khas:Cari pada Desktop",
 	"search-thumbnail-extra-namespaces-message": "Paparkan lakaran kenit untuk {{PLURAL:$2|ruang nama}} $1 hasil pada halaman {{#special:search}}.",
 	"prefs-advancedsearchoptions": "Pilihan lanjutan",
+	"prefs-misc": "Pelbagai",
 	"prefs-reset-intro": "Anda boleh menggunakan laman ini untuk menetapkan semula keutamaan anda kepada tetapan asali.\nTindakan ini tidak boleh dibatalkan.",
 	"prefs-reset-confirm": "Ya, saya mahu menetapkan semula keutamaan saya.",
 	"restoreprefs": "Pulihkan semua tetapan lalai"

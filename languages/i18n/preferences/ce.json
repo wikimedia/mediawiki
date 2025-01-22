@@ -223,6 +223,7 @@
 	"search-thumbnail-extra-namespaces-label": "Special:Search чохь миниатюраш гайта",
 	"search-thumbnail-extra-namespaces-message": "Иштта гайта миниатюраш $1 {{PLURAL:$2|цӀерийн меттиган|цӀерийн меттигийн}}. $3 миниатюраш гуттара а гойту.",
 	"prefs-advancedsearchoptions": "Кхин гӀирс нисбар",
+	"prefs-misc": "Кхин гlирсаш",
 	"prefs-reset-intro": "ХӀара агӀо лело мега ахьа нисбина гӀирс Ӏадбитаран кепаца йухабокхуш.\nХӀара дешдерг кхочушдинчул тӀаьхьа хьан йиш хир-йац иза йуха меттахӀотто.",
 	"prefs-reset-confirm": "ХӀаъ, суна лаьа сан нисдаран гӀирсаш дӀабаха.",
 	"restoreprefs": "Ӏадйитаран кеп"

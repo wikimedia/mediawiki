@@ -221,6 +221,7 @@
 	"searchlimit-help": "Najviše: $1",
 	"search-thumbnail-extra-namespaces-label": "Prikaži minijaturu u Posebno:Pretraži",
 	"prefs-advancedsearchoptions": "Napredne opcije",
+	"prefs-misc": "Razno",
 	"prefs-reset-intro": "Možete koristiti ovu stranicu da ponovo postavite svoja podešavanja na podrazumevane vrednosti sajta.\nOvo se ne može opozvati.",
 	"prefs-reset-confirm": "Da, želim da vratim podešavanja na podrazumevane vrednosti.",
 	"restoreprefs": "Vrati sve na podrazumevano"

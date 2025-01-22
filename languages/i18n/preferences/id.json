@@ -243,6 +243,7 @@
 	"search-thumbnail-extra-namespaces-label": "Tampilkan thumbnail di Special:Search on Desktop",
 	"search-thumbnail-extra-namespaces-message": "Menampilkan keluku untuk $1 {{PLURAL:$2|ruang nama}} di halaman {{#special:search}}",
 	"prefs-advancedsearchoptions": "Opsi lanjutan",
+	"prefs-misc": "Serbaneka",
 	"prefs-reset-intro": "Anda dapat menggunakan halaman ini untuk mengembalikan preferensi Anda ke setelan baku situs.\nPengembalian preferensi tidak dapat dibatalkan.",
 	"prefs-reset-confirm": "Ya, saya ingin mengatur ulang preferensi saya.",
 	"restoreprefs": "Kembalikan semua setelan bawaan"

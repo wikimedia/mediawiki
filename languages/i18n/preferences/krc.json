@@ -221,6 +221,7 @@
 	"search-thumbnail-extra-namespaces-label": "Тепси юсюнде миниатюраланы Special\n:Search бетде кёргюз",
 	"search-thumbnail-extra-namespaces-message": "{{#special:search}} бетдеги $1 {{PLURAL:$2|ат юсню}} эсебини миниатюраларын кёргюзюр",
 	"prefs-advancedsearchoptions": "Кенгленнген сайлаула",
+	"prefs-misc": "Башха джарашдырыула",
 	"prefs-reset-intro": "Бу бетни джарашдырыуларыгъызны тынгылыау бла салыннган джарашдырыулагъа кёчюрюрге хайырланаллыкъсыз.\nБу ишлемни къабыл этсегиз, ызына къайтараллыкъ тюлсюз.",
 	"prefs-reset-confirm": "Хоу, мен джарашдырыуларымы ташларгъа излейме.",
 	"restoreprefs": "Бютеу тынгылау бла джарашдырыуланы кери джюкле"

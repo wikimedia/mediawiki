@@ -218,6 +218,7 @@
 	"search-thumbnail-extra-namespaces-label": "Петкӧтлыны миниатюрасӧ Special:Search-ын пызанвыв версияын",
 	"search-thumbnail-extra-namespaces-message": "Мыччалӧ шедӧтӧмтор миниатюраэзсӧ $1 {{PLURAL:$2|ним пространстволӧ|ним пространствоэзлӧ}} {{#special:search}} листбокын",
 	"prefs-advancedsearchoptions": "Паськӧтӧм лӧсьӧтаннэз",
+	"prefs-misc": "Мукӧд",
 	"prefs-reset-intro": "Этӧ листбоксӧ позьӧ уджӧтны, медбы лӧсьӧтаннэсӧ вайӧтны одзжык лӧсьӧтӧмӧдз.Тӧдӧ,сійӧ оз позь дугдӧтны.",
 	"prefs-reset-confirm": "Да, ме кӧсъя бырӧтны лӧсьӧтаннэзӧс",
 	"restoreprefs": "Дзоньтыны быдӧс лӧсьӧтаннэз одзжык лӧсьӧтӧм сьӧрті"

@@ -229,6 +229,7 @@
 	"search-thumbnail-extra-namespaces-label": "Näita lauaarvutis otsingu erilehel pisipilte",
 	"search-thumbnail-extra-namespaces-message": "Kuvab leheküljel {{#special:search}} pisipildid {{PLURAL:$2|nimeruumist|nimeruumidest}} $1 pärit tulemuste juures.",
 	"prefs-advancedsearchoptions": "Täpsemad eelistused",
+	"prefs-misc": "Muu",
 	"prefs-reset-intro": "Sellel leheküljel saad oma eelistused lähtestada võrgukoha vaike-eelistusteks.\nToimingut ei saa hiljem tühistada.",
 	"prefs-reset-confirm": "Jah, soovin enda eelistused lähtestada.",
 	"restoreprefs": "Taasta kõik vaike-eelistused"

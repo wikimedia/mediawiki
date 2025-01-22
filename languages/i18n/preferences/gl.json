@@ -227,6 +227,7 @@
 	"search-thumbnail-extra-namespaces-label": "Amosar as miniaturas en Especial:Procurar na versión de escritorio",
 	"search-thumbnail-extra-namespaces-message": "Amosa as miniaturas para os resultados {{PLURAL:$2|do espazo de nomes|dos espazos de nomes}} $1 na páxina {{#special:search}}",
 	"prefs-advancedsearchoptions": "Opcións avanzadas",
+	"prefs-misc": "Preferencias varias",
 	"prefs-reset-intro": "Podes usar esta páxina para restablecer os valores predeterminados das preferencias.\nEsta acción non se pode desfacer.",
 	"prefs-reset-confirm": "Si, quero restablecer as miñas preferencias.",
 	"restoreprefs": "Restaurar todas as preferencias por defecto"

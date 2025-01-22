@@ -246,6 +246,7 @@
 	"search-thumbnail-extra-namespaces-label": "Vorschaubilder in Spezial:Suche auf dem Desktop anzeigen",
 	"search-thumbnail-extra-namespaces-message": "Zeigt Vorschaubilder für Suchergebnisse in {{PLURAL:$2|dem Namensraum|den Namensräumen}} $1 auf {{#special:search}}",
 	"prefs-advancedsearchoptions": "Erweiterte Optionen",
+	"prefs-misc": "Verschiedenes",
 	"prefs-reset-intro": "Du kannst diese Seite verwenden, um die Einstellungen auf die Standards zurückzusetzen.\nDies kann nicht mehr rückgängig gemacht werden.",
 	"prefs-reset-confirm": "Ja, ich möchte meine Einstellungen zurücksetzen.",
 	"restoreprefs": "Standardeinstellungen wiederherstellen"

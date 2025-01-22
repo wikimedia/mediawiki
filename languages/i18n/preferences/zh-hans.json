@@ -252,6 +252,7 @@
 	"search-thumbnail-extra-namespaces-label": "在桌面版的“Special:搜索”中显示缩略图",
 	"search-thumbnail-extra-namespaces-message": "在“{{#special:search}}”页面显示$1{{PLURAL:$2|命名空间}}结果的缩略图",
 	"prefs-advancedsearchoptions": "高级选项",
+	"prefs-misc": "其他",
 	"prefs-reset-intro": "您可以使用此页面将您的参数设置重置为站点默认值。\n该操作无法撤销。",
 	"prefs-reset-confirm": "是，我想重置我的参数设置。",
 	"restoreprefs": "还原所有默认设置"

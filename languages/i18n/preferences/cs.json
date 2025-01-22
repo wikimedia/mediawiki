@@ -237,6 +237,7 @@
 	"search-thumbnail-extra-namespaces-label": "Zobrazit náhledy na Speciální:Hledání v desktopové verzi",
 	"search-thumbnail-extra-namespaces-message": "Zobrazit náhledy ze {{PLURAL:$2|jmenného prostoru|jmenných prostorů}} $1 na stránce {{#special:search}}",
 	"prefs-advancedsearchoptions": "Rozšířené možnosti",
+	"prefs-misc": "Různé",
 	"prefs-reset-intro": "Pomocí této stránky můžete všechna nastavení vrátit na implicitní hodnoty.\nTuto operaci nelze vrátit zpět.",
 	"prefs-reset-confirm": "Ano, chci obnovit svoje nastavení.",
 	"restoreprefs": "Obnovit všechna výchozí nastavení"

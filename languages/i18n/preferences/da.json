@@ -221,6 +221,7 @@
 	"prefs-searchoptions": "Søg",
 	"prefs-searchmisc": "Generelt",
 	"prefs-advancedsearchoptions": "Avancerede indstillinger",
+	"prefs-misc": "Forskelligt",
 	"prefs-reset-intro": "Du kan bruge denne side til at tilbagestille alle dine indstillinger til standardindstillingerne.\nDet kan ikke gøres om.",
 	"restoreprefs": "Gendan alle standardindstillinger"
 }

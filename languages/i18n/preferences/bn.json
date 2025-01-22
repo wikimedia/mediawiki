@@ -234,6 +234,7 @@
 	"search-thumbnail-extra-namespaces-label": "ডেস্কটপে বিশেষ:অনুসন্ধানে থাম্বনেইল দেখান",
 	"search-thumbnail-extra-namespaces-message": "{{#special:search}} পাতার ফলাফলে $1 {{PLURAL:$2|নামস্থানের}} জন্য থাম্বনেইল প্রদর্শন করে",
 	"prefs-advancedsearchoptions": "উচ্চতর পছন্দগুলি",
+	"prefs-misc": "বিবিধ",
 	"prefs-reset-intro": "আপনি এই পাতা ব্যবহার করে আপনার পছন্দসমূহকে সাইটের পূর্বপ্রদত্ত সেটিংসে পরিবর্তন করতে পারেন।\nপরিবর্তন করার পর এটা  আর ফিরিয়ে আনা যাবে না।",
 	"prefs-reset-confirm": "হ্যাঁ, আমি আমার পছন্দগুলি পুনঃস্থাপন করতে চাই।",
 	"restoreprefs": "সকল পূর্বনির্ধারিত সেটিং ফিরিয়ে আনুন"

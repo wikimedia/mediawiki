@@ -219,6 +219,7 @@
 	"search-thumbnail-extra-namespaces-label": "Ozuta pienet kuvat Special:Search:s tiedokonehen ruadostolal",
 	"search-thumbnail-extra-namespaces-message": "Ozuttau pienii kuvii {{PLURAL:$2|nimitilan|nimitiloin}} $1 eččotuloksile sivul {{#special:search}}",
 	"prefs-advancedsearchoptions": "Ližäazetukset",
+	"prefs-misc": "Muut azetukset",
 	"prefs-reset-intro": "Voit käyttiä tädä sivuu, ku tahtonet muuttua omii azetuksii miärättylöih alguazetuksih. Tädä sit ei sua kumata.",
 	"prefs-reset-confirm": "Muga, minä tahton kumata omii azetuksii.",
 	"restoreprefs": "Sua endizeh kundoh kai azetukset, kudamat oli miärätty"

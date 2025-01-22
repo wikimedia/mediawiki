@@ -236,6 +236,7 @@
 	"search-thumbnail-extra-namespaces-label": "Afișează miniaturi ale imaginilor la Special:Căutare pe desktop",
 	"search-thumbnail-extra-namespaces-message": "Afișează miniaturi pentru {{PLURAL:$2|spațiul|spațiile}} de nume $1 în pagina {{#special:search}}",
 	"prefs-advancedsearchoptions": "Opțiuni avansate",
+	"prefs-misc": "Parametri diverși",
 	"prefs-reset-intro": "Poți folosi această pagină pentru a reseta preferințele la valorile implicite.\nAcțiunea nu este reversibilă.",
 	"prefs-reset-confirm": "Da, aș vrea resetarea preferințelor mele.",
 	"restoreprefs": "Restaurează toate setările implicite (în toate secțiunile)"

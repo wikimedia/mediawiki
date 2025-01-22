@@ -229,6 +229,7 @@
 	"search-thumbnail-extra-namespaces-label": "להציג תמונות ממוזערות ב־Special:Search במחשבים",
 	"search-thumbnail-extra-namespaces-message": "הצגת תמונות ממוזערות בתוצאות בדף {{#special:search}} {{PLURAL:$2|במרחב השם|במרחבי השם}} $1.",
 	"prefs-advancedsearchoptions": "אפשרויות מתקדמות",
+	"prefs-misc": "שונות",
 	"prefs-reset-intro": "באפשרותך להשתמש בדף הזה כדי לאפס את ההעדפות שלך להגדרות ברירת המחדל של האתר.\nלא ניתן לבטל את זה.",
 	"prefs-reset-confirm": "כן, אני רוצה לאפס את ההעדפות שלי.",
 	"restoreprefs": "שחזור הגדרות ברירת המחדל"

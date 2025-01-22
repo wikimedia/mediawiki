@@ -221,6 +221,7 @@
 	"search-thumbnail-extra-namespaces-label": "Prikaži minijature u pretrazi na računarnom prikazu",
 	"search-thumbnail-extra-namespaces-message": "Prikazuje minijature pored rezultata pretrage {{PLURAL:$2|imenskog|imenskih}} prostora $1 na stranici {{#special:search}}",
 	"prefs-advancedsearchoptions": "Napredne opcije",
+	"prefs-misc": "Razno",
 	"prefs-reset-intro": "Možete koristiti ovu stranicu da poništite Vaše postavke na ovom sajtu na pretpostavljene vrijednosti.\nOvo se ne može vratiti unazad.",
 	"prefs-reset-confirm": "Da, želim vratiti postavke na predodređene vrijednosti.",
 	"restoreprefs": "Vrati sve postavke na podrazumijevane"

@@ -245,6 +245,7 @@
 	"search-thumbnail-extra-namespaces-label": "Miniaturen weergeven in Speciaal:Zoeken op desktop",
 	"search-thumbnail-extra-namespaces-message": "Toont miniaturen voor de resultaten uit de {{PLURAL:$2|naamruimte|naamruimten}} $1 op de pagina {{#special:search}}",
 	"prefs-advancedsearchoptions": "Gevorderde instellingen",
+	"prefs-misc": "Diversen",
 	"prefs-reset-intro": "Gebruik deze functie om uw voorkeuren te herstellen naar de standaardinstellingen.\nDeze handeling kan niet ongedaan gemaakt worden.",
 	"prefs-reset-confirm": "Ja, ik wil mijn voorkeuren herstellen.",
 	"restoreprefs": "Alle standaardinstellingen terugzetten"

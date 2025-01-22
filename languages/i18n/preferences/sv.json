@@ -242,6 +242,7 @@
 	"search-thumbnail-extra-namespaces-label": "Visa miniatyrer i Special:Search på datorer",
 	"search-thumbnail-extra-namespaces-message": "Visar miniatyrer för resultat på sidan {{#special:search}} för {{PLURAL:$2|namnrymden|namnrymderna}} $1",
 	"prefs-advancedsearchoptions": "Avancerade alternativ",
+	"prefs-misc": "Diverse",
 	"prefs-reset-intro": "Du kan använda den här sidan till att återställa dina inställningar till webbplatsens standardinställningar.\nDetta kan inte återställas.",
 	"prefs-reset-confirm": "Ja, jag vill återställa mina inställningar.",
 	"restoreprefs": "Återgå till standardinställningar"

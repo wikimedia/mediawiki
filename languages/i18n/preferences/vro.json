@@ -91,5 +91,6 @@
 	"tog-watchmoves": "Panõq muq ümbrenõstõduq leheq ja teedüstüq muq perräkaemisnimekirjä",
 	"tog-watchdeletion": "Panõq mu kistutõduq leheküleq mu perräkaemisnimekirjä",
 	"tog-watchcreations": "Panõq muq luuduq leheq ja üleslaadiduq teedüstüq muq perräkaemisnimekirjä",
-	"tog-watchrollback": "Panõq perräkaemisnimekirjä mano leheq, kon ma olõ uma muutmisõ tagasi võtnuq."
+	"tog-watchrollback": "Panõq perräkaemisnimekirjä mano leheq, kon ma olõ uma muutmisõ tagasi võtnuq.",
+	"prefs-misc": "Muuq säädmiseq"
 }

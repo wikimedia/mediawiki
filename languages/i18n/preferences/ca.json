@@ -237,6 +237,7 @@
 	"search-thumbnail-extra-namespaces-label": "Mostra miniatures en Especial:Cerca",
 	"search-thumbnail-extra-namespaces-message": "Mostra també miniatures {{PLURAL:$2|de l'espai de noms|dels espais de noms}} $1. Sempre es mostren les miniatures de $3.",
 	"prefs-advancedsearchoptions": "Opcions avançades",
+	"prefs-misc": "Altres preferències",
 	"prefs-reset-intro": "Podeu usar aquesta pàgina per a restablir les vostres preferències als valors per defecte.\nNo es podrà desfer el canvi.",
 	"prefs-reset-confirm": "Sí, vull reinicialitzar les meves preferències.",
 	"restoreprefs": "Restaura les preferències per defecte"

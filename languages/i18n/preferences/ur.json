@@ -221,6 +221,7 @@
 	"search-thumbnail-extra-namespaces-label": "ڈیسک ٹاپ نمائش میں خاص:تلاش پر تھمب نیل دکھائیں",
 	"search-thumbnail-extra-namespaces-message": "{{#special:search}} صفحہ پر $1 {{PLURAL:$2|نام فضا|نامہائے فضا}} کے دکھائے جانے والے نتائج میں تھمب نیل دکھاتا ہے",
 	"prefs-advancedsearchoptions": "اعلی اختیارات",
+	"prefs-misc": "دیگر",
 	"prefs-reset-intro": "آپ اس صفحہ کے ذریعہ اپنی موجودہ ترجیحات کو سائٹ کی ابتدائی ترتیبات کے مطابق ڈھال سکتے ہیں۔\nلیکن اسے واپس نہیں پھیرا جا سکتا۔",
 	"prefs-reset-confirm": "ہاں، میں اپنی ترجیحات کو دوبارہ ترتیب دینا چاہتا ہوں۔",
 	"restoreprefs": "تمام ابتدائی ترتیبات کو بحال کریں"

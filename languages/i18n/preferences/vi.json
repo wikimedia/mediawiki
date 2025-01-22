@@ -4,6 +4,7 @@
 			"Baonguyen21022003",
 			"Băng Tỏa",
 			"Dinhxuanduyet",
+			"Doraemonluonbentoi",
 			"Ioe2015",
 			"Keo010122",
 			"Leducthn",
@@ -244,6 +245,7 @@
 	"search-thumbnail-extra-namespaces-label": "Hiển thị hình thu nhỏ trong Đặc biệt:Tìm kiếm trên Màn hình",
 	"search-thumbnail-extra-namespaces-message": "Hiển thị hình thu nhỏ cho các kết quả trong {{PLURAL:$1|không gian tên|các không gian tên}} $1 trên trang {{#special:search}}",
 	"prefs-advancedsearchoptions": "Tùy chọn nâng cao",
+	"prefs-misc": "Khác",
 	"prefs-reset-intro": "Có thể mặc định lại toàn bộ tùy chọn dùng trang này. Điều này không thể hoàn tác.",
 	"prefs-reset-confirm": "Có, tôi muốn đặt lại tất cả tùy chọn.",
 	"restoreprefs": "Đặt lại toàn bộ tùy chọn về mặc định"

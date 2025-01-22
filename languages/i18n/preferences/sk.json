@@ -210,6 +210,7 @@
 	"prefs-searchmisc": "Všeobecné",
 	"searchlimit-label": "Počet výsledkov vyhľadávania na stránku:",
 	"prefs-advancedsearchoptions": "Rozšírené možnosti",
+	"prefs-misc": "Rôzne",
 	"prefs-reset-intro": "Túto stránku môžete použiť na vrátenie predvolených hodnôt vašich nastavení.\nTúto operáciu nemožno vrátiť.",
 	"restoreprefs": "Obnoviť všetky predvolené nastavenia"
 }

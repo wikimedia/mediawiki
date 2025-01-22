@@ -239,6 +239,7 @@
 	"search-thumbnail-extra-namespaces-label": "Vis miniatyrbilder i Spesial:Søk på datamaskiner",
 	"search-thumbnail-extra-namespaces-message": "Viser miniatyrbilder for resultater i {{PLURAL:$2|navnerommet|navnerommene}} $1 på søkesiden",
 	"prefs-advancedsearchoptions": "Avanserte alternativer",
+	"prefs-misc": "Diverse",
 	"prefs-reset-intro": "Du kan bruke denne siden til å tilbakestille innstillingene dine til standardinnstillingene.\nDette kan ikke tilbakestilles.",
 	"prefs-reset-confirm": "Ja, jeg ønsker å nullstille innstillingene mine",
 	"restoreprefs": "Nullstill alt til standardinnstillinger"

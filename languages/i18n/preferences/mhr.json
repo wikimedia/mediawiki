@@ -225,6 +225,7 @@
 	"search-thumbnail-extra-namespaces-label": "Изисӱрет-влакым Special:Search десктоп версийыште ончыкташ",
 	"search-thumbnail-extra-namespaces-message": "{{#special:search}} лектыш велыжыште $1 {{PLURAL:$2|лӱм кумдыклан|лӱм кумдык-влаклан}} изисӱретым ончыкта",
 	"prefs-advancedsearchoptions": "Кумдаҥдыме келыштарымаш",
+	"prefs-misc": "Тӱрлӧ",
 	"prefs-reset-intro": "Тиде велыжым тыйын келыштарымашетым тыглайыш кудалташлан кучылташ лиеш.\nШотыл нал, тидым пӧртылташ огеш лий.",
 	"prefs-reset-confirm": "Туге, мый шке келыштарымашем кудалтынем.",
 	"restoreprefs": "Тӱҥалтыш келыштарымашыш пӧртылаш"

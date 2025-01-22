@@ -224,6 +224,7 @@
 	"search-thumbnail-extra-namespaces-label": "Fa védde e miniatûe inte Speciâle:Riçèrca in sciô Desktop",
 	"search-thumbnail-extra-namespaces-message": "Fa védde e miniatûe inta pàgina {{#special:search}} pe-i rizultâti {{PLURAL:$2|do|di}} namespace $1",
 	"prefs-advancedsearchoptions": "Inpostaçioìn avansæ",
+	"prefs-misc": "Vàrie",
 	"prefs-reset-intro": "L'é poscìbile dêuviâ sta pàgina chi pe reinpostâ e pròpie preferénse a quélle predefinîe do scîto.\nL'òperaçión a no peu êse anulâ.",
 	"prefs-reset-confirm": "Scì, véuggio ripristinâ e mæ preferénse.",
 	"restoreprefs": "Ripristinâ tùtte e inpostaçioìn predefinîe"

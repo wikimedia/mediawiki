@@ -242,6 +242,7 @@
 	"search-thumbnail-extra-namespaces-label": "在桌面端的「Special:搜尋」中顯示縮圖",
 	"search-thumbnail-extra-namespaces-message": "在「{{#special:search}}」頁面顯示$1{{PLURAL:$2|命名空間}}結果的縮圖",
 	"prefs-advancedsearchoptions": "進階選項",
+	"prefs-misc": "其他",
 	"prefs-reset-intro": "您可以使用此頁面重設您的偏好設定為網站預設值。\n這個動作將無法復原。",
 	"prefs-reset-confirm": "是的，我要重設偏好設定。",
 	"restoreprefs": "還原所有預設設定"

@@ -213,6 +213,7 @@
 	"prefs-description-searchoptions": "اختار كيفية شغل الإكمال التلقائي والنتايج.",
 	"prefs-searchmisc": "عام",
 	"prefs-advancedsearchoptions": "خيارات متقدمة",
+	"prefs-misc": "متفرقات",
 	"prefs-reset-intro": "تكدر تستخدم هاي الصفحه لإعادة تفضيلاتك للحاله الافتراضيه للموقع\nما تكدر تسترجع الحاله السابقه.",
 	"prefs-reset-confirm": "اي، اريد اعيد تفضيلاتي.",
 	"restoreprefs": "استرجع كل الإعدادات الافتراضيه"

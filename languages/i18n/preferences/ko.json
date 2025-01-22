@@ -242,6 +242,7 @@
 	"search-thumbnail-extra-namespaces-label": "데스크톱의 특수:검색에서 섬네일 표시",
 	"search-thumbnail-extra-namespaces-message": "{{#special:search}} 문서의 결과에서 $1 {{PLURAL:$2|이름공간}}의 섬네일을 표시합니다.",
 	"prefs-advancedsearchoptions": "고급 옵션",
+	"prefs-misc": "기타",
 	"prefs-reset-intro": "이 페이지를 사용해 사이트 기본값으로 환경 설정을 재설정할 수 있습니다.\n이는 되돌릴 수 없습니다.",
 	"prefs-reset-confirm": "네, 환경 설정을 재설정합니다.",
 	"restoreprefs": "모두 기본 설정으로 복구"

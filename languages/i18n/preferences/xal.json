@@ -222,6 +222,7 @@
 	"search-thumbnail-extra-namespaces-label": "Өңгц зургиг Special:Desktop деер хәәх кесгт үзүлх",
 	"search-thumbnail-extra-namespaces-message": "{{#special:search}} халх деерк $1 {{PLURAL:$2|нернә орн-зә|нернә орн- зәс}} илрцүдин өңгц зургиг үзүлнә",
 	"prefs-advancedsearchoptions": "Нәрн көг",
+	"prefs-misc": "Бусд",
 	"prefs-reset-intro": "Та эн халхиг ашглн, эврә тохрлһан сайтын аңхна тохрлһур шилҗүлх болмҗта. Эн үүлдлиг буцах болмҗ уга.",
 	"prefs-reset-confirm": "Тиим, би эврә тохрлһан дәкн тохрулхар бәәнәв.",
 	"restoreprefs": "Бүк тохрлһан аңхна бәәдлднь орулх"

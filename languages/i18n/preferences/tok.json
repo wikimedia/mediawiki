@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ca",
 			"Juwan",
 			"Robin van der Vliet",
 			"Spenĉjo",
@@ -133,6 +134,7 @@
 	"tog-watchuploads": "mi pali e sitelen la, mi wile sona e ante ona",
 	"tog-watchrollback": "mi ala e ante la, mi wile sona e ante lon lipu ona",
 	"prefs-searchoptions": "alasa",
+	"prefs-misc": "namako",
 	"prefs-reset-intro": "ni li weka e wile ale sina pi nasin ilo. nasin ale li kama sama nasin open.",
 	"prefs-reset-confirm": "mi wile weka e wile ale mi.",
 	"restoreprefs": "o kama e nasin sama open"

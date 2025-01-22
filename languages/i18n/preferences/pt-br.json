@@ -252,6 +252,7 @@
 	"search-thumbnail-extra-namespaces-label": "Mostrar miniaturas em Especial:Pesquisar nos computadores de secretária",
 	"search-thumbnail-extra-namespaces-message": "Apresenta miniaturas para os resultados {{PLURAL:$2|do espaço nominal|dos espaços nominais}} $1 na página {{#special:search}}",
 	"prefs-advancedsearchoptions": "Opções avançadas",
+	"prefs-misc": "Diversos",
 	"prefs-reset-intro": "Pode usar esta página para repor as configurações padrão das preferências.\nAs suas preferências serão modificadas para os valores predefinidos do site.\nEsta operação não pode ser desfeita.",
 	"prefs-reset-confirm": "Sim, quero reiniciar as minhas preferências.",
 	"restoreprefs": "Restaurar todas as configurações padrão"

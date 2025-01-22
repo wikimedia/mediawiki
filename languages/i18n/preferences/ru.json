@@ -254,6 +254,7 @@
 	"search-thumbnail-extra-namespaces-label": "Показывать миниатюры в Special:Search в настольной версии",
 	"search-thumbnail-extra-namespaces-message": "Показывает миниатюры для {{PLURAL:$2|пространства имён|пространств имён}} $1 на странице результатов {{#special:search}}",
 	"prefs-advancedsearchoptions": "Расширенные настройки",
+	"prefs-misc": "Другие настройки",
 	"prefs-reset-intro": "Эта страница может быть использована для сброса ваших настроек на стандартные.\nУчтите, что это действие невозможно отменить.",
 	"prefs-reset-confirm": "Да, я хочу сбросить мои настройки.",
 	"restoreprefs": "Восстановить все настройки по умолчанию"

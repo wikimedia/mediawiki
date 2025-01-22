@@ -233,6 +233,7 @@
 	"search-thumbnail-extra-namespaces-label": "แสดงรูปย่อใน พิเศษ:ค้นหา บนคอมพิวเตอร์ตั้งโต๊ะ",
 	"search-thumbnail-extra-namespaces-message": "แสดงผลรูปย่อสำหรับผลลัพธ์ใน{{PLURAL:$2|เนมสเปซ}} $1 บนหน้า{{#special:search}}",
 	"prefs-advancedsearchoptions": "ตัวเลือกขั้นสูง",
+	"prefs-misc": "เบ็ดเตล็ด",
 	"prefs-reset-intro": "คุณสามารถใช้หน้านี้ตั้งการตั้งค่าของคุณเป็นค่าปริยายของเว็บใหม่\nไม่สามารถทำกลับได้",
 	"prefs-reset-confirm": "ใช่ ฉันต้องการรีเซ็ตการตั้งค่าของฉัน",
 	"restoreprefs": "คืนการตั้งค่าเริ่มต้นทั้งหมด"

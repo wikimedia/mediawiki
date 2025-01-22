@@ -218,6 +218,7 @@
 	"searchlimit-label": "Fjöldi leitarniðurstaðna sem á að sýna á hverri síðu:",
 	"searchlimit-help": "Hámarksfjöldi: $1",
 	"prefs-advancedsearchoptions": "Háþróaðir möguleikar",
+	"prefs-misc": "Aðrar stillingar",
 	"prefs-reset-intro": "Þessi síða er til að endurstilla kjörstillingarnar í sjálfgefin gildi.\nEkki er hægt að taka þessa breytingu til baka.",
 	"prefs-reset-confirm": "Já, ég vil frumstilla kjörstillingarnar mínar.",
 	"restoreprefs": "Endurstilla allar sjálfgefnar stillingar"

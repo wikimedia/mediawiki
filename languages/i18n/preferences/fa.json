@@ -243,6 +243,7 @@
 	"search-thumbnail-extra-namespaces-label": "نمایش بندانگشتی‌ها در ویژه:جستجو در نمای رایانه",
 	"search-thumbnail-extra-namespaces-message": "بندانگشتی‌های {{PLURAL:$2|فضای نام|فضاهای نام}} $1 در صفحهٔ {{#special:search}} نمایش داده {{PLURAL:$2|شود|شوند}}.",
 	"prefs-advancedsearchoptions": "گزینه‌های پیشرفته",
+	"prefs-misc": "متفرقه",
 	"prefs-reset-intro": "شما می‌توانید از این صفحه برای بازگرداندن تنظیمات خود به پیش‌فرض وبگاه استفاده کنید.\nاین کار بازگشت‌ناپذیر است.",
 	"prefs-reset-confirm": "بله، می‌خواهم ترجیحاتم را بازنشانی کنم.",
 	"restoreprefs": "بازگردانی همهٔ تنظیمات پیش‌فرض"

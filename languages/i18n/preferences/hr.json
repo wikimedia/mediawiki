@@ -226,6 +226,7 @@
 	"search-thumbnail-extra-namespaces-label": "Prikaži minijature sličica u Special:Search na sučelju za stolna računala",
 	"search-thumbnail-extra-namespaces-message": "Prikazuje minijature slika u {{PLURAL:$2|imenskom prostoru|imenskim prostorima}} $1 na stranici {{#special:search}}",
 	"prefs-advancedsearchoptions": "Napredne mogućnosti",
+	"prefs-misc": "Razno",
 	"prefs-reset-intro": "Možete koristiti ovu stranicu za povrat Vaših postavki na prvotne postavke. Ovo se ne može poništiti.",
 	"prefs-reset-confirm": "Da, želim moje postavke vratiti na prvotne.",
 	"restoreprefs": "Vrati sve postavke na prvotno zadane"

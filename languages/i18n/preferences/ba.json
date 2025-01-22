@@ -227,6 +227,7 @@
 	"search-thumbnail-extra-namespaces-label": "Өҫтәл өҫтө өлгөһөндә, Special:Search битендә бәләкәй һүрәттәрҙе күрһәтергә",
 	"search-thumbnail-extra-namespaces-message": "{{#special:search}} битендә $1 {{PLURAL:$2|исем арауығы|исемдәр арауығы}} өсөн бәләкәй һүрәттәрҙе күрһәтә",
 	"prefs-advancedsearchoptions": "Киңәйтелгән көйләүҙәр",
+	"prefs-misc": "Башҡа көйләүҙәр",
 	"prefs-reset-intro": "Был битте көйләүҙәрегеҙҙе программа көйләүҙәренә кире ҡайтарыу өсөн ҡулланып була.\nБыл ғәмәлде кире ҡайтарып булмаясаҡ.",
 	"prefs-reset-confirm": "Эйе, мин көйләүҙәремде алып ташларға теләйем.",
 	"restoreprefs": "Программа көйләүҙәрен тергеҙергә"

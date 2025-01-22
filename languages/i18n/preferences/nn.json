@@ -220,6 +220,7 @@
 	"prefs-description-searchoptions": "Vel korleis autofullføring og resultat verkar.",
 	"prefs-searchmisc": "Ålment",
 	"prefs-advancedsearchoptions": "Avanserte val",
+	"prefs-misc": "Andre",
 	"prefs-reset-intro": "Du kan nytta denne sida til å tilbakestilla innstillingane dine til standardinnstillingane.\nDette kan ikkje tilbakestillast.",
 	"prefs-reset-confirm": "Ja, eg ynskjar å nullstilla innstillingane mine.",
 	"restoreprefs": "Hent attende alle standardinnstillingane"

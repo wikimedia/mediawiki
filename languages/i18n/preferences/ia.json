@@ -221,6 +221,7 @@
 	"search-thumbnail-extra-namespaces-label": "Monstrar miniaturas in Special:Recerca sur scriptorio",
 	"search-thumbnail-extra-namespaces-message": "Monstra miniaturas pro le resultatos del spatio{{PLURAL:$2||s}} de nomines $1 sur le pagina {{#special:search}}",
 	"prefs-advancedsearchoptions": "Optiones avantiate",
+	"prefs-misc": "Misc",
 	"prefs-reset-intro": "Iste pagina es pro reinitialisar tu preferentias al valores predefinite del sito.\nLe operation non pote esser disfacite.",
 	"prefs-reset-confirm": "Si, io vole reinitialisar mi preferentias.",
 	"restoreprefs": "Restaurar tote le parametros predefinite"

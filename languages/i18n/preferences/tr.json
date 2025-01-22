@@ -244,6 +244,7 @@
 	"search-thumbnail-extra-namespaces-label": "Masaüstünde küçük resimleri Special:Search sayfasında göster",
 	"search-thumbnail-extra-namespaces-message": "{{#special:search}} sayfasındaki $1 {{PLURAL:$2|ad alanı}} sonucunun küçük resimlerini görüntüler",
 	"prefs-advancedsearchoptions": "Gelişmiş seçenekler",
+	"prefs-misc": "Diğer ayarlar",
 	"prefs-reset-intro": "Bu sayfayı tercihlerinizi site varsayılanına döndürmek için kullanabilirsiniz.\nBu geri alınamaz.",
 	"prefs-reset-confirm": "Evet, tercihlerimi sıfırlamak istiyorum.",
 	"restoreprefs": "Tüm varsayılan ayarları geri yükle"

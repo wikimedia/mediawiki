@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Ajiniyaz Nurniyazov",
+			"AlefZet",
 			"Atabek",
 			"CoderSI",
 			"Inabat Allanova",
@@ -199,6 +200,7 @@
 	"searchlimit-label": "Hár bir bette kórsetiletuǵın izlew nátiyjeleriniń sanı:",
 	"searchlimit-help": "Maksimum:: $1",
 	"prefs-advancedsearchoptions": "Keńeytilgen parametrler",
+	"prefs-misc": "Basqa",
 	"prefs-reset-intro": "Siz bul betti óz sazlawlarıńızdı eń dáslepki standart kóriniske qayta ornatıwıńız ushın paydalanıwıńız múmkin. \nHáreket orınlanǵannan soń onı izge qaytarıw imkansız.",
 	"prefs-reset-confirm": "Tastıyıqlayman, men sazlawlarımdı qayta ornatıwdı qáleymen.",
 	"restoreprefs": "Barlıq dáslepki standart sazlawlardı qayta ornatıw"

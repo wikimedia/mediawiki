@@ -214,6 +214,7 @@
 	"search-thumbnail-extra-namespaces-label": "Kasi unjuk longokan di Special:Search on Desktop",
 	"search-thumbnail-extra-namespaces-message": "Mampangin longokan bakal $1 {{PLURAL:$2|ruang nama}} di halaman {{#special:search}}",
 	"prefs-advancedsearchoptions": "Pilihan lanjutan",
+	"prefs-misc": "Serba-serbi",
 	"prefs-reset-intro": "Lu bisa maké ni halaman bakal nyetèl ulang lu punya pengaturan ke bawaannya pelampang.\nKaga' bisa dibalikin lagi.",
 	"prefs-reset-confirm": "Ya, gua mau setèl ulang gua punya pengaturan.",
 	"restoreprefs": "Pulihin semua setèlan bawaan"

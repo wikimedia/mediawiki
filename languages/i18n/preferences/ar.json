@@ -251,6 +251,7 @@
 	"search-thumbnail-extra-namespaces-label": "اعرض الصور المصغرة في خاص:بحث على سطح المكتب",
 	"search-thumbnail-extra-namespaces-message": "يعرض صورًا مصغرة لنتائج {{PLURAL:$2|نطاق|لنطاقات}} $1 على صفحة {{#special:search}}",
 	"prefs-advancedsearchoptions": "خيارات متقدمة",
+	"prefs-misc": "متفرقات",
 	"prefs-reset-intro": "يمكنك استخدام هذه الصفحة لإعادة تفضيلاتك للحالة الافتراضية للموقع.\nلن تستطيع استرجاع الحالة السابقة.",
 	"prefs-reset-confirm": "نعم ، أريد إعادة تعيين تفضيلاتي.",
 	"restoreprefs": "استرجاع كل الإعدادات الافتراضية"

@@ -243,6 +243,7 @@
 	"search-thumbnail-extra-namespaces-label": "Wyświetlaj miniatury w {{#special:Search}} na komputerach",
 	"search-thumbnail-extra-namespaces-message": "Wyświetlaj miniatury dla wyników w {{PLURAL:$2|przestrzeni nazw|przestrzeniach nazw}} $1 na stronie {{#special:Search}}",
 	"prefs-advancedsearchoptions": "Zaawansowane",
+	"prefs-misc": "Ustawienia różne",
 	"prefs-reset-intro": "Na tej stronie można przywrócić domyślne ustawienia preferencji dla tej witryny.\nTej operacji nie można później cofnąć.",
 	"prefs-reset-confirm": "Tak, chcę zresetować moje preferencje.",
 	"restoreprefs": "Przywróć wszystkie domyślne preferencje"

@@ -214,6 +214,7 @@
 	"search-thumbnail-extra-namespaces-label": "Prikaži minijature u Special:Search u računarskom režimu",
 	"search-thumbnail-extra-namespaces-message": "Prikazuje minijature slika u {{PLURAL:$2|imenskom prostoru|imenskim prostorima}} $1 u stranici {{#special:search}}",
 	"prefs-advancedsearchoptions": "Napredne opcije",
+	"prefs-misc": "Razno",
 	"prefs-reset-intro": "Možete koristiti ovu stranicu da poništite Vaše postavke na ovom wikiju na pretpostavljene vrijednosti.\nOvo se ne može vratiti unazad.",
 	"prefs-reset-confirm": "Da, želim moje postavke vratiti na prvotne.",
 	"restoreprefs": "Vrati sve na podrazumijevano"

@@ -215,6 +215,7 @@
 	"search-thumbnail-extra-namespaces-label": "Fà vedè i miniadure in Special:Ricerca in sul desktop",
 	"search-thumbnail-extra-namespaces-message": "Mostra anca i miniadure {{PLURAL:$2|del|di}} spazzi di nom $1. I miniadure del spazzi di nom $3 a inn semper mostrade.",
 	"prefs-advancedsearchoptions": "Opzion avanzade",
+	"prefs-misc": "Preferenze varie",
 	"prefs-reset-intro": "Te podet doprà quella pagina chì per rimpostà i to preferenze a quèi predefinide sel sit.\nL'operazzion la po vesser minga anulada.",
 	"prefs-reset-confirm": "Si, mi voeuli rimpostà i me preferenze.",
 	"restoreprefs": "Ristabiliss i impostazzion predefinide"

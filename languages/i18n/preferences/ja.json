@@ -259,6 +259,7 @@
 	"search-thumbnail-extra-namespaces-label": "Special:Searchでサムネイルを表示する",
 	"search-thumbnail-extra-namespaces-message": "{{#special:search}}ページの結果で$1{{PLURAL:$2|名前空間}}のサムネイルを表示します。",
 	"prefs-advancedsearchoptions": "詳細設定",
+	"prefs-misc": "その他",
 	"prefs-reset-intro": "このページを使用すると、自分の個人設定をこのサイトの初期設定に戻せます。\nこの操作は取り消せません。",
 	"prefs-reset-confirm": "はい、個人設定をリセットしたいです。",
 	"restoreprefs": "すべて初期設定に戻す"

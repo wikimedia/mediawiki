@@ -223,6 +223,7 @@
 	"search-thumbnail-extra-namespaces-label": "Special:Search бедреште миниатюраларды десктоп версияда кӧргӱзер",
 	"search-thumbnail-extra-namespaces-message": "$1 {{PLURAL:$2|аттардыҥ телкемине}} турулталардыҥ {{#special:search}} бӱгинде миниииатюраларды кӧргӱзет",
 	"prefs-advancedsearchoptions": "Элбедилген јазалткыштар",
+	"prefs-misc": "Ӧскӧ јазалталар",
 	"prefs-reset-intro": "Бу бӱкте слердиҥ јазалталарды озо болгонына чачарга арга бар.\nБу мыны этсе кайра јандырып болбос деп ундыбагар.",
 	"prefs-reset-confirm": "Эйе, мен јазалталарды чачарга тургам.",
 	"restoreprefs": "Озо болгон јазалталарга орныктырар"

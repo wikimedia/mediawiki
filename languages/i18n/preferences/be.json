@@ -226,6 +226,7 @@
 	"search-thumbnail-extra-namespaces-label": "Паказваць драбніцы ў Special:Search у стацыянарнай версіі",
 	"search-thumbnail-extra-namespaces-message": "Паказвае драбніцы для вынікаў у {{PLURAL:$2|прасторы|прасторах}} назваў $1 на старонцы {{#special:search}}",
 	"prefs-advancedsearchoptions": "Пашыраныя магчымасці",
+	"prefs-misc": "Рознае",
 	"prefs-reset-intro": "Тут можна вярнуць свае параметры да прадвызначэнняў, прынятых на гэтай пляцоўцы.\nАдкаціць гэтае дзеянне нельга.",
 	"prefs-reset-confirm": "Так, я хачу скінуць свае налады.",
 	"restoreprefs": "Аднавіць усе прадвызначэнні"

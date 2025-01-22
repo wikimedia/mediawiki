@@ -216,6 +216,7 @@
 	"searchlimit-label": "Nifer y canlyniadau chwilio i'w dangos ar bob tudalen:",
 	"searchlimit-help": "Uchafswm: $1",
 	"prefs-advancedsearchoptions": "Dewisiadau uwch",
+	"prefs-misc": "Amrywiol",
 	"prefs-reset-intro": "Gallwch ddefnyddio'r dudalen hon i ailosod eich dewisiadau i'r rhai diofyn.\nNi allwch ddadwneud y weithred hon.",
 	"prefs-reset-confirm": "Ydw, hoffwn i ailosod fy newisiadau.",
 	"restoreprefs": "Adfer pob gosodiad diofyn"

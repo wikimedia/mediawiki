@@ -221,6 +221,7 @@
 	"search-thumbnail-extra-namespaces-label": "Пичиятэм тусъёсты возьматоно татын: Special:Search on Desktop",
 	"search-thumbnail-extra-namespaces-message": "$1-лы пичиятэм тусъёсты возьматэ {{PLURAL:$2|нимвӧлмет|нимвӧлметъёс\n}} йылпумъёс  та бамын {{#special:search}}",
 	"prefs-advancedsearchoptions": "Паськытатэм ладъянъёс",
+	"prefs-misc": "пӧртэм",
 	"prefs-reset-intro": "Тӥ быгатӥськоды кутыны та бамез, ладъянъёсты нимаз пусйытэк ладъянъёсын воштон понна. Тодэ, сое берланьтыны уг луы.",
 	"prefs-reset-confirm": "Бен, мынам ладъянъёсме  куштэме потэ",
 	"restoreprefs": "Вань ладъянъёсты нимаз пусйытэк берентоно"

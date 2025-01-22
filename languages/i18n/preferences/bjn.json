@@ -222,6 +222,7 @@
 	"search-thumbnail-extra-namespaces-label": "Tampaiakan thumbnail di Special:Search on Desktop",
 	"search-thumbnail-extra-namespaces-message": "Manampaiakan kaluku gasan $1 {{PLURAL:$2|ruang ngaran}} di laman {{#special:search}}",
 	"prefs-advancedsearchoptions": "Pilihan harat",
+	"prefs-misc": "Balalain",
 	"prefs-reset-intro": "Pian kawa mamuruk tungkaran ini hagan setel bulik kakatujuan Pian ka default situs.\nIni kada kawa diwalangi.",
 	"prefs-reset-confirm": "Inggih, ulun handak maatur imbal kakatujuan ulun.",
 	"restoreprefs": "Bulikakan samunyaan aturan bawaan"

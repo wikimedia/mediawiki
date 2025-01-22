@@ -158,5 +158,6 @@
 	"tog-watchuploads": "ನಾನು ಹೊಸದಾಗಿ ಅಪ್‍ಲೋಡ್ ಮಾಡಿದ ಫೈಲ್‍ಗಳನ್ನು ನನ್ನ ವೀಕ್ಷಣಾಪಟ್ಟಿಗೆ ಸೇರಿಸು",
 	"tog-watchrollback": "ನಾನು ಹಿಮ್ಮರಳುವಿಕೆಯನ್ನು ನಡೆಸಿದ ಪುಟಗಳನ್ನು ನನ್ನ ಗಮನಸೂಚಿಗೆ ಸೇರಿಸು",
 	"prefs-searchoptions": "ಹುಡುಕು",
-	"prefs-advancedsearchoptions": "ಪರಿಣತ ಇಚ್ಛೆಗಳು"
+	"prefs-advancedsearchoptions": "ಪರಿಣತ ಇಚ್ಛೆಗಳು",
+	"prefs-misc": "ಇತರೆ"
 }

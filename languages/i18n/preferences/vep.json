@@ -220,6 +220,7 @@
 	"search-thumbnail-extra-namespaces-label": "Ozuta kuvaižed eriližes erištos: Ecind radpöudol",
 	"search-thumbnail-extra-namespaces-message": "Ozutab kuvaižiden $1 {{PLURAL:$2|nimiavaruden|nimiavaruziden}} satusid {{#special:search}} lehtpolel",
 	"prefs-advancedsearchoptions": "Ližaopcijad",
+	"prefs-misc": "Toine",
 	"prefs-reset-intro": "Sinä void kävutada necidä lehtpol't, miše udištada saitan valičused sanumata.\nNecidä ei sa heitta.",
 	"prefs-reset-confirm": "Ka, minä tahtoin heitta minun valičusid.",
 	"restoreprefs": "Udištoita sanumata kaik vajehtused"
