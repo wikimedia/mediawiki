@@ -21,10 +21,9 @@
  * @ingroup Actions
  */
 
-use MediaWiki\Feed\AtomFeed;
+use MediaWiki\Feed\ChannelFeed;
 use MediaWiki\Feed\FeedItem;
 use MediaWiki\Feed\FeedUtils;
-use MediaWiki\Feed\RSSFeed;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
@@ -386,7 +385,7 @@ class HistoryAction extends FormlessAction {
 		$request = $this->getRequest();
 
 		$feedClasses = $this->context->getConfig()->get( MainConfigNames::FeedClasses );
-		/** @var RSSFeed|AtomFeed $feed */
+		/** @var ChannelFeed $feed */
 		$feed = new $feedClasses[$type](
 			$this->getTitle()->getPrefixedText() . ' - ' .
 			$this->msg( 'history-feed-title' )->inContentLanguage()->text(),
