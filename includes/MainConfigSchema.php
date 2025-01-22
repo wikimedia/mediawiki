@@ -5544,6 +5544,8 @@ class MainConfigSchema {
 	 *
 	 *   This option is mutually exclusive with `remoteBasePath`.
 	 *
+	 * - remoteSkinPath `{string}`: Like `remoteExtPath`, but relative to $wgStylePath.
+	 *
 	 * - styles `{string[]|string|array<string,array>}`:
 	 *   Styles to always include in the module.
 	 *   %File path or list of file paths, relative to `localBasePath`.
@@ -5787,7 +5789,7 @@ class MainConfigSchema {
 	 * ];
 	 *
 	 * $wgResourceModuleSkinStyles['foo'] = [
-	 *   'bar' => 'skins/Foo/bar.css',
+	 *   'bar' => 'skins/Foo/styles/bar.css',
 	 * ];
 	 * ```
 	 *
@@ -5800,7 +5802,7 @@ class MainConfigSchema {
 	 *   'scripts' => 'resources/bar/bar.js',
 	 *   'styles' => 'resources/bar/main.css',
 	 *   'skinStyles' => [
-	 *     'foo' => skins/Foo/bar.css',
+	 *     'foo' => skins/Foo/styles/bar.css',
 	 *   ],
 	 * ];
 	 * ```
@@ -5823,7 +5825,7 @@ class MainConfigSchema {
 	 * ];
 	 * // Note the '+' character:
 	 * $wgResourceModuleSkinStyles['foo'] = [
-	 *   '+bar' => 'skins/Foo/bar.css',
+	 *   '+bar' => 'skins/Foo/styles/bar.css',
 	 * ];
 	 * ```
 	 *
@@ -5839,7 +5841,7 @@ class MainConfigSchema {
 	 *     'default' => 'resources/bar/additional.css',
 	 *     'foo' => [
 	 *       'resources/bar/additional.css',
-	 *       'skins/Foo/bar.css',
+	 *       'skins/Foo/styles/bar.css',
 	 *     ],
 	 *   ],
 	 * ];
@@ -5858,8 +5860,8 @@ class MainConfigSchema {
 	 * $wgResourceModuleSkinStyles['foo'] = [
 	 *   'bar' => 'bar.css',
 	 *   'quux' => 'quux.css',
-	 *   'remoteSkinPath' => 'Foo',
-	 *   'localBasePath' => __DIR__,
+	 *   'remoteSkinPath' => 'Foo/styles',
+	 *   'localBasePath' => __DIR__ . '/styles',
 	 * ];
 	 * ```
 	 */
