@@ -25,9 +25,9 @@ use MediaWiki\Linker\LinkTarget;
 use StatusValue;
 
 /**
- * Verify the page does not redirect to a nonexistent page unless
+ * Verify the page does not redirect to an unknown page unless
  *  - the user is okay with a broken redirect, or
- *  - the page already redirected to a nonexistent page before the edit
+ *  - the page already redirected to an unknown page before the edit
  *
  * @since 1.44
  * @internal
@@ -62,13 +62,13 @@ class BrokenRedirectConstraint implements IEditConstraint {
 		if ( !$this->allowBrokenRedirects ) {
 			$newRedirectTarget = $this->newContent->getRedirectTarget();
 
-			if ( $newRedirectTarget !== null && !$newRedirectTarget->exists() &&
+			if ( $newRedirectTarget !== null && !$newRedirectTarget->isKnown() &&
 				!$newRedirectTarget->equals( $this->title ) ) {
 				$currentTarget = $this->originalContent->getRedirectTarget();
 
 				// fail if there was no previous content or the previous content contained
-				// a redirect to an existing page
-				if ( !$currentTarget || $currentTarget->exists() ) {
+				// a redirect to a known page
+				if ( !$currentTarget || $currentTarget->isKnown() ) {
 					$this->result = self::CONSTRAINT_FAILED;
 
 					return self::CONSTRAINT_FAILED;

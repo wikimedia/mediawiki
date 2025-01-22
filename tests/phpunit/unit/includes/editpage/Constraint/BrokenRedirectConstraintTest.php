@@ -43,7 +43,7 @@ class BrokenRedirectConstraintTest extends MediaWikiUnitTestCase {
 			->method( 'getRedirectTarget' )
 			->willReturn( $contentRedirectTarget );
 		$contentRedirectTarget->expects( $this->once() )
-			->method( 'exists' )
+			->method( 'isKnown' )
 			->willReturn( !$isBrokenRedirect );
 		return $content;
 	}
