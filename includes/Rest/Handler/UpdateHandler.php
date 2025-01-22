@@ -10,6 +10,7 @@ use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Title\Title;
 use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -141,6 +142,7 @@ class UpdateHandler extends EditHandler {
 			// We may want to signal this more explicitly to the client in the future.
 
 			$title = $this->titleParser->parseTitle( $this->getValidatedParams()['title'] );
+			$title = Title::newFromLinkTarget( $title );
 			$currentRev = $this->revisionLookup->getRevisionByTitle( $title );
 
 			$data['edit']['newrevid'] = $currentRev->getId();
@@ -194,6 +196,7 @@ class UpdateHandler extends EditHandler {
 		$title = $this->titleParser->parseTitle( $this->getValidatedParams()['title'] );
 
 		$baseRev = $this->revisionLookup->getRevisionById( $baseRevId );
+		$title = Title::newFromLinkTarget( $title );
 		$currentRev = $this->revisionLookup->getRevisionByTitle( $title );
 
 		if ( !$baseRev || !$currentRev ) {

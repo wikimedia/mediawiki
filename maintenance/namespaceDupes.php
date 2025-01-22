@@ -33,6 +33,7 @@ use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\Maintenance;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
@@ -765,13 +766,13 @@ class NamespaceDupes extends Maintenance {
 	 * recentchanges review, etc.
 	 *
 	 * @param int $id The page_id
-	 * @param LinkTarget $linkTarget The new link target
+	 * @param PageIdentity $page
 	 * @param string &$logStatus This is set to the log status message on failure @phan-output-reference
 	 * @return bool
 	 */
-	private function canMerge( $id, LinkTarget $linkTarget, &$logStatus ) {
+	private function canMerge( $id, PageIdentity $page, &$logStatus ) {
 		$revisionLookup = $this->getServiceContainer()->getRevisionLookup();
-		$latestDest = $revisionLookup->getRevisionByTitle( $linkTarget, 0,
+		$latestDest = $revisionLookup->getRevisionByTitle( $page, 0,
 			IDBAccessObject::READ_LATEST );
 		$latestSource = $revisionLookup->getRevisionByPageId( $id, 0,
 			IDBAccessObject::READ_LATEST );

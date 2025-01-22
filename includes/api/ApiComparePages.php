@@ -162,10 +162,10 @@ class ApiComparePages extends ApiBase {
 					break;
 
 				case 'cur':
-					$title = $fromRelRev->getPageAsLinkTarget();
+					$title = $fromRelRev->getPage();
 					$toRev = $this->revisionStore->getRevisionByTitle( $title );
 					if ( !$toRev ) {
-						$title = Title::newFromLinkTarget( $title );
+						$title = Title::newFromPageIdentity( $title );
 						$this->dieWithError(
 							[ 'apierror-missingrev-title', wfEscapeWikiText( $title->getPrefixedText() ) ],
 							'nosuchrevid'
@@ -197,10 +197,10 @@ class ApiComparePages extends ApiBase {
 
 		// Get the diff
 		$context = new DerivativeContext( $this->getContext() );
-		if ( $fromRelRev && $fromRelRev->getPageAsLinkTarget() ) {
+		if ( $fromRelRev ) {
 			$context->setTitle( Title::newFromPageIdentity( $fromRelRev->getPage() ) );
 		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable T240141
-		} elseif ( $toRelRev && $toRelRev->getPageAsLinkTarget() ) {
+		} elseif ( $toRelRev ) {
 			$context->setTitle( Title::newFromPageIdentity( $toRelRev->getPage() ) );
 		} else {
 			$guessedTitle = $this->guessTitle();

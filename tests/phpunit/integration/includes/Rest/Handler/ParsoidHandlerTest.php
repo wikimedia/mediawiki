@@ -32,7 +32,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Rest\RestTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
-use MediaWiki\Title\TitleValue;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -943,7 +943,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function makePage( $title, $wikitext ): RevisionRecord {
-		$title = new TitleValue( NS_MAIN, $title );
+		$title = Title::makeTitle( NS_MAIN, $title );
 		$rev = $this->getServiceContainer()->getRevisionLookup()->getRevisionByTitle( $title );
 
 		if ( $rev ) {

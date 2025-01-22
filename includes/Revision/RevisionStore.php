@@ -1282,6 +1282,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 			return null;
 		}
 		if ( !( $page instanceof PageIdentity ) ) {
+			wfDeprecated( __METHOD__ . ' with a LinkTarget', '1.45' );
 			$page = null;
 		}
 
@@ -1370,6 +1371,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 			return null;
 		}
 		if ( !( $page instanceof PageIdentity ) ) {
+			wfDeprecated( __METHOD__ . ' with a LinkTarget', '1.45' );
 			$page = null;
 		}
 
@@ -3023,6 +3025,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 			return null;
 		}
 		if ( !( $page instanceof PageIdentity ) ) {
+			wfDeprecated( __METHOD__ . ' with a LinkTarget', '1.45' );
 			$page = null;
 		}
 
