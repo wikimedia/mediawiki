@@ -13,6 +13,7 @@ use MediaWiki\OutputTransform\ContentDOMTransformStage;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Title\TitleFactory;
 use Psr\Log\LoggerInterface;
 use Skin;
@@ -65,11 +66,6 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 		$sections = ( $toc !== null ) ? $toc->getSections() : [];
 		// use the TOC data to extract the headings:
 		foreach ( $sections as $section ) {
-			$fromTitle = $section->fromTitle;
-			if ( $fromTitle === null ) {
-				// T353489: don't wrap bare <h> tags
-				continue;
-			}
 			if ( $section->anchor === '' ) {
 				// T375002 / T368722: The empty string isn't a valid id so
 				// Parsoid will have reassigned it and we'll never be able
@@ -85,9 +81,26 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 				);
 				continue;
 			}
+
+			// T353489: Do not add the wrapper if the heading has attributes
+			// generated from wikitext
+			foreach ( $h->attributes as $attr ) {
+				// Condition matches DiscussionTool's CommentFormatter::handleHeading
+				if (
+					!in_array( $attr->name, [ 'id', 'data-object-id', 'about', 'typeof' ], true ) &&
+					!Sanitizer::isReservedDataAttribute( $attr->name )
+				) {
+					continue 2;
+				}
+			}
+
+			$fromTitle = $section->fromTitle;
 			$div = $dom->createElement( 'div' );
-			if ( ( $options['enableSectionEditLinks'] ?? true ) &&
-				 !$po->getOutputFlag( ParserOutputFlags::NO_SECTION_EDIT_LINKS ) ) {
+			if (
+				$fromTitle !== null &&
+				( $options['enableSectionEditLinks'] ?? true ) &&
+				!$po->getOutputFlag( ParserOutputFlags::NO_SECTION_EDIT_LINKS )
+			) {
 				$editPage = $this->titleFactory->newFromTextThrow( $fromTitle );
 				$html = $skin->doEditSectionLink(
 					$editPage, $section->index, $h->textContent,
