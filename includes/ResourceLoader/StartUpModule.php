@@ -65,14 +65,14 @@ class StartUpModule extends Module {
 	 *
 	 * @param array $registryData
 	 * @param string $moduleName
-	 * @param string[] $handled Internal parameter for recursion. (Optional)
+	 * @param array<string,true> &$handled Internal parameter for recursion.
 	 * @return array
 	 * @throws CircularDependencyError
 	 */
 	protected static function getImplicitDependencies(
 		array $registryData,
 		string $moduleName,
-		array $handled = []
+		array &$handled
 	): array {
 		static $dependencyCache = [];
 
@@ -91,9 +91,9 @@ class StartUpModule extends Module {
 			$flat = $data['dependencies'];
 
 			// Prevent recursion
-			$handled[] = $moduleName;
+			$handled[$moduleName] = true;
 			foreach ( $data['dependencies'] as $dependency ) {
-				if ( in_array( $dependency, $handled, true ) ) {
+				if ( isset( $handled[$dependency] ) ) {
 					// If we encounter a circular dependency, then stop the optimiser and leave the
 					// original dependencies array unmodified. Circular dependencies are not
 					// supported in ResourceLoader. Awareness of them exists here so that we can
@@ -138,7 +138,8 @@ class StartUpModule extends Module {
 			$dependencies = $data['dependencies'];
 			try {
 				foreach ( $data['dependencies'] as $dependency ) {
-					$implicitDependencies = self::getImplicitDependencies( $registryData, $dependency );
+					$depCheck = [];
+					$implicitDependencies = self::getImplicitDependencies( $registryData, $dependency, $depCheck );
 					$dependencies = array_diff( $dependencies, $implicitDependencies );
 				}
 			} catch ( CircularDependencyError $err ) {
