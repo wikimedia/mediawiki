@@ -939,8 +939,11 @@ class FileModuleTest extends ResourceLoaderTestCase {
 	 */
 	public function testIndirectDependencies() {
 		$context = $this->getResourceLoaderContext();
-		$moduleInfo = [ 'dir' => __DIR__ . '/../../data/less/module',
-		'lessVars' => [ 'foo' => '2px', 'Foo' => '#eeeeee' ], 'name' => 'styles-dependencies' ];
+		$moduleInfo = [
+			'dir' => __DIR__ . '/../../data/less/module',
+			'lessVars' => [ 'foo' => '2px', 'Foo' => '#eeeeee' ],
+			'name' => 'styles-dependencies'
+		];
 
 		$module = $this->newModuleRequest( $moduleInfo, $context );
 		$module->getStyles( $context );
@@ -948,8 +951,10 @@ class FileModuleTest extends ResourceLoaderTestCase {
 		$module = $this->newModuleRequest( $moduleInfo, $context );
 		$dependencies = $module->getFileDependencies( $context );
 
-		$expectedDependencies = [ realpath( __DIR__ . '/../../data/less/common/test.common.mixins.less' ),
-		realpath( __DIR__ . '/../../data/less/module/dependency.less' ) ];
+		$expectedDependencies = [
+			realpath( __DIR__ . '/../../data/less/common/test.common.mixins.less' ),
+			realpath( __DIR__ . '/../../data/less/module/dependency.less' )
+		];
 
 		$this->assertEquals( $expectedDependencies, $dependencies );
 	}
