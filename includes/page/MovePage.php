@@ -44,6 +44,7 @@ use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
+use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
@@ -960,14 +961,14 @@ class MovePage {
 		// NOTE: Use FLAG_SILENT to avoid redundant RecentChanges entry.
 		//       The move log already generates one.
 		$options = [
-			PageUpdatedEvent::FLAG_MOVED => true,
 			PageUpdatedEvent::FLAG_SILENT => true,
 			'oldtitle' => $this->oldTitle,
 			'oldcountable' => $oldcountable,
-			'causeAction' => 'MovePage',
-			'causeAgent' => $user->getName(),
+			'causeAction' => 'MovePage', // override "page-move" based on setCause()
 		];
 
+		$updater->setCause( PageUpdater::CAUSE_MOVE );
+		$updater->setPerformer( $user );
 		$updater->prepareUpdate( $nullRevision, $options );
 		$updater->doUpdates();
 

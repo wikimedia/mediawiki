@@ -34,7 +34,7 @@ class SearchEventIngress extends EventSubscriberBase {
 		$mainSlot = $newRevision->getSlot( SlotRecord::MAIN );
 		if (
 			( $event->isModifiedSlot( SlotRecord::MAIN )
-				|| $event->hasFlag( PageUpdatedEvent::FLAG_MOVED ) ) &&
+				|| $event->hasCause( PageUpdatedEvent::CAUSE_MOVE ) ) &&
 			!$newRevision->isDeleted( RevisionRecord::DELETED_TEXT )
 		) {
 			// NOTE: no need to go through DeferredUpdates,

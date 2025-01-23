@@ -1282,7 +1282,6 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$title = $this->getTitle( __METHOD__ );
 
 		$content = [ SlotRecord::MAIN => new WikitextContent( 'rev ID ver #1: {{REVISIONID}}' ) ];
-		$rev = $this->createRevision( $page, 'first', $content );
 
 		// create a deletion log entry
 		$deleteLogEntry = new ManualLogEntry( 'delete', 'delete' );
@@ -1292,17 +1291,8 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$logId = $deleteLogEntry->insert( $this->getDb() );
 		$deleteLogEntry->publish( $logId );
 
-		$this->getDb()->startAtomic( __METHOD__ ); // let deferred updates queue up
+		$rev = $this->createRevision( $page, 'first', $content );
 
-		$derivedUpdater = $this->getDerivedPageDataUpdater( $page, $rev );
-		$derivedUpdater->prepareUpdate( $rev );
-		$derivedUpdater->doUpdates();
-		$this->assertGreaterThan( 0, DeferredUpdates::pendingUpdatesCount(), 'Pending updates' );
-
-		$this->getDb()->endAtomic( __METHOD__ ); // run deferred updates
-		$this->runDeferredUpdates();
-
-		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount(), 'No pending updates' );
 		$this->assertSame( [ 'mw-recreated' ], $this->getServiceContainer()->getChangeTagsStore()->getTags(
 			$this->getDb(), null, $rev->getId() ) );
 	}
@@ -1318,7 +1308,6 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$content = [ SlotRecord::MAIN => new WikitextContent( 'rev ID ver #1: {{REVISIONID}}' ) ];
 		$content2 = [ SlotRecord::MAIN => new WikitextContent( 'rev ID ver #2: {{REVISIONID}}' ) ];
 		$this->createRevision( $page, 'first', $content );
-		$rev = $this->createRevision( $page, 'second', $content2 );
 
 		// create a deletion log entry
 		$deleteLogEntry = new ManualLogEntry( 'delete', 'delete' );
@@ -1328,17 +1317,8 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$logId = $deleteLogEntry->insert( $this->getDb() );
 		$deleteLogEntry->publish( $logId );
 
-		$this->getDb()->startAtomic( __METHOD__ ); // let deferred updates queue up
+		$rev = $this->createRevision( $page, 'second', $content2 );
 
-		$derivedUpdater = $this->getDerivedPageDataUpdater( $page, $rev );
-		$derivedUpdater->prepareUpdate( $rev );
-		$derivedUpdater->doUpdates();
-		$this->assertGreaterThan( 0, DeferredUpdates::pendingUpdatesCount(), 'Pending updates' );
-
-		$this->getDb()->endAtomic( __METHOD__ ); // run deferred updates
-		$this->runDeferredUpdates();
-
-		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount(), 'No pending updates' );
 		$this->assertSame( [], $this->getServiceContainer()->getChangeTagsStore()->getTags(
 			$this->getDb(), null, $rev->getId() ) );
 	}
@@ -1353,17 +1333,6 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$content = [ SlotRecord::MAIN => new WikitextContent( 'rev ID ver #1: {{REVISIONID}}' ) ];
 		$rev = $this->createRevision( $page, 'first', $content );
 
-		$this->getDb()->startAtomic( __METHOD__ ); // let deferred updates queue up
-
-		$derivedUpdater = $this->getDerivedPageDataUpdater( $page, $rev );
-		$derivedUpdater->prepareUpdate( $rev );
-		$derivedUpdater->doUpdates();
-		$this->assertGreaterThan( 0, DeferredUpdates::pendingUpdatesCount(), 'Pending updates' );
-
-		$this->getDb()->endAtomic( __METHOD__ ); // run deferred updates
-		$this->runDeferredUpdates();
-
-		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount(), 'No pending updates' );
 		$this->assertSame( [], $this->getServiceContainer()->getChangeTagsStore()->getTags(
 			$this->getDb(), null, $rev->getId() ) );
 	}

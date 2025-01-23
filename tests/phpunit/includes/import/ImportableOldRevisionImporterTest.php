@@ -100,21 +100,15 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 		int &$counter,
 		$new
 	) {
-		$flags = [
-			PageUpdatedEvent::FLAG_IMPORTED => true,
-			PageUpdatedEvent::FLAG_AUTOMATED => true,
-			PageUpdatedEvent::FLAG_SILENT => true,
-		];
-
 		return static function ( PageUpdatedEvent $event ) use (
-			&$counter, $flags, $new
+			&$counter, $new
 		) {
 			Assert::assertTrue( $event->isRevisionChange(), 'isPurge' );
 			Assert::assertSame( $new, $event->isNew(), 'isNew' );
+			Assert::assertSame( PageUpdatedEvent::CAUSE_IMPORT, $event->getCause(), 'getCause' );
 
-			foreach ( $flags as $name => $value ) {
-				Assert::assertSame( $value, $event->hasFlag( $name ), $name );
-			}
+			Assert::assertTrue( $event->isAutomated(), 'isAutomated' );
+			Assert::assertTrue( $event->isSilent(), 'isSilent' );
 
 			$counter++;
 		};

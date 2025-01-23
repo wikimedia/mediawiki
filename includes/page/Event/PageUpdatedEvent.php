@@ -23,6 +23,7 @@ namespace MediaWiki\Page\Event;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\EditResult;
+use MediaWiki\Storage\PageUpdateCauses;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
@@ -48,7 +49,7 @@ use Wikimedia\Assert\Assert;
  *
  * @unstable until 1.45
  */
-class PageUpdatedEvent extends PageEvent {
+class PageUpdatedEvent extends PageEvent implements PageUpdateCauses {
 
 	public const TYPE = 'PageUpdated';
 
@@ -70,18 +71,6 @@ class PageUpdatedEvent extends PageEvent {
 	 */
 	public const FLAG_AUTOMATED = 'automated';
 
-	/** @var string The update was an undeletion. */
-	public const FLAG_RESTORED = 'restored';
-
-	/** @var string The update was an import. */
-	public const FLAG_IMPORTED = 'imported';
-
-	/** @var string The update was due to a page move. */
-	public const FLAG_MOVED = 'moved';
-
-	/** @var string The update was for a derived slot. */
-	public const FLAG_DERIVED = 'derived';
-
 	/**
 	 * All available flags and their default values.
 	 */
@@ -90,10 +79,6 @@ class PageUpdatedEvent extends PageEvent {
 		self::FLAG_SILENT => false,
 		self::FLAG_BOT => false,
 		self::FLAG_AUTOMATED => false,
-		self::FLAG_RESTORED => false,
-		self::FLAG_IMPORTED => false,
-		self::FLAG_MOVED => false,
-		self::FLAG_DERIVED => false,
 	];
 
 	private RevisionSlotsUpdate $slotsUpdate;
@@ -102,6 +87,7 @@ class PageUpdatedEvent extends PageEvent {
 	private ?EditResult $editResult;
 
 	/**
+	 * @param string $cause See the self::CAUSE_XXX constants.
 	 * @param ProperPageIdentity $page The page affected by the update.
 	 * @param UserIdentity $performer The user performing the update.
 	 * @param RevisionSlotsUpdate $slotsUpdate Page content changed by the edit.
@@ -116,6 +102,7 @@ class PageUpdatedEvent extends PageEvent {
 	 * @param int $patrolStatus See PageUpdater::setRcPatrolStatus()
 	 */
 	public function __construct(
+		string $cause,
 		ProperPageIdentity $page,
 		UserIdentity $performer,
 		RevisionSlotsUpdate $slotsUpdate,
@@ -126,7 +113,7 @@ class PageUpdatedEvent extends PageEvent {
 		array $flags = [],
 		int $patrolStatus = 0
 	) {
-		parent::__construct( $page, $performer, $tags, $flags, $newRevision->getTimestamp() );
+		parent::__construct( $cause, $page, $performer, $tags, $flags, $newRevision->getTimestamp() );
 		$this->declareEventType( self::TYPE );
 
 		Assert::parameter( $page->exists(), '$page', 'must exist' );
@@ -189,7 +176,10 @@ class PageUpdatedEvent extends PageEvent {
 	}
 
 	/**
-	 * Returns the user that performed the edit.
+	 * Returns the author of the new revision.
+	 * Note that this may be different from the user returned by
+	 * getPerformer() for update events caused e.g. by
+	 * undeletion or imports.
 	 */
 	public function getAuthor(): UserIdentity {
 		return $this->newRevision->getUser( RevisionRecord::RAW );
@@ -249,6 +239,37 @@ class PageUpdatedEvent extends PageEvent {
 	 */
 	public function getPatrolStatus(): int {
 		return $this->patrolStatus;
+	}
+
+	/**
+	 * Whether the update should be omitted from update feeds presented to the
+	 * user.
+	 */
+	public function isSilent(): bool {
+		return $this->hasFlag( self::FLAG_SILENT );
+	}
+
+	/**
+	 * Whether the update was performed automatically without the user's
+	 * initiative.
+	 */
+	public function isAutomated(): bool {
+		return $this->hasFlag( self::FLAG_AUTOMATED );
+	}
+
+	/**
+	 * Whether the update is a revert to a previous state of the page.
+	 */
+	public function isRevert(): bool {
+		return ( $this->editResult && $this->editResult->isRevert() )
+			|| $this->hasFlag( self::FLAG_REVERTED );
+	}
+
+	/**
+	 * Whether the update was performed by a bot.
+	 */
+	public function isBotUpdate(): bool {
+		return $this->hasFlag( self::FLAG_BOT );
 	}
 
 }
