@@ -1245,6 +1245,12 @@ $wgPageLinksSchemaMigrationStage = null;
 $wgFileSchemaMigrationStage = null;
 
 /**
+ * Config variable stub for the CategoryLinksSchemaMigrationStage setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::CategoryLinksSchemaMigrationStage
+ */
+$wgCategoryLinksSchemaMigrationStage = null;
+
+/**
  * Config variable stub for the ExternalLinksDomainGaps setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ExternalLinksDomainGaps
  */

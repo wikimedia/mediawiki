@@ -392,6 +392,7 @@ return [
 			],
 			'PageLinksSchemaMigrationStage' => 768,
 			'FileSchemaMigrationStage' => 3,
+			'CategoryLinksSchemaMigrationStage' => 3,
 			'ExternalLinksDomainGaps' => [
 			],
 			'ContentHandlers' => [
@@ -2695,6 +2696,7 @@ return [
 			'VirtualDomainsMapping' => 'object',
 			'PageLinksSchemaMigrationStage' => 'integer',
 			'FileSchemaMigrationStage' => 'integer',
+			'CategoryLinksSchemaMigrationStage' => 'integer',
 			'ExternalLinksDomainGaps' => 'object',
 			'ContentHandlers' => 'object',
 			'NamespaceContentModels' => 'object',

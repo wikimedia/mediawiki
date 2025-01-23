@@ -34,7 +34,10 @@ class LinksTableGroup {
 			'services' => [
 				'LanguageConverterFactory',
 				'NamespaceInfo',
-				'WikiPageFactory'
+				'WikiPageFactory',
+				'DBLoadBalancer',
+				'MainWANObjectCache',
+				'MainConfig'
 			],
 			'needCollation' => true,
 		],
