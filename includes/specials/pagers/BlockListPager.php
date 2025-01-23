@@ -155,6 +155,7 @@ class BlockListPager extends TablePager {
 				'emailblock',
 				'blocklist-nousertalk',
 				'unblocklink',
+				'remove-blocklink',
 				'change-blocklink',
 				'blocklist-editing',
 				'blocklist-editing-sitewide',
@@ -198,25 +199,7 @@ class BlockListPager extends TablePager {
 					$this->getUser()
 				) );
 				if ( $this->getAuthority()->isAllowed( 'block' ) ) {
-					$links = [];
-					if ( $row->bt_auto ) {
-						$links[] = $linkRenderer->makeKnownLink(
-							$this->specialPageFactory->getTitleForAlias( 'Unblock' ),
-							self::$messages['unblocklink'],
-							[],
-							[ 'wpTarget' => "#{$row->bl_id}" ]
-						);
-					} else {
-						$target = $row->bt_address ?? $row->bt_user_text;
-						$links[] = $linkRenderer->makeKnownLink(
-							$this->specialPageFactory->getTitleForAlias( "Unblock/$target" ),
-							self::$messages['unblocklink']
-						);
-						$links[] = $linkRenderer->makeKnownLink(
-							$this->specialPageFactory->getTitleForAlias( "Block/$target" ),
-							self::$messages['change-blocklink']
-						);
-					}
+					$links = $this->getBlockChangeLinks( $row );
 					$formatted .= ' ' . Html::rawElement(
 						'span',
 						[ 'class' => 'mw-blocklist-actions' ],
@@ -340,6 +323,53 @@ class BlockListPager extends TablePager {
 				false,
 				Linker::TOOL_LINKS_NOBLOCK
 			);
+	}
+
+	/**
+	 * Get unblock and change-block links.
+	 *
+	 * @param stdClass $row Block data.
+	 * @return string[] Array of HTML links.
+	 */
+	private function getBlockChangeLinks( $row ): array {
+		$linkRenderer = $this->getLinkRenderer();
+		$links = [];
+		$target = $row->bt_address ?? $row->bt_user_text;
+		if ( $this->getConfig()->get( MainConfigNames::UseCodexSpecialBlock ) ) {
+			$specialBlock = $this->specialPageFactory->getTitleForAlias( "Block/$target" );
+			$query = [ 'id' => $row->bl_id ];
+			$links[] = $linkRenderer->makeKnownLink(
+				$specialBlock,
+				self::$messages['remove-blocklink'],
+				[],
+				$query + [ 'remove' => '1' ]
+			);
+			$links[] = $linkRenderer->makeKnownLink(
+				$specialBlock,
+				self::$messages['change-blocklink'],
+				[],
+				$query
+			);
+		} else {
+			if ( $row->bt_auto ) {
+				$links[] = $linkRenderer->makeKnownLink(
+					$this->specialPageFactory->getTitleForAlias( 'Unblock' ),
+					self::$messages['unblocklink'],
+					[],
+					[ 'wpTarget' => "#{$row->bl_id}" ]
+				);
+			} else {
+				$links[] = $linkRenderer->makeKnownLink(
+					$this->specialPageFactory->getTitleForAlias( "Unblock/$target" ),
+					self::$messages['unblocklink']
+				);
+				$links[] = $linkRenderer->makeKnownLink(
+					$this->specialPageFactory->getTitleForAlias( "Block/$target" ),
+					self::$messages['change-blocklink']
+				);
+			}
+		}
+		return $links;
 	}
 
 	/**
