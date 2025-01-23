@@ -36,6 +36,7 @@ class W3CTraceContextPropagator implements ContextPropagatorInterface {
 	 * @inheritDoc
 	 */
 	public function extract( array $carrier ): ?SpanContext {
+		$carrier = array_change_key_case( $carrier, CASE_LOWER );
 		if ( !isset( $carrier['traceparent'] ) ) {
 			return null;
 		}
