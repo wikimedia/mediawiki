@@ -23,6 +23,7 @@ namespace MediaWiki\EditPage\Constraint;
 use MediaWiki\Content\Content;
 use MediaWiki\Linker\LinkTarget;
 use StatusValue;
+use Wikimedia\Message\MessageValue;
 
 /**
  * Verify the page does not redirect to an unknown page unless
@@ -38,6 +39,7 @@ class BrokenRedirectConstraint implements IEditConstraint {
 	private Content $newContent;
 	private Content $originalContent;
 	private LinkTarget $title;
+	private string $submitButtonLabel;
 	private string $result;
 
 	/**
@@ -50,12 +52,14 @@ class BrokenRedirectConstraint implements IEditConstraint {
 		bool $allowBrokenRedirects,
 		Content $newContent,
 		Content $originalContent,
-		LinkTarget $title
+		LinkTarget $title,
+		string $submitButtonLabel
 	) {
 		$this->allowBrokenRedirects = $allowBrokenRedirects;
 		$this->newContent = $newContent;
 		$this->originalContent = $originalContent;
 		$this->title = $title;
+		$this->submitButtonLabel = $submitButtonLabel;
 	}
 
 	public function checkConstraint(): string {
@@ -83,8 +87,10 @@ class BrokenRedirectConstraint implements IEditConstraint {
 
 	public function getLegacyStatus(): StatusValue {
 		$statusValue = StatusValue::newGood();
+
 		if ( $this->result === self::CONSTRAINT_FAILED ) {
-			$statusValue->fatal( 'edit-constraint-brokenredirect' );
+			$statusValue->fatal( MessageValue::new( 'edit-constraint-brokenredirect',
+				[ MessageValue::new( $this->submitButtonLabel ) ] ) );
 			$statusValue->value = self::AS_BROKEN_REDIRECT;
 		}
 

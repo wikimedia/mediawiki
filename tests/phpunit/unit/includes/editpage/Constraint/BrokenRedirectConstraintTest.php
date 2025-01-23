@@ -55,7 +55,8 @@ class BrokenRedirectConstraintTest extends MediaWikiUnitTestCase {
 			false, // $allowBrokenRedirects
 			$this->getContent( true ),
 			$this->getContent( true ),
-			$title
+			$title,
+			''
 		);
 		$this->assertConstraintPassed( $constraint );
 	}
@@ -67,7 +68,8 @@ class BrokenRedirectConstraintTest extends MediaWikiUnitTestCase {
 			false, // $allowBrokenRedirects
 			$this->getContent( true ),
 			$this->getContent( false ),
-			$title
+			$title,
+			''
 		);
 		$this->assertConstraintFailed(
 			$constraint,

@@ -1873,7 +1873,6 @@ class EditPage implements IEditObject {
 			case self::AS_END:
 			case self::AS_BLANK_ARTICLE:
 			case self::AS_SELF_REDIRECT:
-			case self::AS_BROKEN_REDIRECT:
 			case self::AS_DOUBLE_REDIRECT:
 			case self::AS_REVISION_WAS_DELETED:
 				return true;
@@ -1883,6 +1882,7 @@ class EditPage implements IEditObject {
 
 			// Status codes that provide their own error/warning messages. Most error scenarios that don't
 			// need custom user interface (e.g. edit conflicts) should be handled here, one day (T384399).
+			case self::AS_BROKEN_REDIRECT:
 			case self::AS_CONTENT_TOO_BIG:
 			case self::AS_MAX_ARTICLE_SIZE_EXCEEDED:
 			case self::AS_PARSE_ERROR:
@@ -2497,6 +2497,9 @@ class EditPage implements IEditObject {
 		// Check for length errors again now that the section is merged in
 		$this->contentLength = strlen( $this->toEditText( $content ) );
 
+		// Message key of the label of the submit button - used by some constraint error messages
+		$submitButtonLabel = $this->getSubmitButtonLabel();
+
 		// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
 		// Create a new runner to avoid rechecking the prior constraints, use the same factory
 		$constraintRunner = new EditConstraintRunner();
@@ -2513,7 +2516,8 @@ class EditPage implements IEditObject {
 				$this->allowBrokenRedirects,
 				$content,
 				$this->getCurrentContent(),
-				$this->getTitle()
+				$this->getTitle(),
+				$submitButtonLabel
 			)
 		);
 		$constraintRunner->addConstraint(
@@ -3398,13 +3402,6 @@ class EditPage implements IEditObject {
 				$out->wrapWikiMsg(
 					"<div id='mw-selfredirect'>\n$1\n</div>",
 					[ 'selfredirect', $buttonLabel ]
-				);
-			}
-
-			if ( $this->brokenRedirect ) {
-				$out->wrapWikiMsg(
-					"<div id='mw-brokenredirect'>\n$1\n</div>",
-					[ 'edit-constraint-brokenredirect', $buttonLabel ]
 				);
 			}
 
