@@ -88,8 +88,18 @@ if ( isset( $wgFooterIcons['poweredby'] )
 	&& is_array( $wgFooterIcons['poweredby']['mediawiki'] )
 	&& $wgFooterIcons['poweredby']['mediawiki']['src'] === null
 ) {
-	$wgFooterIcons['poweredby']['mediawiki']['src'] =
-		"$wgResourceBasePath/resources/assets/poweredby_mediawiki.svg";
+	$compactLogo = "$wgResourceBasePath/resources/assets/mediawiki_compact.svg";
+	$wgFooterIcons['poweredby']['mediawiki']['sources'] = [
+		[
+			"media" => "(min-width: 500px)",
+			"srcset" => "$wgResourceBasePath/resources/assets/poweredby_mediawiki.svg",
+			"width" => 88,
+			"height" => 31,
+		]
+	];
+	$wgFooterIcons['poweredby']['mediawiki']['src'] = $compactLogo;
+	$wgFooterIcons['poweredby']['mediawiki']['width'] = 25;
+	$wgFooterIcons['poweredby']['mediawiki']['height'] = 25;
 }
 
 // Unconditional protection for NS_MEDIAWIKI since otherwise it's too easy for a

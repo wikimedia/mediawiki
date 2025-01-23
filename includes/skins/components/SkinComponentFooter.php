@@ -205,11 +205,23 @@ class SkinComponentFooter implements SkinComponent {
 		} else { // Assuming array
 			$url = $icon['url'] ?? null;
 			unset( $icon['url'] );
+
+			$sources = '';
+			if ( isset( $icon['sources'] ) ) {
+				foreach ( $icon['sources'] as $source ) {
+					$sources .= Html::element( 'source', $source );
+				}
+				unset( $icon['sources'] );
+			}
+
 			if ( isset( $icon['src'] ) && $withImage === 'withImage' ) {
 				// Lazy-load footer icons, since they're not part of the printed view.
 				$icon['loading'] = 'lazy';
 				// do this the lazy way, just pass icon data as an attribute array
 				$html = Html::element( 'img', $icon );
+				if ( $sources ) {
+					$html = Html::openElement( 'picture' ) . $sources . $html . Html::closeElement( 'picture' );
+				}
 			} else {
 				$html = htmlspecialchars( $icon['alt'] ?? '' );
 			}
