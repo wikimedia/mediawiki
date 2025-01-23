@@ -316,9 +316,9 @@ module.exports = exports = defineComponent( {
 					// Actual validation logic should live in the respective component.
 					const firstError = document.querySelector( '.cdx-message--error' );
 					if ( firstError ) {
-						// Guard against there not being any parent field.
-						const firstErrorField = firstError.closest( '.cdx-field' );
-						( firstErrorField || firstError ).scrollIntoView( { behavior: 'smooth' } );
+						// Guard against there not being any parent fieldset.
+						const firstErrorFieldset = firstError.closest( 'fieldset' );
+						( firstErrorFieldset || firstError ).scrollIntoView( { behavior: 'smooth' } );
 					}
 					formSubmitted.value = false;
 				} );
