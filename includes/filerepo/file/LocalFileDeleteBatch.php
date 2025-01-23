@@ -322,7 +322,7 @@ class LocalFileDeleteBatch {
 					// It's not full page deletion.
 					$delete->andWhere( [ 'fr_archive_name' => array_map( 'strval', array_keys( $oldRels ) ) ] );
 				}
-				$delete->execute();
+				$delete->caller( __METHOD__ )->execute();
 
 			}
 		}
@@ -340,7 +340,7 @@ class LocalFileDeleteBatch {
 						'file_latest' => 0
 					] )
 					->where( [ 'file_id' => $this->file->getFileIdFromName() ] )
-					->execute();
+					->caller( __METHOD__ )->execute();
 			}
 		}
 	}
