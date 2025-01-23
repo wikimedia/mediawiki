@@ -119,8 +119,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	private static $useTemporaryTables = true;
 	/** @var bool */
 	private static $dbSetup = false;
-	/** @var int */
-	private static $setupLevel = 0;
+	/** @var bool */
+	private static $setupWithoutTeardown = false;
 	/** @var string */
 	private static $oldTablePrefix = '';
 
@@ -631,14 +631,16 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @before
 	 */
 	final protected function mediaWikiSetUp(): void {
-		if ( self::$setupLevel++ ) {
+		if ( self::$setupWithoutTeardown ) {
 			// Exceptions thrown from tearDown() cause mediaWikiTearDown() to be
 			// skipped. ChangedTablesTracker would throw an exception in that
 			// case, but let's throw a more informative error message here. (T354387)
+			self::$setupWithoutTeardown = false; // prevent extra reports in other tests (T384588)
 			throw new RuntimeException( 'mediaWikiSetUp() was called but not ' .
 				'mediaWikiTearDown() -- use assertPostConditions() instead of ' .
 				'tearDown() for post-test assertions.' );
 		}
+		self::$setupWithoutTeardown = true;
 
 		if ( $this->tablesUsed && !self::isTestInDatabaseGroup() ) {
 			throw new LogicException(
@@ -732,7 +734,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	final protected function mediaWikiTearDown(): void {
 		global $wgRequest;
 
-		self::$setupLevel--;
+		self::$setupWithoutTeardown = false;
 
 		$status = ob_get_status();
 		if ( isset( $status['name'] ) &&
