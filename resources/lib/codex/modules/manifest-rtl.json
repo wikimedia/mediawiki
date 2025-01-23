@@ -1,4 +1,8 @@
 {
+  "_Icon-rtl.css": {
+    "file": "Icon-rtl.css",
+    "src": "_Icon-rtl.css"
+  },
   "_Icon.js": {
     "file": "Icon.js",
     "name": "Icon",
@@ -128,7 +132,6 @@
       "src/components/label/Label.vue",
       "_useLabelChecker.js",
       "src/composables/useModelWrapper.ts",
-      "src/composables/useGeneratedId.ts",
       "src/composables/useFieldData.ts",
       "_constants.js",
       "__plugin-vue_export-helper.js"
@@ -168,7 +171,6 @@
       "src/components/menu/Menu.vue",
       "src/components/text-input/TextInput.vue",
       "src/composables/useModelWrapper.ts",
-      "src/composables/useGeneratedId.ts",
       "src/composables/useSplitAttributes.ts",
       "src/composables/useFieldData.ts",
       "src/composables/useFloatingMenu.ts",
@@ -187,7 +189,6 @@
     "imports": [
       "src/components/button/Button.vue",
       "_Icon.js",
-      "src/composables/useGeneratedId.ts",
       "_useI18nWithOverride.js",
       "src/composables/useResizeObserver.ts",
       "__plugin-vue_export-helper.js"
@@ -205,7 +206,6 @@
       "src/components/label/Label.vue",
       "src/components/message/Message.vue",
       "_constants.js",
-      "src/composables/useGeneratedId.ts",
       "src/composables/useComputedDisabled.ts",
       "__plugin-vue_export-helper.js"
     ],
@@ -261,7 +261,6 @@
     "imports": [
       "src/components/menu/Menu.vue",
       "src/components/text-input/TextInput.vue",
-      "src/composables/useGeneratedId.ts",
       "src/composables/useModelWrapper.ts",
       "_useOptionalModelWrapper.js",
       "src/composables/useSplitAttributes.ts",
@@ -284,7 +283,6 @@
       "src/components/menu/Menu.vue",
       "src/composables/useFieldData.ts",
       "src/composables/useFloatingMenu.ts",
-      "src/composables/useGeneratedId.ts",
       "src/composables/useModelWrapper.ts",
       "src/composables/useSplitAttributes.ts",
       "__plugin-vue_export-helper.js"
@@ -317,7 +315,6 @@
       "src/components/menu-item/MenuItem.vue",
       "_Icon.js",
       "src/components/progress-bar/ProgressBar.vue",
-      "src/composables/useGeneratedId.ts",
       "src/composables/useIntersectionObserver.ts",
       "src/composables/useSplitAttributes.ts",
       "__plugin-vue_export-helper.js"
@@ -352,7 +349,6 @@
       "src/components/menu/Menu.vue",
       "src/composables/useFieldData.ts",
       "src/composables/useFloatingMenu.ts",
-      "src/composables/useGeneratedId.ts",
       "src/composables/useModelWrapper.ts",
       "_useOptionalModelWrapper.js",
       "src/composables/useSplitAttributes.ts",
@@ -385,7 +381,6 @@
       "src/components/label/Label.vue",
       "_useLabelChecker.js",
       "src/composables/useModelWrapper.ts",
-      "src/composables/useGeneratedId.ts",
       "src/composables/useFieldData.ts",
       "_constants.js",
       "__plugin-vue_export-helper.js"
@@ -434,7 +429,6 @@
     "imports": [
       "_Icon.js",
       "src/components/menu/Menu.vue",
-      "src/composables/useGeneratedId.ts",
       "src/composables/useModelWrapper.ts",
       "src/composables/useFieldData.ts",
       "src/composables/useSplitAttributes.ts",
@@ -488,7 +482,6 @@
       "_Icon.js",
       "src/components/button/Button.vue",
       "src/components/tab/Tab.vue",
-      "src/composables/useGeneratedId.ts",
       "src/composables/useComputedDirection.ts",
       "_useOptionalModelWrapper.js",
       "src/composables/useIntersectionObserver.ts",
@@ -585,7 +578,6 @@
       "src/components/label/Label.vue",
       "_useLabelChecker.js",
       "src/composables/useModelWrapper.ts",
-      "src/composables/useGeneratedId.ts",
       "src/composables/useSplitAttributes.ts",
       "src/composables/useFieldData.ts",
       "__plugin-vue_export-helper.js"
@@ -616,7 +608,6 @@
       "_Icon.js",
       "src/components/menu/Menu.vue",
       "src/components/search-input/SearchInput.vue",
-      "src/composables/useGeneratedId.ts",
       "src/composables/useSplitAttributes.ts",
       "src/composables/useI18n.ts",
       "_constants.js",

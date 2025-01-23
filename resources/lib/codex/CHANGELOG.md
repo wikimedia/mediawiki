@@ -1,3 +1,47 @@
+# 1.20.0 / 2025-01-22
+
+## Deprecating changes
+- useGenerateId: Deprecate, replace usage with useId() (Roan Kattouw)
+
+## Styles
+- styles, TextArea: Add `min-width: 256px` to TextArea component (millmason)
+- styles: Consolidate MenuItem icon styles (Roan Kattouw)
+- mixins: Reduce output of 'css-icon' when not a button icon (Volker E.)
+- mixins: Reduce to shorthand hex color in 'css-icon' mixin (Volker E.)
+- mixins: amend hyphens to use more solid `overflow-wrap: anywhere` (Volker E.)
+
+## Code
+- build: Bump Node version to 20.18.1 (Jon Robson)
+- build: Disallow setting xlink:namespace on the `svg` element (Volker E.)
+- build: Include `mask` property in the properties order list and apply (Volker E.)
+- build: Relax the peerDependency on vue (Roan Kattouw)
+- build: Update Vite to 6.0.7 (Roan Kattouw)
+- build: Update Vue to 3.5.13 (Roan Kattouw)
+- build: Update netlify-cli to 18.0.0 (Eric Gardner)
+- tests: Make jsdom tricks in Tabs tests more robust (Roan Kattouw)
+
+## Icons
+- icons, docs: Remove `xmlns:xlink` namespace where unnecessary (Thiemo Kreuz)
+- icons: Add 'lightbulb' to provided ones (Volker E.)
+- icons: add ArrowUp and ArrowDown icons to Codex (Lauralyn Watson)
+- icons: add azerbaijani definitions and new bold Q (Nemoralis)
+
+## Docs
+- docs: Add component groups in the sidebar (Anne Tomasevich)
+- docs: Add instructions to RELEASING.md for Phab tagging release commit (Roan Kattouw)
+- docs: Explain vendor prefixes in 'css-icon' public mixin (Volker E.)
+- docs: Revise and add resources from home page to others (Derek Torsani)
+- docs: Revise mentions of color option tokens in docs (Derek Torsani)
+- docs: Revise verbiage used in docs to follow content guidelines (Derek Torsani)
+- docs: Update limiting statement to only use ES2016 in component demos (Volker E.)
+- docs: floating button to navigate to top of component pages (Lauralyn Watson)
+- docs: improve floating button (Lauralyn Watson)
+- docs: include content recommendations in ToggleButton page (bmartinezcalvo)
+- docs: minor edit to releasing doc (Lauralyn Watson)
+- docs: update AUTHORS.txt and .mailmap (Volker E.)
+- Provide a .mailmap file to consolidate where people have multiple git addresses (James D. Forrester)
+- Remove Lucas Werkmeister from .mailmap (Lucas Werkmeister)
+
 # 1.19.1 / 2025-01-07
 Dummy release to fix a publishing problem with 1.19.0.
 
