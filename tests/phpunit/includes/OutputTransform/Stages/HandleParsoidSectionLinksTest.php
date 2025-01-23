@@ -73,11 +73,23 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 			'enableSectionEditLinks' => true,
 			'skin' => $skin,
 		];
-		$toc = TOCData::fromLegacy( [ [
-			'toclevel' => 1,
-			'fromtitle' => 'TestTitle',
-			'anchor' => 'foo',
-		] ] );
+		$toc = TOCData::fromLegacy( [
+			[
+				'toclevel' => 1,
+				'fromtitle' => 'TestTitle',
+				'anchor' => 'foo',
+			],
+			[
+				'toclevel' => 1,
+				'fromtitle' => 'TestTitle',
+				'anchor' => 'bar',
+			],
+			[
+				'toclevel' => 1,
+				'fromtitle' => 'TestTitle',
+				'anchor' => '',
+			],
+		] );
 		$input = '<section id="a"><h2 id="foo">Foo</h2>Bar</section>';
 
 		$expected = '<section id="a"><div class="mw-heading mw-heading-1" id="mwAA"><h2 id="foo">Foo</h2></div>Bar</section>';
@@ -116,6 +128,24 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 		// Reused <div> plus collapsible sections
 		$expected = '<section id="a"><div class="mw-heading mw-heading2" id="b">prefix<h2 id="foo">Foo</h2>!<a id="c">edit</a>!suffix</div><div id="mwAA">Bar</div></section>';
 		yield 'Output with existing div: collapsible with links' => [
+			self::newParserOutput( $input, $pOpts, $toc ),
+			$pOpts, $options,
+			self::newParserOutput( $expected, $pOpts, $toc )
+		];
+
+		// Empty string isn't a valid id
+		$input = '<section id="a"><h2 id="">Foo</h2>Bar</section>';
+		$expected = '<section id="a"><h2 id="">Foo</h2>Bar</section>';
+		yield 'Heading with empty id is skipped' => [
+			self::newParserOutput( $input, $pOpts, $toc ),
+			$pOpts, $options,
+			self::newParserOutput( $expected, $pOpts, $toc )
+		];
+
+		// T353489: Wrappers aren't added to headings with attributes
+		$input = '<section id="a"><h2 id="foo">F</h2>Oo<h2 id="bar" class="b">B</h2>Ar</section>';
+		$expected = '<section id="a"><div class="mw-heading mw-heading-1" id="mwAA"><h2 id="foo">F</h2>!<a id="c">edit</a>!</div><div id="mwAQ">Oo<h2 id="bar" class="b">B</h2>Ar</div></section>';
+		yield 'Heading with attributes is skipped' => [
 			self::newParserOutput( $input, $pOpts, $toc ),
 			$pOpts, $options,
 			self::newParserOutput( $expected, $pOpts, $toc )
