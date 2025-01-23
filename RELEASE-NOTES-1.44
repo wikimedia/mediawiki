@@ -263,6 +263,13 @@ because of Phabricator reports.
   DatabaseBlockStore, except for getBlocksForIPList() which is in BlockManager.
 * The parameter $default in WebRequest::getRawVal(), deprecated since 1.43,
   is now emitting warnings.
+* The link to "Special pages" has moved from the toolbox to MediaWiki:Sidebar
+  since toolbox relates to tools associated with the current page, not the
+  site. To support the transition, for interface admins who have already
+  customized MediaWiki:Sidebar, the special pages link will be automatically
+  added. This will be hard deprecated in the next MediaWiki release. More
+  information is available at T333211. To avoid future breakage, see the
+  guidance in T385346.
 * …
 
 === Other changes in 1.44 ===

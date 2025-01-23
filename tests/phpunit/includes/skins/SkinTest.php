@@ -619,6 +619,7 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 		$context = RequestContext::newExtraneousContext( Title::makeTitle( NS_MAIN, 'Main Page' ) );
 		$foo1->setContext( $context );
 
+		$this->assertArrayContains( [ 'id' => 'n-specialpages' ], end( $foo1->buildSidebar()['navigation'] ), 'Navigation sidebar automatically appends link to special pages' );
 		$this->assertArrayContains( [ [ 'id' => 'n-B', 'text' => 'B' ] ], $foo1->buildSidebar()['TOOLBOX'], 'Toolbox has user defined links' );
 
 		$hasUserDefinedLinks = false;
@@ -662,7 +663,7 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 
 		// Verify that the "userrights" key is not present, by checking that the list of keys is as expected.
 		$this->assertArrayEquals(
-			[ 'contributions', 'log', 'blockip', 'mute', 'print', 'specialpages' ],
+			[ 'contributions', 'log', 'blockip', 'mute', 'print' ],
 			array_keys( $foo1->buildSidebar()['TOOLBOX'] )
 		);
 	}

@@ -1376,7 +1376,6 @@ abstract class Skin extends ContextSource {
 		} else {
 			$nav_urls['upload'] = false;
 		}
-		$nav_urls['specialpages'] = [ 'href' => SkinComponentUtils::makeSpecialUrl( 'Specialpages' ) ];
 
 		$nav_urls['print'] = false;
 		$nav_urls['permalink'] = false;
@@ -1539,6 +1538,34 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
+	 * Append link to SpecialPages into navigation sidebar if it doesn't already exist
+	 *
+	 * Created to help migrate sidebars after the SpecialPages link was removed from the toolbar.
+	 *
+	 * @since 1.44
+	 * @deprecated since 1.44 - will be hard deprecated in 1.45
+	 */
+	private function appendSpecialPagesLinkIfAbsent() {
+		if ( $this->sidebar === null ) {
+			return;
+		}
+
+		$isSpecialPagesPresent = false;
+		foreach ( $this->sidebar['navigation'] as $item ) {
+			if ( ( $item['id'] ?? null ) === 'n-specialpages' ) {
+				$isSpecialPagesPresent = true;
+				break;
+			}
+		}
+		if ( !$isSpecialPagesPresent ) {
+			$item = $this->createSidebarItem( 'specialpages-url', 'specialpages' );
+			if ( $item !== null ) {
+				$this->sidebar['navigation'][] = $item;
+			}
+		}
+	}
+
+	/**
 	 * Build an array that represents the sidebar(s), the navigation bar among them.
 	 *
 	 * BaseTemplate::getSidebar can be used to simplify the format and id generation in new skins.
@@ -1612,7 +1639,10 @@ abstract class Skin extends ContextSource {
 			$sidebar['LANGUAGES'] = $this->getLanguages();
 			// Apply post-processing to the cached value
 			$this->getHookRunner()->onSidebarBeforeOutput( $this, $sidebar );
+
 			$this->sidebar = $sidebar;
+
+			$this->appendSpecialPagesLinkIfAbsent();
 		}
 
 		return $this->sidebar;
@@ -1629,6 +1659,70 @@ abstract class Skin extends ContextSource {
 	 */
 	public function addToSidebar( &$bar, $message ) {
 		$this->addToSidebarPlain( $bar, $this->msg( $message )->inContentLanguage()->plain() );
+	}
+
+	/**
+	 * Generates an array item for the sidebar
+	 * @param string $target Target link in the form of an interface message name, a wiki page name, or an external link
+	 * @param string $text Link display text in the form of an interface message name or plaintext
+	 * @return array|null Null if no sidebar item should be added; the array item otherwise
+	 */
+	private function createSidebarItem( $target, $text ) {
+		$config = $this->getConfig();
+		$messageTitle = $config->get( MainConfigNames::EnableSidebarCache )
+			? Title::newMainPage() : $this->getTitle();
+		$services = MediaWikiServices::getInstance();
+		$urlUtils = $services->getUrlUtils();
+
+		$extraAttribs = [];
+
+		$msgLink = $this->msg( $target )->page( $messageTitle )->inContentLanguage();
+		if ( $msgLink->exists() ) {
+			$link = $msgLink->text();
+			// Extra check in case a message does fancy stuff with {{#if:… and such
+			if ( $link === '-' ) {
+				return null;
+			}
+		} else {
+			$link = $target;
+		}
+		$msgText = $this->msg( $text )->page( $messageTitle );
+		if ( $msgText->exists() ) {
+			$parsedText = $msgText->text();
+		} else {
+			$parsedText = $text;
+		}
+
+		if ( preg_match( '/^(?i:' . $urlUtils->validProtocols() . ')/', $link ) ) {
+			$href = $link;
+
+			// Parser::getExternalLinkAttribs won't work here because of the Namespace things
+			if ( $config->get( MainConfigNames::NoFollowLinks ) &&
+				!$urlUtils->matchesDomainList(
+					(string)$href,
+					(array)$config->get( MainConfigNames::NoFollowDomainExceptions )
+				)
+			) {
+				$extraAttribs['rel'] = 'nofollow';
+			}
+
+			if ( $config->get( MainConfigNames::ExternalLinkTarget ) ) {
+				$extraAttribs['target'] =
+					$config->get( MainConfigNames::ExternalLinkTarget );
+			}
+		} else {
+			$title = Title::newFromText( $link );
+			$href = $title ? $title->fixSpecialName()->getLinkURL() : '';
+		}
+
+		$id = strtr( $text, ' ', '-' );
+		return array_merge( [
+			'text' => $parsedText,
+			'href' => $href,
+			'icon' => $this->getSidebarIcon( $id ),
+			'id' => Sanitizer::escapeIdForAttribute( 'n-' . $id ),
+			'active' => false,
+		], $extraAttribs );
 	}
 
 	/**
@@ -1672,55 +1766,10 @@ abstract class Skin extends ContextSource {
 						continue;
 					}
 
-					$extraAttribs = [];
-
-					$msgLink = $this->msg( $line[0] )->page( $messageTitle )->inContentLanguage();
-					if ( $msgLink->exists() ) {
-						$link = $msgLink->text();
-						// Extra check in case a message does fancy stuff with {{#if:… and such
-						if ( $link === '-' ) {
-							continue;
-						}
-					} else {
-						$link = $line[0];
+					$item = $this->createSidebarItem( $line[0], $line[1] );
+					if ( $item !== null ) {
+						$bar[$heading][] = $item;
 					}
-					$msgText = $this->msg( $line[1] )->page( $messageTitle );
-					if ( $msgText->exists() ) {
-						$text = $msgText->text();
-					} else {
-						$text = $line[1];
-					}
-
-					if ( preg_match( '/^(?i:' . $urlUtils->validProtocols() . ')/', $link ) ) {
-						$href = $link;
-
-						// Parser::getExternalLinkAttribs won't work here because of the Namespace things
-						if ( $config->get( MainConfigNames::NoFollowLinks ) &&
-							!$urlUtils->matchesDomainList(
-								(string)$href,
-								(array)$config->get( MainConfigNames::NoFollowDomainExceptions )
-							)
-						) {
-							$extraAttribs['rel'] = 'nofollow';
-						}
-
-						if ( $config->get( MainConfigNames::ExternalLinkTarget ) ) {
-							$extraAttribs['target'] =
-								$config->get( MainConfigNames::ExternalLinkTarget );
-						}
-					} else {
-						$title = Title::newFromText( $link );
-						$href = $title ? $title->fixSpecialName()->getLinkURL() : '';
-					}
-
-					$id = strtr( $line[1], ' ', '-' );
-					$bar[$heading][] = array_merge( [
-						'text' => $text,
-						'href' => $href,
-						'icon' => $this->getSidebarIcon( $id ),
-						'id' => Sanitizer::escapeIdForAttribute( 'n-' . $id ),
-						'active' => false,
-					], $extraAttribs );
 				}
 			}
 		}
@@ -2099,7 +2148,7 @@ abstract class Skin extends ContextSource {
 			}
 		}
 		foreach ( [ 'contributions', 'log', 'blockip', 'changeblockip', 'unblockip',
-			'emailuser', 'mute', 'userrights', 'upload', 'specialpages' ] as $special
+			'emailuser', 'mute', 'userrights', 'upload' ] as $special
 		) {
 			if ( $navUrls[$special] ?? null ) {
 				$toolbox[$special] = $navUrls[$special];

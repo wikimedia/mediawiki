@@ -26,6 +26,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 			'recentchanges-url',
 			'randompage-url',
 			'helppage',
+			'specialpages-url'
 		];
 
 		$messageCache = MediaWikiServices::getInstance()->getMessageCache();
