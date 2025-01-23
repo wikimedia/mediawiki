@@ -864,8 +864,6 @@
 	"search-error": "Ka ndodhë një gabim gjatë kërkimit: $1",
 	"search-warning": "Një paralajmërim ka ndodhur gjatë kërkimit: $1",
 	"mypreferences": "Parapëlqimet",
-	"prefs-labs": "Karakteristikat laboratorik",
-	"prefs-misc": "Të ndryshme",
 	"searchresultshead": "Kërkimi",
 	"savedrights": "Grupet e përdoruesit të {{GENDER:$1|$1}} janë ruajtur.",
 	"prefs-namespaces": "Hapësirat",

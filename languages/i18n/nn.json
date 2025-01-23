@@ -915,8 +915,6 @@
 	"search-error": "Det oppstod ein feil under søket: $1",
 	"search-warning": "Det vart gjeve ei åtvaring under søket: $1",
 	"mypreferences": "Innstillingar",
-	"prefs-labs": "Testfunksjonar",
-	"prefs-misc": "Andre",
 	"searchresultshead": "Søk",
 	"prefs-description-misc": "Tilpass innhaldslista.",
 	"prefs-help-watchlist-token2": "Dette er den heimelege nykelen til vevmatinga for overvakingslista di. Alle som veit han kan lese overvakingslista di, so ikkje del han med andre.\nOm du treng, kan du [[Special:ResetTokens|nullstilla han]].",

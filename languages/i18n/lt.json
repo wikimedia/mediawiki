@@ -1039,8 +1039,6 @@
 	"search-error": "Vykdant paiešką įvyko klaida: $1",
 	"search-warning": "Vykdant paiešką pateiktas įspėjimas: $1",
 	"mypreferences": "Nustatymai",
-	"prefs-labs": "Bandomosios funkcijos",
-	"prefs-misc": "Įvairūs nustatymai",
 	"searchresultshead": "Paieškos nustatymai",
 	"prefs-description-misc": "Tinkinkite turinį.",
 	"prefs-help-watchlist-token2": "Tai yra slaptas jūsų stebimųjų sąrašo raktas, skirtas žiniatinkliui.\nKiekvienas, kuris jį žino, gali skaityti jūsų stebimųjų puslapių sąrašą, taigi, juo nesidalinkite.\nJei norite, [[Special:ResetTokens|galite jį anuliuoti]].",

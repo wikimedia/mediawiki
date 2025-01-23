@@ -989,8 +989,6 @@
 	"search-error": "A l'è sucedud on eror in del cors de la ricerca: $1",
 	"search-warning": "A l'è capitad un avis in del cors de la ricerca: $1",
 	"mypreferences": "Preferenze",
-	"prefs-labs": "Istrument sperimentai",
-	"prefs-misc": "Preferenze varie",
 	"searchresultshead": "Cerca",
 	"prefs-description-misc": "Personaliza l'indes di contegnud.",
 	"prefs-help-watchlist-token2": "Questa chì l'è la ciaf segreta per el feed in su la red di pagine che te tegnet d'oeugg\nChi che la conoss i sarà bon de lensg i pagine che te tegnet d'oeugg, donca dala no in gir. Se gh'è de besogn, [[Special:ResetTokens|te podet impostala de noeuv]].",

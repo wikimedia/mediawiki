@@ -1000,8 +1000,6 @@
 	"search-error": "Cafwyd gwall wrth chwilio: $1",
 	"search-warning": "Cafwyd rhybudd tra'n chwilio: $1",
 	"mypreferences": "Dewisiadau",
-	"prefs-labs": "Nodweddion Labs",
-	"prefs-misc": "Amrywiol",
 	"searchresultshead": "Chwilio",
 	"prefs-description-misc": "Addasu'r tabl cynnwys.",
 	"prefs-help-watchlist-token2": "Dyma'r tocyn cudd i borthiant gwe eich rhestr wylio.\nBydd unrhyw un sy'n ei wybod yn gallu darllen eich rhestr wylio, felly peidiwch a'i roi i neb.\n\nGallwch ei [[Special:ResetTokens|ailosod]].",

@@ -809,8 +809,6 @@
 	"searchdisabled": "Kutafuta {{SITENAME}} kumesimamishwa.\nUnaweza kutafuta kwa kutumia Google punde si punde.\nUjue lakini kwamba kumbukumbu za {{SITENAME}} kule Google labda zilipitwa na wakati.",
 	"search-error": "Hitilafu imerokea ikitafuta: $1",
 	"mypreferences": "Mapendekezo",
-	"prefs-labs": "Maumbile ya maabara",
-	"prefs-misc": "Mengineyo",
 	"searchresultshead": "Kutafuta",
 	"prefs-namespaces": "Maeneo ya wiki",
 	"default": "chaguo-msingi",

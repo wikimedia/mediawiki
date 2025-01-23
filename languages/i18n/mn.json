@@ -776,8 +776,6 @@
 	"searchdisabled": "{{SITENAME}} хайлтыг түр хаасан байна.\nТа одоохондоо Google-г ашиглан хайх боломжтой.\nАнхааруулж хэлэхэд, тэдний {{SITENAME}}-н агуулгын индексүүд хоцрогдсон байж магадгүй.",
 	"search-error": "$1 -ыг хайхад алдаа гарлаа",
 	"mypreferences": "Тохиргоо",
-	"prefs-labs": "Labs -ын функцүүд",
-	"prefs-misc": "Бусад",
 	"searchresultshead": "Хайлт",
 	"prefs-namespaces": "Нэрний зайнууд",
 	"default": "анхны байдал",

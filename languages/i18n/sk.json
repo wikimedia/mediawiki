@@ -973,8 +973,6 @@
 	"search-error": "Pri hľadaní došlo k chybe: $1",
 	"search-warning": "Pri hľadaní došlo k varovaniu: $1",
 	"mypreferences": "Nastavenia",
-	"prefs-labs": "Laboratórne funkcie",
-	"prefs-misc": "Rôzne",
 	"searchresultshead": "Vyhľadávanie",
 	"prefs-help-watchlist-token2": "Toto je tajný kľúč k webovému kanálu vášho zoznamu sledovaných stránok.\nkaždý, kto ho pozná si bude môcť prečítať váš zoznam sledovaných stránok, preto ho nezverejňujte.\nAk potrebujete, [[Special:ResetTokens|môžete ho reinicializovať]].",
 	"savedrights": "Skupiny {{GENDER:$1|používateľa|používateľky}} $1 boli uložené.",

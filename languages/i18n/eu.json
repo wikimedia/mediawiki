@@ -997,8 +997,6 @@
 	"search-error": "Akats bat gertatu da bilaketa egiterakoan: $1",
 	"search-warning": "Abisu bat agertu da bilaketa egiterakoan: $1",
 	"mypreferences": "Hobespenak",
-	"prefs-labs": "Labs ezaugarriak",
-	"prefs-misc": "Denetarik",
 	"searchresultshead": "Bilaketa",
 	"prefs-description-misc": "Edukien taula pertsonalizatu",
 	"prefs-help-watchlist-token2": "Hau da zure jarraipen zerrendako web jarioaren giltza sekretua.\nEzagutzen duen orok zure jarraipen zerrenda irakurtzeko aukera izango du, ez partekatu.\n[[Special:ResetTokens|berrezarri dezakezu]].",

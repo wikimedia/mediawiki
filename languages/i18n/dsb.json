@@ -745,8 +745,6 @@
 	"searchdisabled": "Pytanje we {{SITENAME}} jo se deaktiwěrowało. Tak dłujko móžoš w googlu pytaś. Pšosym wobmysli, až móžo pytanski indeks za {{SITENAME}} njeaktualny byś.",
 	"search-error": "Pśi pytanju jo se zmólka nastała: $1",
 	"mypreferences": "Nastajenja",
-	"prefs-labs": "Laborowe funkcije",
-	"prefs-misc": "Wšake nastajenja",
 	"searchresultshead": "Pytaś",
 	"prefs-help-watchlist-token2": "To jo pótajmny kluc k webkanaloju twójich wobglědowańkow.\nNěchten, kótaryž jen znajo, móžo twóje wobglědowańki cytaś, njeźěl jen togodla.\n[[Special:ResetTokens|Klikni how, jolic musyš jen slědk stajiś]].",
 	"prefs-namespaces": "Mjenjowe rumy",

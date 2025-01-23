@@ -1093,8 +1093,6 @@
 	"search-error": "Ett fel uppstod under sökningen: $1",
 	"search-warning": "En varning uppstod under sökning: $1",
 	"mypreferences": "Inställningar",
-	"prefs-labs": "Testfunktioner",
-	"prefs-misc": "Diverse",
 	"searchresultshead": "Sökning",
 	"prefs-description-misc": "Anpassa innehållsförteckningen.",
 	"prefs-help-watchlist-token2": "Detta är den hemliga nyckeln till webbflödet i din bevakningslista.\nAlla som har den kommer att kunna läsa din bevakningslista, så dela inte ut den.\nOm du behöver [[Special:ResetTokens|kan du återställa den]].",

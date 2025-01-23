@@ -1045,8 +1045,6 @@
 	"search-error": "S'ha produït un error durant la recerca: $1",
 	"search-warning": "S'ha produït un avís en cercar: $1",
 	"mypreferences": "Preferències",
-	"prefs-labs": "Característiques de laboratori",
-	"prefs-misc": "Altres preferències",
 	"searchresultshead": "Preferències de la cerca",
 	"prefs-description-misc": "Personalitzeu la taula de continguts.",
 	"prefs-help-watchlist-token2": "Aquesta és la clau secreta pel canal de continguts de la vostra llista de seguiment.\nQualsevol que la conegui podria llegir la vostra llista de seguiment, així que no la compartiu.\nSi és necessari, [[Special:ResetTokens|la podeu restaurar]].",

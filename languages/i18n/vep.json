@@ -997,8 +997,6 @@
 	"search-error": "Ecindan aigan tegihe viga: $1",
 	"search-warning": "Ecindan aigan ozutihe varutuz: $1",
 	"mypreferences": "Valičused",
-	"prefs-labs": "Eksperimentaližed erigoičused",
-	"prefs-misc": "Toine",
 	"searchresultshead": "Eci",
 	"prefs-description-misc": "Ladi südäimišt.",
 	"prefs-help-watchlist-token2": "Nece om peituzavadim sinun web-kacundlugetišehe.\nKen tedab necen polhe, voib lugeda sinun kacundlugetišen, sikš ala ozuta sidä nikelle.\nKu tariž, [[Special:ResetTokens|sinä void heitta sidä]].",

@@ -1031,8 +1031,6 @@
 	"search-error": "Produciuse un erro durante a procura: $1",
 	"search-warning": "Houbo un aviso ó facer a procuraː $1",
 	"mypreferences": "Preferencias",
-	"prefs-labs": "Características experimentais",
-	"prefs-misc": "Preferencias varias",
 	"searchresultshead": "Procurar",
 	"prefs-description-misc": "Personalice a táboa de contidos.",
 	"prefs-help-watchlist-token2": "Esta é a clave secreta da fonte de novas web para a súa lista de vixilancia.\nCalquera persoa que a saiba poderá ler a súa lista de vixilancia; non comparta esta clave.\nSe o precisa, [[Special:ResetTokens|pode restablecela]].",

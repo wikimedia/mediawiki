@@ -969,8 +969,6 @@
 	"search-error": "Tapahtui hairahtus ečos: $1",
 	"search-warning": "Ečon aigua tapahtui varoitus: $1",
 	"mypreferences": "Azetukset",
-	"prefs-labs": "Koittelumahtot",
-	"prefs-misc": "Muut azetukset",
 	"searchresultshead": "Eččo",
 	"prefs-description-misc": "Azeta Syväindö-luvetteluu.",
 	"prefs-help-watchlist-token2": "Tämä on peittoavain sinun tarkailulistan verkokanualah niškoi. \nJogahine, ken tiedäy sen, suau lugie sinun tarkailulistua, sendäh älä sano sidä nikelle. \nKu pidänöy, [[Special:ResetTokens|voit uvvistua sen]].",

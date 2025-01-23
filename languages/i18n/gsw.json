@@ -812,8 +812,6 @@
 	"searchdisabled": "D {{SITENAME}}-Suech isch deaktiviert. Du chasch mit Google sueche, s cha aber syy ass dr Suechindex vu Google fir {{SITENAME}} veraltet isch.",
 	"search-error": "Bi dr Suechi het s e Fähler gee: $1",
 	"mypreferences": "Yystellige",
-	"prefs-labs": "Alphafunktione",
-	"prefs-misc": "Verschidnigs",
 	"searchresultshead": "Suech-Ergäbnis",
 	"prefs-help-watchlist-token2": "Des isch dr gheim Schlissel zum Webfeed vu Dyre Beobachtigslischt.\nE jede, wu ne chännt, cha Dyni Beobachtigslischt läse. tue ne wäge däm nit mit andere teile.\n[[Special:ResetTokens|Druck do, wän Du ne muesch zrucksetze]].",
 	"savedrights": "{{GENDER:$1|Em $1 syni Benutzerrächt|Der $1 iri Benutzerrächt|D Benutzerrächt vo $1}} sy gspycheret.",

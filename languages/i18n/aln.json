@@ -541,8 +541,6 @@
 	"search-external": "Kërkim jashtë",
 	"searchdisabled": "{{SITENAME}} kërkimi âsht deaktivue.\nNdërkohë mundeni me lypë me Google.\nVini re se indeksat e tyne të përmbajtjes së {{SITENAME}} munden me qenë të vjetëruem.",
 	"mypreferences": "Parapëlqimet e mija",
-	"prefs-labs": "Laboratorë karakteristika",
-	"prefs-misc": "Të ndryshme",
 	"searchresultshead": "Kërkimi",
 	"prefs-namespaces": "Hapësinat",
 	"default": "e paracaktueme",

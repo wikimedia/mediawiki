@@ -933,8 +933,6 @@
 	"search-error": "Desila se greška prilikom pretraživanja: $1",
 	"search-warning": "Došlo je do upozorenja prilikom pretraživanja: $1",
 	"mypreferences": "Postavke",
-	"prefs-labs": "Eksperimentalne mogućnosti",
-	"prefs-misc": "Razno",
 	"searchresultshead": "Pretraga",
 	"prefs-description-misc": "Prilagodite sadržaj.",
 	"prefs-help-watchlist-token2": "Ovo je tajni ključ sažetka vašeg spiska izmjena. Ko god da ga zna, moći će ga čitati. Ne dijelite ga ni s kim. Ako je potrebno, [[Special:ResetTokens|možete ga ponovo postaviti]].",

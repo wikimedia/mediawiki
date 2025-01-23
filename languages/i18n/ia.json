@@ -1011,8 +1011,6 @@
 	"search-error": "Un error ha occurrite durante le recerca: $1",
 	"search-warning": "Un aviso se ha producite durante le recerca: $1",
 	"mypreferences": "Preferentias",
-	"prefs-labs": "Functiones experimental",
-	"prefs-misc": "Misc",
 	"searchresultshead": "Recerca",
 	"prefs-description-misc": "Personalisar le tabula de contento.",
 	"prefs-help-watchlist-token2": "Isto es le clave secrete pro le syndication web de tu observatorio.\nOmne persona qui lo cognosce pote leger tu observatorio, dunque, non divulga lo.\nIn caso de necessitate, [[Special:ResetTokens|clicca hic pro reinitialisar lo]].",

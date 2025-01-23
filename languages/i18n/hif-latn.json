@@ -841,8 +841,6 @@
 	"searchdisabled": "{{SITENAME}} me abhi khoje ke anumati nai hai.\nAap tab tak Google se khoje sakta hai.\nYaad rakhna ki uu log ke {{SITENAME}} ke index saait purana hoi.",
 	"search-error": "Khoje ke tim ek error hoe gais hae:$1",
 	"mypreferences": "Pasand",
-	"prefs-labs": "Try kare waala features",
-	"prefs-misc": "Futkar",
 	"searchresultshead": "Khojo",
 	"prefs-help-watchlist-token2": "Aap ke dhyan suchi ke web feed ke ii secret key hae.\nAur koi agar iske bare me jaane hae aap ke dhyan suchi ke parrhae sake hae, tab iske aur ki ke nai dena.\n[[Special:ResetTokens|Agar aap iske reset kare mangtaa hae tab hian pe click karo]].",
 	"savedrights": "{{GENDER:$1|$1}} ke user group ke bachae lewa gais hai.",

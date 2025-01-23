@@ -993,8 +993,6 @@
 	"search-error": "Pri iskanju došlo k pogrěškě: $1",
 	"search-warning": "Pri iskanju došlo k prěduprědženja: $1",
 	"mypreferences": "Nastavjenja",
-	"prefs-labs": "Eksperimentalne funkcije",
-	"prefs-misc": "Razne",
 	"searchresultshead": "Iskati",
 	"prefs-description-misc": "Prisposobite sobě obzor sodržanja.",
 	"prefs-help-watchlist-token2": "Tuto jest tajny ključ za veb-kanala vašego spiska slědovanyh stranic.\nVsekto, ktory znaje toj ključ, smože čitati vaš spisok slědovanyh stranic, zato ne dělite se njim.\nAko trěba, [[Special:ResetTokens|možete go resetovati]].",

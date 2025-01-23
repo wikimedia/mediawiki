@@ -907,8 +907,6 @@
 	"search-error": "È succiesso n'errore pe' tramente ca se faceva 'a ricerca: $1",
 	"search-warning": "È succiesso n'avvertimento pe' tramente ca se vaceva 'a ricerca: $1",
 	"mypreferences": "Preferenze d''e mmeje",
-	"prefs-labs": "Funzionalità sperimentale",
-	"prefs-misc": "Varje",
 	"searchresultshead": "Ascia",
 	"prefs-help-watchlist-token2": "Chest'è 'a chiave segreta pe se ffà 'o feed web 'e l'elenco 'e cuntrolo d' 'o vuosto.\nSi coccheruno 'a cunoscesse, allora putesse vedé l'elenco vuost' 'e cuntrollo, picciò nun 'a spartite.\nSi ve serve, [[Special:ResetTokens|facite clic ccà p' 'a rimpizzà]].",
 	"savedrights": "'E dritte 'e gruppe 'utente {{GENDER:$1|$1}} sto state sarvate.",

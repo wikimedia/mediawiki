@@ -13,7 +13,7 @@
 	"cdx-search-input-search-button-label": "Hae",
 	"cdx-table-select-all-label": "Valitse kaikki rivit",
 	"cdx-table-select-row-label": "Valitse rivi $1 / $2",
-	"cdx-table-sort-caption": "$1, sarakeotsikot, joissa painikkeet, ovat lajitettavissa.",
+	"cdx-table-sort-caption": "$1 (sarakeotsikot, joissa on painikkeet, ovat lajitettavissa).",
 	"cdx-typeahead-search-search-results-label": "Hakutulokset",
 	"cdx-table-pager-button-first-page": "Ensimmäinen sivu",
 	"cdx-table-pager-button-last-page": "Viimeinen sivu",
@@ -26,5 +26,6 @@
 	"cdx-table-pagination-status-message-indeterminate-long": "Näytetään tulokset $1–$2 / monta",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 / monta",
 	"cdx-table-pagination-status-message-indeterminate-final": "Näytetään {{PLURAL:$1|viimeinen $1 tulos|viimeiset $1 tulosta}}",
-	"cdx-table-pagination-status-message-pending": "Ladataan tuloksia..."
+	"cdx-table-pagination-status-message-pending": "Ladataan tuloksia...",
+	"cdx-table-no-data-message": "Tietoja ei ole saatavilla."
 }

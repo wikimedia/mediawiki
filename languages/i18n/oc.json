@@ -955,8 +955,6 @@
 	"search-error": "Una error s'es produita en recercant : $1",
 	"search-warning": "Una error s'es produsida en cercant : $1",
 	"mypreferences": "Preferéncias",
-	"prefs-labs": "Foncionalitats « labs »",
-	"prefs-misc": "Preferéncias divèrsas",
 	"searchresultshead": "Recèrca",
 	"prefs-help-watchlist-token2": "Aquí la clau secreta del flux Web de vòstra lista de seguiment.\nTota persona que la coneis poirà legir vòstra lista de seguiment, doncas, la comuniquetz pas.\nSe necessari, [[Special:ResetTokens|clicatz aicí per la reïnicializar]].",
 	"savedrights": "Los dreits d'utilizaire de {{GENDER:$1|$1}} son estats enregistrats.",

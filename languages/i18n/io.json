@@ -986,8 +986,6 @@
 	"search-error": "Eventis eroro dum serchado: $1",
 	"search-warning": "Eventis eroro dum serchado: $1",
 	"mypreferences": "Preferaji",
-	"prefs-labs": "Laboratorial ajusti",
-	"prefs-misc": "Mixaji",
 	"searchresultshead": "Preferaji di la rezultaji dil sercho",
 	"prefs-description-misc": "Ajustez la tabelo di kontenaji segun vua volunto.",
 	"prefs-help-watchlist-token2": "To esas la sekreta pasovorto por acesar RSS-listo de vua surveyo-listo.\nIrgu qua konocas ol povos lektar vua surveyo-listo, do ne permisez ke altru saveskos ol.\nSe vu bezonos, [[Special:ResetTokens|vu povos modifikor ol]].",

@@ -1061,8 +1061,6 @@
 	"search-error": "A keresés közben hiba történt: $1",
 	"search-warning": "Hiba történt a keresés közben: $1",
 	"mypreferences": "Beállítások",
-	"prefs-labs": "Kísérleti funkciók",
-	"prefs-misc": "Egyéb",
 	"searchresultshead": "Keresés",
 	"prefs-description-misc": "A tartalomjegyzék testreszabása.",
 	"prefs-help-watchlist-token2": "Ez a titkos kulcs a figyelőlistádhoz.\nAki ismeri, meg tudja nézni, milyen lapokat figyelsz, úgyhogy ne oszd meg másokkal.\n[[Special:ResetTokens|Kattints ide, ha meg akarod változtatni]].",

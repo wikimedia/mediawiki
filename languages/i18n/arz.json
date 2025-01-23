@@ -742,8 +742,6 @@
 	"search-external": "تدوير بره",
 	"searchdisabled": "التدوير فى {{SITENAME}} متعطل.\nممكن تدور فى جوجل دلوقتي.\nلاحظ أن فهارسه لمحتوى {{SITENAME}} يمكن تكون مش متحدثة.",
 	"mypreferences": "تفضيلاتى",
-	"prefs-labs": "خصايص Labs",
-	"prefs-misc": "متفرقات",
 	"searchresultshead": "تدوير",
 	"prefs-namespaces": "أسماء النطاقات",
 	"default": "اوتوماتيكي",

@@ -1031,8 +1031,6 @@
 	"search-error": "Otsimise ajal ilmnes tõrge: $1",
 	"search-warning": "Otsimisel esines hoiatus: $1",
 	"mypreferences": "Eelistused",
-	"prefs-labs": "Katsefunktsioonid",
-	"prefs-misc": "Muu",
 	"searchresultshead": "Otsingutulemite sätted",
 	"prefs-description-misc": "Kohanda sisukorda.",
 	"prefs-help-watchlist-token2": "See on sinu jälgimisloendi veebivoo salavõti.\nIgaüks, kes seda teab, saab lugeda sinu jälgimisloendit. Seega ära jaga seda.\n[[Special:ResetTokens|Klõpsa siia, kui sul on vaja see lähtestada]].",

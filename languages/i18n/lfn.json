@@ -898,8 +898,6 @@
 	"search-error": "Un era ia aveni en xerca: $1",
 	"search-warning": "Un averti ia aveni en xerca: $1",
 	"mypreferences": "Preferes",
-	"prefs-labs": "Capasias esperimental",
-	"prefs-misc": "Diversa",
 	"searchresultshead": "Xerca",
 	"prefs-help-watchlist-token2": "Esta es la clave secreta per la flue ueb de tua lista monitorida.\nCualcun ci sabe lo va pote leje tua lista monitorida, donce no comparti lo.\nSi tu nesesa, [[Special:ResetTokens|tu pote reinisia lo]].",
 	"savedrights": "La grupos de usor de {{GENDER:$1|$1}} ia es fisada.",

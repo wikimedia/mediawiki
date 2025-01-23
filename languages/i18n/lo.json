@@ -456,7 +456,6 @@
 	"searchall": "ທັງໜົດ",
 	"search-nonefound": "ບໍ່ມີຜົນທີ່ກົງກັບຄໍາຖາມ",
 	"mypreferences": "ການຕັ້ງຄ່າ",
-	"prefs-misc": "ແລະອື່ນໆ",
 	"searchresultshead": "ຊອກຫາ",
 	"email": "ອີເມລ",
 	"editinguser": "ຜູ້ໃຊ້ <b>$1</b> ພວມດັດແກ້ ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",

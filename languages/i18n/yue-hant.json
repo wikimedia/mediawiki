@@ -968,8 +968,6 @@
 	"search-error": "搵嘢嗰陣出錯：$1",
 	"search-warning": "搵嘢嗰陣出錯：$1",
 	"mypreferences": "自訂喜好",
-	"prefs-labs": "試緊嘅功能",
-	"prefs-misc": "雜項",
 	"searchresultshead": "搵嘢",
 	"prefs-help-watchlist-token2": "呢個係網上訂閱你個監視清單嘅密匙。\n任何人只要知道個密匙，就會睇到你個監視清單，所以唔好畀人知。\n如果有需要嘅話，[[Special:ResetTokens|你可以重設佢]]。",
 	"savedrights": "儲存咗 {{GENDER:$1|$1}} 嘅用戶群組。",

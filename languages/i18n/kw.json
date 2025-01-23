@@ -391,7 +391,7 @@
 	"history-show-deleted": "Diles hepken",
 	"histfirst": "an kottha",
 	"histlast": "an nowettha",
-	"historysize": "({{PLURAL:$1|1 bayt}})",
+	"historysize": "({{PLURAL:$1|$1 bayt}})",
 	"historyempty": "gwag",
 	"history-feed-title": "Istori amendya",
 	"history-feed-description": "Istori amendya rag an folen ma war an wiki",

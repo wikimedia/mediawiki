@@ -979,8 +979,6 @@
 	"search-error": "صار خطأ أثناء البحث: $1",
 	"search-warning": "اكو تحذير أثناء البحث: $1",
 	"mypreferences": "اعدادات",
-	"prefs-labs": "مزايا مختبريه",
-	"prefs-misc": "متفرقات",
 	"searchresultshead": "بحث",
 	"prefs-description-misc": "خصص جدول المحتويات.",
 	"prefs-help-watchlist-token2": "هاذ هو المفتاح السري لتغذية الويب لقائمة مراقبتك.\nيكدر أي نفر يعرفه يقره قائمة مراقبتك، لا تتشاركه وي أحد.\nإذا احتاجيت، [[Special:ResetTokens|تكدر تعيد ضبطه]].",

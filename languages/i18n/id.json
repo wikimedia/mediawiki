@@ -1095,8 +1095,6 @@
 	"search-error": "Galat terjadi saat mencari: $1",
 	"search-warning": "Peringatan muncul ketika mencari: $1",
 	"mypreferences": "Preferensi",
-	"prefs-labs": "Fitur Labs",
-	"prefs-misc": "Serbaneka",
 	"searchresultshead": "Cari",
 	"prefs-description-misc": "Sesuaikan daftar isi.",
 	"prefs-help-watchlist-token2": "Ini adalah kunci rahasia (token) ke umpan web dari daftar pantauan Anda.\nSiapa saja yang tahu akan dapat melihat daftar pantauan Anda, jadi jangan dibagikan.\nJika diperlukan [[Special:ResetTokens|Anda dapat mengatur ulang kunci tersebut]].",

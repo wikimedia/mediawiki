@@ -857,8 +857,6 @@
 	"searchdisabled": "Meklēšana {{grammar:lokatīvs|{{SITENAME}}}} šobrīd ir atslēgta darbības traucējumu dēļ.\nPagaidām vari meklēt, izmantojot Google vai Yahoo.\nŅem vērā, ka meklētāju indeksētais {{grammar:ģenitīvs|{{SITENAME}}}} saturs var būt novecojis.",
 	"search-error": "Ir notikusi kļūda meklējot: $1",
 	"mypreferences": "Izvēles",
-	"prefs-labs": "Laboratorijas funkcijas",
-	"prefs-misc": "Dažādi",
 	"searchresultshead": "Meklēšana",
 	"prefs-help-watchlist-token2": "Šī ir slepena atslēga tavam uzraugāmo lapu sarakstam.\nIkvienam, kas to zinās, būs iespēja apskatīt tavu uzraugāmo lapu sarakstu, tāpēc nedalies ar to.\n[[Special:ResetTokens|Spied šeit, lai to atjaunotu]].",
 	"prefs-namespaces": "Vārdtelpas",

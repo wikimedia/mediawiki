@@ -736,8 +736,6 @@
 	"searchdisabled": "{{SITENAME}} nga pamiling in ginparong.\nPamilnga la anay pinaagi ha Google ha pagkayana.\nGinpapasabot nga an sulod han mga panudlok han {{SITENAME}} in bangin daan an.",
 	"search-error": "May-ada sayop nga nahitabo samtang namimiling: $1",
 	"mypreferences": "Mga akon karuyag",
-	"prefs-labs": "Mga labs feature",
-	"prefs-misc": "Dirudilain",
 	"searchresultshead": "Bilnga",
 	"prefs-help-watchlist-token2": "Ini in sekreto nga susi ngadto han web feed an imo talaan han binabantayan.\nKun hin-o man it maaram hini in puyde bumasa han imo talaan han binabantayan, tungod hini ayaw ini igsaro ha iba.\nKun kinahanglan nimo [[Special:ResetTokens|puyde mo igreset ini]].",
 	"prefs-namespaces": "Ngaran-lat'ang",

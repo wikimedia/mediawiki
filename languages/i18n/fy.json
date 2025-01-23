@@ -664,8 +664,6 @@
 	"search-external": "Utwindich sykje",
 	"searchdisabled": "Sykjen op {{GRAMMAR:l|{{SITENAME}}}} is útskeakele.\nJo kinne yn 'e tuskentiid mei Google sykje.\nTink derom dat harren yndeksearring fan 'e ynhâld op {{GRAMMAR:l|{{SITENAME}}}} ferâldere wêze kin.",
 	"mypreferences": "Foarkarren",
-	"prefs-labs": "Eksperimintele funksjes",
-	"prefs-misc": "Ferskaat",
 	"searchresultshead": "Sykje",
 	"prefs-help-watchlist-token2": "Dit is de geheime tagongskoade ta de webfied fan jo folchlist.\nImmen dy't it wit, sil jo folchlist lêze kinne, dus diel it mei gjinien.\nBy need [[Special:ResetTokens|kinne jo it fernije]].",
 	"savedrights": "De meidochgroepen fan {{GENDER:$1|$1}} binne fêstlein.",

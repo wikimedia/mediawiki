@@ -863,8 +863,6 @@
 	"searchdisabled": "Pytanje w {{GRAMMAR:lokatiw|{{SITENAME}}}} tuchwilu móžne njeje. Móžeš mjeztym z Google pytać. Wobkedźbuj, zo móža wuslědki z wobsaha {{GRAMMAR:genitiw|{{SITENAME}}}} zestarjene być.",
 	"search-error": "Při pytanju je so zmylk wustupił: $1",
 	"mypreferences": "Nastajenja",
-	"prefs-labs": "Laborowe funkcije",
-	"prefs-misc": "Wšelake nastajenja",
 	"searchresultshead": "Pytać",
 	"prefs-help-watchlist-token2": "To je tajny kluč k webkanalej twojich wobkedźbowankow.\nNěchtó, kotryž jón znaje, móže twoje wobkedźbowanki čitać, njedźěl jón tohodla.\n[[Special:ResetTokens|Klikń tu, jeli dybiš jón wróćo stajić]].",
 	"savedrights": "Wužiwarske skupiny {{GENDER:$1|$1}} su so składowali.",

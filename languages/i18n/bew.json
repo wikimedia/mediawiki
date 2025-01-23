@@ -969,8 +969,6 @@
 	"search-error": "Ada kengabluan pas nyari: $1",
 	"search-warning": "Ada wanti-wanti pas nyari: $1",
 	"mypreferences": "Pengaturan",
-	"prefs-labs": "Keboléan Labs",
-	"prefs-misc": "Serba-serbi",
 	"searchresultshead": "Cari",
 	"prefs-description-misc": "Cèngliin sendèwèk daptar isi.",
 	"prefs-help-watchlist-token2": "Ni – konci resia ke empan jala deri lu punya daptar pantengan.\nSapa aja nyang nyaho entu bakalan bisa ngebaca lu punya daptar pantengan, jadi jangan lu dumanin.\nKalo perlu gè', [[Special:ResetTokens|lu bisa setèl ulang]].",

@@ -1076,8 +1076,6 @@
 	"search-error": "Der opstod en fejl under søgning: $1",
 	"search-warning": "Der opstod en advarsel under søgning: $1",
 	"mypreferences": "Indstillinger",
-	"prefs-labs": "Testfunktioner",
-	"prefs-misc": "Forskelligt",
 	"searchresultshead": "Søgeresultater",
 	"prefs-description-misc": "Tilpas indholdsfortegnelsen.",
 	"prefs-help-watchlist-token2": "Dette er den hemmelige nøgle til web-feed af din overvågningsliste.\nHvis andre kender den, vil man være i stand til at læse din overvågningsliste, så del den ikke.\n[[Special:ResetTokens|Klik her]] hvis du har brug at nulstille den.",

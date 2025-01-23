@@ -833,8 +833,6 @@
 	"search-error": "Ana masalah nalika nggoleki: $1",
 	"search-warning": "Ana pepélik nalika nggolèk: $1",
 	"mypreferences": "Pilalan",
-	"prefs-labs": "Piranti lab",
-	"prefs-misc": "Liya-liya",
 	"searchresultshead": "Golèk",
 	"prefs-help-watchlist-token2": "Iki minangka kunci sandi menyang ''feed'' wèb ing pawawangané panjenengan.\nSapa baé kang ngerti iku bakal bisa maca pawawangané panjenengan, mula aja panjenengan dum-dum.\nPanjenengan bisa [[Special:ResetTokens|ngambali nyetèl]] yèn kudu.",
 	"savedrights": "Golongan naraguna {{GENDER:$1|$1}} wis disimpen.",

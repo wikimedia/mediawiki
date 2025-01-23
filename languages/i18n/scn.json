@@ -841,8 +841,6 @@
 	"searchdisabled": "La circata nterna di {{SITENAME}} hà statu disabbilitata. Nta stu mentri, poi usari la circata supra Google o supra àutri muturi di circata. Accura ca li sò ìnnici dê cuntinuti di {{SITENAME}} ponnu nun èssiri aggiurnati.",
 	"search-error": "Ammattìu n'erruri duranti l'arricerca: $1",
 	"mypreferences": "Prifirenzi",
-	"prefs-labs": "Funziunalità dî labburatorî",
-	"prefs-misc": "Varî",
 	"searchresultshead": "Arricerca",
 	"prefs-help-watchlist-token2": "Chista è la chiavi sigreta pû feed web dâ tò lista taliata.\nCuegghiè chi la canusci pò lèggiri la tò lista taliata, dunca nun la diffùnniri.\nSi t'aggiuva, [[Special:ResetTokens|la poi azzirari]].",
 	"prefs-namespaces": "Namespace",

@@ -1020,8 +1020,6 @@
 	"search-error": "A apărut o eroare în timpul căutării: $1",
 	"search-warning": "A apărut o eroare în timpul căutării: $1",
 	"mypreferences": "Preferințe",
-	"prefs-labs": "Opțiuni „labs”",
-	"prefs-misc": "Parametri diverși",
 	"searchresultshead": "Parametri căutare",
 	"prefs-description-misc": "Personalizează cuprinsul.",
 	"prefs-help-watchlist-token2": "Aceasta este cheia secretă pentru fluxul web al listei dumneavoastră de pagini urmărite.\nOricine o cunoaște vă va putea citi lista de pagini urmărite, așa că n-o partajați cu nimeni. Dacă doriți, \n[[Special:ResetTokens|o puteți reseta]].",

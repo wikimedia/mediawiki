@@ -1035,8 +1035,6 @@
 	"search-error": "Okazis eraro dum serĉado: $1",
 	"search-warning": "Okazis eraron dum serĉado: $1",
 	"mypreferences": "Preferoj",
-	"prefs-labs": "Ecoj el Laboratorio",
-	"prefs-misc": "Miksitaĵoj",
 	"searchresultshead": "Serĉi",
 	"prefs-description-misc": "Agordu la enhavtabelon.",
 	"prefs-help-watchlist-token2": "Tio estas la sekreta ŝlosilo al la retfluo de via atentaro.\nĈiu, kiu konas ĝin, povas legi vian atentaron. Do, ne kunhavigu ĝin.\nSe vi devas, [[Special:ResetTokens|vi povas rekomencigi ĝin]].",

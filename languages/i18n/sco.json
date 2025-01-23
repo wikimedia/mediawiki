@@ -871,8 +871,6 @@
 	"search-error": "Ae mistak haes occurred while rakin: $1",
 	"search-warning": "A wairnin has occurred while sairchin: $1",
 	"mypreferences": "Ma preferences",
-	"prefs-labs": "Labs featurs",
-	"prefs-misc": "Ither",
 	"searchresultshead": "Rake ootcome settins",
 	"prefs-help-watchlist-token2": "This is the hidlins key til the wab feed o yer watchleet. Onibodie wha kens this can read yer watchleet, sae dinna shair it. Gif ye need to, [[Special:ResetTokens|Ye can reset it]].",
 	"savedrights": "The uiser groups o {{GENDER:$1|$1}} hae been hained.",

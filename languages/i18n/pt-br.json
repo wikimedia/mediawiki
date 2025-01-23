@@ -1148,8 +1148,6 @@
 	"search-error": "Ocorreu um erro ao buscar por: $1",
 	"search-warning": "Ocorreu um aviso ao pesquisar: $1",
 	"mypreferences": "Preferências",
-	"prefs-labs": "Características de laboratório",
-	"prefs-misc": "Diversos",
 	"searchresultshead": "Pesquisar",
 	"prefs-description-misc": "Personalize o índice.",
 	"prefs-help-watchlist-token2": "Esta é a senha secreta para o feed da Web com sua lista de tokens vigiados.\nQualquer pessoa que descobrir esta senha será capaz de ler sua lista, então não a compartilhe.\nSe você precisar [[Special:ResetTokens|você pode redefini-lo]].",

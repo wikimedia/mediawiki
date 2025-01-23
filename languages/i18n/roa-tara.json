@@ -913,8 +913,6 @@
 	"search-error": "S'ha verificate 'n'errore mendre ste cercave: $1",
 	"search-warning": "'N'avvertimende ave assute mendre ca ste cercave: $1",
 	"mypreferences": "Me piace accussì",
-	"prefs-labs": "Funziune de Labs",
-	"prefs-misc": "Misc",
 	"searchresultshead": "Cirche",
 	"prefs-help-watchlist-token2": "Queste jè 'a chiave segrete a le feed d'u web de l'elenghe de le pàggene condrollate tune.\nCengate vò ccu canosce ce pò leggere l'elenghe de le pàggene condrollate tune, accussì non g'ù pò condividere.\nCe è abbesogne, [[Special:ResetTokens|'u puè azzerà]].",
 	"savedrights": "Le gruppe utinde de {{GENDER:$1|$1}} onne state reggistrate.",

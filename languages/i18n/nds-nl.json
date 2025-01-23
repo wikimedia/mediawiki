@@ -755,8 +755,6 @@
 	"searchdisabled": "Zeuken in {{SITENAME}} is niet meugelik. Je kunnen gebruukmaken van Google. De gegevens over {{SITENAME}} bin misschien niet bie-ewörken.",
 	"search-error": "Der is wat mis-egaon bie t zeuken: $1",
 	"mypreferences": "Instellingen",
-	"prefs-labs": "Alphafunksies",
-	"prefs-misc": "Overig",
 	"searchresultshead": "Zeukresultaoten",
 	"prefs-help-watchlist-token2": "Dit is de geheime sleutel veur de webvoer van joew volglieste.\nIederene die t token kent, kan joew volglieste bekieken, dus deel dit token niet.\nJe kunnen de [[Special:ResetTokens|tokens opniej instellen]] a'j dat willen.",
 	"prefs-namespaces": "Naamruumtes",

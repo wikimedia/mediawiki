@@ -633,8 +633,6 @@
 	"search-external": "Busca externa",
 	"searchdisabled": "A busca en {{SITENAME}} ye temporalment desactivata. Entremistanto, puede mirar en {{SITENAME}} fendo servir buscadors externos, pero pare cuenta que os suyos endices de {{SITENAME}} puede no estar esviellatos.",
 	"mypreferences": "Preferencias",
-	"prefs-labs": "Caracteristicas experimentals",
-	"prefs-misc": "Atras preferencias",
 	"searchresultshead": "Mirar",
 	"prefs-namespaces": "Espacios de nombres",
 	"default": "por defecto",

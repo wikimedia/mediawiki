@@ -870,8 +870,6 @@
 	"search-error": "'n Fout is opgetraoje tiedes 't zeuke: $1",
 	"search-warning": "'n Waorsjoewing is opgetraoje tiedes 't zeuke: $1",
 	"mypreferences": "Veurkäöre",
-	"prefs-labs": "Alfadeil",
-	"prefs-misc": "Anger insjtèllinge",
 	"searchresultshead": "Insjtèllinge veur zeukresultate",
 	"prefs-help-watchlist-token2": "Dit is de geheime sleutel veur de webfeed van dien volglies.\nEdereine dae 't teike kènt kan dien volglies betrach, dus deil 't neet.\nWen nuuedig kins se dien [[Special:ResetTokens|teikes oppernuuj instèlle]].",
 	"savedrights": "De gebroekergróppe van {{GENDER:$1|$1}} zien opgesjlage.",

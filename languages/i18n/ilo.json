@@ -879,8 +879,6 @@
 	"search-error": "Adda napasamak a biddut bayat nga agbirbiruk: $1",
 	"search-warning": "Adda napasamak a ballaag bayat nga agbirbiruk: $1",
 	"mypreferences": "Kakaykayatan",
-	"prefs-labs": "Dagiti subokan a langa",
-	"prefs-misc": "Sabsabali",
 	"searchresultshead": "Agbiruk",
 	"prefs-help-watchlist-token2": "Daytoy ti sekreto a tekla iti pakan ti web iti listaan ti bambantayam.\nTi sinoman a makaammo daytoy ket mabalinda a basaen ti listaan ti bambantayam, isu a saanmo nga ipabingay.\nNo masapulmo, [[Special:ResetTokens|mabalinmo nga isaad manen]].",
 	"savedrights": "Naidulinen dagiti grupo ti agar-aramat ni {{GENDER:$1|$1}}.",

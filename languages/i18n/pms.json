@@ -932,8 +932,6 @@
 	"search-error": "A l'é rivaje n'eror durant l'arserca: $1",
 	"search-warning": "A l'é rivaje n'avis durant l'arserca: $1",
 	"mypreferences": "Gust",
-	"prefs-labs": "Caraterìstiche dël laboratòri",
-	"prefs-misc": "Sòn e lòn",
 	"searchresultshead": "Specifiché soe preferense d'arserca",
 	"prefs-help-watchlist-token2": "Costa a l'é la ciav segreta dël fluss an sl'Aragnà dla lista ëd lòn ch'as ten sot-euj.\nQualsëssìa përson-a ch'a la conòssa a podrà lese la lista ëd lòn che chiel a ten sot-euj, ch'a-j la mostra donca a gnun.\nS'a l'ha da manca, [[Special:ResetTokens|a peul torna ampostela]].",
 	"savedrights": "La partìa utent ëd {{GENDER:$1|$1}} a l'é stàita salvà.",

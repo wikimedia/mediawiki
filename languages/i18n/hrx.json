@@ -728,8 +728,6 @@
 	"searchdisabled": "Die {{SITENAME}}-Such ist deaktiviert. Du kannst unnerdessen mit Google suche. Bittschön bedenke, dass der Suchindex von {{SITENAME}} veraltet sin kann.",
 	"search-error": "Bei der Such ist en Fehler uffgetret: $1",
 	"mypreferences": "Instellunge",
-	"prefs-labs": "Alpha-Funktione",
-	"prefs-misc": "Verschiednes",
 	"searchresultshead": "Such",
 	"prefs-help-watchlist-token2": "Das ist der geheime Schlüssel zum Webfeed von deiner Beobachtungslist.\nJeder, wo ihn kennt, kann dein Beobachtungslist lese. Tue ihn, dodrum, net teile.\n[[Special:ResetTokens|Klick hier, wenns du ihn zurücksetze musst]].",
 	"prefs-namespaces": "Noomeräume",

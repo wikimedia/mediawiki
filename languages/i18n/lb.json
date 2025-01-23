@@ -934,8 +934,6 @@
 	"search-error": "Beim Sichen ass e Feeler geschitt: $1",
 	"search-warning": "Beim Sichen gouf eng Warnung gewisen: $1",
 	"mypreferences": "Astellungen",
-	"prefs-labs": "\"Labs\"-Funktiounen",
-	"prefs-misc": "Verschiddenes",
 	"searchresultshead": "Sichen",
 	"prefs-help-watchlist-token2": "Dëst ass de geheime Schlëssel fir de Webfeed vun Ärer Iwwerwaachungslëscht. Jiddwereen deen e kennt kann Är Iwwerwaachungslëscht liesen, dofir sollt Dir en net weider ginn. Wann Dir wëllt [[Special:ResetTokens|kënnt Dir en hei zrécksetze kënnt]].",
 	"savedrights": "D'Benotzergruppe vum {{GENDER:$1|$1}} goufe gespäichert.",

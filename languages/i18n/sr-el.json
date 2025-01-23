@@ -1005,8 +1005,6 @@
 	"search-error": "Došlo je do greške prilikom pretrage: $1",
 	"search-warning": "Upozorenje: $1",
 	"mypreferences": "Podešavanja",
-	"prefs-labs": "Eksperimentalne funkcije",
-	"prefs-misc": "Razno",
 	"searchresultshead": "Pretraga",
 	"prefs-description-misc": "Urećivanje tabele sadržaja.",
 	"prefs-help-watchlist-token2": "Ovo je tajni ključ za veb-fid vašeg spiska nadgledanja. \nSvako ko zna ovaj ključ biće u mogućnosti da čita vaš spisak nadgledanja, zato ga nemojte deliti. \nAko je potrebno, [[Special:ResetTokens|možete da ga resetujete]].",

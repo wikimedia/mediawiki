@@ -954,8 +954,6 @@
 	"search-error": "Villa kom upp við leit að: $1",
 	"search-warning": "Aðvörun kom upp við leit: $1",
 	"mypreferences": "Kjörstillingar",
-	"prefs-labs": "Tilraunaeiginleikar",
-	"prefs-misc": "Aðrar stillingar",
 	"searchresultshead": "Leit",
 	"prefs-description-misc": "Sérsníddu efnisyfirlitið.",
 	"savedrights": "Notanda hópur {{GENDER:$1|$1}} hefur verið vistaður.",

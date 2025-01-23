@@ -695,8 +695,6 @@
 	"search-external": "Pagpangita sa guwa",
 	"searchdisabled": "Ang pagpangita sa {{SITENAME}} gin-untat.\nMahimo ka nga magpangita gamit ang Google sa sini nga tion.\nTandai nga ang ila nga palasulundan sang mga unod sang {{SITENAME}} mahimo nga madaan na.",
 	"mypreferences": "Mga Ginabasehan",
-	"prefs-labs": "Mga kaupod sang Labs",
-	"prefs-misc": "Misc",
 	"searchresultshead": "Pangita-a",
 	"prefs-namespaces": "Ngalan-espasyo",
 	"default": "default",

@@ -906,8 +906,6 @@
 	"search-error": "Kasalahan tajadi wakatu mancari: $1",
 	"search-warning": "Paringatan tajadi katiko mancari:$1",
 	"mypreferences": "Pangaturan",
-	"prefs-labs": "Alaik uji",
-	"prefs-misc": "Lain-lain",
 	"searchresultshead": "Cari",
 	"prefs-help-watchlist-token2": "Iko adolah kunci rasio (token) ka umpan web dari daftar pantauan sanak.\nSia se nan tau dapek mancaliak daftar pantauan Sanak, jadi jan dibagian.\nKok diparaluan [[Special:ResetTokens|you can reset it]].",
 	"savedrights": "Kalompok hak pangguno {{GENDER:$1|$1}} alah disimpan.",

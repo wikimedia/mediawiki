@@ -1031,8 +1031,6 @@
 	"search-error": "Berlakunya ralat ketika mencari: $1",
 	"search-warning": "Amaran telah muncul ketika mencari: $1",
 	"mypreferences": "Keutamaan",
-	"prefs-labs": "Ciri-ciri makmal",
-	"prefs-misc": "Pelbagai",
 	"searchresultshead": "Cari",
 	"prefs-description-misc": "Sesuaikan jadual kandungan.",
 	"prefs-help-watchlist-token2": "Ini merupakan kunci rahsia kepada suapan web senarai pantau anda.\nSesiapa sahaja yang mengetahuinya akan dapat membaca senarai pantau anda, jadi jangan mengongsikannya.\nJika perlu, [[Special:ResetTokens|anda boleh menetapkannya semula]].",

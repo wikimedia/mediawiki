@@ -1087,8 +1087,6 @@
 	"search-error": "Ocorreu um erro durante a pesquisa: $1",
 	"search-warning": "Ocorreu um aviso ao pesquisar: $1",
 	"mypreferences": "Preferências",
-	"prefs-labs": "Funcionalidades dos laboratórios",
-	"prefs-misc": "Diversos",
 	"searchresultshead": "Pesquisar",
 	"prefs-description-misc": "Personalizar o índice.",
 	"prefs-help-watchlist-token2": "Esta é a chave secreta para o ''feed'' RSS da sua lista de páginas vigiadas.\nQualquer pessoa que conheça a chave será capaz de ler a sua lista de páginas vigiadas, por isso não a divulgue. Se for necessário, \n[[Special:ResetTokens|pode redefini-la]].",

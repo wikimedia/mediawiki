@@ -239,7 +239,7 @@
 	"page_first": "биринши",
 	"histfirst": "ескиси",
 	"histlast": "янъысы",
-	"historysize": "({{PLURAL:$1|байт}})",
+	"historysize": "({{PLURAL:$1|$1 байт}})",
 	"historyempty": "бос",
 	"history-feed-title": "Туьрлентуьв тарихи",
 	"history-feed-description": "Викидеки бу бет уьшин денъиштируьв тарихи",

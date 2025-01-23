@@ -718,8 +718,6 @@
 	"searchdisabled": "{{SITENAME}} leitan er sett úr gildi.\nTú kanst leita via Google ímeðan.\nLegg til merkis, at teirra innihaldsyvirlit av {{SITENAME}} kann vera gamalt og ikki dagført.",
 	"search-error": "Ein feilur hendi undir leitanini: $1",
 	"mypreferences": "Innstillingar",
-	"prefs-labs": "Testfunktiónir",
-	"prefs-misc": "Ymiskar innstillingar",
 	"searchresultshead": "Leita",
 	"prefs-namespaces": "Navnarúm",
 	"default": "standard",

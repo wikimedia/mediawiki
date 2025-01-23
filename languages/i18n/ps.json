@@ -802,8 +802,6 @@
 	"search-error": "د لټون په وخت کې یوه تېروتنه رامنځته شوه: $1",
 	"search-warning": "د لټون کولو په وخت کې یو خبرداری راغلی دی:$1",
 	"mypreferences": "تنظيمات",
-	"prefs-labs": "د آزمېښتون ځانگړنې",
-	"prefs-misc": "بېلابېل",
 	"searchresultshead": "پلټل",
 	"savedrights": "د کاروونکو ګروپونه {{GENDER:$1|$1}} خوندي شوه.",
 	"prefs-namespaces": "نوم-تشيالونه",
