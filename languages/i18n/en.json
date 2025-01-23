@@ -2816,7 +2816,7 @@
 	"ipb-otherblocks-header": "Other {{PLURAL:$1|block|blocks}}",
 	"unblock-hideuser": "You cannot unblock this user, as their username has been hidden.",
 	"ipb_cant_unblock": "Error: Block for $1 not found. It may have been removed already.",
-	"ipb_cant_unblock_multiple_blocks": "Error: $1 blocks for this user exist with IDs $2.",
+	"ipb_cant_unblock_multiple_blocks": "Error: $1 {{PLURAL:$1|block|blocks}} for this user exist with {{PLURAL:$1|ID|IDs}} $2.",
 	"ipb_blocked_as_range": "Error: The IP address $1 is not blocked directly and cannot be unblocked.\nIt is, however, blocked as part of the range $2, which can be unblocked.",
 	"ip_range_invalid": "Invalid IP address range.",
 	"ip_range_toolarge": "Range blocks larger than /$1 are not allowed.",
