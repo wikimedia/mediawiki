@@ -21,13 +21,15 @@ class W3CTraceContextPropagatorTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideValidData
 	 */
 	public function testValidData( string $traceparent, string $traceId, string $spanId, bool $sampled ): void {
-		$spanContext = $this->propagator->extract( [ 'traceparent' => $traceparent ] );
-		$this->assertNotNull( $spanContext );
-		$this->assertInstanceOf( SpanContext::class, $spanContext );
-		$this->assertSame( $traceId, $spanContext->getTraceId() );
-		$this->assertSame( $spanId, $spanContext->getSpanId() );
-		$this->assertNull( $spanContext->getParentSpanId() );
-		$this->assertSame( $sampled, $spanContext->isSampled() );
+		foreach ( [ 'traceparent', 'TraceParent', 'TRACEPARENT' ] as $headerName ) {
+			$spanContext = $this->propagator->extract( [ $headerName => $traceparent ] );
+			$this->assertNotNull( $spanContext );
+			$this->assertInstanceOf( SpanContext::class, $spanContext );
+			$this->assertSame( $traceId, $spanContext->getTraceId() );
+			$this->assertSame( $spanId, $spanContext->getSpanId() );
+			$this->assertNull( $spanContext->getParentSpanId() );
+			$this->assertSame( $sampled, $spanContext->isSampled() );
+		}
 	}
 
 	public static function provideValidData(): array {
