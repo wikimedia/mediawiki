@@ -5,7 +5,8 @@
 			"Dr-Taher",
 			"Hubaishan",
 			"MRidhaAJ",
-			"Lolekek"
+			"Lolekek",
+			"محمد أحمد عبد الفتاح"
 		]
 	},
 	"tog-underline": "سطر جوا الوصلات:",
@@ -963,7 +964,7 @@
 	"diff-multi-otherusers": "({{PLURAL:$1|ماكو مراجعات|مراجعة متوسطة وحده|مراجعتين متوسطتين|$1 مراجعات متوسطة|$1 مراجعة متوسطة}} بواسطة {{PLURAL:$2|ماكو مستخدم|مستخدم واحد ثاني|مستخدمين اثنين|$2 مستخدمين|$2 مستخدم}} غير {{PLURAL:$1|معروضة|معروضتين|معروضات}})",
 	"diff-paragraph-moved-tonew": "الفقرة انقلت. دوس حتى تروح للموقع الجديد.",
 	"diff-paragraph-moved-toold": "الفقرة انقلت. دوس حتى تروح للموقع القديم.",
-	"diff-inline-tooltip-ins": "تمت إضافة المحتوى",
+	"diff-inline-tooltip-ins": "محتوًى مضاف",
 	"diff-inline-tooltip-del": "انحذف المحتوى",
 	"diff-line-deleted": "⟵ حذف",
 	"diff-newline": "↲ سطر جديد",

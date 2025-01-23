@@ -1550,7 +1550,7 @@
 	"rcfilters-date-popup-title": "Перыяд часу для пошуку",
 	"rcfilters-days-title": "Апошнія дні",
 	"rcfilters-hours-title": "Апошнія гадзіны",
-	"rcfilters-days-show-days": "$1 {{PLURAL:$1|дзень|дня|дзён}}",
+	"rcfilters-days-show-days": "$1 {{PLURAL:$1|дзень|дні|дзён}}",
 	"rcfilters-days-show-hours": "$1 {{PLURAL:$1|гадзіну|гадзіны|гадзін}}",
 	"rcfilters-highlighted-filters-list": "Вылучана: $1",
 	"rcfilters-quickfilters": "Захаваныя фільтры",

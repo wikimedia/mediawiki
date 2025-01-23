@@ -670,7 +670,7 @@
 	"logentry-upload-overwrite": "$1 {{GENDER:$2| maray tiyanaw mobay ka kina:at ila}}’ima SaSo’ panpen ka $3",
 	"feedback-cancel": "kayni’",
 	"searchsuggest-search": " komi:im {{SITENAME}}",
-	"duration-days": "$1 {{PLURAL:$1| hahila:}}",
+	"duration-days": "!!FUZZYY!!$1 {{PLURAL:$1|hahila:}}",
 	"log-action-filter-all": "saeboeh",
 	"log-action-filter-block-block": "soksok",
 	"authmanager-userdoesnotexist": "kamamatawaw zhanghaw \"$1\" ’i’ini’ ka:at ka raro:o’",
