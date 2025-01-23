@@ -58,6 +58,7 @@ use Wikimedia\Rdbms\ReadOnlyMode;
 class DataAccess extends IDataAccess {
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::ParsoidFragmentSupport,
+		MainConfigNames::ParsoidNewTemplateExpansionMode,
 		MainConfigNames::SVGMaxSize,
 	];
 
@@ -388,14 +389,16 @@ class DataAccess extends IDataAccess {
 			# $wikitext is passed by reference and mutated
 			$parser, $wikitext, $parser->getStripState()
 		);
+		$parsoidNewTemplateExpansionMode = $this->config->get( MainConfigNames::ParsoidNewTemplateExpansionMode );
 		if ( $this->config->get( MainConfigNames::ParsoidFragmentSupport ) === false ) {
 			// Original support: just unstrip (T289545)
-			$wikitext = $parser->replaceVariables( $wikitext, $this->ppFrame );
+			$wikitext = $parser->replaceVariables(
+					$wikitext, $this->ppFrame, false, true, $parsoidNewTemplateExpansionMode );
 			$wikitext = $parser->getStripState()->unstripBoth( $wikitext );
 		} else {
 			// New PFragment-based support (T374616)
 			$wikitext = $parser->replaceVariables(
-				$wikitext, $this->ppFrame, false, false
+				$wikitext, $this->ppFrame, false, false, $parsoidNewTemplateExpansionMode
 			);
 			// Where the result has strip state markers, tunnel this content
 			// through Parsoid as a PFragment type.

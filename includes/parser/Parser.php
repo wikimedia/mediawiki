@@ -2932,10 +2932,16 @@ class Parser {
 	 *   double-brace expansion.
 	 * @param bool $stripExtTags When true, put extension tags in general strip state; when
 	 *   false extension tags are skipped during OT_PREPROCESS
+	 * @param bool $parsoidTopLevelCall Is this coming from Parsoid for top-level templates?
+	 *   This is used to set start-of-line flag to true for template expansions since that
+	 *   is how Parsoid models templates.
+	 *
 	 * @return string
 	 * @since 1.24 method is public
 	 */
-	public function replaceVariables( $text, $frame = false, $argsOnly = false, $stripExtTags = true ) {
+	public function replaceVariables(
+		$text, $frame = false, $argsOnly = false, $stripExtTags = true, bool $parsoidTopLevelCall = false
+	) {
 		# Is there any text? Also, Prevent too big inclusions!
 		$textSize = strlen( $text );
 		if ( $textSize < 1 || $textSize > $this->mOptions->getMaxIncludeSize() ) {
@@ -2953,7 +2959,7 @@ class Parser {
 			$frame = $this->getPreprocessor()->newCustomFrame( $frame );
 		}
 
-		$dom = $this->preprocessToDom( $text );
+		$dom = $this->preprocessToDom( $text, $parsoidTopLevelCall ? Preprocessor::START_IN_SOL_STATE : 0 );
 		$flags = $argsOnly ? PPFrame::NO_TEMPLATES : 0;
 		[ $stripExtTags, $this->mStripExtTags ] = [ $this->mStripExtTags, $stripExtTags ];
 		$text = $frame->expand( $dom, $flags );
@@ -3050,6 +3056,8 @@ class Parser {
 
 		$sawDeprecatedTemplateEquals = false; // T91154
 
+		$isParsoid = $this->mOptions->getUseParsoid();
+
 		# SUBST
 		// @phan-suppress-next-line PhanImpossibleCondition
 		if ( !$found ) {
@@ -3123,7 +3131,9 @@ class Parser {
 					$funcArgs[] = $args->item( $i );
 				}
 
-				$result = $this->callParserFunction( $frame, $func, $funcArgs );
+				$result = $this->callParserFunction(
+					$frame, $func, $funcArgs, $isParsoid && $piece['lineStart']
+				);
 
 				// Extract any forwarded flags
 				if ( isset( $result['title'] ) ) {
@@ -3243,7 +3253,7 @@ class Parser {
 						": template inclusion denied for " . $title->getPrefixedDBkey()
 					);
 				} else {
-					[ $text, $title ] = $this->getTemplateDom( $title );
+					[ $text, $title ] = $this->getTemplateDom( $title, $isParsoid && $piece['lineStart'] );
 					if ( $text !== false ) {
 						$found = true;
 						$isChildObj = true;
@@ -3274,7 +3284,8 @@ class Parser {
 				} else {
 					$text = $this->interwikiTransclude( $title, 'raw' );
 					# Preprocess it like a template
-					$text = $this->preprocessToDom( $text, Preprocessor::DOM_FOR_INCLUSION );
+					$sol = ( $isParsoid && $piece['lineStart'] ) ? Preprocessor::START_IN_SOL_STATE : 0;
+					$text = $this->preprocessToDom( $text, Preprocessor::DOM_FOR_INCLUSION | $sol );
 					$isChildObj = true;
 				}
 				$found = true;
@@ -3351,9 +3362,12 @@ class Parser {
 			&& !$piece['lineStart']
 			&& preg_match( '/^(?:{\\||:|;|#|\*)/', $text )
 		) {
-			# T2529: if the template begins with a table or block-level
-			# element, it should be treated as beginning a new line.
-			# This behavior is somewhat controversial.
+			// T2529: if the template begins with a table or block-level
+			// element, it should be treated as beginning a new line.
+			// This behavior is somewhat controversial.
+			//
+			// T382464: Parsoid sets $piece['lineStart'] at top-level when
+			// expanding templates, so this hack is restricted to nested expansions.
 			$text = "\n" . $text;
 		}
 
@@ -3398,9 +3412,15 @@ class Parser {
 	 * @param PPFrame $frame The current frame, contains template arguments
 	 * @param string $function Function name
 	 * @param array $args Arguments to the function
+	 * @param bool $inSolState Is the template processing starting in Start-Of-Line (SOL) position?
+	 *  Prepreprocessing (on behalf of Parsoid) uses this flag to set lineStart property on
+	 *  processor DOM tree nodes. Since the preprocessor tree doesn't rely on expanded templates,
+	 *  this flag is a best guess since {{expands-to-empty-string}} can blind it to SOL context.
+	 *  This flag is always false for legacy parser template expansions.
+	 *
 	 * @return array
 	 */
-	public function callParserFunction( PPFrame $frame, $function, array $args = [] ) {
+	public function callParserFunction( PPFrame $frame, $function, array $args = [], bool $inSolState = false ) {
 		# Case sensitive functions
 		if ( isset( $this->mFunctionSynonyms[1][$function] ) ) {
 			$function = $this->mFunctionSynonyms[1][$function];
@@ -3474,6 +3494,7 @@ class Parser {
 		}
 
 		if ( !$noparse ) {
+			$preprocessFlags |= ( $inSolState ? Preprocessor::START_IN_SOL_STATE : 0 );
 			$result['text'] = $this->preprocessToDom( $result['text'], $preprocessFlags );
 			$result['isChildObj'] = true;
 		}
@@ -3486,11 +3507,16 @@ class Parser {
 	 * and its redirect destination title. Cached.
 	 *
 	 * @param LinkTarget $title
+	 * @param bool $inSolState Is the template processing starting in Start-Of-Line (SOL) position?
+	 *  Prepreprocessing (on behalf of Parsoid) uses this flag to set lineStart property on
+	 *  processor DOM tree nodes. Since the preprocessor tree doesn't rely on expanded templates,
+	 *  this flag is a best guess since {{expands-to-empty-string}} can blind it to SOL context.
+	 *  This flag is always false for legacy parser template expansions.
 	 *
 	 * @return array
 	 * @since 1.12
 	 */
-	public function getTemplateDom( LinkTarget $title ) {
+	public function getTemplateDom( LinkTarget $title, bool $inSolState = false ) {
 		$cacheTitle = $title;
 		$titleKey = CacheKeyHelper::getKeyForPage( $title );
 
@@ -3499,11 +3525,16 @@ class Parser {
 			$title = Title::makeTitle( $ns, $dbk );
 			$titleKey = CacheKeyHelper::getKeyForPage( $title );
 		}
+
+		// Factor in sol-state in the cache key
+		$titleKey = "$titleKey:sol=" . ( $inSolState ? "0" : "1" );
 		if ( isset( $this->mTplDomCache[$titleKey] ) ) {
 			return [ $this->mTplDomCache[$titleKey], $title ];
 		}
 
 		# Cache miss, go to the database
+		// FIXME T383919: if $title is changed by this call, caching below
+		// will be ineffective.
 		[ $text, $title ] = $this->fetchTemplateAndTitle( $title );
 
 		if ( $text === false ) {
@@ -3511,7 +3542,8 @@ class Parser {
 			return [ false, $title ];
 		}
 
-		$dom = $this->preprocessToDom( $text, Preprocessor::DOM_FOR_INCLUSION );
+		$flags = Preprocessor::DOM_FOR_INCLUSION | ( $inSolState ? Preprocessor::START_IN_SOL_STATE : 0 );
+		$dom = $this->preprocessToDom( $text, $flags );
 		$this->mTplDomCache[$titleKey] = $dom;
 
 		if ( !$title->isSamePageAs( $cacheTitle ) ) {
