@@ -5,11 +5,13 @@ namespace MediaWiki\Tests\Storage;
 use LogicException;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\Content;
+use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Message\Message;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\RecentChanges\ChangeTrackingEventIngress;
@@ -19,9 +21,10 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\PageUpdatedEvent;
-use MediaWiki\Tests\Language\LanguageEventIngressSpyTrait;
-use MediaWiki\Tests\recentchanges\ChangeTrackingEventIngressSpyTrait;
-use MediaWiki\Tests\Search\SearchEventIngressSpyTrait;
+use MediaWiki\Tests\Language\LocalizationUpdateSpyTrait;
+use MediaWiki\Tests\recentchanges\ChangeTrackingUpdateSpyTrait;
+use MediaWiki\Tests\ResourceLoader\ResourceLoaderUpdateSpyTrait;
+use MediaWiki\Tests\Search\SearchUpdateSpyTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
@@ -36,9 +39,10 @@ use WikiPage;
  */
 class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
-	use ChangeTrackingEventIngressSpyTrait;
-	use SearchEventIngressSpyTrait;
-	use LanguageEventIngressSpyTrait;
+	use ChangeTrackingUpdateSpyTrait;
+	use SearchUpdateSpyTrait;
+	use LocalizationUpdateSpyTrait;
+	use ResourceLoaderUpdateSpyTrait;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -598,24 +602,62 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $calls );
 	}
 
+	public static function provideUpdatePropagation() {
+		static $counter = 1;
+		$name = strtr( __METHOD__, '\\:', '--' ) . $counter++;
+
+		yield 'article' => [ PageIdentityValue::localIdentity( 0, NS_MAIN, $name ) ];
+		yield 'user talk' => [
+			PageIdentityValue::localIdentity( 0, NS_USER_TALK, $name ),
+			null,
+			$name,
+		];
+		yield 'message' => [ PageIdentityValue::localIdentity( 0, NS_MEDIAWIKI, $name ) ];
+		yield 'script' => [
+			PageIdentityValue::localIdentity( 0, NS_USER, "$name/common.js" ),
+			new JavaScriptContent( 'console.log("hi")' ),
+		];
+	}
+
+	private function makeUser( string $name ) {
+		$user = $this->getServiceContainer()->getUserFactory()
+			->newFromName( $name );
+
+		$user->addToDatabase();
+		return $user;
+	}
+
 	/**
-	 * Regression test for T381225
+	 * Test update propagation.
+	 * Includes regression test for T381225
+	 * @dataProvider provideUpdatePropagation
 	 * @covers \MediaWiki\Storage\PageUpdater::saveRevision()
 	 */
-	public function testEventPropagation() {
+	public function testUpdatePropagation( PageIdentity $title, $content = null, $userName = null ) {
+		if ( $userName ) {
+			// For testing talk page behavior, the corresponding user must exist.
+			$this->makeUser( $userName );
+		}
+
 		$user = $this->getTestUser()->getUser();
 		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
 
-		$title = Title::makeTitle( NS_MEDIAWIKI, __METHOD__ );
 		$page = $wikiPageFactory->newFromTitle( $title );
+		$content ??= new TextContent( 'Lorem Ipsum' );
 
-		$this->installChangeTrackingEventIngressSpyForEdit();
-		$this->installSearchEventIngressSpyForEdit();
-		$this->installLanguageEventIngressSpyForEdit();
+		$this->expectChangeTrackingUpdates(
+			1, 0, 1,
+			$page->getNamespace() === NS_USER_TALK ? 1 : 0
+		);
+
+		$this->expectSearchUpdates( 1 );
+		$this->expectLocalizationUpdate( $page->getNamespace() === NS_MEDIAWIKI ? 1 : 0 );
+		$this->expectResourceLoaderUpdates(
+			$content->getModel() === CONTENT_MODEL_JAVASCRIPT ? 1 : 0
+		);
 
 		$updater = $page->newPageUpdater( $user );
 
-		$content = new TextContent( 'Lorem Ipsum' );
 		$updater->setContent( SlotRecord::MAIN, $content );
 
 		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
@@ -1077,8 +1119,8 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		// Clear pending jobs so the spies don't get confused
 		$this->runJobs();
 
-		$this->installChangeTrackingEventIngressSpyForDerived();
-		$this->installSearchEventIngressSpyForDerived();
+		$this->expectChangeTrackingUpdates( 0, 0, 0, 0 );
+		$this->expectSearchUpdates( 1 );
 
 		$updater = $page->newPageUpdater( $user );
 		$content = new WikitextContent( 'A' );
@@ -1225,18 +1267,24 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	public function testSetUsePageCreationLog( $use, $expected ) {
 		$this->hideDeprecated( 'MediaWiki\Storage\PageUpdater::setUsePageCreationLog' );
 
+		$services = $this->getServiceContainer();
 		$ingress = ChangeTrackingEventIngress::newForTesting(
-			$this->getServiceContainer()->getChangeTagsStore(),
-			$this->getServiceContainer()->getUserEditTracker(),
+			$services->getChangeTagsStore(),
+			$services->getUserEditTracker(),
+			$services->getPermissionManager(),
+			$services->getWikiPageFactory(),
+			$services->getHookContainer(),
+			$services->getUserNameUtils(),
+			$services->getTalkPageNotificationManager()
 		);
 
-		$this->getServiceContainer()->getDomainEventSource()
+		$services->getDomainEventSource()
 			->registerSubscriber( $ingress );
 
 		$user = $this->getTestUser()->getUser();
 
 		$title = $this->getDummyTitle( __METHOD__ . ( $use ? '_logged' : '_unlogged' ) );
-		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
+		$page = $services->getWikiPageFactory()->newFromTitle( $title );
 
 		$summary = CommentStoreComment::newUnsavedComment( 'cmt' );
 		$updater = $page->newPageUpdater( $user )

@@ -1231,7 +1231,7 @@ class WANObjectCache implements
 	 * @param int $holdoff HOLDOFF_TTL or HOLDOFF_TTL_NONE constant
 	 * @return bool True if the item was purged or not found, false on failure
 	 */
-	final public function touchCheckKey( $key, $holdoff = self::HOLDOFF_TTL ) {
+	public function touchCheckKey( $key, $holdoff = self::HOLDOFF_TTL ) {
 		$checkSisterKey = $this->makeSisterKey( $key, self::TYPE_TIMESTAMP );
 
 		$now = $this->getCurrentTime();
@@ -1276,7 +1276,7 @@ class WANObjectCache implements
 	 * @param string $key Cache key made with makeKey()/makeGlobalKey()
 	 * @return bool True if the item was purged or not found, false on failure
 	 */
-	final public function resetCheckKey( $key ) {
+	public function resetCheckKey( $key ) {
 		$checkSisterKey = $this->makeSisterKey( $key, self::TYPE_TIMESTAMP );
 		$ok = $this->relayNonVolatilePurge( $checkSisterKey );
 

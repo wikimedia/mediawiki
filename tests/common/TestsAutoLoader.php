@@ -114,7 +114,7 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/includes/recentchanges
 	'TestRecentChangesHelper' => "$testDir/phpunit/includes/recentchanges/TestRecentChangesHelper.php",
-	'MediaWiki\Tests\recentchanges\ChangeTrackingEventIngressSpyTrait' => "$testDir/phpunit/includes/recentchanges/ChangeTrackingEventIngressSpyTrait.php",
+	'MediaWiki\Tests\recentchanges\ChangeTrackingUpdateSpyTrait' => "$testDir/phpunit/includes/recentchanges/ChangeTrackingUpdateSpyTrait.php",
 
 	# tests/phpunit/includes/config
 	'TestAllServiceOptionsUsed' => "$testDir/phpunit/includes/config/TestAllServiceOptionsUsed.php",
@@ -175,6 +175,8 @@ $wgAutoloadClasses += [
 		"$testDir/phpunit/includes/ResourceLoader/ImageModuleTest.php",
 	'MediaWiki\\Tests\\ResourceLoader\\ImageModuleTestable' =>
 		"$testDir/phpunit/includes/ResourceLoader/ImageModuleTest.php",
+	'MediaWiki\Tests\ResourceLoader\ResourceLoaderUpdateSpyTrait' =>
+		"$testDir/phpunit/includes/ResourceLoader/ResourceLoaderUpdateSpyTrait.php",
 
 	# tests/phpunit/includes/session
 	'MediaWiki\\Session\\TestBagOStuff' => "$testDir/phpunit/includes/session/TestBagOStuff.php",
@@ -217,7 +219,7 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\ParamValidator\\TypeDef\\TypeDefUnitTestCase' => "$testDir/phpunit/unit/includes/ParamValidator/TypeDef/TypeDefUnitTestCase.php",
 
 	# tests/phpunit/unit/includes/Search
-	'MediaWiki\Tests\Search\SearchEventIngressSpyTrait' => "$testDir/phpunit/includes/search/SearchEventIngressSpyTrait.php",
+	'MediaWiki\Tests\Search\SearchUpdateSpyTrait' => "$testDir/phpunit/includes/search/SearchUpdateSpyTrait.php",
 
 	# tests/phpunit/maintenance
 	'MediaWiki\\Tests\\Maintenance\\DumpAsserter' => "$testDir/phpunit/maintenance/DumpAsserter.php",
@@ -299,7 +301,7 @@ $wgAutoloadClasses += [
 	'LanguageCodeTest' => "$testDir/phpunit/unit/includes/language/LanguageCodeTest.php",
 	'LanguageFallbackTestTrait' => "$testDir/phpunit/unit/includes/language/LanguageFallbackTestTrait.php",
 	'LanguageNameUtilsTestTrait' => "$testDir/phpunit/unit/includes/language/LanguageNameUtilsTestTrait.php",
-	'MediaWiki\Tests\Language\LanguageEventIngressSpyTrait' => "$testDir/phpunit/includes/language/LanguageEventIngressSpyTrait.php",
+	'MediaWiki\Tests\Language\LocalizationUpdateSpyTrait' => "$testDir/phpunit/includes/language/LocalizationUpdateSpyTrait.php",
 
 	# tests/phpunit/unit/includes/libs/filebackend/fsfile
 	'Wikimedia\\Tests\\FileBackend\\FSFile\\TempFSFileTestTrait' => "$testDir/phpunit/unit/includes/libs/filebackend/fsfile/TempFSFileTestTrait.php",

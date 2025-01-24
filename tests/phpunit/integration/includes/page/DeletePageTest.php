@@ -4,7 +4,8 @@ namespace MediaWiki\Tests\Page;
 
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\Content;
-use MediaWiki\Content\ContentHandler;
+use MediaWiki\Content\JavaScriptContent;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -14,6 +15,10 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Tests\Language\LocalizationUpdateSpyTrait;
+use MediaWiki\Tests\recentchanges\ChangeTrackingUpdateSpyTrait;
+use MediaWiki\Tests\ResourceLoader\ResourceLoaderUpdateSpyTrait;
+use MediaWiki\Tests\Search\SearchUpdateSpyTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
@@ -26,6 +31,10 @@ use WikiPage;
  * @note Permission-related tests are in \MediaWiki\Tests\Unit\Page\DeletePageTest
  */
 class DeletePageTest extends MediaWikiIntegrationTestCase {
+	use ChangeTrackingUpdateSpyTrait;
+	use SearchUpdateSpyTrait;
+	use LocalizationUpdateSpyTrait;
+	use ResourceLoaderUpdateSpyTrait;
 
 	private const PAGE_TEXT = "[[Stuart Little]]\n" .
 		"{{Multiple issues}}\n" .
@@ -41,17 +50,19 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param string $titleText
-	 * @param string $content
+	 * @param string|Content $content
 	 * @return WikiPage
 	 */
-	private function createPage( string $titleText, string $content ): WikiPage {
+	private function createPage( string $titleText, $content ): WikiPage {
+		if ( is_string( $content ) ) {
+			$content = new WikitextContent( $content );
+		}
+
 		$ns = $this->getDefaultWikitextNS();
 		$title = Title::newFromText( $titleText, $ns );
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
 		$performer = $this->getTestUser()->getAuthority();
-
-		$content = ContentHandler::makeContent( $content, $page->getTitle(), CONTENT_MODEL_WIKITEXT );
 
 		$updater = $page->newPageUpdater( $performer )
 			->setContent( SlotRecord::MAIN, $content );
@@ -61,7 +72,6 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 			$this->fail( $updater->getStatus()->getWikiText() );
 		}
 		DeferredUpdates::doUpdates();
-		$this->assertLinksUpdateSetup( $page->getId() );
 
 		return $page;
 	}
@@ -260,6 +270,8 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		$titleFromText = Title::newFromText( __METHOD__ );
 		$titleFromText->getId(); // make sure the ID is initialized and cached.
 
+		$this->assertLinksUpdateSetup( $id );
+
 		if ( !$immediate ) {
 			// Ensure that the job queue can be used
 			$this->overrideConfigValue( MainConfigNames::DeleteRevisionsBatchSize, 1 );
@@ -372,5 +384,57 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertFalse( $wikiPage->exists(), 'WikiPage does not exist after deletion' );
 		$this->assertFalse( $wikiPage->isRedirect(), 'WikiPage is not a redirect after deletion' );
+	}
+
+	public static function provideUpdatePropagation() {
+		static $counter = 1;
+		$name = __METHOD__ . $counter++;
+
+		yield 'article' => [ "$name" ];
+		yield 'user talk' => [ "User_talk:$name" ];
+		yield 'message' => [ "MediaWiki:$name" ];
+		yield 'script' => [
+			"User:$name/common.js",
+			new JavaScriptContent( 'console.log("hi")' ),
+		];
+	}
+
+	/**
+	 * Test update propagation.
+	 * Includes regression test for T381225
+	 *
+	 * @dataProvider provideUpdatePropagation
+	 * @covers \MediaWiki\Page\UndeletePage::undeleteUnsafe
+	 */
+	public function testUpdatePropagation( $name, ?Content $content = null ) {
+		$content ??= new WikitextContent( self::PAGE_TEXT );
+		$deleterUser = static::getTestSysop()->getUser();
+		$deleter = new UltimateAuthority( $deleterUser );
+		$page = $this->createPage( $name, $content );
+
+		$this->runJobs();
+
+		// Should generate an RC entry for deletion,
+		// but not a regular page edit.
+		$this->expectChangeTrackingUpdates(
+			0, 1, 0,
+			$page->getNamespace() === NS_USER_TALK ? -1 : 0
+		);
+
+		// TODO: Assert that the search index is updated after deletion.
+		//       This appears to be broken at the moment.
+		// $this->expectSearchUpdates( 1 );
+
+		$this->expectLocalizationUpdate( $page->getNamespace() === NS_MEDIAWIKI ? 1 : 0 );
+		$this->expectResourceLoaderUpdates(
+			$content->getModel() === CONTENT_MODEL_JAVASCRIPT ? 1 : 0
+		);
+
+		// Now delete the page
+		$this->getDeletePage( $page, $deleter )
+			->deleteUnsafe( 'testing' );
+
+		// NOTE: assertions are applied by the spies installed earlier.
+		$this->runDeferredUpdates();
 	}
 }
