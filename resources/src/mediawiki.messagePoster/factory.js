@@ -1,6 +1,6 @@
 ( function () {
 	/**
-	 * @classdesc Factory for MessagePoster objects. This provides a pluggable to way to script the
+	 * @classdesc Factory for MessagePoster objects. This provides a pluggable way to script the
 	 * action of adding a message to someone's talk page.
 	 *
 	 * The constructor is not publicly accessible; use [mw.messagePoster.factory]{@link mw.messagePoster} instead.
