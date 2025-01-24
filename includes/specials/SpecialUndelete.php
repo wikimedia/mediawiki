@@ -802,7 +802,7 @@ class SpecialUndelete extends SpecialPage {
 		RevisionRecord $previousRevRecord,
 		RevisionRecord $currentRevRecord
 	) {
-		$currentTitle = Title::newFromLinkTarget( $currentRevRecord->getPageAsLinkTarget() );
+		$currentTitle = Title::newFromPageIdentity( $currentRevRecord->getPage() );
 
 		$diffContext = new DerivativeContext( $this->getContext() );
 		$diffContext->setTitle( $currentTitle );

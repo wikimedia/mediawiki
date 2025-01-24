@@ -131,7 +131,7 @@ class UpdateSearchIndex extends Maintenance {
 			->getRevisionByPageId( $pageId, 0, IDBAccessObject::READ_LATEST );
 		$title = null;
 		if ( $rev ) {
-			$titleObj = Title::newFromLinkTarget( $rev->getPageAsLinkTarget() );
+			$titleObj = Title::newFromPageIdentity( $rev->getPage() );
 			$title = $titleObj->getPrefixedDBkey();
 			$this->output( "$title..." );
 			# Update searchindex

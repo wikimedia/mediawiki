@@ -245,7 +245,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 				if ( !isset( $pageMap[$row->rev_page] ) ) {
 					$index = $nextIndex++;
 					$pageMap[$row->rev_page] = $index;
-					$title = Title::newFromLinkTarget( $revision->getPageAsLinkTarget() );
+					$title = Title::newFromPageIdentity( $revision->getPage() );
 					$a = [
 						'pageid' => $title->getArticleID(),
 						'revisions' => [ $rev ],
