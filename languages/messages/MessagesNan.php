@@ -30,16 +30,3 @@ $namespaceNames = [
 	NS_CATEGORY         => 'Lūi-pia̍t',
 	NS_CATEGORY_TALK    => 'Lūi-pia̍t_thó-lūn',
 ];
-
-$datePreferences = [
-	'default',
-	'ISO 8601',
-];
-
-$defaultDateFormat = 'nan';
-
-$dateFormats = [
-	'nan time' => 'H:i',
-	'nan date' => 'Y-"nî" n-"goe̍h" j-"ji̍t" (l)',
-	'nan both' => 'Y-"nî" n-"goe̍h" j-"ji̍t" (l) H:i',
-];

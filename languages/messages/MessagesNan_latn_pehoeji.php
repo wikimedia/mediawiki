@@ -55,8 +55,8 @@ $defaultDateFormat = 'nan-latn-pehoeji';
 
 $dateFormats = [
 	'nan-latn-pehoeji time' => 'H:i',
-	'nan-latn-pehoeji date' => 'Y-"nî" n-"goe̍h" j-"ji̍t" (l)',
-	'nan-latn-pehoeji monthonly' => 'Y-"nî" n-"goe̍h"',
-	'nan-latn-pehoeji both' => 'Y-"nî" n-"goe̍h" j-"ji̍t" (l) H:i',
-	'nan-latn-pehoeji pretty' => 'n-"goe̍h" j-"ji̍t"',
+	'nan-latn-pehoeji date' => 'Y "nî" n "goe̍h" j "ji̍t" (l)',
+	'nan-latn-pehoeji monthonly' => 'Y "nî" n "goe̍h"',
+	'nan-latn-pehoeji both' => 'Y "nî" n "goe̍h" j "ji̍t" (l) H:i',
+	'nan-latn-pehoeji pretty' => 'n "goe̍h" j "ji̍t"',
 ];
