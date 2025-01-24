@@ -22,9 +22,9 @@ abstract class JoinGroupBase {
 	/**
 	 * Add a single table or a single parenthesized group.
 	 *
-	 * @param string|JoinGroup|SelectQueryBuilder $table The unqualified name of a table,
+	 * @param string|JoinGroup|Subquery|SelectQueryBuilder $table The unqualified name of a table,
 	 *   a table name of the form "information_schema.<unquoted identifier>", a JoinGroup
-	 *   containing multiple tables, or a SelectQueryBuilder representing a subquery.
+	 *   containing multiple tables, a Subquery instance, or a SelectQueryBuilder representing a subquery.
 	 * @param-taint $table exec_sql
 	 * @param string|null $alias The table alias, or null for no alias
 	 * @param-taint $alias exec_sql

@@ -194,7 +194,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	/**
 	 * Add a single table to the SELECT query. Alias for table().
 	 *
-	 * @param string|JoinGroup|SelectQueryBuilder $table Table reference; see {@link table}
+	 * @param string|JoinGroup|Subquery|SelectQueryBuilder $table Table reference; see {@link table}
 	 *  for details
 	 * @param-taint $table exec_sql
 	 * @param string|null $alias The table alias, or null for no alias
