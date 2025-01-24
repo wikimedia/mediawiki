@@ -21,6 +21,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\PageUpdatedEvent;
+use MediaWiki\Tests\ExpectCallbackTrait;
 use MediaWiki\Tests\Language\LocalizationUpdateSpyTrait;
 use MediaWiki\Tests\recentchanges\ChangeTrackingUpdateSpyTrait;
 use MediaWiki\Tests\ResourceLoader\ResourceLoaderUpdateSpyTrait;
@@ -43,6 +44,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	use SearchUpdateSpyTrait;
 	use LocalizationUpdateSpyTrait;
 	use ResourceLoaderUpdateSpyTrait;
+	use ExpectCallbackTrait;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -340,8 +342,8 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
 		$tagsStore = $this->getServiceContainer()->getChangeTagsStore();
 
-		$this->setTemporaryHook(
-			'RevisionFromEditComplete',
+		$this->expectHook(
+			'RevisionFromEditComplete', 2,
 			static function ( $wikiPage, $rev, $originalRevId, $user, &$tags ) {
 				$tags[] = ( $rev->getParentId() ? 'test_updated' : 'test_created' );
 			}
@@ -379,7 +381,6 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function makeDomainEventSourceListener(
-		int &$counter,
 		array $flags,
 		string $cause,
 		UserIdentity $performer,
@@ -433,14 +434,10 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 			foreach ( $flags as $name => $value ) {
 				Assert::assertSame( $value, $event->$name(), $name );
 			}
-
-			$counter++;
 		};
 	}
 
 	public function testEventEmission_new() {
-		$calls = 0;
-
 		$user = $this->getTestUser()->getUser();
 		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
 
@@ -451,23 +448,18 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$content = new TextContent( 'Lorem Ipsum' );
 		$updater->setContent( SlotRecord::MAIN, $content );
 
-		$this->getServiceContainer()->getDomainEventSource()->registerListener(
-			'PageUpdated',
+		$this->expectDomainEvent(
+			PageUpdatedEvent::TYPE, 1,
 			$this->makeDomainEventSourceListener(
-				$calls, [], PageUpdatedEvent::CAUSE_EDIT, $user, null
+				[], PageUpdatedEvent::CAUSE_EDIT, $user, null
 			)
 		);
 
 		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
 		$updater->saveRevision( $summary );
-
-		$this->runDeferredUpdates();
-		$this->assertSame( 1, $calls );
 	}
 
 	public function testEventEmission_edit() {
-		$calls = 0;
-
 		$page = $this->getExistingTestPage();
 		$user = $this->getTestUser()->getUser();
 
@@ -476,24 +468,19 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$content = new TextContent( 'Lorem Ipsum' );
 		$updater->setContent( SlotRecord::MAIN, $content );
 
-		$this->getServiceContainer()->getDomainEventSource()->registerListener(
-			'PageUpdated',
+		$this->expectDomainEvent(
+			PageUpdatedEvent::TYPE, 1,
 			$this->makeDomainEventSourceListener(
-				$calls, [], PageUpdatedEvent::CAUSE_EDIT,
+				[], PageUpdatedEvent::CAUSE_EDIT,
 					$user, $page->getRevisionRecord()
 			)
 		);
 
 		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
 		$updater->saveRevision( $summary );
-
-		$this->runDeferredUpdates();
-		$this->assertSame( 1, $calls );
 	}
 
 	public function testEventEmission_automated() {
-		$calls = 0;
-
 		$page = $this->getExistingTestPage();
 		$user = $this->getTestUser()->getUser();
 
@@ -503,10 +490,9 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$updater->setContent( SlotRecord::MAIN, $content );
 		$updater->setAutomated( true );
 
-		$this->getServiceContainer()->getDomainEventSource()->registerListener(
-			'PageUpdated',
+		$this->expectDomainEvent(
+			PageUpdatedEvent::TYPE, 1,
 			$this->makeDomainEventSourceListener(
-				$calls,
 				[ 'isAutomated' => true ],
 				PageUpdatedEvent::CAUSE_EDIT,
 				$user,
@@ -516,23 +502,18 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
 		$updater->saveRevision( $summary );
-
-		$this->runDeferredUpdates();
-		$this->assertSame( 1, $calls );
 	}
 
 	public function testEventEmission_null() {
-		$calls = 0;
-
 		$page = $this->getExistingTestPage();
 		$user = $this->getTestUser()->getUser();
 
 		$updater = $page->newPageUpdater( $user );
 
-		$this->getServiceContainer()->getDomainEventSource()->registerListener(
-			'PageUpdated',
+		$this->expectDomainEvent(
+			PageUpdatedEvent::TYPE, 1,
 			$this->makeDomainEventSourceListener(
-				$calls, [], PageUpdatedEvent::CAUSE_EDIT,
+				[], PageUpdatedEvent::CAUSE_EDIT,
 					$user, $page->getRevisionRecord(), false, false
 			)
 		);
@@ -540,23 +521,18 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		// null-edit
 		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
 		$updater->saveRevision( $summary );
-
-		$this->runDeferredUpdates();
-		$this->assertSame( 1, $calls );
 	}
 
 	public function testEventEmission_dummy() {
-		$calls = 0;
-
 		$page = $this->getExistingTestPage();
 		$user = $this->getTestUser()->getUser();
 
 		$updater = $page->newPageUpdater( $user );
 
-		$this->getServiceContainer()->getDomainEventSource()->registerListener(
-			'PageUpdated',
+		$this->expectDomainEvent(
+			PageUpdatedEvent::TYPE, 1,
 			$this->makeDomainEventSourceListener(
-				$calls, [], PageUpdatedEvent::CAUSE_UNDELETE,
+				[], PageUpdatedEvent::CAUSE_UNDELETE,
 					$user, $page->getRevisionRecord(), true, false
 			)
 		);
@@ -566,14 +542,9 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
 		$updater->setCause( PageUpdatedEvent::CAUSE_UNDELETE );
 		$updater->saveRevision( $summary );
-
-		$this->runDeferredUpdates();
-		$this->assertSame( 1, $calls );
 	}
 
 	public function testEventEmission_derived() {
-		$calls = 0;
-
 		$page = $this->getExistingTestPage();
 		$user = $this->getTestUser()->getUser();
 
@@ -584,10 +555,10 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 			'isSilent' => true,
 		];
 
-		$this->getServiceContainer()->getDomainEventSource()->registerListener(
-			'PageUpdated',
+		$this->expectDomainEvent(
+			PageUpdatedEvent::TYPE, 1,
 			$this->makeDomainEventSourceListener(
-				$calls, $flags, 'slot-update',
+				$flags, 'slot-update',
 					$user, $page->getRevisionRecord(), false, false
 			)
 		);
@@ -597,9 +568,6 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$derived = SlotRecord::newDerived( 'derivedslot', $content );
 		$updater->setSlot( $derived );
 		$updater->updateRevision();
-
-		$this->runDeferredUpdates();
-		$this->assertSame( 1, $calls );
 	}
 
 	public static function provideUpdatePropagation() {
@@ -824,7 +792,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 			'summary' => $summary
 		];
 		$hookFired = false;
-		$this->setTemporaryHook( 'MultiContentSave',
+		$this->expectHook( 'MultiContentSave', 1,
 			function ( RenderedRevision $renderedRevision, UserIdentity $user,
 				$summary, $flags, Status $hookStatus
 			) use ( &$hookFired, $expected ) {
@@ -872,7 +840,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
 
 		$expectedError = 'aborted-by-test-hook';
-		$this->setTemporaryHook( 'MultiContentSave',
+		$this->expectHook( 'MultiContentSave', 1,
 			static function ( RenderedRevision $renderedRevision, UserIdentity $user,
 				$summary, $flags, Status $hookStatus
 			) use ( $expectedError ) {

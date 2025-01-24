@@ -6,6 +6,7 @@ use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Page\UndeletePage;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Tests\ExpectCallbackTrait;
 use MediaWiki\Tests\Language\LocalizationUpdateSpyTrait;
 use MediaWiki\Tests\recentchanges\ChangeTrackingUpdateSpyTrait;
 use MediaWiki\Tests\ResourceLoader\ResourceLoaderUpdateSpyTrait;
@@ -27,6 +28,7 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 	use SearchUpdateSpyTrait;
 	use LocalizationUpdateSpyTrait;
 	use ResourceLoaderUpdateSpyTrait;
+	use ExpectCallbackTrait;
 
 	/**
 	 * @var array
@@ -149,8 +151,6 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Page\UndeletePage::undeleteUnsafe
 	 */
 	public function testEventEmission() {
-		$calls = 0;
-
 		$page = PageIdentityValue::localIdentity( 0, NS_MEDIAWIKI, __METHOD__ );
 		$this->setupPage( $page->getDBkey(), $page->getNamespace(), 'Lorem Ipsum' );
 
@@ -159,9 +159,9 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 		// clear the queue
 		$this->runJobs();
 
-		$this->getServiceContainer()->getDomainEventSource()->registerListener(
-			'PageUpdated',
-			static function ( PageUpdatedEvent $event ) use ( &$calls, $sysop ) {
+		$this->expectDomainEvent(
+			PageUpdatedEvent::TYPE, 1,
+			static function ( PageUpdatedEvent $event ) use ( $sysop ) {
 				Assert::assertTrue(
 					$event->hasCause( PageUpdatedEvent::CAUSE_UNDELETE ),
 					PageUpdatedEvent::CAUSE_UNDELETE
@@ -172,8 +172,6 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 				Assert::assertTrue( $event->isContentChange(), 'isContentChange' );
 				Assert::assertFalse( $event->getAuthor()->isRegistered(), 'getAuthor' );
 				Assert::assertSame( $event->getPerformer(), $sysop, 'getPerformer' );
-
-				$calls++;
 			}
 		);
 
@@ -184,9 +182,6 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$undeletePage->undeleteUnsafe( 'just a test' );
-
-		$this->runDeferredUpdates();
-		$this->assertSame( 1, $calls );
 	}
 
 	public static function provideUpdatePropagation() {
