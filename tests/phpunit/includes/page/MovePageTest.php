@@ -346,6 +346,15 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 				$status
 			);
 		} else {
+			// Create Title objects from text, so they will end up in the instance
+			// cache. In assertMoved() we'll check that we are not
+			// getting this stale object from Title::newFromText().
+			Title::clearCaches();
+			$oldFromText = Title::newFromText( $old->getPrefixedText() );
+			$newFromText = Title::newFromText( $new->getPrefixedText() );
+			$oldFromText->getId();
+			$newFromText->getId();
+
 			$oldPageId = $old->getArticleID();
 			$status = $this->getServiceContainer()
 				->getMovePageFactory()
@@ -479,9 +488,11 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 	 * @param bool $createRedirect
 	 */
 	protected function assertMoved( $from, $to, $id, bool $createRedirect = true ) {
-		Title::clearCaches();
-		$fromTitle = $from instanceof Title ? $from : Title::newFromText( $from );
-		$toTitle = $to instanceof Title ? $to : Title::newFromText( $to );
+		// NOTE: Title objects returned by Title::newFromText may come from an
+		//       instance cache. Using newFromText() here allows us to check
+		//       that we are not getting stale instances.
+		$fromTitle = Title::newFromText( "$from" );
+		$toTitle = Title::newFromText( "$to" );
 
 		$this->assertTrue( $toTitle->exists(),
 			"Destination {$toTitle->getPrefixedText()} does not exist" );

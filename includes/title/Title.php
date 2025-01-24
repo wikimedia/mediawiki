@@ -2688,8 +2688,10 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	}
 
 	public static function clearCaches() {
-		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
-		$linkCache->clear();
+		if ( MediaWikiServices::hasInstance() ) {
+			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
+			$linkCache->clear();
+		}
 
 		$titleCache = self::getTitleCache();
 		$titleCache->clear();
