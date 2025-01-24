@@ -32,6 +32,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Search\SearchUpdate;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\NamespaceInfo;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;
 use StatusValue;
 use Wikimedia\IPUtils;
@@ -628,6 +629,12 @@ class DeletePage {
 		$dbw->endAtomic( __METHOD__ );
 
 		$this->doDeleteUpdates( $page, $revisionRecord );
+
+		// Reset the page object and the Title object
+		$page->loadFromRow( false, IDBAccessObject::READ_LATEST );
+
+		// Make sure there are no cached title instances that refer to the same page.
+		Title::clearCaches();
 
 		$legacyDeleter = $this->userFactory->newFromAuthority( $this->deleter );
 		$this->hookRunner->onArticleDeleteComplete(

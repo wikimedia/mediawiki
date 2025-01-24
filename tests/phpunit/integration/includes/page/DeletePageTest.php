@@ -165,6 +165,8 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 			"WikiPage::getContent should return null after page was deleted"
 		);
 
+		// NOTE: Title objects returned by Title::newFromText may come from an
+		//       instance cache!
 		$t = Title::newFromText( $page->getTitle()->getPrefixedText() );
 		$this->assertFalse(
 			$t->exists(),
@@ -248,8 +250,15 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		$teardownScope = DeferredUpdates::preventOpportunisticUpdates();
 		$deleterUser = static::getTestSysop()->getUser();
 		$deleter = new UltimateAuthority( $deleterUser );
+
 		$page = $this->createPage( __METHOD__, self::PAGE_TEXT );
 		$id = $page->getId();
+
+		// Create a Title object from text, so it will end up in the instance
+		// cache. In assertPageObjectsConsistency() we'll check that we are not
+		// getting this stale object from Title::newFromText().
+		$titleFromText = Title::newFromText( __METHOD__ );
+		$titleFromText->getId(); // make sure the ID is initialized and cached.
 
 		if ( !$immediate ) {
 			// Ensure that the job queue can be used

@@ -302,11 +302,16 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
-	 * Returns true if an instance has already been initialized. This can be used to avoid accessing
-	 * services if it's not safe, such as in unit tests or early setup.
+	 * Returns true if an instance has already been initialized and can be
+	 * obtained from getInstance(). This can be used to avoid accessing
+	 * services if it's not safe or un necessary, e.g. in certain cases
+	 * in unit tests or during early setup.
 	 */
 	public static function hasInstance(): bool {
-		return self::$instance !== null;
+		// NOTE: an instance could have been set by a call to forceGlobalInstance,
+		// but would still be unusable if $globalInstanceAllowed is false.
+		// This shouldn't happen, but it can during testing.
+		return self::$instance !== null && self::$globalInstanceAllowed;
 	}
 
 	/**
