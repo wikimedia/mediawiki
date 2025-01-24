@@ -2061,7 +2061,7 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	protected function getContentType( $storagePath, $content, $fsPath ) {
 		if ( $this->mimeCallback ) {
-			return call_user_func_array( $this->mimeCallback, func_get_args() );
+			return ( $this->mimeCallback )( $storagePath, $content, $fsPath );
 		}
 
 		$mime = ( $fsPath !== null ) ? mime_content_type( $fsPath ) : false;

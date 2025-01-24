@@ -122,7 +122,7 @@ class StubObject {
 	// phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
 	public function _call( $name, $args ) {
 		$this->_unstub( $name, 5 );
-		return call_user_func_array( [ $GLOBALS[$this->global], $name ], $args );
+		return $GLOBALS[$this->global]->$name( ...$args );
 	}
 
 	/**

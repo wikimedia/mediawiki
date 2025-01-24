@@ -4049,8 +4049,7 @@ class Parser {
 			if ( isset( $this->mTagHooks[$normalizedName] ) ) {
 				// Note that $content may be null here, for example if the
 				// tag is self-closed.
-				$output = call_user_func_array( $this->mTagHooks[$normalizedName],
-					[ $content, $attributes, $this, $frame ] );
+				$output = $this->mTagHooks[$normalizedName]( $content, $attributes, $this, $frame );
 			} else {
 				$output = '<span class="error">Invalid tag extension name: ' .
 					htmlspecialchars( $normalizedName ) . '</span>';
