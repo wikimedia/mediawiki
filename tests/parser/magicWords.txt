@@ -1211,6 +1211,43 @@ __NOCONTENTCONVERT__
 !! end
 
 !! test
+NOGALLERY sets flag
+!! options
+showflags
+!! wikitext
+__NOGALLERY__
+!! html/parsoid
+<meta property="mw:PageProp/nogallery" data-parsoid='{"src":"__NOGALLERY__","magicSrc":"__NOGALLERY__"}'/>
+!! metadata
+flags=mw-NoGallery
+!! end
+
+!! test
+1. HIDDENCAT sets tracking category on category page
+!! options
+title=[[123]]
+cat
+!! wikitext
+__HIDDENCAT__
+!! html/parsoid
+<meta property="mw:PageProp/hiddencat" data-parsoid='{"src":"__HIDDENCAT__","magicSrc":"__HIDDENCAT__"}'/>
+!! metadata
+!! end
+
+!! test
+2. HIDDENCAT sets tracking category on category page
+!! options
+title=[[Category:123]]
+cat
+!! wikitext
+__HIDDENCAT__
+!! html/parsoid
+<meta property="mw:PageProp/hiddencat" data-parsoid='{"src":"__HIDDENCAT__","magicSrc":"__HIDDENCAT__"}'/>
+!! metadata
+cat=Hidden_categories sort=
+!! end
+
+!! test
 New section link / no new section link
 !! options
 showflags

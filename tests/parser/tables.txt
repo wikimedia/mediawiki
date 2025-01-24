@@ -1396,7 +1396,8 @@ Templated table cell with untemplated attributes: Cell combination tests
 </tbody></table>
 !! end
 
-# The failure in T343874 is only exercised in integrated mode
+# Standalone test generates the right output as well but the attribute order
+# is flipped and the test runner doesn't normalize output for attribute order.
 !! test
 T343874: Templated table that has a templated cell with untemplated attributes
 !! options
@@ -1482,7 +1483,7 @@ We don't intend to support this here.
 !! end
 
 !! test
-Templated table cell with untemplated attributes: Unsupported Scenario
+Templated table cell with untemplated attributes
 !! options
 parsoid=wt2html
 !! wikitext
@@ -1497,8 +1498,9 @@ parsoid=wt2html
 <td class="foo">title="fail"|bar
 </td></tr></tbody></table>
 !! html/parsoid
-For now, we are deliberately not supporting this use cases in Parsoid unless
-required or we find a simpler solution that covers everything uniformly.
+<table>
+<tbody><tr><td about="#mwt" typeof="mw:Transclusion" class="foo" data-mw='{"parts":["|class=\"foo\"",{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"{{!}}title=\"fail\"{{!}}bar"}},"i":0}}]}'>title="fail"|bar</td></tr>
+</tbody></table>
 !! end
 
 !! test
