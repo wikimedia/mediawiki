@@ -28,8 +28,10 @@
 require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\Maintenance;
+use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IDatabase;
@@ -67,6 +69,8 @@ class UpdateCollation extends Maintenance {
 	/** @var string|null */
 	private $targetTable;
 
+	private bool $normalization = false;
+
 	/** @var IDatabase */
 	private $dbr;
 
@@ -101,6 +105,8 @@ TEXT
 			false, true );
 		$this->addOption( 'target-table', 'Copy rows from categorylinks into the ' .
 			'specified table instead of updating them in place.', false, true );
+		$this->addOption( 'only-migrate-normalization', 'Only backfill cl_collation_id ' .
+			'field from cl_collation', false );
 		$this->addOption( 'remote', 'Use Shellbox to calculate the new sort keys ' .
 			'remotely.' );
 		$this->addOption( 'dry-run', 'Don\'t actually change the collations, just ' .
@@ -137,11 +143,17 @@ TEXT
 		$this->dbw = $this->getPrimaryDB();
 		$this->dbr = $this->getReplicaDB();
 		$this->targetTable = $this->getOption( 'target-table' );
+		$this->normalization = $this->getOption( 'only-migrate-normalization', false );
 	}
 
 	public function execute() {
 		$this->init();
 		$batchSize = $this->getBatchSize();
+
+		if ( $this->normalization ) {
+			$this->runNormalizationMigration();
+			return;
+		}
 
 		if ( $this->targetTable ) {
 			if ( !$this->dbw->tableExists( $this->targetTable, __METHOD__ ) ) {
@@ -392,6 +404,64 @@ TEXT
 				)
 			);
 			$prevBoundary = $boundary;
+		}
+	}
+
+	private function runNormalizationMigration() {
+		$maxPageId = (int)$this->dbr->newSelectQueryBuilder()
+			->select( 'MAX(page_id)' )
+			->from( 'page' )
+			->caller( __METHOD__ )->fetchField();
+		$batchValue = 0;
+		$batchSize = $this->getBatchSize();
+
+		$collationNameStore = new NameTableStore(
+			$this->getServiceContainer()->getDBLoadBalancer(),
+			$this->getServiceContainer()->getMainWANObjectCache(),
+			LoggerFactory::getInstance( 'SecondaryDataUpdate' ),
+			'collation',
+			'collation_id',
+			'collation_name'
+		);
+		do {
+			$this->output( "Selecting next $batchSize pages from cl_from = $batchValue... " );
+
+			$res = $this->dbw->newSelectQueryBuilder()
+				->select( [ 'cl_collation' ] )
+				->distinct()
+				->from( 'categorylinks' )
+				->where( [ 'cl_collation_id' => 0 ] )
+				->andWhere(
+					$this->dbw->expr( 'cl_from', '>=', $batchValue )
+						->and( 'cl_from', '<', $batchValue + $this->getBatchSize() )
+				)
+				->orderBy( 'cl_from' )
+				->caller( __METHOD__ )->fetchResultSet();
+			$this->output( "processing... " );
+
+			if ( $res->numRows() && !$this->dryRun ) {
+				foreach ( $res as $row ) {
+					$collationName = $row->cl_collation;
+					$collationId = $collationNameStore->acquireId( $collationName );
+					$this->dbw->newUpdateQueryBuilder()
+						->update( 'categorylinks' )
+						->set( [ 'cl_collation_id' => $collationId ] )
+						->where( [ 'cl_collation' => $collationName ] )
+						->andWhere(
+							$this->dbw->expr( 'cl_from', '>=', $batchValue )
+								->and( 'cl_from', '<', $batchValue + $this->getBatchSize() )
+						)
+						->caller( __METHOD__ )->execute();
+					$this->numRowsProcessed += $this->dbw->affectedRows();
+				}
+			}
+			$batchValue += $this->getBatchSize();
+
+			$this->output( "{$this->numRowsProcessed} done.\n" );
+		} while ( $maxPageId >= $batchValue );
+
+		if ( !$this->dryRun ) {
+			$this->output( "{$this->numRowsProcessed} rows processed\n" );
 		}
 	}
 }
