@@ -1,7 +1,7 @@
 /*!
  * MediaWiki Widgets - MediaResultWidget styles.
  *
- * @copyright 2011-2024 VisualEditor Team and others; see AUTHORS.txt
+ * @copyright 2011-2025 MediaWiki Widgets Team ; see AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
 
@@ -11,7 +11,7 @@
 	display: inline-block;
 	position: relative;
 	padding: 0;
-	margin: 2px;
+	margin: @spacing-12;
 	overflow: hidden;
 	box-sizing: border-box;
 	text-align: center;
@@ -42,17 +42,17 @@
 		bottom: 0;
 		left: 0;
 		right: 0;
-		box-shadow: inset 0 0 0 1px #c8ccd1;
+		box-shadow: @box-shadow-inset-small #c8ccd1;
 	}
 
 	&.oo-ui-optionWidget-highlighted,
 	&.oo-ui-optionWidget-selected {
-		box-shadow: 0 0 2px #36c;
+		box-shadow: 0 0 2px @box-shadow-color-progressive-selected;
 	}
 
 	&.oo-ui-optionWidget-highlighted &-overlay,
 	&.oo-ui-optionWidget-selected &-overlay {
-		box-shadow: inset 0 0 0 1px #36c;
+		box-shadow: @box-shadow-inset-small @box-shadow-color-progressive-selected;
 	}
 
 	&-error &-thumbnail {
@@ -68,8 +68,8 @@
 		left: 0;
 		right: 0;
 		overflow: hidden;
-		padding: 0.5em;
-		color: #fff;
+		padding: @spacing-50;
+		color: @color-inverted;
 		text-shadow: 1px 1px #000;
 		line-height: 1.125em;
 		background-color: rgba( 0, 0, 0, 0.5 );
@@ -87,5 +87,5 @@
 }
 
 .mw-widget-mediaSearchWidget-noresults {
-	padding-top: 1em;
+	padding-top: @spacing-100;
 }

@@ -1,12 +1,13 @@
+@import 'mediawiki.skin.variables.less';
 @import 'mediawiki.widgets.datetime.definitions';
 
 .mw-widgets-datetime-dateTimeInputWidget {
 	display: inline-block;
 	position: relative;
-	width: 100%;
+	width: @size-full;
 	// Hack: Set maximum width equivalent to DateInputWidgets calendar popup
 	max-width: 24.275em;
-	.oo-ui-inline-spacing( 0.5em );
+	.oo-ui-inline-spacing( @spacing-50 );
 	vertical-align: middle;
 
 	&-fields {
@@ -26,7 +27,7 @@
 		color: @color-base;
 		display: inline-block;
 		box-sizing: border-box;
-		width: 100%;
+		width: @size-full;
 		height: @size-base;
 		border: @border-base;
 		border-radius: @border-radius-base;
@@ -63,7 +64,7 @@
 	}
 
 	&.oo-ui-indicatorElement .mw-widgets-datetime-dateTimeInputWidget-handle {
-		padding-right: @min-size-indicator + 2 * @padding-horizontal-input-text;
+		padding-right: @min-size-icon-x-small + 2 * @padding-horizontal-input-text;
 	}
 
 	&-field {
@@ -86,7 +87,7 @@
 			cursor: pointer;
 		}
 
-		// Day field & time zome field, f.e. “Sat” & “Z”
+		// Day field & time zone field, f.e. “Sat” & “Z”
 		&[ tabindex='-1' ] {
 			// Support: Firefox, Chrome
 			outline: 0;
