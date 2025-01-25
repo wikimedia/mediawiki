@@ -11,7 +11,7 @@ Example override:
 
 $overrides['LocalSettingsGenerator'] = 'MyLocalSettingsGenerator';
 
-class MyLocalSettingsGenerator extends LocalSettingsGenerator {
+class MyLocalSettingsGenerator extends MediaWiki\Installer\LocalSettingsGenerator {
 	function getText() {
 		// Modify an existing setting
 		$this->values['wgDefaultSkin'] = 'vector';
