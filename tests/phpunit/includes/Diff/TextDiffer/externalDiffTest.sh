@@ -1,8 +1,8 @@
 #!/bin/sh
 
-printf '%s' '- '
-cat $1
+echo -n '- '
+cat "$1"
 echo
-printf "+ "
-cat $2
+echo -n '+ '
+cat "$2"
 echo
