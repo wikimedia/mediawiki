@@ -2,7 +2,7 @@
     "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
     "bomFormat": "CycloneDX",
     "specVersion": "1.6",
-    "serialNumber": "urn:uuid:06388587-ce12-40b5-b53d-6fe95057a90c",
+    "serialNumber": "urn:uuid:f652f396-456d-4c72-b479-b7812dfcf768",
     "version": 1,
     "components": [
         {
@@ -496,7 +496,7 @@
         {
             "type": "library",
             "name": "qunitjs",
-            "version": "2.23.1",
+            "version": "2.24.1",
             "licenses": [
                 {
                     "license": {

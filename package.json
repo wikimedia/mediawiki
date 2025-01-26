@@ -47,7 +47,7 @@
 		"karma-mocha-reporter": "2.2.5",
 		"karma-qunit": "4.2.0",
 		"pinia": "2.0.16",
-		"qunit": "2.23.1",
+		"qunit": "2.24.1",
 		"stylelint-config-wikimedia": "0.18.0",
 		"svgo": "3.2.0",
 		"vue": "3.5.13",
