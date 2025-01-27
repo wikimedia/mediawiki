@@ -493,8 +493,8 @@ abstract class File implements MediaHandlerState {
 		if ( !$this->fsFile ) {
 			$timer = MediaWikiServices::getInstance()->getStatsFactory()
 				->getTiming( 'media_thumbnail_generate_fetchoriginal_seconds' )
-				->copyToStatsdAt( 'media.thumbnail.generate.fetchoriginal' );
-			$timer->start();
+				->copyToStatsdAt( 'media.thumbnail.generate.fetchoriginal' )
+				->start();
 
 			$this->fsFile = $this->repo->getLocalReference( $this->getPath() );
 
@@ -1366,8 +1366,8 @@ abstract class File implements MediaHandlerState {
 			// Copy the thumbnail from the file system into storage...
 
 			$timer = $statsFactory->getTiming( 'media_thumbnail_generate_store_seconds' )
-				->copyToStatsdAt( 'media.thumbnail.generate.store' );
-			$timer->start();
+				->copyToStatsdAt( 'media.thumbnail.generate.store' )
+				->start();
 
 			wfDebug( __METHOD__ . ": copying $tmpThumbPath to $thumbPath" );
 			$disposition = $this->getThumbDisposition( $thumbName );

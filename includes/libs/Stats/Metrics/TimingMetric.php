@@ -46,23 +46,27 @@ class TimingMetric implements MetricInterface {
 	private ?float $startTime = null;
 
 	/**
-	 * Starts a timer.
+	 * Start the timer.
 	 *
 	 * Example:
 	 *
 	 * ```php
-	 * $timer = StatsFactory->getTiming(…);
-	 * $timer->start();
+	 * $timer = StatsFactory->getTiming( 'example_seconds' )
+	 *     ->setLabel( 'foo', 'bar' )
+	 *     ->start();
 	 * # work to be measured...
 	 * $timer->stop();
 	 * ```
+	 *
+	 * @return $this
 	 */
-	public function start(): void {
+	public function start() {
 		$this->startTime = hrtime( true );
+		return $this;
 	}
 
 	/**
-	 * Stops a running timer.
+	 * Stop the running timer.
 	 */
 	public function stop(): void {
 		if ( $this->startTime === null ) {
