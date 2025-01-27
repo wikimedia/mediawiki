@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.51.4
+ * OOUI v0.51.5
  * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2024 OOUI Team and other contributors.
+ * Copyright 2011–2025 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-12-05T17:34:41Z
+ * Date: 2025-01-27T06:58:12Z
  */
 ( function ( OO ) {
 
@@ -6264,7 +6264,7 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 							// If that also causes it to be clipped, open in whichever direction
 							// we have more space
 							const oppositeHeight = this.$element.height();
-							if ( oppositeHeight < normalHeight ) {
+							if ( oppositeHeight <= normalHeight ) {
 								this.isAutoFlipped = !this.isAutoFlipped;
 								this.position();
 							}
@@ -6287,7 +6287,7 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 							// If that also causes it to be clipped, open in whichever direction
 							// we have more space
 							const oppositeWidth = this.$element.width();
-							if ( oppositeWidth < normalWidth ) {
+							if ( oppositeWidth <= normalWidth ) {
 								this.isAutoFlipped = !this.isAutoFlipped;
 								// Due to T180173, horizontally clipped PopupWidgets have messed up
 								// dimensions, which causes positioning to be off. Toggle clipping
@@ -8828,7 +8828,7 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 					// If flipping also causes it to be clipped, open in whichever direction
 					// we have more space
 					const flippedHeight = this.$element.height();
-					if ( originalHeight > flippedHeight ) {
+					if ( originalHeight >= flippedHeight ) {
 						this.setVerticalPosition( this.originalVerticalPosition );
 					}
 				}
@@ -11573,7 +11573,7 @@ OO.mixinClass( OO.ui.TextInputWidget, OO.ui.mixin.RequiredElement );
 /* Static Properties */
 
 OO.ui.TextInputWidget.static.validationPatterns = {
-	'non-empty': /.+/,
+	'non-empty': /^./,
 	integer: /^\d+$/
 };
 
@@ -14469,18 +14469,17 @@ OO.ui.SelectFileInputWidget.prototype.filterFiles = function ( files ) {
 			return true;
 		}
 
-		for ( let i = 0; i < accept.length; i++ ) {
-			let mimeTest = accept[ i ];
-			if ( mimeTest === mimeType ) {
+		return accept.some( ( acceptedType ) => {
+			if ( acceptedType === mimeType ) {
 				return true;
-			} else if ( mimeTest.slice( -2 ) === '/*' ) {
-				mimeTest = mimeTest.slice( 0, mimeTest.length - 1 );
-				if ( mimeType.slice( 0, mimeTest.length ) === mimeTest ) {
+			} else if ( acceptedType.slice( -2 ) === '/*' ) {
+				// e.g. 'image/*'
+				if ( mimeType.startsWith( acceptedType.slice( 0, -1 ) ) ) {
 					return true;
 				}
 			}
-		}
-		return false;
+			return false;
+		} );
 	}
 
 	return Array.prototype.filter.call( files, mimeAllowed );

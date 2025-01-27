@@ -25,6 +25,7 @@
 				"default": "../wikimediaui/images/icons/bold-a.svg",
 				"lang": {
 					"ar": "../wikimediaui/images/icons/bold-arab-ain.svg",
+					"az": "../wikimediaui/images/icons/bold-q.svg",
 					"be": "../wikimediaui/images/icons/bold-cyrl-te.svg",
 					"ce": "../wikimediaui/images/icons/bold-cyrl-palochka.svg",
 					"cs,en,he,ml,pl,sco": "../wikimediaui/images/icons/bold-b.svg",
@@ -51,7 +52,7 @@
 				"lang": {
 					"ar": "../wikimediaui/images/icons/italic-arab-meem.svg",
 					"cs,en,fr,he,ml,pl,pt,sco": "../wikimediaui/images/icons/italic-i.svg",
-					"be,ce,da,de,fi,ky,nn,no,os,sv,ru,uk": "../wikimediaui/images/icons/italic-k.svg",
+					"az,be,ce,da,de,fi,ky,nn,no,os,sv,ru,uk": "../wikimediaui/images/icons/italic-k.svg",
 					"es,gl,it,nl": "../wikimediaui/images/icons/italic-c.svg",
 					"eu": "../wikimediaui/images/icons/italic-e.svg",
 					"fa": "../wikimediaui/images/icons/italic-arab-keheh-jeem.svg",

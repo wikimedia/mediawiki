@@ -1,5 +1,34 @@
 # OOUI Release History
 
+## v0.51.5 / 2025-01-24
+
+### Styles
+* Update checkbox and radio hover states to match Codex (Ed Sanders)
+* WikimediaUI theme: Fix tool group borders on dark mode (Taavi Väänänen)
+* styles: Remove obsolete IE & Edge 12-18 proprietary CSS (Volker E.)
+
+### Icons
+* icons: Add localised 'bold' and 'italic' for Azerbaijani (James D. Forrester)
+* icons: Minor SVG optimization in the Wikiquote logo (Thiemo Kreuz)
+* icons: add 'arrowDown' and 'arrowUp' icons (lwatson)
+* icons: update SVG image of 'linkExternal' icon (lwatson)
+
+### Code
+* PopupWidget: When autoflipped and there's no space, open in original direction (Bartosz Dziewoński)
+* SelectFileInputWidget: Simplify filterFiles logic (Ed Sanders)
+* TagMultiselectWidget: Improve `allowReordering: false` (Bartosz Dziewoński)
+* TextInputWidget.validationPatterns: Use cheaper regex pattern for non-empty check (Thiemo Kreuz)
+* Toggle off the menu when the tag limit is reached (Func)
+* Toggle the modal-active-fullscreen class when changing the size (Func)
+* php: Replace isset() with null check in InputWidget::setDisabled (Umherirrender)
+* .nvmrc: Update now that CI is using Node 20 (James D. Forrester)
+* build, .nvmrc: Bump Node version to 20.18.1 (Jon Robson)
+* build: Updating mediawiki/mediawiki-phan-config to 0.15.0 ([BOT] libraryupgrader)
+* build: Updating mediawiki/mediawiki-phan-config to 0.15.1 ([BOT] libraryupgrader)
+* build: Upgrade stylelint-config-wikimedia from 0.17.2 to 0.18.0 (James D. Forrester)
+* demos: Remove the extra frame from the CopyTextLayout demo (Func)
+* license: Bump year to 2025 (Volker E.)
+
 ## v0.51.4 / 2024-12-05
 
 ### Code

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.51.4
+ * OOUI v0.51.5
  * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2024 OOUI Team and other contributors.
+ * Copyright 2011–2025 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-12-05T17:34:44Z
+ * Date: 2025-01-27T06:58:16Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -28,7 +28,6 @@
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 .oo-ui-buttonElement > .oo-ui-buttonElement-button::-moz-focus-inner {
@@ -786,7 +785,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   clip: auto;
   margin: 0;
@@ -807,7 +805,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   clip: auto;
   margin: 0;
@@ -940,7 +937,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 .oo-ui-popupWidget-head > .oo-ui-labelElement-label {
@@ -1237,7 +1233,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 .oo-ui-textInputWidget .oo-ui-inputWidget-input {
@@ -1406,7 +1401,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   box-sizing: border-box;
 }
@@ -1767,7 +1761,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 .oo-ui-selectFileInputWidget.oo-ui-selectFileInputWidget-empty.oo-ui-widget-disabled.oo-ui-selectFileInputWidget-dropTarget,
@@ -1887,7 +1880,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 .oo-ui-toggleWidget-off .oo-ui-toggleSwitchWidget-glow {

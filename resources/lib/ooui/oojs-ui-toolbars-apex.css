@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.51.4
+ * OOUI v0.51.5
  * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2024 OOUI Team and other contributors.
+ * Copyright 2011–2025 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-12-05T17:34:44Z
+ * Date: 2025-01-27T06:58:16Z
  */
 .oo-ui-tool > .oo-ui-tool-link > .oo-ui-tool-checkIcon {
   display: none;
@@ -454,7 +454,6 @@
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 .oo-ui-toolbar-tools {
@@ -475,7 +474,6 @@
   -webkit-touch-callout: default;
   -webkit-user-select: text;
   -moz-user-select: text;
-  -ms-user-select: text;
   user-select: text;
 }
 .oo-ui-toolbar-narrow .oo-ui-toolbar-tools,
@@ -497,7 +495,6 @@
   -webkit-touch-callout: default;
   -webkit-user-select: text;
   -moz-user-select: text;
-  -ms-user-select: text;
   user-select: text;
 }
 .oo-ui-toolbar-bar {
