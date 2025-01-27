@@ -4,6 +4,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\NullSpi;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Stats\StatsFactory;
+use Wikimedia\Telemetry\NoopTracer;
 
 /**
  * @covers \ObjectCacheFactory
@@ -16,7 +17,8 @@ class ObjectCacheFactoryTest extends MediaWikiUnitTestCase {
 			new NullSpi(),
 			static function () {
 			},
-			'testWikiId'
+			'testWikiId',
+			new NoopTracer()
 		);
 	}
 

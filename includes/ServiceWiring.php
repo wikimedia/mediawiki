@@ -1424,7 +1424,8 @@ return [
 			static function () use ( $services ) {
 				return $services->getDBLoadBalancerFactory();
 			},
-			WikiMap::getCurrentWikiDbDomain()->getId()
+			WikiMap::getCurrentWikiDbDomain()->getId(),
+			$services->getTracer()
 		);
 	},
 
