@@ -13,6 +13,7 @@ use MediaWikiIntegrationTestCase;
 /**
  * @group Blocking
  * @group Database
+ * @covers \MediaWiki\Block\UnblockUser
  */
 class UnblockUserTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;
@@ -33,9 +34,6 @@ class UnblockUserTest extends MediaWikiIntegrationTestCase {
 		$this->blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 	}
 
-	/**
-	 * @covers \MediaWiki\Block\UnblockUser::unblock
-	 */
 	public function testValidUnblock() {
 		$performer = $this->mockRegisteredUltimateAuthority();
 		$block = new DatabaseBlock( [
@@ -60,9 +58,6 @@ class UnblockUserTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers \MediaWiki\Block\UnblockUser::unblock
-	 */
 	public function testUnblockFailWithHideName() {
 		$performer = $this->getTestUser( [ 'sysop' ] )->getUser();
 		$block = new DatabaseBlock( [
@@ -79,9 +74,6 @@ class UnblockUserTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusError( 'unblock-hideuser', $status );
 	}
 
-	/**
-	 * @covers \MediaWiki\Block\UnblockUser::unblockUnsafe
-	 */
 	public function testNotBlocked() {
 		$this->user = User::newFromName( $this->user->getName() ); // Reload the user object
 		$status = $this->unblockUserFactory->newUnblockUser(
@@ -92,9 +84,6 @@ class UnblockUserTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusError( 'ipb_cant_unblock', $status );
 	}
 
-	/**
-	 * @covers \MediaWiki\Block\UnblockUser::unblockUnsafe
-	 */
 	public function testUnblockUnsafeWithSpecificBlock() {
 		$performer = $this->getTestUser( [ 'sysop' ] )->getUser();
 		$block = new DatabaseBlock( [
@@ -113,10 +102,6 @@ class UnblockUserTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusOK( $status );
 	}
 
-	/**
-	 * @covers \MediaWiki\Block\UnblockUser::unblock
-	 * @covers \MediaWiki\Block\UnblockUser::unblockUnsafe
-	 */
 	public function testUnblockWithMultipleBlocks() {
 		$performer = $this->getTestUser( [ 'sysop' ] )->getUser();
 		$block = new DatabaseBlock( [
@@ -139,5 +124,22 @@ class UnblockUserTest extends MediaWikiIntegrationTestCase {
 			'test'
 		)->unblockUnsafe();
 		$this->assertStatusError( 'ipb_cant_unblock_multiple_blocks', $status );
+	}
+
+	/**
+	 * Regression test for T384716.
+	 * A user can always remove a block that they created.
+	 */
+	public function testRemoveSelfImposedBlock() {
+		$performer = $this->getTestUser( [ 'sysop' ] )->getUser();
+		$block = new DatabaseBlock( [
+			'address' => $performer->getName(),
+			'by' => $performer->getUser(),
+		] );
+		$this->blockStore->insertBlock( $block );
+		$status = $this->unblockUserFactory
+			->newRemoveBlock( $block, $performer, '' )
+			->unblock();
+		$this->assertStatusOK( $status );
 	}
 }

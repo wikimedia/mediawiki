@@ -89,11 +89,6 @@ class UnblockUser {
 		array $tags = []
 	) {
 		// Process dependencies
-		$this->blockPermissionChecker = $blockPermissionCheckerFactory
-			->newBlockPermissionChecker(
-				$target,
-				$performer
-			);
 		$this->blockStore = $blockStore;
 		$this->blockUtils = $blockUtils;
 		$this->userFactory = $userFactory;
@@ -115,6 +110,12 @@ class UnblockUser {
 				$this->target = '#' . $this->target;
 			}
 		}
+
+		$this->blockPermissionChecker = $blockPermissionCheckerFactory
+			->newBlockPermissionChecker(
+				$this->target,
+				$performer
+			);
 
 		$this->performer = $performer;
 		$this->reason = $reason;

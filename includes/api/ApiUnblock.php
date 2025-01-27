@@ -114,7 +114,8 @@ class ApiUnblock extends ApiBase {
 			if ( $blockToRemove->getType() === AbstractBlock::TYPE_AUTO ) {
 				$target = '#' . $params['id'];
 			} else {
-				$target = $blockToRemove->getTargetName();
+				$target = $blockToRemove->getTargetUserIdentity()
+					?? $blockToRemove->getTargetName();
 			}
 		} else {
 			$target = $params['user'];
