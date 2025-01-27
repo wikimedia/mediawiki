@@ -179,6 +179,7 @@
 				source: data.source
 			} );
 		} );
+		this.suppressWarnings(); // Skipped unavailable module
 
 		mw.loader.load( 'test.load.circleC' );
 		assert.deepEqual(
@@ -202,6 +203,7 @@
 				source: data.source
 			} );
 		} );
+		this.suppressWarnings(); // Skipped unavailable module
 
 		mw.loader.load( 'test.load.circleDirect' );
 		assert.deepEqual(
@@ -246,6 +248,7 @@
 				source: data.source
 			} );
 		} );
+		this.suppressWarnings(); // Skipped unavailable module
 
 		mw.loader.register( [
 			[ 'test.load.missingdep1', '0', [ 'test.load.missingdep2' ] ],
