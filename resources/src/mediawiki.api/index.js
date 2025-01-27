@@ -84,8 +84,9 @@
 		this.requests = [];
 	};
 
-	function mapLegacyToken( action ) {
-		// Legacy types for backward-compatibility with API action=tokens.
+	function normalizeTokenType( type ) {
+		// Aliases for types that mw.Api has always supported,
+		// based on how action=tokens worked previously (T280806).
 		const csrfActions = [
 			'edit',
 			'delete',
@@ -97,12 +98,10 @@
 			'import',
 			'options'
 		];
-		if ( csrfActions.indexOf( action ) !== -1 ) {
-			mw.track( 'mw.deprecate', 'apitoken_' + action );
-			mw.log.warn( 'Use of the "' + action + '" token is deprecated. Use "csrf" instead.' );
+		if ( csrfActions.indexOf( type ) !== -1 ) {
 			return 'csrf';
 		}
-		return action;
+		return type;
 	}
 
 	function createTokenCache() {
@@ -467,7 +466,7 @@
 		 * @return {mw.Api~AbortablePromise<string>} Received token.
 		 */
 		getToken: function ( type, additionalParams, ajaxOptions ) {
-			type = mapLegacyToken( type );
+			type = normalizeTokenType( type );
 			if ( typeof additionalParams === 'string' ) {
 				additionalParams = { assert: additionalParams };
 			}
@@ -528,7 +527,7 @@
 		badToken: function ( type ) {
 			const promiseGroup = promises[ this.defaults.ajax.url ];
 
-			type = mapLegacyToken( type );
+			type = normalizeTokenType( type );
 			if ( promiseGroup ) {
 				delete promiseGroup[ type + 'Token' ];
 			}

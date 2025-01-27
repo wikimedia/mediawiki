@@ -197,7 +197,7 @@ QUnit.module( 'mediawiki.api', ( hooks ) => {
 		assert.strictEqual( this.server.requests.length, 1, 'Requests made' );
 	} );
 
-	QUnit.test( 'getToken() - error', async function ( assert ) {
+	QUnit.test( 'getToken() [api error]', async function ( assert ) {
 		const api = new mw.Api();
 
 		this.server.respondWith( /type=testerror/, sequenceBodies( 200, { 'Content-Type': 'application/json' },
@@ -214,7 +214,7 @@ QUnit.module( 'mediawiki.api', ( hooks ) => {
 		assert.strictEqual( token, 'good', 'The token' );
 	} );
 
-	QUnit.test( 'getToken() - no query', async function ( assert ) {
+	QUnit.test( 'getToken() [no query error]', async function ( assert ) {
 		const api = new mw.Api();
 		// Same-origin warning and missing query in response.
 		const serverRsp = {
@@ -235,7 +235,7 @@ QUnit.module( 'mediawiki.api', ( hooks ) => {
 		assert.deepEqual( rspParam, serverRsp, 'response' );
 	} );
 
-	QUnit.test( 'getToken() - deprecated', async function ( assert ) {
+	QUnit.test( 'getToken() [alias]', async function ( assert ) {
 		// Cache API endpoint from default to avoid cachehit in mw.user.tokens
 		const api = new mw.Api( { ajax: { url: '/postWithToken/api.php' } } );
 
@@ -243,14 +243,14 @@ QUnit.module( 'mediawiki.api', ( hooks ) => {
 			'{ "query": { "tokens": { "csrftoken": "csrfgood" } } }'
 		] );
 
-		// Get a token of a type that is in the legacy map.
+		// Try a type aliased by normalizeTokenType().
 		const token = await api.getToken( 'email' );
 		assert.strictEqual( token, 'csrfgood', 'Token' );
 
 		assert.strictEqual( this.server.requests.length, 1, 'Requests made' );
 	} );
 
-	QUnit.test( 'badToken()', async function ( assert ) {
+	QUnit.test( 'badToken() [custom]', async function ( assert ) {
 		const api = new mw.Api();
 
 		this.server.respondWith( /type=testbad/, sequenceBodies( 200, { 'Content-Type': 'application/json' },
@@ -268,7 +268,7 @@ QUnit.module( 'mediawiki.api', ( hooks ) => {
 		assert.strictEqual( this.server.requests.length, 2, 'Requests made' );
 	} );
 
-	QUnit.test( 'badToken( legacy )', async function ( assert ) {
+	QUnit.test( 'badToken() [alias]', async function ( assert ) {
 		const api = new mw.Api( { ajax: { url: '/badTokenLegacy/api.php' } } );
 
 		this.server.respondWith( /type=csrf/, sequenceBodies( 200, { 'Content-Type': 'application/json' },
