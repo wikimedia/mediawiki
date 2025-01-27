@@ -1130,7 +1130,7 @@
 	"duration-minutes": "$1{{PLURAL:$1|minuto|minutos}}",
 	"duration-hours": "$1{{PLURAL:$1|ora|oras}}",
 	"duration-days": "$1{{PLURAL:$1|diya|diyas}}",
-	"duration-weeks": "$1{{PLURAL:$1|semana|semanas}}",
+	"duration-weeks": "$1 {{PLURAL:$1|semana|semanas}}",
 	"duration-years": "$1{{PLURAL:$1|anyo|anyos}}",
 	"duration-decades": "$1{{PLURAL:$1|syekolo|syekolos}}",
 	"duration-centuries": "$1{{PLURAL:$1|syekolo|syekolos}}",

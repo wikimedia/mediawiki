@@ -1091,6 +1091,8 @@
 	"recentchangeslinked-summary": "دخل سمية الصفحة باش تشوف التبديلات ف الصفاحي المربوطة من و ل ديك الصفحة. (باش تشوف الصفاحي تحت شي تصنيف، دخل {{ns:category}}:سمية التصنيف). التغييرات فالصفاحي لي كاينين ف[[Special:Watchlist|الليستة د التتبع]] ديالك مكتوبين ب خط <strong>غليض</strong>.",
 	"recentchangeslinked-page": "سميت الصفحة:",
 	"recentchangeslinked-to": "شوف التغييرات ديال الصفحات لي كاين الرابط ديالهم فالصفحة لي بغيتي",
+	"recentchanges-page-added-to-category": "[[:$1]] تزادت ل التصنيف",
+	"recentchanges-page-removed-from-category": "تحيّدات [[:$1]] من التصنيف",
 	"upload": "طلّع فيشي",
 	"uploadbtn": "طلّع فيشي",
 	"reuploaddesc": "إلغاء الرفع والرجوع لاستمارة الرفع",

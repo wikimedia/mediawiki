@@ -1196,7 +1196,7 @@
 	"apihelp-query+siteinfo-example-simple": "Websiteinformationen abrufen",
 	"apihelp-query+siteinfo-example-interwiki": "Holt eine Liste der lokalen Interwiki-Präfixe.",
 	"apihelp-query+siteinfo-example-replag": "Überprüfe die aktuelle Replikationsverzögerung.",
-	"apihelp-query+stashimageinfo-summary": "Gibt Dateiinformationen für versteckte Dateien zurück.",
+	"apihelp-query+stashimageinfo-summary": "Gibt Dateiinformationen für vorher gespeicherte Dateien zurück.",
 	"apihelp-query+stashimageinfo-param-filekey": "Schlüssel, der einen früheren Upload identifiziert, der vorübergehend zwischengespeichert wurde.",
 	"apihelp-query+stashimageinfo-param-sessionkey": "Alias für $1filekey, für die Rückwärtskompatibilität.",
 	"apihelp-query+stashimageinfo-example-simple": "Gibt Informationen für eine gespeicherte Datei zurück.",

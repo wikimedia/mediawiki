@@ -3769,7 +3769,7 @@
 	"duration-hours": "$1 {{PLURAL:$1|uur|uren}}",
 	"duration-days": "$1 {{PLURAL:$1|dag|dagen}}",
 	"duration-weeks": "$1 {{PLURAL:$1|week|weken}}",
-	"duration-years": "$1 {{PLURAL:$1|jaar|jaar}}",
+	"duration-years": "$1 {{PLURAL:$1|jaar}}",
 	"duration-decades": "$1 {{PLURAL:$1|decennium|decennia}}",
 	"duration-centuries": "$1 {{PLURAL:$1|eeuw|eeuwen}}",
 	"duration-millennia": "$1 {{PLURAL:$1|millennium|millennia}}",

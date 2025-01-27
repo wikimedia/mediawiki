@@ -3559,7 +3559,7 @@
 	"rotate-comment": "$1 {{PLURAL:$1|Градусаар}} дүрсэ зураг сагай стрелкээр эрьюулээтэй",
 	"limitreport-title": "Анализаторай баримтанууд:",
 	"limitreport-cputime": "Процессорай саг хэрэглэлгэ",
-	"limitreport-cputime-value": "$1 {{PLURAL:$1|секундэ|секундэнүүд|}}",
+	"limitreport-cputime-value": "$1 {{PLURAL:$1|секундэ|секундэнүүд}}",
 	"limitreport-walltime": "Байгша сагай гурим соо хэрэглэлгэ",
 	"limitreport-walltime-value": "$1 {{PLURAL:$1|секундэ|секундэнүүд}}",
 	"limitreport-ppvisitednodes": "Препроцессороор ороһон уялаануудай тоо",
