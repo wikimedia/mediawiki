@@ -14,7 +14,17 @@
 	 * @private
 	 * @type {mw.Api.Options}
 	 */
-	let defaultOptions = null;
+	const defaultOptions = {
+		parameters: {
+			action: 'query',
+			format: 'json'
+		},
+		ajax: {
+			url: mw.util.wikiScript( 'api' ),
+			timeout: 30 * 1000, // 30 seconds
+			dataType: 'json'
+		}
+	};
 
 	/**
 	 * @classdesc Interact with the MediaWiki API. `mw.Api` is a client library for
@@ -72,22 +82,6 @@
 
 		this.defaults = defaults;
 		this.requests = [];
-	};
-
-	/**
-	 * @private
-	 * @type {mw.Api.Options}
-	 */
-	defaultOptions = {
-		parameters: {
-			action: 'query',
-			format: 'json'
-		},
-		ajax: {
-			url: mw.util.wikiScript( 'api' ),
-			timeout: 30 * 1000, // 30 seconds
-			dataType: 'json'
-		}
 	};
 
 	function mapLegacyToken( action ) {
