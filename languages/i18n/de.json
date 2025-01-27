@@ -2768,7 +2768,7 @@
 	"ipb-otherblocks-header": "Andere {{PLURAL:$1|Sperre|Sperren}}",
 	"unblock-hideuser": "Dieser Benutzer kann nicht entsperrt werden, da sein Benutzername versteckt wurde.",
 	"ipb_cant_unblock": "Fehler: Sperre für $1 nicht gefunden. Möglicherweise wurde sie bereits aufgehoben.",
-	"ipb_cant_unblock_multiple_blocks": "Fehler: Für diesen Benutzer sind $1 Sperren mit den IDs $2 vorhanden.",
+	"ipb_cant_unblock_multiple_blocks": "Fehler: Für diesen Benutzer {{PLURAL:$1|ist eine Sperre|sind $1 Sperren}} mit den IDs $2 vorhanden.",
 	"ipb_blocked_as_range": "Fehler: Die IP-Adresse $1 wurde als Teil der Bereichssperre $2 indirekt gesperrt. Eine Entsperrung von $1 alleine ist nicht möglich.",
 	"ip_range_invalid": "Ungültiger IP-Adressbereich.",
 	"ip_range_toolarge": "Adressbereiche, die größer als /$1 sind, sind nicht erlaubt.",

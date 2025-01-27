@@ -2370,7 +2370,7 @@
 	"ipb-otherblocks-header": "Aner  {{PLURAL:$1|Spär|Spären}}",
 	"unblock-hideuser": "D'Spär vun dësem Benotzer kann net vun Iech opgehuewe gi well dee Benotzernumm verstoppt gouf.",
 	"ipb_cant_unblock": "Feeler: D'Spär fir $1 gouf net fonnt. D'Spär kéint schonn opgehuewe sinn.",
-	"ipb_cant_unblock_multiple_blocks": "Feeler: Fir dëse Benotzer gëtt et $1 Späre mat den IDen $2.",
+	"ipb_cant_unblock_multiple_blocks": "Feeler: Fir dëse Benotzer gëtt et $1 {{PLURAL:$1|Spär|Späre}} mat {{PLURAL:$2|der ID|den IDen}} $2.",
 	"ipb_blocked_as_range": "Feeler: D'IP-Adress $1 gouf net direkt gespaart an déi Spär kann dofir och net opghuewe ginn.\nSi ass awer als Deel vun der Rei $2 gespaart, an dës Spär kann opgehuewe ginn.",
 	"ip_range_invalid": "Ongëltegen IP Block.",
 	"ip_range_toolarge": "Späre vu Beräicher déi méi grouss wéi /$1 si sinn net erlaabt.",

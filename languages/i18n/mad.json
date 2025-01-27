@@ -3,6 +3,7 @@
 		"authors": [
 			"ANukuma",
 			"Abdiafrizal",
+			"Bennylin",
 			"Boesenbergia",
 			"Munajad.MH",
 			"NoiX180"
@@ -270,7 +271,7 @@
 	"userlogin-noaccount": "Ghi' ta' anḍi' akun?",
 	"userlogin-joinproject": "Noro' {{SITENAME}}",
 	"createaccount": "Ghâbây akun",
-	"userlogin-resetpassword-link": "Loppa ka oca' sanḍhi?",
+	"userlogin-resetpassword-link": "Loppa ka oca' sanḍi?",
 	"userlogin-helplink2": "Bhântowan mon alebbhuwâ",
 	"createacct-emailoptional": "Alamat sorasa/email",
 	"createacct-email-ph": "Sabâ' alamat sorasa/email-la Dhika",

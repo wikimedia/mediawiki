@@ -2701,6 +2701,7 @@
 	"ipb-otherblocks-header": "{{PLURAL:$1|Annen blokkering|Andre blokkeringer}}",
 	"unblock-hideuser": "Du kan ikke løfte blokkeringen av denne brukeren siden dens brukernavn har blitt skjult.",
 	"ipb_cant_unblock": "Feil: Blokkering for $1 ikke funnet. Den kan ha blitt fjernet allerede.",
+	"ipb_cant_unblock_multiple_blocks": "Feil: Denne brukeren har $1 {{PLURAL:$1|blokkering|blokkeringer}} med {{PLURAL:$1|ID|ID-ene}}: $2.",
 	"ipb_blocked_as_range": "Feil: IP-en $1 er ikke blokkert direkte, og kan ikke avblokkeres. Den er imidlertid blokkert som del av blokkeringa av IP-rangen $2, som kan avblokkeres.",
 	"ip_range_invalid": "Ugyldig IP-rad.",
 	"ip_range_toolarge": "Blokkering av IP-serier større enn /$1 er ikke tillatt.",
