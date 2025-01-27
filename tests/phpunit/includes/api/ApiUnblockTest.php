@@ -129,6 +129,16 @@ class ApiUnblockTest extends ApiTestCase {
 		$this->doUnblock( [ 'user' => $this->blocker->getName() ] );
 	}
 
+	public function testUnblockSelfByIdWhenBlocked() {
+		$result = $this->insertBlock( [
+			'address' => $this->blocker->getName(),
+			'by' => $this->getTestUser( 'sysop' )->getUser(),
+		] );
+		$this->assertNotFalse( $result, 'Could not insert block' );
+
+		$this->doUnblock( [ 'id' => $result['id'] ] );
+	}
+
 	public function testUnblockWithTagNewBackend() {
 		$this->getServiceContainer()->getChangeTagsStore()->defineTag( 'custom tag' );
 
