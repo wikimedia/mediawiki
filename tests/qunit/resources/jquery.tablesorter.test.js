@@ -803,7 +803,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		}
 	);
 
-	QUnit.test( 'Rowspan invalid value (T265503)', ( assert ) => {
+	QUnit.test( 'Rowspan invalid value (T265503)', function ( assert ) {
 		const rowspanText = 'Row 1 col 3, Row 2 col 3, row 3 col 3 (but there is no row 3)';
 		const $table = $(
 			'<table class="sortable">' +
@@ -816,6 +816,8 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 				'<tr><td>Row 2 col 1</td><td>Row 2 col 2</td></tr>' +
 				'</table>'
 		);
+		this.suppressWarnings(); // sort-rowspan-error
+
 		$table.tablesorter();
 		$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
 		assert.strictEqual(
