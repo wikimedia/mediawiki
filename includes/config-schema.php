@@ -794,7 +794,7 @@ return [
 				'useSelser' => true,
 			],
 			'ParsoidFragmentSupport' => false,
-			'ParsoidNewTemplateExpansionMode' => false,
+			'ParsoidNewTemplateExpansionMode' => true,
 			'ParserEnableLegacyMediaDOM' => false,
 			'ParserEnableLegacyHeadingDOM' => false,
 			'UseContentMediaStyles' => false,

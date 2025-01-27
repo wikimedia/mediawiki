@@ -6611,7 +6611,7 @@ class MainConfigSchema {
 	 * @unstable EXPERIMENTAL
 	 */
 	public const ParsoidNewTemplateExpansionMode = [
-		'default' => false,
+		'default' => true,
 		'type' => 'boolean',
 	];
 	/**

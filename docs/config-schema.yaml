@@ -4213,7 +4213,7 @@ config-schema:
             tag content.
             @unstable EXPERIMENTAL
     ParsoidNewTemplateExpansionMode:
-        default: false
+        default: true
         type: boolean
         description: |-
             If set, Parsoid's DataAccess will pass a flag to the preprocessor
