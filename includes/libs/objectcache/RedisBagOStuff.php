@@ -68,6 +68,9 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 	 *     clear text. Optional, if it is unspecified, no AUTH command will be
 	 *     sent.
 	 *
+	 *   - prefix: A prefix that is transparently inserted before all keys.
+	 *     Optional, default is to not add any additional prefixes.
+	 *
 	 *   - automaticFailover: If this is false, then each key will be mapped to
 	 *     a single server, and if that server is down, any requests for that key
 	 *     will fail. If this is true, a connection failure will cause the client
@@ -81,7 +84,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 	public function __construct( $params ) {
 		parent::__construct( $params );
 		$redisConf = [ 'serializer' => 'none' ]; // manage that in this class
-		foreach ( [ 'connectTimeout', 'persistent', 'password' ] as $opt ) {
+		foreach ( [ 'connectTimeout', 'persistent', 'password', 'prefix' ] as $opt ) {
 			if ( isset( $params[$opt] ) ) {
 				$redisConf[$opt] = $params[$opt];
 			}
