@@ -25,6 +25,9 @@
 		}
 	},
 	"images": {
+		"arrowDown": {
+			"file": "images/icons/arrowDown.svg"
+		},
 		"arrowNext": {
 			"file": {
 				"ltr": "images/icons/arrowNext-ltr.svg",
@@ -36,6 +39,9 @@
 				"ltr": "images/icons/arrowPrevious-ltr.svg",
 				"rtl": "images/icons/arrowPrevious-rtl.svg"
 			}
+		},
+		"arrowUp": {
+			"file": "images/icons/arrowUp.svg"
 		},
 		"collapse": {
 			"file": "images/icons/collapse.svg"

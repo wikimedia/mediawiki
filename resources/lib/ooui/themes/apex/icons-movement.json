@@ -2,6 +2,9 @@
 	"prefix": "oo-ui-icon",
 	"intro": "@import '../../../../src/styles/common.less';",
 	"images": {
+		"arrowDown": {
+			"file": "../wikimediaui/images/icons/arrowDown.svg"
+		},
 		"arrowNext": {
 			"file": {
 				"ltr": "../wikimediaui/images/icons/arrowNext-ltr.svg",
@@ -13,6 +16,9 @@
 				"ltr": "../wikimediaui/images/icons/arrowPrevious-ltr.svg",
 				"rtl": "../wikimediaui/images/icons/arrowPrevious-rtl.svg"
 			}
+		},
+		"arrowUp": {
+			"file": "../wikimediaui/images/icons/arrowUp.svg"
 		},
 		"collapse": {
 			"file": "../wikimediaui/images/icons/collapse.svg"

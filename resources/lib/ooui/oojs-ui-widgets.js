@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.51.4
+ * OOUI v0.51.5
  * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2024 OOUI Team and other contributors.
+ * Copyright 2011–2025 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-12-05T17:34:41Z
+ * Date: 2025-01-27T06:58:12Z
  */
 ( function ( OO ) {
 
@@ -4301,11 +4301,6 @@ OO.ui.TagMultiselectWidget = function OoUiTagMultiselectWidget( config ) {
 	OO.ui.mixin.DraggableGroupElement.call( this, config );
 	OO.ui.mixin.TitledElement.call( this, config );
 
-	this.toggleDraggable(
-		config.allowReordering === undefined ?
-			true : !!config.allowReordering
-	);
-
 	this.inputPosition =
 		this.constructor.static.allowedInputPositions.indexOf( config.inputPosition ) > -1 ?
 			config.inputPosition : 'inline';
@@ -4316,8 +4311,11 @@ OO.ui.TagMultiselectWidget = function OoUiTagMultiselectWidget( config ) {
 	this.allowDisplayInvalidTags = config.allowDisplayInvalidTags;
 	this.hasInput = this.inputPosition !== 'none';
 	this.tagLimit = config.tagLimit;
+	this.allowReordering = config.allowReordering === undefined ? true : !!config.allowReordering;
 	this.height = null;
 	this.valid = true;
+
+	this.toggleDraggable( this.allowReordering );
 
 	this.$content = $( '<div>' ).addClass( 'oo-ui-tagMultiselectWidget-content' );
 	this.$handle = $( '<div>' )
@@ -4690,6 +4688,7 @@ OO.ui.TagMultiselectWidget.prototype.onTagFixed = function ( item ) {
 	}
 	this.addItems( [ item ], i );
 };
+
 /**
  * Respond to change event, where items were added, removed, or cleared.
  */
@@ -4924,7 +4923,27 @@ OO.ui.TagMultiselectWidget.prototype.addTag = function ( data, label ) {
 	if ( this.isUnderLimit() && ( isValid || this.allowDisplayInvalidTags ) ) {
 		const newItemWidget = this.createTagItemWidget( data, label );
 		newItemWidget.toggleValid( isValid );
-		this.addItems( [ newItemWidget ] );
+		newItemWidget.toggleDraggable( this.allowReordering );
+
+		let insertIndex = this.getItems().length;
+		if ( !this.allowReordering ) {
+			// Keep predefined allowed values in the order in which they were given
+			// (before any arbitrary values, if allowArbitrary is true)
+			const allowedIndex = this.getAllowedValues().indexOf( data );
+			if ( allowedIndex !== -1 ) {
+				insertIndex = 0;
+				for ( const [ itemIndex, item ] of this.getItems().entries() ) {
+					const itemAllowedIndex = this.getAllowedValues().indexOf( item.getData() );
+					if ( itemAllowedIndex !== -1 && itemAllowedIndex <= allowedIndex ) {
+						insertIndex = itemIndex + 1;
+					} else {
+						break;
+					}
+				}
+			}
+		}
+
+		this.addItems( [ newItemWidget ], insertIndex );
 		return true;
 	}
 
@@ -5443,9 +5462,11 @@ OO.ui.MenuTagMultiselectWidget.prototype.onInputFocus = function () {
 	// Parent method
 	OO.ui.MenuTagMultiselectWidget.super.prototype.onInputFocus.call( this );
 
-	this.menu.toggle( true );
-	if ( !valid ) {
-		this.menu.highlightItem();
+	if ( this.isUnderLimit() ) {
+		this.menu.toggle( true );
+		if ( !valid ) {
+			this.menu.highlightItem();
+		}
 	}
 };
 
@@ -5574,6 +5595,18 @@ OO.ui.MenuTagMultiselectWidget.prototype.setValue = function ( valueObject ) {
 			this.addTag( data, label );
 		}
 	} );
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.MenuTagMultiselectWidget.prototype.onChangeTags = function () {
+	// Parent method
+	OO.ui.MenuTagMultiselectWidget.super.prototype.onChangeTags.call( this );
+
+	if ( this.menu && !this.isUnderLimit() ) {
+		this.menu.toggle( false );
+	}
 };
 
 /**

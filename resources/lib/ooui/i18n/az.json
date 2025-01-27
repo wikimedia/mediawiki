@@ -2,14 +2,16 @@
 	"@metadata": {
 		"authors": [
 			"Cekli829",
+			"Gadir",
 			"Interfase",
 			"Jduranboger",
 			"NMW03",
 			"Nemoralis",
-			"Wertuose"
+			"Wertuose",
+			"Əkrəm Cəfər"
 		]
 	},
-	"ooui-copytextlayout-copy": "Kopyala",
+	"ooui-copytextlayout-copy": "Kopiyala",
 	"ooui-outline-control-move-down": "Elementi aşağı köçür",
 	"ooui-outline-control-move-up": "Elementi yuxarı köçür",
 	"ooui-outline-control-remove": "Elementi sil",
@@ -17,7 +19,7 @@
 	"ooui-toolgroup-expand": "Daha çox",
 	"ooui-toolgroup-collapse": "Daha az",
 	"ooui-item-remove": "Sil",
-	"ooui-dialog-message-accept": "Oldu",
+	"ooui-dialog-message-accept": "Bəli",
 	"ooui-dialog-message-reject": "İmtina",
 	"ooui-dialog-process-error": "Xəta baş verdi",
 	"ooui-dialog-process-dismiss": "Bağla",

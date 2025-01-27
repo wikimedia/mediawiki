@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.51.4
+ * OOUI v0.51.5
  * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2024 OOUI Team and other contributors.
+ * Copyright 2011–2025 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-12-05T17:34:41Z
+ * Date: 2025-01-27T06:58:12Z
  */
 ( function ( OO ) {
 
@@ -1703,6 +1703,13 @@ OO.ui.WindowManager.prototype.updateWindowSize = function ( win ) {
 	this.$element.toggleClass( 'oo-ui-windowManager-fullscreen', isFullscreen );
 	this.$element.toggleClass( 'oo-ui-windowManager-floating', !isFullscreen );
 
+	const $body = $( this.getElementDocument().body );
+	const stack = $body.data( 'windowManagerGlobalEvents' ) || [];
+	$body.add( $body.parent() ).toggleClass(
+		'oo-ui-windowManager-modal-active-fullscreen',
+		stack.some( ( w ) => w.getSize() === 'full' )
+	);
+
 	win.setDimensions( win.getSizeProperties() );
 
 	this.emit( 'resize', win );
@@ -1791,11 +1798,9 @@ OO.ui.WindowManager.prototype.toggleGlobalEvents = function ( on, win ) {
 		this.globalEvents = false;
 	}
 
-	if ( stack.length > 0 ) {
-		$bodyAndParent.addClass( 'oo-ui-windowManager-modal-active' );
-		$bodyAndParent.toggleClass( 'oo-ui-windowManager-modal-active-fullscreen', stack.some( ( w ) => w.getSize() === 'full' ) );
-	} else {
-		$bodyAndParent.removeClass( 'oo-ui-windowManager-modal-active oo-ui-windowManager-modal-active-fullscreen' );
+	$bodyAndParent.toggleClass( 'oo-ui-windowManager-modal-active', stack.length > 0 );
+	if ( stack.length === 0 ) {
+		$bodyAndParent.removeClass( 'oo-ui-windowManager-modal-active-fullscreen' );
 	}
 	$body.data( 'windowManagerGlobalEvents', stack );
 
