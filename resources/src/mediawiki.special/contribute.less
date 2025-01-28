@@ -55,25 +55,19 @@
 		padding-right: 8px;
 
 		&--article {
-			.cdx-mixin-css-icon(@cdx-icon-article);
+			.cdx-mixin-css-icon( @cdx-icon-article );
 		}
 
 		&--language {
-			.cdx-mixin-css-icon(@cdx-icon-language);
+			.cdx-mixin-css-icon( @cdx-icon-language );
 		}
 
 		&--upload {
-			.cdx-mixin-css-icon(@cdx-icon-upload);
+			.cdx-mixin-css-icon( @cdx-icon-upload );
 		}
 
 		&--lightbulb {
-			// This is required by the design but not available in the codex icon set
-			// so we use the info icon instead and override teh svg with the correct one
-			// we can replace the below with the correct icon once it is available in the codex set
-			// remove and replace with the below, when T346320 is resolved
-			//.cdx-mixin-css-icon(@cdx-icon-lightbulb);
-			.cdx-mixin-css-icon(@cdx-icon-info);
-			background-image: url( data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20" fill="%23202122"><path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7z"/></svg> );
+			.cdx-mixin-css-icon( @cdx-icon-lightbulb );
 		}
 	}
 
