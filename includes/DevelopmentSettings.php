@@ -187,3 +187,13 @@ $wgDefaultUserOptions['visualeditor-newwikitext'] = 0;
 
 // Enable creation of temp user accounts on edit (T355880, T359043)
 $wgAutoCreateTempUser['enabled'] = true;
+
+// Make sure Mocha tests can create language links by defining an interwiki
+// prefix that matches a known language code.
+$wgHooks['InterwikiLoadPrefix'][] = static function ( $prefix, &$iwData ) {
+	if ( $prefix === 'en-x-piglatin' ) {
+		$iwData['iw_url'] = 'https://piggy.wikipedia.org/wiki/$1';
+		return false;
+	}
+	return true;
+};
