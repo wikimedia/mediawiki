@@ -39,4 +39,17 @@ class ObjectCacheFactoryTest extends MediaWikiUnitTestCase {
 
 		$this->assertInstanceOf( HashBagOStuff::class, $objCache );
 	}
+
+	public function testShouldPassTracer(): void {
+		$factory = $this->newObjectCacheFactory();
+
+		$cache = $factory->newFromParams( [
+			'factory' => function ( array $params ): HashBagOStuff {
+				$this->assertInstanceOf( NoopTracer::class, $params['telemetry'] );
+				return new HashBagOStuff();
+			}
+		] );
+
+		$this->assertInstanceOf( HashBagOStuff::class, $cache );
+	}
 }
