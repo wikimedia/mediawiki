@@ -63,5 +63,5 @@
 	"rest-edit-conflict": "Конфликт редактирования ($1)",
 	"rest-unknown-parsoid-transformation": "Неизвестная трансформация.",
 	"rest-unknown-content-model": "Неизвестная модель содержимого: $1",
-	"rest-param-desc-revision-id": "ID правки"
+	"rest-param-desc-revision-id": "Идентификатор правки"
 }
