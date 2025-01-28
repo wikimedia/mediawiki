@@ -20,17 +20,16 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Deferred\DeferredUpdates;
-use MediaWiki\Http\Telemetry;
 use MediaWiki\Logger\Spi;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Http\TelemetryHeadersInterface;
 use Wikimedia\ObjectCache\APCUBagOStuff;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\ObjectCache\MemcachedBagOStuff;
 use Wikimedia\ObjectCache\MultiWriteBagOStuff;
-use Wikimedia\ObjectCache\RESTBagOStuff;
 use Wikimedia\Stats\StatsFactory;
 
 /**
@@ -91,6 +90,7 @@ class ObjectCacheFactory {
 	private ServiceOptions $options;
 	private StatsFactory $stats;
 	private Spi $logger;
+	private TelemetryHeadersInterface $telemetry;
 	/** @var BagOStuff[] */
 	private $instances = [];
 	private string $domainId;
@@ -107,7 +107,8 @@ class ObjectCacheFactory {
 		StatsFactory $stats,
 		Spi $loggerSpi,
 		callable $dbLoadBalancerFactory,
-		string $domainId
+		string $domainId,
+		TelemetryHeadersInterface $telemetry
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
@@ -115,6 +116,7 @@ class ObjectCacheFactory {
 		$this->logger = $loggerSpi;
 		$this->dbLoadBalancerFactory = $dbLoadBalancerFactory;
 		$this->domainId = $domainId;
+		$this->telemetry = $telemetry;
 	}
 
 	/**
@@ -202,6 +204,7 @@ class ObjectCacheFactory {
 			'asyncHandler' => [ DeferredUpdates::class, 'addCallableUpdate' ],
 			'reportDupes' => true,
 			'stats' => $this->stats,
+			'telemetry' => $this->telemetry,
 		];
 
 		if ( isset( $params['factory'] ) ) {
@@ -231,9 +234,6 @@ class ObjectCacheFactory {
 		// Normalization and DI for MultiWriteBagOStuff
 		if ( is_a( $class, MultiWriteBagOStuff::class, true ) ) {
 			$this->prepareMultiWriteBagOStuffFromParams( $params );
-		}
-		if ( is_a( $class, RESTBagOStuff::class, true ) ) {
-			$this->prepareRESTBagOStuffFromParams( $params );
 		}
 
 		return new $class( $params );
@@ -289,10 +289,6 @@ class ObjectCacheFactory {
 			// one of these was configured without MultiWriteBagOStuff (T318272)
 			$params['caches'][$i] = $this->newFromParams( $cacheInfo );
 		}
-	}
-
-	private function prepareRESTBagOStuffFromParams( array &$params ): void {
-		$params['telemetry'] = Telemetry::getInstance();
 	}
 
 	/**
