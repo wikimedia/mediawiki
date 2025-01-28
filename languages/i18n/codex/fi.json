@@ -13,7 +13,7 @@
 	"cdx-search-input-search-button-label": "Hae",
 	"cdx-table-select-all-label": "Valitse kaikki rivit",
 	"cdx-table-select-row-label": "Valitse rivi $1 / $2",
-	"cdx-table-sort-caption": "$1, sarakeotsikot, joissa painikkeet, ovat lajitettavissa.",
+	"cdx-table-sort-caption": "$1 (sarakeotsikot, joissa on painikkeet, ovat lajitettavissa).",
 	"cdx-typeahead-search-search-results-label": "Hakutulokset",
 	"cdx-table-pager-button-first-page": "Ensimmäinen sivu",
 	"cdx-table-pager-button-last-page": "Viimeinen sivu",

@@ -816,7 +816,7 @@
 	"history-show-deleted": "ДӀадаьхна нисдарш бен",
 	"histfirst": "ширанаш",
 	"histlast": "керланаш",
-	"historysize": "{{PLURAL:$1|байт}}",
+	"historysize": "($1 {{PLURAL:$1|байт}})",
 	"historyempty": "йаьсса",
 	"history-feed-title": "Хийцамийн истори",
 	"history-feed-description": "Википедин чохь хӀокху агӀонан хийцамийн истори",

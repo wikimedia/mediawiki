@@ -2548,7 +2548,7 @@
 	"sp-contributions-concurrency-user": "Spiacenti, sono state effettuate troppe richieste dalla tua utenza. Per favore, riprova più tardi",
 	"sp-contributions-concurrency-ip": "Spiacenti, sono state effettuate troppe richieste dal tuo indirizzo IP. Per favore, riprova più tardi.",
 	"whatlinkshere": "Puntano qui",
-	"whatlinkshere-count": "Visualizzando $1 {{PLURAL:$1|elemento|elementi}}.",
+	"whatlinkshere-count": "Visualizzazione di $1 {{PLURAL:$1|pagina|pagine}}.",
 	"whatlinkshere-title": "Pagine che puntano a \"$1\"",
 	"whatlinkshere-page": "Pagina:",
 	"linkshere": "Le seguenti pagine contengono dei collegamenti a <strong>$2</strong>:",
