@@ -3128,7 +3128,6 @@ config-schema:
         default:
             - copyright
             - history_copyright
-            - googlesearch
         type: array
         items:
             type: string
