@@ -31,13 +31,25 @@ use MediaWiki\Parser\Parser;
 
 class ParserTestParserHook {
 
-	public static function setup( Parser $parser ) {
+	/** Set up extension tags and parser functions for parser tests. */
+	public static function setup( Parser $parser ): bool {
+		// Install a magic word.
 		$parser->setHook( 'tag', [ __CLASS__, 'dumpHook' ] );
 		$parser->setHook( 'tåg', [ __CLASS__, 'dumpHook' ] );
 		$parser->setHook( 'statictag', [ __CLASS__, 'staticTagHook' ] );
 		$parser->setHook( 'asidetag', [ __CLASS__, 'asideTagHook' ] );
 		$parser->setHook( 'pwraptest', [ __CLASS__, 'pWrapTestHook' ] );
-		$parser->setHook( 'spantag', [ __CLASS__, 'spanTagHook' ] );
+		foreach ( [ 'div', 'span' ] as $tag ) {
+			// spantag, divtag
+			$parser->setHook( $tag . 'tag', static function ( $in, $argv, $parser ) use ( $tag ) {
+				// @phan-suppress-next-line SecurityCheck-XSS parser test code only
+				return self::divspanTagHook( $tag, $in, $argv, $parser );
+			} );
+			// spantagpf, divtagpf
+			$parser->setFunctionHook( $tag . 'tagpf', static function ( $parser, ...$args ) use ( $tag ) {
+				return self::divspanPFHook( $tag, $parser, ...$args );
+			}, Parser::SFH_NO_HASH );
+		}
 		return true;
 	}
 
@@ -94,14 +106,59 @@ class ParserTestParserHook {
 	}
 
 	/**
+	 * @param string $tag "div" or "span"
 	 * @param string $in
 	 * @param array $argv
 	 * @param Parser $parser
-	 * @return string
+	 * @return array
 	 */
-	public static function spanTagHook( $in, $argv, $parser ): string {
-		return '<span>' .
-			Parser::stripOuterParagraph( $parser->recursiveTagParse( $in ) ) .
-			'</span>';
+	public static function divspanTagHook( $tag, $in, $argv, $parser ) {
+		$result = [];
+		$fixcase = [
+			'markertype' => 'markerType',
+			'israwhtml' => 'isRawHTML',
+		];
+		$result[] = "<$tag>" . (
+			( $argv['raw'] ?? false ) ?
+			$in :
+			Parser::stripOuterParagraph(
+				( $argv['isRawHTML'] ?? false ) ?
+					$parser->recursiveTagParseFully( $in ) :
+					$parser->recursiveTagParse( $in )
+			)
+		) . "</$tag>";
+		// Allow setting noparse, isHTML, nowiki, isRawHTML, etc.
+		foreach ( $argv as $arg => $ignore ) {
+			if ( $arg !== 'raw' ) {
+				$result[$fixcase[$arg] ?? $arg] = true;
+			}
+		}
+		return $result;
+	}
+
+	/**
+	 * @param string $tag "div" or "span"
+	 * @param Parser $parser
+	 * @param string ...$args
+	 * @return array
+	 */
+	public static function divspanPfHook( $tag, $parser, ...$args ) {
+		$result = [];
+		$in = array_shift( $args );
+		$result[] = "<$tag>" . (
+			in_array( 'raw', $args, true ) ? $in :
+			Parser::stripOuterParagraph(
+				in_array( 'isRawHTML', $args, true ) ?
+					$parser->recursiveTagParseFully( $in ) :
+					$parser->recursiveTagParse( $in )
+			)
+		) . "</$tag>";
+		// Allow setting noparse, isHTML, nowiki, isRawHTML, etc.
+		foreach ( $args as $arg ) {
+			if ( $arg !== 'raw' ) {
+				$result[$arg] = true;
+			}
+		}
+		return $result;
 	}
 }

@@ -17189,3 +17189,72 @@ Include directive string gluing
 !! html/parsoid
 <p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"{{{1&lt;noinclude>|1x&lt;/noinclude>}}}","href":"./Template:1x"},"params":{"1":{"wt":"123"}},"i":0}}]}'>123</span></p>
 !! end
+
+## Testing various return value types for parser functions
+## This uses the <spantag>/<divtag> hooks, specially defined for parser tests
+
+# Parsoid has same output for isHTML and isRawHTML (known difference)
+!! test
+Extension tag contents using isRawHTML flag
+!! config
+wgParsoidFragmentSupport=true
+!! options
+language=zh
+!! wikitext
+DoBlockLevels and LanguageConverter still run on isHTML content:
+<divtag raw="true" ishtml="true"><!--protect newline-->
+:foo -{raw}- <b>bold</b>
+</divtag>
+
+But with isRawHTML the result is left alone:
+<divtag raw="true" israwhtml="true"><!--protect newline-->
+:foo -{raw}- <b>bold</b>
+</divtag>
+!! html/php
+<p>DoBlockLevels and LanguageConverter still run on isHTML content:
+</p>
+<div><!--protect newline-->
+<dl><dd>foo raw <b>bold</b></dd></dl>
+</div>
+<p>But with isRawHTML the result is left alone:
+</p><div><!--protect newline-->
+:foo -{raw}- <b>bold</b>
+</div>
+<p class="mw-empty-elt"></p>
+!! html/parsoid
+<p>DoBlockLevels and LanguageConverter still run on isHTML content:</p>
+<div typeof="mw:Extension/divtag" data-mw='{"name":"divtag","attrs":{"raw":"true","ishtml":"true"},"body":{"extsrc":"&lt;!--protect newline-->\n:foo -{raw}- &lt;b>bold&lt;/b>\n"}}'><!--protect newline--> :foo -{raw}- <b>bold</b></div>
+<p>But with isRawHTML the result is left alone:</p>
+<div typeof="mw:Extension/divtag" data-mw='{"name":"divtag","attrs":{"raw":"true","israwhtml":"true"},"body":{"extsrc":"&lt;!--protect newline-->\n:foo -{raw}- &lt;b>bold&lt;/b>\n"}}'><!--protect newline--> :foo -{raw}- <b>bold</b></div>
+!! end
+
+# Parsoid has same output for isHTML and isRawHTML (known difference)
+!! test
+Parser function contents using isRawHTML flag
+!! config
+wgParsoidFragmentSupport=true
+!! options
+language=zh
+!! wikitext
+DoBlockLevels and LanguageConverter still run on isHTML content:
+{{#divtag:<!--protect newline-->
+:foo -{raw}- <b>bold</b>
+|raw|isHTML}}
+
+But with isRawHTML the result is left alone:
+{{#divtag:<!--protect newline-->
+:foo -{raw}- <b>bold</b>
+|raw|isRawHTML}}
+!! html/php
+<p>DoBlockLevels and LanguageConverter still run on isHTML content:
+</p>
+<div>:foo raw <b>bold</b></div>
+<p>But with isRawHTML the result is left alone:
+</p><div>:foo -{raw}- <b>bold</b></div>
+<p class="mw-empty-elt"></p>
+!! html/parsoid
+<p>DoBlockLevels and LanguageConverter still run on isHTML content:</p>
+<div typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#divtag:&lt;!--protect newline-->\n:foo -{raw}- &lt;b>bold&lt;/b>\n","function":"divtagpf"},"params":{"1":{"wt":"raw"},"2":{"wt":"isHTML"}},"i":0}}]}'>:foo -{raw}- <b>bold</b></div>
+<p>But with isRawHTML the result is left alone:</p>
+<div typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#divtag:&lt;!--protect newline-->\n:foo -{raw}- &lt;b>bold&lt;/b>\n","function":"divtagpf"},"params":{"1":{"wt":"raw"},"2":{"wt":"isRawHTML"}},"i":0}}]}'>:foo -{raw}- <b>bold</b></div>
+!! end
