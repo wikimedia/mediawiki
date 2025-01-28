@@ -660,9 +660,9 @@ abstract class BagOStuff implements
 	/**
 	 * Make a cache key for the given keyspace and components
 	 *
-	 * Subclasses may override this method in order to apply different escaping,
-	 * or to deal with size constraints (such as MemcachedBagOStuff). For example
-	 * by converting long components into hashes.
+	 * Subclasses may override this method to apply different escaping,
+	 * or to deal with size constraints (such as MemcachedBagOStuff).
+	 * For example, by converting long components into hashes.
 	 *
 	 * If you override this method, you MUST override ::requireConvertGenericKey()
 	 * to return true. This ensures that wrapping classes (e.g. MultiWriteBagOStuff)
@@ -672,7 +672,7 @@ abstract class BagOStuff implements
 	 * @since 1.27
 	 *
 	 * @param string $keyspace
-	 * @param string[]|int[] $components Key group and other components
+	 * @param string[]|int[]|null[] $components Key group and other components
 	 *
 	 * @return string
 	 */
@@ -684,7 +684,7 @@ abstract class BagOStuff implements
 		$key = $keyspace;
 		foreach ( $components as $component ) {
 			// Escape delimiter (":") and escape ("%") characters
-			$key .= ':' . strtr( $component, [ '%' => '%25', ':' => '%3A' ] );
+			$key .= ':' . strtr( $component ?? '', [ '%' => '%25', ':' => '%3A' ] );
 		}
 
 		return $key;

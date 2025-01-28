@@ -60,7 +60,7 @@ abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
 	 * @see BagOStuff::makeKeyInternal
 	 *
 	 * @param string $keyspace
-	 * @param string[]|int[] $components
+	 * @param string[]|int[]|null $components
 	 *
 	 * @return string
 	 */
@@ -90,6 +90,7 @@ abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
 
 			$charsLeft -= strlen( $component );
 		}
+		unset( $component );
 
 		if ( $charsLeft < 0 ) {
 			return $keyspace . ':BagOStuff-long-key:##' . md5( implode( ':', $components ) );
