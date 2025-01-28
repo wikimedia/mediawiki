@@ -407,21 +407,8 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 	 * @return string Appropriately-escaped HTML to be output literally
 	 */
 	protected function contributionsSub( $userObj, $targetName ) {
-		$isAnon = $userObj->isAnon();
-		if ( !$isAnon && $userObj->isHidden() &&
-			!$this->permissionManager->userHasRight( $this->getUser(), 'hideuser' )
-		) {
-			// T120883 if the user is hidden and the viewer cannot see hidden
-			// users, pretend like it does not exist at all.
-			$isAnon = true;
-		}
-
 		$out = $this->getOutput();
-		if ( $isAnon ) {
-			$user = htmlspecialchars( $userObj->getName() );
-		} else {
-			$user = $this->getLinkRenderer()->makeLink( $userObj->getUserPage(), $userObj->getName() );
-		}
+		$user = $this->getUserLink( $userObj );
 		$nt = $userObj->getUserPage();
 
 		$links = '';
@@ -593,6 +580,23 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 		);
 
 		return $talk && $registeredAndVisible;
+	}
+
+	/**
+	 * Get a link to the user if they exist
+	 *
+	 * @param User $userObj Target user object
+	 * @return string
+	 */
+	protected function getUserLink( User $userObj ): string {
+		if (
+			$userObj->isAnon() ||
+			( $userObj->isHidden() && !$this->getAuthority()->isAllowed( 'hideuser' ) )
+		) {
+			return htmlspecialchars( $userObj->getName() );
+		} else {
+			return $this->getLinkRenderer()->makeLink( $userObj->getUserPage(), $userObj->getName() );
+		}
 	}
 
 	/**
