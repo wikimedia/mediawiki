@@ -90,6 +90,8 @@ class RightsLogFormatter extends LogFormatter {
 		$oldGroups = $this->getOldGroups( $params );
 		$newGroups = $this->getNewGroups( $params );
 
+		// These params were used in the past, when the log message said "from: X to: Y"
+		// They were kept not to break translations
 		if ( count( $oldGroups ) ) {
 			$params[3] = Message::rawParam( $this->formatRightsList( $oldGroups ) );
 		} else {
@@ -101,9 +103,29 @@ class RightsLogFormatter extends LogFormatter {
 			$params[4] = $this->msg( 'rightsnone' )->text();
 		}
 
+		$performerName = $params[1];
 		$userName = $this->entry->getTarget()->getText();
 
 		$params[5] = $userName;
+
+		$groupChanges = $this->classifyGroupChanges( $oldGroups, $newGroups );
+
+		// The following messages are used here:
+		// * logentry-rights-rights-granted
+		// * logentry-rights-rights-revoked
+		// * logentry-rights-rights-expiry-changed
+		// * logentry-rights-rights-kept
+		// * logentry-rights-autopromote-granted
+		// * logentry-rights-autopromote-revoked
+		// * logentry-rights-autopromote-expiry-changed
+		// * logentry-rights-autopromote-kept
+		$messagePrefix = 'logentry-rights-rights-';
+		if ( $this->entry->getSubtype() === 'autopromote' ) {
+			$messagePrefix = 'logentry-rights-autopromote-';
+		}
+
+		$params[6] = $this->formatChangesToGroups( $groupChanges, $performerName, $userName,
+			$messagePrefix );
 
 		return $params;
 	}
@@ -203,6 +225,138 @@ class RightsLogFormatter extends LogFormatter {
 		foreach ( $groupNames as &$group ) {
 			$group = $lang->getGroupMemberName( $group, $userName );
 		}
+	}
+
+	/**
+	 * Compares the user groups from before and after this log entry and splits
+	 * them into four categories: granted, revoked, expiry-changed and kept.
+	 * The returned array has the following keys:
+	 * - granted: groups that were granted
+	 * - revoked: groups that were revoked
+	 * - expiry-changed: groups that had their expiry time changed
+	 * - kept: groups that were kept without changes
+	 * All, except 'expiry-changed', is of form [ group => expiry ], while
+	 * 'expiry-changed' is of form [ group => [ old_expiry, new_expiry ] ]
+	 * @since 1.44
+	 * @param array $oldGroups
+	 * @param array $newGroups
+	 * @return array
+	 */
+	protected function classifyGroupChanges( array $oldGroups, array $newGroups ) {
+		$granted = array_diff_key( $newGroups, $oldGroups );
+		$revoked = array_diff_key( $oldGroups, $newGroups );
+		$kept = array_intersect_key( $oldGroups, $newGroups );
+
+		$expiryChanged = [];
+		$noChange = [];
+
+		foreach ( $kept as $group => $oldExpiry ) {
+			$newExpiry = $newGroups[$group];
+			if ( $oldExpiry !== $newExpiry ) {
+				$expiryChanged[$group] = [ $oldExpiry, $newExpiry ];
+			} else {
+				$noChange[$group] = $oldExpiry;
+			}
+		}
+
+		// These contain both group names and their expiry times
+		// in case of 'expiry-changed', the times are in an array [ old, new ]
+		return [
+			'granted' => $granted,
+			'revoked' => $revoked,
+			'expiry-changed' => $expiryChanged,
+			'kept' => $noChange,
+		];
+	}
+
+	/**
+	 * Wraps the changes to user groups into a human-readable messages, so that
+	 * they can be passed as a parameter to the log entry message.
+	 * @since 1.44
+	 * @param array $groupChanges
+	 * @param string $performerName
+	 * @param string $targetName
+	 * @param string $messagePrefix
+	 * @return string
+	 */
+	protected function formatChangesToGroups( array $groupChanges, string $performerName,
+		string $targetName, string $messagePrefix = 'logentry-rights-rights-'
+	) {
+		$formattedChanges = [];
+
+		foreach ( $groupChanges as $changeType => $groups ) {
+			if ( !count( $groups ) ) {
+				continue;
+			}
+
+			if ( $changeType === 'expiry-changed' ) {
+				$formattedList = $this->formatRightsListExpiryChanged( $groups );
+			} else {
+				$formattedList = $this->formatRightsList( $groups );
+			}
+
+			$formattedChanges[] = $this->msg(
+				$messagePrefix . $changeType,
+				$formattedList,
+				$performerName,
+				$targetName
+			);
+		}
+
+		$uiLanguage = $this->context->getLanguage();
+		return $uiLanguage->commaList( $formattedChanges );
+	}
+
+	private function formatRightsListExpiryChanged( $groups ) {
+		$list = [];
+
+		foreach ( $groups as $group => $expiries ) {
+			$oldExpiry = $expiries[0];
+			$newExpiry = $expiries[1];
+
+			if ( $oldExpiry ) {
+				$oldExpiryFormatted = $this->formatDate( $oldExpiry );
+			}
+			if ( $newExpiry ) {
+				$newExpiryFormatted = $this->formatDate( $newExpiry );
+			}
+
+			if ( $oldExpiry && $newExpiry ) {
+				// The expiration was changed
+				$list[] = $this->msg( 'rightslogentry-expiry-changed' )->params(
+					$group,
+					$newExpiryFormatted['whole'],
+					$newExpiryFormatted['date'],
+					$newExpiryFormatted['time'],
+					$oldExpiryFormatted['whole'],
+					$oldExpiryFormatted['date'],
+					$oldExpiryFormatted['time']
+				)->parse();
+			} elseif ( $oldExpiry ) {
+				// The expiration was removed
+				$list[] = $this->msg( 'rightslogentry-expiry-removed' )->params(
+					$group,
+					$oldExpiryFormatted['whole'],
+					$oldExpiryFormatted['date'],
+					$oldExpiryFormatted['time']
+				)->parse();
+			} elseif ( $newExpiry ) {
+				// The expiration was added
+				$list[] = $this->msg( 'rightslogentry-expiry-set' )->params(
+					$group,
+					$newExpiryFormatted['whole'],
+					$newExpiryFormatted['date'],
+					$newExpiryFormatted['time']
+				)->parse();
+			} else {
+				// The rights are and were permanent
+				// Shouldn't happen as we process only changes to expiry time here
+				$list[] = htmlspecialchars( $group );
+			}
+		}
+
+		$uiLanguage = $this->context->getLanguage();
+		return $uiLanguage->listToText( $list );
 	}
 
 	private function formatRightsList( $groups ) {
