@@ -6,6 +6,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Media
  * @requires extension exif
+ * @covers \FormatMetadata
  */
 class FormatMetadataTest extends MediaWikiMediaTestCase {
 
@@ -44,7 +45,6 @@ class FormatMetadataTest extends MediaWikiMediaTestCase {
 
 	/**
 	 * @dataProvider provideResolveMultivalueValue
-	 * @covers \FormatMetadata::resolveMultivalueValue
 	 */
 	public function testResolveMultivalueValue( $input, $output ) {
 		$formatMetadata = new FormatMetadata();
@@ -102,7 +102,6 @@ class FormatMetadataTest extends MediaWikiMediaTestCase {
 
 	/**
 	 * @dataProvider provideGetFormattedData
-	 * @covers \FormatMetadata::getFormattedData
 	 */
 	public function testGetFormattedData( $input, $output ) {
 		$this->assertEquals( $output, FormatMetadata::getFormattedData( $input ) );
@@ -145,7 +144,6 @@ class FormatMetadataTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers \FormatMetadata::getPriorityLanguages
 	 * @dataProvider provideGetPriorityLanguagesData
 	 * @param string $language
 	 * @param string[] $expected
