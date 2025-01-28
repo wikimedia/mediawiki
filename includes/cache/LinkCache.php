@@ -25,7 +25,6 @@ namespace MediaWiki\Cache;
 
 use InvalidArgumentException;
 use MapCacheLRU;
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
@@ -39,6 +38,7 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use stdClass;
 use Wikimedia\ObjectCache\WANObjectCache;
+use Wikimedia\Parsoid\Core\LinkTarget;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\ILoadBalancer;

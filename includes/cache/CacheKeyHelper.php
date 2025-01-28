@@ -22,8 +22,8 @@
 namespace MediaWiki\Cache;
 
 use LogicException;
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageReference;
+use Wikimedia\Parsoid\Core\LinkTarget;
 
 /**
  * Helper class for mapping value objects representing basic entities to cache keys.
