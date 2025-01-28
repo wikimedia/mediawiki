@@ -1,8 +1,6 @@
 {
 	"@metadata": {
-		"authors": [
-			"EpicPupper"
-		]
+		"authors": []
 	},
 	"sidebar": "\n* navigation\n** mainpage|mainpage-description\n** recentchanges-url|recentchanges\n** randompage-url|randompage\n** helppage|help-mediawiki\n* SEARCH\n* TOOLBOX\n* LANGUAGES",
 	"sunday": "Sunday",
