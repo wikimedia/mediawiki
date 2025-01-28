@@ -23,7 +23,6 @@ use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Logger\Spi;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Http\TelemetryHeadersInterface;
 use Wikimedia\ObjectCache\APCUBagOStuff;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
@@ -31,6 +30,7 @@ use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\ObjectCache\MemcachedBagOStuff;
 use Wikimedia\ObjectCache\MultiWriteBagOStuff;
 use Wikimedia\Stats\StatsFactory;
+use Wikimedia\Telemetry\TracerInterface;
 
 /**
  * Factory for cache objects as configured in the ObjectCaches setting.
@@ -90,7 +90,7 @@ class ObjectCacheFactory {
 	private ServiceOptions $options;
 	private StatsFactory $stats;
 	private Spi $logger;
-	private TelemetryHeadersInterface $telemetry;
+	private TracerInterface $telemetry;
 	/** @var BagOStuff[] */
 	private $instances = [];
 	private string $domainId;
@@ -108,7 +108,7 @@ class ObjectCacheFactory {
 		Spi $loggerSpi,
 		callable $dbLoadBalancerFactory,
 		string $domainId,
-		TelemetryHeadersInterface $telemetry
+		TracerInterface $telemetry
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
