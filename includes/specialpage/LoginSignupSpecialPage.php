@@ -1261,8 +1261,13 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * @return string
 	 */
 	protected function makeLanguageSelectorLink( $text, $lang ) {
-		if ( $this->getLanguage()->getCode() == $lang ) {
+		$services = MediaWikiServices::getInstance();
+
+		if ( $this->getLanguage()->getCode() == $lang
+			|| !$services->getLanguageNameUtils()->isValidCode( $lang )
+		) {
 			// no link for currently used language
+			// or invalid language code
 			return htmlspecialchars( $text );
 		}
 		$query = [ 'uselang' => $lang ];
@@ -1275,8 +1280,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		}
 
 		$attr = [];
-		$targetLanguage = MediaWikiServices::getInstance()->getLanguageFactory()
-			->getLanguage( $lang );
+		$targetLanguage = $services->getLanguageFactory()->getLanguage( $lang );
 		$attr['lang'] = $attr['hreflang'] = $targetLanguage->getHtmlCode();
 
 		return $this->getLinkRenderer()->makeKnownLink(
