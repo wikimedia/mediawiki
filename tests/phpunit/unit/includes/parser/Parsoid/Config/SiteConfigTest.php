@@ -66,6 +66,7 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 			'PMID' => true,
 			'RFC' => true,
 		],
+		MainConfigNames::ParsoidExperimentalParserFunctionOutput => false,
 	];
 
 	private StatsFactory $statsFactory;

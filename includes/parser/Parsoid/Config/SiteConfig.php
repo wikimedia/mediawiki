@@ -97,6 +97,7 @@ class SiteConfig extends ISiteConfig {
 		MainConfigNames::NoFollowDomainExceptions,
 		MainConfigNames::ExternalLinkTarget,
 		MainConfigNames::EnableMagicLinks,
+		MainConfigNames::ParsoidExperimentalParserFunctionOutput,
 	];
 
 	private ServiceOptions $config;
