@@ -67,10 +67,12 @@ describe( 'SpecialBlock', () => {
 			nocreate: 1,
 			allowusertalk: 1,
 			autoblock: 1,
+			errorformat: 'html',
 			errorlang: 'en',
 			errorsuselocal: true,
 			uselang: 'en',
-			format: 'json'
+			format: 'json',
+			formatversion: 2
 		} );
 		expect( wrapper.find( '.mw-block-success' ).exists() ).toBeTruthy();
 	} );

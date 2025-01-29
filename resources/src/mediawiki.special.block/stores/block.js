@@ -373,9 +373,11 @@ module.exports = exports = defineStore( 'block', () => {
 		const params = {
 			action: 'block',
 			format: 'json',
+			formatversion: 2,
 			user: targetUser.value,
 			expiry: expiry.value,
 			// Localize errors
+			errorformat: 'html',
 			uselang: mw.config.get( 'wgUserLanguage' ),
 			errorlang: mw.config.get( 'wgUserLanguage' ),
 			errorsuselocal: true

@@ -325,7 +325,10 @@ class ApiBlock extends ApiBase {
 				ParamValidator::PARAM_TYPE => 'integer',
 				ParamValidator::PARAM_DEPRECATED => true,
 			],
-			'expiry' => 'never',
+			'expiry' => [
+				ParamValidator::PARAM_TYPE => 'expiry',
+				ParamValidator::PARAM_DEFAULT => 'never',
+			],
 			'reason' => '',
 			'anononly' => false,
 			'nocreate' => false,
