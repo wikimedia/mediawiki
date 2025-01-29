@@ -47,6 +47,15 @@ class TimingMetric implements MetricInterface {
 
 	/**
 	 * Starts a timer.
+	 *
+	 * Example:
+	 *
+	 * ```php
+	 * $timer = StatsFactory->getTiming(…);
+	 * $timer->start();
+	 * # work to be measured...
+	 * $timer->stop();
+	 * ```
 	 */
 	public function start(): void {
 		$this->startTime = hrtime( true );
@@ -65,12 +74,67 @@ class TimingMetric implements MetricInterface {
 	}
 
 	/**
-	 * Records a previously calculated observation in milliseconds.
+	 * Record a previously calculated observation in nanoseconds.
+	 *
+	 * Example:
+	 *
+	 * ```php
+	 * $startTime = hrtime( true )
+	 * # work to be measured...
+	 * $metric->observeNanoseconds( hrtime( true ) - $startTime )
+	 * ```
+	 *
+	 * @param float $nanoseconds
+	 * @return void
+	 * @since 1.43
+	 */
+	public function observeNanoseconds( float $nanoseconds ): void {
+		$this->addSample( $nanoseconds * 1e-6 );
+	}
+
+	/**
+	 * Record a previously calculated observation in seconds.
+	 *
+	 * This method is provided for tracking externally-generated values, timestamp deltas, and
+	 * situations where the expected input value is the expected Prometheus graphed value.
+	 *
+	 * Performance measurements in process should be done with hrtime() and observeNanoseconds()
+	 * to ensure monotonic time is used and not wall-clock time.
+	 *
+	 * Example:
+	 *
+	 * ```php
+	 * $startTime = microtime( true )
+	 * # work to be measured...
+	 * $metric->observeSeconds( microtime( true ) - $startTime )
+	 * ```
+	 *
+	 * @param float $seconds
+	 * @return void
+	 * @since 1.43
+	 */
+	public function observeSeconds( float $seconds ): void {
+		$this->addSample( $seconds * 1000 );
+	}
+
+	/**
+	 * Record a previously calculated observation in milliseconds.
+	 *
+	 * NOTE: You MUST pass values converted to milliseconds.
+	 *
+	 * This method is discouraged in new code, because PHP does not measure
+	 * time in milliseconds. It will be less error-prone if you use start()
+	 * and stop(), or pass values from hrtime() directly to observeNanoseconds()
+	 * without manual multiplication to another unit.
 	 *
 	 * @param float $milliseconds
 	 * @return void
 	 */
 	public function observe( float $milliseconds ): void {
+		$this->addSample( $milliseconds );
+	}
+
+	private function addSample( float $milliseconds ): void {
 		foreach ( $this->baseMetric->getStatsdNamespaces() as $namespace ) {
 			$this->baseMetric->getStatsdDataFactory()->timing( $namespace, $milliseconds );
 		}
@@ -81,41 +145,6 @@ class TimingMetric implements MetricInterface {
 			// Log the condition and give the caller something that will absorb calls.
 			trigger_error( $ex->getMessage(), E_USER_WARNING );
 		}
-	}
-
-	/**
-	 * Record a previously calculated observation in seconds.
-	 *
-	 * Common usage:
-	 *  ```php
-	 *  $startTime = microtime( true )
-	 *  # work to be measured...
-	 *  $metric->observeSeconds( microtime( true ) - $startTime )
-	 *  ```
-	 *
-	 * @param float $seconds
-	 * @return void
-	 * @since 1.43
-	 */
-	public function observeSeconds( float $seconds ): void {
-		$this->observe( $seconds * 1000 );
-	}
-
-	/**
-	 * Record a previously calculated observation in nanoseconds.
-	 *
-	 *  Common usage:
-	 *  ```php
-	 *  $startTime = hrtime( true )
-	 *  # work to be measured...
-	 *  $metric->observeNanoseconds( hrtime( true ) - $startTime )
-	 *  ```
-	 * @param float $nanoseconds
-	 * @return void
-	 * @since 1.43
-	 */
-	public function observeNanoseconds( float $nanoseconds ): void {
-		$this->observe( $nanoseconds * 1e-6 );
 	}
 
 	/** @inheritDoc */
