@@ -9880,7 +9880,7 @@ Template:Nested special
 !! test
 Nested special page transclusion
 !! config
-wgParsoidFragmentSupport=true
+wgParsoidFragmentSupport="v2"
 !! wikitext
 {{nested special}}
 !! html/php
@@ -17197,7 +17197,7 @@ Include directive string gluing
 !! test
 Extension tag contents using isRawHTML flag
 !! config
-wgParsoidFragmentSupport=true
+wgParsoidFragmentSupport="v2"
 !! options
 language=zh
 !! wikitext
@@ -17232,7 +17232,7 @@ But with isRawHTML the result is left alone:
 !! test
 Parser function contents using isRawHTML flag
 !! config
-wgParsoidFragmentSupport=true
+wgParsoidFragmentSupport="v2"
 !! options
 language=zh
 !! wikitext
@@ -17257,4 +17257,47 @@ But with isRawHTML the result is left alone:
 <div typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#divtag:&lt;!--protect newline-->\n:foo -{raw}- &lt;b>bold&lt;/b>\n","function":"divtagpf"},"params":{"1":{"wt":"raw"},"2":{"wt":"isHTML"}},"i":0}}]}'>:foo -{raw}- <b>bold</b></div>
 <p>But with isRawHTML the result is left alone:</p>
 <div typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#divtag:&lt;!--protect newline-->\n:foo -{raw}- &lt;b>bold&lt;/b>\n","function":"divtagpf"},"params":{"1":{"wt":"raw"},"2":{"wt":"isRawHTML"}},"i":0}}]}'>:foo -{raw}- <b>bold</b></div>
+!! end
+
+!! test
+Handling of nowiki strip markers in Parsoid fragments
+!! config
+wgParsoidFragmentSupport="v2"
+!! wikitext
+Extension tag: <spantag><nowiki>a &amp;amp; <b>c</b></nowiki></spantag>
+
+Parser function: {{#spantag:<nowiki>a &amp;amp; <b>c</b></nowiki>}}
+!! html/php
+<p>Extension tag: <span>a &amp;amp; &lt;b&gt;c&lt;/b&gt;</span>
+</p><p>Parser function: <span>a &amp;amp; &lt;b&gt;c&lt;/b&gt;</span>
+</p>
+!! html/parsoid
+<p>Extension tag: <span typeof="mw:Extension/spantag" data-mw='{"name":"spantag","attrs":{},"body":{"extsrc":"&lt;nowiki>a &amp;amp;amp; &lt;b>c&lt;/b>&lt;/nowiki>"}}'>a <span typeof="mw:Entity">&amp;</span>amp; &lt;b>c&lt;/b></span></p>
+<p>Parser function: <span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#spantag:&lt;nowiki>a &amp;amp;amp; &lt;b>c&lt;/b>&lt;/nowiki>","function":"spantagpf"},"params":{},"i":0}}]}'>a <span typeof="mw:Entity">&amp;</span>amp; &lt;b>c&lt;/b></span></p>
+!! end
+
+!! test
+Handling of nested nowiki strip markers in Parsoid fragments (1)
+!! config
+wgParsoidFragmentSupport="v2"
+!! wikitext
+Text {{#spantag:text <spantag>more text</spantag>}}
+!! html/php
+<p>Text <span>text <span>more text</span></span>
+</p>
+!! html/parsoid
+<p>Text <span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#spantag:text &lt;spantag>more text&lt;/spantag>","function":"spantagpf"},"params":{},"i":0}}]}'>text <span typeof="mw:Extension/spantag" data-mw='{"name":"spantag","attrs":{},"body":{"extsrc":"more text"}}'>more text</span></span></p>
+!! end
+
+!! test
+Handling of nested nowiki strip markers in Parsoid fragments (2)
+!! config
+wgParsoidFragmentSupport="v2"
+!! wikitext
+Text {{#spantag:<nowiki><b></nowiki> {{#spantag:<nowiki><c></nowiki>}}}}
+!! html/php
+<p>Text <span>&lt;b&gt; <span>&lt;c&gt;</span></span>
+</p>
+!! html/parsoid
+<p>Text <span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#spantag:&lt;nowiki>&lt;b>&lt;/nowiki> {{#spantag:&lt;nowiki>&lt;c>&lt;/nowiki>}}","function":"spantagpf"},"params":{},"i":0}}]}'>&lt;b> <span>&lt;c></span></span></p>
 !! end

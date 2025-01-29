@@ -2930,6 +2930,7 @@ class Parser {
 	 *  - 'parsoidTopLevelCall' Is this coming from Parsoid for top-level templates?
 	 *   This is used to set start-of-line flag to true for template expansions since that
 	 *   is how Parsoid models templates.
+	 *  - 'processNowiki' expands <nowiki> and stores in strip state
 	 *
 	 * @return string
 	 * @since 1.24 method is public
@@ -2960,6 +2961,9 @@ class Parser {
 		}
 		$dom = $this->preprocessToDom( $text, $ppFlags );
 		$flags = $argsOnly ? PPFrame::NO_TEMPLATES : 0;
+		if ( $options['processNowiki'] ?? false ) {
+			$flags |= PPFrame::PROCESS_NOWIKI;
+		}
 		$stripExtTags = $options['stripExtTags'] ?? true;
 		[ $stripExtTags, $this->mStripExtTags ] = [ $this->mStripExtTags, $stripExtTags ];
 		$text = $frame->expand( $dom, $flags );
