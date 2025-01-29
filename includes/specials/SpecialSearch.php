@@ -237,38 +237,17 @@ class SpecialSearch extends SpecialPage {
 				$url = str_replace( '$1', urlencode( $term ), $searchForwardUrl );
 				$out->redirect( $url );
 			} else {
-				$out->addHTML( $this->showGoogleSearch( $term ) );
+				$out->addHTML( Html::errorBox( Html::rawElement(
+					'p',
+					[ 'class' => 'mw-searchdisabled' ],
+					$this->msg( 'searchdisabled', [ 'mw:Manual:$wgSearchForwardUrl' ] )->parse()
+				) ) );
 			}
 
 			return;
 		}
 
 		$this->showResults( $term );
-	}
-
-	/**
-	 * Output a google search form if search is disabled
-	 *
-	 * @param string $term Search term
-	 * @todo FIXME Maybe we should get rid of this raw html message at some future time
-	 * @return string HTML
-	 * @return-taint escaped
-	 */
-	private function showGoogleSearch( $term ) {
-		return "<fieldset>" .
-				"<legend>" .
-					$this->msg( 'search-external' )->escaped() .
-				"</legend>" .
-				"<p class='mw-searchdisabled'>" .
-					$this->msg( 'searchdisabled' )->escaped() .
-				"</p>" .
-				// googlesearch is part of $wgRawHtmlMessages and safe to use as is here
-				$this->msg( 'googlesearch' )->rawParams(
-					htmlspecialchars( $term ),
-					'UTF-8',
-					$this->msg( 'searchbutton' )->escaped()
-				)->text() .
-			"</fieldset>";
 	}
 
 	/**

@@ -26,6 +26,11 @@ For notes on 1.43.x and older releases, see HISTORY.
   services. This means that if you have $wgEnableDnsBlacklist set to true, it
   will no longer provide any value unless you add other servers to
   $wgDnsBlacklistUrls.
+* Google search removed (T384678): If site search is disabled with
+  $wgDisableTextSearch but $wgSearchForwardUrl is not set to a URL to which to
+  forward searches, then MediaWiki used to show a Google search form. This has
+  been removed, and instead a notice is displayed. System administrators should
+  set e.g. $wgSearchForwardUrl = 'https://duckduckgo.com?q=$1' to avoid this.
 * …
 
 ==== New configuration ====

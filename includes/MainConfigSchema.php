@@ -5038,7 +5038,6 @@ class MainConfigSchema {
 		'default' => [
 			'copyright',
 			'history_copyright',
-			'googlesearch',
 		],
 		'type' => 'list',
 		'items' => [ 'type' => 'string', ],

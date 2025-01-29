@@ -611,7 +611,6 @@ return [
 			'RawHtmlMessages' => [
 				'copyright',
 				'history_copyright',
-				'googlesearch',
 			],
 			'AllowRawHtmlCopyrightMessages' => true,
 			'Localtimezone' => null,
