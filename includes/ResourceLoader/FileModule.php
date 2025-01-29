@@ -551,9 +551,8 @@ class FileModule extends Module {
 		$expandedPackageFiles = $this->expandPackageFiles( $context );
 		if ( $expandedPackageFiles ) {
 			foreach ( $expandedPackageFiles['files'] as $fileInfo ) {
-				if ( isset( $fileInfo['filePath'] ) ) {
-					/** @var FilePath $filePath */
-					$filePath = $fileInfo['filePath'];
+				$filePath = $fileInfo['filePath'] ?? $fileInfo['versionFilePath'] ?? null;
+				if ( $filePath instanceof FilePath ) {
 					$files[] = $filePath->getLocalPath();
 				}
 			}
