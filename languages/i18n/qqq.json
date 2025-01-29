@@ -1330,7 +1330,7 @@
 	"powersearch-toggleall": "\"All\" refers to namespaces. It is used in Advanced search: {{canonicalurl:Special:Search|advanced=1}}\n{{Identical|All}}",
 	"powersearch-togglenone": "\"None\" refers to namespaces. It is used in Advanced search: {{canonicalurl:Special:Search|advanced=1}}\n{{Identical|None}}",
 	"powersearch-remember": "Label for a checkbox to save namespace choice for advanced search to user preferences.",
-	"searchdisabled": "Error message shown on [[Special:Search]] when the internal search is disabled and no external search forwarding URL has been defined.",
+	"searchdisabled": "Error message shown on [[Special:Search]] when the internal search is disabled and no external search forwarding URL has been defined.\n\nParameter:\n\n* $1 — MediaWiki.org page name for the $wgSearchForwardUrl manual page at <code>mw:Special:MyLanguage/Manual:$wgSearchForwardUrl</code>.",
 	"search-error": "Shown when an error has occurred when performing a search. Parameters:\n* $1 - the localized error that was returned",
 	"search-warning": "Shown when a warning has occurred when performing a search. Parameters:\n* $1 - the localized warning that was returned.",
 	"opensearch-desc": "{{ignored}}Link description of the [www.opensearch.org/ OpenSearch] link in the HTML head of pages.",

@@ -240,7 +240,7 @@ class SpecialSearch extends SpecialPage {
 				$out->addHTML( Html::errorBox( Html::rawElement(
 					'p',
 					[ 'class' => 'mw-searchdisabled' ],
-					$this->msg( 'searchdisabled', [ 'mw:Manual:$wgSearchForwardUrl' ] )->parse()
+					$this->msg( 'searchdisabled', [ 'mw:Special:MyLanguage/Manual:$wgSearchForwardUrl' ] )->parse()
 				) ) );
 			}
 
