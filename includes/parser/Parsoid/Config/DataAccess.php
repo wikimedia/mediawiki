@@ -45,7 +45,6 @@ use Wikimedia\Parsoid\Config\PageContent as IPageContent;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
 use Wikimedia\Parsoid\Fragments\HtmlPFragment;
-use Wikimedia\Parsoid\Fragments\LiteralStringPFragment;
 use Wikimedia\Parsoid\Fragments\PFragment;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
@@ -405,6 +404,7 @@ class DataAccess extends IDataAccess {
 				$wikitext, $this->ppFrame, false, [
 					'stripExtTags' => false,
 					'parsoidTopLevelCall' => $parsoidNewTemplateExpansionMode,
+					'processNowiki' => true,
 				]
 			);
 			// Where the result has strip state markers, tunnel this content
@@ -416,7 +416,7 @@ class DataAccess extends IDataAccess {
 					if ( !$content ) {
 						$pieces[$i] = '';
 					} elseif ( $type === 'nowiki' ) {
-						$pieces[$i] = LiteralStringPFragment::newFromLiteral( $content, null );
+						$pieces[$i] = HtmlPFragment::newFromHtmlString( $content, null );
 					} elseif ( $type === 'exttag' ) {
 						// Concatenate this extension tag to the
 						// previous wikitext, so that PFragment
@@ -425,6 +425,9 @@ class DataAccess extends IDataAccess {
 						$pieces[$i - 1] .= $content;
 						$pieces[$i] = '';
 					} else {
+						// T381709: technically this fragment should
+						// be subject to language conversion and some
+						// additional processing
 						$pieces[$i] = HtmlPFragment::newFromHtmlString( $content, null );
 					}
 				}
