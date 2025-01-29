@@ -8,14 +8,14 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 
 /**
- * The ingres adapter for the search component. It updates search related state
+ * The ingress adapter for the search component. It updates search related state
  * according to domain events coming from other components.
  *
  * @internal
  */
 class SearchEventIngress extends EventSubscriberBase {
 
-	/** Object spec intented for use with {@link DomainEventSource::registerSubscriber()} */
+	/** Object spec intended for use with {@link DomainEventSource::registerSubscriber()} */
 	public const OBJECT_SPEC = [
 		'class' => self::class,
 		'services' => [],

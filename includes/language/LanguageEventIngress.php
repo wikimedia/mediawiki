@@ -8,7 +8,7 @@ use MediaWiki\Revision\SlotRecord;
 use MessageCache;
 
 /**
- * The ingres adapter for the language component. It updates language related
+ * The ingress adapter for the language component. It updates language related
  * state according to domain events coming from other components.
  *
  * @internal
@@ -17,7 +17,7 @@ class LanguageEventIngress extends EventSubscriberBase {
 
 	private MessageCache $messageCache;
 
-	/** Object spec intented for use with {@link DomainEventSource::registerSubscriber()} */
+	/** Object spec intended for use with {@link DomainEventSource::registerSubscriber()} */
 	public const OBJECT_SPEC = [
 		'class' => self::class,
 		'services' => [
