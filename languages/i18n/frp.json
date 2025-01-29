@@ -831,7 +831,7 @@
 	"history-show-deleted": "Mas que les vèrsions suprimâyes",
 	"histfirst": "les ples vielyes",
 	"histlast": "Les ples novèles",
-	"historysize": "($1 octèt{{PLURAL:$1||s}})",
+	"historysize": "($1 {{PLURAL:$1|octèt|octèts}})",
 	"historyempty": "voueda",
 	"history-feed-title": "Historico de les vèrsions",
 	"history-feed-description": "Historico de les vèrsions por cela pâge sus lo vouiqui",
