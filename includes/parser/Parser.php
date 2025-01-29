@@ -2924,9 +2924,10 @@ class Parser {
 	 *   explicitly.
 	 * @param bool $argsOnly Only do argument (triple-brace) expansion, not
 	 *   double-brace expansion.
-	 * @param bool $stripExtTags When true, put extension tags in general strip state; when
+	 * @param array $options Various options used by Parsoid:
+	 *  - 'stripExtTags' When true, put extension tags in general strip state; when
 	 *   false extension tags are skipped during OT_PREPROCESS
-	 * @param bool $parsoidTopLevelCall Is this coming from Parsoid for top-level templates?
+	 *  - 'parsoidTopLevelCall' Is this coming from Parsoid for top-level templates?
 	 *   This is used to set start-of-line flag to true for template expansions since that
 	 *   is how Parsoid models templates.
 	 *
@@ -2934,7 +2935,7 @@ class Parser {
 	 * @since 1.24 method is public
 	 */
 	public function replaceVariables(
-		$text, $frame = false, $argsOnly = false, $stripExtTags = true, bool $parsoidTopLevelCall = false
+		$text, $frame = false, $argsOnly = false, array $options = []
 	) {
 		# Is there any text? Also, Prevent too big inclusions!
 		$textSize = strlen( $text );
@@ -2953,8 +2954,13 @@ class Parser {
 			$frame = $this->getPreprocessor()->newCustomFrame( $frame );
 		}
 
-		$dom = $this->preprocessToDom( $text, $parsoidTopLevelCall ? Preprocessor::START_IN_SOL_STATE : 0 );
+		$ppFlags = 0;
+		if ( $options['parsoidTopLevelCall'] ?? false ) {
+			$ppFlags |= Preprocessor::START_IN_SOL_STATE;
+		}
+		$dom = $this->preprocessToDom( $text, $ppFlags );
 		$flags = $argsOnly ? PPFrame::NO_TEMPLATES : 0;
+		$stripExtTags = $options['stripExtTags'] ?? true;
 		[ $stripExtTags, $this->mStripExtTags ] = [ $this->mStripExtTags, $stripExtTags ];
 		$text = $frame->expand( $dom, $flags );
 		$this->mStripExtTags = $stripExtTags;
