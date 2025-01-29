@@ -1554,6 +1554,12 @@ class MainConfigNames {
 	public const ParserCacheExpireTime = 'ParserCacheExpireTime';
 
 	/**
+	 * Name constant for the ParserCacheAsyncExpireTime setting, for use with Config::get()
+	 * @see MainConfigSchema::ParserCacheAsyncExpireTime
+	 */
+	public const ParserCacheAsyncExpireTime = 'ParserCacheAsyncExpireTime';
+
+	/**
 	 * Name constant for the OldRevisionParserCacheExpireTime setting, for use with Config::get()
 	 * @see MainConfigSchema::OldRevisionParserCacheExpireTime
 	 */

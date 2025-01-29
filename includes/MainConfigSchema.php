@@ -4199,6 +4199,19 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * The expiry time for "not ready" asynchronous content in the parser
+	 * cache, in seconds.  This should be rather short, to allow the
+	 * "not ready" content to be replaced by "ready" content.
+	 *
+	 * The default is 60 (one minute).
+	 *
+	 * @since 1.44
+	 */
+	public const ParserCacheAsyncExpireTime = [
+		'default' => 60,
+	];
+
+	/**
 	 * The expiry time for the parser cache for old revisions, in seconds.
 	 *
 	 * The default is 3600 (cache disabled).

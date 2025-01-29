@@ -1539,6 +1539,12 @@ $wgChronologyProtectorSecret = null;
 $wgParserCacheExpireTime = null;
 
 /**
+ * Config variable stub for the ParserCacheAsyncExpireTime setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::ParserCacheAsyncExpireTime
+ */
+$wgParserCacheAsyncExpireTime = null;
+
+/**
  * Config variable stub for the OldRevisionParserCacheExpireTime setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::OldRevisionParserCacheExpireTime
  */

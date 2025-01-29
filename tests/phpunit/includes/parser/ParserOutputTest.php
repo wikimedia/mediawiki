@@ -39,6 +39,10 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 			MainConfigNames::ParserCacheExpireTime,
 			ParserCacheSerializationTestCases::FAKE_CACHE_EXPIRY
 		);
+		$this->overrideConfigValue(
+			MainConfigNames::ParserCacheAsyncExpireTime,
+			ParserCacheSerializationTestCases::FAKE_ASYNC_CACHE_EXPIRY
+		);
 	}
 
 	public static function getClassToTest(): string {
@@ -1517,9 +1521,45 @@ EOF
 		// But calling ::get assigns a cache time
 		$po->getCacheTime();
 		$this->assertTrue( $po->hasCacheTime() );
+		$this->assertTrue( $po->isCacheable() );
 		// Reset cache time
 		$po->setCacheTime( "20240207202040" );
 		$this->assertSame( "20240207202040", $po->getCacheTime() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Parser\ParserOutput::isCacheable()
+	 * @covers \MediaWiki\Parser\ParserOutput::getCacheExpiry()
+	 * @covers \MediaWiki\Parser\ParserOutput::hasReducedExpiry()
+	 */
+	public function testAsyncNotReady() {
+		$defaultExpiry = ParserCacheSerializationTestCases::FAKE_CACHE_EXPIRY;
+		$asyncExpiry = ParserCacheSerializationTestCases::FAKE_ASYNC_CACHE_EXPIRY;
+		// $asyncExpiry has to be smaller than the default for these tests to
+		// work properly.
+		$this->assertTrue( $asyncExpiry < $defaultExpiry );
+
+		$po = new ParserOutput();
+		$po->getCacheTime(); // assign a cache time
+		$this->assertTrue( $po->isCacheable() );
+		$this->assertFalse( $po->hasReducedExpiry() );
+
+		// hasReducedExpiry is set if there is/was any async content
+		$po->setOutputFlag( ParserOutputFlags::HAS_ASYNC_CONTENT );
+		$this->assertTrue( $po->isCacheable() );
+		$this->assertTrue( $po->hasReducedExpiry() );
+		$this->assertTrue( $po->getCacheExpiry() === $defaultExpiry );
+
+		// Setting ASYNC_NOT_READY also shortens the cache expiry
+		$po->setOutputFlag( ParserOutputFlags::ASYNC_NOT_READY );
+		$this->assertTrue( $po->isCacheable() );
+		$this->assertTrue( $po->hasReducedExpiry() );
+		$this->assertTrue( $po->getCacheExpiry() === $asyncExpiry );
+
+		$po->updateCacheExpiry( $defaultExpiry - 1 );
+		$this->assertTrue( $po->isCacheable() );
+		$this->assertTrue( $po->hasReducedExpiry() );
+		$this->assertTrue( $po->getCacheExpiry() === $asyncExpiry );
 	}
 
 	/**

@@ -2366,10 +2366,26 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @return bool
 	 */
 	public function hasReducedExpiry(): bool {
+		if ( $this->getOutputFlag( ParserOutputFlags::HAS_ASYNC_CONTENT ) ) {
+			// If this page has async content, then we should re-run
+			// RefreshLinksJob whenever we regenerate the page.
+			return true;
+		}
 		$parserCacheExpireTime = MediaWikiServices::getInstance()->getMainConfig()->get(
 			MainConfigNames::ParserCacheExpireTime );
 
 		return $this->getCacheExpiry() < $parserCacheExpireTime;
+	}
+
+	public function getCacheExpiry(): int {
+		$expiry = parent::getCacheExpiry();
+		if ( $this->getOutputFlag( ParserOutputFlags::ASYNC_NOT_READY ) ) {
+			$asyncExpireTime = MediaWikiServices::getInstance()->getMainConfig()->get(
+				MainConfigNames::ParserCacheAsyncExpireTime
+			);
+			$expiry = min( $expiry, $asyncExpireTime );
+		}
+		return $expiry;
 	}
 
 	/**

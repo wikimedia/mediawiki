@@ -188,6 +188,23 @@ class ParserOutputFlags {
 	 */
 	public const IS_PREVIEW = 'is-preview';
 
+	/**
+	 * @var string Set if this page contains content which could be
+	 * asynchronous, even if the content was "ready" at the time of
+	 * the parse. This ensures that when the page expires from the
+	 * cache and the page is reparsed, RefreshLinksJob will also be
+	 * re-run since the content could be different from the last
+	 * parse. (T373256)
+	 */
+	public const HAS_ASYNC_CONTENT = 'has-async-content';
+
+	/**
+	 * @var string Set if this page contains asynchronous content which
+	 * was not ready by the time the output was generated.  At present
+	 * this reduces the cache TTL. (T373256)
+	 */
+	public const ASYNC_NOT_READY = 'async-not-ready';
+
 	public static function cases(): array {
 		return [
 			self::NO_GALLERY,
@@ -210,6 +227,8 @@ class ParserOutputFlags {
 			self::VARY_USER,
 			self::USER_SIGNATURE,
 			self::IS_PREVIEW,
+			self::HAS_ASYNC_CONTENT,
+			self::ASYNC_NOT_READY,
 		];
 	}
 }
