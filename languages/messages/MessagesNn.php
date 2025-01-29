@@ -72,19 +72,23 @@ $dateFormats = [
  */
 	'dmyt time' => 'H:i',
 	'dmyt date' => 'j. F Y',
+	'dmyt monthonly' => 'F Y',
 	'dmyt both' => 'j. F Y "kl." H:i',
 
 	'short dmyt time' => 'H:i',
-	'short dmyt date' => 'j. M. Y',
-	'short dmyt both' => 'j. M. Y "kl." H:i',
+	'short dmyt date' => 'j. M Y',
+	'short dmyt monthonly' => 'M Y',
+	'short dmyt both' => 'j. M Y "kl." H:i',
 
 	'tdmy time' => 'H:i',
 	'tdmy date' => 'j. F Y',
+	'tdmy monthonly' => 'F Y',
 	'tdmy both' => 'H:i, j. F Y',
 
 	'short tdmy time' => 'H:i',
-	'short tdmy date' => 'j. M. Y',
-	'short tdmy both' => 'H:i, j. M. Y',
+	'short tdmy date' => 'j. M Y',
+	'short tdmy monthonly' => 'M Y',
+	'short tdmy both' => 'H:i, j. M Y',
 ];
 
 $bookstoreList = [
