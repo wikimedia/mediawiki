@@ -1470,6 +1470,41 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $record->getSha1(), $row->rev_sha1 );
 	}
 
+	/**
+	 * Regression test for T384628
+	 */
+	public function testNewRevisionFromArchiveRow_bad_title() {
+		$store = $this->getServiceContainer()->getRevisionStore();
+
+		$row = (object)[
+			'ar_id' => '1',
+			'ar_page_id' => '2',
+			'ar_namespace' => '0',
+			'ar_title' => 'User:Something', // Can't exist in the main namespace
+			'ar_rev_id' => '2',
+			'ar_timestamp' => '20180528192356',
+			'ar_minor_edit' => '0',
+			'ar_deleted' => '0',
+			'ar_len' => '78',
+			'ar_parent_id' => '0',
+			'ar_sha1' => 'deadbeef',
+			'ar_comment_text' => 'whatever',
+			'ar_comment_data' => null,
+			'ar_comment_cid' => null,
+			'ar_user' => '12345',
+			'ar_user_text' => 'Test',
+			'ar_actor' => '12345',
+		];
+
+		$record = @$store->newRevisionFromArchiveRow( $row );
+
+		$this->assertInstanceOf( RevisionRecord::class, $record );
+
+		$page = $record->getPage();
+		$this->assertSame( 0, $page->getNamespace() );
+		$this->assertSame( 'User:Something', $page->getDBkey() );
+	}
+
 	public function testNewRevisionFromRow_noPage() {
 		$store = $this->getServiceContainer()->getRevisionStore();
 		$page = $this->getExistingTestPage();

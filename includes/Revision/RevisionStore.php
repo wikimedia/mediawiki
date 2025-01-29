@@ -1660,7 +1660,9 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 
 		if ( $page === null ) {
 			if ( isset( $row->ar_namespace ) && isset( $row->ar_title ) ) {
-				$page = Title::makeTitle( $row->ar_namespace, $row->ar_title );
+				// Represent a non-existing page.
+				// NOTE: The page title may be invalid by current rules (T384628).
+				$page = PageIdentityValue::localIdentity( 0, $row->ar_namespace, $row->ar_title );
 			} else {
 				throw new InvalidArgumentException(
 					'A Title or ar_namespace and ar_title must be given'
