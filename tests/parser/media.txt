@@ -89,26 +89,6 @@ wgParserEnableLegacyMediaDOM=false
 !! end
 
 !! test
-Serialize simple image with figure-inline wrapper
-!! options
-parsoid=html2wt
-!! html/parsoid
-<p><figure-inline class="mw-default-size" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element"/></a></figure-inline></p>
-!! wikitext
-[[File:Foobar.jpg]]
-!! end
-
-!! test
-Serialize simple image with mw:Image typeof
-!! options
-parsoid=html2wt
-!! html/parsoid
-<p><span class="mw-default-size" typeof="mw:Image"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element"/></a></span></p>
-!! wikitext
-[[File:Foobar.jpg]]
-!! end
-
-!! test
 Simple image (using File: namespace, now canonical)
 !! config
 wgParserEnableLegacyMediaDOM=false

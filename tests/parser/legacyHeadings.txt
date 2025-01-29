@@ -2351,12 +2351,9 @@ wgParserEnableLegacyHeadingDOM=true
 <h3 id="asdf">odd</h3>
 !! html/php
 <h3 id="asdf"><span class="mw-headline">odd</span></h3>
-!! metadata/php
-Sections:
- h3 index: toclevel:1 number:1 title:NULL off:NULL anchor/linkAnchor:asdf line:odd
 !! html/parsoid
 <section data-mw-section-id="0"></section><section data-mw-section-id="-1"><h3 id="asdf" data-parsoid='{"stx":"html","reusedId":true}'>odd</h3></section>
-!! metadata/parsoid
+!! metadata
 Sections:
  h3 index: toclevel:1 number:1 title:NULL off:NULL anchor/linkAnchor:asdf line:odd
 !! end

@@ -10,7 +10,8 @@ version=2
 # Some taken from https://meta.wikimedia.org/wiki/Parser_testing
 # All (C) their respective authors and released under the GPL
 #
-# The syntax should be fairly self-explanatory.
+# The syntax should be fairly self-explanatory. The test parser
+# expects end-of-line markers to be \n and not \r\n.
 #
 # Currently supported test options:
 # One of the following modes:
@@ -1273,7 +1274,7 @@ Templates: Strip leading and trailing whitespace from named-param values
 !! test
 Templates: Don't strip whitespace from positional-param values
 !! config
-wgParsoidNewTemplateExpansionMode=false
+wgParsoidNewTemplateExpansionMode=true
 !! wikitext
 {{1x|a }}
 
@@ -1327,7 +1328,8 @@ wgParsoidNewTemplateExpansionMode=false
 <span about="#mwt7" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"\n e"}},"i":0}}]}'>
 </span><pre about="#mwt7">e</pre>
 
-<ul about="#mwt8" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"\n*f"}},"i":0}}]}'><li>f</li></ul>
+<span about="#mwt8" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"\n*f"}},"i":0}}]}'>
+</span><ul about="#mwt8"><li>f</li></ul>
 
 <span about="#mwt9" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"\n "}},"i":0}},"g"]}'>
 </span><pre about="#mwt9">g</pre>
@@ -3638,7 +3640,7 @@ baz</li></ul>
 !! test
 List items are not parsed correctly following a <pre> block (T2785)
 !! config
-wgParsoidNewTemplateExpansionMode=false
+wgParsoidNewTemplateExpansionMode=true
 !! wikitext
 *<pre>foo</pre>
 *<pre>bar</pre>
@@ -3656,7 +3658,7 @@ wgParsoidNewTemplateExpansionMode=false
 !! test
 List items from template
 !! config
-wgParsoidNewTemplateExpansionMode=false
+wgParsoidNewTemplateExpansionMode=true
 !! wikitext
 
 {{inner list}}
@@ -3688,8 +3690,7 @@ wgParsoidNewTemplateExpansionMode=false
 <li>item 2</li></ul>
 
 <ul><li>item 0</li>
-<li>notSOL</li><span about="#mwt3" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"inner list","href":"./Template:Inner_list"},"params":{},"i":0}}]}'>
-</span><li about="#mwt3">item 1</li>
+<li>notSOL</li><li about="#mwt3" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"inner list","href":"./Template:Inner_list"},"params":{},"i":0}}]}'>item 1</li>
 <li>item 2</li></ul>
 !! end
 
@@ -3884,7 +3885,7 @@ Parsoid: Make sure nested lists are serialized on their own line even if HTML co
 !! test
 Parsoid: Test of whitespace serialization with Templated bullets
 !! config
-wgParsoidNewTemplateExpansionMode=false
+wgParsoidNewTemplateExpansionMode=true
 !! options
 parsoid=wt2html
 !! wikitext
@@ -3893,8 +3894,7 @@ parsoid=wt2html
 <ul><li class="mw-empty-elt"></li>
 <li>Bar</li></ul>
 !! html/parsoid
-<ul><li class="mw-empty-elt"></li><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"bullet","href":"./Template:Bullet"},"params":{},"i":0}}]}'>
-</span><li about="#mwt1">Bar</li></ul>
+<ul><li class="mw-empty-elt"></li><li about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"bullet","href":"./Template:Bullet"},"params":{},"i":0}}]}'>Bar</li></ul>
 !! end
 
 # ------------------------------------------------------------------------
@@ -4118,21 +4118,6 @@ Foo
 !! html/php
 !! html/parsoid+integrated
 <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"{{1x|DISPLAYTITLE}}:Foo","function":"displaytitle"},"params":{},"i":0}}]}'></span>
-!! end
-
-# Can be removed when T335843 is addressed
-!! test
-Parsoid html2wt b/c check: Cached Parsoid HTML for DISPLAYTITLE should be handled properly
-!! options
-parsoid=html2wt
-!! html/parsoid
-<meta property='mw:PageProp/displaytitle' content='foo'/>
-<meta property="mw:PageProp/displaytitle" content="Parser test" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"src":"{{DISPLAYTITLE:&#39;&#39;{{PAGENAME}}&#39;&#39;}}"}' data-mw='{"attribs":[[{"txt":"content"},{"html":"DISPLAYTITLE:&lt;i data-parsoid=&#39;{\"dsr\":[15,31,2,2]}&#39;>&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[]],\"dsr\":[17,29,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"PAGENAME\",\"function\":\"pagename\"},\"params\":{},\"i\":0}}]}&#39;>Parser test&lt;/span>&lt;/i>"}]]}'/>
-<meta property="mw:PageProp/displaytitle" content="Foo" about="#mwt1" typeof="mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"content"},{"html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[{\"k\":\"1\"}]],\"dsr\":[2,23,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"DISPLAYTITLE\"}},\"i\":0}}]}&#39;>DISPLAYTITLE&lt;/span>:Foo"}]]}'/>
-!! wikitext
-{{DISPLAYTITLE:foo}}
-{{DISPLAYTITLE:''{{PAGENAME}}''}}
-{{{{1x|DISPLAYTITLE}}:Foo}}
 !! end
 
 !! test
@@ -4846,7 +4831,7 @@ Template:table
 !! test
 T2529: Template with table, not included at beginning of line
 !! config
-wgParsoidNewTemplateExpansionMode=false
+wgParsoidNewTemplateExpansionMode=true
 !! wikitext
 foo {{table}}
 !! html/php
@@ -4862,8 +4847,7 @@ foo {{table}}
 <td>4
 </td></tr></tbody></table>
 !! html/parsoid
-<p>foo </p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"table","href":"./Template:Table"},"params":{},"i":0}}]}'>
-</span><table about="#mwt1">
+<p>foo </p><table about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"table","href":"./Template:Table"},"params":{},"i":0}}]}'>
 <tbody><tr><td>1</td><td>2</td></tr>
 <tr>
 <td>3</td><td>4</td></tr>
@@ -7654,17 +7638,6 @@ Parsoid: Defaultsort variations (T236846)
 <span about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"DEFAULTSORT:DOGGIE","function":"defaultsort"},"params":{},"i":0}}]}'></span>
 !! end
 
-# Can be removed when T335843 is addressed
-!! test
-Parsoid html2wt b/c check: Defaultsort with key content being added (T236846)
-!! options
-parsoid=html2wt
-!! html/parsoid
-<meta property="mw:PageProp/categorydefaultsort" content="BIRD" data-parsoid='{"src":"{{DEFAULTSORT}}"}'/>
-!! wikitext
-{{DEFAULTSORT:BIRD}}
-!! end
-
 # NOTE: mw:ExpandedAttrs is not the best typeof here. mw:Transclusion is better.
 # But, this is a limitation of our representation and is documented in
 # TemplateHandler.php in processSpecialMagicWord
@@ -8217,31 +8190,6 @@ language=is
 [[Miðill:Foobar.jpg|Bat!]]
 !! end
 
-# This is a test to ensure we don't crash or choke when given
-# old cached 1.7.0 HTML for media links; we don't require that the
-# result be "valid" because wt2wt was completely broken in 1.7.0
-!! test
-Media link from old 1.7.0 DOM spec (crash test, parsoid-only) T198511
-!! options
-parsoid=html2wt
-!! html/parsoid
-<p>This is what Parsoid would emit (and we still handle this HTML fine):</p>
-<p><a rel="mw:MediaLink" href="http://example.com/images/3/3a/Foobar.jpg" title="Foobar.jpg">A neat file to look at</a></p>
-<p>But VisualEditor would mangle the rel attribute, and give us back this:</p>
-<p><a rel="mw:ExtLink" href="http://example.com/images/3/3a/Foobar.jpg" title="Foobar.jpg">A neat file to look at</a></p>
-<p>But at least we don't crash when trying to handle the mangled HTML!</p>
-!! wikitext
-This is what Parsoid would emit (and we still handle this HTML fine):
-
-[[Media:Foobar.jpg|A neat file to look at]]
-
-But VisualEditor would mangle the rel attribute, and give us back this:
-
-[http://example.com/images/3/3a/Foobar.jpg A neat file to look at]
-
-But at least we don't crash when trying to handle the mangled HTML!
-!! end
-
 !! test
 Media link to nonexistent file (T3702)
 !! wikitext
@@ -8710,14 +8658,13 @@ wgFragmentMode=[ "legacy" ]
 !! test
 Expansion of multi-line templates in attribute values (T8255)
 !! config
-wgParsoidNewTemplateExpansionMode=false
+wgParsoidNewTemplateExpansionMode=true
 !! wikitext
 <div style="background: {{1x|#00FF00}}">-</div>
 !! html/php
 <div style="background: #00FF00">-</div>
 !! html/parsoid+integrated
-<div style="background: 
-#00FF00" about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"style":"background: \n#00FF00"},"sa":{"style":"background: {{1x|#00FF00}}"}}' data-mw='{"attribs":[[{"txt":"style"},{"html":"background: &lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"}]],\"dsr\":[24,38,null,null]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"#00FF00\"}},\"i\":0}}]}&apos;>\n#00FF00&lt;/span>"}]]}'>-</div>
+<div style="background: #00FF00" about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"style":"background: #00FF00"},"sa":{"style":"background: {{1x|#00FF00}}"}}' data-mw='{"attribs":[[{"txt":"style"},{"html":"background: &lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"}]],\"dsr\":[24,38,null,null]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"#00FF00\"}},\"i\":0}}]}&apos;>#00FF00&lt;/span>"}]]}'>-</div>
 !! end
 
 ### FIXME ptsync 2024-02-21: "multi-line" part of these tests appears to
@@ -8730,14 +8677,13 @@ wgParsoidNewTemplateExpansionMode=false
 !! test
 Expansion of multi-line parser-functions in attribute values (T8255)
 !! config
-wgParsoidNewTemplateExpansionMode=false
+wgParsoidNewTemplateExpansionMode=true
 !! wikitext
 <div style="background: {{#if:1|#00FF00|#FF00FF}}">-</div>
 !! html/php+disabled
 <div style="background: #00FF00">-</div>
 !! html/parsoid+integrated
-<div style="background: 
-#00FF00" about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"style":"background: \n#00FF00"},"sa":{"style":"background: {{#if:1|#00FF00|#FF00FF}}"}}' data-mw='{"attribs":[[{"txt":"style"},{"html":"background: &lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"},{\"k\":\"2\"}]],\"dsr\":[24,49,null,null]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"#if:1\",\"function\":\"if\"},\"params\":{\"1\":{\"wt\":\"#00FF00\"},\"2\":{\"wt\":\"#FF00FF\"}},\"i\":0}}]}&apos;>\n#00FF00&lt;/span>"}]]}'>-</div>
+<div style="background: #00FF00" about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"style":"background: #00FF00"},"sa":{"style":"background: {{#if:1|#00FF00|#FF00FF}}"}}' data-mw='{"attribs":[[{"txt":"style"},{"html":"background: &lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"},{\"k\":\"2\"}]],\"dsr\":[24,49,null,null]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"#if:1\",\"function\":\"if\"},\"params\":{\"1\":{\"wt\":\"#00FF00\"},\"2\":{\"wt\":\"#FF00FF\"}},\"i\":0}}]}&apos;>#00FF00&lt;/span>"}]]}'>-</div>
 !! end
 
 !! test
@@ -11562,29 +11508,27 @@ Parsing of overlapping (improperly nested) inline html tags
 !! test
 T2529: Uncovered bullet
 !! config
-wgParsoidNewTemplateExpansionMode=false
+wgParsoidNewTemplateExpansionMode=true
 !! wikitext
 *Foo {{bullet}}
 !! html/php
 <ul><li>Foo</li>
 <li>Bar</li></ul>
 !! html/parsoid
-<ul><li>Foo</li><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"bullet","href":"./Template:Bullet"},"params":{},"i":0}}]}'>
-</span><li about="#mwt1">Bar</li></ul>
+<ul><li>Foo</li><li about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"bullet","href":"./Template:Bullet"},"params":{},"i":0}}]}'>Bar</li></ul>
 !! end
 
 !! test
 T2529: Uncovered bullet in a deeply nested list
 !! config
-wgParsoidNewTemplateExpansionMode=false
+wgParsoidNewTemplateExpansionMode=true
 !! wikitext
 *******Foo {{bullet}}
 !! html/php
 <ul><li><ul><li><ul><li><ul><li><ul><li><ul><li><ul><li>Foo</li></ul></li></ul></li></ul></li></ul></li></ul></li></ul></li>
 <li>Bar</li></ul>
 !! html/parsoid
-<ul><li><ul><li><ul><li><ul><li><ul><li><ul><li><ul><li>Foo</li></ul></li></ul></li></ul></li></ul></li></ul></li></ul></li><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"bullet","href":"./Template:Bullet"},"params":{},"i":0}}]}'>
-</span><li about="#mwt1">Bar</li></ul>
+<ul><li><ul><li><ul><li><ul><li><ul><li><ul><li><ul><li>Foo</li></ul></li></ul></li></ul></li></ul></li></ul></li></ul></li><li about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"bullet","href":"./Template:Bullet"},"params":{},"i":0}}]}'>Bar</li></ul>
 !! end
 
 !! test
@@ -11622,15 +11566,14 @@ y
 !! test
 T2529: Uncovered bullet in parser function result
 !! config
-wgParsoidNewTemplateExpansionMode=false
+wgParsoidNewTemplateExpansionMode=true
 !! wikitext
 *Foo{{lc:{{bullet}} }}
 !! html/php
 <ul><li>Foo</li>
 <li>bar</li></ul>
 !! html/parsoid+integrated
-<ul><li>Foo</li><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"lc:{{bullet}} ","function":"lc"},"params":{},"i":0}}]}'>
-</span><li about="#mwt1">bar</li></ul>
+<ul><li>Foo</li><li about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"lc:{{bullet}} ","function":"lc"},"params":{},"i":0}}]}'>bar</li></ul>
 !! end
 
 !! test
@@ -13372,22 +13315,6 @@ parsoid=wt2html
 #### Not implemented yet, see
 #### https://www.mediawiki.org/wiki/Parsoid/HTML_based_LST
 #### ----------------------------------------------------------------
-
-## We still need to support serializing the older format while content is stored.
-!! test
-LST Sections: Backwards compatibility
-!! options
-parsoid={
-  "suppressErrors": true,
-  "modes": ["html2wt"]
-}
-!! wikitext
-<section begin="2011-05-16" />
-<section end="2014-04-10 (MW 1.23wmf22)" />
-!! html/parsoid
-<p><meta typeof="mw:Extension/LabeledSectionTransclusion/begin" content="2011-05-16"/>
-<meta typeof="mw:Extension/LabeledSectionTransclusion/end" content="2014-04-10 (MW 1.23wmf22)"/></p>
-!! end
 
 !! test
 LST Sections: Newfangled approach
@@ -16527,23 +16454,6 @@ parsoid={
 <span id="a">a</span><!--c1-->
 
 <!--c2--><span id="b">b</span>
-!! end
-
-## T89383
-!! test
-Selser: Check for validity of DSR before using it
-!! options
-parsoid={
-  "modes": ["selser"],
-  "changes": [
-    [ "#a", "before", "<meta property='mw:PageProp/displaytitle' content='foo'>" ]
-  ]
-}
-!! wikitext
-<span id="a">a</span>
-!! wikitext/edited
-{{DISPLAYTITLE:foo}}
-<span id="a">a</span>
 !! end
 
 !! test
