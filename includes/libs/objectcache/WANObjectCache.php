@@ -32,6 +32,9 @@ use UnexpectedValueException;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\StatsFactory;
+use Wikimedia\Telemetry\NoopTracer;
+use Wikimedia\Telemetry\SpanInterface;
+use Wikimedia\Telemetry\TracerInterface;
 
 /**
  * Multi-datacenter aware caching interface
@@ -191,6 +194,9 @@ class WANObjectCache implements
 	protected $secret;
 	/** @var int Scheme to use for key coalescing (Hash Tags or Hash Stops) */
 	protected $coalesceScheme;
+
+	/** @var TracerInterface */
+	private $tracer = null;
 
 	/** @var array<int,array> List of (key, UNIX timestamp) tuples for get() cache misses */
 	private $missLog;
@@ -359,6 +365,7 @@ class WANObjectCache implements
 	 *       "helper" keys for a "value" key within the same cache server. This reduces network
 	 *       overhead and reduces the chance the single downed cache server causes disruption.
 	 *       Use "hash_stop" with mcrouter and "hash_tag" with dynomite. [default: "hash_stop"]
+	 *   - tracer: TracerInterface instance where per-operation spans will be recorded
 	 */
 	public function __construct( array $params ) {
 		$this->cache = $params['cache'];
@@ -376,6 +383,7 @@ class WANObjectCache implements
 		}
 
 		$this->setLogger( $params['logger'] ?? new NullLogger() );
+		$this->tracer = $params['tracer'] ?? new NoopTracer();
 
 		if ( isset( $params['stats'] ) && $params['stats'] instanceof IBufferingStatsdDataFactory ) {
 			wfDeprecated(
@@ -463,6 +471,8 @@ class WANObjectCache implements
 		// Also, if no $info parameter is provided, then it doesn't matter how it changes here.
 		$legacyInfo = ( $info !== self::PASS_BY_REF );
 
+		$span = $this->startOperationSpan( __FUNCTION__, $key, $checkKeys );
+
 		$now = $this->getCurrentTime();
 		$res = $this->fetchKeys( [ $key ], $checkKeys, $now )[$key];
 
@@ -520,6 +530,8 @@ class WANObjectCache implements
 		// Note that an undeclared variable passed as $info starts as null (not the default).
 		// Also, if no $info parameter is provided, then it doesn't matter how it changes here.
 		$legacyInfo = ( $info !== self::PASS_BY_REF );
+
+		$span = $this->startOperationSpan( __FUNCTION__, $keys, $checkKeys );
 
 		$curTTLs = [];
 		$info = [];
@@ -801,6 +813,8 @@ class WANObjectCache implements
 	 * @return bool Success
 	 */
 	final public function set( $key, $value, $ttl = self::TTL_INDEFINITE, array $opts = [] ) {
+		$span = $this->startOperationSpan( __FUNCTION__, $key );
+
 		$keygroup = $this->determineKeyGroupForStats( $key );
 
 		$ok = $this->setMainValue(
@@ -1051,6 +1065,8 @@ class WANObjectCache implements
 	 * @return bool True if the item was purged or not found, false on failure
 	 */
 	final public function delete( $key, $ttl = self::HOLDOFF_TTL ) {
+		$span = $this->startOperationSpan( __FUNCTION__, $key );
+
 		// Purge values must be stored under the value key so that WANObjectCache::set()
 		// can atomically merge values without accidentally undoing a recent purge and thus
 		// violating the holdoff TTL restriction.
@@ -1105,6 +1121,7 @@ class WANObjectCache implements
 	 * @return float UNIX timestamp
 	 */
 	final public function getCheckKeyTime( $key ) {
+		$span = $this->startOperationSpan( __FUNCTION__, $key );
 		return $this->getMultiCheckKeyTime( [ $key ] )[$key];
 	}
 
@@ -1170,6 +1187,8 @@ class WANObjectCache implements
 	 * @since 1.31
 	 */
 	final public function getMultiCheckKeyTime( array $keys ) {
+		$span = $this->startOperationSpan( __FUNCTION__, $keys );
+
 		$checkSisterKeysByKey = [];
 		foreach ( $keys as $key ) {
 			$checkSisterKeysByKey[$key] = $this->makeSisterKey( $key, self::TYPE_TIMESTAMP );
@@ -1232,6 +1251,8 @@ class WANObjectCache implements
 	 * @return bool True if the item was purged or not found, false on failure
 	 */
 	public function touchCheckKey( $key, $holdoff = self::HOLDOFF_TTL ) {
+		$span = $this->startOperationSpan( __FUNCTION__, $key );
+
 		$checkSisterKey = $this->makeSisterKey( $key, self::TYPE_TIMESTAMP );
 
 		$now = $this->getCurrentTime();
@@ -1277,6 +1298,8 @@ class WANObjectCache implements
 	 * @return bool True if the item was purged or not found, false on failure
 	 */
 	public function resetCheckKey( $key ) {
+		$span = $this->startOperationSpan( __FUNCTION__, $key );
+
 		$checkSisterKey = $this->makeSisterKey( $key, self::TYPE_TIMESTAMP );
 		$ok = $this->relayNonVolatilePurge( $checkSisterKey );
 
@@ -1595,6 +1618,7 @@ class WANObjectCache implements
 	final public function getWithSetCallback(
 		$key, $ttl, $callback, array $opts = [], array $cbParams = []
 	) {
+		$span = $this->startOperationSpan( __FUNCTION__, $key );
 		$version = $opts['version'] ?? null;
 		$pcTTL = $opts['pcTTL'] ?? self::TTL_UNCACHEABLE;
 		$pCache = ( $pcTTL >= 0 )
@@ -2098,6 +2122,13 @@ class WANObjectCache implements
 	final public function getMultiWithSetCallback(
 		ArrayIterator $keyedIds, $ttl, callable $callback, array $opts = []
 	) {
+		$span = $this->startOperationSpan( __FUNCTION__, '' );
+		if ( $span->getContext()->isSampled() ) {
+			$span->setAttributes( [
+				'org.wikimedia.wancache.multi_count' => $keyedIds->count(),
+				'org.wikimedia.wancache.ttl' => $ttl,
+			] );
+		}
 		// Batch load required keys into the in-process warmup cache
 		$this->warmupCache = $this->fetchWrappedValuesForWarmupCache(
 			$this->getNonProcessCachedMultiKeys( $keyedIds, $opts ),
@@ -2201,7 +2232,14 @@ class WANObjectCache implements
 	final public function getMultiWithUnionSetCallback(
 		ArrayIterator $keyedIds, $ttl, callable $callback, array $opts = []
 	) {
-		$checkKeys = $opts['checkKeys'] ?? [];
+		$span = $this->startOperationSpan( __FUNCTION__, '' );
+		if ( $span->getContext()->isSampled() ) {
+			$span->setAttributes( [
+				'org.wikimedia.wancache.multi_count' => $keyedIds->count(),
+				'org.wikimedia.wancache.ttl' => $ttl,
+			] );
+		}
+		$checkKeys = $opts['checkKeys'] ?? [];  // TODO: ???
 		$minAsOf = $opts['minAsOf'] ?? self::MIN_TIMESTAMP_NONE;
 
 		// unset incompatible keys
@@ -3117,6 +3155,46 @@ class WANObjectCache implements
 		foreach ( $this->processCaches as $pCache ) {
 			$pCache->setMockTime( $time );
 		}
+	}
+
+	/**
+	 * Convenience function to start an OpenTelemetry span for the given operation.
+	 * The span is deactivated and ended once the returned object goes out of scope,
+	 * but to be sure of timings, callers should call finish() on the returned object.
+	 *
+	 * @param string $opName Name of the operation to instrument (e.g. GET)
+	 * @param string|string[] $keys Cache keys related to the operation
+	 * @param string[]|string[][] $checkKeys 1/2D array of check keys related to the operation
+	 *
+	 * @return SpanInterface
+	 */
+	private function startOperationSpan( $opName, $keys, $checkKeys = [] ) {
+		$span = $this->tracer->createSpan( "WANObjectCache::$opName" )
+			->setSpanKind( SpanInterface::SPAN_KIND_CLIENT )
+			->start();
+
+		if ( !$span->getContext()->isSampled() ) {
+			return $span;
+		}
+
+		$keys = is_array( $keys ) ? implode( ' ', $keys ) : $keys;
+
+		if ( count( $checkKeys ) > 0 ) {
+			$checkKeys = array_map(
+				static fn ( $checkKeyOrKeyGroup ) =>
+					is_array( $checkKeyOrKeyGroup )
+						? implode( ' ', $checkKeyOrKeyGroup )
+						: $checkKeyOrKeyGroup,
+				$checkKeys );
+
+			$checkKeys = implode( ' ', $checkKeys );
+			$span->setAttributes( [ 'org.wikimedia.wancache.check_keys' => $checkKeys ] );
+		}
+
+		$span->setAttributes( [ 'org.wikimedia.wancache.keys' => $keys ] );
+
+		$span->activate();
+		return $span;
 	}
 }
 
