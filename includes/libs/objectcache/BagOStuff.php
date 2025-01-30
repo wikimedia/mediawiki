@@ -557,17 +557,6 @@ abstract class BagOStuff implements
 	}
 
 	/**
-	 * Clear the "last error" registry
-	 *
-	 * @since 1.23
-	 * @deprecated Since 1.38, hard deprecated in 1.43
-	 */
-	public function clearLastError() {
-		wfDeprecated( __METHOD__, '1.38' );
-		$this->lastError = self::ERR_NONE;
-	}
-
-	/**
 	 * Set the "last error" registry due to a problem encountered during an attempted operation
 	 *
 	 * @param int $error BagOStuff:ERR_* constant

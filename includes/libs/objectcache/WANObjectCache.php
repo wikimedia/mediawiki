@@ -194,7 +194,7 @@ class WANObjectCache implements
 	protected $coalesceScheme;
 
 	/** @var TracerInterface */
-	private $tracer = null;
+	private $tracer;
 
 	/** @var array<int,array> List of (key, UNIX timestamp) tuples for get() cache misses */
 	private $missLog;
@@ -461,6 +461,7 @@ class WANObjectCache implements
 		// Also, if no $info parameter is provided, then it doesn't matter how it changes here.
 		$legacyInfo = ( $info !== self::PASS_BY_REF );
 
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$span = $this->startOperationSpan( __FUNCTION__, $key, $checkKeys );
 
 		$now = $this->getCurrentTime();
@@ -521,6 +522,7 @@ class WANObjectCache implements
 		// Also, if no $info parameter is provided, then it doesn't matter how it changes here.
 		$legacyInfo = ( $info !== self::PASS_BY_REF );
 
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$span = $this->startOperationSpan( __FUNCTION__, $keys, $checkKeys );
 
 		$curTTLs = [];
@@ -803,6 +805,7 @@ class WANObjectCache implements
 	 * @return bool Success
 	 */
 	final public function set( $key, $value, $ttl = self::TTL_INDEFINITE, array $opts = [] ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$span = $this->startOperationSpan( __FUNCTION__, $key );
 
 		$keygroup = $this->determineKeyGroupForStats( $key );
@@ -1055,6 +1058,7 @@ class WANObjectCache implements
 	 * @return bool True if the item was purged or not found, false on failure
 	 */
 	final public function delete( $key, $ttl = self::HOLDOFF_TTL ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$span = $this->startOperationSpan( __FUNCTION__, $key );
 
 		// Purge values must be stored under the value key so that WANObjectCache::set()
@@ -1116,7 +1120,9 @@ class WANObjectCache implements
 	 * @return float UNIX timestamp
 	 */
 	final public function getCheckKeyTime( $key ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$span = $this->startOperationSpan( __FUNCTION__, $key );
+
 		return $this->getMultiCheckKeyTime( [ $key ] )[$key];
 	}
 
@@ -1182,6 +1188,7 @@ class WANObjectCache implements
 	 * @since 1.31
 	 */
 	final public function getMultiCheckKeyTime( array $keys ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$span = $this->startOperationSpan( __FUNCTION__, $keys );
 
 		$checkSisterKeysByKey = [];
@@ -1246,6 +1253,7 @@ class WANObjectCache implements
 	 * @return bool True if the item was purged or not found, false on failure
 	 */
 	public function touchCheckKey( $key, $holdoff = self::HOLDOFF_TTL ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$span = $this->startOperationSpan( __FUNCTION__, $key );
 
 		$checkSisterKey = $this->makeSisterKey( $key, self::TYPE_TIMESTAMP );
@@ -1298,6 +1306,7 @@ class WANObjectCache implements
 	 * @return bool True if the item was purged or not found, false on failure
 	 */
 	public function resetCheckKey( $key ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$span = $this->startOperationSpan( __FUNCTION__, $key );
 
 		$checkSisterKey = $this->makeSisterKey( $key, self::TYPE_TIMESTAMP );
@@ -1618,7 +1627,9 @@ class WANObjectCache implements
 	final public function getWithSetCallback(
 		$key, $ttl, $callback, array $opts = [], array $cbParams = []
 	) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$span = $this->startOperationSpan( __FUNCTION__, $key );
+
 		$version = $opts['version'] ?? null;
 		$pcTTL = $opts['pcTTL'] ?? self::TTL_UNCACHEABLE;
 		$pCache = ( $pcTTL >= 0 )
@@ -1828,6 +1839,7 @@ class WANObjectCache implements
 		$preCallbackTime = $this->getCurrentTime();
 		++$this->callbackDepth;
 		// https://github.com/phan/phan/issues/4419
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$value = null;
 		try {
 			$value = $callback(

@@ -271,6 +271,8 @@ because of Phabricator reports.
   been removed.
 * The `MediaWiki\User\Registration\IUserRegistrationProvider` interface now
   defines a required fetchRegistrationBatch() method.
+* BagOStuff::clearLastError() and WANObjectCache::clearLastError(), both
+  deprecated in 1.43, have been removed.
 * The hook OutputPageMakeCategoryLinks, deprecated in 1.43, has been removed.
 * ApiPageSet::getTitles(), ApiPageSet::getGoodTitles(),
   ApiPageSet::getMissingTitles(), ApiPageSet::getGoodAndMissingTitles(),
