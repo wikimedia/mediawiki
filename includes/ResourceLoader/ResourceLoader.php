@@ -1704,7 +1704,7 @@ MESSAGE;
 	public static function makeInlineCodeWithModule( $modules, $script ) {
 		// Adds an array to lazy-created RLQ
 		return '(RLQ=window.RLQ||[]).push(['
-			. self::encodeJsonForScript( $modules ) . ','
+			. json_encode( $modules ) . ','
 			. 'function(){' . trim( $script ) . '}'
 			. ']);';
 	}
