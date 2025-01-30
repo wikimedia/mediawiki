@@ -19,6 +19,7 @@
  */
 namespace Wikimedia\Rdbms;
 
+use InvalidArgumentException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -240,6 +241,29 @@ class TransactionProfiler implements LoggerAwareInterface {
 	public function redefineExpectations( array $expects, string $fname ) {
 		$this->initPlaceholderExpectations();
 		$this->setExpectations( $expects, $fname );
+	}
+
+	/**
+	 * Get the expectation associated with a specific event name.
+	 *
+	 * This will return the value of the expectation even if the event is silenced.
+	 *
+	 * Use this to check if a specific event is allowed before performing it, such as checking
+	 * if the request will allow writes before performing them and instead deferring the writes
+	 * to outside the request.
+	 *
+	 * @since 1.44
+	 * @param string $event Event name. Valid event names are defined in {@see self::EVENT_NAMES}
+	 * @return float|int Maximum event count, event value, or total event value
+	 *    depending on the type of event.
+	 * @throws InvalidArgumentException If the provided event name is not one in {@see self::EVENT_NAMES}
+	 */
+	public function getExpectation( string $event ) {
+		if ( !isset( $this->expect[$event] ) ) {
+			throw new InvalidArgumentException( "Unrecognised event name '$event' provided." );
+		}
+
+		return $this->expect[$event][self::FLD_LIMIT];
 	}
 
 	/**

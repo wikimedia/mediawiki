@@ -241,4 +241,23 @@ class TransactionProfilerTest extends TestCase {
 
 		unset( $scope );
 	}
+
+	/** @dataProvider provideGetExpectation */
+	public function testGetExpectation( $expectations, $event, $expectedReturnValue ) {
+		$tp = new TransactionProfiler();
+		$tp->setExpectations( $expectations, __METHOD__ );
+		$this->assertSame( $expectedReturnValue, $tp->getExpectation( $event ) );
+	}
+
+	public static function provideGetExpectation() {
+		return [
+			'Provided event name is unset' => [ [], 'writes', INF ],
+			'Provided event name is set' => [ [ 'writes' => 3, 'conns' => 1 ], 'writes', 3 ],
+		];
+	}
+
+	public function testGetExpectationOnInvalidEventName() {
+		$this->expectException( InvalidArgumentException::class );
+		$this->testGetExpectation( [], 'abc', 1234 );
+	}
 }
