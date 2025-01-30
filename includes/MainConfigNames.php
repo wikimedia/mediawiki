@@ -2383,12 +2383,6 @@ class MainConfigNames {
 	public const ParsoidFragmentSupport = 'ParsoidFragmentSupport';
 
 	/**
-	 * Name constant for the ParsoidNewTemplateExpansionMode setting, for use with Config::get()
-	 * @see MainConfigSchema::ParsoidNewTemplateExpansionMode
-	 */
-	public const ParsoidNewTemplateExpansionMode = 'ParsoidNewTemplateExpansionMode';
-
-	/**
 	 * Name constant for the ParsoidExperimentalParserFunctionOutput setting, for use with Config::get()
 	 * @see MainConfigSchema::ParsoidExperimentalParserFunctionOutput
 	 */
