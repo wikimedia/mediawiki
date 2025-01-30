@@ -48,6 +48,13 @@ HtmlformChecker.prototype.attach = function ( $extraElements ) {
 	if ( $extraElements ) {
 		$e = $e.add( $extraElements );
 	}
+	// Abort any pending requests immediately when the user starts/continues typing
+	$e.on( events, () => {
+		if ( this.abortController ) {
+			this.abortController.abort();
+		}
+	} );
+	// Validate user input after a short delay when the user stops typing
 	$e.on( events, mw.util.debounce( this.validate.bind( this ), 1000 ) );
 
 	return this;
@@ -59,10 +66,6 @@ HtmlformChecker.prototype.attach = function ( $extraElements ) {
 HtmlformChecker.prototype.validate = function () {
 	const value = this.$element.val();
 
-	// Abort any pending requests.
-	if ( this.abortController ) {
-		this.abortController.abort();
-	}
 	this.abortController = new mw.Api.AbortController();
 
 	if ( value === '' ) {
