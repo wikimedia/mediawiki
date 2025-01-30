@@ -135,7 +135,7 @@
 </template>
 
 <script>
-const { computed, defineComponent, nextTick, ref } = require( 'vue' );
+const { computed, defineComponent, nextTick, ref, watch } = require( 'vue' );
 const { storeToRefs } = require( 'pinia' );
 const { CdxButton, CdxTextInput, CdxCheckbox, CdxField, CdxMessage } = require( '@wikimedia/codex' );
 const useBlockStore = require( './stores/block.js' );
@@ -172,7 +172,7 @@ module.exports = exports = defineComponent( {
 		const store = useBlockStore();
 		const blockShowSuppressLog = mw.config.get( 'blockShowSuppressLog' ) || false;
 		const canDeleteLogEntry = mw.config.get( 'canDeleteLogEntry' ) || false;
-		const { formErrors, formSubmitted, formVisible, blockAdded, blockRemoved, enableMultiblocks } = storeToRefs( store );
+		const { blockId, formErrors, formSubmitted, formVisible, blockAdded, blockRemoved, enableMultiblocks } = storeToRefs( store );
 		const messagesContainer = ref();
 		// Value to use for BlockLog component keys, so they reload after saving.
 		const submitCount = ref( 0 );
@@ -193,15 +193,16 @@ module.exports = exports = defineComponent( {
 		const wasRedirected = mw.util.getParamValue( 'redirected' );
 
 		let initialLoad = true;
+		let selectedBlockRow = false;
 
 		// If we're editing or removing via a URL parameter, check that the block exists.
-		const blockId = mw.util.getParamValue( 'id' );
-		if ( blockId ) {
-			loadFromId( blockId ).then( ( data ) => {
+		const blockIdUrlParam = mw.util.getParamValue( 'id' );
+		if ( blockIdUrlParam ) {
+			loadFromId( blockIdUrlParam ).then( ( data ) => {
 				if ( data && data.blocks.length ) {
 					if ( mw.util.getParamValue( 'remove' ) === '1' ) {
 						// Fire the remove click handler manually.
-						onRemoveBlock( blockId );
+						onRemoveBlock( blockIdUrlParam );
 					} else {
 						// Load the block form content.
 						const block = data.blocks[ 0 ];
@@ -374,6 +375,44 @@ module.exports = exports = defineComponent( {
 					messagesContainer.value.scrollIntoView( { behavior: 'smooth' } );
 				} );
 		}
+
+		/**
+		 * Highlight a selected block row. If there is a previous selected block row, unhighlight it.
+		 */
+		function highlightSelectedBlockRow() {
+			// Unhighlight any previously selected row
+			unhighlightSelectedBlockRow();
+			selectedBlockRow = document.querySelector( '#edit-button-' + blockId.value ).closest( 'tr' );
+			selectedBlockRow.classList.add( 'cdx-selected-block-row' );
+		}
+
+		/**
+		 * Unhighlight selected block row.
+		 */
+		function unhighlightSelectedBlockRow() {
+			if ( selectedBlockRow ) {
+				selectedBlockRow.classList.remove( 'cdx-selected-block-row' );
+				selectedBlockRow = false;
+			}
+		}
+
+		// Remove highlighting when block removal confirmation pop up is closed.
+		watch( blockId, ( newValue ) => {
+			if ( !newValue ) {
+				unhighlightSelectedBlockRow();
+			} else {
+				highlightSelectedBlockRow();
+			}
+		} );
+
+		// Remove highlighting when block removal confirmation pop up is closed.
+		// We need to reset the form so no block data is set.
+		watch( removalConfirmationOpen, ( newValue ) => {
+			if ( !newValue ) {
+				unhighlightSelectedBlockRow();
+				store.resetForm();
+			}
+		} );
 
 		return {
 			store,
