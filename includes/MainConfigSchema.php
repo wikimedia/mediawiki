@@ -6626,6 +6626,25 @@ class MainConfigSchema {
 		'default' => true,
 		'type' => 'boolean',
 	];
+
+	/**
+	 * If set, Parsoid's HTML output for parser functions will be different
+	 * from Parsoid HTML spec 2.x.x and lets us experiment with a better
+	 * output that might be rolled out in a future 3.x Parsoid HTML version.
+	 * Parsoid will start generating this output for wikifunctions parser function
+	 * whenever that code is rolled out to production and will let us experiment
+	 * with this new format and tweak it now. This also lets Parsoid developers
+	 * experiment with it locally.
+	 *
+	 * This is an experimental flag and might be removed without notice.
+	 *
+	 * @unstable EXPERIMENTAL
+	 */
+	public const ParsoidExperimentalParserFunctionOutput = [
+		'default' => false,
+		'type' => 'boolean',
+	];
+
 	/**
 	 * Enable legacy media HTML structure in the output from the Parser.  The
 	 * alternative modern HTML structure that replaces it is described at

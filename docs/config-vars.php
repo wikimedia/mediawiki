@@ -2374,6 +2374,12 @@ $wgParsoidFragmentSupport = null;
 $wgParsoidNewTemplateExpansionMode = null;
 
 /**
+ * Config variable stub for the ParsoidExperimentalParserFunctionOutput setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::ParsoidExperimentalParserFunctionOutput
+ */
+$wgParsoidExperimentalParserFunctionOutput = null;
+
+/**
  * Config variable stub for the ParserEnableLegacyMediaDOM setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ParserEnableLegacyMediaDOM
  * @deprecated since 1.41

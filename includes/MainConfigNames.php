@@ -2389,6 +2389,12 @@ class MainConfigNames {
 	public const ParsoidNewTemplateExpansionMode = 'ParsoidNewTemplateExpansionMode';
 
 	/**
+	 * Name constant for the ParsoidExperimentalParserFunctionOutput setting, for use with Config::get()
+	 * @see MainConfigSchema::ParsoidExperimentalParserFunctionOutput
+	 */
+	public const ParsoidExperimentalParserFunctionOutput = 'ParsoidExperimentalParserFunctionOutput';
+
+	/**
 	 * Name constant for the ParserEnableLegacyMediaDOM setting, for use with Config::get()
 	 * @see MainConfigSchema::ParserEnableLegacyMediaDOM
 	 * @deprecated since 1.41
