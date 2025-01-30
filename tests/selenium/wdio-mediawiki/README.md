@@ -26,6 +26,7 @@ which typically come from `MEDIAWIKI_USER` and `MEDIAWIKI_PASSWORD` environment 
 * `createAccount(MWBot bot, string username, string password)`
 * `blockUser(MWBot bot, [ string username [, string expiry ] ])`
 * `unblockUser(MWBot bot, [ string username ])`
+* `addUserToGroup(MWBot bot, string username, string groupName)`
 
 Example:
 

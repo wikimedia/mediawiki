@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.7.0 / 2025-01-22
+* Api: Add `api.addUserToGroup()` to add user to a user group.
+
 ## 2.6.0 / 2025-01-09
 * Skip wikitext-specific tests if NS_MAIN isn't wikitext. (T358530)
 * Add LoginPage.getActualUsername().
