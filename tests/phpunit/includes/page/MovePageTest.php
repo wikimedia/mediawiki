@@ -9,6 +9,7 @@ use MediaWiki\Page\Event\PageUpdatedEvent;
 use MediaWiki\Page\MovePage;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Tests\ExpectCallbackTrait;
 use MediaWiki\Tests\Language\LocalizationUpdateSpyTrait;
 use MediaWiki\Tests\recentchanges\ChangeTrackingUpdateSpyTrait;
 use MediaWiki\Tests\ResourceLoader\ResourceLoaderUpdateSpyTrait;
@@ -34,6 +35,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 	use SearchUpdateSpyTrait;
 	use LocalizationUpdateSpyTrait;
 	use ResourceLoaderUpdateSpyTrait;
+	use ExpectCallbackTrait;
 
 	/**
 	 * @param Title $old
@@ -611,8 +613,6 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 	 * Regression test for T381225
 	 */
 	public function testEventEmission() {
-		$calls = 0;
-
 		$old = Title::makeTitle( NS_MEDIAWIKI, 'Foo' );
 		$oldPage = $this->getExistingTestPage( $old );
 		$oldRev = $oldPage->getRevisionRecord();
@@ -626,9 +626,9 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		// clear the queue
 		$this->runJobs();
 
-		$this->getServiceContainer()->getDomainEventSource()->registerListener(
-			'PageUpdated',
-			static function ( PageUpdatedEvent $event ) use ( &$calls, $old, $oldPageId, $new, $oldRev, $mover ) {
+		$this->expectDomainEvent(
+			PageUpdatedEvent::TYPE, 2,
+			static function ( PageUpdatedEvent $event ) use ( $old, $oldPageId, $new, $oldRev, $mover ) {
 				// for the existing page under the new title
 				if ( $event->getPage()->isSamePageAs( $new ) ) {
 					Assert::assertFalse( $event->isNew(), 'isNew' );
@@ -659,17 +659,12 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 				}
 
 				// TODO: assert more properties
-
-				$calls++;
 			}
 		);
 
 		// Now move the page
 		$obj = $this->newMovePageWithMocks( $old, $new, [ 'db' => $this->getDb() ] );
 		$obj->move( $mover );
-
-		$this->runDeferredUpdates();
-		$this->assertSame( 2, $calls );
 	}
 
 	public static function provideUpdatePropagation() {

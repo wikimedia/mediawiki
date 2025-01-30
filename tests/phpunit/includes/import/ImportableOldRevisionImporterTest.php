@@ -5,6 +5,7 @@ use MediaWiki\Page\Event\PageUpdatedEvent;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Tests\ExpectCallbackTrait;
 use MediaWiki\Tests\Language\LocalizationUpdateSpyTrait;
 use MediaWiki\Tests\recentchanges\ChangeTrackingUpdateSpyTrait;
 use MediaWiki\Tests\ResourceLoader\ResourceLoaderUpdateSpyTrait;
@@ -24,6 +25,7 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 	use SearchUpdateSpyTrait;
 	use LocalizationUpdateSpyTrait;
 	use ResourceLoaderUpdateSpyTrait;
+	use ExpectCallbackTrait;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -100,21 +102,14 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 		$this->testImport( $expectedTags );
 	}
 
-	private function makeDomainEventSourceListener(
-		int &$counter,
-		$new
-	) {
-		return static function ( PageUpdatedEvent $event ) use (
-			&$counter, $new
-		) {
+	private function makeDomainEventSourceListener( $new ) {
+		return static function ( PageUpdatedEvent $event ) use ( $new ) {
 			Assert::assertTrue( $event->isRevisionChange(), 'isPurge' );
 			Assert::assertSame( $new, $event->isNew(), 'isNew' );
 			Assert::assertSame( PageUpdatedEvent::CAUSE_IMPORT, $event->getCause(), 'getCause' );
 
 			Assert::assertTrue( $event->isAutomated(), 'isAutomated' );
 			Assert::assertTrue( $event->isSilent(), 'isSilent' );
-
-			$counter++;
 		};
 	}
 
@@ -123,13 +118,11 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 	 * PageUpdatedEvent indicating page creation.
 	 */
 	public function testEventEmission_new() {
-		$calls = 0;
-
 		$title = Title::newFromText( __CLASS__ . rand() );
 
-		$this->getServiceContainer()->getDomainEventSource()->registerListener(
-			'PageUpdated',
-			$this->makeDomainEventSourceListener( $calls, true )
+		$this->expectDomainEvent(
+			PageUpdatedEvent::TYPE, 1,
+			$this->makeDomainEventSourceListener( true )
 		);
 
 		// Perform an import
@@ -137,9 +130,6 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 
 		$revision = $this->getWikiRevision( $title );
 		$importer->import( $revision );
-
-		$this->runDeferredUpdates();
-		$this->assertSame( 1, $calls );
 	}
 
 	/**
@@ -147,15 +137,10 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 	 * a PageUpdatedEvent.
 	 */
 	public function testEventEmission_old() {
-		$calls = 0;
-
 		$page = $this->getExistingTestPage();
 		$title = $page->getTitle();
 
-		$this->getServiceContainer()->getDomainEventSource()->registerListener(
-			'PageUpdated',
-			$this->makeDomainEventSourceListener( $calls, false )
-		);
+		$this->expectDomainEvent( PageUpdatedEvent::TYPE, 0 );
 
 		// Import an old revision
 		$importer = $this->getImporter();
@@ -163,9 +148,6 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 		$revision = $this->getWikiRevision( $title );
 		$revision->setTimestamp( '20110101223344' );
 		$importer->import( $revision );
-
-		$this->runDeferredUpdates();
-		$this->assertSame( 0, $calls );
 	}
 
 	/**
@@ -173,15 +155,13 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 	 * a PageUpdatedEvent.
 	 */
 	public function testEventEmission_current() {
-		$calls = 0;
-
 		MWTimestamp::setFakeTime( '20110101223344' );
 		$page = $this->getExistingTestPage();
 		$title = $page->getTitle();
 
-		$this->getServiceContainer()->getDomainEventSource()->registerListener(
-			'PageUpdated',
-			$this->makeDomainEventSourceListener( $calls, false )
+		$this->expectDomainEvent(
+			PageUpdatedEvent::TYPE, 1,
+			$this->makeDomainEventSourceListener( false )
 		);
 
 		// Import latest revision
@@ -190,9 +170,6 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 		$revision = $this->getWikiRevision( $title );
 		$revision->setTimestamp( '20240101223344' );
 		$importer->import( $revision );
-
-		$this->runDeferredUpdates();
-		$this->assertSame( 1, $calls );
 	}
 
 	public static function provideUpdatePropagation() {
