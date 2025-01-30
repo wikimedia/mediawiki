@@ -1090,7 +1090,6 @@
 	"powersearch-toggleall": "Semua",
 	"powersearch-togglenone": "Tidak ada",
 	"powersearch-remember": "Ingat pilihan untuk pencarian selanjutnya",
-	"search-external": "Pencarian luar",
 	"searchdisabled": "Pencarian {{SITENAME}} dimatikan.\nAnda dapat mencari melalui Google untuk sementara waktu.\nPerlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencakup perubahan-perubahan terakhir.",
 	"search-error": "Galat terjadi saat mencari: $1",
 	"search-warning": "Peringatan muncul ketika mencari: $1",

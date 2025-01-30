@@ -1018,7 +1018,6 @@
 	"powersearch-toggleall": "ทั้งหมด",
 	"powersearch-togglenone": "ไม่เลือก",
 	"powersearch-remember": "จำการเลือกสำหรับการค้นหาในอนาคต",
-	"search-external": "ค้นหาภายนอก",
 	"searchdisabled": "การค้นหา {{SITENAME}} ถูกปิดใช้งาน \nคุณสามารถค้นหาโดยทางกูเกิลในระหว่างนั้น\nโปรดทราบว่าดัชนีเนื้อหา {{SITENAME} อาจล้าสมัย",
 	"search-error": "มีข้อผิดพลาดขณะค้นหา: $1",
 	"search-warning": "มีคำเตือนขณะค้นหา: $1",

@@ -944,7 +944,6 @@
 	"powersearch-toggleall": "Sve",
 	"powersearch-togglenone": "Ništa",
 	"powersearch-remember": "Zapamti izbor za buduća pretraživanja",
-	"search-external": "Vanjski pretraživač",
 	"searchdisabled": "<p>Oprostite! Pretraga po cjelokupnoj bazi je zbog bržeg rada projekta {{SITENAME}} trenutačno onemogućena. Možete se poslužiti tražilicom Google.</p>",
 	"search-error": "Greška prilikom pretrage: $1",
 	"search-warning": "Došlo je do upozorenja prilikom pretraživanja: $1",

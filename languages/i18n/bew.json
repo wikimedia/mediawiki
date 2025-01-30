@@ -964,7 +964,6 @@
 	"powersearch-toggleall": "Semua",
 	"powersearch-togglenone": "Kaga' ada",
 	"powersearch-remember": "Èling-èling pilihan bakal penyarian selanjutnya",
-	"search-external": "Penyarian luar",
 	"searchdisabled": "Penyarian {{SITENAME}} dimatiin.\nLu bisa nyari liwat Gugel bakal sementara waktu.\nÈling kalo dia punya lelèrodan bakal isi {{SITENAME}} mentak ketinggalan jaman.",
 	"search-error": "Ada kengabluan pas nyari: $1",
 	"search-warning": "Ada wanti-wanti pas nyari: $1",

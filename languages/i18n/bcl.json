@@ -834,7 +834,6 @@
 	"powersearch-toggleall": "Gabos",
 	"powersearch-togglenone": "Wara",
 	"powersearch-remember": "Girumdumon an pinili para sa mga susunod na paghanap",
-	"search-external": "Panluwas na paghahanap",
 	"searchdisabled": "Pigpopogolan mûna an paghanap sa {{SITENAME}}. Mientras tanto, pwede ka man maghanap sa Google. Giromdomon tabî na an mga indise kan laog ninda sa {{SITENAME}} pwede ser na lumâ na.",
 	"search-error": "May salang nangyari habang naghahanap:$1",
 	"search-warning": "May salang nangyari habang naghahanap: $1",

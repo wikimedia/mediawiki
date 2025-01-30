@@ -1071,7 +1071,6 @@
 	"powersearch-toggleall": "Alle",
 	"powersearch-togglenone": "Ingen",
 	"powersearch-remember": "Husk valgene for fremtidige søgninger",
-	"search-external": "Brug anden søgemaskine",
 	"searchdisabled": "<p>Beklager! Fuldtekstsøgningen er midlertidigt afbrudt på grund af for stor belastning på serverne. I mellemtidem kan du anvende Google- eller Yahoo!-søgefelterne herunder. Bemærk at deres kopier af {{SITENAME}}s indhold kan være forældet.</p>",
 	"search-error": "Der opstod en fejl under søgning: $1",
 	"search-warning": "Der opstod en advarsel under søgning: $1",

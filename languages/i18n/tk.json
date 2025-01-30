@@ -828,7 +828,6 @@
 	"powersearch-toggleall": "Ählisi",
 	"powersearch-togglenone": "Hiç biri",
 	"powersearch-remember": "Geljekdäki gözlegler üçin saýlamany ýadyňyzdan çykarmaň",
-	"search-external": "Daşarky gözleg",
 	"searchdisabled": "{{SITENAME}} saýtynda gözleg geçirmeklik ýapyk.\nÝogsa-da, oňa çenli Google bilen gözleg geçirip bilersiňiz.\nEmma olaryň {{SITENAME}} indeksleriniň möwriti geçen bolmagy mümkindir.",
 	"search-error": "Gözleg wagtynda ýalňyşlyk ýüze çykdy: $1",
 	"search-warning": "Gözleg wagtynda duýduryş boldy: $1",

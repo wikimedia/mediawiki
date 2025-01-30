@@ -865,7 +865,6 @@
 	"powersearch-toggleall": "Alle",
 	"powersearch-togglenone": "Gein",
 	"powersearch-remember": "Ónthawt selectie veur toukumstige zeukopdrachte",
-	"search-external": "Extern zeuke",
 	"searchdisabled": "Zeuke op {{SITENAME}} is oetgesjakeld vanweige gebrek aan servercapaciteit.\nZoelang as de servers nog neet sjterk genog zunt kins e zeuke bie Google.\nMèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.",
 	"search-error": "'n Fout is opgetraoje tiedes 't zeuke: $1",
 	"search-warning": "'n Waorsjoewing is opgetraoje tiedes 't zeuke: $1",

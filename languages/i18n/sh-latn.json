@@ -957,7 +957,6 @@
 	"powersearch-toggleall": "Sve",
 	"powersearch-togglenone": "Ništa",
 	"powersearch-remember": "Zapamti izbor za buduće pretrage",
-	"search-external": "Vanjska pretraga",
 	"searchdisabled": "Pretraga teksta na ovoj Wiki je trenutno onemogućena.\nU međuvremenu možete pretraživati preko Googlea.\nUzmite u obzir da njegovi indeksi za ovu Wiki ne moraju biti ažurirani.",
 	"search-error": "$1",
 	"search-warning": "$1",

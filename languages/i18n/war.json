@@ -732,7 +732,6 @@
 	"powersearch-togglelabel": "Panginano-a:",
 	"powersearch-toggleall": "Ngatanan",
 	"powersearch-togglenone": "Waray",
-	"search-external": "Gawas nga pamiling",
 	"searchdisabled": "{{SITENAME}} nga pamiling in ginparong.\nPamilnga la anay pinaagi ha Google ha pagkayana.\nGinpapasabot nga an sulod han mga panudlok han {{SITENAME}} in bangin daan an.",
 	"search-error": "May-ada sayop nga nahitabo samtang namimiling: $1",
 	"mypreferences": "Mga akon karuyag",

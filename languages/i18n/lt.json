@@ -1034,7 +1034,6 @@
 	"powersearch-toggleall": "Viską",
 	"powersearch-togglenone": "Nieko",
 	"powersearch-remember": "Atsiminti pasirinkimą būsimoms paieškoms",
-	"search-external": "Išorinė paieška",
 	"searchdisabled": "Projekto {{SITENAME}} paieška yra uždrausta. Galite pamėginti ieškoti Google paieškos sistemoje. Paieškos sistemoje projekto {{SITENAME}} duomenys gali būti pasenę.",
 	"search-error": "Vykdant paiešką įvyko klaida: $1",
 	"search-warning": "Vykdant paiešką pateiktas įspėjimas: $1",

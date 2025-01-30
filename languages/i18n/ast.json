@@ -912,7 +912,6 @@
 	"powersearch-toggleall": "Toos",
 	"powersearch-togglenone": "Dengún",
 	"powersearch-remember": "Recordar la seleición pa guetes futures",
-	"search-external": "Busca esterna",
 	"searchdisabled": "La busca en {{SITENAME}} ta desactivada. Mentanto, puedes buscar en Google.\nRepara en que'l conteníu de los sos índices de {{SITENAME}} puede tar desfasáu.",
 	"search-error": "Hebo un error al buscar: $1",
 	"search-warning": "Hebo un avisu al buscar: $1",

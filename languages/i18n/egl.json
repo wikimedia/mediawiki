@@ -738,7 +738,6 @@
 	"powersearch-toggleall": "Tót",
 	"powersearch-togglenone": "Nisûn",
 	"powersearch-remember": "Arcôrda la siēlta per êtri sèirchi ch'é vō fêr",
-	"search-external": "Sèirca fâta fōra",
 	"searchdisabled": "La sèirca intêrna ed {{SITENAME}} l'a funsiòuna mìa; int al mèinter a s' pōl pruvêr a druvêr un mutōr ed sèirca d'ed fōra cme Google. (A gh' è da nutêr però che còl che gh'é dèinter in {{SITENAME}} che es câten in chi mutōr a prém èser mìa arnuvê.)",
 	"search-error": "É sucès un erōr mèinter a's fêva la sèirca:$1",
 	"mypreferences": "Preferèinsi",

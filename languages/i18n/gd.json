@@ -812,7 +812,6 @@
 	"powersearch-toggleall": "Na h-uile",
 	"powersearch-togglenone": "Chan eil gin",
 	"powersearch-remember": "Cuir na thagh thu sa chuimhne airson lorg ri teachd",
-	"search-external": "Lorg air an taobh a-muigh",
 	"searchdisabled": "Tha lorg air {{SITENAME}} à comas.\n'S urrainn dhut lorg a dhèanamh air Google san eadar-àm.\nFaodaidh gum bi inneacsan susbaint {{SITENAME}} tuilleadh 's sean ge-tà.",
 	"search-error": "Thachair mearachd fhad 's a bha sinn a' lorg an-seo: $1",
 	"mypreferences": "Na roghainnean agam",

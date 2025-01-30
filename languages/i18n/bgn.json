@@ -710,7 +710,6 @@
 	"powersearch-toggleall": "موچ",
 	"powersearch-togglenone": "هیچ‌گوجام",
 	"powersearch-remember": "انتخاب په دیگه گشتین‌ئاني خاتیرا شه شومی هوشا مه‌روت",
-	"search-external": "خارجی ئین گشتین",
 	"searchdisabled": "گشتین بی {{SITENAME}} ئی تا فعال نه اینت.\nموقتاً توانیت شه Google ئی گردگ ئا استفاده کنیت.\nتوجه کنیت که بدست آته ئین نتایج شه گردگا بی آ ممکینین طریقه ئا مه بیئنت.",
 	"search-error": "یک خطایی بی گردگئ وختا رخ داته : $1",
 	"mypreferences": "تنظیمات",

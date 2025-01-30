@@ -849,7 +849,6 @@
 	"powersearch-toggleall": "بوتون",
 	"powersearch-togglenone": "هئچ بیری",
 	"powersearch-remember": "سچمگی گلجک سون آختاریشلارا یاد دا ساخلا",
-	"search-external": "ائشیک آختاریش",
 	"searchdisabled": "{{SITENAME}} آختاریشی باغلانیب‌دیر.\nایندی گوگل ایله آختارا بیلرسینیز.\nدیقت ائدین کی اونون {{SITENAME}} ایندئکسی، کؤهنه اولا بیلر.",
 	"search-error": "آختاراندا بیر خطا قاباغا گلدی: $1",
 	"search-warning": "آختاراندا بیر خطا قاباغا گلدی: $1",

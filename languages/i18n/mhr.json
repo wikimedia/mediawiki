@@ -992,7 +992,6 @@
 	"powersearch-toggleall": "Чыла",
 	"powersearch-togglenone": "Нимо",
 	"powersearch-remember": "Ончыкылыклан шарнен кодаш",
-	"search-external": "Тӱжвал кычалмаш",
 	"searchdisabled": "{{SITENAME}} мучко кычалмашым йӧртымӧ.\nТы жапыште тый кычалмашым Google гоч шуктен кертат.\nШотыш нал, {{SITENAME}} сайтын нунын контент индексышт тоштемше лийын кертеш.",
 	"search-error": "Кычалме годым йоҥылыш лийын: $1",
 	"search-warning": "Кычалме годым шижтарымаш лектын: $1",

@@ -819,7 +819,6 @@
 	"powersearch-toggleall": "hamin",
 	"powersearch-togglenone": "nayi’",
 	"powersearch-remember": "pibalucu’en mapiliay sapikilim anucilacila",
-	"search-external": "mikilim i hekal",
 	"searchdisabled": "{{SITENAME}} mapasatezep mikilimay a sasahicaan.\nkapah kisu misumad micaliw Google kilim.\npiazihi, i Google makilimay a {{SITENAME}} kasabelih lacul hakay caay sabaluhayay.",
 	"search-error": "imahini mikilim sa mungangaw：$1",
 	"search-warning": "imahini mikilim sa mungangaw：$1",

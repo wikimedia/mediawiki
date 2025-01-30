@@ -741,7 +741,6 @@
 	"powersearch-togglelabel": "Kontrolěrowaś:",
 	"powersearch-toggleall": "Wše",
 	"powersearch-togglenone": "Žeden",
-	"search-external": "Eksterne pytanje",
 	"searchdisabled": "Pytanje we {{SITENAME}} jo se deaktiwěrowało. Tak dłujko móžoš w googlu pytaś. Pšosym wobmysli, až móžo pytanski indeks za {{SITENAME}} njeaktualny byś.",
 	"search-error": "Pśi pytanju jo se zmólka nastała: $1",
 	"mypreferences": "Nastajenja",

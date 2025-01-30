@@ -1000,7 +1000,6 @@
 	"powersearch-toggleall": "Sve",
 	"powersearch-togglenone": "Ništa",
 	"powersearch-remember": "Zapamti izbor za buduće pretrage",
-	"search-external": "Spoljašnja pretraga",
 	"searchdisabled": "Pretraga je onemogućena.\nU međuvremenu možete tražiti preko Gugla.\nImajte na umu da njegovi indeksi ovog projekta mogu biti zastareli.",
 	"search-error": "Došlo je do greške prilikom pretrage: $1",
 	"search-warning": "Upozorenje: $1",

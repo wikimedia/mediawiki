@@ -984,7 +984,6 @@
 	"powersearch-toggleall": "Tucc",
 	"powersearch-togglenone": "Nissun",
 	"powersearch-remember": "Regorda la selezzion per i ricerche che vegnarann",
-	"search-external": "Ricerca esterna",
 	"searchdisabled": "La ricerca interna de {{SITENAME}} a l'è no ativa; fratant se po provà a doprà un motor de ricerca esterno compagn de Google. (Notà però che i contegnud de {{SITENAME}} che gh'è in 'sti motor de ricerca chì i podarissen vesser no asgiornad.)",
 	"search-error": "A l'è sucedud on eror in del cors de la ricerca: $1",
 	"search-warning": "A l'è capitad un avis in del cors de la ricerca: $1",

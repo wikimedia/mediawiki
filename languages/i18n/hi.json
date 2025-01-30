@@ -1053,7 +1053,6 @@
 	"powersearch-toggleall": "सभी",
 	"powersearch-togglenone": "कोई भी नहीं",
 	"powersearch-remember": "चुनाव को भविष्य की खोजों के लिए याद रखें",
-	"search-external": "बाहरी खोज",
 	"searchdisabled": "{{SITENAME}} पर खोज अक्षम है।\nआप गूगल से खोज कर सकते हैं।\nध्यान रखें कि उनकी {{SITENAME}} सामग्री की सूची पुरानी हो सकती है।",
 	"search-error": "खोजते समय निम्न त्रुटि उत्पन्न हुई है: $1",
 	"search-warning": "खोजते समय निम्न त्रुटि उत्पन्न हुई है: $1",

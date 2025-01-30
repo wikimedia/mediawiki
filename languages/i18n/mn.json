@@ -772,7 +772,6 @@
 	"powersearch-toggleall": "Бүгдийг сонгох",
 	"powersearch-togglenone": "Бүх сонголтыг арилгах",
 	"powersearch-remember": "Дараа дараагийн хайлтад энэ сонголтыг ашигла",
-	"search-external": "Гадны хайлт",
 	"searchdisabled": "{{SITENAME}} хайлтыг түр хаасан байна.\nТа одоохондоо Google-г ашиглан хайх боломжтой.\nАнхааруулж хэлэхэд, тэдний {{SITENAME}}-н агуулгын индексүүд хоцрогдсон байж магадгүй.",
 	"search-error": "$1 -ыг хайхад алдаа гарлаа",
 	"mypreferences": "Тохиргоо",

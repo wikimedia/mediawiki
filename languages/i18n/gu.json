@@ -760,7 +760,6 @@
 	"powersearch-togglelabel": "ચકાસો:",
 	"powersearch-toggleall": "બધા",
 	"powersearch-togglenone": "એકે નહિ",
-	"search-external": "બાહ્ય શોધ",
 	"searchdisabled": "{{SITENAME}} ઉપર શોધ બંધ કરી દેવામાં આવી છે.\nત્યાં સુધી તમે ગુગલ દ્વારા શોધ કરી શકો.\n'''નોંધઃ'''{{SITENAME}}નાં તેમના (ગુગલના) ઈન્ડેક્સ જુના હોઇ શકે.",
 	"search-error": "શોધ કરતી વખતે ક્ષતિ આવી: $1",
 	"mypreferences": "મારી પસંદ",

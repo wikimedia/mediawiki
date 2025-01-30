@@ -964,7 +964,6 @@
 	"powersearch-toggleall": "Kai",
 	"powersearch-togglenone": "Nimidä",
 	"powersearch-remember": "Musta valličus tulieloih eččoloih niškoi",
-	"search-external": "Ulgopuoline eččo",
 	"searchdisabled": "Eččo verkosivustol {{SITENAME}} on otettu käytöspäi.\nVoit eččie Googlen kauti. Ota huomavoh se, ku verkosivuston {{SITENAME}}syväindö voi olla vahnennuh sie.",
 	"search-error": "Tapahtui hairahtus ečos: $1",
 	"search-warning": "Ečon aigua tapahtui varoitus: $1",

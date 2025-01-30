@@ -983,7 +983,6 @@
 	"powersearch-toggleall": "Барысы",
 	"powersearch-togglenone": "Берни дә",
 	"powersearch-remember": "Киләчәк эзләүләр өчен сайлауны истә калдыру",
-	"search-external": "Читтән эзләү",
 	"searchdisabled": "{{SITENAME}} эзләү сүндерелгән. Бу очракта сез Google аша эзли аласыз. Игътибар итегез, аларның {{SITENAME}} контент индекслары искергән булырга мөмкин.",
 	"search-error": "Эзләгән вакытта хата килеп чыкты: $1",
 	"search-warning": "Эзләү барышында кисәтү барлыкка килде: $1",

@@ -929,7 +929,6 @@
 	"powersearch-toggleall": "All",
 	"powersearch-togglenone": "Keen",
 	"powersearch-remember": "Auswiel fir zukünfteg Sichufroe verhalen",
-	"search-external": "Extern sichen",
 	"searchdisabled": "D'Sichfunktioun op {{SITENAME}} ass ausgeschalt. Dir kënnt iwwerdeems mat Hëllef vu Google sichen. Bedenkt awer, datt deenen hire  Sichindex fir {{SITENAME}} eventuell net dem aktuellste Stand entsprecht.",
 	"search-error": "Beim Sichen ass e Feeler geschitt: $1",
 	"search-warning": "Beim Sichen gouf eng Warnung gewisen: $1",

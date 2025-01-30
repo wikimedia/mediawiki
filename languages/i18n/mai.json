@@ -840,7 +840,6 @@
 	"powersearch-toggleall": "सभटा",
 	"powersearch-togglenone": "कोनो नै",
 	"powersearch-remember": "याद राखु भविष्यकऽ खोजीके लेल",
-	"search-external": "बाह्य खोज",
 	"searchdisabled": "{{SITENAME}} खोज बन्द अछि।\nता अहाँ गूगलक माध्यमसँ ताकि सकै छी।\nमोन राखी जे तकर विवरणी {{SITENAME}} समिग्री समयातीत भऽ सकैए।",
 	"search-error": "खोजवाके समय निम्न त्रुटि उत्पन्न भेल: $1",
 	"search-warning": "खोजवाक समय निम्न त्रुटि उत्पन्न भेल: $1",

@@ -753,7 +753,6 @@
 	"powersearch-togglelabel": "Նշել․",
 	"powersearch-toggleall": "Բոլորը",
 	"powersearch-togglenone": "Ոչ մեկը",
-	"search-external": "Արտաքին որոնում",
 	"searchdisabled": "{{SITENAME}} կայքի ներքին որոնումը անջատված է։ Դուք կարող եք որոնել կայքի պարունակությունը արտաքին որոնման շարժիչներով (Google, Yahoo...), սակայն, նկատի ունեցեք, որ կայքի իրենց ինդեքսները կարող են հնացած լինել։",
 	"mypreferences": "Նախընտրություններ",
 	"searchresultshead": "Որոնում",

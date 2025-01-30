@@ -1056,7 +1056,6 @@
 	"powersearch-toggleall": "Alle",
 	"powersearch-togglenone": "Ingen",
 	"powersearch-remember": "Husk valgene for fremtidige søk",
-	"search-external": "Eksternt søk",
 	"searchdisabled": "Søkefunksjonen er slått av. Du kan søke via Google i mellomtiden. Merk at Googles indeksering av {{SITENAME}} muligens er utdatert.",
 	"search-error": "En feil oppsto under søk: $1",
 	"search-warning": "En advarsel oppsto under søk: $1",

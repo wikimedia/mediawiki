@@ -929,7 +929,6 @@
 	"powersearch-toggleall": "Tùit",
 	"powersearch-togglenone": "Gnun",
 	"powersearch-remember": "Visesse dla selession për j'arserche a vnì",
-	"search-external": "Arserca esterna",
 	"searchdisabled": "L'arserca anterna ëd {{SITENAME}} a l'é nen abilità; për adess a peul prové a dovré un motor d'arserca estern coma Google. (Però che a ten-a da ment che ij contnù ëd {{SITENAME}} listà ant ij motor pùblich a podrìo ëdcò esse nen d'autut agiornà)",
 	"search-error": "A l'é rivaje n'eror durant l'arserca: $1",
 	"search-warning": "A l'é rivaje n'avis durant l'arserca: $1",

@@ -1026,7 +1026,6 @@
 	"powersearch-toggleall": "Усе",
 	"powersearch-togglenone": "Ніякія",
 	"powersearch-remember": "Запомніць выбар для наступных пошукаў",
-	"search-external": "Вонкавы пошук",
 	"searchdisabled": "Функцыя пошуку {{SITENAME}} не працуе. Тымчасова можна шукаць з дапамогай Google. Заўважце, што тамтэйшыя індэксы зместу {{SITENAME}} могуць не быць актуальнымі.",
 	"search-error": "Памылка пошуку: $1",
 	"search-warning": "Пры пошуку з’явілася папярэджанне: $1",

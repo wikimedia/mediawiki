@@ -866,7 +866,6 @@
 	"powersearch-toggleall": "Aw",
 	"powersearch-togglenone": "Nane",
 	"powersearch-remember": "Mynd selection fur futur rakes",
-	"search-external": "Eixternal rake",
 	"searchdisabled": "Rakin throu {{SITENAME}} is disabled fer performance raisons. Ye can rake bi wa o Google juist nou. Mynd that thair indexes o {{SITENAME}} content micht be oot o date.",
 	"search-error": "Ae mistak haes occurred while rakin: $1",
 	"search-warning": "A wairnin has occurred while sairchin: $1",

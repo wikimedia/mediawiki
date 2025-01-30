@@ -714,7 +714,6 @@
 	"powersearch-toggleall": "Alt",
 	"powersearch-togglenone": "Ongi",
 	"powersearch-remember": "Minst til tað valda til framtíðar leitingar",
-	"search-external": "Uttanhýsis leitan",
 	"searchdisabled": "{{SITENAME}} leitan er sett úr gildi.\nTú kanst leita via Google ímeðan.\nLegg til merkis, at teirra innihaldsyvirlit av {{SITENAME}} kann vera gamalt og ikki dagført.",
 	"search-error": "Ein feilur hendi undir leitanini: $1",
 	"mypreferences": "Innstillingar",

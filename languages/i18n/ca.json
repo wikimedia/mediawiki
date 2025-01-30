@@ -1040,7 +1040,6 @@
 	"powersearch-toggleall": "Tots",
 	"powersearch-togglenone": "Cap",
 	"powersearch-remember": "Recorda la selecció en cerques futures",
-	"search-external": "Cerca externa",
 	"searchdisabled": "La cerca dins el projecte {{SITENAME}} està inhabilitada. Mentrestant, podeu cercar a través de Google, però tingueu en compte que la seua base de dades no estarà actualitzada.",
 	"search-error": "S'ha produït un error durant la recerca: $1",
 	"search-warning": "S'ha produït un avís en cercar: $1",

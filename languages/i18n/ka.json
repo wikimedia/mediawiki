@@ -904,7 +904,6 @@
 	"powersearch-toggleall": "ყველა",
 	"powersearch-togglenone": "არაფერი",
 	"powersearch-remember": "არჩევანის დამახსოვრება სამომავლო ძიებისათვის",
-	"search-external": "გარე ძიება",
 	"searchdisabled": "{{SITENAME}}ში ძებნა გაუქმებულია. თქვენ შეგიძლიათ დროის შუალედით Google-ით ძებნა. მიაქციეთ ყურადღება, რომ {{SITENAME}}ში შესაძლებელია მათი ინდექსები აქტუალური არ არის.",
 	"search-error": "ძიებისას მოხდა შეცდომა: $1",
 	"search-warning": "ძიებისას გაიცა გაფრხილება: $1",

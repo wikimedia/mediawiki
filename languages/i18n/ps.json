@@ -809,7 +809,6 @@
 	"powersearch-toggleall": "ټول",
 	"powersearch-togglenone": "هېڅ",
 	"powersearch-remember": "د راتلونکو پلټنو لپاره همدا ټاکنې په ياد ساتل",
-	"search-external": "باندنۍ پلټنه",
 	"searchdisabled": "{{SITENAME}} لټون نافعال شوی.\nتاسو کولی شئ د ګوګل له لارې په عین حال کې لټون وکړئ.\nپه ياد ولرئ چې د {{SITENAME}} منځپانګې انډول ښايي بي نېټې وي.",
 	"search-error": "د لټون په وخت کې یوه تېروتنه رامنځته شوه: $1",
 	"search-warning": "د لټون کولو په وخت کې یو خبرداری راغلی دی:$1",

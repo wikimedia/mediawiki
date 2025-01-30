@@ -900,7 +900,6 @@
 	"powersearch-toggleall": "Rehetra",
 	"powersearch-togglenone": "Tsy misy",
 	"powersearch-remember": "Tadidio ho an'ny karoka manaraka ity safidy ity",
-	"search-external": "Hikaroka any ivelany",
 	"searchdisabled": "Tsy nalefa ny karoka eto amin'i {{SITENAME}}. Afaka mampiasa an'i Google aloha ianao mandra-paha. Nefa fantaro fa mety ho efa lany daty ny valiny omeny.",
 	"search-error": "Hadisoana nitranga tam-pikarohana: $1",
 	"search-warning": "Fampitandremana nitranga teo am-pikarohana: $1",

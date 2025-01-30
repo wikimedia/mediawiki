@@ -670,7 +670,6 @@
 	"powersearch-toggleall": "Galo-galo",
 	"powersearch-togglenone": "Da' kati'",
 	"powersearch-remember": "Éngetke pîlîan ni buat carian kagé'-kagé'",
-	"search-external": "Carian jabo",
 	"searchdisabled": "Carian {{SITENAME}} dimatike. Ma'ini\nDulur paca' nyari liwat Google dukin. Na' diénget amen peluruan (<i>index</i>) Google buat isi {{SITENAME}} paca' baé da'do maso'ke robahan-robahan buncitan.",
 	"search-error": "Ado ngarut pangko nyari: $1",
 	"search-warning": "Ado nongol peratian pangko nyari: $1",

@@ -982,7 +982,6 @@
 	"powersearch-toggleall": "Sinamian",
 	"powersearch-togglenone": "Nénten wénten",
 	"powersearch-remember": "Éling pilihan antuk parerehan selantur nyané",
-	"search-external": "Parerehan jaba",
 	"searchdisabled": "Parerehan {{SITENAME}} ajebos kapademang.\nIda prasida ngarereh saking Google antuk kala puniki.\nPatut kauningayang pinaka indéks Google antuk kontén {{SITENAME}} minab durung jangkep pauahan sané ungkur.",
 	"search-error": "Pikobet wénten rikala ngarereh: $1",
 	"search-warning": "Pikobet wénten rikala ngarereh: $1",

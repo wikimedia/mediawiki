@@ -830,7 +830,6 @@
 	"powersearch-toggleall": "Övverall Höhksche draan maache",
 	"powersearch-togglenone": "All Höhksche fott nämme",
 	"powersearch-remember": "Di Ußwahl faßhallde för schpääder wider dermet ze söhke.",
-	"search-external": "Söke fun Ußerhallef",
 	"searchdisabled": "Dat Söhke hee {{GRAMMAR:en|{{SITENAME}}}} es em Momang avjeschalt.\nDat weed op dänne ẞööver ad ens jemaat, domet de Lass op inne nit ze jroß weed,\nun winnischsdens dat normale Sigge Oprofe flöck jenoch jeiht.\n\nEhr künnt esu lang övver en Söhkmaschin vun usserhalv emmer noch\nSigge us {{GRAMMAR:Dative|{{ucfirst:{{SITENAME}}}}}} finge.\nEt es nit jesaht,\ndat dänne ehr Daate topaktoell sin,\nävver et es bäßer wi jaa_nix.",
 	"search-error": "An error has occurred while searching: $1",
 	"mypreferences": "Enschtällonge",

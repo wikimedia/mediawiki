@@ -190,7 +190,6 @@
 	"mergehistory-header": "Via deze pagina kan je versies van de geschiedenis van een bronpagina naar een nieuwere pagina samenvoegen.\nZorg dat deze wijziging de geschiedenis van de pagina behoudt.",
 	"searchmenu-new": "Maak de pagina \"[[:$1]]\" op deze wiki! {{PLURAL:$2|0=|Zie ook de pagina met je zoekresultaat.|Zie ook de lijst met gevonden zoekresultaten}}",
 	"search-suggest": "Bedoelde je: $1",
-	"searchdisabled": "Zoeken in {{SITENAME}} is niet mogelijk.\nJe kunt gebruik maken van Google.\nDe gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.",
 	"prefs-help-watchlist-token2": "Dit is de geheime sleutel voor de webfeed van je volglijst.\nIedereen die het token kent, kan jouw volglijst bekijken, dus deel dit token niet.\nAls dat nodig is kun je de [[Special:ResetTokens|tokens opnieuw instellen]].",
 	"userrights-groups-help": "Je kunt de groepen wijzigen waar {{GENDER:$1|deze gebruiker}} lid van is:\n* Een aangekruist vakje betekent dat de gebruiker lid is van de groep.\n* Een niet aangekruist vakje betekent dat de gebruiker geen lid is van de groep.\n* Een \"*\" betekent dat je een gebruiker niet uit een groep kunt verwijderen nadat je die hebt toegevoegd of andersom.\n* Een \"#\" betekent dat je dit groepslidmaatschap alleen kan verlengen en het niet kan verkorten.",
 	"userrights-no-interwiki": "Je hebt geen rechten om gebruikersrechten op andere wiki's te wijzigen.",

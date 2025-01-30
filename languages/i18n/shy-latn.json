@@ -780,7 +780,6 @@
 	"powersearch-toggleall": "akk",
 	"powersearch-togglenone": "ulac",
 	"powersearch-remember": "Cfu ɣef ufran n yinadiyen d-iteddun",
-	"search-external": "Anadi yeffɣen",
 	"searchdisabled": "Anadi deg {{SITENAME}} yettwakkes. Tzemreḍ ad tnadiḍ s Google. Meɛna ur tettuḍ ara, tasmult n google taqdimt.",
 	"search-error": "Tella tuccḍa deg unadi n : $1",
 	"search-warning": "Alɣu yettwammel degu unadi n: $1",

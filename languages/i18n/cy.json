@@ -995,7 +995,6 @@
 	"powersearch-toggleall": "Popeth",
 	"powersearch-togglenone": "Dim",
 	"powersearch-remember": "Cofio'r dewis ar gyfer archwiliadau'r dyfodol",
-	"search-external": "Chwiliad allanol",
 	"searchdisabled": "Mae chwiliad {{SITENAME}} wedi'i analluogi.\nGallwch chwilio drwy Google yn y cyfamser.\nNodwch y gallai eu mynegeion o gynnwys {{SITENAME}} fod wedi dyddio.",
 	"search-error": "Cafwyd gwall wrth chwilio: $1",
 	"search-warning": "Cafwyd rhybudd tra'n chwilio: $1",

@@ -948,7 +948,6 @@
 	"powersearch-toggleall": "تمام",
 	"powersearch-togglenone": "کوئی نہیں",
 	"powersearch-remember": "اس انتخاب کو مستقبل کی تلاشوں کے لیے یاد رکھیں",
-	"search-external": "بیرونی تلاش",
 	"searchdisabled": "{{SITENAME}} تلاش غیرفعال.\nآپ فی الحال گوگل کے ذریعے تلاش کرسکتے ہیں.\nیاد رکھئے کہ اُن کے {{SITENAME}} اشاریے ممکناً پرانے ہوسکتے ہیں.",
 	"search-error": "تلاش کے دوران میں کوئی نقص واقع ہوا: $1",
 	"search-warning": "تلاش کے دوران میں کوئی انتباہ واقع ہوا: $1",

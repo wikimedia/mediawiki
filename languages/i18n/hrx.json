@@ -724,7 +724,6 @@
 	"powersearch-togglelabel": "Wähl aus:",
 	"powersearch-toggleall": "All",
 	"powersearch-togglenone": "Ken",
-	"search-external": "Externe Such",
 	"searchdisabled": "Die {{SITENAME}}-Such ist deaktiviert. Du kannst unnerdessen mit Google suche. Bittschön bedenke, dass der Suchindex von {{SITENAME}} veraltet sin kann.",
 	"search-error": "Bei der Such ist en Fehler uffgetret: $1",
 	"mypreferences": "Instellunge",

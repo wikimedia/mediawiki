@@ -968,7 +968,6 @@
 	"powersearch-toggleall": "Všetky",
 	"powersearch-togglenone": "Žiadne",
 	"powersearch-remember": "Zapamätať si výber pre budúce vyhľadávania",
-	"search-external": "Externé vyhľadávanie",
 	"searchdisabled": "Prepáčte! Fulltextové vyhľadávanie bolo dočasne vypnuté z dôvodu preťaženia. Zatiaľ môžete použiť hľadanie pomocou Google, ktoré však nemusí byť aktuálne.",
 	"search-error": "Pri hľadaní došlo k chybe: $1",
 	"search-warning": "Pri hľadaní došlo k varovaniu: $1",

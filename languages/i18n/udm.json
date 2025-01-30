@@ -981,7 +981,6 @@
 	"powersearch-toggleall": "Ваньмыз",
 	"powersearch-togglenone": "Нокин",
 	"powersearch-remember": "Азьланезлы тодэ кельтоно",
-	"search-external": "Педпал утчан",
 	"searchdisabled": "Утчан {{SITENAME}} дугдытэмын.\nСо дыре ик тӥ Google пыр утчаны быгатӥськоды.\nСак луэ, соослэн пушкес индексъёссы {{SITENAME}} вужмемын луыны быгато.",
 	"search-error": "Утчаку янгыш луэм: $1",
 	"search-warning": "Утчаку алон сётэмын: $1",

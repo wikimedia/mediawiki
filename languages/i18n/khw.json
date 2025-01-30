@@ -549,7 +549,6 @@
 	"powersearch-togglelabel": "چیک",
 	"powersearch-toggleall": "سف",
 	"powersearch-togglenone": "کیاغ دی نیکی",
-	"search-external": "بیرونی تلاش",
 	"searchdisabled": "{{SITENAME}} تلاش غیرفعال.\nتو فی الحال گوگلو ذریعا تلاش کوریکو بوس.\nیاد لاکھے کہ گوگلو {{SITENAME}} اشاریہ ممکن شیر کہ پرانو دی بونی.",
 	"mypreferences": "ترجیحات",
 	"searchresultshead": "Search/تلاش",

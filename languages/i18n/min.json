@@ -901,7 +901,6 @@
 	"powersearch-toggleall": "Sadonyo",
 	"powersearch-togglenone": "Dak ado",
 	"powersearch-remember": "Ingek piliahan untuak pancarian salanjuiknyo",
-	"search-external": "Pancarian lua",
 	"searchdisabled": "Pancarian {{SITENAME}} dimatian.\nSanak samantaro dapek mancari lewaik Google.\nIngek indeks Google untuak {{SITENAME}} mungkin lah kadaluarsa.",
 	"search-error": "Kasalahan tajadi wakatu mancari: $1",
 	"search-warning": "Paringatan tajadi katiko mancari:$1",

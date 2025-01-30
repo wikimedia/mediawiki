@@ -844,7 +844,6 @@
 	"powersearch-toggleall": "Lahat",
 	"powersearch-togglenone": "Wala",
 	"powersearch-remember": "Tandaan ang piniling ito para sa mga paghahanap sa hinaharap",
-	"search-external": "Panlabas na paghahanap",
 	"searchdisabled": "Nakapatay ang paghahanap sa {{SITENAME}}. Maaari kang pansamantalang maghanap sa pamamagitan ng Google. Tandaan na maaaring luma na ang kanilang mga indeks sa nilalaman ng {{SITENAME}}.",
 	"mypreferences": "Pagsasaayos",
 	"searchresultshead": "Hanapin",

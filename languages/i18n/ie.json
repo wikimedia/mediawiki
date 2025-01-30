@@ -664,7 +664,6 @@
 	"powersearch-togglelabel": "Verificar:",
 	"powersearch-toggleall": "Omni",
 	"powersearch-togglenone": "Nequant",
-	"search-external": "Sercha extern",
 	"searchdisabled": "Li sercha del {{SITENAME}} es desabilitat.\nVu posse serchar via Google ínterim.\nNota que lor índexes de contenete del {{SITENAME}} posse esser desactualisat.",
 	"search-error": "Un errore ha ocurret durante que serchant: $1",
 	"search-warning": "Un advertiment ha ocurret durante que serchant: $1",

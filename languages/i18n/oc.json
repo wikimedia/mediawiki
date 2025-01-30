@@ -950,7 +950,6 @@
 	"powersearch-toggleall": "Tot",
 	"powersearch-togglenone": "Pas cap",
 	"powersearch-remember": "Se remembrar de la seleccion per las recèrcas venentas",
-	"search-external": "Recèrca extèrna",
 	"searchdisabled": "La recèrca sus {{SITENAME}} es desactivada.\nEn esperant la reactivacion, podètz efectuar una recèrca via Google.\nAtencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.",
 	"search-error": "Una error s'es produita en recercant : $1",
 	"search-warning": "Una error s'es produsida en cercant : $1",

@@ -853,7 +853,6 @@
 	"powersearch-toggleall": "Viss",
 	"powersearch-togglenone": "Neviena",
 	"powersearch-remember": "Atcerēties izvēli turpmākajā meklēšanā",
-	"search-external": "Ārējā meklēšana",
 	"searchdisabled": "Meklēšana {{grammar:lokatīvs|{{SITENAME}}}} šobrīd ir atslēgta darbības traucējumu dēļ.\nPagaidām vari meklēt, izmantojot Google vai Yahoo.\nŅem vērā, ka meklētāju indeksētais {{grammar:ģenitīvs|{{SITENAME}}}} saturs var būt novecojis.",
 	"search-error": "Ir notikusi kļūda meklējot: $1",
 	"mypreferences": "Izvēles",

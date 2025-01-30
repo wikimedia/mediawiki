@@ -700,7 +700,6 @@
 	"powersearch-toggleall": "Hemû",
 	"powersearch-togglenone": "Tune",
 	"powersearch-remember": "Neqandinê ji bonî lêgeranên were di bîrê de bihêle",
-	"search-external": "Lêgerîna derveyî",
 	"searchdisabled": "Lêgerîna {{GRAMMAR:oblique|{{SITENAME}}}} hatiye neaktîv kirin.\nTu dikarî bi Googleê lê bigerî.\nTêbînî: Dibe ku encamên wan ên lêgerînê ji bo {{GRAMMAR:oblique|{{SITENAME}}}} ne yên herî nû bin.",
 	"mypreferences": "Tercîhên min",
 	"searchresultshead": "Lê bigere",

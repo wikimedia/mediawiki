@@ -972,7 +972,6 @@
 	"powersearch-toggleall": "Став",
 	"powersearch-togglenone": "Нинӧм",
 	"powersearch-remember": "Водзӧ вылӧ тӧдны",
-	"search-external": "Ортсыса корсьӧм",
 	"searchdisabled": "{{SITENAME}}-ысь корсьны оз позь. Ті верманныд корсьны Google пыр. \nСӧмын босьтӧй тӧд вылӧ, мый контент индексыс {{SITENAME}}-ын вермас лоны важмӧм нин.",
 	"search-error": "Корсигӧн лоис сорсьӧм: $1",
 	"search-warning": "Корсьысигӧн сетӧма ӧлӧдӧм: $1",

@@ -856,7 +856,6 @@
 	"powersearch-toggleall": "ସବୁ",
 	"powersearch-togglenone": "କିଛି ନାହିଁ",
 	"powersearch-remember": "ନିଜର ଆଗାମୀ ଖୋଜିବା ମନେରଖନ୍ତୁ",
-	"search-external": "ବାହାରେ ଖୋଜା",
 	"searchdisabled": "{{SITENAME}} ଖୋଜା ଅଚଳ କରାଗଲା ।\nଆପଣ ଏହି ଭିତରେ ଗୁଗଲ ଦେଖିପାରନ୍ତି ।\nଜାଣିରଖନ୍ତୁ ଯେ {{SITENAME}}ର ବିଷୟ ସୂଚି ପୁରାତନ ହୋଇଥାଇପାରେ ।",
 	"search-error": "ଖୋଜିଲା ବେଳେ ଅସୁବିଧାଟିଏ ଘଟିଲା: $1",
 	"mypreferences": "ପସନ୍ଦ",

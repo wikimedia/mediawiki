@@ -1002,7 +1002,6 @@
 	"powersearch-toggleall": "არძა",
 	"powersearch-togglenone": "მუთუნ ვარი",
 	"powersearch-remember": "გიშნაგორაშ ჩუალა უკულიანი გორუაშო",
-	"search-external": "გარლენი გორუა",
 	"searchdisabled": "{{SITENAME}}ს გორუა გოუქვაფილი რე. თქვა შეილებჷნა ბორჯიშ შქაფონით Google-ით გორუა. გური გუჩით, ნამჷ-და {{SITENAME}}-ს შილებე თინეფიშ ინდექსეფი აქტუალური ვა რე.",
 	"search-error": "გორუაშ ბორჯის ჩილათაქ მოხვადჷ: $1",
 	"search-warning": "გორუაშ ბორჯის ხვილაფაქ გორჩქინდჷ: $1",

@@ -485,7 +485,6 @@
 	"powersearch-toggleall": "Za'a",
 	"powersearch-togglenone": "Zaalum",
 	"powersearch-remember": "Tɛra loore bo beere iya",
-	"search-external": "Tiŋa eere",
 	"searchdisabled": "{{SITENAME}} eere ka iti.\nFu ta'am ɛ dɔla la Google puan nanta.\nMina ti {{SITENAME}} 'indexes content' ta'am ta yese kale bɔna.",
 	"search-error": "Tuure n wa'am na eere la puan: $1",
 	"search-warning": "Vuusego n wa'am na eere la puan: $1",

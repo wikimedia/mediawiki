@@ -1030,7 +1030,6 @@
 	"powersearch-toggleall": "Ĉion",
 	"powersearch-togglenone": "Nenion",
 	"powersearch-remember": "Memori elekton por estontaj serĉoj",
-	"search-external": "Ekstera serĉo",
 	"searchdisabled": "<p>Oni provizore malŝaltis serĉadon per la plenteksta\nindekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> aŭ per <i>jahu!</i>:</p>",
 	"search-error": "Okazis eraro dum serĉado: $1",
 	"search-warning": "Okazis eraron dum serĉado: $1",

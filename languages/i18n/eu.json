@@ -992,7 +992,6 @@
 	"powersearch-toggleall": "Guztiak",
 	"powersearch-togglenone": "Bat ere ez",
 	"powersearch-remember": "Etorkizunean bilaketentzako hautaketa gogoratu",
-	"search-external": "Kanpo bilaketa",
 	"searchdisabled": "{{SITENAME}}(e)n ezgaituta dago bilaketa. Dena dela, Google erabiliz ere egin dezakezu bilaketa. Kontuan izan bertan dituzten {{SITENAME}}(e)ko emaitzak zaharkituta egon daitezkeela.",
 	"search-error": "Akats bat gertatu da bilaketa egiterakoan: $1",
 	"search-warning": "Abisu bat agertu da bilaketa egiterakoan: $1",

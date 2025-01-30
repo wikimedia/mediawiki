@@ -843,7 +843,6 @@
 	"powersearch-toggleall": "সকলো",
 	"powersearch-togglenone": "একো নাই",
 	"powersearch-remember": "ভৱিষ্যতৰ সন্ধানৰ বাবে বাছনি মনত ৰাখক।",
-	"search-external": "বাহ্যিক সন্ধান",
 	"searchdisabled": "{{SITENAME}} ত সন্ধান কৰা সাময়িক ভাবে নিষ্ক্ৰিয় কৰা হৈছে।\nতেতিয়ালৈকে গুগলত সন্ধান কৰক।\nমনত ৰাখিব যে তেঁওলোকৰ {{SITENAME}}ৰ ইণ্ডেক্স পুৰণি হব পাৰে।",
 	"search-error": "অনুসন্ধানৰ সময়ত এটা ত্ৰুটি হৈছে: $1",
 	"mypreferences": "পছন্দসমূহ",

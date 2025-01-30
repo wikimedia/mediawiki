@@ -988,7 +988,6 @@
 	"powersearch-toggleall": "Vse",
 	"powersearch-togglenone": "Ničto",
 	"powersearch-remember": "Pametati izbor za buduče iskanja",
-	"search-external": "Vněšnje iskanje",
 	"searchdisabled": "Iskanje na sajtu {{SITENAME}} jest izključeno.\nV medžuvrěmeni vy možete iskati s pomočju Gugla.\nImajte v vidu, že jihne indeksy sajta {{SITENAME}} mogut byti zastarěle.",
 	"search-error": "Pri iskanju došlo k pogrěškě: $1",
 	"search-warning": "Pri iskanju došlo k prěduprědženja: $1",

@@ -949,7 +949,6 @@
 	"powersearch-toggleall": "Allt",
 	"powersearch-togglenone": "Ekkert",
 	"powersearch-remember": "Muna val fyrir leitir í framtíðinni",
-	"search-external": "Ytri leit",
 	"searchdisabled": "{{SITENAME}}-leit er óvirk.\nÞú getur leitað í genum Google á meðan.\nAthugaðu að skrár þeirra yfir {{SITENAME}}-efni kunna að vera úreltar.",
 	"search-error": "Villa kom upp við leit að: $1",
 	"search-warning": "Aðvörun kom upp við leit: $1",

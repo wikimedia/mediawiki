@@ -820,7 +820,6 @@
 	"powersearch-toggleall": "کل",
 	"powersearch-togglenone": "هچ یک",
 	"powersearch-remember": "منی زیرتنء پر آیوکین شوهاز شموش مکن",
-	"search-external": "حارجی گردگ",
 	"searchdisabled": "{{SITENAME}} گردگ غیر فعالنت.\nشما نونیت بگردیت چه طرق گوگل هم زمان.\nتوجه که اندیکس آن {{SITENAME}} محتوا شاید تاریح گوستگین بنت.",
 	"search-error": "ارور مان شوهازء درگت: $1",
 	"mypreferences": "واھشتان",

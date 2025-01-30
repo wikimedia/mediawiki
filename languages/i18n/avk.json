@@ -625,7 +625,6 @@
 	"powersearch-togglelabel": "Stujera :",
 	"powersearch-toggleall": "Kot",
 	"powersearch-togglenone": "Mek",
-	"search-external": "Divafa aneyara",
 	"searchdisabled": "<p>La fonction de recherche sur l'intégralité du texte a été temporairement désactivée à cause de la grande charge que cela impose au serveur. Nous espérons la rétablir prochainement lorsque nous disposerons d'un serveur plus puissant. En attendant, vous pouvez faire la recherche avec Google:</p>",
 	"search-error": "Rokla bak aneyara va $1 sokiyir",
 	"search-warning": "Walzera bak aneyara va $1 sokiyir",

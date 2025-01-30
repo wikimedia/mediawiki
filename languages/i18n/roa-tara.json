@@ -908,7 +908,6 @@
 	"powersearch-toggleall": "Tutte",
 	"powersearch-togglenone": "Ninde",
 	"powersearch-remember": "Arrecuèrde 'a selezione pe le prossime ricerche",
-	"search-external": "Ricerche esterne",
 	"searchdisabled": "'A ricerche sus a {{SITENAME}} ha state disabbilitete.\nTu puè cercà ausanne Google.\nPerò fa attenzione purcè l'indice lore sus a {{SITENAME}} ponne condenè pàggene ca non ge sonde aggiornate.",
 	"search-error": "S'ha verificate 'n'errore mendre ste cercave: $1",
 	"search-warning": "'N'avvertimende ave assute mendre ca ste cercave: $1",

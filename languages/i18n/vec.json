@@ -832,7 +832,6 @@
 	"powersearch-togglelabel": "Selessiona:",
 	"powersearch-toggleall": "Tuti quanti",
 	"powersearch-togglenone": "Nissun",
-	"search-external": "Riserca esterna",
 	"searchdisabled": "La riserca interna de {{SITENAME}} no la xe ativa; par intanto te pol proár a doparar un motore de riserca esterno come Google. (Nota però che i contenuti de {{SITENAME}} presenti in sti motori i podarìa èssar mìà agiornà.)",
 	"search-error": "Se gà verifegà un eror durante la riserca: $1",
 	"mypreferences": "Prefarense",

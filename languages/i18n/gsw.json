@@ -808,7 +808,6 @@
 	"powersearch-toggleall": "Alli",
 	"powersearch-togglenone": "Keini",
 	"powersearch-remember": "Uswahl für zuekünftigi Suechine merke",
-	"search-external": "Externi Suech",
 	"searchdisabled": "D {{SITENAME}}-Suech isch deaktiviert. Du chasch mit Google sueche, s cha aber syy ass dr Suechindex vu Google fir {{SITENAME}} veraltet isch.",
 	"search-error": "Bi dr Suechi het s e Fähler gee: $1",
 	"mypreferences": "Yystellige",

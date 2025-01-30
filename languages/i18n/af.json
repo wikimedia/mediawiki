@@ -852,7 +852,6 @@
 	"powersearch-toggleall": "Alle",
 	"powersearch-togglenone": "Geen",
 	"powersearch-remember": "Onthou keuse vir toekomstige soekopdragte",
-	"search-external": "Eksterne soektog",
 	"searchdisabled": "{{SITENAME}} se soekfunksie is tans afgeskakel ter wille van werkverrigting. Gebruik gerus intussen Google of Yahoo! Let daarop dat hulle indekse van die {{SITENAME}}-inhoud verouderd mag wees.",
 	"search-error": "'n Fout het tydens die soektog voorgekom: $1",
 	"mypreferences": "Voorkeure",

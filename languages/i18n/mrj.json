@@ -986,7 +986,6 @@
 	"powersearch-toggleall": "Цилӓ",
 	"powersearch-togglenone": "Иктӓт",
 	"powersearch-remember": "Анзыкылаш кӹчӓлмӓшлӓн айырымашым ӓшӹндӓрен кодаш",
-	"search-external": "Вӹлвӓл кӹчӓлмӓш",
 	"searchdisabled": "{{SITENAME}} сайтышты кӹчӓлӓш цӓрӹмӹ.\nТӹ нӱжвец тӹнь Google палшымы доно кӹчӓл кердӓт.\nВниманим айыры, {{SITENAME}} сайтын контентшӹн индексшӹ тошты лин кердеш.",
 	"search-error": "Кӹчӓлмӹ годым самынь лин: $1",
 	"search-warning": "Кӹчӓлмӹ годым шижтӓрӹмӓш лӓктӹн: $1",

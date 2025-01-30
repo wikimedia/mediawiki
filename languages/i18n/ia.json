@@ -1007,7 +1007,6 @@
 	"powersearch-toggleall": "Totes",
 	"powersearch-togglenone": "Nihil",
 	"powersearch-remember": "Memorar selection pro recercas futur",
-	"search-external": "Recerca externe",
 	"searchdisabled": "Le recerca in {{SITENAME}} es disactivate.\nTu pote cercar via Google in le interim.\nNota que lor indices del contento de {{SITENAME}} pote esser obsolete.",
 	"search-error": "Un error ha occurrite durante le recerca: $1",
 	"search-warning": "Un aviso se ha producite durante le recerca: $1",

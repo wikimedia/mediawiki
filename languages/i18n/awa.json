@@ -908,7 +908,6 @@
 	"powersearch-toggleall": "कुल",
 	"powersearch-togglenone": "केहु नाई",
 	"powersearch-remember": "अबसे करय वाले खोजमे हमार पसंद याद रक्खा जाय",
-	"search-external": "बाहरी खोज",
 	"searchdisabled": "{{SITENAME}} पे खोज अक्षम है।\nआप गूगल से खोज कै सका जात है।\nध्यान रक्खा जाय कि वनकय {{SITENAME}} समानन् कय सूची पुरान होइ सकत है।",
 	"search-error": "खोजत समय अईसन त्रुटि उत्पन्न होइ गय: $1",
 	"search-warning": "खोजते समय निम्न त्रुटि उत्पन्न हुई है: $1",

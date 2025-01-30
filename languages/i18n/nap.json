@@ -902,7 +902,6 @@
 	"powersearch-toggleall": "Tutto",
 	"powersearch-togglenone": "Nisciuno",
 	"powersearch-remember": "Arricuòrdate d' 'a selezziona quanno faje ricerche nfuturo",
-	"search-external": "Ricerca 'a fore",
 	"searchdisabled": "'A ricerca dint'a {{SITENAME}} nun è attiva; pe' tramente se putesse ausà nu mutore 'e cerca sterno comm'a Google. (Avite 'e sapé però, ca sti cuntenute d' 'o {{SITENAME}} dint' 'e mutore, può darse ca nun stanno agghiurnate.)",
 	"search-error": "È succiesso n'errore pe' tramente ca se faceva 'a ricerca: $1",
 	"search-warning": "È succiesso n'avvertimento pe' tramente ca se vaceva 'a ricerca: $1",

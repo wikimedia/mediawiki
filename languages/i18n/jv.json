@@ -828,7 +828,6 @@
 	"powersearch-toggleall": "Kabèh",
 	"powersearch-togglenone": "Ora ana",
 	"powersearch-remember": "Éling-éling kang dipilih kanggo golèkan ing tembé mburi",
-	"search-external": "Gegolèkan manca",
 	"searchdisabled": "Sawetara wektu iki panjenengan ora bisa nggolèk mawa fungsi golèk {{SITENAME}}. Kanggo saiki mangga panjenengan bisa golèk nganggo Google. Nanging isi indhèks Google kanggo {{SITENAME}} bisa waé lawas lan durung dianyari.",
 	"search-error": "Ana masalah nalika nggoleki: $1",
 	"search-warning": "Ana pepélik nalika nggolèk: $1",

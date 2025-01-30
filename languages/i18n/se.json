@@ -995,7 +995,6 @@
 	"powersearch-toggleall": "Buot",
 	"powersearch-togglenone": "Ii maidege",
 	"powersearch-remember": "Muitte maid válljejin boahttevaš ohcamiid várás",
-	"search-external": "Olgguldas ohcan",
 	"searchdisabled": "Ohcandoaibma siiddus {{SITENAME}} lea doaisttážii váldojuvvon eret anus. \nSáhtát geavahit Google siidduid ohcamii dassážii go ohcandoaibma lea fas anus.\nFuomaš, ahte Google veršuvnnat siiddu {{SITENAME}} sisdoalus eai vealttakeahttá leat áiggi dásis.",
 	"search-error": "Ohcan ii lihkostuvvan: $1",
 	"search-warning": "Várrehus iđii du ohcamis: $1",

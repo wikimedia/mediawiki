@@ -836,7 +836,6 @@
 	"powersearch-toggleall": "ھەموویان",
 	"powersearch-togglenone": "ھیچیان",
 	"powersearch-remember": "بەبیرھێنانەوەی ھەڵبژاردەکان بۆ گەڕانەکانی داھاتوو",
-	"search-external": "گەڕانی دەرەکی",
 	"searchdisabled": "گەڕانی {{SITENAME}} ئێستە کار ناکات.\nدەتوانی بۆ ئێستا لە گەڕانی گووگڵ کەڵک وەرگری.\nلەیادت بێت لەوانەیە پێرستەکانیان بۆ گەڕانی ناو {{SITENAME}}، کات‌بەسەرچوو بێت.",
 	"mypreferences": "ھەڵبژاردەکان",
 	"searchresultshead": "گەڕان",

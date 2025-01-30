@@ -859,7 +859,6 @@
 	"powersearch-toggleall": "Të gjitha",
 	"powersearch-togglenone": "Asnjë",
 	"powersearch-remember": "Kujtoje përzgjedhjen për kërkesat e ardhshme",
-	"search-external": "Kërkim i jashtëm",
 	"searchdisabled": "<p>Kërkimi me tekst të plotë është bllokuar tani për tani ngaqë shërbyesi është shumë i ngarkuar; shpresojmë ta nxjerrim prapë në gjendje normale pas disa punimeve. Deri atëherë mund të përdorni Google-in për kërkime:</p>",
 	"search-error": "Ka ndodhë një gabim gjatë kërkimit: $1",
 	"search-warning": "Një paralajmërim ka ndodhur gjatë kërkimit: $1",

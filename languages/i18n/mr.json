@@ -895,7 +895,6 @@
 	"powersearch-toggleall": "सर्व",
 	"powersearch-togglenone": "काहीही नाही",
 	"powersearch-remember": "भविष्यातील शोधांच्या निवडींची आठवण ठेवा",
-	"search-external": "बाह्य शोध",
 	"searchdisabled": "{{SITENAME}} शोध अनुपलब्ध केला आहे.तो पर्यंत गूगलवरून शोध घ्या.{{SITENAME}}च्या मजकुराची त्यांची सूचिबद्धता शिळी असण्याची शक्यता असू शकते हे लक्षात घ्या.",
 	"search-error": "शोध घेतांना घडलेली त्रुटी:$1",
 	"search-warning": "शोधतांना इशारा देण्यात आलेला आहे:$1",

@@ -992,7 +992,6 @@
 	"powersearch-toggleall": "Kaik",
 	"powersearch-togglenone": "Niken",
 	"powersearch-remember": "Pane muštho valitud variant tulebiden ecmižiden täht",
-	"search-external": "Irdecmine",
 	"searchdisabled": "{{SITENAME}} ecind om saubatud.\nSinä void ectä Google - programman abul.\nOta homaičushe, miše {{SITENAME}} saitan sädäimišt voib olda vanhtunu.",
 	"search-error": "Ecindan aigan tegihe viga: $1",
 	"search-warning": "Ecindan aigan ozutihe varutuz: $1",

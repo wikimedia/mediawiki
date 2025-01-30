@@ -630,7 +630,6 @@
 	"powersearch-togglelabel": "Marcar:",
 	"powersearch-toggleall": "Totz",
 	"powersearch-togglenone": "Garra",
-	"search-external": "Busca externa",
 	"searchdisabled": "A busca en {{SITENAME}} ye temporalment desactivata. Entremistanto, puede mirar en {{SITENAME}} fendo servir buscadors externos, pero pare cuenta que os suyos endices de {{SITENAME}} puede no estar esviellatos.",
 	"mypreferences": "Preferencias",
 	"searchresultshead": "Mirar",

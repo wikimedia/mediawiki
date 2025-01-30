@@ -1010,7 +1010,6 @@
 	"powersearch-toggleall": "Барыһы",
 	"powersearch-togglenone": "Һис кем",
 	"powersearch-remember": "Һайланғанды алдағы эҙләүҙәр өсөн иҫтә ҡалдырырға",
-	"search-external": "Тышҡы эҙләү",
 	"searchdisabled": "{{SITENAME}} эҙләүе ябыҡ.\nШул уҡ ваҡытта Google аша эҙләй алаһығыҙ.\nТик унда {{SITENAME}} эстәлеге индексының иҫке булыуы ихтималлығын онотмағыҙ.",
 	"search-error": "Эҙләгәндә хата сыҡты:$1",
 	"search-warning": "Эҙләгәндә хата сыҡты:$1",

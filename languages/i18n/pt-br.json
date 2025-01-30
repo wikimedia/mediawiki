@@ -1143,7 +1143,6 @@
 	"powersearch-toggleall": "Todos",
 	"powersearch-togglenone": "Nenhum",
 	"powersearch-remember": "Lembrar seleção para futuras pesquisas",
-	"search-external": "Pesquisa externa",
 	"searchdisabled": "A busca em {{SITENAME}} se encontra desativada.\nVocê poderá pesquisar através do Google enquanto isso.\nNote que os índices do sistema de busca externo poderão conter referências desatualizadas a {{SITENAME}}.",
 	"search-error": "Ocorreu um erro ao buscar por: $1",
 	"search-warning": "Ocorreu um aviso ao pesquisar: $1",

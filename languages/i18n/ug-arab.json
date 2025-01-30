@@ -837,7 +837,6 @@
 	"powersearch-togglelabel": "تاللا:",
 	"powersearch-toggleall": "ھەممىسى",
 	"powersearch-togglenone": "يوق",
-	"search-external": "ئالىي ئىزدەش",
 	"searchdisabled": "{{SITENAME}} نىڭ ئىزدىشى چەكلەنگەن. سىز ھازىرچە Google ئىشلىتىپ ئىزدەپ تۇرۇڭ،.\nدىققەت ئۇلار ئىندېكسلىغان {{SITENAME}} مەزمۇنىنىڭ ۋاقتى ئۆتكەن بولۇشى مۇمكىن.",
 	"search-error": "ئىزدەش جەريانىدا بىر خاتالىق يۈز بەردى: $1",
 	"mypreferences": "مايىللىق",

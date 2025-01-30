@@ -983,7 +983,6 @@
 	"powersearch-toggleall": "Бәрі",
 	"powersearch-togglenone": "Еш",
 	"powersearch-remember": "Болашақ іздеулер үшін таңдауды есте сақтау",
-	"search-external": "Сыртқы іздеу",
 	"searchdisabled": "{{SITENAME}} іздеуі өшірулі.\nӘзірше Google арқылы іздей аласыз.\nОлардың {{SITENAME}} мазмұнының индекстері ескірген болуы мүмкін екенін ескеріңіз.",
 	"search-error": "Іздегенде қате орын алды: $1",
 	"search-warning": "Іздегенде ескерту шықты: $1",

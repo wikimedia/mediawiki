@@ -551,7 +551,6 @@
 	"powersearch-togglelabel": "Selegere:",
 	"powersearch-toggleall": "Omnia",
 	"powersearch-togglenone": "Nullum",
-	"search-external": "Inquisitio externalis",
 	"searchdisabled": "Per {{grammar:accusative|{{SITENAME}}}} ad tempus non potes quaerere. Interea per [http://www.google.com Googlem] quaeras. Nota indices {{grammar:genitive|{{SITENAME}}}} contentorum apud Googlem fortasse antiquiores esse.",
 	"search-error": "Error in quaerendo: $1",
 	"mypreferences": "Modi",

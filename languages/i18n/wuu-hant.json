@@ -903,7 +903,6 @@
 	"powersearch-toggleall": "全選",
 	"powersearch-togglenone": "儕弗選",
 	"powersearch-remember": "記牢選擇用於今後个搜尋",
-	"search-external": "外部搜索",
 	"searchdisabled": "{{SITENAME}}个搜索已禁用。儂可以暫時使用Google搜尋，須注意渠拉索引个{{SITENAME}}內容作興會過時。",
 	"search-error": "搜尋辰光發生錯誤：$1",
 	"search-warning": "尋$1箇朞，有一個「警示」趒出。",

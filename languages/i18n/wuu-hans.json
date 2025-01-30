@@ -921,7 +921,6 @@
 	"powersearch-toggleall": "全选",
 	"powersearch-togglenone": "侪弗选",
 	"powersearch-remember": "记牢选择用于今后个搜寻",
-	"search-external": "外部搜索",
 	"searchdisabled": "{{SITENAME}}个搜索已禁用。侬可以暂时使用Google搜索，须注意渠拉索引个{{SITENAME}}内容作兴会过时。",
 	"search-error": "搜寻辰光发生错误：$1",
 	"search-warning": "寻$1箇朞，有一个“警示”趒出。",

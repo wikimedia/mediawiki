@@ -1026,7 +1026,6 @@
 	"powersearch-toggleall": "Semua",
 	"powersearch-togglenone": "Tiada",
 	"powersearch-remember": "Ingatkan pilihan untuk carian pada masa depan",
-	"search-external": "Carian luar",
 	"searchdisabled": "Ciri pencarian dalam {{SITENAME}} dimatikan. Anda boleh mencari melalui Google. Sila ambil perhatian bahawa indeks dalam Google mungkin bukan yang terkini.",
 	"search-error": "Berlakunya ralat ketika mencari: $1",
 	"search-warning": "Amaran telah muncul ketika mencari: $1",

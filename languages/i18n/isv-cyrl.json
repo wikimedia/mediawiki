@@ -985,7 +985,6 @@
 	"powersearch-toggleall": "Все",
 	"powersearch-togglenone": "Ничто",
 	"powersearch-remember": "Паметати избор за будуче искања",
-	"search-external": "Внєшње искање",
 	"searchdisabled": "Искање на сајту {{SITENAME}} јест изкључено.\nВ меджуврємени вы можете искати с помочју Гугла.\nИмајте в виду, же јихне индексы сајта {{SITENAME}} могут быти застарєле.",
 	"search-error": "При искању дошло к погрєшкє: $1",
 	"search-warning": "При искању дошло к прєдупрєджења: $1",

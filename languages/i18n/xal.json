@@ -972,7 +972,6 @@
 	"powersearch-toggleall": "Бүгдиг суңһх",
 	"powersearch-togglenone": "Уга",
 	"powersearch-remember": "Иргчин хәәлтд эн суңһвриг ашглтн",
-	"search-external": "Һазак хәәлт",
 	"searchdisabled": "{{SITENAME}} хәәлтиг түр хаасн бәәнә.\nТа одахндан Google-г ашглн хәәх болмҗта.\nАңхарулҗ келхд, теднә {{SITENAME}}-н аһулһин индексмүд хоцргдсн бәәҗ маһд уга.",
 	"search-error": "$1 -иг хәәхд эндү һарла",
 	"search-warning": "Хәәлт кех йовцд аңхарулһ һарв: $1",

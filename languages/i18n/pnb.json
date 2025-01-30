@@ -699,7 +699,6 @@
 	"powersearch-toggleall": "سارے",
 	"powersearch-togglenone": "کوئی نئیں",
 	"powersearch-remember": "مستقب‏‏ل د‏‏ی تلاش دے لئی انتخاب نو‏‏ں یاد رکھو",
-	"search-external": "باہر دی کھوج",
 	"searchdisabled": "{{SITENAME}} کھوج کم نئیں کررئی۔\nتسیں گوگل تے کھوج کرو۔\nاے گل یاد رکھنا جے انڈیکس {{SITENAME}} دے پرانے ہون۔",
 	"mypreferences": "ترجیحاں",
 	"searchresultshead": "کھوج",

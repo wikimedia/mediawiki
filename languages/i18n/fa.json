@@ -1094,7 +1094,6 @@
 	"powersearch-toggleall": "همه",
 	"powersearch-togglenone": "هیچ‌کدام",
 	"powersearch-remember": "انتخاب را برای جستجوهای بعدی به خاطر داشته باش",
-	"search-external": "جستجوی خارجی",
 	"searchdisabled": "جستجو در {{SITENAME}} فعال نیست.\nموقتاً می‌توانید از جستجوی Google استفاده کنید.\nتوجه کنید که نتایج حاصل از جستجو با آن روش ممکن است روزآمد نباشند.",
 	"search-error": "خطایی هنگام جست‌وجو رخ داده است: $1",
 	"search-warning": "هشداری هنگام جست‌وجو رخ داده است: $1",

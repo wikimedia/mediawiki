@@ -963,7 +963,6 @@
 	"powersearch-toggleall": "全部",
 	"powersearch-togglenone": "冇",
 	"powersearch-remember": "記住今次嘅揀法方便第時搵嘢用返",
-	"search-external": "出面搵嘢",
 	"searchdisabled": "{{SITENAME}}嘅搜尋功能已經關閉。你可以利用Google嚟搵。不過佢哋對{{SITENAME}}嘅索引可能唔係最新嘅。",
 	"search-error": "搵嘢嗰陣出錯：$1",
 	"search-warning": "搵嘢嗰陣出錯：$1",

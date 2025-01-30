@@ -974,7 +974,6 @@
 	"powersearch-toggleall": "كلشي",
 	"powersearch-togglenone": "ماكو شي",
 	"powersearch-remember": "بعدين تذكر الخيارات للبحث",
-	"search-external": "بحث خارجي",
 	"searchdisabled": "البحث في {{SITENAME}} طافي.\nتكدر تبحث من خلال جوجل في الوقت الحالي.\nلاحظ أن فهارسه لمحتوى {{SITENAME}} يمكن تكون مو محدثه.",
 	"search-error": "صار خطأ أثناء البحث: $1",
 	"search-warning": "اكو تحذير أثناء البحث: $1",

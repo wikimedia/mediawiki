@@ -971,7 +971,6 @@
 	"powersearch-toggleall": "Tôs",
 	"powersearch-togglenone": "Pas yon",
 	"powersearch-remember": "Sè rapelar du chouèx por les rechèrches que vegnont",
-	"search-external": "Rechèrche de defôr",
 	"searchdisabled": "La rechèrche dessus {{SITENAME}} est dèsactivâye.\nPendent cél temps, vos pouede fâre na rechèrche avouéc Google.\nNotâd que lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.",
 	"search-error": "Na fôta est arrevâye en rechèrchient : $1",
 	"search-warning": "Na semonce est arrevâye en rechèrchient : $1",

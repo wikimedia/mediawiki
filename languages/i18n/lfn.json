@@ -893,7 +893,6 @@
 	"powersearch-toggleall": "Tota",
 	"powersearch-togglenone": "Zero",
 	"powersearch-remember": "Memori la eleje per xercas futur",
-	"search-external": "Xerca esterna",
 	"searchdisabled": "Xercas de {{SITENAME}} no es disponable.\nTu pote usa Google per xerca entretempo.\nNota ce sua catalogos de la contenida de {{SITENAME}} es cisa nonfresca.",
 	"search-error": "Un era ia aveni en xerca: $1",
 	"search-warning": "Un averti ia aveni en xerca: $1",

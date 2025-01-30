@@ -1089,7 +1089,6 @@
 	"powersearch-toggleall": "Alla",
 	"powersearch-togglenone": "Ingen",
 	"powersearch-remember": "Kom ihåg val för framtida sökningar",
-	"search-external": "Extern sökning",
 	"searchdisabled": "Sökfunktionen på {{SITENAME}} är avstängd.\nDu kan istället göra sökningar med hjälp av Google.\nNotera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.",
 	"search-error": "Ett fel uppstod under sökningen: $1",
 	"search-warning": "En varning uppstod under sökning: $1",

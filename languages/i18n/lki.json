@@ -825,7 +825,6 @@
 	"powersearch-toggleall": "کؤل(گشت)",
 	"powersearch-togglenone": "هؤیچ کام",
 	"powersearch-remember": "انتخاب را برای جستجوهای بعدی به خاطر داشته‌باش",
-	"search-external": "جستجوی خارجی",
 	"searchdisabled": "جستجو در {{SITENAME}} فعال نیست.\nموقتاً می‌توانید از جستجوی Google استفاده کنید.\nتوجه کنید که نتایج حاصل از جستجو با آن روش ممکن است به‌روز نباشند.",
 	"search-error": "خطایی هنگام جست‌وجو رخ داده است: $1",
 	"mypreferences": "تمارزووەل(ترجیحات)",

@@ -1012,7 +1012,6 @@
 	"powersearch-toggleall": "Vsi",
 	"powersearch-togglenone": "Noben",
 	"powersearch-remember": "Zapomni si izbiro za nadaljnja iskanja",
-	"search-external": "Zunanji iskalnik",
 	"searchdisabled": "Iskanje po {{GRAMMAR:dajalnik|{{SITENAME}}}} je onemogoočeno.\nMedtem lahko iščete z Googlom.\nUpoštevajte, da so njihovi podatki o vsebini {{GRAMMAR:rodilnik|{{SITENAME}}}} morda zastareli.",
 	"search-error": "Pri iskanju je prišlo do napake: $1",
 	"search-warning": "Pri iskanju je prišlo do napake: $1",
