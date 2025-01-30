@@ -341,6 +341,15 @@ class LocalFileDeleteBatch {
 					] )
 					->where( [ 'file_id' => $this->file->getFileIdFromName() ] )
 					->caller( __METHOD__ )->execute();
+				if ( !count( $oldRels ) ) {
+					// Only the current version is uploaded and then deleted
+					// TODO: After migration is done and old code is removed,
+					// this should be refactored to become much simpler
+					$dbw->newDeleteQueryBuilder()
+						->deleteFrom( 'filerevision' )
+						->where( [ 'fr_file' => $this->file->getFileIdFromName() ] )
+						->caller( __METHOD__ )->execute();
+				}
 			}
 		}
 	}
