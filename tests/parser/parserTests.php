@@ -51,7 +51,7 @@ class ParserTestsMaintenance extends Maintenance {
 			false, true );
 		$this->addOption( 'regex', 'Only run tests whose descriptions which match given regex',
 			false, true );
-		$this->addOption( 'filter', 'Alias for --regex', false, true );
+		$this->addOption( 'filter', 'Only run tests whose description contains the given string', false, true );
 		$this->addOption( 'file', 'Run test cases from a custom file instead of parserTests.txt',
 			false, true, false, true );
 		$this->addOption( 'dir', 'Run test cases for all *.txt files in a directory',
@@ -150,7 +150,14 @@ class ParserTestsMaintenance extends Maintenance {
 		$record = $this->hasOption( 'record' );
 		$compare = $this->hasOption( 'compare' );
 
-		$regex = $this->getOption( 'filter', $this->getOption( 'regex', false ) );
+		if ( $this->hasOption( 'filter' ) ) {
+			$regex = preg_quote( $this->getOption( 'filter' ), '/' );
+			if ( $this->hasOption( 'regex' ) ) {
+				echo "Warning: --regex cannot be used with --filter, disabling --regexp\n";
+			}
+		} else {
+			$regex = $this->getOption( 'regex', false );
+		}
 		if ( $regex !== false ) {
 			$regex = "/$regex/i";
 
