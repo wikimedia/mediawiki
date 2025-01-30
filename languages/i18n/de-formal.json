@@ -177,7 +177,6 @@
 	"generic-pool-error": "Entschuldigen Sie bitte, dass die Server im Moment überlastet sind.\nZu viele Benutzer wollen diese Ressource ansehen.\nBitte warten Sie einen Moment, bevor Sie sie erneut aufrufen.",
 	"aboutsite": "Über {{SITENAME}}",
 	"aboutpage": "Project:Über_{{SITENAME}}",
-	"disclaimers": "Haftungsausschluss",
 	"disclaimerpage": "Project:Impressum",
 	"helppage-top-gethelp": "Hilfe",
 	"mainpage": "Hauptseite",

@@ -1326,7 +1326,7 @@
 	"htmlform-cloner-delete": "Jaukkâd",
 	"htmlform-date-placeholder": "EEEE-MM-PP",
 	"htmlform-datetime-placeholder": "EEEE-MM-PP ČČ:MM:SS",
-	"logentry-delete-delete": "$1 seeid $3 {{GENDER:$2|jaukkii}}",
+	"logentry-delete-delete": "$1 {{GENDER:$2|jaukkii}} seeid $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|maaccti}} seeid $3 ($4)",
 	"restore-count-revisions": "{{PLURAL:$1|1 versio|$1 versio|$1 versiod}}",
 	"revdelete-summary-hid": "õʹhtteǩeässmõõžž čiõʹǩǩeš",

@@ -604,7 +604,7 @@
 	"history-show-deleted": "Өчүрүлгөндөрдү гана",
 	"histfirst": "алгачкы",
 	"histlast": "соңку",
-	"historysize": "({{PLURAL:$1|1 байт}})",
+	"historysize": "({{PLURAL:$1|$1 байт}})",
 	"historyempty": "бош",
 	"history-feed-title": "Түзөтүүлөр тарыхы",
 	"history-feed-description": "Бул барактын викидеги өзгөртүү тарыхы",

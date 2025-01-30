@@ -991,7 +991,7 @@
 	"history-show-deleted": "只顯示已刪除的修訂",
 	"histfirst": "最早",
 	"histlast": "最新",
-	"historysize": "($1 位元組)",
+	"historysize": "({{PLURAL:$1|$1位元組}})",
 	"historyempty": "空",
 	"history-feed-title": "修訂紀錄",
 	"history-feed-description": "本 wiki 上此頁面的修訂紀錄",

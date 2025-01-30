@@ -617,7 +617,7 @@
 	"history-show-deleted": "ᱠᱷᱟᱹᱞᱤ ᱜᱮᱫ ᱜᱤᱰᱤᱭᱟᱜ ᱠᱚᱜᱮ",
 	"histfirst": "ᱢᱟᱨᱮᱱᱟᱜ",
 	"histlast": "ᱱᱟᱣᱟᱱᱟᱜ",
-	"historysize": "({{PLURAL:$1 1 ᱵᱟᱭᱤᱴ $1 ᱵᱟᱭᱤᱴᱥ}})",
+	"historysize": "({{PLURAL:$1|1 ᱵᱟᱭᱤᱴ|$1 ᱵᱟᱭᱤᱴᱥ}})",
 	"historyempty": "ᱠᱷᱟᱹᱞᱤ",
 	"history-feed-title": "ᱥᱩᱫᱷᱨᱟᱹᱣ ᱱᱟᱜᱟᱢ",
 	"history-feed-description": "ᱣᱤᱠᱤᱨᱮ ᱱᱤᱭᱟᱹ ᱥᱟᱦᱴᱟ ᱵᱚᱫᱚᱞ ᱨᱮᱱᱟᱜ ᱱᱟᱜᱟᱢ",

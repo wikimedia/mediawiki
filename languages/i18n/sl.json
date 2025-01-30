@@ -2132,7 +2132,7 @@
 	"prefixindex-strip": "V zadetkih skrij predpono",
 	"shortpages": "Kratke strani",
 	"longpages": "Dolge strani",
-	"deadendpages": "Strani, na katere se nič ne povezuje",
+	"deadendpages": "Strani brez notranjih povezav",
 	"deadendpagestext": "Naslednje strani se ne povezujejo na druge strani v projektu {{SITENAME}}.",
 	"protectedpages": "Zaščitene strani",
 	"protectedpages-filters": "Filtri:",

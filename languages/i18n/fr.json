@@ -1062,7 +1062,7 @@
 	"history-show-deleted": "Version supprimée uniquement",
 	"histfirst": "les plus anciennes",
 	"histlast": "les plus récentes",
-	"historysize": "($1 octet{{PLURAL:$1||s}})",
+	"historysize": "($1 {{PLURAL:$1|octet|octets}})",
 	"historyempty": "vide",
 	"history-feed-title": "Historique des versions",
 	"history-feed-description": "Historique des versions pour cette page sur le wiki",
