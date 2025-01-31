@@ -110,7 +110,7 @@ abstract class Benchmarker extends Maintenance {
 		foreach ( $normBenchs as $name => $bench ) {
 			// Optional setup called outside time measure
 			if ( isset( $bench['setup'] ) ) {
-				call_user_func( $bench['setup'] );
+				$bench['setup']();
 			}
 
 			// Run benchmarks

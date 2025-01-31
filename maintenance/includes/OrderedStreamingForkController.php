@@ -129,7 +129,7 @@ class OrderedStreamingForkController extends ForkController {
 			$line = trim( fgets( $this->input ) );
 			if ( $line ) {
 				[ $id, $data ] = json_decode( $line );
-				$result = call_user_func( $this->workCallback, $data );
+				$result = ( $this->workCallback )( $data );
 				fwrite( $this->output, json_encode( [ $id, $result ] ) . "\n" );
 			}
 		}
@@ -149,7 +149,7 @@ class OrderedStreamingForkController extends ForkController {
 			if ( $data === '' ) {
 				continue;
 			}
-			$result = call_user_func( $this->workCallback, $data );
+			$result = ( $this->workCallback )( $data );
 			fwrite( $this->output, "$result\n" );
 		}
 	}
