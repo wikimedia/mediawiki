@@ -73,25 +73,28 @@ class ContributionsPagerTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	private function getPager( $context, $target ) {
+	private function getPager( $context, $overrideOptions, $overrideServices = [] ) {
 		$services = $this->getServiceContainer();
+
+		$options = array_merge( [
+			'isArchive' => true,
+			'target' => '1.2.3.4',
+			// The topOnly filter should be ignored and not throw an error: T371495
+			'topOnly' => true,
+			'runHooks' => true,
+		], $overrideOptions );
 
 		// Define a pager in 'archive' mode.
 		$pager = new class(
 			$services->getLinkRenderer(),
 			$services->getLinkBatchFactory(),
-			$services->getHookContainer(),
+			$overrideServices['HookContainer'] ?? $services->getHookContainer(),
 			$services->getRevisionStore(),
 			$services->getNamespaceInfo(),
 			$services->getCommentFormatter(),
 			$services->getUserFactory(),
 			$context,
-			[
-				'isArchive' => true,
-				'target' => $target,
-				// The topOnly filter should be ignored and not throw an error: T371495
-				'topOnly' => true,
-			],
+			$options,
 			$this->createMock( UserIdentity::class ),
 		) extends ContributionsPager {
 			protected string $revisionIdField = 'ar_rev_id';
@@ -139,7 +142,7 @@ class ContributionsPagerTest extends MediaWikiIntegrationTestCase {
 		$context = new RequestContext();
 		$context->setLanguage( 'qqx' );
 
-		$pager = $this->getPager( $context, self::$user->getName() );
+		$pager = $this->getPager( $context, [ 'target' => self::$user->getName() ] );
 
 		// Perform assertions
 		$this->assertSame( 1, $pager->getNumRows() );
@@ -156,7 +159,7 @@ class ContributionsPagerTest extends MediaWikiIntegrationTestCase {
 		$context = new RequestContext();
 		$context->setUser( $this->getTestSysop()->getUser() );
 
-		$pager = $this->getPager( $context, self::$user->getName() );
+		$pager = $this->getPager( $context, [ 'target' => self::$user->getName() ] );
 
 		$html = $pager->getBody();
 		$this->assertStringContainsString( 'mw-changeslist-date', $html );
@@ -171,6 +174,29 @@ class ContributionsPagerTest extends MediaWikiIntegrationTestCase {
 		$title = Title::newFromText( 'Test page for deletion' );
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 		$this->deletePage( $page );
+	}
+
+	/**
+	 * @dataProvider provideRunHooks
+	 */
+	public function testRunHooksPropertyIsChecked( $runHooks, $expectRunHooks ) {
+		$hookContainer = $this->createMock( HookContainer::class );
+		$hookContainer->expects( $expectRunHooks ? $this->atLeastOnce() : $this->never() )
+			->method( 'run' );
+
+		$pager = $this->getPager(
+			new RequestContext(),
+			[ 'runHooks' => $runHooks ],
+			[ 'HookContainer' => $hookContainer ]
+		);
+		$pager->getBody();
+	}
+
+	public function provideRunHooks() {
+		return [
+			'Do not run any hooks if runHooks is false' => [ false, false ],
+			'Run hooks if runHooks is true' => [ true, true ],
+		];
 	}
 
 }
