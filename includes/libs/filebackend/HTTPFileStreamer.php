@@ -130,10 +130,10 @@ class HTTPFileStreamer {
 		$headerFunc( 'Last-Modified: ' . $mtimeCT->getTimestamp( TS_RFC2822 ) );
 
 		if ( ( $flags & self::STREAM_ALLOW_OB ) == 0 ) {
-			call_user_func( $this->obResetFunc );
+			( $this->obResetFunc )();
 		}
 
-		$type = call_user_func( $this->streamMimeFunc, $this->path );
+		$type = ( $this->streamMimeFunc )( $this->path );
 		if ( $type && $type != 'unknown/unknown' ) {
 			$headerFunc( "Content-type: $type" );
 		} else {

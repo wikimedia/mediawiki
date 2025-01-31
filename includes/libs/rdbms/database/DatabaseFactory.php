@@ -185,7 +185,7 @@ class DatabaseFactory {
 
 		$class = $this->getClass( $dbType, $driver );
 		if ( class_exists( $class ) ) {
-			return call_user_func( [ $class, 'getAttributes' ] ) + $defaults;
+			return $class::getAttributes() + $defaults;
 		} else {
 			throw new DBUnexpectedError( null, "$dbType is not a supported database type." );
 		}

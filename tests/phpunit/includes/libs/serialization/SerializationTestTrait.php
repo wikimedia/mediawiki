@@ -283,7 +283,7 @@ trait SerializationTestTrait {
 		object $testInstance,
 		callable $assertionsCallback
 	) {
-		call_user_func( $assertionsCallback, $this, $testInstance );
+		$assertionsCallback( $this, $testInstance );
 	}
 
 	/**

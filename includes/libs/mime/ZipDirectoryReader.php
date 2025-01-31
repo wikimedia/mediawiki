@@ -474,7 +474,7 @@ class ZipDirectoryReader {
 				'mtime' => $timestamp,
 				'size' => $data['uncompressed size'],
 			];
-			call_user_func( $this->callback, $userData );
+			( $this->callback )( $userData );
 		}
 	}
 
