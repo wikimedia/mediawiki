@@ -52,7 +52,7 @@ class MigrateFileRepoLayoutTest extends MediaWikiIntegrationTestCase {
 				new FakeResultWrapper( [] ), // image
 				new FakeResultWrapper( [] ) // filearchive
 			);
-		$dbMock->method( 'newSelectQueryBuilder' )->willReturnCallback( fn () => new SelectQueryBuilder( $dbMock ) );
+		$dbMock->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn () => new SelectQueryBuilder( $dbMock ) );
 
 		$repoMock = $this->getMockBuilder( LocalRepo::class )
 			->onlyMethods( [ 'getPrimaryDB', 'getReplicaDB' ] )

@@ -133,7 +133,7 @@ class QueryBuilderFromRawSql {
 		// @phan-suppress-next-line PhanRedundantCondition https://github.com/phan/phan/issues/4720
 		if ( !isset( self::$queryVerbRegex ) ) {
 			$multiwordVerbsRegex = implode( '|', array_map(
-				fn ( $words ) => str_replace( ' ', '\s+', $words ),
+				static fn ( $words ) => str_replace( ' ', '\s+', $words ),
 				Query::MULTIWORD_VERBS
 			) );
 			self::$queryVerbRegex = "/^\s*($multiwordVerbsRegex|[a-z]+)/i";

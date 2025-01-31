@@ -29,7 +29,7 @@ class BeforeParserFetchTemplateRevisionRecordTest extends MediaWikiLangTestCase 
 		$this->assertSame( $expected['finalTitle'], $actual['finalTitle']->getPrefixedText() );
 		// Simplify 'deps'
 		$simpleActualDeps = array_map(
-			fn ( $dep ) => $dep['title']->getPrefixedText(),
+			static fn ( $dep ) => $dep['title']->getPrefixedText(),
 			$actual['deps']
 		);
 		$this->assertArrayEquals( $expected['deps'], $simpleActualDeps );

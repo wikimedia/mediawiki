@@ -152,7 +152,7 @@ $cfg['enable_class_alias_support'] = true;
 // Exclude Parsoid's src/DOM in favor of .phan/stubs/DomImpl.php
 $cfg['exclude_file_list'] = array_merge(
 	$cfg['exclude_file_list'],
-	array_map( fn ( $f ) => "vendor/wikimedia/parsoid/src/DOM/{$f}.php", [
+	array_map( static fn ( $f ) => "vendor/wikimedia/parsoid/src/DOM/{$f}.php", [
 		'Attr', 'CharacterData', 'Comment', 'Document', 'DocumentFragment',
 		'DocumentType', 'Element', 'Node', 'ProcessingInstruction', 'Text',
 	] )

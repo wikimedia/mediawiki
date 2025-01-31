@@ -14,8 +14,6 @@ use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Services\NoSuchServiceException;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
-// phpcs:disable MediaWiki.Commenting.FunctionAnnotations.UnrecognizedAnnotation -- Remove with v46.0.0
-
 /**
  * For code common to both MediaWikiUnitTestCase and MediaWikiIntegrationTestCase.
  */

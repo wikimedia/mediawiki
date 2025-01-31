@@ -271,7 +271,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			$params['display'] = $this->mDisplay;
 		}
 
-		return array_filter( $params, fn ( $val ) => $val !== null );
+		return array_filter( $params, static fn ( $val ) => $val !== null );
 	}
 
 	protected function beforeExecute( $subPage ) {

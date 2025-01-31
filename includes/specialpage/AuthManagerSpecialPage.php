@@ -583,7 +583,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 			$params, [ 'reset' => $options['reset'] ]
 		);
 
-		return array_filter( $params, fn ( $val ) => $val !== null );
+		return array_filter( $params, static fn ( $val ) => $val !== null );
 	}
 
 	/**

@@ -356,7 +356,7 @@ class ApiQueryBasicTest extends ApiQueryTestBase {
 	public function testApiQueryCheckCanExecute() {
 		$this->setTemporaryHook( 'ApiQueryCheckCanExecute',
 			function ( $modules, $authority, &$message ) {
-				$moduleNames = array_map( fn ( ApiQueryBase $module ) => $module->getModuleName(), $modules );
+				$moduleNames = array_map( static fn ( ApiQueryBase $module ) => $module->getModuleName(), $modules );
 				$this->assertArrayEquals( [ 'links', 'templates', 'categories' ], $moduleNames );
 				$message = new RawMessage( 'Prevented by hook' );
 				return false;

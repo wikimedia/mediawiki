@@ -524,7 +524,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 			$services->getObjectFactory(),
 			[
 				'NoLocalAccountStore' => [
-					'factory' => fn () => $store,
+					'factory' => static fn () => $store,
 				],
 			]
 		);

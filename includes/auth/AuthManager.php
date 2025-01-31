@@ -2797,7 +2797,7 @@ class AuthManager implements LoggerAwareInterface {
 		$conf = $this->config->get( MainConfigNames::AuthManagerConfig )
 			?: $this->config->get( MainConfigNames::AuthManagerAutoConfig );
 
-		$providers = array_map( fn ( $stepConf ) => array_fill_keys( array_keys( $stepConf ), true ), $conf );
+		$providers = array_map( static fn ( $stepConf ) => array_fill_keys( array_keys( $stepConf ), true ), $conf );
 		$this->getHookRunner()->onAuthManagerFilterProviders( $providers );
 		foreach ( $conf as $step => $stepConf ) {
 			$conf[$step] = array_intersect_key( $stepConf, array_filter( $providers[$step] ) );

@@ -215,7 +215,7 @@ class SerializationTestUtils {
 				// swap _ and - to ensure that 1.43-foo sorts after 1.43_wmf...-foo
 				usort(
 					$savedFiles,
-					fn ( $a, $b ) => strtr( $a, '-_', '_-' ) <=> strtr( $b, '-_', '_-' )
+					static fn ( $a, $b ) => strtr( $a, '-_', '_-' ) <=> strtr( $b, '-_', '_-' )
 				);
 				$path = end( $savedFiles );
 			} else {

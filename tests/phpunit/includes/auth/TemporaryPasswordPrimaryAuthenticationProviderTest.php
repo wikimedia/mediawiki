@@ -239,11 +239,11 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegr
 		yield 'nonexistent user' => [ 'DoesNotExist' ];
 		yield 'user with invalid password' => [
 			null,
-			fn () => PasswordFactory::newInvalidPassword()->toString()
+			static fn () => PasswordFactory::newInvalidPassword()->toString()
 		];
 		yield 'user with expired password' => [
 			null,
-			fn ( PasswordFactory $passwordFactory ) => $passwordFactory->newFromPlaintext( 'password' )->toString(),
+			static fn ( PasswordFactory $passwordFactory ) => $passwordFactory->newFromPlaintext( 'password' )->toString(),
 			time() - 3_600
 		];
 	}
@@ -764,7 +764,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegr
 		$this->assertFalse( $status->isGood() );
 		$this->assertSame(
 			[ $expectedError ],
-			array_map( fn ( MessageSpecifier $spec ) => $spec->getKey(), $status->getMessages() )
+			array_map( static fn ( MessageSpecifier $spec ) => $spec->getKey(), $status->getMessages() )
 		);
 	}
 

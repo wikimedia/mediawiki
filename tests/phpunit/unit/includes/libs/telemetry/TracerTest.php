@@ -43,7 +43,7 @@ class TracerTest extends MediaWikiUnitTestCase {
 		] );
 
 		$this->clock->method( 'getCurrentNanoTime' )
-			->willReturnCallback( fn () => hrtime( true ) );
+			->willReturnCallback( static fn () => hrtime( true ) );
 
 		$this->tracer = new Tracer(
 			$this->clock,
@@ -144,7 +144,7 @@ class TracerTest extends MediaWikiUnitTestCase {
 		while ( array_pop( $spans ) !== null );
 
 		$exportedSpanIds = array_map(
-			fn ( SpanContext $spanContext ) => $spanContext->getSpanId(),
+			static fn ( SpanContext $spanContext ) => $spanContext->getSpanId(),
 			$this->tracerState->getSpanContexts()
 		);
 
@@ -156,7 +156,7 @@ class TracerTest extends MediaWikiUnitTestCase {
 
 	public function testCreatingSpansWithoutActiveSpan(): void {
 		$this->clock->method( 'getCurrentNanoTime' )
-			->willReturnCallback( fn () => hrtime( true ) );
+			->willReturnCallback( static fn () => hrtime( true ) );
 
 		$this->sampler->method( 'shouldSample' )
 			->willReturn( true );

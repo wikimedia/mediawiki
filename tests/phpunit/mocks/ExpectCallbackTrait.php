@@ -1,8 +1,6 @@
 <?php
 namespace MediaWiki\Tests;
 
-// phpcs:disable MediaWiki.Commenting.FunctionAnnotations.UnrecognizedAnnotation -- Remove with v46.0.0
-
 /**
  * Trait for asserting callback invocation.
  */
@@ -103,7 +101,7 @@ trait ExpectCallbackTrait {
 	/**
 	 * @postCondition
 	 */
-	public function expectedCallbackInvocationsPostCondition(): void {
+	public function expectedCallbackInvocationsPostConditions(): void {
 		$this->runDeferredUpdates();
 
 		foreach ( $this->expectedCallbackInvocations as $name => $count ) {

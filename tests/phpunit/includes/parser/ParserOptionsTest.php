@@ -465,7 +465,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 	public function testSetupFakeRevision_new() {
 		$options = ParserOptions::newFromAnon();
 		$options->setIsPreview( true );
-		$options->setSpeculativePageIdCallback( fn () => 105 );
+		$options->setSpeculativePageIdCallback( static fn () => 105 );
 
 		$page = PageIdentityValue::localIdentity( 0, NS_MAIN, __METHOD__ );
 		$content = new DummyContentForTesting( '12345' );
