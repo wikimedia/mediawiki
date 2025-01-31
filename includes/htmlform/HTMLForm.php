@@ -819,7 +819,7 @@ class HTMLForm extends ContextSource {
 
 		$data = $this->filterDataForSubmit( $this->mFieldData );
 
-		$res = call_user_func( $callback, $data, $this );
+		$res = $callback( $data, $this );
 		if ( $res === false ) {
 			$this->mWasSubmitted = false;
 		} elseif ( $res instanceof StatusValue ) {

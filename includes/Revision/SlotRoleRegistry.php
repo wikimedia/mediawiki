@@ -134,7 +134,7 @@ class SlotRoleRegistry {
 					throw new InvalidArgumentException( "Unknown role $role" );
 				}
 			} else {
-				$handler = call_user_func( $this->instantiators[$role], $role );
+				$handler = $this->instantiators[$role]( $role );
 
 				Assert::postcondition(
 					$handler instanceof SlotRoleHandler,

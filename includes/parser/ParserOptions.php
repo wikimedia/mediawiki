@@ -186,7 +186,7 @@ class ParserOptions {
 	private function lazyLoadOption( $name ) {
 		$lazyOptions = self::getLazyOptions();
 		if ( isset( $lazyOptions[$name] ) && $this->options[$name] === null ) {
-			$this->options[$name] = call_user_func( $lazyOptions[$name], $this, $name );
+			$this->options[$name] = $lazyOptions[$name]( $this, $name );
 		}
 	}
 
@@ -895,7 +895,7 @@ class ParserOptions {
 	}
 
 	/**
-	 * Callback for current revision fetching; first argument to call_user_func().
+	 * Callback for current revision fetching; first argument for dynamic call.
 	 * @internal
 	 * @since 1.35
 	 * @return callable
@@ -905,7 +905,7 @@ class ParserOptions {
 	}
 
 	/**
-	 * Callback for current revision fetching; first argument to call_user_func().
+	 * Callback for current revision fetching; first argument for dynamic call.
 	 * @internal
 	 * @since 1.35
 	 * @param callable|null $x New value
@@ -916,7 +916,7 @@ class ParserOptions {
 	}
 
 	/**
-	 * Callback for template fetching; first argument to call_user_func().
+	 * Callback for template fetching; first argument for dynamic call.
 	 * @return callable
 	 */
 	public function getTemplateCallback() {
@@ -924,7 +924,7 @@ class ParserOptions {
 	}
 
 	/**
-	 * Callback for template fetching; first argument to call_user_func().
+	 * Callback for template fetching; first argument for dynamic call.
 	 * @param callable|null $x New value (null is no change)
 	 * @return callable Old value
 	 */
@@ -1397,7 +1397,7 @@ class ParserOptions {
 	 */
 	private function optionUsed( $optionName ) {
 		if ( $this->onAccessCallback ) {
-			call_user_func( $this->onAccessCallback, $optionName );
+			( $this->onAccessCallback )( $optionName );
 		}
 	}
 
@@ -1578,7 +1578,7 @@ class ParserOptions {
 						->setParentId( $parentRevision );
 					return $revRecord;
 				} else {
-					return call_user_func( $oldCallback, $titleToCheck, $parser );
+					return $oldCallback( $titleToCheck, $parser );
 				}
 			}
 		);

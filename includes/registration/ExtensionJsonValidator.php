@@ -55,7 +55,7 @@ class ExtensionJsonValidator {
 	 */
 	public function checkDependencies() {
 		if ( !class_exists( Validator::class ) ) {
-			call_user_func( $this->missingDepCallback,
+			( $this->missingDepCallback )(
 				'The JsonSchema library cannot be found, please install it through composer.'
 			);
 
@@ -63,7 +63,7 @@ class ExtensionJsonValidator {
 		}
 
 		if ( !class_exists( SpdxLicenses::class ) ) {
-			call_user_func( $this->missingDepCallback,
+			( $this->missingDepCallback )(
 				'The spdx-licenses library cannot be found, please install it through composer.'
 			);
 
@@ -71,7 +71,7 @@ class ExtensionJsonValidator {
 		}
 
 		if ( !class_exists( JsonParser::class ) ) {
-			call_user_func( $this->missingDepCallback,
+			( $this->missingDepCallback )(
 				'The JSON lint library cannot be found, please install it through composer.'
 			);
 		}

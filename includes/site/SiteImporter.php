@@ -255,7 +255,7 @@ class SiteImporter {
 
 	private function handleException( Exception $ex ) {
 		if ( $this->exceptionCallback ) {
-			call_user_func( $this->exceptionCallback, $ex );
+			( $this->exceptionCallback )( $ex );
 		} else {
 			wfLogWarning( $ex->getMessage() );
 		}

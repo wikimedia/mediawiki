@@ -244,7 +244,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		// path.
 		if ( is_array( $scaler ) && is_callable( $scaler ) ) {
 			// Allow subclasses to specify their own rendering methods.
-			$err = call_user_func( $scaler, $image, $scalerParams );
+			$err = $scaler( $image, $scalerParams );
 		} else {
 			switch ( $scaler ) {
 				case 'hookaborted':

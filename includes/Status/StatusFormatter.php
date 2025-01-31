@@ -72,7 +72,7 @@ class StatusFormatter {
 		}
 		$cleanParams = [];
 		foreach ( $params as $i => $param ) {
-			$cleanParams[$i] = call_user_func( $cleanCallback, $param );
+			$cleanParams[$i] = $cleanCallback( $param );
 		}
 		return $cleanParams;
 	}

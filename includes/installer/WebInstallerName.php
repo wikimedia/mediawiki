@@ -251,7 +251,7 @@ class WebInstallerName extends WebInstallerPage {
 			$msg = $valid;
 		}
 		if ( $msg !== false ) {
-			call_user_func( [ $this->parent, 'showError' ], $msg );
+			$this->parent->showError( $msg );
 			$this->setVar( '_AdminPassword', '' );
 			$this->setVar( '_AdminPasswordConfirm', '' );
 			$retVal = false;

@@ -27,7 +27,7 @@ class TransactionRoundDefiningUpdate
 	}
 
 	public function doUpdate() {
-		call_user_func( $this->callback );
+		( $this->callback )();
 	}
 
 	public function getOrigin() {

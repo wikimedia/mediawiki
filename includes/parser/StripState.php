@@ -159,7 +159,7 @@ class StripState {
 					return $this->getLimitationWarning( 'unstrip-size', $this->sizeLimit );
 				}
 
-				return call_user_func( $callback, $value );
+				return $callback( $value );
 			} else {
 				return $m[0];
 			}

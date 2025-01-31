@@ -480,7 +480,8 @@ class SpecialTags extends SpecialPage {
 
 		$tag = $data['HiddenTag'];
 		// activateTagWithChecks, deactivateTagWithChecks, deleteTagWithChecks
-		$status = call_user_func( [ ChangeTags::class, "{$action}TagWithChecks" ],
+		$method = "{$action}TagWithChecks";
+		$status = ChangeTags::$method(
 			$tag, $data['Reason'], $context->getUser(), true );
 
 		if ( $status->isGood() ) {

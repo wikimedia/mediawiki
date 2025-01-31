@@ -352,7 +352,7 @@ abstract class ChangesListFilter {
 			return;
 		}
 
-		if ( call_user_func( $this->isRowApplicableCallable, $ctx, $rc ) ) {
+		if ( ( $this->isRowApplicableCallable )( $ctx, $rc ) ) {
 			$classes[] = $this->getCssClass();
 		}
 	}

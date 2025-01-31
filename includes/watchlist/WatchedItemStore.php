@@ -1304,8 +1304,7 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 
 		// Try to run this post-send
 		// Calls DeferredUpdates::addCallableUpdate in normal operation
-		call_user_func(
-			$this->deferredUpdatesAddCallableUpdateCallback,
+		( $this->deferredUpdatesAddCallableUpdateCallback )(
 			static function () use ( $job ) {
 				$job->run();
 			}
@@ -1353,8 +1352,7 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 			$fname = __METHOD__;
 			// Try to run this post-send
 			// Calls DeferredUpdates::addCallableUpdate in normal operation
-			call_user_func(
-				$this->deferredUpdatesAddCallableUpdateCallback,
+			( $this->deferredUpdatesAddCallableUpdateCallback )(
 				function () use ( $timestamp, $wlIds, $target, $fname ) {
 					$dbw = $this->lbFactory->getPrimaryDatabase();
 					$ticket = $this->lbFactory->getEmptyTransactionTicket( $fname );

@@ -410,7 +410,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			$info = $this->moduleInfos[$name];
 			if ( isset( $info['factory'] ) ) {
 				/** @var Module $object */
-				$object = call_user_func( $info['factory'], $info );
+				$object = $info['factory']( $info );
 			} else {
 				$class = $info['class'] ?? FileModule::class;
 				/** @var Module $object */
@@ -2026,7 +2026,8 @@ MESSAGE;
 				if ( str_starts_with( $path, $importPath ) ) {
 					$restOfPath = substr( $path, strlen( $importPath ) );
 					if ( is_callable( $substPath ) ) {
-						$resolvedPath = call_user_func( $substPath, $restOfPath );
+						// @phan-suppress-next-line PhanUseReturnValueOfNever
+						$resolvedPath = $substPath( $restOfPath );
 					} else {
 						$filePath = $substPath . $restOfPath;
 

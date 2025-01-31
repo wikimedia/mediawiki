@@ -210,7 +210,7 @@ class ObjectCacheFactory {
 		if ( isset( $params['factory'] ) ) {
 			$args = $params['args'] ?? [ $params ];
 
-			return call_user_func( $params['factory'], ...$args );
+			return $params['factory']( ...$args );
 		}
 
 		if ( !isset( $params['class'] ) ) {

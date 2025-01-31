@@ -18,7 +18,7 @@ trait SearchResultTrait {
 	 */
 	public function getExtensionData() {
 		if ( $this->extensionData ) {
-			return call_user_func( $this->extensionData );
+			return ( $this->extensionData )();
 		} else {
 			return [];
 		}

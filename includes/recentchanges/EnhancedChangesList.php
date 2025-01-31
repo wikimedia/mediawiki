@@ -314,7 +314,7 @@ class EnhancedChangesList extends ChangesList {
 
 		$prefix = '';
 		if ( is_callable( $this->changeLinePrefixer ) ) {
-			$prefix = call_user_func( $this->changeLinePrefixer, $block[0], $this, true );
+			$prefix = ( $this->changeLinePrefixer )( $block[0], $this, true );
 		}
 
 		$templateParams = [
@@ -702,7 +702,7 @@ class EnhancedChangesList extends ChangesList {
 
 		$prefix = '';
 		if ( is_callable( $this->changeLinePrefixer ) ) {
-			$prefix = call_user_func( $this->changeLinePrefixer, $rcObj, $this, false );
+			$prefix = ( $this->changeLinePrefixer )( $rcObj, $this, false );
 		}
 
 		$line = Html::openElement( 'table', $attribs ) . Html::openElement( 'tr' );

@@ -193,7 +193,7 @@ class RenderedRevision implements SlotRenderingProvider {
 		if ( !$this->revisionOutput
 			|| ( $withHtml && !$this->revisionOutput->hasText() )
 		) {
-			$output = call_user_func( $this->combineOutput, $this, $hints );
+			$output = ( $this->combineOutput )( $this, $hints );
 
 			Assert::postcondition(
 				$output instanceof ParserOutput,
@@ -381,7 +381,7 @@ class RenderedRevision implements SlotRenderingProvider {
 					if ( $this->revision->getPage()->isSamePageAs( $parserPage ) ) {
 						return $this->revision;
 					} else {
-						return call_user_func( $oldCallback, $parserPage, $parser );
+						return $oldCallback( $parserPage, $parser );
 					}
 				}
 			);

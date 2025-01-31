@@ -116,7 +116,7 @@ class FileSource implements Stringable, CacheableSource, SettingsIncludeLocator 
 		}
 
 		foreach ( self::BUILT_IN_FORMATS as $format ) {
-			if ( call_user_func( [ $format, 'supportsFileExtension' ], $ext ) ) {
+			if ( $format::supportsFileExtension( $ext ) ) {
 				return $this->readAndDecode( new $format() );
 			}
 		}

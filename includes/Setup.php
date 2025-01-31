@@ -602,7 +602,7 @@ global $wgFullyInitialised, $wgExtensionFunctions;
 // of the extension file. This allows the extension to perform
 // any necessary initialisation in the fully initialised environment
 foreach ( $wgExtensionFunctions as $func ) {
-	call_user_func( $func );
+	$func();
 }
 unset( $func ); // no global pollution; destroy reference
 

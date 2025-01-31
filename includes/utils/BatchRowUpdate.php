@@ -123,6 +123,6 @@ class BatchRowUpdate {
 	 * @param string $text The value to print
 	 */
 	protected function output( $text ) {
-		call_user_func( $this->output, $text );
+		( $this->output )( $text );
 	}
 }

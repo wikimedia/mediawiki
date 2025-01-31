@@ -360,7 +360,7 @@ abstract class Job implements RunnableJob {
 	 */
 	public function teardown( $status ) {
 		foreach ( $this->teardownCallbacks as $callback ) {
-			call_user_func( $callback, $status );
+			$callback( $status );
 		}
 	}
 

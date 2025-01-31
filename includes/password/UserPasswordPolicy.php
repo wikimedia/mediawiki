@@ -147,8 +147,7 @@ class UserPasswordPolicy {
 			}
 			$value = $settings['value'];
 			/** @var StatusValue $policyStatus */
-			$policyStatus = call_user_func(
-				$policyCheckFunctions[$policy],
+			$policyStatus = $policyCheckFunctions[$policy](
 				$value,
 				$legacyUser,
 				$password

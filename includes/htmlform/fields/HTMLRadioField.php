@@ -193,7 +193,7 @@ class HTMLRadioField extends HTMLFormField {
 		$html = '';
 
 		$attribs = $this->getAttributes( [ 'disabled', 'tabindex' ] );
-		$elementFunc = [ Html::class, $this->mOptionsLabelsNotFromMessage ? 'rawElement' : 'element' ];
+		$elementMethod = $this->mOptionsLabelsNotFromMessage ? 'rawElement' : 'element';
 
 		# @todo Should this produce an unordered list perhaps?
 		foreach ( $options as $label => $info ) {
@@ -206,7 +206,7 @@ class HTMLRadioField extends HTMLFormField {
 				$radio = Xml::radio(
 					$this->mName, $info, $info === $value, $attribs + [ 'id' => $id ]
 				);
-				$radio .= "\u{00A0}" . call_user_func( $elementFunc, 'label', [ 'for' => $id ], $label );
+				$radio .= "\u{00A0}" . Html::$elementMethod( 'label', [ 'for' => $id ], $label );
 
 				$html .= ' ' . Html::rawElement(
 					'div',

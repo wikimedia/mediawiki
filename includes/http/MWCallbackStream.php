@@ -48,6 +48,6 @@ class MWCallbackStream implements StreamInterface {
 	}
 
 	public function write( $string ) {
-		return call_user_func( $this->callback, $this, $string );
+		return ( $this->callback )( $this, $string );
 	}
 }

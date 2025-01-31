@@ -431,12 +431,12 @@ class FileRepo {
 		}
 		if ( $time ) {
 			if ( $this->oldFileFactory ) {
-				return call_user_func( $this->oldFileFactory, $title, $this, $time );
+				return ( $this->oldFileFactory )( $title, $this, $time );
 			} else {
 				return null;
 			}
 		} else {
-			return call_user_func( $this->fileFactory, $title, $this );
+			return ( $this->fileFactory )( $title, $this );
 		}
 	}
 
@@ -600,13 +600,13 @@ class FileRepo {
 		if ( !$this->fileFactoryKey ) {
 			return false; // find-by-sha1 not supported
 		}
-		$img = call_user_func( $this->fileFactoryKey, $sha1, $this, $time );
+		$img = ( $this->fileFactoryKey )( $sha1, $this, $time );
 		if ( $img && $img->exists() ) {
 			return $img;
 		}
 		# Now try to find a matching old version of a file...
 		if ( $time !== false && $this->oldFileFactoryKey ) { // find-by-sha1 supported?
-			$img = call_user_func( $this->oldFileFactoryKey, $sha1, $this, $time );
+			$img = ( $this->oldFileFactoryKey )( $sha1, $this, $time );
 			if ( $img && $img->exists() ) {
 				if ( !$img->isDeleted( File::DELETED_FILE ) ) {
 					return $img; // always OK
@@ -1745,7 +1745,7 @@ class FileRepo {
 			}
 			foreach ( $iterator as $name ) {
 				// Each item returned is a public file
-				call_user_func( $callback, "{$path}/{$name}" );
+				$callback( "{$path}/{$name}" );
 			}
 		}
 	}

@@ -229,7 +229,7 @@ class WikiModule extends Module {
 		PageIdentity $page, Context $context, $maxRedirects = 1
 	) {
 		$overrideCallback = $context->getContentOverrideCallback();
-		$content = $overrideCallback ? call_user_func( $overrideCallback, $page ) : null;
+		$content = $overrideCallback ? $overrideCallback( $page ) : null;
 		if ( $content ) {
 			if ( !$content instanceof Content ) {
 				$this->getLogger()->error(
@@ -275,7 +275,7 @@ class WikiModule extends Module {
 		if ( $overrideCallback && $this->getSource() === 'local' ) {
 			foreach ( $this->getPages( $context ) as $page => $info ) {
 				$title = Title::newFromText( $page );
-				if ( $title && call_user_func( $overrideCallback, $title ) !== null ) {
+				if ( $title && $overrideCallback( $title ) !== null ) {
 					return true;
 				}
 			}
@@ -520,7 +520,7 @@ class WikiModule extends Module {
 		if ( $overrideCallback ) {
 			foreach ( $pageNames as $page ) {
 				$title = Title::newFromText( $page );
-				$content = $title ? call_user_func( $overrideCallback, $title ) : null;
+				$content = $title ? $overrideCallback( $title ) : null;
 				if ( $content !== null ) {
 					$titleInfo[$title->getPrefixedText()] = [
 						'page_len' => $content->getSize(),
