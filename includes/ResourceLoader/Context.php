@@ -152,10 +152,9 @@ class Context implements MessageLocalizer {
 	 */
 	public static function debugFromString( ?string $debug ): int {
 		// The canonical way to enable debug mode is via debug=true
-		// This continues to map to v1 until v2 is ready (T85805).
-		if ( $debug === 'true' || $debug === '1' ) {
+		if ( $debug === '1' ) {
 			$ret = self::DEBUG_LEGACY;
-		} elseif ( $debug === '2' ) {
+		} elseif ( $debug === 'true' || $debug === '2' ) {
 			$ret = self::DEBUG_MAIN;
 		} else {
 			$ret = self::DEBUG_OFF;

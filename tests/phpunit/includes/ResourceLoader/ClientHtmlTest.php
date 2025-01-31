@@ -244,8 +244,8 @@ class ClientHtmlTest extends TestCase {
 				'modules' => [ 'test.styles.pure', 'test.styles.mixed' ],
 				'only' => Module::TYPE_STYLES,
 				'extra' => [],
-				'output' => '<link rel="stylesheet" href="/w/load.php?debug=1&amp;lang=nl&amp;modules=test.styles.mixed&amp;only=styles">' . "\n"
-					. '<link rel="stylesheet" href="/w/load.php?debug=1&amp;lang=nl&amp;modules=test.styles.pure&amp;only=styles">',
+				'output' => '<link rel="stylesheet" href="/w/load.php?debug=2&amp;lang=nl&amp;modules=test.styles.mixed&amp;only=styles">' . "\n"
+					. '<link rel="stylesheet" href="/w/load.php?debug=2&amp;lang=nl&amp;modules=test.styles.pure&amp;only=styles">',
 			],
 			[
 				'context' => [ 'debug' => 'false' ],

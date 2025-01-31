@@ -128,14 +128,14 @@ class ModuleTest extends ResourceLoaderTestCase {
 
 		$this->assertEquals(
 			[
-				'https://example.org/w/load.php?debug=1&lang=en&modules=test&only=scripts'
+				'https://example.org/w/load.php?debug=2&lang=en&modules=test&only=scripts'
 			],
 			$module->getScriptURLsForDebug( $context ),
 			'script urls debug=true'
 		);
 		$this->assertEquals(
 			[ 'all' => [
-				'/w/load.php?debug=1&lang=en&modules=test&only=styles'
+				'/w/load.php?debug=2&lang=en&modules=test&only=styles'
 			] ],
 			$module->getStyleURLsForDebug( $context ),
 			'style urls debug=true'

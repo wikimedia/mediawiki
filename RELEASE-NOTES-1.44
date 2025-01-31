@@ -280,6 +280,10 @@ because of Phabricator reports.
   in BaseSearchResultSet) to let SearchEngine implementations run optimizations
   that might lead to innacurate computation of the exact number of pages
   matching the search query.
+* (T367441) ResourceLoader Debug mode now defaults to debug mode v2. This means
+  ?debug=true now maps to debug=2. Unlike debug mode v1, this doesn't load each
+  file from disk, and your code looks the same as it is in production with
+  closures that prevent global variable leakage.
 * …
 
 == Compatibility ==
