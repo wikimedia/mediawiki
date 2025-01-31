@@ -35,7 +35,8 @@ class SampleTest extends MediaWikiLangTestCase {
 	/**
 	 * Name tests so that PHPUnit can turn them into sentences when
 	 * they run. You are encouraged to use the naming described at:
-	 * https://phpunit.de/manual/6.5/en/other-uses-for-tests.html
+	 * https://docs.phpunit.de/en/9.6/annotations.html and
+	 * https://docs.phpunit.de/en/9.6/textui.html?highlight=testdox#testdox
 	 */
 	public function testTitleObjectStringConversion() {
 		$title = Title::makeTitle( NS_MAIN, "Text" );
@@ -48,7 +49,7 @@ class SampleTest extends MediaWikiLangTestCase {
 
 	/**
 	 * If you want to run the same test with a variety of data, use a data provider.
-	 * See https://phpunit.de/manual/6.5/en/writing-tests-for-phpunit.html
+	 * See https://docs.phpunit.de/en/9.6/writing-tests-for-phpunit.html
 	 */
 	public static function provideTitles() {
 		return [
@@ -62,7 +63,7 @@ class SampleTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideTitles
-	 * See https://phpunit.de/manual/6.5/en/appendixes.annotations.html#appendixes.annotations.dataProvider
+	 * See https://docs.phpunit.de/en/9.6/annotations.html#dataprovider
 	 */
 	public function testCreateBasicListOfTitles( $titleName, $ns, $text ) {
 		$title = Title::newFromText( $titleName, $ns );
@@ -76,7 +77,7 @@ class SampleTest extends MediaWikiLangTestCase {
 	 */
 
 	/**
-	 * See https://phpunit.de/manual/6.5/en/writing-tests-for-phpunit.html#writing-tests-for-phpunit.exceptions
+	 * See https://docs.phpunit.de/en/9.6/writing-tests-for-phpunit.html?highlight=exceptions#testing-exceptions
 	 */
 	public function testTitleObjectFromObject() {
 		$this->expectException( InvalidArgumentException::class );
