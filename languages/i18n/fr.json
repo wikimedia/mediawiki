@@ -1209,7 +1209,7 @@
 	"powersearch-toggleall": "Tout",
 	"powersearch-togglenone": "Aucune",
 	"powersearch-remember": "Se souvenir de la sélection pour les prochaines recherches",
-	"searchdisabled": "La recherche sur {{SITENAME}} est désactivée.\nEn attendant la réactivation, vous pouvez effectuer une recherche via Google.\nNotez que leur indexation du contenu de {{SITENAME}} peut ne pas être à jour.",
+	"searchdisabled": "La recherche est désactivée sur ce wiki et aucune URL de recherche externe n'a [[$1|été configurée]].",
 	"search-error": "Une erreur s’est produite en recherchant : $1",
 	"search-warning": "Une erreur s’est produite en recherchant : $1",
 	"mypreferences": "Préférences",

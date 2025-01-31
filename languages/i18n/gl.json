@@ -1027,7 +1027,7 @@
 	"powersearch-toggleall": "Todos",
 	"powersearch-togglenone": "Ningún",
 	"powersearch-remember": "Lembrar a selección en futuras pescudas",
-	"searchdisabled": "As procuras en {{SITENAME}} están deshabilitadas por cuestións de rendemento.\nMentres tanto pode procurar usando o Google.\nNote que os seus índices do contido de {{SITENAME}} poden estar desactualizados.",
+	"searchdisabled": "As procuras están deshabilitadas neste wiki e [[$1|non se configurou]] ningún enderezo URL externo para as procuras.",
 	"search-error": "Produciuse un erro durante a procura: $1",
 	"search-warning": "Houbo un aviso ó facer a procuraː $1",
 	"mypreferences": "Preferencias",

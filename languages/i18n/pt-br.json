@@ -1143,7 +1143,7 @@
 	"powersearch-toggleall": "Todos",
 	"powersearch-togglenone": "Nenhum",
 	"powersearch-remember": "Lembrar seleção para futuras pesquisas",
-	"searchdisabled": "A busca em {{SITENAME}} se encontra desativada.\nVocê poderá pesquisar através do Google enquanto isso.\nNote que os índices do sistema de busca externo poderão conter referências desatualizadas a {{SITENAME}}.",
+	"searchdisabled": "A busca não está disponível nessa wiki, e nenhuma URL de pesquisa externa foi [[$1|configurada]].",
 	"search-error": "Ocorreu um erro ao buscar por: $1",
 	"search-warning": "Ocorreu um aviso ao pesquisar: $1",
 	"mypreferences": "Preferências",

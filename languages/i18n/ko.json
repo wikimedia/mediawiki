@@ -1092,7 +1092,7 @@
 	"powersearch-toggleall": "모두",
 	"powersearch-togglenone": "모두 제외",
 	"powersearch-remember": "향후 검색에 선택 기억하기",
-	"searchdisabled": "{{SITENAME}} 검색이 비활성화되어 있습니다.\n검색이 작동하지 않는 동안 Google을 통해 검색할 수 있습니다.\n검색 엔진의 내용은 최신이 아닐 수 있다는 점을 참고하세요.",
+	"searchdisabled": "이 위키에는 검색이 비활성화되어 있으며 외부 검색 URL이 [[$1|지정되어 있지 않습니다]].",
 	"search-error": "검색하는 동안 오류가 발생했습니다: $1",
 	"search-warning": "검색하는 동안 경고가 발생했습니다: $1",
 	"mypreferences": "환경 설정",

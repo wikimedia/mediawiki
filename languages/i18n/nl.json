@@ -1106,7 +1106,7 @@
 	"powersearch-toggleall": "Alle",
 	"powersearch-togglenone": "Geen",
 	"powersearch-remember": "Selectie onthouden voor toekomstige zoekopdrachten",
-	"searchdisabled": "Zoeken in {{SITENAME}} is niet mogelijk.\nU kunt gebruik maken van Google.\nDe gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.",
+	"searchdisabled": "Het zoeken is uitgeschakeld op deze wiki en er is geen externe zoek-URL [[$1|ingesteld]].",
 	"search-error": "Er is een fout opgetreden tijdens het zoeken: $1",
 	"search-warning": "Een waarschuwing is opgetreden tijdens het zoeken: $1",
 	"mypreferences": "Voorkeuren",
