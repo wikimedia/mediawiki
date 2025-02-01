@@ -47,6 +47,12 @@ interface PageUpdateCauses {
 	/** @var string The update was an edit. */
 	public const CAUSE_EDIT = 'edit';
 
+	/**
+	 * @var string The update was a change to the page
+	 *      protection (aka restrictions).
+	 */
+	public const CAUSE_PROTECTION_CHANGE = 'protection_change';
+
 	/** @var string The update was caused by a file upload */
 	public const CAUSE_UPLOAD = 'upload';
 

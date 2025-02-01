@@ -1773,9 +1773,10 @@ more stuff
 	 */
 	public function testDoUpdateRestrictions_updatePropagation(
 		PageIdentity $title,
-		$content = null
+		?Content $content = null
 	) {
-		$page = $this->createPage( $title, $content ?? 'Lorem ipsum' );
+		$content ??= new TextContent( 'Lorem Ipsum' );
+		$page = $this->createPage( $title, $content );
 
 		// clear the queue
 		$this->runJobs();
@@ -1783,10 +1784,12 @@ more stuff
 		// Expect only non-edit recent changes entry
 		$this->expectChangeTrackingUpdates( 0, 1, 0, 0 );
 
+		// Expect no resource module purges on protection
+		$this->expectResourceLoaderUpdates( 0 );
+
 		// Expect no additional updates, since content didn't change
 		$this->expectSearchUpdates( 0 );
 		$this->expectLocalizationUpdate( 0 );
-		$this->expectResourceLoaderUpdates( 0 );
 
 		// now apply restrictions
 		$user = $this->getTestSysop()->getUser();
@@ -1812,14 +1815,32 @@ more stuff
 		// flush the queue
 		$this->runDeferredUpdates();
 
-		// Event currently not emitted, should change
-		$this->expectDomainEvent( PageUpdatedEvent::TYPE, 0 );
+		$this->expectDomainEvent(
+			PageUpdatedEvent::TYPE, 1,
+			static function ( PageUpdatedEvent $event ) use ( &$calls, $page ) {
+				Assert::assertFalse( $event->isCreation(), 'isCreation' );
+				Assert::assertTrue( $event->changedCurrentRevisionId(), 'changedCurrentRevisionId' );
+				Assert::assertFalse( $event->isEffectiveContentChange(), 'isEffectiveContentChange' );
+				Assert::assertSame( $page->getId(), $event->getPage()->getId() );
 
-		// Hooks fired by WikiPage::doUpdateRestrictions
+				Assert::assertTrue(
+					$event->hasCause( PageUpdatedEvent::CAUSE_PROTECTION_CHANGE ),
+					PageUpdatedEvent::CAUSE_PROTECTION_CHANGE
+				);
+
+				Assert::assertTrue( $event->isSilent(), 'isSilent' );
+				Assert::assertTrue( $event->isImplicit(), 'isAutomated' );
+
+				Assert::assertTrue(
+					$event->getNewRevision()->isMinor(),
+					'isMinor'
+				);
+			}
+		);
+
+		// Hooks fired by PageUpdater
 		$this->expectHook( 'RevisionFromEditComplete', 1 );
-
-		// Hook currently not fired, should change
-		$this->expectHook( 'PageSaveComplete', 0 );
+		$this->expectHook( 'PageSaveComplete', 1 );
 
 		// now apply restrictions
 		$user = $this->getTestSysop()->getUser();
