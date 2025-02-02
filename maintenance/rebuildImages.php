@@ -165,7 +165,7 @@ class ImageBuilder extends Maintenance {
 		$result = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 
 		foreach ( $result as $row ) {
-			$update = call_user_func( $callback, $row );
+			$update = $callback( $row );
 			if ( $update ) {
 				$this->progress( 1 );
 			} else {

@@ -207,7 +207,7 @@ TEXT
 		$this->report();
 
 		if ( !$this->dryRun ) {
-			call_user_func( $this->importCallback, $rev );
+			( $this->importCallback )( $rev );
 		}
 	}
 
@@ -226,7 +226,7 @@ TEXT
 
 			if ( !$this->dryRun ) {
 				// bluuuh hack
-				// call_user_func( $this->uploadCallback, $revision );
+				// ( $this->uploadCallback )( $revision );
 				$importer = $this->getServiceContainer()->getWikiRevisionUploadImporter();
 				$statusValue = $importer->import( $revision );
 
@@ -245,7 +245,7 @@ TEXT
 		$this->report();
 
 		if ( !$this->dryRun ) {
-			call_user_func( $this->logItemCallback, $rev );
+			( $this->logItemCallback )( $rev );
 		}
 	}
 

@@ -155,7 +155,7 @@ class TableCleanup extends Maintenance {
 			}
 
 			foreach ( $res as $row ) {
-				call_user_func( $callback, $row );
+				$callback( $row );
 			}
 
 			if ( $res->numRows() < $this->getBatchSize() ) {
