@@ -613,7 +613,7 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 				array_diff_key(
 					array_filter(
 						$this->formData,
-						fn ( $value ) => $value !== null && $value !== '' && $value !== false
+						static fn ( $value ) => $value !== null && $value !== '' && $value !== false
 					),
 					[ 'target' => null, 'from' => null ]
 				)

@@ -114,10 +114,10 @@ class MoveBatchTest extends MaintenanceBaseTestCase {
 
 	public static function provideExecuteForGoodMove() {
 		return [
-			'No options provided' => [ [], true, '', fn () => 'Move page script' ],
+			'No options provided' => [ [], true, '', static fn () => 'Move page script' ],
 			'--noredirects set, custom reason, and custom performer' => [
-				[ 'noredirects' => 1, 'r' => 'Test', 'u' => fn () => static::$testPerformer->getName() ],
-				false, 'Test', fn () => static::$testPerformer->getName()
+				[ 'noredirects' => 1, 'r' => 'Test', 'u' => static fn () => static::$testPerformer->getName() ],
+				false, 'Test', static fn () => static::$testPerformer->getName()
 			],
 		];
 	}

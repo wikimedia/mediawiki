@@ -569,7 +569,7 @@ class ApiParse extends ApiBase {
 				$langlinks = $outputPage->getLanguageLinks();
 			} else {
 				$langlinks = array_map(
-					fn ( $item ) => $item['link'],
+					static fn ( $item ) => $item['link'],
 					$p_result->getLinkList( ParserOutputLinkTypes::LANGUAGE )
 				);
 				// The deprecated 'effectivelanglinks' option pre-dates OutputPage
@@ -611,7 +611,7 @@ class ApiParse extends ApiBase {
 		}
 		if ( isset( $prop['images'] ) ) {
 			$result_array['images'] = array_map(
-				fn ( $item ) => $item['link']->getDBkey(),
+				static fn ( $item ) => $item['link']->getDBkey(),
 				$p_result->getLinkList( ParserOutputLinkTypes::MEDIA )
 			);
 		}
@@ -703,7 +703,7 @@ class ApiParse extends ApiBase {
 
 		if ( isset( $prop['iwlinks'] ) ) {
 			$links = array_map(
-				fn ( $item ) => $item['link'],
+				static fn ( $item ) => $item['link'],
 				$p_result->getLinkList( ParserOutputLinkTypes::INTERWIKI )
 			);
 			$result_array['iwlinks'] = $this->formatIWLinks( $links );

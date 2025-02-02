@@ -609,7 +609,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			if ( $value['name'] == "userExpLevel" ) {
 				$this->filterGroupDefinitions[ $key ][ 'filters' ] = array_filter(
 					$this->filterGroupDefinitions[ $key ][ 'filters' ],
-					fn ( $val, $key ) => $val[ 'name' ] != 'registered'
+					static fn ( $val, $key ) => $val[ 'name' ] != 'registered'
 						&& $val[ 'name' ] != 'unregistered', ARRAY_FILTER_USE_BOTH );
 			}
 		}

@@ -58,7 +58,7 @@ class SkinComponentUtils {
 			];
 			( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
 				->onAuthPreserveQueryParams( $params, [ 'reset' => true ] );
-			return array_filter( $params, fn ( $val ) => $val !== null );
+			return array_filter( $params, static fn ( $val ) => $val !== null );
 		}
 
 		# Due to T34276, if a user does not have read permissions,

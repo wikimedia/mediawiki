@@ -28,7 +28,7 @@ class LocalSettingsGeneratorTest extends MediaWikiUnitTestCase {
 
 		$installer = $this->createMock( Installer::class );
 		$installer->method( 'getVar' )
-			->willReturnCallback( fn ( string $name ) => $vars[$name] ?? '' );
+			->willReturnCallback( static fn ( string $name ) => $vars[$name] ?? '' );
 
 		$installer->method( 'getDBInstaller' )
 			->willReturn( $db );
