@@ -126,6 +126,7 @@
 	"config-mysql-old": "MySQL $1 veya daha yenisi gerekir. Sizde $2 var.",
 	"config-mariadb-old": "MariaDB $1 ya da daha yenisi gerekli. Sizinki $2.",
 	"config-db-port": "Veritabanı bağlantı noktası:",
+	"config-db-ssl": "SSL üzerinden bağlan",
 	"config-db-schema": "MediaWiki için şema (tiresiz):",
 	"config-db-schema-help": "Bu şema yeterli olacaktır.\nEğer gerçekten ihtiyaç duyarsanız değiştirin.",
 	"config-pg-test-error": "<strong>$1</strong> veritabanıyla bağlantı kurulamıyor: $2",

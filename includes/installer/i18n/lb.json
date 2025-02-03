@@ -73,6 +73,7 @@
 	"config-mysql-old": "MySQL $1 oder eng méi nei Versioun gëtt gebraucht, Dir hutt $2.",
 	"config-mariadb-old": "MariaDB $1 oder eng méi nei Versioun gëtt gebraucht. Dir hutt $2.",
 	"config-db-port": "Port vun der Datebank:",
+	"config-db-ssl": "Iwwer SSL verbannen",
 	"config-db-schema": "Scheema fir MediaWiki (keng Bindestrécher)",
 	"config-db-schema-help": "D'Scheemaen hei driwwer si fir gewéinlech korrekt.\nÄnnert se nëmmen, wann Dir wësst, datt et néideg ass.",
 	"config-pg-test-error": "Et ass net méiglech d'Datebank <strong>$1</strong> ze kontaktéieren: $2",

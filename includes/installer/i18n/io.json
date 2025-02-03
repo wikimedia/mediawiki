@@ -100,6 +100,7 @@
 	"config-mysql-old": "Bezonesas MySQL $1 o plu recenta versiono. Vua versiono esas $2.",
 	"config-mariadb-old": "On bezonas MariaDB $1 o posa. Vu havas $2.",
 	"config-db-port": "Porto uzata por acesar la datumaro:",
+	"config-db-ssl": "Konektar per SSL",
 	"config-db-schema": "Skemo por MediaWiki (sen strekteti):",
 	"config-db-schema-help": "Ca ''schema'' por datumaro certe funcionos.\nModifikez ol NUR se vu FAKTE bezonos modifikar ol.",
 	"config-pg-test-error": "Ne povis konektar a la datumaro <strong>$1</strong>: $2",

@@ -33,7 +33,8 @@
 			"Wladek92",
 			"Wyz",
 			"Yumeki",
-			"아라"
+			"아라",
+			"Mahabarata"
 		]
 	},
 	"config-desc": "Le programme d’installation de MediaWiki",
@@ -129,6 +130,7 @@
 	"config-mysql-old": "MySQL $1 ou version ultérieure est requis. Vous avez $2.",
 	"config-mariadb-old": "MariaDB $1 ou ultérieur est obligatoire. Vous avez $2.",
 	"config-db-port": "Port de la base de données :",
+	"config-db-ssl": "Se connecter sur une session sécurisée en SSL",
 	"config-db-schema": "Schéma pour MediaWiki (sans tirets) :",
 	"config-db-schema-help": "Ce schéma est généralement correct.\nNe le changez que si vous êtes sûr que c’est nécessaire.",
 	"config-pg-test-error": "Impossible de se connecter à la base de données <strong>$1</strong> : $2",

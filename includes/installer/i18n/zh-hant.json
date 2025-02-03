@@ -126,6 +126,7 @@
 	"config-mysql-old": "需要使用 MySQL $1 或更新的版本，您的版本為 $2。",
 	"config-mariadb-old": "需要使用 MariaDB $1 或更新的版本，您的版本為 $2。",
 	"config-db-port": "資料庫埠號：",
+	"config-db-ssl": "以 SSL 連接",
 	"config-db-schema": "MediaWiki 的資料庫架構（不帶連字號）：",
 	"config-db-schema-help": "資料庫 Schema 通常不需更動。\n只在有特殊需求時才需修改。",
 	"config-pg-test-error": "無法連線到資料庫 <strong>$1</strong>：$2",

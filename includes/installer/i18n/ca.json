@@ -110,6 +110,7 @@
 	"config-mysql-old": "Cal el MySQL $1 o posterior. Teniu el $2.",
 	"config-mariadb-old": "Es requereix MariaDB $1 o posterior. Teniu $2.",
 	"config-db-port": "Port de la base de dades:",
+	"config-db-ssl": "Connexió per SSL",
 	"config-db-schema": "Esquema per a MediaWiki (sense guionets):",
 	"config-db-schema-help": "Aquest esquema normalment ja serveix.\nNomés canvieu-lo si sabeu què us feu.",
 	"config-pg-test-error": "No es pot connectar a la base de dades '''$1''': $2",

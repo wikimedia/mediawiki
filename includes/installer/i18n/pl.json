@@ -124,6 +124,7 @@
 	"config-mysql-old": "Wymagany jest MySQL $1 lub nowszy; korzystasz z $2.",
 	"config-mariadb-old": "Wymagana jest MariaDB $1 lub nowsza. Korzystasz z $2.",
 	"config-db-port": "Port bazy danych:",
+	"config-db-ssl": "Połącz przez SSL",
 	"config-db-schema": "Schemat bazy danych MediaWiki (nie może zawierać kresek):",
 	"config-db-schema-help": "Zaproponowana nazwa schematu jest odpowiednia dla większości sytuacji i przeważnie nie trzeba jej zmieniać.",
 	"config-pg-test-error": "Nie można połączyć się z bazą danych''' $1 ''': $2",

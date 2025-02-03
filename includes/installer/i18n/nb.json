@@ -108,6 +108,7 @@
 	"config-mysql-old": "MySQL $1 eller senere kreves, du har $2.",
 	"config-mariadb-old": "MariaDB $1 eller senere kreves. Du har $2.",
 	"config-db-port": "Databaseport:",
+	"config-db-ssl": "Koble til over SSL",
 	"config-db-schema": "Skjema for MediaWiki (ingen bindestreker):",
 	"config-db-schema-help": "Dette skjemaet er som regel riktig.\nBare endre det hvis du vet at du trenger det.",
 	"config-pg-test-error": "Får ikke kontakt med database '''$1''': $2",

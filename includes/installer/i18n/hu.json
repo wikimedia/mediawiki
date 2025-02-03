@@ -110,6 +110,7 @@
 	"config-mysql-old": "A MySQL $1 vagy újabb verziója szükséges, a rendszeren $2 van.",
 	"config-mariadb-old": "MariaDB $1 vagy újabb szükséges, a rendszeren $2 van.",
 	"config-db-port": "Adatbázisport:",
+	"config-db-ssl": "Csatlakozzon SSL-en keresztül",
 	"config-db-schema": "MediaWiki-séma (kötőjelek nélkül):",
 	"config-db-schema-help": "A fenti sémák általában megfelelőek.\nCsak akkor módosíts rajtuk, ha tudod, hogy szükséges.",
 	"config-pg-test-error": "Nem sikerült csatlakozni a(z) '''$1''' adatbázishoz: $2",

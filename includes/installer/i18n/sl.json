@@ -6,7 +6,8 @@
 			"HairyFotr",
 			"Janezdrilc",
 			"Upwinxp",
-			"Yerpo"
+			"Yerpo",
+			"Krinkle"
 		]
 	},
 	"config-desc": "Namestitveni program za MediaWiki",
@@ -101,6 +102,7 @@
 	"config-mysql-old": "Potreben je MySQL $1 ali novejši; vi imate $2.",
 	"config-mariadb-old": "Potreben je MariaDB $1 ali novejši. Vi imate $2.",
 	"config-db-port": "Vrata podatkovne zbirke:",
+	"config-db-ssl": "Povezava prek SSL-ja",
 	"config-db-schema": "Shema MediaWiki (brez vezajev)",
 	"config-db-schema-help": "Ta shema je ponavadi v redu.\nSpremenite jo samo, če veste, da jo morate.",
 	"config-pg-test-error": "Ni se mogoče povezati s podatkovno zbirko <strong>$1</strong>: $2",

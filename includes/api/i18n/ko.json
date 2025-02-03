@@ -980,6 +980,7 @@
 	"apierror-cantview-deleted-description": "삭제된 파일의 설명을 볼 권한이 없습니다.",
 	"apierror-cantview-deleted-metadata": "삭제된 파일의 메타데이터를 볼 권한이 없습니다.",
 	"apierror-cantview-deleted-revision-content": "삭제된 판의 내용을 볼 권한이 없습니다.",
+	"apierror-changecontentmodel-missingtitle": "지정한 페이지가 존재하지 않습니다. 사용자 지정 콘텐츠 모델이 있는 새 문서를 만들려면 <kbd>action=edit</kbd> 모듈을 사용하십시오.",
 	"apierror-compare-maintextrequired": "<var>$1slots</var>에 <kbd>main</kbd>이 포함되어 있다면 <var>$1text-main</var> 변수는 필수입니다. (메인 슬롯을 삭제할 수 없습니다)",
 	"apierror-compare-notext": "<var>$1</var> 변수는 <var>$2</var> 없이 사용할 수 없습니다.",
 	"apierror-emptynewsection": "비어있는 새 문단을 만들 수 없습니다.",

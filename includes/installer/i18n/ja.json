@@ -131,6 +131,7 @@
 	"config-mysql-old": "MySQL $1 以降が必要です。ご使用中の MySQL は $2 です。",
 	"config-mariadb-old": "$1以降のMariaDBが必要です。ご使用中のバージョンは$2です。",
 	"config-db-port": "データベースのポート:",
+	"config-db-ssl": "SSL経由で接続",
 	"config-db-schema": "MediaWiki のスキーマ (ハイフンは不要):",
 	"config-db-schema-help": "通常はこのスキーマで問題ありません。\n必要な場合のみ変更してください。",
 	"config-pg-test-error": "データベース <strong>$1</strong> に接続できません: $2",

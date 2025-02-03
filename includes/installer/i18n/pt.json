@@ -120,6 +120,7 @@
 	"config-mysql-old": "É necessário o MySQL $1 ou posterior; tem a versão $2.",
 	"config-mariadb-old": "É necessário o MariaDB $1 ou posterior. Tem a versão $2.",
 	"config-db-port": "Porta da base de dados:",
+	"config-db-ssl": "Ligar à base de dados usando o protocolo de sessões seguras SSL",
 	"config-db-schema": "Esquema ''(schema)'' do MediaWiki (sem hífenes):",
 	"config-db-schema-help": "Normalmente, este esquema estará correto.\nAltere-o só se souber que precisa de o fazer.",
 	"config-pg-test-error": "Não foi possível criar uma ligação à base de dados <strong>$1</strong>: $2",

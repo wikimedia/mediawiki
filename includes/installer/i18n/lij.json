@@ -101,6 +101,7 @@
 	"config-mysql-old": "O l'é necesâio MySQL $1 ò 'na versción sucesîva. Ti t'æ a $2.",
 	"config-mariadb-old": "O l'é necesâio MariaDB $1 ò 'na versción sucesîva. Ti t'æ a $2.",
 	"config-db-port": "Pòrta da bànca dæti:",
+	"config-db-ssl": "Conétte pe mêzo de SSL",
 	"config-db-schema": "Schêma pe MediaWiki (no tratìn):",
 	"config-db-schema-help": "Quésto schêma de sòlito o l'aniâ bén.\nDa cangiâ sôlo se ti t'ê segûo ch'o ségge da fâ.",
 	"config-pg-test-error": "Inposcìbile conéttise a-a bànca dæti <strong>$1</strong>: $2",

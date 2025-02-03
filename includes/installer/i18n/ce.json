@@ -50,6 +50,7 @@
 	"config-db-username": "Хаамийн база лелорхочун цӀе:",
 	"config-db-password": "Хаамийн базин цӀе:",
 	"config-db-port": "Хаамийн базан порт:",
+	"config-db-ssl": "SSL гӀоьнца тӀетасадалар",
 	"config-db-schema": "MediaWiki схема (дефисаш йоцуш):",
 	"config-sqlite-dir": "SQLite хаамийн директори:",
 	"config-type-mysql": "MariaDB, MySQL йа цхьаьнайогӀург",

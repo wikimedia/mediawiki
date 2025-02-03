@@ -106,6 +106,7 @@
 	"config-mysql-old": "MySQL $1 eller senare krävs. Du har $2.",
 	"config-mariadb-old": "MariaDB $1 eller senare krävs. Du har $2.",
 	"config-db-port": "Databasport:",
+	"config-db-ssl": "Anslut över SSL",
 	"config-db-schema": "Schema för MediaWiki (inga bindestreck):",
 	"config-db-schema-help": "Det här schemat stämmer oftast.\nÄndra det endast om du vet att du behöver.",
 	"config-pg-test-error": "Kan inte ansluta till databas <strong>$1</strong>: $2",

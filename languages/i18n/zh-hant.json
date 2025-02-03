@@ -3337,7 +3337,7 @@
 	"semicolon-separator": "；​",
 	"comma-separator": "、​",
 	"colon-separator": "：​",
-	"word-separator": "",
+	"word-separator": "​",
 	"ellipsis": "…",
 	"parentheses": "（$1）",
 	"parentheses-start": "（",

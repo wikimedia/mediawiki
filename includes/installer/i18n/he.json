@@ -109,6 +109,7 @@
 	"config-mysql-old": "נדרשת גרסה <span dir=\"ltr\">$1</span> של MySQL או גרסה חדשה יותר. הגרסה הנוכחית שלך היא $2.",
 	"config-mariadb-old": "נדרשת גרסה <span dir=\"ltr\">$1</span> של MariaDB או גרסה חדשה יותר. הגרסה הנוכחית שלך היא $2.",
 	"config-db-port": "פִּתְחַת מסד הנתונים (database port):",
+	"config-db-ssl": "התחברות דרך SSL",
 	"config-db-schema": "סכמה למדיה־ויקי (ללא מקף):",
 	"config-db-schema-help": "הסְכֵמָה הבאה בדרך כלל מתאימה.\nיש לשנות אותה רק אם אם זה ממש נחוץ.",
 	"config-pg-test-error": "ההתחברות למסד הנתונים '''$1''' לא מצליחה: $2",

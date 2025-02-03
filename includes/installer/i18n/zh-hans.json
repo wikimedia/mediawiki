@@ -141,6 +141,7 @@
 	"config-mysql-old": "需要MySQL $1或更新的版本，您的版本为$2。",
 	"config-mariadb-old": "需要MariaDB $1或更新的版本，您的版本为$2。",
 	"config-db-port": "数据库端口：",
+	"config-db-ssl": "通过SSL连接",
 	"config-db-schema": "MediaWiki架构（不带连字号）",
 	"config-db-schema-help": "此架构通常是正确的，请在有明确需求时才改动之。",
 	"config-pg-test-error": "无法连接到数据库<strong>$1</strong>：$2",

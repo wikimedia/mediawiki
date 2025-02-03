@@ -123,6 +123,7 @@
 	"config-db-prefix-help": "Se hai bisogno di condividere un database tra più wiki, o tra MediaWiki e un'altra applicazione web, puoi scegliere di aggiungere un prefisso a tutti i nomi di tabella, per evitare conflitti.\nNon utilizzare spazi.\n\nSolitamente, questo campo viene lasciato vuoto.",
 	"config-mysql-old": "MySQL $1 o una versione successiva è necessaria, rilevata la $2.",
 	"config-db-port": "Porta del database:",
+	"config-db-ssl": "Connetti tramite SSL",
 	"config-db-schema": "Schema per MediaWiki (no trattini):",
 	"config-db-schema-help": "Questo schema in genere andrà bene.\nDa cambiare solamente se si è sicuri di averne bisogno.",
 	"config-pg-test-error": "Impossibile connettersi al database '''$1''': $2",

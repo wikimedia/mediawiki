@@ -114,6 +114,7 @@
 	"config-mysql-old": "MySQL $1 이상이 필요합니다. $2이(가) 있습니다.",
 	"config-mariadb-old": "MariaDB $1 이상이 필요합니다. $2이(가) 있습니다.",
 	"config-db-port": "데이터베이스 포트:",
+	"config-db-ssl": "SSL을 통해 연결",
 	"config-db-schema": "미디어위키에 대한 스키마 (하이픈 없음):",
 	"config-db-schema-help": "보통 이 스키마는 문제가 없습니다.\n필요한 경우에만 바꾸세요.",
 	"config-pg-test-error": "<strong>$1</strong> 데이터베이스에 연결할 수 없습니다: $2",

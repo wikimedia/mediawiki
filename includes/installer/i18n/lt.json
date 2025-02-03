@@ -97,6 +97,7 @@
 	"config-mysql-old": "MySQL $1 ar vėlesnė yra reikalinga. Jūs turite $2.",
 	"config-mariadb-old": "Reikalingas MariaDB $1 arba naujesnis. Jūs turite $2.",
 	"config-db-port": "Duomenų bazės prievadas:",
+	"config-db-ssl": "Prisijungti per SSL",
 	"config-db-schema": "MediaWiki schema (be brūkšnelių):",
 	"config-db-schema-help": "Ši schema paprastai tinka. \nKeiskite ją tik tada, jei žinote, kad to reikia.",
 	"config-pg-test-error": "Negalima prisijungti prie duomenų bazės <strong>$1</strong>: $2",

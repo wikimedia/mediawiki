@@ -111,6 +111,7 @@
 	"config-mysql-old": "Je vyžadováno MySQL $1 nebo novější. Vy máte $2.",
 	"config-mariadb-old": "Je vyžadováno MariaDB $1 nebo novější. Vy máte $2.",
 	"config-db-port": "Databázový port:",
+	"config-db-ssl": "Připojit přes SSL",
 	"config-db-schema": "Schéma pro MediaWiki (bez spojovníků):",
 	"config-db-schema-help": "Toto schéma zpravidla stačí.\nMěňte ho, jen pokud víte, že je to potřeba.",
 	"config-pg-test-error": "Nelze se připojit k databázi '''$1''': $2",

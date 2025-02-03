@@ -101,6 +101,7 @@
 	"config-mysql-old": "MySQL $1 o plus recente es requirite, tu ha $2.",
 	"config-mariadb-old": "MariaDB $1 o plus recente es necessari. Tu ha $2.",
 	"config-db-port": "Porto de base de datos:",
+	"config-db-ssl": "Connecter per SSL",
 	"config-db-schema": "Schema pro MediaWiki (sin tractos de union):",
 	"config-db-schema-help": "Iste schema es generalmente correcte.\nSolmente cambia lo si tu es secur que es necessari.",
 	"config-pg-test-error": "Impossibile connecter al base de datos '''$1''': $2",
