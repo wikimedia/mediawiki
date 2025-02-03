@@ -1277,9 +1277,6 @@ class PageUpdater implements PageUpdateCauses {
 			return PageUpdateStatus::newFatal( 'edit-gone-missing' );
 		}
 
-		// NOTE: this is going away, see https://phabricator.wikimedia.org/T383552#10452660
-		$this->setCause( 'slot-update' );
-
 		$dbw = $this->dbProvider->getPrimaryDatabase( $this->getWikiId() );
 		$dbw->startAtomic( __METHOD__ );
 
@@ -1301,6 +1298,7 @@ class PageUpdater implements PageUpdateCauses {
 
 			$this->buildEditResult( $newRevisionRecord, false );
 
+			// NOTE: don't trigger a PageUpdated event!
 			$wikiPage = $this->getWikiPage(); // TODO: use for legacy hooks only!
 			$this->prepareDerivedDataUpdater(
 				$wikiPage,
@@ -1310,19 +1308,17 @@ class PageUpdater implements PageUpdateCauses {
 				[
 					PageUpdatedEvent::FLAG_SILENT => true,
 					PageUpdatedEvent::FLAG_AUTOMATED => true,
+					'dispatchPageUpdatedEvent' => false,
 				]
 			);
 
-			// Notify the dispatcher of the PageUpdatedEvent during the transaction round
-			$this->dispatchPageUpdatedEvent();
-			// Schedule the secondary updates to run after the transaction round commits
 			DeferredUpdates::addUpdate(
 				$this->getAtomicSectionUpdate(
 					$dbw,
 					$wikiPage,
 					$newRevisionRecord,
 					$revision->getComment(),
-					[ 'changed' => false, ]
+					[ 'changed' => false ]
 				),
 				DeferredUpdates::PRESEND
 			);

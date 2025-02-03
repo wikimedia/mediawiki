@@ -550,17 +550,9 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$updater = $page->newPageUpdater( $user );
 
-		$flags = [
-			'isAutomated' => true,
-			'isSilent' => true,
-		];
-
+		// Assert that sure the event is not fired.
 		$this->expectDomainEvent(
-			PageUpdatedEvent::TYPE, 1,
-			$this->makeDomainEventSourceListener(
-				$flags, 'slot-update',
-					$user, $page->getRevisionRecord(), false, false
-			)
+			PageUpdatedEvent::TYPE, 0
 		);
 
 		// derived slot update
@@ -1088,7 +1080,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->runJobs();
 
 		$this->expectChangeTrackingUpdates( 0, 0, 0, 0 );
-		$this->expectSearchUpdates( 1 );
+		$this->expectSearchUpdates( 0 );
 
 		$updater = $page->newPageUpdater( $user );
 		$content = new WikitextContent( 'A' );
