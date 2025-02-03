@@ -19,6 +19,11 @@ This is a maintenance release of the MediaWiki 1.42 branch.
   in the "Configuration changes for system administrators" section.
 * (T382484) dumps: Use proc_close() to close proc_open() subprocess.
 * (T375707) MWExceptionHandler: Add error suppression to constant( 'E_STRICT' ).
+* (T384879) FormatMetadata: Prevent running preg_match() on null.
+* (T384995) specialpage: Improve handling of invalid lang codes on login/signup.
+* (T385055) resourceloader: Fix hash computation for virtual files with
+  versionFilePath.
+* (T385169) MultiUsernameFilter: Don't try to split ids if they're not a string.
 
 == MediaWiki 1.42.4 ==
 
