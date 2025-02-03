@@ -3923,7 +3923,7 @@
 	"renameuser-warning-currentblock": "Dát geavaheaddji lea [$1 dál hehttejuvvon].",
 	"log-name-renameuser": "Ođđasitnammadanlogga",
 	"log-description-renameuser": "Dát lea logga, masa merkejuvvojit rievdadusat geavaheaddjinamaide.",
-	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|ođđasitnammadii}} geavaheaddji $4 ({{PLURAL:$6|$6 rievdadeami|$6 rievdademiid}}) {{GENDER:$7|$5}}:n.",
+	"logentry-renameuser-renameuser": "Geavaheaddji $1 {{GENDER:$2|ođđasitnammadii}} geavaheaddji $4 ({{PLURAL:$6|0=Ii oktage rievdadus|1=1 rievdadus|$6 rievdadusa}}) nammii {{GENDER:$7|$5}}.",
 	"logentry-renameuser-renameuser-legacier": "$1 {{GENDER:$2|nammadii ođđasit}} geavaheaddji $4 {{GENDER:$7|$5}}:in",
 	"renameuser-move-log": "Siidu sirdojuvvui automáhtalaččat go {{GENDER:$2|geavaheaddji}} «[[User:$1|$1]]» molssui nama «[[User:$2|$2]]»n.",
 	"action-renameuser": "ráhkat ođđa nama geavaheddjiide ",

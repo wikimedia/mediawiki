@@ -3458,6 +3458,7 @@
 	"tag-mw-blank-description": "Các sửa đổi tẩy trống (xóa trắng) một trang",
 	"tag-mw-replace": "Thay thế nội dung",
 	"tag-mw-replace-description": "Các sửa đổi thay đổi trên 90% nội dung của một trang",
+	"tag-mw-recreated": "Được tạo lại",
 	"tag-mw-rollback": "Lùi tất cả",
 	"tag-mw-rollback-description": "Các thay đổi cho phép lùi hàng loạt thay đổi của một người dùng trước đó thông qua liên kết lùi tất cả",
 	"tag-mw-undo": "Lùi sửa",

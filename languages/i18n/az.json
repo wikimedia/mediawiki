@@ -2511,7 +2511,7 @@
 	"block": "İstifadəçini blokla",
 	"block-manage-blocks": "Blokları idarə et",
 	"unblock": "İstifadəçinin blokunu götür",
-	"changeblockip": "Blok dəyişdir",
+	"changeblockip": "Bloku dəyişdir",
 	"block-create": "Blok əlavə et",
 	"blockip": "{{GENDER:$1|İstifadəçini}} blokla",
 	"blockiptext": "Bloklama vandalizmin və digər pozulma formalarının qarşısını almaq üçün istifadə olunur ([[{{MediaWiki:Policy-url}}|ətraflı oxu]]). Siz [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR] sintaksisindən istifadə edərək IP ünvan diapazonlarını bloklaya bilərsiniz. İcazə verilən ən böyük diapazon IPv4 üçün /$1, IPv6 üçün isə /$2-dir.",

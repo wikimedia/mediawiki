@@ -2693,7 +2693,7 @@
 	"ipb-otherblocks-header": "{{PLURAL:$1|Jiné zablokování|Jiná zablokování}}",
 	"unblock-hideuser": "Tohoto uživatele nemůžete odblokovat, protože jeho uživatelské jméno bylo skryto.",
 	"ipb_cant_unblock": "Chyba: Blokování $1 nebylo nalezeno. Možná už bylo zrušeno.",
-	"ipb_cant_unblock_multiple_blocks": "Chyba: pro tohoto uživatele existuje $1 {{PLURAL:$1|blokování}} s ID $2.",
+	"ipb_cant_unblock_multiple_blocks": "Chyba: pro tohoto uživatele {{PLURAL:$1|existuje|existují|existuje}} $1 blokování s ID $2.",
 	"ipb_blocked_as_range": "Chyba: IP adresa $1 není blokována přímo, a tak ji nelze odblokovat. Je částí zablokovaného rozsahu $2, který může být odblokován.",
 	"ip_range_invalid": "Neplatný IP rozsah.",
 	"ip_range_toolarge": "Blokování rozsahů větších než /$1 není dovoleno.",
