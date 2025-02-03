@@ -108,16 +108,20 @@ class ComposerLaunchParallel extends ForkController {
 	}
 
 	private function runTestSuite( int $groupId ) {
+		$logDir = getenv( 'MW_LOG_DIR' ) ?? '.';
 		$excludeGroups = array_diff( $this->excludeGroups, $this->groups );
 		$groupName = "database";
 		if ( !self::isDatabaseRunForGroups( $this->groups, $excludeGroups ) ) {
 			$groupName = "databaseless";
 		}
+		$resultCacheFile = implode( DIRECTORY_SEPARATOR, [
+			$logDir, "phpunit_group_{$groupId}_{$groupName}.result.cache"
+		] );
 		$result = $this->splitGroupExecutor->executeSplitGroup(
 			"split_group_$groupId",
 			$this->groups,
 			$excludeGroups,
-			".phpunit_group_{$groupId}_{$groupName}.result.cache",
+			$resultCacheFile,
 			$groupId
 		);
 		$consoleOutput = $result->getStdout();

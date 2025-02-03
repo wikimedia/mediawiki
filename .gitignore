@@ -56,6 +56,7 @@ node_modules/
 /resources/lib/.foreign
 /tests/phpunit/phpunit.phar
 .phpunit.result.cache
+phpunit*result.cache
 /tests/phpunit/.phpunit.result.cache
 phpunit.xml
 /tests/selenium/log
