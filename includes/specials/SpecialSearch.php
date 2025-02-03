@@ -613,6 +613,8 @@ class SpecialSearch extends SpecialPage {
 			) {
 				$messageName = 'searchmenu-new';
 			}
+		} else {
+			$messageName = 'searchmenu-new-external';
 		}
 
 		$params = [

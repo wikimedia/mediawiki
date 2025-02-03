@@ -1027,6 +1027,7 @@
 	"searchmenu-exists": "There is a page named \"[[:$1]]\" on {{SITENAME}}. {{PLURAL:$2|0=|See also the other search results found.}}",
 	"searchmenu-new": "Create the page \"[[:$1]]\" on this wiki! {{PLURAL:$2|0=|See also the page found with your search.|See also the search results found.}}",
 	"searchmenu-new-nocreate": "",
+	"searchmenu-new-external": "The page \"[[:$1]]\" appears to be on another wiki. You can visit it there. {{PLURAL:$2|0=|See also the page found with your search.|See also the search results found.}}",
 	"searchprofile-articles": "Content pages",
 	"searchprofile-images": "Multimedia",
 	"searchprofile-everything": "Everything",
