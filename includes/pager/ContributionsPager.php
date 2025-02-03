@@ -70,6 +70,11 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 	protected $isArchive;
 
 	/**
+	 * @var bool Run hooks to allow extensions to modify the page
+	 */
+	protected $runHooks;
+
+	/**
 	 * @var string User name, or a string describing an IP address range
 	 */
 	protected $target;
@@ -199,6 +204,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		?UserIdentity $targetUser
 	) {
 		$this->isArchive = $options['isArchive'] ?? false;
+		$this->runHooks = $options['runHooks'] ?? true;
 
 		// Set ->target before calling parent::__construct() so
 		// parent can call $this->getIndexField() and get the right result. Set
@@ -327,7 +333,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 			->joinConds( $join_conds )
 			->setMaxExecutionTime( $this->getConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries ) )
 			->fetchResultSet() ];
-		if ( !$this->revisionsOnly ) {
+		if ( !$this->revisionsOnly && $this->runHooks ) {
 			// These hooks were moved from ContribsPager and DeletedContribsPager. For backwards
 			// compatability, they keep the same names. But they should be run for any contributions
 			// pager, otherwise the entries from extensions would be missing.
@@ -438,7 +444,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 			$this->tagInvert,
 		);
 
-		if ( !$this->isArchive ) {
+		if ( !$this->isArchive && $this->runHooks ) {
 			$this->hookRunner->onContribsPager__getQueryInfo( $this, $queryInfo );
 		}
 
@@ -1018,11 +1024,14 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 			$ret = $this->getProcessedTemplate( $templateParams );
 		}
 
-		// Let extensions add data
-		$lineEndingsHook = $this->isArchive ?
-			'onDeletedContributionsLineEnding' :
-			'onContributionsLineEnding';
-		$this->hookRunner->$lineEndingsHook( $this, $ret, $row, $classes, $attribs );
+		if ( $this->runHooks ) {
+			// Let extensions add data
+			$lineEndingsHook = $this->isArchive ?
+				'onDeletedContributionsLineEnding' :
+				'onContributionsLineEnding';
+			$this->hookRunner->$lineEndingsHook( $this, $ret, $row, $classes, $attribs );
+		}
+
 		$attribs = array_filter( $attribs,
 			[ Sanitizer::class, 'isReservedDataAttribute' ],
 			ARRAY_FILTER_USE_KEY
@@ -1064,7 +1073,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		$del = $this->formatVisibilityLink( $row );
 		$tagSummary = $this->formatTags( $row, $classes );
 
-		if ( !$this->isArchive ) {
+		if ( !$this->isArchive && $this->runHooks ) {
 			$this->hookRunner->onSpecialContributions__formatRow__flags(
 				$this->getContext(), $row, $flags );
 		}
