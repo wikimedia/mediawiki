@@ -3022,8 +3022,12 @@ class Parser {
 		$text = '';
 		// wiki markup in $text should be escaped
 		$nowiki = false;
-		// $text is HTML, armour it against wikitext transformation
+		// $text is HTML, armour it against most wikitext transformation
+		// (it still participates in doBlockLevels, language conversion,
+		// and the other steps at the start of ::internalParseHalfParsed)
 		$isHTML = false;
+		// $text is raw HTML, armour it against all wikitext transformation
+		$isRawHTML = false;
 		// Force interwiki transclusion to be done in raw mode not rendered
 		$forceRawInterwiki = false;
 		// $text is a DOM node needing expansion in a child frame
@@ -3145,6 +3149,9 @@ class Parser {
 				}
 				if ( isset( $result['isHTML'] ) ) {
 					$isHTML = $result['isHTML'];
+				}
+				if ( isset( $result['isRawHTML'] ) ) {
+					$isRawHTML = $result['isRawHTML'];
 				}
 				if ( isset( $result['forceRawInterwiki'] ) ) {
 					$forceRawInterwiki = $result['forceRawInterwiki'];
@@ -3348,6 +3355,14 @@ class Parser {
 		if ( $isHTML ) {
 			// @phan-suppress-next-line SecurityCheck-XSS
 			$text = $this->insertStripItem( $text );
+		} elseif ( $isRawHTML ) {
+			$marker = self::MARKER_PREFIX . "-pf-"
+				. sprintf( '%08X', $this->mMarkerIndex++ ) . self::MARKER_SUFFIX;
+			// use 'nowiki' type to protect this from doBlockLevels,
+			// language conversion, etc.
+			// @phan-suppress-next-line SecurityCheck-XSS
+			$this->mStripState->addNoWiki( $marker, $text );
+			$text = $marker;
 		} elseif ( $nowiki && ( $this->ot['html'] || $this->ot['pre'] ) ) {
 			# Escape nowiki-style return values
 			// @phan-suppress-next-line SecurityCheck-DoubleEscaped
@@ -3397,7 +3412,8 @@ class Parser {
 	 * whether the parser function was found or not. It may also contain the
 	 * following:
 	 *  text: string|object, resulting wikitext or PP DOM object
-	 *  isHTML: bool, $text is HTML, armour it against wikitext transformation
+	 *  isHTML: bool, $text is HTML, armour it against most wikitext transformation
+	 *  isRawHTML: bool, $text is raw HTML, armour it against all wikitext transformation
 	 *  isChildObj: bool, $text is a DOM node needing expansion in a child frame
 	 *  isLocalObj: bool, $text is a DOM node needing expansion in the current frame
 	 *  nowiki: bool, wiki markup in $text should be escaped
@@ -4060,6 +4076,9 @@ class Parser {
 				// Extract flags
 				$flags = $output;
 				$output = $flags[0];
+				if ( isset( $flags['isRawHTML'] ) ) {
+					$markerType = 'nowiki';
+				}
 				if ( isset( $flags['markerType'] ) ) {
 					$markerType = $flags['markerType'];
 				}
@@ -5056,7 +5075,12 @@ class Parser {
 	 *   found                     The text returned is valid, stop processing the template. This
 	 *                             is on by default.
 	 *   nowiki                    Wiki markup in the return value should be escaped
-	 *   isHTML                    The returned text is HTML, armour it against wikitext transformation
+	 *   isHTML                    The returned text is HTML, armour it
+	 *                             against most wikitext transformation, but
+	 *                             perform language conversion and some other
+	 *                             postprocessing
+	 *   isRawHTML                 The returned text is raw HTML, include it
+	 *                             verbatim in the output.
 	 *
 	 * @param string $id The magic word ID
 	 * @param callable $callback The callback function (and object) to use

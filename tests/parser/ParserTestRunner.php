@@ -484,6 +484,32 @@ class ParserTestRunner {
 			}
 		);
 
+		// Fake a magic word for {{#divtag}}/{{#spantag}} defined in ParserTestParserHook
+		$teardown[] = $this->registerHook(
+			'GetMagicVariableIDs',
+			static function ( &$variableIDs ) {
+				$variableIDs[] = 'divtagpf';
+				$variableIDs[] = 'spantagpf';
+			}
+		);
+		$teardown[] = $this->registerHook(
+			'LocalisationCacheRecache',
+			static function ( $cache, $code, &$alldata, $unused ) {
+				$alldata['magicWords']['divtagpf'] = [ 1, '#divtag' ];
+				$alldata['magicWords']['spantagpf'] = [ 1, '#spantag' ];
+				return true;
+			}
+		);
+		// Register extensions and parser functions with legacy parser
+		// even for Parsoid to ensure that preprocessor strips tags
+		// correctly.
+		$teardown[] = $this->registerHook(
+			'ParserFirstCallInit',
+			static function ( $parser ) {
+				ParserTestParserHook::setup( $parser );
+			}
+		);
+
 		$this->appendNamespaceSetup( $setup, $teardown );
 
 		// Set up interwikis and append teardown function
