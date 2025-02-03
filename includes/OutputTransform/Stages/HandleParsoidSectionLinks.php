@@ -19,6 +19,7 @@ use Psr\Log\LoggerInterface;
 use Skin;
 use Wikimedia\Parsoid\DOM\Document;
 use Wikimedia\Parsoid\Utils\DOMCompat;
+use Wikimedia\Parsoid\Utils\DOMDataUtils;
 
 /**
  * Add anchors and other heading formatting, and replace the section link placeholders.
@@ -84,6 +85,7 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 
 			// T353489: Do not add the wrapper if the heading has attributes
 			// generated from wikitext
+			// In the Parsoid default future, we might prefer checking for stx=html
 			foreach ( $h->attributes as $attr ) {
 				// Condition matches DiscussionTool's CommentFormatter::handleHeading
 				if (
@@ -92,6 +94,12 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 				) {
 					continue 2;
 				}
+			}
+			// FIXME(T100856): stx info probably shouldn't be in data-parsoid
+			// Id is ignored above since it's a special case, make use of metadata
+			// to determine if it came from wikitext
+			if ( DOMDataUtils::getDataParsoid( $h )->reusedId ?? false ) {
+				continue;
 			}
 
 			$fromTitle = $section->fromTitle;
