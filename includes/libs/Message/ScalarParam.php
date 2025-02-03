@@ -44,7 +44,10 @@ class ScalarParam extends MessageParam {
 		} elseif ( !is_string( $value ) && !is_numeric( $value ) ) {
 			$valType = get_debug_type( $value );
 			if ( $value === null || is_bool( $value ) ) {
-				wfDeprecatedMsg( "Using $valType as message parameter was deprecated in MediaWiki 1.43", '1.43' );
+				trigger_error(
+					"Using $valType as a message parameter was deprecated in MediaWiki 1.43",
+					E_USER_DEPRECATED
+				);
 				$value = (string)$value;
 			} else {
 				throw new InvalidArgumentException(
