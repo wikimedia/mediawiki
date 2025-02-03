@@ -8,6 +8,7 @@ namespace MediaWiki\Tests\Unit\Revision;
 use DummyContentForTesting;
 use LogicException;
 use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Content\Content;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionSlots;
@@ -282,33 +283,42 @@ trait RevisionRecordTests {
 	/**
 	 * @dataProvider provideGetSlot_audience
 	 */
-	public function testGetContentOrThrow_audience( $visibility, $permissions, $userCan,
-		$publicCan
+	public function testGetContentOrThrow_audience(
+		int $visibility,
+		array $permissions,
+		bool $userCan,
+		bool $publicCan
+	) {
+		$rev = $this->newRevision( [ 'rev_deleted' => $visibility ] );
+
+		$content = $rev->getContentOrThrow( SlotRecord::MAIN, RevisionRecord::RAW );
+		$this->assertInstanceOf( Content::class, $content );
+
+		if ( !$publicCan ) {
+			$this->expectException( SuppressedDataException::class );
+		}
+		$content = $rev->getContentOrThrow( SlotRecord::MAIN );
+		$this->assertInstanceOf( Content::class, $content );
+	}
+
+	/**
+	 * @dataProvider provideGetSlot_audience
+	 */
+	public function testGetContentOrThrow_forThisUser(
+		int $visibility,
+		array $permissions,
+		bool $userCan,
+		bool $publicCan
 	) {
 		$performer = $this->mockRegisteredAuthorityWithPermissions( $permissions );
 		$rev = $this->newRevision( [ 'rev_deleted' => $visibility ] );
 
-		$exception = null;
-		try {
-			$rev->getContentOrThrow( SlotRecord::MAIN, RevisionRecord::RAW );
-		} catch ( SuppressedDataException $exception ) {
+		if ( !$userCan ) {
+			$this->expectException( SuppressedDataException::class );
 		}
-		$this->assertNull( $exception, 'raw can' );
-
-		$exception = null;
-		try {
-			$rev->getContentOrThrow( SlotRecord::MAIN, RevisionRecord::FOR_PUBLIC );
-		} catch ( SuppressedDataException $exception ) {
-		}
-		$this->assertSame( $publicCan, $exception === null, 'public can' );
-
-		$exception = null;
-		try {
-			$rev->getContentOrThrow( SlotRecord::MAIN,
-				RevisionRecord::FOR_THIS_USER, $performer );
-		} catch ( SuppressedDataException $exception ) {
-		}
-		$this->assertSame( $userCan, $exception === null, 'user can' );
+		$content = $rev->getContentOrThrow( SlotRecord::MAIN,
+			RevisionRecord::FOR_THIS_USER, $performer );
+		$this->assertInstanceOf( Content::class, $content );
 	}
 
 	public function testGetSlot() {
