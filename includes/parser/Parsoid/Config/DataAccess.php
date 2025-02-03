@@ -393,12 +393,19 @@ class DataAccess extends IDataAccess {
 		if ( $this->config->get( MainConfigNames::ParsoidFragmentSupport ) === false ) {
 			// Original support: just unstrip (T289545)
 			$wikitext = $parser->replaceVariables(
-					$wikitext, $this->ppFrame, false, true, $parsoidNewTemplateExpansionMode );
+					$wikitext, $this->ppFrame, false, [
+						'stripExtTags' => true,
+						'parsoidTopLevelCall' => $parsoidNewTemplateExpansionMode,
+					]
+			);
 			$wikitext = $parser->getStripState()->unstripBoth( $wikitext );
 		} else {
 			// New PFragment-based support (T374616)
 			$wikitext = $parser->replaceVariables(
-				$wikitext, $this->ppFrame, false, false, $parsoidNewTemplateExpansionMode
+				$wikitext, $this->ppFrame, false, [
+					'stripExtTags' => false,
+					'parsoidTopLevelCall' => $parsoidNewTemplateExpansionMode,
+				]
 			);
 			// Where the result has strip state markers, tunnel this content
 			// through Parsoid as a PFragment type.
