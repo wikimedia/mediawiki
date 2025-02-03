@@ -379,11 +379,16 @@ class LogEventsList extends ContextSource {
 		$ret = "$del $timeLink $action $comment $revert $tagDisplay";
 
 		// Let extensions add data
+		$ret .= Html::openElement( 'span', [ 'class' => 'mw-logevent-tool' ] );
+		// FIXME: this hook assumes that callers will only append to $ret value.
+		// In future this hook should be replaced with a new hook: LogTools that has a
+		// hook interface consistent with DiffTools and HistoryTools.
 		$this->hookRunner->onLogEventsListLineEnding( $this, $ret, $entry, $classes, $attribs );
 		$attribs = array_filter( $attribs,
 			[ Sanitizer::class, 'isReservedDataAttribute' ],
 			ARRAY_FILTER_USE_KEY
 		);
+		$ret .= Html::closeElement( 'span' );
 		$attribs['class'] = $classes;
 
 		return Html::rawElement( 'li', $attribs, $ret ) . "\n";
