@@ -524,11 +524,14 @@ Definition Lists: Nesting: Multi-level (Parsoid only)
   <dt>
     <dl>
       <dt>t2 </dt>
-      <dd>:d2</dd>
+      <dd></dd>
+			<dd>d2</dd>
       <dt>
         <dl>
           <dt>t3 </dt>
-          <dd>::d3</dd>
+          <dd></dd>
+          <dd></dd>
+					<dd>d3</dd>
         </dl>
       </dt>
     </dl>
