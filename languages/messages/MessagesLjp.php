@@ -8,3 +8,5 @@
  */
 
 $fallback = 'id';
+
+$linkTrail = '/^([a-zéÉ]+)(.*)$/sDu';
