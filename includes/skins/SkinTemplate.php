@@ -800,6 +800,21 @@ class SkinTemplate extends Skin {
 			} else {
 				$query = 'action=edit&redlink=1';
 			}
+		} elseif ( $title->isRedirect() ) {
+			// Do not redirect on redirect pages, see T5324
+			$origTitle = $this->getRelevantTitle();
+			// FIXME: If T385340 is resolved, this check can be removed
+			$action = $this->getContext()->getActionName();
+			$out = $this->getOutput();
+			$notCurrentActionView = $action !== 'view' || !$out->isRevisionCurrent();
+
+			if ( $origTitle instanceof Title && $title->isSamePageAs( $origTitle ) && $notCurrentActionView ) {
+				if ( $query !== '' ) {
+					$query .= '&redirect=no';
+				} else {
+					$query = 'redirect=no';
+				}
+			}
 		}
 
 		if ( $message instanceof MessageSpecifier ) {
