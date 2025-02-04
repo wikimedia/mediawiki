@@ -2752,15 +2752,71 @@ const _sfc_main$l = defineComponent({
   ],
   */
   setup(props, { emit, slots, attrs }) {
-    const computedMenuEntries = computed(() => {
-      const menuItemsWithFooter = props.footer && props.menuItems ? [...props.menuItems, props.footer] : props.menuItems;
-      const getMenuItemWithId = (menuItem) => __spreadProps(__spreadValues({}, menuItem), {
-        id: useId()
+    const menuInstanceId = useId();
+    let idCounter = 0;
+    const menuItemIds = /* @__PURE__ */ new Map();
+    function generateId() {
+      idCounter += 1;
+      return "".concat(menuInstanceId, "-").concat(idCounter);
+    }
+    function assignIds(items) {
+      items.forEach((item) => {
+        if (isMenuGroupData(item)) {
+          const groupKey = "group-".concat(item.label);
+          if (!menuItemIds.has(groupKey)) {
+            menuItemIds.set(groupKey, generateId());
+          }
+          item.items.forEach((subItem) => {
+            if (!menuItemIds.has(subItem.value)) {
+              menuItemIds.set(subItem.value, generateId());
+            }
+          });
+        } else if (!menuItemIds.has(item.value)) {
+          menuItemIds.set(item.value, generateId());
+        }
       });
+    }
+    watch(toRef(props, "menuItems"), (newItems) => {
+      function getAllItemValues(items) {
+        const values = /* @__PURE__ */ new Set();
+        items.forEach((item) => {
+          if (isMenuGroupData(item)) {
+            values.add("group-".concat(item.label));
+            item.items.forEach((subItem) => values.add(subItem.value));
+          } else {
+            values.add(item.value);
+          }
+        });
+        return values;
+      }
+      const newItemSet = getAllItemValues(newItems);
+      menuItemIds.forEach((_, key) => {
+        if (!newItemSet.has(key)) {
+          menuItemIds.delete(key);
+        }
+      });
+    }, { deep: true });
+    const computedMenuEntries = computed(() => {
+      assignIds(props.menuItems);
+      if (props.footer) {
+        assignIds([props.footer]);
+      }
+      const menuItemsWithFooter = props.footer && props.menuItems ? [...props.menuItems, props.footer] : props.menuItems;
+      function getMenuItemWithId(menuItem) {
+        const id = menuItemIds.get(menuItem.value);
+        if (!id) {
+          throw new Error("No ID found for menu item with value ".concat(menuItem.value));
+        }
+        return __spreadProps(__spreadValues({}, menuItem), { id });
+      }
       return menuItemsWithFooter.map((menuEntry) => {
         if (isMenuGroupData(menuEntry)) {
+          const groupId = menuItemIds.get("group-".concat(menuEntry.label));
+          if (!groupId) {
+            throw new Error("No ID found for menu item with value group-".concat(menuEntry.label));
+          }
           return __spreadProps(__spreadValues({}, menuEntry), {
-            id: useId(),
+            id: groupId,
             items: menuEntry.items.map((subItem) => getMenuItemWithId(subItem))
           });
         } else {
@@ -5921,6 +5977,15 @@ const _sfc_main$i = defineComponent({
     function close() {
       emit("update:open", false);
     }
+    let mousedownOnBackdrop = false;
+    function onBackdropMouseDown(e) {
+      mousedownOnBackdrop = e.target === backdrop.value;
+    }
+    function onBackdropClick() {
+      if (mousedownOnBackdrop) {
+        close();
+      }
+    }
     function focusFirst() {
       focusFirstFocusableElement(dialogElement.value);
     }
@@ -6020,6 +6085,8 @@ const _sfc_main$i = defineComponent({
     });
     return {
       close,
+      onBackdropClick,
+      onBackdropMouseDown,
       cdxIconClose: h4,
       labelId,
       rootClasses,
@@ -6080,8 +6147,9 @@ function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
             key: 0,
             ref: "backdrop",
             class: "cdx-dialog-backdrop",
-            onClick: _cache[5] || (_cache[5] = (...args) => _ctx.close && _ctx.close(...args)),
-            onKeyup: _cache[6] || (_cache[6] = withKeys((...args) => _ctx.close && _ctx.close(...args), ["escape"]))
+            onMousedown: _cache[5] || (_cache[5] = (...args) => _ctx.onBackdropMouseDown && _ctx.onBackdropMouseDown(...args)),
+            onClick: _cache[6] || (_cache[6] = (...args) => _ctx.onBackdropClick && _ctx.onBackdropClick(...args)),
+            onKeyup: _cache[7] || (_cache[7] = withKeys((...args) => _ctx.close && _ctx.close(...args), ["escape"]))
           },
           [
             createElementVNode(

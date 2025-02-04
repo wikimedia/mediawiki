@@ -1,3 +1,23 @@
+# 1.20.1 / 2025-02-04
+
+## Styles
+- styles: Implement `:focus-visible` in Card and Accordion components (Gauri)
+- styles, mixins: Remove outdated `-webkit` vendor prefix (Volker E.)
+- styles, TextInput: Remove obsolete `-ms-clear` disabling vendor rule (Volker E.)
+- Revert "mixins: amend hyphens to use more solid `overflow-wrap: anywhere`" (Anne Tomasevich)
+- styles, Button: fix the progressive primary button's icon (Lauralyn Watson)
+
+## Code
+- Dialog: Don't close when backdrop click started in the dialog (Daphne Smit)
+- build: Clean up .gitignore files (Roan Kattouw)
+- Menu: Re-work how IDs are generated (Eric Gardner)
+
+## Docs
+- demos: Make `tbody` explicit in `table`s (Volker E.)
+- docs: Fix `<table>` HTML semantics (Volker E.)
+- docs: Fix link syntax (apaskulin)
+- docs: Revise Using links and buttons page (Derek Torsani)
+
 # 1.20.0 / 2025-01-22
 
 ## Deprecating changes
