@@ -250,8 +250,7 @@ class BlockUser {
 		}
 
 		$this->blockPermissionChecker = $blockPermissionCheckerFactory
-			->newBlockPermissionChecker(
-				$this->target,
+			->newChecker(
 				$performer
 			);
 
@@ -461,7 +460,7 @@ class BlockUser {
 			return Status::newFatal( $priorHideUser ? 'cant-see-hidden-user' : 'badaccess-group0' );
 		}
 
-		$blockCheckResult = $this->blockPermissionChecker->checkBlockPermissions();
+		$blockCheckResult = $this->blockPermissionChecker->checkBlockPermissions( $this->target );
 		if ( $blockCheckResult !== true ) {
 			$this->logger->debug( 'placeBlock: checkBlockPermissions failed' );
 			return Status::newFatal( $blockCheckResult );

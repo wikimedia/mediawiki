@@ -51,17 +51,29 @@ class BlockPermissionCheckerFactory {
 	/**
 	 * @param UserIdentity|string|null $target Target of the validated block; may be null if unknown
 	 * @param Authority $performer Performer of the validated block
-	 *
 	 * @return BlockPermissionChecker
+	 *
+	 * @deprecated since 1.44 use newChecker, which does not require $target
 	 */
 	public function newBlockPermissionChecker(
 		$target,
 		Authority $performer
 	) {
+		$checker = $this->newChecker( $performer );
+		if ( $target !== null ) {
+			$checker->setTarget( $target );
+		}
+		return $checker;
+	}
+
+	/**
+	 * @param Authority $performer Performer of the block
+	 * @return BlockPermissionChecker
+	 */
+	public function newChecker( Authority $performer ) {
 		return new BlockPermissionChecker(
 			$this->options,
 			$this->blockUtils,
-			$target,
 			$performer
 		);
 	}

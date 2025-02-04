@@ -112,8 +112,7 @@ class UnblockUser {
 		}
 
 		$this->blockPermissionChecker = $blockPermissionCheckerFactory
-			->newBlockPermissionChecker(
-				$this->target,
+			->newChecker(
 				$performer
 			);
 
@@ -133,7 +132,7 @@ class UnblockUser {
 			return $status;
 		}
 
-		$blockPermissionCheckResult = $this->blockPermissionChecker->checkBlockPermissions();
+		$blockPermissionCheckResult = $this->blockPermissionChecker->checkBlockPermissions( $this->target );
 		if ( $blockPermissionCheckResult !== true ) {
 			return $status->fatal( $blockPermissionCheckResult );
 		}

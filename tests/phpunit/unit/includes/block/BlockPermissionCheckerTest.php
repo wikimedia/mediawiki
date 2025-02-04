@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\BlockPermissionChecker;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
@@ -22,13 +21,11 @@ class BlockPermissionCheckerTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @param bool $enableUserEmail
-	 * @param array $targetAndType
 	 * @param Authority $performer
 	 * @return BlockPermissionChecker
 	 */
 	private function getBlockPermissionChecker(
 		bool $enableUserEmail,
-		array $targetAndType,
 		Authority $performer
 	) {
 		$options = new ServiceOptions(
@@ -36,18 +33,15 @@ class BlockPermissionCheckerTest extends MediaWikiUnitTestCase {
 			[ MainConfigNames::EnableUserEmail => $enableUserEmail ]
 		);
 
-		// We don't care about how BlockUtils::parseBlockTarget actually works, just
-		// override with whatever. Only used for a single call in the constructor
-		// for getting target and type
 		$blockUtils = $this->createNoOpMock( BlockUtils::class, [ 'parseBlockTarget' ] );
-		$blockUtils->expects( $this->once() )
+		$blockUtils->expects( $this->any() )
 			->method( 'parseBlockTarget' )
-			->willReturn( $targetAndType );
-
+			->willReturnCallback( static function ( $target ) {
+				return [ $target, 0 ];
+			} );
 		return new BlockPermissionChecker(
 			$options,
 			$blockUtils,
-			'foo', // input to BlockUtils::parseBlockTarget, not used
 			$performer
 		);
 	}
@@ -68,6 +62,15 @@ class BlockPermissionCheckerTest extends MediaWikiUnitTestCase {
 		return $block;
 	}
 
+	/**
+	 * @param int $id
+	 * @param string $name
+	 * @return UserIdentityValue
+	 */
+	private function getTarget( $id = 1, $name = 'Blocked' ) {
+		return new UserIdentityValue( $id, $name );
+	}
+
 	public static function provideCheckBasePermissions() {
 		// $rights, $checkHideuser, $expect
 		yield 'need block' => [ [], false, 'badaccess-group0' ];
@@ -84,7 +87,6 @@ class BlockPermissionCheckerTest extends MediaWikiUnitTestCase {
 		$performer = $this->mockRegisteredAuthorityWithPermissions( $rights );
 		$blockPermissionChecker = $this->getBlockPermissionChecker(
 			true, // $enableUserEmail, irrelevant
-			[ null, null ], // $targetAndType, irrelevant
 			$performer
 		);
 		$this->assertSame(
@@ -100,11 +102,10 @@ class BlockPermissionCheckerTest extends MediaWikiUnitTestCase {
 		// checkBlockPermissions has an early return true if the performer has no block
 		$blockPermissionChecker = $this->getBlockPermissionChecker(
 			true, // $enableUserEmail, irrelevant
-			[ null, null ], // $targetAndType, irrelevant
 			$this->mockRegisteredAuthorityWithoutPermissions( [] )
 		);
 		$this->assertTrue(
-			$blockPermissionChecker->checkBlockPermissions()
+			$blockPermissionChecker->checkBlockPermissions( $this->getTarget() )
 		);
 	}
 
@@ -118,11 +119,10 @@ class BlockPermissionCheckerTest extends MediaWikiUnitTestCase {
 
 		$blockPermissionChecker = $this->getBlockPermissionChecker(
 			true, // $enableUserEmail, irrelevant
-			[ null, null ], // $targetAndType, irrelevant
 			$performer
 		);
 		$this->assertTrue(
-			$blockPermissionChecker->checkBlockPermissions()
+			$blockPermissionChecker->checkBlockPermissions( $this->getTarget() )
 		);
 	}
 
@@ -161,16 +161,15 @@ class BlockPermissionCheckerTest extends MediaWikiUnitTestCase {
 		$blocker = new UserIdentityValue( 1, 'blocker', UserIdentity::LOCAL );
 		$performer = $this->mockUserAuthorityWithBlock( $blocker, $block, $rights );
 
-		$target = new UserIdentityValue( $targetUserId, $targetUserName );
+		$target = $this->getTarget( $targetUserId, $targetUserName );
 
 		$blockPermissionChecker = $this->getBlockPermissionChecker(
 			true, // $enableUserEmail, irrelevant
-			[ $target, AbstractBlock::TYPE_USER ], // $targetAndType, irrelevant
 			$performer
 		);
 		$this->assertSame(
 			$expect,
-			$blockPermissionChecker->checkBlockPermissions()
+			$blockPermissionChecker->checkBlockPermissions( $target )
 		);
 	}
 
@@ -190,7 +189,6 @@ class BlockPermissionCheckerTest extends MediaWikiUnitTestCase {
 		$performer = $this->mockRegisteredAuthorityWithPermissions( $rights );
 		$blockPermissionChecker = $this->getBlockPermissionChecker(
 			$enableEmail,
-			[ null, null ], // $targetAndType, irrelevant
 			$performer
 		);
 		$this->assertSame( $expect, $blockPermissionChecker->checkEmailPermissions() );
