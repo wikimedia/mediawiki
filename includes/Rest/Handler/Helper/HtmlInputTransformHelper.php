@@ -368,7 +368,14 @@ class HtmlInputTransformHelper {
 					throw new LocalizedHttpException( new MessageValue( "rest-bad-etag", [ $key ] ), 400 );
 				}
 			} else {
-				$originalRendering = ParsoidRenderID::newFromKey( $key );
+				try {
+					$originalRendering = ParsoidRenderID::newFromKey( $key );
+				} catch ( InvalidArgumentException $e ) {
+					throw new LocalizedHttpException(
+						new MessageValue( 'rest-parsoid-bad-render-id', [ $key ] ),
+						400
+					);
+				}
 			}
 		} elseif ( !empty( $original['html'] ) || !empty( $original['data-parsoid'] ) ) {
 			// NOTE: We might have an incomplete PageBundle here, with no HTML but with data-parsoid!
