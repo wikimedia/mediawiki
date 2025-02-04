@@ -1188,6 +1188,20 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		$helper->getContent();
 	}
 
+	public function testHandlesInvalidRenderID(): void {
+		$page = $this->getExistingTestPage( __METHOD__ );
+
+		$body = [ 'html' => 'hi', 'original' => [ 'renderid' => 'foo' ] ];
+		$params = [];
+
+		$this->expectExceptionObject( new LocalizedHttpException(
+			new MessageValue( 'rest-parsoid-bad-render-id', [ 'foo' ] ),
+			400
+		) );
+
+		$this->newHelper( [], StatsFactory::newNull(), $page, $body, $params );
+	}
+
 	private function newHtmlToContentTransform( $html, $methodOverrides = [] ): HtmlToContentTransform {
 		$transform = $this->getMockBuilder( HtmlToContentTransform::class )
 			->onlyMethods( array_keys( $methodOverrides ) )

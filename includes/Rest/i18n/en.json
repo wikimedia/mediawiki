@@ -65,6 +65,7 @@
 	"rest-unsupported-target-format": "The requested target format is not supported.",
 	"rest-parsoid-resource-exceeded": "Resource limit exceeded",
 	"rest-parsoid-error": "Parsoid error.",
+	"rest-parsoid-bad-render-id": "Bad Parsoid render ID: $1",
 	"rest-bad-stash-key": "Bad stash key.",
 	"rest-html-key-expected": "Expected <var>html</var> key in body",
 	"rest-invalid-transform": "Invalid transform: $1 to $2",
