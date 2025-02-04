@@ -2509,7 +2509,7 @@
 	"autoblockid": "Avtoblok #$1",
 	"block": "İstifadəçini blokla",
 	"unblock": "İstifadəçinin blokunu götür",
-	"changeblockip": "Blok dəyişdir",
+	"changeblockip": "Bloku dəyişdir",
 	"blockip": "{{GENDER:$1|İstifadəçini}} blokla",
 	"blockiptext": "Spesifik IP-ünvandan və ya istifadə adından ediləcək redaktələri bloklamaq üçün aşağıdakı formanı istifadə edin.\n[[{{MediaWiki:Policy-url}}|Müvafiq qaydaya əsasən]], bu sadəcə vandalizmin qarşısını almaq üçün edilməlidir.\nAşağıdan spesifik səbəb seçin (məsələn, vandalizm edilmiş səhifələri göstərin).\n[https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR] istifadə edərək IP aralıqlarını bloklayabilərsiniz; icazə verilən ən uzun aralıq IPv4 üçün /$1, IPv6 üçün isə /$2-dir.",
 	"ipaddressorusername": "IP ünvanı, istifadəçi adı və ya block ID-si:",

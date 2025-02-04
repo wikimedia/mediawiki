@@ -1060,6 +1060,8 @@
 	"recentchangeslinked-summary": "Ukurasa huu maalumu unaorodhesha mabadiliko ya hivi karibuni katika kurasa zinazoungwa (au katika jamii fulani). Kurasa katika [[Special:Watchlist|maangalizi yako]] ni za '''koze'''.",
 	"recentchangeslinked-page": "Jina la ukurasa:",
 	"recentchangeslinked-to": "Onyesha mabadiliko yaliyotokea kwenye kurasa zile zinazoungwa kufikia ukurasa uliotajwa",
+	"recentchanges-page-added-to-category": "[[:$1]] imeongezwa kwenye jamii",
+	"recentchanges-page-removed-from-category": "[[:$1]] imeondolewa kutoka kwa jamii",
 	"upload": "Pakia faili",
 	"uploadbtn": "Pakia faili",
 	"reuploaddesc": "Kubatilisha kupakia na kurudi kwenye fomu ya kupakia",

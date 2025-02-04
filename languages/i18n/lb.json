@@ -531,7 +531,7 @@
 	"passwordreset-success": "Dir hutt d'Zrécksetze vun Ärem Passwuert gefrot.",
 	"passwordreset-success-details-generic": "Wann d'Informatioun déi geschéckt gouf valabel ass, da gëtt eng E-mail fir d'Passwuert zréckzesetzen geschéckt. Wann Dir keng E-mail kritt huet da gitt op [[mw:Special:MyLanguage/Help:Reset_password|Hëllef:Passwuert zrécksetzen Hëllef-Säit]] oder probéiert et méi spéit nach eng Kéier. Dir kënnt nëmmen <strong>eng limitéiert Zuel vu Passwuertzrécksetzungen an enger kuerzer Zäit ufroen. Nëmmen eng Passwuert-Zrécksetzungs-E-mail gëtt fir e valabele Benotzerkont all {{PLURAL:$1|Stonn|$1 Stonne}} geschéckt</strong> fir Mëssbrauch ze verhënneren.",
 	"passwordreset-success-info": "D'Detailer déi Dir geschéckt huet: $1",
-	"passwordreset-ignored": "D'Zrécksetze vum Passwuert gouf net verschafft. Vläicht war de Fournisseur net agestallt?",
+	"passwordreset-ignored": "D'Zrécksetze vum Passwuert gouf net verschafft. Villäicht war de Fournisseur net agestallt?",
 	"passwordreset-invalidemail": "Ongülteg E-Mail-Adress",
 	"passwordreset-nodata": "Et gouf weder e Benotzernumm nach e Passwuert uginn",
 	"changeemail": "E-Mail-Adress änneren oder ewechhuelen",
