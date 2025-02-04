@@ -69,6 +69,7 @@
 	"rest-transform-missing-title": "Error message for REST API debugging, shown when no title or wikitext is provided",
 	"rest-unsupported-target-format": "Error message for REST API debugging, shown when the requested target format is not supported",
 	"rest-parsoid-resource-exceeded": "Error message for REST API debugging, shown when a resource limit is exceeded while converting between wikitext and HTML.",
+	"rest-parsoid-bad-render-id": "Error message for REST API debugging, shown when a ParsoidRenderID object cannot be created from the provided key. Parameters:\n* $1: The key",
 	"rest-parsoid-error": "Error message for REST API debugging, indicating an unspecified backend error occurred while converting between wikitext and HTML.\n\n[[:mw:Parsoid|Parsoid]] is the name of a software library; do not translate that name.",
 	"rest-bad-stash-key": "Error message for REST API debugging, shown when When the rednerid or etag given in the request is not a valid stash key.",
 	"rest-html-key-expected": "Error message for REST API debugging, shown when when the \"html\" key is missing from the request body",
