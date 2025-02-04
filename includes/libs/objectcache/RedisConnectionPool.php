@@ -49,8 +49,10 @@ class RedisConnectionPool implements LoggerAwareInterface {
 	protected $connectTimeout;
 	/** @var string Read timeout in seconds */
 	protected $readTimeout;
-	/** @var string Plaintext auth password */
+	/** @var string|string[]|null Plaintext auth password or array containing username and password */
 	protected $password;
+	/** @var string|null Key prefix automatically added to all operations */
+	protected $prefix;
 	/** @var bool Whether connections persist */
 	protected $persistent;
 	/** @var int Serializer to use (Redis::SERIALIZER_*) */
@@ -96,6 +98,7 @@ class RedisConnectionPool implements LoggerAwareInterface {
 		$this->readTimeout = $options['readTimeout'];
 		$this->persistent = $options['persistent'];
 		$this->password = $options['password'];
+		$this->prefix = $options['prefix'];
 		if ( !isset( $options['serializer'] ) || $options['serializer'] === 'php' ) {
 			$this->serializer = Redis::SERIALIZER_PHP;
 		} elseif ( $options['serializer'] === 'igbinary' ) {
@@ -132,6 +135,9 @@ class RedisConnectionPool implements LoggerAwareInterface {
 		}
 		if ( !isset( $options['password'] ) ) {
 			$options['password'] = null;
+		}
+		if ( !isset( $options['prefix'] ) ) {
+			$options['prefix'] = null;
 		}
 
 		return $options;
@@ -286,6 +292,10 @@ class RedisConnectionPool implements LoggerAwareInterface {
 			);
 
 			return false;
+		}
+
+		if ( $this->prefix !== null ) {
+			$conn->setOption( Redis::OPT_PREFIX, $this->prefix );
 		}
 
 		$conn->setOption( Redis::OPT_READ_TIMEOUT, $this->readTimeout );
