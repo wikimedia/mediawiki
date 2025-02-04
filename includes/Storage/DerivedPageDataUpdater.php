@@ -1725,11 +1725,14 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		// TODO: move onArticleCreate and onArticleEdit into a PageEventEmitter service
 		if ( $event->isNew() ) {
 			// Deferred update that adds a mw-recreated tag to edits that create new pages
-			// and which have an associated deletion log entry for the specific namespace/title combination.
-			$revision = $this->revision;
-			DeferredUpdates::addCallableUpdate( function () use ( $revision, $wikiPage ) {
-				$this->maybeAddRecreateChangeTag( $wikiPage, $revision->getId() );
-			} );
+			// which have an associated deletion log entry for the specific namespace/title combination
+			// and which are not undeletes
+			if ( !( $event->hasCause( PageUpdatedEvent::CAUSE_UNDELETE ) ) ) {
+				$revision = $this->revision;
+				DeferredUpdates::addCallableUpdate( function () use ( $revision, $wikiPage ) {
+					$this->maybeAddRecreateChangeTag( $wikiPage, $revision->getId() );
+				} );
+			}
 			WikiPage::onArticleCreate( $title, $this->isRedirect() );
 		} elseif ( $event->isContentChange() ) { // T52785
 			WikiPage::onArticleEdit(
