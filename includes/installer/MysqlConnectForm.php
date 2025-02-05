@@ -41,10 +41,10 @@ class MysqlConnectForm extends DatabaseConnectForm {
 
 		// Validate them.
 		$status = Status::newGood();
-		if ( !strlen( $newValues['wgDBserver'] ) ) {
+		if ( ( $newValues['wgDBserver'] ?? '' ) === '' ) {
 			$status->fatal( 'config-missing-db-host' );
 		}
-		if ( !strlen( $newValues['wgDBname'] ) ) {
+		if ( ( $newValues['wgDBname'] ?? '' ) === '' ) {
 			$status->fatal( 'config-missing-db-name' );
 		} elseif ( !preg_match( '/^[a-z0-9+_-]+$/i', $newValues['wgDBname'] ) ) {
 			$status->fatal( 'config-invalid-db-name', $newValues['wgDBname'] );

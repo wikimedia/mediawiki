@@ -111,7 +111,7 @@ class WikitextContent extends TextContent {
 					->plaintextParams( $sectionTitle )->inContentLanguage()->text() . "\n\n" : '';
 			$hookRunner = ( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) );
 			if ( $hookRunner->onPlaceNewSection( $this, $oldtext, $subject, $text ) ) {
-				$text = strlen( trim( $oldtext ) ) > 0
+				$text = trim( $oldtext ) !== ''
 					? "{$oldtext}\n\n{$subject}{$text}"
 					: "{$subject}{$text}";
 			}

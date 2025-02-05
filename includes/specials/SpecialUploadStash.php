@@ -273,7 +273,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		// If a thumb proxy is set up for the repo, we favor that, as that will
 		// keep the request internal
 		$thumbProxyUrl = $file->getRepo()->getThumbProxyUrl();
-		if ( strlen( $thumbProxyUrl ) ) {
+		if ( $thumbProxyUrl !== null ) {
 			$scalerThumbUrl = $thumbProxyUrl . 'temp/' . $file->getUrlRel() .
 				'/' . rawurlencode( $scalerThumbName );
 			$secret = $file->getRepo()->getThumbProxySecret();
@@ -292,7 +292,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 
 			$scalerThumbUrl = $scalerBaseUrl . '/' . $file->getUrlRel() .
 				'/' . rawurlencode( $scalerThumbName );
-			$secret = false;
+			$secret = null;
 		}
 
 		// make an http request based on wgUploadStashScalerBaseUrl to lazy-create
@@ -304,7 +304,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		$req = $this->httpRequestFactory->create( $scalerThumbUrl, $httpOptions, __METHOD__ );
 
 		// Pass a secret key shared with the proxied service if any
-		if ( strlen( $secret ) ) {
+		if ( $secret !== null ) {
 			$req->setHeader( 'X-Swift-Secret', $secret );
 		}
 

@@ -530,7 +530,7 @@ class BlockUser {
 
 		if (
 			// There should be some expiry
-			strlen( $this->rawExpiry ) === 0 ||
+			$this->rawExpiry === '' ||
 			// can't be a larger string as 50 (it should be a time format in any way)
 			strlen( $this->rawExpiry ) > 50 ||
 			// the time can't be parsed

@@ -712,7 +712,7 @@ END;
 			$this->output( "Changing column type of '$table.$field' from '{$fi->type()}' to '$newtype'\n" );
 			$table = $this->db->addIdentifierQuotes( $table );
 			$sql = "ALTER TABLE $table ALTER $field TYPE $newtype";
-			if ( strlen( $default ) ) {
+			if ( $default !== '' ) {
 				$res = [];
 				if ( preg_match( '/DEFAULT (.+)/', $default, $res ) ) {
 					$sqldef = "ALTER TABLE $table ALTER $field SET DEFAULT $res[1]";

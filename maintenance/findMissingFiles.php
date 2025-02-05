@@ -95,7 +95,7 @@ class FindMissingFiles extends Maintenance {
 
 				$checkPaths = [];
 				foreach ( $ores as $row ) {
-					if ( !strlen( $row->oi_archive_name ) ) {
+					if ( $row->oi_archive_name === '' ) {
 						// broken row
 						continue;
 					}

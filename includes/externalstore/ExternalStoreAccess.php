@@ -140,7 +140,7 @@ class ExternalStoreAccess implements LoggerAwareInterface {
 					$msg = 'read only';
 				} else {
 					$url = $store->store( $location, $data );
-					if ( strlen( $url ) ) {
+					if ( $url !== false && $url !== '' ) {
 						// A store accepted the write; done!
 						return $url;
 					}

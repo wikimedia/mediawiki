@@ -71,11 +71,11 @@ class ImportableUploadRevisionImporter implements UploadRevisionImporter {
 		# Get the file source or download if necessary
 		$source = $importableRevision->getFileSrc();
 		$autoDeleteSource = $importableRevision->isTempSrc();
-		if ( !strlen( $source ) ) {
+		if ( $source === '' ) {
 			$source = $this->downloadSource( $importableRevision );
 			$autoDeleteSource = true;
 		}
-		if ( !strlen( $source ) ) {
+		if ( $source === '' ) {
 			$this->logger->debug( __METHOD__ . ": Could not fetch remote file." );
 			return $this->newNotOkStatus();
 		}

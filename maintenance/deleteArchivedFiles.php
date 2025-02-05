@@ -64,7 +64,7 @@ class DeleteArchivedFiles extends Maintenance {
 		$count = 0;
 		foreach ( $res as $row ) {
 			$key = $row->fa_storage_key;
-			if ( !strlen( $key ) ) {
+			if ( $key === '' ) {
 				$this->output( "Entry with ID {$row->fa_id} has empty key, skipping\n" );
 				continue;
 			}

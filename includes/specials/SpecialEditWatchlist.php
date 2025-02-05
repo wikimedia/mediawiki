@@ -282,7 +282,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 		foreach ( $list as $text ) {
 			$text = trim( $text );
-			if ( strlen( $text ) > 0 ) {
+			if ( $text !== '' ) {
 				$title = Title::newFromText( $text );
 				if ( $title instanceof Title && $this->watchlistManager->isWatchable( $title ) ) {
 					$titles[] = $title;

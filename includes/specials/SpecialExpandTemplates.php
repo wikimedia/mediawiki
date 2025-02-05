@@ -79,7 +79,7 @@ class SpecialExpandTemplates extends SpecialPage {
 		$request = $this->getRequest();
 		$input = $request->getText( 'wpInput' );
 
-		if ( strlen( $input ) ) {
+		if ( $input !== '' ) {
 			$removeComments = $request->getBool( 'wpRemoveComments', false );
 			$removeNowiki = $request->getBool( 'wpRemoveNowiki', false );
 			$generateXML = $request->getBool( 'wpGenerateXml' );
@@ -137,7 +137,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			// TODO T371008 consider if using the Content framework makes sense instead of creating the pipeline
 			$rawhtml = MediaWikiServices::getInstance()->getDefaultOutputPipeline()
 				->run( $pout, $options, [ 'enableSectionEditLinks' => false ] )->getContentHolderText();
-			if ( $generateRawHtml && strlen( $rawhtml ) > 0 ) {
+			if ( $generateRawHtml && $rawhtml !== '' ) {
 				// @phan-suppress-next-line SecurityCheck-DoubleEscaped Wanted here to display the html
 				$out->addHTML( $this->makeOutput( $rawhtml, 'expand_templates_html_output' ) );
 			}
@@ -158,7 +158,7 @@ class SpecialExpandTemplates extends SpecialPage {
 	 */
 	public function onSubmitInput( array $values ) {
 		$status = Status::newGood();
-		if ( !strlen( $values['Input'] ) ) {
+		if ( $values['Input'] === '' ) {
 			$status = Status::newFatal( 'expand_templates_input_missing' );
 		}
 		return $status;

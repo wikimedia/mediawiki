@@ -55,7 +55,7 @@ class EraseArchivedFile extends Maintenance {
 
 		if ( $filekey === '*' ) {
 			// all versions by name
-			if ( !strlen( $filename ) ) {
+			if ( $filename === null || $filename === '' ) {
 				$this->fatalError( "Missing --filename parameter." );
 			}
 			$afile = false;
