@@ -36,6 +36,7 @@
 					action="progressive"
 					weight="quiet"
 					@click="$emit( 'edit-block', item )"
+					v-bind:id="'edit-button-' + item.id"
 				>
 					{{ $i18n( 'block-item-edit' ).text() }}
 				</cdx-button>
@@ -390,6 +391,10 @@ module.exports = exports = defineComponent( {
 
 	table ul.mw-block-parameters {
 		margin-left: 1.7em;
+	}
+
+	tr.cdx-selected-block-row {
+		background: @background-color-progressive-subtle--hover;
 	}
 }
 
