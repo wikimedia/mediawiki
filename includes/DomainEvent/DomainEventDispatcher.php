@@ -13,9 +13,9 @@ interface DomainEventDispatcher {
 
 	/**
 	 * Dispatch the given event to any listeners that have been registered for
-	 * the given event type. The event will be dispatched to listeners
-	 * later, in a deferred update, after (and if) the current transaction
-	 * in $dbw has been committed successfully.
+	 * the given event type. The event will be dispatched to registered listeners
+	 * later, after (and if) the current transaction in $dbw has been committed
+	 * successfully. No listeners will be invoked within the current transaction.
 	 *
 	 * Implementations should aim to provide at-least-once delivery semantics,
 	 * but guaranteed delivery is not a hard requirement of this interface.
