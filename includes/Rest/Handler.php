@@ -484,6 +484,7 @@ abstract class Handler {
 		if ( $status ) {
 			$response = $this->getResponseFactory()->create();
 			$response->setStatus( $status );
+			$this->applyConditionalResponseHeaders( $response );
 			return $response;
 		}
 
