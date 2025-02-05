@@ -478,6 +478,9 @@ class OutputPage extends ContextSource {
 	 */
 	private static $cacheVaryCookies = null;
 
+	/** @var int|null */
+	private $debugMode = null;
+
 	/**
 	 * Constructor for OutputPage. This should not be called directly.
 	 * Instead, a new RequestContext should be created, and it will implicitly create
@@ -3644,6 +3647,27 @@ class OutputPage extends ContextSource {
 		) );
 	}
 
+	/**
+	 * Determine whether debug mode is on.
+	 *
+	 * Order of priority is:
+	 * - 1) Request parameter,
+	 * - 2) Cookie,
+	 * - 3) Site configuration.
+	 *
+	 * @return int
+	 */
+	private function inDebugMode() {
+		if ( $this->debugMode === null ) {
+			$resourceLoaderDebug = $this->getConfig()->get(
+				MainConfigNames::ResourceLoaderDebug );
+			$str = $this->getRequest()->getRawVal( 'debug' ) ??
+				$this->getRequest()->getCookie( 'resourceLoaderDebug', '', $resourceLoaderDebug ? 'true' : '' );
+			$this->debugMode = RL\Context::debugFromString( $str );
+		}
+		return $this->debugMode;
+	}
+
 	private function getRlClientContext() {
 		if ( !$this->rlClientContext ) {
 			$query = ResourceLoader::makeLoaderQuery(
@@ -3652,7 +3676,7 @@ class OutputPage extends ContextSource {
 				$this->getSkin()->getSkinName(),
 				$this->getUser()->isRegistered() ? $this->getUser()->getName() : null,
 				null, // version; not relevant
-				ResourceLoader::inDebugMode(),
+				$this->inDebugMode(),
 				null, // only; not relevant
 				$this->isPrintable()
 			);
