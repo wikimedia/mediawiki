@@ -505,7 +505,7 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 	private function listItem( stdClass $row, PageIdentity $nt, LinkTarget $target, bool $notClose = false ) {
 		$legacyTitle = $this->titleFactory->newFromPageIdentity( $nt );
 
-		if ( $row->rd_from ) {
+		if ( $row->rd_from || $row->page_is_redirect ) {
 			$query = [ 'redirect' => 'no' ];
 		} else {
 			$query = [];
