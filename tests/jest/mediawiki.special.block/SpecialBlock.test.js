@@ -62,7 +62,7 @@ describe( 'SpecialBlock', () => {
 		expect( spy ).toHaveBeenCalledWith( {
 			action: 'block',
 			user: 'ExampleUser',
-			expiry: '2999-01-23T12:34',
+			expiry: '2999-01-23T12:34Z',
 			reason: 'This is a test',
 			nocreate: 1,
 			allowusertalk: 1,
