@@ -104,5 +104,15 @@
 	"rest-param-desc-media-file-title": "Titulo del pagina wiki",
 	"rest-param-desc-media-links-title": "Titulo del pagina wiki",
 	"rest-param-desc-module-spec-module": "Modulo de specification de modulo",
-	"rest-param-desc-module-spec-version": "Version de specification de modulo"
+	"rest-param-desc-module-spec-version": "Version de specification de modulo",
+	"rest-param-desc-opensearch-ctype": "Ctype del description OpenSearch",
+	"rest-param-desc-pagehistory-count-title": "Titulo del pagina wiki",
+	"rest-param-desc-pagehistory-count-type": "Typo de numero (anonyme, robot, redactores, modificationes, minor, revertite)",
+	"rest-param-desc-pagehistory-count-from": "Limita le numero a inter duo versiones, specificate per ID de version. Debe esser usate con le parametro “to”.",
+	"rest-param-desc-pagehistory-count-to": "Limita le numero a inter duo versiones, specificate per ID de version. Debe esser usate con le parametro “from”.",
+	"rest-param-desc-pagehistory-title": "Titulo del pagina wiki",
+	"rest-param-desc-pagehistory-older-than": "Accepta un ID de version. Restitue le proxime 20 versiones plus ancian que le version con le ID date.",
+	"rest-param-desc-pagehistory-newer-than": "Accepta un ID de version. Restitue le proxime 20 versiones plus nove que le version con le ID date.",
+	"rest-param-desc-pagehistory-filter": "Usa un filtro pro restituer solmente le versiones etiquettate como (revertite, anonyme, robot, minor). Accepta un filtro per requesta.",
+	"rest-param-desc-search-q": "Terminos de recerca"
 }

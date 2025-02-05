@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"ArticleEditor404"
+			"ArticleEditor404",
+			"MysticVoyager"
 		]
 	},
 	"sunday": "sanattaili",
@@ -61,7 +62,7 @@
 	"newpage": "pigivuk mappitaq",
 	"specialpage": "piji mappitaq",
 	"talk": "uqalimajuq",
-	"toolbox": "sanarqutiqauti",
+	"toolbox": "sanarrutit",
 	"otherlanguages": "killumut uiki",
 	"redirectedfrom": "(qaningani kamagijaq aasit nakit $1)",
 	"redirectpagesub": "aningani kamagijaq aasit nakit mappitaq",
@@ -88,8 +89,8 @@
 	"page-rss-feed": "\"$1\" rss mianirivaa",
 	"page-atom-feed": "\"$1\" atum mianirivaa",
 	"nstab-main": "mappitaq",
-	"nstab-user": "inuk mappitaq",
-	"nstab-special": "piji",
+	"nstab-user": "{{GENDER:$1|inuk mappitaq}}",
+	"nstab-special": "piji mappitaq",
 	"nstab-project": "piliriaksait pivalliajjutiksanut miqitaq",
 	"nstab-mediawiki": "kiggapaa",
 	"nstab-template": "mianirivaa-qijuqut",
@@ -133,6 +134,12 @@
 	"editinguser": "suqusiqpaa qatannguti '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 	"action-protect": "sapummivaa",
 	"recentchanges": "pigivuq asianngutuq",
+	"rcshowhideminor-hide": "amirainga",
+	"rcshowhidebots-hide": "amirainga",
+	"rcshowhideliu-hide": "amirainga",
+	"rcshowhideanons-hide": "amirainga",
+	"rcshowhidemine-hide": "amirainga",
+	"hide": "amirainga",
 	"recentchangeslinked": "asiaNngutuq mitsaasijuq",
 	"recentchangeslinked-feed": "asiaNngutuq mitsaasijuq",
 	"recentchangeslinked-toolbox": "asiaNngutuq mitsaasijuq",

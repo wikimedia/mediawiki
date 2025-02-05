@@ -2226,7 +2226,7 @@
 	"unwatchthispage": "İzləmə",
 	"notanarticle": "Səhifə boşdur",
 	"notvisiblerev": "Başqa istifadıçinin son dəyişikliyi silinib",
-	"watchlist-details": "Sizin izləmə siyahınızda {{PLURAL:$1|$1 səhifə|$1 səhifə}} var (üstəgəl müzakirə səhifələri).",
+	"watchlist-details": "Sizin izləmə siyahınızda {{PLURAL:$1|$1 səhifə}} var (müzakirə səhifələri ilə birlikdə).",
 	"watchlist-expiry-days-left": "{{PLURAL:$1|$1 gün}} qalıb",
 	"watchlist-expiring-days-full-text": "İzləmə siyahınızda {{PLURAL:$1|1 gün|$1 gün}} qalıb",
 	"watchlist-expiry-hours-left": "Bir neçə saat qalıb",

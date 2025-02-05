@@ -68,6 +68,7 @@
 	"rest-unsupported-target-format": "Das angeforderte Zielformat wird nicht unterstützt.",
 	"rest-parsoid-resource-exceeded": "Ressourcenlimit überschritten",
 	"rest-parsoid-error": "Parsoid-Fehler.",
+	"rest-parsoid-bad-render-id": "Fehlerhafte Parsoid-Render-ID: $1",
 	"rest-bad-stash-key": "Ungültiger Stash-Schlüssel.",
 	"rest-html-key-expected": "Schlüssel <var>html</var> im Textkörper erwartet",
 	"rest-invalid-transform": "Ungültige Transformation: $1 in $2",

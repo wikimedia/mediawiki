@@ -2039,7 +2039,7 @@
 	"historywarning": "<strong>Averto:</strong> La pagino quan vu efaceskas havas historio kun $1 {{PLURAL:$1|revizo|revizi}}:",
 	"historyaction-submit": "Montrez revizuri",
 	"confirmdeletetext": "Vu selektis efacar ica pagino komplete, inkluzite omna modifiki en ol e la kronologio di la modifiki.\n\nVoluntez konfirmar ke vu fakte deziras facar to, ke vu komprenas omna konsequi dil efaco, e ke vu efacos ol segun [[{{MediaWiki:Policy-url}}|la normi pri l'efaco di artikli]].",
-	"actioncomplete": "Ago kompletigita",
+	"actioncomplete": "Agado kompletigita",
 	"actionfailed": "Agado faliis",
 	"deletedtext": "\"$1\" efacesis.\nVidez $2 por obtenar registro pri recenta efaci.",
 	"deleted-page-and-talkpage": "\" $1 \" e \" $2 \" efacesis.\nVidez $3 por obtenar registro pri recenta efaci.",
