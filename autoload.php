@@ -3731,6 +3731,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Stats\\StatsFactory' => __DIR__ . '/includes/libs/Stats/StatsFactory.php',
 	'Wikimedia\\Stats\\StatsUtils' => __DIR__ . '/includes/libs/Stats/StatsUtils.php',
 	'Wikimedia\\Stats\\StatsdAwareInterface' => __DIR__ . '/includes/libs/Stats/StatsdAwareInterface.php',
+	'Wikimedia\\Stats\\UnitTestingHelper' => __DIR__ . '/includes/libs/Stats/UnitTestingHelper.php',
 	'Wikimedia\\Telemetry\\Clock' => __DIR__ . '/includes/libs/telemetry/Clock.php',
 	'Wikimedia\\Telemetry\\CompositePropagator' => __DIR__ . '/includes/libs/telemetry/CompositePropagator.php',
 	'Wikimedia\\Telemetry\\ContextPropagatorInterface' => __DIR__ . '/includes/libs/telemetry/ContextPropagatorInterface.php',

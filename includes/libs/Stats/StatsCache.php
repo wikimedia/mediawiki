@@ -92,12 +92,8 @@ class StatsCache {
 	 *
 	 * Takes the provided name and constructs a more specific name by combining
 	 * component and name.
-	 *
-	 * @param string $component
-	 * @param string $name
-	 * @return string
 	 */
-	private static function cacheKey( string $component, string $name ): string {
+	public static function cacheKey( string $component, string $name ): string {
 		// mitigate collision of empty-component metric with a component metric
 		if ( $component !== '' ) {
 			return implode( self::DELIMITER, [ $component, $name ] );
