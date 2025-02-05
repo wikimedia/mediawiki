@@ -231,6 +231,7 @@ $specialPageAliases = [
 	'Mypage'                     => [ '我的用户页' ],
 	'Mytalk'                     => [ '我的讨论页', '我的对话页' ],
 	'Myuploads'                  => [ '我上传的文件', '我的文件' ],
+	'NamespaceInfo'              => [ '命名空间信息' ],
 	'Newimages'                  => [ '新建文件', '新建图像' ],
 	'Newpages'                   => [ '新建页面' ],
 	'NewSection'                 => [ '新章节' ],
