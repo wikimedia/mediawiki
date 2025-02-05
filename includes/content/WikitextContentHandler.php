@@ -406,7 +406,10 @@ class WikitextContentHandler extends TextContentHandler {
 			if ( $cpoParams->getGenerateHtml() ) {
 				$parserOutput->setRedirectHeader(
 					$this->linkRenderer->makeRedirectHeader(
-						$title->getPageLanguage(), $redir, false
+						$title->getPageLanguage(), $redir, false,
+						// Add link tag only if we're not using parsoid,
+						// since Parsoid adds one itself.
+						!$parserOptions->getUseParsoid()
 					)
 				);
 				$parserOutput->addModuleStyles( [ 'mediawiki.action.view.redirectPage' ] );
