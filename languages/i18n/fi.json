@@ -2645,7 +2645,7 @@
 	"year": "Vuosi",
 	"date": "Alkaen päivämäärästä (ja sitä aiemmat):",
 	"sp-contributions-blocklog": "estoloki",
-	"sp-contributions-suppresslog": "häivytetyt {{GENDER:$1|käyttäjän}} muokkaukset",
+	"sp-contributions-suppresslog": "{{GENDER:$1|käyttäjän}} häivytetyt muokkaukset",
 	"sp-contributions-deleted": "{{GENDER:$1|käyttäjän}} poistetut muokkaukset",
 	"sp-contributions-uploads": "tallennukset",
 	"sp-contributions-logs": "lokit",
