@@ -323,7 +323,11 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 
 	public function provideGetters() {
 		$getServiceCases = self::provideGetService();
-		$getterCases = [];
+		$getterCases = [
+			// These are "mis-named" getters that don't follow the standard pattern, so are listed explicitly
+			'getWikiRevisionOldRevisionImporter' => [ 'getWikiRevisionOldRevisionImporter', OldRevisionImporter::class ],
+			'newSearchEngine' => [ 'newSearchEngine', SearchEngine::class ]
+		];
 
 		// All getters should be named just like the service, with "get" added.
 		foreach ( $getServiceCases as $name => $case ) {
