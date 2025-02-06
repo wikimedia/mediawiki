@@ -2688,7 +2688,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	public static function getCacheSetOptions( ?IReadableDatabase ...$dbs ) {
 		$res = [ 'lag' => 0, 'since' => INF, 'pending' => false ];
 
-		foreach ( func_get_args() as $db ) {
+		foreach ( $dbs as $db ) {
 			if ( $db instanceof IReadableDatabase ) {
 				$status = $db->getSessionLagStatus();
 
