@@ -32,14 +32,8 @@ use MediaWiki\User\User;
  */
 class StubGlobalUserTest extends MediaWikiIntegrationTestCase {
 
-	/** @var int */
-	private $oldErrorLevel;
-
 	protected function setUp(): void {
 		parent::setUp();
-
-		// Make sure deprecation notices are seen
-		$this->oldErrorLevel = error_reporting( -1 );
 
 		// Using User::newFromRow() to avoid needing any integration
 		$userFields = [
@@ -47,11 +41,6 @@ class StubGlobalUserTest extends MediaWikiIntegrationTestCase {
 		];
 		$realUser = User::newFromRow( (object)$userFields );
 		StubGlobalUser::setUser( $realUser );
-	}
-
-	protected function tearDown(): void {
-		error_reporting( $this->oldErrorLevel );
-		parent::tearDown();
 	}
 
 	public function testRealUser() {

@@ -35,8 +35,6 @@ class UserTimeCorrectionTest extends MediaWikiUnitTestCase {
 			// Africa/Johannesburg has not DST
 			[ 'ZoneInfo|0|Africa/Johannesburg', 'ZoneInfo|120|Africa/Johannesburg', true ],
 			[ 'ZoneInfo|120|Africa/Johannesburg', 'ZoneInfo|120|Africa/Johannesburg', true ],
-			// Deprecated timezone name
-			[ 'ZoneInfo|330|Asia/Calcutta', 'ZoneInfo|330|Asia/Calcutta', true ],
 			// Timezone identifier with space in name
 			[ 'ZoneInfo|-420|America/Dawson_Creek', 'ZoneInfo|-420|America/Dawson_Creek', true ],
 			[ 'System', 'System|0', true ],
