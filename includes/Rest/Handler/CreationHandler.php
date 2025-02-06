@@ -3,6 +3,7 @@
 namespace MediaWiki\Rest\Handler;
 
 use MediaWiki\Request\WebResponse;
+use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use Wikimedia\Message\MessageValue;
@@ -32,25 +33,25 @@ class CreationHandler extends EditHandler {
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
-				self::PARAM_DESCRIPTION => 'The intended content of the page',
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-source' )
 			],
 			'title' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
-				self::PARAM_DESCRIPTION => 'The title of the page to create',
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-create-title' )
 			],
 			'comment' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
-				self::PARAM_DESCRIPTION => 'A comment describing the reason for creating the page',
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-comment' )
 			],
 			'content_model' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
-				self::PARAM_DESCRIPTION => 'The content model to use to interpret the source',
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-contentmodel' )
 			],
 		]
 		+ $this->getTokenParamDefinition();

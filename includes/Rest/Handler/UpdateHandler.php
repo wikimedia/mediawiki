@@ -61,17 +61,19 @@ class UpdateHandler extends EditHandler {
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
-				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-update-source' )
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-source' )
 			],
 			'comment' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-comment' )
 			],
 			'content_model' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-contentmodel' )
 			],
 			'latest' => [
 				self::PARAM_SOURCE => 'body',
@@ -81,6 +83,7 @@ class UpdateHandler extends EditHandler {
 					[ 'id' => 'integer' ],
 					[ 'timestamp' => 'string' ], // from GET response, will be ignored
 				),
+				Handler::PARAM_DESCRIPTION => new MessageValue( 'rest-param-desc-update-latest' )
 			],
 		] + $this->getTokenParamDefinition();
 	}
