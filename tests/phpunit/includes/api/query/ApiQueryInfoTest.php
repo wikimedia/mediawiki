@@ -256,6 +256,53 @@ class ApiQueryInfoTest extends ApiTestCase {
 		$this->assertSame( $block->getId(), $info['actions']['edit'][0]['data']['blockinfo']['blockid'] );
 	}
 
+	public function testExecuteEditActionsFullBlockTempAccount() {
+		$this->setGroupPermissions( '*', 'createaccount', true );
+		$this->enableAutoCreateTempUser();
+
+		$blockIp = '127.0.0.1';
+		RequestContext::getMain()->getRequest()->setIP( $blockIp );
+
+		$sysop = $this->getTestSysop()->getUser();
+
+		$block = new DatabaseBlock( [
+			'address' => $blockIp,
+			'by' => $sysop,
+			'expiry' => 'infinity',
+			'sitewide' => 1,
+		] );
+
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $block );
+
+		$page = $this->getExistingTestPage( 'Pluto' );
+		$title = $page->getTitle();
+
+		[ $data ] = $this->doApiRequest( [
+				'action' => 'query',
+				'prop' => 'info',
+				'titles' => $title->getText(),
+				'intestactions' => 'edit',
+				'intestactionsdetail' => 'full',
+		], null, false, new User() );
+
+		$this->assertArrayHasKey( 'query', $data );
+		$this->assertArrayHasKey( 'pages', $data['query'] );
+		$this->assertArrayHasKey( $page->getId(), $data['query']['pages'] );
+
+		$info = $data['query']['pages'][$page->getId()];
+		$this->assertArrayHasKey( 'actions', $info );
+		$this->assertArrayHasKey( 'edit', $info['actions'] );
+		$this->assertIsArray( $info['actions']['edit'] );
+		$this->assertArrayHasKey( 0, $info['actions']['edit'] );
+		$this->assertArrayHasKey( 'code', $info['actions']['edit'][0] );
+		$this->assertSame( 'blocked', $info['actions']['edit'][0]['code'] );
+		$this->assertArrayHasKey( 'data', $info['actions']['edit'][0] );
+		$this->assertArrayHasKey( 'blockinfo', $info['actions']['edit'][0]['data'] );
+		$this->assertArrayHasKey( 'blockid', $info['actions']['edit'][0]['data']['blockinfo'] );
+		$this->assertSame( $block->getId(), $info['actions']['edit'][0]['data']['blockinfo']['blockid'] );
+	}
+
 	public function testAssociatedPage() {
 		$page = $this->getExistingTestPage( 'Demo' );
 		$title = $page->getTitle();

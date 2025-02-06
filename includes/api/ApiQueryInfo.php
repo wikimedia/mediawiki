@@ -22,6 +22,7 @@
 
 namespace MediaWiki\Api;
 
+use MediaWiki\Block\Block;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\EditPage\IntroMessageBuilder;
 use MediaWiki\EditPage\PreloadedContentBuilder;
@@ -596,7 +597,18 @@ class ApiQueryInfo extends ApiQueryBase {
 					} else {
 						$authority->definitelyCan( $action, $page, $status );
 					}
+
+					if ( $shouldAutoCreate ) {
+						// Additionally check for blocks on the session user, since checking the
+						// placeholder temp user won't find blocks against the IP address or other
+						// parts of the request: T357063
+						$block = $this->getAuthority()->getBlock();
+						if ( $block instanceof Block ) {
+							$status->setBlock( $block );
+						}
+					}
 					$this->addBlockInfoToStatus( $status );
+
 					$pageInfo['actions'][$action] = $errorFormatter->arrayFromStatus( $status );
 				}
 
