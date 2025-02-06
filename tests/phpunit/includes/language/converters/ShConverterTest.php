@@ -66,6 +66,10 @@ class ShConverterTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( 'конјугација',
 			$this->convertToCyrillic( 'konjugacija' )
 		);
+		// Exemption for the words containing "wiki"
+		$this->assertEquals( 'Википедија',
+			$this->convertToCyrillic( 'Wikipedija' )
+		);
 		// Manual conversion rules work
 		$this->assertEquals( 'Cyrillic',
 			$this->convertToCyrillic( '-{sh-latn:Latin; sh-cyrl:Cyrillic;}-' )

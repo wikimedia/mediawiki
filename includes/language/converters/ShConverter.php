@@ -33,6 +33,8 @@ class ShConverter extends LanguageConverter {
 		'konjun' => 'конјун', // T385768
 		'Konjug' => 'Конјуг', // T385768
 		'Konjun' => 'Конјун', // T385768
+		'wiki' => 'вики', // T385826
+		'Wiki' => 'Вики', // T385826
 
 		'dž' => 'џ',
 		'lj' => 'љ',
