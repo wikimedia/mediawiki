@@ -75,7 +75,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeField', 'l10n_cache', 'lc_value', 'TEXT', '' ],
 			[ 'changeField', 'l10n_cache', 'lc_key', 'VARCHAR(255)', '' ],
 			[ 'addIndex', 'l10n_cache', 'l10n_cache_pkey', 'patch-l10n_cache-pk.sql' ],
-			[ 'addIndex', 'module_deps', 'module_deps_pkey', 'patch-module_deps-pk.sql' ],
 			[ 'changeField', 'redirect', 'rd_namespace', 'INT', 'rd_namespace::INT DEFAULT 0' ],
 			[ 'setDefault', 'redirect', 'rd_title', '' ],
 			[ 'setDefault', 'redirect', 'rd_from', 0 ],
@@ -447,6 +446,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addTable', 'file', 'patch-file.sql' ],
 			[ 'addField', 'categorylinks', 'cl_target_id', 'patch-categorylinks-target_id.sql' ],
 			[ 'addTable', 'collation', 'patch-collation.sql' ],
+			[ 'dropTable', 'module_deps' ],
 		];
 	}
 
