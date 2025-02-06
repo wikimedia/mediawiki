@@ -1337,6 +1337,7 @@ class EditPage implements IEditObject {
 		$this->allowDoubleRedirects = $request->getBool( 'wpIgnoreDoubleRedirects' );
 
 		$changeTags = $request->getVal( 'wpChangeTags' );
+		$changeTagsAfterPreview = $request->getVal( 'wpChangeTagsAfterPreview' );
 		if ( $changeTags === null || $changeTags === '' ) {
 			$this->changeTags = [];
 		} else {
@@ -1346,6 +1347,14 @@ class EditPage implements IEditObject {
 					explode( ',', $changeTags )
 				)
 			);
+		}
+		if ( $changeTagsAfterPreview !== null && $changeTagsAfterPreview !== '' ) {
+			$this->changeTags = array_merge( $this->changeTags, array_filter(
+				array_map(
+					'trim',
+					explode( ',', $changeTagsAfterPreview )
+				)
+			) );
 		}
 	}
 
@@ -3186,6 +3195,9 @@ class EditPage implements IEditObject {
 
 		$out->addHTML( Html::hidden( 'format', $this->contentFormat ) );
 		$out->addHTML( Html::hidden( 'model', $this->contentModel ) );
+		if ( $this->changeTags ) {
+			$out->addHTML( Html::hidden( 'wpChangeTagsAfterPreview', implode( ',', $this->changeTags ) ) );
+		}
 
 		$out->enableOOUI();
 
