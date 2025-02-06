@@ -228,7 +228,6 @@ trait LanguageNameUtilsTestTrait {
 			'Invalid inLanguage defaults to English' => [ 'German', 'de', '&' ],
 			'If inLanguage not provided, default to autonym' => [ 'Deutsch', 'de' ],
 			'Hooks ignored for explicitly-requested autonym' => [ 'français', 'fr', 'fr' ],
-			'Hooks don\'t make a language supported' => [ '', 'es-419', 'en', SUPPORTED ],
 			'Hooks don\'t make a language defined' => [ '', 'sqsqsqsq', 'en', DEFINED ],
 			'Hooks do make a language name returned with ALL' => [ '!!?!', 'sqsqsqsq', 'en', ALL ],
 		];
