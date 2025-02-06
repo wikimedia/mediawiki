@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Api;
 
 use MediaWiki\Api\ApiUsageException;
-use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
@@ -200,7 +199,7 @@ class ApiMoveTest extends ApiTestCase {
 		$this->assertNull( $blockStore->newFromTarget( '127.0.0.1' ) );
 
 		$user = $this->getTestSysop()->getUser();
-		$block = new DatabaseBlock( [
+		$blockStore->insertBlockWithParams( [
 			'address' => $user->getName(),
 			'by' => $user,
 			'reason' => 'Capriciousness',
@@ -208,7 +207,6 @@ class ApiMoveTest extends ApiTestCase {
 			'expiry' => 'infinity',
 			'enableAutoblock' => true,
 		] );
-		$blockStore->insertBlock( $block );
 
 		$title = Title::makeTitle( NS_MAIN, 'TestMoveWhileBlocked' );
 		$title2 = Title::makeTitle( NS_MAIN, 'TestMoveWhileBlocked 2' );

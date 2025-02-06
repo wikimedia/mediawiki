@@ -67,6 +67,7 @@ class BlockManager {
 	private LoggerInterface $logger;
 	private HookRunner $hookRunner;
 	private DatabaseBlockStore $blockStore;
+	private BlockTargetFactory $blockTargetFactory;
 	private ProxyLookup $proxyLookup;
 
 	private BlockCache $userBlockCache;
@@ -79,6 +80,7 @@ class BlockManager {
 		LoggerInterface $logger,
 		HookContainer $hookContainer,
 		DatabaseBlockStore $blockStore,
+		BlockTargetFactory $blockTargetFactory,
 		ProxyLookup $proxyLookup
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -88,6 +90,7 @@ class BlockManager {
 		$this->logger = $logger;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->blockStore = $blockStore;
+		$this->blockTargetFactory = $blockTargetFactory;
 		$this->proxyLookup = $proxyLookup;
 
 		$this->userBlockCache = new BlockCache;
@@ -412,32 +415,38 @@ class BlockManager {
 		if ( !in_array( $ip, $this->options->get( MainConfigNames::ProxyWhitelist ) ) ) {
 			// Local list
 			if ( $this->isLocallyBlockedProxy( $ip ) ) {
-				$blocks[] = new SystemBlock( [
-					'reason' => new Message( 'proxyblockreason' ),
-					'address' => $ip,
-					'systemBlock' => 'proxy',
-				] );
+				$blocks[] = $this->newSystemBlock( $ip, 'proxy', 'proxyblockreason', false );
 			} elseif ( $applySoftBlocks && $this->isDnsBlacklisted( $ip ) ) {
-				$blocks[] = new SystemBlock( [
-					'reason' => new Message( 'sorbsreason' ),
-					'address' => $ip,
-					'anonOnly' => true,
-					'systemBlock' => 'dnsbl',
-				] );
+				$blocks[] = $this->newSystemBlock( $ip, 'dnsbl', 'sorbsreason', true );
 			}
 		}
 
 		// Soft blocking
 		if ( $applySoftBlocks && IPUtils::isInRanges( $ip, $this->options->get( MainConfigNames::SoftBlockRanges ) ) ) {
-			$blocks[] = new SystemBlock( [
-				'address' => $ip,
-				'reason' => new Message( 'softblockrangesreason', [ $ip ] ),
-				'anonOnly' => true,
-				'systemBlock' => 'wgSoftBlockRanges',
-			] );
+			$blocks[] = $this->newSystemBlock(
+				$ip, 'wgSoftBlockRanges', 'softblockrangesreason', true );
 		}
 
 		return $blocks;
+	}
+
+	/**
+	 * Create a new system block
+	 *
+	 * @param string $ip
+	 * @param string $type The system block type
+	 * @param string $reasonMsg The message key to use as the reason
+	 * @param bool $anonOnly Whether the block is a soft block
+	 * @return SystemBlock
+	 */
+	private function newSystemBlock( string $ip, string $type, string $reasonMsg, bool $anonOnly
+	): SystemBlock {
+		return new SystemBlock( [
+			'reason' => new Message( $reasonMsg ),
+			'target' => $this->blockTargetFactory->newAnonIpBlockTarget( $ip ),
+			'systemBlock' => $type,
+			'anonOnly' => $anonOnly
+		] );
 	}
 
 	/**

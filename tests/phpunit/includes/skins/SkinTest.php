@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Block\UserBlockTarget;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Interwiki\InterwikiLookup;
@@ -467,7 +468,7 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 
 		$this->installMockBlockManager(
 			[
-				'target' => $relevantUser,
+				'target' => new UserBlockTarget( $relevantUser ),
 				'hideName' => true,
 			]
 		);

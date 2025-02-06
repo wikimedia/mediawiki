@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\UserBlockTarget;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
@@ -225,7 +226,7 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 		$user->method( 'getWikiId' )->willReturn( WikiAwareEntity::LOCAL );
 
 		$block = new DatabaseBlock( [
-			'address' => $user,
+			'target' => new UserBlockTarget( $user ),
 			'by' => $this->getTestSysop()->getUser(),
 			'expiry' => 'infinity',
 			'sitewide' => false,

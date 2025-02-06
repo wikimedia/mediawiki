@@ -90,12 +90,21 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	 * @return DatabaseBlock
 	 */
 	private function getBlock( array $options = [] ): DatabaseBlock {
-		$target = $options['target'] ?? $this->getTestUser()->getUser();
+		$targetFactory = $this->getServiceContainer()->getBlockTargetFactory();
+		if ( isset( $options['target'] ) ) {
+			if ( $options['target'] instanceof User ) {
+				$target = $targetFactory->newFromUser( $options['target'] );
+			} else {
+				$target = $targetFactory->newFromString( $options['target'] );
+			}
+		} else {
+			$target = $targetFactory->newUserBlockTarget( $this->getTestUser()->getUser() );
+		}
 		$autoblock = $options['autoblock'] ?? false;
 
 		return new DatabaseBlock( [
 			'by' => $this->sysop,
-			'address' => $target,
+			'target' => $target,
 			'enableAutoblock' => $autoblock,
 		] );
 	}
@@ -142,18 +151,13 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::newFromRow
 	 */
 	public function testNewFromID_exists() {
-		$block = new DatabaseBlock( [
+		$store = $this->getStore();
+		$block = $store->insertBlockWithParams( [
 			'address' => '1.2.3.4',
 			'by' => $this->getTestSysop()->getUser(),
 		] );
-		$store = $this->getStore();
-		$inserted = $store->insertBlock( $block );
-		$this->assertTrue(
-			(bool)$inserted['id'],
-			'Block inserted correctly'
-		);
 
-		$blockId = $inserted['id'];
+		$blockId = $block->getId();
 		$newFromIdRes = $store->newFromID( $blockId );
 		$this->assertInstanceOf(
 			DatabaseBlock::class,
@@ -218,13 +222,12 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 
-		$block = new DatabaseBlock( [
-			'address' => $badActor,
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$block = $blockStore->insertBlockWithParams( [
+			'targetUser' => $badActor,
 			'by' => $sysop,
 			'expiry' => 'infinity',
 		] );
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-		$blockStore->insertBlock( $block );
 
 		$blockQuery = $blockStore->getQueryInfo();
 		$db = $this->getDb();
@@ -270,16 +273,11 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::newFromRow
 	 */
 	public function testNewListFromIPs() {
-		$block = new DatabaseBlock( [
+		$store = $this->getStore();
+		$inserted = $store->insertBlockWithParams( [
 			'address' => '1.2.3.4',
 			'by' => $this->getTestSysop()->getUser(),
 		] );
-		$store = $this->getStore();
-		$inserted = $store->insertBlock( $block );
-		$this->assertTrue(
-			(bool)$inserted['id'],
-			'Sanity check: block inserted correctly'
-		);
 
 		// Early return of empty array if no ips in the list
 		$list = $store->newListFromIPs( [], true );
@@ -313,7 +311,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 			'Sanity check: DatabaseBlock returned'
 		);
 		$this->assertSame(
-			$inserted['id'],
+			$inserted->getId(),
 			$list[0]->getId(),
 			'Block returned is the correct one'
 		);
@@ -534,15 +532,14 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 
-		$block = new DatabaseBlock( [
-			'address' => $badActor,
-			'by' => $sysop,
-			'expiry' => 'infinity',
-		] );
 		$page = $this->getExistingTestPage( 'Foo' );
 		$restriction = new PageRestriction( 0, $page->getId() );
-		$block->setRestrictions( [ $restriction ] );
-		$blockStore->insertBlock( $block );
+		$block = $blockStore->insertBlockWithParams( [
+			'targetUser' => $badActor,
+			'by' => $sysop,
+			'expiry' => 'infinity',
+			'restrictions' => [ $restriction ],
+		] );
 
 		// Insert the block again, which should result in a failure
 		$result = $blockStore->insertBlock( $block );
@@ -720,14 +717,13 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 
 		// Add a second block
 		$store = $this->getStore();
-		$block = new DatabaseBlock( [
+		$store->insertBlockWithParams( [
 			'address' => '1.1.1.1',
 			'expiry' => '2001-01-01T00:00:00',
 			'reason' => 'additional expired block',
 			'by' => $this->sysop,
+			'expectedTargetCount' => 1,
 		] );
-		$res = $store->insertBlock( $block, 1 );
-		$this->assertNotFalse( $res );
 
 		// Check that there are really two blocks on that user now
 		$this->newSelectQueryBuilder()
@@ -885,11 +881,12 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		// Set up temp user config
 		$this->enableAutoCreateTempUser();
 
+		$targetFactory = $this->getServiceContainer()->getBlockTargetFactory();
 		$store = $this->getStore();
 		$blocker = $this->getTestUser()->getUser();
 
 		$block = new DatabaseBlock();
-		$block->setTarget( '1.2.3.4' );
+		$block->setTarget( $targetFactory->newFromString( '1.2.3.4' ) );
 		$block->setBlocker( $blocker );
 		$block->setReason( 'test' );
 		$block->setExpiry( 'infinity' );
@@ -988,11 +985,12 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testNewFromTargetRangeBlocks( $targets, $ip, $expectedTarget ) {
 		$blockStore = $this->getStore();
+		$targetFactory = $this->getServiceContainer()->getBlockTargetFactory();
 		$blocker = $this->getTestSysop()->getUser();
 
 		foreach ( $targets as $target ) {
 			$block = new DatabaseBlock();
-			$block->setTarget( $target );
+			$block->setTarget( $targetFactory->newFromString( $target ) );
 			$block->setBlocker( $blocker );
 			$blockStore->insertBlock( $block );
 		}

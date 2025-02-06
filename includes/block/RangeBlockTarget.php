@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Block;
 
+use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use StatusValue;
@@ -25,7 +26,7 @@ class RangeBlockTarget extends BlockTarget implements BlockTargetWithIp {
 	 * @param array $limits The minimum prefix lengths indexed by protocol (IPv4 or IPv6)
 	 * @param string|false $wikiId The wiki ID
 	 */
-	public function __construct( string $cidr, array $limits, $wikiId ) {
+	public function __construct( string $cidr, array $limits, $wikiId = WikiAwareEntity::LOCAL ) {
 		parent::__construct( $wikiId );
 		$this->cidr = $cidr;
 		$this->limits = $limits;

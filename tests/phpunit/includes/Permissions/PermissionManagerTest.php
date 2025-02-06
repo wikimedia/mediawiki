@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Integration\Permissions;
 
 use Action;
 use MediaWiki\Api\ApiMessage;
+use MediaWiki\Block\AnonIpBlockTarget;
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
@@ -599,7 +600,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 */
 	public function testGetApplicableBlockForSpecialPage() {
 		$block = new DatabaseBlock( [
-			'address' => '127.0.8.1',
+			'target' => new AnonIpBlockTarget( '127.0.8.1' ),
 			'by' => new UserIdentityValue( 100, 'TestUser' ),
 			'auto' => true,
 		] );
@@ -633,7 +634,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 */
 	public function testGetApplicableBlockForImplicitRight() {
 		$block = new DatabaseBlock( [
-			'address' => '127.0.8.1',
+			'target' => new AnonIpBlockTarget( '127.0.8.1' ),
 			'by' => new UserIdentityValue( 100, 'TestUser' ),
 			'auto' => true,
 		] );
@@ -659,7 +660,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		return [
 			'Sitewide autoblock' => [
 				new DatabaseBlock( [
-					'address' => '127.0.8.1',
+					'target' => new AnonIpBlockTarget( '127.0.8.1' ),
 					'by' => new UserIdentityValue( 100, 'TestUser' ),
 					'auto' => true,
 				] ),
@@ -675,7 +676,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			],
 			'Sitewide block' => [
 				new DatabaseBlock( [
-					'address' => '127.0.8.1',
+					'target' => new AnonIpBlockTarget( '127.0.8.1' ),
 					'by' => new UserIdentityValue( 100, 'TestUser' ),
 				] ),
 				false,
@@ -690,7 +691,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			],
 			'Partial block without restriction against this page' => [
 				new DatabaseBlock( [
-					'address' => '127.0.8.1',
+					'target' => new AnonIpBlockTarget( '127.0.8.1' ),
 					'by' => new UserIdentityValue( 100, 'TestUser' ),
 					'sitewide' => false,
 				] ),
@@ -706,7 +707,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			],
 			'Partial block with restriction against this page' => [
 				new DatabaseBlock( [
-					'address' => '127.0.8.1',
+					'target' => new AnonIpBlockTarget( '127.0.8.1' ),
 					'by' => new UserIdentityValue( 100, 'TestUser' ),
 					'sitewide' => false,
 				] ),
@@ -722,7 +723,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			],
 			'Partial block with action restriction against uploading' => [
 				( new DatabaseBlock( [
-					'address' => '127.0.8.1',
+					'target' => new AnonIpBlockTarget( '127.0.8.1' ),
 					'by' => UserIdentityValue::newRegistered( 100, 'Test' ),
 					'sitewide' => false,
 				] ) )->setRestrictions( [
@@ -740,7 +741,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			],
 			'System block' => [
 				new SystemBlock( [
-					'address' => '127.0.8.1',
+					'target' => new AnonIpBlockTarget( '127.0.8.1' ),
 					'by' => 100,
 					'systemBlock' => 'test',
 				] ),
@@ -777,7 +778,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			MainConfigNames::EnablePartialActionBlocks => true,
 		] );
 		$blockOptions = [
-			'address' => '127.0.8.1',
+			'target' => new AnonIpBlockTarget( '127.0.8.1' ),
 			'by' => UserIdentityValue::newRegistered( 100, 'Test' ),
 			'sitewide' => false,
 		];
@@ -854,7 +855,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			MainConfigNames::EmailConfirmToEdit, false
 		);
 		$block = new $blockType( array_merge( [
-			'address' => '127.0.8.1',
+			'target' => new AnonIpBlockTarget( '127.0.8.1' ),
 			'by' => $this->user,
 			'reason' => 'Test reason',
 			'timestamp' => '20000101000000',
@@ -986,7 +987,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		] );
 
 		$user = $this->createUserWithBlock( new DatabaseBlock( [
-			'address' => '127.0.8.1',
+			'target' => new AnonIpBlockTarget( '127.0.8.1' ),
 			'by' => $this->user,
 		] ) );
 		$this->assertCount( 1, $this->getServiceContainer()->getPermissionManager()
@@ -1004,16 +1005,15 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 		// Block the user
 		$blocker = $this->getTestSysop()->getUser();
-		$block = new DatabaseBlock( [
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$block = $blockStore->insertBlockWithParams( [
+			'targetUser' => $user,
 			'hideName' => true,
 			'allowUsertalk' => false,
 			'reason' => 'Because',
+			'by' => $blocker,
 		] );
-		$block->setTarget( $user );
-		$block->setBlocker( $blocker );
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-		$res = $blockStore->insertBlock( $block );
-		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
+		$this->assertNotNull( $block, 'Failed to insert block' );
 
 		// Clear cache and confirm it loaded the block properly
 		$user->clearInstanceCache();
@@ -1065,17 +1065,17 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			$restrictions[] = new NamespaceRestriction( 0, $ns );
 		}
 
-		$block = new DatabaseBlock( [
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$block = $blockStore->newUnsaved( [
+			'targetUser' => $user,
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
 			'allowUsertalk' => $options['allowUsertalk'] ?? false,
 			'sitewide' => !$restrictions,
 		] );
-		$block->setTarget( $user );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
 		if ( $restrictions ) {
 			$block->setRestrictions( $restrictions );
 		}
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
 		$this->assertSame( $expect, $this->getServiceContainer()->getPermissionManager()
@@ -1514,7 +1514,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			->getMock();
 		$user->method( 'getBlock' )
 			->willReturn( new DatabaseBlock( [
-				'address' => '127.0.8.1',
+				'target' => new AnonIpBlockTarget( '127.0.8.1' ),
 				'by' => $this->user,
 			] ) );
 		$errors = $pm->getPermissionErrors( 'test', $user, $page );

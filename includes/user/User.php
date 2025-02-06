@@ -1522,7 +1522,8 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 		if ( $blocked && $block === null ) {
 			// back-compat: UserIsBlockedGlobally didn't have $block param first
 			$block = new SystemBlock( [
-				'address' => $ip,
+				'target' => MediaWikiServices::getInstance()->getBlockTargetFactory()
+					->newAnonIpBlockTarget( $ip ),
 				'systemBlock' => 'global-block'
 			] );
 		}

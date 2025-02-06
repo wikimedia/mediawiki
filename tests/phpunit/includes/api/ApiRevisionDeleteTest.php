@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Api;
 
-use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -130,17 +129,16 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 		$this->expectApiErrorCode( 'blocked' );
 		$performer = $this->mockAnonAuthorityWithPermissions( [ 'deleterevision' ] );
 
-		$block = new DatabaseBlock( [
-			'address' => $performer->getUser(),
-			'by' => static::getTestSysop()->getUser(),
-			'sitewide' => false,
-		] );
-
 		$title = Title::makeTitle( NS_HELP, 'ApiRevDel_test' );
-		$block->setRestrictions( [
-			new PageRestriction( 0, $title->getArticleID() )
-		] );
-		$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
+		$this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( [
+				'address' => $performer->getUser(),
+				'by' => static::getTestSysop()->getUser(),
+				'sitewide' => false,
+				'restrictions' => [
+					new PageRestriction( 0, $title->getArticleID() )
+				]
+			] );
 
 		$revid = array_shift( $this->revs );
 

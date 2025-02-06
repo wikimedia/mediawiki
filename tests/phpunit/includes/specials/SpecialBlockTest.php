@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Block\BlockRestrictionStore;
-use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
@@ -196,27 +195,24 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$pageMars = $this->getExistingTestPage( 'Mars' );
 		$actionId = 100;
 
-		$block = new DatabaseBlock( [
-			'address' => $badActor,
+		$block = $this->blockStore->insertBlockWithParams( [
+			'targetUser' => $badActor,
 			'by' => $sysop,
 			'expiry' => 'infinity',
 			'sitewide' => 0,
 			'enableAutoblock' => true,
+			'restrictions' => [
+				new PageRestriction( 0, $pageSaturn->getId() ),
+				new PageRestriction( 0, $pageMars->getId() ),
+				new NamespaceRestriction( 0, NS_TALK ),
+				// Deleted page.
+				new PageRestriction( 0, 999999 ),
+				new ActionRestriction( 0, $actionId ),
+			]
 		] );
-
-		$block->setRestrictions( [
-			new PageRestriction( 0, $pageSaturn->getId() ),
-			new PageRestriction( 0, $pageMars->getId() ),
-			new NamespaceRestriction( 0, NS_TALK ),
-			// Deleted page.
-			new PageRestriction( 0, 999999 ),
-			new ActionRestriction( 0, $actionId ),
-		] );
-
-		$this->blockStore->insertBlock( $block );
 
 		// Refresh the block from the database.
-		$block = $this->blockStore->newFromTarget( $block->getTargetUserIdentity() );
+		$block = $this->blockStore->newFromTarget( $block->getTarget() );
 
 		$page = $this->newSpecialPage();
 
@@ -282,14 +278,13 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$context->setUser( $sysop );
 
 		// Create a block that will be updated.
-		$block = new DatabaseBlock( [
-			'address' => $badActor,
+		$this->blockStore->insertBlockWithParams( [
+			'targetUser' => $badActor,
 			'by' => $sysop,
 			'expiry' => 'infinity',
 			'sitewide' => 0,
 			'enableAutoblock' => false,
 		] );
-		$this->blockStore->insertBlock( $block );
 
 		$page = $this->newSpecialPage();
 		$reason = 'test';
@@ -709,12 +704,11 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->overrideUserPermissions( $performer, $permissions );
 		$blockedUser = $this->getTestUser()->getUser();
 
-		$block = new DatabaseBlock( [
-			'address' => $blockedUser,
+		$this->blockStore->insertBlockWithParams( [
+			'targetUser' => $blockedUser,
 			'by' => $performer,
 			'hideName' => true,
 		] );
-		$this->blockStore->insertBlock( $block );
 
 		// Matches the existing block
 		$defaultData = [
@@ -955,17 +949,13 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 
-		$block = new DatabaseBlock( [
-			'address' => $badActor,
+		return $this->blockStore->insertBlockWithParams( [
+			'targetUser' => $badActor,
 			'by' => $sysop,
 			'expiry' => 'infinity',
 			'sitewide' => 1,
 			'enableAutoblock' => true,
 		] );
-
-		$this->blockStore->insertBlock( $block );
-
-		return $block;
 	}
 
 	private function getBlockRestrictionStore(): BlockRestrictionStore {

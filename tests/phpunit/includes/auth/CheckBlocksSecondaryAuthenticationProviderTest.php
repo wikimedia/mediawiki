@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Auth;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\CheckBlocksSecondaryAuthenticationProvider;
+use MediaWiki\Block\AnonIpBlockTarget;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Context\RequestContext;
@@ -81,14 +82,15 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends MediaWikiIntegratio
 	 */
 	private function getBlockedUser( array $blockOptions ): User {
 		$user = $this->getMutableTestUser()->getUser();
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-		$block = new DatabaseBlock( $blockOptions + [
-			'address' => $user,
-			'by' => $this->getTestSysop()->getUser(),
-			'reason' => __METHOD__,
-			'expiry' => time() + 100500,
-		] );
-		$blockStore->insertBlock( $block );
+		if ( !isset( $blockOptions['address'] ) ) {
+			$blockOptions['targetUser'] = $user;
+		}
+		$block = $this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( $blockOptions + [
+				'by' => $this->getTestSysop()->getUser(),
+				'reason' => __METHOD__,
+				'expiry' => time() + 100500,
+			] );
 		if ( $block->getType() === DatabaseBlock::TYPE_IP ) {
 			// When an ip is blocked, the provided user object needs to know the ip
 			// That allows BlockManager::getUserBlock to load the ip block for this user
@@ -123,12 +125,13 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends MediaWikiIntegratio
 	private function getGloballyIpBlockedUser( array $blockOptions ) {
 		static $ip = 100;
 		$user = $this->getMutableTestUser()->getUser();
-		TestingAccessWrapper::newFromObject( $user )->mGlobalBlock = new DatabaseBlock( $blockOptions + [
-			'address' => '10.10.10.' . $ip++,
-			'by' => $this->getTestSysop()->getUser(),
-			'reason' => __METHOD__,
-			'expiry' => time() + 100500,
-		] );
+		TestingAccessWrapper::newFromObject( $user )->mGlobalBlock = new DatabaseBlock(
+			$blockOptions + [
+				'target' => new AnonIpBlockTarget( '10.10.10.' . $ip++, false ),
+				'by' => $this->getTestSysop()->getUser(),
+				'reason' => __METHOD__,
+				'expiry' => time() + 100500,
+			] );
 		return $user;
 	}
 

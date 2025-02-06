@@ -588,20 +588,25 @@ class DatabaseBlockStore {
 	 *
 	 * @param array $options Options as documented in DatabaseBlock and
 	 *   AbstractBlock, and additionally:
+	 *   - address: (string) A string specifying the block target. This is not
+	 *     the same as the legacy address parameter which allows UserIdentity.
 	 *   - targetUser: (UserIdentity) The UserIdentity to block
-	 *   - targetString (string) A string specifying the block target
 	 * @return DatabaseBlock
 	 */
 	public function newUnsaved( array $options ): DatabaseBlock {
 		if ( isset( $options['targetUser'] ) ) {
 			$options['target'] = $this->blockTargetFactory
-				->newUserBlockTarget( $options['targetUser'] );
+				->newFromUser( $options['targetUser'] );
 			unset( $options['targetUser'] );
 		}
-		if ( isset( $options['targetString'] ) ) {
-			$options['target'] = $this->blockTargetFactory
-				->newFromString( $options['targetString'] );
-			unset( $options['targetString'] );
+		if ( isset( $options['address'] ) ) {
+			$target = $this->blockTargetFactory
+				->newFromString( $options['address'] );
+			if ( !$target ) {
+				throw new InvalidArgumentException( 'Invalid target address' );
+			}
+			$options['target'] = $target;
+			unset( $options['address'] );
 		}
 		return new DatabaseBlock( $options );
 	}
@@ -866,6 +871,26 @@ class DatabaseBlockStore {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Create a block with an array of parameters and immediately insert it.
+	 * Throw an exception on failure. This is a convenience method for testing.
+	 *
+	 * Duplicate blocks for a given target are allowed by default.
+	 *
+	 * @since 1.44
+	 * @param array $params Parameters for newUnsaved(), and also:
+	 *   - expectedTargetCount: Use this to override conflict checking
+	 * @return DatabaseBlock The inserted Block
+	 */
+	public function insertBlockWithParams( array $params ): DatabaseBlock {
+		$block = $this->newUnsaved( $params );
+		$status = $this->insertBlock( $block, $params['expectedTargetCount'] ?? null );
+		if ( !$status ) {
+			throw new RuntimeException( 'Failed to insert block' );
+		}
+		return $block;
 	}
 
 	/**

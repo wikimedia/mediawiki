@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Block\AnonIpBlockTarget;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
@@ -17,20 +18,17 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 	private function getPartialBlocks() {
 		$sysopUser = $this->getTestSysop()->getUser();
 
-		$userBlock = new DatabaseBlock( [
-			'address' => $this->getTestUser()->getUser(),
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$userBlock = $blockStore->insertBlockWithParams( [
+			'targetUser' => $this->getTestUser()->getUser(),
 			'by' => $sysopUser,
 			'sitewide' => false,
 		] );
-		$ipBlock = new DatabaseBlock( [
+		$ipBlock = $blockStore->insertBlockWithParams( [
 			'address' => '127.0.0.1',
 			'by' => $sysopUser,
 			'sitewide' => false,
 		] );
-
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-		$blockStore->insertBlock( $userBlock );
-		$blockStore->insertBlock( $ipBlock );
 
 		return [
 			'user' => $userBlock,
@@ -258,15 +256,15 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 
 	public function testCreateFromBlocks() {
 		$block1 = new SystemBlock( [
-			'address' => '127.0.0.1',
+			'target' => new AnonIpBlockTarget( '127.0.0.1' ),
 			'systemBlock' => 'test1',
 		] );
 		$block2 = new SystemBlock( [
-			'address' => '127.0.0.1',
+			'target' => new AnonIpBlockTarget( '127.0.0.1' ),
 			'systemBlock' => 'test2',
 		] );
 		$block3 = new SystemBlock( [
-			'address' => '127.0.0.1',
+			'target' => new AnonIpBlockTarget( '127.0.0.1' ),
 			'systemBlock' => 'test3',
 		] );
 

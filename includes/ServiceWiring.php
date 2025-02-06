@@ -443,6 +443,7 @@ return [
 			LoggerFactory::getInstance( 'BlockManager' ),
 			$services->getHookContainer(),
 			$services->getDatabaseBlockStore(),
+			$services->getBlockTargetFactory(),
 			$services->getProxyLookup()
 		);
 	},

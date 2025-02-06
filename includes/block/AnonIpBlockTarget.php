@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Block;
 
+use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\User\UserIdentity;
@@ -21,7 +22,7 @@ class AnonIpBlockTarget extends BlockTarget implements BlockTargetWithUserPage, 
 	 * @param string $addr
 	 * @param string|false $wikiId
 	 */
-	public function __construct( string $addr, $wikiId ) {
+	public function __construct( string $addr, $wikiId = WikiAwareEntity::LOCAL ) {
 		parent::__construct( $wikiId );
 		$this->addr = $addr;
 	}

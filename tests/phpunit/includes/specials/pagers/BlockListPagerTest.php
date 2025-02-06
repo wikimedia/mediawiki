@@ -3,7 +3,6 @@
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockTargetFactory;
-use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
@@ -314,18 +313,17 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		$target = '127.0.0.1';
 
 		// Test partial blocks.
-		$block = new DatabaseBlock( [
-			'address' => $target,
-			'by' => $this->getTestSysop()->getUser(),
-			'reason' => 'Parce que',
-			'expiry' => $this->getDb()->getInfinity(),
-			'sitewide' => false,
-		] );
-		$block->setRestrictions( [
-			new PageRestriction( 0, $page->getId() ),
-		] );
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-		$blockStore->insertBlock( $block );
+		$block = $this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( [
+				'address' => $target,
+				'by' => $this->getTestSysop()->getUser(),
+				'reason' => 'Parce que',
+				'expiry' => $this->getDb()->getInfinity(),
+				'sitewide' => false,
+				'restrictions' => [
+					new PageRestriction( 0, $page->getId() ),
+				]
+			] );
 
 		$pager = $this->getBlockListPager();
 		$result = $this->getDb()->newSelectQueryBuilder()
@@ -379,14 +377,12 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		RequestContext::getMain()->setLanguage( 'qqx' );
 		// Create autoblock
 		$addr = '127.0.0.1';
-		$block = new DatabaseBlock( [
-			'address' => $addr,
-			'auto' => true,
-			'by' => $sysop
-		] );
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-		$status = $blockStore->insertBlock( $block );
-		$this->assertNotFalse( $status );
+		$this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( [
+				'address' => $addr,
+				'auto' => true,
+				'by' => $sysop
+			] );
 		// Run the pager over all blocks (there should only be one)
 		$pager = $this->getBlockListPager();
 		$body = $pager->getBody();

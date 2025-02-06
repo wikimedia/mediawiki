@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Api\Query;
 
-use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Api\ApiTestCase;
@@ -217,16 +216,14 @@ class ApiQueryInfoTest extends ApiTestCase {
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 
-		$block = new DatabaseBlock( [
-			'address' => $badActor,
-			'by' => $sysop,
-			'expiry' => 'infinity',
-			'sitewide' => 1,
-			'enableAutoblock' => true,
-		] );
-
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-		$blockStore->insertBlock( $block );
+		$block = $this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( [
+				'targetUser' => $badActor,
+				'by' => $sysop,
+				'expiry' => 'infinity',
+				'sitewide' => 1,
+				'enableAutoblock' => true,
+			] );
 
 		$page = $this->getExistingTestPage( 'Pluto' );
 		$title = $page->getTitle();
@@ -265,15 +262,13 @@ class ApiQueryInfoTest extends ApiTestCase {
 
 		$sysop = $this->getTestSysop()->getUser();
 
-		$block = new DatabaseBlock( [
-			'address' => $blockIp,
-			'by' => $sysop,
-			'expiry' => 'infinity',
-			'sitewide' => 1,
-		] );
-
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-		$blockStore->insertBlock( $block );
+		$block = $this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( [
+				'address' => $blockIp,
+				'by' => $sysop,
+				'expiry' => 'infinity',
+				'sitewide' => 1,
+			] );
 
 		$page = $this->getExistingTestPage( 'Pluto' );
 		$title = $page->getTitle();

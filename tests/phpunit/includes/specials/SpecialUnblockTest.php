@@ -34,9 +34,10 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 	 */
 	public function testGetFields( $target, $expected ) {
 		$page = TestingAccessWrapper::newFromObject( $this->newSpecialPage() );
-		$page->target = $target;
+		$targetFactory = $this->getServiceContainer()->getBlockTargetFactory();
+		$page->target = $targetFactory->newFromString( $target );
 		$page->block = new DatabaseBlock( [
-			'address' => '1.2.3.4',
+			'target' => $targetFactory->newFromString( '1.2.3.4' ),
 			'by' => $this->getTestSysop()->getUser(),
 		] );
 
@@ -73,12 +74,12 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 
 		$target = '1.1.1.1';
 		if ( !empty( $options['block'] ) ) {
-			$block = new DatabaseBlock( [
-				'address' => $target,
-				'by' => $performer,
-				'hideName' => true,
-			] );
-			$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
+			$this->getServiceContainer()->getDatabaseBlockStore()
+				->insertBlockWithParams( [
+					'address' => $target,
+					'by' => $performer,
+					'hideName' => true,
+				] );
 		}
 
 		if ( !empty( $options['readOnly'] ) ) {
@@ -135,11 +136,11 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 
 		// Blocker must be different user for unblock self to be disallowed
 		$blocker = $this->getTestUser()->getUser();
-		$block = new DatabaseBlock( [
-			'by' => $blocker,
-			'address' => $performer,
-		] );
-		$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
+		$this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( [
+				'by' => $blocker,
+				'targetUser' => $performer,
+			] );
 
 		$request = new FauxRequest( [
 			'wpTarget' => $performer->getName(),
@@ -157,11 +158,11 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 		$performer = $this->getTestSysop()->getUser();
 
 		$target = '1.2.3.4';
-		$block = new DatabaseBlock( [
-			'by' => $performer,
-			'address' => $target,
-		] );
-		$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
+		$this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( [
+				'by' => $performer,
+				'address' => $target,
+			] );
 
 		$request = new FauxRequest( [
 			'wpTarget' => $target,

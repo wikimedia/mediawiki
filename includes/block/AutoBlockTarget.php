@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Block;
 
+use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use StatusValue;
@@ -19,7 +20,7 @@ class AutoBlockTarget extends BlockTarget {
 	 * @param int $id The block ID
 	 * @param string|false $wikiId
 	 */
-	public function __construct( int $id, $wikiId ) {
+	public function __construct( int $id, $wikiId = WikiAwareEntity::LOCAL ) {
 		parent::__construct( $wikiId );
 		$this->id = $id;
 	}

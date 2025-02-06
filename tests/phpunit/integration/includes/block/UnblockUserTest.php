@@ -36,11 +36,10 @@ class UnblockUserTest extends MediaWikiIntegrationTestCase {
 
 	public function testValidUnblock() {
 		$performer = $this->mockRegisteredUltimateAuthority();
-		$block = new DatabaseBlock( [
-			'address' => $this->user->getName(),
+		$this->blockStore->insertBlockWithParams( [
+			'targetUser' => $this->user,
 			'by' => $performer->getUser()
 		] );
-		$this->blockStore->insertBlock( $block );
 
 		$this->assertInstanceOf( DatabaseBlock::class, $this->user->getBlock() );
 		$status = $this->unblockUserFactory->newUnblockUser(
@@ -60,12 +59,11 @@ class UnblockUserTest extends MediaWikiIntegrationTestCase {
 
 	public function testUnblockFailWithHideName() {
 		$performer = $this->getTestUser( [ 'sysop' ] )->getUser();
-		$block = new DatabaseBlock( [
-			'address' => $this->user->getName(),
+		$this->blockStore->insertBlockWithParams( [
+			'targetUser' => $this->user,
 			'by' => $performer->getUser(),
 			'hideName' => true,
 		] );
-		$this->blockStore->insertBlock( $block );
 		$status = $this->unblockUserFactory->newUnblockUser(
 			$this->user,
 			$performer,
@@ -86,13 +84,12 @@ class UnblockUserTest extends MediaWikiIntegrationTestCase {
 
 	public function testUnblockUnsafeWithSpecificBlock() {
 		$performer = $this->getTestUser( [ 'sysop' ] )->getUser();
-		$block = new DatabaseBlock( [
-			'address' => $this->user->getName(),
+		$block = $this->blockStore->insertBlockWithParams( [
+			'targetUser' => $this->user,
 			'by' => $performer->getUser(),
 		] );
-		$result = $this->blockStore->insertBlock( $block, null );
 
-		$block = $this->blockStore->newFromID( $result['id'] );
+		$block = $this->blockStore->newFromID( $block->getId() );
 		$status = $this->unblockUserFactory->newRemoveBlock(
 			$block,
 			$performer,
@@ -104,8 +101,8 @@ class UnblockUserTest extends MediaWikiIntegrationTestCase {
 
 	public function testUnblockWithMultipleBlocks() {
 		$performer = $this->getTestUser( [ 'sysop' ] )->getUser();
-		$block = new DatabaseBlock( [
-			'address' => $this->user->getName(),
+		$block = $this->blockStore->newUnsaved( [
+			'targetUser' => $this->user,
 			'by' => $performer->getUser(),
 		] );
 		$this->blockStore->insertBlock( $block, null );
@@ -132,11 +129,10 @@ class UnblockUserTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testRemoveSelfImposedBlock() {
 		$performer = $this->getTestUser( [ 'sysop' ] )->getUser();
-		$block = new DatabaseBlock( [
-			'address' => $performer->getName(),
+		$block = $this->blockStore->insertBlockWithParams( [
+			'targetUser' => $performer,
 			'by' => $performer->getUser(),
 		] );
-		$this->blockStore->insertBlock( $block );
 		$status = $this->unblockUserFactory
 			->newRemoveBlock( $block, $performer, '' )
 			->unblock();
