@@ -14,6 +14,7 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Pager\BlockListPager;
+use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Utils\MWTimestamp;
@@ -363,5 +364,35 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		$pager = $this->getBlockListPager();
 		$pager->getFullOutput();
 		$this->assertTrue( true );
+	}
+
+	/**
+	 * T385765 regression test
+	 * @coversNothing
+	 */
+	public function testAutoblockLeak() {
+		$sysop = $this->getTestSysop()->getUserIdentity();
+		$this->overrideConfigValue( MainConfigNames::UseCodexSpecialBlock, true );
+		// Enable block links
+		RequestContext::getMain()->setAuthority( new UltimateAuthority( $sysop ) );
+		// Don't localise
+		RequestContext::getMain()->setLanguage( 'qqx' );
+		// Create autoblock
+		$addr = '127.0.0.1';
+		$block = new DatabaseBlock( [
+			'address' => $addr,
+			'auto' => true,
+			'by' => $sysop
+		] );
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$status = $blockStore->insertBlock( $block );
+		$this->assertNotFalse( $status );
+		// Run the pager over all blocks (there should only be one)
+		$pager = $this->getBlockListPager();
+		$body = $pager->getBody();
+		// Check that we managed to generate a remove link
+		$this->assertStringContainsString( '(remove-blocklink)', $body );
+		// Check that we didn't leak the IP address into it
+		$this->assertStringNotContainsString( $addr, $body );
 	}
 }
