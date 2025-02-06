@@ -29,6 +29,11 @@ use MediaWiki\Language\ReplacementArray;
 class ShConverter extends LanguageConverter {
 
 	private const TO_CYRILLIC = [
+		'konjug' => 'конјуг', // T385768
+		'konjun' => 'конјун', // T385768
+		'Konjug' => 'Конјуг', // T385768
+		'Konjun' => 'Конјун', // T385768
+
 		'dž' => 'џ',
 		'lj' => 'љ',
 		'nj' => 'њ',

@@ -62,6 +62,10 @@ class ShConverterTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( 'а I б II в III г IV шђжчћ',
 			$this->convertToCyrillic( 'a I b II v III g IV šđžčć' )
 		);
+		// Exemption for the words containing "konjug" or "konjun"
+		$this->assertEquals( 'конјугација',
+			$this->convertToCyrillic( 'konjugacija' )
+		);
 		// Manual conversion rules work
 		$this->assertEquals( 'Cyrillic',
 			$this->convertToCyrillic( '-{sh-latn:Latin; sh-cyrl:Cyrillic;}-' )
