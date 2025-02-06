@@ -1,5 +1,5 @@
 {
-	"description": "Page without content",
+	"x-i18n-description": "rest-schema-desc-bare-page",
 	"required": [
 		"id",
 		"key",
@@ -12,51 +12,51 @@
 	"properties": {
 		"id": {
 			"type": "integer",
-			"description": "Page identifier"
+			"x-i18n-description": "rest-property-desc-page-id"
 		},
 		"key": {
 			"type": "string",
-			"description": "Page title in URL-friendly format"
+			"x-i18n-description": "rest-property-desc-page-key"
 		},
 		"title": {
 			"type": "string",
-			"description": "Page title"
+			"x-i18n-description": "rest-property-desc-page-title"
 		},
 		"latest": {
 			"type": "object",
-			"description": "Information about the latest revision",
+			"x-i18n-description": "rest-property-desc-page-latest",
 			"properties": {
 				"id": {
 					"type": "integer",
-					"description": "Revision identifier for the latest revision"
+					"x-i18n-description": "rest-property-desc-page-latest-id"
 				},
 				"timestamp": {
 					"type": "string",
-					"description": " Timestamp of the latest revision"
+					"x-i18n-description": "rest-property-desc-page-timestamp"
 				}
 			}
 		},
 		"content_model": {
 			"type": "string",
-			"description": "Page content type"
+			"x-i18n-description": "rest-property-desc-page-contentmodel"
 		},
 		"license": {
 			"type": "object",
-			"description": "Information about the wiki's license",
+			"x-i18n-description": "rest-property-desc-page-license",
 			"properties": {
 				"url": {
 					"type": "string",
-					"description": "URL of the applicable license"
+					"x-i18n-description": "rest-property-desc-page-license-url"
 				},
 				"title": {
 					"type": "string",
-					"description": "Name of the applicable license"
+					"x-i18n-description": "rest-property-desc-page-license-title"
 				}
 			}
 		},
 		"html_url": {
 			"type": "string",
-			"description": "API route to fetch the content of the page in HTML"
+			"x-i18n-description": "API route to fetch the content of the page in HTML"
 		}
 	}
 }

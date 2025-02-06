@@ -20,32 +20,32 @@
 		},
 		"size": {
 			"type": "integer",
-			"description": "Nominal size of this revision, in bogo-bytes"
+			"x-i18n-description": "rest-property-desc-revision-size"
 		},
 		"delta": {
 			"type": "integer",
 			"nullable": true,
-			"description": "The difference in size compared to the previous revision."
+			"x-i18n-description": "rest-property-desc-revision-delta"
 		},
 		"comment": {
 			"type": "string",
 			"nullable": true,
-			"description": "The comment the author associated with the revision"
+			"x-i18n-description": "rest-property-desc-revision-comment"
 		},
 		"minor": {
 			"type": "boolean",
-			"description": "Whether or not this is a minor edit"
+			"x-i18n-description": "rest-property-desc-revision-minor"
 		},
 		"timestamp": {
 			"type": "string",
-			"description": "Revision timestamp"
+			"x-i18n-description": "rest-property-desc-revision-timestamp"
 		},
 		"content_model": {
 			"type": "string",
-			"description": "Type of content"
+			"x-i18n-description": "rest-property-desc-revision-content-model"
 		},
 		"page": {
-			"description": "the page the revision belongs to",
+			"x-i18n-description": "rest-property-desc-revision-page",
 			"required": [
 				"id",
 				"key",
@@ -54,21 +54,21 @@
 			"properties": {
 				"id": {
 					"type": "integer",
-					"description": "Page identifier"
+					"x-i18n-description": "rest-property-desc-page-id"
 				},
 				"key": {
 					"type": "string",
-					"description": "Page title in URL form (unencoded)"
+					"x-i18n-description": "rest-property-desc-page-key"
 				},
 				"title": {
 					"type": "string",
-					"description": "Page title"
+					"x-i18n-description": "rest-property-desc-page-title"
 				}
 			}
 		},
 		"license": {
 			"type": "object",
-			"description": "Information about the wiki's license",
+			"x-i18n-description": "Information about the wiki's license",
 			"required": [
 				"url",
 				"title"
@@ -76,17 +76,17 @@
 			"properties": {
 				"url": {
 					"type": "string",
-					"description": "URL of the applicable license based on the $wgRightsUrl setting"
+					"x-i18n-description": "rest-property-desc-page-license-url-html"
 				},
 				"title": {
 					"type": "string",
-					"description": "Name of the applicable license based on the $wgRightsText setting"
+					"x-i18n-description": "rest-property-desc-page-license-title-html"
 				}
 			}
 		},
 		"user": {
 			"type": "object",
-			"description": "",
+			"x-i18n-description": "",
 			"nullable": true,
 			"required": [
 				"id",
@@ -95,17 +95,17 @@
 			"properties": {
 				"id": {
 					"type": "integer",
-					"description": "User identifier"
+					"x-i18n-description": "rest-property-desc-revision-user-id"
 				},
 				"name": {
 					"type": "string",
-					"description": "User name"
+					"x-i18n-description": "rest-property-desc-revision-user-name"
 				}
 			}
 		},
 		"source": {
 			"type": "string",
-			"description": "The revision source content"
+			"x-i18n-description": "rest-property-desc-revision-source"
 		}
 	}
 }
