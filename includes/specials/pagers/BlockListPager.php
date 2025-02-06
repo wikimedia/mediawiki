@@ -73,7 +73,7 @@ class BlockListPager extends TablePager {
 	private $formattedComments = [];
 
 	/** @var string[] Cache of messages to avoid them being recreated for every row of the pager. */
-	private static $messages = [];
+	private $messages = [];
 
 	/**
 	 * @param IContextSource $context
@@ -146,7 +146,7 @@ class BlockListPager extends TablePager {
 	 * @return string
 	 */
 	public function formatValue( $name, $value ) {
-		if ( self::$messages === [] ) {
+		if ( $this->messages === [] ) {
 			$keys = [
 				'anononlyblock',
 				'blanknamespace',
@@ -164,7 +164,7 @@ class BlockListPager extends TablePager {
 			];
 
 			foreach ( $keys as $key ) {
-				self::$messages[$key] = $this->msg( $key )->text();
+				$this->messages[$key] = $this->msg( $key )->text();
 			}
 		}
 
@@ -233,35 +233,35 @@ class BlockListPager extends TablePager {
 				$properties = [];
 
 				if ( $row->bl_deleted ) {
-					$properties[] = htmlspecialchars( self::$messages['blocklist-hidden-param' ] );
+					$properties[] = htmlspecialchars( $this->messages['blocklist-hidden-param' ] );
 				}
 				if ( $row->bl_sitewide ) {
-					$properties[] = htmlspecialchars( self::$messages['blocklist-editing-sitewide'] );
+					$properties[] = htmlspecialchars( $this->messages['blocklist-editing-sitewide'] );
 				}
 
 				if ( !$row->bl_sitewide && $this->restrictions ) {
 					$list = $this->getRestrictionListHTML( $row );
 					if ( $list ) {
-						$properties[] = htmlspecialchars( self::$messages['blocklist-editing'] ) . $list;
+						$properties[] = htmlspecialchars( $this->messages['blocklist-editing'] ) . $list;
 					}
 				}
 
 				if ( $row->bl_anon_only ) {
-					$properties[] = htmlspecialchars( self::$messages['anononlyblock'] );
+					$properties[] = htmlspecialchars( $this->messages['anononlyblock'] );
 				}
 				if ( $row->bl_create_account ) {
-					$properties[] = htmlspecialchars( self::$messages['createaccountblock'] );
+					$properties[] = htmlspecialchars( $this->messages['createaccountblock'] );
 				}
 				if ( $row->bt_user && !$row->bl_enable_autoblock ) {
-					$properties[] = htmlspecialchars( self::$messages['noautoblockblock'] );
+					$properties[] = htmlspecialchars( $this->messages['noautoblockblock'] );
 				}
 
 				if ( $row->bl_block_email ) {
-					$properties[] = htmlspecialchars( self::$messages['emailblock'] );
+					$properties[] = htmlspecialchars( $this->messages['emailblock'] );
 				}
 
 				if ( !$row->bl_allow_usertalk ) {
-					$properties[] = htmlspecialchars( self::$messages['blocklist-nousertalk'] );
+					$properties[] = htmlspecialchars( $this->messages['blocklist-nousertalk'] );
 				}
 
 				$formatted = Html::rawElement(
@@ -306,7 +306,7 @@ class BlockListPager extends TablePager {
 			return Html::element(
 				'span',
 				[ 'class' => 'mw-blocklist-hidden' ],
-				self::$messages['blocklist-hidden-placeholder']
+				$this->messages['blocklist-hidden-placeholder']
 			);
 		} elseif ( $target instanceof UserIdentity ) {
 			$userId = $target->getId();
@@ -334,38 +334,54 @@ class BlockListPager extends TablePager {
 	private function getBlockChangeLinks( $row ): array {
 		$linkRenderer = $this->getLinkRenderer();
 		$links = [];
-		$target = $row->bt_address ?? $row->bt_user_text;
+		if ( $row->bt_auto ) {
+			$target = "#{$row->bl_id}";
+		} else {
+			$target = $row->bt_address ?? $row->bt_user_text;
+		}
 		if ( $this->getConfig()->get( MainConfigNames::UseCodexSpecialBlock ) ) {
-			$specialBlock = $this->specialPageFactory->getTitleForAlias( "Block/$target" );
 			$query = [ 'id' => $row->bl_id ];
-			$links[] = $linkRenderer->makeKnownLink(
-				$specialBlock,
-				self::$messages['remove-blocklink'],
-				[],
-				$query + [ 'remove' => '1' ]
-			);
-			$links[] = $linkRenderer->makeKnownLink(
-				$specialBlock,
-				self::$messages['change-blocklink'],
-				[],
-				$query
-			);
+			if ( $row->bt_auto ) {
+				$links[] = $linkRenderer->makeKnownLink(
+					$this->specialPageFactory->getTitleForAlias( 'Block' ),
+					$this->messages['remove-blocklink'],
+					[],
+					$query + [
+						'wpTarget' => $target,
+						'remove' => '1'
+					]
+				);
+			} else {
+				$specialBlock = $this->specialPageFactory->getTitleForAlias( "Block/$target" );
+				$links[] = $linkRenderer->makeKnownLink(
+					$specialBlock,
+					$this->messages['remove-blocklink'],
+					[],
+					$query + [ 'remove' => '1' ]
+				);
+				$links[] = $linkRenderer->makeKnownLink(
+					$specialBlock,
+					$this->messages['change-blocklink'],
+					[],
+					$query
+				);
+			}
 		} else {
 			if ( $row->bt_auto ) {
 				$links[] = $linkRenderer->makeKnownLink(
 					$this->specialPageFactory->getTitleForAlias( 'Unblock' ),
-					self::$messages['unblocklink'],
+					$this->messages['unblocklink'],
 					[],
 					[ 'wpTarget' => "#{$row->bl_id}" ]
 				);
 			} else {
 				$links[] = $linkRenderer->makeKnownLink(
 					$this->specialPageFactory->getTitleForAlias( "Unblock/$target" ),
-					self::$messages['unblocklink']
+					$this->messages['unblocklink']
 				);
 				$links[] = $linkRenderer->makeKnownLink(
 					$this->specialPageFactory->getTitleForAlias( "Block/$target" ),
-					self::$messages['change-blocklink']
+					$this->messages['change-blocklink']
 				);
 			}
 		}
@@ -401,7 +417,7 @@ class BlockListPager extends TablePager {
 					break;
 				case NamespaceRestriction::TYPE:
 					$text = $restriction->getValue() === NS_MAIN
-						? self::$messages['blanknamespace']
+						? $this->messages['blanknamespace']
 						: $this->getLanguage()->getFormattedNsText(
 							$restriction->getValue()
 						);
