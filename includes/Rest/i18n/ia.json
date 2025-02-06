@@ -64,6 +64,7 @@
 	"rest-unsupported-target-format": "Le formato de destination requestate non es supportate.",
 	"rest-parsoid-resource-exceeded": "Limite de ressources excedite",
 	"rest-parsoid-error": "Error de Parsoid.",
+	"rest-parsoid-bad-render-id": "Mal ID de rendition Parsoid: $1",
 	"rest-bad-stash-key": "Mal clave de reserva.",
 	"rest-html-key-expected": "Clave <var>html</var> expectate in corpore",
 	"rest-invalid-transform": "Transformation non valide: $1 a $2",
@@ -114,5 +115,15 @@
 	"rest-param-desc-pagehistory-older-than": "Accepta un ID de version. Restitue le proxime 20 versiones plus ancian que le version con le ID date.",
 	"rest-param-desc-pagehistory-newer-than": "Accepta un ID de version. Restitue le proxime 20 versiones plus nove que le version con le ID date.",
 	"rest-param-desc-pagehistory-filter": "Usa un filtro pro restituer solmente le versiones etiquettate como (revertite, anonyme, robot, minor). Accepta un filtro per requesta.",
-	"rest-param-desc-search-q": "Terminos de recerca"
+	"rest-param-desc-search-q": "Terminos de recerca",
+	"rest-param-desc-search-limit": "Le numero maxime de resultatos de recerca a restituer, inter 1 e 100. Valor predefinite: 50",
+	"rest-param-desc-transform-from": "Transformar ab",
+	"rest-param-desc-transform-format": "Formato del transformation",
+	"rest-param-desc-transform-title": "Titulo del transformation",
+	"rest-param-desc-transform-revision": "Version del transformation",
+	"rest-param-desc-update-title": "Titulo de pagina actualisate",
+	"rest-property-desc-mock-desc": "Description fictive.",
+	"rest-property-desc-revision-id": "ID del version",
+	"rest-schema-desc-mock-desc": "Description fictive.",
+	"rest-schema-desc-revision-metadata": "Metadatos del version"
 }
