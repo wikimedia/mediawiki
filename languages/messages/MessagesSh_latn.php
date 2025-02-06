@@ -22,6 +22,7 @@ $namespaceNames = [
 	NS_PROJECT_TALK     => 'Razgovor_o_$1',
 	NS_FILE             => 'Datoteka',
 	NS_FILE_TALK        => 'Razgovor_o_datoteci',
+	NS_MEDIAWIKI        => 'MediaWiki', // T385825
 	NS_MEDIAWIKI_TALK   => 'Razgovor_o_MediaWikiju',
 	NS_TEMPLATE         => 'Šablon',
 	NS_TEMPLATE_TALK    => 'Razgovor_o_šablonu',
