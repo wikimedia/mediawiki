@@ -580,7 +580,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 		// Allow authentication extensions like CentralAuth to preserve their own
 		// query params during and after the authentication process.
 		$this->getHookRunner()->onAuthPreserveQueryParams(
-			$params, [ 'reset' => $options['reset'] ]
+			$params, [ 'request' => $request, 'reset' => $options['reset'] ]
 		);
 
 		return array_filter( $params, static fn ( $val ) => $val !== null );
