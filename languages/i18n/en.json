@@ -1584,7 +1584,6 @@
 	"verification-error": "This file did not pass file verification.",
 	"hookaborted": "The modification you tried to make was aborted by an extension.",
 	"illegal-filename": "The filename is not allowed.",
-	"overwrite": "Overwriting an existing file is not allowed.",
 	"unknown-error": "An unknown error occurred.",
 	"tmp-create-error": "Could not create temporary file.",
 	"tmp-write-error": "Error writing temporary file.",

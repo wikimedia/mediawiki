@@ -124,7 +124,6 @@ abstract class UploadBase {
 	public const EMPTY_FILE = 3;
 	public const MIN_LENGTH_PARTNAME = 4;
 	public const ILLEGAL_FILENAME = 5;
-	public const OVERWRITE_EXISTING_FILE = 7; # Not used anymore; handled by verifyTitlePermissions()
 	public const FILETYPE_MISSING = 8;
 	public const FILETYPE_BADTYPE = 9;
 	public const VERIFICATION_ERROR = 10;
@@ -140,7 +139,6 @@ abstract class UploadBase {
 		self::FILETYPE_BADTYPE => 'filetype-banned',
 		self::MIN_LENGTH_PARTNAME => 'filename-tooshort',
 		self::ILLEGAL_FILENAME => 'illegal-filename',
-		self::OVERWRITE_EXISTING_FILE => 'overwrite',
 		self::VERIFICATION_ERROR => 'verification-error',
 		self::HOOK_ABORTED => 'hookaborted',
 		self::WINDOWS_NONASCII_FILENAME => 'windows-nonascii-filename',
