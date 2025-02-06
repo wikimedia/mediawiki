@@ -2806,12 +2806,9 @@ class AuthManager implements LoggerAwareInterface {
 	}
 
 	private function initializeAuthenticationProviders() {
-		$conf = $this->config->get( MainConfigNames::AuthManagerConfig )
-			?: $this->config->get( MainConfigNames::AuthManagerAutoConfig );
-
-		if ( empty( $conf ) ) {
-			throw new \Exception( "Configuration values not set" );
-		}
+	  $conf = $this->config->get( MainConfigNames::AuthManagerAutoConfig );
+//		$conf = $this->config->get( MainConfigNames::AuthManagerConfig )
+//			?: $this->config->get( MainConfigNames::AuthManagerAutoConfig );		$conf = $this->config->get( MainConfigNames::AuthManagerConfig )
 
 		$providers = array_map( fn ( $stepConf ) => array_fill_keys( array_keys( $stepConf ), true ), $conf );
 		$this->getHookRunner()->onAuthManagerFilterProviders( $providers );
@@ -2819,23 +2816,15 @@ class AuthManager implements LoggerAwareInterface {
 			$conf[$step] = array_intersect_key( $stepConf, array_filter( $providers[$step] ) );
 		}
 
-		if ( isset( $conf['preauth'] ) ) {
-			$this->preAuthenticationProviders = $this->providerArrayFromSpecs(
-				PreAuthenticationProvider::class, $conf['preauth']
-			);
-		}
-
-		if ( isset( $conf['primaryauth'] ) ) {
-			$this->primaryAuthenticationProviders = $this->providerArrayFromSpecs(
-				PrimaryAuthenticationProvider::class, $conf['primaryauth']
-			);
-		}
-
-		if ( isset( $conf['secondaryauth'] ) ) {
-			$this->secondaryAuthenticationProviders = $this->providerArrayFromSpecs(
-				SecondaryAuthenticationProvider::class, $conf['secondaryauth']
-			);
-		}
+		$this->preAuthenticationProviders = $this->providerArrayFromSpecs(
+			PreAuthenticationProvider::class, $conf['preauth']
+		);
+		$this->primaryAuthenticationProviders = $this->providerArrayFromSpecs(
+			PrimaryAuthenticationProvider::class, $conf['primaryauth']
+		);
+		$this->secondaryAuthenticationProviders = $this->providerArrayFromSpecs(
+			SecondaryAuthenticationProvider::class, $conf['secondaryauth']
+		);
 	}
 
 	/**
