@@ -4019,6 +4019,7 @@
 	"special-talkpage-target": "Input form of [[Special:TalkPage]].",
 	"special-talkpage-submit": "Button label on [[Special:TalkPage]].",
 	"specialpages": "{{doc-special|SpecialPages|unlisted=1}}\nDisplay name of link to [[Special:SpecialPages]] shown on all pages in the toolbox.\n\nSee also:\n* {{msg-mw|Specialpages}}\n* {{msg-mw|Accesskey-t-specialpages}}\n* {{msg-mw|Tooltip-t-specialpages}}\n{{Identical|Special page}}",
+	"specialpages-url": "{{notranslate}}",
 	"specialpages-summary": "{{doc-specialpagesummary|specialpages}}",
 	"specialpages-note-top": "Heading for {{msg-mw|specialpages-note}}.\n{{Identical|Legend}}",
 	"specialpages-note-restricted": "Footer note for the [[Special:SpecialPages]] page\n\nCompare {{msg-mw|Mw-core-1.18-specialpages-note}}",

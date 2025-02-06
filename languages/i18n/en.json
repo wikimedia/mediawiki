@@ -2,7 +2,7 @@
 	"@metadata": {
 		"authors": []
 	},
-	"sidebar": "\n* navigation\n** mainpage|mainpage-description\n** recentchanges-url|recentchanges\n** randompage-url|randompage\n** helppage|help-mediawiki\n* SEARCH\n* TOOLBOX\n* LANGUAGES",
+	"sidebar": "\n* navigation\n** mainpage|mainpage-description\n** recentchanges-url|recentchanges\n** randompage-url|randompage\n** helppage|help-mediawiki\n** specialpages-url|specialpages\n* SEARCH\n* TOOLBOX\n* LANGUAGES",
 	"sunday": "Sunday",
 	"monday": "Monday",
 	"tuesday": "Tuesday",
@@ -3753,6 +3753,7 @@
 	"special-talkpage-target": "Subject page",
 	"special-talkpage-submit": "Go to talk page",
 	"specialpages": "Special pages",
+	"specialpages-url": "Special:SpecialPages",
 	"specialpages-summary": "",
 	"specialpages-note-top": "Legend",
 	"specialpages-note-restricted": "* Normal special pages.\n* <span class=\"mw-specialpagerestricted\">Restricted special pages.</span>",
