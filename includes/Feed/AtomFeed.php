@@ -94,7 +94,7 @@ class AtomFeed extends ChannelFeed {
 			"title" => $item->getTitle(),
 			"mimeType" => $this->xmlEncode( $mimeType ),
 			"url" => $this->xmlEncode( wfExpandUrl( $item->getUrlUnescaped(), PROTO_CURRENT ) ),
-			"date" => $this->xmlEncode( $this->formatTime( $item->getDate() ) ),
+			"date" => $this->xmlEncodeNullable( $this->formatTime( $item->getDate() ) ),
 			"description" => $item->getDescription(),
 			"author" => $item->getAuthor()
 		];
