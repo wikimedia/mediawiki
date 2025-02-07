@@ -1327,6 +1327,41 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doUpdates()
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::maybeAddRecreateChangeTag
 	 */
+	public function testDoUpdatesTagsEditAsRecreatedWhenDeletedLogEntryAndUndelete() {
+		$page = $this->getPage( __METHOD__ );
+		$title = $this->getTitle( __METHOD__ );
+		$user = $this->getMutableTestUser()->getUser();
+		$mediaWikiServices = $this->getServiceContainer();
+		$changeTagsStore = $mediaWikiServices->getChangeTagsStore();
+
+		$content = [ SlotRecord::MAIN => new WikitextContent( 'rev ID ver #1: {{REVISIONID}}' ) ];
+
+		// create a revision on the page
+		$this->createRevision( $page, 'first', $content );
+		// make sure no tags on initial revision
+		$this->assertSame( [], $changeTagsStore->getTags(
+			$this->getDb(), null, $page->getRevisionRecord()->getId() ) );
+
+		// create a deletion log entry
+		$deleteLogEntry = new ManualLogEntry( 'delete', 'delete' );
+		$deleteLogEntry->setPerformer( $this->getTestUser()->getUser() );
+		$deleteLogEntry->setTarget( $title );
+		$deleteLogEntry->setDeleted( LogPage::DELETED_ACTION );
+		$logId = $deleteLogEntry->insert( $this->getDb() );
+		$deleteLogEntry->publish( $logId );
+		// undelete the page
+		$mediaWikiServices
+			->getUndeletePageFactory()
+			->newUndeletePage( $page, $user );
+		// ensure revision after undelete is not tagged with recreate
+		$this->assertSame( [], $changeTagsStore->getTags(
+			$this->getDb(), null, $page->getRevisionRecord()->getId() ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doUpdates()
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::maybeAddRecreateChangeTag
+	 */
 	public function testDoUpdatesDoesNotTagEditAsRecreatedWhenNoDeletedLogEntry() {
 		$page = $this->getPage( __METHOD__ );
 
