@@ -7,11 +7,16 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\Event\PageUpdatedEvent;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Tests\ExpectCallbackTrait;
+use MediaWiki\Tests\recentchanges\ChangeTrackingUpdateSpyTrait;
+use MediaWiki\Tests\Search\SearchUpdateSpyTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\WikiMap\WikiMap;
+use PHPUnit\Framework\Assert;
 use Wikimedia\FileBackend\FSFileBackend;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
@@ -22,6 +27,9 @@ use Wikimedia\TestingAccessWrapper;
  */
 class LocalFileTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;
+	use ChangeTrackingUpdateSpyTrait;
+	use SearchUpdateSpyTrait;
+	use ExpectCallbackTrait;
 
 	private static function getDefaultInfo() {
 		return [
@@ -854,17 +862,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 * @covers \LocalFile
 	 */
 	public function testUpload() {
-		$repo = new LocalRepo(
-			[
-				'class' => LocalRepo::class,
-				'name' => 'test',
-				'backend' => new FSFileBackend( [
-					'name' => 'test-backend',
-					'wikiId' => WikiMap::getCurrentWikiId(),
-					'basePath' => $this->getNewTempDirectory()
-				] )
-			]
-		);
+		$repo = $this->getLocalRepoForUpload();
 		$title = Title::makeTitle( NS_FILE, 'Test.jpg' );
 		$file = new LocalFile( $title, $repo );
 		$path = __DIR__ . '/../../../data/media/test.jpg';
@@ -880,6 +878,135 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusGood( $status );
 
 		// Test reupload
+		$file = new LocalFile( $title, $repo );
+		$path = __DIR__ . '/../../../data/media/jpeg-xmp-nullchar.jpg';
+		$status = $file->upload(
+			$path,
+			'comment',
+			'page text',
+			0,
+			false,
+			false,
+			$this->getTestUser()->getUser()
+		);
+		$this->assertStatusGood( $status );
+	}
+
+	/**
+	 * @covers \LocalFile
+	 */
+	public function testUpload_updatePropagation() {
+		// Expect two non-edit recent changes entries but only one edit count.
+		$this->expectChangeTrackingUpdates( 0, 2, 1, 0 );
+
+		// Expect only one search update, the re-upload doesn't change the page.
+		$this->expectSearchUpdates( 1 );
+
+		// now upload
+		$repo = $this->getLocalRepoForUpload();
+		$title = Title::makeTitle( NS_FILE, 'Test.jpg' );
+		$file = new LocalFile( $title, $repo );
+		$path = __DIR__ . '/../../../data/media/test.jpg';
+		$status = $file->upload(
+			$path,
+			'comment',
+			'page text',
+			0,
+			false,
+			false,
+			$this->getTestUser()->getUser()
+		);
+		$this->assertStatusGood( $status );
+
+		// now upload again
+		$file = new LocalFile( $title, $repo );
+		$path = __DIR__ . '/../../../data/media/jpeg-xmp-nullchar.jpg';
+		$status = $file->upload(
+			$path,
+			'comment',
+			'page text',
+			0,
+			false,
+			false,
+			$this->getTestUser()->getUser()
+		);
+		$this->assertStatusGood( $status );
+	}
+
+	/**
+	 * @covers \LocalFile
+	 */
+	public function testUpload_eventEmission() {
+		$repo = $this->getLocalRepoForUpload();
+		$title = Title::makeTitle( NS_FILE, 'Test.jpg' );
+		$file = new LocalFile( $title, $repo );
+
+		// Event emitted by PageUpdater::saveRevision
+		$this->expectDomainEvent(
+			PageUpdatedEvent::TYPE, 1,
+			static function ( PageUpdatedEvent $event ) use ( &$calls, $file ) {
+				Assert::assertSame( $file->getName(), $event->getPage()->getDBkey() );
+
+				Assert::assertTrue( $event->isNew(), 'isNew' );
+				Assert::assertTrue( $event->isRevisionChange(), 'isRevisionChange' );
+				Assert::assertTrue( $event->isContentChange(), 'isContentChange' );
+
+				Assert::assertTrue( $event->isSilent(), 'isSilent' );
+				Assert::assertFalse( $event->isAutomated(), 'isAutomated' );
+			}
+		);
+
+		// Hooks fired by PageUpdater::saveRevision
+		$this->expectHook( 'RevisionFromEditComplete' );
+		$this->expectHook( 'PageSaveComplete' );
+
+		// now upload
+		$path = __DIR__ . '/../../../data/media/test.jpg';
+		$status = $file->upload(
+			$path,
+			'comment',
+			'page text',
+			0,
+			false,
+			false,
+			$this->getTestUser()->getUser()
+		);
+		$this->assertStatusGood( $status );
+	}
+
+	/**
+	 * @covers \LocalFile
+	 */
+	public function testReUpload_eventEmission() {
+		// initial upload
+		$repo = $this->getLocalRepoForUpload();
+		$title = Title::makeTitle( NS_FILE, 'Test.jpg' );
+		$file = new LocalFile( $title, $repo );
+		$path = __DIR__ . '/../../../data/media/test.jpg';
+		$status = $file->upload(
+			$path,
+			'comment',
+			'page text',
+			0,
+			false,
+			false,
+			$this->getTestUser()->getUser()
+		);
+		$this->assertStatusGood( $status );
+
+		// flush the queue
+		$this->runDeferredUpdates();
+
+		// Event currently not emitted, could change
+		$this->expectDomainEvent( PageUpdatedEvent::TYPE, 0 );
+
+		// Hook fired by PageUpdater::saveRevision
+		$this->expectHook( 'RevisionFromEditComplete' );
+
+		// Hook currently not fired, may change
+		$this->expectHook( 'PageSaveComplete', 0 );
+
+		// now upload again
 		$file = new LocalFile( $title, $repo );
 		$path = __DIR__ . '/../../../data/media/jpeg-xmp-nullchar.jpg';
 		$status = $file->upload(
@@ -1045,5 +1172,24 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 				'media_type' => 'BITMAP',
 			],
 			$file );
+	}
+
+	/**
+	 * @return LocalRepo
+	 */
+	private function getLocalRepoForUpload(): LocalRepo {
+		$repo = new LocalRepo(
+			[
+				'class' => LocalRepo::class,
+				'name' => 'test',
+				'backend' => new FSFileBackend( [
+					'name' => 'test-backend',
+					'wikiId' => WikiMap::getCurrentWikiId(),
+					'basePath' => $this->getNewTempDirectory()
+				] )
+			]
+		);
+
+		return $repo;
 	}
 }

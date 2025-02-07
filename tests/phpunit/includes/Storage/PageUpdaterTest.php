@@ -455,6 +455,9 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 			)
 		);
 
+		$this->expectHook( 'RevisionFromEditComplete', 1 );
+		$this->expectHook( 'PageSaveComplete', 1 );
+
 		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
 		$updater->saveRevision( $summary );
 	}
@@ -475,6 +478,9 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 					$user, $page->getRevisionRecord()
 			)
 		);
+
+		$this->expectHook( 'RevisionFromEditComplete', 1 );
+		$this->expectHook( 'PageSaveComplete', 1 );
 
 		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
 		$updater->saveRevision( $summary );
@@ -518,6 +524,9 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 			)
 		);
 
+		$this->expectHook( 'RevisionFromEditComplete', 0 );
+		$this->expectHook( 'PageSaveComplete', 1 );
+
 		// null-edit
 		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
 		$updater->saveRevision( $summary );
@@ -536,6 +545,9 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 					$user, $page->getRevisionRecord(), true, false
 			)
 		);
+
+		$this->expectHook( 'RevisionFromEditComplete', 1 );
+		$this->expectHook( 'PageSaveComplete', 1 );
 
 		// dummy-edit
 		$updater->setForceEmptyRevision( true );
@@ -562,6 +574,11 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 					$user, $page->getRevisionRecord(), false, false
 			)
 		);
+
+		$this->expectHook( 'RevisionFromEditComplete', 0 );
+
+		// NOTE: it's not clear whether PageSaveComplete should relaly be fired here
+		$this->expectHook( 'PageSaveComplete', 1 );
 
 		// derived slot update
 		$content = new WikitextContent( 'A' );

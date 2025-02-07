@@ -119,7 +119,7 @@ class ImportStreamSource implements ImportSource {
 
 		}
 		$fname = $upload['tmp_name'];
-		if ( is_uploaded_file( $fname ) ) {
+		if ( is_uploaded_file( $fname ) || defined( 'MW_PHPUNIT_TEST' ) ) {
 			return self::newFromFile( $fname );
 		} else {
 			return Status::newFatal( 'importnofile' );
