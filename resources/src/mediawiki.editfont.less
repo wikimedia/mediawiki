@@ -15,9 +15,10 @@
 .mw-editfont-monospace,
 .mw-editfont-sans-serif,
 .mw-editfont-serif {
-	/* TODO: Re-evaluate whether we should keep this over-ride or switch to ems */
-	/* stylelint-disable-next-line declaration-property-unit-disallowed-list */
-	font-size: 13px;
+	// TODO: Re-evaluate to use Codex design token like `@font-size-small`, which would mean to
+	// bump the size up by equal to 14px in Vector 2022 and MinervaNeue.
+	// `0.8125rem` equals `13px` at `16px` base font size.
+	font-size: 0.8125rem;
 	/* Standardize tab width when in edit areas */
 	-moz-tab-size: 4;
 	tab-size: 4;
@@ -30,9 +31,10 @@
 		font-size: inherit;
 
 		> .oo-ui-inputWidget-input {
-			/* TODO: Re-evaluate whether we should keep this over-ride or switch to ems */
-			/* stylelint-disable-next-line declaration-property-unit-disallowed-list */
-			font-size: 13px;
+			// TODO: Re-evaluate to use Codex design token like `@font-size-small`, which would mean to
+			// bump the size up by equal to 14px in Vector 2022 and MinervaNeue.
+			// `0.8125rem` equals `13px` at `16px` base font size.
+			font-size: 0.8125rem;
 		}
 
 		// Single-line only, preserve original height to avoid
