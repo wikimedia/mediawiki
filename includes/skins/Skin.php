@@ -1551,8 +1551,8 @@ abstract class Skin extends ContextSource {
 		}
 
 		$isSpecialPagesPresent = false;
-		foreach ( $this->sidebar['navigation'] as $item ) {
-			if ( ( $item['id'] ?? null ) === 'n-specialpages' ) {
+		foreach ( $this->sidebar as $bar ) {
+			if ( in_array( 'n-specialpages', array_column( $bar, 'id' ) ) ) {
 				$isSpecialPagesPresent = true;
 				break;
 			}
