@@ -382,8 +382,11 @@ module.exports = exports = defineComponent( {
 		function highlightSelectedBlockRow() {
 			// Unhighlight any previously selected row
 			unhighlightSelectedBlockRow();
-			selectedBlockRow = document.querySelector( '#edit-button-' + blockId.value ).closest( 'tr' );
-			selectedBlockRow.classList.add( 'cdx-selected-block-row' );
+			// nextTick() needed to ensure edit buttons are rendered before highlighting.
+			nextTick( () => {
+				selectedBlockRow = document.querySelector( '#edit-button-' + blockId.value ).closest( 'tr' );
+				selectedBlockRow.classList.add( 'cdx-selected-block-row' );
+			} );
 		}
 
 		/**
