@@ -3,6 +3,7 @@
 use MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider;
 use MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider;
 use MediaWiki\Logger\LegacySpi;
+use MediaWiki\Maintenance\MaintenanceFatalError;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Session\CookieSessionProvider;
@@ -220,9 +221,13 @@ class TestSetup {
 	 */
 	public static function maybeCheckComposerLockUpToDate(): void {
 		if ( !getenv( 'MW_SKIP_EXTERNAL_DEPENDENCIES' ) ) {
-			$composerLockUpToDate = new CheckComposerLockUpToDate();
-			$composerLockUpToDate->loadParamsAndArgs( 'phpunit', [ 'quiet' => true ] );
-			$composerLockUpToDate->execute();
+			try {
+				$composerLockUpToDate = new CheckComposerLockUpToDate();
+				$composerLockUpToDate->loadParamsAndArgs( 'phpunit', [ 'quiet' => true ] );
+				$composerLockUpToDate->execute();
+			} catch ( MaintenanceFatalError $e ) {
+				exit( $e->getCode() );
+			}
 		}
 	}
 
