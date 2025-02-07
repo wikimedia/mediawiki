@@ -19,7 +19,8 @@
 </template>
 
 <script>
-const { computed, defineComponent, ref } = require( 'vue' );
+
+const { computed, watch, defineComponent, ref } = require( 'vue' );
 const { storeToRefs } = require( 'pinia' );
 const { CdxField, ChipInputItem, CdxMultiselectLookup } = require( '@wikimedia/codex' );
 const useBlockStore = require( '../stores/block.js' );
@@ -40,19 +41,22 @@ module.exports = exports = defineComponent( {
 	},
 	setup() {
 		const { pages } = storeToRefs( useBlockStore() );
+		const selection = ref( pages.value );
 		if ( pages.value.length > MAX_CHIPS ) {
 			pages.value = pages.value.slice( 0, MAX_CHIPS );
 		}
-		const chips = ref(
-			pages.value.map( ( page ) => ( { value: page, label: page } ) )
-		);
+		const chips = ref( [] );
+		watch( pages, ( newValue ) => {
+			chips.value = pages.value.map( ( page ) => ( { value: page, label: page } ) );
+			selection.value = newValue;
+		}, { immediate: true } );
+
 		const placeholder = computed( () => {
 			if ( chips.value.length === MAX_CHIPS ) {
 				return '';
 			}
 			return mw.msg( 'block-pages-placeholder' );
 		} );
-		const selection = ref( pages.value );
 		const inputValue = ref( '' );
 		const menuItems = ref( [] );
 		const menuConfig = { visibleItemLimit: 10 };
@@ -120,7 +124,12 @@ module.exports = exports = defineComponent( {
 		 * @param {ChipInputItem[]} newChips
 		 */
 		function onUpdateChips( newChips ) {
-			pages.value = newChips.map( ( chip ) => chip.value );
+			// NOTE: This is to avoid recursive updates since pages is bound to MultiselectLookup with v-model
+			const uniqueChipValues = newChips.map( ( item ) => item.value );
+			const uniqueNewValues = uniqueChipValues.filter( ( chipValue ) => pages.value.indexOf( chipValue ) === -1 );
+			if ( uniqueNewValues.length !== 0 || pages.value.length > uniqueChipValues.length ) {
+				pages.value = newChips.map( ( chip ) => chip.value );
+			}
 		}
 
 		return {
