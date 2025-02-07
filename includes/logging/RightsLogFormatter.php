@@ -32,6 +32,7 @@ use MediaWiki\WikiMap\WikiMap;
 /**
  * This class formats rights log entries.
  *
+ * @stable to extend Since 1.44
  * @since 1.21
  */
 class RightsLogFormatter extends LogFormatter {
@@ -79,71 +80,143 @@ class RightsLogFormatter extends LogFormatter {
 	protected function getMessageParameters() {
 		$params = parent::getMessageParameters();
 
-		// Really old entries that lack old/new groups
-		if ( !isset( $params[3] ) && !isset( $params[4] ) ) {
+		// Really old entries that lack old/new groups,
+		// so don't try to process them
+		if ( !$this->shouldProcessParams( $params ) ) {
 			return $params;
 		}
 
-		$oldGroups = $this->makeGroupArray( $params[3] );
-		$newGroups = $this->makeGroupArray( $params[4] );
-
-		$userName = $this->entry->getTarget()->getText();
-		$lang = $this->context->getLanguage();
-		if ( !$this->plaintext && count( $oldGroups ) ) {
-			foreach ( $oldGroups as &$group ) {
-				$group = $lang->getGroupMemberName( $group, $userName );
-			}
-		}
-		if ( !$this->plaintext && count( $newGroups ) ) {
-			foreach ( $newGroups as &$group ) {
-				$group = $lang->getGroupMemberName( $group, $userName );
-			}
-		}
-
-		// fetch the metadata about each group membership
-		$allParams = $this->entry->getParameters();
+		// Groups are stored as [ name => expiry|null ]
+		$oldGroups = $this->getOldGroups( $params );
+		$newGroups = $this->getNewGroups( $params );
 
 		if ( count( $oldGroups ) ) {
-			$params[3] = Message::rawParam( $this->formatRightsList( $oldGroups,
-				$allParams['oldmetadata'] ?? [] ) );
+			$params[3] = Message::rawParam( $this->formatRightsList( $oldGroups ) );
 		} else {
 			$params[3] = $this->msg( 'rightsnone' )->text();
 		}
 		if ( count( $newGroups ) ) {
-			// Array_values is used here because of T44211
-			// see use of array_unique in SpecialUserRights::doSaveUserGroups on $newGroups.
-			$params[4] = Message::rawParam( $this->formatRightsList( array_values( $newGroups ),
-				$allParams['newmetadata'] ?? [] ) );
+			$params[4] = Message::rawParam( $this->formatRightsList( $newGroups ) );
 		} else {
 			$params[4] = $this->msg( 'rightsnone' )->text();
 		}
+
+		$userName = $this->entry->getTarget()->getText();
 
 		$params[5] = $userName;
 
 		return $params;
 	}
 
-	protected function formatRightsList( $groups, $serializedUGMs = [] ) {
+	/**
+	 * Checks whether the additional message parameters should be processed.
+	 * Typical reason for not processing the parameters is that the log entry
+	 * is of legacy format with e.g. some of them missing.
+	 * @since 1.44
+	 * @stable to override
+	 * @param array $params Extracted parameters
+	 * @return bool
+	 */
+	protected function shouldProcessParams( array $params ) {
+		return isset( $params[3] ) || isset( $params[4] );
+	}
+
+	/**
+	 * Returns the old groups related to this log entry together
+	 * with their expiry times. The returned array is indexed by the
+	 * group name in a ready-to-display form (eg. localized)
+	 * @since 1.44
+	 * @stable to override
+	 * @param array $params Extracted parameters
+	 * @return array [ group_name => expiry|null ]
+	 */
+	protected function getOldGroups( array $params ) {
+		if ( !isset( $params[3] ) ) {
+			return [];
+		}
+
+		$allParams = $this->entry->getParameters();
+		return $this->joinGroupsWithExpiries( $params[3], $allParams['oldmetadata'] ?? [] );
+	}
+
+	/**
+	 * Returns the new groups related to this log entry together
+	 * with their expiry times. The returned array is indexed by the
+	 * group name in a ready-to-display form (eg. localized)
+	 * @since 1.44
+	 * @stable to override
+	 * @param array $params Extracted parameters
+	 * @return array [ group_name => expiry|null ]
+	 */
+	protected function getNewGroups( array $params ) {
+		if ( !isset( $params[4] ) ) {
+			return [];
+		}
+
+		$allParams = $this->entry->getParameters();
+		return $this->joinGroupsWithExpiries( $params[4], $allParams['newmetadata'] ?? [] );
+	}
+
+	/**
+	 * Joins group names from one array with their expiry times from the another.
+	 * Expects that corresponding elements in both arrays are at the same index.
+	 * The expiry times are looked up in the 'expiry' key of the elements int the
+	 * metadata array. If membership is permanent, the expiry time is null.
+	 * If this formatter is not plaintext, the group names are replaced with
+	 * localized member names.
+	 * @since 1.44
+	 * @param array|string $groupNames
+	 * @param array $metadata
+	 * @return array
+	 */
+	protected function joinGroupsWithExpiries( $groupNames, array $metadata ) {
+		$groupNames = $this->makeGroupArray( $groupNames );
+		if ( !$this->plaintext && count( $groupNames ) ) {
+			$this->replaceGroupsWithMemberNames( $groupNames );
+		}
+
+		$expiries = [];
+		foreach (
+			array_map( null, $groupNames, $metadata )
+				as [ $groupName, $groupMetadata ]
+		) {
+			if ( isset( $groupMetadata['expiry'] ) ) {
+				$expiry = $groupMetadata['expiry'];
+			} else {
+				$expiry = null;
+			}
+			$expiries[$groupName] = $expiry;
+		}
+		return $expiries;
+	}
+
+	/**
+	 * Replaces the group names in the array with their localized member names.
+	 * The array is modified in place.
+	 * @since 1.44
+	 * @stable to override
+	 * @param array &$groupNames
+	 */
+	protected function replaceGroupsWithMemberNames( array &$groupNames ) {
+		$lang = $this->context->getLanguage();
+		$userName = $this->entry->getTarget()->getText();
+		foreach ( $groupNames as &$group ) {
+			$group = $lang->getGroupMemberName( $group, $userName );
+		}
+	}
+
+	private function formatRightsList( $groups ) {
 		$uiLanguage = $this->context->getLanguage();
-		$uiUser = $this->context->getUser();
 		// separate arrays of temporary and permanent memberships
 		$tempList = $permList = [];
 
-		foreach (
-			array_map( null, $groups, $serializedUGMs )
-				as [ $group, $serializedUGM ]
-		) {
-			if ( $serializedUGM &&
-				isset( $serializedUGM['expiry'] ) &&
-				$serializedUGM['expiry']
-			) {
-				// there is an expiry date; format the group and expiry into a friendly string
-				$expiry = $serializedUGM['expiry'];
-				$expiryFormatted = $uiLanguage->userTimeAndDate( $expiry, $uiUser );
-				$expiryFormattedD = $uiLanguage->userDate( $expiry, $uiUser );
-				$expiryFormattedT = $uiLanguage->userTime( $expiry, $uiUser );
+		foreach ( $groups as $group => $expiry ) {
+			if ( $expiry ) {
+				// format the group and expiry into a friendly string
+				$expiryFormatted = $this->formatDate( $expiry );
 				$tempList[] = $this->msg( 'rightslogentry-temporary-group' )->params( $group,
-					$expiryFormatted, $expiryFormattedD, $expiryFormattedT )->parse();
+					$expiryFormatted['whole'], $expiryFormatted['date'], $expiryFormatted['time'] )
+					->parse();
 			} else {
 				// the right does not expire; just insert the group name
 				$permList[] = htmlspecialchars( $group );
@@ -153,6 +226,17 @@ class RightsLogFormatter extends LogFormatter {
 		// place all temporary memberships first, to avoid the ambiguity of
 		// "administrator, bureaucrat and importer (temporary, until X time)"
 		return $uiLanguage->listToText( array_merge( $tempList, $permList ) );
+	}
+
+	private function formatDate( $date ) {
+		$uiLanguage = $this->context->getLanguage();
+		$uiUser = $this->context->getUser();
+
+		return [
+			'whole' => $uiLanguage->userTimeAndDate( $date, $uiUser ),
+			'date' => $uiLanguage->userDate( $date, $uiUser ),
+			'time' => $uiLanguage->userTime( $date, $uiUser ),
+		];
 	}
 
 	protected function getParametersForApi() {
