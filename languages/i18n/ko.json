@@ -2644,6 +2644,7 @@
 	"block-removal-reason-placeholder": "이유를 입력하세요",
 	"block-removal-confirm-yes": "차단 해제",
 	"block-removal-confirm-no": "취소",
+	"block-removed": "차단이 해제되었습니다.",
 	"unblockip": "사용자 차단 해제",
 	"unblockiptext": "아래의 양식에 차단 해제하려는 IP 주소나 사용자 이름을 입력하세요.",
 	"unblock-target": "대상 차단 해제",

@@ -101,7 +101,7 @@
 	"rest-param-desc-html-output-flavor": "نكهة مُقدم إخراج HTML",
 	"rest-param-desc-page-content-title": "عنوان الصفحة بتنسيق سهل القراءة",
 	"rest-param-desc-page-content-redirect": "إعادة توجيه محتوى الصفحة",
-	"rest-param-desc-update-source": "محتوى الصفحة بالتنسيق المحدد بواسطة خاصية content_model",
+	"rest-param-desc-source": "محتوى الصفحة بالتنسيق المحدد بواسطة خاصية content_model",
 	"rest-param-desc-compare-from": "معرف المراجعة الذي سيتم استخدامه كأساس للمقارنة",
 	"rest-param-desc-compare-to": "معرف المراجعة للمقارنة بالقاعدة",
 	"rest-param-desc-language-links-title": "عنوان صفحة الويكي",

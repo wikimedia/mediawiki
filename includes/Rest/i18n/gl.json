@@ -65,6 +65,7 @@
 	"rest-unsupported-target-format": "O formato de destino solicitado non é compatible.",
 	"rest-parsoid-resource-exceeded": "Superouse o límite de recursos",
 	"rest-parsoid-error": "Erro de Parsoid.",
+	"rest-parsoid-bad-render-id": "ID de renderizado de Parsoid incorrecto: $1",
 	"rest-bad-stash-key": "Clave de reserva incorrecta.",
 	"rest-html-key-expected": "Agardábase unha clave <var>html</var> no corpo",
 	"rest-invalid-transform": "Transformación non válida: $1 a $2",
@@ -86,6 +87,6 @@
 	"rest-unsupported-language-conversion": "Conversión de lingua non compatible: $1 a $2",
 	"rest-unknown-content-model": "Modelo de contido descoñecido: $1",
 	"rest-page-bundle-validation-error": "PageBundle non coincide con contentVersion: $1",
-	"rest-param-desc-revision-id": "ID da revisión",
-	"rest-param-desc-update-source": "Contido da páxina no formato especificado pola propiedade content_model"
+	"rest-param-desc-revision-id": "Identificador da revisión",
+	"rest-param-desc-source": "Contido da páxina no formato especificado pola propiedade content_model"
 }

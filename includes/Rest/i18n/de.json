@@ -93,7 +93,7 @@
 	"rest-param-desc-revision-id": "Versionskennung",
 	"rest-param-desc-html-input-contentmodel": "Seiteninhaltsformat: Wikitext (Standard), CSS, JavaScript, JSON oder Text.",
 	"rest-param-desc-page-content-title": "Seitentitel im lesefreundlichen Format",
-	"rest-param-desc-update-source": "Seiteninhalt im durch die Eigenschaft content_model angegebenen Format",
+	"rest-param-desc-source": "Seiteninhalt im durch die Eigenschaft content_model angegebenen Format",
 	"rest-param-desc-compare-from": "Versionskennung, die als Basis für den Vergleich verwendet wird",
 	"rest-param-desc-compare-to": "Versionskennzeichen zum Vergleich mit der Basis",
 	"rest-param-desc-language-links-title": "Wiki-Seitentitel",

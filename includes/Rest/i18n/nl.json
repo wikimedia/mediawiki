@@ -102,7 +102,7 @@
 	"rest-param-desc-html-output-flavor": "HTML-uitvoer: weergavevariant",
 	"rest-param-desc-page-content-title": "Paginatitel in leesvriendelijke opmaak",
 	"rest-param-desc-page-content-redirect": "Doorverwijzing pagina-inhoud",
-	"rest-param-desc-update-source": "Pagina-inhoud in de indeling die is opgegeven door de eigenschap content_model",
+	"rest-param-desc-source": "Pagina-inhoud in de indeling die is opgegeven door de eigenschap content_model",
 	"rest-param-desc-compare-from": "ID van de als basis voor de vergelijking te gebruiken versie",
 	"rest-param-desc-compare-to": "ID van de met de basis te vergelijken versie",
 	"rest-param-desc-language-links-title": "Wiki-paginatitel",

@@ -105,7 +105,7 @@
 	"rest-param-desc-html-output-flavor": "Version (flavor) du rendu de la sortie HTML",
 	"rest-param-desc-page-content-title": "Titre de la page dans un format facilement compréhensible",
 	"rest-param-desc-page-content-redirect": "Redirection du contenu de la page",
-	"rest-param-desc-update-source": "Contenu de la page au format spécifié par la propriété content_model",
+	"rest-param-desc-source": "Contenu de la page au format spécifié par la propriété content_model",
 	"rest-param-desc-compare-from": "Identifiant de révision à utiliser comme base de comparaison",
 	"rest-param-desc-compare-to": "Identifiant de révision à comparer à la base",
 	"rest-param-desc-language-links-title": "Titre de la page wiki",

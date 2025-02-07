@@ -101,7 +101,7 @@
 	"rest-param-desc-html-output-flavor": "פרמטר flavor של מתצג פלט HTML",
 	"rest-param-desc-page-content-title": "כותרת הדף בתסדיר ידידותי לקריאה",
 	"rest-param-desc-page-content-redirect": "פרמטר redirect של תוכן דף",
-	"rest-param-desc-update-source": "תוכן הדף בתסדיר שצוין על־ידי המאפיין content_model",
+	"rest-param-desc-source": "תוכן הדף בתסדיר שצוין על־ידי המאפיין content_model",
 	"rest-param-desc-compare-from": "מזהה גרסה לשימוש בתור בסיס להשוואה",
 	"rest-param-desc-compare-to": "מזהה גרסה להשוואה לבסיס",
 	"rest-param-desc-language-links-title": "כותרת דף ויקי",

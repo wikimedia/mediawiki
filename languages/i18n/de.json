@@ -385,7 +385,7 @@
 	"readonly_lag": "Die Datenbank wurde automatisch für Schreibzugriffe gesperrt, damit sich die verteilten Datenbankserver mit dem Hauptdatenbankserver abgleichen können.",
 	"nonwrite-api-promise-error": "Der HTTP-Header „Promise-Non-Write-API-Action“ wurde gesendet, doch die Anfrage war keine API-Anfrage.",
 	"timeouterror": "Zeitüberschreitung des Servers",
-	"timeouterror-text": "Die maximale Anfragezeit von $1 {{PLURAL:$1|Sekunde|Sekunden}} wurde überschritten.",
+	"timeouterror-text": "Die maximale Anfragezeit von $1 Sek. wurde überschritten.",
 	"internalerror": "Interner Fehler",
 	"internalerror_info": "Interner Fehler: $1",
 	"internalerror-fatal-exception": "Fataler Ausnahmefehler des Typs „$1“",

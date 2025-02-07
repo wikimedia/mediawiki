@@ -1845,7 +1845,7 @@
 	"deletionlog": "regjistrin e grisjeve",
 	"log-name-create": "Krijimi i faqes logjike",
 	"log-description-create": "Me poshte eshte nje liste e krimit te faqeve me te fundit",
-	"logentry-create-create": "$1{{GENDER:$2|created}} faqe $3",
+	"logentry-create-create": "$1{{GENDER:$2|krijoi}} faqen $3",
 	"reverted": "Kthehu tek një version i vjetër",
 	"deletecomment": "Arsyeja:",
 	"deleteotherreason": "Arsye tjetër:",

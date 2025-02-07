@@ -86,5 +86,5 @@
 	"rest-unknown-content-model": "Непознат содржински модел: $1",
 	"rest-page-bundle-validation-error": "PageBundle не одговара на contentVersion: $1",
 	"rest-param-desc-revision-id": "Назнака на преработката",
-	"rest-param-desc-update-source": "Содржина на страница во форматот укажан од својството content_model"
+	"rest-param-desc-source": "Содржина на страница во форматот укажан од својството content_model"
 }

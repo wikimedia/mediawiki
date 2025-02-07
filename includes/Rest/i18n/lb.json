@@ -14,6 +14,7 @@
 	"rest-parsoid-unsupported-media": "Net ënnerstëtzte Medientyp",
 	"rest-edit-conflict": "Ännerungskonflikt ($1)",
 	"rest-unknown-parsoid-transformation": "Onbekannt Transformatioun.",
+	"rest-param-desc-search-q": "Sichbegrëffer",
 	"rest-property-desc-revision-id": "Versiouns-ID",
 	"rest-schema-desc-revision-metadata": "Revisiounsmetadonnéeën"
 }
