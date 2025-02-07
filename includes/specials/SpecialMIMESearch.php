@@ -22,12 +22,13 @@ namespace MediaWiki\Specials;
 
 use File;
 use HtmlArmor;
-use LocalFile;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\Linker;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\QueryPage;
 use MediaWiki\Title\Title;
@@ -90,9 +91,10 @@ class SpecialMIMESearch extends QueryPage {
 			// Allow wildcard searching
 			$minorType['img_minor_mime'] = $this->minor;
 		}
-		$imgQuery = LocalFile::getQueryInfo();
+		$fileQuery = FileSelectQueryBuilder::newForFile( $this->getDatabaseProvider()->getReplicaDatabase() )
+			->getQueryInfo();
 		$qi = [
-			'tables' => $imgQuery['tables'],
+			'tables' => $fileQuery['tables'],
 			'fields' => [
 				'namespace' => NS_FILE,
 				'title' => 'img_name',
@@ -102,7 +104,6 @@ class SpecialMIMESearch extends QueryPage {
 				'img_size',
 				'img_width',
 				'img_height',
-				'img_user_text' => $imgQuery['fields']['img_user_text'],
 				'img_timestamp'
 			],
 			'conds' => [
@@ -124,8 +125,15 @@ class SpecialMIMESearch extends QueryPage {
 					MEDIATYPE_3D,
 				],
 			] + $minorType,
-			'join_conds' => $imgQuery['joins'],
+			'join_conds' => $fileQuery['join_conds'],
 		];
+
+		if ( isset( $fileQuery['fields']['img_user_text'] ) ) {
+			$qi['fields']['img_user_text'] = $fileQuery['fields']['img_user_text'];
+		} else {
+			// file read new
+			$qi['fields'][] = 'img_user_text';
+		}
 
 		return $qi;
 	}
@@ -170,12 +178,27 @@ class SpecialMIMESearch extends QueryPage {
 
 	protected function getSuggestionsForTypes() {
 		$queryBuilder = $this->getDatabaseProvider()->getReplicaDatabase()->newSelectQueryBuilder();
-		$queryBuilder
-			// We ignore img_media_type, but using it in the query is needed for MySQL to choose a
-			// sensible execution plan
-			->select( [ 'img_media_type', 'img_major_mime', 'img_minor_mime' ] )
-			->from( 'image' )
-			->groupBy( [ 'img_media_type', 'img_major_mime', 'img_minor_mime' ] );
+		$migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::FileSchemaMigrationStage
+		);
+		if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+			$queryBuilder
+				// We ignore img_media_type, but using it in the query is needed for MySQL to choose a
+				// sensible execution plan
+				->select( [ 'img_media_type', 'img_major_mime', 'img_minor_mime' ] )
+				->from( 'image' )
+				->groupBy( [ 'img_media_type', 'img_major_mime', 'img_minor_mime' ] );
+		} else {
+			$queryBuilder->select(
+				[
+					'img_media_type' => 'ft_media_type',
+					'img_major_mime' => 'ft_major_mime',
+					'img_minor_mime' => 'ft_minor_mime',
+				]
+			)
+				->from( 'filetypes' );
+		}
+
 		$result = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 
 		$lastMajor = null;
