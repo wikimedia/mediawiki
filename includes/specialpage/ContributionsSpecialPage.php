@@ -221,7 +221,10 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 			return;
 		}
 		$out->addSubtitle( $this->contributionsSub( $userObj, $target ) );
-		$out->setPageTitleMsg( $this->msg( $this->getResultsPageTitleMessageKey( $userObj ), $target ) );
+		$out->setPageTitleMsg(
+			$this->msg( $this->getResultsPageTitleMessageKey( $userObj ) )
+				->rawParams( Html::element( 'bdi', [], $target ) )
+		);
 
 		# For IP ranges, we want the contributionsSub, but not the skin-dependent
 		# links under 'Tools', which may include irrelevant links like 'Logs'.
