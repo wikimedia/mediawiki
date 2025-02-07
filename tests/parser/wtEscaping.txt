@@ -1878,8 +1878,6 @@ foo's bar :
 
 !! test
 Ensure that when a leading-whitespace-containing string is emitted on a newline, it is correctly escaped
-!! config
-wgParsoidNewTemplateExpansionMode=false
 !! options
 parsoid={
   "modes": ["selser"],

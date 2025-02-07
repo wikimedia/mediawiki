@@ -1273,8 +1273,6 @@ Templates: Strip leading and trailing whitespace from named-param values
 
 !! test
 Templates: Don't strip whitespace from positional-param values
-!! config
-wgParsoidNewTemplateExpansionMode=true
 !! wikitext
 {{1x|a }}
 
@@ -3639,8 +3637,6 @@ baz</li></ul>
 
 !! test
 List items are not parsed correctly following a <pre> block (T2785)
-!! config
-wgParsoidNewTemplateExpansionMode=true
 !! wikitext
 *<pre>foo</pre>
 *<pre>bar</pre>
@@ -3657,8 +3653,6 @@ wgParsoidNewTemplateExpansionMode=true
 
 !! test
 List items from template
-!! config
-wgParsoidNewTemplateExpansionMode=true
 !! wikitext
 
 {{inner list}}
@@ -3884,8 +3878,6 @@ Parsoid: Make sure nested lists are serialized on their own line even if HTML co
 
 !! test
 Parsoid: Test of whitespace serialization with Templated bullets
-!! config
-wgParsoidNewTemplateExpansionMode=true
 !! options
 parsoid=wt2html
 !! wikitext
@@ -4830,8 +4822,6 @@ Template:table
 
 !! test
 T2529: Template with table, not included at beginning of line
-!! config
-wgParsoidNewTemplateExpansionMode=true
 !! wikitext
 foo {{table}}
 !! html/php
@@ -8657,8 +8647,6 @@ wgFragmentMode=[ "legacy" ]
 
 !! test
 Expansion of multi-line templates in attribute values (T8255)
-!! config
-wgParsoidNewTemplateExpansionMode=true
 !! wikitext
 <div style="background: {{1x|#00FF00}}">-</div>
 !! html/php
@@ -8676,8 +8664,6 @@ wgParsoidNewTemplateExpansionMode=true
 
 !! test
 Expansion of multi-line parser-functions in attribute values (T8255)
-!! config
-wgParsoidNewTemplateExpansionMode=true
 !! wikitext
 <div style="background: {{#if:1|#00FF00|#FF00FF}}">-</div>
 !! html/php+disabled
@@ -11507,8 +11493,6 @@ Parsing of overlapping (improperly nested) inline html tags
 
 !! test
 T2529: Uncovered bullet
-!! config
-wgParsoidNewTemplateExpansionMode=true
 !! wikitext
 *Foo {{bullet}}
 !! html/php
@@ -11520,8 +11504,6 @@ wgParsoidNewTemplateExpansionMode=true
 
 !! test
 T2529: Uncovered bullet in a deeply nested list
-!! config
-wgParsoidNewTemplateExpansionMode=true
 !! wikitext
 *******Foo {{bullet}}
 !! html/php
@@ -11565,8 +11547,6 @@ y
 
 !! test
 T2529: Uncovered bullet in parser function result
-!! config
-wgParsoidNewTemplateExpansionMode=true
 !! wikitext
 *Foo{{lc:{{bullet}} }}
 !! html/php

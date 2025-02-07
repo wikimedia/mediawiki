@@ -413,9 +413,6 @@ class ParserTestRunner {
 		$setup['wgUsePigLatinVariant'] = false;
 		$this->resetLanguageServices( $setup, $teardown, true );
 
-		// Global cross-test settings for Parsoid
-		$setup['wgParsoidNewTemplateExpansionMode'] = true;
-
 		// "extra language links"
 		// see https://gerrit.wikimedia.org/r/111390
 		$setup['wgExtraInterlanguageLinkPrefixes'] = [ 'mul' ];

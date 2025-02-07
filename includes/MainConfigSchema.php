@@ -6612,22 +6612,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * If set, Parsoid's DataAccess will pass a flag to the preprocessor
-	 * indicating that template expansions are for Parsoid. This lets
-	 * it treat top-level template expansions as starting in Start-Of-Line (SOL)
-	 * context since that is how Parsoid models template transclusions.
-	 *
-	 * This is a temporary flag and will be removed once all the code is
-	 * rolled out to production.
-	 *
-	 * @unstable EXPERIMENTAL
-	 */
-	public const ParsoidNewTemplateExpansionMode = [
-		'default' => true,
-		'type' => 'boolean',
-	];
-
-	/**
 	 * If set, Parsoid's HTML output for parser functions will be different
 	 * from Parsoid HTML spec 2.x.x and lets us experiment with a better
 	 * output that might be rolled out in a future 3.x Parsoid HTML version.

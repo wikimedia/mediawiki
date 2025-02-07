@@ -57,7 +57,6 @@ use Wikimedia\Rdbms\ReadOnlyMode;
 class DataAccess extends IDataAccess {
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::ParsoidFragmentSupport,
-		MainConfigNames::ParsoidNewTemplateExpansionMode,
 		MainConfigNames::SVGMaxSize,
 	];
 
@@ -388,13 +387,12 @@ class DataAccess extends IDataAccess {
 			# $wikitext is passed by reference and mutated
 			$parser, $wikitext, $parser->getStripState()
 		);
-		$parsoidNewTemplateExpansionMode = $this->config->get( MainConfigNames::ParsoidNewTemplateExpansionMode );
 		if ( $this->config->get( MainConfigNames::ParsoidFragmentSupport ) === false ) {
 			// Original support: just unstrip (T289545)
 			$wikitext = $parser->replaceVariables(
 					$wikitext, $this->ppFrame, false, [
 						'stripExtTags' => true,
-						'parsoidTopLevelCall' => $parsoidNewTemplateExpansionMode,
+						'parsoidTopLevelCall' => true,
 					]
 			);
 			$wikitext = $parser->getStripState()->unstripBoth( $wikitext );
@@ -403,7 +401,7 @@ class DataAccess extends IDataAccess {
 			$wikitext = $parser->replaceVariables(
 				$wikitext, $this->ppFrame, false, [
 					'stripExtTags' => false,
-					'parsoidTopLevelCall' => $parsoidNewTemplateExpansionMode,
+					'parsoidTopLevelCall' => true,
 					'processNowiki' => true,
 				]
 			);
