@@ -181,7 +181,7 @@ class TransactionManager {
 			);
 		} elseif ( $this->trxStatus === self::STATUS_TRX_OK && $this->trxStatusIgnoredCause ) {
 			[ $iLastError, $iLastErrno, $iFname ] = $this->trxStatusIgnoredCause;
-			call_user_func( $deprecationLogger,
+			$deprecationLogger(
 				"Caller from $fname ignored an error originally raised from $iFname: " .
 				"[$iLastErrno] $iLastError"
 			);

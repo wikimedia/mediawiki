@@ -2037,7 +2037,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 				try {
 					$entry[0]( $trigger, $this );
 				} catch ( DBError $ex ) {
-					call_user_func( $this->errorLogger, $ex );
+					( $this->errorLogger )( $ex );
 					$errors[] = $ex;
 					// Some callbacks may use startAtomic/endAtomic, so make sure
 					// their transactions are ended so other callbacks don't fail
@@ -2771,7 +2771,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 
 		while ( !feof( $fp ) ) {
 			if ( $lineCallback ) {
-				call_user_func( $lineCallback );
+				$lineCallback();
 			}
 
 			$line = trim( fgets( $fp ) );

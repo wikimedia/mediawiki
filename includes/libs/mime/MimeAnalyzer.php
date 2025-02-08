@@ -107,7 +107,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	protected function loadFiles(): void {
 		# Allow media handling extensions adding MIME-types and MIME-info
 		if ( $this->initCallback ) {
-			call_user_func( $this->initCallback, $this );
+			( $this->initCallback )( $this );
 		}
 
 		$rawTypes = $this->extraTypes;

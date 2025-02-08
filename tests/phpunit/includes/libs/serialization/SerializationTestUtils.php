@@ -145,7 +145,7 @@ class SerializationTestUtils {
 	 */
 	private function getDeserializedInstances( string $class ): array {
 		return array_map( function ( $fileInfo ) {
-			$fileInfo->object = call_user_func( $this->deserializer, $fileInfo->data );
+			$fileInfo->object = ( $this->deserializer )( $fileInfo->data );
 			return $fileInfo;
 		}, $this->getMatchingFiles( $class, $this->ext ) );
 	}
@@ -187,7 +187,7 @@ class SerializationTestUtils {
 	public function getSerializedInstances(): array {
 		$instances = $this->getTestInstances();
 		return array_map( function ( $object )  {
-			return call_user_func( $this->serializer, $object );
+			return ( $this->serializer )( $object );
 		}, $instances );
 	}
 

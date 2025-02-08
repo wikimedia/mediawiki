@@ -1756,7 +1756,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @return StatusValue Modified status or StatusValue subclass
 	 */
 	final protected function wrapStatus( StatusValue $sv ) {
-		return $this->statusWrapper ? call_user_func( $this->statusWrapper, $sv ) : $sv;
+		return $this->statusWrapper ? ( $this->statusWrapper )( $sv ) : $sv;
 	}
 
 	/**
