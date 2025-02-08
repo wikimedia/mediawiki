@@ -4,11 +4,18 @@ namespace MediaWiki\RecentChanges;
 
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\DomainEvent\EventSubscriberBase;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Page\Event\PageUpdatedEvent;
+use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\EditResult;
+use MediaWiki\User\TalkPageNotificationManager;
+use MediaWiki\User\User;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserNameUtils;
 use RecentChange;
 
 /**
@@ -38,7 +45,12 @@ class ChangeTrackingEventIngress extends EventSubscriberBase {
 		'class' => self::class,
 		'services' => [ // see __construct
 			'ChangeTagsStore',
-			'UserEditTracker'
+			'UserEditTracker',
+			'PermissionManager',
+			'WikiPageFactory',
+			'HookContainer',
+			'UserNameUtils',
+			'TalkPageNotificationManager'
 		],
 		'events' => [ // see registerListeners()
 			PageUpdatedEvent::TYPE
@@ -47,21 +59,49 @@ class ChangeTrackingEventIngress extends EventSubscriberBase {
 
 	private ChangeTagsStore $changeTagsStore;
 	private UserEditTracker $userEditTracker;
+	private PermissionManager $permissionManager;
+	private WikiPageFactory $wikiPageFactory;
+	private HookRunner $hookRunner;
+	private UserNameUtils $userNameUtils;
+	private TalkPageNotificationManager $talkPageNotificationManager;
 
 	public function __construct(
 		ChangeTagsStore $changeTagsStore,
-		UserEditTracker $userEditTracker
+		UserEditTracker $userEditTracker,
+		PermissionManager $permissionManager,
+		WikiPageFactory $wikiPageFactory,
+		HookContainer $hookContainer,
+		UserNameUtils $userNameUtils,
+		TalkPageNotificationManager $talkPageNotificationManager
 	) {
 		// NOTE: keep in sync with self::OBJECT_SPEC
 		$this->changeTagsStore = $changeTagsStore;
 		$this->userEditTracker = $userEditTracker;
+		$this->permissionManager = $permissionManager;
+		$this->wikiPageFactory = $wikiPageFactory;
+		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->userNameUtils = $userNameUtils;
+		$this->talkPageNotificationManager = $talkPageNotificationManager;
 	}
 
 	public static function newForTesting(
 		ChangeTagsStore $changeTagsStore,
-		UserEditTracker $userEditTracker
+		UserEditTracker $userEditTracker,
+		PermissionManager $permissionManager,
+		WikiPageFactory $wikiPageFactory,
+		HookContainer $hookContainer,
+		UserNameUtils $userNameUtils,
+		TalkPageNotificationManager $talkPageNotificationManager
 	) {
-		$ingress = new self( $changeTagsStore, $userEditTracker );
+		$ingress = new self(
+			$changeTagsStore,
+			$userEditTracker,
+			$permissionManager,
+			$wikiPageFactory,
+			$hookContainer,
+			$userNameUtils,
+			$talkPageNotificationManager
+		);
 		$ingress->initSubscriber( self::OBJECT_SPEC );
 		return $ingress;
 	}
@@ -98,6 +138,8 @@ class ChangeTrackingEventIngress extends EventSubscriberBase {
 				$event->getPerformer()
 			);
 		}
+
+		$this->updateNewTalkAfterPageUpdated( $event );
 	}
 
 	private function updateChangeTagsAfterPageUpdated( array $tags, int $revId ) {
@@ -151,6 +193,52 @@ class ChangeTrackingEventIngress extends EventSubscriberBase {
 
 	private function updateUserEditTrackerAfterPageUpdated( UserIdentity $author ) {
 		$this->userEditTracker->incrementUserEditCount( $author );
+	}
+
+	/**
+	 * Listener method for PageUpdatedEvent, to be registered with a DomainEventSource.
+	 *
+	 * @noinspection PhpUnused
+	 */
+	private function updateNewTalkAfterPageUpdated( PageUpdatedEvent $event ) {
+		// If this is another user's talk page, update newtalk.
+		// Don't do this if $options['changed'] = false (null-edits) nor if
+		// it's a minor edit and the user making the edit doesn't generate notifications for those.
+		$page = $event->getPage();
+		$revRecord = $event->getNewRevision();
+		$recipientName = $page->getDBkey();
+		$recipientName = $this->userNameUtils->isIP( $recipientName )
+			? $recipientName
+			: $this->userNameUtils->getCanonical( $page->getDBkey() );
+
+		if ( $event->isContentChange()
+			&& $page->getNamespace() === NS_USER_TALK
+			&& !( $revRecord->isMinor()
+				&& $this->permissionManager->userHasRight(
+					$event->getAuthor(), 'nominornewtalk' ) )
+			&& $recipientName != $event->getAuthor()->getName()
+		) {
+			$recipient = User::newFromName( $recipientName, false );
+			if ( !$recipient ) {
+				wfDebug( __METHOD__ . ": invalid username" );
+			} else {
+				$wikiPage = $this->wikiPageFactory->newFromTitle( $page );
+
+				// Allow extensions to prevent user notification
+				// when a new message is added to their talk page
+				// TODO: replace legacy hook!  Use a listener on PageEventEmitter instead!
+				if ( $this->hookRunner->onArticleEditUpdateNewTalk( $wikiPage, $recipient ) ) {
+					if ( $this->userNameUtils->isIP( $recipientName ) ) {
+						// An anonymous user
+						$this->talkPageNotificationManager->setUserHasNewMessages( $recipient, $revRecord );
+					} elseif ( $recipient->isRegistered() ) {
+						$this->talkPageNotificationManager->setUserHasNewMessages( $recipient, $revRecord );
+					} else {
+						wfDebug( __METHOD__ . ": don't need to notify a nonexistent user" );
+					}
+				}
+			}
+		}
 	}
 
 }

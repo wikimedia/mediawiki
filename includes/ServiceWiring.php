@@ -185,6 +185,7 @@ use MediaWiki\Request\ProxyLookup;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\ResourceLoader\MessageBlobStore;
 use MediaWiki\ResourceLoader\ResourceLoader;
+use MediaWiki\ResourceLoader\ResourceLoaderEventIngress;
 use MediaWiki\Rest\Handler\Helper\PageRestHelperFactory;
 use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\MainSlotRoleHandler;
@@ -1531,14 +1532,12 @@ return [
 			$services->getSlotRoleRegistry(),
 			$services->getParserCache(),
 			$services->getJobQueueGroup(),
-			$services->getMessageCache(),
 			$services->getContentLanguage(),
 			$services->getDBLoadBalancerFactory(),
 			$services->getContentHandlerFactory(),
 			$services->getDomainEventDispatcher(),
 			$services->getHookContainer(),
 			$editResultCache,
-			$services->getUserNameUtils(),
 			LoggerFactory::getInstance( 'SavePage' ),
 			new ServiceOptions(
 				PageUpdaterFactory::CONSTRUCTOR_OPTIONS,
@@ -1548,9 +1547,7 @@ return [
 			$services->getTitleFormatter(),
 			$services->getContentTransformer(),
 			$services->getPageEditStash(),
-			$services->getTalkPageNotificationManager(),
 			$services->getMainWANObjectCache(),
-			$services->getPermissionManager(),
 			$services->getWikiPageFactory(),
 			$services->getChangeTagsStore(),
 			$services->getChangeTagsStore()->getSoftwareTags()
@@ -2685,12 +2682,11 @@ return [
 		// Core event wiring.
 		// TODO: move this to a more prominent location? A separate file?
 
-		// Establish the propagation of PageUpdatedEvents to the change tracking component.
+		// Establish the propagation of events to various components
 		$dispatcher->registerSubscriber( ChangeTrackingEventIngress::OBJECT_SPEC );
-		// Establish the propagation of PageUpdatedEvents to the search component.
 		$dispatcher->registerSubscriber( SearchEventIngress::OBJECT_SPEC );
-		// Establish the propagation of PageUpdatedEvents to the language component.
 		$dispatcher->registerSubscriber( LanguageEventIngress::OBJECT_SPEC );
+		$dispatcher->registerSubscriber( ResourceLoaderEventIngress::OBJECT_SPEC );
 
 		$extensionRegistry = $services->getExtensionRegistry();
 		$dispatcher->registerSubscriber( $extensionRegistry );
