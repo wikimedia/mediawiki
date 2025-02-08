@@ -1,9 +1,8 @@
 <?php
 
-namespace MediaWiki\FileBackend\FSFile;
+namespace Wikimedia\FileBackend\FSFile;
 
 use Wikimedia\AtEase\AtEase;
-use Wikimedia\FileBackend\FSFile\TempFSFile;
 
 /**
  * @ingroup FileBackend
@@ -55,3 +54,6 @@ class TempFSFileFactory {
 		return null; // @codeCoverageIgnore
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( TempFSFileFactory::class, 'MediaWiki\FileBackend\FSFile\TempFSFileFactory' );

@@ -24,7 +24,6 @@
 
 namespace Wikimedia\FileBackend\FSFile;
 
-use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use RuntimeException;
 use WeakMap;
 use Wikimedia\AtEase\AtEase;
