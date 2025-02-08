@@ -463,11 +463,9 @@ class SQLPlatform implements ISQLPlatform {
 	public function buildLike( $param, ...$params ) {
 		if ( is_array( $param ) ) {
 			$params = $param;
-		} else {
-			$params = func_get_args();
+			$param = array_shift( $params );
 		}
-		// @phan-suppress-next-line PhanParamTooFewUnpack
-		$likeValue = new LikeValue( ...$params );
+		$likeValue = new LikeValue( $param, ...$params );
 
 		return ' LIKE ' . $likeValue->toSql( $this->quoter );
 	}

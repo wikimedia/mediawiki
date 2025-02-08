@@ -313,7 +313,7 @@ interface ISQLPlatform {
 	 *   $query .= $dbr->buildLike( $pattern );
 	 *
 	 * @since 1.16 in IDatabase, moved to ISQLPlatform in 1.39
-	 * @param array[]|string|LikeMatch $param
+	 * @param string|LikeMatch|non-empty-array<string|LikeMatch> $param
 	 * @param-taint $param escapes_sql
 	 * @param string|LikeMatch ...$params
 	 * @param-taint ...$params escapes_sql
