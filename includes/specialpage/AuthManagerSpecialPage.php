@@ -9,16 +9,19 @@ use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Context\DerivativeContext;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HTMLForm\Field\HTMLInfoField;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
 use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\Token;
 use MediaWiki\Status\Status;
 use MWCryptRand;
+use Profiler;
 use StatusValue;
 use UnexpectedValueException;
 
@@ -109,12 +112,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 		);
 	}
 
-	/**
-	 * @stable to override
-	 * @param string|null $subPage
-	 *
-	 * @return bool|void
-	 */
+	/** @inheritDoc */
 	protected function beforeExecute( $subPage ) {
 		$this->getOutput()->disallowUserJs();
 
@@ -161,6 +159,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 			$authManager->removeAuthenticationSessionData( $key );
 			$this->isReturn = true;
 			$this->setRequest( $authData, true );
+			$this->setPostTransactionProfilerExpectations( __METHOD__ );
 		}
 
 		return true;
@@ -221,10 +220,20 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 			if ( $authData ) {
 				$authManager->removeAuthenticationSessionData( $key );
 				$this->setRequest( $authData, true );
+				$this->setPostTransactionProfilerExpectations( __METHOD__ );
 			}
 		}
 
 		return true;
+	}
+
+	private function setPostTransactionProfilerExpectations( string $fname ) {
+		$trxLimits = $this->getConfig()->get( MainConfigNames::TrxProfilerLimits );
+		$trxProfiler = Profiler::instance()->getTransactionProfiler();
+		$trxProfiler->redefineExpectations( $trxLimits['POST'], $fname );
+		DeferredUpdates::addCallableUpdate( static function () use ( $trxProfiler, $trxLimits, $fname ) {
+			$trxProfiler->redefineExpectations( $trxLimits['PostSend-POST'], $fname );
+		} );
 	}
 
 	/**
