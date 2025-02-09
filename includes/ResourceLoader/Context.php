@@ -132,7 +132,7 @@ class Context implements LocalizationContext {
 	}
 
 	/**
-	 * @internal For use in ResourceLoader::inDebugMode
+	 * @internal For use in OutputPage::inDebugMode
 	 * @param string|null $debug
 	 * @return int
 	 */
