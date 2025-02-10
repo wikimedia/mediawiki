@@ -10,7 +10,7 @@
 	"prefsnologintext2-for-temp-user": "Mara aghâbây akun ka'angghuy ngobâ kaenḍâ'ân.",
 	"searchprefs": "Kaenḍâ'ânna panyarèyan",
 	"searchprefs-noresults": "Taḍâ' hasèlla",
-	"searchprefs-results": "$1 {{PLURAL:$1|hasèl|hasèl}}",
+	"searchprefs-results": "$1 {{PLURAL:$1|hasèl}}",
 	"saveprefs": "Sèmpen",
 	"tooltip-preferences-save": "Sèmpen kaenḍâ'ân",
 	"savedprefs": "Kaenḍâ'ânna Ba'na la èsèmpen",

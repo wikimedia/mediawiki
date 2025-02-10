@@ -2421,6 +2421,7 @@
 	"logentry-patrol-patrol-auto": "$1 نے ورقہ $3 دے نسخہ $4 کوں خودکار طور تے گشت کیتا ہویا {{GENDER:$2|نشان زد کیتا}}",
 	"logentry-newusers-create": "ورتݨ کھاتہ $1 {{GENDER:$2|بݨایا ڳیا}}",
 	"logentry-newusers-autocreate": "ورتݨ کھاتہ $1 خودکار طور  {{GENDER:$2|تخلیق تھیا}}",
+	"logentry-rights-rights-revoked": "{{GENDER:$2|رکن ٻݨیا}}: $1",
 	"logentry-upload-upload": "$1 {{GENDER:$2|اپلوڈ}} $3",
 	"logentry-upload-overwrite": "$1 نے $3 دا نواں نسخہ {{GENDER:$2|اپلوڈ کیتا}}",
 	"log-name-managetags": "ٹیگ منیجمنٹ لاگ",

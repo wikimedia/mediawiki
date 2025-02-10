@@ -3359,7 +3359,7 @@
 	"semicolon-separator": "；",
 	"comma-separator": "、",
 	"colon-separator": ":&#32;",
-	"word-separator": "​",
+	"word-separator": "&#32;",
 	"ellipsis": "…",
 	"percent": "$1%",
 	"brackets": "[$1]",
