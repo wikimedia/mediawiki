@@ -664,6 +664,11 @@ because of Phabricator reports.
    - Xml::check() – use Html::check() instead
 * BlockUtils and BlockUtilsFactory is now deprecated. Use BlockTargetFactory
   and CrossWikiBlockTargetFactory.
+* Passing a string or UserIdentity object to DatabaseBlock::setTarget() or
+  the 'address' parameter to DatabaseBlock::__construct() is now deprecated
+  and will emit deprecation warnings. Use BlockTargetFactory to obtain a
+  BlockTarget to pass to the 'target' parameter of these functions, or use
+  DatabaseBlockStore::newUnsaved() or ::insertBlockWithParams(). (T385966)
 * RenameuserSQL::rename has been deprecated and should be replaced with
   RenameuserSQL::renameUser, which returns a Status instead of boolean.
 * LocalFile::getQueryInfo() and OldLocalFile::getQueryInfo(), deprecated
