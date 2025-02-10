@@ -299,6 +299,7 @@ class LocalFile extends File {
 	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
 	public static function getQueryInfo( array $options = [] ) {
+		wfDeprecated( __METHOD__, '1.41' );
 		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 		$queryInfo = FileSelectQueryBuilder::newForFile( $dbr, $options )->getQueryInfo();
 		// needs remapping...

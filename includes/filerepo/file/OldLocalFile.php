@@ -138,6 +138,7 @@ class OldLocalFile extends LocalFile {
 	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
 	public static function getQueryInfo( array $options = [] ) {
+		wfDeprecated( __METHOD__, '1.41' );
 		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 		$queryInfo = FileSelectQueryBuilder::newForOldFile( $dbr, $options )->getQueryInfo();
 		return [
