@@ -211,21 +211,10 @@ class ApiBlockTest extends ApiTestCase {
 		$this->assertSame( (int)wfTimestamp( TS_UNIX, $expiry ), $fakeTime + 86400 );
 	}
 
-	/**
-	 * @dataProvider provideBlockWithInvalidExpiry()
-	 */
-	public function testBlockWithInvalidExpiry( string $expiry, string $code ) {
-		$this->expectApiErrorCode( $code );
-		$this->doBlock( [ 'expiry' => $expiry ] );
-	}
+	public function testBlockWithInvalidExpiry() {
+		$this->expectApiErrorCode( 'invalidexpiry' );
 
-	public static function provideBlockWithInvalidExpiry(): array {
-		return [
-			[ '', 'badexpiry' ],
-			[ '99999 years', 'badexpiry' ],
-			[ '9999999999 years', 'badexpiry' ],
-			[ '1999-01-01', 'badexpiry-past' ],
-		];
+		$this->doBlock( [ 'expiry' => '' ] );
 	}
 
 	public function testBlockWithoutRestrictions() {
