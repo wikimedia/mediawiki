@@ -149,10 +149,6 @@ For notes on 1.43.x and older releases, see HISTORY.
 
 * The list=blocks API now accepts a `parsedreason` parameter to get the block
   reason as parsed HTML.
-* The action=block API has been updated to use the ExpiryDef validation (the
-  same as used for watchlist expiry values). This means that the error code
-  returned will no longer be `invalidexpiry` but instead either `badexpiry` or
-  `badexpiry-past`.
 * …
 
 === Action API internal changes in 1.44 ===
