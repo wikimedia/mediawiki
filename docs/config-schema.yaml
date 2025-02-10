@@ -5890,7 +5890,7 @@ config-schema:
               - false: Allow all framing.
             Note: $wgBreakFrames will override this for human formatted API output.
     AllowAuthenticatedCrossOrigin:
-        default: false
+        default: true
         type: boolean
         description: |-
             Allow non-anonymous cross-origin requests to the Action API.

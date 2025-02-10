@@ -9407,7 +9407,7 @@ class MainConfigSchema {
 	 * @since 1.43
 	 */
 	public const AllowAuthenticatedCrossOrigin = [
-		'default' => false,
+		'default' => true,
 		'type' => 'boolean',
 	];
 

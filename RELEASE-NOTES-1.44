@@ -40,7 +40,7 @@ For notes on 1.43.x and older releases, see HISTORY.
   into these groups will never result in an RC entry, even if
   $wgAutopromoteOnceLogInRC is true, as long as they were the only new groups
   the user was autopromoted into.
-* (T322944) $wgAllowAuthenticatedCrossOrigin - If true (defaults to false),
+* (T322944) $wgAllowAuthenticatedCrossOrigin - If true (defaults to true),
   enable the crossorigin= API parameter to allow authenticated cross-origin
   API requests.
 * (T240542) $wgAutoblockExemptions - IP addresses and CIDR ranges listed here
@@ -91,11 +91,11 @@ For notes on 1.43.x and older releases, see HISTORY.
  This does not consider deletion log entries that were suppressed.
 * (T326056) Attempting to create a redirect to another redirect will now
   result in a warning.
-* (T322944) If enabled ($wgAllowAuthenticatedCrossOrigin, see above),
-  developers using the Action API can now use the new crossorigin= parameter.
-  If used with a supported session provider, such as OAuth,
+* (T322944) Developers using the Action API can now use the new crossorigin=
+  parameter. If used with a supported session provider, such as OAuth,
   this permits authenticated cross-origin requests against the Action API,
   similar to how origin=* allows unauthenticated cross-origin requests.
+  Can be disabled via $wgAllowAuthenticatedCrossOrigin (see above).
 * (T24521, T62109) Embedding a file (e.g., [[File:MediaWiki.png]]) on a page
   protected with cascading protection will no longer restrict edits to the
   file description page, only file uploads. Transcluding a file description
