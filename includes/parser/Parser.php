@@ -213,6 +213,7 @@ class Parser {
 	 */
 	public const MARKER_SUFFIX = "-QINU`\"'\x7f";
 	public const MARKER_PREFIX = "\x7f'\"`UNIQ-";
+	private const HEADLINE_MARKER_REGEX = '/^' . self::MARKER_PREFIX . '-h-(\d+)-' . self::MARKER_SUFFIX . '/';
 
 	/**
 	 * Internal marker used by parser to track where the table of
@@ -4385,7 +4386,6 @@ class Parser {
 		$head = [];
 		$level = 0;
 		$tocData = new TOCData();
-		$markerRegex = self::MARKER_PREFIX . "-h-(\d+)-" . self::MARKER_SUFFIX;
 		$baseTitleText = $this->getTitle()->getPrefixedDBkey();
 		$oldType = $this->mOutputType;
 		$this->setOutputType( self::OT_WIKI );
@@ -4402,12 +4402,11 @@ class Parser {
 			$isTemplate = false;
 			$titleText = false;
 			$sectionIndex = false;
-			$markerMatches = [];
-			if ( preg_match( "/^$markerRegex/", $headline, $markerMatches ) ) {
+			if ( preg_match( self::HEADLINE_MARKER_REGEX, $headline, $markerMatches ) ) {
 				$serial = (int)$markerMatches[1];
 				[ $titleText, $sectionIndex ] = $this->mHeadings[$serial];
 				$isTemplate = ( $titleText != $baseTitleText );
-				$headline = preg_replace( "/^$markerRegex\\s*/", "", $headline );
+				$headline = ltrim( substr( $headline, strlen( $markerMatches[0] ) ) );
 			}
 
 			$sectionMetadata = SectionMetadata::fromLegacy( [
