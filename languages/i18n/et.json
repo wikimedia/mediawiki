@@ -894,7 +894,7 @@
 	"revdelete-hide-name": "Peida toimingu objekt ja parameetrid",
 	"revdelete-hide-comment": "Resümee",
 	"revdelete-hide-user": "Toimetaja kasutajanimi või IP-aadress",
-	"revdelete-hide-restricted": "Varja andmeid nii administraatorite kui ka teiste eest.",
+	"revdelete-hide-restricted": "Varja andmeid nii administraatorite kui ka teiste eest",
 	"revdelete-radio-same": "(ära muuda)",
 	"revdelete-radio-set": "Peidetud",
 	"revdelete-radio-unset": "Nähtav",
