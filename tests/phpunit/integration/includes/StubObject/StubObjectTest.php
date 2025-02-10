@@ -31,25 +31,14 @@ use MediaWiki\StubObject\StubObject;
  */
 class StubObjectTest extends MediaWikiIntegrationTestCase {
 
-	/** @var int */
-	private $oldErrorLevel;
-
 	protected function setUp(): void {
 		parent::setUp();
-
-		// Make sure deprecation notices are seen
-		$this->oldErrorLevel = error_reporting( -1 );
 
 		global $wgDummy;
 		$wgDummy = new StubObject(
 			'wgDummy',
 			[ __CLASS__, 'factory' ]
 		);
-	}
-
-	protected function tearDown(): void {
-		error_reporting( $this->oldErrorLevel );
-		parent::tearDown();
 	}
 
 	/**
