@@ -4162,6 +4162,7 @@ config-schema:
             - 'tel:'
             - 'telnet://'
             - 'urn:'
+            - 'wikipedia://'
             - 'worldwind://'
             - 'xmpp:'
             - //
