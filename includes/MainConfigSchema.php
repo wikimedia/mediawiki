@@ -9396,22 +9396,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Allow non-anonymous cross-origin requests to the Action API.
-	 *
-	 * If true, certain session providers
-	 * (such as OAuth, but not cookie-based sessions)
-	 * may allow users to make cross-origin requests that are treated as logged in.
-	 * Users must request this via 'crossorigin=1' in the URL,
-	 * replacing 'origin=*' (which allows logged-out cross-origin requests).
-	 *
-	 * @since 1.43
-	 */
-	public const AllowAuthenticatedCrossOrigin = [
-		'default' => true,
-		'type' => 'boolean',
-	];
-
-	/**
 	 * Controls Content-Security-Policy header
 	 *
 	 * @warning May cause slowness on Windows due to slow random number generator.
