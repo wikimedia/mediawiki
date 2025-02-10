@@ -361,7 +361,8 @@ class BlockManager {
 			return $blocks[ 0 ];
 		} else {
 			$compositeBlock = CompositeBlock::createFromBlocks( ...$blocks );
-			$compositeBlock->setTarget( $ip );
+			$target = $ip === null ? null : $this->blockTargetFactory->newAnonIpBlockTarget( $ip );
+			$compositeBlock->setTarget( $target );
 			return $compositeBlock;
 		}
 	}
