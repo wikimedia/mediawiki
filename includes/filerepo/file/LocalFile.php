@@ -1631,11 +1631,11 @@ class LocalFile extends File {
 		}
 
 		$dbr = $this->repo->getReplicaDB();
-		$oldFileQuery = OldLocalFile::getQueryInfo();
+		$oldFileQuery = FileSelectQueryBuilder::newForOldFile( $dbr )->getQueryInfo();
 
 		$tables = $oldFileQuery['tables'];
 		$fields = $oldFileQuery['fields'];
-		$join_conds = $oldFileQuery['joins'];
+		$join_conds = $oldFileQuery['join_conds'];
 		$conds = $opts = [];
 		$eq = $inc ? '=' : '';
 		$conds[] = $dbr->expr( 'oi_name', '=', $this->title->getDBkey() );

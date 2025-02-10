@@ -27,8 +27,8 @@
 namespace MediaWiki\Api;
 
 use File;
-use LocalFile;
 use LocalRepo;
+use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Permissions\GroupPermissionsLookup;
@@ -115,10 +115,10 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 		// Table and return fields
 		$prop = array_fill_keys( $params['prop'], true );
 
-		$fileQuery = LocalFile::getQueryInfo();
+		$fileQuery = FileSelectQueryBuilder::newForFile( $db )->getQueryInfo();
 		$this->addTables( $fileQuery['tables'] );
 		$this->addFields( $fileQuery['fields'] );
-		$this->addJoinConds( $fileQuery['joins'] );
+		$this->addJoinConds( $fileQuery['join_conds'] );
 
 		$ascendingOrder = true;
 		if ( $params['dir'] == 'descending' || $params['dir'] == 'older' ) {
@@ -216,7 +216,13 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 
 			// Image filters
 			if ( $params['user'] !== null ) {
-				$this->addWhereFld( $fileQuery['fields']['img_user_text'], $params['user'] );
+				if ( isset( $fileQuery['fields']['img_user_text'] ) ) {
+					$this->addWhereFld( $fileQuery['fields']['img_user_text'], $params['user'] );
+				} else {
+					// file read new
+					$this->addWhereFld( 'img_user_text', $params['user'] );
+				}
+
 			}
 			if ( $params['filterbots'] != 'all' ) {
 				$this->addTables( 'user_groups' );
