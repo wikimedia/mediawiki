@@ -57,7 +57,7 @@ class SkinComponentUtils {
 				'returntoanchor' => $request->getVal( 'returntoanchor' ),
 			];
 			( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
-				->onAuthPreserveQueryParams( $params, [ 'reset' => true ] );
+				->onAuthPreserveQueryParams( $params, [ 'request' => $request, 'reset' => true ] );
 			return array_filter( $params, static fn ( $val ) => $val !== null );
 		}
 
