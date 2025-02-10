@@ -790,6 +790,7 @@ class LocalFile extends File {
 					'file_name' => $this->getName(),
 					'file_deleted' => 0
 				] )
+				->caller( __METHOD__ )
 				->fetchField();
 			$this->fileId = $id;
 		}
@@ -815,6 +816,7 @@ class LocalFile extends File {
 			->where( [
 				'file_name' => $this->getName(),
 			] )
+			->caller( __METHOD__ )
 			->fetchField();
 		if ( !$id ) {
 			$dbw->newInsertQueryBuilder()
@@ -857,6 +859,7 @@ class LocalFile extends File {
 				'ft_major_mime' => $major,
 				'ft_minor_mime' => $minor,
 			] )
+			->caller( __METHOD__ )
 			->fetchField();
 		if ( $id ) {
 			$this->fileTypeId = $id;
@@ -1948,6 +1951,7 @@ class LocalFile extends File {
 					->from( 'filerevision' )
 					->where( [ 'fr_file' => $this->acquireFileIdFromName() ] )
 					->orderBy( 'fr_timestamp', 'DESC' )
+					->caller( __METHOD__ )
 					->fetchField();
 			}
 			$commentFieldsNew = $commentStore->insert( $dbw, 'fr_description', $comment );
