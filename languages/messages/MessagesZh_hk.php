@@ -33,8 +33,12 @@ $namespaceAliases = [
 
 /** @phpcs-require-sorted-array */
 $specialPageAliases = [
-	'ComparePages'              => [ '頁面比較' ],
-	'Unblock'                   => [ '解除封禁' ],
+	'Listusers'                  => [ '用戶列表' ],
+	'Renameuser'                 => [ '重新命名用戶' ],
+	'Unblock'                    => [ '解除封禁' ],
+	'Userlogin'                  => [ '用戶登入' ],
+	'Userlogout'                 => [ '用戶登出' ],
+	'Userrights'                 => [ '用戶權限' ],
 ];
 
 $datePreferences = [

@@ -40,54 +40,6 @@ $namespaceNames = [
 #
 # $namespaceAliases = [];
 
-/** @phpcs-require-sorted-array */
-$specialPageAliases = [
-	'Allmessages'               => [ '所有消息', '所有訊息', '所有讯息' ],
-	'Ancientpages'              => [ '最早页面', '最早頁面' ],
-	'Badtitle'                  => [ '错误标题', '无效标题', '錯誤標題' ],
-	'Booksources'               => [ '网络书源', '網絡書源', '網路書源' ],
-	'Confirmemail'              => [ '确认电子邮件', '確認電子郵件' ],
-	'Contributions'             => [ '用户贡献', '用戶貢獻', '使用者貢獻', '使用者贡献' ],
-	'CreateAccount'             => [ '创建账户', '創建賬戶', '建立帳戶', '建立帳號', '建立帐号' ],
-	'Deadendpages'              => [ '断链页面', '斷鏈頁面', '斷連頁面' ],
-	'DeletedContributions'      => [ '删除的贡献' ],
-	'Diff'                      => [ '差异', '差異' ],
-	'DoubleRedirects'           => [ '双重重定向', '雙重重新導向' ],
-	'Emailuser'                 => [ '电邮联系', '電郵聯絡' ],
-	'Export'                    => [ '导出页面', '導出頁面', '匯出頁面', '汇出页面' ],
-	'Filepath'                  => [ '文件路径', '文件路徑', '檔案路徑', '档案路径' ],
-	'Import'                    => [ '导入页面', '導入頁面', '匯入頁面', '汇入页面' ],
-	'Invalidateemail'           => [ '不可识别的电邮地址', '不可識別的電郵位址' ],
-	'LinkSearch'                => [ '链接搜索', '鏈接搜索', '連結搜尋', '连结搜寻' ],
-	'Listbots'                  => [ '机器人列表', '機器人清單', '機械人清單' ],
-	'Listfiles'                 => [ '文件列表', '檔案列表', '档案列表' ],
-	'Listgrouprights'           => [ '群组权限', '群組權限' ],
-	'Listredirects'             => [ '重定向页列表', '重定向列表', '重新導向清單' ],
-	'Listusers'                 => [ '用户列表', '用戶列表', '使用者清單' ],
-	'MIMEsearch'                => [ 'MIME搜索', 'MIME搜尋', 'MIME搜寻' ],
-	'Mostimages'                => [ '最多链接文件', '最多鏈接文件', '最多連結檔案' ],
-	'Mostlinkedtemplates'       => [ '最多链接模板', '最多連結模板' ],
-	'Newimages'                 => [ '新建文件', '新建檔案' ],
-	'Newpages'                  => [ '最新页面', '最新頁面' ],
-	'PasswordReset'             => [ '重置密码', '重設密碼' ],
-	'Preferences'               => [ '参数设置', '偏好設定', '參數設置' ],
-	'Recentchanges'             => [ '最近更改', '近期變動' ],
-	'Recentchangeslinked'       => [ '链出更改', '鏈出更改', '連出更改' ],
-	'Renameuser'                => [ '重命名用户', '重新命名用户', '重新命名用戶', '重新命名使用者' ],
-	'ResetTokens'               => [ '重置密钥', '重設金鑰' ],
-	'Revisiondelete'            => [ '版本删除' ],
-	'Statistics'                => [ '统计', '统计信息', '統計', '統計資訊' ],
-	'Uncategorizedcategories'   => [ '未归类分类', '未歸類分類' ],
-	'Uncategorizedimages'       => [ '未归类文件', '未歸類文件', '未歸類檔案' ],
-	'Undelete'                  => [ '恢复被删页面', '恢復被刪頁面' ],
-	'Upload'                    => [ '上传文件', '上傳檔案', '上載檔案', '上载档案' ],
-	'Userlogin'                 => [ '用户登录', '用戶登入', '使用者登入' ],
-	'Userlogout'                => [ '用户退出', '用戶登出', '使用者登出' ],
-	'Userrights'                => [ '用户权限', '用戶權限', '使用者權限' ],
-	'Watchlist'                 => [ '监视列表', '監視列表', '監視清单' ],
-	'Whatlinkshere'             => [ '链入页面', '鏈入頁面', '連入頁面' ],
-];
-
 # Set magic words in en by default to prevent fallback to translations of language variants.
 # Store magic word aliases of language variants in their message files respectively.
 
