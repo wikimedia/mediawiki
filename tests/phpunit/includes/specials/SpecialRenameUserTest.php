@@ -13,12 +13,11 @@ class SpecialRenameUserTest extends SpecialPageTestBase {
 		$services = $this->getServiceContainer();
 		return new SpecialRenameUser(
 			$services->getConnectionProvider(),
-			$services->getMovePageFactory(),
 			$services->getPermissionManager(),
 			$services->getTitleFactory(),
 			$services->getUserFactory(),
 			$services->getUserNamePrefixSearch(),
-			$services->getUserNameUtils()
+			$services->getRenameUserFactory()
 		);
 	}
 

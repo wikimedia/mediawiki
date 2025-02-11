@@ -97,6 +97,10 @@ For notes on 1.43.x and older releases, see HISTORY.
 
 * (T267477) Users with rename userright can now rename themselves through
   [[Special:RenameUser]].
+* (T104830) [[Special:RenameUser]] can now be used in wiki families using
+  shared tables.
+  A renameuser-global right is added and required when renaming global users.
+  No groups have this right by default.
 * …
 
 === New developer features in 1.44 ===
@@ -268,6 +272,8 @@ because of Phabricator reports.
   added. This will be hard deprecated in the next MediaWiki release. More
   information is available at T333211. To avoid future breakage, see the
   guidance in T385346.
+* RenameuserSQL::rename has been deprecated and should be replaced with
+  RenameuserSQL::renameUser, which returns a Status instead of boolean.
 * LocalFile::getQueryInfo() and OldLocalFile::getQueryInfo(), deprecated
   since 1.41, are now emitting warnings.
 * The 'PermissionErrorAudit' hook has been deprecated and replaced by

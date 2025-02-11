@@ -32,8 +32,8 @@ class RenameUserTest extends MaintenanceBaseTestCase {
 
 	public static function provideExecuteForFatalError() {
 		return [
-			'Invalid old name' => [ 'Template:Testing#test', 'abc', [], '/The specified old username is invalid/' ],
-			'Non-existing old name' => [ 'Non-existing-test-user123', 'abc', [], '/The user does not exist/' ],
+			'Invalid old name' => [ 'Template:Testing#test', 'abc', [], '/The specified old username is invalid./' ],
+			'Non-existing old name' => [ 'Non-existing-test-user123', 'abc', [], '/The user does not exist./' ],
 		];
 	}
 
@@ -78,7 +78,7 @@ class RenameUserTest extends MaintenanceBaseTestCase {
 		$this->overrideConfigValue( MainConfigNames::CentralIdLookupProvider, 'renameUserTestProvider' );
 		// Run the maintenance script and expect an error.
 		$this->testExecuteForFatalErrorWithValidOldName(
-			$this->getTestUser()->getUserIdentity()->getName(), [], '/The user is globally attached/'
+			$this->getTestUser()->getUserIdentity()->getName() . 'New', [], '/The user is globally attached/'
 		);
 	}
 
@@ -97,9 +97,7 @@ class RenameUserTest extends MaintenanceBaseTestCase {
 		$this->maintenance->setOption( 'skip-page-moves', true );
 		$this->maintenance->execute();
 		// Check that the output of the script is as expected
-		$this->expectOutputRegex(
-			'/' . preg_quote( $testUserIdentity->getName(), '/' ) . ' was successfully renamed to Abcdef-user/'
-		);
+		$this->expectOutputRegex( '/Successfully renamed user/' );
 		// Check that the rename actually occurred
 		$this->newSelectQueryBuilder()
 			->select( 'user_name' )
@@ -133,9 +131,7 @@ class RenameUserTest extends MaintenanceBaseTestCase {
 		$this->maintenance->setArg( 'new-name', 'Abcdef-user' );
 		$this->maintenance->execute();
 		// Check that the output of the script is as expected
-		$this->expectOutputRegex(
-			'/' . preg_quote( $testUserIdentity->getName(), '/' ) . ' was successfully renamed to Abcdef-user/'
-		);
+		$this->expectOutputRegex( '/Successfully renamed user/' );
 		// Check that the rename actually occurred
 		$this->newSelectQueryBuilder()
 			->select( 'user_name' )

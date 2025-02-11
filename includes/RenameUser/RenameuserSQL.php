@@ -11,6 +11,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Specials\SpecialLog;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
@@ -135,7 +136,7 @@ class RenameuserSQL {
 	 *    'checkIfUserExists' - bool, whether to update the user table
 	 *    'derived' - bool, whether to skip updates to shared tables
 	 */
-	public function __construct( $old, $new, $uid, User $renamer, $options = [] ) {
+	public function __construct( string $old, string $new, int $uid, User $renamer, $options = [] ) {
 		$services = MediaWikiServices::getInstance();
 		$this->hookRunner = new HookRunner( $services->getHookContainer() );
 		$this->dbProvider = $services->getConnectionProvider();
@@ -184,9 +185,19 @@ class RenameuserSQL {
 
 	/**
 	 * Do the rename operation
+	 * @deprecated since 1.44 use renameUser
 	 * @return bool
 	 */
 	public function rename() {
+		wfDeprecated( __METHOD__, '1.44' );
+		return $this->renameUser()->isOK();
+	}
+
+	/**
+	 * Do the rename operation
+	 * @return Status
+	 */
+	public function renameUser(): Status {
 		$dbw = $this->dbProvider->getPrimaryDatabase();
 		$atomicId = $dbw->startAtomic( __METHOD__, $dbw::ATOMIC_CANCELABLE );
 
@@ -202,7 +213,7 @@ class RenameuserSQL {
 				$this->debug( "User $currentName does not exist, bailing out" );
 				$dbw->cancelAtomic( __METHOD__, $atomicId );
 
-				return false;
+				return Status::newFatal( 'renameusererrordoesnotexist', $this->new );
 			}
 		}
 
@@ -318,7 +329,7 @@ class RenameuserSQL {
 			}
 		}
 
-		/** @var RenameUserJob[] $jobs */
+		/** @var \MediaWiki\RenameUser\Job\RenameUserTableJob[] $jobs */
 		$jobs = []; // jobs for all tables
 		// Construct jobqueue updates...
 		// FIXME: if a bureaucrat renames a user in error, he/she
@@ -375,7 +386,7 @@ class RenameuserSQL {
 				$jobParams['count']++;
 				// Once a job has $wgUpdateRowsPerJob rows, add it to the queue
 				if ( $jobParams['count'] >= $this->updateRowsPerJob ) {
-					$jobs[] = new JobSpecification( 'renameUser', $jobParams, [], $oldTitle );
+					$jobs[] = new JobSpecification( 'renameUserTable', $jobParams, [], $oldTitle );
 					$jobParams['minTimestamp'] = '0';
 					$jobParams['maxTimestamp'] = '0';
 					$jobParams['count'] = 0;
@@ -383,7 +394,7 @@ class RenameuserSQL {
 			}
 			// If there are any job rows left, add it to the queue as one job
 			if ( $jobParams['count'] > 0 ) {
-				$jobs[] = new JobSpecification( 'renameUser', $jobParams, [], $oldTitle );
+				$jobs[] = new JobSpecification( 'renameUserTable', $jobParams, [], $oldTitle );
 			}
 		}
 
@@ -431,7 +442,7 @@ class RenameuserSQL {
 
 		$this->debug( "Finished rename from {$this->old} to {$this->new}" );
 
-		return true;
+		return Status::newGood();
 	}
 
 	/**

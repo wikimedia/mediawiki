@@ -24,10 +24,7 @@ require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
 use MediaWiki\Maintenance\Maintenance;
-use MediaWiki\Page\MovePageFactory;
-use MediaWiki\RenameUser\RenameuserSQL;
-use MediaWiki\Title\Title;
-use MediaWiki\User\CentralId\CentralIdLookup;
+use MediaWiki\RenameUser\RenameUserFactory;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 
@@ -35,11 +32,8 @@ class RenameUser extends Maintenance {
 	/** @var UserFactory */
 	private $userFactory;
 
-	/** @var CentralIdLookup|null */
-	private $centralLookup;
-
-	/** @var MovePageFactory */
-	private $movePageFactory;
+	/** @var RenameUserFactory */
+	private $renameUserFactory;
 
 	public function __construct() {
 		parent::__construct();
@@ -58,8 +52,7 @@ class RenameUser extends Maintenance {
 	private function initServices() {
 		$services = $this->getServiceContainer();
 		$this->userFactory = $services->getUserFactory();
-		$this->centralLookup = $services->getCentralIdLookupFactory()->getNonLocalLookup();
-		$this->movePageFactory = $services->getMovePageFactory();
+		$this->renameUserFactory = $services->getRenameUserFactory();
 	}
 
 	public function execute() {
@@ -67,28 +60,20 @@ class RenameUser extends Maintenance {
 
 		$oldName = $this->getArg( 'old-name' );
 		$newName = $this->getArg( 'new-name' );
+		$reason = $this->getOption( 'reason' ) ?? '';
 
 		$oldUser = $this->userFactory->newFromName( $oldName );
+		$newUser = $this->userFactory->newFromName( $newName );
+
 		if ( !$oldUser ) {
-			$this->fatalError( 'The specified old username is invalid' );
+			$this->fatalError( 'The specified old username is invalid.' );
+		} elseif ( !$oldUser->isRegistered() ) {
+			$this->fatalError( 'The user does not exist.' );
 		}
-
-		if ( !$oldUser->isRegistered() ) {
-			$this->fatalError( 'The user does not exist' );
-		}
-
-		if ( !$this->getOption( 'force-global-detach' )
-			&& $this->centralLookup
-			&& $this->centralLookup->isAttached( $oldUser )
-		) {
-			$this->fatalError( 'The user is globally attached. Use CentralAuth to rename this account.' );
-		}
-
-		$newUser = $this->userFactory->newFromName( $newName, UserFactory::RIGOR_CREATABLE );
 		if ( !$newUser ) {
-			$this->fatalError( 'The specified new username is invalid' );
+			$this->fatalError( 'The specified new username is invalid.' );
 		} elseif ( $newUser->isRegistered() ) {
-			$this->fatalError( 'New username must be free' );
+			$this->fatalError( 'New username must be free.' );
 		}
 
 		if ( $this->getOption( 'performer' ) === null ) {
@@ -101,74 +86,29 @@ class RenameUser extends Maintenance {
 			$this->fatalError( 'Performer does not exist.' );
 		}
 
-		$renamer = new RenameuserSQL(
-			$oldUser->getName(),
-			$newUser->getName(),
-			$oldUser->getId(),
-			$performer,
-			[
-				'reason' => $this->getOption( 'reason' )
-			]
-		);
+		$rename = $this->renameUserFactory->newRenameUser( $performer, $oldUser, $newName, $reason, [
+			'forceGlobalDetach' => $this->getOption( 'force-global-detach' ),
+			'movePages' => !$this->getOption( 'skip-page-moves' ),
+			'suppressRedirect' => $this->getOption( 'suppress-redirect' ),
+		] );
+		$status = $rename->renameUnsafe();
 
-		if ( !$renamer->rename() ) {
-			$this->fatalError( 'Renaming failed.' );
+		if ( $status->isGood() ) {
+			$this->output( "Successfully renamed user.\n" );
 		} else {
-			$this->output( "{$oldUser->getName()} was successfully renamed to {$newUser->getName()}.\n" );
-		}
-
-		$numRenames = 0;
-		if ( !$this->getOption( 'skip-page-moves' ) ) {
-			$numRenames += $this->movePageAndSubpages(
-				$performer,
-				$oldUser->getUserPage(),
-				$newUser->getUserPage(),
-				'user'
-			);
-			$numRenames += $this->movePageAndSubpages(
-				$performer,
-				$oldUser->getTalkPage(),
-				$newUser->getTalkPage(),
-				'user talk',
-			);
-		}
-		if ( $numRenames > 0 ) {
-			$this->output( "$numRenames user page(s) renamed\n" );
-		}
-	}
-
-	private function movePageAndSubpages( User $performer, Title $oldTitle, Title $newTitle, $kind ) {
-		$movePage = $this->movePageFactory->newMovePage(
-			$oldTitle,
-			$newTitle,
-		);
-		$movePage->setMaximumMovedPages( -1 );
-		$logMessage = wfMessage(
-			'renameuser-move-log', $oldTitle->getText(), $newTitle->getText()
-		)->inContentLanguage()->text();
-		$createRedirect = !$this->getOption( 'suppress-redirect' );
-
-		$numRenames = 0;
-		if ( $oldTitle->exists() ) {
-			$status = $movePage->move( $performer, $logMessage, $createRedirect );
-			if ( $status->isGood() ) {
-				$numRenames++;
+			if ( $status->isOK() ) {
+				$this->output( "Successfully renamed user with some warnings.\n" );
+				foreach ( $status->getMessages() as $msg ) {
+					$this->output( '  - ' . wfMessage( $msg )->plain() );
+				}
 			} else {
-				$this->output( "Failed to rename $kind page\n" );
-				$this->error( $status );
+				$out = "Failed to rename user:\n";
+				foreach ( $status->getMessages() as $msg ) {
+					$out = $out . '  - ' . wfMessage( $msg )->plain() . "\n";
+				}
+				$this->fatalError( $out );
 			}
 		}
-
-		$batchStatus = $movePage->moveSubpages( $performer, $logMessage, $createRedirect );
-		foreach ( $batchStatus->getValue() as $titleText => $status ) {
-			if ( $status->isGood() ) {
-				$numRenames++;
-			} else {
-				$this->output( "Failed to rename $kind subpage \"$titleText\"\n" );
-				$this->error( $status );
-			}
-		}
-		return $numRenames;
 	}
 }
 
