@@ -213,9 +213,9 @@ trait UploadJobTrait {
 			return false;
 		}
 		// Verify title permissions for this user
-		$titleVerification = $this->getUpload()->verifyTitlePermissions( $this->user );
-		if ( $titleVerification !== true ) {
-			$this->setStatus( 'publish', 'Failure', null, $titleVerification );
+		$status = $this->getUpload()->authorizeUpload( $this->user );
+		if ( !$status->isGood() ) {
+			$this->setStatus( 'publish', 'Failure', Status::wrap( $status ) );
 			$this->setLastError( "Could not verify title permissions." );
 			return false;
 		}

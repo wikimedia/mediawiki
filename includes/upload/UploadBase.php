@@ -190,7 +190,7 @@ abstract class UploadBase {
 	/**
 	 * Returns true if the user has surpassed the upload rate limit, false otherwise.
 	 *
-	 * @deprecated since 1.41, use verifyTitlePermissions() instead.
+	 * @deprecated since 1.41, use authorizeUpload() instead.
 	 * Rate limit checks are now implicit in permission checks.
 	 *
 	 * @param User $user
@@ -646,48 +646,63 @@ abstract class UploadBase {
 	 * 'verifyPermissions', but that suggests it's checking the user, when it's
 	 * really checking the title + user combination.
 	 *
+	 * @deprecated since 1.44 Use authorizeUpload() instead
 	 * @param Authority $performer to verify the permissions against
 	 * @return array|bool An array as returned by getPermissionErrors or true
 	 *   in case the user has proper permissions.
 	 */
 	public function verifyPermissions( Authority $performer ) {
+		wfDeprecated( __METHOD__, '1.44' );
 		return $this->verifyTitlePermissions( $performer );
 	}
 
 	/**
-	 * Check whether the user can edit, upload and create the image. This
-	 * checks only against the current title; if it returns errors, it may
-	 * very well be that another title will not give errors. Therefore
-	 * isAllowed() should be called as well for generic is-user-blocked or
-	 * can-user-upload checking.
+	 * Check whether the user can upload the image. This method checks against the current title.
+	 * Use verifyUpload() or validateName() first to check that the title is valid.
 	 *
+	 * @deprecated since 1.44 Use authorizeUpload() instead
 	 * @param Authority $performer to verify the permissions against
 	 * @return array|bool An array as returned by getPermissionErrors or true
 	 *   in case the user has proper permissions.
 	 */
 	public function verifyTitlePermissions( Authority $performer ) {
-		/**
-		 * If the image is protected, non-sysop users won't be able
-		 * to modify it by uploading a new revision.
-		 */
-		$nt = $this->getTitle();
-		if ( $nt === null ) {
+		wfDeprecated( __METHOD__, '1.44' );
+
+		if ( $this->getTitle() === null ) {
 			return true;
 		}
+		$status = $this->authorizeUpload( $performer );
+		if ( !$status->isGood() ) {
+			return $status->toLegacyErrorArray();
+		}
+		return true;
+	}
 
+	/**
+	 * Check whether the user can upload the image. This method checks against the current title.
+	 * Use verifyUpload() or validateName() first to check that the title is valid.
+	 */
+	public function authorizeUpload( Authority $performer ): PermissionStatus {
 		$status = PermissionStatus::newEmpty();
+
+		$nt = $this->getTitle();
+		if ( $nt === null ) {
+			throw new LogicException( __METHOD__ . ' must only be called with valid title' );
+		}
+
 		$performer->authorizeWrite( 'edit', $nt, $status );
 		$performer->authorizeWrite( 'upload', $nt, $status );
 		if ( !$status->isGood() ) {
-			return $status->toLegacyErrorArray();
+			// If the user can't upload at all, don't display additional errors about re-uploading
+			return $status;
 		}
 
 		$overwriteError = $this->checkOverwrite( $performer );
 		if ( $overwriteError !== true ) {
-			return [ $overwriteError ];
+			$status->fatal( ...$overwriteError );
 		}
 
-		return true;
+		return $status;
 	}
 
 	/**
@@ -2030,6 +2045,7 @@ abstract class UploadBase {
 	 * @param Authority $performer
 	 *
 	 * @return bool|array
+	 * @phan-return true|non-empty-array
 	 */
 	private function checkOverwrite( Authority $performer ) {
 		// First check whether the local file can be overwritten

@@ -162,9 +162,9 @@ class ApiUpload extends ApiBase {
 		// (This check is irrelevant if stashing is already requested, since the errors
 		//  can always be fixed by changing the title)
 		if ( !$this->mParams['stash'] ) {
-			$permErrors = $this->mUpload->verifyTitlePermissions( $user );
-			if ( $permErrors !== true ) {
-				$this->dieRecoverableError( $permErrors, 'filename' );
+			$status = $this->mUpload->authorizeUpload( $user );
+			if ( !$status->isGood() ) {
+				$this->dieRecoverableError( $status->getMessages(), 'filename' );
 			}
 		}
 

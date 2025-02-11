@@ -762,10 +762,13 @@ class SpecialUpload extends SpecialPage {
 
 		// Verify permissions for this title
 		$user = $this->getUser();
-		$permErrors = $this->mUpload->verifyTitlePermissions( $user );
-		if ( $permErrors !== true ) {
-			$code = array_shift( $permErrors[0] );
-			$this->showRecoverableUploadError( $this->msg( $code, $permErrors[0] )->parse() );
+		$status = $this->mUpload->authorizeUpload( $user );
+		if ( !$status->isGood() ) {
+			$this->showRecoverableUploadError(
+				$this->getOutput()->parseAsInterface(
+					Status::wrap( $status )->getWikiText( false, false, $this->getLanguage() )
+				)
+			);
 
 			return false;
 		}
