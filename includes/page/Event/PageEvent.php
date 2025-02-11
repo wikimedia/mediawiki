@@ -21,7 +21,6 @@
 namespace MediaWiki\Page\Event;
 
 use MediaWiki\DomainEvent\DomainEvent;
-use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
@@ -87,7 +86,7 @@ abstract class PageEvent extends DomainEvent {
 	/**
 	 * Returns the page that was edited.
 	 */
-	public function getPage(): PageIdentity {
+	public function getPage(): ProperPageIdentity {
 		return $this->page;
 	}
 
