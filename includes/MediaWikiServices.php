@@ -95,6 +95,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTargetLookup;
+use MediaWiki\Linker\UserLinkRenderer;
 use MediaWiki\Mail\EmailUserFactory;
 use MediaWiki\Mail\IEmailer;
 use MediaWiki\OutputTransform\OutputTransformPipeline;
@@ -2100,6 +2101,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getUserIdentityUtils(): UserIdentityUtils {
 		return $this->getService( 'UserIdentityUtils' );
+	}
+
+	/**
+	 * @since 1.44
+	 */
+	public function getUserLinkRenderer(): UserLinkRenderer {
+		return $this->getService( 'UserLinkRenderer' );
 	}
 
 	/**

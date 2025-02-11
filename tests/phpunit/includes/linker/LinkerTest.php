@@ -15,17 +15,13 @@ use MediaWiki\User\User;
  * @group Database
  */
 class LinkerTest extends MediaWikiLangTestCase {
+
 	/**
 	 * @dataProvider provideCasesForUserLink
 	 * @covers \MediaWiki\Linker\Linker::userLink
 	 */
 	public function testUserLink( $expected, $userId, $userName, $altUserName = false, $msg = '' ) {
-		// We'd also test the warning, but injecting a mock logger into a static method is tricky.
-		if ( !$userName ) {
-			$actual = @Linker::userLink( $userId, $userName, $altUserName );
-		} else {
-			$actual = Linker::userLink( $userId, $userName, $altUserName );
-		}
+		$actual = Linker::userLink( $userId, $userName, $altUserName );
 
 		$this->assertEquals( $expected, $actual, $msg );
 	}
@@ -48,35 +44,35 @@ class LinkerTest extends MediaWikiLangTestCase {
 			# ## ANONYMOUS USER ########################################
 			[
 				'<a href="/wiki/Special:Contributions/JohnDoe" '
-					. 'class="mw-userlink mw-anonuserlink" '
-					. 'title="Special:Contributions/JohnDoe"><bdi>JohnDoe</bdi></a>',
+				. 'class="mw-userlink mw-anonuserlink" '
+				. 'title="Special:Contributions/JohnDoe"><bdi>JohnDoe</bdi></a>',
 				0, 'JohnDoe', false,
 			],
 			[
 				'<a href="/wiki/Special:Contributions/::1" '
-					. 'class="mw-userlink mw-anonuserlink" '
-					. 'title="Special:Contributions/::1"><bdi>::1</bdi></a>',
+				. 'class="mw-userlink mw-anonuserlink" '
+				. 'title="Special:Contributions/::1"><bdi>::1</bdi></a>',
 				0, '::1', false,
 				'Anonymous with pretty IPv6'
 			],
 			[
 				'<a href="/wiki/Special:Contributions/0:0:0:0:0:0:0:1" '
-					. 'class="mw-userlink mw-anonuserlink" '
-					. 'title="Special:Contributions/0:0:0:0:0:0:0:1"><bdi>::1</bdi></a>',
+				. 'class="mw-userlink mw-anonuserlink" '
+				. 'title="Special:Contributions/0:0:0:0:0:0:0:1"><bdi>::1</bdi></a>',
 				0, '0:0:0:0:0:0:0:1', false,
 				'Anonymous with almost pretty IPv6'
 			],
 			[
 				'<a href="/wiki/Special:Contributions/0000:0000:0000:0000:0000:0000:0000:0001" '
-					. 'class="mw-userlink mw-anonuserlink" '
-					. 'title="Special:Contributions/0000:0000:0000:0000:0000:0000:0000:0001"><bdi>::1</bdi></a>',
+				. 'class="mw-userlink mw-anonuserlink" '
+				. 'title="Special:Contributions/0000:0000:0000:0000:0000:0000:0000:0001"><bdi>::1</bdi></a>',
 				0, '0000:0000:0000:0000:0000:0000:0000:0001', false,
 				'Anonymous with full IPv6'
 			],
 			[
 				'<a href="/wiki/Special:Contributions/::1" '
-					. 'class="mw-userlink mw-anonuserlink" '
-					. 'title="Special:Contributions/::1"><bdi>AlternativeUsername</bdi></a>',
+				. 'class="mw-userlink mw-anonuserlink" '
+				. 'title="Special:Contributions/::1"><bdi>AlternativeUsername</bdi></a>',
 				0, '::1', 'AlternativeUsername',
 				'Anonymous with pretty IPv6 and an alternative username'
 			],
@@ -84,15 +80,15 @@ class LinkerTest extends MediaWikiLangTestCase {
 			# IPV4
 			[
 				'<a href="/wiki/Special:Contributions/127.0.0.1" '
-					. 'class="mw-userlink mw-anonuserlink" '
-					. 'title="Special:Contributions/127.0.0.1"><bdi>127.0.0.1</bdi></a>',
+				. 'class="mw-userlink mw-anonuserlink" '
+				. 'title="Special:Contributions/127.0.0.1"><bdi>127.0.0.1</bdi></a>',
 				0, '127.0.0.1', false,
 				'Anonymous with IPv4'
 			],
 			[
 				'<a href="/wiki/Special:Contributions/127.0.0.1" '
-					. 'class="mw-userlink mw-anonuserlink" '
-					. 'title="Special:Contributions/127.0.0.1"><bdi>AlternativeUsername</bdi></a>',
+				. 'class="mw-userlink mw-anonuserlink" '
+				. 'title="Special:Contributions/127.0.0.1"><bdi>AlternativeUsername</bdi></a>',
 				0, '127.0.0.1', 'AlternativeUsername',
 				'Anonymous with IPv4 and an alternative username'
 			],
@@ -100,15 +96,15 @@ class LinkerTest extends MediaWikiLangTestCase {
 			# IP ranges
 			[
 				'<a href="/wiki/Special:Contributions/1.2.3.4/31" '
-					. 'class="mw-userlink mw-anonuserlink" '
-					. 'title="Special:Contributions/1.2.3.4/31"><bdi>1.2.3.4/31</bdi></a>',
+				. 'class="mw-userlink mw-anonuserlink" '
+				. 'title="Special:Contributions/1.2.3.4/31"><bdi>1.2.3.4/31</bdi></a>',
 				0, '1.2.3.4/31', false,
 				'Anonymous with IPv4 range'
 			],
 			[
 				'<a href="/wiki/Special:Contributions/2001:db8::1/43" '
-					. 'class="mw-userlink mw-anonuserlink" '
-					. 'title="Special:Contributions/2001:db8::1/43"><bdi>2001:db8::1/43</bdi></a>',
+				. 'class="mw-userlink mw-anonuserlink" '
+				. 'title="Special:Contributions/2001:db8::1/43"><bdi>2001:db8::1/43</bdi></a>',
 				0, '2001:db8::1/43', false,
 				'Anonymous with IPv6 range'
 			],

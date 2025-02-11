@@ -128,6 +128,7 @@ use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTargetLookup;
 use MediaWiki\Linker\LinkTargetStore;
+use MediaWiki\Linker\UserLinkRenderer;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Mail\Emailer;
 use MediaWiki\Mail\EmailUser;
@@ -2499,6 +2500,14 @@ return [
 	'UserIdentityUtils' => static function ( MediaWikiServices $services ): UserIdentityUtils {
 		return new UserIdentityUtils(
 			$services->getTempUserConfig()
+		);
+	},
+
+	'UserLinkRenderer' => static function ( MediaWikiServices $services ): UserLinkRenderer {
+		return new UserLinkRenderer(
+			$services->getTempUserConfig(),
+			$services->getSpecialPageFactory(),
+			$services->getLinkRenderer()
 		);
 	},
 
