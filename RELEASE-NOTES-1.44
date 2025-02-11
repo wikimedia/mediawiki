@@ -121,6 +121,7 @@ For notes on 1.43.x and older releases, see HISTORY.
   for either an IP a named user.
 * The ApiQueryCheckCanExecute hook was added.
 * The ChangesListInsertLogEntry hook was added.
+* The TempUserDetailsLookup service was added.
 * The UserLinkRenderer service was added.
 * The AuthPreserveQueryParams hook has a new option, $options['request'],
   to avoid having to rely on the global context.
