@@ -25,6 +25,18 @@ class ApiProtectTest extends ApiTestCase {
 	/**
 	 * @covers \MediaWiki\Api\ApiProtect::execute()
 	 */
+	public function testWithInvalidExpiry(): void {
+		$title = Title::makeTitle( NS_MAIN, 'TestProtectWithInvalidExpiry' );
+		$this->editPage( $title, 'Some text' );
+		$this->expectApiErrorCode( 'pastexpiry' );
+		$this->doApiRequestWithToken( [
+			'action' => 'protect',
+			'title' => $title->getPrefixedText(),
+			'protections' => 'edit=sysop',
+			'expiry' => '11110123000000',
+		] );
+	}
+
 	public function testProtectWithWatch(): void {
 		$title = Title::makeTitle( NS_MAIN, 'TestProtectWithWatch' );
 
