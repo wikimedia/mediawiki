@@ -340,6 +340,9 @@ because of Phabricator reports.
 * Callbacks registered by MessageCacheFetchOverrides handlers will now be
   called with only two parameters. The $language and $useDB parameter will not
   be passed.
+* The following formerly-public properties of OutputPage, deprecated with
+  warnings in 1.38, have been removed:
+   - OutputPage::$mNoGallery
 * Removed $timestamp, $summary, $minorEdit, $oldid and $pageStatus params from
   EmailNotification::notifyOnPageChange(). Now this method takes RecentChange
   instead.
@@ -552,6 +555,9 @@ because of Phabricator reports.
   since 1.41, are now emitting warnings.
 * Linker::userLink() has been deprecated in favor of the UserLinkRenderer
   service. (T308000)
+* OutputPage::getNoGallery(), previously marked @internal, has been deprecated
+  and should be replaced with
+  `OutputPage::getOutputFlag(ParserOutputFlags::NO_GALLERY)`
 * The 'PermissionErrorAudit' hook has been deprecated and replaced by
   the 'PermissionStatusAudit' hook.
 * MessageCache::parse, ::parseWithPostProcessing and ::transform() are now

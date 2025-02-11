@@ -326,13 +326,6 @@ class OutputPage extends ContextSource {
 	private bool $mNewSectionLink = false;
 	private bool $mHideNewSectionLink = false;
 
-	/**
-	 * @var bool Comes from the parser. This was probably made to load CSS/JS
-	 * only if we had "<gallery>". Used directly in CategoryViewer.php.
-	 * Looks like ResourceLoader can replace this.
-	 */
-	private $mNoGallery = false;
-
 	/** @var int Cache stuff. Looks like mEnableClientCache */
 	protected $mCdnMaxage = 0;
 	/** @var int Upper limit on mCdnMaxage */
@@ -469,7 +462,6 @@ class OutputPage extends ContextSource {
 		$this->deprecatePublicProperty( 'mEnableClientCache', '1.38', __CLASS__ );
 		$this->deprecatePublicProperty( 'mNewSectionLink', '1.38', __CLASS__ );
 		$this->deprecatePublicProperty( 'mHideNewSectionLink', '1.38', __CLASS__ );
-		$this->deprecatePublicProperty( 'mNoGallery', '1.38', __CLASS__ );
 		$this->deprecatePublicProperty( 'mParserOptions', '1.44', __CLASS__ );
 		$this->setContext( $context );
 		$this->metadata = new ParserOutput( null );
@@ -480,6 +472,7 @@ class OutputPage extends ContextSource {
 			$context->getConfig(),
 			$this->getHookContainer()
 		);
+		$this->metadata->setNoGallery( false );
 	}
 
 	/**
@@ -1601,10 +1594,11 @@ class OutputPage extends ContextSource {
 	 * Get the "no gallery" flag
 	 *
 	 * Used directly only in CategoryViewer.php
-	 * @internal
+	 * @deprecated since 1.44; use ::getOutputFlag(ParserOutputFlags::NO_GALLERY)
 	 */
 	public function getNoGallery(): bool {
-		return $this->mNoGallery;
+		wfDeprecated( __METHOD__, '1.44' );
+		return $this->metadata->getNoGallery();
 	}
 
 	/**
@@ -2410,7 +2404,7 @@ class OutputPage extends ContextSource {
 		// information, with flags from each $parserOutput all OR'ed together.)
 		$this->mNewSectionLink = $parserOutput->getNewSection();
 		$this->mHideNewSectionLink = $parserOutput->getHideNewSection();
-		$this->mNoGallery = $parserOutput->getNoGallery();
+		$this->metadata->setNoGallery( $parserOutput->getNoGallery() );
 
 		if ( !$parserOutput->isCacheable() ) {
 			$this->disableClientCache();

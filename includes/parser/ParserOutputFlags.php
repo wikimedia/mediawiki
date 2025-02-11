@@ -43,7 +43,12 @@ class ParserOutputFlags {
 	// These flags are currently stored as ParserOutput properties
 
 	/**
-	 * @var string No gallery on category page? (__NOGALLERY__).
+	 * @var string Disable magic gallery on category page (__NOGALLERY__).
+	 *
+	 * This is used to selectively disable the auto-magic thumbnail
+	 * gallery on thumbnail pages.
+	 *
+	 * @see MainConfigSchema::CategoryMagicGallery
 	 * @see ParserOutput::getNoGallery()
 	 * @see ParserOutput::setNoGallery()
 	 */
