@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\StreamFile;
 use Shellbox\Command\BoxedCommand;
 use Wikimedia\FileBackend\FileBackend;
@@ -48,6 +50,7 @@ class FileBackendDBRepoWrapper extends FileBackend {
 	protected $resolvedPathCache;
 	/** @var IDatabase[] */
 	protected $dbs;
+	private int $migrationStage;
 
 	public function __construct( array $config ) {
 		/** @var FileBackend $backend */
@@ -59,6 +62,9 @@ class FileBackendDBRepoWrapper extends FileBackend {
 		$this->repoName = $config['repoName'];
 		$this->dbHandleFunc = $config['dbHandleFactory'];
 		$this->resolvedPathCache = new MapCacheLRU( 100 );
+		$this->migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::FileSchemaMigrationStage
+		);
 	}
 
 	/**
@@ -110,19 +116,37 @@ class FileBackendDBRepoWrapper extends FileBackend {
 
 			if ( $container === "{$this->repoName}-public" ) {
 				$name = basename( $path );
-				if ( str_contains( $path, '!' ) ) {
-					$sha1 = $db->newSelectQueryBuilder()
-						->select( 'oi_sha1' )
-						->from( 'oldimage' )
-						->where( [ 'oi_archive_name' => $name ] )
-						->caller( __METHOD__ )->fetchField();
+				if ( $this->migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+					if ( str_contains( $path, '!' ) ) {
+						$sha1 = $db->newSelectQueryBuilder()
+							->select( 'oi_sha1' )
+							->from( 'oldimage' )
+							->where( [ 'oi_archive_name' => $name ] )
+							->caller( __METHOD__ )->fetchField();
+					} else {
+						$sha1 = $db->newSelectQueryBuilder()
+							->select( 'img_sha1' )
+							->from( 'image' )
+							->where( [ 'img_name' => $name ] )
+							->caller( __METHOD__ )->fetchField();
+					}
 				} else {
-					$sha1 = $db->newSelectQueryBuilder()
-						->select( 'img_sha1' )
-						->from( 'image' )
-						->where( [ 'img_name' => $name ] )
-						->caller( __METHOD__ )->fetchField();
+					if ( str_contains( $path, '!' ) ) {
+						$sha1 = $db->newSelectQueryBuilder()
+							->select( 'fr_sha1' )
+							->from( 'filerevision' )
+							->where( [ 'fr_archive_name' => $name ] )
+							->caller( __METHOD__ )->fetchField();
+					} else {
+						$sha1 = $db->newSelectQueryBuilder()
+							->select( 'fr_sha1' )
+							->from( 'file' )
+							->join( 'filerevision', null, 'file_latest = fr_id' )
+							->where( [ 'file_name' => $name ] )
+							->caller( __METHOD__ )->fetchField();
+					}
 				}
+
 				if ( !is_string( $sha1 ) || $sha1 === '' ) {
 					$resolved[$i] = $path; // give up
 					continue;

@@ -1316,6 +1316,7 @@ class Article implements Page {
 		$useNPPatrol = $mainConfig->get( MainConfigNames::UseNPPatrol );
 		$useRCPatrol = $mainConfig->get( MainConfigNames::UseRCPatrol );
 		$useFilePatrol = $mainConfig->get( MainConfigNames::UseFilePatrol );
+		$fileMigrationStage = $mainConfig->get( MainConfigNames::FileSchemaMigrationStage );
 		// Allow hooks to decide whether to not output this at all
 		if ( !$this->getHookRunner()->onArticleShowPatrolFooter( $this ) ) {
 			return false;
@@ -1389,12 +1390,22 @@ class Article implements Page {
 		$recentFileUpload = false;
 		if ( ( !$rc || $rc->getAttribute( 'rc_patrolled' ) ) && $useFilePatrol
 			&& $title->getNamespace() === NS_FILE ) {
-			// Retrieve timestamp from the current file (lastest upload)
-			$newestUploadTimestamp = $dbr->newSelectQueryBuilder()
-				->select( 'img_timestamp' )
-				->from( 'image' )
-				->where( [ 'img_name' => $title->getDBkey() ] )
-				->caller( __METHOD__ )->fetchField();
+			// Retrieve timestamp from the current file (latest upload)
+			if ( $fileMigrationStage & SCHEMA_COMPAT_READ_OLD ) {
+				$newestUploadTimestamp = $dbr->newSelectQueryBuilder()
+					->select( 'img_timestamp' )
+					->from( 'image' )
+					->where( [ 'img_name' => $title->getDBkey() ] )
+					->caller( __METHOD__ )->fetchField();
+			} else {
+				$newestUploadTimestamp = $dbr->newSelectQueryBuilder()
+					->select( 'fr_timestamp' )
+					->from( 'file' )
+					->join( 'filerevision', null, 'file_latest = fr_id' )
+					->where( [ 'file_name' => $title->getDBkey() ] )
+					->caller( __METHOD__ )->fetchField();
+			}
+
 			if ( $newestUploadTimestamp
 				&& RecentChange::isInRCLifespan( $newestUploadTimestamp, 21600 )
 			) {
