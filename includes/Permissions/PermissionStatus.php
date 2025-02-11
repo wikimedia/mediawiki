@@ -106,7 +106,7 @@ class PermissionStatus extends StatusValue {
 	 * Call this to indicate that the user is over the rate limit for some action.
 	 * @since 1.41
 	 * @internal
-	 * Will cause isRateLimited() to return true.
+	 * Will cause isRateLimitExceeded() to return true.
 	 */
 	public function setRateLimitExceeded() {
 		$this->rateLimitExceeded = true;
@@ -127,7 +127,6 @@ class PermissionStatus extends StatusValue {
 	 *
 	 * @since 1.41
 	 * @internal
-	 * Will cause isRateLimited() to return true.
 	 */
 	public function setPermission( string $permission ) {
 		$this->permission = $permission;
