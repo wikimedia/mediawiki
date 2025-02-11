@@ -20,11 +20,11 @@
 
 namespace MediaWiki\User;
 
-use ArrayIterator;
 use Countable;
 use Iterator;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -38,13 +38,13 @@ abstract class UserArray implements Iterator, Countable {
 	 * moving towards deprecation.
 	 *
 	 * @param IResultWrapper $res
-	 * @return UserArray|ArrayIterator
+	 * @return UserArray
 	 */
-	public static function newFromResult( $res ) {
+	public static function newFromResult( $res ): self {
 		$userArray = null;
 		$hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
 		if ( !$hookRunner->onUserArrayFromResult( $userArray, $res ) ) {
-			return new ArrayIterator( [] );
+			return new UserArrayFromResult( new FakeResultWrapper( [] ) );
 		}
 		return $userArray ?? new UserArrayFromResult( $res );
 	}
@@ -56,13 +56,13 @@ abstract class UserArray implements Iterator, Countable {
 	 * moving towards deprecation.
 	 *
 	 * @param array $ids
-	 * @return UserArray|ArrayIterator
+	 * @return UserArray
 	 */
-	public static function newFromIDs( $ids ) {
+	public static function newFromIDs( $ids ): self {
 		$ids = array_map( 'intval', (array)$ids ); // paranoia
 		if ( !$ids ) {
 			// Database::select() doesn't like empty arrays
-			return new ArrayIterator( [] );
+			return new UserArrayFromResult( new FakeResultWrapper( [] ) );
 		}
 		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 		$res = User::newQueryBuilder( $dbr )
@@ -80,13 +80,13 @@ abstract class UserArray implements Iterator, Countable {
 	 *
 	 * @since 1.25
 	 * @param array $names
-	 * @return UserArray|ArrayIterator
+	 * @return UserArray
 	 */
-	public static function newFromNames( $names ) {
+	public static function newFromNames( $names ): self {
 		$names = array_map( 'strval', (array)$names ); // paranoia
 		if ( !$names ) {
 			// Database::select() doesn't like empty arrays
-			return new ArrayIterator( [] );
+			return new UserArrayFromResult( new FakeResultWrapper( [] ) );
 		}
 		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 		$res = User::newQueryBuilder( $dbr )
