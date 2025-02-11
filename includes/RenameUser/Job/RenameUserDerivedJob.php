@@ -63,7 +63,7 @@ class RenameUserDerivedJob extends Job {
 		}
 		if ( $user->getName() !== $newName ) {
 			$logger->info(
-				"User to be renamed from ${oldName} to ${newName} does not have the expected name, skipping"
+				"User to be renamed from $oldName to $newName does not have the expected name, skipping"
 			);
 			return true;
 		}
@@ -83,7 +83,7 @@ class RenameUserDerivedJob extends Job {
 		$status = $rename->renameLocal();
 		if ( !$status->isGood() ) {
 			$logger->error(
-				"Cannot finish derived local user rename from ${oldName} to ${newName}: ${status}"
+				"Cannot finish derived local user rename from $oldName to $newName: $status"
 			);
 		}
 
