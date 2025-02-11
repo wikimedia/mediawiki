@@ -60,6 +60,7 @@ class LanguageCode {
 	 *   to replacement MediaWiki-internal language code.
 	 *
 	 * @see https://meta.wikimedia.org/wiki/Special_language_codes
+	 * @phpcs-require-sorted-array
 	 */
 	private const DEPRECATED_LANGUAGE_CODE_MAPPING = [
 		// Note that als is actually a valid ISO 639 code (Tosk Albanian), but it

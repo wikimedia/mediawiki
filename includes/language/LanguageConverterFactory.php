@@ -56,6 +56,7 @@ class LanguageConverterFactory {
 	private $cache = [];
 	/**
 	 * @var array
+	 * @phpcs-require-sorted-array
 	 */
 	private $converterList = [
 		'ban' => [
@@ -76,11 +77,11 @@ class LanguageConverterFactory {
 		'mni' => [
 			'class' => MniConverter::class,
 		],
-		'shi' => [
-			'class' => ShiConverter::class,
-		],
 		'sh' => [
 			'class' => ShConverter::class,
+		],
+		'shi' => [
+			'class' => ShiConverter::class,
 		],
 		'sr' => [
 			'class' => SrConverter::class,

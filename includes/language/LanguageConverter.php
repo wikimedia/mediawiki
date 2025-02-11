@@ -58,11 +58,12 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * languages supporting variants
 	 * @since 1.20
 	 * @var string[]
+	 * @phpcs-require-sorted-array
 	 */
 	public static $languagesWithVariants = [
 		'ban',
-		'en',
 		'crh',
+		'en',
 		'gan',
 		'iu',
 		'ku',
@@ -83,11 +84,12 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * for use with DefaultOptionsLookup.php
 	 * @since 1.40
 	 * @var array<string,string>
+	 * @phpcs-require-sorted-array
 	 */
 	public static $languagesWithStaticDefaultVariant = [
 		'ban' => 'ban',
-		'en' => 'en',
 		'crh' => 'crh',
+		'en' => 'en',
 		'gan' => 'gan',
 		'iu' => 'iu',
 		'ku' => 'ku',
