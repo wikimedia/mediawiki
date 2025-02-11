@@ -43,6 +43,7 @@ function getSpecialBlock( config = {}, apiMocks = [] ) {
  */
 function mockMwConfigGet( config = {} ) {
 	const mockConfig = Object.assign( {
+		blockId: 1116,
 		wgNamespaceIds: {
 			'': '(Main)',
 			talk: 'Talk',
@@ -130,6 +131,38 @@ function mockMwApiGet( additionalMocks = [] ) {
 						}
 					],
 					blocks: []
+				}
+			}
+		},
+		{
+			params: {
+				list: 'logevents|blocks',
+				letype: 'block',
+				letitle: 'User:ActiveBlockedUser'
+			},
+			response: {
+				query: {
+					logevents: [
+						{
+							logid: 980,
+							title: 'User:ActiveBlockedUser',
+							params: {
+								duration: '1 year',
+								flags: [
+									'noautoblock'
+								],
+								sitewide: true,
+								expiry: '2029-09-17T14:30:51Z'
+							},
+							type: 'block',
+							user: 'Admin',
+							timestamp: '2024-09-17T14:30:51Z',
+							comment: 'A reason'
+						}
+					],
+					blocks: [
+						{ id: 1116, user: 'ActiveBlockedUser', restrictions: [] }
+					]
 				}
 			}
 		},

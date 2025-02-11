@@ -1,6 +1,7 @@
 'use strict';
 
 const { nextTick } = require( 'vue' );
+const { flushPromises } = require( '@vue/test-utils' );
 const { getSpecialBlock } = require( './SpecialBlock.setup.js' );
 const useBlockStore = require( '../../../resources/src/mediawiki.special.block/stores/block.js' );
 
@@ -143,6 +144,14 @@ describe( 'SpecialBlock', () => {
 		expect( store.formSubmitted ).toBeTruthy();
 		expect( wrapper.vm.confirmationOpen ).toBeTruthy();
 		expect( document.body.querySelector( '.mw-block-confirm' ) ).toBeTruthy();
+	} );
+
+	it( 'should add id attribute to edit buttons', async () => {
+		wrapper = getSpecialBlock( { blockTargetUser: 'ActiveBlockedUser' } );
+		const store = useBlockStore();
+		await flushPromises();
+		const selectedBlockRow = wrapper.find( '#edit-button-' + store.blockId );
+		expect( selectedBlockRow.exists() ).toBeTruthy();
 	} );
 
 	afterEach( () => {
