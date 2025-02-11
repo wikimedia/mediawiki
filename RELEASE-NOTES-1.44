@@ -343,6 +343,7 @@ because of Phabricator reports.
 * The following formerly-public properties of OutputPage, deprecated with
   warnings in 1.38, have been removed:
    - OutputPage::$mNoGallery
+   - OutputPage::$mRevisionTimestamp
 * Removed $timestamp, $summary, $minorEdit, $oldid and $pageStatus params from
   EmailNotification::notifyOnPageChange(). Now this method takes RecentChange
   instead.
@@ -558,6 +559,8 @@ because of Phabricator reports.
 * OutputPage::getNoGallery(), previously marked @internal, has been deprecated
   and should be replaced with
   `OutputPage::getOutputFlag(ParserOutputFlags::NO_GALLERY)`
+* OutputPage::{get,set}RevisionTimestamp() has been deprecated and should be
+  replaced with `OutputPage::getMetadata()->{get,set}RevisionTimestamp()`
 * The 'PermissionErrorAudit' hook has been deprecated and replaced by
   the 'PermissionStatusAudit' hook.
 * MessageCache::parse, ::parseWithPostProcessing and ::transform() are now

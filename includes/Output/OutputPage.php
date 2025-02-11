@@ -337,9 +337,6 @@ class OutputPage extends ContextSource {
 	/** @var bool|null */
 	private $mRevisionIsCurrent = null;
 
-	/** @var string */
-	private $mRevisionTimestamp = null;
-
 	/** @var array */
 	protected $mFileVersion = null;
 
@@ -473,6 +470,7 @@ class OutputPage extends ContextSource {
 			$this->getHookContainer()
 		);
 		$this->metadata->setNoGallery( false );
+		$this->metadata->setRevisionTimestamp( null );
 	}
 
 	/**
@@ -2073,9 +2071,12 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param string|null $timestamp
 	 * @return mixed Previous value
+	 * @deprecated since 1.44, use ::getMetadata()->setRevisionTimestamp(...)
 	 */
 	public function setRevisionTimestamp( $timestamp ) {
-		return wfSetVar( $this->mRevisionTimestamp, $timestamp, true );
+		$previousValue = $this->metadata->getRevisionTimestamp();
+		$this->metadata->setRevisionTimestamp( $timestamp );
+		return $previousValue;
 	}
 
 	/**
@@ -2083,9 +2084,10 @@ class OutputPage extends ContextSource {
 	 * This will be null if not filled by setRevisionTimestamp().
 	 *
 	 * @return string|null
+	 * @deprecated since 1.44, use ::getMetadata()->getRevisionTimestamp()
 	 */
 	public function getRevisionTimestamp() {
-		return $this->mRevisionTimestamp;
+		return $this->metadata->getRevisionTimestamp();
 	}
 
 	/**
