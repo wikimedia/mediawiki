@@ -1737,6 +1737,7 @@
 	"apierror-filenopath": "Impossibile obtener le percurso de file local.",
 	"apierror-filetypecannotberotated": "Le typo de file non pote esser rotate.",
 	"apierror-formatphp": "Iste responsa non pote esser representate con <kbd>format=php</kbd>. Vide https://phabricator.wikimedia.org/T68776.",
+	"apierror-http-contenttoolarge": "Le contento del requesta HTTP es troppo grande. Le longitude maxime es $1.",
 	"apierror-imageusage-badtitle": "Le titulo de <kbd>$1</kbd> debe esser un file.",
 	"apierror-import-unknownerror": "Error incognite durante le importation: $1.",
 	"apierror-info-singlepagerevision": "Plure paginas o versiones ha essite fornite, ma <var>$1prop=preloadcontent</var> e <var>$1prop=editintro</var> pote solmente esser usate con un sol pagina o version.",

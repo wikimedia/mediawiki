@@ -3,7 +3,9 @@
 		"authors": [
 			"Meno25",
 			"SaldırganSincap",
-			"ديفيد"
+			"ديفيد",
+			"Cigaryno",
+			"Mohammed Qays"
 		]
 	},
 	"rest-prefix-mismatch": "لم يكن المسار المطلوب ($1) داخل مسار قاعدة واجهة برمجة التطبيقات REST ( $2 )",
@@ -66,6 +68,7 @@
 	"rest-unsupported-target-format": "تنسيق الهدف المطلوب غير مدعوم.",
 	"rest-parsoid-resource-exceeded": "تم تجاوز حد الموارد",
 	"rest-parsoid-error": "خطأ بارسويد.",
+	"rest-parsoid-bad-render-id": "معرف عرض Parsoid سيئ: $1",
 	"rest-bad-stash-key": "مفتاح تخزين سيئ.",
 	"rest-html-key-expected": "مفتاح <var>HTML</var> المتوقع في النص",
 	"rest-invalid-transform": "تحويل غير صالح: $1 إلى $2",

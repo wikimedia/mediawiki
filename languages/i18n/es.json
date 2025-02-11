@@ -252,7 +252,8 @@
 			"לערי ריינהארט",
 			"ديفيد",
 			"아라",
-			"Ice bulldog"
+			"Ice bulldog",
+			"MagamePolyglotte"
 		]
 	},
 	"sunday": "domingo",
@@ -2646,7 +2647,7 @@
 	"tooltip-invert": "Marca esta casilla para ocultar los cambios en las páginas dentro del espacio de nombres seleccionado (y el espacio de nombres asociado si está activada)",
 	"tooltip-whatlinkshere-invert": "Activa esta casilla para ocultar los enlaces dentro del espacio de nombres seleccionado.",
 	"namespace_association": "Espacio de nombres asociado",
-	"tooltip-namespace_association": "Marca esta casilla para incluir también el espacio de nombres de discusión asociado con el espacio de nombres seleccionado",
+	"tooltip-namespace_association": "Marque esta casilla para incluir también el espacio de nombres de la charla o del tema asociado con el espacio de nombres seleccionado",
 	"blanknamespace": "(Principal)",
 	"contributions": "Contribuciones del usuario",
 	"tool-link-contributions": "Contribuciones {{GENDER:$1|del usuario|de la usuaria}}",

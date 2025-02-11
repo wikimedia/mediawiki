@@ -46,6 +46,7 @@
 	},
 	"preferences": "個人設定",
 	"prefsnologintext2": "個人設定を変更するにはログインしてください。",
+	"prefsnologintext2-for-temp-user": "個人設定を変更するにはアカウントを作成してください。",
 	"searchprefs": "設定の検索",
 	"searchprefs-noresults": "結果なし",
 	"searchprefs-results": "$1 {{PLURAL:$1|件の結果}}",

@@ -5,6 +5,16 @@
 			"Munajad.MH"
 		]
 	},
+	"preferences": "Kaenḍâ'ân",
+	"prefsnologintext2": "Maso' log ka'angghuy ngobâ kaenḍâ'ânna Bâ'na.",
+	"prefsnologintext2-for-temp-user": "Mara aghâbây akun ka'angghuy ngobâ kaenḍâ'ân.",
+	"searchprefs": "Kaenḍâ'ânna panyarèyan",
+	"searchprefs-noresults": "Taḍâ' hasèlla",
+	"searchprefs-results": "$1 {{PLURAL:$1|hasèl}}",
+	"saveprefs": "Sèmpen",
+	"tooltip-preferences-save": "Sèmpen kaenḍâ'ân",
+	"savedprefs": "Kaenḍâ'ânna Ba'na la èsèmpen",
+	"prefs-back-title": "Abâli ka kaenḍâ'ân",
 	"tog-prefershttps": "Samanè ngangghuy konèksi sè aman mon alebbhu ka log",
 	"tog-oldsig": "Tanḍhâ tanangnga bâ'na sè ella bâḍâ:",
 	"tog-fancysig": "Kalako tanḍhâ tanang mènang tèks wiki (ta'pa sèttong pranala otomatis ka kaca pangangghuy Bâ'na)",
