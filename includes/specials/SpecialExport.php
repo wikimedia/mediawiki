@@ -451,17 +451,23 @@ class SpecialExport extends SpecialPage {
 	 */
 	protected function getPagesFromCategory( PageIdentity $page ) {
 		$maxPages = $this->getConfig()->get( MainConfigNames::ExportPagelistLimit );
+		$categoryLinksMigrationStage = $this->getConfig()->get( MainConfigNames::CategoryLinksSchemaMigrationStage );
 
 		$name = $page->getDBkey();
 
 		$dbr = $this->dbProvider->getReplicaDatabase();
-		$res = $dbr->newSelectQueryBuilder()
+		$queryBuilder = $dbr->newSelectQueryBuilder()
 			->select( [ 'page_namespace', 'page_title' ] )
 			->from( 'page' )
 			->join( 'categorylinks', null, 'cl_from=page_id' )
-			->where( [ 'cl_to' => $name ] )
-			->limit( $maxPages )
-			->caller( __METHOD__ )->fetchResultSet();
+			->limit( $maxPages );
+		if ( $categoryLinksMigrationStage & SCHEMA_COMPAT_READ_OLD ) {
+			$queryBuilder->where( [ 'cl_to' => $name ] );
+		} else {
+			$queryBuilder->join( 'linktarget', null, 'cl_target_id = lt_id' )
+				->where( [ 'lt_title' => $name, 'lt_namespace' => NS_CATEGORY ] );
+		}
+		$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 
 		$pages = [];
 
