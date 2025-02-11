@@ -550,6 +550,8 @@ because of Phabricator reports.
   service. (T308000)
 * The 'PermissionErrorAudit' hook has been deprecated and replaced by
   the 'PermissionStatusAudit' hook.
+* DifferenceEngine::getPermissionErrors() is deprecated,
+  use DifferenceEngine::authorizeView() instead.
 * MessageCache::parse, ::parseWithPostProcessing and ::transform() are now
   deprecated. Use MessageParser.
 * User::getGlobalBlock(), deprecated since 1.40, now emits deprecation

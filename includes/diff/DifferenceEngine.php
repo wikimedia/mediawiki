@@ -607,10 +607,23 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Get the permission errors associated with the revisions for the current diff.
 	 *
+	 * @deprecated since 1.44 Use authorizeView() instead
 	 * @param Authority $performer
 	 * @return array[] Array of arrays of the arguments to wfMessage to explain permissions problems.
 	 */
 	public function getPermissionErrors( Authority $performer ) {
+		wfDeprecated( __METHOD__, '1.44' );
+		return $this->authorizeView( $performer )->toLegacyErrorArray();
+	}
+
+	/**
+	 * Check whether the user can read both of the pages for the current diff.
+	 *
+	 * This does not check access to deleted revisions, use isUserAllowedToSeeRevisions() for that.
+	 *
+	 * @since 1.44
+	 */
+	public function authorizeView( Authority $performer ): PermissionStatus {
 		$this->loadRevisionData();
 		$permStatus = PermissionStatus::newEmpty();
 		if ( $this->mNewPage ) {
@@ -619,7 +632,7 @@ class DifferenceEngine extends ContextSource {
 		if ( $this->mOldPage ) {
 			$performer->authorizeRead( 'read', $this->mOldPage, $permStatus );
 		}
-		return $permStatus->toLegacyErrorArray();
+		return $permStatus;
 	}
 
 	/**
@@ -754,9 +767,9 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		$user = $this->getUser();
-		$permErrors = $this->getPermissionErrors( $this->getAuthority() );
-		if ( $permErrors ) {
-			throw new PermissionsError( 'read', $permErrors );
+		$permStatus = $this->authorizeView( $this->getAuthority() );
+		if ( !$permStatus->isGood() ) {
+			throw new PermissionsError( 'read', $permStatus );
 		}
 
 		$rollback = '';
