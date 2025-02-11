@@ -659,13 +659,36 @@ class OutputPage extends ContextSource {
 	 * Get the list of modules to include on this page
 	 *
 	 * @param bool $filter Whether to filter out any modules that are not considered to be sufficiently trusted
-	 * @param string|null $position Unused
-	 * @param string $param
-	 * @param string $type
+	 * @param ?string ...$args Additional arguments deprecated since 1.44
 	 * @return string[] Array of module names
 	 */
-	public function getModules( $filter = false, $position = null, $param = 'mModules',
-		$type = RL\Module::TYPE_COMBINED
+	public function getModules(
+		$filter = false, ...$args
+	) {
+		// Deprecate all arguments other than the first
+		if ( count( $args ) > 0 ) {
+			wfDeprecated( __METHOD__ . ' with >1 argument', '1.44' );
+		}
+		$position = $args[0] ?? null;
+		$param = $args[1] ?? 'mModules';
+		$type = $args[2] ?? RL\Module::TYPE_COMBINED;
+		return $this->getModulesInternal(
+			$filter,
+			$param,
+			$type
+		);
+	}
+
+	/**
+	 * Helper function to get a list of modules to load on this page.
+	 *
+	 * @param bool $filter Whether to filter out any modules that are not considered to be sufficiently trusted
+	 * @param string $param Either 'mModules' or 'mModuleStyles'
+	 * @param string $type Whether to return all modules or just style modules
+	 * @return string[] Array of module names
+	 */
+	private function getModulesInternal(
+		bool $filter, string $param, string $type
 	) {
 		$modules = array_values( $this->$param );
 		return $filter
@@ -687,13 +710,17 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get the list of style-only modules to load on this page.
 	 *
-	 * @param bool $filter
-	 * @param string|null $position Unused
+	 * @param bool $filter Whether to filter out any modules that are not considered to be sufficiently trusted
+	 * @param ?string ...$args Additional arguments deprecated since 1.44
 	 * @return string[] Array of module names
 	 */
-	public function getModuleStyles( $filter = false, $position = null ) {
-		return $this->getModules( $filter, null, 'mModuleStyles',
-			RL\Module::TYPE_STYLES
+	public function getModuleStyles( $filter = false, ...$args ) {
+		// Deprecate all arguments other than the first
+		if ( count( $args ) > 0 ) {
+			wfDeprecated( __METHOD__ . ' with >1 argument', '1.44' );
+		}
+		return $this->getModulesInternal(
+			$filter, 'mModuleStyles', RL\Module::TYPE_STYLES
 		);
 	}
 
