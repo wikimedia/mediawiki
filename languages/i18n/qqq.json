@@ -849,6 +849,7 @@
 	"preview": "The title of the Preview page shown after clicking the \"Show preview\" button in the edit page. Since this is a heading, it should probably be translated as a noun and not as a verb.\n\n{{Identical|Preview}}",
 	"showpreview": "The text of the button to preview the page you are editing. See also {{msg-mw|showdiff}}, {{msg-mw|savearticle}} and {{msg-mw|Publishchanges}} for the other buttons.\n\nSee also:\n* {{msg-mw|Showpreview}}\n* {{msg-mw|Accesskey-preview}}\n* {{msg-mw|Tooltip-preview}}\n{{Identical|Show preview}}",
 	"showdiff": "Button below the edit page. See also {{msg-mw|Showpreview}} and {{msg-mw|Savearticle}} for the other buttons.\n\nSee also:\n* {{msg-mw|Showdiff}}\n* {{msg-mw|Accesskey-diff}}\n* {{msg-mw|Tooltip-diff}}\n{{Identical|Show change}}",
+	"tempuser-expired-link-tooltip": "Tooltip shown next to user links associated with expired temporary accounts.",
 	"tempuser-helppage": "{{notranslate}}\nDefines a link to the documentation page for temporary accounts.",
 	"temp-user-banner-description": "The text on the banner that informs users that they are editing with a temporary arrount",
 	"temp-user-banner-tooltip-label": "Accessible label for the tooltip toggle.",
