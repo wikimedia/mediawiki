@@ -509,6 +509,10 @@ abstract class Skin extends ContextSource {
 		if ( strpos( $out->getHTML(), 'mw-message-box' ) !== false ) {
 			$modules['styles']['content'][] = 'mediawiki.legacy.messageBox';
 		}
+
+		$action = $this->getRequest()->getRawVal( 'action' ) ?? 'view';
+		$title = $this->getTitle();
+		$namespace = $title ? $title->getNamespace() : -1;
 		// If the page is using Codex message box markup load Codex styles.
 		// Since 1.41. Skins can unset this if they prefer to handle this via other
 		// means.
@@ -523,7 +527,9 @@ abstract class Skin extends ContextSource {
 				return strpos( $module, 'codex' ) !== false;
 			} );
 			if ( !$codexModules ) {
-				$logger->warning( 'Page uses Codex markup without appropriate style pack.' );
+				if ( $action === 'view' || $namespace === NS_SPECIAL ) {
+					$logger->warning( 'Page uses Codex markup without appropriate style pack.' );
+				}
 				$modules['styles']['content'][] = 'mediawiki.codex.messagebox.styles';
 			}
 		}
@@ -557,7 +563,7 @@ abstract class Skin extends ContextSource {
 			$modules['styles']['user'][] = 'mediawiki.tempUserBanner.styles';
 		}
 
-		if ( $this->getTitle() && $this->getTitle()->getNamespace() === NS_FILE ) {
+		if ( $namespace === NS_FILE ) {
 			$modules['styles']['core'][] = 'filepage'; // local Filepage.css, T31277, T356505
 		}
 
