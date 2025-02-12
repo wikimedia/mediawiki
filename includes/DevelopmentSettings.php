@@ -152,8 +152,8 @@ $wgTempAccountNameAcquisitionThrottle = [];
  * (Must reference a Phabricator ticket)
  */
 
-global $wgSQLMode, $wgDBStrictWarnings, $wgLocalisationCacheConf, $wgCiteBookReferencing,
-	$wgCacheDirectory, $wgEnableUploads, $wgUsePigLatinVariant,
+global $wgSQLMode, $wgDBStrictWarnings, $wgLocalisationCacheConf, $wgCiteSubReferencing,
+	$wgCiteBookReferencing, $wgCacheDirectory, $wgEnableUploads, $wgUsePigLatinVariant,
 	$wgVisualEditorEnableWikitext, $wgDefaultUserOptions, $wgAutoCreateTempUser;
 
 // Enable MariaDB/MySQL strict mode (T108255)
@@ -163,7 +163,8 @@ $wgDBStrictWarnings = true;
 // Localisation Cache to StaticArray (T218207)
 $wgLocalisationCacheConf['store'] = 'array';
 
-// Experimental Book Referencing feature (T236255)
+// Experimental sub-referencing feature in Cite (T236255)
+$wgCiteSubReferencing = true;
 $wgCiteBookReferencing = true;
 
 // The default value is false, but for development it is useful to set this to the system temp
