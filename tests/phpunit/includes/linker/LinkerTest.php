@@ -10,7 +10,6 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use MediaWiki\Watchlist\WatchedItem;
 
 /**
  * @group Database
@@ -329,16 +328,13 @@ class LinkerTest extends MediaWikiLangTestCase {
 	 */
 	public function testTooltipAndAccesskeyAttribs( $name, $msgParams, $options, $expected ) {
 		$this->overrideConfigValue( MainConfigNames::WatchlistExpiry, true );
-		$user = $this->createMock( User::class );
-		$user->method( 'isRegistered' )->willReturn( true );
+		$user = $this->getTestUser()->getUser();
 
 		$title = SpecialPage::getTitleFor( 'Blankpage' );
 
 		$context = RequestContext::getMain();
 		$context->setTitle( $title );
 		$context->setUser( $user );
-
-		$watchedItemWithoutExpiry = new WatchedItem( $user, $title, null, null );
 
 		$result = Linker::tooltipAndAccesskeyAttribs( $name, $msgParams, $options );
 
