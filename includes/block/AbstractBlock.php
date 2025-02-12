@@ -347,6 +347,11 @@ abstract class AbstractBlock implements Block {
 		return $this->expiry;
 	}
 
+	/** @inheritDoc */
+	public function isIndefinite(): bool {
+		return wfIsInfinity( $this->getExpiry() );
+	}
+
 	/**
 	 * Set the block expiry time
 	 *

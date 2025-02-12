@@ -239,7 +239,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	public function testRestrictions() {
 		$block = new DatabaseBlock();
 		$restrictions = [
-			new PageRestriction( 0, 1 )
+			new PageRestriction( 0, 1 ),
 		];
 		$block->setRestrictions( $restrictions );
 
@@ -280,7 +280,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$block = new DatabaseBlock( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
 			'allowUsertalk' => true,
-			'sitewide' => true
+			'sitewide' => true,
 		] );
 
 		$block->setTarget( new UserIdentityValue( $user->getId(), $user->getName() ) );
@@ -307,7 +307,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$block = new DatabaseBlock( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
 			'allowUsertalk' => true,
-			'sitewide' => false
+			'sitewide' => false,
 		] );
 
 		$block->setTarget( $user );
@@ -339,7 +339,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$block = new DatabaseBlock( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
 			'allowUsertalk' => true,
-			'sitewide' => true
+			'sitewide' => true,
 		] );
 
 		$block->setTarget( $user );
@@ -364,7 +364,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$block = new DatabaseBlock( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
 			'allowUsertalk' => true,
-			'sitewide' => false
+			'sitewide' => false,
 		] );
 
 		$block->setTarget( $user );
@@ -393,7 +393,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$block = new DatabaseBlock( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
 			'allowUsertalk' => true,
-			'sitewide' => false
+			'sitewide' => false,
 		] );
 
 		$block->setTarget( $user );
@@ -416,6 +416,17 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->overrideConfigValue( MainConfigNames::BlockDisablesLogin, false );
 		$block = new DatabaseBlock();
 		$this->assertFalse( $block->appliesToRight( 'read' ) );
+	}
+
+	/**
+	 * @covers ::isIndefinite
+	 */
+	public function testIsIndefinite() {
+		$block = new DatabaseBlock( [ 'expiry' => '20250301000000' ] );
+		$this->assertFalse( $block->isIndefinite() );
+
+		$block = new DatabaseBlock( [ 'expiry' => 'infinity' ] );
+		$this->assertTrue( $block->isIndefinite() );
 	}
 
 	protected function getBlockRestrictionStore(): BlockRestrictionStore {
