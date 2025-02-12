@@ -8499,6 +8499,7 @@ class MainConfigSchema {
 	public const AddGroups = [
 		'default' => [],
 		'type' => 'map',
+		'mergeStrategy' => 'array_merge_recursive',
 	];
 
 	/**
@@ -8507,6 +8508,7 @@ class MainConfigSchema {
 	public const RemoveGroups = [
 		'default' => [],
 		'type' => 'map',
+		'mergeStrategy' => 'array_merge_recursive',
 	];
 
 	/**

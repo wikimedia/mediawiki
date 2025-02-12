@@ -5372,6 +5372,7 @@ config-schema:
     AddGroups:
         default: {  }
         type: object
+        mergeStrategy: array_merge_recursive
         description: |-
             $wgAddGroups and $wgRemoveGroups can be used to give finer control over who
             can assign which groups at Special:Userrights.
@@ -5395,6 +5396,7 @@ config-schema:
     RemoveGroups:
         default: {  }
         type: object
+        mergeStrategy: array_merge_recursive
         description: '@see self::AddGroups'
     AvailableRights:
         default: []

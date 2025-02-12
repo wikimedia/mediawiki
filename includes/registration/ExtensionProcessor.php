@@ -100,6 +100,7 @@ class ExtensionProcessor implements Processor {
 	 * @see getExtractedInfo
 	 */
 	protected const MERGE_STRATEGIES = [
+		'wgAddGroups' => 'array_merge_recursive',
 		'wgAuthManagerAutoConfig' => 'array_plus_2d',
 		'wgCapitalLinkOverrides' => 'array_plus',
 		'wgExtraGenderNamespaces' => 'array_plus',
@@ -111,6 +112,7 @@ class ExtensionProcessor implements Processor {
 		'wgNamespacesWithSubpages' => 'array_plus',
 		'wgPasswordPolicy' => 'array_merge_recursive',
 		'wgRateLimits' => 'array_plus_2d',
+		'wgRemoveGroups' => 'array_merge_recursive',
 		'wgRevokePermissions' => 'array_plus_2d',
 	];
 
