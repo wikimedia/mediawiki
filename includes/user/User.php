@@ -1161,7 +1161,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 *                strings is ignored.
 	 */
 	protected function loadFromRow( $row, $data = null ) {
-		if ( !is_object( $row ) ) {
+		if ( !( $row instanceof stdClass ) ) {
 			throw new InvalidArgumentException( '$row must be an object' );
 		}
 

@@ -414,7 +414,7 @@ class MovePage {
 			0,
 			IDBAccessObject::READ_LATEST
 		);
-		if ( !is_object( $rev ) ) {
+		if ( !$rev ) {
 			return false;
 		}
 		$content = $rev->getContent( SlotRecord::MAIN );
