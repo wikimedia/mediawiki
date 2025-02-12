@@ -63,4 +63,17 @@ describe( 'BlockLog', () => {
 		const rows = wrapper.findAll( '.cdx-table__table tbody tr' );
 		expect( rows ).toHaveLength( 3 );
 	} );
+
+	it( 'should show the active hightlighted selected row', async () => {
+		mockMwConfigGet( { blockTargetUser: 'ActiveBlockedUser' } );
+		const wrapper = mount( BlockLog, {
+			propsData: { blockLogType: 'active' },
+			global: { plugins: [ createTestingPinia( { stubActions: false } ) ] }
+		} );
+		await flushPromises();
+		expect( wrapper.find( '.mw-block-log__type-active' ).exists() ).toBeTruthy();
+		const rows = wrapper.findAll( 'table.cdx-table__table tbody tr' );
+		expect( rows ).toHaveLength( 3 );
+		expect( rows[ 1 ].classes() ).toContain( 'cdx-selected-block-row' );
+	} );
 } );

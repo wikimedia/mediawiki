@@ -10,6 +10,7 @@
 			</cdx-info-chip>
 		</template>
 		<cdx-table
+			v-if="blockLogType === 'active'"
 			:caption="title"
 			:columns="!!logEntries.length ? columns : []"
 			:data="logEntries"
@@ -30,24 +31,130 @@
 			<template #empty-state>
 				{{ emptyState }}
 			</template>
-			<template #item-modify="{ item }">
-				<cdx-button
-					:id="'edit-button-' + item.id"
-					type="button"
-					action="progressive"
-					weight="quiet"
-					@click="$emit( 'edit-block', item )"
-				>
-					{{ $i18n( 'block-item-edit' ).text() }}
-				</cdx-button>
-				<cdx-button
-					type="button"
-					action="progressive"
-					weight="quiet"
-					@click="$emit( 'remove-block', item.id )"
-				>
-					{{ $i18n( 'block-item-remove' ).text() }}
-				</cdx-button>
+			<template #tbody>
+				<tbody>
+					<tr
+						v-for="( item, index ) in logEntries"
+						:key="index"
+						:class="{ 'cdx-selected-block-row': item.modify.id === blockId }"
+					>
+						<td>
+							<cdx-button
+								type="button"
+								action="progressive"
+								weight="quiet"
+								@click="$emit( 'edit-block', item.modify )"
+							>
+								{{ $i18n( 'block-item-edit' ).text() }}
+							</cdx-button>
+							<cdx-button
+								type="button"
+								action="progressive"
+								weight="quiet"
+								@click="$emit( 'remove-block', item.modify.id )"
+							>
+								{{ $i18n( 'block-item-remove' ).text() }}
+							</cdx-button>
+						</td>
+						<td>
+							<a
+								:href="mw.util.getUrl( 'Special:BlockList', { wpTarget: `#${ item.timestamp.blockid }` } )"
+							>
+								{{ util.formatTimestamp( item.timestamp.timestamp ) }}
+							</a>
+						</td>
+						<td>
+							<span v-if="item.expiry.expires || item.expiry.duration">
+								{{ util.formatTimestamp( item.expiry.expires || item.expiry.duration ) }}
+							</span>
+							<span v-else></span>
+						</td>
+						<td>
+							<a :href="mw.Title.makeTitle( 2, item.blockedby ).getUrl()">
+								{{ item.blockedby }}
+							</a>
+							<span class="mw-usertoollinks">
+								{{ $i18n( 'parentheses-start' ).text() }}<a :href="mw.Title.makeTitle( 3, item.blockedby ).getUrl()">
+									{{ $i18n( 'talkpagelinktext' ).text() }}
+								</a>
+								<span>
+									{{ $i18n( 'pipe-separator' ).text() }}
+									<a :href="mw.Title.makeTitle( 2, `Contributions/${ item.blockedby }` ).getUrl()">
+										{{ $i18n( 'contribslink' ).text() }}
+									</a>
+								</span>{{ $i18n( 'parentheses-end' ).text() }}
+							</span>
+						</td>
+						<td>
+							<ul v-if="item.parameters.flags && item.parameters.flags.length">
+								<li v-if="item.parameters.restrictions">
+									{{ mw.message( 'blocklist-editing' ).text() }}
+									<ul>
+										<li v-for="( parameter, restrictionType ) in item.parameters.restrictions" :key="restrictionType">
+											<div v-if="restrictionType === 'pages'">
+												{{ mw.message( 'blocklist-editing-page' ).text() }}
+												<ul class="mw-block-parameters">
+													<li v-for="page in parameter" :key="page">
+														<a v-if="page.title" :href="mw.util.getUrl( page.title )">
+															{{ page.title }}
+														</a>
+														<a v-else-if="page.page_title" :href="mw.util.getUrl( page.page_title )">
+															{{ page.page_title }}
+														</a>
+													</li>
+												</ul>
+											</div>
+											<div v-else-if="restrictionType === 'namespaces'">
+												{{ mw.message( 'blocklist-editing-ns' ).text() }}
+												<ul class="mw-block-parameters">
+													<li v-for="namespace in parameter" :key="namespace">
+														<a :href="mw.util.getUrl( 'Special:AllPages', { namespace: namespace } )">
+															{{ mw.config.get( 'wgFormattedNamespaces' )[ namespace ] }}
+														</a>
+													</li>
+												</ul>
+											</div>
+											<div v-else-if="restrictionType === 'actions'">
+												{{ mw.message( 'blocklist-editing-action' ).text() }}
+												<ul class="mw-block-parameters">
+													<li v-for="action in parameter" :key="action">
+														<!-- Potential messages: -->
+														<!-- * ipb-action-create -->
+														<!-- * ipb-action-move -->
+														<!-- * ipb-action-upload -->
+														{{ mw.message( 'ipb-action-' + action ).text() }}
+													</li>
+												</ul>
+											</div>
+										</li>
+									</ul>
+								</li>
+								<li v-else>
+									{{ mw.message( 'blocklist-editing-sitewide' ).text() }}
+								</li>
+								<li v-for="( parameter, indexFlag ) in item.parameters.flags" :key="indexFlag">
+									{{ util.getBlockFlagMessage( parameter ) }}
+								</li>
+							</ul>
+						</td>
+						<td>
+							<!-- eslint-disable-next-line vue/no-v-html -->
+							<span v-html="item.reason"></span>
+						</td>
+					</tr>
+				</tbody>
+			</template>
+		</cdx-table>
+		<cdx-table
+			v-else
+			:caption="title"
+			:columns="!!logEntries.length ? columns : []"
+			:data="logEntries"
+			:use-row-headers="false"
+			:hide-caption="true"
+		>
+			<template #empty-state>
+				{{ emptyState }}
 			</template>
 			<template #item-hide="{ item }">
 				<a
@@ -73,7 +180,7 @@
 					{{ util.formatTimestamp( item.timestamp ) }}
 				</span>
 			</template>
-			<template v-if="blockLogType !== 'active'" #item-type="{ item }">
+			<template #item-type="{ item }">
 				{{ util.getBlockActionMessage( item ) }}
 			</template>
 			<template #item-expiry="{ item }">
@@ -198,7 +305,7 @@ module.exports = exports = defineComponent( {
 	],
 	setup( props ) {
 		const store = useBlockStore();
-		const { alreadyBlocked, formVisible, targetUser } = storeToRefs( store );
+		const { alreadyBlocked, blockId, formVisible, targetUser } = storeToRefs( store );
 		let title = mw.message( 'block-user-previous-blocks' ).text();
 		let emptyState = mw.message( 'block-user-no-previous-blocks' ).text();
 		if ( props.blockLogType === 'active' ) {
@@ -361,6 +468,7 @@ module.exports = exports = defineComponent( {
 			columns,
 			logEntries,
 			moreBlocks,
+			blockId,
 			targetUser,
 			logEntriesCount,
 			infoChipIcon,

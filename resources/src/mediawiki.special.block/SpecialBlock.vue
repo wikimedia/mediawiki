@@ -179,7 +179,7 @@ module.exports = exports = defineComponent( {
 		const store = useBlockStore();
 		const blockShowSuppressLog = mw.config.get( 'blockShowSuppressLog' ) || false;
 		const canDeleteLogEntry = mw.config.get( 'canDeleteLogEntry' ) || false;
-		const { blockId, formErrors, formSubmitted, formVisible, blockAdded, blockRemoved, enableMultiblocks } = storeToRefs( store );
+		const { formErrors, formSubmitted, formVisible, blockAdded, blockRemoved, enableMultiblocks } = storeToRefs( store );
 		const messagesContainer = ref();
 		// Value to use for BlockLog component keys, so they reload after saving.
 		const submitCount = ref( 0 );
@@ -200,7 +200,6 @@ module.exports = exports = defineComponent( {
 		const wasRedirected = mw.util.getParamValue( 'redirected' );
 
 		let initialLoad = true;
-		let selectedBlockRow = false;
 
 		// If we're editing or removing via a URL parameter, check that the block exists.
 		const blockIdUrlParam = mw.util.getParamValue( 'id' );
@@ -396,43 +395,9 @@ module.exports = exports = defineComponent( {
 				} );
 		}
 
-		/**
-		 * Highlight a selected block row. If there is a previous selected block row, unhighlight it.
-		 */
-		function highlightSelectedBlockRow() {
-			// Unhighlight any previously selected row
-			unhighlightSelectedBlockRow();
-			// nextTick() needed to ensure edit buttons are rendered before highlighting.
-			nextTick( () => {
-				selectedBlockRow = document.querySelector( '#edit-button-' + blockId.value ).closest( 'tr' );
-				selectedBlockRow.classList.add( 'cdx-selected-block-row' );
-			} );
-		}
-
-		/**
-		 * Unhighlight selected block row.
-		 */
-		function unhighlightSelectedBlockRow() {
-			if ( selectedBlockRow ) {
-				selectedBlockRow.classList.remove( 'cdx-selected-block-row' );
-				selectedBlockRow = false;
-			}
-		}
-
-		// Remove highlighting when block removal confirmation pop up is closed.
-		watch( blockId, ( newValue ) => {
-			if ( !newValue ) {
-				unhighlightSelectedBlockRow();
-			} else {
-				highlightSelectedBlockRow();
-			}
-		} );
-
-		// Remove highlighting when block removal confirmation pop up is closed.
 		// We need to reset the form so no block data is set.
 		watch( removalConfirmationOpen, ( newValue ) => {
 			if ( !newValue ) {
-				unhighlightSelectedBlockRow();
 				store.resetForm();
 			}
 		} );

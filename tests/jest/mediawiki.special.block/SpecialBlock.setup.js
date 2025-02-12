@@ -138,30 +138,57 @@ function mockMwApiGet( additionalMocks = [] ) {
 			params: {
 				list: 'logevents|blocks',
 				letype: 'block',
-				letitle: 'User:ActiveBlockedUser'
+				letitle: 'User:ActiveBlockedUser',
+				bkusers: 'ActiveBlockedUser'
 			},
 			response: {
 				query: {
-					logevents: [
-						{
-							logid: 980,
-							title: 'User:ActiveBlockedUser',
-							params: {
-								duration: '1 year',
-								flags: [
-									'noautoblock'
-								],
-								sitewide: true,
-								expiry: '2029-09-17T14:30:51Z'
-							},
-							type: 'block',
-							user: 'Admin',
-							timestamp: '2024-09-17T14:30:51Z',
-							comment: 'A reason'
-						}
-					],
 					blocks: [
-						{ id: 1116, user: 'ActiveBlockedUser', restrictions: [] }
+						{
+							id: 1110,
+							user: 'ActiveBlockedUser',
+							timestamp: '2024-09-17T14:30:51Z',
+							expiry: '2029-09-17T14:30:51Z',
+							by: 'Admin',
+							anononly: false,
+							nocreate: false,
+							autoblock: false,
+							noemail: true,
+							allowusertalk: false,
+							hidden: true,
+							parsedreason: 'Spamming talk page',
+							restrictions: []
+						},
+						{
+							id: 1116,
+							user: 'ActiveBlockedUser',
+							timestamp: '2024-09-17T14:30:51Z',
+							expiry: '2029-09-17T14:30:51Z',
+							by: 'Admin',
+							anononly: false,
+							nocreate: false,
+							autoblock: false,
+							noemail: true,
+							allowusertalk: false,
+							hidden: true,
+							parsedreason: 'Spamming talk page',
+							restrictions: []
+						},
+						{
+							id: 1120,
+							user: 'ActiveBlockedUser',
+							timestamp: '2024-09-17T14:30:51Z',
+							expiry: '2029-09-17T14:30:51Z',
+							by: 'Admin',
+							anononly: false,
+							nocreate: false,
+							autoblock: false,
+							noemail: true,
+							allowusertalk: false,
+							hidden: true,
+							parsedreason: 'Spamming talk page',
+							restrictions: []
+						}
 					]
 				}
 			}
