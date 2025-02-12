@@ -511,6 +511,7 @@
 	"invert": "Inverti seleson",
 	"blanknamespace": "(Prinsipal)",
 	"contributions": "Kontributus di uzuáriu",
+	"tool-link-contributions": "Kontributus des {{GENDER:$1|uzuáriu|usuária}}",
 	"contributions-title": "Kontributus di $1",
 	"mycontris": "Kontributus",
 	"anoncontribs": "Kontributus",
