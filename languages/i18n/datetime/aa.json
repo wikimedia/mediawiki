@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mr. Lechkar"
+		]
+	},
+	"jan": "Qun",
+	"feb": "Nah",
+	"mar": "Cig",
+	"apr": "Agd",
+	"may": "Cax",
+	"jun": "Qas",
+	"jul": "Qad",
+	"aug": "Leq",
+	"sep": "Way",
+	"oct": "Dit",
+	"nov": "Xim",
+	"dec": "Kax",
+	"monday": "Etleeni",
+	"tuesday": "Talaata",
+	"wednesday": "Arbaqa",
+	"thursday": "Kamiisi",
+	"friday": "Gumqata",
+	"saturday": "Sabti",
+	"sunday": "Acaada",
+	"mon": "Etl",
+	"tue": "Tal",
+	"wed": "Arb",
+	"thu": "Kam",
+	"fri": "Gum",
+	"sat": "Sab",
+	"sun": "Aca",
+	"period-am": "saaku",
+	"period-pm": "carra"
+}

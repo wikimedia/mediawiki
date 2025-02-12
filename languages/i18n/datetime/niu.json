@@ -1,0 +1,41 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jose77",
+			"Sioneholof"
+		]
+	},
+	"january": "Ianuali",
+	"february": "Fepuali",
+	"march": "Masi",
+	"april": "Apelila",
+	"may_long": "Me",
+	"june": "Iuni",
+	"july": "Iulai",
+	"august": "Aokuso",
+	"september": "Sepetema",
+	"october": "Oketopa",
+	"november": "Novema",
+	"december": "Tesemo",
+	"january-gen": "Ianuali",
+	"february-gen": "Fepuali",
+	"march-gen": "Masi",
+	"april-gen": "Apelila",
+	"may-gen": "Me",
+	"june-gen": "Iuni",
+	"july-gen": "Iulai",
+	"august-gen": "Aokuso",
+	"september-gen": "Sepetema",
+	"october-gen": "Oketopa",
+	"november-gen": "Novema",
+	"december-gen": "Tesemo",
+	"may": "Me",
+	"oct": "Oke",
+	"monday": "Aho Gofua",
+	"tuesday": "Aho Ua",
+	"wednesday": "Aho Lotu",
+	"thursday": "Aho Tuloto",
+	"friday": "Aho Falaile",
+	"saturday": "Aho Faiumu",
+	"sunday": "Aho Tapu"
+}

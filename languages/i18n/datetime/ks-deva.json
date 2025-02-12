@@ -1,0 +1,33 @@
+{
+	"@metadata": {
+		"authors": [
+			"Rishabhbhat"
+		]
+	},
+	"january": "जनवरी",
+	"february": "फ़रवरी",
+	"march": "मार्च",
+	"april": "अप्रैल",
+	"may_long": "मई",
+	"june": "जून",
+	"july": "जुलाई",
+	"august": "अगस्त",
+	"september": "सितम्बर",
+	"october": "अक्टूबर",
+	"november": "नवम्बर",
+	"december": "दिसम्बर",
+	"monday": "च़ऺन्द्रॖवार",
+	"tuesday": "बोम्वार",
+	"wednesday": "बॏदवार",
+	"thursday": "ब्रसवार",
+	"friday": "शॊकुरवार",
+	"saturday": "बटॖवार",
+	"sunday": "आथवार",
+	"mon": "च़ऺन्द्रॖ॰",
+	"tue": "बोम॰",
+	"wed": "बॏद॰",
+	"thu": "ब्रस",
+	"fri": "शॊक",
+	"sat": "बटॖ",
+	"sun": "आथ॰"
+}

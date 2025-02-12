@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"SkPäiviö",
+			"Yupik"
+		]
+	},
+	"january": "Tsïengele",
+	"february": "Goevte",
+	"march": "Njoktje",
+	"september": "Skïerede",
+	"january-gen": "Tsïengele",
+	"september-gen": "Skïerede",
+	"monday": "måanta",
+	"tuesday": "dæjsta",
+	"wednesday": "gaskevåhkoe",
+	"thursday": "duarsta",
+	"friday": "bearjadahke",
+	"saturday": "laavvadahke",
+	"sunday": "aejlege",
+	"mon": "måa",
+	"tue": "dæj",
+	"wed": "gask",
+	"thu": "duar",
+	"fri": "bearj",
+	"sat": "laa",
+	"sun": "aej"
+}

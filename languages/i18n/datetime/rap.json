@@ -1,0 +1,43 @@
+{
+	"@metadata": {
+		"authors": [
+			"MJohnsson"
+		]
+	},
+	"january": "Koro",
+	"february": "Tuaharo",
+	"march": "Te Hetu'u Pu",
+	"april": "Tarahao",
+	"may_long": "Vaitu'u Nui",
+	"june": "Vaitu'u Poto",
+	"july": "Maro",
+	"august": "Anekena",
+	"september": "Hora Iti",
+	"october": "Hora Nui",
+	"november": "Tagaroa Uri",
+	"december": "Ruti",
+	"january-gen": "o Kore",
+	"february-gen": "o Tuaharo",
+	"march-gen": "o Te Hetu'u Pu",
+	"april-gen": "o Tarahao",
+	"may-gen": "o Vaitu'u Nui",
+	"june-gen": "o Vaitu'u Poto",
+	"july-gen": "o Maro",
+	"august-gen": "o Anekena",
+	"september-gen": "o Hora Iti",
+	"october-gen": "o Hora Nui",
+	"november-gen": "o Tagaroa Uri",
+	"december-gen": "o Ruti",
+	"jan": "Kor",
+	"feb": "Tua",
+	"mar": "HeP",
+	"apr": "Tar",
+	"may": "VaN",
+	"jun": "VaP",
+	"jul": "Mar",
+	"aug": "Ane",
+	"sep": "HoI",
+	"oct": "HoN",
+	"nov": "TaU",
+	"dec": "Rut"
+}

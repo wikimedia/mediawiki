@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kambai Akau",
+			"Omorodion1"
+		]
+	},
+	"january": "Uki-Ague",
+	"february": "Uki-Ifie",
+	"march": "Uki-Egbo",
+	"april": "Uki-Ekhuen",
+	"may_long": "Uki-Egua",
+	"june": "Uki-Ikpesi",
+	"july": "Uki-Iviema",
+	"august": "Uki-Ohie",
+	"september": "Uki-Eho",
+	"october": "Uki-Emorho",
+	"november": "Uki-Ewe",
+	"december": "Uki-Igue",
+	"monday": "Uzola Edegbe",
+	"tuesday": "Uzola Edeha",
+	"wednesday": "Ades'uzola",
+	"thursday": "Irhakhue Uzola",
+	"friday": "Akhue Uzola",
+	"saturday": "Uzola Nekhere",
+	"sunday": "Uzola Nokhua",
+	"sun": "Oven"
+}

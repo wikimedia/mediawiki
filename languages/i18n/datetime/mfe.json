@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"Liwajz",
+			"Moris231"
+		]
+	},
+	"january": "Zanvie",
+	"february": "fevrier",
+	"march": "Mars",
+	"april": "Avril",
+	"may_long": "Mai",
+	"june": "Zin",
+	"july": "Ziyet",
+	"august": "Out",
+	"september": "Septam",
+	"october": "Oktob",
+	"november": "Novam",
+	"december": "Desam",
+	"january-gen": "Zanvie",
+	"monday": "lindi",
+	"tuesday": "mardi",
+	"wednesday": "mercredi",
+	"thursday": "zedi",
+	"friday": "vendredi",
+	"saturday": "samdi",
+	"sunday": "dimans",
+	"mon": "Lin.",
+	"tue": "Mar.",
+	"wed": "Mer.",
+	"thu": "Jeu.",
+	"fri": "Ven.",
+	"sat": "Sam.",
+	"sun": "Dim."
+}

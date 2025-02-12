@@ -1,0 +1,38 @@
+{
+	"@metadata": {
+		"authors": [
+			"Desiphral"
+		]
+	},
+	"january": "pervonai",
+	"february": "duitonai",
+	"march": "tritonai",
+	"april": "shtartonai",
+	"may_long": "panjtonai",
+	"june": "shovtonai",
+	"july": "eftatonai",
+	"august": "oxtotonai",
+	"september": "enyatonai",
+	"october": "deshtonai",
+	"november": "deshuekhtonai",
+	"december": "deshuduitonai",
+	"jan": "perv",
+	"feb": "dui",
+	"mar": "tri",
+	"apr": "shta",
+	"may": "panj",
+	"jun": "shov",
+	"jul": "efta",
+	"aug": "oxt",
+	"sep": "enya",
+	"oct": "desh",
+	"nov": "dekh",
+	"dec": "ddui",
+	"monday": "lui",
+	"tuesday": "marci",
+	"wednesday": "tetradī",
+	"thursday": "zhoi",
+	"friday": "parashtui",
+	"saturday": "savato",
+	"sunday": "purano kurko"
+}

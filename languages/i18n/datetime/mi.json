@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ultron90"
+		]
+	},
+	"january": "Kohi-tātea",
+	"february": "Hui-tanguru",
+	"march": "Poutū-te-rangi",
+	"april": "Paenga-whāwhā",
+	"may_long": "Haratua",
+	"june": "Pipiri",
+	"july": "Hōngongoi",
+	"august": "Here-turi-kōkā",
+	"september": "Mahuru",
+	"october": "Whiringa-ā-nuku",
+	"november": "Whiringa-ā-rangi",
+	"december": "Hakihea",
+	"december-gen": "Hakihea",
+	"monday": "Rāhina",
+	"tuesday": "Rātū",
+	"wednesday": "Rāapa",
+	"thursday": "Rāpare",
+	"friday": "Rāmere",
+	"saturday": "Rāhoroi",
+	"sunday": "Rātapu"
+}

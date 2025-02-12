@@ -1,0 +1,33 @@
+{
+	"@metadata": {
+		"authors": [
+			"L*E*D",
+			"Marcell0"
+		]
+	},
+	"january": "Januar",
+	"february": "Februar",
+	"march": "März",
+	"april": "April",
+	"may_long": "Mai",
+	"june": "Juni",
+	"july": "Juli",
+	"august": "August",
+	"september": "September",
+	"october": "Oktober",
+	"november": "November",
+	"december": "Dezember",
+	"jan": "Jan.",
+	"feb": "Feb.",
+	"mar": "Mär.",
+	"apr": "Apr.",
+	"may": "Mai",
+	"jun": "Jun.",
+	"jul": "Juli",
+	"aug": "Aug.",
+	"sep": "Sep.",
+	"oct": "Okt.",
+	"nov": "Nov.",
+	"dec": "Dez.",
+	"tuesday": "Dienstag"
+}

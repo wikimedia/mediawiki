@@ -1,0 +1,38 @@
+{
+	"@metadata": {
+		"authors": [
+			"UJung"
+		]
+	},
+	"january": "ŋwíí a ntɔ́ntɔ",
+	"february": "ŋwíí akǝ bɛ́ɛ",
+	"march": "ŋwíí akǝ ráá",
+	"april": "ŋwíí akǝ nin",
+	"may_long": "ŋwíí akǝ táan",
+	"june": "ŋwíí akǝ táafɔk",
+	"july": "ŋwíí akǝ táabɛɛ",
+	"august": "ŋwíí akǝ táaraa",
+	"september": "ŋwíí akǝ táanin",
+	"october": "ŋwíí akǝ ntɛk",
+	"november": "ŋwíí akǝ ntɛk di bɔ́k",
+	"december": "ŋwíí akǝ ntɛk di bɛ́ɛ",
+	"jan": "Ŋ1",
+	"feb": "Ŋ2",
+	"mar": "Ŋ3",
+	"apr": "Ŋ4",
+	"may": "Ŋ5",
+	"jun": "Ŋ6",
+	"jul": "Ŋ7",
+	"aug": "Ŋ8",
+	"sep": "Ŋ9",
+	"oct": "Ŋ10",
+	"nov": "Ŋ11",
+	"dec": "Ŋ12",
+	"mon": "lǝn",
+	"tue": "maa",
+	"wed": "mɛk",
+	"thu": "jǝǝ",
+	"fri": "júm",
+	"sat": "sam",
+	"sun": "sɔ́n"
+}

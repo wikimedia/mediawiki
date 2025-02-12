@@ -1,0 +1,38 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sichelesile"
+		]
+	},
+	"january": "Zibandlela",
+	"february": "Nhlolanja",
+	"march": "Mbimbitho",
+	"april": "Mabasa",
+	"may_long": "Nkwenkwezi",
+	"june": "Nhlangula",
+	"july": "Ntulikazi",
+	"august": "Ncwabakazi",
+	"september": "Mpandula",
+	"october": "Mfumfu",
+	"november": "Lwezi",
+	"december": "Mpalakazi",
+	"january-gen": "Zibandlela",
+	"february-gen": "Nhlolanja",
+	"march-gen": "Mbimbitho",
+	"april-gen": "Mabasa",
+	"may-gen": "Nkwenkwezi",
+	"june-gen": "Nhlangula",
+	"july-gen": "Ntulikazi",
+	"august-gen": "Ncwabakazi",
+	"september-gen": "Mpandula",
+	"october-gen": "Mfumfu",
+	"november-gen": "Lwezi",
+	"december-gen": "Mpalakazi",
+	"monday": "UMvulo",
+	"tuesday": "oLwesibili",
+	"wednesday": "oLwesithathu",
+	"thursday": "oLwesine",
+	"friday": "oLwesihlanu",
+	"saturday": "uMgqibelo",
+	"sunday": "ISonto"
+}
