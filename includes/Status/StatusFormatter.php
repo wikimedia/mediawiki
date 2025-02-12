@@ -241,18 +241,17 @@ class StatusFormatter {
 			// identical to getMessage( false, false, 'en' ) when there's just one error
 			$message = $this->getErrorMessage( $errors[0], [ 'lang' => 'en' ] );
 
-			if ( in_array( get_class( $message ), [ Message::class, ApiMessage::class ], true ) ) {
-				// Fall back to getWikiText for rawmessage, which is just a placeholder for non-translated text.
-				// Turning the entire message into a context parameter wouldn't be useful.
-				if ( $message->getKey() === 'rawmessage' ) {
-					return [ $this->getWikiText( $status, $options ), $context ];
-				}
+			if ( $message instanceof RawMessage ) {
+				$text = $message->getTextOfRawMessage();
+				$params = $message->getParamsOfRawMessage();
+			} elseif ( $message instanceof ApiMessage ||
+				// rawmessage is just a placeholder for non-translated text. Turning the entire
+				// message into a context parameter wouldn't be useful.
+				( get_class( $message ) === Message::class && $message->getKey() !== 'rawmessage' )
+			) {
 				// $1,$2... will be left as-is when no parameters are provided.
 				$text = $this->msgInLang( $message->getKey(), 'en' )->plain();
 				$params = $message->getParams();
-			} elseif ( $message instanceof RawMessage ) {
-				$text = $message->getTextOfRawMessage();
-				$params = $message->getParamsOfRawMessage();
 			} else {
 				// Unknown Message subclass, we can't be sure how it marks parameters. Fall back to getWikiText.
 				return [ $this->getWikiText( $status, $options ), $context ];
