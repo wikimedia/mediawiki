@@ -148,10 +148,7 @@ class ConditionalDefaultsLookup {
 					return false;
 				}
 
-				return (
-					(int)ConvertibleTimestamp::convert( TS_UNIX, $registration ) -
-					(int)ConvertibleTimestamp::convert( TS_UNIX, $cond[0] )
-				) > 0;
+				return $registration > ConvertibleTimestamp::convert( TS_MW, $cond[0] );
 			case CUDCOND_ANON:
 				return !$userIdentity->isRegistered();
 			case CUDCOND_NAMED:
