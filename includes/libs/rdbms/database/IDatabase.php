@@ -572,7 +572,6 @@ interface IDatabase extends IReadableDatabase {
 	 * The callback takes the following arguments:
 	 *   - How the current atomic section (if any) or overall transaction (otherwise) ended
 	 *     (IDatabase::TRIGGER_COMMIT or IDatabase::TRIGGER_ROLLBACK)
-	 *   - This IDatabase instance (since 1.32)
 	 *
 	 * Callbacks will execute in the order they were enqueued.
 	 *
@@ -608,7 +607,6 @@ interface IDatabase extends IReadableDatabase {
 	 *
 	 * The callback takes the following arguments:
 	 *   - How the transaction ended (IDatabase::TRIGGER_COMMIT or IDatabase::TRIGGER_IDLE)
-	 *   - This IDatabase instance (since 1.32)
 	 *
 	 * Callbacks will execute in the order they were enqueued.
 	 *
@@ -637,9 +635,6 @@ interface IDatabase extends IReadableDatabase {
 	 *   - a) RDBMS updates, prone to lock timeouts/deadlocks, that require atomicity
 	 *        with respect to the updates in the current transaction (if any)
 	 *   - b) Purges to lightweight cache services due to RDBMS updates
-	 *
-	 * The callback takes the one argument:
-	 *   - This IDatabase instance (since 1.32)
 	 *
 	 * Callbacks will execute in the order they were enqueued.
 	 *

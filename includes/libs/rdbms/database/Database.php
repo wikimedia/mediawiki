@@ -2035,7 +2035,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 			foreach ( $callbackEntries as $entry ) {
 				$this->flagsHolder->clearFlag( self::DBO_TRX ); // make each query its own transaction
 				try {
-					$entry[0]( $trigger, $this );
+					$entry[0]( $trigger );
 				} catch ( DBError $ex ) {
 					( $this->errorLogger )( $ex );
 					$errors[] = $ex;
@@ -3300,7 +3300,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	}
 
 	public function runOnTransactionPreCommitCallbacks() {
-		return $this->transactionManager->runOnTransactionPreCommitCallbacks( $this );
+		return $this->transactionManager->runOnTransactionPreCommitCallbacks();
 	}
 
 	public function explicitTrxActive() {
