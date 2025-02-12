@@ -377,14 +377,6 @@ trait MockAuthorityTrait {
 			}
 		);
 
-		$permissionManager->method( 'getPermissionErrors' )->willReturnCallback(
-			static function ( $permission, $user, $target ) use ( $permissionManager, $fakeBlockMessageParams ) {
-				return $permissionManager
-					->getPermissionStatus( $permission, $user, $target )
-					->toLegacyErrorArray();
-			}
-		);
-
 		$permissionManager->method( 'newFatalPermissionDeniedStatus' )->willReturnCallback(
 			static function ( $permission, $context ) use ( $permissionManager ) {
 				return StatusValue::newFatal( 'permissionserrors' );

@@ -26,6 +26,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiLangTestCase;
+use StatusValue;
 use stdClass;
 use TestAllServiceOptionsUsed;
 use Wikimedia\ScopedCallback;
@@ -1566,11 +1567,8 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		string $userType,
 		string $action,
 		array $rights,
-		string $expectedError
+		StatusValue $expectedStatus
 	) {
-		// Convert string single error to the array of errors PermissionManager uses
-		$expectedErrors = ( $expectedError === '' ? [] : [ [ $expectedError ] ] );
-
 		$userIsAnon = $userType === 'anon';
 		$userIsTemp = $userType === 'temp';
 		$userIsNamed = $userType === 'user';
@@ -1611,7 +1609,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			$short,
 			$title
 		);
-		$this->assertEquals( $expectedErrors, $result->toLegacyErrorArray() );
+		$this->assertStatusMessagesExactly( $expectedStatus, $result );
 	}
 
 	public static function provideTestCheckQuickPermissions() {
@@ -1619,69 +1617,71 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 		// Four different possible errors when trying to create
 		yield 'Anon createtalk fail' => [
-			NS_TALK, 'Example', 'anon', 'create', [], 'nocreatetext'
+			NS_TALK, 'Example', 'anon', 'create', [], StatusValue::newFatal( 'nocreatetext' )
 		];
 		yield 'Anon createpage fail' => [
-			NS_MAIN, 'Example', 'anon', 'create', [], 'nocreatetext'
+			NS_MAIN, 'Example', 'anon', 'create', [], StatusValue::newFatal( 'nocreatetext' )
 		];
 		yield 'User createtalk fail' => [
-			NS_TALK, 'Example', 'user', 'create', [], 'nocreate-loggedin'
+			NS_TALK, 'Example', 'user', 'create', [], StatusValue::newFatal( 'nocreate-loggedin' )
 		];
 		yield 'User createpage fail' => [
-			NS_MAIN, 'Example', 'user', 'create', [], 'nocreate-loggedin'
+			NS_MAIN, 'Example', 'user', 'create', [], StatusValue::newFatal( 'nocreate-loggedin' )
 		];
 		yield 'Temp user createpage fail' => [
-			NS_MAIN, 'Example', 'temp', 'create', [], 'nocreatetext'
+			NS_MAIN, 'Example', 'temp', 'create', [], StatusValue::newFatal( 'nocreatetext' )
 		];
 
 		yield 'Createpage pass' => [
-			NS_MAIN, 'Example', 'anon', 'create', [ 'createpage' ], ''
+			NS_MAIN, 'Example', 'anon', 'create', [ 'createpage' ], StatusValue::newGood()
 		];
 
 		// Three different namespace specific move failures, even if user has `move` rights
 		yield 'Move root user page fail' => [
-			NS_USER, 'Example', 'anon', 'move', [ 'move' ], 'cant-move-user-page'
+			NS_USER, 'Example', 'anon', 'move', [ 'move' ], StatusValue::newFatal( 'cant-move-user-page' )
 		];
 		yield 'Move file fail' => [
-			NS_FILE, 'Example', 'anon', 'move', [ 'move' ], 'movenotallowedfile'
+			NS_FILE, 'Example', 'anon', 'move', [ 'move' ], StatusValue::newFatal( 'movenotallowedfile' )
 		];
 		yield 'Move category fail' => [
-			NS_CATEGORY, 'Example', 'anon', 'move', [ 'move' ], 'cant-move-category-page'
+			NS_CATEGORY, 'Example', 'anon', 'move', [ 'move' ], StatusValue::newFatal( 'cant-move-category-page' )
 		];
 
 		// No move rights at all. Different failures depending on who is allowed to move.
 		// Test method sets group permissions to [ 'autoconfirmed' => [ 'move' => true ] ]
 		yield 'Anon move fail, autoconfirmed can move' => [
-			NS_TALK, 'Example', 'anon', 'move', [], 'movenologintext'
+			NS_TALK, 'Example', 'anon', 'move', [], StatusValue::newFatal( 'movenologintext' )
 		];
 		yield 'User move fail, autoconfirmed can move' => [
-			NS_TALK, 'Example', 'user', 'move', [], 'movenotallowed'
+			NS_TALK, 'Example', 'user', 'move', [], StatusValue::newFatal( 'movenotallowed' )
 		];
 		yield 'Temp user move fail, autoconfirmed can move' => [
-			NS_TALK, 'Example', 'temp', 'move', [], 'movenologintext'
+			NS_TALK, 'Example', 'temp', 'move', [], StatusValue::newFatal( 'movenologintext' )
 		];
-		yield 'Move pass' => [ NS_MAIN, 'Example', 'anon', 'move', [ 'move' ], '' ];
+		yield 'Move pass' => [
+			NS_MAIN, 'Example', 'anon', 'move', [ 'move' ], StatusValue::newGood()
+		];
 
 		// Three different possible failures for move target
 		yield 'Move-target no rights' => [
-			NS_MAIN, 'Example', 'user', 'move-target', [], 'movenotallowed'
+			NS_MAIN, 'Example', 'user', 'move-target', [], StatusValue::newFatal( 'movenotallowed' )
 		];
 		yield 'Move-target to user root' => [
-			NS_USER, 'Example', 'user', 'move-target', [ 'move' ], 'cant-move-to-user-page'
+			NS_USER, 'Example', 'user', 'move-target', [ 'move' ], StatusValue::newFatal( 'cant-move-to-user-page' )
 		];
 		yield 'Move-target to category' => [
-			NS_CATEGORY, 'Example', 'user', 'move-target', [ 'move' ], 'cant-move-to-category-page'
+			NS_CATEGORY, 'Example', 'user', 'move-target', [ 'move' ], StatusValue::newFatal( 'cant-move-to-category-page' )
 		];
 		yield 'Move-target pass' => [
-			NS_MAIN, 'Example', 'user', 'move-target', [ 'move' ], ''
+			NS_MAIN, 'Example', 'user', 'move-target', [ 'move' ], StatusValue::newGood()
 		];
 
 		// Other actions without special handling
 		yield 'Missing rights for edit' => [
-			NS_MAIN, 'Example', 'user', 'edit', [], 'badaccess-group0'
+			NS_MAIN, 'Example', 'user', 'edit', [], StatusValue::newFatal( 'badaccess-group0' )
 		];
 		yield 'Having rights for edit' => [
-			NS_MAIN, 'Example', 'user', 'edit', [ 'edit', ], ''
+			NS_MAIN, 'Example', 'user', 'edit', [ 'edit', ], StatusValue::newGood()
 		];
 	}
 }
