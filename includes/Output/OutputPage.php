@@ -3589,7 +3589,7 @@ class OutputPage extends ContextSource {
 
 		// We don't want people to return to external interwiki. That
 		// might potentially be used as part of a phishing scheme
-		if ( !is_object( $linkTarget ) || $linkTarget->isExternal() ) {
+		if ( !$linkTarget || $linkTarget->isExternal() ) {
 			$linkTarget = Title::newMainPage();
 		}
 

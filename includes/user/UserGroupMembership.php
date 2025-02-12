@@ -252,7 +252,7 @@ class UserGroupMembership {
 		$msg = wfMessage( "grouppage-$group" )->inContentLanguage();
 		if ( $msg->exists() ) {
 			$title = Title::newFromText( $msg->text() );
-			if ( is_object( $title ) ) {
+			if ( $title ) {
 				return $title;
 			}
 		}

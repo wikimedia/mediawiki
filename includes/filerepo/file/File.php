@@ -1289,7 +1289,7 @@ abstract class File implements MediaHandlerState {
 			}
 		} while ( false );
 
-		return is_object( $thumb ) ? $thumb : false;
+		return $thumb ?: false;
 	}
 
 	/**

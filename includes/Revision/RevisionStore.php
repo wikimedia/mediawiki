@@ -2151,12 +2151,11 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		$result = new StatusValue();
 
 		$revIds = [];
-		foreach ( $rowsOrIds as $row ) {
-			if ( is_object( $row ) ) {
-				$revIds[] = isset( $row->ar_rev_id ) ? (int)$row->ar_rev_id : (int)$row->rev_id;
-			} else {
-				$revIds[] = (int)$row;
+		foreach ( $rowsOrIds as $id ) {
+			if ( $id instanceof stdClass ) {
+				$id = $id->ar_rev_id ?? $id->rev_id;
 			}
+			$revIds[] = (int)$id;
 		}
 
 		// Nothing to do.

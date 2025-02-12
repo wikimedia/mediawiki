@@ -176,16 +176,14 @@ class Category {
 	 * @return Category|bool Category, or false on a totally invalid name
 	 */
 	public static function newFromName( $name ) {
-		$cat = new self();
 		$title = Title::makeTitleSafe( NS_CATEGORY, $name );
-
-		if ( !is_object( $title ) ) {
+		if ( !$title ) {
 			return false;
 		}
 
+		$cat = new self();
 		$cat->mPage = $title;
 		$cat->mName = $title->getDBkey();
-
 		return $cat;
 	}
 

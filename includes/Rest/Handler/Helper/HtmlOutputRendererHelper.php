@@ -764,7 +764,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			return 0;
 		}
 
-		if ( is_object( $this->revisionOrId ) ) {
+		if ( $this->revisionOrId instanceof RevisionRecord ) {
 			// NOTE: return null even if getId() gave us 0
 			return $this->revisionOrId->getId() ?: null;
 		}
