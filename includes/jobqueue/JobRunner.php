@@ -609,7 +609,7 @@ class JobRunner {
 	 */
 	private function debugCallback( $msg ) {
 		if ( $this->debug ) {
-			call_user_func_array( $this->debug, [ wfTimestamp( TS_DB ) . " $msg\n" ] );
+			( $this->debug )( wfTimestamp( TS_DB ) . " $msg\n" );
 		}
 	}
 }

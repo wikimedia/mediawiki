@@ -377,7 +377,7 @@ class PathRouter {
 
 			// If this match includes a callback, execute it
 			if ( isset( $pattern->options['callback'] ) ) {
-				call_user_func_array( $pattern->options['callback'], [ &$matches, $data ] );
+				$pattern->options['callback']( $matches, $data );
 			}
 		} else {
 			// Our regexp didn't match, return null to signify no match.

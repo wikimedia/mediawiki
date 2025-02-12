@@ -570,10 +570,7 @@ class WikiImporter {
 	 */
 	private function siteInfoCallback( $siteInfo ) {
 		if ( $this->mSiteInfoCallback ) {
-			return call_user_func_array(
-				$this->mSiteInfoCallback,
-				[ $siteInfo, $this ]
-			);
+			return ( $this->mSiteInfoCallback )( $siteInfo, $this );
 		} else {
 			return false;
 		}
@@ -600,7 +597,7 @@ class WikiImporter {
 	private function pageOutCallback( PageIdentity $pageIdentity, $foreignTitle, $revCount,
 			$sucCount, $pageInfo ) {
 		if ( $this->mPageOutCallback ) {
-			call_user_func_array( $this->mPageOutCallback, func_get_args() );
+			( $this->mPageOutCallback )( $pageIdentity, $foreignTitle, $revCount, $sucCount, $pageInfo );
 		}
 	}
 
@@ -611,10 +608,7 @@ class WikiImporter {
 	 */
 	private function revisionCallback( $revision ) {
 		if ( $this->mRevisionCallback ) {
-			return call_user_func_array(
-				$this->mRevisionCallback,
-				[ $revision, $this ]
-			);
+			return ( $this->mRevisionCallback )( $revision, $this );
 		} else {
 			return false;
 		}
@@ -627,10 +621,7 @@ class WikiImporter {
 	 */
 	private function logItemCallback( $revision ) {
 		if ( $this->mLogItemCallback ) {
-			return call_user_func_array(
-				$this->mLogItemCallback,
-				[ $revision, $this ]
-			);
+			return ( $this->mLogItemCallback )( $revision, $this );
 		} else {
 			return false;
 		}

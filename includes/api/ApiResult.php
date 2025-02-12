@@ -823,7 +823,7 @@ class ApiResult implements ApiSerializable {
 			if ( !is_callable( $transforms['Custom'] ) ) {
 				throw new InvalidArgumentException( __METHOD__ . ': Value for "Custom" must be callable' );
 			}
-			call_user_func_array( $transforms['Custom'], [ &$data, &$metadata ] );
+			$transforms['Custom']( $data, $metadata );
 		}
 
 		if ( ( isset( $transforms['BC'] ) || $transformTypes !== null ) &&

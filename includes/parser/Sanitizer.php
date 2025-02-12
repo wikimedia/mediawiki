@@ -287,7 +287,7 @@ class Sanitizer {
 				$t = strtolower( $t );
 				if ( isset( $htmlelements[$t] ) ) {
 					if ( is_callable( $processCallback ) ) {
-						call_user_func_array( $processCallback, [ &$params, $args ] );
+						$processCallback( $params, $args );
 					}
 
 					if ( $brace == '/>' && !( isset( $htmlsingle[$t] ) || isset( $htmlsingleonly[$t] ) ) ) {

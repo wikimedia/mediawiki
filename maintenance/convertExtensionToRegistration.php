@@ -114,8 +114,8 @@ class ConvertExtensionToRegistration extends Maintenance {
 			}
 
 			if ( isset( self::CUSTOM_GLOBALS[$realName] ) ) {
-				call_user_func_array( [ $this, self::CUSTOM_GLOBALS[$realName] ],
-					[ $realName, $value, $vars ] );
+				$method = self::CUSTOM_GLOBALS[$realName];
+				$this->$method( $realName, $value, $vars );
 			} elseif ( in_array( $realName, $globalSettings ) ) {
 				$this->json[$realName] = $value;
 			} elseif ( array_key_exists( $realName, self::NO_LONGER_SUPPORTED_GLOBALS ) ) {
@@ -203,7 +203,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 		$this->json[$realName] = $value;
 	}
 
-	protected function handleMessagesDirs( $realName, $value ) {
+	protected function handleMessagesDirs( $realName, $value, $_ ) {
 		foreach ( $value as $key => $dirs ) {
 			foreach ( (array)$dirs as $dir ) {
 				$this->json[$realName][$key][] = $this->stripPath( $dir, $this->dir );
