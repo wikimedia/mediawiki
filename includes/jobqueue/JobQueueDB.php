@@ -226,9 +226,7 @@ class JobQueueDB extends JobQueue {
 		// errors that bubble up will rollback the main commit round.
 		$fname = __METHOD__;
 		$dbw->onTransactionPreCommitOrIdle(
-			function ( IDatabase $dbw ) use ( $jobs, $flags, $fname ) {
-				$this->doBatchPushInternal( $dbw, $jobs, $flags, $fname );
-			},
+			fn () => $this->doBatchPushInternal( $dbw, $jobs, $flags, $fname ),
 			$fname
 		);
 	}
