@@ -17281,3 +17281,29 @@ Text {{#spantag:<nowiki><b></nowiki> {{#spantag:<nowiki><c></nowiki>}}}}
 !! html/parsoid
 <p>Text <span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#spantag:&lt;nowiki>&lt;b>&lt;/nowiki> {{#spantag:&lt;nowiki>&lt;c>&lt;/nowiki>}}","function":"spantagpf"},"params":{},"i":0}}]}'>&lt;b> <span>&lt;c></span></span></p>
 !! end
+
+!! test
+T386233: suppress <nowiki/> tags between extension tags
+!! config
+wgParsoidFragmentSupport="v2"
+!! wikitext
+Deliberately unclosed b tag triggers p-wrapping if a nowiki span is
+added between the divtags:
+
+<b>{{1x|<divtag>abc</divtag><divtag>xyz</divtag>}}
+!! html/php
+<p>Deliberately unclosed b tag triggers p-wrapping if a nowiki span is
+added between the divtags:
+</p>
+<b><div>abc</div><div>xyz</div></b>
+!! html/parsoid+integrated
+<p>Deliberately unclosed b tag triggers p-wrapping if a nowiki span is added between the divtags:</p>
+<b>
+<div typeof="mw:Extension/divtag mw:Transclusion" data-mw='{"name":"divtag","attrs":{},"body":{"extsrc":"abc"},"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;divtag>abc&lt;/divtag>&lt;divtag>xyz&lt;/divtag>"}},"i":0}}]}'>
+<p>abc</p>
+</div>
+<div typeof="mw:Extension/divtag" data-mw='{"name":"divtag","attrs":{},"body":{"extsrc":"xyz"}}'>
+<p>xyz</p>
+</div>
+</b>
+!! end
