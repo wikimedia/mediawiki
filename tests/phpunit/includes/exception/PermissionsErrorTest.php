@@ -41,6 +41,7 @@ class PermissionsErrorTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusMessagesExactly( $expected, $et->status );
 
 		$this->expectDeprecationAndContinue( '/Use of PermissionsError::\\$errors/' );
+		$this->expectDeprecationAndContinue( '/toLegacyErrorArray/' );
 		$this->assertArrayEquals( $expected->toLegacyErrorArray(), $e->errors );
 
 		// Test the deprecated public property setter

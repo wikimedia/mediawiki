@@ -99,6 +99,7 @@ class PermissionStatus extends StatusValue {
 	 * @return array[]
 	 */
 	public function toLegacyErrorArray(): array {
+		wfDeprecated( __METHOD__, '1.43' );
 		return $this->getStatusArray();
 	}
 
