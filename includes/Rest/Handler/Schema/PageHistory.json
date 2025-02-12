@@ -1,5 +1,5 @@
 {
-	"description": "Page revision history",
+	"x-i18n-description": "rest-schema-desc-page-history",
 	"required": [
 		"revisions",
 		"latest"
@@ -7,7 +7,7 @@
 	"properties": {
 		"revisions": {
 			"type": "array",
-			"description": "List of revisions of the page",
+			"x-i18n-description": "rest-property-desc-revision-array",
 			"items": {
 				"type": "object",
 				"required": [
@@ -22,7 +22,7 @@
 				"properties": {
 					"id": {
 						"type": "integer",
-						"description": "Unique revision identifier"
+						"x-i18n-description": "rest-property-desc-revision-id"
 					},
 					"timestamp": {
 						"type": "string",
@@ -30,30 +30,30 @@
 					},
 					"minor": {
 						"type": "boolean",
-						"description": "True if the edit is marked as minor"
+						"x-i18n-description": "rest-property-desc-revision-minor"
 					},
 					"size": {
 						"type": "integer",
-						"description": "Size of the revision in bytes"
+						"x-i18n-description": "rest-property-desc-revision-size"
 					},
 					"comment": {
 						"type": "string",
 						"nullable": true,
-						"description": "The comment the author associated with the revision"
+						"x-i18n-description": "rest-property-desc-revision-comment"
 					},
 					"user": {
 						"type": "object",
 						"nullable": true,
-						"description": "Information about the user who made the revision",
+						"x-i18n-description": "rest-property-desc-revision-user",
 						"properties": {
 							"id": {
 								"type": "integer",
 								"nullable": true,
-								"description": "Unique identifier for the user; null for anonymous users"
+								"x-i18n-description": "rest-property-desc-user-id"
 							},
 							"name": {
 								"type": "string",
-								"description": "Username of the editor, or IP address if the user is anonymous"
+								"x-i18n-description": "rest-property-desc-user-name"
 							}
 						},
 						"required": [
@@ -64,7 +64,7 @@
 					"delta": {
 						"type": "integer",
 						"nullable": true,
-						"description": "Change in size between this revision and the preceding one; null if not available"
+						"x-i18n-description": "rest-property-desc-revision-delta"
 					}
 				}
 			}
@@ -72,7 +72,7 @@
 		"latest": {
 			"type": "string",
 			"format": "uri",
-			"description": "URL to the latest revision of the page"
+			"x-i18n-description": "rest-property-desc-revision-url"
 		}
 	}
 }

@@ -87,11 +87,11 @@
 			"properties": {
 				"id": {
 					"type": "integer",
-					"x-i18n-description": "rest-property-desc-revision-user-id"
+					"x-i18n-description": "rest-property-desc-user-id"
 				},
 				"name": {
 					"type": "string",
-					"x-i18n-description": "rest-property-desc-revision-user-name"
+					"x-i18n-description": "rest-property-desc-user-name"
 				}
 			}
 		},

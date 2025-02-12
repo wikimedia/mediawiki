@@ -1,5 +1,5 @@
 {
-	"description": "Revision comparision",
+	"x-i18n-description": "rest-schema-desc-revision-compare",
 	"required": [
 		"from",
 		"to",
@@ -8,7 +8,7 @@
 	"properties": {
 		"from": {
 			"type": "object",
-			"description": "Details of the 'from' revision",
+			"x-i18n-description": "rest-param-desc-compare-from",
 			"required": [
 				"id",
 				"slot_role",
@@ -17,15 +17,15 @@
 			"properties": {
 				"id": {
 					"type": "integer",
-					"description": "Revision identifier for the from revision"
+					"x-i18n-description": "rest-param-desc-compare-from-id"
 				},
 				"slot_role": {
 					"type": "string",
-					"description": "Role for the slot being compared (currently always 'main')"
+					"x-i18n-description": "rest-param-desc-compare-from-slotrole"
 				},
 				"sections": {
 					"type": "array",
-					"description": "Preprocessor sections for the revision, without template expansion",
+					"x-i18n-description": "rest-param-desc-compare-from-sections",
 					"items": {
 						"type": "object",
 						"required": [
@@ -36,15 +36,15 @@
 						"properties": {
 							"level": {
 								"type": "integer",
-								"description": "Section level"
+								"x-i18n-description": "rest-param-desc-compare-from-section-level"
 							},
 							"heading": {
 								"type": "string",
-								"description": "Section heading e.g. 1 for <h1>"
+								"x-i18n-description": "rest-param-desc-compare-from-section-heading"
 							},
 							"offset": {
 								"type": "integer",
-								"description": "Byte offset within the wikitext at which the section starts"
+								"x-i18n-description": "rest-param-desc-compare-from-section-offset"
 							}
 						}
 					}
@@ -53,7 +53,7 @@
 		},
 		"to": {
 			"type": "object",
-			"description": "Details of the 'to' revision",
+			"x-i18n-description": "Details of the 'to' revision",
 			"required": [
 				"id",
 				"slot_role",
@@ -62,15 +62,15 @@
 			"properties": {
 				"id": {
 					"type": "integer",
-					"description": "Revision identifier for the from revision"
+					"x-i18n-description": "rest-param-desc-compare-to"
 				},
 				"slot_role": {
 					"type": "string",
-					"description": "Role for the slot being compared (currently always 'main')"
+					"x-i18n-description": "rest-param-desc-compare-to-slotrole"
 				},
 				"sections": {
 					"type": "array",
-					"description": "Preprocessor sections for the revision, without template expansion",
+					"x-i18n-description": "rest-param-desc-compare-to-sections",
 					"items": {
 						"type": "object",
 						"required": [
@@ -81,15 +81,15 @@
 						"properties": {
 							"level": {
 								"type": "integer",
-								"description": "Section level"
+								"x-i18n-description": "rest-param-desc-compare-to-section-level"
 							},
 							"heading": {
 								"type": "string",
-								"description": "Section heading e.g. 1 for <h1>"
+								"x-i18n-description": "rest-param-desc-compare-to-section-heading"
 							},
 							"offset": {
 								"type": "integer",
-								"description": "Byte offset within the wikitext at which the section starts"
+								"x-i18n-description": "rest-param-desc-compare-to-section-offset"
 							}
 						}
 					}
@@ -98,7 +98,7 @@
 		},
 		"diff": {
 			"type": "array",
-			"description": "Differences between revisions",
+			"x-i18n-description": "rest-param-desc-compare-diff",
 			"items": {
 				"type": "object"
 			}

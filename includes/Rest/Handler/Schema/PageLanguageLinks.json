@@ -1,5 +1,5 @@
 {
-	"description": "Interlanguage links for the page",
+	"x-i18n-description": "rest-schema-desc-page-language-links",
 	"type": "array",
 	"items": {
 		"required": [
@@ -11,19 +11,19 @@
 		"properties": {
 			"code": {
 				"type": "string",
-				"description": "Language code"
+				"x-i18n-description": "rest-property-desc-page-language-code"
 			},
 			"name": {
 				"type": "string",
-				"description": "Translated language name"
+				"x-i18n-description": "rest-property-desc-page-language-name"
 			},
 			"key": {
 				"type": "string",
-				"description": "Translated page title in URL-friendly format"
+				"x-i18n-description": "rest-property-desc-page-language-key"
 			},
 			"title": {
 				"type": "string",
-				"description": "Translated page title in reading-friendly format"
+				"x-i18n-description": "rest-property-desc-page-language-title"
 			}
 		}
 	}

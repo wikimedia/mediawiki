@@ -1,12 +1,12 @@
 {
-	"description": "Media links for the page",
+	"x-i18n-description": "rest-schema-desc-media-links",
 	"required": [
 		"files"
 	],
 	"properties": {
 		"files": {
 			"type": "array",
-			"description": "Array of media used on the page",
+			"x-i18n-description": "rest-param-desc-media-links-array",
 			"items": {
 				"type": "object",
 				"required": [
@@ -19,35 +19,35 @@
 				"properties": {
 					"title": {
 						"type": "string",
-						"description": "File title"
+						"x-i18n-description": "rest-param-desc-media-links-title"
 					},
 					"file_description_url": {
 						"type": "string",
-						"description": "URL for the page describing the file, including license information and other metadata"
+						"x-i18n-description": "rest-param-desc-media-description-url"
 					},
 					"latest": {
 						"type": "object",
 						"nullable": true,
-						"description": "Information about the latest revision to the file",
+						"x-i18n-description": "rest-param-desc-media-latest",
 						"properties": {
 							"timestamp": {
 								"type": "string",
 								"format": "date-time",
-								"description": "Last modified timestamp in ISO 8601 format"
+								"x-i18n-description": "rest-param-desc-media-latest-timestamp"
 							},
 							"user": {
 								"type": "object",
-								"description": "Information about the user who uploaded the file",
+								"x-i18n-description": "rest-param-desc-media-latest-user",
 								"properties": {
 									"id": {
 										"type": "integer",
 										"nullable": true,
-										"description": "User identifier"
+										"x-i18n-description": "rest-property-desc-user-id"
 									},
 									"name": {
 										"type": "string",
 										"nullable": true,
-										"description": "Username"
+										"x-i18n-description": "rest-property-desc-user-name"
 									}
 								},
 								"required": [
@@ -64,7 +64,7 @@
 					"preferred": {
 						"type": "object",
 						"nullable": true,
-						"description": "Information about the file's preferred preview format, original format, and thumbnail format",
+						"x-i18n-description": "rest-param-desc-media-preferred",
 						"properties": {
 							"mediatype": {
 								"type": "string",
@@ -81,32 +81,32 @@
 									"ARCHIVE",
 									"3D"
 								],
-								"description": "The file type"
+								"x-i18n-description": "rest-param-desc-media-mediatype"
 							},
 							"size": {
 								"type": "integer",
 								"nullable": true,
-								"description": "File size in bytes or null if not available"
+								"x-i18n-description": "rest-param-desc-media-size"
 							},
 							"width": {
 								"type": "integer",
 								"nullable": true,
-								"description": "Maximum recommended image width in pixels or null if not available"
+								"x-i18n-description": "rest-param-desc-media-width"
 							},
 							"height": {
 								"type": "integer",
 								"nullable": true,
-								"description": "Maximum recommended image height in pixels or null if not available"
+								"x-i18n-description": "rest-param-desc-media-height"
 							},
 							"duration": {
 								"type": "number",
 								"nullable": true,
-								"description": "The length of the video, audio, or multimedia file or null for other media types"
+								"x-i18n-description": "rest-param-desc-media-duration"
 							},
 							"url": {
 								"type": "string",
 								"format": "uri",
-								"description": "URL to download the file"
+								"x-i18n-description": "rest-param-desc-media-url"
 							}
 						},
 						"required": [
@@ -121,7 +121,7 @@
 					"original": {
 						"type": "object",
 						"nullable": true,
-						"description": "Original file details",
+						"x-i18n-description": "rest-param-desc-media-original",
 						"properties": {
 							"mediatype": {
 								"type": "string",
@@ -138,32 +138,32 @@
 									"ARCHIVE",
 									"3D"
 								],
-								"description": "The file type"
+								"x-i18n-description": "rest-param-desc-media-mediatype"
 							},
 							"size": {
 								"type": "integer",
 								"nullable": true,
-								"description": "File size in bytes or null if not available"
+								"x-i18n-description": "rest-param-desc-media-size"
 							},
 							"width": {
 								"type": "integer",
 								"nullable": true,
-								"description": "Maximum recommended image width in pixels or null if not available"
+								"x-i18n-description": "rest-param-desc-media-width"
 							},
 							"height": {
 								"type": "integer",
 								"nullable": true,
-								"description": "Maximum recommended image height in pixels or null if not available"
+								"x-i18n-description": "rest-param-desc-media-height"
 							},
 							"duration": {
 								"type": "number",
 								"nullable": true,
-								"description": "The length of the video, audio, or multimedia file or null for other media types"
+								"x-i18n-description": "rest-param-desc-media-duration"
 							},
 							"url": {
 								"type": "string",
 								"format": "uri",
-								"description": "URL to download the file"
+								"x-i18n-description": "rest-param-desc-media-url"
 							}
 						},
 						"required": [
