@@ -166,6 +166,7 @@ MediaWiki supports over 350 languages. Many localisations are updated regularly.
 Below only new and removed languages are listed, as well as changes to languages
 because of Phabricator reports.
 
+* (T377856) Updated the autonym for Shan (shn)
 * (T379137) Added language support for Hunde (hke).
 * (T381463) Added language support for Coptic (cop).
 * (T381894) Added language support for Fur (fvr).

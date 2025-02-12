@@ -487,7 +487,7 @@ class Names {
 		'shi' => 'Taclḥit', # Tachelhit, Shilha (multiple scripts - defaults to Latin)
 		'shi-latn' => 'Taclḥit', # Tachelhit (Latin script)
 		'shi-tfng' => 'ⵜⴰⵛⵍⵃⵉⵜ', # Tachelhit (Tifinagh script)
-		'shn' => 'ၽႃႇသႃႇတႆး ', # Shan
+		'shn' => 'တႆး', # Shan
 		'shy' => 'tacawit', # Shawiya (Multiple scripts - defaults to Latin)
 		'shy-latn' => 'tacawit', # Shawiya (Latin script) - T194047
 		'si' => 'සිංහල', # Sinhalese
