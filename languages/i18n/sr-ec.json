@@ -658,7 +658,7 @@
 	"resettokens-watchlist-token": "Токен за веб-фид (Atom/RSS) [[Special:Watchlist|промена на страницама са списка надгледања]]",
 	"resettokens-done": "Токени су ресетовани.",
 	"resettokens-resetbutton": "Ресетуј изабране токене",
-	"editrecovery": "Опоравак измене",
+	"editrecovery": "Опоравак измена",
 	"edit-recovery-nojs-placeholder": "JavaScript је потребан за Опоравак измена.",
 	"edit-recovery-special-intro": "Имате несачуваних измена у {{PLURAL:$1|следећој страници или одељку|следећим страницама и/или одељцима}}:",
 	"edit-recovery-special-intro-empty": "Немате несачуваних измена.",

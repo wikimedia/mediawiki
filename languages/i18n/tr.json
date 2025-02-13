@@ -125,7 +125,8 @@
 			"RuzDD",
 			"Vikipolimer",
 			"RoseloveDoodles",
-			"Leo"
+			"Leo",
+			"Pedian4169"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çizme:",
@@ -2224,7 +2225,7 @@
 	"wantedfiletext-nocat-noforeign": "Aşağıdaki dosyalar kullanıyor, ancak mevcut değil.",
 	"wantedtemplates": "İstenen şablonlar",
 	"mostlinked": "Kendisine en fazla bağlantı verilmiş sayfalar",
-	"mostlinkedcategories": "En çok kategorilere sahip sayfalar",
+	"mostlinkedcategories": "En çok bağlantı verilmiş kategoriler",
 	"mostlinkedtemplates": "En çok yansıtılan sayfalar",
 	"mostcategories": "En fazla kategoriye bağlanmış sayfalar",
 	"mostimages": "En çok bağlantı verilmiş dosyalar",
