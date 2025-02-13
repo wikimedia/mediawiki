@@ -36,8 +36,8 @@ use Wikimedia\Services\SalvageableService;
 class ConfigFactory implements SalvageableService {
 
 	/**
-	 * Map of config name => callback
-	 * @var array
+	 * Map of config name => Config or callback
+	 * @var (Config|callable)[]
 	 */
 	protected $factoryFunctions = [];
 
@@ -133,11 +133,11 @@ class ConfigFactory implements SalvageableService {
 				throw new ConfigException( "No registered builder available for $name." );
 			}
 
-			if ( $this->factoryFunctions[$key] instanceof Config ) {
-				$conf = $this->factoryFunctions[$key];
+			$factory = $this->factoryFunctions[$key];
+			if ( is_callable( $factory ) ) {
+				$conf = $factory( $this );
 			} else {
-				// @phan-suppress-next-line PhanUndeclaredInvokeInCallable
-				$conf = $this->factoryFunctions[$key]( $this );
+				$conf = $factory;
 			}
 
 			if ( $conf instanceof Config ) {

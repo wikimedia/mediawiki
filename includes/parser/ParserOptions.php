@@ -895,7 +895,7 @@ class ParserOptions {
 	}
 
 	/**
-	 * Callback for current revision fetching; first argument for dynamic call.
+	 * Callback to fetch the current revision
 	 * @internal
 	 * @since 1.35
 	 * @return callable
@@ -905,7 +905,7 @@ class ParserOptions {
 	}
 
 	/**
-	 * Callback for current revision fetching; first argument for dynamic call.
+	 * Callback to fetch the current revision
 	 * @internal
 	 * @since 1.35
 	 * @param callable|null $x New value
@@ -916,7 +916,8 @@ class ParserOptions {
 	}
 
 	/**
-	 * Callback for template fetching; first argument for dynamic call.
+	 * Callback to fetch a template
+	 * @see Parser::statelessFetchTemplate
 	 * @return callable
 	 */
 	public function getTemplateCallback() {
@@ -924,7 +925,7 @@ class ParserOptions {
 	}
 
 	/**
-	 * Callback for template fetching; first argument for dynamic call.
+	 * Set the callback to fetch a template
 	 * @param callable|null $x New value (null is no change)
 	 * @return callable Old value
 	 */
