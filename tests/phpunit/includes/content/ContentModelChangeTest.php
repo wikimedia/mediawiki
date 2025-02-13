@@ -290,12 +290,12 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 			$status = $change->$method();
 			$this->assertArrayEquals(
 				[
-					[ 'no edit new content model' ],
-					[ 'no edit old content model' ],
-					[ 'no edit at all old content model' ],
-					[ 'no edit at all new content model' ],
+					'no edit new content model',
+					'no edit old content model',
+					'no edit at all old content model',
+					'no edit at all new content model',
 				],
-				$status->toLegacyErrorArray()
+				array_map( static fn ( $msg ) => $msg->getKey(), $status->getMessages() )
 			);
 		}
 	}
