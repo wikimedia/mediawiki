@@ -105,7 +105,7 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 	private function makeDomainEventSourceListener( $new ) {
 		return static function ( PageUpdatedEvent $event ) use ( $new ) {
 			Assert::assertFalse( $event->isReconciliationRequest(), 'isReconciliationRequest' );
-			Assert::assertSame( $new, $event->isCreation(), 'isNew' );
+			Assert::assertSame( $new, $event->isCreation(), 'isCreation' );
 			Assert::assertSame( PageUpdatedEvent::CAUSE_IMPORT, $event->getCause(), 'getCause' );
 
 			Assert::assertTrue( $event->isImplicit(), 'isImplicit' );

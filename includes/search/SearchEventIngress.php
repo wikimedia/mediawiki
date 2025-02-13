@@ -31,18 +31,20 @@ class SearchEventIngress extends EventSubscriberBase {
 	 */
 	public function handlePageUpdatedEventAfterCommit( PageUpdatedEvent $event ) {
 		$newRevision = $event->getNewRevision();
-		$mainSlot = $newRevision->getSlot( SlotRecord::MAIN );
+		$mainSlot = $newRevision->isDeleted( RevisionRecord::DELETED_TEXT )
+			? null : $newRevision->getSlot( SlotRecord::MAIN );
+
 		if (
-			( $event->isModifiedSlot( SlotRecord::MAIN )
-				|| $event->hasCause( PageUpdatedEvent::CAUSE_MOVE ) ) &&
-			!$newRevision->isDeleted( RevisionRecord::DELETED_TEXT )
+			$event->isModifiedSlot( SlotRecord::MAIN ) ||
+			$event->hasCause( PageUpdatedEvent::CAUSE_MOVE ) ||
+			$event->isReconciliationRequest()
 		) {
 			// NOTE: no need to go through DeferredUpdates,
 			// we are already deferred.
 			$update = new SearchUpdate(
 				$event->getPage()->getId(),
 				$event->getPage(),
-				$mainSlot->getContent()
+				$mainSlot ? $mainSlot->getContent() : null
 			);
 
 			// No need to schedule a DeferredUpdate, listeners use deferred

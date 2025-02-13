@@ -1580,8 +1580,8 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		}
 
 		$this->doSecondaryDataUpdates( [
-			// T52785 do not update any other pages on a null edit
-			'recursive' => $event->isContentChange(),
+			// T52785 do not update any other pages on dummy revisions and null edits
+			'recursive' => $event->isEffectiveContentChange(),
 			// Defer the getCanonicalParserOutput() call made by getSecondaryDataUpdates()
 			'defer' => DeferredUpdates::POSTSEND
 		] );
@@ -1589,7 +1589,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		// TODO: MCR: check if *any* changed slot supports categories!
 		if ( $this->rcWatchCategoryMembership
 			&& $this->getContentHandler( SlotRecord::MAIN )->supportsCategories() === true
-			&& ( $event->isContentChange() || $event->isCreation() )
+			&& $event->isNominalContentChange()
 			&& !$event->hasCause( PageUpdatedEvent::CAUSE_UNDELETE )
 		) {
 			// Note: jobs are pushed after deferred updates, so the job should be able to see
@@ -1618,7 +1618,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		DeferredUpdates::addCallableUpdate( function () use ( $event ) {
 			if (
 				$this->options['oldcountable'] === 'no-change' ||
-				( !$event->isContentChange() && !$event->hasCause( PageUpdatedEvent::CAUSE_MOVE ) )
+				( !$event->isEffectiveContentChange() && !$event->hasCause( PageUpdatedEvent::CAUSE_MOVE ) )
 			) {
 				$good = 0;
 			} elseif ( $event->isCreation() ) {
@@ -1632,7 +1632,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			} else {
 				$good = 0;
 			}
-			$edits = $event->isContentChange() ? 1 : 0;
+			$edits = $event->isEffectiveContentChange() ? 1 : 0;
 			$pages = $event->isCreation() ? 1 : 0;
 
 			DeferredUpdates::addUpdate( SiteStatsUpdate::factory(
@@ -1652,7 +1652,11 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 				} );
 			}
 			WikiPage::onArticleCreate( $title, $this->isRedirect() );
-		} elseif ( $event->isContentChange() ) { // T52785
+		} elseif ( $event->isEffectiveContentChange() ) { // T52785
+			// TODO: Check $event->isNominalContentChange() instead so we still
+			//       trigger updates on null edits, but pass a flag to suppress
+			//       backlink purges through queueBacklinksJobs() id
+			//       $event->changedCurrentRevisionId() returns false.
 			WikiPage::onArticleEdit(
 				$title,
 				$this->revision,
@@ -1661,7 +1665,9 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 				// (We can't check if it was definitely changed without additional queries.)
 				$this->isRedirect() || $this->wasRedirect()
 			);
-		} elseif ( $event->hasCause( PageUpdatedEvent::CAUSE_UNDELETE ) ) {
+		}
+
+		if ( $event->hasCause( PageUpdatedEvent::CAUSE_UNDELETE ) ) {
 			$this->mainWANObjectCache->touchCheckKey(
 				"DerivedPageDataUpdater:restore:page:$id"
 			);

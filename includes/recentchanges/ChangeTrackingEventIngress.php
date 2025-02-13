@@ -113,7 +113,7 @@ class ChangeTrackingEventIngress extends EventSubscriberBase {
 	 * @noinspection PhpUnused
 	 */
 	public function handlePageUpdatedEventAfterCommit( PageUpdatedEvent $event ) {
-		if ( $event->isRevisionChange()
+		if ( $event->changedCurrentRevisionId()
 			&& !$event->isSilent()
 		) {
 			$this->updateRecentChangesAfterPageUpdated(
@@ -131,15 +131,13 @@ class ChangeTrackingEventIngress extends EventSubscriberBase {
 			);
 		}
 
-		if ( $event->isContentChange()
-			&& !$event->isImplicit()
-		) {
+		if ( $event->isEffectiveContentChange() && !$event->isImplicit() ) {
 			$this->updateUserEditTrackerAfterPageUpdated(
 				$event->getPerformer()
 			);
-		}
 
-		$this->updateNewTalkAfterPageUpdated( $event );
+			$this->updateNewTalkAfterPageUpdated( $event );
+		}
 	}
 
 	private function updateChangeTagsAfterPageUpdated( array $tags, int $revId ) {
@@ -211,8 +209,7 @@ class ChangeTrackingEventIngress extends EventSubscriberBase {
 			? $recipientName
 			: $this->userNameUtils->getCanonical( $page->getDBkey() );
 
-		if ( $event->isContentChange()
-			&& $page->getNamespace() === NS_USER_TALK
+		if ( $page->getNamespace() === NS_USER_TALK
 			&& !( $revRecord->isMinor()
 				&& $this->permissionManager->userHasRight(
 					$event->getAuthor(), 'nominornewtalk' ) )

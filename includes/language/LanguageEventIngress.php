@@ -40,7 +40,9 @@ class LanguageEventIngress extends EventSubscriberBase {
 	public function handlePageUpdatedEventAfterCommit( PageUpdatedEvent $event ) {
 		if ( $event->getPage()->getNamespace() === NS_MEDIAWIKI	&&
 			( $event->isModifiedSlot( SlotRecord::MAIN )
-				|| $event->hasCause( PageUpdatedEvent::CAUSE_MOVE ) )
+				|| $event->hasCause( PageUpdatedEvent::CAUSE_MOVE )
+				|| $event->isReconciliationRequest()
+			)
 		) {
 			$content = $event->getNewRevision()->getMainContentRaw();
 			$this->messageCache->updateMessageOverride( $event->getPage(), $content );

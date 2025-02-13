@@ -3,6 +3,7 @@
 namespace MediaWiki\ResourceLoader;
 
 use MediaWiki\DomainEvent\EventSubscriberBase;
+use MediaWiki\Storage\PageUpdateCauses;
 use MediaWiki\Storage\PageUpdatedEvent;
 use Wikimedia\Rdbms\LBFactory;
 
@@ -38,12 +39,17 @@ class ResourceLoaderEventIngress extends EventSubscriberBase {
 	 * @noinspection PhpUnused
 	 */
 	public function handlePageUpdatedEventAfterCommit( PageUpdatedEvent $event ) {
-		WikiModule::invalidateModuleCache(
-			$event->getPage(),
-			$event->getOldRevision(),
-			$event->getNewRevision(),
-			$this->localDomainId
-		);
+		if (
+			$event->isNominalContentChange()
+			|| $event->hasCause( PageUpdateCauses::CAUSE_MOVE )
+		) {
+			WikiModule::invalidateModuleCache(
+				$event->getPage(),
+				$event->getOldRevision(),
+				$event->getNewRevision(),
+				$this->localDomainId
+			);
+		}
 	}
 
 }
