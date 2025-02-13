@@ -388,10 +388,10 @@ class CoreParserFunctions {
 				// Don't split on NAN/INF in the legacy case since they are
 				// likely to be found embedded inside non-numeric text.
 				return preg_replace_callback( "/{$validNumberRe}/", static function ( $m ) use ( $callback ) {
-					return call_user_func( $callback, $m[0] );
+					return $callback( $m[0] );
 				}, $number );
 			}
-			return call_user_func( $callback, $number );
+			return $callback( $number );
 		};
 	}
 

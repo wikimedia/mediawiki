@@ -94,7 +94,7 @@ class PreparedEdit {
 	 */
 	public function getOutput() {
 		if ( !$this->canonicalOutput ) {
-			$this->canonicalOutput = call_user_func( $this->parserOutputCallback );
+			$this->canonicalOutput = ( $this->parserOutputCallback )();
 		}
 
 		return $this->canonicalOutput;

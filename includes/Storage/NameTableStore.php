@@ -138,7 +138,7 @@ class NameTableStore {
 		if ( $this->normalizationCallback === null ) {
 			return $name;
 		}
-		return call_user_func( $this->normalizationCallback, $name );
+		return ( $this->normalizationCallback )( $name );
 	}
 
 	/**
@@ -423,7 +423,7 @@ class NameTableStore {
 		}
 
 		if ( $this->insertCallback !== null ) {
-			$fields = call_user_func( $this->insertCallback, $fields );
+			$fields = ( $this->insertCallback )( $fields );
 		}
 		return $fields;
 	}

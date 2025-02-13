@@ -136,7 +136,8 @@ class ConfigFactory implements SalvageableService {
 			if ( $this->factoryFunctions[$key] instanceof Config ) {
 				$conf = $this->factoryFunctions[$key];
 			} else {
-				$conf = call_user_func( $this->factoryFunctions[$key], $this );
+				// @phan-suppress-next-line PhanUndeclaredInvokeInCallable
+				$conf = $this->factoryFunctions[$key]( $this );
 			}
 
 			if ( $conf instanceof Config ) {

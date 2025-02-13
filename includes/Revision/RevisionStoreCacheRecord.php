@@ -101,7 +101,7 @@ class RevisionStoreCacheRecord extends RevisionStoreRecord {
 	 * @throws RevisionAccessException if the row could not be loaded
 	 */
 	private function loadFreshRow() {
-		[ $freshRevDeleted, $freshUser ] = call_user_func( $this->mCallback, $this->mId );
+		[ $freshRevDeleted, $freshUser ] = ( $this->mCallback )( $this->mId );
 
 		// Set to null to ensure we do not make unnecessary queries for subsequent getter calls,
 		// and to allow the closure to be freed.

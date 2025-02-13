@@ -161,7 +161,7 @@ class ConditionalDefaultsLookup {
 			default:
 				$extraConditions = $this->getExtraConditions();
 				if ( array_key_exists( $condName, $extraConditions ) ) {
-					return call_user_func( $extraConditions[$condName], $userIdentity, $cond );
+					return $extraConditions[$condName]( $userIdentity, $cond );
 				}
 				throw new InvalidArgumentException( 'Unsupported condition ' . $condName );
 		}

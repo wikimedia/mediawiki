@@ -1601,8 +1601,7 @@ class ApiPageSet extends ApiBase {
 				) {
 					// It is necessary to set both $data and add to $result, if an ApiResult,
 					// to ensure multiple redirects to the same destination are all merged.
-					$data[$toPageId] = call_user_func(
-						$this->mRedirectMergePolicy,
+					$data[$toPageId] = ( $this->mRedirectMergePolicy )(
 						$data[$toPageId],
 						$this->mGeneratorData[$fromNs][$fromDBkey]
 					);

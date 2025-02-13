@@ -104,7 +104,7 @@ abstract class SearchIndexFieldDefinition implements SearchIndexField {
 	 */
 	public function merge( SearchIndexField $that ) {
 		if ( $this->mergeCallback ) {
-			return call_user_func( $this->mergeCallback, $this, $that );
+			return ( $this->mergeCallback )( $this, $that );
 		}
 		// TODO: which definitions may be compatible?
 		if ( ( $that instanceof self ) && $this->type === $that->type &&

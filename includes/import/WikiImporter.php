@@ -224,7 +224,7 @@ class WikiImporter {
 	 */
 	public function notice( $msg, ...$params ) {
 		if ( is_callable( $this->mNoticeCallback ) ) {
-			call_user_func( $this->mNoticeCallback, $msg, $params );
+			( $this->mNoticeCallback )( $msg, $params );
 		} else { # No ImportReporter -> CLI
 			// T177997: the command line importers should call setNoticeCallback()
 			// for their own custom callback to echo the notice
@@ -582,7 +582,7 @@ class WikiImporter {
 	 */
 	public function pageCallback( $title ) {
 		if ( $this->mPageCallback ) {
-			call_user_func( $this->mPageCallback, $title );
+			( $this->mPageCallback )( $title );
 		}
 	}
 
@@ -1214,7 +1214,7 @@ class WikiImporter {
 		}
 		$revision->setNoUpdates( $this->mNoUpdates );
 
-		return call_user_func( $this->mUploadCallback, $revision );
+		return ( $this->mUploadCallback )( $revision );
 	}
 
 	/**

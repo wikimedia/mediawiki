@@ -167,7 +167,7 @@ class RevisionSlots {
 	 */
 	public function getSlots(): array {
 		if ( is_callable( $this->slots ) ) {
-			$slots = call_user_func( $this->slots );
+			$slots = ( $this->slots )();
 
 			Assert::postcondition(
 				is_array( $slots ),

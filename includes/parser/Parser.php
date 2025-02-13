@@ -3601,8 +3601,7 @@ class Parser {
 			$title = Title::newFromLinkTarget( $link ); // hook signature compat
 			$revisionRecord =
 				// Defaults to Parser::statelessFetchRevisionRecord()
-				call_user_func(
-					$this->mOptions->getCurrentRevisionRecordCallback(),
+				$this->mOptions->getCurrentRevisionRecordCallback()(
 					$title,
 					$this
 				);
@@ -6143,8 +6142,7 @@ class Parser {
 		// NOTE: This callback may be used to inject an OLD revision that was
 		// already loaded, so "current" is a bit of a misnomer. We can't just
 		// skip it if mRevisionId is set.
-		$rev = call_user_func(
-			$this->mOptions->getCurrentRevisionRecordCallback(),
+		$rev = $this->mOptions->getCurrentRevisionRecordCallback()(
 			$this->getTitle(),
 			$this
 		);
@@ -6418,10 +6416,10 @@ class Parser {
 		while ( $i < strlen( $s ) ) {
 			$markerStart = strpos( $s, self::MARKER_PREFIX, $i );
 			if ( $markerStart === false ) {
-				$out .= call_user_func( $callback, substr( $s, $i ) );
+				$out .= $callback( substr( $s, $i ) );
 				break;
 			} else {
-				$out .= call_user_func( $callback, substr( $s, $i, $markerStart - $i ) );
+				$out .= $callback( substr( $s, $i, $markerStart - $i ) );
 				$markerEnd = strpos( $s, self::MARKER_SUFFIX, $markerStart );
 				if ( $markerEnd === false ) {
 					$out .= substr( $s, $markerStart );

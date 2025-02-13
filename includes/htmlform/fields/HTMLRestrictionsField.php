@@ -103,7 +103,7 @@ class HTMLRestrictionsField extends HTMLFormField {
 		}
 
 		if ( $this->mValidationCallback !== null ) {
-			return call_user_func( $this->mValidationCallback, $value, $alldata, $this->mParent );
+			return ( $this->mValidationCallback )( $value, $alldata, $this->mParent );
 		}
 
 		return true;

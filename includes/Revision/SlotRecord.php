@@ -321,7 +321,7 @@ class SlotRecord {
 			return $this->content;
 		}
 
-		$obj = call_user_func( $this->content, $this );
+		$obj = ( $this->content )( $this );
 
 		Assert::postcondition(
 			$obj instanceof Content,
@@ -360,7 +360,7 @@ class SlotRecord {
 
 		// NOTE: allow callbacks, but don't trust plain string callables from the database!
 		if ( !is_string( $value ) && is_callable( $value ) ) {
-			$value = call_user_func( $value, $this );
+			$value = $value( $this );
 			$this->setField( $name, $value );
 		}
 

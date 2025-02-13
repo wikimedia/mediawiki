@@ -122,9 +122,9 @@ class LocalRepo extends FileRepo {
 	 */
 	public function newFileFromRow( $row ) {
 		if ( isset( $row->img_name ) ) {
-			return call_user_func( $this->fileFromRowFactory, $row, $this );
+			return ( $this->fileFromRowFactory )( $row, $this );
 		} elseif ( isset( $row->oi_name ) ) {
-			return call_user_func( $this->oldFileFromRowFactory, $row, $this );
+			return ( $this->oldFileFromRowFactory )( $row, $this );
 		} else {
 			throw new InvalidArgumentException( __METHOD__ . ': invalid row' );
 		}

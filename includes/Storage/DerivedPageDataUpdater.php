@@ -903,7 +903,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 				if ( $parserTitle->equals( $title ) ) {
 					return $this->revision;
 				} else {
-					return call_user_func( $oldCallback, $parserTitle, $parser );
+					return $oldCallback( $parserTitle, $parser );
 				}
 			}
 		);

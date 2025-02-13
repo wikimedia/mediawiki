@@ -57,7 +57,7 @@ class DeprecatablePropertyArray implements ArrayAccess {
 	public function offsetGet( $offset ) {
 		if ( $this->checkDeprecatedAccess( $offset, 'get' ) ) {
 			if ( is_callable( $this->container[$offset] ) ) {
-				$this->container[$offset] = call_user_func( $this->container[$offset] );
+				$this->container[$offset] = $this->container[$offset]();
 			}
 		}
 		return $this->container[$offset] ?? null;

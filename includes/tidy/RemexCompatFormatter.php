@@ -52,7 +52,7 @@ class RemexCompatFormatter extends HtmlFormatter {
 			|| !isset( $this->rawTextElements[$parent->name] )
 		) {
 			if ( $this->textProcessor !== null ) {
-				$text = call_user_func( $this->textProcessor, $text );
+				$text = ( $this->textProcessor )( $text );
 			}
 		}
 

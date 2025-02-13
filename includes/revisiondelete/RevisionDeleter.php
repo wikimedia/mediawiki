@@ -212,7 +212,8 @@ class RevisionDeleter {
 		if ( !$typeName ) {
 			return null;
 		}
-		return call_user_func( [ self::ALLOWED_TYPES[$typeName]['class'], 'getRelationType' ] );
+		$class = self::ALLOWED_TYPES[$typeName]['class'];
+		return $class::getRelationType();
 	}
 
 	/**
@@ -226,7 +227,8 @@ class RevisionDeleter {
 		if ( !$typeName ) {
 			return null;
 		}
-		return call_user_func( [ self::ALLOWED_TYPES[$typeName]['class'], 'getRestriction' ] );
+		$class = self::ALLOWED_TYPES[$typeName]['class'];
+		return $class::getRestriction();
 	}
 
 	/**
@@ -240,7 +242,8 @@ class RevisionDeleter {
 		if ( !$typeName ) {
 			return null;
 		}
-		return call_user_func( [ self::ALLOWED_TYPES[$typeName]['class'], 'getRevdelConstant' ] );
+		$class = self::ALLOWED_TYPES[$typeName]['class'];
+		return $class::getRevdelConstant();
 	}
 
 	/**
@@ -256,8 +259,8 @@ class RevisionDeleter {
 		if ( !$typeName ) {
 			return $target;
 		}
-		return call_user_func(
-			[ self::ALLOWED_TYPES[$typeName]['class'], 'suggestTarget' ],
+		$class = self::ALLOWED_TYPES[$typeName]['class'];
+		return $class::suggestTarget(
 			$target,
 			$ids
 		);
