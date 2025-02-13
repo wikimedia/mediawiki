@@ -1315,14 +1315,6 @@ abstract class DatabaseUpdater {
 		MessageBlobStore::clearGlobalCacheEntry(
 			$services->getMainWANObjectCache()
 		);
-
-		// ResourceLoader: File-dependency cache
-		$this->db->newDeleteQueryBuilder()
-			->deleteFrom( 'module_deps' )
-			->where( ISQLPlatform::ALL_ROWS )
-			->caller( __METHOD__ )
-			->execute();
-		$this->output( "done.\n" );
 	}
 
 	/**

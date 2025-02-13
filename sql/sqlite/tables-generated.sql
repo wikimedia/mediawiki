@@ -139,14 +139,6 @@ CREATE TABLE /*_*/l10n_cache (
 );
 
 
-CREATE TABLE /*_*/module_deps (
-  md_module BLOB NOT NULL,
-  md_skin BLOB NOT NULL,
-  md_deps BLOB NOT NULL,
-  PRIMARY KEY(md_module, md_skin)
-);
-
-
 CREATE TABLE /*_*/redirect (
   rd_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
   rd_namespace INTEGER DEFAULT 0 NOT NULL,

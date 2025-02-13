@@ -134,14 +134,6 @@ CREATE TABLE /*_*/l10n_cache (
 ) /*$wgDBTableOptions*/;
 
 
-CREATE TABLE /*_*/module_deps (
-  md_module VARBINARY(255) NOT NULL,
-  md_skin VARBINARY(32) NOT NULL,
-  md_deps MEDIUMBLOB NOT NULL,
-  PRIMARY KEY(md_module, md_skin)
-) /*$wgDBTableOptions*/;
-
-
 CREATE TABLE /*_*/redirect (
   rd_from INT UNSIGNED DEFAULT 0 NOT NULL,
   rd_namespace INT DEFAULT 0 NOT NULL,
