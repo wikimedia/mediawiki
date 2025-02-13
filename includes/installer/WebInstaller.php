@@ -624,19 +624,6 @@ class WebInstaller extends Installer {
 	}
 
 	/**
-	 * Get HTML for an information message box with an icon.
-	 *
-	 * @param string|HtmlArmor $text Wikitext to be parsed (from Message::plain) or raw HTML.
-	 * @return string HTML
-	 */
-	public function getInfoBox( $text ) {
-		$html = ( $text instanceof HtmlArmor ) ?
-			HtmlArmor::getHtml( $text ) :
-			$this->parse( $text, true );
-		return self::infoBox( $html, wfMessage( 'config-information' )->text() );
-	}
-
-	/**
 	 * Get small text indented help for a preceding form field.
 	 * Parameters like wfMessage().
 	 *
@@ -660,8 +647,33 @@ class WebInstaller extends Installer {
 			"</div>\n";
 	}
 
+	/**
+	 * Get HTML for an information message box.
+	 *
+	 * @param string|HtmlArmor $text Wikitext to be parsed (from Message::plain) or raw HTML.
+	 * @return string HTML
+	 */
+	public function getInfoBox( $text ) {
+		$html = ( $text instanceof HtmlArmor ) ?
+			HtmlArmor::getHtml( $text ) :
+			$this->parse( $text, true );
+		return '<div class="cdx-message cdx-message--block cdx-message--notice">' .
+			'<span class="cdx-message__icon"></span><div class="cdx-message__content">' .
+			'<p><strong>' . wfMessage( 'config-information' )->escaped() . '</strong></p>' .
+			$html .
+			"</div></div>\n";
+	}
+
 	public function showMessage( $msg, ...$params ) {
 		$html = '<div class="cdx-message cdx-message--block cdx-message--notice">' .
+			'<span class="cdx-message__icon"></span><div class="cdx-message__content">' .
+			$this->parse( wfMessage( $msg, $params )->useDatabase( false )->plain() ) .
+			"</div></div>\n";
+		$this->output->addHTML( $html );
+	}
+
+	public function showWarning( $msg, ...$params ) {
+		$html = '<div class="cdx-message cdx-message--block cdx-message--warning">' .
 			'<span class="cdx-message__icon"></span><div class="cdx-message__content">' .
 			$this->parse( wfMessage( $msg, $params )->useDatabase( false )->plain() ) .
 			"</div></div>\n";
@@ -671,10 +683,10 @@ class WebInstaller extends Installer {
 	public function showStatusMessage( Status $status ) {
 		// Show errors at the top in web installer to make them easier to notice
 		foreach ( $status->getMessages( 'error' ) as $msg ) {
-			$this->showMessage( $msg );
+			$this->showWarning( $msg );
 		}
 		foreach ( $status->getMessages( 'warning' ) as $msg ) {
-			$this->showMessage( $msg );
+			$this->showWarning( $msg );
 		}
 	}
 
@@ -1221,28 +1233,6 @@ class WebInstaller extends Installer {
 	 */
 	public function getPhpErrors() {
 		return $this->phpErrors;
-	}
-
-	/**
-	 * Get HTML for an information message box with an icon.
-	 *
-	 * @since 1.36
-	 * @param string $rawHtml HTML
-	 * @param string $text text for the icon
-	 * @param string $class Additional class name to add to the wrapper div
-	 * @return string HTML
-	 */
-	protected static function infoBox( $rawHtml, $text, $class = '' ) {
-		$s = Html::openElement( 'div', [ 'class' => 'mw-installer-box-left' ] ) .
-			Html::element( 'strong', [ 'class' => 'mw-installer-infobox-title' ], $text ) .
-			Html::closeElement( 'div' ) .
-			Html::openElement( 'div', [ 'class' => 'mw-installer-box-right' ] ) .
-			$rawHtml .
-			Html::closeElement( 'div' ) .
-			Html::element( 'div', [ 'style' => 'clear: left;' ], ' ' );
-
-		return Html::warningBox( $s, $class )
-			. Html::element( 'div', [ 'style' => 'clear: left;' ], ' ' );
 	}
 
 	/**
