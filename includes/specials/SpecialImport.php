@@ -35,6 +35,8 @@ use MediaWiki\Status\Status;
 use PermissionsError;
 use UnexpectedValueException;
 use WikiImporterFactory;
+use Wikimedia\Rdbms\DBError;
+use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
  * MediaWiki page data importer
@@ -240,10 +242,14 @@ class SpecialImport extends SpecialPage {
 			$reporter->open();
 			try {
 				$importer->doImport();
+			} catch ( DBError | TimeoutException $e ) {
+				// Re-throw exceptions which are not safe to catch (T383933).
+				throw $e;
 			} catch ( Exception $e ) {
 				$exception = $e;
+			} finally {
+				$result = $reporter->close();
 			}
-			$result = $reporter->close();
 
 			if ( $exception ) {
 				# No source or XML parse error
