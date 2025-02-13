@@ -11,6 +11,12 @@ use Wikimedia\ObjectCache\WANObjectCache;
  */
 trait ResourceLoaderUpdateSpyTrait {
 
+	/** @var ?int */
+	private $expectedResourceLoaderWanKeyTouches = null;
+
+	/** @var int */
+	private $actualResourceLoaderWanKeyTouches = 0;
+
 	/**
 	 * Register expectations about updates that should get triggered.
 	 * The parameters of this method represent known kinds of updates.
@@ -20,6 +26,9 @@ trait ResourceLoaderUpdateSpyTrait {
 	 * should be required.
 	 */
 	private function expectResourceLoaderUpdates( int $wanKeyTouches ) {
+		$this->expectedResourceLoaderWanKeyTouches =
+			( $this->expectedResourceLoaderWanKeyTouches ?? 0 ) + $wanKeyTouches;
+
 		// Make sure ResourceLoaderEventIngress is triggered and updates the message
 		$wanObjectCache = $this->getMockBuilder( WANObjectCache::class )
 			->setConstructorArgs( [
@@ -29,12 +38,27 @@ trait ResourceLoaderUpdateSpyTrait {
 			->getMock();
 
 		// this is the relevant assertion:
-		$wanObjectCache->expects( $this->exactly( $wanKeyTouches ) )
-			->method( 'touchCheckKey' )->with(
-				$this->matchesRegularExpression( '/\bresourceloader-titleinfo\b/' )
-			);
-
+		$wanObjectCache->method( 'touchCheckKey' )->willReturnCallback(
+			function ( $key ) {
+				if ( preg_match( '/\bresourceloader-titleinfo\b/', $key ) ) {
+					$this->actualResourceLoaderWanKeyTouches++;
+				}
+			}
+		);
 		$this->setService( 'MainWANObjectCache', $wanObjectCache );
+	}
+
+	/**
+	 * @postCondition
+	 */
+	public function wanKeyTouchCountPostConditions() {
+		if ( $this->expectedResourceLoaderWanKeyTouches !== null ) {
+			$this->assertSame(
+				$this->expectedResourceLoaderWanKeyTouches,
+				$this->actualResourceLoaderWanKeyTouches,
+				'Expected number of ReasourceLoader module cache resets'
+			);
+		}
 	}
 
 }

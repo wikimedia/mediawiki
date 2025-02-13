@@ -11,6 +11,9 @@ use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\Event\PageUpdatedEvent;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Permissions\Authority;
@@ -18,6 +21,11 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\RevisionSlotsUpdate;
+use MediaWiki\Tests\ExpectCallbackTrait;
+use MediaWiki\Tests\Language\LocalizationUpdateSpyTrait;
+use MediaWiki\Tests\recentchanges\ChangeTrackingUpdateSpyTrait;
+use MediaWiki\Tests\ResourceLoader\ResourceLoaderUpdateSpyTrait;
+use MediaWiki\Tests\Search\SearchUpdateSpyTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
@@ -36,6 +44,11 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	use DummyServicesTrait;
 	use MockAuthorityTrait;
 	use TempUserTestTrait;
+	use ChangeTrackingUpdateSpyTrait;
+	use SearchUpdateSpyTrait;
+	use LocalizationUpdateSpyTrait;
+	use ResourceLoaderUpdateSpyTrait;
+	use ExpectCallbackTrait;
 
 	protected function tearDown(): void {
 		ParserOptions::clearStaticCache();
@@ -65,7 +78,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * @return WikiPage
 	 */
 	protected function createPage( $page, $content, $model = null, ?Authority $performer = null ) {
-		if ( is_string( $page ) || $page instanceof Title ) {
+		if ( !$page instanceof WikiPage ) {
 			$page = $this->newPage( $page, $model );
 		}
 
@@ -1741,6 +1754,88 @@ more stuff
 			$preparedEditBefore->output,
 			$preparedUpdateAfter->getCanonicalParserOutput()
 		);
+	}
+
+	public static function provideDoUpdateRestrictions_updatePropagation() {
+		static $counter = 1;
+		$name = strtr( __METHOD__, '\\:', '--' ) . $counter++;
+
+		yield 'article' => [ PageIdentityValue::localIdentity( 0, NS_MAIN, $name ) ];
+		yield 'message' => [ PageIdentityValue::localIdentity( 0, NS_MEDIAWIKI, $name ) ];
+		yield 'script' => [
+			PageIdentityValue::localIdentity( 0, NS_USER, "$name/common.js" ),
+			new JavaScriptContent( 'console.log("hi")' ),
+		];
+	}
+
+	/**
+	 * @dataProvider provideDoUpdateRestrictions_updatePropagation
+	 */
+	public function testDoUpdateRestrictions_updatePropagation(
+		PageIdentity $title,
+		$content = null
+	) {
+		$page = $this->createPage( $title, $content ?? 'Lorem ipsum' );
+
+		// clear the queue
+		$this->runJobs();
+
+		// Expect only non-edit recent changes entry
+		$this->expectChangeTrackingUpdates( 0, 1, 0, 0 );
+
+		// Expect no additional updates, since content didn't change
+		$this->expectSearchUpdates( 0 );
+		$this->expectLocalizationUpdate( 0 );
+		$this->expectResourceLoaderUpdates( 0 );
+
+		// now apply restrictions
+		$user = $this->getTestSysop()->getUser();
+		$cascade = false;
+		$limit = [ 'edit' => 'sysop' ];
+
+		$status = $page->doUpdateRestrictions(
+			$limit,
+			[],
+			$cascade,
+			'aReason',
+			$user,
+			[]
+		);
+
+		$this->assertStatusGood( $status );
+		$this->runDeferredUpdates();
+	}
+
+	public function testDoUpdateRestrictions_eventEmission() {
+		$page = $this->getExistingTestPage();
+
+		// flush the queue
+		$this->runDeferredUpdates();
+
+		// Event currently not emitted, should change
+		$this->expectDomainEvent( PageUpdatedEvent::TYPE, 0 );
+
+		// Hooks fired by WikiPage::doUpdateRestrictions
+		$this->expectHook( 'RevisionFromEditComplete', 1 );
+
+		// Hook currently not fired, should change
+		$this->expectHook( 'PageSaveComplete', 0 );
+
+		// now apply restrictions
+		$user = $this->getTestSysop()->getUser();
+		$cascade = false;
+		$limit = [ 'edit' => 'sysop' ];
+
+		$status = $page->doUpdateRestrictions(
+			$limit,
+			[],
+			$cascade,
+			'aReason',
+			$user,
+			[]
+		);
+
+		$this->assertStatusGood( $status );
 	}
 
 	public function testGetDerivedDataUpdater() {

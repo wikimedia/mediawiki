@@ -28,7 +28,7 @@ trait ExpectCallbackTrait {
 		int $expectedCount = 1,
 		?callable $listener = null
 	) {
-		$this->getServiceContainer()->getDomainEventSource()->registerListener(
+		$this->registerListener(
 			$eventType,
 			$this->makeExpectedCallback(
 				"$eventType listener",
@@ -54,7 +54,7 @@ trait ExpectCallbackTrait {
 		int $expectedCount = 1,
 		?callable $handler = null
 	) {
-		$this->getServiceContainer()->getHookContainer()->register(
+		$this->setTemporaryHook(
 			$hookName,
 			$this->makeExpectedCallback(
 				"$hookName handler",

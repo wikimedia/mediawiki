@@ -186,6 +186,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	private $temporaryHookHandlers = [];
 
 	/**
+	 * @var array[] listener registrations as a list of name/handler pairs.
+	 */
+	private $eventListeners = [];
+
+	/**
 	 * Table name prefix.
 	 */
 	public const DB_PREFIX = 'unittest_';
@@ -653,6 +658,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		$this->overriddenServices = [];
 		$this->temporaryHookHandlers = [];
+		$this->eventListeners = [];
 
 		// Cleaning up temporary files
 		foreach ( $this->tmpFiles as $fileName ) {
@@ -800,6 +806,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		// We don't mind if we override already-overridden services during cleanup
 		$this->overriddenServices = [];
 		$this->temporaryHookHandlers = [];
+		$this->eventListeners = [];
 
 		if ( self::needsDB() ) {
 			$tablesUsed = ChangedTablesTracker::getTables( $this->db->getDomainID() );
@@ -1183,6 +1190,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	protected function resetServices() {
 		// Reset but don't destroy service instances supplied via setService().
 		$oldHookContainer = $this->localServices->getHookContainer();
+		$oldEventSource = $this->localServices->getDomainEventSource();
 		foreach ( $this->overriddenServices as $name ) {
 			$this->localServices->resetServiceForTesting( $name, false );
 		}
@@ -1203,6 +1211,15 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				} else {
 					$newHookContainer->register( $name, $target );
 				}
+			}
+		}
+
+		// If the event source was reset, re-apply listeners.
+		$newEventSource = $this->localServices->getDomainEventDispatcher();
+		if ( $newEventSource !== $oldEventSource ) {
+			// the same hook may be cleared and registered several times
+			foreach ( $this->eventListeners as [ $type, $listener ] ) {
+				$newEventSource->registerListener( $type, $listener );
 			}
 		}
 
@@ -2560,6 +2577,22 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 		$this->localServices->getHookContainer()->register( $hookName, $handler );
 		$this->temporaryHookHandlers[] = [ $hookName, $handler ];
+	}
+
+	/**
+	 * Registers an event listener.
+	 *
+	 * @param string $eventType
+	 * @param callable $listener
+	 * @since 1.44
+	 */
+	protected function registerListener( $eventType, $listener ) {
+		$this->localServices->getDomainEventSource()->registerListener(
+			$eventType,
+			$listener
+		);
+
+		$this->eventListeners[] = [ $eventType, $listener ];
 	}
 
 	/**
