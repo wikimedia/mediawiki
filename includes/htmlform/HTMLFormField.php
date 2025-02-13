@@ -1462,6 +1462,38 @@ abstract class HTMLFormField {
 		// This is probably more restrictive than it needs to be, but better safe than sorry
 		return (bool)$this->mCondState;
 	}
+
+	/**
+	 * The keys in the array returned by getOptions() can be either HTML or
+	 * plain text depending on $this->mOptionsLabelsNotFromMessage. Convert such
+	 * a key to HTML.
+	 *
+	 * FIXME: a dangerous and untidy convention.
+	 *
+	 * @param string $label
+	 * @param-taint $label escapes_html
+	 * @return string
+	 */
+	protected function escapeLabel( $label ) {
+		return $this->mOptionsLabelsNotFromMessage
+			? $label : htmlspecialchars( $label, ENT_NOQUOTES );
+	}
+
+	/**
+	 * The keys in the array returned by getOptions() can be either HTML or
+	 * plain text depending on $this->mOptionsLabelsNotFromMessage. Convert
+	 * such a key to either plain text or an HtmlSnippet as appropriate.
+	 *
+	 * FIXME: a dangerous and untidy convention.
+	 *
+	 * @param string $label
+	 * @param-taint $label escapes_html
+	 * @return string|\OOUI\HtmlSnippet
+	 */
+	protected function makeLabelSnippet( $label ) {
+		return $this->mOptionsLabelsNotFromMessage
+			? new \OOUI\HtmlSnippet( $label ) : $label;
+	}
 }
 
 /** @deprecated class alias since 1.42 */

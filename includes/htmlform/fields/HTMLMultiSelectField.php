@@ -154,14 +154,13 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		if ( $this->mParent instanceof OOUIHTMLForm ) {
 			throw new RuntimeException( __METHOD__ . ' is not supported' );
 		} else {
-			$elementMethod = $this->mOptionsLabelsNotFromMessage ? 'rawElement' : 'element';
 			$checkbox =
 				Xml::check( "{$this->mName}[]", $checked, $attribs ) .
 				"\u{00A0}" .
-				Html::$elementMethod(
+				Html::rawElement(
 					'label',
 					[ 'for' => $attribs['id'] ],
-					$label
+					$this->escapeLabel( $label )
 				);
 			return $checkbox;
 		}
@@ -223,11 +222,8 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 			foreach ( $groupedOptions as &$option ) {
 				$option['disabled'] = in_array( $option['data'], $this->mParams['disabled-options'], true );
 			}
-			if ( $this->mOptionsLabelsNotFromMessage ) {
-				foreach ( $groupedOptions as &$option ) {
-					// @phan-suppress-next-line SecurityCheck-XSS
-					$option['label'] = new \OOUI\HtmlSnippet( $option['label'] );
-				}
+			foreach ( $groupedOptions as &$option ) {
+				$option['label'] = $this->makeLabelSnippet( $option['label'] );
 			}
 			unset( $option );
 			$attr['options'] = $groupedOptions;
