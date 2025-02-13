@@ -257,6 +257,6 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 		$tpl = $wrapper->prepareQuickTemplate();
 		$contentNav = $tpl->get( 'content_navigation' );
 
-		$this->assertEquals( [ 'namespaces', 'views', 'actions', 'variants' ], array_keys( $contentNav ) );
+		$this->assertEquals( [ 'dock-bottom', 'namespaces', 'views', 'actions', 'variants' ], array_keys( $contentNav ) );
 	}
 }
