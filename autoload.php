@@ -1860,6 +1860,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Linker\\LinkTargetStore' => __DIR__ . '/includes/linker/LinkTargetStore.php',
 	'MediaWiki\\Linker\\Linker' => __DIR__ . '/includes/linker/Linker.php',
 	'MediaWiki\\Linker\\LinksMigration' => __DIR__ . '/includes/linker/LinksMigration.php',
+	'MediaWiki\\Linker\\UserLinkRenderer' => __DIR__ . '/includes/linker/UserLinkRenderer.php',
 	'MediaWiki\\Logger\\ConsoleLogger' => __DIR__ . '/includes/debug/logger/ConsoleLogger.php',
 	'MediaWiki\\Logger\\ConsoleSpi' => __DIR__ . '/includes/debug/logger/ConsoleSpi.php',
 	'MediaWiki\\Logger\\LegacyLogger' => __DIR__ . '/includes/debug/logger/LegacyLogger.php',

@@ -47,7 +47,6 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Xml\Xml;
 use MessageLocalizer;
 use Wikimedia\Assert\Assert;
-use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\RemexHtml\Serializer\SerializerNode;
 
@@ -1167,6 +1166,8 @@ class Linker {
 	 * @param string[] $attributes Extra HTML attributes. See Linker::link.
 	 * @return string HTML fragment
 	 * @since 1.16.3. $altUserName was added in 1.19. $attributes was added in 1.40.
+	 *
+	 * @deprecated since 1.44, use {@link UserLinkRenderer::userLink()} instead.
 	 */
 	public static function userLink(
 		$userId,
@@ -1180,36 +1181,13 @@ class Linker {
 			return wfMessage( 'empty-username' )->parse();
 		}
 
-		$classes = 'mw-userlink';
-		if ( MediaWikiServices::getInstance()->getTempUserConfig()->isTempName( $userName ) ) {
-			$classes .= ' mw-tempuserlink';
-			$page = SpecialPage::getTitleValueFor( 'Contributions', $userName );
-		} elseif ( $userId == 0 ) {
-			$page = ExternalUserNames::getUserLinkTitle( $userName );
-
-			if ( ExternalUserNames::isExternal( $userName ) ) {
-				$classes .= ' mw-extuserlink';
-			} elseif ( $altUserName === false ) {
-				$altUserName = IPUtils::prettifyIP( $userName );
-			}
-			$classes .= ' mw-anonuserlink'; // Separate link class for anons (T45179)
-		} else {
-			$page = TitleValue::tryNew( NS_USER, strtr( $userName, ' ', '_' ) );
-		}
-
-		// Wrap the output with <bdi> tags for directionality isolation
-		$linkText =
-			'<bdi>' . htmlspecialchars( $altUserName !== false ? $altUserName : $userName ) . '</bdi>';
-
-		if ( isset( $attributes['class'] ) ) {
-			$attributes['class'] .= ' ' . $classes;
-		} else {
-			$attributes['class'] = $classes;
-		}
-
-		return $page
-			? self::link( $page, $linkText, $attributes )
-			: Html::rawElement( 'span', $attributes, $linkText );
+		return MediaWikiServices::getInstance()->getUserLinkRenderer()
+			->userLink(
+				new UserIdentityValue( $userId, (string)$userName ),
+				RequestContext::getMain(),
+				$altUserName === false ? null : (string)$altUserName,
+				$attributes
+			);
 	}
 
 	/**
