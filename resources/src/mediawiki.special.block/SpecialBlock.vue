@@ -241,6 +241,7 @@ module.exports = exports = defineComponent( {
 			store.loadFromData( blockData, false );
 			formVisible.value = true;
 			scrollToForm();
+			initialLoad = false;
 		}
 
 		/**
