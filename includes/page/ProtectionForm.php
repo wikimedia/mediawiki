@@ -27,6 +27,7 @@ namespace MediaWiki\Page;
 
 use Article;
 use ErrorPageError;
+use InvalidArgumentException;
 use LogEventsList;
 use LogPage;
 use MediaWiki\CommentStore\CommentStore;
@@ -47,6 +48,7 @@ use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWiki\Xml\Xml;
 use MediaWiki\Xml\XmlSelect;
+use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 
 /**
  * Handles the page protection UI and backend
@@ -195,8 +197,9 @@ class ProtectionForm {
 	 * Get the expiry time for a given action, by combining the relevant inputs.
 	 *
 	 * @param string $action
-	 *
 	 * @return string|false 14-char timestamp or "infinity", or false if the input was invalid
+	 * @todo Non-qualified absolute times are not in users specified timezone
+	 *   and there isn't notice about it in the UI
 	 */
 	private function getExpiry( $action ) {
 		if ( $this->mExpirySelection[$action] == 'existing' ) {
@@ -206,20 +209,11 @@ class ProtectionForm {
 		} else {
 			$value = $this->mExpirySelection[$action];
 		}
-		if ( wfIsInfinity( $value ) ) {
-			$time = 'infinity';
-		} else {
-			$unix = strtotime( $value );
-
-			if ( !$unix || $unix === -1 ) {
-				return false;
-			}
-
-			// @todo FIXME: Non-qualified absolute times are not in users specified timezone
-			// and there isn't notice about it in the ui
-			$time = wfTimestamp( TS_MW, $unix );
+		try {
+			return ExpiryDef::normalizeExpiry( $value, TS_MW );
+		} catch ( InvalidArgumentException $e ) {
+			return false;
 		}
-		return $time;
 	}
 
 	/**
