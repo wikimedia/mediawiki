@@ -3757,7 +3757,7 @@
 	"logentry-rights-autopromote-granted": "получил{{GENDER:$2||а}} $1",
 	"logentry-rights-autopromote-revoked": "потерял{{GENDER:$2||а}} $1",
 	"logentry-rights-autopromote-expiry-changed": "изменил{{GENDER:$2||а}} срок у $1",
-	"logentry-rights-autopromote-kept": "сохранил{{GENDER:$2||а}} без изменений: $1",
+	"logentry-rights-autopromote-kept": "сохранил{{GENDER:$2||а}}  $1 без изменений",
 	"logentry-upload-upload": "$1 загрузил{{GENDER:$2||а}} $3",
 	"logentry-upload-overwrite": "$1 загрузил{{GENDER:$2||а}} новую версию $3",
 	"logentry-upload-revert": "$1 вернул{{GENDER:$2||а}} $3 к старой версии",

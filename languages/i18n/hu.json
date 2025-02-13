@@ -3299,6 +3299,7 @@
 	"tag-mw-blank-description": "Szerkesztések, amelyek eltávolították egy oldal teljes tartalmát",
 	"tag-mw-replace": "Oldal nagy része eltávolítva",
 	"tag-mw-replace-description": "Szerkesztések, amelyet egy oldal tartalmának több mint 90%-át törölték",
+	"tag-mw-recreated": "Újra létrehozva",
 	"tag-mw-rollback": "Visszaállítás",
 	"tag-mw-rollback-description": "Szerkesztések, amelyek visszaállítottak szerkesztéseket a „visszavonás” gombra kattintva",
 	"tag-mw-undo": "Visszavonás",

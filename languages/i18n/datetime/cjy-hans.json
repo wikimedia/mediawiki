@@ -1,9 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Jasonzhuocn",
-			"Pleiades486",
-			"Sainbainvv",
 			"Winston Sung"
 		]
 	},
@@ -43,10 +40,10 @@
 	"oct": "10月",
 	"nov": "11月",
 	"dec": "12月",
-	"monday": "禮拜一",
-	"tuesday": "禮拜二",
-	"wednesday": "禮拜三",
-	"thursday": "禮拜四",
-	"friday": "禮拜五",
-	"saturday": "禮拜六"
+	"monday": "礼拜一",
+	"tuesday": "礼拜二",
+	"wednesday": "礼拜三",
+	"thursday": "礼拜四",
+	"friday": "礼拜五",
+	"saturday": "礼拜六"
 }

@@ -26,5 +26,6 @@
 	"cdx-table-pagination-status-message-indeterminate-long": "Resultatos $1–$2 de multes",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 de multes",
 	"cdx-table-pagination-status-message-indeterminate-final": "Le ultime {{PLURAL:$1|resultato|$1 resultatos}}",
-	"cdx-table-pagination-status-message-pending": "Carga resultatos…"
+	"cdx-table-pagination-status-message-pending": "Carga resultatos…",
+	"cdx-table-no-data-message": "Il non ha datos disponibile."
 }

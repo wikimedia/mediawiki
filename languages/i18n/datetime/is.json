@@ -5,6 +5,7 @@
 			"MyraMidnight",
 			"Snævar",
 			"Stefán Örvar Sigmundsson",
+			"Sveinki",
 			"Sveinn í Felli"
 		]
 	},
@@ -129,7 +130,8 @@
 	"duration-millennia": "$1 {{PLURAL:$1|árþúsund}}",
 	"duration-centuries": "$1 {{PLURAL:$1|öld|aldir}}",
 	"duration-decades": "$1 {{PLURAL:$1|áratugur|áratugir}}",
-	"duration-years": "$1 {{PLURAL:$1|ár|ár}}",
+	"duration-years": "$1 {{PLURAL:$1|ár}}",
+	"duration-months": "$1 {{PLURAL:$1| mánuður|mánuðir}}",
 	"duration-weeks": "$1 {{PLURAL:$1|vika|vikur}}",
 	"duration-days": "$1 {{PLURAL:$1|dagur|dagar}}",
 	"duration-hours": "$1 {{PLURAL:$1|klukkustund|klukkustundir}}",
