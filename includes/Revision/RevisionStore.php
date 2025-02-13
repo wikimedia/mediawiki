@@ -1210,8 +1210,8 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 			} catch ( BlobAccessException $e ) {
 				throw new RevisionAccessException(
 					'Failed to load data blob from {address} for revision {revision}. '
-						. 'If this problem persist, use the findBadBlobs maintenance script '
-						. 'to investigate the issue and mark bad blobs.',
+						. 'If this problem persists, use the findBadBlobs maintenance script '
+						. 'to investigate the issue and mark the bad blobs.',
 					[ 'address' => $e->getMessage(), 'revision' => $slot->getRevision() ],
 					0,
 					$e
