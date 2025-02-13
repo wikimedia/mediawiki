@@ -2849,6 +2849,7 @@
 	"unblock": "{{doc-special|Unblock}}",
 	"unblock-summary": "{{doc-specialpagesummary|unblock}}",
 	"changeblockip": "Used as the text of a link in the sidebar toolbox. Clicking this link takes you to [[Special:Block]], with a relevant username or IP address (e.g. \"Username\" on [[User talk:Username]], [[Special:Contributions/Username]], etc.) already filled in.",
+	"block-cancel": "Button label for the cancel button in [[Special:Block]] form.",
 	"block-create": "Button label for the button with which to open a new blank block form.",
 	"blockip": "Used as the text of a link in the sidebar toolbox. Clicking this link takes you to [[Special:Block]], with a relevant username or IP address (e.g. \"Username\" on [[User talk:Username]], [[Special:Contributions/Username]], etc.) already filled in.\n\nParameters:\n* $1 - username, for GENDER support\n{{Identical|Block user}}",
 	"blockiptext": "Used in the {{msg-mw|Blockip}} form in [[Special:Block]].\n\nRefers to {{msg-mw|Policy-url}}.\n\nThis message may follow the message {{msg-mw|Ipb-otherblocks-header}} and other block messages.\n\nParameters:\n* $1 - CIDR suffix of the largest allowed IPv4 block (as an integer)\n* $2 - CIDR suffix of the largest allowed IPv6 block (as an integer)\n\nSee also:\n* {{msg-mw|Unblockiptext}}",

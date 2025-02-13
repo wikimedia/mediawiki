@@ -94,6 +94,13 @@
 				</confirmation-dialog>
 				<hr class="mw-block-hr">
 				<cdx-button
+					action="default"
+					weight="primary"
+					@click="onFormCancel"
+				>
+					{{ $i18n( 'block-cancel' ) }}
+				</cdx-button>
+				<cdx-button
 					action="destructive"
 					weight="primary"
 					class="mw-block-submit"
@@ -327,6 +334,18 @@ module.exports = exports = defineComponent( {
 		}
 
 		/**
+		 * Handle form cancel button.
+		 *
+		 * @param {Event} event
+		 */
+		function onFormCancel( event ) {
+			event.preventDefault();
+			store.resetForm();
+			formVisible.value = false;
+
+		}
+
+		/**
 		 * Load data for a given block.
 		 *
 		 * @param {string} id The block ID to load.
@@ -432,6 +451,7 @@ module.exports = exports = defineComponent( {
 			removalConfirmationOpen,
 			onCreateBlock,
 			onEditBlock,
+			onFormCancel,
 			onFormSubmission,
 			doBlock,
 			onRemoveBlock,
