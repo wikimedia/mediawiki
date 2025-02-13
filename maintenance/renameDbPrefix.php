@@ -70,7 +70,7 @@ class RenameDbPrefix extends Maintenance {
 			$this->fatalError( "Invalid prefix!" );
 		}
 		if ( $old === $new ) {
-			$this->output( "Same prefix. Nothing to rename!\n", true );
+			$this->output( "Same prefix. Nothing to rename!\n" );
 		}
 
 		$this->output( "Renaming DB prefix for tables of $dbName from '$old' to '$new'\n" );
