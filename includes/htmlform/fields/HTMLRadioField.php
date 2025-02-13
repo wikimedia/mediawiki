@@ -96,8 +96,7 @@ class HTMLRadioField extends HTMLFormField {
 			}
 			$options[] = [
 				'data' => $data,
-				// @phan-suppress-next-line SecurityCheck-XSS Labels are raw when not from message
-				'label' => $this->mOptionsLabelsNotFromMessage ? new \OOUI\HtmlSnippet( $label ) : $label,
+				'label' => $this->makeLabelSnippet( $label ),
 			];
 		}
 
@@ -157,9 +156,8 @@ class HTMLRadioField extends HTMLFormField {
 			// HTML markup for radio input, radio icon, and radio label elements.
 			$radioInput = Html::element( 'input', $radioInputAttribs );
 			$radioIcon = Html::element( 'span', $radioIconAttribs );
-			$radioLabel = $this->mOptionsLabelsNotFromMessage
-				? Html::rawElement( 'label', $radioLabelAttribs, $label )
-				: Html::element( 'label', $radioLabelAttribs, $label );
+			$radioLabel = Html::rawElement( 'label', $radioLabelAttribs,
+				$this->escapeLabel( $label ) );
 
 			$radioDescription = '';
 			if ( isset( $optionDescriptions[$radioValue] ) ) {
@@ -193,7 +191,6 @@ class HTMLRadioField extends HTMLFormField {
 		$html = '';
 
 		$attribs = $this->getAttributes( [ 'disabled', 'tabindex' ] );
-		$elementMethod = $this->mOptionsLabelsNotFromMessage ? 'rawElement' : 'element';
 
 		# @todo Should this produce an unordered list perhaps?
 		foreach ( $options as $label => $info ) {
@@ -206,7 +203,8 @@ class HTMLRadioField extends HTMLFormField {
 				$radio = Xml::radio(
 					$this->mName, $info, $info === $value, $attribs + [ 'id' => $id ]
 				);
-				$radio .= "\u{00A0}" . Html::$elementMethod( 'label', [ 'for' => $id ], $label );
+				$radio .= "\u{00A0}" .
+					Html::rawElement( 'label', [ 'for' => $id ], $this->escapeLabel( $label ) );
 
 				$html .= ' ' . Html::rawElement(
 					'div',
