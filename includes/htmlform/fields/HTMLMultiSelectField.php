@@ -240,8 +240,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 			if ( $sectionLabel ) {
 				$out[] = new \OOUI\FieldsetLayout( [
 					'items' => [ $widget ],
-					// @phan-suppress-next-line SecurityCheck-XSS Key is html, taint cannot track that
-					'label' => new \OOUI\HtmlSnippet( $sectionLabel ),
+					'label' => $this->makeLabelSnippet( $sectionLabel ),
 				] );
 			} else {
 				$out[] = $widget;
