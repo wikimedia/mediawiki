@@ -594,6 +594,8 @@ class SpecialBlock extends FormSpecialPage {
 			'cssclass' => 'mw-block-confirm',
 		];
 
+		$this->validateTarget();
+
 		// (T382496) Only load the modified defaults from a previous
 		// block if multiblocks are not enabled
 		if ( !$this->useMultiblocks ) {
@@ -618,6 +620,35 @@ class SpecialBlock extends FormSpecialPage {
 	}
 
 	/**
+	 * Validate the target, setting preErrors if necessary.
+	 */
+	private function validateTarget(): void {
+		if ( !$this->target ) {
+			return;
+		}
+
+		$status = $this->target->validateForCreation();
+		$this->codexFormData[ 'blockTargetExists' ] = true;
+
+		if ( !$status->isOK() ) {
+			$errors = $status->getMessages( 'error' );
+			$this->preErrors = array_merge( $this->preErrors, $errors );
+
+			// Remove top-level errors that are later handled per-field in Codex.
+			if ( $this->useCodex ) {
+				$this->preErrors = array_filter( $this->preErrors, function ( $error ) {
+					if ( $error->getKey() === 'nosuchusershort' ) {
+						// Avoids us having to re-query the API to validate the user.
+						$this->codexFormData[ 'blockTargetExists' ] = false;
+						return false;
+					}
+					return true;
+				} );
+			}
+		}
+	}
+
+	/**
 	 * If the user has already been blocked with similar settings, load that block
 	 * and change the defaults for the form fields to match the existing settings.
 	 * @param array &$fields HTMLForm descriptor array
@@ -625,14 +656,6 @@ class SpecialBlock extends FormSpecialPage {
 	protected function maybeAlterFormDefaults( &$fields ) {
 		// This will be overwritten by request data
 		$fields['Target']['default'] = (string)$this->target;
-
-		if ( $this->target ) {
-			$status = $this->target->validateForCreation();
-			if ( !$status->isOK() ) {
-				$errors = $status->getMessages( 'error' );
-				$this->preErrors = array_merge( $this->preErrors, $errors );
-			}
-		}
 
 		// This won't be
 		$fields['PreviousTarget']['default'] = (string)$this->target;

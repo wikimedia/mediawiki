@@ -204,9 +204,10 @@ module.exports = exports = defineStore( 'block', () => {
 	 *
 	 * @type {Ref<boolean>}
 	 */
-	const targetExists = ref( false );
+	const targetExists = ref( !!mw.config.get( 'blockTargetExists' ) );
 
 	// ** Getters (computed properties) **
+
 	/**
 	 * Whether the form is disabled due to an in-flight API request.
 	 *
@@ -329,6 +330,7 @@ module.exports = exports = defineStore( 'block', () => {
 		// Form fields
 		if ( full ) {
 			targetUser.value = '';
+			targetExists.value = false;
 		}
 		blockId.value = null;
 		type.value = 'sitewide';

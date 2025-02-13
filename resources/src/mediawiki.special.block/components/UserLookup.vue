@@ -16,7 +16,6 @@
 			:start-icon="cdxIconSearch"
 			@input="onInput"
 			@change="onChange"
-			@blur="onChange"
 			@clear="onClear"
 			@update:selected="onSelect"
 		>
@@ -88,8 +87,17 @@ module.exports = exports = defineComponent( {
 		onMounted( () => {
 			// Get the input element.
 			htmlInput = document.querySelector( 'input[name="wpTarget"]' );
-			// Focus the input on mount.
-			htmlInput.focus();
+
+			// Focus the input on mount if there's no initial value.
+			if ( !targetUser.value ) {
+				htmlInput.focus();
+			}
+
+			// Ensure error messages are displayed for missing users.
+			if ( !!targetUser.value && !store.targetExists ) {
+				validate();
+			}
+
 			/**
 			 * Hook for custom components to be added to the UserLookup component.
 			 *
@@ -125,58 +133,6 @@ module.exports = exports = defineComponent( {
 				currentSearchTerm.value = newValue;
 			}
 		} );
-
-		/**
-		 * Check if a given target is valid
-		 *
-		 * @param {string} target
-		 */
-		function checkTargetExists( target ) {
-			// Check if the target is a valid IP
-			if ( mw.util.isIPAddress( target, true ) ) {
-				status.value = 'default';
-				store.formErrors = [];
-				targetExists.value = true;
-				return;
-			}
-			if ( !target ) {
-				status.value = 'default';
-				store.formErrors = [];
-				targetExists.value = false;
-				return;
-			}
-			// Check if the target is a valid user
-			getUser( target ).then( ( data ) => {
-				if ( !data || !data.users[ 0 ] || data.users[ 0 ].missing === true ) {
-					status.value = 'error';
-					store.formErrors = [ mw.message( 'nosuchusershort', target ).text() ];
-					targetExists.value = false;
-				} else {
-					status.value = 'default';
-					store.formErrors = [];
-					targetExists.value = true;
-				}
-			} );
-		}
-
-		/**
-		 * Get a single user
-		 *
-		 * @param {string} target
-		 * @return {Promise}
-		 */
-		function getUser( target ) {
-			const params = {
-				action: 'query',
-				format: 'json',
-				formatversion: 2,
-				list: 'users',
-				ususers: target
-			};
-
-			return api.get( params )
-				.then( ( response ) => response.query );
-		}
 
 		/**
 		 * Get search results.
@@ -247,18 +203,34 @@ module.exports = exports = defineComponent( {
 		}
 
 		/**
-		 * Validate the input element.
+		 * Validate the target user and set the status and messages.
 		 *
-		 * @param {HTMLInputElement} el
+		 * @return {boolean} Whether the target user is valid.
 		 */
-		function validate( el ) {
-			if ( el.checkValidity() ) {
+		function validate() {
+			const inResults = menuItems.value.some( ( item ) => item.value === currentSearchTerm.value );
+			let error = null;
+
+			if ( !htmlInput.checkValidity() ) {
+				// Validation constraints on the HTMLInputElement failed.
+				error = htmlInput.validationMessage;
+			} else if ( !inResults && !mw.util.isIPAddress( currentSearchTerm.value, true ) ) {
+				// Not a valid username or IP.
+				error = mw.message( 'nosuchusershort', currentSearchTerm.value ).text();
+				targetExists.value = false;
+			} else {
+				targetExists.value = true;
+			}
+
+			if ( error ) {
+				status.value = 'error';
+				messages.value = { error };
+			} else {
 				status.value = 'default';
 				messages.value = {};
-			} else {
-				status.value = 'error';
-				messages.value = { error: el.validationMessage };
 			}
+
+			return !error;
 		}
 
 		/**
@@ -276,6 +248,8 @@ module.exports = exports = defineComponent( {
 		function onClear() {
 			store.resetForm( true );
 			htmlInput.focus();
+			status.value = 'default';
+			messages.value = {};
 		}
 
 		/**
@@ -283,6 +257,7 @@ module.exports = exports = defineComponent( {
 		 */
 		function onSelect() {
 			if ( selection.value !== null ) {
+				currentSearchTerm.value = selection.value;
 				setTarget( selection.value );
 			}
 		}
@@ -293,8 +268,7 @@ module.exports = exports = defineComponent( {
 		 * @param {string} value
 		 */
 		function setTarget( value ) {
-			checkTargetExists( value );
-			validate( htmlInput );
+			validate();
 			targetUser.value = value;
 		}
 

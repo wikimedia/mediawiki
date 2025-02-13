@@ -141,6 +141,24 @@ describe( 'Block store', () => {
 		expect( spy ).toHaveBeenCalledWith( expected );
 	} );
 
+	it( 'resetForm', () => {
+		const store = useBlockStore();
+		store.targetUser = 'ExampleUser';
+		store.targetExists = true;
+		store.type = 'partial';
+		store.expiry = 'infinite';
+		store.reason = 'This is a test';
+		store.resetForm();
+		expect( store.targetUser ).toStrictEqual( 'ExampleUser' );
+		expect( store.targetExists ).toStrictEqual( true );
+		expect( store.type ).toStrictEqual( 'sitewide' );
+		expect( store.expiry ).toStrictEqual( '' );
+		expect( store.reason ).toStrictEqual( 'other' );
+		store.resetForm( true );
+		expect( store.targetUser ).toStrictEqual( '' );
+		expect( store.targetExists ).toStrictEqual( false );
+	} );
+
 	afterEach( () => {
 		jest.clearAllMocks();
 	} );

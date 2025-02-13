@@ -24,6 +24,16 @@
 	.mw-warning-with-logexcerpt {
 		display: none;
 	}
+
+	// Match font-size of accordion labels. T383921.
+	.mw-htmlform-codex legend {
+		font-size: @font-size-medium;
+
+		.cdx-label__label,
+		.cdx-label__description {
+			margin-bottom: @spacing-50;
+		}
+	}
 }
 
 /*!

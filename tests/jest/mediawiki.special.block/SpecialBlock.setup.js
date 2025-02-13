@@ -60,6 +60,7 @@ function mockMwConfigGet( config = {} ) {
 		wgUserLanguage: 'en',
 		blockAlreadyBlocked: false,
 		blockTargetUser: null,
+		blockTargetExists: null,
 		blockAdditionalDetailsPreset: [ 'wpAutoBlock' ],
 		blockAllowsEmailBan: true,
 		blockAllowsUTEdit: true,
@@ -399,6 +400,19 @@ function mockMwApiGet( additionalMocks = [] ) {
 		},
 		{
 			params: {
+				list: 'logevents|blocks',
+				letype: 'block',
+				letitle: 'User:NonexistentUser'
+			},
+			response: {
+				query: {
+					logevents: [],
+					blocks: []
+				}
+			}
+		},
+		{
+			params: {
 				list: 'logevents',
 				leaction: 'suppress/block',
 				letitle: 'User:BadNameBlocked'
@@ -465,27 +479,26 @@ function mockMwApiGet( additionalMocks = [] ) {
 		// Used in UserLookup
 		{
 			params: {
-				list: 'allusers'
+				list: 'allusers',
+				auprefix: 'ExampleUser'
 			},
 			response: {
 				query: {
 					allusers: [
-						{ name: 'UserLookup1' },
-						{ name: 'UserLookup2' }
+						{ name: 'ExampleUser' },
+						{ name: 'ExampleUser2' }
 					]
 				}
 			}
 		},
 		{
 			params: {
-				list: 'users'
+				list: 'allusers',
+				auprefix: 'NonexistentUser'
 			},
 			response: {
 				query: {
-					users: [
-						{ name: 'UserLookup1', missing: false },
-						{ name: 'UserLookup2', missing: false }
-					]
+					allusers: []
 				}
 			}
 		},

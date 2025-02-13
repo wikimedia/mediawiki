@@ -86,12 +86,14 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @dataProvider provideGetFormFieldsCodex
 	 * @covers ::getFormFields
 	 * @covers ::execute
+	 * @covers ::validateTarget
 	 */
-	public function testCodexFormData( array $params, array $expected, bool $preErrors = false ): void {
+	public function testCodexFormData( array $params, array $expected, bool $multiblocks = false ): void {
 		$this->overrideConfigValues( [
 			MainConfigNames::BlockAllowsUTEdit => true,
 			MainConfigNames::EnablePartialActionBlocks => true,
 			MainConfigNames::UseCodexSpecialBlock => true,
+			MainConfigNames::EnableMultiBlocks => $multiblocks,
 		] );
 		$context = RequestContext::getMain();
 		$context->setRequest( new FauxRequest( array_merge( $params, [ 'uselang' => 'qqx' ] ) ) );
@@ -102,11 +104,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$wrappedPage->execute( null );
 		$actualJsConfigVars = $wrappedPage->getOutput()->getJsConfigVars();
 		$this->assertArrayContains( $expected, $actualJsConfigVars );
-		if ( $preErrors ) {
-			$this->assertArrayHasKey( 'blockPreErrors', $actualJsConfigVars );
-		} else {
-			$this->assertArrayNotHasKey( 'blockPreErrors', $actualJsConfigVars );
-		}
 	}
 
 	public static function provideGetFormFieldsCodex(): Generator {
@@ -136,8 +133,12 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		];
 		yield 'wpTarget NonexistentUser' => [
 			[ 'wpTarget' => 'NonexistentUser' ],
-			[ 'blockTargetUser' => 'NonexistentUser' ],
-			true,
+			[ 'blockTargetUser' => 'NonexistentUser', 'blockTargetExists' => false ],
+		];
+		yield 'wpTarget NonexistentUser (multiblocks)' => [
+			[ 'wpTarget' => 'NonexistentUser' ],
+			[ 'blockTargetUser' => 'NonexistentUser', 'blockTargetExists' => false ],
+			true
 		];
 	}
 
@@ -156,7 +157,10 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @covers ::maybeAlterFormDefaults
 	 */
 	public function testMaybeAlterFormDefaults() {
-		$this->overrideConfigValue( MainConfigNames::BlockAllowsUTEdit, true );
+		$this->overrideConfigValues( [
+			MainConfigNames::BlockAllowsUTEdit => true,
+			MainConfigNames::UseCodexSpecialBlock => false,
+		] );
 
 		$block = $this->insertBlock();
 
@@ -182,7 +186,10 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @covers ::maybeAlterFormDefaults
 	 */
 	public function testMaybeAlterFormDefaultsPartial() {
-		$this->overrideConfigValue( MainConfigNames::EnablePartialActionBlocks, true );
+		$this->overrideConfigValues( [
+			MainConfigNames::EnablePartialActionBlocks => true,
+			MainConfigNames::UseCodexSpecialBlock => false,
+		] );
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 		$pageSaturn = $this->getExistingTestPage( 'Saturn' );

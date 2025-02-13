@@ -11,6 +11,10 @@ class BlockPage extends Page {
 		return $( '.mw-block-messages' );
 	}
 
+	get userLookupItem() {
+		return $( '.cdx-menu-item--enabled' );
+	}
+
 	get activeBlocksHeader() {
 		return $( '.mw-block-log__type-active .cdx-accordion__header' );
 	}
@@ -43,6 +47,10 @@ class BlockPage extends Page {
 			{ timeout: 5000 }
 		);
 		await this.target.setValue( target );
+		await browser.waitUntil(
+			async () => ( await this.userLookupItem.isClickable() ),
+			{ timeout: 5000 }
+		);
 		// Remove focus from input. Temporary workaround until T382093 is resolved.
 		await $( 'body' ).click();
 		await browser.waitUntil(
