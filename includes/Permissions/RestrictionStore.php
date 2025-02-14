@@ -73,7 +73,6 @@ class RestrictionStore {
 	 *   ?array `create_protection` => value for getCreateProtection
 	 *   bool `cascade` => cascade restrictions on this page to included templates and images?
 	 *   array[] `cascade_sources` => the results of getCascadeProtectionSources
-	 *   bool `has_cascading` => Are cascading restrictions in effect on this page?
 	 * ]
 	 */
 	private $cache = [];
@@ -286,7 +285,7 @@ class RestrictionStore {
 	public function isCascadeProtected( PageIdentity $page ): bool {
 		$page->assertWiki( PageIdentity::LOCAL );
 
-		return $this->getCascadeProtectionSourcesInternal( $page, true );
+		return $this->getCascadeProtectionSourcesInternal( $page )[0] !== [];
 	}
 
 	/**
@@ -552,36 +551,32 @@ class RestrictionStore {
 	public function getCascadeProtectionSources( PageIdentity $page ): array {
 		$page->assertWiki( PageIdentity::LOCAL );
 
-		return $this->getCascadeProtectionSourcesInternal( $page, false );
+		return $this->getCascadeProtectionSourcesInternal( $page );
 	}
 
 	/**
 	 * Cascading protection: Get the source of any cascading restrictions on this page.
 	 *
 	 * @param PageIdentity $page Must be local
-	 * @param bool $shortCircuit If true, just return true or false instead of the actual lists.
-	 * @return array|bool If $shortCircuit is true, return true if there is some cascading
-	 *   protection and false otherwise. Otherwise, same as getCascadeProtectionSources().
+	 * @return array[] Same as getCascadeProtectionSources().
 	 */
 	private function getCascadeProtectionSourcesInternal(
-		PageIdentity $page, bool $shortCircuit = false
-	) {
+		PageIdentity $page
+	): array {
 		if ( !$page->canExist() ) {
-			return $shortCircuit ? false : [ [], [], [], [] ];
+			return [ [], [], [], [] ];
 		}
 
 		$cacheEntry = &$this->cache[CacheKeyHelper::getKeyForPage( $page )];
 
-		if ( !$shortCircuit && isset( $cacheEntry['cascade_sources'] ) ) {
+		if ( isset( $cacheEntry['cascade_sources'] ) ) {
 			return $cacheEntry['cascade_sources'];
-		} elseif ( $shortCircuit && isset( $cacheEntry['has_cascading'] ) ) {
-			return $cacheEntry['has_cascading'];
 		}
 
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 
 		$baseQuery = $dbr->newSelectQueryBuilder()
-			->select( $shortCircuit ? [ 'pr_expiry' ] : [
+			->select( [
 				'pr_expiry',
 				'pr_page',
 				'page_namespace',
@@ -590,11 +585,8 @@ class RestrictionStore {
 				'pr_level'
 			] )
 			->from( 'page_restrictions' )
+			->join( 'page', null, 'page_id=pr_page' )
 			->where( [ 'pr_cascade' => 1 ] );
-
-		if ( !$shortCircuit ) {
-			$baseQuery->join( 'page', null, 'page_id=pr_page' );
-		}
 
 		$imageQuery = clone $baseQuery;
 		$imageQuery->join( 'imagelinks', null, 'il_from=pr_page' )
@@ -628,14 +620,8 @@ class RestrictionStore {
 		$pageRestrictions = [];
 		$now = wfTimestampNow();
 		foreach ( $res as $row ) {
-
 			$expiry = $dbr->decodeExpiry( $row->pr_expiry );
 			if ( $expiry > $now ) {
-				if ( $shortCircuit ) {
-					$cacheEntry['has_cascading'] = true;
-					return true;
-				}
-
 				if ( $row->type === 'il' ) {
 					$ilSources[$row->pr_page] = new PageIdentityValue( $row->pr_page,
 					$row->page_namespace, $row->page_title, PageIdentity::LOCAL );
@@ -659,14 +645,9 @@ class RestrictionStore {
 
 		$sources = array_replace( $tlSources, $ilSources );
 
-		$cacheEntry['has_cascading'] = (bool)$sources;
 		$cacheEntry['cascade_sources'] = [ $sources, $pageRestrictions, $tlSources, $ilSources ];
 
-		if ( $shortCircuit ) {
-			return false;
-		}
-
-		return [ $sources, $pageRestrictions, $tlSources, $ilSources ];
+		return $cacheEntry['cascade_sources'];
 	}
 
 	/**
