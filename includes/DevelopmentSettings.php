@@ -153,7 +153,7 @@ $wgTempAccountNameAcquisitionThrottle = [];
  */
 
 global $wgSQLMode, $wgDBStrictWarnings, $wgLocalisationCacheConf, $wgCiteSubReferencing,
-	$wgCiteBookReferencing, $wgCacheDirectory, $wgEnableUploads, $wgUsePigLatinVariant,
+	$wgCacheDirectory, $wgEnableUploads, $wgUsePigLatinVariant,
 	$wgVisualEditorEnableWikitext, $wgDefaultUserOptions, $wgAutoCreateTempUser;
 
 // Enable MariaDB/MySQL strict mode (T108255)
@@ -165,7 +165,6 @@ $wgLocalisationCacheConf['store'] = 'array';
 
 // Experimental sub-referencing feature in Cite (T236255)
 $wgCiteSubReferencing = true;
-$wgCiteBookReferencing = true;
 
 // The default value is false, but for development it is useful to set this to the system temp
 // directory by default (T218207)
