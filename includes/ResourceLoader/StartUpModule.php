@@ -375,13 +375,11 @@ class StartUpModule extends Module {
 			'$VARS.reqBase' => $context->encodeJson( (object)$context->getReqBase() ),
 			'$VARS.baseModules' => $context->encodeJson( $this->getBaseModules() ),
 			'$VARS.maxQueryLength' => $context->encodeJson(
-				// In debug mode (except legacy debug mode), let the client fetch each module in
+				// In debug mode, let the client fetch each module in
 				// its own dedicated request (T85805).
 				// This is effectively the equivalent of ClientHtml::makeLoad,
 				// which does this for stylesheets.
-				( !$context->getDebug() || $context->getDebug() === $context::DEBUG_LEGACY ) ?
-					$this->getMaxQueryLength() :
-					0
+				!$context->getDebug() ? $this->getMaxQueryLength() : 0
 			),
 			'$VARS.storeEnabled' => $context->encodeJson(
 				$conf->get( MainConfigNames::ResourceLoaderStorageEnabled )

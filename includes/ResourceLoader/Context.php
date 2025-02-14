@@ -49,8 +49,6 @@ class Context implements MessageLocalizer {
 
 	/** @internal For use in ResourceLoader classes. */
 	public const DEBUG_OFF = 0;
-	/** @internal For use in ResourceLoader classes. */
-	public const DEBUG_LEGACY = 1;
 	/** @internal For use in SpecialJavaScriptTest. */
 	public const DEBUG_MAIN = 2;
 
@@ -152,9 +150,7 @@ class Context implements MessageLocalizer {
 	 */
 	public static function debugFromString( ?string $debug ): int {
 		// The canonical way to enable debug mode is via debug=true
-		if ( $debug === '1' ) {
-			$ret = self::DEBUG_LEGACY;
-		} elseif ( $debug === 'true' || $debug === '2' ) {
+		if ( $debug === 'true' || $debug === '2' ) {
 			$ret = self::DEBUG_MAIN;
 		} else {
 			$ret = self::DEBUG_OFF;
