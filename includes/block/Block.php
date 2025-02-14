@@ -130,6 +130,14 @@ interface Block extends WikiAwareEntity {
 	public function getExpiry(): string;
 
 	/**
+	 * Is the block indefinite (with no fixed expiry)?
+	 *
+	 * @since 1.44
+	 * @return bool
+	 */
+	public function isIndefinite(): bool;
+
+	/**
 	 * Get the type of target for this particular block.
 	 * @return int|null Block::TYPE_ constant, will never be TYPE_ID
 	 */
