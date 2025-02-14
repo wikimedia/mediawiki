@@ -1377,7 +1377,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			'ar_actor' => null,
 		];
 
-		$record = @$store->newRevisionFromArchiveRow( $row );
+		$record = $store->newRevisionFromArchiveRow( $row );
 
 		$this->assertInstanceOf( RevisionRecord::class, $record );
 		$this->assertInstanceOf( UserIdentityValue::class, $record->getUser() );
@@ -1425,7 +1425,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 		$row->ar_actor = $this->getDb()->insertId();
 
-		$record = @$store->newRevisionFromArchiveRow( $row );
+		$record = $store->newRevisionFromArchiveRow( $row );
 
 		$this->assertInstanceOf( RevisionRecord::class, $record );
 		$this->assertInstanceOf( UserIdentityValue::class, $record->getUser() );
@@ -1458,7 +1458,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			'rev_content_model' => null,
 		];
 
-		$record = @$store->newRevisionFromRow( $row, 0, $page );
+		$record = $store->newRevisionFromRow( $row, 0, $page );
 		$this->assertNotNull( $record );
 		$this->assertNotNull( $record->getUser() );
 		$this->assertNotEmpty( $record->getUser()->getName() );
@@ -1496,7 +1496,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			'ar_actor' => '12345',
 		];
 
-		$record = @$store->newRevisionFromArchiveRow( $row );
+		$record = $store->newRevisionFromArchiveRow( $row );
 
 		$this->assertInstanceOf( RevisionRecord::class, $record );
 
