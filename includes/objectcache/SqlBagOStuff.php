@@ -90,6 +90,9 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	/** @var bool Whether zlib methods are available to PHP */
 	private $hasZlib;
 
+	/** @var int Number of redundant read and writes for better consistency */
+	private $dataRedundancy;
+
 	/** A number of seconds well above any expected clock skew */
 	private const SAFE_CLOCK_BOUND_SEC = 15;
 	/** A number of seconds well above any expected clock skew and replication lag */
@@ -175,6 +178,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$this->numTableShards = intval( $params['shards'] ?? $this->numTableShards );
 		$this->writeBatchSize = intval( $params['writeBatchSize'] ?? $this->writeBatchSize );
 		$this->multiPrimaryMode = $params['multiPrimaryMode'] ?? false;
+		$this->dataRedundancy = min( intval( $params['dataRedundancy'] ?? 1 ), count( $this->serverTags ) );
 
 		$this->attrMap[self::ATTR_DURABILITY] = self::QOS_DURABILITY_RDBMS;
 
@@ -371,12 +375,13 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	/**
-	 * Get the server index and table name for a given key
+	 * Get shard indexes to read and write from for a given key
+	 *
 	 * @param string $key
 	 * @param bool $fallback Whether try to fallback to the next db
-	 * @return array (server index, table name)
+	 * @return int[] list of shard indexes
 	 */
-	private function getKeyLocation( $key, $fallback = false ) {
+	private function getShardIndexesForKey( $key, $fallback = false ) {
 		// Pick the same shard for sister keys
 		// Using the same hash stop as mc-router for consistency
 		if ( str_contains( $key, '|#|' ) ) {
@@ -384,21 +389,39 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		}
 		if ( $this->useLB ) {
 			// LoadBalancer based configuration
-			$shardIndex = 0;
+			return [ 0 ];
 		} else {
 			// Striped array of database servers
 			if ( count( $this->serverTags ) == 1 ) {
-				$shardIndex = 0; // short-circuit
+				return [ 0 ];
 			} else {
 				$sortedServers = $this->serverTags;
+				// shuffle the servers based on hashing of the keys
 				ArrayUtils::consistentHashSort( $sortedServers, $key );
-				$shardIndex = array_key_first( $sortedServers );
-				if ( $fallback ) {
-					// Get the second server in line.
-					unset( $sortedServers[$shardIndex] );
-					$shardIndex = array_key_first( $sortedServers );
+				$shardIndexes = array_keys( $sortedServers );
+				if ( $this->dataRedundancy === 1 ) {
+					if ( $fallback ) {
+						return [ $shardIndexes[1] ];
+					} else {
+						return [ $shardIndexes[0] ];
+					}
+				} else {
+					return array_slice( $shardIndexes, 0, $this->dataRedundancy );
 				}
 			}
+		}
+	}
+
+	/**
+	 * Get the table name for a given key
+	 * @param string $key
+	 * @return string table name
+	 */
+	private function getTableNameForKey( $key ) {
+		// Pick the same shard for sister keys
+		// Using the same hash stop as mc-router for consistency
+		if ( str_contains( $key, '|#|' ) ) {
+			$key = explode( '|#|', $key )[0];
 		}
 
 		if ( $this->numTableShards > 1 ) {
@@ -408,7 +431,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			$tableIndex = null;
 		}
 
-		return [ $shardIndex, $this->getTableNameByShard( $tableIndex ) ];
+		return $this->getTableNameByShard( $tableIndex );
 	}
 
 	/**
@@ -433,17 +456,26 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 * @return array<string,array|null> Map of (key => (value,expiry,token) or null)
 	 */
 	private function fetchBlobs( array $keys, bool $getCasToken = false, $fallback = false ) {
+		if ( $fallback && count( $this->serverTags ) > 1 && $this->dataRedundancy > 1 ) {
+			// fallback doesn't work with data redundancy
+			return [];
+		}
+
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$silenceScope = $this->silenceTransactionProfiler();
 
 		// Initialize order-preserved per-key results; set values for live keys below
 		$dataByKey = array_fill_keys( $keys, null );
+		$dataByKeyAndShard = [];
 
 		$readTime = (int)$this->getCurrentTime();
 		$keysByTableByShard = [];
 		foreach ( $keys as $key ) {
-			[ $shardIndex, $partitionTable ] = $this->getKeyLocation( $key, $fallback );
-			$keysByTableByShard[$shardIndex][$partitionTable][] = $key;
+			$partitionTable = $this->getTableNameForKey( $key );
+			$shardIndexes = $this->getShardIndexesForKey( $key, $fallback );
+			foreach ( $shardIndexes as $shardIndex ) {
+				$keysByTableByShard[$shardIndex][$partitionTable][] = $key;
+			}
 		}
 		$fallbackResult = [];
 
@@ -463,7 +495,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 					foreach ( $res as $row ) {
 						$row->shardIndex = $shardIndex;
 						$row->tableName = $partitionTable;
-						$dataByKey[$row->keyname] = $row;
+						$dataByKeyAndShard[$row->keyname][$shardIndex] = $row;
 					}
 				}
 			} catch ( DBError $e ) {
@@ -479,11 +511,23 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 			}
 		}
-
 		foreach ( $keys as $key ) {
-			$row = $dataByKey[$key] ?? null;
-			if ( !$row ) {
+			$rowsByShard = $dataByKeyAndShard[$key] ?? null;
+			if ( !$rowsByShard ) {
 				continue;
+			}
+
+			// One response, no point of consistency checks
+			if ( count( $rowsByShard ) == 1 ) {
+				$row = $rowsByShard[0];
+			} else {
+				usort( $rowsByShard, static function ( $a, $b ) {
+					if ( $a->exptime == $b->exptime ) {
+						return 0;
+					}
+					return ( $a->exptime < $b->exptime ) ? 1 : -1;
+				} );
+				$row = array_values( $rowsByShard )[0];
 			}
 
 			$this->debug( __METHOD__ . ": retrieved $key; expiry time is {$row->exptime}" );
@@ -525,6 +569,10 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		&$resByKey = [],
 		$fallback = false
 	) {
+		if ( $fallback && count( $this->serverTags ) > 1 && $this->dataRedundancy > 1 ) {
+			// fallback doesn't work with data redundancy
+			return false;
+		}
 		// Initialize order-preserved per-key results; callbacks mark successful results
 		$resByKey = array_fill_keys( array_keys( $argsByKey ), false );
 
@@ -533,8 +581,11 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 		$argsByKeyByTableByShard = [];
 		foreach ( $argsByKey as $key => $args ) {
-			[ $shardIndex, $partitionTable ] = $this->getKeyLocation( $key, $fallback );
-			$argsByKeyByTableByShard[$shardIndex][$partitionTable][$key] = $args;
+			$partitionTable = $this->getTableNameForKey( $key );
+			$shardIndexes = $this->getShardIndexesForKey( $key, $fallback );
+			foreach ( $shardIndexes as $shardIndex ) {
+				$argsByKeyByTableByShard[$shardIndex][$partitionTable][$key] = $args;
+			}
 		}
 
 		$shardIndexesAffected = [];
@@ -1584,16 +1635,18 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 		$lockTsUnix = null;
 
-		[ $shardIndex ] = $this->getKeyLocation( $key );
-		try {
-			$db = $this->getConnection( $shardIndex );
-			$lockTsUnix = $db->lock( $key, __METHOD__, $timeout, $db::LOCK_TIMESTAMP );
-		} catch ( DBError $e ) {
-			$this->handleDBError( $e, $shardIndex );
-			$this->logger->warning(
-				__METHOD__ . ' failed due to I/O error for {key}.',
-				[ 'key' => $key ]
-			);
+		$shardIndexes = $this->getShardIndexesForKey( $key );
+		foreach ( $shardIndexes as $shardIndex ) {
+			try {
+				$db = $this->getConnection( $shardIndex );
+				$lockTsUnix = $db->lock( $key, __METHOD__, $timeout, $db::LOCK_TIMESTAMP );
+			} catch ( DBError $e ) {
+				$this->handleDBError( $e, $shardIndex );
+				$this->logger->warning(
+					__METHOD__ . ' failed due to I/O error for {key}.',
+					[ 'key' => $key ]
+				);
+			}
 		}
 
 		return $lockTsUnix;
@@ -1603,14 +1656,16 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$silenceScope = $this->silenceTransactionProfiler();
 
-		[ $shardIndex ] = $this->getKeyLocation( $key );
-
-		try {
-			$db = $this->getConnection( $shardIndex );
-			$released = $db->unlock( $key, __METHOD__ );
-		} catch ( DBError $e ) {
-			$this->handleDBError( $e, $shardIndex );
-			$released = false;
+		$shardIndexes = $this->getShardIndexesForKey( $key );
+		$released = false;
+		foreach ( $shardIndexes as $shardIndex ) {
+			try {
+				$db = $this->getConnection( $shardIndex );
+				$released = $db->unlock( $key, __METHOD__ );
+			} catch ( DBError $e ) {
+				$this->handleDBError( $e, $shardIndex );
+				$released = false;
+			}
 		}
 
 		return $released;

@@ -47,22 +47,32 @@ class SqlBagOStuffTest extends MediaWikiUnitTestCase {
 		] );
 		$cacheObj = \Wikimedia\TestingAccessWrapper::newFromObject( $cache );
 
-		[ $indexFirstKey, $tableNameFirstKey ] = $cacheObj->getKeyLocation( 'Test123' );
-		[ $indexSecondKey, $tableNameSecondKey ] = $cacheObj->getKeyLocation( 'Test133' );
+		$indexFirstKey = $cacheObj->getShardIndexesForKey( 'Test123' );
+		$tableNameFirstKey = $cacheObj->getTableNameForKey( 'Test123' );
+
+		$indexSecondKey = $cacheObj->getShardIndexesForKey( 'Test133' );
+		$tableNameSecondKey = $cacheObj->getTableNameForKey( 'Test133' );
+
 		$this->assertNotEquals( $indexFirstKey, $indexSecondKey );
 		$this->assertNotEquals( $tableNameFirstKey, $tableNameSecondKey );
 
-		[ $indexFirstKey, $tableNameFirstKey ] = $cacheObj->getKeyLocation( 'Test123|#|12345' );
-		[ $indexSecondKey, $tableNameSecondKey ] = $cacheObj->getKeyLocation( 'Test123|#|54321' );
+		$indexFirstKey = $cacheObj->getShardIndexesForKey( 'Test123|#|12345' );
+		$tableNameFirstKey = $cacheObj->getTableNameForKey( 'Test123|#|12345' );
+
+		$indexSecondKey = $cacheObj->getShardIndexesForKey( 'Test123|#|54321' );
+		$tableNameSecondKey = $cacheObj->getTableNameForKey( 'Test123|#|54321' );
+
 		$this->assertSame( $indexFirstKey, $indexSecondKey );
 		$this->assertSame( $tableNameFirstKey, $tableNameSecondKey );
 
-		[ $indexFirstKey, $tableNameFirstKey ] = $cacheObj->getKeyLocation(
-			$cache->makeKey( 'Test123', '|#|', '12345' )
-		);
-		[ $indexSecondKey, $tableNameSecondKey ] = $cacheObj->getKeyLocation(
-			$cache->makeKey( 'Test123', '|#|', '54321' )
-		);
+		$firstKey = $cache->makeKey( 'Test123', '|#|', '12345' );
+		$indexFirstKey = $cacheObj->getShardIndexesForKey( $firstKey );
+		$tableNameFirstKey = $cacheObj->getTableNameForKey( $firstKey );
+
+		$secondKey = $cache->makeKey( 'Test123', '|#|', '54321' );
+		$indexSecondKey = $cacheObj->getShardIndexesForKey( $secondKey );
+		$tableNameSecondKey = $cacheObj->getTableNameForKey( $secondKey );
+
 		$this->assertSame( $indexFirstKey, $indexSecondKey );
 		$this->assertSame( $tableNameFirstKey, $tableNameSecondKey );
 	}
