@@ -800,16 +800,9 @@ abstract class Module implements LoggerAwareInterface {
 		$content = [];
 
 		// Scripts
-		if ( $context->getDebug() === $context::DEBUG_LEGACY && !$context->getOnly() && $this->supportsURLLoading() ) {
-			// In legacy debug mode, let supporting modules like FileModule replace the bundled
-			// script closure with an array of alternative script URLs to consecutively load instead.
-			// See self::getScriptURLsForDebug() more details.
-			$scripts = $this->getScriptURLsForDebug( $context );
-		} else {
-			$scripts = $this->getScript( $context );
-			if ( is_string( $scripts ) ) {
-				$scripts = [ 'plainScripts' => [ [ 'content' => $scripts ] ] ];
-			}
+		$scripts = $this->getScript( $context );
+		if ( is_string( $scripts ) ) {
+			$scripts = [ 'plainScripts' => [ [ 'content' => $scripts ] ] ];
 		}
 		$content['scripts'] = $scripts;
 
