@@ -189,13 +189,6 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 
 		$externalUsername = $localUser->getName() . '@' . $externalDBname;
 
-		// FIXME: This should benefit from $tablesUsed; until this is possible, purge user_groups on
-		// the other wiki.
-		$externalDbw = $this->getServiceContainer()
-			->getConnectionProvider()
-			->getPrimaryDatabase( $externalDBname );
-		$externalDbw->truncateTable( 'user_groups', __METHOD__ );
-
 		// ensure using SpecialUserRights with external usernames doesn't throw (T342747, T342322)
 		$performer = $this->getTestUser( [ 'bureaucrat' ] );
 		$request = new FauxRequest( [
