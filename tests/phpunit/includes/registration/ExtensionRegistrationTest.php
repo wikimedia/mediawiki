@@ -41,6 +41,8 @@ class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 			'wgAvailableRights',
 			'wgAuthManagerAutoConfig',
 			'wgGroupPermissions',
+			'wgAddGroups',
+			'wgRemoveGroups',
 		] );
 
 		// For the purpose of this test, make $wgHooks behave like a real global config array.
@@ -624,6 +626,71 @@ class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 						'right' => true,
 						'nonduplicated' => true,
 					]
+				],
+			],
+		];
+		yield [
+			'$wgAddGroups and $wgRemoveGroups are merged correctly',
+			[
+				'wgAddGroups' => [
+					'key1' => [
+						'value1',
+					],
+					'key2' => [
+						'value2',
+					],
+				],
+				'wgRemoveGroups' => [
+					'key1' => [
+						'value1',
+					],
+					'key2' => [
+						'value2',
+					],
+				],
+			],
+			[
+				'AddGroups' => [
+					'key1' => [
+						'value1b',
+					],
+					'key3' => [
+						'value3',
+					],
+				],
+				'RemoveGroups' => [
+					'key1' => [
+						'value1b',
+					],
+					'key3' => [
+						'value3',
+					],
+				],
+			],
+			[
+				'wgAddGroups' => [
+					'key1' => [
+						'value1',
+						'value1b',
+					],
+					'key2' => [
+						'value2',
+					],
+					'key3' => [
+						'value3',
+					],
+				],
+				'wgRemoveGroups' => [
+					'key1' => [
+						'value1',
+						'value1b',
+					],
+					'key2' => [
+						'value2',
+					],
+					'key3' => [
+						'value3',
+					],
 				],
 			],
 		];

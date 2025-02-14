@@ -3142,6 +3142,8 @@ return [
 			'AuthManagerAutoConfig' => 'array_plus_2d',
 			'GroupPermissions' => 'array_plus_2d',
 			'RevokePermissions' => 'array_plus_2d',
+			'AddGroups' => 'array_merge_recursive',
+			'RemoveGroups' => 'array_merge_recursive',
 			'RateLimits' => 'array_plus_2d',
 			'GrantPermissions' => 'array_plus_2d',
 			'MWLoggerDefaultSpi' => 'replace',
