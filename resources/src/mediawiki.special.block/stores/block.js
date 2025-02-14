@@ -154,8 +154,6 @@ module.exports = exports = defineStore( 'block', () => {
 	/**
 	 * Whether the form has been submitted. This is watched by UserLookup
 	 * and ExpiryField to trigger validation on form submission.
-	 * After submission, this remains true until a form field is altered.
-	 * This is to ensure post-submission formErrors are not prematurely cleared.
 	 *
 	 * @type {Ref<boolean>}
 	 */
@@ -318,17 +316,19 @@ module.exports = exports = defineStore( 'block', () => {
 	}
 
 	/**
-	 * Reset the form to default values, optionally clearing the target user.
-	 * The values here should be the defaults set on the OOUI elements in SpecialBlock.php.
+	 * Reset the form to default values, optionally clearing the target user and behavioural refs.
+	 * The values here should be the defaults set on the elements in SpecialBlock.php.
 	 * These are not the same as the *preset* values fetched from URL parameters.
 	 *
-	 * @param {boolean} [full=false] Whether to clear the target user.
+	 * @param {boolean} [user=false] Whether to clear the target user.
+	 * @param {boolean} [internal=true] Whether to also reset internal refs not tied to a specific
+	 *   form field, such as `formErrors`, `formVisible` and `alreadyBlocked`.
 	 * @todo Infuse default values once we have Codex PHP (T377529).
 	 *   Until then this needs to be manually kept in sync with the PHP defaults.
 	 */
-	function resetForm( full = false ) {
+	function resetForm( user = false, internal = true ) {
 		// Form fields
-		if ( full ) {
+		if ( user ) {
 			targetUser.value = '';
 			targetExists.value = false;
 		}
@@ -348,7 +348,9 @@ module.exports = exports = defineStore( 'block', () => {
 		watchUser.value = false;
 		hardBlock.value = false;
 		// Other refs
-		resetFormInternal();
+		if ( internal ) {
+			resetFormInternal();
+		}
 	}
 
 	/**

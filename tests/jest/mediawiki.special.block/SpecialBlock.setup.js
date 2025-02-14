@@ -128,7 +128,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 							type: 'block',
 							user: 'Admin',
 							timestamp: '2024-09-17T14:30:51Z',
-							comment: 'A reason'
+							parsedcomment: 'A reason'
 						}
 					],
 					blocks: []
@@ -144,12 +144,30 @@ function mockMwApiGet( additionalMocks = [] ) {
 			},
 			response: {
 				query: {
+					logevents: [
+						{
+							logid: 980,
+							title: 'User:ActiveBlockedUser',
+							params: {
+								duration: '100 years',
+								flags: [
+									'noautoblock'
+								],
+								sitewide: true,
+								expiry: '2124-09-17T14:30:51Z'
+							},
+							type: 'block',
+							user: 'Admin',
+							timestamp: '2024-09-17T14:30:51Z',
+							parsedcomment: 'A reason'
+						}
+					],
 					blocks: [
 						{
 							id: 1110,
 							user: 'ActiveBlockedUser',
 							timestamp: '2024-09-17T14:30:51Z',
-							expiry: '2029-09-17T14:30:51Z',
+							expiry: '2124-09-17T14:30:51Z',
 							by: 'Admin',
 							anononly: false,
 							nocreate: false,
@@ -157,6 +175,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 							noemail: true,
 							allowusertalk: false,
 							hidden: true,
+							reason: 'Spamming talk page',
 							parsedreason: 'Spamming talk page',
 							restrictions: []
 						},
@@ -172,6 +191,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 							noemail: true,
 							allowusertalk: false,
 							hidden: true,
+							reason: 'Spamming talk page',
 							parsedreason: 'Spamming talk page',
 							restrictions: []
 						},
@@ -187,6 +207,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 							noemail: true,
 							allowusertalk: false,
 							hidden: true,
+							reason: 'Spamming talk page',
 							parsedreason: 'Spamming talk page',
 							restrictions: []
 						}
@@ -234,7 +255,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 							type: 'block',
 							user: 'Admin',
 							timestamp: '2024-09-17T14:30:51Z',
-							comment: 'A reason'
+							parsedcomment: 'A reason'
 						},
 						{
 							logid: 981,
@@ -250,7 +271,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 							type: 'block',
 							user: 'Admin',
 							timestamp: '2024-09-18T14:30:51Z',
-							comment: 'A reason'
+							parsedcomment: 'A reason'
 						},
 						{
 							logid: 982,
@@ -266,7 +287,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 							type: 'block',
 							user: 'Admin',
 							timestamp: '2024-09-19T14:30:51Z',
-							comment: 'A reason'
+							parsedcomment: 'A reason'
 						},
 						{
 							logid: 983,
@@ -282,7 +303,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 							type: 'block',
 							user: 'Admin',
 							timestamp: '2024-09-20T14:30:51Z',
-							comment: 'A reason'
+							parsedcomment: 'A reason'
 						},
 						{
 							logid: 984,
@@ -298,7 +319,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 							type: 'block',
 							user: 'Admin',
 							timestamp: '2024-09-21T14:30:51Z',
-							comment: 'A reason'
+							parsedcomment: 'A reason'
 						},
 						{
 							logid: 985,
@@ -314,7 +335,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 							type: 'block',
 							user: 'Admin',
 							timestamp: '2024-09-22T14:30:51Z',
-							comment: 'A reason'
+							parsedcomment: 'A reason'
 						},
 						{
 							logid: 986,
@@ -330,7 +351,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 							type: 'block',
 							user: 'Admin',
 							timestamp: '2024-09-23T14:30:51Z',
-							comment: 'A reason'
+							parsedcomment: 'A reason'
 						},
 						{
 							logid: 987,
@@ -346,7 +367,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 							type: 'block',
 							user: 'Admin',
 							timestamp: '2024-09-24T14:30:51Z',
-							comment: 'A reason'
+							parsedcomment: 'A reason'
 						},
 						{
 							logid: 988,
@@ -362,7 +383,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 							type: 'block',
 							user: 'Admin',
 							timestamp: '2024-09-25T14:30:51Z',
-							comment: 'A reason'
+							parsedcomment: 'A reason'
 						},
 						{
 							logid: 989,
@@ -378,7 +399,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 							type: 'block',
 							user: 'Admin',
 							timestamp: '2024-09-26T14:30:51Z',
-							comment: 'A reason'
+							parsedcomment: 'A reason'
 						}
 					],
 					blocks: []

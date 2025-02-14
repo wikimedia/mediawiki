@@ -78,6 +78,7 @@ const mw = {
 	},
 	Title: TitleMock,
 	util: {
+		debounce: jest.fn( ( fn ) => fn() ),
 		getUrl: jest.fn( ( pageName ) => '/wiki/' + pageName ),
 		isIPAddress: jest.fn(),
 		isInfinity: jest.fn(),
