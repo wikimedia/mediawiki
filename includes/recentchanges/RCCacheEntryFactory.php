@@ -21,6 +21,7 @@
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Linker\UserLinkRenderer;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
@@ -44,21 +45,26 @@ class RCCacheEntryFactory {
 	 */
 	private $linkRenderer;
 
-	private MapCacheLRU $userLinkCache;
+	private UserLinkRenderer $userLinkRenderer;
+
 	private MapCacheLRU $toolLinkCache;
 
 	/**
 	 * @param IContextSource $context
 	 * @param string[] $messages
 	 * @param LinkRenderer $linkRenderer
+	 * @param UserLinkRenderer $userLinkRenderer
 	 */
 	public function __construct(
-		IContextSource $context, $messages, LinkRenderer $linkRenderer
+		IContextSource $context,
+		$messages,
+		LinkRenderer $linkRenderer,
+		UserLinkRenderer $userLinkRenderer
 	) {
 		$this->context = $context;
 		$this->messages = $messages;
 		$this->linkRenderer = $linkRenderer;
-		$this->userLinkCache = new MapCacheLRU( 50 );
+		$this->userLinkRenderer = $userLinkRenderer;
 		$this->toolLinkCache = new MapCacheLRU( 50 );
 	}
 
@@ -305,22 +311,10 @@ class RCCacheEntryFactory {
 			$userLink = ' <span class="' . $deletedClass . '">' .
 				$this->context->msg( 'rev-deleted-user' )->escaped() . '</span>';
 		} else {
-			/**
-			 * UserLink requires parser to render which when run on thousands of records can add
-			 * up to significant amount of processing time.
-			 * @see RCCacheEntryFactory::newFromRecentChange
-			 */
-			$userLink = $this->userLinkCache->getWithSetCallback(
-				$this->userLinkCache->makeKey(
-					$cacheEntry->mAttribs['rc_user_text'],
-					$this->context->getUser()->getName(),
-					$this->context->getLanguage()->getCode()
-				),
-				static fn () => Linker::userLink(
-					$cacheEntry->mAttribs['rc_user'],
-					$cacheEntry->mAttribs['rc_user_text'],
-					ExternalUserNames::getLocal( $cacheEntry->mAttribs['rc_user_text'] )
-				)
+			return $this->userLinkRenderer->userLink(
+				$cacheEntry->getPerformerIdentity(),
+				$this->context,
+				ExternalUserNames::getLocal( $cacheEntry->mAttribs['rc_user_text'] )
 			);
 		}
 

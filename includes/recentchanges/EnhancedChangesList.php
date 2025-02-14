@@ -22,6 +22,7 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\Html\TemplateParser;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -60,7 +61,8 @@ class EnhancedChangesList extends ChangesList {
 		$this->cacheEntryFactory = new RCCacheEntryFactory(
 			$context,
 			$this->message,
-			$this->linkRenderer
+			$this->linkRenderer,
+			MediaWikiServices::getInstance()->getUserLinkRenderer()
 		);
 		$this->templateParser = new TemplateParser();
 	}

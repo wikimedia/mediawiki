@@ -194,4 +194,63 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 			],
 		];
 	}
+
+	/**
+	 * @dataProvider provideCacheParams
+	 *
+	 * @param bool $shouldCache `true` if the user link should be cached, `false` otherwise
+	 * @param UserIdentity $otherUser User to use in the second call to userLink().
+	 * @param string|null $altUserName Alternative user name to use in the second call to userLink().
+	 * @param string[] $attributes Attributes to use in the second call to userLink().
+	 */
+	public function testUserLinkShouldCacheByUserNameAndParams(
+		bool $shouldCache,
+		UserIdentity $otherUser,
+		?string $altUserName = null,
+		array $attributes = []
+	): void {
+		$user = new UserIdentityValue( 1, 'TestUser' );
+
+		$firstCall = $this->userLinkRenderer->userLink(
+			$user,
+			new FakeQqxMessageLocalizer()
+		);
+		$otherCall = $this->userLinkRenderer->userLink(
+			$otherUser,
+			new FakeQqxMessageLocalizer(),
+			$altUserName,
+			$attributes
+		);
+
+		if ( $shouldCache ) {
+			$this->assertSame( $firstCall, $otherCall );
+		} else {
+			$this->assertNotEquals( $firstCall, $otherCall );
+		}
+	}
+
+	public static function provideCacheParams(): iterable {
+		yield 'same user and params' => [
+			true,
+			new UserIdentityValue( 1, 'TestUser' )
+		];
+
+		yield 'same user but different link text' => [
+			false,
+			new UserIdentityValue( 1, 'TestUser' ),
+			'foo'
+		];
+
+		yield 'same user but different attributes' => [
+			false,
+			new UserIdentityValue( 1, 'TestUser' ),
+			null,
+			[ 'class' => 'foo' ]
+		];
+
+		yield 'different user' => [
+			false,
+			new UserIdentityValue( 2, 'OtherUser' )
+		];
+	}
 }

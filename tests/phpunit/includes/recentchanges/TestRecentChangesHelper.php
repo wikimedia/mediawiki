@@ -106,7 +106,8 @@ class TestRecentChangesHelper {
 		$rcCacheFactory = new RCCacheEntryFactory(
 			new RequestContext(),
 			[ 'diff' => 'diff', 'cur' => 'cur', 'last' => 'last' ],
-			MediaWikiServices::getInstance()->getLinkRenderer()
+			MediaWikiServices::getInstance()->getLinkRenderer(),
+			MediaWikiServices::getInstance()->getUserLinkRenderer()
 		);
 		return $rcCacheFactory->newFromRecentChange( $recentChange, false );
 	}

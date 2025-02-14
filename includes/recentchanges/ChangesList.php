@@ -28,6 +28,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Linker\UserLinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Pager\PagerTools;
@@ -108,6 +109,8 @@ class ChangesList extends ContextSource {
 
 	private LogFormatterFactory $logFormatterFactory;
 
+	private UserLinkRenderer $userLinkRenderer;
+
 	/**
 	 * @param IContextSource $context
 	 * @param ChangesListFilterGroup[] $filterGroups Array of ChangesListFilterGroup objects (currently optional)
@@ -122,6 +125,7 @@ class ChangesList extends ContextSource {
 		$this->linkRenderer = $services->getLinkRenderer();
 		$this->commentFormatter = $services->getRowCommentFormatter();
 		$this->logFormatterFactory = $services->getLogFormatterFactory();
+		$this->userLinkRenderer = $services->getUserLinkRenderer();
 		$this->tagsCache = new MapCacheLRU( 50 );
 		$this->userLinkCache = new MapCacheLRU( 50 );
 	}
@@ -741,6 +745,10 @@ class ChangesList extends ContextSource {
 			$s .= ' <span class="' . $deletedClass . '">' .
 				$this->msg( 'rev-deleted-user' )->escaped() . '</span>';
 		} else {
+			$s .= $this->userLinkRenderer->userLink(
+				$rc->getPerformerIdentity(),
+				$this
+			);
 			# Don't wrap result of this with another tag, see T376814
 			$s .= $this->userLinkCache->getWithSetCallback(
 				$this->userLinkCache->makeKey(
@@ -748,18 +756,13 @@ class ChangesList extends ContextSource {
 					$this->getUser()->getName(),
 					$this->getLanguage()->getCode()
 				),
-				static function () use ( $rc ) {
-					return Linker::userLink(
-						$rc->mAttribs['rc_user'],
-						$rc->mAttribs['rc_user_text']
-					) . Linker::userToolLinks(
-						$rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'],
-						false, 0, null,
-						// The text content of tools is not wrapped with parentheses or "piped".
-						// This will be handled in CSS (T205581).
-						false
-					);
-				}
+				// The text content of tools is not wrapped with parentheses or "piped".
+				// This will be handled in CSS (T205581).
+				static fn () => Linker::userToolLinks(
+					$rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'],
+					false, 0, null,
+					false
+				)
 			);
 		}
 	}

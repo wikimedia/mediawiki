@@ -4,6 +4,7 @@ declare( strict_types=1 );
 namespace MediaWiki\Linker;
 
 use HtmlArmor;
+use MapCacheLRU;
 use MediaWiki\Html\Html;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\TitleValue;
@@ -23,6 +24,14 @@ class UserLinkRenderer {
 	private SpecialPageFactory $specialPageFactory;
 	private LinkRenderer $linkRenderer;
 
+	/**
+	 * Process cache for user links keyed by user name,
+	 * to optimize rendering large pagers with potentially repeated user links.
+	 *
+	 * @var MapCacheLRU
+	 */
+	private MapCacheLRU $userLinkCache;
+
 	public function __construct(
 		TempUserConfig $tempUserConfig,
 		SpecialPageFactory $specialPageFactory,
@@ -31,10 +40,15 @@ class UserLinkRenderer {
 		$this->tempUserConfig = $tempUserConfig;
 		$this->specialPageFactory = $specialPageFactory;
 		$this->linkRenderer = $linkRenderer;
+
+		// Set a large enough cache size to accommodate long pagers,
+		// such as Special:RecentChanges with a high limit.
+		$this->userLinkCache = new MapCacheLRU( 1_000 );
 	}
 
 	/**
 	 * Render a user page link (or user contributions for anonymous and temporary users).
+	 * Returns potentially cached link HTML.
 	 *
 	 * @param UserIdentity $targetUser The user to render a link for.
 	 * @param MessageLocalizer $unused Unused until follow-up patchset.
@@ -44,6 +58,33 @@ class UserLinkRenderer {
 	 * @return string HTML fragment
 	 */
 	public function userLink(
+		UserIdentity $targetUser,
+		MessageLocalizer $unused,
+		?string $altUserName = null,
+		array $attributes = []
+	): string {
+		return $this->userLinkCache->getWithSetCallback(
+			$this->userLinkCache->makeKey(
+				$targetUser->getName(),
+				$altUserName ?? '',
+				implode( ' ', $attributes )
+			),
+			fn () => $this->renderUserLink( $targetUser, $unused, $altUserName, $attributes )
+		);
+	}
+
+	/**
+	 * Render a user page link (or user contributions for anonymous and temporary users),
+	 * without caching.
+	 *
+	 * @param UserIdentity $targetUser The user to render a link for.
+	 * @param MessageLocalizer $unused Unused until follow-up patchset.
+	 * @param string|null $altUserName Optional text to display instead of the user name,
+	 * or `null` to use the user name.
+	 * @param string[] $attributes Optional extra HTML attributes for the link.
+	 * @return string HTML fragment
+	 */
+	private function renderUserLink(
 		UserIdentity $targetUser,
 		MessageLocalizer $unused,
 		?string $altUserName = null,
