@@ -3278,6 +3278,7 @@
 	"tag-mw-blank-description": "Redigeringer som tømmer en side",
 	"tag-mw-replace": "Erstattet",
 	"tag-mw-replace-description": "Redigeringer som fjerner mere end 90% af indholdet på en side",
+	"tag-mw-recreated": "Genoprettet",
 	"tag-mw-rollback": "Tilbagerulning",
 	"tag-mw-rollback-description": "Redigeringer, der ruller tidligere redigeringer tilbage ved hjælp af \"rul tilbage\"-linket",
 	"tag-mw-undo": "Omgjort",

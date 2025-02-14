@@ -98,6 +98,7 @@
 			"Where next Columbus",
 			"Where next Columbus?",
 			"WikiPhoenix",
+			"Zache",
 			"לערי ריינהארט",
 			"아라"
 		]
@@ -3621,9 +3622,9 @@
 	"logentry-protect-protect-cascade": "$1 {{GENDER:$2|skyddade}} $3 $4 [kaskaderande]",
 	"logentry-protect-modify": "$1 {{GENDER:$2|ändrade}} skrivskyddsinställningar för $3 $4",
 	"logentry-protect-modify-cascade": "$1 {{GENDER:$2|ändrade}} skrivskyddsinställningar för $3 $4 [kaskaderande]",
-	"logentry-rights-rights": "$1 {{GENDER:$2|ändrade}} gruppmedlemskapet för {{GENDER:$6|$3}} från $4 till $5",
+	"logentry-rights-rights": "$1 {{GENDER:$2|ändrade}} gruppmedlemskapet för {{GENDER:$6|$3}}: $7",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|ändrade}} gruppmedlemskapet för $3",
-	"logentry-rights-autopromote": "$1 {{GENDER:$2|befordrades}} automatiskt från $4 till $5",
+	"logentry-rights-autopromote": "$1 {{GENDER:$2|befordrades}} automatiskt: $7",
 	"logentry-upload-upload": "$1 {{GENDER:$2|laddade upp}} $3",
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|laddade upp}} en ny version av $3",
 	"logentry-upload-revert": "$1 {{GENDER:$2|återställde}} $3 till en gammal version",

@@ -3637,7 +3637,7 @@
 	"logentry-protect-protect-cascade": "$1 {{GENDER:$2|suojasi}} kohteen $3 $4 [tarttuvasti]",
 	"logentry-protect-modify": "$1 {{GENDER:$2|muutti}} suojausasetuksia kohteessa $3 $4",
 	"logentry-protect-modify-cascade": "$1 {{GENDER:$2|muutti}} suojausasetuksia kohteessa $3 $4 [tarttuvasti]",
-	"logentry-rights-rights": "$1 {{GENDER:$2|muutti}} käyttäjän {{GENDER:$6|$3}} oikeuksia:",
+	"logentry-rights-rights": "$1 {{GENDER:$2|muutti}} käyttäjän {{GENDER:$6|$3}} oikeuksia: $7",
 	"logentry-rights-rights-granted": "{{GENDER:$2|lisätty}} $1",
 	"logentry-rights-rights-revoked": "{{GENDER:$2|poistettu}} $1",
 	"logentry-rights-rights-expiry-changed": "{{GENDER:$2|muutti}} oikeuden $1 kestoa",

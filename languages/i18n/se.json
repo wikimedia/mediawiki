@@ -24,6 +24,7 @@
 			"Trondtr",
 			"WMNO sámeprošeakta",
 			"Yupik",
+			"Zache",
 			"לערי ריינהארט",
 			"아라"
 		]
@@ -3412,9 +3413,9 @@
 	"logentry-protect-protect-cascade": "Geavaheaddji $1 {{GENDER:$2|suodjalii}} siiddu $3 $4 [viđjesuodjalus]",
 	"logentry-protect-modify": "Geavaheaddji $1 {{GENDER:$2|molssui}} siiddu $3 suodjalanásahusaid $4",
 	"logentry-protect-modify-cascade": "Geavaheaddji $1 {{GENDER:$2|suodjalii}} siiddu $3 suodjalanásahusaid $4 [viđjesuodjalus]",
-	"logentry-rights-rights": "$1 {{GENDER:$2|rievdadii}} joavkomiellahtođa {{GENDER:$6|$3}}:ii; $4:s $5:ii.",
+	"logentry-rights-rights": "$1 {{GENDER:$2|rievdadii}} joavkomiellahtođa {{GENDER:$6|$3}}:ii; $7.",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|rievdadii}} $3 joavkomiellahttovuođa",
-	"logentry-rights-autopromote": "$1 automáhtalaččat  {{GENDER:$2|ovddiduvvui}} $4:s $5:in.",
+	"logentry-rights-autopromote": "$1 automáhtalaččat  {{GENDER:$2|ovddiduvvui}}: $7.",
 	"logentry-upload-upload": "$1 {{GENDER:$2|vurkejuvvon}} $3",
 	"logentry-upload-overwrite": "$1{{GENDER:$2|vurkii}} ođđa veršuvnna $3'is",
 	"logentry-upload-revert": "Geavaheaddji $1 {{GENDER:$2|máhcahii}} siiddu $3 ovddit veršuvdnii",

@@ -10,7 +10,8 @@
 			"Misosoof",
 			"Pyscowicz",
 			"Reedy",
-			"Ruppijeva"
+			"Ruppijeva",
+			"Zache"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Kategourii|Kategouriet}}",
@@ -3346,7 +3347,7 @@
 	"logentry-protect-protect-cascade": "$1 {{GENDER:$2|suojai}} $3 $4 [tartuvasti]",
 	"logentry-protect-modify": "$1 {{GENDER:$2|muutti}} suojavusazetuksii $3 $4",
 	"logentry-protect-modify-cascade": "$1 {{GENDER:$2|muutti}} suojavusazetuksii  $3 $4 [tartuvasti]",
-	"logentry-rights-rights": "$1 {{GENDER:$2|muutti}} käyttäjän {{GENDER:$6|$3}} joukkolois ozanotandat $4-späi joukkoloih $5",
+	"logentry-rights-rights": "$1 {{GENDER:$2|muutti}} käyttäjän {{GENDER:$6|$3}} joukkolois ozanotandat: $7",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|muutti}} käyttäjän $3 joukkolois ozanotandat",
 	"logentry-rights-autopromote": "Käyttäi $1 oli avtomuattizesti {{GENDER:$2|siiretty}} joukkoloispäi $4 joukkoloih $5",
 	"logentry-upload-upload": "$1 {{GENDER:$2|tallendi}} tiijoston $3",
