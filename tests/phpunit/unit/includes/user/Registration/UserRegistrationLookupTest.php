@@ -10,6 +10,7 @@ use MediaWiki\User\Registration\LocalUserRegistrationProvider;
 use MediaWiki\User\Registration\UserRegistrationLookup;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
+use Psr\Container\ContainerInterface;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
@@ -124,5 +125,74 @@ class UserRegistrationLookupTest extends MediaWikiUnitTestCase {
 			[ null, '20190101000000', '20190101000000' ],
 			[ '20200101000000', null, '20200101000000' ],
 		];
+	}
+
+	public function testGetFirstRegistrationBatchShouldSelectEarliestNonNullTimestampPerUser(): void {
+		$user = new UserIdentityValue( 1, 'TestUser' );
+		$otherUser = new UserIdentityValue( 2, 'OtherUser' );
+
+		$localProvider = $this->createMock( IUserRegistrationProvider::class );
+		$localProvider->method( 'fetchRegistrationBatch' )
+			->with( [ $user, $otherUser ] )
+			->willReturn( [
+				$user->getId() => '20200101000000',
+				$otherUser->getId() => null,
+			] );
+		$otherProvider = $this->createMock( IUserRegistrationProvider::class );
+		$otherProvider->method( 'fetchRegistrationBatch' )
+			->with( [ $user, $otherUser ] )
+			->willReturn( [
+				$user->getId() => '20240102000000',
+				$otherUser->getId() => '20230103000000',
+			] );
+
+		$lookup = new UserRegistrationLookup(
+			new ServiceOptions( UserRegistrationLookup::CONSTRUCTOR_OPTIONS, [
+				MainConfigNames::UserRegistrationProviders => [
+					LocalUserRegistrationProvider::TYPE => [
+						'factory' => static fn () => $localProvider,
+					],
+					'other' => [
+						'factory' => static fn () => $otherProvider,
+					],
+				]
+			] ),
+			new ObjectFactory( $this->createMock( ContainerInterface::class ) )
+		);
+
+		$earliestTimestampsById = $lookup->getFirstRegistrationBatch( [ $user, $otherUser ] );
+
+		$this->assertCount( 2, $earliestTimestampsById );
+		$this->assertSame( '20200101000000', $earliestTimestampsById[$user->getId()] );
+		$this->assertSame( '20230103000000', $earliestTimestampsById[$otherUser->getId()] );
+	}
+
+	public function testGetFirstRegistrationBatchShouldHandleNoUsers(): void {
+		$localProvider = $this->createMock( IUserRegistrationProvider::class );
+		$localProvider->method( 'fetchRegistrationBatch' )
+			->with( [] )
+			->willReturn( [] );
+		$otherProvider = $this->createMock( IUserRegistrationProvider::class );
+		$otherProvider->method( 'fetchRegistrationBatch' )
+			->with( [] )
+			->willReturn( [] );
+
+		$lookup = new UserRegistrationLookup(
+			new ServiceOptions( UserRegistrationLookup::CONSTRUCTOR_OPTIONS, [
+				MainConfigNames::UserRegistrationProviders => [
+					LocalUserRegistrationProvider::TYPE => [
+						'factory' => static fn () => $localProvider,
+					],
+					'other' => [
+						'factory' => static fn () => $otherProvider,
+					],
+				]
+			] ),
+			new ObjectFactory( $this->createMock( ContainerInterface::class ) )
+		);
+
+		$earliestTimestampsById = $lookup->getFirstRegistrationBatch( [] );
+
+		$this->assertSame( [], $earliestTimestampsById );
 	}
 }

@@ -6,7 +6,6 @@ use MediaWiki\Config\ConfigException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\Registration\IUserRegistrationProvider;
 use MediaWiki\User\Registration\UserRegistrationLookup;
-use MediaWiki\User\UserIdentity;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -43,27 +42,51 @@ class UserRegistrationLookupIntegrationTest extends MediaWikiIntegrationTestCase
 	}
 
 	public function testCustom() {
+		$user = $this->getTestUser()->getUser();
+		$otherUser = $this->getMutableTestUser( [], 'OtherUser' )->getUser();
+
 		$providers = $this->getConfVar( MainConfigNames::UserRegistrationProviders );
+
+		$testProvider = $this->createMock( IUserRegistrationProvider::class );
+		$testProvider->method( 'fetchRegistration' )
+			->with( $user )
+			->willReturn( '20230101000000' );
+		$testProvider->method( 'fetchRegistrationBatch' )
+			->with( [ $user, $otherUser ] )
+			->willReturn( [
+				$user->getId() => '20230101000000',
+				$otherUser->getId() => '20230201000000',
+			] );
+
 		$providers['test-foo'] = [
-			'factory' => static function () {
-				return new class implements IUserRegistrationProvider {
-					/**
-					 * @inheritDoc
-					 */
-					public function fetchRegistration( UserIdentity $user ) {
-						return '20230101000000';
-					}
-				};
-			}
+			'factory' => static fn () => $testProvider,
 		];
+
 		$this->overrideConfigValue( MainConfigNames::UserRegistrationProviders, $providers );
 
-		$user = $this->getTestUser()->getUser();
+		$this->assertNotSame( $user->getId(), $otherUser->getId() );
 		$this->assertSame(
 			'20230101000000',
 			$this->getServiceContainer()->getUserRegistrationLookup()->getRegistration(
 				$user,
 				'test-foo'
+			)
+		);
+
+		$this->assertSame(
+			'20230101000000',
+			$this->getServiceContainer()->getUserRegistrationLookup()->getFirstRegistration(
+				$user
+			)
+		);
+
+		$this->assertSame(
+			[
+				$user->getId() => '20230101000000',
+				$otherUser->getId() => '20230201000000',
+			],
+			$this->getServiceContainer()->getUserRegistrationLookup()->getFirstRegistrationBatch(
+				[ $user, $otherUser ]
 			)
 		);
 	}
