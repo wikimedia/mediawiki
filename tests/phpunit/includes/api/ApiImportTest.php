@@ -32,12 +32,19 @@ class ApiImportTest extends ApiUploadTestCase {
 	public function testImport() {
 		$title = $this->getNonexistingTestPage()->getTitle();
 
-		// Declare expectations
+		// We expect two PageUpdated events, one triggered by
+		// ImportableOldRevisionImporter when importing the latest revision;
+		// And one triggered by ApiImportReporter when creating a dummy revision.
+		// NOTE: it's not clear whether this is intentional or desirable!
 
-		// Event emitted by ImportableOldRevisionImporter
+		$calls = 0;
+
+		// Declare expectations
 		$this->expectDomainEvent(
-			PageUpdatedEvent::TYPE, 1,
-			static function ( PageUpdatedEvent $event ) use ( $title ) {
+			PageUpdatedEvent::TYPE, 2,
+			static function ( PageUpdatedEvent $event ) use ( &$calls, $title ) {
+				$calls++;
+
 				Assert::assertTrue( $event->getPage()->isSamePageAs( $title ) );
 
 				Assert::assertTrue(
@@ -48,17 +55,23 @@ class ApiImportTest extends ApiUploadTestCase {
 				Assert::assertTrue( $event->isSilent(), 'isSilent' );
 				Assert::assertTrue( $event->isAutomated(), 'isAutomated' );
 
-				Assert::assertTrue( $event->isNew(), 'isNew' );
-				Assert::assertTrue( $event->isRevisionChange(), 'isRevisionChange' );
-				Assert::assertTrue( $event->isContentChange(), 'isContentChange' );
+				if ( $calls === 1 ) {
+					// First call, from ImportableOldRevisionImporter
+					Assert::assertTrue( $event->isNew(), 'isNew' );
+					Assert::assertTrue( $event->isRevisionChange(), 'isRevisionChange' );
+					Assert::assertTrue( $event->isContentChange(), 'isContentChange' );
+				} else {
+					// Second call, from ApiImportReporter
+					Assert::assertFalse( $event->isNew(), 'isNew' );
+					Assert::assertTrue( $event->isRevisionChange(), 'isRevisionChange' );
+					Assert::assertFalse( $event->isContentChange(), 'isContentChange' );
+				}
 			}
 		);
 
-		// Hook fired by ImportReporter
+		// Hooks fired by PageUpdater
 		$this->expectHook( 'RevisionFromEditComplete', 1 );
-
-		// Hook currently not fired, may change
-		$this->expectHook( 'PageSaveComplete', 0 );
+		$this->expectHook( 'PageSaveComplete', 1 );
 
 		// Expect only non-edit recent changes entry, but no edit count
 		// or user talk.

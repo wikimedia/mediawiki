@@ -18,7 +18,6 @@
  * @file
  */
 
-use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\AutoCommitUpdate;
@@ -32,7 +31,9 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
+use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
@@ -2100,35 +2101,17 @@ class LocalFile extends File {
 		if ( $descTitle->exists() ) {
 			if ( $createNullRevision ) {
 				$services = MediaWikiServices::getInstance();
-				$revStore = $services->getRevisionStore();
 				// Use own context to get the action text in content language
 				$formatter = $services->getLogFormatterFactory()->newFromEntry( $logEntry );
 				$formatter->setContext( RequestContext::newExtraneousContext( $descTitle ) );
 				$editSummary = $formatter->getPlainActionText();
-				$summary = CommentStoreComment::newUnsavedComment( $editSummary );
-				$nullRevRecord = $revStore->newNullRevision(
-					$dbw,
-					$descTitle,
-					$summary,
-					false,
-					$performer->getUser()
-				);
 
-				if ( $nullRevRecord ) {
-					$inserted = $revStore->insertRevisionOn( $nullRevRecord, $dbw );
+				$nullRevRecord = $wikiPage->newPageUpdater( $performer->getUser() )
+					->setCause( PageUpdater::CAUSE_UPLOAD )
+					->saveDummyRevision( $editSummary );
 
-					$this->getHookRunner()->onRevisionFromEditComplete(
-						$wikiPage,
-						$inserted,
-						$inserted->getParentId(),
-						$performer->getUser(),
-						$tags
-					);
-
-					$wikiPage->updateRevisionOn( $dbw, $inserted );
-					// Associate null revision id
-					$logEntry->setAssociatedRevId( $inserted->getId() );
-				}
+				// Associate null revision id
+				$logEntry->setAssociatedRevId( $nullRevRecord->getId() );
 			}
 
 			$newPageContent = null;
@@ -2161,14 +2144,11 @@ class LocalFile extends File {
 					# New file page; create the description page.
 					# There's already a log entry, so don't make a second RC entry
 					# CDN and file cache for the description page are purged by doUserEditContent.
-					$status = $wikiPage->doUserEditContent(
-						$newPageContent,
-						$performer,
-						$comment,
-						EDIT_NEW | EDIT_SUPPRESS_RC
-					);
+					$revRecord = $wikiPage->newPageUpdater( $performer )
+						->setCause( PageUpdater::CAUSE_UPLOAD )
+						->setContent( SlotRecord::MAIN, $newPageContent )
+						->saveRevision( $comment, EDIT_NEW | EDIT_SUPPRESS_RC );
 
-					$revRecord = $status->getNewRevision();
 					if ( $revRecord ) {
 						// Associate new page revision id
 						$logEntry->setAssociatedRevId( $revRecord->getId() );

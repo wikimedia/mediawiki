@@ -18,7 +18,6 @@
  * @file
  */
 
-use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
@@ -26,6 +25,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Status\Status;
+use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Title\ForeignTitle;
 use MediaWiki\Xml\Xml;
 
@@ -157,32 +157,11 @@ class ImportReporter extends ContextSource {
 					. $this->reason;
 			}
 
-			$comment = CommentStoreComment::newUnsavedComment( $detail );
-			$dbw = $services->getConnectionProvider()->getPrimaryDatabase();
-			$revStore = $services->getRevisionStore();
-			$nullRevRecord = $revStore->newNullRevision(
-				$dbw,
-				$pageIdentity,
-				$comment,
-				true,
-				$this->getUser()
-			);
-
-			$nullRevId = null;
-			if ( $nullRevRecord !== null ) {
-				$inserted = $revStore->insertRevisionOn( $nullRevRecord, $dbw );
-				$nullRevId = $inserted->getId();
-				$parentRevId = $inserted->getParentId();
-				$page = $services->getWikiPageFactory()->newFromTitle( $pageIdentity );
-
-				// Update page record
-				$page->updateRevisionOn( $dbw, $inserted );
-
-				$fakeTags = [];
-				$this->getHookRunner()->onRevisionFromEditComplete(
-					$page, $inserted, $parentRevId, $this->getUser(), $fakeTags
-				);
-			}
+			$wikiPage = $services->getWikiPageFactory()->newFromTitle( $pageIdentity );
+			$dummyRevRecord = $wikiPage->newPageUpdater( $this->getUser() )
+				->setCause( PageUpdater::CAUSE_IMPORT )
+				->setAutomated( true )
+				->saveDummyRevision( $detail );
 
 			// Create the import log entry
 			$logEntry = new ManualLogEntry( 'import', $action );
@@ -191,8 +170,7 @@ class ImportReporter extends ContextSource {
 			$logEntry->setPerformer( $this->getUser() );
 			$logEntry->setParameters( $logParams );
 			// Make sure the null revision will be tagged as well
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T303637
-			$logEntry->setAssociatedRevId( $nullRevId );
+			$logEntry->setAssociatedRevId( $dummyRevRecord->getId() );
 			if ( count( $this->logTags ) ) {
 				$logEntry->addTags( $this->logTags );
 			}

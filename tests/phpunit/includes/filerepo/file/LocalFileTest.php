@@ -951,6 +951,11 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 				Assert::assertTrue( $event->isRevisionChange(), 'isRevisionChange' );
 				Assert::assertTrue( $event->isContentChange(), 'isContentChange' );
 
+				Assert::assertTrue(
+					$event->hasCause( PageUpdatedEvent::CAUSE_UPLOAD ),
+					PageUpdatedEvent::CAUSE_UPLOAD
+				);
+
 				Assert::assertTrue( $event->isSilent(), 'isSilent' );
 				Assert::assertFalse( $event->isAutomated(), 'isAutomated' );
 			}
@@ -997,14 +1002,28 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		// flush the queue
 		$this->runDeferredUpdates();
 
-		// Event currently not emitted, could change
-		$this->expectDomainEvent( PageUpdatedEvent::TYPE, 0 );
+		$this->expectDomainEvent(
+			PageUpdatedEvent::TYPE, 1,
+			static function ( PageUpdatedEvent $event ) use ( &$calls, $file ) {
+				Assert::assertSame( $file->getName(), $event->getPage()->getDBkey() );
 
-		// Hook fired by PageUpdater::saveRevision
+				Assert::assertFalse( $event->isNew(), 'isNew' );
+				Assert::assertTrue( $event->isRevisionChange(), 'isRevisionChange' );
+				Assert::assertFalse( $event->isContentChange(), 'isContentChange' );
+
+				Assert::assertTrue(
+					$event->hasCause( PageUpdatedEvent::CAUSE_UPLOAD ),
+					PageUpdatedEvent::CAUSE_UPLOAD
+				);
+
+				Assert::assertTrue( $event->isSilent(), 'isSilent' );
+				Assert::assertTrue( $event->isAutomated(), 'isAutomated' );
+			}
+		);
+
+		// Hooks fired by PageUpdater
 		$this->expectHook( 'RevisionFromEditComplete' );
-
-		// Hook currently not fired, may change
-		$this->expectHook( 'PageSaveComplete', 0 );
+		$this->expectHook( 'PageSaveComplete' );
 
 		// now upload again
 		$file = new LocalFile( $title, $repo );

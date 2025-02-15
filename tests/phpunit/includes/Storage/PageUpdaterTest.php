@@ -380,6 +380,36 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	/**
+	 * @covers \MediaWiki\Storage\PageUpdater::saveDummyRevision()
+	 */
+	public function testDummyRevision() {
+		$page = $this->getExistingTestPage();
+		$calls = [];
+
+		$this->setTemporaryHook(
+			'RevisionFromEditComplete',
+			static function () use ( &$calls ) {
+				$calls[] = 'RevisionFromEditComplete';
+			}
+		);
+
+		$user = $this->getTestUser()->getUser();
+		$updater = $page->newPageUpdater( $user );
+
+		$oldRevId = $page->getLatest();
+
+		$rev = $updater->saveDummyRevision( 'test' );
+
+		$this->assertNotSame( $oldRevId, $rev->getId() );
+		$this->assertSame( $page->getLatest(), $rev->getId() );
+
+		$this->assertArrayContains(
+			[ 'RevisionFromEditComplete' ],
+			$calls
+		);
+	}
+
 	private function makeDomainEventSourceListener(
 		array $flags,
 		string $cause,
@@ -549,11 +579,9 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->expectHook( 'RevisionFromEditComplete', 1 );
 		$this->expectHook( 'PageSaveComplete', 1 );
 
-		// dummy-edit
-		$updater->setForceEmptyRevision( true );
-		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
+		// dummy revision
 		$updater->setCause( PageUpdatedEvent::CAUSE_UNDELETE );
-		$updater->saveRevision( $summary );
+		$updater->saveDummyRevision( 'Just a test' );
 	}
 
 	public function testEventEmission_derived() {

@@ -52,6 +52,7 @@ use Psr\Log\LoggerInterface;
 use RecentChange;
 use RuntimeException;
 use Wikimedia\Assert\Assert;
+use Wikimedia\NormalizedException\NormalizedException;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
@@ -154,12 +155,6 @@ class PageUpdater implements PageUpdateCauses {
 	private $rcPatrolStatus = RecentChange::PRC_UNPATROLLED;
 
 	/**
-	 * @var bool Whether this is an automated update that was not explicitly
-	 *      initiated by the revision author.
-	 */
-	private $automated = false;
-
-	/**
 	 * @var bool whether to create a log entry for new page creations.
 	 */
 	private $usePageCreationLog = true;
@@ -209,6 +204,11 @@ class PageUpdater implements PageUpdateCauses {
 	 * @var int
 	 */
 	private $flags = 0;
+
+	/**
+	 * @var array Hints for use with DerivedPageDataUpdater::prepareUpdate
+	 */
+	private array $hints = [];
 
 	/** @var string[] */
 	private $softwareTags = [];
@@ -288,9 +288,16 @@ class PageUpdater implements PageUpdateCauses {
 	 * and for tracing/logging in jobs, etc.
 	 *
 	 * @param string $cause See PageUpdatedEvent::CAUSE_XXX
+	 * @return $this
 	 */
-	public function setCause( string $cause ): void {
+	public function setCause( string $cause ): self {
 		$this->derivedDataUpdater->setCause( $cause );
+		return $this;
+	}
+
+	public function setHints( array $hints ): self {
+		$this->hints = $hints + $this->hints;
+		return $this;
 	}
 
 	/**
@@ -406,13 +413,16 @@ class PageUpdater implements PageUpdateCauses {
 	}
 
 	/**
+	 * Indicate that the page update was not explicitly performed by the user.
+	 *
 	 * @param bool $automated
 	 *
 	 * @return $this
+	 *
+	 * @since 1.44
 	 */
 	public function setAutomated( bool $automated ) {
-		$this->automated = $automated;
-		return $this;
+		return $this->setHints( [ PageUpdatedEvent::FLAG_AUTOMATED => $automated ] );
 	}
 
 	/**
@@ -816,6 +826,37 @@ class PageUpdater implements PageUpdateCauses {
 	}
 
 	/**
+	 * Creates a dummy revision that does not change the content.
+	 * Dummy revisions are typically used to record some event in the
+	 * revision history, such as the page getting renamed.
+	 *
+	 * @param CommentStoreComment|string $summary Edit summary
+	 *
+	 * @return RevisionRecord The newly created dummy revision
+	 *
+	 * @since 1.44
+	 */
+	public function saveDummyRevision( $summary ) {
+		$flags = EDIT_UPDATE | EDIT_SUPPRESS_RC | EDIT_INTERNAL;
+
+		$this->setAutomated( true );
+		$this->setForceEmptyRevision( true );
+		$rev = $this->saveRevision( $summary, $flags );
+
+		if ( $rev === null ) {
+			throw new NormalizedException( 'Failed to create dummy revision on ' .
+				'{page} (page ID {id})',
+				[
+					'page' => (string)$this->getPage(),
+					'id' => (string)$this->getPage()->getId(),
+				]
+			);
+		}
+
+		return $rev;
+	}
+
+	/**
 	 * Change an existing article or create a new article. Updates RC and all necessary caches,
 	 * optionally via the deferred update array. This does not check user permissions.
 	 *
@@ -830,7 +871,7 @@ class PageUpdater implements PageUpdateCauses {
 	 * MCR migration note: this replaces WikiPage::doUserEditContent. Callers that change to using
 	 * saveRevision() now need to check the "minoredit" themselves before using EDIT_MINOR.
 	 *
-	 * @param CommentStoreComment $summary Edit summary
+	 * @param CommentStoreComment|string $summary Edit summary
 	 * @param int $flags Bitfield, will be combined with the flags set via setFlags(). See
 	 *        there for details.
 	 *
@@ -844,7 +885,17 @@ class PageUpdater implements PageUpdateCauses {
 	 *         to a failure or a null-edit. Use wasRevisionCreated(), wasSuccessful() and getStatus()
 	 *         to determine the outcome of the revision creation.
 	 */
-	public function saveRevision( CommentStoreComment $summary, int $flags = 0 ) {
+	public function saveRevision( $summary, int $flags = 0 ) {
+		Assert::parameterType(
+			[ 'string', CommentStoreComment::class, ],
+			$summary,
+			'$summary'
+		);
+
+		if ( is_string( $summary ) ) {
+			$summary = CommentStoreComment::newUnsavedComment( $summary );
+		}
+
 		$this->setFlags( $flags );
 
 		if ( $this->wasCommitted() ) {
@@ -1603,12 +1654,10 @@ class PageUpdater implements PageUpdateCauses {
 			EDIT_FORCE_BOT => PageUpdatedEvent::FLAG_BOT
 		];
 
-		$hints = [];
+		$hints = $this->hints;
 		foreach ( $flagMap as $bit => $name ) {
 			$hints[$name] = ( $this->flags & $bit ) === $bit;
 		}
-
-		$hints[ PageUpdatedEvent::FLAG_AUTOMATED ] = $this->automated;
 
 		$hints += PageUpdatedEvent::DEFAULT_FLAGS;
 		$hints = $hintOverrides + $hints;
