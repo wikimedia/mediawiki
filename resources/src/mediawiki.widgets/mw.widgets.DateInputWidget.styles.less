@@ -16,7 +16,7 @@
 @padding-vertical-base: 6px;
 
 // `line-height` has to be relative/in `em` to enable user override in browser settings.
-@line-height-widget-base: unit( 18 / @ooui-font-size-browser / @ooui-font-size-base, @ooui-unit ); // equals `18px` at base `font-size: 14px;
+@line-height-widget-base: unit( ( 18 / @ooui-font-size-browser / @ooui-font-size-base ), @ooui-unit ); // equals `18px` at base `font-size: 14px;
 
 .oo-ui-inline-spacing( @spacing, @cancelled-spacing: 0 ) {
 	margin-right: @spacing;
