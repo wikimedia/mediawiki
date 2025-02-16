@@ -996,58 +996,6 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 		];
 	}
 
-	public static function provideSetToGlobal() {
-		return [
-			[
-				[ 'wgAPIModules', 'wgAvailableRights' ],
-				[],
-				[
-					'APIModules' => [ 'foobar' => 'ApiFooBar' ],
-					'AvailableRights' => [ 'foobar', 'unfoobar' ],
-				],
-				[
-					'wgAPIModules' => [ 'foobar' => 'ApiFooBar' ],
-					'wgAvailableRights' => [ 'foobar', 'unfoobar' ],
-				],
-			],
-			[
-				[ 'wgAPIModules', 'wgAvailableRights' ],
-				[
-					'wgAPIModules' => [ 'barbaz' => 'ApiBarBaz' ],
-					'wgAvailableRights' => [ 'barbaz' ]
-				],
-				[
-					'APIModules' => [ 'foobar' => 'ApiFooBar' ],
-					'AvailableRights' => [ 'foobar', 'unfoobar' ],
-				],
-				[
-					'wgAPIModules' => [ 'barbaz' => 'ApiBarBaz', 'foobar' => 'ApiFooBar' ],
-					'wgAvailableRights' => [ 'barbaz', 'foobar', 'unfoobar' ],
-				],
-			],
-			[
-				[ 'wgGroupPermissions' ],
-				[
-					'wgGroupPermissions' => [
-						'sysop' => [ 'delete' ]
-					],
-				],
-				[
-					'GroupPermissions' => [
-						'sysop' => [ 'undelete' ],
-						'user' => [ 'edit' ]
-					],
-				],
-				[
-					'wgGroupPermissions' => [
-						'sysop' => [ 'delete', 'undelete' ],
-						'user' => [ 'edit' ]
-					],
-				]
-			]
-		];
-	}
-
 	/**
 	 * Attributes under manifest_version 2
 	 */
