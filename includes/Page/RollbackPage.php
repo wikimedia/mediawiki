@@ -314,7 +314,7 @@ class RollbackPage {
 				'current-revision-record' => $currentRevision
 			] );
 			$result->fatal(
-				'alreadyrolled',
+				'rollback-nochange',
 				htmlspecialchars( $this->titleFormatter->getPrefixedText( $this->page ) ),
 				htmlspecialchars( $this->byUser->getName() ),
 				htmlspecialchars( $currentEditorForPublic ? $currentEditorForPublic->getName() : '' )

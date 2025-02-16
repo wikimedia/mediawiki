@@ -234,7 +234,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 			->getRollbackPageFactory()
 			->newRollbackPage( $page, $admin, $user1 )
 			->rollbackIfAllowed();
-		$this->assertStatusError( 'alreadyrolled', $rollbackResult );
+		$this->assertStatusError( 'rollback-nochange', $rollbackResult );
 
 		$this->runJobs();
 

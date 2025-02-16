@@ -206,7 +206,9 @@ class RollbackAction extends FormAction {
 			}
 
 			if (
-				( $rollbackResult->hasMessage( 'alreadyrolled' ) || $rollbackResult->hasMessage( 'cantrollback' ) )
+				( $rollbackResult->hasMessage( 'alreadyrolled' ) ||
+				  $rollbackResult->hasMessage( 'cantrollback' ) ||
+				  $rollbackResult->hasMessage( 'rollback-nochange' ) )
 				&& isset( $data['current-revision-record'] )
 			) {
 				/** @var RevisionRecord $current */
