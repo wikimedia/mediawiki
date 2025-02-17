@@ -219,7 +219,7 @@ class LocalFileRestoreBatch {
 			$comment = $commentStore->getComment( 'fa_description', $row );
 
 			$commentFieldsNew = $commentStore->insert( $dbw, 'fr_description', $comment );
-			 $fileRevisionRow = [
+			$fileRevisionRow = [
 				'fr_size' => $row->fa_size,
 				'fr_width' => $row->fa_width,
 				'fr_height' => $row->fa_height,
@@ -228,13 +228,13 @@ class LocalFileRestoreBatch {
 				'fr_actor' => $row->fa_actor,
 				'fr_timestamp' => $row->fa_timestamp,
 				'fr_sha1' => $sha1
-			 ] + $commentFieldsNew;
+			] + $commentFieldsNew;
 
-			 if ( $first && !$exists ) {
-				 // This revision will be published as the new current version
-				 $destRel = $this->file->getRel();
-				 $commentFields = $commentStore->insert( $dbw, 'img_description', $comment );
-				 $insertCurrent = [
+			if ( $first && !$exists ) {
+				// This revision will be published as the new current version
+				$destRel = $this->file->getRel();
+				$commentFields = $commentStore->insert( $dbw, 'img_description', $comment );
+				$insertCurrent = [
 					'img_name' => $row->fa_name,
 					'img_size' => $row->fa_size,
 					'img_width' => $row->fa_width,
@@ -247,33 +247,33 @@ class LocalFileRestoreBatch {
 					'img_actor' => $row->fa_actor,
 					'img_timestamp' => $row->fa_timestamp,
 					'img_sha1' => $sha1
-				 ] + $commentFields;
+				] + $commentFields;
 
-				 // The live (current) version cannot be hidden!
-				 if ( !$this->unsuppress && $row->fa_deleted ) {
-					 $status->fatal( 'undeleterevdel' );
-					 return $status;
-				 }
-				 $fileRevisionRow['fr_archive_name'] = '';
-				 $fileRevisionRow['fr_deleted'] = 0;
-			 } else {
-				 $archiveName = $row->fa_archive_name;
+				// The live (current) version cannot be hidden!
+				if ( !$this->unsuppress && $row->fa_deleted ) {
+					$status->fatal( 'undeleterevdel' );
+					return $status;
+				}
+				$fileRevisionRow['fr_archive_name'] = '';
+				$fileRevisionRow['fr_deleted'] = 0;
+			} else {
+				$archiveName = $row->fa_archive_name;
 
-				 if ( $archiveName === null ) {
-					 // This was originally a current version; we
-					 // have to devise a new archive name for it.
-					 // Format is <timestamp of archiving>!<name>
-					 $timestamp = (int)wfTimestamp( TS_UNIX, $row->fa_deleted_timestamp );
+				if ( $archiveName === null ) {
+					// This was originally a current version; we
+					// have to devise a new archive name for it.
+					// Format is <timestamp of archiving>!<name>
+					$timestamp = (int)wfTimestamp( TS_UNIX, $row->fa_deleted_timestamp );
 
-					 do {
-						 $archiveName = wfTimestamp( TS_MW, $timestamp ) . '!' . $row->fa_name;
-						 $timestamp++;
-					 } while ( isset( $archiveNames[$archiveName] ) );
-				 }
+					do {
+						$archiveName = wfTimestamp( TS_MW, $timestamp ) . '!' . $row->fa_name;
+						$timestamp++;
+					} while ( isset( $archiveNames[$archiveName] ) );
+				}
 
-				 $archiveNames[$archiveName] = true;
-				 $destRel = $this->file->getArchiveRel( $archiveName );
-				 $insertBatch[] = [
+				$archiveNames[$archiveName] = true;
+				$destRel = $this->file->getArchiveRel( $archiveName );
+				$insertBatch[] = [
 					'oi_name' => $row->fa_name,
 					'oi_archive_name' => $archiveName,
 					'oi_size' => $row->fa_size,
@@ -288,24 +288,24 @@ class LocalFileRestoreBatch {
 					'oi_minor_mime' => $mediaInfo['minor_mime'],
 					'oi_deleted' => $this->unsuppress ? 0 : $row->fa_deleted,
 					'oi_sha1' => $sha1
-				 ] + $commentStore->insert( $dbw, 'oi_description', $comment );
+				] + $commentStore->insert( $dbw, 'oi_description', $comment );
 
-				 $fileRevisionRow['fr_archive_name'] = $archiveName;
-				 $fileRevisionRow['fr_deleted'] = $this->unsuppress ? 0 : $row->fa_deleted;
-			 }
-			 $insertFileRevisions[] = $fileRevisionRow;
+				$fileRevisionRow['fr_archive_name'] = $archiveName;
+				$fileRevisionRow['fr_deleted'] = $this->unsuppress ? 0 : $row->fa_deleted;
+			}
+			$insertFileRevisions[] = $fileRevisionRow;
 
-			 $deleteIds[] = $row->fa_id;
+			$deleteIds[] = $row->fa_id;
 
-			 if ( !$this->unsuppress && $row->fa_deleted & File::DELETED_FILE ) {
-				 // private files can stay where they are
-				 $status->successCount++;
-			 } else {
-				 $storeBatch[] = [ $deletedUrl, 'public', $destRel ];
-				 $this->cleanupBatch[] = $row->fa_storage_key;
-			 }
+			if ( !$this->unsuppress && $row->fa_deleted & File::DELETED_FILE ) {
+				// private files can stay where they are
+				$status->successCount++;
+			} else {
+				$storeBatch[] = [ $deletedUrl, 'public', $destRel ];
+				$this->cleanupBatch[] = $row->fa_storage_key;
+			}
 
-			 $first = false;
+			$first = false;
 		}
 
 		unset( $result );
