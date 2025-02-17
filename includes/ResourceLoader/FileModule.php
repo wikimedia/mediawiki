@@ -343,27 +343,6 @@ class FileModule extends Module {
 	}
 
 	/**
-	 * @param Context $context
-	 * @return string[] URLs
-	 */
-	public function getScriptURLsForDebug( Context $context ) {
-		$rl = $context->getResourceLoader();
-		$config = $this->getConfig();
-		$server = $config->get( MainConfigNames::Server );
-
-		$urls = [];
-		foreach ( $this->getScriptFiles( $context ) as $file ) {
-			if ( isset( $file['filePath'] ) ) {
-				$url = OutputPage::transformResourcePath( $config, $this->getRemotePath( $file['filePath'] ) );
-				// Expand debug URL in case we are another wiki's module source (T255367)
-				$url = $rl->expandUrl( $server, $url );
-				$urls[] = $url;
-			}
-		}
-		return $urls;
-	}
-
-	/**
 	 * @return bool
 	 */
 	public function supportsURLLoading() {
