@@ -119,6 +119,7 @@ use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\Language\LazyLocalizationContext;
+use MediaWiki\Language\MessageParser;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageEventIngress;
 use MediaWiki\Languages\LanguageFactory;
@@ -885,7 +886,7 @@ return [
 
 	'FormatterFactory' => static function ( MediaWikiServices $services ): FormatterFactory {
 		return new FormatterFactory(
-			$services->getMessageCache(),
+			$services->getMessageParser(),
 			$services->getTitleFormatter(),
 			$services->getHookContainer(),
 			$services->getUserIdentityUtils(),
@@ -1320,12 +1321,21 @@ return [
 			$services->getLanguageNameUtils(),
 			$services->getLanguageFallback(),
 			$services->getHookContainer(),
-			$services->getParserFactory()
+			$services->getMessageParser()
 		);
 	},
 
 	'MessageFormatterFactory' => static function ( MediaWikiServices $services ): IMessageFormatterFactory {
 		return new MessageFormatterFactory();
+	},
+
+	'MessageParser' => static function ( MediaWikiServices $services ): MessageParser {
+		return new MessageParser(
+			$services->getParserFactory(),
+			$services->getDefaultOutputPipeline(),
+			$services->getLanguageFactory(),
+			LoggerFactory::getInstance( 'MessageParser' )
+		);
 	},
 
 	'MicroStash' => static function ( MediaWikiServices $services ): BagOStuff {

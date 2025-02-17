@@ -20,13 +20,13 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\Content;
-use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\MessageCacheUpdate;
+use MediaWiki\Language\MessageParser;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageFallback;
@@ -37,9 +37,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
-use MediaWiki\Parser\Parser;
-use MediaWiki\Parser\ParserFactory;
-use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\StubObject\StubObject;
@@ -139,23 +136,6 @@ class MessageCache implements LoggerAwareInterface {
 	/** @var string[] */
 	private $rawHtmlMessages;
 
-	/**
-	 * Message cache has its own parser which it uses to transform messages
-	 * @var ParserOptions
-	 */
-	private $parserOptions;
-
-	/** @var Parser[] Lazy-created via self::getParser() */
-	private array $parsers = [];
-	private int $curParser = -1;
-
-	/**
-	 * Parsing some messages may require parsing another message first, due to special page
-	 * transclusion and some hooks (T372891). This constant is the limit of nesting depth where
-	 * we'll display an error instead of the other message.
-	 */
-	private const MAX_PARSER_DEPTH = 5;
-
 	/** @var WANObjectCache */
 	private $wanCache;
 	/** @var BagOStuff */
@@ -178,8 +158,8 @@ class MessageCache implements LoggerAwareInterface {
 	private $languageFallback;
 	/** @var HookRunner */
 	private $hookRunner;
-	/** @var ParserFactory */
-	private $parserFactory;
+	/** @var MessageParser */
+	private $messageParser;
 
 	/** @var (string|callable)[]|null */
 	private $messageKeyOverrides;
@@ -220,7 +200,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param LanguageNameUtils $languageNameUtils
 	 * @param LanguageFallback $languageFallback
 	 * @param HookContainer $hookContainer
-	 * @param ParserFactory $parserFactory
+	 * @param MessageParser $messageParser
 	 */
 	public function __construct(
 		WANObjectCache $wanCache,
@@ -235,7 +215,7 @@ class MessageCache implements LoggerAwareInterface {
 		LanguageNameUtils $languageNameUtils,
 		LanguageFallback $languageFallback,
 		HookContainer $hookContainer,
-		ParserFactory $parserFactory
+		MessageParser $messageParser
 	) {
 		$this->wanCache = $wanCache;
 		$this->clusterCache = $clusterCache;
@@ -249,7 +229,7 @@ class MessageCache implements LoggerAwareInterface {
 		$this->languageNameUtils = $languageNameUtils;
 		$this->languageFallback = $languageFallback;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->parserFactory = $parserFactory;
+		$this->messageParser = $messageParser;
 
 		// limit size
 		$this->cache = new MapCacheLRU( self::MAX_REQUEST_LANGUAGES );
@@ -264,34 +244,6 @@ class MessageCache implements LoggerAwareInterface {
 
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
-	}
-
-	/**
-	 * ParserOptions is lazily initialised.
-	 *
-	 * @return ParserOptions
-	 */
-	private function getParserOptions() {
-		if ( !$this->parserOptions ) {
-			$context = RequestContext::getMain();
-			$user = $context->getUser();
-			if ( !$user->isSafeToLoad() ) {
-				// It isn't safe to use the context user yet, so don't try to get a
-				// ParserOptions for it. And don't cache this ParserOptions
-				// either.
-				$po = ParserOptions::newFromAnon();
-				$po->setAllowUnsafeRawHtml( false );
-				return $po;
-			}
-
-			$this->parserOptions = ParserOptions::newFromContext( $context );
-			// Messages may take parameters that could come
-			// from malicious sources. As a precaution, disable
-			// the <html> parser tag when parsing messages.
-			$this->parserOptions->setAllowUnsafeRawHtml( false );
-		}
-
-		return $this->parserOptions;
 	}
 
 	/**
@@ -1456,6 +1408,8 @@ class MessageCache implements LoggerAwareInterface {
 	}
 
 	/**
+	 * @deprecated since 1.44 use MessageParser::transform()
+	 *
 	 * @param string $message
 	 * @param bool $interface
 	 * @param Language|null $language
@@ -1463,48 +1417,14 @@ class MessageCache implements LoggerAwareInterface {
 	 * @return string
 	 */
 	public function transform( $message, $interface = false, $language = null, ?PageReference $page = null ) {
-		// Avoid creating parser if nothing to transform
-		if ( !str_contains( $message, '{{' ) ) {
-			return $message;
-		}
-
-		$popts = $this->getParserOptions();
-		$popts->setInterfaceMessage( $interface );
-		$popts->setTargetLanguage( $language );
-
-		$userlang = $popts->setUserLang( $language );
-		try {
-			$this->curParser++;
-			$parser = $this->getParser();
-			if ( !$parser ) {
-				return '<span class="error">Message transform depth limit exceeded</span>';
-			}
-			$message = $parser->transformMsg( $message, $popts, $page );
-		} finally {
-			$this->curParser--;
-		}
-		$popts->setUserLang( $userlang );
-
-		return $message;
+		return $this->messageParser->transform(
+			$message, $interface, $language, $page );
 	}
 
 	/**
-	 * You should increment $this->curParser before calling this method and decrement it after
-	 * to support recursive calls to message parsing.
-	 */
-	private function getParser(): ?Parser {
-		if ( $this->curParser >= self::MAX_PARSER_DEPTH ) {
-			$this->logger->debug( __METHOD__ . ": Refusing to create a new parser with index {$this->curParser}" );
-			return null;
-		}
-		if ( !isset( $this->parsers[ $this->curParser ] ) ) {
-			$this->logger->debug( __METHOD__ . ": Creating a new parser with index {$this->curParser}" );
-			$this->parsers[ $this->curParser ] = $this->parserFactory->create();
-		}
-		return $this->parsers[ $this->curParser ];
-	}
-
-	/**
+	 * @deprecated since 1.44 use MessageParser::parse()
+	 * @internal
+	 *
 	 * @param string $text
 	 * @param PageReference $contextPage
 	 * @param bool $linestart Whether this should be parsed in start-of-line
@@ -1513,7 +1433,6 @@ class MessageCache implements LoggerAwareInterface {
 	 *  (defaults to false)
 	 * @param Language|StubUserLang|string|null $language Language code
 	 * @return ParserOutput
-	 * @internal
 	 */
 	public function parseWithPostprocessing(
 		string $text, PageReference $contextPage,
@@ -1521,48 +1440,25 @@ class MessageCache implements LoggerAwareInterface {
 		bool $interface = false,
 		$language = null
 	): ParserOutput {
-		$options = [
-			'allowTOC' => false,
-			'enableSectionEditLinks' => false,
-			// Wrapping messages in an extra <div> is probably not expected. If
-			// they're outside the content area they probably shouldn't be
-			// targeted by CSS that's targeting the parser output, and if
-			// they're inside they already are from the outer div.
-			'unwrap' => true,
-			'userLang' => $language,
-		];
-		// Parse $text to yield a ParserOutput
-		$po = $this->parse( $text, $contextPage, $linestart, $interface, $language );
-		if ( is_string( $po ) ) {
-			$po = new ParserOutput( $po );
-		}
-		// Run the post-processing pipeline
-		return MediaWikiServices::getInstance()->getDefaultOutputPipeline()
-				->run( $po, $this->getParserOptions(), $options );
+		return $this->messageParser->parse(
+			$text, $contextPage, $linestart, $interface, $language );
 	}
 
 	/**
+	 * @deprecated since 1.44 use MessageParser::parseWithoutPostprocessing()
+	 *
 	 * @param string $text
 	 * @param PageReference|null $page
 	 * @param bool $linestart Whether this is at the start of a line
 	 * @param bool $interface Whether this is an interface message
 	 * @param Language|StubUserLang|string|null $language Language code
-	 * @return ParserOutput|string
+	 * @return ParserOutput
 	 */
-	public function parse( $text, ?PageReference $page = null, $linestart = true,
-		$interface = false, $language = null
+	public function parse( $text, ?PageReference $page = null,
+		$linestart = true, $interface = false, $language = null
 	) {
 		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle
 		global $wgTitle;
-
-		$popts = $this->getParserOptions();
-		$popts->setInterfaceMessage( $interface );
-
-		if ( is_string( $language ) ) {
-			$language = $this->langFactory->getLanguage( $language );
-		}
-		$popts->setTargetLanguage( $language );
-
 		if ( !$page ) {
 			$logger = LoggerFactory::getInstance( 'GlobalTitleFail' );
 			$logger->info(
@@ -1581,16 +1477,8 @@ class MessageCache implements LoggerAwareInterface {
 			);
 		}
 
-		try {
-			$this->curParser++;
-			$parser = $this->getParser();
-			if ( !$parser ) {
-				return '<span class="error">Message parse depth limit exceeded</span>';
-			}
-			return $parser->parse( $text, $page, $popts, $linestart );
-		} finally {
-			$this->curParser--;
-		}
+		return $this->messageParser->parseWithoutPostprocessing(
+			$text, $page, $linestart, $interface, $language );
 	}
 
 	public function disable() {

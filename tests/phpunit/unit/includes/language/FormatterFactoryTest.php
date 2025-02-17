@@ -3,6 +3,7 @@
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\FormatterFactory;
+use MediaWiki\Language\MessageParser;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\User\UserIdentityUtils;
@@ -15,7 +16,7 @@ class FormatterFactoryTest extends MediaWikiUnitTestCase {
 
 	private function getFactory() {
 		return new FormatterFactory(
-			$this->createNoOpMock( MessageCache::class ),
+			$this->createNoOpMock( MessageParser::class ),
 			$this->createNoOpMock( TitleFormatter::class ),
 			$this->createNoOpMock( HookContainer::class ),
 			$this->createNoOpMock( UserIdentityUtils::class ),

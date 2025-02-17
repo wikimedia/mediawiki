@@ -29,6 +29,7 @@ use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
+use MediaWiki\Language\MessageParser;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\ChangesListSpecialPage;
@@ -39,7 +40,6 @@ use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Xml\Xml;
-use MessageCache;
 use OOUI\ButtonWidget;
 use OOUI\HtmlSnippet;
 use RecentChange;
@@ -59,7 +59,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	private $watchlistFilterGroupDefinition;
 
 	private WatchedItemStoreInterface $watchedItemStore;
-	private MessageCache $messageCache;
+	private MessageParser $messageParser;
 	private UserOptionsLookup $userOptionsLookup;
 
 	/** @var int */
@@ -68,7 +68,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 	public function __construct(
 		?WatchedItemStoreInterface $watchedItemStore = null,
-		?MessageCache $messageCache = null,
+		?MessageParser $messageParser = null,
 		?UserOptionsLookup $userOptionsLookup = null,
 		?ChangeTagsStore $changeTagsStore = null,
 		?UserIdentityUtils $userIdentityUtils = null,
@@ -84,7 +84,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$tempUserConfig ?? $services->getTempUserConfig()
 		);
 		$this->watchedItemStore = $watchedItemStore ?? $services->getWatchedItemStore();
-		$this->messageCache = $messageCache ?? $services->getMessageCache();
+		$this->messageParser = $messageParser ?? $services->getMessageParser();
 		$this->userOptionsLookup = $userOptionsLookup ?? $services->getUserOptionsLookup();
 		$this->changeTagsStore = $changeTagsStore ?? $services->getChangeTagsStore();
 
@@ -724,7 +724,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			// Parse the message in this weird ugly way to preserve the ability to include interlanguage
 			// links in it (T172461). In the future when T66969 is resolved, perhaps we can just use
 			// $message->parse() instead. This code is copied from Message::parseText().
-			$parserOutput = $this->messageCache->parseWithPostprocessing(
+			$parserOutput = $this->messageParser->parse(
 				$message->plain(),
 				$this->getPageTitle(),
 				/*linestart*/ true,

@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Language\MessageParser;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Message;
 use MediaWiki\Parser\ParserOutput;
@@ -37,8 +38,8 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 			}
 		};
 
-		$cache = $this->createNoOpMock( MessageCache::class, [ 'parseWithPostprocessing' ] );
-		$cache->method( 'parseWithPostprocessing' )->willReturnCallback(
+		$cache = $this->createNoOpMock( MessageParser::class, [ 'parse' ] );
+		$cache->method( 'parse' )->willReturnCallback(
 			static function ( $text, ...$args ) {
 				$text = html_entity_decode( $text, ENT_QUOTES | ENT_HTML5 );
 				return new ParserOutput( "<p>" . trim( $text ) . "\n</p>" );

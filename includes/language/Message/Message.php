@@ -1450,7 +1450,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 * @return ParserOutput Wikitext parsed into HTML.
 	 */
 	protected function parseText( string $string ): ParserOutput {
-		$out = MediaWikiServices::getInstance()->getMessageCache()->parseWithPostprocessing(
+		$out = MediaWikiServices::getInstance()->getMessageParser()->parse(
 			$string,
 			$this->contextPage ?? PageReferenceValue::localReference( NS_SPECIAL, 'Badtitle/Message' ),
 			/*linestart*/ true,
@@ -1472,7 +1472,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 * @return string Wikitext with {{-constructs substituted with its parsed result.
 	 */
 	protected function transformText( $string ) {
-		return MediaWikiServices::getInstance()->getMessageCache()->transform(
+		return MediaWikiServices::getInstance()->getMessageParser()->transform(
 			$string,
 			$this->isInterface,
 			$this->getLanguage(),

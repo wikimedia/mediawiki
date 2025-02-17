@@ -89,6 +89,7 @@ use MediaWiki\Json\JsonCodec;
 use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\LanguageCode;
+use MediaWiki\Language\MessageParser;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageFallback;
@@ -1483,6 +1484,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getMessageFormatterFactory(): IMessageFormatterFactory {
 		return $this->getService( 'MessageFormatterFactory' );
+	}
+
+	/**
+	 * @since 1.44
+	 */
+	public function getMessageParser(): MessageParser {
+		return $this->getService( 'MessageParser' );
 	}
 
 	/**

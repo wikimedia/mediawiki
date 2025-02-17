@@ -745,7 +745,7 @@ class SpecialPageFactory {
 			'class' => SpecialRecentChanges::class,
 			'services' => [
 				'WatchedItemStore',
-				'MessageCache',
+				'MessageParser',
 				'UserOptionsLookup',
 				'ChangeTagsStore',
 				'UserIdentityUtils',
@@ -756,7 +756,7 @@ class SpecialPageFactory {
 			'class' => SpecialRecentChangesLinked::class,
 			'services' => [
 				'WatchedItemStore',
-				'MessageCache',
+				'MessageParser',
 				'UserOptionsLookup',
 				'SearchEngineFactory',
 				'ChangeTagsStore',

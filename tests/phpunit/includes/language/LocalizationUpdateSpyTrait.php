@@ -41,9 +41,6 @@ trait LocalizationUpdateSpyTrait {
 		$messageCache->method( 'get' )
 			->willReturn( 'dummy test' );
 
-		$messageCache->method( 'transform' )
-			->willReturn( 'dummy test' );
-
 		$messageCache->method( 'getMsgFromNamespace' )
 			->willReturn( false );
 

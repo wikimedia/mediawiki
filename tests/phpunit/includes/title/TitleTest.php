@@ -1798,7 +1798,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	public function testNewMainPage() {
 		$mock = $this->createMock( MessageCache::class );
 		$mock->method( 'get' )->willReturn( 'Foresheet' );
-		$mock->method( 'transform' )->willReturn( 'Foresheet' );
 
 		$this->setService( 'MessageCache', $mock );
 
@@ -1816,7 +1815,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	public function testNewMainPageNoRecursion() {
 		$mock = $this->createMock( MessageCache::class );
 		$mock->method( 'get' )->willReturn( 'localtestiw:' );
-		$mock->method( 'transform' )->willReturn( 'localtestiw:' );
 		$this->setService( 'MessageCache', $mock );
 
 		$this->assertSame(
