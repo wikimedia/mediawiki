@@ -884,6 +884,8 @@
 	"recentchangeslinked-summary": "Zemmais ast listi stēisan panzdauman kitawīdinsnan en pausammans prei kawīdans šin pāusan autenginna, adder autengīntans iz tennan. (Kāi widālai pāusans iz kategōrijan, enpeisāis {{ns:category}}:Kategōrijas pabilisnā). Pausāi iz [[Special:Watchlist|nadirītan listin]] ast <strong>pastārintan</strong>.",
 	"recentchangeslinked-page": "Pāusas tītels",
 	"recentchangeslinked-to": "Waidinnais kitawīdinsnans en pāusamans autengināntins prei dātan pāusan, ni en pāusamans prei kawīdans pāusan autenginna",
+	"recentchanges-page-added-to-category": "[[:$1]] preidātan prei kategōrijan",
+	"recentchanges-page-removed-from-category": "[[:$1]] āupausintan iz kategōrijan",
 	"upload": "Enkraūneis zūrbrukin",
 	"uploadbtn": "Enkraūneis zūrbrukin",
 	"reuploaddesc": "Naikinnais enkraūsenin be etwartinnais si en enkraūsenes fōrmularan.",

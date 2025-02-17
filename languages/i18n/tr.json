@@ -125,7 +125,8 @@
 			"RuzDD",
 			"Vikipolimer",
 			"RoseloveDoodles",
-			"Leo"
+			"Leo",
+			"Pedian4169"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çizme:",
@@ -2133,7 +2134,7 @@
 	"wantedfiletext-nocat-noforeign": "Aşağıdaki dosyalar kullanıyor, ancak mevcut değil.",
 	"wantedtemplates": "İstenen şablonlar",
 	"mostlinked": "Kendisine en fazla bağlantı verilmiş sayfalar",
-	"mostlinkedcategories": "En çok kategorilere sahip sayfalar",
+	"mostlinkedcategories": "En çok bağlantı verilmiş kategoriler",
 	"mostlinkedtemplates": "En çok yansıtılan sayfalar",
 	"mostcategories": "En fazla kategoriye bağlanmış sayfalar",
 	"mostimages": "En çok bağlantı verilmiş dosyalar",
@@ -2329,9 +2330,9 @@
 	"listgrants-summary": "Aşağıda, kullanıcı haklarına ilişkilendirilmiş erişimi olan bir hibe listesi bulunmaktadır. Kullanıcılar, hesaplarını kullanmaları için uygulamaları yetkilendirebilirler, ancak kullanıcının uygulamaya verdikleri hibeleri temel alan sınırlı izinlerle. Bir kullanıcı adına hareket eden bir uygulama, aslında kullanıcının sahip olmadığı hakları kullanamaz.\nBireysel haklarla ilgili [[{{MediaWiki:Listgrouprights-helppage}}|ek bilgi]] olabilir.",
 	"listgrants-grant": "Hibe",
 	"listgrants-rights": "Haklar",
-	"trackingcategories": "Takip kategorileri",
-	"trackingcategories-summary": "Bu sayfa MediaWiki yazılımı tarafından otomatik olarak doldurulan takip kategorilerini listelemektedir. {{ns:8}} ad alanındaki ilgili sistem mesajları değiştirilerek isimleri düzenlenebilir.",
-	"trackingcategories-msg": "Takip kategorisi",
+	"trackingcategories": "İzleme kategorileri",
+	"trackingcategories-summary": "Bu sayfa MediaWiki yazılımı tarafından otomatik olarak doldurulan izleme kategorilerini listelemektedir. {{ns:8}} ad alanındaki ilgili sistem mesajları değiştirilerek isimleri düzenlenebilir.",
+	"trackingcategories-msg": "İzleme kategorisi",
 	"trackingcategories-name": "Mesaj adı",
 	"trackingcategories-desc": "Kategori dahil etme kriterleri",
 	"restricted-displaytitle-ignored": "Ekran başlıkları yoksayılan sayfalar",
