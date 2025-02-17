@@ -1127,21 +1127,6 @@ class WebInstaller extends Installer {
 	}
 
 	/**
-	 * Helper for "Download LocalSettings" link.
-	 *
-	 * @internal For use in WebInstallerComplete class
-	 * @return string Html for download link
-	 */
-	public function makeDownloadLinkHtml() {
-		$anchor = Html::rawElement( 'a',
-			[ 'href' => $this->getUrl( [ 'localsettings' => 1 ] ) ],
-			wfMessage( 'config-download-localsettings' )->parse()
-		);
-
-		return Html::rawElement( 'div', [ 'class' => 'config-download-link' ], $anchor );
-	}
-
-	/**
 	 * If the software package wants the LocalSettings.php file
 	 * to be placed in a specific location, override this function
 	 * (see mw-config/overrides/README) to return the path of
