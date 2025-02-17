@@ -367,6 +367,15 @@ abstract class Installer {
 	abstract public function showMessage( $msg, ...$params );
 
 	/**
+	 * Display a success message
+	 *
+	 * @param string|MessageSpecifier $msg String of wikitext that will be converted
+	 *  to HTML, or interface message that will be parsed.
+	 * @param string|int|float ...$params Message parameters, same as wfMessage().
+	 */
+	abstract public function showSuccess( $msg, ...$params );
+
+	/**
 	 * Display a warning message
 	 *
 	 * @param string|MessageSpecifier $msg String of wikitext that will be converted
@@ -1770,7 +1779,7 @@ abstract class Installer {
 		// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable
 		// $steps has at least one element and that defines $status
 		if ( $status->isOK() ) {
-			$this->showMessage(
+			$this->showSuccess(
 				'config-install-db-success'
 			);
 			$this->setVar( '_InstallDone', true );
