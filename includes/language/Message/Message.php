@@ -436,6 +436,23 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	}
 
 	/**
+	 * Get the language code of the Message
+	 * @return string
+	 * @since 1.44
+	 */
+	public function getLanguageCode(): string {
+		if ( $this->language instanceof Language ) {
+			return $this->language->getCode();
+		} elseif ( is_string( $this->language ) ) {
+			return $this->language;
+		} elseif ( $this->userLangCallback ) {
+			return ( $this->userLangCallback )()->getCode();
+		} else {
+			return RequestContext::getMain()->getLanguage()->getCode();
+		}
+	}
+
+	/**
 	 * Factory function that is just wrapper for the real constructor. It is
 	 * intended to be used instead of the real constructor, because it allows
 	 * chaining method calls, while new objects don't.
@@ -542,13 +559,13 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 			MainConfigNames::ForceUIMsgAsContentMsg );
 
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-		$lang = $this->getLanguage();
+		$langCode = $this->getLanguageCode();
 		$title = $this->key;
 		if (
-			!$lang->equals( $contLang )
+			$langCode !== $contLang->getCode()
 			&& in_array( $this->key, (array)$forceUIMsgAsContentMsg )
 		) {
-			$title .= '/' . $lang->getCode();
+			$title .= '/' . $langCode;
 		}
 
 		// Don't use $contLang->ucfirst() here. See T362654
@@ -884,7 +901,8 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 			}
 		} elseif ( is_string( $lang ) ) {
 			if ( !( $this->language instanceof Language && $this->language->getCode() === $lang ) ) {
-				$this->language = $lang;
+				$this->language = MediaWikiServices::getInstance()->getLanguageFactory()
+					->getLanguageCode( $lang )->toString();
 			}
 		} else {
 			// Always throws. Moved here as an optimization.
@@ -1026,7 +1044,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 			return '⧼' . htmlspecialchars( $this->key ) . '⧽';
 		}
 
-		if ( in_array( $this->getLanguage()->getCode(), [ 'qqx', 'x-xss' ] ) ) {
+		if ( in_array( $this->getLanguageCode(), [ 'qqx', 'x-xss' ] ) ) {
 			# Insert a list of alternative message keys for &uselang=qqx.
 			if ( $string === '($*)' ) {
 				$keylist = implode( ' / ', $this->keysToTry );
@@ -1497,7 +1515,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 
 			$usedKey = null;
 			foreach ( $this->keysToTry as $key ) {
-				$message = $cache->get( $key, $this->useDatabase, $this->getLanguage(), $usedKey );
+				$message = $cache->get( $key, $this->useDatabase, $this->getLanguageCode(), $usedKey );
 				if ( $message !== false && $message !== '' ) {
 					if ( $usedKey !== $key ) {
 						$this->overriddenKey = $usedKey;

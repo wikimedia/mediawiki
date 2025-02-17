@@ -1324,7 +1324,6 @@ return [
 			$services->getLanguageConverterFactory(),
 			$logger,
 			$options,
-			$services->getLanguageFactory(),
 			$services->getLocalisationCache(),
 			$services->getLanguageNameUtils(),
 			$services->getLanguageFallback(),

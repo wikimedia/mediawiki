@@ -330,6 +330,9 @@ because of Phabricator reports.
   added. This is a breaking change for extensions that extend this class.
 * UserOptionsStore::fetchBatchForUserNames() was added. This is a breaking
   change for extensions that implement the interface.
+* Callbacks registered by MessageCacheFetchOverrides handlers will now be
+  called with only two parameters. The $language and $useDB parameter will not
+  be passed.
 * …
 
 === Deprecations in 1.44 ===

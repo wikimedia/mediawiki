@@ -28,7 +28,6 @@ use MediaWiki\Language\Language;
 use MediaWiki\Language\MessageCacheUpdate;
 use MediaWiki\Language\MessageParser;
 use MediaWiki\Languages\LanguageConverterFactory;
-use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Logger\LoggerFactory;
@@ -148,8 +147,6 @@ class MessageCache implements LoggerAwareInterface {
 	private $contLangCode;
 	/** @var ILanguageConverter */
 	private $contLangConverter;
-	/** @var LanguageFactory */
-	private $langFactory;
 	/** @var LocalisationCache */
 	private $localisationCache;
 	/** @var LanguageNameUtils */
@@ -173,7 +170,6 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param LanguageConverterFactory $langConverterFactory
 	 * @param LoggerInterface $logger
 	 * @param ServiceOptions $options
-	 * @param LanguageFactory $langFactory
 	 * @param LocalisationCache $localisationCache
 	 * @param LanguageNameUtils $languageNameUtils
 	 * @param LanguageFallback $languageFallback
@@ -188,7 +184,6 @@ class MessageCache implements LoggerAwareInterface {
 		LanguageConverterFactory $langConverterFactory,
 		LoggerInterface $logger,
 		ServiceOptions $options,
-		LanguageFactory $langFactory,
 		LocalisationCache $localisationCache,
 		LanguageNameUtils $languageNameUtils,
 		LanguageFallback $languageFallback,
@@ -202,7 +197,6 @@ class MessageCache implements LoggerAwareInterface {
 		$this->contLangConverter = $langConverterFactory->getLanguageConverter( $contLang );
 		$this->contLangCode = $contLang->getCode();
 		$this->logger = $logger;
-		$this->langFactory = $langFactory;
 		$this->localisationCache = $localisationCache;
 		$this->languageNameUtils = $languageNameUtils;
 		$this->languageFallback = $languageFallback;
@@ -989,13 +983,8 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param bool $useDB If true, look for the message in the DB, false
 	 *   to use only the LocalisationCache.
 	 * @param bool|string|Language|null $language Code of the language to get the message for.
-	 *   - If string and a valid code, will create a standard language object
-	 *   - If string but not a valid code, will create a basic language object
-	 *   - If false, create object from the current users language
-	 *   - If true or null, create object from the wikis content language
-	 *   - If language object, use it as given
-	 *   - If this parameter omitted the object from the wikis content language is used
-	 *   - Other values than a Language object or null are deprecated.
+	 *   This should be a string or null in new code. If null is given, the content language
+	 *   will be used.
 	 * @param string &$usedKey @phan-output-reference If given, will be set to the message key
 	 *   that the message was fetched from (the requested key may be overridden by hooks).
 	 *
@@ -1013,8 +1002,7 @@ class MessageCache implements LoggerAwareInterface {
 			return false;
 		}
 
-		$language ??= $this->contLang;
-		$language = $this->getLanguageObject( $language );
+		$langCode = $this->getLanguageCode( $language ?? $this->contLangCode );
 
 		// Normalise title-case input (with some inlining)
 		$lckey = $this->normalizeKey( $key );
@@ -1033,7 +1021,7 @@ class MessageCache implements LoggerAwareInterface {
 			if ( is_string( $override ) ) {
 				$lckey = $override;
 			} else {
-				$lckey = $override( $lckey, $this, $language, $useDB );
+				$lckey = $override( $lckey, $this );
 			}
 		}
 
@@ -1043,7 +1031,7 @@ class MessageCache implements LoggerAwareInterface {
 
 		// Loop through each language in the fallback list until we find something useful
 		$message = $this->getMessageFromFallbackChain(
-			$language,
+			$langCode,
 			$lckey,
 			!$this->disabled && $useDB
 		);
@@ -1085,43 +1073,46 @@ class MessageCache implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Return a Language object from $langCode
+	 * Return a Language code from legacy input
 	 *
-	 * @param Language|string|bool $langCode Either:
+	 * @param Language|string|bool $lang Either:
 	 *   - a Language object
-	 *   - code of the language to get the message for, if it is a valid code
-	 *     create a language for that language, if it is a string but not a
-	 *     valid code then make a basic language object
+	 *   - code of the language to get the message for, with a fall back to the
+	 *     content language if it is invalid.
 	 *   - a boolean: if it's false then use the global object for the current
 	 *     user's language (as a fallback for the old parameter functionality),
 	 *     or if it is true then use global object for the wiki's content language.
-	 * @return Language|StubUserLang
+	 * @return string
 	 */
-	private function getLanguageObject( $langCode ) {
-		// Identify which language to get or create a language object for.
-		// Using is_object here due to Stub objects.
-		if ( is_object( $langCode ) ) {
-			return $langCode;
+	private function getLanguageCode( $lang ): string {
+		if ( is_object( $lang ) ) {
+			StubObject::unstub( $lang );
+			if ( $lang instanceof Language ) {
+				return $lang->getCode();
+			} else {
+				throw new InvalidArgumentException( 'Invalid language object of class ' .
+					get_class( $lang ) );
+			}
+		} elseif ( is_string( $lang ) ) {
+			if ( $this->languageNameUtils->isValidCode( $lang ) ) {
+				return $lang;
+			}
+			// $lang is a string, but not a valid language code; use content language.
+			$this->logger->debug( 'Invalid language code passed to' . __METHOD__ .
+				', falling back to content language.' );
+			return $this->contLangCode;
+		} elseif ( is_bool( $lang ) ) {
+			wfDeprecatedMsg( 'Calling MessageCache::get with a boolean language parameter ' .
+				'was deprecated in MediaWiki 1.43', '1.43' );
+			if ( $lang ) {
+				return $this->contLangCode;
+			} else {
+				global $wgLang;
+				return $wgLang->getCode();
+			}
+		} else {
+			throw new InvalidArgumentException( 'Invalid language' );
 		}
-
-		wfDeprecated( __METHOD__ . ' with not a Language object in $langCode', '1.43' );
-		if ( $langCode === true || $langCode === $this->contLangCode ) {
-			return $this->contLang;
-		}
-
-		global $wgLang;
-		if ( $langCode === false || $langCode === $wgLang->getCode() ) {
-			return $wgLang;
-		}
-
-		$validCodes = array_keys( $this->languageNameUtils->getLanguageNames() );
-		if ( in_array( $langCode, $validCodes ) ) {
-			return $this->langFactory->getLanguage( $langCode );
-		}
-
-		// $langCode is a string, but not a valid language code; use content language.
-		$this->logger->debug( 'Invalid language code passed to' . __METHOD__ . ', falling back to content language.' );
-		return $this->contLang;
 	}
 
 	/**
@@ -1129,22 +1120,22 @@ class MessageCache implements LoggerAwareInterface {
 	 * that language, the site language, or fallbacks of the site language.
 	 *
 	 * @see MessageCache::get
-	 * @param Language|StubObject $lang Preferred language
+	 * @param string $code Preferred language
 	 * @param string $lckey Lowercase key for the message (as for localisation cache)
 	 * @param bool $useDB Whether to include messages from the wiki database
 	 * @return string|false The message, or false if not found
 	 */
-	private function getMessageFromFallbackChain( $lang, $lckey, $useDB ) {
+	private function getMessageFromFallbackChain( $code, $lckey, $useDB ) {
 		$alreadyTried = [];
 
 		// First try the requested language.
-		$message = $this->getMessageForLang( $lang, $lckey, $useDB, $alreadyTried );
+		$message = $this->getMessageForLang( $code, $lckey, $useDB, $alreadyTried );
 		if ( $message !== false ) {
 			return $message;
 		}
 
 		// Now try checking the site language.
-		$message = $this->getMessageForLang( $this->contLang, $lckey, $useDB, $alreadyTried );
+		$message = $this->getMessageForLang( $this->contLangCode, $lckey, $useDB, $alreadyTried );
 		return $message;
 	}
 
@@ -1152,15 +1143,13 @@ class MessageCache implements LoggerAwareInterface {
 	 * Given a language, try to fetch messages for that language and its fallbacks.
 	 *
 	 * @see MessageCache::get
-	 * @param Language|StubObject $lang Preferred language
+	 * @param string $langCode Preferred language
 	 * @param string $lckey Lowercase key for the message (as for localisation cache)
 	 * @param bool $useDB Whether to include messages from the wiki database
 	 * @param bool[] &$alreadyTried Contains true for each language that has been tried already
 	 * @return string|false The message, or false if not found
 	 */
-	private function getMessageForLang( $lang, $lckey, $useDB, &$alreadyTried ) {
-		$langCode = $lang->getCode();
-
+	private function getMessageForLang( $langCode, $lckey, $useDB, &$alreadyTried ) {
 		// Try checking the database for the requested language
 		if ( $useDB ) {
 			$uckey = $this->contLang->ucfirst( $lckey );
