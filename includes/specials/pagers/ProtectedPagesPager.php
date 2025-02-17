@@ -31,6 +31,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Title\Title;
+use MediaWiki\User\UserIdentityValue;
 use UnexpectedValueException;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -94,8 +95,7 @@ class ProtectedPagesPager extends TablePager {
 			$lb->add( $row->page_namespace, $row->page_title );
 			// for old protection rows, user and comment are missing
 			if ( $row->actor_name !== null ) {
-				$lb->add( NS_USER, $row->actor_name );
-				$lb->add( NS_USER_TALK, $row->actor_name );
+				$lb->addUser( new UserIdentityValue( $row->actor_user, $row->actor_name ) );
 			}
 			if ( $row->log_timestamp !== null ) {
 				$rowsWithComments[] = $row;

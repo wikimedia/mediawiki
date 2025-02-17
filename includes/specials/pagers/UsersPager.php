@@ -323,9 +323,9 @@ class UsersPager extends AlphabeticPager {
 		$userIds = [];
 		# Give some pointers to make user links
 		foreach ( $this->mResult as $row ) {
-			$batch->add( NS_USER, $row->user_name );
-			$batch->add( NS_USER_TALK, $row->user_name );
-			$userIds[] = (int)$row->user_id;
+			$user = new UserIdentityValue( $row->user_id, $row->user_name );
+			$batch->addUser( $user );
+			$userIds[] = $user->getId();
 		}
 
 		// Lookup groups for all the users

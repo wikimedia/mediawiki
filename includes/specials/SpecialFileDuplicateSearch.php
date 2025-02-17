@@ -189,8 +189,7 @@ class SpecialFileDuplicateSearch extends SpecialPage {
 			if ( $file->isLocal() ) {
 				$uploader = $file->getUploader( File::FOR_THIS_USER, $this->getAuthority() );
 				if ( $uploader ) {
-					$batch->add( NS_USER, $uploader->getName() );
-					$batch->add( NS_USER_TALK, $uploader->getName() );
+					$batch->addUser( $uploader );
 				}
 			}
 		}

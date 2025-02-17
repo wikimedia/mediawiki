@@ -40,6 +40,7 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPageFactory;
+use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;
 use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -555,8 +556,7 @@ class BlockListPager extends TablePager {
 		foreach ( $result as $row ) {
 			$target = $row->bt_address ?? $row->bt_user_text;
 			if ( $target !== null ) {
-				$lb->add( NS_USER, $target );
-				$lb->add( NS_USER_TALK, $target );
+				$lb->addUser( new UserIdentityValue( (int)$row->bt_user, $target ) );
 			}
 
 			if ( isset( $row->bl_by_text ) ) {

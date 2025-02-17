@@ -34,6 +34,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Xml\Xml;
 use RepoGroup;
@@ -502,8 +503,7 @@ class ImageListPager extends TablePager {
 		$batch = $this->linkBatchFactory->newLinkBatch();
 		$rowsWithComments = [ 'img_description' => [], 'oi_description' => [], 'fr_description' => [] ];
 		foreach ( $this->mResult as $i => $row ) {
-			$batch->add( NS_USER, $row->actor_name );
-			$batch->add( NS_USER_TALK, $row->actor_name );
+			$batch->addUser( new UserIdentityValue( $row->actor_user ?? 0, $row->actor_name ) );
 			$batch->add( NS_FILE, $row->img_name );
 			$rowsWithComments[$row->description_field][$i] = $row;
 		}

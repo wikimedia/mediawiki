@@ -37,6 +37,7 @@ use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserArray;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityUtils;
+use MediaWiki\User\UserIdentityValue;
 use MWExceptionHandler;
 use OOUI\IconWidget;
 use RecentChange;
@@ -703,8 +704,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$batch = $linkBatchFactory->newLinkBatch();
 			$userNames = [];
 			foreach ( $rows as $row ) {
-				$batch->add( NS_USER, $row->rc_user_text );
-				$batch->add( NS_USER_TALK, $row->rc_user_text );
+				$batch->addUser( new UserIdentityValue( $row->rc_user ?? 0, $row->rc_user_text ) );
 				$userNames[] = $row->rc_user_text;
 				$batch->add( $row->rc_namespace, $row->rc_title );
 				if ( $row->rc_source === RecentChange::SRC_LOG ) {
