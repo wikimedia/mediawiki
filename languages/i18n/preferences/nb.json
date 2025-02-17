@@ -93,7 +93,7 @@
 	"prefs-help-email": "Å angi e-postadresse er valgfritt, men er nødvendig for å få tilsendt nytt passord om du skulle glemme det gamle.",
 	"prefs-help-email-required": "E-postadresse er påkrevd.",
 	"prefs-help-email-others": "Du kan også velge å la andre brukere kontakte deg via brukersiden din uten å røpe identiteten din.",
-	"tog-requireemail": "Kun send e-poster om tilbakestilling av passord når både e-postadresse og brukernavn angis.",
+	"tog-requireemail": "Kun send e-poster om tilbakestilling av passord når både e-postadresse og brukernavn angis",
 	"prefs-help-requireemail": "Dette forbedrer personvernet og hjelper til å unngå uønsket e-post.",
 	"noemailprefs": "Oppgi en e-postadresse for at disse funksjonene skal fungere.",
 	"emailnotauthenticated": "E-postadressen din er ikke bekreftet.\nDu vil ikke kunne motta e-post for noen av følgende funksjoner.",

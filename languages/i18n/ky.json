@@ -615,6 +615,7 @@
 	"userrights-reason": "Себеп:",
 	"userrights-changeable-col": "Сиз өзгөртө алган топтор",
 	"userrights-unchangeable-col": "Сиз өзгөртө албаган топтор",
+	"userrights-expiry-none": "мөөнөтсүз",
 	"group": "Топ:",
 	"group-user": "Колдонуучулар",
 	"group-temp": "Убактылуу колдонуучулар",

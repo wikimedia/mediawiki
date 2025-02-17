@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"BOKOBA VEROLY",
 			"BamLifa",
 			"Bombo (on ln.wikipedia.org)",
 			"DannyS712",
@@ -436,10 +437,12 @@
 	"deletepage": "Kolímwisa lonkásá loye",
 	"htmlform-submit": "Kotínda",
 	"htmlform-selectorother-other": "Mosúsu",
+	"logentry-rights-autopromote-kept": "{{GENDER:$2| ebombami}} $1 ebongwanaki te",
 	"searchsuggest-search": "Boluki {{SITENAME}}",
 	"nstab-mainpage": "Lokásá ya libosó",
 	"skin-action-protect": "Kobátela",
 	"skin-action-undelete": "Kolímwisa tɛ̂",
 	"skin-action-delete": "Kolímwisa",
-	"skin-action-move": "Kobóngola nkómbó"
+	"skin-action-move": "Kobóngola nkómbó",
+	"renameuser-error-global-detaching": "Moto oyo azali kosalela yango azali na boyokani na mokili mobimba. Salelá CentralAuth mpo na kobenga nkombo ya sika."
 }

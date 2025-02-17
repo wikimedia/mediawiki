@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"BOKOBA VEROLY",
 			"Bergerdias",
 			"Rkupsala"
 		]
@@ -41,19 +42,19 @@
 	"oct": "ng10",
 	"nov": "ng11",
 	"dec": "ng12",
-	"monday": "Kimosi",
-	"tuesday": "Kizôle",
-	"wednesday": "Kitatu",
-	"thursday": "Kîya",
-	"friday": "Kitânu",
-	"saturday": "Sabala",
-	"sunday": "Lumîngu",
-	"mon": "ki-1",
-	"tue": "ki-2",
-	"wed": "ki-3",
-	"thu": "ki-4",
-	"fri": "ki-5",
-	"sat": "Sab",
-	"sun": "Lum",
+	"monday": "Kintete",
+	"tuesday": "Kizole",
+	"wednesday": "Kilumbu ya Kitatu",
+	"thursday": "Kiya",
+	"friday": "Kitanu",
+	"saturday": "Mposo",
+	"sunday": "Lumingu",
+	"mon": "Mono",
+	"tue": "Bo fwaka yandi",
+	"wed": "Madidi",
+	"thu": "Thu",
+	"fri": "Fri",
+	"sat": "Sat",
+	"sun": "Ntangu",
 	"period-am": "KELE"
 }

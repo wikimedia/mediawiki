@@ -218,7 +218,7 @@
 	"readonly_lag": "قاعدة البيانات (الـ database) اتقفلت اوتوماتيكى علشان تقدر السيرڤرات الـ slave تلحق السيرڤر الـ master",
 	"nonwrite-api-promise-error": "'Promise-Non-Write-API-Action' HTTP header اتبعت لكن الطلب كان لAPI write module.",
 	"timeouterror": "السيرفر انتهت فترته",
-	"timeouterror-text": "زاد عن حد الوقت بالثوانى لوقت الطلب و هو {{PLURAL:$1|ثانيه واحدة|ثانيتين|$1 ثوانى|$1 ثانيه}}.",
+	"timeouterror-text": "زاد عن حد الوقت بالثوانى لوقت الطلب و هو $1 ثانيه.",
 	"internalerror": "غلط جوّانى",
 	"internalerror_info": "غلط جوّانى: $1",
 	"internalerror-fatal-exception": "استثناء مميت من النوع \"$1\"",

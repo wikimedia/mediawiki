@@ -89,7 +89,7 @@
 	"hebrew-calendar-m10-gen": "Tammúz",
 	"hebrew-calendar-m11-gen": "Ab",
 	"hebrew-calendar-m12-gen": "Elúl",
-	"years": "{{PLURAL:$1|$1 år}}",
+	"years": "$1 {{PLURAL:$1|år}}",
 	"months": "$1 {{PLURAL:$1|måned|måneder}}",
 	"weeks": "$1 {{PLURAL:$1|uke|uker}}",
 	"days": "$1 {{PLURAL:$1|dag|dager}}",

@@ -3689,7 +3689,7 @@
 	"logentry-protect-modify-cascade": "$1{{GENDER:$2|已變更}}$3的保護設定$4[連鎖]",
 	"logentry-rights-rights": "$1{{GENDER:$2|已變更}}{{GENDER:$6|$3}}的使用者群組：$7",
 	"logentry-rights-rights-granted": "{{GENDER:$2|已授予}}$1",
-	"logentry-rights-rights-revoked": "{{GENDER:$2|已撤銷}$1",
+	"logentry-rights-rights-revoked": "{{GENDER:$2|已撤銷}}$1",
 	"logentry-rights-rights-expiry-changed": "{{GENDER:$2|已變更}}$1的期限",
 	"logentry-rights-rights-kept": "{{GENDER:$2|維持}}$1不變",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|已變更}} $3 的群組成員資格",

@@ -623,7 +623,7 @@
 	"permissionserrorstext": "Nemate dopuštenje da to uradite, iz {{PLURAL:$1|slijedećeg razloga|slijedećih razloga}}:",
 	"permissionserrorstext-withaction": "Nemate dopuštenje da $2 iz {{PLURAL:$1|sljedećeg|sljedećih}} razloga:",
 	"contentmodelediterror": "Ne možete urediti ovu izmjenu jer je njen sadržajni model <code>$1</code>, što se razlikuje od trenutnog sadržajnog modela stranice <code>$2</code>.",
-	"recreate-moveddeleted-warn": "<strong>Upozorenje: Pravite stranicu koja je prethodno brisana.</strong>\n\nRazmotrite da li je njena izrada u skladu s pravilima.\nIspod je prikazan dnevnik brisanja i premještanja stranice:",
+	"recreate-moveddeleted-warn": "Pravite stranicu koja je <strong>prethodno izbrisana</strong>.\n\nRazmotrite da li je njena izrada u skladu s pravilima.\nIspod je prikazan dnevnik brisanja i premještanja stranice.",
 	"moveddeleted-notice": "Ova stranica ne postoji.\nIspod je prikazan dnevnik brisanja, zaštite i premještanja stranice.",
 	"moveddeleted-notice-recent": "Ova stranica je nedavno izbrisana (u prethodna 24 sata).\nIspod su prikazani dnevnici brisanja, zaštite i premještanja.",
 	"log-fulllog": "Cijeli dnevnik",
