@@ -12,7 +12,7 @@ class MessageParserTest extends MediaWikiIntegrationTestCase {
 	public function testNestedMessageParse() {
 		$msgOuter = ( new RawMessage( '[[Link|{{#language:}}]]' ) )
 			->inLanguage( 'outer' )
-			->page( new PageIdentityValue( 1, NS_MAIN, 'Link', PageIdentityValue::LOCAL ) );
+			->page( $this->makePage( 'Link' ) );
 
 		// T372891: Allow nested message parsing
 		// Any hook from Linker or LinkRenderer will do for this test, but this one is the simplest
@@ -22,6 +22,28 @@ class MessageParserTest extends MediaWikiIntegrationTestCase {
 		} );
 
 		$this->assertEquals( '<a class="mw-selflink selflink">outerinner</a>', $msgOuter->parse() );
+	}
+
+	public function testNestedLimit() {
+		$text = '[[Link|label]]';
+		$messageParser = $this->getServiceContainer()->getMessageParser();
+		$this->setTemporaryHook(
+			'SelfLinkBegin',
+			function ( $nt, &$html, &$trail, &$prefix, &$ret ) use ( $messageParser ) {
+				$html .= $messageParser
+					->parse( '[[Link|label]]', $this->makePage( 'Link' ), true, true, 'en' )
+					->getContentHolderText();
+			} );
+		$result = $messageParser
+			->parse( $text, $this->makePage( 'Link' ), true, true, 'en' )
+			->getContentHolderText();
+		$this->assertStringContainsString( 'Message parse depth limit exceeded', $result );
+
+		// Check that the MessageParser is still functional after hitting the limit
+		$result = $messageParser
+			->parse( 'test', null, true, true, 'en' )
+			->getContentHolderText();
+		$this->assertSame( 'test', Parser::stripOuterParagraph( $result ) );
 	}
 
 	public static function provideTransform() {
@@ -62,7 +84,7 @@ class MessageParserTest extends MediaWikiIntegrationTestCase {
 		$result = $messageParser->transform(
 			$input,
 			$options['interface'] ?? true,
-			$options['lang'] ?? null,
+			$options['lang'] ?? 'en',
 			$this->makePage( $options['page'] ?? null )
 		);
 		$this->assertSame( $expected, $result );
@@ -112,7 +134,7 @@ class MessageParserTest extends MediaWikiIntegrationTestCase {
 			$this->makePage( $options['page'] ?? null ),
 			$options['lineStart'] ?? true,
 			$options['interface'] ?? true,
-			$options['lang'] ?? null
+			$options['lang'] ?? 'en'
 		);
 		$result = Parser::stripOuterParagraph( $parserOutput->getContentHolderText() );
 		$this->assertSame( $expected, $result );
