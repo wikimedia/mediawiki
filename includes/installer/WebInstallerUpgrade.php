@@ -87,13 +87,9 @@ class WebInstallerUpgrade extends WebInstallerPage {
 			$msg = 'config-upgrade-done-no-regenerate';
 		}
 		$this->parent->disableLinkPopups();
-		$this->addHTML(
-			$this->parent->getInfoBox(
-				wfMessage( $msg,
-					$this->getVar( 'wgServer' ) .
-					$this->getVar( 'wgScriptPath' ) . '/index.php'
-				)->plain()
-			)
+		$this->parent->showSuccess(
+			$msg,
+			$this->getVar( 'wgServer' ) . $this->getVar( 'wgScriptPath' ) . '/index.php'
 		);
 		$this->parent->restoreLinkPopups();
 		$this->endForm( $regenerate ? 'regenerate' : false, false );
