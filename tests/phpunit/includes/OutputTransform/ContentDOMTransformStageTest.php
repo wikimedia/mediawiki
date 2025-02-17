@@ -53,13 +53,11 @@ class ContentDOMTransformStageTest extends TestCase {
 		$text = $po->getContentHolderText();
 		$this->assertEquals( $html, $text );
 
-		// Parsoid, input is sullied with rich attributes
+		// Parsoid, also roundtrips the input since document creation marks it as new
 		$options = [ 'isParsoidContent' => true ];
 		$po = $transform->transform( $po, null, $options );
 		$text = $po->getContentHolderText();
-		$this->assertNotEquals( $html, $text );
-		// Without PageBundle data, attributes are inlined
-		self::assertStringContainsString( "data-parsoid", $text );
+		$this->assertEquals( $html, $text );
 	}
 
 }

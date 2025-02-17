@@ -66,7 +66,7 @@ abstract class ContentDOMTransformStage extends OutputTransformStage {
 			$doc = DomPageBundle::fromPageBundle( $origPb )->toDom( true );
 		} else {
 			$doc = ContentUtils::createAndLoadDocument(
-				$po->getContentHolderText(),
+				$po->getContentHolderText(), [ 'markNew' => true, 'validateXMLNames' => true, ]
 			);
 		}
 
