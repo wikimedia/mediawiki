@@ -8,7 +8,6 @@ use MediaWiki\Content\Content;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\DeferredUpdates;
-use MediaWiki\HookContainer\FauxGlobalHookArray;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinkTarget;
@@ -1155,12 +1154,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			// NOTE: do not use array_merge, it screws up for numeric keys.
 			$merged = $GLOBALS[$name];
 
-			// HACK for fake $wgHooks. Replace it with the original array here,
-			// then let resetLegacyGlobals() turn it back into a fake.
-			if ( $merged instanceof FauxGlobalHookArray ) {
-				$merged = $merged->getOriginalArray();
-			}
-
 			if ( !is_array( $merged ) ) {
 				throw new RuntimeException( "MW global $name is not an array." );
 			}
@@ -1449,16 +1442,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	private static function resetLegacyGlobals( MediaWikiServices $services ) {
-		// phpcs:disable MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgHooks
-		global $wgHooks;
-
-		$hooks = $wgHooks instanceof FauxGlobalHookArray ? $wgHooks->getOriginalArray() : $wgHooks;
-
-		$wgHooks = new FauxGlobalHookArray(
-			$services->getHookContainer(),
-			$hooks
-		);
-
 		ParserOptions::clearStaticCache();
 
 		// User objects may hold service references!

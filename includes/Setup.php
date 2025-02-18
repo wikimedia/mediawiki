@@ -55,7 +55,6 @@ use MediaWiki\Config\SiteConfiguration;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\Deferred\DeferredUpdates;
-use MediaWiki\HookContainer\FauxGlobalHookArray;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\Language;
 use MediaWiki\Logger\LoggerFactory;
@@ -377,17 +376,6 @@ if ( $wgServer === false ) {
 		'https://www.mediawiki.org/wiki/Manual:$wgServer</a>.'
 	);
 }
-
-// Set up a fake $wgHooks array.
-// XXX: It would be nice if we could still get the originally configured hook handlers
-//      using the MainConfigNames::Hooks setting, but it's not really needed,
-//      since we need the HookContainer to be initialized first anyway.
-
-global $wgHooks;
-$wgHooks = new FauxGlobalHookArray(
-	MediaWikiServices::getInstance()->getHookContainer(),
-	$wgHooks
-);
 
 // Non-trivial expansion of: $wgCanonicalServer, $wgServerName.
 // These require calling global functions.

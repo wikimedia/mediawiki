@@ -102,7 +102,6 @@ use MediaWiki\Export\WikiExporterFactory;
 use MediaWiki\FileBackend\FileBackendGroup;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
-use MediaWiki\HookContainer\FauxGlobalHookArray;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\HookContainer\StaticHookRegistry;
@@ -940,13 +939,6 @@ return [
 		//       MediaWikiServices hook.
 
 		$configHooks = $services->getBootstrapConfig()->get( MainConfigNames::Hooks );
-
-		// If we are instantiating this service after $wgHooks was replaced by a fake,
-		// get the original array out of the object. This should only happen in the installer,
-		// when it calls resetMediaWikiServices().
-		if ( $configHooks instanceof FauxGlobalHookArray ) {
-			$configHooks = $configHooks->getOriginalArray();
-		}
 
 		$extRegistry = ExtensionRegistry::getInstance();
 		$extHooks = $extRegistry->getAttribute( 'Hooks' );
