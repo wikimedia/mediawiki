@@ -366,6 +366,10 @@ return [
 	'AutoblockExemptionList' => static function ( MediaWikiServices $services ): AutoblockExemptionList {
 		$messageFormatterFactory = new MessageFormatterFactory( Message::FORMAT_PLAIN );
 		return new AutoblockExemptionList(
+			new ServiceOptions(
+				AutoblockExemptionList::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig(),
+			),
 			LoggerFactory::getInstance( 'AutoblockExemptionList' ),
 			$messageFormatterFactory->getTextFormatter(
 				$services->getContentLanguageCode()->toString()
