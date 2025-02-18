@@ -51,7 +51,6 @@
 
 		OO.inheritClass( PrefDialog, OO.ui.ProcessDialog );
 		PrefDialog.static.name = sectionId;
-		PrefDialog.static.escapable = true;
 		PrefDialog.static.size = 'larger';
 		PrefDialog.static.title = sectionTitle;
 		PrefDialog.static.actions = [
