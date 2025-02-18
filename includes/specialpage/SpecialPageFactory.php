@@ -1217,18 +1217,20 @@ class SpecialPageFactory {
 				'UserFactory',
 			]
 		],
-		'Renameuser' => [
-			'class' => SpecialRenameUser::class,
-			'services' => [
-				'ConnectionProvider',
-				'MovePageFactory',
-				'PermissionManager',
-				'TitleFactory',
-				'UserFactory',
-				'UserNamePrefixSearch',
-				'UserNameUtils',
-			]
-		],
+		// Fandom-start: disable Special:RenameUser page
+//		'Renameuser' => [
+//			'class' => SpecialRenameUser::class,
+//			'services' => [
+//				'ConnectionProvider',
+//				'MovePageFactory',
+//				'PermissionManager',
+//				'TitleFactory',
+//				'UserFactory',
+//				'UserNamePrefixSearch',
+//				'UserNameUtils',
+//			]
+//		],
+		// Fandom-end
 		'Revisiondelete' => [
 			'class' => SpecialRevisionDelete::class,
 			'services' => [
