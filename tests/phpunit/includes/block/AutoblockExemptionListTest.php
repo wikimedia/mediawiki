@@ -30,6 +30,7 @@ class AutoblockExemptionListTest extends MediaWikiIntegrationTestCase {
 			'IP is exempt from autoblocks' => [ '1.2.3.4', true ],
 			'IP is not exempt from autoblocks' => [ '1.2.3.5', false ],
 			'IP is exempt from autoblocks based on IP range exemption' => [ '7.8.9.40', true ],
+			'IP that is not a list entry is not exempt' => [ '192.0.2.1', false ],
 		];
 	}
 
@@ -37,7 +38,7 @@ class AutoblockExemptionListTest extends MediaWikiIntegrationTestCase {
 		$this->editPage(
 			Title::newFromText( 'block-autoblock-exemptionlist', NS_MEDIAWIKI ),
 			'[[Test]]. This is a autoblocking exemption list description.' .
-			"\n\n* 1.2.3.4\n** 1.2.3.6\n* 7.8.9.0/24"
+			"\n\n* 1.2.3.4\n** 1.2.3.6\n* 7.8.9.0/24\n192.0.2.1"
 		);
 	}
 }
