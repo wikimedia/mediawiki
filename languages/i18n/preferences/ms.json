@@ -230,7 +230,7 @@
 	"prefs-searchmisc": "Umum",
 	"searchlimit-label": "Bilangan hasil carian untuk dipaparkan pada setiap halaman:",
 	"searchlimit-help": "Bilangan maksimum:$1",
-	"search-thumbnail-extra-namespaces-label": "Tunjukkan lakaran kenit dalam Khas:Cari pada Desktop",
+	"search-thumbnail-extra-namespaces-label": "Tunjukkan lakaran kenit dalam Khas:Cari pada paparan Atas Meja",
 	"search-thumbnail-extra-namespaces-message": "Paparkan lakaran kenit untuk {{PLURAL:$2|ruang nama}} $1 hasil pada halaman {{#special:search}}.",
 	"prefs-advancedsearchoptions": "Pilihan lanjutan",
 	"prefs-reset-intro": "Anda boleh menggunakan laman ini untuk menetapkan semula keutamaan anda kepada tetapan asali.\nTindakan ini tidak boleh dibatalkan.",

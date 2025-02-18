@@ -600,7 +600,7 @@
 	"resettokens-watchlist-token": "Токен за веб-фид (Atom/RSS) [[Special:Watchlist|промена на страницама са списка надгледања]]",
 	"resettokens-done": "Токени су ресетовани.",
 	"resettokens-resetbutton": "Ресетуј изабране токене",
-	"editrecovery": "Опоравак измене",
+	"editrecovery": "Опоравак измена",
 	"edit-recovery-nojs-placeholder": "JavaScript је потребан за Опоравак измена.",
 	"edit-recovery-special-user-unnamed": "Молимо [[Special:UserLogin|пријавите се]] или [[Special:CreateAccount|отворите налог]] да би користили ову могућност.",
 	"edit-recovery-special-user-not-enabled": "Ову могућност можете омогућити у [[Special:Preferences#mw-prefsection-editing|Вашим подешавањима]].",

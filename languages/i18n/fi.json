@@ -3708,7 +3708,7 @@
 	"logentry-tag-update-revision": "$1 {{GENDER:$2|päivitti}} merkkauksia kohdeversiossa $4 sivulla $3 ({{PLURAL:$7|lisätty}} $6; {{PLURAL:$9|poistettu}} $8)",
 	"logentry-tag-update-logentry": "$1 {{GENDER:$2|päivitti}} merkkauksia lokimerkinnässä $5 sivulla $3 ({{PLURAL:$7|lisätty}} $6; {{PLURAL:$9|poistettu}} $8)",
 	"rightsnone": "(ei oikeuksia)",
-	"rightslogentry-temporary-group": "$1 (väliaikainen, $2 asti)",
+	"rightslogentry-temporary-group": "$1 (väliaikainen; $2 asti)",
 	"feedback-cancel": "Peruuta",
 	"feedback-close": "Valmis",
 	"feedback-external-bug-report-button": "Lähetä tekninen tehtävä",
