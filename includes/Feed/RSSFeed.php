@@ -78,7 +78,7 @@ class RSSFeed extends ChannelFeed {
 			"permalink" => $item->rssIsPermalink,
 			"uniqueID" => $item->getUniqueID(),
 			"description" => $item->getDescription(),
-			"date" => $this->xmlEncode( $this->formatTime( $item->getDate() ) ),
+			"date" => $this->xmlEncodeNullable( $this->formatTime( $item->getDate() ) ),
 			"author" => $item->getAuthor()
 		];
 		$comments = $item->getCommentsUnescaped();
