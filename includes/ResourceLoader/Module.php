@@ -318,49 +318,6 @@ abstract class Module implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Get alternative script URLs for legacy debug mode.
-	 *
-	 * The default behavior is to return a `load.php?only=scripts&module=<name>` URL.
-	 *
-	 * Module classes that merely wrap one or more other script files in production mode, may
-	 * override this method to return an array of raw URLs for those underlying scripts,
-	 * if those are individually web-accessible.
-	 *
-	 * The mw.loader client will load and execute each URL consecutively. This has the caveat of
-	 * executing legacy debug scripts in the global scope, which is why non-package file modules
-	 * tend to use file closures (T50886).
-	 *
-	 * This function MUST NOT be called, unless all the following are true:
-	 *
-	 * 1. We're in debug mode,
-	 * 2. There is no `only=` parameter in the context,
-	 * 3. self::supportsURLLoading() has returned true.
-	 *
-	 * Point 2 prevents an infinite loop since we use the `only=` mechanism in the return value.
-	 * Overrides must similarly return with `only`, or return or a non-load.php URL.
-	 *
-	 * @stable to override
-	 * @param Context $context
-	 * @return string[]
-	 */
-	public function getScriptURLsForDebug( Context $context ) {
-		$rl = $context->getResourceLoader();
-		$derivative = new DerivativeContext( $context );
-		$derivative->setModules( [ $this->getName() ] );
-		$derivative->setOnly( 'scripts' );
-
-		$url = $rl->createLoaderURL(
-			$this->getSource(),
-			$derivative
-		);
-
-		// Expand debug URL in case we are another wiki's module source (T255367)
-		$url = $rl->expandUrl( $this->getConfig()->get( MainConfigNames::Server ), $url );
-
-		return [ $url ];
-	}
-
-	/**
 	 * Whether this module supports URL loading. If this function returns false,
 	 * getScript() will be used even in cases (debug mode, no only param) where
 	 * getScriptURLsForDebug() would normally be used instead.
@@ -398,7 +355,6 @@ abstract class Module implements LoggerAwareInterface {
 	 * 2. There is no `only=` parameter and,
 	 * 3. self::supportsURLLoading() returns true.
 	 *
-	 * See also getScriptURLsForDebug().
 	 *
 	 * @stable to override
 	 * @param Context $context

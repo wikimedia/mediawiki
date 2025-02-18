@@ -119,20 +119,12 @@ class ModuleTest extends ResourceLoaderTestCase {
 	 */
 	public function testGetURLsForDebug() {
 		$module = new ResourceLoaderTestModule( [
-			'script' => 'foo();',
 			'styles' => '.foo { color: blue; }',
 		] );
 		$context = $this->getResourceLoaderContext( [ 'debug' => 'true' ] );
 		$module->setConfig( $context->getResourceLoader()->getConfig() );
 		$module->setName( 'test' );
 
-		$this->assertEquals(
-			[
-				'https://example.org/w/load.php?debug=2&lang=en&modules=test&only=scripts'
-			],
-			$module->getScriptURLsForDebug( $context ),
-			'script urls debug=true'
-		);
 		$this->assertEquals(
 			[ 'all' => [
 				'/w/load.php?debug=2&lang=en&modules=test&only=styles'
@@ -142,13 +134,6 @@ class ModuleTest extends ResourceLoaderTestCase {
 		);
 
 		$context = $this->getResourceLoaderContext( [ 'debug' => '2' ] );
-		$this->assertEquals(
-			[
-				'https://example.org/w/load.php?debug=2&lang=en&modules=test&only=scripts'
-			],
-			$module->getScriptURLsForDebug( $context ),
-			'script urls debug=2'
-		);
 		$this->assertEquals(
 			[ 'all' => [
 				'/w/load.php?debug=2&lang=en&modules=test&only=styles'
