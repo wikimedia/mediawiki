@@ -7,6 +7,7 @@ use MediaWiki\Notification\NotificationHandler;
 use MediaWiki\Notification\NotificationService;
 use MediaWiki\Notification\RecipientSet;
 use MediaWikiUnitTestCase;
+use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RuntimeException;
 
@@ -83,14 +84,14 @@ class NotificationServiceTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testMissingHandler() {
-		$this->expectException( RuntimeException::class );
-
+		$mockLogger = $this->createMock( LoggerInterface::class );
+		$mockLogger->expects( $this->once() )->method( 'warning' );
 		$recipients = new RecipientSet( [] );
 		$notif = new Notification( 'A' );
 		$handler = $this->createNoOpMock( NotificationHandler::class );
 
 		$svc = new NotificationService(
-			new NullLogger(),
+			$mockLogger,
 			$this->createSimpleObjectFactory(),
 			[
 				[ 'types' => [ 'B' ], 'factory' => static fn () => $handler ],
