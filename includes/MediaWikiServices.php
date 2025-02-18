@@ -98,6 +98,7 @@ use MediaWiki\Linker\LinkTargetLookup;
 use MediaWiki\Linker\UserLinkRenderer;
 use MediaWiki\Mail\EmailUserFactory;
 use MediaWiki\Mail\IEmailer;
+use MediaWiki\Notification\NotificationService;
 use MediaWiki\OutputTransform\OutputTransformPipeline;
 use MediaWiki\Page\ContentModelChangeFactory;
 use MediaWiki\Page\DeletePageFactory;
@@ -1501,6 +1502,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getNameTableStoreFactory(): NameTableStoreFactory {
 		return $this->getService( 'NameTableStoreFactory' );
+	}
+
+	/**
+	 * @since 1.44
+	 */
+	public function getNotificationService(): NotificationService {
+		return $this->getService( 'NotificationService' );
 	}
 
 	/**

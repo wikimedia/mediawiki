@@ -91,6 +91,7 @@ class ExtensionProcessor implements Processor {
 		'TempUserSerialMappings',
 		'DatabaseVirtualDomains',
 		'UserOptionsStoreProviders',
+		'NotificationHandlers',
 	];
 
 	/**

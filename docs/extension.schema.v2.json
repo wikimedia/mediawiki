@@ -1642,6 +1642,32 @@
 				".*": { "$ref": "#/definitions/ObjectFactorySpec" }
 			}
 		},
+		"NotificationHandlers": {
+			"type": "array",
+			"description": "List of notification handlers (specs for ObjectFactory). The class should implement the NotificationHandler interface.",
+			"items": {
+				"allOf": [
+					{
+						"type": "object",
+						"properties": {
+							"types": {
+								"type": "array",
+								"description": "Notification types (or wildcards) supported by this handler. Currently, the only supported wildcard is setting the whole type to '*' (no partial matches allowed).",
+								"items": {
+									"type": "string"
+								}
+							},
+							"factory": { "description": "See the ObjectFactorySpec definition" },
+							"class": { "description": "See the ObjectFactorySpec definition" },
+							"args": { "description": "See the ObjectFactorySpec definition" },
+							"services": { "description": "See the ObjectFactorySpec definition" },
+							"optional_services": { "description": "See the ObjectFactorySpec definition" }
+						}
+					},
+					{ "$ref": "#/definitions/ObjectFactorySpec" }
+				]
+			}
+		},
 		"ForeignResourcesDir": {
 			"type": "string",
 			"description": "The directory holding the foreign-resources.yaml file, relative to the extension root. See https://www.mediawiki.org/wiki/Foreign_resources"
