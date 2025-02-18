@@ -7,6 +7,7 @@ const storage = require( './storage.js' );
 const LoadNotification = require( './LoadNotification.js' );
 
 const pageName = mw.config.get( 'wgPageName' );
+const wiki = mw.config.get( 'wgDBname' );
 const section = $( 'input[name="wpSection"]' ).val() || null;
 const inputFields = {};
 const fieldNamePrefix = 'field_';
@@ -114,11 +115,6 @@ function onLoadHandler( $editForm ) {
 	} );
 }
 
-function track( metric, value ) {
-	const dbName = mw.config.get( 'wgDBname' );
-	mw.track( `counter.MediaWiki.edit_recovery.${ metric }.by_wiki.${ dbName }`, value );
-}
-
 function onLoadData( pageData ) {
 	if ( wasPosted ) {
 		// If this is a POST request, save the current data (e.g. from a preview).
@@ -131,7 +127,8 @@ function onLoadData( pageData ) {
 		} );
 
 		// statsv: Track the number of times the edit recovery notification is shown.
-		track( 'show', 1 );
+		mw.track( `counter.MediaWiki.edit_recovery.show.by_wiki.${ wiki }` );
+		mw.track( 'stats.mediawiki_editrecovery_prompt_total', 1, { action: 'show', wiki } );
 
 		const notification = loadNotification.getNotification();
 		// On 'restore changes'.
@@ -139,7 +136,8 @@ function onLoadData( pageData ) {
 			loadData( pageData );
 			notification.close();
 			// statsv: Track the number of times the edit recovery data is recovered.
-			track( 'recover', 1 );
+			mw.track( `counter.MediaWiki.edit_recovery.recover.by_wiki.${ wiki }` );
+			mw.track( 'stats.mediawiki_editrecovery_prompt_total', 1, { action: 'recover', wiki } );
 		} );
 		// On 'discard changes'.
 		loadNotification.getDiscardButton().on( 'click', () => {
@@ -147,7 +145,8 @@ function onLoadData( pageData ) {
 				notification.close();
 			} );
 			// statsv: Track the number of times the edit recovery data is discarded.
-			track( 'discard', 1 );
+			mw.track( `counter.MediaWiki.edit_recovery.discard.by_wiki.${ wiki }` );
+			mw.track( 'stats.mediawiki_editrecovery_prompt_total', 1, { action: 'discard', wiki } );
 		} );
 	}
 
