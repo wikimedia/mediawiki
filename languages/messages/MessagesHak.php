@@ -5,4 +5,4 @@
  * @ingroup Languages
  */
 
-$fallback = 'zh-hant, zh, zh-hans';
+$fallback = 'hak-latn, hak-hant, hak-hans, zh-hant, zh, zh-hans';
