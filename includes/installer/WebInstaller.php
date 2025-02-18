@@ -664,6 +664,14 @@ class WebInstaller extends Installer {
 			"</div></div>\n";
 	}
 
+	public function showSuccess( $msg, ...$params ) {
+		$html = '<div class="cdx-message cdx-message--block cdx-message--success">' .
+			'<span class="cdx-message__icon"></span><div class="cdx-message__content">' .
+			$this->parse( wfMessage( $msg, $params )->useDatabase( false )->plain() ) .
+			"</div></div>\n";
+		$this->output->addHTML( $html );
+	}
+
 	public function showMessage( $msg, ...$params ) {
 		$html = '<div class="cdx-message cdx-message--block cdx-message--notice">' .
 			'<span class="cdx-message__icon"></span><div class="cdx-message__content">' .
