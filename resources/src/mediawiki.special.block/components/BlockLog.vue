@@ -122,7 +122,7 @@
 									<ul class="mw-block-parameters">
 										<li v-for="namespace in parameter" :key="namespace">
 											<a :href="mw.util.getUrl( 'Special:AllPages', { namespace: namespace } )">
-												{{ mw.config.get( 'wgFormattedNamespaces' )[ namespace ] }}
+												{{ mwNamespaces[ namespace ] }}
 											</a>
 										</li>
 									</ul>
@@ -242,6 +242,12 @@ module.exports = exports = defineComponent( {
 
 		const infoChipIcon = computed( () => props.blockLogType === 'active' ? cdxIconAlert : cdxIconClock );
 		const infoChipStatus = computed( () => logEntries.value.length > 0 && props.blockLogType === 'active' ? 'warning' : 'notice' );
+		const mwNamespaces = Object.keys( mw.config.get( 'wgFormattedNamespaces' ) ).map( ( ns ) => {
+			if ( ns === '0' ) {
+				return mw.msg( 'blanknamespace' );
+			}
+			return mw.config.get( 'wgFormattedNamespaces' )[ ns ];
+		} );
 
 		/**
 		 * Construct the data object needed for a template row, from a logentry API response.
@@ -360,7 +366,8 @@ module.exports = exports = defineComponent( {
 			infoChipIcon,
 			infoChipStatus,
 			formVisible,
-			shouldShowAddBlockButton
+			shouldShowAddBlockButton,
+			mwNamespaces
 		};
 	}
 } );
