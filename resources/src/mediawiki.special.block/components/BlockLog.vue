@@ -32,11 +32,11 @@
 			</template>
 			<template #item-modify="{ item }">
 				<cdx-button
+					:id="'edit-button-' + item.id"
 					type="button"
 					action="progressive"
 					weight="quiet"
 					@click="$emit( 'edit-block', item )"
-					v-bind:id="'edit-button-' + item.id"
 				>
 					{{ $i18n( 'block-item-edit' ).text() }}
 				</cdx-button>

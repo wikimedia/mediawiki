@@ -2316,6 +2316,7 @@ return [
 			'block-change-visibility',
 			'block-confirm-no',
 			'block-confirm-yes',
+			'block-cancel',
 			'block-create',
 			'block-details',
 			'block-details-description',

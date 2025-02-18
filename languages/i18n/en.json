@@ -2582,6 +2582,7 @@
 	"unblock": "Unblock user",
 	"unblock-summary": "",
 	"changeblockip": "Change block",
+	"block-cancel": "Cancel",
 	"block-create": "Add block",
 	"blockip": "Block {{GENDER:$1|user}}",
 	"blockiptext": "Blocking is used to prevent vandalism and other forms of disruption ([[{{MediaWiki:Policy-url}}|read more]]). You can block IP address ranges using the [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR] syntax. The largest allowed range is /$1 for IPv4 and /$2 for IPv6.",
