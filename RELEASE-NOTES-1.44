@@ -291,6 +291,8 @@ because of Phabricator reports.
   service. (T308000)
 * The 'PermissionErrorAudit' hook has been deprecated and replaced by
   the 'PermissionStatusAudit' hook.
+* UserOptionsManager methods resetOptions, listOptionKinds and getOptionKinds,
+  deprecated since 1.43, have been removed.
 * …
 
 === Other changes in 1.44 ===
