@@ -629,11 +629,17 @@ abstract class SearchEngine {
 				->autoConvertToAllVariants( $search );
 			$fallbackSearches = array_diff( array_unique( $fallbackSearches ), [ $search ] );
 
+			$origLimit = $this->limit;
+			$origOffset = $this->offset;
 			foreach ( $fallbackSearches as $fbs ) {
-				$this->setLimitOffset( $fallbackLimit );
-				$fallbackSearchResult = $this->completionSearch( $fbs );
-				$results->appendAll( $fallbackSearchResult );
-				$fallbackLimit -= $fallbackSearchResult->getSize();
+				try {
+					$this->setLimitOffset( $fallbackLimit );
+					$fallbackSearchResult = $this->completionSearch( $fbs );
+					$results->appendAll( $fallbackSearchResult );
+					$fallbackLimit -= $fallbackSearchResult->getSize();
+				} finally {
+					$this->setLimitOffset( $origLimit, $origOffset );
+				}
 				if ( $fallbackLimit <= 0 ) {
 					break;
 				}
