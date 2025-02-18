@@ -581,6 +581,3 @@ class Category {
 		}
 	}
 }
-
-/** @deprecated class alias since 1.40 */
-class_alias( Category::class, 'Category' );

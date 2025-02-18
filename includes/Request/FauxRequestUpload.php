@@ -47,6 +47,3 @@ class FauxRequestUpload extends WebRequestUpload {
 	}
 
 }
-
-/** @deprecated class alias since 1.40 */
-class_alias( FauxRequestUpload::class, 'FauxRequestUpload' );

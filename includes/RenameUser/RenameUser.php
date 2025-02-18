@@ -18,8 +18,8 @@ use MediaWiki\User\CentralId\CentralIdLookupFactory;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNameUtils;
+use MediaWiki\WikiMap\WikiMap;
 use Psr\Log\LoggerInterface;
-use WikiMap;
 
 /**
  * Handles the backend logic of renaming users.
