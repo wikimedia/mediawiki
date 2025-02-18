@@ -2,12 +2,15 @@
 namespace MediaWiki\Notification;
 
 use Serializable;
+use Wikimedia\NonSerializable\NonSerializableTrait;
 
 /**
  * @since 1.44
  * @unstable
  */
 class Notification {
+
+	use NonSerializableTrait;
 
 	/**
 	 * @TODO Idea: handle future types in format `namespace.type`, like `mediawiki.message`,
