@@ -17,6 +17,18 @@ class MockUserOptionsStore implements UserOptionsStore {
 		return $this->data[$user->getName()] ?? [];
 	}
 
+	public function fetchBatchForUserNames( array $keys, array $userNames ) {
+		$result = [];
+		foreach ( $keys as $key ) {
+			foreach ( $userNames as $name ) {
+				if ( isset( $this->data[$name][$key] ) ) {
+					$result[$key][$name] = $this->data[$name][$key];
+				}
+			}
+		}
+		return $result;
+	}
+
 	public function store( UserIdentity $user, array $updates ) {
 		$userName = $user->getName();
 		if ( !isset( $this->data[$userName] ) ) {

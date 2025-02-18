@@ -53,6 +53,18 @@ interface UserOptionsStore {
 	public function fetch( UserIdentity $user, int $recency );
 
 	/**
+	 * Fetch specific options for multiple users from the store. Return an array
+	 * indexed first by option key, and second by user name.
+	 *
+	 * @since 1.44
+	 *
+	 * @param array $keys
+	 * @param array $userNames
+	 * @return array<string,array<string,string>>
+	 */
+	public function fetchBatchForUserNames( array $keys, array $userNames );
+
+	/**
 	 * Process a batch of option updates.
 	 *
 	 * The store may assume that fetch() was previously called with a recency
