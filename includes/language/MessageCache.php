@@ -26,6 +26,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\MessageCacheUpdate;
+use MediaWiki\Language\MessageInfo;
 use MediaWiki\Language\MessageParser;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFallback;
@@ -985,13 +986,13 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param bool|string|Language|null $language Code of the language to get the message for.
 	 *   This should be a string or null in new code. If null is given, the content language
 	 *   will be used.
-	 * @param string &$usedKey @phan-output-reference If given, will be set to the message key
-	 *   that the message was fetched from (the requested key may be overridden by hooks).
+	 * @param MessageInfo|null $info If a default-constructed MessageInfo is passed, it will be
+	 *   populated with information about the retrieved message.
 	 *
 	 * @return string|false False if the message doesn't exist, otherwise the
 	 *   message (which can be empty)
 	 */
-	public function get( $key, $useDB = true, $language = null, &$usedKey = '' ) {
+	public function get( $key, $useDB = true, $language = null, $info = null ) {
 		if ( is_int( $key ) ) {
 			// Fix numerical strings that somehow become ints on their way here
 			$key = (string)$key;
@@ -1000,6 +1001,11 @@ class MessageCache implements LoggerAwareInterface {
 		} elseif ( $key === '' ) {
 			// Shortcut: the empty key is always missing
 			return false;
+		}
+
+		// Ignore legacy $usedKey parameter
+		if ( $info && !( $info instanceof MessageInfo ) ) {
+			$info = null;
 		}
 
 		$langCode = $this->getLanguageCode( $language ?? $this->contLangCode );
@@ -1027,13 +1033,16 @@ class MessageCache implements LoggerAwareInterface {
 
 		$this->hookRunner->onMessageCache__get( $lckey );
 
-		$usedKey = $lckey;
+		if ( $info ) {
+			$info->usedKey = $lckey;
+		}
 
 		// Loop through each language in the fallback list until we find something useful
 		$message = $this->getMessageFromFallbackChain(
 			$langCode,
 			$lckey,
-			!$this->disabled && $useDB
+			!$this->disabled && $useDB,
+			$info
 		);
 
 		// If we still have no message, maybe the key was in fact a full key, so try that
@@ -1044,6 +1053,10 @@ class MessageCache implements LoggerAwareInterface {
 			// They usually have more than one slash.
 			if ( count( $parts ) === 2 && $parts[1] !== '' ) {
 				$message = $this->localisationCache->getSubitem( $parts[1], 'messages', $parts[0] ) ?? false;
+				if ( $message !== false && $info ) {
+					$info->usedKey = $parts[0];
+					$info->langCode = $parts[1];
+				}
 			}
 		}
 
@@ -1123,19 +1136,20 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param string $code Preferred language
 	 * @param string $lckey Lowercase key for the message (as for localisation cache)
 	 * @param bool $useDB Whether to include messages from the wiki database
+	 * @param MessageInfo|null $info
 	 * @return string|false The message, or false if not found
 	 */
-	private function getMessageFromFallbackChain( $code, $lckey, $useDB ) {
+	private function getMessageFromFallbackChain( $code, $lckey, $useDB, $info ) {
 		$alreadyTried = [];
 
 		// First try the requested language.
-		$message = $this->getMessageForLang( $code, $lckey, $useDB, $alreadyTried );
+		$message = $this->getMessageForLang( $code, $lckey, $useDB, $alreadyTried, $info );
 		if ( $message !== false ) {
 			return $message;
 		}
 
 		// Now try checking the site language.
-		$message = $this->getMessageForLang( $this->contLangCode, $lckey, $useDB, $alreadyTried );
+		$message = $this->getMessageForLang( $this->contLangCode, $lckey, $useDB, $alreadyTried, $info );
 		return $message;
 	}
 
@@ -1147,9 +1161,10 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param string $lckey Lowercase key for the message (as for localisation cache)
 	 * @param bool $useDB Whether to include messages from the wiki database
 	 * @param bool[] &$alreadyTried Contains true for each language that has been tried already
+	 * @param MessageInfo|null $info
 	 * @return string|false The message, or false if not found
 	 */
-	private function getMessageForLang( $langCode, $lckey, $useDB, &$alreadyTried ) {
+	private function getMessageForLang( $langCode, $lckey, $useDB, &$alreadyTried, $info ) {
 		// Try checking the database for the requested language
 		if ( $useDB ) {
 			$uckey = $this->contLang->ucfirst( $lckey );
@@ -1160,6 +1175,9 @@ class MessageCache implements LoggerAwareInterface {
 					$langCode
 				);
 				if ( $message !== false ) {
+					if ( $info ) {
+						$info->langCode = $langCode;
+					}
 					return $message;
 				}
 				$alreadyTried[$langCode] = true;
@@ -1187,6 +1205,9 @@ class MessageCache implements LoggerAwareInterface {
 		[ $defaultMessage, $messageSource ] =
 			$this->localisationCache->getSubitemWithSource( $langCode, 'messages', $lckey );
 		if ( $messageSource === $langCode ) {
+			if ( $info ) {
+				$info->langCode = $langCode;
+			}
 			return $defaultMessage;
 		}
 
@@ -1204,6 +1225,9 @@ class MessageCache implements LoggerAwareInterface {
 					$this->getMessagePageName( $code, $uckey ), $code );
 
 				if ( $message !== false ) {
+					if ( $info ) {
+						$info->langCode = $code;
+					}
 					return $message;
 				}
 				$alreadyTried[$code] = true;
@@ -1211,11 +1235,17 @@ class MessageCache implements LoggerAwareInterface {
 				// Reached the source language of the default message. Don't look for DB overrides
 				// further back in the fallback chain. (T229992)
 				if ( $code === $messageSource ) {
+					if ( $info ) {
+						$info->langCode = $code;
+					}
 					return $defaultMessage;
 				}
 			}
 		}
 
+		if ( $defaultMessage !== null && $info ) {
+			$info->langCode = $messageSource;
+		}
 		return $defaultMessage ?? false;
 	}
 

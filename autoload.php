@@ -1928,6 +1928,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Language\\LazyLocalizationContext' => __DIR__ . '/includes/language/LazyLocalizationContext.php',
 	'MediaWiki\\Language\\LocalizationContext' => __DIR__ . '/includes/language/LocalizationContext.php',
 	'MediaWiki\\Language\\MessageCacheUpdate' => __DIR__ . '/includes/language/MessageCacheUpdate.php',
+	'MediaWiki\\Language\\MessageInfo' => __DIR__ . '/includes/language/MessageInfo.php',
 	'MediaWiki\\Language\\MessageParser' => __DIR__ . '/includes/language/MessageParser.php',
 	'MediaWiki\\Language\\RawMessage' => __DIR__ . '/includes/language/RawMessage.php',
 	'MediaWiki\\Language\\ReplacementArray' => __DIR__ . '/includes/libs/ReplacementArray.php',
