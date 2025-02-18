@@ -2722,6 +2722,12 @@ class MainConfigNames {
 	public const AutoCreateTempUser = 'AutoCreateTempUser';
 
 	/**
+	 * Name constant for the AutoblockExemptions setting, for use with Config::get()
+	 * @see MainConfigSchema::AutoblockExemptions
+	 */
+	public const AutoblockExemptions = 'AutoblockExemptions';
+
+	/**
 	 * Name constant for the AutoblockExpiry setting, for use with Config::get()
 	 * @see MainConfigSchema::AutoblockExpiry
 	 */

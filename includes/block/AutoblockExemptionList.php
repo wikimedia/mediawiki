@@ -3,6 +3,8 @@
 namespace MediaWiki\Block;
 
 use Generator;
+use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use Psr\Log\LoggerInterface;
 use Wikimedia\IPUtils;
 use Wikimedia\Message\ITextFormatter;
@@ -13,20 +15,29 @@ use Wikimedia\Message\MessageValue;
  * @since 1.42
  */
 class AutoblockExemptionList {
+	/** @internal */
+	public const CONSTRUCTOR_OPTIONS = [
+		MainConfigNames::AutoblockExemptions,
+	];
+
+	private ServiceOptions $options;
 	private LoggerInterface $logger;
 	/** Should be for the wiki's content language */
 	private ITextFormatter $textFormatter;
 
 	public function __construct(
+		ServiceOptions $options,
 		LoggerInterface $logger,
 		ITextFormatter $textFormatter
 	) {
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+		$this->options = $options;
 		$this->logger = $logger;
 		$this->textFormatter = $textFormatter;
 	}
 
 	/** @return Generator<string> */
-	private function getExemptionList() {
+	private function getOnWikiExemptionList() {
 		$list = $this->textFormatter->format(
 			MessageValue::new( 'block-autoblock-exemptionlist' )
 		);
@@ -42,6 +53,13 @@ class AutoblockExemptionList {
 			$wlEntry = trim( $wlEntry );
 			yield $wlEntry;
 		}
+	}
+
+	/** @return Generator<string> */
+	private function getExemptionList() {
+		// @phan-suppress-next-line PhanTypeInvalidYieldFrom
+		yield from $this->options->get( MainConfigNames::AutoblockExemptions );
+		yield from $this->getOnWikiExemptionList();
 	}
 
 	/**

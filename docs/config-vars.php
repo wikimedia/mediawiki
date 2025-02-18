@@ -2707,6 +2707,12 @@ $wgSessionProviders = null;
 $wgAutoCreateTempUser = null;
 
 /**
+ * Config variable stub for the AutoblockExemptions setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::AutoblockExemptions
+ */
+$wgAutoblockExemptions = null;
+
+/**
  * Config variable stub for the AutoblockExpiry setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::AutoblockExpiry
  */

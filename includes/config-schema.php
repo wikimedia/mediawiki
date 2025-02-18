@@ -1163,6 +1163,8 @@ return [
 				'expireAfterDays' => 90,
 				'notifyBeforeExpirationDays' => 10,
 			],
+			'AutoblockExemptions' => [
+			],
 			'AutoblockExpiry' => 86400,
 			'BlockAllowsUTEdit' => true,
 			'BlockCIDRLimit' => [
@@ -2929,6 +2931,7 @@ return [
 			],
 			'SessionProviders' => 'object',
 			'AutoCreateTempUser' => 'object',
+			'AutoblockExemptions' => 'array',
 			'BlockCIDRLimit' => 'object',
 			'EnablePartialActionBlocks' => 'boolean',
 			'EnableMultiBlocks' => 'boolean',

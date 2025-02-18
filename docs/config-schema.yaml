@@ -4979,6 +4979,10 @@ config-schema:
             @unstable EXPERIMENTAL
             @since 1.39
         default: null
+    AutoblockExemptions:
+        default: []
+        type: array
+        description: 'List of IP addresses or CIDR ranges that are exempt from autoblocks.'
     AutoblockExpiry:
         default: 86400
         description: 'Number of seconds before autoblock entries expire. Default 86400 = 1 day.'

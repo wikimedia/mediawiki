@@ -7817,6 +7817,12 @@ class MainConfigSchema {
 	// region   User rights, access control and monitoring
 	/** @name   User rights, access control and monitoring */
 
+	/** List of IP addresses or CIDR ranges that are exempt from autoblocks. */
+	public const AutoblockExemptions = [
+		'default' => [],
+		'type' => 'array',
+	];
+
 	/**
 	 * Number of seconds before autoblock entries expire. Default 86400 = 1 day.
 	 */

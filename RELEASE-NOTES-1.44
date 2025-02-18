@@ -43,6 +43,9 @@ For notes on 1.43.x and older releases, see HISTORY.
 * (T322944) $wgAllowAuthenticatedCrossOrigin - If true (defaults to false),
   enable the experimental crossorigin= API parameter to allow authenticated
   cross-origin API requests.
+* (T240542) $wgAutoblockExemptions - IP addresses and CIDR ranges listed here
+  will not be affected by autoblocks, similar to
+  MediaWiki:Block-autoblock-exemptionlist. Defaults to an empty list.
 * …
 
 ==== Changed configuration ====
