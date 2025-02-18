@@ -319,7 +319,7 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 		$skinFactory = $services->getSkinFactory();
 		foreach ( array_keys( $skinFactory->getInstalledSkins() ) as $skin ) {
 			foreach ( $rl->getModuleNames() as $moduleName ) {
-				yield [ $moduleName, $skin ];
+				yield "$moduleName $skin" => [ $moduleName, $skin ];
 			}
 		}
 	}
