@@ -189,12 +189,14 @@ class SpecialBlock extends FormSpecialPage {
 	 */
 	protected function checkExecutePermissions( User $user ) {
 		parent::checkExecutePermissions( $user );
-		// T17810: blocked admins should have limited access here
-		$status = $this->blockPermissionCheckerFactory
-			->newBlockPermissionChecker( $this->target, $user )
-			->checkBlockPermissions();
-		if ( $status !== true ) {
-			throw new ErrorPageError( 'badaccess', $status );
+		if ( $this->target ) {
+			// T17810: blocked admins should have limited access here
+			$status = $this->blockPermissionCheckerFactory
+				->newChecker( $user )
+				->checkBlockPermissions( $this->target );
+			if ( $status !== true ) {
+				throw new ErrorPageError( 'badaccess', $status );
+			}
 		}
 	}
 
@@ -474,7 +476,7 @@ class SpecialBlock extends FormSpecialPage {
 		];
 
 		if ( $this->blockPermissionCheckerFactory
-			->newBlockPermissionChecker( null, $user )
+			->newChecker( $user )
 			->checkEmailPermissions()
 		) {
 			$a['DisableEmail'] = [
@@ -1194,7 +1196,7 @@ class SpecialBlock extends FormSpecialPage {
 		wfDeprecated( __METHOD__, '1.36' );
 		return MediaWikiServices::getInstance()
 			->getBlockPermissionCheckerFactory()
-			->newBlockPermissionChecker( null, User::newFromIdentity( $user ) )
+			->newChecker( User::newFromIdentity( $user ) )
 			->checkEmailPermissions();
 	}
 

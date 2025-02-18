@@ -259,7 +259,7 @@ class ApiBlock extends ApiBase {
 		if (
 			$params['noemail'] &&
 			!$this->blockPermissionCheckerFactory
-				->newBlockPermissionChecker( null, $this->getAuthority() )
+				->newChecker( $this->getAuthority() )
 				->checkEmailPermissions()
 		) {
 			$this->dieWithError( 'apierror-cantblock-email' );

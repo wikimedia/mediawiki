@@ -123,10 +123,9 @@ class ApiUnblock extends ApiBase {
 
 		# T17810: blocked admins should have limited access here
 		$status = $this->permissionCheckerFactory
-			->newBlockPermissionChecker(
-				$target,
+			->newChecker(
 				$this->getAuthority()
-			)->checkBlockPermissions();
+			)->checkBlockPermissions( $target );
 
 		if ( $status !== true ) {
 			$this->dieWithError(
