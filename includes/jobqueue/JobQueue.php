@@ -22,14 +22,13 @@ namespace MediaWiki\JobQueue;
 
 use ArrayIterator;
 use Exception;
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\JobQueue\Exceptions\JobQueueError;
 use MediaWiki\JobQueue\Exceptions\JobQueueReadOnlyError;
 use MediaWiki\JobQueue\Jobs\DuplicateJob;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\RequestTimeout\TimeoutException;
-use Wikimedia\Stats\NullStatsdDataFactory;
+use Wikimedia\Stats\StatsFactory;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
@@ -61,7 +60,7 @@ abstract class JobQueue {
 	protected $maxTries;
 	/** @var string|false Read only rationale (or false if r/w) */
 	protected $readOnlyReason;
-	/** @var StatsdDataFactoryInterface */
+	/** @var StatsFactory */
 	protected $stats;
 	/** @var GlobalIdGenerator */
 	protected $idGenerator;
@@ -88,7 +87,7 @@ abstract class JobQueue {
 	 *   - domain : A DB domain ID
 	 *   - idGenerator : A GlobalIdGenerator instance.
 	 *   - wanCache : An instance of WANObjectCache to use for caching [default: none]
-	 *   - stats : An instance of StatsdDataFactoryInterface [default: none]
+	 *   - stats : An instance of StatsFactory [default: none]
 	 *   - claimTTL : Seconds a job can be claimed for exclusive execution [default: forever]
 	 *   - maxTries : Total times a job can be tried, assuming claims expire [default: 3]
 	 *   - order : Queue order, one of ("fifo", "timestamp", "random") [default: variable]
@@ -111,7 +110,7 @@ abstract class JobQueue {
 			throw new JobQueueError( __CLASS__ . " does not support '{$this->order}' order." );
 		}
 		$this->readOnlyReason = $params['readOnlyReason'] ?? false;
-		$this->stats = $params['stats'] ?? new NullStatsdDataFactory();
+		$this->stats = $params['stats'] ?? StatsFactory::newNull();
 		$this->wanCache = $params['wanCache'] ?? WANObjectCache::newEmpty();
 		$this->idGenerator = $params['idGenerator'];
 		if ( ( $params['typeAgnostic'] ?? false ) && !$this->supportsTypeAgnostic() ) {
@@ -147,7 +146,7 @@ abstract class JobQueue {
 	 *      attempted up to three times before being discarded.
 	 *   - readOnlyReason : Set this to a string to make the queue read-only. [optional]
 	 *   - idGenerator : A GlobalIdGenerator instance.
-	 *   - stats  : A StatsdDataFactoryInterface. [optional]
+	 *   - stats  : A StatsFactory. [optional]
 	 *
 	 * Queue classes should throw an exception if they do not support the options given.
 	 *
@@ -775,16 +774,19 @@ abstract class JobQueue {
 	}
 
 	/**
-	 * Call StatsdDataFactoryInterface::updateCount() for the queue overall and for the queue type
+	 * Call StatsFactory::incrementBy() for the queue overall and for the queue type
 	 *
-	 * @param string $key Event type
+	 * @param string $event Event type
 	 * @param string $type Job type
 	 * @param int $delta
-	 * @since 1.22
+	 * @since 1.44
 	 */
-	protected function incrStats( $key, $type, $delta = 1 ) {
-		$this->stats->updateCount( "jobqueue.{$key}.all", $delta );
-		$this->stats->updateCount( "jobqueue.{$key}.{$type}", $delta );
+	protected function incrStats( $event, $type, $delta = 1 ) {
+		$this->stats->getCounter( 'jobqueue_events_total' )
+			->setLabel( 'event', $event )
+			->setLabel( 'type', $type )
+			->copyToStatsdAt( [ "jobqueue.{$event}.all", "jobqueue.{$event}.{$type}" ] )
+			->incrementBy( $delta );
 	}
 
 	/**

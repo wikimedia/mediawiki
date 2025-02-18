@@ -20,7 +20,6 @@
 
 namespace MediaWiki\JobQueue;
 
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
 use MediaWiki\Cache\LinkCache;
 use MediaWiki\Config\ServiceOptions;
@@ -36,6 +35,7 @@ use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Rdbms\DBReadOnlyError;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\ReadOnlyMode;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * Job queue runner utility methods.
@@ -70,8 +70,8 @@ class JobRunner {
 	/** @var LinkCache */
 	private $linkCache;
 
-	/** @var StatsdDataFactoryInterface */
-	private $stats;
+	/** @var StatsFactory */
+	private $statsFactory;
 
 	/** @var callable|null Debug output handler */
 	private $debug;
@@ -104,7 +104,7 @@ class JobRunner {
 	 * @param JobQueueGroup $jobQueueGroup The JobQueueGroup for this wiki
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param LinkCache $linkCache
-	 * @param StatsdDataFactoryInterface $statsdDataFactory
+	 * @param StatsFactory $statsFactory
 	 * @param LoggerInterface $logger
 	 */
 	public function __construct(
@@ -113,7 +113,7 @@ class JobRunner {
 		JobQueueGroup $jobQueueGroup,
 		ReadOnlyMode $readOnlyMode,
 		LinkCache $linkCache,
-		StatsdDataFactoryInterface $statsdDataFactory,
+		StatsFactory $statsFactory,
 		LoggerInterface $logger
 	) {
 		$serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -122,7 +122,7 @@ class JobRunner {
 		$this->jobQueueGroup = $jobQueueGroup;
 		$this->readOnlyMode = $readOnlyMode;
 		$this->linkCache = $linkCache;
-		$this->stats = $statsdDataFactory;
+		$this->statsFactory = $statsFactory;
 		$this->logger = $logger;
 	}
 
@@ -403,20 +403,34 @@ class JobRunner {
 		$readyTs = $job->getReadyTimestamp();
 		if ( $readyTs ) {
 			$pickupDelay = max( 0, $jobStartTime - $readyTs );
-			$this->stats->timing( 'jobqueue.pickup_delay.all', 1000 * $pickupDelay );
-			$this->stats->timing( "jobqueue.pickup_delay.$jType", 1000 * $pickupDelay );
+			$this->statsFactory->getTiming( 'jobqueue_pickup_delay_seconds' )
+				->setLabel( 'jobtype', $jType )
+				->copyToStatsdAt( [
+					"jobqueue_pickup_delay_all_mean", "jobqueue.pickup_delay.$jType"
+				] )
+				->observe( 1000 * $pickupDelay );
 		}
 		// Record root job age for jobs being run
 		$rootTimestamp = $job->getRootJobParams()['rootJobTimestamp'];
 		if ( $rootTimestamp ) {
 			$age = max( 0, $jobStartTime - (int)wfTimestamp( TS_UNIX, $rootTimestamp ) );
-			$this->stats->timing( "jobqueue.pickup_root_age.$jType", 1000 * $age );
+
+			$this->statsFactory->getTiming( "jobqueue_pickup_root_age_seconds" )
+				->setLabel( 'jobtype', $jType )
+				->copyToStatsdAt( "jobqueue.pickup_root_age.$jType" )
+				->observe( 1000 * $age );
 		}
 		// Track the execution time for jobs
-		$this->stats->timing( "jobqueue.run.$jType", $timeMs );
+		$this->statsFactory->getTiming( 'jobqueue_runtime_seconds' )
+			->setLabel( 'jobtype', $jType )
+			->copyToStatsdAt( "jobqueue.run.$jType" )
+			->observe( $timeMs );
 		// Track RSS increases for jobs (in case of memory leaks)
 		if ( $rssStart && $rssEnd ) {
-			$this->stats->updateCount( "jobqueue.rss_delta.$jType", $rssEnd - $rssStart );
+			$this->statsFactory->getCounter( 'jobqueue_rss_delta_total' )
+				->setLabel( 'rss_delta', $jType )
+				->copyToStatsdAt( "jobqueue.rss_delta.$jType" )
+				->incrementBy( $rssEnd - $rssStart );
 		}
 
 		if ( $status === false ) {
