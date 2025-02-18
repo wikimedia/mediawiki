@@ -1371,6 +1371,7 @@
 	"watchnologin": "Kirilmegen",
 	"addedwatchtext": "«[[:$1]]» beti [[Special:Watchlist|baqlaw dizimińizge]] qosıldı.\nUsı hám oǵan baylanıslı bolǵan sáwbet betlerinde bolatuǵın keleshektegi ózgerisler usı dizimde kórsetiledi hámde betti tabıwdı ańsatlastırıw ushın [[Special:RecentChanges|taza ózgerisler diziminde]] '''juwan háripte''' kórsetiledi.\nEger siz bul betti baqlaw dizimińizden óshirmekshi bolsańız bettiń joqarǵı oń jaǵındaǵı «Baqlamaw» jazıwın basıń.",
 	"addedwatchtext-talk": "«[[:$1]]» beti hám oǵan baylanıslı betler siziń [[Special:Watchlist|baqlaw dizimińizge]] qosıldı.",
+	"addedwatchexpiry-options-label": "Baqlaw diziminde saqlaw múddeti:",
 	"addedwatchindefinitelytext": "«[[:$1]]» hám onıń talqılaw beti siziń [[Special:Watchlist|baqlaw dizimi]]ńizge turaqlı túrde qosıldı .",
 	"removedwatchtext": "«[[:$1]]» beti [[Special:Watchlist|siziń baqlaw dizimińizden]] óshirildi.",
 	"watch": "Baqlaw",
