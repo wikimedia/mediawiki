@@ -238,6 +238,8 @@ because of Phabricator reports.
 * The MediaWiki\Config\MutableConfig interface now extends
   MediaWiki\Config\Config. Implementing MutableConfig without implementing
   Config is no longer possible.
+* The `MediaWiki\User\Registration\IUserRegistrationProvider` interface now
+  defines a required fetchRegistrationBatch() method.
 * The hook OutputPageMakeCategoryLinks, deprecated in 1.43, has been removed.
 * The methods Skin::getFooterIcons and ::makeFooterIcon are final and
   overriding is no longer supported.

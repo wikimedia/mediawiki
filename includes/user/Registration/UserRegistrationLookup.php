@@ -108,4 +108,34 @@ class UserRegistrationLookup {
 
 		return $firstRegistrationTimestamp;
 	}
+
+	/**
+	 * Get the first registration timestamp for a batch of users.
+	 * This invokes all registered providers.
+	 *
+	 * @param iterable<UserIdentity> $users
+	 * @return string[]|null[] Map of registration timestamps in MediaWiki format keyed by user ID.
+	 * The timestamp may be `null` for users without a stored registration timestamp and for anonymous users.
+	 */
+	public function getFirstRegistrationBatch( iterable $users ): array {
+		$earliestTimestampsById = [];
+
+		foreach ( $users as $user ) {
+			$earliestTimestampsById[$user->getId()] = null;
+		}
+
+		foreach ( $this->providersSpecs as $providerKey => $_ ) {
+			$timestampsById = $this->getProvider( $providerKey )->fetchRegistrationBatch( $users );
+
+			foreach ( $timestampsById as $userId => $timestamp ) {
+				$curValue = $earliestTimestampsById[$userId];
+
+				if ( $timestamp !== null && ( $curValue === null || $timestamp < $curValue ) ) {
+					$earliestTimestampsById[$userId] = $timestamp;
+				}
+			}
+		}
+
+		return $earliestTimestampsById;
+	}
 }

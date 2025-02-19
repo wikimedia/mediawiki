@@ -21,29 +21,23 @@ abstract class UserOptionsLookupTestBase extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
+		$registrationTimestampsById = [
+			1 => null,
+			2 => '20231220160000',
+			3 => '20230101000000'
+		];
+
+		$registrationProvider = $this->createMock( IUserRegistrationProvider::class );
+		$registrationProvider->method( 'fetchRegistration' )
+			->willReturnCallback(
+				static fn ( UserIdentity $user ) => $registrationTimestampsById[$user->getId()] ?? false
+			);
+
 		$this->overrideConfigValues( [
 			MainConfigNames::UserRegistrationProviders => [
 				// Redefine the LocalUserRegistrationProvider with a mock provider
 				LocalUserRegistrationProvider::TYPE => [
-					'factory' => static function () {
-						return new class implements IUserRegistrationProvider {
-							/**
-							 * @inheritDoc
-							 */
-							public function fetchRegistration( UserIdentity $user ) {
-								switch ( $user->getId() ) {
-									case 1:
-										return null;
-									case 2:
-										return '20231220160000';
-									case 3:
-										return '20230101000000';
-									default:
-										return false;
-								}
-							}
-						};
-					}
+					'factory' => static fn () => $registrationProvider
 				]
 			],
 			MainConfigNames::ConditionalUserOptions => [

@@ -4451,7 +4451,7 @@ config-schema:
         description: 'Central ID lookup provider to use by default'
     UserRegistrationProviders:
         default:
-            local: { class: MediaWiki\User\Registration\LocalUserRegistrationProvider, services: [UserFactory] }
+            local: { class: MediaWiki\User\Registration\LocalUserRegistrationProvider, services: [UserFactory, ConnectionProvider] }
         type: object
         description: |-
             User registration timestamp provider classes

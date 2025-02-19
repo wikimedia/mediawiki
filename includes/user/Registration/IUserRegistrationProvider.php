@@ -18,4 +18,14 @@ interface IUserRegistrationProvider {
 	 * cannot be fetched (anonymous users, for example).
 	 */
 	public function fetchRegistration( UserIdentity $user );
+
+	/**
+	 * Get user registration timestamps for a batch of users.
+	 *
+	 * @since 1.44
+	 * @param iterable<UserIdentity> $users
+	 * @return string[]|null[] Map of registration timestamps in MediaWiki format
+	 * (or `null` if not available) keyed by user ID.
+	 */
+	public function fetchRegistrationBatch( iterable $users ): array;
 }
