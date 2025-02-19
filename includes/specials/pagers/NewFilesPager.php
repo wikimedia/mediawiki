@@ -27,6 +27,7 @@ use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
@@ -51,6 +52,7 @@ class NewFilesPager extends RangeChronologicalPager {
 
 	private GroupPermissionsLookup $groupPermissionsLookup;
 	private LinkBatchFactory $linkBatchFactory;
+	private int $migrationStage;
 
 	/**
 	 * @param IContextSource $context
@@ -87,16 +89,33 @@ class NewFilesPager extends RangeChronologicalPager {
 			$endTimestamp = $opts->getValue( 'end' ) . ' 23:59:59';
 		}
 		$this->getDateRangeCond( $startTimestamp, $endTimestamp );
+		$this->migrationStage = $context->getConfig()->get(
+			MainConfigNames::FileSchemaMigrationStage
+		);
 	}
 
 	public function getQueryInfo() {
 		$opts = $this->opts;
 		$conds = [];
 		$dbr = $this->getDatabase();
-		$tables = [ 'image', 'actor' ];
-		$fields = [ 'img_name', 'img_timestamp', 'actor_user', 'actor_name' ];
+		if ( $this->migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+			$tables = [ 'image' ];
+			$nameField = 'img_name';
+			$actorField = 'img_actor';
+			$timestampField = 'img_timestamp';
+			$jconds = [];
+
+		} else {
+			$tables = [ 'file', 'filerevision' ];
+			$nameField = 'file_name';
+			$actorField = 'fr_actor';
+			$timestampField = 'fr_timestamp';
+			$jconds = [ 'filerevision' => [ 'JOIN', 'file_latest=fr_id' ] ];
+		}
+		$tables[] = 'actor';
+		$fields = [ 'img_name' => $nameField, 'img_timestamp' => $timestampField, 'actor_user', 'actor_name' ];
 		$options = [];
-		$jconds = [ 'actor' => [ 'JOIN', 'actor_id=img_actor' ] ];
+		$jconds['actor'] = [ 'JOIN', 'actor_id=' . $actorField ];
 
 		$user = $opts->getValue( 'user' );
 		if ( $user !== '' ) {
@@ -130,15 +149,21 @@ class NewFilesPager extends RangeChronologicalPager {
 			$jconds['recentchanges'] = [
 				'JOIN',
 				[
-					'rc_title = img_name',
-					'rc_actor = img_actor',
-					'rc_timestamp = img_timestamp'
+					'rc_title = ' . $nameField,
+					'rc_actor = ' . $nameField,
+					'rc_timestamp = ' . $timestampField,
 				]
 			];
 		}
 
 		if ( $opts->getValue( 'mediatype' ) ) {
-			$conds['img_media_type'] = $opts->getValue( 'mediatype' );
+			if ( $this->migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+				$conds['img_media_type'] = $opts->getValue( 'mediatype' );
+			} else {
+				$tables[] = 'filetypes';
+				$jconds['filetypes'] = [ 'JOIN', 'file_type = ft_id' ];
+				$conds['ft_media_type'] = $opts->getValue( 'mediatype' );
+			}
 		}
 
 		// We're ordering by img_timestamp, but MariaDB sometimes likes to query other tables first
