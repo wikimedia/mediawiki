@@ -412,7 +412,6 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 	protected function contributionsSub( $userObj, $targetName ) {
 		$out = $this->getOutput();
 		$user = $this->getUserLink( $userObj );
-		$nt = $userObj->getUserPage();
 
 		$links = '';
 		if ( $this->shouldDisplayActionLinks( $userObj ) ) {
@@ -434,42 +433,60 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 				// For IP ranges you must give DatabaseBlock::newFromTarget the CIDR string
 				// and not a user object.
 				if ( IPUtils::isValidRange( $userObj->getName() ) ) {
-					$block = $this->blockStore
-						->newFromTarget( $userObj->getName(), $userObj->getName() );
+					$blocks = $this->blockStore
+						->newListFromTarget( $userObj->getName(), $userObj->getName() );
 				} else {
-					$block = $this->blockStore->newFromTarget( $userObj, $userObj );
+					$blocks = $this->blockStore->newListFromTarget( $userObj, $userObj );
 				}
 
-				if ( $block !== null && $block->getType() != Block::TYPE_AUTO ) {
-					if ( $block->getType() == Block::TYPE_RANGE ) {
-						$nt = $this->namespaceInfo->getCanonicalName( NS_USER )
-							. ':' . $block->getTargetName();
+				$numBlocks = 0;
+				$sitewide = false;
+				$logTargetPage = '';
+				foreach ( $blocks as $block ) {
+					if ( $block->getType() !== Block::TYPE_AUTO ) {
+						$numBlocks++;
+						if ( $block->isSitewide() ) {
+							$sitewide = true;
+						}
+						$logTargetPage = $this->namespaceInfo->getCanonicalName( NS_USER ) .
+							':' . $block->getTargetName();
 					}
+				}
 
-					if ( $userObj->isAnon() ) {
-						$msgKey = $block->isSitewide() ?
-							'sp-contributions-blocked-notice-anon' :
-							'sp-contributions-blocked-notice-anon-partial';
+				if ( $numBlocks ) {
+					if ( $numBlocks === 1 ) {
+						if ( $userObj->isAnon() ) {
+							$msgKey = $sitewide ?
+								'sp-contributions-blocked-notice-anon' :
+								'sp-contributions-blocked-notice-anon-partial';
+						} else {
+							$msgKey = $sitewide ?
+								'sp-contributions-blocked-notice' :
+								'sp-contributions-blocked-notice-partial';
+						}
 					} else {
-						$msgKey = $block->isSitewide() ?
-							'sp-contributions-blocked-notice' :
-							'sp-contributions-blocked-notice-partial';
+						if ( $userObj->isAnon() ) {
+							$msgKey = 'sp-contributions-blocked-notice-anon-multi';
+						} else {
+							$msgKey = 'sp-contributions-blocked-notice-multi';
+						}
 					}
 					// Allow local styling overrides for different types of block
-					$class = $block->isSitewide() ?
+					$class = $sitewide ?
 						'mw-contributions-blocked-notice' :
 						'mw-contributions-blocked-notice-partial';
 					LogEventsList::showLogExtract(
 						$out,
 						'block',
-						$nt,
+						$logTargetPage,
 						'',
 						[
 							'lim' => 1,
 							'showIfEmpty' => false,
 							'msgKey' => [
 								$msgKey,
-								$userObj->getName() # Support GENDER in 'sp-contributions-blocked-notice'
+								$userObj->getName(), # Support GENDER in 'sp-contributions-blocked-notice'
+								$numBlocks
 							],
 							'offset' => '', # don't use WebRequest parameter offset
 							'wrap' => Html::rawElement(

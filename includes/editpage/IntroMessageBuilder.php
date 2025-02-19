@@ -323,7 +323,6 @@ class IntroMessageBuilder {
 			$validation = UserRigorOptions::RIGOR_NONE;
 			$user = $this->userFactory->newFromName( $username, $validation );
 			$ip = $this->userNameUtils->isIP( $username );
-			$block = $this->blockStore->newFromTarget( $user, $user );
 
 			$userExists = ( $user && $user->isRegistered() );
 			if ( $userExists && $user->isHidden() && !$performer->isAllowed( 'hideuser' ) ) {
@@ -341,33 +340,42 @@ class IntroMessageBuilder {
 						'mw-userpage-userdoesnotexist'
 					)
 				);
-			} elseif (
-				$block !== null &&
-				$block->getType() !== Block::TYPE_AUTO &&
-				(
-					$block->isSitewide() ||
-					$this->permManager->isBlockedFrom(
-						// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
-						$user,
-						$title,
-						true
-					)
-				)
-			) {
-				// Show log extract if the user is sitewide blocked or is partially
-				// blocked and not allowed to edit their user page or user talk page
+				return;
+			}
+
+			// TODO: factor out nearly identical code in Article::showMissingArticle
+			$numBlocks = 0;
+			$appliesToTitle = false;
+			$logTargetPage = '';
+			foreach ( $this->blockStore->newListFromTarget( $user, $user ) as $block ) {
+				if ( $block->getType() !== Block::TYPE_AUTO ) {
+					$numBlocks++;
+					if ( $block->appliesToTitle( $title ) ) {
+						$appliesToTitle = true;
+					}
+					$logTargetPage = $this->namespaceInfo->getCanonicalName( NS_USER ) .
+						':' . $block->getTargetName();
+				}
+			}
+
+			// Show log extract if the user is sitewide blocked or is partially
+			// blocked and not allowed to edit their user page or user talk page
+			if ( $numBlocks && $appliesToTitle ) {
+				$msgKey = $numBlocks === 1
+					? 'blocked-notice-logextract' : 'blocked-notice-logextract-multi';
 				$messages->addWithKey(
 					'blocked-notice-logextract',
 					$this->getLogExtract(
 						'block',
-						$this->namespaceInfo->getCanonicalName( NS_USER ) . ':' . $block->getTargetName(),
+						$logTargetPage,
 						'',
 						[
 							'lim' => 1,
 							'showIfEmpty' => false,
 							'msgKey' => [
-								'blocked-notice-logextract',
-								$user->getName() # Support GENDER in notice
+								$msgKey,
+								$user->getName(), # Support GENDER in notice
+								$numBlocks
 							],
 						]
 					)
