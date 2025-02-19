@@ -33,6 +33,7 @@ use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Parser\ParserFactory;
+use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\ResourceLoader\SkinModule;
 use MediaWiki\SiteStats\SiteStats;
@@ -80,6 +81,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	private ReadOnlyMode $readOnlyMode;
 	private UrlUtils $urlUtils;
 	private TempUserConfig $tempUserConfig;
+	private GroupPermissionsLookup $groupPermissionsLookup;
 
 	public function __construct(
 		ApiQuery $query,
@@ -100,7 +102,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		ILoadBalancer $loadBalancer,
 		ReadOnlyMode $readOnlyMode,
 		UrlUtils $urlUtils,
-		TempUserConfig $tempUserConfig
+		TempUserConfig $tempUserConfig,
+		GroupPermissionsLookup $groupPermissionsLookup
 	) {
 		parent::__construct( $query, $moduleName, 'si' );
 		$this->userOptionsLookup = $userOptionsLookup;
@@ -120,6 +123,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$this->readOnlyMode = $readOnlyMode;
 		$this->urlUtils = $urlUtils;
 		$this->tempUserConfig = $tempUserConfig;
+		$this->groupPermissionsLookup = $groupPermissionsLookup;
 	}
 
 	public function execute() {
@@ -596,11 +600,13 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$data = [];
 		$result = $this->getResult();
-		$allGroups = array_values( $this->userGroupManager->listAllGroups() );
-		foreach ( $config->get( MainConfigNames::GroupPermissions ) as $group => $permissions ) {
+		$allGroups = $this->userGroupManager->listAllGroups();
+		$allImplicitGroups = $this->userGroupManager->listAllImplicitGroups();
+		foreach ( array_merge( $allImplicitGroups, $allGroups ) as $group ) {
 			$arr = [
 				'name' => $group,
-				'rights' => array_keys( $permissions, true ),
+				'rights' => $this->groupPermissionsLookup->getGrantedPermissions( $group ),
+				// TODO: Also expose the list of revoked permissions somehow.
 			];
 
 			if ( $numberInGroup ) {
@@ -614,25 +620,14 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				}
 			}
 
-			$groupArr = [
-				'add' => $config->get( MainConfigNames::AddGroups ),
-				'remove' => $config->get( MainConfigNames::RemoveGroups ),
-				'add-self' => $config->get( MainConfigNames::GroupsAddToSelf ),
-				'remove-self' => $config->get( MainConfigNames::GroupsRemoveFromSelf )
-			];
+			$groupArr = $this->userGroupManager->getGroupsChangeableByGroup( $group );
 
-			foreach ( $groupArr as $type => $rights ) {
-				if ( isset( $rights[$group] ) ) {
-					if ( $rights[$group] === true ) {
-						$groups = $allGroups;
-					} else {
-						$groups = array_intersect( $rights[$group], $allGroups );
-					}
-					if ( $groups ) {
-						$arr[$type] = $groups;
-						ApiResult::setArrayType( $arr[$type], 'BCarray' );
-						ApiResult::setIndexedTagName( $arr[$type], 'group' );
-					}
+			foreach ( $groupArr as $type => $groups ) {
+				$groups = array_values( array_intersect( $groups, $allGroups ) );
+				if ( $groups ) {
+					$arr[$type] = $groups;
+					ApiResult::setArrayType( $arr[$type], 'BCarray' );
+					ApiResult::setIndexedTagName( $arr[$type], 'group' );
 				}
 			}
 

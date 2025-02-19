@@ -329,7 +329,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	 * @dataProvider groupsProvider
 	 */
 	public function testUserGroups( $numInGroup ) {
-		global $wgGroupPermissions, $wgAutopromote;
+		global $wgAutopromote;
 
 		$this->setGroupPermissions( [
 			'viscount' => [
@@ -342,14 +342,16 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 			MainConfigNames::RemoveGroups => [ 'viscount' => [ 'sysop' ], 'bot' => [ '*', 'earl' ] ],
 			MainConfigNames::GroupsAddToSelf => [ 'bot' => [ 'bureaucrat', 'sysop' ] ],
 			MainConfigNames::GroupsRemoveFromSelf => [ 'bot' => [ 'bot' ] ],
+			MainConfigNames::GroupInheritsPermissions => [ 'viscountess' => 'viscount' ],
 		] );
 
 		$data = $this->doQuery( 'usergroups', $numInGroup ? [ 'sinumberingroup' => '' ] : [] );
 
 		$names = array_column( $data, 'name' );
 
-		$this->assertSame( array_keys( $wgGroupPermissions ), $names );
 		$userAllGroups = $this->getServiceContainer()->getUserGroupManager()->listAllGroups();
+		$userAllImplicitGroups = $this->getServiceContainer()->getUserGroupManager()->listAllImplicitGroups();
+		$this->assertSame( array_merge( $userAllImplicitGroups, $userAllGroups ), $names );
 
 		foreach ( $data as $val ) {
 			if ( !$numInGroup ) {
@@ -371,6 +373,9 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 			if ( $val['name'] === 'viscount' ) {
 				$this->assertSame( [ 'perambulate' ], $val['rights'] );
 				$this->assertSame( $userAllGroups, $val['add'] );
+			} elseif ( $val['name'] === 'viscountess' ) {
+				$this->assertSame( [ 'perambulate' ], $val['rights'] );
+				$this->assertArrayNotHasKey( 'add', $val );
 			} elseif ( $val['name'] === 'bot' ) {
 				$this->assertArrayNotHasKey( 'add', $val );
 				$this->assertArrayNotHasKey( 'remove', $val );
