@@ -41,7 +41,7 @@
 	"apihelp-delete-param-tags": "Kemmañ an tikedennoù da lakaat e talvoud d'an enmont e marilh an diverkadennoù.",
 	"apihelp-delete-param-watch": "Ouzhpennañ ar bajenn da roll evezhiañ an implijer.",
 	"apihelp-delete-param-unwatch": "Dilemel ar bajenn a-ziwar roll evezhiañ an implijer.",
-	"apihelp-delete-example-simple": "Diverkañ <kbd>Main Page</kbd>.",
+	"apihelp-delete-example-simple": "Diverkañ [[{{MediaWiki:Mainpage}}]].",
 	"apihelp-disabled-summary": "Diweredekaet eo bet ar vodulenn-mañ.",
 	"apihelp-edit-summary": "Krouiñ pajennoù ha kemmañ anezho.",
 	"apihelp-edit-param-sectiontitle": "Titl ur rannbennad nevez pa reer gant <var>$1section=new</var>.",

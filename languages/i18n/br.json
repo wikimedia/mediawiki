@@ -2304,7 +2304,7 @@
 	"rollback-missingparam": "Arventennoù rekis d'ar reked a vank.",
 	"rollback-missingrevision": "Dibosupl kargañ roadennoù ar stumm.",
 	"cantrollback": "Dibosupl da zisteuler.\nAn aozer diwezhañ eo an hini nemetañ da vezañ kemmet ar pennad-mañ.",
-	"alreadyrolled": "Dibosupl eo disteuler ar c'hemm diwezhañ graet d'ar bajenn [[:$1]] gant [[User:$2|$2]] ([[User talk:$2|Kaozeal]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).\nKemmet pe distaolet eo bet gant unan bennak all dija.\n\nAr c'hemm diwezhañ d'ar bajenn-mañ a oa bet graet gant [[User:$3|$3]] ([[User talk:$3|Kaozeal]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
+	"alreadyrolled": "Dibosupl eo disteuler ar c'hemm diwezhañ graet d'ar bajenn [[:$1]] gant [[User:$2|$2]] ([[User talk:$2|kaozeal]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).\nKemmet pe distaolet eo bet gant unan bennak all dija.\n\nAr c'hemm diwezhañ d'ar bajenn-mañ a oa bet graet gant [[User:$3|$3]] ([[User talk:$3|kaozeal]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 	"editcomment": "Diverradenn ar c'hemm a oa : <em>$1</em>.",
 	"revertpage": "Distaolet {{PLURAL:$7|kemm}} gant [[Special:Contributions/$2|$2]] ([[User talk:$2|kaozeal]]); adlakaet d'ar stumm diwezhañ a-gent gant [[User:$1|$1]]",
 	"revertpage-anon": "Distaolet {{PLURAL:$7|kemm}} gant [[Special:Contributions/$2|$2]]; adlakaet d'ar stumm diwezhañ a-gent gant [[User:$1|$1]]",
