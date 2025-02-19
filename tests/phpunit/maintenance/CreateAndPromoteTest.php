@@ -5,7 +5,9 @@ namespace MediaWiki\Tests\Maintenance;
 use CreateAndPromote;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Password\PasswordFactory;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\SiteStats\SiteStats;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\User;
 
 /**
@@ -14,6 +16,7 @@ use MediaWiki\User\User;
  * @author Dreamy Jazz
  */
 class CreateAndPromoteTest extends MaintenanceBaseTestCase {
+	use TempUserTestTrait;
 
 	protected function getMaintenanceClass() {
 		return CreateAndPromote::class;
@@ -158,5 +161,33 @@ class CreateAndPromoteTest extends MaintenanceBaseTestCase {
 		// Check that the number of users has increased to 2, one for the new user and the other for the maintenance
 		// script user.
 		$this->assertSame( 2, SiteStats::users() );
+	}
+
+	public function testExecuteForNewTemporaryAccount() {
+		$this->enableAutoCreateTempUser();
+		$tempUsername = $this->getServiceContainer()->getTempUserCreator()
+			->acquireAndStashName( ( new FauxRequest() )->getSession() );
+		$this->assertNotNull( $tempUsername );
+
+		$this->expectCallToFatalError();
+		$this->expectOutputRegex( '/Temporary accounts cannot have groups or a password/' );
+
+		$password = PasswordFactory::generateRandomPasswordString( 128 );
+		$this->maintenance->setArg( 'username', $tempUsername );
+		$this->maintenance->setArg( 'password', $password );
+		$this->maintenance->execute();
+	}
+
+	public function testExecuteForExistingTemporaryAccount() {
+		$this->enableAutoCreateTempUser();
+		$tempUser = $this->getServiceContainer()->getTempUserCreator()
+			->create( null, new FauxRequest() )->getUser();
+
+		$this->expectCallToFatalError();
+		$this->expectOutputRegex( '/Temporary accounts cannot have groups or a password/' );
+
+		$this->maintenance->setArg( 'username', $tempUser->getName() );
+		$this->maintenance->setOption( 'sysop', 1 );
+		$this->maintenance->execute();
 	}
 }

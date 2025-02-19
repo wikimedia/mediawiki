@@ -83,6 +83,13 @@ class CreateAndPromote extends Maintenance {
 			$this->fatalError( 'invalid username.' );
 		}
 
+		if ( $services->getUserNameUtils()->isTemp( $user->getName() ) ) {
+			$this->fatalError(
+				'Temporary accounts cannot have groups or a password, so this script should not be used ' .
+				'to create a temporary account. Temporary accounts can be created by making an edit while logged out.'
+			);
+		}
+
 		$exists = ( $user->idForName() !== 0 );
 
 		if ( $exists && !$force ) {
