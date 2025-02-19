@@ -342,6 +342,18 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers \MediaWiki\User\User::checkPasswordValidity
+	 */
+	public function testCheckPasswordValidityForTemporaryAccount() {
+		$this->enableAutoCreateTempUser();
+		$user = $this->getServiceContainer()->getTempUserCreator()
+			->create( null, new FauxRequest() )->getUser();
+		$this->assertStatusError(
+			'error-temporary-accounts-cannot-have-passwords', $user->checkPasswordValidity( 'abc' )
+		);
+	}
+
+	/**
 	 * @covers \MediaWiki\User\User::equals
 	 */
 	public function testEquals() {

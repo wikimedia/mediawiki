@@ -600,6 +600,7 @@
 	"cannotcreateaccount-text": "Error page text shown when manual account creation is not possible. That probably means the wiki supports some other account creation method, e.g. autocreation by the session provider. (When account creation is possible but the current user does not have permission to do it, a more specific error message is displayed.)",
 	"yourdomainname": "Used as label for listbox.",
 	"password-change-forbidden": "Error message shown when an external authentication source does not allow the password to be changed.",
+	"error-temporary-accounts-cannot-have-passwords": "Used an error message when a user attempts to update or set a password for a [https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/Temporary_Accounts Temporary Account].",
 	"externaldberror": "This message is thrown when a valid attempt to change the wiki password for a user fails because of a database error or an error from an external system.",
 	"login": "{{Doc-special|UserLogin|unlisted=1}}\n{{Identical|Log in}}",
 	"login-security": "Used as the title of the login page when the user is already logged in but sent to reauthenticate before getting access to a feature with elevated security.",
