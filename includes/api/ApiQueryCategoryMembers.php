@@ -37,6 +37,7 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 	private Collation $collation;
+	private int $migrationStage;
 
 	public function __construct(
 		ApiQuery $query,
@@ -45,6 +46,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 	) {
 		parent::__construct( $query, $moduleName, 'cm' );
 		$this->collation = $collationFactory->getCategoryCollation();
+		$this->migrationStage = $query->getConfig()->get(
+			MainConfigNames::CategoryLinksSchemaMigrationStage
+		);
 	}
 
 	public function execute() {
@@ -100,8 +104,17 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$this->addFieldsIf( 'cl_timestamp', $fld_timestamp || $params['sort'] == 'timestamp' );
 
 		$this->addTables( [ 'page', 'categorylinks' ] ); // must be in this order for 'USE INDEX'
+		if ( $this->migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+			$this->addWhereFld( 'cl_to', $categoryTitle->getDBkey() );
+		} else {
+			$this->addTables( 'linktarget' );
+			$this->addJoinConds( [ 'linktarget' => [ 'JOIN', 'cl_target_id = lt_id ' ] ] );
+			$this->addWhere( [
+				'lt_namespace' => NS_CATEGORY,
+				'lt_title' => $categoryTitle->getDBkey(),
+			] );
+		}
 
-		$this->addWhereFld( 'cl_to', $categoryTitle->getDBkey() );
 		$queryTypes = $params['type'];
 		$contWhere = false;
 
