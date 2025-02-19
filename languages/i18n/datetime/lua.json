@@ -57,5 +57,5 @@
 	"sun": "mudialubingu",
 	"period-am": "AM",
 	"period-pm": "PM",
-	"duration-days": "$1 {{PLURAL:$1|dituku}}"
+	"duration-days": "$1 {{PLURAL:$1|dituku|matuku}}"
 }

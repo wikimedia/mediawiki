@@ -1,6 +1,8 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"MysticVoyager"
+		]
 	},
 	"january": "januari",
 	"february": "vipuari",
@@ -29,8 +31,11 @@
 	"aug": "augu",
 	"nov": "nuvi",
 	"monday": "naggajaq",
+	"tuesday": "aippitut",
 	"wednesday": "pingajua",
+	"thursday": "sitammitut",
 	"friday": "pagaitaak",
+	"saturday": "allingisungartut",
 	"sunday": "sanattaili",
 	"mon": "nag",
 	"wed": "pinga",

@@ -59,6 +59,7 @@
 	"sun": "нед",
 	"period-am": "претпладне",
 	"period-pm": "попладне",
+	"timezone-utc": "UTC",
 	"timezone-local": "Месно",
 	"hebrew-calendar-m1": "тишри",
 	"hebrew-calendar-m2": "хешван",

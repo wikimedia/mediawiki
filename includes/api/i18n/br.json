@@ -17,7 +17,7 @@
 	"apihelp-block-param-reason": "Abeg evit stankañ.",
 	"apihelp-block-param-nocreate": "Mirout a grouiñ kontoù.",
 	"apihelp-block-param-hidename": "Kuzhat a ra anv implijer e marilh ar stankadennoù. (Rekis eo kaout ar gwir <code>hideuser</code> right).",
-	"apihelp-block-param-reblock": "Mard eo stanket an implijer c'hoazh, frikañ ar stankadenn zo.",
+	"apihelp-block-param-reblock": "Mard eo stanket an implijer ur wech hepken, frikañ ar stankadenn zo. Ne vo ket posubl mard eo stanket an implijer meur a wech — grit neuze gant an arventenn <var>id</var> da spisaat pe stankadenn a vo friket.",
 	"apihelp-block-param-watchuser": "Evezhiañ pajennoù implijer ha kaozeal an den pe e chomlec'h IP.",
 	"apihelp-block-param-tags": "Kemmañ an tikedennoù da lakaat e talvoud en enmont marilh ar stankadennoù.",
 	"apihelp-block-example-ip-simple": "Stankañ ar chomlec'h IP <kbd>192.0.2.5</kbd> tri devezh-pad gant un abeg.",
@@ -101,7 +101,7 @@
 	"apihelp-parse-example-text": "Dielfennañ ar wikitestenn.",
 	"apihelp-protect-param-reason": "Abeg evit gwareziñ/diwareziñ.",
 	"apihelp-protect-example-protect": "Gwareziñ ur bajenn.",
-	"apihelp-purge-param-forcelinkupdate": "Hizivaat taolennoù al liammoù.",
+	"apihelp-purge-param-forcelinkupdate": "Hizivaat taolennoù al liammoù hag ober hivizadurioù roadennoù eilrenk all.",
 	"apihelp-query+filearchive-paramvalue-prop-dimensions": "Alias evit ar vent.",
 	"apihelp-query+imageinfo-paramvalue-prop-dimensions": "Alias evit ar vent.",
 	"apihelp-query+siteinfo-paramvalue-prop-namespacealiases": "Roll an aliasoù evit an esaouennoù anv enrollet.",
@@ -109,8 +109,8 @@
 	"apihelp-query+stashimageinfo-param-sessionkey": "Alias evit $1filekey, evit ar c'henglotañ war-gil.",
 	"apihelp-rollback-param-tags": "Tikedennoù da lakaat e talvoud war an distroioù.",
 	"apihelp-watch-param-expiry": "Eurdeiziañ termen da vezañ lakaet ouzh an holl bajennoù pourchaset. Na ober gan an arventenn-mañ evit lezel an holl dermenoù evel m'emaint bremañ.",
-	"apihelp-watch-example-watch-expiry": "Evezhiañ ar pajennoù <kbd>Main Page</kbd>, <kbd>Foo</kbd>, ha <kbd>Bar</kbd> e-pad miz.",
-	"api-help-datatype-expiry": "Talvoudoù termen relativel (da sk. <kbd>5 months</kbd> pe <kbd>2 weeks</kbd>) pe absolut (da sk. <kbd>2014-09-18T12:34:56Z</kbd>). Kuit da gaout termen ebet, ober gant <kbd>infinite</kbd>, <kbd>indefinite</kbd>, <kbd>infinity</kbd> pe <kbd>never</kbd>.",
+	"apihelp-watch-example-watch-expiry": "Evezhiañ ar pajennoù [[{{MediaWiki:Mainpage}}]], <kbd>Foo</kbd>, ha <kbd>Bar</kbd> e-pad miz.",
+	"api-help-datatype-expiry": "Talvoudoù termen a c’hall bezañ relativel (da sk. <kbd>5 months</kbd> pe <kbd>2 weeks</kbd>) pe absolut (da sk. <kbd>2014-09-18T12:34:56Z</kbd>). Kuit da gaout termen ebet, ober gant <kbd>infinite</kbd>, <kbd>indefinite</kbd>, <kbd>infinity</kbd> pe <kbd>never</kbd>.",
 	"api-help-param-type-expiry": "Seurt : {{PLURAL:$1|1=aet d'e dermen|2=roll aet d'e dermen}} ([[Special:ApiHelp/main#main/datatype/expiry|munudoù]])",
 	"apierror-concurrency-limit": "Tizhet ez eus bet ur vevenn kensturiegezh. Gortozit ma vo distro pep reked a-raok kas an hini war-lerc'h."
 }
