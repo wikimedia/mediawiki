@@ -257,14 +257,12 @@ class OutputPage extends ContextSource {
 	protected $mAdditionalBodyClasses = [];
 
 	/**
-	 * @var array
-	 * @deprecated since 1.38; will be made private (T301020)
+	 * @var string[]
 	 */
 	private $mModules = [];
 
 	/**
-	 * @var array
-	 * @deprecated since 1.38; will be made private (T301020)
+	 * @var string[]
 	 */
 	private $mModuleStyles = [];
 
@@ -491,8 +489,6 @@ class OutputPage extends ContextSource {
 		$this->deprecatePublicProperty( 'mCategories', '1.38', __CLASS__ );
 		$this->deprecatePublicProperty( 'mIndicators', '1.38', __CLASS__ );
 		$this->deprecatePublicProperty( 'mHeadItems', '1.38', __CLASS__ );
-		$this->deprecatePublicProperty( 'mModules', '1.38', __CLASS__ );
-		$this->deprecatePublicProperty( 'mModuleStyles', '1.38', __CLASS__ );
 		$this->deprecatePublicProperty( 'mJsConfigVars', '1.38', __CLASS__ );
 		$this->deprecatePublicProperty( 'mTemplateIds', '1.38', __CLASS__ );
 		$this->deprecatePublicProperty( 'mEnableClientCache', '1.38', __CLASS__ );
@@ -697,7 +693,7 @@ class OutputPage extends ContextSource {
 	public function getModules( $filter = false, $position = null, $param = 'mModules',
 		$type = RL\Module::TYPE_COMBINED
 	) {
-		$modules = array_values( array_unique( $this->$param ) );
+		$modules = array_values( $this->$param );
 		return $filter
 			? $this->filterModules( $modules, null, $type )
 			: $modules;
@@ -706,10 +702,12 @@ class OutputPage extends ContextSource {
 	/**
 	 * Load one or more ResourceLoader modules on this page.
 	 *
-	 * @param string|array $modules Module name (string) or array of module names
+	 * @param string|string[] $modules Module name (string) or array of module names
 	 */
 	public function addModules( $modules ) {
-		$this->mModules = array_merge( $this->mModules, (array)$modules );
+		foreach ( (array)$modules as $moduleName ) {
+			$this->mModules[$moduleName] = $moduleName;
+		}
 	}
 
 	/**
@@ -732,10 +730,12 @@ class OutputPage extends ContextSource {
 	 * using a standard `<link rel=stylesheet>` HTML tag, rather than as a combined
 	 * Javascript and CSS package. Thus, they will even load when JavaScript is disabled.
 	 *
-	 * @param string|array $modules Module name (string) or array of module names
+	 * @param string|string[] $modules Module name (string) or array of module names
 	 */
 	public function addModuleStyles( $modules ) {
-		$this->mModuleStyles = array_merge( $this->mModuleStyles, (array)$modules );
+		foreach ( (array)$modules as $moduleName ) {
+			$this->mModuleStyles[$moduleName] = $moduleName;
+		}
 	}
 
 	/**
