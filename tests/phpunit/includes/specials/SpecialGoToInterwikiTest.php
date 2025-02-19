@@ -23,7 +23,6 @@ class SpecialGoToInterwikiTest extends MediaWikiIntegrationTestCase {
 		) );
 		$this->getServiceContainer()->resetServiceForTesting( 'TitleFormatter' );
 		$this->getServiceContainer()->resetServiceForTesting( 'TitleParser' );
-		$this->getServiceContainer()->resetServiceForTesting( '_MediaWikiTitleCodec' );
 
 		$this->assertNotTrue( Title::newFromText( 'Foo' )->isExternal() );
 		$this->assertTrue( Title::newFromText( 'local:Foo' )->isExternal() );

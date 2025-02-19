@@ -22,8 +22,8 @@
 
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Title\MediaWikiTitleCodec;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleParser;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
 
@@ -265,7 +265,7 @@ abstract class PrefixSearch {
 			$prefixes[$search] = $namespaces;
 		} else {
 			// Don't just ignore input like "[[Foo]]", but try to search for "Foo"
-			$search = preg_replace( MediaWikiTitleCodec::getTitleInvalidRegex(), '', $search );
+			$search = preg_replace( TitleParser::getTitleInvalidRegex(), '', $search );
 			foreach ( $namespaces as $namespace ) {
 				$title = Title::makeTitleSafe( $namespace, $search );
 				if ( $title ) {

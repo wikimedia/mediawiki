@@ -226,7 +226,6 @@ use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\Telemetry\MediaWikiPropagator;
 use MediaWiki\Tidy\RemexDriver;
 use MediaWiki\Tidy\TidyDriverBase;
-use MediaWiki\Title\MediaWikiTitleCodec;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\Title\TitleFormatter;
@@ -2385,7 +2384,11 @@ return [
 	},
 
 	'TitleFormatter' => static function ( MediaWikiServices $services ): TitleFormatter {
-		return $services->getService( '_MediaWikiTitleCodec' );
+		return new TitleFormatter(
+			$services->getContentLanguage(),
+			$services->getGenderCache(),
+			$services->getNamespaceInfo()
+		);
 	},
 
 	'TitleMatcher' => static function ( MediaWikiServices $services ): TitleMatcher {
@@ -2405,7 +2408,12 @@ return [
 	},
 
 	'TitleParser' => static function ( MediaWikiServices $services ): TitleParser {
-		return $services->getService( '_MediaWikiTitleCodec' );
+		return new TitleParser(
+			$services->getContentLanguage(),
+			$services->getInterwikiLookup(),
+			$services->getNamespaceInfo(),
+			$services->getMainConfig()->get( MainConfigNames::LocalInterwikis )
+		);
 	},
 
 	'Tracer' => static function ( MediaWikiServices $services ): TracerInterface {
@@ -2776,16 +2784,6 @@ return [
 
 			// UserRateLimitConstraint
 			$services->getRateLimiter()
-		);
-	},
-
-	'_MediaWikiTitleCodec' => static function ( MediaWikiServices $services ): MediaWikiTitleCodec {
-		return new MediaWikiTitleCodec(
-			$services->getContentLanguage(),
-			$services->getGenderCache(),
-			$services->getMainConfig()->get( MainConfigNames::LocalInterwikis ),
-			$services->getInterwikiLookup(),
-			$services->getNamespaceInfo()
 		);
 	},
 

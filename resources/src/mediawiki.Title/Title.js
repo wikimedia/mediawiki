@@ -116,7 +116,7 @@ const mwString = require( 'mediawiki.String' ),
 
 	rSplit = /^(.+?)_*:_*(.*)$/,
 
-	// See MediaWikiTitleCodec.php#getTitleInvalidRegex
+	// See TitleParser.php#getTitleInvalidRegex
 
 	rInvalid = new RegExp(
 		'[^' + mw.config.get( 'wgLegalTitleChars' ) + ']' +
@@ -127,11 +127,11 @@ const mwString = require( 'mediawiki.String' ),
 		'|&[\\dA-Za-z\u0080-\uFFFF]+;'
 	),
 
-	// From MediaWikiTitleCodec::splitTitleString() in PHP
+	// From TitleParser::splitTitleString() in PHP
 	// Note that this is not equivalent to /\s/, e.g. underscore is included, tab is not included.
 	rWhitespace = /[ _\u00A0\u1680\u180E\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]+/g,
 
-	// From MediaWikiTitleCodec::splitTitleString() in PHP
+	// From TitleParser::splitTitleString() in PHP
 	rUnicodeBidi = /[\u200E\u200F\u202A-\u202E]+/g,
 
 	/**

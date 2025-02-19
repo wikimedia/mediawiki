@@ -127,7 +127,7 @@ class BenchmarkTitleValue extends Benchmarker {
 	}
 
 	protected function getPrefixedTextTitleValue() {
-		// This is really showing TitleFormatter aka MediaWikiTitleCodec perf
+		// This is really showing TitleFormatter perf
 		return $this->titleFormatter->getPrefixedText( $this->titleValue );
 	}
 
@@ -136,7 +136,7 @@ class BenchmarkTitleValue extends Benchmarker {
 	}
 
 	protected function parseTitleValue() {
-		// This is really showing TitleParser aka MediaWikiTitleCodec perf
+		// This is really showing TitleParser perf
 		$this->titleParser->parseTitle( 'Category:' . $this->dbKey, NS_MAIN );
 	}
 

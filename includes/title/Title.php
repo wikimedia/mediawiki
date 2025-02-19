@@ -696,7 +696,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 		// Fallback scenarios:
 		// * Recursion guard
 		//   If the message contains a bare local interwiki (T297571), then
-		//   Title::newFromText via MediaWikiTitleCodec::splitTitleString can get back here.
+		//   Title::newFromText via TitleParser::splitTitleString can get back here.
 		// * Invalid title
 		//   If the 'mainpage' message contains something that is invalid,  Title::newFromText
 		//   will return null.
@@ -890,10 +890,9 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 			// Optimization: Avoid Title::getFullText because that involves GenderCache
 			// and (unbatched) database queries. For validation, canonical namespace suffices.
 			$text = self::makeName( $this->mNamespace, $this->mDbkeyform, $this->mFragment, $this->mInterwiki, true );
-			$titleCodec = MediaWikiServices::getInstance()->getTitleParser();
+			$titleParser = MediaWikiServices::getInstance()->getTitleParser();
 
-			'@phan-var MediaWikiTitleCodec $titleCodec';
-			$parts = $titleCodec->splitTitleString( $text, $this->mNamespace );
+			$parts = $titleParser->splitTitleString( $text, $this->mNamespace );
 
 			// Check that nothing changed!
 			// This ensures that $text was already properly normalized.
@@ -2732,16 +2731,12 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	private function secureAndSplit( $text, $defaultNamespace = null ) {
 		$defaultNamespace ??= self::DEFAULT_NAMESPACE;
 
-		// @note: splitTitleString() is a temporary hack to allow MediaWikiTitleCodec to share
+		// @note: splitTitleString() is a temporary hack to allow TitleParser to share
 		//        the parsing code with Title, while avoiding massive refactoring.
 		// @todo: get rid of secureAndSplit, refactor parsing code.
-		// @note: getTitleParser() returns a TitleParser implementation which does not have a
-		//        splitTitleString method, but the only implementation (MediaWikiTitleCodec) does
-		/** @var MediaWikiTitleCodec $titleCodec */
-		$titleCodec = MediaWikiServices::getInstance()->getTitleParser();
-		'@phan-var MediaWikiTitleCodec $titleCodec';
+		$titleParser = MediaWikiServices::getInstance()->getTitleParser();
 		// MalformedTitleException can be thrown here
-		$parts = $titleCodec->splitTitleString( $text, $defaultNamespace );
+		$parts = $titleParser->splitTitleString( $text, $defaultNamespace );
 
 		# Fill fields
 		$this->setFragment( '#' . $parts['fragment'] );

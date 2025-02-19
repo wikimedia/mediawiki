@@ -65,8 +65,6 @@ class UpdateHandlerTest extends MediaWikiLangTestCase {
 			[ CONTENT_MODEL_WIKITEXT => $wikitextContentHandler ]
 		);
 
-		$titleCodec = $this->getDummyMediaWikiTitleCodec();
-
 		/** @var RevisionLookup|MockObject $revisionLookup */
 		$revisionLookup = $this->createNoOpMock(
 			RevisionLookup::class,
@@ -93,8 +91,8 @@ class UpdateHandlerTest extends MediaWikiLangTestCase {
 		$handler = new UpdateHandler(
 			$config,
 			$contentHandlerFactory,
-			$titleCodec,
-			$titleCodec,
+			$this->getDummyTitleParser(),
+			$this->getDummyTitleFormatter(),
 			$revisionLookup
 		);
 
