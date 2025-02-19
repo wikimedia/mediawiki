@@ -46,51 +46,51 @@ var __async = (__this, __arguments, generator) => {
         reject(e);
       }
     };
-    var step = (x2) => x2.done ? resolve(x2.value) : Promise.resolve(x2.value).then(fulfilled, rejected);
+    var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
     step((generator = generator.apply(__this, __arguments)).next());
   });
 };
 import { ref, onMounted, defineComponent, computed, openBlock, createElementBlock, normalizeClass, toDisplayString, createCommentVNode, Comment, warn, watch, withKeys, withModifiers, renderSlot, resolveComponent, createElementVNode, createBlock, resolveDynamicComponent, withCtx, createVNode, toRef, Fragment, renderList, createTextVNode, Transition, normalizeStyle, inject, mergeProps, useId, withDirectives, vModelCheckbox, createSlots, nextTick, vModelDynamic, onUnmounted, toHandlers, vShow, unref, shallowRef, getCurrentScope, onScopeDispose, shallowReadonly, Teleport, toRefs, provide, vModelRadio, vModelText, getCurrentInstance } from "vue";
-const x = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', T = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', d1 = '<path d="M7 14.17 2.83 10l-1.41 1.41L7 17 19 5l-1.41-1.42z"/>', r1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0m5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', i1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', L1 = '<path d="M10 15 2 5h16z"/>', S1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', q1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', s0 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', r = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7"/>', i0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0M9 5h2v2H9zm0 4h2v6H9z"/>', m2 = '<path d="M3 1h2v18H3zm13.5 1.5L15 1l-9 9 9 9 1.5-1.5L9 10z"/>', M2 = '<path d="M15 1h2v18h-2zM3.5 2.5 11 10l-7.5 7.5L5 19l9-9-9-9z"/>', I2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', B2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', _2 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"/>', n5 = '<path d="M10 0 3 8h14zm0 18-7-8h14z"/>', V5 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20m-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10z"/>', j5 = '<path d="m10 5 8 10H2z"/>', V3 = x, Z3 = T, $3 = d1, a4 = r1, h4 = i1, z4 = L1, x4 = S1, u4 = q1, Y4 = s0, h6 = {
+const V = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', Z = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', e1 = '<path d="M7 14.17 2.83 10l-1.41 1.41L7 17 19 5l-1.41-1.42z"/>', z1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0m5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', p1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', I1 = '<path d="M10 15 2 5h16z"/>', b1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', w1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', n0 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', i = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7"/>', p0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0M9 5h2v2H9zm0 4h2v6H9z"/>', M2 = '<path d="M3 1h2v18H3zm13.5 1.5L15 1l-9 9 9 9 1.5-1.5L9 10z"/>', g2 = '<path d="M15 1h2v18h-2zM3.5 2.5 11 10l-7.5 7.5L5 19l9-9-9-9z"/>', A2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', T2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', $2 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"/>', v5 = '<path d="M10 0 3 8h14zm0 18-7-8h14z"/>', V5 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20m-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10z"/>', j5 = '<path d="m10 5 8 10H2z"/>', V3 = V, Z3 = Z, $3 = e1, a4 = z1, h4 = p1, z4 = I1, x4 = b1, u4 = w1, Y4 = n0, h6 = {
   langCodeMap: {
-    ar: r
+    ar: i
   },
-  default: i0
+  default: p0
 }, j6 = {
-  ltr: m2,
-  shouldFlip: true
-}, X6 = {
   ltr: M2,
   shouldFlip: true
+}, X6 = {
+  ltr: g2,
+  shouldFlip: true
 }, o7 = {
-  ltr: I2,
+  ltr: A2,
   shouldFlip: true
 }, g7 = {
-  ltr: B2,
+  ltr: T2,
   shouldFlip: true
-}, w7 = _2, P7 = n5, $7 = V5, F8 = j5;
-function _8(c, s, h) {
+}, w7 = $2, P7 = v5, $7 = V5, F8 = j5;
+function _8(c, s, o) {
   if (typeof c == "string" || "path" in c)
     return c;
   if ("shouldFlip" in c)
     return c.ltr;
   if ("rtl" in c)
-    return h === "rtl" ? c.rtl : c.ltr;
-  const n = s in c.langCodeMap ? c.langCodeMap[s] : c.default;
-  return typeof n == "string" || "path" in n ? n : n.ltr;
+    return o === "rtl" ? c.rtl : c.ltr;
+  const v = s in c.langCodeMap ? c.langCodeMap[s] : c.default;
+  return typeof v == "string" || "path" in v ? v : v.ltr;
 }
 function $8(c, s) {
   if (typeof c == "string")
     return false;
   if ("langCodeMap" in c) {
-    const h = s in c.langCodeMap ? c.langCodeMap[s] : c.default;
-    if (typeof h == "string")
+    const o = s in c.langCodeMap ? c.langCodeMap[s] : c.default;
+    if (typeof o == "string")
       return false;
-    c = h;
+    c = o;
   }
   if ("shouldFlipExceptions" in c && Array.isArray(c.shouldFlipExceptions)) {
-    const h = c.shouldFlipExceptions.indexOf(s);
-    return h === void 0 || h === -1;
+    const o = c.shouldFlipExceptions.indexOf(s);
+    return o === void 0 || o === -1;
   }
   return "shouldFlip" in c ? c.shouldFlip : false;
 }
@@ -1467,7 +1467,7 @@ const _sfc_main$q = defineComponent({
       default: null
     },
     /**
-     * Whether the input chip can be removed.
+     * Whether the InputChip can be removed.
      */
     disabled: {
       type: Boolean,
@@ -1479,6 +1479,13 @@ const _sfc_main$q = defineComponent({
     readonly: {
       type: Boolean,
       default: false
+    },
+    /**
+     * CSS class for the InputChip.
+     */
+    className: {
+      type: String,
+      default: ""
     }
   },
   // expose is temporarily disabled to work around a Vue / vue-tsc bug, see
@@ -1513,7 +1520,8 @@ const _sfc_main$q = defineComponent({
     const rootElement = ref();
     const rootClasses = computed(() => ({
       "cdx-input-chip--disabled": props.disabled,
-      "cdx-input-chip--readonly": props.readonly
+      "cdx-input-chip--readonly": props.readonly,
+      [props.className]: props.className.length > 0
     }));
     const ariaDescription = useI18n(
       "cdx-input-chip-aria-description",
@@ -1710,7 +1718,13 @@ const _sfc_main$p = defineComponent({
      *
      * @property {string | number} inputValue The new input value
      */
-    "update:input-value"
+    "update:input-value",
+    /**
+     * When a chip is clicked.
+     *
+     * @property {ChipInputItem} chip The clicked chip
+     */
+    "chip-click"
   ],
   setup(props, { emit, attrs }) {
     const rootElement = ref();
@@ -1755,12 +1769,12 @@ const _sfc_main$p = defineComponent({
     const computedChipToRemove = computed(() => currentChipToRemove.value ? currentChipToRemove.value.value : "");
     const chipAddedMessage = useI18n(
       "cdx-chip-input-chip-added",
-      (x2) => "Chip ".concat(x2, " was added."),
+      (x) => "Chip ".concat(x, " was added."),
       [computedInputValue]
     );
     const chipRemovedMessage = useI18n(
       "cdx-chip-input-chip-removed",
-      (x2) => "Chip ".concat(x2, " was removed."),
+      (x) => "Chip ".concat(x, " was removed."),
       [computedChipToRemove]
     );
     function assignChipTemplateRef(chip, index) {
@@ -1810,7 +1824,8 @@ const _sfc_main$p = defineComponent({
     function handleChipClick(clickedChip) {
       return __async(this, null, function* () {
         var _a;
-        if (props.readonly || computedDisabled.value) {
+        emit("chip-click", clickedChip);
+        if (props.readonly || computedDisabled.value || !allowArbitrary.value) {
           return;
         }
         addChip();
@@ -1956,7 +1971,7 @@ function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
                 key: chip.value,
                 ref_for: true,
                 ref: (ref2) => _ctx.assignChipTemplateRef(ref2, index),
-                class: "cdx-chip-input__item",
+                class: normalizeClass(["cdx-chip-input__item", chip.className]),
                 icon: chip.icon,
                 readonly: _ctx.readonly,
                 disabled: _ctx.computedDisabled,
@@ -1977,7 +1992,7 @@ function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
                 }),
                 _: 2
                 /* DYNAMIC */
-              }, 1032, ["icon", "readonly", "disabled", "onClickChip", "onRemoveChip", "onArrowLeft", "onArrowRight"]);
+              }, 1032, ["class", "icon", "readonly", "disabled", "onClickChip", "onRemoveChip", "onArrowLeft", "onArrowRight"]);
             }),
             128
             /* KEYED_FRAGMENT */
@@ -3912,7 +3927,7 @@ function getPaddingObject(padding) {
 }
 function rectToClientRect(rect) {
   const {
-    x: x2,
+    x,
     y,
     width,
     height
@@ -3921,10 +3936,10 @@ function rectToClientRect(rect) {
     width,
     height,
     top: y,
-    left: x2,
-    right: x2 + width,
+    left: x,
+    right: x + width,
     bottom: y + height,
-    x: x2,
+    x,
     y
   };
 }
@@ -3998,24 +4013,24 @@ const computePosition$1 = (reference, floating, config) => __async(void 0, null,
     strategy
   });
   let {
-    x: x2,
+    x,
     y
   } = computeCoordsFromPlacement(rects, placement, rtl);
   let statefulPlacement = placement;
   let middlewareData = {};
   let resetCount = 0;
-  for (let i = 0; i < validMiddleware.length; i++) {
+  for (let i2 = 0; i2 < validMiddleware.length; i2++) {
     const {
       name,
       fn
-    } = validMiddleware[i];
+    } = validMiddleware[i2];
     const {
       x: nextX,
       y: nextY,
       data,
       reset
     } = yield fn({
-      x: x2,
+      x,
       y,
       initialPlacement: placement,
       placement: statefulPlacement,
@@ -4028,7 +4043,7 @@ const computePosition$1 = (reference, floating, config) => __async(void 0, null,
         floating
       }
     });
-    x2 = nextX != null ? nextX : x2;
+    x = nextX != null ? nextX : x;
     y = nextY != null ? nextY : y;
     middlewareData = __spreadProps(__spreadValues({}, middlewareData), {
       [name]: __spreadValues(__spreadValues({}, middlewareData[name]), data)
@@ -4047,15 +4062,15 @@ const computePosition$1 = (reference, floating, config) => __async(void 0, null,
           }) : reset.rects;
         }
         ({
-          x: x2,
+          x,
           y
         } = computeCoordsFromPlacement(rects, statefulPlacement, rtl));
       }
-      i = -1;
+      i2 = -1;
     }
   }
   return {
-    x: x2,
+    x,
     y,
     placement: statefulPlacement,
     strategy,
@@ -4069,7 +4084,7 @@ function detectOverflow(state, options) {
       options = {};
     }
     const {
-      x: x2,
+      x,
       y,
       platform: platform2,
       rects,
@@ -4093,7 +4108,7 @@ function detectOverflow(state, options) {
       strategy
     }));
     const rect = elementContext === "floating" ? {
-      x: x2,
+      x,
       y,
       width: rects.floating.width,
       height: rects.floating.height
@@ -4343,7 +4358,7 @@ const offset$1 = function(options) {
       return __async(this, null, function* () {
         var _middlewareData$offse, _middlewareData$arrow;
         const {
-          x: x2,
+          x,
           y,
           placement,
           middlewareData
@@ -4353,7 +4368,7 @@ const offset$1 = function(options) {
           return {};
         }
         return {
-          x: x2 + diffCoords.x,
+          x: x + diffCoords.x,
           y: y + diffCoords.y,
           data: __spreadProps(__spreadValues({}, diffCoords), {
             placement
@@ -4373,7 +4388,7 @@ const shift$1 = function(options) {
     fn(state) {
       return __async(this, null, function* () {
         const {
-          x: x2,
+          x,
           y,
           placement
         } = state;
@@ -4383,11 +4398,11 @@ const shift$1 = function(options) {
           limiter = {
             fn: (_ref) => {
               let {
-                x: x3,
+                x: x2,
                 y: y2
               } = _ref;
               return {
-                x: x3,
+                x: x2,
                 y: y2
               };
             }
@@ -4398,7 +4413,7 @@ const shift$1 = function(options) {
           "limiter"
         ]);
         const coords = {
-          x: x2,
+          x,
           y
         };
         const overflow = yield detectOverflow(state, detectOverflowOptions);
@@ -4426,7 +4441,7 @@ const shift$1 = function(options) {
         }));
         return __spreadProps(__spreadValues({}, limitedCoords), {
           data: {
-            x: limitedCoords.x - x2,
+            x: limitedCoords.x - x,
             y: limitedCoords.y - y,
             enabled: {
               [mainAxis]: checkMainAxis,
@@ -4694,16 +4709,16 @@ function getScale(element) {
     height,
     $
   } = getCssDimensions(domElement);
-  let x2 = ($ ? round(rect.width) : rect.width) / width;
+  let x = ($ ? round(rect.width) : rect.width) / width;
   let y = ($ ? round(rect.height) : rect.height) / height;
-  if (!x2 || !Number.isFinite(x2)) {
-    x2 = 1;
+  if (!x || !Number.isFinite(x)) {
+    x = 1;
   }
   if (!y || !Number.isFinite(y)) {
     y = 1;
   }
   return {
-    x: x2,
+    x,
     y
   };
 }
@@ -4747,7 +4762,7 @@ function getBoundingClientRect(element, includeScale, isFixedStrategy, offsetPar
     }
   }
   const visualOffsets = shouldAddVisualOffsets(domElement, isFixedStrategy, offsetParent) ? getVisualOffsets(domElement) : createCoords(0);
-  let x2 = (clientRect.left + visualOffsets.x) / scale.x;
+  let x = (clientRect.left + visualOffsets.x) / scale.x;
   let y = (clientRect.top + visualOffsets.y) / scale.y;
   let width = clientRect.width / scale.x;
   let height = clientRect.height / scale.y;
@@ -4762,11 +4777,11 @@ function getBoundingClientRect(element, includeScale, isFixedStrategy, offsetPar
       const css = getComputedStyle(currentIFrame);
       const left = iframeRect.left + (currentIFrame.clientLeft + parseFloat(css.paddingLeft)) * iframeScale.x;
       const top = iframeRect.top + (currentIFrame.clientTop + parseFloat(css.paddingTop)) * iframeScale.y;
-      x2 *= iframeScale.x;
+      x *= iframeScale.x;
       y *= iframeScale.y;
       width *= iframeScale.x;
       height *= iframeScale.y;
-      x2 += left;
+      x += left;
       y += top;
       currentWin = getWindow(currentIFrame);
       currentIFrame = getFrameElement(currentWin);
@@ -4775,7 +4790,7 @@ function getBoundingClientRect(element, includeScale, isFixedStrategy, offsetPar
   return rectToClientRect({
     width,
     height,
-    x: x2,
+    x,
     y
   });
 }
@@ -4791,13 +4806,13 @@ function getHTMLOffset(documentElement, scroll, ignoreScrollbarX) {
     ignoreScrollbarX = false;
   }
   const htmlRect = documentElement.getBoundingClientRect();
-  const x2 = htmlRect.left + scroll.scrollLeft - (ignoreScrollbarX ? 0 : (
+  const x = htmlRect.left + scroll.scrollLeft - (ignoreScrollbarX ? 0 : (
     // RTL <body> scrollbar.
     getWindowScrollBarX(documentElement, htmlRect)
   ));
   const y = htmlRect.top + scroll.scrollTop;
   return {
-    x: x2,
+    x,
     y
   };
 }
@@ -4849,15 +4864,15 @@ function getDocumentRect(element) {
   const body = element.ownerDocument.body;
   const width = max(html.scrollWidth, html.clientWidth, body.scrollWidth, body.clientWidth);
   const height = max(html.scrollHeight, html.clientHeight, body.scrollHeight, body.clientHeight);
-  let x2 = -scroll.scrollLeft + getWindowScrollBarX(element);
+  let x = -scroll.scrollLeft + getWindowScrollBarX(element);
   const y = -scroll.scrollTop;
   if (getComputedStyle(body).direction === "rtl") {
-    x2 += max(html.clientWidth, body.clientWidth) - width;
+    x += max(html.clientWidth, body.clientWidth) - width;
   }
   return {
     width,
     height,
-    x: x2,
+    x,
     y
   };
 }
@@ -4867,21 +4882,21 @@ function getViewportRect(element, strategy) {
   const visualViewport = win.visualViewport;
   let width = html.clientWidth;
   let height = html.clientHeight;
-  let x2 = 0;
+  let x = 0;
   let y = 0;
   if (visualViewport) {
     width = visualViewport.width;
     height = visualViewport.height;
     const visualViewportBased = isWebKit();
     if (!visualViewportBased || visualViewportBased && strategy === "fixed") {
-      x2 = visualViewport.offsetLeft;
+      x = visualViewport.offsetLeft;
       y = visualViewport.offsetTop;
     }
   }
   return {
     width,
     height,
-    x: x2,
+    x,
     y
   };
 }
@@ -4892,12 +4907,12 @@ function getInnerBoundingClientRect(element, strategy) {
   const scale = isHTMLElement(element) ? getScale(element) : createCoords(1);
   const width = element.clientWidth * scale.x;
   const height = element.clientHeight * scale.y;
-  const x2 = left * scale.x;
+  const x = left * scale.x;
   const y = top * scale.y;
   return {
     width,
     height,
-    x: x2,
+    x,
     y
   };
 }
@@ -5011,10 +5026,10 @@ function getRectRelativeToOffsetParent(element, offsetParent, strategy) {
     }
   }
   const htmlOffset = documentElement && !isOffsetParentAnElement && !isFixed ? getHTMLOffset(documentElement, scroll) : createCoords(0);
-  const x2 = rect.left + scroll.scrollLeft - offsets.x - htmlOffset.x;
+  const x = rect.left + scroll.scrollLeft - offsets.x - htmlOffset.x;
   const y = rect.top + scroll.scrollTop - offsets.y - htmlOffset.y;
   return {
-    x: x2,
+    x,
     y,
     width: rect.width,
     height: rect.height
@@ -5290,7 +5305,7 @@ function useFloating(reference, floating, options) {
   });
   const referenceElement = computed(() => unwrapElement$1(reference.value));
   const floatingElement = computed(() => unwrapElement$1(floating.value));
-  const x2 = ref(0);
+  const x = ref(0);
   const y = ref(0);
   const strategy = ref(strategyOption.value);
   const placement = ref(placementOption.value);
@@ -5305,7 +5320,7 @@ function useFloating(reference, floating, options) {
     if (!floatingElement.value) {
       return initialStyles;
     }
-    const xVal = roundByDPR(floatingElement.value, x2.value);
+    const xVal = roundByDPR(floatingElement.value, x.value);
     const yVal = roundByDPR(floatingElement.value, y.value);
     if (transformOption.value) {
       return __spreadValues(__spreadProps(__spreadValues({}, initialStyles), {
@@ -5330,7 +5345,7 @@ function useFloating(reference, floating, options) {
       placement: placementOption.value,
       strategy: strategyOption.value
     }).then((position) => {
-      x2.value = position.x;
+      x.value = position.x;
       y.value = position.y;
       strategy.value = position.strategy;
       placement.value = position.placement;
@@ -5373,7 +5388,7 @@ function useFloating(reference, floating, options) {
     onScopeDispose(cleanup);
   }
   return {
-    x: shallowReadonly(x2),
+    x: shallowReadonly(x),
     y: shallowReadonly(y),
     strategy: shallowReadonly(strategy),
     placement: shallowReadonly(placement),
@@ -7402,6 +7417,13 @@ const _sfc_main$b = defineComponent({
     menuConfig: {
       type: Object,
       default: () => ({})
+    },
+    /**
+     * Whether to keep the search term in the input after selection.
+     */
+    keepInputOnSelection: {
+      type: Boolean,
+      default: false
     }
   },
   emits: [
@@ -7426,6 +7448,12 @@ const _sfc_main$b = defineComponent({
      * @property {string | number} inputValue The new input value
      */
     "update:input-value",
+    /**
+     * When a chip is clicked.
+     *
+     * @property {ChipInputItem} chip The clicked chip
+     */
+    "chip-click",
     /**
      * When the user scrolls towards the bottom of the menu.
      *
@@ -7538,8 +7566,10 @@ const _sfc_main$b = defineComponent({
             inputChipsWrapper.value.push(newMenuItemWithoutId);
           }
         });
-        computedInputValue.value = "";
-        emit("input", "");
+        if (!props.keepInputOnSelection) {
+          computedInputValue.value = "";
+          emit("input", "");
+        }
       }
       inputChipsWrapper.value = inputChipsWrapper.value.filter(
         (chip) => newVal.find((selection) => chip.value === selection) !== void 0
@@ -7610,18 +7640,19 @@ function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
         "onUpdate:inputValue": _ctx.onUpdateInputValue,
         onFocus: _ctx.onInputFocus,
         onBlur: _ctx.onInputBlur,
-        onKeydown: _ctx.onKeydown
+        onKeydown: _ctx.onKeydown,
+        onChipClick: _cache[2] || (_cache[2] = (chip) => _ctx.$emit("chip-click", chip))
       }), null, 16, ["input-chips", "input-value", "aria-controls", "aria-expanded", "aria-activedescendant", "separate-input", "readonly", "disabled", "status", "onUpdate:inputValue", "onFocus", "onBlur", "onKeydown"]),
       createVNode(_component_cdx_menu, mergeProps({
         id: _ctx.menuId,
         ref: "menu",
         selected: _ctx.selectedWrapper,
-        "onUpdate:selected": _cache[2] || (_cache[2] = ($event) => _ctx.selectedWrapper = $event),
+        "onUpdate:selected": _cache[3] || (_cache[3] = ($event) => _ctx.selectedWrapper = $event),
         expanded: _ctx.expanded,
-        "onUpdate:expanded": _cache[3] || (_cache[3] = ($event) => _ctx.expanded = $event),
+        "onUpdate:expanded": _cache[4] || (_cache[4] = ($event) => _ctx.expanded = $event),
         "menu-items": _ctx.menuItems
       }, _ctx.menuConfig, {
-        onLoadMore: _cache[4] || (_cache[4] = ($event) => _ctx.$emit("load-more"))
+        onLoadMore: _cache[5] || (_cache[5] = ($event) => _ctx.$emit("load-more"))
       }), {
         default: withCtx(({ menuItem }) => [
           renderSlot(_ctx.$slots, "menu-item", { menuItem })
@@ -8721,27 +8752,27 @@ const _sfc_main$6 = defineComponent({
     });
     const paginationStatusMessageDeterminateShort = useI18n(
       "cdx-table-pagination-status-message-determinate-short",
-      (x2, y, z) => "".concat(x2, "–").concat(y, " of ").concat(z),
+      (x, y, z) => "".concat(x, "–").concat(y, " of ").concat(z),
       [firstOrdinal, lastOrdinal, totalCount]
     );
     const paginationStatusMessageDeterminateLong = useI18n(
       "cdx-table-pagination-status-message-determinate-long",
-      (x2, y, z) => "Showing results ".concat(x2, "–").concat(y, " of ").concat(z),
+      (x, y, z) => "Showing results ".concat(x, "–").concat(y, " of ").concat(z),
       [firstOrdinal, lastOrdinal, totalCount]
     );
     const paginationStatusMessageIndeterminateShort = useI18n(
       "cdx-table-pagination-status-message-indeterminate-short",
-      (x2, y) => "".concat(x2, "–").concat(y, " of many"),
+      (x, y) => "".concat(x, "–").concat(y, " of many"),
       [firstOrdinal, lastOrdinal]
     );
     const paginationStatusMessageIndeterminateLong = useI18n(
       "cdx-table-pagination-status-message-indeterminate-long",
-      (x2, y) => "Showing results ".concat(x2, "–").concat(y, " of many"),
+      (x, y) => "Showing results ".concat(x, "–").concat(y, " of many"),
       [firstOrdinal, lastOrdinal]
     );
     const paginationStatusMessageIndeterminateFinal = useI18n(
       "cdx-table-pagination-status-message-indeterminate-final",
-      (x2) => "Showing the last ".concat(x2, " results"),
+      (x) => "Showing the last ".concat(x, " results"),
       [currentCount]
     );
     const paginationStatusMessagePending = useI18n(
@@ -10481,7 +10512,7 @@ class Tooltip {
         shift(),
         hide()
       ]
-    }).then(({ x: x2, y, middlewareData }) => {
+    }).then(({ x, y, middlewareData }) => {
       var _a, _b, _c;
       const finalPlacement = (_b = (_a = middlewareData.offset) == null ? void 0 : _a.placement) != null ? _b : this.placement;
       const opposites = {
@@ -10499,7 +10530,7 @@ class Tooltip {
         "right-end": "left"
       };
       Object.assign(this.tooltipElement.style, {
-        left: "".concat(x2, "px"),
+        left: "".concat(x, "px"),
         top: "".concat(y, "px"),
         visibility: ((_c = middlewareData.hide) == null ? void 0 : _c.referenceHidden) ? "hidden" : "visible",
         transformOrigin: opposites[finalPlacement]
@@ -10793,7 +10824,7 @@ const _sfc_main = defineComponent({
       const searchResultClickEvent = {
         searchResult,
         index: props.searchResults.findIndex(
-          (r2) => r2.value === searchResult.value
+          (r) => r.value === searchResult.value
         ),
         numberOfResults: props.searchResults.length
       };

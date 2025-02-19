@@ -1,9 +1,8 @@
 
-// Codex Design Tokens v1.20.1
+// Codex Design Tokens v1.20.2
 // Design System for Wikimedia
 // See https://doc.wikimedia.org/codex/latest/design-tokens/overview.html
 
-@size-tooltip: max-content;
 @background-image-input-checkbox--checked: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="%23fff" d="M7 14.17L2.83 10l-1.41 1.41L7 17 19 5l-1.41-1.42z"/></svg>' );
 @color-base: var( --color-base, #202122 );
 @color-base-fixed: var( --color-base-fixed, #202122 );
@@ -93,6 +92,9 @@
 @size-viewport-height-full: 100vh;
 @size-absolute-1: 1px;
 @size-absolute-9999: 9999px;
+@size-content-min: min-content;
+@size-content-fit: fit-content;
+@size-content-max: max-content;
 @size-third: 33.33%;
 @size-half: 50%;
 @size-full: 100%;
@@ -108,16 +110,18 @@
 @max-width-button: 28rem; // Note, that this is a slight amendment from WikimediaUI Base from `28.75em` = `460px` to `448px` – `dimension.2800`
 @border-style-base: solid;
 @border-style-dashed: dashed;
-@box-shadow-drop-small: 0 1px 1px rgba( 0, 0, 0, 0.2 ); // This features color as part of the theme token value.
-@box-shadow-drop-medium: 0 2px 2px 0 rgba( 0, 0, 0, 0.2 ); // This features color as part of the theme token value.
-@box-shadow-drop-xx-large: 0 20px 48px 0 rgba( 0, 0, 0, 0.2 ); // This features color as part of the theme token value.
 @box-shadow-inset-small: inset 0 0 0 1px;
 @box-shadow-inset-medium: inset 0 0 0 2px;
 @box-shadow-inset-medium-vertical: inset 0 -2px 0 0;
 @box-shadow-outset-small: 0 0 0 1px;
 @box-shadow-outset-small-top: 0 -1px 0 0;
+@box-shadow-outset-small-bottom: 0 1px 0 0;
 @box-shadow-outset-small-start: -1px 0 0 0;
-@box-shadow-color-base: var( --box-shadow-color-base, #000 );
+@box-shadow-outset-medium-below: 0 4px 4px 0;
+@box-shadow-outset-medium-around: 0 0 8px 0;
+@box-shadow-outset-large-below: 0 4px 8px 0;
+@box-shadow-outset-large-around: 0 0 16px 0;
+@box-shadow-color-base: var( --box-shadow-color-base, #a2a9b1 );
 @box-shadow-color-progressive--active: var( --box-shadow-color-progressive--active, #233566 );
 @box-shadow-color-progressive--focus: var( --box-shadow-color-progressive--focus, #36c );
 @box-shadow-color-progressive-selected: var( --box-shadow-color-progressive-selected, #36c );
@@ -125,6 +129,7 @@
 @box-shadow-color-progressive-selected--active: var( --box-shadow-color-progressive-selected--active, #233566 );
 @box-shadow-color-destructive--focus: var( --box-shadow-color-destructive--focus, #36c );
 @box-shadow-color-inverted: var( --box-shadow-color-inverted, #fff );
+@box-shadow-color-alpha-base: var( --box-shadow-color-alpha-base, rgba( 0, 0, 0, 0.06 ) );
 @box-shadow-color-transparent: var( --box-shadow-color-transparent, transparent );
 @font-family-base: sans-serif; // Reference Vector's default fallback sans instead of the deprecated value `font-family-sans` in WikimediaUI Base.
 @font-family-system-sans: -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Inter', 'Helvetica', 'Arial', sans-serif;
@@ -314,6 +319,11 @@
 @color-link-red--visited: @color-destructive--visited;
 @color-link-red--visited--hover: @color-destructive--visited--hover;
 @color-link-red--visited--active: @color-destructive--visited--active;
+@box-shadow-small: @box-shadow-outset-small @box-shadow-color-base;
+@box-shadow-small-top: @box-shadow-outset-small-top @box-shadow-color-base;
+@box-shadow-small-bottom: @box-shadow-outset-small-bottom @box-shadow-color-base;
+@box-shadow-medium: @box-shadow-outset-medium-below @box-shadow-color-alpha-base, @box-shadow-outset-medium-around @box-shadow-color-alpha-base;
+@box-shadow-large: @box-shadow-outset-large-below @box-shadow-color-alpha-base, @box-shadow-outset-large-around @box-shadow-color-alpha-base;
 @accent-color-base: #36c;
 @position-offset-border-width-base: -@border-width-base;
 @spacing-horizontal-button: @spacing-75 - @border-width-base; // Padding should equal 12px of spacing minus the width of the border
@@ -338,7 +348,13 @@
 // DEPRECATED TOKENS
 // Warning: the following token name is deprecated (Use `color-subtle` instead. Note, that `color-subtle` is using `color.gray600` instead of `color.gray500` now.)
 @color-base--subtle: var( --color-base--subtle, #54595d );
+// Warning: the following token name is deprecated (For elements which previously used `xx-large`, consider using `large` instead, or referring to the guidance above to best choose the appropriate shadow.)
+@box-shadow-drop-xx-large: 0 20px 48px 0 rgba( 0, 0, 0, 0.2 );
 // Warning: the following token name is deprecated (Use `font-family-sans--fallback` instead. See T247166.)
 @font-family-sans: 'Helvetica Neue', 'Helvetica', 'Liberation Sans', 'Arial', sans-serif;
 // Warning: the following token name is deprecated (Legacy line-height. Use `line-height-small` instead.)
 @line-height-x-small: 1.4285714;
+// Warning: the following token name is deprecated (Shadow shorthands should be used in place of `drop` shadows.)
+@box-shadow-drop-small: @box-shadow-outset-small @box-shadow-color-base;
+// Warning: the following token name is deprecated (Shadow shorthands should be used in place of `drop` shadows.)
+@box-shadow-drop-medium: @box-shadow-outset-medium-below @box-shadow-color-alpha-base, @box-shadow-outset-medium-around @box-shadow-color-alpha-base;
