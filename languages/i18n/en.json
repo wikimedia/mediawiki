@@ -333,6 +333,7 @@
 	"cannotcreateaccount-text": "Direct account creation is not enabled on this wiki.",
 	"yourdomainname": "Your domain:",
 	"password-change-forbidden": "You cannot change passwords on this wiki.",
+	"error-temporary-accounts-cannot-have-passwords": "Temporary accounts cannot have passwords.",
 	"externaldberror": "There was either an authentication database error or you are not allowed to update your external account.",
 	"login": "Log in",
 	"login-security": "Verify your identity",

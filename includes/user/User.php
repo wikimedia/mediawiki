@@ -990,8 +990,13 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 * @since 1.23
 	 */
 	public function checkPasswordValidity( $password ) {
-		$passwordPolicy = MediaWikiServices::getInstance()->getMainConfig()
-			->get( MainConfigNames::PasswordPolicy );
+		$services = MediaWikiServices::getInstance();
+		$userNameUtils = $services->getUserNameUtils();
+		if ( $userNameUtils->isTemp( $this->getName() ) ) {
+			return Status::newFatal( 'error-temporary-accounts-cannot-have-passwords' );
+		}
+
+		$passwordPolicy = $services->getMainConfig()->get( MainConfigNames::PasswordPolicy );
 
 		$upp = new UserPasswordPolicy(
 			$passwordPolicy['policies'],
