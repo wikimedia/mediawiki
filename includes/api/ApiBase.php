@@ -35,7 +35,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
-use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Registration\ExtensionRegistry;
@@ -74,8 +73,6 @@ use WikiPage;
  * @ingroup API
  */
 abstract class ApiBase extends ContextSource {
-
-	use ApiBlockInfoTrait;
 
 	/** @var HookContainer */
 	private $hookContainer;
@@ -266,17 +263,6 @@ abstract class ApiBase extends ContextSource {
 
 	/** @var stdClass[][] Cache for self::filterIDs() */
 	private static $filterIDsCache = [];
-
-	/** @var array Map of web UI block messages which magically gain machine-readable block info */
-	private const BLOCK_CODE_MAP = [
-		'blockedtext' => true,
-		'blockedtext-partial' => true,
-		'autoblockedtext' => true,
-		'systemblockedtext' => true,
-		'blockedtext-composite' => true,
-		'blockedtext-tempuser' => true,
-		'autoblockedtext-tempuser' => true,
-	];
 
 	/** @var array Map of web UI block messages to corresponding API messages and codes */
 	private const MESSAGE_CODE_MAP = [
@@ -1377,35 +1363,6 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Add block info to block messages in a Status
-	 * @since 1.33
-	 * @internal since 1.37, should become protected in the future.
-	 * @param StatusValue $status
-	 * @param Authority|null $user
-	 */
-	public function addBlockInfoToStatus( StatusValue $status, ?Authority $user = null ) {
-		if ( $status instanceof PermissionStatus ) {
-			$block = $status->getBlock();
-		} else {
-			$user = $user ?: $this->getAuthority();
-			$block = $user->getBlock();
-		}
-
-		if ( !$block ) {
-			return;
-		}
-		foreach ( $status->getMessages() as $msg ) {
-			if ( isset( self::BLOCK_CODE_MAP[$msg->getKey()] ) ) {
-				$status->replaceMessage( $msg->getKey(), ApiMessage::create(
-					Message::newFromSpecifier( $msg ),
-					$this->getBlockCode( $block ),
-					[ 'blockinfo' => $this->getBlockDetails( $block ) ]
-				) );
-			}
-		}
-	}
-
-	/**
 	 * Call wfTransactionalTimeLimit() if this request was POSTed.
 	 *
 	 * @since 1.26
@@ -1601,11 +1558,7 @@ abstract class ApiBase extends ContextSource {
 			$this->getRequest()->getIP()
 		);
 
-		$this->dieWithError(
-			$msg,
-			$this->getBlockCode( $block ),
-			[ 'blockinfo' => $this->getBlockDetails( $block ) ]
-		);
+		$this->dieWithError( $msg );
 	}
 
 	/**
@@ -1649,8 +1602,6 @@ abstract class ApiBase extends ContextSource {
 			}
 			$status = $newStatus;
 		}
-
-		$this->addBlockInfoToStatus( $status );
 
 		throw new ApiUsageException( $this, $status );
 	}

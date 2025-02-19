@@ -20,6 +20,8 @@
 
 namespace MediaWiki\Block;
 
+use MediaWiki\Api\ApiBlockInfoHelper;
+use MediaWiki\Api\ApiMessage;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -68,7 +70,7 @@ class BlockErrorFormatter {
 	/**
 	 * Get a block error message. Different message keys are chosen depending on the
 	 * block features. Message parameters are formatted for the specified user and
-	 * language.
+	 * language. The message includes machine-readable data for API error responses.
 	 *
 	 * If passed a CompositeBlock, will get a generic message stating that there are
 	 * multiple blocks. To get all the block messages, use getMessages instead.
@@ -77,7 +79,7 @@ class BlockErrorFormatter {
 	 * @param UserIdentity $user
 	 * @param mixed $language Unused since 1.42
 	 * @param string $ip
-	 * @return Message
+	 * @return ApiMessage
 	 */
 	public function getMessage(
 		Block $block,
@@ -87,7 +89,14 @@ class BlockErrorFormatter {
 	): Message {
 		$key = $this->getBlockErrorMessageKey( $block, $user );
 		$params = $this->getBlockErrorMessageParams( $block, $user, $ip );
-		return $this->uiContext->msg( $key, $params );
+		$apiHelper = new ApiBlockInfoHelper;
+
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
+		return ApiMessage::create(
+			$this->uiContext->msg( $key, $params ),
+			$apiHelper->getBlockCode( $block ),
+			[ 'blockinfo' => $apiHelper->getBlockDetails( $block, $this->getLanguage(), $user ) ]
+		);
 	}
 
 	/**

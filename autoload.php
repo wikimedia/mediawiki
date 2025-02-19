@@ -818,6 +818,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Api\\ApiAuthManagerHelper' => __DIR__ . '/includes/api/ApiAuthManagerHelper.php',
 	'MediaWiki\\Api\\ApiBase' => __DIR__ . '/includes/api/ApiBase.php',
 	'MediaWiki\\Api\\ApiBlock' => __DIR__ . '/includes/api/ApiBlock.php',
+	'MediaWiki\\Api\\ApiBlockInfoHelper' => __DIR__ . '/includes/api/ApiBlockInfoHelper.php',
 	'MediaWiki\\Api\\ApiBlockInfoTrait' => __DIR__ . '/includes/api/ApiBlockInfoTrait.php',
 	'MediaWiki\\Api\\ApiCSPReport' => __DIR__ . '/includes/api/ApiCSPReport.php',
 	'MediaWiki\\Api\\ApiChangeAuthenticationData' => __DIR__ . '/includes/api/ApiChangeAuthenticationData.php',

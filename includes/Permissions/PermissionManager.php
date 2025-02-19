@@ -310,6 +310,17 @@ class PermissionManager {
 		return $this->userCan( $action, $user, $page, self::RIGOR_QUICK );
 	}
 
+	/** @var array For use by deprecated getPermissionErrors() only */
+	private const BLOCK_CODES = [
+		'blockedtext' => true,
+		'blockedtext-partial' => true,
+		'autoblockedtext' => true,
+		'systemblockedtext' => true,
+		'blockedtext-composite' => true,
+		'blockedtext-tempuser' => true,
+		'autoblockedtext-tempuser' => true,
+	];
+
 	/**
 	 * Can $user perform $action on a page?
 	 *
@@ -350,6 +361,11 @@ class PermissionManager {
 			$key = $keyOrMsg instanceof MessageSpecifier ? $keyOrMsg->getKey() : $keyOrMsg;
 			// Remove the errors being ignored.
 			if ( !in_array( $key, $ignoreErrors ) ) {
+				// Remove modern block info that is not expected by users of this legacy API
+				if ( isset( self::BLOCK_CODES[ $key ] ) && $keyOrMsg instanceof MessageSpecifier ) {
+					$params = $keyOrMsg->getParams();
+					$keyOrMsg = $key;
+				}
 				$result[] = [ $keyOrMsg, ...$params ];
 			}
 		}
@@ -802,6 +818,8 @@ class PermissionManager {
 		);
 
 		if ( $block ) {
+			$status->setBlock( $block );
+
 			// @todo FIXME: Pass the relevant context into this function.
 			$context = RequestContext::getMain();
 			$messages = $this->blockErrorFormatter->getMessages(
@@ -811,10 +829,7 @@ class PermissionManager {
 			);
 
 			foreach ( $messages as $message ) {
-				// TODO: We can pass $message directly once getPermissionErrors() is removed.
-				// For now we store the message key as a string here out of overabundance of caution,
-				// because there is a test case verifying that block messages use strings in that format.
-				$status->fatal( $message->getKey(), ...$message->getParams() );
+				$status->fatal( $message );
 			}
 		}
 	}
