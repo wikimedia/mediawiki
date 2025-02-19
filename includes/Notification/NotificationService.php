@@ -9,7 +9,7 @@ use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
- * Notify users about things occuring.
+ * Notify users about things occurring.
  *
  * @since 1.44
  * @unstable
@@ -54,14 +54,17 @@ class NotificationService {
 	}
 
 	/**
-	 * Notify users about an event occuring. This method allows providing custom notification data to
+	 * Notify users about an event occurring. This method allows providing custom notification data to
 	 * be handled by extensions, and defining multiple recipients.
 	 */
 	public function notify( Notification $notification, RecipientSet $recipients ): void {
 		$handlers = $this->getHandlers();
 		$handler = $handlers[$notification->getType()] ?? $handlers['*'] ?? null;
-		if ( !$handler ) {
-			throw new RuntimeException( "No handler defined for notification type \"{$notification->getType()}\"" );
+		if ( $handler === null ) {
+			$this->logger->warning( "No handler defined for notification type {type}", [
+				'type' => $notification->getType(),
+			] );
+			return;
 		}
 		$handler->notify( $notification, $recipients );
 	}
