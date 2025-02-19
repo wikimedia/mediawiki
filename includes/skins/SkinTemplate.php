@@ -1053,6 +1053,8 @@ class SkinTemplate extends Skin {
 			'user-menu' => $this->buildPersonalUrls( false ),
 			'notifications' => [],
 			'associated-pages' => [],
+			// Added in 1.44: a fixed position menu at bottom of page
+			'dock-bottom' => [],
 			// Legacy keys
 			'namespaces' => [],
 			'views' => [],
