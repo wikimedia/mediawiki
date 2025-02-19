@@ -170,8 +170,88 @@ abstract class CentralIdLookup {
 	 *  Names not corresponding to a user (or $audience lacks the rights needed
 	 *  to see it) are unchanged.
 	 */
-	abstract public function lookupUserNames(
+	public function lookupUserNames(
 		array $nameToId, $audience = self::AUDIENCE_PUBLIC, $flags = IDBAccessObject::READ_NORMAL
+	): array {
+		return $this->lookupUserNamesWithFilter( $nameToId, self::FILTER_NONE,
+			$audience, $flags );
+	}
+
+	/**
+	 * Given user names on the wiki specified by $wikiId, return the central
+	 * IDs, but only include IDs for local users owned by the central user,
+	 * i.e. isOwned() would be true.
+	 *
+	 * @since 1.44
+	 *
+	 * @param array $nameToId Array with keys being canonicalized user names
+	 * @param int|Authority $audience One of the audience constants, or a specific authority
+	 * @param int $flags IDBAccessObject read flags
+	 * @param string|false $wikiId Wiki to check attachment status. If false, check the current
+	 *   wiki.
+	 * @return int[] Copy of $nameToId with values set to central IDs.
+	 *   Names not owned by the central user are unchanged.
+	 */
+	public function lookupOwnedUserNames(
+		array $nameToId,
+		$audience = self::AUDIENCE_PUBLIC,
+		$flags = IDBAccessObject::READ_NORMAL,
+		$wikiId = UserIdentity::LOCAL
+	) {
+		return $this->lookupUserNamesWithFilter( $nameToId, self::FILTER_OWNED,
+			$audience, $flags, $wikiId );
+	}
+
+	/**
+	 * Given user names on the wiki specified by $wikiId, return the central
+	 * IDs, but only include IDs for local users attached to the central user,
+	 * i.e. isAttached() would be true.
+	 *
+	 * @since 1.44
+	 *
+	 * @param array $nameToId Array with keys being canonicalized user names
+	 * @param int|Authority $audience One of the audience constants, or a specific authority
+	 * @param int $flags IDBAccessObject read flags
+	 * @param string|false $wikiId Wiki to check attachment status. If false, check the current
+	 *   wiki.
+	 * @return int[] Copy of $nameToId with values set to central IDs.
+	 *   Names not attached to the central user are unchanged.
+	 */
+	public function lookupAttachedUserNames(
+		array $nameToId,
+		$audience = self::AUDIENCE_PUBLIC,
+		$flags = IDBAccessObject::READ_NORMAL,
+		$wikiId = UserIdentity::LOCAL
+	) {
+		return $this->lookupUserNamesWithFilter( $nameToId, self::FILTER_ATTACHED,
+			$audience, $flags, $wikiId );
+	}
+
+	/**
+	 * Given user names on the wiki specified by $wikiId, return the central
+	 * IDs. If $filter is not FILTER_NONE, filter the users by owned or
+	 * attached status.
+	 *
+	 * @since 1.44
+	 *
+	 * @param array $nameToId Array with keys being canonicalized user names
+	 * @param string $filter One of:
+	 *   - self::FILTER_NONE: Get all users with the specified names
+	 *   - self::FILTER_ATTACHED: Only get IDs for attached users
+	 *   - self::FILTER_OWNED: Only get IDs for owned users
+	 * @param int|Authority $audience One of the audience constants, or a specific authority
+	 * @param int $flags IDBAccessObject read flags
+	 * @param string|false $wikiId Wiki to check attachment status. If false, check the current
+	 *   wiki.
+	 * @return int[] Copy of $nameToId with values set to central IDs.
+	 *   Names not owned by the central user are unchanged.
+	 */
+	abstract protected function lookupUserNamesWithFilter(
+		array $nameToId,
+		$filter,
+		$audience = self::AUDIENCE_PUBLIC,
+		$flags = IDBAccessObject::READ_NORMAL,
+		$wikiId = UserIdentity::LOCAL
 	): array;
 
 	/**
@@ -291,9 +371,9 @@ abstract class CentralIdLookup {
 	public function centralIdFromLocalUser(
 		UserIdentity $user, $audience = self::AUDIENCE_PUBLIC, $flags = IDBAccessObject::READ_NORMAL
 	): int {
-		return $this->isAttached( $user )
-			? $this->centralIdFromName( $user->getName(), $audience, $flags )
-			: 0;
+		$name = $user->getName();
+		$nameToId = $this->lookupAttachedUserNames( [ $name => 0 ], $audience, $flags );
+		return $nameToId[$name];
 	}
 
 }

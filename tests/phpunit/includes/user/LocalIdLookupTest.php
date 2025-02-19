@@ -45,11 +45,11 @@ class LocalIdLookupTest extends MediaWikiIntegrationTestCase {
 
 	private function newLookup( array $configOverride = [] ) {
 		$lookup = new LocalIdLookup(
-			new HashConfig( [
+			new HashConfig( $configOverride + [
 				MainConfigNames::SharedDB => null,
 				MainConfigNames::SharedTables => [],
 				MainConfigNames::LocalDatabases => [],
-			] + $configOverride ),
+			] ),
 			$this->getServiceContainer()->getConnectionProvider(),
 			$this->getServiceContainer()->getHideUserUtils()
 		);
@@ -111,6 +111,35 @@ class LocalIdLookupTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expect2, $lookup->lookupUserNames( $arg, $nonPermitted ) );
 	}
 
+	/** @dataProvider provideLookupAttachedUserNames */
+	public function testLookupAttachedUserNames( $isShared ) {
+		$lookup = $this->newLookup( [
+			MainConfigNames::SharedDB => $isShared ? "dummy" : null,
+			MainConfigNames::SharedTables => $isShared ? [ 'user' ] : [],
+			MainConfigNames::LocalDatabases => $isShared ? [ 'shared' ] : [],
+		] );
+		$nameToId = [];
+		foreach ( $this->localUsers as $user ) {
+			$nameToId[$user->getName()] = 0;
+			if ( $isShared ) {
+				$expected[$user->getName()] = $user->getId();
+			} else {
+				$expected[$user->getName()] = 0;
+			}
+		}
+		$result = $lookup->lookupAttachedUserNames(
+			$nameToId,
+			CentralIdLookup::AUDIENCE_RAW,
+			IDBAccessObject::READ_NORMAL,
+			'shared'
+		);
+		$this->assertSame( $expected, $result );
+	}
+
+	public static function provideLookupAttachedUserNames() {
+		return [ [ false, true ] ];
+	}
+
 	public function testIsAttached() {
 		$lookup = $this->newLookup();
 		$user1 = UserIdentityValue::newRegistered( 42, 'Test' );
@@ -147,15 +176,8 @@ class LocalIdLookupTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideIsAttachedShared() {
-		$ret = [];
-		for ( $i = 0; $i < 7; $i++ ) {
-			$ret[] = [
-				(bool)( $i & 1 ),
-				(bool)( $i & 2 ),
-				(bool)( $i & 4 ),
-			];
-		}
-		return $ret;
+		$bool = [ false, true ];
+		return ArrayUtils::cartesianProduct( $bool, $bool, $bool );
 	}
 
 }
