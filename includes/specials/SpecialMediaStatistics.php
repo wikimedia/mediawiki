@@ -22,6 +22,8 @@ namespace MediaWiki\Specials;
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\Html;
+use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\SpecialPage\QueryPage;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -61,6 +63,7 @@ class SpecialMediaStatistics extends QueryPage {
 	protected $totalSize = 0;
 
 	private MimeAnalyzer $mimeAnalyzer;
+	private int $migrationStage;
 
 	/**
 	 * @param MimeAnalyzer $mimeAnalyzer
@@ -80,6 +83,9 @@ class SpecialMediaStatistics extends QueryPage {
 		$this->mimeAnalyzer = $mimeAnalyzer;
 		$this->setDatabaseProvider( $dbProvider );
 		$this->setLinkBatchFactory( $linkBatchFactory );
+		$this->migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::FileSchemaMigrationStage
+		);
 	}
 
 	public function isExpensive() {
@@ -102,32 +108,69 @@ class SpecialMediaStatistics extends QueryPage {
 	 */
 	public function getQueryInfo() {
 		$dbr = $this->getDatabaseProvider()->getReplicaDatabase();
-		$fakeTitle = $dbr->buildConcat( [
-			'img_media_type',
-			$dbr->addQuotes( ';' ),
-			'img_major_mime',
-			$dbr->addQuotes( '/' ),
-			'img_minor_mime',
-			$dbr->addQuotes( ';' ),
-			$dbr->buildStringCast( 'COUNT(*)' ),
-			$dbr->addQuotes( ';' ),
-			$dbr->buildStringCast( 'SUM( img_size )' )
-		] );
-		return [
-			'tables' => [ 'image' ],
-			'fields' => [
-				'title' => $fakeTitle,
-				'namespace' => NS_MEDIA, /* needs to be something */
-				'value' => '1'
-			],
-			'options' => [
-				'GROUP BY' => [
-					'img_media_type',
-					'img_major_mime',
-					'img_minor_mime',
+		if ( $this->migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+			$fakeTitle = $dbr->buildConcat( [
+				'img_media_type',
+				$dbr->addQuotes( ';' ),
+				'img_major_mime',
+				$dbr->addQuotes( '/' ),
+				'img_minor_mime',
+				$dbr->addQuotes( ';' ),
+				$dbr->buildStringCast( 'COUNT(*)' ),
+				$dbr->addQuotes( ';' ),
+				$dbr->buildStringCast( 'SUM( img_size )' )
+			] );
+			return [
+				'tables' => [ 'image' ],
+				'fields' => [
+					'title' => $fakeTitle,
+					'namespace' => NS_MEDIA, /* needs to be something */
+					'value' => '1'
+				],
+				'options' => [
+					'GROUP BY' => [
+						'img_media_type',
+						'img_major_mime',
+						'img_minor_mime',
+					]
 				]
-			]
-		];
+			];
+		} else {
+			$fakeTitle = $dbr->buildConcat( [
+				'ft_media_type',
+				$dbr->addQuotes( ';' ),
+				'ft_major_mime',
+				$dbr->addQuotes( '/' ),
+				'ft_minor_mime',
+				$dbr->addQuotes( ';' ),
+				$dbr->buildStringCast( 'COUNT(*)' ),
+				$dbr->addQuotes( ';' ),
+				$dbr->buildStringCast( 'SUM( fr_size )' )
+			] );
+			return [
+				'tables' => [ 'file', 'filetypes', 'filerevision' ],
+				'fields' => [
+					'title' => $fakeTitle,
+					'namespace' => NS_MEDIA, /* needs to be something */
+					'value' => '1'
+				],
+				'conds' => [
+					'file_deleted' => 0
+				],
+				'options' => [
+					'GROUP BY' => [
+						'file_type',
+						'ft_media_type',
+						'ft_major_mime',
+						'ft_minor_mime'
+					]
+				],
+				'join_conds' => [
+					'filetypes' => [ 'JOIN', 'file_type = ft_id' ],
+					'filerevision' => [ 'JOIN', 'file_latest = fr_id' ]
+				]
+			];
+		}
 	}
 
 	/**
@@ -138,7 +181,11 @@ class SpecialMediaStatistics extends QueryPage {
 	 * @return array Fields to sort by
 	 */
 	protected function getOrderFields() {
-		return [ 'img_media_type', 'count(*)', 'img_major_mime', 'img_minor_mime' ];
+		if ( $this->migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+			return [ 'img_media_type', 'count(*)', 'img_major_mime', 'img_minor_mime' ];
+		} else {
+			return [ 'file_type', 'count(*)', 'ft_media_type', 'ft_major_mime', 'ft_minor_mime' ];
+		}
 	}
 
 	/**

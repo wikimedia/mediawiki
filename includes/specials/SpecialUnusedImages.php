@@ -21,6 +21,7 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\ImageQueryPage;
 use Wikimedia\Rdbms\IConnectionProvider;
 
@@ -30,10 +31,14 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * @ingroup SpecialPage
  */
 class SpecialUnusedImages extends ImageQueryPage {
+	private int $migrationStage;
 
 	public function __construct( IConnectionProvider $dbProvider ) {
 		parent::__construct( 'Unusedimages' );
 		$this->setDatabaseProvider( $dbProvider );
+		$this->migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::FileSchemaMigrationStage
+		);
 	}
 
 	public function isExpensive() {
@@ -49,15 +54,32 @@ class SpecialUnusedImages extends ImageQueryPage {
 	}
 
 	public function getQueryInfo() {
+		if ( $this->migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+			$tables = [ 'image' ];
+			$nameField = 'img_name';
+			$timestampField = 'img_timestamp';
+			$extraConds = [];
+			$extraJoins = [];
+		} else {
+			$tables = [ 'file', 'filerevision' ];
+			$nameField = 'file_name';
+			$timestampField = 'fr_timestamp';
+			$extraConds = [ 'file_deleted' => 0 ];
+			$extraJoins = [ 'filerevision' => [ 'JOIN', 'file_latest = fr_id' ] ];
+		}
+
 		$retval = [
-			'tables' => [ 'image', 'imagelinks' ],
+			'tables' => array_merge( $tables, [ 'imagelinks' ] ),
 			'fields' => [
 				'namespace' => NS_FILE,
-				'title' => 'img_name',
-				'value' => 'img_timestamp',
+				'title' => $nameField,
+				'value' => $timestampField,
 			],
-			'conds' => [ 'il_to' => null ],
-			'join_conds' => [ 'imagelinks' => [ 'LEFT JOIN', 'il_to = img_name' ] ]
+			'conds' => array_merge( [ 'il_to' => null ], $extraConds ),
+			'join_conds' => array_merge(
+				[ 'imagelinks' => [ 'LEFT JOIN', 'il_to = ' . $nameField ] ],
+				$extraJoins
+			),
 		];
 
 		if ( $this->getConfig()->get( MainConfigNames::CountCategorizedImagesAsUsed ) ) {
@@ -66,7 +88,7 @@ class SpecialUnusedImages extends ImageQueryPage {
 				'imagelinks' ];
 			$retval['conds']['page_namespace'] = NS_FILE;
 			$retval['conds']['cl_from'] = null;
-			$retval['conds'][] = 'img_name = page_title';
+			$retval['conds'][] = $nameField . ' = page_title';
 			$retval['join_conds']['categorylinks'] = [
 				'LEFT JOIN', 'cl_from = page_id' ];
 			$retval['join_conds']['imagelinks'] = [

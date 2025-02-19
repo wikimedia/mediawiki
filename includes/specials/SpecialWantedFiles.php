@@ -23,6 +23,8 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\SpecialPage\WantedQueryPage;
 use MediaWiki\Title\Title;
@@ -38,6 +40,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
 class SpecialWantedFiles extends WantedQueryPage {
 
 	private RepoGroup $repoGroup;
+	private int $migrationStage;
 
 	/**
 	 * @param RepoGroup $repoGroup
@@ -53,6 +56,9 @@ class SpecialWantedFiles extends WantedQueryPage {
 		$this->repoGroup = $repoGroup;
 		$this->setDatabaseProvider( $dbProvider );
 		$this->setLinkBatchFactory( $linkBatchFactory );
+		$this->migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::FileSchemaMigrationStage
+		);
 	}
 
 	protected function getPageHeader() {
@@ -128,13 +134,24 @@ class SpecialWantedFiles extends WantedQueryPage {
 	}
 
 	public function getQueryInfo() {
+		if ( $this->migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+			$fileTable = 'image';
+			$nameField = 'img_name';
+			$extraConds1 = [];
+			$extraConds2 = [];
+		} else {
+			$fileTable = 'file';
+			$nameField = 'file_name';
+			$extraConds1 = [ 'img1.file_deleted' => 0 ];
+			$extraConds2 = [ 'img2.file_deleted' => 0 ];
+		}
 		return [
 			'tables' => [
 				'imagelinks',
 				'page',
 				'redirect',
-				'img1' => 'image',
-				'img2' => 'image',
+				'img1' => $fileTable,
+				'img2' => $fileTable,
 			],
 			'fields' => [
 				'namespace' => NS_FILE,
@@ -142,14 +159,14 @@ class SpecialWantedFiles extends WantedQueryPage {
 				'value' => 'COUNT(*)'
 			],
 			'conds' => [
-				'img1.img_name' => null,
+				'img1.' . $nameField => null,
 				// We also need to exclude file redirects
-				'img2.img_name' => null,
+				'img2.' . $nameField => null,
 			],
 			'options' => [ 'GROUP BY' => 'il_to' ],
 			'join_conds' => [
 				'img1' => [ 'LEFT JOIN',
-					'il_to = img1.img_name'
+					array_merge( [ 'il_to = img1.' . $nameField ], $extraConds1 ),
 				],
 				'page' => [ 'LEFT JOIN', [
 					'il_to = page_title',
@@ -161,7 +178,7 @@ class SpecialWantedFiles extends WantedQueryPage {
 					'rd_interwiki' => ''
 				] ],
 				'img2' => [ 'LEFT JOIN',
-					'rd_title = img2.img_name'
+					array_merge( [ 'rd_title = img2.' . $nameField ], $extraConds2 ),
 				]
 			]
 		];
