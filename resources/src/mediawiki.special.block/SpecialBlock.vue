@@ -342,7 +342,9 @@ module.exports = exports = defineComponent( {
 			event.preventDefault();
 			store.resetForm();
 			formVisible.value = false;
-
+			nextTick( () => {
+				messagesContainer.value.scrollIntoView( { behavior: 'smooth' } );
+			} );
 		}
 
 		/**
