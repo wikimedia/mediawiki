@@ -2953,13 +2953,23 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 			return $data;
 		}
 
-		$dbr = $this->getDbProvider()->getReplicaDatabase();
+		$migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::CategoryLinksSchemaMigrationStage
+		);
 
-		$res = $dbr->newSelectQueryBuilder()
-			->select( 'cl_to' )
+		$dbr = $this->getDbProvider()->getReplicaDatabase();
+		$queryBuilder = $dbr->newSelectQueryBuilder()
 			->from( 'categorylinks' )
-			->where( [ 'cl_from' => $titleKey ] )
-			->caller( __METHOD__ )->fetchResultSet();
+			->where( [ 'cl_from' => $titleKey ] );
+
+		if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+			$queryBuilder->select( 'cl_to' );
+		} else {
+			$queryBuilder->field( 'lt_title', 'cl_to' )
+				->join( 'linktarget', null, 'cl_target_id = lt_id' )
+				->where( [ 'lt_namespace' => NS_CATEGORY ] );
+		}
+		$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 
 		if ( $res->numRows() > 0 ) {
 			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
