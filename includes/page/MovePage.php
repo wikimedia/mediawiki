@@ -944,8 +944,7 @@ class MovePage {
 				->addTags( $changeTags )
 				->addSoftwareTag( 'mw-new-redirect' )
 				->setUsePageCreationLog( false )
-				->setAutomated( true )
-				->setFlags( EDIT_SUPPRESS_RC | EDIT_INTERNAL )
+				->setFlags( EDIT_SILENT | EDIT_INTERNAL | EDIT_IMPLICIT )
 				->saveRevision( $comment );
 		}
 

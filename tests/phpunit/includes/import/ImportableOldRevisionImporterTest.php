@@ -104,11 +104,11 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 
 	private function makeDomainEventSourceListener( $new ) {
 		return static function ( PageUpdatedEvent $event ) use ( $new ) {
-			Assert::assertTrue( $event->isRevisionChange(), 'isPurge' );
-			Assert::assertSame( $new, $event->isNew(), 'isNew' );
+			Assert::assertFalse( $event->isReconciliationRequest(), 'isReconciliationRequest' );
+			Assert::assertSame( $new, $event->isCreation(), 'isNew' );
 			Assert::assertSame( PageUpdatedEvent::CAUSE_IMPORT, $event->getCause(), 'getCause' );
 
-			Assert::assertTrue( $event->isAutomated(), 'isAutomated' );
+			Assert::assertTrue( $event->isImplicit(), 'isImplicit' );
 			Assert::assertTrue( $event->isSilent(), 'isSilent' );
 		};
 	}

@@ -433,8 +433,13 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 				'isRevisionChange'
 			);
 			Assert::assertSame(
+				!$revisionChange, // null edits
+				$event->isReconciliationRequest(),
+				'isReconciliationRequest'
+			);
+			Assert::assertSame(
 				$old === null,
-				$event->isNew(),
+				$event->isCreation(),
 				'isNew'
 			);
 			Assert::assertSame(
@@ -452,6 +457,13 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 				$event->getAuthor(),
 				'getAuthor'
 			);
+
+			if ( $revisionChange ) {
+				Assert::assertNotNull(
+					$event->getEditResult(),
+					'getEditResult'
+				);
+			}
 
 			if ( $old ) {
 				Assert::assertSame(
@@ -505,7 +517,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 			PageUpdatedEvent::TYPE, 1,
 			$this->makeDomainEventSourceListener(
 				[], PageUpdatedEvent::CAUSE_EDIT,
-					$user, $page->getRevisionRecord()
+				$user, $page->getRevisionRecord()
 			)
 		);
 
@@ -516,7 +528,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$updater->saveRevision( $summary );
 	}
 
-	public function testEventEmission_automated() {
+	public function testEventEmission_implicit() {
 		$page = $this->getExistingTestPage();
 		$user = $this->getTestUser()->getUser();
 
@@ -524,12 +536,12 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$content = new TextContent( 'Lorem Ipsum' );
 		$updater->setContent( SlotRecord::MAIN, $content );
-		$updater->setAutomated( true );
+		$updater->setFlags( EDIT_IMPLICIT );
 
 		$this->expectDomainEvent(
 			PageUpdatedEvent::TYPE, 1,
 			$this->makeDomainEventSourceListener(
-				[ 'isAutomated' => true ],
+				[ 'isImplicit' => true ],
 				PageUpdatedEvent::CAUSE_EDIT,
 				$user,
 				$page->getRevisionRecord()
@@ -590,10 +602,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$updater = $page->newPageUpdater( $user );
 
-		// Assert that sure the event is not fired.
-		$this->expectDomainEvent(
-			PageUpdatedEvent::TYPE, 0
-		);
+		$this->expectDomainEvent( PageUpdatedEvent::TYPE, 0 );
 
 		$this->expectHook( 'RevisionFromEditComplete', 0 );
 

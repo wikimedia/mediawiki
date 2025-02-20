@@ -168,7 +168,8 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 				);
 
 				Assert::assertTrue( $event->isSilent(), 'isSilent' );
-				Assert::assertTrue( $event->isAutomated(), 'isAutomated' );
+				Assert::assertTrue( $event->isImplicit(), 'isImplicit' );
+				Assert::assertTrue( $event->isCreation(), 'isCreation' );
 				Assert::assertTrue( $event->isContentChange(), 'isContentChange' );
 				Assert::assertFalse( $event->getAuthor()->isRegistered(), 'getAuthor' );
 				Assert::assertSame( $event->getPerformer(), $sysop, 'getPerformer' );

@@ -132,7 +132,7 @@ class ChangeTrackingEventIngress extends EventSubscriberBase {
 		}
 
 		if ( $event->isContentChange()
-			&& !$event->isAutomated()
+			&& !$event->isImplicit()
 		) {
 			$this->updateUserEditTrackerAfterPageUpdated(
 				$event->getPerformer()

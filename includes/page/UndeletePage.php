@@ -641,7 +641,7 @@ class UndeletePage {
 				// Update site stats, link tables, etc
 				$options = [
 					PageUpdatedEvent::FLAG_SILENT => true,
-					PageUpdatedEvent::FLAG_AUTOMATED => true,
+					PageUpdatedEvent::FLAG_IMPLICIT => true,
 					'created' => $created,
 					'oldcountable' => $oldcountable,
 				];
