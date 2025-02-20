@@ -3143,19 +3143,18 @@ class Language implements Bcp47Code {
 	 * @return string
 	 */
 	public function formatNum( $number ) {
-		return $this->formatNumInternal( (string)$number, false, false );
+		return $this->formatNumInternal( (string)$number, false );
 	}
 
 	/**
 	 * Internal implementation function, shared between formatNum and formatNumNoSeparators.
 	 *
 	 * @param string $number The stringification of a valid PHP number
-	 * @param bool $noTranslate Whether to translate digits and separators
 	 * @param bool $noSeparators Whether to add separators
 	 * @return string
 	 */
 	private function formatNumInternal(
-		string $number, bool $noTranslate, bool $noSeparators
+		string $number, bool $noSeparators
 	): string {
 		$translateNumerals = $this->config->get( MainConfigNames::TranslateNumerals );
 
@@ -3184,8 +3183,8 @@ class Language implements Bcp47Code {
 			// numbers in the string. Don't split on NAN/INF in this legacy
 			// case as they are likely to be found embedded inside non-numeric
 			// text.
-			return preg_replace_callback( "/{$validNumberRe}/", function ( $m )  use ( $noTranslate, $noSeparators ) {
-				return $this->formatNumInternal( $m[0], $noTranslate, $noSeparators );
+			return preg_replace_callback( "/{$validNumberRe}/", function ( $m )  use ( $noSeparators ) {
+				return $this->formatNumInternal( $m[0], $noSeparators );
 			}, $number );
 		}
 
@@ -3211,15 +3210,11 @@ class Language implements Bcp47Code {
 				// enough.  We still need to do decimal separator
 				// transformation, though. For example, 1234.56 becomes 1234,56
 				// in pl with $minimumGroupingDigits = 2.
-				if ( !$noTranslate ) {
-					$number = strtr( $number, $separatorTransformTable ?: [] );
-				}
+				$number = strtr( $number, $separatorTransformTable ?: [] );
 			} elseif ( $number === '-0' ) {
 				// Special case to ensure we don't lose the minus sign by
 				// converting to an int.
-				if ( !$noTranslate ) {
-					$number = strtr( $number, $separatorTransformTable ?: [] );
-				}
+				$number = strtr( $number, $separatorTransformTable ?: [] );
 			} else {
 				// NumberFormatter supports separator transformation,
 				// but it does not know all languages MW
@@ -3227,16 +3222,7 @@ class Language implements Bcp47Code {
 				// customisation. So manually set it.
 				$fmt = clone $fmt;
 
-				if ( $noTranslate ) {
-					$fmt->setSymbol(
-						NumberFormatter::DECIMAL_SEPARATOR_SYMBOL,
-						'.'
-					);
-					$fmt->setSymbol(
-						NumberFormatter::GROUPING_SEPARATOR_SYMBOL,
-						','
-					);
-				} elseif ( $separatorTransformTable ) {
+				if ( $separatorTransformTable ) {
 					$fmt->setSymbol(
 						NumberFormatter::DECIMAL_SEPARATOR_SYMBOL,
 						$separatorTransformTable[ '.' ] ?? '.'
@@ -3260,19 +3246,17 @@ class Language implements Bcp47Code {
 			}
 		}
 
-		if ( !$noTranslate ) {
-			if ( $translateNumerals ) {
-				// This is often unnecessary: PHP's NumberFormatter will often
-				// do the digit transform itself (T267614)
-				$s = $this->digitTransformTable();
-				if ( $s ) {
-					$number = strtr( $number, $s );
-				}
+		if ( $translateNumerals ) {
+			// This is often unnecessary: PHP's NumberFormatter will often
+			// do the digit transform itself (T267614)
+			$s = $this->digitTransformTable();
+			if ( $s ) {
+				$number = strtr( $number, $s );
 			}
-			# T10327: Make our formatted numbers prettier by using a
-			# proper Unicode 'minus' character.
-			$number = strtr( $number, [ '-' => "\u{2212}" ] );
 		}
+		# T10327: Make our formatted numbers prettier by using a
+		# proper Unicode 'minus' character.
+		$number = strtr( $number, [ '-' => "\u{2212}" ] );
 
 		// Remove any LRM or RLM characters generated from NumberFormatter,
 		// since directionality is handled outside of this context.
@@ -3293,7 +3277,7 @@ class Language implements Bcp47Code {
 	 * @return string
 	 */
 	public function formatNumNoSeparators( $number ) {
-		return $this->formatNumInternal( (string)$number, false, true );
+		return $this->formatNumInternal( (string)$number, true );
 	}
 
 	/**
