@@ -1475,11 +1475,22 @@ class PageUpdater implements PageUpdateCauses {
 			// error-prone way is to reuse given old revision.
 			$newRevisionRecord = $oldRev;
 
+			$this->prepareDerivedDataUpdater(
+				$wikiPage,
+				$newRevisionRecord,
+				$summary,
+				[],
+				[ 'changed' => false ]
+			);
+
 			$status->warning( 'edit-no-change' );
 			// Update page_touched as updateRevisionOn() was not called.
 			// Other cache updates are managed in WikiPage::onArticleEdit()
 			// via WikiPage::doEditUpdates().
 			$this->getTitle()->invalidateCache( $now );
+
+			// Notify the dispatcher of the PageUpdatedEvent during the transaction round
+			$this->dispatchPageUpdatedEvent();
 		}
 
 		// Schedule the secondary updates to run after the transaction round commits.
