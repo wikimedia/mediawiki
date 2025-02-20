@@ -36,7 +36,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Qwrop",
-			"Filipinayzd"
+			"Filipinayzd",
+			"Exec8"
 		]
 	},
 	"tog-underline": "Salungguhit sa link:",
@@ -1246,6 +1247,8 @@
 	"recentchangeslinked-summary": "Maglagay ng pangalan ng pahina para makita ang mga pagbabago sa pahinang naka-link sa o mula sa pahinang iyon. (Para makita ang mga miyembro ng isang kategorya, pindutin ang {{ns:category}}:Pangalan ng kategorya). <strong>Kinapalan</strong> ang mga pagbabago sa pahinang [[Special:Watchlist|binabantayan mo]].",
 	"recentchangeslinked-page": "Pangalan ng pahina:",
 	"recentchangeslinked-to": "Ipakita na lang ang mga pagbabago naka-link sa binigay na pahina",
+	"recentchanges-page-added-to-category": "[[:$1]] idinagdag sa kategorya",
+	"recentchanges-page-removed-from-category": "[[:$1]] inalis sa kategorya",
 	"upload": "Mag-upload ng file",
 	"uploadbtn": "Mag-upload ng file",
 	"reuploaddesc": "Kanselahin/Iurong ang pagkarga at magbalik sa pormularyo ng pagkakarga",

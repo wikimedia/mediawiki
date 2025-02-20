@@ -52,7 +52,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Paskooda",
-			"Oujon"
+			"Oujon",
+			"TreeIsLife"
 		]
 	},
 	"tog-underline": "Podčiarkovať odkazy:",
@@ -2967,6 +2968,7 @@
 	"pageinfo-default-sort": "Predvolený kľúč zoraďovania:",
 	"pageinfo-length": "Dĺžka stránky (v bajtoch)",
 	"pageinfo-namespace": "Menný priestor",
+	"pageinfo-namespace-id": "ID menného priestoru",
 	"pageinfo-article-id": "ID stránky",
 	"pageinfo-language": "Jazyk obsahu stránky",
 	"pageinfo-language-change": "zmeniť",
