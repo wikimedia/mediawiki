@@ -1086,7 +1086,7 @@ class WANObjectCache implements
 			// mitigation systems.
 			$now = $this->getCurrentTime();
 			// Set the key to the purge value in all datacenters
-			$purge = $this->makeTombstonePurgeValue( $now );
+			$purge = self::PURGE_VAL_PREFIX . ':' . (int)$now;
 			$ok = $this->relayVolatilePurge( $valueSisterKey, $purge, $ttl );
 		}
 
@@ -1740,7 +1740,14 @@ class WANObjectCache implements
 			$curState[self::RES_CHECK_AS_OF]
 		);
 		$safeMinAsOf = max( $minAsOf, $lastPurgeTime + self::TINY_POSITIVE );
-		if ( $this->isExtremelyNewValue( $volState, $safeMinAsOf, $startTime ) ) {
+
+		if ( $volState[self::RES_VALUE] === false || $volState[self::RES_AS_OF] < $safeMinAsOf ) {
+			$isExtremelyNewValue = false;
+		} else {
+			$age = $startTime - $volState[self::RES_AS_OF];
+			$isExtremelyNewValue = ( $age < mt_rand( self::RECENT_SET_LOW_MS, self::RECENT_SET_HIGH_MS ) / 1e3 );
+		}
+		if ( $isExtremelyNewValue ) {
 			$this->logger->debug( "fetchOrRegenerate($key): volatile hit" );
 
 			$this->stats->getTiming( 'wanobjectcache_getwithset_seconds' )
@@ -1782,7 +1789,9 @@ class WANObjectCache implements
 		// If a regeneration lock is required, threads that do not get the lock will try to use
 		// the stale value, the interim value, or the $busyValue placeholder, in that order. If
 		// none of those are set then all threads will bypass the lock and regenerate the value.
-		$hasLock = $useRegenerationLock && $this->claimStampedeLock( $key );
+		$mutexKey = $this->makeSisterKey( $key, self::TYPE_MUTEX );
+		// Note that locking is not bypassed due to I/O errors; this avoids stampedes
+		$hasLock = $useRegenerationLock && $this->cache->add( $mutexKey, 1, self::LOCK_TTL );
 		if ( $useRegenerationLock && !$hasLock ) {
 			// Determine if there is stale or volatile cached value that is still usable
 			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
@@ -1808,7 +1817,7 @@ class WANObjectCache implements
 					->copyToStatsdAt( "wanobjectcache.$keygroup.$miss.busy" )
 					->observe( 1e3 * ( $this->getCurrentTime() - $startTime ) );
 
-				$placeholderValue = $this->resolveBusyValue( $busyValue );
+				$placeholderValue = ( $busyValue instanceof Closure ) ? $busyValue() : $busyValue;
 
 				return [ $placeholderValue, $version, $curState[self::RES_AS_OF] ];
 			}
@@ -1878,7 +1887,9 @@ class WANObjectCache implements
 			}
 		}
 
-		$this->yieldStampedeLock( $key, $hasLock );
+		if ( $hasLock ) {
+			$this->cache->delete( $mutexKey, $this->cache::WRITE_BACKGROUND );
+		}
 
 		$miss = is_infinite( $minAsOf ) ? 'renew' : 'miss';
 		$this->logger->debug( "fetchOrRegenerate($key): $miss, new value computed" );
@@ -1891,46 +1902,6 @@ class WANObjectCache implements
 			->observe( 1e3 * ( $this->getCurrentTime() - $startTime ) );
 
 		return [ $value, $version, $curState[self::RES_AS_OF] ];
-	}
-
-	/**
-	 * @param string $key Cache key made with makeKey()/makeGlobalKey()
-	 * @return bool Success
-	 */
-	private function claimStampedeLock( $key ) {
-		$checkSisterKey = $this->makeSisterKey( $key, self::TYPE_MUTEX );
-		// Note that locking is not bypassed due to I/O errors; this avoids stampedes
-		return $this->cache->add( $checkSisterKey, 1, self::LOCK_TTL );
-	}
-
-	/**
-	 * @param string $key Cache key made with makeKey()/makeGlobalKey()
-	 * @param bool $hasLock
-	 */
-	private function yieldStampedeLock( $key, $hasLock ) {
-		if ( $hasLock ) {
-			$checkSisterKey = $this->makeSisterKey( $key, self::TYPE_MUTEX );
-			$this->cache->delete( $checkSisterKey, $this->cache::WRITE_BACKGROUND );
-		}
-	}
-
-	/**
-	 * Get sister keys that should be collocated with their corresponding base cache keys
-	 *
-	 * The key will bear the WANCache prefix and use the configured coalescing scheme
-	 *
-	 * @param string[] $baseKeys Cache keys made with makeKey()/makeGlobalKey()
-	 * @param string $type Consistent hashing agnostic suffix character matching [a-zA-Z]
-	 * @param string|null $route Routing prefix (optional)
-	 * @return string[] Order-corresponding list of sister keys
-	 */
-	private function makeSisterKeys( array $baseKeys, string $type, ?string $route = null ) {
-		$sisterKeys = [];
-		foreach ( $baseKeys as $baseKey ) {
-			$sisterKeys[] = $this->makeSisterKey( $baseKey, $type, $route );
-		}
-
-		return $sisterKeys;
 	}
 
 	/**
@@ -1957,28 +1928,6 @@ class WANObjectCache implements
 		}
 
 		return $sisterKey;
-	}
-
-	/**
-	 * Check if a key value is non-false, new enough, and has an "as of" time almost equal to now
-	 *
-	 * If the value was just written to cache, and it did not take an unusually long time to
-	 * generate, then it is probably not worth regenerating yet. For example, replica databases
-	 * might still return lagged pre-purge values anyway.
-	 *
-	 * @param array $res Current value WANObjectCache::RES_* data map
-	 * @param float $minAsOf Minimum acceptable value "as of" UNIX timestamp
-	 * @param float $now Current UNIX timestamp
-	 * @return bool Whether the age of a volatile value is negligible
-	 */
-	private function isExtremelyNewValue( $res, $minAsOf, $now ) {
-		if ( $res[self::RES_VALUE] === false || $res[self::RES_AS_OF] < $minAsOf ) {
-			return false;
-		}
-
-		$age = $now - $res[self::RES_AS_OF];
-
-		return ( $age < mt_rand( self::RECENT_SET_LOW_MS, self::RECENT_SET_HIGH_MS ) / 1e3 );
 	}
 
 	/**
@@ -2044,14 +1993,6 @@ class WANObjectCache implements
 			$ttl,
 			$flags
 		);
-	}
-
-	/**
-	 * @param mixed $busyValue
-	 * @return mixed
-	 */
-	private function resolveBusyValue( $busyValue ) {
-		return ( $busyValue instanceof Closure ) ? $busyValue() : $busyValue;
 	}
 
 	/**
@@ -3031,14 +2972,6 @@ class WANObjectCache implements
 
 	/**
 	 * @param float $timestamp UNIX timestamp
-	 * @return string Wrapped purge value; format is "PURGED:<timestamp>"
-	 */
-	private function makeTombstonePurgeValue( float $timestamp ) {
-		return self::PURGE_VAL_PREFIX . ':' . (int)$timestamp;
-	}
-
-	/**
-	 * @param float $timestamp UNIX timestamp
 	 * @param int $holdoff In seconds
 	 * @param array|null &$purge Unwrapped purge value array [returned]
 	 * @return string Wrapped purge value; format is "PURGED:<timestamp>:<holdoff>"
@@ -3100,7 +3033,10 @@ class WANObjectCache implements
 		}
 
 		// Get all the value keys to fetch...
-		$sisterKeys = $this->makeSisterKeys( $keys, self::TYPE_VALUE );
+		$sisterKeys = [];
+		foreach ( $keys as $baseKey ) {
+			$sisterKeys[] = $this->makeSisterKey( $baseKey, self::TYPE_VALUE );
+		}
 		// Get all the "check" keys to fetch...
 		foreach ( $checkKeys as $i => $checkKeyOrKeyGroup ) {
 			// Note: avoid array_merge() inside loop in case there are many keys
