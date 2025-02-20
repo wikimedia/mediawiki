@@ -88,8 +88,7 @@ class WikitextContent extends TextContent {
 
 		if ( $sectionId === 'new' ) {
 			# Inserting a new section
-			$subject = strval( $sectionTitle ) !== '' ? wfMessage( 'newsectionheaderdefaultlevel' )
-					->plaintextParams( $sectionTitle )->inContentLanguage()->text() . "\n\n" : '';
+			$subject = self::getSectionHeader( $sectionTitle );
 			$hookRunner = ( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) );
 			if ( $hookRunner->onPlaceNewSection( $this, $oldtext, $subject, $text ) ) {
 				$text = trim( $oldtext ) !== ''
@@ -116,11 +115,22 @@ class WikitextContent extends TextContent {
 	 * @return Content
 	 */
 	public function addSectionHeader( $header ) {
-		$text = strval( $header ) !== '' ? wfMessage( 'newsectionheaderdefaultlevel' )
-			->plaintextParams( $header )->inContentLanguage()->text() . "\n\n" : '';
+		$text = self::getSectionHeader( $header );
 		$text .= $this->getText();
 
 		return new static( $text );
+	}
+
+	/**
+	 * Returns a level-2 heading as a string
+	 *
+	 * @param string $header The text of the header
+	 * @return string The wikitext header.
+	 */
+	public static function getSectionHeader( $header ) {
+		$text = strval( $header ) !== '' ? wfMessage( 'newsectionheaderdefaultlevel' )
+			->plaintextParams( $header )->inContentLanguage()->text() . "\n\n" : '';
+		return $text;
 	}
 
 	/**

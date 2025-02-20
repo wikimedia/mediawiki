@@ -8,6 +8,7 @@ namespace MediaWiki\Specials;
 
 use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\Config\Config;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Exception\UserBlockedError;
@@ -951,43 +952,44 @@ class SpecialUpload extends SpecialPage {
 			$config = MediaWikiServices::getInstance()->getMainConfig();
 		}
 
-		$msg = [];
+		$header = [];
 		$forceUIMsgAsContentMsg = (array)$config->get( MainConfigNames::ForceUIMsgAsContentMsg );
 		/* These messages are transcluded into the actual text of the description page.
 		 * Thus, forcing them as content messages makes the upload to produce an int: template
 		 * instead of hardcoding it there in the uploader language.
 		 */
 		foreach ( [ 'license-header', 'filedesc', 'filestatus', 'filesource' ] as $msgName ) {
-			if ( in_array( $msgName, $forceUIMsgAsContentMsg ) ) {
-				$msg[$msgName] = "{{int:$msgName}}";
+			$msg = wfMessage( $msgName )->inContentLanguage();
+			if ( $msg->isDisabled() ) {
+				$header[$msgName] = '';
 			} else {
-				$msg[$msgName] = wfMessage( $msgName )->inContentLanguage()->text();
+				$headerText = in_array( $msgName, $forceUIMsgAsContentMsg ) ? "{{int:$msgName}}" : $msg->text();
+				$header[$msgName] = WikitextContent::getSectionHeader( $headerText );
 			}
 		}
 
 		$licenseText = '';
 		if ( $license !== '' ) {
-			$licenseText = '== ' . $msg['license-header'] . " ==\n{{" . $license . "}}\n";
+			$licenseText = $header['license-header'] . "{{" . $license . "}}\n";
 		}
 
 		$pageText = $comment . "\n";
-		$headerText = '== ' . $msg['filedesc'] . ' ==';
-		if ( $comment !== '' && !str_contains( $comment, $headerText ) ) {
+		if ( $comment !== '' && !str_contains( $comment, $header['filedesc'] ) ) {
 			// prepend header to page text unless it's already there (or there is no content)
-			$pageText = $headerText . "\n" . $pageText;
+			$pageText = $header['filedesc'] . $pageText;
 		}
 
 		if ( $config->get( MainConfigNames::UseCopyrightUpload ) ) {
-			$pageText .= '== ' . $msg['filestatus'] . " ==\n" . $copyStatus . "\n";
+			$pageText .= $header['filestatus'] . $copyStatus . "\n";
 			$pageText .= $licenseText;
-			$pageText .= '== ' . $msg['filesource'] . " ==\n" . $source;
+			$pageText .= $header['filesource'] . $source;
 		} else {
 			$pageText .= $licenseText;
 		}
 
 		// allow extensions to modify the content
 		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
-			->onUploadForm_getInitialPageText( $pageText, $msg, $config );
+			->onUploadForm_getInitialPageText( $pageText, $header, $config );
 
 		return $pageText;
 	}
