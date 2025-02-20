@@ -47,6 +47,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Storage\DerivedPageDataUpdater;
 use MediaWiki\Storage\EditResult;
+use MediaWiki\Storage\PageUpdateCauses;
 use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\Storage\PageUpdateStatus;
@@ -1613,6 +1614,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 			->setContent( SlotRecord::MAIN, $content )
 			->setOriginalRevisionId( $originalRevId );
 		if ( $undidRevId ) {
+			$updater->setCause( PageUpdateCauses::CAUSE_UNDO );
 			$updater->markAsRevert(
 				EditResult::REVERT_UNDO,
 				$undidRevId,

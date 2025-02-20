@@ -23,6 +23,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Storage\EditResult;
+use MediaWiki\Storage\PageUpdateCauses;
 use MediaWiki\User\User;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
@@ -417,6 +418,7 @@ class McrUndoAction extends FormAction {
 				}
 			}
 
+			$updater->setCause( PageUpdateCauses::CAUSE_UNDO );
 			$updater->markAsRevert( EditResult::REVERT_UNDO, $this->undo, $this->undoafter );
 
 			if ( $this->useRCPatrol && $this->getAuthority()

@@ -50,4 +50,10 @@ interface PageUpdateCauses {
 	/** @var string The update was caused by a file upload */
 	public const CAUSE_UPLOAD = 'upload';
 
+	/** @var string The update was caused by the rollback action */
+	public const CAUSE_ROLLBACK = 'rollback';
+
+	/** @var string The update was caused by the undo action */
+	public const CAUSE_UNDO = 'undo';
+
 }

@@ -323,7 +323,12 @@ class PageUpdatedEvent extends PageEvent implements PageUpdateCauses {
 	}
 
 	/**
-	 * Whether the update is a revert to a previous state of the page.
+	 * Whether the update reverts an earlier update to the same page.
+	 * Note that an "undo" style revert may create a new revision that is
+	 * different from any previous revision by applying the inverse of a
+	 * past update to the current revision.
+	 *
+	 * @see EditResult::isRevert
 	 */
 	public function isRevert(): bool {
 		return $this->editResult && $this->editResult->isRevert();

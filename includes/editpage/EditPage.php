@@ -87,6 +87,7 @@ use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Storage\EditResult;
+use MediaWiki\Storage\PageUpdateCauses;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ExternalUserNames;
 use MediaWiki\User\Options\UserOptionsLookup;
@@ -2551,6 +2552,7 @@ class EditPage implements IEditObject {
 			// edits as undos.
 			$pageUpdater
 				->setOriginalRevisionId( $this->undoAfter ?: false )
+				->setCause( PageUpdateCauses::CAUSE_UNDO )
 				->markAsRevert(
 					EditResult::REVERT_UNDO,
 					$this->undidRev,

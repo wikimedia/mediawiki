@@ -606,6 +606,33 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$updater->saveDummyRevision( 'Just a test', EDIT_SILENT | EDIT_MINOR );
 	}
 
+	public function testEventEmission_revert() {
+		$page = $this->getExistingTestPage();
+		$originalContent = $page->getContent();
+
+		$this->editPage( $page, 'Other content for ' . __METHOD__ );
+		$this->assertFalse( $page->getContent()->equals( $originalContent ) );
+
+		$user = $this->getTestUser()->getUser();
+		$updater = $page->newPageUpdater( $user );
+
+		$this->expectDomainEvent(
+			PageUpdatedEvent::TYPE, 1,
+			$this->makeDomainEventSourceListener(
+				[ 'isRevert' => true ], PageUpdatedEvent::CAUSE_EDIT,
+				$user, $page->getRevisionRecord()
+			)
+		);
+
+		$this->expectHook( 'RevisionFromEditComplete', 1 );
+		$this->expectHook( 'PageSaveComplete', 1 );
+
+		// revert to original content
+		$updater->setContent( SlotRecord::MAIN, $originalContent );
+		$updater->markAsRevert( EditResult::REVERT_MANUAL, $page->getLatest() );
+		$updater->saveRevision( 'Just a test' );
+	}
+
 	public function testEventEmission_derived() {
 		$page = $this->getExistingTestPage();
 		$user = $this->getTestUser()->getUser();

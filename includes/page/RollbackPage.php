@@ -34,6 +34,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\EditResult;
+use MediaWiki\Storage\PageUpdateCauses;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\ActorMigration;
@@ -290,6 +291,7 @@ class RollbackPage {
 			}
 		}
 
+		$updater->setCause( PageUpdateCauses::CAUSE_ROLLBACK );
 		$updater->markAsRevert(
 			EditResult::REVERT_ROLLBACK,
 			$currentRevision->getId(),
