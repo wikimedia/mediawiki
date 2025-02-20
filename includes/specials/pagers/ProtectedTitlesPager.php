@@ -34,11 +34,8 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class ProtectedTitlesPager extends AlphabeticPager {
 
-	/** @var string|null */
-	private $level;
-
-	/** @var int|null */
-	private $namespace;
+	private ?string $level;
+	private ?int $namespace;
 
 	private LinkBatchFactory $linkBatchFactory;
 
@@ -55,8 +52,8 @@ class ProtectedTitlesPager extends AlphabeticPager {
 		LinkRenderer $linkRenderer,
 		LinkBatchFactory $linkBatchFactory,
 		IConnectionProvider $dbProvider,
-		$level,
-		$namespace
+		?string $level,
+		?int $namespace
 	) {
 		// Set database before parent constructor to avoid setting it there
 		$this->mDb = $dbProvider->getReplicaDatabase();

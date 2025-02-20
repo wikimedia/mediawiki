@@ -49,22 +49,18 @@ use Wikimedia\Rdbms\Subquery;
 class ImageListPager extends TablePager {
 
 	/** @var string[]|null */
-	protected $mFieldNames = null;
+	protected ?array $mFieldNames = null;
 	/**
 	 * @deprecated Subclasses should override {@see buildQueryConds} instead
 	 * @var array
 	 */
 	protected $mQueryConds = [];
-	/** @var string|null */
-	protected $mUserName = null;
-	/** @var User|null The relevant user */
-	protected $mUser = null;
-	/** @var bool */
-	protected $mIncluding = false;
-	/** @var bool */
-	protected $mShowAll = false;
-	/** @var string */
-	protected $mTableName = 'image';
+	protected ?string $mUserName = null;
+	/** The relevant user */
+	protected ?User $mUser = null;
+	protected ?bool $mIncluding = false;
+	protected bool $mShowAll = false;
+	protected string $mTableName = 'image';
 
 	private CommentStore $commentStore;
 	private LocalRepo $localRepo;
@@ -72,7 +68,7 @@ class ImageListPager extends TablePager {
 	private LinkBatchFactory $linkBatchFactory;
 
 	/** @var string[] */
-	private $formattedComments = [];
+	private array $formattedComments = [];
 
 	/**
 	 * The unique sort fields for the sort options for unique paginate
@@ -92,9 +88,9 @@ class ImageListPager extends TablePager {
 	 * @param UserNameUtils $userNameUtils
 	 * @param RowCommentFormatter $rowCommentFormatter
 	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param string $userName
+	 * @param string|null $userName
 	 * @param string $search
-	 * @param bool $including
+	 * @param bool|null $including
 	 * @param bool $showAll
 	 */
 	public function __construct(
@@ -106,10 +102,10 @@ class ImageListPager extends TablePager {
 		UserNameUtils $userNameUtils,
 		RowCommentFormatter $rowCommentFormatter,
 		LinkBatchFactory $linkBatchFactory,
-		$userName,
-		$search,
-		$including,
-		$showAll
+		?string $userName,
+		string $search,
+		?bool $including,
+		bool $showAll
 	) {
 		$this->setContext( $context );
 

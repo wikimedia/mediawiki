@@ -49,7 +49,7 @@ class CategoryPager extends AlphabeticPager {
 		LinkBatchFactory $linkBatchFactory,
 		LinkRenderer $linkRenderer,
 		IConnectionProvider $dbProvider,
-		$from
+		string $from
 	) {
 		// Set database before parent constructor to avoid setting it there
 		$this->mDb = $dbProvider->getReplicaDatabase();

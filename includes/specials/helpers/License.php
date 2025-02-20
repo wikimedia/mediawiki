@@ -31,10 +31,7 @@ class License {
 	public string $template;
 	public string $text;
 
-	/**
-	 * @param string $str
-	 */
-	public function __construct( $str ) {
+	public function __construct( string $str ) {
 		$str = $this->parse( $str );
 		[ $this->template, $this->text ] = $this->split( $str );
 	}

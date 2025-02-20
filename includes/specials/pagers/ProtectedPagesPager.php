@@ -37,29 +37,21 @@ use Wikimedia\Rdbms\IConnectionProvider;
 
 class ProtectedPagesPager extends TablePager {
 
-	/** @var string */
-	private $type;
-	/** @var string */
-	private $level;
-	/** @var int|null */
-	private $namespace;
-	/** @var string */
-	private $sizetype;
-	/** @var int */
-	private $size;
-	/** @var bool */
-	private $indefonly;
-	/** @var bool */
-	private $cascadeonly;
-	/** @var bool */
-	private $noredirect;
+	private string $type;
+	private ?string $level;
+	private ?int $namespace;
+	private ?string $sizetype;
+	private int $size;
+	private bool $indefonly;
+	private bool $cascadeonly;
+	private bool $noredirect;
 
 	private CommentStore $commentStore;
 	private LinkBatchFactory $linkBatchFactory;
 	private RowCommentFormatter $rowCommentFormatter;
 
 	/** @var string[] */
-	private $formattedComments = [];
+	private array $formattedComments = [];
 
 	/**
 	 * @param IContextSource $context
@@ -68,10 +60,10 @@ class ProtectedPagesPager extends TablePager {
 	 * @param LinkRenderer $linkRenderer
 	 * @param IConnectionProvider $dbProvider
 	 * @param RowCommentFormatter $rowCommentFormatter
-	 * @param string $type
-	 * @param string $level
+	 * @param string|null $type
+	 * @param string|null $level
 	 * @param int|null $namespace
-	 * @param string $sizetype
+	 * @param string|null $sizetype
 	 * @param int|null $size
 	 * @param bool $indefonly
 	 * @param bool $cascadeonly
@@ -84,14 +76,14 @@ class ProtectedPagesPager extends TablePager {
 		LinkRenderer $linkRenderer,
 		IConnectionProvider $dbProvider,
 		RowCommentFormatter $rowCommentFormatter,
-		$type,
-		$level,
-		$namespace,
-		$sizetype,
-		$size,
-		$indefonly,
-		$cascadeonly,
-		$noredirect
+		?string $type,
+		?string $level,
+		?int $namespace,
+		?string $sizetype,
+		?int $size,
+		bool $indefonly,
+		bool $cascadeonly,
+		bool $noredirect
 	) {
 		// Set database before parent constructor to avoid setting it there
 		$this->mDb = $dbProvider->getReplicaDatabase();
@@ -99,14 +91,14 @@ class ProtectedPagesPager extends TablePager {
 		$this->commentStore = $commentStore;
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->rowCommentFormatter = $rowCommentFormatter;
-		$this->type = $type ?: 'edit';
+		$this->type = $type ?? 'edit';
 		$this->level = $level;
 		$this->namespace = $namespace;
 		$this->sizetype = $sizetype;
-		$this->size = intval( $size );
-		$this->indefonly = (bool)$indefonly;
-		$this->cascadeonly = (bool)$cascadeonly;
-		$this->noredirect = (bool)$noredirect;
+		$this->size = $size ?? 0;
+		$this->indefonly = $indefonly;
+		$this->cascadeonly = $cascadeonly;
+		$this->noredirect = $noredirect;
 	}
 
 	public function preprocessResults( $result ) {

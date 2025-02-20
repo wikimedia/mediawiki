@@ -50,15 +50,14 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class BlockListPager extends TablePager {
 
-	/** @var array */
-	protected $conds;
+	protected array $conds;
 
 	/**
 	 * Array of restrictions.
 	 *
 	 * @var Restriction[]
 	 */
-	protected $restrictions = [];
+	protected array $restrictions = [];
 
 	private BlockActionInfo $blockActionInfo;
 	private BlockRestrictionStore $blockRestrictionStore;
@@ -70,10 +69,10 @@ class BlockListPager extends TablePager {
 	private SpecialPageFactory $specialPageFactory;
 
 	/** @var string[] */
-	private $formattedComments = [];
+	private array $formattedComments = [];
 
 	/** @var string[] Cache of messages to avoid them being recreated for every row of the pager. */
-	private $messages = [];
+	private array $messages = [];
 
 	/**
 	 * @param IContextSource $context
@@ -101,7 +100,7 @@ class BlockListPager extends TablePager {
 		IConnectionProvider $dbProvider,
 		RowCommentFormatter $rowCommentFormatter,
 		SpecialPageFactory $specialPageFactory,
-		$conds
+		array $conds
 	) {
 		// Set database before parent constructor to avoid setting it there
 		$this->mDb = $dbProvider->getReplicaDatabase();
