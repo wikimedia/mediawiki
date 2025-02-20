@@ -47,11 +47,6 @@ class SpecialUnwatchedPages extends QueryPage {
 	private LinkBatchFactory $linkBatchFactory;
 	private ILanguageConverter $languageConverter;
 
-	/**
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param IConnectionProvider $dbProvider
-	 * @param LanguageConverterFactory $languageConverterFactory
-	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		IConnectionProvider $dbProvider,

@@ -43,10 +43,6 @@ class SpecialPreferences extends SpecialPage {
 	private PreferencesFactory $preferencesFactory;
 	private UserOptionsManager $userOptionsManager;
 
-	/**
-	 * @param PreferencesFactory|null $preferencesFactory
-	 * @param UserOptionsManager|null $userOptionsManager
-	 */
 	public function __construct(
 		?PreferencesFactory $preferencesFactory = null,
 		?UserOptionsManager $userOptionsManager = null

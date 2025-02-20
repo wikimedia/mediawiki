@@ -31,11 +31,6 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialLongPages extends SpecialShortPages {
 
-	/**
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param IConnectionProvider $dbProvider
-	 * @param LinkBatchFactory $linkBatchFactory
-	 */
 	public function __construct(
 		NamespaceInfo $namespaceInfo,
 		IConnectionProvider $dbProvider,

@@ -46,13 +46,6 @@ class UploadStashPager extends TablePager {
 	/** @var File[] */
 	private array $files = [];
 
-	/**
-	 * @param IContextSource $context
-	 * @param LinkRenderer $linkRenderer
-	 * @param IConnectionProvider $dbProvider
-	 * @param UploadStash $stash
-	 * @param LocalRepo $localRepo
-	 */
 	public function __construct(
 		IContextSource $context,
 		LinkRenderer $linkRenderer,

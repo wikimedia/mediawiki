@@ -68,17 +68,6 @@ class SpecialNewPages extends IncludableSpecialPage {
 	private ChangeTagsStore $changeTagsStore;
 	private TempUserConfig $tempUserConfig;
 
-	/**
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param GroupPermissionsLookup $groupPermissionsLookup
-	 * @param RevisionLookup $revisionLookup
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param RowCommentFormatter $rowCommentFormatter
-	 * @param ChangeTagsStore $changeTagsStore
-	 * @param TempUserConfig $tempUserConfig
-	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		IContentHandlerFactory $contentHandlerFactory,

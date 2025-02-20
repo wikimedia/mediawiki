@@ -51,13 +51,6 @@ class SpecialEmailUser extends SpecialPage {
 	private EmailUserFactory $emailUserFactory;
 	private UserFactory $userFactory;
 
-	/**
-	 * @param UserNameUtils $userNameUtils
-	 * @param UserNamePrefixSearch $userNamePrefixSearch
-	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param EmailUserFactory $emailUserFactory
-	 * @param UserFactory $userFactory
-	 */
 	public function __construct(
 		UserNameUtils $userNameUtils,
 		UserNamePrefixSearch $userNamePrefixSearch,

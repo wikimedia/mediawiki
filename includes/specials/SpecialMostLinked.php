@@ -46,11 +46,6 @@ class SpecialMostLinked extends QueryPage {
 
 	private LinksMigration $linksMigration;
 
-	/**
-	 * @param IConnectionProvider $dbProvider
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param LinksMigration $linksMigration
-	 */
 	public function __construct(
 		IConnectionProvider $dbProvider,
 		LinkBatchFactory $linkBatchFactory,

@@ -83,11 +83,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	private $currentMode;
 	private ChangeTagsStore $changeTagsStore;
 
-	/**
-	 * @param WatchedItemStoreInterface $watchedItemStore
-	 * @param WatchlistManager $watchlistManager
-	 * @param UserOptionsLookup $userOptionsLookup
-	 */
 	public function __construct(
 		WatchedItemStoreInterface $watchedItemStore,
 		WatchlistManager $watchlistManager,

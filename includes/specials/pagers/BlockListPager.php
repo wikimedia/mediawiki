@@ -74,20 +74,6 @@ class BlockListPager extends TablePager {
 	/** @var string[] Cache of messages to avoid them being recreated for every row of the pager. */
 	private array $messages = [];
 
-	/**
-	 * @param IContextSource $context
-	 * @param BlockActionInfo $blockActionInfo
-	 * @param BlockRestrictionStore $blockRestrictionStore
-	 * @param BlockTargetFactory $blockTargetFactory
-	 * @param HideUserUtils $hideUserUtils
-	 * @param CommentStore $commentStore
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param LinkRenderer $linkRenderer
-	 * @param IConnectionProvider $dbProvider
-	 * @param RowCommentFormatter $rowCommentFormatter
-	 * @param SpecialPageFactory $specialPageFactory
-	 * @param array $conds
-	 */
 	public function __construct(
 		IContextSource $context,
 		BlockActionInfo $blockActionInfo,

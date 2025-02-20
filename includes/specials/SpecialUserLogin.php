@@ -52,9 +52,6 @@ class SpecialUserLogin extends LoginSignupSpecialPage {
 
 	private UserIdentityUtils $identityUtils;
 
-	/**
-	 * @param AuthManager $authManager
-	 */
 	public function __construct( AuthManager $authManager, UserIdentityUtils $identityUtils ) {
 		parent::__construct( 'Userlogin' );
 		$this->setAuthManager( $authManager );

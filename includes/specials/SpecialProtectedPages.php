@@ -45,13 +45,6 @@ class SpecialProtectedPages extends SpecialPage {
 	private RowCommentFormatter $rowCommentFormatter;
 	private RestrictionStore $restrictionStore;
 
-	/**
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param IConnectionProvider $dbProvider
-	 * @param CommentStore $commentStore
-	 * @param RowCommentFormatter $rowCommentFormatter
-	 * @param RestrictionStore $restrictionStore
-	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		IConnectionProvider $dbProvider,

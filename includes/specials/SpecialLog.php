@@ -62,14 +62,6 @@ class SpecialLog extends SpecialPage {
 
 	private LogFormatterFactory $logFormatterFactory;
 
-	/**
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param IConnectionProvider $dbProvider
-	 * @param ActorNormalization $actorNormalization
-	 * @param UserIdentityLookup $userIdentityLookup
-	 * @param UserNameUtils $userNameUtils
-	 * @param LogFormatterFactory $logFormatterFactory
-	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		IConnectionProvider $dbProvider,

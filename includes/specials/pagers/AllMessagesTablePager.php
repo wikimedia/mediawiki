@@ -74,15 +74,6 @@ class AllMessagesTablePager extends TablePager {
 
 	private LocalisationCache $localisationCache;
 
-	/**
-	 * @param IContextSource $context
-	 * @param Language $contentLanguage
-	 * @param LanguageFactory $languageFactory
-	 * @param LinkRenderer $linkRenderer
-	 * @param IConnectionProvider $dbProvider
-	 * @param LocalisationCache $localisationCache
-	 * @param FormOptions $opts
-	 */
 	public function __construct(
 		IContextSource $context,
 		Language $contentLanguage,

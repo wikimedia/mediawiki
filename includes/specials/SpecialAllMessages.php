@@ -43,12 +43,6 @@ class SpecialAllMessages extends SpecialPage {
 	private IConnectionProvider $dbProvider;
 	private LocalisationCache $localisationCache;
 
-	/**
-	 * @param LanguageFactory $languageFactory
-	 * @param LanguageNameUtils $languageNameUtils
-	 * @param LocalisationCache $localisationCache
-	 * @param IConnectionProvider $dbProvider
-	 */
 	public function __construct(
 		LanguageFactory $languageFactory,
 		LanguageNameUtils $languageNameUtils,

@@ -59,12 +59,6 @@ class SpecialPageLanguage extends FormSpecialPage {
 	private IConnectionProvider $dbProvider;
 	private SearchEngineFactory $searchEngineFactory;
 
-	/**
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param LanguageNameUtils $languageNameUtils
-	 * @param IConnectionProvider $dbProvider
-	 * @param SearchEngineFactory $searchEngineFactory
-	 */
 	public function __construct(
 		IContentHandlerFactory $contentHandlerFactory,
 		LanguageNameUtils $languageNameUtils,

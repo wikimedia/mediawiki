@@ -35,12 +35,6 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class SpecialMostRevisions extends SpecialFewestRevisions {
 
-	/**
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param IConnectionProvider $dbProvider
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param LanguageConverterFactory $languageConverterFactory
-	 */
 	public function __construct(
 		NamespaceInfo $namespaceInfo,
 		IConnectionProvider $dbProvider,

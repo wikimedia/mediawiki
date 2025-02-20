@@ -67,15 +67,6 @@ class UploadForm extends HTMLForm {
 	private NamespaceInfo $nsInfo;
 	private HookRunner $hookRunner;
 
-	/**
-	 * @param array $options
-	 * @param IContextSource|null $context
-	 * @param LinkRenderer|null $linkRenderer
-	 * @param LocalRepo|null $localRepo
-	 * @param Language|null $contentLanguage
-	 * @param NamespaceInfo|null $nsInfo
-	 * @param HookContainer|null $hookContainer
-	 */
 	public function __construct(
 		array $options = [],
 		?IContextSource $context = null,

@@ -52,21 +52,6 @@ class SpecialContributions extends ContributionsSpecialPage {
 	private TempUserConfig $tempUserConfig;
 	private ?ContribsPager $pager = null;
 
-	/**
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param PermissionManager $permissionManager
-	 * @param IConnectionProvider $dbProvider
-	 * @param RevisionStore $revisionStore
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param UserNameUtils $userNameUtils
-	 * @param UserNamePrefixSearch $userNamePrefixSearch
-	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param CommentFormatter $commentFormatter
-	 * @param UserFactory $userFactory
-	 * @param UserIdentityLookup $userIdentityLookup
-	 * @param DatabaseBlockStore $blockStore
-	 * @param TempUserConfig $tempUserConfig
-	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		PermissionManager $permissionManager,

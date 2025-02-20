@@ -90,15 +90,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	/** @var int|false where the value is one of the EDIT_ prefixed constants (e.g. EDIT_NORMAL) */
 	private $currentMode;
 
-	/**
-	 * @param WatchedItemStoreInterface|null $watchedItemStore
-	 * @param TitleParser|null $titleParser
-	 * @param GenderCache|null $genderCache
-	 * @param LinkBatchFactory|null $linkBatchFactory
-	 * @param NamespaceInfo|null $nsInfo
-	 * @param WikiPageFactory|null $wikiPageFactory
-	 * @param WatchlistManager|null $watchlistManager
-	 */
 	public function __construct(
 		?WatchedItemStoreInterface $watchedItemStore = null,
 		?TitleParser $titleParser = null,

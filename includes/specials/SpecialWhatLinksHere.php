@@ -67,15 +67,6 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 
 	private const LIMITS = [ 20, 50, 100, 250, 500 ];
 
-	/**
-	 * @param IConnectionProvider $dbProvider
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param SearchEngineFactory $searchEngineFactory
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param TitleFactory $titleFactory
-	 * @param LinksMigration $linksMigration
-	 */
 	public function __construct(
 		IConnectionProvider $dbProvider,
 		LinkBatchFactory $linkBatchFactory,

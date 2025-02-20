@@ -66,14 +66,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	public $denseRcSizeThreshold = 10000;
 	private ChangeTagsStore $changeTagsStore;
 
-	/**
-	 * @param WatchedItemStoreInterface|null $watchedItemStore
-	 * @param MessageCache|null $messageCache
-	 * @param UserOptionsLookup|null $userOptionsLookup
-	 * @param ChangeTagsStore|null $changeTagsStore
-	 * @param UserIdentityUtils|null $userIdentityUtils
-	 * @param TempUserConfig|null $tempUserConfig
-	 */
 	public function __construct(
 		?WatchedItemStoreInterface $watchedItemStore = null,
 		?MessageCache $messageCache = null,

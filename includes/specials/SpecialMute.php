@@ -52,12 +52,6 @@ class SpecialMute extends FormSpecialPage {
 	private UserIdentityLookup $userIdentityLookup;
 	private UserIdentityUtils $userIdentityUtils;
 
-	/**
-	 * @param CentralIdLookup $centralIdLookup
-	 * @param UserOptionsManager $userOptionsManager
-	 * @param UserIdentityLookup $userIdentityLookup
-	 * @param UserIdentityUtils $userIdentityUtils
-	 */
 	public function __construct(
 		CentralIdLookup $centralIdLookup,
 		UserOptionsManager $userOptionsManager,

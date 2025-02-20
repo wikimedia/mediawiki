@@ -53,12 +53,6 @@ class SpecialExport extends SpecialPage {
 	private TitleFormatter $titleFormatter;
 	private LinksMigration $linksMigration;
 
-	/**
-	 * @param IConnectionProvider $dbProvider
-	 * @param WikiExporterFactory $wikiExporterFactory
-	 * @param TitleFormatter $titleFormatter
-	 * @param LinksMigration $linksMigration
-	 */
 	public function __construct(
 		IConnectionProvider $dbProvider,
 		WikiExporterFactory $wikiExporterFactory,

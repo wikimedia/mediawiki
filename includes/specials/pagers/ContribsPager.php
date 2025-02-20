@@ -52,16 +52,6 @@ class ContribsPager extends ContributionsPager {
 
 	/**
 	 * FIXME List services first T266484 / T290405
-	 * @param IContextSource $context
-	 * @param array $options
-	 * @param LinkRenderer|null $linkRenderer
-	 * @param LinkBatchFactory|null $linkBatchFactory
-	 * @param HookContainer|null $hookContainer
-	 * @param IConnectionProvider|null $dbProvider
-	 * @param RevisionStore|null $revisionStore
-	 * @param NamespaceInfo|null $namespaceInfo
-	 * @param UserIdentity|null $targetUser
-	 * @param CommentFormatter|null $commentFormatter
 	 */
 	public function __construct(
 		IContextSource $context,

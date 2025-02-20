@@ -41,12 +41,6 @@ class SpecialUncategorizedCategories extends SpecialUncategorizedPages {
 	 */
 	private $exceptionList = null;
 
-	/**
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param IConnectionProvider $dbProvider
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param LanguageConverterFactory $languageConverterFactory
-	 */
 	public function __construct(
 		NamespaceInfo $namespaceInfo,
 		IConnectionProvider $dbProvider,

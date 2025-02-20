@@ -82,11 +82,6 @@ class SpecialVersion extends SpecialPage {
 	private UrlUtils $urlUtils;
 	private IConnectionProvider $dbProvider;
 
-	/**
-	 * @param ParserFactory $parserFactory
-	 * @param UrlUtils $urlUtils
-	 * @param IConnectionProvider $dbProvider
-	 */
 	public function __construct(
 		ParserFactory $parserFactory,
 		UrlUtils $urlUtils,

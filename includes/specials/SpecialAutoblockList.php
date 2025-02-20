@@ -50,16 +50,6 @@ class SpecialAutoblockList extends SpecialPage {
 	private BlockActionInfo $blockActionInfo;
 	private RowCommentFormatter $rowCommentFormatter;
 
-	/**
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param BlockRestrictionStore $blockRestrictionStore
-	 * @param IConnectionProvider $dbProvider
-	 * @param CommentStore $commentStore
-	 * @param BlockTargetFactory $blockTargetFactory
-	 * @param HideUserUtils $hideUserUtils
-	 * @param BlockActionInfo $blockActionInfo
-	 * @param RowCommentFormatter $rowCommentFormatter
-	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		BlockRestrictionStore $blockRestrictionStore,

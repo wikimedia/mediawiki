@@ -83,15 +83,6 @@ class SpecialUserRights extends SpecialPage {
 	private WatchlistManager $watchlistManager;
 	private TempUserConfig $tempUserConfig;
 
-	/**
-	 * @param UserGroupManagerFactory|null $userGroupManagerFactory
-	 * @param UserNameUtils|null $userNameUtils
-	 * @param UserNamePrefixSearch|null $userNamePrefixSearch
-	 * @param UserFactory|null $userFactory
-	 * @param ActorStoreFactory|null $actorStoreFactory
-	 * @param WatchlistManager|null $watchlistManager
-	 * @param TempUserConfig|null $tempUserConfig
-	 */
 	public function __construct(
 		?UserGroupManagerFactory $userGroupManagerFactory = null,
 		?UserNameUtils $userNameUtils = null,

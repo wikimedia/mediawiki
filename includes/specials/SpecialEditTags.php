@@ -70,11 +70,6 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	private PermissionManager $permissionManager;
 	private ChangeTagsStore $changeTagsStore;
 
-	/**
-	 * @inheritDoc
-	 *
-	 * @param PermissionManager $permissionManager
-	 */
 	public function __construct( PermissionManager $permissionManager, ChangeTagsStore $changeTagsStore ) {
 		parent::__construct( 'EditTags', 'changetags' );
 

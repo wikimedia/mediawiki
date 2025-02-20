@@ -39,14 +39,6 @@ class ProtectedTitlesPager extends AlphabeticPager {
 
 	private LinkBatchFactory $linkBatchFactory;
 
-	/**
-	 * @param IContextSource $context
-	 * @param LinkRenderer $linkRenderer
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param IConnectionProvider $dbProvider
-	 * @param string|null $level
-	 * @param int|null $namespace
-	 */
 	public function __construct(
 		IContextSource $context,
 		LinkRenderer $linkRenderer,

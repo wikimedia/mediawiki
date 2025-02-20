@@ -79,20 +79,6 @@ class ImageListPager extends TablePager {
 		'img_size' => [ 'img_size', 'img_name' ],
 	];
 
-	/**
-	 * @param IContextSource $context
-	 * @param CommentStore $commentStore
-	 * @param LinkRenderer $linkRenderer
-	 * @param IConnectionProvider $dbProvider
-	 * @param RepoGroup $repoGroup
-	 * @param UserNameUtils $userNameUtils
-	 * @param RowCommentFormatter $rowCommentFormatter
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param string|null $userName
-	 * @param string $search
-	 * @param bool|null $including
-	 * @param bool $showAll
-	 */
 	public function __construct(
 		IContextSource $context,
 		CommentStore $commentStore,

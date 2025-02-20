@@ -46,15 +46,6 @@ class SpecialListFiles extends IncludableSpecialPage {
 	private RowCommentFormatter $rowCommentFormatter;
 	private LinkBatchFactory $linkBatchFactory;
 
-	/**
-	 * @param RepoGroup $repoGroup
-	 * @param IConnectionProvider $dbProvider
-	 * @param CommentStore $commentStore
-	 * @param UserNameUtils $userNameUtils
-	 * @param UserNamePrefixSearch $userNamePrefixSearch
-	 * @param RowCommentFormatter $rowCommentFormatter
-	 * @param LinkBatchFactory $linkBatchFactory
-	 */
 	public function __construct(
 		RepoGroup $repoGroup,
 		IConnectionProvider $dbProvider,

@@ -49,12 +49,6 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 	private SearchEngineFactory $searchEngineFactory;
 	private ChangeTagsStore $changeTagsStore;
 
-	/**
-	 * @param WatchedItemStoreInterface $watchedItemStore
-	 * @param MessageCache $messageCache
-	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param SearchEngineFactory $searchEngineFactory
-	 */
 	public function __construct(
 		WatchedItemStoreInterface $watchedItemStore,
 		MessageCache $messageCache,

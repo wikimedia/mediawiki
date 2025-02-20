@@ -53,22 +53,6 @@ class ProtectedPagesPager extends TablePager {
 	/** @var string[] */
 	private array $formattedComments = [];
 
-	/**
-	 * @param IContextSource $context
-	 * @param CommentStore $commentStore
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param LinkRenderer $linkRenderer
-	 * @param IConnectionProvider $dbProvider
-	 * @param RowCommentFormatter $rowCommentFormatter
-	 * @param string|null $type
-	 * @param string|null $level
-	 * @param int|null $namespace
-	 * @param string|null $sizetype
-	 * @param int|null $size
-	 * @param bool $indefonly
-	 * @param bool $cascadeonly
-	 * @param bool $noredirect
-	 */
 	public function __construct(
 		IContextSource $context,
 		CommentStore $commentStore,

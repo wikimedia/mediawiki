@@ -60,11 +60,6 @@ class SpecialLinkSearch extends QueryPage {
 		$this->mProt = $params['protocol'];
 	}
 
-	/**
-	 * @param IConnectionProvider $dbProvider
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param UrlUtils $urlUtils
-	 */
 	public function __construct(
 		IConnectionProvider $dbProvider,
 		LinkBatchFactory $linkBatchFactory,

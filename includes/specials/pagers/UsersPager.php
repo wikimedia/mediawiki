@@ -81,18 +81,6 @@ class UsersPager extends AlphabeticPager {
 	private UserIdentityLookup $userIdentityLookup;
 	private TempUserConfig $tempUserConfig;
 
-	/**
-	 * @param IContextSource $context
-	 * @param HookContainer $hookContainer
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param IConnectionProvider $dbProvider
-	 * @param UserGroupManager $userGroupManager
-	 * @param UserIdentityLookup $userIdentityLookup
-	 * @param HideUserUtils $hideUserUtils
-	 * @param string|null $par
-	 * @param bool|null $including Whether this page is being transcluded in
-	 * another page
-	 */
 	public function __construct(
 		IContextSource $context,
 		HookContainer $hookContainer,

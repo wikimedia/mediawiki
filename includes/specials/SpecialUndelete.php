@@ -157,23 +157,6 @@ class SpecialUndelete extends SpecialPage {
 	private CommentFormatter $commentFormatter;
 	private WatchlistManager $watchlistManager;
 
-	/**
-	 * @param PermissionManager $permissionManager
-	 * @param RevisionStore $revisionStore
-	 * @param RevisionRenderer $revisionRenderer
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param NameTableStore $changeTagDefStore
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param RepoGroup $repoGroup
-	 * @param IConnectionProvider $dbProvider
-	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param WikiPageFactory $wikiPageFactory
-	 * @param SearchEngineFactory $searchEngineFactory
-	 * @param UndeletePageFactory $undeletePageFactory
-	 * @param ArchivedRevisionLookup $archivedRevisionLookup
-	 * @param CommentFormatter $commentFormatter
-	 * @param WatchlistManager $watchlistManager
-	 */
 	public function __construct(
 		PermissionManager $permissionManager,
 		RevisionStore $revisionStore,
