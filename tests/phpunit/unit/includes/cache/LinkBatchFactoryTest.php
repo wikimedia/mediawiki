@@ -11,6 +11,7 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
+use MediaWiki\User\TempUser\TempUserDetailsLookup;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -48,6 +49,7 @@ class LinkBatchFactoryTest extends MediaWikiUnitTestCase {
 			$this->createMock( GenderCache::class ),
 			$this->createMock( IConnectionProvider::class ),
 			$this->createMock( LinksMigration::class ),
+			$this->createMock( TempUserDetailsLookup::class ),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 
