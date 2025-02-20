@@ -63,6 +63,27 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	private $createMalformedTitleException;
 
 	/**
+	 * Temporary migration helper for DiscussionTools test
+	 *
+	 * @unstable
+	 * @param Language $language
+	 * @param GenderCache $genderCache
+	 * @param array $localInterwikis
+	 * @param InterwikiLookup $interwikiLookup
+	 * @param NamespaceInfo $nsInfo
+	 * @return TitleParser
+	 */
+	public static function createParser(
+		Language $language,
+		GenderCache $genderCache,
+		$localInterwikis,
+		InterwikiLookup $interwikiLookup,
+		NamespaceInfo $nsInfo
+	) {
+		return new self( $language, $genderCache, $localInterwikis, $interwikiLookup, $nsInfo );
+	}
+
+	/**
 	 * @param Language $language The language object to use for localizing namespace names,
 	 *   capitalization, etc.
 	 * @param GenderCache $genderCache The gender cache for generating gendered namespace names
