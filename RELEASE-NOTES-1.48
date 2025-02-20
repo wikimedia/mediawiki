@@ -140,6 +140,19 @@ For notes on 1.47.x and older releases, see HISTORY.
 
 === Languages updated in 1.48 ===
 
+* (T384157) Plural rules were updated to CLDR 48. Existing {{PLURAL:}}
+  translations in some languages may show the wrong form until they are
+  updated:
+  ** fr, es, it, pt, ca, lld, scn and vec have a new "many" form for large
+     numbers such as 1000000. Languages that fall back to them (for example
+     pt-br, oc, ht, qu) also get it. Translations with two forms still work.
+  ** kw now has six forms (zero, one, two, few, many, other) and sgs five
+     (one, two, few, many, other).
+  ** ce and cv no longer use the Russian rules of their fallback language.
+     ce now has one/other and cv has zero/one/other.
+  ** ceb now uses the Filipino rule. as and pcm now treat 0 as "one", and
+     mr now treats 0 as "other".
+  ** tpi and yue (with yue-hans and yue-hant) now have only one form.
 * …
 
 === Breaking changes in 1.48 ===

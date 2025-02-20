@@ -19,7 +19,7 @@ class LanguageSgsTest extends LanguageClassesTestCase {
 	 * @covers \MediaWiki\Language\Language::convertPlural
 	 */
 	public function testPluralAllForms( $result, $value ) {
-		$forms = [ 'one', 'two', 'few', 'other' ];
+		$forms = [ 'one', 'two', 'few', 'many', 'other' ];
 		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
@@ -33,19 +33,20 @@ class LanguageSgsTest extends LanguageClassesTestCase {
 
 	public static function providePluralAllForms() {
 		return [
-			[ 'few', 0 ],
+			[ 'other', 0 ],
 			[ 'one', 1 ],
 			[ 'two', 2 ],
-			[ 'other', 3 ],
-			[ 'few', 10 ],
-			[ 'few', 11 ],
-			[ 'few', 12 ],
-			[ 'few', 19 ],
+			[ 'few', 3 ],
+			[ 'few', 9 ],
+			[ 'other', 10 ],
+			[ 'other', 11 ],
+			[ 'other', 19 ],
 			[ 'other', 20 ],
-			[ 'few', 100 ],
+			[ 'few', 22 ],
+			[ 'other', 100 ],
 			[ 'one', 101 ],
-			[ 'few', 111 ],
-			[ 'few', 112 ],
+			[ 'few', 102 ],
+			[ 'many', '1.5' ],
 		];
 	}
 

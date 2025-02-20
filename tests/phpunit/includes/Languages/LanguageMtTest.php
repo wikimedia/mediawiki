@@ -43,6 +43,7 @@ class LanguageMtTest extends LanguageClassesTestCase {
 			[ 'other', 100 ],
 			[ 'other', 101 ],
 			[ 'other', 102 ],
+			[ 'few', 103 ],
 			[ 'few', 110 ],
 			[ 'many', 111 ],
 			[ 'many', 119 ],

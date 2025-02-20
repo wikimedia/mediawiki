@@ -35,9 +35,10 @@ class LanguageMkTest extends LanguageClassesTestCase {
 		return [
 			[ 'other', 0 ],
 			[ 'one', 1 ],
-			[ 'one', 11 ],
+			[ 'other', 11 ],
 			[ 'one', 21 ],
-			[ 'one', 411 ],
+			[ 'other', 411 ],
+			[ 'other', 111 ],
 			[ 'other', 12.345 ],
 			[ 'other', 20 ],
 			[ 'one', 31 ],
