@@ -22,14 +22,12 @@ namespace MediaWiki\User\Options;
 
 use InvalidArgumentException;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\Language\LanguageConverter;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
@@ -267,34 +265,6 @@ class UserOptionsManager extends UserOptionsLookup {
 	}
 
 	/**
-	 * Reset certain (or all) options to the site defaults
-	 *
-	 * The optional parameter determines which kinds of preferences will be reset.
-	 * Supported values are everything that can be reported by getOptionKinds()
-	 * and 'all', which forces a reset of *all* preferences and overrides everything else.
-	 *
-	 * @note You need to call saveOptions() to actually write to the database.
-	 *
-	 * @deprecated since 1.43 use resetOptionsByName() with PreferencesFactory::getOptionNamesForReset()
-	 *
-	 * @param UserIdentity $user
-	 * @param IContextSource $context Context source used when $resetKinds does not contain 'all'.
-	 * @param array|string $resetKinds Which kinds of preferences to reset.
-	 *  Defaults to [ 'registered', 'registered-multiselect', 'registered-checkmatrix', 'unused' ]
-	 */
-	public function resetOptions(
-		UserIdentity $user,
-		IContextSource $context,
-		$resetKinds = [ 'registered', 'registered-multiselect', 'registered-checkmatrix', 'unused' ]
-	) {
-		wfDeprecated( __METHOD__, '1.43' );
-		$preferencesFactory = MediaWikiServices::getInstance()->getPreferencesFactory();
-		$optionsToReset = $preferencesFactory->getOptionNamesForReset(
-			$this->userFactory->newFromUserIdentity( $user ), $context, $resetKinds );
-		$this->resetOptionsByName( $user, $optionsToReset );
-	}
-
-	/**
 	 * Reset a list of options to the site defaults
 	 *
 	 * @note You need to call saveOptions() to actually write to the database.
@@ -322,36 +292,6 @@ class UserOptionsManager extends UserOptionsLookup {
 		foreach ( $this->loadUserOptions( $user ) as $name => $value ) {
 			$this->setOption( $user, $name, null );
 		}
-	}
-
-	/**
-	 * @deprecated since 1.43 use PreferencesFactory::listResetKinds()
-	 *
-	 * @return string[] Option kinds
-	 */
-	public function listOptionKinds(): array {
-		wfDeprecated( __METHOD__, '1.43' );
-		$preferencesFactory = MediaWikiServices::getInstance()->getPreferencesFactory();
-		return $preferencesFactory->listResetKinds();
-	}
-
-	/**
-	 * @deprecated since 1.43 use PreferencesFactory::getResetKinds
-	 *
-	 * @param UserIdentity $userIdentity
-	 * @param IContextSource $context
-	 * @param array|null $options
-	 * @return string[]
-	 */
-	public function getOptionKinds(
-		UserIdentity $userIdentity,
-		IContextSource $context,
-		$options = null
-	): array {
-		wfDeprecated( __METHOD__, '1.43' );
-		$user = $this->userFactory->newFromUserIdentity( $userIdentity );
-		$preferencesFactory = MediaWikiServices::getInstance()->getPreferencesFactory();
-		return $preferencesFactory->getResetKinds( $user, $context, $options );
 	}
 
 	/**
