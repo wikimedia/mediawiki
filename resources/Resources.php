@@ -3178,6 +3178,14 @@ return [
 			'oojs-ui-widgets',
 		],
 	],
+	'mediawiki.widgets.OrderedMultiselectWidget' => [
+		'scripts' => [
+			'resources/src/mediawiki.widgets/mw.widgets.OrderedMultiselectWidget.js'
+		],
+		'dependencies' => [
+			'oojs-ui-widgets',
+		],
+	],
 	'mediawiki.widgets.MenuTagMultiselectWidget' => [
 		'scripts' => [
 			'resources/src/mediawiki.widgets/mw.widgets.MenuTagMultiselectWidget.js',

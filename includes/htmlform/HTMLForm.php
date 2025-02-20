@@ -47,6 +47,7 @@ use MediaWiki\HTMLForm\Field\HTMLInfoField;
 use MediaWiki\HTMLForm\Field\HTMLIntField;
 use MediaWiki\HTMLForm\Field\HTMLMultiSelectField;
 use MediaWiki\HTMLForm\Field\HTMLNamespacesMultiselectField;
+use MediaWiki\HTMLForm\Field\HTMLOrderedMultiselectField;
 use MediaWiki\HTMLForm\Field\HTMLRadioField;
 use MediaWiki\HTMLForm\Field\HTMLSelectAndOtherField;
 use MediaWiki\HTMLForm\Field\HTMLSelectField;
@@ -253,6 +254,7 @@ class HTMLForm extends ContextSource {
 		'title' => HTMLTitleTextField::class,
 		'user' => HTMLUserTextField::class,
 		'tagmultiselect' => HTMLTagMultiselectField::class,
+		'orderedmultiselect' => HTMLOrderedMultiselectField::class,
 		'usersmultiselect' => HTMLUsersMultiselectField::class,
 		'titlesmultiselect' => HTMLTitlesMultiselectField::class,
 		'namespacesmultiselect' => HTMLNamespacesMultiselectField::class,
