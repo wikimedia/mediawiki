@@ -1,11 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"Halle",
 			"Languaeditor",
 			"Lorenzoitza",
 			"Vicente Canché Móo"
 		]
 	},
+	"preferences": "Ba'ax uts tu t'aan",
 	"yourpassword": "Koontrasenia:",
 	"tog-prefershttps": "Mantats' usaartej u p'eel koneksioon seguura le ken oojkech",
 	"yourlanguage": "T'aanil:",

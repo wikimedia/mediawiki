@@ -22,6 +22,7 @@
 			"Snakesteuben",
 			"Urhixidur",
 			"Vlad5250",
+			"Wutsje",
 			"Xð",
 			"לערי ריינהארט",
 			"아라"
@@ -1490,6 +1491,7 @@
 	"whatlinkshere-hidelinks": "Keppelings ferbergje",
 	"whatlinkshere-hideimages": "Bestânskeppelings ferbergje",
 	"whatlinkshere-submit": "Los",
+	"block-cancel": "Annulearje",
 	"blockip": "{{GENDER:$1|Meidogger|Meidochster}} útslute",
 	"blockiptext": "Brûk dizze fjilden om in beskaat YP-adres of meidochnamme fan skriuwtagong út te sluten.\nDat soe allinnich dien wurde moatte fanwegen fandalisme of oar ûnakseptabel hâlden en dragen, sa't de\n[[{{MediaWiki:Policy-url}}|útslút-rie]] it oanjout.\nMeld de krekte reden! Neam bygelyks de siden dy't oantaaste waarden.\nJo kinne YP-adresrigen útslute mei de syntaksis fan [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]; de grutst tastiene rige is /$1 foar YPv4 en /$2 foar YPv6.",
 	"ipaddressorusername": "YP-adres, meidochnamme of útslutings-ID:",

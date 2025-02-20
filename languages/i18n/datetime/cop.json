@@ -55,5 +55,14 @@
 	"fri": "Ⲡⲋ̅",
 	"sat": "Ⲡⲍ̅",
 	"sun": "Ⲡⲁ̅",
-	"duration-days": "$1 {{PLURAL:$1|ⲛ̀ⲉ̀ϩⲟⲟⲩ}}"
+	"period-am": "ϧⲁϫⲉⲛⲙⲉⲣⲓ",
+	"period-pm": "ⲙⲉⲛⲉⲛⲥⲁⲙⲉⲣⲓ",
+	"timezone-local": "Ⲫⲁ ⲡⲉⲧⲉⲛⲙⲁ",
+	"years": "{{PLURAL:$1|ⲛ̀ⲣⲟⲙⲡⲓ}}",
+	"months": "{{PLURAL:$1|ⲛ̀ⲁ̀ⲃⲟⲧ}}",
+	"weeks": "{{PLURAL:$1|ⲛ̀ⲁⲛϣⲁϣϥ}}",
+	"days": "{{PLURAL:$1|ⲛ̀ⲉϩⲟⲟⲩ}}",
+	"hours": "{{PLURAL:$1|ⲛ̀ⲟⲩⲛⲟⲩ}}",
+	"duration-days": "$1 {{PLURAL:$1|ⲛ̀ⲉ̀ϩⲟⲟⲩ}}",
+	"just-now": "̀ⲙⲡⲁⲓⲥⲟⲡ ⲫⲁⲓ"
 }

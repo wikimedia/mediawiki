@@ -2517,6 +2517,7 @@
 	"block": "Blocca utente",
 	"unblock": "Sblocca utente",
 	"changeblockip": "Cambia blocco",
+	"block-cancel": "Annulla",
 	"block-create": "Aggiungi blocco",
 	"blockip": "Blocca {{GENDER:$1|utente}}",
 	"blockiptext": "Il blocco viene utilizzato per prevenire atti di vandalismo e altre forme di distruzione ([[{{MediaWiki:Policy-url}}|ulteriori informazioni]]). Puoi bloccare intervalli di indirizzi IP utilizzando la sintassi [https://it.wikipedia.org/wiki/CIDR CIDR]. L'intervallo più ampio consentito è /$1 per IPv4 e /$2 per IPv6.",

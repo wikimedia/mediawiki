@@ -249,7 +249,7 @@
 	"apihelp-feedrecentchanges-param-hidecategorization": "להסתיר שינויים בחברות בקטגוריה.",
 	"apihelp-feedrecentchanges-param-tagfilter": "סינון לפי תג.",
 	"apihelp-feedrecentchanges-param-inverttags": "כל העריכות מלבד אלה שתויגו עם אלה שנבחרו.",
-	"apihelp-feedrecentchanges-param-target": "הצגת שינויים שנעשו בדפים המקושרים מהדף זה בלבד.",
+	"apihelp-feedrecentchanges-param-target": "הצגת שינויים שנעשו בדפים המקושרים מהדף הזה בלבד.",
 	"apihelp-feedrecentchanges-param-showlinkedto": "להציג את השינויים בדפים שמקושרים לדף שנבחר במקום זה.",
 	"apihelp-feedrecentchanges-example-simple": "הצגת שינויים אחרונים.",
 	"apihelp-feedrecentchanges-example-30days": "הצגת שינויים אחרונים עבור 30 ימים.",

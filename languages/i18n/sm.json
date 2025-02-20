@@ -8,10 +8,11 @@
 			"sm.wikipedia.org sysops"
 		]
 	},
-	"pagecategories": "{{PLURAL:$1|Vaega|Vaega}}",
+	"pagecategories": "{{PLURAL:$1|Vaega}}",
 	"category_header": "Itulau ile vaega \"$1\"",
 	"subcategories": "So'a vaega",
 	"category-media-header": "Ala o faasalalauga i le vaega \"$1\"",
+	"category-empty": "<em>O lenei vaega e leai ni itulau po'o ni fa'asalalauga i le taimi nei.</em>",
 	"cancel": "Toe tape",
 	"mytalk": "La'u talanoa",
 	"anontalk": "Talanoaga",
@@ -78,6 +79,7 @@
 	"showdiff": "Fa'aali suiga",
 	"blockedtext": "<strong>Ua poloka lou igoa ole igoa po'o lou tuatusi IP.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nE mafai ona e fa'aogaina le vaega \"{{int:emailuser}}\" pe a fa'ailoa mai se tuatusi imeli aoga i lau [[Special:Preferences|mea e fiafia i ai]] ma e le'i taofia oe mai le fa'aaogaina.{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"loginreqlink": "Fa'aola",
+	"log-fulllog": "Va'ai ogalaau atoa",
 	"searchall": "mea 'uma",
 	"mypreferences": "Mea 'ou te fiafia i ai",
 	"searchresultshead": "Su'e",
