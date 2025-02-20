@@ -1,0 +1,39 @@
+{
+	"@metadata": {
+		"comment": "These rules don't cover the whole grammar of the language, and are intended only for names of Wikimedia projects."
+	},
+	"genitive": [
+		[ "(.+)[td]id$", "$1tide" ],
+		[ "(.+stik)$", "$1u" ],
+		[ "(.+iku)d$", "$1te" ],
+		[ "(.+mons)$", "$1i" ]
+	],
+	"partitive": [
+		[ "(.+(edia|[ae]ta|iki|esti))$", "$1t" ],
+		[ "(.+)[td]id$", "$1te" ],
+		[ "(.+stik)$", "$1ku" ],
+		[ "(.+iku)d$", "$1id" ],
+		[ "(.+mons)$", "$1it" ]
+	],
+	"illative": [
+		[ "(.+(edia|[ae]ta|iki|esti))$", "$1sse" ],
+		[ "(.+)[td]id$", "$1tidesse" ],
+		[ "(.+stik)$", "$1ku" ],
+		[ "(.+iku)d$", "$1tesse" ],
+		[ "(.+mons)$", "$1isse" ]
+	],
+	"inessive": [
+		[ "(.+(edia|[ae]ta|iki|esti))$", "$1s" ],
+		[ "(.+)[td]id$", "$1tides" ],
+		[ "(.+stik)$", "$1us" ],
+		[ "(.+iku)d$", "$1tes" ],
+		[ "(.+mons)$", "$1is" ]
+	],
+	"elative": [
+		[ "(.+(edia|[ae]ta|iki|esti))$", "$1st" ],
+		[ "(.+)[td]id$", "$1tidest" ],
+		[ "(.+stik)$", "$1ust" ],
+		[ "(.+iku)d$", "$1test" ],
+		[ "(.+mons)$", "$1ist" ]
+	]
+}
