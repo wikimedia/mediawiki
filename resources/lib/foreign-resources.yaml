@@ -345,11 +345,11 @@ ooui:
   license: MIT
   homepage: https://www.mediawiki.org/wiki/OOUI
   authors: OOUI Team and other contributors
-  version: 0.51.5
-  purl: pkg:npm/oojs-ui@0.51.5
+  version: 0.51.6
+  purl: pkg:npm/oojs-ui@0.51.6
   type: tar
-  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.51.5.tgz
-  integrity: sha384-VqwC7su2Dqfq9aiJZPkDYdYsAyhdzHTWQ/1V6UgIrtMFywOy7Dn5jbtdW1VabPG2
+  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.51.6.tgz
+  integrity: sha384-fO+E0nJcy/EVF1sAyraiMlZLVeIIwHHcJxbcwk8YFVDKGfRMZqAYirKM3GlIV31b
 
   dest:
     # Main stuff
