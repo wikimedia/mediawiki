@@ -513,6 +513,7 @@ class SpecialPageFactory {
 				'UserGroupManager',
 				'UserIdentityLookup',
 				'HideUserUtils',
+				'TempUserConfig',
 			]
 		],
 		'Block' => [
@@ -656,6 +657,7 @@ class SpecialPageFactory {
 				'UserGroupManager',
 				'UserIdentityLookup',
 				'HideUserUtils',
+				'TempUserConfig',
 			]
 		],
 		'Listadmins' => [

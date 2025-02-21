@@ -40,7 +40,6 @@ use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserGroupManager;
@@ -89,6 +88,7 @@ class UsersPager extends AlphabeticPager {
 		UserGroupManager $userGroupManager,
 		UserIdentityLookup $userIdentityLookup,
 		HideUserUtils $hideUserUtils,
+		TempUserConfig $tempUserConfig,
 		?string $par,
 		?bool $including
 	) {
@@ -142,7 +142,7 @@ class UsersPager extends AlphabeticPager {
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->userIdentityLookup = $userIdentityLookup;
 		$this->hideUserUtils = $hideUserUtils;
-		$this->tempUserConfig = MediaWikiServices::getInstance()->getTempUserConfig();
+		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	/**
