@@ -1,5 +1,23 @@
 # OOUI Release History
 
+## v0.51.6 / 2025-02-20
+
+### Styles
+* TabSelectWidget: Fix position of overflow fade in the mobile version (Bartosz Dziewoński)
+* styles, FieldsetLayout: Remove IE `<legend>` workaround CSS code (Volker E.)
+* styles: Remove obsolete var (Volker E.)
+* styles: remove horizontal gradient mixin (Volker E.)
+* styles: remove vertical gradient mixin (Volker E.)
+
+### Icons
+* icons: Add more language-specific text icons for Norwegian and Swedish (Volker E.)
+
+### Code
+* Change how we place PopupToolGroups on narrow displays (Zoë)
+* Fix error when calling IndexLayout::addTabPanels with no items (Thiemo Kreuz)
+* build: Fix exclude pattern for PrefixedGlobalFunctions (Umherirrender)
+* build: Updating mediawiki/mediawiki-codesniffer to 46.0.0 ([BOT] libraryupgrader)
+
 ## v0.51.5 / 2025-01-24
 
 ### Styles

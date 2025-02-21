@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.51.5
+ * OOUI v0.51.6
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2025 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2025-01-27T06:58:12Z
+ * Date: 2025-02-21T18:19:40Z
  */
 ( function ( OO ) {
 
@@ -2350,7 +2350,7 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 				true
 			);
 
-			this.$clippable.css( 'left', '' );
+			this.$clippable.css( { left: '', width: '', 'margin-left': '', 'min-width': '' } );
 			this.$element.addClass( 'oo-ui-popupToolGroup-active' );
 			this.$group.addClass( 'oo-ui-popupToolGroup-active-tools' );
 			this.$handle.attr( 'aria-expanded', true );
@@ -2371,11 +2371,17 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 				this.setHorizontalPosition( otherSide );
 			}
 			if ( this.isClippedHorizontally() || this.isFloatableOutOfView() ) {
+				this.setHorizontalPosition( 'center' );
+			}
+			if ( this.isClippedHorizontally() || this.isFloatableOutOfView() ) {
 				// Anchoring to the right also caused the popup to clip, so just make it fill the
 				// container.
-				containerWidth = this.$clippableScrollableContainer.width();
-				containerLeft = this.$clippableScrollableContainer[ 0 ] ===
-					document.documentElement ?
+				const isDocument = this.$clippableScrollableContainer[ 0 ] ===
+					document.documentElement;
+				containerWidth = isDocument ?
+					document.documentElement.clientWidth :
+					this.$clippableScrollableContainer.width();
+				containerLeft = isDocument ?
 					0 :
 					this.$clippableScrollableContainer.offset().left;
 
@@ -2384,7 +2390,8 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 
 				this.$clippable.css( {
 					'margin-left': -( this.$element.offset().left - containerLeft ),
-					width: containerWidth
+					width: containerWidth,
+					'min-width': containerWidth
 				} );
 			}
 		} else {
