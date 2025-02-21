@@ -52,10 +52,10 @@
 		 */
 		function onBeforeunload( e ) {
 			if ( test() ) {
-				// Standard supported in Firefox, IE9+, Safari 11.1+
+				// Standard supported in Firefox 6+, Edge 119+, Safari 11.1+
 				e.preventDefault();
 
-				// Support: Chrome, Edge, Safari 9-11
+				// Support: Chrome 1-118, Edge 12-118, Safari 9-11
 				//
 				// Leave the "extra text" string empty since Chrome/Firefox/Safari/Edge
 				// won't display it anyway, and because otherwise IE11 would actually
