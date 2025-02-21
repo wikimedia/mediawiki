@@ -19,20 +19,20 @@
  */
 
 use MediaWiki\EditPage\Constraint\IEditConstraint;
-use MediaWiki\EditPage\Constraint\UserRateLimitConstraint;
+use MediaWiki\EditPage\Constraint\LinkPurgeRateLimitConstraint;
 use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Permissions\RateLimitSubject;
 use MediaWiki\User\UserIdentityValue;
 use PHPUnit\Framework\MockObject\MockObject;
 
 /**
- * Tests the UserRateLimitConstraint
+ * Tests the LinkPurgeRateLimitConstraint
  *
  * @author DannyS712
  *
- * @covers \MediaWiki\EditPage\Constraint\UserRateLimitConstraint
+ * @covers \MediaWiki\EditPage\Constraint\LinkPurgeRateLimitConstraint
  */
-class UserRateLimitConstraintTest extends MediaWikiUnitTestCase {
+class LinkPurgeRateLimitConstraintTest extends MediaWikiUnitTestCase {
 	use EditConstraintTestTrait;
 
 	/**
@@ -42,19 +42,10 @@ class UserRateLimitConstraintTest extends MediaWikiUnitTestCase {
 	 */
 	private function getRateLimiter( $fail ) {
 		$mock = $this->createNoOpMock( RateLimiter::class, [ 'limit' ] );
-		$expectedArgs = [
-			[ 'edit', 1, false ],
-			[ 'linkpurge', 0, false ],
-			[ 'editcontentmodel', 1, $fail ]
-		];
-		$mock->expects( $this->exactly( 3 ) )
+		$mock->expects( $this->once() )
 			->method( 'limit' )
-			->willReturnCallback( function ( $_, $action, $incrBy ) use ( &$expectedArgs ) {
-				$curExpectedArgs = array_shift( $expectedArgs );
-				$this->assertSame( $curExpectedArgs[0], $action );
-				$this->assertSame( $curExpectedArgs[1], $incrBy );
-				return $curExpectedArgs[2];
-			} );
+			->with( self::anything(), 'linkpurge', 0 )
+			->willReturn( $fail );
 		return $mock;
 	}
 
@@ -63,7 +54,7 @@ class UserRateLimitConstraintTest extends MediaWikiUnitTestCase {
 
 		$subject = new RateLimitSubject( new UserIdentityValue( 1, 'test' ), null, [] );
 
-		$constraint = new UserRateLimitConstraint( $limiter, $subject, 'OldContentModel', 'NewContentModel' );
+		$constraint = new LinkPurgeRateLimitConstraint( $limiter, $subject );
 		$this->assertConstraintPassed( $constraint );
 	}
 
@@ -72,7 +63,7 @@ class UserRateLimitConstraintTest extends MediaWikiUnitTestCase {
 
 		$subject = new RateLimitSubject( new UserIdentityValue( 1, 'test' ), null, [] );
 
-		$constraint = new UserRateLimitConstraint( $limiter, $subject, 'OldContentModel', 'NewContentModel' );
+		$constraint = new LinkPurgeRateLimitConstraint( $limiter, $subject );
 		$this->assertConstraintFailed( $constraint, IEditConstraint::AS_RATE_LIMITED );
 	}
 

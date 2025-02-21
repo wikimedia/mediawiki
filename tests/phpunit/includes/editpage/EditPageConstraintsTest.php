@@ -7,7 +7,9 @@ use MediaWiki\EditPage\EditPage;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Tests\Unit\MockBlockTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -27,6 +29,7 @@ use Wikimedia\Rdbms\ReadOnlyMode;
 class EditPageConstraintsTest extends MediaWikiLangTestCase {
 
 	use TempUserTestTrait;
+	use MockBlockTrait;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -183,8 +186,8 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		$user = $this->getTestUser()->getUser();
 
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
-		// Needs edit rights to pass EditRightConstraint and reach AccidentalRecreationConstraint
-		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit' ] );
+		// Needs these rights to pass AuthorizationConstraint and reach AccidentalRecreationConstraint
+		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit', 'createpage' ] );
 
 		// Started the edit on 1 January 2019, page was deleted on 1 January 2020
 		$edit = [
@@ -215,7 +218,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		$user = $this->getTestUser()->getUser();
 
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
-		// Needs edit rights to pass EditRightConstraint and reach NewSectionMissingSubjectConstraint
+		// Needs these rights to pass AuthorizationConstraint and reach NewSectionMissingSubjectConstraint
 		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit' ] );
 
 		$edit = [
@@ -258,7 +261,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 	public function testContentModelChangeConstraint() {
 		$user = $this->getTestUser()->getUser();
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
-		// Needs edit rights to pass EditRightConstraint and reach ContentModelChangeConstraint
+		// Needs these rights to pass AuthorizationConstraint and reach ContentModelChangeConstraint
 		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit' ] );
 
 		$edit = [
@@ -285,14 +288,13 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	/** CreationPermissionConstraint integration */
-	public function testCreationPermissionConstraint() {
-		$page = $this->getNonexistingTestPage( 'CreationPermissionConstraint page does not exist' );
+	/** AuthorizationConstraint integration - 'create' rights */
+	public function testAuthorizationConstraint_create() {
+		$page = $this->getNonexistingTestPage( 'AuthorizationConstraint_create page does not exist' );
 		$title = $page->getTitle();
 
 		$user = $this->getTestUser()->getUser();
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
-		// Needs edit rights to pass EditRightConstraint and reach CreationPermissionConstraint
 		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit' ] );
 
 		$edit = [
@@ -316,7 +318,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 
 		$user = $this->getTestUser()->getUser();
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
-		// Needs edit and createpage rights to pass EditRightConstraint and CreationPermissionConstraint
+		// Needs these rights to pass AuthorizationConstraint
 		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit', 'createpage' ] );
 
 		$edit = [
@@ -366,7 +368,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 
 		$user = $this->getTestUser()->getUser();
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
-		// Needs edit and createpage rights to pass EditRightConstraint and CreationPermissionConstraint
+		// Needs these rights to pass AuthorizationConstraint
 		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit', 'createpage' ] );
 
 		$edit = [
@@ -399,12 +401,12 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * EditRightConstraint integration
-	 * @dataProvider provideTestEditRightConstraint
+	 * AuthorizationConstraint integration - 'edit' rights
+	 * @dataProvider provideTestAuthorizationConstraint_edit
 	 * @param bool $anon
 	 * @param int $expectedErrorCode
 	 */
-	public function testEditRightConstraint( $anon, $expectedErrorCode ) {
+	public function testAuthorizationConstraint_edit( $anon, $expectedErrorCode ) {
 		if ( $anon ) {
 			$this->disableAutoCreateTempUser();
 			$user = $this->getServiceContainer()->getUserFactory()->newAnonymous( '127.0.0.1' );
@@ -428,7 +430,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	public static function provideTestEditRightConstraint() {
+	public static function provideTestAuthorizationConstraint_edit() {
 		yield 'Anonymous user' => [ true, EditPage::AS_READ_ONLY_PAGE_ANON ];
 		yield 'Registered user' => [ false, EditPage::AS_READ_ONLY_PAGE_LOGGED ];
 	}
@@ -448,7 +450,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		}
 
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
-		// Needs edit rights to pass EditRightConstraint and reach ImageRedirectConstraint
+		// Needs these rights to pass AuthorizationConstraint and reach ImageRedirectConstraint
 		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit' ] );
 
 		$edit = [
@@ -480,7 +482,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		$user = $this->getTestUser()->getUser();
 
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
-		// Needs edit rights to pass EditRightConstraint and reach MissingCommentConstraint
+		// Needs these rights to pass AuthorizationConstraint and reach MissingCommentConstraint
 		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit' ] );
 
 		$edit = [
@@ -512,7 +514,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		$user = $this->getTestUser()->getUser();
 
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
-		// Needs edit rights to pass EditRightConstraint and reach NewSectionMissingSubjectConstraint
+		// Needs these rights to pass AuthorizationConstraint and reach NewSectionMissingSubjectConstraint
 		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit' ] );
 
 		$edit = [
@@ -646,21 +648,14 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	/** UserBlockConstraint integration */
-	public function testUserBlockConstraint() {
-		$user = $this->createMock( User::class );
-		$user->method( 'getName' )->willReturn( 'NameGoesHere' );
-		$user->method( 'getId' )->willReturn( 12345 );
-
+	/** AuthorizationConstraint integration - user blocks */
+	public function testAuthorizationConstraint_block() {
 		$permissionManager = $this->createMock( PermissionManager::class );
-		// Needs edit rights to pass EditRightConstraint and reach UserBlockConstraint
-		$permissionManager->method( 'userHasRight' )->willReturn( true );
-		$permissionManager->method( 'userCan' )->willReturn( true );
-
+		$permissionStatus = PermissionStatus::newEmpty();
+		$permissionStatus->setBlock( $this->makeMockBlock() );
 		// Not worried about the specifics of the method call, those are tested in
-		// the UserBlockConstraintTest
-		$permissionManager->method( 'isBlockedFrom' )->willReturn( true );
-
+		// the AuthorizationConstraintTest
+		$permissionManager->method( 'getPermissionStatus' )->willReturn( $permissionStatus );
 		$this->setService( 'PermissionManager', $permissionManager );
 
 		$edit = [
@@ -677,8 +672,8 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	/** UserRateLimitConstraint integration */
-	public function testUserRateLimitConstraint() {
+	/** LinkPurgeRateLimitConstraint integration */
+	public function testLinkPurgeRateLimitConstraint() {
 		$this->setTemporaryHook(
 			'PingLimiter',
 			static function ( $user, $action, &$result, $incrBy ) {

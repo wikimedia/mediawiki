@@ -20,64 +20,43 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
-use MediaWiki\Title\Title;
 use StatusValue;
 
 /**
- * Verify user permissions if changing content model:
- *    Must have editcontentmodel rights
- *    Must be able to edit under the new content model
- *    Must not have exceeded the rate limit
+ * Verify authorization to edit the page (user rights, rate limits, blocks).
  *
- * @since 1.36
+ * @since 1.44
  * @internal
- * @author DannyS712
  */
-class ContentModelChangeConstraint implements IEditConstraint {
+class AuthorizationConstraint implements IEditConstraint {
 
 	private PermissionStatus $status;
 
 	private Authority $performer;
-	private Title $title;
-	private string $newContentModel;
+	private PageIdentity $target;
+	private bool $new;
 
-	/**
-	 * @param Authority $performer
-	 * @param Title $title
-	 * @param string $newContentModel
-	 */
 	public function __construct(
 		Authority $performer,
-		Title $title,
-		string $newContentModel
+		PageIdentity $target,
+		bool $new
 	) {
 		$this->performer = $performer;
-		$this->title = $title;
-		$this->newContentModel = $newContentModel;
+		$this->target = $target;
+		$this->new = $new;
 	}
 
 	public function checkConstraint(): string {
 		$this->status = PermissionStatus::newEmpty();
 
-		if ( $this->newContentModel === $this->title->getContentModel() ) {
-			// No change
-			return self::CONSTRAINT_PASSED;
-		}
-
-		if ( !$this->performer->authorizeWrite( 'editcontentmodel', $this->title, $this->status ) ) {
+		if ( $this->new && !$this->performer->authorizeWrite( 'create', $this->target, $this->status ) ) {
 			return self::CONSTRAINT_FAILED;
 		}
 
-		// Make sure the user can edit the page under the new content model too.
-		// We rely on caching in UserAuthority to avoid bumping the rate limit counter twice.
-		$titleWithNewContentModel = clone $this->title;
-		$titleWithNewContentModel->setContentModel( $this->newContentModel );
-		if (
-			!$this->performer->authorizeWrite( 'editcontentmodel', $titleWithNewContentModel, $this->status )
-			|| !$this->performer->authorizeWrite( 'edit', $titleWithNewContentModel, $this->status )
-		) {
+		if ( !$this->performer->authorizeWrite( 'edit', $this->target, $this->status ) ) {
 			return self::CONSTRAINT_FAILED;
 		}
 
@@ -88,10 +67,17 @@ class ContentModelChangeConstraint implements IEditConstraint {
 		$statusValue = StatusValue::newGood();
 
 		if ( !$this->status->isGood() ) {
-			if ( $this->status->isRateLimitExceeded() ) {
+			// Report the most specific errors first
+			if ( $this->status->isBlocked() ) {
+				$statusValue->setResult( false, self::AS_BLOCKED_PAGE_FOR_USER );
+			} elseif ( $this->status->isRateLimitExceeded() ) {
 				$statusValue->setResult( false, self::AS_RATE_LIMITED );
+			} elseif ( $this->status->getPermission() === 'create' ) {
+				$statusValue->setResult( false, self::AS_NO_CREATE_PERMISSION );
+			} elseif ( !$this->performer->isRegistered() ) {
+				$statusValue->setResult( false, self::AS_READ_ONLY_PAGE_ANON );
 			} else {
-				$statusValue->setResult( false, self::AS_NO_CHANGE_CONTENT_MODEL );
+				$statusValue->setResult( false, self::AS_READ_ONLY_PAGE_LOGGED );
 			}
 		}
 

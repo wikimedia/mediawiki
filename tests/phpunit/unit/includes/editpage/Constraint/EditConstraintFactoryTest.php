@@ -27,13 +27,11 @@ use MediaWiki\EditPage\Constraint\PageSizeConstraint;
 use MediaWiki\EditPage\Constraint\ReadOnlyConstraint;
 use MediaWiki\EditPage\Constraint\SimpleAntiSpamConstraint;
 use MediaWiki\EditPage\Constraint\SpamRegexConstraint;
-use MediaWiki\EditPage\Constraint\UserBlockConstraint;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\Language;
 use MediaWiki\Logger\Spi;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -61,7 +59,6 @@ class EditConstraintFactoryTest extends MediaWikiUnitTestCase {
 		$factory = new EditConstraintFactory(
 			$options,
 			$loggerFactory,
-			$this->createMock( PermissionManager::class ),
 			$this->createMock( HookContainer::class ),
 			$this->createMock( ReadOnlyMode::class ),
 			$this->createMock( SpamChecker::class ),
@@ -106,10 +103,6 @@ class EditConstraintFactoryTest extends MediaWikiUnitTestCase {
 				'RequestIP',
 				$title
 			)
-		);
-		$this->assertInstanceOf(
-			UserBlockConstraint::class,
-			$factory->newUserBlockConstraint( $title, $user )
 		);
 	}
 }

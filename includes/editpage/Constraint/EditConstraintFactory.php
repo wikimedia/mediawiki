@@ -26,10 +26,8 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\Language;
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\Spi;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Permissions\RateLimitSubject;
 use MediaWiki\Title\Title;
@@ -54,7 +52,6 @@ class EditConstraintFactory {
 
 	private ServiceOptions $options;
 	private Spi $loggerFactory;
-	private PermissionManager $permissionManager;
 	private HookContainer $hookContainer;
 	private ReadOnlyMode $readOnlyMode;
 	private SpamChecker $spamRegexChecker;
@@ -74,7 +71,6 @@ class EditConstraintFactory {
 	 *
 	 * @param ServiceOptions $options
 	 * @param Spi $loggerFactory
-	 * @param PermissionManager $permissionManager
 	 * @param HookContainer $hookContainer
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param SpamChecker $spamRegexChecker
@@ -83,7 +79,6 @@ class EditConstraintFactory {
 	public function __construct(
 		ServiceOptions $options,
 		Spi $loggerFactory,
-		PermissionManager $permissionManager,
 		HookContainer $hookContainer,
 		ReadOnlyMode $readOnlyMode,
 		SpamChecker $spamRegexChecker,
@@ -95,9 +90,6 @@ class EditConstraintFactory {
 		$this->options = $options;
 		$this->loggerFactory = $loggerFactory;
 
-		// UserBlockConstraint
-		$this->permissionManager = $permissionManager;
-
 		// EditFilterMergedContentHookConstraint
 		$this->hookContainer = $hookContainer;
 
@@ -107,7 +99,7 @@ class EditConstraintFactory {
 		// SpamRegexConstraint
 		$this->spamRegexChecker = $spamRegexChecker;
 
-		// UserRateLimitConstraint
+		// LinkPurgeRateLimitConstraint
 		$this->rateLimiter = $rateLimiter;
 	}
 
@@ -163,21 +155,15 @@ class EditConstraintFactory {
 
 	/**
 	 * @param RateLimitSubject $subject
-	 * @param string $oldModel
-	 * @param string $newModel
 	 *
-	 * @return UserRateLimitConstraint
+	 * @return LinkPurgeRateLimitConstraint
 	 */
-	public function newUserRateLimitConstraint(
-		RateLimitSubject $subject,
-		string $oldModel,
-		string $newModel
-	): UserRateLimitConstraint {
-		return new UserRateLimitConstraint(
+	public function newLinkPurgeRateLimitConstraint(
+		RateLimitSubject $subject
+	): LinkPurgeRateLimitConstraint {
+		return new LinkPurgeRateLimitConstraint(
 			$this->rateLimiter,
-			$subject,
-			$oldModel,
-			$newModel
+			$subject
 		);
 	}
 
@@ -223,41 +209,6 @@ class EditConstraintFactory {
 			$text,
 			$reqIP,
 			$title
-		);
-	}
-
-	/**
-	 * @param LinkTarget $title
-	 * @param User $user
-	 * @return UserBlockConstraint
-	 */
-	public function newUserBlockConstraint(
-		LinkTarget $title,
-		User $user
-	): UserBlockConstraint {
-		return new UserBlockConstraint(
-			$this->permissionManager,
-			$title,
-			$user
-		);
-	}
-
-	/**
-	 * @param User $performer
-	 * @param Title $title
-	 * @param bool $new
-	 * @return EditRightConstraint
-	 */
-	public function newEditRightConstraint(
-		User $performer,
-		Title $title,
-		bool $new
-	): EditRightConstraint {
-		return new EditRightConstraint(
-			$performer,
-			$this->permissionManager,
-			$title,
-			$new
 		);
 	}
 
