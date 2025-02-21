@@ -22,9 +22,8 @@ use Wikimedia\Rdbms\IConnectionProvider;
 class EventDispatchEngine implements DomainEventDispatcher, DomainEventSource {
 
 	/**
-	 * An associative array mapping event names and invocation modes to
-	 * lists of listeners.
-	 * @var array<string,array<string,array<callable>>>
+	 * An associative array mapping event names to lists of listeners.
+	 * @var array<string,array<callable>>
 	 */
 	private array $listeners = [];
 
@@ -45,9 +44,7 @@ class EventDispatchEngine implements DomainEventDispatcher, DomainEventSource {
 	 * Emit the given event to any listeners that have been registered for
 	 * the respective event type.
 	 *
-	 * Dispatches the given event to any registered listeners, according to the
-	 * invocation mode specified when the listener was registered.
-	 * See the INVOKE_XXX constants on DomainEventSource for details.
+	 * Listeners are invoked through DeferredUpdates.
 	 */
 	public function dispatch( DomainEvent $event, IConnectionProvider $dbProvider ): void {
 		foreach ( $event->getEventTypeChain() as $type ) {
@@ -65,7 +62,7 @@ class EventDispatchEngine implements DomainEventDispatcher, DomainEventSource {
 		//       to be invoked within the current transaction.
 
 		// Push a DeferredUpdate for listeners registered for handling AFTER_COMMIT.
-		foreach ( $listeners[ DomainEventSource::INVOKE_AFTER_COMMIT ] ?? [] as $callback ) {
+		foreach ( $listeners ?? [] as $callback ) {
 			$this->push( $callback, $event, $dbProvider );
 		}
 	}
@@ -75,24 +72,19 @@ class EventDispatchEngine implements DomainEventDispatcher, DomainEventSource {
 	 *
 	 * @param string $eventType
 	 * @param callable $listener
-	 * @param array $options Options that control how the listener is invoked.
-	 *        Well known keys:
-	 *        - self::DISPATCH_MODE: one of the invocation mode constants defined
-	 *          in DomainEventSource, e.g. self::AFTER_COMMIT.
+	 * @param array $options Currently unused. In the future, $options may
+	 *        convey things like the listener priority or error handling.
 	 */
 	public function registerListener(
 		string $eventType,
 		$listener,
 		array $options = self::DEFAULT_LISTENER_OPTIONS
 	): void {
-		$options += self::DEFAULT_LISTENER_OPTIONS;
-		$mode = $options[ self::INVOCATION_MODE ];
-
 		if ( !is_callable( $listener ) ) {
 			throw new InvalidArgumentException( '$listener must be callable' );
 		}
 
-		$this->listeners[$eventType][$mode][] = $listener;
+		$this->listeners[$eventType][] = $listener;
 	}
 
 	/**

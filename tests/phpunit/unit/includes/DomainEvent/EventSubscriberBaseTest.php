@@ -44,15 +44,16 @@ class EventSubscriberBaseTest extends MediaWikiUnitTestCase {
 				$this->initEvents( $events );
 			}
 
-			public function handleFooEventAfterCommit() {
+			public function handleFooEvent() {
 				// no-op
 			}
 
+			// Check that the AfterCommit suffix is allowed, for backwards compat
 			public function handleBarEventAfterCommit() {
 				// no-op
 			}
 
-			public function handleXyzzyEventAfterCommit() {
+			public function handleXyzzyEvent() {
 				// no-op
 			}
 		};
@@ -61,15 +62,8 @@ class EventSubscriberBaseTest extends MediaWikiUnitTestCase {
 
 		$this->assertSame(
 			[
-				[ 'Foo',
-					[ $subscriber, 'handleFooEventAfterCommit', ],
-					[ DomainEventSource::INVOCATION_MODE => DomainEventSource::INVOKE_AFTER_COMMIT ],
-				],
-				[
-					'Bar',
-					[ $subscriber, 'handleBarEventAfterCommit', ],
-					[ DomainEventSource::INVOCATION_MODE => DomainEventSource::INVOKE_AFTER_COMMIT ],
-				],
+				[ 'Foo', [ $subscriber, 'handleFooEvent', ], [], ],
+				[ 'Bar', [ $subscriber, 'handleBarEventAfterCommit', ], [], ],
 			],
 			$trace
 		);
@@ -83,15 +77,16 @@ class EventSubscriberBaseTest extends MediaWikiUnitTestCase {
 
 		// Pass nothing to the constructor, rely on initSubscriber()
 		$subscriber = new class () extends EventSubscriberBase {
-			public function handleFooEventAfterCommit() {
+			public function handleFooEvent() {
 				// no-op
 			}
 
+			// Check that the AfterCommit suffix is allowed, for backwards compat
 			public function handleBarEventAfterCommit() {
 				// no-op
 			}
 
-			public function handleXyzzyEventAfterCommit() {
+			public function handleXyzzyEvent() {
 				// no-op
 			}
 		};
@@ -101,15 +96,8 @@ class EventSubscriberBaseTest extends MediaWikiUnitTestCase {
 
 		$this->assertSame(
 			[
-				[ 'Foo',
-					[ $subscriber, 'handleFooEventAfterCommit', ],
-					[ DomainEventSource::INVOCATION_MODE => DomainEventSource::INVOKE_AFTER_COMMIT ],
-				],
-				[
-					'Bar',
-					[ $subscriber, 'handleBarEventAfterCommit', ],
-					[ DomainEventSource::INVOCATION_MODE => DomainEventSource::INVOKE_AFTER_COMMIT ],
-				],
+				[ 'Foo', [ $subscriber, 'handleFooEvent', ], [], ],
+				[ 'Bar', [ $subscriber, 'handleBarEventAfterCommit', ], [], ],
 			],
 			$trace
 		);
