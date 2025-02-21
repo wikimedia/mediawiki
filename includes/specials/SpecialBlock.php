@@ -111,17 +111,6 @@ class SpecialBlock extends FormSpecialPage {
 
 	private NamespaceInfo $namespaceInfo;
 
-	/**
-	 * @param BlockTargetFactory $blockTargetFactory
-	 * @param BlockPermissionCheckerFactory $blockPermissionCheckerFactory
-	 * @param BlockUserFactory $blockUserFactory
-	 * @param DatabaseBlockStore $blockStore
-	 * @param UserNameUtils $userNameUtils
-	 * @param UserNamePrefixSearch $userNamePrefixSearch
-	 * @param BlockActionInfo $blockActionInfo
-	 * @param TitleFormatter $titleFormatter
-	 * @param NamespaceInfo $namespaceInfo
-	 */
 	public function __construct(
 		BlockTargetFactory $blockTargetFactory,
 		BlockPermissionCheckerFactory $blockPermissionCheckerFactory,

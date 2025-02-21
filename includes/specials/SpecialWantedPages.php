@@ -35,10 +35,6 @@ class SpecialWantedPages extends WantedQueryPage {
 
 	private LinksMigration $linksMigration;
 
-	/**
-	 * @param IConnectionProvider $dbProvider
-	 * @param LinkBatchFactory $linkBatchFactory
-	 */
 	public function __construct(
 		IConnectionProvider $dbProvider,
 		LinkBatchFactory $linkBatchFactory,

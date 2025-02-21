@@ -31,14 +31,6 @@ class SpecialRenameUser extends SpecialPage {
 	private UserNamePrefixSearch $userNamePrefixSearch;
 	private RenameUserFactory $renameUserFactory;
 
-	/**
-	 * @param IConnectionProvider $dbConns
-	 * @param PermissionManager $permissionManager
-	 * @param TitleFactory $titleFactory
-	 * @param UserFactory $userFactory
-	 * @param UserNamePrefixSearch $userNamePrefixSearch
-	 * @param RenameUserFactory $renameUserFactory
-	 */
 	public function __construct(
 		IConnectionProvider $dbConns,
 		PermissionManager $permissionManager,

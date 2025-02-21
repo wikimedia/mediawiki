@@ -52,11 +52,6 @@ class SpecialExpandTemplates extends SpecialPage {
 	private UserOptionsLookup $userOptionsLookup;
 	private TidyDriverBase $tidy;
 
-	/**
-	 * @param ParserFactory $parserFactory
-	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param TidyDriverBase $tidy
-	 */
 	public function __construct(
 		ParserFactory $parserFactory,
 		UserOptionsLookup $userOptionsLookup,

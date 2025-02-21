@@ -41,11 +41,6 @@ class SpecialBrokenRedirects extends QueryPage {
 
 	private IContentHandlerFactory $contentHandlerFactory;
 
-	/**
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param IConnectionProvider $dbProvider
-	 * @param LinkBatchFactory $linkBatchFactory
-	 */
 	public function __construct(
 		IContentHandlerFactory $contentHandlerFactory,
 		IConnectionProvider $dbProvider,

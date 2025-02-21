@@ -43,11 +43,6 @@ class SpecialWantedCategories extends WantedQueryPage {
 
 	private ILanguageConverter $languageConverter;
 
-	/**
-	 * @param IConnectionProvider $dbProvider
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param LanguageConverterFactory $languageConverterFactory
-	 */
 	public function __construct(
 		IConnectionProvider $dbProvider,
 		LinkBatchFactory $linkBatchFactory,

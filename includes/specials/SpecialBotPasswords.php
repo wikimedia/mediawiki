@@ -64,13 +64,6 @@ class SpecialBotPasswords extends FormSpecialPage {
 	private GrantsInfo $grantsInfo;
 	private GrantsLocalization $grantsLocalization;
 
-	/**
-	 * @param PasswordFactory $passwordFactory
-	 * @param AuthManager $authManager
-	 * @param CentralIdLookup $centralIdLookup
-	 * @param GrantsInfo $grantsInfo
-	 * @param GrantsLocalization $grantsLocalization
-	 */
 	public function __construct(
 		PasswordFactory $passwordFactory,
 		AuthManager $authManager,

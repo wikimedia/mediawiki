@@ -60,14 +60,6 @@ class SpecialUnblock extends SpecialPage {
 
 	protected bool $useCodex = false;
 
-	/**
-	 * @param UnblockUserFactory $unblockUserFactory
-	 * @param BlockTargetFactory $blockTargetFactory
-	 * @param DatabaseBlockStore $blockStore
-	 * @param UserNameUtils $userNameUtils
-	 * @param UserNamePrefixSearch $userNamePrefixSearch
-	 * @param WatchlistManager $watchlistManager
-	 */
 	public function __construct(
 		UnblockUserFactory $unblockUserFactory,
 		BlockTargetFactory $blockTargetFactory,

@@ -46,13 +46,6 @@ class SpecialListUsers extends IncludableSpecialPage {
 	private UserIdentityLookup $userIdentityLookup;
 	private HideUserUtils $hideUserUtils;
 
-	/**
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param IConnectionProvider $dbProvider
-	 * @param UserGroupManager $userGroupManager
-	 * @param UserIdentityLookup $userIdentityLookup
-	 * @param HideUserUtils $hideUserUtils
-	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		IConnectionProvider $dbProvider,

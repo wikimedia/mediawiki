@@ -42,11 +42,6 @@ class SpecialWantedFiles extends WantedQueryPage {
 	private RepoGroup $repoGroup;
 	private int $migrationStage;
 
-	/**
-	 * @param RepoGroup $repoGroup
-	 * @param IConnectionProvider $dbProvider
-	 * @param LinkBatchFactory $linkBatchFactory
-	 */
 	public function __construct(
 		RepoGroup $repoGroup,
 		IConnectionProvider $dbProvider,

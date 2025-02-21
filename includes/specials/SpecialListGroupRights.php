@@ -48,12 +48,6 @@ class SpecialListGroupRights extends SpecialPage {
 	private ILanguageConverter $languageConverter;
 	private GroupPermissionsLookup $groupPermissionsLookup;
 
-	/**
-	 * @param NamespaceInfo $nsInfo
-	 * @param UserGroupManager $userGroupManager
-	 * @param LanguageConverterFactory $languageConverterFactory
-	 * @param GroupPermissionsLookup $groupPermissionsLookup
-	 */
 	public function __construct(
 		NamespaceInfo $nsInfo,
 		UserGroupManager $userGroupManager,

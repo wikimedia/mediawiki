@@ -42,11 +42,6 @@ class SpecialShortPages extends QueryPage {
 
 	private NamespaceInfo $namespaceInfo;
 
-	/**
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param IConnectionProvider $dbProvider
-	 * @param LinkBatchFactory $linkBatchFactory
-	 */
 	public function __construct(
 		NamespaceInfo $namespaceInfo,
 		IConnectionProvider $dbProvider,

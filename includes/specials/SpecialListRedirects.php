@@ -46,12 +46,6 @@ class SpecialListRedirects extends QueryPage {
 	private WikiPageFactory $wikiPageFactory;
 	private RedirectLookup $redirectLookup;
 
-	/**
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param IConnectionProvider $dbProvider
-	 * @param WikiPageFactory $wikiPageFactory
-	 * @param RedirectLookup $redirectLookup
-	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		IConnectionProvider $dbProvider,

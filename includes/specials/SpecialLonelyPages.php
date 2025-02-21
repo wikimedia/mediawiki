@@ -38,13 +38,6 @@ class SpecialLonelyPages extends PageQueryPage {
 	private NamespaceInfo $namespaceInfo;
 	private LinksMigration $linksMigration;
 
-	/**
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param IConnectionProvider $dbProvider
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param LanguageConverterFactory $languageConverterFactory
-	 * @param LinksMigration $linksMigration
-	 */
 	public function __construct(
 		NamespaceInfo $namespaceInfo,
 		IConnectionProvider $dbProvider,

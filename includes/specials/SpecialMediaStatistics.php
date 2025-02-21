@@ -65,11 +65,6 @@ class SpecialMediaStatistics extends QueryPage {
 	private MimeAnalyzer $mimeAnalyzer;
 	private int $migrationStage;
 
-	/**
-	 * @param MimeAnalyzer $mimeAnalyzer
-	 * @param IConnectionProvider $dbProvider
-	 * @param LinkBatchFactory $linkBatchFactory
-	 */
 	public function __construct(
 		MimeAnalyzer $mimeAnalyzer,
 		IConnectionProvider $dbProvider,

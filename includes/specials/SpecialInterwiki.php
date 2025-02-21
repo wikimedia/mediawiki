@@ -35,13 +35,6 @@ class SpecialInterwiki extends SpecialPage {
 	private array $virtualDomainsMapping;
 	private bool $interwikiMagic;
 
-	/**
-	 * @param Language $contLang
-	 * @param InterwikiLookup $interwikiLookup
-	 * @param LanguageNameUtils $languageNameUtils
-	 * @param UrlUtils $urlUtils
-	 * @param IConnectionProvider $dbProvider
-	 */
 	public function __construct(
 		Language $contLang,
 		InterwikiLookup $interwikiLookup,

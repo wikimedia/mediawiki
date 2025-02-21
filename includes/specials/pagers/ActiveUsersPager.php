@@ -65,16 +65,6 @@ class ActiveUsersPager extends UsersPager {
 	/** @var string[] */
 	private $excludegroups;
 
-	/**
-	 * @param IContextSource $context
-	 * @param HookContainer $hookContainer
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param IConnectionProvider $dbProvider
-	 * @param UserGroupManager $userGroupManager
-	 * @param UserIdentityLookup $userIdentityLookup
-	 * @param HideUserUtils $hideUserUtils
-	 * @param FormOptions $opts
-	 */
 	public function __construct(
 		IContextSource $context,
 		HookContainer $hookContainer,

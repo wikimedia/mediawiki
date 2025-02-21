@@ -59,12 +59,6 @@ class SpecialFileDuplicateSearch extends SpecialPage {
 	private SearchEngineFactory $searchEngineFactory;
 	private ILanguageConverter $languageConverter;
 
-	/**
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param RepoGroup $repoGroup
-	 * @param SearchEngineFactory $searchEngineFactory
-	 * @param LanguageConverterFactory $languageConverterFactory
-	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		RepoGroup $repoGroup,

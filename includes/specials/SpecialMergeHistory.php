@@ -85,13 +85,6 @@ class SpecialMergeHistory extends SpecialPage {
 	/** @var Status */
 	private $mStatus;
 
-	/**
-	 * @param MergeHistoryFactory $mergeHistoryFactory
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param IConnectionProvider $dbProvider
-	 * @param RevisionStore $revisionStore
-	 * @param CommentFormatter $commentFormatter
-	 */
 	public function __construct(
 		MergeHistoryFactory $mergeHistoryFactory,
 		LinkBatchFactory $linkBatchFactory,

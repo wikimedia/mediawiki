@@ -53,21 +53,6 @@ class SpecialDeletedContributions extends ContributionsSpecialPage {
 	private LinkBatchFactory $linkBatchFactory;
 	private TempUserConfig $tempUserConfig;
 
-	/**
-	 * @param PermissionManager $permissionManager
-	 * @param IConnectionProvider $dbProvider
-	 * @param RevisionStore $revisionStore
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param UserNameUtils $userNameUtils
-	 * @param UserNamePrefixSearch $userNamePrefixSearch
-	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param CommentFormatter $commentFormatter
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param UserFactory $userFactory
-	 * @param UserIdentityLookup $userIdentityLookup
-	 * @param DatabaseBlockStore $blockStore
-	 * @param TempUserConfig $tempUserConfig
-	 */
 	public function __construct(
 		PermissionManager $permissionManager,
 		IConnectionProvider $dbProvider,

@@ -44,11 +44,6 @@ class SpecialDoubleRedirects extends QueryPage {
 	private IContentHandlerFactory $contentHandlerFactory;
 	private LinkBatchFactory $linkBatchFactory;
 
-	/**
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param IConnectionProvider $dbProvider
-	 */
 	public function __construct(
 		IContentHandlerFactory $contentHandlerFactory,
 		LinkBatchFactory $linkBatchFactory,

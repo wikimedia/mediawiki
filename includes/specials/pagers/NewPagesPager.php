@@ -73,19 +73,6 @@ class NewPagesPager extends ReverseChronologicalPager {
 	private IContentHandlerFactory $contentHandlerFactory;
 	private TempUserConfig $tempUserConfig;
 
-	/**
-	 * @param IContextSource $context
-	 * @param LinkRenderer $linkRenderer
-	 * @param GroupPermissionsLookup $groupPermissionsLookup
-	 * @param HookContainer $hookContainer
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param ChangeTagsStore $changeTagsStore
-	 * @param RowCommentFormatter $rowCommentFormatter
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param TempUserConfig $tempUserConfig
-	 * @param FormOptions $opts
-	 */
 	public function __construct(
 		IContextSource $context,
 		LinkRenderer $linkRenderer,

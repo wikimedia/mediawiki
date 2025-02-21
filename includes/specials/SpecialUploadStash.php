@@ -74,12 +74,6 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 */
 	private const MAX_SERVE_BYTES = 1_048_576; // 1 MiB
 
-	/**
-	 * @param RepoGroup $repoGroup
-	 * @param HttpRequestFactory $httpRequestFactory
-	 * @param UrlUtils $urlUtils
-	 * @param IConnectionProvider $dbProvider
-	 */
 	public function __construct(
 		RepoGroup $repoGroup,
 		HttpRequestFactory $httpRequestFactory,

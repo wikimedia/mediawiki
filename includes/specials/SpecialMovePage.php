@@ -116,22 +116,6 @@ class SpecialMovePage extends UnlistedSpecialPage {
 	private TitleFactory $titleFactory;
 	private DeletePageFactory $deletePageFactory;
 
-	/**
-	 * @param MovePageFactory $movePageFactory
-	 * @param PermissionManager $permManager
-	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param IConnectionProvider $dbProvider
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param NamespaceInfo $nsInfo
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param RepoGroup $repoGroup
-	 * @param WikiPageFactory $wikiPageFactory
-	 * @param SearchEngineFactory $searchEngineFactory
-	 * @param WatchlistManager $watchlistManager
-	 * @param RestrictionStore $restrictionStore
-	 * @param TitleFactory $titleFactory
-	 * @param DeletePageFactory $deletePageFactory
-	 */
 	public function __construct(
 		MovePageFactory $movePageFactory,
 		PermissionManager $permManager,

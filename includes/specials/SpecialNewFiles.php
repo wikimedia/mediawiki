@@ -50,12 +50,6 @@ class SpecialNewFiles extends IncludableSpecialPage {
 	private IConnectionProvider $dbProvider;
 	private LinkBatchFactory $linkBatchFactory;
 
-	/**
-	 * @param MimeAnalyzer $mimeAnalyzer
-	 * @param GroupPermissionsLookup $groupPermissionsLookup
-	 * @param IConnectionProvider $dbProvider
-	 * @param LinkBatchFactory $linkBatchFactory
-	 */
 	public function __construct(
 		MimeAnalyzer $mimeAnalyzer,
 		GroupPermissionsLookup $groupPermissionsLookup,

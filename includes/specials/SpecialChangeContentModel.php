@@ -36,15 +36,6 @@ class SpecialChangeContentModel extends FormSpecialPage {
 	private SearchEngineFactory $searchEngineFactory;
 	private CollationFactory $collationFactory;
 
-	/**
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param ContentModelChangeFactory $contentModelChangeFactory
-	 * @param SpamChecker $spamChecker
-	 * @param RevisionLookup $revisionLookup
-	 * @param WikiPageFactory $wikiPageFactory
-	 * @param SearchEngineFactory $searchEngineFactory
-	 * @param CollationFactory $collationFactory
-	 */
 	public function __construct(
 		IContentHandlerFactory $contentHandlerFactory,
 		ContentModelChangeFactory $contentModelChangeFactory,

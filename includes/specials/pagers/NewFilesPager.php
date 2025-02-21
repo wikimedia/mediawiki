@@ -47,14 +47,6 @@ class NewFilesPager extends RangeChronologicalPager {
 	private LinkBatchFactory $linkBatchFactory;
 	private int $migrationStage;
 
-	/**
-	 * @param IContextSource $context
-	 * @param GroupPermissionsLookup $groupPermissionsLookup
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param LinkRenderer $linkRenderer
-	 * @param IConnectionProvider $dbProvider
-	 * @param FormOptions $opts
-	 */
 	public function __construct(
 		IContextSource $context,
 		GroupPermissionsLookup $groupPermissionsLookup,

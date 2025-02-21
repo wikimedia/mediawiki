@@ -56,18 +56,6 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 	private RevisionStore $revisionStore;
 	private CommentFormatter $commentFormatter;
 
-	/**
-	 * @param IContextSource $context
-	 * @param LinkRenderer $linkRenderer
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param IConnectionProvider $dbProvider
-	 * @param RevisionStore $revisionStore
-	 * @param CommentFormatter $commentFormatter
-	 * @param array $conds
-	 * @param PageIdentity $source
-	 * @param PageIdentity $dest
-	 * @param string $mergePointTimestamp
-	 */
 	public function __construct(
 		IContextSource $context,
 		LinkRenderer $linkRenderer,

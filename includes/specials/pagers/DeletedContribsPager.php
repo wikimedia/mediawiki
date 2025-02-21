@@ -36,19 +36,6 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * @ingroup Pager
  */
 class DeletedContribsPager extends ContributionsPager {
-	/**
-	 * @param HookContainer $hookContainer
-	 * @param LinkRenderer $linkRenderer
-	 * @param IConnectionProvider $dbProvider
-	 * @param RevisionStore $revisionStore
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param CommentFormatter $commentFormatter
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param UserFactory $userFactory
-	 * @param IContextSource $context
-	 * @param array $options
-	 * @param UserIdentity $target
-	 */
 	public function __construct(
 		HookContainer $hookContainer,
 		LinkRenderer $linkRenderer,

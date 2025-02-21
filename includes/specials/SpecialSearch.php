@@ -133,19 +133,6 @@ class SpecialSearch extends SpecialPage {
 
 	private const NAMESPACES_CURRENT = 'sense';
 
-	/**
-	 * @param SearchEngineConfig $searchConfig
-	 * @param SearchEngineFactory $searchEngineFactory
-	 * @param NamespaceInfo $nsInfo
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param InterwikiLookup $interwikiLookup
-	 * @param ReadOnlyMode $readOnlyMode
-	 * @param UserOptionsManager $userOptionsManager
-	 * @param LanguageConverterFactory $languageConverterFactory
-	 * @param RepoGroup $repoGroup
-	 * @param SearchResultThumbnailProvider $thumbnailProvider
-	 * @param TitleMatcher $titleMatcher
-	 */
 	public function __construct(
 		SearchEngineConfig $searchConfig,
 		SearchEngineFactory $searchEngineFactory,

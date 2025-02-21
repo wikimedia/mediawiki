@@ -72,12 +72,6 @@ class SpecialUpload extends SpecialPage {
 	private JobQueueGroup $jobQueueGroup;
 	private LoggerInterface $log;
 
-	/**
-	 * @param RepoGroup|null $repoGroup
-	 * @param UserOptionsLookup|null $userOptionsLookup
-	 * @param NamespaceInfo|null $nsInfo
-	 * @param WatchlistManager|null $watchlistManager
-	 */
 	public function __construct(
 		?RepoGroup $repoGroup = null,
 		?UserOptionsLookup $userOptionsLookup = null,
