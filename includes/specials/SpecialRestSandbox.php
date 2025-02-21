@@ -136,7 +136,9 @@ class SpecialRestSandbox extends SpecialPage {
 			// We have to force the direction to "LTR" to avoid the content (specifically json strings)
 			// from being mangled.
 			'dir' => 'ltr',
-			'lang' => 'en'
+			'lang' => 'en',
+			// For dark mode compatibility
+			'class' => 'skin-invert'
 		] );
 
 		$out->addHTML( Html::closeElement( 'div' ) ); // #mw-restsandbox
