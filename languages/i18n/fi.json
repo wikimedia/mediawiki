@@ -394,6 +394,7 @@
 	"cannotcreateaccount-text": "Suora tunnuksen luominen ei ole käytössä tässä wikissä.",
 	"yourdomainname": "Verkkonimi:",
 	"password-change-forbidden": "Et voi muuttaa salasanoja tässä wikissä.",
+	"error-temporary-accounts-cannot-have-passwords": "Tilapäisellä tunnuksella ei voi olla salasanaa.",
 	"externaldberror": "Tapahtui virhe ulkoisen autentikointitietokannan käytössä tai sinulla ei ole lupaa päivittää tunnustasi.",
 	"login": "Kirjaudu sisään",
 	"login-security": "Varmista henkilöllisyytesi",

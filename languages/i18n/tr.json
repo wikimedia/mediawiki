@@ -433,6 +433,7 @@
 	"cannotcreateaccount-text": "Doğrudan hesap oluşturma, bu viki üzerinde etkin değil.",
 	"yourdomainname": "Alan adınız:",
 	"password-change-forbidden": "Bu vikide parolanızı değiştiremezsiniz.",
+	"error-temporary-accounts-cannot-have-passwords": "Geçici hesapların şifresi olamaz.",
 	"externaldberror": "Ya doğrulama veritabanı hatası var ya da kullanıcı hesabınızı güncellemeye yetkiniz yok.",
 	"login": "Oturum aç",
 	"login-security": "Kimliğinizi doğrulayın",

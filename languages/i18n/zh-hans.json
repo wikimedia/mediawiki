@@ -520,6 +520,7 @@
 	"cannotcreateaccount-text": "此wiki没有启用直接账号创建。",
 	"yourdomainname": "您的域名：",
 	"password-change-forbidden": "您不能在本wiki上更改密码。",
+	"error-temporary-accounts-cannot-have-passwords": "临时账号不能拥有密码。",
 	"externaldberror": "验证数据库出错或您被禁止更新您的外部账号。",
 	"login": "登录",
 	"login-security": "证明您的身份",

@@ -354,6 +354,7 @@
 	"cannotcreateaccount-text": "Bu vikidə birbaşa hesab yaratma aktiv deyil.",
 	"yourdomainname": "Sizin domeniniz:",
 	"password-change-forbidden": "Bu vikidə parolunuzu dəyişdirə bilməzsiniz.",
+	"error-temporary-accounts-cannot-have-passwords": "Müvəqqəti hesabların parolu ola bilməz.",
 	"externaldberror": "Verilənlər bazasının doğruluğunu yoxlamada xəta baş verib və yaxud sizin xarici istifadəçi qeydiyyatını yeniləmək hüququnuz yoxdur.",
 	"login": "Daxil ol",
 	"login-security": "Kimliyinizi təsdiq edin",

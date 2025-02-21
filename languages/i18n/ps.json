@@ -320,7 +320,7 @@
 	"createaccountmail": "يو لنډمهاله ناټاکلی پټنوم کارول او ځانگړې شوې برېښليک پتې ته ورلېږل",
 	"createaccountmail-help": "د کاروونې زده کړې پرته د بل چا لپاره د حساب جوړولو لپاره کارول کیدی شي.",
 	"createacct-realname": "آر نوم (اختياري)",
-	"createacct-reason": "دلیل (په عامه توګه ثبت شوی)",
+	"createacct-reason": "سبب (په ټولگړي توگه ننوتلی)",
 	"createacct-reason-ph": "تاسې ولې بل گڼون جوړوئ؟",
 	"createacct-reason-help": "پیغام د حساب جوړونې په نښه کې ښودل شوی",
 	"createacct-submit": "گڼون مو جوړ کړئ",
