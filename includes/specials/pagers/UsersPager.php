@@ -66,30 +66,15 @@ class UsersPager extends AlphabeticPager {
 	 */
 	protected $userGroupCache;
 
-	/** @var string */
-	public $requestedGroup;
+	public ?string $requestedGroup;
+	protected bool $editsOnly;
+	protected bool $temporaryGroupsOnly;
+	protected bool $temporaryAccountsOnly;
+	protected bool $creationSort;
+	protected ?bool $including;
+	protected ?string $requestedUser;
 
-	/** @var bool */
-	protected $editsOnly;
-
-	/** @var bool */
-	protected $temporaryGroupsOnly;
-
-	/** @var bool */
-	protected $temporaryAccountsOnly;
-
-	/** @var bool */
-	protected $creationSort;
-
-	/** @var bool|null */
-	protected $including;
-
-	/** @var string */
-	protected $requestedUser;
-
-	/** @var HideUserUtils */
-	protected $hideUserUtils;
-
+	protected HideUserUtils $hideUserUtils;
 	private HookRunner $hookRunner;
 	private LinkBatchFactory $linkBatchFactory;
 	private UserGroupManager $userGroupManager;
@@ -116,8 +101,8 @@ class UsersPager extends AlphabeticPager {
 		UserGroupManager $userGroupManager,
 		UserIdentityLookup $userIdentityLookup,
 		HideUserUtils $hideUserUtils,
-		$par,
-		$including
+		?string $par,
+		?bool $including
 	) {
 		$this->setContext( $context );
 

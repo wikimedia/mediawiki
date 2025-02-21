@@ -40,15 +40,8 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class NewFilesPager extends RangeChronologicalPager {
 
-	/**
-	 * @var ImageGalleryBase
-	 */
-	protected $gallery;
-
-	/**
-	 * @var FormOptions
-	 */
-	protected $opts;
+	protected ?ImageGalleryBase $gallery = null;
+	protected FormOptions $opts;
 
 	private GroupPermissionsLookup $groupPermissionsLookup;
 	private LinkBatchFactory $linkBatchFactory;

@@ -60,7 +60,7 @@ class DeletedContribsPager extends ContributionsPager {
 		UserFactory $userFactory,
 		IContextSource $context,
 		array $options,
-		$target
+		UserIdentity $target
 	) {
 		$options['isArchive'] = true;
 
