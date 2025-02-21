@@ -187,6 +187,7 @@ use MediaWiki\User\Registration\UserRegistrationLookup;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\TempUser\RealTempUserConfig;
 use MediaWiki\User\TempUser\TempUserCreator;
+use MediaWiki\User\TempUser\TempUserDetailsLookup;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
@@ -2011,6 +2012,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getTempUserCreator(): TempUserCreator {
 		return $this->getService( 'TempUserCreator' );
+	}
+
+	/**
+	 * @since 1.44
+	 */
+	public function getTempUserDetailsLookup(): TempUserDetailsLookup {
+		return $this->getService( 'TempUserDetailsLookup' );
 	}
 
 	/**

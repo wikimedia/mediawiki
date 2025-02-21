@@ -248,6 +248,7 @@ use MediaWiki\User\Registration\UserRegistrationLookup;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\TempUser\RealTempUserConfig;
 use MediaWiki\User\TempUser\TempUserCreator;
+use MediaWiki\User\TempUser\TempUserDetailsLookup;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
@@ -2360,6 +2361,13 @@ return [
 					'cache' => $services->getObjectCacheFactory()->getLocalClusterInstance(),
 				]
 			)
+		);
+	},
+
+	'TempUserDetailsLookup' => static function ( MediaWikiServices $services ): TempUserDetailsLookup {
+		return new TempUserDetailsLookup(
+			$services->getTempUserConfig(),
+			$services->getUserRegistrationLookup()
 		);
 	},
 
