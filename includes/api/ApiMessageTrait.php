@@ -35,6 +35,7 @@ trait ApiMessageTrait {
 	 * Compatibility code mappings for various MW messages.
 	 * @todo Ideally anything relying on this should be changed to use ApiMessage.
 	 * @var string[]
+	 * @phpcs-require-sorted-array
 	 */
 	protected static $messageMap = [
 		'actionthrottledtext' => 'ratelimited',
@@ -54,14 +55,14 @@ trait ApiMessageTrait {
 		'cantrollback' => 'onlyauthor',
 		'confirmedittext' => 'confirmemail',
 		'content-not-allowed-here' => 'contentnotallowedhere',
-		'deleteprotected' => 'cantedit',
 		'delete-toobig' => 'bigdelete',
+		'deleteprotected' => 'cantedit',
 		'edit-conflict' => 'editconflict',
 		'imagenocrossnamespace' => 'nonfilenamespace',
 		'imagetypemismatch' => 'filetypemismatch',
+		'import-noarticle' => 'badinterwiki',
 		'importbadinterwiki' => 'badinterwiki',
 		'importcantopen' => 'cantopenfile',
-		'import-noarticle' => 'badinterwiki',
 		'importnofile' => 'nofile',
 		'importuploaderrorpartial' => 'partialupload',
 		'importuploaderrorsize' => 'filetoobig',
@@ -71,6 +72,7 @@ trait ApiMessageTrait {
 		'ipb_cant_unblock' => 'cantunblock',
 		'ipb_expiry_invalid' => 'invalidexpiry',
 		'ip_range_invalid' => 'invalidrange',
+		'longpageerror' => 'contenttoobig',
 		'mailnologin' => 'cantsend',
 		'markedaspatrollederror-noautopatrol' => 'noautopatrol',
 		'movenologintext' => 'cantmove-anon',
@@ -94,8 +96,8 @@ trait ApiMessageTrait {
 		'systemblockedtext' => 'blocked',
 		'titleprotected' => 'protectedtitle',
 		'undo-failure' => 'undofailure',
-		'userrights-nodatabase' => 'nosuchdatabase',
 		'userrights-no-interwiki' => 'nointerwikiuserrights',
+		'userrights-nodatabase' => 'nosuchdatabase',
 	];
 
 	/** @var string|null */
