@@ -28,8 +28,8 @@
 				<a
 					:href="mw.util.getUrl( contribsTitle )"
 					:title="contribsTitle"
+					v-html="$i18n( 'ipb-blocklist-contribs', '<bdi>' + targetUser + '</bdi>' )"
 				>
-					{{ $i18n( 'ipb-blocklist-contribs', targetUser ) }}
 				</a>
 			</span>
 		</div>
