@@ -109,7 +109,7 @@ class ChangesList extends ContextSource {
 
 	private LogFormatterFactory $logFormatterFactory;
 
-	private UserLinkRenderer $userLinkRenderer;
+	protected UserLinkRenderer $userLinkRenderer;
 
 	/**
 	 * @param IContextSource $context
