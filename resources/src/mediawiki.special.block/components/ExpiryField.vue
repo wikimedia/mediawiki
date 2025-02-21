@@ -143,7 +143,7 @@ module.exports = exports = defineComponent( {
 			} else if ( expiryType.value === 'custom-duration' ) {
 				return `${ Number( customDurationNumber.value ) } ${ customDurationUnit.value }`;
 			} else {
-				return datetime.value;
+				return datetime.value ? datetime.value + 'Z' : '';
 			}
 		} );
 
