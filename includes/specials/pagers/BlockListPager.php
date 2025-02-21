@@ -323,13 +323,10 @@ class BlockListPager extends TablePager {
 			$query = [ 'id' => $row->bl_id ];
 			if ( $row->bt_auto ) {
 				$links[] = $linkRenderer->makeKnownLink(
-					$this->specialPageFactory->getTitleForAlias( 'Block' ),
+					$this->specialPageFactory->getTitleForAlias( 'Unblock' ),
 					$this->messages['remove-blocklink'],
 					[],
-					$query + [
-						'wpTarget' => $target,
-						'remove' => '1'
-					]
+					[ 'wpTarget' => "#{$row->bl_id}" ]
 				);
 			} else {
 				$specialBlock = $this->specialPageFactory->getTitleForAlias( "Block/$target" );
