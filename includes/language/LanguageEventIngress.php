@@ -4,7 +4,9 @@ namespace MediaWiki\Languages;
 
 use MediaWiki\DomainEvent\EventIngressBase;
 use MediaWiki\Page\Event\PageDeletedEvent;
+use MediaWiki\Page\Event\PageDeletedListener;
 use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
+use MediaWiki\Page\Event\PageRevisionUpdatedListener;
 use MediaWiki\Revision\SlotRecord;
 use MessageCache;
 
@@ -14,7 +16,10 @@ use MessageCache;
  *
  * @internal
  */
-class LanguageEventIngress extends EventIngressBase {
+class LanguageEventIngress
+	extends EventIngressBase
+	implements PageDeletedListener, PageRevisionUpdatedListener
+{
 
 	private MessageCache $messageCache;
 
@@ -39,7 +44,7 @@ class LanguageEventIngress extends EventIngressBase {
 	 *
 	 * @noinspection PhpUnused
 	 */
-	public function handlePageRevisionUpdatedEvent( PageRevisionUpdatedEvent $event ) {
+	public function handlePageRevisionUpdatedEvent( PageRevisionUpdatedEvent $event	) {
 		if ( $event->getPage()->getNamespace() === NS_MEDIAWIKI	&&
 			( $event->isModifiedSlot( SlotRecord::MAIN )
 				|| $event->hasCause( PageRevisionUpdatedEvent::CAUSE_MOVE )
@@ -52,7 +57,7 @@ class LanguageEventIngress extends EventIngressBase {
 	}
 
 	/**
-	 * Listener method for PageRevisionUpdatedEvent, to be registered with a DomainEventSource.
+	 * Listener method for PageDeletedEvent, to be registered with a DomainEventSource.
 	 *
 	 * @noinspection PhpUnused
 	 */
