@@ -906,6 +906,7 @@
 	"userpage-userdoesnotexist-view": "Shown in user pages of non-existing users. See for example [{{canonicalurl:User:Foo}} User:Foo].\n\nParameters:\n* $1 - a username\n{{Identical|Userdoesnotexist}}",
 	"blocked-notice-logextract": "{{gender}}\nParameters:\n* $1 - (Optional) the name of the blocked user. Can be used for GENDER.",
 	"blocked-notice-logextract-multi": "{{gender}}\nParameters:\n* $1 - (Optional) the name of the blocked user. Can be used for GENDER.\n* $2 - The number of blocks active for the current user. This will be at least 2.",
+	"blocked-notice-list-link": "Label for a link to Special:BlockList for the user being viewed.",
 	"clearyourcache": "Text at the top of .js/.json/.css pages.\n\nWhen translating browser function names, check how they are translated in the localized versions of these web browsers in your language. If a browser is not translated to it, use English or another language in which browsers are most commonly used by the speakers of your language.",
 	"usercssyoucanpreview": "Text displayed on every CSS page.\n\n{{Related|Userjspreview}}",
 	"userjsonyoucanpreview": "Text displayed on every JSON page.\n\n{{Related|Userjspreview}}",

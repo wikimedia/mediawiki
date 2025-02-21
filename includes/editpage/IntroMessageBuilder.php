@@ -4,7 +4,6 @@ namespace MediaWiki\EditPage;
 
 use LogEventsList;
 use LogicException;
-use MediaWiki\Block\Block;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Config\Config;
 use MediaWiki\Html\Html;
@@ -343,43 +342,16 @@ class IntroMessageBuilder {
 				return;
 			}
 
-			// TODO: factor out nearly identical code in Article::showMissingArticle
-			$numBlocks = 0;
-			$appliesToTitle = false;
-			$logTargetPage = '';
-			foreach ( $this->blockStore->newListFromTarget( $user, $user ) as $block ) {
-				if ( $block->getType() !== Block::TYPE_AUTO ) {
-					$numBlocks++;
-					if ( $block->appliesToTitle( $title ) ) {
-						$appliesToTitle = true;
-					}
-					$logTargetPage = $this->namespaceInfo->getCanonicalName( NS_USER ) .
-						':' . $block->getTargetName();
-				}
-			}
-
-			// Show log extract if the user is sitewide blocked or is partially
-			// blocked and not allowed to edit their user page or user talk page
-			if ( $numBlocks && $appliesToTitle ) {
-				$msgKey = $numBlocks === 1
-					? 'blocked-notice-logextract' : 'blocked-notice-logextract-multi';
-				$messages->addWithKey(
-					'blocked-notice-logextract',
-					$this->getLogExtract(
-						'block',
-						$logTargetPage,
-						'',
-						[
-							'lim' => 1,
-							'showIfEmpty' => false,
-							'msgKey' => [
-								$msgKey,
-								$user->getName(), # Support GENDER in notice
-								$numBlocks
-							],
-						]
-					)
-				);
+			$blockLogBox = LogEventsList::getBlockLogWarningBox(
+				$this->blockStore,
+				$this->namespaceInfo,
+				$localizer,
+				$this->linkRenderer,
+				$user,
+				$title
+			);
+			if ( $blockLogBox !== null ) {
+				$messages->addWithKey( 'blocked-notice-logextract', $blockLogBox );
 			}
 		}
 	}
