@@ -23,12 +23,12 @@ namespace MediaWiki\Pager;
 
 use ChangeTags;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -55,6 +55,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 	private LinkBatchFactory $linkBatchFactory;
 	private RevisionStore $revisionStore;
 	private CommentFormatter $commentFormatter;
+	private ChangeTagsStore $changeTagsStore;
 
 	public function __construct(
 		IContextSource $context,
@@ -63,6 +64,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		IConnectionProvider $dbProvider,
 		RevisionStore $revisionStore,
 		CommentFormatter $commentFormatter,
+		ChangeTagsStore $changeTagsStore,
 		$conds,
 		PageIdentity $source,
 		PageIdentity $dest,
@@ -93,6 +95,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->revisionStore = $revisionStore;
 		$this->commentFormatter = $commentFormatter;
+		$this->changeTagsStore = $changeTagsStore;
 	}
 
 	protected function doBatchLookups() {
@@ -214,7 +217,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 					]
 				)
 			] );
-		MediaWikiServices::getInstance()->getChangeTagsStore()->modifyDisplayQueryBuilder( $queryBuilder, 'revision' );
+		$this->changeTagsStore->modifyDisplayQueryBuilder( $queryBuilder, 'revision' );
 
 		return $queryBuilder->getQueryInfo( 'join_conds' );
 	}

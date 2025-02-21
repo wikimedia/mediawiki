@@ -1058,6 +1058,7 @@ class SpecialPageFactory {
 				'ConnectionProvider',
 				'RevisionStore',
 				'CommentFormatter',
+				'ChangeTagsStore',
 			]
 		],
 		'ExpandTemplates' => [
