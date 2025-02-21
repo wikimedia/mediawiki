@@ -1970,6 +1970,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Page\\DeletePage' => __DIR__ . '/includes/page/DeletePage.php',
 	'MediaWiki\\Page\\DeletePageFactory' => __DIR__ . '/includes/page/DeletePageFactory.php',
 	'MediaWiki\\Page\\Event\\PageEvent' => __DIR__ . '/includes/page/Event/PageEvent.php',
+	'MediaWiki\\Page\\Event\\PageMovedEvent' => __DIR__ . '/includes/page/Event/PageMovedEvent.php',
 	'MediaWiki\\Page\\Event\\PageUpdatedEvent' => __DIR__ . '/includes/page/Event/PageUpdatedEvent.php',
 	'MediaWiki\\Page\\ExistingPageRecord' => __DIR__ . '/includes/page/ExistingPageRecord.php',
 	'MediaWiki\\Page\\File\\BadFileLookup' => __DIR__ . '/includes/page/File/BadFileLookup.php',
