@@ -22,11 +22,11 @@ namespace MediaWiki\Status;
 
 use MediaWiki\Api\ApiMessage;
 use MediaWiki\Language\Language;
+use MediaWiki\Language\MessageParser;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\StubObject\StubUserLang;
-use MessageCache;
 use MessageLocalizer;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
@@ -45,16 +45,16 @@ use Wikimedia\Message\MessageSpecifier;
 class StatusFormatter {
 
 	private MessageLocalizer $messageLocalizer;
-	private MessageCache $messageCache;
+	private MessageParser $messageParser;
 	private LoggerInterface $logger;
 
 	public function __construct(
 		MessageLocalizer $messageLocalizer,
-		MessageCache $messageCache,
+		MessageParser $messageParser,
 		LoggerInterface $logger
 	) {
 		$this->messageLocalizer = $messageLocalizer;
-		$this->messageCache = $messageCache;
+		$this->messageParser = $messageParser;
 		$this->logger = $logger;
 	}
 
@@ -351,7 +351,7 @@ class StatusFormatter {
 		$lang = $options['lang'] ?? null;
 
 		$text = $this->getWikiText( $status, $options );
-		$out = $this->messageCache->parseWithPostprocessing(
+		$out = $this->messageParser->parse(
 			$text,
 			PageReferenceValue::localReference( NS_SPECIAL, 'Badtitle/StatusFormatter' ),
 			/*linestart*/ true,

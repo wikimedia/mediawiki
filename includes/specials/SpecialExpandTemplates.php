@@ -133,7 +133,6 @@ class SpecialExpandTemplates extends SpecialPage {
 			$rawhtml = MediaWikiServices::getInstance()->getDefaultOutputPipeline()
 				->run( $pout, $options, [ 'enableSectionEditLinks' => false ] )->getContentHolderText();
 			if ( $generateRawHtml && $rawhtml !== '' ) {
-				// @phan-suppress-next-line SecurityCheck-DoubleEscaped Wanted here to display the html
 				$out->addHTML( $this->makeOutput( $rawhtml, 'expand_templates_html_output' ) );
 			}
 

@@ -23,6 +23,7 @@ namespace MediaWiki\Specials;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
+use MediaWiki\Language\MessageParser;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
@@ -30,7 +31,6 @@ use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Xml\Xml;
-use MessageCache;
 use RecentChange;
 use SearchEngineFactory;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -51,7 +51,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 
 	public function __construct(
 		WatchedItemStoreInterface $watchedItemStore,
-		MessageCache $messageCache,
+		MessageParser $messageParser,
 		UserOptionsLookup $userOptionsLookup,
 		SearchEngineFactory $searchEngineFactory,
 		ChangeTagsStore $changeTagsStore,
@@ -60,7 +60,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 	) {
 		parent::__construct(
 			$watchedItemStore,
-			$messageCache,
+			$messageParser,
 			$userOptionsLookup,
 			$changeTagsStore,
 			$userIdentityUtils,

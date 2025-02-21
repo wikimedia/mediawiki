@@ -1746,7 +1746,7 @@ abstract class Skin extends ContextSource {
 		$messageTitle = $config->get( MainConfigNames::EnableSidebarCache )
 			? Title::newMainPage() : $this->getTitle();
 		$services = MediaWikiServices::getInstance();
-		$messageCache = $services->getMessageCache();
+		$messageParser = $services->getMessageParser();
 		$urlUtils = $services->getUrlUtils();
 
 		foreach ( $lines as $line ) {
@@ -1764,7 +1764,7 @@ abstract class Skin extends ContextSource {
 				$line = trim( $line, '* ' );
 
 				if ( strpos( $line, '|' ) !== false ) {
-					$line = $messageCache->transform( $line, false, null, $messageTitle );
+					$line = $messageParser->transform( $line, false, null, $messageTitle );
 					$line = array_map( 'trim', explode( '|', $line, 2 ) );
 					if ( count( $line ) !== 2 ) {
 						// Second check, could be hit by people doing

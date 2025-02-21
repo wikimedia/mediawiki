@@ -8,7 +8,6 @@ use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Status\StatusFormatter;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\User\UserIdentityUtils;
-use MessageCache;
 use MessageLocalizer;
 use Psr\Log\LoggerInterface;
 
@@ -19,7 +18,7 @@ use Psr\Log\LoggerInterface;
  */
 class FormatterFactory {
 
-	private MessageCache $messageCache;
+	private MessageParser $messageParser;
 	private TitleFormatter $titleFormatter;
 	private HookContainer $hookContainer;
 	private UserIdentityUtils $userIdentityUtils;
@@ -27,14 +26,14 @@ class FormatterFactory {
 	private LoggerInterface $logger;
 
 	public function __construct(
-		MessageCache $messageCache,
+		MessageParser $messageParser,
 		TitleFormatter $titleFormatter,
 		HookContainer $hookContainer,
 		UserIdentityUtils $userIdentityUtils,
 		LanguageFactory $languageFactory,
 		LoggerInterface $logger
 	) {
-		$this->messageCache = $messageCache;
+		$this->messageParser = $messageParser;
 		$this->titleFormatter = $titleFormatter;
 		$this->hookContainer = $hookContainer;
 		$this->userIdentityUtils = $userIdentityUtils;
@@ -43,7 +42,7 @@ class FormatterFactory {
 	}
 
 	public function getStatusFormatter( MessageLocalizer $messageLocalizer ): StatusFormatter {
-		return new StatusFormatter( $messageLocalizer, $this->messageCache, $this->logger );
+		return new StatusFormatter( $messageLocalizer, $this->messageParser, $this->logger );
 	}
 
 	public function getBlockErrorFormatter( LocalizationContext $context ): BlockErrorFormatter {

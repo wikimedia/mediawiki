@@ -22,6 +22,7 @@ namespace MediaWiki\Tests\Unit\Permissions;
 
 use InvalidArgumentException;
 use MediaWiki\Block\AbstractBlock;
+use MediaWiki\Language\MessageParser;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Permissions\PermissionStatus;
@@ -386,7 +387,7 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 
 		$formatter = new StatusFormatter(
 			new FakeQqxMessageLocalizer(),
-			$this->createNoOpMock( \MessageCache::class ),
+			$this->createNoOpMock( MessageParser::class ),
 			new NullLogger()
 		);
 		// Despite all the futzing around with services, StatusFormatter depends on this global through wfEscapeWikiText

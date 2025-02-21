@@ -251,6 +251,12 @@ because of Phabricator reports.
   DatabaseBlockStore::newFromRow(), which was meant to support the use of
   $schema, has been removed.
 * Block::TYPE_ID has been removed. Use DatabaseBlockStore::newFromID().
+* UserOptionsManager methods resetOptions, listOptionKinds and getOptionKinds,
+  deprecated since 1.43, have been removed.
+* When fetching a message containing {{PAGENAME}} or similar with
+  wfMessage(...)->text(), the title used will be Special:Badtitle unless a
+  context title was set with e.g. Message::setContext(). In the past, the title
+  used in a previous call was sometimes used.
 * …
 
 === Deprecations in 1.44 ===
@@ -301,8 +307,8 @@ because of Phabricator reports.
   service. (T308000)
 * The 'PermissionErrorAudit' hook has been deprecated and replaced by
   the 'PermissionStatusAudit' hook.
-* UserOptionsManager methods resetOptions, listOptionKinds and getOptionKinds,
-  deprecated since 1.43, have been removed.
+* MessageCache::parse, ::parseWithPostProcessing and ::transform() are now
+  deprecated. Use MessageParser.
 * …
 
 === Other changes in 1.44 ===

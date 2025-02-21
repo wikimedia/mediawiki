@@ -232,9 +232,7 @@ class EmailNotification {
 		$pageStatus = 'changed'
 	) {
 		# we use $wgPasswordSender as sender's address
-
 		$mwServices = MediaWikiServices::getInstance();
-		$messageCache = $mwServices->getMessageCache();
 		$config = $mwServices->getMainConfig();
 
 		# The following code is only run, if several conditions are met:
@@ -269,7 +267,7 @@ class EmailNotification {
 				&& $this->canSendUserTalkEmail( $editor->getUser(), $title, $minorEdit )
 			) {
 				$targetUser = User::newFromName( $title->getText() );
-				$this->compose( $targetUser, self::USER_TALK, $messageCache );
+				$this->compose( $targetUser, self::USER_TALK );
 				$userTalkId = $targetUser->getId();
 			}
 
@@ -291,7 +289,7 @@ class EmailNotification {
 							$watchingUser->getBlock() )
 						&& $hookRunner->onSendWatchlistEmailNotification( $watchingUser, $title, $this )
 					) {
-						$this->compose( $watchingUser, self::WATCHLIST, $messageCache );
+						$this->compose( $watchingUser, self::WATCHLIST );
 					}
 				}
 			}
@@ -304,7 +302,7 @@ class EmailNotification {
 			}
 			$user = User::newFromName( $name );
 			if ( $user instanceof User ) {
-				$this->compose( $user, self::ALL_CHANGES, $messageCache );
+				$this->compose( $user, self::ALL_CHANGES );
 			}
 		}
 		$this->sendMails();
@@ -361,11 +359,12 @@ class EmailNotification {
 	/**
 	 * Generate the generic "this page has been changed" e-mail text.
 	 */
-	private function composeCommonMailtext( MessageCache $messageCache ) {
+	private function composeCommonMailtext() {
 		$services = MediaWikiServices::getInstance();
 		$config = $services->getMainConfig();
 		$userOptionsLookup = $services->getUserOptionsLookup();
 		$urlUtils = $services->getUrlUtils();
+		$messageParser = $services->getMessageParser();
 
 		$this->composed_common = true;
 
@@ -457,7 +456,7 @@ class EmailNotification {
 
 		$body = wfMessage( 'enotif_body' )->inContentLanguage()->plain();
 		$body = strtr( $body, $keys );
-		$body = $messageCache->transform( $body, false, null, $this->title );
+		$body = $messageParser->transform( $body, false, null, $this->title );
 		$this->body = wordwrap( strtr( $body, $postTransformKeys ), 72 );
 
 		# Reveal the page editor's address as REPLY-TO address only if
@@ -493,11 +492,10 @@ class EmailNotification {
 	 * Call sendMails() to send any mails that were queued.
 	 * @param UserEmailContact $user
 	 * @param string $source
-	 * @param MessageCache $messageCache
 	 */
-	private function compose( UserEmailContact $user, $source, MessageCache $messageCache ) {
+	private function compose( UserEmailContact $user, $source ) {
 		if ( !$this->composed_common ) {
-			$this->composeCommonMailtext( $messageCache );
+			$this->composeCommonMailtext();
 		}
 
 		if ( MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::EnotifImpersonal ) ) {

@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Language\MessageParser;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Specials\SpecialRecentChanges;
@@ -26,7 +27,7 @@ class SpecialRecentChangesTest extends AbstractChangesListSpecialPageTestCase {
 	protected function getPage(): SpecialRecentChanges {
 		return new SpecialRecentChanges(
 			$this->getServiceContainer()->getWatchedItemStore(),
-			$this->getServiceContainer()->getMessageCache(),
+			$this->getServiceContainer()->getMessageParser(),
 			$this->getServiceContainer()->getUserOptionsLookup(),
 			$this->getServiceContainer()->getChangeTagsStore(),
 			$this->getServiceContainer()->getUserIdentityUtils(),
@@ -258,7 +259,7 @@ class SpecialRecentChangesTest extends AbstractChangesListSpecialPageTestCase {
 		$page = new class (
 			$dense,
 			$this->getServiceContainer()->getWatchedItemStore(),
-			$this->getServiceContainer()->getMessageCache(),
+			$this->getServiceContainer()->getMessageParser(),
 			$this->getServiceContainer()->getUserOptionsLookup()
 		)  extends SpecialRecentChanges {
 			private $dense;
@@ -266,10 +267,10 @@ class SpecialRecentChangesTest extends AbstractChangesListSpecialPageTestCase {
 			public function __construct(
 				$dense,
 				?WatchedItemStoreInterface $watchedItemStore = null,
-				?MessageCache $messageCache = null,
+				?MessageParser $messageParser = null,
 				?\MediaWiki\User\Options\UserOptionsLookup $userOptionsLookup = null
 			) {
-				parent::__construct( $watchedItemStore, $messageCache, $userOptionsLookup );
+				parent::__construct( $watchedItemStore, $messageParser, $userOptionsLookup );
 				$this->dense = $dense;
 			}
 
