@@ -70,6 +70,8 @@ class ImageListPager extends TablePager {
 	/** @var string[] */
 	private array $formattedComments = [];
 
+	private int $migrationStage;
+
 	/**
 	 * The unique sort fields for the sort options for unique paginate
 	 */
@@ -129,6 +131,9 @@ class ImageListPager extends TablePager {
 		$this->localRepo = $repoGroup->getLocalRepo();
 		$this->rowCommentFormatter = $rowCommentFormatter;
 		$this->linkBatchFactory = $linkBatchFactory;
+		$this->migrationStage = $this->getConfig()->get(
+			MainConfigNames::FileSchemaMigrationStage
+		);
 	}
 
 	/**
@@ -159,7 +164,7 @@ class ImageListPager extends TablePager {
 	 * @param string $table Either "image" or "oldimage"
 	 * @return array The query conditions.
 	 */
-	protected function buildQueryConds( $table ) {
+	protected function buildQueryCondsOld( $table ) {
 		$conds = [];
 
 		if ( $this->mUserName !== null ) {
@@ -176,6 +181,23 @@ class ImageListPager extends TablePager {
 
 		// Add mQueryConds in case anyone was subclassing and using the old variable.
 		return $conds + $this->mQueryConds;
+	}
+
+	private function buildQueryConds() {
+		$conds = [
+			'file_deleted' => 0,
+			'fr_deleted' => 0,
+		];
+
+		if ( $this->mUserName !== null ) {
+			// getQueryInfoReal() should have handled the tables and joins.
+			$conds['actor_name'] = $this->mUserName;
+		}
+
+		if ( !$this->mShowAll ) {
+			$conds[] = 'file_latest = fr_id';
+		}
+		return $conds;
 	}
 
 	protected function getFieldNames() {
@@ -228,10 +250,55 @@ class ImageListPager extends TablePager {
 	}
 
 	public function getQueryInfo() {
-		// Hacky Hacky Hacky - I want to get query info
-		// for two different tables, without reimplementing
-		// the pager class.
-		return $this->getQueryInfoReal( $this->mTableName );
+		if ( $this->migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+			// Hacky Hacky Hacky - I want to get query info
+			// for two different tables, without reimplementing
+			// the pager class.
+			return $this->getQueryInfoReal( $this->mTableName );
+		}
+		$dbr = $this->getDatabase();
+		$tables = [ 'filerevision', 'file', 'actor' ];
+		$fields = [
+			'img_timestamp' => 'fr_timestamp',
+			'img_name' => 'file_name',
+			'img_size' => 'fr_size',
+			'top' => 'CASE WHEN file_latest = fr_id THEN \'yes\' ELSE \'no\' END',
+		];
+		$join_conds = [
+			'filerevision' => [ 'JOIN', 'fr_file=file_id' ],
+			'actor' => [ 'JOIN', 'actor_id=fr_actor' ]
+		];
+
+		# Description field
+		$commentQuery = $this->commentStore->getJoin( 'fr_description' );
+		$tables += $commentQuery['tables'];
+		$fields += $commentQuery['fields'];
+		$join_conds += $commentQuery['joins'];
+		$fields['description_field'] = $dbr->addQuotes( "fr_description" );
+
+		# Actor fields
+		$fields[] = 'actor_user';
+		$fields[] = 'actor_name';
+
+		# Depends on $wgMiserMode
+		# Will also not happen if mShowAll is true.
+		if ( array_key_exists( 'count', $this->getFieldNames() ) ) {
+			$fields['count'] = new Subquery( $dbr->newSelectQueryBuilder()
+				->select( 'COUNT(fr_archive_name)' )
+				->from( 'filerevision' )
+				->where( 'fr_file = file_id' )
+				->caller( __METHOD__ )
+				->getSQL()
+			);
+		}
+
+		return [
+			'tables' => $tables,
+			'fields' => $fields,
+			'conds' => $this->buildQueryConds(),
+			'options' => [],
+			'join_conds' => $join_conds
+		];
 	}
 
 	/**
@@ -295,10 +362,18 @@ class ImageListPager extends TablePager {
 		return [
 			'tables' => $tables,
 			'fields' => $fields,
-			'conds' => $this->buildQueryConds( $table ),
+			'conds' => $this->buildQueryCondsOld( $table ),
 			'options' => [],
 			'join_conds' => $join_conds
 		];
+	}
+
+	public function reallyDoQuery( $offset, $limit, $order ) {
+		if ( $this->migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+			return $this->reallyDoQueryOld( $offset, $limit, $order );
+		} else {
+			return parent::reallyDoQuery( $offset, $limit, $order );
+		}
 	}
 
 	/**
@@ -309,7 +384,7 @@ class ImageListPager extends TablePager {
 	 * @param bool $order IndexPager::QUERY_ASCENDING or IndexPager::QUERY_DESCENDING
 	 * @return IResultWrapper
 	 */
-	public function reallyDoQuery( $offset, $limit, $order ) {
+	public function reallyDoQueryOld( $offset, $limit, $order ) {
 		$dbr = $this->getDatabase();
 		$prevTableName = $this->mTableName;
 		$this->mTableName = 'image';
@@ -425,7 +500,7 @@ class ImageListPager extends TablePager {
 	protected function doBatchLookups() {
 		$this->mResult->seek( 0 );
 		$batch = $this->linkBatchFactory->newLinkBatch();
-		$rowsWithComments = [ 'img_description' => [], 'oi_description' => [] ];
+		$rowsWithComments = [ 'img_description' => [], 'oi_description' => [], 'fr_description' => [] ];
 		foreach ( $this->mResult as $i => $row ) {
 			$batch->add( NS_USER, $row->actor_name );
 			$batch->add( NS_USER_TALK, $row->actor_name );
@@ -445,6 +520,12 @@ class ImageListPager extends TablePager {
 			$this->formattedComments += $this->rowCommentFormatter->formatRows(
 				$rowsWithComments['oi_description'],
 				'oi_description'
+			);
+		}
+		if ( $rowsWithComments['fr_description'] ) {
+			$this->formattedComments += $this->rowCommentFormatter->formatRows(
+				$rowsWithComments['fr_description'],
+				'fr_description'
 			);
 		}
 	}
@@ -520,7 +601,11 @@ class ImageListPager extends TablePager {
 			case 'img_description':
 				return $this->formattedComments[$this->getResultOffset()];
 			case 'count':
-				return htmlspecialchars( $this->getLanguage()->formatNum( intval( $value ) + 1 ) );
+				if ( $this->migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+					return htmlspecialchars( $this->getLanguage()->formatNum( intval( $value ) + 1 ) );
+				} else {
+					return htmlspecialchars( $this->getLanguage()->formatNum( intval( $value ) ) );
+				}
 			case 'top':
 				// Messages: listfiles-latestversion-yes, listfiles-latestversion-no
 				return $this->msg( 'listfiles-latestversion-' . $value )->escaped();
