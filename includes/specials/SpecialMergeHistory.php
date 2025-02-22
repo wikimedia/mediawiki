@@ -23,6 +23,7 @@ namespace MediaWiki\Specials;
 use LogEventsList;
 use LogPage;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Page\MergeHistoryFactory;
@@ -81,6 +82,7 @@ class SpecialMergeHistory extends SpecialPage {
 	private IConnectionProvider $dbProvider;
 	private RevisionStore $revisionStore;
 	private CommentFormatter $commentFormatter;
+	private ChangeTagsStore $changeTagsStore;
 
 	/** @var Status */
 	private $mStatus;
@@ -90,7 +92,8 @@ class SpecialMergeHistory extends SpecialPage {
 		LinkBatchFactory $linkBatchFactory,
 		IConnectionProvider $dbProvider,
 		RevisionStore $revisionStore,
-		CommentFormatter $commentFormatter
+		CommentFormatter $commentFormatter,
+		ChangeTagsStore $changeTagsStore
 	) {
 		parent::__construct( 'MergeHistory', 'mergehistory' );
 		$this->mergeHistoryFactory = $mergeHistoryFactory;
@@ -98,6 +101,7 @@ class SpecialMergeHistory extends SpecialPage {
 		$this->dbProvider = $dbProvider;
 		$this->revisionStore = $revisionStore;
 		$this->commentFormatter = $commentFormatter;
+		$this->changeTagsStore = $changeTagsStore;
 	}
 
 	public function doesWrites() {
@@ -245,6 +249,7 @@ class SpecialMergeHistory extends SpecialPage {
 			$this->dbProvider,
 			$this->revisionStore,
 			$this->commentFormatter,
+			$this->changeTagsStore,
 			[],
 			$this->mTargetObj,
 			$this->mDestObj,
