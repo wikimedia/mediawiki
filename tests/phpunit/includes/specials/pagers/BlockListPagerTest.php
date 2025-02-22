@@ -175,7 +175,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 				$row,
 			],
 			[
-				'by',
+				'bl_by',
 				'<a %s><bdi>Admin</bdi></a>%s',
 				$row,
 			],
