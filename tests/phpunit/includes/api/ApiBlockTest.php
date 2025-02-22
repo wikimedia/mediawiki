@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Api;
 
+use LogEntryBase;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\Restriction\ActionRestriction;
@@ -14,6 +15,7 @@ use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\User;
 use MediaWiki\User\UserRigorOptions;
 use MediaWiki\Utils\MWTimestamp;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * @group API
@@ -209,6 +211,20 @@ class ApiBlockTest extends ApiTestCase {
 			->where( [ 'bl_id' => $res[0]['block']['id'] ] )
 			->caller( __METHOD__ )->fetchField();
 		$this->assertSame( (int)wfTimestamp( TS_UNIX, $expiry ), $fakeTime + 86400 );
+
+		// Check log format (T248196)
+		$blob = $this->newSelectQueryBuilder()
+			->select( 'log_params' )
+			->from( 'logging' )
+			->where( [
+				'log_action' => 'block',
+				'log_type' => 'block'
+			] )
+			->orderBy( 'log_timestamp', SelectQueryBuilder::SORT_DESC )
+			->caller( __METHOD__ )
+			->fetchField();
+		$params = LogEntryBase::extractParams( $blob );
+		$this->assertSame( '1 day', $params['5::duration'] );
 	}
 
 	public function testBlockWithInvalidExpiry() {
