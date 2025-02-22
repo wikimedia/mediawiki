@@ -5384,6 +5384,7 @@ class MainConfigSchema {
 					"src" => null,
 					"url" => "https://www.mediawiki.org/",
 					"alt" => "Powered by MediaWiki",
+					"lang" => "en",
 				]
 			],
 		],
