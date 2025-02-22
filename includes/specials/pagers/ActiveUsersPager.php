@@ -30,6 +30,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
+use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
@@ -73,6 +74,7 @@ class ActiveUsersPager extends UsersPager {
 		UserGroupManager $userGroupManager,
 		UserIdentityLookup $userIdentityLookup,
 		HideUserUtils $hideUserUtils,
+		TempUserConfig $tempUserConfig,
 		FormOptions $opts
 	) {
 		parent::__construct(
@@ -83,6 +85,7 @@ class ActiveUsersPager extends UsersPager {
 			$userGroupManager,
 			$userIdentityLookup,
 			$hideUserUtils,
+			$tempUserConfig,
 			null,
 			null
 		);

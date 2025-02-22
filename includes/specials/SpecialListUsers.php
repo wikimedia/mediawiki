@@ -29,6 +29,7 @@ use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\Html;
 use MediaWiki\Pager\UsersPager;
 use MediaWiki\SpecialPage\IncludableSpecialPage;
+use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentityLookup;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -45,13 +46,15 @@ class SpecialListUsers extends IncludableSpecialPage {
 	private UserGroupManager $userGroupManager;
 	private UserIdentityLookup $userIdentityLookup;
 	private HideUserUtils $hideUserUtils;
+	private TempUserConfig $tempUserConfig;
 
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		IConnectionProvider $dbProvider,
 		UserGroupManager $userGroupManager,
 		UserIdentityLookup $userIdentityLookup,
-		HideUserUtils $hideUserUtils
+		HideUserUtils $hideUserUtils,
+		TempUserConfig $tempUserConfig
 	) {
 		parent::__construct( 'Listusers' );
 		$this->linkBatchFactory = $linkBatchFactory;
@@ -59,6 +62,7 @@ class SpecialListUsers extends IncludableSpecialPage {
 		$this->userGroupManager = $userGroupManager;
 		$this->userIdentityLookup = $userIdentityLookup;
 		$this->hideUserUtils = $hideUserUtils;
+		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	/**
@@ -76,6 +80,7 @@ class SpecialListUsers extends IncludableSpecialPage {
 			$this->userGroupManager,
 			$this->userIdentityLookup,
 			$this->hideUserUtils,
+			$this->tempUserConfig,
 			$par,
 			$this->including()
 		);
