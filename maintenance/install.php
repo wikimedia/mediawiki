@@ -182,6 +182,10 @@ class CommandLineInstaller extends Maintenance {
 			$this->setOption( 'dbuser', $dbUser );
 			$this->setOption( 'dbpass', $dbPass );
 			$this->setOption( 'dbserver', $dbServer );
+			if ( !$this->promptYesNo( 'Do you want to continue with the installation?', true ) ) {
+				$this->output( "Installation aborted.\n" );
+				return false;
+			}
 		}
 
 		$siteName = $this->getArg( 0, 'MediaWiki' ); // Will not be set if used with --env-checks
