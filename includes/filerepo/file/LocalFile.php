@@ -2108,7 +2108,7 @@ class LocalFile extends File {
 
 				$nullRevRecord = $wikiPage->newPageUpdater( $performer->getUser() )
 					->setCause( PageUpdater::CAUSE_UPLOAD )
-					->saveDummyRevision( $editSummary );
+					->saveDummyRevision( $editSummary, EDIT_SILENT );
 
 				// Associate null revision id
 				$logEntry->setAssociatedRevId( $nullRevRecord->getId() );

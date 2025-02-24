@@ -928,7 +928,7 @@ class MovePage {
 				'oldtitle' => $this->oldTitle,
 				'oldcountable' => $oldcountable,
 			] )
-			->saveDummyRevision( $comment );
+			->saveDummyRevision( $comment, EDIT_SILENT | EDIT_MINOR );
 
 		$logEntry->setAssociatedRevId( $nullRevision->getId() );
 

@@ -1018,6 +1018,11 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 
 				Assert::assertTrue( $event->isSilent(), 'isSilent' );
 				Assert::assertTrue( $event->isImplicit(), 'isImplicit' );
+
+				Assert::assertFalse(
+					$event->getNewRevision()->isMinor(),
+					'isMinor'
+				);
 			}
 		);
 

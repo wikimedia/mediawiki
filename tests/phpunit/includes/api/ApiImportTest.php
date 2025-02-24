@@ -60,11 +60,23 @@ class ApiImportTest extends ApiUploadTestCase {
 					Assert::assertTrue( $event->isCreation(), 'isCreation' );
 					Assert::assertTrue( $event->isRevisionChange(), 'isRevisionChange' );
 					Assert::assertTrue( $event->isContentChange(), 'isContentChange' );
+					Assert::assertTrue( $event->isSilent(), 'isSilent' );
+
+					Assert::assertFalse(
+						$event->getNewRevision()->isMinor(),
+						'isMinor'
+					);
 				} else {
 					// Second call, from ApiImportReporter
 					Assert::assertFalse( $event->isCreation(), 'isCreation' );
 					Assert::assertTrue( $event->isRevisionChange(), 'isRevisionChange' );
 					Assert::assertFalse( $event->isContentChange(), 'isContentChange' );
+					Assert::assertTrue( $event->isSilent(), 'isSilent' );
+
+					Assert::assertTrue(
+						$event->getNewRevision()->isMinor(),
+						'isMinor'
+					);
 				}
 			}
 		);

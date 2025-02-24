@@ -803,13 +803,17 @@ class PageUpdater implements PageUpdateCauses {
 	 * revision history, such as the page getting renamed.
 	 *
 	 * @param CommentStoreComment|string $summary Edit summary
+	 * @param int $flags Bitfield, will be combined with the flags set via setFlags().
+	 *        Callers should use this to set the EDIT_SILENT and EDIT_MINOR flag
+	 *        if appropriate. The EDIT_UPDATE | EDIT_INTERNAL | EDIT_IMPLICIT
+	 *        flags will always be set.
 	 *
 	 * @return RevisionRecord The newly created dummy revision
 	 *
 	 * @since 1.44
 	 */
-	public function saveDummyRevision( $summary ) {
-		$flags = EDIT_UPDATE | EDIT_SILENT | EDIT_INTERNAL | EDIT_IMPLICIT;
+	public function saveDummyRevision( $summary, int $flags = 0 ) {
+		$flags |= EDIT_UPDATE | EDIT_INTERNAL | EDIT_IMPLICIT;
 
 		$this->setForceEmptyRevision( true );
 		$rev = $this->saveRevision( $summary, $flags );
