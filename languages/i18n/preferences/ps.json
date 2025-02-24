@@ -18,7 +18,7 @@
 	"prefs-tabs-navigation-hint": "لارښوونه: تاسې د کيڼ او ښي غشيو د تڼيو په کارولو سره د ټبونولړليک کې د ټبونو په مېنځ گرځېدلی شئ.",
 	"prefs-personal": "د کارن پېژنليک",
 	"prefs-info": "بنسټيز مالومات",
-	"username": "{{GENDER:$1|کارننوم}}:",
+	"username": "{{GENDER:$1|کارن‌نوم}}:",
 	"prefs-memberingroups": "د {{PLURAL:$1|ډله|ډلې}} {{GENDER:$2|غړی}}:",
 	"group-membership-link-with-expiry": "$1 (تر $2)",
 	"prefs-edits": "د سمونو شمېر:",

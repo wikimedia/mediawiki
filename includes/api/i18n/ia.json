@@ -1724,7 +1724,6 @@
 	"apierror-compare-relative-to-deleted": "Non pote usar <kbd>torelative=$1</kbd> relative a un version delite.",
 	"apierror-compare-relative-to-nothing": "Necun version 'from' pro <var>torelative</var> al qual esser relative.",
 	"apierror-contentserializationexception": "Serialisation de contento fallite: $1",
-	"apierror-contenttoobig": "Le contento fornite excede le limite de grandor de paginas de $1 kibibyte{{PLURAL:$1||s}}.",
 	"apierror-contentmodel-mismatch": "Le contento que tu forniva ha le modello de contento <kbd>$1</kbd>, que es differente del modello de contento actual del pagina, <kbd>$2</kbd>.",
 	"apierror-copyuploadbaddomain": "Le incargamentos per URL ab iste dominio non es autorisate.",
 	"apierror-copyuploadbadurl": "Le incargamentos ab iste URL non es autorisate.",

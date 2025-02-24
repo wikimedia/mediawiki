@@ -342,6 +342,7 @@
 	"cannotcreateaccount-text": "A creación directa de contas de usuario non está activada neste wiki.",
 	"yourdomainname": "O teu dominio:",
 	"password-change-forbidden": "Non podes mudar os contrasinais neste wiki.",
+	"error-temporary-accounts-cannot-have-passwords": "As contas temporais non poden ter contrasinais.",
 	"externaldberror": "Ou ben se produciu un erro na base de datos de autenticación ou ben non se che permite actualizar a túa conta externa.",
 	"login": "Acceder ao sistema",
 	"login-security": "Verifica a túa identidade",

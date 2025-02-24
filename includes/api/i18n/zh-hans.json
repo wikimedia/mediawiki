@@ -1783,7 +1783,6 @@
 	"apierror-compare-relative-to-deleted": "不能相对于已删除的修订版本使用<kbd>torelative=$1</kbd>。",
 	"apierror-compare-relative-to-nothing": "没有与<var>torelative</var>的“from”修订版本相对的版本。",
 	"apierror-contentserializationexception": "内容序列化失败：$1",
-	"apierror-contenttoobig": "您提供的内容超过了$1{{PLURAL:$1|千字节}}的页面大小限制。",
 	"apierror-contentmodel-mismatch": "您提供的内容具有<kbd>$1</kbd>内容模型，它不同于页面<kbd>$2</kbd>的当前内容模型。",
 	"apierror-copyuploadbaddomain": "不允许从此域名通过URL上传。",
 	"apierror-copyuploadbadurl": "不允许从此URL上传。",

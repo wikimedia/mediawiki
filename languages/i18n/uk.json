@@ -3674,7 +3674,7 @@
 	"logentry-rights-rights-granted": "{{GENDER:$2|надано}} $1",
 	"logentry-rights-rights-revoked": "{{GENDER:$2|відкликано}} $1",
 	"logentry-rights-rights-expiry-changed": "{{GENDER:$2|змінено}} термін дії для $1",
-	"logentry-rights-rights-kept": "{{GENDER:$2|збережено}} $1 без змін",
+	"logentry-rights-rights-kept": "{{GENDER:$2|залишено без змін}} $1",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|змінив|змінила}} членство в групах для $3",
 	"logentry-rights-autopromote": "$1 автоматично {{GENDER:$2|змінив|змінила|змінили}} своє членство в групах: $7",
 	"logentry-rights-autopromote-granted": "{{GENDER:$2|отримано}} $1",

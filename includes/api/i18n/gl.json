@@ -1741,7 +1741,6 @@
 	"apierror-compare-relative-to-deleted": "Non se pode usar <kbd>torelative=$1</kbd> en relación a unha revisión eliminada.",
 	"apierror-compare-relative-to-nothing": "Non hai ningunha revisión \"from\" en relación á cal <var>torelative</var> sexa relativa.",
 	"apierror-contentserializationexception": "Erro de serialización do contidoː $1",
-	"apierror-contenttoobig": "O contido que achegaches excede o límite de tamaño dunha páxina, que é de $1 {{PLURAL:$1|kibibyte|kibibytes}}.",
 	"apierror-contentmodel-mismatch": "O contido que achegaches ten o modelo de contido <kbd>$1</kbd>, que difire do modelo de contido actual da páxina: <kbd>$2</kbd>.",
 	"apierror-copyuploadbaddomain": "As subas por URL non están permitidas para este dominio.",
 	"apierror-copyuploadbadurl": "As subas non están permitidas para este enderezo URL.",

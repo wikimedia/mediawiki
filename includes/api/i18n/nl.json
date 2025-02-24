@@ -1750,7 +1750,6 @@
 	"apierror-compare-relative-to-deleted": "<kbd>torelative=$1</kbd> kan niet ten opzichte van een verwijderde versie worden gebruikt.",
 	"apierror-compare-relative-to-nothing": "Er is geen ‘from’-versie waaraan <var>torelative</var> relatief kan zijn.",
 	"apierror-contentserializationexception": "Inhoudsserialisatie mislukt: $1",
-	"apierror-contenttoobig": "De opgegeven inhoud overschrijdt de limiet op de paginagrootte van $1 {{PLURAL:$1|kibibyte|kibibytes}}.",
 	"apierror-contentmodel-mismatch": "De door u aangeleverde inhoud is van het inhoudsmodel <kbd>$1</kbd>, wat verschilt van het huidige inhoudsmodel van de pagina, <kbd>$2</kbd>.",
 	"apierror-copyuploadbaddomain": "Uploads via URL zijn niet toegestaan vanaf dit domein.",
 	"apierror-copyuploadbadurl": "Uploaden vanaf deze URL is niet toegestaan.",

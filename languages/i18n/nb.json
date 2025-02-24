@@ -3598,7 +3598,7 @@
 	"logentry-rights-rights-kept": "{{GENDER:$2|beholdt}} $1 uten endringer",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|endret}} gruppemedlemskap for $3",
 	"logentry-rights-autopromote": "$1 endret automatisk gruppemedlemskapet {{GENDER:$2|sitt}}: $7",
-	"logentry-rights-autopromote-granted": "{{GENDR:$2|fikk}} $1",
+	"logentry-rights-autopromote-granted": "{{GENDER:$2|fikk}} $1",
 	"logentry-rights-autopromote-revoked": "{{GENDER:$2|mistet}} $1",
 	"logentry-rights-autopromote-expiry-changed": "{{GENDER:$2|endret}} utløpstiden for $1",
 	"logentry-rights-autopromote-kept": "{{GENDER:$2|beholdt}} $1 uten endringer",

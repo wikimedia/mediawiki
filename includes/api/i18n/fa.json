@@ -498,7 +498,6 @@
 	"apierror-changecontentmodel-nodirectediting": "مدل محتوای $1 از ویرایش مستقیم پشتیبانی نمی‌کند",
 	"apierror-changecontentmodel-cannotbeused": "مدل محتوای $1 در $2 قابل استفاده نیست",
 	"apierror-changecontentmodel-cannot-convert": "ناتوان در تبدیل مدل محتوای $1 به $2",
-	"apierror-contenttoobig": "حجم محتوای ارائه‌شده از سوی شما از محدودیت اندازهٔ مقاله برابر با $1 {{PLURAL:$1|کیبی‌بایت}} گذر کرده است.",
 	"apierror-contentmodel-mismatch": "محتوایی که وارد کرده‌اید دارای مدل محتوایی <kbd>$1</kbd> است که با مدل محتوای کنونی صفحه <kbd>$2</kbd> متفاوت است.",
 	"apierror-nosuchrcid": "تغییر اخیری با شناسهٔ $1 موجود نیست.",
 	"api-credits-header": "اعتبار"

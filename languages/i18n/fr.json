@@ -523,6 +523,7 @@
 	"cannotcreateaccount-text": "La création directe de comptes utilisateurs n’est pas activée sur ce wiki.",
 	"yourdomainname": "Votre domaine :",
 	"password-change-forbidden": "Vous ne pouvez pas modifier les mots de passe sur ce wiki.",
+	"error-temporary-accounts-cannot-have-passwords": "Les comptes temporaires ne peuvent pas avoir de mots de passe.",
 	"externaldberror": "Soit une erreur s’est produite sur la base de données d’authentification, soit vous n’êtes pas autorisé à mettre à jour votre compte externe.",
 	"login": "Se connecter",
 	"login-security": "Vérifier votre identité",

@@ -1726,7 +1726,6 @@
 	"apierror-compare-relative-to-deleted": "O no peu dêuviâ <kbd>torelative=$1</kbd> relatîvo a 'na versción scancelâ.",
 	"apierror-compare-relative-to-nothing": "Nisciùnn-a versción 'from' pe <var>torelative</var> relatîvo a lê.",
 	"apierror-contentserializationexception": "Serializaçión do contegnûo falîaː $1",
-	"apierror-contenttoobig": "O contegnûo fornîo o sùpera o lìmite de dimensción da pàgina de $1 {{PLURAL:$1|kibibyte}}.",
 	"apierror-contentmodel-mismatch": "O contegnûo fornîo o l'à o modèllo de contegnûo <kbd>$1</kbd>, ch'o diferìsce da-o modèllo de contegnûo corénte da pàgina <kbd>$2</kbd>.",
 	"apierror-copyuploadbaddomain": "I caregaménti da URL no són consentîi da sto domìnnio chi.",
 	"apierror-copyuploadbadurl": "I caregaménti no són consentîi da sto URL chi.",

@@ -276,7 +276,7 @@
 	"config-install-user-missing-create": "Määriteltyä käyttäjää \"$1\" ei ole olemassa.\nValitse alapuolelta \"lisää tili\" jos haluat että se luodaan.",
 	"config-install-logo-blank": "Anna kelvollinen logon URL.",
 	"config-install-restore-services": "Palautetaan mediawiki-palveluja",
-	"config-install-tables": "Luodaan tauluja, vaihe yksi",
+	"config-install-tables": "Luodaan tauluja",
 	"config-install-tables-exist": "<strong>Varoitus:</strong> MediaWiki taulut ovat jo olemassa.\nOhitetaan taulujen luonti.",
 	"config-install-tables-failed": "<strong>Virhe:</strong> Taulujen luominen epäonnistui seuraavaan virheen takia: $1",
 	"config-install-interwiki": "Luodaan oletustaulua interwikille",

@@ -99,6 +99,7 @@
 	"emailauthenticated": "E-poçt ünvanınız $3, $2 tarixində təsdiq edilib.",
 	"allowemail": "Digər istifadəçilərin mənə e-poçt göndərməsinə icazə ver",
 	"email-allow-new-users-label": "Tamamilə yeni istifadəçilərdən e-poçt gəlməsinə icazə ver",
+	"prefs-help-email-allow-new-users": "Bu seçimi aktivləşdirmək [[{{MediaWiki:grouppage-autoconfirmed}}|avtotəsdiqlənmiş]] olmayan istifadəçilərə sizə e-poçt göndərmək imkanı verəcək.",
 	"tog-ccmeonemails": "Göndərdiyim e-poçtun nüsxəsini mənə göndər",
 	"email-mutelist-label": "Bu istifadəçilərin mənə e-poçt göndərməsinə qadağa qoy:",
 	"tog-enotifwatchlistpages": "İzləmə siyahımdakı səhifə və ya fayl redaktə edildikdə mənə e-poçt göndər",

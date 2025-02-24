@@ -1672,7 +1672,6 @@
 	"apierror-compare-relative-to-deleted": "لا يمكن استخدام <kbd>torelative=$1</kbd> بالنسبة لمراجعة محذوفة.",
 	"apierror-compare-relative-to-nothing": "لا توجد مراجعة 'من' لـ<var>torelative</var> لتكون نسبة.",
 	"apierror-contentserializationexception": "فشل تسلسل المحتوى: $1",
-	"apierror-contenttoobig": "المحتوى الذي قمت بتقديمه يتجاوز الحد الأقصى لحجم الصفحة وهو $1 {{PLURAL:$1| kibibyte|kibibytes}}.",
 	"apierror-copyuploadbaddomain": "لا يُسمَح بالمرفوعات بواسطة مسار من هذا النطاق.",
 	"apierror-copyuploadbadurl": "لا يُسمَح بالرفع من هذا المسار.",
 	"apierror-create-titleexists": "لا يمكن حماية العناوين الموجودة باستخدام <kbd>create</kbd>.",

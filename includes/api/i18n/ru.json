@@ -1695,7 +1695,6 @@
 	"apierror-compare-notext": "Параметр <var>$1</var> нельзя использовать без <var>$2</var>.",
 	"apierror-compare-relative-to-nothing": "Нет версии 'from', к которой относится <var>torelative</var>.",
 	"apierror-contentserializationexception": "Сериализация содержимого провалилась: $1",
-	"apierror-contenttoobig": "Предоставленное вами содержимое превышает максимальный размер страницы в $1 {{PLURAL:$1|килобайт|килобайта|килобайтов}}.",
 	"apierror-copyuploadbaddomain": "Загрузка по ссылке недоступна с этого домена.",
 	"apierror-copyuploadbadurl": "Загрузка по этой ссылке недоступна.",
 	"apierror-create-titleexists": "Существующие названия не могут быть защищены с помощью <kbd>create</kbd>.",

@@ -1729,7 +1729,6 @@
 	"apierror-compare-relative-to-deleted": "Não pode usar <kbd>torelative=$1</kbd> com relação a uma revisão eliminada.",
 	"apierror-compare-relative-to-nothing": "Não existe uma revisão 'from' em relação à qual <var>torelative</var> possa ser relativo.",
 	"apierror-contentserializationexception": "A seriação do conteúdo falhou: $1",
-	"apierror-contenttoobig": "O conteúdo fornecido excede o limite de tamanho de página de $1 {{PLURAL:$1| kibibyte|kibibytes}}.",
 	"apierror-contentmodel-mismatch": "O conteúdo que forneceu tem o modelo de conteúdo <kbd>$1</kbd>, que é diferente do modelo de conteúdo atual da página, <kbd>$2</kbd>.",
 	"apierror-copyuploadbaddomain": "Não são permitidos carregamentos por URL a partir deste domínio.",
 	"apierror-copyuploadbadurl": "Não são permitidos carregamentos a partir deste URL.",

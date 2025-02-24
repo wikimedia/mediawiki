@@ -1700,7 +1700,6 @@
 	"apierror-compare-relative-to-deleted": "Неможливо використати <kbd>torelative=$1</kbd> стосовно вилученої версії.",
 	"apierror-compare-relative-to-nothing": "Відсутня версія 'from', якої б стосувалося <var>torelative</var>.",
 	"apierror-contentserializationexception": "Невдача серіалізації вмісту: $1",
-	"apierror-contenttoobig": "Наданий вами вміст перевищує ліміт у $1 {{PLURAL:$1|кібібайт|кібібайти|кібібайтів}} розміру сторінки.",
 	"apierror-contentmodel-mismatch": "Наданий вами вміст має <kbd>$1</kbd> модель вмісту, яка відрізняється від поточної моделі вмісту сторінки <kbd>$2</kbd>.",
 	"apierror-copyuploadbaddomain": "Завантаження за URL-адресою недозволені з цього домену.",
 	"apierror-copyuploadbadurl": "Завантаження з цієї URL-адреси недозволені.",

@@ -353,7 +353,7 @@
 	"postedit-confirmation-created": "صَفہٕ آو تَخلیٖق کَرنہٕ۔",
 	"postedit-confirmation-restored": "صَفہٕ آو بَحال کَرنہٕ۔",
 	"postedit-confirmation-saved": "تُہُنٛد اؠڈِٹ آو مَحفوٗظ کَرنہٕ.",
-	"postedit-confirmation-published": "تُہُنٛد اؠڑِٹ آو شایع کَرنہٕ۔",
+	"postedit-confirmation-published": "[[Special:Diff/$2|تُہُنٛد اؠڑِٹ]] آو شایع کَرنہٕ۔",
 	"postedit-temp-created-label": "عارضی کھاتہٕ",
 	"edit-already-exists": "نٔو صَفہٕ آو نہٕ تَخلیٖق کَرنہٕ۔\nیہِ چھُ گۄڈے موٗجوٗد۔",
 	"slot-name-main": "اصلی",
