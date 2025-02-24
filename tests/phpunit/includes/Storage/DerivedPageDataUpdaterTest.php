@@ -34,6 +34,7 @@ use MediaWiki\Storage\DerivedPageDataUpdater;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\EditResultCache;
 use MediaWiki\Storage\RevisionSlotsUpdate;
+use MediaWiki\Tests\ExpectCallbackTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
@@ -56,6 +57,7 @@ use WikiPage;
  */
 class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	use MockTitleTrait;
+	use ExpectCallbackTrait;
 
 	/**
 	 * @param string $title
@@ -443,6 +445,52 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$canonicalOutput = $updater2->getCanonicalParserOutput();
 		$this->assertStringContainsString( 'second', $canonicalOutput->getRawText() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::prepareUpdate()
+	 */
+	public function testPrepareUpdate_null() {
+		$page = $this->getExistingTestPage( __METHOD__ );
+		$rev1 = $page->getRevisionRecord();
+
+		$page = $this->getPage( $page->getTitle() );
+		$updater1 = $this->getDerivedPageDataUpdater( $page, $rev1 );
+
+		$editResult = new EditResult(
+			false, $rev1->getId(), null, null, null, false, true, []
+		);
+
+		$options = [
+			'editResult' => $editResult,
+			'changed' => false
+		];
+		$updater1->grabCurrentRevision();
+		$updater1->prepareContent(
+			$rev1->getUser(),
+			RevisionSlotsUpdate::newFromContent( [
+				SlotRecord::MAIN => $rev1->getMainContentRaw()
+			] )
+		);
+		$updater1->prepareUpdate( $rev1, $options );
+
+		$this->assertTrue( $updater1->isUpdatePrepared() );
+		$this->assertTrue( $updater1->isContentPrepared() );
+		$this->assertFalse( $updater1->isCreation() );
+		$this->assertFalse( $updater1->isChange() );
+
+		$this->expectDomainEvent(
+			PageUpdatedEvent::TYPE, 1,
+			static function ( PageUpdatedEvent $event ) use ( $rev1, $editResult ) {
+				Assert::assertSame( $rev1, $event->getNewRevision() );
+				Assert::assertSame( $rev1->getId(), $event->getOldRevision()->getId() );
+				Assert::assertSame( $editResult, $event->getEditResult() );
+				Assert::assertFalse( $event->isCreation() );
+				Assert::assertFalse( $event->isRevisionChange() );
+			}
+		);
+
+		$updater1->doUpdates();
 	}
 
 	/**

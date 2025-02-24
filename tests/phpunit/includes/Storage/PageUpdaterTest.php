@@ -465,12 +465,10 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 				'getAuthor'
 			);
 
-			if ( $revisionChange ) {
-				Assert::assertNotNull(
-					$event->getEditResult(),
-					'getEditResult'
-				);
-			}
+			Assert::assertNotNull(
+				$event->getEditResult(),
+				'getEditResult'
+			);
 
 			if ( $old ) {
 				Assert::assertSame(

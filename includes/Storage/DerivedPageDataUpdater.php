@@ -1249,7 +1249,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 
 		if ( $this->revision && $this->revision->getId() ) {
 			if ( $this->revision->getId() === $revision->getId() ) {
-				return; // nothing to do!
+				$this->options['changed'] = false; // null-edit
 			} else {
 				throw new LogicException(
 					'Trying to re-use DerivedPageDataUpdater with revision '
