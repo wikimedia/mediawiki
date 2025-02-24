@@ -89,7 +89,8 @@ abstract class UserOptionsLookupTestBase extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getHookContainer(),
 			$this->getServiceContainer()->getNamespaceInfo(),
 			$this->getServiceContainer()->get( '_ConditionalDefaultsLookup' ),
-			$this->getServiceContainer()->getUserIdentityLookup()
+			$this->getServiceContainer()->getUserIdentityLookup(),
+			$this->getServiceContainer()->get( 'UserNameUtils' )
 		);
 	}
 

@@ -21,6 +21,7 @@
 namespace MediaWiki\User\Options;
 
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserNameUtils;
 use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
@@ -40,6 +41,12 @@ abstract class UserOptionsLookup {
 	 * @since 1.43
 	 */
 	public const LOCAL_EXCEPTION_SUFFIX = '-local-exception';
+
+	private UserNameUtils $userNameUtils;
+
+	public function __construct( UserNameUtils $userNameUtils ) {
+		$this->userNameUtils = $userNameUtils;
+	}
 
 	/**
 	 * Combine the language default options with any site-specific and user-specific defaults
@@ -147,6 +154,26 @@ abstract class UserOptionsLookup {
 			$val = $defaultOverride;
 		}
 		return intval( $val );
+	}
+
+	/**
+	 * Get a cache key for a user
+	 * @param UserIdentity $user
+	 * @return string
+	 */
+	protected function getCacheKey( UserIdentity $user ): string {
+		$name = $user->getName();
+		if ( $this->userNameUtils->isIP( $name ) || $this->userNameUtils->isTemp( $name ) ) {
+			// IP and temporary users may not have custom preferences, so they can share a key
+			return 'anon';
+		} elseif ( $user->isRegistered() ) {
+			return "u:{$user->getId()}";
+		} else {
+			// Allow users with no local account to have preferences provided by alternative
+			// UserOptionsStore implementations (e.g. in GlobalPreferences)
+			$canonical = $this->userNameUtils->getCanonical( $name ) ?: $name;
+			return "a:$canonical";
+		}
 	}
 
 	/**

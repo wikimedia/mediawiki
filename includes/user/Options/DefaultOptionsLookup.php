@@ -29,6 +29,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
+use MediaWiki\User\UserNameUtils;
 use Skin;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDBAccessObject;
@@ -54,6 +55,9 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 	private ConditionalDefaultsLookup $conditionalDefaultsLookup;
 	private UserIdentityLookup $userIdentityLookup;
 
+	/** @var array Cache of default options by user */
+	private $cache = [];
+
 	/** @var array|null Cached default options */
 	private $defaultOptions = null;
 
@@ -66,6 +70,7 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 	 * @param NamespaceInfo $nsInfo
 	 * @param ConditionalDefaultsLookup $conditionalUserOptionsDefaultsLookup
 	 * @param UserIdentityLookup $userIdentityLookup
+	 * @param UserNameUtils $userNameUtils
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -73,8 +78,10 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 		HookContainer $hookContainer,
 		NamespaceInfo $nsInfo,
 		ConditionalDefaultsLookup $conditionalUserOptionsDefaultsLookup,
-		UserIdentityLookup $userIdentityLookup
+		UserIdentityLookup $userIdentityLookup,
+		UserNameUtils $userNameUtils
 	) {
+		parent::__construct( $userNameUtils );
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->serviceOptions = $options;
 		$this->contentLang = $contentLang;
@@ -130,6 +137,10 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 
 		// If requested, process any conditional defaults
 		if ( $userIdentity ) {
+			$cacheKey = $this->getCacheKey( $userIdentity );
+			if ( isset( $this->cache[$cacheKey] ) ) {
+				return $this->cache[$cacheKey];
+			}
 			$conditionallyDefaultOptions = $this->conditionalDefaultsLookup->getConditionallyDefaultOptions();
 			foreach ( $conditionallyDefaultOptions as $optionName ) {
 				$conditionalDefault = $this->conditionalDefaultsLookup->getOptionDefaultForUser(
@@ -139,6 +150,7 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 					$defaultOptions[$optionName] = $conditionalDefault;
 				}
 			}
+			$this->cache[$cacheKey] = $defaultOptions;
 		}
 
 		return $defaultOptions;

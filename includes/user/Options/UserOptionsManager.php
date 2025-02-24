@@ -127,6 +127,7 @@ class UserOptionsManager extends UserOptionsLookup {
 		ObjectFactory $objectFactory,
 		array $storeProviders
 	) {
+		parent::__construct( $userNameUtils );
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->serviceOptions = $options;
 		$this->defaultOptionsLookup = $defaultOptionsLookup;
@@ -536,8 +537,18 @@ class UserOptionsManager extends UserOptionsLookup {
 		int $queryFlags = IDBAccessObject::READ_NORMAL
 	): array {
 		$userKey = $this->getCacheKey( $user );
-		$defaultOptions = $this->defaultOptionsLookup->getDefaultOptions( $user );
 		$cache = $this->cache[$userKey] ??= new UserOptionsCacheEntry;
+
+		// In case options were already loaded from the database before and no options
+		// changes were saved to the database, we can use the cached original options.
+		if ( $cache->canUseCachedValues( $queryFlags )
+			&& $cache->originalValues !== null
+		) {
+			return $cache->originalValues;
+		}
+
+		$defaultOptions = $this->defaultOptionsLookup->getDefaultOptions( $user );
+
 		if ( $this->userNameUtils->isIP( $user->getName() ) || $this->userNameUtils->isTemp( $user->getName() ) ) {
 			// For unlogged-in users, load language/variant options from request.
 			// There's no need to do it for logged-in users: they can set preferences,
@@ -548,14 +559,6 @@ class UserOptionsManager extends UserOptionsLookup {
 			$defaultOptions['language'] = $variant;
 			$cache->originalValues = $defaultOptions;
 			return $defaultOptions;
-		}
-
-		// In case options were already loaded from the database before and no options
-		// changes were saved to the database, we can use the cached original options.
-		if ( $cache->canUseCachedValues( $queryFlags )
-			&& $cache->originalValues !== null
-		) {
-			return $cache->originalValues;
 		}
 
 		$options = $this->loadOptionsFromStore( $user, $queryFlags ) + $defaultOptions;
@@ -587,26 +590,6 @@ class UserOptionsManager extends UserOptionsLookup {
 		$this->hookRunner->onLoadUserOptions( $user, $options );
 		$cache->originalValues = $options;
 		return $options;
-	}
-
-	/**
-	 * Get a cache key for a user
-	 * @param UserIdentity $user
-	 * @return string
-	 */
-	private function getCacheKey( UserIdentity $user ): string {
-		$name = $user->getName();
-		if ( $this->userNameUtils->isIP( $name ) || $this->userNameUtils->isTemp( $name ) ) {
-			// IP and temporary users may not have custom preferences, so they can share a key
-			return 'anon';
-		} elseif ( $user->isRegistered() ) {
-			return "u:{$user->getId()}";
-		} else {
-			// Allow users with no local account to have preferences provided by alternative
-			// UserOptionsStore implementations (e.g. in GlobalPreferences)
-			$canonical = $this->userNameUtils->getCanonical( $name ) ?: $name;
-			return "a:$canonical";
-		}
 	}
 
 	/**

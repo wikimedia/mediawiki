@@ -2741,7 +2741,8 @@ return [
 			$services->getHookContainer(),
 			$services->getNamespaceInfo(),
 			$services->get( '_ConditionalDefaultsLookup' ),
-			$services->getUserIdentityLookup()
+			$services->getUserIdentityLookup(),
+			$services->getUserNameUtils()
 		);
 	},
 
