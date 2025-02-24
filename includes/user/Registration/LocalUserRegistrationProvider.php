@@ -34,16 +34,14 @@ class LocalUserRegistrationProvider implements IUserRegistrationProvider {
 	 * @inheritDoc
 	 */
 	public function fetchRegistrationBatch( iterable $users ): array {
-		$userIds = [];
+		$timestampsById = [];
 
 		foreach ( $users as $user ) {
 			// Make the list of user IDs unique.
-			$userIds[$user->getId()] = true;
+			$timestampsById[$user->getId()] = null;
 		}
 
-		$userIds = array_keys( $userIds );
-		$batches = array_chunk( $userIds, 1_000 );
-		$timestampsById = array_fill_keys( $userIds, null );
+		$batches = array_chunk( array_keys( $timestampsById ), 1_000 );
 
 		$dbr = $this->connectionProvider->getReplicaDatabase();
 
