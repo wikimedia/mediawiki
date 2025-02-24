@@ -30,7 +30,8 @@ class UserArrayFromResult extends UserArray {
 
 	private IResultWrapper $res;
 	private int $key = 0;
-	private ?User $current = null;
+	/** FIXME not private because CentralAuth is extending this class when it shouldn't. See T387148 */
+	protected ?User $current = null;
 
 	public function __construct( IResultWrapper $res ) {
 		$this->res = $res;
