@@ -1022,8 +1022,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 *
 	 * MCR migration note: this replaced Revision::newNullRevision
 	 *
-	 * @todo Introduce newFromParentRevision(). newNullRevision can then be based on that
-	 * (or go away).
+	 * @deprecated since 1.44, use PageUpdater::saveDummyRevision() instead.
 	 *
 	 * @param IDatabase $dbw used for obtaining the lock on the page table row
 	 * @param PageIdentity $page the page to read from

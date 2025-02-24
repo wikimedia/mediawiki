@@ -621,6 +621,8 @@ because of Phabricator reports.
   RenameuserSQL::renameUser, which returns a Status instead of boolean.
 * LocalFile::getQueryInfo() and OldLocalFile::getQueryInfo(), deprecated
   since 1.41, are now emitting warnings.
+* RevisionStore::newNullRevision is deprecated, use
+  PageUpdater::saveDummyRevision() instead.
 * Linker::userLink() has been deprecated in favor of the UserLinkRenderer
   service. (T308000)
 * OutputPage::getNoGallery(), previously marked @internal, has been deprecated
