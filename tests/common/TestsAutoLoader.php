@@ -343,6 +343,9 @@ $wgAutoloadClasses += [
 	# tests/phpunit/integration/includes/user
 	'MediaWiki\\Tests\\User\\ActorStoreTestBase' => "$testDir/phpunit/integration/includes/user/ActorStoreTestBase.php",
 
+	# tests/phpunit/integration/includes/user/Options
+	'MediaWiki\\Tests\\User\\Options\\MockUserOptionsStore' => "$testDir/phpunit/integration/includes/user/Options/MockUserOptionsStore.php",
+
 	# tests/phpunit/integration/includes/user/TempUser
 	'MediaWiki\\Tests\\User\\TempUser\\TempUserTestTrait' => "$testDir/phpunit/integration/includes/user/TempUser/TempUserTestTrait.php",
 

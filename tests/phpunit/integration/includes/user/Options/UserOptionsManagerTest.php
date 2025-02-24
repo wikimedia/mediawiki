@@ -3,9 +3,9 @@
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Tests\User\Options\MockUserOptionsStore;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\Options\UserOptionsManager;
-use MediaWiki\User\Options\UserOptionsStore;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use Psr\Log\NullLogger;
@@ -30,10 +30,21 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 	 *  - 'defaults' - array default preferences
 	 *  - 'dbp' - IConnectionProvider
 	 *  - 'hookContainer' - HookContainer
+	 *  - 'localStore' - UserOptionsStore for local storage
+	 *  - 'globalStore' - UserOptionsStore like GlobalPreferences
 	 * @return UserOptionsManager
 	 */
 	private function getManager( array $overrides = [] ) {
 		$services = $this->getServiceContainer();
+
+		$providers = [];
+		if ( isset( $overrides['localStore'] ) ) {
+			$providers['local'] = [ 'factory' => static fn () => $overrides['localStore'] ];
+		}
+		if ( isset( $overrides['globalStore'] ) ) {
+			$providers['global'] = [ 'factory' => static fn () => $overrides['globalStore'] ];
+		}
+
 		return new UserOptionsManager(
 			new ServiceOptions(
 				UserOptionsManager::CONSTRUCTOR_OPTIONS,
@@ -53,7 +64,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 			$services->getUserFactory(),
 			$services->getUserNameUtils(),
 			$services->getObjectFactory(),
-			[]
+			$providers
 		);
 	}
 
@@ -502,34 +513,50 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 	 */
 	public function testNoLocalAccountOptionsStore() {
 		$user = new UserIdentityValue( 0, 'NoLocalAccountUsername' );
-		$store = $this->getMockBuilder( UserOptionsStore::class )->getMock();
-		$store->expects( $this->once() )
-			->method( 'fetch' )
-			->with( $user )
-			->willReturn( [ 'NoLocalAccountPreference' => '1' ] );
-		$store->expects( $this->once() )
-			->method( 'store' )
-			->with( $user, [ 'NoLocalAccountPreference' => '2' ] )
-			->willReturn( true );
-		$services = $this->getServiceContainer();
-		$manager = new UserOptionsManager(
-			new ServiceOptions( UserOptionsManager::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
-			$services->get( '_DefaultOptionsLookup' ),
-			$services->getLanguageConverterFactory(),
-			$services->getConnectionProvider(),
-			new NullLogger(),
-			$services->getHookContainer(),
-			$services->getUserFactory(),
-			$services->getUserNameUtils(),
-			$services->getObjectFactory(),
-			[
-				'NoLocalAccountStore' => [
-					'factory' => static fn () => $store,
-				],
-			]
-		);
+		$store = new MockUserOptionsStore( [
+			'NoLocalAccountUsername' => [ 'NoLocalAccountPreference' => '1' ]
+		] );
+		$manager = $this->getManager( [ 'globalStore' => $store ] );
 		$this->assertSame( '1', $manager->getOption( $user, 'NoLocalAccountPreference' ) );
 		$manager->setOption( $user, 'NoLocalAccountPreference', '2', UserOptionsManager::GLOBAL_UPDATE );
 		$this->assertTrue( $manager->saveOptionsInternal( $user ) );
+		$this->assertSame( [ 'NoLocalAccountUsername' => [ 'NoLocalAccountPreference' => '2' ] ], $store->getData() );
+	}
+
+	private function setAndSave( $manager, $user, $oname, $value, $global ) {
+		$manager->setOption( $user, $oname, $value, $global );
+		$manager->saveOptions( $user );
+		$manager->clearUserOptionsCache( $user );
+	}
+
+	public function testSetOptionGlobal() {
+		$user = new UserIdentityValue( 1, 'User' );
+		$localStore = new MockUserOptionsStore();
+		$globalStore = new MockUserOptionsStore();
+		$manager = $this->getManager( [ 'localStore' => $localStore, 'globalStore' => $globalStore ] );
+
+		// GLOBAL_IGNORE -- update locally
+		$this->setAndSave( $manager, $user, 'test', 'a', UserOptionsManager::GLOBAL_IGNORE );
+		$this->assertSame( 'a', $manager->getOption( $user, 'test' ) );
+
+		// GLOBAL_CREATE -- create globally
+		$this->setAndSave( $manager, $user, 'test', 'b', UserOptionsManager::GLOBAL_CREATE );
+		$this->assertSame( 'b', $manager->getOption( $user, 'test' ) );
+		$this->assertSame( [ 'User' => [ 'test' => 'b' ] ], $globalStore->getData() );
+
+		// GLOBAL_IGNORE -- option is ignored
+		$this->setAndSave( $manager, $user, 'test', 'c', UserOptionsManager::GLOBAL_IGNORE );
+		$this->assertSame( 'b', $manager->getOption( $user, 'test' ) );
+
+		// GLOBAL_UPDATE -- option is updated
+		$this->setAndSave( $manager, $user, 'test', 'd', UserOptionsManager::GLOBAL_UPDATE );
+		$this->assertSame( 'd', $manager->getOption( $user, 'test' ) );
+		$this->assertSame( [ 'User' => [ 'test' => 'd' ] ], $globalStore->getData() );
+
+		// GLOBAL_OVERRIDE -- local exception is created
+		$this->setAndSave( $manager, $user, 'test', 'e', UserOptionsManager::GLOBAL_OVERRIDE );
+		$this->assertSame( 'e', $manager->getOption( $user, 'test' ) );
+		$this->assertSame( [ 'User' => [ 'test' => 'e', 'test-local-exception' => '1' ] ], $localStore->getData() );
+		$this->assertSame( [ 'User' => [ 'test' => 'd' ] ], $globalStore->getData() );
 	}
 }

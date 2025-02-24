@@ -75,6 +75,14 @@ class UserOptionsManager extends UserOptionsLookup {
 	 */
 	public const GLOBAL_UPDATE = 'update';
 
+	/**
+	 * Create a new global preference in the first available global store.
+	 * If there are no global stores, update the local value. If there was
+	 * already a global preference, update it.
+	 * @since 1.44
+	 */
+	public const GLOBAL_CREATE = 'create';
+
 	private const LOCAL_STORE_KEY = 'local';
 
 	private ServiceOptions $serviceOptions;
@@ -244,12 +252,13 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * @param UserIdentity $user
 	 * @param string $oname The option to set
 	 * @param mixed $val New value to set.
-	 * @param string $global Since 1.43. What to do if the option was set
-	 *   globally using the GlobalPreferences extension. One of the
-	 *   self::GLOBAL_* constants:
-	 *   - GLOBAL_IGNORE: Do nothing. The option remains with its previous value.
-	 *   - GLOBAL_OVERRIDE: Add a local override.
-	 *   - GLOBAL_UPDATE: Update the option globally.
+	 * @param string $global Since 1.43. The global update behaviour, used if
+	 *   GlobalPreferences is installed:
+	 *   - GLOBAL_IGNORE: If there is a global preference, do nothing. The option remains with
+	 *     its previous value.
+	 *   - GLOBAL_OVERRIDE: If there is a global preference, add a local override.
+	 *   - GLOBAL_UPDATE: If there is a global preference, update it.
+	 *   - GLOBAL_CREATE: Create a new global preference, overriding any local value.
 	 *   The UI should typically ask for the user's consent before setting a global
 	 *   option.
 	 */
@@ -352,11 +361,16 @@ class UserOptionsManager extends UserOptionsLookup {
 				$valOrNull = (string)$value;
 			}
 			$source = $cache->sources[$key] ?? self::LOCAL_STORE_KEY;
+			$updateAction = $cache->globalUpdateActions[$key] ?? self::GLOBAL_IGNORE;
+
 			if ( $source === self::LOCAL_STORE_KEY ) {
-				$updatesByStore[self::LOCAL_STORE_KEY][$key] = $valOrNull;
+				if ( $updateAction === self::GLOBAL_CREATE ) {
+					$updatesByStore[$this->getStoreNameForGlobalCreate()][$key] = $valOrNull;
+				} else {
+					$updatesByStore[self::LOCAL_STORE_KEY][$key] = $valOrNull;
+				}
 			} else {
-				$updateAction = $cache->globalUpdateActions[$key] ?? self::GLOBAL_IGNORE;
-				if ( $updateAction === self::GLOBAL_UPDATE ) {
+				if ( $updateAction === self::GLOBAL_UPDATE || $updateAction === self::GLOBAL_CREATE ) {
 					$updatesByStore[$source][$key] = $valOrNull;
 				} elseif ( $updateAction === self::GLOBAL_OVERRIDE ) {
 					$updatesByStore[self::LOCAL_STORE_KEY][$key] = $valOrNull;
@@ -606,6 +620,21 @@ class UserOptionsManager extends UserOptionsLookup {
 			$this->stores = array_reverse( $stores, true );
 		}
 		return $this->stores;
+	}
+
+	/**
+	 * Get the name of the store to be used when setOption() is called with
+	 * GLOBAL_CREATE and there is no existing global preference value.
+	 *
+	 * @return string
+	 */
+	private function getStoreNameForGlobalCreate() {
+		foreach ( $this->getStores() as $name => $store ) {
+			if ( $name !== self::LOCAL_STORE_KEY ) {
+				return $name;
+			}
+		}
+		return self::LOCAL_STORE_KEY;
 	}
 }
 
