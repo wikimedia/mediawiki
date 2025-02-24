@@ -12,7 +12,8 @@
 			"Urhixidur",
 			"לערי ריינהארט",
 			"아라",
-			"Matma Rex"
+			"Matma Rex",
+			"Exec8"
 		]
 	},
 	"tog-underline": "Pinag-ugisan ti silpo:",
@@ -901,8 +902,8 @@
 	"nextn-title": "Sumaruno a $1 {{PLURAL:$1|a nagbanagan|kadagiti nagbanagan}}",
 	"shown-title": "Ipakita ti $1 {{PLURAL:$1|a nagbanagan|kadagiti nagbanagan}}  ti tunggal maysa a panid",
 	"viewprevnext": "Kitaen dagiti ($1 {{int:pipe-separator}} $2) ($3)",
-	"searchmenu-exists": "<strong>Adda panid a nanaganan ti \"[[:$1]]\" iti daytoy a wiki.</strong> {{PLURAL:$2|0=|Kitaen pay ti sabali a nabirukan a nagbanagan ti panagbiruk.}}",
-	"searchmenu-new": "<strong>Partuaten ti panid ti \"[[:$1]]\" iti daytoy a wiki!</strong> {{PLURAL:$2|0=|Kitaen pay ti panid a nabirukan ti panagbirukmo.|Kitaen pay dagiti resulta a nabirukan ti panagbiruk.}}",
+	"searchmenu-exists": "Adda ti panid a napanaganan iti \"[[:$1]]\" iti {{SITENAME}}. {{PLURAL:$2|0=|Kitaen pay dagiti dadduma pay a resulta ti panagbiruk a nasarakan.}}",
+	"searchmenu-new": "Mangpartuat ti panid a \"[[:$1]]\" iti daytoy a wiki! {{PLURAL:$2|0=|Kitaen pay ti panid a nasarakan a kadua ti panagbirukmo.|Kitaen pay dagiti nasarakan a resulta ti panagbiruk.}}",
 	"searchprofile-articles": "Dagiti naglaon a panid",
 	"searchprofile-images": "Multimidia",
 	"searchprofile-everything": "Amin amin",
