@@ -1118,7 +1118,7 @@ abstract class File implements MediaHandlerState {
 		$extension = $this->getExtension();
 		[ $thumbExt, ] = $this->getHandler()->getThumbType(
 			$extension, $this->getMimeType(), $params );
-		$thumbName = $this->getHandler()->makeParamString( $params );
+		$thumbName = $this->getHandler()->makeParamString( $this->adjustThumbWidthForSteps( $params ) );
 
 		if ( $this->repo->supportsSha1URLs() ) {
 			$thumbName .= '-' . $this->getSha1() . '.' . $thumbExt;
@@ -1131,6 +1131,59 @@ abstract class File implements MediaHandlerState {
 		}
 
 		return $thumbName;
+	}
+
+	private function adjustThumbWidthForSteps( $params ) {
+		$thumbnailSteps = MediaWikiServices::getInstance()
+			->getMainConfig()->get( MainConfigNames::ThumbnailSteps );
+		$thumbnailStepsRatio = MediaWikiServices::getInstance()
+			->getMainConfig()->get( MainConfigNames::ThumbnailStepsRatio );
+
+		if ( !$thumbnailSteps || !$thumbnailStepsRatio ) {
+			return $params;
+		}
+		if ( !isset( $params['physicalWidth'] ) || !$params['physicalWidth'] ) {
+			return $params;
+		}
+
+		if ( $thumbnailStepsRatio < 1 ) {
+			// If thumbnail ratio is below 100%, build a random number
+			// out of the file name and decide whether to apply adjustments
+			// based on that. This way, we get a good uniformity while not going
+			// back and forth between old and new in different requests.
+			// Also this way, ramping up (e.g. from 0.1 to 0.2) would also
+			// cover the previous values too which would reduce the scale of changes.
+			$hash = hexdec( substr( md5( $this->name ), 0, 8 ) ) & 0x7fffffff;
+			if ( ( $hash % 1000 ) > ( $thumbnailStepsRatio * 1000 ) ) {
+				return $params;
+			}
+		}
+
+		$newThumbSize = null;
+		foreach ( $thumbnailSteps as $widthStep ) {
+			if ( $widthStep > $this->getWidth() ) {
+				return $params;
+			}
+			if ( $widthStep == $params['physicalWidth'] ) {
+				return $params;
+			}
+			if ( $widthStep > $params['physicalWidth'] ) {
+				$newThumbSize = $widthStep;
+				break;
+			}
+		}
+		if ( !$newThumbSize ) {
+			return $params;
+		}
+
+		if ( isset( $params['physicalHeight'] ) ) {
+			$params['physicalHeight'] = intval(
+				$params['physicalHeight'] *
+				( $newThumbSize / $params['physicalWidth'] )
+			);
+		}
+		$params['physicalWidth'] = $newThumbSize;
+		return $params;
 	}
 
 	/**
