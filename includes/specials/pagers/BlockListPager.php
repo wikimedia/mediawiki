@@ -113,7 +113,7 @@ class BlockListPager extends TablePager {
 				'bl_timestamp' => 'blocklist-timestamp',
 				'target' => 'blocklist-target',
 				'bl_expiry' => 'blocklist-expiry',
-				'by' => 'blocklist-by',
+				'bl_by' => 'blocklist-by',
 				'params' => 'blocklist-params',
 				'bl_reason' => 'blocklist-reason',
 			];
@@ -205,7 +205,7 @@ class BlockListPager extends TablePager {
 				}
 				break;
 
-			case 'by':
+			case 'bl_by':
 				$formatted = Linker::userLink( (int)$value, $row->bl_by_text );
 				$formatted .= Linker::userToolLinks( (int)$value, $row->bl_by_text );
 				break;
