@@ -295,7 +295,7 @@ class SpecialBlockList extends SpecialPage {
 	 */
 	private function getTargetConds( BlockTarget $target ) {
 		if ( $target instanceof AutoBlockTarget ) {
-			return [ 'bl_id' => $target ];
+			return [ 'bl_id' => $target->getId() ];
 		}
 		if ( $target instanceof BlockTargetWithIp ) {
 			$range = $target->toHexRange();
