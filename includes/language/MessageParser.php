@@ -21,6 +21,9 @@ use Psr\Log\LoggerInterface;
  * @since 1.44
  */
 class MessageParser {
+	private const DEPTH_EXCEEDED_MESSAGE =
+		'<span class="error">Message parse depth limit exceeded</span>';
+
 	private ParserFactory $parserFactory;
 	private OutputTransformPipeline $outputPipeline;
 	private LanguageFactory $langFactory;
@@ -29,8 +32,9 @@ class MessageParser {
 	/** @var ParserOptions|null Lazy-initialised */
 	private ?ParserOptions $parserOptions = null;
 
-	/** @var Parser[] Lazy-created via self::getParser() */
+	/** @var Parser[] Cached Parser objects */
 	private array $parsers = [];
+	/** @var int Index into $this->parsers for the active Parser */
 	private int $curParser = -1;
 
 	/**
@@ -109,37 +113,18 @@ class MessageParser {
 		}
 		$page ??= $this->getPlaceholderTitle();
 
+		$parser = $this->acquireParser();
+		if ( !$parser ) {
+			return self::DEPTH_EXCEEDED_MESSAGE;
+		}
 		try {
-			$this->curParser++;
-			$parser = $this->getParser();
-			if ( !$parser ) {
-				return '<span class="error">Message transform depth limit exceeded</span>';
-			}
-			$message = $parser->transformMsg( $message, $popts, $page );
+			return $parser->transformMsg( $message, $popts, $page );
 		} finally {
-			$this->curParser--;
+			$this->releaseParser( $parser );
+			if ( $oldUserLang ) {
+				$popts->setUserLang( $oldUserLang );
+			}
 		}
-		if ( $oldUserLang ) {
-			$popts->setUserLang( $oldUserLang );
-		}
-
-		return $message;
-	}
-
-	/**
-	 * You should increment $this->curParser before calling this method and decrement it after
-	 * to support recursive calls to message parsing.
-	 */
-	private function getParser(): ?Parser {
-		if ( $this->curParser >= self::MAX_PARSER_DEPTH ) {
-			$this->logger->debug( __METHOD__ . ": Refusing to create a new parser with index {$this->curParser}" );
-			return null;
-		}
-		if ( !isset( $this->parsers[ $this->curParser ] ) ) {
-			$this->logger->debug( __METHOD__ . ": Creating a new parser with index {$this->curParser}" );
-			$this->parsers[ $this->curParser ] = $this->parserFactory->create();
-		}
-		return $this->parsers[ $this->curParser ];
 	}
 
 	/**
@@ -198,15 +183,14 @@ class MessageParser {
 
 		$page ??= $this->getPlaceholderTitle();
 
+		$parser = $this->acquireParser();
+		if ( !$parser ) {
+			return new ParserOutput( self::DEPTH_EXCEEDED_MESSAGE );
+		}
 		try {
-			$this->curParser++;
-			$parser = $this->getParser();
-			if ( !$parser ) {
-				return new ParserOutput( '<span class="error">Message parse depth limit exceeded</span>' );
-			}
 			return $parser->parse( $text, $page, $popts, $lineStart );
 		} finally {
-			$this->curParser--;
+			$this->releaseParser( $parser );
 		}
 	}
 
@@ -217,4 +201,43 @@ class MessageParser {
 			WikiAwareEntity::LOCAL
 		);
 	}
+
+	/**
+	 * Attempt to get a free parser from the cache. If none exists, create one,
+	 * up to a limit of MAX_PARSER_DEPTH. If the limit is exceeded, return null.
+	 *
+	 * If a parser is returned, it must be released with releaseParser().
+	 *
+	 * @return Parser|null
+	 */
+	private function acquireParser(): ?Parser {
+		$index = $this->curParser + 1;
+		if ( $index >= self::MAX_PARSER_DEPTH ) {
+			$this->logger->debug( __METHOD__ . ": Refusing to create a new parser with index {$index}" );
+			return null;
+		}
+		$parser = $this->parsers[ $index ] ?? null;
+		if ( !$parser ) {
+			$this->logger->debug( __METHOD__ . ": Creating a new parser with index {$index}" );
+			$parser = $this->parserFactory->create();
+		}
+		$this->parsers[ $index ] = $parser;
+		$this->curParser = $index;
+		return $parser;
+	}
+
+	/**
+	 * Release a parser previously acquired by acquireParser().
+	 *
+	 * @param Parser $parser
+	 */
+	private function releaseParser( Parser $parser ) {
+		if ( $this->parsers[$this->curParser] !== $parser ) {
+			throw new \LogicException( 'releaseParser called with the wrong ' .
+				"parser instance: #{$this->curParser} = " .
+				gettype( $this->parsers[$this->curParser] ) );
+		}
+		$this->curParser--;
+	}
+
 }
