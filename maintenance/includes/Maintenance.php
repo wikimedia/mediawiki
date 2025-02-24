@@ -488,7 +488,7 @@ abstract class Maintenance {
 	 * as we handle all --quiet stuff here
 	 * @stable to override
 	 * @param string $out The text to show to the user
-	 * @param mixed|null $channel Unique identifier for the channel. See function outputChanneled.
+	 * @param string|null $channel Unique identifier for the channel. See function outputChanneled.
 	 */
 	protected function output( $out, $channel = null ) {
 		// This is sometimes called very early, before Setup.php is included.
