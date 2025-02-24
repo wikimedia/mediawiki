@@ -9406,10 +9406,6 @@ class MainConfigSchema {
 	 * Users must request this via 'crossorigin=1' in the URL,
 	 * replacing 'origin=*' (which allows logged-out cross-origin requests).
 	 *
-	 * This setting is currently experimental,
-	 * and may be removed or enabled by default later.
-	 *
-	 * @unstable EXPERIMENTAL
 	 * @since 1.43
 	 */
 	public const AllowAuthenticatedCrossOrigin = [
