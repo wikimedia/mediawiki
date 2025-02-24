@@ -160,7 +160,7 @@ class ImportReporter extends ContextSource {
 			$wikiPage = $services->getWikiPageFactory()->newFromTitle( $pageIdentity );
 			$dummyRevRecord = $wikiPage->newPageUpdater( $this->getUser() )
 				->setCause( PageUpdater::CAUSE_IMPORT )
-				->saveDummyRevision( $detail );
+				->saveDummyRevision( $detail, EDIT_SILENT | EDIT_MINOR );
 
 			// Create the import log entry
 			$logEntry = new ManualLogEntry( 'import', $action );

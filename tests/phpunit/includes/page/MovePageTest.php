@@ -631,13 +631,19 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 			static function ( PageUpdatedEvent $event ) use ( $old, $oldPageId, $new, $oldRev, $mover ) {
 				// for the existing page under the new title
 				if ( $event->getPage()->isSamePageAs( $new ) ) {
-					Assert::assertFalse( $event->isCreation(), 'isNew' );
+					Assert::assertTrue( $event->isSilent(), 'isSilent' );
+					Assert::assertFalse( $event->isCreation(), 'isCreation' );
 					Assert::assertFalse( $event->isReconciliationRequest(), 'isReconciliationRequest' );
 					Assert::assertTrue( $event->isRevisionChange(), 'isRevisionChange' );
 					Assert::assertFalse( $event->isContentChange(), 'isContentChange' );
 					Assert::assertSame( $oldPageId, $event->getPage()->getId() );
 					Assert::assertSame( $oldRev->getId(), $event->getOldRevision()->getId() );
 					Assert::assertSame( $mover, $event->getPerformer() );
+
+					Assert::assertTrue(
+						$event->getNewRevision()->isMinor(),
+						'isMinor'
+					);
 
 					Assert::assertTrue(
 						$event->hasCause( PageUpdatedEvent::CAUSE_MOVE ),

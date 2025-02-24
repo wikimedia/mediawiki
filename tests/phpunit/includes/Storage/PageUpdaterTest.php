@@ -399,10 +399,11 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$oldRevId = $page->getLatest();
 
-		$rev = $updater->saveDummyRevision( 'test' );
+		$rev = $updater->saveDummyRevision( 'test', EDIT_MINOR );
 
 		$this->assertNotSame( $oldRevId, $rev->getId() );
 		$this->assertSame( $page->getLatest(), $rev->getId() );
+		$this->assertTrue( $rev->isMinor(), 'isMinor' );
 
 		$this->assertArrayContains(
 			[ 'RevisionFromEditComplete' ],
@@ -416,11 +417,12 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		UserIdentity $performer,
 		?RevisionRecord $old,
 		$revisionChange = true,
-		$contentChange = true
+		$contentChange = true,
+		$silent = false
 	) {
 		return static function ( PageUpdatedEvent $event ) use (
 			&$counter, $flags, $cause, $performer, $old,
-			$revisionChange, $contentChange
+			$revisionChange, $contentChange, $silent
 		) {
 			Assert::assertSame(
 				$contentChange,
@@ -440,7 +442,12 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 			Assert::assertSame(
 				$old === null,
 				$event->isCreation(),
-				'isNew'
+				'isCreation'
+			);
+			Assert::assertSame(
+				$silent,
+				$event->isSilent(),
+				'isSilent'
 			);
 			Assert::assertSame(
 				$cause,
@@ -584,7 +591,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 			PageUpdatedEvent::TYPE, 1,
 			$this->makeDomainEventSourceListener(
 				[], PageUpdatedEvent::CAUSE_UNDELETE,
-					$user, $page->getRevisionRecord(), true, false
+					$user, $page->getRevisionRecord(), true, false, true
 			)
 		);
 
@@ -593,7 +600,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		// dummy revision
 		$updater->setCause( PageUpdatedEvent::CAUSE_UNDELETE );
-		$updater->saveDummyRevision( 'Just a test' );
+		$updater->saveDummyRevision( 'Just a test', EDIT_SILENT | EDIT_MINOR );
 	}
 
 	public function testEventEmission_derived() {
