@@ -38,7 +38,7 @@ abstract class UserArray implements Iterator, Countable {
 	 * moving towards deprecation.
 	 *
 	 * @param IResultWrapper $res
-	 * @return UserArray
+	 * @return self
 	 */
 	public static function newFromResult( $res ): self {
 		$userArray = null;
@@ -55,11 +55,11 @@ abstract class UserArray implements Iterator, Countable {
 	 * In case you need full User objects, you can keep using this method, but it's
 	 * moving towards deprecation.
 	 *
-	 * @param array $ids
-	 * @return UserArray
+	 * @param int[] $ids
+	 * @return self
 	 */
-	public static function newFromIDs( $ids ): self {
-		$ids = array_map( 'intval', (array)$ids ); // paranoia
+	public static function newFromIDs( array $ids ): self {
+		$ids = array_map( 'intval', $ids ); // paranoia
 		if ( !$ids ) {
 			// Database::select() doesn't like empty arrays
 			return new UserArrayFromResult( new FakeResultWrapper( [] ) );
@@ -79,11 +79,11 @@ abstract class UserArray implements Iterator, Countable {
 	 * moving towards deprecation.
 	 *
 	 * @since 1.25
-	 * @param array $names
-	 * @return UserArray
+	 * @param string[] $names
+	 * @return self
 	 */
-	public static function newFromNames( $names ): self {
-		$names = array_map( 'strval', (array)$names ); // paranoia
+	public static function newFromNames( array $names ): self {
+		$names = array_map( 'strval', $names ); // paranoia
 		if ( !$names ) {
 			// Database::select() doesn't like empty arrays
 			return new UserArrayFromResult( new FakeResultWrapper( [] ) );
@@ -96,19 +96,10 @@ abstract class UserArray implements Iterator, Countable {
 		return self::newFromResult( $res );
 	}
 
-	/**
-	 * @return int
-	 */
 	abstract public function count(): int;
 
-	/**
-	 * @return User
-	 */
 	abstract public function current(): User;
 
-	/**
-	 * @return int
-	 */
 	abstract public function key(): int;
 }
 

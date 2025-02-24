@@ -27,34 +27,22 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @internal Call and type against UserArray instead.
  */
 class UserArrayFromResult extends UserArray {
-	/** @var IResultWrapper */
-	public $res;
 
-	/** @var int */
-	public $key;
+	private IResultWrapper $res;
+	private int $key = 0;
+	private ?User $current = null;
 
-	/** @var User|false */
-	public $current;
-
-	/**
-	 * @param IResultWrapper $res
-	 */
-	public function __construct( $res ) {
+	public function __construct( IResultWrapper $res ) {
 		$this->res = $res;
-		$this->key = 0;
-		$this->setCurrent( $this->res->current() );
+		$this->rewind();
 	}
 
 	/**
-	 * @param stdClass|false $row
+	 * @param stdClass|null|false $row
 	 * @return void
 	 */
 	protected function setCurrent( $row ) {
-		if ( $row === false ) {
-			$this->current = false;
-		} else {
-			$this->current = User::newFromRow( $row );
-		}
+		$this->current = $row instanceof stdClass ? User::newFromRow( $row ) : null;
 	}
 
 	public function count(): int {
@@ -70,8 +58,7 @@ class UserArrayFromResult extends UserArray {
 	}
 
 	public function next(): void {
-		$row = $this->res->fetchObject();
-		$this->setCurrent( $row );
+		$this->setCurrent( $this->res->fetchObject() );
 		$this->key++;
 	}
 
@@ -82,7 +69,7 @@ class UserArrayFromResult extends UserArray {
 	}
 
 	public function valid(): bool {
-		return $this->current !== false;
+		return (bool)$this->current;
 	}
 }
 
