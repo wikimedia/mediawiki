@@ -1816,7 +1816,7 @@ return [
 			'BreakFrames' => false,
 			'EditPageFrameOptions' => 'DENY',
 			'ApiFrameOptions' => 'DENY',
-			'AllowAuthenticatedCrossOrigin' => false,
+			'AllowAuthenticatedCrossOrigin' => true,
 			'CSPHeader' => false,
 			'CSPReportOnlyHeader' => false,
 			'CSPFalsePositiveUrls' => [
