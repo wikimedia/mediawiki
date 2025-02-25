@@ -14,6 +14,7 @@ use MediaWiki\OutputTransform\Stages\ExtractBody;
 use MediaWiki\OutputTransform\Stages\HandleParsoidSectionLinks;
 use MediaWiki\OutputTransform\Stages\HandleSectionLinks;
 use MediaWiki\OutputTransform\Stages\HandleTOCMarkers;
+use MediaWiki\OutputTransform\Stages\HardenNFC;
 use MediaWiki\OutputTransform\Stages\HydrateHeaderPlaceholders;
 use MediaWiki\OutputTransform\Stages\ParsoidLocalization;
 use MediaWiki\OutputTransform\Stages\RenderDebugInfo;
@@ -97,6 +98,10 @@ class DefaultOutputPipelineFactory {
 		],
 		'HydrateHeaderPlaceholders' => [
 			'class' => HydrateHeaderPlaceholders::class,
+		],
+		# This should be last, in order to ensure final output is hardened
+		'HardenNFC' => [
+			'class' => HardenNFC::class,
 		],
 	];
 
