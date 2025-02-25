@@ -28,11 +28,8 @@
 					{{ $i18n( 'block-create' ).text() }}
 				</cdx-button>
 			</template>
-			<template #empty-state>
-				{{ emptyState }}
-			</template>
 			<template #tbody>
-				<tbody>
+				<tbody v-if="logEntries.length">
 					<tr
 						v-for="( item, index ) in logEntries"
 						:key="index"
@@ -140,6 +137,13 @@
 						<td>
 							<!-- eslint-disable-next-line vue/no-v-html -->
 							<span v-html="item.reason"></span>
+						</td>
+					</tr>
+				</tbody>
+				<tbody v-else>
+					<tr class="cdx-table__table__empty-state">
+						<td colspan="0" class="cdx-table__table__empty-state-content">
+							{{ emptyState }}
 						</td>
 					</tr>
 				</tbody>
