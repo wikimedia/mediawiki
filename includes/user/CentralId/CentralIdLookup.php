@@ -44,6 +44,10 @@ abstract class CentralIdLookup {
 	public const AUDIENCE_PUBLIC = 1;
 	public const AUDIENCE_RAW = 2;
 
+	public const FILTER_NONE = 'none';
+	public const FILTER_ATTACHED = 'attached';
+	public const FILTER_OWNED = 'owned';
+
 	/** @var string */
 	private $providerId;
 
