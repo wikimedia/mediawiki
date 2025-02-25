@@ -1653,6 +1653,27 @@ abstract class Maintenance {
 
 		return $line;
 	}
+
+	/**
+	 * @param string $prompt The prompt to display to the user
+	 * @param bool|null $default The default value to return if the user just presses enter
+	 *
+	 * @return ?bool
+	 *
+	 * @since 1.44
+	 */
+	protected function promptYesNo( $prompt, $default = null ) {
+		$defaultText = $default === null ? '' : ( $default ? 'Y' : 'n' );
+		$line = self::readconsole( $prompt . " (Y/n) [$defaultText]" );
+		if ( $line === false ) {
+			return $default;
+		}
+		if ( $line === '' ) {
+			return $default;
+		}
+
+		return strtolower( $line ) === 'y';
+	}
 }
 
 /** @deprecated class alias since 1.43 */
