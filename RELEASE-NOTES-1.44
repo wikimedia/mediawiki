@@ -206,6 +206,8 @@ because of Phabricator reports.
 * The MediaWiki\Message\Converter class, deprecated in 1.43, has been removed.
   Use MessageValue::newFromSpecifier or Message::newFromSpecifier
   instead (T358779).
+* Public access to OutputPage::mModules and OutputPage::mModuleStyles,
+  deprecated in 1.38, has been removed.
 * Return type declarations were added to methods in `includes/libs/Message`,
   specifically in the `MessageSpecifier`, `ITextFormatter`, and
   `IMessageFormatterFactory` interfaces. This update enhances type safety but
