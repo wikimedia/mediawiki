@@ -3,14 +3,12 @@
 namespace MediaWiki\Tests\Integration\CommentFormatter;
 
 use LinkCacheTestTrait;
-use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentFormatter\CommentParser;
 use MediaWiki\CommentFormatter\CommentParserFactory;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\SiteConfiguration;
 use MediaWiki\Context\RequestContext;
-use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
@@ -496,19 +494,9 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 		// to execute a query. This is a CommentParser responsibility since
 		// LinkBatch does not provide a transparent read-through cache.
 		// TODO: Generic $this->assertQueryCount() would do the job.
-		$dbProvider = $services->getConnectionProvider();
-		$linkBatchFactory = new LinkBatchFactory(
-			$services->getLinkCache(),
-			$services->getTitleFormatter(),
-			$services->getContentLanguage(),
-			$services->getGenderCache(),
-			$dbProvider,
-			$services->getLinksMigration(),
-			LoggerFactory::getInstance( 'LinkBatch' )
-		);
 		$parser = new CommentParser(
 			$services->getLinkRenderer(),
-			$linkBatchFactory,
+			$services->getLinkBatchFactory(),
 			$linkCache,
 			$this->getRepoGroup(),
 			$services->getContentLanguage(),

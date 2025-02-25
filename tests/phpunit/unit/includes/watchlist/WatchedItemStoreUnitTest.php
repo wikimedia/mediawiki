@@ -18,6 +18,7 @@ use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
+use MediaWiki\User\TempUser\TempUserDetailsLookup;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Watchlist\ActivityUpdateJob;
 use MediaWiki\Watchlist\WatchedItem;
@@ -176,6 +177,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			$this->createMock( GenderCache::class ),
 			$this->getMockLBFactory( $mockDb ),
 			$this->createMock( LinksMigration::class ),
+			$this->createMock( TempUserDetailsLookup::class ),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 	}

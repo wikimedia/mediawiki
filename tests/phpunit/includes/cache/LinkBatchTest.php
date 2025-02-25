@@ -13,6 +13,8 @@ use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
+use MediaWiki\User\TempUser\TempUserDetailsLookup;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -36,6 +38,7 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( GenderCache::class ),
 			$this->createMock( IConnectionProvider::class ),
 			$this->createMock( LinksMigration::class ),
+			$this->createNoOpMock( TempUserDetailsLookup::class ),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 
@@ -60,6 +63,7 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( GenderCache::class ),
 			$this->createMock( IConnectionProvider::class ),
 			$this->createMock( LinksMigration::class ),
+			$this->createNoOpMock( TempUserDetailsLookup::class ),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 
@@ -82,6 +86,7 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( GenderCache::class ),
 			$this->getServiceContainer()->getConnectionProvider(),
 			$this->getServiceContainer()->getLinksMigration(),
+			$this->getServiceContainer()->getTempUserDetailsLookup(),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 	}
@@ -157,6 +162,7 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 			$services->getGenderCache(),
 			$services->getConnectionProvider(),
 			$services->getLinksMigration(),
+			$services->getTempUserDetailsLookup(),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 
@@ -203,6 +209,7 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 			$this->createNoOpMock( GenderCache::class ),
 			$this->createMock( IConnectionProvider::class ),
 			$this->createMock( LinksMigration::class ),
+			$this->createNoOpMock( TempUserDetailsLookup::class ),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 
@@ -221,6 +228,7 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 			$this->createNoOpMock( GenderCache::class ),
 			$this->createMock( IConnectionProvider::class ),
 			$this->createMock( LinksMigration::class ),
+			$this->createNoOpMock( TempUserDetailsLookup::class ),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 		$batch->addObj(
@@ -245,6 +253,7 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 			$genderCache,
 			$this->createMock( IConnectionProvider::class ),
 			$this->createMock( LinksMigration::class ),
+			$this->createNoOpMock( TempUserDetailsLookup::class ),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 		$batch->addObj(
@@ -286,5 +295,49 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 		$linkBatch->add( NS_MAIN, $key );
 		$linkBatch->execute();
 		$this->addToAssertionCount( 1 );
+	}
+
+	public function testAddUser(): void {
+		$users = [
+			new UserIdentityValue( 1, 'TestUser' ),
+			new UserIdentityValue( 2, 'OtherUser' ),
+		];
+
+		$tempUserDetailsLookup = $this->createMock( TempUserDetailsLookup::class );
+		$tempUserDetailsLookup->expects( $this->once() )
+			->method( 'preloadExpirationStatus' )
+			->with( [
+				'TestUser' => new UserIdentityValue( 1, 'TestUser' ),
+				'OtherUser' => new UserIdentityValue( 2, 'OtherUser' ),
+			] );
+
+		$services = $this->getServiceContainer();
+
+		$batch = new LinkBatch(
+			[],
+			$services->getLinkCache(),
+			$services->getTitleFormatter(),
+			$services->getContentLanguage(),
+			$services->getGenderCache(),
+			$services->getConnectionProvider(),
+			$services->getLinksMigration(),
+			$tempUserDetailsLookup,
+			LoggerFactory::getInstance( 'LinkBatch' )
+		);
+
+		foreach ( $users as $user ) {
+			$batch->addUser( $user );
+		}
+
+		$batch->execute();
+
+		$pagesByNamespace = [];
+		foreach ( $batch->getPageIdentities() as $page ) {
+			$pagesByNamespace[$page->getNamespace()][] = $page->getDBkey();
+		}
+
+		$this->assertCount( 2, $pagesByNamespace );
+		$this->assertSame( [ 'TestUser', 'OtherUser' ], $pagesByNamespace[NS_USER] );
+		$this->assertSame( [ 'TestUser', 'OtherUser' ], $pagesByNamespace[NS_USER_TALK] );
 	}
 }

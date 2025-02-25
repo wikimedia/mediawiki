@@ -1120,6 +1120,7 @@ return [
 			$services->getGenderCache(),
 			$services->getConnectionProvider(),
 			$services->getLinksMigration(),
+			$services->getTempUserDetailsLookup(),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 	},

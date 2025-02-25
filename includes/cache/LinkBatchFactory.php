@@ -28,6 +28,7 @@ use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Title\TitleFormatter;
+use MediaWiki\User\TempUser\TempUserDetailsLookup;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IConnectionProvider;
 
@@ -65,6 +66,8 @@ class LinkBatchFactory {
 	/** @var LinksMigration */
 	private $linksMigration;
 
+	private TempUserDetailsLookup $tempUserDetailsLookup;
+
 	/** @var LoggerInterface */
 	private $logger;
 
@@ -75,6 +78,7 @@ class LinkBatchFactory {
 		GenderCache $genderCache,
 		IConnectionProvider $dbProvider,
 		LinksMigration $linksMigration,
+		TempUserDetailsLookup $tempUserDetailsLookup,
 		LoggerInterface $logger
 	) {
 		$this->linkCache = $linkCache;
@@ -83,6 +87,7 @@ class LinkBatchFactory {
 		$this->genderCache = $genderCache;
 		$this->dbProvider = $dbProvider;
 		$this->linksMigration = $linksMigration;
+		$this->tempUserDetailsLookup = $tempUserDetailsLookup;
 		$this->logger = $logger;
 	}
 
@@ -100,6 +105,7 @@ class LinkBatchFactory {
 			$this->genderCache,
 			$this->dbProvider,
 			$this->linksMigration,
+			$this->tempUserDetailsLookup,
 			$this->logger
 		);
 	}
