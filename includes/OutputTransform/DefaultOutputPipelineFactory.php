@@ -14,6 +14,7 @@ use MediaWiki\OutputTransform\Stages\ExtractBody;
 use MediaWiki\OutputTransform\Stages\HandleParsoidSectionLinks;
 use MediaWiki\OutputTransform\Stages\HandleSectionLinks;
 use MediaWiki\OutputTransform\Stages\HandleTOCMarkers;
+use MediaWiki\OutputTransform\Stages\HardenNFC;
 use MediaWiki\OutputTransform\Stages\HydrateHeaderPlaceholders;
 use MediaWiki\OutputTransform\Stages\RenderDebugInfo;
 use MediaWiki\Tidy\TidyDriverBase;
@@ -68,6 +69,8 @@ class DefaultOutputPipelineFactory {
 			->addStage( new HandleTOCMarkers( $this->tidy ) )
 			->addStage( new DeduplicateStyles() )
 			->addStage( new ExpandToAbsoluteUrls() )
-			->addStage( new HydrateHeaderPlaceholders() );
+			->addStage( new HydrateHeaderPlaceholders() )
+			# This should be last, in order to ensure final output is hardened
+			->addStage( new HardenNFC() );
 	}
 }

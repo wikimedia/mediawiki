@@ -309,6 +309,11 @@ class RemexDriverTest extends MediaWikiUnitTestCase {
 			'<meta foo="bar"/>foo',
 			"<meta foo=\"bar\" /><p>foo</p>",
 		],
+		[
+			'Unicode combining characters (T387130)',
+			"<p>\u{0338} <!--comment-->\u{0338}</p>",
+			'<p>&#x338; <!--comment-->&#x338;</p>',
+		],
 	];
 
 	public static function provider() {

@@ -1673,6 +1673,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\OutputTransform\\Stages\\HandleParsoidSectionLinks' => __DIR__ . '/includes/OutputTransform/Stages/HandleParsoidSectionLinks.php',
 	'MediaWiki\\OutputTransform\\Stages\\HandleSectionLinks' => __DIR__ . '/includes/OutputTransform/Stages/HandleSectionLinks.php',
 	'MediaWiki\\OutputTransform\\Stages\\HandleTOCMarkers' => __DIR__ . '/includes/OutputTransform/Stages/HandleTOCMarkers.php',
+	'MediaWiki\\OutputTransform\\Stages\\HardenNFC' => __DIR__ . '/includes/OutputTransform/Stages/HardenNFC.php',
 	'MediaWiki\\OutputTransform\\Stages\\HydrateHeaderPlaceholders' => __DIR__ . '/includes/OutputTransform/Stages/HydrateHeaderPlaceholders.php',
 	'MediaWiki\\OutputTransform\\Stages\\RenderDebugInfo' => __DIR__ . '/includes/OutputTransform/Stages/RenderDebugInfo.php',
 	'MediaWiki\\Output\\Hook\\AfterBuildFeedLinksHook' => __DIR__ . '/includes/Output/Hook/AfterBuildFeedLinksHook.php',

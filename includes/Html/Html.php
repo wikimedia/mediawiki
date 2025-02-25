@@ -28,6 +28,7 @@ namespace MediaWiki\Html;
 use FormatJson;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Request\ContentSecurityPolicy;
 use UnexpectedValueException;
 
@@ -193,6 +194,7 @@ class Html {
 		if ( isset( self::$voidElements[$element] ) ) {
 			return $start;
 		} else {
+			$contents = Sanitizer::escapeCombiningChar( $contents ?? '' );
 			return $start . $contents . self::closeElement( $element );
 		}
 	}
