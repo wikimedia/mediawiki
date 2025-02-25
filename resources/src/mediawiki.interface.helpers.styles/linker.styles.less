@@ -37,6 +37,22 @@
 	border-radius: @border-radius-base;
 }
 
+/** Class is added by UserLinkRenderer::userLink */
+.mw-tempuserlink-expired {
+	text-decoration: line-through;
+
+	/** Class is added by UserLinkRenderer::userLink */
+	&--tooltip {
+		// Avoid FOUC for expired temporary account link tooltips.
+		display: none;
+		position: absolute;
+	}
+}
+
+a.mw-tempuserlink-expired:hover {
+	text-decoration: line-through underline;
+}
+
 /* Comment portions of RC entries, also used by MediaWiki\CommentFormatter\CommentFormatter::formatBlock */
 span.comment {
 	font-style: italic;

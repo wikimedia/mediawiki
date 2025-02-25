@@ -1,31 +1,57 @@
 <?php
 namespace MediaWiki\Tests\Linker;
 
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Linker\UserLinkRenderer;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Tests\Unit\FakeQqxMessageLocalizer;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
+use MediaWiki\User\TempUser\TempUserDetailsLookup;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiLangTestCase;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @covers \MediaWiki\Linker\UserLinkRenderer
  * @group Database
  */
 class UserLinkRendererTest extends MediaWikiLangTestCase {
+	private const EXPIRED_TEMP_USER_NAME = '~2023-1';
+
 	use TempUserTestTrait;
 
+	private OutputPage $outputPage;
+	private IContextSource $context;
+
+	private TempUserDetailsLookup $tempUserDetailsLookup;
 	private UserLinkRenderer $userLinkRenderer;
 
 	protected function setUp(): void {
 		parent::setUp();
 		$this->enableAutoCreateTempUser();
 
+		// Use a fake timestamp to ensure deterministic output when rendering user links
+		// for expired temporary accounts.
+		ConvertibleTimestamp::setFakeTime( '20250101000000' );
+
+		$messageLocalizer = new FakeQqxMessageLocalizer();
+
+		$this->outputPage = $this->createMock( OutputPage::class );
+		$this->context = $this->createMock( IContextSource::class );
+		$this->context->method( 'getOutput' )
+			->willReturn( $this->outputPage );
+		$this->context->method( 'msg' )
+			->willReturnCallback( [ $messageLocalizer, 'msg' ] );
+
+		$this->tempUserDetailsLookup = $this->createMock( TempUserDetailsLookup::class );
+
 		$this->userLinkRenderer = new UserLinkRenderer(
 			$this->getServiceContainer()->getTempUserConfig(),
 			$this->getServiceContainer()->getSpecialPageFactory(),
-			$this->getServiceContainer()->getLinkRenderer()
+			$this->getServiceContainer()->getLinkRenderer(),
+			$this->tempUserDetailsLookup
 		);
 	}
 
@@ -44,9 +70,20 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 		?string $altUserName = null,
 		array $attributes = []
 	): void {
+		$this->tempUserDetailsLookup->method( 'isExpired' )
+			->with( $user )
+			->willReturn( $user->getName() === self::EXPIRED_TEMP_USER_NAME );
+
+		$this->outputPage->expects( $this->once() )
+			->method( 'addModuleStyles' )
+			->with( [ 'mediawiki.interface.helpers.styles' ] );
+		$this->outputPage->expects( $this->once() )
+			->method( 'addModules' )
+			->with( [ 'mediawiki.interface.helpers' ] );
+
 		$actual = $this->userLinkRenderer->userLink(
 			$user,
-			new FakeQqxMessageLocalizer(),
+			$this->context,
 			$altUserName,
 			$attributes
 		);
@@ -177,6 +214,15 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 				[ 'class' => 'custom-class' ]
 			],
 
+			'Expired temporary user link' => [
+				'<a href="/wiki/Special:Contributions/~2023-1" '
+				. 'class="mw-userlink mw-tempuserlink mw-tempuserlink-expired" '
+				. 'title="" aria-describedby="mw-tempuserlink-expired-tooltip-9c7652400"><bdi>~2023-1</bdi></a>'
+				. '<div id="mw-tempuserlink-expired-tooltip-9c7652400" role="tooltip" '
+				. 'class="cdx-tooltip mw-tempuserlink-expired--tooltip">(tempuser-expired-link-tooltip)</div>',
+				new UserIdentityValue( 2, self::EXPIRED_TEMP_USER_NAME )
+			],
+
 			// Named users
 			'Named user with existing user page' => [
 				'<a href="/wiki/User:UserLinkRendererTestUser" '
@@ -211,13 +257,20 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 	): void {
 		$user = new UserIdentityValue( 1, 'TestUser' );
 
+		$this->outputPage->expects( $this->exactly( 2 ) )
+			->method( 'addModuleStyles' )
+			->with( [ 'mediawiki.interface.helpers.styles' ] );
+		$this->outputPage->expects( $this->exactly( 2 ) )
+			->method( 'addModules' )
+			->with( [ 'mediawiki.interface.helpers' ] );
+
 		$firstCall = $this->userLinkRenderer->userLink(
 			$user,
-			new FakeQqxMessageLocalizer()
+			$this->context
 		);
 		$otherCall = $this->userLinkRenderer->userLink(
 			$otherUser,
-			new FakeQqxMessageLocalizer(),
+			$this->context,
 			$altUserName,
 			$attributes
 		);
@@ -252,5 +305,42 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 			false,
 			new UserIdentityValue( 2, 'OtherUser' )
 		];
+	}
+
+	public function testDoesNotCacheExpiredTemporaryAccountLink(): void {
+		$user = new UserIdentityValue( 2, self::EXPIRED_TEMP_USER_NAME );
+		$nextId = 0;
+
+		$userLinkRenderer = new UserLinkRenderer(
+			$this->getServiceContainer()->getTempUserConfig(),
+			$this->getServiceContainer()->getSpecialPageFactory(),
+			$this->getServiceContainer()->getLinkRenderer(),
+			$this->tempUserDetailsLookup,
+			static function ( string $prefix ) use ( &$nextId ): string {
+				return $prefix . $nextId++;
+			}
+		);
+
+		$this->outputPage->expects( $this->exactly( 2 ) )
+			->method( 'addModuleStyles' )
+			->with( [ 'mediawiki.interface.helpers.styles' ] );
+		$this->outputPage->expects( $this->exactly( 2 ) )
+			->method( 'addModules' )
+			->with( [ 'mediawiki.interface.helpers' ] );
+
+		$this->tempUserDetailsLookup->method( 'isExpired' )
+			->with( $user )
+			->willReturn( true );
+
+		$firstCall = $userLinkRenderer->userLink(
+			$user,
+			$this->context
+		);
+		$otherCall = $userLinkRenderer->userLink(
+			$user,
+			$this->context
+		);
+
+		$this->assertNotEquals( $firstCall, $otherCall );
 	}
 }

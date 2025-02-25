@@ -5,14 +5,17 @@ namespace MediaWiki\Linker;
 
 use HtmlArmor;
 use MapCacheLRU;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\ExternalUserNames;
 use MediaWiki\User\TempUser\TempUserConfig;
+use MediaWiki\User\TempUser\TempUserDetailsLookup;
 use MediaWiki\User\UserIdentity;
 use MessageLocalizer;
 use Wikimedia\IPUtils;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Service class that renders HTML for user-related links.
@@ -23,6 +26,7 @@ class UserLinkRenderer {
 	private TempUserConfig $tempUserConfig;
 	private SpecialPageFactory $specialPageFactory;
 	private LinkRenderer $linkRenderer;
+	private TempUserDetailsLookup $tempUserDetailsLookup;
 
 	/**
 	 * Process cache for user links keyed by user name,
@@ -35,11 +39,13 @@ class UserLinkRenderer {
 	public function __construct(
 		TempUserConfig $tempUserConfig,
 		SpecialPageFactory $specialPageFactory,
-		LinkRenderer $linkRenderer
+		LinkRenderer $linkRenderer,
+		TempUserDetailsLookup $tempUserDetailsLookup
 	) {
 		$this->tempUserConfig = $tempUserConfig;
 		$this->specialPageFactory = $specialPageFactory;
 		$this->linkRenderer = $linkRenderer;
+		$this->tempUserDetailsLookup = $tempUserDetailsLookup;
 
 		// Set a large enough cache size to accommodate long pagers,
 		// such as Special:RecentChanges with a high limit.
@@ -51,7 +57,7 @@ class UserLinkRenderer {
 	 * Returns potentially cached link HTML.
 	 *
 	 * @param UserIdentity $targetUser The user to render a link for.
-	 * @param MessageLocalizer $unused Unused until follow-up patchset.
+	 * @param IContextSource $context
 	 * @param string|null $altUserName Optional text to display instead of the user name,
 	 * or `null` to use the user name.
 	 * @param string[] $attributes Optional extra HTML attributes for the link.
@@ -59,17 +65,27 @@ class UserLinkRenderer {
 	 */
 	public function userLink(
 		UserIdentity $targetUser,
-		MessageLocalizer $unused,
+		IContextSource $context,
 		?string $altUserName = null,
 		array $attributes = []
 	): string {
+		$outputPage = $context->getOutput();
+		$outputPage->addModuleStyles( [ 'mediawiki.interface.helpers.styles' ] );
+		$outputPage->addModules( [ 'mediawiki.interface.helpers' ] );
+
+		// Expired temporary account user links are not cacheable, because they contain a tooltip
+		// that needs to have a unique ID used in an ARIA association with the corresponding link.
+		if ( $this->tempUserDetailsLookup->isExpired( $targetUser ) ) {
+			return $this->renderUserLink( $targetUser, $context, $altUserName, $attributes );
+		}
+
 		return $this->userLinkCache->getWithSetCallback(
 			$this->userLinkCache->makeKey(
 				$targetUser->getName(),
 				$altUserName ?? '',
 				implode( ' ', $attributes )
 			),
-			fn () => $this->renderUserLink( $targetUser, $unused, $altUserName, $attributes )
+			fn () => $this->renderUserLink( $targetUser, $context, $altUserName, $attributes )
 		);
 	}
 
@@ -78,7 +94,7 @@ class UserLinkRenderer {
 	 * without caching.
 	 *
 	 * @param UserIdentity $targetUser The user to render a link for.
-	 * @param MessageLocalizer $unused Unused until follow-up patchset.
+	 * @param MessageLocalizer $messageLocalizer
 	 * @param string|null $altUserName Optional text to display instead of the user name,
 	 * or `null` to use the user name.
 	 * @param string[] $attributes Optional extra HTML attributes for the link.
@@ -86,7 +102,7 @@ class UserLinkRenderer {
 	 */
 	private function renderUserLink(
 		UserIdentity $targetUser,
-		MessageLocalizer $unused,
+		MessageLocalizer $messageLocalizer,
 		?string $altUserName = null,
 		array $attributes = []
 	): string {
@@ -94,8 +110,36 @@ class UserLinkRenderer {
 
 		$classes = [ 'mw-userlink' ];
 
+		$postfix = '';
+
 		if ( $this->tempUserConfig->isTempName( $userName ) ) {
 			$classes[] = 'mw-tempuserlink';
+
+			// Adjust the styling of expired temporary account links (T358469).
+			if ( $this->tempUserDetailsLookup->isExpired( $targetUser ) ) {
+				$classes[] = 'mw-tempuserlink-expired';
+				$tooltipId = sprintf(
+					'mw-tempuserlink-expired-tooltip-%08x',
+					ConvertibleTimestamp::hrtime()
+				);
+
+				$postfix = Html::element(
+					'div',
+					[
+						'id' => $tooltipId,
+						'role' => 'tooltip',
+						'class' => 'cdx-tooltip mw-tempuserlink-expired--tooltip',
+					],
+					$messageLocalizer->msg( 'tempuser-expired-link-tooltip' )->text()
+				);
+
+				$attributes['aria-describedby'] = $tooltipId;
+
+				// Hide default link title when rendering expired temporary account links
+				// to avoid conflicting with the tooltip.
+				$attributes['title'] = '';
+			}
+
 			$pageName = $this->specialPageFactory->getLocalNameFor( 'Contributions', $userName );
 			$page = new TitleValue( NS_SPECIAL, $pageName );
 		} elseif ( !$targetUser->isRegistered() ) {
@@ -122,9 +166,9 @@ class UserLinkRenderer {
 		$attributes['class'] = implode( ' ', $classes );
 
 		if ( $page !== null ) {
-			return $this->linkRenderer->makeLink( $page, new HtmlArmor( $linkText ), $attributes );
+			return $this->linkRenderer->makeLink( $page, new HtmlArmor( $linkText ), $attributes ) . $postfix;
 		}
 
-		return Html::rawElement( 'span', $attributes, $linkText );
+		return Html::rawElement( 'span', $attributes, $linkText ) . $postfix;
 	}
 }

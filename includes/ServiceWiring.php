@@ -2539,7 +2539,8 @@ return [
 		return new UserLinkRenderer(
 			$services->getTempUserConfig(),
 			$services->getSpecialPageFactory(),
-			$services->getLinkRenderer()
+			$services->getLinkRenderer(),
+			$services->getTempUserDetailsLookup()
 		);
 	},
 

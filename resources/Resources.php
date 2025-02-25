@@ -2012,6 +2012,24 @@ return [
 			'user.options',
 		],
 	],
+	'mediawiki.interface.helpers' => [
+		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.interface.helpers',
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.interface.helpers",
+		'packageFiles' => [
+			'init.js',
+			'linker.js'
+		],
+		'dependencies' => [
+			'mediawiki.interface.helpers.linker.styles'
+		]
+	],
+	'mediawiki.interface.helpers.linker.styles' => [
+		'class' => CodexModule::class,
+		'codexStyleOnly' => true,
+		'codexComponents' => [
+			'CdxTooltip',
+		],
+	],
 	'mediawiki.interface.helpers.styles' => [
 		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.interface.helpers.styles',
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.interface.helpers.styles",
