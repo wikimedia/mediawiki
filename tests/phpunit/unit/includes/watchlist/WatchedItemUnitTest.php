@@ -63,13 +63,18 @@ class WatchedItemUnitTest extends MediaWikiUnitTestCase {
 
 		$messageLocalizer = $this->createMock( MessageLocalizer::class );
 		$messageLocalizer->method( 'msg' )->willReturnCallback(
-			function ( $key, ...$params ) {
-				// Right now we aren't worrying about the message formatting,
-				// just testing if the correct parameter is there by adding it
-				// to the end. Use MediaWikiTestCaseTrait::getMockMessage
-				return $this->getMockMessage(
-					$params ? ( $key . '-' . $params[0][0] ) : $key
-				);
+			function ( $key ) {
+				$msg = $this->createMock( Message::class );
+				$msg->expects( $this->once() )
+					->method( 'numParams' )
+					->with(
+						$this->callback(
+							static function ( $value ) use ( $key, $msg ) {
+								$msg->method( "text" )->willReturn( $key . '-' . $value );
+								return true;
+							} ) )
+					->willReturnSelf();
+				return $msg;
 			}
 		);
 
@@ -96,6 +101,17 @@ class WatchedItemUnitTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 'watchlist-expiring-days-full-text-1', $daysRemainingDayText );
 
 		// Adding a watched item with an expiry in less than 1 day from the frozen time
+		$messageLocalizer = $this->createMock( MessageLocalizer::class );
+		$messageLocalizer->method( 'msg' )->willReturnCallback(
+			function ( $key, ...$params ) {
+				// Right now we aren't worrying about the message formatting,
+				// just testing if the correct parameter is there by adding it
+				// to the end. Use MediaWikiTestCaseTrait::getMockMessage
+				return $this->getMockMessage(
+					$params ? ( $key . '-' . $params[0][0] ) : $key
+				);
+			}
+		);
 		$watchedItemSoon = new WatchedItem( $user, $target, null, '20200527010001' );
 		$daysRemainingSoonText = $watchedItemSoon->getExpiryInDaysText( $messageLocalizer );
 		$this->assertSame( 'watchlist-expiring-hours-full-text', $daysRemainingSoonText );
