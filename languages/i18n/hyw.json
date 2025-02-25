@@ -285,6 +285,7 @@
 	"userlogin-yourpassword-ph": "Մուտքագրեցէ'ք ձեր անցաբառը",
 	"createacct-yourpassword-ph": "Մուտքագրեցէ՛ք անցաբառ մը",
 	"yourpasswordagain": "Դարձեալ մուտքագրեցէ՛ք անցաբառը",
+	"createacct-useuniquepass": "Յանձնարարելի է գործածել նոր անցաբառ, զոր նախապէս չէք օգտագործած՝ որեւէ կայքէջի համար",
 	"createacct-yourpasswordagain": "Հաստատեցէ՛ք անցաբառը",
 	"createacct-yourpasswordagain-ph": "Դարձեալ մուտքագրեցէ՛ք անցաբառը",
 	"userlogin-remembermypassword": "Մնալ համակարգին մէջ",

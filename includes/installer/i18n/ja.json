@@ -35,7 +35,8 @@
 			"ネイ",
 			"背番号4のエース",
 			"青子守歌",
-			"아라"
+			"아라",
+			"Yaakiyu.jp"
 		]
 	},
 	"config-desc": "MediaWiki のインストーラー",
@@ -271,11 +272,11 @@
 	"config-memcache-badport": "Memcached のポート番号は $1 から $2 の範囲にしてください。",
 	"config-extensions": "拡張機能",
 	"config-extensions-help": "<code>./extensions</code> ディレクトリ内で、上に列挙した拡張機能を検出しました。\n\nこれらの拡張機能には追加の設定が必要な場合がありますが、今すぐ有効化できます。",
-	"config-skins": "外装",
+	"config-skins": "スキン",
 	"config-skins-help": "上に列挙した外装は<code>./skins</code>で検出されたものです。少なくともひとつを有効にして、既定値を選択してください。",
 	"config-skins-use-as-default": "この外装を既定値として使用",
-	"config-skins-missing": "外装が見つかりませんでした。適切なものをいくつかインストールするまで、MediaWikiはフォールバック外装を使用します。",
-	"config-skins-must-enable-some": "少なくとも1つの有効化する外装を選択する必要があります。",
+	"config-skins-missing": "スキンが見つかりませんでした。適切なものをいくつかインストールするまで、MediaWikiはフォールバックスキンを使用します。",
+	"config-skins-must-enable-some": "少なくとも1つの有効化するスキンを選択する必要があります。",
 	"config-skins-must-enable-default": "既定値として選択された外装は有効である必要があります。",
 	"config-install-alreadydone": "<strong>警告:</strong> 既にMediaWikiがインストール済みで、再びインストールし直そうとしています。\n次のページへ進んでください。",
 	"config-install-begin": "「{{int:config-continue}}」を押すと、MediaWiki のインストールを開始できます。\n変更したい設定がある場合は、「{{int:config-back}}」を押してください。",
