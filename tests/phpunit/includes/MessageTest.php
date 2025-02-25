@@ -303,6 +303,7 @@ class MessageTest extends MediaWikiLangTestCase {
 				'⧼script&gt;alert(1)&lt;/script⧽' ],
 			[ 'script>alert(1)</script', 'plain', '⧼script&gt;alert(1)&lt;/script⧽',
 				'⧼script&gt;alert(1)&lt;/script⧽' ],
+			[ "\u{0338}isolated combining char", 'escaped', '⧼&#x338;isolated combining char⧽', '⧼&#x338;isolated combining char⧽' ],
 		];
 	}
 
@@ -332,6 +333,7 @@ class MessageTest extends MediaWikiLangTestCase {
 				'&lt;script&gt;alert(1)&lt;/script&gt;' ],
 			[ '<script>alert(1)</script>', 'plain', '<script>alert(1)</script>',
 				'&lt;script&gt;alert(1)&lt;/script&gt;' ],
+			[ "\u{0338}isolated combining char", 'escaped', '&#x338;isolated combining char', '&#x338;isolated combining char' ],
 		];
 	}
 
@@ -610,28 +612,28 @@ class MessageTest extends MediaWikiLangTestCase {
 	public static function providePlaintextParams() {
 		return [
 			[
-				'one $2 <div>foo</div> [[Bar]] {{Baz}} &lt;',
+				"one $2 <div>\u{0338}foo</div> [[Bar]] {{Baz}} &lt;",
 				'plain',
 			],
 
 			[
 				// expect
-				'one $2 <div>foo</div> [[Bar]] {{Baz}} &lt;',
+				"one $2 <div>\u{0338}foo</div> [[Bar]] {{Baz}} &lt;",
 				// format
 				'text',
 			],
 			[
-				'one $2 &lt;div&gt;foo&lt;/div&gt; [[Bar]] {{Baz}} &amp;lt;',
+				'one $2 &lt;div&gt;&#x338;foo&lt;/div&gt; [[Bar]] {{Baz}} &amp;lt;',
 				'escaped',
 			],
 
 			[
-				'one $2 &lt;div&gt;foo&lt;/div&gt; [[Bar]] {{Baz}} &amp;lt;',
+				'one $2 &lt;div&gt;&#x338;foo&lt;/div&gt; [[Bar]] {{Baz}} &amp;lt;',
 				'parse',
 			],
 
 			[
-				"<p>one $2 &lt;div&gt;foo&lt;/div&gt; [[Bar]] {{Baz}} &amp;lt;\n</p>",
+				"<p>one $2 &lt;div&gt;&#x338;foo&lt;/div&gt; [[Bar]] {{Baz}} &amp;lt;\n</p>",
 				'parseAsBlock',
 			],
 		];
@@ -650,7 +652,7 @@ class MessageTest extends MediaWikiLangTestCase {
 		$msg = new RawMessage( '$1 $2' );
 		$params = [
 			'one $2',
-			'<div>foo</div> [[Bar]] {{Baz}} &lt;',
+			"<div>\u{0338}foo</div> [[Bar]] {{Baz}} &lt;",
 		];
 		$this->assertSame(
 			$expect,

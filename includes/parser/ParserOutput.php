@@ -564,6 +564,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			},
 			$text
 		);
+
+		// Hardens the output against NFC normalization (T387130).
+		$text = Sanitizer::escapeCombiningChar( $text );
+
 		return $text;
 	}
 

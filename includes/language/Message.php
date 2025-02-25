@@ -977,7 +977,7 @@ class Message implements MessageSpecifier, Serializable {
 			// '⧼' is used instead of '<' to side-step any
 			// double-escaping issues.
 			// (Keep synchronised with mw.Message#toString in JS.)
-			return '⧼' . htmlspecialchars( $this->key ) . '⧽';
+			return '⧼' . Sanitizer::escapeCombiningChar( htmlspecialchars( $this->key ) ) . '⧽';
 		}
 
 		if ( $this->getLanguage()->getCode() === 'qqx' ) {
@@ -1010,6 +1010,7 @@ class Message implements MessageSpecifier, Serializable {
 		} elseif ( $format === self::FORMAT_ESCAPED ) {
 			$string = $this->transformText( $string );
 			$string = htmlspecialchars( $string, ENT_QUOTES, 'UTF-8', false );
+			$string = Sanitizer::escapeCombiningChar( $string );
 		}
 
 		# Raw parameter replacement
@@ -1509,7 +1510,7 @@ class Message implements MessageSpecifier, Serializable {
 			case self::FORMAT_BLOCK_PARSE:
 			case self::FORMAT_ESCAPED:
 			default:
-				return htmlspecialchars( $plaintext, ENT_QUOTES );
+				return Sanitizer::escapeCombiningChar( htmlspecialchars( $plaintext, ENT_QUOTES ) );
 		}
 	}
 

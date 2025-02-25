@@ -22,9 +22,13 @@ class RemexCompatFormatter extends HtmlFormatter {
 
 	public function __construct( $options = [] ) {
 		parent::__construct( $options );
+		// Escape non-breaking space
 		$this->attributeEscapes["\u{00A0}"] = '&#160;';
-		unset( $this->attributeEscapes["&"] );
 		$this->textEscapes["\u{00A0}"] = '&#160;';
+		// Escape U+0338 (T387130)
+		$this->textEscapes["\u{0338}"] = '&#x338;';
+		// Disable escaping of '&', because we expect to see entities, due to 'ignoreCharRefs'
+		unset( $this->attributeEscapes["&"] );
 		unset( $this->textEscapes["&"] );
 		$this->textProcessor = $options['textProcessor'] ?? null;
 	}

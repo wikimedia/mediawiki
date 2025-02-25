@@ -217,6 +217,7 @@ class Html {
 			// Silly XML.
 			return substr( $start, 0, -1 ) . '/>';
 		} else {
+			$contents = Sanitizer::escapeCombiningChar( $contents ?? '' );
 			return $start . $contents . self::closeElement( $element );
 		}
 	}

@@ -1110,6 +1110,12 @@ class Sanitizer {
 			$class ), '_' );
 	}
 
+	public static function escapeCombiningChar( string $html ): string {
+		return strtr( $html, [
+			"\u{0338}" => '&#x338;', # T387130
+		] );
+	}
+
 	/**
 	 * Given HTML input, escape with htmlspecialchars but un-escape entities.
 	 * This allows (generally harmless) entities like &#160; to survive.
@@ -1123,7 +1129,7 @@ class Sanitizer {
 		# hurt. Use ENT_SUBSTITUTE so that incorrectly truncated multibyte characters
 		# don't cause the entire string to disappear.
 		$html = htmlspecialchars( $html, ENT_QUOTES | ENT_SUBSTITUTE );
-		return $html;
+		return self::escapeCombiningChar( $html );
 	}
 
 	/**
