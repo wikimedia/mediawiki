@@ -76,4 +76,20 @@ describe( 'BlockLog', () => {
 		expect( rows ).toHaveLength( 3 );
 		expect( rows[ 1 ].classes() ).toContain( 'cdx-selected-block-row' );
 	} );
+
+	it( 'should show a table with the block-user-no-active-blocks message when given a user with no active blocks', async () => {
+		mockMwConfigGet( { blockTargetUser: 'NeverBlocked' } );
+		const wrapper = mount( BlockLog, {
+			propsData: { blockLogType: 'active' },
+			global: { plugins: [ createTestingPinia( { stubActions: false } ) ] }
+		} );
+		await flushPromises();
+		// Test: The table should exist
+		expect( wrapper.find( '.mw-block-log__type-active' ).exists() ).toBeTruthy();
+		const rows = wrapper.findAll( 'table.cdx-table__table tbody tr' );
+		// Test: The table tbody should have one row
+		expect( rows ).toHaveLength( 1 );
+		// Test: The row should contain the block-user-no-active-blocks message
+		expect( rows[ 0 ].text() ).toContain( 'block-user-no-active-blocks' );
+	} );
 } );
