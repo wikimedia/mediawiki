@@ -70,8 +70,7 @@ class EventDispatchEngineTest extends MediaWikiUnitTestCase {
 				IConnectionProvider $conProv
 			) use ( &$callCount ) {
 				$callCount++;
-			},
-			[ DomainEventSource::INVOCATION_MODE => DomainEventSource::INVOKE_AFTER_COMMIT ]
+			}
 		);
 
 		$dbw = $conProv->getPrimaryDatabase();
@@ -123,8 +122,7 @@ class EventDispatchEngineTest extends MediaWikiUnitTestCase {
 				IConnectionProvider $conProv
 			) use ( &$callCount ) {
 				$callCount++;
-			},
-			[ DomainEventSource::INVOCATION_MODE => DomainEventSource::INVOKE_AFTER_COMMIT ]
+			}
 		);
 
 		$dbw = $conProv->getPrimaryDatabase();

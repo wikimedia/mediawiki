@@ -11,9 +11,7 @@ use LogicException;
  * This class provides a default implementation of registerListeners() that will
  * attempt to find listener methods for the events defined in the constructor.
  * Listener methods must have a name based on the event type, following the
- * pattern "handle{$eventType}EventAfterCommit". The "AfterCommit" suffix
- * specifies the invocation mode. More invocation modes will be defined in the
- * future.
+ * pattern "handle{$eventType}Event".
  *
  * Subclasses can either override registerListeners() and register listeners
  * directly with the given DomainEventSource, or they can rely on the default
@@ -76,10 +74,13 @@ abstract class EventSubscriberBase implements InitializableDomainEventSubscriber
 	) {
 		$found = false;
 
-		$modes = [ DomainEventSource::INVOKE_AFTER_COMMIT ];
+		// Suffixed are a stand-in for method attributes.
+		// NOTE: The 'AfterCommit' suffix is supported for backwards compatibility,
+		// but should be removed before the 1.44 release.
+		$suffixes = [ '', 'AfterCommit' ];
 
-		foreach ( $modes as $mode ) {
-			if ( $this->registerForEventAndMode( $eventSource, $eventType, $mode ) ) {
+		foreach ( $suffixes as $sfx ) {
+			if ( $this->maybeRegisterListener( $eventSource, $eventType, $sfx ) ) {
 				$found = true;
 			}
 		}
@@ -91,12 +92,12 @@ abstract class EventSubscriberBase implements InitializableDomainEventSubscriber
 		}
 	}
 
-	private function registerForEventAndMode(
+	private function maybeRegisterListener(
 		DomainEventSource $eventSource,
 		string $eventType,
-		string $mode
+		string $suffix
 	) {
-		$method = "handle{$eventType}Event{$mode}";
+		$method = "handle{$eventType}Event{$suffix}";
 		if ( !method_exists( $this, $method ) ) {
 			return false;
 		}
@@ -104,24 +105,32 @@ abstract class EventSubscriberBase implements InitializableDomainEventSubscriber
 		$eventSource->registerListener(
 			$eventType,
 			[ $this, $method ],
-			$this->getListenerOptions( $eventType, $mode )
+			$this->getListenerOptions( $eventType, $suffix )
 		);
 		return true;
 	}
 
+	/**
+	 * Placeholder method for allowing subclasses to define listener options.
+	 * The default implementation could make use of method attributes in the future,
+	 * e.g. to determine a listener's priority.
+	 *
+	 * @unstable for now, intended to become stable to override once the signature is clear.
+	 */
 	protected function getListenerOptions(
 		string $eventType,
-		string $mode
-	) {
-		return [ DomainEventSource::INVOCATION_MODE => $mode ];
+		string $suffix
+	): array {
+		// We may use the options array in the future to communicates things
+		// like listener priority, error handling, etc.
+		return [];
 	}
 
 	/**
 	 * This default implementation of registerListeners() will automatically
 	 * register a listener method for each event passed to initEvents() or
 	 * initSubscriber(). The methods have to start with "handler" followed
-	 * by the name of the event followed by "Event" followed by an appropriate
-	 * suffix, e.g. handlePageUpdatedEventAfterCommit().
+	 * by the name of the event followed by "Event".
 	 *
 	 * @stable to override
 	 */
