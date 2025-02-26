@@ -152,14 +152,6 @@ class PageUpdatedEvent extends PageEvent implements PageUpdateCauses {
 	}
 
 	/**
-	 * @deprecated since 1.44, use isCreation() instead.
-	 * @note Unreleased but used in GrowthExperiments
-	 */
-	public function isNew(): bool {
-		return $this->isCreation();
-	}
-
-	/**
 	 * Whether the updated created the page.
 	 * A deleted/archived page is not considered to "exist".
 	 * When undeleting a page, the page will be restored using its old page ID,
