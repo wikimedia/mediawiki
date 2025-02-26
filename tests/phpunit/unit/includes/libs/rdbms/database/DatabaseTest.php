@@ -220,7 +220,7 @@ class DatabaseTest extends TestCase {
 		$db->clearFlag( DBO_TRX );
 		$called = false;
 		$flagSet = null;
-		$callback = static function ( $trigger, IDatabase $db ) use ( &$flagSet, &$called ) {
+		$callback = static function () use ( $db, &$flagSet, &$called ) {
 			$called = true;
 			$flagSet = $db->getFlag( DBO_TRX );
 		};
@@ -243,9 +243,7 @@ class DatabaseTest extends TestCase {
 
 		$db->clearFlag( DBO_TRX );
 		$db->onTransactionCommitOrIdle(
-			static function ( $trigger, IDatabase $db ) {
-				$db->setFlag( DBO_TRX );
-			},
+			static fn () => $db->setFlag( DBO_TRX ),
 			__METHOD__
 		);
 		$this->assertFalse( $db->getFlag( DBO_TRX ), 'DBO_TRX restored to default' );
@@ -320,7 +318,7 @@ class DatabaseTest extends TestCase {
 
 		$called = false;
 		$db->onTransactionPreCommitOrIdle(
-			static function ( IDatabase $db ) use ( &$called ) {
+			static function () use ( &$called ) {
 				$called = true;
 			},
 			__METHOD__
@@ -330,7 +328,7 @@ class DatabaseTest extends TestCase {
 		$db->begin( __METHOD__ );
 		$called = false;
 		$db->onTransactionPreCommitOrIdle(
-			static function ( IDatabase $db ) use ( &$called ) {
+			static function () use ( &$called ) {
 				$called = true;
 			},
 			__METHOD__
@@ -357,7 +355,7 @@ class DatabaseTest extends TestCase {
 		$this->assertFalse( $lb->hasPrimaryChanges() );
 		$this->assertTrue( $db->getFlag( DBO_TRX ), 'DBO_TRX is set' );
 		$called = false;
-		$callback = static function ( IDatabase $db ) use ( &$called ) {
+		$callback = static function () use ( &$called ) {
 			$called = true;
 		};
 		$db->onTransactionPreCommitOrIdle( $callback, __METHOD__ );
@@ -393,7 +391,7 @@ class DatabaseTest extends TestCase {
 		$db->clearFlag( DBO_TRX );
 		$db->begin( __METHOD__ );
 		$called = false;
-		$db->onTransactionResolution( static function ( $trigger, IDatabase $db ) use ( &$called ) {
+		$db->onTransactionResolution( static function ( $trigger ) use ( $db, &$called ) {
 			$called = true;
 			$db->setFlag( DBO_TRX );
 		} );
@@ -404,7 +402,7 @@ class DatabaseTest extends TestCase {
 		$db->clearFlag( DBO_TRX );
 		$db->begin( __METHOD__ );
 		$called = false;
-		$db->onTransactionResolution( static function ( $trigger, IDatabase $db ) use ( &$called ) {
+		$db->onTransactionResolution( static function ( $trigger ) use ( $db, &$called ) {
 			$called = true;
 			$db->setFlag( DBO_TRX );
 		} );

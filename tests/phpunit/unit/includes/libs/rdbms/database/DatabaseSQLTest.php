@@ -687,7 +687,7 @@ class DatabaseSQLTest extends TestCase {
 			IDatabase::TRIGGER_ROLLBACK => 'tRollback',
 			IDatabase::TRIGGER_CANCEL => 'tCancel',
 		];
-		$pcCallback = function ( IDatabase $db ) use ( $fname ) {
+		$pcCallback = function () use ( $fname ) {
 			$this->database->query( "SELECT 0", $fname );
 		};
 		$callback1 = function ( $trigger = '-' ) use ( $fname, $triggerMap ) {

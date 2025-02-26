@@ -686,8 +686,8 @@ class TransactionManager {
 		foreach ( $this->trxEndCallbacks as $key => $entry ) {
 			if ( in_array( $entry[2], $excisedSectionsId, true ) ) {
 				$callback = $entry[0];
-				$this->trxEndCallbacks[$key][0] = static function ( $t, $db ) use ( $callback ) {
-					return $callback( IDatabase::TRIGGER_ROLLBACK, $db );
+				$this->trxEndCallbacks[$key][0] = static function () use ( $callback ) {
+					return $callback( IDatabase::TRIGGER_ROLLBACK );
 				};
 				// This "on resolution" callback no longer belongs to a section.
 				$this->trxEndCallbacks[$key][2] = null;
@@ -709,11 +709,10 @@ class TransactionManager {
 	/**
 	 * Consume and run any "on transaction pre-commit" callbacks
 	 *
-	 * @param IDatabase $db
 	 * @return int Number of callbacks attempted
 	 * @throws Throwable Any exception thrown by a callback
 	 */
-	public function runOnTransactionPreCommitCallbacks( IDatabase $db ): int {
+	public function runOnTransactionPreCommitCallbacks(): int {
 		$count = 0;
 
 		// Drain the queues of transaction "precommit" callbacks until it is empty
@@ -723,7 +722,7 @@ class TransactionManager {
 			$count += count( $callbackEntries );
 			foreach ( $callbackEntries as $entry ) {
 				try {
-					$entry[0]( $db );
+					$entry[0]();
 				} catch ( Throwable $trxError ) {
 					$this->setTransactionError( $trxError );
 					throw $trxError;
