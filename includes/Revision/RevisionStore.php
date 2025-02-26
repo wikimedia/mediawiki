@@ -818,9 +818,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 					}
 					$fname = __METHOD__;
 					$dbw->onTransactionResolution(
-						static function ( $trigger, IDatabase $dbw ) use ( $fname ) {
-							$dbw->unlock( 'fix-for-T202032', $fname );
-						},
+						static fn () => $dbw->unlock( 'fix-for-T202032', $fname ),
 						__METHOD__
 					);
 
