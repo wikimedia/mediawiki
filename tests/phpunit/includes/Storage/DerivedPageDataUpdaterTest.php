@@ -486,7 +486,8 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 				Assert::assertSame( $rev1->getId(), $event->getOldRevision()->getId() );
 				Assert::assertSame( $editResult, $event->getEditResult() );
 				Assert::assertFalse( $event->isCreation() );
-				Assert::assertFalse( $event->isRevisionChange() );
+				Assert::assertFalse( $event->changedCurrentRevisionId() );
+				Assert::assertTrue( $event->isReconciliationRequest() );
 			}
 		);
 

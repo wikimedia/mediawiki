@@ -948,8 +948,9 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 				Assert::assertSame( $file->getName(), $event->getPage()->getDBkey() );
 
 				Assert::assertTrue( $event->isCreation(), 'isCreation' );
-				Assert::assertTrue( $event->isRevisionChange(), 'isRevisionChange' );
-				Assert::assertTrue( $event->isContentChange(), 'isContentChange' );
+				Assert::assertTrue( $event->changedCurrentRevisionId(), 'changedCurrentRevisionId' );
+				Assert::assertTrue( $event->isEffectiveContentChange(), 'isEffectiveContentChange' );
+				Assert::assertTrue( $event->isNominalContentChange(), 'isNominalContentChange' );
 
 				Assert::assertTrue(
 					$event->hasCause( PageUpdatedEvent::CAUSE_UPLOAD ),
@@ -1007,9 +1008,10 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 			static function ( PageUpdatedEvent $event ) use ( &$calls, $file ) {
 				Assert::assertSame( $file->getName(), $event->getPage()->getDBkey() );
 
-				Assert::assertFalse( $event->isNew(), 'isNew' );
-				Assert::assertTrue( $event->isRevisionChange(), 'isRevisionChange' );
-				Assert::assertFalse( $event->isContentChange(), 'isContentChange' );
+				Assert::assertFalse( $event->isCreation(), 'isCreation' );
+				Assert::assertTrue( $event->changedCurrentRevisionId(), 'changedCurrentRevisionId' );
+				Assert::assertFalse( $event->isEffectiveContentChange(), 'isEffectiveContentChange' );
+				Assert::assertFalse( $event->isNominalContentChange(), 'isNominalContentChange' );
 
 				Assert::assertTrue(
 					$event->hasCause( PageUpdatedEvent::CAUSE_UPLOAD ),

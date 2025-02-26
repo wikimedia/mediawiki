@@ -426,16 +426,21 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		) {
 			Assert::assertSame(
 				$contentChange,
-				$event->isContentChange(),
-				'isContentChange'
+				$event->isEffectiveContentChange(),
+				'isEffectiveContentChange'
+			);
+			Assert::assertSame( // not dummy, but could be null edit
+				$contentChange || !$revisionChange,
+				$event->isNominalContentChange(),
+				'isNominalContentChange'
 			);
 			Assert::assertSame(
 				$revisionChange,
-				$event->isRevisionChange(),
-				'isRevisionChange'
+				$event->changedCurrentRevisionId(),
+				'changedCurrentRevisionId'
 			);
-			Assert::assertSame(
-				!$revisionChange, // null edits
+			Assert::assertSame( // null edits
+				!$revisionChange,
 				$event->isReconciliationRequest(),
 				'isReconciliationRequest'
 			);
@@ -675,8 +680,8 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 			$content->getModel() === CONTENT_MODEL_JAVASCRIPT ? 1 : 0
 		);
 
+		// Perform edit
 		$updater = $page->newPageUpdater( $user );
-
 		$updater->setContent( SlotRecord::MAIN, $content );
 
 		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
@@ -684,6 +689,89 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		// NOTE: assertions are applied by the spies installed earlier.
 		$this->runDeferredUpdates();
+	}
+
+	/**
+	 * Test update propagation for null edits.
+	 * @dataProvider provideUpdatePropagation
+	 * @covers \MediaWiki\Storage\PageUpdater::saveRevision()
+	 */
+	public function testUpdatePropagation_null( PageIdentity $title, $content = null, $userName = null ) {
+		if ( $userName ) {
+			// For testing talk page behavior, the corresponding user must exist.
+			$this->makeUser( $userName );
+		}
+
+		$user = $this->getTestUser()->getUser();
+		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
+
+		$wikiPageFactory->newFromTitle( $title );
+		$content ??= new TextContent( 'Lorem Ipsum' );
+		$this->editPage( $title, $content );
+
+		// Flush...
+		$this->runJobs();
+		$page = $wikiPageFactory->newFromTitle( $title );
+
+		// Null edits should not go into recentchanges, should not
+		// increment counters, and should not trigger talk page notifications.
+		$this->expectChangeTrackingUpdates( 0, 0, 0, 0 );
+
+		// Update derived data on null edits
+		$this->expectSearchUpdates( 1 );
+		$this->expectLocalizationUpdate(
+			$page->getNamespace() === NS_MEDIAWIKI ? 1 : 0
+		);
+
+		// NOTE: The resource loader cache is currently purged *twice*
+		// for null edits. That's not necessary and may change.
+		$this->expectResourceLoaderUpdates(
+			$content->getModel() === CONTENT_MODEL_JAVASCRIPT ? 2 : 0
+		);
+
+		// Do null edit
+		$updater = $page->newPageUpdater( $user );
+		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
+		$updater->saveRevision( $summary );
+	}
+
+	/**
+	 * Test update propagation for dummy revisions.
+	 * @dataProvider provideUpdatePropagation
+	 * @covers \MediaWiki\Storage\PageUpdater::saveRevision()
+	 */
+	public function testUpdatePropagation_dummy( PageIdentity $title, $content = null, $userName = null ) {
+		if ( $userName ) {
+			// For testing talk page behavior, the corresponding user must exist.
+			$this->makeUser( $userName );
+		}
+
+		$user = $this->getTestUser()->getUser();
+		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
+
+		$wikiPageFactory->newFromTitle( $title );
+		$content ??= new TextContent( 'Lorem Ipsum' );
+		$this->editPage( $title, $content );
+
+		// Flush...
+		$this->runJobs();
+		$page = $wikiPageFactory->newFromTitle( $title );
+
+		// Silent dummy revisions should not go into recentchanges,
+		// should not increment counters, and should not trigger talk page
+		// notifications.
+		$this->expectChangeTrackingUpdates( 0, 0, 0, 0 );
+
+		// Do not update derived data on dummy revisions!
+		$this->expectSearchUpdates( 0 );
+		$this->expectLocalizationUpdate( 0 );
+		$this->expectResourceLoaderUpdates( 0 );
+
+		// Create dummy revision
+		$updater = $page->newPageUpdater( $user );
+		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
+		$updater->setForceEmptyRevision( true ); // dummy revision, not null edit
+		$updater->saveRevision( $summary, EDIT_SUPPRESS_RC );
 	}
 
 	public function testSetForceEmptyRevisionSetsOriginalRevisionId() {

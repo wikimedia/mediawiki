@@ -631,11 +631,23 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 			static function ( PageUpdatedEvent $event ) use ( $old, $oldPageId, $new, $oldRev, $mover ) {
 				// for the existing page under the new title
 				if ( $event->getPage()->isSamePageAs( $new ) ) {
-					Assert::assertTrue( $event->isSilent(), 'isSilent' );
 					Assert::assertFalse( $event->isCreation(), 'isCreation' );
-					Assert::assertFalse( $event->isReconciliationRequest(), 'isReconciliationRequest' );
-					Assert::assertTrue( $event->isRevisionChange(), 'isRevisionChange' );
-					Assert::assertFalse( $event->isContentChange(), 'isContentChange' );
+					Assert::assertFalse(
+						$event->isReconciliationRequest(),
+						'isReconciliationRequest'
+					);
+					Assert::assertTrue(
+						$event->changedCurrentRevisionId(),
+						'changedCurrentRevisionId'
+					);
+					Assert::assertFalse(
+						$event->isEffectiveContentChange(),
+						'isEffectiveContentChange'
+					);
+					Assert::assertFalse(
+						$event->isNominalContentChange(),
+						'isNominalContentChange'
+					);
 					Assert::assertSame( $oldPageId, $event->getPage()->getId() );
 					Assert::assertSame( $oldRev->getId(), $event->getOldRevision()->getId() );
 					Assert::assertSame( $mover, $event->getPerformer() );
@@ -655,10 +667,23 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 
 				// for the redirect page
 				if ( $event->getPage()->isSamePageAs( $old ) ) {
-					Assert::assertTrue( $event->isCreation(), 'isNew' );
-					Assert::assertFalse( $event->isReconciliationRequest(), 'isReconciliationRequest' );
-					Assert::assertTrue( $event->isRevisionChange(), 'isRevisionChange' );
-					Assert::assertTrue( $event->isContentChange(), 'isContentChange' );
+					Assert::assertTrue( $event->isCreation(), 'isCreation' );
+					Assert::assertFalse(
+						$event->isReconciliationRequest(),
+						'isReconciliationRequest'
+					);
+					Assert::assertTrue(
+						$event->changedCurrentRevisionId(),
+						'changedCurrentRevisionId'
+					);
+					Assert::assertTrue(
+						$event->isEffectiveContentChange(),
+						'isEffectiveContentChange'
+					);
+					Assert::assertTrue(
+						$event->isNominalContentChange(),
+						'isNominalContentChange'
+					);
 					Assert::assertSame( $mover, $event->getPerformer() );
 					Assert::assertSame( $mover, $event->getAuthor() );
 

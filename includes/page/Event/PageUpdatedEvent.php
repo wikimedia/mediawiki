@@ -170,26 +170,66 @@ class PageUpdatedEvent extends PageEvent implements PageUpdateCauses {
 	}
 
 	/**
-	 * Whether this is an actual revision change, as opposed to a "null-edit"
-	 * or purge.
-	 * This returns false if no new revision was created and the event was
-	 * generated in order to trigger re-generation of derived data.
+	 * Whether this event represents a change to the current revision ID
+	 * associated with the page. In other words, the page's current revision
+	 * after the change is different from the page's current revision before
+	 * the change.
+	 *
+	 * This method will return true under most circumstances.
+	 * It will however return false for reconciliation requests like null edits.
+	 * In that case, isReconciliationRequest() should return true.
+	 *
+	 * @note Listeners should generally not use this method to check if
+	 * event processing can be skipped, since that would mean ignoring
+	 * reconciliation requests used to recover from data loss or corruption.
+	 * The preferred way to check if processing would be redundant is
+	 * isNominalContentChange().
+	 *
+	 * @see DomainEvent::isReconciliationRequest()
+	 * @see DomainEvent::isNominalContentChange()
 	 */
-	public function isRevisionChange(): bool {
+	public function changedCurrentRevisionId(): bool {
 		return $this->oldRevision === null
 			|| $this->oldRevision->getId() !== $this->newRevision->getId();
 	}
 
 	/**
-	 * Whether the update changed the content of the page.
-	 * This will return false for "dummy revisions" that represent an entry
-	 * in the page history but do not modify the content.
-	 * Note that the creation of a dummy revision may not always trigger a
-	 * PageUpdatedEvent. This is only required if there was a change that is
-	 * relevant to the interpretation or association of the content, such as
-	 * a page move.
+	 * Whether the update nominally changed the content of the page.
+	 * This is the case if:
+	 * - the update actually changed the page's content, see isEffectiveContentChange().
+	 * - the event is a reconciliation request, see isReconciliationRequest().
+	 *
+	 * On other words, this will return true for actual changes and null edits,
+	 * but will return false for "dummy revisions".
+	 *
+	 * @note This is preferred over isEffectiveContentChange() for listeners
+	 * aiming to avoid redundant processing when the content didn't change.
+	 * The purpose of reconciliation requests is to re-trigger such processing
+	 * to recover from data loss and corruption, even when there was no actual
+	 * change in content.
+	 *
+	 * @see isEffectiveContentChange()
+	 * @see DomainEvent::isReconciliationRequest()
 	 */
-	public function isContentChange(): bool {
+	public function isNominalContentChange(): bool {
+		return $this->isEffectiveContentChange() || $this->isReconciliationRequest();
+	}
+
+	/**
+	 * Whether the update effectively changed the content of the page.
+	 *
+	 * This will return false for "dummy revisions" that represent an entry
+	 * in the page history but do not modify the content. It will also be false
+	 * for reconciliation events (null edits).
+	 *
+	 * @note Listeners aiming to skip processing of events that didn't change
+	 * the content for optimization should use isNominalContentChange() instead.
+	 * That way, they would not skip processing for reconciliation requests,
+	 * providing a way to recover from data loss and corruption.
+	 *
+	 * @see isNominalContentChange()
+	 */
+	public function isEffectiveContentChange(): bool {
 		return $this->oldRevision === null
 			|| $this->oldRevision->getSha1() !== $this->newRevision->getSha1();
 	}

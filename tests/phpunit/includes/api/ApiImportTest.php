@@ -58,8 +58,9 @@ class ApiImportTest extends ApiUploadTestCase {
 				if ( $calls === 1 ) {
 					// First call, from ImportableOldRevisionImporter
 					Assert::assertTrue( $event->isCreation(), 'isCreation' );
-					Assert::assertTrue( $event->isRevisionChange(), 'isRevisionChange' );
-					Assert::assertTrue( $event->isContentChange(), 'isContentChange' );
+					Assert::assertTrue( $event->changedCurrentRevisionId(), 'changedCurrentRevisionId' );
+					Assert::assertTrue( $event->isEffectiveContentChange(), 'isEffectiveContentChange' );
+					Assert::assertTrue( $event->isNominalContentChange(), 'isNominalContentChange' );
 					Assert::assertTrue( $event->isSilent(), 'isSilent' );
 
 					Assert::assertFalse(
@@ -69,8 +70,9 @@ class ApiImportTest extends ApiUploadTestCase {
 				} else {
 					// Second call, from ApiImportReporter
 					Assert::assertFalse( $event->isCreation(), 'isCreation' );
-					Assert::assertTrue( $event->isRevisionChange(), 'isRevisionChange' );
-					Assert::assertFalse( $event->isContentChange(), 'isContentChange' );
+					Assert::assertTrue( $event->changedCurrentRevisionId(), 'changedCurrentRevisionId' );
+					Assert::assertFalse( $event->isEffectiveContentChange(), 'isEffectiveContentChange' );
+					Assert::assertFalse( $event->isNominalContentChange(), 'isNominalContentChange' );
 					Assert::assertTrue( $event->isSilent(), 'isSilent' );
 
 					Assert::assertTrue(
