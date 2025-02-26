@@ -18,7 +18,6 @@
  * @file
  */
 
-use MediaWiki\Block\Block;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\CommentFormatter\CommentFormatter;
@@ -1551,42 +1550,16 @@ class Article implements Page {
 			} else {
 				$validUserPage = !$title->isSubpage();
 
-				// TODO: factor out nearly identical code in IntroMessageBuilder::addUserWarnings
-				$blocks = $this->blockStore->newListFromTarget( $user, $user );
-				$numBlocks = 0;
-				$appliesToTitle = false;
-				$logTargetPage = '';
-				foreach ( $blocks as $block ) {
-					if ( $block->getType() !== Block::TYPE_AUTO ) {
-						$numBlocks++;
-						if ( $block->appliesToTitle( $title ) ) {
-							$appliesToTitle = true;
-						}
-						$logTargetPage = $services->getNamespaceInfo()->getCanonicalName( NS_USER ) .
-							':' . $block->getTargetName();
-					}
-				}
-
-				// Show log extract if the user is sitewide blocked or is partially
-				// blocked and not allowed to edit their user page or user talk page
-				if ( $numBlocks && $appliesToTitle ) {
-					$msgKey = $numBlocks === 1
-						? 'blocked-notice-logextract' : 'blocked-notice-logextract-multi';
-					LogEventsList::showLogExtract(
-						$outputPage,
-						'block',
-						$logTargetPage,
-						'',
-						[
-							'lim' => 1,
-							'showIfEmpty' => false,
-							'msgKey' => [
-								$msgKey,
-								$user->getName(), # Support GENDER in notice
-								$numBlocks
-							],
-						]
-					);
+				$blockLogBox = LogEventsList::getBlockLogWarningBox(
+					$this->blockStore,
+					$services->getNamespaceInfo(),
+					$this->getContext(),
+					$this->linkRenderer,
+					$user,
+					$title
+				);
+				if ( $blockLogBox !== null ) {
+					$outputPage->addHTML( $blockLogBox );
 				}
 			}
 		}

@@ -23,6 +23,8 @@
  * @file
  */
 
+use MediaWiki\Block\Block;
+use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
@@ -45,6 +47,7 @@ use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\Xml\Xml;
 
 class LogEventsList extends ContextSource {
@@ -562,6 +565,8 @@ class LogEventsList extends ContextSource {
 	 * - useRequestParams boolean Set true to use Pager-related parameters in the WebRequest
 	 * - useMaster boolean Use primary DB
 	 * - extraUrlParams array|bool Additional url parameters for "full log" link (if it is shown)
+	 * - footerHtmlItems: string[] Extra HTML to add as horizontal list items after the
+	 *   end of the log
 	 * @return int Number of total log items (not limited by $lim)
 	 */
 	public static function showLogExtract(
@@ -577,6 +582,7 @@ class LogEventsList extends ContextSource {
 			'useRequestParams' => false,
 			'useMaster' => false,
 			'extraUrlParams' => false,
+			'footerHtmlItems' => []
 		];
 		# The + operator appends elements of remaining keys from the right
 		# handed array to the left handed, whereas duplicated keys are NOT overwritten.
@@ -627,7 +633,6 @@ class LogEventsList extends ContextSource {
 			$services->getActorNormalization(),
 			$services->getLogFormatterFactory()
 		);
-		// @phan-suppress-next-line PhanImpossibleCondition
 		if ( !$useRequestParams ) {
 			# Reset vars that may have been taken from the request
 			$pager->mLimit = 50;
@@ -636,7 +641,6 @@ class LogEventsList extends ContextSource {
 			$pager->mIsBackwards = false;
 		}
 
-		// @phan-suppress-next-line PhanImpossibleCondition
 		if ( $param['useMaster'] ) {
 			$pager->mDb = $services->getConnectionProvider()->getPrimaryDatabase();
 		}
@@ -654,6 +658,7 @@ class LogEventsList extends ContextSource {
 		$numRows = $pager->getNumRows();
 
 		$s = '';
+		$footerHtmlItems = [];
 
 		if ( $logBody ) {
 			if ( $msgKey[0] ) {
@@ -669,7 +674,6 @@ class LogEventsList extends ContextSource {
 				$loglist->endLogEventsList();
 			// add styles for change tags
 			$context->getOutput()->addModuleStyles( 'mediawiki.interface.helpers.styles' );
-		// @phan-suppress-next-line PhanRedundantCondition
 		} elseif ( $showIfEmpty ) {
 			$s = Html::rawElement( 'div', [ 'class' => 'mw-warning-logempty' ],
 				$context->msg( 'logempty' )->parse() );
@@ -708,12 +712,22 @@ class LogEventsList extends ContextSource {
 				$urlParam = array_merge( $urlParam, $extraUrlParams );
 			}
 
-			$s .= $linkRenderer->makeKnownLink(
+			$footerHtmlItems[] = $linkRenderer->makeKnownLink(
 				SpecialPage::getTitleFor( 'Log' ),
 				$context->msg( 'log-fulllog' )->text(),
 				[],
 				$urlParam
 			);
+		}
+		if ( $param['footerHtmlItems'] ) {
+			$footerHtmlItems = array_merge( $footerHtmlItems, $param['footerHtmlItems'] );
+		}
+		if ( $logBody && $footerHtmlItems ) {
+			$s .= '<ul class="mw-logevent-footer">';
+			foreach ( $footerHtmlItems as $item ) {
+				$s .= Html::rawElement( 'li', [], $item );
+			}
+			$s .= '</ul>';
 		}
 
 		if ( $logBody && $msgKey[0] ) {
@@ -738,7 +752,7 @@ class LogEventsList extends ContextSource {
 			$context->getOutput()->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
 		}
 
-		// @phan-suppress-next-line PhanSuspiciousValueComparison, PhanRedundantCondition
+		// @phan-suppress-next-line PhanSuspiciousValueComparison
 		if ( $wrap != '' ) { // Wrap message in html
 			$s = str_replace( '$1', $s, $wrap );
 		}
@@ -791,5 +805,78 @@ class LogEventsList extends ContextSource {
 		}
 
 		return false;
+	}
+
+	/**
+	 * @internal -- shared code for IntroMessageBuilder and Article::showMissingArticle
+	 *
+	 * If the user associated with the current page is blocked, get a warning
+	 * box with a block log extract in it. Otherwise, return null.
+	 *
+	 * @param DatabaseBlockStore $blockStore
+	 * @param NamespaceInfo $namespaceInfo
+	 * @param MessageLocalizer $localizer
+	 * @param LinkRenderer $linkRenderer
+	 * @param UserIdentity|false|null $user The user which may be blocked
+	 * @param Title $title The title being viewed
+	 * @return string|null
+	 */
+	public static function getBlockLogWarningBox(
+		DatabaseBlockStore $blockStore,
+		NamespaceInfo $namespaceInfo,
+		MessageLocalizer $localizer,
+		LinkRenderer $linkRenderer,
+		$user,
+		Title $title
+	) {
+		if ( !$user ) {
+			return null;
+		}
+		$numBlocks = 0;
+		$appliesToTitle = false;
+		$logTargetPage = '';
+		$blockTargetName = '';
+		foreach ( $blockStore->newListFromTarget( $user, $user ) as $block ) {
+			if ( $block->getType() !== Block::TYPE_AUTO ) {
+				$numBlocks++;
+				if ( $block->appliesToTitle( $title ) ) {
+					$appliesToTitle = true;
+				}
+				$blockTargetName = $block->getTargetName();
+				$logTargetPage = $namespaceInfo->getCanonicalName( NS_USER ) .
+					':' . $blockTargetName;
+			}
+		}
+
+		// Show log extract if the user is sitewide blocked or is partially
+		// blocked and not allowed to edit their user page or user talk page
+		if ( !$numBlocks || !$appliesToTitle ) {
+			return null;
+		}
+		$msgKey = $numBlocks === 1
+			? 'blocked-notice-logextract' : 'blocked-notice-logextract-multi';
+		$params = [
+			'lim' => 1,
+			'showIfEmpty' => false,
+			'msgKey' => [
+				$msgKey,
+				$user->getName(), # Support GENDER in notice
+				$numBlocks
+			],
+		];
+		if ( $numBlocks > 1 ) {
+			$params['footerHtmlItems'] = [
+				$linkRenderer->makeKnownLink(
+					SpecialPage::getTitleFor( 'BlockList' ),
+					$localizer->msg( 'blocked-notice-list-link' )->text(),
+					[],
+					[ 'wpTarget' => $blockTargetName ]
+				),
+			];
+		}
+
+		$outString = '';
+		self::showLogExtract( $outString, 'block', $logTargetPage, '', $params );
+		return $outString ?: null;
 	}
 }
