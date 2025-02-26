@@ -30,7 +30,6 @@ use Psr\Log\NullLogger;
 use RuntimeException;
 use UnexpectedValueException;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
-use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\Telemetry\NoopTracer;
 use Wikimedia\Telemetry\SpanInterface;
@@ -384,14 +383,6 @@ class WANObjectCache implements
 
 		$this->setLogger( $params['logger'] ?? new NullLogger() );
 		$this->tracer = $params['tracer'] ?? new NoopTracer();
-
-		if ( isset( $params['stats'] ) && $params['stats'] instanceof IBufferingStatsdDataFactory ) {
-			wfDeprecated(
-				__METHOD__,
-				'Use of StatsdDataFactory is deprecated in 1.43. Use StatsFactory instead.'
-			);
-			$params['stats'] = null;
-		}
 		$this->stats = $params['stats'] ?? StatsFactory::newNull();
 
 		$this->asyncHandler = $params['asyncHandler'] ?? null;
@@ -2458,15 +2449,6 @@ class WANObjectCache implements
 			default:
 				return self::ERR_UNEXPECTED;
 		}
-	}
-
-	/**
-	 * Clear the "last error" registry
-	 * @deprecated Since 1.38, hard deprecated in 1.43
-	 */
-	final public function clearLastError() {
-		wfDeprecated( __METHOD__, '1.38' );
-		$this->cache->clearLastError();
 	}
 
 	/**

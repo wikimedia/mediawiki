@@ -255,6 +255,10 @@ because of Phabricator reports.
 * Block::TYPE_ID has been removed. Use DatabaseBlockStore::newFromID().
 * UserOptionsManager methods resetOptions, listOptionKinds and getOptionKinds,
   deprecated since 1.43, have been removed.
+* WANObjectCache::clearLastError(), soft-deprecated in 1.38 and hard-deprecated
+  in 1.43, has been removed.
+* The WANObjectCache 'stats' option for StatsdDataFactory, deprecated in 1.43,
+  is no longer supported. Use StatsFactory instead.
 * When fetching a message containing {{PAGENAME}} or similar with
   wfMessage(...)->text(), the title used will be Special:Badtitle unless a
   context title was set with e.g. Message::setContext(). In the past, the title
