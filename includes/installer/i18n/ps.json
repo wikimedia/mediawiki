@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ahmed-Najib-Biabani-Ibrahimkhel"
+			"Ahmed-Najib-Biabani-Ibrahimkhel",
+			"شاه زمان پټان"
 		]
 	},
 	"config-desc": "د مېډياويکي نصبونکی",
@@ -69,7 +70,7 @@
 	"config-email-user": "کارن تر کارن برېښليک چارنول",
 	"config-upload-enable": "دوتنې پورته کېدنې چارنول",
 	"config-logo-preview-main": "لومړی‌مخ",
-	"config-logo-icon": "لوگو (نښه):",
+	"config-logo-icon": "نښان (نښه):",
 	"config-extensions": "شاتاړي",
 	"config-skins": "پوښۍ",
 	"config-skins-use-as-default": "همدا پوښۍ په تلواليزه توگه کارول",

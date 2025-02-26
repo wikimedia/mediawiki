@@ -1395,7 +1395,7 @@
 	"grouppage-user": "{{ns:project}}:Usuários",
 	"grouppage-named": "{{ns:project}}:Usuários registados",
 	"grouppage-temp": "{{ns:project}}:Usuários temporários",
-	"grouppage-autoconfirmed": "{{ns:project}}:Auto-confirmados",
+	"grouppage-autoconfirmed": "{{ns:project}}:Autoconfirmados",
 	"grouppage-bot": "{{ns:project}}:Robôs",
 	"grouppage-sysop": "{{ns:project}}:Administradores",
 	"grouppage-interface-admin": "{{ns:project}}:Administradores da interface",

@@ -55,7 +55,8 @@
 			"Tiberius1701",
 			"Whovian Biologist",
 			"YoViajo",
-			"Eulalio"
+			"Eulalio",
+			"PoLuX124"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentación]]\n* [[mw:Special:MyLanguage/API:Etiquette|Normas de uso y etiqueta]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Lista de correo]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ Anuncios API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Errores y peticiones]\n</div>\n<strong>Estado:</strong> La API de MediaWiki es una interfaz madura y estable que se mejora y prueba activamente. Aunque tratamos de evitarlo, es posible que ocasionalmente debamos hacer cambios importantes. Suscríbete a la [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ lista de correo mediawiki-api-announce] para recibir avisos de actualizaciones.\n\n<strong>Solicitudes erróneas:</strong> Cuando se envían solicitudes erróneas a la API, se enviará un encabezado HTTP con la clave «MediaWiki-API-Error» y, luego, el valor del encabezado y el código de error devuelto se establecerán en el mismo valor. Para obtener más información, consulta [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errores y advertencias]].\n\n<p class=\"mw-apisandbox-link\"><strong>Pruebas:</strong> Para facilitar la comprobación de las solicitudes de API, consulta [[Special:ApiSandbox]].</p>",
@@ -200,6 +201,7 @@
 	"apihelp-edit-param-redirect": "Resolver redirecciones automáticamente.",
 	"apihelp-edit-param-contentformat": "Formato de serialización de contenido utilizado para el texto de entrada.",
 	"apihelp-edit-param-contentmodel": "Modelo de contenido del nuevo contenido.",
+	"apihelp-edit-param-returnto": "Título de la página. Si al guardar la edición se creó una cuenta temporal, la API puede responder con una URL que el cliente debe visitar para completar el inicio de sesión. Si se proporciona este parámetro, la URL redirigirá a la página indicada, en lugar de a la página que se editó.",
 	"apihelp-edit-param-token": "La clave debe enviarse siempre como el último parámetro o, al menos, después del parámetro $1text.",
 	"apihelp-edit-example-edit": "Editar una página",
 	"apihelp-edit-example-prepend": "Anteponer <kbd>_&#95;NOTOC_&#95;</kbd> a una página.",
