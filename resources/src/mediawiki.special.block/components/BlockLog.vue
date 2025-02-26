@@ -43,6 +43,7 @@
 								type="button"
 								action="progressive"
 								weight="quiet"
+								data-test="edit-block-button"
 								@click="$emit( 'edit-block', item.modify )"
 							>
 								{{ $i18n( 'block-item-edit' ).text() }}

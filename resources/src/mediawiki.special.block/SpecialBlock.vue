@@ -385,6 +385,8 @@ module.exports = exports = defineComponent( {
 					submitCount.value++;
 					// Hide the form if the block was successful.
 					formVisible.value = false;
+					// Reset the form so no block data leaks into the next block (T384822).
+					store.resetForm( false, false );
 				} )
 				.fail( ( _, errorObj ) => {
 					formErrors.value = errorObj.errors.map( ( e ) => e.html );

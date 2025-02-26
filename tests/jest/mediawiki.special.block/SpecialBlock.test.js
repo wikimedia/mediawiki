@@ -1,25 +1,27 @@
 'use strict';
 
-const { nextTick } = require( 'vue' );
+const { nextTick, VueWrapper } = require( 'vue' );
+const { flushPromises } = require( '@vue/test-utils' );
 const { getSpecialBlock } = require( './SpecialBlock.setup.js' );
 const useBlockStore = require( '../../../resources/src/mediawiki.special.block/stores/block.js' );
 
+/**
+ * Mock postWithEditToken to return an actual Deferred object,
+ * so that jQuery promise chain methods (e.g. always()) will execute in the test.
+ *
+ * @param {Object} [config] Configuration to override the defaults.
+ * @param {Object} [postResponse] Response to return from the postWithEditToken call.
+ * @return {VueWrapper}
+ */
+const withSubmission = ( config, postResponse ) => {
+	const jQuery = jest.requireActual( '../../../resources/lib/jquery/jquery.js' );
+	mw.Api.prototype.postWithEditToken = jest.fn( () => jQuery.Deferred().resolve( postResponse ).promise() );
+	HTMLFormElement.prototype.checkValidity = jest.fn().mockReturnValue( true );
+	return getSpecialBlock( config );
+};
+
 describe( 'SpecialBlock', () => {
 	let wrapper;
-
-	/**
-	 * Mock postWithEditToken to return an actual Deferred object,
-	 * so that jQuery promise chain methods (e.g. always()) will execute in the test.
-	 *
-	 * @param {Object} [config] Configuration to override the defaults.
-	 * @param {Object} [postResponse] Response to return from the postWithEditToken call.
-	 */
-	const withSubmission = ( config, postResponse ) => {
-		const jQuery = jest.requireActual( '../../../resources/lib/jquery/jquery.js' );
-		mw.Api.prototype.postWithEditToken = jest.fn( () => jQuery.Deferred().resolve( postResponse ).promise() );
-		HTMLFormElement.prototype.checkValidity = jest.fn().mockReturnValue( true );
-		wrapper = getSpecialBlock( config );
-	};
 
 	it( 'should show no banner and no "Add block" button on page load', async () => {
 		wrapper = getSpecialBlock();
@@ -50,7 +52,7 @@ describe( 'SpecialBlock', () => {
 	} );
 
 	it( 'should submit an API request to block the user', async () => {
-		withSubmission( undefined, { block: { user: 'ExampleUser' } } );
+		wrapper = withSubmission( undefined, { block: { user: 'ExampleUser' } } );
 		await wrapper.find( '[name=wpTarget]' ).setValue( 'ExampleUser' );
 		await wrapper.find( '[name=wpTarget]' ).trigger( 'change' );
 		await wrapper.find( '.mw-block-log__create-button' ).trigger( 'click' );
@@ -80,7 +82,7 @@ describe( 'SpecialBlock', () => {
 	} );
 
 	it( 'should add an error state to invalid fields on submission', async () => {
-		withSubmission();
+		wrapper = withSubmission();
 		await wrapper.find( '[name=wpTarget]' ).setValue( 'ExampleUser' );
 		await wrapper.find( '[name=wpTarget]' ).trigger( 'change' );
 		await wrapper.find( '.mw-block-log__create-button' ).trigger( 'click' );
@@ -126,6 +128,7 @@ describe( 'SpecialBlock', () => {
 		expect( store.formSubmitted ).toBeTruthy();
 		expect( wrapper.vm.confirmationOpen ).toBeTruthy();
 		expect( document.body.querySelector( '.mw-block-confirm' ) ).toBeTruthy();
+		mw.util.isInfinity = jest.fn().mockReturnValue( false );
 	} );
 
 	it( 'should require confirmation for self-blocking', async () => {
@@ -150,7 +153,108 @@ describe( 'SpecialBlock', () => {
 		expect( document.body.querySelector( '.mw-block-confirm' ) ).toBeTruthy();
 	} );
 
+	it( 'should reset form refs after blocking', async () => {
+		wrapper = withSubmission(
+			{ blockTargetUser: 'ActiveBlockedUser' },
+			{ block: { user: 'ActiveBlockedUser' } }
+		);
+		const store = useBlockStore();
+		await flushPromises();
+		expect( wrapper.find( '[data-test=edit-block-button]' ).exists() ).toBeTruthy();
+		await wrapper.find( '[data-test=edit-block-button]' ).trigger( 'click' );
+		expect( wrapper.find( '.mw-block__block-form' ).exists() ).toBeTruthy();
+		expect( wrapper.find( '.mw-block-submit' ).text() ).toStrictEqual( 'block-update' );
+		wrapper.find( '[name=wpReason-other]' ).setValue( 'This is a test' );
+		expect( store.reason ).toStrictEqual( 'other' );
+		expect( store.reasonOther ).toStrictEqual( 'This is a test' );
+		await wrapper.find( '.mw-block-submit' ).trigger( 'click' );
+		await flushPromises();
+		expect( wrapper.find( '.mw-block-success' ).exists() ).toBeTruthy();
+		expect( wrapper.find( '.mw-block__block-form' ).exists() ).toBeFalsy();
+		expect( store.reason ).toStrictEqual( 'other' );
+		expect( store.reasonOther ).toStrictEqual( '' );
+		expect( store.blockId ).toStrictEqual( null );
+	} );
+
+	it( 'should use pre-set values when creating a new block', async () => {
+		wrapper = getSpecialBlock( {
+			blockTargetUser: 'ExampleUser',
+			blockTargetExists: true,
+			blockTypePreset: 'partial',
+			blockPageRestrictions: 'Foo\nBar',
+			blockExpiryPreset: '99 hours'
+		} );
+		const store = useBlockStore();
+		await flushPromises();
+		await wrapper.find( '.mw-block-log__create-button' ).trigger( 'click' );
+		expect( store.type ).toStrictEqual( 'partial' );
+		expect( store.pages ).toStrictEqual( [ 'Foo', 'Bar' ] );
+		expect( store.expiry ).toStrictEqual( '99 hours' );
+		expect( wrapper.find( '[name=expiryType]:checked' ).element.value ).toStrictEqual( 'custom-duration' );
+		expect( wrapper.find( 'input[type=number]' ).element.value ).toStrictEqual( '99' );
+		expect( wrapper.find( '.mw-block-pages' ).text() ).toStrictEqual( 'FooBar' );
+	} );
+
 	afterEach( () => {
 		wrapper.unmount();
+	} );
+} );
+
+describe( 'SpecialBlock (multiblocks)', () => {
+	it( 'should show an "Add block" button in the Active blocks accordion', async () => {
+		const wrapper = getSpecialBlock( {
+			blockEnableMultiblocks: true,
+			blockTargetExists: true
+		} );
+		expect( wrapper.find( '.mw-block-log__create-button' ).exists() ).toBeTruthy();
+	} );
+
+	it( 'should reset the form to the initial state for subsequent blocks (T384822)', async () => {
+		const wrapper = withSubmission(
+			{ blockTargetUser: 'ActiveBlockedUser', blockTargetExists: true, blockEnableMultiblocks: true },
+			{ block: { user: 'ActiveBlockedUser' } }
+		);
+		const store = useBlockStore();
+		await flushPromises();
+		// Edit a block.
+		expect( wrapper.find( '[data-test=edit-block-button]' ).exists() ).toBeTruthy();
+		await wrapper.find( '[data-test=edit-block-button]' ).trigger( 'click' );
+		expect( wrapper.find( '.mw-block__block-form' ).exists() ).toBeTruthy();
+		expect( wrapper.find( '.mw-block-submit' ).text() ).toStrictEqual( 'block-update' );
+		wrapper.find( '[name=wpReason-other]' ).setValue( 'This is a test' );
+		expect( store.reason ).toStrictEqual( 'other' );
+		expect( store.reasonOther ).toStrictEqual( 'This is a test' );
+		// Submit.
+		await wrapper.find( '.mw-block-submit' ).trigger( 'click' );
+		await flushPromises();
+		expect( wrapper.find( '.mw-block-success' ).exists() ).toBeTruthy();
+		expect( wrapper.find( '.mw-block__block-form' ).exists() ).toBeFalsy();
+		expect( store.reason ).toStrictEqual( 'other' );
+		expect( store.reasonOther ).toStrictEqual( '' );
+		// Add a new block.
+		await wrapper.find( '.mw-block-log__create-button' ).trigger( 'click' );
+		expect( wrapper.find( '.mw-block__block-form' ).exists() ).toBeTruthy();
+		expect( store.blockId ).toBeNull();
+		expect( store.reason ).toStrictEqual( 'other' );
+		expect( wrapper.find( '[name=wpReason-other]' ).element.value ).toStrictEqual( '' );
+	} );
+
+	it( 'should reset the form to the initial state for new blocks when the form is open', async () => {
+		const wrapper = withSubmission(
+			{ blockTargetUser: 'ActiveBlockedUser', blockTargetExists: true, blockEnableMultiblocks: true },
+			{ block: { user: 'ActiveBlockedUser' } }
+		);
+		const store = useBlockStore();
+		await flushPromises();
+		// Edit a block.
+		await wrapper.find( '[data-test=edit-block-button]' ).trigger( 'click' );
+		wrapper.find( '[name=wpReason-other]' ).setValue( 'This is a test' );
+		expect( store.reasonOther ).toStrictEqual( 'This is a test' );
+		// Open the 'Active blocks' accordion and add a new block.
+		await wrapper.find( '.mw-block-log__type-active' ).trigger( 'click' );
+		await wrapper.find( '.mw-block-log__create-button' ).trigger( 'click' );
+		expect( store.blockId ).toBeNull();
+		expect( store.reasonOther ).toStrictEqual( '' );
+		expect( wrapper.find( '[name=wpReason-other]' ).element.value ).toStrictEqual( '' );
 	} );
 } );
