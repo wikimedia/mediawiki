@@ -2437,29 +2437,27 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 */
 	public function getQueryInfo( $options = [] ) {
 		$ret = [
-			'tables' => [],
-			'fields' => [],
-			'joins'  => [],
+			'tables' => [
+				'revision',
+				'actor_rev_user' => 'actor',
+			],
+			'fields' => [
+				'rev_id',
+				'rev_page',
+				'rev_actor' => 'rev_actor',
+				'rev_user' => 'actor_rev_user.actor_user',
+				'rev_user_text' => 'actor_rev_user.actor_name',
+				'rev_timestamp',
+				'rev_minor_edit',
+				'rev_deleted',
+				'rev_len',
+				'rev_parent_id',
+				'rev_sha1',
+			],
+			'joins' => [
+				'actor_rev_user' => [ 'JOIN', "actor_rev_user.actor_id = rev_actor" ],
+			]
 		];
-
-		$ret['tables'] = array_merge( $ret['tables'], [
-			'revision',
-			'actor_rev_user' => 'actor',
-		] );
-		$ret['fields'] = array_merge( $ret['fields'], [
-			'rev_id',
-			'rev_page',
-			'rev_actor' => 'rev_actor',
-			'rev_user' => 'actor_rev_user.actor_user',
-			'rev_user_text' => 'actor_rev_user.actor_name',
-			'rev_timestamp',
-			'rev_minor_edit',
-			'rev_deleted',
-			'rev_len',
-			'rev_parent_id',
-			'rev_sha1',
-		] );
-		$ret['joins']['actor_rev_user'] = [ 'JOIN', "actor_rev_user.actor_id = rev_actor" ];
 
 		$commentQuery = $this->commentStore->getJoin( 'rev_comment' );
 		$ret['tables'] = array_merge( $ret['tables'], $commentQuery['tables'] );
