@@ -740,7 +740,10 @@ class SpecialBlock extends FormSpecialPage {
 
 			$this->alreadyBlocked = true;
 			$this->codexFormData[ 'blockAlreadyBlocked' ] = $this->alreadyBlocked;
-			$this->preErrors[] = $this->msg( 'ipb-needreblock', wfEscapeWikiText( $block->getTargetName() ) );
+			$this->preErrors[] = $this->msg(
+									'ipb-needreblock',
+									'<bdi>' . wfEscapeWikiText( $block->getTargetName() ) . '</bdi>'
+								);
 		}
 
 		if ( $this->alreadyBlocked || $this->getRequest()->wasPosted()
