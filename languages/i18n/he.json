@@ -2412,7 +2412,7 @@
 	"blanknamespace": "(ראשי)",
 	"contributions": "תרומות המשתמש",
 	"tool-link-contributions": "תרומות {{GENDER:$1|המשתמש|המשתמשת}}",
-	"contributions-title": "תרומות של ה{{GENDER:$1|משתמש|משתמשת}} $1",
+	"contributions-title": "תרומות של ה{{GENDER:$2|משתמש|משתמשת}} $1",
 	"contributions-title-for-ip-when-temporary-accounts-enabled": "תרומות IP ישנות של $1",
 	"contribute-title": "תרומות המשתמש",
 	"mycontris": "תרומות",

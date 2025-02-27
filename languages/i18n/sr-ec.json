@@ -2358,7 +2358,7 @@
 	"blanknamespace": "(главни)",
 	"contributions": "Кориснички доприноси",
 	"tool-link-contributions": "Доприноси {{GENDER:$1|корисника|кориснице}}",
-	"contributions-title": "Доприноси {{GENDER:$1|корисника|кориснице}} $1",
+	"contributions-title": "Доприноси {{GENDER:$2|корисника|кориснице}} $1",
 	"contributions-title-for-ip-when-temporary-accounts-enabled": "Пређашњи IP доприноси за $1",
 	"contribute-title": "Кориснички доприноси",
 	"mycontris": "Доприноси",

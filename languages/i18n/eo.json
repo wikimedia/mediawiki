@@ -2354,7 +2354,7 @@
 	"blanknamespace": "(Ĉefa)",
 	"contributions": "Kontribuoj de uzanto",
 	"tool-link-contributions": "Kontribuoj de {{GENDER:$1|uzanto|uzantino}}",
-	"contributions-title": "Kontribuoj de la {{GENDER:$1|uzanto|uzantino|uzanto}} $1",
+	"contributions-title": "Kontribuoj de la {{GENDER:$2|uzanto|uzantino|uzanto}} $1",
 	"contribute-title": "Kontribuoj de uzanto",
 	"mycontris": "Kontribuoj",
 	"anoncontribs": "Kontribuoj",

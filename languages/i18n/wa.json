@@ -1050,7 +1050,7 @@
 	"blanknamespace": "(Mwaisse)",
 	"contributions": "Ovraedjes",
 	"tool-link-contributions": "Ovraedjes di l’&nbsp;{{GENDER:$1|uzeu|uzeuse}}",
-	"contributions-title": "Djivêye des ovraedjes di l’&nbsp;{{GENDER:$1|uzeu|uzeuse}} $1",
+	"contributions-title": "Djivêye des ovraedjes di l’&nbsp;{{GENDER:$2|uzeu|uzeuse}} $1",
 	"mycontris": "Mi ovraedje",
 	"anoncontribs": "Mi ovraedje",
 	"nocontribs": "Nou candjmint di trové ki corespondreut a ç' critere la.",

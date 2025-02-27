@@ -2367,7 +2367,7 @@
 	"blanknamespace": "(Pagrindinis)",
 	"contributions": "Naudotojo indėlis",
 	"tool-link-contributions": "{{GENDER:$1|Naudotojo|Naudotojos}} indėlis",
-	"contributions-title": "{{GENDER:$1|Naudotojo|Naudotojos}} $1 indėlis",
+	"contributions-title": "{{GENDER:$2|Naudotojo|Naudotojos}} $1 indėlis",
 	"contribute-title": "Naudotojo indėlis",
 	"mycontris": "Indėlis",
 	"anoncontribs": "Indėlis",

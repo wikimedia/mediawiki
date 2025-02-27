@@ -1342,7 +1342,7 @@
 	"blanknamespace": "(Asosiy)",
 	"contributions": "Foydalanuvchi hissasi",
 	"tool-link-contributions": "{{GENDER:$1|Hissasi}}",
-	"contributions-title": "{{GENDER:$1|Foydalanuvchi}} $1 hissasi",
+	"contributions-title": "{{GENDER:$2|Foydalanuvchi}} $1 hissasi",
 	"contribute-title": "Foydalanuvchi hissasi",
 	"mycontris": "Hissam",
 	"anoncontribs": "Qoʻshilgan hissa",
