@@ -9,6 +9,7 @@
 			v-model:input-value="currentSearchTerm"
 			class="mw-block-target"
 			name="wpTarget"
+			id="mw-bi-target"
 			required
 			:clearable="true"
 			:menu-items="menuItems"
