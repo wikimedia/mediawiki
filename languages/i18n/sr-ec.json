@@ -1199,6 +1199,8 @@
 	"linterror-bogus-image-options": "Привидна опција датотеке",
 	"linterror-deletable-table-tag": "Table ознака коју треба избрисати",
 	"linterror-html5-misnesting": "Погрешно угнежђивање (сада покварено)",
+	"linterror-inline-media-caption": "Невидљиви поднапис",
+	"linterror-large-tables": "Велике табеле које кваре приказ на мобилним уређајима.",
 	"linterror-misc-tidy-replacement-issues": "Разне грешке у синтакси",
 	"linterror-misnested-tag": "Погрешно угнежђена ознака коју би требало правилно угнездити",
 	"linterror-missing-end-tag": "Недостаје затварајућа ознака",

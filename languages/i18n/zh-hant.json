@@ -1497,7 +1497,7 @@
 	"right-siteadmin": "鎖定和解除鎖定資料庫",
 	"right-override-export-depth": "匯出頁面包含連結內容，深度上限為5層",
 	"right-sendemail": "傳送電子郵件聯絡其他使用者",
-	"right-managechangetags": "建立並自資料庫（取消）啟用[[Special:Tags|標籤]]",
+	"right-managechangetags": "建立、自資料庫啟用和取消啟用[[Special:Tags|標籤]]",
 	"right-applychangetags": "連同自己的變更一起套用[[Special:Tags|標籤]]",
 	"right-changetags": "加入與移除任何於各別修訂與日誌項目的[[Special:Tags|標籤]]",
 	"right-deletechangetags": "從資料庫刪除 [[Special:Tags|標籤]]",

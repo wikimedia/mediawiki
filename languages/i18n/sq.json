@@ -2977,7 +2977,7 @@
 	"logentry-delete-restore": "$1 {{GENDER:$2|riktheu}} faqen $3 ($4)",
 	"restore-count-files": "{{PLURAL:$1|1 skedë|$1 skeda}}",
 	"logentry-delete-event": "$1 {{GENDER:$2|ndryshoi}} dukshmërinë e {{PLURAL:$5|e një akti regjistri|$5 akteve regjistri}} në $3: $4",
-	"logentry-delete-revision": "$1 {{GENDER:$2|ka ndryshuar}} dukshmërinë e {{PLURAL:$5|një ndryshimi|$5 ndryshimeve}} në faqen $3: $4",
+	"logentry-delete-revision": "$1 {{GENDER:$2|ka ndryshuar}} dukshmërinë e {{PLURAL:$5|një rishikimi|$5 rishikimeve}} në faqen $3: $4",
 	"logentry-delete-event-legacy": "$1 {{GENDER:$2|ndryshoi}} dukshmërinë e ngjarjeve të regjistit në $3",
 	"logentry-delete-revision-legacy": "$1 {{GENDER:$2|ndryshoi}} dukshmërinë e ndryshimeve në faqen $3",
 	"logentry-suppress-delete": "$1 {{GENDER:$2|shtypi}} faqen $3",
