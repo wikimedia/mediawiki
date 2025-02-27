@@ -27,6 +27,9 @@ use Exception;
 use HtmlArmor;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
+use MediaWiki\Installer\Task\TaskFactory;
+use MediaWiki\Installer\Task\TaskList;
+use MediaWiki\Installer\Task\TaskRunner;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
@@ -1246,15 +1249,16 @@ class WebInstaller extends Installer {
 	public function doUpgrade() {
 		$dbInstaller = $this->getDBInstaller();
 		$dbInstaller->preUpgrade();
-		$this->restoreServices();
 
-		$ret = true;
+		$taskList = new TaskList;
+		$taskFactory = $this->getTaskFactory();
+		$taskFactory->registerWebUpgradeTasks( $taskList );
+		$taskRunner = new TaskRunner( $taskList, $taskFactory, TaskFactory::PROFILE_WEB_UPGRADE );
+
 		ob_start( [ $this, 'outputHandler' ] );
-		$up = DatabaseUpdater::newForDB(
-			$dbInstaller->definitelyGetConnection( DatabaseInstaller::CONN_CREATE_TABLES ) );
 		try {
-			$up->doUpdates();
-			$up->purgeCache();
+			$status = $taskRunner->execute();
+			$ret = $status->isOK();
 
 			$this->setVar( '_UpgradeDone', true );
 		} catch ( Exception $e ) {

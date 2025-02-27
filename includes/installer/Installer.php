@@ -37,7 +37,6 @@ use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\MultiConfig;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\Installer\Task\RestoredServicesProvider;
 use MediaWiki\Installer\Task\TaskFactory;
 use MediaWiki\Installer\Task\TaskList;
 use MediaWiki\Installer\Task\TaskRunner;
@@ -1450,7 +1449,7 @@ abstract class Installer {
 		return $taskList;
 	}
 
-	private function getTaskFactory() {
+	protected function getTaskFactory() {
 		if ( $this->taskFactory === null ) {
 			$this->taskFactory = new TaskFactory(
 				MediaWikiServices::getInstance()->getObjectFactory(),
@@ -1485,15 +1484,6 @@ abstract class Installer {
 		}
 
 		return $status;
-	}
-
-	/**
-	 * Restore services that have been redefined in the early stage of installation
-	 */
-	protected function restoreServices() {
-		$provider = $this->getTaskFactory()->create(
-			[ 'class' => RestoredServicesProvider::class ] );
-		$provider->execute();
 	}
 
 	/**

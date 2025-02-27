@@ -15,9 +15,9 @@ class TaskRunner {
 	/** @var string */
 	private $profile;
 	/** @var callable[] */
-	private $taskStartListeners;
+	private $taskStartListeners = [];
 	/** @var callable[] */
-	private $taskEndListeners;
+	private $taskEndListeners = [];
 	/** @var array<string,bool> */
 	private $skippedTasks = [];
 	/** @var array<string,bool> */

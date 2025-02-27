@@ -20,17 +20,14 @@
 
 namespace MediaWiki\Installer;
 
-use AutoLoader;
 use CleanupEmptyCategories;
 use DeleteDefaultMessages;
 use LogicException;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Maintenance\FakeMaintenance;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\ResourceLoader\MessageBlobStore;
 use MediaWiki\SiteStats\SiteStatsInit;
 use MigrateLinksTable;
@@ -177,51 +174,10 @@ abstract class DatabaseUpdater {
 			// Running under update.php: use the global locator
 			return MediaWikiServices::getInstance()->getHookContainer();
 		}
-		$vars = Installer::getExistingLocalSettings();
-
-		$registry = ExtensionRegistry::getInstance();
-		$queue = $registry->getQueue();
-		// Don't accidentally load extensions in the future
-		$registry->clearQueue();
-
-		// Read extension.json files
-		$extInfo = $registry->readFromQueue( $queue );
-
-		// Merge extension attribute hooks with hooks defined by a .php
-		// registration file included from LocalSettings.php
-		$legacySchemaHooks = $extInfo['globals']['wgHooks']['LoadExtensionSchemaUpdates'] ?? [];
-		if ( $vars && isset( $vars['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
-			$legacySchemaHooks = array_merge( $legacySchemaHooks, $vars['wgHooks']['LoadExtensionSchemaUpdates'] );
-		}
-
-		// Register classes defined by extensions that are loaded by including of a file that
-		// updates global variables, rather than having an extension.json manifest.
-		if ( $vars && isset( $vars['wgAutoloadClasses'] ) ) {
-			AutoLoader::registerClasses( $vars['wgAutoloadClasses'] );
-		}
-
-		// Register class definitions from extension.json files
-		if ( !isset( $extInfo['autoloaderPaths'] )
-			|| !isset( $extInfo['autoloaderClasses'] )
-			|| !isset( $extInfo['autoloaderNS'] )
-		) {
-			// NOTE: protect against changes to the structure of $extInfo.
-			// It's volatile, and this usage is easy to miss.
-			throw new LogicException( 'Missing autoloader keys from extracted extension info' );
-		}
-		AutoLoader::loadFiles( $extInfo['autoloaderPaths'] );
-		AutoLoader::registerClasses( $extInfo['autoloaderClasses'] );
-		AutoLoader::registerNamespaces( $extInfo['autoloaderNS'] );
-
-		$legacyHooks = $legacySchemaHooks ? [ 'LoadExtensionSchemaUpdates' => $legacySchemaHooks ] : [];
-		return new HookContainer(
-			new StaticHookRegistry(
-				$legacyHooks,
-				$extInfo['attributes']['Hooks'] ?? [],
-				$extInfo['attributes']['DeprecatedHooks'] ?? []
-			),
-			MediaWikiServices::getInstance()->getObjectFactory()
-		);
+		// Web upgrade used to load extensions here, but it now injects a hook
+		// container like install
+		throw new LogicException( __METHOD__ .
+			' an extension hook container needs to be injected' );
 	}
 
 	/**
@@ -510,7 +466,6 @@ abstract class DatabaseUpdater {
 		$this->updatesSkipped = [];
 
 		foreach ( $updates as [ $func, $args, $origParams ] ) {
-			// @phan-suppress-next-line PhanUndeclaredInvokeInCallable
 			$func( ...$args );
 			flush();
 			$this->updatesSkipped[] = $origParams;
