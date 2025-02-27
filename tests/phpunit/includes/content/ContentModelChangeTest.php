@@ -290,6 +290,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 			$status = $change->$method();
 			$this->assertArrayEquals(
 				[
+					'permissionserrors', // addded by MockAuthorityTrait
 					'no edit new content model',
 					'no edit old content model',
 					'no edit at all old content model',

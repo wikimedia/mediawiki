@@ -8,6 +8,7 @@ use MediaWiki\Block\SystemBlock;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Language\Language;
 use MediaWiki\Message\Message;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\PermissionStatus;
@@ -249,7 +250,7 @@ trait MockAuthorityTrait {
 	 * Create mock Authority for $user where permissions are determined by $callback.
 	 *
 	 * @param UserIdentity $user
-	 * @param callable $permissionCallback ( string $permission, PageIdentity $page = null )
+	 * @param callable $permissionCallback ( string $permission, ?PageIdentity $page = null, ?PermissionStatus $status = null )
 	 * @param Block|null $block
 	 * @param bool $isTemp
 	 *
@@ -263,10 +264,57 @@ trait MockAuthorityTrait {
 	): Authority {
 		$mock = $this->createMock( Authority::class );
 		$mock->method( 'getUser' )->willReturn( $user );
-		$methods = [ 'isAllowed', 'probablyCan', 'definitelyCan', 'authorizeRead', 'authorizeWrite' ];
-		foreach ( $methods as $method ) {
-			$mock->method( $method )->willReturnCallback( $permissionCallback );
+		$methodsWithTitle = [ 'probablyCan', 'definitelyCan', 'authorizeRead', 'authorizeWrite' ];
+		$methodsWithoutTitle = [ 'isDefinitelyAllowed', 'authorizeAction' ];
+		foreach ( $methodsWithTitle as $method ) {
+			$mock->method( $method )->willReturnCallback( static function (
+				string $permission, PageIdentity $target, ?PermissionStatus $status = null
+			) use ( $block, $permissionCallback ) {
+				$ok = $permissionCallback( $permission, $target, $status );
+
+				if ( !$ok && $status ) {
+					$status->fatal( 'permissionserrors' );
+					$status->setPermission( $permission );
+				}
+				if ( $block && $status ) {
+					$status->fatal( 'blockedtext' );
+					$status->setBlock( $block );
+				}
+
+				return $ok && !$block;
+			} );
 		}
+		foreach ( $methodsWithoutTitle as $method ) {
+			$mock->method( $method )->willReturnCallback( static function (
+				string $permission, ?PermissionStatus $status = null
+			) use ( $permissionCallback ) {
+				$ok = $permissionCallback( $permission, null, $status );
+
+				if ( !$ok && $status ) {
+					$status->fatal( 'permissionserrors' );
+					$status->setPermission( $permission );
+				}
+				if ( $block && $status ) {
+					$status->fatal( 'blockedtext' );
+					$status->setBlock( $block );
+				}
+
+				return $ok && !$block;
+			} );
+		}
+		$mock->method( 'isAllowed' )
+			->willReturnCallback( static function (
+				string $permission, ?PermissionStatus $status = null
+			) use ( $permissionCallback ) {
+				$ok = $permissionCallback( $permission, null, $status );
+
+				if ( !$ok && $status ) {
+					$status->fatal( 'permissionserrors' );
+					$status->setPermission( $permission );
+				}
+
+				return $ok;
+			} );
 		$mock->method( 'isAllowedAny' )
 			->willReturnCallback( static function ( ...$permissions ) use ( $permissionCallback ) {
 				foreach ( $permissions as $permission ) {
