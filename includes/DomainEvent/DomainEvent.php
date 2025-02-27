@@ -23,6 +23,8 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * change (the command parameters) as well as information representing the
  * outcome of the change.
  *
+ * @note Subclasses must call declareEventType() in their constructor!
+ *
  * @since 1.44
  * @unstable until 1.45, should become stable to extend
  */
@@ -72,6 +74,9 @@ abstract class DomainEvent {
 		$this->compatibleWithTypes[] = $eventType;
 	}
 
+	/**
+	 * Returns this event's type.
+	 */
 	public function getEventType(): string {
 		if ( $this->eventType === self::ANY ) {
 			throw new LogicException(
@@ -98,9 +103,9 @@ abstract class DomainEvent {
 	}
 
 	/**
-	 * @return ConvertibleTimestamp
+	 * Returns the time at which the event was emitted.
 	 */
-	public function getEventTimestamp(): string {
+	public function getEventTimestamp(): ConvertibleTimestamp {
 		return $this->timestamp;
 	}
 
