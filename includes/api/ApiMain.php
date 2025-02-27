@@ -1136,13 +1136,6 @@ class ApiMain extends ApiBase {
 
 			return false;
 		}
-		if ( $crossOriginParam && !$this->getConfig()->get( MainConfigNames::AllowAuthenticatedCrossOrigin ) ) {
-			$response->statusHeader( 403 );
-			$response->header( 'Cache-control: no-cache' );
-			echo "'crossorigin' support is not enabled on this wiki\n";
-
-			return false;
-		}
 
 		if ( $originParam === '*' || $crossOriginParam ) {
 			// Request for CORS without browser-supplied credentials (e.g. cookies):
