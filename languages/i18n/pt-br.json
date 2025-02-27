@@ -2504,7 +2504,7 @@
 	"blanknamespace": "(Principal)",
 	"contributions": "Contribuições do usuário",
 	"tool-link-contributions": "Contribuições {{GENDER:$1|do usuário|da usuária|do(a) usuário(a)}}",
-	"contributions-title": "Contribuições {{GENDER:$1|do usuário|da usuária|do(a) usuário(a)}} $1",
+	"contributions-title": "Contribuições {{GENDER:$2|do usuário|da usuária|do(a) usuário(a)}} $1",
 	"contributions-title-for-ip-when-temporary-accounts-enabled": "Contribuições de IP legado para $1",
 	"contribute-title": "Contribuições do usuário",
 	"mycontris": "Contribuições",

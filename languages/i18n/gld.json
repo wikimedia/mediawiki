@@ -390,7 +390,7 @@
 	"tooltip-namespace_association": "Эйду саиосу, тотара эй гэрбу боани поктоку гэрбу боа дёбодёни",
 	"blanknamespace": "(Даи)",
 	"contributions": "Эй най тахани",
-	"contributions-title": "{{GENDER:$1 гэбуни}} $1",
+	"contributions-title": "{{GENDER:$2 гэбуни}} $1",
 	"mycontris": "Хайва тахан",
 	"anoncontribs": "Хайва тахан",
 	"nocontribs": "Туй поктоди гэлэйсу калахамба абани.",

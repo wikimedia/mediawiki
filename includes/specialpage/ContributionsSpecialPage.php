@@ -235,6 +235,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 		$out->setPageTitleMsg(
 			$this->msg( $this->getResultsPageTitleMessageKey( $userObj ) )
 				->rawParams( Html::element( 'bdi', [], $target ) )
+				->params( $target )
 		);
 
 		# For IP ranges, we want the contributionsSub, but not the skin-dependent

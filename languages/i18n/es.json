@@ -2602,7 +2602,7 @@
 	"blanknamespace": "(Principal)",
 	"contributions": "Contribuciones del usuario",
 	"tool-link-contributions": "Contribuciones {{GENDER:$1|del usuario|de la usuaria}}",
-	"contributions-title": "Contribuciones {{GENDER:$1|del usuario|de la usuaria}} $1",
+	"contributions-title": "Contribuciones {{GENDER:$2|del usuario|de la usuaria}} $1",
 	"contributions-title-for-ip-when-temporary-accounts-enabled": "Contribuciones históricas de la IP $1",
 	"contribute-title": "Contribuciones del usuario",
 	"mycontris": "Contribuciones",

@@ -2339,7 +2339,7 @@
 	"blanknamespace": "(Glavny)",
 	"contributions": "Vklad koristnika",
 	"tool-link-contributions": "Vklad {{GENDER:$1|koristnika|koristnice}}",
-	"contributions-title": "Vklad {{GENDER:$1|koristnika|koristnice}} $1",
+	"contributions-title": "Vklad {{GENDER:$2|koristnika|koristnice}} $1",
 	"contributions-title-for-ip-when-temporary-accounts-enabled": "Stary vklad iz IP-adresa za koristnika $1",
 	"contribute-title": "Vklad koristnika",
 	"mycontris": "Vklad",

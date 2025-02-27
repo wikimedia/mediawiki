@@ -2549,7 +2549,7 @@
 	"blanknamespace": "(Основное)",
 	"contributions": "Вклад",
 	"tool-link-contributions": "Вклад {{GENDER:$1|участника|участницы}}",
-	"contributions-title": "Вклад {{GENDER:$1|участника|участницы}} $1",
+	"contributions-title": "Вклад {{GENDER:$2|участника|участницы}} $1",
 	"contributions-title-for-ip-when-temporary-accounts-enabled": "Вклад под старым IP-адресом $1",
 	"contribute-title": "Вклад участника",
 	"mycontris": "Вклад",

@@ -1870,7 +1870,7 @@
 	"blanknamespace": "(Pamatlapa)",
 	"contributions": "Dalībnieka devums",
 	"tool-link-contributions": "{{GENDER:$1|Dalībnieka|Dalībnieces|Dalībnieka}} devums",
-	"contributions-title": "{{GENDER:$1|Dalībnieka|Dalībnieces|Dalībnieka}} $1 devums",
+	"contributions-title": "{{GENDER:$2|Dalībnieka|Dalībnieces|Dalībnieka}} $1 devums",
 	"contribute-title": "Dalībnieka devums",
 	"mycontris": "Devums",
 	"anoncontribs": "Devums",

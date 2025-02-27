@@ -2106,7 +2106,7 @@
 	"blanknamespace": "(Glavni)",
 	"contributions": "Doprinosi",
 	"tool-link-contributions": "Doprinosi {{GENDER:$1|suradnika|suradnice}}",
-	"contributions-title": "Doprinosi {{GENDER:$1|suradnika|suradnice}} $1",
+	"contributions-title": "Doprinosi {{GENDER:$2|suradnika|suradnice}} $1",
 	"contribute-title": "Suradnički doprinosi",
 	"mycontris": "Doprinosi",
 	"anoncontribs": "Doprinosi",

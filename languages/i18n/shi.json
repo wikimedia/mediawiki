@@ -704,7 +704,7 @@
 	"blanknamespace": "(Adslan)",
 	"contributions": "Tidrawin n usmras",
 	"tool-link-contributions": "Tidrawin n {{GENDER:$1|usmras}}",
-	"contributions-title": "Tidrawin n {{GENDER:$1|usmras|tsmrast}} $1",
+	"contributions-title": "Tidrawin n {{GENDER:$2|usmras|tsmrast}} $1",
 	"mycontris": "Tidrawin",
 	"anoncontribs": "Tumutin",
 	"nocontribs": "Ur llin isnfal rwasnin aylli tsiggilt",
