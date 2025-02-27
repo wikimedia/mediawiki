@@ -36,6 +36,11 @@ class LanguageSh extends Language {
 	public function convertGrammar( $word, $case ) {
 		$grammarForms =
 			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::GrammarForms );
+
+		if ( !isset( $grammarForms['sh'] ) ) {
+			return $word;
+		}
+
 		if ( isset( $grammarForms['sh'][$case][$word] ) ) {
 			return $grammarForms['sh'][$case][$word];
 		}
