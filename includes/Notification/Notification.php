@@ -1,7 +1,10 @@
 <?php
 namespace MediaWiki\Notification;
 
-use Serializable;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\User\UserIdentity;
+use Wikimedia\JsonCodec\JsonCodecable;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 
 /**
@@ -35,7 +38,8 @@ class Notification {
 	 * All additional notification data can be passed via $custom array
 	 *
 	 * @param string $type Notification type
-	 * @param array $custom Custom notification data
+	 * @param (scalar|array|null|JsonCodecable|MessageSpecifier|UserIdentity|PageIdentity)[] $custom
+	 *   Custom notification data, see setProperty() for more details about the allowed keys and values
 	 */
 	public function __construct( string $type, array $custom = [] ) {
 		$this->type = $type;
@@ -59,8 +63,11 @@ class Notification {
 	 * - `title` (PageIdentity) Page on which the event was triggered.
 	 * Any other keys may be used to pass additional data handled by specific extensions.
 	 *
+	 * The value of keys other than those listed above should be (de)serializable as JSON, by either
+	 * being plain PHP values or using the JsonCodecable interface.
+	 *
 	 * @param string $key
-	 * @param scalar|Serializable $value
+	 * @param scalar|array|null|JsonCodecable|MessageSpecifier|UserIdentity|PageIdentity $value
 	 * @return void
 	 */
 	protected function setProperty( string $key, $value ): void {
