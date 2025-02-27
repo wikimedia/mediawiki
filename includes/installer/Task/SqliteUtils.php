@@ -15,7 +15,7 @@ class SqliteUtils {
 	 */
 	public function checkDataDir( $dir ): Status {
 		if ( is_dir( $dir ) ) {
-			if ( !is_readable( $dir ) ) {
+			if ( !is_readable( $dir ) || !is_writable( $dir ) ) {
 				return Status::newFatal( 'config-sqlite-dir-unwritable', $dir );
 			}
 		} elseif ( !is_writable( dirname( $dir ) ) ) {
