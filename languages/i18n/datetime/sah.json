@@ -74,7 +74,7 @@
 	"duration-decades": "$1 декаада",
 	"duration-years": "$1 сыл",
 	"duration-weeks": "$1 нэдиэлэ",
-	"duration-days": "$1 хонук",
+	"duration-days": "$1 {{PLURAL:$1|хонук}}",
 	"duration-hours": "$1 чаас",
 	"duration-minutes": "$1 мүнүүтэ",
 	"duration-seconds": "$1 сөкүүндэ",

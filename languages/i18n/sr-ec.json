@@ -581,6 +581,7 @@
 	"preview": "Претпреглед",
 	"showpreview": "Прикажи претпреглед",
 	"showdiff": "Прикажи измене",
+	"tempuser-expired-link-tooltip": "Овај налог је истекао",
 	"temp-user-banner-description": "Користите привремени налог",
 	"temp-user-banner-tooltip-label": "Више информација о привременим налозима",
 	"temp-user-banner-tooltip-title": "Привремени налог",
