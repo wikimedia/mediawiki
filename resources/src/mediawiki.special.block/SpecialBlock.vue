@@ -101,7 +101,7 @@
 					{{ $i18n( 'block-cancel' ) }}
 				</cdx-button>
 				<cdx-button
-					action="destructive"
+					action="progressive"
 					weight="primary"
 					class="mw-block-submit"
 					@click="onFormSubmission"

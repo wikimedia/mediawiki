@@ -20,7 +20,7 @@
 			<template v-if="shouldShowAddBlockButton" #header>
 				<cdx-button
 					type="button"
-					action="destructive"
+					action="progressive"
 					weight="primary"
 					class="mw-block-log__create-button"
 					@click="$emit( 'create-block' )"
