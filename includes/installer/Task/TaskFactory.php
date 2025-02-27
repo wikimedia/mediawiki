@@ -12,6 +12,7 @@ use Wikimedia\ObjectFactory\ObjectFactory;
 class TaskFactory {
 	public const PROFILE_INSTALLER = 'installer';
 	public const PROFILE_ADD_WIKI = 'installPreConfigured';
+	public const PROFILE_WEB_UPGRADE = 'web-upgrade';
 
 	/**
 	 * This list is roughly in order of execution, although the declared
@@ -38,6 +39,12 @@ class TaskFactory {
 		[ 'class' => InitialContentTask::class ],
 		[ 'class' => CreateSysopTask::class, 'profile' => self::PROFILE_INSTALLER ],
 		[ 'class' => MailingListSubscribeTask::class, 'profile' => self::PROFILE_INSTALLER ],
+	];
+
+	private const WEB_UPGRADE_SPECS = [
+		[ 'class' => WebUpgradeExtensionsProvider::class ],
+		[ 'class' => RestoredServicesProvider::class ],
+		[ 'class' => WebUpgradeTask::class ],
 	];
 
 	/** @var ObjectFactory */
@@ -74,6 +81,10 @@ class TaskFactory {
 			throw new \RuntimeException( 'Invalid value for ExtensionTaskSpecs' );
 		}
 		$this->registerTasks( $list, $profile, $specs );
+	}
+
+	public function registerWebUpgradeTasks( TaskList $list ) {
+		$this->registerTasks( $list, self::PROFILE_WEB_UPGRADE, self::WEB_UPGRADE_SPECS );
 	}
 
 	/**
