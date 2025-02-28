@@ -275,22 +275,28 @@ class MultiHttpClient implements LoggerAwareInterface {
 		$active = null; // handles still being processed
 		do {
 			// Do any available work...
-			do {
-				$mrc = curl_multi_exec( $chm, $active );
-				$info = curl_multi_info_read( $chm );
-				if ( $info !== false ) {
-					// Note: cast to integer even works on PHP 8.0+ despite the
-					// handle being an object not a resource, because CurlHandle
-					// has a backwards-compatible cast_object handler.
-					$infos[(int)$info['handle']] = $info;
-				}
-			} while ( $mrc == CURLM_CALL_MULTI_PERFORM );
+			$mrc = curl_multi_exec( $chm, $active );
+
+			if ( $mrc !== CURLM_OK ) {
+				$error = curl_multi_strerror( $mrc );
+				$this->logger->warning( 'curl_multi_exec() failed: {error}', [ 'error' => $error ] );
+				break;
+			}
+
+			$info = curl_multi_info_read( $chm );
+			if ( $info !== false ) {
+				// Note: cast to integer even works on PHP 8.0+ despite the
+				// handle being an object not a resource, because CurlHandle
+				// has a backwards-compatible cast_object handler.
+				$infos[(int)$info['handle']] = $info;
+			}
+
 			// Wait (if possible) for available work...
-			if ( $active > 0 && $mrc == CURLM_OK && curl_multi_select( $chm, $selectTimeout ) == -1 ) {
+			if ( $active > 0 && curl_multi_select( $chm, $selectTimeout ) == -1 ) {
 				// PHP bug 63411; https://curl.haxx.se/libcurl/c/curl_multi_fdset.html
 				usleep( 5000 ); // 5ms
 			}
-		} while ( $active > 0 && $mrc == CURLM_OK );
+		} while ( $active > 0 );
 
 		// Remove all of the added cURL handles and check for errors...
 		foreach ( $reqs as $index => &$req ) {
