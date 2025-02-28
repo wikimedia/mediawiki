@@ -47,11 +47,11 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 		];
 		yield 'No edit' => [
 			'authority' => $this->mockRegisteredAuthorityWithoutPermissions( [ 'edit' ] ),
-			'expect' => true,
+			'expect' => false,
 		];
 		yield 'No rollback' => [
 			'authority' => $this->mockRegisteredAuthorityWithoutPermissions( [ 'rollback' ] ),
-			'expect' => true,
+			'expect' => false,
 		];
 	}
 
