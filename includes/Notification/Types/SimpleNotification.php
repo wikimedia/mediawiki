@@ -14,9 +14,15 @@ class SimpleNotification extends Notification {
 
 	public const TYPE = 'mediawiki.simple';
 
+	private MessageSpecifier $message;
+
 	public function __construct( MessageSpecifier $message ) {
-		parent::__construct( self::TYPE, [
-			'msg' => $message
-		] );
+		$this->message = $message;
+		parent::__construct( self::TYPE );
 	}
+
+	public function getMessage(): MessageSpecifier {
+		return $this->message;
+	}
+
 }

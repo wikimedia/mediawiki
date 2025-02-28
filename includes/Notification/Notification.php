@@ -1,10 +1,8 @@
 <?php
 namespace MediaWiki\Notification;
 
-use MediaWiki\Page\PageIdentity;
-use MediaWiki\User\UserIdentity;
+use MediaWiki\Notification\Types\WikiNotification;
 use Wikimedia\JsonCodec\JsonCodecable;
-use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 
 /**
@@ -34,12 +32,13 @@ class Notification {
 	private array $custom;
 
 	/**
-	 * Base for notifications. Type is the only required property.
-	 * All additional notification data can be passed via $custom array
+	 * Base for Notifications. Type is the only required property and any additional data can be
+	 * passed via $custom array.
 	 *
+	 * @see WikiNotification in case you want a Notification with Agent and Title
 	 * @param string $type Notification type
-	 * @param (scalar|array|null|JsonCodecable|MessageSpecifier|UserIdentity|PageIdentity)[] $custom
-	 *   Custom notification data, see setProperty() for more details about the allowed keys and values
+	 * @param (scalar|array|null|JsonCodecable)[] $custom Custom notification data, see
+	 * setProperty() for more details about the allowed keys and values
 	 */
 	public function __construct( string $type, array $custom = [] ) {
 		$this->type = $type;
@@ -57,20 +56,15 @@ class Notification {
 	/**
 	 * Sets a custom property to the notification.
 	 *
-	 * The following keys and their types are known and should be used consistently:
-	 * - `msg` (MessageSpecifier) Localisable message body.
-	 * - `agent` (UserIdentity) User who caused the event.
-	 * - `title` (PageIdentity) Page on which the event was triggered.
-	 * Any other keys may be used to pass additional data handled by specific extensions.
-	 *
+	 * Any other keys may be used to pass additional data handled by specific extensions.*
 	 * The value of keys other than those listed above should be (de)serializable as JSON, by either
-	 * being plain PHP values or using the JsonCodecable interface.
+	 * being scalar or array containing scalar values or using the JsonCodecable interface.
 	 *
 	 * @param string $key
-	 * @param scalar|array|null|JsonCodecable|MessageSpecifier|UserIdentity|PageIdentity $value
+	 * @param scalar|array|JsonCodecable $value
 	 * @return void
 	 */
-	protected function setProperty( string $key, $value ): void {
+	public function setProperty( string $key, $value ): void {
 		$this->custom[$key] = $value;
 	}
 
