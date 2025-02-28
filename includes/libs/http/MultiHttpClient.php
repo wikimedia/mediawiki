@@ -292,9 +292,10 @@ class MultiHttpClient implements LoggerAwareInterface {
 			}
 
 			// Wait (if possible) for available work...
-			if ( $active > 0 && curl_multi_select( $chm, $selectTimeout ) == -1 ) {
-				// PHP bug 63411; https://curl.haxx.se/libcurl/c/curl_multi_fdset.html
-				usleep( 5000 ); // 5ms
+			if ( $active > 0 && curl_multi_select( $chm, $selectTimeout ) === -1 ) {
+				$errno = curl_multi_errno( $chm );
+				$error = curl_multi_strerror( $errno );
+				$this->logger->warning( 'curl_multi_select() failed: {error}', [ 'error' => $error ] );
 			}
 		} while ( $active > 0 );
 
