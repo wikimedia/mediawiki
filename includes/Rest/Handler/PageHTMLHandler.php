@@ -99,6 +99,7 @@ class PageHTMLHandler extends SimpleHandler {
 		);
 
 		if ( $redirectResponse !== null ) {
+			$redirectResponse->setHeader( 'Cache-Control', 'max-age=60' );
 			return $redirectResponse;
 		}
 
