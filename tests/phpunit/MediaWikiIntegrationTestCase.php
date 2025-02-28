@@ -107,13 +107,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	private static $dbClone = null;
 
-	/**
-	 * @var array
-	 * @since 1.19
-	 * @deprecated since 1.41 Tables used are now detected automatically.
-	 */
-	protected $tablesUsed = []; // tables with data
-
 	/** @var bool */
 	private static $useTemporaryTables = true;
 	/** @var bool */
@@ -645,12 +638,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				'tearDown() for post-test assertions.' );
 		}
 		self::$setupWithoutTeardown = true;
-
-		if ( $this->tablesUsed && !self::isTestInDatabaseGroup() ) {
-			throw new LogicException(
-				get_class( $this ) . ' defines $tablesUsed but is not in the Database group'
-			);
-		}
 
 		$this->overrideMwServices();
 		$this->maybeSetupDB();
