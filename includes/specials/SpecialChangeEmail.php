@@ -150,6 +150,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 		} elseif ( $this->status->value === 'eauth' ) {
 			# Notify user that a confirmation email has been sent...
 			$out = $this->getOutput();
+			$out->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
 			$out->addHTML(
 				Html::warningBox(
 					$out->msg( 'eauthentsent', $this->getUser()->getName() )->parse()

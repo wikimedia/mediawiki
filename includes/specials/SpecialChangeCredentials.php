@@ -264,6 +264,7 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 			$out->redirect( $returnUrl );
 		} else {
 			// messages used: changecredentials-success removecredentials-success
+			$out->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
 			$out->addHTML(
 				Html::successBox(
 					$out->msg( static::$messagePrefix . '-success' )->parse()

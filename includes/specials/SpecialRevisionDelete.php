@@ -698,6 +698,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		// Messages: revdelete-failure, logdelete-failure
 		$out = $this->getOutput();
 		$out->setPageTitleMsg( $this->msg( 'actionfailed' ) );
+		$out->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
 		$out->addHTML(
 			Html::errorBox(
 				$out->parseAsContent(

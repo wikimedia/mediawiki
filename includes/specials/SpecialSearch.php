@@ -672,6 +672,8 @@ class SpecialSearch extends SpecialPage {
 		$out->addModuleStyles( [
 			'mediawiki.special', 'mediawiki.special.search.styles',
 			'mediawiki.widgets.SearchInputWidget.styles',
+			// Special page makes use of Html::warningBox and Html::errorBox in multiple places.
+			'mediawiki.codex.messagebox.styles',
 		] );
 	}
 

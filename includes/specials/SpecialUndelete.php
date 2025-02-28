@@ -338,6 +338,8 @@ class SpecialUndelete extends SpecialPage {
 		$this->checkPermissions(); // Needs to be after mTargetObj is set
 
 		$out = $this->getOutput();
+		// This page uses Html::warningBox and Html::errorBox
+		$out->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
 
 		if ( $this->mTargetObj === null ) {
 			$out->addWikiMsg( 'undelete-header' );
@@ -1630,7 +1632,6 @@ class SpecialUndelete extends SpecialPage {
 
 		if ( !$status->isGood() ) {
 			$out->setPageTitleMsg( $this->msg( 'undelete-error' ) );
-			$out->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
 			foreach ( $status->getMessages() as $msg ) {
 				$out->addHTML( Html::errorBox(
 					$this->msg( $msg )->parse()

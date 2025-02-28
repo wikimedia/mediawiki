@@ -94,6 +94,10 @@ class SpecialUpload extends SpecialPage {
 		$this->log = LoggerFactory::getInstance( 'SpecialUpload' );
 	}
 
+	private function addMessageBoxStyling() {
+		$this->getOutput()->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
+	}
+
 	public function doesWrites() {
 		return true;
 	}
@@ -403,6 +407,7 @@ class SpecialUpload extends SpecialPage {
 					$status->getWikiText( false, false, $this->getLanguage() )
 				);
 				$message = '<h2>' . $this->msg( 'uploaderror' )->escaped() . '</h2>' . HTML::errorBox( $statusmsg );
+				$this->addMessageBoxStyling();
 				$this->showUploadForm( $this->getUploadForm( $message ) );
 				break;
 		}
@@ -588,6 +593,7 @@ class SpecialUpload extends SpecialPage {
 		$message = '<h2>' . $this->msg( 'uploaderror' )->escaped() . '</h2>' .
 			Html::errorBox( $message );
 
+		$this->addMessageBoxStyling();
 		$form = $this->getUploadForm( $message, $sessionKey );
 		$form->setSubmitText( $this->msg( $uploadWarning )->escaped() );
 		$this->showUploadForm( $form );
@@ -714,6 +720,7 @@ class SpecialUpload extends SpecialPage {
 		$message = '<h2>' . $this->msg( 'uploadwarning' )->escaped() . '</h2>' .
 			Html::errorBox( $message );
 		$this->showUploadForm( $this->getUploadForm( $message ) );
+		$this->addMessageBoxStyling();
 	}
 
 	/**

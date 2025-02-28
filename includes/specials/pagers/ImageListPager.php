@@ -152,10 +152,16 @@ class ImageListPager extends TablePager {
 	 * @param string $userName Unescaped user name
 	 */
 	protected function outputUserDoesNotExist( $userName ) {
-		$this->getOutput()->addHTML( Html::warningBox(
-			$this->getOutput()->msg( 'listfiles-userdoesnotexist', wfEscapeWikiText( $userName ) )->parse(),
-			'mw-userpage-userdoesnotexist'
-		) );
+		$out = $this->getOutput();
+		$out->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
+		$out->addHTML(
+			Html::warningBox(
+				$out->msg(
+					'listfiles-userdoesnotexist', wfEscapeWikiText( $userName )
+				)->parse(),
+				'mw-userpage-userdoesnotexist'
+			)
+		);
 	}
 
 	/**

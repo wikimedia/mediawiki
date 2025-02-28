@@ -171,6 +171,8 @@ class SpecialMovePage extends UnlistedSpecialPage {
 			throw new ErrorPageError( 'notargettitle', 'notargettext' );
 		}
 		$this->getOutput()->addBacklinkSubtitle( $this->oldTitle );
+		// Various uses of Html::errorBox and Html::warningBox.
+		$this->getOutput()->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
 
 		if ( !$this->oldTitle->exists() ) {
 			throw new ErrorPageError( 'nopagetitle', 'nopagetext' );

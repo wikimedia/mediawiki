@@ -1401,7 +1401,11 @@ class HTMLForm extends ContextSource {
 		# For good measure (it is the default)
 		$this->getOutput()->getMetadata()->setPreventClickjacking( true );
 		$this->getOutput()->addModules( 'mediawiki.htmlform' );
-		$this->getOutput()->addModuleStyles( 'mediawiki.htmlform.styles' );
+		$this->getOutput()->addModuleStyles( [
+			'mediawiki.htmlform.styles',
+			// Html::errorBox and Html::warningBox used by HtmlFormField and HtmlForm::getErrorsOrWarnings
+			'mediawiki.codex.messagebox.styles'
+		] );
 
 		if ( $this->mCollapsible ) {
 			// Preload jquery.makeCollapsible for mediawiki.htmlform

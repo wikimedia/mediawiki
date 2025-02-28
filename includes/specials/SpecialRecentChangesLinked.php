@@ -101,6 +101,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		$outputPage = $this->getOutput();
 		$title = Title::newFromText( $target );
 		if ( !$title || $title->isExternal() ) {
+			$outputPage->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
 			$outputPage->addHTML(
 				Html::errorBox( $this->msg( 'allpagesbadtitle' )->parse(), '', 'mw-recentchangeslinked-errorbox' )
 			);

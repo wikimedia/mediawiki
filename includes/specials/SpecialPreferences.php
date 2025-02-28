@@ -83,7 +83,10 @@ class SpecialPreferences extends SpecialPage {
 		if ( $session->get( 'specialPreferencesSaveSuccess' ) ) {
 			// Remove session data for the success message
 			$session->remove( 'specialPreferencesSaveSuccess' );
-			$out->addModuleStyles( 'mediawiki.notification.convertmessagebox.styles' );
+			$out->addModuleStyles( [
+				'mediawiki.codex.messagebox.styles',
+				'mediawiki.notification.convertmessagebox.styles'
+			] );
 
 			$out->addHTML(
 				Html::successBox(
