@@ -312,6 +312,8 @@ because of Phabricator reports.
   the 'PermissionStatusAudit' hook.
 * MessageCache::parse, ::parseWithPostProcessing and ::transform() are now
   deprecated. Use MessageParser.
+* User::getGlobalBlock(), deprecated since 1.40, now emits deprecation
+  warnings.
 * …
 
 === Other changes in 1.44 ===

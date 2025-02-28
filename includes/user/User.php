@@ -1505,6 +1505,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 * @deprecated since 1.40. Use getBlock instead
 	 */
 	public function getGlobalBlock( $ip = '' ) {
+		wfDeprecated( __METHOD__, '1.40' );
 		if ( $this->mGlobalBlock !== null ) {
 			return $this->mGlobalBlock ?: null;
 		}
