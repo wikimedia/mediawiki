@@ -1,42 +1,42 @@
 {
-	"description": "revision meta-data",
+	"x-i18n-description": "rest-schema-desc-revision-metadata",
 	"required": [
 		"timestamp"
 	],
 	"properties": {
 		"id": {
 			"type": "integer",
-			"description": "Revision identifier"
+			"x-i18n-description": "rest-param-desc-revision-id"
 		},
 		"size": {
 			"type": "integer",
-			"description": "Nominal size of this revision, in bogo-bytes"
+			"x-i18n-description": "rest-property-desc-revision-size"
 		},
 		"delta": {
 			"type": "integer",
 			"nullable": true,
-			"description": "The difference in size compared to the previous revision."
+			"x-i18n-description": "rest-property-desc-revision-delta"
 		},
 		"comment": {
 			"type": "string",
 			"nullable": true,
-			"description": "The comment the author associated with the revision"
+			"x-i18n-description": "rest-property-desc-revision-comment"
 		},
 		"minor": {
 			"type": "boolean",
-			"description": "Whether or not this is a minor edit"
+			"x-i18n-description": "rest-property-desc-revision-minor"
 		},
 		"timestamp": {
 			"type": "string",
 			"format": "date-time",
-			"description": "Revision timestamp"
+			"x-i18n-description": "rest-property-desc-revision-timestamp"
 		},
 		"content_model": {
 			"type": "string",
-			"description": "Type of content"
+			"x-i18n-description": "rest-property-desc-revision-content-model"
 		},
 		"page": {
-			"description": "the page the revision belongs to",
+			"x-i18n-description": "rest-property-desc-revision-page",
 			"required": [
 				"id",
 				"key",
@@ -45,21 +45,21 @@
 			"properties": {
 				"id": {
 					"type": "integer",
-					"description": "Page identifier"
+					"x-i18n-description": "rest-property-desc-page-id"
 				},
 				"key": {
 					"type": "string",
-					"description": "Page title in URL form (unencoded)"
+					"x-i18n-description": "rest-property-desc-page-key"
 				},
 				"title": {
 					"type": "string",
-					"description": "Page title"
+					"x-i18n-description": "rest-property-desc-page-title"
 				}
 			}
 		},
 		"license": {
 			"type": "object",
-			"description": "Information about the wiki's license",
+			"x-i18n-description": "rest-property-desc-page-license",
 			"required": [
 				"url",
 				"title"
@@ -67,11 +67,11 @@
 			"properties": {
 				"url": {
 					"type": "string",
-					"description": "URL of the applicable license based on the $wgRightsUrl setting"
+					"x-i18n-description": "rest-property-desc-page-license-url-html"
 				},
 				"title": {
 					"type": "string",
-					"description": "Name of the applicable license based on the $wgRightsText setting"
+					"x-i18n-description": "rest-property-desc-page-license-title-html"
 				}
 			}
 		},
@@ -86,65 +86,65 @@
 			"properties": {
 				"id": {
 					"type": "integer",
-					"description": "User identifier"
+					"x-i18n-description": "rest-property-desc-revision-user-id"
 				},
 				"name": {
 					"type": "string",
-					"description": "User name"
+					"x-i18n-description": "rest-property-desc-revision-user-name"
 				}
 			}
 		},
 		"html_url": {
 			"type": "string",
-			"description": "Url to retrieve the revision content in html format"
+			"x-i18n-description": "rest-property-desc-revision-html-url"
 		},
 		"html": {
 			"type": "string",
-			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+			"x-i18n-description": "rest-property-desc-page-restbase-compatibility"
 		},
 		"title": {
 			"type": "string",
-			"description": "Revision Title. Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+			"x-i18n-description": "rest-property-desc-revision-title"
 		},
 		"page_id": {
 			"type": "integer",
-			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+			"x-i18n-description": "rest-property-desc-page-restbase-compatibility"
 		},
 		"rev": {
 			"type": "integer",
-			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+			"x-i18n-description": "rest-property-desc-page-restbase-compatibility"
 		},
 		"tid": {
 			"type": "string",
-			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+			"x-i18n-description": "rest-property-desc-page-restbase-compatibility"
 		},
 		"namespace": {
 			"type": "integer",
-			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+			"x-i18n-description": "rest-property-desc-page-restbase-compatibility"
 		},
 		"user_id": {
 			"type": "integer",
-			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+			"x-i18n-description": "rest-property-desc-page-restbase-compatibility"
 		},
 		"user_text": {
 			"type": "string",
-			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+			"x-i18n-description": "rest-property-desc-page-restbase-compatibility"
 		},
 		"tags": {
 			"type": "array",
-			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+			"x-i18n-description": "rest-property-desc-page-restbase-compatibility"
 		},
 		"restrictions": {
 			"type": "array",
-			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+			"x-i18n-description": "rest-property-desc-page-restbase-compatibility"
 		},
 		"page_language": {
 			"type": "string",
-			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+			"x-i18n-description": "rest-property-desc-page-restbase-compatibility"
 		},
 		"redirect": {
 			"type": "boolean",
-			"description": "Included only if the x-restbase-compat header is used to activate RESTBase compatibility"
+			"x-i18n-description": "rest-property-desc-page-restbase-compatibility"
 		}
 	}
 }
