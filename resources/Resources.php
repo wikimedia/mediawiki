@@ -2313,6 +2313,8 @@ return [
 				'callback' => 'MediaWiki\\ResourceLoader\\CodexModule::getIcons',
 				'callbackParam' => [
 					'cdxIconCancel',
+					'cdxIconEdit',
+					'cdxIconTrash',
 					'cdxIconSearch',
 					'cdxIconAlert',
 					'cdxIconInfoFilled',
@@ -2382,6 +2384,7 @@ return [
 			'block-user-previous-blocks',
 			'block-user-suppressed-blocks',
 			'blockipsuccesssub',
+			'blocklist-actions-header',
 			'blocklist-by',
 			'blocklist-editing',
 			'blocklist-editing-sitewide',

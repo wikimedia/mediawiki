@@ -270,7 +270,9 @@ describe( 'SpecialBlock', () => {
 		await wrapper.find( '[data-test=edit-block-button]' ).trigger( 'click' );
 		wrapper.find( '[name=wpReason-other]' ).setValue( 'This is a test' );
 		expect( store.reasonOther ).toStrictEqual( 'This is a test' );
-		await wrapper.find( '.cdx-button--action-default' ).trigger( 'click' );
+		// Cancel the edit.
+		await wrapper.find( '[data-test="cancel-edit-button"]' ).trigger( 'click' );
+		// Create a new block.
 		await wrapper.find( '.mw-block__create-button' ).trigger( 'click' );
 		expect( store.blockId ).toBeNull();
 		expect( store.reasonOther ).toStrictEqual( '' );

@@ -25,52 +25,10 @@
 						:class="{ 'cdx-selected-block-row': item.modify.id === blockId }"
 					>
 						<td>
-							<cdx-button
-								type="button"
-								action="progressive"
-								weight="quiet"
-								data-test="edit-block-button"
-								@click="$emit( 'edit-block', item.modify )"
-							>
-								{{ $i18n( 'block-item-edit' ).text() }}
-							</cdx-button>
-							<cdx-button
-								type="button"
-								action="progressive"
-								weight="quiet"
-								@click="$emit( 'remove-block', item.modify.id )"
-							>
-								{{ $i18n( 'block-item-remove' ).text() }}
-							</cdx-button>
-						</td>
-						<td>
-							<a
-								:href="mw.util.getUrl( 'Special:BlockList', { wpTarget: `#${ item.timestamp.blockid }` } )"
-							>
-								{{ util.formatTimestamp( item.timestamp.timestamp ) }}
-							</a>
-						</td>
-						<td>
 							<span v-if="item.expiry.expires || item.expiry.duration">
 								{{ util.formatTimestamp( item.expiry.expires || item.expiry.duration ) }}
 							</span>
 							<span v-else></span>
-						</td>
-						<td>
-							<a :href="mw.Title.makeTitle( 2, item.blockedby ).getUrl()">
-								{{ item.blockedby }}
-							</a>
-							<span class="mw-usertoollinks">
-								{{ $i18n( 'parentheses-start' ).text() }}<a :href="mw.Title.makeTitle( 3, item.blockedby ).getUrl()">
-									{{ $i18n( 'talkpagelinktext' ).text() }}
-								</a>
-								<span>
-									{{ $i18n( 'pipe-separator' ).text() }}
-									<a :href="mw.Title.makeTitle( 2, `Contributions/${ item.blockedby }` ).getUrl()">
-										{{ $i18n( 'contribslink' ).text() }}
-									</a>
-								</span>{{ $i18n( 'parentheses-end' ).text() }}
-							</span>
 						</td>
 						<td>
 							<ul v-if="item.parameters.flags && item.parameters.flags.length">
@@ -128,6 +86,52 @@
 							<!-- eslint-disable-next-line vue/no-v-html -->
 							<span v-html="item.reason"></span>
 						</td>
+						<td>
+							<a :href="mw.Title.makeTitle( 2, item.blockedby ).getUrl()">
+								{{ item.blockedby }}
+							</a>
+							<span class="mw-usertoollinks">
+								{{ $i18n( 'parentheses-start' ).text() }}<a :href="mw.Title.makeTitle( 3, item.blockedby ).getUrl()">
+									{{ $i18n( 'talkpagelinktext' ).text() }}
+								</a>
+								<span>
+									{{ $i18n( 'pipe-separator' ).text() }}
+									<a :href="mw.Title.makeTitle( 2, `Contributions/${ item.blockedby }` ).getUrl()">
+										{{ $i18n( 'contribslink' ).text() }}
+									</a>
+								</span>{{ $i18n( 'parentheses-end' ).text() }}
+							</span>
+						</td>
+						<td>
+							<a
+								:href="mw.util.getUrl( 'Special:BlockList', { wpTarget: `#${ item.timestamp.blockid }` } )"
+							>
+								{{ util.formatTimestamp( item.timestamp.timestamp ) }}
+							</a>
+						</td>
+						<td>
+							<span class="mw-blocklist-actions">
+								<cdx-button
+									type="button"
+									:aria-label="$i18n( 'block-item-edit' ).text()"
+									action="default"
+									weight="quiet"
+									data-test="edit-block-button"
+									@click="$emit( 'edit-block', item.modify )"
+								>
+									<cdx-icon :icon="cdxIconEdit" :icon-label="$i18n( 'block-item-edit' ).text()"></cdx-icon>
+								</cdx-button>
+								<cdx-button
+									type="button"
+									:aria-label="$i18n( 'block-item-remove' ).text()"
+									action="default"
+									weight="quiet"
+									@click="$emit( 'remove-block', item.modify.id )"
+								>
+									<cdx-icon :icon="cdxIconTrash" :icon-label="$i18n( 'block-item-remove' ).text()"></cdx-icon>
+								</cdx-button>
+							</span>
+						</td>
 					</tr>
 				</tbody>
 				<tbody v-else>
@@ -150,30 +154,6 @@
 			<template #empty-state>
 				{{ emptyState }}
 			</template>
-			<template #item-hide="{ item }">
-				<a
-					:href="mw.util.getUrl( 'Special:RevisionDelete', { type: 'logging', ['ids[' + item + ']']: 1 } )"
-				>
-					{{ $i18n( 'block-change-visibility' ).text() }}
-				</a>
-			</template>
-			<template #item-timestamp="{ item }">
-				<a
-					v-if="item.logid"
-					:href="mw.util.getUrl( 'Special:Log', { logid: item.logid } )"
-				>
-					{{ util.formatTimestamp( item.timestamp ) }}
-				</a>
-				<a
-					v-else-if="item.blockid"
-					:href="mw.util.getUrl( 'Special:BlockList', { wpTarget: `#${ item.blockid }` } )"
-				>
-					{{ util.formatTimestamp( item.timestamp ) }}
-				</a>
-				<span v-else>
-					{{ util.formatTimestamp( item.timestamp ) }}
-				</span>
-			</template>
 			<template #item-type="{ item }">
 				{{ util.getBlockActionMessage( item ) }}
 			</template>
@@ -182,22 +162,6 @@
 					{{ util.formatTimestamp( item.expires || item.duration ) }}
 				</span>
 				<span v-else></span>
-			</template>
-			<template #item-blockedby="{ item }">
-				<a :href="mw.Title.makeTitle( 2, item ).getUrl()">
-					{{ item }}
-				</a>
-				<span class="mw-usertoollinks">
-					{{ $i18n( 'parentheses-start' ).text() }}<a :href="mw.Title.makeTitle( 3, item ).getUrl()">
-						{{ $i18n( 'talkpagelinktext' ).text() }}
-					</a>
-					<span>
-						{{ $i18n( 'pipe-separator' ).text() }}
-						<a :href="mw.Title.makeTitle( 2, `Contributions/${ item }` ).getUrl()">
-							{{ $i18n( 'contribslink' ).text() }}
-						</a>
-					</span>{{ $i18n( 'parentheses-end' ).text() }}
-				</span>
 			</template>
 			<template #item-parameters="{ item }">
 				<ul v-if="item.flags && item.flags.length">
@@ -256,6 +220,47 @@
 				<!-- eslint-disable-next-line vue/no-v-html -->
 				<span v-html="item"></span>
 			</template>
+			<template #item-blockedby="{ item }">
+				<a :href="mw.Title.makeTitle( 2, item ).getUrl()">
+					{{ item }}
+				</a>
+				<span class="mw-usertoollinks">
+					{{ $i18n( 'parentheses-start' ).text() }}<a :href="mw.Title.makeTitle( 3, item ).getUrl()">
+						{{ $i18n( 'talkpagelinktext' ).text() }}
+					</a>
+					<span>
+						{{ $i18n( 'pipe-separator' ).text() }}
+						<a :href="mw.Title.makeTitle( 2, `Contributions/${ item }` ).getUrl()">
+							{{ $i18n( 'contribslink' ).text() }}
+						</a>
+					</span>{{ $i18n( 'parentheses-end' ).text() }}
+				</span>
+			</template>
+			<template #item-timestamp="{ item }">
+				<a
+					v-if="item.logid"
+					:href="mw.util.getUrl( 'Special:Log', { logid: item.logid } )"
+				>
+					{{ util.formatTimestamp( item.timestamp ) }}
+				</a>
+				<a
+					v-else-if="item.blockid"
+					:href="mw.util.getUrl( 'Special:BlockList', { wpTarget: `#${ item.blockid }` } )"
+				>
+					{{ util.formatTimestamp( item.timestamp ) }}
+				</a>
+				<span v-else>
+					{{ util.formatTimestamp( item.timestamp ) }}
+				</span>
+			</template>
+			<template #item-hide="{ item }">
+				<a
+					class="mw-block-log__actions"
+					:href="mw.util.getUrl( 'Special:RevisionDelete', { type: 'logging', ['ids[' + item + ']']: 1 } )"
+				>
+					{{ $i18n( 'block-change-visibility' ).text() }}
+				</a>
+			</template>
 		</cdx-table>
 		<div v-if="moreBlocks" class="mw-block-log-fulllog">
 			<a
@@ -270,14 +275,14 @@
 <script>
 const util = require( '../util.js' );
 const { computed, defineComponent, ref, watch } = require( 'vue' );
-const { CdxAccordion, CdxTable, CdxButton, CdxInfoChip } = require( '@wikimedia/codex' );
+const { CdxAccordion, CdxTable, CdxButton, CdxInfoChip, CdxIcon } = require( '@wikimedia/codex' );
 const { storeToRefs } = require( 'pinia' );
 const useBlockStore = require( '../stores/block.js' );
-const { cdxIconInfoFilled, cdxIconAlert } = require( '../icons.json' );
+const { cdxIconInfoFilled, cdxIconAlert, cdxIconEdit, cdxIconTrash } = require( '../icons.json' );
 
 module.exports = exports = defineComponent( {
 	name: 'BlockLog',
-	components: { CdxAccordion, CdxTable, CdxButton, CdxInfoChip },
+	components: { CdxAccordion, CdxTable, CdxButton, CdxInfoChip, CdxIcon },
 	props: {
 		open: {
 			type: Boolean,
@@ -309,21 +314,20 @@ module.exports = exports = defineComponent( {
 			emptyState = mw.message( 'block-user-no-suppressed-blocks' ).text();
 		}
 
-		const columns = [
-			...( props.blockLogType === 'active' || props.canDeleteLogEntry ?
-				[ { id: props.blockLogType === 'active' ? 'modify' : 'hide', label: '' } ] : [] ),
-			{ id: 'timestamp', label: mw.message( 'blocklist-timestamp' ).text() }
-		];
+		const columns = [];
 		if ( props.blockLogType === 'recent' || props.blockLogType === 'suppress' ) {
 			columns.push(
 				{ id: 'type', label: mw.message( 'blocklist-type-header' ).text() }
 			);
 		}
 		columns.push(
-			{ id: 'expiry', label: mw.message( 'blocklist-expiry' ).text() },
-			{ id: 'blockedby', label: mw.message( 'blocklist-by' ).text() },
+			{ id: 'expiry', label: mw.message( 'blocklist-expiry' ).text(), width: '15%' },
 			{ id: 'parameters', label: mw.message( 'blocklist-params' ).text() },
-			{ id: 'reason', label: mw.message( 'blocklist-reason' ).text() }
+			{ id: 'reason', label: mw.message( 'blocklist-reason' ).text() },
+			{ id: 'blockedby', label: mw.message( 'blocklist-by' ).text() },
+			{ id: 'timestamp', label: mw.message( 'blocklist-timestamp' ).text(), width: '15%' },
+			...( props.blockLogType === 'active' || props.canDeleteLogEntry ?
+				[ { id: props.blockLogType === 'active' ? 'modify' : 'hide', label: mw.message( 'blocklist-actions-header' ) } ] : [] )
 		);
 
 		const logEntries = ref( [] );
@@ -447,6 +451,8 @@ module.exports = exports = defineComponent( {
 			title,
 			emptyState,
 			columns,
+			cdxIconEdit,
+			cdxIconTrash,
 			logEntries,
 			moreBlocks,
 			alreadyBlocked,
@@ -490,13 +496,13 @@ module.exports = exports = defineComponent( {
 	tr.cdx-selected-block-row {
 		background: @background-color-progressive-subtle--hover;
 	}
+
+	.mw-active-blocks__actions {
+		display: flex;
+	}
 }
 
 .mw-block-log-fulllog {
 	margin-top: @spacing-50;
-}
-
-.mw-block-active-blocks__menu {
-	text-align: center;
 }
 </style>
