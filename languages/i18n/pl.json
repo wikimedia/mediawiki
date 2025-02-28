@@ -2468,7 +2468,7 @@
 	"blanknamespace": "(Główna)",
 	"contributions": "Wkład użytkownika",
 	"tool-link-contributions": "Wkład {{GENDER:$1|użytkownika|użytkowniczki}}",
-	"contributions-title": "Wkład {{GENDER:$2|użytkownika|użytkowniczki}} $1",
+	"contributions-title": "Wkład {{GENDER:$1|użytkownika|użytkowniczki}} $1",
 	"contributions-title-for-ip-when-temporary-accounts-enabled": "Dawny wkład spod IP dla $1",
 	"contribute-title": "Wkład użytkownika",
 	"mycontris": "Edycje",

@@ -2315,7 +2315,7 @@
 	"blanknamespace": "(Асноўная)",
 	"contributions": "Унёсак удзельніка",
 	"tool-link-contributions": "Унёсак {{GENDER:$1|удзельніка|удзельніцы}}",
-	"contributions-title": "Унёсак {{GENDER:$2|удзельніка|удзельніцы}} $1",
+	"contributions-title": "Унёсак {{GENDER:$1|удзельніка|удзельніцы}} $1",
 	"contribute-title": "Унёсак удзельніка",
 	"mycontris": "Унёсак",
 	"anoncontribs": "Унёсак",

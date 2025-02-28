@@ -2311,7 +2311,7 @@
 	"blanknamespace": "(Керттера)",
 	"contributions": "Къахьегам",
 	"tool-link-contributions": "{{GENDER:$1|Доакъашхочун}} къахьегам",
-	"contributions-title": "{{GENDER:$2|Доакъашхочун}} къахьегам: $1",
+	"contributions-title": "{{GENDER:$1|Доакъашхочун}} къахьегам: $1",
 	"contribute-title": "Доакъашхочун къахьегам",
 	"mycontris": "Къахьегам",
 	"anoncontribs": "Къахьегам",

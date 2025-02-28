@@ -2357,7 +2357,7 @@
 	"blanknamespace": "(Асноўная)",
 	"contributions": "Уклад удзельніка",
 	"tool-link-contributions": "Уклад {{GENDER:$1|удзельніка|удзельніцы}}",
-	"contributions-title": "Уклад {{GENDER:$2|удзельніка|удзельніцы}} $1",
+	"contributions-title": "Уклад {{GENDER:$1|удзельніка|удзельніцы}} $1",
 	"contribute-title": "Уклад удзельніка",
 	"mycontris": "Уклад",
 	"anoncontribs": "Уклад",

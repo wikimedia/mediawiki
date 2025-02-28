@@ -433,7 +433,7 @@
 	"namespace": "Naveskero than:",
 	"blanknamespace": "(Šerutno)",
 	"contributions": "Le redaktoriskere diňipena",
-	"contributions-title": "Le redaktoriskere diňipena {{GENDER:$2|le|la}} $1",
+	"contributions-title": "Le redaktoriskere diňipena {{GENDER:$1|le|la}} $1",
 	"mycontris": "Diňipena",
 	"anoncontribs": "Diňipena",
 	"nocontribs": "Nasle arakhle ňisave pikeribena, save džan kale kriterijenca.",

@@ -2735,13 +2735,13 @@
 	"renameuser-page-exists": "Det sidj „$1“ as al diar an koon ei automaatisk auerskrewen wurd.",
 	"renameuser-page-moved": "Det sidj $1 as efter $2 fersköwen wurden.",
 	"renameuser-page-unmoved": "Det sidj $1 küd ei efter $2 fersköwen wurd.",
-	"log-name-renameuser": "Amnääm-Logbuk",
+	"log-name-renameuser": "Amnääm Logbuk",
 	"log-description-renameuser": "Det as det logbuk auer feranrangen faan brükernöömer.",
 	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|hää}} brüker „$4“ (mä {{PLURAL:$6|ian feranrang|$6 feranrangen}}) tu „$5“ amnäämd.",
 	"logentry-renameuser-renameuser-legacier": "$1 hää brüker $4 amnäämd tu $5",
 	"renameuser-move-log": "Det sidj as bi't amnäämen faan „[[User:$1|$1]]“ tu „[[User:$2|$2]]“ automaatisk fersköwen wurden",
 	"action-renameuser": "brükern amnääm",
 	"right-renameuser": "Brükern amnääm",
-	"renameuser-renamed-notice": "Didiar brüker as amnäämd wurden. Uun't amnääm-logbuk oner stäänt muar diartu.",
+	"renameuser-renamed-notice": "Didiar {{GENDER:$1|brüker}} as amnäämd wurden. Uun't amnääm logbuk oner stäänt muar diartu.",
 	"interwiki-title-norights": "Interwiki-dooten uunluke"
 }

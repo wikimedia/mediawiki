@@ -2578,7 +2578,7 @@
 	"blanknamespace": "(Principal)",
 	"contributions": "Contributions",
 	"tool-link-contributions": "Contributions de l’utilisat{{GENDER:$1|eur|rice}}",
-	"contributions-title": "Contributions de {{GENDER:$2|l’utilisateur|l’utilisatrice|}} $1",
+	"contributions-title": "Contributions de {{GENDER:$1|l’utilisateur|l’utilisatrice|}} $1",
 	"contributions-title-for-ip-when-temporary-accounts-enabled": "Contributions par adresse IP pour $1",
 	"contribute-title": "Contributions de l’utilisateur",
 	"mycontris": "Contributions",

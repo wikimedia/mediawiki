@@ -2335,7 +2335,7 @@
 	"blanknamespace": "(Главны)",
 	"contributions": "Вклад користника",
 	"tool-link-contributions": "Вклад {{GENDER:$1|користника|користнице}}",
-	"contributions-title": "Вклад {{GENDER:$2|користника|користнице}} $1",
+	"contributions-title": "Вклад {{GENDER:$1|користника|користнице}} $1",
 	"contributions-title-for-ip-when-temporary-accounts-enabled": "Стары вклад из IP-адреса за користника $1",
 	"contribute-title": "Вклад користника",
 	"mycontris": "Вклад",

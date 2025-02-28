@@ -2787,7 +2787,7 @@
 	"contributions": "The page name of the target page.\n\nThe target page shows an overview of the most recent contributions by a user.\n\nSee also:\n* {{msg-mw|Contributions}}\n* {{msg-mw|Accesskey-t-contributions}}\n* {{msg-mw|Tooltip-t-contributions}}",
 	"tool-link-contributions": "Display name for the 'User contributions', shown in the sidebar menu of all user pages and user talk pages.\n\nParameters:\n* $1 - username\n\nSee also:\n* {{msg-mw|Contributions}}\n* {{msg-mw|Accesskey-t-contributions}}\n* {{msg-mw|Tooltip-t-contributions}}",
 	"contributions-summary": "{{doc-specialpagesummary|contributions}}",
-	"contributions-title": "The page title in your browser bar, but not the page title.\n\nParameters:\n* $1 - the username\n* $2 is the username only without any namespace prefix or link (to be used with GENDER).\nSee also:\n* {{msg-mw|Contributions}}",
+	"contributions-title": "{{Gender}}\nThe page title in your browser bar, but not the page title.\n\nParameters:\n* $1 - the username\nSee also:\n* {{msg-mw|Contributions}}",
 	"contributions-title-for-ip-when-temporary-accounts-enabled": "The page title of [[Special:Contributions]] when temporary accounts are enabled and the target is an IP address or range.\n\nParameters:\n* $1 - the username\nSee also:\n* {{msg-mw|contributions-title}} which is used when temporary accounts are not enabled.",
 	"contribute-title": "The page title of Contribute Special Page",
 	"mycontris": "Link to the current user's own contributions, in the personal account links area, at the upper right corner of the page.\n\nSee also:\n* {{msg-mw|Mycontris}}\n* {{msg-mw|Accesskey-pt-mycontris}}\n* {{msg-mw|Tooltip-pt-mycontris}}\n{{Identical|Contribution}}",
