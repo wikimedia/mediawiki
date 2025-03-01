@@ -671,7 +671,7 @@ class UserGroupManager {
 	}
 
 	/**
-	 * Add the user to the group if he/she meets given criteria.
+	 * Add the user to the group if they meet given criteria.
 	 *
 	 * Contrary to autopromotion by $wgAutopromote, the group will be
 	 *   possible to remove manually via Special:UserRights. In such case it

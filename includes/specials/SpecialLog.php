@@ -166,7 +166,7 @@ class SpecialLog extends SpecialPage {
 				if ( IPUtils::isValidRange( $target->getText() ) ) {
 					$page = IPUtils::sanitizeRange( $target->getText() );
 				}
-				# User forgot to add 'User:', we are adding it for him
+				# User forgot to add 'User:', we are adding it for them
 				$target = Title::makeTitleSafe( NS_USER, $page );
 			} elseif ( $target && $target->getNamespace() === NS_USER
 				&& IPUtils::isValidRange( $target->getText() )

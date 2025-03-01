@@ -652,7 +652,7 @@ class PermissionManager {
 			// Shortcut for public wikis, allows skipping quite a bit of code
 			$allowed = true;
 		} elseif ( $this->userHasRight( $user, 'read' ) ) {
-			// If the user is allowed to read pages, he is allowed to read all pages
+			// If the user is allowed to read pages, they are allowed to read all pages
 			$allowed = true;
 		} elseif ( $this->isSameSpecialPage( 'Userlogin', $page )
 			|| $this->isSameSpecialPage( 'PasswordReset', $page )
