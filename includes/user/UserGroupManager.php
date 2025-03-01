@@ -723,7 +723,8 @@ class UserGroupManager {
 		// TODO: deprecate passing full User object to hook
 		$this->hookRunner->onUserGroupsChanged(
 			$userObj,
-			$toPromote, [],
+			$toPromote,
+			[],
 			false,
 			false,
 			$oldUGMs,
