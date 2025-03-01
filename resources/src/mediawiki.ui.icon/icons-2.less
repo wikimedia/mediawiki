@@ -20,13 +20,13 @@
 @font-size-browser: 16; // Assumed browser default of `16px`.
 // Medium icon
 @icon-glyph-size-md: 20;
-@icon-size-md: unit( @icon-glyph-size-md / @font-size-browser, em );
-@icon-padding-md: unit( ( @icon-touch-area-md - @icon-glyph-size-md ) / 2 / @font-size-browser, em );
+@icon-size-md: unit( ( @icon-glyph-size-md / @font-size-browser ), em );
+@icon-padding-md: unit( ( ( @icon-touch-area-md - @icon-glyph-size-md ) / 2 / @font-size-browser ), em );
 
 // Includes 2px mw-ui-button border
-@icon-padding-md-button: unit( ( @icon-touch-area-md - @icon-glyph-size-md - 2 ) / 2 / @font-size-browser, em );
+@icon-padding-md-button: unit( ( ( @icon-touch-area-md - @icon-glyph-size-md - 2 ) / 2 / @font-size-browser ), em );
 // At desktop resolution the icon touch area will shrink from @icon-touch-area-md to @icon-touch-area-sm
-@icon-padding-md-button--desktop: unit( ( @icon-touch-area-sm - @icon-glyph-size-md - 2 ) / 2 / @font-size-browser, em );
+@icon-padding-md-button--desktop: unit( ( ( @icon-touch-area-sm - @icon-glyph-size-md - 2 ) / 2 / @font-size-browser ), em );
 
 // Colors
 @icon-color: @color-subtle;
