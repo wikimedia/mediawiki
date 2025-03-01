@@ -1,7 +1,7 @@
 <template>
 	<cdx-accordion
 		:class="`mw-block-log mw-block-log__type-${ blockLogType }`"
-		:open="open || ( blockLogType === 'active' && !formVisible )"
+		:open="open || ( blockLogType === 'active' && alreadyBlocked )"
 	>
 		<template #title>
 			{{ title }}
@@ -17,17 +17,6 @@
 			:use-row-headers="false"
 			:hide-caption="true"
 		>
-			<template v-if="shouldShowAddBlockButton" #header>
-				<cdx-button
-					type="button"
-					action="progressive"
-					weight="primary"
-					class="mw-block-log__create-button"
-					@click="$emit( 'create-block' )"
-				>
-					{{ $i18n( 'block-create' ).text() }}
-				</cdx-button>
-			</template>
 			<template #tbody>
 				<tbody v-if="logEntries.length">
 					<tr
@@ -304,13 +293,12 @@ module.exports = exports = defineComponent( {
 		}
 	},
 	emits: [
-		'create-block',
 		'edit-block',
 		'remove-block'
 	],
 	setup( props ) {
 		const store = useBlockStore();
-		const { alreadyBlocked, blockId, formVisible, targetUser } = storeToRefs( store );
+		const { alreadyBlocked, blockId, targetUser } = storeToRefs( store );
 		let title = mw.message( 'block-user-previous-blocks' ).text();
 		let emptyState = mw.message( 'block-user-no-previous-blocks' ).text();
 		if ( props.blockLogType === 'active' ) {
@@ -453,17 +441,6 @@ module.exports = exports = defineComponent( {
 			}
 		}, { immediate: true } );
 
-		// Show the 'Add block' button in the active blocks accordion if:
-		// * blockLogType is 'active' AND
-		// * the target user exists AND EITHER
-		//   * multiblocks is enabled, OR
-		//   * multiblocks is disabled AND the user is not already blocked
-		const shouldShowAddBlockButton = computed(
-			() => props.blockLogType === 'active' && store.targetExists && (
-				store.enableMultiblocks || !alreadyBlocked.value
-			)
-		);
-
 		return {
 			mw,
 			util,
@@ -472,12 +449,11 @@ module.exports = exports = defineComponent( {
 			columns,
 			logEntries,
 			moreBlocks,
+			alreadyBlocked,
 			blockId,
 			targetUser,
 			logEntriesCount,
 			infoChip,
-			formVisible,
-			shouldShowAddBlockButton,
 			mwNamespaces
 		};
 	}

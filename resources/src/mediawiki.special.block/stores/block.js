@@ -522,6 +522,10 @@ module.exports = exports = defineStore( 'block', () => {
 		const actualPromise = api.get( params );
 		actualPromise.then( ( data ) => {
 			alreadyBlocked.value = data.query.blocks.length > 0;
+			// form should be visible if target is not blocked
+			if ( !alreadyBlocked.value ) {
+				formVisible.value = true;
+			}
 		} );
 		blockLogPromise = Promise.all( [ actualPromise ] );
 		return pushPromise( blockLogPromise );

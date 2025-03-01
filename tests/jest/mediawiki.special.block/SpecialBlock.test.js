@@ -29,33 +29,33 @@ describe( 'SpecialBlock', () => {
 		expect( wrapper.find( '.mw-block-submit' ).exists() ).toBeFalsy();
 	} );
 
-	it( 'should show no banner and an "Add block" button after selecting a valid target', async () => {
-		wrapper = getSpecialBlock();
+	it( 'should show no banner and block form after selecting a valid target with no active blocks', async () => {
+		wrapper = getSpecialBlock( { blockId: null } );
 		expect( wrapper.find( '.cdx-message__content' ).exists() ).toBeFalsy();
 		await wrapper.find( '[name=wpTarget]' ).setValue( 'ExampleUser' );
 		await wrapper.find( '[name=wpTarget]' ).trigger( 'change' );
-		await wrapper.find( '.mw-block-log__create-button' ).trigger( 'click' );
+		expect( wrapper.find( '.mw-block__block-form' ).exists() ).toBeTruthy();
 		expect( wrapper.find( '.mw-block-submit' ).text() ).toStrictEqual( 'ipbsubmit' );
 	} );
 
-	it( 'should show a banner and no "New block" button based on if user is already blocked', () => {
+	it( 'should show a banner and "Add block" button based on if user is already blocked', () => {
 		expect( wrapper.find( '.mw-block-messages .cdx-message--error' ).exists() ).toBeFalsy();
 		wrapper = getSpecialBlock( {
 			blockAlreadyBlocked: true,
 			blockTargetUser: 'ExampleUser',
+			blockTargetExists: true,
 			blockPreErrors: [ 'ExampleUser is already blocked.' ]
 		} );
 		// Server-generated message, hence why it's in English.
 		expect( wrapper.find( '.mw-block-messages .cdx-message--error' ).text() )
 			.toStrictEqual( 'ExampleUser is already blocked.' );
-		expect( wrapper.find( '.mw-block-log__create-button' ).exists() ).toBeFalsy();
+		expect( wrapper.find( '.mw-block__create-button' ).exists() ).toBeTruthy();
 	} );
 
-	it( 'should submit an API request to block the user', async () => {
-		wrapper = withSubmission( undefined, { block: { user: 'ExampleUser' } } );
+	it( 'should submit an API request to block the user (Multiblocks OFF)', async () => {
+		wrapper = withSubmission( { blockEnableMultiblocks: false }, { block: { user: 'ExampleUser' } } );
 		await wrapper.find( '[name=wpTarget]' ).setValue( 'ExampleUser' );
 		await wrapper.find( '[name=wpTarget]' ).trigger( 'change' );
-		await wrapper.find( '.mw-block-log__create-button' ).trigger( 'click' );
 		await wrapper.find( '.cdx-radio__input[value=datetime]' ).setValue( true );
 		await wrapper.find( '[name=wpExpiry-other]' ).setValue( '2999-01-23T12:34' );
 		await wrapper.find( '[name=wpReason-other]' ).setValue( 'This is a test' );
@@ -81,11 +81,39 @@ describe( 'SpecialBlock', () => {
 		expect( wrapper.find( '.mw-block-success' ).exists() ).toBeTruthy();
 	} );
 
+	it( 'should submit an API request to block the user (Multiblocks ON)', async () => {
+		wrapper = withSubmission( undefined, { block: { user: 'ExampleUser' } } );
+		await wrapper.find( '[name=wpTarget]' ).setValue( 'ExampleUser' );
+		await wrapper.find( '[name=wpTarget]' ).trigger( 'change' );
+		await wrapper.find( '.cdx-radio__input[value=datetime]' ).setValue( true );
+		await wrapper.find( '[name=wpExpiry-other]' ).setValue( '2999-01-23T12:34' );
+		await wrapper.find( '[name=wpReason-other]' ).setValue( 'This is a test' );
+		const spy = jest.spyOn( mw.Api.prototype, 'postWithEditToken' );
+		const submitButton = wrapper.find( '.mw-block-submit' );
+		expect( wrapper.find( '.mw-block-success' ).exists() ).toBeFalsy();
+		await submitButton.trigger( 'click' );
+		expect( spy ).toHaveBeenCalledWith( {
+			action: 'block',
+			id: 1116,
+			expiry: '2999-01-23T12:34Z',
+			reason: 'This is a test',
+			nocreate: 1,
+			allowusertalk: 1,
+			autoblock: 1,
+			errorformat: 'html',
+			errorlang: 'en',
+			errorsuselocal: true,
+			uselang: 'en',
+			format: 'json',
+			formatversion: 2
+		} );
+		expect( wrapper.find( '.mw-block-success' ).exists() ).toBeTruthy();
+	} );
+
 	it( 'should add an error state to invalid fields on submission', async () => {
 		wrapper = withSubmission();
 		await wrapper.find( '[name=wpTarget]' ).setValue( 'ExampleUser' );
 		await wrapper.find( '[name=wpTarget]' ).trigger( 'change' );
-		await wrapper.find( '.mw-block-log__create-button' ).trigger( 'click' );
 		await wrapper.find( '.cdx-radio__input[value=datetime]' ).setValue( true );
 		// Add invalid date
 		await wrapper.find( '[name=wpExpiry-other]' ).setValue( '0000-01-23T12:34:56' );
@@ -103,7 +131,6 @@ describe( 'SpecialBlock', () => {
 		const store = useBlockStore();
 		await wrapper.find( '[name=wpTarget]' ).setValue( 'ExampleUser' );
 		await wrapper.find( '[name=wpTarget]' ).trigger( 'change' );
-		await wrapper.find( '.mw-block-log__create-button' ).trigger( 'click' );
 		// Assert 'hide username' is not yet visible.
 		expect( wrapper.find( '.mw-block-hideuser input' ).exists() ).toBeFalsy();
 		expect( store.hideUserVisible ).toBeFalsy();
@@ -132,14 +159,15 @@ describe( 'SpecialBlock', () => {
 	} );
 
 	it( 'should require confirmation for self-blocking', async () => {
-		wrapper = getSpecialBlock( { wgUserName: 'ExampleUser' } );
+		wrapper = getSpecialBlock( {
+			wgUserName: 'ExampleUser'
+		} );
 		const store = useBlockStore();
 		expect( wrapper.find( '.cdx-message--error' ).exists() ).toBeFalsy();
 		expect( store.confirmationNeeded ).toBeFalsy();
 		expect( store.confirmationMessage ).toStrictEqual( '' );
 		await wrapper.find( '[name=wpTarget]' ).setValue( 'ExampleUser' );
 		await wrapper.find( '[name=wpTarget]' ).trigger( 'change' );
-		await wrapper.find( '.mw-block-log__create-button' ).trigger( 'click' );
 		store.expiry = '3 days';
 		expect( store.confirmationNeeded ).toBeTruthy();
 		expect( store.confirmationMessage ).toStrictEqual( 'ipb-blockingself' );
@@ -186,7 +214,6 @@ describe( 'SpecialBlock', () => {
 		} );
 		const store = useBlockStore();
 		await flushPromises();
-		await wrapper.find( '.mw-block-log__create-button' ).trigger( 'click' );
 		expect( store.type ).toStrictEqual( 'partial' );
 		expect( store.pages ).toStrictEqual( [ 'Foo', 'Bar' ] );
 		expect( store.expiry ).toStrictEqual( '99 hours' );
@@ -195,23 +222,16 @@ describe( 'SpecialBlock', () => {
 		expect( wrapper.find( '.mw-block-pages' ).text() ).toStrictEqual( 'FooBar' );
 	} );
 
-	afterEach( () => {
-		wrapper.unmount();
-	} );
-} );
-
-describe( 'SpecialBlock (multiblocks)', () => {
 	it( 'should show an "Add block" button in the Active blocks accordion', async () => {
-		const wrapper = getSpecialBlock( {
-			blockEnableMultiblocks: true,
+		wrapper = getSpecialBlock( {
 			blockTargetExists: true
 		} );
-		expect( wrapper.find( '.mw-block-log__create-button' ).exists() ).toBeTruthy();
+		expect( wrapper.find( '.mw-block__create-button' ).exists() ).toBeTruthy();
 	} );
 
 	it( 'should reset the form to the initial state for subsequent blocks (T384822)', async () => {
-		const wrapper = withSubmission(
-			{ blockTargetUser: 'ActiveBlockedUser', blockTargetExists: true, blockEnableMultiblocks: true },
+		wrapper = withSubmission(
+			{ blockTargetUser: 'ActiveBlockedUser', blockTargetExists: true },
 			{ block: { user: 'ActiveBlockedUser' } }
 		);
 		const store = useBlockStore();
@@ -232,16 +252,16 @@ describe( 'SpecialBlock (multiblocks)', () => {
 		expect( store.reason ).toStrictEqual( 'other' );
 		expect( store.reasonOther ).toStrictEqual( '' );
 		// Add a new block.
-		await wrapper.find( '.mw-block-log__create-button' ).trigger( 'click' );
+		await wrapper.find( '.mw-block__create-button' ).trigger( 'click' );
 		expect( wrapper.find( '.mw-block__block-form' ).exists() ).toBeTruthy();
 		expect( store.blockId ).toBeNull();
 		expect( store.reason ).toStrictEqual( 'other' );
 		expect( wrapper.find( '[name=wpReason-other]' ).element.value ).toStrictEqual( '' );
 	} );
 
-	it( 'should reset the form to the initial state for new blocks when the form is open', async () => {
-		const wrapper = withSubmission(
-			{ blockTargetUser: 'ActiveBlockedUser', blockTargetExists: true, blockEnableMultiblocks: true },
+	it( 'should reset the form to the initial state for new blocks when a block is edited, canceled, and then create block', async () => {
+		wrapper = withSubmission(
+			{ blockTargetUser: 'ActiveBlockedUser', blockTargetExists: true },
 			{ block: { user: 'ActiveBlockedUser' } }
 		);
 		const store = useBlockStore();
@@ -250,11 +270,14 @@ describe( 'SpecialBlock (multiblocks)', () => {
 		await wrapper.find( '[data-test=edit-block-button]' ).trigger( 'click' );
 		wrapper.find( '[name=wpReason-other]' ).setValue( 'This is a test' );
 		expect( store.reasonOther ).toStrictEqual( 'This is a test' );
-		// Open the 'Active blocks' accordion and add a new block.
-		await wrapper.find( '.mw-block-log__type-active' ).trigger( 'click' );
-		await wrapper.find( '.mw-block-log__create-button' ).trigger( 'click' );
+		await wrapper.find( '.cdx-button--action-default' ).trigger( 'click' );
+		await wrapper.find( '.mw-block__create-button' ).trigger( 'click' );
 		expect( store.blockId ).toBeNull();
 		expect( store.reasonOther ).toStrictEqual( '' );
 		expect( wrapper.find( '[name=wpReason-other]' ).element.value ).toStrictEqual( '' );
+	} );
+
+	afterEach( () => {
+		wrapper.unmount();
 	} );
 } );

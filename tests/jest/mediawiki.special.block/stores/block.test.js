@@ -5,15 +5,16 @@ const { setActivePinia, createPinia } = require( 'pinia' );
 const { flushPromises } = require( '@vue/test-utils' );
 const { mockMwConfigGet } = require( '../SpecialBlock.setup.js' );
 const useBlockStore = require( '../../../../resources/src/mediawiki.special.block/stores/block.js' );
+const jQuery = jest.requireActual( '../../../../resources/lib/jquery/jquery.js' );
+
+beforeEach( () => {
+	// creates a fresh pinia and makes it active
+	// so it's automatically picked up by any useStore() call
+	// without having to pass it to it: `useStore(pinia)`
+	setActivePinia( createPinia() );
+} );
 
 describe( 'Block store', () => {
-	beforeEach( () => {
-		// creates a fresh pinia and makes it active
-		// so it's automatically picked up by any useStore() call
-		// without having to pass it to it: `useStore(pinia)`
-		setActivePinia( createPinia() );
-	} );
-
 	it( 'should require confirmation if the target user is the current user', async () => {
 		mockMwConfigGet( { wgUserName: 'ExampleUser' } );
 		const store = useBlockStore();
@@ -58,11 +59,32 @@ describe( 'Block store', () => {
 		mw.util.isInfinity.mockReturnValue( true );
 		expect( store.hideUserVisible ).toStrictEqual( true );
 	} );
+	it( 'resetForm', () => {
+		const store = useBlockStore();
+		store.targetUser = 'ExampleUser';
+		store.targetExists = true;
+		store.type = 'partial';
+		store.expiry = 'infinite';
+		store.reason = 'This is a test';
+		store.resetForm();
+		expect( store.targetUser ).toStrictEqual( 'ExampleUser' );
+		expect( store.targetExists ).toStrictEqual( true );
+		expect( store.type ).toStrictEqual( 'sitewide' );
+		expect( store.expiry ).toStrictEqual( '' );
+		expect( store.reason ).toStrictEqual( 'other' );
+		store.resetForm( true );
+		expect( store.targetUser ).toStrictEqual( '' );
+		expect( store.targetExists ).toStrictEqual( false );
+	} );
+} );
 
-	it( 'should only pass the reblock param to the API if there was an "already blocked" error', () => {
-		const jQuery = jest.requireActual( '../../../../resources/lib/jquery/jquery.js' );
+describe( 'Block API', () => {
+	beforeEach( () => {
 		mw.Api.prototype.postWithEditToken.mockReturnValue( jQuery.Deferred().resolve().promise() );
-		mockMwConfigGet( { blockAlreadyBlocked: false } );
+	} );
+
+	it( 'should only pass the reblock param to the API if there was an "already blocked" error (Multiblocks OFF)', () => {
+		mockMwConfigGet( { blockEnableMultiblocks: false, blockAlreadyBlocked: false } );
 		const store = useBlockStore();
 		store.doBlock();
 		const spy = jest.spyOn( mw.Api.prototype, 'postWithEditToken' );
@@ -88,12 +110,36 @@ describe( 'Block store', () => {
 		expect( spy ).toHaveBeenCalledWith( expected );
 	} );
 
-	it( 'should make one API request for the block log and active blocks', async () => {
-		const jQuery = jest.requireActual( '../../../../resources/lib/jquery/jquery.js' );
-		mw.Api.prototype.postWithEditToken.mockReturnValue( jQuery.Deferred().resolve().promise() );
+	it( 'should only pass not pass the reblock param to the API if there was an "already blocked" error (Multiblocks ON)', () => {
+		mockMwConfigGet( { blockAlreadyBlocked: false } );
 		const store = useBlockStore();
+		store.doBlock();
+		const spy = jest.spyOn( mw.Api.prototype, 'postWithEditToken' );
+		const expected = {
+			id: 1116,
+			action: 'block',
+			allowusertalk: 1,
+			nocreate: 1,
+			autoblock: 1,
+			errorformat: 'html',
+			errorlang: 'en',
+			errorsuselocal: true,
+			expiry: '',
+			format: 'json',
+			formatversion: 2,
+			reason: '',
+			uselang: 'en'
+		};
+		expect( spy ).toHaveBeenCalledWith( expected );
+		store.alreadyBlocked = true;
+		store.doBlock();
+		expect( spy ).toHaveBeenCalledWith( expected );
+	} );
+
+	it( 'should make one API request for the block log and active blocks', async () => {
 		mw.Api.prototype.get = jest.fn().mockReturnValue( jQuery.Deferred().resolve( { query: { blocks: [] } } ).promise() );
 		const spy = jest.spyOn( mw.Api.prototype, 'get' );
+		const store = useBlockStore();
 		store.getBlockLogData( 'recent' );
 		store.getBlockLogData( 'active' );
 		expect( store.formDisabled ).toBeTruthy();
@@ -105,12 +151,9 @@ describe( 'Block store', () => {
 		expect( store.formDisabled ).toBeFalsy();
 	} );
 
-	it( 'should not send the allowusertalk API param when the disableUTEdit field is hidden', () => {
-		const jQuery = jest.requireActual( '../../../../resources/lib/jquery/jquery.js' );
-		mw.Api.prototype.postWithEditToken.mockReturnValue( jQuery.Deferred().resolve().promise() );
-		mockMwConfigGet( { blockDisableUTEditVisible: true } );
+	it( 'should not send the allowusertalk API param when the disableUTEdit field is hidden (Multiblocks OFF)', () => {
+		mockMwConfigGet( { blockEnableMultiblocks: false, blockDisableUTEditVisible: true } );
 		const store = useBlockStore();
-
 		// Sitewide block can disable user talk page editing.
 		store.type = 'sitewide';
 		store.disableUTEdit = true;
@@ -141,25 +184,40 @@ describe( 'Block store', () => {
 		expect( spy ).toHaveBeenCalledWith( expected );
 	} );
 
-	it( 'resetForm', () => {
+	it( 'should not send the allowusertalk API param when the disableUTEdit field is hidden (Multiblocks ON)', () => {
+		mockMwConfigGet( { blockDisableUTEditVisible: true } );
 		const store = useBlockStore();
-		store.targetUser = 'ExampleUser';
-		store.targetExists = true;
-		store.type = 'partial';
-		store.expiry = 'infinite';
-		store.reason = 'This is a test';
-		store.resetForm();
-		expect( store.targetUser ).toStrictEqual( 'ExampleUser' );
-		expect( store.targetExists ).toStrictEqual( true );
-		expect( store.type ).toStrictEqual( 'sitewide' );
-		expect( store.expiry ).toStrictEqual( '' );
-		expect( store.reason ).toStrictEqual( 'other' );
-		store.resetForm( true );
-		expect( store.targetUser ).toStrictEqual( '' );
-		expect( store.targetExists ).toStrictEqual( false );
-	} );
+		// Sitewide block can disable user talk page editing.
+		store.type = 'sitewide';
+		store.disableUTEdit = true;
+		store.doBlock();
+		const spy = jest.spyOn( mw.Api.prototype, 'postWithEditToken' );
+		const expected = {
+			id: 1116,
+			action: 'block',
+			nocreate: 1,
+			autoblock: 1,
+			errorformat: 'html',
+			errorlang: 'en',
+			errorsuselocal: true,
+			expiry: '',
+			format: 'json',
+			formatversion: 2,
+			reason: '',
+			uselang: 'en'
+		};
+		expect( spy ).toHaveBeenCalledWith( expected );
 
-	afterEach( () => {
-		jest.clearAllMocks();
+		// But a partial block cannot.
+		store.type = 'partial';
+		store.doBlock();
+		expected.partial = 1;
+		expected.actionrestrictions = '';
+		expected.allowusertalk = 1;
+		expect( spy ).toHaveBeenCalledWith( expected );
 	} );
+} );
+
+afterEach( () => {
+	jest.clearAllMocks();
 } );

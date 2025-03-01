@@ -53,7 +53,6 @@
 				:open="blockAdded || blockRemoved"
 				:can-delete-log-entry="false"
 				block-log-type="active"
-				@create-block="onCreateBlock"
 				@edit-block="onEditBlock"
 				@remove-block="onRemoveBlock"
 			></block-log>
@@ -107,6 +106,17 @@
 					@click="onFormSubmission"
 				>
 					{{ submitButtonMessage }}
+				</cdx-button>
+			</div>
+			<div v-else-if="shouldShowAddBlockButton">
+				<cdx-button
+					type="button"
+					action="progressive"
+					weight="primary"
+					class="mw-block__create-button"
+					@click="onCreateBlock"
+				>
+					{{ $i18n( 'block-create' ).text() }}
 				</cdx-button>
 			</div>
 		</div>
@@ -179,7 +189,7 @@ module.exports = exports = defineComponent( {
 		const store = useBlockStore();
 		const blockShowSuppressLog = mw.config.get( 'blockShowSuppressLog' ) || false;
 		const canDeleteLogEntry = mw.config.get( 'canDeleteLogEntry' ) || false;
-		const { formErrors, formSubmitted, formVisible, blockAdded, blockRemoved, enableMultiblocks } = storeToRefs( store );
+		const { alreadyBlocked, formErrors, formSubmitted, formVisible, blockAdded, blockRemoved, enableMultiblocks } = storeToRefs( store );
 		const messagesContainer = ref();
 		// Value to use for BlockLog component keys, so they reload after saving.
 		const submitCount = ref( 0 );
@@ -406,12 +416,23 @@ module.exports = exports = defineComponent( {
 			}
 		} );
 
+		// Show the 'Add block' button if:
+		// * the target user exists AND EITHER
+		//   * multiblocks is enabled, OR
+		//   * multiblocks is disabled AND the user is not already blocked
+		const shouldShowAddBlockButton = computed(
+			() => store.targetExists && (
+				store.enableMultiblocks || !alreadyBlocked.value
+			)
+		);
+
 		return {
 			store,
 			messagesContainer,
 			formErrors,
 			blockAdded,
 			blockRemoved,
+			shouldShowAddBlockButton,
 			submitCount,
 			submitButtonMessage,
 			enableMultiblocks,
@@ -474,6 +495,10 @@ module.exports = exports = defineComponent( {
 
 .mw-block-confirm {
 	font-weight: @font-weight-normal;
+}
+
+.mw-block__create-button {
+	margin-top: @spacing-100;
 }
 
 // Lower opacity and remove pointer events from accordions while the disabled state is active.

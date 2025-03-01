@@ -7,9 +7,9 @@
 		<cdx-lookup
 			v-model:selected="selection"
 			v-model:input-value="currentSearchTerm"
+			id="mw-bi-target"
 			class="mw-block-target"
 			name="wpTarget"
-			id="mw-bi-target"
 			required
 			:clearable="true"
 			:menu-items="menuItems"

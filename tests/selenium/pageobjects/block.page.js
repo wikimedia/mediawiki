@@ -20,7 +20,7 @@ class BlockPage extends Page {
 	}
 
 	get addBlockButton() {
-		return $( '.mw-block-log__create-button' );
+		return $( '.mw-block__create-button' );
 	}
 
 	get otherReasonInput() {
@@ -53,11 +53,6 @@ class BlockPage extends Page {
 		);
 		// Remove focus from input. Temporary workaround until T382093 is resolved.
 		await $( 'body' ).click();
-		await browser.waitUntil(
-			async () => ( await this.activeBlocksHeader.isClickable() ),
-			{ timeout: 5000 }
-		);
-		await this.addBlockButton.click();
 		await this.otherReasonInput.setValue( reason );
 		await this.submitButton.click();
 	}
