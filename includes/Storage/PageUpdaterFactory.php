@@ -127,6 +127,29 @@ class PageUpdaterFactory {
 
 	private ChangeTagsStore $changeTagsStore;
 
+	/**
+	 * @param RevisionStore $revisionStore
+	 * @param RevisionRenderer $revisionRenderer
+	 * @param SlotRoleRegistry $slotRoleRegistry
+	 * @param ParserCache $parserCache
+	 * @param JobQueueGroup $jobQueueGroup
+	 * @param Language $contLang
+	 * @param ILBFactory $loadbalancerFactory
+	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param DomainEventDispatcher $eventDispatcher
+	 * @param HookContainer $hookContainer
+	 * @param EditResultCache $editResultCache
+	 * @param LoggerInterface $logger
+	 * @param ServiceOptions $options
+	 * @param UserGroupManager $userGroupManager
+	 * @param TitleFormatter $titleFormatter
+	 * @param ContentTransformer $contentTransformer
+	 * @param PageEditStash $pageEditStash
+	 * @param WANObjectCache $mainWANObjectCache
+	 * @param WikiPageFactory $wikiPageFactory
+	 * @param ChangeTagsStore $changeTagsStore
+	 * @param string[] $softwareTags
+	 */
 	public function __construct(
 		RevisionStore $revisionStore,
 		RevisionRenderer $revisionRenderer,
