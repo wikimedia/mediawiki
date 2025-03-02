@@ -4,6 +4,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Preferences\SignatureValidator;
 use MediaWiki\Registration\ExtensionRegistry;
+use MediaWiki\Title\Title;
 use Wikimedia\TestingAccessWrapper;
 
 /**
