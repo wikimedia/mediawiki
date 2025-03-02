@@ -139,6 +139,7 @@ class StripState {
 	 * @param string $text
 	 * @param callable $callback
 	 * @return string
+	 * @unstable Temporarily used by Scribunto
 	 */
 	public function replaceNoWikis( string $text, callable $callback ): string {
 		// Shortcut
@@ -169,33 +170,89 @@ class StripState {
 	}
 
 	/**
-	 * Split the given text by strip markers, returning an array that
-	 * alternates between plain text and strip marker information.  The
-	 * strip marker information includes 'type', and 'content'.  The
-	 * resulting array will always be at least 1 element long and contain
-	 * an odd number of elements.
+	 * Split the given text by strip markers, returning an array
+	 * of [ 'type' => ..., 'content' => ... ] elements. The type
+	 * property is:
+	 * - 'string' for plain strings and 'exttag' strip markers
+	 * - otherwise, name of the strip marker that generated the 'content' value
 	 * @return array<string|array{type:string,content:string}>
 	 */
 	public function split( string $text ): array {
+		$result = [];
 		$pieces = preg_split( $this->regex, $text, -1, PREG_SPLIT_DELIM_CAPTURE );
-		for ( $i = 1; $i < count( $pieces ); $i += 2 ) {
+		for ( $i = 0; $i < count( $pieces ); $i++ ) {
+			if ( $i % 2 === 0 ) {
+				$result[] = [
+					'type' => 'string',
+					'content' => $pieces[$i],
+				];
+				continue;
+			}
 			$marker = $pieces[$i];
 			foreach ( $this->data as $type => $items ) {
 				if ( isset( $items[$marker] ) ) {
-					$pieces[$i] = [
-						'type' => $type,
-						'content' => $items[$marker],
-					];
+					$value = $items[$marker];
+					if ( $value instanceof Closure ) {
+						$value = $value();
+					}
+
+					if ( $type === 'exttag' ) {
+						// Catch circular refs / enforce depth limits
+						// similar to code in unstripType().
+						if ( isset( $this->circularRefGuard[$marker] ) ) {
+							$result[] = [
+								'type' => 'string',
+								'content' => $this->getWarning( 'parser-unstrip-loop-warning' )
+							];
+							continue;
+						}
+
+						if ( $this->depth > $this->highestDepth ) {
+							$this->highestDepth = $this->depth;
+						}
+						if ( $this->depth >= $this->depthLimit ) {
+							$result[] = [
+								'type' => 'string',
+								'content' => $this->getLimitationWarning( 'unstrip-depth', $this->depthLimit )
+							];
+							continue;
+						}
+
+						// For exttag types, the output size should include the output of
+						// the extension, but don't think unstripType is doing that, and so
+						// we aren't doing that either here. But this is kinda broken.
+						// See T380758#10355050.
+						$this->expandSize += strlen( $value );
+						if ( $this->expandSize > $this->sizeLimit ) {
+							$result[] = [
+								'type' => 'string',
+								'content' => $this->getLimitationWarning( 'unstrip-size', $this->sizeLimit )
+							];
+							continue;
+						}
+
+						$this->circularRefGuard[$marker] = true;
+						$this->depth++;
+						$result = array_merge( $result, $this->split( $value ) );
+						$this->depth--;
+						unset( $this->circularRefGuard[$marker] );
+					} else {
+						$result[] = [
+							'type' => $type,
+							'content' => $value,
+							'marker' => Parser::MARKER_PREFIX . $marker . Parser::MARKER_SUFFIX,
+						];
+					}
 					continue 2;
 				}
 			}
-			$pieces[$i] = [
-				'marker' => $marker,
+			$result[] = [
 				'type' => 'unknown',
 				'content' => null,
+				'marker' => Parser::MARKER_PREFIX . $marker . Parser::MARKER_SUFFIX,
 			];
 		}
-		return $pieces;
+		return $result;
 	}
 
 	/**

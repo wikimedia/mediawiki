@@ -10,14 +10,17 @@ use MediaWikiIntegrationTestCase;
  * @covers \MediaWiki\Parser\StripState
  */
 class StripStateTest extends MediaWikiIntegrationTestCase {
+	private int $markerValue = 0;
+
 	protected function setUp(): void {
 		parent::setUp();
 		$this->setContentLang( 'qqx' );
+		$this->markerValue = 0;
 	}
 
 	private function getMarker() {
-		static $i;
-		return Parser::MARKER_PREFIX . '-blah-' . sprintf( '%08X', $i++ ) . Parser::MARKER_SUFFIX;
+		$i = $this->markerValue++;
+		return Parser::MARKER_PREFIX . '-blah-' . sprintf( '%08X', $i ) . Parser::MARKER_SUFFIX;
 	}
 
 	private static function getWarning( $message, $max = '' ) {
@@ -178,5 +181,58 @@ class StripStateTest extends MediaWikiIntegrationTestCase {
 			return preg_replace( "#</?nowiki[^>]*>#", '', $s );
 		} );
 		$this->assertSame( $out2, $text );
+	}
+
+	public function testSplitSimple() {
+		$ss = new StripState();
+
+		$nowiki = "<nowiki>''foo''</nowiki>";
+		$m1 = $this->getMarker();
+		$ss->addNoWiki( $m1, $nowiki );
+
+		$text = "abc $m1 def";
+		$r1 = $ss->split( $text );
+
+		$expected = [
+			[ 'type' => 'string', 'content' => 'abc ' ],
+			[ 'type' => 'nowiki', 'content' => $nowiki, 'marker' => $m1, ],
+			[ 'type' => 'string', 'content' => ' def' ],
+		];
+		$this->assertSame( $expected, $r1 );
+
+		$ref = "<ref>foo</ref>";
+		$m2 = $this->getMarker();
+		$ss->addExtTag( $m2, $ref );
+
+		$text .= $m2;
+		$r2 = $ss->split( $text );
+		$expected = array_merge( $expected, [
+			[ 'type' => 'string', 'content' => $ref ],
+			[ 'type' => 'string', 'content' => '' ]
+		] );
+		$this->assertSame( $expected, $r2 );
+	}
+
+	public function testSplitRecursive() {
+		$ss = new StripState();
+
+		$ref = "<ref>foo</ref>";
+		$m1 = $this->getMarker();
+		$ss->addExtTag( $m1, $ref );
+
+		$poem = "<poem>foo $m1</poem>";
+		$m2 = $this->getMarker();
+		$ss->addExtTag( $m2, $poem );
+
+		$text = "abc $m2";
+		$expected = [
+			[ 'type' => 'string', 'content' => 'abc ' ],
+			[ 'type' => 'string', 'content' => '<poem>foo ' ],
+			[ 'type' => 'string', 'content' => $ref ],
+			[ 'type' => 'string', 'content' => '</poem>' ],
+			[ 'type' => 'string', 'content' => '' ],
+		];
+		$result = $ss->split( $text );
+		$this->assertSame( $expected, $result );
 	}
 }

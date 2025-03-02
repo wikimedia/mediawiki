@@ -4064,6 +4064,9 @@ class Parser {
 		$normalizedName = strtolower( $name );
 		$isNowiki = $normalizedName === 'nowiki';
 		$markerType = $isNowiki ? 'nowiki' : 'general';
+		if ( !$this->mStripExtTags ) {
+			$processNowiki = true;
+		}
 		if ( $this->ot['html'] || ( $processNowiki && $isNowiki ) ) {
 			$attributes = Sanitizer::decodeTagAttributes( $attrText );
 			// Merge in attributes passed via {{#tag:}} parser function
