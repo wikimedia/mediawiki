@@ -1689,6 +1689,12 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 			'192.168.0.1',
 			true,
 		];
+		yield 'User talk subpage' => [
+			'NewTalk TestAuthor',
+			'User_talk:NewTalk_TestUser/sandbox',
+			'NewTalk TestUser',
+			false,
+		];
 		yield 'Not talk page' => [
 			'NewTalk TestAuthor',
 			'User:NewTalk_TestUser',
