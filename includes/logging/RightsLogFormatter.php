@@ -304,7 +304,7 @@ class RightsLogFormatter extends LogFormatter {
 		}
 
 		$uiLanguage = $this->context->getLanguage();
-		return $uiLanguage->commaList( $formattedChanges );
+		return $uiLanguage->semicolonList( $formattedChanges );
 	}
 
 	private function formatRightsListExpiryChanged( $groups ) {
