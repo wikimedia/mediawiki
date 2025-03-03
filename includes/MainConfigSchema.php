@@ -2277,6 +2277,35 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * When defined, is an array of image widths used as steps for thumbnail sizes.
+	 *
+	 * The thumbnail with smallest step that has larger value than requested will be shown
+	 * but it will be downsized via HTML values.
+	 *
+	 * It increases the bandwidth to the users by serving slightly large thumbnail sizes they
+	 * have requested but it will save resources by de-duplicating thumbnail generation and storage.
+	 *
+	 * Note that these steps are "best effort" and MediaWiki might decide to use the requested size
+	 * for any reason.
+	 */
+	public const ThumbnailSteps = [
+		'default' => null,
+		'type' => '?list',
+	];
+
+	/**
+	 * Ratio of images that will use the thumbnail steps
+	 *
+	 * This is to allow for gradual roll out of thumbnail steps. It should be a number between 0 and 1.
+	 *
+	 * The precision of this value is up to 0.001, anything below that will be ignored.
+	 */
+	public const ThumbnailStepsRatio = [
+		'default' => null,
+		'type' => '?float',
+	];
+
+	/**
 	 * When defined, is an array of image widths used as buckets for thumbnail generation.
 	 *
 	 * The goal is to save resources by generating thumbnails based on reference buckets instead of

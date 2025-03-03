@@ -771,6 +771,18 @@ $wgThumbLimits = null;
 $wgThumbnailNamespaces = null;
 
 /**
+ * Config variable stub for the ThumbnailSteps setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::ThumbnailSteps
+ */
+$wgThumbnailSteps = null;
+
+/**
+ * Config variable stub for the ThumbnailStepsRatio setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::ThumbnailStepsRatio
+ */
+$wgThumbnailStepsRatio = null;
+
+/**
  * Config variable stub for the ThumbnailBuckets setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ThumbnailBuckets
  */

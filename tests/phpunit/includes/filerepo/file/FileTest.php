@@ -7,6 +7,7 @@ use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\FileBackend\FSFile\FSFile;
 use Wikimedia\FileBackend\FSFile\TempFSFile;
 use Wikimedia\FileBackend\FSFileBackend;
+use Wikimedia\TestingAccessWrapper;
 
 class FileTest extends MediaWikiMediaTestCase {
 
@@ -493,5 +494,48 @@ class FileTest extends MediaWikiMediaTestCase {
 		$this->assertNull( $file->getHandlerState( 'test' ) );
 		$file->setHandlerState( 'test', $obj );
 		$this->assertSame( $obj, $file->getHandlerState( 'test' ) );
+	}
+
+	/**
+	 * @covers \File::thumbName
+	 * @covers \File::generateThumbName
+	 */
+	public function testThumbNameSteps() {
+		$this->overrideConfigValue( MainConfigNames::ThumbnailSteps, [ 10, 100, 200 ] );
+		$this->overrideConfigValue( MainConfigNames::ThumbnailStepsRatio, 1 );
+
+		$file = $this->dataFile( 'test.jpg', 'image/jpeg' );
+		$fileObj = TestingAccessWrapper::newFromObject( $file );
+		$fileObj->sizeAndMetadata = [ 'width' => 500, 'height' => 500, 'metadata' => [] ];
+		$actual = $fileObj->thumbName(
+			[ 'width' => 90, 'height' => 90, 'physicalWidth' => 90, 'physicalHeight' => 90 ],
+		);
+
+		$this->assertEquals( '100px-test.jpg', $actual );
+	}
+
+	/**
+	 * @covers \File::thumbName
+	 * @covers \File::generateThumbName
+	 */
+	public function testThumbNameStepsRatio() {
+		$this->overrideConfigValue( MainConfigNames::ThumbnailSteps, [ 10, 100, 200 ] );
+		$this->overrideConfigValue( MainConfigNames::ThumbnailStepsRatio, 0.5 );
+
+		$file = $this->dataFile( 'test1.jpg', 'image/jpeg' );
+		$fileObj = TestingAccessWrapper::newFromObject( $file );
+		$fileObj->sizeAndMetadata = [ 'width' => 500, 'height' => 500, 'metadata' => [] ];
+		$actual = $fileObj->thumbName(
+			[ 'width' => 90, 'height' => 90, 'physicalWidth' => 90, 'physicalHeight' => 90 ],
+		);
+		$this->assertEquals( '100px-test1.jpg', $actual );
+
+		$file = $this->dataFile( 'test2.jpg', 'image/jpeg' );
+		$fileObj = TestingAccessWrapper::newFromObject( $file );
+		$fileObj->sizeAndMetadata = [ 'width' => 500, 'height' => 500, 'metadata' => [] ];
+		$actual = $fileObj->thumbName(
+			[ 'width' => 90, 'height' => 90, 'physicalWidth' => 90, 'physicalHeight' => 90 ],
+		);
+		$this->assertEquals( '90px-test2.jpg', $actual );
 	}
 }

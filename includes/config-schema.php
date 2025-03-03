@@ -302,6 +302,8 @@ return [
 			'ThumbnailNamespaces' => [
 				6,
 			],
+			'ThumbnailSteps' => null,
+			'ThumbnailStepsRatio' => null,
 			'ThumbnailBuckets' => null,
 			'ThumbnailMinimumBucketDistance' => 50,
 			'UploadThumbnailRenderMap' => [
@@ -2741,6 +2743,14 @@ return [
 			'ImageLimits' => 'array',
 			'ThumbLimits' => 'array',
 			'ThumbnailNamespaces' => 'array',
+			'ThumbnailSteps' => [
+				'array',
+				'null',
+			],
+			'ThumbnailStepsRatio' => [
+				'number',
+				'null',
+			],
 			'ThumbnailBuckets' => [
 				'array',
 				'null',
