@@ -1344,7 +1344,9 @@ abstract class UploadBase {
 		}
 
 		if ( $enc !== null ) {
+			AtEase::suppressWarnings();
 			$chunk = iconv( $enc, "ASCII//IGNORE", $chunk );
+			AtEase::restoreWarnings();
 		}
 
 		$chunk = trim( $chunk );
