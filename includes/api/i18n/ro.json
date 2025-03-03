@@ -6,7 +6,8 @@
 			"Wintereu",
 			"Alesaru",
 			"Paloi Sciurala",
-			"Trotinel Iftode"
+			"Trotinel Iftode",
+			"Michael2101"
 		]
 	},
 	"apihelp-block-summary": "Blochează un utilizator.",
@@ -20,6 +21,8 @@
 	"apihelp-edit-example-edit": "Modifică o pagină.",
 	"apihelp-expandtemplates-param-title": "Titlul paginii.",
 	"apihelp-expandtemplates-param-text": "Wikitext de convertit.",
+	"apihelp-login-param-name": "Nume de utilizator.",
+	"apihelp-login-param-password": "Parolă.",
 	"api-help-parameters-note": "Alți parametri generali sunt disponibili.",
 	"apierror-readonly": "Wiki-ul este în prezent în modul doar de citit."
 }

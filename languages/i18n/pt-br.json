@@ -1350,7 +1350,7 @@
 	"group-suppress-member": "{{GENDER:$1|supressor|supressora|supressor(a)}}",
 	"grouppage-user": "{{ns:project}}:Usuários",
 	"grouppage-named": "{{ns:project}}:Usuários registados",
-	"grouppage-autoconfirmed": "{{ns:project}}:Auto-confirmados",
+	"grouppage-autoconfirmed": "{{ns:project}}:Autoconfirmados",
 	"grouppage-bot": "{{ns:project}}:Robôs",
 	"grouppage-sysop": "{{ns:project}}:Administradores",
 	"grouppage-interface-admin": "{{ns:project}}:Administradores da interface",
