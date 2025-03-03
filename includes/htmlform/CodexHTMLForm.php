@@ -72,7 +72,7 @@ class CodexHTMLForm extends HTMLForm {
 	}
 
 	protected function wrapFieldSetSection( $legend, $section, $attributes, $isRoot ) {
-		$attributes['class'] = 'cdx-field';
+		$attributes['class'] = 'cdx-field cdx-field--is-fieldset';
 		$legendElement = Html::rawElement( 'legend', [ 'class' => [ 'cdx-label' ] ], $legend );
 		return Html::rawElement( 'fieldset', $attributes, "$legendElement\n$section" ) . "\n";
 	}
