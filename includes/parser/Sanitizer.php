@@ -1616,10 +1616,7 @@ class Sanitizer {
 			'skipPreprocess' => true,
 		] );
 		$tokenizer->execute();
-		$text = $handler->getResult();
-
-		$text = self::normalizeWhitespace( $text );
-		return $text;
+		return self::normalizeWhitespace( $handler->getResult() );
 	}
 
 	/**
