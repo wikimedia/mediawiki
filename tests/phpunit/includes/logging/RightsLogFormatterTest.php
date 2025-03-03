@@ -85,9 +85,9 @@ class RightsLogFormatterTest extends LogFormatterTestCase {
 				],
 				[
 					'text' => 'Sysop changed group membership for User: granted bureaucrat '
-						. '(temporary, until 12:34, 1 January 2016), revoked bot, changed '
+						. '(temporary, until 12:34, 1 January 2016); revoked bot; changed '
 						. 'expiration of administrator (permanent, was: until 12:34, '
-						. '3 February 2016), kept interface administrator unchanged',
+						. '3 February 2016); kept interface administrator unchanged',
 					'api' => [
 						'oldgroups' => [ 'bot', 'sysop', 'interface-admin' ],
 						'newgroups' => [ 'sysop', 'bureaucrat', 'interface-admin' ],
@@ -134,7 +134,7 @@ class RightsLogFormatterTest extends LogFormatterTestCase {
 					'text' => 'Sysop changed group membership for User: changed expiration of '
 						. 'bot (until 12:34, 2 January 2016, was: permanent), administrator '
 						. '(permanent, was: until 12:34, 3 February 2016) and bureaucrat (until '
-						. '12:34, 5 April 2016, was: 12:34, 4 March 2016), kept interface '
+						. '12:34, 5 April 2016, was: 12:34, 4 March 2016); kept interface '
 						. 'administrator (temporary, until 12:34, 6 May 2016) unchanged',
 					'api' => [
 						'oldgroups' => [ 'bot', 'sysop', 'bureaucrat', 'interface-admin' ],
@@ -268,7 +268,7 @@ class RightsLogFormatterTest extends LogFormatterTestCase {
 				],
 				[
 					'text' => 'Sysop automatically changed their group membership: '
-						. 'got bureaucrat, kept administrator unchanged',
+						. 'got bureaucrat; kept administrator unchanged',
 					'api' => [
 						'oldgroups' => [ 'sysop' ],
 						'newgroups' => [ 'sysop', 'bureaucrat' ],
@@ -310,9 +310,9 @@ class RightsLogFormatterTest extends LogFormatterTestCase {
 				],
 				[
 					'text' => 'Sysop automatically changed their group membership: got bureaucrat '
-						. '(temporary, until 12:34, 1 January 2016), lost bot, changed '
+						. '(temporary, until 12:34, 1 January 2016); lost bot; changed '
 						. 'expiration of administrator (permanent, was: until 12:34, '
-						. '3 February 2016), kept interface administrator unchanged',
+						. '3 February 2016); kept interface administrator unchanged',
 					'api' => [
 						'oldgroups' => [ 'bot', 'sysop', 'interface-admin' ],
 						'newgroups' => [ 'sysop', 'bureaucrat', 'interface-admin' ],
@@ -348,7 +348,7 @@ class RightsLogFormatterTest extends LogFormatterTestCase {
 				[
 					'legacy' => true,
 					'text' => 'Sysop automatically changed their group membership: '
-						. 'got bureaucrat, kept administrator unchanged',
+						. 'got bureaucrat; kept administrator unchanged',
 					'api' => [
 						'oldgroups' => [ 'sysop' ],
 						'newgroups' => [ 'sysop', 'bureaucrat' ],
