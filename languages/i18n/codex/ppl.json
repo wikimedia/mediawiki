@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"TimumachtikanNawat"
+		]
+	},
+	"cdx-chip-input-chip-added": "Chip $1 nikajshitij",
+	"cdx-chip-input-chip-removed": "naja numey",
+	"cdx-input-chip-aria-description": "shikchijchimi wan numapipil pal tikalaki wan tikpata wan tikpulua tikpulua",
+	"cdx-dialog-close-button-label": "niansan",
+	"cdx-label-optional-flag": "tejemet tikineki",
+	"cdx-message-dismiss-button-label": "unisan",
+	"cdx-search-input-search-button-label": "tejemet tiktemuat",
+	"cdx-table-select-all-label": "shikwi ne kwijkwilin",
+	"cdx-table-select-row-label": "shikwi ne kwilin"
+}

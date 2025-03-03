@@ -87,6 +87,7 @@
 	"emailauthenticated": "O tò indirìsso e-mail o l'é stæto outenticòu o $2 a $3.",
 	"allowemail": "Permétti a pòsta eletrònica da di âtri uténti",
 	"email-allow-new-users-label": "Permétti a pòsta eletrònica da di uténti nêuvi",
+	"prefs-help-email-allow-new-users": "L'ativaçión de sta çèrnia chi a permétte a-i uténti che no són [[{{MediaWiki:grouppage-autoconfirmed}}|outoconfermæ]] de mandâte di mesàggi de pòsta eletrònica.",
 	"tog-ccmeonemails": "Màndime 'na còpia de e-mail che mi màndo a-i âtri uténti",
 	"email-mutelist-label": "Inpedìsci a sti uténti chi de mandâme de e-mail:",
 	"tog-enotifwatchlistpages": "Màndime 'n'e-mail quànde 'na pàgina ò 'n file inta mæ lìsta di òservæ speciâli o vêgne cangiòu.",

@@ -27,5 +27,6 @@
 	"cdx-table-pagination-status-message-indeterminate-long": "Visar resultat $1–$2 av många",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 av många",
 	"cdx-table-pagination-status-message-indeterminate-final": "Visar {{PLURAL:$1|det senaste resultatet|de $1 senaste resultaten}}",
-	"cdx-table-pagination-status-message-pending": "Läser in resultat..."
+	"cdx-table-pagination-status-message-pending": "Läser in resultat...",
+	"cdx-table-no-data-message": "Det finns ingen tillgänglig data."
 }

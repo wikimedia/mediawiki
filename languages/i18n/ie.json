@@ -683,6 +683,7 @@
 	"group-bureaucrat-member": "{{GENDER:$1|burócrate}}",
 	"group-suppress-member": "{{GENDER:$1|Supressetor}}",
 	"grouppage-user": "{{ns:project}}:Usatores",
+	"grouppage-temp": "{{ns:project}}:Temporari usatores",
 	"grouppage-autoconfirmed": "{{ns:project}}:Usatores autoconfirmat",
 	"grouppage-bot": "{{ns:project}}:Machines",
 	"grouppage-sysop": "{{ns:project}}:Administratores",
