@@ -1650,7 +1650,7 @@ class Linker {
 	 * This function will return the link only in case the revision can be reverted
 	 * (not all revisions are by the same user, and the last revision by a different
 	 * user is visible). Please note that due to performance limitations it might be
-	 * assumed that a user isn't the only contributor of a page while (s)he is, which
+	 * assumed that a user isn't the only contributor of a page while they are, which
 	 * will lead to useless rollback links. Furthermore this won't work if
 	 * $wgShowRollbackEditCount is disabled, so this can only function as an
 	 * additional check.

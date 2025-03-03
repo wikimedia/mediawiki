@@ -1511,7 +1511,7 @@ class Article implements Page {
 
 		$contextUser = $context->getUser();
 
-		# Show info in user (talk) namespace. Does the user exist? Is he blocked?
+		# Show info in user (talk) namespace. Does the user exist? Are they blocked?
 		if ( $title->getNamespace() === NS_USER
 			|| $title->getNamespace() === NS_USER_TALK
 		) {

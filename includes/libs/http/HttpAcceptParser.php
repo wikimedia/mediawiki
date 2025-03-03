@@ -15,7 +15,7 @@ class HttpAcceptParser {
 	/**
 	 * Parse media types from an Accept header and sort them by q-factor.
 	 *
-	 * Note that his was mostly ported from,
+	 * Note that this was mostly ported from
 	 * https://github.com/arlolra/negotiator/blob/full-parse-access/lib/mediaType.js
 	 *
 	 * @param string $accept

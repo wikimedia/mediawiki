@@ -352,7 +352,7 @@ abstract class Action implements MessageLocalizer {
 		}
 
 		// This should be checked at the end so that the user won't think the
-		// error is only temporary when he also don't have the rights to execute
+		// error is only temporary when they also don't have the rights to execute
 		// this action
 		$readOnlyMode = MediaWikiServices::getInstance()->getReadOnlyMode();
 		if ( $this->requiresWrite() && $readOnlyMode->isReadOnly() ) {

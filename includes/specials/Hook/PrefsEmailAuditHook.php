@@ -17,7 +17,7 @@ interface PrefsEmailAuditHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param User $user User (object) changing his email address
+	 * @param User $user User (object) changing their email address
 	 * @param string $oldaddr old email address (string)
 	 * @param string $newaddr new email address (string)
 	 * @return bool|void True or no return value to continue or false to abort

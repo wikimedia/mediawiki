@@ -332,7 +332,7 @@ class RenameuserSQL {
 		/** @var \MediaWiki\RenameUser\Job\RenameUserTableJob[] $jobs */
 		$jobs = []; // jobs for all tables
 		// Construct jobqueue updates...
-		// FIXME: if a bureaucrat renames a user in error, he/she
+		// FIXME: if a bureaucrat renames a user in error, they
 		// must be careful to wait until the rename finishes before
 		// renaming back. This is due to the fact the job "queue"
 		// is not really FIFO, so we might end up with a bunch of edits

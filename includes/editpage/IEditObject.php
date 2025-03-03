@@ -75,7 +75,7 @@ interface IEditObject {
 
 	/**
 	 * Status: no edit summary given and the user has forceeditsummary set and the user is not
-	 * editing in his own userspace or talkspace and wpIgnoreBlankSummary == false
+	 * editing in their own userspace or talkspace and wpIgnoreBlankSummary == false
 	 */
 	public const AS_SUMMARY_NEEDED = 226;
 

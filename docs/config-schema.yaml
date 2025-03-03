@@ -1788,7 +1788,7 @@ config-schema:
         description: |-
             SQL Mode - default is turning off all modes, including strict, if set.
             null can be used to skip the setting for performance reasons and assume
-            DBA has done his best job.
+            the DBA has done their best job.
             String override can be used for some additional fun :-)
     DBDefaultGroup:
         default: null
@@ -4381,7 +4381,7 @@ config-schema:
     ActiveUserDays:
         default: 30
         description: |-
-            How many days user must be idle before he is considered inactive. Will affect
+            How many days user must be idle before they are considered inactive. Will affect
             the number shown on Special:Statistics, Special:ActiveUsers, and the
             {{NUMBEROFACTIVEUSERS}} magic word in wikitext.
             You might want to leave this as the default value, to provide comparable
@@ -5324,10 +5324,10 @@ config-schema:
              - [ APCOND_EDITCOUNT, number of edits (if null or missing $wgAutoConfirmCount will be used)]:
                  true if user has the at least the number of edits as the passed parameter
              - [ APCOND_AGE, seconds since registration (if null or missing $wgAutoConfirmAge will be used)]:
-                 true if the length of time since the user created his/her account
+                 true if the length of time since the user created their account
                  is at least the same length of time as the passed parameter
              - [ APCOND_AGE_FROM_EDIT, seconds since first edit ]:
-                 true if the length of time since the user made his/her first edit
+                 true if the length of time since the user made their first edit
                  is at least the same length of time as the passed parameter
              - [ APCOND_INGROUPS, group1, group2, ... ]:
                  true if the user is a member of each of the passed groups
