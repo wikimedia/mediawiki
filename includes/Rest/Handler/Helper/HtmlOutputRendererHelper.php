@@ -40,6 +40,7 @@ use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
+use RuntimeException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
@@ -694,7 +695,9 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 				$contentLanguage = $this->pageLanguage;
 			} else {
 				LoggerFactory::getInstance( 'HtmlOutputRendererHelper' )->warning(
-					"ParserOutput does not specify a language and no page language set in helper."
+					"ParserOutput does not specify a language and no page language set in helper.",
+					// (T387453) Add a stack trace to help debug the sources of this issue
+					[ 'fauxerror' => new RuntimeException( 'Dummy error for a trace' ) ]
 				);
 
 				$title = Title::newFromPageIdentity( $this->page );
