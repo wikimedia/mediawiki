@@ -862,7 +862,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * See also mediawiki.Title.test.js
 	 * @covers \MediaWiki\Title\Title::secureAndSplit
 	 * @dataProvider provideValidSecureAndSplit
-	 * @note This mainly tests MediaWikiTitleCodec::parseTitle().
+	 * @note This mainly tests TitleParser::parseTitle().
 	 */
 	public function testSecureAndSplitValid( $text ) {
 		$this->assertInstanceOf( Title::class, Title::newFromText( $text ), "Valid: $text" );
@@ -872,7 +872,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * See also mediawiki.Title.test.js
 	 * @covers \MediaWiki\Title\Title::secureAndSplit
 	 * @dataProvider provideInvalidSecureAndSplit
-	 * @note This mainly tests MediaWikiTitleCodec::parseTitle().
+	 * @note This mainly tests TitleParser::parseTitle().
 	 */
 	public function testSecureAndSplitInvalid( $text, $expectedErrorMessage ) {
 		try {

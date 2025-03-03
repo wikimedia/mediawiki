@@ -32,7 +32,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
 /**
  * Look up "gender" user preference.
  *
- * This primarily used in MediaWiki\Title\MediaWikiTitleCodec for title formatting
+ * This primarily used in MediaWiki\Title\TitleFormatter for title formatting
  * of pages in gendered namespace aliases, and in CoreParserFunctions for the
  * `{{gender:}}` parser function.
  *

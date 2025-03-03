@@ -1,336 +1,16 @@
 <?php
-/**
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License along
- * with this program; if not, write to the Free Software Foundation, Inc.,
- * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * http://www.gnu.org/copyleft/gpl.html
- *
- * @file
- * @author Daniel Kinzler
- */
 
-use MediaWiki\Cache\GenderCache;
-use MediaWiki\Interwiki\InterwikiLookup;
-use MediaWiki\MainConfigNames;
-use MediaWiki\Page\PageIdentity;
-use MediaWiki\Page\PageIdentityValue;
-use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\MalformedTitleException;
-use MediaWiki\Title\MediaWikiTitleCodec;
-use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 
 /**
- * @covers \MediaWiki\Title\MediaWikiTitleCodec
+ * @covers \MediaWiki\Title\TitleParser
  *
  * @group Title
  * @group Database
- *        ^--- needed because of global state in
  */
-class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
-	use DummyServicesTrait;
-
-	protected function setUp(): void {
-		parent::setUp();
-
-		$this->overrideConfigValues( [
-			MainConfigNames::AllowUserJs => false,
-			MainConfigNames::DefaultLanguageVariant => false,
-			MainConfigNames::MetaNamespace => 'Project',
-			MainConfigNames::LocalInterwikis => [ 'localtestiw' ],
-			MainConfigNames::CapitalLinks => true,
-			MainConfigNames::LanguageCode => 'en',
-		] );
-		$this->setUserLang( 'en' );
-	}
-
-	/**
-	 * Returns a mock GenderCache that will consider a user "female" if the
-	 * first part of the user name ends with "a".
-	 *
-	 * @return GenderCache
-	 */
-	private function getGenderCache() {
-		$genderCache = $this->createMock( GenderCache::class );
-
-		$genderCache->method( 'getGenderOf' )
-			->willReturnCallback( static function ( $userName ) {
-				return preg_match( '/^[^- _]+a( |_|$)/u', $userName ) ? 'female' : 'male';
-			} );
-
-		return $genderCache;
-	}
-
-	/**
-	 * Returns a InterwikiLookup where the only valid interwikis are 'localtestiw' and 'remotetestiw'.
-	 * Only `isValidInterwiki` should actually be needed.
-	 */
-	private function getInterwikiLookup(): InterwikiLookup {
-		return $this->getDummyInterwikiLookup( [ 'localtestiw', 'remotetestiw' ] );
-	}
-
-	/**
-	 * Returns a NamespaceInfo where the only namespaces that exist are NS_SPECIAL, NS_MAIN, NS_TALK,
-	 * NS_USER, and NS_USER_TALK. As per the real NamespaceInfo, NS_USER and NS_USER_TALK have
-	 * gender distinctions. All namespaces are capitalized.
-	 */
-	private function getNamespaceInfo(): NamespaceInfo {
-		return $this->getDummyNamespaceInfo( [
-			MainConfigNames::CanonicalNamespaceNames => [
-				NS_SPECIAL => 'Special',
-				NS_MAIN => '',
-				NS_TALK => 'Talk',
-				NS_USER => 'User',
-				NS_USER_TALK => 'User_talk',
-			],
-			MainConfigNames::CapitalLinks => true,
-		] );
-	}
-
-	protected function makeCodec( $lang ) {
-		return new MediaWikiTitleCodec(
-			$this->getServiceContainer()->getLanguageFactory()->getLanguage( $lang ),
-			$this->getGenderCache(),
-			[ 'localtestiw' ],
-			$this->getInterwikiLookup(),
-			$this->getNamespaceInfo()
-		);
-	}
-
-	public static function provideFormat() {
-		return [
-			[ NS_MAIN, 'Foo_Bar', '', '', 'en', 'Foo Bar' ],
-			[ NS_USER, 'Hansi_Maier', 'stuff_and_so_on', '', 'en', 'User:Hansi Maier#stuff and so on' ],
-			[ false, 'Hansi_Maier', '', '', 'en', 'Hansi Maier' ],
-			[
-				NS_USER_TALK,
-				'hansi__maier',
-				'',
-				'',
-				'en',
-				'User talk:hansi  maier',
-				'User talk:Hansi maier'
-			],
-
-			// getGenderCache() provides a mock that considers first
-			// names ending in "a" to be female.
-			[ NS_USER, 'Lisa_Müller', '', '', 'de', 'Benutzerin:Lisa Müller' ],
-			[ NS_MAIN, 'FooBar', '', 'remotetestiw', 'en', 'remotetestiw:FooBar' ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideFormat
-	 */
-	public function testFormat( $namespace, $text, $fragment, $interwiki, $lang, $expected,
-		$normalized = null
-	) {
-		$normalized ??= $expected;
-
-		$codec = $this->makeCodec( $lang );
-		$actual = $codec->formatTitle( $namespace, $text, $fragment, $interwiki );
-
-		$this->assertEquals( $expected, $actual, 'formatted' );
-
-		// test round trip
-		$parsed = $codec->parseTitle( $actual, NS_MAIN );
-		$actual2 = $codec->formatTitle(
-			$parsed->getNamespace(),
-			$parsed->getText(),
-			$parsed->getFragment(),
-			$parsed->getInterwiki()
-		);
-
-		$this->assertEquals( $normalized, $actual2, 'normalized after round trip' );
-	}
-
-	public static function provideGetText() {
-		// $title = new TitleValue( $namespace, $dbkey, $fragment );
-		return [
-			[ new TitleValue( NS_MAIN, 'Foo_Bar', '' ), 'en', 'Foo Bar' ],
-			[ new TitleValue( NS_USER, 'Hansi_Maier', 'stuff_and_so_on' ), 'en', 'Hansi Maier' ],
-			[ new PageIdentityValue( 37, NS_MAIN, 'Foo_Bar', PageIdentity::LOCAL ), 'en', 'Foo Bar' ],
-			[ new PageIdentityValue( 37, NS_USER, 'Hansi_Maier', PageIdentity::LOCAL ), 'en', 'Hansi Maier' ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideGetText
-	 */
-	public function testGetText( $title, $lang, $expected ) {
-		$codec = $this->makeCodec( $lang );
-		$actual = $codec->getText( $title );
-
-		$this->assertEquals( $expected, $actual );
-	}
-
-	public static function provideGetPrefixedText() {
-		return [
-			[ new TitleValue( NS_MAIN, 'Foo_Bar', '' ), 'en', 'Foo Bar' ],
-			[ new TitleValue( NS_USER, 'Hansi_Maier', 'stuff_and_so_on' ), 'en', 'User:Hansi Maier' ],
-
-			// No capitalization or normalization is applied while formatting!
-			[ new TitleValue( NS_USER_TALK, 'hansi__maier', '' ), 'en', 'User talk:hansi  maier' ],
-
-			// getGenderCache() provides a mock that considers first
-			// names ending in "a" to be female.
-			[
-				new TitleValue( NS_USER, 'Lisa_Müller', '' ),
-				'de', 'Benutzerin:Lisa Müller'
-			],
-			[
-				new TitleValue( 1000000, 'Invalid_namespace', '' ),
-				'en',
-				'Special:Badtitle/NS1000000:Invalid namespace'
-			],
-			[
-				new PageIdentityValue( 37, NS_MAIN, 'Foo_Bar', PageIdentity::LOCAL ),
-				'en',
-				'Foo Bar'
-			],
-			[
-				new PageIdentityValue( 37, NS_USER, 'Hansi_Maier', PageIdentity::LOCAL ),
-				'en',
-				'User:Hansi Maier'
-			],
-			[
-				new PageIdentityValue( 37, NS_USER_TALK, 'hansi__maier', PageIdentity::LOCAL ),
-				'en',
-				'User talk:hansi  maier'
-			],
-			[
-				new PageIdentityValue( 37, NS_USER, 'Lisa_Müller', PageIdentity::LOCAL ),
-				'de',
-				'Benutzerin:Lisa Müller'
-			],
-			[
-				new PageIdentityValue( 37, 1000000, 'Invalid_namespace', PageIdentity::LOCAL ),
-				'en',
-				'Special:Badtitle/NS1000000:Invalid namespace'
-			],
-		];
-	}
-
-	/**
-	 * @dataProvider provideGetPrefixedText
-	 */
-	public function testGetPrefixedText( $title, $lang, $expected ) {
-		$codec = $this->makeCodec( $lang );
-		$actual = $codec->getPrefixedText( $title );
-
-		$this->assertEquals( $expected, $actual );
-	}
-
-	public static function provideGetPrefixedDBkey() {
-		return [
-			[ new TitleValue( NS_MAIN, 'Foo_Bar', '', '' ), 'en', 'Foo_Bar' ],
-			[ new TitleValue( NS_USER, 'Hansi_Maier', 'stuff_and_so_on', '' ), 'en', 'User:Hansi_Maier' ],
-
-			// No capitalization or normalization is applied while formatting!
-			[ new TitleValue( NS_USER_TALK, 'hansi__maier', '', '' ), 'en', 'User_talk:hansi__maier' ],
-
-			// getGenderCache() provides a mock that considers first
-			// names ending in "a" to be female.
-			[ new TitleValue( NS_USER, 'Lisa_Müller', '', '' ), 'de', 'Benutzerin:Lisa_Müller' ],
-
-			[ new TitleValue( NS_MAIN, 'Remote_page', '', 'remotetestiw' ), 'en', 'remotetestiw:Remote_page' ],
-
-			// non-existent namespace
-			[ new TitleValue( 10000000, 'Foobar', '', '' ), 'en', 'Special:Badtitle/NS10000000:Foobar' ],
-
-			[
-				new PageIdentityValue( 37, NS_MAIN, 'Foo_Bar', PageIdentity::LOCAL ),
-				'en',
-				'Foo_Bar'
-			],
-			[
-				new PageIdentityValue( 37, NS_USER, 'Hansi_Maier', PageIdentity::LOCAL ),
-				'en',
-				'User:Hansi_Maier'
-			],
-			[
-				new PageIdentityValue( 37, NS_USER_TALK, 'hansi__maier', PageIdentity::LOCAL ),
-				'en',
-				'User_talk:hansi__maier'
-			],
-			[
-				new PageIdentityValue( 37, NS_USER, 'Lisa_Müller', PageIdentity::LOCAL ),
-				'de',
-				'Benutzerin:Lisa_Müller'
-			],
-			[
-				new PageIdentityValue( 37, NS_MAIN, 'Remote_page', PageIdentity::LOCAL ),
-				'en',
-				'Remote_page'
-			],
-			[
-				new PageIdentityValue( 37, 10000000, 'Foobar', PageIdentity::LOCAL ),
-				'en',
-				'Special:Badtitle/NS10000000:Foobar'
-			],
-		];
-	}
-
-	/**
-	 * @dataProvider provideGetPrefixedDBkey
-	 */
-	public function testGetPrefixedDBkey( $title, $lang, $expected
-	) {
-		$codec = $this->makeCodec( $lang );
-		$actual = $codec->getPrefixedDBkey( $title );
-
-		$this->assertEquals( $expected, $actual );
-	}
-
-	public static function provideGetFullText() {
-		return [
-			[ new TitleValue( NS_MAIN, 'Foo_Bar', '' ), 'en', 'Foo Bar' ],
-			[ new TitleValue( NS_USER, 'Hansi_Maier', 'stuff_and_so_on' ), 'en', 'User:Hansi Maier#stuff and so on' ],
-
-			// No capitalization or normalization is applied while formatting!
-			[ new TitleValue( NS_USER_TALK, 'hansi__maier', '' ), 'en', 'User talk:hansi  maier' ],
-
-			[ new TitleValue( NS_MAIN, 'Foo_Bar' ), 'en', 'Foo Bar' ],
-			[ new TitleValue( NS_USER, 'Hansi_Maier' ), 'en', 'User:Hansi Maier' ],
-
-			[
-				new PageIdentityValue( 37, NS_MAIN, 'Foo_Bar', PageIdentity::LOCAL ),
-				'en',
-				'Foo Bar'
-			],
-			[
-				new PageIdentityValue( 37, NS_USER, 'Hansi_Maier', PageIdentity::LOCAL ),
-				'en',
-				'User:Hansi Maier'
-			],
-			[
-				new PageIdentityValue( 37, NS_USER_TALK, 'hansi__maier', PageIdentity::LOCAL ),
-				'en',
-				'User talk:hansi  maier'
-			],
-		];
-	}
-
-	/**
-	 * @dataProvider provideGetFullText
-	 */
-	public function testGetFullText( $title, $lang, $expected ) {
-		$codec = $this->makeCodec( $lang );
-		$actual = $codec->getFullText( $title );
-
-		$this->assertEquals( $expected, $actual );
-	}
+class TitleParserTest extends TitleCodecTestBase {
 
 	public static function provideParseTitle() {
 		// TODO: test capitalization and trimming
@@ -420,8 +100,8 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 			$title = new TitleValue( NS_MAIN, $title, '' );
 		}
 
-		$codec = $this->makeCodec( $lang );
-		$actual = $codec->parseTitle( $text, $ns );
+		$parser = $this->makeParser( $lang );
+		$actual = $parser->parseTitle( $text, $ns );
 
 		$this->assertEquals( $title, $actual );
 	}
@@ -496,8 +176,8 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 	public function testParseTitle_invalid( $text, $ns = NS_MAIN ) {
 		$this->expectException( MalformedTitleException::class );
 
-		$codec = $this->makeCodec( 'en' );
-		$codec->parseTitle( $text, $ns );
+		$parser = $this->makeParser( 'en' );
+		$parser->parseTitle( $text, $ns );
 	}
 
 	/**
@@ -506,9 +186,9 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 	public function testMakeTitleValueSafe(
 		$expected, $ns, $text, $fragment = '', $interwiki = '', $lang = 'en'
 	) {
-		$codec = $this->makeCodec( $lang );
+		$parser = $this->makeParser( $lang );
 		$this->assertEquals( $expected,
-			$codec->makeTitleValueSafe( $ns, $text, $fragment, $interwiki ) );
+			$parser->makeTitleValueSafe( $ns, $text, $fragment, $interwiki ) );
 	}
 
 	/**
@@ -520,9 +200,10 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 	public function testMakeTitleSafe(
 		$expected, $ns, $text, $fragment = '', $interwiki = '', $lang = 'en'
 	) {
-		$codec = $this->makeCodec( $lang );
-		$this->setService( 'TitleParser', $codec );
-		$this->setService( 'TitleFormatter', $codec );
+		$parser = $this->makeParser( $lang );
+		$formatter = $this->makeFormatter( $lang );
+		$this->setService( 'TitleParser', $parser );
+		$this->setService( 'TitleFormatter', $formatter );
 
 		$actual = Title::makeTitleSafe( $ns, $text, $fragment, $interwiki );
 
@@ -830,8 +511,12 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 
 		// Invalid and valid dots
 		foreach ( [ '.', '..', '...' ] as $dots ) {
-			foreach ( [ '?', '?/', '?/Test', 'Test/?/Test', '/?', 'Test/?', '?Test', 'Test?Test',
-			'Test?' ] as $pattern ) {
+			foreach (
+				[
+					'?', '?/', '?/Test', 'Test/?/Test', '/?',
+					'Test/?', '?Test', 'Test?Test', 'Test?'
+				] as $pattern
+			) {
 				$test = str_replace( '?', $dots, $pattern );
 				if ( $dots === '...' || in_array( $pattern, [ '?Test', 'Test?Test', 'Test?' ] ) ) {
 					$expectedMain = new TitleValue( NS_MAIN, $test );
@@ -864,25 +549,4 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 		return $ret;
 	}
 
-	public static function provideGetNamespaceName() {
-		return [
-			[ NS_MAIN, 'Foo', 'en', '' ],
-			[ NS_USER, 'Foo', 'en', 'User' ],
-			[ NS_USER, 'Hansi Maier', 'de', 'Benutzer' ],
-
-			// getGenderCache() provides a mock that considers first
-			// names ending in "a" to be female.
-			[ NS_USER, 'Lisa Müller', 'de', 'Benutzerin' ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideGetNamespaceName
-	 */
-	public function testGetNamespaceName( $namespace, $text, $lang, $expected ) {
-		$codec = $this->makeCodec( $lang );
-		$name = $codec->getNamespaceName( $namespace, $text );
-
-		$this->assertEquals( $expected, $name );
-	}
 }

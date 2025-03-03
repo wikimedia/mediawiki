@@ -261,6 +261,8 @@ because of Phabricator reports.
   wfMessage(...)->text(), the title used will be Special:Badtitle unless a
   context title was set with e.g. Message::setContext(). In the past, the title
   used in a previous call was sometimes used.
+* MediaWikiTitleCodec has been split. TitleParser and TitleFormatter are now
+  classes rather than interfaces. Remove all references to MediaWikiTitleCodec.
 * …
 
 === Deprecations in 1.44 ===
@@ -315,6 +317,8 @@ because of Phabricator reports.
   deprecated. Use MessageParser.
 * User::getGlobalBlock(), deprecated since 1.40, now emits deprecation
   warnings.
+* MediaWikiTitleCodec::getTitleInvalidRegex() is now deprecated. Use the same
+  method in TitleParser.
 * …
 
 === Other changes in 1.44 ===

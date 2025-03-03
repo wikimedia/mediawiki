@@ -834,7 +834,7 @@ class ParserTestRunner {
 		$teardown[] = $reset;
 
 		// This affects title normalization in links. It invalidates
-		// MediaWikiTitleCodec objects.
+		// TitleParser objects.
 		// These interwikis should have 'iw_url' that matches wgServer.
 		$setup['wgLocalInterwikis'] = [ 'local', 'project', 'mi' ];
 		$reset = function () {
@@ -854,7 +854,6 @@ class ParserTestRunner {
 		$services = MediaWikiServices::getInstance();
 		$services->resetServiceForTesting( 'TitleFormatter' );
 		$services->resetServiceForTesting( 'TitleParser' );
-		$services->resetServiceForTesting( '_MediaWikiTitleCodec' );
 		$services->resetServiceForTesting( 'LinkRenderer' );
 		$services->resetServiceForTesting( 'LinkRendererFactory' );
 		$services->resetServiceForTesting( 'NamespaceInfo' );

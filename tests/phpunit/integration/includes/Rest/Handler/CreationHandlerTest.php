@@ -45,7 +45,8 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 			CONTENT_MODEL_TEXT => true,
 		] );
 
-		$titleCodec = $this->getDummyMediaWikiTitleCodec();
+		$titleParser = $this->getDummyTitleParser();
+		$titleFormatter = $this->getDummyTitleFormatter();
 
 		/** @var RevisionLookup|MockObject $revisionLookup */
 		$revisionLookup = $this->createNoOpMock( RevisionLookup::class, [ 'getRevisionById' ] );
@@ -61,8 +62,8 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 		$handler = new CreationHandler(
 			$config,
 			$contentHandlerFactory,
-			$titleCodec,
-			$titleCodec,
+			$titleParser,
+			$titleFormatter,
 			$revisionLookup
 		);
 

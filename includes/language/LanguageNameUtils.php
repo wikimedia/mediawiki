@@ -26,7 +26,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Title\MediaWikiTitleCodec;
+use MediaWiki\Title\TitleParser;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\HashBagOStuff;
 
@@ -137,7 +137,7 @@ class LanguageNameUtils {
 			$this->validCodeCache[$code] =
 				// Protect against path traversal
 				strcspn( $code, ":/\\\000&<>'\"" ) === strlen( $code ) &&
-				!preg_match( MediaWikiTitleCodec::getTitleInvalidRegex(), $code ) &&
+				!preg_match( TitleParser::getTitleInvalidRegex(), $code ) &&
 				// libicu sets ULOC_FULLNAME_CAPACITY to 157; stay comfortably lower
 				strlen( $code ) <= 128;
 		}

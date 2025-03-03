@@ -69,7 +69,6 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\Title\MalformedTitleException;
-use MediaWiki\Title\MediaWikiTitleCodec;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
@@ -6345,9 +6344,7 @@ class Parser {
 	 */
 	private static function normalizeSectionName( $text ) {
 		# T90902: ensure the same normalization is applied for IDs as to links
-		/** @var MediaWikiTitleCodec $titleParser */
 		$titleParser = MediaWikiServices::getInstance()->getTitleParser();
-		'@phan-var MediaWikiTitleCodec $titleParser';
 		try {
 
 			$parts = $titleParser->splitTitleString( "#$text" );
