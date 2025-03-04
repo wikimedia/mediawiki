@@ -181,7 +181,8 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideNormalizeKey
 	 */
 	public function testNormalizeKey( $key, $expected ) {
-		$actual = MessageCache::normalizeKey( $key );
+		$actual = $this->getServiceContainer()->getMessageCache()
+			->normalizeKey( $key );
 		$this->assertEquals( $expected, $actual );
 	}
 

@@ -16,7 +16,6 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\Title;
-use MessageCache;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -153,7 +152,7 @@ class PreloadedContentBuilder {
 			// When the preload source is in NS_MEDIAWIKI, get the content via wfMessage, to
 			// enable preloading from i18n messages. The message framework can work with normal
 			// pages in NS_MEDIAWIKI, so this does not restrict preloading only to i18n messages.
-			$msg = wfMessage( MessageCache::normalizeKey( $title->getText() ) );
+			$msg = wfMessage( $title->getText() );
 
 			if ( $msg->isDisabled() ) {
 				// Message is disabled and should not be used for preloading
