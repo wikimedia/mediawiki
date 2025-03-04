@@ -65,6 +65,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 			new NullLogger(),
 			$services->getHookContainer(),
 			$services->getDatabaseBlockStore(),
+			$services->getBlockTargetFactory(),
 			$services->getProxyLookup()
 		];
 	}
@@ -104,6 +105,17 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	private function extractBlockOptions( $options ) {
+		$blockOptions = $options['blockOptions'];
+		if ( $options['target'] ) {
+			$blockOptions['address'] = $options['target'];
+		} else {
+			$blockOptions['targetUser'] = $this->user;
+		}
+		$blockOptions['by'] ??= $this->sysopUser;
+		return $blockOptions;
+	}
+
 	/**
 	 * @dataProvider provideBlocksForShouldApplyCookieBlock
 	 */
@@ -116,12 +128,8 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 			] )
 		);
 
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-		$block = new DatabaseBlock( array_merge( [
-			'address' => $options['target'] ?: $this->user,
-			'by' => $this->sysopUser,
-		], $options['blockOptions'] ) );
-		$blockStore->insertBlock( $block );
+		$block = $this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( $this->extractBlockOptions( $options ) );
 
 		$user = $options['registered'] ? $this->user : new User();
 		$user->getRequest()->setCookie( 'BlockID', $blockManager->getCookieValue( $block ) );
@@ -144,12 +152,8 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 			] )
 		);
 
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-		$block = new DatabaseBlock( array_merge( [
-			'address' => $options['target'] ?: $this->user,
-			'by' => $this->sysopUser,
-		], $options['blockOptions'] ) );
-		$blockStore->insertBlock( $block );
+		$block = $this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( $this->extractBlockOptions( $options ) );
 
 		$user = $options['registered'] ? $this->user : new User();
 		$user->getRequest()->setCookie( 'BlockID', $blockManager->getCookieValue( $block ) );
@@ -930,17 +934,12 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 
 	public function testGetBlocksForIPList() {
 		$blockManager = $this->getBlockManager( [] );
-		$block = new DatabaseBlock( [
-			'address' => '1.2.3.4',
-			'by' => $this->getTestSysop()->getUser(),
-		] );
-		$inserted = $this->getServiceContainer()
+		$block = $this->getServiceContainer()
 			->getDatabaseBlockStore()
-			->insertBlock( $block );
-		$this->assertTrue(
-			(bool)$inserted['id'],
-			'Check that the block was inserted correctly'
-		);
+			->insertBlockWithParams( [
+				'address' => '1.2.3.4',
+				'by' => $this->getTestSysop()->getUser(),
+			] );
 
 		// Early return of empty array if no ips in the list
 		$list = $blockManager->getBlocksForIPList( [], true, false );
@@ -976,7 +975,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 			'DatabaseBlock returned'
 		);
 		$this->assertSame(
-			$inserted['id'],
+			$block->getId(),
 			$list[0]->getId(),
 			'Block returned is the correct one'
 		);
@@ -1015,7 +1014,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		);
 
 		// Foreign perspective (blockee not on current wiki)...
-		$blockOptions = [
+		$block = $blockStore->insertBlockWithParams( [
 			'address' => $username,
 			'reason' => 'crosswiki block...',
 			'timestamp' => wfTimestampNow(),
@@ -1025,9 +1024,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 			'hideName' => true,
 			'blockEmail' => true,
 			'by' => UserIdentityValue::newExternal( 'm', 'MetaWikiUser' ),
-		];
-		$block = new DatabaseBlock( $blockOptions );
-		$blockStore->insertBlock( $block );
+		] );
 
 		// Reload block from DB
 		$userBlock = $blockStore->newFromTarget( $username );
@@ -1100,12 +1097,11 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testBlocksOnXff( $xff, $exCount, $exResult ) {
 		$this->setupForXff();
-		$block = new DatabaseBlock( [
-			'address' => $this->getTestUser()->getUserIdentity(),
-			'by' => $this->getTestSysop()->getUserIdentity()
-		] );
-		$store = $this->getServiceContainer()->getDatabaseBlockStore();
-		$this->assertNotFalse( $store->insertBlock( $block ) );
+		$this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( [
+				'targetUser' => $this->getTestUser()->getUserIdentity(),
+				'by' => $this->getTestSysop()->getUserIdentity()
+			] );
 
 		$list = array_map( 'trim', explode( ',', $xff ) );
 		$manager = $this->getBlockManager( [] );
@@ -1152,11 +1148,12 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 			],
 		];
 
+		$targetFactory = $this->getServiceContainer()->getBlockTargetFactory();
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blocker = $this->getTestUser()->getUser();
 		foreach ( $blockList as $insBlock ) {
 			$block = new DatabaseBlock();
-			$block->setTarget( $insBlock['target'] );
+			$block->setTarget( $targetFactory->newFromString( $insBlock['target'] ) );
 			$block->setBlocker( $blocker );
 			$block->setReason( $insBlock['desc'] );
 			$block->setExpiry( 'infinity' );

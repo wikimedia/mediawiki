@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\HideUserUtils;
 
 /**
@@ -46,7 +45,7 @@ class HideUserUtilsTest extends MediaWikiIntegrationTestCase {
 
 		$dbs = $this->getServiceContainer()->getDatabaseBlockStore();
 		foreach ( $blocks as $params ) {
-			$dbs->insertBlock( new DatabaseBlock( $params ), null );
+			$dbs->insertBlockWithParams( $params );
 		}
 	}
 

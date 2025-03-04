@@ -1016,16 +1016,15 @@ class UserTest extends MediaWikiIntegrationTestCase {
 
 		// Block the user
 		$blocker = $this->getTestSysop()->getUser();
-		$block = new DatabaseBlock( [
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$block = $blockStore->insertBlockWithParams( [
+			'targetUser' => $user,
 			'hideName' => true,
 			'allowUsertalk' => false,
 			'reason' => 'Because',
+			'by' => $blocker,
 		] );
-		$block->setTarget( $user );
-		$block->setBlocker( $blocker );
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-		$res = $blockStore->insertBlock( $block );
-		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
+		$this->assertNotNull( $block, 'Failed to insert block' );
 
 		// Clear cache and confirm it loaded the block properly
 		$user->clearInstanceCache();
@@ -1050,15 +1049,14 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->setSessionUser( $user, $request );
 
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-		$ipBlock = new DatabaseBlock( [
+		$blockStore->insertBlockWithParams( [
 			'address' => $user->getRequest()->getIP(),
 			'by' => $this->getTestSysop()->getUser(),
 			'createAccount' => true,
 		] );
-		$blockStore->insertBlock( $ipBlock );
 
-		$userBlock = new DatabaseBlock( [
-			'address' => $user,
+		$userBlock = $blockStore->insertBlockWithParams( [
+			'targetUser' => $user,
 			'by' => $this->getTestSysop()->getUser(),
 			'createAccount' => false,
 		] );
@@ -1079,13 +1077,12 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$request = $user->getRequest();
 		$this->setSessionUser( $user, $request );
 
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-		$ipBlock = new DatabaseBlock( [
-			'address' => $user,
-			'by' => $this->getTestSysop()->getUser(),
-			'createAccount' => true,
-		] );
-		$blockStore->insertBlock( $ipBlock );
+		$this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( [
+				'targetUser' => $user,
+				'by' => $this->getTestSysop()->getUser(),
+				'createAccount' => true,
+			] );
 
 		$block = $user->getBlock();
 		$this->assertNotNull( $block, 'getuserBlock' );
@@ -1181,16 +1178,15 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->hideDeprecated( User::class . '::isBlockedFromEmailuser' );
 		$user = $this->getMutableTestUser( 'accountcreator' )->getUser();
 
-		$block = new DatabaseBlock( [
-			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
-			'sitewide' => true,
-			'blockEmail' => $blockFromEmail,
-			'createAccount' => $blockFromAccountCreation
-		] );
-		$block->setTarget( $user );
-		$block->setBlocker( $this->getTestSysop()->getUser() );
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-		$blockStore->insertBlock( $block );
+		$this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( [
+				'targetUser' => $user,
+				'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
+				'sitewide' => true,
+				'blockEmail' => $blockFromEmail,
+				'createAccount' => $blockFromAccountCreation,
+				'by' => $this->getTestSysop()->getUser()
+			] );
 
 		$this->assertSame( $blockFromEmail, $user->isBlockedFromEmailuser() );
 		$this->assertSame( !$blockFromAccountCreation, $user->isAllowedToCreateAccount() );
@@ -1214,14 +1210,13 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	public function testIsBlockedFromUpload( $sitewide, $expected ) {
 		$user = $this->getMutableTestUser()->getUser();
 
-		$block = new DatabaseBlock( [
-			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
-			'sitewide' => $sitewide,
-		] );
-		$block->setTarget( $user );
-		$block->setBlocker( $this->getTestSysop()->getUser() );
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-		$blockStore->insertBlock( $block );
+		$this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( [
+				'targetUser' => $user,
+				'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
+				'sitewide' => $sitewide,
+				'by' => $this->getTestSysop()->getUser(),
+			] );
 
 		$this->assertSame( $expected, $user->isBlockedFromUpload() );
 	}

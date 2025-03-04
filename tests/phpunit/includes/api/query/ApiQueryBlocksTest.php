@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Api\Query;
 
 use MediaWiki\Block\BlockActionInfo;
-use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
@@ -31,13 +30,12 @@ class ApiQueryBlocksTest extends ApiTestCase {
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 
-		$block = new DatabaseBlock( [
-			'address' => $badActor,
-			'by' => $sysop,
-			'expiry' => 'infinity',
-		] );
-
-		$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
+		$block = $this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( [
+				'targetUser' => $badActor,
+				'by' => $sysop,
+				'expiry' => 'infinity',
+			] );
 
 		[ $data ] = $this->doApiRequest( [
 			'action' => 'query',
@@ -58,12 +56,11 @@ class ApiQueryBlocksTest extends ApiTestCase {
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 
-		$block = new DatabaseBlock( [
-			'address' => $badActor,
-			'by' => $sysop,
-		] );
-
-		$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
+		$block = $this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( [
+				'targetUser' => $badActor,
+				'by' => $sysop,
+			] );
 
 		[ $data ] = $this->doApiRequest( [
 			'action' => 'query',
@@ -86,14 +83,13 @@ class ApiQueryBlocksTest extends ApiTestCase {
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 
-		$block = new DatabaseBlock( [
-			'address' => $badActor,
-			'by' => $sysop,
-			'expiry' => 'infinity',
-			'sitewide' => 0,
-		] );
-
-		$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
+		$block = $this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( [
+				'targetUser' => $badActor,
+				'by' => $sysop,
+				'expiry' => 'infinity',
+				'sitewide' => 0,
+			] );
 
 		$subset = [
 			'id' => $block->getId(),

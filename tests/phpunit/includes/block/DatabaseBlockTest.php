@@ -37,20 +37,13 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 * @return DatabaseBlock
 	 */
 	private function addBlockForUser( UserIdentity $user ) {
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-
-		$blockOptions = [
-			'address' => $user,
-			'by' => $this->getTestSysop()->getUser(),
-			'reason' => 'Parce que',
-			'expiry' => time() + 100500,
-		];
-		$block = new DatabaseBlock( $blockOptions );
-
-		$blockStore->insertBlock( $block );
-		// save up ID for use in assertion. Since ID is an autoincrement,
-		// its value might change depending on the order the tests are run.
-		// ApiBlockTest insert its own blocks!
+		$block = $this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( [
+				'targetUser' => $user,
+				'by' => $this->getTestSysop()->getUser(),
+				'reason' => 'Parce que',
+				'expiry' => time() + 100500,
+			] );
 		if ( !$block->getId() ) {
 			throw new RuntimeException( "Failed to insert block for BlockTest; old leftover block remaining?" );
 		}
@@ -246,11 +239,12 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 */
 	public function testRestrictionsFromDatabase() {
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
+		$targetFactory = $this->getServiceContainer()->getBlockTargetFactory();
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 
 		$block = new DatabaseBlock( [
-			'address' => $badActor,
+			'target' => $targetFactory->newUserBlockTarget( $badActor ),
 			'by' => $sysop,
 			'expiry' => 'infinity',
 		] );

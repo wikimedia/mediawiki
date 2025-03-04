@@ -926,7 +926,8 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [], $manager->getUserAutopromoteGroups( $nonBlockedUser ) );
 		$blockedUser = $this->getTestUser( [ 'blocked' ] )->getUser();
 		$block = new DatabaseBlock();
-		$block->setTarget( $blockedUser );
+		$block->setTarget( $this->getServiceContainer()->getBlockTargetFactory()
+			->newUserBlockTarget( $blockedUser ) );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
 		$block->isSitewide( true );
 		$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );

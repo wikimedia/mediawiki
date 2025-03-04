@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Api;
 
-use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Title\Title;
@@ -148,9 +147,8 @@ class ApiUserrightsTest extends ApiTestCase {
 	public function testBlockedWithUserrights() {
 		$user = $this->getTestSysop()->getUser();
 
-		$block = new DatabaseBlock( [ 'address' => $user, 'by' => $user, ] );
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-		$blockStore->insertBlock( $block );
+		$this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( [ 'targetUser' => $user, 'by' => $user ] );
 
 		$this->doSuccessfulRightsChange();
 	}
@@ -160,9 +158,8 @@ class ApiUserrightsTest extends ApiTestCase {
 
 		$this->setPermissions( true, true );
 
-		$block = new DatabaseBlock( [ 'address' => $user, 'by' => $user ] );
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-		$blockStore->insertBlock( $block );
+		$this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( [ 'targetUser' => $user, 'by' => $user ] );
 
 		$this->doFailedRightsChange( 'blocked' );
 	}

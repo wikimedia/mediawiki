@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Unit;
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\UserBlockTarget;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 
@@ -15,25 +16,11 @@ trait MockBlockTrait {
 
 	/**
 	 * @param array $options Options as supported by AbstractBlock and
-	 *        DatabaseBlock. In addition, the 'target' field may contain a
-	 *        UserIdentity identifying the blocked user.
+	 *        DatabaseBlock.
 	 *
 	 * @return AbstractBlock
 	 */
 	private function makeMockBlock( $options = [] ): AbstractBlock {
-		if ( isset( $options['target'] ) ) {
-			/** @var UserIdentity $user */
-			$user = $options['target'];
-
-			if ( !isset( $options['address'] ) ) {
-				$options['address'] = $user->getName();
-			}
-			if ( !isset( $options['wiki'] ) ) {
-				$options['wiki'] = $user->getWikiId();
-			}
-			unset( $options['target'] );
-		}
-
 		if ( !isset( $options['by'] ) ) {
 			$options['by'] = UserIdentityValue::newRegistered( 45622, 'Blocker' );
 		}
@@ -56,10 +43,12 @@ trait MockBlockTrait {
 	private function makeMockBlockManager( $block, $match = null ) {
 		if ( is_array( $block ) ) {
 			if ( !isset( $block['target'] ) && $match !== null ) {
-				$target = $match instanceof UserIdentity ?
-					new UserIdentityValue( 0, $match ) :
-					$match;
-
+				if ( $match instanceof UserIdentity ) {
+					$user = $match;
+				} else {
+					$user = new UserIdentityValue( 0, $match );
+				}
+				$target = new UserBlockTarget( $user );
 				$block['target'] = $target;
 			}
 
@@ -67,7 +56,7 @@ trait MockBlockTrait {
 		}
 
 		if ( $block instanceof UserIdentity ) {
-			$target = $block;
+			$target = new UserBlockTarget( $block );
 			$block = $this->makeMockBlock( [ 'target' => $target ] );
 		}
 

@@ -33,7 +33,6 @@ use MediaWiki\Auth\TemporaryPasswordAuthenticationRequest;
 use MediaWiki\Auth\UserDataAuthenticationRequest;
 use MediaWiki\Auth\UsernameAuthenticationRequest;
 use MediaWiki\Block\BlockManager;
-use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\Config\Config;
@@ -246,6 +245,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			LoggerFactory::getInstance( 'BlockManager' ),
 			$this->getServiceContainer()->getHookContainer(),
 			$this->getServiceContainer()->getDatabaseBlockStore(),
+			$this->getServiceContainer()->getBlockTargetFactory(),
 			$this->getServiceContainer()->getProxyLookup()
 		) extends BlockManager {
 			protected function checkHost( $hostname ) {
@@ -1771,16 +1771,14 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			TestUser::setPasswordForUser( $user, 'UTBlockeePassword' );
 			$user->saveSettings();
 		}
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-		$blockOptions = [
-			'address' => $user,
-			'by' => $this->getTestSysop()->getUser(),
-			'reason' => __METHOD__,
-			'expiry' => time() + 100500,
-			'createAccount' => true,
-		];
-		$block = new DatabaseBlock( $blockOptions );
-		$blockStore->insertBlock( $block );
+		$this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( [
+				'address' => $user,
+				'by' => $this->getTestSysop()->getUser(),
+				'reason' => __METHOD__,
+				'expiry' => time() + 100500,
+				'createAccount' => true,
+			] );
 		$this->resetServices();
 		$this->initializeManager( true );
 		$status = $this->manager->authorizeCreateAccount( $user );
@@ -1794,17 +1792,15 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 	public function testAuthorizeCreateAccount_ipBlocked() {
 		$this->setGroupPermissions( '*', 'createaccount', true );
 		$this->initializeManager( true );
-		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-		$blockOptions = [
-			'address' => '127.0.0.0/24',
-			'by' => $this->getTestSysop()->getUser(),
-			'reason' => __METHOD__,
-			'expiry' => time() + 100500,
-			'createAccount' => true,
-			'sitewide' => false,
-		];
-		$block = new DatabaseBlock( $blockOptions );
-		$blockStore->insertBlock( $block );
+		$this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( [
+				'address' => '127.0.0.0/24',
+				'by' => $this->getTestSysop()->getUser(),
+				'reason' => __METHOD__,
+				'expiry' => time() + 100500,
+				'createAccount' => true,
+				'sitewide' => false,
+			] );
 		$status = $this->manager->authorizeCreateAccount( new User );
 		$this->assertStatusError( 'blockedtext-partial', $status );
 	}
@@ -1849,26 +1845,22 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			$user->saveSettings();
 		}
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-		$blockOptions = [
-			'address' => $user,
+		$blockStore->insertBlockWithParams( [
+			'targetUser' => $user,
 			'by' => $this->getTestSysop()->getUser(),
 			'reason' => __METHOD__,
 			'expiry' => time() + 100500,
 			'createAccount' => false,
-		];
-		$block = new DatabaseBlock( $blockOptions );
-		$blockStore->insertBlock( $block );
+		] );
 
-		$blockOptions = [
+		$blockStore->insertBlockWithParams( [
 			'address' => '127.0.0.0/24',
 			'by' => $this->getTestSysop()->getUser(),
 			'reason' => __METHOD__,
 			'expiry' => time() + 100500,
 			'createAccount' => true,
 			'sitewide' => false,
-		];
-		$block = new DatabaseBlock( $blockOptions );
-		$blockStore->insertBlock( $block );
+		] );
 
 		$this->resetServices();
 		$this->initializeManager( true );
@@ -3343,9 +3335,8 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 				'reason' => __METHOD__,
 				'expiry' => time() + 100500,
 			];
-			$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
-			$block = new DatabaseBlock( $blockOptions );
-			$blockStore->insertBlock( $block );
+			$this->getServiceContainer()->getDatabaseBlockStore()
+				->insertBlockWithParams( $blockOptions );
 		}
 
 		if ( $performerType === 'sysop' ) {

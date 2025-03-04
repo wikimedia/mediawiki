@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Api;
 
 use MediaWiki\Api\ApiUsageException;
-use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
@@ -40,15 +39,11 @@ class ApiUnblockTest extends ApiTestCase {
 
 	private function insertBlock( $options = [] ) {
 		$options = array_merge( [
-			'address' => $this->blockee->getName(),
+			'targetUser' => $this->blockee,
 			'by' => $this->blocker,
 		], $options );
 
-		$block = new DatabaseBlock( $options );
-		$result = $this->blockStore->insertBlock( $block, null );
-
-		$this->assertNotFalse( $result, 'Could not insert block' );
-		return $result;
+		return $this->blockStore->insertBlockWithParams( $options );
 	}
 
 	private function getBlocksFromParams( array $params ): array {
@@ -120,23 +115,21 @@ class ApiUnblockTest extends ApiTestCase {
 	}
 
 	public function testUnblockSelfWhenBlocked() {
-		$result = $this->insertBlock( [
+		$this->insertBlock( [
 			'address' => $this->blocker->getName(),
 			'by' => $this->getTestUser( 'sysop' )->getUser(),
 		] );
-		$this->assertNotFalse( $result, 'Could not insert block' );
 
 		$this->doUnblock( [ 'user' => $this->blocker->getName() ] );
 	}
 
 	public function testUnblockSelfByIdWhenBlocked() {
-		$result = $this->insertBlock( [
+		$block = $this->insertBlock( [
 			'address' => $this->blocker->getName(),
 			'by' => $this->getTestUser( 'sysop' )->getUser(),
 		] );
-		$this->assertNotFalse( $result, 'Could not insert block' );
 
-		$this->doUnblock( [ 'id' => $result['id'] ] );
+		$this->doUnblock( [ 'id' => $block->getId() ] );
 	}
 
 	public function testUnblockWithTagNewBackend() {
@@ -183,8 +176,8 @@ class ApiUnblockTest extends ApiTestCase {
 	}
 
 	public function testUnblockByBlockId() {
-		$result = $this->insertBlock();
-		$this->doUnblock( [ 'id' => $result['id'] ] );
+		$block = $this->insertBlock();
+		$this->doUnblock( [ 'id' => $block->getId() ] );
 	}
 
 	public function testWatched() {

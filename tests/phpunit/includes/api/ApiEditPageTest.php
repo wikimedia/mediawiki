@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Api;
 
 use MediaWiki\Api\ApiUsageException;
-use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\WikitextContent;
@@ -1619,7 +1618,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->assertNull( $blockStore->newFromTarget( '127.0.0.1' ) );
 
 		$user = $this->getTestSysop()->getUser();
-		$block = new DatabaseBlock( [
+		$blockStore->insertBlockWithParams( [
 			'address' => $user->getName(),
 			'by' => $user,
 			'reason' => 'Capriciousness',
@@ -1627,7 +1626,6 @@ class ApiEditPageTest extends ApiTestCase {
 			'expiry' => 'infinity',
 			'enableAutoblock' => true,
 		] );
-		$blockStore->insertBlock( $block );
 
 		try {
 			$this->doApiRequestWithToken( [

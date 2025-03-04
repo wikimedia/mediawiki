@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
@@ -27,23 +26,21 @@ class LocalIdLookupTest extends MediaWikiIntegrationTestCase {
 		$sysop = static::getTestSysop()->getUserIdentity();
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 
-		$block = new DatabaseBlock( [
-			'address' => $this->localUsers[2]->getName(),
+		$blockStore->insertBlockWithParams( [
+			'targetUser' => $this->localUsers[2],
 			'by' => $sysop,
 			'reason' => __METHOD__,
 			'expiry' => '1 day',
 			'hideName' => false,
 		] );
-		$blockStore->insertBlock( $block );
 
-		$block = new DatabaseBlock( [
-			'address' => $this->localUsers[3]->getName(),
+		$blockStore->insertBlockWithParams( [
+			'targetUser' => $this->localUsers[3],
 			'by' => $sysop,
 			'reason' => __METHOD__,
 			'expiry' => '1 day',
 			'hideName' => true,
 		] );
-		$blockStore->insertBlock( $block );
 	}
 
 	private function newLookup( array $configOverride = [] ) {

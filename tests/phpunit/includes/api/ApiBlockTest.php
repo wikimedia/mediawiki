@@ -99,14 +99,14 @@ class ApiBlockTest extends ApiTestCase {
 		$this->expectApiErrorCode( 'ipbblocked' );
 
 		$blocked = $this->getMutableTestUser( [ 'sysop' ] )->getUser();
-		$block = new DatabaseBlock( [
-			'address' => $blocked->getName(),
-			'by' => $this->getTestSysop()->getUser(),
-			'reason' => 'Capriciousness',
-			'timestamp' => '19370101000000',
-			'expiry' => 'infinity',
-		] );
-		$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
+		$this->getServiceContainer()->getDatabaseBlockStore()
+			->insertBlockWithParams( [
+				'address' => $blocked->getName(),
+				'by' => $this->getTestSysop()->getUser(),
+				'reason' => 'Capriciousness',
+				'timestamp' => '19370101000000',
+				'expiry' => 'infinity',
+			] );
 
 		$this->doBlock( [], $blocked );
 	}
