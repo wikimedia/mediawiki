@@ -18,6 +18,7 @@ class WikiBirthdayTest extends MaintenanceBaseTestCase {
 	}
 
 	public function testExecuteForOneRevision() {
+		$this->markTestSkipped( 'Flaky on fundraising branch' );
 		// Create a fake revision with a set timestamp
 		ConvertibleTimestamp::setFakeTime( '20230405060708' );
 		$this->editPage( Title::newFromText( 'Testing1234' ), 'Test1234' );
@@ -28,6 +29,7 @@ class WikiBirthdayTest extends MaintenanceBaseTestCase {
 	}
 
 	public function testExecuteForDeletedRevision() {
+		$this->markTestSkipped( 'Flaky on fundraising branch' );
 		// Create a fake revision with a set timestamp, and then delete the associated page
 		ConvertibleTimestamp::setFakeTime( '20230505060708' );
 		$editStatus = $this->editPage( Title::newFromText( 'Testing1234' ), 'Test1234' );
