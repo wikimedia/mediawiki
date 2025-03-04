@@ -245,6 +245,3 @@ class MagicWordFactory {
 		return new MagicWordArray( $names, $this );
 	}
 }
-
-/** @deprecated class alias since 1.40 */
-class_alias( MagicWordFactory::class, 'MagicWordFactory' );

@@ -98,6 +98,3 @@ class RSSFeed extends ChannelFeed {
 		print "</channel></rss>";
 	}
 }
-
-/** @deprecated class alias since 1.40 */
-class_alias( RSSFeed::class, 'RSSFeed' );

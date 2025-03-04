@@ -283,6 +283,3 @@ class PageProps {
 		$this->cache->setField( 0, $pageID, $pageProperties );
 	}
 }
-
-/** @deprecated class alias since 1.40 */
-class_alias( PageProps::class, 'PageProps' );

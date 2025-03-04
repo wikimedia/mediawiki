@@ -3890,6 +3890,3 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	}
 
 }
-
-/** @deprecated class alias since 1.40 */
-class_alias( Title::class, 'Title' );
