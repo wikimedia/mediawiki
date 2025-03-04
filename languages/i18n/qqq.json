@@ -2853,6 +2853,7 @@
 	"block-manage-blocks": "{{doc-special|Block}}\n{{Identical|Manage blocks}}",
 	"unblock": "{{doc-special|Unblock}}",
 	"unblock-summary": "{{doc-specialpagesummary|unblock}}",
+	"unblock-error-multiblocks": "Error message shown at [[Special:Unblock]] when attempting to unblock a user with multiple blocks. This supplements the {{msg-mw|ipb_cant_unblock_multiple_blocks}} message.\n\nParameters:\n* $1 - the target username, IP or IP range",
 	"changeblockip": "Used as the text of a link in the sidebar toolbox. Clicking this link takes you to [[Special:Block]], with a relevant username or IP address (e.g. \"Username\" on [[User talk:Username]], [[Special:Contributions/Username]], etc.) already filled in.",
 	"block-cancel": "Button label for the cancel button in [[Special:Block]] form.",
 	"block-create": "Button label for the button with which to open a new blank block form.",

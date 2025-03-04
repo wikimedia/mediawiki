@@ -2586,6 +2586,7 @@
 	"block-manage-blocks": "Manage blocks",
 	"unblock": "Unblock user",
 	"unblock-summary": "",
+	"unblock-error-multiblocks": "Please use [[Special:Block/$1]] to manage multiple blocks.",
 	"changeblockip": "Change block",
 	"block-cancel": "Cancel",
 	"block-create": "Add block",
