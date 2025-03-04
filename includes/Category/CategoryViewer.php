@@ -851,3 +851,6 @@ class CategoryViewer extends ContextSource {
 		return $this->msg( "category-$type-count" )->numParams( $rescnt, $totalcnt )->parseAsBlock();
 	}
 }
+
+/** @deprecated class alias since 1.40 */
+class_alias( CategoryViewer::class, 'CategoryViewer' );

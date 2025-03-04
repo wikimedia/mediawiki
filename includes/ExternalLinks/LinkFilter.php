@@ -528,3 +528,6 @@ class LinkFilter {
 		return $arr;
 	}
 }
+
+/** @deprecated class alias since 1.40 */
+class_alias( LinkFilter::class, 'LinkFilter' );

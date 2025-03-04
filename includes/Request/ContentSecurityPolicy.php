@@ -589,3 +589,6 @@ class ContentSecurityPolicy {
 		$this->extraScriptSrc[] = $this->prepareUrlForCSP( $source );
 	}
 }
+
+/** @deprecated class alias since 1.40 */
+class_alias( ContentSecurityPolicy::class, 'ContentSecurityPolicy' );

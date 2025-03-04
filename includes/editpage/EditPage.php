@@ -4729,3 +4729,6 @@ class EditPage implements IEditObject {
 		return $this->editConflictHelper;
 	}
 }
+
+/** @deprecated class alias since 1.40 */
+class_alias( EditPage::class, 'EditPage' );

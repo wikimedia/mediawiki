@@ -254,59 +254,6 @@ because of Phabricator reports.
   migration support parameters. Support for ipb_* field aliases in
   DatabaseBlockStore::newFromRow(), which was meant to support the use of
   $schema, has been removed.
-* The following old class aliases, deprecated in MediaWiki 1.40, have now
-  been dropped:
-  - \ActorMigration — use \MediaWiki\User\ActorMigration
-  - \ActorMigrationBase — use \MediaWiki\User\ActorMigrationBase
-  - \AtomFeed — use \MediaWiki\Feed\AtomFeed
-  - \CategoriesRdf — use \MediaWiki\Category\CategoriesRdf
-  - \Category — use \MediaWiki\Category\Category
-  - \CategoryViewer — use \MediaWiki\Category\CategoryViewer
-  - \ChannelFeed — use \MediaWiki\Feed\ChannelFeed
-  - \CommentStore — use \MediaWiki\CommentStoreCommentStore
-  - \CommentStoreComment — use \MediaWiki\CommentStore\CommentStoreComment
-  - \ContentSecurityPolicy — use \MediaWiki\Request\ContentSecurityPolicy
-  - \DeprecatedGlobal — use \MediaWiki\StubObject\DeprecatedGlobal
-  - \DerivativeRequest — use \MediaWiki\Request\DerivativeRequest
-  - \EditPage — use \MediaWiki\EditPage\EditPage
-  - \FauxRequest — use \MediaWiki\Request\FauxRequest
-  - \FauxRequestUpload — use \MediaWiki\Request\FauxRequestUpload
-  - \FauxResponse — use \MediaWiki\Request\FauxResponse
-  - \FeedItem — use \MediaWiki\Feed\FeedItem
-  - \FeedUtils — use \MediaWiki\Feed\FeedUtils
-  - \FileDeleteForm — use \MediaWiki\Page\File\FileDeleteForm
-  - \ForeignResourceManager — use
-      \MediaWiki\ResourceLoader\ForeignResourceManager
-  - \FormOptions — use \MediaWiki\Html\FormOptions
-  - \Html — use \MediaWiki\Html\Html
-  - \LinkFilter — use \MediaWiki\ExternalLinks\LinkFilter
-  - \Linker — use \MediaWiki\Linker\Linker
-  - \ListToggle — use \MediaWiki\Html\ListToggle
-  - \MagicWord — use \MediaWiki\Parser\MagicWord
-  - \MagicWordArray — use \MediaWiki\Parser\MagicWordArray
-  - \MagicWordFactory — use \MediaWiki\Parser\MagicWordFactory
-  - \MergeHistory — use \MediaWiki\Page\MergeHistory
-  - \MovePage — use \MediaWiki\Page\MovePage
-  - \PageProps — use \MediaWiki\Page\PageProps
-  - \PathRouter — use \MediaWiki\Request\PathRouter
-  - \ProtectionForm — use \MediaWiki\Page\ProtectionForm
-  - \RSSFeed — use \MediaWiki\Feed\RSSFeed
-  - \RawMessage — use \MediaWiki\Language\RawMessage
-  - \StubGlobalUser — use \MediaWiki\StubObject\StubGlobalUser
-  - \StubObject — use \MediaWiki\StubObject\StubObject
-  - \StubUserLang — use \MediaWiki\StubObject\StubUserLang
-  - \TemplateParser — use \MediaWiki\Html\TemplateParser
-  - \TemplatesOnThisPageFormatter — use
-      \MediaWiki\EditPage\TemplatesOnThisPageFormatter
-  - \Title — use \MediaWiki\Title\Title
-  - \TrackingCategories — use \MediaWiki\Category\TrackingCategories
-  - \WebRequestUpload — use \MediaWiki\Request\WebRequestUpload
-  - \WebResponse — use \MediaWiki\Request\WebResponse
-  - \WikiMap — use \MediaWiki\WikiMap\WikiMap
-  - \WikiReference — use \MediaWiki\WikiMap\WikiReference
-  - \MediaWiki\BadFileLookup - use \MediaWiki\Page\File\BadFileLookup
-  - \MediaWiki\HeaderCallback - use \MediaWiki\Request\HeaderCallback
-  - \MediaWiki\HtmlHelper - use \MediaWiki\Html\HtmlHelper
 * Block::TYPE_ID has been removed. Use DatabaseBlockStore::newFromID().
 * UserOptionsManager methods resetOptions, listOptionKinds and getOptionKinds,
   deprecated since 1.43, have been removed.

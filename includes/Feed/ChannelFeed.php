@@ -142,3 +142,6 @@ abstract class ChannelFeed extends FeedItem {
 		echo '<?xml version="1.0"?>' . "\n";
 	}
 }
+
+/** @deprecated class alias since 1.40 */
+class_alias( ChannelFeed::class, 'ChannelFeed' );

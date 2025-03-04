@@ -297,3 +297,6 @@ class TemplateParser {
 		return $template( $args, $scopes );
 	}
 }
+
+/** @deprecated class alias since 1.40 */
+class_alias( TemplateParser::class, 'TemplateParser' );

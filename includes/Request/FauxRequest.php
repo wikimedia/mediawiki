@@ -326,3 +326,6 @@ class FauxRequest extends WebRequest {
 		return '127.0.0.1';
 	}
 }
+
+/** @deprecated class alias since 1.40 */
+class_alias( FauxRequest::class, 'FauxRequest' );
