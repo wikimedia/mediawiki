@@ -621,6 +621,7 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 		** recentchanges-url|recentchanges
 		** randompage-url|randompage
 		** helppage|help-mediawiki
+		** specialpages-url|specialpages
 		* SEARCH
 		* TOOLBOX
 		** A|B
@@ -631,7 +632,6 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 		$context = RequestContext::newExtraneousContext( Title::makeTitle( NS_MAIN, 'Main Page' ) );
 		$foo1->setContext( $context );
 
-		$this->assertArrayContains( [ 'id' => 'n-specialpages' ], end( $foo1->buildSidebar()['navigation'] ), 'Navigation sidebar automatically appends link to special pages' );
 		$this->assertArrayContains( [ [ 'id' => 'n-B', 'text' => 'B' ] ], $foo1->buildSidebar()['TOOLBOX'], 'Toolbox has user defined links' );
 
 		$hasUserDefinedLinks = false;

@@ -1553,6 +1553,7 @@ abstract class Skin extends ContextSource {
 		if ( !$isSpecialPagesPresent ) {
 			$item = $this->createSidebarItem( 'specialpages-url', 'specialpages' );
 			if ( $item !== null ) {
+				wfDeprecated( __METHOD__, '1.44' );
 				$this->sidebar['navigation'][] = $item;
 			}
 		}

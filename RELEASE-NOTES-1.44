@@ -648,7 +648,7 @@ because of Phabricator reports.
   since toolbox relates to tools associated with the current page, not the
   site. To support the transition, for interface admins who have already
   customized MediaWiki:Sidebar, the special pages link will be automatically
-  added. This will start emitting notices in the next MediaWiki release. More
+  added. This will emit deprecation warning. More
   information is available at T333211. To avoid future breakage, see the
   guidance in T385346.
 * Various deprecated static methods of Xml, deprecated in earlier versions, are
