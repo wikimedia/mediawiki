@@ -1737,7 +1737,7 @@
 	"prefixindex-strip": "Ne prikazuj predmetak u rezultatima",
 	"shortpages": "Kratke stranice",
 	"longpages": "Duge stranice",
-	"deadendpages": "Stranice na koje ne vodi nijedna druga stranica",
+	"deadendpages": "Stranice bez unutarnjih poveznica",
 	"deadendpagestext": "Sljedeće stranice nemaju poveznice na druge stranice na projektu {{SITENAME}}.",
 	"protectedpages": "Zaštićene stranice",
 	"protectedpages-indef": "Samo neograničene zaštite",

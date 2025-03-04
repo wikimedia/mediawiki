@@ -100,6 +100,7 @@
 	"emailauthenticated": "Vaše e-mailová adresa byla ověřena $2 v $3.",
 	"allowemail": "Dovolit ostatním uživatelům posílat mi e-maily",
 	"email-allow-new-users-label": "Povolit e-maily od zcela nových uživatelů",
+	"prefs-help-email-allow-new-users": "Zapnutím této volby umožníte uživatelům, kteří nejsou [[{{MediaWiki:grouppage-autoconfirmed}}|automaticky schválení]], aby vám posílali e-maily.",
 	"tog-ccmeonemails": "Zasílat mi kopie e-mailů, které pošlu jiným uživatelům",
 	"email-mutelist-label": "Znemožnit těmto uživatelům posílat mi e-maily:",
 	"tog-enotifwatchlistpages": "Poslat e-mail při změně sledované stránky nebo souboru",

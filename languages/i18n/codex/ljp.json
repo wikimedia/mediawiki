@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"DedeKurnn"
+		]
+	},
+	"cdx-chip-input-chip-added": "Kepingan $1 titambahko.",
+	"cdx-chip-input-chip-removed": "Kepingan $1 tihapus.",
+	"cdx-input-chip-aria-description": "Picitko Enter guway ngedandan atawa Delete guway ngehapus.",
+	"cdx-dialog-close-button-label": "Tutup",
+	"cdx-label-optional-flag": "(mak wajib)",
+	"cdx-message-dismiss-button-label": "Tutup",
+	"cdx-search-input-search-button-label": "Sepok",
+	"cdx-table-select-all-label": "Pilih unyin baghis",
+	"cdx-table-select-row-label": "Pilih baghis $1 jak $2",
+	"cdx-table-sort-caption": "$1 (hulu kolom jama picitan dapok tiughutko).",
+	"cdx-typeahead-search-search-results-label": "Hasil sepokan",
+	"cdx-table-pager-button-first-page": "Halaman pertama",
+	"cdx-table-pager-button-last-page": "Halaman teraghir",
+	"cdx-table-pager-button-next-page": "halaman seghaduni",
+	"cdx-table-pager-button-prev-page": "Halaman semangkungni",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 baghis}}",
+	"cdx-table-pager-items-per-page-default": "Ulih per halaman",
+	"cdx-table-pagination-status-message-determinate-long": "Ngejajakko ulih $1-$2 jak $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1-$2 jak $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Ngejajakko ulih $1-$2 jak lamon",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1-$2 jak lamon",
+	"cdx-table-pagination-status-message-indeterminate-final": "Ngejajakko {{PLURAL:$1|$1 ulih}} teraghir",
+	"cdx-table-pagination-status-message-pending": "Ngemuwak ulih..."
+}

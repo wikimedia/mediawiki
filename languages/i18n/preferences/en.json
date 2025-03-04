@@ -87,6 +87,7 @@
 	"emailauthenticated": "Your email address was confirmed on $2 at $3.",
 	"allowemail": "Allow other users to email me",
 	"email-allow-new-users-label": "Allow emails from brand-new users",
+	"prefs-help-email-allow-new-users": "Enabling this option will allow users who are not [[{{MediaWiki:grouppage-autoconfirmed}}|autoconfirmed]] to send you emails.",
 	"tog-ccmeonemails": "Send me copies of emails I send to other users",
 	"email-mutelist-label": "Prohibit these users from emailing me:",
 	"tog-enotifwatchlistpages": "Email me when a page or a file on my watchlist is changed",

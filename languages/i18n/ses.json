@@ -217,7 +217,7 @@
 	"sort-descending": "Kabu ka zunbu fayyan",
 	"sort-ascending": "Kabu ka ziji fayyan",
 	"nstab-main": "Moo",
-	"nstab-user": "Goykaw moo",
+	"nstab-user": "{{GENDER:$1|Goykaw moo}}",
 	"nstab-media": "Hẽenandi moo",
 	"nstab-special": "Cerecere moo",
 	"nstab-project": "Porožewoo ga",

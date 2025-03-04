@@ -84,6 +84,7 @@
 	"emailauthenticated": "Tu adresse de e-mail ha essite confirmate le $2 a $3.",
 	"allowemail": "Permitter que altere usatores me invia e-mail",
 	"email-allow-new-users-label": "Permitte e-mail de usatores toto nove",
+	"prefs-help-email-allow-new-users": "Activar iste option permitte al usatores non [[{{MediaWiki:grouppage-autoconfirmed}}|autoconfirmate]] inviar te e-mail.",
 	"tog-ccmeonemails": "Inviar me copias del messages de e-mail que io invia a altere usatores",
 	"email-mutelist-label": "Prohibir a iste usatores de inviar me e-mail:",
 	"tog-enotifwatchlistpages": "Notificar me per e-mail quando un pagina o file in mi observatorio es modificate",

@@ -3,7 +3,8 @@
 		"authors": [
 			"1233qwer1234qwer4",
 			"Ahmed-Najib-Biabani-Ibrahimkhel",
-			"Macofe"
+			"Macofe",
+			"شاه زمان پټان"
 		]
 	},
 	"apihelp-main-param-action": "کومه کړنه ترسره کړم.",
@@ -33,7 +34,7 @@
 	"apihelp-feedrecentchanges-param-hidemyself": "د اوسني کارن لخوا ترسره شوي بدلونونه پټول.",
 	"apihelp-feedrecentchanges-param-tagfilter": "د نښلن له مخې چاڼول.",
 	"apihelp-feedrecentchanges-example-simple": "وروستي بدلونونه ښکاره کول.",
-	"apihelp-login-param-name": "کارن نوم.",
+	"apihelp-login-param-name": "کارن‌نوم.",
 	"apihelp-login-param-password": "پټنوم.",
 	"apihelp-login-param-domain": "شپول (اختياري).",
 	"apihelp-login-example-login": "ننوتل.",

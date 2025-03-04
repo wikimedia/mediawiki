@@ -514,7 +514,7 @@
 	"eauthentsent": "En e-mailbekræftelse er sendt til den angivne e-mailadresse.\n\nFør flere e-mails bliver sendt til kontoen, skal du følge instruktionerne i e-mailen, for at bekræfte at kontoen rent faktisk er din.",
 	"throttled-mailpassword": "Indenfor {{PLURAL:$1|den sidste time|de sidste $1 timer}} er der allerede sendt en ny adgangskode. For at forhindre misbrug af funktionen, kan der kun bestilles en ny adgangskode én gang for hver {{PLURAL:$1|time|$1 timer}}.",
 	"mailerror": "Fejl ved afsendelse af e-mail: $1",
-	"acct_creation_throttle_hit": "Besøgende med samme IP-adresse som dig har oprettet {{PLURAL:$1|1 konto|$1 konti}} inden for den/det/de seneste $2, hvilket er det maksimalt tilladte inden for denne tidsperiode.\nDerfor kan besøgende, som bruger denne IP-adresse, ikke oprette flere konti fra denne IP-adresse for øjeblikket.",
+	"acct_creation_throttle_hit": "Besøgende med samme IP-adresse som dig har oprettet {{PLURAL:$1|1 konto|$1 konti}} inden for den/det/de seneste $2, hvilket er det maksimalt tilladte inden for denne tidsperiode.\nDerfor kan besøgende fra denne IP-adresse ikke oprette flere konti for øjeblikket.",
 	"invalidemailaddress": "E-mailadressen kan ikke accepteres, da den tilsyneladende har et ugyldigt format. Skriv venligst en e-mailadresse med et korrekt format eller tøm feltet.",
 	"cannotchangeemail": "De e-mailadresser, der er tilknyttet brugerkonti, kan ikke ændres på denne wiki.",
 	"emaildisabled": "Denne side kan ikke sende e-mails.",

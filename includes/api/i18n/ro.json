@@ -6,7 +6,8 @@
 			"NGC 54",
 			"Paloi Sciurala",
 			"Wintereu",
-			"Trotinel Iftode"
+			"Trotinel Iftode",
+			"Michael2101"
 		]
 	},
 	"apihelp-block-summary": "Blochează un utilizator.",
@@ -20,6 +21,8 @@
 	"apihelp-edit-example-edit": "Modifică o pagină.",
 	"apihelp-expandtemplates-param-title": "Titlul paginii.",
 	"apihelp-expandtemplates-param-text": "Wikitext de convertit.",
+	"apihelp-login-param-name": "Nume de utilizator.",
+	"apihelp-login-param-password": "Parolă.",
 	"apihelp-query+extlinks-param-protocol": "Protocolul URL-ului. Dacă este gol și <var>$1query</var> este setat, protocolul este <kbd>http</kbd> și <kbd>https</kbd>. Lăsați atât aceasta, cât și <var>$1query</var> goale pentru a lista toate legăturile externe.",
 	"apihelp-query+exturlusage-param-protocol": "\nProtocolul URL-ului. Dacă <var>interogarea este goală și $1</var> este setată, protocolul este <kbd>http</kbd> și <kbd>https</kbd> . Lăsați atât aceasta, cât și <var>interogarea $1</var> goale pentru a lista toate linkurile externe.",
 	"api-help-parameters-note": "Alți parametri generali sunt disponibili.",

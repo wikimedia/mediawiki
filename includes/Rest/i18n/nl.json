@@ -69,6 +69,7 @@
 	"rest-unsupported-target-format": "Het gevraagde doelformaat wordt niet ondersteund.",
 	"rest-parsoid-resource-exceeded": "Limiet systeembelasting overschreden",
 	"rest-parsoid-error": "Fout van Parsoid.",
+	"rest-parsoid-bad-render-id": "Onjuiste Parsoid-render-ID: $1",
 	"rest-bad-stash-key": "Foutieve opbergsleutel.",
 	"rest-html-key-expected": "Er wordt een <var>html</var>-sleutel in de tekst verwacht",
 	"rest-invalid-transform": "Ongeldige transformatie: $1 naar $2",

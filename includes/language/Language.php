@@ -36,6 +36,7 @@ use DateTime;
 use DateTimeImmutable;
 use DateTimeZone;
 use InvalidArgumentException;
+use Locale;
 use LocalisationCache;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\RequestContext;
@@ -174,6 +175,12 @@ class Language implements Bcp47Code {
 	 * @var array|null
 	 */
 	private $overrideUcfirstCharacters;
+
+	/**
+	 * @var NumberFormatter|null
+	 * @noVarDump
+	 */
+	private $numberFormatter = null;
 
 	/**
 	 * @since 1.35
@@ -3177,20 +3184,7 @@ class Language implements Bcp47Code {
 
 		if ( !$noSeparators ) {
 			$separatorTransformTable = $this->separatorTransformTable();
-			$digitGroupingPattern = $this->digitGroupingPattern();
-			$code = $this->getCode();
-			if ( !( $translateNumerals && $this->langNameUtils->isValidCode( $code ) ) ) {
-				$code = 'C'; // POSIX system default locale
-			}
-
-			if ( $digitGroupingPattern ) {
-				$fmt = new NumberFormatter(
-					$code, NumberFormatter::PATTERN_DECIMAL, $digitGroupingPattern
-				);
-			} else {
-				/** @suppress PhanParamTooFew Phan thinks this always requires 3 parameters, that's wrong */
-				$fmt = new NumberFormatter( $code, NumberFormatter::DECIMAL );
-			}
+			$fmt = $this->getNumberFormatter();
 
 			// minimumGroupingDigits can be used to suppress groupings below a certain value.
 			// This is used for languages such as Polish, where one would only write the grouping
@@ -3224,6 +3218,8 @@ class Language implements Bcp47Code {
 				// but it does not know all languages MW
 				// supports. Example: arq. Also, languages like pl have
 				// customisation. So manually set it.
+				$fmt = clone $fmt;
+
 				if ( $noTranslate ) {
 					$fmt->setSymbol(
 						NumberFormatter::DECIMAL_SEPARATOR_SYMBOL,
@@ -4448,6 +4444,52 @@ class Language implements Bcp47Code {
 		return Html::rawElement( 'bdi', [ 'dir' => $this->getDir() ], $page ) .
 			$this->msg( 'word-separator' )->escaped() .
 			$this->msg( 'parentheses' )->rawParams( $details )->escaped();
+	}
+
+	private function getNumberFormatter(): NumberFormatter {
+		if ( $this->numberFormatter === null ) {
+			$digitGroupingPattern = $this->digitGroupingPattern();
+			$code = $this->getCode();
+			if ( !( $this->config->get( MainConfigNames::TranslateNumerals )
+				&& $this->langNameUtils->isValidCode( $code ) )
+			) {
+				$code = Locale::getDefault(); // POSIX system default locale
+			}
+
+			$fmt = $this->createNumberFormatter( $code, $digitGroupingPattern );
+			if ( !$fmt ) {
+				$fallbacks = $this->getFallbackLanguages();
+				foreach ( $fallbacks as $fallbackCode ) {
+					$fmt = $this->createNumberFormatter( $fallbackCode, $digitGroupingPattern );
+					if ( $fmt ) {
+						break;
+					}
+				}
+				if ( !$fmt ) {
+					throw new RuntimeException(
+						'Could not instance NumberFormatter for ' . $code . ' and all fallbacks'
+					);
+				}
+			}
+
+			$this->numberFormatter = $fmt;
+		}
+		return $this->numberFormatter;
+	}
+
+	private function createNumberFormatter( string $code, ?string $digitGroupingPattern ): ?NumberFormatter {
+		try {
+			if ( $digitGroupingPattern ) {
+				return new NumberFormatter(
+					$code, NumberFormatter::PATTERN_DECIMAL, $digitGroupingPattern
+				);
+			}
+			// @suppress PhanParamTooFew Phan thinks this always requires 3 parameters, that's wrong
+			return new NumberFormatter( $code, NumberFormatter::DECIMAL );
+		} catch ( \ValueError $_ ) {
+			// Value Errors are thrown since php8.4 for invalid locales
+			return null;
+		}
 	}
 
 	/**

@@ -115,6 +115,7 @@
 	"emailauthenticated": "您的电子邮件地址已于$2 $3确认。",
 	"allowemail": "允许其他用户用电子邮件联系我",
 	"email-allow-new-users-label": "允许全新用户用电子邮件联系我",
+	"prefs-help-email-allow-new-users": "启用此选项将允许不属于[[{{MediaWiki:grouppage-autoconfirmed}}|自动确认用户组]]的用户向您发送电子邮件。",
 	"tog-ccmeonemails": "给我发送我联系其他用户的电子邮件的副本",
 	"email-mutelist-label": "禁止这些用户给我发送电子邮件：",
 	"tog-enotifwatchlistpages": "当我的监视列表中的页面或文件发生更改时发送电子邮件通知我",

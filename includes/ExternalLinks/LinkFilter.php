@@ -271,11 +271,11 @@ class LinkFilter {
 			$mailparts = explode( '@', $bits['path'], 2 );
 			if ( count( $mailparts ) === 2 ) {
 				$domainpart = rtrim( self::reverseDomain( $mailparts[0] ), '.' );
+				$bits['host'] = $mailparts[1] . '@' . $domainpart;
 			} else {
 				// No @, assume it's a local part with no domain
-				$domainpart = '';
+				$bits['host'] = $mailparts[0];
 			}
-			$bits['host'] = $mailparts[1] . '@' . $domainpart;
 		} else {
 			$bits['host'] = rtrim( self::reverseDomain( $bits['host'] ), '.' );
 		}
