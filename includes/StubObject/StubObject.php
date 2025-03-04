@@ -234,3 +234,6 @@ class StubObject {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.40 */
+class_alias( StubObject::class, 'StubObject' );

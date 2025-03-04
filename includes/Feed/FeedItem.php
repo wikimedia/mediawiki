@@ -256,3 +256,6 @@ class FeedItem {
 	}
 
 }
+
+/** @deprecated class alias since 1.40 */
+class_alias( FeedItem::class, 'FeedItem' );

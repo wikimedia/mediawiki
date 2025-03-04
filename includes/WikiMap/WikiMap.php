@@ -331,3 +331,6 @@ class WikiMap {
 		return ( self::getCurrentWikiId() === $wikiId );
 	}
 }
+
+/** @deprecated class alias since 1.40 */
+class_alias( WikiMap::class, 'WikiMap' );

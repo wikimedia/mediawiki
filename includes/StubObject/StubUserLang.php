@@ -40,3 +40,6 @@ class StubUserLang extends StubObject {
 		return RequestContext::getMain()->getLanguage();
 	}
 }
+
+/** @deprecated class alias since 1.40 */
+class_alias( StubUserLang::class, 'StubUserLang' );

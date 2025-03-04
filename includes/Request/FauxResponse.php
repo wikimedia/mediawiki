@@ -192,3 +192,6 @@ class FauxResponse extends WebResponse {
 	}
 
 }
+
+/** @deprecated class alias since 1.40 */
+class_alias( FauxResponse::class, 'FauxResponse' );

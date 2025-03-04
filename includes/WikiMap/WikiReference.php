@@ -126,3 +126,6 @@ class WikiReference {
 		return $this->mServer . $this->getLocalUrl( $page, $fragmentId );
 	}
 }
+
+/** @deprecated class alias since 1.40 */
+class_alias( WikiReference::class, 'WikiReference' );

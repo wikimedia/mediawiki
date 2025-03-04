@@ -562,3 +562,6 @@ class ForeignResourceManager {
 		return $cdx;
 	}
 }
+
+/** @deprecated class alias since 1.40 */
+class_alias( ForeignResourceManager::class, 'ForeignResourceManager' );

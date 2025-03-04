@@ -434,3 +434,6 @@ class FormOptions implements ArrayAccess {
 
 	// endregion -- end of ArrayAccess functions
 }
+
+/** @deprecated class alias since 1.40 */
+class_alias( FormOptions::class, 'FormOptions' );

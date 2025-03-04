@@ -114,3 +114,6 @@ class AtomFeed extends ChannelFeed {
 		print "</feed>";
 	}
 }
+
+/** @deprecated class alias since 1.40 */
+class_alias( AtomFeed::class, 'AtomFeed' );

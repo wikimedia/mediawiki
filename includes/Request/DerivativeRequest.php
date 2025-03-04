@@ -104,3 +104,6 @@ class DerivativeRequest extends FauxRequest {
 		return $this->base->getElapsedTime();
 	}
 }
+
+/** @deprecated class alias since 1.40 */
+class_alias( DerivativeRequest::class, 'DerivativeRequest' );
