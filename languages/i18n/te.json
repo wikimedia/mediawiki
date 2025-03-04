@@ -3774,7 +3774,7 @@
 	"log-action-filter-rights-autopromote": "ఆటోమాటిక్ మార్పు",
 	"log-action-filter-suppress-event": "చిట్టా అణచివేత",
 	"log-action-filter-suppress-revision": "కూర్పు అణచివేత",
-	"log-action-filter-suppress-delete": "పేఝీ అణచివేత",
+	"log-action-filter-suppress-delete": "పేజీ అణచివేత",
 	"log-action-filter-upload-upload": "కొత్త ఎక్కింపు",
 	"log-action-filter-upload-overwrite": "మళ్ళీ ఎక్కించడం",
 	"log-action-filter-upload-revert": "తిరగ్గొట్టడం",

@@ -9,7 +9,8 @@
 			"Thibaut120094",
 			"Verdy p",
 			"Wladek92",
-			"Mahabarata"
+			"Mahabarata",
+			"JLTRY"
 		]
 	},
 	"rest-prefix-mismatch": "Le chemin demandé ($1) n’était pas dans le chemin de base de l’API REST ($2)",
@@ -72,6 +73,7 @@
 	"rest-unsupported-target-format": "Le format cible demandé n'est pas pris en charge.",
 	"rest-parsoid-resource-exceeded": "Limite de ressources dépassée",
 	"rest-parsoid-error": "Erreur Parsoid.",
+	"rest-parsoid-bad-render-id": "Mauvais ID de rendu Parsoid : $1",
 	"rest-bad-stash-key": "Mauvaise clé de stockage.",
 	"rest-html-key-expected": "Clé <var>html</var> attendue dans le corps",
 	"rest-invalid-transform": "Transformation non valide : $1 à $2",

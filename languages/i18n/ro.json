@@ -56,7 +56,8 @@
 			"XXN",
 			"לערי ריינהארט",
 			"아라",
-			"Trotinel Iftode"
+			"Trotinel Iftode",
+			"Michael2101"
 		]
 	},
 	"sunday": "duminică",
@@ -2541,6 +2542,12 @@
 	"block-actions": "Tipul blocării",
 	"block-details": "Detaliile blocării",
 	"block-expiry": "Expiră",
+	"block-expiry-custom-minutes": "minute",
+	"block-expiry-custom-hours": "ore",
+	"block-expiry-custom-days": "zile",
+	"block-expiry-custom-weeks": "săptămâni",
+	"block-expiry-custom-months": "luni",
+	"block-expiry-custom-years": "ani",
 	"block-options": "Opțiuni adiționale:",
 	"block-reason": "Motiv:",
 	"block-target": "Numele de utilizator, adresa IP sau gama IP:",

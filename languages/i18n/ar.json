@@ -2377,7 +2377,7 @@
 	"deleteprotected": "لا يمكنك حذف هذه الصفحة لأنها محمية.",
 	"deleting-backlinks-warning": "<strong>تحذير:</strong> [[Special:WhatLinksHere/{{FULLPAGENAME}}|صفحات أخرى]] تصل إلى أو تضمن الصفحة التي أنت على وشك حذفها.",
 	"deleting-subpages-warning": "<strong>تحذير:</strong> الصفحة التي على وشك أن تحذفها لديها [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|صفحة فرعية|$1 صفحات فرعية|51=أكثر من 50 صفحة فرعية}}]].",
-	"deleting-talkpage-subpages-warning": "<strong>تحذير:</ strong> تحتوي صفحة الحديث المرتبطة بالصفحة التي أنت على وشك حذفهاعلى [[Special:PrefixIndex/{{TALKPAGENAME}}/|{{PLURAL:$1|a subpage|$1 subpages|51=over 50 subpages}}]].",
+	"deleting-talkpage-subpages-warning": "<strong>تحذير:</strong> صفحة المناقشة المرتبطة بالصفحة التي تريد حذفها تحتوي على [[Special:PrefixIndex/{{TALKPAGENAME}}/|{{PLURAL:$1|صفحة فرعية|$1 صفحة فرعية|51=أكثر من 50 صفحة فرعية}}]].",
 	"rollback": "التراجع عن التعديلات",
 	"rollback-confirmation-confirm": "يُرجى التأكيد:",
 	"rollback-confirmation-yes": "استرجاع",
