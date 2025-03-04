@@ -484,8 +484,6 @@ const _sfc_main$w = defineComponent({
   props: {
     /**
      * Forces the accordion to show the action icon.
-     *
-     * @values 'true', 'false'
      */
     actionAlwaysVisible: {
       type: Boolean,
@@ -3363,6 +3361,7 @@ function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
         ref: "menuListbox",
         class: "cdx-menu__listbox",
         role: "listbox",
+        tabindex: "-1",
         style: _ctx.listBoxStyle,
         "aria-live": _ctx.showPending ? "polite" : void 0,
         "aria-relevant": _ctx.showPending ? _ctx.ariaRelevant : void 0,
@@ -6076,23 +6075,23 @@ const _sfc_main$i = defineComponent({
         previouslyFocused = null;
       }
     }
-    onMounted(() => {
+    onMounted(() => __async(this, null, function* () {
       if (props.open) {
-        onDialogOpen();
+        yield onDialogOpen();
       }
-    });
+    }));
     onUnmounted(() => {
       if (props.open) {
         onDialogClose();
       }
     });
-    watch(toRef(props, "open"), (opened) => {
+    watch(toRef(props, "open"), (opened) => __async(this, null, function* () {
       if (opened) {
-        onDialogOpen();
+        yield onDialogOpen();
       } else {
         onDialogClose();
       }
-    });
+    }));
     watch(currentBodyHeight, () => {
       if (dialogBody.value) {
         showDividers.value = dialogBody.value.clientHeight < dialogBody.value.scrollHeight;
@@ -9871,8 +9870,6 @@ const _sfc_main$3 = defineComponent({
      * When autosize is true, the textarea automatically grows in height (vertically).
      * The height of the textarea expands while the user types in the textarea.
      * The content inside the textarea is visible and there's no scroll.
-     *
-     * @values true, false
      */
     autosize: {
       type: Boolean,

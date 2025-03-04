@@ -1,3 +1,38 @@
+# 1.20.3 / 2025-03-04
+
+## Deprecating Changes
+- [DEPRECATING CHANGE] types: Generalize dialog action types (Anne Tomasevich)
+
+## Features
+- Popover: Add WIP component (Lauralyn Watson)
+- Popover: Add header and footer content (Anne Tomasevich)
+- ProgressIndicator, tokens: add initial implementation of component (Volker E.)
+
+## Styles
+- Popover: Update header styles per design feedback (Anne Tomasevich)
+- Popover: add Floating UI behavior (Lauralyn Watson)
+- Popover: handle keynav and clicks outside (Lauralyn Watson)
+- styles: Consistently import tokens in Less as references (Volker E.)
+
+## Code
+- Menu: Add `tabindex="-1"` to `ul` element (Anne Tomasevich)
+- Dialog: Properly await onDialogOpen (Roan Kattouw)
+- utils: add `unwrapElement` utility function (Lauralyn Watson)
+- build: Stop CI from failing if Netlify deployment fails (Anne Tomasevich)
+- build: Add `--glob` flag to 'rimraf' command (Volker E.)
+
+## Docs
+- docs: Update Codex logo (Derek Torsani)
+- docs: Don't break everything when there's a generic type (Anne Tomasevich)
+- docs: Remove superfluous JSDoc Boolean `@values` annotations (Volker E.)
+- docs: update links to Vue Test Utils (Lauralyn Watson)
+- docs: include recommendation on maximum number if items in Menu (bmartinezcalvo)
+- docs: Create ADR for font modes (Derek Torsani)
+- docs: fix RTL issues in bidirectionality guidelines (bmartinezcalvo)
+- docs: Fix hero tagline margin (Derek Torsani)
+- docs: Remove client-only tag from MW examples (Eric Gardner)
+- docs: Amend ProgressBar documentation for clarity with ProgressIndicator (Volker E.)
+
 # 1.20.2 / 2025-02-19
 
 ## Deprecating Changes
