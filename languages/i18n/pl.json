@@ -3655,7 +3655,7 @@
 	"logentry-rights-rights-granted": "{{GENDER:$2|nadał|nadała|nadał(a)}}: $1",
 	"logentry-rights-rights-revoked": "{{GENDER:$2|odebrał|odebrała|odebrał(a)}}: $1",
 	"logentry-rights-rights-expiry-changed": "{{GENDER:$2|zmienił|zmieniła|zmienił(a)}} czas wygaśnięcia: $1",
-	"logentry-rights-rights-kept": "{{GENDER:$2|pozostawiając}} bez zmian: $1",
+	"logentry-rights-rights-kept": "{{GENDER:$2|pozostawił|pozostawiła|pozostawił(a)}} bez zmian: $1",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|zmienił|zmieniła|zmienił(a)}} przynależność $3 do grup",
 	"logentry-rights-autopromote": "$1 automatycznie {{GENDER:$2|zmienił|zmieniła|zmienił(a)}} uprawnienia: $7",
 	"logentry-rights-autopromote-granted": "{{GENDER:$2|uzyskał|uzyskała|uzyskał(a)}}: $1",
