@@ -69,6 +69,12 @@ class WebInstallerName extends WebInstallerPage {
 		$pingbackInfo = Pingback::getSystemInfo( $pingbackConf );
 
 		$this->addHTML(
+			// TODO: validate wgServer on the client side
+			$this->parent->getTextBox( [
+				'var' => 'wgServer',
+				'label' => 'config-server',
+				'help' => $this->parent->getHelpBox( 'config-server-help' )
+			] ) .
 			$this->parent->getTextBox( [
 				'var' => 'wgSitename',
 				'label' => 'config-site-name',
@@ -154,7 +160,7 @@ class WebInstallerName extends WebInstallerPage {
 		global $wgPasswordPolicy;
 
 		$retVal = true;
-		$this->parent->setVarsFromRequest( [ 'wgSitename', '_NamespaceType',
+		$this->parent->setVarsFromRequest( [ 'wgServer', 'wgSitename', '_NamespaceType',
 			'_AdminName', '_AdminPassword', '_AdminPasswordConfirm', '_AdminEmail',
 			'_Subscribe', '_SkipOptional', 'wgMetaNamespace', 'wgPingback' ] );
 

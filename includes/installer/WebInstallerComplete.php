@@ -26,8 +26,9 @@ class WebInstallerComplete extends WebInstallerPage {
 	public function execute() {
 		// Pop up a dialog box, to make it difficult for the user to forget
 		// to download the file
-		$lsUrl = $this->getVar( 'wgServer' ) . $this->parent->getUrl( [ 'localsettings' => 1 ] );
-		$this->parent->request->response()->header( "Refresh: 0;url=$lsUrl" );
+		$lsPath = $this->parent->getUrl( [ 'localsettings' => 1 ] );
+		$lsUrl = $this->parent->getDefaultServer() . $lsPath;
+		$this->parent->request->response()->header( "Refresh: 0;url=$lsPath" );
 		$this->startForm();
 		$this->parent->disableLinkPopups();
 		$location = $this->parent->getLocalSettingsLocation();
