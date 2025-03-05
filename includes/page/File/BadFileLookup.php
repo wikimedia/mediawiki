@@ -132,6 +132,3 @@ class BadFileLookup {
 		return $ret;
 	}
 }
-
-/** @deprecated class alias since 1.40 */
-class_alias( BadFileLookup::class, 'MediaWiki\\BadFileLookup' );

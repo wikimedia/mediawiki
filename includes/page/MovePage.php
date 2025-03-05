@@ -960,6 +960,3 @@ class MovePage {
 		] );
 	}
 }
-
-/** @deprecated class alias since 1.40 */
-class_alias( MovePage::class, 'MovePage' );
