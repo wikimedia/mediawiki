@@ -1610,6 +1610,11 @@ class PermissionManager {
 				$userObj->isRegistered()
 				&& $this->options->get( MainConfigNames::BlockDisablesLogin )
 			) {
+				// Stash the permissions as they are before triggering any block checks for BlockDisablesLogin
+				// to avoid a potential infinite loop, since GetUserBlock handlers may themselves check
+				// permissions on this user. (T384197)
+				$this->usersRights[ $rightsCacheKey ] = $rights;
+
 				$isExempt = in_array( 'ipblock-exempt', $rights, true );
 				if ( $this->blockManager->getBlock(
 					$userObj,

@@ -25,6 +25,7 @@ use MediaWiki\Tests\Unit\MockBlockTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiLangTestCase;
 use StatusValue;
@@ -60,6 +61,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$localOffset = date( 'Z' ) / 60;
 
 		$this->overrideConfigValues( [
+			MainConfigNames::BlockDisablesLogin => false,
 			MainConfigNames::Localtimezone => $localZone,
 			MainConfigNames::LocalTZoffset => $localOffset,
 			MainConfigNames::ImplicitRights => [
@@ -1734,5 +1736,73 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		yield 'Having rights for edit' => [
 			NS_MAIN, 'Example', 'user', 'edit', [ 'edit', ], StatusValue::newGood()
 		];
+	}
+
+	public function testShouldLimitPermissionsForBlockedUserWhenBlockDisablesLogin(): void {
+		$this->overrideConfigValues( [
+			MainConfigNames::BlockDisablesLogin => true,
+			MainConfigNames::GroupPermissions => [
+				'*' => [ 'edit' => true ],
+				'user' => [ 'edit' => true, 'move' => true ],
+				'sysop' => [ 'block' => true ],
+			],
+		] );
+
+		$testUser = $this->getTestUser()->getUserIdentity();
+		$this->blockUser( $testUser );
+
+		$permissions = $this->getServiceContainer()->getPermissionManager()->getUserPermissions( $testUser );
+
+		$this->assertSame( [ 'edit' ], $permissions );
+	}
+
+	public function testShouldLimitPermissionsForBlockedUserShouldAllowPermissionChecksInGetUserBlock(): void {
+		$this->overrideConfigValues( [
+			MainConfigNames::BlockDisablesLogin => true,
+			MainConfigNames::GroupPermissions => [
+				'*' => [ 'edit' => true ],
+				'user' => [ 'edit' => true, 'move' => true ],
+				'sysop' => [ 'block' => true ],
+			],
+		] );
+
+		$testUser = $this->getTestUser()->getUserIdentity();
+		$hookRan = false;
+
+		$this->setTemporaryHook(
+			'GetUserBlock',
+			function ( UserIdentity $user ) use ( $testUser, &$hookRan ): void {
+				if ( $user->equals( $testUser ) ) {
+					// Trigger an arbitrary permissions check to verify that they do not cause an infinite loop
+					// when BlockDisablesLogin = true (T384197).
+					$this->getServiceContainer()->getPermissionManager()
+						->userHasRight( $user, 'test' );
+
+					$hookRan = true;
+				}
+			}
+		);
+
+		$testUser = $this->getTestUser()->getUserIdentity();
+		$this->blockUser( $testUser );
+
+		$permissions = $this->getServiceContainer()->getPermissionManager()->getUserPermissions( $testUser );
+
+		$this->assertSame( [ 'edit' ], $permissions );
+		$this->assertTrue( $hookRan );
+	}
+
+	/**
+	 * Convenience function to block a given user.
+	 * @param UserIdentity $user
+	 * @return void
+	 */
+	private function blockUser( UserIdentity $user ): void {
+		$status = $this->getServiceContainer()
+			->getBlockUserFactory()
+			->newBlockUser( $user, $this->getTestSysop()->getAuthority(), 'infinity' )
+			->placeBlock();
+
+		$this->assertStatusGood( $status );
 	}
 }
