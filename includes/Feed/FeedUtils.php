@@ -318,6 +318,3 @@ class FeedUtils {
 	}
 
 }
-
-/** @deprecated class alias since 1.40 */
-class_alias( FeedUtils::class, 'FeedUtils' );

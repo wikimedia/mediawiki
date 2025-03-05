@@ -2131,6 +2131,3 @@ class Linker {
 	}
 
 }
-
-/** @deprecated class alias since 1.40 */
-class_alias( Linker::class, 'Linker' );

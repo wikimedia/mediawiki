@@ -151,6 +151,3 @@ class StubGlobalUser extends StubObject {
 		}
 	}
 }
-
-/** @deprecated class alias since 1.40 */
-class_alias( StubGlobalUser::class, 'StubGlobalUser' );

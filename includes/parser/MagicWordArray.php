@@ -322,6 +322,3 @@ class MagicWordArray {
 		return false;
 	}
 }
-
-/** @deprecated class alias since 1.40 */
-class_alias( MagicWordArray::class, 'MagicWordArray' );

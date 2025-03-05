@@ -71,6 +71,3 @@ class HtmlHelper {
 	}
 
 }
-
-/** @deprecated class alias since 1.40 */
-class_alias( HtmlHelper::class, 'MediaWiki\\HtmlHelper' );

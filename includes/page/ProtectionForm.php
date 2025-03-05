@@ -627,6 +627,3 @@ class ProtectionForm {
 		$this->hookRunner->onProtectionForm__showLogExtract( $this->mArticle, $this->mOut );
 	}
 }
-
-/** @deprecated class alias since 1.40 */
-class_alias( ProtectionForm::class, 'ProtectionForm' );

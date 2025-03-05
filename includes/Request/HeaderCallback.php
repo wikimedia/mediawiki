@@ -122,6 +122,3 @@ class HeaderCallback {
 		return implode( "\n", $sanitizedValues );
 	}
 }
-
-/** @deprecated class alias since 1.40 */
-class_alias( HeaderCallback::class, 'MediaWiki\\HeaderCallback' );
