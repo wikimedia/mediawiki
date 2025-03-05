@@ -22,7 +22,7 @@
 				:allow-user-dismiss="true"
 				class="mw-block-success"
 			>
-				<p><strong>{{ $i18n( 'blockipsuccesssub' ) }}</strong></p>
+				<p><strong>{{ blockSavedMessage }}</strong></p>
 				<!-- eslint-disable-next-line vue/no-v-html -->
 				<p v-html="$i18n( 'block-success', store.targetUser ).parse()"></p>
 			</cdx-message>
@@ -192,6 +192,7 @@ module.exports = exports = defineComponent( {
 		const canDeleteLogEntry = mw.config.get( 'blockCanDeleteLogEntry' ) || false;
 		const { alreadyBlocked, formErrors, formSubmitted, formVisible, blockAdded, blockRemoved, enableMultiblocks } = storeToRefs( store );
 		const messagesContainer = ref();
+		const blockSavedMessage = ref( '' );
 		// Value to use for BlockLog component keys, so they reload after saving.
 		const submitCount = ref( 0 );
 		const submitButtonMessage = computed( () => {
@@ -202,6 +203,7 @@ module.exports = exports = defineComponent( {
 			}
 			return mw.message( 'ipbsubmit' ).text();
 		} );
+
 		const confirmationOpen = ref( false );
 		const showBlockLogs = computed( () => ( store.targetUser && store.targetExists ) || store.blockId );
 		const removalConfirmationOpen = ref( false );
@@ -325,6 +327,13 @@ module.exports = exports = defineComponent( {
 					confirmationOpen.value = true;
 					return;
 				}
+
+				if ( store.blockId ) {
+					blockSavedMessage.value = mw.message( 'block-updated-message' ).text();
+				} else {
+					blockSavedMessage.value = mw.message( 'block-added-message' ).text();
+				}
+
 				doBlock();
 			} else {
 				// nextTick() needed to ensure error messages are rendered before scrolling.
@@ -436,6 +445,7 @@ module.exports = exports = defineComponent( {
 			shouldShowAddBlockButton,
 			submitCount,
 			submitButtonMessage,
+			blockSavedMessage,
 			enableMultiblocks,
 			blockShowSuppressLog,
 			canDeleteLogEntry,

@@ -2631,6 +2631,8 @@
 	"ipb-blocklist": "View existing blocks",
 	"ipb-blocklist-contribs": "Contributions for {{GENDER:$1|$1}}",
 	"ipb-blocklist-duration-left": "$1 left",
+	"block-added-message": "Block added",
+	"block-updated-message": "Block updated",
 	"block-actions": "Block type",
 	"block-change-visibility": "Change visibility",
 	"block-details": "Block details",
