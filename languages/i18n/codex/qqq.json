@@ -12,6 +12,7 @@
 	"cdx-dialog-close-button-label": "Visually-hidden label for the CdxDialog's close button.",
 	"cdx-label-optional-flag": "Flag that appears next to a label to indicate that a field is optional.",
 	"cdx-message-dismiss-button-label": "Visually-hidden label for the CdxMessage's dismiss button.",
+	"cdx-popover-close-button-label": "Visually-hidden label for the CdxPopover's close button.",
 	"cdx-search-input-search-button-label": "Label for the CdxSearchInput's search button.",
 	"cdx-table-select-all-label": "Visually-hidden label for the 'select all rows' checkbox in a CdxTable with row selection.",
 	"cdx-table-select-row-label": "Visually-hidden label for each row selection checkbox in a CdxTable with row selection.\n\nParameters:\n* $1 - Index of the current row\n* $2 - Total number of rows",
