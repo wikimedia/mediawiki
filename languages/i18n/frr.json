@@ -2992,7 +2992,7 @@
 	"renameuser-page-exists": "Det sidj „$1“ as al diar an koon ei automaatisk auerskrewen wurd.",
 	"renameuser-page-moved": "Det sidj $1 as efter $2 fersköwen wurden.",
 	"renameuser-page-unmoved": "Det sidj $1 küd ei efter $2 fersköwen wurd.",
-	"log-name-renameuser": "Amnääm-Logbuk",
+	"log-name-renameuser": "Amnääm Logbuk",
 	"log-description-renameuser": "Det as det logbuk auer feranrangen faan brükernöömer.",
 	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|hää}} brüker „$4“ (mä {{PLURAL:$6|ian feranrang|$6 feranrangen}}) tu „$5“ amnäämd.",
 	"logentry-renameuser-renameuser-legacier": "$1 hää brüker $4 amnäämd tu $5",

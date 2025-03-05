@@ -2282,7 +2282,7 @@
 	"emailtarget": "Увядзіце імя атрымальніка",
 	"emailusername": "Імя ўдзельніка:",
 	"emailusernamesubmit": "Даслаць",
-	"email-legend": "Даслаць электронны ліст {{GENDER:$1|іншаму ўдзельніку|іншай удзельніцы}} {{GRAMMAR:родны|{{SITENAME}}}}",
+	"email-legend": "Даслаць электронны ліст іншаму ўдзельніку {{GRAMMAR:родны|{{SITENAME}}}}",
 	"emailfrom": "Ад:",
 	"emailto": "Да:",
 	"emailsubject": "Тэма:",
