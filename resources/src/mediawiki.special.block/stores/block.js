@@ -6,16 +6,16 @@ const api = new mw.Api();
  * Pinia store for the SpecialBlock application.
  */
 module.exports = exports = defineStore( 'block', () => {
-	// ** State properties (refs) **
-
-	// Form fields.
-
 	/**
 	 * Whether the multiblocks feature is enabled with $wgEnableMultiBlocks.
 	 *
 	 * @type {boolean}
 	 */
 	const enableMultiblocks = mw.config.get( 'blockEnableMultiblocks' ) || false;
+
+	// ** State properties (refs) **
+
+	// Form fields.
 
 	/**
 	 * The target user to block. Beyond the initial value,
@@ -280,12 +280,12 @@ module.exports = exports = defineStore( 'block', () => {
 	 * Load block data from an action=blocks API response.
 	 *
 	 * @param {Object} blockData The block's item from the API.
-	 * @param {boolean} [loadingFromParam=false] Whether the data is being loaded from URL parameters.
+	 * @param {boolean} [setTarget=false] Whether to set the {@link targetUser}, thereby firing
+	 *   off associated watchers.
 	 */
-	function loadFromData( blockData, loadingFromParam = false ) {
-		if ( loadingFromParam ) {
+	function loadFromData( blockData, setTarget = false ) {
+		if ( setTarget ) {
 			targetUser.value = blockData.user;
-			formVisible.value = true;
 		}
 		blockId.value = blockData.id;
 		type.value = blockData.partial ? 'partial' : 'sitewide';

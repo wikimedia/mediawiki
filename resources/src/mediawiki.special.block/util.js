@@ -23,7 +23,7 @@ const util = {
 	 * @return {string}
 	 */
 	formatTimestamp: function ( timestamp ) {
-		if ( mw.util.isInfinity( timestamp ) ) {
+		if ( !timestamp || mw.util.isInfinity( timestamp ) ) {
 			return mw.msg( 'infiniteblock' );
 		}
 		const date = new Date( timestamp );

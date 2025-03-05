@@ -81,7 +81,7 @@ describe( 'SpecialBlock', () => {
 		expect( wrapper.find( '.mw-block-success' ).exists() ).toBeTruthy();
 	} );
 
-	it( 'should submit an API request to block the user (Multiblocks ON)', async () => {
+	it( 'should submit an API request to block the user', async () => {
 		wrapper = withSubmission( undefined, { block: { user: 'ExampleUser' } } );
 		await wrapper.find( '[name=wpTarget]' ).setValue( 'ExampleUser' );
 		await wrapper.find( '[name=wpTarget]' ).trigger( 'change' );

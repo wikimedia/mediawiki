@@ -498,6 +498,69 @@ function mockMwApiGet( additionalMocks = [] ) {
 				}
 			}
 		},
+		{
+			params: {
+				list: 'logevents|blocks',
+				letype: 'block',
+				letitle: 'User:PartiallyBlockedUser'
+			},
+			response: {
+				query: {
+					blocks: [
+						{
+							id: 1111,
+							user: 'PartiallyBlockedUser',
+							by: 'Admin',
+							timestamp: '2024-09-17T14:30:51Z',
+							expiry: '2094-09-17T14:30:51Z',
+							reason: 'Vandalizing on [[Project:Foobar]]',
+							anononly: false,
+							nocreate: false,
+							autoblock: true,
+							noemail: false,
+							hidden: false,
+							allowusertalk: true,
+							partial: true,
+							restrictions: {
+								pages: [ {
+									id: 50,
+									ns: 4,
+									title: 'Foobar'
+								} ],
+								actions: [ 'upload', 'create' ]
+							}
+						}
+					],
+					logevents: [
+						{
+							logid: 990,
+							title: 'User:PartiallyBlockedUser',
+							params: {
+								duration: '50 years',
+								flags: [],
+								restrictions: {
+									pages: [ {
+										// eslint-disable-next-line camelcase
+										page_ns: 4,
+										// eslint-disable-next-line camelcase
+										page_title: 'Foobar'
+									} ],
+									actions: [ 'upload', 'create' ]
+								},
+								blockId: 1111,
+								sitewide: false,
+								expiry: '2094-09-17T14:30:51Z'
+							},
+							type: 'block',
+							action: 'block',
+							user: 'Admin',
+							timestamp: '2024-09-17T14:30:51Z',
+							parsedcomment: 'Vandalizing on [[Foobar]]'
+						}
+					]
+				}
+			}
+		},
 		// Used in UserLookup
 		{
 			params: {

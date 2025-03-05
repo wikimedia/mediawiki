@@ -92,4 +92,17 @@ describe( 'BlockLog', () => {
 		// Test: The row should contain the block-user-no-active-blocks message
 		expect( rows[ 0 ].text() ).toContain( 'block-user-no-active-blocks' );
 	} );
+
+	it( 'should show a list of block parameters', async () => {
+		mockMwConfigGet( { blockTargetUser: 'PartiallyBlockedUser' } );
+		const wrapper = mount( BlockLog, {
+			propsData: { blockLogType: 'active' },
+			global: { plugins: [ createTestingPinia( { stubActions: false } ) ] }
+		} );
+		await flushPromises();
+		expect( wrapper.find( '.mw-block-log__type-active' ).exists() ).toBeTruthy();
+		const rows = wrapper.findAll( 'table.cdx-table__table tbody tr' );
+		expect( rows ).toHaveLength( 1 );
+		expect( rows[ 0 ].find( 'ul' ).text() ).toContain( 'blocklist-editing blocklist-editing-page Foobar' );
+	} );
 } );

@@ -10,32 +10,36 @@
 			</cdx-info-chip>
 		</template>
 		<cdx-table
-			v-if="blockLogType === 'active'"
 			:caption="title"
 			:columns="!!logEntries.length ? columns : []"
 			:data="logEntries"
 			:use-row-headers="false"
 			:hide-caption="true"
+			:show-vertical-borders="true"
 		>
 			<template #tbody>
 				<tbody v-if="logEntries.length">
 					<tr
 						v-for="( item, index ) in logEntries"
 						:key="index"
-						:class="{ 'cdx-selected-block-row': item.modify.id === blockId }"
+						:class="blockLogType === 'active' ? { 'cdx-selected-block-row': item.id === blockId } : ''"
 					>
-						<td>
-							<span v-if="item.expiry.expires || item.expiry.duration">
-								{{ util.formatTimestamp( item.expiry.expires || item.expiry.duration ) }}
-							</span>
-							<span v-else></span>
+						<!-- Type -->
+						<td v-if="blockLogType === 'recent' || blockLogType === 'suppress'">
+							{{ util.getBlockActionMessage( item.action ) }}
 						</td>
+						<!-- Expires -->
 						<td>
-							<ul v-if="item.parameters.flags && item.parameters.flags.length">
-								<li v-if="item.parameters.restrictions">
+							{{ util.formatTimestamp( item.expiry ) }}
+						</td>
+						<!-- Block parameters -->
+						<td class="mw-block-log__parameters">
+							<ul>
+								<!-- partial block -->
+								<li v-if="Object.keys( item.restrictions || {} ).length">
 									{{ mw.message( 'blocklist-editing' ).text() }}
 									<ul>
-										<li v-for="( parameter, restrictionType ) in item.parameters.restrictions" :key="restrictionType">
+										<li v-for="( parameter, restrictionType ) in item.restrictions" :key="restrictionType">
 											<div v-if="restrictionType === 'pages'">
 												{{ mw.message( 'blocklist-editing-page' ).text() }}
 												<ul class="mw-block-parameters">
@@ -53,8 +57,8 @@
 												{{ mw.message( 'blocklist-editing-ns' ).text() }}
 												<ul class="mw-block-parameters">
 													<li v-for="namespace in parameter" :key="namespace">
-														<a :href="mw.util.getUrl( 'Special:AllPages', { namespace: namespace } )">
-															{{ mw.config.get( 'wgFormattedNamespaces' )[ namespace ] }}
+														<a :href="mw.util.getUrl( 'Special:AllPages', { namespace } )">
+															{{ mwNamespaces[ namespace ] }}
 														</a>
 													</li>
 												</ul>
@@ -74,18 +78,22 @@
 										</li>
 									</ul>
 								</li>
+								<!-- sitewide block -->
 								<li v-else>
 									{{ mw.message( 'blocklist-editing-sitewide' ).text() }}
 								</li>
-								<li v-for="( parameter, indexFlag ) in item.parameters.flags" :key="indexFlag">
+								<!-- parameters (stuff from the "Block details" section) -->
+								<li v-for="( parameter, indexFlag ) in item.flags" :key="indexFlag">
 									{{ util.getBlockFlagMessage( parameter ) }}
 								</li>
 							</ul>
 						</td>
+						<!-- Reason -->
 						<td>
 							<!-- eslint-disable-next-line vue/no-v-html -->
-							<span v-html="item.reason"></span>
+							<span v-html="item.parsedreason"></span>
 						</td>
+						<!-- Blocking admin -->
 						<td>
 							<a :href="mw.Title.makeTitle( 2, item.blockedby ).getUrl()">
 								{{ item.blockedby }}
@@ -102,15 +110,27 @@
 								</span>{{ $i18n( 'parentheses-end' ).text() }}
 							</span>
 						</td>
+						<!-- Timestamp -->
 						<td>
 							<a
-								:href="mw.util.getUrl( 'Special:BlockList', { wpTarget: `#${ item.timestamp.blockid }` } )"
+								v-if="item.logid"
+								:href="mw.util.getUrl( 'Special:Log', { logid: item.logid } )"
 							>
-								{{ util.formatTimestamp( item.timestamp.timestamp ) }}
+								{{ util.formatTimestamp( item.timestamp ) }}
 							</a>
+							<a
+								v-else-if="item.id"
+								:href="mw.util.getUrl( 'Special:BlockList', { wpTarget: `#${ item.id }` } )"
+							>
+								{{ util.formatTimestamp( item.timestamp ) }}
+							</a>
+							<span v-else>
+								{{ util.formatTimestamp( item.timestamp ) }}
+							</span>
 						</td>
-						<td>
-							<span class="mw-blocklist-actions">
+						<!-- Actions -->
+						<td v-if="blockLogType === 'active'">
+							<span class="mw-block-log__actions">
 								<cdx-button
 									type="button"
 									:aria-label="$i18n( 'block-item-edit' ).text()"
@@ -132,6 +152,14 @@
 								</cdx-button>
 							</span>
 						</td>
+						<td v-else-if="blockLogType !== 'active' && canDeleteLogEntry">
+							<a
+								class="mw-block-log__actions"
+								:href="mw.util.getUrl( 'Special:RevisionDelete', { type: 'logging', [`ids[${ item.logid }]`]: 1 } )"
+							>
+								{{ $i18n( 'block-change-visibility' ).text() }}
+							</a>
+						</td>
 					</tr>
 				</tbody>
 				<tbody v-else>
@@ -141,125 +169,6 @@
 						</td>
 					</tr>
 				</tbody>
-			</template>
-		</cdx-table>
-		<cdx-table
-			v-else
-			:caption="title"
-			:columns="!!logEntries.length ? columns : []"
-			:data="logEntries"
-			:use-row-headers="false"
-			:hide-caption="true"
-		>
-			<template #empty-state>
-				{{ emptyState }}
-			</template>
-			<template #item-type="{ item }">
-				{{ util.getBlockActionMessage( item ) }}
-			</template>
-			<template #item-expiry="{ item }">
-				<span v-if="item.expires || item.duration">
-					{{ util.formatTimestamp( item.expires || item.duration ) }}
-				</span>
-				<span v-else></span>
-			</template>
-			<template #item-parameters="{ item }">
-				<ul v-if="item.flags && item.flags.length">
-					<li v-if="item.restrictions">
-						{{ mw.message( 'blocklist-editing' ).text() }}
-						<ul>
-							<li v-for="( parameter, index ) in item.restrictions" :key="index">
-								<div v-if="index === 'pages'">
-									{{ mw.message( 'blocklist-editing-page' ).text() }}
-									<ul class="mw-block-parameters">
-										<li v-for="page in parameter" :key="page">
-											<a v-if="page.title" :href="mw.util.getUrl( page.title )">
-												{{ page.title }}
-											</a>
-											<a v-else-if="page.page_title" :href="mw.util.getUrl( page.page_title )">
-												{{ page.page_title }}
-											</a>
-										</li>
-									</ul>
-								</div>
-								<div v-else-if="index === 'namespaces'">
-									{{ mw.message( 'blocklist-editing-ns' ).text() }}
-									<ul class="mw-block-parameters">
-										<li v-for="namespace in parameter" :key="namespace">
-											<a :href="mw.util.getUrl( 'Special:AllPages', { namespace: namespace } )">
-												{{ mwNamespaces[ namespace ] }}
-											</a>
-										</li>
-									</ul>
-								</div>
-								<div v-else-if="index === 'actions'">
-									{{ mw.message( 'blocklist-editing-action' ).text() }}
-									<ul class="mw-block-parameters">
-										<li v-for="action in parameter" :key="action">
-											<!-- Potential messages: -->
-											<!-- * ipb-action-create -->
-											<!-- * ipb-action-move -->
-											<!-- * ipb-action-upload -->
-											{{ mw.message( 'ipb-action-' + action ).text() }}
-										</li>
-									</ul>
-								</div>
-							</li>
-						</ul>
-					</li>
-					<li v-else>
-						{{ mw.message( 'blocklist-editing-sitewide' ).text() }}
-					</li>
-					<li v-for="( parameter, index ) in item.flags" :key="index">
-						{{ util.getBlockFlagMessage( parameter ) }}
-					</li>
-				</ul>
-				<span v-else></span>
-			</template>
-			<template #item-reason="{ item }">
-				<!-- eslint-disable-next-line vue/no-v-html -->
-				<span v-html="item"></span>
-			</template>
-			<template #item-blockedby="{ item }">
-				<a :href="mw.Title.makeTitle( 2, item ).getUrl()">
-					{{ item }}
-				</a>
-				<span class="mw-usertoollinks">
-					{{ $i18n( 'parentheses-start' ).text() }}<a :href="mw.Title.makeTitle( 3, item ).getUrl()">
-						{{ $i18n( 'talkpagelinktext' ).text() }}
-					</a>
-					<span>
-						{{ $i18n( 'pipe-separator' ).text() }}
-						<a :href="mw.Title.makeTitle( 2, `Contributions/${ item }` ).getUrl()">
-							{{ $i18n( 'contribslink' ).text() }}
-						</a>
-					</span>{{ $i18n( 'parentheses-end' ).text() }}
-				</span>
-			</template>
-			<template #item-timestamp="{ item }">
-				<a
-					v-if="item.logid"
-					:href="mw.util.getUrl( 'Special:Log', { logid: item.logid } )"
-				>
-					{{ util.formatTimestamp( item.timestamp ) }}
-				</a>
-				<a
-					v-else-if="item.blockid"
-					:href="mw.util.getUrl( 'Special:BlockList', { wpTarget: `#${ item.blockid }` } )"
-				>
-					{{ util.formatTimestamp( item.timestamp ) }}
-				</a>
-				<span v-else>
-					{{ util.formatTimestamp( item.timestamp ) }}
-				</span>
-			</template>
-			<template #item-hide="{ item }">
-				<a
-					class="mw-block-log__actions"
-					:href="mw.util.getUrl( 'Special:RevisionDelete', { type: 'logging', ['ids[' + item + ']']: 1 } )"
-				>
-					{{ $i18n( 'block-change-visibility' ).text() }}
-				</a>
 			</template>
 		</cdx-table>
 		<div v-if="moreBlocks" class="mw-block-log-fulllog">
@@ -326,8 +235,12 @@ module.exports = exports = defineComponent( {
 			{ id: 'reason', label: mw.message( 'blocklist-reason' ).text() },
 			{ id: 'blockedby', label: mw.message( 'blocklist-by' ).text() },
 			{ id: 'timestamp', label: mw.message( 'blocklist-timestamp' ).text(), width: '15%' },
-			...( props.blockLogType === 'active' || props.canDeleteLogEntry ?
-				[ { id: props.blockLogType === 'active' ? 'modify' : 'hide', label: mw.message( 'blocklist-actions-header' ) } ] : [] )
+			...( props.blockLogType === 'active' || props.canDeleteLogEntry ) ?
+				[ {
+					id: props.blockLogType === 'active' ? 'modify' : 'hide',
+					label: mw.message( 'blocklist-actions-header' )
+				} ] :
+				[]
 		);
 
 		const logEntries = ref( [] );
@@ -344,45 +257,31 @@ module.exports = exports = defineComponent( {
 			return mw.language.convertNumber( logEntries.value.length );
 		} );
 
-		const infoChip = computed( () => ( logEntries.value.length > 0 ? { icon: cdxIconAlert, status: 'warning' } : { icon: cdxIconInfoFilled, status: 'notice' } ) );
-		const mwNamespaces = Object.keys( mw.config.get( 'wgFormattedNamespaces' ) ).map( ( ns ) => {
-			if ( ns === '0' ) {
-				return mw.msg( 'blanknamespace' );
-			}
-			return mw.config.get( 'wgFormattedNamespaces' )[ ns ];
-		} );
+		const infoChip = computed(
+			() => logEntries.value.length > 0 ?
+				{ icon: cdxIconAlert, status: 'warning' } :
+				{ icon: cdxIconInfoFilled, status: 'notice' }
+		);
+		const mwNamespaces = mw.config.get( 'wgFormattedNamespaces' );
+		mwNamespaces[ '0' ] = mw.msg( 'blanknamespace' );
 
 		/**
 		 * Construct the data object needed for a template row, from a logentry API response.
 		 *
-		 * @param {Array} logevents
-		 * @return {Array}
+		 * @param {Object[]} logevents
+		 * @return {Object[]}
 		 */
 		function logentriesToRows( logevents ) {
-			const rows = [];
-			for ( let i = 0; i < logevents.length; i++ ) {
-				const logevent = logevents[ i ];
-				rows.push( {
-					timestamp: {
-						timestamp: logevent.timestamp,
-						logid: logevent.logid
-					},
-					type: logevent.action,
-					expiry: {
-						expires: logevent.params.expiry,
-						duration: logevent.params.duration,
-						type: logevent.action
-					},
-					blockedby: logevent.user,
-					parameters: {
-						flags: logevent.params.flags,
-						restrictions: logevent.params.restrictions ? logevent.params.restrictions : null
-					},
-					reason: logevent.parsedcomment,
-					hide: logevent.logid
-				} );
-			}
-			return rows;
+			return logevents.map( ( logevent ) => ( {
+				timestamp: logevent.timestamp,
+				logid: logevent.logid,
+				action: logevent.action,
+				expiry: logevent.params.expiry,
+				blockedby: logevent.user,
+				flags: logevent.params.flags,
+				restrictions: logevent.params.restrictions,
+				parsedreason: logevent.parsedcomment
+			} ) );
 		}
 
 		watch( targetUser, ( newValue ) => {
@@ -407,32 +306,27 @@ module.exports = exports = defineComponent( {
 
 					} else {
 						// List of active blocks.
-						for ( let i = 0; i < data.blocks.length; i++ ) {
+						for ( const block of data.blocks ) {
 							newData.push( {
 								// Store the entire API response, for passing in when editing the block.
-								modify: data.blocks[ i ],
-								timestamp: {
-									timestamp: data.blocks[ i ].timestamp,
-									blockid: data.blocks[ i ].id
-								},
-								target: data.blocks[ i ].user,
-								expiry: {
-									expires: data.blocks[ i ].expiry,
-									duration: mw.util.isInfinity( data.blocks[ i ].expiry ) ? 'infinity' : null
-								},
-								blockedby: data.blocks[ i ].by,
-								parameters: {
-									flags: [
-										data.blocks[ i ].anononly ? 'anononly' : null,
-										data.blocks[ i ].nocreate ? 'nocreate' : null,
-										data.blocks[ i ].autoblock ? null : 'noautoblock',
-										data.blocks[ i ].noemail ? 'noemail' : null,
-										data.blocks[ i ].allowusertalk ? null : 'nousertalk',
-										data.blocks[ i ].hidden ? 'hiddenname' : null
-									].filter( ( e ) => e !== null ),
-									restrictions: Object.keys( data.blocks[ i ].restrictions ).length ? data.blocks[ i ].restrictions : null
-								},
-								reason: data.blocks[ i ].parsedreason
+								modify: block,
+								// Data as needed by the template.
+								id: block.id,
+								timestamp: block.timestamp,
+								target: block.user,
+								partial: block.partial,
+								expiry: block.expiry,
+								blockedby: block.by,
+								flags: [
+									block.anononly ? 'anononly' : null,
+									block.nocreate ? 'nocreate' : null,
+									block.autoblock ? null : 'noautoblock',
+									block.noemail ? 'noemail' : null,
+									block.allowusertalk ? null : 'nousertalk',
+									block.hidden ? 'hiddenname' : null
+								].filter( ( e ) => e !== null ),
+								restrictions: block.restrictions,
+								parsedreason: block.parsedreason
 							} );
 						}
 					}
@@ -477,10 +371,6 @@ module.exports = exports = defineComponent( {
 		justify-content: flex-start;
 	}
 
-	table ul {
-		margin: 0;
-	}
-
 	.cdx-accordion__content {
 		font-size: unset;
 	}
@@ -489,15 +379,15 @@ module.exports = exports = defineComponent( {
 		white-space: nowrap;
 	}
 
-	table ul.mw-block-parameters {
-		margin-left: 1.7em;
+	.mw-block-log__parameters > ul {
+		margin-left: @spacing-75;
 	}
 
 	tr.cdx-selected-block-row {
 		background: @background-color-progressive-subtle--hover;
 	}
 
-	.mw-active-blocks__actions {
+	.mw-block-log__actions {
 		display: flex;
 	}
 }
