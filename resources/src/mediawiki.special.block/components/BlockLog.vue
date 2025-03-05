@@ -5,7 +5,7 @@
 	>
 		<template #title>
 			{{ title }}
-			<cdx-info-chip :icon="cdxIconAlert" :status="infoChipStatus">
+			<cdx-info-chip :icon="infoChip.icon" :status="infoChip.status">
 				{{ logEntriesCount }}
 			</cdx-info-chip>
 		</template>
@@ -284,7 +284,7 @@ const { computed, defineComponent, ref, watch } = require( 'vue' );
 const { CdxAccordion, CdxTable, CdxButton, CdxInfoChip } = require( '@wikimedia/codex' );
 const { storeToRefs } = require( 'pinia' );
 const useBlockStore = require( '../stores/block.js' );
-const { cdxIconAlert } = require( '../icons.json' );
+const { cdxIconInfoFilled, cdxIconAlert } = require( '../icons.json' );
 
 module.exports = exports = defineComponent( {
 	name: 'BlockLog',
@@ -352,7 +352,7 @@ module.exports = exports = defineComponent( {
 			return mw.language.convertNumber( logEntries.value.length );
 		} );
 
-		const infoChipStatus = computed( () => logEntries.value.length > 0 ? 'warning' : 'notice' );
+		const infoChip = computed( () => ( logEntries.value.length > 0 ? { icon: cdxIconAlert, status: 'warning' } : { icon: cdxIconInfoFilled, status: 'notice' } ) );
 		const mwNamespaces = Object.keys( mw.config.get( 'wgFormattedNamespaces' ) ).map( ( ns ) => {
 			if ( ns === '0' ) {
 				return mw.msg( 'blanknamespace' );
@@ -475,11 +475,10 @@ module.exports = exports = defineComponent( {
 			blockId,
 			targetUser,
 			logEntriesCount,
-			infoChipStatus,
+			infoChip,
 			formVisible,
 			shouldShowAddBlockButton,
-			mwNamespaces,
-			cdxIconAlert
+			mwNamespaces
 		};
 	}
 } );

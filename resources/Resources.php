@@ -2314,7 +2314,8 @@ return [
 				'callbackParam' => [
 					'cdxIconCancel',
 					'cdxIconSearch',
-					'cdxIconAlert'
+					'cdxIconAlert',
+					'cdxIconInfoFilled',
 				],
 			],
 		],
