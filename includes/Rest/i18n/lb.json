@@ -17,6 +17,7 @@
 	"rest-param-desc-search-q": "Sichbegrëffer",
 	"rest-property-desc-revision-id": "Versiouns-ID",
 	"rest-property-desc-page-timestamp-html": "Zäitstempel vun der leschter Versioun am ISO-8601-Format",
+	"rest-property-desc-revision-user-name": "Benotzernumm",
 	"rest-schema-desc-revision-metadata": "Revisiounsmetadonnéeën",
 	"rest-schema-desc-bare-page": "Säit ouni Inhalt"
 }

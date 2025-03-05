@@ -88,5 +88,11 @@
 	"rest-param-desc-search-q": "검색 용어",
 	"rest-param-desc-search-limit": "반환할 항목 수",
 	"rest-property-desc-revision-id": "판 ID",
+	"rest-property-desc-page-id": "문서 식별자",
+	"rest-property-desc-page-title": "문서 제목",
+	"rest-property-desc-page-timestamp": "최신 판의 타임스탬프",
+	"rest-property-desc-page-license": "위키 라이선스 정보",
+	"rest-property-desc-revision-user-id": "사용자 식별자",
+	"rest-property-desc-revision-user-name": "사용자 이름",
 	"rest-schema-desc-revision-metadata": "판 메타데이터"
 }

@@ -1,6 +1,8 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"Laos è una regione"
+		]
 	},
 	"january": "Ianuari",
 	"february": "Fepuari",
@@ -34,7 +36,7 @@
 	"jun": "Iuni",
 	"jul": "Iul",
 	"aug": "Aok",
-	"sep": "Setema",
+	"sep": "Set",
 	"oct": "Oke",
 	"nov": "Nov",
 	"dec": "Tes",
