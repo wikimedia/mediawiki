@@ -2702,6 +2702,7 @@
 	"blocklist-tempuserblocks": "Hide temporary account blocks",
 	"blocklist-type": "Type:",
 	"blocklist-type-header": "Type",
+	"blocklist-actions-header": "Actions",
 	"blocklist-type-opt-all": "All",
 	"blocklist-type-opt-sitewide": "Sitewide",
 	"blocklist-type-opt-partial": "Partial",

@@ -94,6 +94,7 @@
 				<hr class="mw-block-hr">
 				<cdx-button
 					action="default"
+					data-test="cancel-edit-button"
 					weight="primary"
 					@click="onFormCancel"
 				>
