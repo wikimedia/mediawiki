@@ -398,9 +398,14 @@ class FindBadBlobs extends Maintenance {
 		$address = $slot->getAddress();
 
 		try {
-			$this->blobStore->getBlob( $address );
-			// nothing to do
-			return 0;
+			$blob = $this->blobStore->getBlob( $address );
+			if ( mb_check_encoding( $blob ) ) {
+				// nothing to do
+				return 0;
+			} else {
+				$type = 'invalid-utf-8';
+				$error = 'Invalid UTF-8';
+			}
 		} catch ( Exception $ex ) {
 			$error = $ex->getMessage();
 			$type = get_class( $ex );
