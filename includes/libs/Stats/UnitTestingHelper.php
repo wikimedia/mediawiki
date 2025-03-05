@@ -285,8 +285,8 @@ class UnitTestingHelper {
 			);
 			throw new InvalidArgumentException( "Filter components cannot be empty." );
 		}
-		$key = preg_replace( '/[^a-z\d_]+/i', '', $key );
-		$value = preg_replace( '/[^a-z\d_]+/i', '', $value );
+		$key = preg_replace( '/[^a-zA-Z0-9_]+/', '', $key );
+		$value = preg_replace( '/[^a-zA-Z0-9_]+/', '', $value );
 		return [ $key, $value, $operator ];
 	}
 

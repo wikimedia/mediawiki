@@ -12,6 +12,7 @@ use Wikimedia\Stats\Metrics\NullMetric;
 use Wikimedia\Stats\OutputFormats;
 use Wikimedia\Stats\StatsCache;
 use Wikimedia\Stats\StatsFactory;
+use Wikimedia\Stats\StatsUtils;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -437,6 +438,12 @@ class MetricTest extends TestCase {
 				$samples
 			)
 		);
+	}
+
+	public function testNormalizeStringLocaleHardening() {
+		// Confirm that e.g. the Turkish capital I (U+0130) is stripped
+		// It might not be e.g. when using the tr_TR locale on PHP < 8.2
+		$this->assertSame( 'test_value', StatsUtils::normalizeString( "test\u{0130} value" ) );
 	}
 
 	public function testSetLabelReserved() {

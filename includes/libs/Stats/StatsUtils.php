@@ -128,11 +128,15 @@ class StatsUtils {
 	 * Replace all other non-alphanumeric characters with an underscore.
 	 * Trim leading or trailing underscores.
 	 *
+	 * Note: We are not using /i (case-insensitive flag)
+	 * or \d (digit character class escape) here because
+	 * their behavior changes with respect to locale settings.
+	 *
 	 * @param string $entity
 	 * @return string
 	 */
 	public static function normalizeString( string $entity ): string {
-		$entity = preg_replace( '/[^a-z\d]+/i', '_', $entity );
-		return trim( $entity, "_" );
+		$entity = preg_replace( '/[^a-zA-Z0-9]+/', '_', $entity );
+		return trim( $entity, '_' );
 	}
 }

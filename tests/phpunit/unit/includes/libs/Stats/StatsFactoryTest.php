@@ -56,7 +56,7 @@ class StatsFactoryTest extends TestCase {
 	public function testNormalizeString() {
 		$this->assertEquals(
 			'new_metric_and_things',
-			StatsUtils::normalizeString( 'new metric  @#&^and *-&-*things-*&-*!@#&^%#$' )
+			StatsUtils::normalizeString( '_new metric  ____@#&^and *-&-*things-*&-*!@#&^%#$__' )
 		);
 	}
 
