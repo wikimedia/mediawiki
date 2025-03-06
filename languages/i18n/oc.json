@@ -2899,7 +2899,7 @@
 	"confirm-purge-bottom": "Purgar una pagina vioda l'escondedor e fòrça la darrièra version a èsser afichada.",
 	"confirm-watch-button": "D'acòrdi",
 	"confirm-watch-top": "Apondre aquesta pagina a vòstra lista de seguiment ?",
-	"watchlist-expiry-options": "Permanent:infinite,1 setmana:1 week,1 mes:1 month,3 meses:3 months,6 meses:6 months",
+	"watchlist-expiry-options": "Permanent:infinite,1 setmana:1 week,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 an:1 year",
 	"confirm-unwatch-button": "D'acòrdi",
 	"confirm-unwatch-top": "Levar aquesta pagina de vòstra lista de seguiment ?",
 	"confirm-rollback-button": "D'acòrdi",
