@@ -367,4 +367,30 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertIsString( $pager->getBody() );
 		$this->assertSame( 1, $pager->getNumRows() );
 	}
+
+	/** @dataProvider provideHasAppliedFilters */
+	public function testHasAppliedFilters( $options, $expectedReturnValue ) {
+		$pager = $this->getContribsPager( $options );
+		$this->assertSame( $expectedReturnValue, $pager->hasAppliedFilters() );
+	}
+
+	public static function provideHasAppliedFilters() {
+		return [
+			'Filters for namespace' => [ [ 'target' => '127.0.0.1', 'namespace' => NS_MAIN ], true ],
+			'Filters for tagfilter' => [ [ 'target' => '127.0.0.1', 'tagfilter' => 'tag' ], true ],
+			'Filters for multiple tagfilter' => [
+				[ 'target' => '127.0.0.1', 'tagfilter' => [ 'tag', 'tag2' ] ], true
+			],
+			'Filters for topOnly' => [ [ 'target' => '127.0.0.1', 'topOnly' => true ], true ],
+			'Filters for newOnly' => [ [ 'target' => '127.0.0.1', 'newOnly' => true ], true ],
+			'Filters for hideMinor' => [ [ 'target' => '127.0.0.1', 'hideMinor' => true ], true ],
+			'Filters for deletedOnly' => [ [ 'target' => '127.0.0.1', 'deletedOnly' => true ], true ],
+			'Filters for start' => [ [ 'target' => '127.0.0.1', 'start' => '2025-04-05' ], true ],
+			'Filters for end' => [ [ 'target' => '127.0.0.1', 'end' => '2025-05-05' ], true ],
+			'Filters for start and end' => [
+				[ 'target' => '127.0.0.1', 'start' => '2025-04-05', 'end' => '2025-05-05' ], true
+			],
+			'No filters (except for target)' => [ [ 'target' => '1.2.3.4' ], false ],
+		];
+	}
 }

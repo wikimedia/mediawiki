@@ -92,44 +92,44 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 	/**
 	 * @var bool Set to true to invert the tag selection
 	 */
-	private $tagInvert;
+	private bool $tagInvert;
 
 	/**
 	 * @var bool Set to true to invert the namespace selection
 	 */
-	private $nsInvert;
+	private bool $nsInvert;
 
 	/**
 	 * @var bool Set to true to show both the subject and talk namespace, no matter which got
 	 *  selected
 	 */
-	private $associated;
+	private bool $associated;
 
 	/**
 	 * @var bool Set to true to show only deleted revisions
 	 */
-	private $deletedOnly;
+	private bool $deletedOnly;
 
 	/**
 	 * @var bool Set to true to show only latest (a.k.a. current) revisions
 	 */
-	private $topOnly;
+	private bool $topOnly;
 
 	/**
 	 * @var bool Set to true to show only new pages
 	 */
-	private $newOnly;
+	private bool $newOnly;
 
 	/**
 	 * @var bool Set to true to hide edits marked as minor by the user
 	 */
-	private $hideMinor;
+	private bool $hideMinor;
 
 	/**
 	 * @var bool Set to true to only include mediawiki revisions.
 	 * (restricts extensions from executing additional queries to include their own contributions)
 	 */
-	private $revisionsOnly;
+	private bool $revisionsOnly;
 
 	/** @var bool */
 	private $preventClickjacking = false;
@@ -498,6 +498,23 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 	 */
 	public function getNamespace() {
 		return $this->namespace;
+	}
+
+	/**
+	 * Whether the pager has any filters applied, ignoring whether the target username / IP
+	 * for this check.
+	 *
+	 * Used to determine whether the current search may produce results if the
+	 * filters were changed for UI messages when no results are displayed.
+	 *
+	 * Currently does not support checking if filters added via the
+	 * onSpecialContributions__getForm__filters hook are applied to the current query.
+	 *
+	 * @return bool
+	 */
+	public function hasAppliedFilters(): bool {
+		return $this->startOffset || $this->endOffset || $this->namespace !== '' || $this->tagFilter ||
+			$this->deletedOnly || $this->newOnly || $this->hideMinor || $this->topOnly;
 	}
 
 	protected function doBatchLookups() {
