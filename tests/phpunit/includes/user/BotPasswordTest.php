@@ -45,14 +45,14 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 		$mock1 = $this->getMockForAbstractClass( CentralIdLookup::class );
 		$mock1->method( 'isAttached' )
 			->willReturn( true );
-		$mock1->method( 'lookupUserNames' )
+		$mock1->method( 'lookupUserNamesWithFilter' )
 			->willReturn( [ $this->testUserName => 42, 'UTDummy' => 43, 'UTInvalid' => 0 ] );
 		$mock1->expects( $this->never() )->method( 'lookupCentralIds' );
 
 		$mock2 = $this->getMockForAbstractClass( CentralIdLookup::class );
 		$mock2->method( 'isAttached' )
 			->willReturn( false );
-		$mock2->method( 'lookupUserNames' )
+		$mock2->method( 'lookupUserNamesWithFilter' )
 			->willReturnArgument( 0 );
 		$mock2->expects( $this->never() )->method( 'lookupCentralIds' );
 

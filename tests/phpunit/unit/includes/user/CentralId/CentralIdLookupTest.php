@@ -153,9 +153,10 @@ class CentralIdLookupTest extends MediaWikiUnitTestCase {
 
 	public function testCentralIdFromName() {
 		$mock = $this->getMockForAbstractClass( CentralIdLookup::class );
-		$mock->expects( $this->once() )->method( 'lookupUserNames' )
+		$mock->expects( $this->once() )->method( 'lookupUserNamesWithFilter' )
 			->with(
 				[ 'FooBar' => 0 ],
+				CentralIdLookup::FILTER_NONE,
 				CentralIdLookup::AUDIENCE_RAW,
 				IDBAccessObject::READ_LATEST
 			)
@@ -169,11 +170,10 @@ class CentralIdLookupTest extends MediaWikiUnitTestCase {
 
 	public function testCentralIdFromLocalUser() {
 		$mock = $this->getMockForAbstractClass( CentralIdLookup::class );
-		$mock->method( 'isAttached' )
-			->willReturn( true );
-		$mock->expects( $this->once() )->method( 'lookupUserNames' )
+		$mock->expects( $this->once() )->method( 'lookupUserNamesWithFilter' )
 			->with(
 				[ 'FooBar' => 0 ],
+				CentralIdLookup::FILTER_ATTACHED,
 				CentralIdLookup::AUDIENCE_RAW,
 				IDBAccessObject::READ_LATEST
 			)
@@ -181,20 +181,6 @@ class CentralIdLookupTest extends MediaWikiUnitTestCase {
 
 		$this->assertSame(
 			23,
-			$mock->centralIdFromLocalUser(
-				new UserIdentityValue( 10, 'FooBar' ),
-				CentralIdLookup::AUDIENCE_RAW,
-				IDBAccessObject::READ_LATEST
-			)
-		);
-
-		$mock = $this->getMockForAbstractClass( CentralIdLookup::class );
-		$mock->method( 'isAttached' )
-			->willReturn( false );
-		$mock->expects( $this->never() )->method( 'lookupUserNames' );
-
-		$this->assertSame(
-			0,
 			$mock->centralIdFromLocalUser(
 				new UserIdentityValue( 10, 'FooBar' ),
 				CentralIdLookup::AUDIENCE_RAW,

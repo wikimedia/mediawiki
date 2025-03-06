@@ -76,7 +76,17 @@ class LocalIdLookup extends CentralIdLookup {
 			return false;
 		}
 
-		// Easy case, we're checking locally
+		return $this->isWikiSharingOurUsers( $wikiId );
+	}
+
+	/**
+	 * Check if the specified wiki shares a user table with the current wiki
+	 *
+	 * @param string|false $wikiId
+	 * @return bool
+	 */
+	private function isWikiSharingOurUsers( $wikiId ) {
+		// Easy case, the local wiki
 		if ( !$wikiId || WikiMap::isCurrentWikiId( $wikiId ) ) {
 			return true;
 		}
@@ -115,11 +125,19 @@ class LocalIdLookup extends CentralIdLookup {
 		return $idToName;
 	}
 
-	public function lookupUserNames(
-		array $nameToId, $audience = self::AUDIENCE_PUBLIC, $flags = IDBAccessObject::READ_NORMAL
+	public function lookupUserNamesWithFilter(
+		array $nameToId, $filter, $audience = self::AUDIENCE_PUBLIC,
+		$flags = IDBAccessObject::READ_NORMAL,
+		$wikiId = UserIdentity::LOCAL
 	): array {
 		if ( !$nameToId ) {
 			return [];
+		}
+		if ( ( $filter === self::FILTER_ATTACHED || $filter === self::FILTER_OWNED )
+			&& !$this->isWikiSharingOurUsers( $wikiId )
+		) {
+			// No users pass the filter
+			return $nameToId;
 		}
 
 		$audience = $this->checkAudience( $audience );

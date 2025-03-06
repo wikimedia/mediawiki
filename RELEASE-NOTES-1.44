@@ -319,6 +319,8 @@ because of Phabricator reports.
   used in a previous call was sometimes used.
 * MediaWikiTitleCodec has been split. TitleParser and TitleFormatter are now
   classes rather than interfaces. Remove all references to MediaWikiTitleCodec.
+* A new abstract method, CentralIdLookup::lookupUserNamesWithFilter(), was
+  added. This is a breaking change for extensions that extend this class.
 * …
 
 === Deprecations in 1.44 ===
