@@ -150,6 +150,10 @@ main {
 	margin: 10px;
 }
 
+.config-block {
+	padding-bottom: 1em;
+}
+
 .config-submit {
 	margin: 5px 0 5px 0;
 }

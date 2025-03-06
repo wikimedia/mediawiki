@@ -1200,6 +1200,13 @@ class WebInstaller extends Installer {
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getDefaultServer() {
+		return $this->envGetDefaultServer();
+	}
+
+	/**
 	 * Actually output LocalSettings.php for download
 	 */
 	private function outputLS() {

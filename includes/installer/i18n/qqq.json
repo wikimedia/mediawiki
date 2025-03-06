@@ -166,6 +166,8 @@
 	"config-mysql-engine": "Field label for MySQL storage engine in the MediaWiki installer.",
 	"config-mysql-innodb": "Option for the MySQL storage engine in the MediaWiki installer.",
 	"config-mysql-engine-help": "Help text in MediaWiki installer with advice for picking a MySQL storage engine.",
+	"config-server": "Field label for the URL host name",
+	"config-server-help": "Help text for the URL host name",
 	"config-site-name": "Field label for the form field where a wiki name has to be entered.",
 	"config-site-name-help": "Help text for the form field where a wiki name has to be entered.",
 	"config-site-name-blank": "Error text in the MediaWiki installer when the site name is left empty.",

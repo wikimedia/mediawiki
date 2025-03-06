@@ -103,8 +103,6 @@ class WebInstallerDBConnect extends WebInstallerPage {
 
 		}
 
-		$types .= "<br style=\"clear: left\"/>\n";
-
 		$this->addHTML( $this->parent->label( 'config-db-type', false, $types ) . $settings );
 		$this->endForm();
 

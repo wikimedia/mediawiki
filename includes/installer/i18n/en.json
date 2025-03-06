@@ -141,6 +141,8 @@
 	"config-mysql-engine": "Storage engine:",
 	"config-mysql-innodb": "InnoDB (recommended)",
 	"config-mysql-engine-help": "<strong>InnoDB</strong> is almost always the best option, since it has good concurrency support.\n\n<strong>MyISAM</strong> may be faster in single-user or read-only installations.\nMyISAM databases tend to get corrupted more often than InnoDB databases.",
+	"config-server": "URL host name:",
+	"config-server-help": "The protocol and host name part of the URL used to access your wiki. The automatically detected default is usually correct.",
 	"config-site-name": "Name of wiki:",
 	"config-site-name-help": "This will appear in the title bar of the browser and in various other places.",
 	"config-site-name-blank": "Enter a site name.",
