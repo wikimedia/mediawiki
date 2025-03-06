@@ -24,9 +24,6 @@ use Wikimedia\TestingAccessWrapper;
  */
 class ApiStructureTest extends MediaWikiIntegrationTestCase {
 
-	/** @var ApiMain */
-	private static $main;
-
 	/** @var array Sets of globals to test. Each array element is input to HashConfig */
 	private static $testGlobals = [
 		[
@@ -37,24 +34,18 @@ class ApiStructureTest extends MediaWikiIntegrationTestCase {
 		],
 	];
 
-	/**
-	 * Initialize/fetch the ApiMain instance for testing
-	 * @return ApiMain
-	 */
-	private static function getMain() {
-		if ( !self::$main ) {
-			self::$main = new ApiMain( RequestContext::getMain() );
-			self::$main->getContext()->setLanguage( 'en' );
-			self::$main->getContext()->setTitle(
-				Title::makeTitle( NS_SPECIAL, 'Badtitle/dummy title for ApiStructureTest' )
-			);
+	private static function newMain(): ApiMain {
+		$main = new ApiMain( RequestContext::getMain() );
+		$main->getContext()->setLanguage( 'en' );
+		$main->getContext()->setTitle(
+			Title::makeTitle( NS_SPECIAL, 'Badtitle/dummy title for ApiStructureTest' )
+		);
 
-			// Inject ApiDisabled and ApiQueryDisabled so they can be tested too
-			self::$main->getModuleManager()->addModule( 'disabled', 'action', ApiDisabled::class );
-			self::$main->getModuleFromPath( 'query' )
-				->getModuleManager()->addModule( 'query-disabled', 'meta', ApiQueryDisabled::class );
-		}
-		return self::$main;
+		// Inject ApiDisabled and ApiQueryDisabled so they can be tested too
+		$main->getModuleManager()->addModule( 'disabled', 'action', ApiDisabled::class );
+		$main->getModuleFromPath( 'query' )
+			->getModuleManager()->addModule( 'query-disabled', 'meta', ApiQueryDisabled::class );
+		return $main;
 	}
 
 	/**
@@ -77,7 +68,7 @@ class ApiStructureTest extends MediaWikiIntegrationTestCase {
 		// Set configuration variables
 		$this->overrideConfigValues( $globals );
 
-		$main = self::getMain();
+		$main = self::newMain();
 
 		// Fetch module.
 		$module = TestingAccessWrapper::newFromObject( $main->getModuleFromPath( $path ) );
@@ -107,7 +98,7 @@ class ApiStructureTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideDocumentationExists() {
-		$main = self::getMain();
+		$main = self::newMain();
 		$paths = self::getSubModulePaths( $main->getModuleManager() );
 		array_unshift( $paths, $main->getModulePath() );
 
@@ -125,9 +116,7 @@ class ApiStructureTest extends MediaWikiIntegrationTestCase {
 		return $ret;
 	}
 
-	private function doTestParameters( string $path, array $params, string $name ): void {
-		$main = self::getMain();
-
+	private function doTestParameters( string $path, array $params, string $name, ApiMain $main ): void {
 		$dataName = $this->dataName();
 		$this->assertNotSame( '', $name, "$dataName: Name cannot be empty" );
 		$this->assertArrayHasKey( $name, $params, "$dataName: Existence check" );
@@ -171,7 +160,8 @@ class ApiStructureTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideParameters
 	 */
-	public function testParameters( string $path, string $argset, array $args, ApiMain $main ): void {
+	public function testParameters( string $path, string $argset, array $args ): void {
+		$main = self::newMain();
 		$module = $main->getModuleFromPath( $path );
 		$params = $module->getFinalParams( ...$args );
 		if ( !$params ) {
@@ -179,12 +169,12 @@ class ApiStructureTest extends MediaWikiIntegrationTestCase {
 			return;
 		}
 		foreach ( $params as $param => $_ ) {
-			$this->doTestParameters( $path, $params, $param );
+			$this->doTestParameters( $path, $params, $param, $main );
 		}
 	}
 
 	public static function provideParameters(): Iterator {
-		$main = self::getMain();
+		$main = self::newMain();
 		$paths = self::getSubModulePaths( $main->getModuleManager() );
 		array_unshift( $paths, $main->getModulePath() );
 		$argsets = [
@@ -196,7 +186,7 @@ class ApiStructureTest extends MediaWikiIntegrationTestCase {
 			foreach ( $argsets as $argset => $args ) {
 				// NOTE: Retrieving the module parameters here may have side effects such as DB queries that
 				// should be avoided in data providers (T341731). So do that in the test method instead.
-				yield "Module $path, argset $argset" => [ $path, $argset, $args, $main ];
+				yield "Module $path, argset $argset" => [ $path, $argset, $args ];
 			}
 		}
 	}
@@ -206,7 +196,7 @@ class ApiStructureTest extends MediaWikiIntegrationTestCase {
 	 * @param ApiModuleManager $manager
 	 * @return string[]
 	 */
-	protected static function getSubModulePaths( ApiModuleManager $manager ) {
+	private static function getSubModulePaths( ApiModuleManager $manager ) {
 		$paths = [];
 		foreach ( $manager->getNames() as $name ) {
 			$module = $manager->getModule( $name );
