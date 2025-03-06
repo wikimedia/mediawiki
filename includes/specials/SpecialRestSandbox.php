@@ -129,7 +129,15 @@ class SpecialRestSandbox extends SpecialPage {
 		) );
 
 		// To be replaced by Swagger UI.
-		$out->addElement( 'div', [ 'id' => 'mw-restsandbox-swagger-ui' ] );
+		$out->addElement( 'div', [
+			'id' => 'mw-restsandbox-swagger-ui',
+			// Force direction to "LTR" with swagger-ui.
+			// Since the swagger content is not internationalized, the information is always in English.
+			// We have to force the direction to "LTR" to avoid the content (specifically json strings)
+			// from being mangled.
+			'dir' => 'ltr',
+			'lang' => 'en'
+		] );
 
 		$out->addHTML( Html::closeElement( 'div' ) ); // #mw-restsandbox
 	}
