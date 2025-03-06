@@ -8,6 +8,7 @@
 	"cdx-dialog-close-button-label": "Schließen",
 	"cdx-label-optional-flag": "(optional)",
 	"cdx-message-dismiss-button-label": "Schließen",
+	"cdx-popover-close-button-label": "Schließen",
 	"cdx-search-input-search-button-label": "Suchen",
 	"cdx-table-select-all-label": "Alle Zeilen auswählen",
 	"cdx-table-select-row-label": "Zeile $1 von $2 auswählen",
