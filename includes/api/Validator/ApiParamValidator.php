@@ -247,12 +247,21 @@ class ApiParamValidator {
 		}
 
 		if ( isset( $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE] ) ) {
+			// ! keep these checks in sync with \MediaWiki\Api\ApiBase::getFinalParamDescription
 			if ( !is_array( $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE] ) ) {
 				$ret['issues'][ApiBase::PARAM_HELP_MSG_PER_VALUE] = 'PARAM_HELP_MSG_PER_VALUE must be an array,'
 					. ' got ' . gettype( $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE] );
-			} elseif ( !is_array( $settings[ParamValidator::PARAM_TYPE] ?? '' ) ) {
+			} elseif ( !( is_array( $settings[ParamValidator::PARAM_TYPE] ?? '' ) || (
+					$settings[ParamValidator::PARAM_TYPE] === 'string'
+					&& ( $settings[ParamValidator::PARAM_ISMULTI] ?? false )
+				) ) ) {
 				$ret['issues'][ApiBase::PARAM_HELP_MSG_PER_VALUE] = 'PARAM_HELP_MSG_PER_VALUE can only be used '
-					. 'with PARAM_TYPE as an array';
+					. 'with PARAM_TYPE as an array, or PARAM_TYPE = string and PARAM_ISMULTI = true';
+			} elseif ( $settings[ParamValidator::PARAM_TYPE] === 'string'
+				&& ( $settings[ParamValidator::PARAM_ISMULTI] ?? false ) ) {
+				foreach ( $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE] as $k => $v ) {
+					$this->checkSettingsMessage( $module, "PARAM_HELP_MSG_PER_VALUE[$k]", $v, $ret );
+				}
 			} else {
 				$values = array_map( 'strval', $settings[ParamValidator::PARAM_TYPE] );
 				foreach ( $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE] as $k => $v ) {
