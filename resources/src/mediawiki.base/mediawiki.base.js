@@ -502,6 +502,7 @@ const hooks = Object.create( null );
 mw.hook = function ( name ) {
 	return hooks[ name ] || ( hooks[ name ] = ( function () {
 		let memory;
+		let deprecated;
 		const fns = [];
 		function rethrow( e ) {
 			setTimeout( () => {
@@ -523,6 +524,9 @@ mw.hook = function ( name ) {
 			 * @return {Hook}
 			 */
 			add: function () {
+				if ( deprecated ) {
+					deprecated();
+				}
 				for ( let i = 0; i < arguments.length; i++ ) {
 					fns.push( arguments[ i ] );
 					if ( memory ) {
@@ -552,6 +556,32 @@ mw.hook = function ( name ) {
 				return this;
 			},
 			/**
+			 * Enable a deprecation warning, logged after registering a hook handler.
+			 *
+			 * @example
+			 * mw.hook( 'myhook' ).deprecate().fire( data );
+			 *
+			 * @example
+			 * mw.hook( 'myhook' )
+			 *   .deprecate( 'Use the "someother" hook instead.' )
+			 *   .fire( data );
+			 *
+			 * NOTE: This must be called before calling fire(), as otherwise some
+			 * hook handlers may be registered and fired without being reported.
+			 *
+			 * @memberof Hook
+			 * @param {string} msg Optional extra text to add to the deprecation warning
+			 * @return {Hook}
+			 * @chainable
+			 */
+			deprecate: function ( msg ) {
+				deprecated = mw.log.makeDeprecated(
+					`hook_${ name }`,
+					`mw.hook "${ name }" is deprecated.` + ( msg ? ' ' + msg : '' )
+				);
+				return this;
+			},
+			/**
 			 * Call hook handlers with data.
 			 *
 			 * @memberof Hook
@@ -560,6 +590,10 @@ mw.hook = function ( name ) {
 			 * @chainable
 			 */
 			fire: function () {
+				if ( deprecated && fns.length ) {
+					deprecated();
+				}
+
 				for ( let i = 0; i < fns.length; i++ ) {
 					try {
 						fns[ i ].apply( null, arguments );
@@ -568,6 +602,7 @@ mw.hook = function ( name ) {
 					}
 				}
 				memory = slice.call( arguments );
+
 				return this;
 			}
 		};

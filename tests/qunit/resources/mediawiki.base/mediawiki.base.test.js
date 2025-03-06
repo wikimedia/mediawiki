@@ -224,6 +224,83 @@ QUnit.module( 'mediawiki.base', ( hooks ) => {
 		);
 	} );
 
+	QUnit.test( 'mw.hook - deprecate() [add first]', function ( assert ) {
+		this.sandbox.stub( mw.log, 'warn', ( msg ) => {
+			assert.step( 'warn: ' + msg );
+		} );
+
+		mw.hook( 'test.deprecated_first' ).add( ( a, b ) => {
+			assert.step( 'call handler1: ' + a + b );
+		} );
+		mw.hook( 'test.deprecated_first' ).add( ( a, b ) => {
+			assert.step( 'call handler2: ' + a + b );
+		} );
+		assert.verifySteps( [], 'no warning until we know it is deprecated' );
+
+		mw.hook( 'test.deprecated_first' ).deprecate().fire( 'foo', 'bar' );
+		assert.verifySteps( [
+			'warn: mw.hook "test.deprecated_first" is deprecated.',
+			'call handler1: foobar',
+			'call handler2: foobar'
+		] );
+
+		// Confirm there are no duplicate warnings from the same source
+		for ( let i = 0; i < 3; i++ ) {
+			mw.hook( 'test.deprecated_first' ).add( ( a, b ) => {
+				assert.step( 'call handler3: ' + a + b );
+			} );
+		}
+		assert.verifySteps( [
+			'warn: mw.hook "test.deprecated_first" is deprecated.',
+			'call handler3: foobar',
+			'call handler3: foobar',
+			'call handler3: foobar'
+		] );
+	} );
+
+	QUnit.test( 'mw.hook - deprecate() [extra msg]', function ( assert ) {
+		this.sandbox.stub( mw.log, 'warn', ( msg ) => {
+			assert.step( 'warn: ' + msg );
+		} );
+
+		mw.hook( 'test.deprecated_msg' )
+			.deprecate( 'Use "something" instead.' )
+			.fire( 'foo', 'bar' );
+
+		mw.hook( 'test.deprecated_msg' ).add( ( a, b ) => {
+			assert.step( 'call handler1: ' + a + b );
+		} );
+
+		assert.verifySteps( [
+			'warn: mw.hook "test.deprecated_msg" is deprecated. Use "something" instead.',
+			'call handler1: foobar'
+		] );
+	} );
+
+	QUnit.test( 'mw.hook - deprecate() [add later]', function ( assert ) {
+		this.sandbox.stub( mw.log, 'warn', ( msg ) => {
+			assert.step( 'warn: ' + msg );
+		} );
+
+		mw.hook( 'test.deprecated_later' ).deprecate().fire( 'foo', 'bar' );
+
+		assert.verifySteps( [], 'no warning unless hook is used' );
+
+		mw.hook( 'test.deprecated_later' ).add( ( a, b ) => {
+			assert.step( 'call handler1: ' + a + b );
+		} );
+		mw.hook( 'test.deprecated_later' ).add( ( a, b ) => {
+			assert.step( 'call handler2: ' + a + b );
+		} );
+
+		assert.verifySteps( [
+			'warn: mw.hook "test.deprecated_later" is deprecated.',
+			'call handler1: foobar',
+			'warn: mw.hook "test.deprecated_later" is deprecated.',
+			'call handler2: foobar'
+		] );
+	} );
+
 	QUnit.test( 'mw.log.makeDeprecated()', function ( assert ) {
 		let track = [];
 		let log = [];
