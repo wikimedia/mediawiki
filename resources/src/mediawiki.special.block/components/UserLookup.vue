@@ -219,6 +219,12 @@ module.exports = exports = defineComponent( {
 				// Not a valid username or IP.
 				error = mw.message( 'nosuchusershort', currentSearchTerm.value ).text();
 				targetExists.value = false;
+
+				// If there is a previously set targetUser then we need to clear all store data
+				// since we now have an invalid target in the UserLookup text field.
+				if ( targetUser.value ) {
+					store.resetForm( true );
+				}
 			} else {
 				targetExists.value = true;
 			}

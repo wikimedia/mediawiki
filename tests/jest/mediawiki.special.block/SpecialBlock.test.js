@@ -183,7 +183,7 @@ describe( 'SpecialBlock', () => {
 
 	it( 'should reset form refs after blocking', async () => {
 		wrapper = withSubmission(
-			{ blockTargetUser: 'ActiveBlockedUser' },
+			{ blockTargetUser: 'ActiveBlockedUser', blockTargetExists: true },
 			{ block: { user: 'ActiveBlockedUser' } }
 		);
 		const store = useBlockStore();
@@ -222,7 +222,7 @@ describe( 'SpecialBlock', () => {
 		expect( wrapper.find( '.mw-block-pages' ).text() ).toStrictEqual( 'FooBar' );
 	} );
 
-	it( 'should show an "Add block" button in the Active blocks accordion', async () => {
+	it( 'should show an "Add block" button in the page', async () => {
 		wrapper = getSpecialBlock( {
 			blockTargetExists: true
 		} );
@@ -277,6 +277,37 @@ describe( 'SpecialBlock', () => {
 		expect( store.blockId ).toBeNull();
 		expect( store.reasonOther ).toStrictEqual( '' );
 		expect( wrapper.find( '[name=wpReason-other]' ).element.value ).toStrictEqual( '' );
+	} );
+
+	it( 'should show no block logs and no "Add block" button when the page is loaded with an invalid target', async () => {
+		wrapper = getSpecialBlock( {
+			blockTargetUser: 'NonexistentUser',
+			blockTargetExists: false,
+			blockId: null
+		} );
+
+		await flushPromises();
+		expect( wrapper.find( '.mw-block-log__type-active' ).exists() ).toBeFalsy();
+		expect( wrapper.find( '.mw-block-log__type-recent' ).exists() ).toBeFalsy();
+		expect( wrapper.find( '.mw-block__create-button' ).exists() ).toBeFalsy();
+	} );
+
+	it( 'should show no block logs and no "Add block" button when the target is changed from a valid to an invalid target', async () => {
+		wrapper = withSubmission(
+			{ blockTargetUser: 'ActiveBlockedUser', blockTargetExists: true },
+			{ block: { user: 'ActiveBlockedUser' } }
+		);
+
+		await flushPromises();
+		expect( wrapper.find( '.mw-block-log__type-active' ).exists() ).toBeTruthy();
+		expect( wrapper.find( '.mw-block-log__type-recent' ).exists() ).toBeTruthy();
+		expect( wrapper.find( '.mw-block__create-button' ).exists() ).toBeTruthy();
+
+		wrapper.find( '#mw-bi-target' ).setValue( 'NonexistentUser' );
+		await flushPromises();
+		expect( wrapper.find( '.mw-block-log__type-active' ).exists() ).toBeFalsy();
+		expect( wrapper.find( '.mw-block-log__type-recent' ).exists() ).toBeFalsy();
+		expect( wrapper.find( '.mw-block__create-button' ).exists() ).toBeFalsy();
 	} );
 
 	afterEach( () => {

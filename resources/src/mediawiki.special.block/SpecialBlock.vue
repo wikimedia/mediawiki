@@ -203,7 +203,7 @@ module.exports = exports = defineComponent( {
 			return mw.message( 'ipbsubmit' ).text();
 		} );
 		const confirmationOpen = ref( false );
-		const showBlockLogs = computed( () => store.targetUser || store.blockId );
+		const showBlockLogs = computed( () => ( store.targetUser && store.targetExists ) || store.blockId );
 		const removalConfirmationOpen = ref( false );
 
 		// TODO: Remove some time after deprecation
