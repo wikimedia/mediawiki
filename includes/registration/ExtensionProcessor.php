@@ -92,6 +92,7 @@ class ExtensionProcessor implements Processor {
 		'DatabaseVirtualDomains',
 		'UserOptionsStoreProviders',
 		'NotificationHandlers',
+		'NotificationMiddleware',
 	];
 
 	/**

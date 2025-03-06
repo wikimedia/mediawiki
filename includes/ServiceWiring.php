@@ -140,6 +140,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Message\MessageFormatterFactory;
+use MediaWiki\Notification\MiddlewareChain;
 use MediaWiki\Notification\NotificationService;
 use MediaWiki\OutputTransform\DefaultOutputPipelineFactory;
 use MediaWiki\OutputTransform\OutputTransformPipeline;
@@ -1441,6 +1442,7 @@ return [
 		return new NotificationService(
 			LoggerFactory::getInstance( 'Notification' ),
 			$services->getObjectFactory(),
+			$services->getService( '_NotificationMiddlewareChain' ),
 			ExtensionRegistry::getInstance()->getAttribute( 'NotificationHandlers' )
 		);
 	},
@@ -2791,6 +2793,13 @@ return [
 
 			// UserRateLimitConstraint
 			$services->getRateLimiter()
+		);
+	},
+
+	'_NotificationMiddlewareChain' => static function ( MediaWikiServices $services ): MiddlewareChain {
+		return new MiddlewareChain(
+			$services->getObjectFactory(),
+			ExtensionRegistry::getInstance()->getAttribute( 'NotificationMiddleware' )
 		);
 	},
 

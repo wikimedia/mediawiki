@@ -21,15 +21,18 @@ class NotificationService {
 
 	private LoggerInterface $logger;
 	private ObjectFactory $objectFactory;
+	private MiddlewareChain $middlewareChain;
 	private array $specs;
 
 	public function __construct(
 		LoggerInterface $logger,
 		ObjectFactory $objectFactory,
+		MiddlewareChain $middlewareChain,
 		array $specs
 	) {
 		$this->logger = $logger;
 		$this->objectFactory = $objectFactory;
+		$this->middlewareChain = $middlewareChain;
 		$this->specs = $specs;
 	}
 
@@ -59,14 +62,29 @@ class NotificationService {
 	 */
 	public function notify( Notification $notification, RecipientSet $recipients ): void {
 		$handlers = $this->getHandlers();
-		$handler = $handlers[$notification->getType()] ?? $handlers['*'] ?? null;
-		if ( $handler === null ) {
-			$this->logger->warning( "No handler defined for notification type {type}", [
-				'type' => $notification->getType(),
-			] );
-			return;
+
+		// IDEA - this can queue all notifications and send on POST_SEND
+		// The middleware can handle things like filter out duplicates?
+
+		$batch = $this->middlewareChain->process(
+			new NotificationsBatch( new NotificationEnvelope( $notification, $recipients ) )
+		);
+
+		// TODO $handler could take the entire batch instead of single notification
+		// TODO do we want to pick handlers one by one? IMHO it should fan out and let different
+		// handlers to handle notifications the way the want, for example IRC handler send irc
+		foreach ( $batch as $envelope ) {
+			$scheduledNotification = $envelope->getNotification();
+			$scheduledRecipients = $envelope->getRecipientSet();
+			$handler = $handlers[$scheduledNotification->getType()] ?? $handlers['*'] ?? null;
+			if ( $handler === null ) {
+				$this->logger->warning( "No handler defined for notification type {type}", [
+					'type' => $scheduledNotification->getType(),
+				] );
+				return;
+			}
+			$handler->notify( $scheduledNotification, $scheduledRecipients );
 		}
-		$handler->notify( $notification, $recipients );
 	}
 
 	/**
