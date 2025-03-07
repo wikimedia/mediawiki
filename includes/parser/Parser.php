@@ -308,8 +308,6 @@ class Parser {
 	public $scribunto_engine;
 	/** @deprecated since 1.42: T343230 */
 	public $extCite;
-	/** @deprecated since 1.42: T343226 */
-	public $extTemplateStylesCache;
 	/** @deprecated since 1.42: T357838 */
 	public $static_tag_buf;
 	/** @deprecated since 1.42: T203531 */
