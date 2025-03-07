@@ -157,7 +157,7 @@ class SpecialBlock extends FormSpecialPage {
 				$this->target ? $this->target->toString() : null;
 			$authority = $this->getAuthority();
 			$this->codexFormData[ 'blockShowSuppressLog' ] = $authority->isAllowed( 'suppressionlog' );
-			$this->codexFormData[ 'canDeleteLogEntry' ] = $authority->isAllowed( 'deletelogentry' );
+			$this->codexFormData[ 'blockCanDeleteLogEntry' ] = $authority->isAllowed( 'deletelogentry' );
 			$this->getOutput()->addJsConfigVars( $this->codexFormData );
 		}
 	}

@@ -189,7 +189,7 @@ module.exports = exports = defineComponent( {
 	setup() {
 		const store = useBlockStore();
 		const blockShowSuppressLog = mw.config.get( 'blockShowSuppressLog' ) || false;
-		const canDeleteLogEntry = mw.config.get( 'canDeleteLogEntry' ) || false;
+		const canDeleteLogEntry = mw.config.get( 'blockCanDeleteLogEntry' ) || false;
 		const { alreadyBlocked, formErrors, formSubmitted, formVisible, blockAdded, blockRemoved, enableMultiblocks } = storeToRefs( store );
 		const messagesContainer = ref();
 		// Value to use for BlockLog component keys, so they reload after saving.
@@ -212,7 +212,7 @@ module.exports = exports = defineComponent( {
 
 		let initialLoad = true;
 
-		// If we're editing or removing via a URL parameter, check that the block exists.
+		// If we're editing or removing via an id URL parameter, check that the block exists.
 		const blockIdUrlParam = mw.util.getParamValue( 'id' );
 		if ( blockIdUrlParam ) {
 			loadFromId( blockIdUrlParam ).then( ( data ) => {
@@ -490,15 +490,12 @@ module.exports = exports = defineComponent( {
 	margin-top: @spacing-200;
 }
 
-.mw-block-submit.cdx-button {
-	margin-top: @spacing-100;
-}
-
 .mw-block-confirm {
 	font-weight: @font-weight-normal;
 }
 
-.mw-block__create-button {
+.cdx-button.mw-block-submit,
+.cdx-button.mw-block__create-button {
 	margin-top: @spacing-100;
 }
 
