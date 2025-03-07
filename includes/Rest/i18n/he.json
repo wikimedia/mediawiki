@@ -153,6 +153,7 @@
 	"rest-property-desc-revision-title": "כותרת הגרסה. כלול רק אם הכותר x-restbase-compat משמש להפעלת תאימות RESTBase",
 	"rest-property-desc-revision-user-id": "מזהה משתמש",
 	"rest-property-desc-revision-user-name": "שם המשתמש",
+	"rest-property-desc-revision-size": "הגודל הנקוב של הגרסה הזאת, בבוגו־בתים",
 	"rest-property-desc-revision-delta": "ההבדל בגודל בהשוואה לגרסה הקודמת.",
 	"rest-property-desc-revision-comment": "תקציר העריכה שהכותב שייך לגרסה",
 	"rest-property-desc-revision-minor": "האם זאת עריכה משנית או לא",

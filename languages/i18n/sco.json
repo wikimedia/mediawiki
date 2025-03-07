@@ -1226,7 +1226,6 @@
 	"verification-error": "This file didna pass file verifeecation.",
 	"hookaborted": "The modifeecation that ye tried tae mak wis abortit bi aen exteension.",
 	"illegal-filename": "The filename isna permitit.",
-	"overwrite": "Owerwritin aen exeestin file isna permeetit.",
 	"unknown-error": "Aen onkent mistake occurred.",
 	"tmp-create-error": "Cudna mak temporar file",
 	"tmp-write-error": "Error scrievin temporar file",

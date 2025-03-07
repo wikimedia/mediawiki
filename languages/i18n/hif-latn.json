@@ -1146,7 +1146,6 @@
 	"verification-error": "Ii file ke verify nai karaa jaae sakaa hae.",
 	"hookaborted": "Jon chij ke aap badle mangaa rahaa, ke extension hook rok diis hae.",
 	"illegal-filename": "Ii naam ke file ke banae ke ijajat nai hae.",
-	"overwrite": "Abhi ke file ke uppar fir se likhe ke ijajat nai hae.",
 	"unknown-error": "Ek anjaan galti hoe gais hae.",
 	"tmp-create-error": "Temporary file ke nai banae sakaa hae.",
 	"tmp-write-error": "Temporary file me likhe me galti hoe gais hae.",

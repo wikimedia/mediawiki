@@ -79,6 +79,7 @@
 	"apihelp-main-param-curtimestamp": "在结果中包括当前时间戳。",
 	"apihelp-main-param-responselanginfo": "包含在结果中用于<var>uselang</var>和<var>errorlang</var>的语言。",
 	"apihelp-main-param-origin": "使用跨域AJAX请求(CORS)访问API时，请将其设置为来源域。这必须包括在任何预检请求中，因此必须是请求URI（而不是POST正文）的一部分。\n\n对于已验证的请求，这必须正确匹配<code>Origin</code>标头中的来源之一，因此必须将其设置为类似<kbd>https://zh.wikipedia.org</kbd>或<kbd>https://meta.wikimedia.org</kbd>的值。如果此参数与<code>Origin</code>标头不匹配，将返回403响应。如果此参数与<code>Origin</code>标头匹配并且来源被允许，则将设置<code>Access-Control-Allow-Origin</code>和<code>Access-Control-Allow-Credentials</code>标头。\n\n对于未验证的请求，请指定值<kbd>*</kbd>。这将导致<code>Access-Control-Allow-Origin</code>标头被设置，但<code>Access-Control-Allow-Credentials</code>将为<code>false</code>，且所有用户特定数据将受限制。",
+	"apihelp-main-param-crossorigin": "使用跨域AJAX请求(CORS)访问API时，如果使用的是可以抵御跨站点请求伪造(CSRF)攻击的会话提供程序（例如OAuth），则请使用此参数而非<code>origin=*</code>以保持请求处于已通过身份验证的状态（即不是已退出未登录的状态）。此参数必须包含在任何预检请求中，因此必须是请求URI（而不是POST正文）的一部分。\n\n请注意，大多数会话提供程序（包括标准的基于cookie的会话）不支持经过身份验证的CORS，因此不能使用此参数。",
 	"apihelp-main-param-uselang": "用于消息翻译的语言。<kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo&siprop=languages]]</kbd>可返回语言代码列表。您可以指定<kbd>user</kbd>以使用当前用户的语言设置，或指定<kbd>content</kbd>以使用此wiki的内容语言。",
 	"apihelp-main-param-variant": "语言变体。仅当基础语言支持变体转换时起作用。",
 	"apihelp-main-param-errorformat": "用于警告和错误文本输出的格式",

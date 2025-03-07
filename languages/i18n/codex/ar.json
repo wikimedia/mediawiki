@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Cigaryno",
 			"Gerges",
 			"Meno25",
 			"Mohammed Qays"
@@ -12,6 +13,7 @@
 	"cdx-dialog-close-button-label": "أغلق",
 	"cdx-label-optional-flag": "(اختياري)",
 	"cdx-message-dismiss-button-label": "أغلق",
+	"cdx-popover-close-button-label": "أغلق",
 	"cdx-search-input-search-button-label": "بحث",
 	"cdx-table-select-all-label": "اختر جميع الصفوف",
 	"cdx-table-select-row-label": "اختر الصف $1 من $2",

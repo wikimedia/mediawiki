@@ -1402,7 +1402,6 @@
 	"verification-error": "Cost archivi a l'ha pa passà la verìfica dj'archivi.",
 	"hookaborted": "La modìfica ch'a l'ha provà a fé a l'é stàita blocà dal gancio ëd n'estension.",
 	"illegal-filename": "Ël nòm dl'archivi a l'é nen consentì.",
-	"overwrite": "Dzorascrive ansima a n'archivi esistent a l'é nen përmëttù.",
 	"unknown-error": "A l'é capitaje n'eror nen conossù.",
 	"tmp-create-error": "A l'é nen podusse creé l'archivi temporani.",
 	"tmp-write-error": "Eror dë scritura dl'archivi temporani.",

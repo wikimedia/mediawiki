@@ -1483,7 +1483,6 @@
 	"verification-error": "Tutoj fajl ne prošla prověrjenje.",
 	"hookaborted": "Izměny, ktore poprobovali jeste sdělati, byli prěrvane hakom razširjenja.",
 	"illegal-filename": "Nazva fajla jest nedozvoljena.",
-	"overwrite": "Prěpisanje jestvujučego fajla jest nedozvoljeno.",
 	"unknown-error": "Došlo k neznajemoj pogrěšky.",
 	"tmp-create-error": "Tvorjenje vrěmennogo fajla ne udalo se.",
 	"tmp-write-error": "Pogrěška pri zapisyvanju vrěmennogo fajla.",

@@ -905,7 +905,6 @@
 	"verification-error": "檔未証也。",
 	"hookaborted": "爾嘗之改被擴展鈎棄也。",
 	"illegal-filename": "檔名乃為非法也。",
-	"overwrite": "無蓋現有之檔也。",
 	"unknown-error": "未知錯誤已發也。",
 	"tmp-create-error": "無建臨檔也。",
 	"tmp-write-error": "臨檔案寫錯也。",

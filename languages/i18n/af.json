@@ -1189,7 +1189,6 @@
 	"verification-error": "Verifikasie van die lêer wat u probeer oplaai het gefaal.",
 	"hookaborted": "Die wysiging wat u probeer maak is deur 'n uitbreiding gekanselleer.",
 	"illegal-filename": "Die lêernaam word nie toegelaat nie.",
-	"overwrite": "Die oorskryf van 'n bestaande lêer word nie toegelaat nie.",
 	"unknown-error": "'n Onbekende fout voorgekom het.",
 	"tmp-create-error": "Kon nie tydelike lêer skep nie.",
 	"tmp-write-error": "Fout met skryf van tydelike lêer.",

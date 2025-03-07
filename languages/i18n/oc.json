@@ -1366,7 +1366,6 @@
 	"verification-error": "Aqueste fichièr passa pas la verificacion dels fichièrs.",
 	"hookaborted": "La modificacion qu'avètz ensajat de realizar es estada anullada per un croquet d'extension.",
 	"illegal-filename": "Lo nom del fichièr es pas autorizat.",
-	"overwrite": "Espotir un fichièr existent es pas autorizat.",
 	"unknown-error": "Una error desconeguda s'es produita.",
 	"tmp-create-error": "Impossible de crear lo fichièr temporari.",
 	"tmp-write-error": "Error d'escritura del fichièr temporari.",

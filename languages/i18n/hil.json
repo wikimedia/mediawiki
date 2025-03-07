@@ -1504,7 +1504,6 @@
 	"verification-error": "Ini nga file wala makapasar sa pag-verify sang file.",
 	"hookaborted": "Ang pagbag-o nga imo gintinguhaan nga himuon gin-untat sang isa ka extension.",
 	"illegal-filename": "Ang ngalan sang file wala ginatugutan.",
-	"overwrite": "Ang pag-overwrite sang nagaluntad nga file wala ginatugutan.",
 	"unknown-error": "May natabo nga wala mahibaluan nga sayop.",
 	"tmp-create-error": "Indi mahimo ang temporaryo nga file.",
 	"tmp-write-error": "Sayop sa pagsulat sang temporaryo nga file.",

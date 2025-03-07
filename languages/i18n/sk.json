@@ -1418,7 +1418,6 @@
 	"verification-error": "Tento súbor neprešiel overením súboru.",
 	"hookaborted": "Zmena, ktorú ste sa pokúšali vykonať bola zrušená prípojným bodom rozšírenia.",
 	"illegal-filename": "Názov súboru nie je povolený.",
-	"overwrite": "Prepísanie existujúceho súboru nie je povolené.",
 	"unknown-error": "Vyskytla sa neznáma chyba.",
 	"tmp-create-error": "Nepodarilo sa vytvoriť dočasný súbor.",
 	"tmp-write-error": "Chyba pri zapisovaní dočasného súboru.",

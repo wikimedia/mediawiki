@@ -1475,7 +1475,6 @@
 	"verification-error": "Nece fail ei olend vahvištoittud.",
 	"hookaborted": "Vajehtuz, miččen sinä ladid tehta, oli  kel'tüd levenzoitusel.",
 	"illegal-filename": "Failan nimi ei ole lasktud.",
-	"overwrite": "Ei sa udes kirjutada nügüdläšt failad.",
 	"unknown-error": "Tegihe tundmatoi viga.",
 	"tmp-create-error": "Ei sa tehta keskaigašt failad.",
 	"tmp-write-error": "Keskaigaižen failan kirjutamižen viga.",

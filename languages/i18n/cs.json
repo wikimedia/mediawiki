@@ -1561,7 +1561,6 @@
 	"verification-error": "Soubor nevyhověl při ověřování.",
 	"hookaborted": "Požadovaná úprava byla zamítnuta některým rozšířením.",
 	"illegal-filename": "Tento název souboru není dovolen.",
-	"overwrite": "Není dovoleno přepsat existující soubor.",
 	"unknown-error": "Došlo k neznámé chybě.",
 	"tmp-create-error": "Nepodařilo se vytvořit dočasný soubor.",
 	"tmp-write-error": "Chyba při zápisu do dočasného souboru.",

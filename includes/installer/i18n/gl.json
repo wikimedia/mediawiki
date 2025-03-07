@@ -151,6 +151,8 @@
 	"config-mysql-engine": "Motor de almacenamento:",
 	"config-mysql-innodb": "InnoDB (recomendado)",
 	"config-mysql-engine-help": "<strong>InnoDB</strong> é case sempre a mellor opción, dado que soporta ben os accesos simultáneos.\n\n<strong>MyISAM</strong> é máis rápido en instalacións de usuario único e de só lectura.\nAs bases de datos MyISAM tenden a se corromper máis a miúdo ca as bases de datos InnoDB.",
+	"config-server": "Nome do anfitrión do enderezo URL:",
+	"config-server-help": "O protocolo e o nome do anfitrión que conforman o enderezo URL utilizado para acceder ao teu wiki. O valor predeterminado que se detecta automaticamente adoita ser correcto.",
 	"config-site-name": "Nome do wiki:",
 	"config-site-name-help": "Isto aparecerá na barra de títulos do navegador e noutros lugares.",
 	"config-site-name-blank": "Escriba o nome do sitio.",

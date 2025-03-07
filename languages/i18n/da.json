@@ -1561,7 +1561,6 @@
 	"verification-error": "Denne fil bestod ikke fil verifikationen.",
 	"hookaborted": "Ændringen du forsøgte at gøre blev afbrudt af en udvidelses hook.",
 	"illegal-filename": "Filnavnet er ikke tilladt.",
-	"overwrite": "Overskrivning af en eksisterende fil er ikke tilladt.",
 	"unknown-error": "En ukendt fejl opstod.",
 	"tmp-create-error": "Kunne ikke oprette temporær fil.",
 	"tmp-write-error": "Fejl ved skrivning af temporær fil.",

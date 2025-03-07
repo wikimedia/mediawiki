@@ -1069,7 +1069,6 @@
 	"verification-error": "Dh'fhàillig am faidhle seo an dearbhadh.",
 	"hookaborted": "Chaidh sgur dhen atharrachadh a dh'fheuch thu ri dèanamh le leudachan.",
 	"illegal-filename": "Chan eil ainm an fhaidhle ceadaichte.",
-	"overwrite": "Chan fhaod thu sgrìobhadh thairis air faidhle a tha ann mar-thà.",
 	"unknown-error": "Thachair mearachd neo-aithnichte.",
 	"tmp-create-error": "Cha deach leinn faidhle sealach a chruthachadh.",
 	"tmp-write-error": "Mearachd le sgrìobhadh an fhaidhle shealaich.",

@@ -1342,7 +1342,6 @@
 	"verification-error": "Ova datoteka nije prošla provjeru.",
 	"hookaborted": "Izmjena koji ste pokušali načiniti je obustavljena preko kuke proširenja.",
 	"illegal-filename": "Ime datoteke nije dopušteno.",
-	"overwrite": "Pisanje preko postojeće datoteke nije dopušteno.",
 	"unknown-error": "Desila se nepoznata greška.",
 	"tmp-create-error": "Nije moguće napraviti privremenu datoteku.",
 	"tmp-write-error": "Greška pri pisanju privremene datoteke.",

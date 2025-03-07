@@ -1377,7 +1377,6 @@
 	"verification-error": "Esti ficheru nun pasó la comprobación de ficheros.",
 	"hookaborted": "La conexón con una estensión encaboxó el cambéu que tentasti facer.",
 	"illegal-filename": "El nome de ficheru nun ta permitíu.",
-	"overwrite": "Nun ta permitío sobroscribir un ficheru esistente.",
 	"unknown-error": "Hebo un error desconocíu.",
 	"tmp-create-error": "Nun se pudo crear el ficheru temporal.",
 	"tmp-write-error": "Error al escribir nel ficheru temporal.",

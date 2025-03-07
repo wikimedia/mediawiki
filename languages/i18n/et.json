@@ -1528,7 +1528,6 @@
 	"verification-error": "See fail ei läbinud failikontrolli.",
 	"hookaborted": "Ühe laiendusmooduli ühendus takistab sinu soovitud muudatuse tegemist.",
 	"illegal-filename": "Keelatud failinimi.",
-	"overwrite": "Olemasoleva faili ülekirjutamine ei ole lubatud.",
 	"unknown-error": "Tundmatu tõrge.",
 	"tmp-create-error": "Ajutise faili loomine ebaõnnestus.",
 	"tmp-write-error": "Viga ajutise faili kirjutamisel.",

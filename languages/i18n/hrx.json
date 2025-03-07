@@ -919,7 +919,6 @@
 	"verification-error": "Die Datei hot die Dateiprüfung net bestand.",
 	"hookaborted": "Der Versuch, die Änrung doorrichzuführe, woard von en Parsererweitrung abgebroch.",
 	"illegal-filename": "Der Dateinoome ist net zulässich.",
-	"overwrite": "Das Üwerschreibe von en schon voarhandne Datei ist net erlaubt.",
 	"unknown-error": "En unbekannter Fehler ist uffgetret.",
 	"tmp-create-error": "Temporäre Datei konnte net erstellt sin",
 	"tmp-write-error": "Fehler beim Schreibe von der temporäre Datei",

@@ -1237,7 +1237,6 @@
 	"verification-error": "Kjo skedë nuk e kaloi verifikimin e skedave.",
 	"hookaborted": "Modifikimi që ju provuat ta bëni u ndërpre nga një goditje shtesë.",
 	"illegal-filename": "Emri i skedarit nuk lejohet.",
-	"overwrite": "Mbishkrimi i një skede ekzistuese nuk lejohet.",
 	"unknown-error": "Një gabim i panjohur.",
 	"tmp-create-error": "Nuk mund të krijohej skeda e përkohëshme.",
 	"tmp-write-error": "Gabim gjatë shkrimit të skedës së përkohshme.",

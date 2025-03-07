@@ -163,6 +163,8 @@
 	"config-mysql-engine": "Datenbanksystem:",
 	"config-mysql-innodb": "InnoDB (empfohlen)",
 	"config-mysql-engine-help": "<strong>InnoDB</strong> als Speichersubsystem für das Datenbanksystem MySQL ist fast immer die bessere Wahl, da es gleichzeitige Zugriffe gut unterstützt.\n\n<strong>MyISAM</strong> als Speichersubsystem für das Datenbanksystem MySQL ist hingegen in Einzelnutzerumgebungen oder bei schreibgeschützten Wikis schneller.\nDatenbanken, die MyISAM verwenden, sind indes tendenziell fehleranfälliger als solche, die InnoDB verwenden.",
+	"config-server": "URL-Hostname:",
+	"config-server-help": "Der Teil des Protokolls und des Hostnamens der URL, der für den Zugriff auf das Wiki verwendet wird. Der automatisch ermittelte Standard ist in der Regel korrekt.",
 	"config-site-name": "Name des Wikis:",
 	"config-site-name-help": "Dies wird in der Titelleiste des Browsers, wie auch an verschiedenen anderen Stellen, erscheinen.",
 	"config-site-name-blank": "Den Namen des Wikis angeben.",

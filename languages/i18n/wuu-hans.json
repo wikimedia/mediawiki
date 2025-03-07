@@ -1083,7 +1083,6 @@
 	"filename-tooshort": "文件名忒短。",
 	"filetype-banned": "弗準箇類型個文件。",
 	"illegal-filename": "弗準箇文件名。",
-	"overwrite": "弗準文件以舊換新。",
 	"unknown-error": "弗識個錯誤發生。",
 	"tmp-create-error": "臨時文件嘸處造。",
 	"tmp-write-error": "寫臨時文件出錯。",

@@ -1233,7 +1233,6 @@
 	"verification-error": "Dan il-fajl m'għaddiex il-verifika.",
 	"hookaborted": "Il-modifika li ppruvajt tagħmel ġiet imwaqqfa minn ''hook'' ta' estensjoni.",
 	"illegal-filename": "L-isem tal-fajl mhuwiex permess.",
-	"overwrite": "Li terġa' ttella' fuq fajl eżistenti mhuwiex permess.",
 	"unknown-error": "Qamet problema li ma nafux biha.",
 	"tmp-create-error": "Ma setax jinħoloq fajl temporanju.",
 	"tmp-write-error": "Qam żball fil-kitba tal-fajl temporanju.",

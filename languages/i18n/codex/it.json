@@ -9,6 +9,7 @@
 	"cdx-dialog-close-button-label": "Chiudi",
 	"cdx-label-optional-flag": "(facoltativo)",
 	"cdx-message-dismiss-button-label": "Chiudi",
+	"cdx-popover-close-button-label": "Chiudi",
 	"cdx-search-input-search-button-label": "Ricerca",
 	"cdx-table-select-all-label": "Seleziona tutte le righe",
 	"cdx-table-select-row-label": "Seleziona la riga $1 di $2",

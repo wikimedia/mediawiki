@@ -1242,7 +1242,6 @@
 	"verification-error": "Šis fails neizturēja failu pārbaudi.",
 	"hookaborted": "Izmaiņu, ko vēlējies veikt, apturēja paplašinājums.",
 	"illegal-filename": "Faila nosaukums nav atļauts.",
-	"overwrite": "Pārrakstīt jau esošu failu nav atļauts.",
 	"unknown-error": "Nezināma kļūda.",
 	"tmp-create-error": "Neizdevās izveidot pagaidu failu.",
 	"tmp-write-error": "Kļūda veidojot pagaidu failu.",

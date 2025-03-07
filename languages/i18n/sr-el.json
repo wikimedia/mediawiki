@@ -1482,7 +1482,6 @@
 	"verification-error": "Ova datoteka nije prošla proveru.",
 	"hookaborted": "Izmenu koju ste pokušali da napravite je prekinuo dodatak.",
 	"illegal-filename": "Naziv datoteke je zabranjen.",
-	"overwrite": "Zamenjivanje postojeće datoteke je zabranjeno.",
 	"unknown-error": "Došlo je do nepoznate greške.",
 	"tmp-create-error": "Nije moguće napraviti privremenu datoteku.",
 	"tmp-write-error": "Greška pri pisanju privremene datoteke.",

@@ -1205,7 +1205,6 @@
 	"verification-error": "Ieu berkas teu lulus vérifikasi.",
 	"hookaborted": "Modifikasi nu coba dipilampah ku anjeun dibolaykeun ku hiji kaitan éksténsi.",
 	"illegal-filename": "Ngaran berkas dipahing.",
-	"overwrite": "Teu diidinan pikeun ngalandih berkas nu geus aya.",
 	"unknown-error": "Aya kasalahan anu teu dikanyahoankeun.",
 	"tmp-create-error": "Teu bisa nyieun berkas sementara.",
 	"tmp-write-error": "Éror nulis berkas sementara.",

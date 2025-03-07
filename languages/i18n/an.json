@@ -806,7 +806,6 @@
 	"verification-error": "Iste fichero no pasó a verificación de fichers.",
 	"hookaborted": "A modificación que ha mirau de fer l'ha cancelau un hook d'extensión.",
 	"illegal-filename": "O nombre de fichero no ye premitiu.",
-	"overwrite": "No se premite de sobrescribir un fichero existent.",
 	"unknown-error": "Ha ocurriu una error desconoixida.",
 	"tmp-create-error": "No s'ha puesto creyar o fichero temporal.",
 	"tmp-write-error": "Error en escribir o fichero temporal.",

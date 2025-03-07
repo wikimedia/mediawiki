@@ -10,6 +10,7 @@
 	"cdx-dialog-close-button-label": "Sulje",
 	"cdx-label-optional-flag": "(valinnainen)",
 	"cdx-message-dismiss-button-label": "Sulje",
+	"cdx-popover-close-button-label": "Sulje",
 	"cdx-search-input-search-button-label": "Hae",
 	"cdx-table-select-all-label": "Valitse kaikki rivit",
 	"cdx-table-select-row-label": "Valitse rivi $1 / $2",

@@ -1049,7 +1049,6 @@
 	"verification-error": "Faili hili halikupitishwa katika ukaguzi wa faili.",
 	"hookaborted": "Mabadiliko uliyojaribu kufanya yamekataliwa na ugani.",
 	"illegal-filename": "Jina hilo la faili haliruhusiwi.",
-	"overwrite": "Kuandikiza faili lililopo tayari hairuhusiwi.",
 	"unknown-error": "Ilitokea hitilafu isiyojulikana.",
 	"tmp-create-error": "Haikuweza kuanzisha faili la muda.",
 	"tmp-write-error": "Hitilafu ya kuandika faili la muda.",

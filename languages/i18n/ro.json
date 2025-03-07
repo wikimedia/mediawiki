@@ -1530,7 +1530,6 @@
 	"verification-error": "Fișierul nu a trecut testele.",
 	"hookaborted": "Modificarea pe care ați încercat s-o faceți a fost oprită de apelul unei extensii.",
 	"illegal-filename": "Numele de fișier nu este permis.",
-	"overwrite": "Nu este permisă suprascrierea unui fișier existent.",
 	"unknown-error": "S-a produs o eroare necunoscută.",
 	"tmp-create-error": "Nu s-a putut crea un fișier temporar.",
 	"tmp-write-error": "Eroare de scriere la un fișier temporar.",

@@ -1515,7 +1515,6 @@
 	"verification-error": "Ta datoteka ni opravila preverjanja datoteke.",
 	"hookaborted": "Spremembo, ki ste jo poskušali opraviti, je prekinila razširitev.",
 	"illegal-filename": "To ime datoteke ni dovoljeno.",
-	"overwrite": "Prepis obstoječe datoteke ni dovoljen.",
 	"unknown-error": "Prišlo je do neznane napake.",
 	"tmp-create-error": "Začasne datoteke ni bilo mogoče ustvariti.",
 	"tmp-write-error": "Napaka pri zapisovanju začasne datoteke.",

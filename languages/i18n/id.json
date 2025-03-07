@@ -1586,7 +1586,6 @@
 	"verification-error": "Berkas ini tidak lulus verifikasi.",
 	"hookaborted": "Modifikasi yang coba Anda lakukan dibatalkan oleh sebuah ekstensi.",
 	"illegal-filename": "Nama berkas tidak diperbolehkan.",
-	"overwrite": "Tidak diizinkan untuk menimpa berkas yang telah ada.",
 	"unknown-error": "Terjadi sebuah galat yang tidak diketahui.",
 	"tmp-create-error": "Tidak dapat membuat berkas sementara.",
 	"tmp-write-error": "Galat saat menulis berkas sementara.",

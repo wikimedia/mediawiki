@@ -1641,7 +1641,6 @@
 	"verification-error": "Este arquivo não passou pela verificação de arquivos.",
 	"hookaborted": "A modificação que você tentou realizar foi abortada por uma extensão.",
 	"illegal-filename": "Nome de arquivo não permitido.",
-	"overwrite": "Não é permitido sobrescrever um arquivo já existente.",
 	"unknown-error": "Ocorreu um erro desconhecido.",
 	"tmp-create-error": "Não foi possível criar o arquivo temporário.",
 	"tmp-write-error": "Erro ao alterar arquivo temporário.",

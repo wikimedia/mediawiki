@@ -1445,7 +1445,6 @@
 	"verification-error": "Tämä tiijosto ei mennyh tarkastelendas läbi.",
 	"hookaborted": "Levendyksenmuokkuaju keskusti muutoksen, kudaman opiit luadie.",
 	"illegal-filename": "Pädemätöi tiijoston nimi.",
-	"overwrite": "Olemas olijua tiijostuo ei sua vaihtua.",
 	"unknown-error": "Tundematoi haireh.",
 	"tmp-create-error": "Ei sua luadie väliaigastu tiijostuo.",
 	"tmp-write-error": "Haireh väliaigazeh tiijostoh kirjuttajes.",

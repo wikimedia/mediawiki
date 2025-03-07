@@ -1440,7 +1440,6 @@
 	"verification-error": "Fitxategiak ez du egiaztapena gainditu.",
 	"hookaborted": "Egiten saiatu zaren aldaketa albo batera utzi du estentsio batek.",
 	"illegal-filename": "Fitxategiaren izena ez da onartzen.",
-	"overwrite": "Jada existitzen den fitxategi bat ezin da berridatzi.",
 	"unknown-error": "Ezezaguna den errorea gertatu da.",
 	"tmp-create-error": "Ezin izan da behin-behineko fitxategirik sortu.",
 	"tmp-write-error": "Errorea behin-behineko fitxategia idazten.",

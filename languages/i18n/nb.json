@@ -1554,7 +1554,6 @@
 	"verification-error": "Denne filen bestod ikke filbekreftelsen.",
 	"hookaborted": "Endringene du prøvde å gjøre ble avbrutt av en utvidelse.",
 	"illegal-filename": "Filnavnet er ikke tillatt.",
-	"overwrite": "Overskriving av eksisterende filer er ikke tillatt.",
 	"unknown-error": "En ukjent feil oppsto.",
 	"tmp-create-error": "Kunne ikke opprette midlertidig fil.",
 	"tmp-write-error": "Feil ved skriving av midlertidig fil.",

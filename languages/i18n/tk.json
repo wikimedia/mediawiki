@@ -1220,7 +1220,6 @@
 	"verification-error": "Bu faýl barlag prosedurasyndan geçmedi.",
 	"hookaborted": "Etjek bolýan üýtgeşikligiňiz giňeltme gaňyrçagy tarapyndan bes edildi.",
 	"illegal-filename": "Faýl adyna rugsat berilmeýär.",
-	"overwrite": "Bar bolan faýlyň üstüne ýazmaklyga rugsat berilmeýär.",
 	"unknown-error": "Näbelli bir säwlik ýüze çykdy.",
 	"tmp-create-error": "Wagtlaýyn faýl döredip bolmady.",
 	"tmp-write-error": "Wagtlaýyn faýl ýazmakda säwlik.",

@@ -1453,7 +1453,6 @@
 	"verification-error": "Quell fail chì l'hà passad no la verifica.",
 	"hookaborted": "La modifica che t'hee tentad de aportà l'è stada interota d'una'estension.",
 	"illegal-filename": "El nom del fail l'è minga permetud",
-	"overwrite": "A sorascriver un fail l'è minga permetud",
 	"unknown-error": "A l'è capitad un eror minga conossud.",
 	"tmp-create-error": "A l'è minga possibil creà un fail provisori.",
 	"tmp-write-error": "Eror de scritura del fail provisori.",

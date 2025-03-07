@@ -902,7 +902,6 @@
 	"verification-error": "Henda fílan varð ikki góðkend av fílugóðkenningini.",
 	"hookaborted": "Broytingin ið tú royndi at gera var tikin burtur av einari leingjan (extension).",
 	"illegal-filename": "Hetta fílunavnið er ikki loyvt.",
-	"overwrite": "Tað er ikki loyvi til at yvirskriva eina verandi fílu.",
 	"unknown-error": "Ein ókend villa kom fyri.",
 	"tmp-create-error": "Kundi ikki upprætta fyribils fílu.",
 	"tmp-write-error": "Villa, meðan fyribils fíla skuldi skrivast.",

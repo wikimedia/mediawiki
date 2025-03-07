@@ -1590,7 +1590,6 @@
 	"verification-error": "Denna fil klarade inte verifieringen.",
 	"hookaborted": "Ändringen du försökte göra avbröts av ett tillägg.",
 	"illegal-filename": "Filnamnet är inte tillåtet.",
-	"overwrite": "Det är inte tillåtet att skriva över en befintlig fil.",
 	"unknown-error": "Ett okänt fel uppstod.",
 	"tmp-create-error": "Kunde inte skapa temporär fil.",
 	"tmp-write-error": "Fel vid skrivning av temporär fil.",

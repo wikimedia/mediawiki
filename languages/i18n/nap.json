@@ -1268,7 +1268,6 @@
 	"verification-error": "Stu file nun ha passat' 'o cuntrollo.",
 	"hookaborted": "'O cagnamiento c'avite pruvato 'e fà è stato spezzato 'a na stensione.",
 	"illegal-filename": "'O nomme d' 'o file nun è permesso.",
-	"overwrite": "Sovrascrivere nu file ch'esiste già nun è permesso.",
 	"unknown-error": "È capitato n'errore scanusciuto.",
 	"tmp-create-error": "Nun se può crià nu file temporaneo.",
 	"tmp-write-error": "Errore a scrivere nu file temporaneo.",

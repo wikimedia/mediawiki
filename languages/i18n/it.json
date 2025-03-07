@@ -1604,7 +1604,6 @@
 	"verification-error": "Questo file non ha superato la verifica.",
 	"hookaborted": "La modifica che si è tentato di fare è stata interrotta da un hook di un'estensione.",
 	"illegal-filename": "Il nome del file non è ammesso.",
-	"overwrite": "Sovrascrivere un file esistente non è permesso.",
 	"unknown-error": "Si è verificato un errore sconosciuto.",
 	"tmp-create-error": "Impossibile creare il file temporaneo.",
 	"tmp-write-error": "Errore di scrittura del file temporaneo.",

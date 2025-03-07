@@ -1023,7 +1023,6 @@
 	"verification-error": "Die Datei het d Dateipriefig nit bstande.",
 	"hookaborted": "D Änderig, wu Du versuecht hesch, isch wäg eme Erwyterigs-Hooks abbroche wore.",
 	"illegal-filename": "Dr Dateiname isch nit erlaubt.",
-	"overwrite": "S Iberschryybe vun ere Datei, wu s scho git, isch nit erlaubt.",
 	"unknown-error": "S het e nit bekannte Fähler gee.",
 	"tmp-create-error": "E tämporäri Datei het nit chenne aagleit wäre.",
 	"tmp-write-error": "Fähler bim Schryybe vu dr tämporäre Datei",

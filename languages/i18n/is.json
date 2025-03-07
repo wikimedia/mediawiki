@@ -1373,7 +1373,6 @@
 	"verification-error": "Þessi skrá stóðst ekki sannprófun.",
 	"hookaborted": "Hætt var við breytinguna sem þú reyndir að gera af viðbót.",
 	"illegal-filename": "Þetta skráarheiti er ekki leyft.",
-	"overwrite": "Að yfirrita fyrirliggjandi skrá er óheimilt.",
 	"unknown-error": "Óþekkt villa kom upp.",
 	"tmp-create-error": "Gat ekki búið til tímabundna skrá.",
 	"tmp-write-error": "Villa við skrifun bráðabirgðaskrár.",

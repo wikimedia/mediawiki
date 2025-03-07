@@ -1557,7 +1557,6 @@
 	"verification-error": "Tập tin này không qua được bước thẩm tra.",
 	"hookaborted": "Sửa đổi của bạn bị phần mở rộng hủy bỏ.",
 	"illegal-filename": "Không được đặt tên tập tin này.",
-	"overwrite": "Không được ghi đè một tập tin đã tồn tại.",
 	"unknown-error": "Gặp lỗi không ngờ.",
 	"tmp-create-error": "Không thể tạo tập tin tạm thời.",
 	"tmp-write-error": "Gặp lỗi khi ghi vào tập tin tạm thời.",

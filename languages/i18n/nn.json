@@ -1389,7 +1389,6 @@
 	"verification-error": "Denne fila klarde ikkje verifiseringsprossesen.",
 	"hookaborted": "Endringa du freista vart avbroten av ei utviding.",
 	"illegal-filename": "Filnamnet er ikkje tillate.",
-	"overwrite": "Det er ikkje tillate å skriva over ei eksisterande fil.",
 	"unknown-error": "Det oppstod ein ukjend feil.",
 	"tmp-create-error": "Kunne ikkje oppretta mellombels fil.",
 	"tmp-write-error": "Feil ved skriving av midlertidig fil.",

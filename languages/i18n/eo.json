@@ -1510,7 +1510,6 @@
 	"verification-error": "Ĉi tiu dosiero ne pasis dosieran konfirmon.",
 	"hookaborted": "La ŝanĝo kiun vi provis fari estis haltigita de etendaĵa hoko.",
 	"illegal-filename": "La dosiernomo ne estas permesata.",
-	"overwrite": "Anstataŭigo de ekzistanta dosiero ne permesitas.",
 	"unknown-error": "Malkonata eraro okazis.",
 	"tmp-create-error": "Ne povis krei intertempan dosieron.",
 	"tmp-write-error": "Eraro dum skribado de portempa dosiero.",

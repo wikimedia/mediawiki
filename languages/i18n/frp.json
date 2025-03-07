@@ -1438,7 +1438,6 @@
 	"verification-error": "Cél fichiér pâsse pas lo contrôlo des fichiérs.",
 	"hookaborted": "Lo changement que vos éd tâchiê de fâre est étâ anulâ per n’èxtension.",
 	"illegal-filename": "Lo nom du fichiér est pas ôtorisâ.",
-	"overwrite": "Ècllafar un fichiér ègzistent est pas ôtorisâ.",
 	"unknown-error": "Na fôta encognua est arrevâye.",
 	"tmp-create-error": "Y at pas moyen de fâre lo fichiér temporèro.",
 	"tmp-write-error": "Fôta d’ècritura du fichiér temporèro.",

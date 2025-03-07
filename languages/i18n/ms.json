@@ -1521,7 +1521,6 @@
 	"verification-error": "Fail ini tidak lulus pengesahan fail.",
 	"hookaborted": "Pengubahsuaian yang anda buat telah disekat oleh sebuah cangkuk sambungan.",
 	"illegal-filename": "Nama fail tidak dibenarkan.",
-	"overwrite": "Menulis ganti fail yang telah wujud adalah tidak dibenarkan.",
 	"unknown-error": "Berlaku ralat yang tidak diketahui.",
 	"tmp-create-error": "Fail sementara tidak dapat dicipta.",
 	"tmp-write-error": "Fail sementara tidak dapat ditulis.",

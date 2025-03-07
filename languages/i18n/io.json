@@ -1425,7 +1425,6 @@
 	"verification-error": "Ca arkivo ne verifikesis.",
 	"hookaborted": "La modifikuro quon vu probis facar abortesis da ula extenso.",
 	"illegal-filename": "Ca nomo di arkivo ne esas permisata.",
-	"overwrite": "Modifikar ula existanta arkivo ne permisesas.",
 	"unknown-error": "Eventis nekonocata eroro.",
 	"tmp-create-error": "Ne povis krear tempal arkivo.",
 	"tmp-write-error": "Eventis eroro dum la kreado di arkivo tempala.",

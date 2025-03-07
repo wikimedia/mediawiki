@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Goombiis",
+			"JLTRY",
 			"Mahabarata",
 			"SleaY"
 		]
@@ -12,6 +13,7 @@
 	"cdx-dialog-close-button-label": "Fermer",
 	"cdx-label-optional-flag": "(optionnel)",
 	"cdx-message-dismiss-button-label": "Fermer",
+	"cdx-popover-close-button-label": "Fermer",
 	"cdx-search-input-search-button-label": "Rechercher",
 	"cdx-table-select-all-label": "Sélectionner toutes les lignes",
 	"cdx-table-select-row-label": "Sélectionner la ligne $1 sur $2",

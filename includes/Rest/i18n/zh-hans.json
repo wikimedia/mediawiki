@@ -77,6 +77,7 @@
 	"rest-unsupported-target-format": "不支持请求的目标格式。",
 	"rest-parsoid-resource-exceeded": "超出资源限制",
 	"rest-parsoid-error": "Parsoid错误。",
+	"rest-parsoid-bad-render-id": "错误的Parsoid渲染ID：$1",
 	"rest-bad-stash-key": "错误的stash key。",
 	"rest-html-key-expected": "正文中应包含<var>html</var>键",
 	"rest-invalid-transform": "无效转换：$1到$2",
@@ -85,7 +86,7 @@
 	"rest-unmapped-action-error": "未映射的操作模块错误：$1",
 	"rest-unsupported-transform-input": "不支持的输入：$1",
 	"rest-bad-etag": "错误的ETag：$1",
-	"rest-no-stashed-content": "未找到$1的存放内容",
+	"rest-no-stashed-content": "未找到$1的存放内容。这很可能是因为您的编辑会话已过期。请尝试复制您的更改，重新加载页面并重试。",
 	"rest-unsupported-profile-version": "不支持的配置文件版本：$1",
 	"rest-no-json-decode": "负载无法JSON解码为数组",
 	"rest-parsoid-unsupported-media": "不支持的媒体类型",
@@ -99,5 +100,6 @@
 	"rest-unknown-content-model": "未知的内容模型：$1",
 	"rest-page-bundle-validation-error": "PageBundle与contentVersion不匹配：$1",
 	"rest-param-desc-revision-id": "修订版本ID",
+	"rest-param-desc-html-input-contentmodel": "页面内容格式：wikitext（默认）、css、javascript、json或text。",
 	"rest-property-desc-revision-id": "修订版本ID"
 }

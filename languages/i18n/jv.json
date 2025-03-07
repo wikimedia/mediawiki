@@ -1208,7 +1208,6 @@
 	"verification-error": "Berkas iki ora lulus vèrifikasi.",
 	"hookaborted": "Olèhmu ndandani diwurungaké èstènsi.",
 	"illegal-filename": "Aran berkasé ora kaéntukaké.",
-	"overwrite": "Nibani barkas kang wis ana ora dililakaké.",
 	"unknown-error": "Ana masalah kang ora dingertèni.",
 	"tmp-create-error": "Ora bisa nggawé barkas sauntara.",
 	"tmp-write-error": "Ora bisa nulis barkas sauntara.",

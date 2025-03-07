@@ -1528,7 +1528,6 @@
 	"verification-error": "Šis failas nepraėjo patikrinimo.",
 	"hookaborted": "Pakeitimą, kurį bandėte atlikti, nutraukė priedo gaudlys.",
 	"illegal-filename": "Failo vardas neleidžiamas.",
-	"overwrite": "Perrašyti esamą failą neleidžiama.",
 	"unknown-error": "Įvyko nežinoma klaida.",
 	"tmp-create-error": "Nepavyko sukurti laikino failo.",
 	"tmp-write-error": "Klaida rašant laikinąjį failą.",

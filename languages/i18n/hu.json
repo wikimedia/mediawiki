@@ -1554,7 +1554,6 @@
 	"verification-error": "Ez a fájl nem felelt meg az ellenőrzésen (hibás, rossz kiterjesztés, stb.).",
 	"hookaborted": "A módosítást, amit próbáltál elvégezni megszakította egy kiterjesztés-hook.",
 	"illegal-filename": "A fájlnév nem engedélyezett.",
-	"overwrite": "Nem engedélyezett felülírni egy létező fájlt.",
 	"unknown-error": "Ismeretlen hiba történt.",
 	"tmp-create-error": "Nem sikerült létrehozni az ideiglenes fájlt.",
 	"tmp-write-error": "Hiba az ideiglenes fájl írásakor.",

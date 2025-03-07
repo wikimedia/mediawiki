@@ -1191,7 +1191,6 @@
 	"verification-error": "Ining sagunson dae nag-agi sa beripikasyon.",
 	"hookaborted": "An modipikasyon na saimong pinagprubaran na gibohon pinag-untok bilang sarong ekstensyon.",
 	"illegal-filename": "An ngaran kan sagunson dae pinagtutugot.",
-	"overwrite": "An pagpatungan an sarong eksistidong sagunson dae pinagtutugot.",
 	"unknown-error": "May dae aram na kasalaan an nangyari.",
 	"tmp-create-error": "Dae makapagmukna nin temporaryong sagunson.",
 	"tmp-write-error": "An kasalaan nagsusurat nin temporaryong sagunson.",

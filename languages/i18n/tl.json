@@ -1080,7 +1080,6 @@
 	"verification-error": "Hindi pumasa sa pagpapatunay na pangtalaksan ang ganitong talaksan.",
 	"hookaborted": "Ang pagbabagong sinubok mong gawin ay hindi itinuloy ng isang kawil ng dugtong.",
 	"illegal-filename": "Hindi pinapayagan ang pangalan ng talaksan.",
-	"overwrite": "Hindi pinapahintulutan ang pagsusulat sa ibabaw ng umiiral na talaksan.",
 	"unknown-error": "Naganap ang isang hindi nakikilalang kamalian.",
 	"tmp-create-error": "Hindi malikha ang pansamantalang talaksan.",
 	"tmp-write-error": "Kamalian sa pagsusulat ng pansamantalang talaksan.",

@@ -1458,7 +1458,6 @@
 	"verification-error": "Nid yw'r ffeil hon wedi ei derbyn wrth ei gwirio.",
 	"hookaborted": "Cafodd y darpar newid ei derfynu gan estyniad.",
 	"illegal-filename": "Nid yw'r enw ffeil hwn yn cael ei ganiatáu.",
-	"overwrite": "Ni chaniateir trosysgrifo ffeil sydd eisoes yn bod.",
 	"unknown-error": "Cafwyd gwall anhysbys.",
 	"tmp-create-error": "Wedi methu llunio ffeil dros dro.",
 	"tmp-write-error": "Cafwyd gwall wrth ysgrifennu'r ffeil dros dro.",

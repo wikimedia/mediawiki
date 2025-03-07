@@ -1577,7 +1577,6 @@
 	"verification-error": "O ficheiro não passou a verificação de ficheiros.",
 	"hookaborted": "A modificação que pretendia foi abortada pelo hook de uma extensão.",
 	"illegal-filename": "O nome do ficheiro não é permitido.",
-	"overwrite": "Não é permitido sobrescrever um ficheiro existente.",
 	"unknown-error": "Ocorreu um erro desconhecido.",
 	"tmp-create-error": "Não foi possível criar o ficheiro temporário.",
 	"tmp-write-error": "Erro na escrita do ficheiro temporário.",

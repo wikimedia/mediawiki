@@ -1340,7 +1340,6 @@
 	"verification-error": "Stu file non g'à passate 'a verifeche de le file.",
 	"hookaborted": "'U cangiamende ca tu stè pruève a ffà ha state inderrotte da 'nu gange estese.",
 	"illegal-filename": "'U nome d'u file non g'è permesse.",
-	"overwrite": "'A sovrascritture de 'nu file ca esiste non ge se pò fà.",
 	"unknown-error": "'N'errore scanusciute s'a verificate.",
 	"tmp-create-error": "Non ge pozze ccrejà file temboranèe.",
 	"tmp-write-error": "Errore scrivenne 'u file temboranèe.",

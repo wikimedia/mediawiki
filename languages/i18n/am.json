@@ -688,7 +688,6 @@
 	"filetype-banned": "ይህ አይነት ፋይል አልተፈቀደም።",
 	"verification-error": "ይሄው ፋይል የፋይልን ማረጋገጫ አላለፈም።",
 	"illegal-filename": "የፋይሉ ስም የተፈቀደ አይደለም።",
-	"overwrite": "እንድን ፋይል ደምስሶ መጻፍ አልተፈቀደም።",
 	"unknown-error": "ያልታወቀ ስኅተት ደረሰ።",
 	"tmp-create-error": "ጊዜያዊ ፋይልን መፍጠር አልተቻለም።",
 	"tmp-write-error": "ጊዜያዊ ፋይልን በመጻፍ ስኅተት ደረሰ።",

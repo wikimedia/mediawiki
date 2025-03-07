@@ -1520,7 +1520,6 @@
 	"verification-error": "Aquest fitxer no ha passat la verificació de fitxers.",
 	"hookaborted": "La modificació que heu intentat fer l'ha cancel·lada una extensió.",
 	"illegal-filename": "El nom del fitxer no està permès.",
-	"overwrite": "No es permet sobreescriure un fitxer existent.",
 	"unknown-error": "S'ha produït un error desconegut.",
 	"tmp-create-error": "No s'ha pogut crear el fitxer temporal.",
 	"tmp-write-error": "Error en escriure el fitxer temporal.",

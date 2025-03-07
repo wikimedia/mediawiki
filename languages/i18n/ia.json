@@ -1505,7 +1505,6 @@
 	"verification-error": "Iste file non passava le verification de files",
 	"hookaborted": "Le modification que tu ha tentate facer ha essite abortate per un extension.",
 	"illegal-filename": "Le nomine del file non es permittite.",
-	"overwrite": "Superscriber un file existente non es permittite.",
 	"unknown-error": "Un error incognite ha occurrite.",
 	"tmp-create-error": "Non poteva crear file temporari.",
 	"tmp-write-error": "Error durante le scriptura in le file temporari.",

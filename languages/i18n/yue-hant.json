@@ -1366,7 +1366,6 @@
 	"verification-error": "檔案未通過驗證。",
 	"hookaborted": "你所嘗試嘅修改被擴展鈎捨棄咗。",
 	"illegal-filename": "檔案名唔容許。",
-	"overwrite": "唔准冚咗現有檔案。",
 	"unknown-error": "發生未知嘅錯誤。",
 	"tmp-create-error": "唔能夠建立臨時檔案。",
 	"tmp-write-error": "臨時檔案寫入嗰陣出錯。",

@@ -709,7 +709,6 @@
 	"filesource": "Orìgine:",
 	"badfilename": "Su nùmene de su file est stadu cunvertidu in \"$1\".",
 	"illegal-filename": "Su nùmene de su documentu no est adduidu.",
-	"overwrite": "Remplasare unu documentu esistente no est adduidu.",
 	"uploadwarning": "Avvisu de carrigamentu",
 	"savefile": "Sarba documentu",
 	"upload-source": "File de orìgine",
