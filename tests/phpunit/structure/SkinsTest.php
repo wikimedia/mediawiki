@@ -14,8 +14,8 @@ class SkinsTest extends MediaWikiIntegrationTestCase {
 	public static function provideSkinConstructor() {
 		$services = MediaWikiServices::getInstance();
 		$skinFactory = $services->getSkinFactory();
-		foreach ( array_keys( $skinFactory->getInstalledSkins() ) as $skin ) {
-			yield [ $skinFactory, $skin ];
+		foreach ( $skinFactory->getInstalledSkins() as $skin => $_ ) {
+			yield $skin => [ $skinFactory, $skin ];
 		}
 	}
 
@@ -30,9 +30,13 @@ class SkinsTest extends MediaWikiIntegrationTestCase {
 		$options = $skin->getOptions();
 		$messages = $options['messages'] ?? [];
 		$this->assertSame( $options['name'], $skinName );
+		$missingMessages = [];
 		foreach ( $messages as $message ) {
 			$msg = new Message( $message );
-			$this->assertSame( true, $msg->exists(), "Skin references message that does not exist: $message" );
+			if ( !$msg->exists() ) {
+				$missingMessages[] = $message;
+			}
 		}
+		$this->assertEquals( [], $missingMessages, 'Skin references messages that does not exists' );
 	}
 }
