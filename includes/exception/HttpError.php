@@ -46,7 +46,7 @@ class HttpError extends MWException {
 	 * @param-taint $header tainted
 	 */
 	public function __construct( $httpCode, $content, $header = null ) {
-		parent::__construct( $content );
+		parent::__construct( (string)$content );
 		$this->httpCode = (int)$httpCode;
 		$this->header = $header;
 		$this->content = $content;
