@@ -23,7 +23,6 @@ namespace MediaWiki\Cache;
 
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserIdentity;
@@ -55,12 +54,11 @@ class GenderCache {
 	private UserOptionsLookup $userOptionsLookup;
 
 	public function __construct(
-		?NamespaceInfo $nsInfo = null,
-		$unused = null,
-		?UserOptionsLookup $userOptionsLookup = null
+		NamespaceInfo $nsInfo,
+		UserOptionsLookup $userOptionsLookup
 	) {
-		$this->nsInfo = $nsInfo ?? MediaWikiServices::getInstance()->getNamespaceInfo();
-		$this->userOptionsLookup = $userOptionsLookup ?? MediaWikiServices::getInstance()->getUserOptionsLookup();
+		$this->nsInfo = $nsInfo;
+		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
 	/**
