@@ -2011,8 +2011,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 				$cascade = false;
 			}
 
-			// insert null revision to identify the page protection change as edit summary
-			$latest = $this->getLatest();
+			// insert dummy revision to identify the page protection change as edit summary
 			$nullRevisionRecord = $this->insertNullProtectionRevision(
 				$revCommentMsg,
 				$limit,
@@ -2069,9 +2068,6 @@ class WikiPage implements Stringable, Page, PageRecord {
 					];
 				}
 			}
-
-			$this->getHookRunner()->onRevisionFromEditComplete(
-				$this, $nullRevisionRecord, $latest, $user, $tags );
 		} else { // Protection of non-existing page (also known as "title protection")
 			// Cascade protection is meaningless in this case
 			$cascade = false;
@@ -2172,7 +2168,8 @@ class WikiPage implements Stringable, Page, PageRecord {
 	}
 
 	/**
-	 * Insert a new null revision for this page.
+	 * Insert a new dummy revision (aka null revision) for this page,
+	 * to mark a change in page protection.
 	 *
 	 * @since 1.35
 	 *
@@ -2192,8 +2189,6 @@ class WikiPage implements Stringable, Page, PageRecord {
 		string $reason,
 		UserIdentity $user
 	): ?RevisionRecord {
-		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
-
 		// Prepare a null revision to be added to the history
 		$editComment = wfMessage(
 			$revCommentMsg,
@@ -2216,28 +2211,9 @@ class WikiPage implements Stringable, Page, PageRecord {
 			)->inContentLanguage()->text();
 		}
 
-		$revStore = $this->getRevisionStore();
-		$comment = CommentStoreComment::newUnsavedComment( $editComment );
-		$nullRevRecord = $revStore->newNullRevision(
-			$dbw,
-			$this->getTitle(),
-			$comment,
-			true,
-			$user
-		);
-
-		if ( $nullRevRecord ) {
-			$inserted = $revStore->insertRevisionOn( $nullRevRecord, $dbw );
-
-			// Update page record and touch page
-			$oldLatest = $inserted->getParentId();
-
-			$this->updateRevisionOn( $dbw, $inserted, $oldLatest );
-
-			return $inserted;
-		} else {
-			return null;
-		}
+		return $this->newPageUpdater( $user )
+			->setCause( PageUpdater::CAUSE_PROTECTION_CHANGE )
+			->saveDummyRevision( $editComment, EDIT_SILENT | EDIT_MINOR );
 	}
 
 	/**
@@ -2411,7 +2387,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 * @since 1.27
 	 */
 	public function lockAndGetLatest() {
-		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
+		$dbw = $this->getConnectionProvider()->getPrimaryDatabase();
 		return (int)$dbw->newSelectQueryBuilder()
 			->select( 'page_latest' )
 			->forUpdate()
@@ -2666,7 +2642,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 			return [];
 		}
 
-		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
+		$dbr = $this->getConnectionProvider()->getReplicaDatabase();
 		$res = $dbr->newSelectQueryBuilder()
 			->select( [ 'cl_to' ] )
 			->from( 'categorylinks' )
@@ -2722,7 +2698,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 			$removeFields["cat_{$type}s"] = new RawSQLValue( "cat_{$type}s - 1" );
 		}
 
-		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
+		$dbw = $this->getConnectionProvider()->getPrimaryDatabase();
 		$res = $dbw->newSelectQueryBuilder()
 			->select( [ 'cat_id', 'cat_title' ] )
 			->from( 'category' )
@@ -3000,6 +2976,13 @@ class WikiPage implements Stringable, Page, PageRecord {
 			],
 			PageIdentity::LOCAL
 		);
+	}
+
+	/**
+	 * @return \Wikimedia\Rdbms\IConnectionProvider
+	 */
+	private function getConnectionProvider(): \Wikimedia\Rdbms\IConnectionProvider {
+		return MediaWikiServices::getInstance()->getConnectionProvider();
 	}
 
 }
