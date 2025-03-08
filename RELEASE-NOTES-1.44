@@ -328,6 +328,8 @@ because of Phabricator reports.
   classes rather than interfaces. Remove all references to MediaWikiTitleCodec.
 * A new abstract method, CentralIdLookup::lookupUserNamesWithFilter(), was
   added. This is a breaking change for extensions that extend this class.
+* UserOptionsStore::fetchBatchForUserNames() was added. This is a breaking
+  change for extensions that implement the interface.
 * …
 
 === Deprecations in 1.44 ===

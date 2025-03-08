@@ -559,4 +559,24 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 		$this->assertSame( [ 'User' => [ 'test' => 'e', 'test-local-exception' => '1' ] ], $localStore->getData() );
 		$this->assertSame( [ 'User' => [ 'test' => 'd' ] ], $globalStore->getData() );
 	}
+
+	public function testGetOptionBatchForUserNames() {
+		$localUser = new UserIdentityValue( 1, 'LocalUser' );
+		$sharedUser = new UserIdentityValue( 2, 'SharedUser' );
+		$remoteUser = new UserIdentityValue( 0, 'RemoteUser' );
+
+		$localStore = new MockUserOptionsStore();
+		$globalStore = new MockUserOptionsStore();
+		$manager = $this->getManager( [ 'localStore' => $localStore, 'globalStore' => $globalStore ] );
+
+		$this->setAndSave( $manager, $localUser, 'test', 'a', UserOptionsManager::GLOBAL_IGNORE );
+		$this->setAndSave( $manager, $sharedUser, 'test', 'b', UserOptionsManager::GLOBAL_CREATE );
+		$this->setAndSave( $manager, $remoteUser, 'test', 'c', UserOptionsManager::GLOBAL_CREATE );
+
+		$res = $manager->getOptionBatchForUserNames( [ 'LocalUser', 'SharedUser', 'RemoteUser' ], 'test' );
+		$this->assertArrayEquals(
+			[ 'LocalUser' => 'a', 'SharedUser' => 'b', 'RemoteUser' => 'c' ],
+			$res, false, true
+		);
+	}
 }

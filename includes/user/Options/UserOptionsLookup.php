@@ -161,6 +161,23 @@ abstract class UserOptionsLookup {
 	public function isOptionGlobal( UserIdentity $user, string $key ) {
 		return false;
 	}
+
+	/**
+	 * Get a single option for a batch of users, given their names.
+	 *
+	 * Results are uncached. Use getOption() to get options with a per-user
+	 * cache.
+	 *
+	 * User names are used because that's what GenderCache has. If you're
+	 * calling this and you're not GenderCache, consider adding a method
+	 * taking an array of UserIdentity objects instead.
+	 *
+	 * @since 1.44
+	 * @param string[] $users A normalized list of usernames
+	 * @param string $key The option to get
+	 * @return array The option values, indexed by the provided usernames
+	 */
+	abstract public function getOptionBatchForUserNames( array $users, string $key );
 }
 /** @deprecated class alias since 1.42 */
 class_alias( UserOptionsLookup::class, 'MediaWiki\\User\\UserOptionsLookup' );

@@ -224,6 +224,42 @@ class UserOptionsManager extends UserOptionsLookup {
 		return $source !== self::LOCAL_STORE_KEY;
 	}
 
+	public function getOptionBatchForUserNames( array $users, string $key ) {
+		if ( !$users ) {
+			return [];
+		}
+
+		$exceptionKey = $key . self::LOCAL_EXCEPTION_SUFFIX;
+		$results = [];
+		$stores = $this->getStores();
+		foreach ( $stores as $storeName => $store ) {
+			// Check the exception key in the local store, if there is more than one store
+			if ( count( $stores ) > 1 && $storeName === self::LOCAL_STORE_KEY ) {
+				$storeResults = $store->fetchBatchForUserNames( [ $key, $exceptionKey ], $users );
+				$values = $storeResults[$key] ?? [];
+				$exceptions = $storeResults[$exceptionKey] ?? [];
+				foreach ( $values as $userName => $value ) {
+					if ( !empty( $exceptions[$userName] ) || !isset( $results[$userName] ) ) {
+						$results[$userName] = $value;
+					}
+				}
+			} else {
+				$storeResults = $store->fetchBatchForUserNames( [ $key ], $users );
+				$results += $storeResults[$key] ?? [];
+			}
+		}
+
+		// If $key has a conditional default, DefaultOptionsLookup will be expensive,
+		// so it makes sense to only ask for the users without an option set.
+		$usersNeedingDefaults = array_diff( $users, array_keys( $results ) );
+		if ( $usersNeedingDefaults ) {
+			$defaults = $this->defaultOptionsLookup->getOptionBatchForUserNames( $usersNeedingDefaults, $key );
+			$results += $defaults;
+		}
+
+		return $results;
+	}
+
 	/**
 	 * Set the given option for a user.
 	 *

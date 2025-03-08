@@ -43,6 +43,29 @@ class LocalUserOptionsStore implements UserOptionsStore {
 		return $options;
 	}
 
+	public function fetchBatchForUserNames( array $keys, array $userNames ) {
+		if ( !$keys || !$userNames ) {
+			return [];
+		}
+
+		$options = [];
+		$res = $this->dbProvider->getReplicaDatabase()
+			->newSelectQueryBuilder()
+			->select( [ 'user_name', 'up_property', 'up_value' ] )
+			->from( 'user_properties' )
+			->join( 'user', null, 'user_id=up_user' )
+			->where( [
+				'up_property' => $keys,
+				'user_name' => $userNames
+			] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
+		foreach ( $res as $row ) {
+			$options[$row->up_property][$row->user_name] = (string)$row->up_value;
+		}
+		return $options;
+	}
+
 	public function store( UserIdentity $user, array $updates ) {
 		// In core, only users with local accounts may have preferences
 		if ( !$user->getId() ) {

@@ -63,6 +63,14 @@ class StaticUserOptionsLookup extends UserOptionsLookup {
 		}
 		return $userOptions;
 	}
+
+	public function getOptionBatchForUserNames( array $users, string $key ) {
+		$options = [];
+		foreach ( $users as $name ) {
+			$options[$name] = $this->userMap[$name][$key] ?? $this->defaults[$key] ?? '';
+		}
+		return $options;
+	}
 }
 
 /** @deprecated class alias since 1.42 */

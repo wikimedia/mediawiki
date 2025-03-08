@@ -28,6 +28,7 @@ use MediaWiki\Language\LanguageConverter;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityLookup;
 use Skin;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDBAccessObject;
@@ -51,6 +52,7 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 	private LanguageCode $contentLang;
 	private NamespaceInfo $nsInfo;
 	private ConditionalDefaultsLookup $conditionalDefaultsLookup;
+	private UserIdentityLookup $userIdentityLookup;
 
 	/** @var array|null Cached default options */
 	private $defaultOptions = null;
@@ -63,13 +65,15 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 	 * @param HookContainer $hookContainer
 	 * @param NamespaceInfo $nsInfo
 	 * @param ConditionalDefaultsLookup $conditionalUserOptionsDefaultsLookup
+	 * @param UserIdentityLookup $userIdentityLookup
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		LanguageCode $contentLang,
 		HookContainer $hookContainer,
 		NamespaceInfo $nsInfo,
-		ConditionalDefaultsLookup $conditionalUserOptionsDefaultsLookup
+		ConditionalDefaultsLookup $conditionalUserOptionsDefaultsLookup,
+		UserIdentityLookup $userIdentityLookup
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->serviceOptions = $options;
@@ -77,6 +81,7 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->nsInfo = $nsInfo;
 		$this->conditionalDefaultsLookup = $conditionalUserOptionsDefaultsLookup;
+		$this->userIdentityLookup = $userIdentityLookup;
 	}
 
 	/**
@@ -187,6 +192,22 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 			return;
 		}
 		Assert::precondition( !$user->isRegistered(), "$fname called on a registered user" );
+	}
+
+	public function getOptionBatchForUserNames( array $users, string $key ) {
+		$genericDefault = $this->getGenericDefaultOptions()[$key] ?? '';
+		$options = array_fill_keys( $users, $genericDefault );
+		if ( $this->conditionalDefaultsLookup->hasConditionalDefault( $key ) ) {
+			$userIdentities = $this->userIdentityLookup->newSelectQueryBuilder()
+				->whereUserNames( $users )
+				->caller( __METHOD__ )
+				->fetchUserIdentities();
+			foreach ( $userIdentities as $user ) {
+				$options[$user->getName()] = $this->conditionalDefaultsLookup
+					->getOptionDefaultForUser( $key, $user );
+			}
+		}
+		return $options;
 	}
 }
 

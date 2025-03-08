@@ -239,6 +239,7 @@ use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\CentralId\CentralIdLookupFactory;
 use MediaWiki\User\Options\ConditionalDefaultsLookup;
 use MediaWiki\User\Options\DefaultOptionsLookup;
+use MediaWiki\User\Options\StaticUserOptionsLookup;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\Options\UserOptionsManager;
 use MediaWiki\User\PasswordReset;
@@ -898,11 +899,16 @@ return [
 
 	'GenderCache' => static function ( MediaWikiServices $services ): GenderCache {
 		$nsInfo = $services->getNamespaceInfo();
-		// Database layer may be disabled, so processing without database connection
-		$dbLoadBalancer = $services->isServiceDisabled( 'DBLoadBalancer' )
-			? null
-			: $services->getDBLoadBalancerFactory();
-		return new GenderCache( $nsInfo, $dbLoadBalancer, $services->get( '_DefaultOptionsLookup' ) );
+		// If there is no database, use defaults
+		if ( $services->isServiceDisabled( 'DBLoadBalancer' ) ) {
+			$userOptionsLookup = new StaticUserOptionsLookup(
+				[],
+				$services->getMainConfig()->get( MainConfigNames::DefaultUserOptions )
+			);
+		} else {
+			$userOptionsLookup = $services->getUserOptionsLookup();
+		}
+		return new GenderCache( $nsInfo, null, $userOptionsLookup );
 	},
 
 	'GlobalIdGenerator' => static function ( MediaWikiServices $services ): GlobalIdGenerator {
@@ -2735,7 +2741,8 @@ return [
 			$services->getContentLanguageCode(),
 			$services->getHookContainer(),
 			$services->getNamespaceInfo(),
-			$services->get( '_ConditionalDefaultsLookup' )
+			$services->get( '_ConditionalDefaultsLookup' ),
+			$services->getUserIdentityLookup()
 		);
 	},
 
