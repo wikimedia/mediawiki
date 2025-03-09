@@ -23,6 +23,7 @@
 
 namespace MediaWiki\Api;
 
+use MediaWiki\Content\ContentHandlerFactory;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -34,8 +35,15 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiQueryRandom extends ApiQueryGeneratorBase {
 
-	public function __construct( ApiQuery $query, string $moduleName ) {
+	private ContentHandlerFactory $contentHandlerFactory;
+
+	public function __construct(
+		ApiQuery $query,
+		string $moduleName,
+		ContentHandlerFactory $contentHandlerFactory
+	) {
 		parent::__construct( $query, $moduleName, 'rn' );
+		$this->contentHandlerFactory = $contentHandlerFactory;
 	}
 
 	public function execute() {
@@ -81,6 +89,10 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		}
 		if ( isset( $params['maxsize'] ) ) {
 			$this->addWhere( $db->expr( 'page_len', '<=', (int)$params['maxsize'] ) );
+		}
+
+		if ( isset( $params['contentmodel'] ) ) {
+			$this->addWhereFld( 'page_content_model', $params['contentmodel'] );
 		}
 
 		$this->addOption( 'LIMIT', $limit + 1 );
@@ -214,6 +226,9 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 			],
 			'maxsize' => [
 				ParamValidator::PARAM_TYPE => 'integer',
+			],
+			'contentmodel' => [
+				ParamValidator::PARAM_TYPE => $this->contentHandlerFactory->getContentModels(),
 			],
 			'redirect' => [
 				ParamValidator::PARAM_DEPRECATED => true,
