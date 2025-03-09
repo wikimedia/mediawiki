@@ -273,6 +273,9 @@ class EditPage implements IEditObject {
 	private $doubleRedirect = false;
 
 	/** @var bool */
+	private $doubleRedirectLoop = false;
+
+	/** @var bool */
 	private $allowDoubleRedirects = false;
 
 	/** @var string */
@@ -2662,6 +2665,7 @@ class EditPage implements IEditObject {
 			$this->brokenRedirect = true;
 		} elseif ( $failed instanceof DoubleRedirectConstraint ) {
 			$this->doubleRedirect = true;
+			$this->doubleRedirectLoop = $failed->willCreateSelfRedirect;
 		}
 	}
 
@@ -3418,23 +3422,30 @@ class EditPage implements IEditObject {
 			}
 
 			if ( $this->doubleRedirect ) {
-				$editContent = $this->toEditContent( $this->textbox1 );
-				$redirectTarget = $editContent->getRedirectTarget();
+				if ( $this->doubleRedirectLoop ) {
+					$out->wrapWikiMsg(
+						"<div id='mw-doubleredirectloop'>\n$1\n</div>",
+						[ 'edit-constraint-doubleredirect-loop', $buttonLabel ]
+					);
+				} else {
+					$editContent = $this->toEditContent( $this->textbox1 );
+					$redirectTarget = $editContent->getRedirectTarget();
 
-				$doubleRedirectTarget = $this->redirectLookup->getRedirectTarget( $redirectTarget );
-				$doubleRedirectTargetTitle = Title::castFromLinkTarget( $doubleRedirectTarget );
+					$doubleRedirectTarget = $this->redirectLookup->getRedirectTarget( $redirectTarget );
+					$doubleRedirectTargetTitle = Title::castFromLinkTarget( $doubleRedirectTarget );
 
-				$suggestedRedirectContent =
-					$editContent->getContentHandler()->makeRedirectContent( $doubleRedirectTargetTitle );
-				$suggestedRedirectCode =
-					Html::element( 'pre', [], $this->toEditText( $suggestedRedirectContent ) );
+					$suggestedRedirectContent =
+						$editContent->getContentHandler()->makeRedirectContent( $doubleRedirectTargetTitle );
+					$suggestedRedirectCode =
+						Html::element( 'pre', [], $this->toEditText( $suggestedRedirectContent ) );
 
-				$out->wrapWikiMsg( "<div id='mw-doubleredirect'>\n$1\n</div>", [
-					'edit-constraint-doubleredirect',
-					$buttonLabel,
-					wfEscapeWikiText( $doubleRedirectTargetTitle->getPrefixedText() ),
-					$suggestedRedirectCode,
-				] );
+					$out->wrapWikiMsg( "<div id='mw-doubleredirect'>\n$1\n</div>", [
+						'edit-constraint-doubleredirect',
+						$buttonLabel,
+						wfEscapeWikiText( $doubleRedirectTargetTitle->getPrefixedText() ),
+						$suggestedRedirectCode,
+					] );
+				}
 			}
 
 			if ( $this->hookError !== '' ) {
