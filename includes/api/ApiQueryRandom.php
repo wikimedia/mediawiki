@@ -74,10 +74,18 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		} elseif ( $resultPageSet === null ) {
 			$this->addFields( [ 'page_is_redirect' ] );
 		}
+
+		$db = $this->getDB();
+		if ( isset( $params['minsize'] ) ) {
+			$this->addWhere( $db->expr( 'page_len', '>=', (int)$params['minsize'] ) );
+		}
+		if ( isset( $params['maxsize'] ) ) {
+			$this->addWhere( $db->expr( 'page_len', '<=', (int)$params['maxsize'] ) );
+		}
+
 		$this->addOption( 'LIMIT', $limit + 1 );
 
 		if ( $start !== null ) {
-			$db = $this->getDB();
 			if ( $startId > 0 ) {
 				$this->addWhere( $db->buildComparison( '>=', [
 					'page_random' => $start,
@@ -90,7 +98,7 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 			}
 		}
 		if ( $end !== null ) {
-			$this->addWhere( $this->getDB()->expr( 'page_random', '<', $end ) );
+			$this->addWhere( $db->expr( 'page_random', '<', $end ) );
 		}
 		$this->addOption( 'ORDER BY', [ 'page_random', 'page_id' ] );
 
@@ -135,7 +143,7 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 	public function run( $resultPageSet = null ) {
 		$params = $this->extractRequestParams();
 
-		// Since 'filterredir" will always be set in $params, we have to dig
+		// Since 'filterredir' will always be set in $params, we have to dig
 		// into the WebRequest to see if it was actually passed.
 		$request = $this->getMain()->getRequest();
 		if ( $request->getCheck( $this->encodeParamName( 'filterredir' ) ) ) {
@@ -201,6 +209,12 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 				ParamValidator::PARAM_TYPE => [ 'all', 'redirects', 'nonredirects' ],
 				ParamValidator::PARAM_DEFAULT => 'nonredirects', // for BC
 			],
+			'minsize' => [
+				ParamValidator::PARAM_TYPE => 'integer',
+			],
+			'maxsize' => [
+				ParamValidator::PARAM_TYPE => 'integer',
+			],
 			'redirect' => [
 				ParamValidator::PARAM_DEPRECATED => true,
 				ParamValidator::PARAM_DEFAULT => false,
@@ -224,6 +238,8 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 				=> 'apihelp-query+random-example-simple',
 			'action=query&generator=random&grnnamespace=0&grnlimit=2&prop=info'
 				=> 'apihelp-query+random-example-generator',
+			'action=query&list=random&rnnamespace=0&rnlimit=1&minsize=500'
+				=> 'apihelp-query+random-example-minsize',
 		];
 	}
 

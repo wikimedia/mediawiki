@@ -1171,10 +1171,13 @@
 	"apihelp-query+random-extended-description": "Pages are listed in a fixed sequence, only the starting point is random. This means that if, for example, <samp>Main Page</samp> is the first random page in the list, <samp>List of fictional monkeys</samp> will <em>always</em> be second, <samp>List of people on stamps of Vanuatu</samp> third, etc.",
 	"apihelp-query+random-param-namespace": "Return pages in these namespaces only.",
 	"apihelp-query+random-param-limit": "Limit how many random pages will be returned.",
+	"apihelp-query+random-param-minsize": "Limit to pages with at least this many bytes.",
+	"apihelp-query+random-param-maxsize": "Limit to pages with at most this many bytes.",
 	"apihelp-query+random-param-redirect": "Use <kbd>$1filterredir=redirects</kbd> instead.",
 	"apihelp-query+random-param-filterredir": "How to filter for redirects.",
 	"apihelp-query+random-example-simple": "Return two random pages from the main namespace.",
 	"apihelp-query+random-example-generator": "Return page info about two random pages from the main namespace.",
+	"apihelp-query+random-example-minsize": "Return page info about one random page from the main namespace that has at least 500 bytes of text.",
 
 	"apihelp-query+recentchanges-summary": "Enumerate recent changes.",
 	"apihelp-query+recentchanges-param-start": "The timestamp to start enumerating from.",
