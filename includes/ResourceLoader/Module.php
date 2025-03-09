@@ -993,7 +993,7 @@ abstract class Module implements LoggerAwareInterface {
 	/**
 	 * Validate a user-provided JavaScript blob.
 	 *
-	 * @param string $fileName
+	 * @param string $fileName Page title
 	 * @param string $contents JavaScript code
 	 * @return string JavaScript code, either the original content or a replacement
 	 *  that uses `mw.log.error()` to communicate a syntax error.
@@ -1003,10 +1003,14 @@ abstract class Module implements LoggerAwareInterface {
 			return $contents;
 		}
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-		// Cache potentially slow parsing of JavaScript code during the
-		// critical path. This happens lazily when responding to requests
-		// for modules=site, modules=user, and Gadgets.
+		// Cache potentially slow parsing of JavaScript code during the critical path.
+		// This happens during load.php requests for modules=site, modules=user, and Gadgets.
 		$error = $cache->getWithSetCallback(
+			// A content hash is included in the cache key so that this is immediately
+			// correct and re-computed after edits without relying on TTL or purges.
+			//
+			// We avoid accidental or abusive conflicts with other pages by including the
+			// wiki (makeKey vs makeGlobalKey) and page, because hashes are not unique.
 			$cache->makeKey(
 				'resourceloader-userjsparse',
 				self::USERJSPARSE_CACHE_VERSION,
@@ -1014,7 +1018,7 @@ abstract class Module implements LoggerAwareInterface {
 				$fileName
 			),
 			$cache::TTL_WEEK,
-			static function () use ( $contents, $fileName ) {
+			static function () use ( $contents ) {
 				try {
 					Peast::ES2016( $contents )->parse();
 				} catch ( PeastSyntaxException $e ) {
@@ -1028,12 +1032,11 @@ abstract class Module implements LoggerAwareInterface {
 		if ( $error ) {
 			// Send the error to the browser console client-side.
 			// By returning this as replacement for the actual script,
-			// we ensure user-provided scripts are safe to include in a batch
-			// request, without risk of a syntax error in this blob breaking
-			// the response itself.
+			// we ensure user-provided scripts are safe to serve to a browser,
+			// without breaking unrelated modules in the same response.
 			return 'mw.log.error(' .
 				json_encode(
-					'Parse error: ' . $error
+					"Parse error: $error in $fileName"
 				) .
 				');';
 		}

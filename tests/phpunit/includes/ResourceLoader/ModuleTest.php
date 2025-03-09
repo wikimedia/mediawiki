@@ -156,17 +156,17 @@ class ModuleTest extends ResourceLoaderTestCase {
 
 		yield 'valid ES2017 async-await' => [
 			"var foo = async function(x) { return await x.fetch(); }",
-			'Parse error: Unexpected: function on line 1'
+			'Parse error: Unexpected: function on line 1 in input.js'
 		];
 
 		yield 'valid ES2018 spread in object literal' => [
 			"var x = {b: 2, c: 3}; var y = {a: 1, ...x};",
-			'Parse error: Unexpected: ... on line 1'
+			'Parse error: Unexpected: ... on line 1 in input.js'
 		];
 
 		yield 'SyntaxError' => [
 			"var a = 'this is';\n {\ninvalid",
-			'Parse error: Unclosed { on line 3'
+			'Parse error: Unclosed { on line 3 in input.js'
 		];
 
 		// If an implementation matches inputs using a regex with runaway backtracking,
