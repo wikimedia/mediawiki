@@ -507,4 +507,22 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 			)
 		);
 	}
+
+	/**
+	 * @requires extension curl
+	 */
+	public function testShouldHandleConnectionLevelCurlErrors(): void {
+		// Find a random local port on which nothing is listening.
+		$socket = socket_create_listen( 0 );
+		socket_getsockname( $socket, $address, $randomPort );
+		socket_close( $socket );
+
+		$client = new MultiHttpClient( [] );
+		$res = $client->run( [
+			'method' => 'GET',
+			'url' => "http://127.0.0.1:$randomPort",
+		] );
+
+		$this->assertStringStartsWith( '(curl error: 7)', $res['error'] );
+	}
 }
