@@ -284,6 +284,15 @@ class ApiQueryBlocks extends ApiQueryBase {
 			}
 			if ( $fld_expiry ) {
 				$block['expiry'] = ApiResult::formatExpiry( $row->bl_expiry );
+				if ( wfIsInfinity( $row->bl_expiry ) ) {
+					$duration = $this->msg( 'infiniteblock' )->plain();
+				} else {
+					$duration = $this->getLanguage()->formatDurationBetweenTimestamps(
+						(int)wfTimestamp( TS_UNIX, $row->bl_timestamp ),
+						(int)wfTimestamp( TS_UNIX, $row->bl_expiry )
+					);
+				}
+				$block['duration-l10n'] = $duration;
 			}
 			if ( $fld_reason ) {
 				$block['reason'] = $this->commentStore->getComment( 'bl_reason', $row )->text;

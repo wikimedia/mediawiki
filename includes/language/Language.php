@@ -2195,8 +2195,13 @@ class Language implements Bcp47Code {
 		$sortedTimestamps = [ $timestamp1, $timestamp2 ];
 		sort( $sortedTimestamps );
 
-		$date1 = ( new DateTimeImmutable() )->setTimestamp( $sortedTimestamps[0] );
-		$date2 = ( new DateTimeImmutable() )->setTimestamp( $sortedTimestamps[1] );
+		$tz = new DateTimeZone( 'UTC' );
+		$date1 = ( new DateTimeImmutable() )
+			->setTimezone( $tz )
+			->setTimestamp( $sortedTimestamps[0] );
+		$date2 = ( new DateTimeImmutable() )
+			->setTimezone( $tz )
+			->setTimestamp( $sortedTimestamps[1] );
 
 		$interval = $date1->diff( $date2 );
 

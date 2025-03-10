@@ -1693,6 +1693,23 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	}
 
 	/**
+	 * Check interval across a DST boundary in the system default timezone
+	 * (regression test)
+	 */
+	public function testFormatDurationBetweenTimestampsAcrossDST() {
+		$oldTz = date_default_timezone_get();
+		date_default_timezone_set( 'Australia/Melbourne' );
+		try {
+			$ts1 = wfTimestamp( TS_UNIX, '20250115001810' );
+			$ts2 = wfTimestamp( TS_UNIX, '20250415001810' );
+			$result = $this->getLang()->formatDurationBetweenTimestamps( $ts1, $ts2 );
+			$this->assertSame( '3 months', $result );
+		} finally {
+			date_default_timezone_set( $oldTz );
+		}
+	}
+
+	/**
 	 * @dataProvider provideCheckTitleEncodingData
 	 */
 	public function testCheckTitleEncoding( $s ) {
