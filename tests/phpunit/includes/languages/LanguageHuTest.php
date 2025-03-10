@@ -35,4 +35,29 @@ class LanguageHuTest extends LanguageClassesTestCase {
 			[ 'other', 200 ],
 		];
 	}
+
+	/**
+	 * @dataProvider provideConvertGrammar
+	 */
+	public function testConvertGrammar( string $word, string $case, string $expected ): void {
+		$this->assertSame( $expected, $this->getLang()->convertGrammar( $word, $case ) );
+	}
+
+	public static function provideConvertGrammar(): iterable {
+		$wordCaseMappings = [
+			'kocsmafal' => [
+				'rol' => 'kocsmafalról',
+				'ba' => 'kocsmafalba',
+			],
+			'Bevezető' => [
+				'k' => 'Bevezetők',
+			],
+		];
+
+		foreach ( $wordCaseMappings as $word => $caseMappings ) {
+			foreach ( $caseMappings as $case => $expected ) {
+				yield "$word $case" => [ (string)$word, $case, $expected ];
+			}
+		}
+	}
 }

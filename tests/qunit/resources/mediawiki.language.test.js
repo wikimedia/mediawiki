@@ -3,11 +3,13 @@
 
 	QUnit.module( 'mediawiki.language', QUnit.newMwEnvironment( {
 		beforeEach: function () {
+			this.userLang = mw.config.get( 'wgUserLanguage' );
 			this.liveLangData = mw.language.data;
 			mw.language.data = {};
 		},
 		afterEach: function () {
 			mw.language.data = this.liveLangData;
+			mw.config.set( 'wgUserLanguage', this.userLang );
 		},
 		messages: {
 			// mw.language.listToText test
@@ -76,21 +78,6 @@
 		assert.strictEqual( mw.language.convertNumber( '१.२००', true ), 1200, 'unformat from digit transform (when disabled)' );
 		assert.strictEqual( mw.language.convertNumber( '1.200', true ), 1200, 'unformat plain (digit transform disabled)' );
 	} );
-
-	function grammarTest( langCode, test ) {
-		// The test works only if the content language is opt.language
-		// because it requires [lang].js to be loaded.
-		QUnit.test( 'Grammar test for lang=' + langCode, ( assert ) => {
-			let i;
-			for ( i = 0; i < test.length; i++ ) {
-				assert.strictEqual(
-					mw.language.convertGrammar( test[ i ].word, test[ i ].grammarForm ),
-					test[ i ].expected,
-					test[ i ].description
-				);
-			}
-		} );
-	}
 
 	// These tests run only for the current UI language.
 	const grammarTests = {
@@ -449,7 +436,7 @@
 			{
 				word: 'Викитека',
 				grammarForm: 'accusative',
-				expected: 'Викитека',
+				expected: 'Викитеку',
 				description: 'Grammar test for accusative case, Викитека -> Викитеку'
 			},
 			{
@@ -644,7 +631,7 @@
 			{
 				word: 'Викитолийн',
 				grammarForm: 'genitive',
-				expected: 'Викитоль',
+				expected: 'Викитолийн',
 				description: 'Grammar test for genitive case'
 			}
 		],
@@ -758,11 +745,31 @@
 		]
 	};
 
-	// eslint-disable-next-line no-jquery/no-each-util
-	$.each( grammarTests, ( langCode, test ) => {
-		if ( langCode === mw.config.get( 'wgUserLanguage' ) ) {
-			grammarTest( langCode, test );
-		}
+	const languageTestData = require( 'mediawiki.language.testdata' );
+
+	Object.keys( grammarTests ).forEach( ( langCode ) => {
+		QUnit.test( `Language data for lang=${ langCode }`, ( assert ) => {
+			assert.strictEqual(
+				Object.prototype.hasOwnProperty.call( languageTestData, langCode ),
+				true,
+				`Missing test data for lang=${ langCode }.` +
+				'Update the definition of the "mediawiki.language.testdata" module.'
+			);
+		} );
+
+		QUnit.test( `Grammar test for lang=${ langCode }`, ( assert ) => {
+			mw.config.set( 'wgUserLanguage', langCode );
+			mw.language.setData( langCode, languageTestData[ langCode ] );
+
+			const test = grammarTests[ langCode ];
+			for ( let i = 0; i < test.length; i++ ) {
+				assert.strictEqual(
+					mw.language.convertGrammar( test[ i ].word, test[ i ].grammarForm ),
+					test[ i ].expected,
+					test[ i ].description
+				);
+			}
+		} );
 	} );
 
 	QUnit.test( 'List to text test', ( assert ) => {

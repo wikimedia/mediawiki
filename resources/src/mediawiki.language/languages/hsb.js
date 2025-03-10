@@ -2,11 +2,7 @@
  * Upper Sorbian (Hornjoserbsce) language functions
  */
 
-mw.language.convertGrammar = function ( word, form ) {
-	const grammarForms = mw.language.getData( 'hsb', 'grammarForms' );
-	if ( grammarForms && grammarForms[ form ] ) {
-		return grammarForms[ form ][ word ];
-	}
+mw.language.convertGrammarMapping.hsb = function ( word, form ) {
 	switch ( form ) {
 		case 'instrumental': // instrumental
 			word = 'z ' + word;

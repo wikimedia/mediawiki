@@ -1,5 +1,7 @@
 <?php
 // These modules are only registered when $wgEnableJavaScriptTest is true
+use MediaWiki\Html\Html;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\ResourceLoader\FilePath;
 
 return [
@@ -21,23 +23,71 @@ return [
 		],
 	],
 
+	// Test module exposing language-specific rules for mediawiki.language.test.js.
 	'mediawiki.language.testdata' => [
-		'localBasePath' => "{$GLOBALS['IP']}/resources/src/mediawiki.language/languages",
-		'remoteBasePath' => "{$GLOBALS['wgResourceBasePath']}/resources/src/mediawiki.language/languages",
+		'packageFiles' => [
+			[
+				'name' => 'mediawiki.language.testdata.js',
+				'callback' => static function () {
+					// Optimization: Only compute and load data for languages that we have tests for.
+					$langCodes = [
+						'bs',
+						'he',
+						'hsb',
+						'dsb',
+						'hy',
+						'fi',
+						'ka',
+						'ru',
+						'hu',
+						'ga',
+						'mn',
+						'uk',
+						'sl',
+						'os',
+						'la',
+					];
+
+					$languageFactory = MediaWikiServices::getInstance()->getLanguageFactory();
+
+					$data = [];
+
+					foreach ( $langCodes as $langCode ) {
+						$data[$langCode] = $languageFactory->getLanguage( $langCode )->getJsData();
+					}
+
+					return 'module.exports = ' . Html::encodeJsVar( $data ) . ';';
+				},
+			]
+		],
+	],
+
+	'mediawiki.language.jqueryMsg.testdata' => [
+		'localBasePath' => __DIR__ . '/data',
 		'packageFiles' => [
 			new FilePath( 'mediawiki.jqueryMsg.testdata.js', __DIR__ . '/data' ),
 			new FilePath( 'mediawiki.jqueryMsg.data.json', __DIR__ . '/data' ),
-			'bs.js',
-			'dsb.js',
-			'fi.js',
-			'ga.js',
-			'hsb.js',
-			'hu.js',
-			'hy.js',
-			'la.js',
-			'os.js',
-			'sl.js',
-		]
+		],
+	],
+
+	// Test module loading all language-specific convertGrammar() implementations.
+	'mediawiki.language.grammar.testdata' => [
+		'localBasePath' => "{$GLOBALS['IP']}/resources/src/mediawiki.language/languages",
+		// Automatically discover and load every language-specific convertGrammar() implementation.
+		'scripts' => ( static function () {
+			$basePath = "{$GLOBALS['IP']}/resources/src/mediawiki.language/languages";
+			$scripts = [];
+
+			foreach ( new DirectoryIterator( $basePath ) as $file ) {
+				/** @var DirectoryIterator $file */
+				if ( $file->isFile() && $file->getExtension() === 'js' ) {
+					$scripts[] = $file->getBasename();
+				}
+			}
+
+			return $scripts;
+		} )(),
+		'dependencies' => [ 'mediawiki.language' ],
 	],
 
 	'test.MediaWiki' => [
@@ -133,6 +183,8 @@ return [
 			'mediawiki.rcfilters.filters.ui',
 			'mediawiki.language',
 			'mediawiki.language.testdata',
+			'mediawiki.language.grammar.testdata',
+			'mediawiki.language.jqueryMsg.testdata',
 			'mediawiki.cldr',
 			'mediawiki.cookie',
 			'mediawiki.deflate',

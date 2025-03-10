@@ -37,4 +37,20 @@ class LanguageHyTest extends LanguageClassesTestCase {
 			[ 'other', 200 ],
 		];
 	}
+
+	/**
+	 * @dataProvider provideConvertGrammar
+	 */
+	public function testConvertGrammar( string $word, string $case, string $expected ): void {
+		$this->assertSame( $expected, $this->getLang()->convertGrammar( $word, $case ) );
+	}
+
+	public static function provideConvertGrammar(): iterable {
+		yield [ 'Մաունա', 'genitive', 'Մաունայի' ];
+		yield [ 'հետո', 'genitive', 'հետոյի' ];
+		yield [ 'գիրք', 'genitive', 'գրքի' ];
+		yield [ 'ժամանակի', 'genitive', 'ժամանակիի' ];
+
+		yield [ 'Մաունա', 'dative', 'Մաունա' ];
+	}
 }

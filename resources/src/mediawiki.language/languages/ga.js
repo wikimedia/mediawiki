@@ -2,11 +2,7 @@
  * Irish (Gaeilge) language functions
  */
 
-mw.language.convertGrammar = function ( word, form ) {
-	const grammarForms = mw.language.getData( 'ga', 'grammarForms' );
-	if ( grammarForms && grammarForms[ form ] ) {
-		return grammarForms[ form ][ word ];
-	}
+mw.language.convertGrammarMapping.ga = function ( word, form ) {
 	switch ( form ) {
 		case 'ainmlae':
 			switch ( word ) {

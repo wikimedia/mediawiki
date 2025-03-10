@@ -43,4 +43,17 @@ class LanguageSlTest extends LanguageClassesTestCase {
 			[ 'one', 201 ],
 		];
 	}
+
+	/**
+	 * @dataProvider provideConvertGrammar
+	 */
+	public function testConvertGrammar( string $word, string $case, string $expected ): void {
+		$this->assertSame( $expected, $this->getLang()->convertGrammar( $word, $case ) );
+	}
+
+	public static function provideConvertGrammar(): iterable {
+		yield [ 'word', 'mestnik', 'o word' ];
+		yield [ 'word', 'orodnik', 'z word' ];
+		yield [ 'word', 'imenovalnik', 'word' ];
+	}
 }

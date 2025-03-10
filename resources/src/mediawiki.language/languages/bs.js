@@ -2,11 +2,7 @@
  * Bosnian (bosanski) language functions
  */
 
-mw.language.convertGrammar = function ( word, form ) {
-	const grammarForms = mw.language.getData( 'bs', 'grammarForms' );
-	if ( grammarForms && grammarForms[ form ] ) {
-		return grammarForms[ form ][ word ];
-	}
+mw.language.convertGrammarMapping.bs = function ( word, form ) {
 	switch ( form ) {
 		case 'instrumental': // instrumental
 			word = 's ' + word;

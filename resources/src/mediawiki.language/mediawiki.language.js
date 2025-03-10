@@ -72,6 +72,11 @@
 		},
 
 		/**
+		 * Map of language-specific convertGrammar() implementations keyed by language code.
+		 */
+		convertGrammarMapping: {},
+
+		/**
 		 * Grammatical transformations, needed for inflected languages.
 		 * Invoked by putting `{{grammar:case|word}}` in a message.
 		 *
@@ -85,9 +90,16 @@
 		convertGrammar: function ( word, form ) {
 			const userLanguage = mw.config.get( 'wgUserLanguage' );
 
+			// Word-specific casing rules have the highest precedence.
 			const forms = mw.language.getData( userLanguage, 'grammarForms' );
-			if ( forms && forms[ form ] ) {
+			if ( forms && forms[ form ] && forms[ form ][ word ] ) {
 				return forms[ form ][ word ];
+			}
+
+			// If no word-specific casing rule exists, prefer to use a language-specific
+			// convertGrammar() implementation if one is available.
+			if ( Object.prototype.hasOwnProperty.call( mw.language.convertGrammarMapping, userLanguage ) ) {
+				return mw.language.convertGrammarMapping[ userLanguage ]( word, form );
 			}
 
 			const transformations = mw.language.getData( userLanguage, 'grammarTransformations' );

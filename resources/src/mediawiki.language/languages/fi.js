@@ -3,12 +3,7 @@
  * @author Santhosh Thottingal
  */
 
-mw.language.convertGrammar = function ( word, form ) {
-	const grammarForms = mw.language.getData( 'fi', 'grammarForms' );
-	if ( grammarForms && grammarForms[ form ] ) {
-		return grammarForms[ form ][ word ];
-	}
-
+mw.language.convertGrammarMapping.fi = function ( word, form ) {
 	// vowel harmony flag
 	let aou = /[aou][^äöy]*$/i.test( word );
 	const origWord = word;
