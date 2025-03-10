@@ -52,7 +52,6 @@ use MediaWiki\WikiMap\WikiMap;
 use Skin;
 use SkinFactory;
 use UploadBase;
-use Wikimedia\Composer\ComposerInstalled;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\ReadOnlyMode;
@@ -675,14 +674,12 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	protected function appendInstalledLibraries( $property ) {
-		$path = MW_INSTALL_PATH . '/vendor/composer/installed.json';
-		if ( !file_exists( $path ) ) {
-			return true;
-		}
-
+		$credits = SpecialVersion::getCredits(
+			ExtensionRegistry::getInstance(),
+			$this->getConfig()
+		);
 		$data = [];
-		$installed = new ComposerInstalled( $path );
-		foreach ( $installed->getInstalledDependencies() as $name => $info ) {
+		foreach ( SpecialVersion::parseComposerInstalled( $credits ) as $name => $info ) {
 			if ( str_starts_with( $info['type'], 'mediawiki-' ) ) {
 				// Skip any extensions or skins since they'll be listed
 				// in their proper section
