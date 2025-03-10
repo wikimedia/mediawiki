@@ -356,6 +356,23 @@ Simple table
 </td></tr></tbody></table>
 !! end
 
+## T387922
+!! test
+Row-syntax table cells require that the row start with a table cell
+!! wikitext
+{|
+|a
+b||c
+|}
+!! html
+<table>
+<tbody><tr>
+<td>a
+<p>b||c
+</p>
+</td></tr></tbody></table>
+!! end
+
 !! test
 Simple table but with multiple dashes for row wikitext
 !! wikitext

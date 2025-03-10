@@ -223,7 +223,7 @@ Nested definition lists using html syntax
 !! end
 
 !! test
-Definition Lists: No nesting: Multiple dd's
+No nesting: Multiple dd's
 !! wikitext
 ;x
 :a
@@ -235,7 +235,7 @@ Definition Lists: No nesting: Multiple dd's
 !! end
 
 !! test
-Definition Lists: Indentation: Regular
+Indentation: Regular
 !! wikitext
 :i1
 ::i2
@@ -247,7 +247,7 @@ Definition Lists: Indentation: Regular
 !! end
 
 !! test
-Definition Lists: Indentation: Missing 1st level
+Indentation: Missing 1st level
 !! wikitext
 ::i2
 :::i3
@@ -257,7 +257,7 @@ Definition Lists: Indentation: Missing 1st level
 !! end
 
 !! test
-Definition Lists: Indentation: Multi-level indent
+Indentation: Multi-level indent
 !! wikitext
 :::i3
 !! html
@@ -265,7 +265,7 @@ Definition Lists: Indentation: Multi-level indent
 !! end
 
 !! test
-Definition Lists: Hacky use to indent tables
+Hacky use to indent tables
 !! wikitext
 ::{|
 |foo
@@ -286,7 +286,7 @@ should be left alone
 !! end
 
 !! test
-Definition Lists: Hacky use to indent tables (with content following table)
+Hacky use to indent tables (with content following table)
 !! wikitext
 :{|
 |foo
@@ -309,7 +309,7 @@ Definition Lists: Hacky use to indent tables (with content following table)
 !! end
 
 !! test
-Definition Lists: Hacky use to indent tables, with comments (T65979)
+Hacky use to indent tables, with comments (T65979)
 !! wikitext
 <!-- foo -->
 ::{|
@@ -329,7 +329,7 @@ should be left alone</p>
 !! end
 
 !! test
-Definition Lists: Hacky use to indent tables, with comment before table
+Hacky use to indent tables, with comment before table
 !!options
 parsoid=wt2html
 !! wikitext
@@ -346,7 +346,7 @@ parsoid=wt2html
 # hacky-indent table and then reopens it; Parsoid emits the "expected"
 # output.  Parsoid team regards this as a bug in the legacy parser.
 !! test
-Definition Lists: Hack use to indent tables, in a nested list context (T262943)
+Hack use to indent tables, in a nested list context (T262943)
 !! wikitext
 This is a discussion thread.
 
@@ -381,7 +381,7 @@ This is a discussion thread.
 # The trailing whitespace in this test is to catch a regression in
 # Parsoid after T54473.
 !! test
-Definition Lists: Hacky use to indent tables (WS-insensitive)
+Hacky use to indent tables (WS-insensitive)
 !! wikitext
 :{|
 |a
@@ -399,7 +399,7 @@ Definition Lists: Hacky use to indent tables (WS-insensitive)
 
 # wt2wt / html2wt will normalize newlines - so disabled those test modes
 !! test
-Definition Lists: Hacky use to indent tables (nl-insensitive)
+Hacky use to indent tables (nl-insensitive)
 !! options
 parsoid=wt2html,html2html
 !! wikitext
@@ -512,7 +512,7 @@ Table / list interaction: lists nested in tables nested in indented lists
 !!end
 
 !! test
-Definition Lists: Nesting: Multi-level (Parsoid only)
+Nesting: Multi-level (Parsoid only)
 !! wikitext
 ;t1:d1
 ;;t2::d2
@@ -524,14 +524,11 @@ Definition Lists: Nesting: Multi-level (Parsoid only)
   <dt>
     <dl>
       <dt>t2 </dt>
-      <dd></dd>
-			<dd>d2</dd>
+      <dd>:d2</dd>
       <dt>
         <dl>
           <dt>t3 </dt>
-          <dd></dd>
-          <dd></dd>
-					<dd>d3</dd>
+          <dd>::d3</dd>
         </dl>
       </dt>
     </dl>
@@ -539,9 +536,8 @@ Definition Lists: Nesting: Multi-level (Parsoid only)
 </dl>
 !! end
 
-
 !! test
-Definition Lists: Nesting: Test 2
+Nesting: Test 2
 !! wikitext
 ;t1
 ::d2
@@ -551,9 +547,8 @@ Definition Lists: Nesting: Test 2
 <dl><dd>d2</dd></dl></dd></dl>
 !! end
 
-
 !! test
-Definition Lists: Nesting: Test 3
+Nesting: Test 3
 !! wikitext
 :;t1
 ::::d2
@@ -563,9 +558,8 @@ Definition Lists: Nesting: Test 3
 <dl><dd><dl><dd>d2</dd></dl></dd></dl></dd></dl></dd></dl>
 !! end
 
-
 !! test
-Definition Lists: Nesting: Test 4
+Nesting: Test 4
 !! wikitext
 ::;t3
 :::d3
@@ -574,7 +568,6 @@ Definition Lists: Nesting: Test 4
 <dd>d3</dd></dl></dd></dl></dd></dl>
 !! end
 
-
 ## The Parsoid team believes the following three test exposes a
 ## bug in the PHP parser.  (Parsoid team thinks the PHP parser is
 ## wrong to close the <dl> after the <dt> containing the <ul>.)
@@ -582,7 +575,7 @@ Definition Lists: Nesting: Test 4
 ## <dl> tags with a single <dt> child; it converts the <dt> into
 ## a <dd> in that case.  (Parsoid leaves the <dt> alone!)
 !! test
-Definition Lists: Mixed Lists: Test 1
+Mixed Lists: Test 1
 !! wikitext
 :;*foo
 ::*bar
@@ -612,7 +605,7 @@ Definition Lists: Mixed Lists: Test 1
 !! end
 
 !! test
-Definition Lists: Mixed Lists: Test 2
+Mixed Lists: Test 2
 !! wikitext
 *:d1
 *:d2
@@ -621,9 +614,8 @@ Definition Lists: Mixed Lists: Test 2
 <dd>d2</dd></dl></li></ul>
 !! end
 
-
 !! test
-Definition Lists: Mixed Lists: Test 3
+Mixed Lists: Test 3
 !! wikitext
 *:::d1
 *:::d2
@@ -632,9 +624,8 @@ Definition Lists: Mixed Lists: Test 3
 <dd>d2</dd></dl></dd></dl></dd></dl></li></ul>
 !! end
 
-
 !! test
-Definition Lists: Mixed Lists: Test 4
+Mixed Lists: Test 4
 !! options
 parsoid=wt2html,html2html
 !! wikitext
@@ -647,9 +638,8 @@ parsoid=wt2html,html2html
 <dd>d4</dd></dl></li></ul>
 !! end
 
-
 !! test
-Definition Lists: Mixed Lists: Test 5
+Mixed Lists: Test 5
 !! wikitext
 *:d1
 *::d2
@@ -658,9 +648,8 @@ Definition Lists: Mixed Lists: Test 5
 <dl><dd>d2</dd></dl></dd></dl></li></ul>
 !! end
 
-
 !! test
-Definition Lists: Mixed Lists: Test 6
+Mixed Lists: Test 6
 !! wikitext
 #*:d1
 #*:::d3
@@ -669,9 +658,8 @@ Definition Lists: Mixed Lists: Test 6
 <dl><dd><dl><dd>d3</dd></dl></dd></dl></dd></dl></li></ul></li></ol>
 !! end
 
-
 !! test
-Definition Lists: Mixed Lists: Test 7
+Mixed Lists: Test 7
 !! wikitext
 :*d1
 :*d2
@@ -680,9 +668,8 @@ Definition Lists: Mixed Lists: Test 7
 <li>d2</li></ul></dd></dl>
 !! end
 
-
 !! test
-Definition Lists: Mixed Lists: Test 8
+Mixed Lists: Test 8
 !! wikitext
 :*d1
 ::*d2
@@ -691,9 +678,8 @@ Definition Lists: Mixed Lists: Test 8
 <dl><dd><ul><li>d2</li></ul></dd></dl></dd></dl>
 !! end
 
-
 !! test
-Definition Lists: Mixed Lists: Test 9
+Mixed Lists: Test 9
 !! options
 parsoid=wt2html,html2html
 !! wikitext
@@ -703,9 +689,8 @@ parsoid=wt2html,html2html
 <dd>bar</dd></dl></li></ul>
 !! end
 
-
 !! test
-Definition Lists: Mixed Lists: Test 10
+Mixed Lists: Test 10
 !! options
 parsoid=wt2html,html2html
 !! wikitext
@@ -722,7 +707,7 @@ parsoid=wt2html,html2html
 
 # This is a regression test for T175099
 !! test
-Definition Lists: Mixed Lists: Test 11
+Mixed Lists: Test 11
 !! wikitext
 ;a
 :*b
@@ -735,51 +720,8 @@ Definition Lists: Mixed Lists: Test 11
 <dd><ul><li>b</li></ul></dd></dl>
 !! end
 
-# FIXME: Maybe get rid of this test?
 !! test
-Definition Lists: Mixed Lists: Test 12
-!! options
-parsoid=wt2html,html2html
-!! wikitext
-*#*#;*;;foo :bar
-*#*#;boo :baz
-!! html/php
-<ul><li><ol><li><ul><li><ol><li><dl><dt>foo</dt>
-<dd><ul><li><dl><dt><dl><dt>bar</dt></dl></dt></dl></li></ul></dd></dl></li></ol></li></ul>
-<dl><dt>boo</dt>
-<dd>baz</dd></dl></li></ol></li></ul>
-!! html/parsoid
-<ul>
-<li>
-<ol>
-<li>
-<ul>
-<li>
-<ol>
-<li>
-<dl>
-<dt>
-<ul>
-<li>
-<dl>
-<dt>
-<dl>
-<dt>foo</dt>
-<dd data-parsoid='{"stx":"row"}'>bar</dd>
-</dl></dt>
-</dl></li>
-</ul></dt>
-<dt>boo</dt>
-<dd data-parsoid='{"stx":"row"}'>baz</dd>
-</dl></li>
-</ol></li>
-</ul></li>
-</ol></li>
-</ul>
-!! end
-
-!! test
-Definition Lists: Mixed Lists: Test 13
+Mixed Lists: Test 13
 !! options
 parsoid=wt2html,html2html
 !! wikitext
@@ -792,49 +734,8 @@ parsoid=wt2html,html2html
 <dd>baz</dd></dl></li></ol></li></ul>
 !! end
 
-# FIXME: Maybe get rid of this test?
-# From an old description in the Parsoid codebase:
-# * The test is wrong, there are two colons where there should be :;
-# * The PHP parser is wrong to close the <dl> after the <dt> containing the <ul>.
 !! test
-Definition Lists: Weird Ones: Test 1
-!! options
-parsoid=wt2html,html2html
-!! wikitext
-*#;*::;;foo :bar (who uses this?)
-!! html/php
-<ul><li><ol><li><dl><dt>foo</dt>
-<dd><ul><li><dl><dd><dl><dd><dl><dt><dl><dt>bar (who uses this?)</dt></dl></dt></dl></dd></dl></dd></dl></li></ul></dd></dl></li></ol></li></ul>
-!! html/parsoid
-<ul>
-<li>
-<ol>
-<li>
-<dl>
-<dt>
-<ul>
-<li>
-<dl>
-<dd>
-<dl>
-<dd>
-<dl>
-<dt>
-<dl>
-<dt>foo</dt>
-<dd data-parsoid='{"stx":"row"}'>bar (who uses this?)</dd>
-</dl></dt>
-</dl></dd>
-</dl></dd>
-</dl></li>
-</ul></dt>
-</dl></li>
-</ol></li>
-</ul>
-!! end
-
-!! test
-Definition Lists: colons occurring in tags
+colons occurring in tags
 !! wikitext
 ;a:b
 ;'''a:b'''
@@ -872,11 +773,10 @@ Definition Lists: colons occurring in tags
 <dl><dt><dl><dt><i>a:b</i></dt></dl></dt></dl></dt></dl>
 !! end
 
-# Parsoid's output differs here again because it shares
-# nesting between the two lists unlike the PHP parser.
-# Unsure which is more desirable.
+# Parsoid's output is preferable here because it shares
+# nesting between the two lists unlike the legacy parser.
 !! test
-Definition Lists: colons and tables 1
+colons and tables 1
 !! wikitext
 :{|
 |x
@@ -906,7 +806,7 @@ Definition Lists: colons and tables 1
 
 # FIXME: Does this need a html/php section?
 !! test
-Definition Lists: template interaction
+Template interaction
 !! wikitext
 ::{{definition_list}}
 
@@ -925,4 +825,46 @@ Definition Lists: template interaction
 <dl><dd>two</dd>
 <dd>three</dd></dl></dd>
 <dd data-parsoid='{}'>four</dd></dl></dd></dl>
+!! end
+
+!! test
+Second colon on line: No templates involved
+!! options
+parsoid=wt2html,wt2wt
+!! wikitext
+;term:def=foo:bar
+
+;'''1:00''':bar
+!! html/php
+<dl><dt>term</dt>
+<dd>def=foo:bar</dd></dl>
+<dl><dt><b>1:00</b></dt>
+<dd>bar</dd></dl>
+!! html/parsoid
+<dl><dt>term</dt><dd>def=foo:bar</dd></dl>
+
+<dl><dt><b>1:00</b></dt><dd>bar</dd></dl>
+!! end
+
+!! test
+Second colon on line: Templates involved and T2959 kicks in
+!! options
+parsoid=wt2html,wt2wt
+!! wikitext
+:a
+::{{1x|1=::foo}} bar
+
+;term:def=foo{{1x|:bar}}
+!! html/php
+<dl><dd>a
+<dl><dd></dd>
+<dd>foo bar</dd></dl></dd></dl>
+<dl><dt>term</dt>
+<dd>def=foo</dd>
+<dd>bar</dd></dl>
+!! html/parsoid+integrated
+<dl><dd>a
+<dl><dd></dd><dd about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1","named":true}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"::foo"}},"i":0}}," bar"]}'>foo bar</dd></dl></dd></dl>
+
+<dl><dt>term</dt><dd>def=foo</dd><dd about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":":bar"}},"i":0}}]}'>bar</dd></dl>
 !! end

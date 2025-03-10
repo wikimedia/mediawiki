@@ -114,7 +114,7 @@ wgFragmentMode=[ "html5", "legacy" ]
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./Main_Page#Is_this_great?" class="mw-selflink-fragment" data-parsoid='{"stx":"simple","a":{"href":"./Main_Page#Is_this_great?"},"sa":{"href":"#Is this great?"}}'>#Is this great?</a>
 <a rel="mw:WikiLink" href="./Foo#Is_this_great?" title="Foo" data-parsoid='{"stx":"simple","a":{"href":"./Foo#Is_this_great?"},"sa":{"href":"Foo#Is this great?"}}'>Foo#Is this great?</a>
-<a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?Foo#Is_this_great.3F" title="meatball:Foo" class="extiw" data-parsoid='{"stx":"simple","a":{"href":"http://www.usemod.com/cgi-bin/mb.pl?Foo#Is_this_great.3F"},"sa":{"href":"meatball:Foo#Is this great?"},"isIW":true}'>meatball:Foo#Is this great?</a>
+<a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?Foo#Is_this_great.3F" title="meatball:Foo" class="extiw" data-parsoid='{"stx":"simple","a":{"href":"http://www.usemod.com/cgi-bin/mb.pl?Foo#Is_this_great.3F"},"sa":{"href":"meatball:Foo#Is this great?"}}'>meatball:Foo#Is this great?</a>
 <a rel="mw:WikiLink/Interwiki" href="//en.wikipedia.org/wiki/Foo#Is_this_great?" title="en:Foo" class="extiw">en:Foo#Is this great?</a></p>
 !! end
 
@@ -155,19 +155,19 @@ Different interwiki prefixes mapping to the same URL
 
 [[  wikiPEdia :Foo]]
 !! html/parsoid
-<p><a rel="mw:WikiLink/Interwiki" href="//en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"simple","a":{"href":"//en.wikipedia.org/wiki/Foo"},"sa":{"href":":en:Foo"},"isIW":true}' title="en:Foo" class="extiw">en:Foo</a></p>
+<p><a rel="mw:WikiLink/Interwiki" href="//en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"simple","a":{"href":"//en.wikipedia.org/wiki/Foo"},"sa":{"href":":en:Foo"}}' title="en:Foo" class="extiw">en:Foo</a></p>
 
-<p><a rel="mw:WikiLink/Interwiki" href="//en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"piped","a":{"href":"//en.wikipedia.org/wiki/Foo"},"sa":{"href":":en:Foo"},"isIW":true}' title="en:Foo" class="extiw">Foo</a></p>
+<p><a rel="mw:WikiLink/Interwiki" href="//en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"piped","a":{"href":"//en.wikipedia.org/wiki/Foo"},"sa":{"href":":en:Foo"}}' title="en:Foo" class="extiw">Foo</a></p>
 
-<p><a rel="mw:WikiLink/Interwiki" href="http://en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"simple","a":{"href":"http://en.wikipedia.org/wiki/Foo"},"sa":{"href":"wikipedia:Foo"},"isIW":true}' title="wikipedia:Foo" class="extiw">wikipedia:Foo</a></p>
+<p><a rel="mw:WikiLink/Interwiki" href="http://en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"simple","a":{"href":"http://en.wikipedia.org/wiki/Foo"},"sa":{"href":"wikipedia:Foo"}}' title="wikipedia:Foo" class="extiw">wikipedia:Foo</a></p>
 
-<p><a rel="mw:WikiLink/Interwiki" href="http://en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"piped","a":{"href":"http://en.wikipedia.org/wiki/Foo"},"sa":{"href":":wikipedia:Foo"},"isIW":true}' title="wikipedia:Foo" class="extiw">Foo</a></p>
+<p><a rel="mw:WikiLink/Interwiki" href="http://en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"piped","a":{"href":"http://en.wikipedia.org/wiki/Foo"},"sa":{"href":":wikipedia:Foo"}}' title="wikipedia:Foo" class="extiw">Foo</a></p>
 
-<p><a rel="mw:WikiLink/Interwiki" href="http://en.wikipedia.org/wiki/en:Foo" data-parsoid='{"stx":"simple","a":{"href":"http://en.wikipedia.org/wiki/en:Foo"},"sa":{"href":"wikipedia:en:Foo"},"isIW":true}' title="wikipedia:en:Foo" class="extiw">wikipedia:en:Foo</a></p>
+<p><a rel="mw:WikiLink/Interwiki" href="http://en.wikipedia.org/wiki/en:Foo" data-parsoid='{"stx":"simple","a":{"href":"http://en.wikipedia.org/wiki/en:Foo"},"sa":{"href":"wikipedia:en:Foo"}}' title="wikipedia:en:Foo" class="extiw">wikipedia:en:Foo</a></p>
 
-<p><a rel="mw:WikiLink/Interwiki" href="http://en.wikipedia.org/wiki/en:Foo" data-parsoid='{"stx":"simple","a":{"href":"http://en.wikipedia.org/wiki/en:Foo"},"sa":{"href":":wikipedia:en:Foo"},"isIW":true}' title="wikipedia:en:Foo" class="extiw">wikipedia:en:Foo</a></p>
+<p><a rel="mw:WikiLink/Interwiki" href="http://en.wikipedia.org/wiki/en:Foo" data-parsoid='{"stx":"simple","a":{"href":"http://en.wikipedia.org/wiki/en:Foo"},"sa":{"href":":wikipedia:en:Foo"}}' title="wikipedia:en:Foo" class="extiw">wikipedia:en:Foo</a></p>
 
-<p><a rel="mw:WikiLink/Interwiki" href="http://en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"simple","a":{"href":"http://en.wikipedia.org/wiki/Foo"},"sa":{"href":"  wikiPEdia :Foo"},"isIW":true}' title="wikipedia:Foo" class="extiw">  wikiPEdia :Foo</a></p>
+<p><a rel="mw:WikiLink/Interwiki" href="http://en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"simple","a":{"href":"http://en.wikipedia.org/wiki/Foo"},"sa":{"href":"  wikiPEdia :Foo"}}' title="wikipedia:Foo" class="extiw">  wikiPEdia :Foo</a></p>
 !! end
 
 !! test
@@ -202,7 +202,7 @@ Interwiki links: trail
 <p><a href="http://en.wikipedia.org/wiki/Foo" class="extiw" title="wikipedia:Foo">Bar</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink/Interwiki" href="http://en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"piped","a":{"href":"http://en.wikipedia.org/wiki/Foo"},"sa":{"href":"wikipedia:Foo"},"isIW":true,"tail":"r"}' title="wikipedia:Foo" class="extiw">Bar</a></p>
+<p><a rel="mw:WikiLink/Interwiki" href="http://en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"piped","a":{"href":"http://en.wikipedia.org/wiki/Foo"},"sa":{"href":"wikipedia:Foo"},"tail":"r"}' title="wikipedia:Foo" class="extiw">Bar</a></p>
 !! end
 
 !! test
@@ -329,7 +329,7 @@ Interwiki link with percent encoded target
 <p><a href="http://es.wikipedia.org/wiki/Nueva_Guip%C3%BAzcoa" class="extiw" title="es:Nueva Guipúzcoa">Nueva Guipúzcoa</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink/Interwiki" href="http://es.wikipedia.org/wiki/Nueva%20Guipúzcoa" title="es:Nueva Guipúzcoa" class="extiw" data-parsoid='{"stx":"piped","a":{"href":"http://es.wikipedia.org/wiki/Nueva%20Guipúzcoa"},"sa":{"href":":es:Nueva Guip%C3%BAzcoa"},"isIW":true}'>Nueva Guipúzcoa</a></p>
+<p><a rel="mw:WikiLink/Interwiki" href="http://es.wikipedia.org/wiki/Nueva%20Guipúzcoa" title="es:Nueva Guipúzcoa" class="extiw" data-parsoid='{"stx":"piped","a":{"href":"http://es.wikipedia.org/wiki/Nueva%20Guipúzcoa"},"sa":{"href":":es:Nueva Guip%C3%BAzcoa"}}'>Nueva Guipúzcoa</a></p>
 !! end
 
 !! test
@@ -340,7 +340,7 @@ Interwiki link with colon escape after prefix
 <p><a href="http://www.usemod.com/cgi-bin/mb.pl?Category:Hello" class="extiw" title="meatball:Category:Hello">meatball::Category:Hello</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?Category:Hello" title="meatball:Category:Hello" class="extiw" data-parsoid='{"stx":"simple","a":{"href":"http://www.usemod.com/cgi-bin/mb.pl?Category:Hello"},"sa":{"href":"meatball::Category:Hello"},"isIW":true}'>meatball:Category:Hello</a></p>
+<p><a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?Category:Hello" title="meatball:Category:Hello" class="extiw" data-parsoid='{"stx":"simple","a":{"href":"http://www.usemod.com/cgi-bin/mb.pl?Category:Hello"},"sa":{"href":"meatball::Category:Hello"}}'>meatball:Category:Hello</a></p>
 !! end
 
 !! test
@@ -367,12 +367,12 @@ title=[[Main Page]]
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./Main_Page" class="mw-selflink selflink" data-parsoid='{"stx":"simple","a":{"href":"./Main_Page"},"sa":{"href":"local:Main Page"}}'>local:Main Page</a></p>
 
-<p><a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?Main%20Page" title="meatball:Main Page" class="extiw" data-parsoid='{"stx":"simple","a":{"href":"http://www.usemod.com/cgi-bin/mb.pl?Main%20Page"},"sa":{"href":"meatball:Main Page"},"isIW":true}'>meatball:Main Page</a></p>
+<p><a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?Main%20Page" title="meatball:Main Page" class="extiw" data-parsoid='{"stx":"simple","a":{"href":"http://www.usemod.com/cgi-bin/mb.pl?Main%20Page"},"sa":{"href":"meatball:Main Page"}}'>meatball:Main Page</a></p>
 
 <p><a rel="mw:WikiLink" href="./Main_Page" class="mw-selflink selflink" data-parsoid='{"stx":"simple","a":{"href":"./Main_Page"},"sa":{"href":"mi:Main Page"}}'>mi:Main Page</a></p>
 
 <p><a rel="mw:WikiLink" href="./Main_Page#anchor" class="mw-selflink-fragment" data-parsoid='{"stx":"simple","a":{"href":"./Main_Page#anchor"},"sa":{"href":"local:Main Page#anchor"}}'>local:Main Page#anchor</a></p>
 
-<p><a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?Main%20Page#anchor" title="meatball:Main Page" class="extiw" data-parsoid='{"stx":"simple","a":{"href":"http://www.usemod.com/cgi-bin/mb.pl?Main%20Page#anchor"},"sa":{"href":"meatball:Main Page#anchor"},"isIW":true}'>meatball:Main Page#anchor</a></p>
+<p><a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?Main%20Page#anchor" title="meatball:Main Page" class="extiw" data-parsoid='{"stx":"simple","a":{"href":"http://www.usemod.com/cgi-bin/mb.pl?Main%20Page#anchor"},"sa":{"href":"meatball:Main Page#anchor"}}'>meatball:Main Page#anchor</a></p>
 !! end
 
