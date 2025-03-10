@@ -2122,8 +2122,8 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		$wanCache = new WANObjectCache( [ 'cache' => $backend ] );
 
 		$this->assertSame(
-			$wanCache::QOS_UNKNOWN,
-			$wanCache->getQoS( $wanCache::ATTR_DURABILITY )
+			BagOStuff::QOS_UNKNOWN,
+			$wanCache->getQoS( BagOStuff::ATTR_DURABILITY )
 		);
 	}
 

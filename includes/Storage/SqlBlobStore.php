@@ -32,6 +32,7 @@ use HistoryBlobUtils;
 use InvalidArgumentException;
 use StatusValue;
 use Wikimedia\Assert\Assert;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\DBAccessObjectUtils;
 use Wikimedia\Rdbms\IDatabase;
@@ -699,7 +700,7 @@ class SqlBlobStore implements BlobStore {
 	private function getCacheTTL() {
 		$cache = $this->cache;
 
-		if ( $cache->getQoS( $cache::ATTR_DURABILITY ) >= $cache::QOS_DURABILITY_RDBMS ) {
+		if ( $cache->getQoS( BagOStuff::ATTR_DURABILITY ) >= BagOStuff::QOS_DURABILITY_RDBMS ) {
 			// Do not cache RDBMs blobs in...the RDBMs store
 			$ttl = $cache::TTL_UNCACHEABLE;
 		} else {

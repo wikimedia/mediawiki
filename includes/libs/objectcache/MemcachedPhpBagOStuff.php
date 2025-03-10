@@ -70,7 +70,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 		$res = $getToken // @phan-suppress-next-line PhanTypeMismatchArgument False positive
 			? $this->client->get( $routeKey, $casToken ) : $this->client->get( $routeKey );
 
-		if ( $this->client->_last_cmd_status !== self::ERR_NONE ) {
+		if ( $this->client->_last_cmd_status !== BagOStuff::ERR_NONE ) {
 			$this->setLastError( $this->client->_last_cmd_status );
 		}
 
@@ -82,7 +82,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 
 		$res = $this->client->set( $routeKey, $value, $this->fixExpiry( $exptime ) );
 
-		if ( $this->client->_last_cmd_status !== self::ERR_NONE ) {
+		if ( $this->client->_last_cmd_status !== BagOStuff::ERR_NONE ) {
 			$this->setLastError( $this->client->_last_cmd_status );
 		}
 
@@ -94,7 +94,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 
 		$res = $this->client->delete( $routeKey );
 
-		if ( $this->client->_last_cmd_status !== self::ERR_NONE ) {
+		if ( $this->client->_last_cmd_status !== BagOStuff::ERR_NONE ) {
 			$this->setLastError( $this->client->_last_cmd_status );
 		}
 
@@ -106,7 +106,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 
 		$res = $this->client->add( $routeKey, $value, $this->fixExpiry( $exptime ) );
 
-		if ( $this->client->_last_cmd_status !== self::ERR_NONE ) {
+		if ( $this->client->_last_cmd_status !== BagOStuff::ERR_NONE ) {
 			$this->setLastError( $this->client->_last_cmd_status );
 		}
 
@@ -118,7 +118,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 
 		$res = $this->client->cas( $casToken, $routeKey, $value, $this->fixExpiry( $exptime ) );
 
-		if ( $this->client->_last_cmd_status !== self::ERR_NONE ) {
+		if ( $this->client->_last_cmd_status !== BagOStuff::ERR_NONE ) {
 			$this->setLastError( $this->client->_last_cmd_status );
 		}
 
@@ -157,7 +157,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 
 		$res = $this->client->touch( $routeKey, $this->fixExpiry( $exptime ) );
 
-		if ( $this->client->_last_cmd_status !== self::ERR_NONE ) {
+		if ( $this->client->_last_cmd_status !== BagOStuff::ERR_NONE ) {
 			$this->setLastError( $this->client->_last_cmd_status );
 		}
 
@@ -177,7 +177,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 			$res[$this->stripRouteFromKey( $routeKey )] = $value;
 		}
 
-		if ( $this->client->_last_cmd_status !== self::ERR_NONE ) {
+		if ( $this->client->_last_cmd_status !== BagOStuff::ERR_NONE ) {
 			$this->setLastError( $this->client->_last_cmd_status );
 		}
 

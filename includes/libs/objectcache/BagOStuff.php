@@ -82,7 +82,6 @@ use Wikimedia\Stats\StatsFactory;
  */
 abstract class BagOStuff implements
 	ExpirationAwareness,
-	StorageAwareness,
 	IStoreKeyEncoder,
 	LoggerAwareInterface
 {
@@ -108,6 +107,32 @@ abstract class BagOStuff implements
 
 	/** @var float|null */
 	private $wallClockOverride;
+
+	/** Bitfields for getLastError() */
+
+	/** No storage medium error */
+	public const ERR_NONE = 0;
+	/** Storage medium failed to yield a complete response to an operation */
+	public const ERR_NO_RESPONSE = 1;
+	/** Storage medium could not be reached to establish a connection */
+	public const ERR_UNREACHABLE = 2;
+	/** Storage medium operation failed due to usage limitations or an I/O error */
+	public const ERR_UNEXPECTED = 3;
+
+	/** Key in getQoS() for durability of writes. See QOS_DURABILITY_* for values, higher means stronger. */
+	public const ATTR_DURABILITY = 2;
+	/** Data is never saved to begin with (blackhole store) */
+	public const QOS_DURABILITY_NONE = 1;
+	/** Data is lost at the end of the current web request or CLI script */
+	public const QOS_DURABILITY_SCRIPT = 2;
+	/** Data is lost once the service storing the data restarts */
+	public const QOS_DURABILITY_SERVICE = 3;
+	/** Data is saved to disk and writes do not usually block on fsync() */
+	public const QOS_DURABILITY_DISK = 4;
+	/** Data is saved to disk and writes usually block on fsync(), like a standard RDBMS */
+	public const QOS_DURABILITY_RDBMS = 5;
+	/** Generic "unknown" value; useful for comparisons (always "good enough") */
+	public const QOS_UNKNOWN = INF;
 
 	/** Bitfield constants for get()/getMulti(); these are only advisory */
 	/** If supported, avoid reading stale data due to replication */

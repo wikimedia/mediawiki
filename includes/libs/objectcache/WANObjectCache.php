@@ -162,7 +162,6 @@ use Wikimedia\Telemetry\TracerInterface;
  */
 class WANObjectCache implements
 	ExpirationAwareness,
-	StorageAwareness,
 	IStoreKeyEncoder,
 	LoggerAwareInterface
 {
@@ -2444,14 +2443,14 @@ class WANObjectCache implements
 	final public function getLastError( $watchPoint = 0 ) {
 		$code = $this->cache->getLastError( $watchPoint );
 		switch ( $code ) {
-			case self::ERR_NONE:
-				return self::ERR_NONE;
-			case self::ERR_NO_RESPONSE:
-				return self::ERR_NO_RESPONSE;
-			case self::ERR_UNREACHABLE:
-				return self::ERR_UNREACHABLE;
+			case BagOStuff::ERR_NONE:
+				return BagOStuff::ERR_NONE;
+			case BagOStuff::ERR_NO_RESPONSE:
+				return BagOStuff::ERR_NO_RESPONSE;
+			case BagOStuff::ERR_UNREACHABLE:
+				return BagOStuff::ERR_UNREACHABLE;
 			default:
-				return self::ERR_UNEXPECTED;
+				return BagOStuff::ERR_UNEXPECTED;
 		}
 	}
 
@@ -2489,8 +2488,8 @@ class WANObjectCache implements
 	}
 
 	/**
-	 * @param int $flag ATTR_* class constant
-	 * @return int QOS_* class constant
+	 * @param int $flag BagOStuff::ATTR_* class constant
+	 * @return int BagOStuff::QOS_* class constant
 	 * @since 1.28
 	 */
 	public function getQoS( $flag ) {

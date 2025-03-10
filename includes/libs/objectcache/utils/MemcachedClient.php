@@ -70,7 +70,7 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\IPUtils;
-use Wikimedia\ObjectCache\StorageAwareness;
+use Wikimedia\ObjectCache\BagOStuff;
 
 /**
  * memcached client class implemented using (p)fsockopen()
@@ -78,7 +78,7 @@ use Wikimedia\ObjectCache\StorageAwareness;
  * @author  Ryan T. Dean <rtdean@cytherianage.net>
  * @ingroup Cache
  */
-class MemcachedClient implements StorageAwareness {
+class MemcachedClient {
 	// {{{ properties
 	// {{{ public
 
@@ -242,8 +242,8 @@ class MemcachedClient implements StorageAwareness {
 	 */
 	public $_connect_attempts;
 
-	/** @var int StorageAwareness:ERR_* constant of the last cache command */
-	public $_last_cmd_status = self::ERR_NONE;
+	/** @var int BagOStuff:ERR_* constant of the last cache command */
+	public $_last_cmd_status = BagOStuff::ERR_NONE;
 
 	/**
 	 * @var LoggerInterface
@@ -318,7 +318,7 @@ class MemcachedClient implements StorageAwareness {
 	 * @return bool
 	 */
 	public function add( $key, $val, $exp = 0 ) {
-		$this->_last_cmd_status = self::ERR_NONE;
+		$this->_last_cmd_status = BagOStuff::ERR_NONE;
 
 		return $this->_set( 'add', $key, $val, $exp );
 	}
@@ -335,7 +335,7 @@ class MemcachedClient implements StorageAwareness {
 	 * @return mixed False on failure, value on success
 	 */
 	public function decr( $key, $amt = 1 ) {
-		$this->_last_cmd_status = self::ERR_NONE;
+		$this->_last_cmd_status = BagOStuff::ERR_NONE;
 
 		return $this->_incrdecr( 'decr', $key, $amt );
 	}
@@ -352,7 +352,7 @@ class MemcachedClient implements StorageAwareness {
 	 * @return bool True on success, false on failure
 	 */
 	public function delete( $key, $time = 0 ) {
-		$this->_last_cmd_status = self::ERR_NONE;
+		$this->_last_cmd_status = BagOStuff::ERR_NONE;
 
 		if ( !$this->_active ) {
 			return false;
@@ -384,7 +384,7 @@ class MemcachedClient implements StorageAwareness {
 			return true;
 		}
 
-		$this->_last_cmd_status = self::ERR_UNEXPECTED;
+		$this->_last_cmd_status = BagOStuff::ERR_UNEXPECTED;
 
 		return false;
 	}
@@ -398,7 +398,7 @@ class MemcachedClient implements StorageAwareness {
 	 * @return bool True on success, false on failure
 	 */
 	public function touch( $key, $time = 0 ) {
-		$this->_last_cmd_status = self::ERR_NONE;
+		$this->_last_cmd_status = BagOStuff::ERR_NONE;
 
 		if ( !$this->_active ) {
 			return false;
@@ -483,20 +483,20 @@ class MemcachedClient implements StorageAwareness {
 	public function get( $key, &$casToken = null ) {
 		$getToken = ( func_num_args() >= 2 );
 
-		$this->_last_cmd_status = self::ERR_NONE;
+		$this->_last_cmd_status = BagOStuff::ERR_NONE;
 
 		if ( $this->_debug ) {
 			$this->_debugprint( "get($key)" );
 		}
 
 		if ( !is_array( $key ) && strval( $key ) === '' ) {
-			$this->_last_cmd_status = self::ERR_UNEXPECTED;
+			$this->_last_cmd_status = BagOStuff::ERR_UNEXPECTED;
 			$this->_debugprint( "Skipping key which equals to an empty string" );
 			return false;
 		}
 
 		if ( !$this->_active ) {
-			$this->_last_cmd_status = self::ERR_UNEXPECTED;
+			$this->_last_cmd_status = BagOStuff::ERR_UNEXPECTED;
 
 			return false;
 		}
@@ -504,7 +504,7 @@ class MemcachedClient implements StorageAwareness {
 		$sock = $this->get_sock( $key );
 
 		if ( !$sock ) {
-			$this->_last_cmd_status = self::ERR_UNREACHABLE;
+			$this->_last_cmd_status = BagOStuff::ERR_UNREACHABLE;
 
 			return false;
 		}
@@ -519,14 +519,14 @@ class MemcachedClient implements StorageAwareness {
 		$cmd = $getToken ? "gets" : "get";
 		$cmd .= " $key\r\n";
 		if ( !$this->_fwrite( $sock, $cmd ) ) {
-			$this->_last_cmd_status = self::ERR_NO_RESPONSE;
+			$this->_last_cmd_status = BagOStuff::ERR_NO_RESPONSE;
 
 			return false;
 		}
 
 		$val = array();
 		if ( !$this->_load_items( $sock, $val, $casToken ) ) {
-			$this->_last_cmd_status = self::ERR_NO_RESPONSE;
+			$this->_last_cmd_status = BagOStuff::ERR_NO_RESPONSE;
 		}
 
 		if ( $this->_debug ) {
@@ -554,10 +554,10 @@ class MemcachedClient implements StorageAwareness {
 	 * @return array
 	 */
 	public function get_multi( $keys ) {
-		$this->_last_cmd_status = self::ERR_NONE;
+		$this->_last_cmd_status = BagOStuff::ERR_NONE;
 
 		if ( !$this->_active ) {
-			$this->_last_cmd_status = self::ERR_UNEXPECTED;
+			$this->_last_cmd_status = BagOStuff::ERR_UNEXPECTED;
 
 			return array();
 		}
@@ -572,7 +572,7 @@ class MemcachedClient implements StorageAwareness {
 		foreach ( $keys as $key ) {
 			$sock = $this->get_sock( $key );
 			if ( !$sock ) {
-				$this->_last_cmd_status = self::ERR_UNREACHABLE;
+				$this->_last_cmd_status = BagOStuff::ERR_UNREACHABLE;
 				continue;
 			}
 			$key = is_array( $key ) ? $key[1] : $key;
@@ -597,7 +597,7 @@ class MemcachedClient implements StorageAwareness {
 			if ( $this->_fwrite( $sock, $cmd ) ) {
 				$gather[] = $sock;
 			} else {
-				$this->_last_cmd_status = self::ERR_NO_RESPONSE;
+				$this->_last_cmd_status = BagOStuff::ERR_NO_RESPONSE;
 			}
 		}
 
@@ -605,7 +605,7 @@ class MemcachedClient implements StorageAwareness {
 		$val = array();
 		foreach ( $gather as $sock ) {
 			if ( !$this->_load_items( $sock, $val ) ) {
-				$this->_last_cmd_status = self::ERR_NO_RESPONSE;
+				$this->_last_cmd_status = BagOStuff::ERR_NO_RESPONSE;
 			}
 		}
 
@@ -971,17 +971,17 @@ class MemcachedClient implements StorageAwareness {
 	 * @access private
 	 */
 	function _incrdecr( $cmd, $key, $amt = 1 ) {
-		$this->_last_cmd_status = self::ERR_NONE;
+		$this->_last_cmd_status = BagOStuff::ERR_NONE;
 
 		if ( !$this->_active ) {
-			$this->_last_cmd_status = self::ERR_UNEXPECTED;
+			$this->_last_cmd_status = BagOStuff::ERR_UNEXPECTED;
 
 			return null;
 		}
 
 		$sock = $this->get_sock( $key );
 		if ( !$sock ) {
-			$this->_last_cmd_status = self::ERR_UNREACHABLE;
+			$this->_last_cmd_status = BagOStuff::ERR_UNREACHABLE;
 
 			return null;
 		}
@@ -993,7 +993,7 @@ class MemcachedClient implements StorageAwareness {
 			$this->stats[$cmd] = 1;
 		}
 		if ( !$this->_fwrite( $sock, "$cmd $key $amt\r\n" ) ) {
-			$this->_last_cmd_status = self::ERR_NO_RESPONSE;
+			$this->_last_cmd_status = BagOStuff::ERR_NO_RESPONSE;
 
 			return null;
 		}
@@ -1005,7 +1005,7 @@ class MemcachedClient implements StorageAwareness {
 
 		$match = array();
 		if ( !preg_match( '/^(\d+)/', $line, $match ) ) {
-			$this->_last_cmd_status = self::ERR_NO_RESPONSE;
+			$this->_last_cmd_status = BagOStuff::ERR_NO_RESPONSE;
 
 			return null;
 		}
@@ -1115,17 +1115,17 @@ class MemcachedClient implements StorageAwareness {
 	 * @access private
 	 */
 	function _set( $cmd, $key, $val, $exp, $casToken = null ) {
-		$this->_last_cmd_status = self::ERR_NONE;
+		$this->_last_cmd_status = BagOStuff::ERR_NONE;
 
 		if ( !$this->_active ) {
-			$this->_last_cmd_status = self::ERR_UNEXPECTED;
+			$this->_last_cmd_status = BagOStuff::ERR_UNEXPECTED;
 
 			return false;
 		}
 
 		$sock = $this->get_sock( $key );
 		if ( !$sock ) {
-			$this->_last_cmd_status = self::ERR_UNREACHABLE;
+			$this->_last_cmd_status = BagOStuff::ERR_UNREACHABLE;
 
 			return false;
 		}
@@ -1172,7 +1172,7 @@ class MemcachedClient implements StorageAwareness {
 		}
 
 		if ( !$this->_fwrite( $sock, "$command\r\n$val\r\n" ) ) {
-			$this->_last_cmd_status = self::ERR_NO_RESPONSE;
+			$this->_last_cmd_status = BagOStuff::ERR_NO_RESPONSE;
 
 			return false;
 		}
@@ -1190,7 +1190,7 @@ class MemcachedClient implements StorageAwareness {
 		}
 
 		if ( $line === false ) {
-			$this->_last_cmd_status = self::ERR_NO_RESPONSE;
+			$this->_last_cmd_status = BagOStuff::ERR_NO_RESPONSE;
 		}
 
 		return false;
