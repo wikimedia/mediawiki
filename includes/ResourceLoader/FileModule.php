@@ -34,6 +34,7 @@ use MediaWiki\Output\OutputPage;
 use MediaWiki\Registration\ExtensionRegistry;
 use RuntimeException;
 use Wikimedia\Minify\CSSMin;
+use Wikimedia\RelPath;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
@@ -1013,6 +1014,9 @@ class FileModule extends Module {
 		// Get and register local file references
 		$localFileRefs = CSSMin::getLocalFileReferences( $style, $localDir );
 		foreach ( $localFileRefs as $file ) {
+			// Normalize the file path (T388323).
+			// There is probably a better way to do this?
+			$file = RelPath::joinPath( $file, '.' );
 			if ( is_file( $file ) ) {
 				$this->localFileRefs[] = $file;
 			} else {
