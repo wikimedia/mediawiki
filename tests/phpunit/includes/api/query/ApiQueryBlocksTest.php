@@ -30,11 +30,15 @@ class ApiQueryBlocksTest extends ApiTestCase {
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 
+		$time = time();
+		$ts = wfTimestamp( TS_MW, $time );
+		$expiry = wfTimestamp( TS_MW, $time + 24 * 60 * 60 );
 		$block = $this->getServiceContainer()->getDatabaseBlockStore()
 			->insertBlockWithParams( [
 				'targetUser' => $badActor,
 				'by' => $sysop,
-				'expiry' => 'infinity',
+				'timestamp' => $ts,
+				'expiry' => $expiry,
 			] );
 
 		[ $data ] = $this->doApiRequest( [
@@ -47,7 +51,8 @@ class ApiQueryBlocksTest extends ApiTestCase {
 		$subset = [
 			'id' => $block->getId(),
 			'user' => $badActor->getName(),
-			'expiry' => $block->getExpiry(),
+			'expiry' => wfTimestamp( TS_ISO_8601, $expiry ),
+			'duration-l10n' => '1 day',
 		];
 		$this->assertArraySubmapSame( $subset, $data['query']['blocks'][0] );
 	}

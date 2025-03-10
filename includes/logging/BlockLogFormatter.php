@@ -350,12 +350,15 @@ class BlockLogFormatter extends LogFormatter {
 			if ( wfIsInfinity( $params['5::duration'] ) ) {
 				// Normalize all possible values to one for pre-T241709 rows
 				$params['5::duration'] = 'infinity';
+				$params[':plain:duration-l10n'] = $this->msg( 'infiniteblock' )->plain();
 			} else {
 				$ts = (int)wfTimestamp( TS_UNIX, $entry->getTimestamp() );
 				$expiry = strtotime( $params['5::duration'], $ts );
 				if ( $expiry !== false && $expiry > 0 ) {
 					$params[':timestamp:expiry'] = $expiry;
 				}
+				$params[':plain:duration-l10n'] = $this->context->getLanguage()
+					->formatDurationBetweenTimestamps( $ts, $expiry );
 			}
 		}
 
