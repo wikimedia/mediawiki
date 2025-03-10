@@ -32,10 +32,12 @@ use MediaWiki\Content\WikitextContent;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\AtomicSectionUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\DomainEvent\DomainEventDispatcher;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\Event\PageMovedEvent;
 use MediaWiki\Page\Event\PageUpdatedEvent;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
@@ -76,6 +78,7 @@ class MovePage {
 	private RevisionStore $revisionStore;
 	private SpamChecker $spamChecker;
 	private HookRunner $hookRunner;
+	private DomainEventDispatcher $eventDispatcher;
 	private WikiPageFactory $wikiPageFactory;
 	private UserFactory $userFactory;
 	private UserEditTracker $userEditTracker;
@@ -112,6 +115,7 @@ class MovePage {
 		RevisionStore $revisionStore,
 		SpamChecker $spamChecker,
 		HookContainer $hookContainer,
+		DomainEventDispatcher $eventDispatcher,
 		WikiPageFactory $wikiPageFactory,
 		UserFactory $userFactory,
 		UserEditTracker $userEditTracker,
@@ -134,6 +138,7 @@ class MovePage {
 		$this->revisionStore = $revisionStore;
 		$this->spamChecker = $spamChecker;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->eventDispatcher = $eventDispatcher;
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->userFactory = $userFactory;
 		$this->userEditTracker = $userEditTracker;
@@ -736,6 +741,13 @@ class MovePage {
 			$user, $pageid, $redirid, $reason, $nullRevision
 		);
 
+		// Emit an event describing the move
+		$this->eventDispatcher->dispatch( new PageMovedEvent(
+			$this->newTitle->toPageIdentity(),
+			$this->oldTitle->toPageIdentity(),
+			$user
+		), $this->dbProvider );
+
 		$dbw->endAtomic( __METHOD__ );
 
 		// Keep each single hook handler atomic
@@ -934,7 +946,7 @@ class MovePage {
 
 		WikiPage::onArticleCreate( $nt );
 
-		# Recreate the redirect, this time in the other direction.
+		// Recreate the redirect, this time in the other direction.
 		$redirectRevision = null;
 		if ( $redirectContent ) {
 			$redirectArticle = $this->wikiPageFactory->newFromTitle( $this->oldTitle );
@@ -948,7 +960,7 @@ class MovePage {
 				->saveRevision( $comment );
 		}
 
-		# Log the move
+		// Log the move
 		$logid = $logEntry->insert();
 
 		$logEntry->addTags( $changeTags );

@@ -271,6 +271,7 @@ class PageCommandFactory implements
 			$this->revisionStoreFactory->getRevisionStore(),
 			$this->spamChecker,
 			$this->hookContainer,
+			$this->eventDispatcher,
 			$this->wikiPageFactory,
 			$this->userFactory,
 			$this->userEditTracker,

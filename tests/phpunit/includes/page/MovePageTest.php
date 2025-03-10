@@ -5,6 +5,7 @@ use MediaWiki\Content\WikitextContent;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\Event\PageMovedEvent;
 use MediaWiki\Page\Event\PageUpdatedEvent;
 use MediaWiki\Page\MovePage;
 use MediaWiki\Revision\RevisionRecord;
@@ -71,6 +72,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getRevisionStore(),
 			$this->getServiceContainer()->getSpamChecker(),
 			$this->getServiceContainer()->getHookContainer(),
+			$this->getServiceContainer()->getDomainEventDispatcher(),
 			$this->getServiceContainer()->getWikiPageFactory(),
 			$this->getServiceContainer()->getUserFactory(),
 			$this->getServiceContainer()->getUserEditTracker(),
@@ -692,6 +694,18 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 				}
 
 				// TODO: assert more properties
+			}
+		);
+
+		$this->expectDomainEvent(
+			PageMovedEvent::TYPE, 1,
+			static function ( PageMovedEvent $event )
+				use ( $old, $oldPageId, $new, $mover )
+			{
+				Assert::assertTrue( $event->getPage()->isSamePageAs( $new ) );
+				Assert::assertTrue( $event->getOldLocation()->isSamePageAs( $old ) );
+
+				Assert::assertSame( $oldPageId, $event->getPage()->getId() );
 			}
 		);
 
