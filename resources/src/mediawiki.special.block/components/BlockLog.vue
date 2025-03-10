@@ -381,6 +381,9 @@ module.exports = exports = defineComponent( {
 
 	.mw-block-log__parameters > ul {
 		margin-left: @spacing-75;
+		// Overrides for skins that mess with padding.
+		padding-left: 0;
+		padding-inline: 0;
 	}
 
 	tr.cdx-selected-block-row {
