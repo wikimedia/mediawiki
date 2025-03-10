@@ -1693,11 +1693,13 @@ config-schema:
             always uses UTC as the time zone, and doesn't include the username.
             For pages with many users watching, this can significantly reduce mail load.
             Has no effect when using sendmail rather than SMTP.
+            @deprecated since 1.44
     EnotifMaxRecips:
         default: 500
         description: |-
             Maximum number of users to mail at once when using impersonal mail. Should
             match the limit on your mail server.
+            @deprecated since 1.44
     EnotifUseRealName:
         default: false
         description: 'Use real name instead of username in e-mail "from" field.'

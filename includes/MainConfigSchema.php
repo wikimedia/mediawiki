@@ -2778,6 +2778,8 @@ class MainConfigSchema {
 	 *
 	 * For pages with many users watching, this can significantly reduce mail load.
 	 * Has no effect when using sendmail rather than SMTP.
+	 *
+	 * @deprecated since 1.44
 	 */
 	public const EnotifImpersonal = [
 		'default' => false,
@@ -2786,6 +2788,8 @@ class MainConfigSchema {
 	/**
 	 * Maximum number of users to mail at once when using impersonal mail. Should
 	 * match the limit on your mail server.
+	 *
+	 * @deprecated since 1.44
 	 */
 	public const EnotifMaxRecips = [
 		'default' => 500,
