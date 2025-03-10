@@ -157,6 +157,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		MainConfigNames::SkinsPreferred,
 		MainConfigNames::ThumbLimits,
 		MainConfigNames::ThumbnailNamespaces,
+		// Fandom change - start
+		'ProtectedUserOptions',
+		// Fandom change - end
 	];
 
 	/**
@@ -233,10 +236,12 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @inheritDoc
 	 */
 	public function getSaveBlacklist() {
-		return [
+		// Fandom change - start
+		return array_merge( [
 			'realname',
 			'emailaddress',
-		];
+		], $this->options->get( 'ProtectedUserOptions' ) );
+		// Fandom change - end
 	}
 
 	/**
