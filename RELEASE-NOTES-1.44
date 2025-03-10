@@ -58,6 +58,7 @@ For notes on 1.43.x and older releases, see HISTORY.
   extension.json file, which would previously be silently ignored.
 * (T382987) $wgDnsBlacklistUrls now defaults to an empty array. See the comment
   in the "Configuration changes for system administrators" section above.
+* (T387856) $wgEnotifImpersonal and $wgEnotifMaxRecips are now deprecated.
 
 ==== Removed configuration ====
 

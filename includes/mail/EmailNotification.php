@@ -499,6 +499,8 @@ class EmailNotification {
 		}
 
 		if ( MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::EnotifImpersonal ) ) {
+			wfDeprecated( 'EnotifImpersonal is now deprecated', '1.44' );
+
 			$this->mailTargets[] = MailAddress::newFromUser( $user );
 		} else {
 			$this->sendPersonalised( $user, $source );
@@ -510,6 +512,7 @@ class EmailNotification {
 	 */
 	private function sendMails() {
 		if ( MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::EnotifImpersonal ) ) {
+			wfDeprecated( 'EnotifImpersonal is now deprecated', '1.44' );
 			$this->sendImpersonal( $this->mailTargets );
 		}
 	}
