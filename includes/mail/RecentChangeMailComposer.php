@@ -34,7 +34,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\Utils\UrlUtils;
-use StatusValue;
 
 /**
  * Component responsible for composing and sending emails triggered after a RecentChange.
@@ -140,14 +139,12 @@ class RecentChangeMailComposer {
 					$this->title->getCanonicalURL( [ 'diff' => 'next', 'oldid' => $this->oldid ] )
 				)->inContentLanguage()->text();
 
-			if ( !$this->mainConfig->get( MainConfigNames::EnotifImpersonal ) ) {
-				// For personal mail, also show a link to the diff of all changes
-				// since last visited.
-				$keys['$NEWPAGE'] .= "\n\n" . wfMessage(
-						'enotif_lastvisited',
-						$this->title->getCanonicalURL( [ 'diff' => '0', 'oldid' => $this->oldid ] )
-					)->inContentLanguage()->text();
-			}
+			// For personal mail, also show a link to the diff of all changes
+			// since last visited.
+			$keys['$NEWPAGE'] .= "\n\n" . wfMessage(
+					'enotif_lastvisited',
+					$this->title->getCanonicalURL( [ 'diff' => '0', 'oldid' => $this->oldid ] )
+				)->inContentLanguage()->text();
 			$keys['$OLDID'] = $this->oldid;
 			$keys['$PAGELOG'] = '';
 		} else {
@@ -242,48 +239,16 @@ class RecentChangeMailComposer {
 	}
 
 	/**
-	 * Compose a mail to a given user and either queue it for sending, or send it now,
-	 * depending on settings.
+	 * Compose a mail to a given user and send it now.
 	 *
-	 * Call sendMails() to send any mails that were queued.
-	 * @param UserEmailContact $user
+	 * @param UserEmailContact $watchingUser
 	 * @param string $source
 	 */
-	public function compose( UserEmailContact $user, $source ) {
+	public function compose( UserEmailContact $watchingUser, $source ) {
 		if ( !$this->composed_common ) {
 			$this->composeCommonMailtext();
 		}
 
-		if ( $this->mainConfig->get( MainConfigNames::EnotifImpersonal ) ) {
-			wfDeprecated( 'EnotifImpersonal is now deprecated', '1.44' );
-
-			$this->mailTargets[] = MailAddress::newFromUser( $user );
-		} else {
-			$this->sendPersonalised( $user, $source );
-		}
-	}
-
-	/**
-	 * Send any queued mails
-	 */
-	public function sendMails() {
-		if ( $this->mainConfig->get( MainConfigNames::EnotifImpersonal ) ) {
-			wfDeprecated( 'EnotifImpersonal is now deprecated', '1.44' );
-			$this->sendImpersonal( $this->mailTargets );
-		}
-	}
-
-	/**
-	 * Does the per-user customizations to a notification e-mail (name,
-	 * timestamp in proper timezone, etc) and sends it out.
-	 * Returns Status if email was sent successfully or not (Status::newGood()
-	 * or Status::newFatal() respectively).
-	 *
-	 * @param UserEmailContact $watchingUser
-	 * @param string $source
-	 * @return StatusValue
-	 */
-	private function sendPersonalised( UserEmailContact $watchingUser, $source ): StatusValue {
 		// From the PHP manual:
 		//   Note: The to parameter cannot be an address in the form of
 		//   "Something <someone@example.com>". The mail command will not parse
@@ -316,7 +281,7 @@ class RecentChangeMailComposer {
 			$headers['List-Help'] = 'https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Watchlist';
 		}
 
-		return $this->emailer->send(
+		$this->emailer->send(
 				[ $to ],
 				$this->from,
 				$this->subject,
@@ -325,46 +290,6 @@ class RecentChangeMailComposer {
 				[
 					'replyTo' => $this->replyto,
 					'headers' => $headers,
-				]
-			);
-	}
-
-	/**
-	 * Same as sendPersonalised but does impersonal mail suitable for bulk
-	 * mailing.  Takes an array of MailAddress objects.
-	 * @param MailAddress[] $addresses
-	 * @return ?StatusValue
-	 */
-	private function sendImpersonal( array $addresses ): ?StatusValue {
-		if ( count( $addresses ) === 0 ) {
-			return null;
-		}
-		$services = MediaWikiServices::getInstance();
-		$contLang = $services->getContentLanguage();
-		$body = str_replace(
-			[
-				'$WATCHINGUSERNAME',
-				'$PAGEEDITDATE',
-				'$PAGEEDITTIME'
-			],
-			[
-				wfMessage( 'enotif_impersonal_salutation' )->inContentLanguage()->text(),
-				$contLang->date( $this->timestamp, false, false ),
-				$contLang->time( $this->timestamp, false, false )
-			],
-			$this->body
-		);
-
-		return $services
-			->getEmailer()
-			->send(
-				$addresses,
-				$this->from,
-				$this->subject,
-				$body,
-				null,
-				[
-					'replyTo' => $this->replyto,
 				]
 			);
 	}

@@ -1023,18 +1023,6 @@ $wgEnotifRevealEditorAddress = null;
 $wgEnotifMinorEdits = null;
 
 /**
- * Config variable stub for the EnotifImpersonal setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::EnotifImpersonal
- */
-$wgEnotifImpersonal = null;
-
-/**
- * Config variable stub for the EnotifMaxRecips setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::EnotifMaxRecips
- */
-$wgEnotifMaxRecips = null;
-
-/**
  * Config variable stub for the EnotifUseRealName setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::EnotifUseRealName
  */

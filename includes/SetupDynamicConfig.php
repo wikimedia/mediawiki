@@ -227,8 +227,6 @@ if ( !$wgEnableEmail ) {
 	$wgEmailAuthentication = false; // do not require auth if you're not sending email anyway
 	$wgEnableUserEmail = false;
 	$wgEnotifFromEditor = false;
-	$wgEnotifImpersonal = false;
-	$wgEnotifMaxRecips = 0;
 	$wgEnotifMinorEdits = false;
 	$wgEnotifRevealEditorAddress = false;
 	$wgEnotifUseRealName = false;

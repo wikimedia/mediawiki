@@ -37,6 +37,8 @@ For notes on 1.44.x and older releases, see HISTORY.
   The skin option 'supportsMwHeading' was likewise removed.
   New heading markup is now always enabled, on all skins.
   More information: https://www.mediawiki.org/wiki/Heading_HTML_changes
+* (T387856) $wgEnotifImpersonal and $wgEnotifMaxRecips, deprecated in 1.44,
+  are no longer honoured.
 * …
 
 === New user-facing features in 1.45 ===
