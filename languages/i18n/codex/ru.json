@@ -1,13 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Okras"
+			"Okras",
+			"Yurina Tatiana"
 		]
 	},
 	"cdx-input-chip-aria-description": "Нажмите Enter, чтобы отредактировать, или Delete, чтобы удалить.",
 	"cdx-dialog-close-button-label": "Закрыть",
 	"cdx-label-optional-flag": "(необязательно)",
 	"cdx-message-dismiss-button-label": "Закрыть",
+	"cdx-popover-close-button-label": "Закрыть",
 	"cdx-search-input-search-button-label": "Найти",
 	"cdx-table-select-all-label": "Выбрать все строки",
 	"cdx-table-select-row-label": "Выбрать строку $1 из $2",

@@ -18,5 +18,6 @@
 	"rest-permission-error": "অনুমতি প্রত্যাখ্যাত হয়েছে: $1",
 	"rest-search-error": "অনুসন্ধানের ফলাফলগুলি ফেরত দেওয়ার সময় ত্রুটি: $1",
 	"rest-extraneous-body-fields": "অনুরোধের অংশে অতিরিক্ত ক্ষেত্র পাওয়া গেছে: $1",
-	"rest-cannot-load-file": "\"$1\" শিরোনামের জন্য ফাইলটি লোড করা যাবে না।"
+	"rest-cannot-load-file": "\"$1\" শিরোনামের জন্য ফাইলটি লোড করা যাবে না।",
+	"rest-property-desc-page-title": "পাতার শিরোনাম"
 }

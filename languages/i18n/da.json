@@ -615,6 +615,7 @@
 	"preview": "Forhåndsvisning",
 	"showpreview": "Vis forhåndsvisning",
 	"showdiff": "Vis ændringer",
+	"tempuser-expired-link-tooltip": "Denne konto er udløbet",
 	"temp-user-banner-description": "Du bruger en midlertidig konto",
 	"temp-user-banner-tooltip-label": "Mere information om midlertidige konti",
 	"temp-user-banner-tooltip-title": "Midlertidig konto",

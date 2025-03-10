@@ -166,6 +166,8 @@
 	"config-mysql-engine": "Opslagmethode:",
 	"config-mysql-innodb": "InnoDB (aanbevolen)",
 	"config-mysql-engine-help": "'''InnoDB''' is vrijwel altijd de beste instelling, omdat deze goed omgaat met meerdere verzoeken tegelijkertijd.\n\n'''MyISAM''' is bij een zeer beperkt aantal gebruikers mogelijk sneller, of als de wiki alleen-lezen is.\nMyISAM-databases raken vaker beschadigd dan InnoDB-databases.",
+	"config-server": "Hostnaam van de URL:",
+	"config-server-help": "Het protocol en de hostnaam van de URL die wordt gebruikt om toegang te krijgen tot uw wiki. De automatisch gedetecteerde standaard is meestal correct.",
 	"config-site-name": "Naam van de wiki:",
 	"config-site-name-help": "Deze naam verschijnt in de titelbalk van browsers en op andere plaatsen.",
 	"config-site-name-blank": "Geef een naam op voor de site.",

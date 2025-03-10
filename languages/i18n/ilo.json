@@ -12,6 +12,7 @@
 			"Nemo bis",
 			"Saluyot",
 			"Urhixidur",
+			"Yivan000",
 			"לערי ריינהארט",
 			"아라"
 		]
@@ -832,7 +833,7 @@
 	"savedrights": "Naidulinen dagiti grupo ti agar-aramat ni {{GENDER:$1|$1}}.",
 	"prefs-namespaces": "Dagiti nagan ti espasio",
 	"default": "kasisigud",
-	"email": "Esurat",
+	"email": "Email",
 	"userrights": "Dagiti karbengan ti agar-aramat",
 	"userrights-lookup-user": "Agpili iti agar-aramat",
 	"userrights-user-editname": "Mangiserrek iti nagan ti agar-aramat:",
@@ -3209,7 +3210,7 @@
 	"authmanager-password-help": "Kontrasenias para iti pammasingked.",
 	"authmanager-domain-help": "Dominio para iti akinruar a pammasingked.",
 	"authmanager-retype-help": "Kontrasenias manen tapno mapasingkedan.",
-	"authmanager-email-label": "Esurat",
+	"authmanager-email-label": "Email",
 	"authmanager-email-help": "Adres ti esurat",
 	"authmanager-realname-label": "Pudno a nagan",
 	"authmanager-realname-help": "Pudno a nagan ti agar-aramat",

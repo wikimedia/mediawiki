@@ -12,6 +12,7 @@
 	"cdx-dialog-close-button-label": "Sluiten",
 	"cdx-label-optional-flag": "(optioneel)",
 	"cdx-message-dismiss-button-label": "Sluiten",
+	"cdx-popover-close-button-label": "Sluiten",
 	"cdx-search-input-search-button-label": "Zoeken",
 	"cdx-table-select-all-label": "Alle rijen selecteren",
 	"cdx-table-select-row-label": "Rij $1 van $2 selecteren",

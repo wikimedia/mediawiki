@@ -11,6 +11,7 @@
 	"cdx-dialog-close-button-label": "Затвори",
 	"cdx-label-optional-flag": "(необавезно)",
 	"cdx-message-dismiss-button-label": "Затвори",
+	"cdx-popover-close-button-label": "Затвори",
 	"cdx-search-input-search-button-label": "Претрага",
 	"cdx-table-select-all-label": "Изабери све редове",
 	"cdx-table-select-row-label": "Изаберите ред $1 од $2",

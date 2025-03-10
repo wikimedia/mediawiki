@@ -76,7 +76,12 @@
 	"rest-param-desc-pagehistory-count-title": "Заголовок вики-страницы",
 	"rest-param-desc-pagehistory-title": "Заголовок вики-страницы",
 	"rest-param-desc-search-q": "Условия поиска",
+	"rest-property-desc-revision-id": "ID версии",
+	"rest-property-desc-revision-timestamp": "Временная метка версии",
+	"rest-property-desc-page-id": "Идентификатор страницы",
 	"rest-property-desc-page-title": "Заголовок страницы",
+	"rest-property-desc-page-contentmodel": "Тип содержимого страницы",
+	"rest-property-desc-revision-user-id": "Идентификатор пользователя",
 	"rest-property-desc-revision-user-name": "Имя пользователя",
 	"rest-property-desc-revision-content-model": "Тип содержания"
 }

@@ -3617,7 +3617,7 @@
 	"renameuser-warning-currentblock": "[$1 Stanket] eo an implijer-mañ evit poent.",
 	"log-name-renameuser": "Marilh an implijerien bet adanvet",
 	"log-description-renameuser": "Setu marilh kemmoù anv an implijerien.",
-	"logentry-renameuser-renameuser": "{{GENDER:$2|Adanvet}} eo bet implijer{{GENDER:$7||ez}} $4 ($6 {{PLURAL:$6|degasadenn}}) e $5 gant $1",
+	"logentry-renameuser-renameuser": "{{GENDER:$2|Adanvet}} eo bet an implijer{{GENDER:$7||ez}} $4 ($6 {{PLURAL:$6|degasadenn}}) e $5 gant $1",
 	"logentry-renameuser-renameuser-legacier": "Adanvet an {{GENDER:$2|implijer|implijerez}} $4 da {{GENDER:$7|$5}} gant $1",
 	"renameuser-move-log": "Pajenn dilec'hiet ent emgefreek e-ser adenvel an {{GENDER:$2|implijer|implijerez|implijer}} \"[[User:$1|$1]]\" e \"[[User:$2|$2]]\"",
 	"action-renameuser": "Adenvel implijerien",

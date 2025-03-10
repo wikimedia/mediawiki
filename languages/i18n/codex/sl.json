@@ -4,10 +4,13 @@
 			"Eleassar"
 		]
 	},
+	"cdx-chip-input-chip-added": "Čip $1 je dodan.",
+	"cdx-chip-input-chip-removed": "Čip $1 je odstranjen.",
 	"cdx-input-chip-aria-description": "Pritisnite Enter za urejanje ali Delete za odstranitev.",
 	"cdx-dialog-close-button-label": "Zapri",
 	"cdx-label-optional-flag": "(neobvezno)",
 	"cdx-message-dismiss-button-label": "Zapri",
+	"cdx-popover-close-button-label": "Zapri",
 	"cdx-search-input-search-button-label": "Išči",
 	"cdx-table-select-all-label": "Izbira vseh vrstic",
 	"cdx-table-select-row-label": "Izbira vrstice $1 od $2",
@@ -24,5 +27,6 @@
 	"cdx-table-pagination-status-message-indeterminate-long": "Prikaz zadetkov $1–$2 od številnih",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 od mnogo",
 	"cdx-table-pagination-status-message-indeterminate-final": "Prikaz {{PLURAL:$1|zadnjega zadetka|zadnjih $1 zadetkov}}",
-	"cdx-table-pagination-status-message-pending": "Nalaganje zadetkov&nbsp;..."
+	"cdx-table-pagination-status-message-pending": "Nalaganje zadetkov&nbsp;...",
+	"cdx-table-no-data-message": "Podatki niso na voljo."
 }
