@@ -371,6 +371,11 @@ module.exports = exports = defineComponent( {
 		justify-content: flex-start;
 	}
 
+	// Override margin styles may have been added to tables, such as in Minerva.
+	.cdx-table__table {
+		margin: 0;
+	}
+
 	.cdx-accordion__content {
 		font-size: unset;
 	}
