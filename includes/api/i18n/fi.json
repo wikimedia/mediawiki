@@ -111,7 +111,7 @@
 	"apihelp-query+allrevisions-summary": "Luettele kaikki muutokset.",
 	"apihelp-query+blocks-example-simple": "Listaa lohkot.",
 	"apihelp-query+langbacklinks-param-lang": "Kieli kielilinkille.",
-	"apihelp-query+linkshere-param-show": "Näytä vain kohteet, jotka täyttävät nämä kriteerit:\n;redirect:Näytä vain uudelleenohjaukset.\n;!redirect:Näytä vain ei-uudelleenohjaukset",
+	"apihelp-query+linkshere-param-show": "Näytä vain kohteet, jotka täyttävät nämä kriteerit:",
 	"apihelp-query+querypage-param-page": "Toimintosivun nimi. Huomaa, että kirjainkoolla on merkitystä.",
 	"apihelp-tag-example-rev": "Lisää tunniste <kbd>vandalism</kbd> versioon 123 antamatta perustelua.",
 	"apihelp-upload-param-stash": "Mikäli valittu, palvelin säilöö tiedoston väliaikaisesti tallentamisen sijaan.",
