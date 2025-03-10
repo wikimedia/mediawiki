@@ -2808,6 +2808,7 @@ return [
 			$services->getSpamChecker(),
 			$services->getTitleFormatter(),
 			$services->getHookContainer(),
+			$services->getDomainEventDispatcher(),
 			$services->getWikiPageFactory(),
 			$services->getUserFactory(),
 			$services->getActorMigration(),

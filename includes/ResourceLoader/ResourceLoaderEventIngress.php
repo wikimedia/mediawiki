@@ -3,8 +3,9 @@
 namespace MediaWiki\ResourceLoader;
 
 use MediaWiki\DomainEvent\EventSubscriberBase;
+use MediaWiki\Page\Event\PageDeletedEvent;
+use MediaWiki\Page\Event\PageUpdatedEvent;
 use MediaWiki\Storage\PageUpdateCauses;
-use MediaWiki\Storage\PageUpdatedEvent;
 use Wikimedia\Rdbms\LBFactory;
 
 /**
@@ -23,7 +24,8 @@ class ResourceLoaderEventIngress extends EventSubscriberBase {
 			'DBLoadBalancerFactory'
 		],
 		'events' => [
-			PageUpdatedEvent::TYPE
+			PageUpdatedEvent::TYPE,
+			PageDeletedEvent::TYPE,
 		],
 	];
 
@@ -50,6 +52,20 @@ class ResourceLoaderEventIngress extends EventSubscriberBase {
 				$this->localDomainId
 			);
 		}
+	}
+
+	/**
+	 * Listener method for PageDeletedEvent, to be registered with a DomainEventSource.
+	 *
+	 * @noinspection PhpUnused
+	 */
+	public function handlePageDeletedEventAfterCommit( PageDeletedEvent $event ) {
+		WikiModule::invalidateModuleCache(
+			$event->getPage(),
+			$event->getLatestRevisionBefore(),
+			null,
+			$this->localDomainId
+		);
 	}
 
 }

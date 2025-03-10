@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\Debug\MWDebug;
+use MediaWiki\DomainEvent\DomainEventDispatcher;
+use MediaWiki\DomainEvent\EventDispatchEngine;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Message\Message;
@@ -122,6 +124,23 @@ trait MediaWikiTestCaseTrait {
 			$hookContainer->register( $name, $callback );
 		}
 		return $hookContainer;
+	}
+
+	/**
+	 * Create an initially empty DoainEventDispatcher with an empty service
+	 * container attached. Register only the listeners specified in the parameter.
+	 *
+	 * @param array<string, callable> $listeners
+	 * @return DomainEventDispatcher
+	 */
+	protected function createEventDispatcher( $listeners = [] ) {
+		$eventDispatcher = new EventDispatchEngine(
+			$this->createSimpleObjectFactory()
+		);
+		foreach ( $listeners as $name => $callback ) {
+			$eventDispatcher->registerListener( $name, $callback );
+		}
+		return $eventDispatcher;
 	}
 
 	/**

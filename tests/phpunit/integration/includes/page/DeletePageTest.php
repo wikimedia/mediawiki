@@ -10,6 +10,7 @@ use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\DeletePage;
+use MediaWiki\Page\Event\PageDeletedEvent;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\UltimateAuthority;
@@ -22,6 +23,7 @@ use MediaWiki\Tests\Search\SearchUpdateSpyTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
+use PHPUnit\Framework\Assert;
 use Wikimedia\ScopedCallback;
 use WikiPage;
 
@@ -181,6 +183,12 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse(
 			$t->exists(),
 			"Title::exists should return false after page was deleted"
+		);
+
+		$w = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $t );
+		$this->assertFalse(
+			$w->exists(),
+			"WikiPage::exists should return false after page was deleted"
 		);
 	}
 
@@ -362,11 +370,12 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		) use ( &$newHookCalled ) {
 			$this->assertTrue( $page->exists(), 'ProperPageIdentity exists in PageDeleteComplete hook' );
 
-			// This works because $page is actually a WikiPage, and WikiPageFactory::newFromTitle() returns
-			// the same object. Shouldn't have done that, some extension probably depends on this now…
+			// When accessing the corresponding WikiPage, it no longer exists.
 			$wikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $page );
-			$this->assertTrue( $wikiPage->exists(), 'WikiPage exists in PageDeleteComplete hook' );
-			$this->assertTrue( $wikiPage->isRedirect(), 'WikiPage is redirect in PageDeleteComplete hook' );
+			$this->assertFalse(
+				$wikiPage->exists(),
+				'WikiPage no longer exists in PageDeleteComplete hook'
+			);
 
 			$newHookCalled++;
 		} );
@@ -384,6 +393,64 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertFalse( $wikiPage->exists(), 'WikiPage does not exist after deletion' );
 		$this->assertFalse( $wikiPage->isRedirect(), 'WikiPage is not a redirect after deletion' );
+	}
+
+	public static function provideEventEmission() {
+		yield [ false, [] ];
+		yield [ true, [ 'suppressed' ] ];
+	}
+
+	/**
+	 * @dataProvider provideEventEmission
+	 * @covers \MediaWiki\Page\DeletePage::deleteUnsafe
+	 */
+	public function testEventEmission( $suppress, $tags ) {
+		$calls = 0;
+
+		$deleterUser = static::getTestSysop()->getUser();
+		$deleter = new UltimateAuthority( $deleterUser );
+		$page = $this->createPage( 'MediaWiki:' . __METHOD__, self::PAGE_TEXT );
+		$id = $page->getId();
+
+		// clear the queue
+		$this->runJobs();
+
+		$this->getServiceContainer()->getDomainEventSource()->registerListener(
+			PageDeletedEvent::TYPE,
+			static function ( PageDeletedEvent $event ) use ( &$calls, $suppress, $tags, $id ) {
+				Assert::assertFalse(
+					$event->getPage()->exists(),
+					'Expected getPage() to reflect the state after deletion.'
+				);
+				Assert::assertTrue(
+					$event->getPageStateBefore()->isSamePageAs( $event->getPage() ),
+					'Expected getPage() and getPageStateBefore() to represent the same page'
+				);
+				Assert::assertSame(
+					$id,
+					$event->getPageStateBefore()->getId(),
+					'Expected getPageStateBefore()->getId() to return the correct ID'
+				);
+				Assert::assertGreaterThan(
+					0,
+					$event->getArchivedRevisionCount()
+				);
+
+				Assert::assertSame( $tags, $event->getTags() );
+				Assert::assertSame( $suppress, $event->isSuppressed() );
+
+				$calls++;
+			}
+		);
+
+		// Now delete the page
+		$this->getDeletePage( $page, $deleter )
+			->setSuppress( $suppress )
+			->setTags( $tags )
+			->deleteUnsafe( 'testing' );
+
+		$this->runDeferredUpdates();
+		$this->assertSame( 1, $calls );
 	}
 
 	public static function provideUpdatePropagation() {
@@ -423,7 +490,7 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 
 		// TODO: Assert that the search index is updated after deletion.
 		//       This appears to be broken at the moment.
-		// $this->expectSearchUpdates( 1 );
+		$this->expectSearchUpdates( 1 );
 
 		$this->expectLocalizationUpdate( $page->getNamespace() === NS_MEDIAWIKI ? 1 : 0 );
 		$this->expectResourceLoaderUpdates(

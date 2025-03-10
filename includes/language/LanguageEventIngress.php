@@ -3,6 +3,7 @@
 namespace MediaWiki\Languages;
 
 use MediaWiki\DomainEvent\EventSubscriberBase;
+use MediaWiki\Page\Event\PageDeletedEvent;
 use MediaWiki\Page\Event\PageUpdatedEvent;
 use MediaWiki\Revision\SlotRecord;
 use MessageCache;
@@ -24,7 +25,8 @@ class LanguageEventIngress extends EventSubscriberBase {
 			'MessageCache'
 		],
 		'events' => [
-			PageUpdatedEvent::TYPE
+			PageUpdatedEvent::TYPE,
+			PageDeletedEvent::TYPE
 		],
 	];
 
@@ -46,6 +48,17 @@ class LanguageEventIngress extends EventSubscriberBase {
 		) {
 			$content = $event->getNewRevision()->getMainContentRaw();
 			$this->messageCache->updateMessageOverride( $event->getPage(), $content );
+		}
+	}
+
+	/**
+	 * Listener method for PageUpdatedEvent, to be registered with a DomainEventSource.
+	 *
+	 * @noinspection PhpUnused
+	 */
+	public function handlePageDeletedEventAfterCommit( PageDeletedEvent $event ) {
+		if ( $event->getPage()->getNamespace() === NS_MEDIAWIKI ) {
+			$this->messageCache->updateMessageOverride( $event->getPage(), null );
 		}
 	}
 

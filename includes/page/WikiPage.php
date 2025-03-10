@@ -2447,6 +2447,11 @@ class WikiPage implements Stringable, Page, PageRecord {
 
 	/**
 	 * Clears caches when article is deleted
+	 *
+	 * @internal for use by DeletePage and MovePage.
+	 * @todo pull this into DeletePage
+	 *
+	 * @param Title $title
 	 */
 	public static function onArticleDelete( Title $title ) {
 		// TODO: move this into a PageEventEmitter service
@@ -2464,16 +2469,15 @@ class WikiPage implements Stringable, Page, PageRecord {
 
 		InfoAction::invalidateCache( $title );
 
-		// Messages
-		if ( $title->getNamespace() === NS_MEDIAWIKI ) {
-			$services->getMessageCache()->updateMessageOverride( $title, null );
-		}
-
 		// Invalidate caches of articles which include this page
 		DeferredUpdates::addCallableUpdate( static function () use ( $title ) {
 			self::queueBacklinksJobs( $title, true, true, 'delete-page' );
 		} );
 
+		// TODO: Move to ChangeTrackingEventIngress when ready,
+		// but make sure it happens on deletions and page moves by adding
+		// the appropriate assertions to ChangeTrackingEventIngressSpyTrait.
+		// Messages
 		// User talk pages
 		if ( $title->getNamespace() === NS_USER_TALK ) {
 			$user = User::newFromName( $title->getText(), false );
@@ -2484,6 +2488,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 			}
 		}
 
+		// TODO: Create MediaEventIngress and move this there.
 		// Image redirects
 		$services->getRepoGroup()->getLocalRepo()->invalidateImageRedirect( $title );
 
