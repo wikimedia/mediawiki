@@ -35,7 +35,7 @@ describe( 'SpecialBlock', () => {
 		await wrapper.find( '[name=wpTarget]' ).setValue( 'ExampleUser' );
 		await wrapper.find( '[name=wpTarget]' ).trigger( 'change' );
 		expect( wrapper.find( '.mw-block__block-form' ).exists() ).toBeTruthy();
-		expect( wrapper.find( '.mw-block-submit' ).text() ).toStrictEqual( 'ipbsubmit' );
+		expect( wrapper.find( '.mw-block-submit' ).text() ).toStrictEqual( 'block-submit' );
 	} );
 
 	it( 'should show a banner and "Add block" button based on if user is already blocked', () => {
@@ -57,6 +57,7 @@ describe( 'SpecialBlock', () => {
 		await wrapper.find( '[name=wpTarget]' ).setValue( 'ExampleUser' );
 		await wrapper.find( '[name=wpTarget]' ).trigger( 'change' );
 		await flushPromises();
+		expect( wrapper.find( '.mw-block__block-form h2' ).text() ).toStrictEqual( 'block-create' );
 		await wrapper.find( '.cdx-radio__input[value=datetime]' ).setValue( true );
 		await wrapper.find( '[name=wpExpiry-other]' ).setValue( '2999-01-23T12:34' );
 		await wrapper.find( '[name=wpReason-other]' ).setValue( 'This is a test' );
@@ -193,7 +194,8 @@ describe( 'SpecialBlock', () => {
 		expect( wrapper.find( '[data-test=edit-block-button]' ).exists() ).toBeTruthy();
 		await wrapper.find( '[data-test=edit-block-button]' ).trigger( 'click' );
 		expect( wrapper.find( '.mw-block__block-form' ).exists() ).toBeTruthy();
-		expect( wrapper.find( '.mw-block-submit' ).text() ).toStrictEqual( 'block-update' );
+		expect( wrapper.find( '.mw-block__block-form h2' ).text() ).toStrictEqual( 'block-update' );
+		expect( wrapper.find( '.mw-block-submit' ).text() ).toStrictEqual( 'block-submit' );
 		wrapper.find( '[name=wpReason-other]' ).setValue( 'This is a test' );
 		expect( store.reason ).toStrictEqual( 'other' );
 		expect( store.reasonOther ).toStrictEqual( 'This is a test' );
@@ -261,7 +263,8 @@ describe( 'SpecialBlock', () => {
 		expect( wrapper.find( '[data-test=edit-block-button]' ).exists() ).toBeTruthy();
 		await wrapper.find( '[data-test=edit-block-button]' ).trigger( 'click' );
 		expect( wrapper.find( '.mw-block__block-form' ).exists() ).toBeTruthy();
-		expect( wrapper.find( '.mw-block-submit' ).text() ).toStrictEqual( 'block-update' );
+		expect( wrapper.find( '.mw-block__block-form h2' ).text() ).toStrictEqual( 'block-update' );
+		expect( wrapper.find( '.mw-block-submit' ).text() ).toStrictEqual( 'block-submit' );
 		wrapper.find( '[name=wpReason-other]' ).setValue( 'This is a test' );
 		expect( store.reason ).toStrictEqual( 'other' );
 		expect( store.reasonOther ).toStrictEqual( 'This is a test' );
