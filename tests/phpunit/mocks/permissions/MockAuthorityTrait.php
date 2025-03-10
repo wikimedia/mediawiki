@@ -287,7 +287,7 @@ trait MockAuthorityTrait {
 		foreach ( $methodsWithoutTitle as $method ) {
 			$mock->method( $method )->willReturnCallback( static function (
 				string $permission, ?PermissionStatus $status = null
-			) use ( $permissionCallback ) {
+			) use ( $permissionCallback, $block ) {
 				$ok = $permissionCallback( $permission, null, $status );
 
 				if ( !$ok && $status ) {
