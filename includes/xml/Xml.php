@@ -272,9 +272,11 @@ class Xml {
 	 * @param array $attribs Other attributes
 	 * @return string
 	 *
-	 * @deprecated since 1.42, use {@see Html::element} instead
+	 * @deprecated since 1.42, use {@see Html::element} instead; emiting deprecation warnings since 1.44
 	 */
 	public static function span( $text, $class, $attribs = [] ) {
+		wfDeprecated( __METHOD__, '1.42' );
+
 		return self::element( 'span', [ 'class' => $class ] + $attribs, $text );
 	}
 
@@ -326,11 +328,13 @@ class Xml {
 	 * @param array $attribs Other attributes
 	 * @return string HTML
 	 *
-	 * @deprecated since 1.42, use {@see Html::input} instead
+	 * @deprecated since 1.42, use {@see Html::input} instead; emiting deprecation warnings since 1.44
 	 */
 	public static function password( $name, $size = false, $value = false,
 		$attribs = []
 	) {
+		wfDeprecated( __METHOD__, '1.42' );
+
 		return self::input( $name, $size, $value,
 			array_merge( $attribs, [ 'type' => 'password' ] ) );
 	}
@@ -851,9 +855,11 @@ class Xml {
 	 * @param array|null $headers An array of strings to use as table headers
 	 * @return string
 	 *
-	 * @deprecated since 1.42; use OOUI or Codex widgets instead
+	 * @deprecated since 1.42; use OOUI or Codex widgets instead; emiting deprecation warnings since 1.44
 	 */
 	public static function buildTable( $rows, $attribs = [], $headers = null ) {
+		wfDeprecated( __METHOD__, '1.42' );
+
 		$s = self::openElement( 'table', $attribs );
 
 		if ( is_array( $headers ) ) {
@@ -892,9 +898,11 @@ class Xml {
 	 * @param string[] $cells An array of strings to put in <td>
 	 * @return string
 	 *
-	 * @deprecated since 1.42; use OOUI or Codex widgets instead
+	 * @deprecated since 1.42; use OOUI or Codex widgets instead; emiting deprecation warnings since 1.44
 	 */
 	public static function buildTableRow( $attribs, $cells ) {
+		wfDeprecated( __METHOD__, '1.42' );
+
 		$s = self::openElement( 'tr', $attribs );
 
 		foreach ( $cells as $id => $cell ) {

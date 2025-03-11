@@ -133,7 +133,7 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideMonthSelector
 	 */
 	public function testMonthSelector( $expected, $selected, $allmonths, $id ) {
-		$this->hideDeprecated( 'MediaWiki\Xml\Xml::monthSelector' );
+		$this->hideDeprecated( Xml::class . '::monthSelector' );
 		$this->assertEquals(
 			$expected,
 			Xml::monthSelector( $selected, $allmonths, $id )
@@ -141,6 +141,7 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testSpan() {
+		$this->hideDeprecated( Xml::class . '::span' );
 		$this->assertEquals(
 			'<span class="foo" id="testSpan">element</span>',
 			Xml::span( 'element', 'foo', [ 'id' => 'testSpan' ] )
@@ -158,8 +159,8 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 			$nextMonth = 1;
 		}
 
-		$this->hideDeprecated( 'MediaWiki\Xml\Xml::dateMenu' );
-		$this->hideDeprecated( 'MediaWiki\Xml\Xml::monthSelector' );
+		$this->hideDeprecated( Xml::class . '::dateMenu' );
+		$this->hideDeprecated( Xml::class . '::monthSelector' );
 
 		$this->assertEquals(
 			'<label for="year">From year (and earlier):</label> ' .
@@ -293,7 +294,7 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testLanguageSelector() {
-		$this->hideDeprecated( 'MediaWiki\Xml\Xml::languageSelector' );
+		$this->hideDeprecated( Xml::class . '::languageSelector' );
 
 		$select = Xml::languageSelector( 'en', true, null,
 			[ 'id' => 'testlang' ], wfMessage( 'yourlanguage' ) );
@@ -435,6 +436,9 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testBuildTable() {
+		$this->hideDeprecated( Xml::class . '::buildTable' );
+		$this->hideDeprecated( Xml::class . '::buildTableRow' );
+
 		$firstRow = [ 'foo', 'bar' ];
 		$secondRow = [ 'Berlin', 'Tehran' ];
 		$headers = [ 'header1', 'header2' ];
@@ -452,6 +456,8 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testBuildTableRow() {
+		$this->hideDeprecated( Xml::class . '::buildTableRow' );
+
 		$this->assertEquals(
 			'<tr id="testRow"><td>foo</td><td>bar</td></tr>',
 			Xml::buildTableRow( [ 'id' => 'testRow' ], [ 'foo', 'bar' ] )
