@@ -357,8 +357,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 	protected function doBatchLookups() {
 		$linkBatch = $this->linkBatchFactory->newLinkBatch();
 		foreach ( $this->mResult as $row ) {
-			$linkBatch->add( NS_USER, $row->rc_user_text );
-			$linkBatch->add( NS_USER_TALK, $row->rc_user_text );
+			$linkBatch->addUser( new UserIdentityValue( (int)$row->rc_user, $row->rc_user_text ) );
 			$linkBatch->add( $row->page_namespace, $row->page_title );
 		}
 		$linkBatch->execute();

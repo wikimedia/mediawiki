@@ -35,6 +35,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ActorNormalization;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
 
@@ -446,8 +447,7 @@ class LogPager extends ReverseChronologicalPager {
 		$lb = $this->linkBatchFactory->newLinkBatch();
 		foreach ( $this->mResult as $row ) {
 			$lb->add( $row->log_namespace, $row->log_title );
-			$lb->add( NS_USER, $row->log_user_text );
-			$lb->add( NS_USER_TALK, $row->log_user_text );
+			$lb->addUser( new UserIdentityValue( (int)$row->log_user, $row->log_user_text ) );
 			$formatter = $this->logFormatterFactory->newFromRow( $row );
 			foreach ( $formatter->getPreloadTitles() as $title ) {
 				$lb->addObj( $title );

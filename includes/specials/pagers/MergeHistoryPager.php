@@ -32,6 +32,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Xml\Xml;
 use Wikimedia\Rdbms\IConnectionProvider;
 
@@ -106,8 +107,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		$this->prevId = [];
 		$rev_id = null;
 		foreach ( $this->mResult as $row ) {
-			$batch->add( NS_USER, $row->rev_user_text );
-			$batch->add( NS_USER_TALK, $row->rev_user_text );
+			$batch->addUser( new UserIdentityValue( (int)$row->rev_user, $row->rev_user_text ) );
 
 			if ( $rev_id !== null ) {
 				if ( $rev_id > $row->rev_id ) {

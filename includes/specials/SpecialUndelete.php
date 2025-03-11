@@ -57,6 +57,7 @@ use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
+use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWiki\Xml\Xml;
 use OOUI\ActionFieldLayout;
@@ -952,8 +953,7 @@ class SpecialUndelete extends SpecialPage {
 
 	private function addRevisionsToBatch( LinkBatch $batch, IResultWrapper $revisions ) {
 		foreach ( $revisions as $row ) {
-			$batch->add( NS_USER, $row->ar_user_text );
-			$batch->add( NS_USER_TALK, $row->ar_user_text );
+			$batch->addUser( new UserIdentityValue( (int)$row->ar_user, $row->ar_user_text ) );
 		}
 	}
 
