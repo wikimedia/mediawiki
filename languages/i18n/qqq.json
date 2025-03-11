@@ -2898,6 +2898,8 @@
 	"ipb-blocklist": "Used as link text in [[Special:Block]].\n\nThe link points to [[Special:BlockList]].",
 	"ipb-blocklist-contribs": "Used in [[Special:Block]].\n* $1 - target username",
 	"ipb-blocklist-duration-left": "Used on [[Special:BlockList]] to show the remaining time (years, months, days, hours, minutes) until the block expires.\n$1 - The duration left",
+	"block-added-message": "Used as success message when a block is added in [[Special:Block]].",
+	"block-updated-message": "Used as success message when a block is updated in [[Special:Block]].",
 	"block-actions": "Label for the checkboxes for specifying the actions that a block affects on [[Special:Block]]",
 	"block-change-visibility": "Label for the link to change visibility in [[Special:Block]]",
 	"block-details": "Label for the checkboxes for specifying the sitewide block details on [[Special:Block]]",

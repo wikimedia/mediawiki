@@ -2332,6 +2332,7 @@ return [
 		'messages' => [
 			'blanknamespace',
 			'block-actions',
+			'block-added-message',
 			'block-change-visibility',
 			'block-confirm-no',
 			'block-confirm-yes',
@@ -2376,6 +2377,7 @@ return [
 			'block-target',
 			'block-target-placeholder',
 			'block-update',
+			'block-updated-message',
 			'block-user-active-blocks',
 			'block-user-label-count-exceeds-limit',
 			'block-user-no-active-blocks',

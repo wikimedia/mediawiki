@@ -52,10 +52,11 @@ describe( 'SpecialBlock', () => {
 		expect( wrapper.find( '.mw-block__create-button' ).exists() ).toBeTruthy();
 	} );
 
-	it( 'should submit an API request to block the user (Multiblocks OFF)', async () => {
-		wrapper = withSubmission( { blockEnableMultiblocks: false }, { block: { user: 'ExampleUser' } } );
+	it( 'should submit an API request to add a new block for a user (Multiblocks OFF)', async () => {
+		wrapper = withSubmission( { blockId: null, blockEnableMultiblocks: false }, { block: { user: 'ExampleUser' } } );
 		await wrapper.find( '[name=wpTarget]' ).setValue( 'ExampleUser' );
 		await wrapper.find( '[name=wpTarget]' ).trigger( 'change' );
+		await flushPromises();
 		await wrapper.find( '.cdx-radio__input[value=datetime]' ).setValue( true );
 		await wrapper.find( '[name=wpExpiry-other]' ).setValue( '2999-01-23T12:34' );
 		await wrapper.find( '[name=wpReason-other]' ).setValue( 'This is a test' );
@@ -79,6 +80,7 @@ describe( 'SpecialBlock', () => {
 			formatversion: 2
 		} );
 		expect( wrapper.find( '.mw-block-success' ).exists() ).toBeTruthy();
+		expect( wrapper.find( '.mw-block-success .cdx-message__content' ).text() ).toContain( 'block-added-message' );
 	} );
 
 	it( 'should submit an API request to block the user', async () => {
@@ -198,6 +200,7 @@ describe( 'SpecialBlock', () => {
 		await wrapper.find( '.mw-block-submit' ).trigger( 'click' );
 		await flushPromises();
 		expect( wrapper.find( '.mw-block-success' ).exists() ).toBeTruthy();
+		expect( wrapper.find( '.mw-block-success .cdx-message__content' ).text() ).toContain( 'block-updated-message' );
 		expect( wrapper.find( '.mw-block__block-form' ).exists() ).toBeFalsy();
 		expect( store.reason ).toStrictEqual( 'other' );
 		expect( store.reasonOther ).toStrictEqual( '' );
