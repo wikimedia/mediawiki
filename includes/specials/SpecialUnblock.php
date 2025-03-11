@@ -126,12 +126,18 @@ class SpecialUnblock extends SpecialPage {
 						Title::newFromPageReference( $this->target->getUserPage() )
 					);
 				}
-				return $this->unblockUserFactory->newUnblockUser(
+				$status = $this->unblockUserFactory->newUnblockUser(
 					$this->target,
 					$form->getContext()->getAuthority(),
 					$data['Reason'],
 					$data['Tags'] ?? []
 				)->unblock();
+
+				if ( $status->hasMessage( 'ipb_cant_unblock_multiple_blocks' ) ) {
+					// Add additional message sending users to [[Special:Block/Username]]
+					$status->error( 'unblock-error-multiblocks', $this->target );
+				}
+				return $status;
 			} )
 			->setSubmitTextMsg( 'ipusubmit' )
 			->addPreHtml( $this->msg( 'unblockiptext' )->parseAsBlock() );
