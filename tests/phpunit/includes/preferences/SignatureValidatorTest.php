@@ -157,11 +157,8 @@ class SignatureValidatorTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testValidateSignature( string $signature, $expected ) {
 		$result = $this->validator->validateSignature( $signature );
-		if ( is_string( $expected ) ) {
-			// All special cases should report errors here.
-			$expected = true;
-		}
-		$this->assertSame( $expected, $result );
+		// All special cases should report errors here.
+		$this->assertSame( (bool)$expected, $result );
 	}
 
 	/**
@@ -175,11 +172,10 @@ class SignatureValidatorTest extends MediaWikiIntegrationTestCase {
 		$this->validator = $this->getSignatureValidator();
 		$result = $this->validator->validateSignature( $signature );
 		if ( $expected === 'allowed' ) {
-			$expected = false;
-		} elseif ( is_string( $expected ) ) {
-			$expected = true;
+			$this->assertFalse( $result );
+		} else {
+			$this->assertSame( $expected, $result );
 		}
-		$this->assertSame( $expected, $result );
 	}
 
 	/**

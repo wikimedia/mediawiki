@@ -191,11 +191,7 @@ class DbTestPreviewer extends TestRecorder {
 
 		// If no record of ever having had a different result.
 		if ( $changedRun === null ) {
-			if ( $after == "f" ) {
-				return "Has never passed";
-			} else {
-				return "Has never failed";
-			}
+			return $after === 'f' ? 'Has never passed' : 'Has never failed';
 		}
 
 		// Otherwise, we're looking at a test whose status has changed.

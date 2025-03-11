@@ -103,14 +103,6 @@ class PHPUnitConfigTest extends PHPUnit\Framework\TestCase {
 	}
 
 	private function isSameOrChildOfDirectory( $dirA, $dirB ) {
-		if ( $dirA === $dirB ) {
-			return true;
-		}
-
-		if ( str_starts_with( "$dirB/", $dirA ) ) {
-			return true;
-		}
-
-		return false;
+		return $dirA === $dirB || str_starts_with( "$dirB/", $dirA );
 	}
 }
