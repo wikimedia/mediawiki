@@ -3089,13 +3089,13 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	 * A Title object is considered equal to another Title if it has the same text,
 	 * the same interwiki prefix, and the same namespace.
 	 *
-	 * @note This is different from isSameLinkAs(), which also compares the fragment part,
-	 *       and from isSamePageAs(), which takes into account the page ID.
+	 * @note This is different from {@see LinkTarget::isSameLinkAs} which also compares the fragment
+	 * part.
 	 *
 	 * @phpcs:disable MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
 	 * @param Title|object $other
 	 *
-	 * @return bool true if $other is a Title and refers to the same page.
+	 * @return bool
 	 */
 	public function equals( object $other ) {
 		// NOTE: In contrast to isSameLinkAs(), this ignores the fragment part!
