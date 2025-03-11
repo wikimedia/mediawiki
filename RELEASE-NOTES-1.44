@@ -378,6 +378,10 @@ because of Phabricator reports.
   now emitting deprecation warnings:
    - Xml::encodeJsVar() – use Html::encodeJsVar() instead
    - Xml::encodeJsCall() – use Html::encodeJsCall() instead
+   - Xml::span() – use Html::element() instead
+   - Xml::password() – use Html::input() instead
+   - Xml::buildTable() – use OOUI or Codex widgets instead
+   - Xml::buildTableRow() – use OOUI or Codex widgets instead
 * BlockUtils and BlockUtilsFactory is now deprecated. Use BlockTargetFactory
   and CrossWikiBlockTargetFactory.
 * RenameuserSQL::rename has been deprecated and should be replaced with
