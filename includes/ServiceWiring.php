@@ -908,7 +908,7 @@ return [
 		} else {
 			$userOptionsLookup = $services->getUserOptionsLookup();
 		}
-		return new GenderCache( $nsInfo, null, $userOptionsLookup );
+		return new GenderCache( $nsInfo, $userOptionsLookup );
 	},
 
 	'GlobalIdGenerator' => static function ( MediaWikiServices $services ): GlobalIdGenerator {
