@@ -71,7 +71,7 @@
 	"hours": "{{PLURAL:$1|un'ura|$1 uri}}",
 	"minutes": "{{PLURAL:$1|un minutu|$1 minuti}}",
 	"seconds": "{{PLURAL:$1|un sicunnu|$1 sicunni}}",
-	"ago": "$1 fa",
+	"ago": "$1 arrè",
 	"duration-millennia": "$1 {{PLURAL:$1|millenniu|millennî}}",
 	"duration-centuries": "$1 {{PLURAL:$1|sèculu|sèculi}}",
 	"duration-decades": "$1 {{PLURAL:$1|dicenniu|dicennî}}",
@@ -90,8 +90,8 @@
 	"saturday-at": "Sabbatudìa ê $1",
 	"sunday-at": "Duminicadìa ê $1",
 	"yesterday-at": "Ajeri ê $1",
-	"hours-ago": "{{PLURAL:$1|un'ura|$1 uri}} fa",
-	"minutes-ago": "{{PLURAL:$1|un minutu|$1 minuti}} fa",
-	"seconds-ago": "{{PLURAL:$1|un sicunnu|$1 sicunni}} fa",
+	"hours-ago": "{{PLURAL:$1|n'ura|$1 uri}} arrè",
+	"minutes-ago": "$1 {{PLURAL:$1|minutu|minuti}} arrè",
+	"seconds-ago": "$1 {{PLURAL:$1|sicunnu|sicunni}} arrè",
 	"just-now": "propia ora"
 }

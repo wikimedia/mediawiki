@@ -222,6 +222,7 @@
 	"prefs-searchmisc": "సాధారణం",
 	"searchlimit-label": "ఒక్కో పేజీలో చూపించాల్సిన వెతుకులాట ఫలితాలు:",
 	"searchlimit-help": "గరిష్ఠ సంఖ్య: $1",
+	"search-thumbnail-extra-namespaces-label": "డెస్క్‌టాపు కూర్పులో చూస్తున్నపుడు ప్రత్యేక:అన్వేషణ లో థంబ్‌నెయిల్‌లను చూపించు",
 	"search-thumbnail-extra-namespaces-message": "{{#special:search}} పేజీలో, $1 {{PLURAL:$2|పేరుబరి|పేరుబరుల}} ఫలితాల్లో థంబ్‌నెయిళ్ళను చూపిస్తుంది",
 	"prefs-advancedsearchoptions": "ఉన్నత ఎంపికలు",
 	"prefs-misc": "ఇతరత్రా",
