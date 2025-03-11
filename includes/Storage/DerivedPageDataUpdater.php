@@ -1769,7 +1769,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		}
 
 		$editResult = $this->options['editResult'];
-		if ( !$editResult->isRevert() ) {
+		if ( !$editResult->isRevert() || $editResult->isNullEdit() ) {
 			return;
 		}
 
