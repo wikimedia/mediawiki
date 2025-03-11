@@ -45,7 +45,6 @@ use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\WikiMap\WikiMap;
 use MWExceptionHandler;
 use MWExceptionRenderer;
-use Net_URL2;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -2054,34 +2053,6 @@ MESSAGE;
 		$parser->SetImportDirs( $formattedImportDirs );
 
 		return $parser;
-	}
-
-	/**
-	 * Resolve a possibly relative URL against a base URL.
-	 *
-	 * The base URL must have a server and should have a protocol.
-	 * A protocol-relative base expands to HTTPS.
-	 *
-	 * This is a standalone version of MediaWiki's UrlUtils::expand (T32956).
-	 *
-	 * @internal For use by core ResourceLoader classes only
-	 * @param string $base
-	 * @param string $url
-	 * @return string URL
-	 */
-	public function expandUrl( string $base, string $url ): string {
-		// Net_URL2::resolve() doesn't allow protocol-relative URLs, but we do.
-		$isProtoRelative = strpos( $base, '//' ) === 0;
-		if ( $isProtoRelative ) {
-			$base = "https:$base";
-		}
-		// Net_URL2::resolve() takes care of throwing if $base doesn't have a server.
-		$baseUrl = new Net_URL2( $base );
-		$ret = $baseUrl->resolve( $url );
-		if ( $isProtoRelative ) {
-			$ret->setScheme( false );
-		}
-		return $ret->getURL();
 	}
 
 	/**
