@@ -23,10 +23,6 @@
 
 namespace MediaWiki\Title;
 
-use MediaWiki\Cache\GenderCache;
-use MediaWiki\Interwiki\InterwikiLookup;
-use MediaWiki\Language\Language;
-
 /**
  * A codec for MediaWiki page titles.
  *
@@ -40,27 +36,6 @@ use MediaWiki\Language\Language;
  * @deprecated since 1.44 use TitleParser, TitleFormatter
  */
 class MediaWikiTitleCodec {
-	/**
-	 * Temporary migration helper for DiscussionTools test
-	 *
-	 * @unstable
-	 * @param Language $language
-	 * @param GenderCache $genderCache
-	 * @param array $localInterwikis
-	 * @param InterwikiLookup $interwikiLookup
-	 * @param NamespaceInfo $nsInfo
-	 * @return TitleParser
-	 */
-	public static function createParser(
-		Language $language,
-		GenderCache $genderCache,
-		$localInterwikis,
-		InterwikiLookup $interwikiLookup,
-		NamespaceInfo $nsInfo
-	) {
-		return new TitleParser( $language, $interwikiLookup, $nsInfo, $localInterwikis );
-	}
-
 	/**
 	 * Returns a simple regex that will match on characters and sequences invalid in titles.
 	 * Note that this doesn't pick up many things that could be wrong with titles, but that
