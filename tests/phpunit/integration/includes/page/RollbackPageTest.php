@@ -8,7 +8,7 @@ use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\JsonContent;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Page\Event\PageUpdatedEvent;
+use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\ProperPageIdentity;
@@ -489,11 +489,11 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 		$this->runJobs();
 
 		$this->expectDomainEvent(
-			PageUpdatedEvent::TYPE, 1,
-			static function ( PageUpdatedEvent $event ) use ( $admin ) {
+			PageRevisionUpdatedEvent::TYPE, 1,
+			static function ( PageRevisionUpdatedEvent $event ) use ( $admin ) {
 				Assert::assertTrue(
-					$event->hasCause( PageUpdatedEvent::CAUSE_ROLLBACK ),
-					PageUpdatedEvent::CAUSE_ROLLBACK
+					$event->hasCause( PageRevisionUpdatedEvent::CAUSE_ROLLBACK ),
+					PageRevisionUpdatedEvent::CAUSE_ROLLBACK
 				);
 
 				Assert::assertTrue( $event->isRevert(), 'isRevert' );

@@ -11,6 +11,7 @@ use MediaWiki\Content\WikitextContent;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Message\Message;
+use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\ParserOptions;
@@ -20,7 +21,6 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Storage\EditResult;
-use MediaWiki\Storage\PageUpdatedEvent;
 use MediaWiki\Tests\ExpectCallbackTrait;
 use MediaWiki\Tests\Language\LocalizationUpdateSpyTrait;
 use MediaWiki\Tests\recentchanges\ChangeTrackingUpdateSpyTrait;
@@ -420,7 +420,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$contentChange = true,
 		$silent = false
 	) {
-		return static function ( PageUpdatedEvent $event ) use (
+		return static function ( PageRevisionUpdatedEvent $event ) use (
 			&$counter, $flags, $cause, $performer, $old,
 			$revisionChange, $contentChange, $silent
 		) {
@@ -501,9 +501,9 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$updater->setContent( SlotRecord::MAIN, $content );
 
 		$this->expectDomainEvent(
-			PageUpdatedEvent::TYPE, 1,
+			PageRevisionUpdatedEvent::TYPE, 1,
 			$this->makeDomainEventSourceListener(
-				[], PageUpdatedEvent::CAUSE_EDIT, $user, null
+				[], PageRevisionUpdatedEvent::CAUSE_EDIT, $user, null
 			)
 		);
 
@@ -524,9 +524,18 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$updater->setContent( SlotRecord::MAIN, $content );
 
 		$this->expectDomainEvent(
-			PageUpdatedEvent::TYPE, 1,
+			PageRevisionUpdatedEvent::TYPE, 1,
 			$this->makeDomainEventSourceListener(
-				[], PageUpdatedEvent::CAUSE_EDIT,
+				[], PageRevisionUpdatedEvent::CAUSE_EDIT,
+				$user, $page->getRevisionRecord()
+			)
+		);
+
+		// Also check that we can receive the event under its legacy name (T388588)
+		$this->expectDomainEvent(
+			'PageUpdated', 1,
+			$this->makeDomainEventSourceListener(
+				[], PageRevisionUpdatedEvent::CAUSE_EDIT,
 				$user, $page->getRevisionRecord()
 			)
 		);
@@ -549,10 +558,10 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$updater->setFlags( EDIT_IMPLICIT );
 
 		$this->expectDomainEvent(
-			PageUpdatedEvent::TYPE, 1,
+			PageRevisionUpdatedEvent::TYPE, 1,
 			$this->makeDomainEventSourceListener(
 				[ 'isImplicit' => true ],
-				PageUpdatedEvent::CAUSE_EDIT,
+				PageRevisionUpdatedEvent::CAUSE_EDIT,
 				$user,
 				$page->getRevisionRecord()
 			)
@@ -569,9 +578,9 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$updater = $page->newPageUpdater( $user );
 
 		$this->expectDomainEvent(
-			PageUpdatedEvent::TYPE, 1,
+			PageRevisionUpdatedEvent::TYPE, 1,
 			$this->makeDomainEventSourceListener(
-				[], PageUpdatedEvent::CAUSE_EDIT,
+				[], PageRevisionUpdatedEvent::CAUSE_EDIT,
 					$user, $page->getRevisionRecord(), false, false
 			)
 		);
@@ -591,9 +600,9 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$updater = $page->newPageUpdater( $user );
 
 		$this->expectDomainEvent(
-			PageUpdatedEvent::TYPE, 1,
+			PageRevisionUpdatedEvent::TYPE, 1,
 			$this->makeDomainEventSourceListener(
-				[], PageUpdatedEvent::CAUSE_UNDELETE,
+				[], PageRevisionUpdatedEvent::CAUSE_UNDELETE,
 					$user, $page->getRevisionRecord(), true, false, true
 			)
 		);
@@ -602,7 +611,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->expectHook( 'PageSaveComplete', 1 );
 
 		// dummy revision
-		$updater->setCause( PageUpdatedEvent::CAUSE_UNDELETE );
+		$updater->setCause( PageRevisionUpdatedEvent::CAUSE_UNDELETE );
 		$updater->saveDummyRevision( 'Just a test', EDIT_SILENT | EDIT_MINOR );
 	}
 
@@ -617,9 +626,9 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$updater = $page->newPageUpdater( $user );
 
 		$this->expectDomainEvent(
-			PageUpdatedEvent::TYPE, 1,
+			PageRevisionUpdatedEvent::TYPE, 1,
 			$this->makeDomainEventSourceListener(
-				[ 'isRevert' => true ], PageUpdatedEvent::CAUSE_EDIT,
+				[ 'isRevert' => true ], PageRevisionUpdatedEvent::CAUSE_EDIT,
 				$user, $page->getRevisionRecord()
 			)
 		);
@@ -639,7 +648,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$updater = $page->newPageUpdater( $user );
 
-		$this->expectDomainEvent( PageUpdatedEvent::TYPE, 0 );
+		$this->expectDomainEvent( PageRevisionUpdatedEvent::TYPE, 0 );
 
 		$this->expectHook( 'RevisionFromEditComplete', 0 );
 

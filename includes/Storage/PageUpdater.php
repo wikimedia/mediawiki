@@ -34,7 +34,7 @@ use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Page\Event\PageUpdatedEvent;
+use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -284,10 +284,10 @@ class PageUpdater implements PageUpdateCauses {
 	}
 
 	/**
-	 * Set the cause of the update. Will be used for the PageUpdatedEvent
+	 * Set the cause of the update. Will be used for the PageRevisionUpdatedEvent
 	 * and for tracing/logging in jobs, etc.
 	 *
-	 * @param string $cause See PageUpdatedEvent::CAUSE_XXX
+	 * @param string $cause See PageRevisionUpdatedEvent::CAUSE_XXX
 	 * @return $this
 	 */
 	public function setCause( string $cause ): self {
@@ -1324,7 +1324,7 @@ class PageUpdater implements PageUpdateCauses {
 
 			$this->buildEditResult( $newRevisionRecord, false );
 
-			// NOTE: don't trigger a PageUpdated event!
+			// NOTE: don't trigger a PageRevisionUpdated event!
 			$wikiPage = $this->getWikiPage(); // TODO: use for legacy hooks only!
 			$this->prepareDerivedDataUpdater(
 				$wikiPage,
@@ -1332,9 +1332,9 @@ class PageUpdater implements PageUpdateCauses {
 				$revision->getComment(),
 				[],
 				[
-					PageUpdatedEvent::FLAG_SILENT => true,
-					PageUpdatedEvent::FLAG_IMPLICIT => true,
-					'dispatchPageUpdatedEvent' => false,
+					PageRevisionUpdatedEvent::FLAG_SILENT => true,
+					PageRevisionUpdatedEvent::FLAG_IMPLICIT => true,
+					'emitEvents' => false,
 				]
 			);
 
@@ -1466,7 +1466,7 @@ class PageUpdater implements PageUpdateCauses {
 			// Return the new revision to the caller
 			$status->setNewRevision( $newRevisionRecord );
 
-			// Notify the dispatcher of the PageUpdatedEvent during the transaction round
+			// Notify the dispatcher of the PageRevisionUpdatedEvent during the transaction round
 			$this->dispatchPageUpdatedEvent();
 		} else {
 			// T34948: revision ID must be set to page {{REVISIONID}} and
@@ -1489,7 +1489,7 @@ class PageUpdater implements PageUpdateCauses {
 			// via WikiPage::doEditUpdates().
 			$this->getTitle()->invalidateCache( $now );
 
-			// Notify the dispatcher of the PageUpdatedEvent during the transaction round
+			// Notify the dispatcher of the PageRevisionUpdatedEvent during the transaction round
 			$this->dispatchPageUpdatedEvent();
 		}
 
@@ -1605,7 +1605,7 @@ class PageUpdater implements PageUpdateCauses {
 		// Return the new revision to the caller
 		$status->setNewRevision( $newRevisionRecord );
 
-		// Notify the dispatcher of the PageUpdatedEvent during the transaction round
+		// Notify the dispatcher of the PageRevisionUpdatedEvent during the transaction round
 		$this->dispatchPageUpdatedEvent();
 		// Schedule the secondary updates to run after the transaction round commits
 		DeferredUpdates::addUpdate(
@@ -1636,9 +1636,9 @@ class PageUpdater implements PageUpdateCauses {
 		array $hintOverrides = []
 	) {
 		static $flagMap = [
-			EDIT_SILENT => PageUpdatedEvent::FLAG_SILENT,
-			EDIT_FORCE_BOT => PageUpdatedEvent::FLAG_BOT,
-			EDIT_IMPLICIT => PageUpdatedEvent::FLAG_IMPLICIT,
+			EDIT_SILENT => PageRevisionUpdatedEvent::FLAG_SILENT,
+			EDIT_FORCE_BOT => PageRevisionUpdatedEvent::FLAG_BOT,
+			EDIT_IMPLICIT => PageRevisionUpdatedEvent::FLAG_IMPLICIT,
 		];
 
 		$hints = $this->hints;
@@ -1646,7 +1646,7 @@ class PageUpdater implements PageUpdateCauses {
 			$hints[$name] = ( $this->flags & $bit ) === $bit;
 		}
 
-		$hints += PageUpdatedEvent::DEFAULT_FLAGS;
+		$hints += PageRevisionUpdatedEvent::DEFAULT_FLAGS;
 		$hints = $hintOverrides + $hints;
 
 		// set debug data

@@ -3,7 +3,7 @@
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Page\Event\PageUpdatedEvent;
+use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -196,8 +196,8 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 			// countable/oldcountable stuff is handled in WikiImporter::finishImportPage
 
 			$options = [
-				PageUpdatedEvent::FLAG_SILENT => true,
-				PageUpdatedEvent::FLAG_IMPLICIT => true,
+				PageRevisionUpdatedEvent::FLAG_SILENT => true,
+				PageRevisionUpdatedEvent::FLAG_IMPLICIT => true,
 				'created' => $mustCreatePage,
 				'oldcountable' => 'no-change',
 			];

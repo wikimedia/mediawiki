@@ -4,7 +4,7 @@ namespace MediaWiki\Search;
 
 use MediaWiki\DomainEvent\EventSubscriberBase;
 use MediaWiki\Page\Event\PageDeletedEvent;
-use MediaWiki\Page\Event\PageUpdatedEvent;
+use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 
@@ -21,24 +21,24 @@ class SearchEventIngress extends EventSubscriberBase {
 		'class' => self::class,
 		'services' => [],
 		'events' => [
-			PageUpdatedEvent::TYPE,
+			PageRevisionUpdatedEvent::TYPE,
 			PageDeletedEvent::TYPE,
 		],
 	];
 
 	/**
-	 * Listener method for PageUpdatedEvent, to be registered with a DomainEventSource.
+	 * Listener method for PageRevisionUpdatedEvent, to be registered with a DomainEventSource.
 	 *
 	 * @noinspection PhpUnused
 	 */
-	public function handlePageUpdatedEventAfterCommit( PageUpdatedEvent $event ) {
+	public function handlePageRevisionUpdatedEvent( PageRevisionUpdatedEvent $event ) {
 		$newRevision = $event->getNewRevision();
 		$mainSlot = $newRevision->isDeleted( RevisionRecord::DELETED_TEXT )
 			? null : $newRevision->getSlot( SlotRecord::MAIN );
 
 		if (
 			$event->isModifiedSlot( SlotRecord::MAIN ) ||
-			$event->hasCause( PageUpdatedEvent::CAUSE_MOVE ) ||
+			$event->hasCause( PageRevisionUpdatedEvent::CAUSE_MOVE ) ||
 			$event->isReconciliationRequest()
 		) {
 			$update = new SearchUpdate(

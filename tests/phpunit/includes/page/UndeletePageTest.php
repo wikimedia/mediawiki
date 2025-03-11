@@ -1,7 +1,7 @@
 <?php
 
 use MediaWiki\CommentStore\CommentStoreComment;
-use MediaWiki\Page\Event\PageUpdatedEvent;
+use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Page\UndeletePage;
@@ -160,11 +160,11 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 		$this->runJobs();
 
 		$this->expectDomainEvent(
-			PageUpdatedEvent::TYPE, 1,
-			static function ( PageUpdatedEvent $event ) use ( $sysop ) {
+			PageRevisionUpdatedEvent::TYPE, 1,
+			static function ( PageRevisionUpdatedEvent $event ) use ( $sysop ) {
 				Assert::assertTrue(
-					$event->hasCause( PageUpdatedEvent::CAUSE_UNDELETE ),
-					PageUpdatedEvent::CAUSE_UNDELETE
+					$event->hasCause( PageRevisionUpdatedEvent::CAUSE_UNDELETE ),
+					PageRevisionUpdatedEvent::CAUSE_UNDELETE
 				);
 
 				Assert::assertTrue( $event->isSilent(), 'isSilent' );

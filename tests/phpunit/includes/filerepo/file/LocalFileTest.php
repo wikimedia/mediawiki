@@ -7,7 +7,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Page\Event\PageUpdatedEvent;
+use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\ExpectCallbackTrait;
 use MediaWiki\Tests\recentchanges\ChangeTrackingUpdateSpyTrait;
@@ -943,8 +943,8 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 
 		// Event emitted by PageUpdater::saveRevision
 		$this->expectDomainEvent(
-			PageUpdatedEvent::TYPE, 1,
-			static function ( PageUpdatedEvent $event ) use ( &$calls, $file ) {
+			PageRevisionUpdatedEvent::TYPE, 1,
+			static function ( PageRevisionUpdatedEvent $event ) use ( &$calls, $file ) {
 				Assert::assertSame( $file->getName(), $event->getPage()->getDBkey() );
 
 				Assert::assertTrue( $event->isCreation(), 'isCreation' );
@@ -953,8 +953,8 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 				Assert::assertTrue( $event->isNominalContentChange(), 'isNominalContentChange' );
 
 				Assert::assertTrue(
-					$event->hasCause( PageUpdatedEvent::CAUSE_UPLOAD ),
-					PageUpdatedEvent::CAUSE_UPLOAD
+					$event->hasCause( PageRevisionUpdatedEvent::CAUSE_UPLOAD ),
+					PageRevisionUpdatedEvent::CAUSE_UPLOAD
 				);
 
 				Assert::assertTrue( $event->isSilent(), 'isSilent' );
@@ -1004,8 +1004,8 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$this->runDeferredUpdates();
 
 		$this->expectDomainEvent(
-			PageUpdatedEvent::TYPE, 1,
-			static function ( PageUpdatedEvent $event ) use ( &$calls, $file ) {
+			PageRevisionUpdatedEvent::TYPE, 1,
+			static function ( PageRevisionUpdatedEvent $event ) use ( &$calls, $file ) {
 				Assert::assertSame( $file->getName(), $event->getPage()->getDBkey() );
 
 				Assert::assertFalse( $event->isCreation(), 'isCreation' );
@@ -1014,8 +1014,8 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 				Assert::assertFalse( $event->isNominalContentChange(), 'isNominalContentChange' );
 
 				Assert::assertTrue(
-					$event->hasCause( PageUpdatedEvent::CAUSE_UPLOAD ),
-					PageUpdatedEvent::CAUSE_UPLOAD
+					$event->hasCause( PageRevisionUpdatedEvent::CAUSE_UPLOAD ),
+					PageRevisionUpdatedEvent::CAUSE_UPLOAD
 				);
 
 				Assert::assertTrue( $event->isSilent(), 'isSilent' );

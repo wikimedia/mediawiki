@@ -27,15 +27,15 @@ use MediaWiki\User\UserIdentity;
 
 /**
  * Domain event representing page moves.
- * PageMovedEvent is a special case of an PageUpdatedEvent.
+ * PageMovedEvent is a special case of an PageRevisionUpdatedEvent.
  * It exists as a separate event to accommodate listeners that are only
  * interested in the title change.
  *
- * @see PageUpdatedEvent
+ * @see PageRevisionUpdatedEvent
  *
  * @unstable until 1.45
  */
-class PageMovedEvent extends PageEvent {
+class PageMovedEvent extends PageStateEvent {
 	public const TYPE = 'PageMoved';
 
 	private PageReference $oldLocation;

@@ -29,15 +29,15 @@ use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 
 /**
- * Domain event representing a page updated. A PageUpdatedEvent is triggered
+ * Domain event representing a page update. A PageRevisionUpdatedEvent is triggered
  * when a page's current revision changes, even if the content did not change
  * (for a dummy revision). A reconciliation version of this event may be
  * triggered even when the page's current version did not change (on null edits),
  * to provide an opportunity to listeners to recover from data loss and
  * corruption by re-generating any derived data.
  *
- * PageUpdatedEvent is emitted by DerivedPageDataUpdater, typically triggered by
- * PageUpdater. User activities that trigger a PageUpdated event include:
+ * PageRevisionUpdatedEvent is emitted by DerivedPageDataUpdater, typically triggered by
+ * PageUpdater. User activities that trigger a PageRevisionUpdated event include:
  * - editing, including page creation and null-edits
  * - moving pages
  * - undeleting pages
@@ -46,22 +46,19 @@ use Wikimedia\Assert\Assert;
  *   protection level.
  *
  * Extensions that want to subscribe to this event should list
- * "PageUpdated" as a subscribed event type.
+ * "PageRevisionUpdated" as a subscribed event type.
  * Subscribers based on EventSubscriberBase should implement the
- * handlePageUpdatedEventAfterCommit() listener method to be informed when
+ * handlePageRevisionUpdatedEvent() listener method to be informed when
  * a page update has been committed to the database.
  *
  * See the documentation of EventSubscriberBase and DomainEventSource for
  * more options and details.
  *
- * @todo: rename to something more descriptive, like
- * PageContentUpdatedEvent.
- *
  * @unstable until 1.45
  */
-class PageUpdatedEvent extends PageEvent implements PageUpdateCauses {
+class PageRevisionUpdatedEvent extends PageStateEvent implements PageUpdateCauses {
 
-	public const TYPE = 'PageUpdated';
+	public const TYPE = 'PageRevisionUpdated';
 
 	/**
 	 * @var string Do not notify other users (e.g. via RecentChanges or
@@ -128,6 +125,9 @@ class PageUpdatedEvent extends PageEvent implements PageUpdateCauses {
 	) {
 		parent::__construct( $cause, $page, $performer, $tags, $flags, $newRevision->getTimestamp() );
 		$this->declareEventType( self::TYPE );
+
+		// Legacy event type name, deprecated (T388588).
+		$this->declareEventType( 'PageUpdated' );
 
 		Assert::parameter( $page->exists(), '$page', 'must exist' );
 		Assert::parameter(
@@ -336,4 +336,7 @@ class PageUpdatedEvent extends PageEvent implements PageUpdateCauses {
 }
 
 /** @deprecated temporary alias, remove before 1.44 release */
-class_alias( PageUpdatedEvent::class, 'MediaWiki\Storage\PageUpdatedEvent' );
+class_alias( PageRevisionUpdatedEvent::class, 'MediaWiki\Storage\PageUpdatedEvent' );
+
+/** @deprecated temporary alias, remove before 1.44 release */
+class_alias( PageRevisionUpdatedEvent::class, 'MediaWiki\Page\Event\PageUpdatedEvent' );
