@@ -55,6 +55,7 @@ use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserRigorOptions;
 use MediaWiki\Watchlist\WatchlistManager;
 use MWExceptionHandler;
+use Profiler;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -2060,8 +2061,14 @@ class AuthManager implements LoggerAwareInterface {
 		] );
 
 		// Ignore warnings about primary connections/writes...hard to avoid here
-		$trxProfiler = \Profiler::instance()->getTransactionProfiler();
+		$fname = __METHOD__;
+		$trxLimits = $this->config->get( MainConfigNames::TrxProfilerLimits );
+		$trxProfiler = Profiler::instance()->getTransactionProfiler();
+		DeferredUpdates::addCallableUpdate( static function () use ( $trxProfiler, $trxLimits, $fname ) {
+			$trxProfiler->redefineExpectations( $trxLimits['PostSend-POST'], $fname );
+		} );
 		$scope = $trxProfiler->silenceForScope( $trxProfiler::EXPECTATION_REPLICAS_ONLY );
+
 		try {
 			$status = $user->addToDatabase();
 			if ( !$status->isOK() ) {

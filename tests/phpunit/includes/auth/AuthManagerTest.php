@@ -217,6 +217,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$this->config->set( MainConfigNames::LanguageCode, 'en' );
 		$this->config->set( MainConfigNames::NewUserLog, false );
 		$this->config->set( MainConfigNames::RememberMe, RememberMeAuthenticationRequest::CHOOSE_REMEMBER );
+		$this->config->set( MainConfigNames::TrxProfilerLimits, [ 'PostSend-POST' => [] ] );
 	}
 
 	/**
