@@ -9,8 +9,9 @@ namespace MediaWiki\Notification;
  * @unstable
  */
 interface NotificationHandler {
+
 	/**
-	 * Notify users about an event occuring.
+	 * Notify users about an event occurring.
 	 */
 	public function notify( Notification $notification, RecipientSet $recipients ): void;
 }
