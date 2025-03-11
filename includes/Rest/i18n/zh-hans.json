@@ -77,6 +77,7 @@
 	"rest-unsupported-target-format": "不支持请求的目标格式。",
 	"rest-parsoid-resource-exceeded": "超出资源限制",
 	"rest-parsoid-error": "Parsoid错误。",
+	"rest-parsoid-bad-render-id": "错误的Parsoid渲染ID：$1",
 	"rest-bad-stash-key": "错误的stash key。",
 	"rest-html-key-expected": "正文中应包含<var>html</var>键",
 	"rest-invalid-transform": "无效转换：$1到$2",

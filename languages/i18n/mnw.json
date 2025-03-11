@@ -1057,6 +1057,7 @@
 	"enotif_minoredit": "ဣဏအ်ဂှ် ဒှ်အရာ မပလေဝ်ဒါန် ညိည",
 	"deletepage-submit": "မုက်မပလီု",
 	"confirm": "သ္ပဒတန်",
+	"excontentauthor": "မနွံကဵုအရာပရောပရာမဒှ် \"$1\" တုဲ၊ ပါဲနူညးမအထံက်အပၚ်မဒှ် \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|ဓရီုကျာ]]) ရ။",
 	"delete-confirm": "ပလီုလဝ် $1",
 	"delete-legend": "ပလီု",
 	"historyaction-submit": "ကလေၚ်ထ္ၜးပွမပလေဝ်ပလေတ်ဂမၠိုၚ်",

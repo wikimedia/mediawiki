@@ -4,7 +4,13 @@
 			"Yupik"
 		]
 	},
+	"cdx-dialog-close-button-label": "Piij ǩidd",
 	"cdx-label-optional-flag": "(vaʹlljeemnallšem)",
+	"cdx-message-dismiss-button-label": "Piij ǩidd",
 	"cdx-search-input-search-button-label": "Ooʒʒ",
+	"cdx-typeahead-search-search-results-label": "Ooccâmpuättmõõžž",
+	"cdx-table-pager-button-first-page": "Vuõssmõs seidd",
+	"cdx-table-pager-button-last-page": "Mââimõs seidd",
+	"cdx-table-pager-button-prev-page": "Oouʹdab seidd",
 	"cdx-table-pagination-status-message-determinate-short": "$1–$2 / $3"
 }

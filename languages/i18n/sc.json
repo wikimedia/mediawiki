@@ -558,7 +558,7 @@
 	"revdelete-hide-comment": "Modìfica s'ogetu",
 	"revdelete-radio-same": "(non cambiare)",
 	"revdelete-radio-set": "Cua",
-	"revdelete-radio-unset": "Ammustra",
+	"revdelete-radio-unset": "Visìbile",
 	"revdelete-log": "Motivu:",
 	"revdelete-submit": "Àplica a {{PLURAL:$1|sa versione seletzionada|is versiones seletzionadas}}",
 	"revdel-restore": "càmbia sa visibilidade",

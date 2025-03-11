@@ -92,6 +92,7 @@
 	"emailauthenticated": "Sinu e-posti aadressi kinnitamisaeg: $2 kell $3.",
 	"allowemail": "Luba teistel kasutajatel mulle e-kirju saata",
 	"email-allow-new-users-label": "Luba e-kirjad tuliuutelt kasutajatelt",
+	"prefs-help-email-allow-new-users": "Märkides selle eelistuse, lubad saata endale e-kirju kasutajatel, kes ei ole [[{{MediaWiki:grouppage-autoconfirmed}}|automaatselt kinnitatud]].",
 	"tog-ccmeonemails": "Saada mulle koopiad e-kirjadest, mille teistele kasutajatele saadan",
 	"email-mutelist-label": "Keela neil kasutajatel mulle e-kirju saata:",
 	"tog-enotifwatchlistpages": "Teata e-posti teel minu jälgitava lehekülje või faili muutmisest",
