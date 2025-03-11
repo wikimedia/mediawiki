@@ -1,5 +1,15 @@
 # OOUI Release History
 
+## v0.51.7 / 2025-03-10
+
+### Styles
+* styles, FieldsetLayout: fix regression in legend layout (Volker E.)
+
+### Code
+* Tool: Use getTitle (Ed Sanders)
+* build: Upgrade eslint-config-wikimedia from 0.28.2 to 0.29.1 (James D. Forrester)
+* build: Upgrade qunit from 2.20.0 to 2.24.1 (James D. Forrester)
+
 ## v0.51.6 / 2025-02-20
 
 ### Styles

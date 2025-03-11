@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.51.6
+ * OOUI v0.51.7
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2025 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2025-02-21T18:19:40Z
+ * Date: 2025-03-11T00:03:30Z
  */
 ( function ( OO ) {
 
@@ -112,7 +112,7 @@ OO.ui.isFocusableElement = function ( $element ) {
 	// (indexOf is much faster than regex in Chrome and about the
 	// same in FF: https://jsperf.com/regex-vs-indexof-array2)
 	const nodeName = element.nodeName.toLowerCase();
-	if ( [ 'input', 'select', 'textarea', 'button', 'object' ].indexOf( nodeName ) !== -1 ) {
+	if ( [ 'input', 'select', 'textarea', 'button', 'object' ].includes( nodeName ) ) {
 		return true;
 	}
 
@@ -2186,7 +2186,7 @@ OO.ui.mixin.TabIndexedElement.prototype.isLabelableNode = function ( $node ) {
 	if ( tagName === 'input' && $node.attr( 'type' ) !== 'hidden' ) {
 		return true;
 	}
-	if ( labelableTags.indexOf( tagName ) !== -1 ) {
+	if ( labelableTags.includes( tagName ) ) {
 		return true;
 	}
 	return false;
@@ -4177,7 +4177,7 @@ OO.ui.ButtonWidget.prototype.setRel = function ( rel ) {
 
 	this.rel = rel;
 	// For backwards compatibility.
-	this.noFollow = rel.indexOf( 'nofollow' ) !== -1;
+	this.noFollow = rel.includes( 'nofollow' );
 	this.$button.attr( 'rel', rel.join( ' ' ) || null );
 
 	return this;
@@ -5098,7 +5098,7 @@ OO.ui.mixin.FloatableElement.prototype.setFloatableContainer = function ( $float
  * @param {string} position 'below', 'above', 'top', 'bottom' or 'center'
  */
 OO.ui.mixin.FloatableElement.prototype.setVerticalPosition = function ( position ) {
-	if ( [ 'below', 'above', 'top', 'bottom', 'center' ].indexOf( position ) === -1 ) {
+	if ( ![ 'below', 'above', 'top', 'bottom', 'center' ].includes( position ) ) {
 		throw new Error( 'Invalid value for vertical position: ' + position );
 	}
 	if ( this.verticalPosition !== position ) {
@@ -5115,7 +5115,7 @@ OO.ui.mixin.FloatableElement.prototype.setVerticalPosition = function ( position
  * @param {string} position 'before', 'after', 'start', 'end' or 'center'
  */
 OO.ui.mixin.FloatableElement.prototype.setHorizontalPosition = function ( position ) {
-	if ( [ 'before', 'after', 'start', 'end', 'center' ].indexOf( position ) === -1 ) {
+	if ( ![ 'before', 'after', 'start', 'end', 'center' ].includes( position ) ) {
 		throw new Error( 'Invalid value for horizontal position: ' + position );
 	}
 	if ( this.horizontalPosition !== position ) {
@@ -6173,7 +6173,7 @@ OO.ui.PopupWidget.prototype.toggleAnchor = function ( show ) {
  * @param {string} edge 'top', 'bottom', 'start' or 'end'
  */
 OO.ui.PopupWidget.prototype.setAnchorEdge = function ( edge ) {
-	if ( [ 'top', 'bottom', 'start', 'end' ].indexOf( edge ) === -1 ) {
+	if ( ![ 'top', 'bottom', 'start', 'end' ].includes( edge ) ) {
 		throw new Error( 'Invalid value for edge: ' + edge );
 	}
 	if ( this.anchorEdge !== null ) {
@@ -6544,7 +6544,7 @@ OO.ui.PopupWidget.prototype.computePosition = function () {
  */
 OO.ui.PopupWidget.prototype.setAlignment = function ( align ) {
 	// Validate alignment
-	if ( [ 'force-left', 'force-right', 'backwards', 'forwards', 'center' ].indexOf( align ) > -1 ) {
+	if ( [ 'force-left', 'force-right', 'backwards', 'forwards', 'center' ].includes( align ) ) {
 		this.align = align;
 	} else {
 		this.align = 'center';
@@ -6568,7 +6568,7 @@ OO.ui.PopupWidget.prototype.getAlignment = function () {
  * @param {string} position 'above', 'below', 'before' or 'after'
  */
 OO.ui.PopupWidget.prototype.setPosition = function ( position ) {
-	if ( [ 'above', 'below', 'before', 'after' ].indexOf( position ) === -1 ) {
+	if ( ![ 'above', 'below', 'before', 'after' ].includes( position ) ) {
 		position = 'below';
 	}
 	this.popupPosition = position;
@@ -7623,7 +7623,7 @@ OO.ui.SelectWidget.prototype.getItemMatcher = function ( query, mode ) {
 			case 'exact':
 				return matchText === normalizedQuery;
 			case 'substring':
-				return matchText.indexOf( normalizedQuery ) !== -1;
+				return matchText.includes( normalizedQuery );
 			// 'prefix'
 			default:
 				return matchText.indexOf( normalizedQuery ) === 0;
@@ -11745,7 +11745,7 @@ OO.ui.TextInputWidget.prototype.getValidType = function ( config ) {
 		'url',
 		'number'
 	];
-	return allowedTypes.indexOf( config.type ) !== -1 ? config.type : 'text';
+	return allowedTypes.includes( config.type ) ? config.type : 'text';
 };
 
 /**
@@ -12978,7 +12978,7 @@ OO.ui.FieldLayout.prototype.makeMessage = function ( kind, text ) {
 OO.ui.FieldLayout.prototype.setAlignment = function ( value ) {
 	if ( value !== this.align ) {
 		// Default to 'left'
-		if ( [ 'left', 'right', 'top', 'inline' ].indexOf( value ) === -1 ) {
+		if ( ![ 'left', 'right', 'top', 'inline' ].includes( value ) ) {
 			value = 'left';
 		}
 		// Validate

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.51.6
+ * OOUI v0.51.7
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2025 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2025-02-21T18:19:40Z
+ * Date: 2025-03-11T00:03:30Z
  */
 ( function ( OO ) {
 
@@ -1481,14 +1481,14 @@ OO.ui.StackLayout.prototype.addItems = function ( items, index ) {
  * @fires OO.ui.StackLayout#set
  */
 OO.ui.StackLayout.prototype.removeItems = function ( itemsToRemove ) {
-	const isCurrentItemRemoved = itemsToRemove.indexOf( this.currentItem ) !== -1;
+	const isCurrentItemRemoved = itemsToRemove.includes( this.currentItem );
 
 	let nextItem;
 	if ( isCurrentItemRemoved ) {
 		let i = this.items.indexOf( this.currentItem );
 		do {
 			nextItem = this.items[ ++i ];
-		} while ( nextItem && itemsToRemove.indexOf( nextItem ) !== -1 );
+		} while ( nextItem && itemsToRemove.includes( nextItem ) );
 	}
 
 	// Mixin method
@@ -1536,7 +1536,7 @@ OO.ui.StackLayout.prototype.setItem = function ( item ) {
 	if ( item !== this.currentItem ) {
 		this.updateHiddenState( this.items, item );
 
-		if ( this.items.indexOf( item ) !== -1 ) {
+		if ( this.items.includes( item ) ) {
 			this.currentItem = item;
 			this.emit( 'set', item );
 		} else {
@@ -1785,7 +1785,7 @@ OO.ui.MenuLayout.prototype.isMenuVisible = function () {
  * @return {OO.ui.MenuLayout} The layout, for chaining
  */
 OO.ui.MenuLayout.prototype.setMenuPosition = function ( position ) {
-	if ( [ 'top', 'bottom', 'before', 'after' ].indexOf( position ) === -1 ) {
+	if ( ![ 'top', 'bottom', 'before', 'after' ].includes( position ) ) {
 		position = 'before';
 	}
 
@@ -4302,7 +4302,7 @@ OO.ui.TagMultiselectWidget = function OoUiTagMultiselectWidget( config ) {
 	OO.ui.mixin.TitledElement.call( this, config );
 
 	this.inputPosition =
-		this.constructor.static.allowedInputPositions.indexOf( config.inputPosition ) > -1 ?
+		this.constructor.static.allowedInputPositions.includes( config.inputPosition ) ?
 			config.inputPosition : 'inline';
 	this.allowEditTags = config.allowEditTags === undefined ? true : !!config.allowEditTags;
 	this.allowArbitrary = !!config.allowArbitrary;
@@ -4838,7 +4838,7 @@ OO.ui.TagMultiselectWidget.prototype.isAllowedData = function ( data ) {
 
 	// Check with allowed values
 	if (
-		this.getAllowedValues().some( ( value ) => data === value )
+		this.getAllowedValues().includes( data )
 	) {
 		return true;
 	}
@@ -4861,7 +4861,7 @@ OO.ui.TagMultiselectWidget.prototype.getAllowedValues = function () {
  * @param {any} value Allowed data value
  */
 OO.ui.TagMultiselectWidget.prototype.addAllowedValue = function ( value ) {
-	if ( this.allowedValues.indexOf( value ) === -1 ) {
+	if ( !this.allowedValues.includes( value ) ) {
 		this.allowedValues.push( value );
 	}
 };
@@ -5678,7 +5678,7 @@ OO.ui.MenuTagMultiselectWidget.prototype.addOptions = function ( menuOptions ) {
 		items = [];
 
 	menuOptions.forEach( ( obj ) => {
-		if ( optionsData.indexOf( obj.data ) === -1 ) {
+		if ( !optionsData.includes( obj.data ) ) {
 			optionsData.push( obj.data );
 			items.push(
 				this.createMenuOptionWidget( obj.data, obj.label, obj.icon )
