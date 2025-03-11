@@ -35,6 +35,8 @@
 						<!-- Block parameters -->
 						<td class="mw-block-log__parameters">
 							<ul>
+								<!-- block duration -->
+								<li> {{ item.duration }} </li>
 								<!-- partial block -->
 								<li v-if="Object.keys( item.restrictions || {} ).length">
 									{{ mw.message( 'blocklist-editing' ).text() }}
@@ -277,6 +279,7 @@ module.exports = exports = defineComponent( {
 				logid: logevent.logid,
 				action: logevent.action,
 				expiry: logevent.params.expiry,
+				duration: logevent.params[ 'duration-l10n' ],
 				blockedby: logevent.user,
 				flags: logevent.params.flags,
 				restrictions: logevent.params.restrictions,
@@ -316,6 +319,7 @@ module.exports = exports = defineComponent( {
 								target: block.user,
 								partial: block.partial,
 								expiry: block.expiry,
+								duration: block[ 'duration-l10n' ],
 								blockedby: block.by,
 								flags: [
 									block.anononly ? 'anononly' : null,
