@@ -1868,6 +1868,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Mail\\Hook\\EmailUserAuthorizeSendHook' => __DIR__ . '/includes/mail/Hook/EmailUserAuthorizeSendHook.php',
 	'MediaWiki\\Mail\\Hook\\EmailUserSendEmailHook' => __DIR__ . '/includes/mail/Hook/EmailUserSendEmailHook.php',
 	'MediaWiki\\Mail\\IEmailer' => __DIR__ . '/includes/mail/IEmailer.php',
+	'MediaWiki\\Mail\\RecentChangeMailComposer' => __DIR__ . '/includes/mail/RecentChangeMailComposer.php',
 	'MediaWiki\\Mail\\UserEmailContact' => __DIR__ . '/includes/mail/UserEmailContact.php',
 	'MediaWiki\\MainConfigNames' => __DIR__ . '/includes/MainConfigNames.php',
 	'MediaWiki\\MainConfigSchema' => __DIR__ . '/includes/MainConfigSchema.php',
