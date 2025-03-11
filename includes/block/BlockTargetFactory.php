@@ -126,7 +126,7 @@ class BlockTargetFactory implements WikiAwareEntity {
 			// We'll trust the caller and skip IP validity checks
 			return new UserBlockTarget( $user );
 		} elseif ( IPUtils::isValidRange( $name ) ) {
-			return $this->newRangeBlockTarget( $name );
+			return $this->newRangeBlockTarget( IPUtils::sanitizeRange( $name ) );
 		} elseif ( IPUtils::isValid( $name ) ) {
 			return $this->newAnonIpBlockTarget( $name );
 		} else {

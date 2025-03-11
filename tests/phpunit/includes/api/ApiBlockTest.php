@@ -348,6 +348,22 @@ class ApiBlockTest extends ApiTestCase {
 		$this->doBlock();
 	}
 
+	public function testNonNormalizedRangeBlock() {
+		$params = [
+			'action' => 'block',
+			'user' => '128.0.0.1/16',
+			'reason' => 'Some reason',
+		];
+		$res = $this->doApiRequestWithToken( $params );
+		$this->assertSame( '128.0.0.0/16', $res[0]['block']['user'] );
+		$this->newSelectQueryBuilder()
+			->select( 'bt_address' )
+			->from( 'block_target' )
+			->join( 'block', null, 'bl_target=bt_id' )
+			->where( [ 'bl_id' => $res[0]['block']['id'] ] )
+			->assertFieldValue( '128.0.0.0/16' );
+	}
+
 	public function testBlockByIdReturns() {
 		// See T189073 and Ifdced735b694b85116cb0e43dadbfa8e4cdb8cab for context
 		$userId = $this->mUser->getId();
