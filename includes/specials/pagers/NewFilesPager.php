@@ -135,7 +135,7 @@ class NewFilesPager extends RangeChronologicalPager {
 				'JOIN',
 				[
 					'rc_title = ' . $nameField,
-					'rc_actor = ' . $nameField,
+					'rc_actor = ' . $actorField,
 					'rc_timestamp = ' . $timestampField,
 				]
 			];
