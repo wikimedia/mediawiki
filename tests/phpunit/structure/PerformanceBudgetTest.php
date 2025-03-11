@@ -160,12 +160,13 @@ class PerformanceBudgetTest extends MediaWikiIntegrationTestCase {
 				$undefinedModules[] = $moduleName;
 			}
 		}
-		$debugInformation = "PLEASE DO NOT SKIP THIS TEST. If this is blocking a merge this might " .
-			"signal a potential performance regression with the desktop site.\n\n" .
-			"All extensions/skins adding code to page load for an article must monitor their ResourceLoader modules.\n" .
-			"Read https://www.mediawiki.org/wiki/Performance_budgeting for guidance on how to suppress this error message.\n" .
-			"The following modules have not declared budgets:\n" .
-			implode( "\n", $undefinedModules );
+		$debugInformation = "⚠️ PLEASE DO NOT SKIP THIS TEST ⚠️\n\n" .
+			"If this is blocking a merge this might signal a potential performance regression with the desktop site.\n\n" .
+			"All extensions/skins adding code to page load for an article must monitor their ResourceLoader modules.\n\n" .
+			"Read https://www.mediawiki.org/wiki/Performance_budgeting for guidance on how to suppress this error message.\n\n" .
+			"The following modules have not declared budgets:\n\n" .
+			implode( "\n", $undefinedModules ) .
+			"\n";
 		$this->assertCount( 0, $undefinedModules, $debugInformation );
 	}
 
