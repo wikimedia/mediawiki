@@ -147,7 +147,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * @var array<string,string> Page status indicators, usually displayed in top-right corner.
 	 */
-	private $mIndicators = [];
+	private array $mIndicators = [];
 
 	/**
 	 * @var string Title text of the chosen language variant, as HTML.
@@ -731,7 +731,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
-	 * @return string[]
+	 * @return array<string,string> Maps identifiers to HTML contents
 	 * @since 1.25
 	 */
 	public function getIndicators(): array {

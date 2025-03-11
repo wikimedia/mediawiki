@@ -2182,10 +2182,10 @@ abstract class Skin extends ContextSource {
 	/**
 	 * Return an array of indicator data.
 	 * Can be used by subclasses but should not be extended.
-	 * @param array $indicators return value of OutputPage::getIndicators
-	 * @return array
+	 * @param array<string,string> $indicators return value of OutputPage::getIndicators
+	 * @return array<array{id: string, class: string, html: string}>
 	 */
-	protected function getIndicatorsData( $indicators ) {
+	protected function getIndicatorsData( array $indicators ): array {
 		$indicatorData = [];
 		foreach ( $indicators as $id => $content ) {
 			$indicatorData[] = [
