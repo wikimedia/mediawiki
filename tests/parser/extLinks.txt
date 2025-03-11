@@ -1372,3 +1372,14 @@ Extlink in square brackets with entity
 
 <p><a rel="mw:ExtLink nofollow" href="http://test.com" class="external text">[123</a></p>
 !! end
+
+!! test
+Extlink in indent pre gets link attributes
+!! wikitext
+ [http://test.com 123]
+!! html/php
+<pre><a rel="nofollow" class="external text" href="http://test.com">123</a>
+</pre>
+!! html/parsoid
+<pre><a rel="mw:ExtLink nofollow" href="http://test.com" class="external text">123</a></pre>
+!! end
