@@ -707,9 +707,11 @@ class Xml {
 	 * @return string|false String if successful; false upon failure
 	 * @return-taint none
 	 *
-	 * @deprecated since 1.41, use {@see Html::encodeJsVar} instead
+	 * @deprecated since 1.41, use {@see Html::encodeJsVar} instead; emiting deprecation warnings since 1.44
 	 */
 	public static function encodeJsVar( $value, $pretty = false ) {
+		wfDeprecated( __METHOD__, '1.41' );
+
 		return Html::encodeJsVar( $value, $pretty );
 	}
 
@@ -727,9 +729,11 @@ class Xml {
 	 * @return string|false String if successful; false upon failure
 	 * @return-taint none
 	 *
-	 * @deprecated since 1.41, use {@see Html::encodeJsCall} instead
+	 * @deprecated since 1.41, use {@see Html::encodeJsCall} instead; emiting deprecation warnings since 1.44
 	 */
 	public static function encodeJsCall( $name, $args, $pretty = false ) {
+		wfDeprecated( __METHOD__, '1.41' );
+
 		return Html::encodeJsCall( $name, $args, $pretty );
 	}
 

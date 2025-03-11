@@ -374,6 +374,10 @@ because of Phabricator reports.
   added. This will be hard deprecated in the next MediaWiki release. More
   information is available at T333211. To avoid future breakage, see the
   guidance in T385346.
+* Various deprecated static methods of Xml, deprecated in earlier versions, are
+  now emitting deprecation warnings:
+   - Xml::encodeJsVar() – use Html::encodeJsVar() instead
+   - Xml::encodeJsCall() – use Html::encodeJsCall() instead
 * BlockUtils and BlockUtilsFactory is now deprecated. Use BlockTargetFactory
   and CrossWikiBlockTargetFactory.
 * RenameuserSQL::rename has been deprecated and should be replaced with
