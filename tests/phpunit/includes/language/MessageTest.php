@@ -814,7 +814,41 @@ class MessageTest extends MediaWikiLangTestCase {
 		$this->assertSame( 'Hauptseite', $msg->inLanguage( 'de' )->plain(), "inLanguage( 'de' )" );
 	}
 
-	public function testInLanguageThrows() {
+	public static function provideInLanguageValid() {
+		yield 'en' => [ 'en', 'en' ];
+		yield 'variant lower' => [ 'en-gb', 'en-gb' ];
+		yield 'variant upper' => [ 'en-GB', 'en-GB' ];
+		yield 'variant fake' => [ 'en-FloP', 'en-FloP' ];
+		yield 'deprecated' => [ 'be-x-old', 'be-tarask' ];
+		yield 'weird fake' => [ 'k@B!M', 'k@B!M' ];
+		yield 'long fake' => [ str_repeat( 'x', 100 ), str_repeat( 'x', 100 ) ];
+	}
+
+	/**
+	 * @dataProvider provideInLanguageValid
+	 */
+	public function testInLanguageValid( $langCode, $expected ) {
+		$this->assertSame(
+			$expected,
+			wfMessage( 'foo' )->inLanguage( $langCode )->getLanguageCode()
+		);
+	}
+
+	public static function provideInLanguageInvalid() {
+		yield 'invalid character' => [ 'qqx&1<' ];
+		yield 'too long' => [ str_repeat( 'x', 200 ) ];
+	}
+
+	/**
+	 * @dataProvider provideInLanguageInvalid
+	 */
+	public function testInLanguageInvalid( $langCode ) {
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( 'Invalid language code' );
+		wfMessage( 'foo' )->inLanguage( $langCode );
+	}
+
+	public function testInLanguageType() {
 		$this->expectException( ParameterTypeException::class );
 		wfMessage( 'foo' )->inLanguage( 123 );
 	}

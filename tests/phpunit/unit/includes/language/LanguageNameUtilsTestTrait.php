@@ -102,7 +102,8 @@ trait LanguageNameUtilsTestTrait {
 			'One letter' => [ 'a', false ],
 			'Only digits' => [ '00', true ],
 			'Only dashes' => [ '--', true ],
-			'Unreasonably long' => [ str_repeat( 'x', 100 ), true ],
+			'Long' => [ str_repeat( 'x', 100 ), true ],
+			'Too long' => [ str_repeat( 'x', 200 ), false ],
 			'qqq' => [ 'qqq', true ],
 		];
 	}
