@@ -24,6 +24,7 @@ namespace MediaWiki\User;
 
 use AllowDynamicProperties;
 use ArrayIterator;
+use BadMethodCallException;
 use InvalidArgumentException;
 use MailAddress;
 use MediaWiki\Auth\AuthenticationRequest;
@@ -368,6 +369,15 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 			$this->loadDefaults();
 			$this->mLoadedItems = $oldLoadedItems;
 			return;
+		} elseif ( $this->mFrom === 'session'
+			&& defined( 'MW_NO_SESSION' ) && MW_NO_SESSION !== 'warn'
+		) {
+			// Even though we are throwing an exception, make sure the User object is left in a
+			// clean state as sometimes these exceptions are caught and the object accessed again.
+			$this->loadDefaults();
+			$this->mLoadedItems = $oldLoadedItems;
+			$ep = defined( 'MW_ENTRY_POINT' ) ? MW_ENTRY_POINT : 'this';
+			throw new BadMethodCallException( "Sessions are disabled for $ep entry point" );
 		}
 
 		switch ( $this->mFrom ) {
