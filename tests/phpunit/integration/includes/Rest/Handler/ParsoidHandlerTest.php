@@ -356,11 +356,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			return false;
 		}
 
-		if ( $actualMime !== $expectedMime || $actualSpec !== $expectedSpec ) {
-			return false;
-		}
-
-		return true;
+		return $expectedMime === $actualMime && $expectedSpec === $actualSpec;
 	}
 
 	public function provideHtml2wt() {

@@ -85,10 +85,7 @@ class ParserTestParserHook {
 			// fragments is completed and the fragments are merged.
 			// T357838, T300979
 			$vals = $po->getExtensionData( $KEY );
-			if ( $vals === null ) {
-				return '';
-			}
-			return array_key_last( $vals );
+			return $vals ? array_key_last( $vals ) : '';
 		} else { // wtf?
 			return "\nCall this extension as <statictag>string</statictag> or as" .
 				" <statictag action=flush/>, not in any other way.\n" .
