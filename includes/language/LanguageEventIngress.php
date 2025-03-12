@@ -56,7 +56,7 @@ class LanguageEventIngress extends EventSubscriberBase {
 	 *
 	 * @noinspection PhpUnused
 	 */
-	public function handlePageDeletedEventAfterCommit( PageDeletedEvent $event ) {
+	public function handlePageDeletedEvent( PageDeletedEvent $event ) {
 		if ( $event->getPage()->getNamespace() === NS_MEDIAWIKI ) {
 			$this->messageCache->updateMessageOverride( $event->getPage(), null );
 		}
