@@ -113,7 +113,7 @@
 	"config-missing-db-host": "Ret eo deoc'h merkañ un dalvoudenn evit \"{{int:config-db-host}}\"",
 	"config-invalid-db-name": "Direizh eo anv an diaz titouroù \"$1\".\nOber hepken gant lizherennoù ASCII (a-z, A-Z), sifroù (0-9), arouezennoù islinennañ (_) ha tiredoù (-).",
 	"config-invalid-db-prefix": "Direizh eo rakger an diaz titouroù \"$1\".\nOber hepken gant lizherennoù ASCII (a-z, A-Z), sifroù (0-9), arouezennoù islinennañ (_) ha tiredoù (-).",
-	"config-connection-error": "$1.\n\nGwiriit anv an ostiz, an anv implijer, ar ger-tremen ha klaskit en-dro.",
+	"config-connection-error": "$1.\n\nGwiriit anv an ostiz, an anv implijer, ar ger-tremen ha klaskit en-dro. Ma implijit \"localhost\" evel ostiz diaz roadennoù, klaskit implijout \"127.0.0.1\" kentoc’h (pe ar c'hontrol).",
 	"config-invalid-schema": "Chema direizh evit MediaWiki \"$1\".\nGrit hepken gant lizherennoù ASCII (a-z, A-Z), sifroù (0-9) hag arouezennoù islinennañ (_).",
 	"config-postgres-old": "Rekis eo PostgreSQL $1 pe ur stumm nevesoc'h; ober a rit gant $2.",
 	"config-sqlite-name-help": "Dibabit un anv dibar d'ho wiki.\nArabat ober gant esaouennoù pe barrennigoù-stagañ.\nImplijet e vo evit ar restr roadennoù SQLite.",

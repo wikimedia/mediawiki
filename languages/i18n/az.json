@@ -3924,7 +3924,7 @@
 	"mw-widgets-tagmultiselect-placeholder": "Daha çox əlavə et...",
 	"mw-widgets-titlesmultiselect-placeholder": "Əlavə et...",
 	"date-range-from": "Tarixindən:",
-	"date-range-to": "Tarixədək:",
+	"date-range-to": "Tarixinədək:",
 	"sessionmanager-tie": "Çoxsaylı sorğu autentifikasiya növlərini birləşdirə bilməz: $1.",
 	"sessionprovider-generic": "$1 sessiya",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "kuki əsaslı sessiyalar",
