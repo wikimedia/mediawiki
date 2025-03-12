@@ -27,6 +27,7 @@ use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use RuntimeException;
 
 /**
  * Class to handle multiple HTTP requests
@@ -159,10 +160,11 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
 	 *   - httpVersion     : One of 'v1.0', 'v1.1', 'v2' or 'v2.0'. Leave empty to use
 	 *                       PHP/curl's default
+	 * @param string $caller The method making this request, for attribution in logs
 	 * @return array Response array for request
 	 */
-	public function run( array $req, array $opts = [] ) {
-		return $this->runMulti( [ $req ], $opts )[0]['response'];
+	public function run( array $req, array $opts = [], string $caller = __METHOD__ ) {
+		return $this->runMulti( [ $req ], $opts, $caller )[0]['response'];
 	}
 
 	/**
@@ -193,10 +195,11 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
 	 *   - httpVersion     : One of 'v1.0', 'v1.1', 'v2' or 'v2.0'. Leave empty to use
 	 *                       PHP/curl's default
+	 * @param string $caller The method making these requests, for attribution in logs
 	 * @return array[] $reqs With response array populated for each
 	 * @throws \Exception
 	 */
-	public function runMulti( array $reqs, array $opts = [] ) {
+	public function runMulti( array $reqs, array $opts = [], string $caller = __METHOD__ ) {
 		$this->normalizeRequests( $reqs );
 		$opts += [ 'connTimeout' => $this->connTimeout, 'reqTimeout' => $this->reqTimeout ];
 
@@ -222,7 +225,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 				default:
 					$opts['httpVersion'] = CURL_HTTP_VERSION_NONE;
 			}
-			return $this->runMultiCurl( $reqs, $opts );
+			return $this->runMultiCurl( $reqs, $opts, $caller );
 		} else {
 			# TODO: Add handling for httpVersion option
 			return $this->runMultiHttp( $reqs, $opts );
@@ -253,11 +256,12 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
 	 *   - httpVersion:    : HTTP version to use
 	 * @phan-param array{connTimeout?:int,reqTimeout?:int,usePipelining?:bool,maxConnsPerHost?:int} $opts
+	 * @param string $caller The method making these requests, for attribution in logs
 	 * @return array $reqs With response array populated for each
 	 * @throws \Exception
 	 * @suppress PhanTypeInvalidDimOffset
 	 */
-	private function runMultiCurl( array $reqs, array $opts ) {
+	private function runMultiCurl( array $reqs, array $opts, string $caller = __METHOD__ ) {
 		$chm = $this->getCurlMulti( $opts );
 
 		$selectTimeout = $this->getSelectTimeout( $opts );
@@ -279,7 +283,11 @@ class MultiHttpClient implements LoggerAwareInterface {
 
 			if ( $mrc !== CURLM_OK ) {
 				$error = curl_multi_strerror( $mrc );
-				$this->logger->warning( 'curl_multi_exec() failed: {error}', [ 'error' => $error ] );
+				$this->logger->error( 'curl_multi_exec() failed: {error}', [
+					'error' => $error,
+					'exception' => new RuntimeException(),
+					'method' => $caller,
+				] );
 				break;
 			}
 
@@ -295,7 +303,11 @@ class MultiHttpClient implements LoggerAwareInterface {
 			if ( $active > 0 && curl_multi_select( $chm, $selectTimeout ) === -1 ) {
 				$errno = curl_multi_errno( $chm );
 				$error = curl_multi_strerror( $errno );
-				$this->logger->warning( 'curl_multi_select() failed: {error}', [ 'error' => $error ] );
+				$this->logger->error( 'curl_multi_select() failed: {error}', [
+					'error' => $error,
+					'exception' => new RuntimeException(),
+					'method' => $caller,
+				] );
 			}
 		} while ( $active > 0 );
 
@@ -312,8 +324,12 @@ class MultiHttpClient implements LoggerAwareInterface {
 					if ( function_exists( 'curl_strerror' ) ) {
 						$req['response']['error'] .= " " . curl_strerror( $errno );
 					}
-					$this->logger->warning( "Error fetching URL \"{$req['url']}\": " .
-						$req['response']['error'] );
+					$this->logger->error( 'Error fetching URL "{url}": {error}', [
+						'url' => $req['url'],
+						'error' => $req['response']['error'],
+						'exception' => new RuntimeException(),
+						'method' => $caller,
+					] );
 				} else {
 					$this->logger->debug(
 						"HTTP complete: {method} {url} code={response_code} size={size} " .
