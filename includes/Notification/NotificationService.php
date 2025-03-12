@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Notification;
 
+use MediaWiki\Notification\Handlers\RecentChangeNotificationHandler;
 use MediaWiki\User\UserIdentity;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
@@ -15,6 +16,18 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  * @unstable
  */
 class NotificationService {
+
+	/**
+	 * MediaWiki's notification handler for watchlist, talk page, and admin notification
+	 */
+	public const RECENT_CHANGE_HANDLER_SPEC = [
+		'class' => RecentChangeNotificationHandler::class,
+		'services' => [
+			'UserFactory',
+			'TitleFactory',
+		],
+		'types' => [ 'mediawiki.recent_change' ]
+	];
 
 	/** @var array<string,NotificationHandler> */
 	private array $handlersByType = [];

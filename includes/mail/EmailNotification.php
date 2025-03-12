@@ -259,14 +259,28 @@ class EmailNotification {
 		}
 
 		foreach ( $config->get( MainConfigNames::UsersNotifiedOnAllChanges ) as $name ) {
+			$admins = [];
 			if ( $editor->getUser()->getName() == $name ) {
 				// No point notifying the user that actually made the change!
 				continue;
 			}
 			$user = User::newFromName( $name );
 			if ( $user instanceof User ) {
-				$composer->compose( $user, RecentChangeMailComposer::ALL_CHANGES );
+				$admins[] = $user;
 			}
+			MediaWikiServices::getInstance()->getNotificationService()->notify(
+				new \MediaWiki\Watchlist\RecentChangeNotification(
+					$mwServices->getUserFactory()->newFromAuthority( $editor ),
+					$title,
+					$summary,
+					$minorEdit,
+					$oldid,
+					$timestamp,
+					$pageStatus
+				),
+				new \MediaWiki\Notification\RecipientSet( $admins )
+			);
+
 		}
 		$composer->sendMails();
 	}

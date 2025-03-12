@@ -77,7 +77,7 @@ class RecentChangeMailComposer {
 	/** @var int|null|bool */
 	protected $oldid;
 
-	protected ?string $timestamp;
+	protected string $timestamp;
 
 	protected string $pageStatus = '';
 
@@ -98,7 +98,7 @@ class RecentChangeMailComposer {
 		$summary,
 		$minorEdit,
 		$oldid,
-		$timestamp,
+		string $timestamp,
 		$pageStatus
 	) {
 		$services = MediaWikiServices::getInstance();
@@ -161,7 +161,6 @@ class RecentChangeMailComposer {
 					SpecialPage::getTitleFor( 'Log' )->getCanonicalURL( [ 'page' =>
 						$this->title->getPrefixedDBkey() ] )
 				)->inContentLanguage()->text();
-
 		}
 
 		$keys['$PAGETITLE'] = $this->title->getPrefixedText();

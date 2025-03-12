@@ -1441,11 +1441,15 @@ return [
 	},
 
 	'NotificationService' => static function ( MediaWikiServices $services ): NotificationService {
+		$handlers = ExtensionRegistry::getInstance()->getAttribute( 'NotificationHandlers' );
+		// Inject default MediaWiki handlers
+		$handlers[] = NotificationService::RECENT_CHANGE_HANDLER_SPEC;
+
 		return new NotificationService(
 			LoggerFactory::getInstance( 'Notification' ),
 			$services->getObjectFactory(),
 			$services->getService( '_NotificationMiddlewareChain' ),
-			ExtensionRegistry::getInstance()->getAttribute( 'NotificationHandlers' )
+			$handlers
 		);
 	},
 
