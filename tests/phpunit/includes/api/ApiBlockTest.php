@@ -330,7 +330,7 @@ class ApiBlockTest extends ApiTestCase {
 				'user' => $this->mUser->getName(),
 				'reason' => 'Some reason',
 				'partial' => true,
-				'pagerestrictions' => 'One|Two|Three|Four|Five|Six|Seven|Eight|Nine|Ten|Eleven',
+				'pagerestrictions' => implode( '|', range( 1, 55 ) ),
 			],
 			null,
 			$this->getTestSysop()->getUser()
