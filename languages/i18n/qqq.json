@@ -4665,6 +4665,7 @@
 	"newpages-showhide-registered": "Option text in [[Special:NewPages]]. Parameters:\n* $1 - the \"show/hide\" command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}",
 	"restsandbox": "Title of Special:RestSandbox, also shown in the listing of special pages",
 	"restsandbox-text": "Message shown at the top of Special:RestSandbox.",
+	"restsandbox-disclaimer": "Message shown on non-English wikis near the top of Special:RestSandbox.",
 	"restsandbox-select-api": "Message shown at the top of Special:RestSandbox, next to the selector for choosing an API.",
 	"restsandbox-no-specs-configured": "Message shown on Special:RestSandbox when no API specs have been configured.",
 	"restsandbox-no-such-api": "Message shown on Special:RestSandbox when an unknown API is requested. \n\nParameters: $1 - The unknown API identifier",
