@@ -208,7 +208,7 @@ class SpecialBlock extends FormSpecialPage {
 		// there are legitimate uses for some variables
 		$request = $this->getRequest();
 		$this->target = $this->getTargetInternal( $par, $request );
-		if ( $this->target instanceof UserBlockTarget ) {
+		if ( $this->target instanceof BlockTargetWithUserPage ) {
 			// Set the 'relevant user' in the skin, so it displays links like Contributions,
 			// User logs, UserRights, etc.
 			$this->getSkin()->setRelevantUser( $this->target->getUserIdentity() );
