@@ -1067,7 +1067,7 @@ class WANObjectCache implements
 			// A client or cache cleanup script is requesting a cache purge, so there is no
 			// volatility period due to replica DB lag. Any recent change to an entity cached
 			// in this key should have triggered an appropriate purge event.
-			$ok = $this->relayNonVolatilePurge( $valueSisterKey );
+			$ok = $this->cache->delete( $this->getRouteKey( $valueSisterKey ), $this->cache::WRITE_BACKGROUND );
 		} else {
 			// A cacheable entity recently changed, so there might be a volatility period due
 			// to replica DB lag. Clients usually expect their actions to be reflected in any
@@ -1078,7 +1078,12 @@ class WANObjectCache implements
 			$now = $this->getCurrentTime();
 			// Set the key to the purge value in all datacenters
 			$purge = self::PURGE_VAL_PREFIX . ':' . (int)$now;
-			$ok = $this->relayVolatilePurge( $valueSisterKey, $purge, $ttl );
+			$ok = $this->cache->set(
+				$this->getRouteKey( $valueSisterKey ),
+				$purge,
+				$ttl,
+				$this->cache::WRITE_BACKGROUND
+			);
 		}
 
 		$keygroup = $this->determineKeyGroupForStats( $key );
@@ -1248,7 +1253,12 @@ class WANObjectCache implements
 
 		$now = $this->getCurrentTime();
 		$purge = $this->makeCheckPurgeValue( $now, $holdoff );
-		$ok = $this->relayVolatilePurge( $checkSisterKey, $purge, self::CHECK_KEY_TTL );
+		$ok = $this->cache->set(
+			$this->getRouteKey( $checkSisterKey ),
+			$purge,
+			self::CHECK_KEY_TTL,
+			$this->cache::WRITE_BACKGROUND
+		);
 
 		$keygroup = $this->determineKeyGroupForStats( $key );
 
@@ -1292,7 +1302,7 @@ class WANObjectCache implements
 		$span = $this->startOperationSpan( __FUNCTION__, $key );
 
 		$checkSisterKey = $this->makeSisterKey( $key, self::TYPE_TIMESTAMP );
-		$ok = $this->relayNonVolatilePurge( $checkSisterKey );
+		$ok = $this->cache->delete( $this->getRouteKey( $checkSisterKey ), $this->cache::WRITE_BACKGROUND );
 
 		$keygroup = $this->determineKeyGroupForStats( $key );
 
@@ -1902,10 +1912,9 @@ class WANObjectCache implements
 	 *
 	 * @param string $baseKey Cache key made with makeKey()/makeGlobalKey()
 	 * @param string $typeChar Consistent hashing agnostic suffix character matching [a-zA-Z]
-	 * @param string|null $route Routing prefix (optional)
 	 * @return string Sister key
 	 */
-	private function makeSisterKey( string $baseKey, string $typeChar, ?string $route = null ) {
+	private function makeSisterKey( string $baseKey, string $typeChar ) {
 		if ( $this->coalesceScheme === self::SCHEME_HASH_STOP ) {
 			// Key style: "WANCache:<base key>|#|<character>"
 			$sisterKey = 'WANCache:' . $baseKey . '|#|' . $typeChar;
@@ -1913,11 +1922,6 @@ class WANObjectCache implements
 			// Key style: "WANCache:{<base key>}:<character>"
 			$sisterKey = 'WANCache:{' . $baseKey . '}:' . $typeChar;
 		}
-
-		if ( $route !== null ) {
-			$sisterKey = $this->prependRoute( $sisterKey, $route );
-		}
-
 		return $sisterKey;
 	}
 
@@ -2580,63 +2584,17 @@ class WANObjectCache implements
 	}
 
 	/**
-	 * Set a sister key to a purge value in all datacenters
-	 *
-	 * This method should not wait for the operation to complete on remote datacenters
-	 *
-	 * Since older purge values can sometimes arrive after newer ones, use a relative expiry
-	 * so that even if the older value replaces the newer value, the TTL will greater than the
-	 * remaining TTL on the older value (assuming that all purges for a key use the same TTL).
-	 *
-	 * @param string $sisterKey A value key or "check" key
-	 * @param string $purgeValue Result of makeTombstonePurgeValue()/makeCheckKeyPurgeValue()
-	 * @param int $ttl Seconds to keep the purge value around
-	 * @return bool Success
-	 */
-	protected function relayVolatilePurge( string $sisterKey, string $purgeValue, int $ttl ) {
-		if ( $this->broadcastRoute !== null ) {
-			$routeKey = $this->prependRoute( $sisterKey, $this->broadcastRoute );
-		} else {
-			$routeKey = $sisterKey;
-		}
-
-		return $this->cache->set(
-			$routeKey,
-			$purgeValue,
-			$ttl,
-			$this->cache::WRITE_BACKGROUND
-		);
-	}
-
-	/**
-	 * Remove a sister key from all datacenters
-	 *
-	 * This method should not wait for the operation to complete on remote datacenters
-	 *
-	 * @param string $sisterKey A value key or "check" key
-	 * @return bool Success
-	 */
-	protected function relayNonVolatilePurge( string $sisterKey ) {
-		if ( $this->broadcastRoute !== null ) {
-			$routeKey = $this->prependRoute( $sisterKey, $this->broadcastRoute );
-		} else {
-			$routeKey = $sisterKey;
-		}
-
-		return $this->cache->delete( $routeKey, $this->cache::WRITE_BACKGROUND );
-	}
-
-	/**
 	 * @param string $sisterKey
-	 * @param string $route Key routing prefix
 	 * @return string
 	 */
-	protected function prependRoute( string $sisterKey, string $route ) {
-		if ( $sisterKey[0] === '/' ) {
-			throw new RuntimeException( "Sister key '$sisterKey' already contains a route." );
+	protected function getRouteKey( string $sisterKey ) {
+		if ( $this->broadcastRoute !== null ) {
+			if ( $sisterKey[0] === '/' ) {
+				throw new RuntimeException( "Sister key '$sisterKey' already contains a route." );
+			}
+			return $this->broadcastRoute . $sisterKey;
 		}
-
-		return $route . $sisterKey;
+		return $sisterKey;
 	}
 
 	/**
