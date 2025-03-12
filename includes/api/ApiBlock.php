@@ -352,6 +352,8 @@ class ApiBlock extends ApiBase {
 			];
 		}
 
+		$pageLimit = $this->getConfig()->get( MainConfigNames::EnableMultiBlocks ) ? 50 : 10;
+
 		$params += [
 			'tags' => [
 				ParamValidator::PARAM_TYPE => 'tags',
@@ -369,8 +371,8 @@ class ApiBlock extends ApiBase {
 				//TitleDef::PARAM_RETURN_OBJECT => true,
 
 				ParamValidator::PARAM_ISMULTI => true,
-				ParamValidator::PARAM_ISMULTI_LIMIT1 => 10,
-				ParamValidator::PARAM_ISMULTI_LIMIT2 => 10,
+				ParamValidator::PARAM_ISMULTI_LIMIT1 => $pageLimit,
+				ParamValidator::PARAM_ISMULTI_LIMIT2 => $pageLimit,
 			],
 			'namespacerestrictions' => [
 				ParamValidator::PARAM_ISMULTI => true,
