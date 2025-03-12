@@ -553,11 +553,7 @@ class RecentChange implements Taggable {
 						$enotif->notifyOnPageChange(
 							$editor,
 							$title,
-							$this->mAttribs['rc_timestamp'],
-							$this->mAttribs['rc_comment'],
-							$this->mAttribs['rc_minor'],
-							$this->mAttribs['rc_last_oldid'],
-							$this->mExtra['pageStatus']
+							$this,
 						);
 					},
 					__METHOD__

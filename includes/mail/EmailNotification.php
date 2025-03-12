@@ -82,27 +82,26 @@ class EmailNotification {
 	 *
 	 * @since 1.11.0
 	 * @since 1.35 returns a boolean indicating whether an email job was created.
+	 * @since 1.44 This method takes just RecentChange $recentChange, instead of multiple parameters
 	 * @param Authority $editor
 	 * @param Title $title
-	 * @param string $timestamp
-	 * @param string $summary
-	 * @param bool $minorEdit
-	 * @param bool $oldid (default: false)
-	 * @param string $pageStatus (default: 'changed')
-	 * @return bool Whether an email job was created or not.
+	 * @param RecentChange $recentChange
+	 * @return bool Whether an email & notification job was created or not.
 	 */
 	public function notifyOnPageChange(
 		Authority $editor,
 		$title,
-		$timestamp,
-		$summary,
-		$minorEdit,
-		$oldid = false,
-		$pageStatus = 'changed'
+		RecentChange $recentChange
 	): bool {
 		if ( $title->getNamespace() < 0 ) {
 			return false;
 		}
+
+		$timestamp = $recentChange->mAttribs['rc_timestamp'];
+		$summary = $recentChange->mAttribs['rc_comment'];
+		$minorEdit = $recentChange->mAttribs['rc_minor'];
+		$oldid = $recentChange->mAttribs['rc_last_oldid'];
+		$pageStatus = $recentChange->mExtra['pageStatus'] ?? 'changed';
 
 		$mwServices = MediaWikiServices::getInstance();
 		$config = $mwServices->getMainConfig();
@@ -122,7 +121,7 @@ class EmailNotification {
 			return false;
 		}
 
-		$sendEmail = true;
+		$sendNotification = true;
 		// $watchers deals with $wgEnotifWatchlist.
 		// If nobody is watching the page, and there are no users notified on all changes
 		// don't bother creating a job/trying to send emails, unless it's a
@@ -130,7 +129,7 @@ class EmailNotification {
 		if ( $watchers === [] &&
 			!count( $config->get( MainConfigNames::UsersNotifiedOnAllChanges ) )
 		) {
-			$sendEmail = false;
+			$sendNotification = false;
 			// Only send notification for non minor edits, unless $wgEnotifMinorEdits
 			if ( !$minorEdit ||
 				( $config->get( MainConfigNames::EnotifMinorEdits ) &&
@@ -140,12 +139,12 @@ class EmailNotification {
 					&& $title->getNamespace() === NS_USER_TALK
 					&& $this->canSendUserTalkEmail( $editor->getUser(), $title, $minorEdit )
 				) {
-					$sendEmail = true;
+					$sendNotification = true;
 				}
 			}
 		}
 
-		if ( $sendEmail ) {
+		if ( $sendNotification ) {
 			$mwServices->getJobQueueGroup()->lazyPush( new EnotifNotifyJob(
 				$title,
 				[
@@ -156,12 +155,14 @@ class EmailNotification {
 					'minorEdit' => $minorEdit,
 					'oldid' => $oldid,
 					'watchers' => $watchers,
-					'pageStatus' => $pageStatus
+					'pageStatus' => $pageStatus,
+					// not used yet, passed to support T388663 and T389618 in the future
+					'rc_id' => $recentChange->getAttribute( 'rc_id' ),
 				]
 			) );
 		}
 
-		return $sendEmail;
+		return $sendNotification;
 	}
 
 	/**
