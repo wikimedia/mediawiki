@@ -1173,6 +1173,7 @@
 	"apihelp-query+random-param-limit": "Limit how many random pages will be returned.",
 	"apihelp-query+random-param-minsize": "Limit to pages with at least this many bytes.",
 	"apihelp-query+random-param-maxsize": "Limit to pages with at most this many bytes.",
+	"apihelp-query+random-param-contentmodel": "Filter pages that have the specified content model.",
 	"apihelp-query+random-param-redirect": "Use <kbd>$1filterredir=redirects</kbd> instead.",
 	"apihelp-query+random-param-filterredir": "How to filter for redirects.",
 	"apihelp-query+random-example-simple": "Return two random pages from the main namespace.",

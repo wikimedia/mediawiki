@@ -430,6 +430,9 @@ class ApiQuery extends ApiBase {
 		],
 		'random' => [
 			'class' => ApiQueryRandom::class,
+			'services' => [
+				'ContentHandlerFactory'
+			]
 		],
 		'recentchanges' => [
 			'class' => ApiQueryRecentChanges::class,

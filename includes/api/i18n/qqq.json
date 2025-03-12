@@ -1111,6 +1111,7 @@
 	"apihelp-query+random-param-limit": "{{doc-apihelp-param|query+random|limit}}",
 	"apihelp-query+random-param-minsize": "{{doc-apihelp-param|query+random|minsize}}",
 	"apihelp-query+random-param-maxsize": "{{doc-apihelp-param|query+random|maxsize}}",
+	"apihelp-query+random-param-contentmodel": "{{doc-apihelp-param|query+random|contentmodel}}",
 	"apihelp-query+random-param-redirect": "{{doc-apihelp-param|query+random|redirect}}",
 	"apihelp-query+random-param-filterredir": "{{doc-apihelp-param|query+random|filterredir}}",
 	"apihelp-query+random-example-simple": "{{doc-apihelp-example|query+random}}",
