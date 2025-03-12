@@ -155,6 +155,9 @@ figure[ typeof~='mw:File/Frame' ] {
 	> figcaption {
 		display: table-caption;
 		caption-side: bottom;
+		// Needed because we use table-caption. We want the image caption to have the same background as
+		// the image frame, without having to set it separately in dark mode overrides.
+		background-color: inherit;
 		line-height: @line-height-thumbcaption;
 
 		/**
