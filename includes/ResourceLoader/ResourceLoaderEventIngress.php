@@ -66,7 +66,7 @@ class ResourceLoaderEventIngress
 	 */
 	public function handlePageDeletedEvent( PageDeletedEvent $event ) {
 		WikiModule::invalidateModuleCache(
-			$event->getPage(),
+			$event->getDeletedPage(),
 			$event->getLatestRevisionBefore(),
 			null,
 			$this->localDomainId

@@ -1226,7 +1226,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::dispatchPageUpdatedEvent()
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::emitEvents()
 	 */
 	public function testDispatchPageUpdatedEvent() {
 		$page = $this->getPage( __METHOD__ );
@@ -1248,7 +1248,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		// Dispatch PageRevisionUpdatedEvent explicitly, then assert that doUpdates()
 		// doesn't dispatch it again.
-		$updater->dispatchPageUpdatedEvent();
+		$updater->emitEvents();
 
 		$updater->doUpdates();
 

@@ -1467,7 +1467,7 @@ class PageUpdater implements PageUpdateCauses {
 			$status->setNewRevision( $newRevisionRecord );
 
 			// Notify the dispatcher of the PageRevisionUpdatedEvent during the transaction round
-			$this->dispatchPageUpdatedEvent();
+			$this->emitEvents();
 		} else {
 			// T34948: revision ID must be set to page {{REVISIONID}} and
 			// related variables correctly. Likewise for {{REVISIONUSER}} (T135261).
@@ -1490,7 +1490,7 @@ class PageUpdater implements PageUpdateCauses {
 			$this->getTitle()->invalidateCache( $now );
 
 			// Notify the dispatcher of the PageRevisionUpdatedEvent during the transaction round
-			$this->dispatchPageUpdatedEvent();
+			$this->emitEvents();
 		}
 
 		// Schedule the secondary updates to run after the transaction round commits.
@@ -1606,7 +1606,7 @@ class PageUpdater implements PageUpdateCauses {
 		$status->setNewRevision( $newRevisionRecord );
 
 		// Notify the dispatcher of the PageRevisionUpdatedEvent during the transaction round
-		$this->dispatchPageUpdatedEvent();
+		$this->emitEvents();
 		// Schedule the secondary updates to run after the transaction round commits
 		DeferredUpdates::addUpdate(
 			$this->getAtomicSectionUpdate(
@@ -1664,8 +1664,8 @@ class PageUpdater implements PageUpdateCauses {
 		$this->derivedDataUpdater->prepareUpdate( $newRevisionRecord, $hints );
 	}
 
-	private function dispatchPageUpdatedEvent(): void {
-		$this->derivedDataUpdater->dispatchPageUpdatedEvent();
+	private function emitEvents(): void {
+		$this->derivedDataUpdater->emitEvents();
 	}
 
 	private function getAtomicSectionUpdate(

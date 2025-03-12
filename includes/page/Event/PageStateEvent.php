@@ -21,7 +21,7 @@
 namespace MediaWiki\Page\Event;
 
 use MediaWiki\DomainEvent\DomainEvent;
-use MediaWiki\Page\ProperPageIdentity;
+use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
@@ -33,6 +33,10 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * delete) as well as changing a page's latest revision. They do not include
  * changes to the page's revision history (except for changes to the latest
  * revision).
+ *
+ * The basic page state before and after the change is represented by
+ * PageRecord objects. However, not all changes that trigger a PageStateEvents
+ * will cause differences in the page record.
  *
  * @unstable until 1.45
  */
@@ -49,7 +53,8 @@ abstract class PageStateEvent extends DomainEvent {
 	public const FLAG_RECONCILIATION_REQUEST = 'reconciliation_request';
 
 	private string $cause;
-	private ProperPageIdentity $page;
+	private ?ExistingPageRecord $pageRecordBefore;
+	private ?ExistingPageRecord $pageRecordAfter;
 	private UserIdentity $performer;
 
 	/** @var array<string,bool> */
@@ -60,7 +65,10 @@ abstract class PageStateEvent extends DomainEvent {
 
 	/**
 	 * @param string $cause See the self::CAUSE_XXX constants.
-	 * @param ProperPageIdentity $page The page affected by the update.
+	 * @param ?ExistingPageRecord $pageRecordBefore The page record before the
+	 *        change, or null if the page didn't exist before.
+	 * @param ?ExistingPageRecord $pageRecordAfter The page record after the
+	 *        change, or null if the page no longer exists after.
 	 * @param UserIdentity $performer The user performing the update.
 	 * @param array<string> $tags Applicable tags, see ChangeTags.
 	 * @param array<string,bool> $flags See the self::FLAG_XXX constants.
@@ -68,7 +76,8 @@ abstract class PageStateEvent extends DomainEvent {
 	 */
 	public function __construct(
 		string $cause,
-		ProperPageIdentity $page,
+		?ExistingPageRecord $pageRecordBefore,
+		?ExistingPageRecord $pageRecordAfter,
 		UserIdentity $performer,
 		array $tags = [],
 		array $flags = [],
@@ -87,18 +96,49 @@ abstract class PageStateEvent extends DomainEvent {
 		Assert::parameterElementType( 'boolean', $flags, '$flags' );
 		Assert::parameterKeyType( 'string', $flags, '$flags' );
 
+		Assert::parameter(
+			$pageRecordBefore || $pageRecordAfter,
+			'$pageRecordBefore and $pageRecordAfter',
+			'must not both be null'
+		);
+
 		$this->cause = $cause;
-		$this->page = $page;
+		$this->pageRecordBefore = $pageRecordBefore;
+		$this->pageRecordAfter = $pageRecordAfter;
 		$this->performer = $performer;
 		$this->tags = $tags;
 		$this->flags = $flags;
 	}
 
 	/**
-	 * Returns the page that was edited.
+	 * Returns a PageRecord representing the state of the page before the change,
+	 * or null if the page did not exist before.
 	 */
-	public function getPage(): ProperPageIdentity {
-		return $this->page;
+	public function getPageRecordBefore(): ?ExistingPageRecord {
+		return $this->pageRecordBefore;
+	}
+
+	/**
+	 * Returns a PageRecord representing the state of the page after the change,
+	 * or null if the page no longer exists after.
+	 *
+	 * Note that the PageRecord returned by this method may be the same as the
+	 * one returned by getPageRecordBefore(). This may be the case for
+	 * reconciliation events, but also for events that represent changes that
+	 * are not reflected in the PageRecord.
+	 */
+	public function getPageRecordAfter(): ?ExistingPageRecord {
+		return $this->pageRecordAfter;
+	}
+
+	/**
+	 * Returns the ID of the page affected by the change.
+	 * Note that the ID may no longer be valid after the change (e.g. if the
+	 * page was deleted).
+	 */
+	public function getPageId(): int {
+		return $this->pageRecordAfter ? $this->pageRecordAfter->getId()
+			: $this->pageRecordBefore->getId();
 	}
 
 	/**

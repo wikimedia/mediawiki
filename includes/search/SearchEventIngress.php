@@ -47,8 +47,8 @@ class SearchEventIngress
 			$event->isReconciliationRequest()
 		) {
 			$update = new SearchUpdate(
-				$event->getPage()->getId(),
-				$event->getPage(),
+				$event->getPageId(),
+				$event->getPageRecordAfter(),
 				$mainSlot ? $mainSlot->getContent() : null
 			);
 
@@ -63,8 +63,8 @@ class SearchEventIngress
 	 */
 	public function handlePageDeletedEvent( PageDeletedEvent $event ) {
 		$update = new SearchUpdate(
-			$event->getPageStateBefore()->getId(),
-			$event->getPage(),
+			$event->getPageId(),
+			$event->getDeletedPage(),
 			null
 		);
 

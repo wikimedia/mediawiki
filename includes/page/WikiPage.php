@@ -1794,6 +1794,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 * Update links tables, site stats, search index and message cache.
 	 * Purges pages that include this page if the text was changed here.
 	 * Every 100th edit, prune the recent changes table.
+	 * Does not emit domain events.
 	 *
 	 * @deprecated since 1.32, use DerivedPageDataUpdater::doUpdates instead.
 	 *             Emitting warnings since 1.44
@@ -1813,6 +1814,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 		$options += [
 			'causeAction' => 'edit-page',
 			'causeAgent' => $user->getName(),
+			'emitEvents' => false // prior page state is unknown, can't emit events
 		];
 
 		$updater = $this->getDerivedDataUpdater( $user, $revisionRecord );

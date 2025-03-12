@@ -210,6 +210,8 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 *   can be null; use wasRedirect() instead of direct access.
 	 * - oldCountable (bool|null): whether the page was countable before the change (or null
 	 *   if we don't have that information)
+	 * - oldRecord (ExistingPageRecord|null): the page record before the update (or null
+	 *   if the page didn't exist)
 	 *
 	 * @var array
 	 */
@@ -661,6 +663,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			'oldId' => $current ? $current->getId() : 0,
 			'oldIsRedirect' => $wikiPage->isRedirect(), // NOTE: uses page table
 			'oldCountable' => $wikiPage->isCountable(), // NOTE: uses pagelinks table
+			'oldRecord' => $wikiPage->exists() ? $wikiPage->toPageRecord() : null,
 		];
 
 		$this->doTransition( 'knows-current' );
@@ -1571,11 +1574,11 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		$this->assertTransition( 'done' );
 
 		if ( $this->options['emitEvents'] ) {
-			$this->dispatchPageUpdatedEvent();
+			$this->emitEvents();
 		}
 
 		// TODO: move more logic into ingress objects subscribed to PageRevisionUpdatedEvent!
-		$event = $this->getPageUpdatedEvent();
+		$event = $this->getPageRevisionUpdatedEvent();
 
 		if ( $this->shouldGenerateHTMLOnEdit() ) {
 			$this->triggerParserCacheUpdate();
@@ -1697,12 +1700,12 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	/**
 	 * @internal
 	 */
-	public function dispatchPageUpdatedEvent(): void {
+	public function emitEvents(): void {
 		if ( !$this->options['emitEvents'] ) {
-			throw new LogicException( 'dispatchPageUpdatedEvent was disabled on this updater' );
+			throw new LogicException( 'emitEvents was disabled on this updater' );
 		}
 
-		$event = $this->getPageUpdatedEvent();
+		$event = $this->getPageRevisionUpdatedEvent();
 
 		// don't dispatch again!
 		$this->options['emitEvents'] = false;
@@ -1710,7 +1713,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		$this->eventDispatcher->dispatch( $event, $this->loadbalancerFactory );
 	}
 
-	private function getPageUpdatedEvent(): PageRevisionUpdatedEvent {
+	private function getPageRevisionUpdatedEvent(): PageRevisionUpdatedEvent {
 		if ( $this->pageUpdatedEvent ) {
 			return $this->pageUpdatedEvent;
 		}
@@ -1722,26 +1725,55 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			PageRevisionUpdatedEvent::DEFAULT_FLAGS
 		);
 
-		$newRevision = $this->getRevision();
-		$oldRevision = $this->getOldRevision();
+		$pageRecordBefore = $this->pageState['oldRecord'] ?? null;
+		$pageRecordAfter = $this->getWikiPage()->toPageRecord();
 
-		if ( $oldRevision && $newRevision->getId() === $oldRevision->getId() ) {
+		$revisionBefore = $this->getOldRevision();
+		$revisionAfter = $this->getRevision();
+
+		if ( $this->options['created'] ) {
+			// Page creation. No prior state.
+			// Force null to make sure we don't get confused during imports when
+			// updates are triggered after importing the last revision of several.
+			// In that case, the page and older revisions do already exist when
+			// the DerivedPageDataUpdater is initialized, because they were
+			// created during the import. But they didn't exist prior to the
+			// import (based on the fact that the 'created' flag is set).
+			$pageRecordBefore = null;
+			$revisionBefore = null;
+		} elseif ( !$this->options['changed'] ) {
+			// Null edit. Should already be the same, just make sure.
+			$pageRecordBefore = $pageRecordAfter;
+		}
+
+		if ( $revisionBefore && $revisionAfter->getId() === $revisionBefore->getId() ) {
 			// This is a null edit, flag it as a reconciliation request.
 			$flags[ PageRevisionUpdatedEvent::FLAG_RECONCILIATION_REQUEST ] = true;
 		}
 
+		if ( $pageRecordBefore === null && !$this->options['created'] ) {
+			// If the page wasn't just created, we need the state before.
+			// If we are not actually emitting the event, we can ignore the issue.
+			// This is needed to support the deprecated WikiPage::doEditUpdates()
+			// method. Once that is gone, we can remove this conditional.
+			if ( $this->options['emitEvents'] ) {
+				throw new LogicException( 'Missing page state before update' );
+			}
+		}
+
 		/** @var UserIdentity $performer */
 		$performer = $this->options['triggeringUser'] ?? $this->user;
+		'@phan-var UserIdentity $performer';
 
 		$this->pageUpdatedEvent = new PageRevisionUpdatedEvent(
 			$this->options['cause'] ?? PageUpdateCauses::CAUSE_EDIT,
-			$this->getPage(),
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable $this->user is already set
-			$performer,
+			$pageRecordBefore,
+			$pageRecordAfter,
+			$revisionBefore,
+			$revisionAfter,
 			$this->getRevisionSlotsUpdate(),
-			$newRevision,
-			$oldRevision,
 			$this->options['editResult'] ?? null,
+			$performer,
 			$this->options['tags'] ?? [],
 			$flags,
 			$this->options['rcPatrolStatus'] ?? 0,

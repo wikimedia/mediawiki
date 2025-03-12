@@ -62,8 +62,8 @@ class LanguageEventIngress
 	 * @noinspection PhpUnused
 	 */
 	public function handlePageDeletedEvent( PageDeletedEvent $event ) {
-		if ( $event->getPage()->getNamespace() === NS_MEDIAWIKI ) {
-			$this->messageCache->updateMessageOverride( $event->getPage(), null );
+		if ( $event->getDeletedPage()->getNamespace() === NS_MEDIAWIKI ) {
+			$this->messageCache->updateMessageOverride( $event->getDeletedPage(), null );
 		}
 	}
 
