@@ -6,6 +6,7 @@
 			"Jon Harald Søby",
 			"Kimberli Mäkäräinen (WMNO)",
 			"Lea-Christine Sara",
+			"Pppery",
 			"Skuolfi",
 			"Trondtr",
 			"לערי ריינהארט"
@@ -63,7 +64,7 @@
 	"sun": "sot",
 	"period-am": "AM",
 	"period-pm": "PM",
-	"timezone-local": "Báikkálaš ",
+	"timezone-local": "Báikkálaš",
 	"years": "{{PLURAL:$1|$1 jahki|$1 jagi}}",
 	"months": "{{PLURAL:$1|$1 mánotbadji|$1 mánotbaji}}",
 	"weeks": "{{PLURAL:$1|$1 vahkku}}",

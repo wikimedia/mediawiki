@@ -146,6 +146,8 @@
 	"config-mysql-engine": "Motor de immagazinage:",
 	"config-mysql-innodb": "InnoDB (recommendate)",
 	"config-mysql-engine-help": "'''InnoDB''' es quasi sempre le melior option, post que illo ha bon supporto pro simultaneitate.\n\n'''MyISAM''' pote esser plus rapide in installationes a usator singule o a lectura solmente.\nLe bases de datos MyISAM tende a esser corrumpite plus frequentemente que le base de datos InnoDB.",
+	"config-server": "Nomine de servitor del URL:",
+	"config-server-help": "Le parte del protocollo e del nomine de servitor del adresse URL usate pro acceder a tu wiki. Le valor predefinite e automaticamente detegite es normalmente correcte.",
 	"config-site-name": "Nomine del wiki:",
 	"config-site-name-help": "Isto apparera in le barra de titulo del navigator e in varie altere locos.",
 	"config-site-name-blank": "Entra un nomine de sito.",

@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hangmanwa7id"
+			"Hangmanwa7id",
+			"Pppery"
 		]
 	},
 	"config-information": "Informations",
@@ -19,7 +20,7 @@
 	"config-page-name": "Nom",
 	"config-page-options": "Options",
 	"config-page-install": "Installer",
-	"config-page-complete": "Terminé ",
+	"config-page-complete": "Terminé",
 	"config-page-releasenotes": "Notes de version",
 	"config-page-copying": "Copie",
 	"config-page-upgradedoc": "Mise à jour",
