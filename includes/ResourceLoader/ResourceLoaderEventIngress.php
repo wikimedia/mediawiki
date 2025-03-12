@@ -47,8 +47,8 @@ class ResourceLoaderEventIngress extends EventSubscriberBase {
 		) {
 			WikiModule::invalidateModuleCache(
 				$event->getPage(),
-				$event->getOldRevision(),
-				$event->getNewRevision(),
+				$event->getLatestRevisionBefore(),
+				$event->getLatestRevisionAfter(),
 				$this->localDomainId
 			);
 		}

@@ -30,9 +30,9 @@ use Wikimedia\Assert\Assert;
 
 /**
  * Domain event representing a page update. A PageRevisionUpdatedEvent is triggered
- * when a page's current revision changes, even if the content did not change
+ * when a page's latest revision changes, even if the content did not change
  * (for a dummy revision). A reconciliation version of this event may be
- * triggered even when the page's current version did not change (on null edits),
+ * triggered even when the page's latest version did not change (on null edits),
  * to provide an opportunity to listeners to recover from data loss and
  * corruption by re-generating any derived data.
  *
@@ -90,8 +90,8 @@ class PageRevisionUpdatedEvent extends PageStateEvent implements PageUpdateCause
 	];
 
 	private RevisionSlotsUpdate $slotsUpdate;
-	private RevisionRecord $newRevision;
-	private ?RevisionRecord $oldRevision;
+	private RevisionRecord $latestRevisionAfter;
+	private ?RevisionRecord $latestRevisionBefore;
 	private ?EditResult $editResult;
 
 	private int $patrolStatus;
@@ -101,10 +101,10 @@ class PageRevisionUpdatedEvent extends PageStateEvent implements PageUpdateCause
 	 * @param ProperPageIdentity $page The page affected by the update.
 	 * @param UserIdentity $performer The user performing the update.
 	 * @param RevisionSlotsUpdate $slotsUpdate Page content changed by the update.
-	 * @param RevisionRecord $newRevision The revision object resulting from the
-	 *        update.
-	 * @param RevisionRecord|null $oldRevision The revision that used to be
-	 *        current before the updated.
+	 * @param RevisionRecord $latestRevisionAfter The revision object that became
+	 *        the latest as a result of the update.
+	 * @param RevisionRecord|null $latestRevisionBefore The revision that used
+	 *        to be the latest before the updated.
 	 * @param EditResult|null $editResult An EditResult representing the effects
 	 *        of an edit.
 	 * @param array<string> $tags Applicable tags, see ChangeTags.
@@ -116,14 +116,14 @@ class PageRevisionUpdatedEvent extends PageStateEvent implements PageUpdateCause
 		ProperPageIdentity $page,
 		UserIdentity $performer,
 		RevisionSlotsUpdate $slotsUpdate,
-		RevisionRecord $newRevision,
-		?RevisionRecord $oldRevision,
+		RevisionRecord $latestRevisionAfter,
+		?RevisionRecord $latestRevisionBefore,
 		?EditResult $editResult,
 		array $tags = [],
 		array $flags = [],
 		int $patrolStatus = 0
 	) {
-		parent::__construct( $cause, $page, $performer, $tags, $flags, $newRevision->getTimestamp() );
+		parent::__construct( $cause, $page, $performer, $tags, $flags, $latestRevisionAfter->getTimestamp() );
 		$this->declareEventType( self::TYPE );
 
 		// Legacy event type name, deprecated (T388588).
@@ -131,22 +131,22 @@ class PageRevisionUpdatedEvent extends PageStateEvent implements PageUpdateCause
 
 		Assert::parameter( $page->exists(), '$page', 'must exist' );
 		Assert::parameter(
-			$page->isSamePageAs( $newRevision->getPage() ),
+			$page->isSamePageAs( $latestRevisionAfter->getPage() ),
 			'$newRevision',
 			'must belong to $page'
 		);
 
-		if ( $oldRevision ) {
+		if ( $latestRevisionBefore ) {
 			Assert::parameter(
-				$page->isSamePageAs( $newRevision->getPage() ),
+				$page->isSamePageAs( $latestRevisionAfter->getPage() ),
 				'$oldRevision',
 				'must belong to $page'
 			);
 		}
 
 		$this->slotsUpdate = $slotsUpdate;
-		$this->newRevision = $newRevision;
-		$this->oldRevision = $oldRevision;
+		$this->latestRevisionAfter = $latestRevisionAfter;
+		$this->latestRevisionBefore = $latestRevisionBefore;
 		$this->editResult = $editResult;
 		$this->patrolStatus = $patrolStatus;
 	}
@@ -158,13 +158,13 @@ class PageRevisionUpdatedEvent extends PageStateEvent implements PageUpdateCause
 	 * so the "created" page may have an ID that was seen previously.
 	 */
 	public function isCreation(): bool {
-		return $this->oldRevision === null;
+		return $this->latestRevisionBefore === null;
 	}
 
 	/**
-	 * Whether this event represents a change to the current revision ID
-	 * associated with the page. In other words, the page's current revision
-	 * after the change is different from the page's current revision before
+	 * Whether this event represents a change to the latest revision ID
+	 * associated with the page. In other words, the page's latest revision
+	 * after the change is different from the page's latest revision before
 	 * the change.
 	 *
 	 * This method will return true under most circumstances.
@@ -180,9 +180,9 @@ class PageRevisionUpdatedEvent extends PageStateEvent implements PageUpdateCause
 	 * @see DomainEvent::isReconciliationRequest()
 	 * @see DomainEvent::isNominalContentChange()
 	 */
-	public function changedCurrentRevisionId(): bool {
-		return $this->oldRevision === null
-			|| $this->oldRevision->getId() !== $this->newRevision->getId();
+	public function changedLatestRevisionId(): bool {
+		return $this->latestRevisionBefore === null
+			|| $this->latestRevisionBefore->getId() !== $this->latestRevisionAfter->getId();
 	}
 
 	/**
@@ -222,8 +222,8 @@ class PageRevisionUpdatedEvent extends PageStateEvent implements PageUpdateCause
 	 * @see isNominalContentChange()
 	 */
 	public function isEffectiveContentChange(): bool {
-		return $this->oldRevision === null
-			|| $this->oldRevision->getSha1() !== $this->newRevision->getSha1();
+		return $this->latestRevisionBefore === null
+			|| $this->latestRevisionBefore->getSha1() !== $this->latestRevisionAfter->getSha1();
 	}
 
 	/**
@@ -233,7 +233,7 @@ class PageRevisionUpdatedEvent extends PageStateEvent implements PageUpdateCause
 	 * undeletion or imports.
 	 */
 	public function getAuthor(): UserIdentity {
-		return $this->newRevision->getUser( RevisionRecord::RAW );
+		return $this->latestRevisionAfter->getUser( RevisionRecord::RAW );
 	}
 
 	/**
@@ -266,27 +266,43 @@ class PageRevisionUpdatedEvent extends PageStateEvent implements PageUpdateCause
 	}
 
 	/**
-	 * Returned the revision that used to be current before the update.
+	 * Returned the revision that used to be latest before the update.
 	 * Will be null if the edit created the page.
-	 * Will be the same as getNewRevision() if the edit was a "null-edit".
+	 * Will be the same as getLatestRevisionAfter() if the edit was a
+	 * "null-edit".
 	 *
 	 * Note that this is not necessarily the new revision's parent revision.
-	 * For instance, when undeleting a page, the old revision will be null
-	 * because the page didn't exist before, even if the undeleted page has
-	 * many revisions and the new current revision indeed has a parent revision.
+	 * For instance, when undeleting a page, getLatestRevisionBefore() will
+	 * return null because the page didn't exist before, even if the undeleted
+	 * page has many revisions and the new latest revision indeed has a parent
+	 * revision.
 	 *
 	 * The parent revision can be determined by calling
-	 * getNewRevision()->getParentId().
+	 * getLatestRevisionAfter()->getParentId().
 	 */
-	public function getOldRevision(): ?RevisionRecord {
-		return $this->oldRevision;
+	public function getLatestRevisionBefore(): ?RevisionRecord {
+		return $this->latestRevisionBefore;
 	}
 
 	/**
-	 * The revision that became the current one because of the update.
+	 * The revision that became the latest as a result of the update.
+	 */
+	public function getLatestRevisionAfter(): RevisionRecord {
+		return $this->latestRevisionAfter;
+	}
+
+	/**
+	 * @deprecated since 1.44
+	 */
+	public function getOldRevision(): ?RevisionRecord {
+		return $this->getLatestRevisionBefore();
+	}
+
+	/**
+	 * @deprecated since 1.44
 	 */
 	public function getNewRevision(): RevisionRecord {
-		return $this->newRevision;
+		return $this->getLatestRevisionAfter();
 	}
 
 	/**
@@ -318,7 +334,7 @@ class PageRevisionUpdatedEvent extends PageStateEvent implements PageUpdateCause
 	 * Whether the update reverts an earlier update to the same page.
 	 * Note that an "undo" style revert may create a new revision that is
 	 * different from any previous revision by applying the inverse of a
-	 * past update to the current revision.
+	 * past update to the latest revision.
 	 *
 	 * @see EditResult::isRevert
 	 */

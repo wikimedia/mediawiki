@@ -436,8 +436,8 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 			);
 			Assert::assertSame(
 				$revisionChange,
-				$event->changedCurrentRevisionId(),
-				'changedCurrentRevisionId'
+				$event->changedLatestRevisionId(),
+				'changedLatestRevisionId'
 			);
 			Assert::assertSame( // null edits
 				!$revisionChange,
@@ -465,7 +465,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 				'getPerformer'
 			);
 			Assert::assertSame(
-				$event->getNewRevision()->getUser(),
+				$event->getLatestRevisionAfter()->getUser(),
 				$event->getAuthor(),
 				'getAuthor'
 			);
@@ -477,10 +477,10 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 			if ( $old ) {
 				Assert::assertSame(
-					$old->getId(), $event->getOldRevision()->getId(), 'getOldRevision'
+					$old->getId(), $event->getLatestRevisionBefore()->getId(), 'getOldRevision'
 				);
 			} else {
-				Assert::assertNull( $event->getOldRevision(), 'getOldRevision' );
+				Assert::assertNull( $event->getLatestRevisionBefore(), 'getOldRevision' );
 			}
 
 			foreach ( $flags as $name => $value ) {

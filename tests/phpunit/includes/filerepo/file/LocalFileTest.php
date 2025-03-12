@@ -948,7 +948,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 				Assert::assertSame( $file->getName(), $event->getPage()->getDBkey() );
 
 				Assert::assertTrue( $event->isCreation(), 'isCreation' );
-				Assert::assertTrue( $event->changedCurrentRevisionId(), 'changedCurrentRevisionId' );
+				Assert::assertTrue( $event->changedLatestRevisionId(), 'changedLatestRevisionId' );
 				Assert::assertTrue( $event->isEffectiveContentChange(), 'isEffectiveContentChange' );
 				Assert::assertTrue( $event->isNominalContentChange(), 'isNominalContentChange' );
 
@@ -1009,7 +1009,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 				Assert::assertSame( $file->getName(), $event->getPage()->getDBkey() );
 
 				Assert::assertFalse( $event->isCreation(), 'isCreation' );
-				Assert::assertTrue( $event->changedCurrentRevisionId(), 'changedCurrentRevisionId' );
+				Assert::assertTrue( $event->changedLatestRevisionId(), 'changedLatestRevisionId' );
 				Assert::assertFalse( $event->isEffectiveContentChange(), 'isEffectiveContentChange' );
 				Assert::assertFalse( $event->isNominalContentChange(), 'isNominalContentChange' );
 
@@ -1022,7 +1022,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 				Assert::assertTrue( $event->isImplicit(), 'isImplicit' );
 
 				Assert::assertFalse(
-					$event->getNewRevision()->isMinor(),
+					$event->getLatestRevisionAfter()->isMinor(),
 					'isMinor'
 				);
 			}

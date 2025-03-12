@@ -1819,7 +1819,7 @@ more stuff
 			PageRevisionUpdatedEvent::TYPE, 1,
 			static function ( PageRevisionUpdatedEvent $event ) use ( &$calls, $page ) {
 				Assert::assertFalse( $event->isCreation(), 'isCreation' );
-				Assert::assertTrue( $event->changedCurrentRevisionId(), 'changedCurrentRevisionId' );
+				Assert::assertTrue( $event->changedLatestRevisionId(), 'changedLatestRevisionId' );
 				Assert::assertFalse( $event->isEffectiveContentChange(), 'isEffectiveContentChange' );
 				Assert::assertSame( $page->getId(), $event->getPage()->getId() );
 
@@ -1832,7 +1832,7 @@ more stuff
 				Assert::assertTrue( $event->isImplicit(), 'isAutomated' );
 
 				Assert::assertTrue(
-					$event->getNewRevision()->isMinor(),
+					$event->getLatestRevisionAfter()->isMinor(),
 					'isMinor'
 				);
 			}

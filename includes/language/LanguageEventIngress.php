@@ -46,7 +46,7 @@ class LanguageEventIngress extends EventSubscriberBase {
 				|| $event->isReconciliationRequest()
 			)
 		) {
-			$content = $event->getNewRevision()->getMainContentRaw();
+			$content = $event->getLatestRevisionAfter()->getMainContentRaw();
 			$this->messageCache->updateMessageOverride( $event->getPage(), $content );
 		}
 	}

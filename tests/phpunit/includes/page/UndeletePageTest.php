@@ -179,8 +179,8 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 					'isNominalContentChange'
 				);
 				Assert::assertTrue(
-					$event->changedCurrentRevisionId(),
-					'changedCurrentRevisionId'
+					$event->changedLatestRevisionId(),
+					'changedLatestRevisionId'
 				);
 				Assert::assertFalse(
 					$event->isReconciliationRequest(),

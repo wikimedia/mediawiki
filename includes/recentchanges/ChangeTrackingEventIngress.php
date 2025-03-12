@@ -113,12 +113,12 @@ class ChangeTrackingEventIngress extends EventSubscriberBase {
 	 * @noinspection PhpUnused
 	 */
 	public function handlePageRevisionUpdatedEvent( PageRevisionUpdatedEvent $event ) {
-		if ( $event->changedCurrentRevisionId()
+		if ( $event->changedLatestRevisionId()
 			&& !$event->isSilent()
 		) {
 			$this->updateRecentChangesAfterPageUpdated(
-				$event->getNewRevision(),
-				$event->getOldRevision(),
+				$event->getLatestRevisionAfter(),
+				$event->getLatestRevisionBefore(),
 				$event->isBotUpdate(),
 				$event->getPatrolStatus(),
 				$event->getTags(),
@@ -127,7 +127,7 @@ class ChangeTrackingEventIngress extends EventSubscriberBase {
 		} elseif ( $event->getTags() ) {
 			$this->updateChangeTagsAfterPageUpdated(
 				$event->getTags(),
-				$event->getNewRevision()->getId(),
+				$event->getLatestRevisionAfter()->getId(),
 			);
 		}
 
@@ -203,7 +203,7 @@ class ChangeTrackingEventIngress extends EventSubscriberBase {
 		// Don't do this if $options['changed'] = false (null-edits) nor if
 		// it's a minor edit and the user making the edit doesn't generate notifications for those.
 		$page = $event->getPage();
-		$revRecord = $event->getNewRevision();
+		$revRecord = $event->getLatestRevisionAfter();
 		$recipientName = $page->getDBkey();
 		$recipientName = $this->userNameUtils->isIP( $recipientName )
 			? $recipientName
