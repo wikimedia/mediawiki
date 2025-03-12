@@ -529,8 +529,6 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 	 * @requires extension curl
 	 */
 	public function testShouldReturnResponses(): void {
-		$this->markTestSkipped( 'T388717' );
-
 		// Find a random local port on which nothing is listening.
 		$randomPort = self::randomPort();
 

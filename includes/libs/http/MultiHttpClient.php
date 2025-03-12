@@ -291,14 +291,6 @@ class MultiHttpClient implements LoggerAwareInterface {
 				break;
 			}
 
-			$info = curl_multi_info_read( $chm );
-			if ( $info !== false ) {
-				// Note: cast to integer even works on PHP 8.0+ despite the
-				// handle being an object not a resource, because CurlHandle
-				// has a backwards-compatible cast_object handler.
-				$infos[(int)$info['handle']] = $info;
-			}
-
 			// Wait (if possible) for available work...
 			if ( $active > 0 && curl_multi_select( $chm, $selectTimeout ) === -1 ) {
 				$errno = curl_multi_errno( $chm );
@@ -310,6 +302,17 @@ class MultiHttpClient implements LoggerAwareInterface {
 				] );
 			}
 		} while ( $active > 0 );
+
+		$queuedMessages = null;
+		do {
+			$info = curl_multi_info_read( $chm, $queuedMessages );
+			if ( $info !== false && $info['msg'] === CURLMSG_DONE ) {
+				// Note: cast to integer even works on PHP 8.0+ despite the
+				// handle being an object not a resource, because CurlHandle
+				// has a backwards-compatible cast_object handler.
+				$infos[(int)$info['handle']] = $info;
+			}
+		} while ( $queuedMessages > 0 );
 
 		// Remove all of the added cURL handles and check for errors...
 		foreach ( $reqs as $index => &$req ) {
