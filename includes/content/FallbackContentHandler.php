@@ -1,7 +1,5 @@
 <?php
 /**
- * Base content handler class for flat text contents.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -17,10 +15,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @since 1.36 (As UnknownContentHandler in 1.34)
- *
  * @file
- * @ingroup Content
  */
 
 namespace MediaWiki\Content;
@@ -38,6 +33,7 @@ use UnsupportedSlotDiffRenderer;
  * This can be used to handle content for which no ContentHandler exists on the system,
  * perhaps because the extension that provided it has been removed.
  *
+ * @since 1.36 (As UnknownContentHandler in 1.34)
  * @ingroup Content
  */
 class FallbackContentHandler extends ContentHandler {

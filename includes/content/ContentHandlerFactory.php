@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,9 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Content
- *
- * @author Art Baltai
  */
 
 namespace MediaWiki\Content;
@@ -32,10 +28,9 @@ use Psr\Log\LoggerInterface;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
- * Class ContentHandlerFactory
- * @package MediaWiki\Content
- * @ingroup Content
  * @since 1.35
+ * @ingroup Content
+ * @author Art Baltai
  */
 final class ContentHandlerFactory implements IContentHandlerFactory {
 

@@ -182,7 +182,7 @@ class SlotRoleHandler {
 	 * The default implementation always returns false.
 	 *
 	 * @stable to override
-	 *
+	 * @see WikiPage::isCountable
 	 * @return bool
 	 */
 	public function supportsArticleCount() {
