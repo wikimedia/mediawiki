@@ -1254,7 +1254,21 @@ class CoreParserFunctions {
 		$processNowiki = $parser->tagNeedsNowikiStrippedInTagPF( $tagName ) ? PPFrame::PROCESS_NOWIKI : 0;
 
 		if ( count( $args ) ) {
+			// With Fragment v2 support, the $processNoWiki flag isn't actually
+			// required here, but it doesn't do any harm.
 			$inner = $frame->expand( array_shift( $args ), $processNowiki );
+			if (
+				$processNowiki &&
+				MediaWikiServices::getInstance()->getMainConfig()
+					->get( MainConfigNames::ParsoidFragmentSupport ) === 'v2'
+			) {
+				// This is the T299103 workaround for <syntaxhighlight>,
+				// and reproduces the code in SyntaxHighlight::parserHook.
+				// The Parsoid extension API (SyntaxHighlight::sourceToDom)
+				// doesn't (yet) know about strip state, and so can't do
+				// this itself.
+				$inner = $parser->getStripState()->unstripNoWiki( $inner );
+			}
 		} else {
 			$inner = null;
 		}

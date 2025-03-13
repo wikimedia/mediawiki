@@ -2361,6 +2361,8 @@ class ParserTestRunner {
 			// Use legacy headings for a while until tests in extensions are updated
 			'wgParserEnableLegacyHeadingDOM' => true,
 			'wgLocaltimezone' => $timezone,
+			// Use new Parsoid fragment support
+			'wgParsoidFragmentSupport' => 'v2',
 		];
 
 		if ( isset( $opts['externallinktarget'] ) ) {

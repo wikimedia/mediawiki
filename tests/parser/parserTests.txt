@@ -1126,7 +1126,7 @@ maxincludesize=30
 <p><a href="/wiki/Template:3x_on_newline" title="Template:3x on newline">Template:3x on newline</a><!-- WARNING: template omitted, post-expand include size too large -->
 </p>
 !! html/parsoid+integrated
-<p><a rel="mw:WikiLink" href="./Template:3x_on_newline" title="Template:3x on newline" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"stx":"simple","a":{"href":"./Template:3x_on_newline"},"sa":{"href":":Template:3x on newline"},"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"3x_on_newline","href":"./Template:3x_on_newline"},"params":{"1":{"wt":"1234567890"}},"i":0}}]}'>Template:3x on newline</a><span about="#mwt1"><!-- WARNING: template omitted, post&#x2D;expand include size too large --></span></p>
+<p><a rel="mw:WikiLink" href="./Template:3x_on_newline" title="Template:3x on newline" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"stx":"simple","a":{"href":"./Template:3x_on_newline"},"sa":{"href":":Template:3x on newline"},"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"3x_on_newline","href":"./Template:3x_on_newline"},"params":{"1":{"wt":"1234567890"}},"i":0}}]}'>Template:3x on newline</a><span about="#mwt1"><!-- WARNING: template omitted, post-expand include size too large --></span></p>
 !! end
 
 !! test

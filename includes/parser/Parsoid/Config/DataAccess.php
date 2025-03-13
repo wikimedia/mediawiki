@@ -402,6 +402,9 @@ class DataAccess extends IDataAccess {
 				$wikitext, $this->ppFrame, false, [
 					'stripExtTags' => false,
 					'parsoidTopLevelCall' => true,
+					// This is implied by stripExtTags=false and
+					// probably doesn't need to be explicitly passed
+					// any more.
 					'processNowiki' => true,
 				]
 			);
@@ -409,16 +412,21 @@ class DataAccess extends IDataAccess {
 			// through Parsoid as a PFragment type.
 			$pieces = $parser->getStripState()->split( $wikitext );
 			if ( count( $pieces ) > 1 ) {
-				for ( $i = 1; $i < count( $pieces ); $i += 2 ) {
+				for ( $i = 0; $i < count( $pieces ); $i++ ) {
 					[ 'type' => $type, 'content' => $content ] = $pieces[$i];
 					if ( !$content ) {
 						$pieces[$i] = '';
-					} elseif ( $type === 'nowiki' ) {
-						$pieces[$i] = HtmlPFragment::newFromHtmlString( $content, null );
-					} elseif ( $type === 'exttag' ) {
-						// This is wikitext (an extension tag)
+					} elseif ( $type === 'string' ) {
+						// wikitext (could include extension tag snippets like <tag..>...</tag>)
 						$pieces[$i] = $content;
-					} else {
+					} elseif ( $type === 'nowiki' ) {
+						// T388819: If this is from an actual <nowiki>, we
+						// could perhaps wrap <span typeof="mw:Nowiki"> around
+						// $contents.  But we don't actually know the source
+						// of this piece from the $type, the 'nowiki' strip
+						// state is used for other raw html output as well.
+						$pieces[$i] = HtmlPFragment::newFromHtmlString( $content, null );
+					} else { // @phan-suppress-current-line PhanPluginDuplicateIfStatements
 						// T381709: technically this fragment should
 						// be subject to language conversion and some
 						// additional processing
