@@ -75,6 +75,8 @@ $separatorTransformTable = [
 	'.' => ','
 ];
 
+$numberingSystem = 'khmr';
+
 $datePreferences = [
 	'default',
 	'km',

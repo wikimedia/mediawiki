@@ -137,6 +137,8 @@ $separatorTransformTable = [
 	',' => '٬', # U+066C
 ];
 
+$numberingSystem = 'arab';
+
 $datePreferences = [
 	'default',
 	'dmy',

@@ -75,3 +75,5 @@ $separatorTransformTable = [
 	'.' => '.',
 	',' => ',',
 ];
+
+$numberingSystem = 'latn';

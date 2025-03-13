@@ -110,6 +110,8 @@ $separatorTransformTable = [
 	',' => '٬', # U+066C
 ];
 
+$numberingSystem = 'arab';
+
 $namespaceNames = [
 	NS_MEDIA            => 'ميديا',
 	NS_SPECIAL          => 'خاص',

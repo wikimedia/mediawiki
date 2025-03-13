@@ -62,3 +62,5 @@ $separatorTransformTable = [
 	'.' => '٫', # U+066B
 	',' => '٬', # U+066C
 ];
+
+$numberingSystem = 'arab';

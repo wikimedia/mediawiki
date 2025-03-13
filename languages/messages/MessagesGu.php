@@ -124,4 +124,6 @@ $digitTransformTable = [
 
 $digitGroupingPattern = "#,##,##0.###";
 
+$numberingSystem = 'gujr';
+
 $linkTrail = "/^([\x{0A80}-\x{0AFF}]+)(.*)$/sDu";

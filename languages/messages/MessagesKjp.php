@@ -19,3 +19,5 @@ $digitTransformTable = [
 	'8' => '၈',
 	'9' => '၉',
 ];
+
+$numberingSystem = 'mymr';

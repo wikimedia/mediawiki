@@ -28,6 +28,21 @@ $separatorTransformTable = [
 	',' => '٬', # U+066C
 ];
 
+$numberingSystem = 'arabext';
+
+// Use Gregorian calendar, where appropriate, override ps browser locale
+$jsDateFormats = [
+	'mdy date' => [ 'options' => [ 'calendar' => 'gregory' ] ],
+	'mdy both' => [ 'options' => [ 'calendar' => 'gregory' ] ],
+	'mdy pretty' => [ 'options' => [ 'calendar' => 'gregory' ] ],
+	'dmy date' => [ 'options' => [ 'calendar' => 'gregory' ] ],
+	'dmy both' => [ 'options' => [ 'calendar' => 'gregory' ] ],
+	'dmy pretty' => [ 'options' => [ 'calendar' => 'gregory' ] ],
+	'ymd date' => [ 'options' => [ 'calendar' => 'gregory' ] ],
+	'ymd both' => [ 'options' => [ 'calendar' => 'gregory' ] ],
+	'ymd pretty' => [ 'options' => [ 'calendar' => 'gregory' ] ],
+];
+
 $namespaceNames = [
 	NS_MEDIA            => 'رسنۍ',
 	NS_SPECIAL          => 'ځانگړی',
