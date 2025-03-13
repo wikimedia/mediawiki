@@ -184,33 +184,62 @@ class StripStateTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testSplitSimple() {
+		// "Raw HTML" nowiki strip marker
 		$ss = new StripState();
-
-		$nowiki = "<nowiki>''foo''</nowiki>";
+		$rawHtml = "<span>foo</span>";
 		$m1 = $this->getMarker();
-		$ss->addNoWiki( $m1, $nowiki );
+		$ss->addNoWiki( $m1, $rawHtml );
+		$expected = [
+			[ 'type' => 'string', 'content' => 'abc ' ],
+			[ 'type' => 'nowiki', 'content' => $rawHtml, 'extra' => null, 'marker' => $m1 ],
+			[ 'type' => 'string', 'content' => ' def' ],
+		];
+		$this->assertSame( $expected, $ss->split( "abc $m1 def" ) );
 
-		$text = "abc $m1 def";
-		$r1 = $ss->split( $text );
+		// "nowiki" nowiki strip marker
+		$ss = new StripState();
+		$m2 = $this->getMarker();
+		$nowiki = "''foo''";
+		$ss->addNoWiki( $m2, $nowiki, 'nowiki' );
+
+		$text = "abc $m2 def";
+		$r2 = $ss->split( $text );
 
 		$expected = [
 			[ 'type' => 'string', 'content' => 'abc ' ],
-			[ 'type' => 'nowiki', 'content' => $nowiki, 'marker' => $m1, ],
+			[ 'type' => 'nowiki', 'content' => $nowiki, 'extra' => 'nowiki', 'marker' => $m2 ],
 			[ 'type' => 'string', 'content' => ' def' ],
 		];
-		$this->assertSame( $expected, $r1 );
+		$this->assertSame( $expected, $r2 );
 
-		$ref = "<ref>foo</ref>";
+		// "nowiki" empty nowiki strip marker
+		$ss = new StripState();
 		$m2 = $this->getMarker();
-		$ss->addExtTag( $m2, $ref );
+		$nowiki = "";
+		$ss->addNoWiki( $m2, $nowiki, 'nowiki' );
 
-		$text .= $m2;
+		$text = "abc $m2 def";
 		$r2 = $ss->split( $text );
+
+		$expected = [
+			[ 'type' => 'string', 'content' => 'abc ' ],
+			[ 'type' => 'nowiki', 'content' => '', 'extra' => 'nowiki', 'marker' => $m2 ],
+			[ 'type' => 'string', 'content' => ' def' ],
+		];
+		$this->assertSame( $expected, $r2 );
+
+		// exttag strip marker
+		$ref = "<ref>foo</ref>";
+		$m3 = $this->getMarker();
+		$ss->addExtTag( $m3, $ref );
+
+		$text .= $m3;
+		$r3 = $ss->split( $text );
 		$expected = array_merge( $expected, [
 			[ 'type' => 'string', 'content' => $ref ],
 			[ 'type' => 'string', 'content' => '' ]
 		] );
-		$this->assertSame( $expected, $r2 );
+		$this->assertSame( $expected, $r3 );
 	}
 
 	public function testSplitRecursive() {

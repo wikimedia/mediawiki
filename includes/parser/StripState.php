@@ -34,6 +34,8 @@ use InvalidArgumentException;
 class StripState {
 	/** @var array[] */
 	protected $data;
+	/** @var array[] */
+	protected $extra;
 	/** @var string */
 	protected $regex;
 
@@ -64,6 +66,7 @@ class StripState {
 			'nowiki' => [],
 			'general' => []
 		];
+		$this->extra = [];
 		$this->regex = '/' . Parser::MARKER_PREFIX . "([^\x7f<>&'\"]+)" . Parser::MARKER_SUFFIX . '/';
 		$this->circularRefGuard = [];
 		$this->parser = $parser;
@@ -80,9 +83,11 @@ class StripState {
 	 * Add a nowiki strip item
 	 * @param string $marker
 	 * @param string|Closure $value
+	 * @param ?string $extra Used to distinguish items added by <nowiki>
+	 *  from items added by other mechanisms.
 	 */
-	public function addNoWiki( $marker, $value ) {
-		$this->addItem( 'nowiki', $marker, $value );
+	public function addNoWiki( $marker, $value, ?string $extra = null ) {
+		$this->addItem( 'nowiki', $marker, $value, $extra );
 	}
 
 	/**
@@ -109,14 +114,18 @@ class StripState {
 	 * @param string $marker
 	 * @param-taint $marker none
 	 * @param string|Closure $value
+	 * @param ?string $extra
 	 * @param-taint $value exec_html
 	 */
-	protected function addItem( $type, $marker, $value ) {
+	protected function addItem( $type, $marker, $value, ?string $extra = null ) {
 		if ( !preg_match( $this->regex, $marker, $m ) ) {
 			throw new InvalidArgumentException( "Invalid marker: $marker" );
 		}
 
 		$this->data[$type][$m[1]] = $value;
+		if ( $extra !== null ) {
+			$this->extra[$type][$m[1]] = $extra;
+		}
 	}
 
 	/**
@@ -192,6 +201,7 @@ class StripState {
 			foreach ( $this->data as $type => $items ) {
 				if ( isset( $items[$marker] ) ) {
 					$value = $items[$marker];
+					$extra = $this->extra[$type][$marker] ?? null;
 					if ( $value instanceof Closure ) {
 						$value = $value();
 					}
@@ -240,6 +250,7 @@ class StripState {
 						$result[] = [
 							'type' => $type,
 							'content' => $value,
+							'extra' => $extra,
 							'marker' => Parser::MARKER_PREFIX . $marker . Parser::MARKER_SUFFIX,
 						];
 					}
