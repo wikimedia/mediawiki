@@ -4004,6 +4004,14 @@ class MainConfigSchema {
 	 *      key hashing. This helps mitigate MySQL bugs 61735 and 61736.
 	 *   - writeBatchSize: Default maximum number of rows to change in each query for write
 	 *      operations that can be chunked into a set of smaller writes.
+	 *   - dataRedundancy: When set to a number higher than one, instead of sharding values,
+	 *     it writes to that many servers (out of all servers) and reads from all of them too.
+	 *     In case of inconsistency between servers, it picks the value with the highest exptime.
+	 *     Mostly useful for stronger consistency such as mainstash.
+	 *     This option has many limitations (for example when TTL is set to indef or changes)
+	 *     and it shouldn't be used to handle race conditions nor canonical data.
+	 *     The main point of data redundancy is to allow depool of a cluster for maintenance
+	 *     without displacing too many keys.
 	 *
 	 * For MemcachedPhpBagOStuff parameters see {@link MemcachedPhpBagOStuff::__construct}
 	 *
