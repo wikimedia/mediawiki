@@ -23,7 +23,6 @@ use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\LanguageCode;
-use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
@@ -512,26 +511,16 @@ abstract class Skin extends ContextSource {
 
 		$action = $this->getRequest()->getRawVal( 'action' ) ?? 'view';
 		$title = $this->getTitle();
-		$namespace = $title ? $title->getNamespace() : -1;
+		$namespace = $title ? $title->getNamespace() : 0;
 		// If the page is using Codex message box markup load Codex styles.
 		// Since 1.41. Skins can unset this if they prefer to handle this via other
 		// means.
-		// This is intended for extensions.
 		// For content, this should not be considered stable, and will likely
 		// be removed when https://phabricator.wikimedia.org/T363607 is resolved.
-		if ( strpos( $out->getHTML(), 'cdx-message' ) !== false ) {
-			// This channel will be used to identify pages relying on this method that
-			// shouldn't be.
-			$logger = LoggerFactory::getInstance( 'SkinCodex' );
-			$codexModules = array_filter( $out->getModuleStyles(), static function ( $module ) {
-				return strpos( $module, 'codex' ) !== false;
-			} );
-			if ( !$codexModules ) {
-				if ( $action === 'view' || $namespace === NS_SPECIAL ) {
-					$logger->warning( 'Page uses Codex markup without appropriate style pack.' );
-				}
-				$modules['styles']['content'][] = 'mediawiki.codex.messagebox.styles';
-			}
+		$containsUserGeneratedContent = strpos( $out->getHTML(), 'mw-parser-output' ) !== false;
+		$containsCodexMessageBox = strpos( $out->getHTML(), 'cdx-message' ) !== false;
+		if ( $containsCodexMessageBox && $containsUserGeneratedContent && $namespace !== NS_SPECIAL ) {
+			$modules['styles']['content'][] = 'mediawiki.codex.messagebox.styles';
 		}
 
 		if ( $out->isTOCEnabled() ) {
