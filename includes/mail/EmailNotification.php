@@ -23,11 +23,10 @@
  */
 
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\Mail\UserEmailContact;
+use MediaWiki\Mail\RecentChangeMailComposer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
-use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserArray;
@@ -60,46 +59,7 @@ use MediaWiki\User\UserIdentity;
  */
 class EmailNotification {
 
-	/**
-	 * Notification is due to user's user talk being edited
-	 */
-	private const USER_TALK = 'user_talk';
-	/**
-	 * Notification is due to a watchlisted page being edited
-	 */
-	private const WATCHLIST = 'watchlist';
-	/**
-	 * Notification because user is notified for all changes
-	 */
-	private const ALL_CHANGES = 'all_changes';
-
-	protected string $subject = '';
-
-	protected string $body = '';
-
-	protected ?MailAddress $replyto;
-
-	protected ?MailAddress $from;
-
-	protected ?string $timestamp;
-
-	protected string $summary = '';
-
-	protected ?bool $minorEdit;
-
-	/** @var int|null|bool */
-	protected $oldid;
-
-	protected bool $composed_common = false;
-
 	protected string $pageStatus = '';
-
-	/** @var MailAddress[] */
-	protected array $mailTargets = [];
-
-	protected Title $title;
-
-	protected User $editor;
 
 	/**
 	 * Extensions that have hooks for
@@ -238,14 +198,6 @@ class EmailNotification {
 		# The following code is only run, if several conditions are met:
 		# 1. EmailNotification for pages (other than user_talk pages) must be enabled
 		# 2. minor edits (changes) are only regarded if the global flag indicates so
-
-		$this->title = $title;
-		$this->timestamp = $timestamp;
-		$this->summary = $summary;
-		$this->minorEdit = $minorEdit;
-		$this->oldid = $oldid;
-		$this->editor = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $editor );
-		$this->composed_common = false;
 		$this->pageStatus = $pageStatus;
 
 		$formattedPageStatus = [ 'deleted', 'created', 'moved', 'restored', 'changed' ];
@@ -255,6 +207,16 @@ class EmailNotification {
 		if ( !in_array( $this->pageStatus, $formattedPageStatus ) ) {
 			throw new UnexpectedValueException( 'Not a valid page status!' );
 		}
+
+		$composer = new RecentChangeMailComposer(
+			$editor,
+			$title,
+			$summary,
+			$minorEdit,
+			$oldid,
+			$timestamp,
+			$pageStatus
+		);
 
 		$userTalkId = false;
 
@@ -267,7 +229,7 @@ class EmailNotification {
 				&& $this->canSendUserTalkEmail( $editor->getUser(), $title, $minorEdit )
 			) {
 				$targetUser = User::newFromName( $title->getText() );
-				$this->compose( $targetUser, self::USER_TALK );
+				$composer->compose( $targetUser, RecentChangeMailComposer::USER_TALK );
 				$userTalkId = $targetUser->getId();
 			}
 
@@ -289,7 +251,7 @@ class EmailNotification {
 							$watchingUser->getBlock() )
 						&& $hookRunner->onSendWatchlistEmailNotification( $watchingUser, $title, $this )
 					) {
-						$this->compose( $watchingUser, self::WATCHLIST );
+						$composer->compose( $watchingUser, RecentChangeMailComposer::USER_TALK );
 					}
 				}
 			}
@@ -302,10 +264,10 @@ class EmailNotification {
 			}
 			$user = User::newFromName( $name );
 			if ( $user instanceof User ) {
-				$this->compose( $user, self::ALL_CHANGES );
+				$composer->compose( $user, RecentChangeMailComposer::ALL_CHANGES );
 			}
 		}
-		$this->sendMails();
+		$composer->sendMails();
 	}
 
 	/**
@@ -354,267 +316,6 @@ class EmailNotification {
 			wfDebug( __METHOD__ . ": talk page owner doesn't want notifications" );
 		}
 		return false;
-	}
-
-	/**
-	 * Generate the generic "this page has been changed" e-mail text.
-	 */
-	private function composeCommonMailtext() {
-		$services = MediaWikiServices::getInstance();
-		$config = $services->getMainConfig();
-		$userOptionsLookup = $services->getUserOptionsLookup();
-		$urlUtils = $services->getUrlUtils();
-		$messageParser = $services->getMessageParser();
-
-		$this->composed_common = true;
-
-		# You as the WikiAdmin and Sysops can make use of plenty of
-		# named variables when composing your notification emails while
-		# simply editing the Meta pages
-
-		$keys = [];
-		$postTransformKeys = [];
-		$pageTitleUrl = $this->title->getCanonicalURL();
-		$pageTitle = $this->title->getPrefixedText();
-
-		if ( $this->oldid ) {
-			// Always show a link to the diff which triggered the mail. See T34210.
-			$keys['$NEWPAGE'] = "\n\n" . wfMessage(
-					'enotif_lastdiff',
-					$this->title->getCanonicalURL( [ 'diff' => 'next', 'oldid' => $this->oldid ] )
-				)->inContentLanguage()->text();
-
-			if ( !$config->get( MainConfigNames::EnotifImpersonal ) ) {
-				// For personal mail, also show a link to the diff of all changes
-				// since last visited.
-				$keys['$NEWPAGE'] .= "\n\n" . wfMessage(
-						'enotif_lastvisited',
-						$this->title->getCanonicalURL( [ 'diff' => '0', 'oldid' => $this->oldid ] )
-					)->inContentLanguage()->text();
-			}
-			$keys['$OLDID'] = $this->oldid;
-			$keys['$PAGELOG'] = '';
-		} else {
-			// If there is no revision to link to, link to the page log, which should have details. See T115183.
-			$keys['$OLDID'] = '';
-			$keys['$NEWPAGE'] = '';
-			$keys['$PAGELOG'] = "\n\n" . wfMessage(
-					'enotif_pagelog',
-					SpecialPage::getTitleFor( 'Log' )->getCanonicalURL( [ 'page' => $this->title->getPrefixedDBkey() ] )
-				)->inContentLanguage()->text();
-
-		}
-
-		$keys['$PAGETITLE'] = $this->title->getPrefixedText();
-		$keys['$PAGETITLE_URL'] = $this->title->getCanonicalURL();
-		$keys['$PAGEMINOREDIT'] = $this->minorEdit ?
-			"\n\n" . wfMessage( 'enotif_minoredit' )->inContentLanguage()->text() :
-			'';
-		$keys['$UNWATCHURL'] = $this->title->getCanonicalURL( 'action=unwatch' );
-
-		if ( $this->editor->isAnon() ) {
-			# real anon (user:xxx.xxx.xxx.xxx)
-			$keys['$PAGEEDITOR'] = wfMessage( 'enotif_anon_editor', $this->editor->getName() )
-				->inContentLanguage()->text();
-			$keys['$PAGEEDITOR_EMAIL'] = wfMessage( 'noemailtitle' )->inContentLanguage()->text();
-		} elseif ( $this->editor->isTemp() ) {
-			$keys['$PAGEEDITOR'] = wfMessage( 'enotif_temp_editor', $this->editor->getName() )
-				->inContentLanguage()->text();
-			$keys['$PAGEEDITOR_EMAIL'] = wfMessage( 'noemailtitle' )->inContentLanguage()->text();
-		} else {
-			$keys['$PAGEEDITOR'] = $config->get( MainConfigNames::EnotifUseRealName ) &&
-					$this->editor->getRealName() !== ''
-				? $this->editor->getRealName() : $this->editor->getName();
-			$emailPage = SpecialPage::getSafeTitleFor( 'Emailuser', $this->editor->getName() );
-			$keys['$PAGEEDITOR_EMAIL'] = $emailPage->getCanonicalURL();
-		}
-
-		$keys['$PAGEEDITOR_WIKI'] = $this->editor->getTalkPage()->getCanonicalURL();
-		$keys['$HELPPAGE'] = $urlUtils->expand(
-			Skin::makeInternalOrExternalUrl( wfMessage( 'helppage' )->inContentLanguage()->text() ),
-			PROTO_CURRENT
-		) ?? false;
-
-		# Replace this after transforming the message, T37019
-		$postTransformKeys['$PAGESUMMARY'] = $this->summary == '' ? ' - ' : $this->summary;
-
-		// Now build message's subject and body
-
-		// Messages:
-		// enotif_subject_deleted, enotif_subject_created, enotif_subject_moved,
-		// enotif_subject_restored, enotif_subject_changed
-		$this->subject = wfMessage( 'enotif_subject_' . $this->pageStatus )->inContentLanguage()
-			->params( $pageTitle, $keys['$PAGEEDITOR'] )->text();
-
-		// Messages:
-		// enotif_body_intro_deleted, enotif_body_intro_created, enotif_body_intro_moved,
-		// enotif_body_intro_restored, enotif_body_intro_changed
-		$keys['$PAGEINTRO'] = wfMessage( 'enotif_body_intro_' . $this->pageStatus )
-			->inContentLanguage()
-			->params( $pageTitle, $keys['$PAGEEDITOR'], "<{$pageTitleUrl}>" )
-			->text();
-
-		$body = wfMessage( 'enotif_body' )->inContentLanguage()->plain();
-		$body = strtr( $body, $keys );
-		$body = $messageParser->transform( $body, false, null, $this->title );
-		$this->body = wordwrap( strtr( $body, $postTransformKeys ), 72 );
-
-		# Reveal the page editor's address as REPLY-TO address only if
-		# the user has not opted-out and the option is enabled at the
-		# global configuration level.
-		$adminAddress = new MailAddress(
-			$config->get( MainConfigNames::PasswordSender ),
-			wfMessage( 'emailsender' )->inContentLanguage()->text()
-		);
-		if ( $config->get( MainConfigNames::EnotifRevealEditorAddress )
-			&& ( $this->editor->getEmail() != '' )
-			&& $userOptionsLookup->getOption( $this->editor, 'enotifrevealaddr' )
-		) {
-			$editorAddress = MailAddress::newFromUser( $this->editor );
-			if ( $config->get( MainConfigNames::EnotifFromEditor ) ) {
-				$this->from = $editorAddress;
-			} else {
-				$this->from = $adminAddress;
-				$this->replyto = $editorAddress;
-			}
-		} else {
-			$this->from = $adminAddress;
-			$this->replyto = new MailAddress(
-				$config->get( MainConfigNames::NoReplyAddress )
-			);
-		}
-	}
-
-	/**
-	 * Compose a mail to a given user and either queue it for sending, or send it now,
-	 * depending on settings.
-	 *
-	 * Call sendMails() to send any mails that were queued.
-	 * @param UserEmailContact $user
-	 * @param string $source
-	 */
-	private function compose( UserEmailContact $user, $source ) {
-		if ( !$this->composed_common ) {
-			$this->composeCommonMailtext();
-		}
-
-		if ( MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::EnotifImpersonal ) ) {
-			wfDeprecated( 'EnotifImpersonal is now deprecated', '1.44' );
-
-			$this->mailTargets[] = MailAddress::newFromUser( $user );
-		} else {
-			$this->sendPersonalised( $user, $source );
-		}
-	}
-
-	/**
-	 * Send any queued mails
-	 */
-	private function sendMails() {
-		if ( MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::EnotifImpersonal ) ) {
-			wfDeprecated( 'EnotifImpersonal is now deprecated', '1.44' );
-			$this->sendImpersonal( $this->mailTargets );
-		}
-	}
-
-	/**
-	 * Does the per-user customizations to a notification e-mail (name,
-	 * timestamp in proper timezone, etc) and sends it out.
-	 * Returns Status if email was sent successfully or not (Status::newGood()
-	 * or Status::newFatal() respectively).
-	 *
-	 * @param UserEmailContact $watchingUser
-	 * @param string $source
-	 * @return StatusValue
-	 */
-	private function sendPersonalised( UserEmailContact $watchingUser, $source ): StatusValue {
-		// From the PHP manual:
-		//   Note: The to parameter cannot be an address in the form of
-		//   "Something <someone@example.com>". The mail command will not parse
-		//   this properly while talking with the MTA.
-		$to = MailAddress::newFromUser( $watchingUser );
-
-		# $PAGEEDITDATE is the time and date of the page change
-		# expressed in terms of individual local time of the notification
-		# recipient, i.e. watching user
-		$mwServices = MediaWikiServices::getInstance();
-		$contLang = $mwServices->getContentLanguage();
-		$watchingUserName = (
-			$mwServices->getMainConfig()->get( MainConfigNames::EnotifUseRealName ) &&
-			$watchingUser->getRealName() !== ''
-		) ? $watchingUser->getRealName() : $watchingUser->getUser()->getName();
-		$body = str_replace(
-			[
-				'$WATCHINGUSERNAME',
-				'$PAGEEDITDATE',
-				'$PAGEEDITTIME'
-			],
-			[
-				$watchingUserName,
-				$contLang->userDate( $this->timestamp, $watchingUser->getUser() ),
-				$contLang->userTime( $this->timestamp, $watchingUser->getUser() )
-			],
-			$this->body
-		);
-
-		$headers = [];
-		if ( $source === self::WATCHLIST ) {
-			$headers['List-Help'] = 'https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Watchlist';
-		}
-
-		return $mwServices
-			->getEmailer()
-			->send(
-				[ $to ],
-				$this->from,
-				$this->subject,
-				$body,
-				null,
-				[
-					'replyTo' => $this->replyto,
-					'headers' => $headers,
-				]
-			);
-	}
-
-	/**
-	 * Same as sendPersonalised but does impersonal mail suitable for bulk
-	 * mailing.  Takes an array of MailAddress objects.
-	 * @param MailAddress[] $addresses
-	 * @return ?StatusValue
-	 */
-	private function sendImpersonal( array $addresses ): ?StatusValue {
-		if ( count( $addresses ) === 0 ) {
-			return null;
-		}
-		$services = MediaWikiServices::getInstance();
-		$contLang = $services->getContentLanguage();
-		$body = str_replace(
-			[
-				'$WATCHINGUSERNAME',
-				'$PAGEEDITDATE',
-				'$PAGEEDITTIME'
-			],
-			[
-				wfMessage( 'enotif_impersonal_salutation' )->inContentLanguage()->text(),
-				$contLang->date( $this->timestamp, false, false ),
-				$contLang->time( $this->timestamp, false, false )
-			],
-			$this->body
-		);
-
-		return $services
-			->getEmailer()
-			->send(
-				$addresses,
-				$this->from,
-				$this->subject,
-				$body,
-				null,
-				[
-					'replyTo' => $this->replyto,
-				]
-			);
 	}
 
 }
