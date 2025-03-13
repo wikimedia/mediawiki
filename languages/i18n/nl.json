@@ -535,7 +535,7 @@
 	"notloggedin": "Niet aangemeld",
 	"userlogin-noaccount": "Hebt u geen account?",
 	"userlogin-joinproject": "Bij {{SITENAME}} registreren",
-	"createaccount": "Registreren",
+	"createaccount": "Account aanmaken",
 	"userlogin-resetpassword-link": "Wachtwoord vergeten?",
 	"userlogin-helplink2": "Hulp bij aanmelden",
 	"userlogin-loggedin": "U bent al aangemeld als {{GENDER:$1|$1}}.\nGebruik het onderstaande formulier om aan te melden als een andere gebruiker.",

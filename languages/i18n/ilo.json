@@ -13,7 +13,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Matma Rex",
-			"Exec8"
+			"Exec8",
+			"Yivan000"
 		]
 	},
 	"tog-underline": "Pinag-ugisan ti silpo:",
@@ -1034,7 +1035,7 @@
 	"gender-male": "Isuna ket lalaki nga agur-urnos ti pampanid ti wiki",
 	"gender-female": "Isuna ket babai nga agur-urnos ti pampanid ti wiki",
 	"prefs-help-gender": "Ti panangisaad daytoy a kakaykayatan ket saan a nasken.\nTi sopwer ket agus-usar iti pategna tapno tawagannaka ken ibaganaka kadagiti sabali nga agus-usar iti maitunos gramatika ti henero.\nDaytoy a pakaammo ket makitanto iti publiko.",
-	"email": "Esurat",
+	"email": "Email",
 	"prefs-help-realname": "Saan a nasken ti pudno a nagan.\nNo maited, mabalin a maaramatto a panangited iti pammadayaw kenka iti obram.",
 	"prefs-help-email": "Ti adres ti esurat ket saan a masapul, ngem masapul kadagiti panangisaad manen ti kontrasenias, no malipatam ti kontraseniasmo.",
 	"prefs-help-email-others": "Mabalinmo pay ti agpili tapno dagiti sabali nga agar-aramat ket mabalin nga esuratandaka babaen ti silpo ti panidmo wenno ti panid ti tungtungam.\nTi esurat a pagtaengam ket saan a maipakita no agkontak kenka dagiti agar-aramat.",
@@ -3479,7 +3480,7 @@
 	"authmanager-password-help": "Kontrasenias para iti pammasingked.",
 	"authmanager-domain-help": "Dominio para iti akinruar a pammasingked.",
 	"authmanager-retype-help": "Kontrasenias manen tapno mapasingkedan.",
-	"authmanager-email-label": "Esurat",
+	"authmanager-email-label": "Email",
 	"authmanager-email-help": "Adres ti esurat",
 	"authmanager-realname-label": "Pudno a nagan",
 	"authmanager-realname-help": "Pudno a nagan ti agar-aramat",
