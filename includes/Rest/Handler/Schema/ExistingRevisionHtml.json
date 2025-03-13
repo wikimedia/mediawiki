@@ -68,11 +68,11 @@
 			"properties": {
 				"url": {
 					"type": "string",
-					"x-i18n-x-i18n-description": "rest-property-desc-page-license-url-html"
+					"x-i18n-description": "rest-property-desc-page-license-url-html"
 				},
 				"title": {
 					"type": "string",
-					"x-i18n-x-i18n-description": "rest-property-desc-page-license-title-html"
+					"x-i18n-description": "rest-property-desc-page-license-title-html"
 				}
 			}
 		},

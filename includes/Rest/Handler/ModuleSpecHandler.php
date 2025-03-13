@@ -78,9 +78,10 @@ class ModuleSpecHandler extends SimpleHandler {
 		$prefix = $module->getPathPrefix();
 
 		if ( $prefix === '' ) {
-			$title = "Default Module";
+			$title = $this->getJsonLocalizer()->getFormattedMessage( 'rest-default-module' );
 		} else {
-			$title = "$prefix Module";
+			$moduleStr = $this->getJsonLocalizer()->getFormattedMessage( 'rest-module' );
+			$title = "$prefix " . $moduleStr;
 		}
 
 		return $module->getOpenApiInfo() + [

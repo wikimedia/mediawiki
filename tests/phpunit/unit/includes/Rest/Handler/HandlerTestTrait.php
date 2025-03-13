@@ -91,6 +91,12 @@ trait HandlerTestTrait {
 			$hooks instanceof HookContainer ? $hooks : $this->createHookContainer( $hooks );
 
 		$session ??= $this->getSession( true );
+
+		// TODO: Even if we are given a Router (either directly or via a Module), we aren't using
+		//  its formatter, authority, or session to initialize the handler. We can individually
+		//  override authority and session by passing them as parameters, but not formatter.
+		//  Consider either adding a formatter parameter, or using these values from any supplied
+		//  Router. (Router does not currently provide accessors, making this inconvenient.)
 		$handler->initContext( $module, $config['path'] ?? 'test', $config );
 		$handler->initServices( $authority, $responseFactory, $hookContainer );
 		$handler->initSession( $session );

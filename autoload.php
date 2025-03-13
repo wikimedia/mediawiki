@@ -2346,6 +2346,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Rest\\Hook\\SearchResultProvideDescriptionHook' => __DIR__ . '/includes/Rest/Hook/SearchResultProvideDescriptionHook.php',
 	'MediaWiki\\Rest\\HttpException' => __DIR__ . '/includes/Rest/HttpException.php',
 	'MediaWiki\\Rest\\JsonEncodingException' => __DIR__ . '/includes/Rest/JsonEncodingException.php',
+	'MediaWiki\\Rest\\JsonLocalizer' => __DIR__ . '/includes/Rest/JsonLocalizer.php',
 	'MediaWiki\\Rest\\LocalizedHttpException' => __DIR__ . '/includes/Rest/LocalizedHttpException.php',
 	'MediaWiki\\Rest\\Module\\ExtraRoutesModule' => __DIR__ . '/includes/Rest/Module/ExtraRoutesModule.php',
 	'MediaWiki\\Rest\\Module\\MatcherBasedModule' => __DIR__ . '/includes/Rest/Module/MatcherBasedModule.php',

@@ -4,7 +4,8 @@
 	"audience": "dev",
 	"info": {
 		"title": "Specs",
-		"description": "Self-documentation module providing discovery, specs, and schemas for all available modules.",
+		"x-i18n-title": "rest-module-specs.v0-title",
+		"x-i18n-description": "rest-module-specs.v0-desc",
 		"version": "0.1.0"
 	},
 	"paths": {
