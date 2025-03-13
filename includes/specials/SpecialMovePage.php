@@ -789,8 +789,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 			return;
 		}
 
-		if ( $this->getConfig()->get( MainConfigNames::FixDoubleRedirects ) &&
-		$this->fixRedirects ) {
+		if ( $this->getConfig()->get( MainConfigNames::FixDoubleRedirects ) && $this->fixRedirects ) {
 			DoubleRedirectJob::fixRedirects( 'move', $ot );
 		}
 
