@@ -70,4 +70,6 @@ $digitTransformTable = [
 	'9' => '೯', # U+0CEF
 ];
 
+$numberingSystem = 'knda';
+
 $digitGroupingPattern = "#,##,##0.###";

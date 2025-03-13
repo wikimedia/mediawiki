@@ -285,6 +285,13 @@ $datePreferenceMigrationMap = [
 	'fi numeric',
 ];
 
+// In the "se" localisation, JS date formats have leading zeroes in numbers, so override that
+$jsDateFormats = [
+	'fi numeric date' => [ 'locale' => 'fi' ],
+	'fi numeric both' => [ 'locale' => 'fi' ],
+	'fi numeric pretty' => [ 'locale' => 'fi' ],
+];
+
 $bookstoreList = [
 	'Bookplus'                      => 'http://www.bookplus.fi/product.php?isbn=$1',
 	'Helsingin yliopiston kirjasto' => 'http://pandora.lib.hel.fi/cgi-bin/mhask/monihask.py?volname=&author=&keyword=&ident=$1&submit=Hae&engine_helka=ON',

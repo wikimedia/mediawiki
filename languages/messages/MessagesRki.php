@@ -39,6 +39,8 @@ $digitTransformTable = [
 	'9' => '၉',
 ];
 
+$numberingSystem = 'mymr';
+
 $datePreferences = [
 	'default',
 	'my normal',

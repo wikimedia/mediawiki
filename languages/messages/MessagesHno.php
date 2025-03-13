@@ -22,4 +22,6 @@ $digitTransformTable = [
 	'9' => '۹', # U+06f9
 ];
 
+$numberingSystem = 'arabext';
+
 $linkTrail = "/^([آابپتٹثجچحخدڈذرڑزژسشصضطظعغفقکگلمنوہھیے]+)(.*)$/sDu";

@@ -33,6 +33,8 @@ $separatorTransformTable = [
 	',' => '٬', # U+066C
 ];
 
+$numberingSystem = 'arabext';
+
 $fallback8bitEncoding = 'windows-1256';
 
 $namespaceNames = [

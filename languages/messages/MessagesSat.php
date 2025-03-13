@@ -36,3 +36,5 @@ $digitTransformTable = [
 	'8' => '᱘',
 	'9' => '᱙',
 ];
+
+$numberingSystem = 'olck';

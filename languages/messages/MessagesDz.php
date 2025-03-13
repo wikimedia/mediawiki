@@ -17,3 +17,5 @@ $digitTransformTable = [
 	'8' => '༨', # U+0F28
 	'9' => '༩', # U+0F29
 ];
+
+$numberingSystem = 'tibt';

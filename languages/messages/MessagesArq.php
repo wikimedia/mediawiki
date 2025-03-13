@@ -11,6 +11,8 @@ $rtl = true;
 
 $digitTransformTable = [];
 
+$numberingSystem = 'latn';
+
 $separatorTransformTable = [
 	'.' => ',',
 	',' => '.'

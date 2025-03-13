@@ -2390,6 +2390,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\ResourceLoader\\ClientHtml' => __DIR__ . '/includes/ResourceLoader/ClientHtml.php',
 	'MediaWiki\\ResourceLoader\\CodexModule' => __DIR__ . '/includes/ResourceLoader/CodexModule.php',
 	'MediaWiki\\ResourceLoader\\Context' => __DIR__ . '/includes/ResourceLoader/Context.php',
+	'MediaWiki\\ResourceLoader\\DateFormatterConfig' => __DIR__ . '/includes/ResourceLoader/DateFormatterConfig.php',
 	'MediaWiki\\ResourceLoader\\DerivativeContext' => __DIR__ . '/includes/ResourceLoader/DerivativeContext.php',
 	'MediaWiki\\ResourceLoader\\FileModule' => __DIR__ . '/includes/ResourceLoader/FileModule.php',
 	'MediaWiki\\ResourceLoader\\FilePath' => __DIR__ . '/includes/ResourceLoader/FilePath.php',
