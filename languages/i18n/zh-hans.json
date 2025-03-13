@@ -2636,6 +2636,7 @@
 	"block": "封禁用户",
 	"block-manage-blocks": "管理封禁",
 	"unblock": "解封用户",
+	"unblock-error-multiblocks": "请使用[[Special:Block/$1]]以管理多个封禁。",
 	"changeblockip": "更改封禁",
 	"block-cancel": "取消",
 	"block-create": "添加封禁",

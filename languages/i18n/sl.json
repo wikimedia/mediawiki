@@ -4083,7 +4083,7 @@
 	"right-renameuser": "Preimenovanje uporabnikov",
 	"action-renameuser-global": "preimenovanje globalnega uporabnika",
 	"right-renameuser-global": "Globalno preimenovanje uporabnikov",
-	"renameuser-renamed-notice": "Ta {{GENDER:$!|uporabnik je bil preimenovan|uporabnica je bila preimenovana|uporabnik_ca je bil_a preimenovan_a}}.\nSpodaj je za sklicevanje naveden dnevniški zapis preimenovanja.",
+	"renameuser-renamed-notice": "Ta {{GENDER:$1|uporabnik je bil preimenovan|uporabnica je bila preimenovana|uporabnik_ca je bil_a preimenovan_a}}.\nSpodaj je za sklicevanje naveden dnevniški zapis preimenovanja.",
 	"log-unknown-action": "izvedba neznanega dejanja »$2« dne [[$1]]",
 	"createacct-benefit-heading-temp-user": "Hvala, ker prispevate k {{GRAMMAR:dative|{{SITENAME}}}}.\nUstvarite si račun za dostop do več možnosti.",
 	"createacct-benefit-subheading-temp-user": "{{GRAMMAR:{{SITENAME}}}} ustvarjajo ljudje, kot ste vi. Z računom lahko pridobite trajno in varno identiteto z dostopom do možnosti, kot so:",

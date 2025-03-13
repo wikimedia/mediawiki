@@ -2611,6 +2611,7 @@
 	"block": "Блокировка участника",
 	"block-manage-blocks": "Управление блокировками",
 	"unblock": "Разблокировка участника",
+	"unblock-error-multiblocks": "Для управления несколькими блокировками используйте [[Special:Block/$1]].",
 	"changeblockip": "Изменить блокировку",
 	"block-cancel": "Отмена",
 	"block-create": "Добавить блокировку",

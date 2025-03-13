@@ -2219,6 +2219,8 @@
 	"ipb-blocklist": "Kuckt aktuell Spären",
 	"ipb-blocklist-contribs": "Kontributioune vum {{GENDER:$1|$1}}",
 	"ipb-blocklist-duration-left": "$1 iwwreg",
+	"block-added-message": "Spär derbäigesat",
+	"block-updated-message": "Spär aktualiséiert",
 	"block-change-visibility": "Siichtbarkeet änneren",
 	"block-details-description": "Wat fir Aktioune wëllt Dir spären?",
 	"block-expiry": "Gültegkeet:",

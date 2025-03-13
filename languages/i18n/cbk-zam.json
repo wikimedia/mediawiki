@@ -117,7 +117,7 @@
 	"confirmable-no": "No",
 	"thisisdeleted": "Mira o recubri con el $1?",
 	"viewdeleted": "Quiere mira con el $1?",
-	"restorelink": "{{PLURAL:$1|uno ya borra cambia|$1 ya borra maga cambia}}",
+	"restorelink": "{{PLURAL:$1|uno cambio que borra ya|$1 maga cambio que borra ya}}",
 	"site-rss-feed": "$1 Informacion de RSS",
 	"site-atom-feed": "$1 Informacion de Atom",
 	"red-link-title": "$1 (hende ta existi el pagina)",
