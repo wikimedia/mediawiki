@@ -4064,6 +4064,7 @@ class Parser {
 		$normalizedName = strtolower( $name );
 		$isNowiki = $normalizedName === 'nowiki';
 		$markerType = $isNowiki ? 'nowiki' : 'general';
+		$extra = $isNowiki ? 'nowiki' : null;
 		if ( !$this->mStripExtTags ) {
 			$processNowiki = true;
 		}
@@ -4125,7 +4126,7 @@ class Parser {
 		if ( $markerType === 'none' ) {
 			return $output;
 		} elseif ( $markerType === 'nowiki' ) {
-			$this->mStripState->addNoWiki( $marker, $output );
+			$this->mStripState->addNoWiki( $marker, $output, $extra );
 		} elseif ( $markerType === 'general' ) {
 			$this->mStripState->addGeneral( $marker, $output );
 		} elseif ( $markerType === 'exttag' ) {
