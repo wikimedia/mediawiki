@@ -128,6 +128,6 @@ describe( 'BlockLog', () => {
 		// Fourth is a block entered with an exact datetime, and so should not show a relative expiry.
 		expect( wrapper.find(
 			'.mw-block-log__type-recent tr:nth-child(4) .mw-block-log__parameters li:first-child'
-		).text() ).toStrictEqual( 'Sep 20, 2029, 14:31 UTC' );
+		).text() ).toStrictEqual( '2029-09-20T14:31:51.000Z' );
 	} );
 } );

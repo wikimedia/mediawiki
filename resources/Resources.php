@@ -2348,6 +2348,7 @@ return [
 			'mediawiki.jqueryMsg',
 			'mediawiki.confirmCloseWindow',
 			'mediawiki.Title',
+			'mediawiki.DateFormatter',
 		],
 		'messages' => [
 			'api-error-unknownerror',

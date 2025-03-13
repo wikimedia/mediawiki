@@ -56,6 +56,7 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
+use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNamePrefixSearch;
@@ -82,6 +83,8 @@ class SpecialBlock extends FormSpecialPage {
 	private UserNamePrefixSearch $userNamePrefixSearch;
 	private BlockActionInfo $blockActionInfo;
 	private TitleFormatter $titleFormatter;
+	private NamespaceInfo $namespaceInfo;
+	private UserOptionsLookup $userOptionsLookup;
 
 	/** @var BlockTarget|null User to be blocked, as passed either by parameter
 	 * (url?wpTarget=Foo) or as subpage (Special:Block/Foo)
@@ -110,8 +113,6 @@ class SpecialBlock extends FormSpecialPage {
 	 */
 	protected array $codexFormData = [];
 
-	private NamespaceInfo $namespaceInfo;
-
 	public function __construct(
 		BlockTargetFactory $blockTargetFactory,
 		BlockPermissionCheckerFactory $blockPermissionCheckerFactory,
@@ -121,7 +122,8 @@ class SpecialBlock extends FormSpecialPage {
 		UserNamePrefixSearch $userNamePrefixSearch,
 		BlockActionInfo $blockActionInfo,
 		TitleFormatter $titleFormatter,
-		NamespaceInfo $namespaceInfo
+		NamespaceInfo $namespaceInfo,
+		UserOptionsLookup $userOptionsLookup
 	) {
 		parent::__construct( 'Block', 'block' );
 
@@ -134,6 +136,7 @@ class SpecialBlock extends FormSpecialPage {
 		$this->blockActionInfo = $blockActionInfo;
 		$this->titleFormatter = $titleFormatter;
 		$this->namespaceInfo = $namespaceInfo;
+		$this->userOptionsLookup = $userOptionsLookup;
 		$this->useCodex = $this->getConfig()->get( MainConfigNames::UseCodexSpecialBlock ) ||
 			$this->getRequest()->getBool( 'usecodex' );
 		$this->useMultiblocks = $this->getConfig()->get( MainConfigNames::EnableMultiBlocks ) ||
