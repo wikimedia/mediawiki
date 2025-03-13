@@ -2328,6 +2328,7 @@ return [
 			'mediawiki.api',
 			'mediawiki.util',
 			'mediawiki.jqueryMsg',
+			'mediawiki.confirmCloseWindow',
 		],
 		'messages' => [
 			'blanknamespace',
