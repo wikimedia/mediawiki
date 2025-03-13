@@ -360,7 +360,40 @@ class ApiParamValidatorTest extends ApiTestCase {
 					'issues' => [
 						'X',
 						ApiBase::PARAM_HELP_MSG_PER_VALUE
-							=> 'PARAM_HELP_MSG_PER_VALUE can only be used with PARAM_TYPE as an array',
+							=> 'PARAM_HELP_MSG_PER_VALUE can only be used with PARAM_TYPE as an array, or PARAM_TYPE = string and PARAM_ISMULTI = true',
+					],
+					'allowedKeys' => $keys,
+					'messages' => [
+						MessageValue::new( 'apihelp-query+allpages-param-test' ),
+					],
+				]
+			],
+			'valid PARAM_HELP_MSG_PER_VALUE for array type' => [
+				[ 'test' => [
+					ParamValidator::PARAM_TYPE => [],
+					ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+				] ],
+				'test',
+				[
+					'issues' => [
+						'X',
+					],
+					'allowedKeys' => $keys,
+					'messages' => [
+						MessageValue::new( 'apihelp-query+allpages-param-test' ),
+					],
+				]
+			],
+			'valid PARAM_HELP_MSG_PER_VALUE for multi string type' => [
+				[ 'test' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+					ParamValidator::PARAM_ISMULTI => true,
+				] ],
+				'test',
+				[
+					'issues' => [
+						'X',
 					],
 					'allowedKeys' => $keys,
 					'messages' => [

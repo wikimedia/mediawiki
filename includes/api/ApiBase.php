@@ -2004,6 +2004,7 @@ abstract class ApiBase extends ContextSource {
 				array_multisort( $submoduleFlags, $submoduleNames, $submodules );
 				$msgs[$param] = array_merge( $msgs[$param], $submodules );
 			} elseif ( isset( $settings[self::PARAM_HELP_MSG_PER_VALUE] ) ) {
+				// ! keep these checks in sync with \MediaWiki\Api\Validator\ApiParamValidator::checkSettings
 				if ( !is_array( $settings[self::PARAM_HELP_MSG_PER_VALUE] ) ) {
 					self::dieDebug( __METHOD__,
 						'ApiBase::PARAM_HELP_MSG_PER_VALUE is not valid' );
