@@ -219,6 +219,7 @@ $wgAutoloadLocalClasses = [
 	'CdnCacheUpdate' => __DIR__ . '/includes/deferred/CdnCacheUpdate.php',
 	'CdnPurgeJob' => __DIR__ . '/includes/jobqueue/jobs/CdnPurgeJob.php',
 	'CentralIdLookup' => __DIR__ . '/includes/user/CentralId/CentralIdLookup.php',
+	'CentralKurdishUppercaseCollation' => __DIR__ . '/includes/collation/CentralKurdishUppercaseCollation.php',
 	'ChangePassword' => __DIR__ . '/maintenance/changePassword.php',
 	'ChangeTags' => __DIR__ . '/includes/changetags/ChangeTags.php',
 	'ChangeTagsList' => __DIR__ . '/includes/changetags/ChangeTagsList.php',

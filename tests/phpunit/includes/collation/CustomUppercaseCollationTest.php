@@ -18,7 +18,8 @@ class CustomUppercaseCollationTest extends MediaWikiIntegrationTestCase {
 				'D',
 				'C',
 				'Cs',
-				'B'
+				[ 'V', 'W' ],
+				'B',
 			],
 			'en' // digital transformation language
 		);
@@ -44,7 +45,9 @@ class CustomUppercaseCollationTest extends MediaWikiIntegrationTestCase {
 			[ 'c', 'b', 'lowercase' ],
 			[ 'x', 'z', 'lowercase original' ],
 			[ 'Cz', 'Cs', 'digraphs' ],
-			[ 'C50D', 'C100', 'Numbers' ]
+			[ 'C50D', 'C100', 'Numbers' ],
+			[ 'V', 'b', 'Equal weight groups' ],
+			[ 'W', 'b', 'Equal weight groups' ],
 		];
 	}
 
@@ -64,13 +67,17 @@ class CustomUppercaseCollationTest extends MediaWikiIntegrationTestCase {
 			[ "\u{F3000}Foo", 'D' ],
 			[ "\u{F3001}Foo", 'C' ],
 			[ "\u{F3002}Foo", 'Cs' ],
-			[ "\u{F3003}Foo", 'B' ],
-			[ "\u{F3004}Foo", "\u{F3004}" ],
+			[ "\u{F3004}Foo", 'B' ],
+			[ "\u{F3005}Foo", "\u{F3005}" ],
 			[ 'C', 'C' ],
 			[ 'Cz', 'C' ],
 			[ 'Cs', 'Cs' ],
 			[ 'CS', 'Cs' ],
 			[ 'cs', 'Cs' ],
+			[ 'V', 'V' ],
+			[ 'v', 'V' ],
+			[ 'w', 'V' ],
+			[ 'W', 'V' ],
 		];
 	}
 }

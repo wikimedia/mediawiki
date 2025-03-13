@@ -55,7 +55,7 @@ class CustomUppercaseCollation extends NumericUppercaseCollation {
 	 * @note This assumes $alphabet does not contain U+F3000-U+F3FFF
 	 *
 	 * @param LanguageFactory $languageFactory
-	 * @param array $alphabet Sorted array of uppercase characters.
+	 * @param array $alphabet Sorted array of uppercase characters. Can have array elements for equal weight chars
 	 * @param string|Language $digitTransformLang What language for number sorting.
 	 */
 	public function __construct(
@@ -66,17 +66,22 @@ class CustomUppercaseCollation extends NumericUppercaseCollation {
 		if ( count( $alphabet ) < 1 || count( $alphabet ) >= 4096 ) {
 			throw new UnexpectedValueException( "Alphabet must be < 4096 items" );
 		}
-		$this->firstLetters = $alphabet;
 		$digitTransformLang = $digitTransformLang instanceof Language
 			? $digitTransformLang
 			: $languageFactory->getLanguage( $digitTransformLang );
-		// For digraphs, only the first letter is capitalized in input
-		$this->alphabet = array_map( [ $digitTransformLang, 'uc' ], $alphabet );
 
 		$this->puaSubset = [];
+		$this->alphabet = [];
 		$len = count( $alphabet );
 		for ( $i = 0; $i < $len; $i++ ) {
-			$this->puaSubset[] = "\xF3\xB3" . chr( (int)floor( $i / 64 ) + 128 ) . chr( ( $i % 64 ) + 128 );
+			// We allow alphabet to contain array members if multiple characters should be sorted as equivalent.
+			for ( $j = 0; $j < count( (array)( $alphabet[$i] ) ); $j++ ) {
+				$this->puaSubset[] = "\xF3\xB3" . chr( (int)floor( $i / 64 ) + 128 ) . chr( ( $i % 64 ) + 128 );
+				// For digraphs, we uppercase it all during sorting but not when displaying first letter.
+				$this->alphabet[] = $digitTransformLang->uc( ( (array)( $alphabet[$i] ) )[$j] );
+				// Note: first letters is always first of group
+				$this->firstLetters[] = ( (array)( $alphabet[$i] ) )[0];
+			}
 		}
 
 		// Sort these arrays so that any trigraphs, digraphs etc. are first

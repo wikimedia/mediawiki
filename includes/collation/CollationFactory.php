@@ -104,6 +104,12 @@ class CollationFactory {
 				'LanguageFactory',
 			]
 		],
+		'uppercase-ckb' => [
+			'class' => \CentralKurdishUppercaseCollation::class,
+			'services' => [
+				'LanguageFactory',
+			]
+		],
 	];
 
 	/** @var ServiceOptions */
