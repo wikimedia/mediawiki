@@ -3,11 +3,7 @@
  * @author Santhosh Thottingal
  */
 
-mw.language.convertGrammar = function ( word, form ) {
-	const grammarForms = mw.language.getData( 'hu', 'grammarForms' );
-	if ( grammarForms && grammarForms[ form ] ) {
-		return grammarForms[ form ][ word ];
-	}
+mw.language.convertGrammarMapping.hu = function ( word, form ) {
 	switch ( form ) {
 		case 'rol':
 			word += 'ról';

@@ -2,12 +2,7 @@
  * Armenian (Հայերեն) language functions
  */
 
-mw.language.convertGrammar = function ( word, form ) {
-	const grammarForms = mw.language.getData( 'hy', 'grammarForms' );
-	if ( grammarForms && grammarForms[ form ] ) {
-		return grammarForms[ form ][ word ];
-	}
-
+mw.language.convertGrammarMapping.hy = function ( word, form ) {
 	// These rules are not perfect, but they are currently only used for site names so it doesn't
 	// matter if they are wrong sometimes. Just add a special case for your site name if necessary.
 

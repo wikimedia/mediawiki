@@ -3,8 +3,7 @@
  * @author Santhosh Thottingal
  */
 
-mw.language.convertGrammar = function ( word, form ) {
-	const grammarForms = mw.language.getData( 'os', 'grammarForms' );
+mw.language.convertGrammarMapping.os = function ( word, form ) {
 	// Ending for allative case
 	let endAllative = 'мæ',
 		// Variable for 'j' beetwen vowels
@@ -14,9 +13,6 @@ mw.language.convertGrammar = function ( word, form ) {
 		// Variable for ending
 		ending = '';
 
-	if ( grammarForms && grammarForms[ form ] ) {
-		return grammarForms[ form ][ word ];
-	}
 	// Checking if the $word is in plural form
 	if ( /тæ$/i.test( word ) ) {
 		word = word.slice( 0, -1 );

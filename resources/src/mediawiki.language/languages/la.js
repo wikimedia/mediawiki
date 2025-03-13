@@ -3,11 +3,7 @@
  * @author Santhosh Thottingal
  */
 
-mw.language.convertGrammar = function ( word, form ) {
-	const grammarForms = mw.language.getData( 'la', 'grammarForms' );
-	if ( grammarForms && grammarForms[ form ] ) {
-		return grammarForms[ form ][ word ];
-	}
+mw.language.convertGrammarMapping.la = function ( word, form ) {
 	switch ( form ) {
 		case 'genitive':
 			// only a few declensions, and even for those mostly the singular only

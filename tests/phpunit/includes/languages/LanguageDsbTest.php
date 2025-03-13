@@ -41,4 +41,17 @@ class LanguageDsbTest extends LanguageClassesTestCase {
 			[ 'other', 555 ],
 		];
 	}
+
+	/**
+	 * @dataProvider provideConvertGrammar
+	 */
+	public function testConvertGrammar( string $word, string $case, string $expected ): void {
+		$this->assertSame( $expected, $this->getLang()->convertGrammar( $word, $case ) );
+	}
+
+	public static function provideConvertGrammar(): iterable {
+		yield [ 'word', 'nominatiw', 'word' ];
+		yield [ 'word', 'instrumental', 'wo z word' ];
+		yield [ 'word', 'lokatiw', 'wo word' ];
+	}
 }

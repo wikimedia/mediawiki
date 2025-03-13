@@ -4,7 +4,7 @@
 	/* eslint-disable camelcase */
 	let formatText, formatParse, specialCharactersPageName, expectedListUsers,
 		expectedListUsersSitename, expectedLinkPagenamee, expectedEntrypoints;
-	const testData = require( 'mediawiki.language.testdata' ),
+	const testData = require( 'mediawiki.language.jqueryMsg.testdata' ),
 		phpParserData = testData.phpParserData;
 
 	// When the expected result is the same in both modes

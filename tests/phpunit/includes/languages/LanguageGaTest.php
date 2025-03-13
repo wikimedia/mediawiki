@@ -37,4 +37,23 @@ class LanguageGaTest extends LanguageClassesTestCase {
 			[ 'other', 200 ],
 		];
 	}
+
+	/**
+	 * @dataProvider provideConvertGrammar
+	 */
+	public function testConvertGrammar( string $word, string $case, string $expected ): void {
+		$this->assertSame( $expected, $this->getLang()->convertGrammar( $word, $case ) );
+	}
+
+	public static function provideConvertGrammar(): iterable {
+		yield [ 'an Domhnach', 'ainmlae', 'Dé Domhnaigh' ];
+		yield [ 'an Luan', 'ainmlae', 'Dé Luain' ];
+		yield [ 'an Mháirt', 'ainmlae', 'Dé Mháirt' ];
+		yield [ 'an Chéadaoin', 'ainmlae', 'Dé Chéadaoin' ];
+		yield [ 'an Déardaoin', 'ainmlae', 'Déardaoin' ];
+		yield [ 'an Aoine', 'ainmlae', 'Dé hAoine' ];
+		yield [ 'an Satharn', 'ainmlae', 'Dé Sathairn' ];
+
+		yield [ 'an Domhnach', 'other', 'an Domhnach' ];
+	}
 }

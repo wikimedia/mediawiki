@@ -1,12 +1,7 @@
 /*!
  * Lower Sorbian (Dolnoserbski) language functions
  */
-
-mw.language.convertGrammar = function ( word, form ) {
-	const grammarForms = mw.language.getData( 'dsb', 'grammarForms' );
-	if ( grammarForms && grammarForms[ form ] ) {
-		return grammarForms[ form ][ word ];
-	}
+mw.language.convertGrammarMapping.dsb = function ( word, form ) {
 	switch ( form ) {
 		case 'instrumental': // instrumental
 			word = 'z ' + word;

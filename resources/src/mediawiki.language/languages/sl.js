@@ -2,11 +2,7 @@
  * Slovenian (Slovenščina) language functions
  */
 
-mw.language.convertGrammar = function ( word, form ) {
-	const grammarForms = mw.language.getData( 'sl', 'grammarForms' );
-	if ( grammarForms && grammarForms[ form ] ) {
-		return grammarForms[ form ][ word ];
-	}
+mw.language.convertGrammarMapping.sl = function ( word, form ) {
 	switch ( form ) {
 		case 'mestnik': // locative
 			word = 'o ' + word;
