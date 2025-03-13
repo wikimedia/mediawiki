@@ -244,6 +244,10 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideCanonicalizeLoginData() {
 		return [
+			// T388255
+			[ '', '', false ],
+			[ 'user', '', false ],
+			[ '', '12345678901234567890123456789012', false ],
 			[ 'user', 'pass', false ],
 			[ 'user', 'abc@def', false ],
 			[ 'legacy@user', 'pass', false ],
