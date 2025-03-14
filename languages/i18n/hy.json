@@ -1532,6 +1532,7 @@
 	"ipblocklist-legend": "Արգելափակված մասնակցի որոնում",
 	"blocklist-type": "Տեսակ՝",
 	"blocklist-type-header": "Տեսակ",
+	"blocklist-actions-header": "Գործողություններ",
 	"blocklist-type-opt-all": "Բոլորը",
 	"blocklist-type-opt-sitewide": "Ամբողջ նախագծում",
 	"blocklist-type-opt-partial": "Մասամբ",

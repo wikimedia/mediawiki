@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Aram",
 			"Arastein",
 			"Asoxor",
 			"Calak",
@@ -105,7 +106,7 @@
 	"duration-decades": "$1 {{PLURAL:$1|دەیە|دەیە}}",
 	"duration-years": "$1 {{PLURAL:$1|ساڵ|ساڵ}}",
 	"duration-weeks": "$1 {{PLURAL:$1|ھەفتە|ھەفتە}}",
-	"duration-days": "$1 {{PLURAL:$1|ڕۆژ|ڕۆژ}}",
+	"duration-days": "$1 {{PLURAL:$1|ڕۆژ}}",
 	"duration-hours": "$1 {{PLURAL:$1|کاتژمێر|کاتژمێر}}",
 	"duration-minutes": "$1 {{PLURAL:$1|خولەک|خولەک}}",
 	"duration-seconds": "$1 {{PLURAL:$1|چرکە|چرکە}}",

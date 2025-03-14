@@ -2656,6 +2656,8 @@
 	"ipb-blocklist": "Показать действующие блокировки",
 	"ipb-blocklist-contribs": "Вклад {{GENDER:$1|$1}}",
 	"ipb-blocklist-duration-left": "осталось $1",
+	"block-added-message": "Блокировка добавлена",
+	"block-updated-message": "Блокировка обновлена",
 	"block-actions": "Тип блокировки",
 	"block-change-visibility": "Изменить видимость",
 	"block-details": "Подробности блокировки",

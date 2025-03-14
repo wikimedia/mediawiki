@@ -1086,6 +1086,8 @@
 	"apihelp-query+random-extended-description": "Paginas se lista in un sequentia fixe; solmente le puncto de initio es aleatori. Isto significa que si, per exemplo, <samp>Main Page</samp> es le prime pagina aleatori in le lista, <samp>List of fictional monkeys</samp> essera <em>sempre</em> le secunde, <samp>List of people on stamps of Vanuatu</samp> le tertie, etc.",
 	"apihelp-query+random-param-namespace": "Restituer solmente paginas in iste spatio de nomines.",
 	"apihelp-query+random-param-limit": "Limitar quante paginas aleatori se restitue.",
+	"apihelp-query+random-param-minsize": "Limitar al paginas con al minus iste numero de bytes.",
+	"apihelp-query+random-param-maxsize": "Limitar al paginas con al plus iste numero de bytes.",
 	"apihelp-query+random-param-redirect": "Usa <kbd>$1filterredir=redirects</kbd> in su loco.",
 	"apihelp-query+random-param-filterredir": "Como filtrar pro monstrar redirectiones.",
 	"apihelp-query+random-example-simple": "Restituer duo paginas aleatori del spatio de nomines principal.",

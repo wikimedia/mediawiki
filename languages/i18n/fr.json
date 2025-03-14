@@ -2685,6 +2685,8 @@
 	"ipb-blocklist": "Voir les blocages existants",
 	"ipb-blocklist-contribs": "Contributions pour {{GENDER:$1|}}$1",
 	"ipb-blocklist-duration-left": "$1 restant",
+	"block-added-message": "Blocage ajouté",
+	"block-updated-message": "Blocage mis à jour",
 	"block-actions": "Type de blocage",
 	"block-change-visibility": "Modifier la visibilité",
 	"block-details": "Détails du blocage",

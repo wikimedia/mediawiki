@@ -2681,6 +2681,8 @@
 	"ipb-blocklist": "查看现有封禁",
 	"ipb-blocklist-contribs": "{{GENDER:$1|$1}}的贡献",
 	"ipb-blocklist-duration-left": "剩余$1",
+	"block-added-message": "已添加封禁",
+	"block-updated-message": "已更新封禁",
 	"block-actions": "封禁类型",
 	"block-change-visibility": "更改可见性",
 	"block-details": "封禁细节",

@@ -2605,6 +2605,8 @@
 	"ipb-blocklist": "檢視目前的封鎖",
 	"ipb-blocklist-contribs": "{{GENDER:$1|$1}}的貢獻",
 	"ipb-blocklist-duration-left": "剩下 $1",
+	"block-added-message": "已新增封鎖",
+	"block-updated-message": "已更新封鎖",
 	"block-actions": "封鎖類型：",
 	"block-change-visibility": "變更可見性",
 	"block-details": "詳細封鎖資訊",

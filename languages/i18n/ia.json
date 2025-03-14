@@ -2473,6 +2473,8 @@
 	"ipb-blocklist": "Vider blocadas existente",
 	"ipb-blocklist-contribs": "Contributiones de {{GENDER:$1|$1}}",
 	"ipb-blocklist-duration-left": "$1 restante",
+	"block-added-message": "Blocada addite",
+	"block-updated-message": "Blocada actualisate",
 	"block-actions": "Typo de blocada",
 	"block-change-visibility": "Cambiar visibilitate",
 	"block-details": "Detalios del blocada",

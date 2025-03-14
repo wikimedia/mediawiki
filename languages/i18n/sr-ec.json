@@ -2419,6 +2419,7 @@
 	"block": "Блокирање корисника",
 	"block-manage-blocks": "Управљање блокадама",
 	"unblock": "Деблокирање корисника",
+	"unblock-error-multiblocks": "Молимо користите [[Special:Block/$1]] за вишеструке блокаде.",
 	"changeblockip": "Промени блокаду",
 	"block-cancel": "Откажи",
 	"block-create": "Додај блокаду",
