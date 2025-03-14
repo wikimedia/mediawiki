@@ -7,7 +7,7 @@ use MediaWiki\DomainEvent\DomainEvent;
 use MediaWiki\DomainEvent\DomainEventSource;
 use MediaWiki\DomainEvent\DomainEventSubscriber;
 use MediaWiki\DomainEvent\EventDispatchEngine;
-use MediaWiki\DomainEvent\EventSubscriberBase;
+use MediaWiki\DomainEvent\EventIngressBase;
 use MediaWiki\Tests\MockDatabase;
 use MediaWikiUnitTestCase;
 use Wikimedia\ObjectFactory\ObjectFactory;
@@ -277,7 +277,7 @@ class EventDispatchEngineTest extends MediaWikiUnitTestCase {
 
 		$trace = [];
 
-		$subscriber = new class ( $trace ) extends EventSubscriberBase {
+		$subscriber = new class ( $trace ) extends EventIngressBase {
 			private $trace;
 
 			public function __construct( &$trace ) {

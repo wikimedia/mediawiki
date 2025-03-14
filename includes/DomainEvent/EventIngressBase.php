@@ -6,22 +6,40 @@ use InvalidArgumentException;
 use LogicException;
 
 /**
- * Base class for classes that implement DomainEventSubscriber.
+ * Base class for event ingress objects.
+ *
+ * Event ingress objects implements listener methods for events that a
+ * component or extension is interested in. It is responsible for determining
+ * which event should trigger which logic in the component and for mapping from
+ * the model used by the emitter of the event to the component's own model.
+ *
+ * EventIngressBase implements InitializableDomainEventSubscriber so it can be
+ * registered with and initialized by a DomainEventSource. Registration is
+ * typically done in the form of an object spec for lazy instantiation. For
+ * extensions' ingress objects that object spec can be provided in the
+ * DomainEventSubscribers section of extension.json.
+ *
+ * After instantiating a subscriber (typically a subclass of EventIngressBase),
+ * the event source will call initSubscriber() to initialize the subscriber and
+ * then registerListeners() to allow the subscriber to register listeners for
+ * the events it is interested in.
  *
  * This class provides a default implementation of registerListeners() that will
- * attempt to find listener methods for the events defined in the constructor.
- * Listener methods must have a name based on the event type, following the
- * pattern "handle{$eventType}Event".
+ * attempt to find listener methods for the events the ingress object is
+ * interested in. Listener methods must have a name based on the event type,
+ * following the pattern "handle{$eventType}Event".
  *
- * Subclasses can either override registerListeners() and register listeners
- * directly with the given DomainEventSource, or they can rely on the default
- * implementation of registerListeners() which will automatically register
- * method for each event passed to the constructor based on a naming convention.
+ * The set of events the ingress objects is interested in must be provided as
+ * part of the $options array passed to initSubscriber() when it is called by
+ * the event source. This array is simply the same as the object spec used to
+ * register the ingress object with the event source. That means that for
+ * extensions, the list of events is given as part of the ingress object's spec
+ * in extension.json.
  *
  * @since 1.44
  * @unstable until 1.45, should become stable to extend
  */
-abstract class EventSubscriberBase implements InitializableDomainEventSubscriber {
+abstract class EventIngressBase implements InitializableDomainEventSubscriber {
 
 	/**
 	 * @var string[]
@@ -29,18 +47,14 @@ abstract class EventSubscriberBase implements InitializableDomainEventSubscriber
 	private array $eventTypes = [];
 
 	/**
-	 * May be called from the constructor of subclasses that want to
-	 * directly specify the list of events.
-	 *
-	 * @param string[] $events
-	 */
-	protected function initEvents( array $events ): void {
-		$this->initSubscriber( [ 'events' => $events ] );
-	}
-
-	/**
 	 * Called by DomainEventDispatcher to provide access to the list of events to
 	 * subscribe to and any other relevant information from the extension.json.
+	 *
+	 * Known keys used in $options:
+	 * - 'events': a list of events the ingress object should register listeners
+	 *   for (required). The object must implement a listener method for each
+	 *   of the events listed here, using the following pattern:
+	 *   public function handleSomeEventEvent( SomeEvent $event ).
 	 *
 	 * @param array $options the object spec describing the subscriber, typically
 	 *        from extension.json.
@@ -139,7 +153,7 @@ abstract class EventSubscriberBase implements InitializableDomainEventSubscriber
 
 		if ( !$this->eventTypes ) {
 			throw new LogicException(
-				'Subclassed of EventSubscriberBase must either override ' .
+				'Subclassed of EventIngressBase must either override ' .
 				'registerListeners or provide a list of event types via ' .
 				'initSubscriber() or initEvents().'
 			);
@@ -151,3 +165,6 @@ abstract class EventSubscriberBase implements InitializableDomainEventSubscriber
 	}
 
 }
+
+/** @deprecated temporary alias, remove before 1.44 release (T389033) */
+class_alias( EventIngressBase::class, 'MediaWiki\DomainEvent\EventSubscriberBase' );

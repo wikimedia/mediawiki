@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Languages;
 
-use MediaWiki\DomainEvent\EventSubscriberBase;
+use MediaWiki\DomainEvent\EventIngressBase;
 use MediaWiki\Page\Event\PageDeletedEvent;
 use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Revision\SlotRecord;
@@ -14,7 +14,7 @@ use MessageCache;
  *
  * @internal
  */
-class LanguageEventIngress extends EventSubscriberBase {
+class LanguageEventIngress extends EventIngressBase {
 
 	private MessageCache $messageCache;
 
