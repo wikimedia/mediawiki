@@ -3,6 +3,7 @@
 		:is-fieldset="true"
 		:status="status"
 		:messages="messages"
+		:key="refreshKey"
 	>
 		<cdx-lookup
 			v-model:selected="selection"
@@ -83,6 +84,12 @@ module.exports = exports = defineComponent( {
 		 * @type {Ref<DefineSetupFnComponent>}
 		 */
 		const customComponents = shallowRef( [] );
+		/**
+		 * A key to force the component to re-render.
+		 *
+		 * @type {Ref<number>}
+		 */
+		const refreshKey = ref( 0 );
 		let htmlInput;
 
 		onMounted( () => {
@@ -98,6 +105,13 @@ module.exports = exports = defineComponent( {
 			if ( !!targetUser.value && !store.targetExists ) {
 				validate();
 			}
+
+			// If loaded from bfcache, re-render the component to ensure the correct state.
+			window.addEventListener( 'pageshow', ( event ) => {
+				if ( event.persisted ) {
+					refreshKey.value += 1;
+				}
+			} );
 
 			/**
 			 * Hook for custom components to be added to the UserLookup component.
@@ -306,7 +320,8 @@ module.exports = exports = defineComponent( {
 			selection,
 			status,
 			messages,
-			customComponents
+			customComponents,
+			refreshKey
 		};
 	}
 } );
