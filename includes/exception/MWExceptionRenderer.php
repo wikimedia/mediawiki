@@ -177,6 +177,7 @@ class MWExceptionRenderer {
 		if ( self::useOutputPage( $e ) ) {
 			$out = RequestContext::getMain()->getOutput();
 			$out->prepareErrorPage();
+			$out->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
 			$out->setPageTitleMsg( self::getExceptionTitle( $e ) );
 
 			// Show any custom GUI message before the details
