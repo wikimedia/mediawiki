@@ -190,16 +190,10 @@ class OutputPage extends ContextSource {
 	 */
 	protected $mLastModified = '';
 
-	/**
-	 * @var string[][]
-	 * @deprecated since 1.38; will be made private (T301020)
-	 */
+	/** @var array<string,string[]> */
 	private $mCategoryLinks = [];
 
-	/**
-	 * @var string[][]
-	 * @deprecated since 1.38, will be made private (T301020)
-	 */
+	/** @var array<string,string[]> */
 	private $mCategories = [
 		'hidden' => [],
 		'normal' => [],
@@ -223,10 +217,7 @@ class OutputPage extends ContextSource {
 	 */
 	private bool $mCategoriesSorted = true;
 
-	/**
-	 * @var array<string,string>
-	 * @deprecated since 1.38; will be made private (T301020)
-	 */
+	/** @var array<string,string> */
 	private array $mIndicators = [];
 
 	/**
@@ -248,8 +239,8 @@ class OutputPage extends ContextSource {
 	protected $mAdditionalHtmlClasses = [];
 
 	/**
-	 * @var string[] Array of elements in "<head>". Parser might add its own headers!
-	 * @deprecated since 1.38; will be made private (T301020)
+	 * @var array<string,string> Array of additional elements for the HTML <head>. Parser might add
+	 *  its own headers!
 	 */
 	private $mHeadItems = [];
 
@@ -278,16 +269,10 @@ class OutputPage extends ContextSource {
 	/** @var array */
 	private $rlExemptStyleModules;
 
-	/**
-	 * @var array
-	 * @deprecated since 1.38; will be made private (T301020)
-	 */
+	/** @var array<string,mixed> */
 	private $mJsConfigVars = [];
 
-	/**
-	 * @var array<int,array<string,int>>
-	 * @deprecated since 1.38; will be made private (T301020)
-	 */
+	/** @var array<int,array<string,int>> */
 	private $mTemplateIds = [];
 
 	/** @var array */
@@ -331,30 +316,19 @@ class OutputPage extends ContextSource {
 	 * @var bool Set to false to send no-cache headers, disabling
 	 * client-side caching. (This variable should really be named
 	 * in the opposite sense; see ::disableClientCache().)
-	 * @deprecated since 1.38; will be made private (T301020)
 	 */
 	private $mEnableClientCache = true;
 
 	/** @var bool Flag if output should only contain the body of the article. */
 	private $mArticleBodyOnly = false;
 
-	/**
-	 * @var bool
-	 * @deprecated since 1.38; will be made private (T301020)
-	 */
-	private $mNewSectionLink = false;
-
-	/**
-	 * @var bool
-	 * @deprecated since 1.38; will be made private (T301020)
-	 */
-	private $mHideNewSectionLink = false;
+	private bool $mNewSectionLink = false;
+	private bool $mHideNewSectionLink = false;
 
 	/**
 	 * @var bool Comes from the parser. This was probably made to load CSS/JS
 	 * only if we had "<gallery>". Used directly in CategoryViewer.php.
 	 * Looks like ResourceLoader can replace this.
-	 * @deprecated since 1.38; will be made private (T301020)
 	 */
 	private $mNoGallery = false;
 
@@ -788,9 +762,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Get an array of head items
-	 *
-	 * @return string[]
+	 * @return array<string,string> Array of additional elements for the HTML <head>
 	 */
 	public function getHeadItemsArray() {
 		return $this->mHeadItems;
@@ -1762,7 +1734,7 @@ class OutputPage extends ContextSource {
 	 * hidden categories) and $link a HTML fragment with a link to the category
 	 * page
 	 *
-	 * @return string[][]
+	 * @return array<string,string[]>
 	 * @return-taint none
 	 */
 	public function getCategoryLinks() {
@@ -3993,7 +3965,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get the javascript config vars to include on this page
 	 *
-	 * @return array Array of javascript config vars
+	 * @return array<string,mixed> Maps config variable names to values
 	 * @since 1.23
 	 */
 	public function getJsConfigVars() {
@@ -4003,7 +3975,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add one or more variables to be set in mw.config in JavaScript
 	 *
-	 * @param string|array $keys Key or array of key/value pairs
+	 * @param string|array<string,mixed> $keys Key or array of key/value pairs
 	 * @param mixed|null $value [optional] Value of the configuration variable
 	 */
 	public function addJsConfigVars( $keys, $value = null ) {
