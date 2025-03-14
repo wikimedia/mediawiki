@@ -190,7 +190,7 @@ class EventDispatchEngine implements DomainEventDispatcher, DomainEventSource {
 		$dbw = $dbProvider->getPrimaryDatabase();
 		DeferredUpdates::addUpdate( new MWCallableUpdate(
 			function () use ( $callback, $event, $dbProvider ) {
-				$this->invoke( $callback, $event, $dbProvider );
+				$this->invoke( $callback, $event );
 			},
 			__METHOD__,
 			[ $dbw ]
@@ -200,12 +200,8 @@ class EventDispatchEngine implements DomainEventDispatcher, DomainEventSource {
 	/**
 	 * Invokes the given listener on the given event
 	 */
-	private function invoke(
-		callable $callback,
-		DomainEvent $event,
-		IConnectionProvider $dbProvider
-	) {
-		$callback( $event, $dbProvider );
+	private function invoke( callable $callback, DomainEvent $event ) {
+		$callback( $event );
 	}
 
 }

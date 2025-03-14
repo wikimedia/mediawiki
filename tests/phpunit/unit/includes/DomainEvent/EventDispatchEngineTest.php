@@ -65,10 +65,7 @@ class EventDispatchEngineTest extends MediaWikiUnitTestCase {
 
 		$engine->registerListener(
 			'Tested',
-			static function (
-				DomainEvent $event,
-				IConnectionProvider $conProv
-			) use ( &$callCount ) {
+			static function ( DomainEvent $event ) use ( &$callCount ) {
 				$callCount++;
 			}
 		);
