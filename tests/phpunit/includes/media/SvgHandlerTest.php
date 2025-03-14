@@ -152,6 +152,11 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 				'Width in thumb'
 			],
 			[
+				[ 'width' => 113, 'physicalWidth' => 120 ],
+				'120px',
+				'physicalWidth should override width in thumb'
+			],
+			[
 				[ 'width' => 123, 'lang' => 'en' ],
 				'123px',
 				'Ignore lang=en'

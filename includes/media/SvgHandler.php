@@ -583,6 +583,11 @@ class SvgHandler extends ImageHandler {
 		if ( $code !== self::SVG_DEFAULT_RENDER_LANG ) {
 			$lang = 'lang' . strtolower( $code ) . '-';
 		}
+
+		if ( isset( $params['physicalWidth'] ) && $params['physicalWidth'] ) {
+			return "$lang{$params['physicalWidth']}px";
+		}
+
 		if ( !isset( $params['width'] ) ) {
 			return false;
 		}
