@@ -623,16 +623,14 @@ class InfoAction extends FormlessAction {
 		if ( $firstRev ) {
 			$firstRevUser = $firstRev->getUser( RevisionRecord::FOR_THIS_USER, $user );
 			if ( $firstRevUser ) {
-				$batch->add( NS_USER, $firstRevUser->getName() );
-				$batch->add( NS_USER_TALK, $firstRevUser->getName() );
+				$batch->addUser( $firstRevUser );
 			}
 		}
 
 		if ( $lastRev ) {
 			$lastRevUser = $lastRev->getUser( RevisionRecord::FOR_THIS_USER, $user );
 			if ( $lastRevUser ) {
-				$batch->add( NS_USER, $lastRevUser->getName() );
-				$batch->add( NS_USER_TALK, $lastRevUser->getName() );
+				$batch->addUser( $lastRevUser );
 			}
 		}
 

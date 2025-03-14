@@ -42,6 +42,7 @@ use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Watchlist\WatchlistManager;
 use stdClass;
 use Wikimedia\Rdbms\IDBAccessObject;
@@ -166,7 +167,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	public function getQueryInfo() {
 		$queryBuilder = $this->revisionStore->newSelectQueryBuilder( $this->mDb )
 			->joinComment()
-			->joinUser()
+			->joinUser()->field( 'user_id' )
 			->useIndex( [ 'revision' => 'rev_page_timestamp' ] )
 			->where( [ 'rev_page' => $this->getWikiPage()->getId() ] )
 			->andWhere( $this->conds );
@@ -205,8 +206,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				$revIds[] = (int)$row->rev_parent_id;
 			}
 			if ( $row->user_name !== null ) {
-				$batch->add( NS_USER, $row->user_name );
-				$batch->add( NS_USER_TALK, $row->user_name );
+				$batch->addUser( new UserIdentityValue( (int)$row->user_id, $row->user_name ) );
 			} else { # for anons or usernames of imported revisions
 				$batch->add( NS_USER, $row->rev_user_text );
 				$batch->add( NS_USER_TALK, $row->rev_user_text );
