@@ -2065,7 +2065,7 @@ class DifferenceEngine extends ContextSource {
 		if ( $oldRevision ) {
 			$this->mOldRevisionRecord = $oldRevision;
 			$this->mOldid = $oldRevision->getId();
-			$this->mOldPage = Title::newFromLinkTarget( $oldRevision->getPageAsLinkTarget() );
+			$this->mOldPage = Title::newFromPageIdentity( $oldRevision->getPage() );
 			// This method is meant for edit diffs and such so there is no reason to provide a
 			// revision that's not readable to the user, but check it just in case.
 			$this->mOldContent = $oldRevision->getContent( SlotRecord::MAIN,
@@ -2079,7 +2079,7 @@ class DifferenceEngine extends ContextSource {
 		}
 		$this->mNewRevisionRecord = $newRevision;
 		$this->mNewid = $newRevision->getId();
-		$this->mNewPage = Title::newFromLinkTarget( $newRevision->getPageAsLinkTarget() );
+		$this->mNewPage = Title::newFromPageIdentity( $newRevision->getPage() );
 		$this->mNewContent = $newRevision->getContent( SlotRecord::MAIN,
 			RevisionRecord::FOR_THIS_USER, $this->getAuthority() );
 		if ( !$this->mNewContent ) {
@@ -2206,7 +2206,7 @@ class DifferenceEngine extends ContextSource {
 		// Update the new revision ID in case it was 0 (makes life easier doing UI stuff)
 		$this->mNewid = $this->mNewRevisionRecord->getId();
 		$this->mNewPage = $this->mNewid ?
-			Title::newFromLinkTarget( $this->mNewRevisionRecord->getPageAsLinkTarget() ) :
+			Title::newFromPageIdentity( $this->mNewRevisionRecord->getPage() ) :
 			null;
 
 		// Load the old RevisionRecord object
@@ -2225,9 +2225,7 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		if ( $this->mOldRevisionRecord && $this->mOldRevisionRecord->getId() ) {
-			$this->mOldPage = Title::newFromLinkTarget(
-				$this->mOldRevisionRecord->getPageAsLinkTarget()
-			);
+			$this->mOldPage = Title::newFromPageIdentity( $this->mOldRevisionRecord->getPage() );
 		} else {
 			$this->mOldPage = null;
 		}

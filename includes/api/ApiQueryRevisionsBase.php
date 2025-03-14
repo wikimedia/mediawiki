@@ -456,7 +456,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 				if ( $this->fld_parsedcomment ) {
 					$vals['parsedcomment'] = $this->commentFormatter->format(
-						$comment, Title::newFromLinkTarget( $revision->getPageAsLinkTarget() )
+						$comment, $revision->getPageAsLinkTarget()
 					);
 				}
 			}
@@ -634,7 +634,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	 */
 	private function extractDeprecatedContent( Content $content, RevisionRecord $revision ) {
 		$vals = [];
-		$title = Title::newFromLinkTarget( $revision->getPageAsLinkTarget() );
+		$title = Title::newFromPageIdentity( $revision->getPage() );
 
 		if ( $this->fld_parsetree || ( $this->fld_content && $this->generateXML ) ) {
 			if ( $content->getModel() === CONTENT_MODEL_WIKITEXT ) {

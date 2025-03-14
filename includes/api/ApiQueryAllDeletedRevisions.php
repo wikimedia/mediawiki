@@ -414,7 +414,7 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 				if ( !isset( $pageMap[$row->ar_namespace][$row->ar_title] ) ) {
 					$index = $nextIndex++;
 					$pageMap[$row->ar_namespace][$row->ar_title] = $index;
-					$title = Title::newFromLinkTarget( $revision->getPageAsLinkTarget() );
+					$title = Title::newFromPageIdentity( $revision->getPage() );
 					$a = [
 						'pageid' => $title->getArticleID(),
 						'revisions' => [ $rev ],

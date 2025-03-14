@@ -106,7 +106,7 @@ class RevDelRevisionList extends RevDelList {
 			->getRevisionById( $ids[0] );
 
 		if ( $revisionRecord ) {
-			return Title::newFromLinkTarget( $revisionRecord->getPageAsLinkTarget() );
+			return Title::newFromPageIdentity( $revisionRecord->getPage() );
 		}
 		return $target;
 	}

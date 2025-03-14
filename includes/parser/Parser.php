@@ -3757,9 +3757,7 @@ class Parser {
 			}
 			if ( $revRecord ) {
 				# Update title, as $revRecord may have been changed by hook
-				$title = Title::newFromLinkTarget(
-					$revRecord->getPageAsLinkTarget()
-				);
+				$title = Title::newFromPageIdentity( $revRecord->getPage() );
 				// Assuming title is not external if we've got a $revRecord
 				$deps[] = [
 					'title' => $title,

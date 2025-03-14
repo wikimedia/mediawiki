@@ -337,7 +337,7 @@ class ApiParse extends ApiBase {
 					$this->dieWithError( [ 'apierror-nosuchrevid', $revid ] );
 				}
 				$pTitleObj = $titleObj;
-				$titleObj = Title::newFromLinkTarget( $rev->getPageAsLinkTarget() );
+				$titleObj = Title::newFromPageIdentity( $rev->getPage() );
 				if ( $titleProvided ) {
 					if ( !$titleObj->equals( $pTitleObj ) ) {
 						$this->addWarning( [ 'apierror-revwrongpage', $rev->getId(),

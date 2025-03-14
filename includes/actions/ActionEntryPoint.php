@@ -270,9 +270,7 @@ class ActionEntryPoint extends MediaWikiEntryPoint {
 					->getRevisionLookup()
 					->getRevisionById( $oldid );
 				if ( $revRecord ) {
-					$ret = Title::newFromLinkTarget(
-						$revRecord->getPageAsLinkTarget()
-					);
+					$ret = Title::newFromPageIdentity( $revRecord->getPage() );
 				}
 			}
 		}
