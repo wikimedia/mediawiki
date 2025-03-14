@@ -502,16 +502,26 @@ class FileTest extends MediaWikiMediaTestCase {
 	 */
 	public function testThumbNameSteps() {
 		$this->overrideConfigValue( MainConfigNames::ThumbnailSteps, [ 10, 100, 200 ] );
+		// Fully enabled
 		$this->overrideConfigValue( MainConfigNames::ThumbnailStepsRatio, 1 );
 
+		// Round up
 		$file = $this->dataFile( 'test.jpg', 'image/jpeg' );
 		$fileObj = TestingAccessWrapper::newFromObject( $file );
 		$fileObj->sizeAndMetadata = [ 'width' => 500, 'height' => 500, 'metadata' => [] ];
 		$actual = $fileObj->thumbName(
 			[ 'width' => 90, 'height' => 90, 'physicalWidth' => 90, 'physicalHeight' => 90 ],
 		);
-
 		$this->assertEquals( '100px-test.jpg', $actual );
+
+		// Beyond available steps
+		$file = $this->dataFile( 'test.jpg', 'image/jpeg' );
+		$fileObj = TestingAccessWrapper::newFromObject( $file );
+		$fileObj->sizeAndMetadata = [ 'width' => 500, 'height' => 500, 'metadata' => [] ];
+		$actual = $fileObj->thumbName(
+			[ 'width' => 250, 'height' => 250, 'physicalWidth' => 250, 'physicalHeight' => 250 ],
+		);
+		$this->assertEquals( '250px-test.jpg', $actual );
 	}
 
 	/**
@@ -520,6 +530,7 @@ class FileTest extends MediaWikiMediaTestCase {
 	 */
 	public function testThumbNameStepsRatio() {
 		$this->overrideConfigValue( MainConfigNames::ThumbnailSteps, [ 10, 100, 200 ] );
+		// Enable for 50%
 		$this->overrideConfigValue( MainConfigNames::ThumbnailStepsRatio, 0.5 );
 
 		$file = $this->dataFile( 'test1.jpg', 'image/jpeg' );
