@@ -92,7 +92,7 @@
 				const $form = context.config.$region.closest( 'form' );
 
 				let baseHref = $form.attr( 'action' ) || '';
-				baseHref += baseHref.indexOf( '?' ) > -1 ? '&' : '?';
+				baseHref += baseHref.includes( '?' ) ? '&' : '?';
 
 				const linkParams = serializeObject( $form.serializeArray() );
 

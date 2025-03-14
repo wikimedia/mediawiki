@@ -190,7 +190,7 @@
 			( api ) => api.getUserInfo().then(
 				( userInfo ) => {
 					this.setPage( 'upload' );
-					if ( userInfo.rights.indexOf( 'upload' ) === -1 ) {
+					if ( !userInfo.rights.includes( 'upload' ) ) {
 						if ( !mw.user.isNamed() ) {
 							this.getPage( 'upload' ).$element.msg( 'apierror-mustbeloggedin', mw.msg( 'action-upload' ) );
 						} else {

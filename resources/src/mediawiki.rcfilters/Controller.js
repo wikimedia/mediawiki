@@ -431,9 +431,9 @@ Controller.prototype.addNumberValuesToGroup = function ( groupData, arbitraryVal
 			// the data
 			( !groupData.validate || groupData.validate( val ) ) &&
 			// but if that value isn't already in the definition
-			groupData.filters
+			!groupData.filters
 				.map( ( filterData ) => String( filterData.name ) )
-				.indexOf( String( val ) ) === -1
+				.includes( String( val ) )
 		) {
 			// Add the filter information
 			groupData.filters.push( this._createFilterDataFromNumber(

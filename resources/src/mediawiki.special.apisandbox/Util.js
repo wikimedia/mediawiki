@@ -107,7 +107,7 @@ const WidgetMethods = {
 		},
 		getApiValue: function () {
 			const items = this.getValue();
-			if ( items.join( '' ).indexOf( '|' ) === -1 ) {
+			if ( !items.join( '' ).includes( '|' ) ) {
 				return items.join( '|' );
 			} else {
 				return '\x1f' + items.join( '\x1f' );
@@ -126,7 +126,7 @@ const WidgetMethods = {
 				ok = this.getApiValue() !== undefined && !(
 					pi.allspecifier !== undefined &&
 					this.getValue().length > 1 &&
-					this.getValue().indexOf( pi.allspecifier ) !== -1
+					this.getValue().includes( pi.allspecifier )
 				);
 			}
 
@@ -137,12 +137,12 @@ const WidgetMethods = {
 		createTagItemWidget: function ( data, label ) {
 			const item = OO.ui.TagMultiselectWidget.prototype.createTagItemWidget.call( this, data, label );
 			if ( this.paramInfo.deprecatedvalues &&
-				this.paramInfo.deprecatedvalues.indexOf( data ) >= 0
+				this.paramInfo.deprecatedvalues.includes( data )
 			) {
 				item.$element.addClass( 'mw-apisandbox-deprecated-value' );
 			}
 			if ( this.paramInfo.internalvalues &&
-				this.paramInfo.internalvalues.indexOf( data ) >= 0
+				this.paramInfo.internalvalues.includes( data )
 			) {
 				item.$element.addClass( 'mw-apisandbox-internal-value' );
 			}
@@ -443,13 +443,13 @@ Util = {
 						data: String( v ),
 						label: String( v )
 					} );
-					if ( pi.deprecatedvalues && pi.deprecatedvalues.indexOf( v ) >= 0 ) {
+					if ( pi.deprecatedvalues && pi.deprecatedvalues.includes( v ) ) {
 						optionWidget.$element.addClass( 'mw-apisandbox-deprecated-value' );
 						optionWidget.$label.before(
 							$( '<span>' ).addClass( 'mw-apisandbox-flag' ).text( mw.msg( 'api-help-param-deprecated-label' ) )
 						);
 					}
-					if ( pi.internalvalues && pi.internalvalues.indexOf( v ) >= 0 ) {
+					if ( pi.internalvalues && pi.internalvalues.includes( v ) ) {
 						optionWidget.$element.addClass( 'mw-apisandbox-internal-value' );
 						optionWidget.$label.before(
 							$( '<span>' ).addClass( 'mw-apisandbox-flag' ).text( mw.msg( 'api-help-param-internal-label' ) )
@@ -490,7 +490,7 @@ Util = {
 						widget.getMenu().on( 'select', ( item ) => {
 							widget.$element.toggleClass(
 								'mw-apisandbox-deprecated-value',
-								pi.deprecatedvalues.indexOf( item.data ) >= 0
+								pi.deprecatedvalues.includes( item.data )
 							);
 						} );
 					}
@@ -498,7 +498,7 @@ Util = {
 						widget.getMenu().on( 'select', ( item ) => {
 							widget.$element.toggleClass(
 								'mw-apisandbox-internal-value',
-								pi.internalvalues.indexOf( item.data ) >= 0
+								pi.internalvalues.includes( item.data )
 							);
 						} );
 					}

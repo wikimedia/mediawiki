@@ -715,7 +715,7 @@ Parser.prototype = {
 		function isAllowedHtml( startTagName, endTagName, attributes ) {
 			startTagName = startTagName.toLowerCase();
 			endTagName = endTagName.toLowerCase();
-			if ( startTagName !== endTagName || settings.allowedHtmlElements.indexOf( startTagName ) === -1 ) {
+			if ( startTagName !== endTagName || !settings.allowedHtmlElements.includes( startTagName ) ) {
 				return false;
 			}
 
@@ -724,8 +724,8 @@ Parser.prototype = {
 			let attributeName;
 			for ( let i = 0, len = attributes.length; i < len; i += 2 ) {
 				attributeName = attributes[ i ];
-				if ( settings.allowedHtmlCommonAttributes.indexOf( attributeName ) === -1 &&
-					( settings.allowedHtmlAttributesByElement[ startTagName ] || [] ).indexOf( attributeName ) === -1 ) {
+				if ( !settings.allowedHtmlCommonAttributes.includes( attributeName ) &&
+					!( settings.allowedHtmlAttributesByElement[ startTagName ] || [] ).includes( attributeName ) ) {
 					return false;
 				}
 				if ( attributeName === 'style' && attributes[ i + 1 ].search( badStyle ) !== -1 ) {

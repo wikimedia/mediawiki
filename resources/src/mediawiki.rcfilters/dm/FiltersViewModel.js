@@ -858,7 +858,7 @@ FiltersViewModel.prototype.getCurrentlyUsedHighlightColors = function () {
 		this.getHighlightedItems().forEach( ( filterItem ) => {
 			const color = filterItem.getHighlightColor();
 
-			if ( result.indexOf( color ) === -1 ) {
+			if ( !result.includes( color ) ) {
 				result.push( color );
 			}
 		} );
@@ -1039,7 +1039,7 @@ FiltersViewModel.prototype.findMatches = function ( query, returnFlat ) {
 			(
 				// For tags, we want the parameter name to be included in the search
 				view === 'tags' &&
-				items[ i ].getParamName().toLowerCase().indexOf( query ) > -1
+				items[ i ].getParamName().toLowerCase().includes( query )
 			)
 		) {
 			result[ items[ i ].getGroupName() ] = result[ items[ i ].getGroupName() ] || [];
@@ -1054,13 +1054,13 @@ FiltersViewModel.prototype.findMatches = function ( query, returnFlat ) {
 			const groupTitle = items[ i ].getGroupModel().getTitle();
 			if (
 				searchIsEmpty ||
-				items[ i ].getLabel().toLowerCase().indexOf( query ) > -1 ||
-				items[ i ].getDescription().toLowerCase().indexOf( query ) > -1 ||
-				groupTitle.toLowerCase().indexOf( query ) > -1 ||
+				items[ i ].getLabel().toLowerCase().includes( query ) ||
+				items[ i ].getDescription().toLowerCase().includes( query ) ||
+				groupTitle.toLowerCase().includes( query ) ||
 				(
 					// For tags, we want the parameter name to be included in the search
 					view === 'tags' &&
-					items[ i ].getParamName().toLowerCase().indexOf( query ) > -1
+					items[ i ].getParamName().toLowerCase().includes( query )
 				)
 			) {
 				result[ items[ i ].getGroupName() ] = result[ items[ i ].getGroupName() ] || [];
@@ -1198,7 +1198,7 @@ FiltersViewModel.prototype.setSearch = function ( searchQuery ) {
 		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( this.getFilterGroups(), ( groupName, groupModel ) => {
 			// Check if the group is visible at all
-			groupModel.toggleVisible( visibleGroupNames.indexOf( groupName ) !== -1 );
+			groupModel.toggleVisible( visibleGroupNames.includes( groupName ) );
 			groupModel.setVisibleItems( visibleGroups[ groupName ] || [] );
 		} );
 

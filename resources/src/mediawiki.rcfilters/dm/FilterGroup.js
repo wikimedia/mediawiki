@@ -700,7 +700,7 @@ FilterGroup.prototype.getFilterRepresentation = function ( paramRepresentation )
 			) ?
 				true :
 				// Otherwise, the filter is selected only if it appears in the parameter values
-				paramValues.indexOf( filterItem.getParamName() ) > -1;
+				paramValues.includes( filterItem.getParamName() );
 		} );
 	} else if ( this.getType() === 'single_option' ) {
 		// There is parameter that fits a single filter and if not, get the default
@@ -951,7 +951,7 @@ FilterGroup.prototype.isVisible = function () {
  */
 FilterGroup.prototype.setVisibleItems = function ( visibleItems ) {
 	this.getItems().forEach( ( itemModel ) => {
-		itemModel.toggleVisible( visibleItems.indexOf( itemModel ) !== -1 );
+		itemModel.toggleVisible( visibleItems.includes( itemModel ) );
 	} );
 };
 

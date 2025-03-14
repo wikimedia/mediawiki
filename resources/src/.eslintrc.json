@@ -10,15 +10,14 @@
 		"module": "readonly"
 	},
 	"rules": {
-		"es-x/no-promise-prototype-finally": "off",
 		"max-len": "off",
+		"es-x/no-promise-prototype-finally": "off",
 		"no-jquery/no-done-fail": "off",
 		"no-jquery/no-global-selector": "off",
 		"jsdoc/no-undefined-types": [ 1, {
 			"definedTypes": [
 				"Hooks"
 			]
-		} ],
-		"unicorn/prefer-includes": "off"
+		} ]
 	}
 }

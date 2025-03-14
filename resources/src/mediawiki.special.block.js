@@ -69,9 +69,7 @@
 					// Partial block that blocks editing and doesn't block the User_talk namespace
 					(
 						editingRestrictionValue === 'partial' &&
-						namespaceRestrictionsWidget.getValue().indexOf(
-							String( mw.config.get( 'wgNamespaceIds' ).user_talk )
-						) === -1
+						!namespaceRestrictionsWidget.getValue().includes( String( mw.config.get( 'wgNamespaceIds' ).user_talk ) )
 					)
 				);
 			}

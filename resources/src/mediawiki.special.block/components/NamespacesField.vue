@@ -60,7 +60,7 @@ module.exports = exports = defineComponent( {
 			if ( value ) {
 				// eslint-disable-next-line arrow-body-style
 				menuItems.value = initialMenuItems.filter( ( item ) => {
-					return item.label.toLowerCase().indexOf( value.toLowerCase() ) !== -1;
+					return item.label.toLowerCase().includes( value.toLowerCase() );
 				} );
 			} else {
 				menuItems.value = initialMenuItems;
@@ -75,7 +75,7 @@ module.exports = exports = defineComponent( {
 		function onUpdateChips( newChips ) {
 			// NOTE: This is to avoid recursive updates since namespaces is bound to MultiselectLookup with v-model
 			const uniqueChipValues = newChips.map( ( item ) => item.value );
-			const uniqueNewValues = uniqueChipValues.filter( ( chipValue ) => namespaces.value.indexOf( chipValue ) === -1 );
+			const uniqueNewValues = uniqueChipValues.filter( ( chipValue ) => !namespaces.value.includes( chipValue ) );
 			if ( uniqueNewValues.length !== 0 || namespaces.value.length > uniqueChipValues.length ) {
 				namespaces.value = newChips.map( ( chip ) => chip.value );
 			}

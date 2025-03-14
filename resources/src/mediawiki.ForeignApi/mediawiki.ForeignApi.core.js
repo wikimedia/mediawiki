@@ -112,7 +112,7 @@ module.exports = ( function () {
 			let url = ( ajaxOptions && ajaxOptions.url ) || this.defaults.ajax.url;
 			const origin = ( parameters && parameters.origin ) || this.defaults.parameters.origin;
 			if ( origin !== undefined ) {
-				url += ( url.indexOf( '?' ) !== -1 ? '&' : '?' ) +
+				url += ( url.includes( '?' ) ? '&' : '?' ) +
 					'origin=' + encodeURIComponent( origin );
 			}
 			newAjaxOptions = Object.assign( {}, ajaxOptions, { url: url } );

@@ -100,7 +100,7 @@
 			const existingItems = menu.getItems().map( ( item ) => item.data );
 
 			// Remove if items' data already exists
-			let filteredItems = items.filter( ( item ) => existingItems.indexOf( item ) === -1 );
+			let filteredItems = items.filter( ( item ) => !existingItems.includes( item ) );
 
 			// Map to an array of OO.ui.MenuOptionWidgets
 			filteredItems = filteredItems.map( ( item ) => new OO.ui.MenuOptionWidget( {
@@ -223,7 +223,7 @@
 
 		// If the searchTypes has mw.widgets.CategoryMultiselectWidget.SearchType.SubCategories
 		// it can be the only search type.
-		if ( this.searchTypes.indexOf( mw.widgets.CategoryMultiselectWidget.SearchType.SubCategories ) > -1 &&
+		if ( this.searchTypes.includes( mw.widgets.CategoryMultiselectWidget.SearchType.SubCategories ) &&
 			this.searchTypes.length > 1
 		) {
 			throw new Error( 'Can\'t have additional search types with mw.widgets.CategoryMultiselectWidget.SearchType.SubCategories' );
@@ -231,7 +231,7 @@
 
 		// If the searchTypes has mw.widgets.CategoryMultiselectWidget.SearchType.ParentCategories
 		// it can be the only search type.
-		if ( this.searchTypes.indexOf( mw.widgets.CategoryMultiselectWidget.SearchType.ParentCategories ) > -1 &&
+		if ( this.searchTypes.includes( mw.widgets.CategoryMultiselectWidget.SearchType.ParentCategories ) &&
 			this.searchTypes.length > 1
 		) {
 			throw new Error( 'Can\'t have additional search types with mw.widgets.CategoryMultiselectWidget.SearchType.ParentCategories' );
@@ -298,7 +298,7 @@
 				break;
 
 			case mw.widgets.CategoryMultiselectWidget.SearchType.Exists:
-				if ( input.indexOf( '|' ) > -1 ) {
+				if ( input.includes( '|' ) ) {
 					deferred.resolve( [] );
 					break;
 				}
@@ -322,7 +322,7 @@
 				break;
 
 			case mw.widgets.CategoryMultiselectWidget.SearchType.SubCategories:
-				if ( input.indexOf( '|' ) > -1 ) {
+				if ( input.includes( '|' ) ) {
 					deferred.resolve( [] );
 					break;
 				}
@@ -341,7 +341,7 @@
 				break;
 
 			case mw.widgets.CategoryMultiselectWidget.SearchType.ParentCategories:
-				if ( input.indexOf( '|' ) > -1 ) {
+				if ( input.includes( '|' ) ) {
 					deferred.resolve( [] );
 					break;
 				}

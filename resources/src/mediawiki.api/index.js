@@ -101,7 +101,7 @@
 			'import',
 			'options'
 		];
-		if ( csrfActions.indexOf( type ) !== -1 ) {
+		if ( csrfActions.includes( type ) ) {
 			return 'csrf';
 		}
 		return type;
@@ -188,7 +188,7 @@
 			for ( key in parameters ) {
 				// Multiple values are pipe-separated
 				if ( Array.isArray( parameters[ key ] ) ) {
-					if ( !useUS || parameters[ key ].join( '' ).indexOf( '|' ) === -1 ) {
+					if ( !useUS || !parameters[ key ].join( '' ).includes( '|' ) ) {
 						parameters[ key ] = parameters[ key ].join( '|' );
 					} else {
 						parameters[ key ] = '\x1f' + parameters[ key ].join( '\x1f' );
@@ -297,7 +297,7 @@
 
 			ajaxOptions.headers = ajaxOptions.headers || {};
 			const lowercaseHeaders = Object.keys( ajaxOptions.headers || {} ).map( ( k ) => k.toLowerCase() );
-			if ( lowercaseHeaders.indexOf( 'api-user-agent' ) === -1 ) {
+			if ( !lowercaseHeaders.includes( 'api-user-agent' ) ) {
 				ajaxOptions.headers[ 'Api-User-Agent' ] = this.defaults.userAgent;
 			}
 

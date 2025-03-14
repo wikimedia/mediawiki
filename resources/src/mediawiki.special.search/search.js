@@ -25,7 +25,7 @@
 				const parts = $( this ).attr( 'href' ).split( 'search=' );
 				let lastpart = '',
 					prefix = 'search=';
-				if ( parts.length > 1 && parts[ 1 ].indexOf( '&' ) !== -1 ) {
+				if ( parts.length > 1 && parts[ 1 ].includes( '&' ) ) {
 					lastpart = parts[ 1 ].slice( parts[ 1 ].indexOf( '&' ) );
 				} else {
 					prefix = '&search=';

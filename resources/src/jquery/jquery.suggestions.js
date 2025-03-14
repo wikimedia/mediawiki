@@ -279,7 +279,7 @@
 								expandFrom = 'left';
 
 							// Catch invalid values, default to 'auto'
-							} else if ( [ 'left', 'right', 'start', 'end', 'auto' ].indexOf( expandFrom ) === -1 ) {
+							} else if ( ![ 'left', 'right', 'start', 'end', 'auto' ].includes( expandFrom ) ) {
 								expandFrom = 'auto';
 							}
 
@@ -754,7 +754,7 @@
 						];
 						if ( context.data.keypressedCount === 0 &&
 							e.which === context.data.keypressed &&
-							allowed.indexOf( e.which ) !== -1
+							allowed.includes( e.which )
 						) {
 							keypress( e, context, context.data.keypressed );
 						}

@@ -76,7 +76,7 @@ $( () => {
 		// (these values correspond to @min-width-breakpoint-tablet and @min-width-breakpoint-desktop
 		// See https://doc.wikimedia.org/codex/main/design-tokens/breakpoint.html
 		if ( window.innerWidth >= 640 && window.innerWidth < 1120 &&
-			content && content.indexOf( 'initial-scale' ) === -1
+			content && !content.includes( 'initial-scale' )
 		) {
 			// Note:
 			// - The `width` value must be equal to @min-width-breakpoint-desktop above

@@ -327,7 +327,7 @@ ChangesListWrapperWidget.prototype.applyHighlight = function () {
 				filters = [];
 				$( this ).data( 'highlightedFilters', filters );
 			}
-			if ( filters.indexOf( filterItem.getLabel() ) === -1 ) {
+			if ( !filters.includes( filterItem.getLabel() ) ) {
 				filters.push( filterItem.getLabel() );
 			}
 		} );

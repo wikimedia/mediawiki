@@ -514,7 +514,7 @@ const util = {
 		const msgBoxElement = document.createElement( 'div' );
 		msgBoxElement.classList.add( 'cdx-message' );
 
-		if ( [ 'error', 'warning', 'success', 'notice' ].indexOf( type ) > -1 ) {
+		if ( [ 'error', 'warning', 'success', 'notice' ].includes( type ) ) {
 			// The following CSS classes are used here:
 			// * cdx-message--notice
 			// * cdx-message--warning
@@ -1159,7 +1159,7 @@ const util = {
 		}
 		if ( this.isIPv6Address( ip, true ) ) {
 			let cidr, replaceZeros;
-			if ( ip.indexOf( '/' ) !== -1 ) {
+			if ( ip.includes( '/' ) ) {
 				const ipCidrSplit = ip.split( '/', 2 );
 				ip = ipCidrSplit[ 0 ];
 				cidr = ipCidrSplit[ 1 ];
@@ -1246,7 +1246,7 @@ const util = {
 	 * @stable
 	 */
 	isInfinity: function ( str ) {
-		return infinityValues.indexOf( str ) !== -1;
+		return infinityValues.includes( str );
 	}
 };
 

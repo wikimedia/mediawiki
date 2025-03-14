@@ -66,8 +66,8 @@
 		const options = $.map( namespaces, ( name, ns ) => {
 			if (
 				ns < mainNamespace ||
-				exclude.indexOf( Number( ns ) ) !== -1 ||
-				( Array.isArray( include ) && include.indexOf( Number( ns ) ) === -1 )
+				exclude.includes( Number( ns ) ) ||
+				( Array.isArray( include ) && !include.includes( Number( ns ) ) )
 			) {
 				return null; // skip
 			}

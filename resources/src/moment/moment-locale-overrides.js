@@ -25,7 +25,7 @@
 			// HACK: momentjs replaces commas in some languages, which is the only other use of preparse
 			// aside from digit transformation. We can only override preparse, not extend it, so we
 			// have to replicate the comma replacement functionality here.
-			if ( [ 'ar', 'ar-sa', 'fa' ].indexOf( mw.config.get( 'wgUserLanguage' ) ) !== -1 ) {
+			if ( [ 'ar', 'ar-sa', 'fa' ].includes( mw.config.get( 'wgUserLanguage' ) ) ) {
 				s = s.replace( /،/g, ',' );
 			}
 			return s;
@@ -43,7 +43,7 @@
 			// HACK: momentjs replaces commas in some languages, which is the only other use of postformat
 			// aside from digit transformation. We can only override postformat, not extend it, so we
 			// have to replicate the comma replacement functionality here.
-			if ( [ 'ar', 'ar-sa', 'fa' ].indexOf( mw.config.get( 'wgUserLanguage' ) ) !== -1 ) {
+			if ( [ 'ar', 'ar-sa', 'fa' ].includes( mw.config.get( 'wgUserLanguage' ) ) ) {
 				s = s.replace( /,/g, '،' );
 			}
 			return s;

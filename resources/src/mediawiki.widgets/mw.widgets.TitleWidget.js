@@ -167,7 +167,7 @@
 		return this.sectionsCache[ normalizedTitleText ].then( ( response ) => {
 			const sections = OO.getProp( response, 'parse', 'sections' ) || [];
 			const normalizedFragmentQuery = normalizeFragment( fragmentQuery );
-			const results = sections.filter( ( section ) => normalizeFragment( section.line ).indexOf( normalizedFragmentQuery ) !== -1 ).map( ( section ) => {
+			const results = sections.filter( ( section ) => normalizeFragment( section.line ).includes( normalizedFragmentQuery ) ).map( ( section ) => {
 				const fragment = section.linkAnchor.replace( /_/g, ' ' );
 				// TODO: Make promise abortable
 				return {
@@ -222,7 +222,7 @@
 				const interwiki = query.slice( 0, Math.max( 0, query.indexOf( ':' ) ) );
 				if (
 					interwiki !== '' &&
-					interwikiPrefixes.indexOf( interwiki ) !== -1
+					interwikiPrefixes.includes( interwiki )
 				) {
 					// Interwiki prefix is valid: return the original query as a valid title
 					// NB: This doesn't check if the title actually exists on the other wiki

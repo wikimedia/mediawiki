@@ -268,7 +268,7 @@ MenuSelectWidget.prototype.updateFooterVisibility = function ( currentView ) {
 		data.$element.toggle(
 			// This footer should only be shown if it is configured
 			// for all views or for this specific view
-			!data.views || data.views.length === 0 || data.views.indexOf( currentView ) > -1
+			!data.views || data.views.length === 0 || data.views.includes( currentView )
 		);
 	} );
 };

@@ -95,19 +95,19 @@ module.exports = exports = defineStore( 'block', () => {
 	 *
 	 * @type {Ref<boolean>}
 	 */
-	const createAccount = ref( details.indexOf( 'wpCreateAccount' ) !== -1 );
+	const createAccount = ref( details.includes( 'wpCreateAccount' ) );
 	/**
 	 * Whether to disable the target's ability to send email via Special:EmailUser.
 	 *
 	 * @type {Ref<boolean>}
 	 */
-	const disableEmail = ref( details.indexOf( 'wpDisableEmail' ) !== -1 );
+	const disableEmail = ref( details.includes( 'wpDisableEmail' ) );
 	/**
 	 * Whether to disable the target's ability to edit their own user talk page.
 	 *
 	 * @type {Ref<boolean>}
 	 */
-	const disableUTEdit = ref( details.indexOf( 'wpDisableUTEdit' ) !== -1 );
+	const disableUTEdit = ref( details.includes( 'wpDisableUTEdit' ) );
 	const additionalDetails = mw.config.get( 'blockAdditionalDetailsPreset' ) || [];
 	/**
 	 * Whether to autoblock IP addresses used by the target.
@@ -115,26 +115,26 @@ module.exports = exports = defineStore( 'block', () => {
 	 * @type {Ref<boolean>}
 	 * @see https://www.mediawiki.org/wiki/Autoblock
 	 */
-	const autoBlock = ref( additionalDetails.indexOf( 'wpAutoBlock' ) !== -1 );
+	const autoBlock = ref( additionalDetails.includes( 'wpAutoBlock' ) );
 	/**
 	 * Whether to impose a "suppressed" block, hiding the target's username
 	 * from block log, the active block list, and the user list.
 	 *
 	 * @type {Ref<boolean>}
 	 */
-	const hideUser = ref( additionalDetails.indexOf( 'wpHideUser' ) !== -1 );
+	const hideUser = ref( additionalDetails.includes( 'wpHideUser' ) );
 	/**
 	 * Whether to watch the target's user page and talk page.
 	 *
 	 * @type {Ref<boolean>}
 	 */
-	const watchUser = ref( additionalDetails.indexOf( 'wpWatch' ) !== -1 );
+	const watchUser = ref( additionalDetails.includes( 'wpWatch' ) );
 	/**
 	 * Whether to apply a hard block, blocking accounts using the same IP address.
 	 *
 	 * @type {Ref<boolean>}
 	 */
-	const hardBlock = ref( additionalDetails.indexOf( 'wpHardBlock' ) !== -1 );
+	const hardBlock = ref( additionalDetails.includes( 'wpHardBlock' ) );
 	/*
 	 * The removal reason, used in the remove-block confirmation dialog.
 	 * Note that the target and watchuser values in that form are shared with the main form.
@@ -230,7 +230,7 @@ module.exports = exports = defineStore( 'block', () => {
 	const disableUTEditVisible = computed( () => {
 		const isVisibleByConfig = mw.config.get( 'blockDisableUTEditVisible' ) || false;
 		const isPartial = type.value === 'partial';
-		const blocksUT = namespaces.value.indexOf( mw.config.get( 'wgNamespaceIds' ).user_talk ) !== -1;
+		const blocksUT = namespaces.value.includes( mw.config.get( 'wgNamespaceIds' ).user_talk );
 		return isVisibleByConfig && ( !isPartial || ( isPartial && blocksUT ) );
 	} );
 	/**

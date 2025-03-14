@@ -33,7 +33,7 @@
 		mw.messagePoster.WikitextMessagePoster.super.prototype.post.call( this, subject, body, options );
 
 		// Add signature if needed
-		if ( body.indexOf( '~~~' ) === -1 ) {
+		if ( !body.includes( '~~~' ) ) {
 			body += '\n\n~~~~';
 		}
 

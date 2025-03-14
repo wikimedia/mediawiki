@@ -261,7 +261,7 @@ mw.inspect = function ( ...reports ) {
  * @return {string} Transformed format string
  */
 mw.internalDoTransformFormatForQqx = function ( formatString, parameters ) {
-	if ( formatString.indexOf( '$*' ) !== -1 ) {
+	if ( formatString.includes( '$*' ) ) {
 		let replacement = '';
 		if ( parameters.length ) {
 			replacement = ': ' + parameters.map( ( _, i ) => '$' + ( i + 1 ) ).join( ', ' );

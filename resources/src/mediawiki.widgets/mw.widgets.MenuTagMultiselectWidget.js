@@ -47,7 +47,7 @@
 					.attr( 'type', 'checkbox' )
 					.attr( 'value', option.data )
 					.attr( 'name', config.name + '[]' )
-					.prop( 'defaultChecked', selected.indexOf( option.data ) >= 0 )
+					.prop( 'defaultChecked', selected.includes( option.data ) )
 					.appendTo( $container );
 			} );
 			$container.appendTo( this.$element );
@@ -67,7 +67,7 @@
 			const values = this.getValue();
 			for ( const name in this.$hiddenInputs ) {
 				const $input = this.$hiddenInputs[ name ];
-				$input.prop( 'checked', values.indexOf( $input.attr( 'value' ) ) >= 0 );
+				$input.prop( 'checked', values.includes( $input.attr( 'value' ) ) );
 			}
 		}
 

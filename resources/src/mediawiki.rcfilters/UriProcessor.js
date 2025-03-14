@@ -148,7 +148,7 @@ UriProcessor.prototype.getUnrecognizedParams = function ( params ) {
 	// Extract unrecognized parameters
 	for ( const paramName in this.filtersModel.getEmptyParameterState() ) {
 		// Remove recognized params
-		if ( givenParamNames.indexOf( paramName ) > -1 ) {
+		if ( givenParamNames.includes( paramName ) ) {
 			delete unrecognizedParams[ paramName ];
 		}
 	}

@@ -307,7 +307,7 @@
 	function uniqueElements( array ) {
 		const uniques = [];
 		array.forEach( ( elem ) => {
-			if ( elem !== undefined && uniques.indexOf( elem ) === -1 ) {
+			if ( elem !== undefined && !uniques.includes( elem ) ) {
 				uniques.push( elem );
 			}
 		} );

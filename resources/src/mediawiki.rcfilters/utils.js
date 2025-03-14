@@ -14,7 +14,7 @@ module.exports = {
 		elements = Array.isArray( elements ) ? elements : [ elements ];
 
 		elements.forEach( ( element ) => {
-			if ( arr.indexOf( element ) === -1 ) {
+			if ( !arr.includes( element ) ) {
 				arr.push( element );
 			}
 		} );
@@ -31,7 +31,7 @@ module.exports = {
 		const result = [];
 		supportsAll = supportsAll === undefined ? true : !!supportsAll;
 
-		if ( supportsAll && givenOptions.indexOf( 'all' ) > -1 ) {
+		if ( supportsAll && givenOptions.includes( 'all' ) ) {
 			// If anywhere in the values there's 'all', we
 			// treat it as if only 'all' was selected.
 			// Example: param=valid1,valid2,all
@@ -45,8 +45,8 @@ module.exports = {
 		// Result: param=valid1,valid2
 		givenOptions.forEach( ( value ) => {
 			if (
-				legalOptions.indexOf( value ) > -1 &&
-				result.indexOf( value ) === -1
+				legalOptions.includes( value ) &&
+				!result.includes( value )
 			) {
 				result.push( value );
 			}

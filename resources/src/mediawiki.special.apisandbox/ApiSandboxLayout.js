@@ -661,7 +661,7 @@ ApiSandboxLayout.prototype.apiCheckValid = function () {
 		// eslint-disable-next-line no-jquery/no-map-util
 		const promises = $.map( this.widgets, ( widget ) => widget.apiCheckValid( ApiSandbox.suppressErrors ) );
 		$.when( ...promises ).then( ( ...results ) => {
-			this.apiIsValid = results.indexOf( false ) === -1;
+			this.apiIsValid = !results.includes( false );
 			if ( this.getOutlineItem() ) {
 				this.getOutlineItem().setIcon( this.apiIsValid || ApiSandbox.suppressErrors ? null : 'alert' );
 				this.getOutlineItem().setTitle(

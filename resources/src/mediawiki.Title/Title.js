@@ -224,7 +224,7 @@ const mwString = require( 'mediawiki.String' ),
 			// Trim underscores
 			.replace( rUnderscoreTrim, '' );
 
-		if ( title.indexOf( '\uFFFD' ) !== -1 ) {
+		if ( title.includes( '\uFFFD' ) ) {
 			// Contained illegal UTF-8 sequences or forbidden Unicode chars.
 			// Commonly occurs when the text was obtained using the `URL` API, and the 'title' parameter
 			// was using a legacy 8-bit encoding, for example:
@@ -293,12 +293,12 @@ const mwString = require( 'mediawiki.String' ),
 
 		// Disallow titles that browsers or servers might resolve as directory navigation
 		if (
-			title.indexOf( '.' ) !== -1 && (
+			title.includes( '.' ) && (
 				title === '.' || title === '..' ||
 				title.indexOf( './' ) === 0 ||
 				title.indexOf( '../' ) === 0 ||
-				title.indexOf( '/./' ) !== -1 ||
-				title.indexOf( '/../' ) !== -1 ||
+				title.includes( '/./' ) ||
+				title.includes( '/../' ) ||
 				title.slice( -2 ) === '/.' ||
 				title.slice( -3 ) === '/..'
 			)
@@ -307,7 +307,7 @@ const mwString = require( 'mediawiki.String' ),
 		}
 
 		// Disallow magic tilde sequence
-		if ( title.indexOf( '~~~' ) !== -1 ) {
+		if ( title.includes( '~~~' ) ) {
 			return false;
 		}
 
@@ -656,7 +656,7 @@ Title.isTalkNamespace = function ( namespaceId ) {
  */
 Title.wantSignaturesNamespace = function ( namespaceId ) {
 	return Title.isTalkNamespace( namespaceId ) ||
-		mw.config.get( 'wgExtraSignatureNamespaces' ).indexOf( namespaceId ) !== -1;
+		mw.config.get( 'wgExtraSignatureNamespaces' ).includes( namespaceId );
 };
 
 /**
@@ -885,7 +885,7 @@ Title.prototype = /** @lends mw.Title.prototype */ {
 	 */
 	getMain: function () {
 		if (
-			mw.config.get( 'wgCaseSensitiveNamespaces' ).indexOf( this.namespace ) !== -1 ||
+			mw.config.get( 'wgCaseSensitiveNamespaces' ).includes( this.namespace ) ||
 			!this.title.length
 		) {
 			return this.title;

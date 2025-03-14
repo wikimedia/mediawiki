@@ -272,7 +272,7 @@
 				} else {
 					$( this ).textSelection( 'replaceSelection', insertText );
 				}
-				if ( isSample && options.selectPeri && ( !options.splitlines || ( options.splitlines && selText.indexOf( '\n' ) === -1 ) ) ) {
+				if ( isSample && options.selectPeri && ( !options.splitlines || ( options.splitlines && !selText.includes( '\n' ) ) ) ) {
 					$( this ).textSelection( 'setSelection', {
 						start: startPos + pre.length,
 						end: startPos + pre.length + selText.length

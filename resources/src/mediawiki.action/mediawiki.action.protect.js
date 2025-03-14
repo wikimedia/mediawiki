@@ -106,7 +106,7 @@
 		} );
 		if ( cascadeCheckbox ) {
 			levelSelectors.some( ( widget ) => {
-				if ( cascadeableLevels.indexOf( widget.getValue() ) === -1 ) {
+				if ( !cascadeableLevels.includes( widget.getValue() ) ) {
 					cascadeCheckbox.setSelected( false ).setDisabled( true );
 					return true;
 				}

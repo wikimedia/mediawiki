@@ -142,7 +142,7 @@ FilterItem.prototype.getStateMessage = function () {
 			superset = this.getSuperset();
 			// For this message we need to collect the affecting superset
 			affectingItems = this.getGroupModel().findSelectedItems( this )
-				.filter( ( item ) => superset.indexOf( item.getName() ) !== -1 )
+				.filter( ( item ) => superset.includes( item.getName() ) )
 				.map( ( item ) => mw.msg( 'quotation-marks', item.getLabel() ) );
 
 			messageKey = 'rcfilters-state-message-subset';
@@ -310,7 +310,7 @@ FilterItem.prototype.setSubset = function ( subset ) {
  * @return {boolean} Filter name is in the subset list
  */
 FilterItem.prototype.existsInSubset = function ( filterName ) {
-	return this.subset.indexOf( filterName ) > -1;
+	return this.subset.includes( filterName );
 };
 
 /**

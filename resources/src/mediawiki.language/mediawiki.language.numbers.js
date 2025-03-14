@@ -97,7 +97,7 @@
 			}
 
 			// Truncate whole
-			if ( patternDigits.indexOf( '#' ) === -1 && padLength ) {
+			if ( !patternDigits.includes( '#' ) && padLength ) {
 				valueParts[ 0 ] = valueParts[ 0 ].slice( -padLength );
 			}
 		}

@@ -230,7 +230,7 @@ SavedQueriesModel.prototype.addNewQuery = function ( label, fulldata, isDefault,
 	// Split highlight/params
 	// eslint-disable-next-line no-jquery/no-each-util
 	$.each( data, ( param, value ) => {
-		if ( param !== 'highlight' && highlightParamNames.indexOf( param ) > -1 ) {
+		if ( param !== 'highlight' && highlightParamNames.includes( param ) ) {
 			normalizedData.highlights[ param ] = value;
 		} else {
 			normalizedData.params[ param ] = value;

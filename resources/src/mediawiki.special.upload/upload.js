@@ -175,7 +175,7 @@
 				) {
 					if (
 						fname.lastIndexOf( '.' ) === -1 ||
-						mw.config.get( 'wgFileExtensions' ).map( ( element ) => element.toLowerCase() ).indexOf( fname.slice( fname.lastIndexOf( '.' ) + 1 ).toLowerCase() ) === -1
+						!mw.config.get( 'wgFileExtensions' ).map( ( element ) => element.toLowerCase() ).includes( fname.slice( fname.lastIndexOf( '.' ) + 1 ).toLowerCase() )
 					) {
 						// Not a valid extension
 						// Clear the upload and set mw-upload-permitted to error
@@ -236,7 +236,7 @@
 		function fileIsPreviewable( file ) {
 			const known = [ 'image/png', 'image/gif', 'image/jpeg', 'image/svg+xml', 'image/webp' ],
 				tooHuge = 10 * 1024 * 1024;
-			return ( known.indexOf( file.type ) !== -1 ) && file.size > 0 && file.size < tooHuge;
+			return ( known.includes( file.type ) ) && file.size > 0 && file.size < tooHuge;
 		}
 
 		/**

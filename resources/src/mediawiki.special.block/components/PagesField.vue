@@ -126,7 +126,7 @@ module.exports = exports = defineComponent( {
 		function onUpdateChips( newChips ) {
 			// NOTE: This is to avoid recursive updates since pages is bound to MultiselectLookup with v-model
 			const uniqueChipValues = newChips.map( ( item ) => item.value );
-			const uniqueNewValues = uniqueChipValues.filter( ( chipValue ) => pages.value.indexOf( chipValue ) === -1 );
+			const uniqueNewValues = uniqueChipValues.filter( ( chipValue ) => !pages.value.includes( chipValue ) );
 			if ( uniqueNewValues.length !== 0 || pages.value.length > uniqueChipValues.length ) {
 				pages.value = newChips.map( ( chip ) => chip.value );
 			}

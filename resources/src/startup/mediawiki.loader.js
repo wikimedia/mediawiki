@@ -293,7 +293,7 @@
 	 */
 	function allWithImplicitReady( module ) {
 		return allReady( registry[ module ].dependencies ) &&
-			( baseModules.indexOf( module ) !== -1 || allReady( baseModules ) );
+			( baseModules.includes( module ) || allReady( baseModules ) );
 	}
 
 	/**
@@ -340,14 +340,14 @@
 			// Stage 1: Propagate failures
 			while ( errorModules.length ) {
 				var errorModule = errorModules.shift(),
-					baseModuleError = baseModules.indexOf( errorModule ) !== -1;
+					baseModuleError = baseModules.includes( errorModule );
 				for ( module in registry ) {
 					if ( registry[ module ].state !== 'error' && registry[ module ].state !== 'missing' ) {
-						if ( baseModuleError && baseModules.indexOf( module ) === -1 ) {
+						if ( baseModuleError && !baseModules.includes( module ) ) {
 							// Propate error from base module to all regular (non-base) modules
 							registry[ module ].state = 'error';
 							didPropagate = true;
-						} else if ( registry[ module ].dependencies.indexOf( errorModule ) !== -1 ) {
+						} else if ( registry[ module ].dependencies.includes( errorModule ) ) {
 							// Propagate error from dependency to depending module
 							registry[ module ].state = 'error';
 							// .. and propagate it further
@@ -479,7 +479,7 @@
 		var deps = registry[ module ].dependencies;
 		unresolved.add( module );
 		for ( var i = 0; i < deps.length; i++ ) {
-			if ( resolved.indexOf( deps[ i ] ) === -1 ) {
+			if ( !resolved.includes( deps[ i ] ) ) {
 				if ( unresolved.has( deps[ i ] ) ) {
 					throw new Error(
 						'Circular reference detected: ' + module + ' -> ' + deps[ i ]
@@ -831,7 +831,7 @@
 		dependencies.forEach( function ( module ) {
 			// Only queue modules that are still in the initial 'registered' state
 			// (e.g. not ones already loading or loaded etc.).
-			if ( registry[ module ].state === 'registered' && queue.indexOf( module ) === -1 ) {
+			if ( registry[ module ].state === 'registered' && !queue.includes( module ) ) {
 				queue.push( module );
 			}
 		} );

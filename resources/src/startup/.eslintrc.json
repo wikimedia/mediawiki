@@ -9,7 +9,6 @@
 	"rules": {
 		"max-len": "off",
 		"no-var": "off",
-		"prefer-arrow-callback": "off",
-		"unicorn/prefer-includes": "off"
+		"prefer-arrow-callback": "off"
 	}
 }

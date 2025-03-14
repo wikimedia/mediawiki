@@ -15,7 +15,7 @@
 		// which causes the :target selector (used in mediawiki.special.preferences.styles.ooui.less)
 		// not to match anything inside the tabs in Chrome. Twiddling location.href makes it work.
 		// Only do it when a fragment is present, otherwise the page would be reloaded.
-		if ( location.href.indexOf( '#' ) !== -1 ) {
+		if ( location.href.includes( '#' ) ) {
 			// eslint-disable-next-line no-self-assign
 			location.href = location.href;
 		}
@@ -166,7 +166,7 @@
 				texts.forEach( ( text ) => {
 					// TODO: Could use Intl.Collator.prototype.compare like OO.ui.mixin.LabelElement.static.highlightQuery
 					// but might be too slow.
-					if ( text.indexOf( val ) !== -1 ) {
+					if ( text.includes( val ) ) {
 						index[ text ].forEach( ( item ) => {
 							// eslint-disable-next-line no-jquery/no-class-state
 							if ( !item.$field.hasClass( 'mw-prefs-search-matched' ) ) {
