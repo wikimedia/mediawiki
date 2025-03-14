@@ -1,7 +1,7 @@
 <?php
 
 use MediaWiki\Content\ContentHandler;
-use MediaWiki\Page\Event\PageUpdatedEvent;
+use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\SlotRecord;
@@ -103,10 +103,10 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function makeDomainEventSourceListener( $new ) {
-		return static function ( PageUpdatedEvent $event ) use ( $new ) {
+		return static function ( PageRevisionUpdatedEvent $event ) use ( $new ) {
 			Assert::assertFalse( $event->isReconciliationRequest(), 'isReconciliationRequest' );
 			Assert::assertSame( $new, $event->isCreation(), 'isCreation' );
-			Assert::assertSame( PageUpdatedEvent::CAUSE_IMPORT, $event->getCause(), 'getCause' );
+			Assert::assertSame( PageRevisionUpdatedEvent::CAUSE_IMPORT, $event->getCause(), 'getCause' );
 
 			Assert::assertTrue( $event->isImplicit(), 'isImplicit' );
 			Assert::assertTrue( $event->isSilent(), 'isSilent' );
@@ -115,13 +115,13 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Check that importing revisions for a non-existing page emits a
-	 * PageUpdatedEvent indicating page creation.
+	 * PageRevisionUpdatedEvent indicating page creation.
 	 */
 	public function testEventEmission_new() {
 		$title = Title::newFromText( __CLASS__ . rand() );
 
 		$this->expectDomainEvent(
-			PageUpdatedEvent::TYPE, 1,
+			PageRevisionUpdatedEvent::TYPE, 1,
 			$this->makeDomainEventSourceListener( true )
 		);
 
@@ -134,13 +134,13 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Check that importing an old revision for an existing page does not emit
-	 * a PageUpdatedEvent.
+	 * a PageRevisionUpdatedEvent.
 	 */
 	public function testEventEmission_old() {
 		$page = $this->getExistingTestPage();
 		$title = $page->getTitle();
 
-		$this->expectDomainEvent( PageUpdatedEvent::TYPE, 0 );
+		$this->expectDomainEvent( PageRevisionUpdatedEvent::TYPE, 0 );
 
 		// Import an old revision
 		$importer = $this->getImporter();
@@ -152,7 +152,7 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Check that importing a new revision for an existing page emits
-	 * a PageUpdatedEvent.
+	 * a PageRevisionUpdatedEvent.
 	 */
 	public function testEventEmission_current() {
 		MWTimestamp::setFakeTime( '20110101223344' );
@@ -160,7 +160,7 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 		$title = $page->getTitle();
 
 		$this->expectDomainEvent(
-			PageUpdatedEvent::TYPE, 1,
+			PageRevisionUpdatedEvent::TYPE, 1,
 			$this->makeDomainEventSourceListener( false )
 		);
 

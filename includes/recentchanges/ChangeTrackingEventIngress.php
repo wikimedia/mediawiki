@@ -6,7 +6,7 @@ use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\DomainEvent\EventSubscriberBase;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\Page\Event\PageUpdatedEvent;
+use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
@@ -31,7 +31,7 @@ class ChangeTrackingEventIngress extends EventSubscriberBase {
 	 * @see registerListeners()
 	 */
 	public const EVENTS = [
-		PageUpdatedEvent::TYPE
+		PageRevisionUpdatedEvent::TYPE
 	];
 
 	/**
@@ -53,7 +53,7 @@ class ChangeTrackingEventIngress extends EventSubscriberBase {
 			'TalkPageNotificationManager'
 		],
 		'events' => [ // see registerListeners()
-			PageUpdatedEvent::TYPE
+			PageRevisionUpdatedEvent::TYPE
 		],
 	];
 
@@ -107,12 +107,12 @@ class ChangeTrackingEventIngress extends EventSubscriberBase {
 	}
 
 	/**
-	 * Listener method for PageUpdatedEvent, to be registered with an
+	 * Listener method for PageRevisionUpdatedEvent, to be registered with an
 	 * DomainEventSource.
 	 *
 	 * @noinspection PhpUnused
 	 */
-	public function handlePageUpdatedEventAfterCommit( PageUpdatedEvent $event ) {
+	public function handlePageRevisionUpdatedEvent( PageRevisionUpdatedEvent $event ) {
 		if ( $event->changedCurrentRevisionId()
 			&& !$event->isSilent()
 		) {
@@ -194,11 +194,11 @@ class ChangeTrackingEventIngress extends EventSubscriberBase {
 	}
 
 	/**
-	 * Listener method for PageUpdatedEvent, to be registered with a DomainEventSource.
+	 * Listener method for PageRevisionUpdatedEvent, to be registered with a DomainEventSource.
 	 *
 	 * @noinspection PhpUnused
 	 */
-	private function updateNewTalkAfterPageUpdated( PageUpdatedEvent $event ) {
+	private function updateNewTalkAfterPageUpdated( PageRevisionUpdatedEvent $event ) {
 		// If this is another user's talk page, update newtalk.
 		// Don't do this if $options['changed'] = false (null-edits) nor if
 		// it's a minor edit and the user making the edit doesn't generate notifications for those.
@@ -223,7 +223,6 @@ class ChangeTrackingEventIngress extends EventSubscriberBase {
 
 				// Allow extensions to prevent user notification
 				// when a new message is added to their talk page
-				// TODO: replace legacy hook!  Use a listener on PageEventEmitter instead!
 				if ( $this->hookRunner->onArticleEditUpdateNewTalk( $wikiPage, $recipient ) ) {
 					if ( $this->userNameUtils->isIP( $recipientName ) ) {
 						// An anonymous user

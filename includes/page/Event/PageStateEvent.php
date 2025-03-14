@@ -27,17 +27,18 @@ use Wikimedia\Assert\Assert;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
- * Base class for domain events representing changes to pages.
+ * Base class for domain events representing changes to page state.
  *
- * @todo: decide whether we want to change the name to PageChangedEvent
- * and rename PageUpdatedEvent to something more descriptive, like
- * PageContentUpdatedEvent.
+ * Page state events include life cycle changes to the page (e.g. create, move,
+ * delete) as well as changing a page's latest revision. They do not include
+ * changes to the page's revision history (except for changes to the latest
+ * revision).
  *
  * @unstable until 1.45
  */
-abstract class PageEvent extends DomainEvent {
+abstract class PageStateEvent extends DomainEvent {
 
-	public const TYPE = 'Page';
+	public const TYPE = 'PageState';
 
 	/**
 	 * @var string This is a reconciliation event, triggered in order to give

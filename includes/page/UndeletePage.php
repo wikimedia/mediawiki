@@ -29,7 +29,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\ValidationParams;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\Page\Event\PageUpdatedEvent;
+use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\ArchivedRevisionLookup;
@@ -640,8 +640,8 @@ class UndeletePage {
 			if ( $created || $wasnew ) {
 				// Update site stats, link tables, etc
 				$options = [
-					PageUpdatedEvent::FLAG_SILENT => true,
-					PageUpdatedEvent::FLAG_IMPLICIT => true,
+					PageRevisionUpdatedEvent::FLAG_SILENT => true,
+					PageRevisionUpdatedEvent::FLAG_IMPLICIT => true,
 					'created' => $created,
 					'oldcountable' => $oldcountable,
 				];

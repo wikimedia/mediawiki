@@ -10,12 +10,12 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\EditPage\EditPage;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\EditResult;
-use MediaWiki\Storage\PageUpdatedEvent;
 use MediaWiki\Tests\ExpectCallbackTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -192,7 +192,7 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	private function expectPageUpdatedEvent(
+	private function expectPageRevisionUpdatedEvent(
 		string $newContent,
 		array $revisionIds,
 		bool $isExactRevert,
@@ -202,8 +202,8 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 	) {
 		// set up a temporary hook with asserts
 		$this->expectDomainEvent(
-			PageUpdatedEvent::TYPE, 1,
-			function ( PageUpdatedEvent $event ) use (
+			PageRevisionUpdatedEvent::TYPE, 1,
+			function ( PageRevisionUpdatedEvent $event ) use (
 				$newContent,
 				$revisionIds,
 				$isExactRevert,
@@ -213,7 +213,7 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 			) {
 				$this->assertTrue( $event->isRevert(), 'isRevert()' );
 				$this->assertTrue(
-					$event->hasCause( PageUpdatedEvent::CAUSE_UNDO ),
+					$event->hasCause( PageRevisionUpdatedEvent::CAUSE_UNDO ),
 					'CAUSE_UNDO'
 				);
 
@@ -381,7 +381,7 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 			$newestRevertedRevIndex,
 			$originalRevIndex
 		);
-		$this->expectPageUpdatedEvent(
+		$this->expectPageRevisionUpdatedEvent(
 			$newContent,
 			$revisionIds,
 			$isExactRevert,
@@ -429,7 +429,7 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 			$newestRevertedRevIndex,
 			$originalRevIndex
 		);
-		$this->expectPageUpdatedEvent(
+		$this->expectPageRevisionUpdatedEvent(
 			$newContent,
 			$revisionIds,
 			$isExactRevert,
@@ -492,7 +492,7 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 			$newestRevertedRevIndex,
 			$originalRevIndex
 		);
-		$this->expectPageUpdatedEvent(
+		$this->expectPageRevisionUpdatedEvent(
 			$newContent,
 			$revisionIds,
 			$isExactRevert,
