@@ -481,7 +481,19 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 		yield 'Set $wgLocalFileRepo' => [
 			[ MainConfigNames::LocalFileRepo => [ 'name' => 'asdfgh' ] ],
 			[ MainConfigNames::LocalFileRepo => [
-				'name' => 'asdfgh', 'backend' => 'asdfgh-backend'
+				'name' => 'asdfgh',
+				'directory' => '/install/path/images',
+				'scriptDirUrl' => '/wiki',
+				'favicon' => '/favicon.ico',
+				'url' => '/wiki/images',
+				'hashLevels' => 2,
+				'thumbScriptUrl' => false,
+				'transformVia404' => false,
+				'deletedDir' => '/install/path/images/deleted',
+				'deletedHashLevels' => 3,
+				'updateCompatibleMetadata' => false,
+				'reserializeMetadata' => false,
+				'backend' => 'asdfgh-backend',
 			] ],
 		];
 		$sharedUploadsExpected = [

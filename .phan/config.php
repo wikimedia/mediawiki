@@ -161,6 +161,7 @@ $cfg['globals_type_map'] = array_merge( $cfg['globals_type_map'], [
 	'wgNamespaceProtection' => 'array<int,string|string[]>',
 	'wgNamespaceAliases' => 'array<string,int>',
 	'wgLockManagers' => 'array[]',
+	'wgLocalFileRepo' => 'array',
 	'wgForeignFileRepos' => 'array[]',
 	'wgDefaultUserOptions' => 'array',
 	'wgSkipSkins' => 'string[]',

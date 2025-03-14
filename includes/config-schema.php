@@ -52,7 +52,21 @@ return [
 			'ImgAuthDetails' => false,
 			'ImgAuthUrlPathMap' => [
 			],
-			'LocalFileRepo' => false,
+			'LocalFileRepo' => [
+				'class' => 'MediaWiki\\FileRepo\\LocalRepo',
+				'name' => 'local',
+				'directory' => null,
+				'scriptDirUrl' => null,
+				'favicon' => null,
+				'url' => null,
+				'hashLevels' => null,
+				'thumbScriptUrl' => null,
+				'transformVia404' => null,
+				'deletedDir' => null,
+				'deletedHashLevels' => null,
+				'updateCompatibleMetadata' => null,
+				'reserializeMetadata' => null,
+			],
 			'ForeignFileRepos' => [
 			],
 			'UseInstantCommons' => false,
@@ -2705,10 +2719,7 @@ return [
 			'ActionPaths' => 'object',
 			'MainPageIsDomainRoot' => 'boolean',
 			'ImgAuthUrlPathMap' => 'object',
-			'LocalFileRepo' => [
-				'object',
-				'boolean',
-			],
+			'LocalFileRepo' => 'object',
 			'ForeignFileRepos' => 'array',
 			'UseSharedUploads' => 'boolean',
 			'SharedUploadDirectory' => [
@@ -3304,24 +3315,6 @@ return [
 				'callback' => [
 					'MediaWiki\\MainConfigSchema',
 					'getDefaultDeletedDirectory',
-				],
-			],
-			'LocalFileRepo' => [
-				'use' => [
-					'UploadDirectory',
-					'ScriptPath',
-					'Favicon',
-					'UploadBaseUrl',
-					'UploadPath',
-					'HashedUploadDirectory',
-					'ThumbnailScriptPath',
-					'GenerateThumbnailOnParse',
-					'DeletedDirectory',
-					'UpdateCompatibleMetadata',
-				],
-				'callback' => [
-					'MediaWiki\\MainConfigSchema',
-					'getDefaultLocalFileRepo',
 				],
 			],
 			'ShowEXIF' => [

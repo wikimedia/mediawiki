@@ -181,7 +181,7 @@ config-schema:
             use: [ScriptPath]
             callback: [MediaWiki\MainConfigSchema, getDefaultUploadPath]
         description: |-
-            The URL path for the images directory.
+            The URL path to $wgUploadDirectory. Shortcut for $wgLocalFileRepo['url'].
             Defaults to "{$wgScriptPath}/images".
     ImgAuthPath:
         default: false
@@ -329,8 +329,12 @@ config-schema:
     UploadBaseUrl:
         default: ''
         description: |-
-            If set, this URL is added to the start of $wgUploadPath to form a complete
-            upload URL.
+            If set, this server URL is prepended to $wgUploadPath in the default
+            value of $wgLocalFileRepo['url'].
+            It is meant for controlling web access to $wgUploadPath via an alternative
+            domain name, instead of $wgServer, such as may be needed if your images
+            are uploaded to a third-party file storage service.
+            For other customizations, set $wgLocalFileRepo['url'] directly instead.
             @since 1.4
     UploadStashScalerBaseUrl:
         default: false
@@ -403,7 +407,7 @@ config-schema:
             use: [UploadDirectory]
             callback: [MediaWiki\MainConfigSchema, getDefaultDeletedDirectory]
         description: |-
-            What directory to place deleted uploads in.
+            Where to move deleted files to. Shortcut for $wgLocalFileRepo['deletedDir'].
             Defaults to "{$wgUploadDirectory}/deleted".
     ImgAuthDetails:
         default: false
@@ -423,13 +427,21 @@ config-schema:
             The name "local-fs" should correspond by name to an entry in $wgFileBackends.
             @see self::FileBackends
     LocalFileRepo:
-        default: false
-        type:
-            - object
-            - boolean
-        dynamicDefault:
-            use: [UploadDirectory, ScriptPath, Favicon, UploadBaseUrl, UploadPath, HashedUploadDirectory, ThumbnailScriptPath, GenerateThumbnailOnParse, DeletedDirectory, UpdateCompatibleMetadata]
-            callback: [MediaWiki\MainConfigSchema, getDefaultLocalFileRepo]
+        default:
+            class: MediaWiki\FileRepo\LocalRepo
+            name: local
+            directory: null
+            scriptDirUrl: null
+            favicon: null
+            url: null
+            hashLevels: null
+            thumbScriptUrl: null
+            transformVia404: null
+            deletedDir: null
+            deletedHashLevels: null
+            updateCompatibleMetadata: null
+            reserializeMetadata: null
+        type: object
         description: |-
             File repository structures
             $wgLocalFileRepo is a single repository structure, and $wgForeignFileRepos is
@@ -497,6 +509,9 @@ config-schema:
                                  is 0644.
               - directory        The local filesystem directory where public files are stored. Not used for
                                  some remote repos.
+              - deletedDir       The local filesystem directory where public files are moved to (from
+                                 'directory') when they are deleted, at which points they become private.
+                                 Defaults to false, which disables the file deletion feature.
               - thumbDir         The base thumbnail directory. Defaults to "<directory>/thumb".
               - thumbUrl         The base thumbnail URL. Defaults to "<url>/thumb".
               - isPrivate        Set this if measures should always be taken to keep the files private.
@@ -540,14 +555,10 @@ config-schema:
             ForeignAPIRepo:
               - apibase              Use for the foreign API's URL
               - apiThumbCacheExpiry  How long to locally cache thumbs for
-            If you leave $wgLocalFileRepo set to false, Setup will fill in appropriate values.
-            Otherwise, set $wgLocalFileRepo to a repository structure as described above.
-            If you set $wgUseInstantCommons to true, it will add an entry for Commons.
             If you set $wgForeignFileRepos to an array of repository structures, those will
             be searched after the local file repo.
             Otherwise, you will only have access to local media files.
-            @see \FileRepo::__construct for the default options.
-            @see Setup.php for an example usage and default initialization.
+            @see SetupDynamicConfig.php for expansion of below initial values.
     ForeignFileRepos:
         default: []
         type: array
@@ -556,8 +567,11 @@ config-schema:
             If you operate multiple wikis, you can declare a shared upload path here.
             Uploads to the local wiki will NOT be stored here - See $wgLocalFileRepo
             and $wgUploadDirectory for that.
-            The wiki will only consider the foreign repository if no file of the given name
-            is found in the local repository (e.g. via `[[File:..]]` syntax).
+            When performing file lookups (e.g. via `[[File:..]]` syntax), the wiki will
+            only consider the foreign repository if no file of the given name is found
+            in the local repository ($wgLocalFileRepo).
+            If you set $wgUseInstantCommons to true, this automatically includes
+            an entry for Wikimedia Commons.
             @since 1.11
             @see self::LocalFileRepo
     UseInstantCommons:
@@ -859,7 +873,7 @@ config-schema:
         default: true
         type: boolean
         description: |-
-            Shortcut for setting `hashLevels=2` in $wgLocalFileRepo.
+            Shortcut for setting `hashLevels=2` and `deletedHashLevels=3` in $wgLocalFileRepo.
             @note Only used if $wgLocalFileRepo is not set.
     CSPUploadEntryPoint:
         default: true

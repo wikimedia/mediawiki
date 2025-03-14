@@ -539,7 +539,7 @@ class MainConfigSchema {
 	}
 
 	/**
-	 * The URL path for the images directory.
+	 * The URL path to $wgUploadDirectory. Shortcut for $wgLocalFileRepo['url'].
 	 *
 	 * Defaults to "{$wgScriptPath}/images".
 	 */
@@ -754,8 +754,14 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * If set, this URL is added to the start of $wgUploadPath to form a complete
-	 * upload URL.
+	 * If set, this server URL is prepended to $wgUploadPath in the default
+	 * value of $wgLocalFileRepo['url'].
+	 *
+	 * It is meant for controlling web access to $wgUploadPath via an alternative
+	 * domain name, instead of $wgServer, such as may be needed if your images
+	 * are uploaded to a third-party file storage service.
+	 *
+	 * For other customizations, set $wgLocalFileRepo['url'] directly instead.
 	 *
 	 * @since 1.4
 	 */
@@ -877,7 +883,7 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * What directory to place deleted uploads in.
+	 * Where to move deleted files to. Shortcut for $wgLocalFileRepo['deletedDir'].
 	 *
 	 * Defaults to "{$wgUploadDirectory}/deleted".
 	 */
@@ -996,6 +1002,9 @@ class MainConfigSchema {
 	 *                      is 0644.
 	 *   - directory        The local filesystem directory where public files are stored. Not used for
 	 *                      some remote repos.
+	 *   - deletedDir       The local filesystem directory where public files are moved to (from
+	 *                      'directory') when they are deleted, at which points they become private.
+	 *                      Defaults to false, which disables the file deletion feature.
 	 *   - thumbDir         The base thumbnail directory. Defaults to "<directory>/thumb".
 	 *   - thumbUrl         The base thumbnail URL. Defaults to "<url>/thumb".
 	 *   - isPrivate        Set this if measures should always be taken to keep the files private.
@@ -1046,45 +1055,30 @@ class MainConfigSchema {
 	 *   - apibase              Use for the foreign API's URL
 	 *   - apiThumbCacheExpiry  How long to locally cache thumbs for
 	 *
-	 * If you leave $wgLocalFileRepo set to false, Setup will fill in appropriate values.
-	 * Otherwise, set $wgLocalFileRepo to a repository structure as described above.
-	 * If you set $wgUseInstantCommons to true, it will add an entry for Commons.
 	 * If you set $wgForeignFileRepos to an array of repository structures, those will
 	 * be searched after the local file repo.
 	 * Otherwise, you will only have access to local media files.
 	 *
-	 * @see \FileRepo::__construct for the default options.
-	 * @see Setup.php for an example usage and default initialization.
+	 * @see SetupDynamicConfig.php for expansion of below initial values.
 	 */
 	public const LocalFileRepo = [
-		'default' => false,
-		'type' => 'map|false',
-		'dynamicDefault' => [ 'use' => [ 'UploadDirectory', 'ScriptPath', 'Favicon', 'UploadBaseUrl',
-			'UploadPath', 'HashedUploadDirectory', 'ThumbnailScriptPath',
-			'GenerateThumbnailOnParse', 'DeletedDirectory', 'UpdateCompatibleMetadata' ] ],
-	];
-
-	public static function getDefaultLocalFileRepo(
-		string $uploadDirectory, string $scriptPath, string $favicon, string $uploadBaseUrl, string $uploadPath,
-		bool $hashedUploadDirectory, string|false $thumbnailScriptPath, bool $generateThumbnailOnParse, string $deletedDirectory,
-		bool $updateCompatibleMetadata
-	): array {
-		return [
+		'default' => [
 			'class' => LocalRepo::class,
 			'name' => 'local',
-			'directory' => $uploadDirectory,
-			'scriptDirUrl' => $scriptPath,
-			'favicon' => $favicon,
-			'url' => $uploadBaseUrl ? $uploadBaseUrl . $uploadPath : $uploadPath,
-			'hashLevels' => $hashedUploadDirectory ? 2 : 0,
-			'thumbScriptUrl' => $thumbnailScriptPath,
-			'transformVia404' => !$generateThumbnailOnParse,
-			'deletedDir' => $deletedDirectory,
-			'deletedHashLevels' => $hashedUploadDirectory ? 3 : 0,
-			'updateCompatibleMetadata' => $updateCompatibleMetadata,
-			'reserializeMetadata' => $updateCompatibleMetadata,
-		];
-	}
+			'directory' => null, // $wgUploadDirectory
+			'scriptDirUrl' => null, // $wgScriptPath
+			'favicon' => null, // $wgFavicon
+			'url' => null, // $wgUploadBaseUrl . $wgUploadPath
+			'hashLevels' => null, // $wgHashedUploadDirectory
+			'thumbScriptUrl' => null, // $wgThumbnailScriptPath
+			'transformVia404' => null, // $wgGenerateThumbnailOnParse
+			'deletedDir' => null, // $wgDeletedDirectory
+			'deletedHashLevels' => null, // $wgHashedUploadDirectory
+			'updateCompatibleMetadata' => null, // $wgUpdateCompatibleMetadata
+			'reserializeMetadata' => null, // $wgUpdateCompatibleMetadata
+		],
+		'type' => 'map',
+	];
 
 	/**
 	 * Enable the use of files from one or more other wikis.
@@ -1093,8 +1087,12 @@ class MainConfigSchema {
 	 * Uploads to the local wiki will NOT be stored here - See $wgLocalFileRepo
 	 * and $wgUploadDirectory for that.
 	 *
-	 * The wiki will only consider the foreign repository if no file of the given name
-	 * is found in the local repository (e.g. via `[[File:..]]` syntax).
+	 * When performing file lookups (e.g. via `[[File:..]]` syntax), the wiki will
+	 * only consider the foreign repository if no file of the given name is found
+	 * in the local repository ($wgLocalFileRepo).
+	 *
+	 * If you set $wgUseInstantCommons to true, this automatically includes
+	 * an entry for Wikimedia Commons.
 	 *
 	 * @since 1.11
 	 * @see self::LocalFileRepo
@@ -1330,6 +1328,7 @@ class MainConfigSchema {
 	 *   - b) Whether it is only defined for some wikis or is defined on all
 	 *        wikis in the wiki farm. Defining a backend globally is useful
 	 *        if multiple wikis need to share the same data.
+	 *
 	 * One should be aware of these aspects when configuring a backend for use with
 	 * any basic feature or plugin. For example, suppose an extension stores data for
 	 * different wikis in different directories and sometimes needs to access data from
@@ -1556,7 +1555,7 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Shortcut for setting `hashLevels=2` in $wgLocalFileRepo.
+	 * Shortcut for setting `hashLevels=2` and `deletedHashLevels=3` in $wgLocalFileRepo.
 	 *
 	 * @note Only used if $wgLocalFileRepo is not set.
 	 */

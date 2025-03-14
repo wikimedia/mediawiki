@@ -131,7 +131,8 @@ class FileBackendGroup {
 			$repoName = $info['name'];
 			// Local vars that used to be FSRepo members...
 			$directory = $info['directory'];
-			$deletedDir = $info['deletedDir'] ?? false; // deletion disabled
+			// file deletion is disabled not set
+			$deletedDir = $info['deletedDir'] ?? false;
 			$thumbDir = $info['thumbDir'] ?? "{$directory}/thumb";
 			$transcodedDir = $info['transcodedDir'] ?? "{$directory}/transcoded";
 			$lockManager = $info['lockManager'] ?? 'fsLockManager';

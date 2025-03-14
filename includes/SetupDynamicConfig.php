@@ -138,6 +138,18 @@ $wgGalleryOptions += [
 	'mode' => 'traditional',
 ];
 
+$wgLocalFileRepo['directory'] ??= $wgUploadDirectory;
+$wgLocalFileRepo['scriptDirUrl'] ??= $wgScriptPath;
+$wgLocalFileRepo['favicon'] ??= $wgFavicon;
+$wgLocalFileRepo['url'] ??= ( $wgUploadBaseUrl ? $wgUploadBaseUrl . $wgUploadPath : $wgUploadPath );
+$wgLocalFileRepo['hashLevels'] ??= ( $wgHashedUploadDirectory ? 2 : 0 );
+$wgLocalFileRepo['thumbScriptUrl'] ??= $wgThumbnailScriptPath;
+$wgLocalFileRepo['transformVia404'] ??= !$wgGenerateThumbnailOnParse;
+$wgLocalFileRepo['deletedDir'] ??= $wgDeletedDirectory;
+$wgLocalFileRepo['deletedHashLevels'] ??= ( $wgHashedUploadDirectory ? 3 : 0 );
+$wgLocalFileRepo['updateCompatibleMetadata'] ??= $wgUpdateCompatibleMetadata;
+$wgLocalFileRepo['reserializeMetadata'] ??= $wgUpdateCompatibleMetadata;
+
 if ( isset( $wgLocalFileRepo['name'] ) && !isset( $wgLocalFileRepo['backend'] ) ) {
 	// Create a default FileBackend name.
 	// FileBackendGroup will register a default, if absent from $wgFileBackends.
