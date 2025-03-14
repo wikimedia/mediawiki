@@ -224,10 +224,10 @@ class OutputPage extends ContextSource {
 	private bool $mCategoriesSorted = true;
 
 	/**
-	 * @var string[]
+	 * @var array<string,string>
 	 * @deprecated since 1.38; will be made private (T301020)
 	 */
-	private $mIndicators = [];
+	private array $mIndicators = [];
 
 	/**
 	 * Used for JavaScript (predates ResourceLoader)
@@ -1843,7 +1843,7 @@ class OutputPage extends ContextSource {
 	 * any indicators sourced from parsed wikitext are wrapped with
 	 * the appropriate class; see note in ::getIndicators().
 	 *
-	 * @param string[] $indicators
+	 * @param array<string,string> $indicators
 	 * @param-taint $indicators exec_html
 	 * @since 1.25
 	 */
@@ -1858,7 +1858,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * The array will be internally ordered by item keys.
 	 *
-	 * @return string[] Keys: identifiers, values: HTML contents
+	 * @return array<string,string> Maps identifiers to HTML contents
 	 * @since 1.25
 	 */
 	public function getIndicators(): array {
