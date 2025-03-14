@@ -188,7 +188,6 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 
 	public function testExecute_notAllowed() {
 		$user = $this->createMock( User::class );
-		/** @var User $user */
 
 		$passwordReset = $this->getMockBuilder( PasswordReset::class )
 			->disableOriginalConstructor()
@@ -532,7 +531,6 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 		$request = $this->createMock( WebRequest::class );
 		$request->method( 'getIP' )
 			->willReturn( $ip );
-		/** @var WebRequest $request */
 
 		$user = $this->getMockBuilder( User::class )
 			->onlyMethods( [ 'getName', 'pingLimiter', 'getRequest', 'isAllowed' ] )

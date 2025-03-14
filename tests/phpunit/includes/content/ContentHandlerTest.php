@@ -464,7 +464,6 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 			->getMockForAbstractClass();
 		$customContentHandler->method( 'createDifferenceEngine' )
 			->willReturn( $customDifferenceEngine );
-		/** @var ContentHandler $customContentHandler */
 		$slotDiffRenderer = $customContentHandler->getSlotDiffRenderer( RequestContext::getMain() );
 		$this->assertInstanceOf( DifferenceEngineSlotDiffRenderer::class, $slotDiffRenderer );
 		$this->assertSame(
@@ -491,7 +490,6 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 			->willReturn( $customDifferenceEngine );
 		$customContentHandler2->method( 'getSlotDiffRendererInternal' )
 			->willReturn( $customSlotDiffRenderer );
-		/** @var ContentHandler $customContentHandler2 */
 		$this->hideDeprecated( 'ContentHandler::getSlotDiffRendererInternal' );
 		$slotDiffRenderer = $customContentHandler2->getSlotDiffRenderer( RequestContext::getMain() );
 		$this->assertSame( $customSlotDiffRenderer, $slotDiffRenderer );
@@ -510,7 +508,6 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 			->getMockForAbstractClass();
 		$customContentHandler->method( 'createDifferenceEngine' )
 			->willReturn( $customDifferenceEngine );
-		/** @var ContentHandler $customContentHandler */
 
 		$customSlotDiffRenderer = $this->getMockBuilder( SlotDiffRenderer::class )
 			->disableOriginalConstructor()
@@ -523,7 +520,6 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 			->willReturn( $customDifferenceEngine );
 		$customContentHandler2->method( 'getSlotDiffRendererInternal' )
 			->willReturn( $customSlotDiffRenderer );
-		/** @var ContentHandler $customContentHandler2 */
 
 		$customSlotDiffRenderer2 = $this->getMockBuilder( SlotDiffRenderer::class )
 			->disableOriginalConstructor()

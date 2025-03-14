@@ -289,7 +289,6 @@ class DatabaseMySQLTest extends TestCase {
 		$replicationReporter->method( 'getServerId' )->willReturn( 1 );
 		$replicationReporter->method( 'getServerUUID' )->willReturn( '2E11FA47-71CA-11E1-9E33-C80AA9429562' );
 
-		/** @var MysqlReplicationReporter $replicationReporter */
 		if ( is_array( $rGTIDs ) ) {
 			$this->assertEquals( $rGTIDs, $replicationReporter->getReplicaPos( $db )->getGTIDs() );
 		} else {
@@ -596,7 +595,6 @@ class DatabaseMySQLTest extends TestCase {
 		$wdb = TestingAccessWrapper::newFromObject( $db );
 		$wdb->platform = new MySQLPlatform( new AddQuoterMock() );
 
-		/** @var IDatabase $db */
 		$sql = $wdb->selectSQLText( 'image',
 			'img_metadata',
 			'*',
