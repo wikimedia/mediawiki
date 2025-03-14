@@ -1531,35 +1531,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Append link to SpecialPages into navigation sidebar if it doesn't already exist
-	 *
-	 * Created to help migrate sidebars after the SpecialPages link was removed from the toolbar.
-	 *
-	 * @since 1.44
-	 * @deprecated since 1.44 - will be hard deprecated in 1.45
-	 */
-	private function appendSpecialPagesLinkIfAbsent() {
-		if ( $this->sidebar === null ) {
-			return;
-		}
-
-		$isSpecialPagesPresent = false;
-		foreach ( $this->sidebar as $bar ) {
-			if ( in_array( 'n-specialpages', array_column( $bar, 'id' ) ) ) {
-				$isSpecialPagesPresent = true;
-				break;
-			}
-		}
-		if ( !$isSpecialPagesPresent ) {
-			$item = $this->createSidebarItem( 'specialpages-url', 'specialpages' );
-			if ( $item !== null ) {
-				wfDeprecated( __METHOD__, '1.44' );
-				$this->sidebar['navigation'][] = $item;
-			}
-		}
-	}
-
-	/**
 	 * Build an array that represents the sidebar(s), the navigation bar among them.
 	 *
 	 * BaseTemplate::getSidebar can be used to simplify the format and id generation in new skins.
@@ -1635,8 +1606,6 @@ abstract class Skin extends ContextSource {
 			$this->getHookRunner()->onSidebarBeforeOutput( $this, $sidebar );
 
 			$this->sidebar = $sidebar;
-
-			$this->appendSpecialPagesLinkIfAbsent();
 		}
 
 		return $this->sidebar;
