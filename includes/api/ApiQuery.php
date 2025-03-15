@@ -349,6 +349,9 @@ class ApiQuery extends ApiBase {
 				'CollationFactory',
 			]
 		],
+		'codexicons' => [
+			'class' => ApiQueryCodexIcons::class,
+		],
 		'deletedrevs' => [
 			'class' => ApiQueryDeletedrevs::class,
 			'services' => [

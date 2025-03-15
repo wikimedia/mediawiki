@@ -865,6 +865,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Api\\ApiQueryCategories' => __DIR__ . '/includes/api/ApiQueryCategories.php',
 	'MediaWiki\\Api\\ApiQueryCategoryInfo' => __DIR__ . '/includes/api/ApiQueryCategoryInfo.php',
 	'MediaWiki\\Api\\ApiQueryCategoryMembers' => __DIR__ . '/includes/api/ApiQueryCategoryMembers.php',
+	'MediaWiki\\Api\\ApiQueryCodexIcons' => __DIR__ . '/includes/api/ApiQueryCodexIcons.php',
 	'MediaWiki\\Api\\ApiQueryContributors' => __DIR__ . '/includes/api/ApiQueryContributors.php',
 	'MediaWiki\\Api\\ApiQueryDeletedRevisions' => __DIR__ . '/includes/api/ApiQueryDeletedRevisions.php',
 	'MediaWiki\\Api\\ApiQueryDeletedrevs' => __DIR__ . '/includes/api/ApiQueryDeletedrevs.php',
