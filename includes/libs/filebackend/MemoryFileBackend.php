@@ -239,6 +239,7 @@ class MemoryFileBackend extends FileBackendStore {
 		foreach ( $this->files as $path => $data ) {
 			if ( strpos( $path, $prefix ) === 0 ) {
 				$relPath = substr( $path, $prefixLen );
+				// @phan-suppress-next-line PhanImpossibleTypeComparisonInLoop
 				if ( $relPath === false ) {
 					continue;
 				} elseif ( strpos( $relPath, '/' ) === false ) {
@@ -268,6 +269,7 @@ class MemoryFileBackend extends FileBackendStore {
 		foreach ( $this->files as $path => $data ) {
 			if ( strpos( $path, $prefix ) === 0 ) {
 				$relPath = substr( $path, $prefixLen );
+				// @phan-suppress-next-line PhanImpossibleTypeComparisonInLoop
 				if ( $relPath === false ) {
 					continue;
 				} elseif ( !empty( $params['topOnly'] ) && strpos( $relPath, '/' ) !== false ) {
