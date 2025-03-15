@@ -24,15 +24,7 @@ class HeaderCallback {
 	 * @since 1.29
 	 */
 	public static function register() {
-		// T261260 load the WebRequest class, which will be needed in callback().
-		// Autoloading seems unreliable in header callbacks, and in the case of a web
-		// request (ie. in all cases where the request might be performance-sensitive)
-		// it will have to be loaded at some point anyway.
-		// This can be removed once we require PHP 8.0+.
-		class_exists( WebRequest::class );
-		class_exists( Telemetry::class );
-
-		header_register_callback( [ self::class, 'callback' ] );
+		header_register_callback( [ __CLASS__, 'callback' ] );
 	}
 
 	/**

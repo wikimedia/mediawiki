@@ -27,7 +27,6 @@ $cfg['file_list'] = array_merge(
 	$cfg['file_list'],
 	class_exists( Socket::class ) ? [] : [ '.phan/stubs/Socket.php' ],
 	class_exists( AllowDynamicProperties::class ) ? [] : [ '.phan/stubs/AllowDynamicProperties.php' ],
-	class_exists( WeakMap::class ) ? [] : [ '.phan/stubs/WeakMap.php' ],
 	[
 		// This makes constants and globals known to Phan before processing all other files.
 		// You can check the parser order with --dump-parsed-file-list
@@ -49,20 +48,6 @@ $cfg['exclude_file_list'] = array_merge(
 		'maintenance/shell.php',
 	]
 );
-
-if ( PHP_VERSION_ID >= 80000 ) {
-	// Exclude PHP 8.0 polyfills if PHP 8.0+ is running
-	$cfg['exclude_file_list'] = array_merge(
-		$cfg['exclude_file_list'],
-		[
-			'vendor/symfony/polyfill-php80/Resources/stubs/Attribute.php',
-			'vendor/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
-			'vendor/symfony/polyfill-php80/Resources/stubs/Stringable.php',
-			'vendor/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
-			'vendor/symfony/polyfill-php80/Resources/stubs/ValueError.php',
-		]
-	);
-}
 
 $cfg['autoload_internal_extension_signatures'] = [
 	'excimer' => '.phan/internal_stubs/excimer.phan_php',

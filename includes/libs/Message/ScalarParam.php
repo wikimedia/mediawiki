@@ -36,10 +36,7 @@ class ScalarParam extends MessageParam {
 		if ( $value instanceof MessageSpecifier ) {
 			// Ensure that $this->value is JSON-serializable, even if $value is not
 			$value = MessageValue::newFromSpecifier( $value );
-		} elseif ( is_object( $value ) && (
-			$value instanceof Stringable || is_callable( [ $value, '__toString' ] )
-		) ) {
-			// TODO: Remove separate '__toString' check above once we drop PHP 7.4
+		} elseif ( is_object( $value ) && $value instanceof Stringable ) {
 			$value = (string)$value;
 		} elseif ( !is_string( $value ) && !is_numeric( $value ) ) {
 			$valType = get_debug_type( $value );

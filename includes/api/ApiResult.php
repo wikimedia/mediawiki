@@ -967,10 +967,7 @@ class ApiResult implements ApiSerializable {
 				uksort( $data, static function ( $a, $b ): int {
 					// In a comparison of a number or numeric string with a non-numeric string,
 					// coerce both values into a string prior to comparing and compare the resulting strings.
-					// Note that PHP prior to 8.0 did not consider numeric strings with trailing whitespace
-					// to be numeric, so trim the inputs prior to the numeric checks to make the behavior
-					// consistent across PHP versions.
-					if ( is_numeric( trim( $a ) ) xor is_numeric( trim( $b ) ) ) {
+					if ( is_numeric( $a ) xor is_numeric( $b ) ) {
 						return (string)$a <=> (string)$b;
 					}
 
