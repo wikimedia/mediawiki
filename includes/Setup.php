@@ -97,12 +97,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	exit( 1 );
 }
 
-// PHP must not be configured to overload mbstring functions. (T5782, T122807)
-// This was deprecated by upstream in PHP 7.2 and was removed in PHP 8.0.
-if ( ini_get( 'mbstring.func_overload' ) ) {
-	die( 'MediaWiki does not support installations where mbstring.func_overload is non-zero.' );
-}
-
 // The MW_ENTRY_POINT constant must always exists, to make it safe to access.
 // For compat, we do support older and custom MW entrypoints that don't set this,
 // in which case we assign a default here.

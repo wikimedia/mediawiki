@@ -141,20 +141,11 @@ class TempFSFile extends FSFile {
 	 */
 	public function bind( $object ) {
 		if ( is_object( $object ) ) {
-			// Use a WeakMap on PHP >= 8.0 to avoid dynamic property creation (T324894)
-			if ( PHP_VERSION_ID >= 80000 ) {
-				if ( self::$references === null ) {
-					self::$references = new WeakMap;
-				}
-				self::$references[$object] = $this;
-			} else {
-				// PHP 7.4
-				if ( !isset( $object->tempFSFileReferences ) ) {
-					// Init first since $object might use __get() and return only a copy variable
-					$object->tempFSFileReferences = [];
-				}
-				$object->tempFSFileReferences[] = $this;
+			// Use a WeakMap to avoid dynamic property creation (T324894)
+			if ( self::$references === null ) {
+				self::$references = new WeakMap;
 			}
+			self::$references[$object] = $this;
 		}
 
 		return $this;
