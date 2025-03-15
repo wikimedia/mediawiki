@@ -614,6 +614,7 @@ $wgAutoloadLocalClasses = [
 	'ImportableOldRevisionImporter' => __DIR__ . '/includes/import/ImportableOldRevisionImporter.php',
 	'ImportableUploadRevision' => __DIR__ . '/includes/import/ImportableUploadRevision.php',
 	'ImportableUploadRevisionImporter' => __DIR__ . '/includes/import/ImportableUploadRevisionImporter.php',
+	'InariSaamiUppercaseCollation' => __DIR__ . '/includes/collation/InariSaamiUppercaseCollation.php',
 	'IncludableSpecialPage' => __DIR__ . '/includes/specialpage/IncludableSpecialPage.php',
 	'IncompatibleDiffTypesException' => __DIR__ . '/includes/diff/IncompatibleDiffTypesException.php',
 	'IndexPager' => __DIR__ . '/includes/pager/IndexPager.php',
