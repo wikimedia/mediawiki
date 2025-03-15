@@ -11,11 +11,11 @@ use Wikimedia\Assert\Assert;
  *
  * PHP 8.2 has deprecated dynamic property creation for objects not explicitly annotated with #[AllowDynamicProperties].
  * The recommended migration path for associating arbitrary data with objects is WeakMap, which is only available starting from PHP 8.0.
- * As long as MediaWiki still supports PHP 7.4, this requires a compatibility layer for dynamic property creation on classes
+ * Whilst MediaWiki still supported PHP 7.4, this required a compatibility layer for dynamic property creation on classes
  * that do not support it, by utilizing WeakMap when available and falling back to regular dynamic property creation
  * on PHP 7.4.
  *
- * This class can be removed and its usages converted into direct WeakMap usage once MediaWiki only supports PHP 8.0 and above.
+ * This class can be removed and its usages converted into direct WeakMap usage now that MediaWiki only supports PHP 8.0 and above.
  *
  * @since 1.42 (also backported to 1.39.8, 1.40.4 and 1.41.2)
  * @internal Only for use by core PHPUnit setup functionality.

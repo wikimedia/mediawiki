@@ -1289,6 +1289,7 @@ class MessageCache implements LoggerAwareInterface {
 			// Message page exists as an override of a software messages
 			if ( substr( $entry, 0, 1 ) === ' ' ) {
 				// The message exists and is not '!TOO BIG' or '!ERROR'
+				// @phan-suppress-next-line PhanRedundantCondition
 				return (string)substr( $entry, 1 );
 			} elseif ( $entry === '!NONEXISTENT' ) {
 				// The text might be '-' or missing due to some data loss
@@ -1338,6 +1339,7 @@ class MessageCache implements LoggerAwareInterface {
 				$this->cache->setField( $code, $title, $entry );
 			}
 			// The message exists, so make sure a string is returned
+			// @phan-suppress-next-line PhanRedundantCondition
 			return (string)substr( $entry, 1 );
 		}
 
