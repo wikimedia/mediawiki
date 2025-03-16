@@ -178,7 +178,7 @@ class MagicWord {
 	 * @return bool
 	 */
 	public function match( $text ): bool {
-		return (bool)preg_match( $this->getRegex(), $text );
+		return (bool)preg_match( $this->getRegex(), $text ?? '' );
 	}
 
 	/**
@@ -189,7 +189,7 @@ class MagicWord {
 	 * @since 1.23
 	 */
 	public function matchStartToEnd( $text ): bool {
-		return (bool)preg_match( $this->getRegexStartToEnd(), $text );
+		return (bool)preg_match( $this->getRegexStartToEnd(), $text ?? '' );
 	}
 
 	/**
@@ -203,7 +203,7 @@ class MagicWord {
 	 * @return bool
 	 */
 	public function matchAndRemove( &$text ): bool {
-		$text = preg_replace( $this->getRegex(), '', $text, -1, $count );
+		$text = preg_replace( $this->getRegex(), '', $text ?? '', -1, $count );
 		return (bool)$count;
 	}
 
@@ -212,7 +212,7 @@ class MagicWord {
 	 * @return bool
 	 */
 	public function matchStartAndRemove( &$text ): bool {
-		$text = preg_replace( $this->getRegexStart(), '', $text, -1, $count );
+		$text = preg_replace( $this->getRegexStart(), '', $text ?? '', -1, $count );
 		return (bool)$count;
 	}
 
@@ -229,7 +229,7 @@ class MagicWord {
 		$res = preg_replace(
 			$this->getRegex(),
 			StringUtils::escapeRegexReplacement( $replacement ),
-			$subject,
+			$subject ?? '',
 			$limit
 		);
 		return $res;
