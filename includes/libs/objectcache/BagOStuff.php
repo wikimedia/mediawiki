@@ -108,28 +108,53 @@ abstract class BagOStuff implements
 	/** @var float|null */
 	private $wallClockOverride;
 
-	/** Bitfields for getLastError() */
-
-	/** No storage medium error */
+	/** Storage operation succeeded, or no operation was performed. Exposed via getLastError(). */
 	public const ERR_NONE = 0;
-	/** Storage medium failed to yield a complete response to an operation */
+	/** Storage operation failed to yield a complete response. */
 	public const ERR_NO_RESPONSE = 1;
-	/** Storage medium could not be reached to establish a connection */
+	/** Storage operation could not establish a connection. */
 	public const ERR_UNREACHABLE = 2;
-	/** Storage medium operation failed due to usage limitations or an I/O error */
+	/** Storage operation failed due to usage limitations or an I/O error. */
 	public const ERR_UNEXPECTED = 3;
 
-	/** Key in getQoS() for durability of writes. See QOS_DURABILITY_* for values, higher means stronger. */
+	/**
+	 * Key in getQoS() for durability of storage writes.
+	 *
+	 * This helps middleware distinguish between different kinds of BagOStuff
+	 * implementations, without hardcoding class names, and in a way that works
+	 * even through a wrapper like CachedBagOStuff, MultiWriteBagOStuff, or
+	 * WANObjectCache.
+	 *
+	 * Value must be a QOS_DURABILITY_ constant, where higher means stronger.
+	 *
+	 * Example use cases:
+	 *
+	 * - SqlBlobStore::getCacheTTL, skip main cache if the cache is also sql-based.
+	 * - MediumSpecificBagOStuff::unlock, use stricter logic if the lock is known
+	 *   to be stored in the current process.
+	 *
+	 * @see BagOStuff::getQoS
+	 */
 	public const ATTR_DURABILITY = 2;
-	/** Data is never saved to begin with (blackhole store) */
+	/** Storage is disabled or never saves data, not even temporarily (EmptyBagOStuff). */
 	public const QOS_DURABILITY_NONE = 1;
-	/** Data is lost at the end of the current web request or CLI script */
+	/** Storage survives in memory until the end of the current request or CLI process (HashBagOStuff). */
 	public const QOS_DURABILITY_SCRIPT = 2;
-	/** Data is lost once the service storing the data restarts */
+	/** Storage survives in memory until a shared service is restarted (e.g. MemcachedBagOStuff). */
 	public const QOS_DURABILITY_SERVICE = 3;
-	/** Data is saved to disk and writes do not usually block on fsync() */
+	/**
+	 * Storage survives on disk on a best-effort basis (e.g. RedisBagOStuff).
+	 *
+	 * Very recent writes may be lost when the service is restarted, because the storage
+	 * service is not expected to synchronously flush to disk (fsync), and writes are not
+	 * expected to be replicated in case of server maintenance or replacement.
+	 */
 	public const QOS_DURABILITY_DISK = 4;
-	/** Data is saved to disk and writes usually block on fsync(), like a standard RDBMS */
+	/**
+	 * Storage survives on disk with high availability (SqlBagOStuff).
+	 *
+	 * Writes typically wait for flush to disk and/or have replication.
+	 */
 	public const QOS_DURABILITY_RDBMS = 5;
 	/** Generic "unknown" value; useful for comparisons (always "good enough") */
 	public const QOS_UNKNOWN = INF;
