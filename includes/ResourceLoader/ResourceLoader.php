@@ -1344,8 +1344,7 @@ MESSAGE;
 	 */
 	public static function ensureNewline( $str ) {
 		$end = substr( $str, -1 );
-		// @phan-suppress-next-line PhanImpossibleTypeComparison
-		if ( $end === false || $end === '' || $end === "\n" ) {
+		if ( $end === '' || $end === "\n" ) {
 			return $str;
 		}
 		return $str . "\n";
