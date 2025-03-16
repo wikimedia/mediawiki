@@ -109,6 +109,7 @@ QUnit.module( 'mediawiki.api.edit', ( hooks ) => {
 			}
 		} );
 
+		// eslint-disable-next-line unicorn/no-useless-promise-resolve-reject
 		const edit = await new mw.Api().edit( 'Async', async ( revision ) => Promise.resolve( revision.content.replace( 'Async', 'Promise' ) ) );
 		assert.strictEqual( edit.newrevid, 23 );
 	} );

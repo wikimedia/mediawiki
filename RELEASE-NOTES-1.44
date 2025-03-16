@@ -155,6 +155,7 @@ For notes on 1.43.x and older releases, see HISTORY.
 * Updated phpunit/phpunit from 9.6.19 to 9.6.21.
 * Updated stylelint-config-wikimedia from v0.17.2 to v0.18.0.
 * Updated wikimedia/langconv from 0.4.2 to 0.5.0.
+* Updated eslint-config-wikimedia from 0.28.2 to 0.29.1.
 * …
 
 ==== Removed external libraries ====

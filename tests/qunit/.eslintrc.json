@@ -13,6 +13,7 @@
 	"rules": {
 		"compat/compat": [ "error", "last 2 chrome versions, last 2 firefox versions" ],
 		"max-len": "off",
+		"no-jquery/no-done-fail": "off",
 		"no-jquery/no-global-selector": "off",
 		"no-jquery/no-parse-html-literal": "off",
 		"no-shadow": [ "error", { "allow": [ "hooks" ] } ],
