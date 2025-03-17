@@ -1174,7 +1174,7 @@ class Sanitizer {
 		$normalized = preg_replace( '/(?:\r\n|[\x20\x0d\x0a\x09])+/', ' ', $text );
 		if ( $normalized === null ) {
 			wfLogWarning( __METHOD__ . ': Failed to normalize whitespace: ' . preg_last_error() );
-			return "";
+			return '';
 		}
 		return trim( $normalized );
 	}
@@ -1185,7 +1185,12 @@ class Sanitizer {
 	 * section links.
 	 */
 	public static function normalizeSectionNameWhitespace( string $section ): string {
-		return trim( preg_replace( '/[ _]+/', ' ', $section ) );
+		$normalized = preg_replace( '/[ _]+/', ' ', $section );
+		if ( $normalized === null ) {
+			wfLogWarning( __METHOD__ . ': Failed to normalize whitespace: ' . preg_last_error() );
+			return '';
+		}
+		return trim( $normalized );
 	}
 
 	/**
