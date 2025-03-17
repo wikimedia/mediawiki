@@ -37,6 +37,9 @@ use MediaWiki\WikiMap\WikiMap;
 /**
  * Maintenance script to create an account and grant it rights.
  *
+ * Note that, if CentralAuth is loaded and $wgCentralAuthAutomaticGlobalGroups is
+ * configured, this script will not update the global groups automatically.
+ *
  * @ingroup Maintenance
  */
 class CreateAndPromote extends Maintenance {
