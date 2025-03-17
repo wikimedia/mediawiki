@@ -1196,7 +1196,14 @@
 		},
 		"DomainEventSubscribers": {
 			"type": "array",
-			"description": "ObjectFactory specifications for domain event subscribers. EXPERIMENTAL, see T376063",
+			"description": "Deprecated alias for DomainEventIngresses (T389033)",
+			"items": {
+				"$ref": "#/properties/DomainEventIngresses/items"
+			}
+		},
+		"DomainEventIngresses": {
+			"type": "array",
+			"description": "ObjectFactory specifications for domain event ingress objects. Since MW 1.44. Event ingress objects must extend EventIngressBase.",
 			"items": {
 				"allOf": [
 					{

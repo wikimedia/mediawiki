@@ -150,7 +150,8 @@ class ExtensionProcessor implements Processor {
 		'TranslationAliasesDirs',
 		'ForeignResourcesDir',
 		'Hooks',
-		'DomainEventSubscribers',
+		'DomainEventSubscribers', // Deprecated (T389033)
+		'DomainEventIngresses',
 		'MessagePosterModule',
 		'MessagesDirs',
 		'OOUIThemePaths',
@@ -263,7 +264,7 @@ class ExtensionProcessor implements Processor {
 	public function extractInfo( $path, array $info, $version ) {
 		$dir = dirname( $path );
 		$this->extractHooks( $info, $path );
-		$this->extractDomainEventSubscribers( $info, $path );
+		$this->extractDomainEventIngresses( $info, $path );
 		$this->extractExtensionMessagesFiles( $dir, $info );
 		$this->extractRestModuleFiles( $dir, $info );
 		$this->extractMessagesDirs( $dir, $info );
@@ -580,11 +581,17 @@ class ExtensionProcessor implements Processor {
 	 * @param array $info attributes and associated values from extension.json
 	 * @param string $path path to extension.json
 	 */
-	protected function extractDomainEventSubscribers( array $info, string $path ) {
-		$this->attributes['DomainEventSubscribers'] ??= [];
+	protected function extractDomainEventIngresses( array $info, string $path ) {
+		$this->attributes['DomainEventIngresses'] ??= [];
+		foreach ( $info['DomainEventIngresses'] ?? [] as $subscriber ) {
+			$subscriber['extensionPath'] = $path;
+			$this->attributes['DomainEventIngresses'][] = $subscriber;
+		}
+
+		// Deprecated (T389033)
 		foreach ( $info['DomainEventSubscribers'] ?? [] as $subscriber ) {
 			$subscriber['extensionPath'] = $path;
-			$this->attributes['DomainEventSubscribers'][] = $subscriber;
+			$this->attributes['DomainEventIngresses'][] = $subscriber;
 		}
 	}
 

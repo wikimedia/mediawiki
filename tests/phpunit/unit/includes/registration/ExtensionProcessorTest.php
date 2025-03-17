@@ -596,15 +596,42 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 		$processor->getExtractedInfo();
 	}
 
-	public function provideDomainEventDomainEventSubscribers() {
+	public function provideDomainEventDomainEventIngresses() {
 		// Format:
-		// Current DomainEventSubscribers attribute
+		// Current attributes
 		// Content in extension.json
-		// Expected DomainEventSubscribers attribute
+		// Expected DomainEventIngresses attribute
 		return [
-			[
+			'DomainEventIngresses' => [
 				[
-					[ 'events' => [ 'FooDone' ], 'factory' => 'PriorCallback' ]
+					'DomainEventIngresses' => [
+						[ 'events' => [ 'FooDone' ], 'factory' => 'PriorCallback' ]
+					]
+				],
+				[
+					'DomainEventIngresses' => [
+						[
+							'events' => [ 'FooDone', 'BarDone', ],
+							'class' => 'FooClass',
+							'services' => [],
+						],
+					]
+				] + self::$default,
+				[
+					[ 'events' => [ 'FooDone' ], 'factory' => 'PriorCallback' ],
+					[
+						'events' => [ 'FooDone', 'BarDone', ],
+						'class' => 'FooClass',
+						'services' => [],
+						'extensionPath' => $this->getExtensionPath()
+					]
+				]
+			],
+			'DomainEventSubscriber (deprecated, T389033)' => [
+				[
+					'DomainEventIngresses' => [
+						[ 'events' => [ 'FooDone' ], 'factory' => 'PriorCallback' ]
+					]
 				],
 				[
 					'DomainEventSubscribers' => [
@@ -629,13 +656,13 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @dataProvider provideDomainEventDomainEventSubscribers
+	 * @dataProvider provideDomainEventDomainEventIngresses
 	 */
-	public function testDomainEventDomainEventSubscribers( $pre, $info, $expected ) {
-		$processor = new MockExtensionProcessor( [ 'attributes' => [ 'DomainEventSubscribers' => $pre ] ] );
+	public function testDomainEventDomainEventIngresses( $pre, $info, $expected ) {
+		$processor = new MockExtensionProcessor( [ 'attributes' => $pre ] );
 		$processor->extractInfo( $this->extensionPath, $info, 1 );
 		$extracted = $processor->getExtractedInfo();
-		$this->assertEquals( $expected, $extracted['attributes']['DomainEventSubscribers'] );
+		$this->assertEquals( $expected, $extracted['attributes']['DomainEventIngresses'] );
 	}
 
 	public function testExtractConfig1() {

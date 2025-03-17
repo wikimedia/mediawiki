@@ -632,7 +632,9 @@ class ExtensionRegistry implements DomainEventSubscriber {
 	 * @internal
 	 */
 	public function registerListeners( DomainEventSource $eventSource ): void {
-		foreach ( $this->getAttribute( 'DomainEventSubscribers' ) as $subscriber ) {
+		$subscribers = $this->getAttribute( 'DomainEventIngresses' );
+
+		foreach ( $subscribers as $subscriber ) {
 			$eventSource->registerSubscriber( $subscriber );
 		}
 	}

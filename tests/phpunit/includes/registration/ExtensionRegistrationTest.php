@@ -138,7 +138,7 @@ class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 		];
 
 		$manifest = [
-			'DomainEventSubscribers' => [ $subscriber ]
+			'DomainEventIngresses' => [ $subscriber ]
 		];
 
 		$file = $this->makeManifestFile( $manifest );
