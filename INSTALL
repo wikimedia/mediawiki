@@ -23,7 +23,7 @@ Required software as of MediaWiki 1.44.0:
 ** MariaDB 10.3 or higher
 ** MySQL 5.7.0 or higher
 ** PostgreSQL 10 or higher
-** SQLite 3.8.0 or higher
+** SQLite 3.24.0 or higher
 
 MediaWiki is developed and tested mainly on Unix/Linux platforms, but should
 work on Windows as well.
