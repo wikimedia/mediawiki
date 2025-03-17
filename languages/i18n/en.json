@@ -2677,6 +2677,7 @@
 	"block-removal-confirm-no": "Cancel",
 	"block-javascript-required": "JavaScript is required to use the Special:Block interface.",
 	"block-removed": "Block has been removed.",
+	"block-reblock-multi-legacy": "This user is blocked multiple times already and cannot be reblocked with this form.",
 	"unblockip": "Unblock user",
 	"unblockiptext": "Use the form below to restore write access to a previously blocked IP address or username.",
 	"unblock-target": "Unblock target",

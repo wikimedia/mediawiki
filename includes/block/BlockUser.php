@@ -625,7 +625,7 @@ class BlockUser {
 
 			// Can't update multiple blocks unless blockToUpdate was given
 			if ( count( $priorBlocks ) > 1 ) {
-				throw new \RuntimeException(
+				throw new MultiblocksException(
 					"Can\'t reblock a user with multiple blocks already present. " .
 					"Update calling code for multiblocks, providing a specific block to update." );
 			}

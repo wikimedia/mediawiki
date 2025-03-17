@@ -34,6 +34,7 @@ use MediaWiki\Block\BlockUser;
 use MediaWiki\Block\BlockUserFactory;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\DatabaseBlockStore;
+use MediaWiki\Block\MultiblocksException;
 use MediaWiki\Block\RangeBlockTarget;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
@@ -1114,7 +1115,12 @@ class SpecialBlock extends FormSpecialPage {
 
 		$doReblock = !$blockNotConfirmed && !$reblockNotAllowed;
 
-		$status = $blockUser->placeBlock( $doReblock );
+		try {
+			$status = $blockUser->placeBlock( $doReblock );
+		} catch ( MultiblocksException $e ) {
+			$status = Status::newFatal( 'block-reblock-multi-legacy' );
+		}
+
 		if ( !$status->isOK() ) {
 			return $status;
 		}

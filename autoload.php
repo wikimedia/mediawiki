@@ -1041,6 +1041,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Block\\Hook\\GetUserBlockHook' => __DIR__ . '/includes/block/Hook/GetUserBlockHook.php',
 	'MediaWiki\\Block\\Hook\\PerformRetroactiveAutoblockHook' => __DIR__ . '/includes/block/Hook/PerformRetroactiveAutoblockHook.php',
 	'MediaWiki\\Block\\Hook\\SpreadAnyEditBlockHook' => __DIR__ . '/includes/block/Hook/SpreadAnyEditBlockHook.php',
+	'MediaWiki\\Block\\MultiblocksException' => __DIR__ . '/includes/block/MultiblocksException.php',
 	'MediaWiki\\Block\\RangeBlockTarget' => __DIR__ . '/includes/block/RangeBlockTarget.php',
 	'MediaWiki\\Block\\Restriction\\AbstractRestriction' => __DIR__ . '/includes/block/Restriction/AbstractRestriction.php',
 	'MediaWiki\\Block\\Restriction\\ActionRestriction' => __DIR__ . '/includes/block/Restriction/ActionRestriction.php',
