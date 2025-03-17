@@ -85,9 +85,11 @@
 									{{ mw.message( 'blocklist-editing-sitewide' ).text() }}
 								</li>
 								<!-- parameters (stuff from the "Block details" section) -->
-								<li v-for="( parameter, indexFlag ) in item.flags" :key="indexFlag">
-									{{ util.getBlockFlagMessage( parameter ) }}
-								</li>
+								<template v-for="( parameter, indexFlag ) in item.flags" :key="indexFlag">
+									<li v-if="shouldBlockFlagBeVisible( parameter )">
+										{{ util.getBlockFlagMessage( parameter ) }}
+									</li>
+								</template>
 							</ul>
 						</td>
 						<!-- Reason -->
@@ -267,6 +269,8 @@ module.exports = exports = defineComponent( {
 		const mwNamespaces = mw.config.get( 'wgFormattedNamespaces' );
 		mwNamespaces[ '0' ] = mw.msg( 'blanknamespace' );
 
+		const shouldBlockFlagBeVisible = ( param ) => !( param === 'noautoblock' && mw.util.isIPAddress( targetUser.value, true ) );
+
 		/**
 		 * Construct the data object needed for a template row, from a logentry API response.
 		 *
@@ -358,6 +362,7 @@ module.exports = exports = defineComponent( {
 			targetUser,
 			logEntriesCount,
 			infoChip,
+			shouldBlockFlagBeVisible,
 			mwNamespaces
 		};
 	}
