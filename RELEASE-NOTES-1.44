@@ -398,6 +398,8 @@ because of Phabricator reports.
   deprecated. Use MessageParser.
 * User::getGlobalBlock(), deprecated since 1.40, now emits deprecation
   warnings.
+* PPFrame::setTTL() has been deprecated: setting TTL had no effect in
+  practice. Use ParserOutput::updateCacheExpiry() instead.
 * MediaWikiTitleCodec::getTitleInvalidRegex() is now deprecated. Use the same
   method in TitleParser.
 * …

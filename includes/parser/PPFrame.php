@@ -197,6 +197,9 @@ interface PPFrame {
 	 *
 	 * @see self::getTTL()
 	 * @param int $ttl
+	 * @deprecated since 1.44; does not affect cache expiry in practice,
+	 *   and is unused in core code. Use ParserOutput::updateCacheExpiry()
+	 *   instead.
 	 */
 	public function setTTL( $ttl );
 
