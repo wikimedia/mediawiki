@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Ant176",
+			"Kokage si",
 			"Müller857"
 		]
 	},
@@ -11,6 +12,7 @@
 	"cdx-dialog-close-button-label": "閉じる",
 	"cdx-label-optional-flag": "（省略可）",
 	"cdx-message-dismiss-button-label": "閉じる",
+	"cdx-popover-close-button-label": "閉じる",
 	"cdx-search-input-search-button-label": "検索",
 	"cdx-table-select-all-label": "全ての行を選択",
 	"cdx-table-select-row-label": "$2行目中$1行目を選択",

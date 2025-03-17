@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Boulaur",
-			"Cedric31"
+			"Cedric31",
+			"Lhanars"
 		]
 	},
 	"exif-imagewidth": "Largor",
@@ -39,7 +40,7 @@
 	"exif-componentsconfiguration": "Significacion de cada compausanta",
 	"exif-compressedbitsperpixel": "Mòde de compression de l’imatge",
 	"exif-pixelxdimension": "Largor de l’imatge",
-	"exif-pixelydimension": "Nautor de l’imatge",
+	"exif-pixelydimension": "Auçada de l'imatge",
 	"exif-usercomment": "Comentaris de l'utilizaire",
 	"exif-relatedsoundfile": "Fichièr àudio associat",
 	"exif-datetimeoriginal": "Data e ora de la generacion de donadas",

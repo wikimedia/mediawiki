@@ -10,6 +10,7 @@
 	"cdx-dialog-close-button-label": "Zavřít",
 	"cdx-label-optional-flag": "(nepovinné)",
 	"cdx-message-dismiss-button-label": "Zavřít",
+	"cdx-popover-close-button-label": "Zavřít",
 	"cdx-search-input-search-button-label": "Hledat",
 	"cdx-table-select-all-label": "Vybrat všechny řádky",
 	"cdx-table-select-row-label": "Vybrat řádek $1 z $2",

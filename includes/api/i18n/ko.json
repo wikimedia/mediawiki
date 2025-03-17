@@ -489,6 +489,7 @@
 	"apihelp-query+categorymembers-param-dir": "정렬할 방향입니다.",
 	"apihelp-query+categorymembers-param-startsortkey": "$1starthexsortkey를 대신 사용해 주십시오.",
 	"apihelp-query+categorymembers-param-endsortkey": "$1endhexsortkey를 대신 사용해 주십시오.",
+	"apihelp-query+codexicons-param-names": "아이콘 이름",
 	"apihelp-query+contributors-summary": "문서에 대해 로그인한 기여자의 목록과 익명 기여자의 수를 가져옵니다.",
 	"apihelp-query+contributors-param-limit": "반환할 기여 수입니다.",
 	"apihelp-query+contributors-example-simple": "[[{{MediaWiki:Mainpage}}]] 문서의 기여자를 표시합니다.",

@@ -59,6 +59,7 @@
 	"apihelp-query+allrevisions-param-namespace": "Само списак страница у овом именском простору.",
 	"apihelp-query+allrevisions-example-ns-any": "Навођење првих 50 измена било ког именског простора",
 	"apihelp-query+blocks-paramvalue-prop-restrictions": "Додаје ограничење за делимине блокаде ако блокада није на целом сајту.",
+	"apihelp-query+codexicons-param-names": "Имена иконица",
 	"apihelp-query+filerepoinfo-param-prop": "Која својства репозитара узети (доступна својства могу да варирају на другим викијима).",
 	"apihelp-query+fileusage-paramvalue-show-redirect": "Прикажи само преусмерења.",
 	"apihelp-query+linkshere-paramvalue-show-redirect": "Прикажи само преусмерења.",

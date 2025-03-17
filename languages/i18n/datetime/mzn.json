@@ -56,5 +56,5 @@
 	"sun": "یه‌شمبه",
 	"period-am": "پیش از ظهر",
 	"period-pm": "ظهر په",
-	"duration-days": "$1 {{PLURAL:$1|روز|روز}}"
+	"duration-days": "$1 {{PLURAL: $1|روز|روز}}"
 }

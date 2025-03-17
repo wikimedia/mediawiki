@@ -2900,6 +2900,7 @@
 	"tag-mw-blank-description": "ترامیم جو صفحہ کو خالی کرتی ہیں",
 	"tag-mw-replace": "مواد کی تبدیلی",
 	"tag-mw-replace-description": "ترامیم جو ایک صفحہ سے 90% مواد حذف کرتی ہیں",
+	"tag-mw-recreated": "دوبارہ تخلیق",
 	"tag-mw-rollback": "استرجع",
 	"tag-mw-rollback-description": "ترامیم جو استرجع ربط استعمال کرتے ہوئے پچھلی ترامیم استرجع کرتی ہیں",
 	"tag-mw-undo": "رد ترمیم",
