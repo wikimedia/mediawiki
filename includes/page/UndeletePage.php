@@ -50,7 +50,6 @@ use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\ReadOnlyMode;
-use WikiPage;
 
 /**
  * Backend logic for performing a page undelete action.

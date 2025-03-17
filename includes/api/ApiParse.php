@@ -22,7 +22,6 @@
 
 namespace MediaWiki\Api;
 
-use Article;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Cache\LinkCache;
 use MediaWiki\CommentFormatter\CommentFormatter;
@@ -37,7 +36,9 @@ use MediaWiki\Language\RawMessage;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Message\Message;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Page\Article;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserFactory;
@@ -63,7 +64,6 @@ use SkinFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
-use WikiPage;
 
 /**
  * @ingroup API

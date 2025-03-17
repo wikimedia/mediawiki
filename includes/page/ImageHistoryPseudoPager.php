@@ -18,12 +18,16 @@
  * @file
  */
 
+namespace MediaWiki\Page;
+
+use File;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Pager\ReverseChronologicalPager;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
+use stdClass;
 use Wikimedia\Timestamp\TimestampException;
 
 class ImageHistoryPseudoPager extends ReverseChronologicalPager {
@@ -329,3 +333,6 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 	}
 
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ImageHistoryPseudoPager::class, 'ImageHistoryPseudoPager' );

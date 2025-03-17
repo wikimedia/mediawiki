@@ -28,6 +28,7 @@ use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Page\Article;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;

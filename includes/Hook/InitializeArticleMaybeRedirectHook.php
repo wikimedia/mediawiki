@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use Article;
+use MediaWiki\Page\Article;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
 

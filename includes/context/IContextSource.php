@@ -24,6 +24,7 @@ use MediaWiki\Config\Config;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\LocalizationContext;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\CsrfTokenSetProvider;
@@ -31,7 +32,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use Skin;
 use Timing;
-use WikiPage;
 
 /**
  * Interface for objects which can provide a MediaWiki context on request

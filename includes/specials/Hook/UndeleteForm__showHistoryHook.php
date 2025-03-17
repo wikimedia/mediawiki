@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Hook;
 
+use MediaWiki\Page\PageArchive;
 use MediaWiki\Title\Title;
-use PageArchive;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 /**

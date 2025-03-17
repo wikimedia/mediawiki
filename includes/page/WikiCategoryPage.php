@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Page;
+
 use MediaWiki\Category\Category;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MediaWikiServices;
@@ -108,3 +110,6 @@ class WikiCategoryPage extends WikiPage {
 		return true;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( WikiCategoryPage::class, 'WikiCategoryPage' );

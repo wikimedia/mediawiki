@@ -14,6 +14,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\Article;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionLookup;

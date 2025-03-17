@@ -3,11 +3,11 @@
 namespace MediaWiki\Content;
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\RevisionRecord;
 use SearchEngine;
 use SearchIndexField;
-use WikiPage;
 
 /**
  * Content handler for "File" page content

@@ -2,7 +2,6 @@
 
 namespace MediaWiki\HookContainer;
 
-use Article;
 use File;
 use MailAddress;
 use ManualLogEntry;
@@ -15,8 +14,10 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Mail\UserEmailContact;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Page\Article;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\ProperPageIdentity;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
@@ -33,7 +34,6 @@ use SearchEngine;
 use Skin;
 use StatusValue;
 use Wikimedia\Rdbms\SelectQueryBuilder;
-use WikiPage;
 
 /**
  * This class provides an implementation of the core hook interfaces,

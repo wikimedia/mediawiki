@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Page\Hook;
 
-use ImagePage;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Page\ImagePage;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

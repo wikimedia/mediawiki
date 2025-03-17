@@ -36,6 +36,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
+use MediaWiki\Page\WikiFilePage;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -53,7 +54,6 @@ use UploadBase;
 use UploadForm;
 use UploadFromStash;
 use UserBlockedError;
-use WikiFilePage;
 
 /**
  * Form for uploading media files.

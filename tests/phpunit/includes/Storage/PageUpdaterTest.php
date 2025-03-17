@@ -93,7 +93,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Storage\PageUpdater::saveRevision()
-	 * @covers \WikiPage::newPageUpdater()
+	 * @covers \MediaWiki\Page\WikiPage::newPageUpdater()
 	 */
 	public function testCreatePage() {
 		$user = $this->getTestUser()->getUser();
@@ -208,7 +208,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Storage\PageUpdater::saveRevision()
-	 * @covers \WikiPage::newPageUpdater()
+	 * @covers \MediaWiki\Page\WikiPage::newPageUpdater()
 	 */
 	public function testUpdatePage() {
 		$user = $this->getTestUser()->getUser();
@@ -1571,7 +1571,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Storage\PageUpdater::prepareUpdate()
-	 * @covers \WikiPage::getCurrentUpdate()
+	 * @covers \MediaWiki\Page\WikiPage::getCurrentUpdate()
 	 */
 	public function testPrepareUpdate() {
 		$user = $this->getTestUser()->getUser();

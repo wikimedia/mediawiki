@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Api;
 
-use Article;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Page\Article;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Session\Session;
 use MediaWiki\User\UserIdentity;

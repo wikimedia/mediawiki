@@ -18,6 +18,12 @@
  * @file
  */
 
+namespace MediaWiki\Page;
+
+use File;
+use FileRepo;
+use LogEventsList;
+use MediaFileTrait;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\Linker\Linker;
@@ -28,6 +34,8 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArrayFromResult;
 use MediaWiki\Xml\Xml;
+use stdClass;
+use UploadBase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -1212,3 +1220,6 @@ EOT
 	}
 
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ImagePage::class, 'ImagePage' );

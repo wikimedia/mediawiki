@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Actions;
 
-use Article;
 use DeleteAction;
 use ErrorPageError;
 use File;
@@ -29,6 +28,7 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\Article;
 use MediaWiki\Page\File\FileDeleteForm;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Title\Title;

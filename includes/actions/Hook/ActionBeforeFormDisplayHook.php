@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Hook;
 
-use Article;
 use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\Page\Article;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

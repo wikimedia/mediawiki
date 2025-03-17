@@ -4,7 +4,7 @@ namespace MediaWiki\Page\Hook;
 
 use MediaWiki\Content\Content;
 use MediaWiki\Deferred\DeferrableUpdate;
-use WikiPage;
+use MediaWiki\Page\WikiPage;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

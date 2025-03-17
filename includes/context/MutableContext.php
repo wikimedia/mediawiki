@@ -23,12 +23,12 @@ namespace MediaWiki\Context;
 use MediaWiki\Config\Config;
 use MediaWiki\Language\Language;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use Skin;
-use WikiPage;
 
 /**
  * Request-dependent objects containers.

@@ -18,6 +18,13 @@
  * @file
  */
 
+namespace MediaWiki\Page;
+
+use HtmlArmor;
+use HTMLFileCache;
+use JobQueueGroup;
+use LogEventsList;
+use LogicException;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\CommentFormatter\CommentFormatter;
@@ -34,9 +41,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Output\OutputPage;
-use MediaWiki\Page\ParserOutputAccess;
-use MediaWiki\Page\ProtectionForm;
-use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
@@ -54,6 +58,9 @@ use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Xml\Xml;
+use ParsoidCachePrewarmJob;
+use PermissionsError;
+use RecentChange;
 use Wikimedia\IPUtils;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -2094,3 +2101,6 @@ class Article implements Page {
 		return $context->msg( 'missing-revision', $oldid );
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( Article::class, 'Article' );

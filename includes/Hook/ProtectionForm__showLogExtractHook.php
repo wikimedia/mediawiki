@@ -3,8 +3,8 @@
 namespace MediaWiki\Hook;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
-use Article;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Page\Article;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

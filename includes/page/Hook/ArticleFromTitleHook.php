@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Page\Hook;
 
-use Article;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Page\Article;
 use MediaWiki\Title\Title;
 
 /**

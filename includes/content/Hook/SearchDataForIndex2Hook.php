@@ -3,10 +3,10 @@
 namespace MediaWiki\Content\Hook;
 
 use MediaWiki\Content\ContentHandler;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\RevisionRecord;
 use SearchEngine;
-use WikiPage;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

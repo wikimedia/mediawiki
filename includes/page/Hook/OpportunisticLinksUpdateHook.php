@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Page\Hook;
 
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Title\Title;
-use WikiPage;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

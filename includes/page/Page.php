@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Page;
+
 use MediaWiki\Title\Title;
 
 /**
@@ -29,3 +31,6 @@ use MediaWiki\Title\Title;
  */
 interface Page {
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( Page::class, 'Page' );

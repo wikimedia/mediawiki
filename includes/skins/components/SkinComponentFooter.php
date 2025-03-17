@@ -3,13 +3,13 @@
 namespace MediaWiki\Skin;
 
 use Action;
-use Article;
 use CreditsAction;
 use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\Article;
 use MediaWiki\Title\Title;
 
 class SkinComponentFooter implements SkinComponent {

@@ -26,6 +26,7 @@ use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
@@ -35,7 +36,6 @@ use Timing;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
-use WikiPage;
 
 /**
  * An IContextSource implementation which will inherit context from another source

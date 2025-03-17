@@ -27,7 +27,7 @@ use WikiPage;
  * TODO: This should also test edits with multiple slots.
  *
  * @covers \McrUndoAction
- * @covers \WikiPage
+ * @covers \MediaWiki\Page\WikiPage
  * @covers \MediaWiki\EditPage\EditPage
  *
  * @group Database

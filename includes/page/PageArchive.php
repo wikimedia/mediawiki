@@ -18,9 +18,10 @@
  * @file
  */
 
+namespace MediaWiki\Page;
+
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Page\UndeletePage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IExpression;
@@ -214,3 +215,6 @@ class PageArchive {
 	}
 
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( PageArchive::class, 'PageArchive' );

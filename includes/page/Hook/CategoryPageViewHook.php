@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Page\Hook;
 
-use CategoryPage;
+use MediaWiki\Page\CategoryPage;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

@@ -34,6 +34,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\PermissionStatus;
@@ -55,7 +56,6 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\ParamValidator\TypeDef\StringDef;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Timestamp\TimestampException;
-use WikiPage;
 
 /**
  * This abstract class implements many basic API functions, and is the base of

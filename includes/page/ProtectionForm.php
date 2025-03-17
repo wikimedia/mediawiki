@@ -25,7 +25,6 @@
 
 namespace MediaWiki\Page;
 
-use Article;
 use ErrorPageError;
 use InvalidArgumentException;
 use LogEventsList;

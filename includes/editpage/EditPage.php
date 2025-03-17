@@ -20,9 +20,7 @@
 
 namespace MediaWiki\EditPage;
 
-use Article;
 use BadMethodCallException;
-use CategoryPage;
 use ErrorPageError;
 use LogPage;
 use ManualLogEntry;
@@ -69,9 +67,12 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
+use MediaWiki\Page\Article;
+use MediaWiki\Page\CategoryPage;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\RedirectLookup;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
@@ -123,7 +124,6 @@ use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\SelectQueryBuilder;
-use WikiPage;
 
 /**
  * The HTML user interface for page editing.

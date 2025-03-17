@@ -6,7 +6,7 @@ use MediaWiki\Title\Title;
 class WikiCategoryPageTest extends MediaWikiLangTestCase {
 
 	/**
-	 * @covers \WikiCategoryPage::isHidden
+	 * @covers \MediaWiki\Page\WikiCategoryPage::isHidden
 	 */
 	public function testHiddenCategory_PropertyNotSet() {
 		$title = Title::makeTitle( NS_CATEGORY, 'CategoryPage' );
@@ -33,7 +33,7 @@ class WikiCategoryPageTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideCategoryContent
-	 * @covers \WikiCategoryPage::isHidden
+	 * @covers \MediaWiki\Page\WikiCategoryPage::isHidden
 	 */
 	public function testHiddenCategory_PropertyIsSet( $isHidden ) {
 		$categoryPageID = 42;
@@ -53,7 +53,7 @@ class WikiCategoryPageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \WikiCategoryPage::isExpectedUnusedCategory
+	 * @covers \MediaWiki\Page\WikiCategoryPage::isExpectedUnusedCategory
 	 */
 	public function testExpectUnusedCategory_PropertyNotSet() {
 		$title = Title::makeTitle( NS_CATEGORY, 'CategoryPage' );
@@ -73,7 +73,7 @@ class WikiCategoryPageTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideCategoryContent
-	 * @covers \WikiCategoryPage::isExpectedUnusedCategory
+	 * @covers \MediaWiki\Page\WikiCategoryPage::isExpectedUnusedCategory
 	 */
 	public function testExpectUnusedCategory_PropertyIsSet( $isExpectedUnusedCategory ) {
 		$categoryPageID = 42;

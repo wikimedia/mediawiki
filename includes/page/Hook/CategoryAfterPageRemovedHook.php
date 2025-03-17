@@ -3,7 +3,7 @@
 namespace MediaWiki\Page\Hook;
 
 use MediaWiki\Category\Category;
-use WikiPage;
+use MediaWiki\Page\WikiPage;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
