@@ -227,7 +227,7 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 					$oldestRevertedRevIndex,
 					$newestRevertedRevIndex,
 					$originalRevIndex,
-					$event->getNewRevision(),
+					$event->getLatestRevisionAfter(),
 					$newContent
 				);
 			}

@@ -32,7 +32,7 @@ class SearchEventIngress extends EventSubscriberBase {
 	 * @noinspection PhpUnused
 	 */
 	public function handlePageRevisionUpdatedEvent( PageRevisionUpdatedEvent $event ) {
-		$newRevision = $event->getNewRevision();
+		$newRevision = $event->getLatestRevisionAfter();
 		$mainSlot = $newRevision->isDeleted( RevisionRecord::DELETED_TEXT )
 			? null : $newRevision->getSlot( SlotRecord::MAIN );
 

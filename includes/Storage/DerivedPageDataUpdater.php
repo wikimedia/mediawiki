@@ -1657,7 +1657,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			// TODO: Check $event->isNominalContentChange() instead so we still
 			//       trigger updates on null edits, but pass a flag to suppress
 			//       backlink purges through queueBacklinksJobs() id
-			//       $event->changedCurrentRevisionId() returns false.
+			//       $event->changedLatestRevisionId() returns false.
 			WikiPage::onArticleEdit(
 				$title,
 				$this->revision,

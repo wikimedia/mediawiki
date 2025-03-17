@@ -639,8 +639,8 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 						'isReconciliationRequest'
 					);
 					Assert::assertTrue(
-						$event->changedCurrentRevisionId(),
-						'changedCurrentRevisionId'
+						$event->changedLatestRevisionId(),
+						'changedLatestRevisionId'
 					);
 					Assert::assertFalse(
 						$event->isEffectiveContentChange(),
@@ -651,11 +651,11 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 						'isNominalContentChange'
 					);
 					Assert::assertSame( $oldPageId, $event->getPage()->getId() );
-					Assert::assertSame( $oldRev->getId(), $event->getOldRevision()->getId() );
+					Assert::assertSame( $oldRev->getId(), $event->getLatestRevisionBefore()->getId() );
 					Assert::assertSame( $mover, $event->getPerformer() );
 
 					Assert::assertTrue(
-						$event->getNewRevision()->isMinor(),
+						$event->getLatestRevisionAfter()->isMinor(),
 						'isMinor'
 					);
 
@@ -675,8 +675,8 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 						'isReconciliationRequest'
 					);
 					Assert::assertTrue(
-						$event->changedCurrentRevisionId(),
-						'changedCurrentRevisionId'
+						$event->changedLatestRevisionId(),
+						'changedLatestRevisionId'
 					);
 					Assert::assertTrue(
 						$event->isEffectiveContentChange(),

@@ -58,25 +58,25 @@ class ApiImportTest extends ApiUploadTestCase {
 				if ( $calls === 1 ) {
 					// First call, from ImportableOldRevisionImporter
 					Assert::assertTrue( $event->isCreation(), 'isCreation' );
-					Assert::assertTrue( $event->changedCurrentRevisionId(), 'changedCurrentRevisionId' );
+					Assert::assertTrue( $event->changedLatestRevisionId(), 'changedLatestRevisionId' );
 					Assert::assertTrue( $event->isEffectiveContentChange(), 'isEffectiveContentChange' );
 					Assert::assertTrue( $event->isNominalContentChange(), 'isNominalContentChange' );
 					Assert::assertTrue( $event->isSilent(), 'isSilent' );
 
 					Assert::assertFalse(
-						$event->getNewRevision()->isMinor(),
+						$event->getLatestRevisionAfter()->isMinor(),
 						'isMinor'
 					);
 				} else {
 					// Second call, from ApiImportReporter
 					Assert::assertFalse( $event->isCreation(), 'isCreation' );
-					Assert::assertTrue( $event->changedCurrentRevisionId(), 'changedCurrentRevisionId' );
+					Assert::assertTrue( $event->changedLatestRevisionId(), 'changedLatestRevisionId' );
 					Assert::assertFalse( $event->isEffectiveContentChange(), 'isEffectiveContentChange' );
 					Assert::assertFalse( $event->isNominalContentChange(), 'isNominalContentChange' );
 					Assert::assertTrue( $event->isSilent(), 'isSilent' );
 
 					Assert::assertTrue(
-						$event->getNewRevision()->isMinor(),
+						$event->getLatestRevisionAfter()->isMinor(),
 						'isMinor'
 					);
 				}
