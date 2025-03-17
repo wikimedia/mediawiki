@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.51.6
+ * OOUI v0.51.7
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2025 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2025-02-21T18:19:40Z
+ * Date: 2025-03-11T00:03:30Z
  */
 ( function ( OO ) {
 
@@ -69,7 +69,7 @@ OO.mixinClass( OO.ui.ActionWidget, OO.ui.mixin.PendingElement );
  * @return {boolean} The action is configured with the mode
  */
 OO.ui.ActionWidget.prototype.hasMode = function ( mode ) {
-	return this.modes.indexOf( mode ) !== -1;
+	return this.modes.includes( mode );
 };
 
 /**
@@ -3126,7 +3126,7 @@ OO.ui.MessageDialog.prototype.getReadyProcess = function ( data ) {
 		.next( () => {
 			// Focus the primary action button
 			let actions = this.actions.get();
-			actions = actions.filter( ( action ) => action.getFlags().indexOf( 'primary' ) > -1 );
+			actions = actions.filter( ( action ) => action.getFlags().includes( 'primary' ) );
 			if ( actions.length > 0 ) {
 				actions[ 0 ].focus();
 			}
@@ -3449,7 +3449,7 @@ OO.ui.ProcessDialog.prototype.initialize = function () {
 OO.ui.ProcessDialog.prototype.getActionWidgetConfig = function ( config ) {
 	function checkFlag( flag ) {
 		return config.flags === flag ||
-			( Array.isArray( config.flags ) && config.flags.indexOf( flag ) !== -1 );
+			( Array.isArray( config.flags ) && config.flags.includes( flag ) );
 	}
 
 	config = Object.assign( { framed: true }, config );

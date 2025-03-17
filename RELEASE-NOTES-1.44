@@ -138,7 +138,7 @@ For notes on 1.43.x and older releases, see HISTORY.
 * Updated codex, codex-design-tokens and codex-icons
   from v1.14.0 to v1.20.3.
 * Updated mck89/peast from 1.16.3 to 1.17.0.
-* Updated OOUI from v0.51.2 to v0.51.6.
+* Updated OOUI from v0.51.2 to v0.51.7.
 * Updated vue from 3.4.27 to 3.5.13.
 * Updated wikimedia/bcp-47-code from 2.0.0 to 2.0.1.
 * Updated wikimedia/less.php from 5.1.2 to 5.2.1.

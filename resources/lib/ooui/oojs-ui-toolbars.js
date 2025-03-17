@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.51.6
+ * OOUI v0.51.7
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2025 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2025-02-21T18:19:40Z
+ * Date: 2025-03-11T00:03:30Z
  */
 ( function ( OO ) {
 
@@ -956,7 +956,7 @@ OO.ui.Tool.prototype.setTitle = function ( title ) {
  */
 OO.ui.Tool.prototype.setDisplayBothIconAndLabel = function ( displayBothIconAndLabel ) {
 	this.displayBothIconAndLabel = displayBothIconAndLabel;
-	this.$element.toggleClass( 'oo-ui-tool-with-label', !!this.title && this.displayBothIconAndLabel );
+	this.$element.toggleClass( 'oo-ui-tool-with-label', !!this.getTitle() && this.displayBothIconAndLabel );
 	return this;
 };
 
@@ -1018,13 +1018,14 @@ OO.ui.Tool.prototype.updateTitle = function () {
 	const titleTooltips = this.toolGroup.constructor.static.titleTooltips,
 		accelTooltips = this.toolGroup.constructor.static.accelTooltips,
 		accel = this.toolbar.getToolAccelerator( this.constructor.static.name ),
-		tooltipParts = [];
+		tooltipParts = [],
+		title = this.getTitle();
 
-	this.$title.text( this.title );
+	this.$title.text( title );
 	this.$accel.text( accel );
 
-	if ( titleTooltips && typeof this.title === 'string' && this.title.length ) {
-		tooltipParts.push( this.title );
+	if ( titleTooltips && typeof title === 'string' && title.length ) {
+		tooltipParts.push( title );
 	}
 	if ( accelTooltips && typeof accel === 'string' && accel.length ) {
 		tooltipParts.push( accel );
