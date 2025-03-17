@@ -30,13 +30,17 @@
 						</td>
 						<!-- Expires -->
 						<td>
-							{{ util.formatTimestamp( item.expiry ) }}
+							<span v-if="item.action !== 'unblock'">
+								{{ util.formatTimestamp( item.expiry ) }}
+							</span>
 						</td>
 						<!-- Block parameters -->
 						<td class="mw-block-log__parameters">
-							<ul>
+							<ul v-if="item.action !== 'unblock'">
 								<!-- block duration -->
-								<li> {{ item.duration }} </li>
+								<li v-if="!!item.duration">
+									{{ item.duration }}
+								</li>
 								<!-- partial block -->
 								<li v-if="Object.keys( item.restrictions || {} ).length">
 									{{ mw.message( 'blocklist-editing' ).text() }}
