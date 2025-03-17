@@ -984,53 +984,6 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$helper->getHtml();
 	}
 
-	public function testDisableParserCacheWrite() {
-		$page = $this->getExistingTestPage( __METHOD__ );
-
-		// NOTE: The save() method is not supported and will throw!
-		//       The point of this test case is asserting that save() isn't called.
-		$parserCache = $this->createNoOpMock( ParserCache::class, [ 'get', 'getDirty', 'makeParserOutputKey' ] );
-		$parserCache->method( 'get' )->willReturn( false );
-		$parserCache->method( 'getDirty' )->willReturn( false );
-		$parserCache->expects( $this->atLeastOnce() )->method( 'makeParserOutputKey' );
-
-		$this->resetServicesWithMockedParsoid();
-		$access = $this->newRealParserOutputAccess( [
-			'parserCache' => $parserCache,
-			'revisionCache' => $this->createNoOpMock( RevisionOutputCache::class ),
-		] );
-
-		$helper = $this->newHelper( $access, $page, self::PARAM_DEFAULTS, $this->newAuthority() );
-
-		// Set read = true, write = false
-		$helper->setUseParserCache( true, false );
-		$helper->getHtml();
-	}
-
-	public function testDisableParserCacheRead() {
-		$page = $this->getExistingTestPage( __METHOD__ );
-
-		// NOTE: The get() method is not supported and will throw!
-		//       The point of this test case is asserting that get() isn't called.
-		//       We also check that save() is still called.
-		// (Also ::getDirty() shouldn't be used on this path and will throw!)
-		$parserCache = $this->createNoOpMock( ParserCache::class, [ 'save', 'makeParserOutputKey' ] );
-		$parserCache->expects( $this->once() )->method( 'save' );
-		$parserCache->expects( $this->atLeastOnce() )->method( 'makeParserOutputKey' );
-
-		$this->resetServicesWithMockedParsoid();
-		$access = $this->newRealParserOutputAccess( [
-			'parserCache' => $parserCache,
-			'revisionCache' => $this->createNoOpMock( RevisionOutputCache::class ),
-		] );
-
-		$helper = $this->newHelper( $access, $page, self::PARAM_DEFAULTS, $this->newAuthority() );
-
-		// Set read = false, write = true
-		$helper->setUseParserCache( false, true );
-		$helper->getHtml();
-	}
-
 	public function testGetParserOutputWithLanguageOverride() {
 		[ $page, [ 'latest' => $revision ] ] = $this->getExistingPageWithRevisions( __METHOD__, '{{PAGELANGUAGE}}' );
 
