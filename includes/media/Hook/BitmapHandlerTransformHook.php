@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Hook;
 
-use File;
 use MediaTransformOutput;
+use MediaWiki\FileRepo\File\File;
 use TransformationalImageHandler;
 
 /**

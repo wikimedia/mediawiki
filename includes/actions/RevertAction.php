@@ -24,6 +24,10 @@
  */
 
 use MediaWiki\Context\IContextSource;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\File\LocalFile;
+use MediaWiki\FileRepo\File\OldLocalFile;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;

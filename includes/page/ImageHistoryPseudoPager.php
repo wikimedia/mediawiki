@@ -20,8 +20,8 @@
 
 namespace MediaWiki\Page;
 
-use File;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Pager\ReverseChronologicalPager;

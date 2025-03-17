@@ -27,6 +27,7 @@ use MediaWiki\Category\Category;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\EditPage\TemplatesOnThisPageFormatter;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageNameUtils;

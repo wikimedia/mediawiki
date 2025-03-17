@@ -3,13 +3,13 @@
 namespace MediaWiki\Tests\FileRepo;
 
 use InvalidArgumentException;
-use LocalRepo;
 use LogicException;
 use MediaWiki\FileBackend\FileBackendGroup;
+use MediaWiki\FileRepo\LocalRepo;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use PHPUnit\Framework\Assert;
-use RepoGroup;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\FSFileBackend;
 

@@ -20,12 +20,9 @@
 
 namespace MediaWiki\Specials;
 
-use ArchivedFile;
 use ChangesList;
 use ChangeTags;
 use ErrorPageError;
-use File;
-use LocalRepo;
 use LogEventsList;
 use LogPage;
 use MediaWiki\Cache\LinkBatch;
@@ -35,6 +32,10 @@ use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Context\DerivativeContext;
+use MediaWiki\FileRepo\File\ArchivedFile;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\LocalRepo;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkTarget;
@@ -75,7 +76,6 @@ use OOUI\PanelLayout;
 use OOUI\TextInputWidget;
 use OOUI\Widget;
 use PermissionsError;
-use RepoGroup;
 use SearchEngineFactory;
 use UserBlockedError;
 use Wikimedia\Rdbms\IConnectionProvider;

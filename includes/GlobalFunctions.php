@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Debug\MWDebug;
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;

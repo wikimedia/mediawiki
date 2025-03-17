@@ -26,11 +26,11 @@
 
 namespace MediaWiki\Api;
 
-use ArchivedFile;
-use File;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentFormatter\CommentItem;
 use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\FileRepo\File\ArchivedFile;
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;

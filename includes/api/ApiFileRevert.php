@@ -22,9 +22,9 @@
 
 namespace MediaWiki\Api;
 
-use LocalFile;
+use MediaWiki\FileRepo\File\LocalFile;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Title\Title;
-use RepoGroup;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**

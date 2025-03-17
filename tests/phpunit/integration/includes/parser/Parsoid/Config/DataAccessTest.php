@@ -6,6 +6,7 @@ use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\Transform\ContentTransformer;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\File\BadFileLookup;
@@ -14,7 +15,6 @@ use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig;
 use MediaWiki\Title\TitleValue;
 use MediaWikiIntegrationTestCase;
-use RepoGroup;
 use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Rdbms\ReadOnlyMode;
 

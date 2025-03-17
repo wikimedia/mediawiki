@@ -24,6 +24,10 @@
 use MediaWiki\Api\ApiResult;
 use MediaWiki\Api\ApiUpload;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\FileRepo\File\ArchivedFile;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\File\LocalFile;
+use MediaWiki\FileRepo\FileRepo;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;

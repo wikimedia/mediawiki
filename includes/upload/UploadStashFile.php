@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\FileRepo\File\UnregisteredLocalFile;
+use MediaWiki\FileRepo\FileRepo;
 use MediaWiki\SpecialPage\SpecialPage;
 
 /**

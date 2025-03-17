@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\FileRepo;
+
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
 
@@ -52,3 +54,6 @@ interface IForeignRepoWithDB {
 	 */
 	public function getReplicaDB();
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( IForeignRepoWithDB::class, 'IForeignRepoWithDB' );

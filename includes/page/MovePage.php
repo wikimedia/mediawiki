@@ -21,7 +21,6 @@
 namespace MediaWiki\Page;
 
 use ChangeTags;
-use File;
 use LogFormatterFactory;
 use ManualLogEntry;
 use MediaWiki\Collation\CollationFactory;
@@ -34,6 +33,8 @@ use MediaWiki\Deferred\AtomicSectionUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\DomainEvent\DomainEventDispatcher;
 use MediaWiki\EditPage\SpamChecker;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
@@ -52,7 +53,6 @@ use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
-use RepoGroup;
 use StringUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;

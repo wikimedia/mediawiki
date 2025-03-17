@@ -23,7 +23,8 @@
 namespace MediaWiki\Api;
 
 use ChangeTags;
-use File;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\DeletePage;
 use MediaWiki\Page\DeletePageFactory;
@@ -33,7 +34,6 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
-use RepoGroup;
 use StatusValue;
 use Wikimedia\ParamValidator\ParamValidator;
 

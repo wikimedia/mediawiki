@@ -20,6 +20,9 @@
  */
 
 use MediaWiki\Api\ApiResult;
+use MediaWiki\FileRepo\File\ArchivedFile;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\RevisionList\RevisionListBase;
 use MediaWiki\SpecialPage\SpecialPage;

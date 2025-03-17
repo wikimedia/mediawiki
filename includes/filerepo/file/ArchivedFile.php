@@ -18,12 +18,19 @@
  * @file
  */
 
-use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
+namespace MediaWiki\FileRepo\File;
+
+use BadMethodCallException;
+use MediaHandler;
+use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
+use RuntimeException;
+use stdClass;
+use UnexpectedValueException;
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -776,3 +783,6 @@ class ArchivedFile {
 		);
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ArchivedFile::class, 'ArchivedFile' );

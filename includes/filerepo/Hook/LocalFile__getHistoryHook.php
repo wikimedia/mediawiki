@@ -3,7 +3,7 @@
 namespace MediaWiki\Hook;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
-use File;
+use MediaWiki\FileRepo\File\File;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

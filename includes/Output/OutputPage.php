@@ -24,7 +24,6 @@ namespace MediaWiki\Output;
 
 use CSSJanus;
 use Exception;
-use File;
 use HtmlArmor;
 use InvalidArgumentException;
 use MediaWiki\Cache\LinkCache;
@@ -37,6 +36,7 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Debug\DeprecationHelper;
 use MediaWiki\Debug\MWDebug;
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;

@@ -1,5 +1,9 @@
 <?php
 
+use MediaWiki\FileRepo\FileRepo;
+use MediaWiki\FileRepo\ForeignAPIRepo;
+use MediaWiki\FileRepo\ForeignDBRepo;
+use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;

@@ -4,6 +4,9 @@
  * It's split into a separate file so it can be tested.
  */
 
+use MediaWiki\FileRepo\FileRepo;
+use MediaWiki\FileRepo\ForeignAPIRepo;
+use MediaWiki\FileRepo\ForeignDBRepo;
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Title\NamespaceInfo;

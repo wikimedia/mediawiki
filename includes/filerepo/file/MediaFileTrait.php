@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\FileRepo\File;
+
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
@@ -167,3 +169,6 @@ trait MediaFileTrait {
 		return $imageLimits[$option] ?? [ 800, 600 ];
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( MediaFileTrait::class, 'MediaFileTrait' );

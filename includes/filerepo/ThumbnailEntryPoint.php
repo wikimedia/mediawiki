@@ -31,11 +31,12 @@
 namespace MediaWiki\FileRepo;
 
 use Exception;
-use File;
 use InvalidArgumentException;
 use MediaTransformError;
 use MediaTransformInvalidParametersException;
 use MediaTransformOutput;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\File\UnregisteredLocalFile;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiEntryPoint;
@@ -47,8 +48,6 @@ use MediaWiki\Profiler\ProfilingContext;
 use MediaWiki\Request\HeaderCallback;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use RepoGroup;
-use UnregisteredLocalFile;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Message\MessageSpecifier;
 

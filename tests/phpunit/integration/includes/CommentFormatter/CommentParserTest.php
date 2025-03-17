@@ -9,12 +9,12 @@ use MediaWiki\CommentFormatter\CommentParserFactory;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\SiteConfiguration;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\Title;
-use RepoGroup;
 
 /**
  * @group Database

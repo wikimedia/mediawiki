@@ -2,10 +2,11 @@
 
 namespace MediaWiki\Tests\EditPage;
 
-use File;
-use FileRepo;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\EditPage\IntroMessageBuilder;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\FileRepo;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\UltimateAuthority;
@@ -16,7 +17,6 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use MockMessageLocalizer;
-use RepoGroup;
 
 /**
  * @covers \MediaWiki\EditPage\IntroMessageBuilder

@@ -21,7 +21,10 @@
 
 use MediaWiki\Cache\HTMLCacheUpdater;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
+use MediaWiki\FileRepo\FileRepo;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Status\Status;
 use Wikimedia\Rdbms\IReadableDatabase;

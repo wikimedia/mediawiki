@@ -21,6 +21,7 @@
  * @ingroup Upload
  */
 
+use MediaWiki\FileRepo\FileRepo;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\User\UserIdentity;

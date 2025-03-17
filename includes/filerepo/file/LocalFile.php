@@ -18,13 +18,23 @@
  * @file
  */
 
+namespace MediaWiki\FileRepo\File;
+
+use HTMLCacheUpdateJob;
+use InvalidArgumentException;
+use LockManager;
+use LogEntryBase;
+use ManualLogEntry;
+use MediaHandler;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\AutoCommitUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Deferred\SiteStatsUpdate;
-use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
+use MediaWiki\FileRepo\FileBackendDBRepoWrapper;
+use MediaWiki\FileRepo\FileRepo;
+use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\Language\Language;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
@@ -39,6 +49,11 @@ use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
+use MWFileProps;
+use RuntimeException;
+use stdClass;
+use ThumbnailRenderJob;
+use UnexpectedValueException;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\FileBackendError;
 use Wikimedia\FileBackend\FSFile\FSFile;
@@ -2796,3 +2811,6 @@ class LocalFile extends File {
 		$this->unlock();
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( LocalFile::class, 'LocalFile' );

@@ -18,10 +18,16 @@
  * @file
  */
 
+namespace MediaWiki\FileRepo;
+
+use Closure;
+use InvalidArgumentException;
+use MapCacheLRU;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\StreamFile;
 use Shellbox\Command\BoxedCommand;
+use StatusValue;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -390,3 +396,6 @@ class FileBackendDBRepoWrapper extends FileBackend {
 		return $ops;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( FileBackendDBRepoWrapper::class, 'FileBackendDBRepoWrapper' );

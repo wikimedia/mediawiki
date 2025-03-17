@@ -1,7 +1,8 @@
 <?php
 namespace MediaWiki\Tests\Unit\Page;
 
-use File;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageLookup;
 use MediaWiki\Page\PageStoreRecord;
@@ -10,7 +11,6 @@ use MediaWiki\Title\TitleParser;
 use MediaWiki\Title\TitleValue;
 use MediaWikiUnitTestCase;
 use Psr\Log\NullLogger;
-use RepoGroup;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

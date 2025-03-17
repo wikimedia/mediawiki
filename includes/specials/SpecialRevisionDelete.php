@@ -21,10 +21,11 @@
 namespace MediaWiki\Specials;
 
 use ErrorPageError;
-use File;
 use LogEventsList;
 use LogPage;
 use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Permissions\PermissionManager;
@@ -35,7 +36,6 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\Xml\Xml;
 use PermissionsError;
-use RepoGroup;
 use RevDelList;
 use RevisionDeleter;
 use UserBlockedError;

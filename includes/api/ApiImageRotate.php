@@ -21,9 +21,9 @@
 namespace MediaWiki\Api;
 
 use ChangeTags;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\TitleFactory;
-use RepoGroup;
 use Wikimedia\FileBackend\FSFile\TempFSFileFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 

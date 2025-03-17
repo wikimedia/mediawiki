@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use LocalFile;
+use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\Page\WikiFilePage;
 use MediaWiki\User\User;
 

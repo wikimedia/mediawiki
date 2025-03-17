@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Api\Query;
 
-use File;
 use MediaWiki\Api\ApiQueryImageInfo;
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;

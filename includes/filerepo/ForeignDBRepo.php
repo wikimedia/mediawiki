@@ -21,6 +21,11 @@
  * @ingroup FileRepo
  */
 
+namespace MediaWiki\FileRepo;
+
+use Closure;
+use LogicException;
+use MediaWiki\FileRepo\File\ForeignDBFile;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\BlobStore;
 use Wikimedia\Rdbms\DatabaseDomain;
@@ -125,3 +130,6 @@ class ForeignDBRepo extends LocalRepo implements IForeignRepoWithDB {
 		return null;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ForeignDBRepo::class, 'ForeignDBRepo' );

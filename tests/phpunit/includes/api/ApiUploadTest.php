@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Tests\Api;
 
-use LocalRepo;
+use MediaWiki\FileRepo\LocalRepo;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
-use RepoGroup;
 use Wikimedia\FileBackend\FSFileBackend;
 use Wikimedia\Mime\MimeAnalyzer;
 

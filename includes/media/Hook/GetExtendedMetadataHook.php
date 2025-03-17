@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Hook;
 
-use File;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\FileRepo\File\File;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

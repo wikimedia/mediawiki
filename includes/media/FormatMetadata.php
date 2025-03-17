@@ -28,6 +28,8 @@
 use MediaWiki\Api\ApiResult;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\File\ForeignAPIFile;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
 use MediaWiki\Logger\LoggerFactory;

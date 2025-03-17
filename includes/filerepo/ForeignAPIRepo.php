@@ -18,6 +18,12 @@
  * @file
  */
 
+namespace MediaWiki\FileRepo;
+
+use LogicException;
+use MediaTransformError;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\File\ForeignAPIFile;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
@@ -25,6 +31,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\Title;
+use RuntimeException;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\ObjectCache\WANObjectCache;
 
@@ -630,3 +637,6 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 		throw new LogicException( static::class . ': write operations are not supported.' );
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ForeignAPIRepo::class, 'ForeignAPIRepo' );

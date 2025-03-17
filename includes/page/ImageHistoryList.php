@@ -20,8 +20,8 @@
 
 namespace MediaWiki\Page;
 
-use File;
 use MediaWiki\Context\ContextSource;
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;

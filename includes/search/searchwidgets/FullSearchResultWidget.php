@@ -2,10 +2,11 @@
 
 namespace MediaWiki\Search\SearchWidgets;
 
-use File;
 use HtmlArmor;
 use MediaTransformOutput;
 use MediaWiki\Category\Category;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
@@ -16,7 +17,6 @@ use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Specials\SpecialSearch;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsManager;
-use RepoGroup;
 use SearchResult;
 use ThumbnailImage;
 

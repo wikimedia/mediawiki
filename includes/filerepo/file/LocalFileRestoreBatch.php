@@ -18,9 +18,12 @@
  * @file
  */
 
+namespace MediaWiki\FileRepo\File;
+
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\SiteStatsUpdate;
-use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
+use MediaWiki\FileRepo\FileRepo;
+use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -510,3 +513,6 @@ class LocalFileRestoreBatch {
 		$this->file->repo->cleanupBatch( $cleanupBatch );
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( LocalFileRestoreBatch::class, 'LocalFileRestoreBatch' );

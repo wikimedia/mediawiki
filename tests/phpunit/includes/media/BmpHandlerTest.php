@@ -22,8 +22,8 @@
 namespace MediaWiki\Tests\Media;
 
 use BmpHandler;
-use File;
 use MediaHandlerState;
+use MediaWiki\FileRepo\File\File;
 use MediaWikiMediaTestCase;
 
 /**

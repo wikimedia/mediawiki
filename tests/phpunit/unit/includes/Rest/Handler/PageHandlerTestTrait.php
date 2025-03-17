@@ -2,9 +2,10 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
-use File;
-use FileRepo;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\FileRepo;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
@@ -24,7 +25,6 @@ use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use PHPUnit\Framework\MockObject\MockObject;
-use RepoGroup;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Stats\StatsFactory;

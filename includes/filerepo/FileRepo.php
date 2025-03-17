@@ -7,7 +7,14 @@
  * @details
  */
 
+namespace MediaWiki\FileRepo;
+
+use InvalidArgumentException;
+use LogicException;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\File\LocalFile;
+use MediaWiki\FileRepo\File\UnregisteredLocalFile;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -17,7 +24,11 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
+use MWFileProps;
+use RuntimeException;
 use Shellbox\Command\BoxedCommand;
+use StatusValue;
+use UploadStash;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\FSFile\FSFile;
@@ -2035,3 +2046,6 @@ class FileRepo {
 		return $this->supportsSha1URLs;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( FileRepo::class, 'FileRepo' );

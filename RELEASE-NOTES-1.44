@@ -355,6 +355,32 @@ because of Phabricator reports.
   In this release of MediaWiki, XXX classes now have a namespace and XXX do
   not yet (XXX% done, up from 81% in MediaWiki 1.43.0). The following have newly
   been moved:
+  - MediaWiki\FileRepo:
+    - FileBackendDBRepoWrapper
+    - FileRepo
+    - ForeignAPIRepo
+    - ForeignDBRepo
+    - ForeignDBViaLBRepo
+    - IForeignRepoWithDB
+    - IForeignRepoWithMWApi
+    - LocalRepo
+    - NullRepo
+    - RepoGroup
+    - TempFileRepo
+    - MediaWiki\FileRepo\File:
+      - ArchivedFile
+      - File
+      - ForeignAPIFile
+      - ForeignDBFile
+      - LocalFile
+      - LocalFileDeleteBatch
+      - LocalFileLockError
+      - LocalFileMoveBatch
+      - LocalFileRestoreBatch
+      - MediaFileTrait
+      - MetadataStorageHelper
+      - OldLocalFile
+      - UnregisteredLocalFile
   - MediaWiki\Page:
     - Article
     - CategoryPage

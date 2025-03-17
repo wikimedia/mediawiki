@@ -2,14 +2,13 @@
 
 namespace MediaWiki\Rest\Handler;
 
-use MediaFileTrait;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageLookup;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
-use RepoGroup;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -18,7 +17,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * Handler class for Core REST API endpoints that perform operations on revisions
  */
 class MediaLinksHandler extends SimpleHandler {
-	use MediaFileTrait;
+	use \MediaWiki\FileRepo\File\MediaFileTrait;
 
 	/** int The maximum number of media links to return */
 	private const MAX_NUM_LINKS = 100;

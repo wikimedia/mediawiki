@@ -18,6 +18,11 @@
  * @file
  */
 
+namespace MediaWiki\FileRepo\File;
+
+use BadMethodCallException;
+use MediaHandler;
+use MediaWiki\FileRepo\FileRepo;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use Wikimedia\FileBackend\FSFile\FSFile;
@@ -240,3 +245,6 @@ class UnregisteredLocalFile extends File {
 		$this->fsFile = $fsFile;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( UnregisteredLocalFile::class, 'UnregisteredLocalFile' );

@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\FileRepo;
+
 /**
  * A foreign repo that implement support for API queries.
  *
@@ -43,3 +45,6 @@ interface IForeignRepoWithMWApi {
 	 */
 	public function fetchImageQuery( $query );
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( IForeignRepoWithMWApi::class, 'IForeignRepoWithMWApi' );

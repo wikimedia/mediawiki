@@ -21,9 +21,11 @@
 namespace MediaWiki\Specials;
 
 use Exception;
-use File;
 use HttpError;
-use LocalRepo;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\File\UnregisteredLocalFile;
+use MediaWiki\FileRepo\LocalRepo;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Http\HttpRequestFactory;
@@ -32,9 +34,7 @@ use MediaWiki\Pager\UploadStashPager;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Utils\UrlUtils;
-use RepoGroup;
 use SpecialUploadStashTooLargeException;
-use UnregisteredLocalFile;
 use UploadStash;
 use UploadStashBadPathException;
 use UploadStashFileNotFoundException;

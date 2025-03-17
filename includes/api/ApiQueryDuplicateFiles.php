@@ -22,8 +22,8 @@
 
 namespace MediaWiki\Api;
 
-use File;
-use RepoGroup;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\RepoGroup;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 

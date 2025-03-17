@@ -22,9 +22,10 @@ namespace MediaWiki\Actions;
 
 use DeleteAction;
 use ErrorPageError;
-use File;
-use LocalFile;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\File\LocalFile;
+use MediaWiki\FileRepo\File\OldLocalFile;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -33,7 +34,6 @@ use MediaWiki\Page\File\FileDeleteForm;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use OldLocalFile;
 use PermissionsError;
 
 /**

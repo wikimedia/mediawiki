@@ -2,7 +2,6 @@
 
 namespace MediaWiki\HookContainer;
 
-use File;
 use MailAddress;
 use ManualLogEntry;
 use MediaWiki\Auth\AuthenticationResponse;
@@ -10,6 +9,7 @@ use MediaWiki\Auth\AuthManager;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\JsonContent;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Mail\UserEmailContact;

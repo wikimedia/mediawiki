@@ -27,6 +27,8 @@ use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Debug\MWDebug;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\File\OldLocalFile;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;

@@ -23,12 +23,12 @@ namespace MediaWiki\Specials;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Pager\ImageListPager;
 use MediaWiki\SpecialPage\IncludableSpecialPage;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserRigorOptions;
-use RepoGroup;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

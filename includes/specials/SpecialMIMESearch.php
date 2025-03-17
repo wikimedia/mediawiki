@@ -20,9 +20,9 @@
 
 namespace MediaWiki\Specials;
 
-use File;
 use HtmlArmor;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Language\ILanguageConverter;

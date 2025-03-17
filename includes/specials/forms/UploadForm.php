@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Context\IContextSource;
+use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;

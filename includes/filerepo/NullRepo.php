@@ -19,6 +19,10 @@
  * @ingroup FileRepo
  */
 
+namespace MediaWiki\FileRepo;
+
+use LogicException;
+
 /**
  * File repository with no files, for testing purposes.
  *
@@ -39,3 +43,6 @@ class NullRepo extends FileRepo {
 		throw new LogicException( static::class . ': write operations are not supported.' );
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( NullRepo::class, 'NullRepo' );

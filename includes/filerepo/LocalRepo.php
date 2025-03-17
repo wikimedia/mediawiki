@@ -18,8 +18,15 @@
  * @file
  */
 
+namespace MediaWiki\FileRepo;
+
+use Closure;
+use InvalidArgumentException;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
+use MediaWiki\FileRepo\File\LocalFile;
+use MediaWiki\FileRepo\File\OldLocalFile;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
@@ -28,6 +35,7 @@ use MediaWiki\Status\Status;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
+use stdClass;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -676,3 +684,6 @@ class LocalRepo extends FileRepo {
 		return $this->blobStore;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( LocalRepo::class, 'LocalRepo' );

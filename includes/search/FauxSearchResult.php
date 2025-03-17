@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 

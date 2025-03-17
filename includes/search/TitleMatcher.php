@@ -3,6 +3,7 @@ namespace MediaWiki\Search;
 
 use ISearchResultSet;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\ILanguageConverter;
@@ -14,7 +15,6 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserNameUtils;
-use RepoGroup;
 use SearchNearMatchResultSet;
 
 /**

@@ -22,9 +22,9 @@
 
 namespace MediaWiki\Api;
 
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Language\Language;
 use MediaWiki\Page\File\BadFileLookup;
-use RepoGroup;
 use UploadStashBadPathException;
 use UploadStashFileNotFoundException;
 use Wikimedia\ParamValidator\ParamValidator;

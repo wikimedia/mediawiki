@@ -4,12 +4,12 @@ namespace MediaWiki\CommentFormatter;
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Cache\LinkCache;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\TitleParser;
-use RepoGroup;
 
 /**
  * @internal

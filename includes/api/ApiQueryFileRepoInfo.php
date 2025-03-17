@@ -23,9 +23,9 @@
 
 namespace MediaWiki\Api;
 
-use FileRepo;
+use MediaWiki\FileRepo\FileRepo;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\MainConfigNames;
-use RepoGroup;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**

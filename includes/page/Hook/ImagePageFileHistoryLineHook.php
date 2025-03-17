@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Page\Hook;
 
-use File;
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\Page\ImageHistoryList;
 
 /**

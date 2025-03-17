@@ -20,10 +20,9 @@
 
 namespace MediaWiki\Page;
 
-use File;
-use FileRepo;
 use LogEventsList;
-use MediaFileTrait;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\FileRepo;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\Linker\Linker;
@@ -45,7 +44,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @method WikiFilePage getPage()
  */
 class ImagePage extends Article {
-	use MediaFileTrait;
+	use \MediaWiki\FileRepo\File\MediaFileTrait;
 
 	/** @var File|false Only temporary false, most code can assume this is a File */
 	private $displayImg;

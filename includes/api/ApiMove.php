@@ -23,13 +23,13 @@
 namespace MediaWiki\Api;
 
 use LogicException;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
-use RepoGroup;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**

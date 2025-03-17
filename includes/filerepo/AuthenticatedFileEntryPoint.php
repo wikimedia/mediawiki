@@ -25,7 +25,7 @@
 
 namespace MediaWiki\FileRepo;
 
-use File;
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\TemplateParser;
 use MediaWiki\MainConfigNames;

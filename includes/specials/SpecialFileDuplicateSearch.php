@@ -20,15 +20,15 @@
 
 namespace MediaWiki\Specials;
 
-use File;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\Linker;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
-use RepoGroup;
 use SearchEngineFactory;
 
 /**

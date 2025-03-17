@@ -18,7 +18,11 @@
  * @file
  */
 
-use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
+namespace MediaWiki\FileRepo\File;
+
+use InvalidArgumentException;
+use LogicException;
+use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
@@ -26,6 +30,9 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
+use MWFileProps;
+use RuntimeException;
+use stdClass;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -512,3 +519,6 @@ class OldLocalFile extends LocalFile {
 		return parent::exists();
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( OldLocalFile::class, 'OldLocalFile' );

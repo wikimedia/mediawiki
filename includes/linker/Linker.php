@@ -22,7 +22,6 @@
 
 namespace MediaWiki\Linker;
 
-use File;
 use HtmlArmor;
 use MediaTransformError;
 use MediaTransformOutput;
@@ -30,6 +29,7 @@ use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Html\HtmlHelper;

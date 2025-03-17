@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use File;
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\Parser\Parser;
 
 /**

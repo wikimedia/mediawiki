@@ -22,12 +22,12 @@
 namespace MediaWiki\Page;
 
 use MapCacheLRU;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleParser;
 use MediaWiki\Title\TitleValue;
 use Psr\Log\LoggerInterface;
-use RepoGroup;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

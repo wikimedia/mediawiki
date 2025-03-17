@@ -18,12 +18,14 @@
  * @file
  */
 
-use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
+namespace MediaWiki\FileRepo\File;
+
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\User\UserIdentity;
+use StatusValue;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -454,3 +456,6 @@ class LocalFileDeleteBatch {
 		return Status::newGood( $newBatch );
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( LocalFileDeleteBatch::class, 'LocalFileDeleteBatch' );

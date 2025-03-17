@@ -20,6 +20,8 @@
  */
 
 use MediaWiki\Api\ApiResult;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\File\OldLocalFile;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;

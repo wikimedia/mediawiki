@@ -32,6 +32,7 @@ use ChangeTags;
 use Exception;
 use JobQueueGroup;
 use MediaWiki\Config\Config;
+use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

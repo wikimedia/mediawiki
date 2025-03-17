@@ -6,8 +6,19 @@
  * Represents files in a repository.
  */
 
+namespace MediaWiki\FileRepo\File;
+
+use HTMLCacheUpdateJob;
+use LogicException;
+use MediaHandler;
+use MediaHandlerState;
+use MediaTransformError;
+use MediaTransformOutput;
 use MediaWiki\Config\ConfigException;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\FileRepo\FileRepo;
+use MediaWiki\FileRepo\ForeignAPIRepo;
+use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinkTarget;
@@ -20,7 +31,10 @@ use MediaWiki\PoolCounter\PoolCounterWorkViaCallback;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
+use RuntimeException;
 use Shellbox\Command\BoxedCommand;
+use StatusValue;
+use ThumbnailImage;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\FSFile\FSFile;
 use Wikimedia\FileBackend\FSFile\TempFSFile;
@@ -2571,3 +2585,6 @@ abstract class File implements MediaHandlerState {
 		return true;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( File::class, 'File' );

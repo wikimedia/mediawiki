@@ -18,6 +18,9 @@
  * @file
  */
 
+namespace MediaWiki\FileRepo\File;
+
+use MediaWiki\FileRepo\FileRepo;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -495,3 +498,6 @@ class LocalFileMoveBatch {
 		$this->file->repo->cleanupBatch( $files );
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( LocalFileMoveBatch::class, 'LocalFileMoveBatch' );

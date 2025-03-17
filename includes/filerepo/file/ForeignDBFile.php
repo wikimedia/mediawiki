@@ -18,6 +18,9 @@
  * @file
  */
 
+namespace MediaWiki\FileRepo\File;
+
+use MediaWiki\FileRepo\ForeignDBRepo;
 use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
@@ -160,3 +163,6 @@ class ForeignDBFile extends LocalFile {
 	}
 
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ForeignDBFile::class, 'ForeignDBFile' );

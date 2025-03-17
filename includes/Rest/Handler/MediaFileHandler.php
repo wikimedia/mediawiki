@@ -2,15 +2,14 @@
 
 namespace MediaWiki\Rest\Handler;
 
-use File;
-use MediaFileTrait;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageLookup;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
-use RepoGroup;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -18,7 +17,7 @@ use Wikimedia\ParamValidator\ParamValidator;
  * Handler class for media meta-data
  */
 class MediaFileHandler extends SimpleHandler {
-	use MediaFileTrait;
+	use \MediaWiki\FileRepo\File\MediaFileTrait;
 
 	private RepoGroup $repoGroup;
 	private PageLookup $pageLookup;

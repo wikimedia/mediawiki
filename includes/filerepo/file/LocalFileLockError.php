@@ -18,6 +18,9 @@
  * @file
  */
 
+namespace MediaWiki\FileRepo\File;
+
+use ErrorPageError;
 use MediaWiki\Status\Status;
 
 /**
@@ -45,3 +48,6 @@ class LocalFileLockError extends ErrorPageError {
 		parent::report( $action );
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( LocalFileLockError::class, 'LocalFileLockError' );
