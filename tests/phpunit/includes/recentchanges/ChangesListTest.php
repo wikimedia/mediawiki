@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Logging\DatabaseLogEntry;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMUtils;

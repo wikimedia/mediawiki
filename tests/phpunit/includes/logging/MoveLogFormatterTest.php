@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers \MoveLogFormatter
+ * @covers \MediaWiki\Logging\MoveLogFormatter
  */
 class MoveLogFormatterTest extends LogFormatterTestCase {
 

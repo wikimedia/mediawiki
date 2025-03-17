@@ -2,7 +2,6 @@
 
 namespace MediaWiki\EditPage;
 
-use LogEventsList;
 use LogicException;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Config\Config;
@@ -10,6 +9,7 @@ use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Logging\LogEventsList;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;

@@ -4,7 +4,7 @@ namespace MediaWiki\Tests\Maintenance;
 
 use DumpBackup;
 use Exception;
-use ManualLogEntry;
+use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;

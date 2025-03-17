@@ -22,6 +22,8 @@
  * @since 1.27
  */
 
+namespace MediaWiki\Logging;
+
 /**
  * This class formats import log entries.
  *
@@ -40,3 +42,6 @@ class ImportLogFormatter extends LogFormatter {
 		return $key;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ImportLogFormatter::class, 'ImportLogFormatter' );

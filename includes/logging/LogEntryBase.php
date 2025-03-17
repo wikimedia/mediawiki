@@ -23,6 +23,8 @@
  * @since 1.19
  */
 
+namespace MediaWiki\Logging;
+
 /**
  * Extends the LogEntry Interface with some basic functionality
  *
@@ -70,3 +72,6 @@ abstract class LogEntryBase implements LogEntry {
 		return unserialize( $blob );
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( LogEntryBase::class, 'LogEntryBase' );

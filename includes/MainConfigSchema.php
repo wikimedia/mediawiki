@@ -12,26 +12,20 @@
 namespace MediaWiki;
 
 use AssembleUploadChunksJob;
-use BlockLogFormatter;
 use CategoryMembershipChangeJob;
 use CdnPurgeJob;
-use ContentModelLogFormatter;
 use DateTime;
 use DateTimeZone;
 use DeleteLinksJob;
-use DeleteLogFormatter;
 use DeletePageJob;
 use DoubleRedirectJob;
 use EmaillingJob;
 use EnotifNotifyJob;
 use Generator;
 use HTMLCacheUpdateJob;
-use ImportLogFormatter;
-use InterwikiLogFormatter;
 use InvalidArgumentException;
 use JobQueueDB;
 use LocalisationCache;
-use LogFormatter;
 use MediaWiki\Auth\CheckBlocksSecondaryAuthenticationProvider;
 use MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider;
 use MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider;
@@ -49,6 +43,20 @@ use MediaWiki\Content\TextContentHandler;
 use MediaWiki\Content\WikitextContentHandler;
 use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\FileRepo\LocalRepo;
+use MediaWiki\Logging\BlockLogFormatter;
+use MediaWiki\Logging\ContentModelLogFormatter;
+use MediaWiki\Logging\DeleteLogFormatter;
+use MediaWiki\Logging\ImportLogFormatter;
+use MediaWiki\Logging\InterwikiLogFormatter;
+use MediaWiki\Logging\LogFormatter;
+use MediaWiki\Logging\MergeLogFormatter;
+use MediaWiki\Logging\MoveLogFormatter;
+use MediaWiki\Logging\PatrolLogFormatter;
+use MediaWiki\Logging\ProtectLogFormatter;
+use MediaWiki\Logging\RenameuserLogFormatter;
+use MediaWiki\Logging\RightsLogFormatter;
+use MediaWiki\Logging\TagLogFormatter;
+use MediaWiki\Logging\UploadLogFormatter;
 use MediaWiki\Password\Argon2Password;
 use MediaWiki\Password\BcryptPassword;
 use MediaWiki\Password\LayeredParameterizedPassword;
@@ -72,24 +80,16 @@ use MediaWiki\Watchlist\ActivityUpdateJob;
 use MediaWiki\Watchlist\ClearUserWatchlistJob;
 use MediaWiki\Watchlist\ClearWatchlistNotificationsJob;
 use MediaWiki\Watchlist\WatchlistExpiryJob;
-use MergeLogFormatter;
-use MoveLogFormatter;
 use NullJob;
 use ParsoidCachePrewarmJob;
-use PatrolLogFormatter;
-use ProtectLogFormatter;
 use PublishStashedFileJob;
 use RecentChangesUpdateJob;
 use ReflectionClass;
 use RefreshLinksJob;
-use RenameuserLogFormatter;
 use RevertedTagUpdateJob;
-use RightsLogFormatter;
 use SqlBagOStuff;
-use TagLogFormatter;
 use ThumbnailRenderJob;
 use UploadFromUrlJob;
-use UploadLogFormatter;
 use UserEditCountInitJob;
 use UserGroupExpiryJob;
 use UserOptionsUpdateJob;
@@ -11998,8 +11998,8 @@ class MainConfigSchema {
 	 * and will receive the LogEntry object as its first constructor argument.
 	 * The type can be specified as '*' (e.g. 'block/*') to handle all types.
 	 *
-	 * @see \LogPage::actionText
-	 * @see \LogFormatter
+	 * @see \MediaWiki\Logging\LogPage::actionText
+	 * @see \MediaWiki\Logging\LogFormatter
 	 */
 	public const LogActionsHandlers = [
 		'default' => [

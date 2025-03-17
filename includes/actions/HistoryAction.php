@@ -24,12 +24,12 @@
 namespace MediaWiki\Actions;
 
 use HTMLFileCache;
-use LogEventsList;
 use MediaWiki\Feed\ChannelFeed;
 use MediaWiki\Feed\FeedItem;
 use MediaWiki\Feed\FeedUtils;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\Logging\LogEventsList;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Pager\HistoryPager;

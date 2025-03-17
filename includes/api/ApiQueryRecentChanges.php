@@ -24,12 +24,12 @@ namespace MediaWiki\Api;
 
 use ChangesList;
 use Exception;
-use LogEventsList;
-use LogFormatterFactory;
-use LogPage;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\Logging\LogEventsList;
+use MediaWiki\Logging\LogFormatterFactory;
+use MediaWiki\Logging\LogPage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
 use MediaWiki\ParamValidator\TypeDef\UserDef;

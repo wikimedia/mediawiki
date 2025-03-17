@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Auth;
 
 use Closure;
-use DatabaseLogEntry;
 use DomainException;
 use DummySessionProvider;
 use DynamicPropertyTestHelper;
@@ -44,6 +43,7 @@ use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Logging\DatabaseLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;

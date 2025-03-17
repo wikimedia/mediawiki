@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
-use ManualLogEntry;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\Maintenance\FixAutoblockLogTitles;
 use MediaWiki\Title\TitleValue;
 

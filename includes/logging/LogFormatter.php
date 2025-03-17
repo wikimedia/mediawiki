@@ -23,6 +23,9 @@
  * @since 1.19
  */
 
+namespace MediaWiki\Logging;
+
+use HtmlArmor;
 use MediaWiki\Api\ApiQueryBase;
 use MediaWiki\Api\ApiResult;
 use MediaWiki\CommentFormatter\CommentFormatter;
@@ -41,6 +44,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserIdentity;
+use stdClass;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 
@@ -947,7 +951,7 @@ class LogFormatter {
 		foreach ( $this->getParametersForApi() as $key => $value ) {
 			$vals = explode( ':', $key, 3 );
 			if ( count( $vals ) !== 3 ) {
-				if ( $value instanceof __PHP_Incomplete_Class ) {
+				if ( $value instanceof \__PHP_Incomplete_Class ) {
 					wfLogWarning( 'Log entry of type ' . $this->entry->getFullType() .
 						' contains unrecoverable extra parameters.' );
 					continue;
@@ -1039,3 +1043,6 @@ class LogFormatter {
 		return [ $name => $value ];
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( LogFormatter::class, 'LogFormatter' );

@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Logging;
+
 use MediaWiki\Message\Message;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleParser;
@@ -133,3 +135,6 @@ class RenameuserLogFormatter extends LogFormatter {
 		return [];
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( RenameuserLogFormatter::class, 'RenameuserLogFormatter' );

@@ -23,6 +23,8 @@
  * @since 1.22
  */
 
+namespace MediaWiki\Logging;
+
 use MediaWiki\Message\Message;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\MalformedTitleException;
@@ -133,3 +135,6 @@ class MoveLogFormatter extends LogFormatter {
 	}
 
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( MoveLogFormatter::class, 'MoveLogFormatter' );

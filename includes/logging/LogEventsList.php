@@ -23,6 +23,11 @@
  * @file
  */
 
+namespace MediaWiki\Logging;
+
+use ChangeTags;
+use InvalidArgumentException;
+use MapCacheLRU;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Context\ContextSource;
@@ -51,6 +56,8 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Xml\Xml;
+use MessageLocalizer;
+use stdClass;
 
 class LogEventsList extends ContextSource {
 	public const NO_ACTION_LINK = 1;
@@ -882,3 +889,6 @@ class LogEventsList extends ContextSource {
 		return $outString ?: null;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( LogEventsList::class, 'LogEventsList' );

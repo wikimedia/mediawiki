@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Logging;
+
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 
@@ -105,3 +107,6 @@ interface LogEntry {
 	 */
 	public function isDeleted( $field );
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( LogEntry::class, 'LogEntry' );

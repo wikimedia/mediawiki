@@ -21,14 +21,14 @@
 namespace MediaWiki\Specials;
 
 use ChangeTags;
-use LogEventsList;
-use LogFormatterFactory;
-use LogPage;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\Html\ListToggle;
+use MediaWiki\Logging\LogEventsList;
+use MediaWiki\Logging\LogFormatterFactory;
+use MediaWiki\Logging\LogPage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Pager\LogPager;

@@ -23,6 +23,8 @@
  * @since 1.22
  */
 
+namespace MediaWiki\Logging;
+
 use MediaWiki\Api\ApiResult;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
@@ -480,3 +482,6 @@ class RightsLogFormatter extends LogFormatter {
 		return $group;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( RightsLogFormatter::class, 'RightsLogFormatter' );

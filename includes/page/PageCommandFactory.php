@@ -22,7 +22,6 @@
 namespace MediaWiki\Page;
 
 use JobQueueGroup;
-use LogFormatterFactory;
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Collation\CollationFactory;
 use MediaWiki\CommentStore\CommentStore;
@@ -35,6 +34,7 @@ use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkTargetLookup;
+use MediaWiki\Logging\LogFormatterFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Revision\ArchivedRevisionLookup;

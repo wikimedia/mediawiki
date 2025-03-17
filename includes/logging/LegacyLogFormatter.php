@@ -23,6 +23,8 @@
  * @since 1.19
  */
 
+namespace MediaWiki\Logging;
+
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 
@@ -136,3 +138,6 @@ class LegacyLogFormatter extends LogFormatter {
 		return $this->revert;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( LegacyLogFormatter::class, 'LegacyLogFormatter' );

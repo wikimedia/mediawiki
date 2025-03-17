@@ -20,12 +20,12 @@
 
 namespace MediaWiki\Specials;
 
-use LogEventsList;
-use LogPage;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\Logging\LogEventsList;
+use MediaWiki\Logging\LogPage;
 use MediaWiki\Page\MergeHistoryFactory;
 use MediaWiki\Pager\MergeHistoryPager;
 use MediaWiki\Revision\RevisionStore;

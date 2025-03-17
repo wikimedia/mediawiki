@@ -20,7 +20,7 @@
 
 namespace MediaWiki\Specials\Redirects;
 
-use LogPage;
+use MediaWiki\Logging\LogPage;
 use MediaWiki\SpecialPage\RedirectSpecialPage;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;

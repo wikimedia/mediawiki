@@ -16,6 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+use MediaWiki\Logging\DatabaseLogEntry;
 use MediaWiki\Maintenance\Maintenance;
 
 // @codeCoverageIgnoreStart

@@ -3,8 +3,6 @@
 namespace MediaWiki\Specials;
 
 use ErrorPageError;
-use LogEventsList;
-use LogPage;
 use MediaWiki\Collation\CollationFactory;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Content\ContentHandler;
@@ -12,6 +10,8 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Language\RawMessage;
+use MediaWiki\Logging\LogEventsList;
+use MediaWiki\Logging\LogPage;
 use MediaWiki\Page\ContentModelChangeFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionLookup;

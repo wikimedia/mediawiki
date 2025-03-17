@@ -22,11 +22,11 @@ namespace MediaWiki\Specials;
 
 use ChangeTagsList;
 use ErrorPageError;
-use LogEventsList;
-use LogPage;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Html\Html;
+use MediaWiki\Logging\LogEventsList;
+use MediaWiki\Logging\LogPage;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;

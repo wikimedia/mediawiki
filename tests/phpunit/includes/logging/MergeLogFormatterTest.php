@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers \MergeLogFormatter
+ * @covers \MediaWiki\Logging\MergeLogFormatter
  */
 class MergeLogFormatterTest extends LogFormatterTestCase {
 

@@ -21,10 +21,10 @@
 namespace MediaWiki\ChangeTags;
 
 use InvalidArgumentException;
-use ManualLogEntry;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Status\Status;
 use MediaWiki\Storage\NameTableAccessException;

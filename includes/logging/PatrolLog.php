@@ -22,8 +22,11 @@
  * @author Niklas Laxström
  */
 
+namespace MediaWiki\Logging;
+
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\User\UserIdentity;
+use RecentChange;
 
 /**
  * Class containing static functions for working with
@@ -84,3 +87,6 @@ class PatrolLog {
 		];
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( PatrolLog::class, 'PatrolLog' );

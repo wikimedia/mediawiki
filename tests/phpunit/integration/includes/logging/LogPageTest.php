@@ -2,15 +2,15 @@
 
 namespace MediaWiki\Tests\Log;
 
-use DatabaseLogEntry;
-use LogPage;
+use MediaWiki\Logging\DatabaseLogEntry;
+use MediaWiki\Logging\LogPage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserIdentityValue;
 use MockTitleTrait;
 
 /**
  * @group Database
- * @coversDefaultClass \LogPage
+ * @coversDefaultClass \MediaWiki\Logging\LogPage
  */
 class LogPageTest extends \MediaWikiIntegrationTestCase {
 	use MockTitleTrait;

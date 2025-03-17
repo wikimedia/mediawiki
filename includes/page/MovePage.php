@@ -21,8 +21,6 @@
 namespace MediaWiki\Page;
 
 use ChangeTags;
-use LogFormatterFactory;
-use ManualLogEntry;
 use MediaWiki\Collation\CollationFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\ContentHandler;
@@ -37,6 +35,8 @@ use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Logging\LogFormatterFactory;
+use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\Event\PageMovedEvent;
 use MediaWiki\Page\Event\PageRevisionUpdatedEvent;

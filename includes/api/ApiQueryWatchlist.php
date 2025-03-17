@@ -23,14 +23,14 @@
 namespace MediaWiki\Api;
 
 use ChangesList;
-use LogEventsList;
-use LogFormatterFactory;
-use LogPage;
 use MediaWiki\Cache\GenderCache;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Logging\LogEventsList;
+use MediaWiki\Logging\LogFormatterFactory;
+use MediaWiki\Logging\LogPage;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\NamespaceInfo;

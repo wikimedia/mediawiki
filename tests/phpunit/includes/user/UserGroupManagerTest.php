@@ -21,12 +21,12 @@
 namespace MediaWiki\Tests\User;
 
 use InvalidArgumentException;
-use LogEntryBase;
 use LogicException;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Config\SiteConfiguration;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Logging\LogEntryBase;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\Request\WebRequest;

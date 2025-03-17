@@ -404,6 +404,34 @@ because of Phabricator reports.
       - MetadataStorageHelper
       - OldLocalFile
       - UnregisteredLocalFile
+  - MediaWiki\Logging:
+      - BlockLogFormatter
+      - ContentModelLogFormatter
+      - DatabaseLogEntry
+      - DeleteLogFormatter
+      - ImportLogFormatter
+      - InterwikiLogFormatter
+      - LegacyLogFormatter
+      - LogEntry
+      - LogEntryBase
+      - LogEventsList
+      - LogFormatter
+      - LogFormatterFactory
+      - LogPage
+      - ManualLogEntry
+      - MergeLogFormatter
+      - MoveLogFormatter
+      - NewUsersLogFormatter
+      - PageLangLogFormatter
+      - PatrolLog
+      - PatrolLogFormatter
+      - ProtectLogFormatter
+      - RCDatabaseLogEntry
+      - RenameuserLogFormatter
+      - RightsLogFormatter
+      - TagLogFormatter
+      - UploadLogFormatter
+      - WikitextLogFormatter
   - MediaWiki\Page:
     - Article
     - CategoryPage

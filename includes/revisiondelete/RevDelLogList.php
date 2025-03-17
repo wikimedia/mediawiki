@@ -21,6 +21,8 @@
 
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Logging\LogFormatterFactory;
+use MediaWiki\Logging\LogPage;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\SpecialPage\SpecialPage;

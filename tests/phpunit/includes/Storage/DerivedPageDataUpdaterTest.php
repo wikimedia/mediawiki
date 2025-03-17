@@ -3,8 +3,6 @@
 namespace MediaWiki\Tests\Storage;
 
 use DummyContentHandlerForTesting;
-use LogPage;
-use ManualLogEntry;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\Content;
@@ -18,6 +16,8 @@ use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Deferred\MWCallableUpdate;
 use MediaWiki\Edit\ParsoidRenderID;
+use MediaWiki\Logging\LogPage;
+use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\Event\PageRevisionUpdatedEvent;

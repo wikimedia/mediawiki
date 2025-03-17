@@ -35,6 +35,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
@@ -1732,7 +1733,7 @@ class AuthManager implements LoggerAwareInterface {
 				// Log the creation
 				if ( $this->config->get( MainConfigNames::NewUserLog ) ) {
 					$isNamed = $creator->isNamed();
-					$logEntry = new \ManualLogEntry(
+					$logEntry = new ManualLogEntry(
 						'newusers',
 						$logSubtype ?: ( $isNamed ? 'create2' : 'create' )
 					);
@@ -2126,7 +2127,7 @@ class AuthManager implements LoggerAwareInterface {
 
 		// Log the creation
 		if ( $this->config->get( MainConfigNames::NewUserLog ) && $log ) {
-			$logEntry = new \ManualLogEntry( 'newusers', 'autocreate' );
+			$logEntry = new ManualLogEntry( 'newusers', 'autocreate' );
 			$logEntry->setPerformer( $user );
 			$logEntry->setTarget( $user->getUserPage() );
 			$logEntry->setComment( '' );

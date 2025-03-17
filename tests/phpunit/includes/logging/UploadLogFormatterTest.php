@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers \UploadLogFormatter
+ * @covers \MediaWiki\Logging\UploadLogFormatter
  */
 class UploadLogFormatterTest extends LogFormatterTestCase {
 

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Logging\DatabaseLogEntry;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
@@ -11,8 +12,8 @@ use Wikimedia\Rdbms\IReadableDatabase;
 class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
 
 	/**
-	 * @covers \DatabaseLogEntry::newFromId
-	 * @covers \DatabaseLogEntry::getSelectQueryData
+	 * @covers \MediaWiki\Logging\DatabaseLogEntry::newFromId
+	 * @covers \MediaWiki\Logging\DatabaseLogEntry::getSelectQueryData
 	 *
 	 * @dataProvider provideNewFromId
 	 *
@@ -33,7 +34,7 @@ class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
 			->with( $selectFields['tables'],
 				$selectFields['fields'],
 				$selectFields['conds'],
-				'DatabaseLogEntry::newFromId',
+				DatabaseLogEntry::class . '::newFromId',
 				$selectFields['options'],
 				$selectFields['join_conds']
 			)
@@ -140,7 +141,7 @@ class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideGetPerformerIdentity
-	 * @covers \DatabaseLogEntry::getPerformerIdentity
+	 * @covers \MediaWiki\Logging\DatabaseLogEntry::getPerformerIdentity
 	 */
 	public function testGetPerformer( array $actorRowFields, UserIdentity $expected ) {
 		$logEntry = DatabaseLogEntry::newFromRow( [

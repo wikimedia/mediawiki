@@ -24,7 +24,6 @@
 namespace MediaWiki\Page;
 
 use InvalidArgumentException;
-use ManualLogEntry;
 use MediaWiki;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\Content;
@@ -33,6 +32,7 @@ use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTargetLookup;
+use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;

@@ -23,6 +23,8 @@
  * @since 1.22
  */
 
+namespace MediaWiki\Logging;
+
 use MediaWiki\Message\Message;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\User\User;
@@ -80,3 +82,6 @@ class NewUsersLogFormatter extends LogFormatter {
 		return [];
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( NewUsersLogFormatter::class, 'NewUsersLogFormatter' );

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Logging\LogEntryBase;
 use MediaWiki\MainConfigNames;
 use MediaWiki\RCFeed\FormattedRCFeed;
 use MediaWiki\RCFeed\JSONRCFeedFormatter;

@@ -23,6 +23,10 @@
  * @since 1.19
  */
 
+namespace MediaWiki\Logging;
+
+use InvalidArgumentException;
+use LogicException;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
@@ -135,3 +139,6 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 		return $this->row->rc_deleted;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( RCDatabaseLogEntry::class, 'RCDatabaseLogEntry' );

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers \DeleteLogFormatter
+ * @covers \MediaWiki\Logging\DeleteLogFormatter
  */
 class DeleteLogFormatterTest extends LogFormatterTestCase {
 

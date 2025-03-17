@@ -4,9 +4,9 @@ namespace MediaWiki\RenameUser;
 
 use JobQueueGroup;
 use JobSpecification;
-use ManualLogEntry;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;

@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Logging;
+
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\SpecialPage\SpecialPage;
 
@@ -35,3 +37,6 @@ class ContentModelLogFormatter extends LogFormatter {
 		return $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ContentModelLogFormatter::class, 'ContentModelLogFormatter' );

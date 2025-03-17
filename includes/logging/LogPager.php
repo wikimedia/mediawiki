@@ -25,11 +25,11 @@
 
 namespace MediaWiki\Pager;
 
-use DatabaseLogEntry;
-use LogEventsList;
-use LogFormatterFactory;
-use LogPage;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Logging\DatabaseLogEntry;
+use MediaWiki\Logging\LogEventsList;
+use MediaWiki\Logging\LogFormatterFactory;
+use MediaWiki\Logging\LogPage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;

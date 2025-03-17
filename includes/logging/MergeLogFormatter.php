@@ -22,6 +22,8 @@
  * @since 1.25
  */
 
+namespace MediaWiki\Logging;
+
 use MediaWiki\Message\Message;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\MalformedTitleException;
@@ -116,3 +118,6 @@ class MergeLogFormatter extends LogFormatter {
 		return $params;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( MergeLogFormatter::class, 'MergeLogFormatter' );

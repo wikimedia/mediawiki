@@ -24,9 +24,9 @@
 
 namespace MediaWiki\Page\File;
 
-use ManualLogEntry;
 use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\DeletePage;
 use MediaWiki\Status\Status;

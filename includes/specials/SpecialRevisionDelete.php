@@ -21,13 +21,13 @@
 namespace MediaWiki\Specials;
 
 use ErrorPageError;
-use LogEventsList;
-use LogPage;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\Logging\LogEventsList;
+use MediaWiki\Logging\LogPage;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SpecialPage\SpecialPage;

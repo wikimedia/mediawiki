@@ -7524,55 +7524,55 @@ config-schema:
             Extensions with custom log types may add to this array.
     LogActionsHandlers:
         default:
-            block/block: { class: BlockLogFormatter, services: [TitleParser, NamespaceInfo] }
-            block/reblock: { class: BlockLogFormatter, services: [TitleParser, NamespaceInfo] }
-            block/unblock: { class: BlockLogFormatter, services: [TitleParser, NamespaceInfo] }
-            contentmodel/change: ContentModelLogFormatter
-            contentmodel/new: ContentModelLogFormatter
-            delete/delete: DeleteLogFormatter
-            delete/delete_redir: DeleteLogFormatter
-            delete/delete_redir2: DeleteLogFormatter
-            delete/event: DeleteLogFormatter
-            delete/restore: DeleteLogFormatter
-            delete/revision: DeleteLogFormatter
-            import/interwiki: ImportLogFormatter
-            import/upload: ImportLogFormatter
-            interwiki/iw_add: InterwikiLogFormatter
-            interwiki/iw_delete: InterwikiLogFormatter
-            interwiki/iw_edit: InterwikiLogFormatter
-            managetags/activate: LogFormatter
-            managetags/create: LogFormatter
-            managetags/deactivate: LogFormatter
-            managetags/delete: LogFormatter
-            merge/merge: { class: MergeLogFormatter, services: [TitleParser] }
-            move/move: { class: MoveLogFormatter, services: [TitleParser] }
-            move/move_redir: { class: MoveLogFormatter, services: [TitleParser] }
-            patrol/patrol: PatrolLogFormatter
-            patrol/autopatrol: PatrolLogFormatter
-            protect/modify: { class: ProtectLogFormatter, services: [TitleParser] }
-            protect/move_prot: { class: ProtectLogFormatter, services: [TitleParser] }
-            protect/protect: { class: ProtectLogFormatter, services: [TitleParser] }
-            protect/unprotect: { class: ProtectLogFormatter, services: [TitleParser] }
-            renameuser/renameuser: { class: RenameuserLogFormatter, services: [TitleParser] }
-            rights/autopromote: RightsLogFormatter
-            rights/rights: RightsLogFormatter
-            suppress/block: { class: BlockLogFormatter, services: [TitleParser, NamespaceInfo] }
-            suppress/delete: DeleteLogFormatter
-            suppress/event: DeleteLogFormatter
-            suppress/reblock: { class: BlockLogFormatter, services: [TitleParser, NamespaceInfo] }
-            suppress/revision: DeleteLogFormatter
-            tag/update: TagLogFormatter
-            upload/overwrite: UploadLogFormatter
-            upload/revert: UploadLogFormatter
-            upload/upload: UploadLogFormatter
+            block/block: { class: MediaWiki\Logging\BlockLogFormatter, services: [TitleParser, NamespaceInfo] }
+            block/reblock: { class: MediaWiki\Logging\BlockLogFormatter, services: [TitleParser, NamespaceInfo] }
+            block/unblock: { class: MediaWiki\Logging\BlockLogFormatter, services: [TitleParser, NamespaceInfo] }
+            contentmodel/change: MediaWiki\Logging\ContentModelLogFormatter
+            contentmodel/new: MediaWiki\Logging\ContentModelLogFormatter
+            delete/delete: MediaWiki\Logging\DeleteLogFormatter
+            delete/delete_redir: MediaWiki\Logging\DeleteLogFormatter
+            delete/delete_redir2: MediaWiki\Logging\DeleteLogFormatter
+            delete/event: MediaWiki\Logging\DeleteLogFormatter
+            delete/restore: MediaWiki\Logging\DeleteLogFormatter
+            delete/revision: MediaWiki\Logging\DeleteLogFormatter
+            import/interwiki: MediaWiki\Logging\ImportLogFormatter
+            import/upload: MediaWiki\Logging\ImportLogFormatter
+            interwiki/iw_add: MediaWiki\Logging\InterwikiLogFormatter
+            interwiki/iw_delete: MediaWiki\Logging\InterwikiLogFormatter
+            interwiki/iw_edit: MediaWiki\Logging\InterwikiLogFormatter
+            managetags/activate: MediaWiki\Logging\LogFormatter
+            managetags/create: MediaWiki\Logging\LogFormatter
+            managetags/deactivate: MediaWiki\Logging\LogFormatter
+            managetags/delete: MediaWiki\Logging\LogFormatter
+            merge/merge: { class: MediaWiki\Logging\MergeLogFormatter, services: [TitleParser] }
+            move/move: { class: MediaWiki\Logging\MoveLogFormatter, services: [TitleParser] }
+            move/move_redir: { class: MediaWiki\Logging\MoveLogFormatter, services: [TitleParser] }
+            patrol/patrol: MediaWiki\Logging\PatrolLogFormatter
+            patrol/autopatrol: MediaWiki\Logging\PatrolLogFormatter
+            protect/modify: { class: MediaWiki\Logging\ProtectLogFormatter, services: [TitleParser] }
+            protect/move_prot: { class: MediaWiki\Logging\ProtectLogFormatter, services: [TitleParser] }
+            protect/protect: { class: MediaWiki\Logging\ProtectLogFormatter, services: [TitleParser] }
+            protect/unprotect: { class: MediaWiki\Logging\ProtectLogFormatter, services: [TitleParser] }
+            renameuser/renameuser: { class: MediaWiki\Logging\RenameuserLogFormatter, services: [TitleParser] }
+            rights/autopromote: MediaWiki\Logging\RightsLogFormatter
+            rights/rights: MediaWiki\Logging\RightsLogFormatter
+            suppress/block: { class: MediaWiki\Logging\BlockLogFormatter, services: [TitleParser, NamespaceInfo] }
+            suppress/delete: MediaWiki\Logging\DeleteLogFormatter
+            suppress/event: MediaWiki\Logging\DeleteLogFormatter
+            suppress/reblock: { class: MediaWiki\Logging\BlockLogFormatter, services: [TitleParser, NamespaceInfo] }
+            suppress/revision: MediaWiki\Logging\DeleteLogFormatter
+            tag/update: MediaWiki\Logging\TagLogFormatter
+            upload/overwrite: MediaWiki\Logging\UploadLogFormatter
+            upload/revert: MediaWiki\Logging\UploadLogFormatter
+            upload/upload: MediaWiki\Logging\UploadLogFormatter
         type: object
         description: |-
             The same as above, but here values are class names or ObjectFactory specifications,
             not messages. The specification must resolve to a LogFormatter subclass,
             and will receive the LogEntry object as its first constructor argument.
             The type can be specified as '*' (e.g. 'block/*') to handle all types.
-            @see \LogPage::actionText
-            @see \LogFormatter
+            @see \MediaWiki\Logging\LogPage::actionText
+            @see \MediaWiki\Logging\LogFormatter
     ActionFilteredLogs:
         default:
             block: { block: [block], reblock: [reblock], unblock: [unblock] }

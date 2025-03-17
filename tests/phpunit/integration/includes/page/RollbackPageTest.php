@@ -3,11 +3,11 @@
 namespace MediaWiki\Tests\Page;
 
 use ChangeTags;
-use DatabaseLogEntry;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\JsonContent;
 use MediaWiki\Content\WikitextContent;
+use MediaWiki\Logging\DatabaseLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Page\PageIdentity;

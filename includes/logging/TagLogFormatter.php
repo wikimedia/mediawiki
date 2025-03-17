@@ -16,6 +16,8 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+namespace MediaWiki\Logging;
+
 use MediaWiki\Message\Message;
 use MediaWiki\SpecialPage\SpecialPage;
 
@@ -96,3 +98,6 @@ class TagLogFormatter extends LogFormatter {
 	}
 
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( TagLogFormatter::class, 'TagLogFormatter' );

@@ -3,7 +3,7 @@
 use MediaWiki\Title\TitleValue;
 
 /**
- * @covers \BlockLogFormatter
+ * @covers \MediaWiki\Logging\BlockLogFormatter
  */
 class BlockLogFormatterTest extends LogFormatterTestCase {
 

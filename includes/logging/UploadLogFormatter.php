@@ -22,6 +22,8 @@
  * @since 1.25
  */
 
+namespace MediaWiki\Logging;
+
 /**
  * This class formats upload log entries.
  *
@@ -47,3 +49,6 @@ class UploadLogFormatter extends LogFormatter {
 	}
 
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( UploadLogFormatter::class, 'UploadLogFormatter' );

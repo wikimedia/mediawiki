@@ -22,14 +22,14 @@ namespace MediaWiki\Specials;
 
 use DoubleRedirectJob;
 use ErrorPageError;
-use LogEventsList;
-use LogPage;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Html\Html;
+use MediaWiki\Logging\LogEventsList;
+use MediaWiki\Logging\LogPage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\DeletePageFactory;
 use MediaWiki\Page\MovePageFactory;

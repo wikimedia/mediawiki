@@ -23,6 +23,8 @@
  * @file
  */
 
+namespace MediaWiki\Logging;
+
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
@@ -33,6 +35,8 @@ use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
+use RecentChange;
+use Skin;
 
 /**
  * Class to simplify the use of log pages.
@@ -457,3 +461,6 @@ class LogPage {
 		return $restriction !== '' && $restriction !== '*';
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( LogPage::class, 'LogPage' );

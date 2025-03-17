@@ -132,6 +132,7 @@ use MediaWiki\Linker\LinkTargetLookup;
 use MediaWiki\Linker\LinkTargetStore;
 use MediaWiki\Linker\UserLinkRenderer;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Logging\LogFormatterFactory;
 use MediaWiki\Mail\Emailer;
 use MediaWiki\Mail\EmailUser;
 use MediaWiki\Mail\EmailUserFactory;

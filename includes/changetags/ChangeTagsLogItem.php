@@ -19,6 +19,8 @@
  */
 
 use MediaWiki\Html\Html;
+use MediaWiki\Logging\LogEventsList;
+use MediaWiki\Logging\LogFormatter;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\RevisionList\RevisionItemBase;
 use MediaWiki\SpecialPage\SpecialPage;

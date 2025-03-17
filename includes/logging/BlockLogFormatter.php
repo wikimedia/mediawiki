@@ -22,6 +22,8 @@
  * @since 1.25
  */
 
+namespace MediaWiki\Logging;
+
 use MediaWiki\Api\ApiResult;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\Linker;
@@ -420,3 +422,6 @@ class BlockLogFormatter extends LogFormatter {
 		return $key;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( BlockLogFormatter::class, 'BlockLogFormatter' );

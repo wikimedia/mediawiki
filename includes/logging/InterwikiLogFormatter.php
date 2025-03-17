@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Logging;
+
 use MediaWiki\Message\Message;
 
 /**
@@ -21,3 +23,6 @@ class InterwikiLogFormatter extends LogFormatter {
 		return $params;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( InterwikiLogFormatter::class, 'InterwikiLogFormatter' );

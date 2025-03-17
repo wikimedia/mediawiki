@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use LogEventsList;
+use MediaWiki\Logging\LogEventsList;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

@@ -23,6 +23,8 @@
  * @since 1.24
  */
 
+namespace MediaWiki\Logging;
+
 use MediaWiki\Languages\LanguageNameUtils;
 
 /**
@@ -71,3 +73,6 @@ class PageLangLogFormatter extends LogFormatter {
 		return $params;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( PageLangLogFormatter::class, 'PageLangLogFormatter' );

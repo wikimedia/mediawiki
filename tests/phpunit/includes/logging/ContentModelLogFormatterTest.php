@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers \ContentModelLogFormatter
+ * @covers \MediaWiki\Logging\ContentModelLogFormatter
  */
 class ContentModelLogFormatterTest extends LogFormatterTestCase {
 	public static function provideContentModelLogDatabaseRows() {

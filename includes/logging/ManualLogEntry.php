@@ -23,6 +23,9 @@
  * @since 1.19
  */
 
+namespace MediaWiki\Logging;
+
+use InvalidArgumentException;
 use MediaWiki\ChangeTags\Taggable;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\DeferredUpdates;
@@ -33,6 +36,9 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
+use RecentChange;
+use RuntimeException;
+use UnexpectedValueException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -556,3 +562,6 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 		return (int)$this->deleted;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ManualLogEntry::class, 'ManualLogEntry' );

@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Hook;
 
-use DatabaseLogEntry;
-use LogEventsList;
+use MediaWiki\Logging\DatabaseLogEntry;
+use MediaWiki\Logging\LogEventsList;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

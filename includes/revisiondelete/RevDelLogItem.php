@@ -22,6 +22,9 @@
 use MediaWiki\Api\ApiResult;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Html\Html;
+use MediaWiki\Logging\DatabaseLogEntry;
+use MediaWiki\Logging\LogFormatter;
+use MediaWiki\Logging\LogFormatterFactory;
 use MediaWiki\RevisionList\RevisionListBase;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;

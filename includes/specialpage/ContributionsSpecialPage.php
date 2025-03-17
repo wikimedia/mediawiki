@@ -23,12 +23,12 @@
 
 namespace MediaWiki\SpecialPage;
 
-use LogEventsList;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\Field\HTMLMultiSelectField;
 use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\Logging\LogEventsList;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Pager\ContribsPager;
 use MediaWiki\Pager\ContributionsPager;

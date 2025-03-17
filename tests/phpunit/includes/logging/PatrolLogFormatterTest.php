@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers \PatrolLogFormatter
+ * @covers \MediaWiki\Logging\PatrolLogFormatter
  */
 class PatrolLogFormatterTest extends LogFormatterTestCase {
 

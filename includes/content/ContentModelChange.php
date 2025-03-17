@@ -3,13 +3,13 @@
 namespace MediaWiki\Content;
 
 use ChangeTags;
-use LogFormatterFactory;
-use ManualLogEntry;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Logging\LogFormatterFactory;
+use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPage;

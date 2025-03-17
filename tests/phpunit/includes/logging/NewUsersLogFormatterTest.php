@@ -1,7 +1,9 @@
 <?php
 
+use MediaWiki\Logging\NewUsersLogFormatter;
+
 /**
- * @covers \NewUsersLogFormatter
+ * @covers \MediaWiki\Logging\NewUsersLogFormatter
  * @group Database
  */
 class NewUsersLogFormatterTest extends LogFormatterTestCase {

@@ -1,10 +1,11 @@
 <?php
 
+use MediaWiki\Logging\PageLangLogFormatter;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 
 /**
- * @covers \PageLangLogFormatter
+ * @covers \MediaWiki\Logging\PageLangLogFormatter
  */
 class PageLangLogFormatterTest extends LogFormatterTestCase {
 

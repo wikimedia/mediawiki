@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use ManualLogEntry;
+use MediaWiki\Logging\ManualLogEntry;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

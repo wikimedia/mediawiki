@@ -23,6 +23,8 @@
  * @since 1.22
  */
 
+namespace MediaWiki\Logging;
+
 use MediaWiki\Message\Message;
 
 /**
@@ -89,3 +91,6 @@ class PatrolLogFormatter extends LogFormatter {
 		return $params;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( PatrolLogFormatter::class, 'PatrolLogFormatter' );

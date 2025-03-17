@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Logging\DatabaseLogEntry;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Status\Status;

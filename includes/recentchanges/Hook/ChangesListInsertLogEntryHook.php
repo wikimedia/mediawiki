@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Hook;
 
-use DatabaseLogEntry;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Logging\DatabaseLogEntry;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

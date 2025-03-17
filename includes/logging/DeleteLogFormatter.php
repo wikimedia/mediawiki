@@ -23,9 +23,12 @@
  * @since 1.22
  */
 
+namespace MediaWiki\Logging;
+
 use MediaWiki\Api\ApiResult;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SpecialPage\SpecialPage;
+use RevisionDeleter;
 
 /**
  * This class formats delete log entries.
@@ -331,3 +334,6 @@ class DeleteLogFormatter extends LogFormatter {
 		return $ret;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( DeleteLogFormatter::class, 'DeleteLogFormatter' );

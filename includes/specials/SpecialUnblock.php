@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Specials;
 
-use LogEventsList;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockTarget;
 use MediaWiki\Block\BlockTargetFactory;
@@ -29,6 +28,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\Logging\LogEventsList;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;

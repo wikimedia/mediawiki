@@ -22,9 +22,9 @@
 namespace MediaWiki\Block;
 
 use ChangeTags;
-use ManualLogEntry;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Status\Status;

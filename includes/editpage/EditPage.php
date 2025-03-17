@@ -22,8 +22,6 @@ namespace MediaWiki\EditPage;
 
 use BadMethodCallException;
 use ErrorPageError;
-use LogPage;
-use ManualLogEntry;
 use MediaWiki\Actions\WatchAction;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Block\BlockErrorFormatter;
@@ -65,6 +63,8 @@ use MediaWiki\Language\RawMessage;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Logging\LogPage;
+use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;

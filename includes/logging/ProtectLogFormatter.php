@@ -22,6 +22,8 @@
  * @since 1.26
  */
 
+namespace MediaWiki\Logging;
+
 use MediaWiki\Message\Message;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
@@ -236,3 +238,6 @@ class ProtectLogFormatter extends LogFormatter {
 	}
 
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ProtectLogFormatter::class, 'ProtectLogFormatter' );
