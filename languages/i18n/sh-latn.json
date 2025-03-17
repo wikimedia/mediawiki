@@ -2387,7 +2387,7 @@
 	"protect-locked-dblock": "Postavke zaštite ne mogu biti promijenjene jer je baza zaključana.\nSlijede postavke stranice <strong>$1</strong>:",
 	"protect-locked-access": "Nemate ovlasti za mijenjanje postavke zaštite stranice.\nSlijede trenutačne postavke stranice <strong>$1</strong>:",
 	"protect-cascadeon": "Ova stranica je trenutno zaštićena jer je uključena u {{PLURAL:$1|stranicu, koja ima|stranice, koje imaju}} uključenu lančanu zaštitu.\nPromjene postavki zaštite ove stranice neće utjecati na lančanu zaštitu.",
-	"protect-default": "Dopušteno svim korisnicima",
+	"protect-default": "dopušteno svim korisnicima",
 	"protect-fallback": "dopušteno samo korisnicima s ovlaštenjem „$1”",
 	"protect-level-autoconfirmed": "dopušteno samo automatski potvrđenim korisnicima",
 	"protect-level-sysop": "dopušteno samo administratorima",
