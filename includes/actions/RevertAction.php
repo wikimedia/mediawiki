@@ -23,6 +23,9 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
+namespace MediaWiki\Actions;
+
+use ErrorPageError;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\File\LocalFile;
@@ -36,6 +39,7 @@ use MediaWiki\Page\Article;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
+use PermissionsError;
 
 /**
  * File reversion user interface
@@ -233,3 +237,6 @@ class RevertAction extends FormAction {
 		return $wikiPage->getFile();
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( RevertAction::class, 'RevertAction' );

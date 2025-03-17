@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use RawAction;
+use MediaWiki\Actions\RawAction;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

@@ -18,6 +18,8 @@
  * @ingroup Actions
  */
 
+namespace MediaWiki\Actions;
+
 use MediaWiki\EditPage\EditPage;
 
 /**
@@ -71,3 +73,6 @@ class EditAction extends FormlessAction {
 		return true;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( EditAction::class, 'EditAction' );

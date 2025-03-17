@@ -22,9 +22,9 @@ namespace MediaWiki\Page;
 
 use BadMethodCallException;
 use HTMLCacheUpdateJob;
-use InfoAction;
 use InvalidArgumentException;
 use ManualLogEntry;
+use MediaWiki\Actions\InfoAction;
 use MediaWiki\Category\Category;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\Content;

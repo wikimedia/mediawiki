@@ -18,6 +18,8 @@
  * @ingroup Actions
  */
 
+namespace MediaWiki\Actions;
+
 /**
  * Handle action=render
  *
@@ -39,3 +41,6 @@ class RenderAction extends FormlessAction {
 		$this->getArticle()->render();
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( RenderAction::class, 'RenderAction' );

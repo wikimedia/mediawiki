@@ -19,6 +19,9 @@
  * @file
  */
 
+namespace MediaWiki\Actions;
+
+use ErrorPageError;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -35,6 +38,11 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use MessageLocalizer;
+use PermissionsError;
+use ReadOnlyError;
+use Skin;
+use UserBlockedError;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 
@@ -512,3 +520,6 @@ abstract class Action implements MessageLocalizer {
 		return false;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( Action::class, 'Action' );

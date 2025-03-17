@@ -18,6 +18,8 @@
  * @ingroup Actions
  */
 
+namespace MediaWiki\Actions;
+
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
@@ -78,3 +80,6 @@ class ViewAction extends FormlessAction {
 		$this->getArticle()->view();
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ViewAction::class, 'ViewAction' );

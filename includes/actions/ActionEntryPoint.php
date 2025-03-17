@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Actions;
 
-use Action;
 use BadTitleError;
 use ErrorPageError;
 use HTMLFileCache;
@@ -28,7 +27,6 @@ use PermissionsError;
 use Profiler;
 use Throwable;
 use UnexpectedValueException;
-use ViewAction;
 use Wikimedia\Rdbms\DBConnectionError;
 
 /**

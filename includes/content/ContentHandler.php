@@ -20,11 +20,11 @@
 
 namespace MediaWiki\Content;
 
-use Action;
 use DifferenceEngine;
 use DifferenceEngineSlotDiffRenderer;
 use InvalidArgumentException;
 use LogicException;
+use MediaWiki\Actions\Action;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreloadTransformParams;

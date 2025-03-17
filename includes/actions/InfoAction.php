@@ -22,6 +22,8 @@
  * @ingroup Actions
  */
 
+namespace MediaWiki\Actions;
+
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Category\Category;
 use MediaWiki\Content\ContentHandler;
@@ -524,7 +526,7 @@ class InfoAction extends FormlessAction {
 			$fileObj = $this->repoGroup->findFile( $title );
 			if ( $fileObj !== false ) {
 				// Convert the base-36 sha1 value obtained from database to base-16
-				$output = Wikimedia\base_convert( $fileObj->getSha1(), 36, 16, 40 );
+				$output = \Wikimedia\base_convert( $fileObj->getSha1(), 36, 16, 40 );
 				$pageInfo['header-basic'][] = [
 					$this->msg( 'pageinfo-file-hash' ),
 					$output
@@ -1019,3 +1021,6 @@ class InfoAction extends FormlessAction {
 		return $cache->makeKey( 'infoaction', md5( (string)$page ), $revId, self::VERSION );
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( InfoAction::class, 'InfoAction' );

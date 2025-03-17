@@ -5,6 +5,10 @@
  * @ingroup Actions
  */
 
+namespace MediaWiki\Actions;
+
+use DifferenceEngine;
+use ErrorPageError;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\CommentStore\CommentStoreComment;
@@ -26,6 +30,9 @@ use MediaWiki\Status\Status;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\PageUpdateCauses;
 use MediaWiki\User\User;
+use MWContentSerializationException;
+use PermissionsError;
+use RecentChange;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
@@ -100,7 +107,7 @@ class McrUndoAction extends FormAction {
 	public function show() {
 		// Send a cookie so anons get talk message notifications
 		// (copied from SubmitAction)
-		MediaWiki\Session\SessionManager::getGlobalSession()->persist();
+		\MediaWiki\Session\SessionManager::getGlobalSession()->persist();
 
 		// Some stuff copied from EditAction
 		$this->useTransactionalTimeLimit();
@@ -530,3 +537,6 @@ class McrUndoAction extends FormAction {
 		return '<div style="clear:both"></div>';
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( McrUndoAction::class, 'McrUndoAction' );

@@ -20,6 +20,8 @@
  * @ingroup Actions
  */
 
+namespace MediaWiki\Actions;
+
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Status\Status;
 
@@ -173,3 +175,6 @@ abstract class FormAction extends Action {
 		return true;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( FormAction::class, 'FormAction' );

@@ -18,6 +18,8 @@
  * @ingroup Actions
  */
 
+namespace MediaWiki\Actions;
+
 /**
  * Handle page protection (action=protect)
  *
@@ -43,3 +45,6 @@ class ProtectAction extends FormlessAction {
 		return true;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ProtectAction::class, 'ProtectAction' );

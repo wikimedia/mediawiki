@@ -355,6 +355,29 @@ because of Phabricator reports.
   In this release of MediaWiki, XXX classes now have a namespace and XXX do
   not yet (XXX% done, up from 81% in MediaWiki 1.43.0). The following have newly
   been moved:
+  - MediaWiki\Actions:
+    - Action
+    - CreditsAction
+    - DeleteAction
+    - EditAction
+    - FormAction
+    - FormlessAction
+    - HistoryAction
+    - InfoAction
+    - MarkpatrolledAction
+    - McrRestoreAction
+    - McrUndoAction
+    - ProtectAction
+    - PurgeAction
+    - RawAction
+    - RenderAction
+    - RevertAction
+    - RollbackAction
+    - SubmitAction
+    - UnprotectAction
+    - UnwatchAction
+    - ViewAction
+    - WatchAction
   - MediaWiki\FileRepo:
     - FileBackendDBRepoWrapper
     - FileRepo

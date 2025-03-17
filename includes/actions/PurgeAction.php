@@ -20,6 +20,8 @@
  * @ingroup Actions
  */
 
+namespace MediaWiki\Actions;
+
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Status\Status;
@@ -116,3 +118,6 @@ class PurgeAction extends FormAction {
 		return true;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( PurgeAction::class, 'PurgeAction' );

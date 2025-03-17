@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Actions;
 
-use DeleteAction;
 use ErrorPageError;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\FileRepo\File\File;

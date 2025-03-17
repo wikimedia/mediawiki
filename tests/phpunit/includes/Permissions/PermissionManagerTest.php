@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Integration\Permissions;
 
-use Action;
+use MediaWiki\Actions\Action;
 use MediaWiki\Api\ApiMessage;
 use MediaWiki\Block\AnonIpBlockTarget;
 use MediaWiki\Block\BlockActionInfo;

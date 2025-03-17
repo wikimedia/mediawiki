@@ -3,7 +3,7 @@
 namespace MediaWiki\Tests\Storage;
 
 use Article;
-use McrUndoAction;
+use MediaWiki\Actions\McrUndoAction;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
@@ -26,7 +26,7 @@ use WikiPage;
  * Integration tests for undos.
  * TODO: This should also test edits with multiple slots.
  *
- * @covers \McrUndoAction
+ * @covers \MediaWiki\Actions\McrUndoAction
  * @covers \MediaWiki\Page\WikiPage
  * @covers \MediaWiki\EditPage\EditPage
  *

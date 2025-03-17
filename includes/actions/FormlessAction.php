@@ -20,6 +20,8 @@
  * @ingroup Actions
  */
 
+namespace MediaWiki\Actions;
+
 /**
  * An action which just does something, without showing a form first.
  *
@@ -48,3 +50,6 @@ abstract class FormlessAction extends Action {
 		$this->getOutput()->addHTML( $this->onView() );
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( FormlessAction::class, 'FormlessAction' );

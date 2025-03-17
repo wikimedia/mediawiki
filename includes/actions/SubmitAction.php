@@ -20,6 +20,8 @@
  * @ingroup Actions
  */
 
+namespace MediaWiki\Actions;
+
 /**
  * This is the same as EditAction; except that it sets the session cookie.
  *
@@ -33,8 +35,11 @@ class SubmitAction extends EditAction {
 
 	public function show() {
 		// Send a cookie so anons get talk message notifications
-		MediaWiki\Session\SessionManager::getGlobalSession()->persist();
+		\MediaWiki\Session\SessionManager::getGlobalSession()->persist();
 
 		parent::show();
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( SubmitAction::class, 'SubmitAction' );

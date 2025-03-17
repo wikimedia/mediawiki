@@ -25,9 +25,9 @@ namespace MediaWiki\Pager;
 
 use ChangesList;
 use ChangeTags;
-use HistoryAction;
 use HtmlArmor;
 use MapCacheLRU;
+use MediaWiki\Actions\HistoryAction;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentFormatter\CommentFormatter;

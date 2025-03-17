@@ -5,6 +5,9 @@
  * @ingroup Actions
  */
 
+namespace MediaWiki\Actions;
+
+use ErrorPageError;
 use MediaWiki\HTMLForm\HTMLForm;
 
 /**
@@ -54,3 +57,6 @@ class McrRestoreAction extends McrUndoAction {
 	}
 
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( McrRestoreAction::class, 'McrRestoreAction' );

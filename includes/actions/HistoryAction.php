@@ -21,6 +21,10 @@
  * @ingroup Actions
  */
 
+namespace MediaWiki\Actions;
+
+use HTMLFileCache;
+use LogEventsList;
 use MediaWiki\Feed\ChannelFeed;
 use MediaWiki\Feed\FeedItem;
 use MediaWiki\Feed\FeedUtils;
@@ -32,6 +36,7 @@ use MediaWiki\Pager\HistoryPager;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Utils\MWTimestamp;
+use stdClass;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -476,3 +481,6 @@ class HistoryAction extends FormlessAction {
 		);
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( HistoryAction::class, 'HistoryAction' );

@@ -23,6 +23,8 @@
  * @author <evan@wikitravel.org>
  */
 
+namespace MediaWiki\Actions;
+
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
@@ -271,3 +273,6 @@ class CreditsAction extends FormlessAction {
 		);
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( CreditsAction::class, 'CreditsAction' );

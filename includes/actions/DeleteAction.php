@@ -18,6 +18,12 @@
  * @ingroup Actions
  */
 
+namespace MediaWiki\Actions;
+
+use Exception;
+use InvalidArgumentException;
+use LogEventsList;
+use LogPage;
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Context\IContextSource;
@@ -37,6 +43,7 @@ use MediaWiki\Title\TitleFactory;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
+use MWExceptionHandler;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\ReadOnlyMode;
@@ -639,3 +646,6 @@ class DeleteAction extends FormAction {
 		return $res > 1;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( DeleteAction::class, 'DeleteAction' );

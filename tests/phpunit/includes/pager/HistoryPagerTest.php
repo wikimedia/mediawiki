@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Actions\HistoryAction;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Pager\HistoryPager;

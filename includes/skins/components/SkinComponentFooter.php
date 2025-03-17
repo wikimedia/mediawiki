@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Skin;
 
-use Action;
-use CreditsAction;
+use MediaWiki\Actions\Action;
+use MediaWiki\Actions\CreditsAction;
 use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;

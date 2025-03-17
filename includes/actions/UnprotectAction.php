@@ -18,6 +18,8 @@
  * @ingroup Actions
  */
 
+namespace MediaWiki\Actions;
+
 /**
  * Handle page unprotection (action=unprotect)
  *
@@ -39,3 +41,6 @@ class UnprotectAction extends ProtectAction {
 		return true;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( UnprotectAction::class, 'UnprotectAction' );

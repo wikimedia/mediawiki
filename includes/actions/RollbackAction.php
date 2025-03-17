@@ -20,6 +20,10 @@
  * @ingroup Actions
  */
 
+namespace MediaWiki\Actions;
+
+use BadRequestError;
+use ErrorPageError;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Config\ConfigException;
 use MediaWiki\Content\IContentHandlerFactory;
@@ -35,6 +39,9 @@ use MediaWiki\Page\RollbackPageFactory;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
+use Profiler;
+use ReadOnlyError;
+use ThrottledError;
 
 /**
  * User interface for the rollback action
@@ -318,3 +325,6 @@ class RollbackAction extends FormAction {
 		];
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( RollbackAction::class, 'RollbackAction' );

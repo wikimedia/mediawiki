@@ -19,12 +19,6 @@
 
 namespace MediaWiki\Actions;
 
-use Action;
-use CreditsAction;
-use InfoAction;
-use MarkpatrolledAction;
-use McrRestoreAction;
-use McrUndoAction;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
@@ -34,11 +28,6 @@ use MediaWiki\Page\Article;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\Title;
 use Psr\Log\LoggerInterface;
-use RawAction;
-use RevertAction;
-use RollbackAction;
-use UnwatchAction;
-use WatchAction;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
