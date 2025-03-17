@@ -2,9 +2,9 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\FileBackend\FileBackendGroup;
-use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use Wikimedia\FileBackend\FSFile\TempFSFileFactory;
 use Wikimedia\Mime\MimeAnalyzer;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\EmptyBagOStuff;

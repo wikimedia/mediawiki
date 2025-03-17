@@ -7,13 +7,13 @@ namespace Wikimedia\Tests\FileBackend;
 use Closure;
 use InvalidArgumentException;
 use LockManager;
-use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWikiUnitTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\NullLogger;
 use ScopedLock;
 use StatusValue;
 use Wikimedia\FileBackend\FileBackend;
+use Wikimedia\FileBackend\FSFile\TempFSFileFactory;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
