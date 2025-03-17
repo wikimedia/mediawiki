@@ -25,16 +25,6 @@
 		<template #label>
 			{{ $i18n( 'block-target' ).text() }}
 		</template>
-		<div class="mw-block-conveniencelinks">
-			<span v-if="status !== 'error' && targetExists">
-				<a
-					:href="mw.util.getUrl( contribsTitle )"
-					:title="contribsTitle"
-					v-html="$i18n( 'ipb-blocklist-contribs', '<bdi>' + targetUser + '</bdi>' )"
-				>
-				</a>
-			</span>
-		</div>
 		<component
 			:is="customComponent"
 			v-for="customComponent in customComponents"
@@ -46,7 +36,6 @@
 
 <script>
 const {
-	computed,
 	defineComponent,
 	onMounted,
 	ref,
@@ -303,11 +292,7 @@ module.exports = exports = defineComponent( {
 			}
 		} );
 
-		const contribsTitle = computed( () => `Special:Contributions/${ targetUser.value }` );
-
 		return {
-			mw,
-			contribsTitle,
 			targetExists,
 			targetUser,
 			menuItems,
