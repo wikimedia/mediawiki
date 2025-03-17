@@ -364,7 +364,6 @@ module.exports = exports = defineStore( 'block', () => {
 		formVisible.value = false;
 		blockAdded.value = false;
 		blockRemoved.value = false;
-		alreadyBlocked.value = false;
 		promises.value.clear();
 	}
 
