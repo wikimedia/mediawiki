@@ -16,6 +16,7 @@ class PhpUnitTestListProcessorTest extends TestCase {
 	use MediaWikiCoversValidator;
 
 	private const FIXTURE_FILE = __DIR__ . "/fixtures/tests-list.xml";
+	private const RESULTS_CACHE_FIXTURE = __DIR__ . "/fixtures/results-cache.json";
 
 	public function testGetTestClasses() {
 		$testList = new PhpUnitTestListProcessor( self::FIXTURE_FILE );
@@ -27,5 +28,18 @@ class PhpUnitTestListProcessorTest extends TestCase {
 			[ [ 'MediaWiki', 'Tests', 'Unit', 'composer', 'PhpUnitSplitter' ], 'TestSuiteBuilderTest' ],
 			[ $test5->getNamespace(), $test5->getClassName() ]
 		);
+	}
+
+	public function testGetTestClassesWithTimings() {
+		$testList = new PhpUnitTestListProcessor(
+			self::FIXTURE_FILE,
+			self::RESULTS_CACHE_FIXTURE,
+			'database'
+		);
+		$this->assertCount(
+			5, $testList->getTestClasses(), "Expected classes to be loaded"
+		);
+		$totalTime = array_reduce( $testList->getTestClasses(), static fn ( $acc, $test ) => $acc + $test->getDuration(), 0 );
+		$this->assertEqualsWithDelta( 6.51, $totalTime, 0.0001 );
 	}
 }

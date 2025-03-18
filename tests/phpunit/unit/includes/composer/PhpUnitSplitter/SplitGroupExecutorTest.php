@@ -20,8 +20,7 @@ class SplitGroupExecutorTest extends TestCase {
 	private SplitGroupExecutor $splitGroupExecutor;
 	private array $collectedArgs = [];
 
-	public function setUp(): void {
-		parent::setUp();
+	public function createExecutor( string $phpunitConfigFile ): SplitGroupExecutor {
 		$commandMock = $this->createMock( UnboxedCommand::class );
 		$executor = $this->createMock( UnboxedExecutor::class );
 		$executor->expects( $this->once() )
@@ -36,30 +35,34 @@ class SplitGroupExecutorTest extends TestCase {
 		$commandMock->method( 'execute' )
 			->willReturn( $this->createMock( UnboxedResult::class ) );
 		$interface = $this->createMock( ComposerSystemInterface::class );
-		$this->splitGroupExecutor = new SplitGroupExecutor( $executor, null, $interface );
+		return new SplitGroupExecutor( $phpunitConfigFile, $executor, null, $interface );
 	}
 
 	public function testExecuteDatabaseSuite() {
-		$this->splitGroupExecutor->executeSplitGroup(
+		$splitGroupExecutor = $this->createExecutor( "phpunit-database.xml" );
+		$splitGroupExecutor->executeSplitGroup(
 			"extensions",
 			[ "Database" ],
 			[ "Broken" ]
 		);
 		$this->assertEquals( [
 			"composer", "run", "--timeout=0", "phpunit:entrypoint", "--",
+			"--configuration", "phpunit-database.xml",
 			"--testsuite", "extensions", "--exclude-group", "Broken",
 			"--group", "Database" ],
 			$this->collectedArgs );
 	}
 
 	public function testExecuteDatabaselessSuite() {
-		$this->splitGroupExecutor->executeSplitGroup(
+		$splitGroupExecutor = $this->createExecutor( "phpunit-databaseless.xml" );
+		$splitGroupExecutor->executeSplitGroup(
 			"extensions",
 			[],
 			[ "Broken", "Standalone" ]
 		);
 		$this->assertEquals( [
 			"composer", "run", "--timeout=0", "phpunit:entrypoint", "--",
+			"--configuration", "phpunit-databaseless.xml",
 			"--testsuite", "extensions", "--exclude-group", "Broken,Standalone" ],
 			$this->collectedArgs );
 	}

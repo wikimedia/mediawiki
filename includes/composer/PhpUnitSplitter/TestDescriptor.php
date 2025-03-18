@@ -12,13 +12,13 @@ class TestDescriptor {
 	private string $className;
 	private array $namespace;
 	private ?string $filename;
-	private int $duration;
+	private float $duration;
 
 	public function __construct(
 		string $className,
 		array $namespace,
 		?string $filename = null,
-		int $duration = 0
+		float $duration = 0
 	) {
 		$this->className = $className;
 		$this->namespace = $namespace;
@@ -46,7 +46,7 @@ class TestDescriptor {
 		return implode( '\\', $this->namespace ) . '\\' . $this->className;
 	}
 
-	public function getDuration(): int {
+	public function getDuration(): float {
 		return $this->duration;
 	}
 
