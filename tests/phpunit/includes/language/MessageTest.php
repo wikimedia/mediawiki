@@ -856,7 +856,8 @@ class MessageTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideSerializationRoundtrip
 	 */
-	public function testSerialization( Message $msg, $serialized, $parsed ) {
+	public function testSerialization( $msgFunc, $serialized, $parsed ) {
+		$msg = $msgFunc();
 		$this->assertSame( $serialized, serialize( $msg ) );
 		$this->assertSame( $parsed, $msg->parse() );
 	}
@@ -865,52 +866,55 @@ class MessageTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideSerializationRoundtrip
 	 * @dataProvider provideSerializationLegacy
 	 */
-	public function testUnserialization( Message $msg, $serialized, $parsed ) {
+	public function testUnserialization( $msgFunc, $serialized, $parsed ) {
+		$msg = $msgFunc();
 		$this->assertEquals( $msg, unserialize( $serialized ) );
 		$this->assertSame( $parsed, unserialize( $serialized )->parse() );
 	}
 
-	public function provideSerializationRoundtrip() {
+	public static function provideSerializationRoundtrip() {
 		// Test cases where we can test both serialization and unserialization.
 		// These really ought to use the MessageSerializationTestTrait, but
 		// doing so is complicated (T373719).
 
 		yield "Serializing raw parameters" => [
-			( new Message( 'parentheses' ) )->rawParams( '<a>foo</a>' ),
+			static fn () => ( new Message( 'parentheses' ) )->rawParams( '<a>foo</a>' ),
 			'O:25:"MediaWiki\Message\Message":7:{s:9:"interface";b:1;s:8:"language";N;s:3:"key";s:11:"parentheses";s:9:"keysToTry";a:1:{i:0;s:11:"parentheses";}s:10:"parameters";a:1:{i:0;O:29:"Wikimedia\Message\ScalarParam":2:{s:7:"' . chr( 0 ) . '*' . chr( 0 ) . 'type";s:3:"raw";s:8:"' . chr( 0 ) . '*' . chr( 0 ) . 'value";s:10:"<a>foo</a>";}}s:11:"useDatabase";b:1;s:10:"titlevalue";N;}',
 			'(<a>foo</a>)',
 		];
 
 		yield "Serializing message with a context page" => [
-			( new Message( 'rawmessage', [ '{{PAGENAME}}' ] ) )->page( PageReferenceValue::localReference( NS_MAIN, 'Testing' ) ),
+			static fn () => ( new Message( 'rawmessage', [ '{{PAGENAME}}' ] ) )
+				->page( PageReferenceValue::localReference( NS_MAIN, 'Testing' ) ),
 			'O:25:"MediaWiki\Message\Message":7:{s:9:"interface";b:1;s:8:"language";N;s:3:"key";s:10:"rawmessage";s:9:"keysToTry";a:1:{i:0;s:10:"rawmessage";}s:10:"parameters";a:1:{i:0;s:12:"{{PAGENAME}}";}s:11:"useDatabase";b:1;s:10:"titlevalue";a:2:{i:0;i:0;i:1;s:7:"Testing";}}',
 			'Testing',
 		];
 
 		yield "Serializing language" => [
-			( new Message( 'mainpage' ) )->inLanguage( 'de' ),
+			static fn () => ( new Message( 'mainpage' ) )->inLanguage( 'de' ),
 			'O:25:"MediaWiki\Message\Message":7:{s:9:"interface";b:0;s:8:"language";s:2:"de";s:3:"key";s:8:"mainpage";s:9:"keysToTry";a:1:{i:0;s:8:"mainpage";}s:10:"parameters";a:0:{}s:11:"useDatabase";b:1;s:10:"titlevalue";N;}',
 			'Hauptseite',
 		];
 	}
 
-	public function provideSerializationLegacy() {
+	public static function provideSerializationLegacy() {
 		// Test cases where we can test only unserialization, because the serialization format changed.
 
 		yield "MW 1.42: Magic arrays instead of MessageParam objects" => [
-			( new Message( 'parentheses' ) )->rawParams( '<a>foo</a>' ),
+			static fn () => ( new Message( 'parentheses' ) )->rawParams( '<a>foo</a>' ),
 			'O:25:"MediaWiki\Message\Message":7:{s:9:"interface";b:1;s:8:"language";N;s:3:"key";s:11:"parentheses";s:9:"keysToTry";a:1:{i:0;s:11:"parentheses";}s:10:"parameters";a:1:{i:0;a:1:{s:3:"raw";s:10:"<a>foo</a>";}}s:11:"useDatabase";b:1;s:10:"titlevalue";N;}',
 			'(<a>foo</a>)',
 		];
 
 		yield "MW 1.41: Un-namespaced class" => [
-			new Message( 'mainpage' ),
+			static fn () => new Message( 'mainpage' ),
 			'O:7:"Message":7:{s:9:"interface";b:1;s:8:"language";N;s:3:"key";s:8:"mainpage";s:9:"keysToTry";a:1:{i:0;s:8:"mainpage";}s:10:"parameters";a:0:{}s:11:"useDatabase";b:1;s:10:"titlevalue";N;}',
 			'Main Page',
 		];
 
 		yield "MW 1.34: 'titlestr' instead of 'titlevalue'" => [
-			( new Message( 'rawmessage', [ '{{PAGENAME}}' ] ) )->page( PageReferenceValue::localReference( NS_MAIN, 'Testing' ) ),
+			static fn () => ( new Message( 'rawmessage', [ '{{PAGENAME}}' ] ) )
+				->page( PageReferenceValue::localReference( NS_MAIN, 'Testing' ) ),
 			'C:7:"Message":242:{a:8:{s:9:"interface";b:1;s:8:"language";b:0;s:3:"key";s:10:"rawmessage";s:9:"keysToTry";a:1:{i:0;s:10:"rawmessage";}s:10:"parameters";a:1:{i:0;s:12:"{{PAGENAME}}";}s:6:"format";s:5:"parse";s:11:"useDatabase";b:1;s:8:"titlestr";s:7:"Testing";}}',
 			'Testing',
 		];
@@ -919,7 +923,8 @@ class MessageTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideNewFromSpecifier
 	 */
-	public function testNewFromSpecifier( $value, $expectedText ) {
+	public function testNewFromSpecifier( $valueFunc, $expectedText ) {
+		$value = $valueFunc( $this );
 		$message = Message::newFromSpecifier( $value );
 		$this->assertInstanceOf( Message::class, $message );
 		if ( $value instanceof Message ) {
@@ -929,19 +934,41 @@ class MessageTest extends MediaWikiLangTestCase {
 		$this->assertSame( $expectedText, $message->text() );
 	}
 
-	public function provideNewFromSpecifier() {
-		$messageSpecifier = $this->getMockForAbstractClass( MessageSpecifier::class );
-		$messageSpecifier->method( 'getKey' )->willReturn( 'mainpage' );
-		$messageSpecifier->method( 'getParams' )->willReturn( [] );
-
+	public static function provideNewFromSpecifier() {
 		return [
-			'string' => [ 'mainpage', 'Main Page' ],
-			'array' => [ [ 'new-messages', 'foo', 'bar' ], 'You have foo (bar).' ],
-			'Message' => [ new Message( 'new-messages', [ 'foo', 'bar' ] ), 'You have foo (bar).' ],
-			'RawMessage' => [ new RawMessage( 'foo ($1)', [ 'bar' ] ), 'foo (bar)' ],
-			'ApiMessage' => [ new ApiMessage( [ 'mainpage' ], 'code', [ 'data' ] ), 'Main Page' ],
-			'MessageSpecifier' => [ $messageSpecifier, 'Main Page' ],
-			'nested RawMessage' => [ [ new RawMessage( 'foo ($1)', [ 'bar' ] ) ], 'foo (bar)' ],
+			'string' => [
+				static fn () => 'mainpage',
+				'Main Page'
+			],
+			'array' => [
+				static fn () => [ 'new-messages', 'foo', 'bar' ],
+				'You have foo (bar).'
+			],
+			'Message' => [
+				static fn () => new Message( 'new-messages', [ 'foo', 'bar' ] ),
+				'You have foo (bar).'
+			],
+			'RawMessage' => [
+				static fn () => new RawMessage( 'foo ($1)', [ 'bar' ] ),
+				'foo (bar)'
+			],
+			'ApiMessage' => [
+				static fn () => new ApiMessage( [ 'mainpage' ], 'code', [ 'data' ] ),
+				'Main Page'
+			],
+			'MessageSpecifier' => [
+				static function ( MessageTest $test ) {
+					$messageSpecifier = $test->getMockForAbstractClass( MessageSpecifier::class );
+					$messageSpecifier->method( 'getKey' )->willReturn( 'mainpage' );
+					$messageSpecifier->method( 'getParams' )->willReturn( [] );
+					return $messageSpecifier;
+				},
+				'Main Page'
+			],
+			'nested RawMessage' => [
+				static fn () => [ new RawMessage( 'foo ($1)', [ 'bar' ] ) ],
+				'foo (bar)'
+			],
 		];
 	}
 }
