@@ -226,10 +226,28 @@ describe( 'SpecialBlock', () => {
 	} );
 
 	it( 'should show an "Add block" button in the page', async () => {
-		wrapper = getSpecialBlock( {
-			blockTargetExists: true
-		} );
+		wrapper = getSpecialBlock( { blockTargetExists: true } );
 		expect( wrapper.find( '.mw-block__create-button' ).exists() ).toBeTruthy();
+	} );
+
+	it( 'should not show an "Add block" button (multiblocks OFF)', async () => {
+		wrapper = withSubmission( {
+			blockTargetUser: 'ActiveBlockedUser',
+			blockTargetExists: true,
+			blockEnableMultiblocks: false,
+			blockAlreadyBlocked: true
+		}, { block: { user: 'ActiveBlockedUser' } } );
+		const store = useBlockStore();
+		await flushPromises();
+		expect( wrapper.find( '.mw-block__create-button' ).exists() ).toBeFalsy();
+		// Edit a block.
+		expect( wrapper.find( '[data-test=edit-block-button]' ).exists() ).toBeTruthy();
+		await wrapper.find( '[data-test=edit-block-button]' ).trigger( 'click' );
+		// Cancel the edit.
+		await wrapper.find( '[data-test="cancel-edit-button"]' ).trigger( 'click' );
+		// "Add block" button still shouldn't be shown.
+		expect( wrapper.find( '.mw-block__create-button' ).exists() ).toBeFalsy();
+		expect( store.alreadyBlocked ).toBeTruthy();
 	} );
 
 	it( 'should reset the form to the initial state for subsequent blocks (T384822)', async () => {
