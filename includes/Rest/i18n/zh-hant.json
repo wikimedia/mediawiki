@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"August.C",
 			"Kly",
 			"Xiplus",
 			"列维劳德",
@@ -75,7 +76,7 @@
 	"rest-unmapped-action-error": "未對應的操作模組錯誤：$1",
 	"rest-unsupported-transform-input": "不支援的輸入：$1",
 	"rest-bad-etag": "錯誤 ETag：$1",
-	"rest-no-stashed-content": "未找到 $1 的存放內容",
+	"rest-no-stashed-content": "未找到 $1 的暫存內容。這很可能是因為您的編輯會話已過期。請嘗試複製您的變更，重新載入頁面，然後再試一次。",
 	"rest-unsupported-profile-version": "不支援的個人設定版本：$1",
 	"rest-no-json-decode": "負載不會用 JSON 解碼來轉成陣列",
 	"rest-parsoid-unsupported-media": "不支援的媒體類型",

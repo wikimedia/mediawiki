@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Tausug101"
+			"Tausug101",
+			"Zetareyy"
 		]
 	},
 	"january": "Januwari",
@@ -53,5 +54,38 @@
 	"thu": "Ham",
 	"fri": "Jum",
 	"sat": "Sab",
-	"sun": "Ahd"
+	"sun": "Ahd",
+	"period-am": "s.m.",
+	"period-pm": "s.d.",
+	"timezone-local": "Panungud",
+	"years": "{{PLURAL:$1|$1 tahun}}",
+	"months": "{{PLURAL:$1|$1 bulan}}",
+	"weeks": "{{PLURAL:$1|$1 pitu}}",
+	"days": "{{PLURAL:$1|$1 adlaw}}",
+	"hours": "{{PLURAL:$1|$1 lisag}}",
+	"minutes": "{{PLURAL:$1|$1 minutu}}",
+	"seconds": "{{PLURAL:$1|$1 sigundu}}",
+	"ago": "$1 kaina",
+	"duration-millennia": "$1 {{PLURAL:$1|milinyu}}",
+	"duration-centuries": "$1 {{PLURAL:$1|gatus-tahun}}",
+	"duration-decades": "$1 {{PLURAL:$1|dikada}}",
+	"duration-years": "$1 {{PLURAL:$1|tahun}}",
+	"duration-months": "$1 {{PLURAL:$1|bulan}}",
+	"duration-weeks": "$1 {{PLURAL:$1|pitu}}",
+	"duration-days": "$1 {{PLURAL:$1|adlaw}}",
+	"duration-hours": "$1 {{PLURAL:$1|lisag}}",
+	"duration-minutes": "$1 {{PLURAL:$1|minutu}}",
+	"duration-seconds": "$1 {{PLURAL:$1|sigundu}}",
+	"monday-at": "Isnin ha $1",
+	"tuesday-at": "Salasa ha $1",
+	"wednesday-at": "Albaa ha $1",
+	"thursday-at": "Hammis ha $1",
+	"friday-at": "Jumaat ha $1",
+	"saturday-at": "Sabtu' ha $1",
+	"sunday-at": "Ahad ha $1",
+	"yesterday-at": "Dūm ha $1",
+	"hours-ago": "$1 {{PLURAL:$1|lisag}} kaina",
+	"minutes-ago": "$1 {{PLURAL:$1|minutu}} kaina",
+	"seconds-ago": "$1 {{PLURAL:$1|sigundu}} kaina",
+	"just-now": "bihaun na ra"
 }
