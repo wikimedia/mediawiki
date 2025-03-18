@@ -65,7 +65,7 @@ describe( 'BlockLog', () => {
 	} );
 
 	it( 'should show the active hightlighted selected row', async () => {
-		mockMwConfigGet( { blockTargetUser: 'ActiveBlockedUser' } );
+		mockMwConfigGet( { blockTargetUser: 'ActiveBlockedUser', blockTargetExists: true, blockId: 1116 } );
 		const wrapper = mount( BlockLog, {
 			propsData: { blockLogType: 'active' },
 			global: { plugins: [ createTestingPinia( { stubActions: false } ) ] }

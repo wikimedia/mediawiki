@@ -87,6 +87,7 @@ describe( 'SpecialBlock', () => {
 		wrapper = withSubmission( undefined, { block: { user: 'ExampleUser' } } );
 		await wrapper.find( '[name=wpTarget]' ).setValue( 'ExampleUser' );
 		await wrapper.find( '[name=wpTarget]' ).trigger( 'change' );
+		await flushPromises();
 		await wrapper.find( '.cdx-radio__input[value=datetime]' ).setValue( true );
 		await wrapper.find( '[name=wpExpiry-other]' ).setValue( '2999-01-23T12:34' );
 		await wrapper.find( '[name=wpReason-other]' ).setValue( 'This is a test' );
@@ -96,7 +97,8 @@ describe( 'SpecialBlock', () => {
 		await submitButton.trigger( 'click' );
 		expect( spy ).toHaveBeenCalledWith( {
 			action: 'block',
-			id: 1116,
+			user: 'ExampleUser',
+			newblock: 1,
 			expiry: '2999-01-23T12:34Z',
 			reason: 'This is a test',
 			nocreate: 1,
@@ -116,6 +118,7 @@ describe( 'SpecialBlock', () => {
 		wrapper = withSubmission();
 		await wrapper.find( '[name=wpTarget]' ).setValue( 'ExampleUser' );
 		await wrapper.find( '[name=wpTarget]' ).trigger( 'change' );
+		await flushPromises();
 		await wrapper.find( '.cdx-radio__input[value=datetime]' ).setValue( true );
 		// Add invalid date
 		await wrapper.find( '[name=wpExpiry-other]' ).setValue( '0000-01-23T12:34:56' );
@@ -226,7 +229,7 @@ describe( 'SpecialBlock', () => {
 	} );
 
 	it( 'should show an "Add block" button in the page', async () => {
-		wrapper = getSpecialBlock( { blockTargetExists: true } );
+		wrapper = getSpecialBlock( { blockTargetUser: 'ExampleUser', blockTargetExists: true } );
 		expect( wrapper.find( '.mw-block__create-button' ).exists() ).toBeTruthy();
 	} );
 

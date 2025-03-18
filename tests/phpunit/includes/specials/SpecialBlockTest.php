@@ -945,6 +945,33 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		];
 	}
 
+	/**
+	 * @covers ::validateTarget
+	 * @covers ::getTargetInternal
+	 */
+	public function testValidateTargetFromId(): void {
+		$badActor = $this->getTestUser()->getUser();
+		$block = $this->blockStore->insertBlockWithParams( [
+			'targetUser' => $badActor,
+			'by' => $this->getTestSysop()->getUser(),
+			'expiry' => 'infinity',
+			'sitewide' => 1,
+		] );
+
+		$wrappedPage = TestingAccessWrapper::newFromObject( $this->newSpecialPage() );
+		$target = $wrappedPage->getTargetInternal( '', new FauxRequest( [
+			'id' => $block->getId(),
+		] ) );
+		$this->assertSame( $badActor->getName(), $target->toString() );
+
+		// Invalid ID.
+		$fauxRequest = new FauxRequest( [ 'id' => 999999 ] );
+		$target = $wrappedPage->getTargetInternal( null, $fauxRequest );
+		$this->assertNull( $target );
+		$wrappedPage->validateTarget( $fauxRequest );
+		$this->assertSame( 'block-invalid-id', $wrappedPage->preErrors[ 0 ]->getKey() );
+	}
+
 	protected function insertBlock() {
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
