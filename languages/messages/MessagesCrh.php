@@ -5,6 +5,6 @@
  * @ingroup Languages
  */
 
-$fallback = 'crh-latn';
+$fallback = 'crh-latn, tr';
 
 $linkTrail = '/^([a-zâçğıñöşüа-яёʺʹ“»]+)(.*)$/sDu';
