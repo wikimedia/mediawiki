@@ -1027,7 +1027,6 @@ abstract class LanguageConverter implements ILanguageConverter {
 			return;
 		}
 
-		$this->mTablesLoaded = true;
 		$cache = $services->getObjectCacheFactory()->getInstance( $languageConverterCacheType );
 		$cacheKey = $cache->makeKey(
 			'conversiontables', $this->getMainCode(),
@@ -1048,6 +1047,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 			$this->postLoadTables( $tables );
 			return $tables;
 		} );
+		$this->mTablesLoaded = true;
 	}
 
 	/**
