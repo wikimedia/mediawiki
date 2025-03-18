@@ -234,7 +234,7 @@ The supported versions are:
 * MariaDB 10.3 or higher
 * MySQL 5.7.0 or higher
 * PostgreSQL 10 or later
-* SQLite 3.8.0 or later
+* SQLite 3.31.0 or later
 
 == Online documentation ==
 Documentation for both end-users and site administrators is available on

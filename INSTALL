@@ -23,7 +23,7 @@ Required software as of MediaWiki 1.45.0:
 ** MariaDB 10.3 or higher
 ** MySQL 5.7.0 or higher
 ** PostgreSQL 10 or higher
-** SQLite 3.24.0 or higher
+** SQLite 3.31.0 or higher
 
 In addition, either the bcmath or gmp PHP extension is required on 32-bit
 systems.
