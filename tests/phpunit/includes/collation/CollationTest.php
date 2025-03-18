@@ -116,6 +116,7 @@ class CollationTest extends MediaWikiLangTestCase {
 			[ 'uca-fi', 'Ʒ', 'Z' ],
 			[ 'uca-fi', 'Ŋ', 'N' ],
 			[ 'uppercase-ba', 'в', 'В' ],
+			[ 'uppercase-smn', 'đ', 'Đ' ],
 		];
 	}
 }

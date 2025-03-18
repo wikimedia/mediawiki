@@ -98,6 +98,12 @@ class CollationFactory {
 				'LanguageFactory',
 			]
 		],
+		'uppercase-smn' => [
+			'class' => \InariSaamiUppercaseCollation::class,
+			'services' => [
+				'LanguageFactory',
+			]
+		],
 	];
 
 	/** @var ServiceOptions */
