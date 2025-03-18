@@ -2,11 +2,11 @@
 
 namespace Wikimedia\Tests\FileBackend\FSFile;
 
-use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWikiUnitTestCase;
+use Wikimedia\FileBackend\FSFile\TempFSFileFactory;
 
 /**
- * @covers \MediaWiki\FileBackend\FSFile\TempFSFileFactory
+ * @covers \Wikimedia\FileBackend\FSFile\TempFSFileFactory
  */
 class TempFSFileTest extends MediaWikiUnitTestCase {
 	use TempFSFileTestTrait;
