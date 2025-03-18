@@ -1171,7 +1171,7 @@ class Sanitizer {
 	}
 
 	private static function normalizeWhitespace( string $text ): string {
-		$normalized = preg_replace( '/(?:\r\n|[\x20\x0d\x0a\x09])+/', ' ', $text );
+		$normalized = preg_replace( '/[ \r\n\t]+/', ' ', $text );
 		if ( $normalized === null ) {
 			wfLogWarning( __METHOD__ . ': Failed to normalize whitespace: ' . preg_last_error() );
 			return '';
