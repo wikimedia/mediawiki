@@ -23,6 +23,7 @@
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\Article;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
 use MediaWiki\Watchlist\WatchedItem;

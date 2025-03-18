@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Page\Hook;
 
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
-use WikiPage;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

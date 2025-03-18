@@ -1086,7 +1086,7 @@ class RecentChange implements Taggable {
 		$categoryWikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()
 			->newFromTitle( $categoryTitle );
 
-		'@phan-var WikiCategoryPage $categoryWikiPage';
+		'@phan-var \MediaWiki\Page\WikiCategoryPage $categoryWikiPage';
 		$params = [
 			'hidden-cat' => $categoryWikiPage->isHidden()
 		];

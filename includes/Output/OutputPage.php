@@ -22,7 +22,6 @@
 
 namespace MediaWiki\Output;
 
-use Article;
 use CSSJanus;
 use Exception;
 use File;
@@ -46,6 +45,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
+use MediaWiki\Page\Article;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\Parser;

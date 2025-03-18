@@ -25,10 +25,10 @@ use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Title\Title;
-use WikiPage;
 
 /**
  * Content handler for JavaScript pages.

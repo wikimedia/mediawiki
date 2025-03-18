@@ -22,11 +22,11 @@ use MediaWiki\Config\Config;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Language\Language;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MessageLocalizer;
 use Skin;
-use WikiPage;
 
 /**
  * @internal for use inside Skin and SkinTemplate classes only

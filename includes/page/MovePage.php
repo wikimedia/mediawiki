@@ -57,7 +57,6 @@ use StringUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
-use WikiPage;
 
 /**
  * Handles the backend logic of moving a page from one title

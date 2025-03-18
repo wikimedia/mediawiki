@@ -22,7 +22,6 @@
 
 namespace MediaWiki\Api;
 
-use Article;
 use ChangeTags;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\IContentHandlerFactory;
@@ -32,6 +31,7 @@ use MediaWiki\EditPage\EditPage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
+use MediaWiki\Page\Article;
 use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Request\DerivativeRequest;

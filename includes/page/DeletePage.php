@@ -42,7 +42,6 @@ use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\RequestTimeout\TimeoutException;
-use WikiPage;
 
 /**
  * Backend logic for performing a page delete action.

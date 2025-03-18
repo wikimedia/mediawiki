@@ -4,6 +4,7 @@ use MediaWiki\Category\Category;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\ContentHandler;
+use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Content\WikitextContent;
@@ -14,6 +15,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Permissions\Authority;
@@ -37,7 +39,7 @@ use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \WikiPage
+ * @covers \MediaWiki\Page\WikiPage
  * @group Database
  */
 class WikiPageDbTest extends MediaWikiLangTestCase {
@@ -200,7 +202,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	}
 
 	public function testDoEditUpdates() {
-		$this->hideDeprecated( 'WikiPage::doEditUpdates' );
+		$this->hideDeprecated( WikiPage::class . '::doEditUpdates' );
 		$user = $this->getTestUser()->getUserIdentity();
 
 		// NOTE: if site stats get out of whack and drop below 0,
@@ -674,7 +676,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideGetRedirectTarget
-	 * @covers \WikiPage
+	 * @covers \MediaWiki\Page\WikiPage
 	 * @covers \MediaWiki\Page\RedirectStore
 	 */
 	public function testGetRedirectTarget( $title, $model, $text, $target ) {
@@ -1176,8 +1178,8 @@ more stuff
 			$c++;
 		}
 
-		$this->hideDeprecated( 'WikiPage::getAutoDeleteReason:' );
-		$this->hideDeprecated( 'MediaWiki\\Content\\ContentHandler::getAutoDeleteReason:' );
+		$this->hideDeprecated( WikiPage::class . '::getAutoDeleteReason:' );
+		$this->hideDeprecated( ContentHandler::class . '::getAutoDeleteReason:' );
 		$reason = $page->getAutoDeleteReason( $hasHistory );
 
 		if ( is_bool( $expectedResult ) || $expectedResult === null ) {

@@ -14,7 +14,7 @@ use MediaWikiIntegrationTestCase;
 class PageUpdaterFactoryIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	/**
-	 * @covers \WikiPage::newPageUpdater
+	 * @covers \MediaWiki\Page\WikiPage::newPageUpdater
 	 */
 	public function testNewPageUpdater() {
 		$page = $this->getExistingTestPage();

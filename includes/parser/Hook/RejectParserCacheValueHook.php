@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Hook;
 
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use WikiPage;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

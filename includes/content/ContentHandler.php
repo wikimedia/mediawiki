@@ -41,6 +41,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ParserOutputAccess;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserCache;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\RevisionRecord;
@@ -60,7 +61,6 @@ use UnexpectedValueException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\ScopedCallback;
-use WikiPage;
 
 /**
  * Base class for content handling.

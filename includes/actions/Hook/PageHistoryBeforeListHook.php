@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Hook;
 
-use Article;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Page\Article;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use Article;
+use MediaWiki\Page\Article;
 
 /**
  * @stable to implement

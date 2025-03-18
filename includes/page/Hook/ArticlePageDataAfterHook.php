@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Page\Hook;
 
+use MediaWiki\Page\WikiPage;
 use stdClass;
-use WikiPage;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

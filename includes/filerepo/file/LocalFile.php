@@ -29,6 +29,8 @@ use MediaWiki\Language\Language;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\Article;
+use MediaWiki\Page\WikiFilePage;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\SlotRecord;

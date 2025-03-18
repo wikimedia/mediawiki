@@ -3,9 +3,9 @@
 namespace MediaWiki\Storage\Hook;
 
 use MediaWiki\Content\Content;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\User\User;
-use WikiPage;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

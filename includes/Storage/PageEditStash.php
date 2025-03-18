@@ -24,6 +24,7 @@ use MediaWiki\Content\Content;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
@@ -38,7 +39,6 @@ use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Stats\StatsFactory;
-use WikiPage;
 
 /**
  * Manage the pre-emptive page parsing for edits to wiki pages.

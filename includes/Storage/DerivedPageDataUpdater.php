@@ -46,6 +46,7 @@ use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Page\ProperPageIdentity;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCache;
 use MediaWiki\Parser\ParserOptions;
@@ -71,7 +72,6 @@ use Wikimedia\Assert\Assert;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\ILBFactory;
-use WikiPage;
 
 /**
  * A handle for managing updates for derived page data on edit, import, purge, etc.

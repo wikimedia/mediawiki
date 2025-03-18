@@ -9,6 +9,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\Hook\OpportunisticLinksUpdateHook;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\ParserOutputAccess;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCache;
 use MediaWiki\Parser\ParserCacheFactory;

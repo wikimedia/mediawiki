@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\ImagePage;
 use MediaWiki\Title\Title;
 
 /**
@@ -35,7 +36,7 @@ class ImagePage404Test extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers \ImagePage::getThumbSizes
+	 * @covers \MediaWiki\Page\ImagePage::getThumbSizes
 	 * @dataProvider providerGetThumbSizes
 	 * @param string $filename
 	 * @param int $expectedNumberThumbs How many thumbnails to show

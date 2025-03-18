@@ -3,7 +3,6 @@
 namespace MediaWiki\Actions;
 
 use Action;
-use Article;
 use BadTitleError;
 use ErrorPageError;
 use HTMLFileCache;
@@ -13,6 +12,8 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiEntryPoint;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Page\Article;
+use MediaWiki\Page\WikiFilePage;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Profiler\ProfilingContext;
 use MediaWiki\Request\DerivativeRequest;
@@ -28,7 +29,6 @@ use Profiler;
 use Throwable;
 use UnexpectedValueException;
 use ViewAction;
-use WikiFilePage;
 use Wikimedia\Rdbms\DBConnectionError;
 
 /**

@@ -26,6 +26,7 @@ use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Parser\ParserOutput;
@@ -37,7 +38,6 @@ use MediaWiki\Title\TitleFactory;
 use SearchEngine;
 use SearchIndexField;
 use Wikimedia\UUID\GlobalIdGenerator;
-use WikiPage;
 
 /**
  * Content handler for wiki text pages.

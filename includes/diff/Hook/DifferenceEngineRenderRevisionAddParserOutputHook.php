@@ -4,8 +4,8 @@ namespace MediaWiki\Diff\Hook;
 
 use DifferenceEngine;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserOutput;
-use WikiPage;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

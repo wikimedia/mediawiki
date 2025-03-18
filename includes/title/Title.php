@@ -47,6 +47,7 @@ use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Page\ProperPageIdentity;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Request\PathRouter;
 use MediaWiki\ResourceLoader\WikiModule;
@@ -65,7 +66,6 @@ use Wikimedia\Rdbms\DBAccessObjectUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
-use WikiPage;
 
 /**
  * Represents a title within MediaWiki.

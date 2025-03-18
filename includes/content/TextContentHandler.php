@@ -24,12 +24,12 @@ use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\RevisionRecord;
 use ReflectionMethod;
 use SearchEngine;
 use SearchIndexField;
-use WikiPage;
 
 /**
  * Base content handler implementation for flat text contents.

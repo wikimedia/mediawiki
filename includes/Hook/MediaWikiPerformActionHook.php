@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Hook;
 
-use Article;
 use MediaWiki\Actions\ActionEntryPoint;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Page\Article;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;

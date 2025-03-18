@@ -20,7 +20,6 @@
 namespace MediaWiki\Actions;
 
 use Action;
-use Article;
 use CreditsAction;
 use InfoAction;
 use MarkpatrolledAction;
@@ -31,6 +30,7 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Page\Article;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\Title;
 use Psr\Log\LoggerInterface;

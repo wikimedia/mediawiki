@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Page\Hook;
 
-use Article;
+use MediaWiki\Page\Article;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

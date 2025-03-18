@@ -8,6 +8,8 @@ use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Page\Article;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -21,7 +23,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \Article::view()
+ * @covers \MediaWiki\Page\Article::view()
  * @group Database
  */
 class ArticleViewTest extends MediaWikiIntegrationTestCase {
@@ -79,8 +81,8 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \Article::getOldId()
-	 * @covers \Article::getRevIdFetched()
+	 * @covers \MediaWiki\Page\Article::getOldId()
+	 * @covers \MediaWiki\Page\Article::getRevIdFetched()
 	 */
 	public function testGetOldId() {
 		$revisions = [];
@@ -153,8 +155,8 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \Article::getPage
-	 * @covers \WikiPage::getRedirectTarget
+	 * @covers \MediaWiki\Page\Article::getPage
+	 * @covers \MediaWiki\Page\WikiPage::getRedirectTarget
 	 * @covers \MediaWiki\Page\RedirectLookup::getRedirectTarget
 	 */
 	public function testViewRedirect() {
@@ -672,7 +674,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \Article::showViewError()
+	 * @covers \MediaWiki\Page\Article::showViewError()
 	 */
 	public function testViewLatestError() {
 		$page = $this->getPage( __METHOD__, [ 1 => 'Test A' ] );
@@ -704,7 +706,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \Article::showViewError()
+	 * @covers \MediaWiki\Page\Article::showViewError()
 	 */
 	public function testViewOldError() {
 		$revisions = [];

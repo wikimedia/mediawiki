@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Page\Hook;
 
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentity;
-use WikiPage;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

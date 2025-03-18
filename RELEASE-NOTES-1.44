@@ -347,6 +347,25 @@ because of Phabricator reports.
   listExplicitlyDefinedTags(), listSoftwareActivatedTags(),
   listSoftwareDefinedTags(), makeTagSummarySubquery(), modifyDisplayQuery(),
   purgeTagCacheAll(), tagUsageStatistics(), and updateTags().
+* (T166010) All PHP code in MediaWiki is slowly being moved to be in a class
+  namespace as appropriate, so that we can use PSR-4 auto-loading, which will
+  speed up general code loading of MediaWiki. The old global namespace class
+  names are being left behind as deprecated aliases.
+
+  In this release of MediaWiki, XXX classes now have a namespace and XXX do
+  not yet (XXX% done, up from 81% in MediaWiki 1.43.0). The following have newly
+  been moved:
+  - MediaWiki\Page:
+    - Article
+    - CategoryPage
+    - ImageHistoryList
+    - ImageHistoryPseudoPager
+    - ImagePage
+    - Page
+    - PageArchive
+    - WikiCategoryPage
+    - WikiFilePage
+    - WikiPage
 * WikiPage::doEditUpdates(), deprecated since 1.32, is now emitting warnings.
   Use DerivedPageDataUpdater::doUpdates() instead.
 * IDatabase::setTransactionListener() is now deprecated without replacement.

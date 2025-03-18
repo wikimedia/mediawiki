@@ -18,10 +18,17 @@
  * @file
  */
 
+namespace MediaWiki\Page;
+
+use File;
+use HTMLCacheUpdateJob;
+use LocalFile;
+use LocalRepo;
 use MediaWiki\Actions\FileDeleteAction;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArrayFromResult;
+use RuntimeException;
 use Wikimedia\Rdbms\FakeResultWrapper;
 
 /**
@@ -251,3 +258,6 @@ class WikiFilePage extends WikiPage {
 		return parent::getActionOverrides();
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( WikiFilePage::class, 'WikiFilePage' );

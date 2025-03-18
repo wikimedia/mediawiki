@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\ImagePage;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
 use Wikimedia\TestingAccessWrapper;
@@ -31,7 +32,7 @@ class ImagePageTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers \ImagePage::getThumbSizes
+	 * @covers MediaWiki\Page\ImagePage::getThumbSizes
 	 * @dataProvider providerGetThumbSizes
 	 * @param string $filename
 	 * @param int $expectedNumberThumbs How many thumbnails to show
@@ -56,7 +57,7 @@ class ImagePageTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers \ImagePage::getLanguageForRendering()
+	 * @covers \MediaWiki\Page\ImagePage::getLanguageForRendering()
 	 * @dataProvider provideGetLanguageForRendering
 	 *
 	 * @param string|null $expected Expected IETF language code

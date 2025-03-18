@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Page;
+
 use MediaWiki\Category\CategoryViewer;
 use MediaWiki\Title\Title;
 
@@ -114,3 +116,6 @@ class CategoryPage extends Article {
 		$this->addHelpLink( 'Help:Categories' );
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( CategoryPage::class, 'CategoryPage' );

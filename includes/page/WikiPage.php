@@ -18,6 +18,13 @@
  * @file
  */
 
+namespace MediaWiki\Page;
+
+use BadMethodCallException;
+use HTMLCacheUpdateJob;
+use InfoAction;
+use InvalidArgumentException;
+use ManualLogEntry;
 use MediaWiki\Category\Category;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\Content;
@@ -31,13 +38,6 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Page\DeletePage;
-use MediaWiki\Page\ExistingPageRecord;
-use MediaWiki\Page\PageIdentity;
-use MediaWiki\Page\PageRecord;
-use MediaWiki\Page\PageReference;
-use MediaWiki\Page\PageStoreRecord;
-use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Permissions\Authority;
@@ -56,9 +56,16 @@ use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArrayFromResult;
 use MediaWiki\User\User;
+use MediaWiki\User\UserArray;
+use MediaWiki\User\UserArrayFromResult;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\WikiMap\WikiMap;
+use RecentChange;
+use RefreshLinksJob;
+use RuntimeException;
+use stdClass;
+use Stringable;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\NonSerializable\NonSerializableTrait;
@@ -2997,3 +3004,6 @@ class WikiPage implements Stringable, Page, PageRecord {
 	}
 
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( WikiPage::class, 'WikiPage' );

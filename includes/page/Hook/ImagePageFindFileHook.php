@@ -3,7 +3,7 @@
 namespace MediaWiki\Page\Hook;
 
 use File;
-use ImagePage;
+use MediaWiki\Page\ImagePage;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

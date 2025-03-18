@@ -30,12 +30,12 @@ use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\LegacyArticleIdAccess;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\NonSerializable\NonSerializableTrait;
-use WikiPage;
 
 /**
  * Page revision base class.

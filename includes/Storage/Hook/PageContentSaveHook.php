@@ -4,9 +4,9 @@ namespace MediaWiki\Storage\Hook;
 
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\Content;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\User\User;
 use StatusValue;
-use WikiPage;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
