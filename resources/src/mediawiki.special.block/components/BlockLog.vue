@@ -112,7 +112,7 @@
 								</a>
 								<span>
 									{{ $i18n( 'pipe-separator' ).text() }}
-									<a :href="mw.Title.makeTitle( 2, `Contributions/${ item.blockedby }` ).getUrl()">
+									<a :href="mw.Title.makeTitle( -1, `Contributions/${ item.blockedby }` ).getUrl()">
 										{{ $i18n( 'contribslink' ).text() }}
 									</a>
 								</span>{{ $i18n( 'parentheses-end' ).text() }}
