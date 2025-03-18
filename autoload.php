@@ -1149,6 +1149,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Composer\\PhpUnitSplitter\\PhpUnitXmlManager' => __DIR__ . '/includes/composer/PhpUnitSplitter/PhpUnitXmlManager.php',
 	'MediaWiki\\Composer\\PhpUnitSplitter\\SplitGroupExecutor' => __DIR__ . '/includes/composer/PhpUnitSplitter/SplitGroupExecutor.php',
 	'MediaWiki\\Composer\\PhpUnitSplitter\\SuiteGenerationException' => __DIR__ . '/includes/composer/PhpUnitSplitter/SuiteGenerationException.php',
+	'MediaWiki\\Composer\\PhpUnitSplitter\\SuiteSplittingException' => __DIR__ . '/includes/composer/PhpUnitSplitter/SuiteSplittingException.php',
 	'MediaWiki\\Composer\\PhpUnitSplitter\\TestDescriptor' => __DIR__ . '/includes/composer/PhpUnitSplitter/TestDescriptor.php',
 	'MediaWiki\\Composer\\PhpUnitSplitter\\TestListMissingException' => __DIR__ . '/includes/composer/PhpUnitSplitter/TestListMissingException.php',
 	'MediaWiki\\Composer\\PhpUnitSplitter\\TestSuiteBuilder' => __DIR__ . '/includes/composer/PhpUnitSplitter/TestSuiteBuilder.php',
