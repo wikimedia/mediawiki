@@ -54,7 +54,7 @@ function mockMwConfigGet( config = {} ) {
 			user_talk: 3
 		},
 		wgFormattedNamespaces: {
-			0: '(Main)',
+			0: '',
 			1: 'Talk',
 			2: 'User',
 			3: 'User talk'
