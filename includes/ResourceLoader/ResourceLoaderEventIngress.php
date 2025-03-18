@@ -2,7 +2,7 @@
 
 namespace MediaWiki\ResourceLoader;
 
-use MediaWiki\DomainEvent\EventSubscriberBase;
+use MediaWiki\DomainEvent\EventIngressBase;
 use MediaWiki\Page\Event\PageDeletedEvent;
 use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Storage\PageUpdateCauses;
@@ -15,7 +15,7 @@ use Wikimedia\Rdbms\LBFactory;
  *
  * @internal
  */
-class ResourceLoaderEventIngress extends EventSubscriberBase {
+class ResourceLoaderEventIngress extends EventIngressBase {
 
 	/** Object spec intended for use with {@link DomainEventSource::registerSubscriber()} */
 	public const OBJECT_SPEC = [

@@ -47,11 +47,11 @@ use Wikimedia\Assert\Assert;
  *
  * Extensions that want to subscribe to this event should list
  * "PageRevisionUpdated" as a subscribed event type.
- * Subscribers based on EventSubscriberBase should implement the
+ * Subscribers based on EventIngressBase should implement the
  * handlePageRevisionUpdatedEvent() listener method to be informed when
  * a page update has been committed to the database.
  *
- * See the documentation of EventSubscriberBase and DomainEventSource for
+ * See the documentation of EventIngressBase and DomainEventSource for
  * more options and details.
  *
  * @unstable until 1.45

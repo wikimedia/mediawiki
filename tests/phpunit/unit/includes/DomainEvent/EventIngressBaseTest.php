@@ -4,15 +4,15 @@ namespace MediaWiki\Tests\DomainEvent;
 
 use MediaWiki\DomainEvent\DomainEventSource;
 use MediaWiki\DomainEvent\EventDispatchEngine;
-use MediaWiki\DomainEvent\EventSubscriberBase;
+use MediaWiki\DomainEvent\EventIngressBase;
 use MediaWikiUnitTestCase;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Services\ServiceContainer;
 
 /**
- * @covers \MediaWiki\DomainEvent\EventSubscriberBase
+ * @covers \MediaWiki\DomainEvent\EventIngressBase
  */
-class EventSubscriberBaseTest extends MediaWikiUnitTestCase {
+class EventIngressBaseTest extends MediaWikiUnitTestCase {
 
 	private function newSpyEventSource( &$trace ): DomainEventSource {
 		$objectFactory = new ObjectFactory(
@@ -36,13 +36,8 @@ class EventSubscriberBaseTest extends MediaWikiUnitTestCase {
 		$trace = [];
 		$source = $this->newSpyEventSource( $trace );
 
-		$events = [ 'Foo', 'Bar' ];
-
 		// Pass the list of events as a constructor parameter
-		$subscriber = new class ( $events ) extends EventSubscriberBase {
-			public function __construct( $events ) {
-				$this->initEvents( $events );
-			}
+		$subscriber = new class extends EventIngressBase {
 
 			public function handleFooEvent() {
 				// no-op
@@ -58,6 +53,7 @@ class EventSubscriberBaseTest extends MediaWikiUnitTestCase {
 			}
 		};
 
+		$subscriber->initSubscriber( [ 'events' => [ 'Foo', 'Bar' ] ] );
 		$subscriber->registerListeners( $source );
 
 		$this->assertSame(
@@ -76,7 +72,7 @@ class EventSubscriberBaseTest extends MediaWikiUnitTestCase {
 		$events = [ 'Foo', 'Bar' ];
 
 		// Pass nothing to the constructor, rely on initSubscriber()
-		$subscriber = new class () extends EventSubscriberBase {
+		$subscriber = new class () extends EventIngressBase {
 			public function handleFooEvent() {
 				// no-op
 			}

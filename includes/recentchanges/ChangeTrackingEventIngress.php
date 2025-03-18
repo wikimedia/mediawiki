@@ -3,7 +3,7 @@
 namespace MediaWiki\RecentChanges;
 
 use MediaWiki\ChangeTags\ChangeTagsStore;
-use MediaWiki\DomainEvent\EventSubscriberBase;
+use MediaWiki\DomainEvent\EventIngressBase;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
@@ -24,15 +24,7 @@ use RecentChange;
  *
  * @internal
  */
-class ChangeTrackingEventIngress extends EventSubscriberBase {
-
-	/**
-	 * The events handled by this ingress subscriber.
-	 * @see registerListeners()
-	 */
-	public const EVENTS = [
-		PageRevisionUpdatedEvent::TYPE
-	];
+class ChangeTrackingEventIngress extends EventIngressBase {
 
 	/**
 	 * Object spec used for lazy instantiation.
