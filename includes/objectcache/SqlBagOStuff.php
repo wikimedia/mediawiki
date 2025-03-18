@@ -519,7 +519,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 			// One response, no point of consistency checks
 			if ( count( $rowsByShard ) == 1 ) {
-				$row = $rowsByShard[0];
+				$row = array_values( $rowsByShard )[0];
 			} else {
 				usort( $rowsByShard, static function ( $a, $b ) {
 					if ( $a->exptime == $b->exptime ) {
