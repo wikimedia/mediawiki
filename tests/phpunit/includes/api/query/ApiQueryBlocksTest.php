@@ -100,6 +100,7 @@ class ApiQueryBlocksTest extends ApiTestCase {
 			'id' => $block->getId(),
 			'user' => $badActor->getName(),
 			'expiry' => $block->getExpiry(),
+			'duration-l10n' => $this->apiContext->msg( 'infiniteblock' )->plain(),
 		];
 
 		$title = 'Lady Macbeth';
@@ -179,7 +180,7 @@ class ApiQueryBlocksTest extends ApiTestCase {
 				]
 			],
 		] );
-		$this->assertArraySubmapSame( $restrictionsSubset, $data['query']['blocks'][0] );
+		$this->assertEqualsCanonicalizing( $restrictionsSubset, $data['query']['blocks'][0] );
 		$this->assertArrayNotHasKey( 'partial', $data['query']['blocks'][0] );
 	}
 }
