@@ -280,7 +280,7 @@ module.exports = exports = defineStore( 'block', () => {
 	 * Load block data from an action=blocks API response.
 	 *
 	 * @param {Object} blockData The block's item from the API.
-	 * @param {boolean} [setTarget=false] Whether to set the {@link targetUser}, thereby firing
+	 * @param {boolean} [setTarget=false] Whether to set the `targetUser`, thereby firing
 	 *   off associated watchers.
 	 */
 	function loadFromData( blockData, setTarget = false ) {

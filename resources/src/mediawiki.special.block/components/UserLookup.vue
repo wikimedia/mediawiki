@@ -1,14 +1,14 @@
 <template>
 	<cdx-field
+		:key="refreshKey"
 		:is-fieldset="true"
 		:status="status"
 		:messages="messages"
-		:key="refreshKey"
 	>
 		<cdx-lookup
+			id="mw-bi-target"
 			v-model:selected="selection"
 			v-model:input-value="currentSearchTerm"
-			id="mw-bi-target"
 			class="mw-block-target"
 			name="wpTarget"
 			required
