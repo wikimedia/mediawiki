@@ -18,12 +18,15 @@ class SplitGroupExecutor {
 	private UnboxedExecutor $executor;
 	private ?Event $event;
 	private ComposerSystemInterface $composerSystemInterface;
+	private string $phpunitConfigFile;
 
 	public function __construct(
+		string $phpunitConfigFile,
 		UnboxedExecutor $shellExecutor,
 		?Event $event,
 		?ComposerSystemInterface $composerSystemInterface = null
 	) {
+		$this->phpunitConfigFile = $phpunitConfigFile;
 		$this->executor = $shellExecutor;
 		$this->event = $event;
 		$this->composerSystemInterface = $composerSystemInterface ?? new ComposerSystemInterface();
@@ -42,6 +45,7 @@ class SplitGroupExecutor {
 				'--timeout=0',
 				'phpunit:entrypoint',
 				'--',
+				'--configuration', $this->phpunitConfigFile,
 				'--testsuite', $testSuite,
 				'--exclude-group', implode( ",", $excludeGroups )
 			);

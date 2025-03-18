@@ -48,6 +48,7 @@ class ComposerLaunchParallelTest extends TestCase {
 		$executor = $this->createMock( SplitGroupExecutor::class );
 		$systemInterface = $this->getMockSystemInterface( 'phpunit_output_1_database.log' );
 		$composerLaunchParallel = new ComposerLaunchParallel(
+			"phpunit-database.xml",
 			[ 'Database' ],
 			[ 'Broken' ],
 			null,
@@ -73,6 +74,7 @@ class ComposerLaunchParallelTest extends TestCase {
 		$executor = $this->createMock( SplitGroupExecutor::class );
 		$systemInterface = $this->getMockSystemInterface( 'phpunit_output_1_databaseless.log' );
 		$composerLaunchParallel = new ComposerLaunchParallel(
+			"phpunit-databaseless.xml",
 			[],
 			[ 'Broken', 'Standalone', 'Database' ],
 			null,

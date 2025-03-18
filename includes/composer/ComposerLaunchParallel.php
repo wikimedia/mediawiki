@@ -49,6 +49,7 @@ class ComposerLaunchParallel extends ForkController {
 	public const EXIT_STATUS_PHPUNIT_LIST_TESTS_ERROR = 2;
 
 	public function __construct(
+		string $phpUnitConfigFile,
 		array $groups,
 		array $excludeGroups,
 		?Event $event,
@@ -59,7 +60,7 @@ class ComposerLaunchParallel extends ForkController {
 		$this->excludeGroups = $excludeGroups;
 		$this->composerSystemInterface = $composerSystemInterface ?? new ComposerSystemInterface();
 		$this->splitGroupExecutor = $splitGroupExecutor ?? new SplitGroupExecutor(
-			Shellbox::createUnboxedExecutor(), $event, $this->composerSystemInterface
+			$phpUnitConfigFile, Shellbox::createUnboxedExecutor(), $event, $this->composerSystemInterface
 		);
 
 		/**
@@ -162,14 +163,15 @@ class ComposerLaunchParallel extends ForkController {
 	 * @throws PhpUnitConsoleOutputProcessingException
 	 */
 	public static function launchTests( Event $event, array $groups, array $excludeGroups ): void {
-		$phpUnitConfig = getcwd() . DIRECTORY_SEPARATOR . 'phpunit.xml';
+		$groupName = self::isDatabaseRunForGroups( $groups, $excludeGroups ) ? "database" : "databaseless";
+		$phpUnitConfig = getcwd() . DIRECTORY_SEPARATOR . 'phpunit-' . $groupName . '.xml';
 		if ( !PhpUnitXml::isPhpUnitXmlPrepared( $phpUnitConfig ) ) {
-			$event->getIO()->error( "phpunit.xml is not present or does not contain split test suites" );
+			$event->getIO()->error( "%s is not present or does not contain split test suites", [ $phpUnitConfig ] );
 			$event->getIO()->error( "run `composer phpunit:prepare-parallel:...` to generate the split suites" );
 			exit( self::EXIT_STATUS_FAILURE );
 		}
 		$event->getIO()->info( "Running 'split_group_X' suites in parallel..." );
-		$launcher = new ComposerLaunchParallel( $groups, $excludeGroups, $event );
+		$launcher = new ComposerLaunchParallel( $phpUnitConfig, $groups, $excludeGroups, $event );
 		$launcher->start();
 		if ( $launcher->allSuccessful() ) {
 			$event->getIO()->info( "All split_groups succeeded!" );

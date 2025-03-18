@@ -1109,6 +1109,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Composer\\PhpUnitSplitter\\PhpUnitConsoleOutputProcessor' => __DIR__ . '/includes/composer/PhpUnitSplitter/PhpUnitConsoleOutputProcessor.php',
 	'MediaWiki\\Composer\\PhpUnitSplitter\\PhpUnitErrorTestCaseFoundException' => __DIR__ . '/includes/composer/PhpUnitSplitter/PhpUnitErrorTestCaseFoundException.php',
 	'MediaWiki\\Composer\\PhpUnitSplitter\\PhpUnitFailure' => __DIR__ . '/includes/composer/PhpUnitSplitter/PhpUnitFailure.php',
+	'MediaWiki\\Composer\\PhpUnitSplitter\\PhpUnitResultsCachingException' => __DIR__ . '/includes/composer/PhpUnitSplitter/PhpUnitResultsCachingException.php',
 	'MediaWiki\\Composer\\PhpUnitSplitter\\PhpUnitSlowTest' => __DIR__ . '/includes/composer/PhpUnitSplitter/PhpUnitSlowTest.php',
 	'MediaWiki\\Composer\\PhpUnitSplitter\\PhpUnitTestFileScanner' => __DIR__ . '/includes/composer/PhpUnitSplitter/PhpUnitTestFileScanner.php',
 	'MediaWiki\\Composer\\PhpUnitSplitter\\PhpUnitTestFileScannerFilter' => __DIR__ . '/includes/composer/PhpUnitSplitter/PhpUnitTestFileScannerFilter.php',

@@ -9,6 +9,7 @@ use MediaWiki\Composer\PhpUnitSplitter\PhpUnitXmlManager;
 use MediaWiki\Composer\PhpUnitSplitter\TestListMissingException;
 use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @license GPL-2.0-or-later
@@ -24,7 +25,12 @@ class PhpUnitXmlManagerTest extends TestCase {
 		parent::setUp();
 		$this->testDir = implode( DIRECTORY_SEPARATOR, [ sys_get_temp_dir(), uniqid( 'PhpUnitTest' ) ] );
 		mkdir( $this->testDir );
-		$this->manager = new PhpUnitXmlManager( $this->testDir, 'tests-list.xml' );
+		$this->manager = new PhpUnitXmlManager(
+			$this->testDir,
+			'tests-list.xml',
+			'phpunit-test.xml',
+			'test'
+		);
 		$this->setupTestFolder();
 	}
 
@@ -49,7 +55,7 @@ class PhpUnitXmlManagerTest extends TestCase {
 	}
 
 	private function tearDownTestFolder() {
-		foreach ( [ 'phpunit.xml', 'phpunit.xml.dist', 'tests-list.xml' ] as $file ) {
+		foreach ( [ 'phpunit-test.xml', 'phpunit.xml.dist', 'tests-list.xml' ] as $file ) {
 			$path = $this->testDir . DIRECTORY_SEPARATOR . $file;
 			if ( file_exists( $path ) ) {
 				unlink( $path );
@@ -90,18 +96,25 @@ class PhpUnitXmlManagerTest extends TestCase {
 
 	public function testPhpUnitXmlDistNotPrepared() {
 		$this->assertFalse( $this->manager->isPhpUnitXmlPrepared(), "Expected no PHPUnit Xml to be present" );
-		copy( self::getSourcePhpUnitDistXml(), implode( DIRECTORY_SEPARATOR, [ $this->testDir, "phpunit.xml" ] ) );
+		copy( self::getSourcePhpUnitDistXml(), implode( DIRECTORY_SEPARATOR, [ $this->testDir, "phpunit-test.xml" ] ) );
 		$this->copyTestListIntoPlace();
 		$this->manager->createPhpUnitXml( 4 );
-		copy( self::getSourcePhpUnitDistXml(), implode( DIRECTORY_SEPARATOR, [ $this->testDir, "phpunit.xml" ] ) );
+		copy( self::getSourcePhpUnitDistXml(), implode( DIRECTORY_SEPARATOR, [ $this->testDir, "phpunit-test.xml" ] ) );
 		$this->assertFalse( $this->manager->isPhpUnitXmlPrepared(), "Expected phpunit.dist.xml to be treated as unprepared" );
 	}
 
 	public function testFailWithInformativeErrorIfErrorTestCaseFound() {
 		$this->assertFalse( $this->manager->isPhpUnitXmlPrepared(), "Expected no PHPUnit Xml to be present" );
-		copy( self::getSourcePhpUnitDistXml(), implode( DIRECTORY_SEPARATOR, [ $this->testDir, "phpunit.xml" ] ) );
+		copy( self::getSourcePhpUnitDistXml(), implode( DIRECTORY_SEPARATOR, [ $this->testDir, "phpunit-test.xml" ] ) );
 		$this->copyTestListIntoPlace( 'tests-list-with-error.xml' );
 		$this->expectException( PhpUnitErrorTestCaseFoundException::class );
 		$this->manager->createPhpUnitXml( 4 );
+	}
+
+	public function testMatchJobPartRegexp() {
+		$urlBase = "https://results-server.example.com/results";
+		$logPath = "47/1113147/8/test/mediawiki-quibble-vendor-mysql-php74/96878ad";
+		$url = TestingAccessWrapper::newFromClass( PhpUnitXmlManager::class )->generateResultsCacheUrl( $urlBase, $logPath );
+		$this->assertEquals( $urlBase . '/mediawiki-quibble-vendor-mysql-php74', $url );
 	}
 }

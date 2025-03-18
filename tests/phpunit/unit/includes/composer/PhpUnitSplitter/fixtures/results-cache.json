@@ -1,0 +1,8 @@
+{
+	"database": {
+		"MediaWiki\\Tests\\Unit\\composer\\PhpUnitSplitter\\PhpUnitTestFileScannerTest": 1,
+		"MediaWiki\\Tests\\Unit\\composer\\PhpUnitSplitter\\PhpUnitTestListProcessorTest": 0.5,
+		"MediaWiki\\Tests\\Unit\\composer\\PhpUnitSplitter\\PhpUnitXmlManagerTest": 0.01,
+		"MediaWiki\\Tests\\Unit\\composer\\PhpUnitSplitter\\PhpUnitXmlTest": 5
+	}
+}

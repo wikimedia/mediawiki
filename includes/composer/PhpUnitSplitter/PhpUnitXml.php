@@ -12,8 +12,6 @@ use SimpleXMLElement;
  */
 class PhpUnitXml {
 
-	public const PHP_UNIT_XML_FILE = "phpunit.xml";
-
 	private SimpleXMLElement $xml;
 
 	public function __construct( string $phpUnitXmlFile ) {

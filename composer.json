@@ -183,11 +183,13 @@
 		"phpunit:coverage-edit": "MediaWiki\\Composer\\ComposerPhpunitXmlCoverageEdit::onEvent",
 		"phpunit:entrypoint": "@phpunit",
 		"phpunit:prepare-parallel:extensions": [
+			"MediaWiki\\Composer\\PhpUnitSplitter\\PhpUnitXmlManager::fetchResultsCache",
 			"MediaWiki\\Composer\\PhpUnitSplitter\\PhpUnitXmlManager::listTestsNotice",
 			"@phpunit --list-tests-xml=tests-list-extensions.xml --testsuite=extensions",
 			"MediaWiki\\Composer\\PhpUnitSplitter\\PhpUnitXmlManager::splitTestsListExtensions"
 		],
 		"phpunit:prepare-parallel:default": [
+			"MediaWiki\\Composer\\PhpUnitSplitter\\PhpUnitXmlManager::fetchResultsCache",
 			"MediaWiki\\Composer\\PhpUnitSplitter\\PhpUnitXmlManager::listTestsNotice",
 			"@phpunit --list-tests-xml=tests-list-default.xml",
 			"MediaWiki\\Composer\\PhpUnitSplitter\\PhpUnitXmlManager::splitTestsListDefault"
