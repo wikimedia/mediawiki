@@ -17,6 +17,7 @@ const SpecialBlock = require( '../../../resources/src/mediawiki.special.block/Sp
 function getSpecialBlock( config = {}, apiMocks = [] ) {
 	// Other various mocks that may be needed across the test suite.
 	HTMLElement.prototype.scrollIntoView = jest.fn();
+	mw.confirmCloseWindow = jest.fn();
 
 	// Mock calls to mw.config.get() and mw.Api.prototype.get().
 	mockMwConfigGet( config );

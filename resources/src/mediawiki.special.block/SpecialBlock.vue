@@ -204,6 +204,13 @@ module.exports = exports = defineComponent( {
 			return mw.message( 'ipbsubmit' ).text();
 		} );
 
+		// Prevent the window from being closed as long as we have the form open
+		mw.confirmCloseWindow( {
+			test: function () {
+				return formVisible.value;
+			}
+		} );
+
 		const confirmationOpen = ref( false );
 		const showBlockLogs = computed( () => ( store.targetUser && store.targetExists ) || store.blockId );
 		const removalConfirmationOpen = ref( false );
