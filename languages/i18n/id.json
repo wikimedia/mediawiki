@@ -3382,7 +3382,7 @@
 	"version-entrypoints-header-url": "URL",
 	"version-entrypoints-articlepath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticlePath Artikel path]",
 	"version-entrypoints-scriptpath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgScriptPath Skrip path]",
-	"version-libraries": "perpustakaan yang terpasang",
+	"version-libraries": "Perpustakaan yang terpasang",
 	"version-libraries-server": "Pustaka sisi peladen yang terpasang",
 	"version-libraries-client": "Pustaka sisi klien terpasang",
 	"version-libraries-library": "Perpustakaan",

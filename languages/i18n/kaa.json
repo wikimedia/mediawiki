@@ -1071,6 +1071,7 @@
 	"recentchangeslinked-to": "Kerisinshe, berilgen betke silteytuǵın betlerdegi ózgerislerdi kórset",
 	"recentchanges-page-added-to-category": "[[:$1]] beti kategoriyaǵa qosıldı",
 	"recentchanges-page-added-to-category-bundled": "[[:$1]] beti kategoriyaǵa qosıldı, [[Special:WhatLinksHere/$1|bul bet basqa betlerdiń ishine qosılǵan]]",
+	"recentchanges-page-removed-from-category": "[[:$1]] kategoriyadan alıp taslandı",
 	"upload": "Fayl júklew",
 	"uploadbtn": "Fayl júklew",
 	"reuploaddesc": "Júklewdi biykar etiw hám júklew formasına qaytıw",

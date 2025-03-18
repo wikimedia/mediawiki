@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Felipe L. Ewald"
+		]
+	},
+	"cdx-chip-input-chip-added": "Foi adicionado um chip $1.",
+	"cdx-chip-input-chip-removed": "Foi removido um chip $1.",
+	"cdx-input-chip-aria-description": "Pressione Enter para editar ou Delete para remover.",
+	"cdx-dialog-close-button-label": "Fechar",
+	"cdx-label-optional-flag": "(opcional)",
+	"cdx-message-dismiss-button-label": "Fechar",
+	"cdx-search-input-search-button-label": "Pesquisar",
+	"cdx-table-select-all-label": "Selecionar todas as linhas",
+	"cdx-table-select-row-label": "Selecione a linha $1 de $2",
+	"cdx-table-sort-caption": "$1 (os cabeçalhos de coluna com botões podem ser classificados).",
+	"cdx-typeahead-search-search-results-label": "Resultados da busca",
+	"cdx-table-pager-button-first-page": "Primeira página",
+	"cdx-table-pager-button-last-page": "Última página",
+	"cdx-table-pager-button-next-page": "Próxima página",
+	"cdx-table-pager-button-prev-page": "Página anterior",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 linha|$1 linhas}}",
+	"cdx-table-pager-items-per-page-default": "Resultados por página",
+	"cdx-table-pagination-status-message-determinate-long": "Mostrando resultados $1-$2 de $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 de $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Mostrando resultados $1-$2 de muitos",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1-$2 de muitos",
+	"cdx-table-pagination-status-message-indeterminate-final": "Mostrando os últimos {{PLURAL:$1|$1 resultado|$1 resultados}}",
+	"cdx-table-pagination-status-message-pending": "Carregando resultados..."
+}

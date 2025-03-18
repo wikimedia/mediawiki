@@ -779,7 +779,7 @@
 	"edit-slots-cannot-add": "Τα ακόλουθα σημεία στίξεως εφαρμόζονται εδώ {{PLURAL:$1|slot is|slots are}} : $2.",
 	"edit-slots-cannot-remove": "{{PLURAL:$1|Η ακόλουθη υποδοχή είναι απαραίτητη και δεν μπορεί να αφαιρεθεί|Οι ακόλουθες υποδοχές είναι απαραίτητες και δεν μπορούν να αφαιρεθούν}}: $2.",
 	"edit-slots-missing": "Το επόμενο {{PLURAL:$1|κενό|slots are}} λείπει: $2.{{PLURAL:$1|}}",
-	"postedit-confirmation-created": "Η σελίδα έχει [[Special:Diff/$2|δημιουργηθεί]].",
+	"postedit-confirmation-created": "Η σελίδα [[Special:Diff/$2|δημιουργήθηκε]].",
 	"postedit-confirmation-restored": "Η σελίδα έχει [[Special:Diff/$2|αποκατασταθεί]].",
 	"postedit-confirmation-saved": "[[Special:Diff/$2|H επεξεργασία σας]] αποθηκεύτηκε.",
 	"postedit-confirmation-published": "[[Special:Diff/$2|Η επεξεργασία σας]] δημοσιεύτηκε.",
