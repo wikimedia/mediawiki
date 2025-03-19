@@ -1126,6 +1126,9 @@ class DatabaseBlockStore {
 			);
 		}
 
+		// Update bl_timestamp to current when making any updates to a block (T389275)
+		$block->setTimestamp( wfTimestamp() );
+
 		$dbw = $this->getPrimaryDB();
 
 		$dbw->startAtomic( __METHOD__ );
