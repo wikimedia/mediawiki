@@ -1,6 +1,7 @@
 const { defineStore } = require( 'pinia' );
 const { computed, ComputedRef, ref, Ref, watch } = require( 'vue' );
 const api = new mw.Api();
+const util = require( '../util.js' );
 
 /**
  * Pinia store for the SpecialBlock application.
@@ -493,11 +494,16 @@ module.exports = exports = defineStore( 'block', () => {
 			return blockLogPromise;
 		}
 
+		let target = targetUser.value;
+		if ( mw.util.isIPAddress( target, true ) ) {
+			target = util.sanitizeRange( target );
+		}
+
 		const params = {
 			action: 'query',
 			format: 'json',
 			leprop: 'ids|title|type|user|timestamp|parsedcomment|details',
-			letitle: `User:${ targetUser.value }`,
+			letitle: `User:${ target }`,
 			list: 'logevents',
 			formatversion: 2
 		};
@@ -517,7 +523,7 @@ module.exports = exports = defineStore( 'block', () => {
 		params.list = 'logevents|blocks';
 		params.letype = 'block';
 		params.bkprop = 'id|user|by|timestamp|expiry|reason|parsedreason|range|flags|restrictions';
-		params.bkusers = targetUser.value;
+		params.bkusers = target;
 
 		const actualPromise = api.get( params );
 		actualPromise.then( ( data ) => {
