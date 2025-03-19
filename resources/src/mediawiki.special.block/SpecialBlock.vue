@@ -153,7 +153,7 @@
 </template>
 
 <script>
-const { computed, defineComponent, nextTick, ref, watch } = require( 'vue' );
+const { computed, defineComponent, nextTick, onMounted, ref, watch } = require( 'vue' );
 const { storeToRefs } = require( 'pinia' );
 const { CdxButton, CdxTextInput, CdxCheckbox, CdxField, CdxMessage } = require( '@wikimedia/codex' );
 const useBlockStore = require( './stores/block.js' );
@@ -204,13 +204,6 @@ module.exports = exports = defineComponent( {
 			return mw.message( 'ipbsubmit' ).text();
 		} );
 
-		// Prevent the window from being closed as long as we have the form open
-		mw.confirmCloseWindow( {
-			test: function () {
-				return formVisible.value;
-			}
-		} );
-
 		const confirmationOpen = ref( false );
 		const showBlockLogs = computed( () => ( store.targetUser && store.targetExists ) || store.blockId );
 		const removalConfirmationOpen = ref( false );
@@ -221,27 +214,35 @@ module.exports = exports = defineComponent( {
 
 		let initialLoad = true;
 
-		// If we're editing or removing via an id URL parameter, check that the block exists.
-		const blockIdUrlParam = mw.util.getParamValue( 'id' );
-		if ( blockIdUrlParam ) {
-			loadFromId( blockIdUrlParam ).then( ( data ) => {
-				if ( data && data.blocks.length ) {
-					if ( mw.util.getParamValue( 'remove' ) === '1' ) {
-						// Fire the remove click handler manually.
-						onRemoveBlock( blockIdUrlParam );
-					} else {
-						// Load the block form content.
-						const block = data.blocks[ 0 ];
-						store.loadFromData( block, true );
-						formVisible.value = true;
-						scrollToForm();
-					}
-				} else {
-					// If the block ID is invalid, show an error message.
-					formErrors.value = [ mw.msg( 'block-invalid-id' ) ];
+		onMounted( () => {
+			// Prevent the window from being closed as long as we have the form open
+			mw.confirmCloseWindow( {
+				test: function () {
+					return formVisible.value;
 				}
 			} );
-		}
+
+			// If we're editing or removing via an id URL parameter, check that the block exists.
+			if ( store.blockId ) {
+				loadFromId( store.blockId ).then( ( data ) => {
+					if ( data && data.blocks.length ) {
+						if ( mw.util.getParamValue( 'remove' ) === '1' ) {
+							// Fire the remove click handler manually.
+							onRemoveBlock( store.blockId );
+						} else {
+							// Load the block form content.
+							const block = data.blocks[ 0 ];
+							store.loadFromData( block, true );
+							formVisible.value = true;
+							scrollToForm();
+						}
+					} else {
+						// If the block ID is invalid, show an error message.
+						formErrors.value = [ mw.msg( 'block-invalid-id' ) ];
+					}
+				} );
+			}
+		} );
 
 		/**
 		 * Show the form for a new block.

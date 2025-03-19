@@ -110,13 +110,12 @@ describe( 'Block API', () => {
 		expect( spy ).toHaveBeenCalledWith( expected );
 	} );
 
-	it( 'should only pass not pass the reblock param to the API if there was an "already blocked" error (Multiblocks ON)', () => {
-		mockMwConfigGet( { blockAlreadyBlocked: false } );
+	it( 'should pass the newblock param and not the reblock param (Multiblocks ON)', () => {
+		mockMwConfigGet( { blockAlreadyBlocked: false, blockEnableMultiblocks: true } );
 		const store = useBlockStore();
 		store.doBlock();
 		const spy = jest.spyOn( mw.Api.prototype, 'postWithEditToken' );
 		const expected = {
-			id: 1116,
 			action: 'block',
 			allowusertalk: 1,
 			nocreate: 1,
@@ -127,8 +126,10 @@ describe( 'Block API', () => {
 			expiry: '',
 			format: 'json',
 			formatversion: 2,
+			newblock: 1,
 			reason: '',
-			uselang: 'en'
+			uselang: 'en',
+			user: ''
 		};
 		expect( spy ).toHaveBeenCalledWith( expected );
 		store.alreadyBlocked = true;
@@ -185,7 +186,7 @@ describe( 'Block API', () => {
 	} );
 
 	it( 'should not send the allowusertalk API param when the disableUTEdit field is hidden (Multiblocks ON)', () => {
-		mockMwConfigGet( { blockDisableUTEditVisible: true } );
+		mockMwConfigGet( { blockDisableUTEditVisible: true, blockId: 1116 } );
 		const store = useBlockStore();
 		// Sitewide block can disable user talk page editing.
 		store.type = 'sitewide';

@@ -156,6 +156,8 @@ class SpecialBlock extends FormSpecialPage {
 			$this->codexFormData[ 'blockEnableMultiblocks' ] = $this->useMultiblocks;
 			$this->codexFormData[ 'blockTargetUser' ] =
 				$this->target ? $this->target->toString() : null;
+			$this->codexFormData[ 'blockId' ] =
+				$this->target ? $this->getRequest()->getInt( 'id' ) : null;
 			$authority = $this->getAuthority();
 			$this->codexFormData[ 'blockShowSuppressLog' ] = $authority->isAllowed( 'suppressionlog' );
 			$this->codexFormData[ 'blockCanDeleteLogEntry' ] = $authority->isAllowed( 'deletelogentry' );
@@ -611,9 +613,15 @@ class SpecialBlock extends FormSpecialPage {
 
 	/**
 	 * Validate the target, setting preErrors if necessary.
+	 *
+	 * @param WebRequest|null $request For testing purposes.
 	 */
-	private function validateTarget(): void {
+	private function validateTarget( ?WebRequest $request = null ): void {
+		$request ??= $this->getRequest();
 		if ( !$this->target ) {
+			if ( $request->getVal( 'id' ) ) {
+				$this->preErrors[] = $this->msg( 'block-invalid-id' );
+			}
 			return;
 		}
 
@@ -742,9 +750,9 @@ class SpecialBlock extends FormSpecialPage {
 			$this->alreadyBlocked = true;
 			$this->codexFormData[ 'blockAlreadyBlocked' ] = $this->alreadyBlocked;
 			$this->preErrors[] = $this->msg(
-									'ipb-needreblock',
-									'<bdi>' . wfEscapeWikiText( $block->getTargetName() ) . '</bdi>'
-								);
+				'ipb-needreblock',
+				'<bdi>' . wfEscapeWikiText( $block->getTargetName() ) . '</bdi>'
+			);
 		}
 
 		if ( $this->alreadyBlocked || $this->getRequest()->wasPosted()
@@ -941,8 +949,8 @@ class SpecialBlock extends FormSpecialPage {
 
 	/**
 	 * Get the target and type, given the request and the subpage parameter.
-	 * Several parameters are handled for backwards compatability. 'wpTarget' is
-	 * prioritized, since it matches the HTML form.
+	 * Several parameters are handled for backwards compatability. A block ID
+	 * is prioritized, followed by 'wpTarget' since it matches the HTML form.
 	 *
 	 * @param string|null $par Subpage parameter passed to setup, or data value from
 	 *  the HTMLForm
@@ -950,6 +958,15 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return BlockTarget|null
 	 */
 	private function getTargetInternal( ?string $par, WebRequest $request ) {
+		// Passing in a block ID gets priority.
+		$blockId = $request->getInt( 'id', 0 );
+		if ( $blockId > 0 ) {
+			$block = $this->blockStore->newFromId( $blockId );
+			if ( $block ) {
+				return $block->getRedactedTarget();
+			}
+		}
+
 		$possibleTargets = [
 			$request->getVal( 'wpTarget', null ),
 			$par,

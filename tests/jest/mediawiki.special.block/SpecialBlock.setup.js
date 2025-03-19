@@ -45,7 +45,7 @@ function getSpecialBlock( config = {}, apiMocks = [] ) {
 function mockMwConfigGet( config = {} ) {
 	const mockConfig = Object.assign( {
 		blockEnableMultiblocks: true,
-		blockId: 1116,
+		blockId: null,
 		wgNamespaceIds: {
 			'': '(Main)',
 			talk: 'Talk',
