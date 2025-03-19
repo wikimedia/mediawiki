@@ -163,8 +163,8 @@
 	"config-admin-error-user": "Fazi diabarzh en ur grouiñ ur merer gant an anv \"<nowiki>$1</nowiki>\".",
 	"config-admin-error-password": "Fazi diabarzh o lakaat ur ger-tremen evit ar merour « <nowiki>$1</nowiki> » : <pre>$2</pre>",
 	"config-admin-error-bademail": "Ebarzhet hoc'h eus ur chomlec'h postel direizh.",
-	"config-subscribe": "Koumanantit d'ar [https://lists.wikimedia.org/mailman/listinfo/mediawiki-roll kemennoù evit ar stummoù nevez].",
-	"config-pingback": "Rannañ roadennoù diwar-benn ar staliadur-mañ gant diorroerien MediaWiki.",
+	"config-subscribe": "Koumanantit d'ar [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ kemennoù evit ar stummoù nevez].",
+	"config-pingback": "Rannañ roadennoù diwar-benn ar staliadur-mañ gant diorroerien MediaWiki. [https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement Politikerezh prevezded].",
 	"config-almost-done": "Kazi echu eo !\nGellout a rit tremen ar c'hefluniadur nevez ha staliañ ar wiki war-eeun.",
 	"config-optional-continue": "Sevel muioc'h a goulennoù ouzhin.",
 	"config-optional-skip": "Aet on skuizh, staliañ ar wiki hepken.",
@@ -259,5 +259,5 @@
 	"config-help-tooltip": "klikañ evit astenn",
 	"config-nofile": "N'eus ket bet gallet kavout ar restr \"$1\". Daoust ha dilamet eo bet ?",
 	"mainpagetext": "<strong>Staliet eo bet MediaWiki.</strong>",
-	"mainpagedocfooter": "Sellit ouzh [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Sturlevr an implijerien] evit gouzout hiroc'h war an doare da implijout ar meziant wiki.\n\n== Kregiñ ganti ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Roll an arventennoù kefluniañ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ FAG MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Roll ar c'haozeadennoù diwar-benn dasparzhoù MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lec'hiañ MediaWiki en ho yezh"
+	"mainpagedocfooter": "Sellit ouzh [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Sturlevr an implijerien] evit gouzout hiroc'h war an doare da implijout ar meziant wiki.\n\n== Kregiñ ganti ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Roll an arventennoù kefluniañ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ FAG MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Roll ar c'haozeadennoù diwar-benn dasparzhoù MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Treiñ MediaWiki en ho yezh]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Deskit penaos stourm a-enep ar strob en ho wiki]"
 }
