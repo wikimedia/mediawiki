@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Page;
 
+use ChangeTags;
 use DatabaseLogEntry;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\JavaScriptContent;
@@ -54,6 +55,10 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 		parent::setUp();
 
 		$this->overrideConfigValue( MainConfigNames::UseRCPatrol, true );
+		$this->overrideConfigValue(
+			MainConfigNames::SoftwareTags,
+			[ ChangeTags::TAG_REVERTED => true, ChangeTags::TAG_ROLLBACK => true ]
+		);
 	}
 
 	public function provideAuthorize() {
@@ -185,6 +190,8 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 			"rollback did not revert to the correct revision" );
 		$this->assertEquals( "one\n\ntwo", $page->getContent()->getText() );
 
+		$this->runJobs();
+
 		$rc = $revisionStore->getRecentChange( $page->getRevisionRecord() );
 		$rc3 = $revisionStore->getRecentChange( $rev3 );
 
@@ -198,10 +205,50 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 			RecentChange::PRC_PATROLLED,
 			$rc3->getAttribute( 'rc_patrolled' )
 		);
+		$this->assertContains(
+			ChangeTags::TAG_REVERTED,
+			$this->getServiceContainer()->getChangeTagsStore()
+				->getTags( $this->getDB(), $rc3->getAttribute( 'rc_id' ) )
+		);
 
 		$mainSlot = $page->getRevisionRecord()->getSlot( SlotRecord::MAIN );
 		$this->assertTrue( $mainSlot->isInherited(), 'isInherited' );
 		$this->assertSame( $rev2->getId(), $mainSlot->getOrigin(), 'getOrigin' );
+	}
+
+	public function testRollbackFailNotCreateNullRevision() {
+		$admin = $this->getTestSysop()->getUser();
+		$user1 = $this->getTestUser()->getUser();
+
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( __METHOD__ ) );
+		// Make some edits
+		$text = "one";
+		$status1 = $this->editPage( $page, $text, "init", NS_MAIN, $admin );
+		$this->assertStatusGood( $status1, 'edit 1 success' );
+
+		$status2 = $this->editPage( $page, "$text\n\ntwo", "edit", NS_MAIN, $user1 );
+		$this->assertStatusGood( $status2, 'edit 2 success' );
+
+		$status3 = $this->editPage( $page, $text, "undo", NS_MAIN, $user1 );
+		$this->assertStatusGood( $status3, 'edit 3 success' );
+
+		$rollbackResult = $this->getServiceContainer()
+			->getRollbackPageFactory()
+			->newRollbackPage( $page, $admin, $user1 )
+			->rollbackIfAllowed();
+		$this->assertStatusError( 'alreadyrolled', $rollbackResult );
+
+		$this->runJobs();
+
+		$this->assertEquals( $status3->getNewRevision(), $page->getRevisionRecord() );
+
+		$rc3 = $this->getServiceContainer()->getRevisionStore()
+			->getRecentChange( $status3->getNewRevision() );
+		$this->assertNotContains(
+			ChangeTags::TAG_REVERTED,
+			$this->getServiceContainer()->getChangeTagsStore()
+				->getTags( $this->getDB(), $rc3->getAttribute( 'rc_id' ) )
+		);
 	}
 
 	public function testRollbackFailSameContent() {
@@ -270,10 +317,6 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testRollbackTagging() {
-		if ( !in_array( 'mw-rollback', $this->getServiceContainer()->getChangeTagsStore()->getSoftwareTags() ) ) {
-			$this->markTestSkipped( 'Rollback tag deactivated, skipped the test.' );
-		}
-
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( __METHOD__ ) );
 		$admin = $this->getTestSysop()->getUser();
 		$user1 = $this->getTestUser()->getUser();
@@ -286,7 +329,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 			->setChangeTags( [ 'tag' ] )
 			->rollbackIfAllowed();
 		$this->assertStatusGood( $rollbackResult );
-		$this->assertContains( 'mw-rollback', $rollbackResult->getValue()['tags'] );
+		$this->assertContains( ChangeTags::TAG_ROLLBACK, $rollbackResult->getValue()['tags'] );
 		$this->assertContains( 'tag', $rollbackResult->getValue()['tags'] );
 	}
 
