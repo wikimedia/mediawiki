@@ -107,6 +107,7 @@ For notes on 1.43.x and older releases, see HISTORY.
   shared tables.
   A renameuser-global right is added and required when renaming global users.
   No groups have this right by default.
+* (T310051) uppercase-ckb collation added. uca-xx-ckb collation deprecated
 * …
 
 === New developer features in 1.44 ===

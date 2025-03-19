@@ -15,26 +15,65 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @since 1.44
+ *
  * @file
  */
 
 use MediaWiki\Languages\LanguageFactory;
 
 /**
- * Workaround for the lack of support of Sorani Kurdish / Central Kurdish language ('ckb') in ICU.
+ * Custom collation for ckb.
  *
- * Uses the same collation rules as Persian / Farsi ('fa'), but different characters for digits.
- *
- * @deprecated since 1.44 use CentralKurdishCollation instead
- * @since 1.23
+ * Based on feedback at T310051
  */
-class CollationCkb extends IcuCollation {
+class CentralKurdishUppercaseCollation extends CustomUppercaseCollation {
 
 	public function __construct( LanguageFactory $languageFactory ) {
-		wfDeprecated( __METHOD__, '1.44' );
-		// This will set $locale and collators, which affect the actual sorting order
-		parent::__construct( $languageFactory, 'fa' );
-		// Override the 'fa' language set by parent constructor, which affects #getFirstLetterData()
-		$this->digitTransformLanguage = $languageFactory->getLanguage( 'ckb' );
+		parent::__construct(
+			$languageFactory,
+			[
+				'ئ',
+				'ا',
+				'ب',
+				'پ',
+				'ت',
+				'ج',
+				'چ',
+				'ح',
+				'خ',
+				'د',
+				'ر',
+				'ڕ',
+				'ز',
+				'ژ',
+				'س',
+				'ش',
+				'ع',
+				'غ',
+				'ف',
+				'ڤ',
+				'ق',
+				[
+					'ک',
+					'ك',
+				],
+				'گ',
+				'ل',
+				'ڵ',
+				'م',
+				'ن',
+				[
+					'ھ',
+					'ه',
+				],
+				'ە',
+				'و',
+				'ۆ',
+				'ی',
+				'ێ'
+			],
+			'ckb'
+		);
 	}
 }
