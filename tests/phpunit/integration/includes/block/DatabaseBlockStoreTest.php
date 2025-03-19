@@ -558,6 +558,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	public function testUpdateBlock() {
 		$store = $this->getStore();
 		$existingBlock = $store->newFromTarget( $this->sysop );
+		$existingBlockTimestamp = $existingBlock->getTimestamp();
 
 		// Insert an autoblock for T351173 regression testing
 		$autoblockId = $store->doAutoblock( $existingBlock, '127.0.0.1' );
@@ -573,6 +574,8 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$autoblock = $store->newFromID( $autoblockId );
 
 		$this->assertTrue( $updatedBlock->equals( $existingBlock ) );
+		// Check that the timestamp was updated
+		$this->assertGreaterThan( $existingBlockTimestamp, $updatedBlock->getTimestamp() );
 		$this->assertAutoblockEqualsBlock( $existingBlock, $autoblock );
 		$this->assertLessThanOrEqual( $newExpiry, $autoblock->getExpiry() );
 	}
