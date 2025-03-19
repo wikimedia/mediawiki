@@ -20,10 +20,6 @@
 
 namespace MediaWiki\Specials;
 
-use ChangesList;
-use ChangesListBooleanFilterGroup;
-use ChangesListStringOptionsFilterGroup;
-use EnhancedChangesList;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\FormOptions;
@@ -31,6 +27,11 @@ use MediaWiki\Html\Html;
 use MediaWiki\Logging\LogPage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\RecentChanges\ChangesList;
+use MediaWiki\RecentChanges\ChangesListBooleanFilterGroup;
+use MediaWiki\RecentChanges\ChangesListStringOptionsFilterGroup;
+use MediaWiki\RecentChanges\EnhancedChangesList;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\SpecialPage\ChangesListSpecialPage;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -44,7 +45,6 @@ use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWiki\Xml\Xml;
 use MediaWiki\Xml\XmlSelect;
-use RecentChange;
 use UserNotLoggedIn;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\IReadableDatabase;

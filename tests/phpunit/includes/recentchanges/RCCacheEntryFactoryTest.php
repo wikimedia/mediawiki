@@ -5,7 +5,7 @@ use MediaWiki\Linker\UserLinkRenderer;
 use MediaWiki\Title\Title;
 
 /**
- * @covers \RCCacheEntryFactory
+ * @covers \MediaWiki\RecentChanges\RCCacheEntryFactory
  * @group Database
  * @author Katie Filbert <aude.wiki@gmail.com>
  */

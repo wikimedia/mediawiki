@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\recentchanges;
 
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserEditTracker;
-use RecentChange;
 use StatusValue;
 
 /**

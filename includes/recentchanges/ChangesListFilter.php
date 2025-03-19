@@ -18,6 +18,9 @@
  * @file
  */
 
+namespace MediaWiki\RecentChanges;
+
+use InvalidArgumentException;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\FormOptions;
 
@@ -498,3 +501,6 @@ abstract class ChangesListFilter {
 		$this->defaultHighlightColor = $defaultHighlightColor;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ChangesListFilter::class, 'ChangesListFilter' );

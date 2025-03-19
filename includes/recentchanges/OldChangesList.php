@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\RecentChanges;
+
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -165,3 +167,6 @@ class OldChangesList extends ChangesList {
 		return $html;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( OldChangesList::class, 'OldChangesList' );

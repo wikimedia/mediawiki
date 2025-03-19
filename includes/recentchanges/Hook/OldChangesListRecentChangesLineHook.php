@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Hook;
 
-use OldChangesList;
-use RecentChange;
+use MediaWiki\RecentChanges\OldChangesList;
+use MediaWiki\RecentChanges\RecentChange;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

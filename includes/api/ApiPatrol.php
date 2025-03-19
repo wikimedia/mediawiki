@@ -25,8 +25,8 @@
 namespace MediaWiki\Api;
 
 use ChangeTags;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Revision\RevisionStore;
-use RecentChange;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**

@@ -20,9 +20,6 @@
 
 namespace MediaWiki\Specials;
 
-use ChangesList;
-use ChangesListBooleanFilter;
-use ChangesListStringOptionsFilterGroup;
 use ChangeTags;
 use HtmlArmor;
 use MediaWiki\ChangeTags\ChangeTagsStore;
@@ -32,6 +29,10 @@ use MediaWiki\Html\Html;
 use MediaWiki\Language\MessageParser;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\RecentChanges\ChangesList;
+use MediaWiki\RecentChanges\ChangesListBooleanFilter;
+use MediaWiki\RecentChanges\ChangesListStringOptionsFilterGroup;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\SpecialPage\ChangesListSpecialPage;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\Options\UserOptionsLookup;
@@ -42,7 +43,6 @@ use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Xml\Xml;
 use OOUI\ButtonWidget;
 use OOUI\HtmlSnippet;
-use RecentChange;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\RawSQLExpression;

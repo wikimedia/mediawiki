@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\RecentChanges;
+
 /**
  * @ingroup RecentChanges
  */
@@ -55,3 +57,6 @@ class RCCacheEntry extends RecentChange {
 		return $rc2;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( RCCacheEntry::class, 'RCCacheEntry' );

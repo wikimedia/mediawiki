@@ -25,8 +25,8 @@
 namespace MediaWiki\Logging;
 
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\User\UserIdentity;
-use RecentChange;
 
 /**
  * Class containing static functions for working with

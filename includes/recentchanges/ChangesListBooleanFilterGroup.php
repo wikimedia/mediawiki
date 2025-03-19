@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\RecentChanges;
+
 use MediaWiki\Html\FormOptions;
 use MediaWiki\SpecialPage\ChangesListSpecialPage;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -92,3 +94,6 @@ class ChangesListBooleanFilterGroup extends ChangesListFilterGroup {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ChangesListBooleanFilterGroup::class, 'ChangesListBooleanFilterGroup' );

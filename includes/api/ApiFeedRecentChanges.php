@@ -21,10 +21,10 @@
 
 namespace MediaWiki\Api;
 
-use ChangesFeed;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Feed\ChannelFeed;
 use MediaWiki\MainConfigNames;
+use MediaWiki\RecentChanges\ChangesFeed;
 use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\SpecialPageFactory;

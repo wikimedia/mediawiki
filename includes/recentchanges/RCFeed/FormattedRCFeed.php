@@ -20,7 +20,7 @@
 
 namespace MediaWiki\RCFeed;
 
-use RecentChange;
+use MediaWiki\RecentChanges\RecentChange;
 
 /**
  * Base class for RCFeed implementations that use RCFeedFormatter.

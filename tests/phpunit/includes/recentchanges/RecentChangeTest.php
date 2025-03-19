@@ -122,10 +122,10 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \RecentChange::save
-	 * @covers \RecentChange::newFromId
-	 * @covers \RecentChange::getTitle
-	 * @covers \RecentChange::getPerformerIdentity
+	 * @covers \MediaWiki\RecentChanges\RecentChange::save
+	 * @covers \MediaWiki\RecentChanges\RecentChange::newFromId
+	 * @covers \MediaWiki\RecentChanges\RecentChange::getTitle
+	 * @covers \MediaWiki\RecentChanges\RecentChange::getPerformerIdentity
 	 * @dataProvider provideAttribs
 	 */
 	public function testDatabaseRoundTrip( $attribs ) {
@@ -159,10 +159,10 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \RecentChange::newFromRow
-	 * @covers \RecentChange::loadFromRow
-	 * @covers \RecentChange::getAttributes
-	 * @covers \RecentChange::getPerformerIdentity
+	 * @covers \MediaWiki\RecentChanges\RecentChange::newFromRow
+	 * @covers \MediaWiki\RecentChanges\RecentChange::loadFromRow
+	 * @covers \MediaWiki\RecentChanges\RecentChange::getAttributes
+	 * @covers \MediaWiki\RecentChanges\RecentChange::getPerformerIdentity
 	 */
 	public function testNewFromRow() {
 		$user = $this->getTestUser()->getUser();
@@ -216,10 +216,10 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \RecentChange::notifyNew
-	 * @covers \RecentChange::newFromId
-	 * @covers \RecentChange::getAttributes
-	 * @covers \RecentChange::getPerformerIdentity
+	 * @covers \MediaWiki\RecentChanges\RecentChange::notifyNew
+	 * @covers \MediaWiki\RecentChanges\RecentChange::newFromId
+	 * @covers \MediaWiki\RecentChanges\RecentChange::getAttributes
+	 * @covers \MediaWiki\RecentChanges\RecentChange::getPerformerIdentity
 	 */
 	public function testNotifyNew() {
 		$now = MWTimestamp::now();
@@ -254,10 +254,10 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \RecentChange::notifyNew
-	 * @covers \RecentChange::newFromId
-	 * @covers \RecentChange::getAttributes
-	 * @covers \RecentChange::getPerformerIdentity
+	 * @covers \MediaWiki\RecentChanges\RecentChange::notifyNew
+	 * @covers \MediaWiki\RecentChanges\RecentChange::newFromId
+	 * @covers \MediaWiki\RecentChanges\RecentChange::getAttributes
+	 * @covers \MediaWiki\RecentChanges\RecentChange::getPerformerIdentity
 	 */
 	public function testNotifyEdit() {
 		$now = MWTimestamp::now();
@@ -294,10 +294,10 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \RecentChange::notifyNew
-	 * @covers \RecentChange::newFromId
-	 * @covers \RecentChange::getAttributes
-	 * @covers \RecentChange::getPerformerIdentity
+	 * @covers \MediaWiki\RecentChanges\RecentChange::notifyNew
+	 * @covers \MediaWiki\RecentChanges\RecentChange::newFromId
+	 * @covers \MediaWiki\RecentChanges\RecentChange::getAttributes
+	 * @covers \MediaWiki\RecentChanges\RecentChange::getPerformerIdentity
 	 */
 	public function testNewLogEntry() {
 		$now = MWTimestamp::now();
@@ -361,7 +361,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \RecentChange::parseParams
+	 * @covers \MediaWiki\RecentChanges\RecentChange::parseParams
 	 * @dataProvider provideParseParams
 	 * @param array $expectedParseParams
 	 * @param string|null $rawRcParams
@@ -376,7 +376,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \RecentChange::getNotifyUrl
+	 * @covers \MediaWiki\RecentChanges\RecentChange::getNotifyUrl
 	 */
 	public function testGetNotifyUrlForEdit() {
 		$rc = new RecentChange;
@@ -404,7 +404,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \RecentChange::getNotifyUrl
+	 * @covers \MediaWiki\RecentChanges\RecentChange::getNotifyUrl
 	 */
 	public function testGetNotifyUrlForCreate() {
 		$rc = new RecentChange;
@@ -432,7 +432,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \RecentChange::getNotifyUrl
+	 * @covers \MediaWiki\RecentChanges\RecentChange::getNotifyUrl
 	 */
 	public function testGetNotifyUrlForLog() {
 		$rc = new RecentChange;
@@ -466,7 +466,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \RecentChange::isInRCLifespan
+	 * @covers \MediaWiki\RecentChanges\RecentChange::isInRCLifespan
 	 * @dataProvider provideIsInRCLifespan
 	 */
 	public function testIsInRCLifespan( $maxAge, $offset, $tolerance, $expected ) {
@@ -490,7 +490,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideRCTypes
-	 * @covers \RecentChange::parseFromRCType
+	 * @covers \MediaWiki\RecentChanges\RecentChange::parseFromRCType
 	 */
 	public function testParseFromRCType( $rcType, $type ) {
 		$this->assertEquals( $type, RecentChange::parseFromRCType( $rcType ) );
@@ -498,7 +498,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideRCTypes
-	 * @covers \RecentChange::parseToRCType
+	 * @covers \MediaWiki\RecentChanges\RecentChange::parseToRCType
 	 */
 	public function testParseToRCType( $rcType, $type ) {
 		$this->assertEquals( $rcType, RecentChange::parseToRCType( $type ) );
@@ -513,7 +513,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideCategoryContent
-	 * @covers \RecentChange::newForCategorization
+	 * @covers \MediaWiki\RecentChanges\RecentChange::newForCategorization
 	 */
 	public function testHiddenCategoryChange( $isHidden ) {
 		$categoryTitle = Title::makeTitle( NS_CATEGORY, 'CategoryPage' );
@@ -555,7 +555,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \RecentChange::markPatrolled
+	 * @covers \MediaWiki\RecentChanges\RecentChange::markPatrolled
 	 */
 	public function testMarkPatrolledPermissions() {
 		$rc = $this->getDummyEditRecentChange();
@@ -577,7 +577,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \RecentChange::markPatrolled
+	 * @covers \MediaWiki\RecentChanges\RecentChange::markPatrolled
 	 */
 	public function testMarkPatrolledPermissions_Hook() {
 		$rc = $this->getDummyEditRecentChange();
@@ -589,7 +589,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \RecentChange::markPatrolled
+	 * @covers \MediaWiki\RecentChanges\RecentChange::markPatrolled
 	 */
 	public function testMarkPatrolledPermissions_Self() {
 		$rc = $this->getDummyEditRecentChange();
@@ -600,7 +600,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \RecentChange::markPatrolled
+	 * @covers \MediaWiki\RecentChanges\RecentChange::markPatrolled
 	 */
 	public function testMarkPatrolledPermissions_NoRcPatrol() {
 		$rc = $this->getDummyEditRecentChange();
@@ -609,7 +609,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \RecentChange::markPatrolled
+	 * @covers \MediaWiki\RecentChanges\RecentChange::markPatrolled
 	 */
 	public function testMarkPatrolled() {
 		$this->overrideConfigValue( MainConfigNames::UseRCPatrol, true );

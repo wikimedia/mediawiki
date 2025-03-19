@@ -18,9 +18,14 @@
  * @file
  */
 
+namespace MediaWiki\RecentChanges;
+
+use DomainException;
+use HtmlArmor;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\Html\TemplateParser;
+use MediaWiki\Logging\LogPage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Revision\RevisionRecord;
@@ -830,3 +835,6 @@ class EnhancedChangesList extends ChangesList {
 		return $this->recentChangesBlock() . '</div>';
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( EnhancedChangesList::class, 'EnhancedChangesList' );

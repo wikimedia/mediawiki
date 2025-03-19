@@ -18,6 +18,9 @@
  * @file
  */
 
+namespace MediaWiki\RecentChanges;
+
+use InvalidArgumentException;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\SpecialPage\ChangesListSpecialPage;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -235,3 +238,6 @@ class ChangesListStringOptionsFilterGroup extends ChangesListFilterGroup {
 		$opts->add( $this->getName(), $allowDefaults ? $this->getDefault() : '' );
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ChangesListStringOptionsFilterGroup::class, 'ChangesListStringOptionsFilterGroup' );

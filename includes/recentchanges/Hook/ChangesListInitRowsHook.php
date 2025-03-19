@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use ChangesList;
+use MediaWiki\RecentChanges\ChangesList;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**

@@ -18,10 +18,15 @@
  * @file
  */
 
+namespace MediaWiki\RecentChanges;
+
+use HtmlArmor;
+use MapCacheLRU;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\UserLinkRenderer;
+use MediaWiki\Logging\LogPage;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
@@ -331,3 +336,6 @@ class RCCacheEntryFactory {
 	}
 
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( RCCacheEntryFactory::class, 'RCCacheEntryFactory' );

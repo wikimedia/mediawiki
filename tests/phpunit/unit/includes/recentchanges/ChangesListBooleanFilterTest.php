@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers \ChangesListBooleanFilter
+ * @covers \MediaWiki\RecentChanges\ChangesListBooleanFilter
  */
 class ChangesListBooleanFilterTest extends MediaWikiUnitTestCase {
 	public function testGetJsData() {

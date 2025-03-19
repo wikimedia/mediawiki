@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Hook;
 
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use RecentChange;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

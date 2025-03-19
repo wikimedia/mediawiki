@@ -18,6 +18,10 @@
  * @file
  */
 
+namespace MediaWiki\RecentChanges;
+
+use EmailNotification;
+use InvalidArgumentException;
 use MediaWiki\ChangeTags\Taggable;
 use MediaWiki\Config\Config;
 use MediaWiki\Debug\DeprecationHelper;
@@ -37,6 +41,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;
+use RuntimeException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\IPUtils;
@@ -1480,3 +1485,6 @@ class RecentChange implements Taggable {
 		return $user;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( RecentChange::class, 'RecentChange' );

@@ -24,8 +24,8 @@ namespace MediaWiki\RCFeed;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Sanitizer;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Title\Title;
-use RecentChange;
 
 /**
  * Format a notification as a human-readable string using IRC colour codes.

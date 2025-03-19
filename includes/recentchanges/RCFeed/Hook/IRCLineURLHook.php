@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use RecentChange;
+use MediaWiki\RecentChanges\RecentChange;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

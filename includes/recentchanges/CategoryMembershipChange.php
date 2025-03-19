@@ -18,6 +18,9 @@
  * @file
  */
 
+namespace MediaWiki\RecentChanges;
+
+use LogicException;
 use MediaWiki\Cache\BacklinkCache;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
@@ -275,3 +278,6 @@ class CategoryMembershipChange {
 	}
 
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( CategoryMembershipChange::class, 'CategoryMembershipChange' );

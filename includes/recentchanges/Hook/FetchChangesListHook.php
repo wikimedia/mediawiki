@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Hook;
 
-use ChangesList;
-use ChangesListFilterGroup;
+use MediaWiki\RecentChanges\ChangesList;
+use MediaWiki\RecentChanges\ChangesListFilterGroup;
 use MediaWiki\User\User;
 use Skin;
 
