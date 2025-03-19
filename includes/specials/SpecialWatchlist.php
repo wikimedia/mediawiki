@@ -22,6 +22,7 @@ namespace MediaWiki\Specials;
 
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Exception\UserNotLoggedIn;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\Logging\LogPage;
@@ -45,7 +46,6 @@ use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWiki\Xml\Xml;
 use MediaWiki\Xml\XmlSelect;
-use UserNotLoggedIn;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;

@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Rest\Reporter;
 
+use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\RequestInterface;
-use MWExceptionHandler;
 use Throwable;
 
 /**

@@ -22,6 +22,7 @@ namespace MediaWiki\Specials;
 
 use ChangeTags;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Exception\PermissionsError;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
@@ -38,7 +39,6 @@ use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Utils\MWTimestamp;
-use PermissionsError;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Timestamp\TimestampException;

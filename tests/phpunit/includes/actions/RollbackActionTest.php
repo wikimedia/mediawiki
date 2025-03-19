@@ -3,10 +3,10 @@
 namespace MediaWiki\Tests\Action;
 
 use Article;
-use ErrorPageError;
 use MediaWiki\Actions\RollbackAction;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;

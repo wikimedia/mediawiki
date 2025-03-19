@@ -1,4 +1,9 @@
 <?php
+
+namespace MediaWiki\Exception;
+
+use Exception;
+
 /**
  * Exception thrown when an unregistered content model is requested. This error
  * can be triggered by user input, so a separate exception class is provided so
@@ -28,3 +33,6 @@ class MWUnknownContentModelException extends Exception {
 		return $this->modelId;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( MWUnknownContentModelException::class, 'MWUnknownContentModelException' );

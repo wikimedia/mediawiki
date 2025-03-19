@@ -22,6 +22,7 @@ namespace MediaWiki\SpecialPage;
 
 use ChangeTags;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\Json\FormatJson;
@@ -39,7 +40,6 @@ use MediaWiki\User\UserArray;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\User\UserIdentityValue;
-use MWExceptionHandler;
 use OOUI\IconWidget;
 use Wikimedia\Rdbms\DBQueryTimeoutError;
 use Wikimedia\Rdbms\FakeResultWrapper;

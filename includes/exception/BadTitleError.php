@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Exception;
+
 use MediaWiki\Message\Message;
 use MediaWiki\Title\MalformedTitleException;
 
@@ -75,3 +77,6 @@ class BadTitleError extends ErrorPageError {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( BadTitleError::class, 'BadTitleError' );

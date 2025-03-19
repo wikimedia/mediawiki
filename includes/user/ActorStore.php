@@ -20,10 +20,10 @@
 
 namespace MediaWiki\User;
 
-use CannotCreateActorException;
 use InvalidArgumentException;
 use MediaWiki\Block\HideUserUtils;
 use MediaWiki\DAO\WikiAwareEntity;
+use MediaWiki\Exception\CannotCreateActorException;
 use MediaWiki\User\TempUser\TempUserConfig;
 use Psr\Log\LoggerInterface;
 use stdClass;

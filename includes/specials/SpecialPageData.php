@@ -20,7 +20,7 @@
 
 namespace MediaWiki\Specials;
 
-use HttpError;
+use MediaWiki\Exception\HttpError;
 use MediaWiki\LinkedData\PageDataRequestHandler;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
 

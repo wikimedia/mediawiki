@@ -22,6 +22,9 @@
  * @since 1.31
  */
 
+namespace MediaWiki\Exception;
+
+use RuntimeException;
 use Wikimedia\NormalizedException\INormalizedException;
 use Wikimedia\NormalizedException\NormalizedExceptionTrait;
 
@@ -40,3 +43,6 @@ class CannotCreateActorException extends RuntimeException implements INormalized
 		);
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( CannotCreateActorException::class, 'CannotCreateActorException' );

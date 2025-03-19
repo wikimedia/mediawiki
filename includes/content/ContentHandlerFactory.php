@@ -21,9 +21,9 @@
 namespace MediaWiki\Content;
 
 use InvalidArgumentException;
+use MediaWiki\Exception\MWUnknownContentModelException;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MWUnknownContentModelException;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ObjectFactory\ObjectFactory;
 

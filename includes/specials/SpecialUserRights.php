@@ -21,6 +21,8 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\Exception\PermissionsError;
+use MediaWiki\Exception\UserBlockedError;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\Field\HTMLUserTextField;
 use MediaWiki\HTMLForm\HTMLForm;
@@ -47,8 +49,6 @@ use MediaWiki\Watchlist\WatchlistManager;
 use MediaWiki\WikiMap\WikiMap;
 use MediaWiki\Xml\Xml;
 use MediaWiki\Xml\XmlSelect;
-use PermissionsError;
-use UserBlockedError;
 use Wikimedia\Rdbms\IDBAccessObject;
 
 /**

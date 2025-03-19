@@ -18,7 +18,7 @@
  * @file
  */
 
-namespace MediaWiki;
+namespace MediaWiki\Exception;
 
 use Exception;
 
@@ -35,3 +35,6 @@ class ShellDisabledError extends Exception {
 		parent::__construct( 'Unable to run external programs, proc_open() is disabled' );
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ShellDisabledError::class, 'MediaWiki\\ShellDisabledError' );

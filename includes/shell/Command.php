@@ -21,7 +21,7 @@
 namespace MediaWiki\Shell;
 
 use Exception;
-use MediaWiki\ShellDisabledError;
+use MediaWiki\Exception\ShellDisabledError;
 use Profiler;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;

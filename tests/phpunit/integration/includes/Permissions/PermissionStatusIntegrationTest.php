@@ -23,14 +23,14 @@ namespace MediaWiki\Tests\Integration\Permissions;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Exception\PermissionsError;
+use MediaWiki\Exception\ThrottledError;
+use MediaWiki\Exception\UserBlockedError;
 use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
-use PermissionsError;
-use ThrottledError;
-use UserBlockedError;
 
 /**
  * @covers \MediaWiki\Permissions\PermissionStatus

@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\User;
 
-use CannotCreateActorException;
 use InvalidArgumentException;
 use MediaWiki\DAO\WikiAwareEntity;
+use MediaWiki\Exception\CannotCreateActorException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;

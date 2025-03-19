@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Installer;
 
+use MediaWiki\Exception\MWException;
 use MediaWiki\Status\Status;
 use Throwable;
 
@@ -27,7 +28,7 @@ use Throwable;
  * Exception thrown if an error occurs during installation
  * @ingroup Exception
  */
-class InstallException extends \MWException {
+class InstallException extends MWException {
 	/**
 	 * @var Status The state when an exception occurs
 	 */

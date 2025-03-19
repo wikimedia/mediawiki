@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Exception;
+
 /**
  * Show an error when the user hits a rate limit.
  *
@@ -43,3 +45,6 @@ class ThrottledError extends ErrorPageError {
 		parent::report( $action );
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ThrottledError::class, 'ThrottledError' );

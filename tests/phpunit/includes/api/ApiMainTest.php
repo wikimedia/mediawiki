@@ -16,6 +16,8 @@ use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\MultiConfig;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Exception\MWExceptionHandler;
+use MediaWiki\Exception\ShellDisabledError;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
@@ -23,11 +25,9 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\FauxResponse;
 use MediaWiki\Request\WebRequest;
-use MediaWiki\ShellDisabledError;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\User;
-use MWExceptionHandler;
 use StatusValue;
 use UnexpectedValueException;
 use Wikimedia\Rdbms\DBQueryError;
@@ -1086,7 +1086,7 @@ class ApiMainTest extends ApiTestCase {
 			],
 			[
 				$nsex,
-				[ 'existing-error', 'internal_api_error_MediaWiki\ShellDisabledError' ],
+				[ 'existing-error', 'internal_api_error_MediaWiki\Exception\ShellDisabledError' ],
 				[
 					'warnings' => [
 						[ 'code' => 'existing-warning', 'text' => 'existing warning', 'module' => 'main' ],
@@ -1094,7 +1094,7 @@ class ApiMainTest extends ApiTestCase {
 					'errors' => [
 						[ 'code' => 'existing-error', 'text' => 'existing error', 'module' => 'main' ],
 						[
-							'code' => 'internal_api_error_MediaWiki\ShellDisabledError',
+							'code' => 'internal_api_error_MediaWiki\Exception\ShellDisabledError',
 							'text' => "[$reqId] Exception caught: " . $nsex->getMessage(),
 							'data' => [
 								'errorclass' => ShellDisabledError::class,

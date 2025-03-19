@@ -23,7 +23,7 @@
 
 namespace MediaWiki\Api;
 
-use ILocalizedException;
+use MediaWiki\Exception\ILocalizedException;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Message;

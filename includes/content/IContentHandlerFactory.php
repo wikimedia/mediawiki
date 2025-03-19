@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Content;
 
-use MWUnknownContentModelException;
+use MediaWiki\Exception\MWUnknownContentModelException;
 
 /**
  * @ingroup Content

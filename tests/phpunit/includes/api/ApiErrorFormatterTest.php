@@ -3,12 +3,12 @@
 namespace MediaWiki\Tests\Api;
 
 use Exception;
-use LocalizedException;
 use MediaWiki\Api\ApiErrorFormatter;
 use MediaWiki\Api\ApiErrorFormatter_BackCompat;
 use MediaWiki\Api\ApiMessage;
 use MediaWiki\Api\ApiResult;
 use MediaWiki\Api\IApiMessage;
+use MediaWiki\Exception\LocalizedException;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Message;
 use MediaWiki\Status\Status;

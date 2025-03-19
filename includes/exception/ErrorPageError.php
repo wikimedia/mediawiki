@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Exception;
+
 use MediaWiki\Message\Message;
 use Wikimedia\Message\MessageSpecifier;
 
@@ -98,3 +100,6 @@ class ErrorPageError extends MWException implements ILocalizedException {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ErrorPageError::class, 'ErrorPageError' );

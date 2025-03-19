@@ -21,9 +21,10 @@
 namespace MediaWiki\Specials;
 
 use ChangeTagsList;
-use ErrorPageError;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\Exception\ErrorPageError;
+use MediaWiki\Exception\UserBlockedError;
 use MediaWiki\Html\Html;
 use MediaWiki\Logging\LogEventsList;
 use MediaWiki\Logging\LogPage;
@@ -35,7 +36,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\Xml\Xml;
 use MediaWiki\Xml\XmlSelect;
 use RevisionDeleter;
-use UserBlockedError;
 
 /**
  * Add or remove change tags to individual revisions.

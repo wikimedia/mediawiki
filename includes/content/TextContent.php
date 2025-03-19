@@ -21,10 +21,10 @@
 namespace MediaWiki\Content;
 
 use InvalidArgumentException;
+use MediaWiki\Exception\MWUnknownContentModelException;
 use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MWUnknownContentModelException;
 use Wikimedia\Diff\Diff;
 
 /**

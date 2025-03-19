@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Specials;
 
-use ErrorPageError;
+use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use SpecialPageTestBase;

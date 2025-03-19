@@ -18,6 +18,10 @@
  * @file
  */
 
+namespace MediaWiki\Exception;
+
+use Exception;
+use LocalisationCache;
 use MediaWiki\Debug\MWDebug;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
@@ -121,3 +125,6 @@ class MWException extends Exception {
 	}
 
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( MWException::class, 'MWException' );

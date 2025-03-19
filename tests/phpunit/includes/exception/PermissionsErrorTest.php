@@ -1,11 +1,12 @@
 <?php
 
+use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\PermissionStatus;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \PermissionsError
+ * @covers \MediaWiki\Exception\PermissionsError
  */
 class PermissionsErrorTest extends MediaWikiIntegrationTestCase {
 
@@ -35,12 +36,12 @@ class PermissionsErrorTest extends MediaWikiIntegrationTestCase {
 		$e = new PermissionsError( $permission, $errors );
 		$et = TestingAccessWrapper::newFromObject( $e );
 
-		$this->expectDeprecationAndContinue( '/Use of PermissionsError::\\$permission/' );
+		$this->expectDeprecationAndContinue( '/PermissionsError::\\$permission/' );
 		$this->assertEquals( $permission, $e->permission );
 
 		$this->assertStatusMessagesExactly( $expected, $et->status );
 
-		$this->expectDeprecationAndContinue( '/Use of PermissionsError::\\$errors/' );
+		$this->expectDeprecationAndContinue( '/PermissionsError::\\$errors/' );
 		$this->expectDeprecationAndContinue( '/toLegacyErrorArray/' );
 		$this->assertArrayEquals( $expected->toLegacyErrorArray(), $e->errors );
 

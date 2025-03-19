@@ -23,11 +23,14 @@
 
 namespace MediaWiki\SpecialPage;
 
-use ErrorPageError;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Exception\ErrorPageError;
+use MediaWiki\Exception\PermissionsError;
+use MediaWiki\Exception\ReadOnlyError;
+use MediaWiki\Exception\UserNotLoggedIn;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\Language;
@@ -46,11 +49,8 @@ use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
 use MessageLocalizer;
 use MWCryptRand;
-use PermissionsError;
-use ReadOnlyError;
 use SearchEngineFactory;
 use Skin;
-use UserNotLoggedIn;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 

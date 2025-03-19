@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Exception;
+
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Debug\DeprecationHelper;
 use MediaWiki\MediaWikiServices;
@@ -110,3 +112,6 @@ class PermissionsError extends ErrorPageError {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( PermissionsError::class, 'PermissionsError' );

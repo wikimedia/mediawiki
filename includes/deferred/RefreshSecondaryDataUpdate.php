@@ -24,12 +24,12 @@ namespace MediaWiki\Deferred;
 
 use Exception;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
+use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\JobQueue\JobSpecification;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\DerivedPageDataUpdater;
 use MediaWiki\User\UserIdentity;
-use MWExceptionHandler;
 use Wikimedia\Rdbms\ILBFactory;
 
 /**

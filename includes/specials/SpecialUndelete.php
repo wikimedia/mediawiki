@@ -21,7 +21,6 @@
 namespace MediaWiki\Specials;
 
 use ChangeTags;
-use ErrorPageError;
 use MediaWiki\Cache\LinkBatch;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
@@ -29,6 +28,9 @@ use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Context\DerivativeContext;
+use MediaWiki\Exception\ErrorPageError;
+use MediaWiki\Exception\PermissionsError;
+use MediaWiki\Exception\UserBlockedError;
 use MediaWiki\FileRepo\File\ArchivedFile;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\LocalRepo;
@@ -75,9 +77,7 @@ use OOUI\Layout;
 use OOUI\PanelLayout;
 use OOUI\TextInputWidget;
 use OOUI\Widget;
-use PermissionsError;
 use SearchEngineFactory;
-use UserBlockedError;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IResultWrapper;

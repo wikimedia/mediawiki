@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Exception;
+
 /**
  * Abort the web request with a custom HTML string that will represent
  * the entire response.
@@ -53,3 +55,6 @@ class FatalError extends MWException {
 		return $this->getMessage();
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( FatalError::class, 'FatalError' );

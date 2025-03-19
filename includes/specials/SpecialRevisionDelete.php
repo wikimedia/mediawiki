@@ -20,8 +20,10 @@
 
 namespace MediaWiki\Specials;
 
-use ErrorPageError;
 use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\Exception\ErrorPageError;
+use MediaWiki\Exception\PermissionsError;
+use MediaWiki\Exception\UserBlockedError;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Html\Html;
@@ -35,10 +37,8 @@ use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\Xml\Xml;
-use PermissionsError;
 use RevDelList;
 use RevisionDeleter;
-use UserBlockedError;
 
 /**
  * Special page allowing users with the appropriate permissions to view

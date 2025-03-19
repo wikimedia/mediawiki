@@ -4,8 +4,8 @@ namespace MediaWiki\Rest;
 
 use HttpStatus;
 use InvalidArgumentException;
+use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\Language\LanguageCode;
-use MWExceptionHandler;
 use stdClass;
 use Throwable;
 use Wikimedia\Message\ITextFormatter;

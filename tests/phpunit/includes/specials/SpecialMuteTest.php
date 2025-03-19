@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;

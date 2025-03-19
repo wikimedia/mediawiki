@@ -21,6 +21,7 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MediaWikiServices;
@@ -30,7 +31,6 @@ use MediaWiki\User\Options\UserOptionsManager;
 use MediaWiki\User\User;
 use OOUI\FieldLayout;
 use OOUI\SearchInputWidget;
-use PermissionsError;
 use PreferencesFormOOUI;
 
 /**

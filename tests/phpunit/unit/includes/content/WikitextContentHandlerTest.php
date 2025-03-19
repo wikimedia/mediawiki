@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Unit;
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Content\WikitextContentHandler;
+use MediaWiki\Exception\MWException;
 use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
@@ -22,7 +23,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWikiUnitTestCase;
 use MockTitleTrait;
-use MWException;
 use ReflectionClass;
 use Wikimedia\UUID\GlobalIdGenerator;
 

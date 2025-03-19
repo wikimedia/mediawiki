@@ -20,7 +20,7 @@
 
 namespace MediaWiki\FileRepo\File;
 
-use ErrorPageError;
+use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\Status\Status;
 
 /**

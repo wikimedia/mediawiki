@@ -20,8 +20,8 @@
 
 namespace MediaWiki\User;
 
-use CannotCreateActorException;
 use InvalidArgumentException;
+use MediaWiki\Exception\CannotCreateActorException;
 use stdClass;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;

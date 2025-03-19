@@ -18,8 +18,12 @@
  * @file
  */
 
+namespace MediaWiki\Exception;
+
+use Exception;
 use MediaWiki\Message\Message;
 use MediaWiki\Parser\Sanitizer;
+use Throwable;
 use Wikimedia\Message\MessageSpecifier;
 
 /**
@@ -58,3 +62,6 @@ class LocalizedException extends Exception implements ILocalizedException {
 		return Message::newFromSpecifier( $this->messageSpec );
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( LocalizedException::class, 'LocalizedException' );

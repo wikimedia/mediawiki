@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Exception;
+
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -42,3 +44,6 @@ class ReadOnlyError extends ErrorPageError {
 		);
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ReadOnlyError::class, 'ReadOnlyError' );

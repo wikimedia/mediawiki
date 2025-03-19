@@ -28,9 +28,9 @@
 
 namespace MediaWiki\Actions;
 
-use HttpError;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Exception\HttpError;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\Article;

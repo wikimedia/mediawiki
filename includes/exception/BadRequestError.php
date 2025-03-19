@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Exception;
+
 /**
  * An error page that emits an HTTP 400 Bad Request status code.
  *
@@ -38,3 +40,6 @@ class BadRequestError extends ErrorPageError {
 		parent::report( $action );
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( BadRequestError::class, 'BadRequestError' );

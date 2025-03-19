@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\User\UserIdentityValue;

@@ -26,6 +26,7 @@ use LogicException;
 use MediaWiki\Cache\GenderCache;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Exception\UserNotLoggedIn;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\HTMLForm\OOUIHTMLForm;
@@ -46,7 +47,6 @@ use MediaWiki\Title\TitleValue;
 use MediaWiki\Watchlist\WatchedItemStore;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
-use UserNotLoggedIn;
 use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\Parsoid\Core\TOCData;
 
