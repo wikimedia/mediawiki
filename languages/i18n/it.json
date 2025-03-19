@@ -2590,6 +2590,7 @@
 	"block-removal-confirm-no": "Annulla",
 	"block-javascript-required": "Per utilizzare l'interfaccia Special:Block è richiesto JavaScript.",
 	"block-removed": "Il blocco è stato rimosso.",
+	"block-reblock-multi-legacy": "Questo utente è già stato bloccato più volte e non può essere bloccato di nuovo con questo modulo.",
 	"unblockip": "Sblocca utente",
 	"unblockiptext": "Usare il modulo sottostante per restituire l'accesso in scrittura ad un utente o indirizzo IP bloccato.",
 	"ipusubmit": "Rimuovi questo blocco",

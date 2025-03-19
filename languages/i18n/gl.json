@@ -2544,6 +2544,7 @@
 	"block-removal-confirm-no": "Cancelar",
 	"block-javascript-required": "Cómpre JavaScript para utilizar a interface de Special:Block.",
 	"block-removed": "Retirouse o bloqueo.",
+	"block-reblock-multi-legacy": "Este usuario xa está bloqueado varias veces e non se pode volver bloquear con este formulario.",
 	"unblockip": "Desbloquear un usuario",
 	"unblockiptext": "Utiliza o seguinte formulario para dar de novo acceso de escritura a un enderezo IP ou usuario que estea bloqueado.",
 	"unblock-target": "Desbloquear un obxectivo",

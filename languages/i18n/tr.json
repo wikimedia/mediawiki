@@ -2636,6 +2636,7 @@
 	"block-removal-confirm-no": "İptal",
 	"block-javascript-required": "Özel:Engelle arayüzünü kullanmak için JavaScript gereklidir.",
 	"block-removed": "Engelleme kaldırıldı.",
+	"block-reblock-multi-legacy": "Bu kullanıcı daha önce birden fazla kez engellenmiş ve bu formla yeniden engellenemez.",
 	"unblockip": "Kullanıcının engelini kaldır",
 	"unblockiptext": "Daha önceden engellenmiş bir IP adresine ya da kullanıcı adına yazma erişimini geri vermek için aşağıdaki formu kullanın.",
 	"unblock-target": "Hedefin engellemesini kaldır",

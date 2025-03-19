@@ -2518,6 +2518,7 @@
 	"block-removal-confirm-no": "Cancellar",
 	"block-javascript-required": "JavaScript es necessari pro usar le interfacie Special:Block.",
 	"block-removed": "Le blocada ha essite removite.",
+	"block-reblock-multi-legacy": "Iste usator es ja blocate plure vices e non pote esser reblocate con iste formulario.",
 	"unblockip": "Disblocar usator",
 	"unblockiptext": "Usa le formulario infra pro restaurar le accesso de scriptura a un adresse IP o nomine de usator blocate previemente.",
 	"unblock-target": "Disblocar objectivo",

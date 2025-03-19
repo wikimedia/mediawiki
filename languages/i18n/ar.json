@@ -2585,6 +2585,8 @@
 	"ipb-blocklist": "عرض حالات المنع الحالية",
 	"ipb-blocklist-contribs": "مساهمات {{GENDER:$1|$1}}",
 	"ipb-blocklist-duration-left": "يتبقى $1",
+	"block-added-message": "تمت إضافة منع",
+	"block-updated-message": "تم تحديث المنع",
 	"block-actions": "نوع المنع",
 	"block-change-visibility": "تغيير الرؤية",
 	"block-details": "تفاصيل المنع",

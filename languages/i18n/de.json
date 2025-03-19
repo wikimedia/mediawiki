@@ -2636,6 +2636,7 @@
 	"block-removal-confirm-no": "Abbrechen",
 	"block-javascript-required": "Zur Verwendung von „Special:Block“ ist JavaScript erforderlich.",
 	"block-removed": "Die Sperre wurde entfernt.",
+	"block-reblock-multi-legacy": "Dieser Benutzer ist bereits mehrfach gesperrt und kann mit diesem Formular nicht erneut gesperrt werden.",
 	"unblockip": "Benutzer freigeben",
 	"unblockiptext": "Mit diesem Formular kannst du eine IP-Adresse oder einen Benutzer freigeben.",
 	"unblock-target": "Ziel entsperren",

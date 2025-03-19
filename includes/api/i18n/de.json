@@ -1302,7 +1302,7 @@
 	"apihelp-query+userinfo-paramvalue-prop-hasmsg": "Fügt ein Tag <samp>messages</samp> hinzu, wenn der aktuelle Benutzer noch ausstehende Nachrichten hat.",
 	"apihelp-query+userinfo-paramvalue-prop-groups": "Listet alle Gruppen auf, zu denen der aktuelle Benutzer gehört.",
 	"apihelp-query+userinfo-paramvalue-prop-rights": "Listet alle Rechte auf, die der aktuelle Benutzer hat.",
-	"apihelp-query+userinfo-paramvalue-prop-changeablegroups": "Listet die Gruppen auf, denen der aktuelle Benutzer zu Gruppen hinzufügen und aus ihnen entfernen kann.",
+	"apihelp-query+userinfo-paramvalue-prop-changeablegroups": "Listet die Gruppen auf, zu denen der aktuelle Benutzer hinzufügen und aus denen er entfernen kann.",
 	"apihelp-query+userinfo-paramvalue-prop-options": "Listet alle Einstellungen auf, die der aktuelle Benutzer festgelegt hat.",
 	"apihelp-query+userinfo-paramvalue-prop-editcount": "Ergänzt den Bearbeitungszähler des aktuellen Benutzers.",
 	"apihelp-query+userinfo-paramvalue-prop-realname": "Fügt den bürgerlichen Namen des Benutzers hinzu.",
