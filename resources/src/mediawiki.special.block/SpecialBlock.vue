@@ -69,6 +69,7 @@
 			></block-log>
 
 			<div v-if="formVisible" class="mw-block__block-form">
+				<h2>{{ formHeaderText }}</h2>
 				<block-type-field></block-type-field>
 				<expiry-field></expiry-field>
 				<reason-field
@@ -106,7 +107,7 @@
 					class="mw-block-submit"
 					@click="onFormSubmission"
 				>
-					{{ submitButtonMessage }}
+					{{ $i18n( 'block-submit' ).text() }}
 				</cdx-button>
 			</div>
 			<div v-else-if="shouldShowAddBlockButton">
@@ -195,13 +196,13 @@ module.exports = exports = defineComponent( {
 		const blockSavedMessage = ref( '' );
 		// Value to use for BlockLog component keys, so they reload after saving.
 		const submitCount = ref( 0 );
-		const submitButtonMessage = computed( () => {
+		const formHeaderText = computed( () => {
 			if ( ( !store.enableMultiblocks && store.alreadyBlocked ) ||
 				( store.enableMultiblocks && store.blockId )
 			) {
 				return mw.message( 'block-update' ).text();
 			}
-			return mw.message( 'ipbsubmit' ).text();
+			return mw.message( 'block-create' ).text();
 		} );
 
 		const confirmationOpen = ref( false );
@@ -452,8 +453,8 @@ module.exports = exports = defineComponent( {
 			blockRemoved,
 			shouldShowAddBlockButton,
 			submitCount,
-			submitButtonMessage,
 			blockSavedMessage,
+			formHeaderText,
 			enableMultiblocks,
 			blockShowSuppressLog,
 			canDeleteLogEntry,
