@@ -1,11 +1,13 @@
 QUnit.module( 'mediawiki.api', ( hooks ) => {
 	const originalFormData = window.FormData;
+	const originalMwVersion = mw.config.get( 'wgVersion' );
 	hooks.beforeEach( function () {
 		this.server = this.sandbox.useFakeServer();
 		this.server.respondImmediately = true;
 	} );
 	hooks.afterEach( () => {
 		window.FormData = originalFormData;
+		mw.config.set( 'wgVersion', originalMwVersion );
 	} );
 
 	function sequence( responses ) {
@@ -515,5 +517,15 @@ QUnit.module( 'mediawiki.api', ( hooks ) => {
 
 		await assert.rejects( promise, isAbortError, 'AbortError instead of error code' );
 		await assertErrorCodeEqualsDetails( assert, promise );
+	} );
+
+	QUnit.test( 'User agent', async function ( assert ) {
+		mw.config.set( 'wgVersion', 'VERSION' );
+
+		new mw.Api().get( {} );
+		new mw.Api( { userAgent: 'foo' } ).get( {} );
+
+		assert.strictEqual( this.server.requests[ 0 ].requestHeaders[ 'Api-User-Agent' ], 'MediaWiki-JS/VERSION', 'Default user agent' );
+		assert.strictEqual( this.server.requests[ 1 ].requestHeaders[ 'Api-User-Agent' ], 'foo', 'Custom user agent' );
 	} );
 } );
