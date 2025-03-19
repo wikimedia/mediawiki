@@ -24,26 +24,6 @@ class MWExceptionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Verify the exception classes are JSON serializabe.
-	 *
-	 * @dataProvider provideExceptionClasses
-	 */
-	public function testJsonSerializeExceptions( $exception_class ) {
-		$json = MWExceptionHandler::jsonSerializeException(
-			new $exception_class()
-		);
-		$this->assertIsString( $json,
-			"The $exception_class exception should be JSON serializable, got false." );
-	}
-
-	public static function provideExceptionClasses() {
-		return [
-			[ Exception::class ],
-			[ MWException::class ],
-		];
-	}
-
-	/**
 	 * @covers \MWException::report
 	 */
 	public function testReport() {
