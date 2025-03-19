@@ -18,7 +18,12 @@
  * @file
  */
 
+namespace MediaWiki\JobQueue\Jobs;
+
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\JobQueue\GenericParameterJob;
+use MediaWiki\JobQueue\Job;
+use MediaWiki\JobQueue\JobSpecification;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\EditResult;
@@ -91,3 +96,6 @@ class RevertedTagUpdateJob extends Job implements GenericParameterJob {
 		return true;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( RevertedTagUpdateJob::class, 'RevertedTagUpdateJob' );

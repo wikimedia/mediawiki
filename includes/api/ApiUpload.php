@@ -27,12 +27,14 @@
 
 namespace MediaWiki\Api;
 
-use AssembleUploadChunksJob;
 use ChangeTags;
 use Exception;
-use JobQueueGroup;
 use MediaWiki\Config\Config;
 use MediaWiki\FileRepo\File\LocalFile;
+use MediaWiki\JobQueue\JobQueueGroup;
+use MediaWiki\JobQueue\Jobs\AssembleUploadChunksJob;
+use MediaWiki\JobQueue\Jobs\PublishStashedFileJob;
+use MediaWiki\JobQueue\Jobs\UploadFromUrlJob;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -42,14 +44,12 @@ use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\Watchlist\WatchlistManager;
 use Psr\Log\LoggerInterface;
-use PublishStashedFileJob;
 use StatusValue;
 use UploadBase;
 use UploadFromChunks;
 use UploadFromFile;
 use UploadFromStash;
 use UploadFromUrl;
-use UploadFromUrlJob;
 use UploadStashBadPathException;
 use UploadStashException;
 use UploadStashFileException;

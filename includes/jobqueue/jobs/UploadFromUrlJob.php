@@ -18,7 +18,13 @@
  * @file
  */
 
+namespace MediaWiki\JobQueue\Jobs;
+
+use MediaWiki\JobQueue\GenericParameterJob;
+use MediaWiki\JobQueue\Job;
 use MediaWiki\Status\Status;
+use UploadBase;
+use UploadFromUrl;
 
 /**
  * Upload a file by URL, via the jobqueue.
@@ -80,3 +86,6 @@ class UploadFromUrlJob extends Job implements GenericParameterJob {
 	}
 
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( UploadFromUrlJob::class, 'UploadFromUrlJob' );

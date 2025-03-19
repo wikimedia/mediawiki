@@ -25,6 +25,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\JobQueue\Jobs\DoubleRedirectJob;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Title\Title;
 

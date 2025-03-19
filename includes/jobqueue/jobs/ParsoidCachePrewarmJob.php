@@ -18,6 +18,10 @@
  * @file
  */
 
+namespace MediaWiki\JobQueue\Jobs;
+
+use MediaWiki\JobQueue\Job;
+use MediaWiki\JobQueue\JobSpecification;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Page\PageLookup;
 use MediaWiki\Page\PageRecord;
@@ -164,3 +168,6 @@ class ParsoidCachePrewarmJob extends Job {
 		return true;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ParsoidCachePrewarmJob::class, 'ParsoidCachePrewarmJob' );

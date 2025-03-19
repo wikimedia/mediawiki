@@ -17,6 +17,9 @@
  *
  * @file
  */
+
+namespace MediaWiki\JobQueue\Utils;
+
 use MediaWiki\Deferred\AutoCommitUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MainConfigNames;
@@ -86,3 +89,6 @@ class PurgeJobUtils {
 		) );
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( PurgeJobUtils::class, 'PurgeJobUtils' );

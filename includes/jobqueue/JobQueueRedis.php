@@ -18,9 +18,19 @@
  * @file
  */
 
+namespace MediaWiki\JobQueue;
+
+use InvalidArgumentException;
+use LogicException;
+use MappedIterator;
+use MediaWiki\JobQueue\Exceptions\JobQueueConnectionError;
+use MediaWiki\JobQueue\Exceptions\JobQueueError;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\WikiMap\WikiMap;
 use Psr\Log\LoggerInterface;
+use Redis;
+use RedisException;
+use UnexpectedValueException;
 use Wikimedia\ObjectCache\RedisConnectionPool;
 use Wikimedia\ObjectCache\RedisConnRef;
 
@@ -517,7 +527,7 @@ LUA;
 
 	/**
 	 * @see JobQueue::getAllQueuedJobs()
-	 * @return Iterator<RunnableJob>
+	 * @return \Iterator<RunnableJob>
 	 * @throws JobQueueError
 	 */
 	public function getAllQueuedJobs() {
@@ -533,7 +543,7 @@ LUA;
 
 	/**
 	 * @see JobQueue::getAllDelayedJobs()
-	 * @return Iterator<RunnableJob>
+	 * @return \Iterator<RunnableJob>
 	 * @throws JobQueueError
 	 */
 	public function getAllDelayedJobs() {
@@ -549,7 +559,7 @@ LUA;
 
 	/**
 	 * @see JobQueue::getAllAcquiredJobs()
-	 * @return Iterator<RunnableJob>
+	 * @return \Iterator<RunnableJob>
 	 * @throws JobQueueError
 	 */
 	public function getAllAcquiredJobs() {
@@ -565,7 +575,7 @@ LUA;
 
 	/**
 	 * @see JobQueue::getAllAbandonedJobs()
-	 * @return Iterator<RunnableJob>
+	 * @return \Iterator<RunnableJob>
 	 * @throws JobQueueError
 	 */
 	public function getAllAbandonedJobs() {
@@ -698,7 +708,7 @@ LUA;
 			// Additional job metadata
 			'uuid' => $this->idGenerator->newRawUUIDv4(),
 			'sha1' => $job->ignoreDuplicates()
-				? Wikimedia\base_convert( sha1( serialize( $job->getDeduplicationInfo() ) ), 16, 36, 31 )
+				? \Wikimedia\base_convert( sha1( serialize( $job->getDeduplicationInfo() ) ), 16, 36, 31 )
 				: '',
 			'timestamp' => time() // UNIX timestamp
 		];
@@ -828,3 +838,6 @@ LUA;
 		return implode( ':', array_map( 'rawurlencode', $parts ) );
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( JobQueueRedis::class, 'JobQueueRedis' );

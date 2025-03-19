@@ -18,6 +18,10 @@
  * @file
  */
 
+namespace MediaWiki\JobQueue\Jobs;
+
+use MediaWiki\JobQueue\GenericParameterJob;
+use MediaWiki\JobQueue\Job;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -76,3 +80,6 @@ class NullJob extends Job implements GenericParameterJob {
 		return true;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( NullJob::class, 'NullJob' );

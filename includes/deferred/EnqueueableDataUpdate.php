@@ -15,7 +15,7 @@ namespace MediaWiki\Deferred;
 interface EnqueueableDataUpdate {
 	/**
 	 * @return array (domain => DB domain ID, job => IJobSpecification)
-	 * @phan-return array{domain: string, job: \IJobSpecification}
+	 * @phan-return array{domain: string, job: \MediaWiki\JobQueue\IJobSpecification}
 	 */
 	public function getAsJobSpecification();
 }

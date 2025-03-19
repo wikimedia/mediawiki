@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Storage;
 
-use JobQueueGroup;
+use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\EditResultCache;
 use MediaWiki\Storage\RevertedTagUpdateManager;

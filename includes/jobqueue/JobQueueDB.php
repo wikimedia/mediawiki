@@ -17,7 +17,16 @@
  *
  * @file
  */
+
+namespace MediaWiki\JobQueue;
+
+use MappedIterator;
+use MediaWiki\JobQueue\Exceptions\JobQueueConnectionError;
+use MediaWiki\JobQueue\Exceptions\JobQueueError;
 use MediaWiki\MediaWikiServices;
+use Profiler;
+use stdClass;
+use UnexpectedValueException;
 use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\IDatabase;
@@ -206,7 +215,7 @@ class JobQueueDB extends JobQueue {
 	 * @see JobQueue::doBatchPush()
 	 * @param IJobSpecification[] $jobs
 	 * @param int $flags
-	 * @throws DBError|Exception
+	 * @throws DBError|\Exception
 	 * @return void
 	 */
 	protected function doBatchPush( array $jobs, $flags ) {
@@ -595,7 +604,7 @@ class JobQueueDB extends JobQueue {
 
 	/**
 	 * @see JobQueue::getAllQueuedJobs()
-	 * @return Iterator<RunnableJob>
+	 * @return \Iterator<RunnableJob>
 	 */
 	public function getAllQueuedJobs() {
 		return $this->getJobIterator( [ 'job_cmd' => $this->getType(), 'job_token' => '' ] );
@@ -603,7 +612,7 @@ class JobQueueDB extends JobQueue {
 
 	/**
 	 * @see JobQueue::getAllAcquiredJobs()
-	 * @return Iterator<RunnableJob>
+	 * @return \Iterator<RunnableJob>
 	 */
 	public function getAllAcquiredJobs() {
 		$dbr = $this->getReplicaDB();
@@ -612,7 +621,7 @@ class JobQueueDB extends JobQueue {
 
 	/**
 	 * @see JobQueue::getAllAbandonedJobs()
-	 * @return Iterator<RunnableJob>
+	 * @return \Iterator<RunnableJob>
 	 */
 	public function getAllAbandonedJobs() {
 		$dbr = $this->getReplicaDB();
@@ -625,7 +634,7 @@ class JobQueueDB extends JobQueue {
 
 	/**
 	 * @param array $conds Query conditions
-	 * @return Iterator<RunnableJob>
+	 * @return \Iterator<RunnableJob>
 	 */
 	protected function getJobIterator( array $conds ) {
 		$dbr = $this->getReplicaDB();
@@ -809,7 +818,7 @@ class JobQueueDB extends JobQueue {
 			'job_params' => self::makeBlob( $job->getParams() ),
 			// Additional job metadata
 			'job_timestamp' => $db->timestamp(),
-			'job_sha1' => Wikimedia\base_convert(
+			'job_sha1' => \Wikimedia\base_convert(
 				sha1( serialize( $job->getDeduplicationInfo() ) ),
 				16, 36, 31
 			),
@@ -960,3 +969,6 @@ class JobQueueDB extends JobQueue {
 		];
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( JobQueueDB::class, 'JobQueueDB' );

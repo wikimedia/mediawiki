@@ -3,7 +3,7 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use MediaWiki\Http\Telemetry;
-use NullJob;
+use MediaWiki\JobQueue\Jobs\NullJob;
 use ShowJobs;
 
 /**

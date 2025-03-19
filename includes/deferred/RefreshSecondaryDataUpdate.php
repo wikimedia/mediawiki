@@ -23,8 +23,8 @@
 namespace MediaWiki\Deferred;
 
 use Exception;
-use JobSpecification;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
+use MediaWiki\JobQueue\JobSpecification;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\DerivedPageDataUpdater;

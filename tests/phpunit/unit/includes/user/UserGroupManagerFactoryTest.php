@@ -3,7 +3,7 @@
 namespace MediaWiki\Tests\User;
 
 use FactoryArgTestTrait;
-use JobQueueGroup;
+use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\JobQueue\JobQueueGroupFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;

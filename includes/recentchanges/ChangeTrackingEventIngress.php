@@ -2,13 +2,14 @@
 
 namespace MediaWiki\RecentChanges;
 
-use JobQueueGroup;
 use LogicException;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Config\Config;
 use MediaWiki\DomainEvent\EventIngressBase;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\JobQueue\JobQueueGroup;
+use MediaWiki\JobQueue\Jobs\RevertedTagUpdateJob;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Page\Event\PageRevisionUpdatedListener;
@@ -21,7 +22,6 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
-use RevertedTagUpdateJob;
 
 /**
  * The ingress subscriber for the change tracking component. It updates change

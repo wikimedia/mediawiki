@@ -3,9 +3,9 @@
 namespace MediaWiki\User;
 
 use InvalidArgumentException;
-use JobQueueGroup;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\UserEditCountUpdate;
+use MediaWiki\JobQueue\JobQueueGroup;
 use UserEditCountInitJob;
 use Wikimedia\Rdbms\DBAccessObjectUtils;
 use Wikimedia\Rdbms\IConnectionProvider;

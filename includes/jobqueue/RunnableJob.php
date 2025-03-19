@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\JobQueue;
+
 /**
  * Job that has a run() method and metadata accessors for JobQueue::pop() and JobQueue::ack().
  *
@@ -121,3 +123,6 @@ interface RunnableJob extends IJobSpecification {
 	 */
 	public function toString();
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( RunnableJob::class, 'RunnableJob' );

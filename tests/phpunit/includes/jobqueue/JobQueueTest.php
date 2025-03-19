@@ -1,5 +1,10 @@
 <?php
 
+use MediaWiki\JobQueue\Job;
+use MediaWiki\JobQueue\JobQueue;
+use MediaWiki\JobQueue\JobQueueDB;
+use MediaWiki\JobQueue\Jobs\DuplicateJob;
+use MediaWiki\JobQueue\Jobs\NullJob;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\ObjectCache\HashBagOStuff;
@@ -9,7 +14,7 @@ use Wikimedia\ObjectCache\WANObjectCache;
  * @group JobQueue
  * @group medium
  * @group Database
- * @covers \JobQueue
+ * @covers \MediaWiki\JobQueue\JobQueue
  */
 class JobQueueTest extends MediaWikiIntegrationTestCase {
 	protected ?JobQueue $queueRand;

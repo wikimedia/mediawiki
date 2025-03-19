@@ -3,11 +3,11 @@
 namespace MediaWiki\Deferred\LinksUpdate;
 
 use MediaWiki\DAO\WikiAwareEntity;
+use MediaWiki\JobQueue\Utils\PurgeJobUtils;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputLinkTypes;
 use MediaWiki\Title\Title;
-use PurgeJobUtils;
 
 /**
  * imagelinks

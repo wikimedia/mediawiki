@@ -23,10 +23,10 @@
 namespace MediaWiki\Deferred\LinksUpdate;
 
 use InvalidArgumentException;
-use JobSpecification;
 use MediaWiki\Category\Category;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\EnqueueableDataUpdate;
+use MediaWiki\JobQueue\JobSpecification;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;

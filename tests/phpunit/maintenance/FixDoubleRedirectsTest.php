@@ -7,7 +7,7 @@ use MediaWiki\Title\Title;
 
 /**
  * @covers \FixDoubleRedirects
- * @covers \DoubleRedirectJob
+ * @covers \MediaWiki\JobQueue\Jobs\DoubleRedirectJob
  * @group Database
  * @author Dreamy Jazz
  */

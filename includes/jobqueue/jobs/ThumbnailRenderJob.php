@@ -18,6 +18,12 @@
  * @file
  */
 
+namespace MediaWiki\JobQueue\Jobs;
+
+use MediaTransformError;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\File\LocalFile;
+use MediaWiki\JobQueue\Job;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
@@ -178,3 +184,6 @@ class ThumbnailRenderJob extends Job {
 		return false;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ThumbnailRenderJob::class, 'ThumbnailRenderJob' );

@@ -18,6 +18,9 @@
  * @file
  */
 
+namespace MediaWiki\JobQueue;
+
+use InvalidArgumentException;
 use MediaWiki\Http\Telemetry;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MediaWikiServices;
@@ -440,3 +443,6 @@ abstract class Job implements RunnableJob {
 		return $this->error;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( Job::class, 'Job' );

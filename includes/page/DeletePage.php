@@ -4,9 +4,7 @@ namespace MediaWiki\Page;
 
 use BadMethodCallException;
 use ChangeTags;
-use DeletePageJob;
 use Exception;
-use JobQueueGroup;
 use LogicException;
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\CommentStore\CommentStore;
@@ -20,6 +18,8 @@ use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\DomainEvent\DomainEventDispatcher;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\JobQueue\JobQueueGroup;
+use MediaWiki\JobQueue\Jobs\DeletePageJob;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;

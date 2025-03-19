@@ -22,8 +22,6 @@ namespace MediaWiki;
 
 use ExternalStoreAccess;
 use ExternalStoreFactory;
-use JobQueueGroup;
-use JobRunner;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LocalisationCache;
 use LogicException;
@@ -83,7 +81,9 @@ use MediaWiki\Installer\Pingback;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Interwiki\NullInterwikiLookup;
 use MediaWiki\JobQueue\JobFactory;
+use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\JobQueue\JobQueueGroupFactory;
+use MediaWiki\JobQueue\JobRunner;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Language\Language;

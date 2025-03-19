@@ -24,7 +24,6 @@ use BitmapHandler;
 use ChangeTags;
 use ErrorPageError;
 use ImageGalleryBase;
-use JobQueueGroup;
 use MediaWiki\Config\Config;
 use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\FileRepo\LocalRepo;
@@ -32,6 +31,8 @@ use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\JobQueue\JobQueueGroup;
+use MediaWiki\JobQueue\Jobs\UploadFromUrlJob;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logging\LogEventsList;
 use MediaWiki\MainConfigNames;
@@ -881,7 +882,7 @@ class SpecialUpload extends SpecialPage {
 		[ $pageText, $changeTags ] = $pageAndTags;
 
 		// Create a new job to process the upload from url
-		$job = new \UploadFromUrlJob(
+		$job = new UploadFromUrlJob(
 			[
 				'filename' => $this->mUpload->getDesiredDestName(),
 				'url' => $this->mUpload->getUrl(),

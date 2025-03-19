@@ -1,5 +1,9 @@
 <?php
 
+namespace MediaWiki\JobQueue\Jobs;
+
+use MediaWiki\JobQueue\GenericParameterJob;
+use MediaWiki\JobQueue\Job;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\DeletePage;
 use MediaWiki\Title\Title;
@@ -44,3 +48,6 @@ class DeletePageJob extends Job implements GenericParameterJob {
 		return true;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( DeletePageJob::class, 'DeletePageJob' );

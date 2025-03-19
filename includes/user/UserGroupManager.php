@@ -21,12 +21,12 @@
 namespace MediaWiki\User;
 
 use InvalidArgumentException;
-use JobQueueGroup;
 use LogicException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\Sanitizer;

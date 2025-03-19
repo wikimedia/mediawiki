@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\JobQueue\Exceptions;
+
 /**
  * @newable
  * @since 1.22
@@ -25,3 +27,6 @@
  */
 class JobQueueConnectionError extends JobQueueError {
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( JobQueueConnectionError::class, 'JobQueueConnectionError' );

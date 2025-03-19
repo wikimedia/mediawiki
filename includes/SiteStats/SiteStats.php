@@ -22,7 +22,7 @@
 
 namespace MediaWiki\SiteStats;
 
-use JobQueueError;
+use MediaWiki\JobQueue\Exceptions\JobQueueError;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use stdClass;

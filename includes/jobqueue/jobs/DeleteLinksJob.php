@@ -18,8 +18,11 @@
  * @file
  */
 
+namespace MediaWiki\JobQueue\Jobs;
+
 use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
+use MediaWiki\JobQueue\Job;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IDBAccessObject;
@@ -72,3 +75,6 @@ class DeleteLinksJob extends Job {
 		return true;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( DeleteLinksJob::class, 'DeleteLinksJob' );

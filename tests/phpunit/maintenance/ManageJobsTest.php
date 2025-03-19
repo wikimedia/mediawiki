@@ -3,7 +3,7 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use ManageJobs;
-use NullJob;
+use MediaWiki\JobQueue\Jobs\NullJob;
 
 /**
  * @covers \ManageJobs

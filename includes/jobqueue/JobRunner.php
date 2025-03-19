@@ -18,13 +18,20 @@
  * @file
  */
 
+namespace MediaWiki\JobQueue;
+
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use LogicException;
 use MediaWiki\Cache\LinkCache;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Http\Telemetry;
+use MediaWiki\JobQueue\Exceptions\JobQueueError;
+use MediaWiki\JobQueue\Jobs\DuplicateJob;
 use MediaWiki\MainConfigNames;
+use MWExceptionHandler;
 use Psr\Log\LoggerInterface;
+use Throwable;
 use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Rdbms\DBReadOnlyError;
 use Wikimedia\Rdbms\ILBFactory;
@@ -613,3 +620,6 @@ class JobRunner {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( JobRunner::class, 'JobRunner' );

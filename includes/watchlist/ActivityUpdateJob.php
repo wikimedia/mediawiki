@@ -21,7 +21,7 @@
 namespace MediaWiki\Watchlist;
 
 use InvalidArgumentException;
-use Job;
+use MediaWiki\JobQueue\Job;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;

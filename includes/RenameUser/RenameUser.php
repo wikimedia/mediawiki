@@ -2,11 +2,11 @@
 
 namespace MediaWiki\RenameUser;
 
-use JobSpecification;
 use LogicException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\JobQueue\JobQueueGroupFactory;
+use MediaWiki\JobQueue\JobSpecification;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\MovePageFactory;

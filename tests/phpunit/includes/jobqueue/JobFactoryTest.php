@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\JobQueue\JobFactory;
+use MediaWiki\JobQueue\Jobs\NullJob;
+use MediaWiki\JobQueue\Jobs\ParsoidCachePrewarmJob;
 use MediaWiki\Title\Title;
 
 /**

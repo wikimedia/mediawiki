@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\JobQueue\Jobs\RefreshLinksJob;
+use MediaWiki\JobQueue\Utils\BacklinkJobUtils;
 use MediaWiki\Title\Title;
 
 /**
@@ -11,7 +13,7 @@ class RefreshLinksPartitionTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideBacklinks
-	 * @covers \BacklinkJobUtils
+	 * @covers \MediaWiki\JobQueue\Utils\BacklinkJobUtils
 	 */
 	public function testRefreshLinks( $ns, $dbKey, $pages ) {
 		$title = Title::makeTitle( $ns, $dbKey );

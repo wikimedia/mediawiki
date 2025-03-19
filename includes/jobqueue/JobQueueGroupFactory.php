@@ -20,7 +20,6 @@
 
 namespace MediaWiki\JobQueue;
 
-use JobQueueGroup;
 use LogicException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;

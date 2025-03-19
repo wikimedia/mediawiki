@@ -2,7 +2,7 @@
 
 namespace MediaWiki\RenameUser\Job;
 
-use Job;
+use MediaWiki\JobQueue\Job;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\RenameUser\RenameUserFactory;
 use MediaWiki\Title\Title;

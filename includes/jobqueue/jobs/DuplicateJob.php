@@ -18,6 +18,12 @@
  * @file
  */
 
+namespace MediaWiki\JobQueue\Jobs;
+
+use MediaWiki\JobQueue\GenericParameterJob;
+use MediaWiki\JobQueue\Job;
+use MediaWiki\JobQueue\RunnableJob;
+
 /**
  * No-op job that does nothing.
  *
@@ -56,3 +62,6 @@ final class DuplicateJob extends Job implements GenericParameterJob {
 		return true;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( DuplicateJob::class, 'DuplicateJob' );

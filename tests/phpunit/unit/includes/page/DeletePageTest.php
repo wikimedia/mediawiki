@@ -4,10 +4,10 @@ namespace MediaWiki\Tests\Unit\Page;
 
 use BadMethodCallException;
 use Generator;
-use JobQueueGroup;
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\DeletePage;

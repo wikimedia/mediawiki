@@ -23,12 +23,13 @@
 namespace MediaWiki\Deferred\LinksUpdate;
 
 use InvalidArgumentException;
-use Job;
 use MediaWiki\Cache\BacklinkCache;
 use MediaWiki\Deferred\AutoCommitUpdate;
 use MediaWiki\Deferred\DataUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\JobQueue\Job;
+use MediaWiki\JobQueue\Jobs\RefreshLinksJob;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -39,7 +40,6 @@ use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
-use RefreshLinksJob;
 use RuntimeException;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;

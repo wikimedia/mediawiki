@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
+use MediaWiki\JobQueue\Jobs\NullJob;
 use MediaWiki\Json\FormatJson;
-use NullJob;
 use RunJobs;
 
 /**
