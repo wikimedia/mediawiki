@@ -105,4 +105,29 @@ describe( 'BlockLog', () => {
 		expect( rows ).toHaveLength( 1 );
 		expect( rows[ 0 ].find( 'ul' ).text() ).toContain( 'blocklist-editing blocklist-editing-page Foobar' );
 	} );
+
+	it( 'should show relative expiries where appropriate', async () => {
+		mockMwConfigGet( { blockTargetUser: 'BlockedALot' } );
+		const wrapper = mount( BlockLog, {
+			propsData: { blockLogType: 'recent' },
+			global: { plugins: [ createTestingPinia( { stubActions: false } ) ] }
+		} );
+		await flushPromises();
+		// First expiry (5 years)
+		expect( wrapper.find(
+			'.mw-block-log__type-recent tr:first-child .mw-block-log__parameters li:first-child'
+		).text() ).toStrictEqual( '5 years' );
+		// Second is an unblock event, so no expiry
+		expect(
+			wrapper.find( '.mw-block-log__type-recent tr:nth-child(2) .mw-block-log__parameters' ).text()
+		).toStrictEqual( '' );
+		// Third row is an indefinite block
+		expect( wrapper.find(
+			'.mw-block-log__type-recent tr:nth-child(3) .mw-block-log__parameters li:first-child'
+		).text() ).toStrictEqual( 'infinite' );
+		// Fourth is a block entered with an exact datetime, and so should not show a relative expiry.
+		expect( wrapper.find(
+			'.mw-block-log__type-recent tr:nth-child(4) .mw-block-log__parameters li:first-child'
+		).text() ).toStrictEqual( 'Sep 20, 2029, 14:31 UTC' );
+	} );
 } );

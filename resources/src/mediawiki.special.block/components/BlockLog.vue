@@ -276,6 +276,20 @@ module.exports = exports = defineComponent( {
 		const shouldBlockFlagBeVisible = ( param ) => !( param === 'noautoblock' && mw.util.isIPAddress( targetUser.value, true ) );
 
 		/**
+		 * Get the duration to be displayed from the block parameters.
+		 *
+		 * @param {Object} params
+		 * @return {string}
+		 * @private
+		 */
+		function getDurationFromParams( params ) {
+			if ( Date.parse( params.duration ) ) {
+				return util.formatTimestamp( params.duration );
+			}
+			return params[ 'duration-l10n' ];
+		}
+
+		/**
 		 * Construct the data object needed for a template row, from a logentry API response.
 		 *
 		 * @param {Object[]} logevents
@@ -287,7 +301,7 @@ module.exports = exports = defineComponent( {
 				logid: logevent.logid,
 				action: logevent.action,
 				expiry: logevent.params.expiry,
-				duration: logevent.params[ 'duration-l10n' ],
+				duration: getDurationFromParams( logevent.params ),
 				blockedby: logevent.user,
 				flags: logevent.params.flags,
 				restrictions: logevent.params.restrictions,
@@ -327,7 +341,7 @@ module.exports = exports = defineComponent( {
 								target: block.user,
 								partial: block.partial,
 								expiry: block.expiry,
-								duration: block[ 'duration-l10n' ],
+								duration: getDurationFromParams( block ),
 								blockedby: block.by,
 								flags: [
 									block.anononly ? 'anononly' : null,
