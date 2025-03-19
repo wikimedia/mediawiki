@@ -46,7 +46,7 @@ abstract class PageStateEvent extends DomainEvent {
 	 *      corrupted data. Can be triggered by a user action such as a null
 	 *      edit, or by a maintenance script.
 	 */
-	public const FLAG_RECONCILIATION_REQUEST = 'reconciliation';
+	public const FLAG_RECONCILIATION_REQUEST = 'reconciliation_request';
 
 	private string $cause;
 	private ProperPageIdentity $page;
@@ -76,7 +76,7 @@ abstract class PageStateEvent extends DomainEvent {
 	) {
 		parent::__construct(
 			$timestamp,
-			$flags[ self::FLAG_RECONCILIATION_REQUEST ] ?? false
+			$flags[self::FLAG_RECONCILIATION_REQUEST] ?? false
 		);
 
 		$this->declareEventType( self::TYPE );
