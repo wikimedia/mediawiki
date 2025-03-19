@@ -1047,6 +1047,11 @@ abstract class Maintenance {
 	 * @author Rob Church <robchur@gmail.com>
 	 */
 	public function purgeRedundantText( $delete = true ) {
+		if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
+			// Don't even try to run this on large wikis where it will hang ...
+			$this->output( "Not trying to purge text records on miser-mode wiki.\n" );
+			return;
+		}
 		# Data should come off the master, wrapped in a transaction
 		$dbw = $this->getPrimaryDB();
 		$this->beginTransaction( $dbw, __METHOD__ );
