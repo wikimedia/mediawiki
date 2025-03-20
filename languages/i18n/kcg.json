@@ -728,7 +728,7 @@
 	"mergehistory-go": "Tyaat njhyuk nang á̱ maai mun a̱ni",
 	"mergehistory-submit": "Mun nkhwifeang",
 	"mergehistory-empty": "Á̱ si̱ mi̱n mun ku nkhwifeang bah.",
-	"mergehistory-done": "Á̱ {{PLURAL:$4|ka̱n}} mun {{PLURAL:$4|khwifeang $4 si̱|nkhwifeang $4 á̱si̱}} $1 mami [[:$2]].\n$3.",
+	"mergehistory-done": "Á̱ {{PLURAL:$4|ku}} mun {{PLURAL:$4|nwuan-a̱ka̱feang|nnwuan-a̱ka̱feang}} $4 si̱ $1 ma̱ng [[:$2]].\n$3",
 	"mergehistory-fail": "Á̱ fwan di̱ mun nkhang na. Ma̱sa̱kut bu nwuan a̱gi̱gak wat ma̱ng jen ba a li.",
 	"mergehistory-fail-invalid-source": "Wat a̱tyin hu yet a̱kace hwa.",
 	"mergehistory-fail-invalid-dest": "Wat a̱vwuoncong hu yet a̱kace hwa.",

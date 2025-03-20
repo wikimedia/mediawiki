@@ -290,6 +290,7 @@
 	"showtoc": "күрсәтү",
 	"hidetoc": "яшерү",
 	"collapsible-collapse": "Төрү",
+	"collapsible-collapse-all-text": "Барысын да төр",
 	"collapsible-expand": "Киңәйтү",
 	"confirmable-confirm": "{{GENDER:$1|Сез}} ышанасызмы?",
 	"confirmable-yes": "Әйе",
