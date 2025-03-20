@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Html;
 
+use Exception;
 use FileContentsHasher;
 use LightnCandy\LightnCandy;
 use MediaWiki\MainConfigNames;
@@ -208,7 +209,7 @@ class TemplateParser {
 	 *
 	 * @param string $templateName The name of the template
 	 * @return array An associative array containing the PHP code and metadata about its compilation
-	 * @throws \Exception Thrown by LightnCandy if it could not compile the Mustache code
+	 * @throws Exception Thrown by LightnCandy if it could not compile the Mustache code
 	 * @throws RuntimeException If LightnCandy could not compile the Mustache code but did not throw
 	 *  an exception. This exception is indicative of a bug in LightnCandy
 	 * @suppress PhanTypeMismatchArgument
