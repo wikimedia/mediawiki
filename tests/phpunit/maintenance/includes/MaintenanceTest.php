@@ -6,6 +6,7 @@ use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Deferred\AtomicSectionUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Tests\Maintenance\MaintenanceBaseTestCase;
@@ -683,6 +684,12 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 		// Regression test for the method breaking if no rows exist in the content_address table.
 		$this->maintenance->purgeRedundantText();
 		$this->expectOutputRegex( '/0 inactive items found[\s\S]*(?!Deleting)/' );
+	}
+
+	public function testPurgeRedundantTextWhenMiserMode() {
+		$this->overrideConfigValue( MainConfigNames::MiserMode, true );
+		$this->maintenance->purgeRedundantText();
+		$this->expectOutputString( "Not trying to purge text records on miser-mode wiki.\n" );
 	}
 
 	public function testDeleteOptionLoop() {
