@@ -225,6 +225,10 @@ class BlockUser {
 
 		// Process block target
 		if ( $blockToUpdate !== null ) {
+			if ( $blockToUpdate->getType() === AbstractBlock::TYPE_AUTO ) {
+				// Caller must check this
+				throw new \InvalidArgumentException( "Can't update an autoblock" );
+			}
 			$this->blockToUpdate = $blockToUpdate;
 			$this->target = $blockToUpdate->getTarget();
 		} elseif ( $target instanceof BlockTarget ) {
