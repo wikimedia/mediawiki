@@ -11,14 +11,6 @@
 	// eslint-disable-next-line no-underscore-dangle
 	$.fx.speeds._default = 0;
 
-	// Add a checkbox to QUnit header to toggle MediaWiki ResourceLoader debug mode.
-	QUnit.config.urlConfig.push( {
-		id: 'debug',
-		label: 'Enable ResourceLoaderDebug',
-		tooltip: 'Enable debug mode in ResourceLoader',
-		value: 'true'
-	} );
-
 	// Integrate SinonJS with QUnit
 	//
 	// - Add a Sinon sandbox to the test context that is automatically
