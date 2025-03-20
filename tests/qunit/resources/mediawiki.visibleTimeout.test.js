@@ -32,7 +32,7 @@ QUnit.module( 'mediawiki.visibleTimeout', QUnit.newMwEnvironment( {
 
 		this.sandbox.useFakeTimers();
 		// mw.now() doesn't respect the fake clock injected by useFakeTimers
-		this.stub( mw, 'now', ( () => this.sandbox.clock.now ) );
+		this.stub( mw, 'now', () => this.sandbox.clock.now );
 	},
 	afterEach: function () {
 		// Restore

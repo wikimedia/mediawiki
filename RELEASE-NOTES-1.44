@@ -143,6 +143,7 @@ For notes on 1.43.x and older releases, see HISTORY.
 ===== New development-only external libraries =====
 
 * Updated QUnit from 2.20.0 to 2.24.1.
+* Updated Sinon from 1.17.1 to 18.0.1.
 
 ==== Changed external libraries ====
 

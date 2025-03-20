@@ -432,10 +432,12 @@ sinonjs:
   license: BSD-3-Clause
   homepage: https://sinonjs.org/
   authors: Christian Johansen and other contributors
-  version: 1.17.7
+  version: 18.0.1
   type: file
-  src: https://sinonjs.org/releases/sinon-1.17.7.js
-  integrity: sha384-wR63Jwy75KqwBfzCmXd6gYws6uj3qV/XMAybzXrkEYGYG3AQ58ZWwr1fVpkHa5e8
+  # Avoid the version at https://sinonjs.org/releases/,
+  # as it contains a huge inline source map
+  src: https://unpkg.com/sinon@18.0.1/pkg/sinon-no-sourcemaps.cjs
+  integrity: sha384-jx7JQ8andegP9KcpOdNfOJlARMaUaUGtHLHURZEpUWJSCkdlnp1bzr7De/O3XM60
   dest: sinon.js
 
 swagger-ui:
