@@ -121,6 +121,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 							title: 'User:ExampleUser',
 							params: {
 								duration: '1 year',
+								'duration-l10n': '1 year',
 								flags: [
 									'noautoblock'
 								],
@@ -152,6 +153,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 							title: 'User:ActiveBlockedUser',
 							params: {
 								duration: '100 years',
+								'duration-l10n': '100 years',
 								flags: [
 									'noautoblock'
 								],
@@ -170,6 +172,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 							user: 'ActiveBlockedUser',
 							timestamp: '2024-09-17T14:30:51Z',
 							expiry: '2124-09-17T14:30:51Z',
+							'duration-l10n': '100 years',
 							by: 'Admin',
 							anononly: false,
 							nocreate: false,
@@ -186,6 +189,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 							user: 'ActiveBlockedUser',
 							timestamp: '2024-09-17T14:30:51Z',
 							expiry: '2029-09-17T14:30:51Z',
+							'duration-l10n': '5 years',
 							by: 'Admin',
 							anononly: false,
 							nocreate: false,
@@ -202,6 +206,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 							user: 'ActiveBlockedUser',
 							timestamp: '2024-09-17T14:30:51Z',
 							expiry: '2029-09-17T14:30:51Z',
+							'duration-l10n': '5 years',
 							by: 'Admin',
 							anononly: false,
 							nocreate: false,
@@ -243,11 +248,13 @@ function mockMwApiGet( additionalMocks = [] ) {
 				},
 				query: {
 					logevents: [
+						// 5-year block
 						{
 							logid: 980,
 							title: 'User:BlockedALot',
 							params: {
-								duration: '1 year',
+								duration: '5 years',
+								'duration-l10n': '5 years',
 								flags: [
 									'noautoblock'
 								],
@@ -255,31 +262,29 @@ function mockMwApiGet( additionalMocks = [] ) {
 								expiry: '2029-09-17T14:30:51Z'
 							},
 							type: 'block',
+							action: 'block',
 							user: 'Admin',
 							timestamp: '2024-09-17T14:30:51Z',
 							parsedcomment: 'A reason'
 						},
+						// Unblock event
 						{
 							logid: 981,
 							title: 'User:BlockedALot',
-							params: {
-								duration: '1 year',
-								flags: [
-									'noautoblock'
-								],
-								sitewide: true,
-								expiry: '2029-09-18T14:30:51Z'
-							},
+							params: { blockId: 999 },
 							type: 'block',
+							action: 'unblock',
 							user: 'Admin',
 							timestamp: '2024-09-18T14:30:51Z',
 							parsedcomment: 'A reason'
 						},
+						// Indefinite block
 						{
 							logid: 982,
 							title: 'User:BlockedALot',
 							params: {
-								duration: '1 year',
+								duration: 'infinity',
+								'duration-l10n': 'infinite',
 								flags: [
 									'noautoblock'
 								],
@@ -287,31 +292,37 @@ function mockMwApiGet( additionalMocks = [] ) {
 								expiry: '2029-09-19T14:30:51Z'
 							},
 							type: 'block',
+							action: 'block',
 							user: 'Admin',
 							timestamp: '2024-09-19T14:30:51Z',
 							parsedcomment: 'A reason'
 						},
+						// Block with datetime duration
 						{
 							logid: 983,
 							title: 'User:BlockedALot',
 							params: {
-								duration: '1 year',
+								duration: '2029-09-20T14:31:51Z',
+								'duration-l10n': '5 years and 1 minute',
 								flags: [
 									'noautoblock'
 								],
 								sitewide: true,
-								expiry: '2029-09-20T14:30:51Z'
+								expiry: '2029-09-20T14:31:51Z'
 							},
 							type: 'block',
+							action: 'block',
 							user: 'Admin',
 							timestamp: '2024-09-20T14:30:51Z',
 							parsedcomment: 'A reason'
 						},
+						// Reblock
 						{
 							logid: 984,
 							title: 'User:BlockedALot',
 							params: {
-								duration: '1 year',
+								duration: '5 years',
+								'duration-l10n': '5 years',
 								flags: [
 									'noautoblock'
 								],
@@ -319,15 +330,18 @@ function mockMwApiGet( additionalMocks = [] ) {
 								expiry: '2029-09-21T14:30:51Z'
 							},
 							type: 'block',
+							action: 'reblock',
 							user: 'Admin',
 							timestamp: '2024-09-21T14:30:51Z',
 							parsedcomment: 'A reason'
 						},
+						// Other mock blocks
 						{
 							logid: 985,
 							title: 'User:BlockedALot',
 							params: {
-								duration: '1 year',
+								duration: '5 years',
+								'duration-l10n': '5 years',
 								flags: [
 									'noautoblock'
 								],
@@ -335,6 +349,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 								expiry: '2029-09-22T14:30:51Z'
 							},
 							type: 'block',
+							action: 'block',
 							user: 'Admin',
 							timestamp: '2024-09-22T14:30:51Z',
 							parsedcomment: 'A reason'
@@ -343,7 +358,8 @@ function mockMwApiGet( additionalMocks = [] ) {
 							logid: 986,
 							title: 'User:BlockedALot',
 							params: {
-								duration: '1 year',
+								duration: '5 years',
+								'duration-l10n': '5 years',
 								flags: [
 									'noautoblock'
 								],
@@ -351,6 +367,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 								expiry: '2029-09-23T14:30:51Z'
 							},
 							type: 'block',
+							action: 'block',
 							user: 'Admin',
 							timestamp: '2024-09-23T14:30:51Z',
 							parsedcomment: 'A reason'
@@ -359,7 +376,8 @@ function mockMwApiGet( additionalMocks = [] ) {
 							logid: 987,
 							title: 'User:BlockedALot',
 							params: {
-								duration: '1 year',
+								duration: '5 years',
+								'duration-l10n': '5 years',
 								flags: [
 									'noautoblock'
 								],
@@ -367,6 +385,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 								expiry: '2029-09-24T14:30:51Z'
 							},
 							type: 'block',
+							action: 'block',
 							user: 'Admin',
 							timestamp: '2024-09-24T14:30:51Z',
 							parsedcomment: 'A reason'
@@ -375,7 +394,8 @@ function mockMwApiGet( additionalMocks = [] ) {
 							logid: 988,
 							title: 'User:BlockedALot',
 							params: {
-								duration: '1 year',
+								duration: '5 years',
+								'duration-l10n': '5 years',
 								flags: [
 									'noautoblock'
 								],
@@ -383,6 +403,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 								expiry: '2029-09-25T14:30:51Z'
 							},
 							type: 'block',
+							action: 'block',
 							user: 'Admin',
 							timestamp: '2024-09-25T14:30:51Z',
 							parsedcomment: 'A reason'
@@ -391,7 +412,8 @@ function mockMwApiGet( additionalMocks = [] ) {
 							logid: 989,
 							title: 'User:BlockedALot',
 							params: {
-								duration: '1 year',
+								duration: '5 years',
+								'duration-l10n': '5 years',
 								flags: [
 									'noautoblock'
 								],
@@ -399,6 +421,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 								expiry: '2029-09-26T14:30:51Z'
 							},
 							type: 'block',
+							action: 'block',
 							user: 'Admin',
 							timestamp: '2024-09-26T14:30:51Z',
 							parsedcomment: 'A reason'
@@ -449,7 +472,12 @@ function mockMwApiGet( additionalMocks = [] ) {
 							title: 'User:BadNameBlocked',
 							pageid: 583,
 							logpage: 583,
-							params: { duration: 'infinity', flags: [ 'hiddenname' ], sitewide: true },
+							params: {
+								duration: 'infinity',
+								'duration-l10n': 'infinite',
+								flags: [ 'hiddenname' ],
+								sitewide: true
+							},
 							type: 'suppress',
 							action: 'block',
 							user: 'Admin',
@@ -475,7 +503,12 @@ function mockMwApiGet( additionalMocks = [] ) {
 							title: 'User:BadNameBlocked',
 							pageid: 583,
 							logpage: 583,
-							params: { duration: 'infinity', flags: [ 'hiddenname' ], sitewide: true },
+							params: {
+								duration: 'infinity',
+								'duration-l10n': 'infinite',
+								flags: [ 'hiddenname' ],
+								sitewide: true
+							},
 							type: 'suppress',
 							action: 'block',
 							user: 'Admin',
@@ -488,7 +521,12 @@ function mockMwApiGet( additionalMocks = [] ) {
 							title: 'User:BadNameBlocked',
 							pageid: 583,
 							logpage: 583,
-							params: { duration: 'infinity', flags: [ 'hiddenname' ], sitewide: true },
+							params: {
+								duration: 'infinity',
+								'duration-l10n': 'infinite',
+								flags: [ 'hiddenname' ],
+								sitewide: true
+							},
 							type: 'suppress',
 							action: 'block',
 							user: 'Admin',
@@ -514,6 +552,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 							by: 'Admin',
 							timestamp: '2024-09-17T14:30:51Z',
 							expiry: '2094-09-17T14:30:51Z',
+							'duration-l10n': '50 years',
 							reason: 'Vandalizing on [[Project:Foobar]]',
 							anononly: false,
 							nocreate: false,
@@ -538,6 +577,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 							title: 'User:PartiallyBlockedUser',
 							params: {
 								duration: '50 years',
+								'duration-l10n': '50 years',
 								flags: [],
 								restrictions: {
 									pages: [ {
