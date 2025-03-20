@@ -3504,17 +3504,12 @@ class Parser {
 			];
 		}
 
-		$noparse = true;
-		$preprocessFlags = 0;
-		if ( isset( $result['noparse'] ) ) {
-			$noparse = $result['noparse'];
-		}
-		if ( isset( $result['preprocessFlags'] ) ) {
-			$preprocessFlags = $result['preprocessFlags'];
-		}
-
+		$noparse = $result['noparse'] ?? true;
 		if ( !$noparse ) {
-			$preprocessFlags |= ( $inSolState ? Preprocessor::START_IN_SOL_STATE : 0 );
+			$preprocessFlags = $result['preprocessFlags'] ?? 0;
+			if ( $inSolState ) {
+				$preprocessFlags |= Preprocessor::START_IN_SOL_STATE;
+			}
 			$result['text'] = $this->preprocessToDom( $result['text'], $preprocessFlags );
 			$result['isChildObj'] = true;
 		}
@@ -5202,31 +5197,23 @@ class Parser {
 	 * @internal
 	 */
 	public function renderImageGallery( $text, array $params ) {
-		$mode = false;
-		if ( isset( $params['mode'] ) ) {
-			$mode = $params['mode'];
-		}
+		$mode = $params['mode'] ?? false;
 
 		try {
 			$ig = ImageGalleryBase::factory( $mode );
 		} catch ( ImageGalleryClassNotFoundException $e ) {
 			// If invalid type set, fallback to default.
-			$ig = ImageGalleryBase::factory( false );
+			$ig = ImageGalleryBase::factory();
 		}
 
 		$ig->setContextTitle( $this->getTitle() );
 		$ig->setShowBytes( false );
 		$ig->setShowDimensions( false );
-		$ig->setShowFilename( false );
 		$ig->setParser( $this );
 		$ig->setHideBadImages();
 		$ig->setAttributes( Sanitizer::validateTagAttributes( $params, 'ul' ) );
 
-		if ( isset( $params['showfilename'] ) ) {
-			$ig->setShowFilename( true );
-		} else {
-			$ig->setShowFilename( false );
-		}
+		$ig->setShowFilename( isset( $params['showfilename'] ) );
 		if ( isset( $params['caption'] ) ) {
 			// NOTE: We aren't passing a frame here or below.  Frame info
 			// is currently opaque to Parsoid, which acts on OT_PREPROCESS.
@@ -5362,10 +5349,8 @@ class Parser {
 			if ( !$hasAlt ) {
 				if ( $label !== '' ) {
 					$alt = $this->stripAltText( $label, false );
-				} else {
-					if ( $enableLegacyMediaDOM ) {
-						$alt = $title->getText();
-					}
+				} elseif ( $enableLegacyMediaDOM ) {
+					$alt = $title->getText();
 				}
 			}
 			$imageOptions['title'] = $this->stripAltText( $label, false );
@@ -5388,11 +5373,7 @@ class Parser {
 	 * @return array
 	 */
 	private function getImageParams( $handler ) {
-		if ( $handler ) {
-			$handlerClass = get_class( $handler );
-		} else {
-			$handlerClass = '';
-		}
+		$handlerClass = $handler ? get_class( $handler ) : '';
 		if ( !isset( $this->mImageParams[$handlerClass] ) ) {
 			# Initialise static lists
 			static $internalParamNames = [
@@ -5914,17 +5895,9 @@ class Parser {
 		if ( strval( $text ) === '' ) {
 			# Only sections 0 and T-0 exist in an empty document
 			if ( $sectionIndex === 0 ) {
-				if ( $mode === 'get' ) {
-					return '';
-				}
-
-				return $newText;
+				return $mode === 'get' ? '' : $newText;
 			} else {
-				if ( $mode === 'get' ) {
-					return $newText;
-				}
-
-				return $text;
+				return $mode === 'get' ? $newText : $text;
 			}
 		}
 
@@ -5957,11 +5930,7 @@ class Parser {
 
 		if ( !$node ) {
 			# Not found
-			if ( $mode === 'get' ) {
-				return $newText;
-			} else {
-				return $text;
-			}
+			return $mode === 'get' ? $newText : $text;
 		}
 
 		# Find the end of the section, including nested sections
@@ -6244,11 +6213,7 @@ class Parser {
 			# if this variable is subst: the revision id will be blank,
 			# so just use the parser input size, because the own substitution
 			# will change the size.
-			if ( $revObject ) {
-				$this->mRevisionSize = $revObject->getSize();
-			} else {
-				$this->mRevisionSize = $this->mInputSize;
-			}
+			$this->mRevisionSize = $revObject ? $revObject->getSize() : $this->mInputSize;
 		}
 		return $this->mRevisionSize;
 	}
@@ -6348,7 +6313,6 @@ class Parser {
 		# T90902: ensure the same normalization is applied for IDs as to links
 		$titleParser = MediaWikiServices::getInstance()->getTitleParser();
 		try {
-
 			$parts = $titleParser->splitTitleString( "#$text" );
 		} catch ( MalformedTitleException $ex ) {
 			return $text;
@@ -6473,16 +6437,13 @@ class Parser {
 		# (T15500) In both cases (width/height and width only),
 		# permit trailing "px" for backward compatibility.
 		if ( $parseHeight && preg_match( '/^([0-9]*)x([0-9]*)\s*(px)?\s*$/', $value, $m ) ) {
-			$width = intval( $m[1] );
-			$height = intval( $m[2] );
-			$parsedWidthParam['width'] = $width;
-			$parsedWidthParam['height'] = $height;
+			$parsedWidthParam['width'] = intval( $m[1] );
+			$parsedWidthParam['height'] = intval( $m[2] );
 			if ( $m[3] ?? false ) {
 				$this->addTrackingCategory( 'double-px-category' );
 			}
 		} elseif ( preg_match( '/^([0-9]*)\s*(px)?\s*$/', $value, $m ) ) {
-			$width = intval( $m[1] );
-			$parsedWidthParam['width'] = $width;
+			$parsedWidthParam['width'] = intval( $m[1] );
 			if ( $m[2] ?? false ) {
 				$this->addTrackingCategory( 'double-px-category' );
 			}
