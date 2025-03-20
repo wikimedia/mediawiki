@@ -163,7 +163,7 @@
 	"editfont-serif": "серифни фонт",
 	"tog-minordefault": "Подразумевано означавај све измене као мање",
 	"tog-forceeditsummary": "Упозоравај ме када не унесем опис измене (или подразумевани опис при поништавању)",
-	"tog-editrecovery": "Омогући [[Special:EditRecovery|{{int:editrecovery}}]]",
+	"tog-editrecovery": "[[Special:EditRecovery|{{int:editrecovery}}]]",
 	"tog-editrecovery-help": "Повратне информације можете дати на [$1 овој страници].",
 	"tog-useeditwarning": "Упозоравај ме када напуштам страницу за уређивање с несачуваним изменама",
 	"prefs-preview": "Претпреглед",
