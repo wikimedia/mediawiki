@@ -69,16 +69,29 @@ class KuConverter extends LanguageConverterSpecific {
 		'b' => 'ب', 'c' => 'ج', 'ç' => 'چ', 'd' => 'د', 'f' => 'ف', 'g' => 'گ',
 		'h' => 'ه', 'j' => 'ژ', 'k' => 'ک', 'l' => 'ل',
 		'm' => 'م', 'n' => 'ن', 'p' => 'پ', 'q' => 'ق', 'r' => 'ر', 's' => 'س', 'ş' => 'ش',
-		't' => 'ت', 'v' => 'ڤ',
+		't' => 'ت', 'v' => 'ڤ', 'w' => 'و',
 		'x' => 'خ', 'y' => 'ی', 'z' => 'ز',
+
+		'ḧ' => 'ح', 'ẍ' => 'غ',
 
 		'B' => 'ب', 'C' => 'ج', 'Ç' => 'چ', 'D' => 'د', 'F' => 'ف', 'G' => 'گ',
 		'H' => 'ح', 'J' => 'ژ', 'K' => 'ک', 'L' => 'ل',
 		'M' => 'م', 'N' => 'ن', 'P' => 'پ', 'Q' => 'ق', 'R' => 'ر', 'S' => 'س', 'Ş' => 'ش',
-		'T' => 'ت', 'V' => 'ڤ', 'W' => 'و', 'X' => 'خ',
-		'Y' => 'ی', 'Z' => 'ز',
+		'T' => 'ت', 'V' => 'ڤ', 'W' => 'و',
+		'X' => 'خ', 'Y' => 'ی', 'Z' => 'ز',
 
-		/* Vowels */
+		'Ḧ' => 'ح', 'Ẍ' => 'غ',
+
+		',' => '،',
+		'?' => '؟'
+	];
+
+	private const HEMZE = 'ئ';
+
+	private const LATIN_DIGITS = [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ];
+
+	private const LATIN_TO_ARABIC_VOWELS = [
+		// minuscule vowels
 		'a' => 'ا',
 		'e' => 'ە',
 		'ê' => 'ێ',
@@ -87,32 +100,15 @@ class KuConverter extends LanguageConverterSpecific {
 		'o' => 'ۆ',
 		'u' => 'و',
 		'û' => 'وو',
-		'w' => 'و',
-		',' => '،',
-		'?' => '؟',
-
-		# Try to replace the leading vowel
-		' a' => 'ئا ',
-		' e' => 'ئە ',
-		' ê' => 'ئێ ',
-		' î' => 'ئی ',
-		' o' => 'ئۆ ',
-		' u' => 'ئو ',
-		' û' => 'ئوو ',
-		'A' => 'ئا',
-		'E' => 'ئە',
-		'Ê' => 'ئێ',
-		'Î' => 'ئی',
-		'O' => 'ئۆ',
-		'U' => 'ئو',
-		'Û' => 'ئوو',
-		' A' => 'ئا ',
-		' E' => 'ئە ',
-		' Ê' => 'ئێ ',
-		' Î' => 'ئی ',
-		' O' => 'ئۆ ',
-		' U' => 'ئو ',
-		' Û' => 'ئوو ',
+		// capital vowels
+		'A' => 'ا',
+		'E' => 'ە',
+		'Ê' => 'ێ',
+		'I' => '',
+		'Î' => 'ی',
+		'O' => 'ۆ',
+		'U' => 'و',
+		'Û' => 'وو'
 	];
 
 	public function getMainCode(): string {
@@ -134,18 +130,50 @@ class KuConverter extends LanguageConverterSpecific {
 	protected function loadDefaultTables(): array {
 		return [
 			'ku-latn' => new ReplacementArray( self::ARABIC_TO_LATIN ),
-			'ku-arab' => new ReplacementArray( self::LATIN_TO_ARABIC ),
+			'ku-arab' => new ReplacementArray(),
 			'ku' => new ReplacementArray()
 		];
 	}
 
 	public function translate( $text, $toVariant ) {
-		$this->loadTables();
+		if ( $toVariant == 'ku-arab' ) {
+			$chars = mb_str_split( $text );
+			$length = count( $chars );
+			$inWord = false;
+			$prevWasVowel = false;
+			for ( $i = 0; $i < $length; $i++ ) {
+				$ch = $chars[$i];
+				$isVowel = array_key_exists( $ch, self::LATIN_TO_ARABIC_VOWELS );
+				$exists = array_key_exists( $ch, self::LATIN_TO_ARABIC );
+				if ( !$exists && !$isVowel && !in_array( $ch, self::LATIN_DIGITS ) ) {
+					$inWord = false;
+					$prevWasVowel = false;
+					continue;
+				}
+				if ( $isVowel ) {
+					if ( !$inWord || $prevWasVowel ) {
+						$chars[$i] = self::HEMZE . self::LATIN_TO_ARABIC_VOWELS[$ch];
+					} else {
+						$chars[$i] = self::LATIN_TO_ARABIC_VOWELS[$ch];
+					}
+					$prevWasVowel = true;
+				} else {
+					if ( $exists ) {
+						$chars[$i] = self::LATIN_TO_ARABIC[$ch];
+					}
+					$prevWasVowel = false;
+				}
+				$inWord = true;
+			}
+			return implode( '', $chars );
+		} else {
+			$this->loadTables();
 
-		if ( !isset( $this->mTables[$toVariant] ) ) {
-			throw new LogicException( 'Broken variant table: ' . implode( ',', array_keys( $this->mTables ) ) );
+			if ( !isset( $this->mTables[$toVariant] ) ) {
+				throw new LogicException( 'Broken variant table: ' . implode( ',', array_keys( $this->mTables ) ) );
+			}
+
+			return parent::translate( $text, $toVariant );
 		}
-
-		return parent::translate( $text, $toVariant );
 	}
 }

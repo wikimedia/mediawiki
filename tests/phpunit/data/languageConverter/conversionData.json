@@ -121,28 +121,33 @@
     },
     {
         "variant": "ku",
-        "text": "د سالا 2015ان دە ستێرناس سێ گەرستێرک ڤەدیتن. مەزنبوونا ڤان گەرستێرکان مینائە ردێ بوونئوو  ل دەردۆرا ستێرکا بەژنبهۆست دە دچەرخیان. تیمەکە د بن پێشاواتیائە سمانناس مجهاëل گللۆنئێ  زانینگەها لèگەیێ یا بەلچیکایێ دە، ل روانگەها لا سللا یا شیلەیێ دە، ب بکارانینا فۆتۆمەترەیا ترانسیت ڤان گەرستێرکان زەخم کرن.",
-        "expected": "د سالا 2015ان دە ستێرناس سێ گەرستێرک ڤەدیتن. مەزنبوونا ڤان گەرستێرکان مینائە ردێ بوونئوو  ل دەردۆرا ستێرکا بەژنبهۆست دە دچەرخیان. تیمەکە د بن پێشاواتیائە سمانناس مجهاëل گللۆنئێ  زانینگەها لèگەیێ یا بەلچیکایێ دە، ل روانگەها لا سللا یا شیلەیێ دە، ب بکارانینا فۆتۆمەترەیا ترانسیت ڤان گەرستێرکان زەخم کرن."
+        "text": "د سالا 2015ان دە ستێرناس سێ گەرستێرک ڤەدیتن. مەزنبوونا ڤان گەرستێرکان مینا ئەردێ بوون ئوو ل دەردۆرا ستێرکا بەژنبهۆست دە دچەرخیان. تیمەکە د بن پێشاواتیا ئەسمانناس مجهاëل گللۆن ئێ زانینگەها لèگەیێ یا بەلچیکایێ دە، ل روانگەها لا سللا یا شیلەیێ دە، ب بکارانینا فۆتۆمەترەیا ترانسیت ڤان گەرستێرکان زەخم کرن.",
+        "expected": "د سالا 2015ان دە ستێرناس سێ گەرستێرک ڤەدیتن. مەزنبوونا ڤان گەرستێرکان مینا ئەردێ بوون ئوو ل دەردۆرا ستێرکا بەژنبهۆست دە دچەرخیان. تیمەکە د بن پێشاواتیا ئەسمانناس مجهاëل گللۆن ئێ زانینگەها لèگەیێ یا بەلچیکایێ دە، ل روانگەها لا سللا یا شیلەیێ دە، ب بکارانینا فۆتۆمەترەیا ترانسیت ڤان گەرستێرکان زەخم کرن."
     },
     {
         "variant": "ku-arab",
         "text": "Di sala 2015an de stêrnas sê gerstêrk vedîtin. Mezinbûna van gerstêrkan mîna Erdê bûn û li derdora stêrka bejnbihost de diçerixiyan. Tîmeke di bin pêşawatiya esmannas Michaël Gillon ê Zanîngeha Liègeyê ya Belçîkayê de, li Riwangeha La Silla ya Şîleyê de, bi bikaranîna fotometreya transît van gerstêrkan zexm kirin.",
-        "expected": "د سالا 2015ان دە ستێرناس سێ گەرستێرک ڤەدیتن. مەزنبوونا ڤان گەرستێرکان مینائە ردێ بوونئوو  ل دەردۆرا ستێرکا بەژنبهۆست دە دچەرخیان. تیمەکە د بن پێشاواتیائە سمانناس مجهاëل گللۆنئێ  زانینگەها لèگەیێ یا بەلچیکایێ دە، ل روانگەها لا سللا یا شیلەیێ دە، ب بکارانینا فۆتۆمەترەیا ترانسیت ڤان گەرستێرکان زەخم کرن."
+        "expected": "د سالا 2015ان دە ستێرناس سێ گەرستێرک ڤەدیتن. مەزنبوونا ڤان گەرستێرکان مینا ئەردێ بوون ئوو ل دەردۆرا ستێرکا بەژنبهۆست دە دچەرخیان. تیمەکە د بن پێشاواتیا ئەسمانناس مجهاëل گللۆن ئێ زانینگەها لèگەیێ یا بەلچیکایێ دە، ل روانگەها لا سللا یا شیلەیێ دە، ب بکارانینا فۆتۆمەترەیا ترانسیت ڤان گەرستێرکان زەخم کرن."
     },
     {
         "variant": "ku-arab",
-        "text": "د سالا 2015ان دە ستێرناس سێ گەرستێرک ڤەدیتن. مەزنبوونا ڤان گەرستێرکان مینائە ردێ بوونئوو  ل دەردۆرا ستێرکا بەژنبهۆست دە دچەرخیان. تیمەکە د بن پێشاواتیائە سمانناس مجهاëل گللۆنئێ  زانینگەها لèگەیێ یا بەلچیکایێ دە، ل روانگەها لا سللا یا شیلەیێ دە، ب بکارانینا فۆتۆمەترەیا ترانسیت ڤان گەرستێرکان زەخم کرن.",
-        "expected": "د سالا 2015ان دە ستێرناس سێ گەرستێرک ڤەدیتن. مەزنبوونا ڤان گەرستێرکان مینائە ردێ بوونئوو  ل دەردۆرا ستێرکا بەژنبهۆست دە دچەرخیان. تیمەکە د بن پێشاواتیائە سمانناس مجهاëل گللۆنئێ  زانینگەها لèگەیێ یا بەلچیکایێ دە، ل روانگەها لا سللا یا شیلەیێ دە، ب بکارانینا فۆتۆمەترەیا ترانسیت ڤان گەرستێرکان زەخم کرن."
+        "text": "Ey gelî kurdan, îttifaqê de qewet, îttîḧadê de ḧeyat, di biratiyê de seadet, ḧukumetê de selamet heye. Kabika îttîḧadê û şerîta mehebbetê qewî bigirin, da we ji belayê xilas ke. Qenc guhê xwe bidinê, ez ê tiştekî ji we ra bibêjim: Hun bizanin ku sê, sê cewhera me hene, ḧifza xwe ji me dixwazin. Yek îslamiyet, ku hezar hezar xwîna şehîdan buhayê wê dane. Ê diduwa însaniyet, ku lazim e em xwe nezera xelqê de bi xizmeta aqilî, ciwamêranî û însaniyetê xwe nîşanê dinê bidin. Ê sisiyan milliyeta me ye, ku meziyetê da me; ê berê, ku bi qenciya xwe saẍ in, em bi karê xwe, bi ḧifza milliyeta xwe rûḧê wan qebra wan de şad bikin.",
+        "expected": "ئەی گەلی کوردان، ئیتتفاقێ دە قەوەت، ئیتتیحادێ دە حەیات، د براتیێ دە سەئادەت، حوکومەتێ دە سەلامەت هەیە. کابکا ئیتتیحادێ ئوو شەریتا مەهەببەتێ قەوی بگرن، دا وە ژ بەلایێ خلاس کە. قەنج گوهێ خوە بدنێ، ئەز ئێ تشتەکی ژ وە را ببێژم: حون بزانن کو سێ، سێ جەوهەرا مە هەنە، حفزا خوە ژ مە دخوازن. یەک ئیسلامیەت، کو هەزار هەزار خوینا شەهیدان بوهایێ وێ دانە. ئێ ددووا ئینسانیەت، کو لازم ئە ئەم خوە نەزەرا خەلقێ دە ب خزمەتا ئاقلی، جوامێرانی ئوو ئینسانیەتێ خوە نیشانێ دنێ بدن. ئێ سسیان مللیەتا مە یە، کو مەزیەتێ دا مە; ئێ بەرێ، کو ب قەنجیا خوە ساغ ئن، ئەم ب کارێ خوە، ب حفزا مللیەتا خوە رووحێ وان قەبرا وان دە شاد بکن."
+    },
+    {
+        "variant": "ku-arab",
+        "text": "د سالا 2015ان دە ستێرناس سێ گەرستێرک ڤەدیتن. مەزنبوونا ڤان گەرستێرکان مینا ئەردێ بوون ئوو ل دەردۆرا ستێرکا بەژنبهۆست دە دچەرخیان. تیمەکە د بن پێشاواتیا ئەسمانناس مجهاëل گللۆن ئێ زانینگەها لèگەیێ یا بەلچیکایێ دە، ل روانگەها لا سللا یا شیلەیێ دە، ب بکارانینا فۆتۆمەترەیا ترانسیت ڤان گەرستێرکان زەخم کرن.",
+        "expected": "د سالا 2015ان دە ستێرناس سێ گەرستێرک ڤەدیتن. مەزنبوونا ڤان گەرستێرکان مینا ئەردێ بوون ئوو ل دەردۆرا ستێرکا بەژنبهۆست دە دچەرخیان. تیمەکە د بن پێشاواتیا ئەسمانناس مجهاëل گللۆن ئێ زانینگەها لèگەیێ یا بەلچیکایێ دە، ل روانگەها لا سللا یا شیلەیێ دە، ب بکارانینا فۆتۆمەترەیا ترانسیت ڤان گەرستێرکان زەخم کرن."
     },
     {
         "variant": "ku-latn",
-        "text": "د سالا 2015ان دە ستێرناس سێ گەرستێرک ڤەدیتن. مەزنبوونا ڤان گەرستێرکان مینائە ردێ بوونئوو  ل دەردۆرا ستێرکا بەژنبهۆست دە دچەرخیان. تیمەکە د بن پێشاواتیائە سمانناس مجهاëل گللۆنئێ  زانینگەها لèگەیێ یا بەلچیکایێ دە، ل روانگەها لا سللا یا شیلەیێ دە، ب بکارانینا فۆتۆمەترەیا ترانسیت ڤان گەرستێرکان زەخم کرن.",
-        "expected": "d sala 2015an de stêrnas sê gerstêrk vedîtn. meznbwwna van gerstêrkan mînae rdê bwwnww  l derdora stêrka bejnbhost de dçerxîan. tîmeke d bn pêşawatîae smannas mchaël gllonê  zanîngeha lègeîê îa belçîkaîê de, l rwangeha la slla îa şîleîê de, b bkaranîna fotometreîa transît van gerstêrkan zexm krn."
+        "text": "د سالا 2015ان دە ستێرناس سێ گەرستێرک ڤەدیتن. مەزنبوونا ڤان گەرستێرکان مینا ئەردێ بوون ئوو ل دەردۆرا ستێرکا بەژنبهۆست دە دچەرخیان. تیمەکە د بن پێشاواتیا ئەسمانناس مجهاëل گللۆن ئێ زانینگەها لèگەیێ یا بەلچیکایێ دە، ل روانگەها لا سللا یا شیلەیێ دە، ب بکارانینا فۆتۆمەترەیا ترانسیت ڤان گەرستێرکان زەخم کرن.",
+        "expected": "d sala 2015an de stêrnas sê gerstêrk vedîtn. meznbwwna van gerstêrkan mîna erdê bwwn ww l derdora stêrka bejnbhost de dçerxîan. tîmeke d bn pêşawatîa esmannas mchaël gllon ê zanîngeha lègeîê îa belçîkaîê de, l rwangeha la slla îa şîleîê de, b bkaranîna fotometreîa transît van gerstêrkan zexm krn."
     },
     {
         "variant": "ku-latn",
-        "text": "d sala 2015an de stêrnas sê gerstêrk vedîtn. meznbwwna van gerstêrkan mînae rdê bwwnww  l derdora stêrka bejnbhost de dçerxîan. tîmeke d bn pêşawatîae smannas mchaël gllonê  zanîngeha lègeîê îa belçîkaîê de, l rwangeha la slla îa şîleîê de, b bkaranîna fotometreîa transît van gerstêrkan zexm krn.",
-        "expected": "d sala 2015an de stêrnas sê gerstêrk vedîtn. meznbwwna van gerstêrkan mînae rdê bwwnww  l derdora stêrka bejnbhost de dçerxîan. tîmeke d bn pêşawatîae smannas mchaël gllonê  zanîngeha lègeîê îa belçîkaîê de, l rwangeha la slla îa şîleîê de, b bkaranîna fotometreîa transît van gerstêrkan zexm krn."
+        "text": "d sala 2015an de stêrnas sê gerstêrk vedîtn. meznbwwna van gerstêrkan mîna erdê bwwn ww l derdora stêrka bejnbhost de dçerxîan. tîmeke d bn pêşawatîa esmannas mchaël gllon ê zanîngeha lègeîê îa belçîkaîê de, l rwangeha la slla îa şîleîê de, b bkaranîna fotometreîa transît van gerstêrkan zexm krn.",
+        "expected": "d sala 2015an de stêrnas sê gerstêrk vedîtn. meznbwwna van gerstêrkan mîna erdê bwwn ww l derdora stêrka bejnbhost de dçerxîan. tîmeke d bn pêşawatîa esmannas mchaël gllon ê zanîngeha lègeîê îa belçîkaîê de, l rwangeha la slla îa şîleîê de, b bkaranîna fotometreîa transît van gerstêrkan zexm krn."
     },
     {
         "variant": "shi",

@@ -27,19 +27,27 @@ class KuConverterTest extends MediaWikiIntegrationTestCase {
 			],
 			[
 				[
+					'ku'      => 'Bi alfabeyên din',
+					'ku-arab' => 'ب ئالفابەیێن دن',
+					'ku-latn' => 'Bi alfabeyên din',
+				],
+				'Bi alfabeyên din'
+			],
+			[
+				[
 					'ku'      => 'Wîkîpediya ensîklopediyeke azad bi rengê wîkî ye.',
-					'ku-arab' => 'ویکیپەدیائە نسیکلۆپەدیەکەئا زاد ب رەنگێ ویکی یە.',
+					'ku-arab' => 'ویکیپەدیا ئەنسیکلۆپەدیەکە ئازاد ب رەنگێ ویکی یە.',
 					'ku-latn' => 'Wîkîpediya ensîklopediyeke azad bi rengê wîkî ye.',
 				],
 				'Wîkîpediya ensîklopediyeke azad bi rengê wîkî ye.'
 			],
 			[
 				[
-					'ku'      => 'ویکیپەدیا ەنسیکلۆپەدیەکەئا زاد ب رەنگێ ویکی یە.',
-					'ku-arab' => 'ویکیپەدیا ەنسیکلۆپەدیەکەئا زاد ب رەنگێ ویکی یە.',
-					'ku-latn' => 'wîkîpedîa ensîklopedîekea zad b rengê wîkî îe.',
+					'ku'      => 'ویکیپەدیا ئەنسیکلۆپەدیەکە ئازاد ب رەنگێ ویکی یە.',
+					'ku-arab' => 'ویکیپەدیا ئەنسیکلۆپەدیەکە ئازاد ب رەنگێ ویکی یە.',
+					'ku-latn' => 'wîkîpedîa ensîklopedîeke azad b rengê wîkî îe.',
 				],
-				'ویکیپەدیا ەنسیکلۆپەدیەکەئا زاد ب رەنگێ ویکی یە.'
+				'ویکیپەدیا ئەنسیکلۆپەدیەکە ئازاد ب رەنگێ ویکی یە.'
 			],
 		];
 	}
