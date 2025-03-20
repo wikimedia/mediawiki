@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Api;
 
+use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\Restriction\ActionRestriction;
@@ -57,7 +58,7 @@ class ApiBlockTest extends ApiTestCase {
 	private function doBlock( array $extraParams = [], ?Authority $blocker = null ) {
 		$this->assertNotNull( $this->mUser );
 
-		$params = [
+		$params = $extraParams + [
 			'action' => 'block',
 			'user' => $this->mUser->getName(),
 			'reason' => 'Some reason',
@@ -66,13 +67,13 @@ class ApiBlockTest extends ApiTestCase {
 			// Make sure we don't have both user and userid
 			unset( $params['user'] );
 		}
-		$ret = $this->doApiRequestWithToken( array_merge( $params, $extraParams ), null, $blocker );
+		$ret = $this->doApiRequestWithToken( $params, null, $blocker );
 
 		$this->block = $this->blockStore->newFromId( $ret[0]['block']['id'] );
 
 		$this->assertInstanceOf( DatabaseBlock::class, $this->block, 'Block is valid' );
 
-		$this->assertSame( $this->mUser->getName(), $this->block->getTargetName() );
+		$this->assertSame( $params['user'] ?? $this->mUser->getName(), $this->block->getTargetName() );
 		$this->assertSame( 'Some reason', $this->block->getReasonComment()->text );
 
 		return $ret;
@@ -464,5 +465,21 @@ class ApiBlockTest extends ApiTestCase {
 		$this->doBlock();
 		$this->expectApiErrorCode( 'alreadyblocked' );
 		$this->doBlock( [ 'id' => $this->block->getId(), 'user' => null ] );
+	}
+
+	/**
+	 * Regression test for T389452
+	 */
+	public function testReblockAutoblockedIp() {
+		$ip = '127.0.0.1';
+		$this->doBlock( [ 'autoblock' => '' ] );
+		$autoId = $this->blockStore->doAutoblock( $this->block, $ip );
+		$this->doBlock( [ 'user' => $ip, 'expiry' => '1 year', 'reblock' => true ] );
+		$blocks = $this->blockStore->newListFromTarget( $ip );
+		$this->assertCount( 2, $blocks );
+		usort( $blocks, static fn ( $a, $b ) => $a->getId() <=> $b->getId() );
+		$this->assertSame( AbstractBlock::TYPE_AUTO, $blocks[0]->getType() );
+		$this->assertSame( $autoId, $blocks[0]->getId() );
+		$this->assertSame( AbstractBlock::TYPE_IP, $blocks[1]->getType() );
 	}
 }
