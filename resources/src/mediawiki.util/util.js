@@ -494,7 +494,10 @@ const util = {
 	 * after edit with response from parse API.
 	 */
 	clearSubtitle: function () {
-		const subtitle = document.getElementById( 'mw-content-subtitle' );
+		// Fandom change - start - PLATFORM-10820 - add .page-header fallback
+		const subtitle = document.getElementById('mw-content-subtitle')
+			|| document.querySelector('.page-header__page-subtitle, .page-header__subtitle');
+		// Fandom change - end
 		if ( subtitle ) {
 			subtitle.innerHTML = '';
 		}
