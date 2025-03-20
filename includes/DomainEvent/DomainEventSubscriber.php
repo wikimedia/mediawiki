@@ -7,14 +7,14 @@ namespace MediaWiki\DomainEvent;
  * related event listeners.
  *
  * @since 1.44
- * @unstable until 1.45, should become stable to extend
+ * @stable to type
+ * @note Extensions should not implement this interface directly but should
+ *       extend EventIngressBase.
  */
 interface DomainEventSubscriber {
 
 	/**
 	 * Registers listeners with the given $eventSource.
-	 *
-	 * @todo decide whether this should return a list of event types
 	 */
 	public function registerListeners( DomainEventSource $eventSource ): void;
 
