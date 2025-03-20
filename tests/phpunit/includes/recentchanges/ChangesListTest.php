@@ -7,7 +7,7 @@ use Wikimedia\Parsoid\Utils\DOMUtils;
 
 /**
  * @group Database
- * @covers \ChangesList
+ * @covers \MediaWiki\RecentChanges\ChangesList
  */
 class ChangesListTest extends MediaWikiIntegrationTestCase {
 

@@ -20,6 +20,7 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\Article;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
@@ -32,7 +33,6 @@ use MediaWiki\Storage\PageUpdateCauses;
 use MediaWiki\User\User;
 use MWContentSerializationException;
 use PermissionsError;
-use RecentChange;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**

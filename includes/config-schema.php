@@ -2135,7 +2135,7 @@ return [
 				'PublishStashedFile' => 'PublishStashedFileJob',
 				'ThumbnailRender' => 'ThumbnailRenderJob',
 				'UploadFromUrl' => 'UploadFromUrlJob',
-				'recentChangesUpdate' => 'RecentChangesUpdateJob',
+				'recentChangesUpdate' => 'MediaWiki\\RecentChanges\\RecentChangesUpdateJob',
 				'refreshLinksPrioritized' => 'RefreshLinksJob',
 				'refreshLinksDynamic' => 'RefreshLinksJob',
 				'activityUpdateJob' => 'MediaWiki\\Watchlist\\ActivityUpdateJob',

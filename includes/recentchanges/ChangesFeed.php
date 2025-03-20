@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\RecentChanges;
+
 use MediaWiki\Feed\ChannelFeed;
 use MediaWiki\Feed\FeedItem;
 use MediaWiki\Feed\FeedUtils;
@@ -144,3 +146,6 @@ class ChangesFeed {
 		return $items;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ChangesFeed::class, 'ChangesFeed' );

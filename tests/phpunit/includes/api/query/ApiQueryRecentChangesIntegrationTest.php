@@ -4,13 +4,13 @@ namespace MediaWiki\Tests\Api\Query;
 
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
 use MediaWiki\Watchlist\WatchedItemQueryService;
-use RecentChange;
 
 /**
  * @group API

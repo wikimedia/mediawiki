@@ -18,6 +18,10 @@
  * @file
  */
 
+namespace MediaWiki\RecentChanges;
+
+use InvalidArgumentException;
+use Job;
 use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
@@ -256,3 +260,6 @@ class RecentChangesUpdateJob extends Job {
 		$dbw->unlock( $lockKey, __METHOD__ );
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( RecentChangesUpdateJob::class, 'RecentChangesUpdateJob' );

@@ -11,7 +11,7 @@ use MediaWiki\Title\Title;
  * @group medium
  * @group Database
  * @covers \MediaWiki\RCFeed\FormattedRCFeed
- * @covers \RecentChange
+ * @covers \MediaWiki\RecentChanges\RecentChange
  * @covers \MediaWiki\RCFeed\JSONRCFeedFormatter
  * @covers \MediaWiki\RCFeed\MachineReadableRCFeedFormatter
  * @covers \MediaWiki\RCFeed\RCFeed

@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\RecentChanges;
+
 use MediaWiki\Html\FormOptions;
 
 /**
@@ -31,3 +33,6 @@ class ChangesListStringOptionsFilter extends ChangesListFilter {
 		return in_array( $this->getName(), $values );
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ChangesListStringOptionsFilter::class, 'ChangesListStringOptionsFilter' );

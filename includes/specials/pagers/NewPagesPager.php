@@ -21,7 +21,6 @@
 
 namespace MediaWiki\Pager;
 
-use ChangesList;
 use ChangeTags;
 use MapCacheLRU;
 use MediaWiki\Cache\LinkBatchFactory;
@@ -37,13 +36,14 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Permissions\GroupPermissionsLookup;
+use MediaWiki\RecentChanges\ChangesList;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserIdentityValue;
-use RecentChange;
 use stdClass;
 use Wikimedia\Rdbms\IExpression;
 

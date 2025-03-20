@@ -5,7 +5,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 
 /**
- * @covers \CategoryMembershipChange
+ * @covers \MediaWiki\RecentChanges\CategoryMembershipChange
  *
  * @group Database
  *

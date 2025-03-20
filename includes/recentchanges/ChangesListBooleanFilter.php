@@ -18,6 +18,9 @@
  * @file
  */
 
+namespace MediaWiki\RecentChanges;
+
+use InvalidArgumentException;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\SpecialPage\ChangesListSpecialPage;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -241,3 +244,6 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 		return $opts[ $this->getName() ] === $this->activeValue;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ChangesListBooleanFilter::class, 'ChangesListBooleanFilter' );

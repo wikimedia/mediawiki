@@ -20,10 +20,6 @@
 
 namespace MediaWiki\SpecialPage;
 
-use ChangesListBooleanFilter;
-use ChangesListBooleanFilterGroup;
-use ChangesListFilterGroup;
-use ChangesListStringOptionsFilterGroup;
 use ChangeTags;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\FormOptions;
@@ -32,6 +28,11 @@ use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Sanitizer;
+use MediaWiki\RecentChanges\ChangesListBooleanFilter;
+use MediaWiki\RecentChanges\ChangesListBooleanFilterGroup;
+use MediaWiki\RecentChanges\ChangesListFilterGroup;
+use MediaWiki\RecentChanges\ChangesListStringOptionsFilterGroup;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserArray;
@@ -40,7 +41,6 @@ use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\User\UserIdentityValue;
 use MWExceptionHandler;
 use OOUI\IconWidget;
-use RecentChange;
 use Wikimedia\Rdbms\DBQueryTimeoutError;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IExpression;

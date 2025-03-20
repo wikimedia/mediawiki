@@ -23,8 +23,8 @@ namespace MediaWiki\RCFeed;
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\WikiMap\WikiMap;
-use RecentChange;
 
 /**
  * Abstract class so there can be multiple formatters outputting the same data

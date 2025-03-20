@@ -21,7 +21,7 @@
 namespace MediaWiki\RCFeed;
 
 use InvalidArgumentException;
-use RecentChange;
+use MediaWiki\RecentChanges\RecentChange;
 
 /**
  * @see $wgRCFeeds

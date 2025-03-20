@@ -18,6 +18,11 @@
  * @file
  */
 
+namespace MediaWiki\RecentChanges;
+
+use ChangeTags;
+use HtmlArmor;
+use MapCacheLRU;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
@@ -45,6 +50,8 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Watchlist\WatchedItem;
 use OOUI\IconWidget;
+use RuntimeException;
+use stdClass;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -1096,3 +1103,6 @@ class ChangesList extends ContextSource {
 		$this->changeLinePrefixer = $prefixer;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ChangesList::class, 'ChangesList' );

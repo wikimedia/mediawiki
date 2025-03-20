@@ -21,7 +21,6 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
-use RecentChange;
 use RevertedTagUpdateJob;
 
 /**

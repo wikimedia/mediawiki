@@ -444,6 +444,22 @@ because of Phabricator reports.
     - WikiCategoryPage
     - WikiFilePage
     - WikiPage
+  - MediaWiki\RecentChanges:
+    - CategoryMembershipChange
+    - ChangesFeed
+    - ChangesList
+    - ChangesListBooleanFilter
+    - ChangesListBooleanFilterGroup
+    - ChangesListFilter
+    - ChangesListFilterGroup
+    - ChangesListStringOptionsFilter
+    - ChangesListStringOptionsFilterGroup
+    - EnhancedChangesList
+    - OldChangesList
+    - RCCacheEntry
+    - RCCacheEntryFactory
+    - RecentChange
+    - RecentChangesUpdateJob
 * WikiPage::doEditUpdates(), deprecated since 1.32, is now emitting warnings.
   Use DerivedPageDataUpdater::doUpdates() instead.
 * IDatabase::setTransactionListener() is now deprecated without replacement.

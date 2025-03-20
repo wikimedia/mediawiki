@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Api\Query;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Api\ApiTestCase;
@@ -12,7 +13,6 @@ use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
 use MediaWiki\Watchlist\WatchedItemQueryService;
-use RecentChange;
 
 /**
  * @group medium

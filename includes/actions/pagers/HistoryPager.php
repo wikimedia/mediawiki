@@ -23,7 +23,6 @@
 
 namespace MediaWiki\Pager;
 
-use ChangesList;
 use ChangeTags;
 use HtmlArmor;
 use MapCacheLRU;
@@ -39,6 +38,7 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Sanitizer;
+use MediaWiki\RecentChanges\ChangesList;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\SpecialPage\SpecialPage;

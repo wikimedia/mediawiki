@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Specials;
 
-use ChangesList;
 use ChangeTags;
 use ErrorPageError;
 use MediaWiki\Cache\LinkBatch;
@@ -46,6 +45,7 @@ use MediaWiki\Page\UndeletePage;
 use MediaWiki\Page\UndeletePageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\RecentChanges\ChangesList;
 use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionArchiveRecord;

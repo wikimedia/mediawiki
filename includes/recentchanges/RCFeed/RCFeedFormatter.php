@@ -21,7 +21,7 @@
 
 namespace MediaWiki\RCFeed;
 
-use RecentChange;
+use MediaWiki\RecentChanges\RecentChange;
 
 /**
  * Interface for RC feed formatters

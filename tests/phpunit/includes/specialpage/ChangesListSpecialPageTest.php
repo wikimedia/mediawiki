@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Tests\SpecialPage;
 
-use ChangesListBooleanFilterGroup;
-use ChangesListStringOptionsFilterGroup;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
+use MediaWiki\RecentChanges\ChangesListBooleanFilterGroup;
+use MediaWiki\RecentChanges\ChangesListStringOptionsFilterGroup;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\SpecialPage\ChangesListSpecialPage;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
