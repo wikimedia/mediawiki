@@ -156,9 +156,10 @@ module.exports = exports = defineComponent( {
 			const optionsContainsValue = ( opts, v ) => opts.some( ( option ) => option.value === v );
 			if ( mw.util.isInfinity( given ) ) {
 				expiryType.value = 'preset-duration';
-				// FIXME: Assumes that the "infinite" option exists.
-				// (It has to be for this form as there's no other way to specify infinite)
-				presetDuration.value = 'infinite';
+				// Set the "infinite" option that exists.
+				presetDuration.value = presetDurationOptions.find(
+					( option ) => mw.util.isInfinity( option.value )
+				).value;
 			} else if ( optionsContainsValue( presetDurationOptions, given ) ) {
 				expiryType.value = 'preset-duration';
 				presetDuration.value = given;

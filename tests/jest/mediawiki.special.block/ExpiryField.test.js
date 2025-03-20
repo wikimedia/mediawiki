@@ -19,6 +19,21 @@ const presetTestCases = [
 		}
 	},
 	{
+		title: 'no default, wpExpiry=indefinite [preset] custom "indefinite" expiry option',
+		config: {
+			isInfinity: true,
+			blockExpiryPreset: 'indefinite',
+			blockExpiryOptions: {
+				infinite: 'indefinite',
+				'31 horas': '31 hours'
+			}
+		},
+		expected: {
+			expiryType: 'preset-duration',
+			presetDuration: 'indefinite'
+		}
+	},
+	{
 		title: 'default 9 weeks, wpExpiry=1 week [custom]',
 		config: {
 			blockExpiryDefault: '9 weeks',
