@@ -2895,6 +2895,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			foreach ( $this->getUsedOptions() as $opt ) {
 				$metadata->recordOption( $opt );
 			}
+			if ( !is_infinite( $this->mMaxAdaptiveExpiry ) ) {
+				$metadata->updateRuntimeAdaptiveExpiry( $this->mMaxAdaptiveExpiry );
+			}
 			if ( $this->mCacheExpiry !== null ) {
 				$metadata->updateCacheExpiry( $this->mCacheExpiry );
 			}
