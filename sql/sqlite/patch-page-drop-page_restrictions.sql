@@ -2,7 +2,7 @@
 -- Source: sql/abstractSchemaChanges/patch-page-drop-page_restrictions.json
 -- Do not modify this file directly.
 -- See https://www.mediawiki.org/wiki/Manual:Schema_changes
-CREATE TEMPORARY TABLE /*_*/__temp__page AS
+CREATE TEMPORARY TABLE /*_*/__temp__PAGE AS
 SELECT
   page_id,
   page_namespace,
@@ -53,8 +53,8 @@ SELECT
   page_content_model,
   page_lang
 FROM
-  /*_*/__temp__page;
-DROP TABLE /*_*/__temp__page;
+  /*_*/__temp__PAGE;
+DROP TABLE /*_*/__temp__PAGE;
 
 CREATE UNIQUE INDEX page_name_title ON /*_*/page (page_namespace, page_title);
 
