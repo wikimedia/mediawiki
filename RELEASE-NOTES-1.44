@@ -405,6 +405,43 @@ because of Phabricator reports.
       - MetadataStorageHelper
       - OldLocalFile
       - UnregisteredLocalFile
+  - MediaWiki\JobQueue:
+    - GenericParameterJob
+    - IJobSpecification
+    - Job
+    - JobQueue
+    - JobQueueDB
+    - JobQueueFederated
+    - JobQueueGroup
+    - JobQueueMemory
+    - JobQueueRedis
+    - JobRunner
+    - JobSpecification
+    - RunnableJob
+    - MediaWiki\JobQueue\Exceptions:
+      - JobQueueConnectionError
+      - JobQueueError
+      - JobQueueReadOnlyError
+    - MediaWiki\JobQueue\Jobs:
+      - AssembleUploadChunksJob
+      - CategoryMembershipChangeJob
+      - CdnPurgeJob
+      - DeleteLinksJob
+      - DeletePageJob
+      - DoubleRedirectJob
+      - DuplicateJob
+      - HTMLCacheUpdateJob
+      - NullJob
+      - ParsoidCachePrewarmJob
+      - PublishStashedFileJob
+      - RefreshLinksJob
+      - RevertedTagUpdateJob
+      - ThumbnailRenderJob
+      - UploadFromUrlJob
+      - UploadJobTrait
+    - MediaWiki\JobQueue\Utils:
+      - BacklinkJobUtils
+      - PurgeJobUtils
   - MediaWiki\Logging:
       - BlockLogFormatter
       - ContentModelLogFormatter

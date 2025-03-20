@@ -18,6 +18,10 @@
  * @file
  */
 
+namespace MediaWiki\JobQueue;
+
+use ArrayIterator;
+use MappedIterator;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
 
@@ -168,7 +172,7 @@ class JobQueueMemory extends JobQueue {
 	/**
 	 * @see JobQueue::getAllQueuedJobs
 	 *
-	 * @return Iterator<RunnableJob> of Job objects.
+	 * @return \Iterator<RunnableJob> of Job objects.
 	 */
 	public function getAllQueuedJobs() {
 		$unclaimed = $this->getQueueData( 'unclaimed' );
@@ -187,7 +191,7 @@ class JobQueueMemory extends JobQueue {
 	/**
 	 * @see JobQueue::getAllAcquiredJobs
 	 *
-	 * @return Iterator<RunnableJob> of Job objects.
+	 * @return \Iterator<RunnableJob> of Job objects.
 	 */
 	public function getAllAcquiredJobs() {
 		$claimed = $this->getQueueData( 'claimed' );
@@ -229,3 +233,6 @@ class JobQueueMemory extends JobQueue {
 		return self::$data[$this->type][$this->domain][$field];
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( JobQueueMemory::class, 'JobQueueMemory' );

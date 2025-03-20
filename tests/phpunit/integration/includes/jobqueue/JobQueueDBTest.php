@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\Integration\JobQueue;
 
-use JobQueue;
-use JobQueueDB;
-use JobSpecification;
+use MediaWiki\JobQueue\JobQueue;
+use MediaWiki\JobQueue\JobQueueDB;
+use MediaWiki\JobQueue\JobSpecification;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 use MediaWikiIntegrationTestCase;
@@ -13,7 +13,7 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
 /**
- * @covers JobQueueDB
+ * @covers \MediaWiki\JobQueue\JobQueueDB
  * @group JobQueue
  * @group Database
  */

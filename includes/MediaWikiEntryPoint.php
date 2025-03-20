@@ -22,8 +22,6 @@ namespace MediaWiki;
 
 use Exception;
 use HttpStatus;
-use JobQueueGroup;
-use JobRunner;
 use Liuggio\StatsdClient\Sender\SocketSender;
 use Liuggio\StatsdClient\StatsdClient;
 use LogicException;
@@ -34,7 +32,9 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\TransactionRoundDefiningUpdate;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\JobQueue\JobQueueGroupFactory;
+use MediaWiki\JobQueue\JobRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Request\WebResponse;

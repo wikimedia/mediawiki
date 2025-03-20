@@ -5,13 +5,13 @@ namespace MediaWiki\Tests\Storage;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWikiIntegrationTestCase;
-use RecentChange;
 use WikiPage;
 
 /**
  * @covers \MediaWiki\Storage\RevertedTagUpdate
- * @covers \RevertedTagUpdateJob
+ * @covers \MediaWiki\JobQueue\Jobs\RevertedTagUpdateJob
  * @covers \MediaWiki\Storage\RevertedTagUpdateManager
  *
  * @group Database

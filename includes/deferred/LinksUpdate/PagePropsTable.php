@@ -3,8 +3,8 @@
 namespace MediaWiki\Deferred\LinksUpdate;
 
 use HTMLCacheUpdateJob;
-use JobQueueGroup;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\ParserOutput;
 

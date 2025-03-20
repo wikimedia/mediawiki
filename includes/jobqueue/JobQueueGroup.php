@@ -18,8 +18,13 @@
  * @file
  */
 
+namespace MediaWiki\JobQueue;
+
+use InvalidArgumentException;
+use MapCacheLRU;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\JobQueueEnqueueUpdate;
+use MediaWiki\JobQueue\Exceptions\JobQueueError;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\ReadOnlyMode;
@@ -448,3 +453,6 @@ class JobQueueGroup {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( JobQueueGroup::class, 'JobQueueGroup' );

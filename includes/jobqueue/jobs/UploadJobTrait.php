@@ -19,11 +19,16 @@
  * @defgroup JobQueue JobQueue
  */
 
+namespace MediaWiki\JobQueue\Jobs;
+
+use Exception;
 use MediaWiki\Api\ApiUpload;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
+use MWExceptionHandler;
+use UploadBase;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -311,3 +316,6 @@ trait UploadJobTrait {
 	abstract protected function addTeardownCallback( $callback );
 
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( UploadJobTrait::class, 'UploadJobTrait' );

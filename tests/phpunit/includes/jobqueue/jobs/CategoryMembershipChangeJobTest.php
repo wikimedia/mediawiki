@@ -1,12 +1,13 @@
 <?php
 
+use MediaWiki\JobQueue\Jobs\CategoryMembershipChangeJob;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\MWTimestamp;
 
 /**
- * @covers \CategoryMembershipChangeJob
+ * @covers \MediaWiki\JobQueue\Jobs\CategoryMembershipChangeJob
  *
  * @group JobQueue
  * @group Database

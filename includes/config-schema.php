@@ -2111,10 +2111,10 @@ return [
 			'ServiceWiringFiles' => [
 			],
 			'JobClasses' => [
-				'deletePage' => 'DeletePageJob',
-				'refreshLinks' => 'RefreshLinksJob',
-				'deleteLinks' => 'DeleteLinksJob',
-				'htmlCacheUpdate' => 'HTMLCacheUpdateJob',
+				'deletePage' => 'MediaWiki\\JobQueue\\Jobs\\DeletePageJob',
+				'refreshLinks' => 'MediaWiki\\JobQueue\\Jobs\\RefreshLinksJob',
+				'deleteLinks' => 'MediaWiki\\JobQueue\\Jobs\\DeleteLinksJob',
+				'htmlCacheUpdate' => 'MediaWiki\\JobQueue\\Jobs\\HTMLCacheUpdateJob',
 				'sendMail' => [
 					'class' => 'EmaillingJob',
 					'services' => [
@@ -2123,7 +2123,7 @@ return [
 				],
 				'enotifNotify' => 'EnotifNotifyJob',
 				'fixDoubleRedirect' => [
-					'class' => 'DoubleRedirectJob',
+					'class' => 'MediaWiki\\JobQueue\\Jobs\\DoubleRedirectJob',
 					'services' => [
 						'RevisionLookup',
 						'MagicWordFactory',
@@ -2131,26 +2131,26 @@ return [
 					],
 					'needsPage' => true,
 				],
-				'AssembleUploadChunks' => 'AssembleUploadChunksJob',
-				'PublishStashedFile' => 'PublishStashedFileJob',
-				'ThumbnailRender' => 'ThumbnailRenderJob',
-				'UploadFromUrl' => 'UploadFromUrlJob',
+				'AssembleUploadChunks' => 'MediaWiki\\JobQueue\\Jobs\\AssembleUploadChunksJob',
+				'PublishStashedFile' => 'MediaWiki\\JobQueue\\Jobs\\PublishStashedFileJob',
+				'ThumbnailRender' => 'MediaWiki\\JobQueue\\Jobs\\ThumbnailRenderJob',
+				'UploadFromUrl' => 'MediaWiki\\JobQueue\\Jobs\\UploadFromUrlJob',
 				'recentChangesUpdate' => 'MediaWiki\\RecentChanges\\RecentChangesUpdateJob',
-				'refreshLinksPrioritized' => 'RefreshLinksJob',
-				'refreshLinksDynamic' => 'RefreshLinksJob',
+				'refreshLinksPrioritized' => 'MediaWiki\\JobQueue\\Jobs\\RefreshLinksJob',
+				'refreshLinksDynamic' => 'MediaWiki\\JobQueue\\Jobs\\RefreshLinksJob',
 				'activityUpdateJob' => 'MediaWiki\\Watchlist\\ActivityUpdateJob',
-				'categoryMembershipChange' => 'CategoryMembershipChangeJob',
+				'categoryMembershipChange' => 'MediaWiki\\JobQueue\\Jobs\\CategoryMembershipChangeJob',
 				'clearUserWatchlist' => 'MediaWiki\\Watchlist\\ClearUserWatchlistJob',
 				'watchlistExpiry' => 'MediaWiki\\Watchlist\\WatchlistExpiryJob',
-				'cdnPurge' => 'CdnPurgeJob',
+				'cdnPurge' => 'MediaWiki\\JobQueue\\Jobs\\CdnPurgeJob',
 				'userGroupExpiry' => 'UserGroupExpiryJob',
 				'clearWatchlistNotifications' => 'MediaWiki\\Watchlist\\ClearWatchlistNotificationsJob',
 				'userOptionsUpdate' => 'UserOptionsUpdateJob',
-				'revertedTagUpdate' => 'RevertedTagUpdateJob',
-				'null' => 'NullJob',
+				'revertedTagUpdate' => 'MediaWiki\\JobQueue\\Jobs\\RevertedTagUpdateJob',
+				'null' => 'MediaWiki\\JobQueue\\Jobs\\NullJob',
 				'userEditCountInit' => 'UserEditCountInitJob',
 				'parsoidCachePrewarm' => [
-					'class' => 'ParsoidCachePrewarmJob',
+					'class' => 'MediaWiki\\JobQueue\\Jobs\\ParsoidCachePrewarmJob',
 					'services' => [
 						'ParserOutputAccess',
 						'PageStore',
@@ -2190,7 +2190,7 @@ return [
 			],
 			'JobTypeConf' => [
 				'default' => [
-					'class' => 'JobQueueDB',
+					'class' => 'MediaWiki\\JobQueue\\JobQueueDB',
 					'order' => 'random',
 					'claimTTL' => 3600,
 				],

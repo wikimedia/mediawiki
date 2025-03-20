@@ -1,11 +1,15 @@
 <?php
 
+use MediaWiki\JobQueue\Job;
+use MediaWiki\JobQueue\JobQueue;
+use MediaWiki\JobQueue\JobQueueMemory;
+use MediaWiki\JobQueue\JobSpecification;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 
 /**
- * @covers \JobQueueMemory
+ * @covers \MediaWiki\JobQueue\JobQueueMemory
  *
  * @group JobQueue
  *

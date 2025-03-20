@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\JobQueue;
+
 /**
  * Interface for generic jobs only uses the parameters field and are JSON serializable.
  * Jobs using this interface require `needsPage: false` to be set
@@ -33,3 +35,6 @@ interface GenericParameterJob extends IJobSpecification {
 	 */
 	public function __construct( array $params );
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( GenericParameterJob::class, 'GenericParameterJob' );

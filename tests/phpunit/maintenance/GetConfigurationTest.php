@@ -3,9 +3,9 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use GetConfiguration;
+use MediaWiki\JobQueue\Jobs\NullJob;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
-use NullJob;
 
 /**
  * @covers \GetConfiguration

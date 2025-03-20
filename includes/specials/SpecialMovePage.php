@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Specials;
 
-use DoubleRedirectJob;
 use ErrorPageError;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentStore\CommentStore;
@@ -28,6 +27,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Html\Html;
+use MediaWiki\JobQueue\Jobs\DoubleRedirectJob;
 use MediaWiki\Logging\LogEventsList;
 use MediaWiki\Logging\LogPage;
 use MediaWiki\MainConfigNames;

@@ -18,6 +18,9 @@
  * @file
  */
 
+namespace MediaWiki\JobQueue\Utils;
+
+use MediaWiki\JobQueue\Job;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 
@@ -152,3 +155,6 @@ class BacklinkJobUtils {
 		return $jobs;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( BacklinkJobUtils::class, 'BacklinkJobUtils' );

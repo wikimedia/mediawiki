@@ -18,6 +18,10 @@
  * @file
  */
 
+namespace MediaWiki\JobQueue\Jobs;
+
+use MediaWiki\JobQueue\Job;
+use MediaWiki\JobQueue\Utils\BacklinkJobUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
@@ -201,3 +205,6 @@ class HTMLCacheUpdateJob extends Job {
 		return 1; // one title
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( HTMLCacheUpdateJob::class, 'HTMLCacheUpdateJob' );

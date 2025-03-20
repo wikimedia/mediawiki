@@ -21,9 +21,9 @@
 namespace MediaWiki\RecentChanges;
 
 use InvalidArgumentException;
-use Job;
 use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\JobQueue\Job;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;

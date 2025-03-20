@@ -19,7 +19,13 @@
  * @defgroup JobQueue JobQueue
  */
 
+namespace MediaWiki\JobQueue\Jobs;
+
+use MediaWiki\JobQueue\GenericParameterJob;
+use MediaWiki\JobQueue\Job;
 use MediaWiki\Status\Status;
+use UploadBase;
+use UploadFromStash;
 
 /**
  * Upload a file from the upload stash into the local file repo.
@@ -79,3 +85,6 @@ class PublishStashedFileJob extends Job implements GenericParameterJob {
 		return $this->upload;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( PublishStashedFileJob::class, 'PublishStashedFileJob' );

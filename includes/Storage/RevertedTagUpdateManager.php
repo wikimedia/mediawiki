@@ -20,8 +20,8 @@
 
 namespace MediaWiki\Storage;
 
-use JobQueueGroup;
-use RevertedTagUpdateJob;
+use MediaWiki\JobQueue\JobQueueGroup;
+use MediaWiki\JobQueue\Jobs\RevertedTagUpdateJob;
 
 /**
  * Class for managing delayed RevertedTagUpdateJob waiting for user approval.

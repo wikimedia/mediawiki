@@ -3,10 +3,10 @@
 namespace MediaWiki\Tests\Unit\Page;
 
 use Generator;
-use JobQueueGroup;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\FileRepo\RepoGroup;
+use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;

@@ -15,6 +15,7 @@ use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Page\RollbackPage;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Tests\ExpectCallbackTrait;
@@ -31,7 +32,6 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\Assert;
-use RecentChange;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use WikiPage;
 

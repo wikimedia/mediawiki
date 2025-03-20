@@ -18,7 +18,11 @@
  * @file
  */
 
+namespace MediaWiki\JobQueue\Jobs;
+
 use MediaWiki\Deferred\CdnCacheUpdate;
+use MediaWiki\JobQueue\GenericParameterJob;
+use MediaWiki\JobQueue\Job;
 
 /**
  * Job to purge a set of URLs from CDN
@@ -39,3 +43,6 @@ class CdnPurgeJob extends Job implements GenericParameterJob {
 		return true;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( CdnPurgeJob::class, 'CdnPurgeJob' );

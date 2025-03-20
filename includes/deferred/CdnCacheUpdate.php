@@ -20,9 +20,9 @@
 
 namespace MediaWiki\Deferred;
 
-use CdnPurgeJob;
 use Exception;
 use InvalidArgumentException;
+use MediaWiki\JobQueue\Jobs\CdnPurgeJob;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;

@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Watchlist;
 
-use Job;
+use MediaWiki\JobQueue\Job;
 use MediaWiki\MediaWikiServices;
 
 /**

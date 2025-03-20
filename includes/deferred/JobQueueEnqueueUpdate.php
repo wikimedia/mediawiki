@@ -22,7 +22,7 @@
 
 namespace MediaWiki\Deferred;
 
-use IJobSpecification;
+use MediaWiki\JobQueue\IJobSpecification;
 use MediaWiki\JobQueue\JobQueueGroupFactory;
 use MediaWiki\MediaWikiServices;
 use MWExceptionHandler;

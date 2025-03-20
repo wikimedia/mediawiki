@@ -18,9 +18,12 @@
  * @file
  */
 
+namespace MediaWiki\JobQueue;
+
 use MediaWiki\Http\Telemetry;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
+use UnexpectedValueException;
 
 /**
  * Job queue task description base code.
@@ -187,3 +190,6 @@ class JobSpecification implements IJobSpecification {
 		);
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( JobSpecification::class, 'JobSpecification' );

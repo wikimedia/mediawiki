@@ -18,11 +18,20 @@
  * @file
  */
 
+namespace MediaWiki\JobQueue\Jobs;
+
+use Exception;
 use MediaWiki\Api\ApiUpload;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\JobQueue\GenericParameterJob;
+use MediaWiki\JobQueue\Job;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Request\WebRequestUpload;
 use MediaWiki\Status\Status;
+use MWExceptionHandler;
+use UnexpectedValueException;
+use UploadBase;
+use UploadFromChunks;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -203,3 +212,6 @@ class AssembleUploadChunksJob extends Job implements GenericParameterJob {
 		return false;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( AssembleUploadChunksJob::class, 'AssembleUploadChunksJob' );

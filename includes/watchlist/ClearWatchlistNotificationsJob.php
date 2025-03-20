@@ -20,9 +20,9 @@
 
 namespace MediaWiki\Watchlist;
 
-use GenericParameterJob;
 use InvalidArgumentException;
-use Job;
+use MediaWiki\JobQueue\GenericParameterJob;
+use MediaWiki\JobQueue\Job;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 

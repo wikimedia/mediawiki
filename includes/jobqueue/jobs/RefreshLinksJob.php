@@ -18,8 +18,13 @@
  * @file
  */
 
+namespace MediaWiki\JobQueue\Jobs;
+
+use MediaWiki\Actions\InfoAction;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Deferred\RefreshSecondaryDataUpdate;
+use MediaWiki\JobQueue\Job;
+use MediaWiki\JobQueue\Utils\BacklinkJobUtils;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -639,3 +644,6 @@ class RefreshLinksJob extends Job {
 		return 1; // one title
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( RefreshLinksJob::class, 'RefreshLinksJob' );

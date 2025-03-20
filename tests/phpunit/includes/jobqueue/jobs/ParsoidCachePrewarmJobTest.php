@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\JobQueue\Jobs\ParsoidCachePrewarmJob;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\OutputTransform\Stages\RenderDebugInfo;
 use MediaWiki\Page\PageIdentity;
@@ -35,9 +36,9 @@ class ParsoidCachePrewarmJobTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \ParsoidCachePrewarmJob::doParsoidCacheUpdate
-	 * @covers \ParsoidCachePrewarmJob::newSpec
-	 * @covers \ParsoidCachePrewarmJob::run
+	 * @covers \MediaWiki\JobQueue\Jobs\ParsoidCachePrewarmJob::doParsoidCacheUpdate
+	 * @covers \MediaWiki\JobQueue\Jobs\ParsoidCachePrewarmJob::newSpec
+	 * @covers \MediaWiki\JobQueue\Jobs\ParsoidCachePrewarmJob::run
 	 */
 	public function testRun() {
 		$page = $this->getExistingTestPage( 'ParsoidPrewarmJob' )->toPageRecord();
@@ -122,7 +123,7 @@ class ParsoidCachePrewarmJobTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \ParsoidCachePrewarmJob::newSpec
+	 * @covers \MediaWiki\JobQueue\Jobs\ParsoidCachePrewarmJob::newSpec
 	 */
 	public function testEnqueueSpec() {
 		$page = $this->getExistingTestPage( 'ParsoidPrewarmJob' )->toPageRecord();

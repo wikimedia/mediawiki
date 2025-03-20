@@ -1,12 +1,17 @@
 <?php
 
+use MediaWiki\JobQueue\IJobSpecification;
+use MediaWiki\JobQueue\Job;
+use MediaWiki\JobQueue\Jobs\NullJob;
+use MediaWiki\JobQueue\Jobs\ParsoidCachePrewarmJob;
+use MediaWiki\JobQueue\Jobs\RefreshLinksJob;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
 
 /**
  * @author Addshore
- * @covers \Job
+ * @covers \MediaWiki\JobQueue\Job
  */
 class JobTest extends MediaWikiIntegrationTestCase {
 

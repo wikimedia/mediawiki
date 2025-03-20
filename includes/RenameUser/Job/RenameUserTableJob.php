@@ -3,8 +3,8 @@
 namespace MediaWiki\RenameUser\Job;
 
 use InvalidArgumentException;
-use Job;
 use MediaWiki\Config\Config;
+use MediaWiki\JobQueue\Job;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\ILBFactory;

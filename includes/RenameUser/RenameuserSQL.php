@@ -2,9 +2,9 @@
 
 namespace MediaWiki\RenameUser;
 
-use JobQueueGroup;
-use JobSpecification;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\JobQueue\JobQueueGroup;
+use MediaWiki\JobQueue\JobSpecification;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;

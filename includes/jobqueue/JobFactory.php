@@ -3,9 +3,7 @@
 namespace MediaWiki\JobQueue;
 
 use Closure;
-use GenericParameterJob;
 use InvalidArgumentException;
-use Job;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Title\Title;
 use Wikimedia\ObjectFactory\ObjectFactory;

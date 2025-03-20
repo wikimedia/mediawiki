@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\JobQueue;
+
 /**
  * Interface for serializable objects that describe a job queue task
  *
@@ -88,3 +90,6 @@ interface IJobSpecification {
 	 */
 	public function isRootJob();
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( IJobSpecification::class, 'IJobSpecification' );

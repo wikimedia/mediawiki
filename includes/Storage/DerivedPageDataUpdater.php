@@ -20,10 +20,8 @@
 
 namespace MediaWiki\Storage;
 
-use CategoryMembershipChangeJob;
 use ChangeTags;
 use InvalidArgumentException;
-use JobQueueGroup;
 use LogicException;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Config\ServiceOptions;
@@ -40,6 +38,9 @@ use MediaWiki\DomainEvent\DomainEventDispatcher;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\JobQueue\JobQueueGroup;
+use MediaWiki\JobQueue\Jobs\CategoryMembershipChangeJob;
+use MediaWiki\JobQueue\Jobs\ParsoidCachePrewarmJob;
 use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
@@ -63,7 +64,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
 use MWUnknownContentModelException;
-use ParsoidCachePrewarmJob;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;

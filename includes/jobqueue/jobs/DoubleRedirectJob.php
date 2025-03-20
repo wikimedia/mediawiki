@@ -18,7 +18,10 @@
  * @file
  */
 
+namespace MediaWiki\JobQueue\Jobs;
+
 use MediaWiki\Cache\CacheKeyHelper;
+use MediaWiki\JobQueue\Job;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
@@ -302,3 +305,6 @@ class DoubleRedirectJob extends Job {
 		return self::$user;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( DoubleRedirectJob::class, 'DoubleRedirectJob' );
