@@ -1,3 +1,47 @@
+# 1.21.1 / 2025-03-19
+
+## Code
+- code: Update Popover imports (Anne Tomasevich)
+
+# 1.21.0 / 2025-03-19
+
+## Features
+- Popover: add arrow tip (Lauralyn Watson)
+- container: Add initial Container component (Volker E.)
+- ProgressIndicator: Take component out of WIP (Volker E.)
+- Popover: take component out of WIP (Lauralyn Watson)
+
+## Styles
+- styles, Popover: address design review (Lauralyn Watson)
+- token, Popover: add `z-index` token (Lauralyn Watson)
+- tokens: `accent-color` should also feature color mode token (Volker E.)
+
+## New design tokens
+- `z-index-popover`
+
+## Code
+- Popover: Make `anchor` loosely required (Anne Tomasevich)
+- Popover: apply the i18n message key for the close button label (Lauralyn Watson)
+- tests, Image: Remove redundant 'correctly' in snapshot test descriptions (Doğu Abaris)
+- Popover: fix console warning (Lauralyn Watson)
+- Popover: Remove Transition and mock `useFloating` in tests (Anne Tomasevich)
+- Popover: Change "positionConfig" prop to "placement" (Eric Gardner)
+- Popover: Update logic and tests that handle mouse interaction (Anne Tomasevich)
+- Popover: Set max-width instead of width (Anne Tomasevich)
+- Tooltip: Improve ID generation (Eric Gardner)
+- Popover: change header button wrapper's class name (Lauralyn Watson)
+- Popover: Adjust anchor prop type (Anne Tomasevich)
+
+## Docs
+- docs: add design tokens introduced in v1.20.3 (Lauralyn Watson)
+- docs, i18n: update docs about adding new message keys (Lauralyn Watson)
+- demos: Fix Container demo selectors (Volker E.)
+- docs: Add Popover guidelines (Derek Torsani)
+- Popover: add demos (Lauralyn Watson)
+- docs: Support anchor links to icons in AllIcons table (Anne Tomasevich)
+- docs: Fix typos on 'TypeScript' (Volker E.)
+- demo, Popover: add action button controls to config demo (Lauralyn Watson)
+
 # 1.20.3 / 2025-03-04
 
 ## Deprecating Changes
@@ -13,6 +57,11 @@
 - Popover: add Floating UI behavior (Lauralyn Watson)
 - Popover: handle keynav and clicks outside (Lauralyn Watson)
 - styles: Consistently import tokens in Less as references (Volker E.)
+
+## New design tokens
+- `animation-duration-fast`
+- `transform-progress-indicator-spinner-start`
+- `transform-progress-indicator-spinner-end`
 
 ## Code
 - Menu: Add `tabindex="-1"` to `ul` element (Anne Tomasevich)
