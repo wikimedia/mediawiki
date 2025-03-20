@@ -2519,7 +2519,7 @@
 	"contributions": "User contributions",
 	"tool-link-contributions": "{{GENDER:$1|User}} contributions",
 	"contributions-summary": "",
-	"contributions-title": "User contributions for $1",
+	"contributions-title": "{{GENDER:$2|User}} contributions for $1",
 	"contributions-title-for-ip-when-temporary-accounts-enabled": "Legacy IP contributions for $1",
 	"contribute-title": "User contributions",
 	"mycontris": "Contributions",
