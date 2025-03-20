@@ -28,6 +28,13 @@
     "file": "floating-ui.dom.js",
     "name": "floating-ui.dom"
   },
+  "_unwrapElement.js": {
+    "file": "unwrapElement.js",
+    "name": "unwrapElement",
+    "imports": [
+      "_floating-ui.dom.js"
+    ]
+  },
   "_useButtonGroupKeyboardNav.js": {
     "file": "useButtonGroupKeyboardNav.js",
     "name": "useButtonGroupKeyboardNav",
@@ -359,6 +366,24 @@
       "CdxMultiselectLookup-rtl.css"
     ]
   },
+  "src/components/popover/Popover.vue": {
+    "file": "CdxPopover.cjs",
+    "name": "CdxPopover",
+    "src": "src/components/popover/Popover.vue",
+    "isEntry": true,
+    "imports": [
+      "_unwrapElement.js",
+      "_Icon.js",
+      "src/components/button/Button.vue",
+      "_useI18nWithOverride.js",
+      "_constants.js",
+      "_floating-ui.dom.js",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxPopover-rtl.css"
+    ]
+  },
   "src/components/progress-bar/ProgressBar.vue": {
     "file": "CdxProgressBar.cjs",
     "name": "CdxProgressBar",
@@ -370,6 +395,21 @@
     ],
     "css": [
       "CdxProgressBar-rtl.css"
+    ]
+  },
+  "src/components/progress-indicator/ProgressIndicator.vue": {
+    "file": "CdxProgressIndicator.cjs",
+    "name": "CdxProgressIndicator",
+    "src": "src/components/progress-indicator/ProgressIndicator.vue",
+    "isEntry": true,
+    "imports": [
+      "src/components/label/Label.vue",
+      "_useLabelChecker.js",
+      "src/composables/useSplitAttributes.ts",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxProgressIndicator-rtl.css"
     ]
   },
   "src/components/radio/Radio.vue": {
@@ -592,7 +632,7 @@
     "src": "src/components/tooltip/Tooltip.ts",
     "isEntry": true,
     "imports": [
-      "src/composables/useGeneratedId.ts",
+      "_constants.js",
       "_floating-ui.dom.js"
     ],
     "css": [
@@ -654,6 +694,7 @@
     "src": "src/composables/useFloatingMenu.ts",
     "isEntry": true,
     "imports": [
+      "_unwrapElement.js",
       "_floating-ui.dom.js"
     ]
   },

@@ -1,5 +1,5 @@
 
-// Codex Design Tokens v1.20.3
+// Codex Design Tokens v1.21.1
 // Design System for Wikimedia
 // See https://doc.wikimedia.org/codex/latest/design-tokens/overview.html
 
@@ -59,6 +59,7 @@
 @z-index-off-canvas: 350;
 @z-index-overlay-backdrop: 400;
 @z-index-overlay: 450;
+@z-index-popover: 700;
 @z-index-tooltip: 800;
 @z-index-toast-notification: 900;
 @z-index-top: 9999;
@@ -327,7 +328,7 @@
 @box-shadow-small-bottom: @box-shadow-outset-small-bottom @box-shadow-color-base;
 @box-shadow-medium: @box-shadow-outset-medium-below @box-shadow-color-alpha-base, @box-shadow-outset-medium-around @box-shadow-color-alpha-base;
 @box-shadow-large: @box-shadow-outset-large-below @box-shadow-color-alpha-base, @box-shadow-outset-large-around @box-shadow-color-alpha-base;
-@accent-color-base: #36c;
+@accent-color-base: var( --accent-color-base, #36c );
 @position-offset-border-width-base: -@border-width-base;
 @spacing-horizontal-button: @spacing-75 - @border-width-base; // Padding should equal 12px of spacing minus the width of the border
 @spacing-horizontal-button-icon-only: @spacing-35 - @border-width-base; // Padding should equal 6px of spacing minus the width of the border

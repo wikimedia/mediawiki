@@ -125,11 +125,11 @@ codex:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
   authors: Design System team, Wikimedia Foundation
-  version: 1.20.3
-  purl: pkg:npm/@wikimedia/codex@1.20.3
+  version: 1.21.1
+  purl: pkg:npm/@wikimedia/codex@1.21.1
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-1.20.3.tgz
-  integrity: sha384-2Lz9DSqXa6vICdBxeA4iE+O93KW4bz10UUk+3CACda6qpM/134ar00sU/W/bpS/Z
+  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-1.21.1.tgz
+  integrity: sha384-dTeLKyLu1DvPwaumuhvX2lI93jpjMZRYPCUBdpgJAlZwchzr8C9MPAu57OhOYdCl
   dest:
     package/dist/codex.cjs:
     package/dist/codex.js:
@@ -146,11 +146,11 @@ codex-design-tokens:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
   authors: Design System team, Wikimedia Foundation
-  version: 1.20.3
-  purl: pkg:npm/@wikimedia/codex-design-tokens@1.20.3
+  version: 1.21.1
+  purl: pkg:npm/@wikimedia/codex-design-tokens@1.21.1
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-1.20.3.tgz
-  integrity: sha384-+8ISM3Een23xcje9Q1bIf9/s0JyuqeN8uvpkcYY24/frwYPmIiUQ86ujalNDQUNB
+  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-1.21.1.tgz
+  integrity: sha384-gtMaIQ22m0ZcWu21s/HBCfPCoBQ5iYyrWENCRmhExhG//fHwiwEWCbF/21qE5TQZ
   dest:
     package/dist/theme-*.less:
     package/dist/theme-wikimedia-ui-root.css:
@@ -162,11 +162,11 @@ codex-icons:
   license: MIT
   homepage: https://doc.wikimedia.org/codex/
   authors: Design System team, Wikimedia Foundation
-  version: 1.20.3
-  purl: pkg:npm/@wikimedia/codex-icons@1.20.3
+  version: 1.21.1
+  purl: pkg:npm/@wikimedia/codex-icons@1.21.1
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-1.20.3.tgz
-  integrity: sha384-QW080cVp4t0ejlFQhDLFaXmV3ktptWlcCvNvxvr/cV+/XWcMijlnm+ASVEg7ZjUX
+  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-1.21.1.tgz
+  integrity: sha384-PbQznZgcAMX1xgf1THhmx0ymlzW6ZPQAJzwPgH92RqwrfcWU4U6vSJZ51mf3jKyK
   dest:
     package/dist/codex-icons.json:
     package/dist/codex-icon-paths.less:
