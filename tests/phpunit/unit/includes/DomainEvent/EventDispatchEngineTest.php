@@ -281,7 +281,7 @@ class EventDispatchEngineTest extends MediaWikiUnitTestCase {
 				$this->trace =& $trace;
 			}
 
-			public function handleFooCompleteEventAfterCommit() {
+			public function handleFooCompleteEvent() {
 				$this->trace[] = 'afterFooComplete';
 			}
 		};

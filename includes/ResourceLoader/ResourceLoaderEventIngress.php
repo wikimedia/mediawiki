@@ -59,7 +59,7 @@ class ResourceLoaderEventIngress extends EventIngressBase {
 	 *
 	 * @noinspection PhpUnused
 	 */
-	public function handlePageDeletedEventAfterCommit( PageDeletedEvent $event ) {
+	public function handlePageDeletedEvent( PageDeletedEvent $event ) {
 		WikiModule::invalidateModuleCache(
 			$event->getPage(),
 			$event->getLatestRevisionBefore(),

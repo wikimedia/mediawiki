@@ -56,7 +56,7 @@ class SearchEventIngress extends EventIngressBase {
 	 *
 	 * @noinspection PhpUnused
 	 */
-	public function handlePageDeletedEventAfterCommit( PageDeletedEvent $event ) {
+	public function handlePageDeletedEvent( PageDeletedEvent $event ) {
 		$update = new SearchUpdate(
 			$event->getPageStateBefore()->getId(),
 			$event->getPage(),
