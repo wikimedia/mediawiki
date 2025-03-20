@@ -569,8 +569,7 @@ class ChangesList extends ContextSource {
 		# Diff link
 		if (
 			$rc->mAttribs['rc_type'] == RC_NEW ||
-			$rc->mAttribs['rc_type'] == RC_LOG ||
-			$rc->mAttribs['rc_type'] == RC_CATEGORIZE
+			$rc->mAttribs['rc_type'] == RC_LOG
 		) {
 			$diffLink = $this->message['diff'];
 		} elseif ( !self::userCan( $rc, RevisionRecord::DELETED_TEXT, $this->getAuthority() ) ) {
