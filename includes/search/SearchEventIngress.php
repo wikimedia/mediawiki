@@ -4,7 +4,9 @@ namespace MediaWiki\Search;
 
 use MediaWiki\DomainEvent\EventIngressBase;
 use MediaWiki\Page\Event\PageDeletedEvent;
+use MediaWiki\Page\Event\PageDeletedListener;
 use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
+use MediaWiki\Page\Event\PageRevisionUpdatedListener;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 
@@ -14,7 +16,10 @@ use MediaWiki\Revision\SlotRecord;
  *
  * @internal
  */
-class SearchEventIngress extends EventIngressBase {
+class SearchEventIngress
+	extends EventIngressBase
+	implements PageDeletedListener, PageRevisionUpdatedListener
+{
 
 	/** Object spec intended for use with {@link DomainEventSource::registerSubscriber()} */
 	public const OBJECT_SPEC = [

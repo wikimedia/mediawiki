@@ -11,6 +11,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
+use MediaWiki\Page\Event\PageRevisionUpdatedListener;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
@@ -29,7 +30,18 @@ use RevertedTagUpdateJob;
  *
  * @internal
  */
-class ChangeTrackingEventIngress extends EventIngressBase {
+class ChangeTrackingEventIngress
+	extends EventIngressBase
+	implements PageRevisionUpdatedListener
+{
+
+	/**
+	 * The events handled by this ingress subscriber.
+	 * @see registerListeners()
+	 */
+	public const EVENTS = [
+		PageRevisionUpdatedEvent::TYPE
+	];
 
 	/**
 	 * Object spec used for lazy instantiation.
