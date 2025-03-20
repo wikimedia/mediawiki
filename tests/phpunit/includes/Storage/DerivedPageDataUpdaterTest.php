@@ -44,6 +44,7 @@ use MediaWikiIntegrationTestCase;
 use MockTitleTrait;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\MockObject;
+use RecentChange;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\TestingAccessWrapper;
@@ -1423,17 +1424,24 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideEnqueueRevertedTagUpdateJob() {
 		return [
-			'approved' => [ true, 1 ],
-			'not approved' => [ false, 0 ]
+			'not patrolled' => [ true, 0, 0 ],
+			'patrolled' => [ true, RecentChange::PRC_AUTOPATROLLED, 1 ],
+			'autopatrolled' => [ true, RecentChange::PRC_AUTOPATROLLED, 1 ],
+			'patrolling disabled' => [ false, 0, 1 ]
 		];
 	}
 
 	/**
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doUpdates
-	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::maybeEnqueueRevertedTagUpdateJob
+	 * @covers \MediaWiki\RecentChanges\ChangeTrackingEventIngress::updateRevertTagAfterPageUpdated
 	 * @dataProvider provideEnqueueRevertedTagUpdateJob
 	 */
-	public function testEnqueueRevertedTagUpdateJob( bool $approved, int $queueSize ) {
+	public function testEnqueueRevertedTagUpdateJob(
+		bool $useRcPatrol,
+		int $rcPatrolStatus,
+		int $expectQueueSize
+	) {
+		$this->overrideConfigValue( MainConfigNames::UseRCPatrol, $useRcPatrol );
 		$page = $this->getPage( __METHOD__ );
 
 		$content = [ SlotRecord::MAIN => new WikitextContent( '1' ) ];
@@ -1453,7 +1461,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$updater->prepareUpdate( $rev, [
 			'editResult' => $editResult,
-			'approved' => $approved
+			'rcPatrolStatus' => $rcPatrolStatus,
 		] );
 		$updater->doUpdates();
 
@@ -1467,23 +1475,16 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 			)
 		);
 
-		if ( $approved ) {
-			$this->assertNull(
-				$editResultCache->get( $rev->getId() ),
-				'EditResult should not be cached when the revert is approved'
-			);
-		} else {
-			$this->assertEquals(
-				$editResult,
-				$editResultCache->get( $rev->getId() ),
-				'EditResult should be cached when the revert is not approved'
-			);
-		}
+		$this->assertEquals(
+			$editResult,
+			$editResultCache->get( $rev->getId() ),
+			'EditResult should be cached when the revert is not approved'
+		);
 
 		$jobQueueGroup = $this->getServiceContainer()->getJobQueueGroup();
 		$jobQueue = $jobQueueGroup->get( 'revertedTagUpdate' );
 		$this->assertSame(
-			$queueSize,
+			$expectQueueSize,
 			$jobQueue->getSize()
 		);
 	}
