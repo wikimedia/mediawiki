@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Hook;
 
+use MediaWiki\Skin\Skin;
 use MediaWiki\Title\Title;
-use Skin;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

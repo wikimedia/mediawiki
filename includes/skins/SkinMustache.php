@@ -18,11 +18,11 @@
  * @file
  */
 
+namespace MediaWiki\Skin;
+
 use MediaWiki\Html\Html;
 use MediaWiki\Html\TemplateParser;
 use MediaWiki\Language\Language;
-use MediaWiki\Skin\SkinComponentTempUserBanner;
-use MediaWiki\Skin\SkinComponentUtils;
 use MediaWiki\Title\Title;
 
 /**
@@ -152,3 +152,6 @@ class SkinMustache extends SkinTemplate {
 		return $data;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( SkinMustache::class, 'SkinMustache' );

@@ -7,10 +7,10 @@ use MediaWiki\Language\Language;
 use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\OutputTransform\Stages\HandleTOCMarkers;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Skin\Skin;
 use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
 use MediaWiki\Tests\OutputTransform\TestUtils;
 use Psr\Log\NullLogger;
-use Skin;
 
 /**
  * @covers \MediaWiki\OutputTransform\Stages\HandleTOCMarkers

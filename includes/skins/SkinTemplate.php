@@ -20,6 +20,9 @@
  * @file
  */
 
+namespace MediaWiki\Skin;
+
+use InvalidArgumentException;
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\Exception\MWException;
 use MediaWiki\Html\Html;
@@ -31,10 +34,11 @@ use MediaWiki\Message\Message;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\ResourceLoader as RL;
-use MediaWiki\Skin\SkinComponentUtils;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\Contribute\ContributeFactory;
 use MediaWiki\Title\Title;
+use Profiler;
+use RuntimeException;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 
@@ -1686,3 +1690,6 @@ class SkinTemplate extends Skin {
 	}
 
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( SkinTemplate::class, 'SkinTemplate' );

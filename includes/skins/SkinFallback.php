@@ -6,6 +6,8 @@
  * @file
  */
 
+namespace MediaWiki\Skin;
+
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -126,3 +128,6 @@ class SkinFallback extends SkinMustache {
 		return $data;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( SkinFallback::class, 'SkinFallback' );

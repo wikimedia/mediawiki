@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Skin;
+
 use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MediaWikiServices;
@@ -215,3 +217,6 @@ abstract class QuickTemplate {
 		return $html;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( QuickTemplate::class, 'QuickTemplate' );

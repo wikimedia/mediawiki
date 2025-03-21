@@ -4,8 +4,8 @@ namespace MediaWiki\Hook;
 
 use MediaWiki\RecentChanges\ChangesList;
 use MediaWiki\RecentChanges\ChangesListFilterGroup;
+use MediaWiki\Skin\Skin;
 use MediaWiki\User\User;
-use Skin;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

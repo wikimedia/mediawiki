@@ -21,6 +21,9 @@
  * @file
  */
 
+namespace MediaWiki\Skin;
+
+use InvalidArgumentException;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
@@ -191,3 +194,6 @@ class SkinFactory {
 		return $options;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( SkinFactory::class, 'SkinFactory' );

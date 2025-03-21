@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Skin;
+
 use MediaWiki\Context\ContextSource;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
@@ -29,14 +31,6 @@ use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\Revision\RevisionStore;
-use MediaWiki\Skin\SkinComponent;
-use MediaWiki\Skin\SkinComponentFooter;
-use MediaWiki\Skin\SkinComponentLink;
-use MediaWiki\Skin\SkinComponentListItem;
-use MediaWiki\Skin\SkinComponentMenu;
-use MediaWiki\Skin\SkinComponentRegistry;
-use MediaWiki\Skin\SkinComponentRegistryContext;
-use MediaWiki\Skin\SkinComponentUtils;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\SpecialUserRights;
 use MediaWiki\Title\Title;
@@ -45,6 +39,7 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\WikiMap\WikiMap;
+use UploadBase;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\IDBAccessObject;
 
@@ -2565,3 +2560,6 @@ abstract class Skin extends ContextSource {
 		return $portletComponent->getTemplateData();
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( Skin::class, 'Skin' );

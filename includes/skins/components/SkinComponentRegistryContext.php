@@ -26,7 +26,6 @@ use MediaWiki\Page\WikiPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MessageLocalizer;
-use Skin;
 
 /**
  * @internal for use inside Skin and SkinTemplate classes only

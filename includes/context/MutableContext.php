@@ -26,9 +26,9 @@ use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\Skin\Skin;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use Skin;
 
 /**
  * Request-dependent objects containers.

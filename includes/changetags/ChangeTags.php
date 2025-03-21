@@ -34,6 +34,7 @@ use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\RecentChanges\RecentChange;
+use MediaWiki\Skin\Skin;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
@@ -41,7 +42,6 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\Xml\XmlSelect;
 use MessageLocalizer;
 use RevDelLogList;
-use Skin;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\IReadableDatabase;
 

@@ -118,7 +118,7 @@ class SkinFactoryTest extends \MediaWikiUnitTestCase {
 	}
 
 	public function testGetSkinNames() {
-		$this->expectDeprecationAndContinue( '/Use of SkinFactory::getSkinNames was deprecated in MediaWiki 1\.37/' );
+		$this->expectDeprecationAndContinue( '/SkinFactory::getSkinNames was deprecated in MediaWiki 1\.37/' );
 
 		$factory = $this->createSkinFactory();
 		$factory->register( 'skin1', 'Skin1', [] );

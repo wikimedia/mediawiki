@@ -20,6 +20,10 @@
  * @file
  */
 
+namespace MediaWiki\Skin;
+
+use LogicException;
+
 /**
  * Exceptions for skin-related failures
  *
@@ -28,3 +32,6 @@
  */
 class SkinException extends LogicException {
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( SkinException::class, 'SkinException' );

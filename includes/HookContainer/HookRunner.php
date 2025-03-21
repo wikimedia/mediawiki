@@ -27,11 +27,11 @@ use MediaWiki\RenameUser\RenameuserSQL;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Session\Session;
+use MediaWiki\Skin\Skin;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use SearchEngine;
-use Skin;
 use StatusValue;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 

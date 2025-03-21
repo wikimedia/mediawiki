@@ -23,8 +23,8 @@
 
 namespace MediaWiki\Specials;
 
+use MediaWiki\Skin\SkinFactory;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
-use SkinFactory;
 
 /**
  * A page for the 'mediawiki.authenticationPopup' module. If opened in a popup window,

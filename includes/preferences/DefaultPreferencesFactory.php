@@ -48,6 +48,7 @@ use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Skin\SkinFactory;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\SpecialWatchlist;
 use MediaWiki\Status\Status;
@@ -69,7 +70,6 @@ use OOUI\MessageWidget;
 use PreferencesFormOOUI;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
-use SkinFactory;
 use UnexpectedValueException;
 use Wikimedia\Rdbms\IDBAccessObject;
 
