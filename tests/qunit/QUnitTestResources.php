@@ -92,6 +92,7 @@ return [
 
 	'test.MediaWiki' => [
 		'scripts' => [
+			'tests/qunit/resources/testrunner.test.js',
 			'tests/qunit/resources/startup/mediawiki.test.js',
 			'tests/qunit/resources/startup/mw.Map.test.js',
 			'tests/qunit/resources/startup/mw.loader.test.js',
