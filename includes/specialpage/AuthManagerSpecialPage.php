@@ -147,19 +147,24 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 			// FIXME save POST values only from request
 			$authData = array_diff_key( $this->getRequest()->getValues(),
 				$preservedParams, [ 'title' => 1 ] );
+			$uniqueId = MWCryptRand::generateHex( 6 );
+			$preservedParams['authUniqueId'] = $uniqueId;
+			$key .= ':' . $uniqueId;
 			$authManager->setAuthenticationSessionData( $key, $authData );
 
 			$url = $this->getPageTitle()->getFullURL( $preservedParams, false, PROTO_HTTPS );
 			$this->getOutput()->redirect( $url );
 			return false;
-		}
-
-		$authData = $authManager->getAuthenticationSessionData( $key );
-		if ( $authData ) {
-			$authManager->removeAuthenticationSessionData( $key );
-			$this->isReturn = true;
-			$this->setRequest( $authData, true );
-			$this->setPostTransactionProfilerExpectations( __METHOD__ );
+		} elseif ( $this->getRequest()->getCheck( 'authUniqueId' ) ) {
+			$uniqueId = $this->getRequest()->getVal( 'authUniqueId' );
+			$key .= ':' . $uniqueId;
+			$authData = $authManager->getAuthenticationSessionData( $key );
+			if ( $authData ) {
+				$authManager->removeAuthenticationSessionData( $key );
+				$this->isReturn = true;
+				$this->setRequest( $authData, true );
+				$this->setPostTransactionProfilerExpectations( __METHOD__ );
+			}
 		}
 
 		return true;
