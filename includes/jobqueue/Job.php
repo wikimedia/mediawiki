@@ -84,7 +84,8 @@ abstract class Job implements RunnableJob {
 	 * @stable to call
 	 *
 	 * @param string $command
-	 * @param array|PageReference|null $params
+	 * @param array|PageReference|null $params The parameters for the job. Note that if providing,
+	 *   a 'requestId' key it should be a value from {@link Telemetry::getRequestId}.
 	 */
 	public function __construct( $command, $params = null ) {
 		if ( $params instanceof PageReference ) {
