@@ -2564,7 +2564,7 @@ class OutputPage extends ContextSource {
 			$parserOptions = null;
 		}
 		if ( $parserOptions === null ) {
-			// @deprecated since 1.44
+			wfDeprecated( __METHOD__ . ' without ParserOptions argument', '1.44' );
 			// XXX: This isn't guaranteed to be the same parser options that
 			// generated $parserOutput.
 			$parserOptions = $this->internalParserOptions( false );
@@ -2612,7 +2612,7 @@ class OutputPage extends ContextSource {
 			$parserOptions = null;
 		}
 		if ( $parserOptions === null ) {
-			// @deprecated since 1.44
+			wfDeprecated( __METHOD__ . ' without ParserOptions argument', '1.44' );
 			// XXX: This isn't guaranteed to be the same parser options that
 			// generated $parserOutput.
 			$parserOptions = $this->internalParserOptions( false );
