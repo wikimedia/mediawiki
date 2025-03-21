@@ -536,8 +536,7 @@ class RecentChange implements Taggable {
 		if ( self::isEnotifEnabled( $mainConfig ) ) {
 			$userFactory = $services->getUserFactory();
 			$editor = $userFactory->newFromUserIdentity( $this->getPerformerIdentity() );
-			$page = $this->getPage();
-			$title = Title::castFromPageReference( $page );
+			$title = Title::castFromPageReference( $this->getPage() );
 
 			// Never send an RC notification email about categorization changes
 			if (
@@ -548,13 +547,9 @@ class RecentChange implements Taggable {
 				// @FIXME: This would be better as an extension hook
 				// Send emails or email jobs once this row is safely committed
 				$dbw->onTransactionCommitOrIdle(
-					function () use ( $editor, $title ) {
+					function () {
 						$enotif = new EmailNotification();
-						$enotif->notifyOnPageChange(
-							$editor,
-							$title,
-							$this,
-						);
+						$enotif->notifyOnPageChange( $this );
 					},
 					__METHOD__
 				);
