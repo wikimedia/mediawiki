@@ -1602,14 +1602,11 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
-	 * Returns the main WAN cache, yielding EmptyBagOStuff if there is none
-	 *
-	 * The cache should relay any purge operations to all datacenters
-	 *
+	 * @deprecated since 1.47 Use getWANObjectCache() instead.
 	 * @since 1.28
 	 */
 	public function getMainWANObjectCache(): WANObjectCache {
-		return $this->getService( 'MainWANObjectCache' );
+		return $this->getWANObjectCache();
 	}
 
 	/**
@@ -2471,6 +2468,21 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getUserRequirementsConditionValidator(): UserRequirementsConditionValidator {
 		return $this->getService( 'UserRequirementsConditionValidator' );
+	}
+
+	/**
+	 * The primary cache interface for MediaWiki.
+	 *
+	 * WANObjectCache is backend by $wgMainCacheType and transparently
+	 * takes care of various scalability and performance concerns, and
+	 * adds the ability reliably purge a key across data centers.
+	 *
+	 * @see https://www.mediawiki.org/wiki/Object_cache#Services
+	 * @see \MediaWiki\MainConfigSchema::WANObjectCache
+	 * @since 1.47
+	 */
+	public function getWANObjectCache(): WANObjectCache {
+		return $this->getService( 'WANObjectCache' );
 	}
 
 	/**

@@ -500,6 +500,9 @@ because of Phabricator reports.
 * Calling FileBackend::extensionFromPath() with a $case parameter is deprecated
   and will default to lowercase in the future.
 * ResourceLoader::inDebugMode is now deprecated and emits deprecation warnings.
+* The "MainWANObjectCache" service and MediaWikiServices::getMainWANObjectCache
+  method have been deprecated. Inject the "WANObjectCache" service name
+  or call MediaWikiServices::getWANObjectCache instead.
 * QuickTemplate::msg() and QuickTemplate::haveMsg() got deprecated and shouldn't
   be used any more.
 * The shell global functions wfEscapeShellArg(), wfShellExec(),

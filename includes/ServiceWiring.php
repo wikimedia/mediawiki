@@ -462,7 +462,7 @@ return [
 				$services->getMainConfig()
 			),
 			$services->getLinksMigration(),
-			$services->getMainWANObjectCache(),
+			$services->getWANObjectCache(),
 			$services->getHookContainer(),
 			$services->getConnectionProvider(),
 			$services->getRestrictionStore(),
@@ -490,7 +490,7 @@ return [
 		return new BlobStoreFactory(
 			$services->getDBLoadBalancerFactory(),
 			$services->getExternalStoreAccess(),
-			$services->getMainWANObjectCache(),
+			$services->getWANObjectCache(),
 			new ServiceOptions( BlobStoreFactory::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig() )
 		);
@@ -623,7 +623,7 @@ return [
 		return new ChangeTagsStoreFactory(
 			$services->getConnectionProvider(),
 			$services->getNameTableStoreFactory(),
-			$services->getMainWANObjectCache(),
+			$services->getWANObjectCache(),
 			$services->getHookContainer(),
 			LoggerFactory::getInstance( 'ChangeTags' ),
 			$services->getUserFactory(),
@@ -888,7 +888,7 @@ return [
 		) ) {
 			$wanCache = WANObjectCache::newEmpty();
 		} else {
-			$wanCache = $services->getMainWANObjectCache();
+			$wanCache = $services->getWANObjectCache();
 		}
 		$srvCache = $services->getLocalServerObjectCache();
 		if ( $srvCache instanceof EmptyBagOStuff ) {
@@ -1046,7 +1046,7 @@ return [
 				[ 'fallbackWikiId' => $fallbackWikiId ] ),
 			$services->getReadOnlyMode(),
 			$cache,
-			$services->getMainWANObjectCache(),
+			$services->getWANObjectCache(),
 			$services->getMimeAnalyzer(),
 			$services->getLockManagerGroupFactory(),
 			$services->getTempFSFileFactory(),
@@ -1178,7 +1178,7 @@ return [
 				[ 'wikiId' => WikiMap::getCurrentWikiId() ]
 			),
 			$services->getContentLanguage(),
-			$services->getMainWANObjectCache(),
+			$services->getWANObjectCache(),
 			$services->getHookContainer(),
 			$services->getConnectionProvider(),
 			$services->getLanguageNameUtils()
@@ -1345,7 +1345,7 @@ return [
 			: $services->getDBLoadBalancer();
 		$linkCache = new LinkCache(
 			$services->getTitleFormatter(),
-			$services->getMainWANObjectCache(),
+			$services->getWANObjectCache(),
 			$services->getNamespaceInfo(),
 			$dbLoadBalancer
 		);
@@ -1386,7 +1386,7 @@ return [
 		return new LinkTargetStore(
 			$services->getConnectionProvider(),
 			$services->getLocalServerObjectCache(),
-			$services->getMainWANObjectCache()
+			$services->getWANObjectCache()
 		);
 	},
 
@@ -1439,7 +1439,7 @@ return [
 				// NOTE: Make sure we use the same cache object that is assigned in the
 				// constructor of the MessageBlobStore class used by ResourceLoader.
 				// T231866: Avoid circular dependency via ResourceLoader.
-				MessageBlobStore::clearGlobalCacheEntry( $services->getMainWANObjectCache() );
+				MessageBlobStore::clearGlobalCacheEntry( $services->getWANObjectCache() );
 			} ],
 			$services->getLanguageNameUtils(),
 			$services->getHookContainer()
@@ -1515,38 +1515,7 @@ return [
 	},
 
 	'MainWANObjectCache' => static function ( MediaWikiServices $services ): WANObjectCache {
-		$mainConfig = $services->getMainConfig();
-
-		$store = $services->getObjectCacheFactory()->getLocalClusterInstance();
-		$logger = $store->getLogger();
-		$logger->debug( 'MainWANObjectCache using store {class}', [
-			'class' => get_class( $store )
-		] );
-
-		$wanParams = $mainConfig->get( MainConfigNames::WANObjectCache ) + [
-			'cache' => $store,
-			'logger' => $logger,
-			'tracer' => $services->getTracer(),
-		];
-		if ( MW_ENTRY_POINT !== 'cli' ) {
-			// Send the statsd data post-send on HTTP requests; avoid in CLI mode (T181385)
-			$wanParams['stats'] = $services->getStatsFactory();
-			// Let pre-emptive refreshes happen post-send on HTTP requests
-			$wanParams['asyncHandler'] = DeferredUpdates::addCallableUpdate( ... );
-		}
-
-		// Only the callback only if it's a simple one-database setup.
-		$lbConf = $services->getDBLoadBalancerFactoryConfig()->getConfig();
-		if (
-			isset( $lbConf['servers'] ) &&
-			count( $lbConf['servers'] ) === 1 &&
-			!defined( 'MW_PHPUNIT_TEST' )
-		) {
-			$wanParams['pendingCallback'] = static function () use ( $services ) {
-				return $services->getDBLoadBalancer()->hasPrimaryChanges();
-			};
-		}
-		return new WANObjectCache( $wanParams );
+		return $services->getService( 'WANObjectCache' );
 	},
 
 	'MediaHandlerFactory' => static function ( MediaWikiServices $services ): MediaHandlerFactory {
@@ -1577,7 +1546,7 @@ return [
 		$options = new ServiceOptions( MessageCache::CONSTRUCTOR_OPTIONS, $mainConfig );
 
 		return new MessageCache(
-			$services->getMainWANObjectCache(),
+			$services->getWANObjectCache(),
 			$mainCache,
 			$srvCache,
 			$services->getContentLanguage(),
@@ -1700,7 +1669,7 @@ return [
 	'NameTableStoreFactory' => static function ( MediaWikiServices $services ): NameTableStoreFactory {
 		return new NameTableStoreFactory(
 			$services->getDBLoadBalancerFactory(),
-			$services->getMainWANObjectCache(),
+			$services->getWANObjectCache(),
 			LoggerFactory::getInstance( 'NameTableSqlStore' )
 		);
 	},
@@ -1866,7 +1835,7 @@ return [
 			$services->getTitleFormatter(),
 			$services->getContentTransformer(),
 			$services->getPageEditStash(),
-			$services->getMainWANObjectCache(),
+			$services->getWANObjectCache(),
 			$services->getWikiPageFactory(),
 			$services->getChangeTagsStore(),
 			$services->getChangeTagsStore()->getSoftwareTags()
@@ -1888,7 +1857,7 @@ return [
 	'ParserCacheFactory' => static function ( MediaWikiServices $services ): ParserCacheFactory {
 		$config = $services->getMainConfig();
 		$cache = $services->getObjectCacheFactory()->getInstance( $config->get( MainConfigNames::ParserCacheType ) );
-		$wanCache = $services->getMainWANObjectCache();
+		$wanCache = $services->getWANObjectCache();
 
 		$options = new ServiceOptions( ParserCacheFactory::CONSTRUCTOR_OPTIONS, $config );
 
@@ -1939,7 +1908,7 @@ return [
 			$services->getLanguageNameUtils(),
 			$services->getHookContainer(),
 			$services->getTidy(),
-			$services->getMainWANObjectCache(),
+			$services->getWANObjectCache(),
 			$services->getUserOptionsLookup(),
 			$services->getUserFactory(),
 			$services->getTitleFormatter(),
@@ -2274,7 +2243,7 @@ return [
 		return new RepoGroup(
 			$config->get( MainConfigNames::LocalFileRepo ),
 			$config->get( MainConfigNames::ForeignFileRepos ),
-			$services->getMainWANObjectCache(),
+			$services->getWANObjectCache(),
 			$services->getMimeAnalyzer()
 		);
 	},
@@ -2358,7 +2327,7 @@ return [
 			new ServiceOptions(
 				RestrictionStore::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
 			),
-			$services->getMainWANObjectCache(),
+			$services->getWANObjectCache(),
 			$services->getDBLoadBalancerFactory(),
 			$services->getLinkCache(),
 			$services->getLinksMigration(),
@@ -2413,7 +2382,7 @@ return [
 			$services->getBlobStoreFactory(),
 			$services->getNameTableStoreFactory(),
 			$services->getSlotRoleRegistry(),
-			$services->getMainWANObjectCache(),
+			$services->getWANObjectCache(),
 			$services->getLocalServerObjectCache(),
 			$services->getCommentStore(),
 			$services->getActorStoreFactory(),
@@ -3100,6 +3069,41 @@ return [
 		return new UserRequirementsConditionValidator(
 			LoggerFactory::getInstance( 'UserGroupManager' ),
 		);
+	},
+
+	'WANObjectCache' => static function ( MediaWikiServices $services ): WANObjectCache {
+		$mainConfig = $services->getMainConfig();
+
+		$store = $services->getObjectCacheFactory()->getLocalClusterInstance();
+		$logger = $store->getLogger();
+		$logger->debug( 'MainWANObjectCache using store {class}', [
+			'class' => get_class( $store )
+		] );
+
+		$wanParams = $mainConfig->get( MainConfigNames::WANObjectCache ) + [
+			'cache' => $store,
+			'logger' => $logger,
+			'tracer' => $services->getTracer(),
+		];
+		if ( MW_ENTRY_POINT !== 'cli' ) {
+			// Send the statsd data post-send on HTTP requests; avoid in CLI mode (T181385)
+			$wanParams['stats'] = $services->getStatsFactory();
+			// Let pre-emptive refreshes happen post-send on HTTP requests
+			$wanParams['asyncHandler'] = DeferredUpdates::addCallableUpdate( ... );
+		}
+
+		// Only the callback only if it's a simple one-database setup.
+		$lbConf = $services->getDBLoadBalancerFactoryConfig()->getConfig();
+		if (
+			isset( $lbConf['servers'] ) &&
+			count( $lbConf['servers'] ) === 1 &&
+			!defined( 'MW_PHPUNIT_TEST' )
+		) {
+			$wanParams['pendingCallback'] = static function () use ( $services ) {
+				return $services->getDBLoadBalancer()->hasPrimaryChanges();
+			};
+		}
+		return new WANObjectCache( $wanParams );
 	},
 
 	'WatchedItemQueryService' => static function ( MediaWikiServices $services ): WatchedItemQueryService {

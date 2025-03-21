@@ -24,7 +24,7 @@
 			"NameTableStoreFactory",
 			"GroupPermissionsLookup",
 			"DBLoadBalancerFactory",
-			"MainWANObjectCache",
+			"WANObjectCache",
 			"PageStore",
 			"PageRestHelperFactory",
 			"TempUserConfig"
