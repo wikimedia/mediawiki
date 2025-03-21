@@ -1649,6 +1649,25 @@
 				".*": { "$ref": "#/definitions/ObjectFactorySpec" }
 			}
 		},
+		"NotificationMiddleware": {
+			"type": "array",
+			"description": "List of notification middleware (specs for ObjectFactory). The class should implement the NotificationMiddlewareInterface interface.",
+			"items": {
+				"allOf": [
+					{
+						"type": "object",
+						"properties": {
+							"factory": { "description": "See the ObjectFactorySpec definition" },
+							"class": { "description": "See the ObjectFactorySpec definition" },
+							"args": { "description": "See the ObjectFactorySpec definition" },
+							"services": { "description": "See the ObjectFactorySpec definition" },
+							"optional_services": { "description": "See the ObjectFactorySpec definition" }
+						}
+					},
+					{ "$ref": "#/definitions/ObjectFactorySpec" }
+				]
+			}
+		},
 		"NotificationHandlers": {
 			"type": "array",
 			"description": "List of notification handlers (specs for ObjectFactory). The class should implement the NotificationHandler interface.",
