@@ -11,6 +11,22 @@
 	// eslint-disable-next-line no-underscore-dangle
 	$.fx.speeds._default = 0;
 
+	// Add a dropdown menu to the QUnit toolbar to only load test modules
+	// from core or a given extension.
+	const values = {
+		// List "MediaWiki" here so that it sorts first, and set a custom label
+		MediaWiki: 'MediaWiki core'
+	};
+	for ( const component of mw.config.get( 'wgTestModuleComponents' ) ) {
+		values[ component ] = values[ component ] ?? component;
+	}
+	QUnit.config.urlConfig.push( {
+		id: 'component',
+		label: 'Component',
+		tooltip: 'Only load tests from this MediaWiki component',
+		value: values
+	} );
+
 	// Integrate SinonJS with QUnit
 	//
 	// - Add a Sinon sandbox to the test context that is automatically

@@ -55,30 +55,38 @@ class SpecialJavaScriptTest extends SpecialPage {
 		}
 	}
 
+	private function getComponents(): array {
+		$components = [];
+
+		$rl = $this->getOutput()->getResourceLoader();
+		foreach ( $rl->getTestSuiteModuleNames() as $module ) {
+			if ( str_starts_with( $module, 'test.' ) ) {
+				$components[] = substr( $module, 5 );
+			}
+		}
+
+		return $components;
+	}
+
 	/**
-	 * Used on both GUI (Special:JavaScriptTest) and the exportJS route
+	 * Used on both GUI (renderPage, Special:JavaScriptTest) and CLI (exposeJS, via Gruntfile.js).
 	 */
 	private function getModulesForComponentOrThrow( ?string $component ): array {
-		$out = $this->getOutput();
-		$rl = $out->getResourceLoader();
-		$req = $this->getContext()->getRequest();
-
-		$modules = $rl->getTestSuiteModuleNames();
 		if ( $component !== null ) {
-			$module = 'test.' . $component;
-			if ( !in_array( 'test.' . $component, $modules ) ) {
+			if ( !in_array( $component, $this->getComponents() ) ) {
 				throw new HttpError(
 					404,
 					"No test module found for the '$component' component.\n"
 						. "Make sure the extension is enabled via wfLoadExtension(),\n"
 						. "and register a test module via the QUnitTestModules attribute in extension.json.",
-					'Unknown test module',
+					'Unknown component',
 				);
 			}
-			$modules = [ 'test.' . $component ];
+			return [ 'test.' . $component ];
+		} else {
+			$rl = $this->getOutput()->getResourceLoader();
+			return $rl->getTestSuiteModuleNames();
 		}
-
-		return $modules;
 	}
 
 	/**
@@ -139,6 +147,8 @@ class SpecialJavaScriptTest extends SpecialPage {
 				'wgPageName' => 'Special:Badtitle/JavaScriptTest',
 				// used as input for mw.Title
 				'wgRelevantPageName' => 'Special:Badtitle/JavaScriptTest',
+				// used by testrunner.js for QUnit toolbar
+				'wgTestModuleComponents' => $this->getComponents(),
 			] )
 			// Embed private modules as they're not allowed to be loaded dynamically
 			. $rl->makeModuleResponse( $embedContext, [
