@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Juwan",
-			"Tbodt"
+			"Tbodt",
+			"物灵"
 		]
 	},
 	"january": "tenpo mun #1",
@@ -57,5 +58,8 @@
 	"sun": "suno #7",
 	"period-am": "tenpo pi suno kama",
 	"period-pm": "tenpo pi suno tawa",
-	"duration-days": "tenpo suno {{PLURAL:$1|$1}}"
+	"ago": "$1 pini",
+	"duration-days": "tenpo suno {{PLURAL:$1|$1}}",
+	"yesterday-at": "tenpo $1 pi suno pini",
+	"just-now": "tenpo pini lili"
 }
