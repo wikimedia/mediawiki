@@ -33,9 +33,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 			$this->markTestSkipped( 'No SQLite support detected' );
 		}
 		$this->db = $this->newMockDb();
-		if ( version_compare( $this->getDb()->getServerVersion(), '3.6.0', '<' ) ) {
-			$this->markTestSkipped( "SQLite at least 3.6 required, {$this->getDb()->getServerVersion()} found" );
-		}
 	}
 
 	/**
