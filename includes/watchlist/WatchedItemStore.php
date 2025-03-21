@@ -4,7 +4,6 @@ namespace MediaWiki\Watchlist;
 
 use DateInterval;
 use LogicException;
-use MapCacheLRU;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Deferred\DeferredUpdates;
@@ -19,6 +18,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
 use stdClass;
 use Wikimedia\Assert\Assert;
+use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;

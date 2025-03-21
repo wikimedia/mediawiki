@@ -23,7 +23,6 @@
 
 namespace MediaWiki\SpecialPage;
 
-use HtmlArmor;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Linker\Linker;
@@ -31,6 +30,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Title\Title;
 use stdClass;
+use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 

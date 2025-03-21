@@ -2,7 +2,6 @@
 
 namespace MediaWiki\CommentFormatter;
 
-use HtmlArmor;
 use MediaWiki\Cache\LinkBatch;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Cache\LinkCache;
@@ -24,7 +23,8 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleParser;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\WikiMap\WikiMap;
-use StringUtils;
+use Wikimedia\HtmlArmor\HtmlArmor;
+use Wikimedia\StringUtils\StringUtils;
 
 /**
  * The text processing backend for CommentFormatter.

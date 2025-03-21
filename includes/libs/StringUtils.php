@@ -1,5 +1,9 @@
 <?php
 
+namespace Wikimedia\StringUtils;
+
+use ArrayIterator;
+use InvalidArgumentException;
 use MediaWiki\Libs\UnpackFailedException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
@@ -370,3 +374,6 @@ class StringUtils {
 		return $result;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( StringUtils::class, 'StringUtils' );

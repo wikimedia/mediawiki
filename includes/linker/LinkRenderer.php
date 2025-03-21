@@ -20,7 +20,6 @@
  */
 namespace MediaWiki\Linker;
 
-use HtmlArmor;
 use MediaWiki\Cache\LinkCache;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
@@ -37,6 +36,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
 use Wikimedia\Assert\Assert;
+use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Parsoid\Core\LinkTarget;
 
 /**

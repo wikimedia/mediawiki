@@ -32,6 +32,7 @@ use MediaWiki\Title\TitleValue;
 use Shellbox\Command\UnboxedResult;
 use Shellbox\Shellbox;
 use Wikimedia\Rdbms\DeleteQueryBuilder;
+use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Rdbms\Expression;
 use Wikimedia\Rdbms\InsertQueryBuilder;
 use Wikimedia\Rdbms\RawSQLExpression;

@@ -25,12 +25,10 @@ namespace MediaWiki\Parser;
 
 use BadMethodCallException;
 use Exception;
-use HtmlArmor;
 use ImageGalleryBase;
 use ImageGalleryClassNotFoundException;
 use InvalidArgumentException;
 use LogicException;
-use MapCacheLRU;
 use MediaHandler;
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Category\TrackingCategories;
@@ -84,10 +82,11 @@ use MediaWiki\Xml\Xml;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
 use SectionProfiler;
-use StringUtils;
 use UnexpectedValueException;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
+use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\IPUtils;
+use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ObjectCache\WANObjectCache;
@@ -102,6 +101,7 @@ use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMUtils;
 use Wikimedia\RemexHtml\Serializer\SerializerNode;
 use Wikimedia\ScopedCallback;
+use Wikimedia\StringUtils\StringUtils;
 
 /**
  * @defgroup Parser Parser

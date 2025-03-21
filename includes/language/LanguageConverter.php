@@ -42,9 +42,9 @@ use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use RuntimeException;
-use StringUtils;
 use UnexpectedValueException;
 use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\StringUtils\StringUtils;
 
 /**
  * Base class for multi-variant language conversion.

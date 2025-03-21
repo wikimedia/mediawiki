@@ -428,6 +428,8 @@ because of Phabricator reports.
     - ChangeTagsLogList
     - ChangeTagsRevisionItem
     - ChangeTagsRevisionList
+  - MediaWiki\Cache:
+    - HTMLFileCache
   - MediaWiki\Exception:
     - BadRequestError
     - BadTitleError
@@ -475,6 +477,8 @@ because of Phabricator reports.
       - MetadataStorageHelper
       - OldLocalFile
       - UnregisteredLocalFile
+  - MediaWiki\Interwiki:
+    - Interwiki
   - MediaWiki\JobQueue:
     - GenericParameterJob
     - IJobSpecification
@@ -578,6 +582,21 @@ because of Phabricator reports.
     - SkinFallback
     - SkinMustache
     - SkinTemplate
+  - Wikimedia\ArrayUtils:
+    - ArrayUtils
+  - Wikimedia\HashRing:
+    - HashRing
+  - Wikimedia\HtmlArmor:
+    - HtmlArmor
+  - Wikimedia\Http:
+    - HttpStatus
+  - Wikimedia\MapCacheLRU:
+    - MapCacheLRU
+  - Wikimedia\StringUtils:
+    - ExplodeIterator
+    - StringUtils
+  - Wikimedia\Timing:
+    - Timing
 * WikiPage::doEditUpdates(), deprecated since 1.32, is now emitting warnings.
   Use DerivedPageDataUpdater::doUpdates() instead.
 * IDatabase::setTransactionListener() is now deprecated without replacement.

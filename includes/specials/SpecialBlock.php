@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Specials;
 
-use HtmlArmor;
 use MediaWiki\Block\AnonIpBlockTarget;
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockPermissionCheckerFactory;
@@ -65,6 +64,7 @@ use OOUI\FieldLayout;
 use OOUI\HtmlSnippet;
 use OOUI\LabelWidget;
 use OOUI\Widget;
+use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Message\MessageSpecifier;
 
 /**

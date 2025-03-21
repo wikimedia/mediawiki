@@ -20,6 +20,8 @@
  * @author Kunal Mehta <legoktm@debian.org>
  */
 
+namespace Wikimedia\HtmlArmor;
+
 /**
  * Marks HTML that shouldn't be escaped
  *
@@ -60,3 +62,6 @@ class HtmlArmor {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( HtmlArmor::class, 'HtmlArmor' );

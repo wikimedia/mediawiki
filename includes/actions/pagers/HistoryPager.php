@@ -23,8 +23,6 @@
 
 namespace MediaWiki\Pager;
 
-use HtmlArmor;
-use MapCacheLRU;
 use MediaWiki\Actions\HistoryAction;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\ChangeTags\ChangeTags;
@@ -45,6 +43,8 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Watchlist\WatchlistManager;
 use stdClass;
+use Wikimedia\HtmlArmor\HtmlArmor;
+use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\Rdbms\IDBAccessObject;
 
 /**

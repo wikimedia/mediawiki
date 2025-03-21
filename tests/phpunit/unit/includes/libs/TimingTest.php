@@ -23,10 +23,10 @@ namespace Wikimedia\Tests;
 
 use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
-use Timing;
+use Wikimedia\Timing\Timing;
 
 /**
- * @covers \Timing
+ * @covers \Wikimedia\Timing\Timing
  */
 class TimingTest extends TestCase {
 

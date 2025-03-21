@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Title\Title;
+use Wikimedia\HtmlArmor\HtmlArmor;
 
 /**
  * A set of SearchEngine results.

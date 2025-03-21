@@ -23,6 +23,7 @@
 
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\Libs\UnpackFailedException;
+use Wikimedia\StringUtils\StringUtils;
 
 /**
  * Handler for Microsoft's bitmap format; getimagesize() doesn't

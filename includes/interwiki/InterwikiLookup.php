@@ -20,8 +20,6 @@
 
 namespace MediaWiki\Interwiki;
 
-use Interwiki;
-
 /**
  * Service interface for looking up Interwiki records.
  *

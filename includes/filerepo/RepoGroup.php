@@ -21,12 +21,12 @@
 namespace MediaWiki\FileRepo;
 
 use InvalidArgumentException;
-use MapCacheLRU;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\Title;
 use MWFileProps;
+use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\Mime\MimeAnalyzer;
 use Wikimedia\ObjectCache\WANObjectCache;
 

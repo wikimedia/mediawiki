@@ -19,10 +19,10 @@
  */
 namespace Wikimedia\ObjectCache;
 
-use ArrayUtils;
 use Exception;
 use Redis;
 use RedisException;
+use Wikimedia\ArrayUtils\ArrayUtils;
 
 /**
  * Store data in Redis.

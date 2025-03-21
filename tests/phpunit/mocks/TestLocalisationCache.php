@@ -2,6 +2,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\TestingAccessWrapper;
 
 /**

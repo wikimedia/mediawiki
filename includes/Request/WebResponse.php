@@ -22,11 +22,11 @@
 
 namespace MediaWiki\Request;
 
-use HttpStatus;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use RuntimeException;
+use Wikimedia\Http\HttpStatus;
 
 /**
  * Allow programs to request this object from WebRequest::response()

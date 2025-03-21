@@ -20,9 +20,9 @@
 
 namespace MediaWiki\Exception;
 
-use HttpStatus;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Message\Message;
+use Wikimedia\Http\HttpStatus;
 
 /**
  * Show an error that looks like an HTTP server error.

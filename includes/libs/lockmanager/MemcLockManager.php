@@ -18,6 +18,7 @@
  * @file
  */
 
+use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\ObjectCache\MemcachedBagOStuff;
 use Wikimedia\ObjectCache\MemcachedPhpBagOStuff;
 use Wikimedia\WaitConditionLoop;

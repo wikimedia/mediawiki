@@ -20,8 +20,6 @@
 
 namespace MediaWiki\Interwiki;
 
-use Interwiki;
-use MapCacheLRU;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -29,6 +27,7 @@ use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\IConnectionProvider;
 

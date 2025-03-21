@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Interwiki;
+
 /**
  * An interwiki record value object.
  *
@@ -136,3 +138,6 @@ class Interwiki {
 	}
 
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( Interwiki::class, 'Interwiki' );

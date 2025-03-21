@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Title\Title;
+use Wikimedia\HtmlArmor\HtmlArmor;
 
 /**
  * @ingroup Search

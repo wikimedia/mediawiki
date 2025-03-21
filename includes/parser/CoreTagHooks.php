@@ -28,8 +28,8 @@ use MediaWiki\Html\Html;
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use StringUtils;
 use UnexpectedValueException;
+use Wikimedia\StringUtils\StringUtils;
 
 /**
  * Various tag hooks, registered in every Parser

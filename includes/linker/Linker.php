@@ -22,7 +22,6 @@
 
 namespace MediaWiki\Linker;
 
-use HtmlArmor;
 use MediaTransformError;
 use MediaTransformOutput;
 use MediaWiki\Context\ContextSource;
@@ -46,6 +45,7 @@ use MediaWiki\User\ExternalUserNames;
 use MediaWiki\User\UserIdentityValue;
 use MessageLocalizer;
 use Wikimedia\Assert\Assert;
+use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\RemexHtml\Serializer\SerializerNode;
 

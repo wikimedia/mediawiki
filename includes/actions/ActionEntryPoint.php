@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Actions;
 
-use HTMLFileCache;
+use MediaWiki\Cache\HTMLFileCache;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Exception\BadTitleError;
 use MediaWiki\Exception\ErrorPageError;

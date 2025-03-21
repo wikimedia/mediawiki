@@ -2,14 +2,14 @@
 
 namespace Wikimedia\Tests;
 
-use HashRing;
 use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
+use Wikimedia\HashRing\HashRing;
 use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group HashRing
- * @covers \HashRing
+ * @covers \Wikimedia\HashRing\HashRing
  */
 class HashRingTest extends TestCase {
 

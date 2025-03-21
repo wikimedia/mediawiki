@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace Wikimedia\Timing;
+
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -188,3 +190,6 @@ class Timing implements LoggerAwareInterface {
 		return $this->entries[$name] ?? null;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( Timing::class, 'Timing' );

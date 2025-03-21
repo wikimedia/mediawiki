@@ -22,7 +22,6 @@
 
 namespace MediaWiki\Specials;
 
-use HtmlArmor;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Languages\LanguageConverterFactory;
@@ -30,6 +29,7 @@ use MediaWiki\Skin\Skin;
 use MediaWiki\SpecialPage\WantedQueryPage;
 use MediaWiki\Title\Title;
 use stdClass;
+use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

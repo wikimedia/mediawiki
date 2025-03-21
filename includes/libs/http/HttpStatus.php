@@ -20,6 +20,10 @@
  * @file
  */
 
+namespace Wikimedia\Http;
+
+use InvalidArgumentException;
+
 /**
  * @todo document
  */
@@ -148,3 +152,6 @@ class HttpStatus {
 	}
 
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( HttpStatus::class, 'HttpStatus' );

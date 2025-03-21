@@ -20,13 +20,13 @@
 
 namespace MediaWiki\Specials;
 
-use HttpStatus;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\TransactionRoundDefiningUpdate;
 use MediaWiki\JobQueue\JobRunner;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
+use Wikimedia\Http\HttpStatus;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**

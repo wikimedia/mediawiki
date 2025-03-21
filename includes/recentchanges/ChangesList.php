@@ -20,8 +20,6 @@
 
 namespace MediaWiki\RecentChanges;
 
-use HtmlArmor;
-use MapCacheLRU;
 use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\Context\ContextSource;
@@ -52,6 +50,8 @@ use MediaWiki\Watchlist\WatchedItem;
 use OOUI\IconWidget;
 use RuntimeException;
 use stdClass;
+use Wikimedia\HtmlArmor\HtmlArmor;
+use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**

@@ -10,6 +10,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
+use Wikimedia\StringUtils\StringUtils;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';

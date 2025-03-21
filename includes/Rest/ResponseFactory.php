@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Rest;
 
-use HttpStatus;
 use InvalidArgumentException;
 use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\Language\LanguageCode;
 use stdClass;
 use Throwable;
+use Wikimedia\Http\HttpStatus;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
 

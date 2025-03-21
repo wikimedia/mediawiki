@@ -23,7 +23,6 @@
 namespace MediaWiki\Specials;
 
 use Closure;
-use HtmlArmor;
 use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
@@ -42,6 +41,7 @@ use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\Utils\UrlUtils;
 use Symfony\Component\Yaml\Yaml;
 use Wikimedia\Composer\ComposerInstalled;
+use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\Parsoid\Core\TOCData;
 use Wikimedia\Rdbms\IConnectionProvider;

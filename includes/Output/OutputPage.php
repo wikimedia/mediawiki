@@ -24,7 +24,6 @@ namespace MediaWiki\Output;
 
 use CSSJanus;
 use Exception;
-use HtmlArmor;
 use InvalidArgumentException;
 use MediaWiki\Cache\LinkCache;
 use MediaWiki\Config\Config;
@@ -73,6 +72,7 @@ use OOUI\Theme;
 use RuntimeException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Bcp47Code\Bcp47Code;
+use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;

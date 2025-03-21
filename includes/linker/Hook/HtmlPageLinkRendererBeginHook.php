@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Linker\Hook;
 
-use HtmlArmor;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
+use Wikimedia\HtmlArmor\HtmlArmor;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

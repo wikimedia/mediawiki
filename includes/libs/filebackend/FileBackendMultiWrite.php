@@ -28,7 +28,7 @@ use LockManager;
 use LogicException;
 use Shellbox\Command\BoxedCommand;
 use StatusValue;
-use StringUtils;
+use Wikimedia\StringUtils\StringUtils;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**

@@ -21,9 +21,7 @@
 
 namespace MediaWiki\Pager;
 
-use HtmlArmor;
 use InvalidArgumentException;
-use MapCacheLRU;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\CommentFormatter\CommentFormatter;
@@ -47,6 +45,8 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserRigorOptions;
 use stdClass;
+use Wikimedia\HtmlArmor\HtmlArmor;
+use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IResultWrapper;
 

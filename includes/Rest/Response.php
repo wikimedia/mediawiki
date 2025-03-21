@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Rest;
 
-use HttpStatus;
 use Psr\Http\Message\StreamInterface;
+use Wikimedia\Http\HttpStatus;
 
 class Response implements ResponseInterface {
 

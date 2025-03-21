@@ -35,6 +35,7 @@ use MediaWiki\Utils\UrlUtils;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\FSFile\TempFSFile;
+use Wikimedia\Http\HttpStatus;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;

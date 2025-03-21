@@ -20,11 +20,11 @@
 
 namespace MediaWiki\PoolCounter;
 
-use ArrayUtils;
 use Exception;
-use HashRing;
 use MediaWiki\Status\Status;
 use RedisException;
+use Wikimedia\ArrayUtils\ArrayUtils;
+use Wikimedia\HashRing\HashRing;
 use Wikimedia\ObjectCache\RedisConnectionPool;
 use Wikimedia\ObjectCache\RedisConnRef;
 

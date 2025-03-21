@@ -18,6 +18,10 @@
  * @file
  */
 
+namespace Wikimedia\StringUtils;
+
+use Iterator;
+
 /**
  * An iterator which works exactly like:
  *
@@ -117,3 +121,6 @@ class ExplodeIterator implements Iterator {
 		return $this->curPos !== false;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ExplodeIterator::class, 'ExplodeIterator' );

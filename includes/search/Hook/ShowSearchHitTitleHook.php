@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Search\Hook;
 
-use HtmlArmor;
 use MediaWiki\Specials\SpecialSearch;
 use MediaWiki\Title\Title;
 use SearchResult;
+use Wikimedia\HtmlArmor\HtmlArmor;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

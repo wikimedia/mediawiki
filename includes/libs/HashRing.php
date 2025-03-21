@@ -20,6 +20,12 @@
  * @file
  */
 
+namespace Wikimedia\HashRing;
+
+use InvalidArgumentException;
+use RuntimeException;
+use UnexpectedValueException;
+
 /**
  * Convenience class for weighted consistent hash rings
  *
@@ -453,3 +459,6 @@ class HashRing {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( HashRing::class, 'HashRing' );

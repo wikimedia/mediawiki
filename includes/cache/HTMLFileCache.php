@@ -21,8 +21,9 @@
  * @ingroup Cache
  */
 
-use MediaWiki\Cache\CacheKeyHelper;
-use MediaWiki\Cache\FileCacheBase;
+namespace MediaWiki\Cache;
+
+use InvalidArgumentException;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
@@ -238,3 +239,6 @@ class HTMLFileCache extends FileCacheBase {
 		return true;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( HTMLFileCache::class, 'HTMLFileCache' );

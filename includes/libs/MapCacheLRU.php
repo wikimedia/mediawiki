@@ -17,6 +17,11 @@
  *
  * @file
  */
+
+namespace Wikimedia\MapCacheLRU;
+
+use InvalidArgumentException;
+use UnexpectedValueException;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 
 /**
@@ -411,3 +416,6 @@ class MapCacheLRU implements ExpirationAwareness {
 		$this->wallClockOverride =& $time;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( MapCacheLRU::class, 'MapCacheLRU' );

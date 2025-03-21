@@ -27,7 +27,7 @@
 namespace MediaWiki\Parser;
 
 use LogicException;
-use StringUtils;
+use Wikimedia\StringUtils\StringUtils;
 
 class BlockLevelPass {
 	/** @var bool */

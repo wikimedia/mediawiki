@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Skin;
 
-use HtmlArmor;
 use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MainConfigNames;
@@ -12,6 +11,7 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MessageLocalizer;
+use Wikimedia\HtmlArmor\HtmlArmor;
 
 class SkinComponentCopyright implements SkinComponent {
 	use ProtectedHookAccessorTrait;

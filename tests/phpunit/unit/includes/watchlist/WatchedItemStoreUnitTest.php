@@ -26,6 +26,7 @@ use MediaWiki\Watchlist\ActivityUpdateJob;
 use MediaWiki\Watchlist\WatchedItem;
 use MediaWiki\Watchlist\WatchedItemStore;
 use PHPUnit\Framework\MockObject\MockObject;
+use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Rdbms\DeleteQueryBuilder;
 use Wikimedia\Rdbms\Expression;

@@ -21,12 +21,12 @@
 namespace MediaWiki\JobQueue;
 
 use AppendIterator;
-use ArrayUtils;
 use Exception;
-use HashRing;
 use InvalidArgumentException;
 use MediaWiki\JobQueue\Exceptions\JobQueueError;
 use UnexpectedValueException;
+use Wikimedia\ArrayUtils\ArrayUtils;
+use Wikimedia\HashRing\HashRing;
 
 /**
  * Enqueue and run background jobs via a federated queue, for wiki farms.

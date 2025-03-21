@@ -43,7 +43,6 @@
 
 namespace Wikimedia\FileBackend;
 
-use MapCacheLRU;
 use Shellbox\Command\BoxedCommand;
 use Shellbox\Shellbox;
 use StatusValue;
@@ -53,6 +52,7 @@ use Wikimedia\FileBackend\FileIteration\FSFileBackendFileList;
 use Wikimedia\FileBackend\FileOpHandle\FSFileOpHandle;
 use Wikimedia\FileBackend\FSFile\FSFile;
 use Wikimedia\FileBackend\FSFile\TempFSFile;
+use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**

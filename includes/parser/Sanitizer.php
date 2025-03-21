@@ -31,13 +31,13 @@ use LogicException;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Tidy\RemexCompatFormatter;
-use StringUtils;
 use UnexpectedValueException;
 use Wikimedia\RemexHtml\HTMLData;
 use Wikimedia\RemexHtml\Serializer\Serializer as RemexSerializer;
 use Wikimedia\RemexHtml\Tokenizer\Tokenizer as RemexTokenizer;
 use Wikimedia\RemexHtml\TreeBuilder\Dispatcher as RemexDispatcher;
 use Wikimedia\RemexHtml\TreeBuilder\TreeBuilder as RemexTreeBuilder;
+use Wikimedia\StringUtils\StringUtils;
 
 /**
  * HTML sanitizer for MediaWiki

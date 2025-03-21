@@ -2,12 +2,12 @@
 
 namespace Wikimedia\Tests;
 
-use ArrayUtils;
 use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
+use Wikimedia\ArrayUtils\ArrayUtils;
 
 /**
- * @covers \ArrayUtils
+ * @covers \Wikimedia\ArrayUtils\ArrayUtils
  */
 class ArrayUtilsTest extends TestCase {
 

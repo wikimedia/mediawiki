@@ -20,8 +20,6 @@
 
 namespace MediaWiki\RecentChanges;
 
-use HtmlArmor;
-use MapCacheLRU;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
@@ -31,6 +29,8 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ExternalUserNames;
+use Wikimedia\HtmlArmor\HtmlArmor;
+use Wikimedia\MapCacheLRU\MapCacheLRU;
 
 /**
  * Create a RCCacheEntry from a RecentChange to use in EnhancedChangesList

@@ -21,7 +21,6 @@
 
 namespace MediaWiki\Tests\Unit;
 
-use Interwiki;
 use InvalidArgumentException;
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Cache\GenderCache;
@@ -30,6 +29,7 @@ use MediaWiki\CommentFormatter\CommentParserFactory;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Interwiki\Interwiki;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageNameUtils;

@@ -48,7 +48,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserRigorOptions;
 use RuntimeException;
-use Timing;
 use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Bcp47Code\Bcp47Code;
@@ -57,6 +56,7 @@ use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Timing\Timing;
 
 /**
  * Group all the pieces relevant to the context of a request into one instance

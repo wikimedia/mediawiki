@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Specials;
 
-use HtmlArmor;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
@@ -34,6 +33,7 @@ use MediaWiki\Skin\Skin;
 use MediaWiki\SpecialPage\QueryPage;
 use MediaWiki\Title\Title;
 use stdClass;
+use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

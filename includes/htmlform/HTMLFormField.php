@@ -2,7 +2,6 @@
 
 namespace MediaWiki\HTMLForm;
 
-use HtmlArmor;
 use InvalidArgumentException;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
@@ -15,6 +14,7 @@ use MediaWiki\Message\Message;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
 use StatusValue;
+use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 

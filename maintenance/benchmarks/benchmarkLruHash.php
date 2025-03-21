@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Maintenance\Benchmarker;
+use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\HashBagOStuff;
 

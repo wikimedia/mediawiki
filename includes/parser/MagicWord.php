@@ -22,8 +22,8 @@ namespace MediaWiki\Parser;
 
 use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
-use StringUtils;
 use UnexpectedValueException;
+use Wikimedia\StringUtils\StringUtils;
 
 /**
  * This class encapsulates "magic words" such as "#redirect", __NOTOC__, etc.

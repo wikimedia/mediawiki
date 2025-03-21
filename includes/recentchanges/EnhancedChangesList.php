@@ -21,7 +21,6 @@
 namespace MediaWiki\RecentChanges;
 
 use DomainException;
-use HtmlArmor;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\Html\TemplateParser;
@@ -31,6 +30,7 @@ use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
+use Wikimedia\HtmlArmor\HtmlArmor;
 
 /**
  * Generate a list of changes using an Enhanced system (uses javascript).

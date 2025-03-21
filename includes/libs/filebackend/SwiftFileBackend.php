@@ -26,7 +26,6 @@ namespace Wikimedia\FileBackend;
 
 use Exception;
 use LockManager;
-use MapCacheLRU;
 use Psr\Log\LoggerInterface;
 use Shellbox\Command\BoxedCommand;
 use StatusValue;
@@ -36,6 +35,7 @@ use Wikimedia\FileBackend\FileIteration\SwiftFileBackendDirList;
 use Wikimedia\FileBackend\FileIteration\SwiftFileBackendFileList;
 use Wikimedia\FileBackend\FileOpHandle\SwiftFileOpHandle;
 use Wikimedia\Http\MultiHttpClient;
+use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;

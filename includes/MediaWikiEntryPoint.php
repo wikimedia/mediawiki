@@ -21,7 +21,6 @@
 namespace MediaWiki;
 
 use Exception;
-use HttpStatus;
 use Liuggio\StatsdClient\Sender\SocketSender;
 use Liuggio\StatsdClient\StatsdClient;
 use LogicException;
@@ -49,6 +48,7 @@ use Psr\Log\LoggerInterface;
 use RuntimeException;
 use Throwable;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Http\HttpStatus;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\ReadOnlyMode;
