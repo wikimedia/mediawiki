@@ -353,6 +353,7 @@ class SpecialVersion extends SpecialPage {
 			'DannyS712', 'Ori Livneh', 'Max Semenik', 'Amir Sarabadani',
 			'Derk-Jan Hartman', 'Petr Pchelko', 'Umherirrender', 'C. Scott Ananian',
 			'fomafix', 'Thiemo Kreuz', 'Gergő Tisza', 'Volker E.',
+			'Jack Phoenix', 'Isarra Yos',
 			$othersLink, $translatorsLink
 		];
 
