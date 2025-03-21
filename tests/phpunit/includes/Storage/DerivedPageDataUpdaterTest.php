@@ -1475,11 +1475,18 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 			)
 		);
 
-		$this->assertEquals(
-			$editResult,
-			$editResultCache->get( $rev->getId() ),
-			'EditResult should be cached when the revert is not approved'
-		);
+		if ( $useRcPatrol ) {
+			$this->assertEquals(
+				$editResult,
+				$editResultCache->get( $rev->getId() ),
+				'EditResult should be cached if patrolling is enabled'
+			);
+		} else {
+			$this->assertNull(
+				$editResultCache->get( $rev->getId() ),
+				'EditResult should not be cached if patrolling is disabled'
+			);
+		}
 
 		$jobQueueGroup = $this->getServiceContainer()->getJobQueueGroup();
 		$jobQueue = $jobQueueGroup->get( 'revertedTagUpdate' );

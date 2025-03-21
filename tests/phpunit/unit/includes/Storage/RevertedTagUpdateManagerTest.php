@@ -15,10 +15,29 @@ use MediaWikiUnitTestCase;
  */
 class RevertedTagUpdateManagerTest extends MediaWikiUnitTestCase {
 
-	public function testApproveRevertedTagForRevision() {
+	public function provideApproveRevertedTagForRevision() {
+		yield 'not revert' => [
+			new EditResult( false, 1234, 0, null, null, false, false, [] ),
+			false
+		];
+		yield 'is revert' => [
+			new EditResult( false, 1234, 0, 1230, 1233, true, false, [] ),
+			false
+		];
+		yield 'no EditResult' => [
+			null,
+			false
+		];
+	}
+
+	/**
+	 * @dataProvider provideApproveRevertedTagForRevision
+	 */
+	public function testApproveRevertedTagForRevision( $editResult, $expectedOutcome ) {
 		$revisionId = 123;
 
-		$editResult = $this->createMock( EditResult::class );
+		$editResult = new EditResult( false, 1234, 0,
+			null, null, false, false, [] );
 		$editResultCache = $this->createMock( EditResultCache::class );
 		$editResultCache->expects( $this->once() )
 			->method( 'get' )
@@ -26,37 +45,19 @@ class RevertedTagUpdateManagerTest extends MediaWikiUnitTestCase {
 			->willReturn( $editResult );
 
 		$jobQueueGroup = $this->createMock( JobQueueGroup::class );
-		$jobQueueGroup->expects( $this->once() )
+		$jobQueueGroup
+			->expects( $expectedOutcome ? $this->once() : $this->never() )
 			->method( 'lazyPush' );
 
 		$manager = new RevertedTagUpdateManager(
 			$editResultCache,
 			$jobQueueGroup
 		);
-		$this->assertTrue(
+		$this->assertSame(
+			$expectedOutcome,
 			$manager->approveRevertedTagForRevision( $revisionId ),
-			'The operation is successful'
+			'return value of approveRevertedTagForRevision()'
 		);
 	}
 
-	public function testApproveRevertedTagForRevision_missingEditResult() {
-		$revisionId = 123;
-
-		$editResultCache = $this->createMock( EditResultCache::class );
-		$editResultCache->expects( $this->once() )
-			->method( 'get' )
-			->with( $revisionId )
-			->willReturn( null );
-
-		$jobQueueGroup = $this->createNoOpMock( JobQueueGroup::class );
-
-		$manager = new RevertedTagUpdateManager(
-			$editResultCache,
-			$jobQueueGroup
-		);
-		$this->assertFalse(
-			$manager->approveRevertedTagForRevision( $revisionId ),
-			'The operation is not successful'
-		);
-	}
 }
