@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Block\BlockUser;
 use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
@@ -1761,5 +1762,25 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		RequestContext::getMain()->getRequest()->setIP( '1.2.3.4' );
 		$this->assertTrue( $this->user->spreadAnyEditBlock() );
 		$this->assertNotNull( $this->getServiceContainer()->getBlockManager()->getIpBlock( '1.2.3.4', true ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\User\User::spreadAnyEditBlock
+	 * @covers \MediaWiki\User\User::spreadBlock
+	 */
+	public function testSpreadAnyEditBlockWhenMultiblocked() {
+		$this->overrideConfigValue( MainConfigNames::EnableMultiBlocks, true );
+		$this->getServiceContainer()->getBlockUserFactory()->newBlockUser(
+			$this->user, $this->getTestSysop()->getAuthority(), '1 day', '', [ 'isAutoblocking' => false ]
+		)->placeBlockUnsafe();
+		$this->getServiceContainer()->getBlockUserFactory()->newBlockUser(
+			$this->user, $this->getTestSysop()->getAuthority(), 'indefinite', '', [ 'isAutoblocking' => true ]
+		)->placeBlockUnsafe( BlockUser::CONFLICT_NEW );
+
+		RequestContext::getMain()->getRequest()->setIP( '1.2.3.4' );
+		$this->assertTrue( $this->user->spreadAnyEditBlock() );
+
+		$autoblocks = $this->getServiceContainer()->getBlockManager()->getIpBlock( '1.2.3.4', true );
+		$this->assertCount( 1, $autoblocks->toArray() );
 	}
 }
