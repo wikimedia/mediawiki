@@ -197,12 +197,16 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 					$authManager->setAuthenticationSessionData( $key, $authData );
 				}
 
+				// Copied from RedirectSpecialPage::getRedirectQuery()
+				// Would using $this->getPreservedParams() be appropriate here?
+				$keepParams = [ 'uselang', 'useskin', 'useformat', 'variant', 'debug', 'safemode' ];
+
 				$title = SpecialPage::getTitleFor( 'Userlogin' );
 				$url = $title->getFullURL( [
 					'returnto' => $this->getFullTitle()->getPrefixedDBkey(),
 					'returntoquery' => wfArrayToCgi( $queryParams ),
 					'force' => $securityLevel,
-				], false, PROTO_HTTPS );
+				] + array_intersect_key( $queryParams, array_fill_keys( $keepParams, true ) ), false, PROTO_HTTPS );
 
 				$this->getOutput()->redirect( $url );
 				return false;
