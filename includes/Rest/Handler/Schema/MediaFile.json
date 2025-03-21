@@ -1,5 +1,5 @@
 {
-	"description": "Information about the file",
+	"x-i18n-description": "rest-schema-desc-media-file",
 	"required": [
 		"title",
 		"file_description_url",
@@ -11,35 +11,35 @@
 	"properties": {
 		"title": {
 			"type": "string",
-			"description": "File title"
+			"x-i18n-description": "rest-param-desc-media-links-title"
 		},
 		"file_description_url": {
 			"type": "string",
-			"description": "URL for the page describing the file, including license information and other metadata"
+			"description": "rest-param-desc-media-description-url"
 		},
 		"latest": {
 			"type": "object",
 			"nullable": true,
-			"description": "Information about the latest revision to the file",
+			"x-i18n-description": "rest-param-desc-media-latest",
 			"properties": {
 				"timestamp": {
 					"type": "string",
 					"format": "date-time",
-					"description": "Last modified timestamp in ISO 8601 format"
+					"x-i18n-description": "rest-param-desc-media-latest-timestamp"
 				},
 				"user": {
 					"type": "object",
-					"description": "Information about the user who uploaded the file",
+					"x-i18n-description": "rest-param-desc-media-latest-user",
 					"properties": {
 						"id": {
 							"type": "integer",
 							"nullable": true,
-							"description": "User identifier"
+							"x-i18n-description": "rest-property-desc-user-id"
 						},
 						"name": {
 							"type": "string",
 							"nullable": true,
-							"description": "Username"
+							"x-i18n-description": "rest-property-desc-user-name"
 						}
 					},
 					"required": [ "id", "name" ]
@@ -50,37 +50,37 @@
 		"preferred": {
 			"type": "object",
 			"nullable": true,
-			"description": "Information about the file's preferred preview format, original format, and thumbnail format",
+			"x-i18n-description": "rest-param-desc-media-preferred",
 			"properties": {
 				"mediatype": {
 					"type": "string",
 					"enum": [ "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "UNKNOWN", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE", "3D" ],
-					"description": "The file type"
+					"x-i18n-description": "rest-param-desc-media-mediatype"
 				},
 				"size": {
 					"type": "integer",
 					"nullable": true,
-					"description": "File size in bytes or null if not available"
+					"x-i18n-description": "rest-param-desc-media-size"
 				},
 				"width": {
 					"type": "integer",
 					"nullable": true,
-					"description": "Maximum recommended image width in pixels or null if not available"
+					"x-i18n-description": "rest-param-desc-media-width"
 				},
 				"height": {
 					"type": "integer",
 					"nullable": true,
-					"description": "Maximum recommended image height in pixels or null if not available"
+					"x-i18n-description": "rest-param-desc-media-height"
 				},
 				"duration": {
 					"type": "number",
 					"nullable": true,
-					"description": "The length of the video, audio, or multimedia file or null for other media types"
+					"x-i18n-description": "rest-param-desc-media-duration"
 				},
 				"url": {
 					"type": "string",
 					"format": "uri",
-					"description": "URL to download the file"
+					"x-i18n-description": "rest-param-desc-media-url"
 				}
 			},
 			"required": [ "mediatype", "size", "width", "height", "duration", "url" ]
@@ -88,37 +88,37 @@
 		"original": {
 			"type": "object",
 			"nullable": true,
-			"description": "Original file details",
+			"x-i18n-description": "rest-param-desc-media-original",
 			"properties": {
 				"mediatype": {
 					"type": "string",
 					"enum": [ "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "UNKNOWN", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE", "3D" ],
-					"description": "The file type"
+					"x-i18n-description": "rest-param-desc-media-mediatype"
 				},
 				"size": {
 					"type": "integer",
 					"nullable": true,
-					"description": "File size in bytes or null if not available"
+					"x-i18n-description": "rest-param-desc-media-size"
 				},
 				"width": {
 					"type": "integer",
 					"nullable": true,
-					"description": "Maximum recommended image width in pixels or null if not available"
+					"x-i18n-description": "rest-param-desc-media-width"
 				},
 				"height": {
 					"type": "integer",
 					"nullable": true,
-					"description": "Maximum recommended image height in pixels or null if not available"
+					"x-i18n-description": "rest-param-desc-media-height"
 				},
 				"duration": {
 					"type": "number",
 					"nullable": true,
-					"description": "The length of the video, audio, or multimedia file or null for other media types"
+					"x-i18n-description": "rest-param-desc-media-duration"
 				},
 				"url": {
 					"type": "string",
 					"format": "url",
-					"description": "URL to download the file"
+					"x-i18n-description": "rest-param-desc-media-url"
 				}
 			},
 			"required": [ "mediatype", "size", "width", "height", "duration", "url" ]
@@ -126,37 +126,37 @@
 		"thumbnail": {
 			"type": "object",
 			"nullable": true,
-			"description": "Thumbnail information",
+			"x-i18n-description": "rest-param-desc-media-thumbnail",
 			"properties": {
 				"mediatype": {
 					"type": "string",
 					"enum": [ "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "UNKNOWN", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE", "3D" ],
-					"description": "The file type"
+					"x-i18n-description": "rest-param-desc-media-mediatype"
 				},
 				"size": {
 					"type": "integer",
 					"nullable": true,
-					"description": "File size in bytes or null if not available"
+					"x-i18n-description": "rest-param-desc-media-size"
 				},
 				"width": {
 					"type": "integer",
 					"nullable": true,
-					"description": "Maximum recommended image width in pixels or null if not available"
+					"x-i18n-description": "rest-param-desc-media-width"
 				},
 				"height": {
 					"type": "integer",
 					"nullable": true,
-					"description": "Maximum recommended image height in pixels or null if not available"
+					"x-i18n-description": "rest-param-desc-media-height"
 				},
 				"duration": {
 					"type": "number",
 					"nullable": true,
-					"description": "The length of the video, audio, or multimedia file or null for other media types"
+					"x-i18n-description": "rest-param-desc-media-duration"
 				},
 				"url": {
 					"type": "string",
 					"format": "uri",
-					"description": "URL to download the file"
+					"x-i18n-description": "rest-param-desc-media-preferred-url"
 				}
 			},
 			"required": [ "mediatype", "size", "width", "height", "duration", "url" ]

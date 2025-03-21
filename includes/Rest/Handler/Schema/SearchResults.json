@@ -1,12 +1,12 @@
 {
-	"description": "Search results",
+	"x-i18n-description": "rest-schema-desc-search-results",
 	"required": [
 		"pages"
 	],
 	"properties": {
 		"pages": {
 			"type": "array",
-			"description": "List of search result pages",
+			"x-i18n-description": "List of search result pages",
 			"items": {
 				"type": "object",
 				"required": [
@@ -21,59 +21,59 @@
 				"properties": {
 					"id": {
 						"type": "integer",
-						"description": "Page identifier"
+						"x-i18n-description": "rest-property-desc-page-id"
 					},
 					"key": {
 						"type": "string",
-						"description": "Page title in URL-friendly format"
+						"x-i18n-description": "rest-property-desc-page-key"
 					},
 					"title": {
 						"type": "string",
-						"description": "Page title in reading-friendly format"
+						"x-i18n-description": "rest-param-desc-page-content-title"
 					},
 					"excerpt": {
 						"type": "string",
 						"nullable": true,
-						"description": "Excerpt of the page content matching the search query"
+						"x-i18n-description": "rest-property-desc-search-excerpt"
 					},
 					"matched_title": {
 						"type": "string",
 						"nullable": true,
-						"description": "The title of a page redirection from, if applicable, or null"
+						"x-i18n-description": "rest-property-desc-search-matched-title"
 					},
 					"description": {
 						"type": "string",
 						"nullable": true,
-						"description": "Short summary of the page topic or null if no summary exists."
+						"x-i18n-description": "The title of a page redirection from, if applicable, or null"
 					},
 					"thumbnail": {
 						"type": "object",
 						"nullable": true,
-						"description": "Information about the thumbnail image for the page, or null if no thumbnail exists.",
+						"x-i18n-description": "rest-property-desc-search-thumbnail",
 						"properties": {
 							"mimetype": {
 								"type": "string",
-								"description": "The file type"
+								"x-i18n-description": "rest-param-desc-media-mediatype"
 							},
 							"width": {
 								"type": "integer",
 								"nullable": true,
-								"description": "Maximum recommended image width in pixels or null if not available"
+								"x-i18n-description": "rest-param-desc-media-width"
 							},
 							"height": {
 								"type": "integer",
 								"nullable": true,
-								"description": "Maximum recommended image height in pixels or null if not available"
+								"x-i18n-description": "rest-param-desc-media-height"
 							},
 							"duration": {
 								"type": "number",
 								"nullable": true,
-								"description": "The length of the video, audio, or multimedia file or null for other media types"
+								"x-i18n-description": "rest-param-desc-media-duration"
 							},
 							"url": {
 								"type": "string",
 								"format": "uri",
-								"description": "URL to download the file"
+								"x-i18n-description": "rest-param-desc-media-url"
 							}
 						},
 						"required": [ "mimetype", "width", "height", "duration", "url" ]
