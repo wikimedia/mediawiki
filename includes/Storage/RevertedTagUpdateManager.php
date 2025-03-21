@@ -60,7 +60,7 @@ class RevertedTagUpdateManager {
 	 */
 	public function approveRevertedTagForRevision( int $revertRevisionId ): bool {
 		$editResult = $this->editResultCache->get( $revertRevisionId );
-		if ( $editResult === null ) {
+		if ( $editResult === null || !$editResult->isRevert() ) {
 			return false;
 		}
 

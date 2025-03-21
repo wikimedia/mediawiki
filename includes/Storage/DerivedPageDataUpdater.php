@@ -309,6 +309,9 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	/** @var bool */
 	private $warmParsoidParserCache;
 
+	/** @var bool */
+	private $useRcPatrol;
+
 	private ChangeTagsStore $changeTagsStore;
 
 	public function __construct(
@@ -353,8 +356,11 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		$this->changeTagsStore = $changeTagsStore;
 
 		$this->logger = new NullLogger();
+
 		$this->warmParsoidParserCache = $options
 			->get( MainConfigNames::ParsoidCacheConfig )['WarmParsoidParserCache'];
+		$this->useRcPatrol = $options
+			->get( MainConfigNames::UseRCPatrol );
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
@@ -1674,10 +1680,15 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		if ( $editResult && !$editResult->isNullEdit() ) {
 			// Cache EditResult for future use, via
 			// RevertTagUpdateManager::approveRevertedTagForRevision().
-			$this->editResultCache->set(
-				$this->revision->getId(),
-				$editResult
-			);
+			// This drives RevertedTagUpdateManager::approveRevertedTagForRevision.
+			// It is only needed if RCPatrolling is enabled and the edit is a revert.
+			// Skip in other cases to avoid flooding the cache, see T386217 and T388573.
+			if ( $editResult->isRevert() && $this->useRcPatrol ) {
+				$this->editResultCache->set(
+					$this->revision->getId(),
+					$editResult
+				);
+			}
 		}
 
 		$this->doTransition( 'done' );
