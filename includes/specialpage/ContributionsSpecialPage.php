@@ -434,28 +434,26 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 				// For IP ranges you must give DatabaseBlock::newFromTarget the CIDR string
 				// and not a user object.
 				if ( IPUtils::isValidRange( $userObj->getName() ) ) {
-					$blocks = $this->blockStore
-						->newListFromTarget( $userObj->getName(), $userObj->getName() );
+					$blocks = $this->blockStore->newListFromTarget(
+						$userObj->getName(), $userObj->getName(), false,
+						DatabaseBlockStore::AUTO_NONE );
 				} else {
-					$blocks = $this->blockStore->newListFromTarget( $userObj, $userObj );
+					$blocks = $this->blockStore->newListFromTarget(
+						$userObj, $userObj, false, DatabaseBlockStore::AUTO_NONE );
 				}
 
-				$numBlocks = 0;
 				$sitewide = false;
 				$logTargetPage = '';
 				foreach ( $blocks as $block ) {
-					if ( $block->getType() !== Block::TYPE_AUTO ) {
-						$numBlocks++;
-						if ( $block->isSitewide() ) {
-							$sitewide = true;
-						}
-						$logTargetPage = $this->namespaceInfo->getCanonicalName( NS_USER ) .
-							':' . $block->getTargetName();
+					if ( $block->isSitewide() ) {
+						$sitewide = true;
 					}
+					$logTargetPage = $this->namespaceInfo->getCanonicalName( NS_USER ) .
+						':' . $block->getTargetName();
 				}
 
-				if ( $numBlocks ) {
-					if ( $numBlocks === 1 ) {
+				if ( count( $blocks ) ) {
+					if ( count( $blocks ) === 1 ) {
 						if ( $userObj->isAnon() ) {
 							$msgKey = $sitewide ?
 								'sp-contributions-blocked-notice-anon' :
@@ -487,7 +485,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 							'msgKey' => [
 								$msgKey,
 								$userObj->getName(), # Support GENDER in 'sp-contributions-blocked-notice'
-								$numBlocks
+								count( $blocks )
 							],
 							'offset' => '', # don't use WebRequest parameter offset
 							'wrap' => Html::rawElement(

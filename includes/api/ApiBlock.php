@@ -138,14 +138,8 @@ class ApiBlock extends ApiBase {
 			if ( $params['newblock'] ) {
 				$status = $this->insertBlock( $target, $params );
 			} else {
-				// Get non-auto blocks
-				// TODO: factor out to DatabaseBlockStore
-				$blocks = [];
-				foreach ( $this->blockStore->newListFromTarget( $target ) as $block ) {
-					if ( $block->getType() !== AbstractBlock::TYPE_AUTO ) {
-						$blocks[] = $block;
-					}
-				}
+				$blocks = $this->blockStore->newListFromTarget(
+					$target, null, false, DatabaseBlockStore::AUTO_NONE );
 				if ( count( $blocks ) === 0 ) {
 					$status = $this->insertBlock( $target, $params );
 				} elseif ( count( $blocks ) === 1 ) {

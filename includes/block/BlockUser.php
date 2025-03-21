@@ -388,17 +388,11 @@ class BlockUser {
 	 */
 	private function getPriorBlocksForTarget() {
 		if ( $this->priorBlocksForTarget === null ) {
-			$priorBlocks = $this->blockStore->newListFromTarget( $this->target, null, true );
-			foreach ( $priorBlocks as $i => $block ) {
+			$this->priorBlocksForTarget = $this->blockStore->newListFromTarget(
+				$this->target, null, true,
 				// If we're blocking an IP, ignore any matching autoblocks (T287798)
-				// TODO: put this in the query conditions
-				if ( $this->target->getType() !== Block::TYPE_AUTO
-					&& $block->getType() === Block::TYPE_AUTO
-				) {
-					unset( $priorBlocks[$i] );
-				}
-			}
-			$this->priorBlocksForTarget = array_values( $priorBlocks );
+				DatabaseBlockStore::AUTO_SPECIFIED
+			);
 		}
 		return $this->priorBlocksForTarget;
 	}

@@ -228,7 +228,8 @@ class UnblockUser {
 			return $this->blockToRemove;
 		}
 
-		$activeBlocks = $this->blockStore->newListFromTarget( $this->target );
+		$activeBlocks = $this->blockStore->newListFromTarget(
+			$this->target, null, false, DatabaseBlockStore::AUTO_SPECIFIED );
 		if ( !$activeBlocks ) {
 			$status->fatal( 'ipb_cant_unblock', $this->target );
 			return null;
