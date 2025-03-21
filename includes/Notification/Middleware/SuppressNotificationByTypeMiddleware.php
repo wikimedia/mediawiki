@@ -18,7 +18,6 @@ class SuppressNotificationByTypeMiddleware implements NotificationMiddlewareInte
 
 	/**
 	 * Suppress sending specific notification
-	 * @param string $notificationTypeToSuppress
 	 */
 	public function __construct( string $notificationTypeToSuppress ) {
 		$this->notificationToSuppress = $notificationTypeToSuppress;
@@ -26,8 +25,6 @@ class SuppressNotificationByTypeMiddleware implements NotificationMiddlewareInte
 
 	/**
 	 * Decide whether we want to remove notification from the list
-	 * @param NotificationEnvelope $envelope
-	 * @return bool
 	 */
 	protected function shouldKeep( NotificationEnvelope $envelope ): bool {
 		return $envelope->getNotification()->getType() !== $this->notificationToSuppress;

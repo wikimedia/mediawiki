@@ -12,7 +12,6 @@ interface NotificationMiddlewareInterface {
 	 *
 	 * @param NotificationsBatch $batch
 	 * @param callable():void $next Call this method to continue the chain
-	 * @return void
 	 */
 	public function handle( NotificationsBatch $batch, callable $next ): void;
 
