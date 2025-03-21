@@ -103,3 +103,8 @@ class RawMessage extends Message {
 	}
 
 }
+
+// This alias can not be removed, because serialized instances of this class are stored in Echo
+// tables, until we either migrate to JSON serialization (T325703) or expire those events (T383948).
+/** @deprecated class alias since 1.40 */
+class_alias( RawMessage::class, 'RawMessage' );
