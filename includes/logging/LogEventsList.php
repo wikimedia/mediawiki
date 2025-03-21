@@ -25,11 +25,11 @@
 
 namespace MediaWiki\Logging;
 
-use ChangeTags;
 use InvalidArgumentException;
 use MapCacheLRU;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\DatabaseBlockStore;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;

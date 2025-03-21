@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Integration\HTMLForm\Field;
 
-use ChangeTags;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\HTMLForm\Field\HTMLTagFilter;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Tests\Integration\HTMLForm\HTMLFormFieldTestCase;

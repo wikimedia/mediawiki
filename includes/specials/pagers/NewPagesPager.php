@@ -21,9 +21,9 @@
 
 namespace MediaWiki\Pager;
 
-use ChangeTags;
 use MapCacheLRU;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;

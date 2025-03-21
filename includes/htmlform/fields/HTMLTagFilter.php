@@ -2,7 +2,7 @@
 
 namespace MediaWiki\HTMLForm\Field;
 
-use ChangeTags;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\HTMLForm\HTMLFormField;
 
 /**

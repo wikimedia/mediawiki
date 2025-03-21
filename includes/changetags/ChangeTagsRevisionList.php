@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\ChangeTags;
+
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Status\Status;
@@ -87,3 +89,6 @@ class ChangeTagsRevisionList extends ChangeTagsList {
 		return $status;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ChangeTagsRevisionList::class, 'ChangeTagsRevisionList' );

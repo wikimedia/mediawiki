@@ -20,8 +20,8 @@
 
 namespace MediaWiki\Specials;
 
-use ChangeTags;
 use HtmlArmor;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\FormOptions;

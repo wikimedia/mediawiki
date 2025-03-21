@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Storage;
 
-use ChangeTags;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Json\FormatJson;

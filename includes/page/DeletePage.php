@@ -3,10 +3,10 @@
 namespace MediaWiki\Page;
 
 use BadMethodCallException;
-use ChangeTags;
 use Exception;
 use LogicException;
 use MediaWiki\Cache\BacklinkCacheFactory;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\Content;

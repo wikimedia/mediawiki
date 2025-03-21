@@ -21,8 +21,8 @@
 namespace MediaWiki\Specials;
 
 use BitmapHandler;
-use ChangeTags;
 use ImageGalleryBase;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\Config\Config;
 use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\Exception\PermissionsError;
