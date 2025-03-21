@@ -31,6 +31,11 @@ For notes on 1.43.x and older releases, see HISTORY.
   forward searches, then MediaWiki used to show a Google search form. This has
   been removed, and instead a notice is displayed. System administrators should
   set e.g. $wgSearchForwardUrl = 'https://duckduckgo.com?q=$1' to avoid this.
+* The 'exception-json' log channel has been removed. It previously provided
+  structured exception data in a custom machine-readable format. Since
+  MediaWiki 1.26, structured exception data conforming to the PSR-3 logging
+  standard is also available on the 'exception' log channel.
+  (Log channels can be configured using $wgMWLoggerDefaultSpi.)
 * …
 
 ==== New configuration ====

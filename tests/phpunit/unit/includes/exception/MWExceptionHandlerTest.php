@@ -133,23 +133,21 @@ TEXT;
 	}
 
 	/**
-	 * @dataProvider provideJsonSerializedKeys
+	 * @dataProvider provideGetStructuredExceptionDataKeys
 	 * @param string $expectedKeyType Type expected as returned by get_debug_type()
 	 * @param string $exClass An exception class (ie: Exception, MWException)
 	 * @param string $key Name of the key to validate in the serialized JSON
 	 */
-	public function testJsonserializeexceptionKeys( $expectedKeyType, $exClass, $key ) {
-		$json = json_decode(
-			MWExceptionHandler::jsonSerializeException( new $exClass() )
-		);
-		$this->assertObjectHasProperty( $key, $json );
-		$this->assertSame( $expectedKeyType, get_debug_type( $json->$key ), "Type of the '$key' key" );
+	public function testGetStructuredExceptionDataKeys( $expectedKeyType, $exClass, $key ) {
+		$data = MWExceptionHandler::getStructuredExceptionData( new $exClass() );
+		$this->assertArrayHasKey( $key, $data );
+		$this->assertSame( $expectedKeyType, get_debug_type( $data[$key] ), "Type of the '$key' key" );
 	}
 
 	/**
 	 * Each case provides: [ type, exception class, key name ]
 	 */
-	public static function provideJsonSerializedKeys() {
+	public static function provideGetStructuredExceptionDataKeys() {
 		foreach ( [ Exception::class, MWException::class ] as $exClass ) {
 			yield [ 'string', $exClass, 'id' ];
 			yield [ 'string', $exClass, 'file' ];
@@ -165,26 +163,22 @@ TEXT;
 	 * Given wgLogExceptionBacktrace is true
 	 * then serialized exception must have a backtrace
 	 */
-	public function testJsonserializeexceptionBacktracingEnabled() {
+	public function testGetStructuredExceptionDataBacktracingEnabled() {
 		TestingAccessWrapper::newFromClass( MWExceptionHandler::class )
 			->logExceptionBacktrace = true;
-		$json = json_decode(
-			MWExceptionHandler::jsonSerializeException( new Exception() )
-		);
-		$this->assertObjectHasProperty( 'backtrace', $json );
+		$data = MWExceptionHandler::getStructuredExceptionData( new Exception() );
+		$this->assertArrayHasKey( 'backtrace', $data );
 	}
 
 	/**
 	 * Given wgLogExceptionBacktrace is false
 	 * then serialized exception must not have a backtrace
 	 */
-	public function testJsonserializeexceptionBacktracingDisabled() {
+	public function testGetStructuredExceptionDataBacktracingDisabled() {
 		TestingAccessWrapper::newFromClass( MWExceptionHandler::class )
 			->logExceptionBacktrace = false;
-		$json = json_decode(
-			MWExceptionHandler::jsonSerializeException( new Exception() )
-		);
-		$this->assertObjectNotHasProperty( 'backtrace', $json );
+		$data = MWExceptionHandler::getStructuredExceptionData( new Exception() );
+		$this->assertArrayNotHasKey( 'backtrace', $data );
 	}
 
 	/**
