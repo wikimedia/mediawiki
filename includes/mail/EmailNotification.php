@@ -83,17 +83,18 @@ class EmailNotification {
 	 * @since 1.11.0
 	 * @since 1.35 returns a boolean indicating whether an email job was created.
 	 * @since 1.44 This method takes just RecentChange $recentChange, instead of multiple parameters
-	 * @param Authority $editor
-	 * @param Title $title
 	 * @param RecentChange $recentChange
 	 * @return bool Whether an email & notification job was created or not.
 	 */
 	public function notifyOnPageChange(
-		Authority $editor,
-		$title,
 		RecentChange $recentChange
 	): bool {
-		if ( $title->getNamespace() < 0 ) {
+		$mwServices = MediaWikiServices::getInstance();
+		$editor = $mwServices->getUserFactory()
+			->newFromUserIdentity( $recentChange->getPerformerIdentity() );
+
+		$title = Title::castFromPageReference( $recentChange->getPage() );
+		if ( $title === null || $title->getNamespace() < 0 ) {
 			return false;
 		}
 
@@ -103,21 +104,20 @@ class EmailNotification {
 		$oldid = $recentChange->mAttribs['rc_last_oldid'];
 		$pageStatus = $recentChange->mExtra['pageStatus'] ?? 'changed';
 
-		$mwServices = MediaWikiServices::getInstance();
 		$config = $mwServices->getMainConfig();
 
 		// update wl_notificationtimestamp for watchers
 		$watchers = [];
 		if ( $config->get( MainConfigNames::EnotifWatchlist ) || $config->get( MainConfigNames::ShowUpdatedMarker ) ) {
 			$watchers = $mwServices->getWatchedItemStore()->updateNotificationTimestamp(
-				$editor->getUser(),
+				$editor,
 				$title,
 				$timestamp
 			);
 		}
 
 		// Don't send email for bots
-		if ( $mwServices->getUserFactory()->newFromAuthority( $editor )->isBot() ) {
+		if ( $editor->isBot() ) {
 			return false;
 		}
 
@@ -137,7 +137,7 @@ class EmailNotification {
 			) {
 				if ( $config->get( MainConfigNames::EnotifUserTalk )
 					&& $title->getNamespace() === NS_USER_TALK
-					&& $this->canSendUserTalkEmail( $editor->getUser(), $title, $minorEdit )
+					&& $this->canSendUserTalkEmail( $editor, $title, $minorEdit )
 				) {
 					$sendNotification = true;
 				}
@@ -148,8 +148,8 @@ class EmailNotification {
 			$mwServices->getJobQueueGroup()->lazyPush( new EnotifNotifyJob(
 				$title,
 				[
-					'editor' => $editor->getUser()->getName(),
-					'editorID' => $editor->getUser()->getId(),
+					'editor' => $editor->getName(),
+					'editorID' => $editor->getId(),
 					'timestamp' => $timestamp,
 					'summary' => $summary,
 					'minorEdit' => $minorEdit,
