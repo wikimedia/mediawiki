@@ -183,6 +183,13 @@ class LanguageLinksHandler extends SimpleHandler {
 		return (bool)$this->getPage();
 	}
 
+	protected function generateResponseSpec( string $method ): array {
+		$spec = parent::generateResponseSpec( $method );
+
+		$spec['404'] = [ '$ref' => '#/components/responses/GenericErrorResponse' ];
+		return $spec;
+	}
+
 	public function getResponseBodySchemaFileName( string $method ): ?string {
 		return 'includes/Rest/Handler/Schema/PageLanguageLinks.json';
 	}
