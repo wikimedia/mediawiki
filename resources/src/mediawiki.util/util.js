@@ -87,7 +87,7 @@ const util = {
 	 * @param {string} str String to encode
 	 * @return {string} Encoded string
 	 */
-	escapeIdForAttribute: function ( str ) {
+	escapeIdForAttribute( str ) {
 		return escapeIdInternal( str, config.FragmentMode[ 0 ] );
 	},
 
@@ -100,7 +100,7 @@ const util = {
 	 * @param {string} str String to encode
 	 * @return {string} Encoded string
 	 */
-	escapeIdForLink: function ( str ) {
+	escapeIdForLink( str ) {
 		return escapeIdInternal( str, config.FragmentMode[ 0 ] );
 	},
 
@@ -123,7 +123,7 @@ const util = {
 	 *  Taken from location.hash if omitted.
 	 * @return {HTMLElement|null} Element, if found
 	 */
-	getTargetFromFragment: function ( hash ) {
+	getTargetFromFragment( hash ) {
 		hash = hash || location.hash.slice( 1 );
 		if ( !hash ) {
 			// Firefox emits a console warning if you pass an empty string
@@ -159,7 +159,7 @@ const util = {
 	 * @param {string} text Text to decode
 	 * @return {string|null} Decoded text, null if decoding failed
 	 */
-	percentDecodeFragment: function ( text ) {
+	percentDecodeFragment( text ) {
 		const params = new URLSearchParams(
 			'q=' +
 			text
@@ -189,7 +189,7 @@ const util = {
 	 * @param {boolean} [immediate] Trigger on leading edge
 	 * @return {Function} Debounced function
 	 */
-	debounce: function ( func, wait, immediate ) {
+	debounce( func, wait, immediate ) {
 		// Old signature (wait, func).
 		if ( typeof func === 'number' ) {
 			const tmpWait = wait;
@@ -231,7 +231,7 @@ const util = {
 	 * @param {number} wait Throttle window length, in milliseconds
 	 * @return {Function} Throttled function
 	 */
-	throttle: function ( func, wait ) {
+	throttle( func, wait ) {
 		let context, args, timeout,
 			previous = Date.now() - wait;
 		const run = function () {
@@ -279,7 +279,7 @@ const util = {
 	 *  e.g. `{ action: 'edit' }`
 	 * @return {string} URL, relative to `wgServer`.
 	 */
-	getUrl: function ( pageName, params ) {
+	getUrl( pageName, params ) {
 		let url, query, fragment,
 			title = typeof pageName === 'string' ? pageName : mw.config.get( 'wgPageName' );
 
@@ -327,7 +327,7 @@ const util = {
 	 * @param {string} [str="index"] Name of entry point (e.g. 'index' or 'api')
 	 * @return {string} URL to the script file (e.g. `/w/api.php`)
 	 */
-	wikiScript: function ( str ) {
+	wikiScript( str ) {
 		if ( !str || str === 'index' ) {
 			return mw.config.get( 'wgScript' );
 		} else if ( str === 'load' ) {
@@ -358,7 +358,7 @@ const util = {
 	 * @param {string} text CSS to be appended
 	 * @return {CSSStyleSheet} The sheet object
 	 */
-	addCSS: function ( text ) {
+	addCSS( text ) {
 		const s = mw.loader.addStyleTag( text );
 		return s.sheet;
 	},
@@ -375,7 +375,7 @@ const util = {
 	 * @param {string} [url=location.href] URL to search through, defaulting to the current browsing location.
 	 * @return {string|null} Parameter value, or null if parameter was not found.
 	 */
-	getParamValue: function ( param, url ) {
+	getParamValue( param, url ) {
 		// Get last match, stop at hash
 
 		const re = new RegExp( '^[^#]*[&?]' + util.escapeRegExp( param ) + '=([^&#]*)' ),
@@ -409,7 +409,7 @@ const util = {
 	 * @param {URLSearchParams} [params] Parsed URL parameters to search through, defaulting to the current browsing location.
 	 * @return {string[]|null} Parameter value, or null if parameter was not found.
 	 */
-	getArrayParam: function ( param, params ) {
+	getArrayParam( param, params ) {
 
 		const paramRe = new RegExp( '^' + util.escapeRegExp( param ) + '\\[(\\d*)\\]$' );
 
@@ -459,7 +459,7 @@ const util = {
 	 *
 	 * @param {string} portletId ID of the target portlet (e.g. 'p-cactions' or 'p-personal')
 	 */
-	hidePortlet: function ( portletId ) {
+	hidePortlet( portletId ) {
 		const portlet = document.getElementById( portletId );
 		if ( portlet ) {
 			portlet.classList.add( 'emptyPortlet' );
@@ -472,7 +472,7 @@ const util = {
 	 * @param {string} portletId ID of the target portlet (e.g. 'p-cactions' or 'p-personal')
 	 * @return {boolean}
 	 */
-	isPortletVisible: function ( portletId ) {
+	isPortletVisible( portletId ) {
 		const portlet = document.getElementById( portletId );
 		return portlet && !portlet.classList.contains( 'emptyPortlet' );
 	},
@@ -482,7 +482,7 @@ const util = {
 	 *
 	 * @param {string} portletId ID of the target portlet (e.g. 'p-cactions' or 'p-personal')
 	 */
-	showPortlet: function ( portletId ) {
+	showPortlet( portletId ) {
 		const portlet = document.getElementById( portletId );
 		if ( portlet ) {
 			portlet.classList.remove( 'emptyPortlet' );
@@ -493,7 +493,7 @@ const util = {
 	 * Clears the entire subtitle if present in the page. Used for refreshing subtitle
 	 * after edit with response from parse API.
 	 */
-	clearSubtitle: function () {
+	clearSubtitle() {
 		const subtitle = document.getElementById( 'mw-content-subtitle' );
 		if ( subtitle ) {
 			subtitle.innerHTML = '';
@@ -510,7 +510,7 @@ const util = {
 	 * @param {boolean} [inline] whether the notice should be inline.
 	 * @return {Element}
 	 */
-	messageBox: function ( textOrElement, type = 'notice', inline = false ) {
+	messageBox( textOrElement, type = 'notice', inline = false ) {
 		const msgBoxElement = document.createElement( 'div' );
 		msgBoxElement.classList.add( 'cdx-message' );
 
@@ -549,7 +549,7 @@ const util = {
 	 *
 	 * @param {HTMLElement|string} nodeOrHTMLString
 	 */
-	addSubtitle: function ( nodeOrHTMLString ) {
+	addSubtitle( nodeOrHTMLString ) {
 		const subtitle = document.getElementById( 'mw-content-subtitle' );
 		if ( subtitle ) {
 			if ( typeof nodeOrHTMLString === 'string' ) {
@@ -588,7 +588,7 @@ const util = {
 	 *  the required information e.g. the selector given in `selectorHint` parameter could not be resolved
 	 *  to an existing element in the page.
 	 */
-	addPortlet: function ( id, label, selectorHint ) {
+	addPortlet( id, label, selectorHint ) {
 		const portlet = document.createElement( 'div' );
 		// These classes should be kept in sync with includes/skins/components/SkinComponentMenu.php.
 		// eslint-disable-next-line mediawiki/class-doc
@@ -700,7 +700,7 @@ const util = {
 	 * @fires Hooks~'util.addPortletLink'
 	 * @return {HTMLElement|null} The added list item, or null if no element was added.
 	 */
-	addPortletLink: function ( portletId, href, text, id, tooltip, accesskey, nextnode ) {
+	addPortletLink( portletId, href, text, id, tooltip, accesskey, nextnode ) {
 		if ( !portletId ) {
 			// Avoid confusing id="undefined" lookup
 			return null;
@@ -820,7 +820,7 @@ const util = {
 	 * @param {string} email E-mail address
 	 * @return {boolean|null} True if valid, false if invalid, null if `email` was empty.
 	 */
-	validateEmail: function ( email ) {
+	validateEmail( email ) {
 		if ( email === '' ) {
 			return null;
 		}
@@ -893,7 +893,7 @@ const util = {
 	 * @param {boolean} [allowBlock=false]
 	 * @return {boolean}
 	 */
-	isIPv4Address: function ( address, allowBlock ) {
+	isIPv4Address( address, allowBlock ) {
 
 		if ( typeof address !== 'string' ) {
 			return false;
@@ -924,7 +924,7 @@ const util = {
 	 * @param {boolean} [allowBlock=false]
 	 * @return {boolean}
 	 */
-	isIPv6Address: function ( address, allowBlock ) {
+	isIPv6Address( address, allowBlock ) {
 		if ( typeof address !== 'string' ) {
 			return false;
 		}
@@ -974,7 +974,7 @@ const util = {
 	 * @param {boolean} [allowBlock=false] If a block of IPs should be allowed
 	 * @return {boolean}
 	 */
-	isIPAddress: function ( address, allowBlock ) {
+	isIPAddress( address, allowBlock ) {
 		return util.isIPv4Address( address, allowBlock ) ||
 			util.isIPv6Address( address, allowBlock );
 	},
@@ -1002,7 +1002,7 @@ const util = {
 	 * @return {ResizeableThumbnailUrl|null} null if the URL is not a valid MediaWiki
 	 *   image/thumbnail URL.
 	 */
-	parseImageUrl: function ( url ) {
+	parseImageUrl( url ) {
 		let name, decodedName, width, urlTemplate;
 
 		// thumb.php-generated thumbnails
@@ -1067,9 +1067,7 @@ const util = {
 			return {
 				name: decodedName.replace( /_/g, ' ' ),
 				width,
-				resizeUrl: urlTemplate ? function ( w ) {
-					return urlTemplate.replace( '{width}', w );
-				} : null
+				resizeUrl: urlTemplate ? ( w ) => urlTemplate.replace( '{width}', w ) : null
 			};
 		}
 		return null;
@@ -1086,7 +1084,7 @@ const util = {
 	 * @param {string} str String to escape
 	 * @return {string} Escaped string
 	 */
-	escapeRegExp: function ( str ) {
+	escapeRegExp( str ) {
 		// eslint-disable-next-line no-useless-escape
 		return str.replace( /([\\{}()|.?*+\-^$\[\]])/g, '\\$1' );
 	},
@@ -1103,7 +1101,7 @@ const util = {
 	 * @param {string} ip IP address in quad or octet form (CIDR or not).
 	 * @return {string|null}
 	 */
-	sanitizeIP: function ( ip ) {
+	sanitizeIP( ip ) {
 		if ( typeof ip !== 'string' ) {
 			return null;
 		}
@@ -1152,7 +1150,7 @@ const util = {
 	 * @param {string} ip IP address in quad or octet form (CIDR or not).
 	 * @return {string|null}
 	 */
-	prettifyIP: function ( ip ) {
+	prettifyIP( ip ) {
 		ip = this.sanitizeIP( ip );
 		if ( ip === null ) {
 			return null;
@@ -1193,7 +1191,7 @@ const util = {
 	 * @param {string|null} username
 	 * @return {boolean}
 	 */
-	isTemporaryUser: function ( username ) {
+	isTemporaryUser( username ) {
 		// Just return early if temporary accounts are not known about.
 		if ( !config.AutoCreateTempUser.enabled && !config.AutoCreateTempUser.known ) {
 			return false;
@@ -1245,7 +1243,7 @@ const util = {
 	 * @return {boolean}
 	 * @stable
 	 */
-	isInfinity: function ( str ) {
+	isInfinity( str ) {
 		return infinityValues.includes( str );
 	}
 };
