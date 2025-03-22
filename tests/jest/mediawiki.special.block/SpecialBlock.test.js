@@ -212,6 +212,23 @@ describe( 'SpecialBlock', () => {
 		expect( store.blockId ).toStrictEqual( null );
 	} );
 
+	it( 'should reset the form after changing the target while editing a block (T389056)', async () => {
+		wrapper = getSpecialBlock( {
+			blockTargetUser: 'ActiveBlockedUser',
+			blockTargetExists: true,
+			blockAlreadyBlocked: true
+		} );
+		const store = useBlockStore();
+		await flushPromises();
+		await wrapper.find( '[data-test=edit-block-button]' ).trigger( 'click' );
+		expect( store.blockId ).toStrictEqual( 1110 );
+		expect( store.formVisible ).toBeTruthy();
+		await wrapper.find( '[name=wpTarget]' ).setValue( 'ExampleUser' );
+		await wrapper.find( '[name=wpTarget]' ).trigger( 'change' );
+		expect( store.targetUser ).toStrictEqual( 'ExampleUser' );
+		expect( store.blockId ).toBeNull();
+	} );
+
 	it( 'should use pre-set values when creating a new block', async () => {
 		wrapper = getSpecialBlock( {
 			blockTargetUser: 'ExampleUser',

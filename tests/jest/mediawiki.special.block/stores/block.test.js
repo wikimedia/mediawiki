@@ -59,6 +59,7 @@ describe( 'Block store', () => {
 		mw.util.isInfinity.mockReturnValue( true );
 		expect( store.hideUserVisible ).toStrictEqual( true );
 	} );
+
 	it( 'resetForm', () => {
 		const store = useBlockStore();
 		store.targetUser = 'ExampleUser';
@@ -75,6 +76,20 @@ describe( 'Block store', () => {
 		store.resetForm( true );
 		expect( store.targetUser ).toStrictEqual( '' );
 		expect( store.targetExists ).toStrictEqual( false );
+	} );
+
+	it( 'should reset form refs when the target user changes (T389056)', async () => {
+		const store = useBlockStore();
+		store.targetUser = 'ExampleUser';
+		store.blockId = 1234;
+		store.formVisible = true;
+		// Change the target user.
+		store.targetUser = 'ExampleUserOther';
+		await nextTick();
+		// The form should be reset.
+		expect( store.targetUser ).toStrictEqual( 'ExampleUserOther' );
+		expect( store.blockId ).toBeNull();
+		expect( store.formVisible ).toBeFalsy();
 	} );
 } );
 
