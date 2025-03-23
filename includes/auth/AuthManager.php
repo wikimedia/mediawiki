@@ -1754,7 +1754,7 @@ class AuthManager implements LoggerAwareInterface {
 			$user->loadFromId( $flags );
 			if ( $login ) {
 				$remember = $source === self::AUTOCREATE_SOURCE_TEMP;
-				$this->setSessionDataForUser( $user, $remember );
+				$this->setSessionDataForUser( $user, $remember, false );
 			}
 			return Status::newGood()->warning( 'userexists' );
 		}
@@ -1882,7 +1882,7 @@ class AuthManager implements LoggerAwareInterface {
 					] );
 					if ( $login ) {
 						$remember = $source === self::AUTOCREATE_SOURCE_TEMP;
-						$this->setSessionDataForUser( $user, $remember );
+						$this->setSessionDataForUser( $user, $remember, false );
 					}
 					$status = Status::newGood()->warning( 'userexists' );
 				} else {
@@ -1937,7 +1937,7 @@ class AuthManager implements LoggerAwareInterface {
 
 		if ( $login ) {
 			$remember = $source === self::AUTOCREATE_SOURCE_TEMP;
-			$this->setSessionDataForUser( $user, $remember );
+			$this->setSessionDataForUser( $user, $remember, false );
 		}
 
 		return Status::newGood();
@@ -2555,9 +2555,11 @@ class AuthManager implements LoggerAwareInterface {
 	/**
 	 * Log the user in
 	 * @param User $user
-	 * @param bool|null $remember
+	 * @param bool|null $remember The "remember me" flag.
+	 * @param bool $isReauthentication Whether creating this session should count as a recent
+	 *   authentication for $wgReauthenticateTime checks.
 	 */
-	private function setSessionDataForUser( $user, $remember = null ) {
+	private function setSessionDataForUser( $user, $remember = null, $isReauthentication = true ) {
 		$session = $this->request->getSession();
 		$delay = $session->delaySave();
 
@@ -2569,8 +2571,10 @@ class AuthManager implements LoggerAwareInterface {
 		if ( $remember !== null ) {
 			$session->setRememberUser( $remember );
 		}
-		$session->set( 'AuthManager:lastAuthId', $user->getId() );
-		$session->set( 'AuthManager:lastAuthTimestamp', time() );
+		if ( $isReauthentication ) {
+			$session->set( 'AuthManager:lastAuthId', $user->getId() );
+			$session->set( 'AuthManager:lastAuthTimestamp', time() );
+		}
 		$session->persist();
 
 		\Wikimedia\ScopedCallback::consume( $delay );
