@@ -775,7 +775,8 @@ class ChangeTags {
 			$context,
 			$context->getLanguage(),
 			$activeOnly,
-			$useAllTags
+			$useAllTags,
+			true
 		);
 
 		$autocomplete = [];
@@ -1401,28 +1402,38 @@ class ChangeTags {
 	 * @param Language $lang
 	 * @param bool $activeOnly
 	 * @param bool $useAllTags
+	 * @param bool $labelsOnly Do not parse descriptions and omit 'description' in the result
 	 * @return array[] Same as getChangeTagListSummary(), with messages parsed, stripped and truncated
 	 */
 	public static function getChangeTagList(
 		MessageLocalizer $localizer, Language $lang,
-		bool $activeOnly = self::TAG_SET_ACTIVE_ONLY, bool $useAllTags = self::USE_ALL_TAGS
+		bool $activeOnly = self::TAG_SET_ACTIVE_ONLY, bool $useAllTags = self::USE_ALL_TAGS,
+		$labelsOnly = false
 	) {
 		$tags = self::getChangeTagListSummary( $localizer, $lang, $activeOnly, $useAllTags );
 
 		foreach ( $tags as &$tagInfo ) {
 			if ( $tagInfo['labelMsg'] ) {
-				// Use localizer with the correct page title to parse plain message from the cache.
-				$labelMsg = new RawMessage( $tagInfo['label'] );
-				$tagInfo['label'] = Sanitizer::stripAllTags( $localizer->msg( $labelMsg )->parse() );
+				// Optimization: Skip the parsing if the label contains only plain text (T344352)
+				if ( wfEscapeWikiText( $tagInfo['label'] ) !== $tagInfo['label'] ) {
+					// Use localizer with the correct page title to parse plain message from the cache.
+					$labelMsg = new RawMessage( $tagInfo['label'] );
+					$tagInfo['label'] = Sanitizer::stripAllTags( $localizer->msg( $labelMsg )->parse() );
+				}
 			} else {
 				$tagInfo['label'] = $localizer->msg( 'tag-hidden', $tagInfo['name'] )->text();
 			}
-			if ( $tagInfo['descriptionMsg'] ) {
-				$descriptionMsg = new RawMessage( $tagInfo['description'] );
-				$tagInfo['description'] = $lang->truncateForVisual(
-					Sanitizer::stripAllTags( $localizer->msg( $descriptionMsg )->parse() ),
-					self::TAG_DESC_CHARACTER_LIMIT
-				);
+			// Optimization: Skip parsing the descriptions if not needed by the caller (T344352)
+			if ( $labelsOnly ) {
+				unset( $tagInfo['description'] );
+			} elseif ( $tagInfo['descriptionMsg'] ) {
+				// Optimization: Skip the parsing if the description contains only plain text (T344352)
+				if ( wfEscapeWikiText( $tagInfo['description'] ) !== $tagInfo['description'] ) {
+					$descriptionMsg = new RawMessage( $tagInfo['description'] );
+					$tagInfo['description'] = Sanitizer::stripAllTags( $localizer->msg( $descriptionMsg )->parse() );
+				}
+				$tagInfo['description'] = $lang->truncateForVisual( $tagInfo['description'],
+					self::TAG_DESC_CHARACTER_LIMIT );
 			}
 			unset( $tagInfo['labelMsg'] );
 			unset( $tagInfo['descriptionMsg'] );
