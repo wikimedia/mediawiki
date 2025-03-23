@@ -79,9 +79,11 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 		$params = [];
 		$request = $this->getRequest();
 
-		foreach ( array_merge( $this->mAllowedRedirectParams,
-				[ 'uselang', 'useskin', 'variant', 'debug', 'safemode' ] // parameters which can be passed to all pages
-			) as $arg ) {
+		foreach ( array_merge(
+			$this->mAllowedRedirectParams,
+			// parameters which can be passed to all pages
+			[ 'uselang', 'useskin', 'useformat', 'variant', 'debug', 'safemode' ]
+		) as $arg ) {
 			if ( $request->getVal( $arg ) !== null ) {
 				$params[$arg] = $request->getVal( $arg );
 			} elseif ( $request->getArray( $arg ) !== null ) {
