@@ -17,8 +17,7 @@ class SqlitePlatformTest extends TestCase {
 
 	use MediaWikiCoversValidator;
 
-	/** @var SqlitePlatform */
-	private $platform;
+	private SqlitePlatform $platform;
 
 	protected function setUp(): void {
 		parent::setUp();

@@ -10,11 +10,8 @@ namespace Wikimedia\Rdbms;
  * @since 1.29
  */
 class ReadOnlyMode {
-	/** @var ConfiguredReadOnlyMode */
-	private $configuredReadOnly;
-
-	/** @var ILBFactory */
-	private $lbFactory;
+	private ConfiguredReadOnlyMode $configuredReadOnly;
+	private ILBFactory $lbFactory;
 
 	/**
 	 * @internal For ServiceWiring only

@@ -14,11 +14,8 @@ use Wikimedia\Rdbms\UpdateQueryBuilder;
 class UpdateQueryBuilderTest extends TestCase {
 	use MediaWikiCoversValidator;
 
-	/** @var DatabaseTestHelper */
-	private $db;
-
-	/** @var UpdateQueryBuilder */
-	private $uqb;
+	private DatabaseTestHelper $db;
+	private UpdateQueryBuilder $uqb;
 
 	protected function setUp(): void {
 		$this->db = new DatabaseTestHelper( __CLASS__ . '::' . $this->getName() );

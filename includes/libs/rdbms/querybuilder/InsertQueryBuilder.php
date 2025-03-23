@@ -54,8 +54,7 @@ class InsertQueryBuilder {
 	 */
 	protected $options = [];
 
-	/** @var IDatabase */
-	protected $db;
+	protected IDatabase $db;
 
 	/**
 	 * Only for use in subclasses. To create a InsertQueryBuilder instance,

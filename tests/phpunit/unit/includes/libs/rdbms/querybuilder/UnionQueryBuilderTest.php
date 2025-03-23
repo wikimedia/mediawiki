@@ -10,11 +10,8 @@ use Wikimedia\Rdbms\UnionQueryBuilder;
  * @covers \Wikimedia\Rdbms\UnionQueryBuilder
  */
 class UnionQueryBuilderTest extends \MediaWikiUnitTestCase {
-	/** @var DatabaseTestHelper */
-	private $db;
-
-	/** @var UnionQueryBuilder */
-	private $uqb;
+	private DatabaseTestHelper $db;
+	private UnionQueryBuilder $uqb;
 
 	protected function setUp(): void {
 		$this->db = new DatabaseTestHelper( __CLASS__ . '::' . $this->getName() );

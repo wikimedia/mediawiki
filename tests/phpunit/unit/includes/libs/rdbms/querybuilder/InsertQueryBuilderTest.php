@@ -5,6 +5,7 @@ namespace Wikimedia\Tests\Rdbms;
 use DatabaseTestHelper;
 use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
+use Wikimedia\Rdbms\InsertQueryBuilder;
 
 /**
  * @covers \Wikimedia\Rdbms\InsertQueryBuilder
@@ -12,11 +13,8 @@ use PHPUnit\Framework\TestCase;
 class InsertQueryBuilderTest extends TestCase {
 	use MediaWikiCoversValidator;
 
-	/** @var DatabaseTestHelper */
-	private $db;
-
-	/** @var InsertQueryBuilderTest */
-	private $iqb;
+	private DatabaseTestHelper $db;
+	private InsertQueryBuilder $iqb;
 
 	protected function setUp(): void {
 		$this->db = new DatabaseTestHelper( __CLASS__ . '::' . $this->getName() );

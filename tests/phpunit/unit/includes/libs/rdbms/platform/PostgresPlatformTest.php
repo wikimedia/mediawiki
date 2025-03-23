@@ -33,8 +33,7 @@ class PostgresPlatformTest extends TestCase {
 
 	use MediaWikiCoversValidator;
 
-	/** @var PostgresPlatform */
-	private $platform;
+	private PostgresPlatform $platform;
 
 	protected function setUp(): void {
 		parent::setUp();

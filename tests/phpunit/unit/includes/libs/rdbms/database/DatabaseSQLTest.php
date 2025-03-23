@@ -30,11 +30,8 @@ class DatabaseSQLTest extends TestCase {
 	use MediaWikiCoversValidator;
 	use MediaWikiTestCaseTrait;
 
-	/** @var DatabaseTestHelper|Database */
-	private $database;
-
-	/** @var SQLPlatform */
-	private $platform;
+	private DatabaseTestHelper $database;
+	private SQLPlatform $platform;
 
 	protected function setUp(): void {
 		parent::setUp();
