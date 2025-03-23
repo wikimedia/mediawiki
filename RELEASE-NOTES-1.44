@@ -119,8 +119,8 @@ For notes on 1.43.x and older releases, see HISTORY.
 
 * The AuthenticationAttemptThrottled hook was added.
 * The CodexTablePager class was added.
-* UserFactory now has newFromNameOrIp() method to quickly create User object
-  for either an IP a named user.
+* UserFactory now has newFromNameOrIp() method to quickly create a User object
+  for either an IP or a named user.
 * The ApiQueryCheckCanExecute hook was added.
 * The ChangesListInsertLogEntry hook was added.
 * The TempUserDetailsLookup service was added.
