@@ -552,6 +552,8 @@ because of Phabricator reports.
   service. (T308000)
 * The 'PermissionErrorAudit' hook has been deprecated and replaced by
   the 'PermissionStatusAudit' hook.
+* The 'PageContentSave' hook, deprecated in 1.35, now emits deprecation warnings
+  when used. Use the 'MultiContentSave' hook instead.
 * DifferenceEngine::getPermissionErrors() is deprecated,
   use DifferenceEngine::authorizeView() instead.
 * MessageCache::parse, ::parseWithPostProcessing and ::transform() are now
