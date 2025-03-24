@@ -39,6 +39,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -154,7 +155,7 @@ class CategoryViewer extends ContextSource {
 	 */
 	public function getHTML() {
 		$this->showGallery = $this->getConfig()->get( MainConfigNames::CategoryMagicGallery )
-			&& !$this->getOutput()->getNoGallery();
+			&& !$this->getOutput()->getOutputFlag( ParserOutputFlags::NO_GALLERY );
 
 		$this->clearCategoryState();
 		$this->doCategoryQuery();

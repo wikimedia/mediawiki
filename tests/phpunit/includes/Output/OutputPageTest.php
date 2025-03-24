@@ -1944,6 +1944,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testNoGallery() {
+		$this->filterDeprecated( '/OutputPage::getNoGallery was deprecated/' );
 		$op = $this->newInstance();
 		$this->assertFalse( $op->getNoGallery() );
 		$this->assertFalse( $op->getOutputFlag( ParserOutputFlags::NO_GALLERY ) );
