@@ -381,8 +381,11 @@ class DataAccess extends IDataAccess {
 	public function preprocessWikitext(
 		IPageConfig $pageConfig,
 		ContentMetadataCollector $metadata,
-		string $wikitext
+		$wikitext
 	) {
+		if ( !is_string( $wikitext ) ) {
+			$wikitext = "Fragment input not yet allowed."; // Temporary!
+		}
 		$parser = $this->prepareParser( $pageConfig, Parser::OT_PREPROCESS );
 		$this->hookRunner->onParserBeforePreprocess(
 			# $wikitext is passed by reference and mutated

@@ -4251,6 +4251,18 @@ config-schema:
             enables "version 2" support, which uses strip markers for extension
             tag content.
             @unstable EXPERIMENTAL
+    ParsoidFragmentInput:
+        default: false
+        type:
+            - boolean
+            - string
+        description: |-
+            Enable passing fragments as input to the Parsoid
+            DataAccess::preprocessWikitext() endpoint.
+            This is a temporary configuration variable to allow
+            testing a new parsoid feature, which will become the default
+            in future releases.
+            @unstable EXPERIMENTAL
     ParsoidExperimentalParserFunctionOutput:
         default: false
         type: boolean
