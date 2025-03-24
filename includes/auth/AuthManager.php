@@ -66,7 +66,6 @@ use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\ReadOnlyMode;
-use Wikimedia\ScopedCallback;
 
 /**
  * This serves as the entry point to the authentication system.
@@ -2065,10 +2064,10 @@ class AuthManager implements LoggerAwareInterface {
 		$fname = __METHOD__;
 		$trxLimits = $this->config->get( MainConfigNames::TrxProfilerLimits );
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
+		$trxProfiler->redefineExpectations( $trxLimits['POST'], $fname );
 		DeferredUpdates::addCallableUpdate( static function () use ( $trxProfiler, $trxLimits, $fname ) {
 			$trxProfiler->redefineExpectations( $trxLimits['PostSend-POST'], $fname );
 		} );
-		$scope = $trxProfiler->silenceForScope( $trxProfiler::EXPECTATION_REPLICAS_ONLY );
 
 		try {
 			$status = $user->addToDatabase();
@@ -2136,8 +2135,6 @@ class AuthManager implements LoggerAwareInterface {
 			] );
 			$logEntry->insert();
 		}
-
-		ScopedCallback::consume( $scope );
 
 		if ( $login ) {
 			$remember = $source === self::AUTOCREATE_SOURCE_TEMP;
