@@ -606,7 +606,9 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 				$outputDone = new ParserOutput( 'Hook Text' );
 				$outputDone->setTitleText( 'Hook Title' );
 
-				$articlePage->getContext()->getOutput()->addParserOutput( $outputDone );
+				$context = $articlePage->getContext();
+				$parserOptions = ParserOptions::newFromContext( $context );
+				$context->getOutput()->addParserOutput( $outputDone, $parserOptions );
 			}
 		);
 

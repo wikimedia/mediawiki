@@ -1273,7 +1273,7 @@ class DifferenceEngine extends ContextSource {
 					if ( $this->hookRunner->onDifferenceEngineRenderRevisionAddParserOutput(
 						$this, $out, $parserOutput, $wikiPage )
 					) {
-						$out->addParserOutput( $parserOutput, [
+						$out->addParserOutput( $parserOutput, $parserOptions, [
 							'enableSectionEditLinks' => $this->mNewRevisionRecord->isCurrent()
 								&& $this->getAuthority()->probablyCan(
 									'edit',

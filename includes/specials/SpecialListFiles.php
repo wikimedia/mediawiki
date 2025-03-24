@@ -25,6 +25,7 @@ use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Pager\ImageListPager;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\SpecialPage\IncludableSpecialPage;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
@@ -109,15 +110,16 @@ class SpecialListFiles extends IncludableSpecialPage {
 		$out = $this->getOutput();
 		$out->setPageTitleMsg( $pageTitle );
 		$out->addModuleStyles( 'mediawiki.special' );
+		$parserOptions = ParserOptions::newFromContext( $this->getContext() );
 		if ( $this->including() ) {
-			$out->addParserOutputContent( $pager->getBodyOutput() );
+			$out->addParserOutputContent( $pager->getBodyOutput(), $parserOptions );
 		} else {
 			$user = $pager->getRelevantUser();
 			if ( $user ) {
 				$this->getSkin()->setRelevantUser( $user );
 			}
 			$pager->getForm();
-			$out->addParserOutputContent( $pager->getFullOutput() );
+			$out->addParserOutputContent( $pager->getFullOutput(), $parserOptions );
 		}
 	}
 

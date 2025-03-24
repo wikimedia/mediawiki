@@ -136,7 +136,7 @@ class SpecialExpandTemplates extends SpecialPage {
 				$out->addHTML( $this->makeOutput( $rawhtml, 'expand_templates_html_output' ) );
 			}
 
-			$this->showHtmlPreview( $title, $pout, $out );
+			$this->showHtmlPreview( $title, $pout, $options, $out );
 		} else {
 			$this->makeForm();
 		}
@@ -239,9 +239,10 @@ class SpecialExpandTemplates extends SpecialPage {
 	 *
 	 * @param Title $title
 	 * @param ParserOutput $pout
+	 * @param ParserOptions $popts
 	 * @param OutputPage $out
 	 */
-	private function showHtmlPreview( Title $title, ParserOutput $pout, OutputPage $out ) {
+	private function showHtmlPreview( Title $title, ParserOutput $pout, ParserOptions $popts, OutputPage $out ) {
 		$out->addHTML( "<h2>" . $this->msg( 'expand_templates_preview' )->escaped() . "</h2>\n" );
 
 		if ( $this->getConfig()->get( MainConfigNames::RawHtml ) ) {
@@ -272,7 +273,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			}
 		}
 
-		$out->addParserOutputContent( $pout, [ 'enableSectionEditLinks' => false ] );
+		$out->addParserOutputContent( $pout, $popts, [ 'enableSectionEditLinks' => false ] );
 		$out->addCategoryLinks( $pout->getCategoryMap() );
 	}
 

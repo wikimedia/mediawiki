@@ -301,8 +301,9 @@ class OutputPage extends ContextSource {
 	/**
 	 * lazy initialised, use parserOptions()
 	 * @var ParserOptions
+	 * @deprecated since 1.44; see ::parserOptions()
 	 */
-	protected $mParserOptions = null;
+	private $mParserOptions = null;
 
 	/**
 	 * Handles the Atom / RSS links.
@@ -469,6 +470,7 @@ class OutputPage extends ContextSource {
 		$this->deprecatePublicProperty( 'mNewSectionLink', '1.38', __CLASS__ );
 		$this->deprecatePublicProperty( 'mHideNewSectionLink', '1.38', __CLASS__ );
 		$this->deprecatePublicProperty( 'mNoGallery', '1.38', __CLASS__ );
+		$this->deprecatePublicProperty( 'mParserOptions', '1.44', __CLASS__ );
 		$this->setContext( $context );
 		$this->metadata = new ParserOutput( null );
 		// OutputPage default
@@ -1988,8 +1990,11 @@ class OutputPage extends ContextSource {
 	 * Get/set the ParserOptions object to use for wikitext parsing
 	 *
 	 * @return ParserOptions
+	 * @deprecated since 1.44; instead use
+	 * ParserOptions::newFromContext( $outputPage->getContext() )
 	 */
 	public function parserOptions() {
+		wfDeprecated( __METHOD__, '1.44' );
 		if ( !$this->mParserOptions ) {
 			if ( !$this->getUser()->isSafeToLoad() ) {
 				// Context user isn't unstubbable yet, so don't try to get a
@@ -2005,6 +2010,24 @@ class OutputPage extends ContextSource {
 		}
 
 		return $this->mParserOptions;
+	}
+
+	/**
+	 * Get/set the ParserOptions object to use for wikitext parsing
+	 */
+	private function internalParserOptions( bool $interface ): ParserOptions {
+		if ( !$this->getUser()->isSafeToLoad() ) {
+			// Context user isn't unstubbable yet, so don't try to get a
+			// ParserOptions for it. And don't cache this ParserOptions
+			// either.
+			$parserOptions = ParserOptions::newFromAnon();
+		} else {
+			$parserOptions = ParserOptions::newFromContext( $this->getContext() );
+		}
+		$parserOptions->setAllowUnsafeRawHtml( false );
+		$parserOptions->setSuppressSectionEditLinks();
+		$parserOptions->setInterfaceMessage( $interface );
+		return $parserOptions;
 	}
 
 	/**
@@ -2144,16 +2167,28 @@ class OutputPage extends ContextSource {
 	 * wrapper.  The result will not be language-converted, as user
 	 * interface messages as already localized into a specific
 	 * variant.  The $text will be parsed in start-of-line context.
-	 * Output will be tidy.
+	 * Output will be tidy and wrapped.
 	 *
-	 * @param string $wrapperClass The class attribute value for the <div>
-	 *   wrapper in the output HTML
+	 * @param string $wrapperClass The class attribute value for
+	 *   the <div> wrapper in the output HTML, should not be empty
 	 * @param string $text Wikitext in the user interface language
 	 * @since 1.32
+	 * @phan-param non-empty-string $wrapperClass
 	 */
 	public function wrapWikiTextAsInterface(
 		$wrapperClass, $text
 	) {
+		if ( $wrapperClass === '' ) {
+			// I don't think anyone actually uses this corner case,
+			// but if you call wrapWikiTextAsInterface with
+			// `$wrapperClass===''` the result won't actually be
+			// wrapped. (Since
+			// ParserOptions::getInterfaceMessage()===true the default
+			// 'mw-parser-output' class is suppressed; ordinarily its
+			// presence would ensure the wrapper was created even if
+			// $wrapperClass was empty.)
+			wfDeprecated( __METHOD__ . ' with empty wrapper class', '1.44' );
+		}
 		$title = $this->getTitle();
 		if ( $title === null ) {
 			throw new RuntimeException( 'No title in ' . __METHOD__ );
@@ -2192,27 +2227,26 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * Add wikitext with a custom Title object.
-	 * Output is unwrapped.
+	 * Output is unwrapped unless $wrapperClass is non-null.
 	 *
 	 * @param string $text Wikitext
 	 * @param PageReference $title
 	 * @param bool $linestart Is this the start of a line?@param
 	 * @param bool $interface Whether it is an interface message
 	 *   (for example disables conversion)
-	 * @param string|null $wrapperClass if not empty, wraps the output in
+	 * @param string|null $wrapperClass if not null, wraps the output in
 	 *   a `<div class="$wrapperClass">`
 	 */
 	private function addWikiTextTitleInternal(
 		string $text, PageReference $title, bool $linestart, bool $interface,
 		?string $wrapperClass = null
 	) {
-		$parserOutput = $this->parseInternal(
-			$text, $title, $linestart, $interface
+		[ $parserOutput, $parserOptions ] = $this->parseInternal(
+			$text, $title, $linestart, $interface, true, /*allowTOC*/
+			$wrapperClass, false/*postprocess*/
 		);
 
-		$this->addParserOutput( $parserOutput, [
-			'enableSectionEditLinks' => false,
-			'wrapperDivClass' => $wrapperClass ?? '',
+		$this->addParserOutput( $parserOutput, $parserOptions, [
 		] );
 	}
 
@@ -2482,7 +2516,11 @@ class OutputPage extends ContextSource {
 		}
 	}
 
-	private function getParserOutputText( ParserOutput $parserOutput, array $poOptions = [] ): string {
+	private function getParserOutputText(
+		ParserOutput $parserOutput,
+		ParserOptions $parserOptions,
+		array $poOptions
+	): string {
 		// Add default options from the skin
 		$skin = $this->getSkin();
 		$skinOptions = $skin->getOptions();
@@ -2497,7 +2535,13 @@ class OutputPage extends ContextSource {
 		// Note: this path absolutely expects the metadata of $parserOutput to be mutated by the pipeline,
 		// but the raw text should not be, see T353257
 		// TODO T371008 consider if using the Content framework makes sense instead of creating the pipeline
-		$text = $pipeline->run( $parserOutput, $this->parserOptions(), $poOptions )->getContentHolderText();
+		$text = $pipeline->run(
+			$parserOutput,
+			// This should be the same parser options that generated
+			// $parserOutput
+			$parserOptions,
+			$poOptions
+		)->getContentHolderText();
 		$parserOutput->setRawText( $oldText );
 		return $text;
 	}
@@ -2508,10 +2552,25 @@ class OutputPage extends ContextSource {
 	 *
 	 * @since 1.24
 	 * @param ParserOutput $parserOutput
-	 * @param array $poOptions Options to OutputTransformPipeline::run() (to be deprecated)
+	 * @param ParserOptions|null $parserOptions (since 1.44)
+	 *   Passing null has been deprecated since MW 1.44.
+	 * @param array|null $poOptions Options to OutputTransformPipeline::run() (to be deprecated)
 	 */
-	public function addParserOutputContent( ParserOutput $parserOutput, $poOptions = [] ) {
-		$text = $this->getParserOutputText( $parserOutput, $poOptions );
+	public function addParserOutputContent( ParserOutput $parserOutput, $parserOptions = null, $poOptions = null ) {
+		// For backward compatibility, accept $poOptions in the $parserOptions
+		// argument. This will also trigger the deprecation warning below.
+		if ( is_array( $parserOptions ) ) {
+			$poOptions = $parserOptions;
+			$parserOptions = null;
+		}
+		if ( $parserOptions === null ) {
+			// @deprecated since 1.44
+			// XXX: This isn't guaranteed to be the same parser options that
+			// generated $parserOutput.
+			$parserOptions = $this->internalParserOptions( false );
+		}
+		$poOptions ??= [];
+		$text = $this->getParserOutputText( $parserOutput, $parserOptions, $poOptions );
 		$this->addParserOutputText( $text, $poOptions );
 
 		$this->addModules( $parserOutput->getModules() );
@@ -2530,7 +2589,8 @@ class OutputPage extends ContextSource {
 	public function addParserOutputText( $text, $poOptions = [] ) {
 		if ( $text instanceof ParserOutput ) {
 			wfDeprecated( __METHOD__ . ' with ParserOutput as first arg', '1.42' );
-			$text = $this->getParserOutputText( $text, $poOptions );
+			$parserOptions = $this->internalParserOptions( false );
+			$text = $this->getParserOutputText( $text, $parserOptions, $poOptions );
 		}
 		$this->getHookRunner()->onOutputPageBeforeHTML( $this, $text );
 		$this->addHTML( $text );
@@ -2540,10 +2600,25 @@ class OutputPage extends ContextSource {
 	 * Add everything from a ParserOutput object.
 	 *
 	 * @param ParserOutput $parserOutput
-	 * @param array $poOptions Options to OutputTransformPipeline::run() (to be deprecated)
+	 * @param ParserOptions|null $parserOptions (since 1.44)
+	 *   Passing null has been deprecated since MW 1.44.
+	 * @param array|null $poOptions Options to OutputTransformPipeline::run() (to be deprecated)
 	 */
-	public function addParserOutput( ParserOutput $parserOutput, $poOptions = [] ) {
-		$text = $this->getParserOutputText( $parserOutput, $poOptions );
+	public function addParserOutput( ParserOutput $parserOutput, $parserOptions = null, $poOptions = null ) {
+		// For backward compatibility, accept $poOptions in the $parserOptions
+		// argument. This will also trigger the deprecation warning below.
+		if ( is_array( $parserOptions ) ) {
+			$poOptions = $parserOptions;
+			$parserOptions = null;
+		}
+		if ( $parserOptions === null ) {
+			// @deprecated since 1.44
+			// XXX: This isn't guaranteed to be the same parser options that
+			// generated $parserOutput.
+			$parserOptions = $this->internalParserOptions( false );
+		}
+		$poOptions ??= [];
+		$text = $this->getParserOutputText( $parserOutput, $parserOptions, $poOptions );
 		$this->addParserOutputMetadata( $parserOutput );
 		$this->addParserOutputText( $text, $poOptions );
 	}
@@ -2560,7 +2635,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Parse wikitext *in the page content language* and return the HTML.
 	 * The result will be language-converted to the user's preferred variant.
-	 * Output will be tidy.
+	 * Output will be tidy and unwrapped.
 	 *
 	 * @param string $text Wikitext in the page content language
 	 * @param bool $linestart Is this the start of a line? (Defaults to true)
@@ -2572,24 +2647,19 @@ class OutputPage extends ContextSource {
 		if ( $title === null ) {
 			throw new RuntimeException( 'No title in ' . __METHOD__ );
 		}
-		$po = $this->parseInternal(
-			$text, $title, $linestart, false
+		[ $po, ] = $this->parseInternal(
+			$text, $title, $linestart,
+			/*interface*/false, /*allowTOC*/false, /*wrapperDivClass*/null,
+			/*postprocess*/true
 		);
-		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
-		// TODO T371008 consider if using the Content framework makes sense instead of creating the pipeline
-		return $pipeline->run( $po, $this->parserOptions(), [
-			'allowTOC' => false,
-			'enableSectionEditLinks' => false,
-			'wrapperDivClass' => '',
-			'userLang' => $this->getContext()->getLanguage(),
-		] )->getContentHolderText();
+		return $po->getContentHolderText();
 	}
 
 	/**
 	 * Parse wikitext *in the user interface language* and return the HTML.
 	 * The result will not be language-converted, as user interface messages
 	 * are already localized into a specific variant.
-	 * Output will be tidy.
+	 * Output will be tidy and unwrapped.
 	 *
 	 * @param string $text Wikitext in the user interface language
 	 * @param bool $linestart Is this the start of a line? (Defaults to true)
@@ -2601,17 +2671,12 @@ class OutputPage extends ContextSource {
 		if ( $title === null ) {
 			throw new RuntimeException( 'No title in ' . __METHOD__ );
 		}
-		$po = $this->parseInternal(
-			$text, $title, $linestart, true
+		[ $po, ] = $this->parseInternal(
+			$text, $title, $linestart,
+			/*interface*/true, false/*allowTOC*/, /*wrapperDivClass*/null,
+			/*postprocess*/true
 		);
-		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
-		// TODO T371008 consider if using the Content framework makes sense instead of creating the pipeline
-		return $pipeline->run( $po, $this->parserOptions(), [
-			'allowTOC' => false,
-			'enableSectionEditLinks' => false,
-			'wrapperDivClass' => '',
-			'userLang' => $this->getContext()->getLanguage(),
-		] )->getContentHolderText();
+		return $po->getContentHolderText();
 	}
 
 	/**
@@ -2642,14 +2707,17 @@ class OutputPage extends ContextSource {
 	 * @param bool $interface Use interface language (instead of content language) while parsing
 	 *   language sensitive magic words like GRAMMAR and PLURAL.  This also disables
 	 *   LanguageConverter.
-	 * @return ParserOutput
+	 * @param bool $allowTOC Whether to allow a TOC to be generated
+	 * @param ?string $wrapperClass Wrapper class to use, or `null` for
+	 *   unwrapped output.
+	 * @return array{0:ParserOutput,1:ParserOptions}
 	 */
 	private function parseInternal(
-		string $text, PageReference $title, bool $linestart, bool $interface
+		string $text, PageReference $title,
+		bool $linestart, bool $interface, bool $allowTOC, ?string $wrapperClass,
+		bool $postprocess
 	) {
-		$popts = $this->parserOptions();
-
-		$oldInterface = $popts->setInterfaceMessage( $interface );
+		$popts = $this->internalParserOptions( $interface );
 
 		$parserOutput = MediaWikiServices::getInstance()->getParserFactory()->getInstance()
 			->parse(
@@ -2657,9 +2725,31 @@ class OutputPage extends ContextSource {
 				$linestart, true, $this->mRevisionId
 			);
 
-		$popts->setInterfaceMessage( $oldInterface );
+		// Set wrapper class directly on ParserOutput, since otherwise
+		// ParserOptions::getWrapOutputClass() is ignored if $interface=true;
+		// see ParserOutput::setFromParserOptions()
+		if ( $wrapperClass !== null ) {
+			$parserOutput->addWrapperDivClass( $wrapperClass );
+		} else {
+			$parserOutput->clearWrapperDivClass();
+		}
 
-		return $parserOutput;
+		if ( !$allowTOC ) {
+			$parserOutput->setOutputFlag( ParserOutputFlags::NO_TOC );
+			$parserOutput->setSections( [] );
+		}
+
+		if ( $postprocess ) {
+			$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
+			// TODO T371008 consider if using the Content framework makes sense instead of creating the pipeline
+			$parserOutput = $pipeline->run(
+				$parserOutput, $popts, [
+					'userLang' => $this->getContext()->getLanguage(),
+				]
+			);
+		}
+
+		return [ $parserOutput, $popts ];
 	}
 
 	/**
@@ -4993,6 +5083,19 @@ class OutputPage extends ContextSource {
 	 */
 	public function isTOCEnabled() {
 		return $this->mEnableTOC;
+	}
+
+	/**
+	 * Helper function to add a Table of Contents to the output.
+	 * @param TOCData $tocData Table of Contents data to add
+	 * @since 1.44
+	 */
+	public function addTOCPlaceholder( TOCData $tocData ): void {
+		$pout = new ParserOutput;
+		$pout->setTOCData( $tocData );
+		$pout->setOutputFlag( ParserOutputFlags::SHOW_TOC );
+		$pout->setRawText( Parser::TOC_PLACEHOLDER );
+		$this->addParserOutput( $pout, $this->internalParserOptions( false ) );
 	}
 
 	/**

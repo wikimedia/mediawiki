@@ -30,6 +30,7 @@ use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Pager\BlockListPager;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\SpecialPage\SpecialPage;
 use Wikimedia\Rdbms\IConnectionProvider;
 
@@ -160,7 +161,10 @@ class SpecialAutoblockList extends SpecialPage {
 		}
 
 		if ( $pager->getNumRows() ) {
-			$out->addParserOutputContent( $pager->getFullOutput() );
+			$out->addParserOutputContent(
+				$pager->getFullOutput(),
+				ParserOptions::newFromContext( $this->getContext() )
+			);
 		} else {
 			$out->addWikiMsg( 'autoblocklist-empty' );
 		}

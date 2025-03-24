@@ -22,9 +22,6 @@ namespace MediaWiki\Specials;
 
 use MediaWiki\Html\Html;
 use MediaWiki\Language\RawMessage;
-use MediaWiki\Parser\Parser;
-use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\Parsoid\Core\TOCData;
@@ -163,11 +160,7 @@ class SpecialSpecialPages extends UnlistedSpecialPage {
 			}
 		}
 
-		$pout = new ParserOutput;
-		$pout->setTOCData( $tocData );
-		$pout->setOutputFlag( ParserOutputFlags::SHOW_TOC );
-		$pout->setRawText( Parser::TOC_PLACEHOLDER );
-		$out->addParserOutput( $pout );
+		$out->addTOCPlaceholder( $tocData );
 
 		// Format contents
 		foreach ( $groups as $group => $sortedPages ) {
