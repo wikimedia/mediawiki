@@ -569,6 +569,8 @@ because of Phabricator reports.
   replaced with `OutputPage::getMetadata()->{get,set}RevisionTimestamp()`
 * The 'PermissionErrorAudit' hook has been deprecated and replaced by
   the 'PermissionStatusAudit' hook.
+* The 'PageContentSave' hook, deprecated in 1.35, now emits deprecation warnings
+  when used. Use the 'MultiContentSave' hook instead.
 * DifferenceEngine::getPermissionErrors() is deprecated,
   use DifferenceEngine::authorizeView() instead.
 * UploadBase::verifyPermissions() and UploadBase::verifyTitlePermissions()
