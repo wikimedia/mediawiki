@@ -797,6 +797,7 @@ return [
 				'useSelser' => true,
 			],
 			'ParsoidFragmentSupport' => false,
+			'ParsoidFragmentInput' => false,
 			'ParsoidExperimentalParserFunctionOutput' => false,
 			'ParserEnableLegacyMediaDOM' => false,
 			'ParserEnableLegacyHeadingDOM' => false,
@@ -2906,6 +2907,10 @@ return [
 			'TidyConfig' => 'object',
 			'ParsoidSettings' => 'object',
 			'ParsoidFragmentSupport' => [
+				'boolean',
+				'string',
+			],
+			'ParsoidFragmentInput' => [
 				'boolean',
 				'string',
 			],
