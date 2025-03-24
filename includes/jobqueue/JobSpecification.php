@@ -58,6 +58,8 @@ class JobSpecification implements IJobSpecification {
 	/**
 	 * @param string $type
 	 * @param array $params Map of key/values
+	 *   'requestId' - The request ID, as obtained from {@link Telemetry::getRequestId}. If not set,
+	 *   the value will be populated from the current instance of {@link Telemetry}.
 	 * @param array $opts Map of key/values
 	 *   'removeDuplicates' key - whether to remove duplicate jobs
 	 *   'removeDuplicatesIgnoreParams' key - array with parameters to ignore for deduplication
