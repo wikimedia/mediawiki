@@ -777,7 +777,7 @@
 	"blockedtext-composite": "<strong>您的使用者名稱或 IP 位址已被封鎖。</strong>\n\n原因如下：\n\n:<em>$2</em>\n\n* 封鎖開始時間：$8\n* 最長的封鎖結束時間：$6\n\n* $5\n\n您目前的 IP 位址為 $3。\n請在做詢問時附上以上資訊。",
 	"blockedtext-composite-ids": "相關的封鎖ID：$1（您的IP位址可能在封鎖列表中）",
 	"blockedtext-composite-no-ids": "您的IP位址在多個封鎖列表中",
-	"blockedtext-composite-reason": "有多個封鎖目標為您的帳號和/或IP位址",
+	"blockedtext-composite-reason": "您的帳號和/或IP位址已遭多重封鎖",
 	"whitelistedittext": "請先 $1 才可編輯頁面。",
 	"confirmedittext": "在編輯此頁之前您必須確認您的電子郵件地址。\n請透過 [[Special:Preferences|偏好設定]] 設定並驗證您的電子郵件地址。",
 	"nosuchsectiontitle": "找不到章節",

@@ -906,7 +906,7 @@
 	"viewpagelogs-lowercase": "logboek voor deze pagina bekijken",
 	"nohistory": "Er is geen bewerkingsgeschiedenis voor deze pagina.",
 	"currentrev": "Huidige versie",
-	"currentrev-asof": "Huidige versie van $2 om $3",
+	"currentrev-asof": "Huidige versie van $1",
 	"revisionasof": "Versie van $1",
 	"revision-info": "Versie door {{GENDER:$6|$2}} op $4 om $5$7",
 	"previousrevision": "← Oudere versie",
