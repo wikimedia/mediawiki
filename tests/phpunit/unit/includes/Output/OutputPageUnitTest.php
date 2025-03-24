@@ -72,7 +72,7 @@ class OutputPageUnitTest extends MediaWikiUnitTestCase {
 		}
 
 		$modules = $outputPage->getModules( $filter );
-		$styleModules = $outputPage->getModules( $filter, null, 'mModuleStyles' );
+		$styleModules = $outputPage->getModuleStyles( $filter );
 
 		$this->assertSame( $expectedModules, $modules );
 		$this->assertSame( $expectedStyleModules, $styleModules );

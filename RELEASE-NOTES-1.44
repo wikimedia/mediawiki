@@ -577,6 +577,10 @@ because of Phabricator reports.
   warnings.
 * PPFrame::setTTL() has been deprecated: setting TTL had no effect in
   practice. Use ParserOutput::updateCacheExpiry() instead.
+* The (unused) second, third, and fourth arguments to OutputPage::getModules()
+  have been deprecated, and the (unused) second argument to
+  OutputPage::getModuleStyles() has been deprecated.  These exposed private
+  internal implementation details not intended for public use.
 * MediaWikiTitleCodec::getTitleInvalidRegex() is now deprecated. Use the same
   method in TitleParser.
 * …
