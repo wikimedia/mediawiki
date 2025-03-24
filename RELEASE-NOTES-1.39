@@ -8,12 +8,39 @@ PHP 8.4 workboard: https://phabricator.wikimedia.org/tag/php_8.4_support/
 
 == MediaWiki 1.39.12 ==
 
-This is a maintenance release of the MediaWiki 1.39 branch.
+THIS IS NOT A RELEASE YET
 
 === Changes since 1.39.11 ===
 * Localisation updates.
+* (T380755) session: Do not set session.use_trans_sid.
 * (T382987) $wgDnsBlacklistUrls now defaults to an empty array. See the comment
   in the "Configuration changes for system administrators" section.
+* (T382484) dumps: Use proc_close() to close proc_open() subprocess.
+* (T315202) Account for null values in Exif data.
+* (T384879) FormatMetadata: Prevent running preg_match() on null.
+* (T384995) specialpage: Improve handling of invalid lang codes on login/signup.
+* (T385169) MultiUsernameFilter: Don't try to split ids if they're not a string.
+* (T319219) Fix Site::getPath() + MediaWikiSite::getFileUrl() confusion.
+* (T385332) feeds: Fix str_replace() deprecation warnings on PHP 8.
+* (T379125) exception: Suppress dependency loop exception.
+* (T381033) RateLimiter: Fix peek mode.
+* (T387130) Update wikimedia/parsoid to 0.16.5.
+* (T385519) Sanitizer::normalizeWhitespace warn on preg_replace error.
+* (T387638) RevDelList: Ensure setVisibility always includes itemStatuses in
+  value if applicable.
+* (T388296) ImportImages: Exit with non-zero code if import fails.
+* Request: Improve log message when headers already sent.
+* (T388066) Avoid trying to load the session user in MW_NO_SESSION endpoints.
+* (T388171) HttpError: Cast Message to string.
+* (T388255) ApiLogin: Don't break BotPasswords if password or user is blank,
+  just error.
+* (T388728, T385519) Sanitizer::normalizeSectionNameWhitespace: Apply same
+  anti-null fix as 270499b.
+* (T387690) upload: Suppress warnings from iconv().
+* (T388733) Sanitizer::normalizeWhitespace: simplify redundant preg_replace.
+* (T304474) Apply proper restrictions on file revert action.
+* (T388924) MagicWord::replace*: Make sure we don't pass null into preg_match/
+  preg_replace.
 
 == MediaWiki 1.39.11 ==
 
