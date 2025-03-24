@@ -4,7 +4,8 @@
 	"info": {
 		"version": "1.0",
 		"title": "Page content",
-		"description": "Provides access to the content and meta-data of pages and revisions"
+		"x-i18n-title": "rest-module-content.v1-title",
+		"x-i18n-description": "rest-module-content.v1-desc"
 	},
 	"paths": {
 		"/page": {

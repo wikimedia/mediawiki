@@ -112,7 +112,9 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 			$context->method( 'getAuthority' )->willReturn( $authority );
 			$context->method( 'getRequest' )->willReturn( $request );
 
-			$responseFactory = $this->createNoOpMock( ResponseFactory::class );
+			$responseFactory = $this->createNoOpMock( ResponseFactory::class, [ 'getFormattedMessage' ] );
+			$responseFactory->method( 'getFormattedMessage' )->willReturn( '' );
+
 			$cors = $this->createNoOpMock( CorsUtils::class );
 
 			$services = $this->getFakeServiceContainer();
@@ -156,7 +158,9 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 			$context->method( 'getAuthority' )->willReturn( $authority );
 			$context->method( 'getRequest' )->willReturn( $request );
 
-			$responseFactory = $this->createNoOpMock( ResponseFactory::class );
+			$responseFactory = $this->createNoOpMock( ResponseFactory::class, [ 'getFormattedMessage' ] );
+			$responseFactory->method( 'getFormattedMessage' )->willReturn( '' );
+
 			$cors = $this->createNoOpMock( CorsUtils::class );
 
 			$this->router = EntryPoint::createRouter(

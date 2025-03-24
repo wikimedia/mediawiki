@@ -41,8 +41,6 @@ abstract class Handler {
 
 	public const OPENAPI_DESCRIPTION_KEY = 'description';
 
-	public const RESPONSE_BODY_DESCRIPTION_KEY = 'x-i18n-description';
-
 	/** @var Module */
 	private $module;
 
@@ -69,6 +67,9 @@ abstract class Handler {
 
 	/** @var ConditionalHeaderUtil */
 	private $conditionalHeaderUtil;
+
+	/** @var JsonLocalizer */
+	private $jsonLocalizer;
 
 	/** @var HookContainer */
 	private $hookContainer;
@@ -451,6 +452,24 @@ abstract class Handler {
 	}
 
 	/**
+	 * Get a JsonLocalizer object.
+	 *
+	 * @return JsonLocalizer
+	 */
+	protected function getJsonLocalizer(): JsonLocalizer {
+		Assert::precondition(
+			$this->responseFactory !== null,
+			'getJsonLocalizer() must not be called before initServices()'
+		);
+
+		if ( $this->jsonLocalizer === null ) {
+			$this->jsonLocalizer = new JsonLocalizer( $this->responseFactory );
+		}
+
+		return $this->jsonLocalizer;
+	}
+
+	/**
 	 * Get a ConditionalHeaderUtil object.
 	 *
 	 * On the first call to this method, the object will be initialized with
@@ -584,30 +603,6 @@ abstract class Handler {
 	}
 
 	/**
-	 * Returns the translated description string if possible, the untranslated string if one is
-	 * available, or null otherwise.
-	 *
-	 * @param array $schema a schema array
-	 * @param string $descKey key name of the description field in $setting
-	 *
-	 * @return ?string
-	 */
-	private function resolveDescription( array $schema, string $descKey ): ?string {
-		$desc = null;
-
-		if ( array_key_exists( $descKey, $schema ) ) {
-			if ( $schema[ $descKey ] instanceof MessageValue ) {
-				// TODO: consider if we want to request a specific preferred language
-				$desc = $this->responseFactory->getFormattedMessage( $schema[ $descKey ] );
-			} else {
-				$desc = $schema[ $descKey ];
-			}
-		}
-
-		return $desc;
-	}
-
-	/**
 	 * Returns an OpenAPI Operation Object specification structure as an associative array.
 	 *
 	 * @see https://swagger.io/specification/#operation-object
@@ -631,8 +626,8 @@ abstract class Handler {
 
 		$supportedPathParams = array_flip( $this->getSupportedPathParams() );
 
-		foreach ( $this->getParamSettings() as $name => $paramSetting ) {
-			$source = $paramSetting[ Validator::PARAM_SOURCE ] ?? '';
+		foreach ( $this->getParamSettings() as $name => $setting ) {
+			$source = $setting[ Validator::PARAM_SOURCE ] ?? '';
 
 			if ( $source !== 'query' && $source !== 'path' ) {
 				continue;
@@ -643,14 +638,11 @@ abstract class Handler {
 				continue;
 			}
 
-			$paramSetting[ Validator::PARAM_DESCRIPTION ] = $this->resolveDescription(
-				$paramSetting, Validator::PARAM_DESCRIPTION
+			$setting[ Validator::PARAM_DESCRIPTION ] = $this->getJsonLocalizer()->localizeValue(
+				$setting, Validator::PARAM_DESCRIPTION,
 			);
 
-			$param = Validator::getParameterSpec(
-				$name,
-				$paramSetting
-			);
+			$param = Validator::getParameterSpec( $name, $setting );
 
 			$parameters[] = $param;
 		}
@@ -753,7 +745,7 @@ abstract class Handler {
 
 			$properties[$name] = Validator::getParameterSchema( $settings );
 			$properties[$name][self::OPENAPI_DESCRIPTION_KEY] =
-				$this->resolveDescription( $settings, Validator::PARAM_DESCRIPTION )
+				$this->getJsonLocalizer()->localizeValue( $settings, Validator::PARAM_DESCRIPTION )
 				?? "$name parameter";
 
 			if ( $isRequired ) {
@@ -814,39 +806,6 @@ abstract class Handler {
 	}
 
 	/**
-	 * If possible, adds a translated description to the schema, and removes the custom key
-	 *
-	 * @param array $schema The response schema
-	 *
-	 * @return array the adjusted schema, or the unchanged schema if no adjustments were made
-	 */
-	private function resolveResponseDescription( array $schema ): array {
-		$key = self::RESPONSE_BODY_DESCRIPTION_KEY;
-		if ( array_key_exists( $key, $schema ) && is_string( $schema[$key] ) ) {
-			// Add the description to the top of the schema, for visibility in raw specs
-			$desc = [ self::OPENAPI_DESCRIPTION_KEY => new MessageValue( $schema[$key] ) ];
-			$schema = $desc + $schema;
-			$schema[self::OPENAPI_DESCRIPTION_KEY] = $this->resolveDescription(
-				$schema, self::OPENAPI_DESCRIPTION_KEY
-			);
-			unset( $schema[$key] );
-		}
-
-		return $schema;
-	}
-
-	private function resolveResponseDescriptions( array $schema ): array {
-		foreach ( $schema as &$value ) {
-			if ( is_array( $value ) ) {
-				$value = $this->resolveResponseDescriptions( $value );
-			} else {
-				$schema = $this->resolveResponseDescription( $schema );
-			}
-		}
-		return $schema;
-	}
-
-	/**
 	 * Returns an OpenAPI Responses Object specification structure as an associative array.
 	 *
 	 * @see https://swagger.io/specification/#responses-object
@@ -867,8 +826,7 @@ abstract class Handler {
 		$bodySchema = $this->getResponseBodySchema( $method );
 
 		if ( $bodySchema ) {
-			$bodySchema = $this->resolveResponseDescriptions( $bodySchema );
-
+			$bodySchema = $this->getJsonLocalizer()->localizeJson( $bodySchema );
 			$ok['content']['application/json']['schema'] = $bodySchema;
 		}
 

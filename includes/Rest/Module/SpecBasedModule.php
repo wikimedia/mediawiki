@@ -5,6 +5,7 @@ namespace MediaWiki\Rest\Module;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Rest\BasicAccess\BasicAuthorizerInterface;
 use MediaWiki\Rest\Handler\RedirectHandler;
+use MediaWiki\Rest\JsonLocalizer;
 use MediaWiki\Rest\PathTemplateMatcher\ModuleConfigurationException;
 use MediaWiki\Rest\Reporter\ErrorReporter;
 use MediaWiki\Rest\ResponseFactory;
@@ -120,6 +121,9 @@ class SpecBasedModule extends MatcherBasedModule {
 					. $this->definitionFile
 			);
 		}
+
+		$localizer = new JsonLocalizer( $this->responseFactory );
+		$moduleDef = $localizer->localizeJson( $moduleDef );
 
 		$this->moduleDef = $moduleDef;
 		return $this->moduleDef;

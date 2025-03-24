@@ -8,6 +8,7 @@ use Iterator;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Rest\BasicAccess\BasicAuthorizerInterface;
 use MediaWiki\Rest\Handler\RedirectHandler;
+use MediaWiki\Rest\JsonLocalizer;
 use MediaWiki\Rest\PathTemplateMatcher\ModuleConfigurationException;
 use MediaWiki\Rest\Reporter\ErrorReporter;
 use MediaWiki\Rest\ResponseFactory;
@@ -246,9 +247,10 @@ class ExtraRoutesModule extends MatcherBasedModule {
 	public function getOpenApiInfo() {
 		// Note that mwapi-1.0 is based on OAS 3.0, so it doesn't support the
 		// "summary" property introduced in 3.1.
+		$localizer = new JsonLocalizer( $this->responseFactory );
 		return [
-			'title' => 'Extra Routes',
-			'description' => 'REST endpoints not associated with a module',
+			'title' => $localizer->getFormattedMessage( 'rest-extra-routes-module-title' ),
+			'description' => $localizer->getFormattedMessage( 'rest-extra-routes-module-desc' ),
 			'version' => 'undefined',
 		];
 	}

@@ -116,7 +116,7 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 			],
 			[
 				'info' => [
-					'title' => 'mock/v1 Module',
+					'title' => 'mock/v1 <message key="rest-module"></message>',
 					'version' => '1.3-test',
 					'contact' => [
 						'email' => 'test@example.com'
@@ -167,7 +167,7 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 			],
 			[
 				'info' => [
-					'title' => 'Extra Routes',
+					'title' => '<message key="rest-extra-routes-module-title"></message>',
 					'version' => 'undefined',
 					'license' => [
 						'name' => 'Test License',
