@@ -558,6 +558,8 @@ because of Phabricator reports.
   the 'PermissionStatusAudit' hook.
 * DifferenceEngine::getPermissionErrors() is deprecated,
   use DifferenceEngine::authorizeView() instead.
+* UploadBase::verifyPermissions() and UploadBase::verifyTitlePermissions()
+  are now deprecated. Use UploadBase::authorizeUpload() instead.
 * MessageCache::parse, ::parseWithPostProcessing and ::transform() are now
   deprecated. Use MessageParser.
 * User::getGlobalBlock(), deprecated since 1.40, now emits deprecation
