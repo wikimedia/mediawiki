@@ -3427,6 +3427,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	public function testFormatPermissionsErrorMessage( PermissionStatus $status, string $expected ) {
 		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'qqx' );
 		$this->filterDeprecated( '/OutputPage::formatPermissionsErrorMessage was deprecated/' );
+		$this->filterDeprecated( '/toLegacyErrorArray/' );
 
 		// Unlike formatPermissionStatus, this method doesn't accept good statuses
 		$actual = $status->isGood() ? '' :

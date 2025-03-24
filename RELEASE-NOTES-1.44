@@ -560,6 +560,8 @@ because of Phabricator reports.
   use DifferenceEngine::authorizeView() instead.
 * UploadBase::verifyPermissions() and UploadBase::verifyTitlePermissions()
   are now deprecated. Use UploadBase::authorizeUpload() instead.
+* PermissionStatus::toLegacyErrorArray(), deprecated since 1.43, is now
+  emitting warnings.
 * MessageCache::parse, ::parseWithPostProcessing and ::transform() are now
   deprecated. Use MessageParser.
 * User::getGlobalBlock(), deprecated since 1.40, now emits deprecation

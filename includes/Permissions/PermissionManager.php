@@ -541,7 +541,9 @@ class PermissionManager {
 		$this->hookRunner->onPermissionStatusAudit( $page, $user, $action, $rigor, clone $status );
 
 		if ( !$status->isGood() ) {
-			$errors = $status->toLegacyErrorArray();
+			// Deprecated method used only for a deprecated hook
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$errors = @$status->toLegacyErrorArray();
 			$this->hookRunner->onPermissionErrorAudit( $page, $user, $action, $rigor, $errors );
 		}
 
