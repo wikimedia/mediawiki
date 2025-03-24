@@ -14,10 +14,17 @@
 	"rest-parsoid-unsupported-media": "Net ënnerstëtzte Medientyp",
 	"rest-edit-conflict": "Ännerungskonflikt ($1)",
 	"rest-unknown-parsoid-transformation": "Onbekannt Transformatioun.",
+	"rest-param-desc-media-links-title": "Titel vum Fichier",
+	"rest-param-desc-media-file-title": "Titel vum Fichier",
+	"rest-param-desc-media-mediatype": "Den Typ vum Fichier",
+	"rest-param-desc-media-url": "URL fir de Fichier erofzelueden",
+	"rest-param-desc-media-thumbnail": "Miniaturbildinformatiounen",
 	"rest-param-desc-search-q": "Sichbegrëffer",
 	"rest-property-desc-revision-id": "Versiouns-ID",
+	"rest-property-desc-page-language-code": "Sproochcode",
 	"rest-property-desc-page-timestamp-html": "Zäitstempel vun der leschter Versioun am ISO-8601-Format",
-	"rest-property-desc-revision-user-name": "Benotzernumm",
 	"rest-schema-desc-revision-metadata": "Revisiounsmetadonnéeën",
-	"rest-schema-desc-bare-page": "Säit ouni Inhalt"
+	"rest-schema-desc-bare-page": "Säit ouni Inhalt",
+	"rest-schema-desc-media-file": "Informatiounen iwwer de Fichier",
+	"rest-schema-desc-search-results": "Sichresultater"
 }

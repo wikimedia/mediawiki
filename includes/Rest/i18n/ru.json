@@ -71,8 +71,8 @@
 	"rest-param-desc-update-latest": "Информация о новейшей версии страницы. Вы можете получить эту информацию из источника источника страницы.",
 	"rest-param-desc-create-title": "Заголовок страницы. Посетите отдельные вики для ознакомления с политикой относительно форматов и символов заголовков страниц.",
 	"rest-param-desc-language-links-title": "Заголовок вики-страницы",
-	"rest-param-desc-media-file-title": "Заголовок вики-страницы",
 	"rest-param-desc-media-links-title": "Заголовок вики-страницы",
+	"rest-param-desc-media-file-title": "Заголовок вики-страницы",
 	"rest-param-desc-pagehistory-count-title": "Заголовок вики-страницы",
 	"rest-param-desc-pagehistory-title": "Заголовок вики-страницы",
 	"rest-param-desc-search-q": "Условия поиска",
@@ -81,7 +81,5 @@
 	"rest-property-desc-page-id": "Идентификатор страницы",
 	"rest-property-desc-page-title": "Заголовок страницы",
 	"rest-property-desc-page-contentmodel": "Тип содержимого страницы",
-	"rest-property-desc-revision-user-id": "Идентификатор пользователя",
-	"rest-property-desc-revision-user-name": "Имя пользователя",
 	"rest-property-desc-revision-content-model": "Тип содержания"
 }

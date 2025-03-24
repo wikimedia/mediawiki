@@ -79,8 +79,8 @@
 	"rest-unknown-content-model": "알 수 없는 콘텐츠 모델: $1",
 	"rest-param-desc-revision-id": "판 식별자",
 	"rest-param-desc-language-links-title": "위키 문서 제목",
-	"rest-param-desc-media-file-title": "위키 문서 제목",
 	"rest-param-desc-media-links-title": "위키 문서 제목",
+	"rest-param-desc-media-file-title": "위키 문서 제목",
 	"rest-param-desc-module-spec-version": "모듈 스펙 버전",
 	"rest-param-desc-pagehistory-count-title": "위키 문서 제목",
 	"rest-param-desc-pagehistory-title": "위키 문서 제목",
@@ -93,7 +93,6 @@
 	"rest-property-desc-page-title": "문서 제목",
 	"rest-property-desc-page-timestamp": "최신 판의 타임스탬프",
 	"rest-property-desc-page-license": "위키 라이선스 정보",
-	"rest-property-desc-revision-user-id": "사용자 식별자",
-	"rest-property-desc-revision-user-name": "사용자 이름",
+	"rest-property-desc-page-license-url": "해당 라이선스의 URL",
 	"rest-schema-desc-revision-metadata": "판 메타데이터"
 }

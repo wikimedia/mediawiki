@@ -127,8 +127,8 @@
 	"rest-param-desc-compare-to-section-offset": "{{Experimental}} REST API revision comparison response body field, identifying wikitext offset of the section start of the 'to' revision",
 	"rest-param-desc-compare-diff": "{{Experimental}} REST API revision comparison response body field, showing differences between revisions",
 	"rest-param-desc-language-links-title": "{{Experimental}} Language links title parameter description",
-	"rest-param-desc-media-file-title": "{{Experimental}} Media file title parameter description",
 	"rest-param-desc-media-links-title": "{{Experimental}} Media links title parameter description",
+	"rest-param-desc-media-file-title": "{{Experimental}} Media file title parameter description",
 	"rest-param-desc-media-description-url": "{{Experimental}} REST API parameter/field description, for the media file description url",
 	"rest-param-desc-media-latest": "{{Experimental}} REST API parameter/field description, for the latest revision of a media file",
 	"rest-param-desc-media-latest-timestamp": "{{Experimental}} REST API parameter/field description, for the media file last modified timestamp",
@@ -211,11 +211,11 @@
 	"rest-schema-desc-existing-revision": "{{Experimental}} Revision with HTML content",
 	"rest-schema-desc-existing-page-html": "{{Experimental}} Page with HTML content",
 	"rest-schema-desc-existing-page-source": "{{Experimental}} Page with source (usually wikitext)",
-	"rest-schema-desc-media-file": "{Experimental}} REST API response field description, for file information",
-	"rest-schema-desc-media-links": "{Experimental}} REST API response field description, for page media links",
-	"rest-schema-desc-page-history": "{Experimental}} REST API response field description, for age revision history",
-	"rest-schema-desc-page-history-count": "{Experimental}} REST API response field description, for page history edit count",
+	"rest-schema-desc-media-file": "{{Experimental}} REST API response field description, for file information",
+	"rest-schema-desc-media-links": "{{Experimental}} REST API response field description, for page media links",
+	"rest-schema-desc-page-history": "{{Experimental}} REST API response field description, for age revision history",
+	"rest-schema-desc-page-history-count": "{{Experimental}} REST API response field description, for page history edit count",
 	"rest-schema-desc-page-language-links": "{Experimental}} REST API response field description, for page interlanguage links",
-	"rest-schema-desc-search-results": "{Experimental}} REST API response field description, for search results",
-	"rest-schema-desc-revision-compare": "{Experimental}} REST API response field description, for revision comparison"
+	"rest-schema-desc-search-results": "{{Experimental}} REST API response field description, for search results",
+	"rest-schema-desc-revision-compare": "{{Experimental}} REST API response field description, for revision comparison"
 }

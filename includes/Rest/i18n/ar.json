@@ -5,7 +5,8 @@
 			"Meno25",
 			"Mohammed Qays",
 			"SaldırganSincap",
-			"ديفيد"
+			"ديفيد",
+			"محمد أحمد عبد الفتاح"
 		]
 	},
 	"rest-prefix-mismatch": "لم يكن المسار المطلوب ($1) داخل مسار قاعدة واجهة برمجة التطبيقات REST ( $2 )",
@@ -110,8 +111,9 @@
 	"rest-param-desc-compare-from": "معرف المراجعة الذي سيتم استخدامه كأساس للمقارنة",
 	"rest-param-desc-compare-to": "معرف المراجعة للمقارنة بالقاعدة",
 	"rest-param-desc-language-links-title": "عنوان صفحة الويكي",
-	"rest-param-desc-media-file-title": "عنوان صفحة الويكي",
-	"rest-param-desc-media-links-title": "عنوان صفحة الويكي",
+	"rest-param-desc-media-links-title": "عنوان الملف",
+	"rest-param-desc-media-file-title": "عنوان الملف",
+	"rest-param-desc-media-original": "تفاصيل الملف الأصلي",
 	"rest-param-desc-module-spec-module": "مواصفات الوحدة الوحدة",
 	"rest-param-desc-module-spec-version": "إصدار مواصفات الوحدة",
 	"rest-param-desc-opensearch-ctype": "افتح وصف البحث ctype",
@@ -132,6 +134,9 @@
 	"rest-param-desc-update-title": "تم تحديث عنوان الصفحة",
 	"rest-property-desc-mock-desc": "وصف وهمي.",
 	"rest-property-desc-revision-id": "معرف المراجعة",
+	"rest-property-desc-page-id": "معرف الصفحة",
 	"rest-schema-desc-mock-desc": "وصف وهمي.",
-	"rest-schema-desc-revision-metadata": "مراجعة بيانات التعريف"
+	"rest-schema-desc-revision-metadata": "مراجعة بيانات التعريف",
+	"rest-schema-desc-media-file": "معلومات حول الملف",
+	"rest-schema-desc-search-results": "نتائج البحث"
 }

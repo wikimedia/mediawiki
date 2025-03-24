@@ -3,7 +3,8 @@
 		"authors": [
 			"Ant176",
 			"Kokage si",
-			"Müller857"
+			"Müller857",
+			"Waki285"
 		]
 	},
 	"cdx-chip-input-chip-added": "チップ$1が追加されました。",
@@ -29,5 +30,6 @@
 	"cdx-table-pagination-status-message-indeterminate-long": "多行のうち$1から$2行の結果を表示中",
 	"cdx-table-pagination-status-message-indeterminate-short": "多行中$1から$2行目",
 	"cdx-table-pagination-status-message-indeterminate-final": "最後の{{PLURAL:$1|$1件の結果}}を表示中",
-	"cdx-table-pagination-status-message-pending": "結果の読み込み中..."
+	"cdx-table-pagination-status-message-pending": "結果の読み込み中...",
+	"cdx-table-no-data-message": "利用可能なデータはありません。"
 }

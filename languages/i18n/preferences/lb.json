@@ -12,6 +12,7 @@
 	},
 	"preferences": "Astellungen",
 	"prefsnologintext2": "Loggt Iech a fir Är Benotzerastellungen z'änneren.",
+	"prefsnologintext2-for-temp-user": "Leet wgl. e Kont u fir Är Astellungen z'änneren.",
 	"searchprefs": "Astellungen duerchsichen",
 	"searchprefs-noresults": "Keng Resultater",
 	"searchprefs-results": "$1 {{PLURAL:$1|Resultat|Resultater}}",
