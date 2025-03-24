@@ -1,7 +1,8 @@
 <?php
 
+use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\DatabasePostgres;
+use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\ScopedCallback;
@@ -19,19 +20,37 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		if ( !$this->getDb() instanceof DatabasePostgres ) {
+		if ( $this->getDb()->getType() !== 'postgres' ) {
 			$this->markTestSkipped( 'Not PostgreSQL' );
 		}
 	}
 
 	public function addDBDataOnce() {
-		if ( $this->getDb() instanceof DatabasePostgres ) {
+		if ( $this->getDb()->getType() === 'postgres' ) {
 			$this->createSourceTable();
 			$this->createDestTable();
 		}
 	}
 
-	private function doTestInsertIgnore() {
+	/**
+	 * Temporarily suppress query error logging
+	 *
+	 * @param IDatabase $db
+	 * @return ScopedCallback
+	 */
+	private function scopedDisableErrorLog( IDatabase $db ) {
+		if ( $db instanceof DBConnRef ) {
+			$db->ensureConnection();
+			$db = TestingAccessWrapper::newFromObject( $db )->conn;
+		}
+		$oldLogger = TestingAccessWrapper::newFromObject( $db )->logger;
+		$db->setLogger( new NullLogger );
+		return new ScopedCallback( static function () use ( $db, $oldLogger ) {
+			$db->setLogger( $oldLogger );
+		} );
+	}
+
+	public function testInsertIgnore() {
 		$fname = __METHOD__;
 		$reset = new ScopedCallback( function () use ( $fname ) {
 			if ( $this->getDb()->explicitTrxActive() ) {
@@ -65,6 +84,8 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 		// INSERT IGNORE doesn't ignore stuff like NOT NULL violations
 		$this->getDb()->begin( __METHOD__ );
 		$this->getDb()->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
+		// Suppress dberror.log, which Quibble requires to be zero size after the test exits
+		$scope = $this->scopedDisableErrorLog( $this->getDb() );
 		try {
 			$this->getDb()->insert(
 				'foo', [ [ 'i' => 7 ], [ 'i' => null ] ], __METHOD__, [ 'IGNORE' ]
@@ -75,6 +96,7 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 			$this->assertSame( 0, $this->getDb()->affectedRows() );
 			$this->getDb()->cancelAtomic( __METHOD__ );
 		}
+		ScopedCallback::consume( $scope );
 		$this->assertSame(
 			[ '1', '2' ],
 			$this->getDb()->newSelectQueryBuilder()
@@ -86,39 +108,7 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 		$this->getDb()->rollback( __METHOD__ );
 	}
 
-	/**
-	 * FIXME: See https://phabricator.wikimedia.org/T259084.
-	 * @group Broken
-	 */
-	public function testInsertIgnoreOld() {
-		if ( $this->getDb()->getServerVersion() < 9.5 ) {
-			$this->doTestInsertIgnore();
-		} else {
-			// Hack version to make it take the old code path
-			$w = TestingAccessWrapper::newFromObject( $this->getDb() );
-			$oldVer = $w->numericVersion;
-			$w->numericVersion = 9.4;
-			try {
-				$this->doTestInsertIgnore();
-			} finally {
-				$w->numericVersion = $oldVer;
-			}
-		}
-	}
-
-	/**
-	 * FIXME: See https://phabricator.wikimedia.org/T259084.
-	 * @group Broken
-	 */
-	public function testInsertIgnoreNew() {
-		if ( $this->getDb()->getServerVersion() < 9.5 ) {
-			$this->markTestSkipped( 'PostgreSQL version is ' . $this->getDb()->getServerVersion() );
-		}
-
-		$this->doTestInsertIgnore();
-	}
-
-	private function doTestInsertSelectIgnore() {
+	private function testInsertSelectIgnore() {
 		$fname = __METHOD__;
 		$reset = new ScopedCallback( function () use ( $fname ) {
 			if ( $this->getDb()->explicitTrxActive() ) {
@@ -174,38 +164,6 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 				->caller( __METHOD__ )->fetchFieldValues()
 		);
 		$this->getDb()->rollback( __METHOD__ );
-	}
-
-	/**
-	 * FIXME: See https://phabricator.wikimedia.org/T259084.
-	 * @group Broken
-	 */
-	public function testInsertSelectIgnoreOld() {
-		if ( $this->getDb()->getServerVersion() < 9.5 ) {
-			$this->doTestInsertSelectIgnore();
-		} else {
-			// Hack version to make it take the old code path
-			$w = TestingAccessWrapper::newFromObject( $this->getDb() );
-			$oldVer = $w->numericVersion;
-			$w->numericVersion = 9.4;
-			try {
-				$this->doTestInsertSelectIgnore();
-			} finally {
-				$w->numericVersion = $oldVer;
-			}
-		}
-	}
-
-	/**
-	 * FIXME: See https://phabricator.wikimedia.org/T259084.
-	 * @group Broken
-	 */
-	public function testInsertSelectIgnoreNew() {
-		if ( $this->getDb()->getServerVersion() < 9.5 ) {
-			$this->markTestSkipped( 'PostgreSQL version is ' . $this->getDb()->getServerVersion() );
-		}
-
-		$this->doTestInsertSelectIgnore();
 	}
 
 	public function testAttributes() {
@@ -343,11 +301,10 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testFieldAndIndexInfo() {
-		global $wgDBname;
-
-		$this->db->selectDomain( $wgDBname );
-		$this->db->query(
-			"CREATE TEMPORARY TABLE tmp_schema_tbl (" .
+		$db = $this->getDb();
+		$prefixedTable = $db->tableName( 'tmp_schema_tbl', 'raw' );
+		$db->query(
+			"CREATE TEMPORARY TABLE $prefixedTable (" .
 			"n serial not null, " .
 			"k text not null, " .
 			"v integer, " .
@@ -355,26 +312,26 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 			"PRIMARY KEY(n)" .
 			")"
 		);
-		$this->db->query( "CREATE UNIQUE INDEX k ON tmp_schema_tbl (k)" );
-		$this->db->query( "CREATE INDEX t ON tmp_schema_tbl (t)" );
+		$db->query( "CREATE UNIQUE INDEX k ON $prefixedTable (k)" );
+		$db->query( "CREATE INDEX t ON $prefixedTable (t)" );
 
-		$this->assertTrue( $this->db->fieldExists( 'tmp_schema_tbl', 'n' ) );
-		$this->assertTrue( $this->db->fieldExists( 'tmp_schema_tbl', 'k' ) );
-		$this->assertTrue( $this->db->fieldExists( 'tmp_schema_tbl', 'v' ) );
-		$this->assertTrue( $this->db->fieldExists( 'tmp_schema_tbl', 't' ) );
-		$this->assertFalse( $this->db->fieldExists( 'tmp_schema_tbl', 'x' ) );
+		$this->assertTrue( $db->fieldExists( 'tmp_schema_tbl', 'n' ) );
+		$this->assertTrue( $db->fieldExists( 'tmp_schema_tbl', 'k' ) );
+		$this->assertTrue( $db->fieldExists( 'tmp_schema_tbl', 'v' ) );
+		$this->assertTrue( $db->fieldExists( 'tmp_schema_tbl', 't' ) );
+		$this->assertFalse( $db->fieldExists( 'tmp_schema_tbl', 'x' ) );
 
-		$this->assertTrue( $this->db->indexExists( 'tmp_schema_tbl', 'k' ) );
-		$this->assertTrue( $this->db->indexExists( 'tmp_schema_tbl', 't' ) );
-		$this->assertFalse( $this->db->indexExists( 'tmp_schema_tbl', 'x' ) );
-		$this->assertFalse( $this->db->indexExists( 'tmp_schema_tbl', 'PRIMARY' ) );
-		$this->assertTrue( $this->db->indexExists( 'tmp_schema_tbl', 'tmp_schema_tbl_pkey' ) );
+		$this->assertTrue( $db->indexExists( 'tmp_schema_tbl', 'k' ) );
+		$this->assertTrue( $db->indexExists( 'tmp_schema_tbl', 't' ) );
+		$this->assertFalse( $db->indexExists( 'tmp_schema_tbl', 'x' ) );
+		$this->assertFalse( $db->indexExists( 'tmp_schema_tbl', 'PRIMARY' ) );
+		$this->assertTrue( $db->indexExists( 'tmp_schema_tbl', "{$prefixedTable}_pkey" ) );
 
-		$this->assertTrue( $this->db->indexUnique( 'tmp_schema_tbl', 'k' ) );
-		$this->assertFalse( $this->db->indexUnique( 'tmp_schema_tbl', 't' ) );
-		$this->assertNull( $this->db->indexUnique( 'tmp_schema_tbl', 'x' ) );
-		$this->assertNull( $this->db->indexUnique( 'tmp_schema_tbl', 'PRIMARY' ) );
-		$this->assertTrue( $this->db->indexExists( 'tmp_schema_tbl', 'tmp_schema_tbl_pkey' ) );
+		$this->assertTrue( $db->indexUnique( 'tmp_schema_tbl', 'k' ) );
+		$this->assertFalse( $db->indexUnique( 'tmp_schema_tbl', 't' ) );
+		$this->assertNull( $db->indexUnique( 'tmp_schema_tbl', 'x' ) );
+		$this->assertNull( $db->indexUnique( 'tmp_schema_tbl', 'PRIMARY' ) );
+		$this->assertTrue( $db->indexUnique( 'tmp_schema_tbl', "{$prefixedTable}_pkey" ) );
 	}
 
 	private function assertNWhereKEqualsLuca( $expected, $table ) {

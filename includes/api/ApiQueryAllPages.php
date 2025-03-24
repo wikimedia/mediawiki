@@ -207,24 +207,13 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 			$this->addWhere( 'page_id=ll_from' );
 			$this->addOption( 'STRAIGHT_JOIN' );
 
-			// MySQL filesorts if we use a GROUP BY that works with the rules
-			// in the 1992 SQL standard (it doesn't like having the
-			// constant-in-WHERE page_namespace column in there). Using the
-			// 1999 rules works fine, but that breaks other DBs. Sigh.
-			// @todo Once we drop support for 1992-rule DBs, we can simplify this.
 			$dbType = $db->getType();
 			if ( $dbType === 'mysql' || $dbType === 'sqlite' ) {
-				// Ignore the rules, or 1999 rules if you count unique keys
-				// over non-NULL columns as satisfying the requirement for
-				// "functional dependency" and don't require including
-				// constant-in-WHERE columns in the GROUP BY.
+				// Avoid MySQL filesort reported in 2015 (T78276)
 				$this->addOption( 'GROUP BY', [ 'page_title' ] );
-			} elseif ( $dbType === 'postgres' && $db->getServerVersion() >= 9.1 ) {
-				// 1999 rules only counting primary keys
-				$this->addOption( 'GROUP BY', [ 'page_title', 'page_id' ] );
 			} else {
-				// 1992 rules
-				$this->addOption( 'GROUP BY', $selectFields );
+				// SQL:1999 rules only counting primary keys
+				$this->addOption( 'GROUP BY', [ 'page_title', 'page_id' ] );
 			}
 
 			$forceNameTitleIndex = false;
