@@ -11,6 +11,35 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.42.5 ===
 * Localisation updates.
+* (T376711) language: Use fallback chain to create NumberFormatter.
+* (T385332) feeds: Fix str_replace() deprecation warnings on PHP 8.
+* phpunit: Fix bootstrap script when no extensions are installed.
+* (T380880) ExternalLinks: fix mailto: links reversal.
+* (T379125) exception: Suppress dependency loop exception.
+* (T381033) RateLimiter: Fix peek mode.
+* (T387130) Update wikimedia/parsoid to 0.19.2.
+* (T385519) Sanitizer::normalizeWhitespace warn on preg_replace error.
+* (T387638) RevDelList: Ensure setVisibility always includes itemStatuses in
+  value if applicable.
+* (T388296) ImportImages: Exit with non-zero code if import fails.
+* Request: Improve log message when headers already sent.
+* (T388066) Avoid trying to load the session user in MW_NO_SESSION endpoints.
+* (T388171) HttpError: Cast Message to string.
+* (T384197) permissions: Avoid potential infinite loop if BlockDisablesLogin =
+  true.
+* (T388255) ApiLogin: Don't break BotPasswords if password or user is blank,
+  just error.
+* (T388924) MagicWord::replace*: Make sure we don't pass null into preg_match/
+  preg_replace.
+* (T388944) Html: Fix "substr(): Passing null to parameter #1 ($string) of type
+  string is deprecated".
+* (T388728, T385519) Sanitizer::normalizeSectionNameWhitespace: Apply same
+  anti-null fix as 270499b.
+* (T387690) upload: Suppress warnings from iconv().
+* (T388733) Sanitizer::normalizeWhitespace: simplify redundant preg_replace.
+* (T304474) Apply proper restrictions on file revert action.
+* (T24521, T62109, T140010_ PermissionManager: Differentiate between cascading
+  protection of file content and file pages.
 
 == MediaWiki 1.42.5 ==
 
