@@ -1055,6 +1055,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testShowNewSectionLink() {
+		$this->filterDeprecated( '/OutputPage::showNewSectionLink was deprecated/' );
 		$op = $this->newInstance();
 
 		$this->assertFalse( $op->showNewSectionLink() );
@@ -1075,6 +1076,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testForceHideNewSectionLink() {
+		$this->filterDeprecated( '/OutputPage::forceHideNewSectionLink was deprecated/' );
 		$op = $this->newInstance();
 
 		$this->assertFalse( $op->forceHideNewSectionLink() );
@@ -1989,6 +1991,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	public function testAddParserOutput() {
 		$op = $this->newInstance();
 		$this->assertSame( '', $op->getHTML() );
+		$this->filterDeprecated( '/OutputPage::showNewSectionLink was deprecated/' );
 		$this->assertFalse( $op->showNewSectionLink() );
 		$this->assertFalse( $op->getOutputFlag( ParserOutputFlags::NEW_SECTION ) );
 

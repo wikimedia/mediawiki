@@ -561,6 +561,10 @@ because of Phabricator reports.
 * OutputPage::getNoGallery(), previously marked @internal, has been deprecated
   and should be replaced with
   `OutputPage::getOutputFlag(ParserOutputFlags::NO_GALLERY)`
+* OutputPage::showNewSectionLink() has been deprecated and should be replaced
+  with `OutputPage::getOutputFlag(ParserOutputFlags::NEW_SECTION)`
+* OutputPage::forceHideNewSectionLink() has been deprecated and should be
+  replaced with `OutputPage::getOutputFlag(ParserOutputFlags::HIDE_NEW_SECTION)`
 * OutputPage::{get,set}RevisionTimestamp() has been deprecated and should be
   replaced with `OutputPage::getMetadata()->{get,set}RevisionTimestamp()`
 * The 'PermissionErrorAudit' hook has been deprecated and replaced by

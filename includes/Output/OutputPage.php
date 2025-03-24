@@ -323,9 +323,6 @@ class OutputPage extends ContextSource {
 	/** @var bool Flag if output should only contain the body of the article. */
 	private $mArticleBodyOnly = false;
 
-	private bool $mNewSectionLink = false;
-	private bool $mHideNewSectionLink = false;
-
 	/** @var int Cache stuff. Looks like mEnableClientCache */
 	protected $mCdnMaxage = 0;
 	/** @var int Upper limit on mCdnMaxage */
@@ -457,8 +454,6 @@ class OutputPage extends ContextSource {
 		$this->deprecatePublicProperty( 'mJsConfigVars', '1.38', __CLASS__ );
 		$this->deprecatePublicProperty( 'mTemplateIds', '1.38', __CLASS__ );
 		$this->deprecatePublicProperty( 'mEnableClientCache', '1.38', __CLASS__ );
-		$this->deprecatePublicProperty( 'mNewSectionLink', '1.38', __CLASS__ );
-		$this->deprecatePublicProperty( 'mHideNewSectionLink', '1.38', __CLASS__ );
 		$this->deprecatePublicProperty( 'mParserOptions', '1.44', __CLASS__ );
 		$this->setContext( $context );
 		$this->metadata = new ParserOutput( null );
@@ -470,6 +465,8 @@ class OutputPage extends ContextSource {
 			$this->getHookContainer()
 		);
 		$this->metadata->setNoGallery( false );
+		$this->metadata->setNewSection( false );
+		$this->metadata->setHideNewSection( false );
 		$this->metadata->setRevisionTimestamp( null );
 	}
 
@@ -1408,18 +1405,22 @@ class OutputPage extends ContextSource {
 	 * Show an "add new section" link?
 	 *
 	 * @return bool
+	 * @deprecated since 1.44, use ::getOutputFlag(ParserOutputFlags::NEW_SECTION)
 	 */
 	public function showNewSectionLink() {
-		return $this->mNewSectionLink;
+		wfDeprecated( __METHOD__, '1.44' );
+		return $this->metadata->getNewSection();
 	}
 
 	/**
 	 * Forcibly hide the new section link?
 	 *
 	 * @return bool
+	 * @deprecated since 1.44, use ::getOutputFlag(ParserOutputFlags::HIDE_NEW_SECTION)
 	 */
 	public function forceHideNewSectionLink() {
-		return $this->mHideNewSectionLink;
+		wfDeprecated( __METHOD__, '1.44' );
+		return $this->metadata->getHideNewSection();
 	}
 
 	/**
@@ -2431,8 +2432,8 @@ class OutputPage extends ContextSource {
 		// be migrated to an injection pattern. (T301020, T300979)
 		// (Note that OutputPage::getOutputFlag() also contains this
 		// information, with flags from each $parserOutput all OR'ed together.)
-		$this->mNewSectionLink = $parserOutput->getNewSection();
-		$this->mHideNewSectionLink = $parserOutput->getHideNewSection();
+		$this->metadata->setNewSection( $parserOutput->getNewSection() );
+		$this->metadata->setHideNewSection( $parserOutput->getHideNewSection() );
 		$this->metadata->setNoGallery( $parserOutput->getNoGallery() );
 
 		if ( !$parserOutput->isCacheable() ) {
