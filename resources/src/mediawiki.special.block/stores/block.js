@@ -359,6 +359,7 @@ module.exports = exports = defineStore( 'block', () => {
 	 * @internal
 	 */
 	function resetFormInternal() {
+		blockId.value = null;
 		formErrors.value = [];
 		formSubmitted.value = false;
 		formVisible.value = false;
