@@ -273,7 +273,6 @@ because of Phabricator reports.
   - \CategoryViewer — use \MediaWiki\Category\CategoryViewer
   - \ChannelFeed — use \MediaWiki\Feed\ChannelFeed
   - \CommentStore — use \MediaWiki\CommentStoreCommentStore
-  - \CommentStoreComment — use \MediaWiki\CommentStore\CommentStoreComment
   - \ContentSecurityPolicy — use \MediaWiki\Request\ContentSecurityPolicy
   - \DeprecatedGlobal — use \MediaWiki\StubObject\DeprecatedGlobal
   - \DerivativeRequest — use \MediaWiki\Request\DerivativeRequest
@@ -300,7 +299,6 @@ because of Phabricator reports.
   - \PathRouter — use \MediaWiki\Request\PathRouter
   - \ProtectionForm — use \MediaWiki\Page\ProtectionForm
   - \RSSFeed — use \MediaWiki\Feed\RSSFeed
-  - \RawMessage — use \MediaWiki\Language\RawMessage
   - \StubGlobalUser — use \MediaWiki\StubObject\StubGlobalUser
   - \StubObject — use \MediaWiki\StubObject\StubObject
   - \StubUserLang — use \MediaWiki\StubObject\StubUserLang
