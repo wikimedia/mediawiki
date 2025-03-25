@@ -26,9 +26,9 @@ use HtmlArmor;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Skin\Skin;
 use MediaWiki\SpecialPage\WantedQueryPage;
 use MediaWiki\Title\Title;
-use Skin;
 use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 

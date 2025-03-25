@@ -535,6 +535,17 @@ because of Phabricator reports.
     - RCCacheEntryFactory
     - RecentChange
     - RecentChangesUpdateJob
+  - MediaWiki\Skin:
+    - BaseTemplate
+    - QuickTemplate
+    - Skin
+    - SkinApi
+    - SkinAuthenticationPopup
+    - SkinException
+    - SkinFactory
+    - SkinFallback
+    - SkinMustache
+    - SkinTemplate
 * WikiPage::doEditUpdates(), deprecated since 1.32, is now emitting warnings.
   Use DerivedPageDataUpdater::doUpdates() instead.
 * IDatabase::setTransactionListener() is now deprecated without replacement.

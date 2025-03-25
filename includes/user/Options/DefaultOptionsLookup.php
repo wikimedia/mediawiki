@@ -26,11 +26,11 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\Language\LanguageConverter;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Skin\Skin;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNameUtils;
-use Skin;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDBAccessObject;
 

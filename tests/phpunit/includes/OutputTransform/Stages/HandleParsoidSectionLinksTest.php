@@ -9,9 +9,9 @@ use MediaWiki\OutputTransform\Stages\HandleParsoidSectionLinks;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
+use MediaWiki\Skin\Skin;
 use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
 use Psr\Log\NullLogger;
-use Skin;
 use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Core\TOCData;
 

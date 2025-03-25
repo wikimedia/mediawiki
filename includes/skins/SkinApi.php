@@ -24,6 +24,8 @@
  * @file
  */
 
+namespace MediaWiki\Skin;
+
 /**
  * SkinTemplate class for API output
  * @since 1.25
@@ -35,3 +37,6 @@ class SkinApi extends SkinMustache {
 	 * wherever possible.
 	 */
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( SkinApi::class, 'SkinApi' );

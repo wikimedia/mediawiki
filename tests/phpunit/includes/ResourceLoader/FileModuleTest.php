@@ -9,9 +9,9 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\ResourceLoader\FileModule;
 use MediaWiki\ResourceLoader\FilePath;
 use MediaWiki\ResourceLoader\ResourceLoader;
+use MediaWiki\Skin\SkinFactory;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use RuntimeException;
-use SkinFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**

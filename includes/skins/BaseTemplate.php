@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Skin;
+
 use MediaWiki\Html\Html;
 use MediaWiki\Message\Message;
 use MediaWiki\Parser\Sanitizer;
@@ -382,3 +384,6 @@ abstract class BaseTemplate extends QuickTemplate {
 		return $out;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( BaseTemplate::class, 'BaseTemplate' );

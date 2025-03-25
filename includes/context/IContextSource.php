@@ -28,9 +28,9 @@ use MediaWiki\Page\WikiPage;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\CsrfTokenSetProvider;
+use MediaWiki\Skin\Skin;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use Skin;
 use Timing;
 
 /**

@@ -3,7 +3,7 @@
 namespace MediaWiki\Hook;
 
 use MediaWiki\Context\IContextSource;
-use Skin;
+use MediaWiki\Skin\Skin;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

@@ -10,13 +10,13 @@ use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\Skin\Skin;
+use MediaWiki\Skin\SkinFallback;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\StaticUserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
-use Skin;
-use SkinFallback;
 
 /**
  * @covers \MediaWiki\Context\RequestContext

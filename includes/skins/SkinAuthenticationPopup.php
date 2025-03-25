@@ -19,6 +19,8 @@
  * @file
  */
 
+namespace MediaWiki\Skin;
+
 use MediaWiki\Html\HtmlHelper;
 use Wikimedia\RemexHtml\Serializer\SerializerNode;
 
@@ -62,3 +64,6 @@ class SkinAuthenticationPopup extends SkinMustache {
 	}
 
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( SkinAuthenticationPopup::class, 'SkinAuthenticationPopup' );

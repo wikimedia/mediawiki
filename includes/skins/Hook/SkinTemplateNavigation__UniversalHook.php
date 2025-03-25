@@ -3,7 +3,7 @@
 namespace MediaWiki\Hook;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
-use SkinTemplate;
+use MediaWiki\Skin\SkinTemplate;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

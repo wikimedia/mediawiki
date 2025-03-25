@@ -20,8 +20,8 @@
 
 namespace MediaWiki\SpecialPage;
 
+use MediaWiki\Skin\Skin;
 use MediaWiki\Title\Title;
-use Skin;
 use stdClass;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;

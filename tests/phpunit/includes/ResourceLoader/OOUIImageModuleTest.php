@@ -6,8 +6,8 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\ResourceLoader\OOUIImageModule;
+use MediaWiki\Skin\SkinFactory;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
-use SkinFactory;
 
 /**
  * @group ResourceLoader

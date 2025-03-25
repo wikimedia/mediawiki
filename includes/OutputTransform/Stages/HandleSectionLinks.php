@@ -13,9 +13,9 @@ use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\Sanitizer;
+use MediaWiki\Skin\Skin;
 use MediaWiki\Title\TitleFactory;
 use Psr\Log\LoggerInterface;
-use Skin;
 
 /**
  * Add anchors and other heading formatting, and replace the section link placeholders.

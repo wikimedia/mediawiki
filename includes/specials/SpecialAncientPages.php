@@ -24,10 +24,10 @@ use HtmlArmor;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Skin\Skin;
 use MediaWiki\SpecialPage\QueryPage;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
-use Skin;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

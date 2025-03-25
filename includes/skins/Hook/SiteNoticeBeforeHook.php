@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use Skin;
+use MediaWiki\Skin\Skin;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
