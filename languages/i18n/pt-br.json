@@ -882,7 +882,6 @@
 	"content-model-wikitext": "wikitexto",
 	"content-model-text": "texto simples",
 	"content-model-javascript": "Javascript",
-	"content-model-css": "CSS",
 	"content-model-json": "JSON",
 	"content-json-empty-object": "Objeto vazio",
 	"content-json-empty-array": "Array vazia",

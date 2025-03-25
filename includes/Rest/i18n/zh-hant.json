@@ -4,7 +4,8 @@
 			"Kly",
 			"Xiplus",
 			"列维劳德",
-			"捍粵者"
+			"捍粵者",
+			"August.C"
 		]
 	},
 	"rest-prefix-mismatch": "請求的路徑（$1）不在REST API的基本路徑（$2）內",

@@ -23,7 +23,8 @@
 			"机智的小鱼君",
 			"沈澄心",
 			"铁桶",
-			"飞舞回堂前"
+			"飞舞回堂前",
+			"August.C"
 		]
 	},
 	"preferences": "偏好設定",
@@ -105,6 +106,7 @@
 	"emailauthenticated": "您的電子郵件地址已於 $2 $3 確認。",
 	"allowemail": "允許其他使用者向我傳送電子郵件",
 	"email-allow-new-users-label": "允許來自新使用者的電子郵件",
+	"prefs-help-email-allow-new-users": "啟用此選項將允許未達到[[{{MediaWiki:grouppage-autoconfirmed}}|自動確認使用者]]向您發送電子郵件。",
 	"tog-ccmeonemails": "我寄出郵件給其他使用者時，也寄給我一份副本",
 	"email-mutelist-label": "禁止這些使用者向我傳送電子郵件：",
 	"tog-enotifwatchlistpages": "當我的監視清單中的頁面或檔案有變更時，傳送電子郵件通知我",

@@ -827,7 +827,7 @@
 	"blockedtext-composite": "<strong>您的用户名或IP地址已被封禁。</strong>\n\n封禁原因：\n\n:<em>$2</em>。\n\n* {{int:blockedtext-start-time|$8}}\n* {{int:blockedtext-expiration-longest-block|$6}}\n\n* $5\n\n{{int:blockedtext-block-ip|$3}}\n{{int:blockedtext-include-details-queries}}",
 	"blockedtext-composite-ids": "相关封禁ID：$1（您的IP地址也可能被列入黑名单）",
 	"blockedtext-composite-no-ids": "您的IP地址出现在多个黑名单中",
-	"blockedtext-composite-reason": "有多个封禁目标为您的账号和/或IP地址",
+	"blockedtext-composite-reason": "您的账号和/或IP地址已被多重封禁",
 	"whitelistedittext": "请$1以编辑页面。",
 	"confirmedittext": "您必须确认您的电子邮件地址才能编辑页面。请通过[[Special:Preferences|参数设置]]设置并确认您的电子邮件地址。",
 	"nosuchsectiontitle": "没有这个章节",

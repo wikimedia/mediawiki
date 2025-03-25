@@ -3427,7 +3427,7 @@
 	"tag-mw-manual-revert": "Muokkaamalla palautettu",
 	"tag-mw-manual-revert-description": "Muokkaukset, joissa sivu palautetaan käsin aikaisemmin esiintyneeseen versioon",
 	"tag-mw-reverted": "Palautettu",
-	"tag-mw-reverted-description": "Muokkaukset, jotka myöhemmin kumottiin toisella muokkauksella",
+	"tag-mw-reverted-description": "Muokkaukset, jotka kumottiin myöhemmin toisella muokkauksella",
 	"tag-mw-server-side-upload": "Palvelinpuolen tallennus",
 	"tag-mw-server-side-upload-description": "Ylläpitoskripteillä tallennetut mediatiedostot",
 	"tags-title": "Merkkaukset",
