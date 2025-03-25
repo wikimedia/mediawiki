@@ -9,6 +9,7 @@ namespace MediaWiki\Page\Event;
  * event type 'PageState', see PageStateEvent::TYPE.
  *
  * @see PageStateEvent
+ * @unstable until 1.45, should become stable to implement
  */
 interface PageStateListener {
 

@@ -8,7 +8,6 @@ namespace MediaWiki\DomainEvent;
  *
  * This is useful when constructing an DomainEventSubscriber from an object spec.
  *
- * @since 1.44
  * @internal for use by DomainEventSubscriber
  */
 interface InitializableDomainEventSubscriber extends DomainEventSubscriber {
