@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Specials;
 
-use ErrorPageError;
 use MediaWiki\Collation\CollationFactory;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\SpamChecker;
+use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Logging\LogEventsList;

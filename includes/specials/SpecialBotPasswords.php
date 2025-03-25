@@ -20,8 +20,8 @@
 
 namespace MediaWiki\Specials;
 
-use ErrorPageError;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\Field\HTMLRestrictionsField;
 use MediaWiki\HTMLForm\HTMLForm;

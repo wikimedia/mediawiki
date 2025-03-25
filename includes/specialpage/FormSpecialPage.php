@@ -25,11 +25,11 @@ namespace MediaWiki\SpecialPage;
 
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Debug\MWDebug;
+use MediaWiki\Exception\UserBlockedError;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
-use UserBlockedError;
 
 /**
  * Special page which uses an HTMLForm to handle processing.  This is mostly a

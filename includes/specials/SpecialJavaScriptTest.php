@@ -20,9 +20,9 @@
 
 namespace MediaWiki\Specials;
 
-use HttpError;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\MultiConfig;
+use MediaWiki\Exception\HttpError;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;

@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Exception;
+
 use MediaWiki\Block\Block;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Language\RawMessage;
@@ -67,3 +69,6 @@ class UserBlockedError extends ErrorPageError {
 		parent::__construct( 'blockedtitle', $message );
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( UserBlockedError::class, 'UserBlockedError' );

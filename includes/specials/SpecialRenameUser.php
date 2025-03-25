@@ -3,6 +3,7 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\Exception\UserBlockedError;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
@@ -15,7 +16,6 @@ use MediaWiki\User\UserNamePrefixSearch;
 use OOUI\FieldLayout;
 use OOUI\HtmlSnippet;
 use OOUI\MessageWidget;
-use UserBlockedError;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

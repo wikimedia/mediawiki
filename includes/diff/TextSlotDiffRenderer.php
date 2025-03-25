@@ -27,6 +27,7 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Diff\TextDiffer\ManifoldTextDiffer;
 use MediaWiki\Diff\TextDiffer\TextDiffer;
+use MediaWiki\Exception\FatalError;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;

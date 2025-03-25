@@ -8,12 +8,14 @@
 namespace MediaWiki\Actions;
 
 use DifferenceEngine;
-use ErrorPageError;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Exception\ErrorPageError;
+use MediaWiki\Exception\MWContentSerializationException;
+use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\Linker;
@@ -31,8 +33,6 @@ use MediaWiki\Status\Status;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\PageUpdateCauses;
 use MediaWiki\User\User;
-use MWContentSerializationException;
-use PermissionsError;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**

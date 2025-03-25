@@ -5,7 +5,7 @@ namespace MediaWiki\Tests\Api\Format;
 use MediaWiki\Api\ApiFormatJson;
 use MediaWiki\Api\ApiFormatRaw;
 use MediaWiki\Api\ApiMain;
-use MWException;
+use MediaWiki\Exception\MWException;
 
 /**
  * @group API

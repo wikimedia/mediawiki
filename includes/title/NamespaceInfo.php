@@ -24,11 +24,11 @@ namespace MediaWiki\Title;
 
 use InvalidArgumentException;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Exception\MWException;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
-use MWException;
 
 /**
  * This is a utility class for dealing with namespaces that encodes all the "magic" behaviors of

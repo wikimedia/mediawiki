@@ -22,13 +22,15 @@
 
 namespace MediaWiki\Actions;
 
-use BadRequestError;
-use ErrorPageError;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Config\ConfigException;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Exception\BadRequestError;
+use MediaWiki\Exception\ErrorPageError;
+use MediaWiki\Exception\ReadOnlyError;
+use MediaWiki\Exception\ThrottledError;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
@@ -40,8 +42,6 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
 use Profiler;
-use ReadOnlyError;
-use ThrottledError;
 
 /**
  * User interface for the rollback action

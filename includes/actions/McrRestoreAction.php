@@ -7,7 +7,7 @@
 
 namespace MediaWiki\Actions;
 
-use ErrorPageError;
+use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\HTMLForm\HTMLForm;
 
 /**

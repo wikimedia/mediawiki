@@ -18,6 +18,9 @@
  * @file
  */
 
+namespace MediaWiki\Exception;
+
+use HttpStatus;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Message\Message;
 
@@ -138,3 +141,6 @@ class HttpError extends MWException {
 		"<body><h1>$titleHtml</h1><p>$contentHtml</p></body></html>\n";
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( HttpError::class, 'HttpError' );

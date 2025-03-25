@@ -21,8 +21,11 @@
 
 namespace MediaWiki\Actions;
 
-use ErrorPageError;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Exception\ErrorPageError;
+use MediaWiki\Exception\PermissionsError;
+use MediaWiki\Exception\ReadOnlyError;
+use MediaWiki\Exception\UserBlockedError;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\Language;
@@ -39,10 +42,7 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MessageLocalizer;
-use PermissionsError;
-use ReadOnlyError;
 use Skin;
-use UserBlockedError;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 

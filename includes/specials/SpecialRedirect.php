@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Specials;
 
+use MediaWiki\Exception\PermissionsError;
 use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\SpecialPage\FormSpecialPage;
@@ -27,7 +28,6 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;
-use PermissionsError;
 
 /**
  * Redirect dispatcher for user IDs, thumbnails, and various permalinks.

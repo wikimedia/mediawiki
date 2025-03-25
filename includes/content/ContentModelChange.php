@@ -6,6 +6,7 @@ use ChangeTags;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Exception\MWException;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logging\LogFormatterFactory;
@@ -20,7 +21,6 @@ use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\User\UserFactory;
-use MWException;
 
 /**
  * Backend logic for changing the content model of a page.

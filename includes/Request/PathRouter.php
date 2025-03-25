@@ -22,7 +22,7 @@
 
 namespace MediaWiki\Request;
 
-use FatalError;
+use MediaWiki\Exception\FatalError;
 use MediaWiki\Utils\UrlUtils;
 use stdClass;
 

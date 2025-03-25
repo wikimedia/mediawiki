@@ -3,6 +3,8 @@
 namespace MediaWiki\Specials;
 
 use LogicException;
+use MediaWiki\Exception\PermissionsError;
+use MediaWiki\Exception\ReadOnlyError;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Interwiki\InterwikiLookup;
@@ -16,8 +18,6 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\UrlUtils;
-use PermissionsError;
-use ReadOnlyError;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

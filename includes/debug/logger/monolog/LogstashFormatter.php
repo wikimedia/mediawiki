@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Logger\Monolog;
 
+use MediaWiki\Exception\MWExceptionHandler;
+
 /**
  * Modified version of Monolog\Formatter\LogstashFormatter
  *
@@ -233,7 +235,7 @@ class LogstashFormatter extends \Monolog\Formatter\LogstashFormatter {
 			'message' => $e->getMessage(),
 			'code' => $e->getCode(),
 			'file' => $e->getFile() . ':' . $e->getLine(),
-			'trace' => \MWExceptionHandler::getRedactedTraceAsString( $e ),
+			'trace' => MWExceptionHandler::getRedactedTraceAsString( $e ),
 		];
 
 		$previous = $e->getPrevious();

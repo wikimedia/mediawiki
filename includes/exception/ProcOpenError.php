@@ -18,7 +18,7 @@
  * @file
  */
 
-namespace MediaWiki;
+namespace MediaWiki\Exception;
 
 use Exception;
 
@@ -33,3 +33,6 @@ class ProcOpenError extends Exception {
 		parent::__construct( 'proc_open() returned error!' );
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ProcOpenError::class, 'MediaWiki\\ProcOpenError' );

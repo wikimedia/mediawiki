@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\SpecialPage;
 
+use MediaWiki\Exception\UserNotLoggedIn;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -9,7 +10,6 @@ use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
-use UserNotLoggedIn;
 
 /**
  * @covers \MediaWiki\SpecialPage\SpecialPage

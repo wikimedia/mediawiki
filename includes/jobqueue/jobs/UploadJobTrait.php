@@ -24,10 +24,10 @@ namespace MediaWiki\JobQueue\Jobs;
 use Exception;
 use MediaWiki\Api\ApiUpload;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
-use MWExceptionHandler;
 use UploadBase;
 use Wikimedia\ScopedCallback;
 

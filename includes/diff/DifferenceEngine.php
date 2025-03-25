@@ -28,6 +28,7 @@ use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Debug\DeprecationHelper;
 use MediaWiki\Diff\TextDiffer\ManifoldTextDiffer;
+use MediaWiki\Exception\PermissionsError;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;

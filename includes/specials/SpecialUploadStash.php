@@ -21,7 +21,7 @@
 namespace MediaWiki\Specials;
 
 use Exception;
-use HttpError;
+use MediaWiki\Exception\HttpError;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\File\UnregisteredLocalFile;
 use MediaWiki\FileRepo\LocalRepo;

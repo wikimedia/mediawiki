@@ -21,7 +21,7 @@
 namespace MediaWiki\Title;
 
 use Exception;
-use ILocalizedException;
+use MediaWiki\Exception\ILocalizedException;
 use MediaWiki\Message\Message;
 
 /**

@@ -22,15 +22,15 @@
 
 namespace MediaWiki\Actions;
 
-use ErrorPageError;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Exception\ErrorPageError;
+use MediaWiki\Exception\PermissionsError;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\Article;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\SpecialPage\SpecialPage;
-use PermissionsError;
 use StatusValue;
 
 /**

@@ -18,12 +18,16 @@
  * @file
  */
 
+namespace MediaWiki\Exception;
+
+use ErrorException;
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
 use Psr\Log\LogLevel;
+use Throwable;
 use Wikimedia\NormalizedException\INormalizedException;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\DBQueryError;
@@ -735,3 +739,6 @@ TXT;
 		}
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( MWExceptionHandler::class, 'MWExceptionHandler' );

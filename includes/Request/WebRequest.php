@@ -25,7 +25,8 @@
 
 namespace MediaWiki\Request;
 
-use FatalError;
+use MediaWiki\Exception\FatalError;
+use MediaWiki\Exception\MWException;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Http\Telemetry;
 use MediaWiki\MainConfigNames;
@@ -34,7 +35,6 @@ use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\User\UserIdentity;
-use MWException;
 use Wikimedia\IPUtils;
 
 // The point of this class is to be a wrapper around super globals

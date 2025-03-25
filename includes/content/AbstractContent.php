@@ -22,11 +22,11 @@
 namespace MediaWiki\Content;
 
 use LogicException;
+use MediaWiki\Exception\MWException;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\MagicWord;
 use MediaWiki\Title\Title;
-use MWException;
 
 /**
  * Base class for all Content objects. Refer to Content for more information.

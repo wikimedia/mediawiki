@@ -20,10 +20,10 @@
 
 namespace MediaWiki\Api;
 
-use ILocalizedException;
 use InvalidArgumentException;
+use MediaWiki\Exception\ILocalizedException;
+use MediaWiki\Exception\MWException;
 use MediaWiki\Status\Status;
-use MWException;
 use StatusValue;
 use Stringable;
 use Throwable;

@@ -389,6 +389,27 @@ because of Phabricator reports.
     - UnwatchAction
     - ViewAction
     - WatchAction
+  - MediaWiki\Exception:
+    - BadRequestError
+    - BadTitleError
+    - CannotCreateActorException
+    - ErrorPageError
+    - FatalError
+    - HttpError
+    - ILocalizedException
+    - LocalizedException
+    - MWContentSerializationException
+    - MWException
+    - MWExceptionHandler
+    - MWExceptionRenderer
+    - MWUnknownContentModelException
+    - PermissionsError
+    - ProcOpenError (was under MediaWiki top-level)
+    - ReadOnlyError
+    - ShellDisabledError (was under MediaWiki top-level)
+    - ThrottledError
+    - UserBlockedError
+    - UserNotLoggedIn
   - MediaWiki\FileRepo:
     - FileBackendDBRepoWrapper
     - FileRepo

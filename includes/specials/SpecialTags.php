@@ -23,12 +23,12 @@ namespace MediaWiki\Specials;
 use ChangeTags;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Xml\Xml;
-use PermissionsError;
 
 /**
  * A special page that lists tags for edits

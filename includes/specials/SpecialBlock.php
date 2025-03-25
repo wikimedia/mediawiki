@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Specials;
 
-use ErrorPageError;
 use HtmlArmor;
 use MediaWiki\Block\AnonIpBlockTarget;
 use MediaWiki\Block\BlockActionInfo;
@@ -41,6 +40,7 @@ use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\UserBlockTarget;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Language\Language;

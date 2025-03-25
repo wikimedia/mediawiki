@@ -20,8 +20,9 @@
 
 namespace MediaWiki\Actions;
 
-use ErrorPageError;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Exception\ErrorPageError;
+use MediaWiki\Exception\PermissionsError;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\FileRepo\File\OldLocalFile;
@@ -33,7 +34,6 @@ use MediaWiki\Page\File\FileDeleteForm;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use PermissionsError;
 
 /**
  * Handle file deletion

@@ -3,13 +3,14 @@
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Exception\UserBlockedError;
 use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\User\UserIdentity;
 
 /**
- * @covers \UserBlockedError
+ * @covers \MediaWiki\Exception\UserBlockedError
  */
 class UserBlockedErrorTest extends MediaWikiIntegrationTestCase {
 

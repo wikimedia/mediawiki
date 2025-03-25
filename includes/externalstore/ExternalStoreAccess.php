@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Exception\ReadOnlyError;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;

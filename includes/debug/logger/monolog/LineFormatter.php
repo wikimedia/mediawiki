@@ -21,8 +21,8 @@
 namespace MediaWiki\Logger\Monolog;
 
 use Error;
+use MediaWiki\Exception\MWExceptionHandler;
 use Monolog\Formatter\LineFormatter as MonologLineFormatter;
-use MWExceptionHandler;
 use Throwable;
 
 /**

@@ -2,11 +2,13 @@
 
 namespace MediaWiki\Actions;
 
-use BadTitleError;
-use ErrorPageError;
 use HTMLFileCache;
-use HttpError;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Exception\BadTitleError;
+use MediaWiki\Exception\ErrorPageError;
+use MediaWiki\Exception\HttpError;
+use MediaWiki\Exception\MWExceptionRenderer;
+use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiEntryPoint;
@@ -22,8 +24,6 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use MWExceptionRenderer;
-use PermissionsError;
 use Profiler;
 use Throwable;
 use UnexpectedValueException;

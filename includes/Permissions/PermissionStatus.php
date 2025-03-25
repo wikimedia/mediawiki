@@ -20,12 +20,12 @@
 
 namespace MediaWiki\Permissions;
 
-use ErrorPageError;
 use MediaWiki\Block\Block;
-use PermissionsError;
+use MediaWiki\Exception\ErrorPageError;
+use MediaWiki\Exception\PermissionsError;
+use MediaWiki\Exception\ThrottledError;
+use MediaWiki\Exception\UserBlockedError;
 use StatusValue;
-use ThrottledError;
-use UserBlockedError;
 
 /**
  * A StatusValue for permission errors.

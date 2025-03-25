@@ -30,6 +30,7 @@ use MediaWiki\Content\Content;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\SiteStatsUpdate;
+use MediaWiki\Exception\MWContentSerializationException;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\Language;

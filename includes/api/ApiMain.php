@@ -23,7 +23,6 @@
 
 namespace MediaWiki\Api;
 
-use ILocalizedException;
 use LogicException;
 use MediaWiki;
 use MediaWiki\Api\Validator\ApiParamValidator;
@@ -31,6 +30,9 @@ use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Debug\MWDebug;
+use MediaWiki\Exception\ILocalizedException;
+use MediaWiki\Exception\MWExceptionHandler;
+use MediaWiki\Exception\MWExceptionRenderer;
 use MediaWiki\Html\Html;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
@@ -47,8 +49,6 @@ use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\User\UserRigorOptions;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\WikiMap\WikiMap;
-use MWExceptionHandler;
-use MWExceptionRenderer;
 use Profiler;
 use Throwable;
 use UnexpectedValueException;

@@ -20,10 +20,10 @@
 
 namespace MediaWiki\Deferred;
 
-use ErrorPageError;
 use LogicException;
+use MediaWiki\Exception\ErrorPageError;
+use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\Logger\LoggerFactory;
-use MWExceptionHandler;
 use Throwable;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\ScopedCallback;

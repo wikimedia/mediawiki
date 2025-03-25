@@ -25,8 +25,9 @@
 
 namespace MediaWiki\Actions;
 
-use ErrorPageError;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Exception\ErrorPageError;
+use MediaWiki\Exception\PermissionsError;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\FileRepo\File\OldLocalFile;
@@ -39,7 +40,6 @@ use MediaWiki\Page\Article;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
-use PermissionsError;
 
 /**
  * File reversion user interface

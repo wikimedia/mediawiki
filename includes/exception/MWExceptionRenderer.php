@@ -18,6 +18,11 @@
  * @file
  */
 
+namespace MediaWiki\Exception;
+
+use Exception;
+use HttpStatus;
+use LocalisationCache;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\RawMessage;
@@ -25,6 +30,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Request\WebRequest;
+use Throwable;
 use Wikimedia\AtEase;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
@@ -437,3 +443,6 @@ class MWExceptionRenderer {
 		echo $html;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( MWExceptionRenderer::class, 'MWExceptionRenderer' );

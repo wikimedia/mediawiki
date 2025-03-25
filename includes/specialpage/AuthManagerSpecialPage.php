@@ -2,7 +2,6 @@
 
 namespace MediaWiki\SpecialPage;
 
-use ErrorPageError;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Auth\AuthenticationRequest;
@@ -10,6 +9,7 @@ use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\HTMLForm\Field\HTMLInfoField;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Language\RawMessage;

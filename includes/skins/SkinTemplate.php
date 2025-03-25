@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Debug\MWDebug;
+use MediaWiki\Exception\MWException;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\Linker\Linker;

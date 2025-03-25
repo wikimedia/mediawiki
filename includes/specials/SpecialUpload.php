@@ -22,9 +22,11 @@ namespace MediaWiki\Specials;
 
 use BitmapHandler;
 use ChangeTags;
-use ErrorPageError;
 use ImageGalleryBase;
 use MediaWiki\Config\Config;
+use MediaWiki\Exception\ErrorPageError;
+use MediaWiki\Exception\PermissionsError;
+use MediaWiki\Exception\UserBlockedError;
 use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\FileRepo\RepoGroup;
@@ -48,13 +50,11 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\Watchlist\WatchlistManager;
-use PermissionsError;
 use Psr\Log\LoggerInterface;
 use UnexpectedValueException;
 use UploadBase;
 use UploadForm;
 use UploadFromStash;
-use UserBlockedError;
 
 /**
  * Form for uploading media files.

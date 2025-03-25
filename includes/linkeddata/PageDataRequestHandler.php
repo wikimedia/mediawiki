@@ -20,7 +20,7 @@
 
 namespace MediaWiki\LinkedData;
 
-use HttpError;
+use MediaWiki\Exception\HttpError;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Request\WebRequest;

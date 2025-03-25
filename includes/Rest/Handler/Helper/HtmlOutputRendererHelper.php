@@ -19,13 +19,14 @@
  */
 namespace MediaWiki\Rest\Handler\Helper;
 
-use HttpError;
 use InvalidArgumentException;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Edit\ParsoidRenderID;
 use MediaWiki\Edit\SelserContext;
+use MediaWiki\Exception\HttpError;
+use MediaWiki\Exception\MWUnknownContentModelException;
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Logger\LoggerFactory;
@@ -52,7 +53,6 @@ use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use MWUnknownContentModelException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;

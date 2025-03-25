@@ -5,6 +5,7 @@ use MediaWiki\Content\TextContent;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\EditPage\EditPage;
+use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Request\FauxRequest;

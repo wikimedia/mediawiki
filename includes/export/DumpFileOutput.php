@@ -23,6 +23,8 @@
  * @file
  */
 
+use MediaWiki\Exception\MWException;
+
 /**
  * @ingroup Dump
  */

@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Content\ContentHandler;
+use MediaWiki\Exception\LocalizedException;
 
 /**
  * Exception thrown when trying to render a diff between two content types
