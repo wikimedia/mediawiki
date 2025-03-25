@@ -702,10 +702,10 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 			static function ( PageMovedEvent $event )
 				use ( $old, $oldPageId, $new, $mover )
 			{
-				Assert::assertTrue( $event->getPage()->isSamePageAs( $new ) );
-				Assert::assertTrue( $event->getOldLocation()->isSamePageAs( $old ) );
+				Assert::assertTrue( $event->getPageRecordAfter()->isSamePageAs( $new ) );
+				Assert::assertTrue( $event->getPageRecordBefore()->isSamePageAs( $old ) );
 
-				Assert::assertSame( $oldPageId, $event->getPage()->getId() );
+				Assert::assertSame( $oldPageId, $event->getPageId() );
 			}
 		);
 

@@ -26,14 +26,12 @@ class PageDeletedEvent extends PageStateEvent {
 	 */
 	public const FLAG_SUPPRESSED = 'suppressed';
 
-	private ExistingPageRecord $pageStateBefore;
 	private RevisionRecord $latestRevisionBefore;
 	private string $reason;
 	private int $archivedRevisionCount;
 
 	public function __construct(
-		ProperPageIdentity $pageAfterDeletion,
-		ExistingPageRecord $pageStateBefore,
+		ExistingPageRecord $pageRecordBefore,
 		RevisionRecord $latestRevisionBefore,
 		UserIdentity $performer,
 		array $tags,
@@ -44,7 +42,8 @@ class PageDeletedEvent extends PageStateEvent {
 	) {
 		parent::__construct(
 			PageUpdateCauses::CAUSE_DELETE,
-			$pageAfterDeletion,
+			$pageRecordBefore,
+			null,
 			$performer,
 			$tags,
 			$flags,
@@ -52,24 +51,50 @@ class PageDeletedEvent extends PageStateEvent {
 		);
 
 		Assert::parameter(
-			!$pageAfterDeletion->exists(),
-			'$page',
-			'must represent the page after deletion'
+			$pageRecordBefore->exists(),
+			'$pageRecordBefore',
+			'must represent an existing page'
 		);
 
 		$this->declareEventType( self::TYPE );
-		$this->pageStateBefore = $pageStateBefore;
 		$this->latestRevisionBefore = $latestRevisionBefore;
 		$this->reason = $reason;
 		$this->archivedRevisionCount = $archivedRevisionCount;
 	}
 
 	/**
-	 * Returns the revision that was the page's latest revision when the
-	 * page was deleted.
+	 * @inheritDoc
 	 */
-	public function getPageStateBefore(): ExistingPageRecord {
-		return $this->pageStateBefore;
+	public function getPageRecordBefore(): ExistingPageRecord {
+		// Overwritten to guarantee that the return value is not null.
+		// XXX: This may not work for a reconsolidation version of this event!
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable
+		return parent::getPageRecordBefore();
+	}
+
+	/**
+	 * @inheritDoc
+	 *
+	 * @return null
+	 */
+	public function getPageRecordAfter(): ?ExistingPageRecord {
+		return null;
+	}
+
+	/**
+	 * Returns the page that was deleted, as it was before the deletion.
+	 */
+	public function getDeletedPage(): ProperPageIdentity {
+		return $this->getPageRecordBefore();
+	}
+
+	/**
+	 * Returns the page that was deleted, as it was before the deletion.
+	 *
+	 * @deprecated since 1.44, use getDeletedPage() instead.
+	 */
+	public function getPage(): ProperPageIdentity {
+		return $this->getDeletedPage();
 	}
 
 	/**

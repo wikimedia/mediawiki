@@ -640,7 +640,8 @@ class MovePage {
 
 		$this->hookRunner->onTitleMoveStarting( $this->oldTitle, $this->newTitle, $userObj );
 
-		$pageid = $this->oldTitle->getArticleID( IDBAccessObject::READ_LATEST );
+		$pageStateBeforeMove = $this->oldTitle->toPageRecord( IDBAccessObject::READ_LATEST );
+		$pageid = $pageStateBeforeMove->getId();
 		$protected = $this->restrictionStore->isProtected( $this->oldTitle );
 
 		// Attempt the actual move
@@ -742,8 +743,8 @@ class MovePage {
 
 		// Emit an event describing the move
 		$this->eventDispatcher->dispatch( new PageMovedEvent(
-			$this->newTitle->toPageIdentity(),
-			$this->oldTitle->toPageIdentity(),
+			$pageStateBeforeMove,
+			$this->newTitle->toPageRecord(),
 			$user
 		), $this->dbProvider );
 

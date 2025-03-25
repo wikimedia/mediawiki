@@ -20,10 +20,10 @@
 
 namespace MediaWiki\Page\Event;
 
-use MediaWiki\Page\PageReference;
-use MediaWiki\Page\ProperPageIdentity;
+use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Storage\PageUpdateCauses;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\Assert\Assert;
 
 /**
  * Domain event representing page moves.
@@ -38,34 +38,48 @@ use MediaWiki\User\UserIdentity;
 class PageMovedEvent extends PageStateEvent {
 	public const TYPE = 'PageMoved';
 
-	private PageReference $oldLocation;
-
 	/**
-	 * @param ProperPageIdentity $page The page identiy after the move.
-	 * @param PageReference $oldLocation The page's location before the move.
+	 * @param ExistingPageRecord $pageRecordBefore The page before the move.
+	 * @param ExistingPageRecord $pageRecordAfter The page after the move.
 	 * @param UserIdentity $performer The user performing the move.
 	 */
 	public function __construct(
-		ProperPageIdentity $page,
-		PageReference $oldLocation,
+		ExistingPageRecord $pageRecordBefore,
+		ExistingPageRecord $pageRecordAfter,
 		UserIdentity $performer
 	) {
+		Assert::parameter(
+			$pageRecordBefore->getId() === $pageRecordAfter->getId(),
+			'$pageRecordBefore and $pageRecordAfter',
+			'most represent the same page'
+		);
+
 		parent::__construct(
 			PageUpdateCauses::CAUSE_MOVE,
-			$page,
+			$pageRecordBefore,
+			$pageRecordAfter,
 			$performer
 		);
 
 		$this->declareEventType( self::TYPE );
-		$this->oldLocation = $oldLocation;
 	}
 
 	/**
-	 * Returns the page identity as it would have been before the page was
-	 * moved.
+	 * @inheritDoc
 	 */
-	public function getOldLocation(): PageReference {
-		return $this->oldLocation;
+	public function getPageRecordBefore(): ExistingPageRecord {
+		// Overwritten to guarantee that the return value is not null.
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable
+		return parent::getPageRecordBefore();
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getPageRecordAfter(): ExistingPageRecord {
+		// Overwritten to guarantee that the return value is not null.
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable
+		return parent::getPageRecordAfter();
 	}
 
 }

@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Page\Event;
 
+use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\EditResult;
@@ -98,49 +99,67 @@ class PageRevisionUpdatedEvent extends PageStateEvent implements PageUpdateCause
 
 	/**
 	 * @param string $cause See the self::CAUSE_XXX constants.
-	 * @param ProperPageIdentity $page The page affected by the update.
-	 * @param UserIdentity $performer The user performing the update.
-	 * @param RevisionSlotsUpdate $slotsUpdate Page content changed by the update.
+	 * @param ?ExistingPageRecord $pageRecordBefore The page record before the change.
+	 * @param ExistingPageRecord $pageRecordAfter The page record after the change.
+	 * @param ?RevisionRecord $latestRevisionBefore The revision that used
+	 *        to be the latest before the updated.
 	 * @param RevisionRecord $latestRevisionAfter The revision object that became
 	 *        the latest as a result of the update.
-	 * @param RevisionRecord|null $latestRevisionBefore The revision that used
-	 *        to be the latest before the updated.
-	 * @param EditResult|null $editResult An EditResult representing the effects
+	 * @param RevisionSlotsUpdate $slotsUpdate Page content changed by the update.
+	 * @param ?EditResult $editResult An EditResult representing the effects
 	 *        of an edit.
+	 * @param UserIdentity $performer The user performing the update.
 	 * @param array<string> $tags Applicable tags, see ChangeTags.
 	 * @param array<string,bool> $flags See the self::FLAG_XXX constants.
 	 * @param int $patrolStatus See PageUpdater::setRcPatrolStatus()
 	 */
 	public function __construct(
 		string $cause,
-		ProperPageIdentity $page,
-		UserIdentity $performer,
-		RevisionSlotsUpdate $slotsUpdate,
-		RevisionRecord $latestRevisionAfter,
+		?ExistingPageRecord $pageRecordBefore,
+		ExistingPageRecord $pageRecordAfter,
 		?RevisionRecord $latestRevisionBefore,
+		RevisionRecord $latestRevisionAfter,
+		RevisionSlotsUpdate $slotsUpdate,
 		?EditResult $editResult,
+		UserIdentity $performer,
 		array $tags = [],
 		array $flags = [],
 		int $patrolStatus = 0
 	) {
-		parent::__construct( $cause, $page, $performer, $tags, $flags, $latestRevisionAfter->getTimestamp() );
+		parent::__construct(
+			$cause,
+			$pageRecordBefore,
+			$pageRecordAfter,
+			$performer,
+			$tags,
+			$flags,
+			$latestRevisionAfter->getTimestamp()
+		);
 		$this->declareEventType( self::TYPE );
 
 		// Legacy event type name, deprecated (T388588).
 		$this->declareEventType( 'PageUpdated' );
 
-		Assert::parameter( $page->exists(), '$page', 'must exist' );
 		Assert::parameter(
-			$page->isSamePageAs( $latestRevisionAfter->getPage() ),
-			'$newRevision',
-			'must belong to $page'
+			$pageRecordAfter->isSamePageAs( $latestRevisionAfter->getPage() ),
+			'$latestRevisionAfter',
+			'must match to $pageRecordAfter'
 		);
 
-		if ( $latestRevisionBefore ) {
+		if ( $latestRevisionBefore && $pageRecordBefore ) {
 			Assert::parameter(
-				$page->isSamePageAs( $latestRevisionAfter->getPage() ),
-				'$oldRevision',
-				'must belong to $page'
+				$pageRecordBefore->isSamePageAs( $latestRevisionBefore->getPage() ),
+				'$latestRevisionBefore',
+				'must match to $pageRecordBefore'
+			);
+		} else {
+			Assert::parameter( $pageRecordBefore === null,
+				'$pageRecordBefore',
+				'must be null if $latestRevisionBefore is null'
+			);
+			Assert::parameter( $latestRevisionBefore === null,
+				'$latestRevisionBefore',
+				'must be null if $pageRecordBefore is null'
 			);
 		}
 
@@ -149,6 +168,23 @@ class PageRevisionUpdatedEvent extends PageStateEvent implements PageUpdateCause
 		$this->latestRevisionBefore = $latestRevisionBefore;
 		$this->editResult = $editResult;
 		$this->patrolStatus = $patrolStatus;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getPageRecordAfter(): ExistingPageRecord {
+		// Overwritten to guarantee that the return value is not null.
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable
+		return parent::getPageRecordAfter();
+	}
+
+	/**
+	 * Returns the page that was updated.
+	 */
+	public function getPage(): ProperPageIdentity {
+		// Deprecated on the base class, not deprecated here.
+		return $this->getPageRecordAfter();
 	}
 
 	/**

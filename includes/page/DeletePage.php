@@ -629,11 +629,7 @@ class DeletePage {
 			$logid = 42;
 		}
 
-		$pageAfterDeletion = PageIdentityValue::localIdentity(
-			0, $pageBeforeDelete->getNamespace(), $pageBeforeDelete->getDBkey()
-		);
 		$this->eventDispatcher->dispatch( new PageDeletedEvent(
-			$pageAfterDeletion,
 			$pageBeforeDelete,
 			$revisionRecord,
 			$this->deleter->getUser(),
