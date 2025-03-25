@@ -35,6 +35,16 @@ class ChangesListTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	private function getCategoryChange( UserIdentity $user ) {
+		$this->insertPage( __METHOD__ );
+		$this->editPage( $this->getExistingTestPage( __METHOD__ ), "some content" );
+		$this->editPage( $this->getExistingTestPage( __METHOD__ ), "some content2" );
+		$this->editPage( $this->getExistingTestPage( __METHOD__ ), "some content3" );
+		return $this->testRecentChangesHelper
+			->makeCategorizationRecentChange( $user, __METHOD__,
+				0, 1, 2, '20131103212153' );
+	}
+
 	public function testInsertLogEntry() {
 		$changesList = $this->getChangesList();
 		$recentChange = $this->getLogChange(
@@ -72,5 +82,29 @@ class ChangesListTest extends MediaWikiIntegrationTestCase {
 			'Test delete', $lineInnerHtml, 'Log comment not present in log line'
 		);
 		$this->assertStringEndsWith( 'hook-added', $lineInnerHtml, 'Hook did not successfully modify HTML' );
+	}
+
+	public function testInsertDiffLinkWhenRecentChangeIsCategoryType() {
+		$changesList = $this->getChangesList();
+		$recentChange = $this->getCategoryChange(
+			$changesList->getContext()->getUser()
+		);
+		$html = "";
+		// Validate that the hook is called correctly by implementing a hook handler for it and checking
+		// the parameters / adding items to parameters passed by reference.
+		$this->setTemporaryHook( 'ChangesListInsertLogEntry', function (
+			DatabaseLogEntry $entry, IContextSource $context, &$html, &$classes, &$attribs
+		) use ( $changesList, $recentChange ) {
+			$this->assertSame( $changesList->getContext(), $context );
+			$this->assertSame( $entry->getId(), $recentChange->getAttribute( 'rc_logid' ) );
+			$html .= ' hook-added';
+		} );
+		// Get the diff/hist HTML line and check that the diff a href is present.
+		$changesList->insertDiffHist( $html, $recentChange );
+		$htmlElement = DOMUtils::parseHTML( $html );
+		$wrappingElement = DOMCompat::querySelector(
+			$htmlElement, 'a.mw-changeslist-diff'
+		);
+		$this->assertNotNull( $wrappingElement );
 	}
 }
