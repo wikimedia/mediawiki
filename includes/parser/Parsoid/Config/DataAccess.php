@@ -47,6 +47,7 @@ use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
 use Wikimedia\Parsoid\Fragments\HtmlPFragment;
 use Wikimedia\Parsoid\Fragments\PFragment;
+use Wikimedia\Parsoid\Fragments\WikitextPFragment;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
@@ -74,6 +75,7 @@ class DataAccess extends IDataAccess {
 	private ServiceOptions $config;
 	private ReadOnlyMode $readOnlyMode;
 	private LinkBatchFactory $linkBatchFactory;
+	private int $markerIndex = 0;
 
 	/**
 	 * @param ServiceOptions $config MediaWiki main configuration object
@@ -383,10 +385,29 @@ class DataAccess extends IDataAccess {
 		ContentMetadataCollector $metadata,
 		$wikitext
 	) {
-		if ( !is_string( $wikitext ) ) {
-			$wikitext = "Fragment input not yet allowed."; // Temporary!
-		}
 		$parser = $this->prepareParser( $pageConfig, Parser::OT_PREPROCESS );
+		if ( $wikitext instanceof PFragment ) {
+			// Note that Parsoid will not pass a PFragment to this method
+			// unless $wgParsoidFragmentInput is true.
+			$result = [];
+			$index = 1;
+			$split = $wikitext instanceof WikitextPFragment ?
+				$wikitext->split() : [ $wikitext ];
+			foreach ( $split as $fragment ) {
+				if ( is_string( $fragment ) ) {
+					$result[] = $fragment;
+				} else {
+					$marker = Parser::MARKER_PREFIX . '-parsoid-' .
+						sprintf( '%08X', $this->markerIndex++ ) .
+						Parser::MARKER_SUFFIX;
+					$parser->getStripState()->addParsoidOpaque(
+						$marker, $fragment
+					);
+					$result[] = $marker;
+				}
+			}
+			$wikitext = implode( $result );
+		}
 		$this->hookRunner->onParserBeforePreprocess(
 			# $wikitext is passed by reference and mutated
 			$parser, $wikitext, $parser->getStripState()
@@ -410,6 +431,8 @@ class DataAccess extends IDataAccess {
 				if ( $type === 'string' ) {
 					// wikitext (could include extension tag snippets like <tag..>...</tag>)
 					$pieces[$i] = $content;
+				} elseif ( $type === 'parsoid' ) {
+					$pieces[$i] = $pieces[$i]['extra']; // replace w/ fragment
 				} elseif ( $type === 'nowiki' ) {
 					$extra = $pieces[$i]['extra'] ?? null;
 					// T388819: If this is from an actual <nowiki>, we
@@ -442,7 +465,7 @@ class DataAccess extends IDataAccess {
 				}
 			}
 			$result[] = $wt;
-			// $wikitext will be a PFragment, no longer a string.
+			// result will be a PFragment, no longer a string.
 			$wikitext = PFragment::fromSplitWt( $result );
 		}
 

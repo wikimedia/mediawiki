@@ -6647,7 +6647,7 @@ class MainConfigSchema {
 	 */
 	public const ParsoidFragmentInput = [
 		'default' => false,
-		'type' => 'boolean|string',
+		'type' => 'boolean',
 	];
 
 	/**

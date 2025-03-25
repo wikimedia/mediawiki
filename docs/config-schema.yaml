@@ -4238,9 +4238,7 @@ config-schema:
             @since 1.39
     ParsoidFragmentInput:
         default: false
-        type:
-            - boolean
-            - string
+        type: boolean
         description: |-
             Enable passing fragments as input to the Parsoid
             DataAccess::preprocessWikitext() endpoint.
