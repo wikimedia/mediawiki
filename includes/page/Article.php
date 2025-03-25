@@ -784,7 +784,7 @@ class Article implements Page {
 		$outputPage->setRevisionId( $this->getRevIdFetched() );
 		$outputPage->setRevisionIsCurrent( $rev->isCurrent() );
 		# Preload timestamp to avoid a DB hit
-		$outputPage->setRevisionTimestamp( $rev->getTimestamp() );
+		$outputPage->getMetadata()->setRevisionTimestamp( $rev->getTimestamp() );
 
 		# Pages containing custom CSS or JavaScript get special treatment
 		if ( $this->getTitle()->isSiteConfigPage() || $this->getTitle()->isUserConfigPage() ) {
@@ -929,7 +929,7 @@ class Article implements Page {
 		# Preload timestamp to avoid a DB hit
 		$cachedTimestamp = $pOutput->getRevisionTimestamp();
 		if ( $cachedTimestamp !== null ) {
-			$outputPage->setRevisionTimestamp( $cachedTimestamp );
+			$outputPage->getMetadata()->setRevisionTimestamp( $cachedTimestamp );
 			$this->mPage->setTimestamp( $cachedTimestamp );
 		}
 	}
@@ -972,7 +972,7 @@ class Article implements Page {
 			$cachedId = $pOutput->getCacheRevisionId();
 			if ( $cachedId !== null ) {
 				$outputPage->setRevisionId( $cachedId );
-				$outputPage->setRevisionTimestamp( $pOutput->getTimestamp() );
+				$outputPage->getMetadata()->setRevisionTimestamp( $pOutput->getTimestamp() );
 			}
 		}
 
