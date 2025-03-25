@@ -27,8 +27,8 @@
 
 namespace MediaWiki\Api;
 
-use ChangeTags;
 use Exception;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\Config\Config;
 use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\JobQueue\JobQueueGroup;

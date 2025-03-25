@@ -21,7 +21,7 @@
 
 namespace MediaWiki\Api;
 
-use ChangeTags;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Revision\RevisionStore;

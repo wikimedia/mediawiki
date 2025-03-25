@@ -25,7 +25,7 @@
 
 namespace MediaWiki\Api;
 
-use ChangeTags;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Specials\SpecialUserRights;

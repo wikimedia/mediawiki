@@ -22,16 +22,16 @@
 
 namespace MediaWiki\Tests\ChangeTags;
 
-use ChangeTagsList;
-use ChangeTagsLogList;
-use ChangeTagsRevisionList;
 use InvalidArgumentException;
+use MediaWiki\ChangeTags\ChangeTagsList;
+use MediaWiki\ChangeTags\ChangeTagsLogList;
+use MediaWiki\ChangeTags\ChangeTagsRevisionList;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Page\PageIdentity;
 use MediaWikiIntegrationTestCase;
 
 /**
- * @covers \ChangeTagsList
+ * @covers \MediaWiki\ChangeTags\ChangeTagsList
  * @group ChangeTag
  * @group Database
  */

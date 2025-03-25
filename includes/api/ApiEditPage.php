@@ -22,7 +22,7 @@
 
 namespace MediaWiki\Api;
 
-use ChangeTags;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\TextContent;

@@ -21,7 +21,7 @@
 
 namespace MediaWiki\Api;
 
-use ChangeTags;
+use MediaWiki\ChangeTags\ChangeTags;
 use UnexpectedValueException;
 use Wikimedia\ParamValidator\ParamValidator;
 

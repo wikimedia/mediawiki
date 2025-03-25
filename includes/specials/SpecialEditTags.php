@@ -20,7 +20,7 @@
 
 namespace MediaWiki\Specials;
 
-use ChangeTagsList;
+use MediaWiki\ChangeTags\ChangeTagsList;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Exception\ErrorPageError;

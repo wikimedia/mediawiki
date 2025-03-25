@@ -20,7 +20,7 @@
 
 namespace MediaWiki\Page;
 
-use ChangeTags;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\Collation\CollationFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\ContentHandler;

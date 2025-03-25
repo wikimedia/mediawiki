@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\ChangeTags;
+
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookRunner;
@@ -31,11 +33,15 @@ use MediaWiki\Message\Message;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Xml\XmlSelect;
+use MessageLocalizer;
+use RevDelLogList;
+use Skin;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\IReadableDatabase;
 
@@ -794,7 +800,7 @@ class ChangeTags {
 		if ( $ooui ) {
 			$options = Html::listDropdownOptionsOoui( $autocomplete );
 
-			$data[] = new OOUI\ComboBoxInputWidget( [
+			$data[] = new \OOUI\ComboBoxInputWidget( [
 				'id' => 'tagfilter',
 				'name' => 'tagfilter',
 				'value' => $selected,
@@ -1454,3 +1460,6 @@ class ChangeTags {
 		return $performer->isAllowed( 'changetags' ) && (bool)$changeTagsStore->listExplicitlyDefinedTags();
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ChangeTags::class, 'ChangeTags' );

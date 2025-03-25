@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\DeferredUpdates;
@@ -10,7 +11,7 @@ use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 /**
  * @covers \MediaWiki\ChangeTags\ChangeTagsStore
- * @covers \ChangeTags
+ * @covers \MediaWiki\ChangeTags\ChangeTags
  * @group Database
  */
 class ChangeTagsTest extends MediaWikiIntegrationTestCase {

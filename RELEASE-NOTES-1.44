@@ -389,6 +389,13 @@ because of Phabricator reports.
     - UnwatchAction
     - ViewAction
     - WatchAction
+  - MediaWiki\ChangeTags:
+    - ChangeTags
+    - ChangeTagsList
+    - ChangeTagsLogItem
+    - ChangeTagsLogList
+    - ChangeTagsRevisionItem
+    - ChangeTagsRevisionList
   - MediaWiki\Exception:
     - BadRequestError
     - BadTitleError

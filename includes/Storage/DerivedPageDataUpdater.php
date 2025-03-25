@@ -20,9 +20,9 @@
 
 namespace MediaWiki\Storage;
 
-use ChangeTags;
 use InvalidArgumentException;
 use LogicException;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\Content;

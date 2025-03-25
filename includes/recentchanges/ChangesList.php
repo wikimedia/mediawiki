@@ -20,9 +20,9 @@
 
 namespace MediaWiki\RecentChanges;
 
-use ChangeTags;
 use HtmlArmor;
 use MapCacheLRU;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;

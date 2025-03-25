@@ -20,8 +20,8 @@
 
 namespace MediaWiki\Specials;
 
-use ChangeTags;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\Exception\PermissionsError;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\FormOptions;

@@ -20,8 +20,8 @@
 
 namespace MediaWiki\Page;
 
-use ChangeTags;
 use HTMLCacheUpdateJob;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\ValidationParams;
 use MediaWiki\Exception\ReadOnlyError;

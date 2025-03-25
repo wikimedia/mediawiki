@@ -20,7 +20,7 @@
 
 namespace MediaWiki\SpecialPage;
 
-use ChangeTags;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\Html\FormOptions;

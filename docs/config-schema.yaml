@@ -6855,18 +6855,18 @@ config-schema:
             List of core tags to enable.
             @since 1.31
             @since 1.36 Added 'mw-manual-revert' and 'mw-reverted'
-            @see \ChangeTags::TAG_CONTENT_MODEL_CHANGE
-            @see \ChangeTags::TAG_NEW_REDIRECT
-            @see \ChangeTags::TAG_REMOVED_REDIRECT
-            @see \ChangeTags::TAG_CHANGED_REDIRECT_TARGET
-            @see \ChangeTags::TAG_BLANK
-            @see \ChangeTags::TAG_REPLACE
-            @see \ChangeTags::TAG_RECREATE
-            @see \ChangeTags::TAG_ROLLBACK
-            @see \ChangeTags::TAG_UNDO
-            @see \ChangeTags::TAG_MANUAL_REVERT
-            @see \ChangeTags::TAG_REVERTED
-            @see \ChangeTags::TAG_SERVER_SIDE_UPLOAD
+            @see \MediaWiki\ChangeTags\ChangeTags::TAG_CONTENT_MODEL_CHANGE
+            @see \MediaWiki\ChangeTags\ChangeTags::TAG_NEW_REDIRECT
+            @see \MediaWiki\ChangeTags\ChangeTags::TAG_REMOVED_REDIRECT
+            @see \MediaWiki\ChangeTags\ChangeTags::TAG_CHANGED_REDIRECT_TARGET
+            @see \MediaWiki\ChangeTags\ChangeTags::TAG_BLANK
+            @see \MediaWiki\ChangeTags\ChangeTags::TAG_REPLACE
+            @see \MediaWiki\ChangeTags\ChangeTags::TAG_RECREATE
+            @see \MediaWiki\ChangeTags\ChangeTags::TAG_ROLLBACK
+            @see \MediaWiki\ChangeTags\ChangeTags::TAG_UNDO
+            @see \MediaWiki\ChangeTags\ChangeTags::TAG_MANUAL_REVERT
+            @see \MediaWiki\ChangeTags\ChangeTags::TAG_REVERTED
+            @see \MediaWiki\ChangeTags\ChangeTags::TAG_SERVER_SIDE_UPLOAD
     UnwatchedPageThreshold:
         default: false
         description: |-

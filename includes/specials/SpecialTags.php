@@ -20,7 +20,7 @@
 
 namespace MediaWiki\Specials;
 
-use ChangeTags;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Exception\PermissionsError;

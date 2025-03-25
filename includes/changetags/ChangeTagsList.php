@@ -18,6 +18,9 @@
  * @file
  */
 
+namespace MediaWiki\ChangeTags;
+
+use InvalidArgumentException;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
@@ -93,3 +96,6 @@ abstract class ChangeTagsList extends RevisionListBase {
 		Authority $performer
 	);
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ChangeTagsList::class, 'ChangeTagsList' );

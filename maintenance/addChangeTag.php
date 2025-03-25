@@ -22,6 +22,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\User\User;

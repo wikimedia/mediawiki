@@ -21,12 +21,12 @@
 
 namespace MediaWiki\Block;
 
-use ChangeTags;
 use InvalidArgumentException;
 use MediaWiki\Block\Restriction\AbstractRestriction;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookContainer;

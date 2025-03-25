@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Page;
 
-use ChangeTags;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\JsonContent;

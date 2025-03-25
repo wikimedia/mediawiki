@@ -22,8 +22,8 @@
 
 namespace MediaWiki\Api;
 
-use ChangeTags;
 use InvalidArgumentException;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Title\Title;

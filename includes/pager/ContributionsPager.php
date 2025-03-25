@@ -21,11 +21,11 @@
 
 namespace MediaWiki\Pager;
 
-use ChangeTags;
 use HtmlArmor;
 use InvalidArgumentException;
 use MapCacheLRU;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;

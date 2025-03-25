@@ -20,7 +20,7 @@
 
 namespace MediaWiki\Api;
 
-use ChangeTags;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\TitleFactory;

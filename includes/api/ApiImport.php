@@ -22,9 +22,9 @@
 
 namespace MediaWiki\Api;
 
-use ChangeTags;
 use Exception;
 use ImportStreamSource;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\MainConfigNames;
 use WikiImporterFactory;
 use Wikimedia\ParamValidator\ParamValidator;

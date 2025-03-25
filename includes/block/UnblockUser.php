@@ -21,7 +21,7 @@
 
 namespace MediaWiki\Block;
 
-use ChangeTags;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logging\ManualLogEntry;
