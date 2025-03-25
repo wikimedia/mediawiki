@@ -27,6 +27,7 @@ use InvalidArgumentException;
 use JsonException;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Utils\MWTimestamp;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ObjectCache\WANObjectCache;
@@ -104,17 +105,46 @@ class RevisionOutputCache {
 	}
 
 	/**
+	 * @param RevisionRecord $revision
+	 * @return string
+	 */
+	private function getContentModelFromRevision( RevisionRecord $revision ) {
+		if ( !$revision->hasSlot( SlotRecord::MAIN ) ) {
+			return 'missing';
+		}
+		return str_replace( '.', '_', $revision->getMainContentModel() );
+	}
+
+	/**
+	 * @param RevisionRecord $revision
 	 * @param string $status e.g. hit, miss etc.
 	 * @param string|null $reason
 	 */
-	private function incrementStats( string $status, ?string $reason = null ) {
+	private function incrementStats( RevisionRecord $revision, string $status, ?string $reason = null ) {
+		$contentModel = $this->getContentModelFromRevision( $revision );
 		$metricSuffix = $reason ? "{$status}_{$reason}" : $status;
 
 		$this->stats->getCounter( 'RevisionOutputCache_operation_total' )
 			->setLabel( 'name', $this->name )
+			->setLabel( 'contentModel', $contentModel )
 			->setLabel( 'status', $status )
 			->setLabel( 'reason', $reason ?: 'n/a' )
 			->copyToStatsdAt( "RevisionOutputCache.{$this->name}.{$metricSuffix}" )
+			->increment();
+	}
+
+	/**
+	 * @param RevisionRecord $revision
+	 * @param string $renderReason
+	 */
+	private function incrementRenderReasonStats( RevisionRecord $revision, $renderReason ) {
+		$contentModel = $this->getContentModelFromRevision( $revision );
+		$renderReason = preg_replace( '/\W+/', '_', $renderReason );
+
+		$this->stats->getCounter( 'RevisionOutputCache_render_total' )
+			->setLabel( 'name', $this->name )
+			->setLabel( 'contentModel', $contentModel )
+			->setLabel( 'reason', $renderReason )
 			->increment();
 	}
 
@@ -198,7 +228,7 @@ class RevisionOutputCache {
 		}
 
 		if ( !$parserOptions->isSafeToCache() ) {
-			$this->incrementStats( 'miss', 'unsafe' );
+			$this->incrementStats( $revision, 'miss', 'unsafe' );
 			return false;
 		}
 
@@ -206,13 +236,13 @@ class RevisionOutputCache {
 		$json = $this->cache->get( $cacheKey );
 
 		if ( $json === false ) {
-			$this->incrementStats( 'miss', 'absent' );
+			$this->incrementStats( $revision, 'miss', 'absent' );
 			return false;
 		}
 
 		$output = $this->restoreFromJson( $json, $cacheKey, ParserOutput::class );
 		if ( $output === null ) {
-			$this->incrementStats( 'miss', 'unserialize' );
+			$this->incrementStats( $revision, 'miss', 'unserialize' );
 			return false;
 		}
 
@@ -221,12 +251,12 @@ class RevisionOutputCache {
 		$expiryTime = max( $expiryTime, (int)MWTimestamp::now( TS_UNIX ) - $this->cacheExpiry );
 
 		if ( $cacheTime < $expiryTime ) {
-			$this->incrementStats( 'miss', 'expired' );
+			$this->incrementStats( $revision, 'miss', 'expired' );
 			return false;
 		}
 
 		$this->logger->debug( 'old-revision cache hit' );
-		$this->incrementStats( 'hit' );
+		$this->incrementStats( $revision, 'hit' );
 		return $output;
 	}
 
@@ -283,23 +313,24 @@ class RevisionOutputCache {
 
 		$expiry = $output->getCacheExpiry();
 		if ( $expiry <= 0 ) {
-			$this->incrementStats( 'save', 'uncacheable' );
+			$this->incrementStats( $revision, 'save', 'uncacheable' );
 			return;
 		}
 
 		if ( !$parserOptions->isSafeToCache() ) {
-			$this->incrementStats( 'save', 'unsafe' );
+			$this->incrementStats( $revision, 'save', 'unsafe' );
 			return;
 		}
 
 		$json = $this->encodeAsJson( $output, $cacheKey );
 		if ( $json === null ) {
-			$this->incrementStats( 'save', 'nonserializable' );
+			$this->incrementStats( $revision, 'save', 'nonserializable' );
 			return;
 		}
 
 		$this->cache->set( $cacheKey, $json, $expiry );
-		$this->incrementStats( 'save', 'success' );
+		$this->incrementStats( $revision, 'save', 'success' );
+		$this->incrementRenderReasonStats( $revision, $parserOptions->getRenderReason() );
 	}
 
 	/**

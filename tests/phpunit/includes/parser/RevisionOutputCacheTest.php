@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Parser;
 
 use InvalidArgumentException;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
@@ -11,6 +12,7 @@ use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Json\JsonDeserializableSuperClass;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
@@ -58,6 +60,12 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 		);
 		$this->revision->setId( 24 );
 		$this->revision->setTimestamp( MWTimestamp::convert( TS_MW, $this->time ) );
+		$this->revision->setSlot(
+			SlotRecord::newUnsaved(
+				SlotRecord::MAIN,
+				new WikitextContent( 'test test test' )
+			)
+		);
 	}
 
 	/**
