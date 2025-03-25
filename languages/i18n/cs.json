@@ -2422,7 +2422,7 @@
 	"blanknamespace": "(Hlavní)",
 	"contributions": "Příspěvky",
 	"tool-link-contributions": "Příspěvky {{GENDER:$1|uživatele|uživatelky}}",
-	"contributions-title": "Příspěvky {{GENDER:$1|uživatele|uživatelky|uživatele}} $1",
+	"contributions-title": "Příspěvky {{GENDER:$2|uživatele|uživatelky}} $1",
 	"contributions-title-for-ip-when-temporary-accounts-enabled": "Historické IP příspěvky pro $1",
 	"contribute-title": "Příspěvky uživatele",
 	"mycontris": "Příspěvky",

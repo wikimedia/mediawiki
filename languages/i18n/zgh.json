@@ -859,7 +859,7 @@
 	"blanknamespace": "(ⴰⴷⵙⵍⴰⵏ)",
 	"contributions": "ⵜⵉⴱⵣⴰⵔⵉⵏ ⵏ ⵓⵏⵙⵙⵎⵔⵙ",
 	"tool-link-contributions": "ⵜⵉⴱⵣⴰⵔⵉⵏ ⵏ {{GENDER:$1|ⵓⵏⵙⵙⵎⵔⵙ|ⵜⵏⵙⵙⵎⵔⵙⵜ}}",
-	"contributions-title": "ⵜⵉⴱⵣⴰⵔⵉⵏ ⵏ {{GENDER:$1|ⵓⵏⵙⵎⵔⵙ|ⵜⵏⵙⵎⵔⵙⵜ|}} $1",
+	"contributions-title": "ⵜⵉⴱⵣⴰⵔⵉⵏ ⵏ {{GENDER:$2|ⵓⵏⵙⵎⵔⵙ|ⵜⵏⵙⵎⵔⵙⵜ|}} $1",
 	"mycontris": "ⵜⵉⴱⵣⴰⵔⵉⵏ",
 	"anoncontribs": "ⵜⵉⴱⵣⴰⵔⵉⵏ",
 	"nocontribs": "ⴰⵡⴷ ⵢⴰⵏ ⵓⵙⵏⴼⵍ ⵉⵎⵙⴰⵙⴰⵏ ⴷ ⵉⵙⴼⵔⴰⵏⴻⵏ ⴰⴷ ⵓⵔ ⵉⵜⵜⵢⴰⴼⴰ.",

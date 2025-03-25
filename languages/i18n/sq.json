@@ -1928,7 +1928,7 @@
 	"blanknamespace": "(Artikujt)",
 	"contributions": "Kontributet e përdoruesit",
 	"tool-link-contributions": "Kontributet e {{GENDER:$1|përdoruesit|përdorueses}}",
-	"contributions-title": "Kontributet e {{GENDER:$1|përdoruesit|përdorueses}} për $1",
+	"contributions-title": "Kontributet e {{GENDER:$2|përdoruesit|përdorueses}} për $1",
 	"mycontris": "Kontributet",
 	"anoncontribs": "Kontribute",
 	"contributions-userdoesnotexist": "Llogaria e përdoruesit \"$1\" nuk është e regjistruar.",

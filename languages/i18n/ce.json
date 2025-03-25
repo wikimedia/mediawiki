@@ -2369,7 +2369,7 @@
 	"blanknamespace": "(Коьрта)",
 	"contributions": "Къинхьегам",
 	"tool-link-contributions": "{{GENDER:$1|Декъашхочун}} къинхьегам",
-	"contributions-title": "{{GENDER:$1|Декъашхочун}} къинхьегам $1",
+	"contributions-title": "{{GENDER:$2|Декъашхочун}} къинхьегам $1",
 	"contributions-title-for-ip-when-temporary-accounts-enabled": "Шира $1 IP-адрес тӀера къинхьегам",
 	"contribute-title": "Декъашхочун къинхьегам",
 	"mycontris": "Сан къинхьегам",

@@ -2204,7 +2204,7 @@
 	"blanknamespace": "(Principâl)",
 	"contributions": "Contribucions de l’utilisator",
 	"tool-link-contributions": "Contribucions de l’utilisat{{GENDER:$1|or|rice}}",
-	"contributions-title": "Contribucions a l’utilisato{{GENDER:$1|r|sa}} $1",
+	"contributions-title": "Contribucions de {{GENDER:$2|l’utilisator|l’utilisatosa}} $1",
 	"mycontris": "Contribucions",
 	"anoncontribs": "Contribucions",
 	"contributions-userdoesnotexist": "Lo comptio utilisator « $1 » est pas encartâ.",

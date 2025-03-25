@@ -2424,7 +2424,7 @@
 	"blanknamespace": "(Κύριος ονοματοχώρος)",
 	"contributions": "Συνεισφορές χρήστη",
 	"tool-link-contributions": "Συνεισφορές {{GENDER:$1|χρήστη|χρήστριας}}",
-	"contributions-title": "Συνεισφορές {{GENDER:$1|χρήστη|χρήστριας}} $1",
+	"contributions-title": "Συνεισφορές {{GENDER:$2|χρήστη|χρήστριας}} $1",
 	"contributions-title-for-ip-when-temporary-accounts-enabled": "Συνεισφορές παλαιού τύπου IP για $1",
 	"contribute-title": "Συνεισφορές χρήστη",
 	"mycontris": "Συνεισφορές",

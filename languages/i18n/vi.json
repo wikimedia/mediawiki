@@ -3623,7 +3623,7 @@
 	"logentry-rights-rights-expiry-changed": "{{GENDER:$2|thay đổi}} được thay đổi thời hạn thành $1",
 	"logentry-rights-rights-kept": "{{GENDER:$2}}giữ nguyên nhóm $1",
 	"logentry-rights-rights-legacy": "{{GENDER:$2}}$1 đã đổi các nhóm bao gồm $3",
-	"logentry-rights-autopromote": "$1 {{GENDER:$2}}đã được tự động thay đổi: $7",
+	"logentry-rights-autopromote": "Các quyền của $1 {{GENDER:$2}}đã được tự động thay đổi: $7",
 	"logentry-rights-autopromote-granted": "{{GENDER:$2|được cấp}} $1",
 	"logentry-rights-autopromote-revoked": "{{GENDER:$2|bị thu hồi}} $1",
 	"logentry-rights-autopromote-expiry-changed": "{{GENDER:$2|thay đổi}} thời hạn của $1",

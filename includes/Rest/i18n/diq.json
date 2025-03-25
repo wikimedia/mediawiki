@@ -29,7 +29,10 @@
 	"rest-missing-body-field": "Bezna waştışi de cayo mecburi $1 kemiyo",
 	"rest-bad-content-model": "Xırab modelê zerreki: $1",
 	"rest-cannot-load-file": "Be sereya \"$1\" dosya bar nêbena",
+	"rest-module": "Modul",
+	"rest-module-content.v1-title": "Zerrekê pele",
 	"rest-param-desc-media-links-title": "Nameyê dosya",
 	"rest-param-desc-media-file-title": "Nameyê dosya",
-	"rest-property-desc-page-language-code": "Kodê zıwani"
+	"rest-property-desc-page-language-code": "Kodê zıwani",
+	"rest-schema-desc-search-results": "Peyniya cıgeyrayışi"
 }

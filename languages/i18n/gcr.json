@@ -721,7 +721,7 @@
 	"tooltip-namespace_association": "Koché sa kaz pou enkli osi lèspas di non di kozman oben di sijé, ki asosyé ké lèspas di non ki sélègsyonnen",
 	"blanknamespace": "(Prensipal)",
 	"tool-link-contributions": "Kontribisyon di {{GENDER:$1|itilizatò|itilizatris}}",
-	"contributions-title": "Lis di kontribisyon-yan di itiliza{{GENDER:$1|ò|ris}}-a $1",
+	"contributions-title": "Lis di kontribisyon-yan di {{GENDER:$2|itilizaò|itilizaris}}-a $1",
 	"mycontris": "Kontribisyon",
 	"anoncontribs": "Kontribisyon",
 	"nocontribs": "Pyès modifikasyon ka korèsponn ké sa kritèr fika trouvé.",

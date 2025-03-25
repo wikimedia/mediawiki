@@ -2300,7 +2300,7 @@
 	"blanknamespace": "(glavni)",
 	"contributions": "Korisnički doprinosi",
 	"tool-link-contributions": "Doprinosi {{GENDER:$1|korisnika|korisnice}}",
-	"contributions-title": "Doprinosi {{GENDER:$1|korisnika|korisnice}} $1",
+	"contributions-title": "Doprinosi {{GENDER:$2|korisnika|korisnice}} $1",
 	"contribute-title": "Korisnički doprinosi",
 	"mycontris": "Doprinosi",
 	"anoncontribs": "Doprinosi",

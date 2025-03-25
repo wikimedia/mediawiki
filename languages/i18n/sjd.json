@@ -568,7 +568,7 @@
 	"blanknamespace": "(Шурьмусс)",
 	"contributions": "Оаннӭй воа̄йхэз",
 	"tool-link-contributions": "{{GENDER:$1|Оаннӭй|Оаннӭй}} воа̄йхэз",
-	"contributions-title": "{{GENDER:$1|Оаннӭй|Оаннӭй}} $1 воа̄йхэз",
+	"contributions-title": "{{GENDER:$2|Оаннӭй}} $1 воа̄йхэз",
 	"contribute-title": "Оаннӭй воа̄йхэз",
 	"mycontris": "Лыһкмуж",
 	"anoncontribs": "Лыһкмуж",

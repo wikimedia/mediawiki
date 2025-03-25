@@ -2310,7 +2310,7 @@
 	"undelete-comment-dropdown": "* Dábálaš ođđasitásahanákkat\n** Go geavaheaddji bivdá",
 	"undelete-edit-commentlist": "Rievdat ođđasitásahanákkaid",
 	"undelete-edit-commentlist-unsuppress": "Rievdat ákkaid dasa manne sensuvra heaittihuvvo",
-	"undeletedpage": "<strong>$1 ođđasitásahuvvui</strong>\n\nIskka [[Special:Log/delete|sihkkunloggas]] listtu easkká sihkkumiin ja ođđasitásahemiin.",
+	"undeletedpage": "<strong>$1 lea máhcahuvvon</strong>\n\n[[Special:Log/delete|Sihkkunloggas]] gávdno listu ođđaseamos sihkkumiin ja máhcahemiin.",
 	"undelete-header": "[[Special:Log/delete|Sihkkunloggas]] lea listtu aitto sihkkojuvvon siidduin.",
 	"undelete-search-title": "Oza sihkkojuvvon siidduid",
 	"undelete-search-box": "Oza sihkkojuvvon siidduid",
