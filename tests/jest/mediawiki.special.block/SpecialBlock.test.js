@@ -354,6 +354,23 @@ describe( 'SpecialBlock', () => {
 		expect( wrapper.find( '.mw-block__create-button' ).exists() ).toBeFalsy();
 	} );
 
+	it( 'should emit "submit" event when Enter key is pressed', async () => {
+		wrapper = withSubmission(
+			{ blockTargetUser: 'ActiveBlockedUser', blockTargetExists: true },
+			{ block: { user: 'ActiveBlockedUser' } }
+		);
+		await flushPromises();
+		// Create a new block.
+		await wrapper.find( '.mw-block__create-button' ).trigger( 'click' );
+		// Set expiry date
+		await wrapper.find( '.cdx-radio__input[value=datetime]' ).setValue( true );
+		await wrapper.find( '[name=wpExpiry-other]' ).setValue( '2999-01-23T12:34' );
+		expect( wrapper.find( '.mw-block-success' ).exists() ).toBeFalsy();
+		// Simulate a press enter
+		await wrapper.find( '[name="wpReason-other"]' ).trigger( 'keypress', { key: 'Enter' } );
+		expect( wrapper.find( '.mw-block-success' ).exists() ).toBeTruthy();
+	} );
+
 	afterEach( () => {
 		wrapper.unmount();
 	} );
