@@ -124,14 +124,16 @@ abstract class HookRunnerTestBase extends MediaWikiUnitTestCase {
 		$mockContainer
 			->expects( $this->once() )
 			->method( 'run' )
-			->willReturnCallback( function ( string $hookName, array $hookCallParams ) use ( $hookMethodName, $params ) {
+			->willReturnCallback( function ( string $hookName, array $hookCallParams )
+				use ( $hookMethodName, $params )
+			{
 				// HookContainer builds the method from the hook name with some normalisation,
 				// so the passed hook name and the method must be equal
-				// This is not a function in HookContainer as hooks are hot path
+				// This is not a function in HookContainer as hooks are a hot path
 				// and just avoid the extra call for performance
 				$expectedFuncName = 'on' . strtr( ucfirst( $hookName ), ':-', '__' );
 				$this->assertSame( $expectedFuncName, $hookMethodName,
-					'Interface function must named "on<hook name>" with : or - replaced by _' );
+					'Interface function must be named "on<hook name>" with : or - replaced by _' );
 				$this->assertSame( $params, $hookCallParams );
 				return true;
 			} );
