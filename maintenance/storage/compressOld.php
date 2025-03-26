@@ -40,6 +40,7 @@
  * @file
  * @ingroup Maintenance ExternalStorage
  */
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IExpression;

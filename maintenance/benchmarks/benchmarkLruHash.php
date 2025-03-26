@@ -19,6 +19,7 @@
  * @ingroup Benchmark
  */
 
+use MediaWiki\Maintenance\Benchmarker;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\HashBagOStuff;
 

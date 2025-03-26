@@ -21,6 +21,7 @@
  * @ingroup Media
  */
 
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\XMPReader\Reader as XMPReader;

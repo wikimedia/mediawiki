@@ -21,6 +21,7 @@
 namespace MediaWiki\Mail;
 
 use MailAddress;
+use MediaWiki\Config\Config;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\MessageParser;
 use MediaWiki\MainConfigNames;
@@ -85,7 +86,7 @@ class RecentChangeMailComposer {
 
 	protected User $editor;
 
-	private \Config $mainConfig;
+	private Config $mainConfig;
 	private UserOptionsLookup $userOptionsLookup;
 	private UrlUtils $urlUtils;
 	private MessageParser $messageParser;

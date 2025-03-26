@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\JobQueue\GenericParameterJob;
+use MediaWiki\JobQueue\Job;
 use MediaWiki\MediaWikiServices;
 
 /**

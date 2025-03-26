@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\JobQueue\Job;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 

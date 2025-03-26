@@ -3,6 +3,7 @@
 use MediaWiki\Content\TextContent;
 use MediaWiki\Language\Language;
 use MediaWiki\Maintenance\Maintenance;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;

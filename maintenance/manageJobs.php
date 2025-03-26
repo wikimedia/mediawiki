@@ -21,6 +21,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\JobQueue\JobQueue;
 use MediaWiki\Maintenance\Maintenance;
 
 // @codeCoverageIgnoreStart

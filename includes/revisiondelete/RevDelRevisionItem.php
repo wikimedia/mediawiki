@@ -20,8 +20,10 @@
  */
 
 use MediaWiki\Api\ApiResult;
+use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\RevisionList\RevisionListBase;
 use MediaWiki\Xml\Xml;

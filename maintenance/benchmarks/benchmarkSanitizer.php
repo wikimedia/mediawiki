@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Maintenance\Benchmarker;
 use MediaWiki\Parser\Sanitizer;
 
 // @codeCoverageIgnoreStart

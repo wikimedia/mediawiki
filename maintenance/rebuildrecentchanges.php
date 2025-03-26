@@ -29,6 +29,7 @@ require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\Logging\LogPage;
 use MediaWiki\Maintenance\Maintenance;
+use MediaWiki\RecentChanges\RecentChange;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;

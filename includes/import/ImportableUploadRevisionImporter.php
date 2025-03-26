@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\FileRepo\File\OldLocalFile;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\User;
 use Psr\Log\LoggerInterface;

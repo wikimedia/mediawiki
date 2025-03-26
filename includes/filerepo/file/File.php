@@ -8,7 +8,6 @@
 
 namespace MediaWiki\FileRepo\File;
 
-use HTMLCacheUpdateJob;
 use LogicException;
 use MediaHandler;
 use MediaHandlerState;
@@ -20,6 +19,7 @@ use MediaWiki\FileRepo\FileRepo;
 use MediaWiki\FileRepo\ForeignAPIRepo;
 use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\JobQueue\Jobs\HTMLCacheUpdateJob;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;

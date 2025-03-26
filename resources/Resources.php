@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Actions\WatchAction;
 use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\Language;

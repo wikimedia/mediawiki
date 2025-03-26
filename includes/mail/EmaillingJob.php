@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\JobQueue\Job;
 use MediaWiki\Mail\IEmailer;
 use MediaWiki\Title\Title;
 

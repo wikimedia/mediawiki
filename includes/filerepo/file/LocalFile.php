@@ -20,7 +20,6 @@
 
 namespace MediaWiki\FileRepo\File;
 
-use HTMLCacheUpdateJob;
 use InvalidArgumentException;
 use LockManager;
 use MediaHandler;
@@ -33,6 +32,7 @@ use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\FileRepo\FileBackendDBRepoWrapper;
 use MediaWiki\FileRepo\FileRepo;
 use MediaWiki\FileRepo\LocalRepo;
+use MediaWiki\JobQueue\Jobs\HTMLCacheUpdateJob;
 use MediaWiki\JobQueue\Jobs\ThumbnailRenderJob;
 use MediaWiki\Language\Language;
 use MediaWiki\Logger\LoggerFactory;

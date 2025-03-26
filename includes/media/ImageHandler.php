@@ -21,6 +21,7 @@
  * @ingroup Media
  */
 
+use MediaWiki\FileRepo\File\File;
 use Wikimedia\AtEase\AtEase;
 
 /**

@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MainConfigSchema;
+use MediaWiki\Maintenance\Benchmarker;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Settings\Config\ArrayConfigBuilder;
 use MediaWiki\Settings\Config\NullIniSink;

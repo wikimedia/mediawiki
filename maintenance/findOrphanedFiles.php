@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Title\Title;
 

@@ -25,6 +25,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\FileRepo\FileRepo;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\Maintenance;
 

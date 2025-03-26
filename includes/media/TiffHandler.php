@@ -21,6 +21,8 @@
  * @ingroup Media
  */
 
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\ForeignAPIRepo;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 

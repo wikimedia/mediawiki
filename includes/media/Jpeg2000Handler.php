@@ -21,6 +21,8 @@
  * @ingroup Media
  */
 
+use MediaWiki\FileRepo\File\File;
+
 /**
  * Handler for JPEG2000 images.
  * image/jp2 and image/jpx (jpeg2000 part 2)

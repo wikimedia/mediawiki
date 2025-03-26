@@ -21,6 +21,7 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\Logging\LogPage;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;

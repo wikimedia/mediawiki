@@ -24,7 +24,6 @@
 
 namespace MediaWiki\Title;
 
-use HTMLCacheUpdateJob;
 use InvalidArgumentException;
 use MapCacheLRU;
 use MediaWiki\Cache\LinkCache;
@@ -36,6 +35,7 @@ use MediaWiki\Exception\MWException;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\JobQueue\Jobs\HTMLCacheUpdateJob;
 use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinkTarget;

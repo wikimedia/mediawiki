@@ -26,6 +26,7 @@
  * @ingroup Media
  */
 
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\Libs\UnpackFailedException;
 
 /**

@@ -21,6 +21,8 @@
  * @ingroup Media
  */
 
+use MediaWiki\FileRepo\File\File;
+
 /**
  * Handler for bitmap images that will be resized by clients.
  *

@@ -23,6 +23,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\Maintenance\Maintenance;
 
 // @codeCoverageIgnoreStart

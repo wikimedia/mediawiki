@@ -21,6 +21,7 @@
  * @ingroup Maintenance ExternalStorage
  */
 
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Revision\SlotRecord;
 
 // @codeCoverageIgnoreStart
