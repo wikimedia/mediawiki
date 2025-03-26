@@ -34,7 +34,7 @@ function filePath( title, extension ) {
  *
  * @since 1.0.0
  * @param {string} title Description (will be sanitised and used as file name)
- * @return {string} File path
+ * @return {Promise<string>} File path
  */
 async function saveScreenshot( title ) {
 	// Create sensible file name for current test title
@@ -71,6 +71,9 @@ function startVideo( ffmpeg, title ) {
 			'-pix_fmt', 'yuv420p', // QuickTime Player support, "Use -pix_fmt yuv420p for compatibility with outdated media players"
 			videoPath // output file
 		] );
+		ffmpeg.on( 'error', () => {
+			console.log( 'Not recording a video because ffmpeg is not available' );
+		} );
 		const logBuffer = function ( buffer, prefix ) {
 			const lines = buffer.toString().trim().split( '\n' );
 			lines.forEach( ( line ) => {
