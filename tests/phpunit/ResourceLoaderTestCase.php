@@ -155,7 +155,7 @@ class ResourceLoaderTestModule extends Module {
 			// This enables the validation check that replaces invalid
 			// scripts with a warning message.
 			// Based on $wgResourceLoaderValidateJS
-			return $this->validateScriptFile( 'input', $this->script );
+			return $this->validateScriptFile( 'input.js', $this->script );
 		} else {
 			return $this->script;
 		}
