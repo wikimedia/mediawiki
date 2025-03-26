@@ -65,7 +65,7 @@
 		"wikimedia/ip-utils": "5.0.0",
 		"wikimedia/json-codec": "2.2.1",
 		"wikimedia/less.php": "4.4.1",
-		"wikimedia/minify": "2.7.0",
+		"wikimedia/minify": "2.9.0",
 		"wikimedia/normalized-exception": "1.0.1",
 		"wikimedia/object-factory": "5.0.1",
 		"wikimedia/parsoid": "0.19.2",
