@@ -165,6 +165,8 @@
 	"config-mysql-engine": "محرك التخزين",
 	"config-mysql-innodb": "InnoDB (مستحسن)",
 	"config-mysql-engine-help": "<strong>InnoDB</strong> هو دائما الخيار الأفضل; لأنه يحتوي على دعم تزامن جيد.\n\nقد يكون <strong>MyISAM</strong> أسرع في تثبيت المستخدم الفردي أو للقراءة فقط،\nتميل قواعد بيانات MyISAM للتلف أكثر من قواعد بيانات InnoDB.",
+	"config-server": "اسم مضيف URL:",
+	"config-server-help": "البروتوكول واسم المضيف من عنوان URL المستخدم للوصول إلى ويكي الخاص بك. عادةً ما يكون الإعداد الافتراضي المُكتشف تلقائيًا صحيحًا.",
 	"config-site-name": "اسم الويكي:",
 	"config-site-name-help": "سيظهر هذا في شريط عنوان المتصفح وفي أماكن أخرى مختلفة.",
 	"config-site-name-blank": "أدخل اسم موقع.",

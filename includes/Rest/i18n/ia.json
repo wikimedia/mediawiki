@@ -195,7 +195,7 @@
 	"rest-property-desc-revision-html": "Le contento del version in HTML, sequente le specification de HTML",
 	"rest-property-desc-revision-url": "URL al ultime version del pagina",
 	"rest-property-desc-search-excerpt": "Extracto del contento del pagina que corresponde al texto cercate",
-	"rest-property-desc-search-matched-title": "Le titulo de un redirection de pagina de, si applicabile, o nulle valor",
+	"rest-property-desc-search-matched-title": "Le titulo del pagina desde le qual se ha essite redirigite, si le termino de recerca correspondeva a un pagina de redirection, alteremente nulle valor.",
 	"rest-property-desc-search-description": "Curte summario del topico del pagina, o nulle valor si necun summario existe.",
 	"rest-property-desc-search-thumbnail": "Information sur le imagine de miniatura pro le pagina, o nulle valor si necun miniatura existe.",
 	"rest-schema-desc-mock-desc": "Description fictive.",

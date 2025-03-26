@@ -21,14 +21,14 @@
 	"rest-extraneous-body-fields": "অনুরোধের অংশে অতিরিক্ত ক্ষেত্র পাওয়া গেছে: $1",
 	"rest-cannot-load-file": "\"$1\" শিরোনামের জন্য ফাইলটি লোড করা যাবে না।",
 	"rest-param-desc-compare-from-id": "সংস্করণের জন্য সংশোধন শনাক্তকারী",
-	"rest-param-desc-compare-from-section-heading": "বিভাগের শিরোনাম যেমন ১ এর জন্য<h1>",
+	"rest-param-desc-compare-from-section-heading": "অনুচ্ছেদের শিরোনাম, যেমন: <h1>-এর জন্য ১",
 	"rest-param-desc-compare-to-id": "সংস্করণের জন্য সংশোধন শনাক্তকারী",
-	"rest-param-desc-compare-to-section-offset": "উইকি টেক্সটের মধ্যে বাইট অফসেট যেখানে বিভাগটি শুরু হয়",
+	"rest-param-desc-compare-to-section-offset": "উইকিপাঠ্যের বাইট অফসেট যেখানে নির্দিষ্ট অনুচ্ছেদটি শুরু হয়",
 	"rest-param-desc-media-latest": "ফাইলের সর্বশেষ সংশোধন সম্পর্কে তথ্য",
-	"rest-param-desc-media-width": "ছবির সর্বোচ্চ প্রস্তাবিত প্রস্থ পিক্সেলে অথবা যদি না থাকে তাহলে শূন্য (null)",
+	"rest-param-desc-media-width": "পিক্সেলে ছবির সর্বোচ্চ প্রস্তাবিত প্রস্থ অথবা যদি না থাকে তাহলে শূন্য",
 	"rest-property-desc-revision-user": "সংশোধনকারী ব্যবহারকারী সম্পর্কে তথ্য",
 	"rest-property-desc-page-title": "পাতার শিরোনাম",
-	"rest-property-desc-page-history-edit-count": "নির্দিষ্ট ধরণের সম্পাদনার সংখ্যা",
+	"rest-property-desc-page-history-edit-count": "নির্দিষ্ট ধরনের সম্পাদনা গণনার সংখ্যা",
 	"rest-property-desc-user-id": "ব্যবহারকারী শনাক্তকারী, অথবা বেনামী ব্যবহারকারীদের জন্য শূন্য",
 	"rest-property-desc-user-name": "ব্যবহারকারীর নাম, বা বেনামী ব্যবহারকারীদের জন্য আইপি ঠিকানা"
 }

@@ -254,7 +254,7 @@
 	"title-invalid-interwiki": "需䈎之名，有站間渡，不可爲也。",
 	"title-invalid-too-long": "需䈎之名冗。必不逾$1{{PLURAL:$1|字節}}。",
 	"perfcached": "下為謄本，恐不新也，容物不逾$1。",
-	"perfcachedts": "下為謄本，$1新之。 A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
+	"perfcachedts": "下為謄本，新於$1。容物不逾$4。",
 	"viewsource": "覽源",
 	"skin-action-viewsource": "閱碼",
 	"viewsource-title": "查$1之案",

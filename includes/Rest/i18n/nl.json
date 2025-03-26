@@ -208,7 +208,7 @@
 	"rest-property-desc-revision-html": "Versie-inhoud in HTML, volgens de HTML-specificatie",
 	"rest-property-desc-revision-url": "URL naar de laatste versie van de pagina",
 	"rest-property-desc-search-excerpt": "Uittreksel van de pagina-inhoud die overeenkomt met de zoekopdracht",
-	"rest-property-desc-search-matched-title": "De titel van een pagina-doorverwijzing van, indien van toepassing, of geen waarde",
+	"rest-property-desc-search-matched-title": "De titel van de pagina waarvandaan is doorverwezen, als de zoekterm overeenkwam met een doorverwijzingspagina, of anders geen waarde",
 	"rest-property-desc-search-description": "Korte samenvatting van het paginaonderwerp, of geen waarde als er geen samenvatting is.",
 	"rest-property-desc-search-thumbnail": "Informatie over de miniatuurafbeelding voor de pagina, of geen waarde als er geen miniatuur is.",
 	"rest-schema-desc-mock-desc": "Voorbeeldbeschrijving.",

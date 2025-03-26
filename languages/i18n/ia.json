@@ -3960,7 +3960,7 @@
 	"newpages-showhide-redirect": "$1 redirectiones",
 	"newpages-showhide-registered": "$1 usatores registrate",
 	"restsandbox": "Sabliera REST",
-	"restsandbox-text": "Iste pagina forni un constructor de consultas pro le APIs REST. Nota ben que le appellos API interage directemente con le contento wiki publicate.",
+	"restsandbox-text": "Iste pagina permitte experimentar con le APIs REST de MediaWiki. Le appellos API facite per medio del interfacie sabliera interage directemente con le contento wiki publicate e dunque pote modificar le wiki. Consulta le [https://www.mediawiki.org/wiki/API:REST_API documentation del API] pro ulterior detalios sur le uso del API.",
 	"restsandbox-select-api": "Elige le API a explorar.",
 	"restsandbox-no-specs-configured": "Necun API REST ha essite configurate pro exploration. Modifica le parametro RestSandboxSpecs.",
 	"restsandbox-no-such-api": "Le parametro API fornite non es supportate: $1",
