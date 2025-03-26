@@ -68,28 +68,13 @@ class HTMLFormTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( ' autocomplete="off"', $form->wrapForm( '' ) );
 	}
 
-	public function testGetPreText() {
-		$this->hideDeprecated( HTMLForm::class . '::setPreText' );
-		$this->hideDeprecated( HTMLForm::class . '::getPreText' );
-		$this->hideDeprecated( HTMLForm::class . '::addPreText' );
-
-		$preText = 'TEST';
-		$form = $this->newInstance();
-		$form->setPreText( $preText );
-		$this->assertSame( $preText, $form->getPreText() );
-		$form->addPreText( $preText );
-		$this->assertSame( $preText . $preText, $form->getPreText() );
-	}
-
 	public function testGetPreHtml() {
-		$this->hideDeprecated( HTMLForm::class . '::setIntro' );
-
 		$preHtml = 'TEST';
 		$form = $this->newInstance();
 		$form->setPreHtml( $preHtml );
 		$this->assertSame( $preHtml, $form->getPreHtml() );
 		$preHtml = 'TEST2';
-		$form->setIntro( $preHtml );
+		$form->setPreHtml( $preHtml );
 		$this->assertSame( $preHtml, $form->getPreHtml() );
 		$preHtml = 'TEST';
 		$form->addPreHtml( $preHtml );
@@ -97,21 +82,16 @@ class HTMLFormTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetPostHtml() {
-		$this->hideDeprecated( HTMLForm::class . '::setPostText' );
-		$this->hideDeprecated( HTMLForm::class . '::addPostText' );
-
 		$postHtml = 'TESTED';
 		$form = $this->newInstance();
 		$form->setPostHtml( $postHtml );
 		$this->assertSame( $postHtml, $form->getPostHtml() );
 		$postHtml = 'TESTED2';
-		$form->setPostText( $postHtml );
+		$form->setPostHtml( $postHtml );
 		$this->assertSame( $postHtml, $form->getPostHtml() );
 		$postHtml = 'TESTED';
 		$form->addPostHtml( $postHtml );
 		$this->assertSame( $postHtml . '2' . $postHtml, $form->getPostHtml() );
-		$form->addPostText( $postHtml );
-		$this->assertSame( $postHtml . '2' . $postHtml . $postHtml, $form->getPostHtml() );
 	}
 
 	public function testCollapsible() {

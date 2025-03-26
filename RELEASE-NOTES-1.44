@@ -254,6 +254,12 @@ because of Phabricator reports.
 * The MediaWiki\Config\MutableConfig interface now extends
   MediaWiki\Config\Config. Implementing MutableConfig without implementing
   Config is no longer possible.
+* HTMLForm methods getPreText, setPreText, addPreText, getPostText,
+  setPostText, addPostText, getHeaderText, setHeaderText, addHeaderText,
+  getFooterText, setFooterText and addFooterText, deprecated since 1.38, have
+  been removed.
+* FormSpecialPage methods preText and postText, deprecated since 1.38, have
+  been removed.
 * The `MediaWiki\User\Registration\IUserRegistrationProvider` interface now
   defines a required fetchRegistrationBatch() method.
 * The hook OutputPageMakeCategoryLinks, deprecated in 1.43, has been removed.
