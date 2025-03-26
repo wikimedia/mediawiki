@@ -1065,7 +1065,7 @@ return [
 		return new JobQueueGroupFactory(
 			new ServiceOptions( JobQueueGroupFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getReadOnlyMode(),
-			$services->getStatsdDataFactory(),
+			$services->getStatsFactory(),
 			$services->getMainWANObjectCache(),
 			$services->getGlobalIdGenerator()
 		);
@@ -1078,7 +1078,7 @@ return [
 			$services->getJobQueueGroup(),
 			$services->getReadOnlyMode(),
 			$services->getLinkCache(),
-			$services->getStatsdDataFactory(),
+			$services->getStatsFactory(),
 			LoggerFactory::getInstance( 'runJobs' )
 		);
 	},

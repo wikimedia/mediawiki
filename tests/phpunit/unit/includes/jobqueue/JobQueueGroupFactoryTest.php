@@ -6,7 +6,7 @@ use MediaWiki\JobQueue\JobQueueGroupFactory;
 use MediaWiki\MainConfigNames;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\ReadOnlyMode;
-use Wikimedia\Stats\IBufferingStatsdDataFactory;
+use Wikimedia\Stats\StatsFactory;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
@@ -25,7 +25,7 @@ class JobQueueGroupFactoryTest extends MediaWikiUnitTestCase {
 				] )
 			),
 			$this->createMock( ReadOnlyMode::class ),
-			$this->createMock( IBufferingStatsdDataFactory::class ),
+			$this->createMock( StatsFactory::class ),
 			$this->createMock( WANObjectCache::class ),
 			$this->createMock( GlobalIdGenerator::class )
 		);

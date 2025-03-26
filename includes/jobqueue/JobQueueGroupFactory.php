@@ -26,7 +26,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\ReadOnlyMode;
-use Wikimedia\Stats\IBufferingStatsdDataFactory;
+use Wikimedia\Stats\StatsFactory;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
@@ -55,8 +55,8 @@ class JobQueueGroupFactory {
 	/** @var ReadOnlyMode */
 	private $readOnlyMode;
 
-	/** @var IBufferingStatsdDataFactory */
-	private $statsdDataFactory;
+	/** @var StatsFactory */
+	private $statsFactory;
 
 	/** @var WANObjectCache */
 	private $wanCache;
@@ -67,14 +67,14 @@ class JobQueueGroupFactory {
 	/**
 	 * @param ServiceOptions $options
 	 * @param ReadOnlyMode $readOnlyMode
-	 * @param IBufferingStatsdDataFactory $statsdDataFactory
+	 * @param StatsFactory $statsFactory
 	 * @param WANObjectCache $wanCache
 	 * @param GlobalIdGenerator $globalIdGenerator
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		ReadOnlyMode $readOnlyMode,
-		IBufferingStatsdDataFactory $statsdDataFactory,
+		StatsFactory $statsFactory,
 		WANObjectCache $wanCache,
 		GlobalIdGenerator $globalIdGenerator
 	) {
@@ -82,7 +82,7 @@ class JobQueueGroupFactory {
 		$this->instances = [];
 		$this->options = $options;
 		$this->readOnlyMode = $readOnlyMode;
-		$this->statsdDataFactory = $statsdDataFactory;
+		$this->statsFactory = $statsFactory;
 		$this->wanCache = $wanCache;
 		$this->globalIdGenerator = $globalIdGenerator;
 	}
@@ -120,7 +120,7 @@ class JobQueueGroupFactory {
 				$localJobClasses,
 				$this->options->get( MainConfigNames::JobTypeConf ),
 				$this->options->get( MainConfigNames::JobTypesExcludedFromDefaultQueue ),
-				$this->statsdDataFactory,
+				$this->statsFactory,
 				$this->wanCache,
 				$this->globalIdGenerator
 			);
