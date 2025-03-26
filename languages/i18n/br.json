@@ -3461,7 +3461,7 @@
 	"logentry-suppress-revision": "Kemmet eo bet dre guzh gwelusted {{PLURAL:$5|stumm|$5 stumm}} war ar bajenn $3 gant $1 : $4",
 	"logentry-suppress-event-legacy": "{{GENDER:$2|Kemmet}} eo bet dre guzh gwelusted darvoudoù ar marilh d'an $3 gant $1",
 	"logentry-suppress-revision-legacy": "{{GENDER:$2|Kemmet}} eo bet dre guzh gwelusted ar reizhadennoù war ar bajenn $3 gant $1",
-	"revdelete-content-hid": "danvez kuzet",
+	"revdelete-content-hid": "endalc’h kuzhet",
 	"revdelete-summary-hid": "kuzhet diverradenn ar c'hemmoù",
 	"revdelete-uname-hid": "anv implijer kuzhet",
 	"revdelete-content-unhid": "danvez war wel",

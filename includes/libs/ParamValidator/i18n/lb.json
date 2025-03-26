@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Robby",
+			"Volvox"
+		]
+	},
+	"paramvalidator-badinteger": "Ongültege Wäert „$2“ fir de ganzzuelege Parameter „$1“.",
+	"paramvalidator-badtimestamp": "Ongültege Wäert „$2“ fir den Zäitstempel-Parameter „$1“.",
+	"paramvalidator-param-deprecated": "De Parameter \"$1\" ass elo vereelzt.",
+	"paramvalidator-help-default": "Standard: $1",
+	"paramvalidator-help-default-empty": "Standard: (eidel)",
+	"paramvalidator-help-deprecated": "Dëse Parameter ass vereelzt.",
+	"paramvalidator-help-multi-max-simple": "Maximal Zuel vun de Wäerter ass {{PLURAL:$1|$1}}.",
+	"paramvalidator-help-required": "Dëse Parameter ass obligatoresch.",
+	"paramvalidator-help-type-limit": "Typ: Ganz Zuel oder „max“",
+	"paramvalidator-help-type-number-max": "{{PLURAL:$1|1=De Wäert däerf|2=D'Wäerter däerfen}} net méi grouss si wéi $3.",
+	"paramvalidator-help-type-number-minmax": "{{PLURAL:$1|1=De Wäert muss|2=D'Wäerter mussen}} tëscht $2 an $3 leien.",
+	"paramvalidator-help-type-number-min": "{{PLURAL:$1|1=De Wäert däerf|2=D'Wäerter däerfen}} net méi kleng si wéi $2.",
+	"paramvalidator-help-type-string-maxbytes": "Däerf net méi laang wéi {{PLURAL:$1|Byte}} sinn.",
+	"paramvalidator-help-type-string-maxchars": "Däerf net méi laang wéi {{PLURAL:$1|Zeeche}} sinn.",
+	"paramvalidator-help-type-timestamp": "Typ: {{PLURAL:$1|1=Zäitstempel|2=Lëscht vun Zäitstempelen}}"
+}

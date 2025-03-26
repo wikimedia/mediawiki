@@ -1444,7 +1444,7 @@
 	"userrights-lookup-user": "Selecciona una cuenta de usuario",
 	"userrights-user-editname": "Escribe un nombre de usuario:",
 	"editusergroup": "Cargar grupos de usuarios",
-	"editinguser": "Cambiar los grupos de{{GENDER:$1|l usuario|&#32;la usuaria}} <strong>[[User:$1|$1]]</strong> $2",
+	"editinguser": "Cambiar los grupos {{GENDER:$1|del usuario|de la usuaria}} <strong>[[User:$1|$1]]</strong> $2",
 	"viewinguserrights": "Visualizar los grupos {{GENDER:$1|del usuario|de la usuaria}} <strong>[[User:$1|$1]]</strong> $2",
 	"userrights-editusergroup": "Modificar grupos {{GENDER:$1|del usuario|de la usuaria}}",
 	"userrights-viewusergroup": "Ver grupos {{GENDER:$1|del usuario|de la usuaria}}",
