@@ -81,8 +81,8 @@ exports.config = {
 				// Dismissed Chrome's `Save password?` popup
 				'--enable-automation',
 				...( process.env.DISPLAY ? [] : [ '--headless' ] ),
-				// Chrome sandbox does not work in Docker
-				...( fs.existsSync( '/.dockerenv' ) ? [ '--no-sandbox' ] : [] ),
+				// Chrome sandbox does not work in Docker. Disable GPU to prevent crashes (T389536#10677201)
+				...( fs.existsSync( '/.dockerenv' ) ? [ '--no-sandbox', '--disable-gpu' ] : [] ),
 				// Workaround inputs not working consistently post-navigation on Chrome 90
 				// https://issuetracker.google.com/issues/42322798
 				'--allow-pre-commit-input'
