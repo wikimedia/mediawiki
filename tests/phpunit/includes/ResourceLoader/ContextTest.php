@@ -104,18 +104,14 @@ class ContextTest extends TestCase {
 			[ 'lang' => 'he' ],
 			'rtl',
 		];
-		yield 'explicit LTR' => [
-			[ 'lang' => 'he', 'dir' => 'ltr' ],
-			'ltr',
-		];
-		yield 'explicit RTL' => [
-			[ 'lang' => 'en', 'dir' => 'rtl' ],
+		yield 'RTL variant of LTR language' => [
+			[ 'lang' => 'en-rtl' ],
 			'rtl',
 		];
 		// Not supported, but tested to cover the case and detect change
-		yield 'invalid dir' => [
-			[ 'lang' => 'he', 'dir' => 'xyz' ],
-			'rtl',
+		yield 'invalid language' => [
+			[ 'lang' => 'invalid-xyz' ],
+			'ltr',
 		];
 	}
 

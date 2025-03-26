@@ -220,14 +220,9 @@ class Context implements MessageLocalizer {
 
 	public function getDirection(): string {
 		if ( $this->direction === null ) {
-			$direction = $this->getRequest()->getRawVal( 'dir' );
-			if ( $direction === 'ltr' || $direction === 'rtl' ) {
-				$this->direction = $direction;
-			} else {
-				// Determine directionality based on user language (T8100)
-				$this->direction = MediaWikiServices::getInstance()->getLanguageFactory()
-					->getLanguage( $this->getLanguage() )->getDir();
-			}
+			// Determine directionality based on user language (T8100)
+			$this->direction = MediaWikiServices::getInstance()->getLanguageFactory()
+				->getLanguage( $this->getLanguage() )->getDir();
 		}
 		return $this->direction;
 	}

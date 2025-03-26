@@ -25,7 +25,6 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 	/**
 	 * @param array|string $options Language code or options array
 	 * - string 'lang' Language code
-	 * - string 'dir' Language direction (ltr or rtl)
 	 * - string 'modules' Pipe-separated list of module names
 	 * - string|null 'only' "scripts" (unwrapped script), "styles" (stylesheet), or null
 	 *    (mw.loader.implement).
@@ -34,13 +33,11 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 	 */
 	protected function getResourceLoaderContext( $options = [], ?ResourceLoader $rl = null ) {
 		if ( is_string( $options ) ) {
-			// Back-compat for extension tests
 			$options = [ 'lang' => $options ];
 		}
 		$options += [
 			'debug' => 'true',
 			'lang' => 'en',
-			'dir' => 'ltr',
 			'skin' => 'fallback',
 			'modules' => 'startup',
 			'only' => 'scripts',
@@ -65,12 +62,7 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 			'sourcemap' => $options['sourcemap'],
 			'target' => 'phpunit',
 		] );
-		$ctx = $this->getMockBuilder( Context::class )
-			->setConstructorArgs( [ $resourceLoader, $request ] )
-			->onlyMethods( [ 'getDirection' ] )
-			->getMock();
-		$ctx->method( 'getDirection' )->willReturn( $options['dir'] );
-		return $ctx;
+		return new Context( $resourceLoader, $request );
 	}
 
 	public static function getSettings() {

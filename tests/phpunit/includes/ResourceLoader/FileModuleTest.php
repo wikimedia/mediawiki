@@ -283,14 +283,8 @@ class FileModuleTest extends ResourceLoaderTestCase {
 		] );
 		$expectedModule->setName( 'testing' );
 
-		$contextLtr = $this->getResourceLoaderContext( [
-			'lang' => 'en',
-			'dir' => 'ltr',
-		] );
-		$contextRtl = $this->getResourceLoaderContext( [
-			'lang' => 'he',
-			'dir' => 'rtl',
-		] );
+		$contextLtr = $this->getResourceLoaderContext( [ 'lang' => 'en' ] );
+		$contextRtl = $this->getResourceLoaderContext( [ 'lang' => 'he' ] );
 
 		// Since we want to compare the effect of @noflip+@embed against the effect of just @embed, and
 		// the @noflip annotations are always preserved, we need to strip them first.
@@ -313,13 +307,13 @@ class FileModuleTest extends ResourceLoaderTestCase {
 		] );
 		$plain->setName( 'test' );
 
-		$context = $this->getResourceLoaderContext( [ 'lang' => 'en', 'dir' => 'ltr' ] );
+		$context = $this->getResourceLoaderContext( [ 'lang' => 'en' ] );
 		$this->assertEquals(
 			[ 'all' => ".example { text-align: left; }\n" ],
 			$plain->getStyles( $context ),
 			'Unchanged styles in LTR mode'
 		);
-		$context = $this->getResourceLoaderContext( [ 'lang' => 'he', 'dir' => 'rtl' ] );
+		$context = $this->getResourceLoaderContext( [ 'lang' => 'he' ] );
 		$this->assertEquals(
 			[ 'all' => ".example { text-align: right; }\n" ],
 			$plain->getStyles( $context ),
