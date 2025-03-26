@@ -257,6 +257,10 @@ because of Phabricator reports.
 * The `MediaWiki\User\Registration\IUserRegistrationProvider` interface now
   defines a required fetchRegistrationBatch() method.
 * The hook OutputPageMakeCategoryLinks, deprecated in 1.43, has been removed.
+* ApiPageSet::getTitles(), ApiPageSet::getGoodTitles(),
+  ApiPageSet::getMissingTitles(), ApiPageSet::getGoodAndMissingTitles(),
+  ApiPageSet::getRedirectTitles() and ApiPageSet::getSpecialTitles, deprecated
+  since 1.37, have been removed.
 * The methods Skin::getFooterIcons and ::makeFooterIcon are final and
   overriding is no longer supported.
 * PageArchive::undeleteAsUser, deprecated since 1.35, has been removed.

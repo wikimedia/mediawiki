@@ -457,19 +457,6 @@ class ApiPageSet extends ApiBase {
 	 * Does not include special pages, interwiki links, and invalid titles.
 	 * If redirects are resolved, both the redirect and the target will be included here.
 	 *
-	 * @deprecated since 1.37, use getPages() instead, hard-deprecated since 1.43.
-	 * @return Title[]
-	 */
-	public function getTitles() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->mTitles;
-	}
-
-	/**
-	 * All existing and missing pages including redirects.
-	 * Does not include special pages, interwiki links, and invalid titles.
-	 * If redirects are resolved, both the redirect and the target will be included here.
-	 *
 	 * @since 1.37
 	 * @return PageIdentity[]
 	 */
@@ -491,17 +478,6 @@ class ApiPageSet extends ApiBase {
 	 */
 	public function getGoodTitlesByNamespace() {
 		return $this->mGoodPages;
-	}
-
-	/**
-	 * Title objects that were found in the database, including redirects.
-	 * If redirects are resolved, this will include existing redirect targets.
-	 * @deprecated since 1.37, use getGoodPages() instead, hard-deprecated since 1.43.
-	 * @return array<int,Title> Array page_id (int) => Title (obj)
-	 */
-	public function getGoodTitles() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->mGoodTitles;
 	}
 
 	/**
@@ -532,18 +508,6 @@ class ApiPageSet extends ApiBase {
 	}
 
 	/**
-	 * Title objects that were NOT found in the database.
-	 * The array's index will be negative for each item.
-	 * If redirects are resolved, this will include missing redirect targets.
-	 * @deprecated since 1.37, use getMissingPages instead, hard-deprecated since 1.43.
-	 * @return array<int,Title>
-	 */
-	public function getMissingTitles() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->mMissingTitles;
-	}
-
-	/**
 	 * Pages that were NOT found in the database.
 	 * The array's index will be negative for each item.
 	 * If redirects are resolved, this will include missing redirect targets.
@@ -560,16 +524,6 @@ class ApiPageSet extends ApiBase {
 	 */
 	public function getGoodAndMissingTitlesByNamespace() {
 		return $this->mGoodAndMissingPages;
-	}
-
-	/**
-	 * Title objects for good and missing titles.
-	 * @deprecated since 1.37, use getGoodAndMissingPages() instead, hard-deprecated since 1.43.
-	 * @return Title[]
-	 */
-	public function getGoodAndMissingTitles() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->mGoodTitles + $this->mMissingTitles;
 	}
 
 	/**
@@ -596,17 +550,6 @@ class ApiPageSet extends ApiBase {
 	 */
 	public function getMissingPageIDs() {
 		return $this->mMissingPageIDs;
-	}
-
-	/**
-	 * Get a list of redirect resolutions - maps a title to its redirect
-	 * target.
-	 * @deprecated since 1.37, use getRedirectTargets instead, hard-deprecated since 1.43.
-	 * @return array<string,Title>
-	 */
-	public function getRedirectTitles() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->mRedirectTitles;
 	}
 
 	/**
@@ -869,16 +812,6 @@ class ApiPageSet extends ApiBase {
 		}
 
 		return $values;
-	}
-
-	/**
-	 * Get the list of titles with negative namespace
-	 * @deprecated since 1.37, use getSpecialPages() instead, hard-deprecated since 1.43.
-	 * @return Title[]
-	 */
-	public function getSpecialTitles() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->mSpecialTitles;
 	}
 
 	/**
