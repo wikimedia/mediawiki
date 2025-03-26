@@ -64,7 +64,6 @@ use NumberFormatter;
 use RuntimeException;
 use StringUtils;
 use UtfNormal\Validator as UtfNormalValidator;
-use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\DebugInfo\DebugInfoTrait;
@@ -331,68 +330,18 @@ class Language implements Bcp47Code {
 	// @codeCoverageIgnoreEnd
 
 	/**
-	 * @internal Calling this directly is deprecated. Use LanguageFactory instead.
-	 *
-	 * @param string|null $code Which code to use. Passing null is deprecated in 1.35, hard-deprecated since 1.43.
-	 * @param NamespaceInfo|null $namespaceInfo
-	 * @param LocalisationCache|null $localisationCache
-	 * @param LanguageNameUtils|null $langNameUtils
-	 * @param LanguageFallback|null $langFallback
-	 * @param LanguageConverterFactory|null $converterFactory
-	 * @param HookContainer|null $hookContainer
-	 * @param Config|null $config
+	 * @internal Use LanguageFactory instead.
 	 */
 	public function __construct(
-		$code = null,
-		?NamespaceInfo $namespaceInfo = null,
-		?LocalisationCache $localisationCache = null,
-		?LanguageNameUtils $langNameUtils = null,
-		?LanguageFallback $langFallback = null,
-		?LanguageConverterFactory $converterFactory = null,
-		?HookContainer $hookContainer = null,
-		?Config $config = null
+		string $code,
+		NamespaceInfo $namespaceInfo,
+		LocalisationCache $localisationCache,
+		LanguageNameUtils $langNameUtils,
+		LanguageFallback $langFallback,
+		LanguageConverterFactory $converterFactory,
+		HookContainer $hookContainer,
+		Config $config
 	) {
-		if ( !func_num_args() ) {
-			// Old calling convention, deprecated
-			wfDeprecatedMsg(
-				__METHOD__ . ' without providing all services is deprecated',
-				'1.35'
-			);
-			if ( static::class === 'Language' ) {
-				$this->mCode = 'en';
-			} else {
-				$this->mCode = str_replace( '_', '-', strtolower( substr( static::class, 8 ) ) );
-			}
-
-			$services = MediaWikiServices::getInstance();
-			$this->namespaceInfo = $services->getNamespaceInfo();
-			$this->localisationCache = $services->getLocalisationCache();
-			$this->langNameUtils = $services->getLanguageNameUtils();
-			$this->langFallback = $services->getLanguageFallback();
-			$this->converterFactory = $services->getLanguageConverterFactory();
-			$this->hookContainer = $services->getHookContainer();
-			$this->hookRunner = new HookRunner( $this->hookContainer );
-			$this->config = $services->getMainConfig();
-			return;
-		}
-
-		Assert::parameter( $code !== null, '$code',
-			'Parameters cannot be null unless all are omitted' );
-		Assert::parameter( $namespaceInfo !== null, '$namespaceInfo',
-			'Parameters cannot be null unless all are omitted' );
-		Assert::parameter( $localisationCache !== null, '$localisationCache',
-			'Parameters cannot be null unless all are omitted' );
-		Assert::parameter( $langNameUtils !== null, '$langNameUtils',
-			'Parameters cannot be null unless all are omitted' );
-		Assert::parameter( $langFallback !== null, '$langFallback',
-			'Parameters cannot be null unless all are omitted' );
-		Assert::parameter( $converterFactory !== null, '$converterFactory',
-			'Parameters cannot be null unless all are omitted' );
-		Assert::parameter( $hookContainer !== null, '$hookContainer',
-			'Parameters cannot be null unless all are omitted' );
-		Assert::parameter( $config !== null, '$config',
-			'Parameters cannot be null unless all are omitted' );
-
 		$this->mCode = $code;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->localisationCache = $localisationCache;

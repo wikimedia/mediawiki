@@ -251,6 +251,8 @@ because of Phabricator reports.
   been unused as a status code by UploadBase for more than 14 years.
 * MediaWikiIntegrationTestCase::$tablesUsed, deprecated since 1.41, has been
   removed. The framework detects changed tables since 1.41 automatically.
+* MediaWiki\Language\Language class no longer supports manually calling the
+  constructor, use LanguageFactory instead.
 * The MediaWiki\Config\MutableConfig interface now extends
   MediaWiki\Config\Config. Implementing MutableConfig without implementing
   Config is no longer possible.
