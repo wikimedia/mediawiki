@@ -259,6 +259,7 @@ because of Phabricator reports.
 * The hook OutputPageMakeCategoryLinks, deprecated in 1.43, has been removed.
 * The methods Skin::getFooterIcons and ::makeFooterIcon are final and
   overriding is no longer supported.
+* PageArchive::undeleteAsUser, deprecated since 1.35, has been removed.
 * DatabaseBlock::getQueryInfo and ::getRangeCond, deprecated since 1.43, have
   been removed.
 * The IDatabase transaction lifecycle callbacks onTransactionResolution(),
