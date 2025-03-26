@@ -104,8 +104,6 @@ class ApiPageSetTest extends ApiTestCase {
 	}
 
 	public function testRedirectMergePolicyRedirectLoop() {
-		$this->hideDeprecated( ApiPageSet::class . '::getTitles' );
-
 		$redirectOneTitle = 'ApiPageSetTestRedirectOne';
 		$redirectTwoTitle = 'ApiPageSetTestRedirectTwo';
 		$this->editPage( $redirectOneTitle, "#REDIRECT [[$redirectTwoTitle]]" );
@@ -128,8 +126,8 @@ class ApiPageSetTest extends ApiTestCase {
 				$redirectOneTitle, $redirectTwoTitle,
 			],
 			array_map( static function ( $x ) {
-				return $x->getPrefixedText();
-			}, $pageSet->getTitles() )
+				return $x->getDBkey();
+			}, $pageSet->getPages() )
 		);
 	}
 
@@ -334,13 +332,6 @@ class ApiPageSetTest extends ApiTestCase {
 	}
 
 	public function testPopulateFromTitles() {
-		$this->hideDeprecated( ApiPageSet::class . '::getTitles' );
-		$this->hideDeprecated( ApiPageSet::class . '::getGoodTitles' );
-		$this->hideDeprecated( ApiPageSet::class . '::getMissingTitles' );
-		$this->hideDeprecated( ApiPageSet::class . '::getGoodAndMissingTitles' );
-		$this->hideDeprecated( ApiPageSet::class . '::getRedirectTitles' );
-		$this->hideDeprecated( ApiPageSet::class . '::getSpecialTitles' );
-
 		$interwikiLookup = $this->getDummyInterwikiLookup( [ 'acme' ] );
 		$this->setService( 'InterwikiLookup', $interwikiLookup );
 
@@ -370,22 +361,15 @@ class ApiPageSetTest extends ApiTestCase {
 			// the redirect page and the target are included!
 			new TitleValue( NS_MAIN, 'ApiPageSetTest_redirect_target' ),
 		];
-		$this->assertLinkTargets( Title::class, $expectedPages, $pageSet->getTitles() );
 		$this->assertLinkTargets( PageIdentity::class, $expectedPages, $pageSet->getPages() );
 
 		$expectedGood = [
 			new TitleValue( NS_MAIN, 'ApiPageSetTest_existing' ),
 			new TitleValue( NS_MAIN, 'ApiPageSetTest_redirect_target' )
 		];
-		$this->assertLinkTargets( Title::class, $expectedGood, $pageSet->getGoodTitles() );
 		$this->assertLinkTargets( PageIdentity::class, $expectedGood, $pageSet->getGoodPages() );
 
 		$expectedMissing = [ new TitleValue( NS_MAIN, 'ApiPageSetTest_missing' ) ];
-		$this->assertLinkTargets(
-			Title::class,
-			$expectedMissing,
-			$pageSet->getMissingTitles()
-		);
 		$this->assertLinkTargets(
 			PageIdentity::class,
 			$expectedMissing,
@@ -398,18 +382,12 @@ class ApiPageSetTest extends ApiTestCase {
 
 		$expectedGoodAndMissing = array_merge( $expectedGood, $expectedMissing );
 		$this->assertLinkTargets(
-			Title::class,
-			$expectedGoodAndMissing,
-			$pageSet->getGoodAndMissingTitles()
-		);
-		$this->assertLinkTargets(
 			PageIdentity::class,
 			$expectedGoodAndMissing,
 			$pageSet->getGoodAndMissingPages()
 		);
 
 		$expectedSpecial = [ new TitleValue( NS_SPECIAL, 'BlankPage' ) ];
-		$this->assertLinkTargets( Title::class, $expectedSpecial, $pageSet->getSpecialTitles() );
 		$this->assertLinkTargets( PageReference::class, $expectedSpecial, $pageSet->getSpecialPages() );
 
 		$expectedRedirects = [
@@ -417,7 +395,6 @@ class ApiPageSetTest extends ApiTestCase {
 				NS_MAIN, 'ApiPageSetTest_redirect_target'
 			)
 		];
-		$this->assertLinkTargets( Title::class, $expectedRedirects, $pageSet->getRedirectTitles() );
 		$this->assertLinkTargets( LinkTarget::class, $expectedRedirects, $pageSet->getRedirectTargets() );
 
 		$this->assertSame( [ 'acme:ApiPageSetTest' => 'acme' ], $pageSet->getInterwikiTitles() );
