@@ -28,13 +28,6 @@ class RecentChangeNotificationHandler implements NotificationHandler {
 	}
 
 	public function checkNotificationRequirements( Notification $notification, User $user ): bool {
-		if ( $notification->getType() === RecentChangeNotification::TYPE ) {
-			// backwards compatibility, UsersNotifiedOnAllChanges didn't require emails to be confirmed
-			// @TODO MediaWiki handler should always confirm email before sending any
-			// notification, no matter what the notification is.
-			// @see https://phabricator.wikimedia.org/T389608
-			return true;
-		}
 		return $user->isEmailConfirmed();
 	}
 

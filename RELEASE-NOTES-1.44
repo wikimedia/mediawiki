@@ -36,6 +36,11 @@ For notes on 1.43.x and older releases, see HISTORY.
   MediaWiki 1.26, structured exception data conforming to the PSR-3 logging
   standard is also available on the 'exception' log channel.
   (Log channels can be configured using $wgMWLoggerDefaultSpi.)
+* $wgUsersNotifiedOnAllChanges now requires the listed users to have confirmed
+  email addresses, just like other kinds of email notifications do.
+  You can confirm the email address by logging in as the user and using
+  "Confirm your email address" in user preferences, or by running a maintenance
+  script: resetUserEmail.php --no-reset-password <username> <new-email>
 * …
 
 ==== New configuration ====
