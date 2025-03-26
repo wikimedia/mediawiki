@@ -1178,6 +1178,13 @@
 		} );
 	} );
 
+	QUnit.test( '.require() relative file without packageFiles', ( assert ) => {
+		// T386833
+		assert.throws( () => {
+			mw.loader.require( './hello.js' );
+		}, /Module names cannot start with ".\/" or "..\/"/ );
+	} );
+
 	QUnit.test( 'Implicit dependencies', ( assert ) => {
 		let user = 0,
 			site = 0,

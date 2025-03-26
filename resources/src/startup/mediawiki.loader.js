@@ -1753,6 +1753,10 @@
 		 * @return {any} Exported value
 		 */
 		require: function ( moduleName ) {
+			if ( moduleName.startsWith( './' ) || moduleName.startsWith( '../' ) ) {
+				throw new Error( 'Module names cannot start with "./" or "../". Did you mean to use Package files?' );
+			}
+
 			var path;
 			if ( window.QUnit ) {
 				// Comply with Node specification
