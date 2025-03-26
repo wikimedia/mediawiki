@@ -21,6 +21,7 @@
  * @ingroup Maintenance ExternalStorage
  */
 
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Shell\Shell;
 use MediaWiki\User\User;

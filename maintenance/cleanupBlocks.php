@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Maintenance\Maintenance;
+
 require_once __DIR__ . '/Maintenance.php';
 
 class CleanupBlocks extends Maintenance {

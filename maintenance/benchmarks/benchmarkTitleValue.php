@@ -18,6 +18,7 @@
  *
  */
 
+use MediaWiki\Maintenance\Benchmarker;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleParser;

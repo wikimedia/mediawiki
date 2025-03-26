@@ -92,7 +92,7 @@ class FileDeleteForm {
 				wfEscapeWikiText( $title->getPrefixedText() )
 			);
 			$page = $services->getWikiPageFactory()->newFromTitle( $title );
-			'@phan-var \WikiFilePage $page';
+			'@phan-var \MediaWiki\Page\WikiFilePage $page';
 			$deleter = $services->getUserFactory()->newFromUserIdentity( $user );
 			$deletePage = $services->getDeletePageFactory()->newDeletePage( $page, $deleter );
 			if ( $deleteTalk ) {

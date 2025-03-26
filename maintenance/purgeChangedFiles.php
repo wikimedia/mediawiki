@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\FileRepo\File\LocalFile;
+use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Title\Title;
 

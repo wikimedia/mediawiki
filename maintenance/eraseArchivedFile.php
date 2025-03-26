@@ -21,6 +21,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\FileRepo\File\ArchivedFile;
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 use MediaWiki\Maintenance\Maintenance;
 

@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\FileBackendDBRepoWrapper;
 use MediaWiki\Maintenance\Maintenance;
 use Wikimedia\FileBackend\FileBackend;
 

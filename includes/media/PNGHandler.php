@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Context\IContextSource;
+use MediaWiki\FileRepo\File\File;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**

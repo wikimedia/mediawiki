@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Context\IContextSource;
+use MediaWiki\FileRepo\File\File;
 
 class PackedImageGallery extends TraditionalImageGallery {
 	public function __construct( $mode = 'traditional', ?IContextSource $context = null ) {

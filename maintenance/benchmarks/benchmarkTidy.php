@@ -19,6 +19,8 @@
  * @ingroup Benchmark
  */
 
+use MediaWiki\Maintenance\Benchmarker;
+
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/../includes/Benchmarker.php';
 // @codeCoverageIgnoreEnd

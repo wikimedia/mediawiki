@@ -21,12 +21,12 @@
 namespace MediaWiki\Maintenance;
 
 use Closure;
-use DeferredUpdates;
 use ExecutableFinder;
 use Generator;
 use MediaWiki;
 use MediaWiki\Config\Config;
 use MediaWiki\Debug\MWDebug;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;

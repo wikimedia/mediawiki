@@ -25,6 +25,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Title\Title;
 

@@ -22,6 +22,7 @@
  * @ingroup Maintenance ExternalStorage
  */
 
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Maintenance\UndoLog;
 use MediaWiki\Storage\SqlBlobStore;
 

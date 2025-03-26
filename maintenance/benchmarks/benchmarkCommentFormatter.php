@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\CommentFormatter\CommentItem;
+use MediaWiki\Maintenance\Benchmarker;
 use MediaWiki\Title\Title;
 
 // @codeCoverageIgnoreStart
