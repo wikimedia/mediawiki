@@ -21,10 +21,14 @@
 
 namespace MediaWiki\Auth;
 
+use BadMethodCallException;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Password\InvalidPassword;
+use MediaWiki\Status\Status;
 use MediaWiki\User\UserRigorOptions;
+use StatusValue;
+use stdClass;
 use Wikimedia\Rdbms\DBAccessObjectUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
@@ -60,8 +64,8 @@ class LocalPasswordPrimaryAuthenticationProvider
 	 * Check if the password has expired and needs a reset
 	 *
 	 * @param string $username
-	 * @param \stdClass $row A row from the user table
-	 * @return \stdClass|null
+	 * @param stdClass $row A row from the user table
+	 * @return stdClass|null
 	 */
 	protected function getPasswordResetData( $username, $row ) {
 		$now = (int)wfTimestamp();
@@ -74,12 +78,12 @@ class LocalPasswordPrimaryAuthenticationProvider
 		if ( (int)$expiration + $grace < $now ) {
 			$data = [
 				'hard' => true,
-				'msg' => \MediaWiki\Status\Status::newFatal( 'resetpass-expired' )->getMessage(),
+				'msg' => Status::newFatal( 'resetpass-expired' )->getMessage(),
 			];
 		} else {
 			$data = [
 				'hard' => false,
-				'msg' => \MediaWiki\Status\Status::newFatal( 'resetpass-expired-soft' )->getMessage(),
+				'msg' => Status::newFatal( 'resetpass-expired-soft' )->getMessage(),
 			];
 		}
 
@@ -112,7 +116,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 
 		$oldRow = clone $row;
 		// Check for *really* old password hashes that don't even have a type
-		// The old hash format was just an md5 hex hash, with no type information
+		// The old hash format was just an MD5 hex hash, with no type information
 		if ( preg_match( '/^[0-9a-f]{32}$/', $row->user_password ) ) {
 			$row->user_password = ":B:{$row->user_id}:{$row->user_password}";
 		}
@@ -161,7 +165,9 @@ class LocalPasswordPrimaryAuthenticationProvider
 
 	public function testUserCanAuthenticate( $username ) {
 		$username = $this->userNameUtils->getCanonical(
-			$username, UserRigorOptions::RIGOR_USABLE );
+			$username,
+			UserRigorOptions::RIGOR_USABLE
+		);
 		if ( $username === false ) {
 			return false;
 		}
@@ -176,7 +182,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 		}
 
 		// Check for *really* old password hashes that don't even have a type
-		// The old hash format was just an md5 hex hash, with no type information
+		// The old hash format was just an MD5 hex hash, with no type information
 		if ( preg_match( '/^[0-9a-f]{32}$/', $row->user_password ) ) {
 			return true;
 		}
@@ -186,7 +192,9 @@ class LocalPasswordPrimaryAuthenticationProvider
 
 	public function testUserExists( $username, $flags = IDBAccessObject::READ_NORMAL ) {
 		$username = $this->userNameUtils->getCanonical(
-			$username, UserRigorOptions::RIGOR_USABLE );
+			$username,
+			UserRigorOptions::RIGOR_USABLE
+		);
 		if ( $username === false ) {
 			return false;
 		}
@@ -205,12 +213,12 @@ class LocalPasswordPrimaryAuthenticationProvider
 		// We only want to blank the password if something else will accept the
 		// new authentication data, so return 'ignore' here.
 		if ( $this->loginOnly ) {
-			return \StatusValue::newGood( 'ignored' );
+			return StatusValue::newGood( 'ignored' );
 		}
 
 		if ( get_class( $req ) === PasswordAuthenticationRequest::class ) {
 			if ( !$checkData ) {
-				return \StatusValue::newGood();
+				return StatusValue::newGood();
 			}
 
 			$username = $this->userNameUtils->getCanonical( $req->username,
@@ -222,7 +230,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 					->where( [ 'user_name' => $username ] )
 					->caller( __METHOD__ )->fetchRow();
 				if ( $row ) {
-					$sv = \StatusValue::newGood();
+					$sv = StatusValue::newGood();
 					if ( $req->password !== null ) {
 						if ( $req->password !== $req->retype ) {
 							$sv->fatal( 'badretype' );
@@ -235,12 +243,12 @@ class LocalPasswordPrimaryAuthenticationProvider
 			}
 		}
 
-		return \StatusValue::newGood( 'ignored' );
+		return StatusValue::newGood( 'ignored' );
 	}
 
 	public function providerChangeAuthenticationData( AuthenticationRequest $req ) {
-		$username = $req->username !== null ?
-			$this->userNameUtils->getCanonical( $req->username, UserRigorOptions::RIGOR_USABLE )
+		$username = $req->username !== null
+			? $this->userNameUtils->getCanonical( $req->username, UserRigorOptions::RIGOR_USABLE )
 			: false;
 		if ( $username === false ) {
 			return;
@@ -279,7 +287,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 	public function testForAccountCreation( $user, $creator, array $reqs ) {
 		$req = AuthenticationRequest::getRequestByClass( $reqs, PasswordAuthenticationRequest::class );
 
-		$ret = \StatusValue::newGood();
+		$ret = StatusValue::newGood();
 		if ( !$this->loginOnly && $req && $req->username !== null && $req->password !== null ) {
 			if ( $req->password !== $req->retype ) {
 				$ret->fatal( 'badretype' );
@@ -294,7 +302,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 
 	public function beginPrimaryAccountCreation( $user, $creator, array $reqs ) {
 		if ( $this->accountCreationType() === self::TYPE_NONE ) {
-			throw new \BadMethodCallException( 'Shouldn\'t call this when accountCreationType() is NONE' );
+			throw new BadMethodCallException( 'Shouldn\'t call this when accountCreationType() is NONE' );
 		}
 
 		$req = AuthenticationRequest::getRequestByClass( $reqs, PasswordAuthenticationRequest::class );
@@ -314,7 +322,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 
 	public function finishAccountCreation( $user, $creator, AuthenticationResponse $res ) {
 		if ( $this->accountCreationType() === self::TYPE_NONE ) {
-			throw new \BadMethodCallException( 'Shouldn\'t call this when accountCreationType() is NONE' );
+			throw new BadMethodCallException( 'Shouldn\'t call this when accountCreationType() is NONE' );
 		}
 
 		// Now that the user is in the DB, set the password on it.
