@@ -64,7 +64,10 @@ const ItemMenuOptionWidget = function MwRcfiltersUiItemMenuOptionWidget(
 			target: '_blank'
 		} );
 		// Prevent clicks on the help link from toggling the option
-		this.helpLink.$button.on( 'mousedown', ( e ) => e.stopPropagation() );
+		this.helpLink.$button.on( 'mousedown', ( e ) => {
+			e.preventDefault();
+			e.stopImmediatePropagation();
+		} );
 	}
 
 	this.highlightButton = new FilterItemHighlightButton(
