@@ -18,33 +18,39 @@ module.exports = {
 	clearMocks: true,
 
 	// Indicates whether the coverage information should be collected while executing the test
-	collectCoverage: false,
+	collectCoverage: true,
 
 	// An array of glob patterns indicating a set of files for which coverage information should be
 	// collected
-	// collectCoverageFrom: undefined,
+	collectCoverageFrom: [
+		'resources/src/mediawiki.special.block/**/*.{js,vue}'
+	],
 
 	// The directory where Jest should output its coverage files
-	coverageDirectory: 'coverage',
+	// coverageDirectory: 'docs/js/coverage',
 
 	// An array of regexp pattern strings used to skip coverage collection
-	// coveragePathIgnorePatterns: [
-	//   '/node_modules/'
-	// ],
+	coveragePathIgnorePatterns: [
+		'/node_modules/'
+	],
 
 	// Indicates which provider should be used to instrument code for coverage
-	// coverageProvider: "babel",
+	coverageProvider: 'v8',
 
 	// A list of reporter names that Jest uses when writing coverage reports
-	// coverageReporters: [
-	//   'json',
-	//   'text',
-	//   'lcov',
-	//   'clover'
-	// ],
+	coverageReporters: [
+		'text'
+	],
 
 	// An object that configures minimum threshold enforcement for coverage results
-	// coverageThreshold: undefined,
+	coverageThreshold: {
+		'**/mediawiki.special.block/**/*': {
+			statements: 60,
+			branches: 40,
+			functions: 40,
+			lines: 63
+		}
+	},
 
 	// A path to a custom dependency extractor
 	// dependencyExtractor: undefined,
