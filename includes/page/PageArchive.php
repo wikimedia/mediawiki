@@ -23,7 +23,6 @@ namespace MediaWiki\Page;
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
-use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -154,64 +153,6 @@ class PageArchive {
 		$queryBuilder->where( [ 'fa_name' => $this->title->getDBkey() ] )
 			->orderBy( 'fa_timestamp', SelectQueryBuilder::SORT_DESC );
 		return $queryBuilder->caller( __METHOD__ )->fetchResultSet();
-	}
-
-	/**
-	 * Restore the given (or all) text and file revisions for the page.
-	 * Once restored, the items will be removed from the archive tables.
-	 * The deletion log will be updated with an undeletion notice.
-	 *
-	 * @since 1.35
-	 * @deprecated since 1.38, use UndeletePage instead, hard-deprecated since 1.43
-	 *
-	 * @param array $timestamps Pass an empty array to restore all revisions,
-	 *   otherwise list the ones to undelete.
-	 * @param UserIdentity $user
-	 * @param string $comment
-	 * @param array $fileVersions
-	 * @param bool $unsuppress
-	 * @param string|string[]|null $tags Change tags to add to log entry
-	 *   ($user should be able to add the specified tags before this is called)
-	 * @return array|false [ number of file revisions restored, number of image revisions
-	 *   restored, log message ] on success, false on failure.
-	 */
-	public function undeleteAsUser(
-		$timestamps,
-		UserIdentity $user,
-		$comment = '',
-		$fileVersions = [],
-		$unsuppress = false,
-		$tags = null
-	) {
-		wfDeprecated( __METHOD__, '1.43' );
-		$services = MediaWikiServices::getInstance();
-		$page = $services->getWikiPageFactory()->newFromTitle( $this->title );
-		$user = $services->getUserFactory()->newFromUserIdentity( $user );
-		$up = $services->getUndeletePageFactory()->newUndeletePage( $page, $user );
-		if ( is_string( $tags ) ) {
-			$tags = [ $tags ];
-		} elseif ( $tags === null ) {
-			$tags = [];
-		}
-		$status = $up
-			->setUndeleteOnlyTimestamps( $timestamps )
-			->setUndeleteOnlyFileVersions( $fileVersions ?: [] )
-			->setUnsuppress( $unsuppress )
-			->setTags( $tags ?: [] )
-			->undeleteUnsafe( $comment );
-		// BC with old return format
-		if ( $status->isGood() ) {
-			$restoredRevs = $status->getValue()[UndeletePage::REVISIONS_RESTORED];
-			$restoredFiles = $status->getValue()[UndeletePage::FILES_RESTORED];
-			if ( $restoredRevs === 0 && $restoredFiles === 0 ) {
-				$ret = false;
-			} else {
-				$ret = [ $restoredRevs, $restoredFiles, $comment ];
-			}
-		} else {
-			$ret = false;
-		}
-		return $ret;
 	}
 
 }

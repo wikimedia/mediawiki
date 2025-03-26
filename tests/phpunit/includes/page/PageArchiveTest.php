@@ -10,7 +10,6 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
-use Wikimedia\IPUtils;
 
 /**
  * @group Database
@@ -87,60 +86,6 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 		$this->ipRev = $revisionStore->insertRevisionOn( $rev, $dbw );
 
 		$this->deletePage( $page, '', $user );
-	}
-
-	/**
-	 * @covers \MediaWiki\Page\PageArchive::undeleteAsUser
-	 */
-	public function testUndeleteRevisions() {
-		$this->hideDeprecated( PageArchive::class . '::undeleteAsUser' );
-
-		// TODO: MCR: Test undeletion with multiple slots. Check that slots remain untouched.
-		$revisionStore = $this->getServiceContainer()->getRevisionStore();
-
-		// First make sure old revisions are archived
-		$dbr = $this->getDb();
-		$row = $revisionStore->newArchiveSelectQueryBuilder( $dbr )
-			->joinComment()
-			->where( [ 'ar_rev_id' => $this->ipRev->getId() ] )
-			->caller( __METHOD__ )->fetchRow();
-		$this->assertEquals( $this->ipEditor, $row->ar_user_text );
-
-		// Should not be in revision
-		$row = $dbr->newSelectQueryBuilder()
-			->select( '1' )
-			->from( 'revision' )
-			->where( [ 'rev_id' => $this->ipRev->getId() ] )
-			->fetchRow();
-		$this->assertFalse( $row );
-
-		// Should not be in ip_changes
-		$row = $dbr->newSelectQueryBuilder()
-			->select( '1' )
-			->from( 'ip_changes' )
-			->where( [ 'ipc_rev_id' => $this->ipRev->getId() ] )
-			->fetchRow();
-		$this->assertFalse( $row );
-
-		// Restore the page
-		$archive = new PageArchive( $this->archivedPage );
-		$archive->undeleteAsUser( [], $this->getTestSysop()->getUser() );
-
-		// Should be back in revision
-		$row = $revisionStore->newSelectQueryBuilder( $dbr )
-			->where( [ 'rev_id' => $this->ipRev->getId() ] )
-			->caller( __METHOD__ )->fetchRow();
-		$this->assertNotFalse( $row, 'row exists in revision table' );
-		$this->assertEquals( $this->ipEditor, $row->rev_user_text );
-
-		// Should be back in ip_changes
-		$row = $dbr->newSelectQueryBuilder()
-			->select( [ 'ipc_hex' ] )
-			->from( 'ip_changes' )
-			->where( [ 'ipc_rev_id' => $this->ipRev->getId() ] )
-			->fetchRow();
-		$this->assertNotFalse( $row, 'row exists in ip_changes table' );
-		$this->assertEquals( IPUtils::toHex( $this->ipEditor ), $row->ipc_hex );
 	}
 
 	protected function getExpectedArchiveRows() {
