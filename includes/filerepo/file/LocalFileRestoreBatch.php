@@ -396,7 +396,7 @@ class LocalFileRestoreBatch {
 				->from( 'filerevision' )
 				->where( [ 'fr_file' => $this->file->getFileIdFromName() ] )
 				->orderBy( 'fr_timestamp', 'DESC' )
-				->fetchField();
+				->caller( __METHOD__ )->fetchField();
 			$dbw->newUpdateQueryBuilder()
 				->update( 'file' )
 				->set( [ 'file_latest' => $latestId ] )
