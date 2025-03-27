@@ -1969,7 +1969,9 @@ MESSAGE;
 	 */
 	public static function isValidModuleName( $moduleName ) {
 		$len = strlen( $moduleName );
-		return $len <= 255 && strcspn( $moduleName, '!,|', 0, $len ) === $len;
+		return ( $len <= 255
+			&& strcspn( $moduleName, '!,|', 0, $len ) === $len )
+			&& ( !str_starts_with( $moduleName, "./" ) && !str_starts_with( $moduleName, "../" ) );
 	}
 
 	/**

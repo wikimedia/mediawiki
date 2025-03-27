@@ -121,6 +121,13 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		$resourceLoader->register( 'test!invalid', [] );
 	}
 
+	public function testRegisterInvalidNameStartingWithDot() {
+		$resourceLoader = new EmptyResourceLoader();
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( "name '../test' is invalid" );
+		$resourceLoader->register( '../test', [] );
+	}
+
 	public function testRegisterInvalidType() {
 		$resourceLoader = new EmptyResourceLoader();
 		$this->expectException( InvalidArgumentException::class );
