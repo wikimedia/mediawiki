@@ -126,6 +126,17 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 	 * @inheritDoc
 	 */
 	public function execute( $par ) {
+		$request = $this->getRequest();
+		$target = $request->getText( 'target' );
+
+		if ( $target !== '' ) {
+			// Update the value in the request so that code reading it
+			// directly form the request gets the trimmed value (T378279).
+			$request->setVal( 'target', trim( $target ) );
+		}
+
+		$target = trim( $par ?? $target );
+
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->checkPermissions();
@@ -143,11 +154,6 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 			'mediawiki.page.ready'
 		] );
 		$this->addHelpLink( 'Help:User contributions' );
-
-		$request = $this->getRequest();
-
-		$target = $par ?? $request->getVal( 'target', '' );
-		'@phan-var string $target'; // getVal does not return null here
 
 		// Normalize underscores that may be present in the target parameter
 		// if it was passed in as a path param, rather than a query param

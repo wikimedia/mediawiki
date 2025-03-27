@@ -106,6 +106,48 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 		$this->assertStringContainsString( 'mw-pager-body', $html );
 	}
 
+	/**
+	 * @dataProvider executeForUserWithWhitespacesDataProvider
+	 */
+	public function testExecuteForUserWithWhitespaces(
+		string $expected,
+		string $target
+	): void {
+		[ $html ] = $this->executeSpecialPage( $target );
+
+		// Assert that the Javascript code in the page contains the quoted
+		// username with the whitespaces removed.
+		$this->assertStringContainsString(
+			sprintf( '"%s"', $expected ),
+			$html
+		);
+	}
+
+	public function executeForUserWithWhitespacesDataProvider(): array {
+		return [
+			'With an empty target' => [
+				'expected' => '',
+				'target' => ''
+			],
+			'With a target with no whitespaces' => [
+				'expected' => 'TopUser',
+				'target' => 'TopUser'
+			],
+			'With a target with leading whitespaces' => [
+				'expected' => 'TopUser',
+				'target' => ' TopUser'
+			],
+			'With a target with trailing whitespaces' => [
+				'expected' => 'TopUser',
+				'target' => 'TopUser '
+			],
+			'With a target with whitespaces at both sides' => [
+				'expected' => 'TopUser',
+				'target' => ' TopUser '
+			],
+		];
+	}
+
 	public function testExecuteEmptyTarget() {
 		[ $html ] = $this->executeSpecialPage();
 		// This 'topOnly' filter should always be added to Special:Contributions
