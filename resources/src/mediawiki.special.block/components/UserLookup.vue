@@ -5,8 +5,10 @@
 		:status="status"
 		:messages="messages"
 	>
+		<!-- eslint-disable vue/no-unused-refs -->
 		<cdx-lookup
 			id="mw-bi-target"
+			ref="lookupComponent"
 			v-model:selected="selection"
 			v-model:input-value="currentSearchTerm"
 			class="mw-block-target"
@@ -22,6 +24,7 @@
 			@update:selected="onSelect"
 		>
 		</cdx-lookup>
+		<!-- eslint-enable vue/no-unused-refs -->
 		<template #label>
 			{{ $i18n( 'block-target' ).text() }}
 		</template>
@@ -40,6 +43,7 @@ const {
 	onMounted,
 	ref,
 	shallowRef,
+	useTemplateRef,
 	watch,
 	DefineSetupFnComponent,
 	Ref
@@ -79,19 +83,75 @@ module.exports = exports = defineComponent( {
 		 * @type {Ref<number>}
 		 */
 		const refreshKey = ref( 0 );
+		/**
+		 * Reference to the lookup component.
+		 *
+		 * @type {Ref<CdxLookup>}
+		 */
+		const lookupComponent = useTemplateRef( 'lookupComponent' );
+		/**
+		 * Codex Lookup component requires a v-modeled `selected` prop.
+		 * Until a selection is made, the value may be set to null.
+		 * We instead want to only update the targetUser for non-null values
+		 * (made either via selection, or the 'change' event).
+		 * @type {Ref<string>}
+		 */
+		const selection = ref( props.modelValue || '' );
+		/**
+		 * This is the source of truth for what should be the target user,
+		 * but it should only change on 'change' or 'select' events,
+		 * otherwise we'd fire off API queries for the block log unnecessarily.
+		 *
+		 * @type {Ref<string>}
+		 */
+		const currentSearchTerm = ref(
+			props.modelValue || mw.config.get( 'blockTargetUserInput' ) || ''
+		);
+		/**
+		 * Menu items for the Lookup component.
+		 *
+		 * @type {Ref<Object[]>}
+		 */
+		const menuItems = ref( [] );
+		/**
+		 * Error status of the field.
+		 *
+		 * @type {Ref<string>}
+		 */
+		const status = ref( 'default' );
+		/**
+		 * Error messages for the field.
+		 *
+		 * @type {Ref<Object>}
+		 */
+		const messages = ref( {} );
+
 		let htmlInput;
+
+		// Set a flag to keep track of pending API requests, so we can abort if
+		// the target string changes
+		let pending = false;
 
 		onMounted( () => {
 			// Get the input element.
-			htmlInput = document.querySelector( 'input[name="wpTarget"]' );
+			htmlInput = document.getElementById( 'mw-bi-target' );
 
 			// Focus the input on mount if there's no initial value.
 			if ( !targetUser.value ) {
 				htmlInput.focus();
 			}
 
-			// Ensure error messages are displayed for missing users.
-			if ( !!targetUser.value && !store.targetExists ) {
+			// If at this point the targetUser (set by server) is different from
+			// the htmlInput value, the user has typed in something before Vue was loaded.
+			// Trigger a new search and open the result menu.
+			if ( htmlInput.value && htmlInput.value !== targetUser.value ) {
+				onInput( htmlInput.value ).then( () => {
+					if ( menuItems.value.length > 0 ) {
+						lookupComponent.value.expanded = true;
+					}
+				} );
+			} else if ( !!targetUser.value && !store.targetExists ) {
+				// Ensure error messages are displayed for missing users.
 				validate();
 			}
 
@@ -112,25 +172,6 @@ module.exports = exports = defineComponent( {
 			 */
 			mw.hook( 'codex.userlookup' ).fire( customComponents );
 		} );
-
-		// Set a flag to keep track of pending API requests, so we can abort if
-		// the target string changes
-		let pending = false;
-
-		// Codex Lookup component requires a v-modeled `selected` prop.
-		// Until a selection is made, the value may be set to null.
-		// We instead want to only update the targetUser for non-null values
-		// (made either via selection, or the 'change' event).
-		const selection = ref( props.modelValue || '' );
-		// This is the source of truth for what should be the target user,
-		// but it should only change on 'change' or 'select' events,
-		// otherwise we'd fire off API queries for the block log unnecessarily.
-		const currentSearchTerm = ref(
-			props.modelValue || mw.config.get( 'blockTargetUserInput' ) || ''
-		);
-		const menuItems = ref( [] );
-		const status = ref( 'default' );
-		const messages = ref( {} );
 
 		watch( targetUser, ( newValue ) => {
 			if ( newValue ) {
@@ -162,6 +203,7 @@ module.exports = exports = defineComponent( {
 		 * Handle lookup input.
 		 *
 		 * @param {string} value
+		 * @return {Promise}
 		 */
 		function onInput( value ) {
 			// Abort any existing request if one is still pending
@@ -176,10 +218,10 @@ module.exports = exports = defineComponent( {
 			// Do nothing if we have no input.
 			if ( !value ) {
 				menuItems.value = [];
-				return;
+				return Promise.resolve();
 			}
 
-			fetchResults( value )
+			return fetchResults( value )
 				.then( ( data ) => {
 					pending = false;
 

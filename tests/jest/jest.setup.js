@@ -32,6 +32,7 @@ config.global.directives = {
 };
 
 function ApiMock() {}
+ApiMock.prototype.abort = jest.fn();
 ApiMock.prototype.get = jest.fn();
 ApiMock.prototype.post = jest.fn();
 ApiMock.prototype.postWithEditToken = jest.fn();
