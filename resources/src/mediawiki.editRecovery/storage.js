@@ -74,6 +74,7 @@ function loadData( pageName, section ) {
 	return new Promise( ( resolve, reject ) => {
 		if ( !db ) {
 			reject( 'DB not opened' );
+			return;
 		}
 		const transaction = db.transaction( objectStoreName, 'readonly' );
 		const key = [ pageName, section || '' ];
@@ -96,6 +97,7 @@ function loadAllData() {
 	return new Promise( ( resolve, reject ) => {
 		if ( !db ) {
 			reject( 'DB not opened' );
+			return;
 		}
 		const transaction = db.transaction( objectStoreName, 'readonly' );
 		const requestAll = transaction
@@ -120,6 +122,7 @@ function saveData( pageName, section, pageData ) {
 	return new Promise( ( resolve, reject ) => {
 		if ( !db ) {
 			reject( 'DB not opened' );
+			return;
 		}
 
 		// Add indexed fields.
@@ -152,6 +155,7 @@ function deleteData( pageName, section ) {
 	return new Promise( ( resolve, reject ) => {
 		if ( !db ) {
 			reject( 'DB not opened' );
+			return;
 		}
 
 		const transaction = db.transaction( objectStoreName, 'readwrite' );
@@ -188,6 +192,7 @@ function deleteExpiredData() {
 	return new Promise( ( resolve, reject ) => {
 		if ( !db ) {
 			reject( 'DB not opened' );
+			return;
 		}
 
 		const transaction = db.transaction( objectStoreName, 'readwrite' );
