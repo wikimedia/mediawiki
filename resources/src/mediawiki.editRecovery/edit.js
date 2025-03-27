@@ -1,8 +1,8 @@
 /**
  * In-progress edit recovery for action=edit
+ *
+ * @ignore
  */
-'use strict';
-
 const storage = require( './storage.js' );
 const LoadNotification = require( './LoadNotification.js' );
 
@@ -24,7 +24,7 @@ const isOldRevision = $( 'input[name="oldid"]' ).val() > 0;
 const isConflict = mw.config.get( 'wgEditMessage' ) === 'editconflict';
 const useEditRecovery = !isUndo && !isOldRevision && !isConflict;
 if ( useEditRecovery ) {
-	mw.hook( 'wikipage.editform' ).add( onLoadHandler );
+	mw.hook( 'wikipage.editform' ).add( init );
 } else {
 	// Always remove the data-saved flag when editing without Edit Recovery.
 	// It may have been set by a previous editing session (within 5 minutes) that did use ER.
@@ -34,8 +34,14 @@ if ( useEditRecovery ) {
 const windowManager = OO.ui.getWindowManager();
 windowManager.addWindows( [ new mw.widgets.AbandonEditDialog() ] );
 
-function onLoadHandler( $editForm ) {
-	mw.hook( 'wikipage.editform' ).remove( onLoadHandler );
+/**
+ * Initialise when the wikipage.editform hook first fires
+ *
+ * @ignore
+ * @param {jQuery} $editForm
+ */
+function init( $editForm ) {
+	mw.hook( 'wikipage.editform' ).remove( init );
 
 	// Monitor all text-entry inputs for changes/typing.
 	const inputsToMonitorSelector = 'textarea, select, input:not([type="hidden"], [type="submit"])';
@@ -91,7 +97,7 @@ function onLoadHandler( $editForm ) {
 	storage.openDatabase().then( () => {
 		// Check for and delete any expired data for any page, before loading any saved data for the current page.
 		storage.deleteExpiredData().then( () => {
-			storage.loadData( pageName, section ).then( onLoadData );
+			storage.loadData( pageName, section ).then( loadDataSuccess );
 		} );
 	} );
 
@@ -100,7 +106,7 @@ function onLoadHandler( $editForm ) {
 	cancelButton.on( 'click', () => {
 		windowManager.openWindow( 'abandonedit' ).closed.then( ( data ) => {
 			if ( data && data.action === 'discard' ) {
-				// Note that originalData is used below in onLoadData() but that's always called before this method.
+				// Note that originalData is used below in loadDataSuccess() but that's always called before this method.
 				// Here we set originalData to null in order to signal to saveFormData() to deleted the stored data.
 				originalData = null;
 				storage.deleteData( pageName, section ).finally( () => {
@@ -115,7 +121,13 @@ function onLoadHandler( $editForm ) {
 	} );
 }
 
-function onLoadData( pageData ) {
+/**
+ * loadData promise resolved successfully
+ *
+ * @ignore
+ * @param {Object|undefined} pageData Page data, undefined if none found
+ */
+function loadDataSuccess( pageData ) {
 	if ( wasPosted ) {
 		// If this is a POST request, save the current data (e.g. from a preview).
 		saveFormData();
@@ -133,7 +145,7 @@ function onLoadData( pageData ) {
 		const notification = loadNotification.getNotification();
 		// On 'restore changes'.
 		loadNotification.getRecoverButton().on( 'click', () => {
-			loadData( pageData );
+			recover( pageData );
 			notification.close();
 			// statsv: Track the number of times the edit recovery data is recovered.
 			mw.track( `counter.MediaWiki.edit_recovery.recover.by_wiki.${ wiki }` );
@@ -177,7 +189,13 @@ function onLoadData( pageData ) {
 	mw.hook( 'editRecovery.loadEnd' ).fire( { fieldChangeHandler: fieldChangeHandler } );
 }
 
-function loadData( pageData ) {
+/**
+ * Recover specified page data
+ *
+ * @ignore
+ * @param {Object} pageData Page data
+ */
+function recover( pageData ) {
 	for ( const fieldName in inputFields ) {
 		if ( pageData[ fieldNamePrefix + fieldName ] === undefined ) {
 			return;
@@ -202,6 +220,11 @@ function loadData( pageData ) {
 	}
 }
 
+/**
+ * Handle an edit form field changing
+ *
+ * @ignore
+ */
 function fieldChangeHandler() {
 	clearTimeout( changeDebounceTimer );
 	changeDebounceTimer = setTimeout( saveFormData, debounceTime );
@@ -236,6 +259,11 @@ function isSameAsOriginal( pageData, ignoreRevIds = false ) {
 	return true;
 }
 
+/**
+ * Save the current edit form state in the storage backend
+ *
+ * @ignore
+ */
 function saveFormData() {
 	const pageData = getFormData();
 	if ( ( originalData === null || isSameAsOriginal( pageData ) ) && !wasPosted ) {
