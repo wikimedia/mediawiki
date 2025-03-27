@@ -9,11 +9,9 @@ const objectStoreName = 'unsaved-page-data';
 
 let db = null;
 
-// TODO: Document Promise objects as native promises, not jQuery ones.
-
 /**
  * @ignore
- * @return {jQuery.Promise} Promise which resolves on success
+ * @return {Promise} Promise which resolves on success
  */
 function openDatabaseLocal() {
 	return new Promise( ( resolve, reject ) => {
@@ -32,7 +30,7 @@ function openDatabaseLocal() {
 
 /**
  * @private
- * @param {Object} versionChangeEvent
+ * @param {IDBVersionChangeEvent} versionChangeEvent
  */
 function upgradeDatabase( versionChangeEvent ) {
 	const keyPathParts = [ 'pageName', 'section' ];
@@ -70,7 +68,7 @@ function upgradeDatabase( versionChangeEvent ) {
  * @ignore
  * @param {string} pageName The current page name (with underscores)
  * @param {string|null} section The section ID, or null if the whole page is being edited
- * @return {jQuery.Promise} Promise which resolves with the page data on success, or rejects with an error message.
+ * @return {Promise<object|undefined>} Promise which resolves with the page data on success, or rejects with an error message.
  */
 function loadData( pageName, section ) {
 	return new Promise( ( resolve, reject ) => {
@@ -88,6 +86,12 @@ function loadData( pageName, section ) {
 	} );
 }
 
+/**
+ * Load data realting to all saved sessions
+ *
+ * @ignore
+ * @return {Promise<Object[]>}
+ */
 function loadAllData() {
 	return new Promise( ( resolve, reject ) => {
 		if ( !db ) {
@@ -110,7 +114,7 @@ function loadAllData() {
  * @param {string} pageName The current page name (with underscores)
  * @param {string|null} section The section ID, or null if the whole page is being edited
  * @param {Object} pageData The page data to save
- * @return {jQuery.Promise} Promise which resolves on success, or rejects with an error message.
+ * @return {Promise} Promise which resolves on success, or rejects with an error message.
  */
 function saveData( pageName, section, pageData ) {
 	return new Promise( ( resolve, reject ) => {
@@ -142,7 +146,7 @@ function saveData( pageName, section, pageData ) {
  * @ignore
  * @param {string} pageName The current page name (with underscores)
  * @param {string|null} section The section ID, or null if the whole page is being edited
- * @return {jQuery.Promise} Promise which resolves on success, or rejects with an error message.
+ * @return {Promise} Promise which resolves on success, or rejects with an error message.
  */
 function deleteData( pageName, section ) {
 	return new Promise( ( resolve, reject ) => {
@@ -176,7 +180,7 @@ function getExpiryDate( diff ) {
  * Delete expired data
  *
  * @ignore
- * @return {jQuery.Promise} Promise which resolves on success, or rejects with an error message.
+ * @return {Promise} Promise which resolves on success, or rejects with an error message.
  */
 function deleteExpiredData() {
 	return new Promise( ( resolve, reject ) => {
