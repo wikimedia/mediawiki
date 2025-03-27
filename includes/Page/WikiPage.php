@@ -137,7 +137,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	private $mLastRevision = null;
 
 	/**
-	 * @var string Timestamp of the current revision or empty string if not loaded
+	 * @var string Timestamp of the latest revision or empty string if not loaded
 	 */
 	protected $mTimestamp = '';
 
@@ -689,7 +689,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	/**
 	 * Get the page_latest field
 	 * @param string|false $wikiId
-	 * @return int The rev_id of current revision
+	 * @return int The rev_id of latest revision
 	 */
 	public function getLatest( $wikiId = self::LOCAL ) {
 		$this->assertWiki( $wikiId );
@@ -731,7 +731,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 			$revision = $this->getRevisionStore()
 				->getRevisionByPageId( $this->getId(), $latest, IDBAccessObject::READ_LATEST );
 		} else {
-			$revision = $this->getRevisionStore()->getKnownCurrentRevision( $this->getTitle(), $latest );
+			$revision = $this->getRevisionStore()->getKnownLatestRevision( $this->getTitle(), $latest );
 		}
 
 		if ( $revision ) {
@@ -760,7 +760,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	}
 
 	/**
-	 * Get the content of the current revision. No side-effects...
+	 * Get the content of the latest revision. No side-effects...
 	 *
 	 * @param int $audience One of:
 	 *   RevisionRecord::FOR_PUBLIC       to be displayed to all users
@@ -768,7 +768,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 *   RevisionRecord::RAW              get the text regardless of permissions
 	 * @param Authority|null $performer object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter
-	 * @return Content|null The content of the current revision
+	 * @return Content|null The content of the latest revision
 	 *
 	 * @since 1.21
 	 */
@@ -1111,7 +1111,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 * @since 1.19
 	 * @param ParserOptions|null $parserOptions ParserOptions to use for the parse operation
 	 * @param null|int $oldid Revision ID to get the text from, passing null or 0 will
-	 *   get the current revision (default value)
+	 *   get the latest revision (default value)
 	 * @param bool $noCache Do not read from or write to caches.
 	 * @return ParserOutput|false ParserOutput or false if the revision was not found or is not public
 	 */
@@ -1402,7 +1402,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 * or 'new' for a new section.
 	 * @param Content $sectionContent New content of the section.
 	 * @param string $sectionTitle New section's subject, only if $section is "new".
-	 * @param string|null $edittime Revision timestamp or null to use the current revision.
+	 * @param string|null $edittime Revision timestamp or null to use the latest revision.
 	 *
 	 * @return Content|null New complete article content, or null if error.
 	 *

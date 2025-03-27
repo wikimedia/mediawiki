@@ -615,7 +615,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	}
 
 	/**
-	 * Checks whether the revision record is a stored current revision.
+	 * Checks whether the revision record is a stored latest revision.
 	 * @since 1.35
 	 * @return bool
 	 */

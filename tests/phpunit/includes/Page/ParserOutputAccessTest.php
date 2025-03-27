@@ -553,11 +553,11 @@ class ParserOutputAccessTest extends ParserCacheTestBase {
 
 		$revisionStore = $this->createNoOpMock(
 			RevisionStore::class,
-			[ 'getRevisionByTitle', 'getKnownCurrentRevision', 'getRevisionById' ]
+			[ 'getRevisionByTitle', 'getKnownLatestRevision', 'getRevisionById' ]
 		);
 		$revisionStore->method( 'getRevisionById' )->willReturn( null );
 		$revisionStore->method( 'getRevisionByTitle' )->willReturn( null );
-		$revisionStore->method( 'getKnownCurrentRevision' )->willReturn( false );
+		$revisionStore->method( 'getKnownLatestRevision' )->willReturn( false );
 		$this->setService( 'RevisionStore', $revisionStore );
 		$this->setService( 'RevisionLookup', $revisionStore );
 

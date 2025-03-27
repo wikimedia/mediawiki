@@ -504,7 +504,7 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
-	 * Get the ID of new revision (right pane) of the diff. 0 for the current revision,
+	 * Get the ID of new revision (right pane) of the diff. 0 for the latest revision,
 	 * false if the new revision does not exist, null if it's unsaved.
 	 * To get a real revision ID instead of 0, call loadRevisionData() first.
 	 * @return int|false|null
@@ -2189,7 +2189,7 @@ class DifferenceEngine extends ContextSource {
 
 	/**
 	 * Load revision metadata for the specified revisions. If newid is 0, then compare
-	 * the old revision in oldid to the current revision of the current page (as defined
+	 * the old revision in oldid to the latest revision of the current page (as defined
 	 * by the request context); if oldid is 0, then compare the revision in newid to the
 	 * immediately previous one.
 	 *

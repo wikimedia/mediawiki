@@ -189,13 +189,13 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 		if ( $this->mIsBackwards ) {
 			// Fetch the file history
 			$this->mHist = $this->mImg->getHistory( $queryLimit, null, $this->mOffset, false );
-			// The current rev may not meet the offset/limit
+			// The latest revision may not meet the offset/limit
 			$numRows = count( $this->mHist );
 			if ( $numRows <= $this->mLimit && $this->mImg->getTimestamp() > $this->mOffset ) {
 				array_unshift( $this->mHist, $this->mImg );
 			}
 		} else {
-			// The current rev may not meet the offset
+			// The latest revision may not meet the offset
 			if ( !$this->mOffset || $this->mImg->getTimestamp() < $this->mOffset ) {
 				$this->mHist[] = $this->mImg;
 			}

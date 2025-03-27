@@ -78,7 +78,7 @@ class Article implements Page {
 
 	/**
 	 * @var int|null The oldid of the article that was requested to be shown,
-	 * 0 for the current revision.
+	 * 0 for the latest revision.
 	 */
 	public $mOldId;
 
@@ -1428,7 +1428,7 @@ class Article implements Page {
 		if ( $this->mRevisionRecord
 			&& !RecentChange::isInRCLifespan( $this->mRevisionRecord->getTimestamp(), 21600 )
 		) {
-			// The current revision is already older than what could be in the RC table
+			// The latest revision is already older than what could be in the RC table
 			// 6h tolerance because the RC might not be cleaned out regularly
 			return false;
 		}
@@ -1813,7 +1813,7 @@ class Article implements Page {
 	/**
 	 * Generate the navigation links when browsing through an article revisions
 	 * It shows the information as:
-	 *   Revision as of \<date\>; view current revision
+	 *   Revision as of \<date\>; view latest revision
 	 *   \<- Previous version | Next Version -\>
 	 *
 	 * @param int $oldid Revision ID of this article revision

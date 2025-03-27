@@ -1582,7 +1582,7 @@ class CoreParserFunctions {
 			// describe the actual current behavior of this code, since
 			// ->isCurrent() for the last saved revision will return
 			// false so we're going to fall through and end up calling
-			// ->getCurrentRevisionRecordOfTitle().
+			// ->fetchCurrentRevisionRecordOfTitle().
 			$parserRevisionRecord = $parser->getRevisionRecordObject();
 			if ( $parserRevisionRecord && $parserRevisionRecord->isCurrent() ) {
 				$revisionRecord = $parserRevisionRecord;

@@ -183,26 +183,26 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::grabCurrentRevision()
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::grabLatestRevision()
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::pageExisted()
 	 */
 	public function testGrabCurrentRevision() {
 		$page = $this->getPage( __METHOD__ );
 
 		$updater0 = $this->getDerivedPageDataUpdater( $page );
-		$this->assertNull( $updater0->grabCurrentRevision() );
+		$this->assertNull( $updater0->grabLatestRevision() );
 		$this->assertFalse( $updater0->pageExisted() );
 
 		$rev1 = $this->createRevision( $page, 'first' );
 		$updater1 = $this->getDerivedPageDataUpdater( $page );
-		$this->assertSame( $rev1->getId(), $updater1->grabCurrentRevision()->getId() );
+		$this->assertSame( $rev1->getId(), $updater1->grabLatestRevision()->getId() );
 		$this->assertFalse( $updater0->pageExisted() );
 		$this->assertTrue( $updater1->pageExisted() );
 
 		$rev2 = $this->createRevision( $page, 'second' );
 		$updater2 = $this->getDerivedPageDataUpdater( $page );
-		$this->assertSame( $rev1->getId(), $updater1->grabCurrentRevision()->getId() );
-		$this->assertSame( $rev2->getId(), $updater2->grabCurrentRevision()->getId() );
+		$this->assertSame( $rev1->getId(), $updater1->grabLatestRevision()->getId() );
+		$this->assertSame( $rev2->getId(), $updater2->grabLatestRevision()->getId() );
 	}
 
 	/**
@@ -252,7 +252,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		// second be ok to call again with the same params
 		$updater->prepareContent( $sysop, $update, false );
 
-		$this->assertNull( $updater->grabCurrentRevision() );
+		$this->assertNull( $updater->grabLatestRevision() );
 		$this->assertTrue( $updater->isContentPrepared() );
 		$this->assertFalse( $updater->isUpdatePrepared() );
 		$this->assertFalse( $updater->pageExisted() );
@@ -323,7 +323,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$updater1 = $this->getDerivedPageDataUpdater( $page );
 		$updater1->prepareContent( $sysop, $update, false );
 
-		$this->assertNotNull( $updater1->grabCurrentRevision() );
+		$this->assertNotNull( $updater1->grabLatestRevision() );
 		$this->assertTrue( $updater1->isContentPrepared() );
 		$this->assertTrue( $updater1->pageExisted() );
 		$this->assertFalse( $updater1->isCreation() );
@@ -469,7 +469,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 			'editResult' => $editResult,
 			'changed' => false
 		];
-		$updater1->grabCurrentRevision();
+		$updater1->grabLatestRevision();
 		$updater1->prepareContent(
 			$rev1->getUser(),
 			RevisionSlotsUpdate::newFromContent( [

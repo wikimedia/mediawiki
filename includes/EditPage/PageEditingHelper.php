@@ -199,7 +199,7 @@ class PageEditingHelper {
 	 * Returns the RevisionRecord corresponding to the revision that was current at the time
 	 * editing was initiated on the client even if the edit was based on an old revision
 	 *
-	 * @return ?RevisionRecord Current revision when editing was initiated on the client
+	 * @return ?RevisionRecord Latest revision when editing was initiated on the client
 	 */
 	public function getExpectedParentRevision(
 		?int $editRevId,

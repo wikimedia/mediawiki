@@ -209,7 +209,7 @@ class CacheTime implements ParserCacheMetadata, JsonCodecable {
 	 * deployed. Someday that should probably be changed.
 	 *
 	 * @since 1.23
-	 * @param int $id The affected article's current revision id
+	 * @param int $id The affected article's latest revision id
 	 * @return bool
 	 */
 	public function isDifferentRevision( $id ) {

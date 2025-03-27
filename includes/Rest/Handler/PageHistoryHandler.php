@@ -473,7 +473,7 @@ class PageHistoryHandler extends SimpleHandler {
 			return null;
 		}
 
-		$rev = $this->revisionStore->getKnownCurrentRevision( $page );
+		$rev = $this->revisionStore->getKnownLatestRevision( $page );
 		return $rev->getTimestamp();
 	}
 

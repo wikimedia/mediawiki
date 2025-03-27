@@ -377,7 +377,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$revisionStore = $this->createMock( RevisionStore::class );
 
 		$revisionStore
-			->method( 'getKnownCurrentRevision' )
+			->method( 'getKnownLatestRevision' )
 			->willReturnMap( [
 				[ $title, 100, $oldRevision ],
 				[ $title, 200, $currentRevision ],

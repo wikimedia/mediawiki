@@ -76,7 +76,7 @@ class TalkPageNotificationManager {
 	 *
 	 * @param UserIdentity $user
 	 * @param RevisionRecord|null $oldRev If it is an old revision view, the
-	 *   old revision. If it is a current revision view, this should be null.
+	 *   old revision. If it is a latest revision view, this should be null.
 	 */
 	public function clearForPageView(
 		UserIdentity $user,

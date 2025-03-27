@@ -131,7 +131,7 @@ class RevisionStoreRecord extends RevisionRecord {
 	 */
 	public function isDeleted( $field ) {
 		if ( $this->isCurrent() && $field === self::DELETED_TEXT ) {
-			// Current revisions of pages cannot have the content hidden. Skipping this
+			// Latest revisions of pages cannot have the content hidden. Skipping this
 			// check is very useful for Parser as it fetches templates using newKnownCurrent().
 			// Calling getVisibility() in that case triggers a verification database query.
 			return false; // no need to check
@@ -143,7 +143,7 @@ class RevisionStoreRecord extends RevisionRecord {
 	/** @inheritDoc */
 	public function userCan( $field, Authority $performer ) {
 		if ( $this->isCurrent() && $field === self::DELETED_TEXT ) {
-			// Current revisions of pages cannot have the content hidden. Skipping this
+			// Latest revisions of pages cannot have the content hidden. Skipping this
 			// check is very useful for Parser as it fetches templates using newKnownCurrent().
 			// Calling getVisibility() in that case triggers a verification database query.
 			return true; // no need to check

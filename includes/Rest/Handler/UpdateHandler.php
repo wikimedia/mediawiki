@@ -182,7 +182,7 @@ class UpdateHandler extends EditHandler {
 	 *
 	 * The resulting array contains the following keys:
 	 * - base: revision ID of the base revision
-	 * - current: revision ID of the current revision (new base after resolving the conflict)
+	 * - current: revision ID of the latest revision (new base after resolving the conflict)
 	 * - local: the difference between the content submitted and the base revision
 	 * - remote: the difference between the latest revision of the page and the base revision
 	 *

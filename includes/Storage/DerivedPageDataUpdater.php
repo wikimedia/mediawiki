@@ -74,7 +74,7 @@ use Wikimedia\Timestamp\TimestampFormat as TS;
  * on the way to a more complete refactoring of WikiPage.
  *
  * When using a DerivedPageDataUpdater, the following life cycle must be observed:
- * grabCurrentRevision (optional), prepareContent (optional), prepareUpdate (required
+ * grabLatestRevision (optional), prepareContent (optional), prepareUpdate (required
  * for doUpdates). getCanonicalParserOutput, getSlots, and getSecondaryDataUpdates
  * require prepareContent or prepareUpdate to have been called first, to initialize the
  * DerivedPageDataUpdater.
@@ -132,8 +132,8 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 
 	/**
 	 * The state of the relevant row in page table before the edit.
-	 * This is determined by the first call to grabCurrentRevision, prepareContent,
-	 * or prepareUpdate (so it is only accessible in 'knows-current' or a later stage).
+	 * This is determined by the first call to grabLatestRevision(), prepareContent(),
+	 * or prepareUpdate() (so it is only accessible in 'knows-current' or a later stage).
 	 * If pageState was not initialized when prepareUpdate() is called, prepareUpdate() will
 	 * attempt to emulate the state of the page table before the edit.
 	 *
@@ -433,10 +433,10 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 
 	/**
 	 * Determines whether the page being edited already existed.
-	 * Only defined after calling grabCurrentRevision() or prepareContent() or prepareUpdate()!
+	 * Only defined after calling grabLatestRevision() or prepareContent() or prepareUpdate()!
 	 *
 	 * @return bool
-	 * @throws LogicException if called before grabCurrentRevision
+	 * @throws LogicException if called before grabLatestRevision()
 	 */
 	public function pageExisted() {
 		$this->assertHasPageState( __METHOD__ );
@@ -461,7 +461,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		}
 
 		if ( !$this->pageState['oldId'] ) {
-			// If there was no current revision, there is no parent revision,
+			// If there was no latest revision, there is no parent revision,
 			// since the page didn't exist.
 			return null;
 		}
@@ -476,7 +476,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	}
 
 	/**
-	 * Returns the revision that was the page's current revision when grabCurrentRevision()
+	 * Returns the revision that was the page's latest revision when grabLatestRevision()
 	 * was first called.
 	 *
 	 * @return RevisionRecord|null the original revision before the update, or null
@@ -488,7 +488,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	}
 
 	/**
-	 * Returns the revision that was the page's current revision when grabCurrentRevision()
+	 * Returns the revision that was the page's latest revision when grabLatestRevision()
 	 * was first called.
 	 *
 	 * During an edit, that revision will act as the logical parent of the new revision.
@@ -498,16 +498,17 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 *
 	 * @see docs/pageupdater.md for more information on when thie method can and should be called.
 	 *
-	 * @note After prepareUpdate() was called, grabCurrentRevision() will throw an exception
-	 * to avoid confusion, since the page's current revision is then the new revision after
+	 * @note After prepareUpdate() was called, grabLatestRevision() will throw an exception
+	 * to avoid confusion, since the page's latest revision is then the new revision after
 	 * the edit, which was presumably passed to prepareUpdate() as the $revision parameter.
 	 * Use getParentRevision() instead to access the revision that is the parent of the
 	 * new revision.
 	 *
-	 * @return RevisionRecord|null the page's current revision, or null if the page does not
+	 * @return RevisionRecord|null the page's latest revision, or null if the page does not
 	 * yet exist.
+	 * @since 1.46
 	 */
-	public function grabCurrentRevision() {
+	public function grabLatestRevision() {
 		if ( $this->pageState ) {
 			return $this->pageState['oldRevision'];
 		}
@@ -533,6 +534,14 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		$this->doTransition( 'knows-current' );
 
 		return $this->pageState['oldRevision'];
+	}
+
+	/**
+	 * @return RevisionRecord|null
+	 * @deprecated Since 1.46; use grabLatestRevision() instead
+	 */
+	public function grabCurrentRevision() {
+		return $this->grabLatestRevision();
 	}
 
 	/**
@@ -615,8 +624,8 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		}
 
 		if ( $this->isContentDeleted() ) {
-			// This should be irrelevant: countability only applies to the current revision,
-			// and the current revision is never suppressed.
+			// This should be irrelevant: countability only applies to the latest revision,
+			// and the latest revision is never suppressed.
 			return false;
 		}
 
@@ -631,7 +640,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			// whether it has links, and use that information with that slot's
 			// isCountable() method. However, that would break parity with
 			// WikiPage::isCountable, which uses the pagelinks table to determine
-			// whether the current revision has links.
+			// whether the latest revision has links.
 			$hasLinks = $this->getParserOutputForMetaData()->hasLinks();
 		}
 
@@ -725,7 +734,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		$wikiPage = $this->getWikiPage(); // TODO: use only for legacy hooks!
 		$title = $this->getTitle();
 
-		$parentRevision = $this->grabCurrentRevision();
+		$parentRevision = $this->grabLatestRevision();
 
 		// The edit may have already been prepared via api.php?action=stashedit
 		$stashedEdit = false;
@@ -889,7 +898,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	private function assertHasPageState( string $method ) {
 		if ( !$this->pageState ) {
 			throw new LogicException(
-				'Must call grabCurrentRevision() or prepareContent() '
+				'Must call grabLatestRevision() or prepareContent() '
 				. 'or prepareUpdate() before calling ' . $method
 			);
 		}
@@ -922,9 +931,9 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	}
 
 	/**
-	 * Whether the content of the current revision after the edit is different from the content of the
-	 * current revision before the edit. This will return false for a null-edit (no revision created),
-	 * as well as for a dummy revision (a revision that has the same content as its parent).
+	 * Whether the content of the latest revision after the edit is different from the content
+	 * of the latest revision before the edit. This will return false for a null-edit (no revision
+	 * created), as well as for a dummy revision (a revision with the same content as its parent).
 	 *
 	 * @warning at present, dummy revision would return false after prepareContent(),
 	 * but true after prepareUpdate()!
@@ -1033,9 +1042,9 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 * $options are only used for the first call. Calling this method multiple times with
 	 * different revisions will cause an exception.
 	 *
-	 * @note If grabCurrentRevision() (or prepareContent()) has been called before
+	 * @note If grabLatestRevision() (or prepareContent()) has been called before
 	 * calling this method, $revision->getParentRevision() has to refer to the revision that
-	 * was the current revision at the time grabCurrentRevision() was called.
+	 * was the latest revision at the time grabLatestRevision() was called.
 	 *
 	 * @param RevisionRecord $revision
 	 * @param array $options Array of options. Supports the flags defined by
@@ -1182,7 +1191,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			}
 		}
 
-		// If $this->pageState was not yet initialized by grabCurrentRevision or prepareContent,
+		// If $this->pageState was not yet initialized by grabLatestRevision() or prepareContent(),
 		// emulate the state of the page table before the edit, as good as we can.
 		if ( !$this->pageState ) {
 			$this->pageState = [
@@ -1241,7 +1250,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 				]
 			);
 
-			// XXX: Since we presumably are dealing with the current revision,
+			// XXX: Since we presumably are dealing with the latest revision,
 			// we could try to get the ParserOutput from the parser cache.
 		}
 

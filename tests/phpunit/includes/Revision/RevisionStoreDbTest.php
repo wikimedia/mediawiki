@@ -927,7 +927,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$this->executeWithForeignStore(
 			$dbDomain,
 			function ( RevisionStore $store ) use ( $page, $dbDomain, $revRecord ) {
-				$storeRecord = $store->getKnownCurrentRevision(
+				$storeRecord = $store->getKnownLatestRevision(
 					new PageIdentityValue( $page->getId(), $page->getNamespace(), $page->getDBkey(), $dbDomain )
 				);
 				$this->assertSame( $dbDomain, $storeRecord->getWikiId() );
@@ -1838,7 +1838,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			__METHOD__ . 'b'
 		)->getNewRevision();
 		$store = $this->getServiceContainer()->getRevisionStore();
-		$storeRecord = $store->getKnownCurrentRevision(
+		$storeRecord = $store->getKnownLatestRevision(
 			$getPageIdentity( $this ),
 			$revRecord->getId()
 		);
@@ -1858,7 +1858,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$rev = $page->newPageUpdater( $user )
 			->setContent( SlotRecord::MAIN, new WikitextContent( __METHOD__ ) )
 			->saveRevision( $summary, EDIT_NEW );
-		return $store->getKnownCurrentRevision( $page->getTitle(), $rev->getId() );
+		return $store->getKnownLatestRevision( $page->getTitle(), $rev->getId() );
 	}
 
 	public function testGetKnownCurrentRevision_userNameChange() {
@@ -1885,7 +1885,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			->execute();
 
 		// Reload the revision and regrab the user name.
-		$revAfter = $store->getKnownCurrentRevision( $page->getTitle(), $rev->getId() );
+		$revAfter = $store->getKnownLatestRevision( $page->getTitle(), $rev->getId() );
 		$userNameAfter = $revAfter->getUser()->getName();
 
 		// The two user names should be different.
@@ -1905,7 +1905,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$title = $page->getTitle();
 		$title->resetArticleID( 886655 );
 
-		$result = $store->getKnownCurrentRevision( $title, $rev->getId() );
+		$result = $store->getKnownLatestRevision( $title, $rev->getId() );
 
 		$this->assertSame( $rev->getPageId(), $result->getPageId() );
 	}
@@ -1917,7 +1917,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 		// Get title of another page
 		$title = $this->getExistingTestPage( __FUNCTION__ )->getTitle();
-		$result = $store->getKnownCurrentRevision( $title, $rev->getId() );
+		$result = $store->getKnownLatestRevision( $title, $rev->getId() );
 
 		$this->assertSame( $rev->getPageId(), $result->getPageId() );
 		$this->assertTrue( $rev->getPage()->isSamePageAs( $result->getPage() ) );
@@ -1940,7 +1940,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			->execute();
 
 		// Reload the revision and regrab the visibility flag.
-		$revAfter = $store->getKnownCurrentRevision( $page->getTitle(), $rev->getId() );
+		$revAfter = $store->getKnownLatestRevision( $page->getTitle(), $rev->getId() );
 		$deletedAfter = $revAfter->getVisibility();
 
 		// The two deleted flags should be different.

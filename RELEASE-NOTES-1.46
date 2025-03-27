@@ -998,6 +998,12 @@ because of Phabricator reports.
   - Xml::option().
 * Language::emphasize() is unused, got deprecated, and will be removed in the
   next version.
+* RevisionLookup::getKnownCurrentRevision() is now deprecated in favor of
+  RevisionLookup::getKnownLatestRevision().
+* RevisionStore::getKnownCurrentRevision() is now deprecated in favor of
+  RevisionStore::getKnownLatestRevision().
+* DerivedPageDataUpdater::grabCurrentRevision() is now deprecated in favor of
+  DerivedPageDataUpdater::grabLatestRevision().
 * All public properties of ConverterRule have been deprecated and now emit
   deprecation warnings.  They will be made private in a future release.
 * Modification of the namespaces key will no longer modify associated pages

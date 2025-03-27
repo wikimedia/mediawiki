@@ -129,7 +129,7 @@ interface RevisionLookup {
 	public function getTimestampFromId( $id, $flags = 0 );
 
 	/**
-	 * Load a revision based on a known page ID and current revision ID from the DB
+	 * Load a revision based on a known page ID and latest revision ID from the DB
 	 *
 	 * This method allows for the use of caching, though accessing anything that normally
 	 * requires permission checks (aside from the text) will trigger a small DB lookup.
@@ -137,9 +137,17 @@ interface RevisionLookup {
 	 * MCR migration note: this replaced Revision::newKnownCurrent
 	 *
 	 * @param PageIdentity $page the associated page
-	 * @param int $revId current revision of this page
-	 *
+	 * @param int $revId Latest revision of this page
 	 * @return RevisionRecord|false Returns false if missing
+	 * @since 1.46
+	 */
+	public function getKnownLatestRevision( PageIdentity $page, $revId = 0 );
+
+	/**
+	 * @param PageIdentity $page the associated page
+	 * @param int $revId Latest revision of this page
+	 * @return RevisionRecord|false Returns false if missing
+	 * @deprecated Since 1.46; use getKnownLatestRevision()
 	 */
 	public function getKnownCurrentRevision( PageIdentity $page, $revId = 0 );
 

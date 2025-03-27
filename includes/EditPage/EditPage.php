@@ -333,7 +333,7 @@ class EditPage implements IEditObject {
 	public ?string $starttime = '';
 
 	/**
-	 * Revision ID the edit is based on, or 0 if it's the current revision.
+	 * Revision ID the edit is based on, or 0 if it's the latest revision.
 	 * FIXME: This isn't used in conflict resolution--provide a better
 	 * justification or merge with parentRevId.
 	 * @see $editRevId
@@ -693,7 +693,7 @@ class EditPage implements IEditObject {
 		}
 
 		// If we're displaying an old revision, and there are differences between it and the
-		// current revision outside the main slot, then we can't allow the old revision to be
+		// latest revision outside the main slot, then we can't allow the old revision to be
 		// editable, as what would happen to the non-main-slot data if someone saves the old
 		// revision is undefined.
 		// When this is the case, display a read-only version of the page instead, with a link
@@ -1056,7 +1056,7 @@ class EditPage implements IEditObject {
 
 	/**
 	 * Section editing is supported when the page content model allows
-	 * section edit and we are editing current revision.
+	 * section edit and we are editing latest revision.
 	 *
 	 * @return bool True if this edit page supports sections, false otherwise.
 	 */
@@ -2152,7 +2152,7 @@ class EditPage implements IEditObject {
 			wfDebug( "revision: {$latest}, editRevId: {$this->editRevId}" );
 
 			$editConflictLogger = LoggerFactory::getInstance( 'EditConflict' );
-			// An edit conflict is detected if the current revision is different from the
+			// An edit conflict is detected if the latest revision is different from the
 			// revision that was current when editing was initiated on the client.
 			// This is checked based on the timestamp and revision ID.
 			// TODO: the timestamp based check can probably go away now.
@@ -2202,7 +2202,7 @@ class EditPage implements IEditObject {
 					]
 				);
 				// @TODO: replaceSectionAtRev() with base ID (not prior current) for ?oldid=X case
-				// ...or disable section editing for non-current revisions (not exposed anyway).
+				// ...or disable section editing for non-latest revisions (not exposed anyway).
 				if ( $this->editRevId !== null ) {
 					$content = $this->page->replaceSectionAtRev(
 						$this->section,
@@ -2798,7 +2798,7 @@ class EditPage implements IEditObject {
 	 * editing was initiated on the client even if the edit was based on an old revision
 	 *
 	 * @since 1.35
-	 * @return RevisionRecord|null Current revision when editing was initiated on the client
+	 * @return RevisionRecord|null Latest revision when editing was initiated on the client
 	 */
 	public function getExpectedParentRevision() {
 		return $this->pageEditingHelper->getExpectedParentRevision(

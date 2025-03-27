@@ -295,13 +295,13 @@ class PageHistoryCountHandler extends SimpleHandler {
 	}
 
 	/**
-	 * @return RevisionRecord|null current revision or false if unable to retrieve revision
+	 * @return RevisionRecord|null Latest revision or false if unable to retrieve revision
 	 */
-	private function getCurrentRevision(): ?RevisionRecord {
+	private function getLatestRevision(): ?RevisionRecord {
 		if ( $this->revision === false ) {
 			$page = $this->getPage();
 			if ( $page ) {
-				$this->revision = $this->revisionStore->getKnownCurrentRevision( $page ) ?: null;
+				$this->revision = $this->revisionStore->getKnownLatestRevision( $page ) ?: null;
 			} else {
 				$this->revision = null;
 			}
@@ -320,7 +320,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 
 	/**
 	 * Returns latest of 2 timestamps:
-	 * 1. Current revision
+	 * 1. Latest revision
 	 * 2. OR entry from the DB logging table for the given page
 	 * @return int|null
 	 */
@@ -334,12 +334,12 @@ class PageHistoryCountHandler extends SimpleHandler {
 
 	/**
 	 * Returns array with 2 timestamps:
-	 * 1. Current revision
+	 * 1. Latest revision
 	 * 2. OR entry from the DB logging table for the given page
 	 * @return array|null
 	 */
 	protected function getLastModifiedTimes() {
-		$currentRev = $this->getCurrentRevision();
+		$currentRev = $this->getLatestRevision();
 		if ( !$currentRev ) {
 			return null;
 		}
@@ -395,7 +395,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 			$this->cache->makeKey( 'rest', 'pagehistorycount', $pageId, $type ),
 			WANObjectCache::TTL_WEEK,
 			function ( $oldValue ) use ( $fetchCount ) {
-				$currentRev = $this->getCurrentRevision();
+				$currentRev = $this->getLatestRevision();
 				if ( $oldValue ) {
 					// Last modified timestamp was NOT a dependency change (e.g. revdel)
 					$doIncrementalUpdate = (

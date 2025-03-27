@@ -24,7 +24,7 @@ interface ArticleRevisionViewCustomHook {
 	 * @param RevisionRecord|null $revision Content of the page (or null if the revision
 	 *   could not be loaded). May also be a fake that wraps content supplied by an extension.
 	 * @param Title $title Title of the page
-	 * @param int $oldid Requested revision ID, or 0 for the current revision
+	 * @param int $oldid Requested revision ID, or 0 for the latest revision
 	 * @param OutputPage $output
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

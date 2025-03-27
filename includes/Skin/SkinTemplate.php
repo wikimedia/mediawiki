@@ -1220,7 +1220,6 @@ class SkinTemplate extends Skin {
 					$isEditing = $onPage && ( $action == 'edit' || $action == 'submit' );
 					$isRedirect = $page && $page->isRedirect();
 					// Whether to show the "Add a new section" tab
-					// Checks if this is a current rev of talk page and is not forced to be hidden
 					$showNewSection = !$out->getOutputFlag( ParserOutputFlags::HIDE_NEW_SECTION ) && (
 						(
 							$isTalk && !$isRedirect && $out->isRevisionCurrent()

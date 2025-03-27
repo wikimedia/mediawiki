@@ -307,7 +307,7 @@ class MergeHistory {
 			if ( $this->hasOverlappingTimestamps() ) {
 				$status->fatal( 'mergehistory-fail-timestamps-overlap' );
 			}
-			// Don't allow changing the current revision of a page via a merge
+			// Don't allow changing the latest revision of a page via a merge
 			// (except for a full merge of the entire history)
 			// as that would require reparsing the page etc. and it's easier to not deal
 			if ( $this->wouldClobberDestLatest() ) {

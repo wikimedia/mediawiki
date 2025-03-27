@@ -119,7 +119,7 @@ class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
 			// and from there RevisionStore::getKnownCurrentRevision)
 			// because we don't have a Parser object to give to that callback.
 			// We could create one if needed for greater compatibility.
-			$revisionRecord = $this->revisionStore->getKnownCurrentRevision(
+			$revisionRecord = $this->revisionStore->getKnownLatestRevision(
 				$title
 			) ?: null;
 			// Note that $revisionRecord could still be null here if no

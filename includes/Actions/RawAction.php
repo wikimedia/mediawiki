@@ -280,7 +280,7 @@ class RawAction extends FormlessAction {
 				# output previous revision, or nothing if there isn't one
 				$prevRev = null;
 				if ( !$oldId ) {
-					# get the current revision so we can get the penultimate one
+					# get the latest revision so we can get the penultimate one
 					$oldId = $this->getWikiPage()->getLatest();
 				}
 				$oldRev = $rl->getRevisionById( $oldId );

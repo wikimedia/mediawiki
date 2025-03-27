@@ -230,7 +230,7 @@ class WikiModule extends Module {
 		} else {
 			$revision = MediaWikiServices::getInstance()
 				->getRevisionLookup()
-				->getKnownCurrentRevision( $page );
+				->getKnownLatestRevision( $page );
 			if ( !$revision ) {
 				return null;
 			}
@@ -498,7 +498,7 @@ class WikiModule extends Module {
 		$summary = parent::getDefinitionSummary( $context );
 		$summary[] = [
 			'pages' => $this->getPages( $context ),
-			// Includes meta data of current revisions
+			// Includes meta data of latest revisions
 			'titleInfo' => $this->getTitleInfo( $context ),
 		];
 		return $summary;

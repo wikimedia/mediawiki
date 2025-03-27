@@ -515,7 +515,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$revisionStore = $this->createMock( RevisionStore::class );
 
 		$revisionStore->expects( $this->once() )
-			->method( 'getKnownCurrentRevision' )
+			->method( 'getKnownLatestRevision' )
 			->willReturn( $actualRevision );
 
 		$this->setService( 'RevisionStore', $revisionStore );

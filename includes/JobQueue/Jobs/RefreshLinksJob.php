@@ -371,7 +371,7 @@ class RefreshLinksJob extends Job {
 		WikiPage $page,
 		StatsFactory $stats
 	) {
-		$revision = $this->getCurrentRevisionIfUnchanged( $page, $stats );
+		$revision = $this->getLatestRevisionIfUnchanged( $page, $stats );
 		if ( !$revision ) {
 			// race condition?
 			return null;
@@ -479,13 +479,13 @@ class RefreshLinksJob extends Job {
 	}
 
 	/**
-	 * Get the current revision record if it is unchanged from what was loaded in $page
+	 * Get the latest revision record if it is unchanged from what was loaded in $page
 	 *
 	 * @param WikiPage $page Page already loaded with READ_LATEST
 	 * @param StatsFactory $stats
 	 * @return RevisionRecord|null The same instance that $page->getRevisionRecord() uses
 	 */
-	private function getCurrentRevisionIfUnchanged(
+	private function getLatestRevisionIfUnchanged(
 		WikiPage $page,
 		StatsFactory $stats
 	) {
@@ -503,7 +503,7 @@ class RefreshLinksJob extends Job {
 			return null;
 		}
 
-		// Load the current revision. Note that $page should have loaded with READ_LATEST.
+		// Load the latest revision. Note that $page should have loaded with READ_LATEST.
 		// This instance will be reused in WikiPage::doSecondaryDataUpdates() later on.
 		$revision = $page->getRevisionRecord();
 		if ( !$revision ) {
@@ -516,7 +516,7 @@ class RefreshLinksJob extends Job {
 			// Do not clobber over newer updates with older ones. If all jobs where FIFO and
 			// serialized, it would be OK to update links based on older revisions since it
 			// would eventually get to the latest. Since that is not the case (by design),
-			// only update the link tables to a state matching the current revision's output.
+			// only update the link tables to a state matching the latest revision's output.
 			$this->incrementFailureCounter( $stats, 'rev_not_current' );
 			$this->setLastError( "Revision {$revision->getId()} is not current" );
 
@@ -563,7 +563,7 @@ class RefreshLinksJob extends Job {
 		ParserOutput $cachedOutput,
 		RevisionRecord $currentRevision
 	): bool {
-		// As long as the cache rev ID matches the current rev ID and it reflects
+		// As long as the cache rev ID matches the latest rev ID and it reflects
 		// the job's triggering change, then it is usable.
 		return $cachedOutput->getCacheRevisionId() == $currentRevision->getId()
 			&& $cachedOutput->getCacheTime() >= $this->getLagAwareRootTimestamp();

@@ -223,7 +223,7 @@ interface Content {
 	 * Whether this content may count towards a "real" wiki page.
 	 *
 	 * The only factor not taken into account here is the content location
-	 * (i.e. whether the content belongs to a current revision, of an existant page,
+	 * (i.e. whether the content belongs to a latest revision, of an existant page,
 	 * in a "content" namespace).
 	 *
 	 * @since 1.21

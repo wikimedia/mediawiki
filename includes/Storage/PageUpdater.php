@@ -322,7 +322,7 @@ class PageUpdater implements PageUpdateCauses {
 	 *
 	 * @since 1.38
 	 *
-	 * @note this calls $this->setOriginalRevisionId() with the ID of the current revision,
+	 * @note this calls $this->setOriginalRevisionId() with the ID of the latest revision,
 	 * starting the CAS bracket by virtue of calling $this->grabParentRevision().
 	 *
 	 * @note saveRevision() will fail with a LogicException if setForceEmptyRevision( true )
@@ -376,10 +376,10 @@ class PageUpdater implements PageUpdateCauses {
 	 * Checks whether this update conflicts with another update performed between the client
 	 * loading data to prepare an edit, and the client committing the edit. This is intended to
 	 * detect user level "edit conflict" when the latest revision known to the client
-	 * is no longer the current revision when processing the update.
+	 * is no longer the latest revision when processing the update.
 	 *
 	 * An update expected to create a new page can be checked by setting $expectedParentRevision = 0.
-	 * Such an update is considered to have a conflict if a current revision exists (that is,
+	 * Such an update is considered to have a conflict if a latest revision exists (that is,
 	 * the page was created since the edit was initiated on the client).
 	 *
 	 * This method returning true indicates to calling code that edit conflict resolution should
@@ -392,9 +392,9 @@ class PageUpdater implements PageUpdateCauses {
 	 * @note A user level edit conflict is not the same as the "edit-conflict" status triggered by
 	 * a CAS failure. Calling this method establishes the CAS token, it does not check against it:
 	 * This method calls grabParentRevision(), and thus causes the expected parent revision
-	 * for the update to be fixed to the page's current revision at this point in time.
+	 * for the update to be fixed to the page's latest revision at this point in time.
 	 * It acts as a compare-and-swap (CAS) token in that it is guaranteed that saveRevision()
-	 * will fail with the "edit-conflict" status if the current revision of the page changes after
+	 * will fail with the "edit-conflict" status if the latest revision of the page changes after
 	 * hasEditConflict() (or grabParentRevision()) was called and before saveRevision() could insert
 	 * a new revision.
 	 *
@@ -413,14 +413,14 @@ class PageUpdater implements PageUpdateCauses {
 	}
 
 	/**
-	 * Returns the revision that was the page's current revision when grabParentRevision()
+	 * Returns the revision that was the page's latest revision when grabParentRevision()
 	 * was first called. This revision is the expected parent revision of the update, and will be
 	 * recorded as the new revision's parent revision (unless no new revision is created because
 	 * the content was not changed).
 	 *
 	 * This method MUST not be called after saveRevision() was called!
 	 *
-	 * The current revision determined by the first call to this method effectively acts a
+	 * The latest revision determined by the first call to this method effectively acts a
 	 * compare-and-swap (CAS) token which is checked by saveRevision(), which fails if any
 	 * concurrent updates created a new revision.
 	 *
@@ -429,7 +429,7 @@ class PageUpdater implements PageUpdateCauses {
 	 * conflicts via a 3-way merge. This protects against race conditions triggered by concurrent
 	 * updates.
 	 *
-	 * @see DerivedPageDataUpdater::grabCurrentRevision()
+	 * @see DerivedPageDataUpdater::grabLatestRevision()
 	 *
 	 * @note The expected parent revision is not to be confused with the logical base revision.
 	 * The base revision is specified by the client, the parent revision is determined from the
@@ -439,7 +439,7 @@ class PageUpdater implements PageUpdateCauses {
 	 * @return RevisionRecord|null the parent revision, or null of the page does not yet exist.
 	 */
 	public function grabParentRevision() {
-		return $this->derivedDataUpdater->grabCurrentRevision();
+		return $this->derivedDataUpdater->grabLatestRevision();
 	}
 
 	/**
@@ -739,7 +739,7 @@ class PageUpdater implements PageUpdateCauses {
 	 * Change an existing article or create a new article. Updates RC and all necessary caches,
 	 * optionally via the deferred update array. This does not check user permissions.
 	 *
-	 * It is guaranteed that saveRevision() will fail if the current revision of the page
+	 * It is guaranteed that saveRevision() will fail if the latest revision of the page
 	 * changes after grabParentRevision() was called and before saveRevision() can insert
 	 * a new revision, as per the CAS mechanism described above.
 	 *
@@ -1176,7 +1176,7 @@ class PageUpdater implements PageUpdateCauses {
 	}
 
 	/**
-	 * Update derived slots in an existing revision. If the revision is the current revision,
+	 * Update derived slots in an existing revision. If the revision is the latest revision,
 	 * this will update page_touched and trigger secondary updates.
 	 *
 	 * We do not have sufficient information to know whether to or how to update recentchanges

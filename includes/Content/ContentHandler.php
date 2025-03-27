@@ -1039,7 +1039,7 @@ abstract class ContentHandler {
 	 * @param Content $currentContent The current text
 	 * @param Content $undoContent The content of the revision to undo
 	 * @param Content $undoAfterContent Must be from an earlier revision than $undo
-	 * @param bool $undoIsLatest Set true if $undo is from the current revision (since 1.32)
+	 * @param bool $undoIsLatest Set true if $undo is from the latest revision (since 1.32)
 	 *
 	 * @return Content|false Content on success, false on failure
 	 */

@@ -1350,7 +1350,7 @@ class MessageCache implements LoggerAwareInterface {
 						// instantiates MessageCache before DB.
 						$revision = MediaWikiServices::getInstance()
 							->getRevisionLookup()
-							->getKnownCurrentRevision( $title );
+							->getKnownLatestRevision( $title );
 						if ( !$revision ) {
 							// The wiki doesn't have a local override page. Cache absence with normal TTL.
 							// When overrides are created, self::replace() takes care of the cache.

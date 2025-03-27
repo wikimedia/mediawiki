@@ -108,7 +108,7 @@ class ApiRollback extends ApiBase {
 			'pageid' => $currentRevisionRecord->getPageId(),
 			'summary' => $details['summary'],
 			'revid' => (int)$details['newid'],
-			// The revision being reverted (previously the current revision of the page)
+			// The revision being reverted (previously the latest revision of the page)
 			'old_revid' => $currentRevisionRecord->getID(),
 			// The revision being restored (the last revision before revision(s) by the reverted user)
 			'last_revid' => $targetRevisionRecord->getID()

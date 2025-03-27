@@ -207,7 +207,7 @@ class McrUndoAction extends FormAction {
 		}
 
 		if ( $isLatest ) {
-			// Short cut! Undoing the current revision means we just restore the old.
+			// Short cut! Undoing the latest revision means we just restore the old.
 			return MutableRevisionRecord::newFromParentRevision( $oldRev );
 		}
 

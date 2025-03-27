@@ -183,7 +183,7 @@ class LocalFileRestoreBatch {
 				|| $row->fa_metadata === null
 			) {
 				// Refresh our metadata
-				// Required for a new current revision; nice for older ones too. :)
+				// Required for a new latest revision; nice for older ones too. :)
 				$this->file->loadFromFile( $deletedUrl );
 				$mime = $this->file->getMimeType();
 				[ $majorMime, $minorMime ] = File::splitMime( $mime );

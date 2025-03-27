@@ -182,7 +182,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		$revisionRecord->setPageId( $pageId );
 
 		$updater = $this->pageUpdaterFactory->newDerivedPageDataUpdater( $page );
-		$latestRev = $updater->grabCurrentRevision();
+		$latestRev = $updater->grabLatestRevision();
 		$latestRevId = $latestRev ? $latestRev->getId() : null;
 
 		$inserted = $this->revisionStore->insertRevisionOn( $revisionRecord, $dbw );

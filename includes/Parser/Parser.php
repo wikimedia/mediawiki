@@ -3546,7 +3546,7 @@ class Parser {
 
 		$revRecord = MediaWikiServices::getInstance()
 			->getRevisionLookup()
-			->getKnownCurrentRevision( $page );
+			->getKnownLatestRevision( $page );
 		return $revRecord;
 	}
 

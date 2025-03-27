@@ -34,7 +34,7 @@ class PageHistoryVisibilityChangedEvent extends PageEvent {
 	 * @param ProperPageIdentity $page The page affected by the update.
 	 * @param UserIdentity $performer The user performing the update.
 	 * @param int $latestRevisionId
-	 *        The latest rev id at the time of the visibility change event.
+	 *        The latest revision id at the time of the visibility change event.
 	 * @param int $bitsSet Bitmap indicating which bits got set by the change
 	 * @param int $bitsUnset Bitmap indicating which bits got unset by the change
 	 * @param array<int,array> $visibilityChangeMap a map from revision IDs to visibility changes,

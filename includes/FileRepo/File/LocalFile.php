@@ -186,7 +186,7 @@ class LocalFile extends File {
 	/** @var UserIdentity|null Uploader */
 	private $user;
 
-	/** @var string Description of current revision of the file */
+	/** @var string Description of latest revision of the file */
 	private $description;
 
 	/** @var string TS::MW timestamp of the last change of the file description */

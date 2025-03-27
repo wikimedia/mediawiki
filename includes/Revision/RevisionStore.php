@@ -597,7 +597,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 			$slot = $rev->getSlot( $role, RevisionRecord::RAW );
 
 			// If the SlotRecord already has a revision ID set, this means it already exists
-			// in the database, and should already belong to the current revision.
+			// in the database, and should already belong to the latest revision.
 			// However, a slot may already have a revision, but no content ID, if the slot
 			// is emulated based on the archive table, because we are in SCHEMA_COMPAT_READ_OLD
 			// mode, and the respective archive row was not yet migrated to the new schema.
@@ -1060,7 +1060,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	}
 
 	/**
-	 * Get the RC object belonging to the current revision, if there's one
+	 * Get the RC object belonging to the latest revision, if there's one
 	 *
 	 * MCR migration note: this replaced Revision::getRecentChange
 	 *
@@ -1601,7 +1601,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		if ( $page === null ) {
 			if ( isset( $row->ar_namespace ) && isset( $row->ar_title ) ) {
 				// Represent a non-existing page.
-				// NOTE: The page title may be invalid by current rules (T384628).
+				// NOTE: The page title may be invalid by latest rules (T384628).
 				$page = PageIdentityValue::localIdentity( 0, $row->ar_namespace, $row->ar_title );
 			} else {
 				throw new InvalidArgumentException(
@@ -2873,7 +2873,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	}
 
 	/**
-	 * Load a revision based on a known page ID and current revision ID from the DB
+	 * Load a revision based on a known page ID and latest revision ID from the DB
 	 *
 	 * This method allows for the use of caching, though accessing anything that normally
 	 * requires permission checks (aside from the text) will trigger a small DB lookup.
@@ -2881,11 +2881,12 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * MCR migration note: this replaced Revision::newKnownCurrent
 	 *
 	 * @param PageIdentity $page the associated page
-	 * @param int $revId current revision of this page. Defaults to $title->getLatestRevID().
+	 * @param int $revId Latest revision of this page. Defaults to $title->getLatestRevID().
 	 *
 	 * @return RevisionRecord|false Returns false if missing
+	 * @since 1.46
 	 */
-	public function getKnownCurrentRevision( PageIdentity $page, $revId = 0 ) {
+	public function getKnownLatestRevision( PageIdentity $page, $revId = 0 ) {
 		$db = $this->getReplicaConnection();
 		$revIdPassed = $revId;
 		$pageId = $this->getArticleId( $page );
@@ -2947,6 +2948,16 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * @param PageIdentity $page the associated page
+	 * @param int $revId Latest revision of this page
+	 * @return RevisionRecord|false Returns false if missing
+	 * @deprecated Since 1.46; use getKnownLatestRevision()
+	 */
+	public function getKnownCurrentRevision( PageIdentity $page, $revId = 0 ) {
+		return $this->getKnownLatestRevision( $page, $revId );
 	}
 
 	/**
