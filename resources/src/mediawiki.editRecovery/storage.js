@@ -23,7 +23,7 @@ function openDatabaseLocal() {
 			resolve();
 		} );
 		openRequest.addEventListener( 'error', ( event ) => {
-			reject( 'EditRecovery error: ' + event.target.error );
+			reject( 'EditRecovery error:', event.target.error );
 		} );
 	} );
 }
@@ -131,11 +131,11 @@ function saveData( pageName, section, pageData ) {
 		const objectStore = transaction.objectStore( objectStoreName );
 
 		const request = objectStore.put( pageData );
-		request.addEventListener( 'success', ( event ) => {
-			resolve( event );
+		request.addEventListener( 'success', () => {
+			resolve();
 		} );
 		request.addEventListener( 'error', ( event ) => {
-			reject( 'Error saving data: ' + event.target.errorCode );
+			reject( 'Error saving data:', event.target.error );
 		} );
 	} );
 }
@@ -158,9 +158,11 @@ function deleteData( pageName, section ) {
 		const objectStore = transaction.objectStore( objectStoreName );
 
 		const request = objectStore.delete( [ pageName, section || '' ] );
-		request.addEventListener( 'success', resolve );
-		request.addEventListener( 'error', () => {
-			reject( 'Error opening cursor' );
+		request.addEventListener( 'success', () => {
+			resolve();
+		} );
+		request.addEventListener( 'error', ( event ) => {
+			reject( 'Error opening cursor:', event.target.error );
 		} );
 	} );
 }
@@ -208,8 +210,8 @@ function deleteExpiredData() {
 			}
 		} );
 
-		expired.addEventListener( 'error', () => {
-			reject( 'Error getting filtered data' );
+		expired.addEventListener( 'error', ( event ) => {
+			reject( 'Error getting filtered data:', event.target.error );
 		} );
 	} );
 }
