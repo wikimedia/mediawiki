@@ -1374,6 +1374,7 @@
 	"userrights-expiry-in-past": "La scadenza per il gruppo \"$1\" è già passata.",
 	"userrights-cannot-shorten-expiry": "Non puoi anticipare la scadenza dell'appartenenza al gruppo \"$1\". Soltanto gli utenti con il permesso di aggiungere e rimuovere questo gruppo possono anticiparne la scadenza.",
 	"userrights-no-tempuser": "Gli utenti temporanei non possono essere aggiunti ai gruppi.",
+	"userrights-no-group": "Gli utenti temporanei non hanno gruppi.",
 	"userrights-conflict": "Conflitto di modifica dei diritti utente! Controlla e conferma le tue modifiche.",
 	"group": "Gruppo:",
 	"group-user": "Utenti",

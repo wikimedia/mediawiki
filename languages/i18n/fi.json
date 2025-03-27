@@ -1906,7 +1906,7 @@
 	"upload-form-label-not-own-work-local-generic-local": "Voit myös kokeilla [[Special:Upload|yleistä tallentamista]].",
 	"upload-form-label-own-work-message-generic-foreign": "Ymmärrän, että olen tallentamassa tätä tiedostoa yhteiseen mediasäilöön. Vakuutan, että teen tämän noudattaen asiaankuuluvia käyttöehtoja ja lisenssejä koskevia käytäntöjä.",
 	"upload-form-label-not-own-work-message-generic-foreign": "Jos et kykene tallentamaan tätä tiedostoa noudattaen niitä käytäntöjä, jotka ovat voimassa yhteisessä mediasäilössä, sulje tämä dialogi ja kokeile jotain toista menetelmää.",
-	"upload-form-label-not-own-work-local-generic-foreign": "Voit myös kokeilla [[Special:Upload|tallennussivua {{GRAMMAR:inessive|{{SITENAME}}}}]]. Saattaa olla, että tämän tiedoston tallentaminen sinne on mahdollista siellä voimassa olevien käytäntöjen mukaisesti.",
+	"upload-form-label-not-own-work-local-generic-foreign": "Voit myös kokeilla käyttää [[Special:Upload|{{GRAMMAR:genitive|{{SITENAME}}}} tallennussivua]], mikäli voimassa olevat käytännöt sallivat tämän tiedoston tallentamisen sinne.",
 	"backend-fail-stream": "Tiedoston ”$1” toisto epäonnistui.",
 	"backend-fail-backup": "Tiedostoa ”$1” ei voitu varmuuskopioida.",
 	"backend-fail-notexists": "Tiedostoa $1 ei ole olemassa.",
