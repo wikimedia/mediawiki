@@ -1,5 +1,3 @@
-'use strict';
-
 mw.hook( 'postEdit' ).add( () => {
 	// Only continue to delete the data if the data-saved flag hasn't been set in ./edit.js
 	if ( !mw.storage.session.get( 'EditRecovery-data-saved' ) ) {
