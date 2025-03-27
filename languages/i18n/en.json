@@ -2655,7 +2655,7 @@
 	"block-confirm-yes": "Yes",
 	"block-confirm-no": "No",
 	"block-submit": "Submit",
-	"block-success": "[[Special:Contributions/$1|{{GENDER:$1|$1}}]] has been blocked. See the [[Special:BlockList|block list]] to review blocks.",
+	"block-success": "[[Special:Contributions/$1|{{GENDER:$1|$1}}]] ([[{{ns:user_talk}}:$1|talk]]) has been blocked. See the [[Special:BlockList|block list]] to review blocks.",
 	"block-user-active-blocks": "Active blocks",
 	"block-user-no-active-blocks": "No active blocks found",
 	"block-user-previous-blocks": "Block log",
