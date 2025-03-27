@@ -46,6 +46,7 @@ use MediaWiki\Page\PageArchive;
 use MediaWiki\Page\UndeletePage;
 use MediaWiki\Page\UndeletePageFactory;
 use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\RecentChanges\ChangesList;
 use MediaWiki\Revision\ArchivedRevisionLookup;
@@ -697,7 +698,7 @@ class SpecialUndelete extends SpecialPage {
 		if ( $this->mPreview || !$isText ) {
 			// NOTE: non-text content has no source view, so always use rendered preview
 
-			$popts = $out->parserOptions();
+			$popts = ParserOptions::newFromContext( $this->getContext() );
 
 			try {
 				$rendered = $this->revisionRenderer->getRenderedRevision(
