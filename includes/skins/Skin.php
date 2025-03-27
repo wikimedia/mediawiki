@@ -1193,7 +1193,7 @@ abstract class Skin extends ContextSource {
 			return $name;
 		} else {
 			$title = $name instanceof Title ? $name : Title::newFromText( $name );
-			return $title ? $title->getLocalURL() : '';
+			return $title ? $title->getLinkURL() : '';
 		}
 	}
 
