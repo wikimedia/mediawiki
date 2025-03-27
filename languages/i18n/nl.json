@@ -4063,7 +4063,7 @@
 	"newpages-showhide-registered": "geregistreerde gebruikers $1",
 	"restsandbox": "REST-zandbak",
 	"restsandbox-text": "Met deze pagina kunt u experimenteren met de REST-API’s van MediaWiki. Via de sandboxinterface ingediende API-aanroepen werken met live wiki-inhoud en kunnen dus de wiki wijzigen. Raadpleeg de [https://www.mediawiki.org/wiki/API:REST_API API-documentatie] voor meer informatie over het gebruik van de API.",
-	"restsandbox-disclaimer": "Hebt u een opmerking over deze sandbox? Laat die dan [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox hier] achter.<br />Opmerking: de sandbox-gebruikersinterface en de navigatie-elementen kunnen nog niet vertaald worden.<br />",
+	"restsandbox-disclaimer": "Hebt u feedback over deze sandbox? Laat die dan [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox hier] achter.<br />NB: de sandbox-gebruikersinterface en de navigatie-elementen kunnen nog niet vertaald worden.<br />",
 	"restsandbox-select-api": "Kies de API die je wilt verkennen.",
 	"restsandbox-no-specs-configured": "Er zijn geen REST-API's voor verkenning geconfigureerd. Gebruik de RestSandboxSpecs-instelling.",
 	"restsandbox-no-such-api": "De opgegeven API-parameter wordt niet ondersteund: $1",

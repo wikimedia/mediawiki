@@ -3643,7 +3643,7 @@
 	"logentry-tag-update-logentry": "$1 {{GENDER:$2|עדכן|עדכנה}} את התגיות ברשומת היומן $5 של הדף $3 ({{PLURAL:$7|הוסיף|הוסיפה}} את $6; {{PLURAL:$9|הסיר|הסירה}} את $8)",
 	"rightsnone": "(לא כלום)",
 	"rightslogentry-temporary-group": "$1 (זמני, עד $2)",
-	"rightslogentry-expiry-set": "$1 (עד $2 היה: קבוע)",
+	"rightslogentry-expiry-set": "$1 (עד $2, היה: קבוע)",
 	"rightslogentry-expiry-removed": "$1 (קבוע, היה: עד $2)",
 	"rightslogentry-expiry-changed": "$1 (עד $2, היה: $5)",
 	"feedback-cancel": "ביטול",

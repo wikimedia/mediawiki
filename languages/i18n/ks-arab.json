@@ -300,6 +300,7 @@
 	"passwordreset-username": "رُکُن ناو:",
 	"passwordreset-domain": "ڈومین:",
 	"passwordreset-email": "بَرقی ڈاک پَتہٕ:",
+	"passwordreset-emailtitle": "{{SITENAME}} پؠٹھ کھاتہٕ تفصیل",
 	"changeemail-none": "(کٕہنۍ تہِ)",
 	"changeemail-password": "تُہُنٛد {{SITENAME}} پاسوٲڑ:",
 	"resettokens-tokens": "ٹوکُن:",
