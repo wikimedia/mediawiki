@@ -35,6 +35,9 @@ class RecentChangeNotification extends WikiNotification {
 
 	public const TYPE = 'mediawiki.recent_change';
 
+	public const TALK_NOTIFICATION = 'talk';
+	public const ADMIN_NOTIFICATION = 'admin';
+
 	/**
 	 * @todo Pass the RecentChange object
 	 *
@@ -45,6 +48,7 @@ class RecentChangeNotification extends WikiNotification {
 	 * @param int|null $oldid
 	 * @param string $timestamp
 	 * @param string $pageStatus
+	 * @param string $source one of types talk, admin or watchlist
 	 */
 	public function __construct(
 		UserIdentity $editor,
@@ -53,7 +57,8 @@ class RecentChangeNotification extends WikiNotification {
 		bool $minorEdit,
 		$oldid,
 		$timestamp,
-		string $pageStatus
+		string $pageStatus,
+		string $source
 	) {
 		parent::__construct(
 			self::TYPE, $title, $editor, [
@@ -61,7 +66,8 @@ class RecentChangeNotification extends WikiNotification {
 				'minorEdit' => $minorEdit,
 				'oldid' => $oldid,
 				'timestamp' => $timestamp,
-				'pageStatus' => $pageStatus
+				'pageStatus' => $pageStatus,
+				'source' => $source
 			]
 		);
 	}
