@@ -426,6 +426,7 @@ class Names {
 		'pag' => 'Pangasinan', # Pangasinan
 		'pam' => 'Kapampangan', # Pampanga
 		'pap' => 'Papiamentu', # Papiamentu
+		'pap-aw' => 'Papiamento (Aruba)', # Papiamento (Aruba), T387000
 		'pcd' => 'Picard', # Picard
 		'pcm' => 'Naijá', # Nigerian Pidgin
 		'pdc' => 'Deitsch', # Pennsylvania German
