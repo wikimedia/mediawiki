@@ -235,10 +235,10 @@ class WatchedItem {
 		}
 
 		if ( $isDropdownOption ) {
-			return $msgLocalizer->msg( 'watchlist-expiry-days-left', [ $expiryInDays ] )->text();
+			return $msgLocalizer->msg( 'watchlist-expiry-days-left' )->numParams( $expiryInDays )->text();
 		}
 
-		return $msgLocalizer->msg( 'watchlist-expiring-days-full-text', [ $expiryInDays ] )->text();
+		return $msgLocalizer->msg( 'watchlist-expiring-days-full-text' )->numParams( $expiryInDays )->text();
 	}
 }
 /** @deprecated class alias since 1.43 */
