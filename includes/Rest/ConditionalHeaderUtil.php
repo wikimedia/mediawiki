@@ -10,35 +10,45 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 class ConditionalHeaderUtil {
 	/** @var bool */
 	private $varnishETagHack = true;
-	/** @var string|null */
+	/** @var callback|string|null */
 	private $eTag;
-	/** @var int|null */
+	/** @var callback|string|int|null */
 	private $lastModified;
-	/** @var bool */
+	/** @var callback|bool */
 	private $hasRepresentation;
+
+	private IfNoneMatch $eTagParser;
+
+	private ?array $eTagParts = null;
+
+	public function __construct() {
+		$this->eTagParser = new IfNoneMatch;
+	}
 
 	/**
 	 * Initialize the object with information about the requested resource.
 	 *
-	 * @param string|null $eTag The entity-tag (including quotes), or null if
-	 *   it is unknown.
-	 * @param string|int|null $lastModified The Last-Modified date in a format
+	 * @param callable|string|null $eTag The entity-tag (including quotes), or null if
+	 *   it is unknown. Can also be provided as a callback for later evaluation.
+	 * @param callable|string|int|null $lastModified The Last-Modified date in a format
 	 *   accepted by ConvertibleTimestamp, or null if it is unknown.
-	 * @param bool|null $hasRepresentation Whether the server has a current
+	 *   Can also be provided as a callback for later evaluation.
+	 * @param callable|bool|null $hasRepresentation Whether the server can serve a
 	 *   representation of the target resource. This should be true if the
 	 *   resource exists, and false if it does not exist. It is used for
 	 *   wildcard validators -- the intended use case is to abort a PUT if the
 	 *   resource does (or does not) exist. If null is passed, we assume that
-	 *   the resource exists if an ETag was specified for it.
+	 *   the resource exists if an ETag or last-modified data was specified for it.
+	 *   Can also be provided as a callback for later evaluation.
 	 */
-	public function setValidators( $eTag, $lastModified, $hasRepresentation ) {
+	public function setValidators(
+		$eTag,
+		$lastModified,
+		$hasRepresentation = null
+	) {
 		$this->eTag = $eTag;
-		if ( $lastModified === null ) {
-			$this->lastModified = null;
-		} else {
-			$this->lastModified = (int)ConvertibleTimestamp::convert( TS_UNIX, $lastModified );
-		}
-		$this->hasRepresentation = $hasRepresentation ?? ( $eTag !== null );
+		$this->lastModified = $lastModified;
+		$this->hasRepresentation = $hasRepresentation;
 	}
 
 	/**
@@ -52,6 +62,68 @@ class ConditionalHeaderUtil {
 		$this->varnishETagHack = $hack;
 	}
 
+	private function getETag(): ?string {
+		if ( is_callable( $this->eTag ) ) {
+			// resolve callback
+			$this->eTag = ( $this->eTag )();
+		}
+
+		return $this->eTag;
+	}
+
+	private function getETagParts(): ?array {
+		if ( $this->eTagParts !== null ) {
+			return $this->eTagParts;
+		}
+
+		$eTag = $this->getETag();
+
+		if ( $eTag === null ) {
+			return null;
+		}
+
+		$this->eTagParts = $this->eTagParser->parseETag( $eTag );
+		if ( !$this->eTagParts ) {
+			throw new RuntimeException( 'Invalid ETag returned by handler: `' .
+				$this->eTagParser->getLastError() . '`' );
+		}
+
+		return $this->eTagParts;
+	}
+
+	private function getLastModified(): ?int {
+		if ( is_callable( $this->lastModified ) ) {
+			// resolve callback
+			$this->lastModified = ( $this->lastModified )();
+		}
+
+		if ( is_string( $this->lastModified ) ) {
+			// normalize to int
+			$this->lastModified = (int)ConvertibleTimestamp::convert(
+				TS_UNIX,
+				$this->lastModified
+			);
+		}
+
+		// should be int or null now.
+		return $this->lastModified;
+	}
+
+	private function hasRepresentation(): bool {
+		if ( is_callable( $this->hasRepresentation ) ) {
+			// resolve callback
+			$this->hasRepresentation = ( $this->hasRepresentation )();
+		}
+
+		if ( $this->hasRepresentation === null ) {
+			// apply fallback
+			$this->hasRepresentation = $this->getETag() !== null
+				|| $this->getLastModified() !== null;
+		}
+
+		return $this->hasRepresentation;
+	}
+
 	/**
 	 * Check conditional request headers in the order required by RFC 7232 section 6.
 	 *
@@ -60,23 +132,13 @@ class ConditionalHeaderUtil {
 	 *   continue processing the request.
 	 */
 	public function checkPreconditions( RequestInterface $request ) {
-		$parser = new IfNoneMatch;
-		if ( $this->eTag !== null ) {
-			$resourceTag = $parser->parseETag( $this->eTag );
-			if ( !$resourceTag ) {
-				throw new RuntimeException( 'Invalid ETag returned by handler: `' .
-					$parser->getLastError() . '`' );
-			}
-		} else {
-			$resourceTag = null;
-		}
 		$getOrHead = in_array( $request->getMethod(), [ 'GET', 'HEAD' ] );
 		if ( $request->hasHeader( 'If-Match' ) ) {
 			$im = $request->getHeader( 'If-Match' );
 			$match = false;
-			foreach ( $parser->parseHeaderList( $im ) as $tag ) {
-				if ( ( $tag['whole'] === '*' && $this->hasRepresentation ) ||
-					$this->strongCompare( $resourceTag, $tag )
+			foreach ( $this->eTagParser->parseHeaderList( $im ) as $tag ) {
+				if ( ( $tag['whole'] === '*' && $this->hasRepresentation() ) ||
+					$this->strongCompare( $this->getETagParts(), $tag )
 				) {
 					$match = true;
 					break;
@@ -87,25 +149,27 @@ class ConditionalHeaderUtil {
 			}
 		} elseif ( $request->hasHeader( 'If-Unmodified-Since' ) ) {
 			$requestDate = HttpDate::parse( $request->getHeader( 'If-Unmodified-Since' )[0] );
+			$lastModified = $this->getLastModified();
 			if ( $requestDate !== null
-				&& ( $this->lastModified === null || $this->lastModified > $requestDate )
+				&& ( $lastModified === null || $lastModified > $requestDate )
 			) {
 				return 412;
 			}
 		}
 		if ( $request->hasHeader( 'If-None-Match' ) ) {
 			$inm = $request->getHeader( 'If-None-Match' );
-			foreach ( $parser->parseHeaderList( $inm ) as $tag ) {
-				if ( ( $tag['whole'] === '*' && $this->hasRepresentation ) ||
-					$this->weakCompare( $resourceTag, $tag )
+			foreach ( $this->eTagParser->parseHeaderList( $inm ) as $tag ) {
+				if ( ( $tag['whole'] === '*' && $this->hasRepresentation() ) ||
+					$this->weakCompare( $this->getETagParts(), $tag )
 				) {
 					return $getOrHead ? 304 : 412;
 				}
 			}
 		} elseif ( $getOrHead && $request->hasHeader( 'If-Modified-Since' ) ) {
 			$requestDate = HttpDate::parse( $request->getHeader( 'If-Modified-Since' )[0] );
-			if ( $requestDate !== null && $this->lastModified !== null
-				&& $this->lastModified <= $requestDate
+			$lastModified = $this->getLastModified();
+			if ( $requestDate !== null && $lastModified !== null
+				&& $lastModified <= $requestDate
 			) {
 				return 304;
 			}
@@ -127,11 +191,21 @@ class ConditionalHeaderUtil {
 	 * take precedence.
 	 */
 	public function applyResponseHeaders( ResponseInterface $response ) {
-		if ( $this->lastModified !== null && !$response->hasHeader( 'Last-Modified' ) ) {
-			$response->setHeader( 'Last-Modified', HttpDate::format( $this->lastModified ) );
+		if ( $response->getStatusCode() >= 400 ) {
+			// Don't add Last-Modified and ETag for errors, including 412.
+			// Note that 304 responses are required to have these headers set.
+			// See IETF RFC 7232 section 4.
+			return;
 		}
-		if ( $this->eTag !== null && !$response->hasHeader( 'ETag' ) ) {
-			$response->setHeader( 'ETag', $this->eTag );
+
+		$lastModified = $this->getLastModified();
+		if ( $lastModified !== null && !$response->hasHeader( 'Last-Modified' ) ) {
+			$response->setHeader( 'Last-Modified', HttpDate::format( $lastModified ) );
+		}
+
+		$eTag = $this->getETag();
+		if ( $eTag !== null && !$response->hasHeader( 'ETag' ) ) {
+			$response->setHeader( 'ETag', $eTag );
 		}
 	}
 
