@@ -253,7 +253,7 @@ class EmailNotification {
 							$watchingUser->getBlock() )
 						&& $hookRunner->onSendWatchlistEmailNotification( $watchingUser, $title, $this )
 					) {
-						$composer->compose( $watchingUser, RecentChangeMailComposer::USER_TALK );
+						$composer->compose( $watchingUser, RecentChangeMailComposer::WATCHLIST );
 					}
 				}
 			}
