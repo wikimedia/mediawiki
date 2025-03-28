@@ -39,7 +39,6 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\Xml\XmlSelect;
 use MessageLocalizer;
 use RevDelLogList;
 use Wikimedia\ObjectCache\WANObjectCache;
@@ -759,7 +758,7 @@ class ChangeTags {
 	 * @param bool $activeOnly Whether to filter for tags that have been used or not
 	 * @param bool $useAllTags Whether to use all known tags or to only use software defined tags
 	 *        These map to ChangeTagsStore->listDefinedTags and ChangeTagsStore->getCoreDefinedTags respectively
-	 * @return array an array of (label, selector)
+	 * @return array{0:string,1:string}|null Two chunks of HTML (label, and dropdown menu) or null if disabled
 	 */
 	public static function buildTagFilterSelector(
 		$selected = '', $ooui = false, ?IContextSource $context = null,
@@ -774,7 +773,7 @@ class ChangeTags {
 		$changeTagsStore = MediaWikiServices::getInstance()->getChangeTagsStore();
 		if ( !$config->get( MainConfigNames::UseTagFilter ) ||
 		!count( $changeTagsStore->listDefinedTags() ) ) {
-			return [];
+			return null;
 		}
 
 		$tags = self::getChangeTagList(
@@ -790,18 +789,17 @@ class ChangeTags {
 			$autocomplete[ $tagInfo['label'] ] = $tagInfo['name'];
 		}
 
-		$data = [
-			Html::rawElement(
-				'label',
-				[ 'for' => 'tagfilter' ],
-				$context->msg( 'tag-filter' )->parse()
-			)
-		];
+		$data = [];
+		$data[0] = Html::rawElement(
+			'label',
+			[ 'for' => 'tagfilter' ],
+			$context->msg( 'tag-filter' )->parse()
+		);
 
 		if ( $ooui ) {
 			$options = Html::listDropdownOptionsOoui( $autocomplete );
 
-			$data[] = new \OOUI\ComboBoxInputWidget( [
+			$data[1] = new \OOUI\ComboBoxInputWidget( [
 				'id' => 'tagfilter',
 				'name' => 'tagfilter',
 				'value' => $selected,
@@ -809,11 +807,13 @@ class ChangeTags {
 				'options' => $options,
 			] );
 		} else {
-			$datalist = new XmlSelect( false, 'tagfilter-datalist' );
-			$datalist->setTagName( 'datalist' );
-			$datalist->addOptions( $autocomplete );
+			$optionsHtml = '';
+			foreach ( $autocomplete as $label => $name ) {
+				$optionsHtml .= Html::element( 'option', [ 'value' => $name ], $label );
+			}
+			$datalistHtml = Html::rawElement( 'datalist', [ 'id' => 'tagfilter-datalist' ], $optionsHtml );
 
-			$data[] = Html::input(
+			$data[1] = Html::input(
 				'tagfilter',
 				$selected,
 				'text',
@@ -823,7 +823,7 @@ class ChangeTags {
 					'id' => 'tagfilter',
 					'list' => 'tagfilter-datalist',
 				]
-			) . $datalist->getHTML();
+			) . $datalistHtml;
 		}
 
 		return $data;
