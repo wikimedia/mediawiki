@@ -67,6 +67,9 @@ class SkinModule extends LessVarFileModule {
 	 *
 	 *     Compatibility aliases: "content", "content-thumbnails".
 	 *
+	 * "content-media-dark":
+	 *     Styles for thumbnails and floated elements in dark mode.
+	 *
 	 * "content-links":
 	 *     The skin will apply optional styling rules for links that should be styled differently
 	 *     to the rules in `elements` and `normalize`. It provides support for .mw-selflink,
@@ -143,6 +146,9 @@ class SkinModule extends LessVarFileModule {
 		],
 		// Placeholder for dynamic definition in getFeatureFilePaths()
 		'content-media' => [],
+		'content-media-dark' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/content.media-dark.less' ],
+		],
 		'content-links' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/content.links.less' ]
 		],
