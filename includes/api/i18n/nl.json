@@ -1355,7 +1355,7 @@
 	"apihelp-query+userinfo-paramvalue-prop-options": "Geeft een overzicht van alle voorkeuren die de huidige gebruiker heeft ingesteld.",
 	"apihelp-query+userinfo-paramvalue-prop-editcount": "Voegt het aantal bewerkingen van de huidige gebruiker toe.",
 	"apihelp-query+userinfo-paramvalue-prop-ratelimits": "Geeft een overzicht van alle gebruiksbeperkingen die van toepassing zijn op de huidige gebruiker.",
-	"apihelp-query+userinfo-paramvalue-prop-theoreticalratelimits": "Geeft een overzicht van alle gebruiksbeperkingen die van toepassing zouden zijn op de huidige gebruiker als die niet op basis van gebruikersrechten of IP-adres was vrijgesteld van alle beperkingen.",
+	"apihelp-query+userinfo-paramvalue-prop-theoreticalratelimits": "Geeft een overzicht van alle tempobeperkingen die van toepassing zouden zijn op de huidige gebruiker als die niet op basis van gebruikersrechten of IP-adres van alle tempobeperkingen was vrijgesteld.",
 	"apihelp-query+userinfo-paramvalue-prop-realname": "Voegt de echte naam van de gebruiker toe.",
 	"apihelp-query+userinfo-paramvalue-prop-email": "Voegt het e-mailadres en de e-mailverificatiedatum van de gebruiker toe.",
 	"apihelp-query+userinfo-paramvalue-prop-acceptlang": "Geeft de header <code>Accept-Language</code> die door de cliënt is verzonden in een gestructureerd formaat weer.",

@@ -1382,7 +1382,7 @@
 	"apihelp-query+userinfo-paramvalue-prop-options": "列举当前用户设置的所有参数设置。",
 	"apihelp-query+userinfo-paramvalue-prop-editcount": "添加当前用户的编辑计数。",
 	"apihelp-query+userinfo-paramvalue-prop-ratelimits": "列举所有应用到当前用户的速率限制。",
-	"apihelp-query+userinfo-paramvalue-prop-theoreticalratelimits": "列出所有适用于当前用户的速率限制，前提是他们不能基于用户权限或ip免除所有速率限制",
+	"apihelp-query+userinfo-paramvalue-prop-theoreticalratelimits": "列出所有适用于当前用户的速率限制，前提是他们不能基于用户权限或ip免除所有速率限制。",
 	"apihelp-query+userinfo-paramvalue-prop-realname": "添加用户的真实姓名。",
 	"apihelp-query+userinfo-paramvalue-prop-email": "添加用户的电子邮件地址及电子邮件验证日期。",
 	"apihelp-query+userinfo-paramvalue-prop-acceptlang": "重复由客户端以结构化格式发送的<code>Accept-Language</code>标头。",

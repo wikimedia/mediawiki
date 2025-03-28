@@ -1292,7 +1292,7 @@
 	"apihelp-query+userinfo-paramvalue-prop-options": "يسرد جميع التفضيلات التي قام المستخدم الحالي بتعيينها.",
 	"apihelp-query+userinfo-paramvalue-prop-editcount": "يضيف عدد تحرير المستخدم الحالي.",
 	"apihelp-query+userinfo-paramvalue-prop-ratelimits": "يسرد جميع حدود المعدل المطبقة على المستخدم الحالي.",
-	"apihelp-query+userinfo-paramvalue-prop-theoreticalratelimits": "يسرد جميع حدود الأسعار التي يمكن أن تنطبق على المستخدم الحالي إذا لم يتم إعفاؤه من جميع حدود المعدلات بناءً على حقوق المستخدم أو الملكية الفكرية",
+	"apihelp-query+userinfo-paramvalue-prop-theoreticalratelimits": "يسرد جميع حدود الأسعار التي يمكن أن تنطبق على المستخدم الحالي إذا لم يتم إعفاؤه من جميع حدود المعدلات بناءً على حقوق المستخدم أو الملكية الفكرية.",
 	"apihelp-query+userinfo-paramvalue-prop-realname": "يضيف اسم المستخدم الحقيقي.",
 	"apihelp-query+userinfo-paramvalue-prop-email": "يضيف عنوان البريد الإلكتروني للمستخدم وتاريخ مصادقة البريد الإلكتروني.",
 	"apihelp-query+userinfo-paramvalue-prop-acceptlang": "يكرر الرأس <code>Accept-Language</code> الذي يرسله العميل بتنسيق منظم.",

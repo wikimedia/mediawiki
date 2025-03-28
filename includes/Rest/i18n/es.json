@@ -60,5 +60,12 @@
 	"rest-missing-revision-html": "Falta la revisión de html",
 	"rest-unknown-parsoid-transformation": "Transformación desconocida.",
 	"rest-target-variant-required": "Se requiere variante de destino.",
-	"rest-page-bundle-validation-error": "PageBundle no coincide con el contenidoVersión: $1"
+	"rest-page-bundle-validation-error": "PageBundle no coincide con el contenidoVersión: $1",
+	"rest-module": "Módulo",
+	"rest-module-default": "Módulo predeterminado",
+	"rest-module-extra-routes-title": "API REST de MediaWiki",
+	"rest-module-specs.v0-title": "Especificaciones",
+	"rest-module-content.v1-title": "Contenido de la página",
+	"rest-param-desc-media-links-title": "Título del archivo",
+	"rest-param-desc-media-mediatype": "El tipo de archivo"
 }
