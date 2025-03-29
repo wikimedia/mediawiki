@@ -2682,7 +2682,7 @@
 	"unblockip": "Unblock user",
 	"unblockiptext": "Use the form below to restore write access to a previously blocked IP address or username.",
 	"unblock-target": "Unblock target",
-	"unblock-target-label": "Provide a user name, IP address, or block ID:",
+	"unblock-target-label": "Provide a username, IP address, or block ID:",
 	"ipusubmit": "Remove this block",
 	"unblocked": "[[User:$1|{{GENDER:$1|$1}}]] has been unblocked.",
 	"unblocked-range": "$1 has been unblocked.",
