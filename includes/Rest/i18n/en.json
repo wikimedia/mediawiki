@@ -193,7 +193,7 @@
 	"rest-property-desc-revision-html-url": "Url to retrieve the revision content in html format",
 	"rest-property-desc-revision-title": "Revision Title. Included only if the x-restbase-compat header is used to activate RESTBase compatibility",
 	"rest-property-desc-user-id": "User identifier, or null for anonymous users",
-	"rest-property-desc-user-name": "User name, or originating IP address for anonymous users",
+	"rest-property-desc-user-name": "Username, or originating IP address for anonymous users",
 	"rest-property-desc-revision-size": "Size of this revision in bytes",
 	"rest-property-desc-revision-delta": "The difference in size compared to the previous revision.",
 	"rest-property-desc-revision-comment": "The comment the author associated with the revision",
