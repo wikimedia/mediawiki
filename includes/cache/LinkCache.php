@@ -1,7 +1,5 @@
 <?php
 /**
- * Page existence cache.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Cache
  */
 
 namespace MediaWiki\Cache;
@@ -45,8 +42,29 @@ use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
- * Cache for article titles (prefixed DB keys) and ids linked from one source
+ * Page existence and metadata cache.
  *
+ * This is exists primarily to reduce heavy database load from the Parser when
+ * rendering each individual outgoing link and template transclusion when
+ * parsing wikitext.
+ *
+ * See [the architecture doc](@ref linkcache) for more information.
+ *
+ * To create a batch, you can use the following code:
+ *
+ * @code
+ *   $titles = [];
+ *   foreach ( [ 'Main Page', 'Project:Help' ] as $page ) {
+ *     $titles[] = Title::newFromText( $page );
+ *   }
+ *   $linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+ *   $linkBatchFactory->newLinkBatch( $titles )->setCaller( __METHOD__ )->execute();
+ * @encode
+ *
+ * @see docs/LinkCache.md
+ * @see MediaWiki\Cache\LinkBatchFactory
+ * @see MediaWiki\Cache\LinkBatch
+ * @since 1.1
  * @ingroup Cache
  */
 class LinkCache implements LoggerAwareInterface {
@@ -522,11 +540,7 @@ class LinkCache implements LoggerAwareInterface {
 			return null;
 		}
 
-		return $this->wanCache->makeKey(
-			'page',
-			$page->getNamespace(),
-			sha1( $page->getDBkey() )
-		);
+		return $this->wanCache->makeKey( 'page', $page->getNamespace(), sha1( $page->getDBkey() ) );
 	}
 
 	/**

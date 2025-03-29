@@ -24,11 +24,6 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class LinkBatchTest extends MediaWikiIntegrationTestCase {
 
-	/**
-	 * @covers \MediaWiki\Cache\LinkBatch::__construct()
-	 * @covers \MediaWiki\Cache\LinkBatch::getSize()
-	 * @covers \MediaWiki\Cache\LinkBatch::isEmpty()
-	 */
 	public function testConstructEmptyWithServices() {
 		$batch = new LinkBatch(
 			[],
@@ -46,11 +41,6 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 0, $batch->getSize() );
 	}
 
-	/**
-	 * @covers \MediaWiki\Cache\LinkBatch::__construct()
-	 * @covers \MediaWiki\Cache\LinkBatch::getSize()
-	 * @covers \MediaWiki\Cache\LinkBatch::isEmpty()
-	 */
 	public function testConstructWithServices() {
 		$batch = new LinkBatch(
 			[
@@ -73,9 +63,7 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param iterable<LinkTarget>|iterable<PageReference> $objects
-	 *
 	 * @return LinkBatch
-	 * @throws Exception
 	 */
 	private function newLinkBatch( $objects = [] ) {
 		return new LinkBatch(
@@ -91,10 +79,6 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers \MediaWiki\Cache\LinkBatch::addObj()
-	 * @covers \MediaWiki\Cache\LinkBatch::getSize()
-	 */
 	public function testAddObj() {
 		$batch = $this->newLinkBatch(
 			[
@@ -110,10 +94,6 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 		$this->assertCount( 3, $batch->getPageIdentities() );
 	}
 
-	/**
-	 * @covers \MediaWiki\Cache\LinkBatch::add()
-	 * @covers \MediaWiki\Cache\LinkBatch::getSize()
-	 */
 	public function testAdd() {
 		$batch = $this->newLinkBatch(
 			[

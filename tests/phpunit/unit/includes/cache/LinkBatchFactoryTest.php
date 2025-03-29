@@ -34,7 +34,8 @@ class LinkBatchFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	protected function getOverriddenMockValueForParam( ReflectionParameter $param ) {
-		if ( $param->getName() === 'initialItems' ) {
+		// LinkBatchFactory::newLinkBatch()
+		if ( $param->getName() === 'titles' ) {
 			return [ [] ];
 		}
 		return [];

@@ -1,7 +1,5 @@
 <?php
 /**
- * Batch query to determine page existence.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Cache
  */
 
 namespace MediaWiki\Cache;
@@ -42,9 +39,14 @@ use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 /**
- * Class representing a list of titles
- * The execute() method checks them all for existence and adds them to a LinkCache object
+ * Batch query for page metadata and feed to LinkCache.
  *
+ * Use via MediaWikiServices::getLinkBatchFactory()->newLinkBatch(), and
+ * then call LinkBatch::execute().
+ *
+ * @see docs/LinkCache.md
+ * @see MediaWiki\Cache\LinkCache
+ * @since 1.6
  * @ingroup Cache
  */
 class LinkBatch {
@@ -105,7 +107,7 @@ class LinkBatch {
 	 * @see \MediaWiki\Cache\LinkBatchFactory
 	 *
 	 * @internal
-	 * @param iterable<LinkTarget>|iterable<PageReference> $arr Initial items to be added to the batch
+	 * @param iterable<LinkTarget>|iterable<PageReference> $arr Initial titles to be added to the batch
 	 * @param LinkCache $linkCache
 	 * @param TitleFormatter $titleFormatter
 	 * @param Language $contentLanguage
@@ -150,12 +152,12 @@ class LinkBatch {
 	 */
 	public function setCaller( $caller ): self {
 		$this->caller = $caller;
-
 		return $this;
 	}
 
 	/**
-	 * Convenience function to add user and user talk pages for a given user to this batch.
+	 * Add user page and user talk page for a given user to this batch.
+	 *
 	 * Calling {@link execute} will also prefetch the expiration status of temporary accounts
 	 * added this way, which is needed for the efficient rendering of user links via UserLinkRenderer.
 	 *
@@ -206,7 +208,8 @@ class LinkBatch {
 	}
 
 	/**
-	 * Set the link list to a given 2-d array
+	 * Replace the link batch with a given 2-d array.
+	 *
 	 * First key is the namespace, second is the DB key, value arbitrary
 	 *
 	 * @param array<int,array<string,mixed>> $array
@@ -216,7 +219,7 @@ class LinkBatch {
 	}
 
 	/**
-	 * Returns true if no pages have been added, false otherwise.
+	 * Whether no pages have been added.
 	 *
 	 * @return bool
 	 */
@@ -225,7 +228,7 @@ class LinkBatch {
 	}
 
 	/**
-	 * Returns the size of the batch.
+	 * Return the size of the batch.
 	 *
 	 * @return int
 	 */
@@ -234,9 +237,9 @@ class LinkBatch {
 	}
 
 	/**
-	 * Do the query and add the results to the LinkCache object
+	 * Do the query and add the results to the LinkCache
 	 *
-	 * @return int[] Mapping PDBK to ID
+	 * @return int[] Remaining unknown titles from PDBK to ID
 	 */
 	public function execute() {
 		return $this->executeInto( $this->linkCache );
@@ -259,10 +262,9 @@ class LinkBatch {
 
 	/**
 	 * Do the query and add the results to a given LinkCache object
-	 * Return an array mapping PDBK to ID
 	 *
 	 * @param LinkCache $cache
-	 * @return int[] Remaining IDs
+	 * @return int[] Remaining unknown titles from PDBK to ID
 	 */
 	protected function executeInto( $cache ) {
 		$res = $this->doQuery();
@@ -278,26 +280,27 @@ class LinkBatch {
 	}
 
 	/**
-	 * Add a result wrapper containing IDs and titles to a LinkCache object.
+	 * Add a database result with page rows to the LinkCache.
+	 *
 	 * As normal, titles will go into the static Title cache field.
 	 * This function *also* stores extra fields of the title used for link
 	 * parsing to avoid extra DB queries.
 	 *
 	 * @param LinkCache $cache
 	 * @param IResultWrapper $res
-	 * @return int[] Array of remaining titles
+	 * @return int[] Remaining unknown titles from PDBK to ID
 	 */
 	public function addResultToCache( $cache, $res ) {
 		if ( !$res ) {
 			return [];
 		}
 
-		// For each returned entry, add it to the list of good links, and remove it from $remaining
-
 		$this->pageIdentities ??= [];
 
 		$ids = [];
 		$remaining = $this->data;
+
+		// For each returned entry, add it to the list of good links, and remove it from $remaining
 		foreach ( $res as $row ) {
 			try {
 				$title = new TitleValue( (int)$row->page_namespace, $row->page_title );
@@ -350,8 +353,9 @@ class LinkBatch {
 	}
 
 	/**
-	 * Perform the existence test query, return a result wrapper with page_id fields
-	 * @return IResultWrapper|false
+	 * Perform the existence test query
+	 *
+	 * @return IResultWrapper|false Result wrapper with page_id fields
 	 */
 	public function doQuery() {
 		if ( $this->isEmpty() ) {
@@ -374,7 +378,7 @@ class LinkBatch {
 	}
 
 	/**
-	 * Do (and cache) {{GENDER:...}} information for userpages in this LinkBatch
+	 * Execute and cache `{{GENDER:...}}` information for user pages in this LinkBatch
 	 *
 	 * @return bool Whether the query was successful
 	 */

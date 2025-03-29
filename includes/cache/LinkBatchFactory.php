@@ -1,7 +1,5 @@
 <?php
 /**
- * Factory to create LinkBatch objects for querying page existence.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Cache
  */
 
 namespace MediaWiki\Cache;
@@ -33,8 +30,15 @@ use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
- * @ingroup Cache
+ * Factory for LinkBatch objects to batch query page metadata.
+ *
+ * Use via MediaWikiServices::getLinkBatchFactory()->newLinkBatch(), and
+ * then call LinkBatch::execute().
+ *
+ * @see docs/LinkCache.md
+ * @see MediaWiki\Cache\LinkCache
  * @since 1.35
+ * @ingroup Cache
  */
 class LinkBatchFactory {
 
@@ -92,13 +96,12 @@ class LinkBatchFactory {
 	}
 
 	/**
-	 * @param iterable<LinkTarget>|iterable<PageReference> $initialItems items to be added
-	 *
+	 * @param iterable<LinkTarget>|iterable<PageReference> $titles Initial titles for this batch
 	 * @return LinkBatch
 	 */
-	public function newLinkBatch( iterable $initialItems = [] ): LinkBatch {
+	public function newLinkBatch( iterable $titles = [] ): LinkBatch {
 		return new LinkBatch(
-			$initialItems,
+			$titles,
 			$this->linkCache,
 			$this->titleFormatter,
 			$this->contentLanguage,
