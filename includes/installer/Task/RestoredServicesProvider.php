@@ -8,6 +8,7 @@ use MediaWiki\Status\Status;
 use MediaWiki\Utils\UrlUtils;
 use MWLBFactory;
 use Wikimedia\Rdbms\LBFactorySingle;
+use Wikimedia\Services\ServiceContainer;
 
 /**
  * Provide a service container with storage enabled.
@@ -57,7 +58,7 @@ class RestoredServicesProvider extends Task {
 		return Status::newGood();
 	}
 
-	private function resetMediaWikiServices( $serviceOverrides ) {
+	private function resetMediaWikiServices( array $serviceOverrides ): ServiceContainer {
 		// Reset all services and inject config overrides.
 		MediaWikiServices::resetGlobalInstance( null, 'reload' );
 

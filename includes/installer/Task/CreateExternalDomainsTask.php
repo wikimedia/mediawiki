@@ -40,7 +40,7 @@ class CreateExternalDomainsTask extends Task {
 		$this->esFactory = $services->getExternalStoreFactory();
 	}
 
-	private function createVirtualDomains() {
+	private function createVirtualDomains(): Status {
 		$status = Status::newGood();
 		foreach ( $this->getVirtualDomains() as $virtualDomain ) {
 			if ( !$this->shouldDoShared()
@@ -62,7 +62,7 @@ class CreateExternalDomainsTask extends Task {
 		return $status;
 	}
 
-	private function createExternalStoreDomains() {
+	private function createExternalStoreDomains(): Status {
 		$status = Status::newGood();
 		$localDomainId = $this->lbFactory->getLocalDomainID();
 		foreach ( $this->esFactory->getWriteBaseUrls() as $url ) {

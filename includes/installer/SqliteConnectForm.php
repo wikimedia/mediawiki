@@ -55,7 +55,7 @@ class SqliteConnectForm extends DatabaseConnectForm {
 		return realpath( $path ) ?: $path;
 	}
 
-	private function getSqliteUtils() {
+	private function getSqliteUtils(): SqliteUtils {
 		return new SqliteUtils;
 	}
 

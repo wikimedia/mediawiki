@@ -146,7 +146,7 @@ class TaskFactory {
 		return $task;
 	}
 
-	private function getCoreSchemaBasePath() {
+	private function getCoreSchemaBasePath(): string {
 		return MW_INSTALL_PATH . '/sql';
 	}
 }
