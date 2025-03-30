@@ -36,6 +36,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
@@ -719,6 +720,10 @@ class SpecialPage implements MessageLocalizer {
 	 * @param string|null $subPage
 	 */
 	final public function run( $subPage ) {
+		$scope = LoggerFactory::getContext()->addScoped( [
+			'context.special_page_name' => $this->getName(),
+			'context.special_page_subpage' => $subPage ?? '',
+		] );
 		if ( !$this->getHookRunner()->onSpecialPageBeforeExecute( $this, $subPage ) ) {
 			return;
 		}
