@@ -69,7 +69,7 @@ class SiteStatsInit {
 		return $this->edits;
 	}
 
-	private function countTableRows( string $tableName ) {
+	private function countTableRows( string $tableName ): int {
 		return (int)$this->dbr->newSelectQueryBuilder()
 			->select( 'COUNT(*)' )
 			->from( $tableName )
@@ -178,7 +178,7 @@ class SiteStatsInit {
 		}
 	}
 
-	private function getShardedValue( $value, $noShards, $rowId ) {
+	private function getShardedValue( int $value, int $noShards, int $rowId ): int {
 		$remainder = $value % $noShards;
 		$quotient = (int)( ( $value - $remainder ) / $noShards );
 		// Add the reminder to the first row

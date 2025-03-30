@@ -92,7 +92,7 @@ class ScrambleMapping implements SerialMapping {
 		throw new RuntimeException( __METHOD__ . ": The index $index is too large" );
 	}
 
-	private function powmod( $num, $exponent, $modulus ) {
+	private function powmod( int $num, int $exponent, int $modulus ): int {
 		if ( $this->hasGmp ) {
 			return \gmp_intval( \gmp_powm( $num, $exponent, $modulus ) );
 		} elseif ( $this->hasBcm ) {

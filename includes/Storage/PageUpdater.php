@@ -1674,7 +1674,7 @@ class PageUpdater implements PageUpdateCauses {
 		RevisionRecord $newRevisionRecord,
 		CommentStoreComment $summary,
 		array $hints = []
-	) {
+	): AtomicSectionUpdate {
 		return new AtomicSectionUpdate(
 			$dbw,
 			__METHOD__,
@@ -1716,14 +1716,14 @@ class PageUpdater implements PageUpdateCauses {
 		return $this->slotRoleRegistry->getAllowedRoles( $this->getPage() );
 	}
 
-	private function ensureRoleAllowed( $role ) {
+	private function ensureRoleAllowed( string $role ) {
 		$allowedRoles = $this->getAllowedSlotRoles();
 		if ( !in_array( $role, $allowedRoles ) ) {
 			throw new PageUpdateException( "Slot role `$role` is not allowed." );
 		}
 	}
 
-	private function ensureRoleNotRequired( $role ) {
+	private function ensureRoleNotRequired( string $role ) {
 		$requiredRoles = $this->getRequiredSlotRoles();
 		if ( in_array( $role, $requiredRoles ) ) {
 			throw new PageUpdateException( "Slot role `$role` is required." );

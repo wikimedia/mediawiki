@@ -270,7 +270,9 @@ class RenameUser {
 		return Status::newGood();
 	}
 
-	private function movePagesAndSubPages( User $performer, Title $oldTitle, Title $newTitle, bool $suppressRedirect ) {
+	private function movePagesAndSubPages(
+		User $performer, Title $oldTitle, Title $newTitle, bool $suppressRedirect
+	): Status {
 		$status = Status::newGood();
 
 		$movePage = $this->movePageFactory->newMovePage(

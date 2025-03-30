@@ -49,7 +49,7 @@ class NotificationService {
 		$this->specs = $specs;
 	}
 
-	private function getHandlers() {
+	private function getHandlers(): array {
 		if ( $this->handlersByType === [] ) {
 			foreach ( $this->specs as $spec ) {
 				$obj = $this->objectFactory->createObject( $spec, [ 'assertClass' => NotificationHandler::class ] );

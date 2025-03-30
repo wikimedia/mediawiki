@@ -624,9 +624,9 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		UserIdentity $user,
 		CommentStoreComment $comment,
 		PageIdentity $page,
-		$pageId,
-		$parentId
-	) {
+		int $pageId,
+		int $parentId
+	): RevisionRecord {
 		$slotRoles = $rev->getSlotRoles();
 
 		$revisionRow = $this->insertRevisionRowOn(
@@ -1438,7 +1438,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		return $this->constructSlotRecords( $revId, $res, $queryFlags, $page );
 	}
 
-	private function loadSlotRecordsFromDb( $revId, $queryFlags, PageIdentity $page ): array {
+	private function loadSlotRecordsFromDb( int $revId, int $queryFlags, PageIdentity $page ): array {
 		$revQuery = $this->getSlotsQueryInfo( [ 'content' ] );
 
 		$db = $this->getDBConnectionRefForQueryFlags( $queryFlags );

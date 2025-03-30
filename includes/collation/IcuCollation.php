@@ -326,7 +326,7 @@ class IcuCollation extends Collation {
 		return $sortLetter;
 	}
 
-	private function getPrimarySortKey( $string ) {
+	private function getPrimarySortKey( string $string ): string {
 		return $this->primaryCollator->getSortKey( $string );
 	}
 

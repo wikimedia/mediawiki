@@ -143,7 +143,7 @@ class SearchSqlite extends SearchDatabase {
 		return " $field MATCH $searchon ";
 	}
 
-	private function regexTerm( $string, $wildcard ) {
+	private function regexTerm( string $string, string $wildcard ): string {
 		$regex = preg_quote( $string, '/' );
 		if ( MediaWikiServices::getInstance()->getContentLanguage()->hasWordBreaks() ) {
 			if ( $wildcard ) {
@@ -280,7 +280,7 @@ class SearchSqlite extends SearchDatabase {
 			"WHERE page_id=$searchindex.rowid AND $match";
 	}
 
-	private function getCountQuery( $filteredTerm, $fulltext ) {
+	private function getCountQuery( string $filteredTerm, bool $fulltext ): string {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
 		$dbr = $this->dbProvider->getReplicaDatabase();
 		$page = $dbr->tableName( 'page' );

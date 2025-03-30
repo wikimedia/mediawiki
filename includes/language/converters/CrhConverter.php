@@ -255,7 +255,7 @@ class CrhConverter extends LanguageConverterSpecific {
 		}
 	}
 
-	private function regsConverter( $text, $toVariant ) {
+	private function regsConverter( string $text, string $toVariant ): string {
 		if ( $text == '' ) {
 			return $text;
 		}

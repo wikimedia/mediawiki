@@ -286,7 +286,7 @@ class McrUndoAction extends FormAction {
 		return $newRev;
 	}
 
-	private function generateDiffOrPreview() {
+	private function generateDiffOrPreview(): string {
 		$newRev = $this->getNewRevision();
 		if ( $newRev->hasSameContent( $this->curRev ) ) {
 			throw new ErrorPageError( 'mcrundofailed', 'undo-nochange' );

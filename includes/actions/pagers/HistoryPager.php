@@ -308,7 +308,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		return $s;
 	}
 
-	private function getRevisionButton( $name, $msg, $class ) {
+	private function getRevisionButton( string $name, string $msg, string $class ): string {
 		$this->preventClickjacking = true;
 		$element = Html::element(
 			'button',

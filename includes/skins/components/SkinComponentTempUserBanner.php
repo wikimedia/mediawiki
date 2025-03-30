@@ -44,7 +44,7 @@ class SkinComponentTempUserBanner implements SkinComponent {
 		$this->userpageUrl = $user->getUserPage()->getFullURL();
 	}
 
-	private function createLoginLink() {
+	private function createLoginLink(): string {
 		return Html::element( 'a',
 		[
 			'href' => $this->loginUrl,
@@ -55,7 +55,7 @@ class SkinComponentTempUserBanner implements SkinComponent {
 		$this->localizer->msg( 'pt-login' )->text() );
 	}
 
-	private function createAccountLink() {
+	private function createAccountLink(): string {
 		return Html::element( 'a',
 			[
 				'href' => $this->createAccountUrl,
@@ -67,7 +67,7 @@ class SkinComponentTempUserBanner implements SkinComponent {
 		);
 	}
 
-	private function renderBannerHTML() {
+	private function renderBannerHTML(): string {
 		return Html::rawElement( 'div', [ 'class' => 'mw-temp-user-banner' ],
 			Html::rawElement( 'p', [],
 				$this->localizer->msg( 'temp-user-banner-description' )->escaped() .

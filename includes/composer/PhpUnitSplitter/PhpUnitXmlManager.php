@@ -93,7 +93,7 @@ class PhpUnitXmlManager {
 		return ( new PhpUnitTestFileScanner( $this->rootDir ) )->scanForFiles();
 	}
 
-	private static function extractNamespaceFromFile( $filename ): array {
+	private static function extractNamespaceFromFile( string $filename ): array {
 		$contents = file_get_contents( $filename );
 		$matches = [];
 		if ( preg_match( '/^namespace\s+([^\s;]+)/m', $contents, $matches ) ) {

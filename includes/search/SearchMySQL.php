@@ -143,7 +143,7 @@ class SearchMySQL extends SearchDatabase {
 		];
 	}
 
-	private function regexTerm( $string, $wildcard ) {
+	private function regexTerm( string $string, ?string $wildcard ): string {
 		$regex = preg_quote( $string, '/' );
 		if ( MediaWikiServices::getInstance()->getContentLanguage()->hasWordBreaks() ) {
 			if ( $wildcard ) {

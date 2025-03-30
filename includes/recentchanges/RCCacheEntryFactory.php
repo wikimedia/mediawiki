@@ -166,7 +166,7 @@ class RCCacheEntryFactory {
 		return $clink;
 	}
 
-	private function getLogLink( $logType ) {
+	private function getLogLink( string $logType ): string {
 		$logtitle = SpecialPage::getTitleFor( 'Log', $logType );
 		$logpage = new LogPage( $logType );
 		$logname = $logpage->getName()->text();

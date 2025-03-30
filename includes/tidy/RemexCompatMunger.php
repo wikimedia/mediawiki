@@ -134,7 +134,7 @@ class RemexCompatMunger implements TreeHandler {
 		$this->serializer->endDocument( $pos );
 	}
 
-	private function getParentForInsert( $preposition, $refElement ) {
+	private function getParentForInsert( int $preposition, ?Element $refElement ): array {
 		if ( $preposition === TreeBuilder::ROOT ) {
 			return [ $this->serializer->getRootNode(), null ];
 		} elseif ( $preposition === TreeBuilder::BEFORE ) {
@@ -210,7 +210,7 @@ class RemexCompatMunger implements TreeHandler {
 			$length, $sourceStart, $sourceLength );
 	}
 
-	private function trace( $msg ) {
+	private function trace( string $msg ) {
 		if ( $this->trace ) {
 			wfDebug( "[RCM] $msg" );
 		}

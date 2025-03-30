@@ -1275,7 +1275,7 @@ class RecentChange implements Taggable {
 		return ChangesList::showCharacterDifference( $old, $new );
 	}
 
-	private static function checkIPAddress( $ip ) {
+	private static function checkIPAddress( string $ip ): string {
 		global $wgRequest;
 
 		if ( $ip ) {

@@ -104,7 +104,7 @@ class PagePropsTable extends LinksTable {
 			&& $this->encodeValue( $this->newProps[$name] ) === $this->encodeValue( $value );
 	}
 
-	private function encodeValue( $value ) {
+	private function encodeValue( $value ): string {
 		if ( is_bool( $value ) ) {
 			return (string)(int)$value;
 		} elseif ( $value === null ) {

@@ -572,7 +572,7 @@ class Category {
 		return false;
 	}
 
-	private function addWhereonCategoryName( SelectQueryBuilder $queryBuilder, $name ) {
+	private function addWhereonCategoryName( SelectQueryBuilder $queryBuilder, string $name ) {
 		if ( $this->migrationStage & SCHEMA_COMPAT_READ_OLD ) {
 			$queryBuilder->where( [ 'cl_to' => $name ] );
 		} else {

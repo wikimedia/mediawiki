@@ -138,7 +138,9 @@ abstract class PrefixSearch {
 			$this->handleResultFromHook( $srchres, $namespaces, $search, $limit, $offset ) );
 	}
 
-	private function handleResultFromHook( $srchres, $namespaces, $search, $limit, $offset ) {
+	private function handleResultFromHook(
+		array $srchres, array $namespaces, string $search, int $limit, int $offset
+	): array {
 		if ( $offset === 0 ) {
 			// Only perform exact db match if offset === 0
 			// This is still far from perfect but at least we avoid returning the

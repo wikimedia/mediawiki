@@ -287,7 +287,7 @@ class LinkFilter {
 		return $index;
 	}
 
-	private static function reverseDomain( $domain ) {
+	private static function reverseDomain( string $domain ): string {
 		if ( substr( $domain, 0, 3 ) === 'V6.' ) {
 			$ipv6 = str_replace( '.', ':', trim( substr( $domain, 3 ), '.' ) );
 			if ( IPUtils::isValid( $ipv6 ) ) {

@@ -220,7 +220,7 @@ class PreloadedContentBuilder {
 		Content $content,
 		PageReference $title,
 		array $preloadParams = []
-	) {
+	): Content {
 		return $this->contentTransformer->preloadTransform(
 			$content,
 			$title,

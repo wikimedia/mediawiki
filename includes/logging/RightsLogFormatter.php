@@ -309,7 +309,7 @@ class RightsLogFormatter extends LogFormatter {
 		return $uiLanguage->semicolonList( $formattedChanges );
 	}
 
-	private function formatRightsListExpiryChanged( $groups ) {
+	private function formatRightsListExpiryChanged( array $groups ): string {
 		$list = [];
 
 		foreach ( $groups as $group => [ $oldExpiry, $newExpiry ] ) {
@@ -354,7 +354,7 @@ class RightsLogFormatter extends LogFormatter {
 		return $uiLanguage->listToText( $list );
 	}
 
-	private function formatRightsList( $groups ) {
+	private function formatRightsList( array $groups ): string {
 		$uiLanguage = $this->context->getLanguage();
 		// separate arrays of temporary and permanent memberships
 		$tempList = $permList = [];
@@ -377,7 +377,7 @@ class RightsLogFormatter extends LogFormatter {
 		return $uiLanguage->listToText( array_merge( $tempList, $permList ) );
 	}
 
-	private function formatDate( $date ) {
+	private function formatDate( string $date ): array {
 		$uiLanguage = $this->context->getLanguage();
 		$uiUser = $this->context->getUser();
 
@@ -465,7 +465,7 @@ class RightsLogFormatter extends LogFormatter {
 		return $ret;
 	}
 
-	private function makeGroupArray( $group ) {
+	private function makeGroupArray( $group ): array {
 		// Migrate old group params from string to array
 		if ( $group === '' ) {
 			$group = [];

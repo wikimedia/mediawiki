@@ -1528,7 +1528,7 @@ class DatabaseBlockStore {
 			: false;
 	}
 
-	private function getAutoblockReason( DatabaseBlock $parentBlock ) {
+	private function getAutoblockReason( DatabaseBlock $parentBlock ): string {
 		return wfMessage(
 			'autoblocker',
 			$parentBlock->getTargetName(),

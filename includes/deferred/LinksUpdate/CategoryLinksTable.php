@@ -243,7 +243,7 @@ class CategoryLinksTable extends TitleLinksTable {
 		return $this->existingLinks;
 	}
 
-	private function getSavedTimestamps() {
+	private function getSavedTimestamps(): array {
 		if ( $this->savedTimestamps === null ) {
 			$this->fetchExistingLinks();
 		}

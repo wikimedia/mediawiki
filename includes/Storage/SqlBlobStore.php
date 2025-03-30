@@ -461,7 +461,7 @@ class SqlBlobStore implements BlobStore {
 		return [ $result, $errors ];
 	}
 
-	private static function getDBOptions( $bitfield ) {
+	private static function getDBOptions( int $bitfield ): array {
 		if ( DBAccessObjectUtils::hasFlags( $bitfield, IDBAccessObject::READ_LATEST_IMMUTABLE ) ) {
 			$index = DB_REPLICA; // override READ_LATEST if set
 			$fallbackIndex = DB_PRIMARY;

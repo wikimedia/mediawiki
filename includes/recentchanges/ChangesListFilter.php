@@ -449,7 +449,7 @@ abstract class ChangesListFilter {
 		return false;
 	}
 
-	private function hasConflictWithGroup( ChangesListFilterGroup $group ) {
+	private function hasConflictWithGroup( ChangesListFilterGroup $group ): bool {
 		return in_array( $group, $this->getConflictingGroups() );
 	}
 
@@ -476,7 +476,7 @@ abstract class ChangesListFilter {
 		return false;
 	}
 
-	private function hasConflictWithFilter( ChangesListFilter $filter ) {
+	private function hasConflictWithFilter( ChangesListFilter $filter ): bool {
 		return in_array( $filter, $this->getConflictingFilters() );
 	}
 
