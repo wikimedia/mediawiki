@@ -67,6 +67,7 @@ class TestFileEditor {
 		}
 	}
 
+	/** @return string|false */
 	private function getHeading( string $line ) {
 		if ( preg_match( '/^!!\s*(\S+)/', $line, $m ) ) {
 			return $m[1];

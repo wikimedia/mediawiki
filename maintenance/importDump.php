@@ -305,6 +305,9 @@ TEXT
 		return $this->importFromHandle( $file );
 	}
 
+	/**
+	 * @param resource $handle
+	 */
 	private function importFromHandle( $handle ): bool {
 		$this->startTime = microtime( true );
 

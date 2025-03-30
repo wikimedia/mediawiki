@@ -128,6 +128,7 @@ class TrackBlobs extends Maintenance {
 		return $this->textClause;
 	}
 
+	/** @return array|false */
 	private function interpretPointer( string $text ) {
 		if ( !preg_match( '!^DB://(\w+)/(\d+)(?:/([0-9a-fA-F]+)|)$!', $text, $m ) ) {
 			return false;

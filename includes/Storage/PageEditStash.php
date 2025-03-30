@@ -558,11 +558,16 @@ class PageEditStash {
 		return count( $this->cache->get( $key ) ?: [] );
 	}
 
+	/** @return string|false */
 	private function serializeStashInfo( stdClass $stashInfo ) {
 		// @todo: use JSON with ParserOutput and Content
 		return serialize( $stashInfo );
 	}
 
+	/**
+	 * @param mixed $serial
+	 * @return stdClass|false
+	 */
 	private function unserializeStashInfo( $serial ) {
 		if ( is_string( $serial ) ) {
 			// @todo: use JSON with ParserOutput and Content

@@ -1596,6 +1596,10 @@ class SQLPlatform implements ISQLPlatform {
 		);
 	}
 
+	/**
+	 * @param mixed $array
+	 * @param int $listType
+	 */
 	private function scrubArray( $array, int $listType = self::LIST_AND ): string {
 		if ( is_array( $array ) ) {
 			$scrubbedArray = [];

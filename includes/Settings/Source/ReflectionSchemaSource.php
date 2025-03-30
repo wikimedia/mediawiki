@@ -170,6 +170,10 @@ class ReflectionSchemaSource implements Stringable, SettingsSource {
 		return $doc;
 	}
 
+	/**
+	 * @param string $name
+	 * @param true|string|array $spec
+	 */
 	private function normalizeDynamicDefault( string $name, $spec ): array {
 		if ( $spec === true ) {
 			$spec = [ 'callback' => [ $this->class, "getDefault{$name}" ] ];
@@ -183,7 +187,6 @@ class ReflectionSchemaSource implements Stringable, SettingsSource {
 			$spec['callback'] = [ $this->class, "getDefault{$name}" ];
 		}
 
-		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset per fallback above.
 		if ( $spec['callback'] instanceof Closure ) {
 			throw new SettingsBuilderException(
 				"dynamicDefaults callback for $name must be JSON serializable. " .

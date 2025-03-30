@@ -299,6 +299,9 @@ class HTTPFileStreamer {
 		return 'unknown/unknown';
 	}
 
+	/**
+	 * @param string|int $header
+	 */
 	private function header( $header ) {
 		if ( is_int( $header ) ) {
 			$header = HttpStatus::getHeader( $header );

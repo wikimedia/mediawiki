@@ -54,6 +54,7 @@ class SpecialSpecialPages extends UnlistedSpecialPage {
 		$this->outputPageList( $groups );
 	}
 
+	/** @return array[][]|false */
 	private function getPageGroups() {
 		$pages = $this->getSpecialPageFactory()->getUsablePages( $this->getUser() );
 

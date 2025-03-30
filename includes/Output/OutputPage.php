@@ -3039,6 +3039,7 @@ class OutputPage extends ContextSource {
 		return false;
 	}
 
+	/** @return string|false */
 	private function getReportTo() {
 		$config = $this->getConfig();
 

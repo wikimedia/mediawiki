@@ -141,6 +141,12 @@ class RevisionDeleteUser {
 		return true;
 	}
 
+	/**
+	 * @param string $field
+	 * @param string $op
+	 * @param string|int $value
+	 * @param IDatabase $dbw
+	 */
 	private static function buildSetBitDeletedField(
 		string $field, string $op, $value, IDatabase $dbw
 	): array {

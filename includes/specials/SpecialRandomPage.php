@@ -61,6 +61,9 @@ class SpecialRandomPage extends SpecialPage {
 		$this->namespaces = [ $ns ];
 	}
 
+	/**
+	 * @param int|false $ns
+	 */
 	private function isValidNS( $ns ): bool {
 		return $ns !== false && $ns >= 0;
 	}
@@ -208,6 +211,11 @@ class SpecialRandomPage extends SpecialPage {
 		];
 	}
 
+	/**
+	 * @param int|string $randstr
+	 * @param string $fname
+	 * @return \stdClass|false
+	 */
 	private function selectRandomPageFromDB( $randstr, string $fname ) {
 		$dbr = $this->dbProvider->getReplicaDatabase();
 

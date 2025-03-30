@@ -126,6 +126,7 @@ class ImportExtensionMessages extends Maintenance {
 		$this->setCoreData( $lang, $coreData );
 	}
 
+	/** @return mixed */
 	private function getCoreData( string $lang ) {
 		if ( !isset( $this->coreDataCache[$lang] ) ) {
 			$corePath = MW_INSTALL_PATH . "/languages/i18n/$lang.json";
@@ -142,6 +143,10 @@ class ImportExtensionMessages extends Maintenance {
 		return $this->coreDataCache[$lang];
 	}
 
+	/**
+	 * @param string $lang
+	 * @param mixed $data
+	 */
 	private function setCoreData( string $lang, $data ) {
 		if ( !isset( $this->coreDataCache[$lang] ) ) {
 			// Non-existent file, do not create

@@ -416,6 +416,12 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		$this->initInternal( $page, $parameters, $authority, $revision );
 	}
 
+	/**
+	 * @param PageIdentity $page
+	 * @param array $parameters
+	 * @param Authority $authority
+	 * @param int|RevisionRecord|null $revision
+	 */
 	private function initInternal(
 		PageIdentity $page,
 		array $parameters,

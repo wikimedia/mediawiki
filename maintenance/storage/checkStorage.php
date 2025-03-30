@@ -400,6 +400,11 @@ class CheckStorage extends Maintenance {
 		}
 	}
 
+	/**
+	 * @param string $type
+	 * @param string $msg
+	 * @param int|int[] $ids
+	 */
 	private function addError( string $type, string $msg, $ids ) {
 		if ( is_array( $ids ) && count( $ids ) == 1 ) {
 			$ids = reset( $ids );

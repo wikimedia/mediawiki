@@ -808,6 +808,9 @@ class DatabaseMySQL extends Database {
 		}
 	}
 
+	/**
+	 * @param mixed $s
+	 */
 	private function mysqlRealEscapeString( $s ): string {
 		$conn = $this->getBindingHandle();
 

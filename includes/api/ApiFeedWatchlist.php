@@ -251,6 +251,7 @@ class ApiFeedWatchlist extends ApiBase {
 		return new FeedItem( $titleStr, $completeText, $titleUrl, $timestamp, $user );
 	}
 
+	/** @return ApiBase|null */
 	private function getWatchlistModule() {
 		$this->watchlistModule ??= $this->getMain()->getModuleManager()->getModule( 'query' )
 			->getModuleManager()->getModule( 'watchlist' );

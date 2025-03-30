@@ -74,6 +74,7 @@ class GenerateUcfirstOverrides extends Maintenance {
 		);
 	}
 
+	/** @return mixed */
 	private function loadJson( string $filename ) {
 		$data = file_get_contents( $filename );
 		if ( $data === false ) {
