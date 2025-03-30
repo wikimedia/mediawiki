@@ -276,7 +276,7 @@ class SpecialImport extends SpecialPage {
 		}
 	}
 
-	private function getMappingFormPart( $sourceName ) {
+	private function getMappingFormPart( string $sourceName ): array {
 		$defaultNamespace = $this->getConfig()->get( MainConfigNames::ImportTargetNamespace );
 		return [
 			'mapping' => [

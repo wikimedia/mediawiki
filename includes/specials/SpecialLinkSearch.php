@@ -54,7 +54,7 @@ class SpecialLinkSearch extends QueryPage {
 
 	private UrlUtils $urlUtils;
 
-	private function setParams( $params ) {
+	private function setParams( array $params ) {
 		$this->mQuery = $params['query'];
 		$this->mNs = $params['namespace'];
 		$this->mProt = $params['protocol'];

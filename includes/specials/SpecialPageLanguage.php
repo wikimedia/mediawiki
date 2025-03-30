@@ -308,7 +308,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 		$this->getOutput()->redirect( $this->goToUrl );
 	}
 
-	private function showLogFragment( $title ) {
+	private function showLogFragment( string $title ): string {
 		$moveLogPage = new LogPage( 'pagelang' );
 		$out1 = Xml::element( 'h2', null, $moveLogPage->getName()->text() );
 		$out2 = '';

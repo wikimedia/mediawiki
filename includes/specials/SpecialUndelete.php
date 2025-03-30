@@ -198,7 +198,7 @@ class SpecialUndelete extends SpecialPage {
 		return true;
 	}
 
-	private function loadRequest( $par ) {
+	private function loadRequest( ?string $par ) {
 		$request = $this->getRequest();
 		$user = $this->getUser();
 
@@ -551,7 +551,7 @@ class SpecialUndelete extends SpecialPage {
 		return true;
 	}
 
-	private function showRevision( $timestamp ) {
+	private function showRevision( string $timestamp ) {
 		if ( !preg_match( '/[0-9]{14}/', $timestamp ) ) {
 			return;
 		}
@@ -1416,7 +1416,7 @@ class SpecialUndelete extends SpecialPage {
 		return Xml::tags( 'li', $attribs, $revisionRow ) . "\n";
 	}
 
-	private function formatFileRow( $row ) {
+	private function formatFileRow( \stdClass $row ): string {
 		$file = ArchivedFile::newFromRow( $row );
 		$ts = wfTimestamp( TS_MW, $row->fa_timestamp );
 		$user = $this->getUser();

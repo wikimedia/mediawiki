@@ -168,7 +168,7 @@ class SpecialStatistics extends SpecialPage {
 		return $pageStatsHtml;
 	}
 
-	private function getEditStats() {
+	private function getEditStats(): string {
 		return Html::rawElement( 'tr', [],
 			Xml::tags( 'th', [ 'colspan' => '2' ],
 				$this->msg( 'statistics-header-edits' )->parse()
@@ -184,7 +184,7 @@ class SpecialStatistics extends SpecialPage {
 			);
 	}
 
-	private function getUserStats() {
+	private function getUserStats(): string {
 		return Html::rawElement( 'tr', [],
 			Xml::tags( 'th', [ 'colspan' => '2' ],
 				$this->msg( 'statistics-header-users' )->parse()
@@ -210,7 +210,7 @@ class SpecialStatistics extends SpecialPage {
 			);
 	}
 
-	private function getGroupStats() {
+	private function getGroupStats(): string {
 		$linkRenderer = $this->getLinkRenderer();
 		$lang = $this->getLanguage();
 		$text = '';

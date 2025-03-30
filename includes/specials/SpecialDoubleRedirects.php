@@ -71,7 +71,7 @@ class SpecialDoubleRedirects extends QueryPage {
 		return $this->msg( 'doubleredirectstext' )->parseAsBlock();
 	}
 
-	private function reallyGetQueryInfo( $namespace = null, $title = null ) {
+	private function reallyGetQueryInfo( ?int $namespace = null, ?string $title = null ): array {
 		$limitToTitle = !( $namespace === null && $title === null );
 		$retval = [
 			'tables' => [

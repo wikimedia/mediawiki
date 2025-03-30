@@ -190,7 +190,7 @@ class ImageListPager extends TablePager {
 		return $conds + $this->mQueryConds;
 	}
 
-	private function buildQueryConds() {
+	private function buildQueryConds(): array {
 		$conds = [
 			'file_deleted' => 0,
 			'fr_deleted' => 0,

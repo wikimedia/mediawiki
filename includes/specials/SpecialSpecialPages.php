@@ -97,7 +97,7 @@ class SpecialSpecialPages extends UnlistedSpecialPage {
 		return $groups;
 	}
 
-	private function outputPageList( $groups ) {
+	private function outputPageList( array $groups ) {
 		$out = $this->getOutput();
 
 		// Legend

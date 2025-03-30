@@ -124,7 +124,7 @@ class AllMessagesTablePager extends TablePager {
 		}
 	}
 
-	private function getAllMessages( $descending ) {
+	private function getAllMessages( bool $descending ): array {
 		$messageNames = $this->localisationCache->getSubitemList( 'en', 'messages' );
 
 		// Normalise message names so they look like page titles and sort correctly - T86139
