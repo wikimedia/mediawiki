@@ -21,6 +21,7 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Message\Message;
 use MediaWiki\User\User;
 
@@ -132,6 +133,9 @@ class ResetPasswordSecondaryAuthenticationProvider extends AbstractSecondaryAuth
 		if ( !$status->isGood() ) {
 			return AuthenticationResponse::newUI( $needReqs, $status->getMessage(), 'error' );
 		}
+		$scope = LoggerFactory::getContext()->addScoped( [
+			'context.passwordResetOnLogin' => $data->hard ? 'forced' : 'suggested',
+		] );
 		$this->manager->changeAuthenticationData( $req );
 
 		$this->manager->removeAuthenticationSessionData( 'reset-pass' );
