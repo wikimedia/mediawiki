@@ -230,7 +230,7 @@ class CommandLineInstaller extends Maintenance {
 		return true;
 	}
 
-	private function generateStrongPassword() {
+	private function generateStrongPassword(): string {
 		$strongPassword = '';
 		$strongPasswordLength = 20;
 		$strongPasswordChars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-={}|;:,.<>?';

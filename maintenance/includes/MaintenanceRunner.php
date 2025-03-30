@@ -64,7 +64,7 @@ class MaintenanceRunner {
 		$this->addDefaultParams();
 	}
 
-	private function getConfig() {
+	private function getConfig(): Config {
 		if ( $this->config === null ) {
 			$this->config = $this->getServiceContainer()->getMainConfig();
 		}
@@ -222,7 +222,7 @@ class MaintenanceRunner {
 		}
 	}
 
-	private static function isAbsolutePath( $path ) {
+	private static function isAbsolutePath( string $path ): bool {
 		if ( str_starts_with( $path, '/' ) ) {
 			return true;
 		}

@@ -100,7 +100,7 @@ class DeleteAutoPatrolLogs extends Maintenance {
 		}
 	}
 
-	private function getRows( $fromId ) {
+	private function getRows( ?int $fromId ): array {
 		$dbr = $this->getReplicaDB();
 		$before = $this->getOption( 'before', false );
 
@@ -127,7 +127,7 @@ class DeleteAutoPatrolLogs extends Maintenance {
 			->fetchFieldValues();
 	}
 
-	private function getRowsOld( $fromId ) {
+	private function getRowsOld( ?int $fromId ): ?array {
 		$dbr = $this->getReplicaDB();
 		$batchSize = $this->getBatchSize();
 		$before = $this->getOption( 'before', false );

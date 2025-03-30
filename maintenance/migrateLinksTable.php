@@ -94,7 +94,7 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 		return true;
 	}
 
-	private function handlePageBatch( $lowPageId, $mapping, $table ) {
+	private function handlePageBatch( int $lowPageId, array $mapping, string $table ) {
 		$batchSize = $this->getBatchSize();
 		$targetColumn = $mapping[$table]['target_id'];
 		$pageIdColumn = $mapping[$table]['page_id'];

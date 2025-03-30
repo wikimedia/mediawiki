@@ -40,6 +40,7 @@ use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Specials\SpecialUpload;
 use MediaWiki\User\User;
 use Wikimedia\Rdbms\IMaintainableDatabase;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * Maintenance script to update image metadata records.
@@ -128,7 +129,7 @@ class ImageBuilder extends Maintenance {
 		$this->table = $table;
 	}
 
-	private function progress( $updated ) {
+	private function progress( int $updated ) {
 		$this->updated += $updated;
 		$this->processed++;
 		if ( $this->processed % 100 != 0 ) {
@@ -155,7 +156,7 @@ class ImageBuilder extends Maintenance {
 		flush();
 	}
 
-	private function buildTable( $table, $queryBuilder, $callback ) {
+	private function buildTable( string $table, SelectQueryBuilder $queryBuilder, callable $callback ) {
 		$count = $this->dbw->newSelectQueryBuilder()
 			->select( 'count(*)' )
 			->from( $table )
@@ -181,7 +182,7 @@ class ImageBuilder extends Maintenance {
 		$this->buildTable( 'image', FileSelectQueryBuilder::newForFile( $this->getReplicaDB() ), $callback );
 	}
 
-	private function imageCallback( $row ) {
+	private function imageCallback( \stdClass $row ): bool {
 		// Create a File object from the row
 		// This will also upgrade it
 		$file = $this->getRepo()->newFileFromRow( $row );
@@ -194,7 +195,7 @@ class ImageBuilder extends Maintenance {
 			[ $this, 'oldimageCallback' ] );
 	}
 
-	private function oldimageCallback( $row ) {
+	private function oldimageCallback( \stdClass $row ): bool {
 		// Create a File object from the row
 		// This will also upgrade it
 		if ( $row->oi_archive_name == '' ) {
@@ -225,7 +226,7 @@ class ImageBuilder extends Maintenance {
 		}
 	}
 
-	private function addMissingImage( $filename, $fullpath ) {
+	private function addMissingImage( string $filename, string $fullpath ) {
 		$timestamp = $this->dbw->timestamp( $this->getRepo()->getFileTimestamp( $fullpath ) );
 		$services = $this->getServiceContainer();
 

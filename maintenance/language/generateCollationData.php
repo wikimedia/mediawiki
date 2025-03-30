@@ -117,7 +117,7 @@ class GenerateCollationData extends Maintenance {
 		$uxr->readChars( [ $this, 'charCallback' ] );
 	}
 
-	private function charCallback( $data ) {
+	private function charCallback( array $data ) {
 		// Skip non-printable characters,
 		// but do not skip a normal space (U+0020) since
 		// people like to use that as a fake no header symbol.

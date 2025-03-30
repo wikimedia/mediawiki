@@ -32,6 +32,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\User\Options\UserOptionsLookup;
 use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\LikeValue;
 
 /**
@@ -99,7 +100,7 @@ class CleanupPreferences extends Maintenance {
 		}
 	}
 
-	private function deleteByWhere( $dbr, $startMessage, $where ) {
+	private function deleteByWhere( IReadableDatabase $dbr, string $startMessage, array $where ) {
 		$this->output( $startMessage . "...\n" );
 		$dryRun = $this->hasOption( 'dry-run' );
 

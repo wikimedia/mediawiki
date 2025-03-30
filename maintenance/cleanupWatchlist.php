@@ -80,7 +80,7 @@ class CleanupWatchlist extends TableCleanup {
 		$this->progress( 0 );
 	}
 
-	private function removeWatch( $row ) {
+	private function removeWatch( \stdClass $row ): int {
 		if ( !$this->dryrun && $this->hasOption( 'fix' ) ) {
 			$dbw = $this->getPrimaryDB();
 			$dbw->newDeleteQueryBuilder()

@@ -159,7 +159,7 @@ TEXT
 		$this->nsFilter = array_unique( array_map( [ $this, 'getNsIndex' ], $namespaces ) );
 	}
 
-	private function getNsIndex( $namespace ) {
+	private function getNsIndex( string $namespace ): int {
 		$contLang = $this->getServiceContainer()->getContentLanguage();
 		$result = $contLang->getNsIndex( $namespace );
 		if ( $result !== false ) {
@@ -249,7 +249,7 @@ TEXT
 		}
 	}
 
-	private function report( $final = false ) {
+	private function report( bool $final = false ) {
 		if ( $final xor ( $this->pageCount % $this->reportingInterval == 0 ) ) {
 			$this->showReport();
 		}
@@ -275,11 +275,11 @@ TEXT
 		$this->waitForReplication();
 	}
 
-	private function progress( $string ) {
+	private function progress( string $string ) {
 		fwrite( $this->stderr, $string . "\n" );
 	}
 
-	private function importFromFile( $filename ) {
+	private function importFromFile( string $filename ): bool {
 		if ( preg_match( '/\.gz$/', $filename ) ) {
 			$filename = 'compress.zlib://' . $filename;
 		} elseif ( preg_match( '/\.bz2$/', $filename ) ) {
@@ -296,7 +296,7 @@ TEXT
 		return $this->importFromHandle( $file );
 	}
 
-	private function importFromStdin() {
+	private function importFromStdin(): bool {
 		$file = fopen( 'php://stdin', 'rt' );
 		if ( self::posix_isatty( $file ) ) {
 			$this->maybeHelp( true );
@@ -305,7 +305,7 @@ TEXT
 		return $this->importFromHandle( $file );
 	}
 
-	private function importFromHandle( $handle ) {
+	private function importFromHandle( $handle ): bool {
 		$this->startTime = microtime( true );
 
 		$user = User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] );

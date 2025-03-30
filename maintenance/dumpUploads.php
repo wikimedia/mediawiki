@@ -115,7 +115,7 @@ By default, outputs relative paths against the parent directory of $wgUploadDire
 		}
 	}
 
-	private function outputItem( $name, $shared ) {
+	private function outputItem( string $name, bool $shared ) {
 		$file = $this->getServiceContainer()->getRepoGroup()->findFile( $name );
 		if ( $file && $this->filterItem( $file, $shared ) ) {
 			$filename = $file->getLocalRefPath();
@@ -126,7 +126,7 @@ By default, outputs relative paths against the parent directory of $wgUploadDire
 		}
 	}
 
-	private function filterItem( $file, $shared ) {
+	private function filterItem( File $file, bool $shared ): bool {
 		return $shared || $file->isLocal();
 	}
 }

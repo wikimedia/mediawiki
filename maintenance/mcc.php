@@ -185,7 +185,7 @@ class Mcc extends Maintenance {
 		} while ( !$quit );
 	}
 
-	private function mccGetHelp( $command ) {
+	private function mccGetHelp( $command ): string {
 		$output = '';
 		$commandList = [
 			'get' => 'grabs something',

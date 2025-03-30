@@ -86,7 +86,7 @@ class CheckDependencies extends Maintenance {
 		}
 	}
 
-	private function loadThing( &$dependencies, $name, $extensions, $skins ) {
+	private function loadThing( array &$dependencies, string $name, array $extensions, array $skins ) {
 		$extDir = $this->getConfig()->get( MainConfigNames::ExtensionDirectory );
 		$styleDir = $this->getConfig()->get( MainConfigNames::StyleDirectory );
 		$queue = [];
@@ -154,8 +154,8 @@ class CheckDependencies extends Maintenance {
 		$this->addToDependencies( $dependencies, $extensions, $skins, $name );
 	}
 
-	private function addToDependencies( &$dependencies, $extensions, $skins,
-		$why = null, $status = null, $message = null
+	private function addToDependencies( array &$dependencies, array $extensions, array $skins,
+		?string $why = null, ?string $status = null, ?string $message = null
 	) {
 		$mainRegistry = ExtensionRegistry::getInstance();
 		$iter = [ 'extensions' => $extensions, 'skins' => $skins ];
@@ -186,7 +186,7 @@ class CheckDependencies extends Maintenance {
 		}
 	}
 
-	private function formatForHumans( $dependencies ) {
+	private function formatForHumans( array $dependencies ): string {
 		$text = '';
 		foreach ( $dependencies as $type => $things ) {
 			$text .= ucfirst( $type ) . "\n" . str_repeat( '=', strlen( $type ) ) . "\n";
