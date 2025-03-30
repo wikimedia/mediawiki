@@ -199,7 +199,7 @@ class UnregisteredLocalFile extends File {
 		return $info['metadata'];
 	}
 
-	private function getSizeAndMetadata() {
+	private function getSizeAndMetadata(): array {
 		if ( $this->sizeAndMetadata === null ) {
 			if ( !$this->getHandler() ) {
 				$this->sizeAndMetadata = [ 'width' => 0, 'height' => 0, 'metadata' => [] ];

@@ -153,7 +153,7 @@ class ThumbnailRenderJob extends Job {
 		return false;
 	}
 
-	private function maybeEnqueueNextPage( $transformParams ) {
+	private function maybeEnqueueNextPage( array $transformParams ) {
 		if (
 			( $this->params['enqueueNextPage'] ?? false ) &&
 			( $transformParams['page'] ?? 0 ) < ( $this->params['pageLimit'] ?? 0 )

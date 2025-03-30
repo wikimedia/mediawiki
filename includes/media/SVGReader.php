@@ -314,7 +314,7 @@ class SVGReader {
 		}
 	}
 
-	private function debug( $data ) {
+	private function debug( string $data ) {
 		if ( $this->mDebug ) {
 			wfDebug( "SVGReader: $data" );
 		}

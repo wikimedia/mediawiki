@@ -918,7 +918,7 @@ abstract class UploadBase {
 		return $warnings;
 	}
 
-	private function checkLocalFileWasDeleted( LocalFile $localFile ) {
+	private function checkLocalFileWasDeleted( LocalFile $localFile ): bool {
 		return $localFile->wasDeleted() && !$localFile->exists();
 	}
 
