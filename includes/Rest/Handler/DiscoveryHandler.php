@@ -69,7 +69,7 @@ class DiscoveryHandler extends Handler {
 		];
 	}
 
-	private function getInfoSpec() {
+	private function getInfoSpec(): array {
 		return [
 			'title' => $this->options->get( MainConfigNames::Sitename ),
 			'mediawiki' => MW_VERSION,

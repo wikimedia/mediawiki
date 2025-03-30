@@ -37,7 +37,7 @@ trait RestStatusTrait {
 		throw new LocalizedHttpException( $msg, $code, $data );
 	}
 
-	private function getStatusErrorKeys( StatusValue $status ) {
+	private function getStatusErrorKeys( StatusValue $status ): array {
 		$keys = [];
 
 		foreach ( $status->getMessages() as $msg ) {

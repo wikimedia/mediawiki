@@ -122,7 +122,7 @@ class LanguageLinksHandler extends SimpleHandler {
 			->createJson( $this->fetchLinks( $page->getId() ) );
 	}
 
-	private function fetchLinks( $pageId ) {
+	private function fetchLinks( int $pageId ): array {
 		$result = [];
 		$res = $this->dbProvider->getReplicaDatabase()->newSelectQueryBuilder()
 			->select( [ 'll_title', 'll_lang' ] )

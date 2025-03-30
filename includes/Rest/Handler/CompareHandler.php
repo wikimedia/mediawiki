@@ -111,11 +111,11 @@ class CompareHandler extends Handler {
 		return $rev->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() );
 	}
 
-	private function getRole() {
+	private function getRole(): string {
 		return SlotRecord::MAIN;
 	}
 
-	private function getRevisionText( $paramName ) {
+	private function getRevisionText( string $paramName ): string {
 		if ( !isset( $this->textCache[$paramName] ) ) {
 			$revision = $this->getRevision( $paramName );
 			try {

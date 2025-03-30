@@ -648,7 +648,7 @@ abstract class ParsoidHandler extends Handler {
 
 	private function wtLint(
 		PageConfig $pageConfig, array $attribs, ?array $linterOverrides = []
-	) {
+	): array {
 		$envOptions = $attribs['envOptions'] + [
 			'linterOverrides' => $linterOverrides,
 			'offsetType' => $attribs['offsetType'],
