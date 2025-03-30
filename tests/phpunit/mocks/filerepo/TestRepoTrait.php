@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\FileRepo;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\FileBackend\FileBackendGroup;
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\MediaWikiServices;
@@ -93,7 +94,7 @@ trait TestRepoTrait {
 		$this->installTestBackendGroup( $repoGroup->getLocalRepo()->getBackend() );
 	}
 
-	private function createTestRepoGroup( $options = [], ?MediaWikiServices $services = null ) {
+	private function createTestRepoGroup( array $options = [], ?MediaWikiServices $services = null ): RepoGroup {
 		$services ??= $this->getServiceContainer();
 		$localFileRepo = $this->getLocalFileRepoConfig( $options );
 
@@ -129,7 +130,7 @@ trait TestRepoTrait {
 		return $backendGroup;
 	}
 
-	private function getLocalFileRepoConfig( $options = [] ): array {
+	private function getLocalFileRepoConfig( array $options = [] ): array {
 		if ( self::$mockRepoTraitDir === null ) {
 			throw new LogicException( 'Mock repo not initialized. ' .
 				'Call initTestRepo() from addDBDataOnce() and a call ' .
@@ -223,7 +224,7 @@ trait TestRepoTrait {
 		}
 	}
 
-	private function importFileToTestRepo( string $path, ?string $destName = null ) {
+	private function importFileToTestRepo( string $path, ?string $destName = null ): File {
 		$repo = self::getTestRepo();
 
 		$destName ??= pathinfo( $path, PATHINFO_BASENAME );

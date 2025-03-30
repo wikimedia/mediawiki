@@ -15,7 +15,7 @@ class MultiTestRecorder extends TestRecorder {
 		$this->recorders[] = $recorder;
 	}
 
-	private function proxy( $funcName, $args ) {
+	private function proxy( string $funcName, array $args ) {
 		foreach ( $this->recorders as $recorder ) {
 			$recorder->$funcName( ...$args );
 		}

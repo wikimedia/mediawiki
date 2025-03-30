@@ -22,7 +22,7 @@ class TestFileEditor {
 		return $editor->result;
 	}
 
-	private function __construct( $text, array $deletions, array $changes, $warningCallback ) {
+	private function __construct( string $text, array $deletions, array $changes, callable $warningCallback ) {
 		$this->lines = explode( "\n", $text );
 		$this->numLines = count( $this->lines );
 		$this->deletions = array_fill_keys( $deletions, true );
@@ -60,14 +60,14 @@ class TestFileEditor {
 		}
 	}
 
-	private function warning( $text ) {
+	private function warning( string $text ) {
 		$cb = $this->warningCallback;
 		if ( $cb ) {
 			$cb( $text );
 		}
 	}
 
-	private function getHeading( $line ) {
+	private function getHeading( string $line ) {
 		if ( preg_match( '/^!!\s*(\S+)/', $line, $m ) ) {
 			return $m[1];
 		} else {

@@ -51,6 +51,7 @@ use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Skin\Skin;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
@@ -569,7 +570,7 @@ class ParserTestRunner {
 		return $this->createTeardownObject( $teardown, $nextTeardown );
 	}
 
-	private function appendNamespaceSetup( &$setup, &$teardown ) {
+	private function appendNamespaceSetup( array &$setup, array &$teardown ) {
 		// Add a namespace shadowing a interwiki link, to test
 		// proper precedence when resolving links. (T53680)
 		$setup['wgExtraNamespaces'] = [
@@ -1569,7 +1570,7 @@ class ParserTestRunner {
 		return $testResult;
 	}
 
-	private function getSkin( $name ) {
+	private function getSkin( string $name ): Skin {
 		static $skinCache = [];
 
 		$skinCache[$name] ??= MediaWikiServices::getInstance()->getSkinFactory()->makeSkin( $name );
@@ -1807,7 +1808,7 @@ class ParserTestRunner {
 		return new ParserTestResult( $test, $mode, $expected, $actual );
 	}
 
-	private function fetchCachedDoc( $parsoid, $pageConfig, $test ) {
+	private function fetchCachedDoc( Parsoid $parsoid, PageConfig $pageConfig, ParserTest $test ): Document {
 		// If cachedBODYstr is not already set, create it here.
 		if ( $test->cachedBODYstr === null ) {
 			$this->wt2html( $parsoid, $pageConfig, $test, new ParserTestMode( 'cache' ) );
@@ -1816,7 +1817,7 @@ class ParserTestRunner {
 		return $doc;
 	}
 
-	private function fetchCachedWt( $parsoid, $pageConfig, $test ) {
+	private function fetchCachedWt( Parsoid $parsoid, PageConfig $pageConfig, ParserTest $test ): string {
 		// If cachedWTstr is not already set, set it here.
 		if ( ( $test->cachedWTstr ?? null ) === null ) {
 			$this->html2wt( $parsoid, $pageConfig, $test, new ParserTestMode( 'cache' ) );
@@ -2463,7 +2464,7 @@ class ParserTestRunner {
 		return $this->createTeardownObject( $teardown, $nextTeardown );
 	}
 
-	private function resetLanguageServices( array &$setup, array &$teardown, $resetVariant = false ) {
+	private function resetLanguageServices( array &$setup, array &$teardown, bool $resetVariant = false ) {
 		$mwServices = MediaWikiServices::getInstance();
 		$reset = static function () use ( $mwServices, $resetVariant ) {
 			$mwServices->resetServiceForTesting( 'ContentLanguage' );

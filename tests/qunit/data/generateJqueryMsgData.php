@@ -49,7 +49,7 @@ class GenerateJqueryMsgData extends Maintenance {
 		$this->writeJsonFile( $data, __DIR__ . '/mediawiki.jqueryMsg.data.json' );
 	}
 
-	private function getData() {
+	private function getData(): array {
 		$messages = [];
 		$tests = [];
 		$jsData = [];
@@ -87,7 +87,7 @@ class GenerateJqueryMsgData extends Maintenance {
 		];
 	}
 
-	private function writeJsonFile( array $data, $dataSpecFile ) {
+	private function writeJsonFile( array $data, string $dataSpecFile ) {
 		$phpParserData = [
 			'@' => 'Last generated with ' . basename( __FILE__ ) . ' at ' . gmdate( 'r' ),
 		] + $data;

@@ -59,7 +59,7 @@ trait FileBackendGroupTestTrait {
 	/** @var TempFSFileFactory */
 	private $tmpFileFactory;
 
-	private static function getDefaultLocalFileRepo() {
+	private static function getDefaultLocalFileRepo(): array {
 		return [
 			'class' => LocalRepo::class,
 			'name' => 'local',
@@ -78,7 +78,7 @@ trait FileBackendGroupTestTrait {
 		];
 	}
 
-	private static function getDefaultOptions() {
+	private static function getDefaultOptions(): array {
 		return [
 			MainConfigNames::DirectoryMode => 0775,
 			MainConfigNames::FileBackends => [],

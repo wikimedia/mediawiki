@@ -93,7 +93,7 @@ trait RevisionRecordTests {
 
 	abstract protected function expectedDefaultFieldVisibility( $field ): bool;
 
-	private function provideAudienceCheckData( $field ) {
+	private function provideAudienceCheckData( int $field ): iterable {
 		yield 'field accessible for oversighter (ALL)' => [
 			RevisionRecord::SUPPRESSED_ALL,
 			[ 'deletedtext', 'deletedhistory', 'viewsuppressed', 'suppressrevision' ],
