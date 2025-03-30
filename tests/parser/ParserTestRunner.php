@@ -24,6 +24,9 @@
  * @todo Make this more independent of the configuration (and if possible the database)
  * @file
  * @ingroup Testing
+ * @phan-file-suppress UnusedPluginSuppression,UnusedPluginFileSuppression
+ *   Prevent phan from crashing CI if
+ *   ParsoidParserHook::getParserTestConfigFileName() happens to exist
  */
 
 use MediaWiki\Content\WikitextContent;
@@ -483,18 +486,49 @@ class ParserTestRunner {
 		);
 
 		// Fake a magic word for {{#divtag}}/{{#spantag}} defined in ParserTestParserHook
+		$extraMagicWords = [
+			[
+				'name' => 'divtagpf',
+				'aliases' => [ '#divtag' ],
+				'case-sensitive' => true,
+			],
+			[
+				'name' => 'spantagpf',
+				'aliases' => [ '#spantag' ],
+				'case-sensitive' => true,
+			],
+		];
+		// Add magic words used in Parsoid-native extension modules
+		if ( method_exists( ParsoidParserHook::class, 'getParserTestConfigFileName' ) ) {
+			// https://github.com/phan/phan/issues/2628
+			// @phan-suppress-next-line PhanUndeclaredStaticMethod
+			$filename = ParsoidParserHook::getParserTestConfigFileName();
+			if ( $filename !== null && file_exists( $filename ) ) {
+				$config = json_decode( file_get_contents( $filename ), true );
+				$extraMagicWords = array_merge(
+					$extraMagicWords, $config['magicwords'] ?? []
+				);
+			}
+		}
 		$teardown[] = $this->registerHook(
 			'GetMagicVariableIDs',
-			static function ( &$variableIDs ) {
-				$variableIDs[] = 'divtagpf';
-				$variableIDs[] = 'spantagpf';
+			static function ( &$variableIDs ) use ( $extraMagicWords ) {
+				foreach ( $extraMagicWords as [ 'name' => $key ] ) {
+					$variableIDs[] = $key;
+				}
 			}
 		);
 		$teardown[] = $this->registerHook(
 			'LocalisationCacheRecache',
-			static function ( $cache, $code, &$alldata, $unused ) {
-				$alldata['magicWords']['divtagpf'] = [ 1, '#divtag' ];
-				$alldata['magicWords']['spantagpf'] = [ 1, '#spantag' ];
+			static function ( $cache, $code, &$alldata, $unused ) use ( $extraMagicWords ) {
+				foreach ( $extraMagicWords as [
+					'name' => $key,
+					'aliases' => $aliases,
+					'case-sensitive' => $caseSensitive ]
+				) {
+					array_unshift( $aliases, (int)$caseSensitive );
+					$alldata['magicWords'][$key] = $aliases;
+				}
 				return true;
 			}
 		);
