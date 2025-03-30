@@ -286,7 +286,7 @@ class StartUpModule extends Module {
 		return $out;
 	}
 
-	private function getGroupId( $groupName ): ?int {
+	private function getGroupId( ?string $groupName ): ?int {
 		if ( $groupName === null ) {
 			return null;
 		}
