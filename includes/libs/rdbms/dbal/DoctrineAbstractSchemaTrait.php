@@ -31,7 +31,7 @@ trait DoctrineAbstractSchemaTrait {
 
 	private AbstractPlatform $platform;
 
-	private function addTableToSchema( Schema $schema, array $schemaSpec ) {
+	private function addTableToSchema( Schema $schema, array $schemaSpec ): Schema {
 		$prefix = $this->platform->getName() === 'postgresql' ? '' : '/*_*/';
 
 		$table = $schema->createTable( $prefix . $schemaSpec['name'] );

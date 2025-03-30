@@ -57,7 +57,7 @@ class BooleanDef extends TypeDef {
 		);
 	}
 
-	private function quoteVal( $v ) {
+	private function quoteVal( string $v ): ScalarParam {
 		return new ScalarParam( ParamType::TEXT, "\"$v\"" );
 	}
 

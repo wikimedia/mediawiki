@@ -776,7 +776,7 @@ class FileBackendMultiWrite extends FileBackend {
 		return $this->backends[$this->masterIndex]->getFileList( $realParams );
 	}
 
-	private function getFileListForWrite( $params ) {
+	private function getFileListForWrite( array $params ): array {
 		$files = [];
 		// Get the list of thumbnails from all backends to allow
 		// deleting all of them. Otherwise, old thumbnails existing on

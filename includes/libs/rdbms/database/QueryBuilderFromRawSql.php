@@ -99,7 +99,7 @@ class QueryBuilderFromRawSql {
 		);
 	}
 
-	private static function isWriteQuery( $rawSql ) {
+	private static function isWriteQuery( string $rawSql ): bool {
 		// Treat SELECT queries without FOR UPDATE queries as non-writes. This matches
 		// how MySQL enforces read_only (FOR SHARE and LOCK IN SHADE MODE are allowed).
 		// Handle (SELECT ...) UNION (SELECT ...) queries in a similar fashion.

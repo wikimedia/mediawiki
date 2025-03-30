@@ -591,7 +591,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 		$this->wallClockOverride =& $time;
 	}
 
-	private function marshalPositions( array $positions ) {
+	private function marshalPositions( array $positions ): array {
 		foreach ( $positions[ self::FLD_POSITIONS ] as $key => $pos ) {
 			$positions[ self::FLD_POSITIONS ][ $key ] = $pos->toArray();
 		}

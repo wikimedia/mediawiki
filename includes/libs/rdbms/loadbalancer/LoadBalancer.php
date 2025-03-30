@@ -233,7 +233,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		$this->defaultGroup = isset( $this->groupLoads[ $group ] ) ? $group : self::GROUP_GENERIC;
 	}
 
-	private static function newTrackedConnectionsArray() {
+	private static function newTrackedConnectionsArray(): array {
 		// Note that CATEGORY_GAUGE connections are untracked
 		return [
 			self::CATEGORY_ROUND => [],

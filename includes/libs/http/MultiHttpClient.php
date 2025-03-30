@@ -734,7 +734,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 		}
 	}
 
-	private function useReverseProxy( array &$req, $proxy ) {
+	private function useReverseProxy( array &$req, string $proxy ) {
 		$parsedProxy = parse_url( $proxy );
 		if ( $parsedProxy === false ) {
 			throw new InvalidArgumentException( "Invalid reverseProxy configured: $proxy" );

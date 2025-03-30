@@ -59,7 +59,7 @@ class LikeValue {
 		return $dbQuoter->addQuotes( $s ) . ' ESCAPE ' . $dbQuoter->addQuotes( $escapeChar );
 	}
 
-	private function escapeLikeInternal( $s, $escapeChar = '`' ) {
+	private function escapeLikeInternal( string $s, string $escapeChar = '`' ): string {
 		return str_replace(
 			[ $escapeChar, '%', '_' ],
 			[ "{$escapeChar}{$escapeChar}", "{$escapeChar}%", "{$escapeChar}_" ],
