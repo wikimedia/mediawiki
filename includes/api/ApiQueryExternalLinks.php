@@ -127,7 +127,7 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 		}
 	}
 
-	private function setContinue( $orderBy, $row ) {
+	private function setContinue( array $orderBy, \stdClass $row ) {
 		$fields = [];
 		foreach ( $orderBy as $field ) {
 			$fields[] = strtr( $row->$field, [ '%' => '%25', '|' => '%7C' ] );

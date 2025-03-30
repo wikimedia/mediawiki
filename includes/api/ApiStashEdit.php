@@ -28,6 +28,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\PageEditStash;
 use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Stats\StatsFactory;
 
@@ -208,7 +209,7 @@ class ApiStashEdit extends ApiBase {
 		$this->getResult()->addValue( null, $this->getModuleName(), $ret );
 	}
 
-	private function getUserForPreview() {
+	private function getUserForPreview(): UserIdentity {
 		$user = $this->getUser();
 		if ( $this->tempUserCreator->shouldAutoCreate( $user, 'edit' ) ) {
 			return $this->userFactory->newUnsavedTempUser(

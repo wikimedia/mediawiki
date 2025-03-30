@@ -845,7 +845,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 	}
 
-	private function getAllVariants( $text, $ns = NS_MAIN ) {
+	private function getAllVariants( string $text, int $ns = NS_MAIN ): array {
 		$result = [];
 		foreach ( $this->languageConverter->getVariants() as $variant ) {
 			$convertTitle = $this->languageConverter->autoConvert( $text, $variant );

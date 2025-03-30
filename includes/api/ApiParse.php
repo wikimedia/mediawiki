@@ -59,6 +59,7 @@ use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\UrlUtils;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -150,7 +151,7 @@ class ApiParse extends ApiBase {
 		PageReference $page,
 		?RevisionRecord $revision,
 		ParserOptions $popts
-	) {
+	): ParserOutput {
 		$worker = new PoolCounterWorkViaCallback( 'ApiParser', $this->getPoolKey(),
 			[
 				'doWork' => function () use ( $content, $page, $revision, $popts ) {
@@ -166,7 +167,7 @@ class ApiParse extends ApiBase {
 		return $worker->execute();
 	}
 
-	private function getUserForPreview() {
+	private function getUserForPreview(): UserIdentity {
 		$user = $this->getUser();
 		if ( $this->tempUserCreator->shouldAutoCreate( $user, 'edit' ) ) {
 			return $this->userFactory->newUnsavedTempUser(
@@ -178,7 +179,7 @@ class ApiParse extends ApiBase {
 
 	private function getPageParserOutput(
 		WikiPage $page,
-		$revId,
+		?int $revId,
 		ParserOptions $popts,
 		bool $suppressCache
 	) {
@@ -974,7 +975,7 @@ class ApiParse extends ApiBase {
 		return $result;
 	}
 
-	private function formatCategoryLinks( $links ) {
+	private function formatCategoryLinks( array $links ): array {
 		$result = [];
 
 		if ( !$links ) {
@@ -1038,7 +1039,7 @@ class ApiParse extends ApiBase {
 		return $result;
 	}
 
-	private function formatIWLinks( $iw ) {
+	private function formatIWLinks( array $iw ): array {
 		$result = [];
 		foreach ( $iw as $linkTarget ) {
 			$entry = [];
@@ -1055,7 +1056,7 @@ class ApiParse extends ApiBase {
 		return $result;
 	}
 
-	private function formatHeadItems( $headItems ) {
+	private function formatHeadItems( array $headItems ): array {
 		$result = [];
 		foreach ( $headItems as $tag => $content ) {
 			$entry = [];
@@ -1067,7 +1068,7 @@ class ApiParse extends ApiBase {
 		return $result;
 	}
 
-	private function formatLimitReportData( $limitReportData ) {
+	private function formatLimitReportData( array $limitReportData ): array {
 		$result = [];
 
 		foreach ( $limitReportData as $name => $value ) {
@@ -1084,7 +1085,7 @@ class ApiParse extends ApiBase {
 		return $result;
 	}
 
-	private function setIndexedTagNames( &$array, $mapping ) {
+	private function setIndexedTagNames( array &$array, array $mapping ) {
 		foreach ( $mapping as $key => $name ) {
 			if ( isset( $array[$key] ) ) {
 				ApiResult::setIndexedTagName( $array[$key], $name );

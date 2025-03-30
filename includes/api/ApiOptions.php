@@ -85,7 +85,7 @@ class ApiOptions extends ApiOptionsBase {
 		);
 	}
 
-	private function getGlobalParam() {
+	private function getGlobalParam(): string {
 		return $this->extractRequestParams()['global'];
 	}
 
