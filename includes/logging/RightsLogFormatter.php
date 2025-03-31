@@ -312,18 +312,11 @@ class RightsLogFormatter extends LogFormatter {
 	private function formatRightsListExpiryChanged( $groups ) {
 		$list = [];
 
-		foreach ( $groups as $group => $expiries ) {
-			$oldExpiry = $expiries[0];
-			$newExpiry = $expiries[1];
+		foreach ( $groups as $group => [ $oldExpiry, $newExpiry ] ) {
+			$oldExpiryFormatted = $oldExpiry ? $this->formatDate( $oldExpiry ) : false;
+			$newExpiryFormatted = $newExpiry ? $this->formatDate( $newExpiry ) : false;
 
-			if ( $oldExpiry ) {
-				$oldExpiryFormatted = $this->formatDate( $oldExpiry );
-			}
-			if ( $newExpiry ) {
-				$newExpiryFormatted = $this->formatDate( $newExpiry );
-			}
-
-			if ( $oldExpiry && $newExpiry ) {
+			if ( $oldExpiryFormatted && $newExpiryFormatted ) {
 				// The expiration was changed
 				$list[] = $this->msg( 'rightslogentry-expiry-changed' )->params(
 					$group,
@@ -334,7 +327,7 @@ class RightsLogFormatter extends LogFormatter {
 					$oldExpiryFormatted['date'],
 					$oldExpiryFormatted['time']
 				)->parse();
-			} elseif ( $oldExpiry ) {
+			} elseif ( $oldExpiryFormatted ) {
 				// The expiration was removed
 				$list[] = $this->msg( 'rightslogentry-expiry-removed' )->params(
 					$group,
@@ -342,7 +335,7 @@ class RightsLogFormatter extends LogFormatter {
 					$oldExpiryFormatted['date'],
 					$oldExpiryFormatted['time']
 				)->parse();
-			} elseif ( $newExpiry ) {
+			} elseif ( $newExpiryFormatted ) {
 				// The expiration was added
 				$list[] = $this->msg( 'rightslogentry-expiry-set' )->params(
 					$group,
