@@ -1241,6 +1241,7 @@
 	"rcfilters-filtergroup-user-experience-level": "Riggistrazzioni utenti e espirienza",
 	"rcfilters-filter-user-experience-level-registered-label": "Riggistratu",
 	"rcfilters-filter-user-experience-level-registered-description": "Cuntribbutura ca effettuaru l'accessu.",
+	"rcfilters-filter-user-experience-level-unregistered-label": "Nun riggistratu",
 	"rcfilters-filter-user-experience-level-unregistered-description": "Cuntribbutura ca nun effettuaru l'accessu.",
 	"rcfilters-filter-user-experience-level-experienced-label": "Utilizzatura cu espirienza",
 	"rcfilters-filter-bots-label": "Bot",

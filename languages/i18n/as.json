@@ -1056,7 +1056,7 @@
 	"userrights-changeable-col": "আপুনি সলনি কৰিব পৰা গোটসমূহ",
 	"userrights-unchangeable-col": "আপুনি সলনি কৰিব নোৱাৰা গোটসমূহ",
 	"userrights-expiry-current": "$1 ম্যাদ উকলিব",
-	"userrights-expiry-none": "ম্যাড উকলি নাযায়",
+	"userrights-expiry-none": "ম্যাদ উকলি নাযায়",
 	"userrights-expiry": "ম্য়াদ উকলিব:",
 	"userrights-expiry-existing": "মজুত থকা ম্যাদ উকলা সময়: $3, $2",
 	"userrights-expiry-othertime": "অন্য সময়:",

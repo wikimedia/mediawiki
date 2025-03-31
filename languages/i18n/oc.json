@@ -637,7 +637,7 @@
 	"showpreview": "Previsualizar",
 	"showdiff": "Veire los cambiaments",
 	"blankarticle": "<strong>Atencion :</strong> La pagina que creatz es voida.\nSe clicatz tornarmai sus « $1 », la pagina serà creada sens cap de contengut.",
-	"anoneditwarning": "<strong>Atencion :<strong> sètz pas connectat.\nVòstra adreça IP serà visibla per tot lo monde se fasètz de modificacions. Se <strong>[$1 vos connectatz]</strong> o <strong>[$2 creatz un compte]</strong>, vòstras modificacions seràn atribuidas a vòstre nom d’utilizaire, entre autres avantatges.",
+	"anoneditwarning": "<strong>Atencion:</strong> Non avètz obèrt cap de session. Vòstra adreça IP serà visibla publicament se fasètz quina que siá modificacion. Se <strong>[$1 vos connectatz]</strong> o <strong>[$2 creatz un compte]</strong>, vòstras modificacions seràn atribuidas a vòstre nom d'utilizator, entre autres avantatges.",
 	"anonpreviewwarning": "''Sètz pas identificat. Salvar enregistrarà vòstra adreça IP dins l’istoric de las modificacions de la pagina.''",
 	"missingsummary": "<strong>Atencion :</strong> avètz pas escrich de resumit de la vòstra modificacion.\nSe clicatz encara sus \"$1\", la vòstra publicacion serà publicada sensa resumit.",
 	"selfredirect": "<strong>Atencion:</strong> Sètz a redirigir aquela pagina cap a se meteissa.\nPodètz aver especificat un faus objectiu per la redireccion, o benlèu avètz modificar una pagina incorrècta.\nSe tornatz faire un clic \"$1\" , la redireccion serà çaquelà creada.",
