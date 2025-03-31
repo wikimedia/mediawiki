@@ -777,6 +777,8 @@
 	"apihelp-query+categorymembers-param-endsortkey": "请改用$1endhexsortkey。",
 	"apihelp-query+categorymembers-example-simple": "获取<kbd>Category:Physics</kbd>中的前10个页面。",
 	"apihelp-query+categorymembers-example-generator": "获取有关<kbd>Category:Physics</kbd>中的前10个页面的页面信息。",
+	"apihelp-query+codexicons-summary": "获取Codex图标",
+	"apihelp-query+codexicons-param-names": "图标名称",
 	"apihelp-query+contributors-summary": "获取一个页面的已登录贡献者列表和匿名贡献者数量。",
 	"apihelp-query+contributors-summary-tempusers-enabled": "获取页面的登录贡献者（包括临时用户）列表以及退出登录的贡献者的数量。",
 	"apihelp-query+contributors-param-group": "只包括指定用户组中的用户。不包括隐性的或自动提升的用户组，例如*、用户或自动确认用户。",

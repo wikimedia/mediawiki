@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Joeamj",
 			"Lloffiwr",
 			"Malangali",
 			"Yasen igra",
@@ -36,8 +37,8 @@
 	"mar": "Machi",
 	"apr": "Apr",
 	"may": "Mei",
-	"jun": "Juni",
-	"jul": "Julai",
+	"jun": "Jun",
+	"jul": "Jul",
 	"aug": "Ago",
 	"sep": "Sep",
 	"oct": "Okt",
@@ -53,9 +54,9 @@
 	"mon": "Jtatu",
 	"tue": "Jnne",
 	"wed": "Jtano",
-	"thu": "Alham",
+	"thu": "Alh",
 	"fri": "Iju",
-	"sat": "Jmosi",
+	"sat": "Jmos",
 	"sun": "Jpili",
 	"weeks": "{{PLURAL:$1|wiki}} $1",
 	"days": "{{PLURAL:$1|siku $1}}",

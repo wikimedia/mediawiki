@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Emma Oruk"
+		]
+	},
+	"january": "Dwee me aceel",
+	"february": "Dwee me aryo",
+	"march": "Dwee me adek",
+	"april": "Dwee me angwen",
+	"may_long": "Dwee me abic",
+	"june": "Dwee me abicel",
+	"july": "Dwee me abiro",
+	"monday": "ceng baraja",
+	"tuesday": "ceng aryo",
+	"wednesday": "ceng adek",
+	"thursday": "ceng angwen",
+	"friday": "ceng abic",
+	"saturday": "ceng abicel",
+	"sunday": "ceng cabit",
+	"sun": "ceng"
+}
