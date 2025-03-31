@@ -802,3 +802,7 @@
 	path = vendor
 	url = https://gerrit.wikimedia.org/r/mediawiki/vendor
 	branch = wmf/1.44.0-wmf.22
+[submodule "extensions/EmailAuth"]
+	path = extensions/EmailAuth
+	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/EmailAuth
+	branch = wmf/1.44.0-wmf.22
