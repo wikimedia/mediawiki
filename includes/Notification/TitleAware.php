@@ -14,7 +14,6 @@ interface TitleAware {
 
 	/**
 	 * Get the PageIdentity of the related page
-	 * @return PageIdentity
 	 */
 	public function getTitle(): PageIdentity;
 

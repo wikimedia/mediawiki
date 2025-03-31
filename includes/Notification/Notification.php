@@ -15,10 +15,10 @@ class Notification {
 
 	/**
 	 * @TODO Idea: handle future types in format `namespace.type`, like `mediawiki.message`,
-	 * `growth.welcome`. This way we can easily "override" some notifications, for example
-	 * we can have `echo.mention`, and the `echo.mention` could supersede `mediawiki.mention`. Also
-	 * it will be more difficult for notifications to conflict and we will be able to easily filter
-	 * apply logic depends on the namespace (for example hide if extension not present).
+	 * `growth.welcome`. This way we can easily "override" some notifications, for example,
+	 * we can have `echo.mention`, and the `echo.mention` could supersede `mediawiki.mention`. Also,
+	 * it will be more difficult for notifications to conflict, and we will be able to easily filter
+	 * apply logic depends on the namespace (for example, hide if extension not present).
 	 *
 	 * @var string Required, Read-only - The Notification type
 	 */
@@ -32,7 +32,7 @@ class Notification {
 	private array $custom;
 
 	/**
-	 * Base for Notifications. Type is the only required property and any additional data can be
+	 * Base for Notifications. Type is the only required property, and any additional data can be
 	 * passed via $custom array.
 	 *
 	 * @see WikiNotification in case you want a Notification with Agent and Title
@@ -46,8 +46,7 @@ class Notification {
 	}
 
 	/**
-	 * Get Notification type
-	 * @return string
+	 * Get the Notification type
 	 */
 	public function getType(): string {
 		return $this->type;
@@ -62,7 +61,6 @@ class Notification {
 	 *
 	 * @param string $key
 	 * @param scalar|array|JsonCodecable $value
-	 * @return void
 	 */
 	public function setProperty( string $key, $value ): void {
 		$this->custom[$key] = $value;
@@ -70,7 +68,6 @@ class Notification {
 
 	/**
 	 * Retrieve Notification properties
-	 * @return array
 	 */
 	public function getProperties(): array {
 		return $this->custom;

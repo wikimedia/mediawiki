@@ -26,9 +26,6 @@ class NotificationEnvelope {
 
 	/**
 	 * Syntax sugar, allows easy check if two envelopes point to the same thing
-	 *
-	 * @param NotificationEnvelope $envelope
-	 * @return bool
 	 */
 	public function equals( NotificationEnvelope $envelope ): bool {
 		return $envelope === $this;
@@ -39,8 +36,6 @@ class NotificationEnvelope {
 	 *
 	 * Utility method for a very common check where middleware filters Notifications from
 	 * specific agent.
-	 *
-	 * @return bool
 	 */
 	public function hasAgent(): bool {
 		return $this->notification instanceof AgentAware;

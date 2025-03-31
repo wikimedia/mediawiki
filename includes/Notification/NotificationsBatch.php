@@ -30,7 +30,6 @@ class NotificationsBatch implements Countable, IteratorAggregate {
 
 	/**
 	 * @param callable(NotificationEnvelope): bool $callback Filter, return true to preserve the $envelope
-	 * @return void
 	 */
 	public function filter( $callback ): void {
 		$this->envelopes =

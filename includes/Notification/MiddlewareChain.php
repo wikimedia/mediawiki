@@ -24,13 +24,9 @@ class MiddlewareChain {
 		$this->middlewareSpecs = $specs;
 	}
 
-	/**
-	 * @param NotificationsBatch $batch
-	 * @return NotificationsBatch
-	 */
 	public function process( NotificationsBatch $batch ): NotificationsBatch {
 		if ( $this->isProcessing ) {
-			// If you need to send an additional notification from middleware
+			// If you need to send an additional notification from middleware,
 			// use NotificationBatch::add() instead of calling NotificationService from middleware
 			throw new MiddlewareException(
 				"Middleware cannot re-trigger the notification processing while it is already in progress. "
@@ -52,12 +48,7 @@ class MiddlewareChain {
 		return $batch;
 	}
 
-	/**
-	 * @param NotificationsBatch $batch
-	 * @param int $index
-	 * @return void
-	 */
-	private function callNext( NotificationsBatch $batch, $index ): void {
+	private function callNext( NotificationsBatch $batch, int $index ): void {
 		if ( $index < count( $this->middleware ) ) {
 			$this->middleware[$index]->handle(
 				$batch,
