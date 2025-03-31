@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Storage;
 
+use ArrayUtils;
 use DummyContentHandlerForTesting;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\ServiceOptions;
@@ -134,7 +135,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$this->getDerivedPageDataUpdater( $page ); // flush cached instance after.
-		$this->runJobs(); // flush pending updates
+		$this->runJobs( [ 'minJobs' => 0 ] ); // flush pending updates
 		return $rev;
 	}
 
@@ -1123,14 +1124,21 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @dataProvider provideDoUpdatesParams
+	 *
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doUpdates()
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doSecondaryDataUpdates()
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doParserCacheUpdate()
+	 * @covers \MediaWiki\RecentChanges\ChangeTrackingEventIngress::handlePageRevisionUpdatedEvent()
 	 */
-	public function testDoUpdates() {
+	public function testDoUpdates(
+		bool $simulateNullEdit,
+		bool $simulatePageCreation,
+		bool $rcWatchCategoryMembership
+	) {
 		$page = $this->getPage( __METHOD__ );
 
-		$content = [ SlotRecord::MAIN => new WikitextContent( 'first [[main]]' ) ];
+		$content = [ SlotRecord::MAIN => new WikitextContent( 'current [[main]]' ) ];
 
 		$content['aux'] = new WikitextContent( 'Aux [[Nix]]' );
 
@@ -1142,7 +1150,29 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 			);
 		}
 
-		$rev = $this->createRevision( $page, 'first', $content );
+		// If simulating a null edit, set up a previous revision with the same content as our change.
+		// Otherwise, initialize the previous revision with different content unless simulating page creation,
+		// in which case no previous revision should be created at all.
+		if ( !$simulatePageCreation ) {
+			$oldContent = $simulateNullEdit ? $content : [ SlotRecord::MAIN => new WikitextContent( 'first [[main]]' ) ];
+			$firstRev = $this->createRevision( $page, 'first', $oldContent );
+		} else {
+			$firstRev = null;
+		}
+
+		$slotsUpdate = RevisionSlotsUpdate::newFromContent( $content );
+
+		$updater = $this->getServiceContainer()
+			->getPageUpdaterFactory()
+			->newDerivedPageDataUpdater( $page );
+		$updater->prepareContent( $this->getTestUser()->getUserIdentity(), $slotsUpdate );
+
+		// Don't create a new revision if simulating a null edit.
+		if ( $simulateNullEdit ) {
+			$rev = $firstRev;
+		} else {
+			$rev = $this->createRevision( $page, 'current', $content );
+		}
 		$pageId = $page->getId();
 
 		$listenerCalled = 0;
@@ -1169,10 +1199,11 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$pcache = $this->getServiceContainer()->getParserCache();
 		$pcache->deleteOptionsKey( $page );
 
-		$updater = $this->getDerivedPageDataUpdater( $page, $rev );
+		$updater->setRcWatchCategoryMembership( $rcWatchCategoryMembership );
 		$updater->setArticleCountMethod( 'link' );
 
 		$options = []; // TODO: test *all* the options...
+
 		$updater->prepareUpdate( $rev, $options );
 
 		$updater->doUpdates();
@@ -1207,12 +1238,30 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 			->from( 'site_stats' )
 			->where( '1=1' )
 			->fetchRow();
-		$this->assertSame( $oldStats->ss_total_pages + 1, (int)$stats->ss_total_pages );
-		$this->assertSame( $oldStats->ss_total_edits + 1, (int)$stats->ss_total_edits );
-		$this->assertSame( $oldStats->ss_good_articles + 1, (int)$stats->ss_good_articles );
+		if ( $simulatePageCreation ) {
+			$this->assertSame( $oldStats->ss_total_pages + 1, (int)$stats->ss_total_pages );
+			$this->assertSame( $oldStats->ss_good_articles + 1, (int)$stats->ss_good_articles );
+		} else {
+			$this->assertSame( $oldStats->ss_total_pages, $stats->ss_total_pages );
+			$this->assertSame( $oldStats->ss_good_articles, $stats->ss_good_articles );
+		}
+
+		if ( !$simulateNullEdit ) {
+			$this->assertSame( $oldStats->ss_total_edits + 1, (int)$stats->ss_total_edits );
+		} else {
+			$this->assertSame( $oldStats->ss_total_edits, $stats->ss_total_edits );
+		}
 
 		$this->runDeferredUpdates();
 		$this->assertSame( 1, $listenerCalled, 'PageRevisionUpdatedEvent listener' );
+
+		$this->assertSame(
+			$rcWatchCategoryMembership ? 1 : 0,
+			$this->getServiceContainer()
+				->getJobQueueGroup()
+				->get( 'categoryMembershipChange' )
+				->getSize()
+		);
 
 		// TODO: MCR: test data updates for additional slots!
 		// TODO: test update for edit without page creation
@@ -1222,7 +1271,35 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		// TODO: test newtalk update
 		// TODO: test search update
 		// TODO: test site stats good_articles while turning the page into (or back from) a redir.
-		// TODO: test category membership update (with setRcWatchCategoryMembership())
+	}
+
+	public static function provideDoUpdatesParams(): iterable {
+		$testCases = ArrayUtils::cartesianProduct(
+			// null or non-null edit
+			[ true, false ],
+			// page creation
+			[ true, false ],
+			// category membership notifications enabled or disabled
+			[ true, false ]
+		);
+
+		foreach ( $testCases as $params ) {
+			[ $simulateNullEdit, $simulatePageCreation, $rcWatchCategoryMembership ] = $params;
+
+			if ( $simulateNullEdit && $simulatePageCreation ) {
+				// Page creations cannot be null edits, so don't simulate an impossible scenario
+				continue;
+			}
+
+			$description = sprintf(
+				'%s edit, %s category membership notifications %s',
+				$simulateNullEdit ? 'null' : 'non-null',
+				$simulatePageCreation ? 'page creation, ' : '',
+				$rcWatchCategoryMembership ? 'enabled' : 'disabled'
+			);
+
+			yield $description => $params;
+		}
 	}
 
 	/**
