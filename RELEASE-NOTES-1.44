@@ -205,6 +205,8 @@ because of Phabricator reports.
 * (T379137) Added language support for Mindong (Latin script) (cdo-latn).
 * (T384234) Added language support for Wali (wlx).
 * (T384245) Added language support for Lampung Api (ljp).
+* (T389916) Added language support for Buginese (bug-bugi).
+
 * …
 
 === Breaking changes in 1.44 ===
