@@ -46,4 +46,43 @@ QUnit.module( 'mediawiki.widgets.UserInputWidget' );
 		assert.false( widgetWithDefaults.lookupsDisabled, 'Widget that with default config should have re-enabled lookup after call' );
 		assert.strictEqual( widgetExcludingNamedAndTemp.$input.val(), 'abc', 'Value correctly set by ::onLookupMenuChoose' );
 	} );
+
+	QUnit.test( 'Lookup requests removes leading whitespaces from the username', ( assert ) => {
+		// Test that getLookupRequest() trims leading whitespaces from the username before calling the API
+		let callParams;
+		const widget = new mw.widgets.UserInputWidget( {
+			api: {
+				get: function ( parameters ) {
+					callParams = parameters;
+				}
+			}
+		} );
+
+		const testCases = [
+			{ input: '', expected: '' },
+			{ input: '  ', expected: '' },
+			{ input: 'username', expected: 'username' },
+			{ input: 'username  ', expected: 'username  ' },
+			{ input: '  username  ', expected: 'username  ' },
+			{ input: '1.2.3.4', expected: '1.2.3.4' },
+			{ input: '  1.2.3.4', expected: '1.2.3.4' },
+			{ input: '1.2.3.4  ', expected: '1.2.3.4' },
+			{ input: '  1.2.3.4  ', expected: '1.2.3.4' }
+		];
+
+		for ( const testCase of testCases ) {
+			widget.value = testCase.input;
+			widget.setLookupsDisabled( false );
+			widget.getLookupRequest(); // performs the actual API request
+
+			assert.propContains(
+				callParams,
+				{
+					action: 'query',
+					list: 'allusers',
+					auprefix: testCase.expected
+				}
+			);
+		}
+	} );
 }() );
