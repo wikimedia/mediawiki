@@ -2335,6 +2335,7 @@ return [
 			'mediawiki.Title',
 		],
 		'messages' => [
+			'api-error-unknownerror',
 			'blanknamespace',
 			'block-actions',
 			'block-added-message',
