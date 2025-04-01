@@ -38,7 +38,7 @@ class CreateSysopTask extends Task {
 		return $status;
 	}
 
-	private function createUser( $name ) {
+	private function createUser( string $name ): Status {
 		$user = $this->userFactory->newFromName( $name );
 
 		if ( !$user ) {

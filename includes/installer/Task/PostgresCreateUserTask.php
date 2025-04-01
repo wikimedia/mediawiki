@@ -60,7 +60,7 @@ class PostgresCreateUserTask extends Task {
 		return Status::newGood();
 	}
 
-	private function getPostgresUtils() {
+	private function getPostgresUtils(): PostgresUtils {
 		return new PostgresUtils( $this->getContext() );
 	}
 }

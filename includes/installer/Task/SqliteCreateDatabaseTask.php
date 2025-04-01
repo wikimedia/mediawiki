@@ -113,7 +113,7 @@ EOT;
 		return $mainConnStatus;
 	}
 
-	private function getSqliteUtils() {
+	private function getSqliteUtils(): SqliteUtils {
 		return new SqliteUtils;
 	}
 

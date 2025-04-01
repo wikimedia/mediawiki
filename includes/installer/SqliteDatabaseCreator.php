@@ -34,7 +34,7 @@ class SqliteDatabaseCreator extends DatabaseCreator {
 		return $this->createLocally( $database );
 	}
 
-	private function makeStubDBFile( $db ) {
+	private function makeStubDBFile( string $db ): Status {
 		$file = DatabaseSqlite::generateFileName( $this->dataDir, $db );
 
 		if ( file_exists( $file ) ) {

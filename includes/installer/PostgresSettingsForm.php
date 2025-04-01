@@ -94,7 +94,7 @@ class PostgresSettingsForm extends DatabaseSettingsForm {
 		return $this->dbInstaller;
 	}
 
-	private function getPostgresUtils() {
+	private function getPostgresUtils(): PostgresUtils {
 		return new PostgresUtils( $this->dbInstaller );
 	}
 

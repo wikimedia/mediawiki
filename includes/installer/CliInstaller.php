@@ -175,7 +175,7 @@ class CliInstaller extends Installer {
 		$this->setVar( '_WithDevelopmentSettings', isset( $options['with-developmentsettings'] ) );
 	}
 
-	private function validateExtensions( $type, $directory, $nameLists ) {
+	private function validateExtensions( string $type, string $directory, $nameLists ): Status {
 		$extensions = [];
 		$status = new Status;
 		foreach ( (array)$nameLists as $nameList ) {
