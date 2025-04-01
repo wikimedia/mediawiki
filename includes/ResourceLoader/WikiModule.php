@@ -491,11 +491,11 @@ class WikiModule extends Module {
 		return count( $revisions ) === 0;
 	}
 
-	private function setTitleInfo( $batchKey, array $titleInfo ) {
+	private function setTitleInfo( string $batchKey, array $titleInfo ) {
 		$this->titleInfo[$batchKey] = $titleInfo;
 	}
 
-	private static function makeTitleKey( LinkTarget $title ) {
+	private static function makeTitleKey( LinkTarget $title ): string {
 		// Used for keys in titleInfo.
 		return "{$title->getNamespace()}:{$title->getDBkey()}";
 	}

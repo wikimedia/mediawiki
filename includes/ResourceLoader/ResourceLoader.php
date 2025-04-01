@@ -1573,7 +1573,7 @@ MESSAGE;
 			. ');';
 	}
 
-	private static function isEmptyObject( stdClass $obj ) {
+	private static function isEmptyObject( stdClass $obj ): bool {
 		foreach ( $obj as $value ) {
 			return false;
 		}

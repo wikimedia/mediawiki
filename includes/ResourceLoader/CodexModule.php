@@ -173,7 +173,7 @@ class CodexModule extends FileModule {
 		return array_intersect_key( $cachedIcons, array_flip( $iconNames ) );
 	}
 
-	private static function getIconFilePath( Config $config ) {
+	private static function getIconFilePath( Config $config ): string {
 		$devDir = $config->get( MainConfigNames::CodexDevelopmentDir );
 		$iconsDir = $devDir !== null ?
 			"$devDir/packages/codex-icons/dist" :
@@ -316,11 +316,11 @@ class CodexModule extends FileModule {
 		return $this->makeFilePath( '' )->getLocalPath();
 	}
 
-	private function isDevelopmentMode() {
+	private function isDevelopmentMode(): bool {
 		return $this->getConfig()->get( MainConfigNames::CodexDevelopmentDir ) !== null;
 	}
 
-	private function getDevelopmentWarning() {
+	private function getDevelopmentWarning(): string {
 		return $this->isDevelopmentMode() ?
 			Html::encodeJsCall( 'mw.log.warn', [
 				"You are using a local development version of Codex, which may not match the latest version. " .
