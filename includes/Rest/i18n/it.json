@@ -50,5 +50,6 @@
 	"rest-param-desc-search-limit": "Numero massimo di risultati di ricerca da restituire, tra 1 e 100. Predefinito: 50",
 	"rest-param-desc-transform-format": "Trasforma formato",
 	"rest-param-desc-transform-revision": "Trasforma versione",
-	"rest-property-desc-revision-id": "ID versione"
+	"rest-property-desc-revision-id": "ID versione",
+	"rest-property-desc-user-name": "Nome utente o indirizzo IP di origine per utenti anonimi"
 }
