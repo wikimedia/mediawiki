@@ -337,8 +337,6 @@ class SpecialMergeHistory extends SpecialPage {
 		$mergeLogPage = new LogPage( 'merge' );
 		$out->addHTML( '<h2>' . $mergeLogPage->getName()->escaped() . "</h2>\n" );
 		LogEventsList::showLogExtract( $out, 'merge', $this->mTargetObj );
-
-		return true;
 	}
 
 	/**
