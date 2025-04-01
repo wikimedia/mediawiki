@@ -603,6 +603,118 @@ function mockMwApiGet( additionalMocks = [] ) {
 				}
 			}
 		},
+		// IP with range blocks (T389987)
+		{
+			params: {
+				list: 'logevents|blocks',
+				letype: 'block',
+				letitle: 'User:1.2.3.20'
+			},
+			response: {
+				query: {
+					blocks: [
+						{
+							id: 2000,
+							user: '1.2.3.20',
+							by: 'Admin',
+							timestamp: '2025-03-31T23:40:04Z',
+							expiry: '2025-04-03T23:40:04Z',
+							'duration-l10n': '3 days',
+							reason: 'Vandalism',
+							parsedreason: 'Vandalism',
+							automatic: false,
+							anononly: true,
+							nocreate: true,
+							autoblock: false,
+							noemail: false,
+							hidden: false,
+							allowusertalk: false,
+							partial: false,
+							restrictions: []
+						}, {
+							id: 2001,
+							user: '1.2.0.0/18',
+							by: 'Admin',
+							timestamp: '2025-03-31T23:24:54Z',
+							expiry: '2025-10-01T23:24:54Z',
+							'duration-l10n': '6 months',
+							reason: 'Spamming links to external sites',
+							parsedreason: 'Spamming links to external sites',
+							rangestart: '1.2.0.0',
+							rangeend: '1.2.63.255',
+							automatic: false,
+							anononly: true,
+							nocreate: true,
+							autoblock: false,
+							noemail: false,
+							hidden: false,
+							allowusertalk: true,
+							partial: false,
+							restrictions: []
+						}, {
+							id: 2002,
+							user: '1.2.3.20/30',
+							by: 'Admin',
+							timestamp: '2025-03-31T23:22:16Z',
+							expiry: '2027-03-01T23:22:16Z',
+							'duration-l10n': '1 year, 10 months and 29 days',
+							reason: 'Inserting false information',
+							parsedreason: 'Inserting false information',
+							rangestart: '1.2.3.20',
+							rangeend: '1.2.3.23',
+							automatic: false,
+							anononly: true,
+							nocreate: true,
+							autoblock: false,
+							noemail: false,
+							hidden: false,
+							allowusertalk: true,
+							partial: false,
+							restrictions: []
+						}
+					],
+					logevents: [
+						{
+							logid: 3000,
+							ns: 2,
+							title: 'User:1.2.3.20',
+							pageid: 0,
+							logpage: 0,
+							params: {
+								duration: '3 days',
+								flags: [
+									'anononly',
+									'nocreate',
+									'nousertalk'
+								],
+								blockId: 827,
+								sitewide: true,
+								expiry: '2025-04-03T23:40:04Z',
+								'duration-l10n': '3 days'
+							},
+							type: 'block',
+							action: 'block',
+							user: 'Admin',
+							timestamp: '2025-03-31T23:40:04Z',
+							parsedcomment: 'Unacceptable username'
+						}
+					]
+				}
+			}
+		},
+		{
+			params: {
+				list: 'logevents|blocks',
+				letype: 'block',
+				letitle: 'User:192.168.0.1'
+			},
+			response: {
+				query: {
+					blocks: [],
+					logevents: []
+				}
+			}
+		},
 		// Used in UserLookup
 		{
 			params: {
