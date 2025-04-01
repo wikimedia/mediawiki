@@ -438,14 +438,17 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 			$canAddTags = false;
 		}
 
-		DeferredUpdates::addCallableUpdate(
-			function () use ( $newId, $to, $canAddTags ) {
-				$log = new LogPage( $this->getType() );
-				if ( !$log->isRestricted() ) {
-					( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
-						->onManualLogEntryBeforePublish( $this );
-					$rc = $this->getRecentChange( $newId );
+		$log = new LogPage( $this->getType() );
+		if ( !$log->isRestricted() ) {
+			// We need to generate a RecentChanges object now so that we can have the rc_bot attribute set based
+			// on any temporary user rights assigned to the user as part of the creation of this log entry.
+			// We do not attempt to save it to the DB until POSTSEND to avoid writes blocking a response (T127852).
+			( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+				->onManualLogEntryBeforePublish( $this );
+			$rc = $this->getRecentChange( $newId );
 
+			DeferredUpdates::addCallableUpdate(
+				function () use ( $newId, $to, $canAddTags, $rc ) {
 					if ( $to === 'rc' || $to === 'rcandudp' ) {
 						// save RC, passing tags so they are applied there
 						$rc->addTags( $this->getTags() );
@@ -466,11 +469,11 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 					if ( $to === 'udp' || $to === 'rcandudp' ) {
 						$rc->notifyRCFeeds();
 					}
-				}
-			},
-			DeferredUpdates::POSTSEND,
-			MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase()
-		);
+				},
+				DeferredUpdates::POSTSEND,
+				MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase()
+			);
+		}
 	}
 
 	/**
