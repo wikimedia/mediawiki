@@ -1943,7 +1943,7 @@
 	"shared-repo": "共有リポジトリ",
 	"shared-repo-name-wikimediacommons": "ウィキメディア・コモンズ",
 	"filepage.css": "/* ここに記述したCSSはファイル解説ページにて読み込まれます。また外部のクライアントウィキにも影響します */",
-	"upload-disallowed-here": "このファイルは上書きできません。",
+	"upload-disallowed-here": "あなたはこのファイルを上書きできません。",
 	"filerevert": "$1を差し戻す",
 	"filerevert-legend": "ファイルを差し戻す",
 	"filerevert-intro": "ファイル<strong>[[Media:$1|$1]]</strong>を[$4 $2$3版]に差し戻そうとしています。",
