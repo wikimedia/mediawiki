@@ -39,6 +39,11 @@ class RecentChangeNotificationHandler implements NotificationHandler {
 			return;
 		}
 		$properties = $notification->getProperties();
+		$sourceMap = [
+			RecentChangeNotification::ADMIN_NOTIFICATION => RecentChangeMailComposer::ALL_CHANGES,
+			RecentChangeNotification::TALK_NOTIFICATION => RecentChangeMailComposer::USER_TALK,
+		];
+		$source = $sourceMap[ $properties['source'] ] ?? RecentChangeMailComposer::ALL_CHANGES;
 
 		$composer = new RecentChangeMailComposer(
 			$this->userFactory->newFromUserIdentity( $notification->getAgent() ),
@@ -52,9 +57,7 @@ class RecentChangeNotificationHandler implements NotificationHandler {
 		foreach ( $recipients as $recipient ) {
 			$user = $this->userFactory->newFromUserIdentity( $recipient );
 			if ( $this->checkNotificationRequirements( $notification, $user ) ) {
-				// TODO - for now it handles only ALL changes, future patches will provide support
-				// for WATCHLIST and USER_TALK
-				$composer->compose( $recipient, RecentChangeMailComposer::ALL_CHANGES );
+				$composer->compose( $recipient, $source );
 			}
 		}
 		// TODO - sendEmails is deprecated, remove it in 1.45. need to keep it in parity in case

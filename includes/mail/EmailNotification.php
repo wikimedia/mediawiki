@@ -26,12 +26,14 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Mail\RecentChangeMailComposer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Notification\RecipientSet;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserArray;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\Watchlist\RecentChangeNotification;
 
 /**
  * Find watchers and create email notifications after a page is changed.
@@ -196,6 +198,8 @@ class EmailNotification {
 		# we use $wgPasswordSender as sender's address
 		$mwServices = MediaWikiServices::getInstance();
 		$config = $mwServices->getMainConfig();
+		$notifService = $mwServices->getNotificationService();
+		$userFactory = $mwServices->getUserFactory();
 
 		# The following code is only run, if several conditions are met:
 		# 1. EmailNotification for pages (other than user_talk pages) must be enabled
@@ -230,9 +234,21 @@ class EmailNotification {
 				&& $title->getNamespace() === NS_USER_TALK
 				&& $this->canSendUserTalkEmail( $editor->getUser(), $title, $minorEdit )
 			) {
-				$targetUser = User::newFromName( $title->getText() );
-				$composer->compose( $targetUser, RecentChangeMailComposer::USER_TALK );
-				$userTalkId = $targetUser->getId();
+				$targetUser = $userFactory->newFromName( $title->getText() );
+				if ( $targetUser ) {
+					$talkNotification = new RecentChangeNotification(
+						$mwServices->getUserFactory()->newFromAuthority( $editor ),
+						$title,
+						$summary,
+						$minorEdit,
+						$oldid,
+						$timestamp,
+						$pageStatus,
+						RecentChangeNotification::TALK_NOTIFICATION
+					);
+					$notifService->notify( $talkNotification, new RecipientSet( [ $targetUser ] ) );
+					$userTalkId = $targetUser->getId();
+				}
 			}
 
 			if ( $config->get( MainConfigNames::EnotifWatchlist ) ) {
@@ -265,21 +281,22 @@ class EmailNotification {
 				// No point notifying the user that actually made the change!
 				continue;
 			}
-			$user = User::newFromName( $name );
+			$user = $userFactory->newFromName( $name );
 			if ( $user instanceof User ) {
 				$admins[] = $user;
 			}
-			MediaWikiServices::getInstance()->getNotificationService()->notify(
-				new \MediaWiki\Watchlist\RecentChangeNotification(
+			$notifService->notify(
+				new RecentChangeNotification(
 					$mwServices->getUserFactory()->newFromAuthority( $editor ),
 					$title,
 					$summary,
 					$minorEdit,
 					$oldid,
 					$timestamp,
-					$pageStatus
+					$pageStatus,
+					RecentChangeNotification::ADMIN_NOTIFICATION
 				),
-				new \MediaWiki\Notification\RecipientSet( $admins )
+				new RecipientSet( $admins )
 			);
 
 		}
