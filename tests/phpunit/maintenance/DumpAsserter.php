@@ -680,7 +680,7 @@ class DumpAsserter {
 		return $text;
 	}
 
-	private function getAttributeArray( ?XMLReader $xml = null ) {
+	private function getAttributeArray( ?XMLReader $xml = null ): ?array {
 		if ( !$xml ) {
 			$xml = $this->xml;
 		}

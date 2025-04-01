@@ -251,7 +251,7 @@ class ParserTestPrinter extends TestRecorder {
 			$text );
 	}
 
-	private function wellFormed( $text ) {
+	private function wellFormed( string $text ): bool {
 		$html =
 			Sanitizer::hackDocType() .
 				'<html>' .
@@ -278,7 +278,7 @@ class ParserTestPrinter extends TestRecorder {
 		return true;
 	}
 
-	private function extractFragment( $text, $position ) {
+	private function extractFragment( string $text, int $position ): string {
 		$start = max( 0, $position - 10 );
 		$before = $position - $start;
 		$fragment = '...' .

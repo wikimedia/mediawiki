@@ -404,7 +404,7 @@ trait MediaWikiTestCaseTrait {
 		return $msg;
 	}
 
-	private function failStatus( StatusValue $status, $reason, $message = '' ) {
+	private function failStatus( StatusValue $status, string $reason, string $message = '' ) {
 		$reason = $message === '' ? $reason : "$message\n$reason";
 		$this->fail( "$reason\n$status" );
 	}

@@ -258,7 +258,7 @@ class SerializationTestUtils {
 		return end( $arr );
 	}
 
-	private function log( $msg ) {
+	private function log( string $msg ) {
 		$this->logger->info( $msg );
 	}
 }

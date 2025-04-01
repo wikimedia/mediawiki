@@ -38,7 +38,7 @@ use Wikimedia\Stats\StatsFactory;
  */
 trait PageHandlerTestTrait {
 
-	private function newRouterForPageHandler( $baseUrl, $rootPath = '' ): Router {
+	private function newRouterForPageHandler( string $baseUrl, string $rootPath = '' ): Router {
 		$router = $this->createNoOpMock( Router::class, [ 'getRoutePath', 'getRouteUrl' ] );
 		$router->method( 'getRoutePath' )
 			->willReturnCallback( static function (

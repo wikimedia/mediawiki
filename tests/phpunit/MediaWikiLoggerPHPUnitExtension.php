@@ -133,7 +133,7 @@ class MediaWikiLoggerPHPUnitExtension implements
 		return implode( "\n", $message );
 	}
 
-	private function log( $message ) {
+	private function log( string $message ) {
 		$spi = $this->originalSpi ?: LoggerFactory::getProvider();
 		$logger = $spi->getLogger( 'PHPUnit' );
 		$logger->debug( $message );

@@ -93,7 +93,7 @@ class TestRecentChangesHelper {
 		return $this->makeRecentChange( $attribs, $counter, $watchingUsers );
 	}
 
-	private function makeRecentChange( $attribs, $counter, $watchingUsers ) {
+	private function makeRecentChange( array $attribs, int $counter, int $watchingUsers ): RecentChange {
 		$change = new RecentChange();
 		$change->setAttribs( $attribs );
 		$change->counter = $counter;
@@ -135,7 +135,7 @@ class TestRecentChangesHelper {
 		return $this->makeRecentChange( $attribs, 0, 0 );
 	}
 
-	private function getDefaultAttributes( $titleText, $timestamp ) {
+	private function getDefaultAttributes( string $titleText, string $timestamp ): array {
 		return [
 			'rc_id' => 545,
 			'rc_user' => 0,
