@@ -1,3 +1,18 @@
+# 1.22.0 / 2025-04-01
+
+## Styles
+- styles, docs: Harden design token usage in calculations (Volker E.)
+- styles: update InfoChip and InputChip `max-width` (bmartinezcalvo)
+- tokens: Express transformed tokens in pixels instead of rems (Roan Kattouw)
+
+## Code
+- Thumbnail: Ensure that prop updates trigger image change when necessary (Eric Gardner)
+- useFloatingMenu: Ensure flip padding is less than size padding (Eric Gardner)
+
+## Docs
+- docs: Update to clarify introduction of Popover component (Volker E.)
+- demos: Add typography demo sandbox page (Volker E.)
+
 # 1.21.1 / 2025-03-19
 
 ## Code

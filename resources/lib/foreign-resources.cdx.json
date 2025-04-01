@@ -2,7 +2,7 @@
     "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
     "bomFormat": "CycloneDX",
     "specVersion": "1.6",
-    "serialNumber": "urn:uuid:766e9a7f-f6e6-4dc7-9ad0-3da6276bf74d",
+    "serialNumber": "urn:uuid:922dbfb8-d8b8-4a04-8969-0fe49e42c738",
     "version": 1,
     "components": [
         {
@@ -32,7 +32,7 @@
         {
             "type": "library",
             "name": "codex",
-            "version": "1.21.1",
+            "version": "1.22.0",
             "licenses": [
                 {
                     "license": {
@@ -40,7 +40,7 @@
                     }
                 }
             ],
-            "purl": "pkg:npm/@wikimedia/codex@1.21.1",
+            "purl": "pkg:npm/@wikimedia/codex@1.22.0",
             "authors": [
                 {
                     "name": "Design System team"
@@ -59,7 +59,7 @@
         {
             "type": "library",
             "name": "codex-design-tokens",
-            "version": "1.21.1",
+            "version": "1.22.0",
             "licenses": [
                 {
                     "license": {
@@ -67,7 +67,7 @@
                     }
                 }
             ],
-            "purl": "pkg:npm/@wikimedia/codex-design-tokens@1.21.1",
+            "purl": "pkg:npm/@wikimedia/codex-design-tokens@1.22.0",
             "authors": [
                 {
                     "name": "Design System team"
@@ -94,7 +94,7 @@
                     }
                 }
             ],
-            "purl": "pkg:npm/@wikimedia/codex-icons@1.21.1",
+            "purl": "pkg:npm/@wikimedia/codex-icons@1.22.0",
             "authors": [
                 {
                     "name": "Design System team"

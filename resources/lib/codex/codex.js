@@ -848,6 +848,17 @@ const _sfc_main$w = defineComponent({
         preloadThumbnail(props.thumbnail.url);
       }
     });
+    watch(toRef(props, "thumbnail"), (newThumbnail, oldThumbnail) => {
+      if (!(newThumbnail == null ? void 0 : newThumbnail.url)) {
+        thumbnailLoaded.value = false;
+        thumbnailStyle.value = {};
+        return;
+      }
+      if ((oldThumbnail == null ? void 0 : oldThumbnail.url) !== newThumbnail.url) {
+        thumbnailLoaded.value = false;
+        preloadThumbnail(newThumbnail.url);
+      }
+    }, { deep: true });
     return {
       thumbnailStyle,
       thumbnailLoaded,
@@ -5528,10 +5539,13 @@ function useFloatingMenu(referenceElement, menu, opt) {
     // it instead. Because of the maxHeight logic above, this happens when there is less than
     // 128px available below the triggering element.
     flip({
-      // Apply the same padding here as in size(), otherwise the gap between the bottom of
-      // the menu and the bottom edge of the viewport is allowed to shrink to zero before the
-      // menu flips.
-      padding: clipPadding
+      // Set padding in flip middleware options as well, in order to flip before it collides
+      // with the edge of the viewport. Ideally this would be the same as the value we use
+      // above for size, but we need it to be 1px smaller so that there's not a flickering
+      // effect as FloatingUI tries to decide whether to flip or resize. Setting the value
+      // here slightly smaller ensures that there is no ambiguity about which middleware
+      // behavior to apply in a given scenario.
+      padding: clipPadding - 1
     }),
     // Hide the menu when it has escaped the reference element's clipping context (e.g. the menu
     // is opened down and you scroll up until the reference element just starts to leave the
