@@ -1420,7 +1420,8 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 			$services->getUserNameUtils(),
 			$services->getTalkPageNotificationManager(),
 			$services->getMainConfig(),
-			$services->getJobQueueGroup()
+			$services->getJobQueueGroup(),
+			$services->getContentHandlerFactory()
 		);
 
 		$services->getDomainEventSource()

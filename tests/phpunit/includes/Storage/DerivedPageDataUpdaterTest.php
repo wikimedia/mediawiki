@@ -1130,12 +1130,15 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doSecondaryDataUpdates()
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doParserCacheUpdate()
 	 * @covers \MediaWiki\RecentChanges\ChangeTrackingEventIngress::handlePageRevisionUpdatedEvent()
+	 * @covers \MediaWiki\RecentChanges\ChangeTrackingEventIngress::anyChangedSlotSupportsCategories()
 	 */
 	public function testDoUpdates(
 		bool $simulateNullEdit,
 		bool $simulatePageCreation,
 		bool $rcWatchCategoryMembership
 	) {
+		$this->overrideConfigValue( MainConfigNames::RCWatchCategoryMembership, $rcWatchCategoryMembership );
+
 		$page = $this->getPage( __METHOD__ );
 
 		$content = [ SlotRecord::MAIN => new WikitextContent( 'current [[main]]' ) ];
@@ -1199,7 +1202,6 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$pcache = $this->getServiceContainer()->getParserCache();
 		$pcache->deleteOptionsKey( $page );
 
-		$updater->setRcWatchCategoryMembership( $rcWatchCategoryMembership );
 		$updater->setArticleCountMethod( 'link' );
 
 		$options = []; // TODO: test *all* the options...
@@ -1256,11 +1258,12 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $listenerCalled, 'PageRevisionUpdatedEvent listener' );
 
 		$this->assertSame(
-			$rcWatchCategoryMembership ? 1 : 0,
+			$rcWatchCategoryMembership && !$simulateNullEdit ? 1 : 0,
 			$this->getServiceContainer()
 				->getJobQueueGroup()
 				->get( 'categoryMembershipChange' )
-				->getSize()
+				->getSize(),
+			'CategoryMembershipChangeJob should only be enqueued for non-null edits (T390636)'
 		);
 
 		// TODO: MCR: test data updates for additional slots!

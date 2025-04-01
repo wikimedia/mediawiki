@@ -5,10 +5,12 @@ namespace MediaWiki\RecentChanges;
 use LogicException;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Config\Config;
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\DomainEvent\DomainEventIngress;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\JobQueue\JobQueueGroup;
+use MediaWiki\JobQueue\Jobs\CategoryMembershipChangeJob;
 use MediaWiki\JobQueue\Jobs\RevertedTagUpdateJob;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
@@ -60,7 +62,8 @@ class ChangeTrackingEventIngress
 			'UserNameUtils',
 			'TalkPageNotificationManager',
 			'MainConfig',
-			'JobQueueGroup'
+			'JobQueueGroup',
+			'ContentHandlerFactory',
 		],
 		'events' => [ // see registerListeners()
 			PageRevisionUpdatedEvent::TYPE
@@ -75,7 +78,9 @@ class ChangeTrackingEventIngress
 	private UserNameUtils $userNameUtils;
 	private TalkPageNotificationManager $talkPageNotificationManager;
 	private JobQueueGroup $jobQueueGroup;
+	private IContentHandlerFactory $contentHandlerFactory;
 	private bool $useRcPatrol;
+	private bool $rcWatchCategoryMembership;
 
 	public function __construct(
 		ChangeTagsStore $changeTagsStore,
@@ -86,7 +91,8 @@ class ChangeTrackingEventIngress
 		UserNameUtils $userNameUtils,
 		TalkPageNotificationManager $talkPageNotificationManager,
 		Config $mainConfig,
-		JobQueueGroup $jobQueueGroup
+		JobQueueGroup $jobQueueGroup,
+		IContentHandlerFactory $contentHandlerFactory
 	) {
 		// NOTE: keep in sync with self::OBJECT_SPEC
 		$this->changeTagsStore = $changeTagsStore;
@@ -97,8 +103,12 @@ class ChangeTrackingEventIngress
 		$this->userNameUtils = $userNameUtils;
 		$this->talkPageNotificationManager = $talkPageNotificationManager;
 		$this->jobQueueGroup = $jobQueueGroup;
+		$this->contentHandlerFactory = $contentHandlerFactory;
 
 		$this->useRcPatrol = $mainConfig->get( MainConfigNames::UseRCPatrol );
+		$this->rcWatchCategoryMembership = $mainConfig->get(
+			MainConfigNames::RCWatchCategoryMembership
+		);
 	}
 
 	public static function newForTesting(
@@ -110,7 +120,8 @@ class ChangeTrackingEventIngress
 		UserNameUtils $userNameUtils,
 		TalkPageNotificationManager $talkPageNotificationManager,
 		Config $mainConfig,
-		JobQueueGroup $jobQueueGroup
+		JobQueueGroup $jobQueueGroup,
+		IContentHandlerFactory $contentHandlerFactory
 	) {
 		$ingress = new self(
 			$changeTagsStore,
@@ -121,7 +132,8 @@ class ChangeTrackingEventIngress
 			$userNameUtils,
 			$talkPageNotificationManager,
 			$mainConfig,
-			$jobQueueGroup
+			$jobQueueGroup,
+			$contentHandlerFactory
 		);
 		$ingress->initSubscriber( self::OBJECT_SPEC );
 		return $ingress;
@@ -163,17 +175,64 @@ class ChangeTrackingEventIngress
 			);
 		}
 
-		if ( $event->isEffectiveContentChange() && !$event->isImplicit() ) {
-			$this->updateUserEditTrackerAfterPageUpdated(
-				$event->getPerformer()
-			);
+		if ( $event->isEffectiveContentChange() ) {
+			$this->generateCategoryMembershipChanges( $event );
 
-			$this->updateNewTalkAfterPageUpdated( $event );
+			if ( !$event->isImplicit() ) {
+				$this->updateUserEditTrackerAfterPageUpdated(
+					$event->getPerformer()
+				);
+
+				$this->updateNewTalkAfterPageUpdated( $event );
+			}
 		}
 
 		if ( $event->isRevert() && $event->isEffectiveContentChange() ) {
 			$this->updateRevertTagAfterPageUpdated( $event );
 		}
+	}
+
+	/**
+	 * Create RC entries for category changes that resulted from this update
+	 * if the relevant config is enabled.
+	 * This should only be triggered for actual edits, not reconciliation events (T390636).
+	 *
+	 * @param PageRevisionUpdatedEvent $event
+	 */
+	private function generateCategoryMembershipChanges( PageRevisionUpdatedEvent $event ): void {
+		if ( $this->rcWatchCategoryMembership
+			&& !$event->hasCause( PageRevisionUpdatedEvent::CAUSE_UNDELETE )
+			&& $this->anyChangedSlotSupportsCategories( $event )
+		) {
+			// Note: jobs are pushed after deferred updates, so the job should be able to see
+			// the recent change entry (also done via deferred updates) and carry over any
+			// bot/deletion/IP flags, ect.
+			$this->jobQueueGroup->lazyPush(
+				CategoryMembershipChangeJob::newSpec(
+					$event->getPage(),
+					$event->getLatestRevisionAfter()->getTimestamp(),
+					$event->hasCause( PageRevisionUpdatedEvent::CAUSE_IMPORT )
+				)
+			);
+		}
+	}
+
+	/**
+	 * Determine whether any slots changed in this update supports categories.
+	 * @param PageRevisionUpdatedEvent $event
+	 * @return bool
+	 */
+	private function anyChangedSlotSupportsCategories( PageRevisionUpdatedEvent $event ): bool {
+		$slotsUpdate = $event->getSlotsUpdate();
+		foreach ( $slotsUpdate->getModifiedRoles() as $role ) {
+			$model = $slotsUpdate->getModifiedSlot( $role )->getModel();
+
+			if ( $this->contentHandlerFactory->getContentHandler( $model )->supportsCategories() ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	private function updateChangeTagsAfterPageUpdated( array $tags, int $revId ) {

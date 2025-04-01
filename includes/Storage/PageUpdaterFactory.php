@@ -304,9 +304,6 @@ class PageUpdaterFactory {
 		$derivedDataUpdater->setLogger( $this->logger );
 		$derivedDataUpdater->setArticleCountMethod(
 			$this->options->get( MainConfigNames::ArticleCountMethod ) );
-		$derivedDataUpdater->setRcWatchCategoryMembership(
-			$this->options->get( MainConfigNames::RCWatchCategoryMembership )
-		);
 
 		return $derivedDataUpdater;
 	}

@@ -26,7 +26,6 @@ use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\Content;
-use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\Deferred\DeferrableUpdate;
@@ -36,11 +35,9 @@ use MediaWiki\Deferred\RefreshSecondaryDataUpdate;
 use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\DomainEvent\DomainEventDispatcher;
 use MediaWiki\Edit\PreparedEdit;
-use MediaWiki\Exception\MWUnknownContentModelException;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\JobQueue\JobQueueGroup;
-use MediaWiki\JobQueue\Jobs\CategoryMembershipChangeJob;
 use MediaWiki\JobQueue\Jobs\ParsoidCachePrewarmJob;
 use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
@@ -158,11 +155,6 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 * @var string see $wgArticleCountMethod
 	 */
 	private $articleCountMethod;
-
-	/**
-	 * @var bool see $wgRCWatchCategoryMembership
-	 */
-	private $rcWatchCategoryMembership = false;
 
 	/**
 	 * Stores (most of) the $options parameter of prepareUpdate().
@@ -535,14 +527,6 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	}
 
 	/**
-	 * @param bool $rcWatchCategoryMembership
-	 * @see $wgRCWatchCategoryMembership
-	 */
-	public function setRcWatchCategoryMembership( $rcWatchCategoryMembership ) {
-		$this->rcWatchCategoryMembership = $rcWatchCategoryMembership;
-	}
-
-	/**
 	 * @return Title
 	 */
 	private function getTitle() {
@@ -736,16 +720,6 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 */
 	public function getRawContent( string $role ): Content {
 		return $this->getRawSlot( $role )->getContent();
-	}
-
-	/**
-	 * @param string $role slot role name
-	 * @return ContentHandler
-	 * @throws MWUnknownContentModelException
-	 */
-	private function getContentHandler( $role ): ContentHandler {
-		return $this->contentHandlerFactory
-			->getContentHandler( $this->getRawSlot( $role )->getModel() );
 	}
 
 	private function usePrimary(): bool {
@@ -1590,24 +1564,6 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			// Defer the getCanonicalParserOutput() call made by getSecondaryDataUpdates()
 			'defer' => DeferredUpdates::POSTSEND
 		] );
-
-		// TODO: MCR: check if *any* changed slot supports categories!
-		if ( $this->rcWatchCategoryMembership
-			&& $this->getContentHandler( SlotRecord::MAIN )->supportsCategories() === true
-			&& $event->isNominalContentChange()
-			&& !$event->hasCause( PageRevisionUpdatedEvent::CAUSE_UNDELETE )
-		) {
-			// Note: jobs are pushed after deferred updates, so the job should be able to see
-			// the recent change entry (also done via deferred updates) and carry over any
-			// bot/deletion/IP flags, ect.
-			$this->jobQueueGroup->lazyPush(
-				CategoryMembershipChangeJob::newSpec(
-					$this->getTitle(),
-					$this->revision->getTimestamp(),
-					$event->hasCause( PageUpdater::CAUSE_IMPORT )
-				)
-			);
-		}
 
 		$id = $this->getPageId();
 		$title = $this->getTitle();
