@@ -35,7 +35,7 @@ class PageStoreFactoryTest extends MediaWikiUnitTestCase {
 			$this->createNoOpMock( NamespaceInfo::class ),
 			$this->createNoOpMock( TitleParser::class ),
 			$this->createNoOpMock( LinkCache::class ),
-			$this->createNoOpMock( StatsFactory::class )
+			StatsFactory::newNull()
 		);
 
 		// Just check that nothing explodes.

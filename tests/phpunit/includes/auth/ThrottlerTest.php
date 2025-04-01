@@ -28,9 +28,7 @@ class ThrottlerTest extends MediaWikiIntegrationTestCase {
 
 	public function testConstructor() {
 		$cache = new HashBagOStuff();
-		$logger = $this->getMockBuilder( AbstractLogger::class )
-			->onlyMethods( [ 'log' ] )
-			->getMockForAbstractClass();
+		$logger = new NullLogger();
 
 		$throttler = new Throttler(
 			[ [ 'count' => 123, 'seconds' => 456 ] ],
@@ -209,11 +207,7 @@ class ThrottlerTest extends MediaWikiIntegrationTestCase {
 		$throttler = new Throttler( [ [ 'count' => 1, 'seconds' => 10 ] ], [ 'cache' => $cache ] );
 
 		// Make the logger expect no calls
-		$logger = $this->getMockBuilder( AbstractLogger::class )
-			->onlyMethods( [ 'log' ] )
-			->getMockForAbstractClass();
-		$logger->expects( $this->never() )->method( 'log' );
-		$throttler->setLogger( $logger );
+		$throttler->setLogger( $this->createNoOpMock( AbstractLogger::class ) );
 		// Call the increase method and expect that the throttling did not occur.
 		$result = $throttler->increase( 'SomeUser', '1.2.3.4' );
 		$this->assertFalse( $result, 'should not throttle' );
