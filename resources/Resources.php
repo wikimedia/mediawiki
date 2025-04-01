@@ -2000,6 +2000,7 @@ return [
 			'rcfilters-liveupdates-button-title-off',
 			'rcfilters-watchlist-markseen-button',
 			'rcfilters-watchlist-edit-watchlist-button',
+			'rcfilters-watchlist-edit-watchlist-preferences-button',
 			'rcfilters-other-review-tools',
 			'rcfilters-filter-showlinkedfrom-label',
 			'rcfilters-filter-showlinkedfrom-option-label',

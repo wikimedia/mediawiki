@@ -23,8 +23,11 @@
 	}
 
 	.mw-rcfilters-ui-row {
-		justify-content: space-between;
-		gap: 1em;
+		justify-content: flex-start;
+
+		.mw-rcfilters-ui-watchlistTopSectionWidget-editWatchlistButton {
+			justify-self: flex-end;
+		}
 	}
 
 	// On small screens, remove the table properties from the
@@ -47,11 +50,14 @@
 
 		// T235535
 		&-editWatchlistButton {
-			// Match the width that we are setting up for the loading
-			// of the .watchlistDetails in mw.rcfilters.less
-			min-width: 19em;
-			text-align: right;
-			align-self: end;
+			align-self: start;
+			display: flex;
+			flex-direction: row;
+			min-width: 9em;
+
+			.mw-rcfilters-ui-watchlistTopSectionWidget-editWatchlistButtonIcon {
+				margin: 0 0.5em 0.5em 0;
+			}
 		}
 	}
 }
