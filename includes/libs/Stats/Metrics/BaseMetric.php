@@ -102,11 +102,8 @@ class BaseMetric implements BaseMetricInterface {
 	public function addLabel( string $key, string $value ): void {
 		// Performance optimization: Assume the key is valid and already registered
 		if ( !array_key_exists( $key, $this->workingLabels ) ) {
-			$key = StatsUtils::normalizeString( $key );
 			StatsUtils::validateLabelKey( $key );
-
-			// Check the key again in case it changed above, even if this never really happens
-			if ( $this->hasSamples() && !array_key_exists( $key, $this->workingLabels ) ) {
+			if ( $this->hasSamples() ) {
 				throw new IllegalOperationException(
 					"Stats: Cannot add labels to a metric containing samples for '" . $this->name . "'"
 				);

@@ -38,14 +38,6 @@ class MetricTest extends TestCase {
 			'value' => 2,
 			'labels' => [],
 		],
-		'invalidLabel' => [
-			'config' => [
-				'name' => 'test.unit',
-				'component' => 'testComponent',
-			],
-			'value' => 2,
-			'labels' => [ ': x' => 'labelOne' ],
-		],
 		'oneLabel' => [
 			'config' => [
 				'name' => 'test.unit',
@@ -74,35 +66,29 @@ class MetricTest extends TestCase {
 
 	public const RESULTS = [
 		'statsd.counter.basic' => [ 'mediawiki.testComponent.test_unit:2|c' ],
-		'statsd.counter.invalidLabel' => [ 'mediawiki.testComponent.test_unit.labelOne:2|c' ],
 		'statsd.counter.oneLabel' => [ 'mediawiki.testComponent.test_unit.labelOne:2|c' ],
 		'statsd.counter.multiLabel' => [ 'mediawiki.testComponent.test_unit.labelOne.labelTwo:2|c' ],
 		'statsd.counter.noComponent' => [ 'mediawiki.test_unit:2|c' ],
 		'statsd.gauge.basic' => [ 'mediawiki.testComponent.test_unit:2|g' ],
-		'statsd.gauge.invalidLabel' => [ 'mediawiki.testComponent.test_unit.labelOne:2|g' ],
 		'statsd.gauge.oneLabel' => [ 'mediawiki.testComponent.test_unit.labelOne:2|g' ],
 		'statsd.gauge.multiLabel' => [ 'mediawiki.testComponent.test_unit.labelOne.labelTwo:2|g' ],
 		'statsd.gauge.noComponent' => [ 'mediawiki.test_unit:2|g' ],
 		'statsd.timing.basic' => [ 'mediawiki.testComponent.test_unit:2|ms' ],
-		'statsd.timing.invalidLabel' => [ 'mediawiki.testComponent.test_unit.labelOne:2|ms' ],
 		'statsd.timing.oneLabel' => [ 'mediawiki.testComponent.test_unit.labelOne:2|ms' ],
 		'statsd.timing.multiLabel' => [ 'mediawiki.testComponent.test_unit.labelOne.labelTwo:2|ms' ],
 		'statsd.timing.noComponent' => [ 'mediawiki.test_unit:2|ms' ],
 
 		'dogstatsd.counter.basic' => [ 'mediawiki.testComponent.test_unit:2|c' ],
-		'dogstatsd.counter.invalidLabel' => [ 'mediawiki.testComponent.test_unit:2|c|#x:labelOne' ],
 		'dogstatsd.counter.oneLabel' => [ 'mediawiki.testComponent.test_unit:2|c|#x:labelOne' ],
 		'dogstatsd.counter.multiLabel' => [
 			'mediawiki.testComponent.test_unit:2|c|#x:labelOne,y:labelTwo' ],
 		'dogstatsd.counter.noComponent' => [ 'mediawiki.test_unit:2|c' ],
 		'dogstatsd.gauge.basic' => [ 'mediawiki.testComponent.test_unit:2|g' ],
-		'dogstatsd.gauge.invalidLabel' => [ 'mediawiki.testComponent.test_unit:2|g|#x:labelOne' ],
 		'dogstatsd.gauge.oneLabel' => [ 'mediawiki.testComponent.test_unit:2|g|#x:labelOne' ],
 		'dogstatsd.gauge.multiLabel' => [
 			'mediawiki.testComponent.test_unit:2|g|#x:labelOne,y:labelTwo' ],
 		'dogstatsd.gauge.noComponent' => [ 'mediawiki.test_unit:2|g' ],
 		'dogstatsd.timing.basic' => [ 'mediawiki.testComponent.test_unit:2|ms' ],
-		'dogstatsd.timing.invalidLabel' => [ 'mediawiki.testComponent.test_unit:2|ms|#x:labelOne' ],
 		'dogstatsd.timing.oneLabel' => [ 'mediawiki.testComponent.test_unit:2|ms|#x:labelOne' ],
 		'dogstatsd.timing.multiLabel' => [
 			'mediawiki.testComponent.test_unit:2|ms|#x:labelOne,y:labelTwo' ],
@@ -458,5 +444,12 @@ class MetricTest extends TestCase {
 	public function testInvalidBucketValue() {
 		$this->expectException( 'InvalidArgumentException' );
 		StatsFactory::newNull()->getCounter( 'test' )->setBucket( 'foo' );
+	}
+
+	public function testInvalidLabel() {
+		$this->assertInstanceOf(
+			NullMetric::class,
+			@StatsFactory::newNull()->getCounter( 'test' )->setLabel( ': x', 'labelOne' )
+		);
 	}
 }
