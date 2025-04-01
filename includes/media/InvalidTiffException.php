@@ -1,4 +1,6 @@
 <?php
 
-class InvalidTiffException extends Exception {
+use Wikimedia\NormalizedException\NormalizedException;
+
+class InvalidTiffException extends NormalizedException {
 }
