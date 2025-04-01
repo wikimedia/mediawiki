@@ -180,6 +180,8 @@ class BlockUsers extends Maintenance {
 				$errorsText = $res->getMessage()->text();
 				$this->output( "{$action} '{$line}' failed ({$errorsText}).\n" );
 			}
+
+			$this->waitForReplication();
 		}
 	}
 }
