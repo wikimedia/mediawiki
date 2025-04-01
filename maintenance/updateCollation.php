@@ -454,6 +454,8 @@ TEXT
 						->caller( __METHOD__ )->execute();
 					$this->numRowsProcessed += $this->dbw->affectedRows();
 				}
+
+				$this->waitForReplication();
 			}
 			$batchValue += $this->getBatchSize();
 
