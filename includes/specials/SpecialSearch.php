@@ -347,16 +347,16 @@ class SpecialSearch extends SpecialPage {
 		return $url ?? $title->getFullUrlForRedirect();
 	}
 
-	private function redirectOnExactMatch() {
+	private function redirectOnExactMatch(): bool {
 		if ( !$this->getConfig()->get( MainConfigNames::SearchMatchRedirectPreference ) ) {
 			// If the preference for whether to redirect is disabled, use the default setting
-			return $this->userOptionsManager->getDefaultOption(
+			return (bool)$this->userOptionsManager->getDefaultOption(
 				'search-match-redirect',
 				$this->getUser()
 			);
 		} else {
 			// Otherwise use the user's preference
-			return $this->userOptionsManager->getOption( $this->getUser(), 'search-match-redirect' );
+			return $this->userOptionsManager->getBoolOption( $this->getUser(), 'search-match-redirect' );
 		}
 	}
 
