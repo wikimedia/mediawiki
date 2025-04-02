@@ -1121,7 +1121,9 @@ class Article implements Page {
 			} else {
 				$specificTarget = $title->getRootText();
 			}
-			if ( $this->blockStore->newFromTarget( $specificTarget, $vagueTarget ) instanceof DatabaseBlock ) {
+			$block = $this->blockStore->newFromTarget(
+				$specificTarget, $vagueTarget, false, DatabaseBlockStore::AUTO_NONE );
+			if ( $block instanceof DatabaseBlock ) {
 				return [
 					'index' => 'noindex',
 					'follow' => 'nofollow'

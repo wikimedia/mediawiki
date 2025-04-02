@@ -57,6 +57,13 @@ use function array_key_exists;
  * @author DannyS712
  */
 class DatabaseBlockStore {
+	/** Load all autoblocks */
+	public const AUTO_ALL = 'all';
+	/** Load only autoblocks specified by ID */
+	public const AUTO_SPECIFIED = 'specified';
+	/** Do not load autoblocks */
+	public const AUTO_NONE = 'none';
+
 	/**
 	 * @internal For use by ServiceWiring
 	 */
@@ -195,12 +202,14 @@ class DatabaseBlockStore {
 	 * @param BlockTarget|null $vagueTarget Also search for blocks affecting
 	 *     this target. Doesn't make any sense to use TYPE_AUTO here. Leave blank to
 	 *     skip IP lookups.
+	 * @param string $auto One of the self::AUTO_* constants
 	 * @return DatabaseBlock[] Any relevant blocks
 	 */
 	private function newLoad(
 		$specificTarget,
 		$fromPrimary,
-		$vagueTarget = null
+		$vagueTarget = null,
+		$auto = self::AUTO_ALL
 	) {
 		if ( $fromPrimary ) {
 			$db = $this->getPrimaryDB();
@@ -268,10 +277,14 @@ class DatabaseBlockStore {
 			return [];
 		}
 
+		// Exclude autoblocks unless AUTO_ALL was requested.
+		$autoConds = $auto === self::AUTO_ALL ? [] : [ 'bt_auto' => 0 ];
+
 		$blockQuery = $this->getQueryInfo();
 		$res = $db->newSelectQueryBuilder()
 			->queryInfo( $blockQuery )
 			->where( $db->orExpr( $orConds ) )
+			->andWhere( $autoConds )
 			->caller( __METHOD__ )
 			->fetchResultSet();
 
@@ -450,6 +463,10 @@ class DatabaseBlockStore {
 	 *     block which affects that target (so for an IP address, get ranges containing that IP;
 	 *     and also get any relevant autoblocks). Leave empty or blank to skip IP-based lookups.
 	 * @param bool $fromPrimary Whether to use the DB_PRIMARY database
+	 * @param string $auto Since 1.44. One of the self::AUTO_* constants:
+	 *    - AUTO_ALL: always load autoblocks
+	 *    - AUTO_SPECIFIED: load only autoblocks specified in the input by ID
+	 *    - AUTO_NONE: do not load autoblocks
 	 * @return DatabaseBlock|null (null if no relevant block could be found). The target and type
 	 *     of the returned block will refer to the actual block which was found, which might
 	 *     not be the same as the target you gave if you used $vagueTarget!
@@ -457,9 +474,10 @@ class DatabaseBlockStore {
 	public function newFromTarget(
 		$specificTarget,
 		$vagueTarget = null,
-		$fromPrimary = false
+		$fromPrimary = false,
+		$auto = self::AUTO_ALL
 	) {
-		$blocks = $this->newListFromTarget( $specificTarget, $vagueTarget, $fromPrimary );
+		$blocks = $this->newListFromTarget( $specificTarget, $vagueTarget, $fromPrimary, $auto );
 		return $this->chooseMostSpecificBlock( $blocks );
 	}
 
@@ -470,12 +488,17 @@ class DatabaseBlockStore {
 	 * @param BlockTarget|string|UserIdentity|int|null $specificTarget
 	 * @param BlockTarget|string|UserIdentity|int|null $vagueTarget
 	 * @param bool $fromPrimary
+	 * @param string $auto Since 1.44. One of the self::AUTO_* constants:
+	 *   - AUTO_ALL: always load autoblocks
+	 *   - AUTO_SPECIFIED: load only autoblocks specified in the input by ID
+	 *   - AUTO_NONE: do not load autoblocks
 	 * @return DatabaseBlock[] Any relevant blocks
 	 */
 	public function newListFromTarget(
 		$specificTarget,
 		$vagueTarget = null,
-		$fromPrimary = false
+		$fromPrimary = false,
+		$auto = self::AUTO_ALL
 	) {
 		if ( !( $specificTarget instanceof BlockTarget ) ) {
 			$specificTarget = $this->blockTargetFactory->newFromLegacyUnion( $specificTarget );
@@ -484,13 +507,16 @@ class DatabaseBlockStore {
 			$vagueTarget = $this->blockTargetFactory->newFromLegacyUnion( $vagueTarget );
 		}
 		if ( $specificTarget instanceof AutoBlockTarget ) {
+			if ( $auto === self::AUTO_NONE ) {
+				return [];
+			}
 			$block = $this->newFromID( $specificTarget->getId() );
 			return $block ? [ $block ] : [];
 		} elseif ( $specificTarget === null && $vagueTarget === null ) {
 			// We're not going to find anything useful here
 			return [];
 		} else {
-			return $this->newLoad( $specificTarget, $fromPrimary, $vagueTarget );
+			return $this->newLoad( $specificTarget, $fromPrimary, $vagueTarget, $auto );
 		}
 	}
 
@@ -962,7 +988,8 @@ class DatabaseBlockStore {
 		DatabaseBlock $block,
 		IDatabase $dbw
 	) {
-		$targetConds = $this->getTargetConds( $block );
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
+		$targetConds = $this->getTargetConds( $block->getTarget() );
 		return $dbw->newSelectQueryBuilder()
 			->select( [ 'bl_id', 'bl_target' ] )
 			->from( 'block' )
@@ -975,17 +1002,18 @@ class DatabaseBlockStore {
 	/**
 	 * Get conditions matching an existing block's block_target row
 	 *
-	 * @param DatabaseBlock $block
+	 * @param BlockTarget $target
 	 * @return array
 	 */
-	private function getTargetConds( DatabaseBlock $block ) {
-		$target = $block->getTarget();
+	private function getTargetConds( BlockTarget $target ) {
 		if ( $target instanceof UserBlockTarget ) {
 			return [
 				'bt_user' => $target->getUserIdentity()->getId( $this->wikiId )
 			];
-		} else {
+		} elseif ( $target instanceof AnonIpBlockTarget || $target instanceof RangeBlockTarget ) {
 			return [ 'bt_address' => $target->toString() ];
+		} else {
+			throw new \InvalidArgumentException( 'Invalid target type' );
 		}
 	}
 
@@ -1207,7 +1235,8 @@ class DatabaseBlockStore {
 			$newTarget = $this->blockTargetFactory->newFromLegacyUnion( $newTarget );
 		}
 
-		$oldTargetConds = $this->getTargetConds( $block );
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
+		$oldTargetConds = $this->getTargetConds( $block->getTarget() );
 		$block->setTarget( $newTarget );
 
 		$dbw->startAtomic( __METHOD__ );

@@ -317,6 +317,46 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	/**
+	 * @covers ::newListFromTarget
+	 * @covers ::newLoad
+	 */
+	public function testNewListFromTargetAuto() {
+		// Set up once and do multiple tests, faster than a provider
+		$store = $this->getStore();
+		$ip = '1.2.3.4';
+		$inserted = $store->insertBlockWithParams( [
+			'address' => $ip,
+			'by' => $this->getTestSysop()->getUser(),
+			'auto' => true,
+		] );
+
+		// ALL
+		$list = $store->newListFromTarget( $ip,
+			null, false, DatabaseBlockStore::AUTO_ALL );
+		$this->assertCount( 1, $list );
+
+		// Specified with IP
+		$list = $store->newListFromTarget( $ip,
+			null, false, DatabaseBlockStore::AUTO_SPECIFIED );
+		$this->assertCount( 0, $list );
+
+		// Specified autoblock ID
+		$list = $store->newListFromTarget( "#{$inserted->getId()}",
+			null, false, DatabaseBlockStore::AUTO_SPECIFIED );
+		$this->assertCount( 1, $list );
+
+		// None with IP
+		$list = $store->newListFromTarget( $ip,
+			null, false, DatabaseBlockStore::AUTO_NONE );
+		$this->assertCount( 0, $list );
+
+		// None with autoblock ID
+		$list = $store->newListFromTarget( "#{$inserted->getId()}",
+			null, false, DatabaseBlockStore::AUTO_NONE );
+		$this->assertCount( 0, $list );
+	}
+
 	public static function provideGetRangeCond() {
 		// $start, $end, $expect
 		$hex1 = IPUtils::toHex( '1.2.3.4' );

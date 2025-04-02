@@ -658,11 +658,12 @@ class SpecialBlock extends FormSpecialPage {
 		// This won't be
 		$fields['PreviousTarget']['default'] = (string)$this->target;
 
-		$block = $this->blockStore->newFromTarget( $this->target );
+		$block = $this->blockStore->newFromTarget(
+			$this->target, null, false, DatabaseBlockStore::AUTO_NONE );
 
 		// Populate fields if there is a block that is not an autoblock; if it is a range
 		// block, only populate the fields if the range is the same as $this->target
-		if ( $block instanceof DatabaseBlock && $block->getType() !== DatabaseBlock::TYPE_AUTO
+		if ( $block instanceof DatabaseBlock
 			&& ( !( $this->target instanceof RangeBlockTarget )
 				|| $block->isBlocking( $this->target ) )
 		) {

@@ -27,7 +27,6 @@ namespace MediaWiki\Logging;
 
 use InvalidArgumentException;
 use MapCacheLRU;
-use MediaWiki\Block\Block;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\Context\ContextSource;
@@ -841,28 +840,26 @@ class LogEventsList extends ContextSource {
 		if ( !$user ) {
 			return null;
 		}
-		$numBlocks = 0;
 		$appliesToTitle = false;
 		$logTargetPage = '';
 		$blockTargetName = '';
-		foreach ( $blockStore->newListFromTarget( $user, $user ) as $block ) {
-			if ( $block->getType() !== Block::TYPE_AUTO ) {
-				$numBlocks++;
-				if ( $block->appliesToTitle( $title ) ) {
-					$appliesToTitle = true;
-				}
-				$blockTargetName = $block->getTargetName();
-				$logTargetPage = $namespaceInfo->getCanonicalName( NS_USER ) .
-					':' . $blockTargetName;
+		$blocks = $blockStore->newListFromTarget( $user, $user, false,
+			DatabaseBlockStore::AUTO_NONE );
+		foreach ( $blocks as $block ) {
+			if ( $block->appliesToTitle( $title ) ) {
+				$appliesToTitle = true;
 			}
+			$blockTargetName = $block->getTargetName();
+			$logTargetPage = $namespaceInfo->getCanonicalName( NS_USER ) .
+				':' . $blockTargetName;
 		}
 
 		// Show log extract if the user is sitewide blocked or is partially
 		// blocked and not allowed to edit their user page or user talk page
-		if ( !$numBlocks || !$appliesToTitle ) {
+		if ( !count( $blocks ) || !$appliesToTitle ) {
 			return null;
 		}
-		$msgKey = $numBlocks === 1
+		$msgKey = count( $blocks ) === 1
 			? 'blocked-notice-logextract' : 'blocked-notice-logextract-multi';
 		$params = [
 			'lim' => 1,
@@ -870,10 +867,10 @@ class LogEventsList extends ContextSource {
 			'msgKey' => [
 				$msgKey,
 				$user->getName(), # Support GENDER in notice
-				$numBlocks
+				count( $blocks )
 			],
 		];
-		if ( $numBlocks > 1 ) {
+		if ( count( $blocks ) > 1 ) {
 			$params['footerHtmlItems'] = [
 				$linkRenderer->makeKnownLink(
 					SpecialPage::getTitleFor( 'BlockList' ),
