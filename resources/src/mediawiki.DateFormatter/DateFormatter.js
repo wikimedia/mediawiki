@@ -169,9 +169,7 @@ const priv = {
 };
 
 /**
- * @module mediawiki.DateFormatter
- */
-/**
+ * @description
  * Time and date formatter class.
  *
  * The main aim of this class is to make it easy to produce a date which is
@@ -197,13 +195,14 @@ const priv = {
  * const mwTimestamp = DateFormatter.forUtc().formatMw( new Date() );
  *
  * @since 1.44
+ * @exports mediawiki.DateFormatter
  */
 class DateFormatter {
 
 	/**
 	 * Get a DateFormatter instance configured for the current user
 	 *
-	 * @return {DateFormatter}
+	 * @return {module:mediawiki.DateFormatter}
 	 */
 	static forUser() {
 		if ( !instanceCache.user ) {
@@ -221,7 +220,7 @@ class DateFormatter {
 	 * Get a DateFormatter instance, configured for the current user except with
 	 * the time zone set to UTC.
 	 *
-	 * @return {DateFormatter}
+	 * @return {module:mediawiki.DateFormatter}
 	 */
 	static forUtc() {
 		if ( !instanceCache.utc ) {
@@ -239,7 +238,7 @@ class DateFormatter {
 	 * Get a DateFormatter instance, configured for the current user except with
 	 * the site default time zone.
 	 *
-	 * @return {DateFormatter}
+	 * @return {module:mediawiki.DateFormatter}
 	 */
 	static forSiteZone() {
 		if ( !instanceCache.site ) {
@@ -396,7 +395,7 @@ class DateFormatter {
 
 	/**
 	 * @internal
-	 * @ignore
+	 * @hideconstructor
 	 *
 	 * @param {string[]} locales The locale fallback chain
 	 * @param {Object} formats The available date formats, indexed by combined
