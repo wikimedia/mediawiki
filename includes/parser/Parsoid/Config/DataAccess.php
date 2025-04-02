@@ -334,6 +334,10 @@ class DataAccess extends IDataAccess {
 		// Use the same legacy parser object for all calls to extension tag
 		// processing, for greater compatibility.
 		$this->parser ??= $this->parserFactory->create();
+		if ( $this->config->get( MainConfigNames::ParsoidFragmentSupport ) === 'v3' ) {
+			// New PFragment-based support (T374616)
+			$this->parser->setStripExtTags( false );
+		}
 		$this->parser->startExternalParse(
 			Title::newFromLinkTarget( $pageConfig->getLinkTarget() ),
 			$pageConfig->getParserOptions(),
@@ -402,9 +406,10 @@ class DataAccess extends IDataAccess {
 			$wikitext = $parser->getStripState()->unstripBoth( $wikitext );
 		} else {
 			// New PFragment-based support (T374616)
+			$stripExtTags = $this->config->get( MainConfigNames::ParsoidFragmentSupport ) === 'v3' ? 'keep' : false;
 			$wikitext = $parser->replaceVariables(
 				$wikitext, $this->ppFrame, false, [
-					'stripExtTags' => false,
+					'stripExtTags' => $stripExtTags,
 					'parsoidTopLevelCall' => true,
 					// This is implied by stripExtTags=false and
 					// probably doesn't need to be explicitly passed
