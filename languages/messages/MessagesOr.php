@@ -31,6 +31,8 @@ $digitTransformTable = [
 	'9' => '୯', # U+0B6F
 ];
 
+$numberingSystem = 'orya';
+
 $linkTrail = "/^([a-z\x{0B00}-\x{0B7F}]+)(.*)$/sDu";
 
 /** namespace translations from translatewiki.net

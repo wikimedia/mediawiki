@@ -36,3 +36,5 @@ $digitTransformTable = [
 	'8' => '꯸', # U+ABF8
 	'9' => '꯹', # U+ABF9
 ];
+
+$numberingSystem = 'mtei';

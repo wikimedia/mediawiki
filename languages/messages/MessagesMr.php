@@ -325,6 +325,8 @@ $digitTransformTable = [
 	'9' => '९', # U+096F
 ];
 
+$numberingSystem = 'deva';
+
 $linkTrail = "/^([\u{0900}-\u{0963}\u{0971}-\u{097F}\u{FEFF}\u{200D}]+)(.*)$/sDu";
 
 $digitGroupingPattern = "#,##,##0.###";

@@ -166,3 +166,5 @@ $digitTransformTable = [
 ];
 
 $digitGroupingPattern = "#,##,##0.###";
+
+$numberingSystem = 'beng';

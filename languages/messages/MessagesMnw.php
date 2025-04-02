@@ -22,6 +22,8 @@ $digitTransformTable = [
 	'9' => '၉',
 ];
 
+$numberingSystem = 'mymr';
+
 $namespaceNames = [
 	NS_MEDIA            => 'မဳဒဳယာ',
 	NS_SPECIAL          => 'တၟေင်',

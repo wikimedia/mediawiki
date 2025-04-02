@@ -2487,4 +2487,24 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		$this->assertContains( '1 day', $durations );
 	}
 
+	public function testGetJsDateFormats() {
+		$lang = $this->getLang();
+		$result = $lang->getJsDateFormats();
+		$this->assertSame(
+			[
+				'options' => [
+					'numberingSystem' => 'latn',
+					'hour' => '2-digit',
+					'hour12' => false,
+					'minute' => '2-digit',
+					'day' => 'numeric',
+					'month' => 'long',
+					'year' => 'numeric',
+				],
+				'pattern' => '{hour}:{minute}, {day} {mwMonth} {year}'
+			],
+			$result['dmy both']
+		);
+	}
+
 }

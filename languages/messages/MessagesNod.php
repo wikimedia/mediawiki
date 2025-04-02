@@ -39,6 +39,8 @@ $digitTransformTable = [
 	'9' => '᪉', # U+1A89
 ];
 
+$numberingSystem = 'lana';
+
 $datePreferences = [
 	'default',
 	'thai',

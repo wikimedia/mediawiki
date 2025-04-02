@@ -151,13 +151,13 @@ class LocalisationCache {
 		'fallback', 'namespaceNames', 'bookstoreList',
 		'magicWords', 'messages', 'rtl',
 		'digitTransformTable', 'separatorTransformTable',
-		'minimumGroupingDigits', 'fallback8bitEncoding',
+		'minimumGroupingDigits', 'numberingSystem', 'fallback8bitEncoding',
 		'linkPrefixExtension', 'linkTrail', 'linkPrefixCharset',
-		'namespaceAliases', 'dateFormats', 'datePreferences',
+		'namespaceAliases', 'dateFormats', 'jsDateFormats', 'datePreferences',
 		'datePreferenceMigrationMap', 'defaultDateFormat',
 		'specialPageAliases', 'imageFiles', 'preloadedMessages',
 		'namespaceGenderAliases', 'digitGroupingPattern', 'pluralRules',
-		'pluralRuleTypes', 'compiledPluralRules', 'formalityIndex',
+		'pluralRuleTypes', 'compiledPluralRules', 'formalityIndex'
 	];
 
 	/**
@@ -169,7 +169,8 @@ class LocalisationCache {
 	 */
 	private const CORE_ONLY_KEYS = [
 		'fallback', 'rtl', 'digitTransformTable', 'separatorTransformTable',
-		'minimumGroupingDigits', 'fallback8bitEncoding', 'linkPrefixExtension',
+		'minimumGroupingDigits', 'numberingSystem',
+		'fallback8bitEncoding', 'linkPrefixExtension',
 		'linkTrail', 'linkPrefixCharset', 'datePreferences',
 		'datePreferenceMigrationMap', 'defaultDateFormat', 'digitGroupingPattern',
 		'formalityIndex',
@@ -185,7 +186,7 @@ class LocalisationCache {
 	 */
 	private const ALL_EXCEPT_CORE_ONLY_KEYS = [
 		'namespaceNames', 'bookstoreList', 'magicWords', 'messages',
-		'namespaceAliases', 'dateFormats', 'specialPageAliases',
+		'namespaceAliases', 'dateFormats', 'jsDateFormats', 'specialPageAliases',
 		'imageFiles', 'preloadedMessages', 'namespaceGenderAliases',
 		'pluralRules', 'pluralRuleTypes', 'compiledPluralRules',
 	];
@@ -198,7 +199,7 @@ class LocalisationCache {
 	 * by a fallback sequence.
 	 */
 	private const MERGEABLE_MAP_KEYS = [ 'messages', 'namespaceNames',
-		'namespaceAliases', 'dateFormats', 'imageFiles', 'preloadedMessages'
+		'namespaceAliases', 'dateFormats', 'jsDateFormats', 'imageFiles', 'preloadedMessages'
 	];
 
 	/**

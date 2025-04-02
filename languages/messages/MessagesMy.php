@@ -38,6 +38,8 @@ $digitTransformTable = [
 	'9' => '၉',
 ];
 
+$numberingSystem = 'mymr';
+
 $namespaceNames = [
 	NS_MEDIA            => 'မီဒီယာ',
 	NS_SPECIAL          => 'အထူး',

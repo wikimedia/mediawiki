@@ -154,3 +154,5 @@ $separatorTransformTable = [
 	'.' => '點',
 	',' => '',
 ];
+
+$numberingSystem = 'hanidec';

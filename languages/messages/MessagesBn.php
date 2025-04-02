@@ -52,6 +52,8 @@ $digitTransformTable = [
 
 $digitGroupingPattern = "#,##,##0.###";
 
+$numberingSystem = 'beng';
+
 /** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'সক্রিয়_ব্যবহারকারী' ],
