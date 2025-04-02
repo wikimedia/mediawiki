@@ -52,7 +52,7 @@ class UserRateLimitConstraint implements IEditConstraint {
 		$this->newContentModel = $newContentModel;
 	}
 
-	private function limit( string $action, int $inc = 1 ) {
+	private function limit( string $action, int $inc = 1 ): bool {
 		return $this->limiter->limit( $this->subject, $action, $inc );
 	}
 

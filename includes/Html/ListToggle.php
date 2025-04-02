@@ -43,7 +43,7 @@ class ListToggle {
 		$output->addModuleStyles( 'mediawiki.checkboxtoggle.styles' );
 	}
 
-	private function checkboxLink( $checkboxType ) {
+	private function checkboxLink( string $checkboxType ): string {
 		return Html::element(
 			// CSS classes: mw-checkbox-all, mw-checkbox-none, mw-checkbox-invert
 			'a', [ 'class' => 'mw-checkbox-' . $checkboxType, 'role' => 'button', 'tabindex' => 0 ],

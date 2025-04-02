@@ -574,7 +574,7 @@ class RefreshLinksJob extends Job {
 	private function canUseParserOutputFromCache(
 		ParserOutput $cachedOutput,
 		RevisionRecord $currentRevision
-	) {
+	): bool {
 		// As long as the cache rev ID matches the current rev ID and it reflects
 		// the job's triggering change, then it is usable.
 		return $cachedOutput->getCacheRevisionId() == $currentRevision->getId()

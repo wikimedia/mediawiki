@@ -2197,7 +2197,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		return $value;
 	}
 
-	private static function getTimes( $clock = null ): array {
+	private static function getTimes( ?string $clock = null ): array {
 		$ret = [];
 		if ( !$clock || $clock === 'wall' ) {
 			$ret['wall'] = microtime( true );

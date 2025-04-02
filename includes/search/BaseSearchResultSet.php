@@ -41,7 +41,7 @@ abstract class BaseSearchResultSet implements ISearchResultSet {
 		$this->bcIterator()->rewind();
 	}
 
-	private function bcIterator() {
+	private function bcIterator(): ArrayIterator {
 		if ( $this->bcIterator === null ) {
 			// @phan-suppress-next-line PhanTypeMismatchProperty Expected
 			$this->bcIterator = 'RECURSION';

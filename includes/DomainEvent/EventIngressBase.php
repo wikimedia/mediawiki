@@ -110,7 +110,7 @@ abstract class EventIngressBase implements InitializableDomainEventSubscriber {
 		DomainEventSource $eventSource,
 		string $eventType,
 		string $suffix
-	) {
+	): bool {
 		$method = "handle{$eventType}Event{$suffix}";
 		if ( !method_exists( $this, $method ) ) {
 			return false;

@@ -40,7 +40,7 @@ class NameTableStoreFactory {
 	/** @var LoggerInterface */
 	private $logger;
 
-	private static function getTableInfo() {
+	private static function getTableInfo(): array {
 		if ( self::$info ) {
 			return self::$info;
 		}

@@ -3062,7 +3062,7 @@ class OutputPage extends ContextSource {
 		return json_encode( $output, JSON_UNESCAPED_SLASHES );
 	}
 
-	private function getFeaturePolicyReportOnly() {
+	private function getFeaturePolicyReportOnly(): string {
 		$config = $this->getConfig();
 
 		$features = $config->get( MainConfigNames::FeaturePolicyReportOnly );
@@ -3754,7 +3754,7 @@ class OutputPage extends ContextSource {
 		return $this->debugMode;
 	}
 
-	private function getRlClientContext() {
+	private function getRlClientContext(): RL\Context {
 		if ( !$this->rlClientContext ) {
 			$query = ResourceLoader::makeLoaderQuery(
 				[], // modules; not relevant

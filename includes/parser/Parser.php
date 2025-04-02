@@ -2376,7 +2376,7 @@ class Parser {
 		return $ret;
 	}
 
-	private static function normalizeUrlComponent( $component, $unsafe ) {
+	private static function normalizeUrlComponent( string $component, string $unsafe ): string {
 		$callback = static function ( $matches ) use ( $unsafe ) {
 			$char = urldecode( $matches[0] );
 			$ord = ord( $char );
@@ -6236,18 +6236,18 @@ class Parser {
 		return $this->mOutput->getPageProperty( 'defaultsort' ) ?? '';
 	}
 
-	private static function getSectionNameFromStrippedText( $text ) {
+	private static function getSectionNameFromStrippedText( string $text ): string {
 		$text = Sanitizer::normalizeSectionNameWhitespace( $text );
 		$text = Sanitizer::decodeCharReferences( $text );
 		$text = self::normalizeSectionName( $text );
 		return $text;
 	}
 
-	private static function makeAnchor( $sectionName ) {
+	private static function makeAnchor( string $sectionName ): string {
 		return '#' . Sanitizer::escapeIdForLink( $sectionName );
 	}
 
-	private function makeLegacyAnchor( $sectionName ) {
+	private function makeLegacyAnchor( string $sectionName ): string {
 		$fragmentMode = $this->svcOptions->get( MainConfigNames::FragmentMode );
 		if ( isset( $fragmentMode[1] ) && $fragmentMode[1] === 'legacy' ) {
 			// ForAttribute() and ForLink() are the same for legacy encoding

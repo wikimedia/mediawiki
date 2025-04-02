@@ -342,7 +342,7 @@ class RateLimiter {
 		return !$allowed;
 	}
 
-	private function canBypass( string $action ) {
+	private function canBypass( string $action ): bool {
 		return $this->rateLimits[$action]['&can-bypass'] ?? true;
 	}
 

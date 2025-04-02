@@ -223,7 +223,7 @@ class ProtectLogFormatter extends LogFormatter {
 		return $protectDescription;
 	}
 
-	private function formatExpiry( $expiry ) {
+	private function formatExpiry( string $expiry ): string {
 		if ( wfIsInfinity( $expiry ) ) {
 			return $this->context->msg( 'protect-expiry-indefinite' )->text();
 		}

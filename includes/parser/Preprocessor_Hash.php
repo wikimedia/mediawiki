@@ -804,7 +804,7 @@ class Preprocessor_Hash extends Preprocessor {
 		return [ [ 'root', $stack->rootAccum ] ];
 	}
 
-	private static function addLiteral( array &$accum, $text ) {
+	private static function addLiteral( array &$accum, string $text ) {
 		$n = count( $accum );
 		if ( $n && is_string( $accum[$n - 1] ) ) {
 			$accum[$n - 1] .= $text;

@@ -189,7 +189,7 @@ class LinkRenderer {
 		}
 	}
 
-	private function runBeginHook( $target, &$text, &$extraAttribs, &$query ) {
+	private function runBeginHook( $target, &$text, array &$extraAttribs, array &$query ) {
 		$ret = null;
 		if ( !$this->hookRunner->onHtmlPageLinkRendererBegin(
 			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args

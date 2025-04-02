@@ -979,7 +979,7 @@ class WikiImporter {
 		}
 	}
 
-	private function handleContent() {
+	private function handleContent(): array {
 		$this->debug( "Enter content handler" );
 		$contentInfo = [];
 

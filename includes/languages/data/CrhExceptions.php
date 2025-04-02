@@ -29,7 +29,7 @@ class CrhExceptions {
 	/** @var string[] */
 	private array $uc2lc = [];
 
-	private function initLcUc( $lcChars, $ucChars, $reinit = false ) {
+	private function initLcUc( string $lcChars, string $ucChars, bool $reinit = false ) {
 		# bail if we've already done this, unless we are re-initializing
 		if ( !$reinit && $this->lc2uc && $this->uc2lc ) {
 			return;
@@ -49,19 +49,21 @@ class CrhExceptions {
 		$this->uc2lc = array_combine( array_values( $myUc ), array_values( $myLc ) );
 	}
 
-	private function myLc( $string ) {
+	private function myLc( string $string ): string {
 		return strtr( $string, $this->uc2lc );
 	}
 
-	private function myUc( $string ) {
+	private function myUc( string $string ): string {
 		return strtr( $string, $this->lc2uc );
 	}
 
-	private function myUcWord( $string ) {
+	private function myUcWord( string $string ): string {
 		return $this->myUc( mb_substr( $string, 0, 1 ) ) . $this->myLc( mb_substr( $string, 1 ) );
 	}
 
-	private function addMappings( $mapArray, &$A2B, &$B2A, $exactCase = false, $prePat = '', $postPat = '' ) {
+	private function addMappings(
+		array $mapArray, array &$A2B, array &$B2A, bool $exactCase = false, string $prePat = '', string $postPat = ''
+	) {
 		foreach ( $mapArray as $WordA => $WordB ) {
 			if ( !$exactCase ) {
 				$ucA = $this->myUc( $WordA );

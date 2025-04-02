@@ -158,7 +158,7 @@ class GenderCache {
 		}
 	}
 
-	private static function normalizeUsername( $username ) {
+	private static function normalizeUsername( string $username ): string {
 		// Strip off subpages
 		$indexSlash = strpos( $username, '/' );
 		if ( $indexSlash !== false ) {

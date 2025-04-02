@@ -17,6 +17,8 @@
  *
  * @file
  */
+
+use MediaWiki\Config\Config;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -35,7 +37,7 @@ class MainConfigDependency extends CacheDependency {
 		$this->value = $this->getConfig()->get( $this->name );
 	}
 
-	private function getConfig() {
+	private function getConfig(): Config {
 		return MediaWikiServices::getInstance()->getMainConfig();
 	}
 

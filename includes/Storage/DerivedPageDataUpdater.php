@@ -748,7 +748,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			->getContentHandler( $this->getRawSlot( $role )->getModel() );
 	}
 
-	private function usePrimary() {
+	private function usePrimary(): bool {
 		// TODO: can we just set a flag to true in prepareContent()?
 		return $this->wikiPage->wasLoadedFrom( IDBAccessObject::READ_LATEST );
 	}
@@ -1032,7 +1032,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		return $this->renderedRevision;
 	}
 
-	private function assertHasPageState( $method ) {
+	private function assertHasPageState( string $method ) {
 		if ( !$this->pageState ) {
 			throw new LogicException(
 				'Must call grabCurrentRevision() or prepareContent() '
@@ -1041,7 +1041,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		}
 	}
 
-	private function assertPrepared( $method ) {
+	private function assertPrepared( string $method ) {
 		if ( !$this->revision ) {
 			throw new LogicException(
 				'Must call prepareContent() or prepareUpdate() before calling ' . $method
@@ -1049,7 +1049,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		}
 	}
 
-	private function assertHasRevision( $method ) {
+	private function assertHasRevision( string $method ) {
 		if ( !$this->revision->getId() ) {
 			throw new LogicException(
 				'Must call prepareUpdate() before calling ' . $method

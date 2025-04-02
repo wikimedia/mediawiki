@@ -2557,7 +2557,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	}
 
 	private static function queueBacklinksJobs(
-		Title $title, $mainSlotChanged, $maybeRedirectChanged, $causeAction
+		Title $title, bool $mainSlotChanged, bool $maybeRedirectChanged, string $causeAction
 	) {
 		$services = MediaWikiServices::getInstance();
 		$backlinkCache = $services->getBacklinkCacheFactory()->getBacklinkCache( $title );

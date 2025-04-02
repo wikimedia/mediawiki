@@ -92,7 +92,7 @@ class CustomUppercaseCollation extends NumericUppercaseCollation {
 		parent::__construct( $languageFactory, $digitTransformLang );
 	}
 
-	private function convertToPua( $string ) {
+	private function convertToPua( string $string ): string {
 		return str_replace( $this->alphabet, $this->puaSubset, $string );
 	}
 

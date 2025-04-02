@@ -424,7 +424,7 @@ class HistoryAction extends FormlessAction {
 		$feed->outFooter();
 	}
 
-	private function feedEmpty() {
+	private function feedEmpty(): FeedItem {
 		return new FeedItem(
 			$this->msg( 'nohistory' )->inContentLanguage()->text(),
 			$this->msg( 'history-feed-empty' )->inContentLanguage()->parseAsBlock(),

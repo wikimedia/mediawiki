@@ -270,7 +270,7 @@ class ExtensionRegistry implements DomainEventSubscriber {
 		return $this->cache;
 	}
 
-	private function makeCacheKey( BagOStuff $cache, $component, ...$extra ) {
+	private function makeCacheKey( BagOStuff $cache, string $component, string ...$extra ): string {
 		// Allow reusing cached ExtensionRegistry metadata between wikis (T274648)
 		return $cache->makeGlobalKey(
 			"registration-$component",
