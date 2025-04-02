@@ -12,15 +12,15 @@
 .cdx-mixin-button-layout-flush( @param-direction, @param-is-icon-only: false, @param-size-button: 'medium' ) {
 	.apply-margin( @param-padding ) {
 		& when ( @param-direction = 'top' ) {
-			margin-top: -@param-padding;
+			margin-top: calc( -1 * @param-padding );
 		}
 
 		& when ( @param-direction = 'start' ) {
-			margin-left: -@param-padding;
+			margin-left: calc( -1 * @param-padding );
 		}
 
 		& when ( @param-direction = 'end' ) {
-			margin-right: -@param-padding;
+			margin-right: calc( -1 * @param-padding );
 		}
 	}
 
