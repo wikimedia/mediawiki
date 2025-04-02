@@ -2397,7 +2397,7 @@ class ParserTestRunner {
 			'wgParserEnableLegacyHeadingDOM' => true,
 			'wgLocaltimezone' => $timezone,
 			// Use new Parsoid fragment support
-			'wgParsoidFragmentSupport' => 'v2',
+			'wgParsoidFragmentSupport' => 'v3',
 		];
 
 		if ( isset( $opts['externallinktarget'] ) ) {

@@ -333,7 +333,13 @@ class Parser {
 	private Title $mTitle;
 	/** Output type, one of the OT_xxx constants */
 	private int $mOutputType;
-	/** When false, suppress extension tag processing for OT_PREPROCESS */
+	/**
+	 * When true (default), extension tags are put in the general strip state
+	 * for OT_PREPROCESS.
+	 * When false, extension tags are skipped during OT_PREPROCESS (parsoid
+	 * fragment v1) or put into the `exttag` strip state (parsoid fragment
+	 * v2+)
+	 */
 	private bool $mStripExtTags = true;
 	/**
 	 * Shortcut alias, see Parser::setOutputType()
@@ -2926,7 +2932,8 @@ class Parser {
 	 *   double-brace expansion.
 	 * @param array $options Various options used by Parsoid:
 	 *  - 'stripExtTags' When true, put extension tags in general strip state; when
-	 *   false extension tags are skipped during OT_PREPROCESS
+	 *   false extension tags are skipped during OT_PREPROCESS; 'keep'
+	 *   makes no change to the stripExtTags setting.
 	 *  - 'parsoidTopLevelCall' Is this coming from Parsoid for top-level templates?
 	 *   This is used to set start-of-line flag to true for template expansions since that
 	 *   is how Parsoid models templates.
@@ -2964,12 +2971,21 @@ class Parser {
 		if ( $options['processNowiki'] ?? false ) {
 			$flags |= PPFrame::PROCESS_NOWIKI;
 		}
-		$stripExtTags = $options['stripExtTags'] ?? true;
-		[ $stripExtTags, $this->mStripExtTags ] = [ $this->mStripExtTags, $stripExtTags ];
+		$stripExtTags = $options['stripExtTags'] ?? 'keep';
+		if ( $stripExtTags === 'keep' ) {
+			$stripExtTags = $this->mStripExtTags;
+		} else {
+			[ $stripExtTags, $this->mStripExtTags ] = [ $this->mStripExtTags, $stripExtTags ];
+		}
 		$text = $frame->expand( $dom, $flags );
 		$this->mStripExtTags = $stripExtTags;
 
 		return $text;
+	}
+
+	/** @internal */
+	public function setStripExtTags( bool $val ) {
+		$this->mStripExtTags = $val;
 	}
 
 	/**
@@ -4108,7 +4124,10 @@ class Parser {
 				$output = "<$name$attrText>$content$close";
 			}
 			if ( !$this->mStripExtTags ) {
-				if ( $this->svcOptions->get( MainConfigNames::ParsoidFragmentSupport ) === 'v2' ) {
+				if ( in_array(
+					$this->svcOptions->get( MainConfigNames::ParsoidFragmentSupport ),
+					[ 'v2', 'v3' ], true
+				) ) {
 					$markerType = 'exttag';
 				} else {
 					$markerType = 'none';

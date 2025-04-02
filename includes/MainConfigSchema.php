@@ -6646,7 +6646,8 @@ class MainConfigSchema {
 	 * Setting to `false` disables this support.  Setting to 'true' or the
 	 * string 'v1' to enable "version 1" support.  Setting to the string 'v2'
 	 * enables "version 2" support, which uses strip markers for extension
-	 * tag content.
+	 * tag content. Setting to the string 'v3' makes the use of strip markers
+	 * for extension tag content a property of the Parser object.
 	 * @unstable EXPERIMENTAL
 	 */
 	public const ParsoidFragmentSupport = [
