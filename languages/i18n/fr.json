@@ -469,7 +469,7 @@
 	"toc": "Sommaire",
 	"showtoc": "afficher",
 	"hidetoc": "masquer",
-	"collapsible-collapse": "réduire",
+	"collapsible-collapse": "Réduire",
 	"collapsible-expand": "Développer",
 	"confirmable-confirm": "Êtes-vous sûr{{GENDER:$1||e}} ?",
 	"confirmable-yes": "Oui",

@@ -2581,7 +2581,7 @@
 	"protectexpiry": "تنتهي في:",
 	"protect_expiry_invalid": "وقت الانتهاء غير صحيح.",
 	"protect_expiry_old": "وقت انتهاء المنع يقع في الماضي.",
-	"protect-unchain-permissions": "فتح خيارات الحماية الإضافيه",
+	"protect-unchain-permissions": "فتح خيارات الحماية الإضافيَّة",
 	"protect-text": "يمكنك هنا أن تعرض وتغير إعدادات الحماية للصفحة <strong>$1</strong>.",
 	"protect-locked-blocked": "لا يمكنك تغيير إعدادات الحماية وأنت ممنوع.\nالإعدادات الحالية للصفحة <strong>$1</strong> هي:",
 	"protect-locked-dblock": "لا يمكن تغيير إعدادات الحماية بسبب غلق قاعدة البيانات حاليًا.\nالإعدادات الحالية للصفحة <strong>$1</strong> هي:",
