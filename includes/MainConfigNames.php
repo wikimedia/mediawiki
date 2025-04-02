@@ -2389,12 +2389,6 @@ class MainConfigNames {
 	public const ParsoidSettings = 'ParsoidSettings';
 
 	/**
-	 * Name constant for the ParsoidFragmentSupport setting, for use with Config::get()
-	 * @see MainConfigSchema::ParsoidFragmentSupport
-	 */
-	public const ParsoidFragmentSupport = 'ParsoidFragmentSupport';
-
-	/**
 	 * Name constant for the ParsoidFragmentInput setting, for use with Config::get()
 	 * @see MainConfigSchema::ParsoidFragmentInput
 	 */
