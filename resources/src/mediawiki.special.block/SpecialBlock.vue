@@ -435,6 +435,20 @@ module.exports = exports = defineComponent( {
 			}
 		} );
 
+		// Submit the form if form is visible and 'Enter' is pressed
+		watch( formVisible, ( newValue ) => {
+			if ( newValue ) {
+				nextTick( () => {
+					const blockForm = document.querySelector( '.mw-block__block-form' );
+					blockForm.addEventListener( 'keypress', ( event ) => {
+						if ( event.key === 'Enter' ) {
+							onFormSubmission( event );
+						}
+					} );
+				} );
+			}
+		} );
+
 		// Show the 'Add block' button if:
 		// * the target user exists AND EITHER
 		//   * multiblocks is enabled, OR
