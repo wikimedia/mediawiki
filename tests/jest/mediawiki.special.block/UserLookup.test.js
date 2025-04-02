@@ -2,12 +2,16 @@
 
 const { nextTick } = require( 'vue' );
 const { mount, flushPromises } = require( '@vue/test-utils' );
-const { getSpecialBlock, mockMwApiGet, mockMwConfigGet } = require( './SpecialBlock.setup.js' );
 const { createTestingPinia } = require( '@pinia/testing' );
+const { getSpecialBlock, mockMwApiGet, mockMwConfigGet } = require( './SpecialBlock.setup.js' );
 const UserLookup = require( '../../../resources/src/mediawiki.special.block/components/UserLookup.vue' );
 const useBlockStore = require( '../../../resources/src/mediawiki.special.block/stores/block.js' );
 
 describe( 'UserLookup', () => {
+	afterEach( () => {
+		document.body.innerHTML = '';
+	} );
+
 	const getWrapper = ( propsData, apiMocks = [] ) => {
 		mockMwApiGet( apiMocks );
 		return mount( UserLookup, {
@@ -95,5 +99,33 @@ describe( 'UserLookup', () => {
 		expect( wrapper.vm.messages ).toStrictEqual( {} );
 		expect( store.targetExists ).toBeFalsy();
 		expect( document.activeElement.name ).toStrictEqual( 'wpTarget' );
+	} );
+
+	it( 'blockTargetUserInput and targetUser mismatch after mounting (T389955)', async () => {
+		mockMwConfigGet( { blockTargetUserInput: 'Examp' } );
+		// null modelValue, meaning no target user is pre-supplied.
+		const wrapper = getWrapper( { modelValue: null }, [ {
+			params: {
+				list: 'allusers',
+				auprefix: 'Examp'
+			},
+			response: {
+				query: {
+					allusers: [
+						{ name: 'ExampleUser' },
+						{ name: 'ExampleUser2' }
+					]
+				}
+			}
+		} ] );
+		const store = useBlockStore();
+		await flushPromises();
+		expect( store.targetUser ).toBe( '' );
+		expect( wrapper.vm.currentSearchTerm ).toBe( 'Examp' );
+		expect( wrapper.vm.menuItems ).toStrictEqual( [
+			{ label: 'ExampleUser', value: 'ExampleUser' },
+			{ label: 'ExampleUser2', value: 'ExampleUser2' }
+		] );
+		// TODO: Assert .cdx-menu is visible; currently fails only in test environment.
 	} );
 } );

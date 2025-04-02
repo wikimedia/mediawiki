@@ -1218,6 +1218,11 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return bool|string|array|Status As documented for HTMLForm::trySubmit.
 	 */
 	public function onSubmit( array $data, ?HTMLForm $form = null ) {
+		if ( $this->useCodex ) {
+			// Treat as no submission for the JS-only Codex form.
+			// This happens if the form is submitted before any JS is loaded.
+			return false;
+		}
 		return self::processFormInternal(
 			$data,
 			$this->getAuthority(),

@@ -16,6 +16,7 @@ if ( form ) {
 		if ( targetInput && targetInput.value &&
 			targetInput.value !== mw.config.get( 'blockTargetUser' )
 		) {
+			// Prevent further changes from going out of sync.
 			targetInput.disabled = true;
 			// Used by UserLookup.vue
 			mw.config.set( 'blockTargetUserInput', targetInput.value );
