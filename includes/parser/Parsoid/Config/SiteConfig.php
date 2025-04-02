@@ -749,6 +749,13 @@ class SiteConfig extends ISiteConfig {
 	}
 
 	/** @inheritDoc */
+	protected function shouldValidateExtConfig(): bool {
+		// Only perform json schema validation for extension module
+		// configurations when running tests.
+		return defined( 'MW_PHPUNIT_TEST' ) || defined( 'MW_PARSER_TEST' );
+	}
+
+	/** @inheritDoc */
 	public function getMaxTemplateDepth(): int {
 		return (int)$this->config->get( MainConfigNames::MaxTemplateDepth );
 	}
