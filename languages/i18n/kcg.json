@@ -1339,7 +1339,7 @@
 	"blanknamespace": "(A̱tsak)",
 	"contributions": "Jhyet a̱tyunta̱m",
 	"tool-link-contributions": "Jhyet {{GENDER:$1|a̱tyunta̱m}}",
-	"contributions-title": "Jhyet a̱tyunta̱m si̱ $1",
+	"contributions-title": "Jhyet {{GENDER:$2|a̱tyunta̱m}} mat $1",
 	"mycontris": "Jhyet",
 	"anoncontribs": "Jhyet",
 	"nocontribs": "Á̱ shyia̱ a̱ka̱shai na̱ tai nka̱nda̱n nani bah.",
