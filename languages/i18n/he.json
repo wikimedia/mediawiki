@@ -4024,7 +4024,7 @@
 	"newpages-showhide-redirect": "$1 הפניות",
 	"newpages-showhide-registered": "$1 משתמשים רשומים",
 	"restsandbox": "ארגז חול של REST",
-	"restsandbox-text": "ניתן להשתמש בדף זה כדי להתנסות ב־REST APIs של מדיה־ויקי. קריאות API שייעשו דרך ממשק ארגז החול יתחברו לתוכן ויקי חי, והן יכולות לשנות אותו. נא לעיין ב‏[https://www.mediawiki.org/wiki/API:REST_API תיעוד ה־API] למידע נוסף על שימוש ב־API.",
+	"restsandbox-text": "ניתן להשתמש בדף הזה כדי להתנסות ב־REST APIs של מדיה־ויקי. קריאות API שייעשו דרך ממשק ארגז החול יתחברו לתוכן ויקי חי, והן יכולות לשנות אותו. נא לעיין ב‏[https://www.mediawiki.org/wiki/API:REST_API תיעוד ה־API] למידע נוסף על שימוש ב־API.",
 	"restsandbox-disclaimer": "יש לך משוב על ארגז החול הזה? ניתן להשאירו [https://www.mediawiki.org/wiki/MediaWiki_Interfaces_Team/Feature_Feedback/REST_Sandbox כאן].<br />לתשומת ליבך: כעת עדיין לא ניתן לתרגם את הממשק של ארגז החול ואת תפריטי הניווט.<br />",
 	"restsandbox-select-api": "נא לבחור איזה API לחקור.",
 	"restsandbox-no-specs-configured": "לא הוגדרו ממשקי REST API שאפשר לחקור. נא להשתמש בהגדרה RestSandboxSpecs.",

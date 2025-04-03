@@ -23,7 +23,7 @@
 	"prefs-memberingroups": "{{GENDER:$2|Azası}}  olğan {{PLURAL:$1|gruppa|gruppalar}}:",
 	"group-membership-link-with-expiry": "$1 ($2 tarihına qadar)",
 	"prefs-edits": "Deñiştirmeler sayısı:",
-	"prefs-registration": "Qayd tarihı:",
+	"prefs-registration": "Qaydiyet tarihı:",
 	"yourrealname": "Kerçek adıñız:",
 	"prefs-help-realname": "Kerçek adıñız mecburiy degildir.\nEger bildirseñiz, saifelerdeki deñiştirmelerni kimniñ yapqanını köstermek içün qullanıla bilir.",
 	"yourpassword": "Paroliñiz",
