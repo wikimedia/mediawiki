@@ -1063,55 +1063,21 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Tests that parser cache skips entries for redirect pages.
-	 * Note that the desired behavior is unclear, see T389591.
+	 * Regression test for T389591.
 	 *
 	 * @covers \MediaWiki\Parser\ParserCache::get
+	 * @covers \MediaWiki\Parser\ParserCache::save
 	 */
 	public function testGet_redirect() {
 		$cache = $this->createParserCache();
 
 		$popt = ParserOptions::newFromAnon();
 		$pout = $this->createDummyParserOutput();
-		$page = $this->createPageRecord();
+		$page = $this->createPageRecord( [
+			'page_is_redirect' => true,
+		] );
 		$cache->save( $pout, $page, $popt );
-
-		// page has become a redirect since
-		$page = $this->createPageRecord( [
-			'page_is_redirect' => true,
-		] );
-
-		$this->assertFalse(
-			$cache->get( $page, $popt )
-		);
-	}
-
-	/**
-	 * Tests that parser cache skips entries for redirect pages.
-	 * Note that the desired behavior is unclear, see T389591.
-	 *
-	 * @covers \MediaWiki\Parser\ParserCache::save
-	 */
-	public function testSave_redirect() {
-		$cache = $this->createParserCache();
-
-		$popt = ParserOptions::newFromAnon();
-		$pout = $this->createDummyParserOutput();
-		$page = $this->createPageRecord( [
-			'page_is_redirect' => true,
-		] );
-		$cache->save( $pout, $page,
-			$popt
-		);
-
-		// Page is no longer a redirect, but there should be no entry saved for
-		// the redirect page.
-		$page = $this->createPageRecord();
-
-		$this->assertFalse(
-			$cache->get( $page,
-				$popt
-			)
-		);
+		$this->assertNotFalse( $cache->get( $page, $popt ) );
 	}
 
 	/**
