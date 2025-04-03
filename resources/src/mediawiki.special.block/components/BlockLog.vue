@@ -222,13 +222,13 @@ module.exports = exports = defineComponent( {
 		const store = useBlockStore();
 		const { alreadyBlocked, blockId, targetUser } = storeToRefs( store );
 		let title = mw.message( 'block-user-previous-blocks' ).text();
-		let emptyState = mw.message( 'block-user-no-previous-blocks' ).text();
+		const emptyState = ref( mw.message( 'block-user-no-previous-blocks' ).text() );
 		if ( props.blockLogType === 'active' ) {
 			title = mw.message( 'block-user-active-blocks' ).text();
-			emptyState = mw.message( 'block-user-no-active-blocks' ).text();
+			emptyState.value = mw.message( 'block-user-no-active-blocks' ).text();
 		} else if ( props.blockLogType === 'suppress' ) {
 			title = mw.message( 'block-user-suppressed-blocks' ).text();
-			emptyState = mw.message( 'block-user-no-suppressed-blocks' ).text();
+			emptyState.value = mw.message( 'block-user-no-suppressed-blocks' ).text();
 		}
 
 		const columns = [];
@@ -358,6 +358,8 @@ module.exports = exports = defineComponent( {
 					}
 
 					logEntries.value = newData;
+				} ).catch( ( error ) => {
+					emptyState.value = mw.message( 'api-error-unknownerror', error ).text();
 				} );
 			} else {
 				moreBlocks.value = false;
