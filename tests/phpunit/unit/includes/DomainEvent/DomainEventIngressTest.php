@@ -2,17 +2,17 @@
 
 namespace MediaWiki\Tests\DomainEvent;
 
+use MediaWiki\DomainEvent\DomainEventIngress;
 use MediaWiki\DomainEvent\DomainEventSource;
 use MediaWiki\DomainEvent\EventDispatchEngine;
-use MediaWiki\DomainEvent\EventIngressBase;
 use MediaWikiUnitTestCase;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Services\ServiceContainer;
 
 /**
- * @covers \MediaWiki\DomainEvent\EventIngressBase
+ * @covers \MediaWiki\DomainEvent\DomainEventIngress
  */
-class EventIngressBaseTest extends MediaWikiUnitTestCase {
+class DomainEventIngressTest extends MediaWikiUnitTestCase {
 
 	private function newSpyEventSource( &$trace ): DomainEventSource {
 		$objectFactory = new ObjectFactory(
@@ -37,7 +37,7 @@ class EventIngressBaseTest extends MediaWikiUnitTestCase {
 		$source = $this->newSpyEventSource( $trace );
 
 		// Pass the list of events as a constructor parameter
-		$subscriber = new class extends EventIngressBase {
+		$subscriber = new class extends DomainEventIngress {
 
 			public function handleFooEvent() {
 				// no-op
@@ -72,7 +72,7 @@ class EventIngressBaseTest extends MediaWikiUnitTestCase {
 		$events = [ 'Foo', 'Bar' ];
 
 		// Pass nothing to the constructor, rely on initSubscriber()
-		$subscriber = new class () extends EventIngressBase {
+		$subscriber = new class () extends DomainEventIngress {
 			public function handleFooEvent() {
 				// no-op
 			}

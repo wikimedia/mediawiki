@@ -9,7 +9,7 @@ namespace MediaWiki\DomainEvent;
  * @since 1.44
  * @stable to type
  * @note Extensions should not implement this interface directly but should
- *       extend EventIngressBase.
+ *       extend DomainEventIngress.
  */
 interface DomainEventSubscriber {
 

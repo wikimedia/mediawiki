@@ -1203,7 +1203,7 @@
 		},
 		"DomainEventIngresses": {
 			"type": "array",
-			"description": "ObjectFactory specifications for domain event ingress objects. Since MW 1.44. Event ingress objects must extend EventIngressBase.",
+			"description": "ObjectFactory specifications for domain event ingress objects. Since MW 1.44. Event ingress objects must extend DomainEventIngress.",
 			"items": {
 				"allOf": [
 					{
