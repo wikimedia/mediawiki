@@ -245,33 +245,8 @@ function isSearchInput( element ) {
  * @param {string} moduleName Name of a module
  */
 function loadSearchModule( moduleName ) {
-	// T251544: Collect search performance metrics to compare Vue search with
-	// mediawiki.searchSuggest performance. Marks and Measures will only be
-	// recorded on the Vector skin.
-	//
-	// Vue search isn't loaded through this function so we are only collecting
-	// legacy search performance metrics here.
-
-	const shouldTestSearch = !!( moduleName === 'mediawiki.searchSuggest' &&
-		mw.config.get( 'skin' ) === 'vector' &&
-		window.performance &&
-		performance.mark &&
-		performance.measure &&
-
-		performance.getEntriesByName ),
-		loadStartMark = 'mwVectorLegacySearchLoadStart',
-		loadEndMark = 'mwVectorLegacySearchLoadEnd';
-
 	function requestSearchModule() {
-		if ( shouldTestSearch ) {
-			performance.mark( loadStartMark );
-		}
-		mw.loader.using( moduleName, () => {
-			if ( shouldTestSearch && performance.getEntriesByName( loadStartMark ).length ) {
-				performance.mark( loadEndMark );
-				performance.measure( 'mwVectorLegacySearchLoadStartToLoadEnd', loadStartMark, loadEndMark );
-			}
-		} );
+		mw.loader.using( moduleName );
 	}
 
 	// Load the module once a search input is focussed.
