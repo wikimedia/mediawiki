@@ -818,7 +818,7 @@ abstract class MediaHandler {
 	 * @stable to override
 	 *
 	 * @param File $file
-	 * @return string
+	 * @return string HTML
 	 */
 	public function getShortDesc( $file ) {
 		return self::getGeneralShortDesc( $file );
@@ -830,7 +830,7 @@ abstract class MediaHandler {
 	 * @stable to override
 	 *
 	 * @param File $file
-	 * @return string
+	 * @return string HTML
 	 */
 	public function getLongDesc( $file ) {
 		return self::getGeneralLongDesc( $file );
@@ -840,7 +840,7 @@ abstract class MediaHandler {
 	 * Used instead of getShortDesc if there is no handler registered for file.
 	 *
 	 * @param File $file
-	 * @return string
+	 * @return string HTML
 	 */
 	public static function getGeneralShortDesc( $file ) {
 		global $wgLang;
@@ -852,7 +852,7 @@ abstract class MediaHandler {
 	 * Used instead of getLongDesc if there is no handler registered for file.
 	 *
 	 * @param File $file
-	 * @return string
+	 * @return string HTML
 	 */
 	public static function getGeneralLongDesc( $file ) {
 		return wfMessage( 'file-info' )->sizeParams( $file->getSize() )
@@ -882,7 +882,7 @@ abstract class MediaHandler {
 	 * @stable to override
 	 *
 	 * @param File $file
-	 * @return string Dimensions
+	 * @return string Dimensions (plain text)
 	 */
 	public function getDimensionsString( $file ) {
 		return '';
