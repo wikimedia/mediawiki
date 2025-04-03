@@ -3571,11 +3571,11 @@ class HookRunner implements
 
 	public function onSkinPageReadyConfig( RL\Context $context,
 		array &$config
-	): void {
+	) {
 		$this->container->run(
 			'SkinPageReadyConfig',
 			[ $context, &$config ],
-			[ 'abortable' => false ]
+			[ 'abortable' => true ]
 		);
 	}
 

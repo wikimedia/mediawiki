@@ -270,7 +270,7 @@ function loadSearchModule( moduleName ) {
 
 // Skins may decide to disable this behaviour or use an alternative module.
 if ( config.search ) {
-	loadSearchModule( 'mediawiki.searchSuggest' );
+	loadSearchModule( config.searchModule );
 }
 
 try {
