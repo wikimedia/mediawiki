@@ -95,11 +95,9 @@ class UnitTestingHelperTest extends TestCase {
 
 	public function testMin() {
 		$actual = $this->statsHelper->min( 'test{a="a"}' );
-		// phpcs:ignore MediaWiki.PHPUnit.AssertEquals.Int
-		$this->assertEquals( 1, $actual );
+		$this->assertSame( 1.0, $actual );
 		$actual = $this->statsHelperWithComponent->min( 'test{a="a"}' );
-		//phpcs:ignore MediaWiki.PHPUnit.AssertEquals.Int
-		$this->assertEquals( 1, $actual );
+		$this->assertSame( 1.0, $actual );
 	}
 
 	public function testNoFilter() {
