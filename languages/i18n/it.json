@@ -2685,6 +2685,7 @@
 	"undeletecomment": "Motivo:",
 	"undeleteothercomment": "Altri motivi/dettagli:",
 	"undeletecommentotherlist": "Altra motivazione",
+	"undelete-edit-commentlist": "Modifica le motivazioni per il ripristino",
 	"undelete-edit-commentlist-unsuppress": "Modifica le motivazioni per la non soppressione",
 	"cannotundelete": "Alcuni o tutti i ripristini non riusciti:\n$1",
 	"undeletedpage": "<strong>La pagina $1 è stata ripristinata</strong>\n\nConsulta il [[Special:Log/delete|registro delle cancellazioni]] per vedere le cancellazioni e i ripristini più recenti.",
