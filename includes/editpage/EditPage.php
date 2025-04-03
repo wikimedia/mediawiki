@@ -124,6 +124,7 @@ use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * The HTML user interface for page editing.
@@ -809,6 +810,27 @@ class EditPage implements IEditObject {
 			return Status::newGood();
 		}
 		$user = $this->context->getUser();
+
+		// Log out any user using an expired temporary account, so that we can give them a new temporary account.
+		// As described in T389485, we need to do this because the maintenance script to expire temporary accounts
+		// may fail to run or not be configured to run.
+		if ( $user->isTemp() ) {
+			$expiryAfterDays = $this->tempUserCreator->getExpireAfterDays();
+			if ( $expiryAfterDays ) {
+				$expirationCutoff = (int)ConvertibleTimestamp::now( TS_UNIX ) - ( 86_400 * $expiryAfterDays );
+
+				// If the user was created before the expiration cutoff, then log them out. If no registration is
+				// set then do nothing, as if registration date system is broken it would cause a new temporary account
+				// for each edit.
+				if (
+					$user->getRegistration() &&
+					ConvertibleTimestamp::convert( TS_UNIX, $user->getRegistration() ) < $expirationCutoff
+				) {
+					$user->logout();
+				}
+			}
+		}
+
 		if ( $this->tempUserCreator->shouldAutoCreate( $user, 'edit' ) ) {
 			if ( $doAcquire ) {
 				$name = $this->tempUserCreator->acquireAndStashName(
