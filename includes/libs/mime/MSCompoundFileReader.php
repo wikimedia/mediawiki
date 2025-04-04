@@ -170,11 +170,11 @@ class MSCompoundFileReader {
 		$this->valid = true;
 	}
 
-	private function sectorOffset( $sectorId ) {
+	private function sectorOffset( int $sectorId ): int {
 		return $this->sectorLength * ( $sectorId + 1 );
 	}
 
-	private function decodeClsid( $binaryClsid ) {
+	private function decodeClsid( string $binaryClsid ): string {
 		$parts = unpack( 'Va/vb/vc/C8d', $binaryClsid );
 		return sprintf( "%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X",
 			$parts['a'],
@@ -220,7 +220,7 @@ class MSCompoundFileReader {
 		return $data;
 	}
 
-	private function bin2dec( $str, $offset, $length ) {
+	private function bin2dec( string $str, int $offset, int $length ): int {
 		$value = 0;
 		for ( $i = $length - 1; $i >= 0; $i-- ) {
 			$value *= 256;
@@ -229,7 +229,7 @@ class MSCompoundFileReader {
 		return $value;
 	}
 
-	private function readOffset( $offset, $length ) {
+	private function readOffset( int $offset, int $length ): string {
 		$this->fseek( $offset );
 		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 		$block = @fread( $this->file, $length );
@@ -243,7 +243,7 @@ class MSCompoundFileReader {
 		return $block;
 	}
 
-	private function readSector( $sectorId ) {
+	private function readSector( int $sectorId ): string {
 		return $this->readOffset( $this->sectorOffset( $sectorId ), 1 << $this->header['sector_shift'] );
 	}
 
@@ -256,7 +256,7 @@ class MSCompoundFileReader {
 		throw new RuntimeException( $message, $code );
 	}
 
-	private function fseek( $offset ) {
+	private function fseek( int $offset ) {
 		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 		$result = @fseek( $this->file, $offset );
 		if ( $result !== 0 ) {
@@ -287,14 +287,14 @@ class MSCompoundFileReader {
 		}
 	}
 
-	private function getNextSectorIdFromFat( $sectorId ) {
+	private function getNextSectorIdFromFat( int $sectorId ): int {
 		$entriesPerSector = intdiv( $this->sectorLength, 4 );
 		$fatSectorId = intdiv( $sectorId, $entriesPerSector );
 		$fatSectorArray = $this->getFatSector( $fatSectorId );
 		return $fatSectorArray[$sectorId % $entriesPerSector];
 	}
 
-	private function getFatSector( $fatSectorId ) {
+	private function getFatSector( int $fatSectorId ): array {
 		if ( !isset( $this->fat[$fatSectorId] ) ) {
 			$fat = [];
 			if ( !isset( $this->difat[$fatSectorId] ) ) {

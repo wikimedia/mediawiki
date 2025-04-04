@@ -197,7 +197,7 @@ class XmlTypeCheck {
 		}
 	}
 
-	private function readNext( XMLReader $reader ) {
+	private function readNext( XMLReader $reader ): bool {
 		set_error_handler( function ( $line, $file ) {
 			$this->wellFormed = false;
 			return true;
@@ -207,7 +207,7 @@ class XmlTypeCheck {
 		return $ret;
 	}
 
-	private function validate( $reader ) {
+	private function validate( XMLReader $reader ) {
 		// First, move through anything that isn't an element, and
 		// handle any processing instructions with the callback
 		do {

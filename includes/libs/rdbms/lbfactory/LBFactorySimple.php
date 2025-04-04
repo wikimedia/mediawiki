@@ -124,7 +124,7 @@ class LBFactorySimple extends LBFactory {
 		return $lbs;
 	}
 
-	private function newLoadBalancer( string $clusterName, array $servers ) {
+	private function newLoadBalancer( string $clusterName, array $servers ): ILoadBalancerForOwner {
 		$lb = new LoadBalancer( array_merge(
 			$this->baseLoadBalancerParams(),
 			[

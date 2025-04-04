@@ -877,7 +877,9 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return $status;
 	}
 
-	private function handleErroredQuery( QueryStatus $status, $sql, $fname, $queryRuntime, $priorSessInfo ) {
+	private function handleErroredQuery(
+		QueryStatus $status, Query $sql, string $fname, float $queryRuntime, CriticalSessionInfo $priorSessInfo
+	): int {
 		$errflags = self::ERR_NONE;
 		$error = $status->message;
 		$errno = $status->code;

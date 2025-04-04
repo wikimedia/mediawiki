@@ -72,7 +72,7 @@ class LimitBatch {
 		return $this;
 	}
 
-	private function queueOp( $type, $entity, $amount ) {
+	private function queueOp( string $type, ?EntityKey $entity, ?int $amount ) {
 		$amount ??= $this->defaultAmount;
 		if ( isset( $this->operations[$type] ) ) {
 			throw new WRStatsError( 'Cannot queue multiple actions of the same type, ' .
