@@ -523,7 +523,7 @@ class ImportImages extends Maintenance {
 		return html_entity_decode( $matches[1] );
 	}
 
-	private function getFileUserFromSourceWiki( $wiki_host, $file ) {
+	private function getFileUserFromSourceWiki( string $wiki_host, string $file ) {
 		$url = $wiki_host . '/api.php?action=query&format=xml&titles=File:'
 			. rawurlencode( $file ) . '&prop=imageinfo&&iiprop=user';
 		$body = $this->getServiceContainer()->getHttpRequestFactory()->get( $url, [], __METHOD__ );

@@ -89,7 +89,7 @@ class UpdateSearchIndex extends Maintenance {
 		}
 	}
 
-	private function doUpdateSearchIndex( $start, $end ) {
+	private function doUpdateSearchIndex( string $start, string $end ) {
 		global $wgDisableSearchUpdate;
 
 		$wgDisableSearchUpdate = false;

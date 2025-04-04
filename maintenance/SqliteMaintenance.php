@@ -109,7 +109,7 @@ class SqliteMaintenance extends Maintenance {
 		}
 	}
 
-	private function backup( DBConnRef $dbw, $fileName ) {
+	private function backup( DBConnRef $dbw, string $fileName ) {
 		$this->output( "Backing up database:\n   Locking..." );
 		$dbw->query( 'BEGIN IMMEDIATE TRANSACTION', __METHOD__ );
 		$ourFile = $dbw->__call( 'getDbFilePath', [] );

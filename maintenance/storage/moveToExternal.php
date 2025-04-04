@@ -129,7 +129,7 @@ class MoveToExternal extends Maintenance {
 		return $this->doMoveToExternal();
 	}
 
-	private function doMoveToExternal() {
+	private function doMoveToExternal(): bool {
 		$success = true;
 		$dbr = $this->getReplicaDB();
 
@@ -253,7 +253,7 @@ class MoveToExternal extends Maintenance {
 		return $success;
 	}
 
-	private function compress( $text, $flags ) {
+	private function compress( string $text, array $flags ): array {
 		if ( $this->gzip && !in_array( 'gzip', $flags ) ) {
 			$flags[] = 'gzip';
 			$text = gzdeflate( $text );
@@ -261,7 +261,7 @@ class MoveToExternal extends Maintenance {
 		return [ $text, $flags ];
 	}
 
-	private function resolveLegacyEncoding( $text, $flags ) {
+	private function resolveLegacyEncoding( string $text, array $flags ): array {
 		if ( $this->legacyEncoding !== null
 			&& !in_array( 'utf-8', $flags )
 			&& !in_array( 'utf8', $flags )
@@ -290,7 +290,7 @@ class MoveToExternal extends Maintenance {
 		return [ $text, $flags ];
 	}
 
-	private function resolveStubs( $stubIDs ) {
+	private function resolveStubs( array $stubIDs ) {
 		if ( $this->dryRun ) {
 			print "Note: resolving stubs in dry run mode is expected to fail, " .
 				"because the main blobs have not been moved to external storage.\n";

@@ -261,7 +261,7 @@ class UpdateMediaWiki extends Maintenance {
 		parent::validateParamsAndArgs();
 	}
 
-	private function formatWarnings( array $warnings ) {
+	private function formatWarnings( array $warnings ): string {
 		$text = '';
 		foreach ( $warnings as $warning ) {
 			$warning = wordwrap( $warning, 75, "\n  " );

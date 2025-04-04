@@ -187,7 +187,7 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 		}
 	}
 
-	private function backpopulateChangeTagPerTag( $tagName, $tagId ) {
+	private function backpopulateChangeTagPerTag( string $tagName, int $tagId ) {
 		$dbr = $this->getReplicaDB();
 		$dbw = $this->getPrimaryDB();
 		$sleep = (int)$this->getOption( 'sleep', 0 );

@@ -51,7 +51,7 @@ class PurgePage extends Maintenance {
 		}
 	}
 
-	private function purge( $titleText ) {
+	private function purge( string $titleText ) {
 		$title = Title::newFromText( $titleText );
 
 		if ( $title === null ) {

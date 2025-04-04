@@ -123,7 +123,7 @@ class CompareParsers extends DumpIterator {
 		}
 	}
 
-	private function stripParameters( $text ) {
+	private function stripParameters( string $text ): string {
 		if ( !$this->stripParametersEnabled ) {
 			return $text;
 		}
@@ -191,7 +191,7 @@ class CompareParsers extends DumpIterator {
 		}
 	}
 
-	private static function checkParserLocally( $parserName ) {
+	private static function checkParserLocally( string $parserName ) {
 		/* Look for the parser in a file appropriately named in the current folder */
 		if ( !class_exists( $parserName ) && file_exists( "$parserName.php" ) ) {
 			global $wgAutoloadClasses;

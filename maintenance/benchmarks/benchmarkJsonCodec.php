@@ -76,7 +76,7 @@ class BenchmarkJsonCodec extends Benchmarker {
 		] );
 	}
 
-	private function loadData( $file ) {
+	private function loadData( string $file ) {
 		if ( str_ends_with( $file, '.php' ) ) {
 			$data = include $file;
 			if ( !$data ) {

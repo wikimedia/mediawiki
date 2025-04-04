@@ -141,7 +141,7 @@ class MigrateFileTables extends Maintenance {
 			. "$totalRowsInserted rows have been inserted into filerevision table.\n" );
 	}
 
-	private function handleFile( stdClass $row ) {
+	private function handleFile( stdClass $row ): int {
 		$repo = $this->getServiceContainer()->getRepoGroup()
 			->newCustomLocalRepo();
 		$dbw = $this->getPrimaryDB();

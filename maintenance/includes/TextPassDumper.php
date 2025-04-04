@@ -376,7 +376,7 @@ TEXT
 		$this->timeExceeded = true;
 	}
 
-	private function checkIfTimeExceeded() {
+	private function checkIfTimeExceeded(): bool {
 		if ( $this->maxTimeAllowed
 			&& ( $this->lastTime - $this->timeOfCheckpoint > $this->maxTimeAllowed )
 		) {
@@ -1042,7 +1042,7 @@ TEXT
 		}
 	}
 
-	private function isValidTextId( $id ) {
+	private function isValidTextId( string $id ): bool {
 		if ( preg_match( '/:/', $id ) ) {
 			return $id !== 'tt:0';
 		} elseif ( preg_match( '/^\d+$/', $id ) ) {

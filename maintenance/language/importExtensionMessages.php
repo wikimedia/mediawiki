@@ -60,7 +60,7 @@ class ImportExtensionMessages extends Maintenance {
 		$this->extensionDir = $config->get( MainConfigNames::ExtensionDirectory );
 	}
 
-	private function getMessagesDirs( $extData ) {
+	private function getMessagesDirs( array $extData ): array {
 		if ( isset( $extData['MessagesDirs'] ) ) {
 			$messagesDirs = [];
 			foreach ( $extData['MessagesDirs'] as $dirs ) {
@@ -78,7 +78,7 @@ class ImportExtensionMessages extends Maintenance {
 		return $messagesDirs;
 	}
 
-	private function processDir( $dir ) {
+	private function processDir( string $dir ) {
 		$path = $this->extensionDir . "/{$this->extName}/$dir";
 
 		foreach ( new DirectoryIterator( $path ) as $file ) {
@@ -91,7 +91,7 @@ class ImportExtensionMessages extends Maintenance {
 		}
 	}
 
-	private function processFile( $lang, $extI18nPath ) {
+	private function processFile( string $lang, string $extI18nPath ) {
 		$extJson = file_get_contents( $extI18nPath );
 		if ( $extJson === false ) {
 			$this->error( "Unable to read i18n file \"$extI18nPath\"" );
@@ -126,7 +126,7 @@ class ImportExtensionMessages extends Maintenance {
 		$this->setCoreData( $lang, $coreData );
 	}
 
-	private function getCoreData( $lang ) {
+	private function getCoreData( string $lang ) {
 		if ( !isset( $this->coreDataCache[$lang] ) ) {
 			$corePath = MW_INSTALL_PATH . "/languages/i18n/$lang.json";
 			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
@@ -142,7 +142,7 @@ class ImportExtensionMessages extends Maintenance {
 		return $this->coreDataCache[$lang];
 	}
 
-	private function setCoreData( $lang, $data ) {
+	private function setCoreData( string $lang, $data ) {
 		if ( !isset( $this->coreDataCache[$lang] ) ) {
 			// Non-existent file, do not create
 			return;

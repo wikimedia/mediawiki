@@ -28,6 +28,7 @@
 use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Title\Title;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/TableCleanup.php';
@@ -137,7 +138,7 @@ class CleanupImages extends TableCleanup {
 		return $this->repo->getRootDirectory() . '/' . $this->repo->getHashPath( $name ) . $name;
 	}
 
-	private function imageExists( $name, $db ) {
+	private function imageExists( string $name, IReadableDatabase $db ): bool {
 		return (bool)$db->newSelectQueryBuilder()
 			->select( '1' )
 			->from( 'image' )
@@ -146,7 +147,7 @@ class CleanupImages extends TableCleanup {
 			->fetchField();
 	}
 
-	private function pageExists( $name, $db ) {
+	private function pageExists( string $name, IReadableDatabase $db ): bool {
 		return (bool)$db->newSelectQueryBuilder()
 			->select( '1' )
 			->from( 'page' )
@@ -158,7 +159,7 @@ class CleanupImages extends TableCleanup {
 			->fetchField();
 	}
 
-	private function pokeFile( $orig, $new ) {
+	private function pokeFile( string $orig, string $new ) {
 		$path = $this->filePath( $orig );
 		if ( !file_exists( $path ) ) {
 			$this->output( "missing file: $path\n" );
@@ -232,12 +233,12 @@ class CleanupImages extends TableCleanup {
 		}
 	}
 
-	private function appendTitle( $name, $suffix ) {
+	private function appendTitle( string $name, string $suffix ): string {
 		return preg_replace( '/^(.*)(\..*?)$/',
 			"\\1$suffix\\2", $name );
 	}
 
-	private function buildSafeTitle( $name ) {
+	private function buildSafeTitle( string $name ) {
 		$x = preg_replace_callback(
 			'/([^' . Title::legalChars() . ']|~)/',
 			[ $this, 'hexChar' ],

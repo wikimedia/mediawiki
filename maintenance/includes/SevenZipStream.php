@@ -50,7 +50,7 @@ class SevenZipStream {
 		}
 	}
 
-	private function stripPath( $path ) {
+	private function stripPath( string $path ): string {
 		$prefix = 'mediawiki.compress.7z://';
 
 		return substr( $path, strlen( $prefix ) );

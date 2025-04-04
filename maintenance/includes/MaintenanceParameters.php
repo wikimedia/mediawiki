@@ -635,7 +635,7 @@ class MaintenanceParameters {
 		return implode( '', $output );
 	}
 
-	private function formatHelpItems( array $items, $heading, $descWidth, $tab ) {
+	private function formatHelpItems( array $items, string $heading, int $descWidth, string $tab ): string {
 		if ( $items === [] ) {
 			return '';
 		}

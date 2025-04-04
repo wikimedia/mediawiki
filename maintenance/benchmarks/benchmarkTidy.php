@@ -41,7 +41,7 @@ class BenchmarkTidy extends Benchmarker {
 		$this->benchmark( $html );
 	}
 
-	private function benchmark( $html ) {
+	private function benchmark( string $html ) {
 		$services = $this->getServiceContainer();
 		$contLang = $services->getContentLanguage();
 		$tidy = $services->getTidy();

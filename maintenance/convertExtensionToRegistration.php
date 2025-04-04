@@ -226,7 +226,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 		}
 	}
 
-	private function stripPath( $val, $dir ) {
+	private function stripPath( string $val, string $dir ): string {
 		if ( $val === $dir ) {
 			$val = '';
 		} elseif ( strpos( $val, $dir ) === 0 ) {

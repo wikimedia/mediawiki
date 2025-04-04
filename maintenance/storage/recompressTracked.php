@@ -174,7 +174,7 @@ class RecompressTracked {
 		}
 	}
 
-	private function logToFile( $msg, $file ) {
+	private function logToFile( string $msg, string $file ) {
 		$header = '[' . date( 'd\TH:i:s' ) . '] ' . wfHostname() . ' ' . posix_getpid();
 		if ( $this->childId !== false ) {
 			$header .= "({$this->childId})";

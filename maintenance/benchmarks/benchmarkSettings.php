@@ -46,7 +46,7 @@ class BenchmarkSettings extends Benchmarker {
 		$this->addDescription( 'Benchmark loading settings files.' );
 	}
 
-	private function newSettingsBuilder() {
+	private function newSettingsBuilder(): SettingsBuilder {
 		$extReg = new ExtensionRegistry();
 		$configBuilder = new ArrayConfigBuilder();
 		$phpIniSink = new NullIniSink();
