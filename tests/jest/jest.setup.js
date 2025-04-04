@@ -83,6 +83,7 @@ const mw = {
 		getUrl: jest.fn( ( pageName ) => '/wiki/' + pageName ),
 		isIPAddress: jest.fn(),
 		isInfinity: jest.fn(),
+		sanitizeIP: jest.fn(),
 		getParamValue: jest.fn().mockReturnValue( null )
 	},
 	Rest: RestMock

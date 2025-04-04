@@ -57,6 +57,12 @@
 				@remove-block="onRemoveBlock"
 			></block-log>
 			<block-log
+				v-if="mw.util.isIPAddress( store.targetUser, true )"
+				:key="`${submitCount}-active-ranges`"
+				:can-delete-log-entry="false"
+				block-log-type="active-ranges"
+			></block-log>
+			<block-log
 				:key="`${submitCount}-recent`"
 				block-log-type="recent"
 				:can-delete-log-entry="canDeleteLogEntry"
@@ -483,7 +489,8 @@ module.exports = exports = defineComponent( {
 			doRemoveBlock,
 			showBlockLogs,
 			formVisible,
-			wasRedirected
+			wasRedirected,
+			mw
 		};
 	}
 } );

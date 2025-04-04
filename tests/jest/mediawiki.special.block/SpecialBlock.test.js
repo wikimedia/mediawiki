@@ -371,6 +371,28 @@ describe( 'SpecialBlock', () => {
 		expect( wrapper.find( '.mw-block-success' ).exists() ).toBeTruthy();
 	} );
 
+	it( 'should show "Active blocks" and "Active range blocks" on the given IP', async () => {
+		mw.util.isIPAddress = jest.fn().mockReturnValue( true );
+		wrapper = getSpecialBlock( { blockTargetUser: '1.2.3.20', blockTargetExists: true } );
+		await flushPromises();
+		expect( wrapper.find( '.mw-block-log__type-active' ).exists() ).toBeTruthy();
+		expect( wrapper.findAll( '.mw-block-log__type-active tbody tr' ) ).toHaveLength( 1 );
+		expect( wrapper.find( '.mw-block-log__type-active-ranges' ).exists() ).toBeTruthy();
+		expect( wrapper.findAll( '.mw-block-log__type-active-ranges tbody tr' ) ).toHaveLength( 2 );
+	} );
+
+	it( 'should show an empty "Active range blocks" for an IP with no range blocks', async () => {
+		mw.util.isIPAddress = jest.fn().mockReturnValue( true );
+		wrapper = getSpecialBlock( { blockTargetUser: '192.168.0.1', blockTargetExists: true } );
+		await flushPromises();
+		expect( wrapper.find( '.mw-block-log__type-active' ).exists() ).toBeTruthy();
+		expect( wrapper.find( '.mw-block-log__type-active tbody' ).text() )
+			.toStrictEqual( 'block-user-no-active-blocks' );
+		expect( wrapper.find( '.mw-block-log__type-active-ranges' ).exists() ).toBeTruthy();
+		expect( wrapper.find( '.mw-block-log__type-active-ranges tbody' ).text() )
+			.toStrictEqual( 'block-user-no-active-range-blocks' );
+	} );
+
 	afterEach( () => {
 		wrapper.unmount();
 	} );

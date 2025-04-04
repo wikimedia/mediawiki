@@ -1,7 +1,7 @@
 <template>
 	<cdx-accordion
 		:class="`mw-block-log mw-block-log__type-${ blockLogType }`"
-		:open="open || ( blockLogType === 'active' && alreadyBlocked )"
+		:open="open || ( blockLogType.includes( 'active' ) && alreadyBlocked )"
 	>
 		<template #title>
 			{{ title }}
@@ -37,6 +37,12 @@
 						<!-- Block parameters -->
 						<td class="mw-block-log__parameters">
 							<ul v-if="item.action !== 'unblock'">
+								<!-- target -->
+								<li v-if="blockLogType === 'active-ranges'">
+									<a :href="mw.Title.makeTitle( -1, `Contributions/${ item.target }` ).getUrl()">
+										{{ item.target }}
+									</a>
+								</li>
 								<!-- block duration -->
 								<li v-if="!!item.duration">
 									{{ item.duration }}
@@ -160,7 +166,16 @@
 								</cdx-button>
 							</span>
 						</td>
-						<td v-else-if="blockLogType !== 'active' && canDeleteLogEntry">
+						<td v-else-if="blockLogType === 'active-ranges'">
+							<a
+								class="mw-block-log__actions"
+								:href="mw.util.getUrl( 'Special:Block', { wpTarget: item.target } )"
+								@click="( e ) => onViewIPRange( e, item.target )"
+							>
+								{{ $i18n( 'block-view-target' ).text() }}
+							</a>
+						</td>
+						<td v-else-if="!blockLogType.includes( 'active' ) && canDeleteLogEntry">
 							<a
 								class="mw-block-log__actions"
 								:href="mw.util.getUrl( 'Special:RevisionDelete', { type: 'logging', [`ids[${ item.logid }]`]: 1 } )"
@@ -226,6 +241,9 @@ module.exports = exports = defineComponent( {
 		if ( props.blockLogType === 'active' ) {
 			title = mw.message( 'block-user-active-blocks' ).text();
 			emptyState.value = mw.message( 'block-user-no-active-blocks' ).text();
+		} else if ( props.blockLogType === 'active-ranges' ) {
+			title = mw.message( 'block-user-active-range-blocks' ).text();
+			emptyState.value = mw.message( 'block-user-no-active-range-blocks' ).text();
 		} else if ( props.blockLogType === 'suppress' ) {
 			title = mw.message( 'block-user-suppressed-blocks' ).text();
 			emptyState.value = mw.message( 'block-user-no-suppressed-blocks' ).text();
@@ -243,9 +261,9 @@ module.exports = exports = defineComponent( {
 			{ id: 'reason', label: mw.message( 'blocklist-reason' ).text() },
 			{ id: 'blockedby', label: mw.message( 'blocklist-by' ).text() },
 			{ id: 'timestamp', label: mw.message( 'blocklist-timestamp' ).text(), width: '15%' },
-			...( props.blockLogType === 'active' || props.canDeleteLogEntry ) ?
+			...( props.blockLogType.includes( 'active' ) || props.canDeleteLogEntry ) ?
 				[ {
-					id: props.blockLogType === 'active' ? 'modify' : 'hide',
+					id: 'actions',
 					label: mw.message( 'blocklist-actions-header' )
 				} ] :
 				[]
@@ -309,6 +327,18 @@ module.exports = exports = defineComponent( {
 			} ) );
 		}
 
+		/**
+		 * Load the given IP range as the target user and reset the form.
+		 *
+		 * @param {Event} e
+		 * @param {string} target
+		 */
+		function onViewIPRange( e, target ) {
+			e.preventDefault();
+			targetUser.value = target;
+			store.resetForm();
+		}
+
 		watch( targetUser, ( newValue ) => {
 			if ( newValue ) {
 				store.getBlockLogData( props.blockLogType ).then( ( responses ) => {
@@ -332,6 +362,15 @@ module.exports = exports = defineComponent( {
 					} else {
 						// List of active blocks.
 						for ( const block of data.blocks ) {
+							const isRangeBlock = !!block.rangestart;
+							const isCurrentTarget = block.user === targetUser.value;
+							// Skip range blocks for 'active', or non-range blocks for 'active-ranges'.
+							if ( ( props.blockLogType === 'active' && isRangeBlock && !isCurrentTarget ) ||
+								( props.blockLogType === 'active-ranges' && ( !isRangeBlock || isCurrentTarget ) )
+							) {
+								continue;
+							}
+
 							newData.push( {
 								// Store the entire API response, for passing in when editing the block.
 								modify: block,
@@ -383,7 +422,8 @@ module.exports = exports = defineComponent( {
 			logEntriesCount,
 			infoChip,
 			shouldBlockFlagBeVisible,
-			mwNamespaces
+			mwNamespaces,
+			onViewIPRange
 		};
 	}
 } );

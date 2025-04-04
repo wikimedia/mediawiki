@@ -495,7 +495,11 @@ module.exports = exports = defineStore( 'block', () => {
 		}
 
 		let target = targetUser.value;
-		if ( mw.util.isIPAddress( target, true ) ) {
+		const isValidIpOrRange = mw.util.isIPAddress( target, true );
+		const isIpRange = isValidIpOrRange && !mw.util.isIPAddress( target, false );
+
+		// Sanitize IP ranges for block log queries.
+		if ( isIpRange ) {
 			target = util.sanitizeRange( target );
 		}
 
@@ -523,7 +527,11 @@ module.exports = exports = defineStore( 'block', () => {
 		params.list = 'logevents|blocks';
 		params.letype = 'block';
 		params.bkprop = 'id|user|by|timestamp|expiry|reason|parsedreason|range|flags|restrictions';
-		params.bkusers = target;
+		if ( isValidIpOrRange ) {
+			params.bkip = target;
+		} else {
+			params.bkusers = target;
+		}
 
 		const actualPromise = api.get( params );
 		actualPromise.then( ( data ) => {
