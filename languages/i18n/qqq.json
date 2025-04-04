@@ -3832,6 +3832,7 @@
 	"version-hooks": "Shown in [[Special:Version]]\n{{Identical|Hook}}",
 	"version-parser-extensiontags": "Part of [[Special:Version]].\nThis message is followed by the list of parser extension tags like <code><nowiki><charinsert></nowiki></code>, <code><nowiki><coordinates></nowiki></code>, etc.",
 	"version-parser-function-hooks": "Shown in [[Special:Version]]",
+	"version-parsoid-modules": "Part of [[Special:Version]].\nThis message is followed by the list of registered Parsoid extension modules.",
 	"version-hook-name": "Shown in [[Special:Version]].\n\nFor meaning of hook see [[mw:Special:MyLanguage/Manual:Hooks|mw:Manual:Hooks]] and [[w:Hooking]].",
 	"version-hook-subscribedby": "Shown in [[Special:Version]]",
 	"version-version": "{{Optional}}\nUsed in [[Special:Version]]. Preceded by the MediaWiki extension name.\n\nParameters:\n* $1 - version number of the extension",
