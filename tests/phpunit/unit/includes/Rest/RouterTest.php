@@ -23,16 +23,13 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\MockObject;
-use Psr\Log\NullLogger;
 use RuntimeException;
 use Throwable;
-use UDPTransport;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\ParamValidator\ParamValidator;
-use Wikimedia\Stats\OutputFormats;
-use Wikimedia\Stats\StatsCache;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @covers \MediaWiki\Rest\Router
@@ -87,23 +84,6 @@ class RouterTest extends MediaWikiUnitTestCase {
 			'errorReporter' => $mockErrorReporter,
 			'basicAuth' => new StaticBasicAuthorizer( $authError ),
 		] );
-	}
-
-	private function createMockStatsFactory( string $expectedValue ): StatsFactory {
-		$statsCache = new StatsCache();
-		$emitter = OutputFormats::getNewEmitter(
-			'mediawiki',
-			$statsCache,
-			OutputFormats::getNewFormatter( OutputFormats::DOGSTATSD )
-		);
-
-		$transport = $this->createMock( UDPTransport::class );
-
-		$transport->expects( $this->once() )->method( "emit" )
-			->with( $this->matchesRegularExpression( $expectedValue ) );
-
-		$emitter = $emitter->withTransport( $transport );
-		return new StatsFactory( $statsCache, $emitter, new NullLogger );
 	}
 
 	public function testEmptyPath() {
@@ -238,20 +218,20 @@ class RouterTest extends MediaWikiUnitTestCase {
 
 	public function testHttpException() {
 		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/v1/RouterTest/throw' ) ] );
+		$statsHelper = StatsFactory::newUnitTestingHelper();
 		$router = $this->createRouter( $request );
-
-		$stats = $this->createMockStatsFactory(
-			"/^mediawiki\.rest_api_errors_total:1\|c\|#path:mock_v1_RouterTest_throw,method:GET,status:555\nmediawiki\.stats_buffered_total:1\|c$/"
-		);
-		$router->setStats( $stats );
+		$router->setStats( $statsHelper->getStatsFactory() );
 
 		$response = $router->execute( $request );
-		$stats->flush();
-		$this->assertSame( 555, $response->getStatusCode(), (string)$response->getBody() );
 		$body = $response->getBody();
 		$body->rewind();
 		$data = json_decode( $body->getContents(), true );
+		$this->assertSame( 555, $response->getStatusCode(), (string)$response->getBody() );
 		$this->assertSame( 'Mock error', $data['message'] );
+		$this->assertSame(
+			[ 'mediawiki.rest_api_errors_total:1|c|#path:mock_v1_RouterTest_throw,method:GET,status:555' ],
+			$statsHelper->consumeAllFormatted()
+		);
 	}
 
 	public function testFatalException() {
@@ -268,18 +248,19 @@ class RouterTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testRedirectException() {
+		ConvertibleTimestamp::setFakeTime( '20110401090000' );
 		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/v1/RouterTest/throwRedirect' ) ] );
+		$statsHelper = StatsFactory::newUnitTestingHelper();
 		$router = $this->createRouter( $request );
-
-		$stats = $this->createMockStatsFactory(
-			"/^mediawiki\.rest_api_latency_seconds:\d+\.\d+\|ms\|#path:mock_v1_RouterTest_throwRedirect,method:GET,status:301\nmediawiki\.stats_buffered_total:1\|c$/"
-		);
-		$router->setStats( $stats );
+		$router->setStats( $statsHelper->getStatsFactory() );
 
 		$response = $router->execute( $request );
-		$stats->flush();
 		$this->assertSame( 301, $response->getStatusCode(), (string)$response->getBody() );
 		$this->assertSame( 'http://example.com', $response->getHeaderLine( 'Location' ) );
+		$this->assertSame(
+			[ 'mediawiki.rest_api_latency_seconds:1|ms|#path:mock_v1_RouterTest_throwRedirect,method:GET,status:301' ],
+			$statsHelper->consumeAllFormatted()
+		);
 	}
 
 	public function testRedirectDefinition() {
@@ -292,17 +273,18 @@ class RouterTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testResponseException() {
+		ConvertibleTimestamp::setFakeTime( '20110401090000' );
 		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/v1/RouterTest/throwWrapped' ) ] );
+		$statsHelper = StatsFactory::newUnitTestingHelper();
 		$router = $this->createRouter( $request );
-
-		$stats = $this->createMockStatsFactory(
-			"/^mediawiki\.rest_api_latency_seconds:\d+\.\d+\|ms\|#path:mock_v1_RouterTest_throwWrapped,method:GET,status:200\nmediawiki\.stats_buffered_total:1\|c$/"
-		);
-		$router->setStats( $stats );
+		$router->setStats( $statsHelper->getStatsFactory() );
 
 		$response = $router->execute( $request );
-		$stats->flush();
 		$this->assertSame( 200, $response->getStatusCode(), (string)$response->getBody() );
+		$this->assertSame(
+			[ 'mediawiki.rest_api_latency_seconds:1|ms|#path:mock_v1_RouterTest_throwWrapped,method:GET,status:200' ],
+			$statsHelper->consumeAllFormatted()
+		);
 	}
 
 	public function testBasicAccess() {

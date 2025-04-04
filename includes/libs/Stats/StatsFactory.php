@@ -201,7 +201,16 @@ class StatsFactory {
 	 * $x = new MySubject( $statsHelper->getStatsFactory() );
 	 * $x->execute();
 	 *
-	 * $this->assertEquals( 1, $statsHelper->count( 'example_executions_total{fooLabel="bar"}' ) );
+	 * // Assert full (emitting more is unexpected)
+	 * $this->assertSame(
+	 *     [
+	 *         'example_executions_total:1|c|#foo:bar'
+	 *     ],
+	 *     $statsHelper->consumeAllFormatted()
+	 * );
+	 *
+	 * // Assert partially (at least this should be emitted)
+	 * $this->assertSame( 1, $statsHelper->count( 'example_executions_total{foo="bar"}' ) );
 	 * ```
 	 *
 	 * @since 1.44
