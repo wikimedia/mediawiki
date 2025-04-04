@@ -2465,7 +2465,7 @@ abstract class File implements MediaHandlerState {
 	}
 
 	/**
-	 * @return string
+	 * @return string HTML
 	 */
 	public function getLongDesc() {
 		$handler = $this->getHandler();
@@ -2477,7 +2477,7 @@ abstract class File implements MediaHandlerState {
 	}
 
 	/**
-	 * @return string
+	 * @return string HTML
 	 */
 	public function getShortDesc() {
 		$handler = $this->getHandler();
@@ -2489,7 +2489,7 @@ abstract class File implements MediaHandlerState {
 	}
 
 	/**
-	 * @return string
+	 * @return string plain text
 	 */
 	public function getDimensionsString() {
 		$handler = $this->getHandler();
