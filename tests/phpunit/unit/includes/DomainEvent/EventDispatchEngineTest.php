@@ -4,10 +4,10 @@ namespace MediaWiki\Tests\DomainEvent;
 
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\DomainEvent\DomainEvent;
+use MediaWiki\DomainEvent\DomainEventIngress;
 use MediaWiki\DomainEvent\DomainEventSource;
 use MediaWiki\DomainEvent\DomainEventSubscriber;
 use MediaWiki\DomainEvent\EventDispatchEngine;
-use MediaWiki\DomainEvent\EventIngressBase;
 use MediaWiki\Tests\MockDatabase;
 use MediaWikiUnitTestCase;
 use Wikimedia\ObjectFactory\ObjectFactory;
@@ -274,7 +274,7 @@ class EventDispatchEngineTest extends MediaWikiUnitTestCase {
 
 		$trace = [];
 
-		$subscriber = new class ( $trace ) extends EventIngressBase {
+		$subscriber = new class ( $trace ) extends DomainEventIngress {
 			private $trace;
 
 			public function __construct( &$trace ) {

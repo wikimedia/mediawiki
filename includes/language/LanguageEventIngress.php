@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Languages;
 
-use MediaWiki\DomainEvent\EventIngressBase;
+use MediaWiki\DomainEvent\DomainEventIngress;
 use MediaWiki\Page\Event\PageDeletedEvent;
 use MediaWiki\Page\Event\PageDeletedListener;
 use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
@@ -17,7 +17,7 @@ use MessageCache;
  * @internal
  */
 class LanguageEventIngress
-	extends EventIngressBase
+	extends DomainEventIngress
 	implements PageDeletedListener, PageRevisionUpdatedListener
 {
 

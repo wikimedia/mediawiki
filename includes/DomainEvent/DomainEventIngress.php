@@ -13,13 +13,13 @@ use LogicException;
  * which event should trigger which logic in the component and for mapping from
  * the model used by the emitter of the event to the component's own model.
  *
- * EventIngressBase implements InitializableDomainEventSubscriber so it can be
+ * DomainEventIngress implements InitializableDomainEventSubscriber so it can be
  * registered with and initialized by a DomainEventSource. Registration is
  * typically done in the form of an object spec for lazy instantiation. For
  * extensions' ingress objects that object spec can be provided in the
  * DomainEventSubscribers section of extension.json.
  *
- * After instantiating a subscriber (typically a subclass of EventIngressBase),
+ * After instantiating a subscriber (typically a subclass of DomainEventIngress),
  * the event source will call initSubscriber() to initialize the subscriber and
  * then registerListeners() to allow the subscriber to register listeners for
  * the events it is interested in.
@@ -39,7 +39,7 @@ use LogicException;
  * @since 1.44
  * @unstable until 1.45, should become stable to extend
  */
-abstract class EventIngressBase implements InitializableDomainEventSubscriber {
+abstract class DomainEventIngress implements InitializableDomainEventSubscriber {
 
 	/**
 	 * @var string[]
@@ -153,7 +153,7 @@ abstract class EventIngressBase implements InitializableDomainEventSubscriber {
 
 		if ( !$this->eventTypes ) {
 			throw new LogicException(
-				'Subclassed of EventIngressBase must either override ' .
+				'Subclassed of DomainEventIngress must either override ' .
 				'registerListeners or provide a list of event types via ' .
 				'initSubscriber() or initEvents().'
 			);
@@ -167,4 +167,6 @@ abstract class EventIngressBase implements InitializableDomainEventSubscriber {
 }
 
 /** @deprecated temporary alias, remove before 1.44 release (T389033) */
-class_alias( EventIngressBase::class, 'MediaWiki\DomainEvent\EventSubscriberBase' );
+class_alias( DomainEventIngress::class, 'MediaWiki\DomainEvent\EventSubscriberBase' );
+/** @deprecated temporary alias, remove before 1.44 release (T389033) */
+class_alias( DomainEventIngress::class, 'MediaWiki\DomainEvent\EventIngressBase' );

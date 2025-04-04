@@ -5,7 +5,7 @@ namespace MediaWiki\RecentChanges;
 use LogicException;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Config\Config;
-use MediaWiki\DomainEvent\EventIngressBase;
+use MediaWiki\DomainEvent\DomainEventIngress;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\JobQueue\JobQueueGroup;
@@ -30,7 +30,7 @@ use MediaWiki\User\UserNameUtils;
  * @internal
  */
 class ChangeTrackingEventIngress
-	extends EventIngressBase
+	extends DomainEventIngress
 	implements PageRevisionUpdatedListener
 {
 
