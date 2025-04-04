@@ -261,7 +261,9 @@ class OldLocalFile extends LocalFile {
 		}
 	}
 
-	private function buildQueryBuilderForLoad( IReadableDatabase $dbr, $options = [ 'omit-nonlazy' ] ) {
+	private function buildQueryBuilderForLoad(
+		IReadableDatabase $dbr, array $options = [ 'omit-nonlazy' ]
+	): FileSelectQueryBuilder {
 		$queryBuilder = FileSelectQueryBuilder::newForOldFile( $dbr, $options );
 		$queryBuilder->where( [ 'oi_name' => $this->getName() ] )
 			->orderBy( 'oi_timestamp', SelectQueryBuilder::SORT_DESC );

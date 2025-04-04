@@ -73,7 +73,7 @@ class FileSelectQueryBuilder extends SelectQueryBuilder {
 		return new FileSelectQueryBuilder( $db, 'archivedfile', $options );
 	}
 
-	private function initFileOld( $options ) {
+	private function initFileOld( array $options ) {
 		$this->table( 'image' )
 			->join( 'actor', 'image_actor', 'actor_id=img_actor' )
 			->join(
@@ -112,7 +112,7 @@ class FileSelectQueryBuilder extends SelectQueryBuilder {
 		}
 	}
 
-	private function initFileNew( $options ) {
+	private function initFileNew( array $options ) {
 		$subquery = $this->newSubquery();
 		$subquery->table( 'file' )
 			->join( 'filerevision', null, 'file_latest = fr_id' )
@@ -164,7 +164,7 @@ class FileSelectQueryBuilder extends SelectQueryBuilder {
 			->from( $subquery );
 	}
 
-	private function initOldFileOld( $options ) {
+	private function initOldFileOld( array $options ) {
 		$this->table( 'oldimage' )
 			->join( 'actor', 'oldimage_actor', 'actor_id=oi_actor' )
 			->join(
@@ -204,7 +204,7 @@ class FileSelectQueryBuilder extends SelectQueryBuilder {
 		}
 	}
 
-	private function initOldFileNew( $options ) {
+	private function initOldFileNew( array $options ) {
 		$subquery = $this->newSubquery();
 		$subquery->table( 'filerevision' )
 			->join( 'file', null, 'fr_file = file_id' )
@@ -253,7 +253,7 @@ class FileSelectQueryBuilder extends SelectQueryBuilder {
 			->from( $subquery );
 	}
 
-	private function initArchivedFile( $options ) {
+	private function initArchivedFile( array $options ) {
 		$this->table( 'filearchive' )
 			->join( 'actor', 'filearchive_actor', 'actor_id=fa_actor' )
 			->join(

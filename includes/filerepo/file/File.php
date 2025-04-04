@@ -1147,7 +1147,7 @@ abstract class File implements MediaHandlerState {
 		return $thumbName;
 	}
 
-	private function adjustThumbWidthForSteps( $params ) {
+	private function adjustThumbWidthForSteps( array $params ): array {
 		$thumbnailSteps = MediaWikiServices::getInstance()
 			->getMainConfig()->get( MainConfigNames::ThumbnailSteps );
 		$thumbnailStepsRatio = MediaWikiServices::getInstance()

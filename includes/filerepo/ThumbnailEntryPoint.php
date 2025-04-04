@@ -673,7 +673,7 @@ EOT;
 		return false;
 	}
 
-	private function vary( $header ) {
+	private function vary( string $header ) {
 		$this->varyHeader[] = $header;
 	}
 
@@ -823,7 +823,7 @@ EOT;
 		return false;
 	}
 
-	private function maybeEnforceRateLimits( File $img, array $params ) {
+	private function maybeEnforceRateLimits( File $img, array $params ): bool {
 		$authority = $this->getContext()->getAuthority();
 		$status = PermissionStatus::newEmpty();
 

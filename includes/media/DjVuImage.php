@@ -97,7 +97,7 @@ class DjVuImage {
 		fclose( $file );
 	}
 
-	private function dumpForm( $file, $length, $indent ) {
+	private function dumpForm( $file, int $length, int $indent ) {
 		$start = ftell( $file );
 		$secondary = fread( $file, 4 );
 		echo str_repeat( ' ', $indent * 4 ) . "($secondary)\n";
@@ -159,7 +159,7 @@ class DjVuImage {
 		return $info;
 	}
 
-	private function readChunk( $file ) {
+	private function readChunk( $file ): array {
 		$header = fread( $file, 8 );
 		if ( strlen( $header ) < 8 ) {
 			return [ false, 0 ];
@@ -169,7 +169,7 @@ class DjVuImage {
 		return [ $arr['chunk'], $arr['length'] ];
 	}
 
-	private function skipChunk( $file, $chunkLength ) {
+	private function skipChunk( $file, int $chunkLength ) {
 		fseek( $file, $chunkLength, SEEK_CUR );
 
 		if ( ( $chunkLength & 1 ) && !feof( $file ) ) {
@@ -178,7 +178,7 @@ class DjVuImage {
 		}
 	}
 
-	private function getMultiPageInfo( $file, $formLength ) {
+	private function getMultiPageInfo( $file, int $formLength ) {
 		// For now, we'll just look for the first page in the file
 		// and report its information, hoping others are the same size.
 		$start = ftell( $file );
@@ -366,7 +366,7 @@ EOR;
 		return $json;
 	}
 
-	private function pageTextCallback( string $match ) {
+	private function pageTextCallback( string $match ): string {
 		# Get rid of invalid UTF-8
 		$val = UtfNormal\Validator::cleanUp( stripcslashes( $match ) );
 		return str_replace( '�', '', $val );
@@ -434,7 +434,7 @@ EOR;
 		return $result;
 	}
 
-	private function parseFormDjvu( $line ) {
+	private function parseFormDjvu( string $line ) {
 		$parentLevel = strspn( $line, ' ' );
 		$line = strtok( "\n" );
 		# Find INFO
