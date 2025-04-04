@@ -37,7 +37,6 @@ use LogicException;
  * in extension.json.
  *
  * @since 1.44
- * @unstable until 1.45, should become stable to extend
  */
 abstract class DomainEventIngress implements InitializableDomainEventSubscriber {
 

@@ -5,7 +5,6 @@ namespace MediaWiki\DomainEvent;
  * Service object for registering listeners for domain events.
  *
  * @since 1.44
- * @unstable until 1.45
  */
 interface DomainEventSource {
 
