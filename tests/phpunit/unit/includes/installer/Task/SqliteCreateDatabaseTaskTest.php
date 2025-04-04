@@ -29,7 +29,7 @@ class SqliteCreateDatabaseTaskTest extends MediaWikiUnitTestCase {
 		$dir = sys_get_temp_dir() . '/' . uniqid( 'MediaWikiTest' );
 		$status = $task->createDataDir( $dir );
 		$this->assertStatusGood( $status );
-		$this->assertSame( "Require all denied\n", file_get_contents( "$dir/.htaccess" ) );
+		$this->assertSame( "Require all denied\nSatisfy All\n", file_get_contents( "$dir/.htaccess" ) );
 		unlink( "$dir/.htaccess" );
 		rmdir( $dir );
 	}

@@ -130,7 +130,9 @@ EOT;
 			}
 		}
 		# Put a .htaccess file in case the user didn't take our advice
-		file_put_contents( "$dir/.htaccess", "Require all denied\n" );
+		file_put_contents( "$dir/.htaccess",
+			"Require all denied\n" .
+			"Satisfy All\n" );
 		return Status::newGood();
 	}
 
