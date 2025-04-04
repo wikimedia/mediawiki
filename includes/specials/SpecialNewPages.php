@@ -380,7 +380,7 @@ class SpecialNewPages extends IncludableSpecialPage {
 		$out->addModuleStyles( 'mediawiki.special' );
 	}
 
-	private function getNewPagesPager() {
+	private function getNewPagesPager(): NewPagesPager {
 		return new NewPagesPager(
 			$this->getContext(),
 			$this->getLinkRenderer(),

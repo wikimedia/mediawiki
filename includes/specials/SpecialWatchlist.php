@@ -849,7 +849,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$this->setBottomText( $opts );
 	}
 
-	private function cutoffselector( $options ) {
+	private function cutoffselector( FormOptions $options ): string {
 		$selected = (float)$options['days'];
 		$maxDays = $this->getConfig()->get( MainConfigNames::RCMaxAge ) / ( 3600 * 24 );
 		if ( $selected <= 0 ) {

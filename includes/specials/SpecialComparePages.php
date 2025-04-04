@@ -146,7 +146,7 @@ class SpecialComparePages extends SpecialPage {
 		}
 	}
 
-	private function revOrTitle( $revision, $title ) {
+	private function revOrTitle( ?int $revision, ?string $title ): ?int {
 		if ( $revision ) {
 			return $revision;
 		} elseif ( $title ) {

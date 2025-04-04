@@ -141,7 +141,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 		return $layout;
 	}
 
-	private function isMobileLayout() {
+	private function isMobileLayout(): bool {
 		if ( $this->useMobileLayout === null ) {
 			$skin = $this->getSkin();
 			$this->useMobileLayout = false;

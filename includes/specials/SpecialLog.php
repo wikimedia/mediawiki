@@ -321,7 +321,7 @@ class SpecialLog extends SpecialPage {
 		}
 	}
 
-	private function getActionButtons( $formcontents ) {
+	private function getActionButtons( string $formcontents ): string {
 		$canRevDelete = $this->getAuthority()
 			->isAllowedAll( 'deletedhistory', 'deletelogentry' );
 		$showTagEditUI = ChangeTags::showTagEditingUI( $this->getAuthority() );

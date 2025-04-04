@@ -251,7 +251,7 @@ class SpecialRenameUser extends SpecialPage {
 		}
 	}
 
-	private function getWarnings( $oldName, $newName ) {
+	private function getWarnings( string $oldName, string $newName ): array {
 		$warnings = [];
 		$oldUser = $this->userFactory->newFromName( $oldName, $this->userFactory::RIGOR_NONE );
 		if ( $oldUser && !$oldUser->isTemp() && $oldUser->getBlock() ) {
@@ -264,7 +264,9 @@ class SpecialRenameUser extends SpecialPage {
 		return $warnings;
 	}
 
-	private function showForm( $oldName, $newName, $warnings, $reason, $moveChecked, $suppressChecked ) {
+	private function showForm(
+		?string $oldName, ?string $newName, array $warnings, string $reason, bool $moveChecked, bool $suppressChecked
+	) {
 		$performer = $this->getUser();
 
 		$formDescriptor = [

@@ -493,7 +493,7 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 		return Xml::openElement( 'ul', ( $level ? [] : [ 'id' => 'mw-whatlinkshere-list' ] ) );
 	}
 
-	private function listItem( stdClass $row, PageIdentity $nt, LinkTarget $target, bool $notClose = false ) {
+	private function listItem( stdClass $row, PageIdentity $nt, LinkTarget $target, bool $notClose = false ): string {
 		$legacyTitle = $this->titleFactory->newFromPageIdentity( $nt );
 
 		if ( $row->rd_from || $row->page_is_redirect ) {
@@ -594,7 +594,7 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 		return $this->getLanguage()->pipeList( $links );
 	}
 
-	private function getPrevNext( $prevNamespace, $prevPageId, $nextNamespace, $nextPageId ) {
+	private function getPrevNext( $prevNamespace, $prevPageId, $nextNamespace, $nextPageId ): string {
 		$navBuilder = new PagerNavigationBuilder( $this->getContext() );
 
 		$navBuilder

@@ -964,7 +964,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		$this->watchlistManager->setWatch( $this->watch, $this->getAuthority(), $nt );
 	}
 
-	private function showLogFragment( $title ) {
+	private function showLogFragment( Title $title ) {
 		$moveLogPage = new LogPage( 'move' );
 		$out = $this->getOutput();
 		$out->addHTML( Xml::element( 'h2', null, $moveLogPage->getName()->text() ) );
@@ -1010,7 +1010,9 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		}
 	}
 
-	private function showSubpagesList( $subpages, $pagecount, $msg, $truncatedMsg, $noSubpageMsg = false ) {
+	private function showSubpagesList(
+		TitleArrayFromResult $subpages, int $pagecount, string $msg, string $truncatedMsg, bool $noSubpageMsg = false
+	) {
 		$out = $this->getOutput();
 
 		# No subpages.

@@ -291,7 +291,7 @@ class SpecialUserRights extends SpecialPage {
 		}
 	}
 
-	private function getSuccessURL() {
+	private function getSuccessURL(): string {
 		return $this->getPageTitle( $this->mTarget )->getFullURL();
 	}
 

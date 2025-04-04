@@ -347,7 +347,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 		return false;
 	}
 
-	private function save( array $data ) {
+	private function save( array $data ): Status {
 		$bp = BotPassword::newUnsaved( [
 			'centralId' => $this->userId,
 			'appId' => $this->par,

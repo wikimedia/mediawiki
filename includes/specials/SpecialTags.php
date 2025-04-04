@@ -193,8 +193,8 @@ class SpecialTags extends SpecialPage {
 	}
 
 	private function doTagRow(
-		$tag, $hitcount, $showManageActions, $showDeleteActions, $showEditLinks
-	) {
+		string $tag, int $hitcount, bool $showManageActions, bool $showDeleteActions, bool $showEditLinks
+	): string {
 		$newRow = '';
 		$newRow .= Xml::tags( 'td', null, Xml::element( 'code', null, $tag ) );
 
