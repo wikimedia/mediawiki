@@ -338,7 +338,7 @@ class Router {
 		return $this->moduleMap;
 	}
 
-	private function getModuleInfo( $module ): ?array {
+	private function getModuleInfo( string $module ): ?array {
 		$map = $this->getModuleMap();
 		return $map[$module] ?? null;
 	}

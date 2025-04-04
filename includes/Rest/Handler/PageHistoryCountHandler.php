@@ -108,7 +108,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 		);
 	}
 
-	private function normalizeType( $type ) {
+	private function normalizeType( string $type ): string {
 		return self::DEPRECATED_COUNT_TYPES[$type] ?? $type;
 	}
 

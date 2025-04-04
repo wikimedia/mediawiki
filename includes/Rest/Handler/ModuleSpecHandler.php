@@ -144,7 +144,7 @@ class ModuleSpecHandler extends SimpleHandler {
 		return $operationSpec;
 	}
 
-	private function getComponentsSpec( Module $module ) {
+	private function getComponentsSpec( Module $module ): array {
 		$components = [];
 
 		// XXX: also collect reusable components from handler specs (but how to avoid name collisions?).
