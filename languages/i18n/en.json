@@ -3565,6 +3565,7 @@
 	"version-hooks": "Hooks",
 	"version-parser-extensiontags": "Parser extension tags",
 	"version-parser-function-hooks": "Parser function hooks",
+	"version-parsoid-modules": "Parsoid extension modules",
 	"version-hook-name": "Hook name",
 	"version-hook-subscribedby": "Subscribed by",
 	"version-version": "($1)",

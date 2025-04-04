@@ -225,6 +225,7 @@ class SpecialVersion extends SpecialPage {
 					$this->getLibraries( $credits ),
 					$this->getParserTags(),
 					$this->getParserFunctionHooks(),
+					$this->getParsoidModules(),
 					$this->getHooks(),
 					$this->IPInfo(),
 				];
@@ -949,6 +950,45 @@ class SpecialVersion extends SpecialPage {
 		} );
 
 		$out .= $this->getLanguage()->listToText( $funcHooks );
+
+		return $out;
+	}
+
+	/**
+	 * Obtains a list of installed Parsoid Modules and the associated H2 header
+	 *
+	 * @return string HTML output
+	 */
+	protected function getParsoidModules() {
+		$siteConfig = MediaWikiServices::getInstance()->getParsoidSiteConfig();
+		$modules = $siteConfig->getExtensionModules();
+
+		if ( !$modules ) {
+			return '';
+		}
+
+		$this->addTocSection( 'version-parsoid-modules', 'mw-version-parsoid-modules' );
+
+		$out = Html::rawElement(
+			'h2',
+			[ 'id' => 'mw-version-parsoid-modules' ],
+			Html::rawElement(
+				'span',
+				[ 'class' => 'plainlinks' ],
+				$this->getLinkRenderer()->makeExternalLink(
+					'https://www.mediawiki.org/wiki/Special:MyLanguage/Parsoid',
+					$this->msg( 'version-parsoid-modules' ),
+					$this->getFullTitle()
+				)
+			)
+		);
+
+		$moduleNames = array_map(
+			static fn ( $m )=>Html::element( 'code', [], $m->getConfig()['name'] ),
+			$modules
+		);
+
+		$out .= $this->getLanguage()->listToText( $moduleNames );
 
 		return $out;
 	}
