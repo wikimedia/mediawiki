@@ -226,7 +226,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 				[ 'cacheKey' => $key ] );
 		}
 
-		$this->updateOpStats( self::METRIC_OP_SET, [ $key => [ strlen( $rbody ), 0 ] ] );
+		$this->updateOpStats( self::METRIC_OP_SET, [ $key => [ strlen( $req['body'] ), 0 ] ] );
 
 		return $res;
 	}
