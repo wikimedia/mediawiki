@@ -1099,6 +1099,7 @@ class ParserOptions {
 	 * Get a ParserOptions object from a given user.
 	 * Language will be taken from $wgLang.
 	 *
+	 * @since 1.13
 	 * @param UserIdentity $user
 	 * @return ParserOptions
 	 */
@@ -1109,6 +1110,7 @@ class ParserOptions {
 	/**
 	 * Get a ParserOptions object from a given user and language
 	 *
+	 * @since 1.19
 	 * @param UserIdentity $user
 	 * @param Language $lang
 	 * @return ParserOptions
@@ -1120,6 +1122,7 @@ class ParserOptions {
 	/**
 	 * Get a ParserOptions object from a IContextSource object
 	 *
+	 * @since 1.19
 	 * @param IContextSource $context
 	 * @return ParserOptions
 	 */
