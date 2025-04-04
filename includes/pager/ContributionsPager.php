@@ -920,12 +920,14 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		$revUserId = $revUser ? $revUser->getId() : 0;
 		$revUserText = $revUser ? $revUser->getName() : '';
 		if ( $this->target !== $revUserText ) {
-			$userlink = ' <span class="mw-changeslist-separator"></span> '
-				. Html::rawElement( 'bdi', [ 'dir' => $dir ],
-					Linker::userLink( $revUserId, $revUserText ) );
-			$userlink .= ' ' . $this->msg( 'parentheses' )->rawParams(
-				Linker::userTalkLink( $revUserId, $revUserText ) )->escaped() . ' ';
+			$userPageLink = Linker::userLink( $revUserId, $revUserText );
+			$userTalkLink = Linker::userTalkLink( $revUserId, $revUserText );
+
+			$userlink = ' <span class="mw-changeslist-separator"></span> ' .
+				Html::rawElement( 'bdi', [ 'dir' => $dir ], $userPageLink ) .
+				Linker::renderUserToolLinksArray( [ $userTalkLink ], false );
 		}
+
 		return $userlink;
 	}
 
