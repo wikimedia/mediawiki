@@ -141,5 +141,6 @@
 	"rest-schema-desc-mock-desc": "وصف وهمي.",
 	"rest-schema-desc-revision-metadata": "مراجعة بيانات التعريف",
 	"rest-schema-desc-media-file": "معلومات حول الملف",
+	"rest-schema-desc-page-history": "تاريخ مراجعة الصفحة",
 	"rest-schema-desc-search-results": "نتائج البحث"
 }
