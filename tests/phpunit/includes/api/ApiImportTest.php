@@ -30,6 +30,13 @@ class ApiImportTest extends ApiUploadTestCase {
 	}
 
 	public function testImport() {
+		// Clear some extension hook handlers that may interfere with mock object expectations.
+		$this->clearHooks( [
+			'RevisionRecordInserted',
+			'PageSaveComplete',
+			'LinksUpdateComplete',
+		] );
+
 		$title = $this->getNonexistingTestPage()->getTitle();
 
 		// We expect two PageRevisionUpdated events, one triggered by
@@ -89,7 +96,7 @@ class ApiImportTest extends ApiUploadTestCase {
 
 		// Expect only non-edit recent changes entry, but no edit count
 		// or user talk.
-		$this->expectChangeTrackingUpdates( 0, 1, 0, 0 );
+		$this->expectChangeTrackingUpdates( 0, 1, 0, 0, 1 );
 
 		// Expect search updates to be triggered
 		$this->expectSearchUpdates( 1 );

@@ -76,6 +76,9 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 			$this->fail( $updater->getStatus()->getWikiText() );
 		}
 
+		// Run jobs that were enqueued by page creation now, since they might expect the page to exist.
+		$this->runJobs( [ 'minJobs' => 0 ] );
+
 		$this->pages[] = [ 'page' => $page, 'revId' => $revisionRecord->getId() ];
 		$this->deletePage( $page, '', $performer );
 	}
@@ -223,6 +226,12 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Page\UndeletePage::undeleteUnsafe
 	 */
 	public function testUpdatePropagation( ProperPageIdentity $page, ?Content $content = null ) {
+		// Clear some extension hook handlers that may interfere with mock object expectations.
+		$this->clearHooks( [
+			'LinksUpdateComplete',
+			'PageUndeleteComplete',
+		] );
+
 		$content ??= new WikitextContent( 'hi' );
 		$this->setupPage( $page->getDBkey(), $page->getNamespace(), $content );
 		$this->runJobs();
@@ -231,7 +240,7 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 
 		// Should generate an RC entry for undeletion,
 		// but not a regular page edit.
-		$this->expectChangeTrackingUpdates( 0, 1, 0, 0 );
+		$this->expectChangeTrackingUpdates( 0, 1, 0, 0, 0 );
 
 		$this->expectSearchUpdates( 1 );
 		$this->expectLocalizationUpdate( $page->getNamespace() === NS_MEDIAWIKI ? 1 : 0 );

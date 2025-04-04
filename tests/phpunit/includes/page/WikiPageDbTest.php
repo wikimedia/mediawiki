@@ -1777,6 +1777,13 @@ more stuff
 		PageIdentity $title,
 		?Content $content = null
 	) {
+		// Clear some extension hook handlers that may interfere with mock object expectations.
+		$this->clearHooks( [
+			'PageSaveComplete',
+			'RevisionRecordInserted',
+			'ArticleProtectComplete',
+		] );
+
 		$content ??= new TextContent( 'Lorem Ipsum' );
 		$page = $this->createPage( $title, $content );
 
@@ -1784,7 +1791,7 @@ more stuff
 		$this->runJobs();
 
 		// Expect only non-edit recent changes entry
-		$this->expectChangeTrackingUpdates( 0, 1, 0, 0 );
+		$this->expectChangeTrackingUpdates( 0, 1, 0, 0, 0 );
 
 		// Expect no resource module purges on protection
 		$this->expectResourceLoaderUpdates( 0 );
