@@ -822,6 +822,14 @@ class SiteConfig extends ISiteConfig {
 		return $this->config->get( MainConfigNames::ExternalLinkTarget );
 	}
 
+	/**
+	 * Return the localization key we should use for asynchronous
+	 * fallback content.
+	 */
+	public function getAsyncFallbackMessageKey(): string {
+		return 'parsoid-async-not-ready-fallback';
+	}
+
 	// MW-specific helper
 
 	/**
