@@ -24,9 +24,6 @@
  * @todo Make this more independent of the configuration (and if possible the database)
  * @file
  * @ingroup Testing
- * @phan-file-suppress UnusedPluginSuppression,UnusedPluginFileSuppression
- *   Prevent phan from crashing CI if
- *   ParsoidParserHook::getParserTestConfigFileName() happens to exist
  */
 
 use MediaWiki\Content\WikitextContent;
@@ -501,10 +498,8 @@ class ParserTestRunner {
 		];
 		// Add magic words used in Parsoid-native extension modules
 		if ( method_exists( ParsoidParserHook::class, 'getParserTestConfigFileName' ) ) {
-			// https://github.com/phan/phan/issues/2628
-			// @phan-suppress-next-line PhanUndeclaredStaticMethod
 			$filename = ParsoidParserHook::getParserTestConfigFileName();
-			if ( $filename !== null && file_exists( $filename ) ) {
+			if ( file_exists( $filename ) ) {
 				$config = json_decode( file_get_contents( $filename ), true );
 				$extraMagicWords = array_merge(
 					$extraMagicWords, $config['magicwords'] ?? []
@@ -1387,10 +1382,10 @@ class ParserTestRunner {
 		}
 
 		if ( isset( $opts['maxincludesize'] ) ) {
-			$options->setMaxIncludeSize( $opts['maxincludesize'] );
+			$options->setMaxIncludeSize( (int)$opts['maxincludesize'] );
 		}
 		if ( isset( $opts['maxtemplatedepth'] ) ) {
-			$options->setMaxTemplateDepth( $opts['maxtemplatedepth'] );
+			$options->setMaxTemplateDepth( (int)$opts['maxtemplatedepth'] );
 		}
 
 		return [ $title, $options, $revProps['revid'] ];
@@ -1510,8 +1505,10 @@ class ParserTestRunner {
 			$section = $opts['section'];
 			$out = $parser->getSection( $wikitext, $section );
 		} elseif ( isset( $opts['replace'] ) ) {
-			$section = $opts['replace'][0];
-			$replace = $opts['replace'][1];
+			$o = $opts['replace'];
+			'@phan-var array $o'; // Phan gets confused about types
+			$section = $o[0];
+			$replace = $o[1];
 			$out = $parser->replaceSection( $wikitext, $section, $replace );
 		} elseif ( isset( $opts['comment'] ) ) {
 			$out = MediaWikiServices::getInstance()->getCommentFormatter()->format( $wikitext, $title, $local );
@@ -2063,6 +2060,7 @@ class ParserTestRunner {
 	private function runSelserEditTest(
 		Parsoid $parsoid, PageConfig $pageConfig, ParserTest $test, ParserTestMode $mode, Document $doc
 	): array {
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable $test->changetree is non-null here
 		$test->applyChanges( [], $doc, $test->changetree );
 		$editedHTML = ContentUtils::toXML( DOMCompat::getBody( $doc ) );
 
@@ -2159,7 +2157,7 @@ class ParserTestRunner {
 				$doc = $this->fetchCachedDoc( $parsoid, $pageConfig, $test );
 				$test->seed = $i . '';
 				$test->changetree = $test->generateChanges( $doc );
-				if ( $test->changetree ) {
+				if ( $test->changetree ) { // testing for [] not null
 					// new mode with the generated changetree
 					$nmode = new ParserTestMode( 'selser', $test->changetree );
 					[ $out, $expected ] = $this->runSelserEditTest( $parsoid, $pageConfig, $test, $nmode, $doc );
@@ -2171,6 +2169,7 @@ class ParserTestRunner {
 				}
 				// $test->changetree can be [] which is a NOP for testing
 				// but not a NOP for duplicate change tree tests.
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable $test->changetree is non-null here
 				if ( $test->isDuplicateChangeTree( $test->changetree ) ) {
 					// Once we get a duplicate change tree, we can no longer
 					// generate and run new tests. So, be done now!
