@@ -46,14 +46,17 @@ class UnitTestingHelper {
 	private string $component = '';
 	private LoggerInterface $logger;
 
+	/**
+	 * @internal Use StatsFactory::newUnitTestingHelper() instead.
+	 */
 	public function __construct() {
 		$this->cache = new StatsCache();
-		$this->logger = LoggerFactory::getInstance( 'Stats::UnitTestingHelper' );
+		$this->logger = LoggerFactory::getInstance( 'Stats' );
 		$this->factory = new StatsFactory( $this->cache, new NullEmitter(), $this->logger );
 	}
 
 	/**
-	 * Sets the component for the StatsFactory instance
+	 * Set a component on the underlying StatsFactory
 	 */
 	public function withComponent( string $component ): self {
 		$this->factory = $this->factory->withComponent( $component );
@@ -62,14 +65,14 @@ class UnitTestingHelper {
 	}
 
 	/**
-	 * Returns the testing StatsFactory instance.
+	 * Get the underlying StatsFactory, to pass to your subject under test.
 	 */
 	public function getStatsFactory(): StatsFactory {
 		return $this->factory;
 	}
 
 	/**
-	 * Returns a count of the number of samples for a given metric.
+	 * How many samples were observed for a given metric.
 	 *
 	 * Example:
 	 * ```php
@@ -81,7 +84,7 @@ class UnitTestingHelper {
 	}
 
 	/**
-	 * Returns the last recorded sample value for a given metric.
+	 * The last recorded sample value for a given metric.
 	 *
 	 * Example:
 	 * ```php
@@ -94,7 +97,7 @@ class UnitTestingHelper {
 	}
 
 	/**
-	 * Returns the sum of all sample values for a given metric.
+	 * The sum of all sample values for a given metric.
 	 *
 	 * Example:
 	 * ```php
@@ -110,7 +113,7 @@ class UnitTestingHelper {
 	}
 
 	/**
-	 * Returns the max of all sample values for a given metric.
+	 * The max of all sample values for a given metric.
 	 *
 	 * Example:
 	 * ```php
@@ -128,8 +131,7 @@ class UnitTestingHelper {
 	}
 
 	/**
-	 * Returns the median of all sample values for a given metric.
-	 *
+	 * The median of all sample values for a given metric.
 	 *
 	 * Example:
 	 * ```php
@@ -141,8 +143,7 @@ class UnitTestingHelper {
 	}
 
 	/**
-	 * Returns the min of all sample values for a given metric.
-	 *
+	 * The min of all sample values for a given metric.
 	 *
 	 * Example:
 	 * ```php
@@ -159,9 +160,6 @@ class UnitTestingHelper {
 		return $output;
 	}
 
-	/**
-	 * Fetches the metric instance from cache.
-	 */
 	private function getMetricFromSelector( string $selector ): MetricInterface {
 		$key = StatsCache::cacheKey( $this->component, $this->getName( $selector ) );
 		$metric = $this->cache->getAllMetrics()[$key] ?? null;
@@ -178,9 +176,6 @@ class UnitTestingHelper {
 		return $metric;
 	}
 
-	/**
-	 * Returns a subset of samples according to provided filters.
-	 */
 	private function getFilteredSamples( string $selector ): array {
 		$metric = $this->getMetricFromSelector( $selector );
 		$filters = $this->getFilters( $selector );
@@ -203,9 +198,6 @@ class UnitTestingHelper {
 		return $left;
 	}
 
-	/**
-	 * Returns the metric name from a selector.
-	 */
 	private function getName( string $selector ): string {
 		$selector = preg_replace( '/\'/', '"', $selector );
 		if ( str_contains( $selector, '{' ) ) {
@@ -217,9 +209,6 @@ class UnitTestingHelper {
 		return $selector;
 	}
 
-	/**
-	 * Returns the filter set from a selector.
-	 */
 	private function getFilters( string $selector ): array {
 		$selector = preg_replace( '/\'/', '"', $selector );
 		if ( !str_contains( $selector, '{' ) && !str_contains( $selector, ',' ) ) {
@@ -234,9 +223,6 @@ class UnitTestingHelper {
 		return $output;
 	}
 
-	/**
-	 * Returns the components of a filter expression.
-	 */
 	private function getFilterComponents( string $filter ): array {
 		$key = null;
 		$value = null;
@@ -270,7 +256,7 @@ class UnitTestingHelper {
 	}
 
 	/**
-	 * Returns the boolean result of stored and expected values according to the operator.
+	 * Return the boolean result of stored and expected values according to the operator.
 	 */
 	private function matches( string $stored, string $expected, string $operator ): bool {
 		if ( $operator === self::NOT_EQUALS ) {
