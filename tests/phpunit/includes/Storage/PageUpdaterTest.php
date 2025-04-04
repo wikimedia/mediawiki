@@ -10,6 +10,7 @@ use MediaWiki\Content\TextContent;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Json\FormatJson;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Page\PageIdentity;
@@ -49,6 +50,10 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
+		// Force enable RC entry creation for category changes
+		// so that tests can verify whether CategoryMembershipChangeJobs get enqueued.
+		$this->overrideConfigValue( MainConfigNames::RCWatchCategoryMembership, true );
+
 		$slotRoleRegistry = $this->getServiceContainer()->getSlotRoleRegistry();
 
 		if ( !$slotRoleRegistry->isDefinedRole( 'aux' ) ) {
@@ -69,6 +74,13 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		// protect against service container resets
 		$this->setService( 'SlotRoleRegistry', $slotRoleRegistry );
+
+		// Clear some extension hook handlers that may interfere with mock object expectations.
+		$this->clearHooks( [
+			'RevisionRecordInserted',
+			'PageSaveComplete',
+			'LinksUpdateComplete',
+		] );
 	}
 
 	private function getDummyTitle( $method ) {
@@ -707,7 +719,8 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$this->expectChangeTrackingUpdates(
 			1, 0, 1,
-			$page->getNamespace() === NS_USER_TALK ? 1 : 0
+			$page->getNamespace() === NS_USER_TALK ? 1 : 0,
+			1
 		);
 
 		$this->expectSearchUpdates( 1 );
@@ -751,7 +764,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		// Null edits should not go into recentchanges, should not
 		// increment counters, and should not trigger talk page notifications.
-		$this->expectChangeTrackingUpdates( 0, 0, 0, 0 );
+		$this->expectChangeTrackingUpdates( 0, 0, 0, 0, 0 );
 
 		// Update derived data on null edits
 		$this->expectSearchUpdates( 1 );
@@ -796,7 +809,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		// Silent dummy revisions should not go into recentchanges,
 		// should not increment counters, and should not trigger talk page
 		// notifications.
-		$this->expectChangeTrackingUpdates( 0, 0, 0, 0 );
+		$this->expectChangeTrackingUpdates( 0, 0, 0, 0, 0 );
 
 		// Do not update derived data on dummy revisions!
 		$this->expectSearchUpdates( 0 );
@@ -1262,7 +1275,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		// Clear pending jobs so the spies don't get confused
 		$this->runJobs();
 
-		$this->expectChangeTrackingUpdates( 0, 0, 0, 0 );
+		$this->expectChangeTrackingUpdates( 0, 0, 0, 0, 0 );
 		$this->expectSearchUpdates( 0 );
 
 		$updater = $page->newPageUpdater( $user );

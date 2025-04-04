@@ -896,8 +896,14 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 * @covers \LocalFile
 	 */
 	public function testUpload_updatePropagation() {
+		// Clear some extension hook handlers that may interfere with mock object expectations.
+		$this->clearHooks( [
+			'PageSaveComplete',
+			'RevisionRecordInserted',
+		] );
+
 		// Expect two non-edit recent changes entries but only one edit count.
-		$this->expectChangeTrackingUpdates( 0, 2, 1, 0 );
+		$this->expectChangeTrackingUpdates( 0, 2, 1, 0, 1 );
 
 		// Expect only one search update, the re-upload doesn't change the page.
 		$this->expectSearchUpdates( 1 );

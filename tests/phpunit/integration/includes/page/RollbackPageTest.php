@@ -588,6 +588,12 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 		?Content $content1 = null,
 		?Content $content2 = null
 	) {
+		// Clear some extension hook handlers that may interfere with mock object expectations.
+		$this->clearHooks( [
+			'PageSaveComplete',
+			'RevisionRecordInserted',
+		] );
+
 		$page = $this->getServiceContainer()->getWikiPageFactory()
 			->newFromTitle( Title::newFromText( __METHOD__ ) );
 
@@ -602,7 +608,8 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 		// Should generate an RC entry for rollback
 		$this->expectChangeTrackingUpdates(
 			1, 0, 1,
-			$page->getNamespace() === NS_USER_TALK ? 1 : 0
+			$page->getNamespace() === NS_USER_TALK ? 1 : 0,
+			1
 		);
 
 		$this->expectSearchUpdates( 1 );
@@ -617,5 +624,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 			->newRollbackPage( $page, $admin, $user1 )
 			->rollbackIfAllowed();
 		$this->assertStatusGood( $rollbackResult );
+
+		$this->runDeferredUpdates();
 	}
 }

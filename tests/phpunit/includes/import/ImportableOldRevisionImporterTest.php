@@ -190,7 +190,7 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 	public function testUpdatePropagation( PageIdentity $title ) {
 		$revision = $this->getWikiRevision( Title::castFromPageIdentity( $title ) );
 
-		$this->expectChangeTrackingUpdates( 0, 0, 0, 0 );
+		$this->expectChangeTrackingUpdates( 0, 0, 0, 0, 1 );
 
 		$this->expectSearchUpdates( 1 );
 		$this->expectLocalizationUpdate( $title->getNamespace() === NS_MEDIAWIKI ? 1 : 0 );

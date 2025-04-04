@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Tests\recentchanges;
 
+use MediaWiki\JobQueue\JobQueueGroup;
+use MediaWiki\MainConfigNames;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserEditTracker;
@@ -25,8 +27,13 @@ trait ChangeTrackingUpdateSpyTrait {
 		int $rcEdit,
 		int $rcOther,
 		int $userEditCount,
-		int $talkPageNotifications
+		int $talkPageNotifications,
+		int $categoryMembershipChangeJobs
 	) {
+		// Force enable RC entry creation for category changes
+		// to verify CategoryMembershipChangeJobs get enqueued irrespective of local configuration.
+		$this->overrideConfigValue( MainConfigNames::RCWatchCategoryMembership, true );
+
 		// Hack for spying on RC insertions
 		$rcEditStatus = $this->createMock( StatusValue::class );
 		$rcEditStatus->expects( $this->exactly( $rcEdit ) )
@@ -75,6 +82,25 @@ trait ChangeTrackingUpdateSpyTrait {
 			->method( 'removeUserHasNewMessages' );
 
 		$this->setService( 'TalkPageNotificationManager', $talkPageNotificationManager );
+
+		$categoryMembershipChangeJobStatus = $this->createMock( StatusValue::class );
+		$categoryMembershipChangeJobStatus->expects( $this->exactly( $categoryMembershipChangeJobs ) )
+			->method( 'setOK' );
+
+		$jobQueueGroup = $this->createMock( JobQueueGroup::class );
+		$jobQueueGroup->method( $this->logicalOr( 'push', 'lazyPush' ) )
+			->willReturnCallback(
+				static function ( $specs ) use ( $categoryMembershipChangeJobStatus ): void {
+					$specs = is_array( $specs ) ? $specs : [ $specs ];
+					foreach ( $specs as $spec ) {
+						if ( $spec->getType() === 'categoryMembershipChange' ) {
+							$categoryMembershipChangeJobStatus->setOK( true );
+						}
+					}
+				}
+			);
+
+		$this->setService( 'JobQueueGroup', $jobQueueGroup );
 	}
 
 }

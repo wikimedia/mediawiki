@@ -478,6 +478,11 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Page\UndeletePage::undeleteUnsafe
 	 */
 	public function testUpdatePropagation( $name, ?Content $content = null ) {
+		// Clear some extension hook handlers that may interfere with mock object expectations.
+		$this->clearHooks( [
+			'PageDeleteComplete',
+		] );
+
 		$content ??= new WikitextContent( self::PAGE_TEXT );
 		$deleterUser = static::getTestSysop()->getUser();
 		$deleter = new UltimateAuthority( $deleterUser );
@@ -489,7 +494,8 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		// but not a regular page edit.
 		$this->expectChangeTrackingUpdates(
 			0, 1, 0,
-			$page->getNamespace() === NS_USER_TALK ? -1 : 0
+			$page->getNamespace() === NS_USER_TALK ? -1 : 0,
+			0
 		);
 
 		// TODO: Assert that the search index is updated after deletion.

@@ -1129,16 +1129,11 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doUpdates()
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doSecondaryDataUpdates()
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doParserCacheUpdate()
-	 * @covers \MediaWiki\RecentChanges\ChangeTrackingEventIngress::handlePageRevisionUpdatedEvent()
-	 * @covers \MediaWiki\RecentChanges\ChangeTrackingEventIngress::anyChangedSlotSupportsCategories()
 	 */
 	public function testDoUpdates(
 		bool $simulateNullEdit,
-		bool $simulatePageCreation,
-		bool $rcWatchCategoryMembership
+		bool $simulatePageCreation
 	) {
-		$this->overrideConfigValue( MainConfigNames::RCWatchCategoryMembership, $rcWatchCategoryMembership );
-
 		$page = $this->getPage( __METHOD__ );
 
 		$content = [ SlotRecord::MAIN => new WikitextContent( 'current [[main]]' ) ];
@@ -1257,15 +1252,6 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->runDeferredUpdates();
 		$this->assertSame( 1, $listenerCalled, 'PageRevisionUpdatedEvent listener' );
 
-		$this->assertSame(
-			$rcWatchCategoryMembership && !$simulateNullEdit ? 1 : 0,
-			$this->getServiceContainer()
-				->getJobQueueGroup()
-				->get( 'categoryMembershipChange' )
-				->getSize(),
-			'CategoryMembershipChangeJob should only be enqueued for non-null edits (T390636)'
-		);
-
 		// TODO: MCR: test data updates for additional slots!
 		// TODO: test update for edit without page creation
 		// TODO: test message cache purge
@@ -1281,13 +1267,11 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 			// null or non-null edit
 			[ true, false ],
 			// page creation
-			[ true, false ],
-			// category membership notifications enabled or disabled
 			[ true, false ]
 		);
 
 		foreach ( $testCases as $params ) {
-			[ $simulateNullEdit, $simulatePageCreation, $rcWatchCategoryMembership ] = $params;
+			[ $simulateNullEdit, $simulatePageCreation ] = $params;
 
 			if ( $simulateNullEdit && $simulatePageCreation ) {
 				// Page creations cannot be null edits, so don't simulate an impossible scenario
@@ -1295,10 +1279,9 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 			}
 
 			$description = sprintf(
-				'%s edit, %s category membership notifications %s',
+				'%s edit%s',
 				$simulateNullEdit ? 'null' : 'non-null',
-				$simulatePageCreation ? 'page creation, ' : '',
-				$rcWatchCategoryMembership ? 'enabled' : 'disabled'
+				$simulatePageCreation ? ', page creation, ' : ''
 			);
 
 			yield $description => $params;

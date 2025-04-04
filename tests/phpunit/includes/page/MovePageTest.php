@@ -741,6 +741,14 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideUpdatePropagation
 	 */
 	public function testUpdatePropagation( $old, $new, ?Content $content = null ) {
+		// Clear some extension hook handlers that may interfere with mock object expectations.
+		$this->clearHooks( [
+			'RevisionRecordInserted',
+			'PageSaveComplete',
+			'PageMoveComplete',
+			'LinksUpdateComplete',
+		] );
+
 		$old = Title::newFromText( $old );
 		$new = Title::newFromText( $new );
 
@@ -754,7 +762,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		// Should be counted as user contributions (T163966)
 		// Should generate an RC entry for the move log, but not for
 		// the dummy revision or redirect page.
-		$this->expectChangeTrackingUpdates( 0, 1, 1, 0 );
+		$this->expectChangeTrackingUpdates( 0, 1, 1, 0, 1 );
 
 		// The moved page and the redirect should both get re-indexed.
 		$this->expectSearchUpdates( 2 );
