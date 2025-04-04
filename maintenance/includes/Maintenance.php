@@ -548,7 +548,7 @@ abstract class Maintenance {
 		// Instead, throw an exception that will still cause the relevant test to fail if the ::fatalError
 		// call was not expected.
 		if ( defined( 'MW_PHPUNIT_TEST' ) && $this->isTesting ) {
-			throw new MaintenanceFatalError( $exitCode );
+			throw new MaintenanceFatalError( (string)$msg, $exitCode );
 		} else {
 			exit( $exitCode );
 		}
