@@ -132,8 +132,8 @@ class ApiWatch extends ApiBase {
 	}
 
 	private function watchTitle( PageIdentity $page, User $user, array $params,
-		$compatibilityMode = false
-	) {
+		bool $compatibilityMode = false
+	): array {
 		$res = [ 'title' => $this->titleFormatter->getPrefixedText( $page ), 'ns' => $page->getNamespace() ];
 
 		if ( !$this->watchlistManager->isWatchable( $page ) ) {

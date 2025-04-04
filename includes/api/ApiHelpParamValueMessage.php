@@ -128,7 +128,7 @@ class ApiHelpParamValueMessage extends Message {
 		return $this->message;
 	}
 
-	private function subMessage( $key ) {
+	private function subMessage( string $key ): string {
 		$msg = new Message( $key );
 		$msg->isInterface = $this->isInterface;
 		$msg->language = $this->language;

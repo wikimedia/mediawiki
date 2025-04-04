@@ -641,7 +641,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		return $vals;
 	}
 
-	private function continueStr( $row ) {
+	private function continueStr( \stdClass $row ): string {
 		if ( $this->multiUserMode ) {
 			switch ( $this->orderBy ) {
 				case 'name':

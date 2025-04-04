@@ -950,7 +950,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $config );
 	}
 
-	private function getAutoPromoteConds() {
+	private function getAutoPromoteConds(): array {
 		$allowedConditions = [];
 		foreach ( get_defined_constants() as $constantName => $constantValue ) {
 			if ( strpos( $constantName, 'APCOND_' ) !== false ) {
@@ -960,7 +960,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $allowedConditions;
 	}
 
-	private function processAutoPromote( $input, $allowedConditions ) {
+	private function processAutoPromote( array $input, array $allowedConditions ): array {
 		$data = [];
 		foreach ( $input as $groupName => $conditions ) {
 			$row = $this->recAutopromote( $conditions, $allowedConditions );
@@ -972,7 +972,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $data;
 	}
 
-	private function appendAutoPromote( $property ) {
+	private function appendAutoPromote( string $property ): bool {
 		return $this->getResult()->addValue(
 			'query',
 			$property,
@@ -983,7 +983,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		);
 	}
 
-	private function appendAutoPromoteOnce( $property ) {
+	private function appendAutoPromoteOnce( string $property ): bool {
 		$allowedConditions = $this->getAutoPromoteConds();
 		$data = [];
 		foreach ( $this->getConfig()->get( MainConfigNames::AutopromoteOnce ) as $key => $value ) {

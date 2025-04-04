@@ -359,7 +359,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		}
 	}
 
-	private function setContinue( $row, $sortby ) {
+	private function setContinue( \stdClass $row, array $sortby ) {
 		$cont = [];
 		foreach ( $sortby as $field => $v ) {
 			$cont[] = $row->$field;

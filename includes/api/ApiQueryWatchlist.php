@@ -268,7 +268,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		}
 	}
 
-	private function getFieldsToInclude() {
+	private function getFieldsToInclude(): array {
 		$includeFields = [];
 		if ( $this->fld_flags ) {
 			$includeFields[] = WatchedItemQueryService::INCLUDE_FLAGS;
@@ -298,7 +298,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		return $includeFields;
 	}
 
-	private function showParamsConflicting( array $show ) {
+	private function showParamsConflicting( array $show ): bool {
 		return ( isset( $show[WatchedItemQueryService::FILTER_MINOR] )
 			&& isset( $show[WatchedItemQueryService::FILTER_NOT_MINOR] ) )
 		|| ( isset( $show[WatchedItemQueryService::FILTER_BOT] )
@@ -315,7 +315,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			&& isset( $show[WatchedItemQueryService::FILTER_NOT_UNREAD] ) );
 	}
 
-	private function extractOutputData( WatchedItem $watchedItem, array $recentChangeInfo ) {
+	private function extractOutputData( WatchedItem $watchedItem, array $recentChangeInfo ): array {
 		/* Determine the title of the page that has been changed. */
 		$target = $watchedItem->getTarget();
 		if ( $target instanceof LinkTarget ) {

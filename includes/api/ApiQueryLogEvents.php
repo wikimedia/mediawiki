@@ -328,7 +328,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$result->addIndexedTagName( [ 'query', $this->getModuleName() ], 'item' );
 	}
 
-	private function extractRowInfo( $row ) {
+	private function extractRowInfo( \stdClass $row ): array {
 		$logEntry = DatabaseLogEntry::newFromRow( $row );
 		$vals = [
 			ApiResult::META_TYPE => 'assoc',
