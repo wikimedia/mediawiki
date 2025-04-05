@@ -1,5 +1,5 @@
 <?php
-/** Minnan (Tâi-lô) (Bân-lâm-gú (Tâi-lô))
+/** Minnan (Tâi-lô) (Bân-lâm-gí (Tâi-lô))
  *
  * @file
  * @ingroup Languages

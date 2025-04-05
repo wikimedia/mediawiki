@@ -1,5 +1,5 @@
 <?php
-/** Minnan (Pe̍h-ōe-jī) (Bân-lâm-gú (Pe̍h-ōe-jī))
+/** Minnan (Pe̍h-ōe-jī) (Bân-lâm-gí (Pe̍h-ōe-jī))
  *
  * @file
  * @ingroup Languages

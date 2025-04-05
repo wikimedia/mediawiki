@@ -390,10 +390,10 @@ class Names {
 		'mzn' => 'مازِرونی', # Mazanderani
 		'na' => 'Dorerin Naoero', # Nauruan
 		'nah' => 'Nāhuatl', # Nahuatl (added to ISO 639-3 on 2006-10-31)
-		'nan' => '閩南語 / Bân-lâm-gú', # Minnan (multiple scripts), T10217, T354937
+		'nan' => '閩南語 / Bân-lâm-gí', # Minnan (multiple scripts), T10217, T354937
 		'nan-hant' => '閩南語（傳統漢字）', # Minnan (Traditional Han script), T354937
-		'nan-latn-pehoeji' => 'Bân-lâm-gú (Pe̍h-ōe-jī)', # Minnan (Pe̍h-ōe-jī), T354937
-		'nan-latn-tailo' => 'Bân-lâm-gú (Tâi-lô)', # Minnan (Tâi-lô), T354937
+		'nan-latn-pehoeji' => 'Bân-lâm-gí (Pe̍h-ōe-jī)', # Minnan (Pe̍h-ōe-jī), T354937
+		'nan-latn-tailo' => 'Bân-lâm-gí (Tâi-lô)', # Minnan (Tâi-lô), T354937
 		'nap' => 'Napulitano', # Neapolitan, T45793
 		'nb' => 'norsk bokmål', # Norwegian (Bokmal)
 		'nds' => 'Plattdüütsch', # Low German ''or'' Low Saxon

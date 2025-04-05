@@ -1,5 +1,5 @@
 <?php
-/** Minnan (閩南語 / Bân-lâm-gú)
+/** Minnan (閩南語 / Bân-lâm-gí)
  *
  * @file
  * @ingroup Languages
