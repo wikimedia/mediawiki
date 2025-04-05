@@ -14,6 +14,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\ParserOutputLinkTypes;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Title\NamespaceInfo;
@@ -142,8 +143,10 @@ class CategoryLinksTable extends TitleLinksTable {
 		$this->newLinks = [];
 		$sourceTitle = Title::castFromPageIdentity( $this->getSourcePage() );
 		$sortKeyInputs = [];
-		foreach ( $parserOutput->getCategoryNames() as $name ) {
-			$sortKey = $parserOutput->getCategorySortKey( $name );
+		foreach (
+			$parserOutput->getLinkList( ParserOutputLinkTypes::CATEGORY )
+			as [ 'link' => $targetTitle, 'sort' => $sortKey ]
+		) {
 			'@phan-var string $sortKey'; // sort key will never be null
 
 			if ( $sortKey == '' ) {
@@ -160,7 +163,8 @@ class CategoryLinksTable extends TitleLinksTable {
 			// categories, causing T27254.
 			$sortKeyPrefix = mb_strcut( $sortKey, 0, 255 );
 
-			$targetTitle = Title::makeTitle( NS_CATEGORY, $name );
+			$name = $targetTitle->getDBkey();
+			$targetTitle = Title::castFromLinkTarget( $targetTitle );
 			$this->languageConverter->findVariantLink( $name, $targetTitle, true );
 			// Ignore the returned text, DB key should be used for links (T328477).
 			$name = $targetTitle->getDBKey();
