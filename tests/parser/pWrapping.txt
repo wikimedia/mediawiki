@@ -394,3 +394,13 @@ it's off to work we go
 
 <p>it's off to work we go</p>
 !! end
+
+!! test
+Extlink on a line with a block gets wrapped
+!! wikitext
+[https://google.com {{1x|foo}}] bar <div>foo</div>
+!! html/php
+<p><a rel="nofollow" class="external text" href="https://google.com">foo</a> bar </p><div>foo</div>
+!! html/parsoid
+<p><a rel="mw:ExtLink nofollow" href="https://google.com" class="external text"><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</span></a> bar </p><div data-parsoid='{"stx":"html"}'>foo</div>
+!! end

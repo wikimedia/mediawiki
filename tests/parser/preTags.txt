@@ -80,7 +80,7 @@ Entities inside <pre>
 !! html/parsoid+standalone
 <pre about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"#tag:pre","function":"tag"},"params":{"1":{"wt":"Foo &lt;nowiki>&amp;rarr;bar&lt;/nowiki>"}},"i":0}}]}'>Foo <span typeof="mw:Entity">→</span>bar</pre>
 !! html/parsoid+integrated
-<pre about="#mwt1" typeof="mw:Extension/pre mw:Transclusion" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"Foo &lt;nowiki>&amp;rarr;bar&lt;/nowiki>"},"parts":[{"template":{"target":{"wt":"#tag:pre","function":"tag"},"params":{"1":{"wt":"Foo &lt;nowiki>&amp;rarr;bar&lt;/nowiki>"}},"i":0}}]}'>Foo →bar</pre>
+<pre about="#mwt1" typeof="mw:Extension/pre mw:Transclusion" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"Foo &amp;rarr;bar"},"parts":[{"template":{"target":{"wt":"#tag:pre","function":"tag"},"params":{"1":{"wt":"Foo &lt;nowiki>&amp;rarr;bar&lt;/nowiki>"}},"i":0}}]}'>Foo →bar</pre>
 !! end
 
 ## Don't expect this to rt, Parsoid drops the unmatched closing pre tags that

@@ -1651,6 +1651,29 @@ parsoid=wt2html
 !! end
 
 !! test
+Non-wikilinks should not be treated as broken wikilinks
+!! options
+parsoid=wt2html
+!! wikitext
+{{1x|[[1],[2]]}}
+
+{{1x|[[{}]]}}
+
+{{1x|[[1, [[2, 3]], 4]]}}
+!! html/php
+<p>[[1],[2]]
+</p><p>[[{}]]
+</p><p>[[1, <a href="/index.php?title=2,_3&amp;action=edit&amp;redlink=1" class="new" title="2, 3 (page does not exist)">2, 3</a>, 4]]
+</p>
+!! html/parsoid
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[1],[2]]"}},"i":0}}]}'>[[1],[2]]</span></p>
+
+<p><span about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[{}]]"}},"i":0}}]}'>[[{}]]</span></p>
+
+<p><span about="#mwt3" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[1, [[2, 3]], 4]]"}},"i":0}}]}'>[[1, </span><a rel="mw:WikiLink" href="./2,_3?action=edit&amp;redlink=1" title="2, 3" class="new" typeof="mw:LocalizedAttrs" data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["2, 3"]}}'>2, 3</a><span>, 4]]</span></p>
+!! end
+
+!! test
 Wikilinks with embedded newlines are not broken
 !! wikitext
 {{1x|[[ Foo
@@ -3062,6 +3085,18 @@ Wikilink in wikilink
 <p>[[Hi|<a rel="mw:WikiLink" href="./Ho" title="Ho" data-parsoid='{"stx":"simple","a":{"href":"./Ho"},"sa":{"href":"Ho"}}'>Ho</a>]]</p>
 !! end
 
+!! test
+Category in wikilink
+!! options
+parsoid=wt2html
+!! wikitext
+[[Hi|Ho[[Category:Hiho]]]]
+!! html/php
+<p>[[Hi|Ho]]
+</p>
+!! html/parsoid
+<p>[[Hi|Ho<link rel="mw:PageProp/Category" href="./Category:Hiho"/>]]</p>
+!! end
 
 !! test
 Parsoid-specific test: Wikilinks with &nbsp; should RT properly
@@ -5478,28 +5513,38 @@ parsoid=wt2html
 
 !! test
 Table wikitext syntax outside wiki-tables
+!! options
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 !! wikitext
 a
 |+ not a caption
-! not a table heading
+! not a table heading!! neither is this
 |- not a table row
-| not a table cell
+| not a table cell || neither is this
 | class="foo bar" | baz
 b
 |}
 |-
 c
+|-
+{{1x|!a!!b}}
+|-
+{{1x|{{!}}a {{!}}{{!}}b}}
 !! html
 <p>a
 |+ not a caption
-! not a table heading
+! not a table heading!! neither is this
 |- not a table row
-| not a table cell
+| not a table cell || neither is this
 | class="foo bar" | baz
 b
 |}
 |-
 c
+|-
+!a!!b
+|-
+|a ||b
 </p>
 !! end
 
@@ -7610,6 +7655,7 @@ Parsoid: Defaultsort
 <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"DEFAULTSORT:Foo","function":"defaultsort"},"params":{},"i":0}}]}'></span>
 !! end
 
+# See also T391062 for parsoid-native default sort.
 !! test
 Parsoid: Defaultsort variations (T236846)
 !! wikitext
@@ -9827,6 +9873,8 @@ Article for special page transclusion test
 
 !! test
 Special page transclusion
+!! config
+wgParsoidFragmentSupport="v3"
 !! wikitext
 {{Special:Prefixindex/Xyzzyx}}
 !! html/php
@@ -9840,6 +9888,8 @@ Special page transclusion
 
 !! test
 Special page transclusion twice (T7021)
+!! config
+wgParsoidFragmentSupport="v3"
 !! wikitext
 {{Special:Prefixindex/Xyzzyx}}
 {{Special:Prefixindex/Xyzzyx}}
@@ -9866,7 +9916,7 @@ Template:Nested special
 !! test
 Nested special page transclusion
 !! config
-wgParsoidFragmentSupport="v2"
+wgParsoidFragmentSupport="v3"
 !! wikitext
 {{nested special}}
 !! html/php
@@ -10804,13 +10854,15 @@ parsoid=html2wt
 
 !! test
 Special:Search page linking.
+!! config
+wgParsoidFragmentSupport="v3"
 !! wikitext
 {{Special:search}}
 !! html/php
 <p><a href="/wiki/Special:Search" title="Special:Search">Special:Search</a>
 </p>
 !! html/parsoid+integrated
-<p><a href="/wiki/Special:Search" title="Special:Search" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"Special:search","href":"./Special:Search"},"params":{},"i":0}}]}'>Special:Search</a></p>
+<p><a rel="mw:WikiLink" href="./Special:Search" title="Special:Search" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"Special:search","href":"./Special:Search"},"params":{},"i":0}}]}'>Special:Search</a></p>
 !! end
 
 !! test
@@ -10903,7 +10955,7 @@ parsoid=wt2html
 </p><p>{{ Main Page|Something else }}
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Template:Main_Page?action=edit&amp;redlink=1" title="Template:Main Page" about="#mwt1" typeof="mw:Transclusion mw:LocalizedAttrs" class="new" data-parsoid='{"stx":"simple","a":{"href":"./Template:Main_Page"},"sa":{"href":"Template:Main_Page"},"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"Main Page","href":"./Template:Main_Page"},"params":{"1":{"wt":"Something else "}},"i":0}}]}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Template:Main Page"]}}'>Template:Main_Page</a></p>
+<p><a rel="mw:WikiLink" href="./Template:Main_Page?action=edit&amp;redlink=1" title="Template:Main Page" about="#mwt1" typeof="mw:Transclusion mw:LocalizedAttrs" class="new" data-parsoid='{"stx":"simple","a":{"href":"./Template:Main_Page"},"sa":{"href":"Template:Main_Page"},"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"Main Page","href":"./Template:Main_Page"},"params":{"1":{"wt":"Something else "}},"i":0}}]}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Template:Main Page"]}}'>Template:Main Page</a></p>
 
 <p>{{ <span about="#mwt5" typeof="mw:Transclusion" data-parsoid='{"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"T290526","href":"./Template:T290526"},"params":{},"i":0}}]}'>Main Page|Something else</span> }}</p>
 !! end
@@ -17098,9 +17150,9 @@ parsoid=wt2html
 
 z
 !! html/parsoid
-<p><i about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"&lt;sealtag>y&lt;/sealtag>":null},"sa":{"&lt;sealtag>y&lt;/sealtag>":""},"autoInsertedEnd":true}' data-mw='{"attribs":[[{"txt":"","html":"&lt;span about=\"#mwt2\" typeof=\"mw:Extension/sealtag\" data-parsoid=&apos;{\"src\":\"&amp;lt;sealtag>y&amp;lt;/sealtag>\"}&apos; data-mw=&apos;{\"name\":\"sealtag\",\"attrs\":{},\"body\":{\"extsrc\":\"y\"}}&apos;>&lt;/span>"},{"html":""}]]}'></i></p><i about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"&lt;sealtag>y&lt;/sealtag>":null},"sa":{"&lt;sealtag>y&lt;/sealtag>":""},"autoInsertedStart":true,"autoInsertedEnd":true}' data-mw='{"attribs":[[{"txt":"","html":""},{"html":""}]]}'>
+<p><i about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"&lt;sealtag>y&lt;/sealtag>":null},"sa":{"&lt;sealtag>y&lt;/sealtag>":""},"autoInsertedEnd":true}' data-mw='{"attribs":[[{"txt":"","html":"&lt;span about=\"#mwt2\" typeof=\"mw:Extension/sealtag\" data-parsoid=&apos;{\"src\":\"&amp;lt;sealtag>y&amp;lt;/sealtag>\"}&apos; data-mw=&apos;{\"name\":\"sealtag\",\"attrs\":{},\"body\":{\"extsrc\":\"y\"}}&apos;>&lt;/span>"},{"html":""}]]}'></i></p>
 
-<p>z</p></i>
+<p><i about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"&lt;sealtag>y&lt;/sealtag>":null},"sa":{"&lt;sealtag>y&lt;/sealtag>":""},"autoInsertedStart":true,"autoInsertedEnd":true}' data-mw='{"attribs":[[{"txt":"","html":""},{"html":""}]]}'>z</i></p>
 !! end
 
 !! test
@@ -17112,9 +17164,9 @@ parsoid=wt2html
 
 z
 !! html/parsoid
-<p><i title="" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"title":""},"sa":{"title":"&lt;sealtag>y&lt;/sealtag>"},"autoInsertedEnd":true}' data-mw='{"attribs":[[{"txt":"title"},{"html":"&lt;span about=\"#mwt2\" typeof=\"mw:Extension/sealtag\" data-parsoid=&apos;{\"src\":\"&amp;lt;sealtag>y&amp;lt;/sealtag>\"}&apos; data-mw=&apos;{\"name\":\"sealtag\",\"attrs\":{},\"body\":{\"extsrc\":\"y\"}}&apos;>&lt;/span>"}]]}'>a</i></p><i title="" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"title":""},"sa":{"title":"&lt;sealtag>y&lt;/sealtag>"},"autoInsertedStart":true,"autoInsertedEnd":true}' data-mw='{"attribs":[[{"txt":"title"},{"html":""}]]}'>
+<p><i title="" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"title":""},"sa":{"title":"&lt;sealtag>y&lt;/sealtag>"},"autoInsertedEnd":true}' data-mw='{"attribs":[[{"txt":"title"},{"html":"&lt;span about=\"#mwt2\" typeof=\"mw:Extension/sealtag\" data-parsoid=&apos;{\"src\":\"&amp;lt;sealtag>y&amp;lt;/sealtag>\"}&apos; data-mw=&apos;{\"name\":\"sealtag\",\"attrs\":{},\"body\":{\"extsrc\":\"y\"}}&apos;>&lt;/span>"}]]}'>a</i></p>
 
-<p>z</p></i>
+<p><i title="" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"title":""},"sa":{"title":"&lt;sealtag>y&lt;/sealtag>"},"autoInsertedStart":true,"autoInsertedEnd":true}' data-mw='{"attribs":[[{"txt":"title"},{"html":""}]]}'>z</i></p>
 !! end
 
 !! test
@@ -17187,7 +17239,7 @@ Include directive string gluing
 !! test
 Extension tag contents using isRawHTML flag
 !! config
-wgParsoidFragmentSupport="v2"
+wgParsoidFragmentSupport="v3"
 !! options
 language=zh
 !! wikitext
@@ -17222,7 +17274,7 @@ But with isRawHTML the result is left alone:
 !! test
 Parser function contents using isRawHTML flag
 !! config
-wgParsoidFragmentSupport="v2"
+wgParsoidFragmentSupport="v3"
 !! options
 language=zh
 !! wikitext
@@ -17252,7 +17304,7 @@ But with isRawHTML the result is left alone:
 !! test
 Handling of nowiki strip markers in Parsoid fragments
 !! config
-wgParsoidFragmentSupport="v2"
+wgParsoidFragmentSupport="v3"
 !! options
 parsoid=wt2html
 !! wikitext
@@ -17265,13 +17317,13 @@ Parser function: {{#spantag:<nowiki>a &amp;amp; <b>c</b></nowiki>}}
 </p>
 !! html/parsoid+integrated
 <p>Extension tag: <span typeof="mw:Extension/spantag" data-mw='{"name":"spantag","attrs":{},"body":{"extsrc":"&lt;nowiki>a &amp;amp;amp; &lt;b>c&lt;/b>&lt;/nowiki>"}}'>a <span typeof="mw:Entity">&amp;</span>amp; &lt;b>c&lt;/b></span></p>
-<p>Parser function: <span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#spantag:&lt;nowiki>a &amp;amp;amp; &lt;b>c&lt;/b>&lt;/nowiki>","function":"spantagpf"},"params":{},"i":0}}]}'>a <span typeof="mw:Entity">&amp;</span>amp; &lt;b>c&lt;/b></span></p>
+<p>Parser function: <span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#spantag:&lt;nowiki>a &amp;amp;amp; &lt;b>c&lt;/b>&lt;/nowiki>","function":"spantagpf"},"params":{},"i":0}}]}'>a &amp;amp; &lt;b>c&lt;/b></span></p>
 !! end
 
 !! test
 Handling of nested nowiki strip markers in Parsoid fragments (1)
 !! config
-wgParsoidFragmentSupport="v2"
+wgParsoidFragmentSupport="v3"
 !! wikitext
 Text {{#spantag:text <spantag>more text</spantag>}}
 !! html/php
@@ -17284,7 +17336,7 @@ Text {{#spantag:text <spantag>more text</spantag>}}
 !! test
 Handling of nested nowiki strip markers in Parsoid fragments (2)
 !! config
-wgParsoidFragmentSupport="v2"
+wgParsoidFragmentSupport="v3"
 !! wikitext
 Text {{#spantag:<nowiki><b></nowiki> {{#spantag:<nowiki><c></nowiki>}}}}
 !! html/php
@@ -17297,7 +17349,7 @@ Text {{#spantag:<nowiki><b></nowiki> {{#spantag:<nowiki><c></nowiki>}}}}
 !! test
 T386233: suppress <nowiki/> tags between extension tags
 !! config
-wgParsoidFragmentSupport="v2"
+wgParsoidFragmentSupport="v3"
 !! wikitext
 Deliberately unclosed b tag triggers p-wrapping if a nowiki span is
 added between the divtags:

@@ -313,6 +313,24 @@ A table with captions with non-default spaced attributes and a table row
 !! end
 
 !! test
+Multi-line captions in tables
+!! wikitext
+{|
+|+line 1 of caption
+line 2 of caption
+|data
+|}
+!! html
+<table>
+<caption>line 1 of caption
+line 2 of caption
+</caption>
+<tbody><tr>
+<td>data
+</td></tr></tbody></table>
+!! end
+
+!! test
 Table td-cell syntax variations
 !! wikitext
 {|
@@ -1979,4 +1997,24 @@ parsoid=wt2html,wt2wt
 </tr>
 </tbody>
 </table>
+!! end
+
+!! test
+Multiline inline table line in file caption
+!! wikitext
+[[File:Foobar.jpg|thumb|
+{|
+|
+asdf
+|}
+]]
+!! html/php
+<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="mw-file-element" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a><figcaption> <table> <tbody><tr> <td> asdf </td></tr></tbody></table> </figcaption></figure>
+!! html/parsoid
+<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" class="mw-file-element"/></a><figcaption>
+<table>
+<tbody><tr><td>
+asdf</td></tr>
+</tbody></table>
+</figcaption></figure>
 !! end
