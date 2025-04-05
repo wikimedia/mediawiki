@@ -1,6 +1,7 @@
-// Support: Safari < 11.1, probably? There's conflicting information about it on the internet.
-// eslint-plugin-compat says "AbortController is not supported in Safari 11, iOS Safari 11.0-11.2",
-// but the documentation on MDN and caniuse.com disagrees. If you find out who's right, update this.
+// Support: Firefox < 97, Chrome < 98, Safari < 15.4.
+// mw.Api's use of AbortController requires the AbortSignal 'reason' property,
+// which was not supported in earlier versions.
+// https://caniuse.com/mdn-api_abortsignal_reason
 
 /**
  * @classdesc
