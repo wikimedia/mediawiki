@@ -587,7 +587,6 @@ class BlockUser {
 		}
 
 		$expectedTargetCount = 0;
-		$priorBlock = null;
 		$priorBlocks = $this->getPriorBlocksForTarget();
 
 		if ( $this->blockToUpdate !== null ) {
@@ -601,7 +600,7 @@ class BlockUser {
 		} elseif ( $conflictMode === self::CONFLICT_NEW
 			&& $this->options->get( MainConfigNames::EnableMultiBlocks )
 		) {
-			foreach ( $this->getPriorBlocksForTarget() as $priorBlock ) {
+			foreach ( $priorBlocks as $priorBlock ) {
 				if ( $block->equals( $priorBlock ) ) {
 					// Block settings are equal => user is already blocked
 					$this->logger->debug( 'placeBlockInternal: ' .
@@ -610,8 +609,10 @@ class BlockUser {
 				}
 			}
 			$expectedTargetCount = null;
+			$priorBlock = null;
 			$update = false;
 		} elseif ( !$priorBlocks ) {
+			$priorBlock = null;
 			$update = false;
 		} else {
 			// Reblock only if the caller wants so
