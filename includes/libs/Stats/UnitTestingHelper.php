@@ -190,14 +190,13 @@ class UnitTestingHelper {
 		$key = StatsCache::cacheKey( $this->component, $this->getName( $selector ) );
 		$metric = $this->cache->getAllMetrics()[$key] ?? null;
 		if ( $metric === null ) {
-			# provide debug info
-			$this->logger->debug( 'Metrics in cache:' );
+			$actual = 'Actual metrics:';
 			foreach ( $this->cache->getAllMetrics() as $metric ) {
 				$name = $metric->getName();
 				$sampleCount = $metric->getSampleCount();
-				$this->logger->debug( "  $name", [ 'samples' => $sampleCount ] );
+				$actual .= "\n  $name ($sampleCount samples)";
 			}
-			throw new OutOfBoundsException( "Could not find metric with key '$key'" );
+			throw new OutOfBoundsException( "Could not find metric with key '$key'\n\n$actual" );
 		}
 		return $metric;
 	}
@@ -218,8 +217,11 @@ class UnitTestingHelper {
 			}
 			$left = $right;
 		}
-		if ( count( $left ) === 0 ) {
-			throw new OutOfRangeException( "Metric selector '$selector' matched zero samples." );
+		if ( !$left ) {
+			$dogFmt = new DogStatsdFormatter();
+			$actual = 'Actual samples:'
+				. "\n" . implode( "\n", $dogFmt->getFormattedSamples( 'mediawiki', $metric ) );
+			throw new OutOfRangeException( "Metric selector '$selector' matched zero samples.\n\n$actual" );
 		}
 		return $left;
 	}
