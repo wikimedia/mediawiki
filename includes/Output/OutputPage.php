@@ -2102,6 +2102,7 @@ class OutputPage extends ContextSource {
 	 * @deprecated since 1.44, use ::getMetadata()->setRevisionTimestamp(...)
 	 */
 	public function setRevisionTimestamp( $timestamp ) {
+		wfDeprecated( __METHOD__, '1.44' );
 		$previousValue = $this->metadata->getRevisionTimestamp();
 		$this->metadata->setRevisionTimestamp( $timestamp );
 		return $previousValue;

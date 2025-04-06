@@ -1614,6 +1614,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testRevisionTimestamp() {
+		$this->filterDeprecated( '/OutputPage::setRevisionTimestamp was deprecated/' );
 		$op = $this->newInstance();
 		$this->assertNull( $op->getRevisionTimestamp() );
 

@@ -1238,7 +1238,7 @@ class DifferenceEngine extends ContextSource {
 
 			$out->setRevisionId( $this->mNewid );
 			$out->setRevisionIsCurrent( $this->mNewRevisionRecord->isCurrent() );
-			$out->setRevisionTimestamp( $this->mNewRevisionRecord->getTimestamp() );
+			$out->getMetadata()->setRevisionTimestamp( $this->mNewRevisionRecord->getTimestamp() );
 			$out->setArticleFlag( true );
 
 			if ( !$this->hookRunner->onArticleRevisionViewCustom(
