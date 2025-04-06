@@ -2,7 +2,7 @@
     "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
     "bomFormat": "CycloneDX",
     "specVersion": "1.6",
-    "serialNumber": "urn:uuid:922dbfb8-d8b8-4a04-8969-0fe49e42c738",
+    "serialNumber": "urn:uuid:2d3c408e-f84b-4c39-aca6-1a6705f8b41e",
     "version": 1,
     "components": [
         {
@@ -330,7 +330,7 @@
         {
             "type": "library",
             "name": "moment",
-            "version": "2.25.2",
+            "version": "2.30.1",
             "licenses": [
                 {
                     "license": {
@@ -338,7 +338,7 @@
                     }
                 }
             ],
-            "purl": "pkg:github/moment/moment@2.25.2",
+            "purl": "pkg:github/moment/moment@2.30.1",
             "authors": [
                 {
                     "name": "JS Foundation and other contributors"

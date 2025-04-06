@@ -16,9 +16,10 @@
             '_'
         ),
         monthsShort: 'jan_fev_mar_abr_mai_jun_jul_ago_set_out_nov_dez'.split('_'),
-        weekdays: 'Domingo_Segunda-feira_Terça-feira_Quarta-feira_Quinta-feira_Sexta-feira_Sábado'.split(
-            '_'
-        ),
+        weekdays:
+            'Domingo_Segunda-feira_Terça-feira_Quarta-feira_Quinta-feira_Sexta-feira_Sábado'.split(
+                '_'
+            ),
         weekdaysShort: 'Dom_Seg_Ter_Qua_Qui_Sex_Sáb'.split('_'),
         weekdaysMin: 'Do_2ª_3ª_4ª_5ª_6ª_Sá'.split('_'),
         weekdaysParseExact: true,
@@ -53,6 +54,8 @@
             hh: '%d horas',
             d: 'um dia',
             dd: '%d dias',
+            w: 'uma semana',
+            ww: '%d semanas',
             M: 'um mês',
             MM: '%d meses',
             y: 'um ano',

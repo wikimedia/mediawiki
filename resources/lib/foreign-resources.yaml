@@ -301,17 +301,17 @@ moment:
   license: MIT
   homepage: https://momentjs.com
   authors: JS Foundation and other contributors
-  version: 2.25.2
-  purl: pkg:github/moment/moment@2.25.2
+  version: 2.30.1
+  purl: pkg:github/moment/moment@2.30.1
   type: tar
-  src: https://codeload.github.com/moment/moment/tar.gz/2.25.2
-  integrity: sha384-Kdi8+psMUggMYwnp+uBCuy03sBfDbKFyjzdLWJks/4O8x4DwOFWzYbtm7RbJ4ISU
+  src: https://codeload.github.com/moment/moment/tar.gz/2.30.1
+  integrity: sha384-PqvOPbeNfcZqJunZo/JI3zgtel3Y36u3wR6Da8vs6HKuNlPDUiacaXoe3+a8efyH
   dest:
-    moment-2.25.2/moment.js:
-    moment-2.25.2/CHANGELOG.md:
-    moment-2.25.2/README.md:
-    moment-2.25.2/LICENSE:
-    moment-2.25.2/locale/*.js: locale
+    moment-2.30.1/moment.js:
+    moment-2.30.1/CHANGELOG.md:
+    moment-2.30.1/README.md:
+    moment-2.30.1/LICENSE:
+    moment-2.30.1/locale/*.js: locale
 
 mustache:
   license: MIT

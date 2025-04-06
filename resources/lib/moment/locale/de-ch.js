@@ -17,6 +17,7 @@
             h: ['eine Stunde', 'einer Stunde'],
             d: ['ein Tag', 'einem Tag'],
             dd: [number + ' Tage', number + ' Tagen'],
+            w: ['eine Woche', 'einer Woche'],
             M: ['ein Monat', 'einem Monat'],
             MM: [number + ' Monate', number + ' Monaten'],
             y: ['ein Jahr', 'einem Jahr'],
@@ -29,13 +30,13 @@
         months: 'Januar_Februar_März_April_Mai_Juni_Juli_August_September_Oktober_November_Dezember'.split(
             '_'
         ),
-        monthsShort: 'Jan._Feb._März_Apr._Mai_Juni_Juli_Aug._Sep._Okt._Nov._Dez.'.split(
-            '_'
-        ),
+        monthsShort:
+            'Jan._Feb._März_Apr._Mai_Juni_Juli_Aug._Sep._Okt._Nov._Dez.'.split('_'),
         monthsParseExact: true,
-        weekdays: 'Sonntag_Montag_Dienstag_Mittwoch_Donnerstag_Freitag_Samstag'.split(
-            '_'
-        ),
+        weekdays:
+            'Sonntag_Montag_Dienstag_Mittwoch_Donnerstag_Freitag_Samstag'.split(
+                '_'
+            ),
         weekdaysShort: 'So_Mo_Di_Mi_Do_Fr_Sa'.split('_'),
         weekdaysMin: 'So_Mo_Di_Mi_Do_Fr_Sa'.split('_'),
         weekdaysParseExact: true,
@@ -66,6 +67,8 @@
             hh: '%d Stunden',
             d: processRelativeTime,
             dd: processRelativeTime,
+            w: processRelativeTime,
+            ww: '%d Wochen',
             M: processRelativeTime,
             MM: processRelativeTime,
             y: processRelativeTime,

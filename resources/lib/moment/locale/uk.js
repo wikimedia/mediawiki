@@ -17,8 +17,8 @@
         return num % 10 === 1 && num % 100 !== 11
             ? forms[0]
             : num % 10 >= 2 && num % 10 <= 4 && (num % 100 < 10 || num % 100 >= 20)
-            ? forms[1]
-            : forms[2];
+              ? forms[1]
+              : forms[2];
     }
     function relativeTimeWithPlural(number, withoutSuffix, key) {
         var format = {
@@ -39,15 +39,18 @@
     }
     function weekdaysCaseReplace(m, format) {
         var weekdays = {
-                nominative: 'неділя_понеділок_вівторок_середа_четвер_п’ятниця_субота'.split(
-                    '_'
-                ),
-                accusative: 'неділю_понеділок_вівторок_середу_четвер_п’ятницю_суботу'.split(
-                    '_'
-                ),
-                genitive: 'неділі_понеділка_вівторка_середи_четверга_п’ятниці_суботи'.split(
-                    '_'
-                ),
+                nominative:
+                    'неділя_понеділок_вівторок_середа_четвер_п’ятниця_субота'.split(
+                        '_'
+                    ),
+                accusative:
+                    'неділю_понеділок_вівторок_середу_четвер_п’ятницю_суботу'.split(
+                        '_'
+                    ),
+                genitive:
+                    'неділі_понеділка_вівторка_середи_четверга_п’ятниці_суботи'.split(
+                        '_'
+                    ),
             },
             nounCase;
 
@@ -63,8 +66,8 @@
         nounCase = /(\[[ВвУу]\]) ?dddd/.test(format)
             ? 'accusative'
             : /\[?(?:минулої|наступної)? ?\] ?dddd/.test(format)
-            ? 'genitive'
-            : 'nominative';
+              ? 'genitive'
+              : 'nominative';
         return weekdays[nounCase][m.day()];
     }
     function processHoursFunction(str) {
@@ -78,9 +81,10 @@
             format: 'січня_лютого_березня_квітня_травня_червня_липня_серпня_вересня_жовтня_листопада_грудня'.split(
                 '_'
             ),
-            standalone: 'січень_лютий_березень_квітень_травень_червень_липень_серпень_вересень_жовтень_листопад_грудень'.split(
-                '_'
-            ),
+            standalone:
+                'січень_лютий_березень_квітень_травень_червень_липень_серпень_вересень_жовтень_листопад_грудень'.split(
+                    '_'
+                ),
         },
         monthsShort: 'січ_лют_бер_квіт_трав_черв_лип_серп_вер_жовт_лист_груд'.split(
             '_'
