@@ -744,7 +744,7 @@ class MovePage {
 		// Emit an event describing the move
 		$this->eventDispatcher->dispatch( new PageMovedEvent(
 			$pageStateBeforeMove,
-			$this->newTitle->toPageRecord(),
+			$this->newTitle->toPageRecord( IDBAccessObject::READ_LATEST ),
 			$user
 		), $this->dbProvider );
 
