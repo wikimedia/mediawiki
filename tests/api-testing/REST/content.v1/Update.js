@@ -223,8 +223,7 @@ describe( 'PUT /page/{title}', () => {
 				assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 				assert.nestedProperty( editBody, 'messageTranslations' );
 				// eslint-disable-next-line no-unused-expressions
-				expect( res ).to.satisfyApiSpec;
-
+				expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 			} );
 		} );
 
@@ -243,7 +242,7 @@ describe( 'PUT /page/{title}', () => {
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 			// eslint-disable-next-line no-unused-expressions
-			expect( res ).to.satisfyApiSpec;
+			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
 		it( 'should fail if a bad token is given', async () => {
@@ -261,8 +260,7 @@ describe( 'PUT /page/{title}', () => {
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 			// eslint-disable-next-line no-unused-expressions
-			expect( res ).to.satisfyApiSpec;
-
+			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
 		it( 'should fail if a bad content model is given', async () => {
@@ -282,7 +280,7 @@ describe( 'PUT /page/{title}', () => {
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 			// eslint-disable-next-line no-unused-expressions
-			expect( res ).to.satisfyApiSpec;
+			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
 		it( 'should fail if a bad title is given', async () => {
@@ -302,7 +300,7 @@ describe( 'PUT /page/{title}', () => {
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 			// eslint-disable-next-line no-unused-expressions
-			expect( res ).to.satisfyApiSpec;
+			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
 		it( 'should fail if no title is given', async () => {
@@ -320,7 +318,7 @@ describe( 'PUT /page/{title}', () => {
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 			// eslint-disable-next-line no-unused-expressions
-			expect( res ).to.satisfyApiSpec;
+			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 	} );
 
@@ -341,8 +339,7 @@ describe( 'PUT /page/{title}', () => {
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 			// eslint-disable-next-line no-unused-expressions
-			expect( res ).to.satisfyApiSpec;
-
+			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
 		it( 'should detect a conflict if page exist but no revision ID was given', async () => {
@@ -364,8 +361,7 @@ describe( 'PUT /page/{title}', () => {
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 			// eslint-disable-next-line no-unused-expressions
-			expect( res ).to.satisfyApiSpec;
-
+			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
 		it( 'should detect a conflict when an old base revision ID is given and conflict resolution fails', async () => {
@@ -388,8 +384,7 @@ describe( 'PUT /page/{title}', () => {
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 			// eslint-disable-next-line no-unused-expressions
-			expect( res ).to.satisfyApiSpec;
-
+			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 	} );
 
@@ -419,8 +414,7 @@ describe( 'PUT /page/{title}', () => {
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 			// eslint-disable-next-line no-unused-expressions
-			expect( res ).to.satisfyApiSpec;
-
+			expect( res.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 	} );
 } );

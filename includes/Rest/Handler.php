@@ -837,11 +837,10 @@ abstract class Handler {
 			$ok['content']['application/json']['schema'] = $bodySchema;
 		}
 
-		// XXX: we should add info about redirects, and maybe a default for errors?
+		// XXX: we should add info about redirects
 		return [
 			'200' => $ok,
-			'400' => [ '$ref' => '#/components/responses/GenericErrorResponse' ],
-			'500' => [ '$ref' => '#/components/responses/GenericErrorResponse' ],
+			'default' => [ '$ref' => '#/components/responses/GenericErrorResponse' ],
 		];
 	}
 

@@ -174,13 +174,6 @@ class UpdateHandler extends EditHandler {
 		parent::throwHttpExceptionForActionModuleError( $msg, $statusCode );
 	}
 
-	protected function generateResponseSpec( string $method ): array {
-		$spec = parent::generateResponseSpec( $method );
-
-		$spec['404'] = [ '$ref' => '#/components/responses/GenericErrorResponse' ];
-		return $spec;
-	}
-
 	/**
 	 * Returns an associative array to be used in the response in the event of edit conflicts.
 	 *

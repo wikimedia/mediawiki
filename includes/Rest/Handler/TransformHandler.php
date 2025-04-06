@@ -117,8 +117,6 @@ class TransformHandler extends ParsoidHandler {
 			case 'html':
 				$spec = parent::generateResponseSpec( $method );
 				$spec['200']['content']['text/html']['schema']['type'] = 'string';
-				$spec['404'] = [ '$ref' => '#/components/responses/GenericErrorResponse' ];
-				$spec['413'] = [ '$ref' => '#/components/responses/GenericErrorResponse' ];
 				return $spec;
 
 			case 'wikitext':
