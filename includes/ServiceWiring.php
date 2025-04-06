@@ -2793,9 +2793,6 @@ return [
 			),
 			LoggerFactory::getProvider(),
 
-			// UserBlockConstraint
-			$services->getPermissionManager(),
-
 			// EditFilterMergedContentHookConstraint
 			$services->getHookContainer(),
 
@@ -2805,7 +2802,7 @@ return [
 			// SpamRegexConstraint
 			$services->getSpamChecker(),
 
-			// UserRateLimitConstraint
+			// LinkPurgeRateLimitConstraint
 			$services->getRateLimiter()
 		);
 	},

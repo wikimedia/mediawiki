@@ -25,31 +25,26 @@ use MediaWiki\Permissions\RateLimitSubject;
 use StatusValue;
 
 /**
- * Verify user doesn't exceed rate limits
+ * Verify that the user doesn't exceed 'linkpurge' limits, which are weird and special.
+ * Other rate limits have been integrated into their respective permission checks.
  *
- * @since 1.36
+ * @since 1.44
  * @internal
  * @author DannyS712
  */
-class UserRateLimitConstraint implements IEditConstraint {
+class LinkPurgeRateLimitConstraint implements IEditConstraint {
 
 	private RateLimitSubject $subject;
-	private string $oldContentModel;
-	private string $newContentModel;
 	private RateLimiter $limiter;
 
 	private string $result;
 
 	public function __construct(
 		RateLimiter $limiter,
-		RateLimitSubject $subject,
-		string $oldContentModel,
-		string $newContentModel
+		RateLimitSubject $subject
 	) {
 		$this->limiter = $limiter;
 		$this->subject = $subject;
-		$this->oldContentModel = $oldContentModel;
-		$this->newContentModel = $newContentModel;
 	}
 
 	private function limit( string $action, int $inc = 1 ): bool {
@@ -57,16 +52,10 @@ class UserRateLimitConstraint implements IEditConstraint {
 	}
 
 	public function checkConstraint(): string {
-		// Need to check for rate limits on `editcontentmodel` if it is changing
-		$contentModelChange = ( $this->newContentModel !== $this->oldContentModel );
-
 		// TODO inject and use a ThrottleStore once available, see T261744
 		// Checking if the user is rate limited increments the counts, so we cannot perform
 		// the check again when getting the status; thus, store the result
-		if ( $this->limit( 'edit' )
-			|| $this->limit( 'linkpurge', 0 ) // only counted after the fact
-			|| ( $contentModelChange && $this->limit( 'editcontentmodel' ) )
-		) {
+		if ( $this->limit( 'linkpurge', /* only counted after the fact */ 0 ) ) {
 			$this->result = self::CONSTRAINT_FAILED;
 		} else {
 			$this->result = self::CONSTRAINT_PASSED;

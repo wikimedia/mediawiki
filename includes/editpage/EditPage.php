@@ -37,6 +37,7 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Debug\DeprecationHelper;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\EditPage\Constraint\AccidentalRecreationConstraint;
+use MediaWiki\EditPage\Constraint\AuthorizationConstraint;
 use MediaWiki\EditPage\Constraint\BrokenRedirectConstraint;
 use MediaWiki\EditPage\Constraint\ChangeTagsConstraint;
 use MediaWiki\EditPage\Constraint\ContentModelChangeConstraint;
@@ -54,7 +55,6 @@ use MediaWiki\EditPage\Constraint\PageSizeConstraint;
 use MediaWiki\EditPage\Constraint\SelfRedirectConstraint;
 use MediaWiki\EditPage\Constraint\SpamRegexConstraint;
 use MediaWiki\EditPage\Constraint\UnicodeConstraint;
-use MediaWiki\EditPage\Constraint\UserBlockConstraint;
 use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\Exception\MWContentSerializationException;
 use MediaWiki\Exception\MWException;
@@ -2189,7 +2189,20 @@ class EditPage implements IEditObject {
 			)
 		);
 		$constraintRunner->addConstraint(
-			$constraintFactory->newUserBlockConstraint( $this->mTitle, $requestUser )
+			$constraintFactory->newReadOnlyConstraint()
+		);
+
+		// Load the page data from the primary DB. If anything changes in the meantime,
+		// we detect it by using page_latest like a token in a 1 try compare-and-swap.
+		$this->page->loadPageData( IDBAccessObject::READ_LATEST );
+		$new = !$this->page->exists();
+
+		$constraintRunner->addConstraint(
+			new AuthorizationConstraint(
+				$authority,
+				$this->mTitle,
+				$new
+			)
 		);
 		$constraintRunner->addConstraint(
 			new ContentModelChangeConstraint(
@@ -2198,15 +2211,9 @@ class EditPage implements IEditObject {
 				$this->contentModel
 			)
 		);
-
 		$constraintRunner->addConstraint(
-			$constraintFactory->newReadOnlyConstraint()
-		);
-		$constraintRunner->addConstraint(
-			$constraintFactory->newUserRateLimitConstraint(
-				$requestUser->toRateLimitSubject(),
-				$this->mTitle->getContentModel(),
-				$this->contentModel
+			$constraintFactory->newLinkPurgeRateLimitConstraint(
+				$requestUser->toRateLimitSubject()
 			)
 		);
 		$constraintRunner->addConstraint(
@@ -2228,16 +2235,6 @@ class EditPage implements IEditObject {
 				$this->wasDeletedSinceLastEdit(),
 				$this->recreate
 			)
-		);
-
-		// Load the page data from the primary DB. If anything changes in the meantime,
-		// we detect it by using page_latest like a token in a 1 try compare-and-swap.
-		$this->page->loadPageData( IDBAccessObject::READ_LATEST );
-		$new = !$this->page->exists();
-
-		// We do this last, as some of the other constraints are more specific
-		$constraintRunner->addConstraint(
-			$constraintFactory->newEditRightConstraint( $this->getUserForPermissions(), $this->mTitle, $new )
 		);
 
 		// Check the constraints
@@ -2625,9 +2622,12 @@ class EditPage implements IEditObject {
 	 * result from the backend.
 	 */
 	private function handleFailedConstraint( IEditConstraint $failed ): void {
-		if ( $failed instanceof UserBlockConstraint ) {
+		if ( $failed instanceof AuthorizationConstraint ) {
 			// Auto-block user's IP if the account was "hard" blocked
-			if ( !MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
+			if (
+				!MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly()
+				&& $failed->getLegacyStatus()->value === self::AS_BLOCKED_PAGE_FOR_USER
+			) {
 				$this->context->getUser()->spreadAnyEditBlock();
 			}
 		} elseif ( $failed instanceof DefaultTextConstraint ) {

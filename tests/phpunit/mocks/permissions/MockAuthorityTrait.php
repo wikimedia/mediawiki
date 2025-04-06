@@ -334,6 +334,7 @@ trait MockAuthorityTrait {
 				return true;
 			} );
 		$mock->method( 'getBlock' )->willReturn( $block );
+		$mock->method( 'isRegistered' )->willReturn( $user->isRegistered() );
 		$mock->method( 'isTemp' )->willReturn( $isTemp );
 		$mock->method( 'isNamed' )->willReturn( $user->isRegistered() && !$isTemp );
 		return $mock;
