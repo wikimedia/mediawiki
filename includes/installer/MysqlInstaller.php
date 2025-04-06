@@ -244,18 +244,23 @@ class MysqlInstaller extends DatabaseInstaller {
 		$quotedUser = $conn->addQuotes( $parts[0] ) .
 			'@' . $conn->addQuotes( $parts[1] );
 
-		// The user needs to have INSERT on mysql.* to be able to CREATE USER
+		// The user needs to have INSERT on mysql.* or (global) CREATE USER to be able to CREATE USER
 		// The grantee will be double-quoted in this query, as required
 		$res = $conn->select( 'INFORMATION_SCHEMA.USER_PRIVILEGES', '*',
 			[ 'GRANTEE' => $quotedUser ], __METHOD__ );
 		$insertMysql = false;
-		$grantOptions = array_fill_keys( $this->webUserPrivs, true );
+		// The user needs to have permission to GRANT all necessary permissions to the newly created user.
+		// This starts as a list of all necessary permissions and they are removed as they are found.
+		// If any are left in the list after checking for permissions, those are the missing permissions.
+		$missingGrantOptions = array_fill_keys( $this->webUserPrivs, true );
 		foreach ( $res as $row ) {
 			if ( $row->PRIVILEGE_TYPE == 'INSERT' ) {
 				$insertMysql = true;
+			} elseif ( $row->PRIVILEGE_TYPE == 'CREATE USER' ) {
+				$insertMysql = true;
 			}
-			if ( $row->IS_GRANTABLE ) {
-				unset( $grantOptions[$row->PRIVILEGE_TYPE] );
+			if ( $row->IS_GRANTABLE === 'YES' ) {
+				unset( $missingGrantOptions[$row->PRIVILEGE_TYPE] );
 			}
 		}
 
@@ -280,15 +285,15 @@ class MysqlInstaller extends DatabaseInstaller {
 		$res = $conn->select( 'INFORMATION_SCHEMA.SCHEMA_PRIVILEGES', '*',
 			[
 				'GRANTEE' => $quotedUser,
-				'IS_GRANTABLE' => 1,
+				'IS_GRANTABLE' => 'YES',
 			], __METHOD__ );
 		foreach ( $res as $row ) {
 			$regex = $this->likeToRegex( $row->TABLE_SCHEMA );
 			if ( preg_match( $regex, $this->getVar( 'wgDBname' ) ) ) {
-				unset( $grantOptions[$row->PRIVILEGE_TYPE] );
+				unset( $missingGrantOptions[$row->PRIVILEGE_TYPE] );
 			}
 		}
-		if ( count( $grantOptions ) ) {
+		if ( count( $missingGrantOptions ) ) {
 			// Can't grant everything
 			return false;
 		}
