@@ -595,7 +595,7 @@ class DateFormatter {
 	 * @return {string}
 	 */
 	formatInternal( style, type, date ) {
-		const formatName = style ? `${ style } ${ type }` : type;
+		const formatName = this.makeValidFormatName( style, type );
 		const formatter = this.getIntlFormatInternal( formatName );
 		const pattern = this.formats[ formatName ].pattern;
 		if ( pattern ) {
@@ -614,6 +614,35 @@ class DateFormatter {
 	}
 
 	/**
+	 * Validate a style/type and combine them into a single string, falling
+	 * back to the default style if the user style is not available with the
+	 * specified type.
+	 *
+	 * @internal
+	 * @ignore
+	 *
+	 * @param {string|null} style
+	 * @param {string} type
+	 * @return {string}
+	 */
+	makeValidFormatName( style, type ) {
+		if ( !style ) {
+			return type;
+		}
+		// Try the specified style, then the site default style, then "dmy", a
+		// final fallback which should always exist, because localised date
+		// format arrays are merged with English, which has "dmy".
+		for ( const tryStyle of [ style, config.defaultStyle, 'dmy' ] ) {
+			const name = `${ tryStyle } ${ type }`;
+			if ( name in this.formats ) {
+				return name;
+			}
+		}
+		// Perhaps an invalid type, or bad config?
+		throw new Error( `Unable to find a valid date format for "${ style } ${ type }"` );
+	}
+
+	/**
 	 * Format a time/date range with a specified style
 	 *
 	 * @internal
@@ -626,7 +655,7 @@ class DateFormatter {
 	 * @return {string}
 	 */
 	formatRangeInternal( style, type, date1, date2 ) {
-		const formatName = style ? `${ style } ${ type }` : type;
+		const formatName = this.makeValidFormatName( style, type );
 		const formatter = this.getIntlFormatInternal( formatName );
 		const pattern = this.formats[ formatName ].rangePattern;
 		if ( pattern ) {

@@ -3,17 +3,19 @@ const midnightZulu = new Date( '2025-01-01T00:00:00Z' );
 const oneZulu = new Date( '2025-01-01T01:00:00Z' );
 const nextDay = new Date( '2025-01-02T00:00:00Z' );
 
-function fakeOptionsGet( key, fallback ) {
-	const options = {
-		timecorrection: 'Offset|60'
-	};
-	return key in options ? options[ key ] : fallback;
-}
-
 QUnit.module( 'mediawiki.DateFormatter static functions', ( hooks ) => {
+	let userOptions;
+
+	function fakeOptionsGet( key, fallback ) {
+		return key in userOptions ? userOptions[ key ] : fallback;
+	}
 
 	hooks.beforeEach( function () {
+		userOptions = {
+			timecorrection: 'Offset|60'
+		};
 		this.sandbox.stub( mw.user.options, 'get', fakeOptionsGet );
+		DateFormatter.clearInstanceCache();
 	} );
 
 	QUnit.test( 'forUser', ( assert ) => {
@@ -41,13 +43,36 @@ QUnit.module( 'mediawiki.DateFormatter static functions', ( hooks ) => {
 		assert.strictEqual( instance.formatTime( midnightZulu ), '04:00' );
 	} );
 
-	QUnit.test( 'formatTimeAndDate', ( assert ) => {
-		const { formatTimeAndDate } = DateFormatter;
-		assert.strictEqual(
-			formatTimeAndDate( midnightZulu ),
-			'01:00, 1 (january) 2025'
-		);
-	} );
+	const formatTimeAndDateCases = [
+		{
+			title: 'null',
+			dateOption: null,
+			expected: '01:00, 1 (january) 2025'
+		},
+		{
+			title: 'mdy',
+			dateOption: 'mdy',
+			expected: '01:00, (january) 1, 2025'
+		},
+		{
+			title: 'bad option',
+			dateOption: 'bad',
+			expected: '01:00, 1 (january) 2025'
+		}
+	];
+
+	QUnit.test.each(
+		'formatTimeAndDate',
+		formatTimeAndDateCases,
+		( assert, { dateOption, expected } ) => {
+			userOptions.date = dateOption;
+			const { formatTimeAndDate } = DateFormatter;
+			assert.strictEqual(
+				formatTimeAndDate( midnightZulu ),
+				expected
+			);
+		}
+	);
 
 	QUnit.test( 'formatTime', ( assert ) => {
 		const { formatTime } = DateFormatter;
@@ -188,9 +213,18 @@ QUnit.module( 'mediawiki.DateFormatter static functions', ( hooks ) => {
 } );
 
 QUnit.module( 'mediawiki.DateFormatter instance methods', ( hooks ) => {
+	let userOptions;
+
+	function fakeOptionsGet( key, fallback ) {
+		userOptions = {
+			timecorrection: 'Offset|60'
+		};
+		return key in userOptions ? userOptions[ key ] : fallback;
+	}
 
 	hooks.beforeEach( function () {
 		this.sandbox.stub( mw.user.options, 'get', fakeOptionsGet );
+		DateFormatter.clearInstanceCache();
 	} );
 
 	function getInstance() {
