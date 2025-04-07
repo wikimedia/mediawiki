@@ -50,7 +50,7 @@ class RenameDbPrefix extends Maintenance {
 		$dbName = $this->getConfig()->get( MainConfigNames::DBname );
 
 		// Allow for no old prefix
-		if ( $this->getOption( 'old', 0 ) === '0' ) {
+		if ( $this->getOption( 'old', '0' ) === '0' ) {
 			$old = '';
 		} else {
 			// Use nice safe, sensible, prefixes
@@ -58,7 +58,7 @@ class RenameDbPrefix extends Maintenance {
 			$old = $m[0] ?? false;
 		}
 		// Allow for no new prefix
-		if ( $this->getOption( 'new', 0 ) === '0' ) {
+		if ( $this->getOption( 'new', '0' ) === '0' ) {
 			$new = '';
 		} else {
 			// Use nice safe, sensible, prefixes
@@ -71,6 +71,7 @@ class RenameDbPrefix extends Maintenance {
 		}
 		if ( $old === $new ) {
 			$this->output( "Same prefix. Nothing to rename!\n" );
+			return;
 		}
 
 		$this->output( "Renaming DB prefix for tables of $dbName from '$old' to '$new'\n" );
