@@ -1044,6 +1044,7 @@ class DatabaseBlockStore {
 			$targetUserName = (string)$target;
 			$targetUserId = $target->getUserIdentity()->getId( $this->wikiId );
 			$targetConds = [ 'bt_user' => $targetUserId ];
+			$targetLockKey = $dbw->getDomainID() . ':block:u:' . $targetUserId;
 		} else {
 			$targetAddress = (string)$target;
 			$targetUserName = null;
@@ -1052,12 +1053,23 @@ class DatabaseBlockStore {
 				'bt_address' => $targetAddress,
 				'bt_auto' => $isAuto,
 			];
+			$targetLockKey = $dbw->getDomainID() . ':block:' .
+				( $isAuto ? 'a' : 'i' ) . ':' . $targetAddress;
 		}
 
 		$condsWithCount = $targetConds;
 		if ( $expectedTargetCount !== null ) {
 			$condsWithCount['bt_count'] = $expectedTargetCount;
 		}
+
+		$dbw->lock( $targetLockKey, __METHOD__ );
+		$func = __METHOD__;
+		$dbw->onTransactionCommitOrIdle(
+			static function () use ( $dbw, $targetLockKey, $func ) {
+				$dbw->unlock( $targetLockKey, "$func.closure" );
+			},
+			__METHOD__
+		);
 
 		// This query locks the index gap when the target doesn't exist yet,
 		// so there is a risk of throttling adjacent block insertions,
@@ -1076,6 +1088,7 @@ class DatabaseBlockStore {
 			->select( [ 'bt_id', 'bt_count' ] )
 			->from( 'block_target' )
 			->where( $targetConds )
+			->forUpdate()
 			->caller( __METHOD__ )
 			->fetchResultSet();
 		if ( $res->numRows() > 1 ) {
