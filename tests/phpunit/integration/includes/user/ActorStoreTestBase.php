@@ -76,7 +76,7 @@ abstract class ActorStoreTestBase extends MediaWikiIntegrationTestCase {
 			$wikiId
 		);
 
-		// Redefine the DBLoadBalancer service to verify we don't attempt to resolve its IDs via wfGetDB()
+		// Redefine the DBLoadBalancer service to verify we don't attempt to resolve its IDs via db
 		$localLoadBalancerMock = $this->createNoOpMock( ILoadBalancer::class );
 		try {
 			$this->setService( 'DBLoadBalancer', $localLoadBalancerMock );

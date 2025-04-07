@@ -549,7 +549,7 @@ abstract class Installer {
 		$wgLang = RequestContext::getMain()->getLanguage();
 
 		// Disable object cache (otherwise CACHE_ANYTHING will try CACHE_DB and
-		// SqlBagOStuff will then throw since we just disabled wfGetDB)
+		// SqlBagOStuff will then throw since we just disabled database connections)
 		$wgObjectCaches = $mwServices->getMainConfig()->get( MainConfigNames::ObjectCaches );
 		return $mwServices;
 	}

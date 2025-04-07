@@ -284,6 +284,7 @@ because of Phabricator reports.
 * PageArchive::undeleteAsUser, deprecated since 1.35, has been removed.
 * DatabaseBlock::getQueryInfo and ::getRangeCond, deprecated since 1.43, have
   been removed.
+* wfGetDB(), deprecated in 1.39, has been removed.
 * The IDatabase transaction lifecycle callbacks onTransactionResolution(),
   onTransactionPreCommitOrIdle() and onTransactionCommitOrIdle() no longer
   receive a DB connection handle as an argument. (T386190)

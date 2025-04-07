@@ -44,7 +44,7 @@ class RevisionListBaseTest extends MediaWikiUnitTestCase {
 			->with( $fakeRow )
 			->willReturn( $revisionItemBase );
 
-		// res is normally the result of a db query that uses wfGetDB and cannot
+		// res is normally the result of a db query that uses IReadableDatabase::select and cannot
 		// be tested in a unit test
 		$mockAccess = TestingAccessWrapper::newFromObject( $revisionListBase );
 		$mockAccess->res = $resultWrapper;
@@ -74,7 +74,7 @@ class RevisionListBaseTest extends MediaWikiUnitTestCase {
 			->method( 'numRows' )
 			->willReturn( 457 );
 
-		// res is normally the result of a db query that uses wfGetDB and cannot
+		// res is normally the result of a db query that uses IReadableDatabase::select and cannot
 		// be tested in a unit test
 		$mockAccess = TestingAccessWrapper::newFromObject( $revisionListBase );
 		$mockAccess->res = $resultWrapper;
