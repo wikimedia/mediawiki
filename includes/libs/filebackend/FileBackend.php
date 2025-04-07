@@ -1649,7 +1649,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	final public static function extensionFromPath( $path, $case = 'lowercase' ) {
 		// This will treat a string starting with . as not having an extension, but store paths have
 		// to start with 'mwstore://', so "garbage in, garbage out".
-		$i = strrpos( $path ?? '', '.' );
+		$i = strrpos( $path, '.' );
 		$ext = $i ? substr( $path, $i + 1 ) : '';
 
 		if ( $case === 'lowercase' ) {

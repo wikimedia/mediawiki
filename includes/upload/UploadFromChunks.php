@@ -116,6 +116,7 @@ class UploadFromChunks extends UploadFromFile {
 		// Update the initial file offset (based on file size)
 		$this->mOffset = $this->mStashFile->getSize();
 		$this->mFileKey = $this->mStashFile->getFileKey();
+		$this->mVirtualTempPath = $this->mStashFile->getPath();
 
 		// Output a copy of this first to chunk 0 location:
 		$this->outputChunk( $this->mStashFile->getPath() );
