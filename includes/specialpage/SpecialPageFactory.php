@@ -527,7 +527,8 @@ class SpecialPageFactory {
 				'UserNamePrefixSearch',
 				'BlockActionInfo',
 				'TitleFormatter',
-				'NamespaceInfo'
+				'NamespaceInfo',
+				'UserOptionsLookup',
 			]
 		],
 		'Unblock' => [

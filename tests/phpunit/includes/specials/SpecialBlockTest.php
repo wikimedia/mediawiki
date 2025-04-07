@@ -32,18 +32,8 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @inheritDoc
 	 */
 	protected function newSpecialPage() {
-		$services = $this->getServiceContainer();
-		return new SpecialBlock(
-			$services->getBlockTargetFactory(),
-			$services->getBlockPermissionCheckerFactory(),
-			$services->getBlockUserFactory(),
-			$this->blockStore,
-			$services->getUserNameUtils(),
-			$services->getUserNamePrefixSearch(),
-			$services->getBlockActionInfo(),
-			$services->getTitleFormatter(),
-			$services->getNamespaceInfo()
-		);
+		return $this->getServiceContainer()->getSpecialPageFactory()
+			->getPage( 'Block' );
 	}
 
 	protected function setUp(): void {

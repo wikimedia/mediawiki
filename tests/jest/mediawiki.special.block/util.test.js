@@ -76,4 +76,22 @@ describe( 'util', () => {
 			expect( util.sanitizeRange( input ) ).toBe( expected );
 		}
 	);
+
+	const formatTimestampCases = [
+		{
+			title: 'infinity',
+			input: 'infinity',
+			expected: 'infiniteblock'
+		},
+		{
+			title: 'finite',
+			input: '2029-09-20T14:31:51Z',
+			expected: '2029-09-20T14:31:51.000Z'
+		}
+	];
+
+	it.each( formatTimestampCases )( 'formatTimestamp', ( { input, expected } ) => {
+		mw.util.isInfinity = jest.fn().mockReturnValue( input === 'infinity' );
+		expect( util.formatTimestamp( input ) ).toBe( expected );
+	} );
 } );

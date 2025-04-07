@@ -1,3 +1,5 @@
+const { formatTimeAndDate } = require( 'mediawiki.DateFormatter' );
+
 const util = {
 	/**
 	 * Get the message for the given block flag
@@ -27,18 +29,7 @@ const util = {
 		if ( !timestamp || mw.util.isInfinity( timestamp ) ) {
 			return mw.msg( 'infiniteblock' );
 		}
-		const date = new Date( timestamp );
-		return date.toLocaleString( undefined, {
-			timeZone: 'UTC',
-			timeZoneName: 'short',
-			year: 'numeric',
-			month: 'short',
-			day: 'numeric',
-			hour: 'numeric',
-			minute: 'numeric',
-			hour12: false,
-			format: [ 'time', 'date' ]
-		} );
+		return formatTimeAndDate( new Date( timestamp ) );
 	},
 
 	/**

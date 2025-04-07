@@ -87,6 +87,10 @@
 							datetimeStatus = status;
 						}"
 					></validating-text-input>
+					<cdx-select
+						v-model:selected="datetimeZone"
+						:menu-items="datetimeZoneOptions"
+					></cdx-select>
 				</cdx-field>
 			</template>
 		</cdx-radio>
@@ -99,6 +103,7 @@ const { CdxField, CdxRadio, CdxSelect } = require( '@wikimedia/codex' );
 const { storeToRefs } = require( 'pinia' );
 const ValidatingTextInput = require( './ValidatingTextInput.js' );
 const useBlockStore = require( '../stores/block.js' );
+const DateFormatter = require( 'mediawiki.DateFormatter' );
 
 module.exports = exports = defineComponent( {
 	name: 'ExpiryField',
@@ -125,6 +130,24 @@ module.exports = exports = defineComponent( {
 			{ value: 'years', label: mw.msg( 'block-expiry-custom-years' ) }
 		];
 
+		const now = new Date();
+		const dateFormatters = {
+			user: DateFormatter.forUser(),
+			site: DateFormatter.forSiteZone(),
+			utc: DateFormatter.forUtc()
+		};
+		const zoneLabels = {};
+		for ( const f in dateFormatters ) {
+			zoneLabels[ f ] = dateFormatters[ f ].getShortZoneName( now );
+		}
+		const datetimeZoneOptions = [ { value: 'user', label: zoneLabels.user } ];
+		if ( zoneLabels.site !== zoneLabels.user && zoneLabels.site !== zoneLabels.utc ) {
+			datetimeZoneOptions.push( { value: 'site', label: zoneLabels.site } );
+		}
+		if ( zoneLabels.utc !== zoneLabels.user ) {
+			datetimeZoneOptions.push( { value: 'utc', label: zoneLabels.utc } );
+		}
+
 		const presetDuration = ref( null );
 		const presetDurationStatus = ref( 'default' );
 		const presetDurationMessages = ref( {} );
@@ -135,15 +158,46 @@ module.exports = exports = defineComponent( {
 		const datetime = ref( '' );
 		const datetimeStatus = ref( 'default' );
 		const datetimeMessages = ref( {} );
+		const datetimeZone = ref( 'user' );
 		const expiryType = ref( 'preset-duration' );
+
+		/*
+		 * Convert a local date to a Date object, implicitly in the UTC time zone.
+		 * Note that this may not have a single solution! At the end of daylight
+		 * savings time, an hour is repeated in the local time zone. Hopefully
+		 * we will at least find one of the two possible solutions.
+		 */
+		function parseLocalDate( dateString, zone ) {
+			// Interpret the date as UTC, giving an answer which is off by up to 14 hours
+			let date = new Date( dateString + 'Z' );
+			const timestamp = date.valueOf();
+			const df = dateFormatters[ zone ];
+			const offset1 = df.getZoneOffsetMinutes( date );
+			if ( offset1 ) {
+				// Subtract the zone offset, giving a time which is usually right,
+				// except if the reference date was the day of DST switch-over.
+				date = new Date( timestamp - offset1 * 60000 );
+				// Find the offset for this new pretty close reference date
+				const offset2 = df.getZoneOffsetMinutes( date );
+				if ( offset1 !== offset2 ) {
+					// Subtract the offset again
+					date = new Date( timestamp - offset2 * 60000 );
+				}
+			}
+			return date;
+		}
 
 		const computedModelValue = computed( () => {
 			if ( expiryType.value === 'preset-duration' ) {
 				return presetDuration.value;
 			} else if ( expiryType.value === 'custom-duration' ) {
 				return `${ Number( customDurationNumber.value ) } ${ customDurationUnit.value }`;
+			} else if ( datetime.value ) {
+				return dateFormatters.utc.formatIso(
+					parseLocalDate( datetime.value, datetimeZone.value )
+				);
 			} else {
-				return datetime.value ? datetime.value + 'Z' : '';
+				return '';
 			}
 		} );
 
@@ -176,7 +230,8 @@ module.exports = exports = defineComponent( {
 				expiryType.value = 'datetime';
 				// Truncate longer datetime strings to be compatible with input type=datetime-local.
 				// This is also done in SpecialBlock.php
-				datetime.value = given.slice( 0, 16 );
+				datetimeZone.value = 'user';
+				datetime.value = dateFormatters.user.formatForDateTimeInput( new Date( given ) );
 			} else {
 				// Unsupported format; Reset to defaults.
 				expiryType.value = 'preset-duration';
@@ -185,6 +240,11 @@ module.exports = exports = defineComponent( {
 				datetime.value = '';
 			}
 		}
+
+		watch( datetimeZone, ( newValue, oldValue ) => {
+			datetime.value = dateFormatters[ newValue ].formatForDateTimeInput(
+				parseLocalDate( datetime.value, oldValue ) );
+		} );
 
 		const { expiry } = storeToRefs( store );
 
@@ -230,6 +290,8 @@ module.exports = exports = defineComponent( {
 			datetime,
 			datetimeStatus,
 			datetimeMessages,
+			datetimeZone,
+			datetimeZoneOptions,
 			expiryType
 		};
 	}
