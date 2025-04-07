@@ -19,7 +19,8 @@
 			"Nemo bis",
 			"Rberchie",
 			"Robertjamal12",
-			"Rsaawah"
+			"Rsaawah",
+			"Kojo Owusu 2020"
 		]
 	},
 	"tog-underline": "Twa link nyina ase:",
@@ -179,7 +180,7 @@
 	"skin-view-create": "Create",
 	"create-local": "Fa ɛfitiasɛm ka hɔ",
 	"delete": "Pepa",
-	"undelete_short": "Sane fa bra",
+	"undelete_short": "Yi fri hɔ {{PLURAL:$1| nsakrae baako| $1 nsakrae}}",
 	"viewdeleted_short": "Hwɛ nsesa {{PLURAL:$1|baako|$1}} a yɛyi afiri mu",
 	"protect": "Bɔ ho ban",
 	"protect_change": "sesa",

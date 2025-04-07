@@ -4109,7 +4109,7 @@
 	"revid": "revizyon $1",
 	"pageid": "sayfa kimliği $1",
 	"rawhtml-notallowed": "&lt;html&gt; etiketleri normal sayfaların dışında kullanılamaz.",
-	"gotointerwiki": "{{SITENAME}} ayrılıyor",
+	"gotointerwiki": "Vikipedi'den ayrılıyorsunuz",
 	"gotointerwiki-invalid": "Belirtilen başlık geçersiz.",
 	"gotointerwiki-external": "Ayrı bir web sitesi olan [[$2]] sayfasını ziyaret etmek için {{SITENAME}} adresinden ayrılmak üzeresiniz.\n\n'''[$1 $1 üzerinde devam et]'''",
 	"undelete-cantedit": "Bu sayfayı düzenlemenize izin verilmediğinden bu sayfayı silme işlemini geri alamazsınız.",
