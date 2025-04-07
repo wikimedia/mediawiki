@@ -2497,7 +2497,7 @@
 	"block-confirm-yes": "Si",
 	"block-confirm-no": "No",
 	"block-submit": "Submitter",
-	"block-success": "[[Special:Contributions/$1|$1]] ha essite blocate. Vide le [[Special:BlockList|lista de blocadas]] pro revider le blocadas.",
+	"block-success": "[[Special:Contributions/$1|{{GENDER:$1|$1}}]] ([[{{ns:user_talk}}:$1|discussion]]) ha essite blocate. Vide le [[Special:BlockList|lista de blocadas]] pro revider le blocadas.",
 	"block-user-active-blocks": "Blocadas active",
 	"block-user-no-active-blocks": "Necun blocada active trovate",
 	"block-user-previous-blocks": "Registro de blocadas",

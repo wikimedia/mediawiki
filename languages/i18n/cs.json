@@ -2545,7 +2545,7 @@
 	"block-reason-other": "Dodatečný nebo jiný důvod",
 	"block-confirm-yes": "Ano",
 	"block-confirm-no": "Ne",
-	"block-success": "„[[Special:Contributions/$1|$1]]“ je {{GENDER:$1|zablokován|zablokována}}. Můžete si prohlédnout [[Special:BlockList|seznam zablokovaných uživatelů]].",
+	"block-success": "„[[Special:Contributions/$1|$1]]“ ([[{{ns:user_talk}}:$1|diskuse]]) je {{GENDER:$1|zablokován|zablokována}}. Můžete si prohlédnout [[Special:BlockList|seznam zablokovaných uživatelů]].",
 	"block-user-active-blocks": "Aktivní blokování",
 	"block-user-previous-blocks": "Kniha blokování",
 	"block-user-no-previous-blocks": "Nebyly nalezeny žádné předchozí blokování",

@@ -2032,7 +2032,7 @@
 	"shortpages": "Páginas curtas",
 	"longpages": "Páginas longas",
 	"deadendpages": "Páginas sem saída",
-	"deadendpagestext": "As seguintes páginas não contêm links para outras páginas no wiki {{SITENAME}}.",
+	"deadendpagestext": "As seguintes páginas não contêm ligações para outras páginas na wiki {{SITENAME}}.",
 	"protectedpages": "Páginas protegidas",
 	"protectedpages-filters": "Filtros:",
 	"protectedpages-indef": "Proteções infinitas apenas",

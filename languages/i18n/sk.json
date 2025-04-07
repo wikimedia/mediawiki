@@ -61,7 +61,7 @@
 	"subcategories": "Podkategórie",
 	"category-media-header": "Multimediálne súbory v kategórii „$1“",
 	"category-empty": "''Táto kategória momentálne neobsahuje články ani multimediálne súbory.''",
-	"hidden-categories": "{{PLURAL:$1|Skrytá kategória|Skryté kategórie|Skrytých kategórií}}",
+	"hidden-categories": "{{PLURAL:$1|Skrytá kategória|Skryté kategórie}}",
 	"hidden-category-category": "Skryté kategórie",
 	"category-subcat-count": "{{PLURAL:$2|Táto kategória má nasledovnú podkategóriu.|Táto kategória má {{PLURAL:$1|nasledovnú podkategóriu|nasledovné $1 podkategórie|nasledovných $1 podkategórií}} z $2 celkom.}}",
 	"category-subcat-count-limited": "Táto kategória má {{PLURAL:$1|nasledovnú podkategóriu|nasledovné $1 podkategórie|nasledovných $1 podkategórií}}.",

@@ -87,6 +87,14 @@
 	"rest-unsupported-language-conversion": "Conversión de lingua non compatible: $1 a $2",
 	"rest-unknown-content-model": "Modelo de contido descoñecido: $1",
 	"rest-page-bundle-validation-error": "PageBundle non coincide con contentVersion: $1",
+	"rest-module": "Módulo",
+	"rest-module-default": "Módulo predeterminado",
+	"rest-module-extra-routes-title": "API REST de MediaWiki",
+	"rest-module-extra-routes-desc": "Extremos REST non asociados a ningún módulo",
+	"rest-module-specs.v0-title": "Especificacións",
+	"rest-module-specs.v0-desc": "Módulo de autodocumentación que proporciona descubrimento, especificacións e esquemas para todos os módulos dispoñibles.",
+	"rest-module-content.v1-title": "Contido da páxina",
+	"rest-module-content.v1-desc": "Ofrece acceso ao contido e metadatos das páxinas e revisións",
 	"rest-param-desc-revision-id": "Identificador da revisión",
 	"rest-param-desc-source": "Contido da páxina no formato especificado pola propiedade content_model"
 }
