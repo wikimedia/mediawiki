@@ -598,6 +598,7 @@ because of Phabricator reports.
   newFromTarget(), newListFromTarget() and getBlocksForIPList() are now
   deprecated and emit deprecation warnings. Use the corresponding method in
   DatabaseBlockStore, except for getBlocksForIPList() which is in BlockManager.
+* User::whoIs() and ::whoIsReal(), deprecated since 1.43, now emit warnings.
 * The parameter $default in WebRequest::getRawVal(), deprecated since 1.43,
   is now emitting warnings.
 * The link to "Special pages" has moved from the toolbox to MediaWiki:Sidebar

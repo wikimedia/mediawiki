@@ -924,6 +924,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 
 		$status = $user->addToDatabase();
 		$this->assertStatusOK( $status, 'User can be added to the database' );
+		$this->hideDeprecated( User::class . '::whoIs' );
 		$this->assertSame( $name, User::whoIs( $user->getId() ) );
 	}
 
