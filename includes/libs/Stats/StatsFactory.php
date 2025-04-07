@@ -177,13 +177,13 @@ class StatsFactory {
 	}
 
 	/**
-	 * Returns an instance of StatsFactory as a NULL value object
-	 * as a default for consumer code to fall back to. This can also
-	 * be used in tests environment where we don't need the full
-	 * UDP emitter object.
+	 * Create a no-op StatsFactory.
+	 *
+	 * Use this as the default in a service that takes an optional StatsFactory,
+	 * or as null implementation in PHPUnit tests, where we don't need to send
+	 * output to an actual network service.
 	 *
 	 * @since 1.42
-	 *
 	 * @return self
 	 */
 	public static function newNull(): self {
@@ -191,14 +191,17 @@ class StatsFactory {
 	}
 
 	/**
-	 * Returns an instance of UnitTestingHelper.
+	 * Create a stats helper for use in PHPUnit tests.
 	 *
 	 * Example:
+	 *
 	 * ```php
-	 * $unitTestingHelper = StatsFactory::newUnitTestingHelper();
-	 * $statsFactory = $unitTestingHelper->getStatsFactory()
-	 * MyClass( $statsFactory )->execute();
-	 * $this->assertEquals( 1, $unitTestingHelper->count( 'example_executions_total{fooLabel="bar"}' ) );
+	 * $statsHelper = StatsFactory::newUnitTestingHelper();
+	 *
+	 * $x = new MySubject( $statsHelper->getStatsFactory() );
+	 * $x->execute();
+	 *
+	 * $this->assertEquals( 1, $statsHelper->count( 'example_executions_total{fooLabel="bar"}' ) );
 	 * ```
 	 *
 	 * @since 1.44
