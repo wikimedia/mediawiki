@@ -64,10 +64,10 @@ class CleanupCaps extends TableCleanup {
 			$this->getServiceContainer()->getNamespaceInfo()->
 				isCapitalized( $this->namespace )
 		) {
-			$this->output( "Will be moving pages to first letter capitalized titles" );
+			$this->output( "Will be moving pages to first letter capitalized titles\n" );
 			$callback = 'processRowToUppercase';
 		} else {
-			$this->output( "Will be moving pages to first letter lowercase titles" );
+			$this->output( "Will be moving pages to first letter lowercase titles\n" );
 			$callback = 'processRowToLowercase';
 		}
 
@@ -82,6 +82,10 @@ class CleanupCaps extends TableCleanup {
 
 	protected function processRowToUppercase( $row ) {
 		$current = Title::makeTitle( $row->page_namespace, $row->page_title );
+		// Set the ID of the page because Title::exists will return false
+		// unless the Article ID is already known, because Title::canExist will be false
+		// when $wgCapitalLinks is true and the old title is in lower case.
+		$current->mArticleID = $row->page_id;
 		$display = $current->getPrefixedText();
 		$lower = $row->page_title;
 		$upper = $this->getServiceContainer()->getContentLanguage()->ucfirst( $row->page_title );
@@ -104,19 +108,31 @@ class CleanupCaps extends TableCleanup {
 			'Converting page title to first-letter uppercase',
 			false
 		);
-		if ( $ok ) {
-			$this->progress( 1 );
-			if ( $row->page_namespace == $this->namespace ) {
-				$talk = $target->getTalkPage();
-				$row->page_namespace = $talk->getNamespace();
-				if ( $talk->exists() ) {
+		if ( !$ok ) {
+			$this->progress( 0 );
+			return;
+		}
+
+		$this->progress( 1 );
+		if ( $row->page_namespace == $this->namespace ) {
+			// We need to fetch the existence of the talk page from the DB directly because
+			// Title::exists will return false if Title::canExist returns false. Title::canExist will
+			// return false if $wgCapitalLinks is true and the old title is in lowercase form.
+			$namespaceInfo = $this->getServiceContainer()->getNamespaceInfo();
+			if ( $namespaceInfo->canHaveTalkPage( $current ) ) {
+				$talkNamespace = $namespaceInfo->getTalk( $row->page_namespace );
+				$talkPageExists = $this->getReplicaDB()->newSelectQueryBuilder()
+					->select( '1' )
+					->from( 'page' )
+					->where( [ 'page_title' => $row->page_title, 'page_namespace' => $talkNamespace ] )
+					->caller( __METHOD__ )
+					->fetchField();
+				if ( $talkPageExists ) {
+					$row->page_namespace = $talkNamespace;
 					$this->processRowToUppercase( $row );
-					return;
 				}
 			}
 		}
-
-		$this->progress( 0 );
 	}
 
 	protected function processRowToLowercase( $row ) {
@@ -141,19 +157,18 @@ class CleanupCaps extends TableCleanup {
 		}
 
 		$ok = $this->movePage( $current, $target, 'Converting page titles to lowercase', true );
-		if ( $ok === true ) {
-			$this->progress( 1 );
-			if ( $row->page_namespace == $this->namespace ) {
-				$talk = $target->getTalkPage();
-				$row->page_namespace = $talk->getNamespace();
-				if ( $talk->exists() ) {
-					$this->processRowToLowercase( $row );
-					return;
-				}
-			}
+		if ( $ok !== true ) {
+			$this->progress( 0 );
 		}
 
-		$this->progress( 0 );
+		$this->progress( 1 );
+		if ( $row->page_namespace == $this->namespace ) {
+			$talk = $current->getTalkPage();
+			if ( $talk->exists() ) {
+				$row->page_namespace = $talk->getNamespace();
+				$this->processRowToLowercase( $row );
+			}
+		}
 	}
 
 	/**
