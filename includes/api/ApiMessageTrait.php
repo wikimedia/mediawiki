@@ -61,6 +61,7 @@ trait ApiMessageTrait {
 		'importuploaderrorpartial' => 'partialupload',
 		'importuploaderrorsize' => 'filetoobig',
 		'importuploaderrortemp' => 'notempdir',
+		'ipb-block-not-found' => 'alreadyblocked',
 		'ipb_already_blocked' => 'alreadyblocked',
 		'ipb_blocked_as_range' => 'blockedasrange',
 		'ipb_cant_unblock' => 'cantunblock',

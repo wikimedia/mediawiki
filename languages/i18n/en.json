@@ -2862,7 +2862,7 @@
 	"blockipsuccesssub": "Block succeeded",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] has been blocked.<br />\nSee the [[Special:BlockList|block list]] to review blocks.",
 	"ipb-empty-block": "The block submitted has no restrictions enabled.",
-	"ipb-block-not-found": "The block could not be made, but no existing block was found for \"$1\". If this problem persists, please [https://www.mediawiki.org/wiki/Special:MyLanguage/Help_talk:Blocking_users report it].",
+	"ipb-block-not-found": "The block could not be made, probably because another administrator tried to block this user at the same time. Check the block status and try again.",
 	"ipb-blockingself": "You are about to block yourself! Are you sure you want to do that?",
 	"ipb-confirmhideuser": "You are about to block a user with \"hide user\" enabled. This will suppress the user's name in all lists and log entries. Are you sure you want to do that?",
 	"ipb-confirmaction": "If you are sure you really want to do it, please check the \"{{int:ipb-confirm}}\" field at the bottom.",
