@@ -392,6 +392,12 @@ RLPAGEMODULES = {$pageModulesJson};
 		return self::makeContext( $this->context, $group, $type );
 	}
 
+	/**
+	 * @param string|string[] $modules
+	 * @param string $only
+	 * @param array $extraQuery
+	 * @return string|WrappedStringList HTML
+	 */
 	private function getLoad( $modules, string $only, array $extraQuery = [] ) {
 		return self::makeLoad( $this->context, (array)$modules, $only, $extraQuery );
 	}

@@ -97,6 +97,11 @@ class DjVuImage {
 		fclose( $file );
 	}
 
+	/**
+	 * @param resource $file
+	 * @param int $length
+	 * @param int $indent
+	 */
 	private function dumpForm( $file, int $length, int $indent ) {
 		$start = ftell( $file );
 		$secondary = fread( $file, 4 );
@@ -123,6 +128,7 @@ class DjVuImage {
 		}
 	}
 
+	/** @return array|false */
 	private function getInfo() {
 		AtEase::suppressWarnings();
 		$file = fopen( $this->mFilename, 'rb' );
@@ -159,6 +165,9 @@ class DjVuImage {
 		return $info;
 	}
 
+	/**
+	 * @param resource $file
+	 */
 	private function readChunk( $file ): array {
 		$header = fread( $file, 8 );
 		if ( strlen( $header ) < 8 ) {
@@ -169,6 +178,10 @@ class DjVuImage {
 		return [ $arr['chunk'], $arr['length'] ];
 	}
 
+	/**
+	 * @param resource $file
+	 * @param int $chunkLength
+	 */
 	private function skipChunk( $file, int $chunkLength ) {
 		fseek( $file, $chunkLength, SEEK_CUR );
 
@@ -178,6 +191,11 @@ class DjVuImage {
 		}
 	}
 
+	/**
+	 * @param resource $file
+	 * @param int $formLength
+	 * @return array|false
+	 */
 	private function getMultiPageInfo( $file, int $formLength ) {
 		// For now, we'll just look for the first page in the file
 		// and report its information, hoping others are the same size.
@@ -207,6 +225,10 @@ class DjVuImage {
 		return false;
 	}
 
+	/**
+	 * @param resource $file
+	 * @return array|false
+	 */
 	private function getPageInfo( $file ) {
 		[ $chunk, $length ] = $this->readChunk( $file );
 		if ( $chunk !== 'INFO' ) {
@@ -434,6 +456,7 @@ EOR;
 		return $result;
 	}
 
+	/** @return array|false */
 	private function parseFormDjvu( string $line ) {
 		$parentLevel = strspn( $line, ' ' );
 		$line = strtok( "\n" );

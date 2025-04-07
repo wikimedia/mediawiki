@@ -177,6 +177,7 @@ class ApiParse extends ApiBase {
 		return $user;
 	}
 
+	/** @return ParserOutput|false */
 	private function getPageParserOutput(
 		WikiPage $page,
 		?int $revId,

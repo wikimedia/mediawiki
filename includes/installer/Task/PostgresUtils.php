@@ -51,6 +51,7 @@ class PostgresUtils {
 		return self::isRoleMember( $conn, $installerId, $webId, self::MAX_ROLE_SEARCH_DEPTH );
 	}
 
+	/** @return \stdClass|false */
 	private function getInstallUserPermissions() {
 		$status = $this->context->getConnection( ITaskContext::CONN_CREATE_DATABASE );
 		if ( !$status->isOK() ) {

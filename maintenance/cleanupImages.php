@@ -238,6 +238,7 @@ class CleanupImages extends TableCleanup {
 			"\\1$suffix\\2", $name );
 	}
 
+	/** @return string|false */
 	private function buildSafeTitle( string $name ) {
 		$x = preg_replace_callback(
 			'/([^' . Title::legalChars() . ']|~)/',

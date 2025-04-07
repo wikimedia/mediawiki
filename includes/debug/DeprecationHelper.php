@@ -297,6 +297,10 @@ trait DeprecationHelper {
 		return false;
 	}
 
+	/**
+	 * @param string|\Closure $getter
+	 * @return mixed
+	 */
 	private function deprecationHelperCallGetter( $getter ) {
 		if ( is_string( $getter ) ) {
 			$getter = [ $this, $getter ];
@@ -306,6 +310,10 @@ trait DeprecationHelper {
 		return $getter();
 	}
 
+	/**
+	 * @param string|\Closure $setter
+	 * @param mixed $value
+	 */
 	private function deprecationHelperCallSetter( $setter, $value ) {
 		if ( is_string( $setter ) ) {
 			$setter = [ $this, $setter ];

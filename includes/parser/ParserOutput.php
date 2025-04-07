@@ -2998,6 +2998,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		return $values;
 	}
 
+	/**
+	 * @param string|int|null $a
+	 * @param string|int|null $b
+	 * @return string|int|null
+	 */
 	private static function useMaxValue( $a, $b ) {
 		if ( $a === null ) {
 			return $b;

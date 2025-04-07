@@ -189,6 +189,13 @@ class LinkRenderer {
 		}
 	}
 
+	/**
+	 * @param LinkTarget $target $target
+	 * @param string|HtmlArmor|null &$text
+	 * @param array &$extraAttribs
+	 * @param array &$query
+	 * @return string|null|void
+	 */
 	private function runBeginHook( $target, &$text, array &$extraAttribs, array &$query ) {
 		$ret = null;
 		if ( !$this->hookRunner->onHtmlPageLinkRendererBegin(

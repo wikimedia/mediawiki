@@ -594,6 +594,12 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 		return $this->getLanguage()->pipeList( $links );
 	}
 
+	/**
+	 * @param int|false $prevNamespace
+	 * @param int|false $prevPageId
+	 * @param int|false $nextNamespace
+	 * @param int|false $nextPageId
+	 */
 	private function getPrevNext( $prevNamespace, $prevPageId, $nextNamespace, $nextPageId ): string {
 		$navBuilder = new PagerNavigationBuilder( $this->getContext() );
 

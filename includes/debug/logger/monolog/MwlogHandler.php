@@ -91,6 +91,9 @@ class MwlogHandler extends SyslogUdpHandler {
 		return "<{$pri}>{$timestamp} {$this->hostname} {$app}: ";
 	}
 
+	/**
+	 * @param string|string[] $message
+	 */
 	private function splitMessageIntoLines( $message ): array {
 		if ( is_array( $message ) ) {
 			$message = implode( "\n", $message );

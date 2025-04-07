@@ -441,6 +441,7 @@ class PageUpdater implements PageUpdateCauses {
 		return $this;
 	}
 
+	/** @return string|false */
 	private function getWikiId() {
 		return $this->revisionStore->getWikiId();
 	}

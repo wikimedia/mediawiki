@@ -113,6 +113,7 @@ trait TestRepoTrait {
 		$this->setService( 'FileBackendGroup', $this->createTestBackendGroup( $backend ) );
 	}
 
+	/** @return FileBackend */
 	private function createTestBackendGroup( FileBackend $backend ) {
 		$expected = "mwstore://{$backend->getName()}/";
 
@@ -169,6 +170,7 @@ trait TestRepoTrait {
 		return $info;
 	}
 
+	/** @return FileBackend */
 	private function createFileBackend( array $info = [] ) {
 		$dir = $info['directory'] ?? self::$mockRepoTraitDir;
 		$name = $info['name'] ?? 'test';

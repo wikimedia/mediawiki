@@ -127,6 +127,9 @@ class MSCompoundFileReader {
 		return $info;
 	}
 
+	/**
+	 * @param resource $fileHandle
+	 */
 	private function __construct( $fileHandle ) {
 		$this->file = $fileHandle;
 		try {

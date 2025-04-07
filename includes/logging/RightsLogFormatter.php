@@ -465,6 +465,9 @@ class RightsLogFormatter extends LogFormatter {
 		return $ret;
 	}
 
+	/**
+	 * @param string|string[] $group
+	 */
 	private function makeGroupArray( $group ): array {
 		// Migrate old group params from string to array
 		if ( $group === '' ) {
