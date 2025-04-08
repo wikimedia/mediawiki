@@ -2536,7 +2536,7 @@
 	"blockipsuccesssub": "Esto onnistui",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] on estetty.<br />\nVoimassa olevat estot näkyvät [[Special:BlockList|estoluettelossa]].",
 	"ipb-empty-block": "Annetussa estossa ei ole mitään rajoituksia valittuna.",
-	"ipb-block-not-found": "Eston asettaminen ei onnistunut, mutta olemassa olevaa estoa kohteelle \"$1\" ei löytynyt. Mikäli ongelma jatkuu, [https://www.mediawiki.org/wiki/Special:MyLanguage/Help_talk:Blocking_users tee siitä ilmoitus].",
+	"ipb-block-not-found": "Eston asettaminen ei onnistunut, luultavasti koska toinen ylläpitäjä yritti estää tämän käyttäjän samalla hetkellä. Tarkista eston tila ja kokeile uudelleen.",
 	"ipb-blockingself": "Olet estämässä itseäsi. Oletko varma, että haluat tehdä niin?",
 	"ipb-confirmhideuser": "Olet estämässä käyttäjää ”piilota käyttäjä” -toiminnon kanssa. Tämä piilottaa käyttäjän nimen kaikissa luetteloissa ja lokitapahtumissa. Oletko varma, että haluat tehdä näin?",
 	"ipb-confirmaction": "Jos olet varma, että haluat todella tehdä tämän, tarkista kentän ”{{int:ipb-confirm}}” sisältö alhaalta.",

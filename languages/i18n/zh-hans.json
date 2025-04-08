@@ -2671,7 +2671,7 @@
 	"blockipsuccesssub": "封禁成功",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]]已被封禁。<br />\n参见[[Special:BlockList|封禁列表]]以复核封禁。",
 	"ipb-empty-block": "提交的封禁没有启用任何限制。",
-	"ipb-block-not-found": "无法执行封禁，但是找到对“$1”的不存在的封禁。如果问题持续出现，请[https://www.mediawiki.org/wiki/Special:MyLanguage/Help_talk:Blocking_users 报告它]。",
+	"ipb-block-not-found": "无法执行封禁，这可能是因为其他管理员在同时尝试封禁此用户。请检查封禁状态后重试。",
 	"ipb-blockingself": "您将要封禁自己！确实要这样做吗？",
 	"ipb-confirmhideuser": "您即将在封禁用户的同时启用“隐藏用户”功能。这将从所有列表和日志记录中隐藏这个用户名。您确认这样做吗？",
 	"ipb-confirmaction": "如果您确信要这样做，请检查底部的“{{int:ipb-confirm}}”部分。",

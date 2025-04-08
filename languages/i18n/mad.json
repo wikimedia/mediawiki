@@ -559,7 +559,7 @@
 	"blanknamespace": "(Otama)",
 	"contributions": "Dhurruna pangangghuy",
 	"tool-link-contributions": "Dhurrun {{GENDER:$1|pangangghuy}}",
-	"contributions-title": "Dhurrun pangangghuy ghâbây $1",
+	"contributions-title": "Dhurrun {{GENDER:$2|Pangangghuy}} ka'angghuy $1",
 	"mycontris": "Dhurrun",
 	"anoncontribs": "Dhurrun",
 	"nocontribs": "Taḍâ' obâ'ân sè cocok bi' kritèria kasebbhut.",

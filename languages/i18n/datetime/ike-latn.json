@@ -53,5 +53,6 @@
 	"thu": "qiti",
 	"fri": "ullu",
 	"sat": "sivata",
-	"sun": "sana"
+	"sun": "sana",
+	"duration-days": "$1 {{PLURAL:$1|ulluq|ulluit}}"
 }
