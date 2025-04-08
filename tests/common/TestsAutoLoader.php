@@ -166,10 +166,6 @@ $wgAutoloadClasses += [
 	'Wikimedia\\Tests\\SerializationTestUtils' =>
 		"$testDir/phpunit/includes/libs/serialization/SerializationTestUtils.php",
 
-	# tests/phpunit/includes/poolcounter
-	'PoolWorkArticleViewTest' =>
-		"$testDir/phpunit/includes/poolcounter/PoolWorkArticleViewTest.php",
-
 	# tests/phpunit/includes/ResourceLoader
 	'MediaWiki\\Tests\\ResourceLoader\\ImageModuleTest' =>
 		"$testDir/phpunit/includes/ResourceLoader/ImageModuleTest.php",

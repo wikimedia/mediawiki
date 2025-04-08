@@ -31,15 +31,14 @@ use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\PoolCounter\PoolCounterFactory;
 use MediaWiki\PoolCounter\PoolCounterWork;
-use MediaWiki\PoolCounter\PoolWorkArticleView;
-use MediaWiki\PoolCounter\PoolWorkArticleViewCurrent;
-use MediaWiki\PoolCounter\PoolWorkArticleViewOld;
+use MediaWiki\PoolCounter\PoolCounterWorkViaCallback;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\TitleFormatter;
+use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Assert\Assert;
 use Wikimedia\MapCacheLRU\MapCacheLRU;
@@ -280,6 +279,65 @@ class ParserOutputAccess {
 	}
 
 	/**
+	 * Fallback for use with PoolCounterWork.
+	 * Returns stale cached output if appropriate.
+	 *
+	 * @return Status|false
+	 */
+	private function getFallbackOutputForLatest(
+		PageRecord $page,
+		ParserOptions $parserOptions,
+		string $workKey,
+		bool $fast
+	) {
+		$parserOutput = $this->getPrimaryCache( $parserOptions )
+			->getDirty( $page, $parserOptions );
+
+		$logger = $this->loggerSpi->getLogger( 'dirty' );
+
+		if ( !$parserOutput ) {
+			$logger->info( 'dirty missing' );
+			return false;
+		}
+
+		if ( $fast ) {
+			/* Check if the stale response is from before the last write to the
+			 * DB by this user. Declining to return a stale response in this
+			 * case ensures that the user will see their own edit after page
+			 * save.
+			 *
+			 * Note that the CP touch time is the timestamp of the shutdown of
+			 * the save request, so there is a bias towards avoiding fast stale
+			 * responses of potentially several seconds.
+			 */
+			$lastWriteTime = $this->chronologyProtector->getTouched();
+			$cacheTime = MWTimestamp::convert( TS_UNIX, $parserOutput->getCacheTime() );
+			if ( $lastWriteTime && $cacheTime <= $lastWriteTime ) {
+				$logger->info(
+					'declining to send dirty output since cache time ' .
+					'{cacheTime} is before last write time {lastWriteTime}',
+					[
+						'workKey' => $workKey,
+						'cacheTime' => $cacheTime,
+						'lastWriteTime' => $lastWriteTime,
+					]
+				);
+				// Forget this ParserOutput -- we will request it again if
+				// necessary in slow mode. There might be a newer entry
+				// available by that time.
+				return false;
+			}
+		}
+
+		$logger->info( $fast ? 'fast dirty output' : 'dirty output', [ 'workKey' => $workKey ] );
+
+		$status = Status::newGood( $parserOutput );
+		$status->warning( 'view-pool-dirty-output' );
+		$status->warning( $fast ? 'view-pool-contention' : 'view-pool-overload' );
+		return $status;
+	}
+
+	/**
 	 * Returns the rendered output for the given page.
 	 * Caching and concurrency control is applied.
 	 *
@@ -355,12 +413,18 @@ class ParserOutputAccess {
 		}
 
 		if ( $options & self::OPT_FOR_ARTICLE_VIEW ) {
-			$work = $this->newPoolWorkArticleView( $page, $parserOptions, $revision, $options );
+			$work = $this->newPoolWork( $page, $parserOptions, $revision, $options );
 			/** @var Status $status */
 			$status = $work->execute();
 		} else {
 			// XXX: we could try harder to reuse a cache lookup above to
 			// provide the $previous argument here
+			$this->statsFactory->getCounter( 'parseroutputaccess_render_total' )
+				->setLabel( 'pool', 'none' )
+				->setLabel( 'cache', self::CACHE_NONE )
+				->copyToStatsdAt( 'ParserOutputAccess.PoolWork.None' )
+				->increment();
+
 			$status = $this->renderRevision( $page, $parserOptions, $revision, $options, null );
 		}
 
@@ -415,11 +479,6 @@ class ParserOutputAccess {
 		?ParserOutput $previousOutput = null
 	): Status {
 		$span = $this->startOperationSpan( __FUNCTION__, $page, $revision );
-		$this->statsFactory->getCounter( 'parseroutputaccess_render_total' )
-			->setLabel( 'pool', 'none' )
-			->setLabel( 'cache', self::CACHE_NONE )
-			->copyToStatsdAt( 'ParserOutputAccess.PoolWork.None' )
-			->increment();
 
 		$useCache = $this->shouldUseCache( $page, $revision );
 
@@ -542,14 +601,37 @@ class ParserOutputAccess {
 	 * @param RevisionRecord $revision
 	 * @param int $options
 	 *
-	 * @return PoolCounterWork
+	 * @return ?PoolCounterWork
 	 */
-	protected function newPoolWorkArticleView(
+	protected function newPoolWork(
 		PageRecord $page,
 		ParserOptions $parserOptions,
 		RevisionRecord $revision,
 		int $options
-	): PoolCounterWork {
+	): ?PoolCounterWork {
+		// Default behavior (no caching)
+		$callbacks = [
+			'doWork' => function () use ( $page, $parserOptions, $revision, $options ) {
+				return $this->renderRevision(
+					$page,
+					$parserOptions,
+					$revision,
+					$options
+				);
+			},
+			'doCachedWork' => static function () {
+				// uncached
+				return false;
+			},
+			'fallback' => static function ( $fast ) {
+				// no fallback
+				return false;
+			},
+			'error' => static function ( $status ) {
+				return $status;
+			}
+		];
+
 		$useCache = $this->shouldUseCache( $page, $revision );
 
 		$statCacheLabelLegacy = [
@@ -573,50 +655,49 @@ class ParserOutputAccess {
 
 				$workKey = $cacheKey . ':revid:' . $revision->getId();
 
-				$pool = $this->poolCounterFactory->create( 'ArticleView', $workKey );
-				return new PoolWorkArticleViewCurrent(
-					$pool,
-					$page,
-					$revision,
-					$parserOptions,
-					$this->revisionRenderer,
-					$primaryCache,
-					$this->chronologyProtector,
-					$this->loggerSpi,
-					$this->wikiPageFactory,
-					!( $options & self::OPT_NO_UPDATE_CACHE ),
-					(bool)( $options & self::OPT_LINKS_UPDATE )
-				);
+				$callbacks['doCachedWork'] =
+					function () use ( $primaryCache, $page, $parserOptions ) {
+						$parserOutput = $primaryCache->get( $page, $parserOptions );
+
+						$logger = $this->loggerSpi->getLogger( 'PoolWorkArticleView' );
+						$logger->debug( $parserOutput ? 'parser cache hit' : 'parser cache miss' );
+
+						return $parserOutput ? Status::newGood( $parserOutput ) : false;
+					};
+
+				$callbacks['fallback'] =
+					function ( $fast ) use ( $page, $parserOptions, $workKey, $options ) {
+						return $this->getFallbackOutputForLatest(
+							$page, $parserOptions, $workKey, $fast
+						);
+					};
+
+				break;
 
 			case self::CACHE_SECONDARY:
 				$secondaryCache = $this->getSecondaryCache( $parserOptions );
 				$workKey = $secondaryCache->makeParserOutputKey( $revision, $parserOptions );
-				$pool = $this->poolCounterFactory->create( 'ArticleView', $workKey );
-				return new PoolWorkArticleViewOld(
-					$pool,
-					$secondaryCache,
-					$revision,
-					$parserOptions,
-					$this->revisionRenderer,
-					$this->loggerSpi
-				);
+
+				$callbacks['doCachedWork'] =
+					static function () use ( $secondaryCache, $revision, $parserOptions ) {
+						$parserOutput = $secondaryCache->get( $revision, $parserOptions );
+
+						return $parserOutput ? Status::newGood( $parserOutput ) : false;
+					};
+
+				break;
 
 			default:
-				// Without caching, using poolcounter is pointless
-				// The name of the metric is a bit confusing now
 				$secondaryCache = $this->getSecondaryCache( $parserOptions );
 				$workKey = $secondaryCache->makeParserOutputKeyOptionalRevId( $revision, $parserOptions );
-				$pool = $this->poolCounterFactory->create( 'ArticleView', $workKey );
-				return new PoolWorkArticleView(
-					$pool,
-					$revision,
-					$parserOptions,
-					$this->revisionRenderer,
-					$this->loggerSpi
-				);
 		}
 
-		// unreachable
+		$pool = $this->poolCounterFactory->create( 'ArticleView', $workKey );
+		return new PoolCounterWorkViaCallback(
+			$pool,
+			$workKey,
+			$callbacks
+		);
 	}
 
 	private function getPrimaryCache( ParserOptions $pOpts ): ParserCache {
