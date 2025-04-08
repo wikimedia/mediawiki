@@ -60,21 +60,21 @@ class PageRedirectHelperTest extends MediaWikiIntegrationTestCase {
 			'Föö+Bar',
 			null,
 			false,
-			'https://example.test/api/test/F%C3%B6%C3%B6%2BBar',
+			'https://example.test/api/test/F%C3%B6%C3%B6%2BBar?redirect=no',
 		];
 
 		yield 'Relative' => [
 			'Föö+Bar',
 			null,
 			true,
-			'/api/test/F%C3%B6%C3%B6%2BBar',
+			'/api/test/F%C3%B6%C3%B6%2BBar?redirect=no',
 		];
 
 		yield 'Query Params' => [
 			'Föö+Bar',
 			[ 'a' => 1 ],
 			true,
-			'/api/test/F%C3%B6%C3%B6%2BBar?a=1',
+			'/api/test/F%C3%B6%C3%B6%2BBar?a=1&redirect=no',
 		];
 
 		$page = PageReferenceValue::localReference(
@@ -85,7 +85,7 @@ class PageRedirectHelperTest extends MediaWikiIntegrationTestCase {
 			$page,
 			null,
 			false,
-			'https://example.test/api/test/Talk%3AQ%2FA',
+			'https://example.test/api/test/Talk%3AQ%2FA?redirect=no',
 		];
 	}
 
@@ -146,7 +146,7 @@ class PageRedirectHelperTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideWikiRedirect() {
 		$page = new PageIdentityValue( 7, NS_MAIN, 'Redirect_to_foo', false );
-		yield 'Wiki redirect' => [ $page, '/api/test/Foo' ];
+		yield 'Wiki redirect' => [ $page, '/api/test/Foo?redirect=no', 'https://example.test/api/test/Foo?redirect=no' ];
 
 		$page = new PageIdentityValue( 7, NS_MAIN, 'Redirect_to_self', false );
 		yield 'Self-redirect (T353688)' => [ $page, null ];
@@ -198,7 +198,7 @@ class PageRedirectHelperTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertNotNull( $resp );
 		$this->assertSame(
-			'/api/test/EsttayAgepay',
+			'/api/test/EsttayAgepay?redirect=no',
 			$resp->getHeaderLine( 'Location' )
 		);
 		$this->assertSame( 307, $resp->getStatusCode() );

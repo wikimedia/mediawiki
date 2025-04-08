@@ -82,6 +82,7 @@ describe( 'Page Source', () => {
 			const { status, text, headers } = await client.get( `${ pathPrefix }/page/${ redirectPage }`, { flavor: 'edit' } );
 			const { host, search, pathname } = parseURL( headers.location );
 			assert.include( search, 'flavor=edit' );
+			assert.notInclude( search, 'redirect=no' );
 			assert.deepEqual( host, '' );
 			assert.include( pathname, `/page/${ redirectDbKey }` );
 			assert.deepEqual( status, 301, text );
@@ -94,7 +95,7 @@ describe( 'Page Source', () => {
 			const { status, body: { redirect_target }, text, headers } = res;
 			assert.deepEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
-			assert.match( redirect_target, new RegExp( `/page/${ encodeURIComponent( redirectedPageDbKey ) }$` ) );
+			assert.match( redirect_target, new RegExp( `/page/${ encodeURIComponent( redirectedPageDbKey ) }\\?redirect=no$` ) );
 			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
@@ -154,6 +155,7 @@ describe( 'Page Source', () => {
 			const { status, text, headers } = await client.get( `${ pathPrefix }/page/${ redirectPage }/bare`, { flavor: 'edit' } );
 			const { search } = parseURL( headers.location );
 			assert.include( search, 'flavor=edit' );
+			assert.notInclude( search, 'redirect=no' );
 			assert.deepEqual( status, 301, text );
 		} );
 
@@ -164,7 +166,7 @@ describe( 'Page Source', () => {
 			const { status, body: { redirect_target }, text, headers } = res;
 			assert.deepEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
-			assert.match( redirect_target, new RegExp( `/page/${ encodeURIComponent( redirectedPageDbKey ) }/bare$` ) );
+			assert.match( redirect_target, new RegExp( `/page/${ encodeURIComponent( redirectedPageDbKey ) }/bare\\?redirect=no$` ) );
 			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
@@ -250,6 +252,7 @@ describe( 'Page Source', () => {
 			const { status, text, headers } = await client.get( `${ pathPrefix }/page/${ redirectPageDbkey }/html`, { flavor: 'edit' } );
 			const { host, pathname, search } = parseURL( headers.location );
 			assert.include( search, 'flavor=edit' );
+			assert.include( search, 'redirect=no' );
 			assert.include( pathname, `/page/${ redirectedPageDbkey }` );
 			assert.deepEqual( host, '' );
 			assert.deepEqual( status, 307, text );
@@ -259,8 +262,11 @@ describe( 'Page Source', () => {
 			const agepayDbkey = utils.dbkey( agepay );
 			const atinlayAgepayDbkey = utils.dbkey( atinlayAgepay );
 			const { status, text, headers } = await client.get( `${ pathPrefix }/page/${ agepayDbkey }/html` );
+			const { host, pathname, search } = parseURL( headers.location );
+			assert.include( search, 'redirect=no' );
+			assert.deepEqual( host, '' );
+			assert.include( pathname, `/page/${ atinlayAgepayDbkey }` );
 			assert.deepEqual( status, 307, text );
-			assert.include( headers.location, atinlayAgepayDbkey );
 		} );
 
 		it( 'Bypass wiki redirects with query param redirect=no', async () => {
