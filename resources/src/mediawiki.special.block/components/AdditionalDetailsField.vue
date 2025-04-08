@@ -5,7 +5,8 @@
 			v-model="autoBlock"
 			input-value="wpAutoBlock"
 		>
-			{{ $i18n( 'ipbenableautoblock', autoBlockExpiry ) }}
+			<!-- eslint-disable-next-line vue/no-v-html --><!-- See T391069 -->
+			<div v-html="$i18n( 'ipbenableautoblock', autoBlockExpiry ).parse()"></div>
 		</cdx-checkbox>
 		<cdx-checkbox
 			v-if="hideUserVisible"
