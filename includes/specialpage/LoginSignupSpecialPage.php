@@ -299,6 +299,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$authManager = MediaWikiServices::getInstance()->getAuthManager();
 		$session = SessionManager::getGlobalSession();
 
+		// Before persisting, set the login token to avoid double writes
+		$this->getToken();
+
 		// Session data is used for various things in the authentication process, so we must make
 		// sure a session cookie or some equivalent mechanism is set.
 		$session->persist();
