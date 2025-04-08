@@ -509,7 +509,6 @@ class ApiParse extends ApiBase {
 			// Required for subtitle to appear
 			$outputPage->setArticleFlag( true );
 
-			$outputPage->addParserOutputMetadata( $p_result );
 			if ( $this->content ) {
 				$outputPage->addContentOverride( $titleObj, $this->content );
 			}
@@ -557,6 +556,12 @@ class ApiParse extends ApiBase {
 			if ( $context ) {
 				$this->getHookRunner()->onOutputPageBeforeHTML( $context->getOutput(), $result_array['text'] );
 			}
+		}
+
+		if ( $outputPage ) {
+			// This needs to happen after running the OutputTransform pipeline so that the metadata inserted by
+			// the pipeline is also added to the OutputPage
+			$outputPage->addParserOutputMetadata( $p_result );
 		}
 
 		if ( $params['summary'] !== null ||
