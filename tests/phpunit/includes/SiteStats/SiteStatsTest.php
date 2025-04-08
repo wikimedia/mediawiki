@@ -2,8 +2,6 @@
 
 use MediaWiki\JobQueue\Jobs\NullJob;
 use MediaWiki\SiteStats\SiteStats;
-use Wikimedia\ObjectCache\HashBagOStuff;
-use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 /**
@@ -15,8 +13,7 @@ class SiteStatsTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\SiteStats\SiteStats::jobs
 	 */
 	public function testJobsCountGetCached() {
-		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
-		$this->setService( 'MainWANObjectCache', $cache );
+		$cache = $this->getServiceContainer()->getMainWANObjectCache();
 		$jobq = $this->getServiceContainer()->getJobQueueGroup();
 
 		$jobq->push( new NullJob( [] ) );

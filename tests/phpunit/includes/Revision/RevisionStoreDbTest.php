@@ -1869,9 +1869,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetKnownCurrentRevision_userNameChange() {
-		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
-		$this->setService( 'MainWANObjectCache', $cache );
-
 		$store = $this->getServiceContainer()->getRevisionStore();
 		$page = $this->getNonexistingTestPage();
 		$rev = $this->createRevisionStoreCacheRecord( $page, $store );
@@ -1907,9 +1904,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetKnownCurrentRevision_stalePageId() {
-		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
-		$this->setService( 'MainWANObjectCache', $cache );
-
 		$store = $this->getServiceContainer()->getRevisionStore();
 		$page = $this->getNonexistingTestPage();
 		$rev = $this->createRevisionStoreCacheRecord( $page, $store );
@@ -1924,9 +1918,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetKnownCurrentRevision_wrongTitle() {
-		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
-		$this->setService( 'MainWANObjectCache', $cache );
-
 		$store = $this->getServiceContainer()->getRevisionStore();
 		$page = $this->getNonexistingTestPage();
 		$rev = $this->createRevisionStoreCacheRecord( $page, $store );
@@ -1940,9 +1931,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetKnownCurrentRevision_revDelete() {
-		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
-		$this->setService( 'MainWANObjectCache', $cache );
-
 		$store = $this->getServiceContainer()->getRevisionStore();
 		$page = $this->getNonexistingTestPage();
 		$rev = $this->createRevisionStoreCacheRecord( $page, $store );
