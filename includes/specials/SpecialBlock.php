@@ -527,7 +527,7 @@ class SpecialBlock extends FormSpecialPage {
 
 		if ( $this->useCodex ) {
 			$blockReasonOptions = Html::listDropdownOptionsCodex(
-				Html::listDropdownOptions( $this->msg( 'ipbreason-dropdown' )->plain(),
+				Html::listDropdownOptions( $this->msg( 'ipbreason-dropdown' )->inContentLanguage()->plain(),
 					[ 'other' => $this->msg( 'htmlform-selectorother-other' )->text() ]
 			) );
 			$this->codexFormData[ 'blockReasonOptions' ] = $blockReasonOptions;
