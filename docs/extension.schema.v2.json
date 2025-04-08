@@ -1565,7 +1565,7 @@
 					},
 					{
 						"type": "object",
-						"description": "A Parsoid extension module configuration array",
+						"description": "A Parsoid extension module configuration array. Only mandatory and prohibited fields are specified here; the Parsoid repository contains a complete schema, documented at [[mw:Parsoid/Internals/Module_Configuration_Schema]].",
 						"properties": {
 							"class": {
 								"type": "null",
@@ -1575,46 +1575,9 @@
 								"type": "null",
 								"description": "This property must not be present in a configuration array"
 							},
-							"domProcessors": {
-								"type": "array",
-								"items": {
-									"description": "Object factory specification of a class implementing Wikimedia\\Parsoid\\Ext\\DOMProcessor"
-								}
-							},
-							"styles": {
-								"type": "array",
-								"items": {
-									"type": "string",
-									"description": "Additional ResourceLoader styles to include"
-								}
-							},
-							"annotations": {
-								"type": "array",
-								"items": {
-									"type": "string",
-									"description": "The name of an annotation tag"
-								}
-							},
-							"tags": {
-								"type": "array",
-								"items": {
-									"type": "object",
-									"description": "An extension tag",
-									"properties": {
-										"name": {
-											"type": "string",
-											"description": "The name of the extension tag"
-										},
-										"handler": {
-											"description": "An object factory specification of a class extending Wikimedia\\Parsoid\\Ext\\ExtensionTagHandler"
-										},
-										"options": {
-											"type": "object",
-											"description": "Additional Parsoid processing configuration for this extension tag"
-										}
-									},
-									"required": [ "name" ]
-								}
+							"name": {
+								"type": "string",
+								"description": "The Parsoid extension module's canonical name; should be unique."
 							}
 						}
 					}
