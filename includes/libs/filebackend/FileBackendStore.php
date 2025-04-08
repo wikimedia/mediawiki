@@ -1585,7 +1585,7 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	final protected function resolveStoragePath( $storagePath ) {
 		[ $backend, $shortCont, $relPath ] = self::splitStoragePath( $storagePath );
-		if ( $backend === $this->name ) { // must be for this backend
+		if ( $backend === $this->name && $relPath !== null ) { // must be for this backend
 			$relPath = self::normalizeContainerPath( $relPath );
 			if ( $relPath !== null && self::isValidShortContainerName( $shortCont ) ) {
 				// Get shard for the normalized path if this container is sharded
