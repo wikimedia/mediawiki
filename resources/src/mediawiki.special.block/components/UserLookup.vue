@@ -94,6 +94,7 @@ module.exports = exports = defineComponent( {
 		 * Until a selection is made, the value may be set to null.
 		 * We instead want to only update the targetUser for non-null values
 		 * (made either via selection, or the 'change' event).
+		 *
 		 * @type {Ref<string>}
 		 */
 		const selection = ref( props.modelValue || '' );

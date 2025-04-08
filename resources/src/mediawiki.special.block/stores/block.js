@@ -80,16 +80,8 @@ module.exports = exports = defineStore( 'block', () => {
 	 * These options are ultimately defined by [[MediaWiki:Ipbreason-dropdown]].
 	 *
 	 * @type {Ref<string>}
-	 * @todo Combine with `reasonOther` here within the store.
 	 */
-	const reason = ref( 'other' );
-	/**
-	 * The free-form text for the block summary.
-	 *
-	 * @type {Ref<string>}
-	 * @todo Combine with `reason` here within the store.
-	 */
-	const reasonOther = ref( mw.config.get( 'blockReasonOtherPreset' ) || '' );
+	const reason = ref( mw.config.get( 'blockReasonPreset' ) );
 	const details = mw.config.get( 'blockDetailsPreset' ) || [];
 	/**
 	 * Whether to block an IP or IP range from creating accounts.
@@ -136,7 +128,7 @@ module.exports = exports = defineStore( 'block', () => {
 	 * @type {Ref<boolean>}
 	 */
 	const hardBlock = ref( additionalDetails.includes( 'wpHardBlock' ) );
-	/*
+	/**
 	 * The removal reason, used in the remove-block confirmation dialog.
 	 * Note that the target and watchuser values in that form are shared with the main form.
 	 *
@@ -294,19 +286,7 @@ module.exports = exports = defineStore( 'block', () => {
 		namespaces.value = blockData.restrictions.namespaces || [];
 		expiry.value = blockData.expiry;
 		partialOptions.value = ( blockData.restrictions.actions || [] ).map( ( i ) => 'ipb-action-' + i );
-		// The reason is a single string that possibly starts with one of the predefined reasons,
-		// and can have an 'other' value separated by a colon.
-		// Here we replicate what's done in PHP in HTMLSelectAndOtherField at https://w.wiki/CPMs
-		reason.value = 'other';
-		reasonOther.value = blockData.reason;
-		for ( const opt of mw.config.get( 'blockReasonOptions' ) ) {
-			const possPrefix = opt.value + mw.msg( 'colon-separator' );
-			if ( reasonOther.value.startsWith( possPrefix ) ) {
-				reason.value = opt.value;
-				reasonOther.value = reasonOther.value.slice( possPrefix.length );
-				break;
-			}
-		}
+		reason.value = blockData.reason;
 		createAccount.value = blockData.nocreate;
 		disableEmail.value = blockData.noemail;
 		disableUTEdit.value = !blockData.allowusertalk;
@@ -339,8 +319,7 @@ module.exports = exports = defineStore( 'block', () => {
 		namespaces.value = [];
 		partialOptions.value = [];
 		expiry.value = '';
-		reason.value = 'other';
-		reasonOther.value = '';
+		reason.value = '';
 		createAccount.value = true;
 		disableEmail.value = false;
 		disableUTEdit.value = false;
@@ -381,6 +360,7 @@ module.exports = exports = defineStore( 'block', () => {
 			formatversion: 2,
 			user: targetUser.value,
 			expiry: expiry.value,
+			reason: reason.value,
 			// Localize errors
 			errorformat: 'html',
 			uselang: mw.config.get( 'wgUserLanguage' ),
@@ -399,15 +379,6 @@ module.exports = exports = defineStore( 'block', () => {
 			} else {
 				params.newblock = 1;
 			}
-		}
-
-		// Reason selected concatenated with 'Other' field
-		if ( reason.value === 'other' ) {
-			params.reason = reasonOther.value;
-		} else {
-			params.reason = reason.value + (
-				reasonOther.value ? mw.msg( 'colon-separator' ) + reasonOther.value : ''
-			);
 		}
 
 		if ( type.value === 'partial' ) {
@@ -582,7 +553,6 @@ module.exports = exports = defineStore( 'block', () => {
 		pages,
 		namespaces,
 		reason,
-		reasonOther,
 		createAccount,
 		disableEmail,
 		disableUTEdit,

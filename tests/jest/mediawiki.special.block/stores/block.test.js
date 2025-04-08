@@ -72,7 +72,7 @@ describe( 'Block store', () => {
 		expect( store.targetExists ).toStrictEqual( true );
 		expect( store.type ).toStrictEqual( 'sitewide' );
 		expect( store.expiry ).toStrictEqual( '' );
-		expect( store.reason ).toStrictEqual( 'other' );
+		expect( store.reason ).toStrictEqual( '' );
 		store.resetForm( true );
 		expect( store.targetUser ).toStrictEqual( '' );
 		expect( store.targetExists ).toStrictEqual( false );
