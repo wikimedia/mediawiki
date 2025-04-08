@@ -20,13 +20,9 @@
 
 namespace MediaWiki;
 
-use Exception;
-use Liuggio\StatsdClient\Sender\SocketSender;
-use Liuggio\StatsdClient\StatsdClient;
 use LogicException;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Config\Config;
-use MediaWiki\Config\ConfigException;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\TransactionRoundDefiningUpdate;
@@ -677,11 +673,7 @@ abstract class MediaWikiEntryPoint {
 		// Any embedded profiler outputs were already processed in outputResponsePayload().
 		$profiler->logData();
 
-		self::emitBufferedStats(
-			$this->getStatsFactory(),
-			$this->getStatsdDataFactory(),
-			$this->config
-		);
+		self::emitBufferedStats( $this->getStatsFactory() );
 
 		// Commit and close up!
 		$lbFactory->commitPrimaryChanges( __METHOD__ );
@@ -721,34 +713,13 @@ abstract class MediaWikiEntryPoint {
 	 *   in some way. We also flush from Maintenance::output().
 	 *
 	 * @param StatsFactory $statsFactory
-	 * @param IBufferingStatsdDataFactory $stats
-	 * @param Config $config
-	 * @throws ConfigException
 	 * @since 1.31 (formerly one the MediaWiki class)
 	 */
 	public static function emitBufferedStats(
-		StatsFactory $statsFactory,
-		IBufferingStatsdDataFactory $stats,
-		Config $config
+		StatsFactory $statsFactory
 	) {
 		// Send metrics gathered by StatsFactory
 		$statsFactory->flush();
-
-		if ( $config->get( MainConfigNames::StatsdServer ) && $stats->hasData() ) {
-			try {
-				$stats->updateCount( 'stats.statsdclient.buffered', $stats->getDataCount() );
-				$statsdServer = explode( ':', $config->get( MainConfigNames::StatsdServer ), 2 );
-				$statsdHost = $statsdServer[0];
-				$statsdPort = $statsdServer[1] ?? 8125;
-				$statsdSender = new SocketSender( $statsdHost, $statsdPort );
-				$statsdClient = new StatsdClient( $statsdSender, true, false );
-				$statsdClient->send( $stats->getData() );
-			} catch ( Exception $e ) {
-				MWExceptionHandler::logException( $e, MWExceptionHandler::CAUGHT_BY_ENTRYPOINT );
-			}
-		}
-		// empty buffer for the next round
-		$stats->clearData();
 	}
 
 	/**

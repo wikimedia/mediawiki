@@ -21,7 +21,7 @@ use Psr\Log\NullLogger;
 use RuntimeException;
 use UnexpectedValueException;
 use Wikimedia\Minify\IdentityMinifierState;
-use Wikimedia\Stats\NullStatsdDataFactory;
+use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -1347,15 +1347,11 @@ JS
 	}
 
 	public function testMeasureResponseTime() {
-		$stats = $this->getMockBuilder( NullStatsdDataFactory::class )
-			->onlyMethods( [ 'timing' ] )->getMock();
-		$this->setService( 'StatsdDataFactory', $stats );
-
-		$stats->expects( $this->once() )->method( 'timing' )
-			->with( 'resourceloader.responseTime', $this->anything() );
-
+		$statsHelper = StatsFactory::newUnitTestingHelper();
+		$this->setService( 'StatsFactory', $statsHelper->getStatsFactory() );
 		$rl = TestingAccessWrapper::newFromObject( new EmptyResourceLoader );
 		$rl->measureResponseTime();
+		$this->assertSame( 1, $statsHelper->count( 'resourceloader_response_time_seconds' ) );
 	}
 
 	public function testGetUserDefaults() {

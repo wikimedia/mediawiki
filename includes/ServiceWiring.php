@@ -293,7 +293,6 @@ use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\RequestTimeout\RequestTimeout;
-use Wikimedia\Stats\BufferingStatsdDataFactory;
 use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\PrefixingStatsdDataFactoryProxy;
 use Wikimedia\Stats\StatsCache;
@@ -2314,9 +2313,7 @@ return [
 	},
 
 	'StatsdDataFactory' => static function ( MediaWikiServices $services ): IBufferingStatsdDataFactory {
-		return new BufferingStatsdDataFactory(
-			rtrim( $services->getMainConfig()->get( MainConfigNames::StatsdMetricPrefix ), '.' )
-		);
+		return new NullStatsdDataFactory();
 	},
 
 	'StatsFactory' => static function ( MediaWikiServices $services ): StatsFactory {
@@ -2331,8 +2328,7 @@ return [
 			\Wikimedia\Stats\OutputFormats::getNewFormatter( $format ),
 			$config->get( MainConfigNames::StatsTarget )
 		);
-		$factory = new StatsFactory( $cache, $emitter, LoggerFactory::getInstance( 'Stats' ) );
-		return $factory->withStatsdDataFactory( $services->getStatsdDataFactory() );
+		return new StatsFactory( $cache, $emitter, LoggerFactory::getInstance( 'Stats' ) );
 	},
 
 	'TalkPageNotificationManager' => static function (
