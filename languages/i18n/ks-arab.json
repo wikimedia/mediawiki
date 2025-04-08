@@ -315,6 +315,7 @@
 	"loginerror": "دٲخلَس مَنٛز آو نُقُص",
 	"createacct-error": "کھاتہٕ بَناونَس مَنٛز آو نُقُص",
 	"createaccounterror": "کھاتہٕ ہیٚکہِ نہٕ بٕنِتھ: $1",
+	"userlogin-authpopup-loggingin-title": "لاگ اِن کران",
 	"userlogin-authpopup-loggingin-body-link": "مُتبأدل فارم",
 	"userlogin-authpopup-retry": "بیٚیہِ کٔرِو کوشِش",
 	"userlogin-authpopup-cancel": "مَنسوٗخ",

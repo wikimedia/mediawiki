@@ -19,7 +19,8 @@
 			"Nemo bis",
 			"Rberchie",
 			"Robertjamal12",
-			"Rsaawah"
+			"Rsaawah",
+			"Kojo Owusu 2020"
 		]
 	},
 	"sunday": "Kwasiada",
@@ -135,13 +136,14 @@
 	"skin-view-create": "Create",
 	"create-local": "Fa ɛfitiasɛm ka hɔ",
 	"delete": "Pepa",
-	"undelete_short": "Sane fa bra",
+	"undelete_short": "Yi fri hɔ {{PLURAL:$1| nsakrae baako| $1 nsakrae}}",
 	"viewdeleted_short": "Hwɛ nsesa {{PLURAL:$1|baako|$1}} a yɛyi afiri mu",
 	"protect": "Bɔ ho ban",
 	"protect_change": "sesa",
 	"skin-action-unprotect": "Sesa ban bɔ",
 	"unprotect": "Sesa ban bɔ",
 	"newpage": "Kratafa foforo",
+	"newpage-desc": "Hyɛ kratafa foforo ase ma asɛmti bi a wɔabisa.",
 	"view-missing-pages": "Hwɛ nkratafa a ayera",
 	"talkpagelinktext": "kasa",
 	"specialpage": "Kratafa soronko",

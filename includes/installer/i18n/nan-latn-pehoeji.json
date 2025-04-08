@@ -22,13 +22,10 @@
 	"config-session-error": "連線開始了的錯誤：$1",
 	"config-session-expired": "你連線資料已經過時矣，連線的使用期限是設做$1。你會使改共php.ini的<code>session.gc_maxlifetime</code>改較長，並且重新安裝動作。",
 	"config-no-session": "你連線的資料已經無去矣，看你的php.ini，並且確定<code>session.save_path</code>是正確的目錄。",
-	"config-your-language": "你的話語：",
-	"config-your-language-help": "選一个安裝過程時欲用的話語",
-	"config-wiki-language": "Wiki話語",
-	"config-wiki-language-help": "選一个Wiki大部份用的話",
+	"config-wiki-language": "Wiki gí-giân:",
 	"config-back": "← 倒退",
 	"config-continue": "繼續 →",
-	"config-page-language": "話語",
+	"config-page-language": "Gí-giân",
 	"config-page-welcome": "歡迎來MediaWiki!",
 	"config-page-dbconnect": "連接去資料庫",
 	"config-page-upgrade": "共這馬的安裝升級",
@@ -53,6 +50,5 @@
 	"config-no-db": "揣無適合的資料庫驅動程式！你需要安裝 PHP 資料庫驅動程式。\n這馬支援下跤類型的資料庫： $1 。\n\n若你是家己編譯 PHP，你需要重新設定並且開資料庫客戶端，譬如：用 <code>./configure --with-mysqli</code> 指令參數。\n如你是用 Debian 或 Ubuntu 的套件安裝，你著需要閣另外安裝，例：<code>php-mysql</code> 套件。",
 	"config-outdated-sqlite": "<strong>Kéng-kò:</strong> Lí í-keng an-chng SQLite $1, m̄-koh i--ê pán-pún pí thang-chng--ê pán-pún $2 khah kū. Só͘-í lí bô-hoat-tō͘ ēng SQLite.",
 	"config-no-fts3": "<strong>Kéng-kò: </strong> SQLite tī pian-e̍k--ê sî-chūn bô pau-koat  [//sqlite.org/fts3.html FTS3 module], āu-tâi chhiau-chhoē kong-lêng tiō ē bô-hoat-tō͘ iōng.",
-	"mainpagetext": "'''MediaWiki已經裝好矣。'''",
-	"mainpagedocfooter": "請查看[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents 用者說明書]的資料通使用wiki 軟體\n\n== 入門 ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings 配置的設定]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki時常問答]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki的公布列單]"
+	"mainpagetext": "'''MediaWiki已經裝好矣。'''"
 }
