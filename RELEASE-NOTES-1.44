@@ -257,6 +257,7 @@ because of Phabricator reports.
   No callers outside that library are known.
 * The constant UploadBase::OVERWRITE_EXISTING_FILE has been removed, it has
   been unused as a status code by UploadBase for more than 14 years.
+* The constant UploadBase::HOOK_ABORTED has been removed, unused since 1.34.
 * MediaWikiIntegrationTestCase::$tablesUsed, deprecated since 1.41, has been
   removed. The framework detects changed tables since 1.41 automatically.
 * MediaWiki\Language\Language class no longer supports manually calling the

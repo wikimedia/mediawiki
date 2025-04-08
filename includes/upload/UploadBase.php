@@ -131,7 +131,6 @@ abstract class UploadBase {
 	public const FILETYPE_MISSING = 8;
 	public const FILETYPE_BADTYPE = 9;
 	public const VERIFICATION_ERROR = 10;
-	public const HOOK_ABORTED = 11;
 	public const FILE_TOO_LARGE = 12;
 	public const WINDOWS_NONASCII_FILENAME = 13;
 	public const FILENAME_TOO_LONG = 14;
@@ -144,7 +143,6 @@ abstract class UploadBase {
 		self::MIN_LENGTH_PARTNAME => 'filename-tooshort',
 		self::ILLEGAL_FILENAME => 'illegal-filename',
 		self::VERIFICATION_ERROR => 'verification-error',
-		self::HOOK_ABORTED => 'hookaborted',
 		self::WINDOWS_NONASCII_FILENAME => 'windows-nonascii-filename',
 		self::FILENAME_TOO_LONG => 'filename-toolong',
 	];
