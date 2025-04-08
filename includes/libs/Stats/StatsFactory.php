@@ -80,8 +80,13 @@ class StatsFactory {
 		return $statsFactory->withStatsdDataFactory( $this->statsdDataFactory );
 	}
 
+	/**
+	 * This function existed to support the Graphite->Prometheus transition and is no longer needed.
+	 * @deprecated since 1.45, see: https://www.mediawiki.org/wiki/Manual:Stats
+	 */
 	public function withStatsdDataFactory( ?IBufferingStatsdDataFactory $statsdDataFactory ): StatsFactory {
-		$this->statsdDataFactory = $statsdDataFactory;
+		// TODO: remove this and all other copyToStatsdAt() usage and implementation
+		//$this->statsdDataFactory = $statsdDataFactory;
 		return $this;
 	}
 

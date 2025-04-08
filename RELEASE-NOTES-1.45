@@ -310,6 +310,9 @@ because of Phabricator reports.
   ::createFromParserOptions() instead.
 * Calling MessageCache::get with a Language object is now deprecated and emits
   a deprecation warning.
+* MetricInterface::copyToStatsdAt() and StatsFactory::withStatsdDataFactory()
+  are now deprecated. For StatsD support going forward, see:
+  https://www.mediawiki.org/wiki/Manual:Stats.
 * EnotifNotifyJob renamed to MediaWiki\RecentChanges\RecentChangeNotifyJob.
 * EmailNotification renamed to MediaWiki\RecentChanges\RecentChangeNotifier.
 * The RecentChangeNotifier::getPageStatus() method has been deprecated.

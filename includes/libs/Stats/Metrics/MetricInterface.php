@@ -106,6 +106,9 @@ interface MetricInterface {
 	 *
 	 * Takes a namespace or multiple namespaces.
 	 *
+	 * This function existed to support the Graphite->Prometheus transition and is no longer needed.
+	 *
+	 * @deprecated since 1.45, see: https://www.mediawiki.org/wiki/Manual:Stats.
 	 * @param string|string[] $statsdNamespaces
 	 * @return self|NullMetric
 	 */

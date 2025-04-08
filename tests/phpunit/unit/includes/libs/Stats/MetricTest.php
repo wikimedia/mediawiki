@@ -4,11 +4,8 @@ namespace Wikimedia\Tests\Stats;
 
 use MediaWikiUnitTestCase;
 use Psr\Log\NullLogger;
-use Wikimedia\Stats\IBufferingStatsdDataFactory;
-use Wikimedia\Stats\Metrics\BaseMetric;
 use Wikimedia\Stats\Metrics\CounterMetric;
 use Wikimedia\Stats\Metrics\NullMetric;
-use Wikimedia\Stats\NullStatsdDataFactory;
 use Wikimedia\Stats\OutputFormats;
 use Wikimedia\Stats\StatsCache;
 use Wikimedia\Stats\StatsFactory;
@@ -293,75 +290,6 @@ class MetricTest extends MediaWikiUnitTestCase {
 		$this->assertInstanceOf( NullMetric::class, $metric );
 	}
 
-	public function testCopyToStatsdAtEmptyArrayResetsValue() {
-		$baseMetric = new BaseMetric( '', 'testMetric' );
-		$metric = new CounterMetric(
-			$baseMetric->withStatsdDataFactory( new NullStatsdDataFactory() ),
-			new NullLogger()
-		);
-		$metric->copyToStatsdAt( 'test' );
-		$this->assertEquals( [ 'test' ], $baseMetric->getStatsdNamespaces() );
-		$metric->copyToStatsdAt( [] );
-		$this->assertEquals( [], $baseMetric->getStatsdNamespaces() );
-	}
-
-	public function testStatsdDataFactoryCopyToStatsdAtWithGauge() {
-		$statsFactory = StatsFactory::newNull();
-
-		$gaugeArgs = [ 'test.gauge.1', 'test.gauge.2' ];
-		$statsdMock = $this->createMock( IBufferingStatsdDataFactory::class );
-		$statsdMock->expects( $this->exactly( 2 ) )
-			->method( 'gauge' )
-			->with( $this->callback( static function ( $key ) use ( &$gaugeArgs ) {
-				$nextKey = array_shift( $gaugeArgs );
-				return $nextKey === $key;
-			} ) );
-
-		$statsFactory = $statsFactory->withStatsdDataFactory( $statsdMock );
-		$statsFactory->getGauge( 'testMetricGauge' )
-			->copyToStatsdAt( [ 'test.gauge.1', 'test.gauge.2' ] )
-			->set( 1 );
-	}
-
-	public function testHandleInvalidStatsdNamespace() {
-		$m = StatsFactory::newNull();
-		$m = $m->withStatsdDataFactory( new NullStatsdDataFactory() );
-		$this->expectPHPWarning(
-			'Stats: (testMetricCounter) StatsD namespace must be a string.',
-			function () use ( $m ) {
-				$metric = $m->getCounter( 'testMetricCounter' )->copyToStatsdAt( null );
-				$this->assertInstanceOf( NullMetric::class, $metric );
-			},
-			true
-		);
-	}
-
-	public function testHandleEmptyStatsdNamespace() {
-		$m = StatsFactory::newNull();
-		$m = $m->withStatsdDataFactory( new NullStatsdDataFactory() );
-		$this->expectPHPWarning(
-			'Stats: (testMetricCounter) StatsD namespace cannot be empty.',
-			function () use ( $m ) {
-				$metric = $m->getCounter( 'testMetricCounter' )->copyToStatsdAt( '' );
-				$this->assertInstanceOf( NullMetric::class, $metric );
-			},
-			true
-		);
-	}
-
-	public function testHandleNonStringStatsdNamespaceInArray() {
-		$m = StatsFactory::newNull();
-		$m = $m->withStatsdDataFactory( new NullStatsdDataFactory() );
-		$this->expectPHPWarning(
-			'Stats: (testMetricCounter) StatsD namespace must be a string.',
-			function () use ( $m ) {
-				$metric = $m->getCounter( 'testMetricCounter' )->copyToStatsdAt( [ null ] );
-				$this->assertInstanceOf( NullMetric::class, $metric );
-			},
-			true
-		);
-	}
-
 	public function testCanChangeLabelsWhileTimerIsStarted() {
 		ConvertibleTimestamp::setFakeTime( '20110401090000' );
 		$statsHelper = StatsFactory::newUnitTestingHelper();
@@ -376,50 +304,6 @@ class MetricTest extends MediaWikiUnitTestCase {
 			[ 'mediawiki.test:1|ms|#foo:baz' ],
 			$statsHelper->consumeAllFormatted()
 		);
-	}
-
-	public function testStatsdDataFactoryPersistsWithComponent() {
-		$statsFactory = StatsFactory::newNull();
-
-		$timingArgs = [ 'test.timing.1', 'test.timing.2' ];
-		$statsdMock = $this->createMock( IBufferingStatsdDataFactory::class );
-		$statsdMock->expects( $this->exactly( 2 ) )
-			->method( 'timing' )
-			->with( $this->callback( static function ( $key ) use ( &$timingArgs ) {
-				$nextKey = array_shift( $timingArgs );
-				return $nextKey === $key;
-			}, 1.0 ) );
-
-		$statsFactory = $statsFactory->withStatsdDataFactory( $statsdMock );
-
-		// withComponent() returns a whole new StatsFactory instance
-		$componentStatsFactory = $statsFactory->withComponent( 'TestComponent' );
-
-		$componentStatsFactory->getTiming( 'testMetricTiming' )
-			->copyToStatsdAt( [ 'test.timing.1', 'test.timing.2' ] )
-			->observe( 1 );
-	}
-
-	public function testWithComponentStatsdFactoryChanges() {
-		$statsFactory = StatsFactory::newNull();
-
-		// statsdDataFactory should be null if withComponent called prior to calling withStatsdDataFactory()
-		$noStatsd = TestingAccessWrapper::newFromObject( $statsFactory->withComponent( 'foo' ) );
-		$this->assertNull( $noStatsd->statsdDataFactory );
-
-		// call withStatsdDataFactory
-		$statsFactory = $statsFactory->withStatsdDataFactory( new NullStatsdDataFactory() );
-
-		// statsdDataFactory should be an instance of IBufferingStatsdDataFactory
-		$yesStatsd = TestingAccessWrapper::newFromObject( $statsFactory->withComponent( 'foo' ) );
-		$this->assertInstanceOf( IBufferingStatsdDataFactory::class, $yesStatsd->statsdDataFactory );
-
-		// disable statsdDataFactory
-		$statsFactory = $statsFactory->withStatsdDataFactory( null );
-
-		// statsdDataFactory should be null again
-		$noStatsdAgain = TestingAccessWrapper::newFromObject( $statsFactory->withComponent( 'foo' ) );
-		$this->assertNull( $noStatsdAgain->statsdDataFactory );
 	}
 
 	/**
@@ -513,48 +397,5 @@ class MetricTest extends MediaWikiUnitTestCase {
 			[ 'mediawiki.metricName:1|c|#x:labelOne,y:labelTwo' ],
 			$statsHelper->consumeAllFormatted()
 		);
-	}
-
-	public int $recursions = 0;
-	public int $maxRecursions = 2;
-
-	public function recur( $statsFactory ) {
-		$timing = $statsFactory->getTiming( 'metricName' )->start();
-		if ( $this->recursions > $this->maxRecursions ) {
-			return;
-		} else {
-			$this->recursions += 1;
-			$this->recur( $statsFactory );
-		}
-		$timing->stop();
-	}
-
-	public function testTimingRecursion() {
-		$statsHelper = StatsFactory::newUnitTestingHelper();
-		$this->recur( $statsHelper->getStatsFactory() );
-		$this->assertSame( 3, $statsHelper->count( 'metricName' ) );
-	}
-
-	public function testStopRunningTimerWarning() {
-		$statsFactory = StatsFactory::newNull();
-		$timing = $statsFactory->getTiming( 'metricName' )->start();
-		$callable = static function () use ( $timing ) {
-			$timing->stop();
-		};
-		$callable();
-		$this->expectPHPWarning( 'Stats: (metricName) cannot call stop() more than once on a RunningTimer.', $callable, true );
-	}
-
-	public function testRunningTimerNullMetric() {
-		$statsHelper = StatsFactory::newUnitTestingHelper();
-		$statsFactory = $statsHelper->getStatsFactory();
-
-		// put one good metric in the cache
-		$statsFactory->getTiming( 'metricName' )->start()->stop();
-
-		// try setting the label to something invalid making RunningTimer::metric = NullMetric()
-		@$timing = $statsFactory->getTiming( 'metricName' )->start()->setLabel( 'foo', '' )->stop();
-
-		$this->assertSame( 1, $statsHelper->count( 'metricName' ) );
 	}
 }

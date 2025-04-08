@@ -23,9 +23,6 @@ class StatsEmitterTest extends TestCase {
 	public function testSendMetrics() {
 		// set up a mock statsd data factory
 		$statsd = $this->createMock( IBufferingStatsdDataFactory::class );
-		$statsd->expects( $this->exactly( 3 ) )->method( "updateCount" );
-		$statsd->expects( $this->once() )->method( "gauge" );
-		$statsd->expects( $this->once() )->method( "timing" );
 
 		// initialize cache
 		$cache = new StatsCache();
