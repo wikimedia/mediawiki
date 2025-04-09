@@ -122,6 +122,11 @@ class SkinComponentSearch implements SkinComponent {
 			// T251664: Disable autocapitalization of input
 			// method when using fully case-sensitive titles.
 			'autocapitalize' => $autoCapHint ? 'sentences' : 'none',
+			// T385525: Disable spellcheck to stop webkit-based browsers from
+			// applying smart quotes, as someone using quotes almost
+			// certainly wants to be searching for a literal phrase, not
+			// searching for actual curly quotes.
+			'spellcheck' => 'false',
 		];
 
 		return array_merge(
