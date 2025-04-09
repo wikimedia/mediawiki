@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Bobbyshabangu"
+			"Bobbyshabangu",
+			"Phoebeplays49292"
 		]
 	},
 	"january": "Zibandlela",
@@ -28,7 +29,13 @@
 	"october-gen": "Mfumfu",
 	"november-gen": "Lwezi",
 	"december-gen": "Mpalakazi",
+	"jan": "Zib",
+	"feb": "Nhl",
+	"mar": "Mbi",
+	"apr": "Mab",
 	"may": "Nkwenkwezi",
+	"jun": "Nhl",
+	"jul": "Ntu",
 	"monday": "UMvulo",
 	"tuesday": "oLwesibili",
 	"wednesday": "oLwesithathu",

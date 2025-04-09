@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"IJzeren Jan",
 			"Polda18"
 		]
 	},
@@ -10,6 +11,7 @@
 	"cdx-dialog-close-button-label": "Zatvoriti",
 	"cdx-label-optional-flag": "(opcionalno)",
 	"cdx-message-dismiss-button-label": "Zatvoriti",
+	"cdx-popover-close-button-label": "Zatvoriti",
 	"cdx-search-input-search-button-label": "Iskati",
 	"cdx-table-select-all-label": "Izbrati vsih redky",
 	"cdx-table-select-row-label": "Izbrati redok $1 iz $2",
@@ -26,5 +28,6 @@
 	"cdx-table-pagination-status-message-indeterminate-long": "Pokazanje rezultatov $1–$2 iz mnoga",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 iz mnoga",
 	"cdx-table-pagination-status-message-indeterminate-final": "Pokazanje {{PLURAL:$1|poslědny $1 rezultat|$1 poslědnje rezultaty|$1 poslědnjih rezultatov}}",
-	"cdx-table-pagination-status-message-pending": "Načitanje rezultatov..."
+	"cdx-table-pagination-status-message-pending": "Načitanje rezultatov...",
+	"cdx-table-no-data-message": "Nemaje dostupnyh danyh."
 }

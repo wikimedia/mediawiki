@@ -3201,6 +3201,7 @@
 	"json-error-syntax": "Sintaksna greška",
 	"json-error-utf8": "Pokvareni UTF-8 znaci, moguće je da su neispravno enkodirani",
 	"headline-anchor-title": "Veza do ovog odjeljka",
+	"special-characters-recently-used": "Nedavno korišteno",
 	"special-characters-group-latin": "Latinica",
 	"special-characters-group-latinextended": "Proširena latinica",
 	"special-characters-group-ipa": "IPA",

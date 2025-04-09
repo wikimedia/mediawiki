@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ciencia Al Poder"
+			"Ciencia Al Poder",
+			"MatyGamingHD"
 		]
 	},
 	"cdx-chip-input-chip-added": "Se añadió la pieza $1.",
@@ -28,5 +29,5 @@
 	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 de muchos",
 	"cdx-table-pagination-status-message-indeterminate-final": "Mostrando {{PLURAL:$1|el último resultado|los últimos $1 resultados}}",
 	"cdx-table-pagination-status-message-pending": "Cargando resultados...",
-	"cdx-table-no-data-message": "No hay datos disponibles"
+	"cdx-table-no-data-message": "No hay datos disponibles."
 }

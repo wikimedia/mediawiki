@@ -80,7 +80,9 @@
 	"rest-param-desc-language-links-title": "Заголовок вики-страницы",
 	"rest-param-desc-media-links-title": "Название файла",
 	"rest-param-desc-media-file-title": "Название файла",
+	"rest-param-desc-media-latest": "Информация о последней версии файла",
 	"rest-param-desc-media-mediatype": "Тип файла",
+	"rest-param-desc-media-url": "URL-адрес для скачивания файла",
 	"rest-param-desc-pagehistory-count-title": "Заголовок вики-страницы",
 	"rest-param-desc-pagehistory-title": "Заголовок вики-страницы",
 	"rest-param-desc-search-q": "Условия поиска",
@@ -90,6 +92,7 @@
 	"rest-property-desc-page-title": "Заголовок страницы",
 	"rest-property-desc-page-contentmodel": "Тип содержимого страницы",
 	"rest-property-desc-revision-content-model": "Тип содержания",
+	"rest-schema-desc-page-language-links": "Межъязыковые ссылки для страницы",
 	"rest-schema-desc-search-results": "Результаты поиска",
 	"rest-schema-desc-revision-compare": "Сравнение версий"
 }
