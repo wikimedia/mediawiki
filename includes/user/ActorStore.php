@@ -225,11 +225,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	}
 
 	/**
-	 * Find an actor by $name
-	 *
-	 * @param string $name
-	 * @param int $queryFlags one of IDBAccessObject constants
-	 * @return UserIdentity|null
+	 * @inheritDoc
 	 */
 	public function getUserIdentityByName(
 		string $name,
@@ -248,11 +244,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	}
 
 	/**
-	 * Find an actor by $userId
-	 *
-	 * @param int $userId
-	 * @param int $queryFlags one of IDBAccessObject constants
-	 * @return UserIdentity|null
+	 * @inheritDoc
 	 */
 	public function getUserIdentityByUserId(
 		int $userId,
@@ -705,11 +697,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	}
 
 	/**
-	 * Returns a specialized SelectQueryBuilder for querying the UserIdentity objects.
-	 *
-	 * @param IReadableDatabase|int $dbOrQueryFlags The database connection to perform the query on,
-	 *   or one of IDBAccessObject::READ_* constants.
-	 * @return UserSelectQueryBuilder
+	 * @inheritDoc
 	 */
 	public function newSelectQueryBuilder( $dbOrQueryFlags = IDBAccessObject::READ_NORMAL ): UserSelectQueryBuilder {
 		if ( $dbOrQueryFlags instanceof IReadableDatabase ) {
