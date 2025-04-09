@@ -46,9 +46,9 @@ class EventSubscriptionTest extends MediaWikiIntegrationTestCase {
 		return $dispatcher;
 	}
 
-	public static function provideEventSubscriberSpecs() {
+	public static function provideEventIngressesSpecs() {
 		$subscriberSpecs = ExtensionRegistry::getInstance()
-			->getAttribute( 'DomainEventSubscribers' );
+			->getAttribute( 'DomainEventIngresses' );
 
 		foreach ( $subscriberSpecs as $spec ) {
 			yield [ $spec ];
@@ -58,7 +58,7 @@ class EventSubscriptionTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * This checks that domain event subscribers actually subscriber for the
 	 * events that they declare in the extension registration.
-	 * @dataProvider provideEventSubscriberSpecs
+	 * @dataProvider provideEventIngressesSpecs
 	 */
 	public function testPassesValidation( $spec ) {
 		$this->assertArrayHasKey( 'events', $spec );

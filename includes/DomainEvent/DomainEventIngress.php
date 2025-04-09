@@ -17,7 +17,7 @@ use LogicException;
  * registered with and initialized by a DomainEventSource. Registration is
  * typically done in the form of an object spec for lazy instantiation. For
  * extensions' ingress objects that object spec can be provided in the
- * DomainEventSubscribers section of extension.json.
+ * DomainEventIngresses section of extension.json.
  *
  * After instantiating a subscriber (typically a subclass of DomainEventIngress),
  * the event source will call initSubscriber() to initialize the subscriber and
@@ -167,8 +167,3 @@ abstract class DomainEventIngress implements InitializableDomainEventSubscriber 
 	}
 
 }
-
-/** @deprecated temporary alias, remove before 1.44 release (T389033) */
-class_alias( DomainEventIngress::class, 'MediaWiki\DomainEvent\EventSubscriberBase' );
-/** @deprecated temporary alias, remove before 1.44 release (T389033) */
-class_alias( DomainEventIngress::class, 'MediaWiki\DomainEvent\EventIngressBase' );

@@ -1291,7 +1291,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::emitEvents()
 	 */
-	public function testDispatchPageUpdatedEvent() {
+	public function testDispatchPageRevisionUpdatedEvent() {
 		$page = $this->getPage( __METHOD__ );
 		$content = [ SlotRecord::MAIN => new WikitextContent( 'first [[main]]' ) ];
 		$rev = $this->createRevision( $page, 'first', $content );
