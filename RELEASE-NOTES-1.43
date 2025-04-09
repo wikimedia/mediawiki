@@ -61,9 +61,24 @@ THIS IS NOT A RELEASE YET
   anti-null fix as 270499b.
 * (T387690) upload: Suppress warnings from iconv().
 * (T388733) Sanitizer::normalizeWhitespace: simplify redundant preg_replace.
+* (T315573) Fix GREATEST usage in site_stats.
 * (T304474) Apply proper restrictions on file revert action.
-* (T24521, T62109, T140010_ PermissionManager: Differentiate between cascading
+* (T24521, T62109, T140010) PermissionManager: Differentiate between cascading
   protection of file content and file pages.
+* (T387507) ResourceLoader: update wikimedia/minify from 2.8.0 to 2.8.1.
+* (T388273, T388335) Upgrading pear/net_url2 (v2.2.2 => v2.2.3).
+* (T390063, T277675) ResourceLoader: update wikimedia/minify to 2.9.0.
+* (T384851) FileBackend: PHP Deprecated: strrpos(): Passing null to parameter #1
+  ($haystack).
+* (T378622) Parameterize ChangeTags::buildTagFilterSelector to support various
+  tag sets.
+* (T344352) ChangeTags: Optimize label and description parsing.
+* In .htaccess deny files, use "Satisfy All".
+* (T322672, T387478) REST: Remove unused setUseParserCache() as potential
+  footgun.
+* (T389028) block: Fix DBS::acquireTarget() race using GET_LOCK().
+* (T388807) LanguageConverter: Only set mTablesLoaded once they're really
+  loaded.
 
 == MediaWiki 1.43.0 ==
 
@@ -296,7 +311,7 @@ For notes on 1.42.x and older releases, see HISTORY.
 * Updated wikimedia/at-ease from 2.1.0 to 3.0.0.
 * Updated wikimedia/json-codec from 3.0.1 to 3.0.3.
 * Updated wikimedia/less.php from 4.2.1 to 5.1.2.
-* Updated wikimedia/minify from 2.7.0 to 2.8.0.
+* Updated wikimedia/minify from 2.7.0 to 2.9.0.
 * Updated wikimedia/normalized-exception from 1.0.1 to 2.0.0.
 * Updated wikimedia/php-session-serializer from 2.0.1 to 3.0.0.
 * Updated wikimedia/purtle from 1.0.8 to 2.0.0.
