@@ -8,7 +8,7 @@ PHP 8.4 workboard: https://phabricator.wikimedia.org/tag/php_8.4_support/
 
 == MediaWiki 1.39.12 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.39 branch.
 
 === Changes since 1.39.11 ===
 * Localisation updates.
@@ -24,7 +24,7 @@ THIS IS NOT A RELEASE YET
 * (T385332) feeds: Fix str_replace() deprecation warnings on PHP 8.
 * (T379125) exception: Suppress dependency loop exception.
 * (T381033) RateLimiter: Fix peek mode.
-* (T387130) Update wikimedia/parsoid to 0.16.5.
+* (T387130, CVE-2025-32699) SECURITY: Update wikimedia/parsoid to 0.16.5.
 * (T385519) Sanitizer::normalizeWhitespace warn on preg_replace error.
 * (T387638) RevDelList: Ensure setVisibility always includes itemStatuses in
   value if applicable.
@@ -38,7 +38,8 @@ THIS IS NOT A RELEASE YET
   anti-null fix as 270499b.
 * (T387690) upload: Suppress warnings from iconv().
 * (T388733) Sanitizer::normalizeWhitespace: simplify redundant preg_replace.
-* (T304474) Apply proper restrictions on file revert action.
+* (T304474, CVE-2025-32696) SECURITY: Apply proper restrictions on file revert
+  action.
 * (T388924) MagicWord::replace*: Make sure we don't pass null into preg_match/
   preg_replace.
 * (T390063, T277675) ResourceLoader: update wikimedia/minify to 2.9.0.
@@ -47,6 +48,13 @@ THIS IS NOT A RELEASE YET
   ($haystack).
 * In .htaccess deny files, use "Satisfy All".
 * (T389028) block: Fix DBS::acquireTarget() race using GET_LOCK().
+* permissions: Check cascade protection only if page can exists.
+* (T385958, CVE-2025-32698) SECURITY: LogPager.php: Restriction enforcer
+  functions do not correctly enforce suppression restrictions,
+* (T387130, CVE-2025-32699) SECURITY: Potential javascript injection attack
+  enabled by Unicode normalization in Action API.
+* (T358689, CVE-2025-3469) SECURITY: i18n XSS vulnerability in
+  HTMLMultiSelectField when sections are used.
 
 == MediaWiki 1.39.11 ==
 
