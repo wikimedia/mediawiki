@@ -41,6 +41,12 @@ THIS IS NOT A RELEASE YET
 * (T304474) Apply proper restrictions on file revert action.
 * (T388924) MagicWord::replace*: Make sure we don't pass null into preg_match/
   preg_replace.
+* (T390063, T277675) ResourceLoader: update wikimedia/minify to 2.9.0.
+* (T368921) ResourceLoader: Set "math=always" before Less.php 5.0 upgrade.
+* (T384851) FileBackend: PHP Deprecated: strrpos(): Passing null to parameter #1
+  ($haystack).
+* In .htaccess deny files, use "Satisfy All".
+* (T389028) block: Fix DBS::acquireTarget() race using GET_LOCK().
 
 == MediaWiki 1.39.11 ==
 
