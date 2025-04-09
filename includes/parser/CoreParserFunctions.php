@@ -1250,7 +1250,9 @@ class CoreParserFunctions {
 		if ( !count( $args ) ) {
 			return '';
 		}
-		$tagName = strtolower( trim( $frame->expand( array_shift( $args ) ) ) );
+		$tagName = strtolower( trim( $parser->killMarkers(
+			$frame->expand( array_shift( $args ) )
+		) ) );
 		$processNowiki = $parser->tagNeedsNowikiStrippedInTagPF( $tagName ) ? PPFrame::PROCESS_NOWIKI : 0;
 
 		if ( count( $args ) ) {
@@ -1289,7 +1291,7 @@ class CoreParserFunctions {
 			$attrText = '';
 			foreach ( $attributes as $name => $value ) {
 				$attrText .= ' ' . htmlspecialchars( $name ) .
-					'="' . htmlspecialchars( $value, ENT_COMPAT ) . '"';
+					'="' . htmlspecialchars( $parser->killMarkers( $value ), ENT_COMPAT ) . '"';
 			}
 			if ( $inner === null ) {
 				return "<$tagName$attrText/>";

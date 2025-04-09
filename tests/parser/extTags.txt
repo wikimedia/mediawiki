@@ -1,0 +1,80 @@
+!! options
+parsoid-compatible=wt2html
+version=2
+!! end
+
+# Extension tags and strip markers
+
+!! test
+Extension tags in extension content: <nowiki>
+!! wikitext
+{{#tag:nowiki|a<nowiki>b</nowiki>c}}
+!! html
+<p>abc
+</p>
+!! end
+
+!! test
+Extension tags in extension content: <pre>
+!! wikitext
+{{#tag:pre|a<nowiki>b</nowiki>c}}
+!! html
+<pre>abc</pre>
+!! end
+
+!! test
+Extension tags in extension content: <indicator>
+!! wikitext
+{{#tag:indicator|a<nowiki>b</nowiki>c|name=foo}}
+!! options
+showindicators
+!! metadata
+foo=abc
+!! html
+!! end
+
+!! test
+Extension tags in extension attributes: <pre>
+!! wikitext
+{{#tag:pre|content|class=a<nowiki>b</nowiki>c}}
+!! html
+<pre class="ac">content</pre>
+!! end
+
+!! test
+Extension tags in extension attributes: <indicator>
+!! wikitext
+{{#tag:indicator|content|name=a<nowiki>b</nowiki>c}}
+!! options
+showindicators
+!! metadata
+ac=content
+!! html
+!! end
+
+!! test
+Extension tags in extension attributes: bogus tag name
+!! wikitext
+{{#tag:does-not-exist|<nowiki>content</nowiki>|name=a<nowiki>b</nowiki>c}}
+!! html
+<p>&lt;does-not-exist name="ac"&gt;content&lt;/does-not-exist&gt;
+</p>
+!! end
+
+!! test
+Extension tags in extension name
+!! wikitext
+{{#tag:no<nowiki>ignored</nowiki>wiki|content}}
+!! html
+<p>content
+</p>
+!! end
+
+!! test
+Doubly-nested tags
+!! wikitext
+{{#tag:nowiki|more {{#tag:nowiki|content <nowiki>here</nowiki>}}}}
+!! html
+<p>more content here
+</p>
+!! end
