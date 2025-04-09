@@ -38,8 +38,15 @@ THIS IS NOT A RELEASE YET
 * (T387690) upload: Suppress warnings from iconv().
 * (T388733) Sanitizer::normalizeWhitespace: simplify redundant preg_replace.
 * (T304474) Apply proper restrictions on file revert action.
-* (T24521, T62109, T140010_ PermissionManager: Differentiate between cascading
+* (T24521, T62109, T140010) PermissionManager: Differentiate between cascading
   protection of file content and file pages.
+* initEditCount: Join from user to actor to revision.
+* (T390063, T277675) ResourceLoader: update wikimedia/minify to 2.9.0.
+* (T368921) ResourceLoader: Set "math=always" before Less.php 5.0 upgrade.
+* (T384851) FileBackend: PHP Deprecated: strrpos(): Passing null to parameter #1
+  ($haystack).
+* In .htaccess deny files, use "Satisfy All".
+* (T389028) block: Fix DBS::acquireTarget() race using GET_LOCK().
 
 == MediaWiki 1.42.5 ==
 
