@@ -2137,7 +2137,7 @@
 	"mycontris": "Kontributiounen",
 	"anoncontribs": "Kontributiounen",
 	"contribute": "Matmaachen",
-	"contributions-subtitle": "Resultater fir {{GENDER:$2|$1}}",
+	"contributions-subtitle": "Resultater fir {{GENDER:$2|de(n) $1|d'$1}}",
 	"contributions-edit-count": "{{GENDER:$1|E Benotzer|Eng Benotzerin}} mat $2 {{PLURAL:$2|Ännerung|Ännerungen}}.",
 	"contributions-account-creation-date": "De Kont gouf de(n) $1 ugeluecht.",
 	"contributions-userdoesnotexist": "De Benotzerkont \"$1\" ass net registréiert.",

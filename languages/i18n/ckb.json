@@ -2616,7 +2616,7 @@
 	"logentry-managetags-create": "$1 تاگی «$4»ی {{GENDER:$2|دروست کرد}}",
 	"log-name-tag": "لۆگی تاگ",
 	"rightsnone": "(ھیچ)",
-	"rightslogentry-temporary-group": "$1 (کاتیی، تاوەکوو $2)",
+	"rightslogentry-temporary-group": "$1 (کاتی، تاوەکوو $2)",
 	"rightslogentry-expiry-set": "$1 (تا $2، پێشتر: ھەمیشەیی)",
 	"rightslogentry-expiry-removed": "$1 (ھەمیشەیی، پێشتر: تا $2)",
 	"rightslogentry-expiry-changed": "$1 (تا $2، پێشتر: $5)",
