@@ -538,12 +538,7 @@ class RecentChange implements Taggable {
 			$editor = $userFactory->newFromUserIdentity( $this->getPerformerIdentity() );
 			$title = Title::castFromPageReference( $this->getPage() );
 
-			// Never send an RC notification email about categorization changes
-			if (
-				$title &&
-				$hookRunner->onAbortEmailNotification( $editor, $title, $this ) &&
-				$this->mAttribs['rc_type'] != RC_CATEGORIZE
-			) {
+			if ( $title && $hookRunner->onAbortEmailNotification( $editor, $title, $this ) ) {
 				// @FIXME: This would be better as an extension hook
 				// Send emails or email jobs once this row is safely committed
 				$dbw->onTransactionCommitOrIdle(
