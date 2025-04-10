@@ -79,10 +79,27 @@ function mockMwConfigGet( config = {} ) {
 		blockNamespaceRestrictions: '',
 		blockPageRestrictions: '',
 		blockPreErrors: [],
+		blockReasonMaxLength: 500,
 		blockReasonOptions: [
-			{ label: 'block-reason-1', value: 'block-reason-1' },
-			{ label: 'block-reason-2', value: 'block-reason-2' }
+			{ label: 'Other', value: 'other' },
+			{
+				label: 'Common block reasons',
+				items: [
+					{ label: 'Vandalism', value: 'Vandalism' },
+					{ label: 'Spam', value: 'Spam' },
+					{ label: 'Disruptive editing', value: 'Disruptive editing' }
+				]
+			},
+			{
+				label: 'Templated reasons',
+				items: [
+					{ label: '{{anonblock}}', value: '{{anonblock}}' },
+					{ label: '{{schoolblock}}', value: '{{schoolblock}}' },
+					{ label: '{{sockpuppet}}', value: '{{sockpuppet}}' }
+				]
+			}
 		],
+		blockReasonPreset: '',
 		blockSuccessMsg: '[[Special:Contributions/ExampleUser|ExampleUser]] has been blocked.',
 		blockTypePreset: 'sitewide'
 	}, config );

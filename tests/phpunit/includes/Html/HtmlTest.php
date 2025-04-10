@@ -957,11 +957,19 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals(
 			[
 				[ 'label' => 'other reasons', 'value' => 'other' ],
-				[ 'label' => 'Foo', 'value' => '', 'disabled' => true ],
-				[ 'label' => 'Foo 1', 'value' => 'Foo 1' ],
-				[ 'label' => 'Example', 'value' => 'Example' ],
-				[ 'label' => 'Bar', 'value' => '', 'disabled' => true ],
-				[ 'label' => 'Bar 1', 'value' => 'Bar 1' ],
+				[
+					'label' => 'Foo',
+					'items' => [
+						[ 'label' => 'Foo 1', 'value' => 'Foo 1' ],
+						[ 'label' => 'Example', 'value' => 'Example' ],
+					],
+				],
+				[
+					'label' => 'Bar',
+					'items' => [
+						[ 'label' => 'Bar 1', 'value' => 'Bar 1' ],
+					],
+				]
 			],
 			Html::listDropdownOptionsCodex( [
 				'other reasons' => 'other',

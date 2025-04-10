@@ -196,19 +196,18 @@ describe( 'SpecialBlock', () => {
 		await flushPromises();
 		expect( wrapper.find( '[data-test=edit-block-button]' ).exists() ).toBeTruthy();
 		await wrapper.find( '[data-test=edit-block-button]' ).trigger( 'click' );
+		expect( store.reason ).toStrictEqual( 'Spamming talk page' );
 		expect( wrapper.find( '.mw-block__block-form' ).exists() ).toBeTruthy();
 		expect( wrapper.find( '.mw-block__block-form h2' ).text() ).toStrictEqual( 'block-update' );
 		expect( wrapper.find( '.mw-block-submit' ).text() ).toStrictEqual( 'block-submit' );
-		wrapper.find( '[name=wpReason-other]' ).setValue( 'This is a test' );
-		expect( store.reason ).toStrictEqual( 'other' );
-		expect( store.reasonOther ).toStrictEqual( 'This is a test' );
+		await wrapper.find( '[name=wpReason-other]' ).setValue( 'This is a test' );
+		expect( store.reason ).toStrictEqual( 'This is a test' );
 		await wrapper.find( '.mw-block-submit' ).trigger( 'click' );
 		await flushPromises();
 		expect( wrapper.find( '.mw-block-success' ).exists() ).toBeTruthy();
 		expect( wrapper.find( '.mw-block-success .cdx-message__content' ).text() ).toContain( 'block-updated-message' );
 		expect( wrapper.find( '.mw-block__block-form' ).exists() ).toBeFalsy();
-		expect( store.reason ).toStrictEqual( 'other' );
-		expect( store.reasonOther ).toStrictEqual( '' );
+		expect( store.reason ).toStrictEqual( '' );
 		expect( store.blockId ).toStrictEqual( null );
 	} );
 
@@ -285,21 +284,19 @@ describe( 'SpecialBlock', () => {
 		expect( wrapper.find( '.mw-block__block-form' ).exists() ).toBeTruthy();
 		expect( wrapper.find( '.mw-block__block-form h2' ).text() ).toStrictEqual( 'block-update' );
 		expect( wrapper.find( '.mw-block-submit' ).text() ).toStrictEqual( 'block-submit' );
-		wrapper.find( '[name=wpReason-other]' ).setValue( 'This is a test' );
-		expect( store.reason ).toStrictEqual( 'other' );
-		expect( store.reasonOther ).toStrictEqual( 'This is a test' );
+		await wrapper.find( '[name=wpReason-other]' ).setValue( 'This is a test' );
+		expect( store.reason ).toStrictEqual( 'This is a test' );
 		// Submit.
 		await wrapper.find( '.mw-block-submit' ).trigger( 'click' );
 		await flushPromises();
 		expect( wrapper.find( '.mw-block-success' ).exists() ).toBeTruthy();
 		expect( wrapper.find( '.mw-block__block-form' ).exists() ).toBeFalsy();
-		expect( store.reason ).toStrictEqual( 'other' );
-		expect( store.reasonOther ).toStrictEqual( '' );
+		expect( store.reason ).toStrictEqual( '' );
 		// Add a new block.
 		await wrapper.find( '.mw-block__create-button' ).trigger( 'click' );
 		expect( wrapper.find( '.mw-block__block-form' ).exists() ).toBeTruthy();
 		expect( store.blockId ).toBeNull();
-		expect( store.reason ).toStrictEqual( 'other' );
+		expect( store.reason ).toStrictEqual( '' );
 		expect( wrapper.find( '[name=wpReason-other]' ).element.value ).toStrictEqual( '' );
 	} );
 
@@ -312,14 +309,14 @@ describe( 'SpecialBlock', () => {
 		await flushPromises();
 		// Edit a block.
 		await wrapper.find( '[data-test=edit-block-button]' ).trigger( 'click' );
-		wrapper.find( '[name=wpReason-other]' ).setValue( 'This is a test' );
-		expect( store.reasonOther ).toStrictEqual( 'This is a test' );
+		await wrapper.find( '[name=wpReason-other]' ).setValue( 'This is a test' );
+		expect( store.reason ).toStrictEqual( 'This is a test' );
 		// Cancel the edit.
 		await wrapper.find( '[data-test="cancel-edit-button"]' ).trigger( 'click' );
 		// Create a new block.
 		await wrapper.find( '.mw-block__create-button' ).trigger( 'click' );
 		expect( store.blockId ).toBeNull();
-		expect( store.reasonOther ).toStrictEqual( '' );
+		expect( store.reason ).toStrictEqual( '' );
 		expect( wrapper.find( '[name=wpReason-other]' ).element.value ).toStrictEqual( '' );
 	} );
 

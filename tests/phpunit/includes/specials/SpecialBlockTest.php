@@ -149,6 +149,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->overrideConfigValues( [
 			MainConfigNames::BlockAllowsUTEdit => true,
 			MainConfigNames::UseCodexSpecialBlock => false,
+			MainConfigNames::EnableMultiBlocks => false,
 		] );
 
 		$block = $this->insertBlock();
@@ -178,6 +179,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->overrideConfigValues( [
 			MainConfigNames::EnablePartialActionBlocks => true,
 			MainConfigNames::UseCodexSpecialBlock => false,
+			MainConfigNames::EnableMultiBlocks => false,
 		] );
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
