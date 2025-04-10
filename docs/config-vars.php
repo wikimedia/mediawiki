@@ -2374,12 +2374,6 @@ $wgTidyConfig = null;
 $wgParsoidSettings = null;
 
 /**
- * Config variable stub for the ParsoidFragmentSupport setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::ParsoidFragmentSupport
- */
-$wgParsoidFragmentSupport = null;
-
-/**
  * Config variable stub for the ParsoidFragmentInput setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ParsoidFragmentInput
  */

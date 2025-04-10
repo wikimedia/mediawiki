@@ -6638,24 +6638,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Enable fragment support in Parsoid (transclusions returning
-	 * html).  This is a temporary configuration variable to allow
-	 * testing a new parsoid feature, which will become the default
-	 * in future releases.
-	 *
-	 * Setting to `false` disables this support.  Setting to 'true' or the
-	 * string 'v1' to enable "version 1" support.  Setting to the string 'v2'
-	 * enables "version 2" support, which uses strip markers for extension
-	 * tag content. Setting to the string 'v3' makes the use of strip markers
-	 * for extension tag content a property of the Parser object.
-	 * @unstable EXPERIMENTAL
-	 */
-	public const ParsoidFragmentSupport = [
-		'default' => false,
-		'type' => 'boolean|string',
-	];
-
-	/**
 	 * Enable passing fragments as input to the Parsoid
 	 * DataAccess::preprocessWikitext() endpoint.
 	 * This is a temporary configuration variable to allow

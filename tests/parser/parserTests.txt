@@ -9873,8 +9873,6 @@ Article for special page transclusion test
 
 !! test
 Special page transclusion
-!! config
-wgParsoidFragmentSupport="v3"
 !! wikitext
 {{Special:Prefixindex/Xyzzyx}}
 !! html/php
@@ -9888,8 +9886,6 @@ wgParsoidFragmentSupport="v3"
 
 !! test
 Special page transclusion twice (T7021)
-!! config
-wgParsoidFragmentSupport="v3"
 !! wikitext
 {{Special:Prefixindex/Xyzzyx}}
 {{Special:Prefixindex/Xyzzyx}}
@@ -9915,8 +9911,6 @@ Template:Nested special
 
 !! test
 Nested special page transclusion
-!! config
-wgParsoidFragmentSupport="v3"
 !! wikitext
 {{nested special}}
 !! html/php
@@ -10854,8 +10848,6 @@ parsoid=html2wt
 
 !! test
 Special:Search page linking.
-!! config
-wgParsoidFragmentSupport="v3"
 !! wikitext
 {{Special:search}}
 !! html/php
@@ -17238,8 +17230,6 @@ Include directive string gluing
 # Parsoid has same output for isHTML and isRawHTML (known difference)
 !! test
 Extension tag contents using isRawHTML flag
-!! config
-wgParsoidFragmentSupport="v3"
 !! options
 language=zh
 !! wikitext
@@ -17273,8 +17263,6 @@ But with isRawHTML the result is left alone:
 # Parsoid has same output for isHTML and isRawHTML (known difference)
 !! test
 Parser function contents using isRawHTML flag
-!! config
-wgParsoidFragmentSupport="v3"
 !! options
 language=zh
 !! wikitext
@@ -17303,8 +17291,6 @@ But with isRawHTML the result is left alone:
 
 !! test
 Handling of nowiki strip markers in Parsoid fragments
-!! config
-wgParsoidFragmentSupport="v3"
 !! options
 parsoid=wt2html
 !! wikitext
@@ -17322,8 +17308,6 @@ Parser function: {{#spantag:<nowiki>a &amp;amp; <b>c</b></nowiki>}}
 
 !! test
 Handling of nested nowiki strip markers in Parsoid fragments (1)
-!! config
-wgParsoidFragmentSupport="v3"
 !! wikitext
 Text {{#spantag:text <spantag>more text</spantag>}}
 !! html/php
@@ -17335,8 +17319,6 @@ Text {{#spantag:text <spantag>more text</spantag>}}
 
 !! test
 Handling of nested nowiki strip markers in Parsoid fragments (2)
-!! config
-wgParsoidFragmentSupport="v3"
 !! wikitext
 Text {{#spantag:<nowiki><b></nowiki> {{#spantag:<nowiki><c></nowiki>}}}}
 !! html/php
@@ -17348,8 +17330,6 @@ Text {{#spantag:<nowiki><b></nowiki> {{#spantag:<nowiki><c></nowiki>}}}}
 
 !! test
 T386233: suppress <nowiki/> tags between extension tags
-!! config
-wgParsoidFragmentSupport="v3"
 !! wikitext
 Deliberately unclosed b tag triggers p-wrapping if a nowiki span is
 added between the divtags:
