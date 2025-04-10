@@ -1063,15 +1063,19 @@ abstract class ContentHandler {
 		$blank = false;
 
 		// If the page is blank, use the text from the previous revision,
-		// which can only be blank if there's a move/import/protect dummy
-		// revision involved
 		if ( !$content || $content->isEmpty() ) {
 			$prev = $revStore->getPreviousRevision( $revRecord );
 
 			if ( $prev ) {
-				$revRecord = $prev;
-				$content = $prev->getContent( SlotRecord::MAIN );
-				$blank = true;
+				$prevContent = $prev->getContent( SlotRecord::MAIN );
+				if ( $prevContent && !$prevContent->isEmpty() ) {
+					$revRecord = $prev;
+					$content = $prevContent;
+					$blank = true;
+				}
+				// Else since the previous revision is also blank or revdelled
+				// (the blank case only happen due to a move/import/protect dummy revision)
+				// skip the "before blanking" logic and fall back to just `content was ""`
 			}
 		}
 
@@ -1110,8 +1114,6 @@ abstract class ContentHandler {
 
 		// Generate the summary with a '$1' placeholder
 		if ( $blank ) {
-			// The current revision is blank and the one before is also
-			// blank. It's just not our lucky day
 			$reason = wfMessage( 'exbeforeblank', '$1' )->inContentLanguage()->text();
 		} else {
 			if ( $onlyAuthor ) {
@@ -1133,6 +1135,12 @@ abstract class ContentHandler {
 		// Max content length = max comment length - length of the comment (excl. $1)
 		$maxLength = CommentStore::COMMENT_CHARACTER_LIMIT - ( strlen( $reason ) - 2 );
 		$text = $content ? $content->getTextForSummary( $maxLength ) : '';
+		if ( $blank && !$text ) {
+			// Don't display "content before blanking was ''" as misleading
+			// This can happen if the content before blanking was two unclosed square brackets, for example
+			// Do display `content was ""` if the page was always blank, though
+			return false;
+		}
 
 		// Now replace the '$1' placeholder
 		$reason = str_replace( '$1', $text, $reason );
