@@ -6,7 +6,7 @@
 		]
 	},
 	"preferences": "Sazlamalar",
-	"prefsnologintext2": "Sazlamalarıñıznı deñiştirmek içün lütfen sistemağa kiriñiz.",
+	"prefsnologintext2": "Sazlamalarıñıznı deñiştirmek içün sistemağa $1 kereksiñiz.",
 	"searchprefs": "Sazlamalarda qıdıruv",
 	"searchprefs-noresults": "İç netice yoq",
 	"searchprefs-results": "$1 {{PLURAL:$1|netice}}",
