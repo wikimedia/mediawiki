@@ -53,8 +53,5 @@
 		"vue": "3.5.13",
 		"wdio-mediawiki": "file:tests/selenium/wdio-mediawiki",
 		"xml2js": "^0.6.2"
-	},
-	"overrides": {
-		"caniuse-lite": "1.0.30001653"
 	}
 }
