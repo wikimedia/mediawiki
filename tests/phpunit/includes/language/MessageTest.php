@@ -971,4 +971,31 @@ class MessageTest extends MediaWikiLangTestCase {
 			],
 		];
 	}
+
+	public static function provideFallbackLanguageParsing() {
+		return [
+			[ 'en', '21 days' ],
+			[ 'ru', '21 день' ],
+			[ 'be', '21 days' ]
+		];
+	}
+
+	/**
+	 * Integration test for T268492
+	 *
+	 * @dataProvider provideFallbackLanguageParsing
+	 */
+	public function testFallbackLanguageParsing( $lang, $expected ) {
+		$this->overrideConfigValue(
+			MainConfigNames::MessagesDirs,
+			array_merge(
+				$this->getConfVar( MainConfigNames::MessagesDirs ),
+				[ MW_INSTALL_PATH . '/tests/phpunit/data/Message' ]
+			)
+		);
+		$text = ( new Message( 'test-days', [ 21 ] ) )
+			->inLanguage( $lang )->text();
+		$this->assertSame( $expected, $text );
+	}
+
 }

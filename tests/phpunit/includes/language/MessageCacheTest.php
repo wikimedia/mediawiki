@@ -3,6 +3,7 @@
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Language\MessageInfo;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -92,22 +93,26 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	 *
 	 * @dataProvider provideMessagesForFallback
 	 */
-	public function testMessageFallbacks( $message, $langCode, $expectedContent ) {
-		$result = $this->getServiceContainer()->getMessageCache()->get( $message, true, $langCode );
+	public function testMessageFallbacks( $message, $langCode, $expectedContent, $expectedLang ) {
+		$messageInfo = new MessageInfo;
+		$result = $this->getServiceContainer()->getMessageCache()
+			->get( $message, true, $langCode, $messageInfo );
 		$this->assertEquals( $expectedContent, $result, "Message fallback failed." );
+		$this->assertSame( $expectedLang, $messageInfo->langCode );
+		$this->assertSame( lcfirst( $message ), $messageInfo->usedKey );
 	}
 
 	public static function provideMessagesForFallback() {
 		return [
-			[ 'FallbackLanguageTest-Full', 'ab', 'ab' ],
-			[ 'FallbackLanguageTest-Partial', 'ab', 'ru' ],
-			[ 'FallbackLanguageTest-ContLang', 'ab', 'de' ],
-			[ 'FallbackLanguageTest-None', 'ab', false ],
+			[ 'FallbackLanguageTest-Full', 'ab', 'ab', 'ab' ],
+			[ 'FallbackLanguageTest-Partial', 'ab', 'ru', 'ru' ],
+			[ 'FallbackLanguageTest-ContLang', 'ab', 'de', 'de' ],
+			[ 'FallbackLanguageTest-None', 'ab', false, null ],
 
 			// T48579
-			[ 'FallbackLanguageTest-NoDervContLang', 'de', 'de/none' ],
+			[ 'FallbackLanguageTest-NoDervContLang', 'de', 'de/none', 'de' ],
 			// UI language different from content language should only use de/none as last option
-			[ 'FallbackLanguageTest-NoDervContLang', 'fit', 'de/none' ],
+			[ 'FallbackLanguageTest-NoDervContLang', 'fit', 'de/none', 'de' ],
 		];
 	}
 
