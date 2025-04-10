@@ -103,6 +103,7 @@
 					action="default"
 					data-test="cancel-edit-button"
 					weight="primary"
+					type="button"
 					@click="onFormCancel"
 				>
 					{{ $i18n( 'block-cancel' ) }}
