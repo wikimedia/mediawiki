@@ -18,8 +18,6 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\WikiMap\WikiMap;
 use PHPUnit\Framework\Assert;
 use Wikimedia\FileBackend\FSFileBackend;
-use Wikimedia\ObjectCache\HashBagOStuff;
-use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -556,15 +554,6 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testLoadFromDBAndCache( $meta, $blobs, $largeItemSize ) {
 		$services = $this->getServiceContainer();
-
-		$cache = new HashBagOStuff;
-		$this->setService(
-			'MainWANObjectCache',
-			new WANObjectCache( [
-				'cache' => $cache
-			] )
-		);
-
 		$dbw = $this->getDb();
 		$norm = $services->getActorNormalization();
 		$user = $this->getTestSysop()->getUserIdentity();
