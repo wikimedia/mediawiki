@@ -11,17 +11,6 @@ if ( form ) {
 	( new mw.Api() ).loadMessagesIfMissing(
 		Object.keys( mw.config.get( 'partialBlockActionOptions' ) || {} )
 	).then( () => {
-		// Sync server-provided target input with what will be used in the Vue app.
-		const targetInput = document.getElementById( 'mw-bi-target' );
-		if ( targetInput && targetInput.value &&
-			targetInput.value !== mw.config.get( 'blockTargetUser' )
-		) {
-			// Prevent further changes from going out of sync.
-			targetInput.disabled = true;
-			// Used by UserLookup.vue
-			mw.config.set( 'blockTargetUserInput', targetInput.value );
-		}
-
 		Vue.createMwApp( App )
 			.use( createPinia() )
 			.mount( form );

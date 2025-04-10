@@ -62,7 +62,6 @@ function mockMwConfigGet( config = {} ) {
 		wgUserLanguage: 'en',
 		blockAlreadyBlocked: false,
 		blockTargetUser: null,
-		blockTargetUserInput: null,
 		blockTargetExists: null,
 		blockAdditionalDetailsPreset: [ 'wpAutoBlock' ],
 		blockAllowsEmailBan: true,

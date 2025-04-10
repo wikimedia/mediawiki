@@ -1,4 +1,3 @@
-/* global process */
 'use strict';
 
 describe( 'SpecialBlock init.js', () => {
@@ -25,18 +24,6 @@ describe( 'SpecialBlock init.js', () => {
 		jest.resetModules();
 	} );
 
-	it( 'should sync server-provided target input with what will be used in the Vue app', async () => {
-		targetInput.value = 'Example';
-		const mockConfig = {};
-		mw.config.set = ( key, value ) => {
-			mockConfig[ key ] = value;
-		};
-		require( '../../../resources/src/mediawiki.special.block/init.js' );
-		await new Promise( process.nextTick );
-		expect( targetInput.disabled ).toBe( true );
-		expect( mockConfig.blockTargetUserInput ).toBe( 'Example' );
-	} );
-
 	it( 'should give the form the ID mw-block-form', () => {
 		const mockConfig = {};
 		mw.config.set = ( key, value ) => {
@@ -44,7 +31,6 @@ describe( 'SpecialBlock init.js', () => {
 		};
 		require( '../../../resources/src/mediawiki.special.block/init.js' );
 		expect( document.querySelector( '.mw-htmlform' ).id ).toBe( 'mw-block-form' );
-		expect( mockConfig.blockTargetUserInput ).toBeUndefined();
 	} );
 
 	it( 'should do nothing if there is no mw-htmlform', () => {

@@ -8,7 +8,6 @@
 		<!-- eslint-disable vue/no-unused-refs -->
 		<cdx-lookup
 			id="mw-bi-target"
-			ref="lookupComponent"
 			v-model:selected="selection"
 			v-model:input-value="currentSearchTerm"
 			class="mw-block-target"
@@ -43,7 +42,6 @@ const {
 	onMounted,
 	ref,
 	shallowRef,
-	useTemplateRef,
 	watch,
 	DefineSetupFnComponent,
 	Ref
@@ -84,12 +82,6 @@ module.exports = exports = defineComponent( {
 		 */
 		const refreshKey = ref( 0 );
 		/**
-		 * Reference to the lookup component.
-		 *
-		 * @type {Ref<CdxLookup>}
-		 */
-		const lookupComponent = useTemplateRef( 'lookupComponent' );
-		/**
 		 * Codex Lookup component requires a v-modeled `selected` prop.
 		 * Until a selection is made, the value may be set to null.
 		 * We instead want to only update the targetUser for non-null values
@@ -105,9 +97,7 @@ module.exports = exports = defineComponent( {
 		 *
 		 * @type {Ref<string>}
 		 */
-		const currentSearchTerm = ref(
-			props.modelValue || mw.config.get( 'blockTargetUserInput' ) || ''
-		);
+		const currentSearchTerm = ref( props.modelValue || '' );
 		/**
 		 * Menu items for the Lookup component.
 		 *
@@ -142,17 +132,8 @@ module.exports = exports = defineComponent( {
 				htmlInput.focus();
 			}
 
-			// If at this point the targetUser (set by server) is different from
-			// the htmlInput value, the user has typed in something before Vue was loaded.
-			// Trigger a new search and open the result menu.
-			if ( htmlInput.value && htmlInput.value !== targetUser.value ) {
-				onInput( htmlInput.value ).then( () => {
-					if ( menuItems.value.length > 0 ) {
-						lookupComponent.value.expanded = true;
-					}
-				} );
-			} else if ( !!targetUser.value && !store.targetExists ) {
-				// Ensure error messages are displayed for missing users.
+			// Ensure error messages are displayed for missing users.
+			if ( !!targetUser.value && !store.targetExists ) {
 				validate();
 			}
 
