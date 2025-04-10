@@ -56,7 +56,8 @@
 			"Tiberius1701",
 			"Whovian Biologist",
 			"YoViajo",
-			"PoLuX124"
+			"PoLuX124",
+			"Danielyepezgarces"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentación]]\n* [[mw:Special:MyLanguage/API:Etiquette|Normas de uso y etiqueta]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Lista de correo]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ Anuncios API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Errores y peticiones]\n</div>\n<strong>Estado:</strong> La API de MediaWiki es una interfaz madura y estable que se mejora y prueba activamente. Aunque tratamos de evitarlo, es posible que ocasionalmente debamos hacer cambios importantes. Suscríbete a la [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ lista de correo mediawiki-api-announce] para recibir avisos de actualizaciones.\n\n<strong>Solicitudes erróneas:</strong> Cuando se envían solicitudes erróneas a la API, se enviará un encabezado HTTP con la clave «MediaWiki-API-Error» y, luego, el valor del encabezado y el código de error devuelto se establecerán en el mismo valor. Para obtener más información, consulta [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errores y advertencias]].\n\n<p class=\"mw-apisandbox-link\"><strong>Pruebas:</strong> Para facilitar la comprobación de las solicitudes de API, consulta [[Special:ApiSandbox]].</p>",
@@ -898,7 +899,7 @@
 	"apihelp-query+images-param-limit": "Cuántos archivos se devolverán.",
 	"apihelp-query+images-param-images": "Mostrar solo estos archivos. Útil para comprobar si una determinada página tiene un determinado archivo.",
 	"apihelp-query+images-param-dir": "La dirección en que ordenar la lista.",
-	"apihelp-query+images-example-simple": "Obtener una lista de los archivos usados en la [[Main Page|Portada]].",
+	"apihelp-query+images-example-simple": "Obtener una lista de los archivos usados en la [[{{MediaWiki:Mainpage}}]].",
 	"apihelp-query+images-example-generator": "Obtener información sobre todos los archivos empleados en [[Main Page]].",
 	"apihelp-query+imageusage-summary": "Encontrar todas las páginas que usen el título de imagen dado.",
 	"apihelp-query+imageusage-param-title": "Título a buscar. No puede usarse en conjunto con $1pageid.",
@@ -926,7 +927,7 @@
 	"apihelp-query+info-param-testactions": "Comprobar su el usuario actual puede realizar determinadas acciones en la página.",
 	"apihelp-query+info-param-testactionsdetail": "Nivel de detalle para <var>$1testactions</var>. Usa los parámetros <var>errorformat</var> y <var>errorlang</var> del [[Special:ApiHelp/main|módulo principal]] para controlar el formato de los mensajes devueltos.",
 	"apihelp-query+info-paramvalue-testactionsdetail-boolean": "Devolver un valor booleano para cada acción.",
-	"apihelp-query+info-example-simple": "Obtener información acerca de la página <kbd>Main Page</kbd>.",
+	"apihelp-query+info-example-simple": "Obtener información acerca de la página [[{{MediaWiki:Mainpage}}]].",
 	"apihelp-query+info-example-protection": "Obtén información general y protección acerca de la página <kbd>Main Page</kbd>.",
 	"apihelp-query+iwbacklinks-summary": "Encontrar todas las páginas que enlazan al enlace interwiki dado.",
 	"apihelp-query+iwbacklinks-extended-description": "Puede utilizarse para encontrar todos los enlaces con un prefijo, o todos los enlaces a un título (con un determinado prefijo). Si no se introduce ninguno de los parámetros, se entiende como «todos los enlaces interwiki».",
@@ -1123,7 +1124,7 @@
 	"apihelp-query+revisions-param-excludeuser": "Excluir las revisiones realizadas por el usuario.",
 	"apihelp-query+revisions-param-tag": "Mostrar solo revisiones marcadas con esta etiqueta.",
 	"apihelp-query+revisions-example-content": "Obtener datos con el contenido de la última revisión de los títulos <kbd>API</kbd> y <kbd>Main Page</kbd>.",
-	"apihelp-query+revisions-example-last5": "Mostrar las últimas 5 revisiones de la <kbd>Main Page</kbd>.",
+	"apihelp-query+revisions-example-last5": "Mostrar las últimas 5 revisiones de la [[{{MediaWiki:Mainpage}}]].",
 	"apihelp-query+revisions-example-first5": "Obtener las primeras 5 revisiones de <kbd>Main Page</kbd>.",
 	"apihelp-query+revisions-example-first5-after": "Obtener las primeras 5 revisiones de <kbd>Main Page</kbd> realizadas después de 2006-05-01.",
 	"apihelp-query+revisions-example-first5-not-localhost": "Obtener las primeras 5 revisiones de <kbd>Main Page</kbd> que no fueron realizadas por el usuario anónimo <kbd>127.0.0.1</kbd>.",

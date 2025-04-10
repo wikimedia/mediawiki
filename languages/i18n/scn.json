@@ -3159,6 +3159,8 @@
 	"renameuser-page-moved": "La pàggina $1 vinni spustata a $2.",
 	"renameuser-page-unmoved": "Mpussìbbili mòviri la pàggina $1 a $2.",
 	"log-name-renameuser": "Utenti ri-numinati",
+	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|rinuminau}} l'utenti $4 (cu {{PLURAL:$6|$6 cuntribbutu|$6 cuntribbuti}}) 'n {{GENDER:$7|$5}}",
+	"logentry-renameuser-renameuser-legacier": "$1 {{GENDER:$2|rinuminau}} l'utenti $4 'n {{GENDER:$7|$5}}",
 	"renameuser-move-log": "Spustamentu autumàticu dâ pàggina - utenti ri-numinatu di \"[[User:$1|$1]]\" a \"[[User:$2|$2]]\"",
 	"action-renameuser": "ri-nòminari li utenti",
 	"right-renameuser": "Ri-nòmina li utenti"

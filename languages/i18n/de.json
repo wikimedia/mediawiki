@@ -2818,7 +2818,7 @@
 	"blockipsuccesssub": "Die Sperrung war erfolgreich",
 	"blockipsuccesstext": "Der Benutzer / die IP-Adresse [[Special:Contributions/$1|$1]] wurde gesperrt.<br />\nZur Aufhebung der Sperre siehe die [[Special:BlockList|Liste aller aktiven Sperren]].",
 	"ipb-empty-block": "Für die übertragene Sperre sind keine Einschränkungen aktiviert.",
-	"ipb-block-not-found": "Die Sperre konnte nicht gesetzt werden, jedoch wurde keine bestehende Sperre für „$1“ gefunden. Wenn dieses Problem weiterhin besteht, [https://www.mediawiki.org/wiki/Special:MyLanguage/Help_talk:Blocking_users melde es bitte ].",
+	"ipb-block-not-found": "Die Sperre konnte nicht durchgeführt werden, wahrscheinlich weil ein anderer Administrator gleichzeitig versucht hat, diesen Benutzer zu sperren. Überprüfe den Sperrstatus und versuche es erneut.",
 	"ipb-blockingself": "Du bist gerade dabei, dich selbst zu sperren! Möchtest du das wirklich tun?",
 	"ipb-confirmhideuser": "Du bist gerade dabei, einen Benutzer im Modus „Benutzer verstecken“ zu sperren. Dies führt dazu, dass der Benutzername in allen Listen und Logbüchern unterdrückt wird. Möchtest du das wirklich tun?",
 	"ipb-confirmaction": "Wenn du dir sicher bist, dass du dies wirklich tun möchtest, kreuze bitte unten das Feld „{{int:ipb-confirm}}“ an.",

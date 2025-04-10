@@ -2736,7 +2736,7 @@
 	"blockipsuccesssub": "Blok tətbiq olundu",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] bloklandı.<br />\nBlokları yoxlamaq üçün [[Special:BlockList|bloklama siyahısına]] baxın.",
 	"ipb-empty-block": "Təqdim olunan blokda heç bir məhdudiyyət aktiv edilməyib.",
-	"ipb-block-not-found": "Blok etmək mümkün olmadı, lakin \"$1\" üçün mövcud blok tapılmadı. Bu problem davam edərsə, zəhmət olmasa, [https://www.mediawiki.org/wiki/Special:MyLanguage/Help_talk:Blocking_users bildirin].",
+	"ipb-block-not-found": "Çox güman ki, başqa inzibatçı bu istifadəçini eyni vaxtda bloklamağa çalışdığına görə bloklamaq mümkün olmadı. Blok statusunu yoxlayın və yenidən cəhd edin.",
 	"ipb-blockingself": "Özünüzü bloklayacaqsınız! Bunu etmək istədiyinizdən əminsinizmi?",
 	"ipb-confirmhideuser": "Siz \"istifadəçini gizlə\" bəndini aktiv edərək istifadəçini bloklamaq üzrəsiniz. Bu halda istifadəçinin adı bütün siyahılarda və qeydiyyat jurnallarında görünməyəcək. Bunu etmək istədiyinizdən əminsinizmi?",
 	"ipb-confirmaction": "Əgər həqiqətən bunu etmək istədiyinizə əminsinizsə, lütfən, aşağıdakı \"{{int:ipb-confirm}}\" seçimini işarələyin.",

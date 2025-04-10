@@ -2830,7 +2830,7 @@
 	"blockipsuccesssub": "封鎖成功",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]]已經被封鎖。<br />\n參見[[Special:BlockList|封鎖清單]]以檢查目前的封鎖。",
 	"ipb-empty-block": "提交的封鎖沒有啟用任何限制。",
-	"ipb-block-not-found": "封鎖沒有建立出，但找不到對於「$1」的現有封鎖。若問題持續出現，請[https://www.mediawiki.org/wiki/Special:MyLanguage/Help_talk:Blocking_users 回報]。",
+	"ipb-block-not-found": "無法執行封鎖，可能是因為其他管理員同時嘗試封鎖該使用者。請檢查封鎖狀態並重試。",
 	"ipb-blockingself": "您要封鎖自己！您確定要這樣做嗎？",
 	"ipb-confirmhideuser": "您要封鎖一位使用者並且 \"隱藏\" 該使用者，這會禁止顯示所有出現在清單及記錄中的使用者名稱。\n你確定要這樣做？",
 	"ipb-confirmaction": "若您確定要這樣做，請檢查下方的「{{int:ipb-confirm}}」欄位。",

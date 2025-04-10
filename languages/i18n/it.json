@@ -2807,7 +2807,7 @@
 	"blockipsuccesssub": "Blocco eseguito",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] è stato bloccato.<br />\nConsultare la [[Special:BlockList|lista dei blocchi]] per vedere i blocchi attivi.",
 	"ipb-empty-block": "Il blocco impartito non ha restrizioni attivate.",
-	"ipb-block-not-found": "Il blocco non può essere applicato, ma non è stato trovato nessun blocco esistente per \"$1\". Se il problema persiste, si prega di  [https://www.mediawiki.org/wiki/Special:MyLanguage/Help_talk:Blocking_users segnalarlo].",
+	"ipb-block-not-found": "Il blocco non può essere applicato, probabilmente perché un altro amministratore ha tentato di bloccare questo utente nello stesso momento. Controlla lo stato del blocco e riprova.",
 	"ipb-blockingself": "Stai per bloccare te stesso! Sei sicuro di volerlo fare?",
 	"ipb-confirmhideuser": "Si sta per bloccare un utente con l'opzione \"Nascondi utente\" abilitata.\nIn questo modo si evita che il nome utente compaia in tutte le liste e le voci di registro.\nSei sicuro di voler continuare?",
 	"ipb-confirmaction": "Se sei sicuro di volerlo fare davvero, controlla il campo \"{{int:ipb-confirm}}\" in basso.",

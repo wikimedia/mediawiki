@@ -15,7 +15,7 @@
 	"config-no-session": "你連線的資料已經無去矣，看你的php.ini，並且確定<code>session.save_path</code>是正確的目錄。",
 	"config-your-language": "你的語言：",
 	"config-your-language-help": "選一个安裝過程時欲用的話語",
-	"config-wiki-language": "Wiki話語",
+	"config-wiki-language": "wiki語言：",
 	"config-wiki-language-help": "選一个Wiki大部份用的話",
 	"config-back": "← 倒退",
 	"config-continue": "繼續 →",
@@ -42,5 +42,6 @@
 	"config-header-postgres": "PostgreSQL設定",
 	"config-header-sqlite": "SQLite設定",
 	"config-project-namespace": "專案名空間：",
-	"config-ns-generic": "專案"
+	"config-ns-generic": "專案",
+	"mainpagedocfooter": "請查看[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents 用者說明書]的資料通使用wiki 軟體\n\n== 入門 ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings 配置的設定]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki時常問答]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki的公布列單]"
 }
