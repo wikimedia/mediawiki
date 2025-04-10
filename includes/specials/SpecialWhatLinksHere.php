@@ -205,7 +205,6 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 
 		$namespace = $this->formData['namespace'];
 		if ( $namespace !== '' ) {
-			$namespace = intval( $this->formData['namespace'] );
 			$invert = $this->formData['invert'];
 			if ( $invert ) {
 				// Select all namespaces except for the specified one.
@@ -325,7 +324,7 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 			if ( $level == 0 && !$this->including() ) {
 				if ( $hidelinks || $hidetrans || $hideredirs ) {
 					$msgKey = 'nolinkshere-filter';
-				} elseif ( is_int( $namespace ) ) {
+				} elseif ( $namespace !== '' ) {
 					$msgKey = 'nolinkshere-ns';
 				} else {
 					$msgKey = 'nolinkshere';
@@ -651,6 +650,9 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 				'label-message' => 'namespace',
 				'all' => '',
 				'default' => '',
+				'filter-callback' => static function ( $value ) {
+					return $value !== '' ? intval( $value ) : '';
+				},
 				'in-user-lang' => true,
 				'section' => 'whatlinkshere-ns',
 			],
