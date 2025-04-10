@@ -85,7 +85,7 @@ class ApiUploadTest extends ApiUploadTestCase {
 		$this->assertTrue( $this->getServiceContainer()->getWatchlistManager()->isTempWatched( $user, $title ) );
 	}
 
-	public function testUploadZeroLength() {
+	public function testUploadErrorZeroLength() {
 		$filePath = $this->getNewTempFile();
 		$mimeType = 'image/jpeg';
 		$fileName = "ApiTestUploadZeroLength.jpg";
@@ -93,6 +93,168 @@ class ApiUploadTest extends ApiUploadTestCase {
 		$this->fakeUploadFile( 'file', $fileName, $mimeType, $filePath );
 
 		$this->expectApiErrorCode( 'empty-file' );
+		$this->doApiRequestWithToken( [
+			'action' => 'upload',
+			'filename' => $fileName,
+			'file' => 'dummy content',
+			'comment' => 'dummy comment',
+			'text' => "This is the page text for $fileName",
+		], null, $this->uploader );
+	}
+
+	public function testUploadErrorFileTooLarge() {
+		$this->overrideConfigValue( MainConfigNames::MaxUploadSize, 10 );
+		$filePath = $this->filePath( '1bit-png.png' );
+		$mimeType = 'image/png';
+		$fileName = 'ApiUploadFileTooLarge.png';
+
+		$this->fakeUploadFile( 'file', $fileName, $mimeType, $filePath );
+
+		$this->expectApiErrorCode( 'file-too-large' );
+		$this->doApiRequestWithToken( [
+			'action' => 'upload',
+			'filename' => $fileName,
+			'file' => 'dummy content',
+			'comment' => 'dummy comment',
+			'text' => "This is the page text for $fileName",
+		], null, $this->uploader );
+	}
+
+	public function testUploadErrorFiletypeMissing() {
+		$mimeAnalyzer = $this->createMock( MimeAnalyzer::class );
+		$mimeAnalyzer->method( 'guessMimeType' )->willReturn( 'unknown/unknown' );
+		$mimeAnalyzer->method( 'getMediaType' )->willReturn( MEDIATYPE_UNKNOWN );
+		$this->setService( 'MimeAnalyzer', $mimeAnalyzer );
+
+		$filePath = $this->filePath( '1bit-png.png' );
+		$mimeType = 'image/png';
+		$fileName = 'ApiUploadFileTypeMissing';
+
+		$this->fakeUploadFile( 'file', $fileName, $mimeType, $filePath );
+
+		$this->expectApiErrorCode( 'filetype-missing' );
+		$this->doApiRequestWithToken( [
+			'action' => 'upload',
+			'filename' => $fileName,
+			'file' => 'dummy content',
+			'comment' => 'dummy comment',
+			'text' => "This is the page text for $fileName",
+		], null, $this->uploader );
+	}
+
+	public function testUploadErrorFiletypeBadtype() {
+		$this->overrideConfigValue( MainConfigNames::ProhibitedFileExtensions, [ 'png' ] );
+		$filePath = $this->filePath( '1bit-png.png' );
+		$mimeType = 'image/png';
+		$fileName = 'ApiUploadFileBadType.png';
+
+		$this->fakeUploadFile( 'file', $fileName, $mimeType, $filePath );
+
+		$this->expectApiErrorCode( 'filetype-banned' );
+		$this->doApiRequestWithToken( [
+			'action' => 'upload',
+			'filename' => $fileName,
+			'file' => 'dummy content',
+			'comment' => 'dummy comment',
+			'text' => "This is the page text for $fileName",
+		], null, $this->uploader );
+	}
+
+	public function testUploadErrorFilenameTooShort() {
+		$filePath = $this->filePath( '1bit-png.png' );
+		$mimeType = 'image/png';
+		$fileName = '.png';
+
+		$this->fakeUploadFile( 'file', $fileName, $mimeType, $filePath );
+
+		$this->expectApiErrorCode( 'filename-tooshort' );
+		$this->doApiRequestWithToken( [
+			'action' => 'upload',
+			'filename' => $fileName,
+			'file' => 'dummy content',
+			'comment' => 'dummy comment',
+			'text' => "This is the page text for $fileName",
+		], null, $this->uploader );
+	}
+
+	public function testUploadErrorIllegalFilename() {
+		$filePath = $this->filePath( '1bit-png.png' );
+		$mimeType = 'image/png';
+		$fileName = '~~~.png';
+
+		$this->fakeUploadFile( 'file', $fileName, $mimeType, $filePath );
+
+		$this->expectApiErrorCode( 'illegal-filename' );
+		$this->doApiRequestWithToken( [
+			'action' => 'upload',
+			'filename' => $fileName,
+			'file' => 'dummy content',
+			'comment' => 'dummy comment',
+			'text' => "This is the page text for $fileName",
+		], null, $this->uploader );
+	}
+
+	public function testUploadErrorVerificationError() {
+		$filePath = $this->filePath( '1bit-png.png' );
+		$mimeType = 'image/png';
+		$fileName = 'ApiUploadFileMismatch.jpg';
+
+		$this->fakeUploadFile( 'file', $fileName, $mimeType, $filePath );
+
+		$this->expectApiErrorCode( 'verification-error' );
+		$this->doApiRequestWithToken( [
+			'action' => 'upload',
+			'filename' => $fileName,
+			'file' => 'dummy content',
+			'comment' => 'dummy comment',
+			'text' => "This is the page text for $fileName",
+		], null, $this->uploader );
+	}
+
+	public function testUploadErrorWindowsNonasciiFilename() {
+		$fileBackend = $this->getMockBuilder( FSFileBackend::class )
+			->setConstructorArgs( [ [
+				'name' => 'temp-backend',
+				'wikiId' => WikiMap::getCurrentWikiId(),
+				'basePath' => $this->getNewTempDirectory()
+			] ] )
+			->getMock();
+		$fileBackend->method( 'getFeatures' )->willReturn( 0 );
+		$this->setService( 'RepoGroup', new RepoGroup(
+			[
+				'class' => LocalRepo::class,
+				'name' => 'temp',
+				'backend' => $fileBackend,
+			],
+			[],
+			$this->getServiceContainer()->getMainWANObjectCache(),
+			$this->createMock( MimeAnalyzer::class )
+		) );
+
+		$filePath = $this->filePath( '1bit-png.png' );
+		$mimeType = 'image/png';
+		$fileName = 'ApiUploadFile🏳️‍🌈🏳️‍🌈.png';
+
+		$this->fakeUploadFile( 'file', $fileName, $mimeType, $filePath );
+
+		$this->expectApiErrorCode( 'windows-nonascii-filename' );
+		$this->doApiRequestWithToken( [
+			'action' => 'upload',
+			'filename' => $fileName,
+			'file' => 'dummy content',
+			'comment' => 'dummy comment',
+			'text' => "This is the page text for $fileName",
+		], null, $this->uploader );
+	}
+
+	public function testUploadErrorFilenameTooLong() {
+		$filePath = $this->filePath( '1bit-png.png' );
+		$mimeType = 'image/png';
+		$fileName = str_repeat( 'a', 240 ) . '.png';
+
+		$this->fakeUploadFile( 'file', $fileName, $mimeType, $filePath );
+
+		$this->expectApiErrorCode( 'filename-toolong' );
 		$this->doApiRequestWithToken( [
 			'action' => 'upload',
 			'filename' => $fileName,
