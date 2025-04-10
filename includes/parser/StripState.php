@@ -25,6 +25,7 @@ namespace MediaWiki\Parser;
 
 use Closure;
 use InvalidArgumentException;
+use Wikimedia\Parsoid\Fragments\PFragment;
 
 /**
  * @todo document, briefly.
@@ -109,15 +110,25 @@ class StripState {
 	}
 
 	/**
+	 * @param string $marker
+	 * @param PFragment $extra
+	 * @since 1.44
+	 * @internal Parsoid use only.
+	 */
+	public function addParsoidOpaque( $marker, PFragment $extra ) {
+		$this->addItem( 'parsoid', $marker, '<parsoid opaque>', $extra );
+	}
+
+	/**
 	 * @param string $type
 	 * @param-taint $type none
 	 * @param string $marker
 	 * @param-taint $marker none
 	 * @param string|Closure $value
-	 * @param ?string $extra
+	 * @param string|PFragment|null $extra
 	 * @param-taint $value exec_html
 	 */
-	protected function addItem( $type, $marker, $value, ?string $extra = null ) {
+	protected function addItem( $type, $marker, $value, $extra = null ) {
 		if ( !preg_match( $this->regex, $marker, $m ) ) {
 			throw new InvalidArgumentException( "Invalid marker: $marker" );
 		}

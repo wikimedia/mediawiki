@@ -2905,10 +2905,7 @@ return [
 			'UrlProtocols' => 'array',
 			'TidyConfig' => 'object',
 			'ParsoidSettings' => 'object',
-			'ParsoidFragmentInput' => [
-				'boolean',
-				'string',
-			],
+			'ParsoidFragmentInput' => 'boolean',
 			'ParsoidExperimentalParserFunctionOutput' => 'boolean',
 			'NoFollowNsExceptions' => 'array',
 			'NoFollowDomainExceptions' => 'array',
