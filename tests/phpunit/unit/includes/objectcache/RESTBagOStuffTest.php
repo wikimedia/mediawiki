@@ -134,4 +134,16 @@ class RESTBagOStuffTest extends \MediaWikiUnitTestCase {
 		$result = $this->bag->delete( '42xyz42' );
 		$this->assertTrue( $result );
 	}
+
+	public function testSetStats() {
+		$statsHelper = Wikimedia\Stats\StatsFactory::newUnitTestingHelper();
+		$cache = new RESTBagOStuff( [ 'client' => $this->client,
+			'url' => 'http://test/rest/', 'stats' => $statsHelper->getStatsFactory() ] );
+		$cache->set( 'test_set12345', 'F4l65kZqWhoAnKW8ZTzekDYfrDxT' );
+
+		$bagostuff_bytes_sent_total = $statsHelper->getStatsFactory()
+			->getCounter( 'bagostuff_bytes_sent_total' )->getSamples();
+
+		$this->assertEquals( 41, $bagostuff_bytes_sent_total[0]->getValue() );
+	}
 }
