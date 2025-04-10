@@ -425,4 +425,51 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 		Assert::assertStringContainsString( $expected, $entryPoint->getCapturedOutput() );
 	}
 
+	public function testViewViaRedirect() {
+		$page = $this->getExistingTestPage( 'Origin_' . __METHOD__ );
+		$target = $this->getExistingTestPage( 'Target_' . __METHOD__ );
+		$link = $this->getServiceContainer()->getTitleFormatter()
+			->getPrefixedText( $target );
+
+		$this->editPage( $page, "#REDIRECT [[$link]]\n\nRedirect Footer" );
+		$this->editPage( $target, "Redirect Target" );
+
+		$request = new FauxRequest( [ 'title' => $page->getTitle()->getPrefixedDBkey() ] );
+		$env = new MockEnvironment( $request );
+
+		$entryPoint = $this->getEntryPoint( $env );
+		$entryPoint->run();
+		$output = $entryPoint->getCapturedOutput();
+
+		Assert::assertStringContainsString( '<title>(pagetitle: Target', $output );
+		Assert::assertStringContainsString( '(redirectedfrom: ', $output );
+		Assert::assertStringContainsString( '>Origin', $output );
+		Assert::assertStringContainsString( 'Target', $output );
+	}
+
+	public function testViewRedirectPage() {
+		$page = $this->getExistingTestPage( 'Origin_' . __METHOD__ );
+		$target = $this->getExistingTestPage( 'Target_' . __METHOD__ );
+		$link = $this->getServiceContainer()->getTitleFormatter()
+			->getPrefixedText( $target );
+
+		$this->editPage( $page, "#REDIRECT [[$link]]\n\nRedirect Footer" );
+		$this->editPage( $target, "Redirect Target" );
+
+		$request = new FauxRequest( [
+			'title' => $page->getTitle()->getPrefixedDBkey(),
+			'redirect' => 'no'
+		] );
+
+		$env = new MockEnvironment( $request );
+
+		$entryPoint = $this->getEntryPoint( $env );
+		$entryPoint->run();
+		$output = $entryPoint->getCapturedOutput();
+
+		Assert::assertStringContainsString( '<title>(pagetitle: Origin', $output );
+		Assert::assertStringContainsString( 'Redirect to:', $output );
+		Assert::assertStringContainsString( 'Footer', $output );
+	}
+
 }

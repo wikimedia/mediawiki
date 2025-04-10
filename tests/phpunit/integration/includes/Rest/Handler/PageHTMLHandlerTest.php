@@ -166,19 +166,23 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	public static function provideWikiRedirect() {
 		yield 'follow wiki redirects per default' => [ [], 307 ];
 		yield 'bad redirect param' => [ [ 'redirect' => 'wrong' ], 400 ];
-		yield 'redirect=no' => [ [ 'redirect' => 'no' ], 200 ];
-		yield 'redirect=false' => [ [ 'redirect' => 'false' ], 200 ];
+		yield 'redirect=no' => [ [ 'redirect' => 'no' ], 200, 'Footer' ];
+		yield 'redirect=false' => [ [ 'redirect' => 'false' ], 200, 'Footer' ];
 		yield 'redirect=true' => [ [ 'redirect' => 'true' ], 307 ];
 	}
 
 	/**
 	 * @dataProvider provideWikiRedirect
 	 */
-	public function testWikiRedirect( $params, $expectedStatus ) {
+	public function testWikiRedirect( $params, $expectedStatus, $expectedText = null ) {
 		$redirect = $this->getExistingTestPage( 'HtmlEndpointTestPage/redirect' );
 		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage/target' );
 
-		$this->editPage( $redirect, "#REDIRECT [[{$page->getTitle()->getPrefixedDBkey()}]]" );
+		$this->editPage(
+			$redirect,
+			"#REDIRECT [[{$page->getTitle()->getPrefixedDBkey()}]]\n" .
+			"Redirect Footer"
+		);
 
 		$request = new RequestData(
 			[
@@ -194,6 +198,13 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			] );
 
 			$this->assertSame( $expectedStatus, $response->getStatusCode() );
+
+			if ( $expectedText !== null ) {
+				$this->assertStringContainsString(
+					$expectedText,
+					(string)$response->getBody()
+				);
+			}
 		} catch ( HttpException $ex ) {
 			$this->assertSame( $expectedStatus, $ex->getCode() );
 		}
