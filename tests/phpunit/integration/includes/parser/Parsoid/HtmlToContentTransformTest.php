@@ -14,13 +14,10 @@ use MediaWiki\Parser\Parsoid\HtmlToContentTransform;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWikiIntegrationTestCase;
-use Psr\Log\NullLogger;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\SelserData;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Parsoid\Utils\ContentUtils;
-use Wikimedia\Stats\Emitters\NullEmitter;
-use Wikimedia\Stats\StatsCache;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
 
@@ -316,21 +313,14 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 		$html = '<html><body>xyz</body></html>'; // no schema version!
 		$transform = $this->createHtmlToContentTransform( $html );
 
-		$statsCache = new StatsCache();
-		$statsFactory = new StatsFactory( $statsCache, new NullEmitter(), new NullLogger() );
-		$transform->setMetrics( $statsFactory );
+		$statsHelper = StatsFactory::newUnitTestingHelper();
+		$transform->setMetrics( $statsHelper->getStatsFactory() );
 
-		// getSchemaVersion should ioncrement the html2wt.original.version.notinline counter
-		// because the input HTML doesn't contain a schema version.
+		// getSchemaVersion should report that the input HTML lacks a schema version.
 		$transform->getSchemaVersion();
-		$this->assertCount( 1, $statsCache->getAllMetrics() );
-		$this->assertNotNull(
-			$statsCache->get(
-				'',
-				'html2wt_original_version_total',
-				'Wikimedia\Stats\Metrics\CounterMetric'
-			)->getName()
-		);
+		$this->assertSame( [
+			'mediawiki.html2wt_original_version_total:1|c|#input_content_version:none',
+		], $statsHelper->consumeAllFormatted() );
 	}
 
 	public function testHtmlSize() {

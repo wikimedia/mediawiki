@@ -5,14 +5,8 @@ namespace Wikimedia\Tests\ObjectCache;
 use InvalidArgumentException;
 use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
-use Psr\Log\NullLogger;
-use UDPTransport;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\HashBagOStuff;
-use Wikimedia\Stats\Metrics\MetricInterface;
-use Wikimedia\Stats\NullStatsdDataFactory;
-use Wikimedia\Stats\OutputFormats;
-use Wikimedia\Stats\StatsCache;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
 
@@ -171,33 +165,10 @@ class HashBagOStuffTest extends TestCase {
 	 * Ensure updateOpStats doesn't get confused.
 	 */
 	public function testUpdateOpStats() {
-		$statsCache = new StatsCache();
-		$emitter = OutputFormats::getNewEmitter(
-			'mediawiki',
-			$statsCache,
-			OutputFormats::getNewFormatter( OutputFormats::DOGSTATSD )
-		);
-
-		$transport = $this->createMock( UDPTransport::class );
-		$transport->expects( $this->once() )->method( "emit" )
-			->with(
-				"mediawiki.bagostuff_call_total:1|c|#keygroup:Foo,operation:frob
-mediawiki.bagostuff_call_total:1|c|#keygroup:Bar,operation:frob
-mediawiki.bagostuff_call_total:1|c|#keygroup:UNKNOWN,operation:frob
-mediawiki.bagostuff_bytes_sent_total:5|c|#keygroup:Bar,operation:frob
-mediawiki.bagostuff_bytes_sent_total:5|c|#keygroup:UNKNOWN,operation:frob
-mediawiki.bagostuff_bytes_read_total:3|c|#keygroup:Bar,operation:frob
-mediawiki.bagostuff_bytes_read_total:3|c|#keygroup:UNKNOWN,operation:frob
-mediawiki.stats_buffered_total:7|c\n"
-			);
-		$emitter = $emitter->withTransport( $transport );
-		$stats = new StatsFactory( $statsCache, $emitter, new NullLogger );
-
-		$stats->withStatsdDataFactory( new NullStatsdDataFactory() );
+		$statsHelper = StatsFactory::newUnitTestingHelper();
 		$cache = new HashBagOStuff( [
-			'stats' => $stats
+			'stats' => $statsHelper->getStatsFactory(),
 		] );
-
 		$cache = TestingAccessWrapper::newFromObject( $cache );
 		$cache->updateOpStats(
 			'frob',
@@ -213,11 +184,17 @@ mediawiki.stats_buffered_total:7|c\n"
 			]
 		);
 
-		/** @var MetricInterface[] $metrics */
-		$metrics = ( TestingAccessWrapper::newFromObject( $stats ) )->cache->getAllMetrics();
-		$this->assertCount( 3, $metrics );
-
-		// send metrics
-		$stats->flush();
+		$this->assertSame(
+			[
+				'mediawiki.bagostuff_call_total:1|c|#keygroup:Foo,operation:frob',
+				'mediawiki.bagostuff_call_total:1|c|#keygroup:Bar,operation:frob',
+				'mediawiki.bagostuff_call_total:1|c|#keygroup:UNKNOWN,operation:frob',
+				'mediawiki.bagostuff_bytes_sent_total:5|c|#keygroup:Bar,operation:frob',
+				'mediawiki.bagostuff_bytes_sent_total:5|c|#keygroup:UNKNOWN,operation:frob',
+				'mediawiki.bagostuff_bytes_read_total:3|c|#keygroup:Bar,operation:frob',
+				'mediawiki.bagostuff_bytes_read_total:3|c|#keygroup:UNKNOWN,operation:frob',
+			],
+			$statsHelper->consumeAllFormatted()
+		);
 	}
 }

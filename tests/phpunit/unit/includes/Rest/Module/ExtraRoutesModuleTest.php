@@ -17,14 +17,11 @@ use MediaWiki\Tests\Rest\Handler\HelloHandler;
 use MediaWiki\Tests\Rest\RestTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use PHPUnit\Framework\MockObject\MockObject;
-use Psr\Log\NullLogger;
 use RuntimeException;
 use Throwable;
-use UDPTransport;
-use Wikimedia\Stats\OutputFormats;
-use Wikimedia\Stats\StatsCache;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @covers \MediaWiki\Rest\Module\ExtraRoutesModule
@@ -100,23 +97,6 @@ class ExtraRoutesModuleTest extends \MediaWikiUnitTestCase {
 		return $module;
 	}
 
-	private function createMockStatsFactory( string $expectedPattern ): StatsFactory {
-		$statsCache = new StatsCache();
-		$emitter = OutputFormats::getNewEmitter(
-			'mediawiki',
-			$statsCache,
-			OutputFormats::getNewFormatter( OutputFormats::DOGSTATSD )
-		);
-
-		$transport = $this->createMock( UDPTransport::class );
-
-		$transport->expects( $this->once() )->method( "emit" )
-			->with( $this->matchesRegularExpression( $expectedPattern ) );
-
-		$emitter = $emitter->withTransport( $transport );
-		return new StatsFactory( $statsCache, $emitter, new NullLogger );
-	}
-
 	public function testWrongMethod() {
 		$request = new RequestData( [
 			'uri' => new Uri( '/rest/ModuleTest/hello/dude' ),
@@ -146,14 +126,16 @@ class ExtraRoutesModuleTest extends \MediaWikiUnitTestCase {
 		] );
 		$module = $this->createRouteFileModule( $request );
 
-		$stats = $this->createMockStatsFactory(
-			"/^mediawiki\.rest_api_latency_seconds:\d+\.\d+\|ms\|#path:ModuleTest_hello_name,method:HEAD,status:200\nmediawiki\.stats_buffered_total:1\|c$/"
-		);
-		$module->setStats( $stats );
+		ConvertibleTimestamp::setFakeTime( '20110401090000' );
+		$statsHelper = StatsFactory::newUnitTestingHelper();
+		$module->setStats( $statsHelper->getStatsFactory() );
 
 		$response = $module->execute( '/ModuleTest/hello/two', $request );
-		$stats->flush();
 		$this->assertSame( 200, $response->getStatusCode() );
+		$this->assertSame(
+			[ 'mediawiki.rest_api_latency_seconds:1|ms|#path:ModuleTest_hello_name,method:HEAD,status:200' ],
+			$statsHelper->consumeAllFormatted()
+		);
 	}
 
 	public function testNoMatch() {
@@ -169,18 +151,19 @@ class ExtraRoutesModuleTest extends \MediaWikiUnitTestCase {
 		$request = new RequestData( [ 'uri' => new Uri( '/rest/ModuleTest/throw' ) ] );
 		$module = $this->createRouteFileModule( $request );
 
-		$stats = $this->createMockStatsFactory(
-			"/^mediawiki\.rest_api_errors_total:1\|c\|#path:ModuleTest_throw,method:GET,status:555\nmediawiki\.stats_buffered_total:1\|c$/"
-		);
-		$module->setStats( $stats );
+		$statsHelper = StatsFactory::newUnitTestingHelper();
+		$module->setStats( $statsHelper->getStatsFactory() );
 
 		$response = $module->execute( '/ModuleTest/throw', $request );
-		$stats->flush();
 		$this->assertSame( 555, $response->getStatusCode() );
 		$body = $response->getBody();
 		$body->rewind();
 		$data = json_decode( $body->getContents(), true );
 		$this->assertSame( 'Mock error', $data['message'] );
+		$this->assertSame(
+			[ 'mediawiki.rest_api_errors_total:1|c|#path:ModuleTest_throw,method:GET,status:555' ],
+			$statsHelper->consumeAllFormatted()
+		);
 	}
 
 	public function testFatalException() {

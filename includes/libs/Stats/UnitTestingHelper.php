@@ -27,6 +27,7 @@ use OutOfBoundsException;
 use OutOfRangeException;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Stats\Emitters\NullEmitter;
+use Wikimedia\Stats\Formatters\DogStatsdFormatter;
 use Wikimedia\Stats\Metrics\MetricInterface;
 
 /**
@@ -69,6 +70,31 @@ class UnitTestingHelper {
 	 */
 	public function getStatsFactory(): StatsFactory {
 		return $this->factory;
+	}
+
+	/**
+	 * Get all samples in dogstatsd format
+	 *
+	 * @return string[]
+	 */
+	public function getAllFormatted(): array {
+		$output = [];
+		$dogFmt = new DogStatsdFormatter();
+		foreach ( $this->cache->getAllMetrics() as $metric ) {
+			$output = array_merge( $output, $dogFmt->getFormattedSamples( 'mediawiki', $metric ) );
+		}
+		return $output;
+	}
+
+	/**
+	 * Get all samples in dogstatsd format and clear the buffer
+	 *
+	 * @return string[]
+	 */
+	public function consumeAllFormatted(): array {
+		$output = $this->getAllFormatted();
+		$this->cache->clear();
+		return $output;
 	}
 
 	/**
