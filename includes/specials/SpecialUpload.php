@@ -39,7 +39,6 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logging\LogEventsList;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Message\Message;
 use MediaWiki\Page\WikiFilePage;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
@@ -1070,11 +1069,6 @@ class SpecialUpload extends SpecialPage {
 				unset( $details['status'] );
 				$code = array_shift( $details['details'] );
 				$this->showUploadError( $this->msg( $code, $details['details'] )->parse() );
-				break;
-			case UploadBase::HOOK_ABORTED:
-				# allow hooks to return error details in an array, or as a single string key
-				$msg = Message::newFromSpecifier( $details['error'] );
-				$this->showUploadError( $this->msg( $msg )->parse() );
 				break;
 			default:
 				throw new UnexpectedValueException( __METHOD__ . ": Unknown value `{$details['status']}`" );
