@@ -120,7 +120,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 		$status->warning( $msg1 );
 		$status->warning( $msg2 );
 		$status->error( 'aboutpage' );
-		$status->error( 'brackets', 'foobar' );
+		$status->error( 'brackets', Message::sizeParam( 123 ) );
 		$formatter->addMessagesFromStatus( 'status', $status );
 		$this->assertSame( $expect3, $result->getResultData(), 'Status test' );
 
@@ -155,7 +155,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 		$aboutpage = wfMessage( 'aboutpage' );
 		$mainpage = wfMessage( 'mainpage' );
 		$parens = wfMessage( 'parentheses', 'foobar' );
-		$brackets = wfMessage( 'brackets', 'foobar' );
+		$brackets = wfMessage( 'brackets' )->sizeParams( 123 );
 		$copyright = wfMessage( 'copyright' );
 		$disclaimers = wfMessage( 'disclaimers' );
 		$edithelp = wfMessage( 'edithelp' );
@@ -330,7 +330,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 						[
 							'code' => 'brackets',
 							'key' => 'brackets',
-							'params' => [ 'foobar', $I => 'param' ],
+							'params' => [ [ 'size' => 123 ], $I => 'param' ],
 							'module' => 'status',
 						],
 						$I => 'error',
@@ -521,7 +521,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 		$status->warning( $msg1 );
 		$status->warning( $msg2 );
 		$status->error( 'aboutpage' );
-		$status->error( 'brackets', 'foobar' );
+		$status->error( 'brackets', Message::sizeParam( 123 ) );
 		$formatter->addMessagesFromStatus( 'status', $status );
 		$this->assertSame( [
 			'error' => [
@@ -541,7 +541,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 		], $result->getResultData(), 'Status test' );
 
 		$I = ApiResult::META_INDEXED_TAG_NAME;
-		$this->assertSame(
+		$this->assertEquals(
 			[
 				[
 					'message' => 'aboutpage',
@@ -551,7 +551,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 				],
 				[
 					'message' => 'brackets',
-					'params' => [ 'foobar', $I => 'param' ],
+					'params' => [ Message::sizeParam( 123 ), $I => 'param' ],
 					'code' => 'brackets',
 					'type' => 'error',
 				],

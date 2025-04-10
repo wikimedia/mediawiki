@@ -27,6 +27,8 @@ use MediaWiki\Message\Message;
 use RuntimeException;
 use stdClass;
 use UnexpectedValueException;
+use Wikimedia\Message\ListParam;
+use Wikimedia\Message\ScalarParam;
 
 /**
  * This class represents the result of the API operations.
@@ -355,11 +357,10 @@ class ApiResult implements ApiSerializable {
 						$ex
 					);
 				}
-			} elseif ( $value instanceof \Wikimedia\Message\MessageParam ) {
+			} elseif ( $value instanceof ScalarParam || $value instanceof ListParam ) {
 				// HACK Support code that puts $msg->getParams() directly into API responses
 				// (e.g. ApiErrorFormatter::formatRawMessage()).
-				$codec = MediaWikiServices::getInstance()->getJsonCodec();
-				$value = $value->getType() === 'text' ? $value->getValue() : $codec->serialize( $value );
+				$value = $value->getType() === 'text' ? $value->getValue() : $value->toJsonArray();
 			} elseif ( is_callable( [ $value, '__toString' ] ) ) {
 				$value = (string)$value;
 			} else {
