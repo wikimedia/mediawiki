@@ -143,6 +143,7 @@ class SignatureValidator {
 				// * linterror-bogus-image-options
 				// * linterror-deletable-table-tag
 				// * linterror-duplicate-ids
+				// * linterror-empty-heading
 				// * linterror-fostered
 				// * linterror-fostered-transparent
 				// * linterror-html5-misnesting

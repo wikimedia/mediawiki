@@ -1031,6 +1031,7 @@
 	"linterror-bogus-image-options": "Bogus file option",
 	"linterror-deletable-table-tag": "Table tag that should be deleted",
 	"linterror-duplicate-ids": "Duplicate IDs",
+	"linterror-empty-heading": "Empty headings",
 	"linterror-fostered": "Fostered content",
 	"linterror-fostered-transparent": "Fostered transparent content",
 	"linterror-html5-misnesting": "Misnesting (now broken)",
