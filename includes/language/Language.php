@@ -4951,7 +4951,12 @@ class Language implements Bcp47Code {
 		$jsLcFormats = $this->localisationCache->getItem( $this->mCode, 'jsDateFormats' );
 		$phpLcFormats = $this->localisationCache->getItem( $this->mCode, 'dateFormats' );
 
-		$styles = $this->getDatePreferences() ?: [ $this->getDefaultDateFormat() ];
+		$styles = $this->getDatePreferences() ?: [];
+		$default = $this->getDefaultDateFormat();
+		// Always include the default style
+		if ( !in_array( $default, $styles, true ) ) {
+			$styles[] = $default;
+		}
 		$results = [];
 		foreach ( $styles as $style ) {
 			if ( $style === 'default' ) {

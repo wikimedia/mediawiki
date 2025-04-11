@@ -629,10 +629,8 @@ class DateFormatter {
 		if ( !style ) {
 			return type;
 		}
-		// Try the specified style, then the site default style, then "dmy", a
-		// final fallback which should always exist, because localised date
-		// format arrays are merged with English, which has "dmy".
-		for ( const tryStyle of [ style, config.defaultStyle, 'dmy' ] ) {
+		// Try the specified style, then the localisation's default style
+		for ( const tryStyle of [ style, config.defaultStyle ] ) {
 			const name = `${ tryStyle } ${ type }`;
 			if ( name in this.formats ) {
 				return name;
