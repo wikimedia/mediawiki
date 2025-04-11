@@ -87,6 +87,8 @@ class RunBatchedQuery extends Maintenance {
 				->caller( __METHOD__ )
 				->fetchResultSet();
 
+			// Calculate the WHERE strings needed for this UPDATE and the next SELECT.
+			// Example $updateConds: `WHERE id > 999 AND id <= 1999`
 			if ( $res->numRows() ) {
 				$res->seek( $res->numRows() - 1 );
 				$row = $res->fetchObject();
