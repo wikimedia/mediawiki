@@ -8,7 +8,6 @@ return [
 
 	'sinonjs' => [
 		'scripts' => [
-			'tests/qunit/data/sinonjs-local.js',
 			'resources/lib/sinonjs/sinon.js',
 		],
 	],

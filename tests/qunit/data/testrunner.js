@@ -40,21 +40,53 @@
 	sinon.assert.pass = function ( msg ) {
 		QUnit.assert.true( true, msg );
 	};
-	sinon.config = {
-		injectIntoThis: true,
-		injectInto: null,
-		properties: [ 'spy', 'stub', 'mock', 'sandbox' ],
-		// Don't fake timers by default
-		useFakeTimers: false,
-		useFakeServer: false
-	};
+
+	function createStubLegacy( obj, method, fn ) {
+		if ( arguments.length > 2 ) {
+			if ( typeof fn === 'function' ) {
+				return sinon.stub( obj, method ).callsFake( fn );
+			} else {
+				return sinon.replace( obj, method, fn );
+			}
+		} else {
+			return sinon.stub.apply( null, arguments );
+		}
+	}
+
+	// eslint-disable-next-line no-unused-vars
+	function createSpyLegacy( object, property, types ) {
+		const spy = sinon.spy.apply( null, arguments );
+		spy.reset = spy.resetHistory;
+		return spy;
+	}
+
 	QUnit.hooks.beforeEach( function () {
 		// Sinon sandbox
-		const config = sinon.getConfig( sinon.config );
-		config.injectInto = this;
-		sinon.sandbox.create( config );
+		sinon.createSandbox( {
+			injectInto: this,
+			properties: [ 'spy', 'stub', 'mock', 'sandbox' ],
+			// Don't fake timers by default
+			useFakeTimers: false,
+			useFakeServer: false
+		} );
+		this.sandbox.stub = this.stub = createStubLegacy;
+		this.sandbox.spy = this.spy = createSpyLegacy;
+		const useFakeTimers = this.sandbox.useFakeTimers;
+		this.sandbox.useFakeTimers = function ( now ) {
+			if ( arguments.length > 1 ) {
+				// eslint-disable-next-line no-console
+				console.warn( new Error( 'Use of `sinon.useFakeTimers(now, prop)` is deprecated, use `sinon.useFakeTimers(now)` or `sinon.useFakeTimers( { now, toFake } )` instead (T239271).' ) );
+				return useFakeTimers( {
+					now: now,
+					toFake: [].slice.call( arguments, 1 )
+				} );
+			} else {
+				return useFakeTimers.apply( null, arguments );
+			}
+		};
 	} );
 	QUnit.hooks.afterEach( function () {
+		sinon.verifyAndRestore();
 		this.sandbox.verifyAndRestore();
 	} );
 

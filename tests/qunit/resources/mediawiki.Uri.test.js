@@ -1,6 +1,6 @@
 QUnit.module( 'mediawiki.Uri', ( hooks ) => {
 	hooks.beforeEach( function () {
-		this.sandbox.stub( mw, 'Uri', mw.UriRelative( 'http://example.org/w/index.php' ) );
+		this.sandbox.replace( mw, 'Uri', mw.UriRelative( 'http://example.org/w/index.php' ) );
 	} );
 
 	QUnit.test.each( 'new mw.Uri( string ) with HTTP value', {

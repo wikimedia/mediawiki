@@ -2,7 +2,7 @@
     "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
     "bomFormat": "CycloneDX",
     "specVersion": "1.6",
-    "serialNumber": "urn:uuid:2d3c408e-f84b-4c39-aca6-1a6705f8b41e",
+    "serialNumber": "urn:uuid:fc69d192-c019-4e56-9280-675d82399046",
     "version": 1,
     "components": [
         {
@@ -519,7 +519,7 @@
         {
             "type": "library",
             "name": "sinonjs",
-            "version": "1.17.7",
+            "version": "18.0.1",
             "licenses": [
                 {
                     "license": {
