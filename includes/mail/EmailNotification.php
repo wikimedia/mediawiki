@@ -92,6 +92,10 @@ class EmailNotification {
 	public function notifyOnPageChange(
 		RecentChange $recentChange
 	): bool {
+		// Never send an RC notification email about categorization changes
+		if ( $recentChange->getAttribute( 'rc_type' ) === RC_CATEGORIZE ) {
+			return false;
+		}
 		$mwServices = MediaWikiServices::getInstance();
 		$editor = $mwServices->getUserFactory()
 			->newFromUserIdentity( $recentChange->getPerformerIdentity() );
