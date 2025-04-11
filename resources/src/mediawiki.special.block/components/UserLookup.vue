@@ -50,6 +50,7 @@ const { CdxLookup, CdxField } = require( '@wikimedia/codex' );
 const { storeToRefs } = require( 'pinia' );
 const { cdxIconSearch } = require( '../icons.json' );
 const useBlockStore = require( '../stores/block.js' );
+const util = require( '../util.js' );
 const api = new mw.Api();
 
 /**
@@ -303,7 +304,13 @@ module.exports = exports = defineComponent( {
 		 */
 		function setTarget( value ) {
 			validate();
-			targetUser.value = value;
+
+			if ( mw.util.isIPAddress( value, true ) ) {
+				// Sanitize IP & IP ranges
+				targetUser.value = util.sanitizeRange( value );
+			} else {
+				targetUser.value = value;
+			}
 		}
 
 		// Change the address bar to reflect the newly-selected target (while keeping all URL parameters).

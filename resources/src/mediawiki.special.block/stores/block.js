@@ -1,7 +1,6 @@
 const { defineStore } = require( 'pinia' );
 const { computed, ComputedRef, ref, Ref, watch } = require( 'vue' );
 const api = new mw.Api();
-const util = require( '../util.js' );
 
 /**
  * Pinia store for the SpecialBlock application.
@@ -465,15 +464,7 @@ module.exports = exports = defineStore( 'block', () => {
 			return blockLogPromise;
 		}
 
-		let target = targetUser.value;
-		const isValidIpOrRange = mw.util.isIPAddress( target, true );
-		const isIpRange = isValidIpOrRange && !mw.util.isIPAddress( target, false );
-
-		// Sanitize IP ranges for block log queries.
-		if ( isIpRange ) {
-			target = util.sanitizeRange( target );
-		}
-
+		const target = targetUser.value;
 		const params = {
 			action: 'query',
 			format: 'json',
@@ -498,7 +489,7 @@ module.exports = exports = defineStore( 'block', () => {
 		params.list = 'logevents|blocks';
 		params.letype = 'block';
 		params.bkprop = 'id|user|by|timestamp|expiry|reason|parsedreason|range|flags|restrictions';
-		if ( isValidIpOrRange ) {
+		if ( mw.util.isIPAddress( target, true ) ) {
 			params.bkip = target;
 		} else {
 			params.bkusers = target;

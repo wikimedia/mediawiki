@@ -100,4 +100,28 @@ describe( 'UserLookup', () => {
 		expect( store.targetExists ).toBeFalsy();
 		expect( document.activeElement.name ).toStrictEqual( 'wpTarget' );
 	} );
+
+	it( 'should sanitize IPv6 or Range after target is selected', async () => {
+		const target = '2001:0db8:85a3:0000:0000:8a2e:0370:7334';
+		const expected = '2001:DB8:85A3:0:0:8A2E:370:7334';
+
+		mw.util.isIPAddress = jest.fn().mockReturnValue( true );
+		mw.util.sanitizeIP = jest.fn().mockReturnValue( expected );
+
+		const wrapper = getWrapper( { modelValue: target }, [ {
+			params: {
+				list: 'allusers',
+				auprefix: target
+			},
+			response: {
+				query: {
+					allusers: []
+				}
+			}
+		} ] );
+		const store = useBlockStore();
+
+		await wrapper.vm.onChange();
+		expect( store.targetUser ).toBe( expected );
+	} );
 } );
