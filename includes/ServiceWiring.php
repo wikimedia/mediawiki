@@ -2173,10 +2173,9 @@ return [
 	'SiteStore' => static function ( MediaWikiServices $services ): SiteStore {
 		$rawSiteStore = new DBSiteStore( $services->getConnectionProvider() );
 
+		// If php-apcu is not installed, then CachingSiteStore still avoids
+		// repeat DB queries in the same request through an in-process cache.
 		$cache = $services->getLocalServerObjectCache();
-		if ( $cache instanceof EmptyBagOStuff ) {
-			$cache = $services->getObjectCacheFactory()->getLocalClusterInstance();
-		}
 
 		return new CachingSiteStore( $rawSiteStore, $cache );
 	},
