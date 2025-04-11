@@ -51,7 +51,7 @@ class PageMovedEvent extends PageStateEvent {
 		Assert::parameter(
 			$pageRecordBefore->getId() === $pageRecordAfter->getId(),
 			'$pageRecordBefore and $pageRecordAfter',
-			'most represent the same page'
+			'must represent the same page'
 		);
 
 		parent::__construct(
