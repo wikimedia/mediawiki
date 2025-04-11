@@ -76,7 +76,7 @@ class PageRedirectHelper {
 
 		// Check for normalization redirects
 		if ( $titleAsRequested !== $normalizedTitle ) {
-			$redirectTargetUrl = $this->getTargetUrl( $normalizedTitle );
+			$redirectTargetUrl = $this->getTargetUrl( $normalizedTitle, false );
 			return $this->responseFactory->createPermanentRedirect( $redirectTargetUrl );
 		}
 
@@ -170,27 +170,35 @@ class PageRedirectHelper {
 
 	/**
 	 * @param string|LinkTarget|PageReference $title
+	 * @param bool $limitRedirects Whether to limit redirect chains (A=>B=>C, etc.) to one level.
+	 *
 	 * @return string The target to use in the Location header. Will be relative,
 	 *         unless setUseRelativeRedirects( false ) was called.
 	 */
-	public function getTargetUrl( $title ): string {
+	public function getTargetUrl( $title, bool $limitRedirects = true ): string {
 		if ( !is_string( $title ) ) {
 			$title = $this->titleFormatter->getPrefixedDBkey( $title );
 		}
 
 		$pathParams = [ $this->titleParamName => $title ];
+		$queryParams = $this->request->getQueryParams();
+
+		// Limit to one level of redirection, unless more are explicitly allowed. See T389588.
+		if ( $limitRedirects ) {
+			$queryParams['redirect'] = 'no';
+		}
 
 		if ( $this->useRelativeRedirects ) {
 			return $this->router->getRoutePath(
 				$this->path,
 				$pathParams,
-				$this->request->getQueryParams()
+				$queryParams
 			);
 		} else {
 			return $this->router->getRouteUrl(
 				$this->path,
 				$pathParams,
-				$this->request->getQueryParams()
+				$queryParams
 			);
 		}
 	}

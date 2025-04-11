@@ -52,7 +52,7 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider temporaryRedirectProvider
 	 */
 	public function testTemporaryRedirect(
-		$format, $path, $queryParams, $expectedStatus, $hasBodyRedirectTarget = true
+		$format, $path, $requestQueryParams, $expectedQueryParams, $expectedStatus, $hasBodyRedirectTarget = true
 	) {
 		$targetPageTitle = 'PageEndpointTestPage';
 		$redirectPageTitle = 'RedirectPage';
@@ -63,7 +63,7 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 		$request = new RequestData(
 			[
 				'pathParams' => [ 'title' => $redirectPageTitle ],
-				'queryParams' => $queryParams
+				'queryParams' => $requestQueryParams
 			]
 		);
 		$handler = $this->getHandler( $format, $request );
@@ -77,12 +77,12 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 		if ( $hasBodyRedirectTarget && $expectedStatus === 200 ) {
 			$body = json_decode( $response->getBody()->getContents() );
 			$this->assertStringContainsString( $targetPageTitle, $body->redirect_target );
-			$this->assertUrlQueryParameters( $body->redirect_target, $queryParams );
+			$this->assertUrlQueryParameters( $body->redirect_target, $expectedQueryParams );
 		}
 		if ( $expectedStatus !== 200 ) {
 			$this->assertStringContainsString( $targetPageTitle, $headerLocation );
 			if ( $headerLocation ) {
-				$this->assertUrlQueryParameters( $headerLocation, $queryParams );
+				$this->assertUrlQueryParameters( $headerLocation, $expectedQueryParams );
 			}
 		}
 	}
@@ -92,6 +92,7 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 			'source',
 			'/page/{title}',
 			[],
+			[ 'redirect' => 'no' ],
 			200
 		];
 
@@ -99,6 +100,7 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 			'bare',
 			'/page/{title}/bare',
 			[],
+			[ 'redirect' => 'no' ],
 			200
 		];
 
@@ -106,6 +108,7 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 			'html',
 			'/page/{title}/html',
 			[],
+			[ 'redirect' => 'no' ],
 			307,
 			false
 		];
@@ -114,6 +117,7 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 			'html',
 			'/page/{title}/html',
 			[ 'flavor' => 'edit', 'dummy' => 'test' ],
+			[ 'redirect' => 'no', 'flavor' => 'edit', 'dummy' => 'test' ],
 			307,
 			false
 		];
@@ -121,6 +125,7 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 		yield [
 			'html',
 			'/page/{title}/html',
+			[ 'redirect' => 'no' ],
 			[ 'redirect' => 'no' ],
 			200,
 			false
@@ -130,12 +135,14 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 			'with_html',
 			'/page/{title}/with_html',
 			[],
+			[ 'redirect' => 'no' ],
 			307,
 		];
 
 		yield [
 			'with_html',
 			'/page/{title}/with_html',
+			[ 'flavor' => 'edit', 'dummy' => 'test', 'redirect' => 'no' ],
 			[ 'flavor' => 'edit', 'dummy' => 'test', 'redirect' => 'no' ],
 			200
 		];
