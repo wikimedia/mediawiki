@@ -818,7 +818,7 @@
 	"unstrip-size-warning": "Unstrip의 크기 제한을 초과했습니다 ($1)",
 	"unstrip-size-category": "Unstrip 크기 제한을 초과한 문서",
 	"unstrip-size-category-desc": "이 문서는 unstrip 크기 제한을 초과합니다.",
-	"bad-language-code-category": "유효하지 않은 언어 코드 있는 페이지",
+	"bad-language-code-category": "유효하지 않은 언어 코드가 있는 문서",
 	"bad-language-code-category-desc": "페이지에는 잘못된 언어 코드가 있는 <code><nowiki>{{#dir}}</nowiki></code>이 있습니다.",
 	"double-px-category": "추가 px가 포함된 이미지 크기를 가진 문서",
 	"double-px-category-desc": "페이지에는 크기에 추가 <code>px</code> 접미사가 있는 이미지, 예: <code>100pxpx</code>가 포함되어 있습니다.",
