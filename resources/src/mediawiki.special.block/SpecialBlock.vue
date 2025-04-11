@@ -555,12 +555,6 @@ module.exports = exports = defineComponent( {
 		font-size: @font-size-medium;
 	}
 
-	.cdx-field:first-child {
-		// Override Codex's lack of top margin for the first fieldset,
-		// because here it appears directly below an accordion border.
-		margin-top: @spacing-100;
-	}
-
 	legend .cdx-label__label,
 	legend .cdx-label__description {
 		margin-bottom: @spacing-50;
