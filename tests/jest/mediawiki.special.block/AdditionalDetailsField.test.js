@@ -2,11 +2,13 @@
 
 const { shallowMount } = require( '@vue/test-utils' );
 const { createTestingPinia } = require( '@pinia/testing' );
+const { mockMwConfigGet } = require( './SpecialBlock.setup.js' );
 const AdditionalDetailsField = require( '../../../resources/src/mediawiki.special.block/components/AdditionalDetailsField.vue' );
 const useBlockStore = require( '../../../resources/src/mediawiki.special.block/stores/block.js' );
 
 describe( 'AdditionalDetailsField', () => {
 	it( 'should set hardBlockVisible when blocking an IP address', () => {
+		mockMwConfigGet();
 		const wrapper = shallowMount( AdditionalDetailsField, {
 			global: { plugins: [ createTestingPinia( { stubActions: false } ) ] }
 		} );

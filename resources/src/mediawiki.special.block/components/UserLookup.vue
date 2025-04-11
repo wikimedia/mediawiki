@@ -325,16 +325,6 @@ module.exports = exports = defineComponent( {
 			targetUser.value = value;
 		}
 
-		// Change the address bar to reflect the newly-selected target (while keeping all URL parameters).
-		// Do this when the targetUser changes, which is not necessarily when the CdxLookup selection changes.
-		watch( () => targetUser.value, () => {
-			const specialBlockUrl = mw.util.getUrl( 'Special:Block' + ( targetUser.value ? '/' + targetUser.value : '' ) );
-			if ( window.location.pathname !== specialBlockUrl ) {
-				const newUrl = ( new URL( `${ specialBlockUrl }${ window.location.search }`, window.location.origin ) ).toString();
-				window.history.replaceState( null, '', newUrl );
-			}
-		} );
-
 		return {
 			targetExists,
 			targetUser,

@@ -59,6 +59,7 @@ function mockMwConfigGet( config = {} ) {
 			2: 'User',
 			3: 'User talk'
 		},
+		wgPageName: 'Special:Block',
 		wgUserLanguage: 'en',
 		blockAlreadyBlocked: false,
 		blockTargetUser: null,

@@ -135,6 +135,13 @@ module.exports = exports = defineStore( 'block', () => {
 	 * @type {Ref<string>}
 	 */
 	const removalReason = ref( '' );
+	/**
+	 * Whether the removal confirmation dialog is open.
+	 * This is set in the parent SpecialBlock component.
+	 *
+	 * @type {Ref<boolean>}
+	 */
+	const removalConfirmationOpen = ref( false );
 
 	// Other refs that don't have corresponding form fields.
 
@@ -250,6 +257,32 @@ module.exports = exports = defineStore( 'block', () => {
 		},
 		// Ensure confirmationMessage is set on initial load.
 		{ immediate: true }
+	);
+
+	/**
+	 * Update the URL path with the target user, and set the query string parameters:
+	 * - id: The block ID of the block to modify
+	 * - remove: Whether to remove the block (opens the dialog)
+	 */
+	watch(
+		computed( () => [ targetUser.value, blockId.value, removalConfirmationOpen.value ] ),
+		() => {
+			const params = new URLSearchParams( window.location.search );
+			if ( blockId.value ) {
+				params.set( 'id', blockId.value );
+			} else {
+				params.delete( 'id' );
+			}
+			if ( removalConfirmationOpen.value ) {
+				params.set( 'remove', '1' );
+			} else {
+				params.delete( 'remove' );
+			}
+			// Trim off the trailing slash and any target user from the page name.
+			const pageName = mw.config.get( 'wgPageName' ).replace( /\/(?:[^/]+)?$/, '' );
+			const newUrl = mw.util.getUrl( pageName + ( targetUser.value ? '/' + targetUser.value : '' ) );
+			window.history.replaceState( {}, '', `${ newUrl }?${ params }`.replace( /\?$/, '' ) );
+		}
 	);
 
 	// Hide the form and clear form-related refs when the target user changes.
@@ -565,6 +598,7 @@ module.exports = exports = defineStore( 'block', () => {
 		confirmationMessage,
 		confirmationNeeded,
 		removalReason,
+		removalConfirmationOpen,
 		loadFromData,
 		resetForm,
 		doBlock,

@@ -194,7 +194,16 @@ module.exports = exports = defineComponent( {
 		const store = useBlockStore();
 		const blockShowSuppressLog = mw.config.get( 'blockShowSuppressLog' ) || false;
 		const canDeleteLogEntry = mw.config.get( 'blockCanDeleteLogEntry' ) || false;
-		const { alreadyBlocked, formErrors, formSubmitted, formVisible, blockAdded, blockRemoved, enableMultiblocks } = storeToRefs( store );
+		const {
+			alreadyBlocked,
+			formErrors,
+			formSubmitted,
+			formVisible,
+			blockAdded,
+			blockRemoved,
+			enableMultiblocks,
+			removalConfirmationOpen
+		} = storeToRefs( store );
 		const messagesContainer = ref();
 		const blockSavedMessage = ref( '' );
 		// Value to use for BlockLog component keys, so they reload after saving.
@@ -210,7 +219,6 @@ module.exports = exports = defineComponent( {
 
 		const confirmationOpen = ref( false );
 		const showBlockLogs = computed( () => ( store.targetUser && store.targetExists ) || store.blockId );
-		const removalConfirmationOpen = ref( false );
 
 		// TODO: Remove some time after deprecation
 		// T382539: Check if we've been redirected from Special:Unblock

@@ -91,6 +91,21 @@ describe( 'Block store', () => {
 		expect( store.blockId ).toBeNull();
 		expect( store.formVisible ).toBeFalsy();
 	} );
+
+	it( 'should update the URL when the targetUser, blockId or removalConfirmationOpen changes', async () => {
+		// Add extraneous forward slash to ensure it gets stripped.
+		mockMwConfigGet( { wgPageName: 'Special:Block/' } );
+		const store = useBlockStore();
+		store.targetUser = 'ExampleUser';
+		await nextTick();
+		expect( location.pathname ).toStrictEqual( '/wiki/Special:Block/ExampleUser' );
+		store.blockId = 1234;
+		await nextTick();
+		expect( location.search ).toStrictEqual( '?id=1234' );
+		store.removalConfirmationOpen = true;
+		await nextTick();
+		expect( location.search ).toStrictEqual( '?id=1234&remove=1' );
+	} );
 } );
 
 describe( 'Block API', () => {
