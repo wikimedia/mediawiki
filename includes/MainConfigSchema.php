@@ -7826,8 +7826,8 @@ class MainConfigSchema {
 	 *       - offset: (int) With "plain-numeric" and "readable-numeric", a constant to add to the
 	 *         stored index.
 	 *    - expireAfterDays: (int|null, default 90) If not null, how many days should the temporary
-	 *      accounts expire? Requires expireTemporaryAccounts.php to be periodically executed in
-	 *      order to work.
+	 *      accounts expire? You should run expireTemporaryAccounts.php periodically to expire
+	 *      temporary accounts. Otherwise they are expired when they try to edit.
 	 *    - notifyBeforeExpirationDays: (int|null, default 10) If not null, how many days before the
 	 *      expiration of a temporary account should it be notified that their account is to be expired.
 	 *
