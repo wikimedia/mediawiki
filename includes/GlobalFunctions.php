@@ -31,7 +31,6 @@ use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Shell\Shell;
 use MediaWiki\Title\Title;
-use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\Utils\UrlUtils;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\FileBackend\FileBackend;
@@ -40,6 +39,7 @@ use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\RequestTimeout\RequestTimeout;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Load an extension
@@ -1328,7 +1328,7 @@ function wfResetOutputBuffers( $resetGzipEncoding = true ) {
  * @return string|false The date in the specified format, or false on error.
  */
 function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
-	$ret = MWTimestamp::convert( $outputtype, $ts );
+	$ret = ConvertibleTimestamp::convert( $outputtype, $ts );
 	if ( $ret === false ) {
 		wfDebug( "wfTimestamp() fed bogus time value: TYPE=$outputtype; VALUE=$ts" );
 	}
@@ -1357,7 +1357,7 @@ function wfTimestampOrNull( $outputtype = TS_UNIX, $ts = null ) {
  * @return string TS_MW timestamp
  */
 function wfTimestampNow() {
-	return MWTimestamp::now( TS_MW );
+	return ConvertibleTimestamp::now( TS_MW );
 }
 
 /**
