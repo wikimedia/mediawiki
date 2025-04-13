@@ -63,7 +63,7 @@ class CleanupWatchlist extends TableCleanup {
 		parent::execute();
 	}
 
-	protected function processRow( $row ) {
+	protected function processRow( \stdClass $row ) {
 		$current = Title::makeTitle( $row->wl_namespace, $row->wl_title );
 		$display = $current->getPrefixedText();
 		$verified = $this->getServiceContainer()->getContentLanguage()->normalize( $display );

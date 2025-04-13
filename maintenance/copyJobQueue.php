@@ -77,7 +77,7 @@ class CopyJobQueue extends Maintenance {
 		}
 	}
 
-	protected function copyJobs( JobQueue $src, JobQueue $dst, $jobs ) {
+	protected function copyJobs( JobQueue $src, JobQueue $dst, iterable $jobs ): array {
 		$total = 0;
 		$totalOK = 0;
 		$batch = [];

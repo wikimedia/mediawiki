@@ -243,7 +243,7 @@ class PurgeChangedFiles extends Maintenance {
 		}
 	}
 
-	protected function getDeletedPath( LocalRepo $repo, LocalFile $file ) {
+	protected function getDeletedPath( LocalRepo $repo, LocalFile $file ): string {
 		$hash = $repo->getFileSha1( $file->getPath() );
 		$key = "{$hash}.{$file->getExtension()}";
 

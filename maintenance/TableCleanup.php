@@ -74,7 +74,7 @@ class TableCleanup extends Maintenance {
 		$this->runTable( $this->defaultParams );
 	}
 
-	protected function init( $count, $table ) {
+	protected function init( int $count, string $table ) {
 		$this->processed = 0;
 		$this->updated = 0;
 		$this->count = $count;

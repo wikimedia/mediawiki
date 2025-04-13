@@ -56,7 +56,7 @@ class CleanupImages extends TableCleanup {
 		$this->addDescription( 'Script to clean up broken, unparseable upload filenames' );
 	}
 
-	protected function processRow( $row ) {
+	protected function processRow( \stdClass $row ) {
 		$source = $row->img_name;
 		if ( $source == '' ) {
 			// Ye olde empty rows. Just kill them.

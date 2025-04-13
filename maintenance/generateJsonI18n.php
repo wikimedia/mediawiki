@@ -97,7 +97,7 @@ class GenerateJsonI18n extends Maintenance {
 		}
 	}
 
-	public function transformI18nFile( $phpfile, $jsondir = null ) {
+	public function transformI18nFile( string $phpfile, ?string $jsondir = null ) {
 		if ( !$jsondir ) {
 			// Assume the json directory should be in the same directory as the
 			// .i18n.php file.

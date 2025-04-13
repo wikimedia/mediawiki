@@ -427,7 +427,7 @@ abstract class BackupDumper extends Maintenance {
 		$this->report();
 	}
 
-	public function report( $final = false ) {
+	public function report( bool $final = false ) {
 		if ( $final xor ( $this->revCount % $this->reportingInterval == 0 ) ) {
 			$this->showReport();
 		}
@@ -474,7 +474,7 @@ abstract class BackupDumper extends Maintenance {
 		}
 	}
 
-	protected function progress( $string ) {
+	protected function progress( string $string ) {
 		if ( $this->reporting ) {
 			fwrite( $this->stderr, $string . "\n" );
 		}

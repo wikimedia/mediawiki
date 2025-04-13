@@ -92,7 +92,7 @@ class ImportSiteScripts extends Maintenance {
 		}
 	}
 
-	protected function fetchScriptList() {
+	protected function fetchScriptList(): array {
 		$data = [
 			'action' => 'query',
 			'format' => 'json',

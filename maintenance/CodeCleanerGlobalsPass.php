@@ -39,7 +39,7 @@ class CodeCleanerGlobalsPass extends \Psy\CodeCleaner\CodeCleanerPass {
 		'GLOBALS', '_SERVER', '_ENV', '_FILES', '_COOKIE', '_POST', '_GET', '_SESSION'
 	];
 
-	public function beforeTraverse( array $nodes ) {
+	public function beforeTraverse( array $nodes ): array {
 		$globalVars = array_diff( array_keys( $GLOBALS ), self::SUPERGLOBALS );
 		$validGlobalVars = array_filter( $globalVars, static function ( string $name ) {
 			// https://www.php.net/manual/en/language.variables.basics.php

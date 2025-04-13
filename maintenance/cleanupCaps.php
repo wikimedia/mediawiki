@@ -80,7 +80,7 @@ class CleanupCaps extends TableCleanup {
 			'callback' => $callback ] );
 	}
 
-	protected function processRowToUppercase( $row ) {
+	protected function processRowToUppercase( \stdClass $row ) {
 		$current = Title::makeTitle( $row->page_namespace, $row->page_title );
 		// Set the ID of the page because Title::exists will return false
 		// unless the Article ID is already known, because Title::canExist will be false
@@ -135,7 +135,7 @@ class CleanupCaps extends TableCleanup {
 		}
 	}
 
-	protected function processRowToLowercase( $row ) {
+	protected function processRowToLowercase( \stdClass $row ) {
 		$current = Title::makeTitle( $row->page_namespace, $row->page_title );
 		$display = $current->getPrefixedText();
 		$upper = $row->page_title;

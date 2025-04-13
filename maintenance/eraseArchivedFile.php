@@ -92,7 +92,7 @@ class EraseArchivedFile extends Maintenance {
 		}
 	}
 
-	protected function scrubAllVersions( $name ) {
+	protected function scrubAllVersions( string $name ) {
 		$dbw = $this->getPrimaryDB();
 		$queryBuilder = FileSelectQueryBuilder::newForArchivedFile( $dbw );
 		$queryBuilder->where( [ 'fa_name' => $name, 'fa_storage_group' => 'deleted' ] );

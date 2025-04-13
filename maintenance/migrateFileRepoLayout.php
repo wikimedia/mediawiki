@@ -24,6 +24,7 @@
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\FileRepo\FileBackendDBRepoWrapper;
+use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\Maintenance\Maintenance;
 use Wikimedia\FileBackend\FileBackend;
 
@@ -230,7 +231,7 @@ class MigrateFileRepoLayout extends Maintenance {
 		$this->output( "Done (started $startTime)\n" );
 	}
 
-	protected function getRepo() {
+	protected function getRepo(): LocalRepo {
 		return $this->getServiceContainer()->getRepoGroup()->getLocalRepo();
 	}
 

@@ -173,7 +173,7 @@ class GetConfiguration extends Maintenance {
 		}
 	}
 
-	protected function formatVarDump( $res ) {
+	protected function formatVarDump( array $res ): string {
 		$ret = '';
 		foreach ( $res as $key => $value ) {
 			# intercept var_dump() output

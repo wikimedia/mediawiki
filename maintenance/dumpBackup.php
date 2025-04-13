@@ -33,7 +33,7 @@ require_once __DIR__ . '/includes/BackupDumper.php';
 // @codeCoverageIgnoreEnd
 
 class DumpBackup extends BackupDumper {
-	public function __construct( $args = null ) {
+	public function __construct( ?array $args = null ) {
 		parent::__construct();
 
 		$this->addDescription( <<<TEXT

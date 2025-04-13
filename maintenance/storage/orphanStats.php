@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Maintenance\Maintenance;
+use Wikimedia\Rdbms\IDatabase;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/../Maintenance.php';
@@ -40,7 +41,7 @@ class OrphanStats extends Maintenance {
 			"Show some statistics on the blob_orphans table, created with trackBlobs.php" );
 	}
 
-	protected function getExternalDB( $db, $cluster ) {
+	protected function getExternalDB( int $db, string $cluster ): IDatabase {
 		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 		$lb = $lbFactory->getExternalLB( $cluster );
 

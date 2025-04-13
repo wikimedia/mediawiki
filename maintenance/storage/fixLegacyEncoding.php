@@ -21,6 +21,7 @@
 
 use MediaWiki\Storage\SqlBlobStore;
 use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\LikeValue;
 
 // @codeCoverageIgnoreStart
@@ -33,7 +34,7 @@ class FixLegacyEncoding extends MoveToExternal {
 		$this->addDescription( 'Change encoding of stored content from legacy encoding to UTF-8' );
 	}
 
-	protected function getConditions( $blockStart, $blockEnd, $dbr ) {
+	protected function getConditions( int $blockStart, int $blockEnd, IReadableDatabase $dbr ): array {
 		return [
 			$dbr->expr( 'old_id', '>=', $blockStart ),
 			$dbr->expr( 'old_id', '<=', $blockEnd ),
@@ -44,7 +45,7 @@ class FixLegacyEncoding extends MoveToExternal {
 		];
 	}
 
-	protected function resolveText( $text, $flags ) {
+	protected function resolveText( string $text, array $flags ): array {
 		if ( in_array( 'error', $flags ) ) {
 			return [ $text, $flags ];
 		}
