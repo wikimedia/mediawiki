@@ -20,6 +20,7 @@
 
 namespace MediaWiki\PoolCounter;
 
+use LogicException;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 
@@ -137,6 +138,7 @@ abstract class PoolCounterWork {
 	public function execute( $skipcache = false ) {
 		if ( !$this->cacheable || $skipcache ) {
 			$status = $this->poolCounter->acquireForMe();
+			$skipcache = true;
 		} else {
 			if ( $this->isFastStaleEnabled() ) {
 				// In fast stale mode, check for existing locks by acquiring lock with 0 timeout
@@ -176,6 +178,17 @@ abstract class PoolCounterWork {
 			case PoolCounter::DONE:
 				$result = $this->getCachedWork();
 				if ( $result === false ) {
+					if ( $skipcache ) {
+						// We shouldn't get here, because we called acquireForMe().
+						// which should not return DONE. If we do get here, this
+						// indicates a faulty test mock. Report the issue instead
+						// of calling $this->execute( true ) in endless recursion.
+						throw new LogicException(
+							'Got PoolCounter::DONE from acquireForMe() and ' .
+							'getCachedWork() returned nothing'
+						);
+					}
+
 					/* That someone else work didn't serve us.
 					 * Acquire the lock for me
 					 */

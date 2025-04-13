@@ -44,14 +44,18 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 
 		$parserCache = $this->parserCache ?: $this->installParserCache();
 
+		$pool = $this->getServiceContainer()->getPoolCounterFactory()->create(
+			'ArticleView',
+			'test:' . $rev->getId()
+		);
 		return new PoolWorkArticleViewCurrent(
-			'test:' . $rev->getId(),
+			$pool,
 			$page,
 			$rev,
 			$options,
 			$this->getServiceContainer()->getRevisionRenderer(),
 			$parserCache,
-			$this->getServiceContainer()->getConnectionProvider(),
+			$this->getServiceContainer()->getDBLoadBalancerFactory(),
 			$this->getServiceContainer()->getChronologyProtector(),
 			$this->getLoggerSpi(),
 			$this->getServiceContainer()->getWikiPageFactory()

@@ -896,7 +896,8 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 			$this->getLoggerSpi(),
 			$services->getWikiPageFactory(),
 			$services->getTitleFormatter(),
-			$services->getTracer()
+			$services->getTracer(),
+			$services->getPoolCounterFactory()
 		);
 		return [
 			'ParserOutputAccess' => $parserOutputAccess,

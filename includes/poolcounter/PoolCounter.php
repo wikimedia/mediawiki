@@ -135,6 +135,13 @@ abstract class PoolCounter implements LoggerAwareInterface {
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getType() {
+		return $this->type;
+	}
+
+	/**
 	 * I want to do this task and I need to do it myself.
 	 *
 	 * @param int|null $timeout Wait timeout, or null to use value passed to

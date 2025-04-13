@@ -48,8 +48,12 @@ class PoolWorkArticleViewOldTest extends PoolWorkArticleViewTest {
 
 		$renderer = $this->getServiceContainer()->getRevisionRenderer();
 
+		$pool = $this->getServiceContainer()->getPoolCounterFactory()->create(
+			'ArticleView',
+			'test:' . $rev->getId()
+		);
 		return new PoolWorkArticleViewOld(
-			'test:' . $rev->getId(),
+			$pool,
 			$this->cache,
 			$rev,
 			$options,

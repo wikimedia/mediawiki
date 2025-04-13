@@ -57,7 +57,7 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 	private ChronologyProtector $chronologyProtector;
 
 	/**
-	 * @param string $workKey
+	 * @param PoolCounter $poolCounter
 	 * @param PageRecord $page
 	 * @param RevisionRecord $revision Revision to render
 	 * @param ParserOptions $parserOptions ParserOptions to use for the parse
@@ -71,7 +71,7 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 	 * @param bool $triggerLinksUpdate Whether it should trigger an opportunistic LinksUpdate or not
 	 */
 	public function __construct(
-		string $workKey,
+		PoolCounter $poolCounter,
 		PageRecord $page,
 		RevisionRecord $revision,
 		ParserOptions $parserOptions,
@@ -90,9 +90,15 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 			throw new InvalidArgumentException( '$page parameter mismatches $revision parameter' );
 		}
 
-		parent::__construct( $workKey, $revision, $parserOptions, $revisionRenderer, $loggerSpi );
+		parent::__construct(
+			$poolCounter,
+			$revision,
+			$parserOptions,
+			$revisionRenderer,
+			$loggerSpi
+		);
 
-		$this->workKey = $workKey;
+		$this->workKey = $poolCounter->getKey();
 		$this->page = $page;
 		$this->parserCache = $parserCache;
 		$this->lbFactory = $lbFactory;

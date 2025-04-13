@@ -50,20 +50,24 @@ class PoolWorkArticleView extends PoolCounterWork {
 	protected $loggerSpi;
 
 	/**
-	 * @param string $workKey
+	 * @param PoolCounter $poolCounter
 	 * @param RevisionRecord $revision Revision to render
 	 * @param ParserOptions $parserOptions ParserOptions to use for the parse
 	 * @param RevisionRenderer $revisionRenderer
 	 * @param LoggerSpi $loggerSpi
 	 */
 	public function __construct(
-		string $workKey,
+		PoolCounter $poolCounter,
 		RevisionRecord $revision,
 		ParserOptions $parserOptions,
 		RevisionRenderer $revisionRenderer,
 		LoggerSpi $loggerSpi
 	) {
-		parent::__construct( 'ArticleView', $workKey );
+		parent::__construct(
+			$poolCounter->getType(),
+			$poolCounter->getKey(),
+			$poolCounter
+		);
 		$this->revision = $revision;
 		$this->parserOptions = $parserOptions;
 		$this->renderer = $revisionRenderer;

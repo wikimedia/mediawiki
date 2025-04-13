@@ -40,7 +40,7 @@ class PoolWorkArticleViewOld extends PoolWorkArticleView {
 	private $cache;
 
 	/**
-	 * @param string $workKey PoolCounter key.
+	 * @param PoolCounter $poolCounter
 	 * @param RevisionOutputCache $cache The cache to store ParserOutput in.
 	 * @param RevisionRecord $revision Revision to render
 	 * @param ParserOptions $parserOptions ParserOptions to use for the parse
@@ -48,14 +48,20 @@ class PoolWorkArticleViewOld extends PoolWorkArticleView {
 	 * @param LoggerSpi $loggerSpi
 	 */
 	public function __construct(
-		string $workKey,
+		PoolCounter $poolCounter,
 		RevisionOutputCache $cache,
 		RevisionRecord $revision,
 		ParserOptions $parserOptions,
 		RevisionRenderer $revisionRenderer,
 		LoggerSpi $loggerSpi
 	) {
-		parent::__construct( $workKey, $revision, $parserOptions, $revisionRenderer, $loggerSpi );
+		parent::__construct(
+			$poolCounter,
+			$revision,
+			$parserOptions,
+			$revisionRenderer,
+			$loggerSpi
+		);
 
 		$this->cache = $cache;
 

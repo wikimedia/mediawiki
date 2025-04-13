@@ -1675,7 +1675,8 @@ return [
 			LoggerFactory::getProvider(),
 			$services->getWikiPageFactory(),
 			$services->getTitleFormatter(),
-			$services->getTracer()
+			$services->getTracer(),
+			$services->getPoolCounterFactory()
 		);
 	},
 

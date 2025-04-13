@@ -31,7 +31,13 @@ use MediaWiki\Status\Status;
 class PoolCounterNull extends PoolCounter {
 
 	public function __construct() {
-		// No parameters needed
+		$conf = [ // not used for anything, but the parent constructor needs this
+			'workers' => 100,
+			'maxqueue' => 1000,
+			'timeout' => 120,
+			'fastStale' => true
+		];
+		parent::__construct( $conf, 'Null', 'none' );
 	}
 
 	public function acquireForMe( $timeout = null ) {

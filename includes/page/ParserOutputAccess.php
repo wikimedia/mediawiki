@@ -30,6 +30,7 @@ use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\RevisionOutputCache;
+use MediaWiki\PoolCounter\PoolCounterFactory;
 use MediaWiki\PoolCounter\PoolCounterWork;
 use MediaWiki\PoolCounter\PoolWorkArticleView;
 use MediaWiki\PoolCounter\PoolWorkArticleViewCurrent;
@@ -144,6 +145,7 @@ class ParserOutputAccess {
 	private WikiPageFactory $wikiPageFactory;
 	private TitleFormatter $titleFormatter;
 	private TracerInterface $tracer;
+	private PoolCounterFactory $poolCounterFactory;
 
 	public function __construct(
 		ParserCacheFactory $parserCacheFactory,
@@ -155,7 +157,8 @@ class ParserOutputAccess {
 		LoggerSpi $loggerSpi,
 		WikiPageFactory $wikiPageFactory,
 		TitleFormatter $titleFormatter,
-		TracerInterface $tracer
+		TracerInterface $tracer,
+		PoolCounterFactory $poolCounterFactory
 	) {
 		$this->parserCacheFactory = $parserCacheFactory;
 		$this->revisionLookup = $revisionLookup;
@@ -167,6 +170,7 @@ class ParserOutputAccess {
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->titleFormatter = $titleFormatter;
 		$this->tracer = $tracer;
+		$this->poolCounterFactory = $poolCounterFactory;
 
 		$this->localCache = new MapCacheLRU( 10 );
 	}
@@ -573,8 +577,9 @@ class ParserOutputAccess {
 
 				$workKey = $cacheKey . ':revid:' . $revision->getId();
 
+				$pool = $this->poolCounterFactory->create( 'ArticleView', $workKey );
 				return new PoolWorkArticleViewCurrent(
-					$workKey,
+					$pool,
 					$page,
 					$revision,
 					$parserOptions,
@@ -591,8 +596,9 @@ class ParserOutputAccess {
 			case self::CACHE_SECONDARY:
 				$secondaryCache = $this->getSecondaryCache( $parserOptions );
 				$workKey = $secondaryCache->makeParserOutputKey( $revision, $parserOptions );
+				$pool = $this->poolCounterFactory->create( 'ArticleView', $workKey );
 				return new PoolWorkArticleViewOld(
-					$workKey,
+					$pool,
 					$secondaryCache,
 					$revision,
 					$parserOptions,
@@ -601,10 +607,13 @@ class ParserOutputAccess {
 				);
 
 			default:
+				// Without caching, using poolcounter is pointless
+				// The name of the metric is a bit confusing now
 				$secondaryCache = $this->getSecondaryCache( $parserOptions );
 				$workKey = $secondaryCache->makeParserOutputKeyOptionalRevId( $revision, $parserOptions );
+				$pool = $this->poolCounterFactory->create( 'ArticleView', $workKey );
 				return new PoolWorkArticleView(
-					$workKey,
+					$pool,
 					$revision,
 					$parserOptions,
 					$this->revisionRenderer,
