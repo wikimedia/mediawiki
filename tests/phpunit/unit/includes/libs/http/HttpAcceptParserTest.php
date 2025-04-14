@@ -16,31 +16,38 @@ class HttpAcceptParserTest extends TestCase {
 
 	public static function provideParseWeights() {
 		return [
-			[ // #0
+			// #0
+			[
 				'',
 				[]
 			],
-			[ // #1
+			// #1
+			[
 				'Foo/Bar',
 				[ 'foo/bar' => 1 ]
 			],
-			[ // #2
+			// #2
+			[
 				'Accept: text/plain',
 				[ 'text/plain' => 1 ]
 			],
-			[ // #3
+			// #3
+			[
 				'Accept: application/vnd.php.serialized, application/rdf+xml',
 				[ 'application/vnd.php.serialized' => 1, 'application/rdf+xml' => 1 ]
 			],
-			[ // #4
+			// #4
+			[
 				'foo/*; q=0.2, xoo; q=0,text/n3',
 				[ 'text/n3' => 1, 'foo/*' => 0.2 ]
 			],
-			[ // #5
+			// #5
+			[
 				'foo/*; q=0.2, */*; q=0.1,text/*',
 				[ 'text/*' => 1, 'foo/*' => 0.2, '*/*' => 0.1 ]
 			],
-			[ // #6
+			// #6
+			[
 				'Foo/*; q=0.2, Xoo/*; level=3, Bar/*; charset=xyz; q=0.4',
 				[ 'xoo/*' => 1, 'bar/*' => 0.4, 'foo/*' => 0.2 ]
 			],
@@ -54,13 +61,14 @@ class HttpAcceptParserTest extends TestCase {
 		$parser = new HttpAcceptParser();
 		$actual = $parser->parseWeights( $header );
 
-		$this->assertEquals( $expected, $actual ); // shouldn't be sensitive to order
+		// shouldn't be sensitive to order
+		$this->assertEquals( $expected, $actual );
 	}
 
 	public static function provideParseAccept() {
 		return [
 			[
-				// Sort by decending q
+				// Sort by descending q
 				'test/123; q=0.5, test/456; q=0.8',
 				[
 					[
@@ -80,7 +88,7 @@ class HttpAcceptParserTest extends TestCase {
 				]
 			],
 			[
-				// Sort by decending q, ascending order
+				// Sort by descending q, ascending order
 				'test/123; q=0.5, test/789; q=0.8, test/456; q=0.8',
 				[
 					[
