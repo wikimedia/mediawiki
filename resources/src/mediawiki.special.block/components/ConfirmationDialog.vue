@@ -15,7 +15,7 @@
 
 <script>
 const { defineComponent, toRef } = require( 'vue' );
-const { CdxDialog, DialogAction, PrimaryDialogAction, useModelWrapper } = require( '@wikimedia/codex' );
+const { CdxDialog, ModalAction, PrimaryModalAction, useModelWrapper } = require( '@wikimedia/codex' );
 
 /**
  * Confirmation dialog component for use by Special:Block.
@@ -54,13 +54,13 @@ module.exports = exports = defineComponent( {
 	setup( props, { emit } ) {
 		const wrappedOpen = useModelWrapper( toRef( props, 'open' ), emit, 'update:open' );
 
-		/** @type {PrimaryDialogAction} */
+		/** @type {PrimaryModalAction} */
 		const primaryAction = {
 			label: props.primaryActionLabel,
 			actionType: props.primaryActionType
 		};
 
-		/** @type {DialogAction} */
+		/** @type {ModalAction} */
 		const defaultAction = {
 			label: props.defaultActionLabel,
 			actionType: 'default'
