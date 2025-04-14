@@ -20,7 +20,6 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \MediaWikiIntegrationTestCase
  * @group MediaWikiIntegrationTestCaseTest
  * @group Database
- *
  * @author Addshore
  */
 class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
@@ -57,9 +56,6 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideExistingKeysAndNewValues
-	 *
-	 * @covers \MediaWikiIntegrationTestCase::setMwGlobals
-	 * @covers \MediaWikiIntegrationTestCase::mediaWikiTearDown
 	 */
 	public function testSetGlobalsAreRestoredOnTearDown__before( $globalKey, $newValue ) {
 		$this->setMwGlobals( $globalKey, $newValue );
@@ -73,9 +69,6 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @note This cannot use depends because the other test also uses a data provider.
 	 * @dataProvider provideExistingKeysAndNewValues
-	 *
-	 * @covers \MediaWikiIntegrationTestCase::setMwGlobals
-	 * @covers \MediaWikiIntegrationTestCase::mediaWikiTearDown
 	 */
 	public function testSetGlobalsAreRestoredOnTearDown__after( $globalKey ) {
 		$this->assertSame(
@@ -99,10 +92,6 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		$this->assertInstanceOf( HashBagOStuff::class, $this->getServiceContainer()->getMainObjectStash() );
 	}
 
-	/**
-	 * @covers \MediaWikiIntegrationTestCase::setMwGlobals
-	 * @covers \MediaWikiIntegrationTestCase::mediaWikiTearDown
-	 */
 	public function testSetNonExistentGlobalsAreUnsetOnTearDown__before() {
 		$globalKey = 'abcdefg1234567';
 		$this->setMwGlobals( $globalKey, true );
@@ -115,8 +104,6 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @depends testSetNonExistentGlobalsAreUnsetOnTearDown__before
-	 * @covers \MediaWikiIntegrationTestCase::setMwGlobals
-	 * @covers \MediaWikiIntegrationTestCase::mediaWikiTearDown
 	 */
 	public function testSetNonExistentGlobalsAreUnsetOnTearDown__after( string $globalKey ) {
 		$this->assertFalse(
@@ -125,10 +112,6 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers \MediaWikiIntegrationTestCase::overrideConfigValue
-	 * @covers \MediaWikiIntegrationTestCase::overrideConfigValues
-	 */
 	public function testOverrideConfigValues__before() {
 		$nsInfo1 = $this->getServiceContainer()->getNamespaceInfo();
 
@@ -153,8 +136,6 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @depends testOverrideConfigValues__before
-	 * @covers \MediaWikiIntegrationTestCase::overrideConfigValue
-	 * @covers \MediaWikiIntegrationTestCase::overrideConfigValues
 	 */
 	public function testOverrideConfigValues__after( array $data ) {
 		[ $oldSitename, $fakeConfigKey ] = $data;
@@ -261,10 +242,6 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $mockService, MediaWikiServices::getInstance()->getDBLoadBalancer() );
 	}
 
-	/**
-	 * @covers \MediaWikiIntegrationTestCase::setLogger
-	 * @covers \MediaWikiIntegrationTestCase::restoreLoggers
-	 */
 	public function testLoggersAreRestoredOnTearDown_replacingExistingLogger__before() {
 		$oldLogger = LoggerFactory::getInstance( 'foo' );
 		$logger = new NullLogger();
@@ -277,8 +254,6 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @depends testLoggersAreRestoredOnTearDown_replacingExistingLogger__before
-	 * @covers \MediaWikiIntegrationTestCase::setLogger
-	 * @covers \MediaWikiIntegrationTestCase::restoreLoggers
 	 */
 	public function testLoggersAreRestoredOnTearDown_replacingExistingLogger__after( LoggerInterface $mockLogger ) {
 		$curLogger = LoggerFactory::getInstance( 'foo' );
@@ -286,8 +261,6 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWikiIntegrationTestCase::setLogger
-	 * @covers \MediaWikiIntegrationTestCase::restoreLoggers
 	 */
 	public function testLoggersAreRestoredOnTearDown_replacingNonExistingLogger__before() {
 		$logger = new NullLogger();
@@ -299,8 +272,6 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @depends testLoggersAreRestoredOnTearDown_replacingNonExistingLogger__before
-	 * @covers \MediaWikiIntegrationTestCase::setLogger
-	 * @covers \MediaWikiIntegrationTestCase::restoreLoggers
 	 */
 	public function testLoggersAreRestoredOnTearDown_replacingNonExistingLogger__after(
 		LoggerInterface $overriddenLogger
@@ -312,8 +283,6 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWikiIntegrationTestCase::setLogger
-	 * @covers \MediaWikiIntegrationTestCase::restoreLoggers
 	 * @doesNotPerformAssertions
 	 */
 	public function testLoggersAreRestoredOnTearDown_replacingSameLoggerTwice__before() {
@@ -324,18 +293,12 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @depends testLoggersAreRestoredOnTearDown_replacingSameLoggerTwice__before
-	 * @covers \MediaWikiIntegrationTestCase::setLogger
-	 * @covers \MediaWikiIntegrationTestCase::restoreLoggers
 	 */
 	public function testLoggersAreRestoredOnTearDown_replacingSameLoggerTwice__after() {
 		$curLogger = LoggerFactory::getInstance( 'baz' );
 		$this->assertNotInstanceOf( MockObject::class, $curLogger );
 	}
 
-	/**
-	 * @covers \MediaWikiIntegrationTestCase::setNullLogger
-	 * @covers \MediaWikiIntegrationTestCase::restoreLoggers
-	 */
 	public function testNullLogger_createAndRemove__before() {
 		$this->setNullLogger( 'tocreate' );
 		$logger = LoggerFactory::getInstance( 'tocreate' );
@@ -344,8 +307,6 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @depends testNullLogger_createAndRemove__before
-	 * @covers \MediaWikiIntegrationTestCase::setNullLogger
-	 * @covers \MediaWikiIntegrationTestCase::restoreLoggers
 	 */
 	public function testNullLogger_createAndRemove__after() {
 		$logger = LoggerFactory::getInstance( 'tocreate' );
@@ -354,10 +315,6 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		$this->assertInstanceOf( \MediaWiki\Logger\LegacyLogger::class, $inner );
 	}
 
-	/**
-	 * @covers \MediaWikiIntegrationTestCase::setNullLogger
-	 * @covers \MediaWikiIntegrationTestCase::restoreLoggers
-	 */
 	public function testNullLogger_mutateAndRestore__before() {
 		// Don't rely on the $wgDebugLogGroups and $wgDebugLogFile settings in
 		// WMF CI to make LEVEL_DEBUG (100) the default. Control this in the test.
@@ -384,8 +341,6 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @depends testNullLogger_mutateAndRestore__before
-	 * @covers \MediaWikiIntegrationTestCase::setNullLogger
-	 * @covers \MediaWikiIntegrationTestCase::restoreLoggers
 	 */
 	public function testNullLogger_mutateAndRestore__after( LoggerInterface $inner ) {
 		$this->assertSame(
@@ -395,10 +350,6 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers \MediaWikiIntegrationTestCase::setupDatabaseWithTestPrefix
-	 * @covers \MediaWikiIntegrationTestCase::copyTestData
-	 */
 	public function testCopyTestData() {
 		// Avoid self-deadlocks with Sqlite
 		$this->markTestSkippedIfDbType( 'sqlite' );
@@ -434,9 +385,6 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		$lb->closeAll( __METHOD__ );
 	}
 
-	/**
-	 * @covers \MediaWikiIntegrationTestCase::resetServices
-	 */
 	public function testResetServices() {
 		$services = MediaWikiServices::getInstance();
 
@@ -480,17 +428,10 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'qqx', $dummy2->lang );
 	}
 
-	/**
-	 * @covers \MediaWikiIntegrationTestCase::getServiceContainer
-	 */
 	public function testGetServiceContainer() {
 		$this->assertSame( MediaWikiServices::getInstance(), $this->getServiceContainer() );
 	}
 
-	/**
-	 * @covers \MediaWikiIntegrationTestCase::setTemporaryHook
-	 * @covers \MediaWikiIntegrationTestCase::clearHook
-	 */
 	public function testSetTemporaryHook() {
 		$hookContainer = $this->getServiceContainer()->getHookContainer();
 		$name = 'MWITCT_Dummy_Hook';

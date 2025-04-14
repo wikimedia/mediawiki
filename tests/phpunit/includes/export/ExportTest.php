@@ -9,10 +9,9 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\ParserOutput;
 
 /**
- * Test class for Export methods.
- *
  * @group Database
- *
+ * @covers \WikiExporter
+ * @covers \XmlDumpWriter
  * @author Isaac Hutt <mhutti1@gmail.com>
  */
 class ExportTest extends MediaWikiLangTestCase {
@@ -22,9 +21,6 @@ class ExportTest extends MediaWikiLangTestCase {
 		$this->overrideConfigValue( MainConfigNames::CapitalLinks, true );
 	}
 
-	/**
-	 * @covers \WikiExporter::pageByTitle
-	 */
 	public function testPageByTitle() {
 		$services = $this->getServiceContainer();
 
@@ -57,8 +53,6 @@ class ExportTest extends MediaWikiLangTestCase {
 	/**
 	 * Regression test for T328503 to verify that custom content types
 	 * with a getNativeData() override that returns a non-string value export correctly.
-	 *
-	 * @covers \XmlDumpWriter::writeText
 	 */
 	public function testShouldExportContentWithNonStringNativeData(): void {
 		// Make a mock ContentHandler for a Content that has a getNativeData() method

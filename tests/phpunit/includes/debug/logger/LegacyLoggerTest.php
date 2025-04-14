@@ -25,10 +25,12 @@ use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\LogLevel;
 
+/**
+ * @covers \MediaWiki\Logger\LegacyLogger
+ */
 class LegacyLoggerTest extends MediaWikiIntegrationTestCase {
 
 	/**
-	 * @covers \MediaWiki\Logger\LegacyLogger::interpolate
 	 * @dataProvider provideInterpolate
 	 */
 	public function testInterpolate( $message, $context, $expect ) {
@@ -137,7 +139,6 @@ class LegacyLoggerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Logger\LegacyLogger::shouldEmit
 	 * @dataProvider provideShouldEmit
 	 */
 	public function testShouldEmit( $level, $config, $expected ) {
