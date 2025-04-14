@@ -441,6 +441,8 @@ sinonjs:
   dest: sinon.js
 
 swagger-ui:
+  # For licenses of libraries included in the bundle, see docs/licenses/swagger-ui-licenses-5.15.5.md
+  # Update along with swagger-ui and remove when no longer needed. See T382086.
   license: Apache-2.0
   homepage: https://swagger.io/tools/swagger-ui/
   version: 4.15.5
