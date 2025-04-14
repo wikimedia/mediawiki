@@ -90,6 +90,8 @@ class UploadStashPager extends TablePager {
 				'us_key',
 				'us_size',
 				'us_path',
+				'us_sha1',
+				'us_mime',
 			],
 			'conds' => [ 'us_user' => $this->getUser()->getId() ],
 			'options' => [],
@@ -149,7 +151,13 @@ class UploadStashPager extends TablePager {
 	private function getCurrentFile(): File {
 		$fileKey = $this->mCurrentRow->us_key;
 		return $this->files[$fileKey]
-			?? new UploadStashFile( $this->localRepo, $this->mCurrentRow->us_path, $fileKey );
+			?? new UploadStashFile(
+				$this->localRepo,
+				$this->mCurrentRow->us_path,
+				$fileKey,
+				$this->mCurrentRow->us_sha1,
+				$this->mCurrentRow->us_mime ?? false
+			);
 	}
 
 	/**
