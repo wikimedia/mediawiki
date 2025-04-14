@@ -24,6 +24,7 @@
 
 namespace MediaWiki\RecentChanges;
 
+use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -109,33 +110,9 @@ class RecentChangeNotifier {
 			);
 		}
 
-		// Don't send email for bots
-		if ( $editor->isBot() ) {
-			return false;
-		}
-
-		$sendNotification = true;
-		// $watchers deals with $wgEnotifWatchlist.
-		// If nobody is watching the page, and there are no users notified on all changes
-		// don't bother creating a job/trying to send emails, unless it's a
-		// talk page with an applicable notification.
-		if ( $watchers === [] &&
-			!count( $config->get( MainConfigNames::UsersNotifiedOnAllChanges ) )
-		) {
-			$sendNotification = false;
-			// Only send notification for non minor edits, unless $wgEnotifMinorEdits
-			if ( !$minorEdit ||
-				( $config->get( MainConfigNames::EnotifMinorEdits ) &&
-					!$editor->isAllowed( 'nominornewtalk' ) )
-			) {
-				if ( $config->get( MainConfigNames::EnotifUserTalk )
-					&& $title->getNamespace() === NS_USER_TALK
-					&& $this->canSendUserTalkEmail( $editor, $title, $minorEdit )
-				) {
-					$sendNotification = true;
-				}
-			}
-		}
+		$sendNotification = $this->shouldSendNotification(
+			$editor, $title, $watchers, $minorEdit, $config
+		);
 
 		if ( $sendNotification ) {
 			$mwServices->getJobQueueGroup()->lazyPush( new RecentChangeNotifyJob(
@@ -151,6 +128,35 @@ class RecentChangeNotifier {
 		}
 
 		return $sendNotification;
+	}
+
+	private function shouldSendNotification(
+		User $editor,
+		Title $title,
+		array $watchers,
+		bool $minorEdit,
+		Config $config
+	): bool {
+		// Don't send notifications for bots
+		if ( $editor->isBot() ) {
+			return false;
+		}
+
+		// If someone is watching the page or there are users notified on all changes
+		if ( count( $watchers ) ||
+			count( $config->get( MainConfigNames::UsersNotifiedOnAllChanges ) ) ) {
+			return true;
+		}
+
+		// if it's a talk page with an applicable notification.
+		if ( !$minorEdit ||
+			( $config->get( MainConfigNames::EnotifMinorEdits ) &&
+				!$editor->isAllowed( 'nominornewtalk' ) )
+		) {
+			return $this->canSendUserTalkEmail( $editor, $title, $minorEdit );
+		}
+
+		return false;
 	}
 
 	/**
