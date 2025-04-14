@@ -14,6 +14,7 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Pager\BlockListPager;
+use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Utils\MWTimestamp;
@@ -363,5 +364,37 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		$pager = $this->getBlockListPager();
 		$pager->getFullOutput();
 		$this->assertTrue( true );
+	}
+
+	/**
+	 * T391343 regression test
+	 * @coversNothing
+	 */
+	public function testBlockLinkSuppression() {
+		$user = $this->getTestUser()->getUserIdentity();
+		$store = $this->getServiceContainer()->getDatabaseBlockStore();
+		$store->insertBlockWithParams( [
+			'targetUser' => $user,
+			'by' => $this->getTestSysop()->getUser(),
+		] );
+		$store->insertBlockWithParams( [
+			'targetUser' => $user,
+			'by' => $this->getTestSysop()->getUser(),
+			'hideName' => true
+		] );
+
+		RequestContext::getMain()->setAuthority(
+			new SimpleAuthority(
+				$this->getTestSysop()->getUserIdentity(),
+				[ 'block' ]
+			)
+		);
+
+		$pager = $this->getBlockListPager();
+		$body = $pager->getBody();
+		$this->assertStringNotContainsString( $user->getName(), $body );
+		// Fail even if punctuation in the name was replaced
+		$regex = '/' . preg_replace( '/[^A-Za-z0-9]+/', '.+', $user->getName() ) . '/';
+		$this->assertDoesNotMatchRegularExpression( $regex, $body );
 	}
 }

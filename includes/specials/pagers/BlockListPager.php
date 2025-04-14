@@ -479,16 +479,20 @@ class BlockListPager extends TablePager {
 		# be private and could be included in block lists and logs for
 		# transparency purposes. Previously, filtering out deleted blocks
 		# was a convenient way to avoid showing the target name.
-		if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
-			$info['conds']['bl_deleted'] = 0;
+		if ( $this->getAuthority()->isAllowed( 'hideuser' ) ) {
+			$info['fields']['hu_deleted'] = $this->hideUserUtils->getExpression(
+				$db,
+				'block_target.bt_user',
+				HideUserUtils::HIDDEN_USERS
+			);
+		} else {
+			$info['fields']['hu_deleted'] = 0;
+			$info['conds'][] = $this->hideUserUtils->getExpression(
+				$db,
+				'block_target.bt_user',
+				HideUserUtils::SHOWN_USERS
+			);
 		}
-
-		# Determine if the user is hidden
-		# With multiblocks we can't just rely on bl_deleted in the row being formatted
-		$info['fields']['hu_deleted'] = $this->hideUserUtils->getExpression(
-			$db,
-			'block_target.bt_user',
-			HideUserUtils::HIDDEN_USERS );
 		return $info;
 	}
 
