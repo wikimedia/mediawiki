@@ -34,6 +34,7 @@ use MediaWiki\Pager\ContribsPager;
 use MediaWiki\Pager\ContributionsPager;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\PoolCounter\PoolCounterWorkViaCallback;
+use MediaWiki\Specials\Contribute\ContributeFactory;
 use MediaWiki\Specials\SpecialUserRights;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\NamespaceInfo;
@@ -47,6 +48,7 @@ use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserRigorOptions;
+use OOUI\ButtonWidget;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 
@@ -243,6 +245,22 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 				->rawParams( Html::element( 'bdi', [], $target ) )
 				->params( $target )
 		);
+
+		// "+ New contribution" button
+		if ( ContributeFactory::isEnabledOnCurrentSkin(
+			$this->getSkin(),
+			$this->getConfig()->get( MainConfigNames::SpecialContributeSkinsEnabled )
+		) ) {
+			$out->enableOOUI();
+			$out->addHTML( new ButtonWidget( [
+				'id' => 'mw-specialcontributions-newcontribution',
+				'href' => SpecialPage::getTitleFor( 'Contribute' )->getLinkURL(),
+				'label' => $this->msg( 'sp-contributions-newcontribution' )->text(),
+				'icon' => 'add',
+				'framed' => true,
+				'flags' => 'progressive',
+			] ) );
+		}
 
 		# For IP ranges, we want the contributionsSub, but not the skin-dependent
 		# links under 'Tools', which may include irrelevant links like 'Logs'.
