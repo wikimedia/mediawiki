@@ -156,6 +156,8 @@
 	"config-mysql-engine": "Typ úložiště:",
 	"config-mysql-innodb": "InnoDB (doporučeno)",
 	"config-mysql-engine-help": "'''InnoDB''' je téměř vždy nejlepší volba, neboť má dobrou podporu současného přístupu.\n\n'''MyISAM''' může být rychlejší u instalací pro jednoho uživatele nebo jen pro čtení.\nDatabáze MyISAM bývají poškozeny častěji než databáze InnoDB.",
+	"config-server": "Název hostitele v URL:",
+	"config-server-help": "Část URL, používaného pro přístup k vaší wiki, obsahující protokol a název hostitele. Automaticky předvyplněná hodnota je obvykle správná.",
 	"config-site-name": "Název wiki:",
 	"config-site-name-help": "Bude se zobrazovat v titulku prohlížeče a na dalších místech.",
 	"config-site-name-blank": "Zadejte název serveru.",

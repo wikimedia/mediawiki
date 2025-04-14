@@ -895,6 +895,8 @@
 	"prefs-namespaces": "Nummraim",
 	"default": "Standard",
 	"linterror-deletable-table-tag": "Tabellen-Tag dee geläscht gi soll",
+	"linterror-duplicate-ids": "Duebel IDen",
+	"linterror-empty-heading": "Eidel Iwwerschrëften",
 	"linterror-inline-media-caption": "Onsichtbar Beschrëftung",
 	"linterror-missing-end-tag": "Schluss-Tag feelt",
 	"linterror-missing-image-alt-text": "Alt Text fir d'Bild feelt",

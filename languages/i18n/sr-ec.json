@@ -2485,7 +2485,7 @@
 	"block-confirm-yes": "Да",
 	"block-confirm-no": "Не",
 	"block-submit": "Проследи",
-	"block-success": "[[Special:Contributions/$1|$1]] је {{GENDER:$1|блокиран|блокирана}}. Погледајте [[Special:BlockList|списак]] за преглед блокада.",
+	"block-success": "[[Special:Contributions/$1|$1]] ([[{{ns:user_talk}}:$1|разговор]]) је {{GENDER:$1|блокиран|блокирана}}. Погледајте [[Special:BlockList|списак]] за преглед блокада.",
 	"block-user-active-blocks": "Активне блокаде",
 	"block-user-no-active-blocks": "Активне блокаде нису пронађене",
 	"block-user-previous-blocks": "Дневник блокирања",

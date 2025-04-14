@@ -1072,6 +1072,8 @@
 	"default": "standaard",
 	"linterror-bogus-image-options": "Onjuist opgegeven optie mediabestand",
 	"linterror-deletable-table-tag": "Te verwijderen table-element",
+	"linterror-duplicate-ids": "Dubbele ID's",
+	"linterror-empty-heading": "Lege koppen",
 	"linterror-fostered": "Misplaatste inhoud",
 	"linterror-html5-misnesting": "Foutief genest (inmiddels defect)",
 	"linterror-inline-media-caption": "Onzichtbaar onderschrift",

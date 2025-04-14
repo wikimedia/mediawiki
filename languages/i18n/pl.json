@@ -1072,6 +1072,8 @@
 	"default": "domyślnie",
 	"linterror-bogus-image-options": "Nieprawidłowa opcja pliku",
 	"linterror-deletable-table-tag": "Nadmiarowe znaczniki tabeli do usunięcia",
+	"linterror-duplicate-ids": "Zduplikowane ID",
+	"linterror-empty-heading": "Puste nagłówki",
 	"linterror-fostered": "Osierocona zawartość",
 	"linterror-html5-misnesting": "Źle zagnieżdżone (i widoczne uszkodzenia)",
 	"linterror-inline-media-caption": "Niewidoczny podpis obrazu",

@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Eruedin",
+			"Lydie maliki",
 			"Moyogo",
 			"TMg"
 		]
@@ -55,5 +56,6 @@
 	"thu": "Mín",
 	"fri": "Mít",
 	"sat": "Mpɔ́",
-	"sun": "Lom"
+	"sun": "Lom",
+	"duration-days": "$1 {{PLURAL:$1| mokolo|mikolo}}"
 }
