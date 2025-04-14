@@ -47,6 +47,7 @@ class ExpiryInputWidget extends Widget {
 			->appendContent( $this->relativeInput );
 	}
 
+	/** @inheritDoc */
 	protected function getJavaScriptClassName() {
 		return 'mw.widgets.ExpiryWidget';
 	}

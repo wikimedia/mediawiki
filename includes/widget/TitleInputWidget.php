@@ -60,10 +60,12 @@ class TitleInputWidget extends TextInputWidget {
 		$this->addClasses( [ 'mw-widget-titleInputWidget' ] );
 	}
 
+	/** @inheritDoc */
 	protected function getJavaScriptClassName() {
 		return 'mw.widgets.TitleInputWidget';
 	}
 
+	/** @inheritDoc */
 	public function getConfig( &$config ) {
 		if ( $this->namespace !== null ) {
 			$config['namespace'] = $this->namespace;

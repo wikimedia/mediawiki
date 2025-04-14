@@ -65,6 +65,7 @@ class TagMultiselectWidget extends Widget {
 		$this->addClasses( [ 'mw-widgets-tagMultiselectWidget' ] );
 	}
 
+	/** @inheritDoc */
 	public function getConfig( &$config ) {
 		if ( $this->selectedArray !== null ) {
 			$config['selected'] = $this->selectedArray;
@@ -112,6 +113,7 @@ class TagMultiselectWidget extends Widget {
 		return [ $widget ];
 	}
 
+	/** @inheritDoc */
 	protected function getJavaScriptClassName() {
 		return 'mw.widgets.TagMultiselectWidget';
 	}

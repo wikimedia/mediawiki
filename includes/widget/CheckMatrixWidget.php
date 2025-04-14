@@ -204,10 +204,12 @@ class CheckMatrixWidget extends Widget {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getJavaScriptClassName() {
 		return 'mw.widgets.CheckMatrixWidget';
 	}
 
+	/** @inheritDoc */
 	public function getConfig( &$config ) {
 		$config += [
 			'name' => $this->name,

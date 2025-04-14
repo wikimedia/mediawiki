@@ -53,10 +53,12 @@ class TitlesMultiselectWidget extends TagMultiselectWidget {
 		$this->addClasses( [ 'mw-widgets-titlesMultiselectWidget' ] );
 	}
 
+	/** @inheritDoc */
 	protected function getJavaScriptClassName() {
 		return 'mw.widgets.TitlesMultiselectWidget';
 	}
 
+	/** @inheritDoc */
 	public function getConfig( &$config ) {
 		if ( $this->showMissing !== null ) {
 			$config['showMissing'] = $this->showMissing;

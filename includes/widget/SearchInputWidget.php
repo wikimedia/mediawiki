@@ -63,14 +63,17 @@ class SearchInputWidget extends TitleInputWidget {
 		$this->addClasses( [ 'mw-widget-searchInputWidget' ] );
 	}
 
+	/** @inheritDoc */
 	protected function getInputElement( $config ) {
 		return ( new Tag( 'input' ) )->setAttributes( [ 'type' => 'search' ] );
 	}
 
+	/** @inheritDoc */
 	protected function getJavaScriptClassName() {
 		return 'mw.widgets.SearchInputWidget';
 	}
 
+	/** @inheritDoc */
 	public function getConfig( &$config ) {
 		$config['performSearchOnClick'] = $this->performSearchOnClick;
 		if ( $this->dataLocation ) {

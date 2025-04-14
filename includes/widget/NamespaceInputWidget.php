@@ -67,10 +67,12 @@ class NamespaceInputWidget extends DropdownInputWidget {
 		return $options;
 	}
 
+	/** @inheritDoc */
 	protected function getJavaScriptClassName() {
 		return 'mw.widgets.NamespaceInputWidget';
 	}
 
+	/** @inheritDoc */
 	public function getConfig( &$config ) {
 		$config['includeAllValue'] = $this->includeAllValue;
 		$config['userLang'] = $this->userLang;

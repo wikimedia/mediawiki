@@ -68,10 +68,12 @@ class SizeFilterWidget extends Widget {
 			->appendContent( $this->radioselectinput, $this->textinput, $this->label );
 	}
 
+	/** @inheritDoc */
 	protected function getJavaScriptClassName() {
 		return 'mw.widgets.SizeFilterWidget';
 	}
 
+	/** @inheritDoc */
 	public function getConfig( &$config ) {
 		$config['textinput'] = $this->config['textinput'];
 		$config['radioselectinput'] = $this->config['radioselectinput'];

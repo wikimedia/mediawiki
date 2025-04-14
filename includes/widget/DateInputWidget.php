@@ -129,10 +129,12 @@ class DateInputWidget extends TextInputWidget {
 		$this->appendContent( new PendingTextInputWidget() );
 	}
 
+	/** @inheritDoc */
 	protected function getJavaScriptClassName() {
 		return 'mw.widgets.DateInputWidget';
 	}
 
+	/** @inheritDoc */
 	public function getConfig( &$config ) {
 		if ( $this->inputFormat !== null ) {
 			$config['inputFormat'] = $this->inputFormat;
@@ -162,6 +164,7 @@ class DateInputWidget extends TextInputWidget {
 		return parent::getConfig( $config );
 	}
 
+	/** @inheritDoc */
 	public function getInputElement( $config ) {
 		// Inserts date/month type attribute
 		return parent::getInputElement( $config )

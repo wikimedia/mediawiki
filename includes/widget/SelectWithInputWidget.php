@@ -63,10 +63,12 @@ class SelectWithInputWidget extends Widget {
 			->appendContent( $this->dropdowninput, $this->textinput );
 	}
 
+	/** @inheritDoc */
 	protected function getJavaScriptClassName() {
 		return 'mw.widgets.SelectWithInputWidget';
 	}
 
+	/** @inheritDoc */
 	public function getConfig( &$config ) {
 		$config['textinput'] = $this->config['textinput'];
 		$config['dropdowninput'] = $this->config['dropdowninput'];
