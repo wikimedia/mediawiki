@@ -165,12 +165,14 @@ For notes on 1.43.x and older releases, see HISTORY.
 * …
 
 ===== Changed development-only external libraries =====
+
+* Updated api-testing to 1.6.0 to 1.7.1.
+* Updated eslint-config-wikimedia from 0.28.2 to 0.29.1.
 * Updated mediawiki/mediawiki-phan-config from 0.14.0 to 0.15.0.
 * Updated nikic/php-parser from ^4.10.2 to ^5.3.1.
 * Updated phpunit/phpunit from 9.6.19 to 9.6.21.
 * Updated stylelint-config-wikimedia from v0.17.2 to v0.18.0.
 * Updated wikimedia/langconv from 0.4.2 to 0.5.0.
-* Updated eslint-config-wikimedia from 0.28.2 to 0.29.1.
 * …
 
 ==== Removed external libraries ====
