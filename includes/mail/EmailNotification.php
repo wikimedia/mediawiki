@@ -36,24 +36,15 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\Watchlist\RecentChangeNotification;
 
 /**
- * Find watchers and create email notifications after a page is changed.
+ * Find watchers and create notifications after a page is changed.
  *
  * After an edit is published to RCFeed, RecentChange::save calls EmailNotification.
  * Here we query the `watchlist` table (via WatchedItemStore) to find who is watching
- * a given page, format the emails in question, and dispatch emails to each of them
+ * a given page, format the emails in question, and dispatch notifications to each of them
  * via the JobQueue.
- *
- * The current implementation sends independent emails to each watching user for
- * the following reason: Each email mentions the page edit time expressed in
- * the person's local time (UTC is shown additionally). To achieve this, we need to
- * find the individual timeoffset of each watching user from the preferences.
  *
  * Visit the documentation pages under
  * https://www.mediawiki.org/wiki/Help:Watching_pages
- *
- * @todo If the volume becomes too great, we could send out bulk mails (bcc:user1,user2...)
- * grouped by users having the same timeoffset in their preferences. This would however
- * need to carefully consider impact of failure rate, re-try behaviour, and idempotence.
  *
  * @todo Use UserOptionsLookup and other services, consider converting this to a service
  *
@@ -97,6 +88,9 @@ class EmailNotification {
 			return false;
 		}
 		$mwServices = MediaWikiServices::getInstance();
+		$config = $mwServices->getMainConfig();
+
+		$minorEdit = $recentChange->getAttribute( 'rc_minor' );
 		$editor = $mwServices->getUserFactory()
 			->newFromUserIdentity( $recentChange->getPerformerIdentity() );
 
@@ -105,21 +99,13 @@ class EmailNotification {
 			return false;
 		}
 
-		$timestamp = $recentChange->mAttribs['rc_timestamp'];
-		$summary = $recentChange->mAttribs['rc_comment'];
-		$minorEdit = $recentChange->mAttribs['rc_minor'];
-		$oldid = $recentChange->mAttribs['rc_last_oldid'];
-		$pageStatus = $recentChange->mExtra['pageStatus'] ?? 'changed';
-
-		$config = $mwServices->getMainConfig();
-
 		// update wl_notificationtimestamp for watchers
 		$watchers = [];
 		if ( $config->get( MainConfigNames::EnotifWatchlist ) || $config->get( MainConfigNames::ShowUpdatedMarker ) ) {
 			$watchers = $mwServices->getWatchedItemStore()->updateNotificationTimestamp(
 				$editor,
 				$title,
-				$timestamp
+				$recentChange->getAttribute( 'rc_timestamp' )
 			);
 		}
 
@@ -157,13 +143,8 @@ class EmailNotification {
 				[
 					'editor' => $editor->getName(),
 					'editorID' => $editor->getId(),
-					'timestamp' => $timestamp,
-					'summary' => $summary,
-					'minorEdit' => $minorEdit,
-					'oldid' => $oldid,
 					'watchers' => $watchers,
-					'pageStatus' => $pageStatus,
-					// not used yet, passed to support T388663 and T389618 in the future
+					'pageStatus' => $recentChange->mExtra['pageStatus'] ?? 'changed',
 					'rc_id' => $recentChange->getAttribute( 'rc_id' ),
 				]
 			) );
@@ -182,21 +163,16 @@ class EmailNotification {
 	 * @since 1.11.0
 	 * @param Authority $editor
 	 * @param Title $title
-	 * @param string $timestamp Edit timestamp
-	 * @param string $summary Edit summary
-	 * @param bool $minorEdit
-	 * @param int $oldid Revision ID
+	 * @param RecentChange $recentChange
 	 * @param array $watchers Array of user IDs
 	 * @param string $pageStatus
+	 * @internal
 	 */
 	public function actuallyNotifyOnPageChange(
 		Authority $editor,
 		$title,
-		$timestamp,
-		$summary,
-		$minorEdit,
-		$oldid,
-		$watchers,
+		RecentChange $recentChange,
+		array $watchers,
 		$pageStatus = 'changed'
 	) {
 		# we use $wgPasswordSender as sender's address
@@ -204,15 +180,18 @@ class EmailNotification {
 		$config = $mwServices->getMainConfig();
 		$notifService = $mwServices->getNotificationService();
 		$userFactory = $mwServices->getUserFactory();
+		$hookRunner = new HookRunner( $mwServices->getHookContainer() );
 
+		$minorEdit = $recentChange->getAttribute( 'rc_minor' );
 		# The following code is only run, if several conditions are met:
 		# 1. EmailNotification for pages (other than user_talk pages) must be enabled
 		# 2. minor edits (changes) are only regarded if the global flag indicates so
 		$this->pageStatus = $pageStatus;
-
 		$formattedPageStatus = [ 'deleted', 'created', 'moved', 'restored', 'changed' ];
+		$summary = $recentChange->getAttribute( 'rc_comment' );
+		$oldid = $recentChange->getAttribute( 'rc_last_oldid' );
+		$timestamp = $recentChange->getAttribute( 'rc_timestamp' );
 
-		$hookRunner = new HookRunner( $mwServices->getHookContainer() );
 		$hookRunner->onUpdateUserMailerFormattedPageStatus( $formattedPageStatus );
 		if ( !in_array( $this->pageStatus, $formattedPageStatus ) ) {
 			throw new UnexpectedValueException( 'Not a valid page status!' );
@@ -229,7 +208,6 @@ class EmailNotification {
 		);
 
 		$userTalkId = false;
-
 		if ( !$minorEdit ||
 			( $config->get( MainConfigNames::EnotifMinorEdits ) &&
 				!$editor->isAllowed( 'nominornewtalk' ) )

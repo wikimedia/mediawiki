@@ -43,20 +43,22 @@ class EnotifNotifyJob extends Job {
 			# @todo FIXME: newFromName could return false on a badly configured wiki.
 			$editor = User::newFromName( $this->params['editor'], false );
 		}
-		// @todo make use of $this->params['rc_id'], there is no need to store all params
-		// we can pass the RecentChange to actuallyNotify by calling
-		// RecentChange::newFromId( $this->params['rc_id'] )
-		$enotif->actuallyNotifyOnPageChange(
-			$editor,
-			$this->title,
-			$this->params['timestamp'],
-			$this->params['summary'],
-			$this->params['minorEdit'],
-			$this->params['oldid'],
-			$this->params['watchers'],
-			$this->params['pageStatus']
-		);
-
+		if ( !array_key_exists( 'rc_id', $this->params ) ) {
+			$this->setLastError(
+				'Cannot execute EnotifNotifyJob without `rc_id`. This has to be an old job'
+			);
+			return true;
+		}
+		$recentChange = RecentChange::newFromId( $this->params['rc_id'] );
+		if ( $recentChange ) {
+			$enotif->actuallyNotifyOnPageChange(
+				$editor,
+				$this->title,
+				$recentChange,
+				$this->params['watchers'],
+				$this->params['pageStatus']
+			);
+		}
 		return true;
 	}
 }
