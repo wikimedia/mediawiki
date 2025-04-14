@@ -612,9 +612,7 @@ class SpecialBlock extends FormSpecialPage {
 		if ( $this->useCodex ) {
 			$default = (string)$this->target;
 			$a['Target']['default'] = $default;
-			if ( $default ) {
-				$a['Target']['disabled'] = true;
-			}
+			$a['Target']['disabled'] = true;
 			// Remove all fields except Target for Codex. (T377529)
 			// This is a temporary measure until Codex PHP is available.
 			$a = array_intersect_key( $a, [ 'Target' => true ] );
