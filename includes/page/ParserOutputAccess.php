@@ -415,9 +415,10 @@ class ParserOutputAccess {
 		?ParserOutput $previousOutput = null
 	): Status {
 		$span = $this->startOperationSpan( __FUNCTION__, $page, $revision );
-		$this->statsFactory->getCounter( 'parseroutputaccess_poolwork' )
-			->copyToStatsdAt( 'ParserOutputAccess.PoolWork.None' )
+		$this->statsFactory->getCounter( 'parseroutputaccess_render_total' )
+			->setLabel( 'pool', 'none' )
 			->setLabel( 'cache', self::CACHE_NONE )
+			->copyToStatsdAt( 'ParserOutputAccess.PoolWork.None' )
 			->increment();
 
 		$useCache = $this->shouldUseCache( $page, $revision );
@@ -551,12 +552,19 @@ class ParserOutputAccess {
 	): PoolCounterWork {
 		$useCache = $this->shouldUseCache( $page, $revision );
 
+		$statCacheLabelLegacy = [
+			self::CACHE_PRIMARY => 'Current',
+			self::CACHE_SECONDARY => 'Old',
+		][$useCache] ?? 'Uncached';
+
+		$this->statsFactory->getCounter( 'parseroutputaccess_render_total' )
+			->setLabel( 'pool', 'articleview' )
+			->setLabel( 'cache', $useCache )
+			->copyToStatsdAt( "ParserOutputAccess.PoolWork.$statCacheLabelLegacy" )
+			->increment();
+
 		switch ( $useCache ) {
 			case self::CACHE_PRIMARY:
-				$this->statsFactory->getCounter( 'parseroutputaccess_poolwork' )
-					->setLabel( 'cache', self::CACHE_PRIMARY )
-					->copyToStatsdAt( 'ParserOutputAccess.PoolWork.Current' )
-					->increment();
 				$primaryCache = $this->getPrimaryCache( $parserOptions );
 				$parserCacheMetadata = $primaryCache->getMetadata( $page );
 				$cacheKey = $primaryCache->makeParserOutputKey( $page, $parserOptions,
@@ -581,10 +589,6 @@ class ParserOutputAccess {
 				);
 
 			case self::CACHE_SECONDARY:
-				$this->statsFactory->getCounter( 'parseroutputaccess_poolwork' )
-					->setLabel( 'cache', self::CACHE_SECONDARY )
-					->copyToStatsdAt( 'ParserOutputAccess.PoolWork.Old' )
-					->increment();
 				$secondaryCache = $this->getSecondaryCache( $parserOptions );
 				$workKey = $secondaryCache->makeParserOutputKey( $revision, $parserOptions );
 				return new PoolWorkArticleViewOld(
@@ -597,10 +601,6 @@ class ParserOutputAccess {
 				);
 
 			default:
-				$this->statsFactory->getCounter( 'parseroutputaccess_poolwork' )
-					->setLabel( 'cache', self::CACHE_NONE )
-					->copyToStatsdAt( 'ParserOutputAccess.PoolWork.Uncached' )
-					->increment();
 				$secondaryCache = $this->getSecondaryCache( $parserOptions );
 				$workKey = $secondaryCache->makeParserOutputKeyOptionalRevId( $revision, $parserOptions );
 				return new PoolWorkArticleView(
