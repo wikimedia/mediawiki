@@ -57,6 +57,11 @@ class CounterMetric implements MetricInterface {
 	 * @return void
 	 */
 	public function incrementBy( float $value ): void {
+		if ( $value < 0 ) {
+			trigger_error( "Stats: got negative value for counter \"{$this->getName()}\"", E_USER_WARNING );
+			return;
+		}
+
 		foreach ( $this->baseMetric->getStatsdNamespaces() as $namespace ) {
 			$this->baseMetric->getStatsdDataFactory()->updateCount( $namespace, $value );
 		}

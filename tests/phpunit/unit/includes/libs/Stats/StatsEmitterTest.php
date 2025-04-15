@@ -88,11 +88,12 @@ class StatsEmitterTest extends TestCase {
 			->copyToStatsdAt( 'test.old_bar' )
 			->increment();
 
-		$m->getCounter( 'bar' )
-			->setLabels( [
-				'mykey' => 'value2'
-			] )
-			->increment();
+		$metric = $m->getCounter( 'bar' )->setLabels( [
+			'mykey' => 'value2'
+		] );
+		$metric->increment();
+		// negative value on counter is illegal
+		@$metric->incrementBy( -1 );
 
 		// timer with statsd copy
 		$m->getTiming( 'baz' )
