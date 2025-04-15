@@ -26,7 +26,8 @@
 			"Robertpontes",
 			"Diegobiavati",
 			"CorraleH",
-			"McDutchie"
+			"McDutchie",
+			"Ninawauwau"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentação]]\n* [[mw:Special:MyLanguage/API:Etiquette|Etiqueta & diretrizes de uso]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Lista de discussão]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ Anúncios da API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Erros e pedidos]\n</div>\n<strong>Estado:</strong> A API do MediaWiki é uma interface madura e estável que é ativamente suportada e aprimorada. Por mais que tentemos evitar, ocasionalmente talvez precisemos fazer mudanças estruturais; inscreva-se na [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ lista de discussão mediawiki-api-announce] para ser informado acerca das atualizações.\n\n<strong>Pedidos incorretos:</strong> Quando são enviados pedidos incorretos à API, será devolvido um cabeçalho HTTP com a chave \"MediaWiki-API-Error\" e depois tanto o valor desse cabeçalho como o código de erro devolvido serão definidos com o mesmo valor. Para mais informação, consulte [[mw:Special:MyLanguage/API:Errors_and_warnings|API:Erros e avisos]].\n\n<p class=\"mw-apisandbox-link\"><strong>Testes:</strong> Para testar facilmente pedidos à API, visite [[Special:ApiSandbox|Testes da API]].</p>",
@@ -101,7 +102,7 @@
 	"apihelp-compare-param-frompst": "Fazer uma transformação anterior à gravação, de <var>fromtext-&#x7B;slot}</var>.",
 	"apihelp-compare-param-fromslots": "Substituir o conteúdo da revisão especificada por <var>fromtitle</var>, <var>fromid</var> ou <var>fromrev</var>.\n\nEste parâmetro especifica os segmentos que deverão ser modificados. Use <var>fromtext-&#x7B;slot}</var>, <var>fromcontentmodel-&#x7B;slot}</var> e <var>fromcontentformat-&#x7B;slot}</var> para especificar conteúdo para cada segmento.",
 	"apihelp-compare-param-fromtext-{slot}": "Texto do slot especificado. Se omitido, o slot é removido da revisão.",
-	"apihelp-compare-param-fromsection-{slot}": "Quando <var>fromtext-&#x7B;slot}</var> é o conteúdo de uma única secção, este é o número da seção. Será fundido na revisão especificada por <var>fromtitle</var>, <var>fromid</var> ou <var>fromrev</var> tal como acontece na edição de uma secção.",
+	"apihelp-compare-param-fromsection-{slot}": "Quando <var>fromtext-&#x7B;slot}</var> é o conteúdo de uma única seção, este é o identificador da seção. Ela será mesclada na revisão especificada em <var>fromtitle</var>, <var>fromid</var> ou <var>fromrev</var> tal como acontece na edição de uma seção.",
 	"apihelp-compare-param-fromcontentmodel-{slot}": "Modelo de conteúdo de <var>fromtext-&#x7B;slot}</var>. Se não for fornecido, ele será deduzido a partir dos outros parâmetros.",
 	"apihelp-compare-param-fromcontentformat-{slot}": "Formato de serialização de conteúdo de <var>fromtext-&#x7B;slot}</var>.",
 	"apihelp-compare-param-fromtext": "Especificar <kbd>fromslots=main</kbd> e usar <var>fromtext-main</var>.",
@@ -1551,6 +1552,7 @@
 	"api-help-parameters": "{{PLURAL:$1|Parâmetro|Parâmetros}}:",
 	"api-help-param-deprecated": "Obsoleto.",
 	"api-help-param-internal": "Interno.",
+	"api-help-param-internal-label": "interno",
 	"api-help-param-templated": "Este parâmetro é um [[Special:ApiHelp/main#main/templatedparams|parâmetro de predefinição]]. Ao fazer o pedido, $2.",
 	"api-help-param-templated-var-first": "<var>&#x7B;$1&#x7D;</var> no nome do parâmetro deve ser substituído com os valores de <var>$2</var>",
 	"api-help-param-templated-var": "<var>&#x7B;$1&#x7D;</var> com valores de <var>$2</var>",
