@@ -36,10 +36,12 @@ class MigrateBlocks extends LoggedUpdateMaintenance {
 		$this->setBatchSize( 500 );
 	}
 
+	/** @inheritDoc */
 	protected function getUpdateKey() {
 		return __CLASS__;
 	}
 
+	/** @inheritDoc */
 	protected function doDBUpdates() {
 		$this->dbw = $this->getDB( DB_PRIMARY );
 		if (

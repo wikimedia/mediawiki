@@ -43,6 +43,7 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 		$this->addOption( 'set-user-tags-only', 'Only update ctd_user_defined from valid_tag table' );
 	}
 
+	/** @inheritDoc */
 	protected function doDBUpdates() {
 		$this->setBatchSize( $this->getOption( 'batch-size', $this->getBatchSize() ) );
 
@@ -233,6 +234,7 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 		$this->output( "Finished adding ct_tag_id = {$tagId} for ct_tag = {$tagName}\n" );
 	}
 
+	/** @inheritDoc */
 	protected function getUpdateKey() {
 		return __CLASS__;
 	}

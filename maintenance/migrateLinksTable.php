@@ -39,10 +39,12 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 		$this->setBatchSize( 1000 );
 	}
 
+	/** @inheritDoc */
 	protected function getUpdateKey() {
 		return __CLASS__ . $this->getOption( 'table', '' );
 	}
 
+	/** @inheritDoc */
 	protected function doDBUpdates() {
 		$dbw = $this->getDB( DB_PRIMARY );
 		$mapping = \MediaWiki\Linker\LinksMigration::$mapping;

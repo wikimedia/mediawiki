@@ -47,6 +47,7 @@ class GenerateNormalizerDataAr extends Maintenance {
 			'from https://unicode.org/Public/6.0.0/ucd/UnicodeData.txt', false, true );
 	}
 
+	/** @inheritDoc */
 	public function getDbType() {
 		return Maintenance::DB_NONE;
 	}

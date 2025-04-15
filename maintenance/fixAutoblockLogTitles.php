@@ -22,6 +22,7 @@ class FixAutoblockLogTitles extends LoggedUpdateMaintenance {
 		$this->setBatchSize( 200 );
 	}
 
+	/** @inheritDoc */
 	protected function doDBUpdates() {
 		$this->output( "Fixing log entries with log_title starting with 'User:#'\n" );
 
@@ -93,6 +94,7 @@ class FixAutoblockLogTitles extends LoggedUpdateMaintenance {
 		return true;
 	}
 
+	/** @inheritDoc */
 	protected function getUpdateKey() {
 		return __CLASS__;
 	}

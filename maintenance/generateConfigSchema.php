@@ -81,6 +81,7 @@ class GenerateConfigSchema extends Maintenance {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function getDbType() {
 		return self::DB_NONE;
 	}

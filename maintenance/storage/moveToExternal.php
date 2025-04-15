@@ -81,6 +81,7 @@ class MoveToExternal extends Maintenance {
 		$this->addArg( 'location', 'e.g. "cluster12" or "global-swift"' );
 	}
 
+	/** @inheritDoc */
 	public function execute() {
 		$this->resolveStubs = new ResolveStubs;
 		$this->esType = $this->getArg( 0 ); // e.g. "DB" or "mwstore"

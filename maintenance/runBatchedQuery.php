@@ -117,6 +117,7 @@ class RunBatchedQuery extends Maintenance {
 		} while ( $res->numRows() );
 	}
 
+	/** @inheritDoc */
 	public function getDbType() {
 		return Maintenance::DB_ADMIN;
 	}

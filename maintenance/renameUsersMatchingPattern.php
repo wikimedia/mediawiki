@@ -67,6 +67,7 @@ class RenameUsersMatchingPattern extends Maintenance {
 		$this->titleFactory = $services->getTitleFactory();
 	}
 
+	/** @inheritDoc */
 	public function execute() {
 		$this->initServices();
 

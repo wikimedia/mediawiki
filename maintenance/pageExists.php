@@ -36,6 +36,7 @@ class PageExists extends Maintenance {
 		$this->addArg( 'title', 'Page title to check whether it exists' );
 	}
 
+	/** @inheritDoc */
 	public function execute() {
 		$titleArg = $this->getArg( 0 );
 		$title = Title::newFromText( $titleArg );

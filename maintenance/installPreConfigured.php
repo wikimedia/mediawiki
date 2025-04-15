@@ -41,6 +41,7 @@ class InstallPreConfigured extends Maintenance {
 			'Show the list of tasks to be executed, do not actually install' );
 	}
 
+	/** @inheritDoc */
 	public function getDbType() {
 		return Maintenance::DB_ADMIN;
 	}
@@ -60,6 +61,7 @@ class InstallPreConfigured extends Maintenance {
 		}
 	}
 
+	/** @inheritDoc */
 	public function execute() {
 		$context = $this->getTaskContext();
 		$taskFactory = $this->createTaskFactory( $context );

@@ -55,6 +55,7 @@ class RunJobs extends Maintenance {
 		parent::finalSetup( $settingsBuilder );
 	}
 
+	/** @inheritDoc */
 	public function memoryLimit() {
 		if ( $this->hasOption( 'memory-limit' ) ) {
 			return parent::memoryLimit();

@@ -46,6 +46,7 @@ class RebuildTextIndex extends Maintenance {
 		$this->addDescription( 'Rebuild search index table from scratch' );
 	}
 
+	/** @inheritDoc */
 	public function getDbType() {
 		return Maintenance::DB_ADMIN;
 	}

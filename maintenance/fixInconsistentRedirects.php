@@ -38,10 +38,12 @@ class FixInconsistentRedirects extends LoggedUpdateMaintenance {
 		$this->setBatchSize( 100 );
 	}
 
+	/** @inheritDoc */
 	protected function getUpdateKey() {
 		return __CLASS__;
 	}
 
+	/** @inheritDoc */
 	protected function doDBUpdates() {
 		$dbr = $this->getReplicaDB();
 

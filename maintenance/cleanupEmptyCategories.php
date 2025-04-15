@@ -76,10 +76,12 @@ TEXT
 		);
 	}
 
+	/** @inheritDoc */
 	protected function getUpdateKey() {
 		return 'cleanup empty categories';
 	}
 
+	/** @inheritDoc */
 	protected function doDBUpdates() {
 		$mode = $this->getOption( 'mode', 'both' );
 		$begin = $this->getOption( 'begin', '' );

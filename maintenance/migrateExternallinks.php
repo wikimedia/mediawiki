@@ -28,10 +28,12 @@ class MigrateExternallinks extends LoggedUpdateMaintenance {
 		$this->setBatchSize( 1000 );
 	}
 
+	/** @inheritDoc */
 	protected function getUpdateKey() {
 		return __CLASS__;
 	}
 
+	/** @inheritDoc */
 	protected function doDBUpdates() {
 		$dbw = $this->getDB( DB_PRIMARY );
 		$table = 'externallinks';

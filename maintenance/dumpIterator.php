@@ -203,6 +203,7 @@ class SearchDump extends DumpIterator {
 		$this->addOption( 'regex', 'Searching regex', true, true );
 	}
 
+	/** @inheritDoc */
 	public function getDbType() {
 		return Maintenance::DB_NONE;
 	}

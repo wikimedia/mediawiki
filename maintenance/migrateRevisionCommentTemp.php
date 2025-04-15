@@ -45,10 +45,12 @@ class MigrateRevisionCommentTemp extends LoggedUpdateMaintenance {
 		);
 	}
 
+	/** @inheritDoc */
 	protected function getUpdateKey() {
 		return __CLASS__;
 	}
 
+	/** @inheritDoc */
 	protected function doDBUpdates() {
 		$batchSize = $this->getBatchSize();
 
