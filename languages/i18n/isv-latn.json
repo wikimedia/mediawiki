@@ -2486,7 +2486,7 @@
 	"blockipsuccesssub": "Blokada naložena uspěšno",
 	"blockipsuccesstext": "{{GENDER:$1|Koristnik|Koristnica}} [[Special:Contributions/$1|$1]] jest {{GENDER:$1|zablokovany|zablokovana}}.<br />\nGledite [[Special:BlockList|spisok blokad]] za prěgled blokad.",
 	"ipb-empty-block": "V ukazanoj blokadě nijedno ograničenje ne jest vključeno.",
-	"ipb-block-not-found": "Blokovanje ne udalo se, ačekoli nijedna jestvujuča blokada za «$1» ne byla najdena. Ako tutoj problem bude se povtarjati, prosimo, že [https://www.mediawiki.org/wiki/Special:MyLanguage/Help_talk:Blocking_users uvědomite o tom].",
+	"ipb-block-not-found": "Blokovanje ne udalo se, pravdopodobno zato, že drugy administrator jednočasno poproboval zablokovati tutogo koristnika. Prověrite status blokady i poprobujte ponovno.",
 	"ipb-blockingself": "Vy probujete zablokovati samogo sebe! Jeste li uvěrjeni, že hočete to sdělati?",
 	"ipb-confirmhideuser": "Vy probujete zablokovati koristnika s vključenoju opcijeju «skryti koristnika». Vslěd togo jegovo koristničsko ime bude skryta vo vsih spiskah i zapisah v dnevnikah. Jeste li uvěrjeni, že hočete to sdělati?",
 	"ipb-confirmaction": "Ako jeste uvěrjeni, že hočete to sdělati, označite polje «{{int:ipb-confirm}}» niže.",

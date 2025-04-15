@@ -821,7 +821,7 @@
 	"nextn-title": "Volgende {{PLURAL:$1|resultaat|$1 resultate}}",
 	"shown-title": "Wys $1 {{PLURAL:$1|resultaat|resultate}} per bladsy",
 	"viewprevnext": "Wys ($1 {{int:pipe-separator}} $2) ($3).",
-	"searchmenu-exists": "'''Daar is reeds 'n bladsy genaamd \"[[:$1]]\" op die wiki'''",
+	"searchmenu-exists": "Daar is reeds 'n bladsy genoemd \"[[:$1]]\" op {{SITENAME}}. {{PLURAL:$2|0=|Sien ook die ander soekresultate wat gevind is.}}",
 	"searchmenu-new": "<strong>Skep die bladsy \"[[:$1]]\" op hierdie wiki</strong> {{PLURAL:$2|0=|Sien ook die bladsy wat in u soektog gevind is.|Sien ook die soekresultate wat gevind is.}}",
 	"searchprofile-articles": "Inhoudelike bladsye",
 	"searchprofile-images": "Multimedia",
