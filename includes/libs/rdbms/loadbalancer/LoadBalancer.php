@@ -1528,6 +1528,9 @@ class LoadBalancer implements ILoadBalancerForOwner {
 							[ 'exception' => new RuntimeException() ]
 						)
 					);
+					$this->statsFactory->getCounter( 'rdbms_callback_writes_found_total' )
+						->setLabel( 'db_server', $conn->getServerName() )
+						->increment();
 				} elseif ( $conn->trxLevel() ) {
 					// A callback from another handle read from this one and DBO_TRX is set,
 					// which can easily happen if there is only one DB (no replicas)
