@@ -11,13 +11,12 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Sanitizer
+ * @covers \MediaWiki\Parser\Sanitizer
  */
 class SanitizerTest extends MediaWikiIntegrationTestCase {
 
 	/**
-	 * @covers \MediaWiki\Parser\Sanitizer::internalRemoveHTMLtags
 	 * @dataProvider provideHtml5Tags
-	 *
 	 * @param string $tag Name of an HTML5 element (ie: 'video')
 	 * @param bool $escaped Whether sanitizer let the tag in or escape it (ie: '&lt;video&gt;')
 	 */
@@ -34,9 +33,7 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Parser\Sanitizer::removeSomeTags
 	 * @dataProvider provideHtml5Tags
-	 *
 	 * @param string $tag Name of an HTML5 element (ie: 'video')
 	 * @param bool $escaped Whether sanitizer let the tag in or escape it (ie: '&lt;video&gt;')
 	 */
@@ -98,7 +95,6 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider dataRemoveHTMLtags
-	 * @covers \MediaWiki\Parser\Sanitizer::internalRemoveHtmlTags
 	 */
 	public function testInternalRemoveHTMLtags( $input, $output, $msg = null ) {
 		$this->assertEquals( $output, Sanitizer::internalRemoveHtmlTags( $input ), $msg );
@@ -106,7 +102,6 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider dataRemoveHTMLtags
-	 * @covers \MediaWiki\Parser\Sanitizer::removeSomeTags
 	 */
 	public function testRemoveSomeTags( $input, $output, $msg = null ) {
 		$this->assertEquals( $output, Sanitizer::removeSomeTags( $input ), $msg );
@@ -114,9 +109,6 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideDeprecatedAttributes
-	 * @covers \MediaWiki\Parser\Sanitizer::fixTagAttributes
-	 * @covers \MediaWiki\Parser\Sanitizer::validateTagAttributes
-	 * @covers \MediaWiki\Parser\Sanitizer::validateAttributes
 	 */
 	public function testDeprecatedAttributesUnaltered( $inputAttr, $inputEl, $message = '' ) {
 		$this->assertEquals( " $inputAttr",
@@ -144,8 +136,6 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideValidateTagAttributes
-	 * @covers \MediaWiki\Parser\Sanitizer::validateTagAttributes
-	 * @covers \MediaWiki\Parser\Sanitizer::validateAttributes
 	 */
 	public function testValidateTagAttributes( $element, $attribs, $expected ) {
 		$actual = Sanitizer::validateTagAttributes( $attribs, $element );
@@ -175,7 +165,6 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideAttributesAllowed
-	 * @covers \MediaWiki\Parser\Sanitizer::attributesAllowedInternal
 	 */
 	public function testAttributesAllowedInternal( $element, $attribs ) {
 		$sanitizer = TestingAccessWrapper::newFromClass( Sanitizer::class );
@@ -194,13 +183,6 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideEscapeIdForStuff
-	 *
-	 * @covers \MediaWiki\Parser\Sanitizer::escapeIdForAttribute()
-	 * @covers \MediaWiki\Parser\Sanitizer::escapeIdForLink()
-	 * @covers \MediaWiki\Parser\Sanitizer::escapeIdForExternalInterwiki()
-	 * @covers \MediaWiki\Parser\Sanitizer::escapeIdInternal()
-	 * @covers \MediaWiki\Parser\Sanitizer::escapeIdInternalUrl()
-	 *
 	 * @param string $stuff
 	 * @param string[] $config
 	 * @param string $id
@@ -273,27 +255,18 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @covers \MediaWiki\Parser\Sanitizer::escapeIdInternal()
-	 */
 	public function testInvalidFragmentThrows() {
 		$this->overrideConfigValue( MainConfigNames::FragmentMode, [ 'boom!' ] );
 		$this->expectException( InvalidArgumentException::class );
 		Sanitizer::escapeIdForAttribute( 'This should throw' );
 	}
 
-	/**
-	 * @covers \MediaWiki\Parser\Sanitizer::escapeIdForAttribute()
-	 */
 	public function testNoPrimaryFragmentModeThrows() {
 		$this->overrideConfigValue( MainConfigNames::FragmentMode, [ 666 => 'html5' ] );
 		$this->expectException( UnexpectedValueException::class );
 		Sanitizer::escapeIdForAttribute( 'This should throw' );
 	}
 
-	/**
-	 * @covers \MediaWiki\Parser\Sanitizer::escapeIdForLink()
-	 */
 	public function testNoPrimaryFragmentModeThrows2() {
 		$this->overrideConfigValue( MainConfigNames::FragmentMode, [ 666 => 'html5' ] );
 		$this->expectException( UnexpectedValueException::class );
@@ -304,7 +277,6 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 	 * Test escapeIdReferenceListInternal for consistency with escapeIdForAttribute
 	 *
 	 * @dataProvider provideEscapeIdReferenceListInternal
-	 * @covers \MediaWiki\Parser\Sanitizer::escapeIdReferenceListInternal
 	 */
 	public function testEscapeIdReferenceListInternal( $referenceList, $id1, $id2 ) {
 		$sanitizer = TestingAccessWrapper::newFromClass( Sanitizer::class );
@@ -328,10 +300,7 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Test cleanUrl
-	 *
 	 * @dataProvider provideCleanUrl
-	 * @covers \MediaWiki\Parser\Sanitizer::cleanUrl
 	 */
 	public function testCleanUrl( string $input, string $output ) {
 		$this->assertEquals( $output, Sanitizer::cleanUrl( $input ) );

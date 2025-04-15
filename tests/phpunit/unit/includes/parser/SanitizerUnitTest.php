@@ -8,12 +8,12 @@ use UtfNormal\Constants;
 
 /**
  * @group Sanitizer
+ * @covers \MediaWiki\Parser\Sanitizer
  */
 class SanitizerUnitTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideDecodeCharReferences
-	 * @covers \MediaWiki\Parser\Sanitizer::decodeCharReferences
 	 */
 	public function testDecodeCharReferences( string $expected, string $input ) {
 		$this->assertSame( $expected, Sanitizer::decodeCharReferences( $input ) );
@@ -68,7 +68,6 @@ class SanitizerUnitTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideTagAttributesToDecode
-	 * @covers \MediaWiki\Parser\Sanitizer::decodeTagAttributes
 	 */
 	public function testDecodeTagAttributes( $expected, $attributes, $message = '' ) {
 		$this->assertSame( $expected,
@@ -144,7 +143,6 @@ class SanitizerUnitTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideCssCommentsFixtures
-	 * @covers \MediaWiki\Parser\Sanitizer::checkCss
 	 */
 	public function testCssCommentsChecking( $expected, $css, $message = '' ) {
 		$this->assertSame( $expected,
@@ -189,7 +187,6 @@ class SanitizerUnitTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideEscapeHtmlAllowEntities
-	 * @covers \MediaWiki\Parser\Sanitizer::escapeHtmlAllowEntities
 	 */
 	public function testEscapeHtmlAllowEntities( $expected, $html ) {
 		$this->assertSame(
@@ -211,7 +208,6 @@ class SanitizerUnitTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideIsReservedDataAttribute
-	 * @covers \MediaWiki\Parser\Sanitizer::isReservedDataAttribute
 	 */
 	public function testIsReservedDataAttribute( $attr, $expected ) {
 		$this->assertSame( $expected, Sanitizer::isReservedDataAttribute( $attr ) );
@@ -233,11 +229,8 @@ class SanitizerUnitTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @dataProvider provideStripAllTags
-	 *
-	 * @covers \MediaWiki\Parser\Sanitizer::stripAllTags()
 	 * @covers \MediaWiki\Parser\RemexStripTagHandler
-	 *
+	 * @dataProvider provideStripAllTags
 	 * @param string $input
 	 * @param string $expected
 	 */
