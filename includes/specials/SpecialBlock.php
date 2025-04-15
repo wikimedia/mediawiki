@@ -303,7 +303,7 @@ class SpecialBlock extends FormSpecialPage {
 		$msg = $this->alreadyBlocked ? 'ipb-change-block' : 'ipbsubmit';
 		$form->setSubmitTextMsg( $msg );
 
-		$this->addHelpLink( 'Help:Blocking users' );
+		$this->addHelpLink( $this->useCodex ? 'Help:Manage blocks' : 'Help:Blocking users' );
 
 		// Don't need to do anything if the form has been posted, or if there were no pre-errors.
 		if ( $this->getRequest()->wasPosted() || !$this->preErrors ) {
