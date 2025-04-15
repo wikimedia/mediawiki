@@ -367,13 +367,6 @@ class ParserCache {
 			return false;
 		}
 
-		if ( $page->isRedirect() ) {
-			// NOTE: It is not clear why we should bail out here, see T389591.
-			//       In any case, the behavior of get() and save() need to be consistent.
-			$this->incrementStats( $page, 'miss', 'redirect' );
-			return false;
-		}
-
 		$staleConstraint = $useOutdated ? self::USE_OUTDATED : self::USE_CURRENT_ONLY;
 		$parserOutputMetadata = $this->getMetadata( $page, $staleConstraint );
 		if ( !$parserOutputMetadata ) {
@@ -451,14 +444,6 @@ class ParserCache {
 		$revId = null
 	) {
 		$page->assertWiki( PageRecord::LOCAL );
-
-		if ( $page->isRedirect() ) {
-			// NOTE: It is not clear whether we should bail out here, see T389591.
-			//       While that is being discussed, the behavior of get() and save()
-			//       need to be consistent.
-			$this->incrementStats( $page, 'save', 'redirect' );
-			return;
-		}
 
 		// T350538: Eventually we'll warn if the $cacheTime and $revId
 		// parameters are non-null here, since we *should* be getting

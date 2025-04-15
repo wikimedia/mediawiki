@@ -306,8 +306,9 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 * Tests that we can get rendered output for the latest revision.
 	 */
 	public function testOutputForLatestRevision() {
+		$cache = new HashBagOStuff();
 		$access = $this->getParserOutputAccess( [
-			'parserCache' => new HashBagOStuff()
+			'parserCache' => $cache
 		] );
 
 		$page = $this->getNonexistingTestPage( __METHOD__ );
@@ -316,10 +317,57 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$parserOptions = $this->getParserOptions();
 		// WikiPage::triggerOpportunisticLinksUpdate is not called by default
 		$this->installOpportunisticUpdateHook( false );
-		$status = $access->getParserOutput( $page, $parserOptions );
-		$this->assertContainsHtml( 'Hello <i>World</i>!', $status );
 
-		$this->assertNotNull( $access->getCachedParserOutput( $page, $parserOptions ) );
+		$status = $access->getParserOutput( $page, $parserOptions );
+		$this->assertStatusOK( $status );
+
+		/** @var ParserOutput $output */
+		$output = $status->getValue();
+		$this->assertContainsHtml( 'Hello <i>World</i>!', $output->getRawText() );
+
+		// Check that the output was cached.
+		// Create a new instance so we bypass the in-object cache.
+		$access = $this->getParserOutputAccess( [
+			'parserCache' => $cache
+		] );
+
+		$cachedOutput = $access->getCachedParserOutput( $page, $parserOptions );
+		$this->assertNotNull( $cachedOutput );
+		$this->assertSame( $output->getRawText(), $cachedOutput->getRawText() );
+	}
+
+	/**
+	 * Tests that we can get rendered output of a redirect, the output is cached,
+	 * and the redirect is not followed.
+	 */
+	public function testOutputForRedirect() {
+		$cache = new HashBagOStuff();
+		$access = $this->getParserOutputAccess( [
+			'parserCache' => $cache
+		] );
+
+		$target = $this->getExistingTestPage( __METHOD__ . '_Target' )->getTitle();
+		$link = $target->getPrefixedText();
+
+		$page = $this->getNonexistingTestPage( __METHOD__ . '_Redirect' );
+		$this->editPage( $page, "#REDIRECT [[$link]]\n\n(redirect footer)" );
+
+		$parserOptions = $this->getParserOptions();
+
+		/** @var ParserOutput $output */
+		$output = $access->getParserOutput( $page, $parserOptions )->getValue();
+		$this->assertNotNull( $output->getRedirectHeader() );
+		$this->assertStringContainsString( 'footer', $output->getRawText() );
+
+		// Check that the output was cached.
+		// Create a new instance so we bypass the in-object cache.
+		$access = $this->getParserOutputAccess( [
+			'parserCache' => $cache
+		] );
+
+		$cachedOutput = $access->getCachedParserOutput( $page, $parserOptions );
+		$this->assertNotNull( $cachedOutput );
+		$this->assertSame( $output->getRedirectHeader(), $cachedOutput->getRedirectHeader() );
 	}
 
 	/**
