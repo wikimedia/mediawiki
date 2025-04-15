@@ -136,7 +136,7 @@ class ApiLogin extends ApiBase {
 
 		// Try bot passwords
 		if ( $authRes === false && $this->getConfig()->get( MainConfigNames::EnableBotPasswords ) ) {
-			$botLoginData = BotPassword::canonicalizeLoginData( $params['name'], $params['password'] );
+			$botLoginData = BotPassword::canonicalizeLoginData( $params['name'] ?? '', $params['password'] ?? '' );
 			if ( $botLoginData ) {
 				$status = BotPassword::login(
 					$botLoginData[0], $botLoginData[1], $this->getRequest()

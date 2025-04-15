@@ -61,6 +61,12 @@ class ApiFileRevert extends ApiBase {
 
 		// Check whether we're allowed to revert this file
 		$this->checkTitleUserPermissions( $this->file->getTitle(), [ 'edit', 'upload' ] );
+		$rights = [ 'reupload' ];
+		if ( $this->getUser()->equals( $this->file->getUploader() ) ) {
+			// reupload-own is more basic, put it in the front for error messages.
+			array_unshift( $rights, 'reupload-own' );
+		}
+		$this->checkUserRightsAny( $rights );
 
 		$sourceUrl = $this->file->getArchiveVirtualUrl( $this->archiveName );
 		$status = $this->file->upload(

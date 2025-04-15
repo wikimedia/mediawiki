@@ -253,7 +253,10 @@
 			"ديفيد",
 			"아라",
 			"Ice bulldog",
-			"MagamePolyglotte"
+			"MagamePolyglotte",
+			"Balunhnoh",
+			"HylianAngel",
+			"Danielyepezgarces"
 		]
 	},
 	"sunday": "domingo",
@@ -1282,7 +1285,7 @@
 	"userrights-lookup-user": "Selecciona una cuenta de usuario",
 	"userrights-user-editname": "Escribe un nombre de usuario:",
 	"editusergroup": "Cargar grupos de usuarios",
-	"editinguser": "Cambiar los grupos de{{GENDER:$1|l usuario|&#32;la usuaria}} <strong>[[User:$1|$1]]</strong> $2",
+	"editinguser": "Cambiar los grupos {{GENDER:$1|del usuario|de la usuaria}} <strong>[[User:$1|$1]]</strong> $2",
 	"viewinguserrights": "Visualizar los grupos {{GENDER:$1|del usuario|de la usuaria}} <strong>[[User:$1|$1]]</strong> $2",
 	"userrights-editusergroup": "Modificar grupos {{GENDER:$1|del usuario|de la usuaria}}",
 	"userrights-viewusergroup": "Ver grupos {{GENDER:$1|del usuario|de la usuaria}}",
@@ -2976,7 +2979,7 @@
 	"export": "Exportar páginas",
 	"exporttext": "Puedes exportar el texto y el historial de ediciones de una página en particular o de un conjunto de páginas a un texto XML. En el futuro, este texto podría importarse en otra wiki que ejecutase MediaWiki a través de [[Special:Import|importar página]].\n\nPara exportar páginas, escribe los títulos en la caja de texto de abajo, un título por línea, y selecciona si quieres la versión actual junto a las versiones anteriores, con las líneas del historial, o sólo la versión actual con la información sobre la última edición.\n\nEn el último caso también puedes usar un enlace, por ejemplo [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] para la página \"[[{{MediaWiki:Mainpage}}]]\".",
 	"exportall": "Exportar todas las páginas",
-	"exportcuronly": "Incluye sólo la revisión actual, no el historial de revisiones al completo.",
+	"exportcuronly": "Incluye solo la revisión actual, no el historial completo",
 	"exportnohistory": "----\n<strong>Nota:</strong> la exportación del historial completo de páginas a través de este formulario ha sido desactivada debido a razones de rendimiento.",
 	"exportlistauthors": "Incluir una lista completa de colaboradores para cada página",
 	"export-submit": "Exportar",

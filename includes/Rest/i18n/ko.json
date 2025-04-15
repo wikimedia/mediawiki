@@ -3,7 +3,8 @@
 		"authors": [
 			"Bluehill",
 			"Suleiman the Magnificent Television",
-			"Ykhwong"
+			"Ykhwong",
+			"Tensama0415"
 		]
 	},
 	"rest-prefix-mismatch": "요청한 경로($1)가 REST API 기본 경로($2) 안에 없었습니다",
@@ -56,6 +57,7 @@
 	"rest-badtoken": "제공된 CSRF 토큰이 잘못되었습니다.",
 	"rest-badtoken-missing": "CSRF 안전 인증 방법을 사용하지 않는 한 <var>token</var> 변수는 필수입니다.",
 	"rest-badtoken-nosession": "CSRF 오류 - 세션이 없습니다.",
+	"rest-mock-error": "가짜 오류.",
 	"rest-specified-revision-unavailable": "지정된 판은 삭제되었거나 숨겨져 있습니다.",
 	"rest-previous-revision-unavailable": "이전 판을 찾을 수 없습니다. 문서가 잠겼거나 삭제되었습니까?",
 	"rest-requires-content-type-header": "Content-Type 헤더는 요청 페이로드와 함께 제공되어야 합니다.",
@@ -64,6 +66,8 @@
 	"rest-unsupported-target-format": "요청한 대상 형식은 지원되지 않습니다.",
 	"rest-parsoid-resource-exceeded": "리소스 한도를 초과했습니다",
 	"rest-parsoid-error": "파소이드 오류입니다.",
+	"rest-parsoid-bad-render-id": "잘못된 파소이드 렌더 ID: $1",
+	"rest-invalid-transform": "유효하지 않은 변환: $1에서 $2",
 	"rest-request-body-expected": "$1 요청 메소드는 요청 본문을 예상합니다",
 	"rest-request-body-unaccepted": "$1 요청 메소드는 요청 본문을 허용하지 않습니다",
 	"rest-unmapped-action-error": "매핑되지 않은 작업 모듈 오류: $1",

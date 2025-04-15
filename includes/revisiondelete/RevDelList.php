@@ -143,6 +143,11 @@ abstract class RevDelList extends RevisionListBase {
 		$comment = $params['comment'];
 		$perItemStatus = $params['perItemStatus'] ?? false;
 
+		// T387638 - Always ensure ->value['itemStatuses'] is set if requested
+		if ( $perItemStatus ) {
+			$status->value['itemStatuses'] = [];
+		}
+
 		// CAS-style checks are done on the _deleted fields so the select
 		// does not need to use FOR UPDATE nor be in the atomic section
 		$dbw = $this->lbFactory->getPrimaryDatabase();
@@ -166,10 +171,6 @@ abstract class RevDelList extends RevisionListBase {
 		$this->clearFileOps();
 		$idsForLog = [];
 		$authorActors = [];
-
-		if ( $perItemStatus ) {
-			$status->value['itemStatuses'] = [];
-		}
 
 		// For multi-item deletions, set the old/new bitfields in log_params such that "hid X"
 		// shows in logs if field X was hidden from ANY item and likewise for "unhid Y". Note the

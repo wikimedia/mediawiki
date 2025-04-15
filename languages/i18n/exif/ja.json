@@ -16,7 +16,8 @@
 			"Whym",
 			"Yusuke1109",
 			"ネイ",
-			"Yaakiyu.jp"
+			"Yaakiyu.jp",
+			"もなー(偽物)"
 		]
 	},
 	"exif-imagewidth": "画像の幅",
@@ -417,6 +418,7 @@
 	"exif-initialviewrolldegrees": "初回ビューのロール角（度数）",
 	"exif-initialhorizontalfovdegrees": "初期FOV（水平角度）",
 	"exif-initialverticalfovdegrees": "初期FOV（垂直角度）",
+	"exif-sourcephotoscount": "ソース写真数",
 	"exif-croppedareaimagewidthpixels": "パノラマのトリミング幅",
 	"exif-croppedareaimageheightpixels": "パノラマのトリミング高さ",
 	"exif-fullpanowidthpixels": "パノラマ全体の幅",

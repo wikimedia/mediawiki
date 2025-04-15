@@ -5,15 +5,95 @@ PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 PHP 8.4 workboard: https://phabricator.wikimedia.org/tag/php_8.4_support/
 
-== MediaWiki 1.43.1 ==
+== Mediawiki 1.43.2 ==
 
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.43.1 ===
-
 * Localisation updates.
+
+== MediaWiki 1.43.1 ==
+
+This is a security and maintenance release of the MediaWiki 1.42 branch.
+
+=== Changes since MediaWiki 1.43.0 ===
+* Localisation updates.
+* (T375707) exception: Convert E_STRICT errors to E_USER_NOTICE.
+* (T380755) session: Do not set session.use_trans_sid.
 * (T382987) $wgDnsBlacklistUrls now defaults to an empty array. See the comment
   in the "Configuration changes for system administrators" section.
+* (T383037) MimeMap: add gltf and glb mime types.
+* (T383037) MimeAnalyzer: detect magic number for gltf binary.
+* Commit swagger-ui's NOTICE.
+* (T382484) dumps: Use proc_close() to close proc_open() subprocess.
+* (T375707) MWExceptionHandler: Add error suppression to constant( 'E_STRICT' ).
+* (T384879) FormatMetadata: Prevent running preg_match() on null.
+* (T384995) specialpage: Improve handling of invalid lang codes on login/signup.
+* (T385055) resourceloader: Fix hash computation for virtual files with
+  versionFilePath.
+* (T385169) MultiUsernameFilter: Don't try to split ids if they're not a string.
+* (T385567) parser: Gracefully handle invalid ParsoidRenderID keys.
+* (T385568) rest: Return a 400 for invalid render IDs.
+* (T383646) installer: Simplify the information box.
+* (T384524) installer: Fix conflation between warning and info messages.
+* (T376711) language: Use fallback chain to create NumberFormatter.
+* (T384524) installer: Restore success messages.
+* (T384524) installer: Restore "complete" success message.
+* (T385332) feeds: Fix str_replace() deprecation warnings on PHP 8.
+* (T386891) Revert "maintenance: Use DatabaseSqlite for type-hinting instead of
+  DBConnRef".
+* (T381205) Add explanation text for "Allow emails from brand-new users".
+* (T380880) ExternalLinks: fix mailto: links reversal.
+* (T381033) RateLimiter: Fix peek mode.
+* initEditCount: Join from user to actor to revision.
+* (T387130,CVE-2025-32699) SECURITY: Update wikimedia/parsoid to 0.20.2.
+* (T385519) Sanitizer::normalizeWhitespace warn on preg_replace error.
+* (T387638) RevDelList: Ensure setVisibility always includes itemStatuses in
+  value if applicable.
+* (T388296) ImportImages: Exit with non-zero code if import fails.
+* Request: Improve log message when headers already sent.
+* (T386368, T387397) REST page metadata endpoints: handle supressed data
+  gracefully.
+* (T388066) Avoid trying to load the session user in MW_NO_SESSION endpoints.
+* (T388171) HttpError: Cast Message to string.
+* (T384197) permissions: Avoid potential infinite loop if BlockDisablesLogin =
+  true.
+* (T388255) ApiLogin: Don't break BotPasswords if password or user is blank,
+  just error.
+* (T388924) MagicWord::replace*: Make sure we don't pass null into preg_match/
+  preg_replace.
+* (T388944) Html: Fix "substr(): Passing null to parameter #1 ($string) of type
+  string is deprecated".
+* (T388728, T385519) Sanitizer::normalizeSectionNameWhitespace: Apply same
+  anti-null fix as 270499b.
+* (T387690) upload: Suppress warnings from iconv().
+* (T388733) Sanitizer::normalizeWhitespace: simplify redundant preg_replace.
+* (T315573) Fix GREATEST usage in site_stats.
+* (T304474, CVE-2025-32696) SECURITY: Apply proper restrictions on file revert
+  action.
+* (T24521, T62109, T140010, CVE-2025-32697) SECURITY: PermissionManager:
+  Differentiate between cascading protection of file content and file pages.
+* (T387507) ResourceLoader: update wikimedia/minify from 2.8.0 to 2.8.1.
+* (T388273, T388335) Upgrading pear/net_url2 (v2.2.2 => v2.2.3).
+* (T390063, T277675) ResourceLoader: update wikimedia/minify to 2.9.0.
+* (T384851) FileBackend: PHP Deprecated: strrpos(): Passing null to parameter #1
+  ($haystack).
+* (T378622) Parameterize ChangeTags::buildTagFilterSelector to support various
+  tag sets.
+* (T344352) ChangeTags: Optimize label and description parsing.
+* In .htaccess deny files, use "Satisfy All".
+* (T322672, T387478) REST: Remove unused setUseParserCache() as potential
+  footgun.
+* (T389028) block: Fix DBS::acquireTarget() race using GET_LOCK().
+* (T388807) LanguageConverter: Only set mTablesLoaded once they're really
+  loaded.
+* RestrictionStore: Remove short-circuit mode when fetching cascading sources.
+* (T385958, CVE-2025-32698) SECURITY: LogPager.php: Restriction enforcer
+  functions do not correctly enforce suppression restrictions.
+* (T387130, CVE-2025-32699) SECURITY: Potential javascript injection attack
+  enabled by Unicode normalization in Action API.
+* (T358689, CVE-2025-3469) SECURITY: i18n XSS vulnerability in
+  HTMLMultiSelectField when sections are used.
 
 == MediaWiki 1.43.0 ==
 
@@ -246,7 +326,7 @@ For notes on 1.42.x and older releases, see HISTORY.
 * Updated wikimedia/at-ease from 2.1.0 to 3.0.0.
 * Updated wikimedia/json-codec from 3.0.1 to 3.0.3.
 * Updated wikimedia/less.php from 4.2.1 to 5.1.2.
-* Updated wikimedia/minify from 2.7.0 to 2.8.0.
+* Updated wikimedia/minify from 2.7.0 to 2.9.0.
 * Updated wikimedia/normalized-exception from 1.0.1 to 2.0.0.
 * Updated wikimedia/php-session-serializer from 2.0.1 to 3.0.0.
 * Updated wikimedia/purtle from 1.0.8 to 2.0.0.

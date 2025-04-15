@@ -28,6 +28,7 @@ namespace MediaWiki\Html;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Request\ContentSecurityPolicy;
 use UnexpectedValueException;
 
@@ -193,6 +194,7 @@ class Html {
 		if ( isset( self::$voidElements[$element] ) ) {
 			return $start;
 		} else {
+			$contents = Sanitizer::escapeCombiningChar( $contents ?? '' );
 			return $start . $contents . self::closeElement( $element );
 		}
 	}
@@ -847,7 +849,7 @@ class Html {
 	public static function textarea( $name, $value = '', array $attribs = [] ) {
 		$attribs['name'] = $name;
 
-		if ( substr( $value, 0, 1 ) == "\n" ) {
+		if ( substr( $value ?? '', 0, 1 ) == "\n" ) {
 			// Workaround for T14130: browsers eat the initial newline
 			// assuming that it's just for show, but they do keep the later
 			// newlines, which we may want to preserve during editing.

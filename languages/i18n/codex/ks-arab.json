@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ayaat123"
+		]
+	},
+	"cdx-chip-input-chip-added": "چِپ $1 آو جمع کرنہٕ۔",
+	"cdx-chip-input-chip-removed": "چِپ $1 آو ہَٹاونہٕ۔",
+	"cdx-input-chip-aria-description": "دَبأیِو ایٚنٹَر اؠڈِٹ باپتھ یا مِٹاوُن ہَٹاونہٕ باپتھ۔",
+	"cdx-dialog-close-button-label": "بَنٛد",
+	"cdx-label-optional-flag": "اِختِیٲری",
+	"cdx-message-dismiss-button-label": "بَنٛد",
+	"cdx-search-input-search-button-label": "ژھانٛڈُن"
+}

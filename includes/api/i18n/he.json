@@ -1258,7 +1258,7 @@
 	"apihelp-query+siteinfo-param-showalldb": "רשימת כל שרתי מסד הנתונים, לא רק אלה שהכי מתעכבים.",
 	"apihelp-query+siteinfo-param-numberingroup": "רשימת מספרי משתמשים בקבוצות משתמשים.",
 	"apihelp-query+siteinfo-param-inlanguagecode": "קוד שפה בשביל שמות שפות מתורגמות (מאמץ טוב ביותר) ושמות עיצובים.",
-	"apihelp-query+siteinfo-example-simple": "איזור מידע על האתר.",
+	"apihelp-query+siteinfo-example-simple": "אזור מידע על האתר.",
 	"apihelp-query+siteinfo-example-interwiki": "אחזור תחיליות בינוויקי מקומיות.",
 	"apihelp-query+siteinfo-example-replag": "בדיקת שיהוי השכפול הנוכחי.",
 	"apihelp-query+stashimageinfo-summary": "החזרת מידע על הקובץ עבור הקבצים המוסלקים.",
