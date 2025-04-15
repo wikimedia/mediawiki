@@ -17,7 +17,6 @@ use MediaWiki\Tests\Json\JsonDeserializableSuperClass;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\User;
-use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
@@ -28,6 +27,7 @@ use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\UUID\GlobalIdGenerator;
 use WikiPage;
 
@@ -48,13 +48,10 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 		$this->time = time();
-		$this->cacheTime = MWTimestamp::convert(
-			TS_MW,
-			$this->time + 1
-		);
+		$this->cacheTime = ConvertibleTimestamp::convert( TS_MW, $this->time + 1 );
 		$this->page = $this->createPageRecord();
 
-		MWTimestamp::setFakeTime( $this->time );
+		ConvertibleTimestamp::setFakeTime( $this->time );
 	}
 
 	private function createPageRecord( array $overrides = [] ): PageRecord {
@@ -436,7 +433,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Test that ParserCacheFilter can be used to prevent content from being cached
+	 * Allow ParserCacheFilter hook to prevent content from being cached
 	 */
 	public function testDoesNotStoreFiltered() {
 		$cache = $this->createParserCache();
@@ -479,7 +476,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Test that ParserOptions::isSafeToCache is respected on save
+	 * ParserCache::save must respect ParserOptions::isSafeToCache
 	 */
 	public function testDoesNotStoreNotSafeToCacheAndUsed() {
 		$cache = $this->createParserCache();
@@ -521,7 +518,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Test that ParserOptions::isSafeToCache is respected on get
+	 * get() must respect ParserOptions::isSafeToCache.
 	 */
 	public function testDoesNotGetNotSafeToCache() {
 		$cache = $this->createParserCache();
@@ -563,7 +560,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Test that ParserOptions::isSafeToCache is respected on save
+	 * save() must respect ParserOptions::isSafeToCache
 	 */
 	public function testStoresNotSafeToCacheAndUnused() {
 		$cache = $this->createParserCache();
@@ -591,7 +588,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Test that fetching with different used option don't return a value.
+	 * get() with an option should not return a saved match for a different option.
 	 */
 	public function testSaveGetDifferentUsedOption() {
 		$cache = $this->createParserCache();
@@ -625,7 +622,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Test that output with expired metadata can be retrieved with getDirty
+	 * Allow retrieval of expired metadata via getDirty()
 	 */
 	public function testGetExpiredMetadata() {
 		$cache = $this->createParserCache();
@@ -640,7 +637,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 			$this->cacheTime
 		);
 
-		MWTimestamp::setFakeTime( $this->time + 15 * 1000 );
+		ConvertibleTimestamp::setFakeTime( $this->time + 15 * 1000 );
 		$this->assertFalse(
 			$cache->get(
 				$this->page,
@@ -665,7 +662,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Test that expired output with not expired metadata can be retrieved with getDirty
+	 * Allow retrieval of expired output with good metadata via getDirty()
 	 */
 	public function testGetExpiredContent() {
 		$cache = $this->createParserCache();
@@ -701,7 +698,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 			$this->cacheTime
 		);
 
-		MWTimestamp::setFakeTime( $this->time + 15 * 1000 );
+		ConvertibleTimestamp::setFakeTime( $this->time + 15 * 1000 );
 		$this->assertFalse(
 			$cache->get(
 				$this->page,
@@ -726,7 +723,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Test that output with outdated metadata can be retrieved with getDirty
+	 * Allow retrieval of expired output with expired metadata via getDirty()
 	 */
 	public function testGetOutdatedMetadata() {
 		$cache = $this->createParserCache();
@@ -772,7 +769,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Test that outdated output with good metadata can be retrieved with getDirty
+	 * Allow retrieval of outdated output with good metadata via getDirty()
 	 */
 	public function testGetOutdatedContent() {
 		$cache = $this->createParserCache();
@@ -831,7 +828,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Test that fetching after deleting a key returns false.
+	 * get() must return false after deleting a key.
 	 */
 	public function testDeleteOptionsKey() {
 		$cache = $this->createParserCache();
@@ -862,7 +859,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Test that RejectParserCacheValue hook can reject ParserOutput
+	 * Allow RejectParserCacheValue hook to reject a ParserOutput cache hit.
 	 */
 	public function testRejectedByHook() {
 		$parserOutput = new ParserOutput( 'TEST_TEXT' );
@@ -923,7 +920,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Test that ParserCacheSaveComplete hook is run
+	 * ParserCacheSaveComplete hook must run
 	 */
 	public function testParserCacheSaveCompleteHook() {
 		$parserOutput = new ParserOutput( 'TEST_TEXT' );
@@ -966,7 +963,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Tests that parser cache respects skipped if page does not exist
+	 * get() gracefully skips non-existing pages
 	 */
 	public function testSkipIfNotExist() {
 		$mockPage = $this->createNoOpMock(
@@ -1003,14 +1000,16 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGet_redirect() {
 		$cache = $this->createParserCache();
-
 		$popt = ParserOptions::newFromAnon();
 		$pout = $this->createDummyParserOutput();
 		$page = $this->createPageRecord( [
 			'page_is_redirect' => true,
 		] );
 		$cache->save( $pout, $page, $popt );
-		$this->assertNotFalse( $cache->get( $page, $popt ) );
+
+		$result = $cache->get( $page, $popt );
+		$this->assertInstanceOf( ParserOutput::class, $result );
+		$this->assertSame( 'TEST', $result->getRawText() );
 	}
 
 	/**
@@ -1298,30 +1297,29 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Tests that unicode characters are not \u escaped
+	 * Avoid needless JSON-escaping of Unicode characters so that
+	 * values do not become too large and waste storage space (T263579)
 	 *
 	 * @see \MediaWiki\Parser\ParserCache::convertForCache
 	 */
 	public function testJsonEncodeUnicode() {
 		$unicodeCharacter = "Э";
-		$cache = $this->createParserCache(
-			null,
-			new HashBagOStuff()
-		);
 
+		$bag = new HashBagOStuff();
+		$parserCache = $this->createParserCache( null, $bag );
 		$parserOutput = $this->createDummyParserOutput();
 		$parserOutput->setRawText( $unicodeCharacter );
-		$cache->save(
+		$parserCache->save(
 			$parserOutput,
 			$this->page,
 			ParserOptions::newFromAnon()
 		);
-		$json = $cache->getCacheStorage()->get(
-			$cache->makeParserOutputKey(
-				$this->page,
-				ParserOptions::newFromAnon()
-			)
+
+		$key = $parserCache->makeParserOutputKey(
+			$this->page,
+			ParserOptions::newFromAnon()
 		);
+		$json = $bag->get( $key );
 		$this->assertStringNotContainsString(
 			"\u003E",
 			$json
