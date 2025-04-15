@@ -341,12 +341,6 @@ module.exports = exports = defineComponent( {
 					return;
 				}
 
-				if ( store.blockId ) {
-					blockSavedMessage.value = mw.message( 'block-updated-message' ).text();
-				} else {
-					blockSavedMessage.value = mw.message( 'block-added-message' ).text();
-				}
-
 				doBlock();
 			} else {
 				// nextTick() needed to ensure error messages are rendered before scrolling.
@@ -410,6 +404,12 @@ module.exports = exports = defineComponent( {
 					// This is primarily for the log entries when blocking a range.
 					if ( result.block && result.block.user ) {
 						store.targetUser = result.block.user;
+					}
+					// Add the success message.
+					if ( store.blockId ) {
+						blockSavedMessage.value = mw.message( 'block-updated-message' ).text();
+					} else {
+						blockSavedMessage.value = mw.message( 'block-added-message' ).text();
 					}
 					blockAdded.value = true;
 					formErrors.value = [];
