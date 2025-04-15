@@ -3145,7 +3145,7 @@
 	"watchlisttools-edit": "Хьажа/нисбé могӀам",
 	"watchlisttools-raw": "Текст санна тайе",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|дийцар]])",
-	"signature-temp": "[[{{#special:Contributions}}/$1|$2]] ([[{{ns:user_talk}}:$1|обс.]])",
+	"signature-temp": "[[{{#special:Contributions}}/$1|$2]] ([[{{ns:user_talk}}:$1|дийц.]])",
 	"duplicate-defaultsort": "<strong>Тидам бе:</strong> Сортировкин догӀано сецначул тӀехьа «$2» йухабилгала доккху хьалхара сортировкин догӀа сацарца «$1».",
 	"duplicate-displaytitle": "<strong>Тидам бе:</strong> Схьагойту цӀаро «$2» йухабилгала йоккху хьалхалера цӀе «$1».",
 	"restricted-displaytitle": "<strong>Тидам бе:</strong> Гойту цӀе «$1» тергал ца йина, хӀунда аьлча агӀонан йолу цӀарца ца йогӀу.",
