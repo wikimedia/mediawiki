@@ -3945,6 +3945,7 @@
 	"logentry-non-editing-block-reblock": "$1 {{GENDER:$2|changed}} block settings for {{GENDER:$4|$3}} for specified non-editing actions with an expiration time of $5 $6",
 	"logentry-suppress-block": "$1 {{GENDER:$2|blocked}} {{GENDER:$4|$3}} with an expiration time of $5 $6",
 	"logentry-suppress-reblock": "$1 {{GENDER:$2|changed}} block settings for {{GENDER:$4|$3}} with an expiration time of $5 $6",
+	"logentry-suppress-block-multi": "$1 {{GENDER:$2|added}} a block for {{GENDER:$4|$3}} with an expiration time of $5 $6",
 	"logentry-import-upload": "$1 {{GENDER:$2|imported}} $3 by file upload",
 	"logentry-import-upload-details": "$1 {{GENDER:$2|imported}} $3 by file upload ($4 {{PLURAL:$4|revision|revisions}})",
 	"logentry-import-interwiki": "$1 {{GENDER:$2|imported}} $3 from another wiki",
