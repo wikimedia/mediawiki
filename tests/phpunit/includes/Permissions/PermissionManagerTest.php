@@ -23,6 +23,7 @@ use MediaWiki\Tests\Unit\MockBlockTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiLangTestCase;
 use stdClass;
@@ -57,6 +58,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$localOffset = date( 'Z' ) / 60;
 
 		$this->overrideConfigValues( [
+			MainConfigNames::BlockDisablesLogin => false,
 			MainConfigNames::Localtimezone => $localZone,
 			MainConfigNames::LocalTZoffset => $localOffset,
 			MainConfigNames::ImplicitRights => [
@@ -252,9 +254,15 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 				[
 					Title::makeTitle( NS_MAIN, "Bogus" ),
 					Title::makeTitle( NS_MAIN, "UnBogus" )
-				], [
+				],
+				[
 					"bogus" => [ 'bogus', "sysop", "protect", "" ],
-				]
+				],
+				[
+					Title::makeTitle( NS_MAIN, "Bogus" ),
+					Title::makeTitle( NS_MAIN, "UnBogus" )
+				],
+				[]
 			],
 		] ];
 
@@ -269,6 +277,51 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $permissionManager->userCan( 'edit', $this->user, $this->title ) );
 		$this->assertEquals(
 			[],
+			$permissionManager->getPermissionErrors( 'edit', $this->user, $this->title )
+		);
+	}
+
+	public function testCascadingSourcesRestrictionsForFile() {
+		$this->setTitle( NS_FILE, 'Test.jpg' );
+		$this->overrideUserPermissions( $this->user, [ 'edit', 'move', 'upload', 'movefile', 'createpage' ] );
+
+		$rs = $this->getServiceContainer()->getRestrictionStore();
+		$wrapper = TestingAccessWrapper::newFromObject( $rs );
+		$wrapper->cache = [ CacheKeyHelper::getKeyForPage( $this->title ) => [
+				'cascade_sources' => [
+					[
+						Title::makeTitle( NS_MAIN, 'FileTemplate' ),
+						Title::makeTitle( NS_MAIN, 'FileUser' )
+					],
+					[
+						'edit' => [ 'sysop' ],
+					],
+					[
+						Title::makeTitle( NS_MAIN, 'FileTemplate' )
+					],
+					[
+						Title::makeTitle( NS_MAIN, 'FileUser' )
+					]
+				],
+			] ];
+
+		$permissionManager = $this->getServiceContainer()->getPermissionManager();
+
+		$this->assertFalse( $permissionManager->userCan( 'upload', $this->user, $this->title ) );
+		$this->assertEquals( [
+			[ 'cascadeprotected', 2, "* [[:FileTemplate]]\n* [[:FileUser]]\n", 'upload' ] ],
+			$permissionManager->getPermissionErrors( 'upload', $this->user, $this->title )
+		);
+
+		$this->assertFalse( $permissionManager->userCan( 'move', $this->user, $this->title ) );
+		$this->assertEquals( [
+			[ 'cascadeprotected', 2, "* [[:FileTemplate]]\n* [[:FileUser]]\n", 'move' ] ],
+			$permissionManager->getPermissionErrors( 'move', $this->user, $this->title )
+		);
+
+		$this->assertFalse( $permissionManager->userCan( 'edit', $this->user, $this->title ) );
+		$this->assertEquals( [
+			[ 'cascadeprotected', 2, "* [[:FileTemplate]]\n* [[:FileUser]]\n", 'edit' ] ],
 			$permissionManager->getPermissionErrors( 'edit', $this->user, $this->title )
 		);
 	}
@@ -1527,5 +1580,73 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			$errorsStatus->getMessages(),
 			'getPermissionStatus() preserves ApiMessage objects'
 		);
+	}
+
+	public function testShouldLimitPermissionsForBlockedUserWhenBlockDisablesLogin(): void {
+		$this->overrideConfigValues( [
+			MainConfigNames::BlockDisablesLogin => true,
+			MainConfigNames::GroupPermissions => [
+				'*' => [ 'edit' => true ],
+				'user' => [ 'edit' => true, 'move' => true ],
+				'sysop' => [ 'block' => true ],
+			],
+		] );
+
+		$testUser = $this->getTestUser()->getUserIdentity();
+		$this->blockUser( $testUser );
+
+		$permissions = $this->getServiceContainer()->getPermissionManager()->getUserPermissions( $testUser );
+
+		$this->assertSame( [ 'edit' ], $permissions );
+	}
+
+	public function testShouldLimitPermissionsForBlockedUserShouldAllowPermissionChecksInGetUserBlock(): void {
+		$this->overrideConfigValues( [
+			MainConfigNames::BlockDisablesLogin => true,
+			MainConfigNames::GroupPermissions => [
+				'*' => [ 'edit' => true ],
+				'user' => [ 'edit' => true, 'move' => true ],
+				'sysop' => [ 'block' => true ],
+			],
+		] );
+
+		$testUser = $this->getTestUser()->getUserIdentity();
+		$hookRan = false;
+
+		$this->setTemporaryHook(
+			'GetUserBlock',
+			function ( UserIdentity $user ) use ( $testUser, &$hookRan ): void {
+				if ( $user->equals( $testUser ) ) {
+					// Trigger an arbitrary permissions check to verify that they do not cause an infinite loop
+					// when BlockDisablesLogin = true (T384197).
+					$this->getServiceContainer()->getPermissionManager()
+						->userHasRight( $user, 'test' );
+
+					$hookRan = true;
+				}
+			}
+		);
+
+		$testUser = $this->getTestUser()->getUserIdentity();
+		$this->blockUser( $testUser );
+
+		$permissions = $this->getServiceContainer()->getPermissionManager()->getUserPermissions( $testUser );
+
+		$this->assertSame( [ 'edit' ], $permissions );
+		$this->assertTrue( $hookRan );
+	}
+
+	/**
+	 * Convenience function to block a given user.
+	 * @param UserIdentity $user
+	 * @return void
+	 */
+	private function blockUser( UserIdentity $user ): void {
+		$status = $this->getServiceContainer()
+			->getBlockUserFactory()
+			->newBlockUser( $user, $this->getTestSysop()->getAuthority(), 'infinity' )
+			->placeBlock();
+
+		$this->assertStatusGood( $status );
 	}
 }

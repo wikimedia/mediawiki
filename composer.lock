@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e9f10de4cc4a7c3fcb9d0188d3ba8c4e",
+    "content-hash": "bef4234eae65aa0d5e2e731b4b26ce67",
     "packages": [
         {
             "name": "addshore/psr-6-mediawiki-bagostuff-adapter",
@@ -860,16 +860,16 @@
         },
         {
             "name": "guzzlehttp/promises",
-            "version": "2.0.4",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/promises.git",
-                "reference": "f9c436286ab2892c7db7be8c8da4ef61ccf7b455"
+                "reference": "7c69f28996b0a6920945dd20b3857e499d9ca96c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/promises/zipball/f9c436286ab2892c7db7be8c8da4ef61ccf7b455",
-                "reference": "f9c436286ab2892c7db7be8c8da4ef61ccf7b455",
+                "url": "https://api.github.com/repos/guzzle/promises/zipball/7c69f28996b0a6920945dd20b3857e499d9ca96c",
+                "reference": "7c69f28996b0a6920945dd20b3857e499d9ca96c",
                 "shasum": ""
             },
             "require": {
@@ -923,7 +923,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/promises/issues",
-                "source": "https://github.com/guzzle/promises/tree/2.0.4"
+                "source": "https://github.com/guzzle/promises/tree/2.2.0"
             },
             "funding": [
                 {
@@ -939,20 +939,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-10-17T10:06:22+00:00"
+            "time": "2025-03-27T13:27:01+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "2.7.0",
+            "version": "2.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "a70f5c95fb43bc83f07c9c948baa0dc1829bf201"
+                "reference": "c2270caaabe631b3b44c85f99e5a04bbb8060d16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/a70f5c95fb43bc83f07c9c948baa0dc1829bf201",
-                "reference": "a70f5c95fb43bc83f07c9c948baa0dc1829bf201",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/c2270caaabe631b3b44c85f99e5a04bbb8060d16",
+                "reference": "c2270caaabe631b3b44c85f99e5a04bbb8060d16",
                 "shasum": ""
             },
             "require": {
@@ -1039,7 +1039,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/2.7.0"
+                "source": "https://github.com/guzzle/psr7/tree/2.7.1"
             },
             "funding": [
                 {
@@ -1055,7 +1055,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-07-18T11:15:46+00:00"
+            "time": "2025-03-27T12:30:47+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -2024,16 +2024,16 @@
         },
         {
             "name": "pear/net_url2",
-            "version": "v2.2.2",
+            "version": "v2.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pear/Net_URL2.git",
-                "reference": "07fd055820dbf466ee3990abe96d0e40a8791f9d"
+                "reference": "c1f2b316ed9b05e881cdb494f7550ddf817c76c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pear/Net_URL2/zipball/07fd055820dbf466ee3990abe96d0e40a8791f9d",
-                "reference": "07fd055820dbf466ee3990abe96d0e40a8791f9d",
+                "url": "https://api.github.com/repos/pear/Net_URL2/zipball/c1f2b316ed9b05e881cdb494f7550ddf817c76c8",
+                "reference": "c1f2b316ed9b05e881cdb494f7550ddf817c76c8",
                 "shasum": ""
             },
             "require": {
@@ -2062,12 +2062,12 @@
             ],
             "authors": [
                 {
-                    "name": "David Coallier",
-                    "email": "davidc@php.net"
-                },
-                {
                     "name": "Tom Klingenberg",
                     "email": "tkli@php.net"
+                },
+                {
+                    "name": "David Coallier",
+                    "email": "davidc@php.net"
                 },
                 {
                     "name": "Christian Schmidt",
@@ -2088,7 +2088,7 @@
                 "issues": "https://pear.php.net/bugs/search.php?cmd=display&package_name[]=Net_URL2",
                 "source": "https://github.com/pear/Net_URL2"
             },
-            "time": "2017-08-25T06:16:11+00:00"
+            "time": "2025-03-24T08:03:00+00:00"
         },
         {
             "name": "pear/pear-core-minimal",
@@ -2851,16 +2851,16 @@
         },
         {
             "name": "respect/validation",
-            "version": "2.4.0",
+            "version": "2.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Respect/Validation.git",
-                "reference": "48b38bd91e0badbc2c4381dce726b09fd68850d9"
+                "reference": "d1575eb4dde7b06f8dbc5e8d84dffb87931a40bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Respect/Validation/zipball/48b38bd91e0badbc2c4381dce726b09fd68850d9",
-                "reference": "48b38bd91e0badbc2c4381dce726b09fd68850d9",
+                "url": "https://api.github.com/repos/Respect/Validation/zipball/d1575eb4dde7b06f8dbc5e8d84dffb87931a40bd",
+                "reference": "d1575eb4dde7b06f8dbc5e8d84dffb87931a40bd",
                 "shasum": ""
             },
             "require": {
@@ -2913,9 +2913,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Respect/Validation/issues",
-                "source": "https://github.com/Respect/Validation/tree/2.4.0"
+                "source": "https://github.com/Respect/Validation/tree/2.4.1"
             },
-            "time": "2025-01-07T00:34:58+00:00"
+            "time": "2025-01-11T00:06:34+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -4314,34 +4314,34 @@
         },
         {
             "name": "wikimedia/minify",
-            "version": "2.8.0",
+            "version": "2.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/mediawiki-libs-Minify.git",
-                "reference": "8492d24ef5b50fff35d6ff5fa67974237db2da0a"
+                "reference": "244bbb0c0acf0c1679078cc87cbc95c79ad9f33f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/mediawiki-libs-Minify/zipball/8492d24ef5b50fff35d6ff5fa67974237db2da0a",
-                "reference": "8492d24ef5b50fff35d6ff5fa67974237db2da0a",
+                "url": "https://api.github.com/repos/wikimedia/mediawiki-libs-Minify/zipball/244bbb0c0acf0c1679078cc87cbc95c79ad9f33f",
+                "reference": "244bbb0c0acf0c1679078cc87cbc95c79ad9f33f",
                 "shasum": ""
             },
             "require": {
                 "ext-fileinfo": "*",
                 "ext-json": "*",
                 "ext-mbstring": "*",
-                "pear/net_url2": "2.2.2",
+                "pear/net_url2": "~2.2.2",
                 "php": ">=7.4.3"
             },
             "require-dev": {
-                "mediawiki/mediawiki-codesniffer": "44.0.0",
-                "mediawiki/mediawiki-phan-config": "0.14.0",
+                "mediawiki/mediawiki-codesniffer": "46.0.0",
+                "mediawiki/mediawiki-phan-config": "0.15.1",
                 "mediawiki/minus-x": "1.1.3",
                 "ockcyp/covers-validator": "1.6.0",
                 "php-parallel-lint/php-console-highlighter": "1.0.0",
                 "php-parallel-lint/php-parallel-lint": "1.4.0",
-                "phpunit/phpunit": "9.6.16",
-                "wikimedia/testing-access-wrapper": "~2.0"
+                "phpunit/phpunit": "9.6.21",
+                "wikimedia/testing-access-wrapper": "~3.0.0"
             },
             "type": "library",
             "autoload": {
@@ -4377,9 +4377,9 @@
             "description": "Minification of JavaScript code and CSS stylesheets.",
             "homepage": "https://gerrit.wikimedia.org/g/mediawiki/libs/Minify",
             "support": {
-                "source": "https://github.com/wikimedia/mediawiki-libs-Minify/tree/2.8.0"
+                "source": "https://github.com/wikimedia/mediawiki-libs-Minify/tree/2.9.0"
             },
-            "time": "2024-08-20T20:54:08+00:00"
+            "time": "2025-03-26T17:40:22+00:00"
         },
         {
             "name": "wikimedia/normalized-exception",
@@ -4482,16 +4482,16 @@
         },
         {
             "name": "wikimedia/parsoid",
-            "version": "v0.20.1",
+            "version": "v0.20.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/mediawiki-services-parsoid.git",
-                "reference": "df13182980619123b586eabd609ccdbe485cb5cf"
+                "reference": "7b69b27dfa01f9180f4652e221ecd651e95c76ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/mediawiki-services-parsoid/zipball/df13182980619123b586eabd609ccdbe485cb5cf",
-                "reference": "df13182980619123b586eabd609ccdbe485cb5cf",
+                "url": "https://api.github.com/repos/wikimedia/mediawiki-services-parsoid/zipball/7b69b27dfa01f9180f4652e221ecd651e95c76ab",
+                "reference": "7b69b27dfa01f9180f4652e221ecd651e95c76ab",
                 "shasum": ""
             },
             "require": {
@@ -4520,7 +4520,7 @@
             },
             "require-dev": {
                 "ext-curl": "*",
-                "mediawiki/mediawiki-codesniffer": "44.0.0",
+                "mediawiki/mediawiki-codesniffer": "45.0.0",
                 "mediawiki/mediawiki-phan-config": "0.14.0",
                 "mediawiki/minus-x": "1.1.3",
                 "monolog/monolog": "^2.2.0",
@@ -4561,10 +4561,10 @@
             ],
             "support": {
                 "irc": "irc://irc.libera.chat/mediawiki-parsoid",
-                "source": "https://github.com/wikimedia/mediawiki-services-parsoid/tree/v0.20.1",
+                "source": "https://github.com/wikimedia/mediawiki-services-parsoid/tree/v0.20.2",
                 "wiki": "https://www.mediawiki.org/wiki/Parsoid"
             },
-            "time": "2024-10-30T13:04:03+00:00"
+            "time": "2025-03-06T02:32:43+00:00"
         },
         {
             "name": "wikimedia/php-session-serializer",
@@ -6104,26 +6104,29 @@
         },
         {
             "name": "doctrine/deprecations",
-            "version": "1.1.4",
+            "version": "1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/deprecations.git",
-                "reference": "31610dbb31faa98e6b5447b62340826f54fbc4e9"
+                "reference": "459c2f5dd3d6a4633d3b5f46ee2b1c40f57d3f38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/deprecations/zipball/31610dbb31faa98e6b5447b62340826f54fbc4e9",
-                "reference": "31610dbb31faa98e6b5447b62340826f54fbc4e9",
+                "url": "https://api.github.com/repos/doctrine/deprecations/zipball/459c2f5dd3d6a4633d3b5f46ee2b1c40f57d3f38",
+                "reference": "459c2f5dd3d6a4633d3b5f46ee2b1c40f57d3f38",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1 || ^8.0"
             },
+            "conflict": {
+                "phpunit/phpunit": "<=7.5 || >=13"
+            },
             "require-dev": {
-                "doctrine/coding-standard": "^9 || ^12",
-                "phpstan/phpstan": "1.4.10 || 2.0.3",
+                "doctrine/coding-standard": "^9 || ^12 || ^13",
+                "phpstan/phpstan": "1.4.10 || 2.1.11",
                 "phpstan/phpstan-phpunit": "^1.0 || ^2",
-                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.6 || ^10.5 || ^11.5 || ^12",
                 "psr/log": "^1 || ^2 || ^3"
             },
             "suggest": {
@@ -6143,9 +6146,9 @@
             "homepage": "https://www.doctrine-project.org/",
             "support": {
                 "issues": "https://github.com/doctrine/deprecations/issues",
-                "source": "https://github.com/doctrine/deprecations/tree/1.1.4"
+                "source": "https://github.com/doctrine/deprecations/tree/1.1.5"
             },
-            "time": "2024-12-07T21:18:45+00:00"
+            "time": "2025-04-07T20:06:18+00:00"
         },
         {
             "name": "doctrine/event-manager",
@@ -7585,16 +7588,16 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "5.6.1",
+            "version": "5.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "e5e784149a09bd69d9a5e3b01c5cbd2e2bd653d8"
+                "reference": "92dde6a5919e34835c506ac8c523ef095a95ed62"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/e5e784149a09bd69d9a5e3b01c5cbd2e2bd653d8",
-                "reference": "e5e784149a09bd69d9a5e3b01c5cbd2e2bd653d8",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/92dde6a5919e34835c506ac8c523ef095a95ed62",
+                "reference": "92dde6a5919e34835c506ac8c523ef095a95ed62",
                 "shasum": ""
             },
             "require": {
@@ -7643,9 +7646,9 @@
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
             "support": {
                 "issues": "https://github.com/phpDocumentor/ReflectionDocBlock/issues",
-                "source": "https://github.com/phpDocumentor/ReflectionDocBlock/tree/5.6.1"
+                "source": "https://github.com/phpDocumentor/ReflectionDocBlock/tree/5.6.2"
             },
-            "time": "2024-12-07T09:39:29+00:00"
+            "time": "2025-04-13T19:20:35+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -8176,16 +8179,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.12.7",
+            "version": "v0.12.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "d73fa3c74918ef4522bb8a3bf9cab39161c4b57c"
+                "reference": "85057ceedee50c49d4f6ecaff73ee96adb3b3625"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/d73fa3c74918ef4522bb8a3bf9cab39161c4b57c",
-                "reference": "d73fa3c74918ef4522bb8a3bf9cab39161c4b57c",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/85057ceedee50c49d4f6ecaff73ee96adb3b3625",
+                "reference": "85057ceedee50c49d4f6ecaff73ee96adb3b3625",
                 "shasum": ""
             },
             "require": {
@@ -8249,9 +8252,9 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
-                "source": "https://github.com/bobthecow/psysh/tree/v0.12.7"
+                "source": "https://github.com/bobthecow/psysh/tree/v0.12.8"
             },
-            "time": "2024-12-10T01:58:33+00:00"
+            "time": "2025-03-16T03:05:19+00:00"
         },
         {
             "name": "sabre/event",
@@ -9428,16 +9431,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v7.2.1",
+            "version": "v7.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "fefcc18c0f5d0efe3ab3152f15857298868dc2c3"
+                "reference": "e51498ea18570c062e7df29d05a7003585b19b88"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/fefcc18c0f5d0efe3ab3152f15857298868dc2c3",
-                "reference": "fefcc18c0f5d0efe3ab3152f15857298868dc2c3",
+                "url": "https://api.github.com/repos/symfony/console/zipball/e51498ea18570c062e7df29d05a7003585b19b88",
+                "reference": "e51498ea18570c062e7df29d05a7003585b19b88",
                 "shasum": ""
             },
             "require": {
@@ -9501,7 +9504,7 @@
                 "terminal"
             ],
             "support": {
-                "source": "https://github.com/symfony/console/tree/v7.2.1"
+                "source": "https://github.com/symfony/console/tree/v7.2.5"
             },
             "funding": [
                 {
@@ -9517,7 +9520,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-12-11T03:49:26+00:00"
+            "time": "2025-03-12T08:11:12+00:00"
         },
         {
             "name": "symfony/service-contracts",
@@ -10175,7 +10178,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
@@ -10199,5 +10202,5 @@
     "platform-overrides": {
         "php": "8.2.26"
     },
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }

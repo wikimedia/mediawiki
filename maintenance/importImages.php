@@ -168,7 +168,7 @@ class ImportImages extends Maintenance {
 		$files = $this->findFiles( $dir, $extensions, $this->hasOption( 'search-recursively' ) );
 		if ( !$files->valid() ) {
 			$this->output( "No suitable files could be found for import.\n" );
-			return;
+			return false;
 		}
 
 		# Initialise the user for this operation
@@ -428,6 +428,10 @@ class ImportImages extends Maintenance {
 				$this->output( ucfirst( $desc ) . ": $number\n" );
 			}
 		}
+
+		// Return true if there are no failed imports (= zero exit code), or
+		// return false if there are any failed imports (= non-zero exit code)
+		return $statistics['failed'] === 0;
 	}
 
 	/**

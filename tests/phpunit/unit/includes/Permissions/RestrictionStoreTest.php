@@ -30,6 +30,7 @@ use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\Rdbms\UnionQueryBuilder;
 
 /**
  * @covers \MediaWiki\Permissions\RestrictionStore
@@ -66,7 +67,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 		foreach ( $expectedCalls as $index => $calls ) {
 			$dbs[$index] = $this->createNoOpMock(
 				IDatabase::class,
-				array_merge( array_keys( $calls ), [ 'newSelectQueryBuilder', 'newDeleteQueryBuilder' ] )
+				array_merge( array_keys( $calls ), [ 'newSelectQueryBuilder', 'newDeleteQueryBuilder', 'newUnionQueryBuilder' ] )
 			);
 			foreach ( $calls as $method => $callback ) {
 				$count = 1;
@@ -80,6 +81,11 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 				->method( 'newSelectQueryBuilder' )
 				->willReturnCallback( static function () use ( $dbs, $index ) {
 					return new SelectQueryBuilder( $dbs[$index] );
+				} );
+			$dbs[$index]
+				->method( 'newUnionQueryBuilder' )
+				->willReturnCallback( static function () use ( $dbs, $index ) {
+					return new UnionQueryBuilder( $dbs[$index] );
 				} );
 			$dbs[$index]
 				->method( 'newDeleteQueryBuilder' )
@@ -964,14 +970,60 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 			static function () {
 				return new FakeResultWrapper( [
 					(object)[ 'pr_page' => 1, 'page_namespace' => NS_MAIN, 'page_title' => 'test',
-						'pr_expiry' => 'infinity', 'pr_type' => 'edit', 'pr_level' => 'Sysop' ]
+						'pr_expiry' => 'infinity', 'pr_type' => 'edit', 'pr_level' => 'Sysop',
+						'type' => 'tl' ]
 				] );
-			}
+			},
+			'addQuotes' => [
+				static function () {
+					return 'noop';
+				},
+				2
+			]
 		] ] ] );
 
 		$page = PageIdentityValue::localIdentity( 1, NS_MAIN, 'X' );
-		[ $sources, $restrictions ] = $obj->getCascadeProtectionSources( $page );
+		[ $sources, $restrictions, $tlSources, $ilSources ] = $obj->getCascadeProtectionSources( $page );
 		$this->assertCount( 1, $sources );
+		$this->assertArrayHasKey( 'edit', $restrictions );
+		$this->assertCount( 0, $ilSources );
+		$this->assertCount( 1, $tlSources );
+	}
+
+	public function testGetCascadeProtectionSourcesFile() {
+		$obj = $this->newRestrictionStore( [ 'db' => [ DB_REPLICA => [
+			'addQuotes' => [
+				static function () {
+					return 'noop';
+				},
+				2
+			],
+			'selectSQLText' => [
+				static function () {
+					return 'noop';
+				},
+				2
+			],
+			'unionQueries' => static function () {
+				return 'noop';
+			},
+			'query' => static function () {
+				return new FakeResultWrapper( [
+					(object)[ 'pr_page' => 1, 'page_namespace' => NS_MAIN, 'page_title' => 'test1',
+						'pr_expiry' => 'infinity', 'pr_type' => 'edit', 'pr_level' => 'Sysop',
+						'type' => 'il' ],
+					(object)[ 'pr_page' => 2, 'page_namespace' => NS_MAIN, 'page_title' => 'test2',
+						'pr_expiry' => 'infinity', 'pr_type' => 'edit', 'pr_level' => 'Sysop',
+						'type' => 'tl' ]
+				] );
+			},
+		] ] ] );
+
+		$page = PageIdentityValue::localIdentity( 1, NS_FILE, 'Image.jpg' );
+		[ $sources, $restrictions, $tlSources, $ilSources ] = $obj->getCascadeProtectionSources( $page );
+		$this->assertCount( 2, $sources );
+		$this->assertCount( 1, $ilSources );
+		$this->assertCount( 1, $tlSources );
 		$this->assertArrayHasKey( 'edit', $restrictions );
 	}
 
@@ -984,9 +1036,10 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 		] ] ] ] );
 
 		$page = $this->makeMockTitle( 'Whatlinkshere', [ 'namespace' => NS_SPECIAL ] );
-		[ $sources, $restrictions ] = $obj->getCascadeProtectionSources( $page );
+		[ $sources, $restrictions, $ilSources ] = $obj->getCascadeProtectionSources( $page );
 		$this->assertCount( 0, $sources );
 		$this->assertCount( 0, $restrictions );
+		$this->assertCount( 0, $ilSources );
 	}
 
 	public function testShouldNotFetchProtectionSettingsIfActionCannotBeRestricted(): void {

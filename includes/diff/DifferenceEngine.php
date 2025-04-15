@@ -319,6 +319,10 @@ class DifferenceEngine extends ContextSource {
 					// Do not produce a diff of identical content
 					continue;
 				}
+				if ( !$contents['new'] && !$contents['old'] ) {
+					// Nothing to diff (i.e both revisions are corrupted), just ignore
+					continue;
+				}
 				$handler = ( $contents['new'] ?: $contents['old'] )->getContentHandler();
 				$this->slotDiffRenderers[$role] = $handler->getSlotDiffRenderer(
 					$this->getContext(),

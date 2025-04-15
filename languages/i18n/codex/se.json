@@ -4,7 +4,19 @@
 			"Yupik"
 		]
 	},
+	"cdx-dialog-close-button-label": "Gidde",
 	"cdx-label-optional-flag": "(eaktodáhtolaš)",
+	"cdx-message-dismiss-button-label": "Gidde",
 	"cdx-search-input-search-button-label": "Oza",
-	"cdx-table-pagination-status-message-determinate-short": "$1–$2 / $3"
+	"cdx-table-select-all-label": "Vállje buot gurgadasaid",
+	"cdx-table-select-row-label": "Vállje gurgadasa $1 / $2",
+	"cdx-typeahead-search-search-results-label": "Ohcanbohtosat",
+	"cdx-table-pager-button-first-page": "Vuosttas siidu",
+	"cdx-table-pager-button-last-page": "Maŋemus siidu",
+	"cdx-table-pager-button-next-page": "Čuovvovaš siidu",
+	"cdx-table-pager-button-prev-page": "Ovddit siidu",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 gurgadas|$1 gurgadasa}}",
+	"cdx-table-pager-items-per-page-default": "Bohtosat siiddus",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 / $3",
+	"cdx-table-pagination-status-message-pending": "Viežžamin bohtosiid..."
 }

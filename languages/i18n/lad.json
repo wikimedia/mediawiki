@@ -180,7 +180,7 @@
 	"badaccess-groups": "El aksyon ke a demandado esta limitado a los usuarios ke estan en {{PLURAL:$2|el grupo|uno de los grupos}}: $1",
 	"versionrequired": "Se nesesite la versyon $1 de MediaWiki",
 	"versionrequiredtext": "Se nesesita versyon $1 de MediaWiki para uzar este pajina. Ver [[Special:Version|La pajina de versyon]].",
-	"ok": "D'akodro",
+	"ok": "Dakordo",
 	"retrievedfrom": "Acojido del aderesso \"$1\"",
 	"new-messages": "{{PLURAL:$3|Tienes}} $1 ($2).",
 	"new-messages-from-users": "{{PLURAL:$4|Tiene}} $1 de {{PLURAL:$3|otro usuario|$3 usuarios}}($2).",

@@ -112,7 +112,7 @@
 	"config-missing-db-host": "Ret eo deoc'h merkañ un dalvoudenn evit \"{{int:config-db-host}}\"",
 	"config-invalid-db-name": "Direizh eo anv an diaz titouroù \"$1\".\nOber hepken gant lizherennoù ASCII (a-z, A-Z), sifroù (0-9), arouezennoù islinennañ (_) ha tiredoù (-).",
 	"config-invalid-db-prefix": "Direizh eo rakger an diaz titouroù \"$1\".\nOber hepken gant lizherennoù ASCII (a-z, A-Z), sifroù (0-9), arouezennoù islinennañ (_) ha tiredoù (-).",
-	"config-connection-error": "$1.\n\nGwiriit anv an ostiz, an anv implijer, ar ger-tremen ha klaskit en-dro.",
+	"config-connection-error": "$1.\n\nGwiriit anv an ostiz, an anv implijer, ar ger-tremen ha klaskit en-dro. Ma implijit \"localhost\" evel ostiz diaz roadennoù, klaskit implijout \"127.0.0.1\" kentoc’h (pe ar c'hontrol).",
 	"config-invalid-schema": "Chema direizh evit MediaWiki \"$1\".\nGrit hepken gant lizherennoù ASCII (a-z, A-Z), sifroù (0-9) hag arouezennoù islinennañ (_).",
 	"config-postgres-old": "Rekis eo PostgreSQL $1 pe ur stumm nevesoc'h; ober a rit gant $2.",
 	"config-sqlite-name-help": "Dibabit un anv dibar d'ho wiki.\nArabat ober gant esaouennoù pe barrennigoù-stagañ.\nImplijet e vo evit ar restr roadennoù SQLite.",
@@ -162,8 +162,8 @@
 	"config-admin-error-user": "Fazi diabarzh en ur grouiñ ur merer gant an anv \"<nowiki>$1</nowiki>\".",
 	"config-admin-error-password": "Fazi diabarzh o lakaat ur ger-tremen evit ar merour « <nowiki>$1</nowiki> » : <pre>$2</pre>",
 	"config-admin-error-bademail": "Ebarzhet hoc'h eus ur chomlec'h postel direizh.",
-	"config-subscribe": "Koumanantit d'ar [https://lists.wikimedia.org/mailman/listinfo/mediawiki-roll kemennoù evit ar stummoù nevez].",
-	"config-pingback": "Rannañ roadennoù diwar-benn ar staliadur-mañ gant diorroerien MediaWiki.",
+	"config-subscribe": "Koumanantit d'ar [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ kemennoù evit ar stummoù nevez].",
+	"config-pingback": "Rannañ roadennoù diwar-benn ar staliadur-mañ gant diorroerien MediaWiki. [https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement Politikerezh prevezded].",
 	"config-almost-done": "Kazi echu eo !\nGellout a rit tremen ar c'hefluniadur nevez ha staliañ ar wiki war-eeun.",
 	"config-optional-continue": "Sevel muioc'h a goulennoù ouzhin.",
 	"config-optional-skip": "Aet on skuizh, staliañ ar wiki hepken.",
@@ -253,5 +253,5 @@
 	"config-help-tooltip": "klikañ evit astenn",
 	"config-nofile": "N'eus ket bet gallet kavout ar restr \"$1\". Daoust ha dilamet eo bet ?",
 	"mainpagetext": "<strong>Staliet eo bet MediaWiki.</strong>",
-	"mainpagedocfooter": "Sellit ouzh [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Sturlevr an implijerien] evit gouzout hiroc'h war an doare da implijout ar meziant wiki.\n\n== Kregiñ ganti ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Roll an arventennoù kefluniañ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ FAG MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Roll ar c'haozeadennoù diwar-benn dasparzhoù MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lec'hiañ MediaWiki en ho yezh"
+	"mainpagedocfooter": "Sellit ouzh [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Sturlevr an implijerien] evit gouzout hiroc'h war an doare da implijout ar meziant wiki.\n\n== Kregiñ ganti ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Roll an arventennoù kefluniañ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ FAG MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Roll ar c'haozeadennoù diwar-benn dasparzhoù MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Treiñ MediaWiki en ho yezh]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Deskit penaos stourm a-enep ar strob en ho wiki]"
 }

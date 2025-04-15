@@ -98,7 +98,8 @@
 			"Чорний Кіт",
 			"아라",
 			"Mike.Khoroshun",
-			"Hypers"
+			"Hypers",
+			"METROKOP228 UA"
 		]
 	},
 	"sunday": "неділя",
@@ -3640,7 +3641,7 @@
 	"protectpage": "Захист сторінки",
 	"specialprotectpage-page": "Цільова сторінка",
 	"specialprotectpage-submit": "Перейти до сторінки",
-	"purge": "Очистити",
+	"purge": "Очистити кеш сторінки",
 	"specialpurge-page": "Цільова сторінка",
 	"specialpurge-submit": "Перейти на сторінку",
 	"namespaceinfo": "Інформація про простір назв",
