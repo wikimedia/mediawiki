@@ -244,6 +244,7 @@ module.exports = exports = defineComponent( {
 					} else {
 						// If the block ID is invalid, show an error message.
 						formErrors.value = [ mw.msg( 'block-invalid-id' ) ];
+						store.blockId = null;
 					}
 				} );
 			}

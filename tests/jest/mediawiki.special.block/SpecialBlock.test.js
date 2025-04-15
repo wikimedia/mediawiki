@@ -333,6 +333,20 @@ describe( 'SpecialBlock', () => {
 		expect( wrapper.find( '.mw-block__create-button' ).exists() ).toBeFalsy();
 	} );
 
+	it( 'should show an error when given an invalid block ID', async () => {
+		wrapper = getSpecialBlock( { blockId: 12345 }, [ {
+			params: {
+				list: 'blocks',
+				bkids: 12345
+			},
+			response: { blocks: [] }
+		} ] );
+		const store = useBlockStore();
+		await flushPromises();
+		expect( wrapper.find( '.cdx-message--error' ).text() ).toBe( 'block-invalid-id' );
+		expect( store.blockId ).toBeNull();
+	} );
+
 	it( 'should show no block logs and no "Add block" button when the target is changed from a valid to an invalid target', async () => {
 		wrapper = withSubmission(
 			{ blockTargetUser: 'ActiveBlockedUser', blockTargetExists: true },
