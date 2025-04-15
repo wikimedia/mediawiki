@@ -68,6 +68,7 @@ interface ILoadBalancerForOwner extends ILoadBalancer {
 	 *     managing the dataset, regardless of 'servers' excluding replicas and
 	 *     multi-masters from remote datacenter [optional]
 	 *  - criticalSectionProvider: CriticalSectionProvider instance [optional]
+	 *  - statsFactory: StatsFactory instance [optional]
 	 */
 	public function __construct( array $params );
 

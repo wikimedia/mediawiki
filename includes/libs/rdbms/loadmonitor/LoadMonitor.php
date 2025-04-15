@@ -19,16 +19,14 @@
  */
 namespace Wikimedia\Rdbms;
 
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use Psr\Log\LoggerInterface;
-use Psr\Log\NullLogger;
 use RuntimeException;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\IStoreKeyEncoder;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\ScopedCallback;
-use Wikimedia\Stats\NullStatsdDataFactory;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * Basic DB load monitor with no external dependencies
@@ -47,8 +45,8 @@ class LoadMonitor implements ILoadMonitor {
 	protected $wanCache;
 	/** @var LoggerInterface */
 	protected $logger;
-	/** @var StatsdDataFactoryInterface */
-	protected $statsd;
+	/** @var StatsFactory */
+	protected $statsFactory;
 	/** @var int|float */
 	private $maxConnCount;
 	private int $totalConnectionsAdjustment;
@@ -70,12 +68,19 @@ class LoadMonitor implements ILoadMonitor {
 	/**
 	 * @inheritDoc
 	 */
-	public function __construct( ILoadBalancer $lb, BagOStuff $srvCache, WANObjectCache $wCache, $options ) {
+	public function __construct(
+		ILoadBalancer $lb,
+		BagOStuff $srvCache,
+		WANObjectCache $wCache,
+		LoggerInterface $logger,
+		StatsFactory $statsFactory,
+		$options
+	) {
 		$this->lb = $lb;
 		$this->srvCache = $srvCache;
 		$this->wanCache = $wCache;
-		$this->logger = new NullLogger();
-		$this->statsd = new NullStatsdDataFactory();
+		$this->logger = $logger;
+		$this->statsFactory = $statsFactory;
 		if ( isset( $options['maxConnCount'] ) ) {
 			$this->maxConnCount = (int)( $options['maxConnCount'] );
 		} else {
@@ -87,10 +92,6 @@ class LoadMonitor implements ILoadMonitor {
 
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
-	}
-
-	public function setStatsdDataFactory( StatsdDataFactoryInterface $statsFactory ) {
-		$this->statsd = $statsFactory;
 	}
 
 	public function scaleLoads( array &$weightByServer ) {
@@ -219,7 +220,6 @@ class LoadMonitor implements ILoadMonitor {
 	 * @throws DBAccessError
 	 */
 	protected function computeServerState( int $i, ?array $previousState ) {
-		$startTime = $this->getCurrentTime();
 		// Double check for circular recursion in computeServerStates()/getWeightScale().
 		// Mainly, connection attempts should use LoadBalancer::getServerConnection()
 		// rather than something that will pick a server based on the server states.
@@ -271,7 +271,12 @@ class LoadMonitor implements ILoadMonitor {
 				[ 'db_server' => $serverName ]
 			);
 		} else {
-			$this->statsd->timing( "loadbalancer.connCount.$cluster.$statServerName", $connCount );
+			$this->statsFactory->getGauge( 'rdbms_open_connection_total' )
+				->setLabel( 'db_cluster', $cluster )
+				->setLabel( 'db_server', $serverName )
+				->copyToStatsdAt( "loadbalancer.connCount.$cluster.$statServerName" )
+				->set( (int)$connCount );
+
 			if ( $connCount > $this->maxConnCount ) {
 				$this->logger->warning(
 					"Server {db_server} has {conn_count} open connections (>= {max_conn})",

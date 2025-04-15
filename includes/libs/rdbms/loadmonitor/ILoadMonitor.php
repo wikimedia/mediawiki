@@ -19,10 +19,10 @@
  */
 namespace Wikimedia\Rdbms;
 
-use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
-use Wikimedia\Stats\StatsdAwareInterface;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * Database load monitoring interface
@@ -30,7 +30,7 @@ use Wikimedia\Stats\StatsdAwareInterface;
  * @internal This class should not be called outside of LoadBalancer
  * @ingroup Database
  */
-interface ILoadMonitor extends LoggerAwareInterface, StatsdAwareInterface {
+interface ILoadMonitor {
 	public const STATE_UP = 'up';
 	public const STATE_CONN_COUNT = 'conn_count';
 	public const STATE_AS_OF = 'time';
@@ -41,10 +41,20 @@ interface ILoadMonitor extends LoggerAwareInterface, StatsdAwareInterface {
 	 * @param ILoadBalancer $lb LoadBalancer this instance serves
 	 * @param BagOStuff $sCache Local server memory cache
 	 * @param WANObjectCache $wCache Local cluster memory cache
+	 * @param LoggerInterface $logger PSR-3 logger instance
+	 * @param StatsFactory $statsFactory StatsFactory instance
 	 * @param array $options Additional parameters include:
-	 *   - maxConnCount: maximum number of connections before circuit breaking to kick in [default: infinity]
+	 *   - maxConnCount: maximum number of connections before circuit breaking applies
+	 *      [default: infinity]
 	 */
-	public function __construct( ILoadBalancer $lb, BagOStuff $sCache, WANObjectCache $wCache, $options );
+	public function __construct(
+		ILoadBalancer $lb,
+		BagOStuff $sCache,
+		WANObjectCache $wCache,
+		LoggerInterface $logger,
+		StatsFactory $statsFactory,
+		$options
+	);
 
 	/**
 	 * Perform load ratio adjustment before deciding which server to use

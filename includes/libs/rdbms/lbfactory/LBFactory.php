@@ -21,7 +21,6 @@ namespace Wikimedia\Rdbms;
 
 use Exception;
 use Generator;
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RuntimeException;
@@ -31,7 +30,7 @@ use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\ScopedCallback;
-use Wikimedia\Stats\NullStatsdDataFactory;
+use Wikimedia\Stats\StatsFactory;
 use Wikimedia\Telemetry\NoopTracer;
 use Wikimedia\Telemetry\TracerInterface;
 
@@ -51,8 +50,8 @@ abstract class LBFactory implements ILBFactory {
 	private $trxProfiler;
 	/** @var TracerInterface */
 	private $tracer;
-	/** @var StatsdDataFactoryInterface */
-	private $statsd;
+	/** @var StatsFactory */
+	private $statsFactory;
 	/** @var LoggerInterface */
 	private $logger;
 	/** @var callable Error logger */
@@ -146,7 +145,7 @@ abstract class LBFactory implements ILBFactory {
 
 		$this->profiler = $conf['profiler'] ?? null;
 		$this->trxProfiler = $conf['trxProfiler'] ?? new TransactionProfiler();
-		$this->statsd = $conf['statsdDataFactory'] ?? new NullStatsdDataFactory();
+		$this->statsFactory = $conf['statsFactory'] ?? StatsFactory::newNull();
 		$this->tracer = $conf['tracer'] ?? new NoopTracer();
 
 		$this->csProvider = $conf['criticalSectionProvider'] ?? null;
@@ -695,7 +694,7 @@ abstract class LBFactory implements ILBFactory {
 			'logger' => $this->logger,
 			'errorLogger' => $this->errorLogger,
 			'deprecationLogger' => $this->deprecationLogger,
-			'statsdDataFactory' => $this->statsd,
+			'statsFactory' => $this->statsFactory,
 			'cliMode' => $this->cliMode,
 			'agent' => $this->agent,
 			'defaultGroup' => $this->defaultGroup,

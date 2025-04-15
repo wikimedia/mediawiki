@@ -21,7 +21,6 @@
  * @ingroup Database
  */
 
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\Exception\MWExceptionHandler;
@@ -35,6 +34,7 @@ use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
+use Wikimedia\Stats\StatsFactory;
 use Wikimedia\Telemetry\TracerInterface;
 
 /**
@@ -85,7 +85,7 @@ class MWLBFactory {
 	private BagOStuff $srvCache;
 	private WANObjectCache $wanCache;
 	private CriticalSectionProvider $csProvider;
-	private StatsdDataFactoryInterface $statsdDataFactory;
+	private StatsFactory $statsFactory;
 	private TracerInterface $tracer;
 	/** @var string[] */
 	private array $virtualDomains;
@@ -97,7 +97,7 @@ class MWLBFactory {
 	 * @param BagOStuff $srvCache
 	 * @param WANObjectCache $wanCache
 	 * @param CriticalSectionProvider $csProvider
-	 * @param StatsdDataFactoryInterface $statsdDataFactory
+	 * @param StatsFactory $statsFactory
 	 * @param string[] $virtualDomains
 	 * @param TracerInterface $tracer
 	 */
@@ -108,7 +108,7 @@ class MWLBFactory {
 		BagOStuff $srvCache,
 		WANObjectCache $wanCache,
 		CriticalSectionProvider $csProvider,
-		StatsdDataFactoryInterface $statsdDataFactory,
+		StatsFactory $statsFactory,
 		array $virtualDomains,
 		TracerInterface $tracer
 	) {
@@ -118,7 +118,7 @@ class MWLBFactory {
 		$this->srvCache = $srvCache;
 		$this->wanCache = $wanCache;
 		$this->csProvider = $csProvider;
-		$this->statsdDataFactory = $statsdDataFactory;
+		$this->statsFactory = $statsFactory;
 		$this->virtualDomains = $virtualDomains;
 		$this->tracer = $tracer;
 	}
@@ -151,7 +151,7 @@ class MWLBFactory {
 			'logger' => LoggerFactory::getInstance( 'rdbms' ),
 			'errorLogger' => [ MWExceptionHandler::class, 'logException' ],
 			'deprecationLogger' => [ static::class, 'logDeprecation' ],
-			'statsdDataFactory' => $this->statsdDataFactory,
+			'statsFactory' => $this->statsFactory,
 			'cliMode' => MW_ENTRY_POINT === 'cli',
 			'readOnlyReason' => $this->readOnlyMode->getReason(),
 			'defaultGroup' => $this->options->get( MainConfigNames::DBDefaultGroup ),
