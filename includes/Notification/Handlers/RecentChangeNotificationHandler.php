@@ -38,21 +38,17 @@ class RecentChangeNotificationHandler implements NotificationHandler {
 		if ( !$notification instanceof RecentChangeNotification ) {
 			return;
 		}
-		$properties = $notification->getProperties();
 		$sourceMap = [
 			RecentChangeNotification::ADMIN_NOTIFICATION => RecentChangeMailComposer::ALL_CHANGES,
 			RecentChangeNotification::TALK_NOTIFICATION => RecentChangeMailComposer::USER_TALK,
 		];
-		$source = $sourceMap[ $properties['source'] ] ?? RecentChangeMailComposer::ALL_CHANGES;
+		$source = $sourceMap[ $notification->getSource() ] ?? RecentChangeMailComposer::ALL_CHANGES;
 
 		$composer = new RecentChangeMailComposer(
 			$this->userFactory->newFromUserIdentity( $notification->getAgent() ),
 			$this->titleFactory->newFromPageIdentity( $notification->getTitle() ),
-			$properties['summary'],
-			$properties['minorEdit'],
-			$properties['oldid'],
-			$properties['timestamp'],
-			$properties['pageStatus']
+			$notification->getRecentChange(),
+			$notification->getPageStatus(),
 		);
 		foreach ( $recipients as $recipient ) {
 			$user = $this->userFactory->newFromUserIdentity( $recipient );

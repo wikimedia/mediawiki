@@ -22,6 +22,7 @@ namespace MediaWiki\Watchlist;
 
 use MediaWiki\Notification\Types\WikiNotification;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\User\UserIdentity;
 
 /**
@@ -38,38 +39,50 @@ class RecentChangeNotification extends WikiNotification {
 	public const TALK_NOTIFICATION = 'talk';
 	public const ADMIN_NOTIFICATION = 'admin';
 
+	private RecentChange $recentChange;
+	private string $pageStatus;
+	private string $source;
+
 	/**
-	 * @todo Pass the RecentChange object
-	 *
 	 * @param UserIdentity $editor
 	 * @param PageIdentity $title
-	 * @param string $summary
-	 * @param bool $minorEdit
-	 * @param int|null $oldid
-	 * @param string $timestamp
-	 * @param string $pageStatus
+	 * @param RecentChange $recentChange
+	 * @param string $pageStatus the Page status from RecentChange, this change is not persisted
 	 * @param string $source one of types talk, admin or watchlist
 	 */
 	public function __construct(
 		UserIdentity $editor,
 		PageIdentity $title,
-		string $summary,
-		bool $minorEdit,
-		$oldid,
-		$timestamp,
+		RecentChange $recentChange,
 		string $pageStatus,
 		string $source
 	) {
-		parent::__construct(
-			self::TYPE, $title, $editor, [
-				'summary' => $summary,
-				'minorEdit' => $minorEdit,
-				'oldid' => $oldid,
-				'timestamp' => $timestamp,
-				'pageStatus' => $pageStatus,
-				'source' => $source
-			]
-		);
+		parent::__construct( self::TYPE, $title, $editor );
+		$this->source = $source;
+		$this->pageStatus  = $pageStatus;
+		$this->recentChange = $recentChange;
+	}
+
+	public function getRecentChange(): RecentChange {
+		return $this->recentChange;
+	}
+
+	/**
+	 * Retrieve page state, list provided by MediaWiki is
+	 * [ 'deleted', 'created', 'moved', 'restored', 'changed' ]
+	 * but additionally extensions can add their own states.
+	 */
+	public function getPageStatus(): string {
+		return $this->pageStatus;
+	}
+
+	/**
+	 * What is the notification source, is it a User Talk change, Watchlist notification or
+	 * an admin notification ( Users loaded from UsersNotifiedOnAllChanges )
+	 * @return string
+	 */
+	public function getSource(): string {
+		return $this->source;
 	}
 
 }
