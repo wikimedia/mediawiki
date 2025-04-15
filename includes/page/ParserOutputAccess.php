@@ -211,13 +211,12 @@ class ParserOutputAccess {
 	}
 
 	/**
-	 * Returns the rendered output for the given page if it is present in the cache.
+	 * Get the rendered output for the given page if it is present in the cache.
 	 *
 	 * @param PageRecord $page
 	 * @param ParserOptions $parserOptions
 	 * @param RevisionRecord|null $revision
 	 * @param int $options Bitfield using the OPT_XXX constants
-	 *
 	 * @return ParserOutput|null
 	 */
 	public function getCachedParserOutput(
@@ -244,7 +243,8 @@ class ParserOutputAccess {
 			$output = null;
 		}
 
-		$notHitReason = 'miss';
+		$statType = $statReason = $output ? 'hit' : 'miss';
+
 		if (
 			$output && !( $options & self::OPT_IGNORE_PROFILE_VERSION ) &&
 			$parserOptions->getUseParsoid()
@@ -258,7 +258,8 @@ class ParserOutputAccess {
 				$cachedVersion !== null && // T325137: BadContentModel, no sense in reparsing
 				$cachedVersion !== Parsoid::defaultHTMLVersion()
 			) {
-				$notHitReason = 'obsolete';
+				$statType = 'miss';
+				$statReason = 'obsolete';
 				$output = null;
 			}
 		}
@@ -267,23 +268,13 @@ class ParserOutputAccess {
 			$this->localCache->setField( $classCacheKey, $page->getLatest(), $output );
 		}
 
-		if ( $output ) {
-			$this->statsFactory
-				->getCounter( 'parseroutputaccess_cache' )
-				->setLabel( 'cache', $useCache )
-				->setLabel( 'reason', 'hit' )
-				->setLabel( 'type', 'hit' )
-				->copyToStatsdAt( "ParserOutputAccess.Cache.$useCache.hit" )
-				->increment();
-		} else {
-			$this->statsFactory
-				->getCounter( 'parseroutputaccess_cache' )
-				->setLabel( 'reason', $notHitReason )
-				->setLabel( 'cache', $useCache )
-				->setLabel( 'type', 'miss' )
-				->copyToStatsdAt( "ParserOutputAccess.Cache.$useCache.$notHitReason" )
-				->increment();
-		}
+		$this->statsFactory
+			->getCounter( 'parseroutputaccess_cache_total' )
+			->setLabel( 'cache', $useCache )
+			->setLabel( 'reason', $statReason )
+			->setLabel( 'type', $statType )
+			->copyToStatsdAt( "ParserOutputAccess.Cache.$useCache.$statReason" )
+			->increment();
 
 		return $output ?: null; // convert false to null
 	}
