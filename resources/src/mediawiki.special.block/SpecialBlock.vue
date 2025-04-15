@@ -420,6 +420,9 @@ module.exports = exports = defineComponent( {
 					formVisible.value = false;
 					// Reset the form so no block data leaks into the next block (T384822).
 					store.resetForm( false, false );
+					// Fire clientside hook for scripts that want to do stuff post-blocking.
+					// This is documented in init.js since JSDoc doesn't parse Vue files (T360456).
+					mw.hook( 'SpecialBlock.block' ).fire( result.block );
 				} )
 				.fail( ( _, errorObj ) => {
 					formErrors.value = errorObj.errors.map( ( e ) => e.html );
@@ -439,8 +442,11 @@ module.exports = exports = defineComponent( {
 			}
 		} );
 
-		// Submit the form if form is visible and 'Enter' is pressed
 		watch( formVisible, ( newValue ) => {
+			// Notify scripts that the form visibility changed. Documented in init.js.
+			mw.hook( 'SpecialBlock.form' ).fire( newValue, store.targetUser, store.blockId );
+
+			// Submit the form if form is visible and 'Enter' is pressed
 			if ( newValue ) {
 				nextTick( () => {
 					const blockForm = document.querySelector( '.mw-block__block-form' );
