@@ -5,7 +5,7 @@
 		</template>
 		<template #help-text>
 			{{ $i18n( 'block-reason-help' ).text() }}
-			<div class="mw-block-reason-edit">
+			<div v-if="canEditInterface" class="mw-block-reason-edit">
 				<a :href="reasonEditUrl">
 					{{ $i18n( 'ipb-edit-dropdown' ) }}
 				</a>
@@ -50,6 +50,7 @@ module.exports = exports = defineComponent( {
 
 		const reasonOptions = mw.config.get( 'blockReasonOptions' );
 		const reasonEditUrl = mw.util.getUrl( 'MediaWiki:Ipbreason-dropdown', { action: 'edit' } );
+		const canEditInterface = mw.config.get( 'blockCanEditInterface' ) || false;
 
 		/**
 		 * Set `selected` and `other` values from a concatenated reason string.
@@ -112,6 +113,7 @@ module.exports = exports = defineComponent( {
 		);
 
 		return {
+			canEditInterface,
 			reasonOptions,
 			reasonMaxLength: mw.config.get( 'blockReasonMaxLength' ),
 			selected,

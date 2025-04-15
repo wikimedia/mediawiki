@@ -67,6 +67,7 @@ function mockMwConfigGet( config = {} ) {
 		blockAllowsEmailBan: true,
 		blockAllowsUTEdit: true,
 		blockAutoblockExpiry: '1 day',
+		blockCanEditInterface: false,
 		blockDetailsPreset: [ 'wpCreateAccount' ],
 		blockExpiryDefault: '',
 		blockExpiryPreset: null,
