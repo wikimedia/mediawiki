@@ -380,6 +380,28 @@ class LocalFileMoveBatch {
 			MainConfigNames::FileSchemaMigrationStage
 		);
 		if ( ( $migrationStage & SCHEMA_COMPAT_WRITE_NEW ) && $this->file->getFileIdFromName() ) {
+			$deleted = $dbw->newSelectQueryBuilder()
+				->select( 'file_id' )
+				->from( 'file' )
+				->where( [ 'file_name' => $this->newName ] )
+				->andWhere( [ 'file_deleted' => 1 ] )
+				->caller( __METHOD__ )->fetchField();
+			if ( $deleted ) {
+				// Overwriting an existing file that was deleted.
+				// Once the file deletion storage refactor starts,
+				// this should change to update deleted revisions too.
+				$dbw->newDeleteQueryBuilder()
+					->deleteFrom( 'file' )
+					->where( [ 'file_name' => $this->newName ] )
+					->andWhere( [ 'file_deleted' => 1 ] )
+					->caller( __METHOD__ )->execute();
+				// Paranoia
+				$dbw->newUpdateQueryBuilder()
+					->update( 'filerevision' )
+					->set( [ 'fr_file' => $this->file->getFileIdFromName() ] )
+					->where( [ 'fr_file' => $deleted ] )
+					->caller( __METHOD__ )->execute();
+			}
 			$dbw->newUpdateQueryBuilder()
 				->update( 'file' )
 				->set( [ 'file_name' => $this->newName ] )
