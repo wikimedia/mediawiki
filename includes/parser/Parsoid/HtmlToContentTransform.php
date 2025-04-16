@@ -8,6 +8,7 @@ use MediaWiki\Content\Content;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -247,11 +248,10 @@ class HtmlToContentTransform {
 			}
 
 			try {
-				$this->pageConfig = $this->pageConfigFactory->create(
+				$this->pageConfig = $this->pageConfigFactory->createFromParserOptions(
+					ParserOptions::newFromAnon(),
 					$this->page,
-					null,
 					$revision,
-					null,
 					$this->contentLanguage
 				);
 			} catch ( RevisionAccessException $exception ) {

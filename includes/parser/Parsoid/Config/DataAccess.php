@@ -322,6 +322,10 @@ class DataAccess extends IDataAccess {
 	 * Prepare MediaWiki's parser for preprocessing or extension tag parsing,
 	 * clearing its state if necessary.
 	 *
+	 * @note The caller is expected to call Parser::resetOutput() and
+	 * reset the watcher if needed on $pageConfig->getParserOptions()
+	 * as needed.
+	 *
 	 * @param IPageConfig $pageConfig
 	 * @param int $outputType
 	 * @return Parser
@@ -332,20 +336,25 @@ class DataAccess extends IDataAccess {
 		// be retained. This should also provide better compatibility with extension tags.
 		$clearState = $this->previousPageConfig !== $pageConfig;
 		$this->previousPageConfig = $pageConfig;
+		$parserOptions = $pageConfig->getParserOptions();
+		$oldWatcher = $parserOptions->registerWatcher( null );
 		// Use the same legacy parser object for all calls to extension tag
 		// processing, for greater compatibility.
 		$this->parser ??= $this->parserFactory->create();
 		$this->parser->setStripExtTags( false );
 		$this->parser->startExternalParse(
 			Title::newFromLinkTarget( $pageConfig->getLinkTarget() ),
-			$pageConfig->getParserOptions(),
+			$parserOptions,
 			$outputType, $clearState, $pageConfig->getRevisionId() );
-		$this->parser->resetOutput();
 
 		// Retain a PPFrame object between preprocess requests since it contains
 		// some useful caches.
 		if ( $clearState ) {
 			$this->ppFrame = $this->parser->getPreprocessor()->newFrame();
+			// If $clearState is true, then we've reset the parser output and
+			// clobbered the watcher on the parser options; restore the old
+			// one.
+			$parserOptions->registerWatcher( $oldWatcher );
 		}
 		return $this->parser;
 	}
@@ -356,8 +365,9 @@ class DataAccess extends IDataAccess {
 		ParserOptions $parserOptions,
 		ParserOutput $parserOutput
 	) {
-		$parser = $this->parser ??
-			$this->prepareParser( $pageConfig, Parser::OT_HTML );
+		$parser = $this->prepareParser( $pageConfig, Parser::OT_HTML );
+		// This next call doesn't touch $parser::$mParserOutput so we
+		// don't need to call Parser::resetOutput() here.
 		$parser->makeLimitReport( $parserOptions, $parserOutput );
 	}
 
@@ -367,16 +377,25 @@ class DataAccess extends IDataAccess {
 		ContentMetadataCollector $metadata,
 		string $wikitext
 	): string {
+		'@phan-var PageConfig $pageConfig'; // @var PageConfig $pageConfig
 		$parser = $this->prepareParser( $pageConfig, Parser::OT_HTML );
-		$html = $parser->parseExtensionTagAsTopLevelDoc( $wikitext );
+
 		// XXX: Ideally we will eventually have the legacy parser use our
 		// ContentMetadataCollector instead of having a new ParserOutput
-		// created (implicitly in ::prepareParser()/Parser::resetOutput() )
-		// which we then have to manually merge.
+		// created (in Parser::resetOutput() here) which we then have to
+		// manually merge.  On the other hand, this will let us precisely
+		// identify metadata added by $wikitext.
+		$parserOptions = $pageConfig->getParserOptions();
+		$oldWatcher = $parserOptions->registerWatcher( null );
+		$parser->resetOutput();
+
+		$html = $parser->parseExtensionTagAsTopLevelDoc( $wikitext );
+
 		$out = $parser->getOutput();
-		$out->setRawText( $html );
 		$out->collectMetadata( $metadata ); # merges $out into $metadata
-		return Parser::extractBody( $out->getRawText() );
+		$parserOptions->registerWatcher( $oldWatcher );
+
+		return Parser::extractBody( $html );
 	}
 
 	/** @inheritDoc */
@@ -385,7 +404,19 @@ class DataAccess extends IDataAccess {
 		ContentMetadataCollector $metadata,
 		$wikitext
 	) {
+		'@phan-var PageConfig $pageConfig'; // @var PageConfig $pageConfig
+
 		$parser = $this->prepareParser( $pageConfig, Parser::OT_PREPROCESS );
+
+		// XXX: Ideally we will eventually have the legacy parser use our
+		// ContentMetadataCollector instead of having a new ParserOutput
+		// created (in Parser::resetOutput() here) which we then have to
+		// manually merge.  On the other hand, this will let us precisely
+		// identify metadata added by $wikitext.
+		$parserOptions = $pageConfig->getParserOptions();
+		$oldWatcher = $parserOptions->registerWatcher( null );
+		$parser->resetOutput();
+
 		if ( $wikitext instanceof PFragment ) {
 			$result = [];
 			$index = 1;
@@ -467,12 +498,10 @@ class DataAccess extends IDataAccess {
 			$wikitext = PFragment::fromSplitWt( $result );
 		}
 
-		// XXX: Ideally we will eventually have the legacy parser use our
-		// ContentMetadataCollector instead of having a new ParserOutput
-		// created (implicitly in ::prepareParser()/Parser::resetOutput() )
-		// which we then have to manually merge.
 		$out = $parser->getOutput();
 		$out->collectMetadata( $metadata ); # merges $out into $metadata
+		$parserOptions->registerWatcher( $oldWatcher );
+
 		return $wikitext;
 	}
 

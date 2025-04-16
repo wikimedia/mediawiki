@@ -63,7 +63,7 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 			'maxPPNodeCount',
 		];
 		$commonParsoidOptions = array_merge( $commonOptions, [
-			// Currently no options specific to parsoid parses
+			'currentRevisionRecordCallback',
 		] );
 		$commonLegacyOptions = array_merge( $commonOptions, [
 			'disableTitleConversion',

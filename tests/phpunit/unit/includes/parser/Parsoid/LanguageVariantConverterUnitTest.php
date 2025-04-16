@@ -9,6 +9,7 @@ use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\Parsoid\Config\PageConfig;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig;
@@ -22,6 +23,7 @@ use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Parsoid;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Parser\Parsoid\LanguageVariantConverter
@@ -249,10 +251,11 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 		$targetLanguage = new Bcp47CodeValue( $targetLanguageCode );
 
 		$pageConfigMock = $this->getPageConfigMock();
+		$parserOptionsMock = $this->createNoOpMock( ParserOptions::class );
 		$pageConfigFactoryMock = $this->getPageConfigFactoryMock(
 			$shouldPageConfigFactoryBeUsed,
 			// Expected arguments to PageConfigFactory mock
-			[ $pageIdentityValue, null, null, null, $this->constraintEquals( $pageLanguage ) ],
+			[ $parserOptionsMock, $pageIdentityValue, null, $this->constraintEquals( $pageLanguage ) ],
 			$pageConfigMock
 		);
 		$pageBundleMock = $this->getPageBundleMock( $pageBundleLanguageCode );
@@ -285,6 +288,11 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 			$this->getLanguageConverterFactoryMock(),
 			$languageFactoryMock
 		);
+		if ( $shouldPageConfigFactoryBeUsed ) {
+			// supply a mock parser options
+			TestingAccessWrapper::newFromObject( $languageVariantConverter )
+				->parserOptionsForTest = $parserOptionsMock;
+		}
 
 		if ( $contentLanguageOverride ) {
 			$languageVariantConverter->setPageLanguageOverride(
@@ -309,12 +317,12 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 
 		if ( $shouldBeCalled ) {
 			$mock->expects( $this->once() )
-				->method( 'create' )
+				->method( 'createFromParserOptions' )
 				->with( ...$arguments )
 				->willReturn( $pageConfig );
 		} else {
 			$mock->expects( $this->never() )
-				->method( 'create' );
+				->method( 'createFromParserOptions' );
 		}
 
 		return $mock;
