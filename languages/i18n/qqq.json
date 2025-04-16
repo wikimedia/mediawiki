@@ -4213,6 +4213,7 @@
 	"logentry-non-editing-block-reblock": "{{Logentry|[[Special:Log/block]]}}\nAdditional parameters:\n* $4 - username for gender or empty string for autoblocks\n* $5 - the block duration, localized and formatted with the English tooltip\n* $6 - block detail flags or empty string",
 	"logentry-suppress-block": "{{Logentry}}\nAdditional parameters:\n* $4 - username for gender or empty string for autoblocks\n* $5 - the block duration, localized and formatted with the English tooltip\n* $6 - block detail flags or empty string",
 	"logentry-suppress-reblock": "{{Logentry}}\nAdditional parameters:\n* $4 - username for gender or empty string for autoblocks\n* $5 - the block duration, localized and formatted with the English tooltip\n* $6 - block detail flags or empty string",
+	"logentry-suppress-block-multi": "{{Logentry|[[Special:Log/block]]}}\nAdditional parameters:\n* $4 - username for gender or empty string for autoblocks\n* $5 - the block duration, localized and formatted with the English tooltip\n* $6 - block detail flags or empty string",
 	"logentry-import-upload": "{{Logentry|[[Special:Log/import]]}}",
 	"logentry-import-upload-details": "{{Logentry|[[Special:Log/import]]}}\nAdditional parameters:\n* $4 - number of imported revisions\n\nCf. {{msg-mw|logentry-import-upload}}",
 	"logentry-import-interwiki": "{{Logentry|[[Special:Log/import]]}}",
