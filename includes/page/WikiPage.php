@@ -41,6 +41,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Revision\RevisionRecord;
@@ -2831,10 +2832,23 @@ class WikiPage implements Stringable, Page, PageRecord {
 			MediaWikiServices::getInstance()->getJobQueueGroup()->lazyPush(
 				RefreshLinksJob::newPrioritized( $this->mTitle, $params )
 			);
-		} elseif ( !$config->get( MainConfigNames::MiserMode ) &&
-			$parserOutput->hasReducedExpiry()
+		} elseif (
+			(
+				// "Dynamic" content (eg time/random magic words)
+				!$config->get( MainConfigNames::MiserMode ) &&
+				$parserOutput->hasReducedExpiry()
+			)
+			||
+			(
+				// Asynchronous content
+				$config->get( MainConfigNames::ParserCacheAsyncRefreshJobs ) &&
+				$parserOutput->getOutputFlag( ParserOutputFlags::HAS_ASYNC_CONTENT ) &&
+				!$parserOutput->getOutputFlag( ParserOutputFlags::ASYNC_NOT_READY )
+			)
 		) {
-			// Assume the output contains "dynamic" time/random based magic words.
+			// Assume the output contains "dynamic" time/random based magic words
+			// or asynchronous content that wasn't "ready" the first time the
+			// page was parsed.
 			// Only update pages that expired due to dynamic content and NOT due to edits
 			// to referenced templates/files. When the cache expires due to dynamic content,
 			// page_touched is unchanged. We want to avoid triggering redundant jobs due to

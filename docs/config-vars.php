@@ -1557,6 +1557,12 @@ $wgParserCacheExpireTime = null;
 $wgParserCacheAsyncExpireTime = null;
 
 /**
+ * Config variable stub for the ParserCacheAsyncRefreshJobs setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::ParserCacheAsyncRefreshJobs
+ */
+$wgParserCacheAsyncRefreshJobs = null;
+
+/**
  * Config variable stub for the OldRevisionParserCacheExpireTime setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::OldRevisionParserCacheExpireTime
  */

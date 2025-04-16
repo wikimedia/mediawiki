@@ -2632,6 +2632,13 @@ config-schema:
             "not ready" content to be replaced by "ready" content.
             The default is 60 (one minute).
             @since 1.44
+    ParserCacheAsyncRefreshJobs:
+        default: true
+        description: |-
+            Whether to re-run the refresh links jobs when asynchronous content
+            becomes ready.  This is needed if the asynchronous content can affect
+            categories or other page metadata.
+            @since 1.44
     OldRevisionParserCacheExpireTime:
         default: 3600
         description: |-

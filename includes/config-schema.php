@@ -524,6 +524,7 @@ return [
 			'ChronologyProtectorSecret' => '',
 			'ParserCacheExpireTime' => 86400,
 			'ParserCacheAsyncExpireTime' => 60,
+			'ParserCacheAsyncRefreshJobs' => true,
 			'OldRevisionParserCacheExpireTime' => 3600,
 			'ObjectCacheSessionExpiry' => 3600,
 			'PHPSessionHandling' => 'enable',
