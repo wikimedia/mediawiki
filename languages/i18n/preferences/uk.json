@@ -33,6 +33,7 @@
 	},
 	"preferences": "Налаштування",
 	"prefsnologintext2": "Будь ласка, увійдіть, щоб змінити Ваші налаштування.",
+	"prefsnologintext2-for-temp-user": "Будь ласка, створіть обліковий запис, щоб змінити налаштування.",
 	"searchprefs": "Пошук налаштувань",
 	"searchprefs-noresults": "Немає результатів",
 	"searchprefs-results": "$1 {{PLURAL:$1|результат|результати|результатів}}",

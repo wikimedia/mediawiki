@@ -12,7 +12,8 @@
 			"Pyscowicz",
 			"Silvonen",
 			"Stryn",
-			"Yupik"
+			"Yupik",
+			"Samoasambia"
 		]
 	},
 	"apihelp-main-param-action": "Mikä toiminto suoritetaan.",
@@ -23,7 +24,7 @@
 	"apihelp-block-param-user": "Käyttäjä, joka estetään.",
 	"apihelp-block-param-expiry": "Päättymisaika. Voi olla suhteellinen (esim. <kbd>5 months</kbd> tai <kbd>2 weeks</kbd>) tai absoluuttinen (esim. <kbd>2014-09-18T12:34:56Z</kbd>). Jos asetetaan <kbd>infinite</kbd>, <kbd>indefinite</kbd> tai <kbd>never</kbd>, esto ei pääty koskaan.",
 	"apihelp-block-param-reason": "Eston syy.",
-	"apihelp-block-param-anononly": "Estä vain anonyymit käytäjät (ts. estä anonyymit muokkaukset tästä IP-osoitteesta)",
+	"apihelp-block-param-anononly": "Estä vain anonyymit käytäjät (ts. estä anonyymit muokkaukset tästä IP-osoitteesta, ml. tilapäisten tunnusten muokkaukset)",
 	"apihelp-block-param-nocreate": "Estä tunnusten luonti.",
 	"apihelp-block-param-autoblock": "Estä automaattisesti viimeksi käytetty IP-osoite, ja ne osoitteet, joista hän yrittää kirjautua sisään.",
 	"apihelp-block-param-noemail": "Estä käyttäjää lähettämästä sähköpostia wikin kautta. (Vaatii oikeuden <code>blockemail</code>.)",
@@ -110,7 +111,7 @@
 	"apihelp-query+allrevisions-summary": "Luettele kaikki muutokset.",
 	"apihelp-query+blocks-example-simple": "Listaa lohkot.",
 	"apihelp-query+langbacklinks-param-lang": "Kieli kielilinkille.",
-	"apihelp-query+linkshere-param-show": "Näytä vain kohteet, jotka täyttävät nämä kriteerit:\n;redirect:Näytä vain uudelleenohjaukset.\n;!redirect:Näytä vain ei-uudelleenohjaukset",
+	"apihelp-query+linkshere-param-show": "Näytä vain kohteet, jotka täyttävät nämä kriteerit:",
 	"apihelp-query+querypage-param-page": "Toimintosivun nimi. Huomaa, että kirjainkoolla on merkitystä.",
 	"apihelp-tag-example-rev": "Lisää tunniste <kbd>vandalism</kbd> versioon 123 antamatta perustelua.",
 	"apihelp-upload-param-stash": "Mikäli valittu, palvelin säilöö tiedoston väliaikaisesti tallentamisen sijaan.",
@@ -133,6 +134,7 @@
 	"apierror-mustbeloggedin": "Et voi $1, koska et ole kirjautunut sisään.",
 	"apierror-noapiwrite": "Tämän wikin muokkaaminen APIn kautta on estetty.",
 	"apierror-permissiondenied": "Sinulla ei ole oikeutta $1.",
+	"apierror-ratelimited": "Olet ylittänyt toimintorajasi. Odota hetki ja yritä uudelleen.",
 	"apierror-unknownerror-nocode": "Tuntematon virhe.",
 	"apierror-unknownerror": "Tuntematon virhe: \"$1\".",
 	"api-feed-error-title": "Virhe ($1)"

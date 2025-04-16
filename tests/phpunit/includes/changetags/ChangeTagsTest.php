@@ -2,6 +2,7 @@
 
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 /**
@@ -27,6 +28,97 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	// TODO most methods are not tested
+
+	public function testBuildTagFilterSelector_allTags() {
+		// Set `activeOnly` to false
+		// Expect that at least all the software defined tags are returned
+		$allTags = MediaWikiServices::getInstance()->getChangeTagsStore()->listDefinedTags();
+		$allTagsList = ChangeTags::getChangeTagListSummary(
+			RequestContext::getMain(),
+			RequestContext::getMain()->getLanguage(),
+			ChangeTags::TAG_SET_ALL
+		);
+		$this->assertTrue(
+			count( $allTagsList ) >= count( $allTags ),
+			'`activeOnly` is false, expect all software tags'
+		);
+	}
+
+	public function testBuildTagFilterSelector_allSoftwareTags() {
+		// Set both `activeOnly` and `useAllTags` to false
+		// Expect that only software defined tags are returned
+		$allSoftwareTags = MediaWikiServices::getInstance()->getChangeTagsStore()->getSoftwareTags( true );
+		$allSoftwareTagsList = ChangeTags::getChangeTagListSummary(
+			RequestContext::getMain(),
+			RequestContext::getMain()->getLanguage(),
+			ChangeTags::TAG_SET_ALL,
+			ChangeTags::USE_SOFTWARE_TAGS_ONLY
+		);
+		$this->assertTrue(
+			count( $allSoftwareTagsList ) == count( $allSoftwareTags ),
+			'`activeOnly` and `useAllTags` are false, expect only software tags'
+		);
+	}
+
+	public function testBuildTagFilterSelector_activeOnlyNoHits() {
+		// Enable and test `activeOnly` and expect no tags returned,
+		// as there are currently no tagged edits in the test database
+		$emptyTagListSummary = ChangeTags::getChangeTagListSummary(
+			RequestContext::getMain(),
+			RequestContext::getMain()->getLanguage(),
+			ChangeTags::TAG_SET_ACTIVE_ONLY
+		);
+		$this->assertCount( 0, $emptyTagListSummary, '`activeOnly` is true and no hits, expect no tags' );
+
+		// Assert that by default, an empty select is returned, as no tags have been used yet
+		$this->assertEquals(
+			[
+				'<label for="tagfilter"><a href="/wiki/Special:Tags" title="Special:Tags">Tag</a> filter:</label>',
+				'<input class="mw-tagfilter-input mw-ui-input mw-ui-input-inline" size="20" id="tagfilter" list="tagfilter-datalist" name="tagfilter"><datalist id="tagfilter-datalist"></datalist>'
+			],
+			ChangeTags::buildTagFilterSelector(
+				'', false, RequestContext::getMain()
+			)
+		);
+	}
+
+	public function testBuildTagFilterSelector_activeOnly() {
+		// Disable patrolling so reverts will happen without approval
+		$this->overrideConfigValues( [ MainConfigNames::UseRCPatrol => false ] );
+
+		// Make an edit and replace the content, adding the `mw-replace` tag to the revision
+		$page = $this->getExistingTestPage();
+		$this->editPage( $page, '1' );
+		$this->editPage(
+			$page, '0', '', NS_MAIN, $this->getTestUser()->getUser()
+		);
+
+		// Ensure all deferred updates are run
+		DeferredUpdates::doUpdates();
+
+		// Assert that only the `mw-replace` tag is returned
+		$replaceOnlyTagList = ChangeTags::getChangeTagListSummary(
+			RequestContext::getMain(),
+			RequestContext::getMain()->getLanguage()
+		);
+		$this->assertCount( 1, $replaceOnlyTagList, '`activeOnly` is true with 1 hit, return 1 tag' );
+		$this->assertEquals(
+			'mw-replace', $replaceOnlyTagList[0]['name'],
+			'`activeOnly` is true with 1 hit, return expected tag'
+		);
+
+		// Assert that the tag is reflected in the default markup returned
+		$this->assertEquals(
+			[
+				'<label for="tagfilter"><a href="/wiki/Special:Tags" title="Special:Tags">Tag</a> filter:</label>',
+				'<input class="mw-tagfilter-input mw-ui-input mw-ui-input-inline" size="20" id="tagfilter" list="tagfilter-datalist" name="tagfilter"><datalist id="tagfilter-datalist"><option value="mw-replace">Replaced</option></datalist>'
+			],
+			ChangeTags::buildTagFilterSelector(
+				'', false, RequestContext::getMain()
+			),
+			'`activeOnly` is true with 1 hit, return expected tag markup'
+		);
+	}
 
 	/** @dataProvider provideModifyDisplayQuery */
 	public function testModifyDisplayQuery(

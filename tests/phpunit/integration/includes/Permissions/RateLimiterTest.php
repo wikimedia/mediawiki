@@ -484,6 +484,36 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * Test that setting the increment to 0 causes the RateLimiter to operate in
+	 * peek mode, checking a rate limit without setting it.
+	 *
+	 * Regression test for T381033.
+	 */
+	public function testPeek() {
+		$limits = [
+			'edit' => [
+				'user' => [ 1, 60 ],
+			],
+		];
+
+		$user = new RateLimitSubject( new UserIdentityValue( 7, 'Garth' ), '127.0.0.1', [] );
+
+		$limiter = $this->newRateLimiter( $limits, [] );
+
+		// initial peek should pass
+		$this->assertFalse( $limiter->limit( $user, 'edit', 0 ) );
+
+		// check that repeated peeking doesn't trigger the limit
+		$this->assertFalse( $limiter->limit( $user, 'edit', 0 ) );
+
+		// first increment should pass but trigger the limit
+		$this->assertFalse( $limiter->limit( $user, 'edit', 1 ) );
+
+		// peek should fail now
+		$this->assertTrue( $limiter->limit( $user, 'edit', 0 ) );
+	}
+
+	/**
 	 * Test that the most permissive limit is used when a limit is defined for
 	 * multiple groups a user belongs to.
 	 */

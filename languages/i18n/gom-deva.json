@@ -1087,7 +1087,7 @@
 	"searchsuggest-search": "{{SITENAME}} सोद",
 	"duration-hours": "$1 {{PLURAL:$1|वोर|वोरां}}",
 	"duration-days": "$1 {{PLURAL:$1|दीस}}",
-	"duration-weeks": "{{PLURAL:$1|सुमान}}",
+	"duration-weeks": "$1 {{PLURAL:$1|सुमान}}",
 	"duration-years": "$1 {{PLURAL:$1|वर्स|वर्सां}}",
 	"duration-decades": "$1 {{PLURAL:$1|दसक|दसकां}}",
 	"duration-centuries": "$1 {{PLURAL:$1|शेंकडो|शेंकडे}}",

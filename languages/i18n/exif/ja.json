@@ -15,7 +15,9 @@
 			"UsagiNeko",
 			"Whym",
 			"Yusuke1109",
-			"ネイ"
+			"ネイ",
+			"Yaakiyu.jp",
+			"もなー(偽物)"
 		]
 	},
 	"exif-imagewidth": "画像の幅",
@@ -414,5 +416,15 @@
 	"exif-initialviewheadingdegrees": "初回ビューの向首角（度数）",
 	"exif-initialviewpitchdegrees": "初回ビューのピッチ角（度数）",
 	"exif-initialviewrolldegrees": "初回ビューのロール角（度数）",
+	"exif-initialhorizontalfovdegrees": "初期FOV（水平角度）",
+	"exif-initialverticalfovdegrees": "初期FOV（垂直角度）",
+	"exif-sourcephotoscount": "ソース写真数",
+	"exif-croppedareaimagewidthpixels": "パノラマのトリミング幅",
+	"exif-croppedareaimageheightpixels": "パノラマのトリミング高さ",
+	"exif-fullpanowidthpixels": "パノラマ全体の幅",
+	"exif-fullpanoheightpixels": "パノラマ全体の高さ",
+	"exif-croppedarealeftpixels": "パノラマの左側の切り取り幅",
+	"exif-croppedareatoppixels": "パノラマの上側の切り取り幅",
+	"exif-initialcameradolly": "カメラドリーの初期位置",
 	"exif-stitchingsoftware": "スティッチングソフトウェア"
 }

@@ -87,6 +87,13 @@ class WRStatsReader {
 				break;
 			}
 		}
+
+		if ( !$seqSpec ) {
+			// This check exists to make Phan happy.
+			// It should never fail since we apply normalization in MetricSpec::__construct()
+			throw new WRStatsError( 'There should have been at least one sequence' );
+		}
+
 		$timeStep = $seqSpec->timeStep;
 		$firstBucket = (int)( $range->start / $timeStep );
 		$lastBucket = (int)ceil( $range->end / $timeStep );

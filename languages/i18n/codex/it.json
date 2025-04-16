@@ -1,7 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Beta16"
+			"Beta16",
+			"Bultro",
+			"Luca.favorido"
 		]
 	},
 	"cdx-input-chip-aria-description": "Premi Invio per modificare o Cancella per rimuovere.",
@@ -19,9 +21,10 @@
 	"cdx-table-pager-button-prev-page": "Pagina precedente",
 	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 riga|$1 righe}}",
 	"cdx-table-pager-items-per-page-default": "Risultati per pagina",
-	"cdx-table-pagination-status-message-determinate-long": "Visualizzando i risultati $1–$2 di $3",
+	"cdx-table-pagination-status-message-determinate-long": "Visualizzazione dei risultati $1–$2 su $3",
 	"cdx-table-pagination-status-message-determinate-short": "$1–$2 di $3",
-	"cdx-table-pagination-status-message-indeterminate-long": "Visualizzando i risultati $1–$2 di molti",
+	"cdx-table-pagination-status-message-indeterminate-long": "Visualizzazione dei risultati $1–$2 su molti",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 di molti",
-	"cdx-table-pagination-status-message-indeterminate-final": "Visualizzando {{PLURAL:$1|l'ultimo risultato|gli ultimi $1 risultati}}"
+	"cdx-table-pagination-status-message-indeterminate-final": "Visualizzazione {{PLURAL:$1|dell'ultimo risultato|degli ultimi $1 risultati}}",
+	"cdx-table-pagination-status-message-pending": "Caricamento dei risultati..."
 }

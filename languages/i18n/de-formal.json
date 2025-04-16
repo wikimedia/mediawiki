@@ -40,7 +40,8 @@
 			"Vogone",
 			"Wnme",
 			"Woytecr",
-			"Zabe"
+			"Zabe",
+			"PerfektesChaos"
 		]
 	},
 	"sunday": "Sonntag",
@@ -127,7 +128,6 @@
 	"generic-pool-error": "Entschuldigen Sie bitte, dass die Server im Moment überlastet sind.\nZu viele Benutzer wollen diese Ressource ansehen.\nBitte warten Sie einen Moment, bevor Sie sie erneut aufrufen.",
 	"aboutsite": "Über {{SITENAME}}",
 	"aboutpage": "Project:Über_{{SITENAME}}",
-	"disclaimers": "Haftungsausschluss",
 	"disclaimerpage": "Project:Impressum",
 	"helppage-top-gethelp": "Hilfe",
 	"mainpage": "Hauptseite",
@@ -149,7 +149,6 @@
 	"confirmable-confirm": "Sind {{GENDER:$1|Sie}} sicher?",
 	"red-link-title": "$1 (Seite nicht vorhanden)",
 	"sort-rowspan-error": "Diese Seite enthält eine Tabelle mit einem rowspan-Attribut, das sich über mehr Zeilen erstreckt, als die Tabelle tatsächlich hat. Sie können dies beheben, indem Sie die Seite bearbeiten.",
-	"nstab-main": "Seite",
 	"nstab-category": "Kategorie",
 	"mainpage-nstab": "Hauptseite",
 	"transaction-duration-limit-exceeded": "Um eine große Verzögerung in der Datenreplikation zu vermeiden, wurde diese Transaktion abgebrochen. Die Schreibdauer ($1) hat die Grenze von $2 Sekunden überschritten. Falls Sie viele Objekte auf einmal ändern, versuchen Sie stattdessen, die Änderungen auf mehrere Operationen aufzuteilen.",
@@ -165,7 +164,7 @@
 	"translateinterface": "Um Übersetzungen für alle Wikis hinzuzufügen oder zu ändern, verwenden Sie bitte [//translatewiki.net/ translatewiki.net], das MediaWiki-Lokalisierungsprojekt.",
 	"namespaceprotected": "Sie haben nicht die erforderliche Berechtigung, um Seiten im Namensraum '''$1''' bearbeiten zu können.",
 	"customcssprotected": "Sie haben nicht die Berechtigung, diese CSS enthaltende Seite zu bearbeiten, da sie die persönlichen Einstellungen eines anderen Benutzers enthält.",
-	"customjsonprotected": "Sie haben nicht die Berechtigung, diese CSS enthaltende Seite zu bearbeiten, da sie die persönlichen Einstellungen eines anderen Benutzers enthält.",
+	"customjsonprotected": "Sie haben nicht die Berechtigung, diese JSON enthaltende Seite zu bearbeiten, da sie die persönlichen Einstellungen eines anderen Benutzers enthält.",
 	"customjsprotected": "Sie haben nicht die Berechtigung, diese JavaScript enthaltende Seite zu bearbeiten, da es sich hierbei um die persönlichen Einstellungen eines anderen Benutzers handelt.",
 	"sitecssprotected": "Sie haben nicht die Berechtigung, diese CSS-Seite zu bearbeiten, da sie alle Besucher betreffen könnte.",
 	"sitejsonprotected": "Sie haben nicht die Berechtigung, diese JSON-Seite zu bearbeiten, da sie alle Besucher betreffen könnte.",
@@ -305,7 +304,7 @@
 	"editingold": "<strong>Achtung: Sie bearbeiten eine alte Version dieser Seite. Sofern Sie sie veröffentlichen, werden alle neueren Versionen überschrieben.",
 	"unicode-support-fail": "Es scheint, als ob Ihr Browser kein Unicode unterstützt. Dies ist erforderlich zum Bearbeiten von Seiten, so dass Ihre Bearbeitung nicht veröffentlicht wurde.",
 	"copyrightwarning": "'''Bitte kopieren Sie keine Webseiten, die nicht Ihre eigenen sind, benutzen Sie keine urheberrechtlich geschützten Werke ohne Erlaubnis des Urhebers!'''<br />\nSie geben uns hiermit Ihre Zusage, dass Sie den Text '''selbst verfasst''' haben, dass der Text Allgemeingut '''(public domain)''' ist, oder dass der '''Urheber''' seine '''Zustimmung''' gegeben hat. Falls dieser Text bereits woanders veröffentlicht wurde, weisen Sie bitte auf der Diskussionsseite darauf hin.\n<i>Bitte beachten Sie, dass alle {{SITENAME}}-Beiträge automatisch unter der „$2“ stehen (siehe $1 für Einzelheiten). Falls Sie nicht möchten, dass Ihre Arbeit hier von anderen verändert und verbreitet wird, dann klicken Sie nicht auf „Seite speichern“.</i>",
-	"copyrightwarning2": "Bitte beachten Sie, dass alle Beiträge zu {{SITENAME}} von anderen Mitwirkenden bearbeitet, geändert oder gelöscht werden können.\nReichen Sie keine Texte ein, falls Sie nicht wollen, dass diese ohne Einschränkung geändert werden können.\n\nSie bestätigen hiermit auch, dass Sie diese Texte selbst geschrieben haben oder diese von einer gemeinfreien Quelle kopiert haben\n(weitere Einzelheiten unter $1). '''ÜBERTRAGEN SIE OHNE GENEHMIGUNG KEINE URHEBERRECHTLICH GESCHÜTZTEN INHALTE!'''",
+	"copyrightwarning2": "Bitte beachten Sie, dass alle Beiträge zu {{SITENAME}} von anderen Mitwirkenden bearbeitet, geändert oder gelöscht werden können. Reichen Sie hier keine Texte ein, falls Sie nicht möchten, dass diese ohne Einschränkung geändert werden können.\n\nSie bestätigen hiermit auch, dass Sie diese Texte selbst geschrieben haben oder diese von einer gemeinfreien Quelle stammen. Weitere Einzelheiten sind auf der Seite $1 angegeben.\n\n<strong>ÜBERTRAGEN SIE KEINE URHEBERRECHTLICH GESCHÜTZTEN INHALTE OHNE GENEHMIGUNG!</strong>",
 	"longpageerror": "<strong>Fehler: Der Text, den Sie zu speichern versuchen, ist {{PLURAL:$1|ein Kilobyte|$1 Kilobyte}} groß. Dies ist größer als das erlaubte Maximum von {{PLURAL:$2|ein Kilobyte|$2 Kilobyte}}.</strong>\nEr kann nicht veröffentlicht werden.",
 	"readonlywarning": "<strong>Achtung: Die Datenbank wurde für Wartungsarbeiten gesperrt, so dass Ihre Änderungen derzeit nicht veröffentlicht werden können.\nSichern Sie den Text bitte lokal auf Ihrem Computer und versuchen Sie zu einem späteren Zeitpunkt, die Änderungen zu übertragen.</strong>\n\nGrund für die Sperre: $1",
 	"nocreatetext": "Auf {{SITENAME}} wurde das Erstellen neuer Seiten eingeschränkt. Sie können bestehende Seiten ändern oder sich [[Special:UserLogin|anmelden]].",

@@ -356,7 +356,7 @@
 	"rcfilters-tag-remove": "Hdlun pkungat '$1'",
 	"rcfilters-activefilters-hide": "lmiying",
 	"rcfilters-activefilters-show": "pqita",
-	"rcfilters-days-show-days": "$1 {{PLURAL:$1|}}jiyax",
+	"rcfilters-days-show-days": "$1 {{PLURAL:$1|jiyax}}",
 	"rcfilters-savedqueries-remove": "srus",
 	"rcfilters-savedqueries-new-name-label": "hangan",
 	"rcfilters-savedqueries-cancel-label": "Pkungat",

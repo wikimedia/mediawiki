@@ -795,7 +795,7 @@
 	"pageinfo-toolboxlink": "ຂໍ້ມູນໜ້າ",
 	"patrol-log-page": "ບັນທຶກການກວດກາ",
 	"confirm-markpatrolled-button": "ຕົກລົງ",
-	"previousdiff": "ສ່ວນຕ່າງກ່ອນ",
+	"previousdiff": "← ສ່ວນຕ່າງກ່ອນ",
 	"nextdiff": "ສ່ວນຕ່າງຕໍ່ໄປ →",
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|ໜ້າ}}",
 	"file-info-size": "$1 × $2  ປິກເຊລ, ຂະໜາດໄຟລ໌: $3, MIME type: $4",

@@ -24,7 +24,8 @@
 			"V27t",
 			"Vfc",
 			"Vriullop",
-			"Àlex"
+			"Àlex",
+			"Arnaugir"
 		]
 	},
 	"preferences": "Preferències",
@@ -156,6 +157,7 @@
 	"tog-showhiddencats": "Mostra les categories ocultes",
 	"tog-showrollbackconfirmation": "Mostra una petició de confirmació en clicar un enllaç de reversió",
 	"tog-forcesafemode": "Habilita sempre el [[mw:Manual:Safemode|mode segur]]",
+	"prefs-help-forcesafemode": "Desactivar als scripts i pàgines d'estil dins del wiki.",
 	"prefs-editing": "Caixa d'edició",
 	"prefs-description-editing": "Personalitzeu com feu, seguiu i reviseu les edicions.",
 	"prefs-advancedediting": "Opcions generals",
@@ -168,6 +170,8 @@
 	"editfont-serif": "Lletra amb gràcia",
 	"tog-minordefault": "Marca totes les contribucions com a edicions menors per defecte",
 	"tog-forceeditsummary": "Avisa'm quan deixi en blanc el resum de la modificació  (o el resum per defecte)",
+	"tog-editrecovery": "Activa la característica de [[Special:EditRecovery|{{int:editrecovery}}]]",
+	"tog-editrecovery-help": "Podeu fer els vostres comentaris a [$1 la pàgina de discussió del projecte].",
 	"tog-useeditwarning": "Avisa'm quan surti d'una pàgina d'edició amb canvis sense desar",
 	"prefs-preview": "Previsualització",
 	"tog-previewonfirst": "Mostra una previsualització en començar a editar",

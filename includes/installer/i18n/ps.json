@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ahmed-Najib-Biabani-Ibrahimkhel"
+			"Ahmed-Najib-Biabani-Ibrahimkhel",
+			"شاه زمان پټان"
 		]
 	},
 	"config-desc": "د مېډياويکي نصبونکی",
@@ -56,7 +57,7 @@
 	"config-admin-name": "ستاسې کارن نوم:",
 	"config-admin-password": "پټنوم:",
 	"config-admin-password-confirm": "پټنوم يو ځل بيا:",
-	"config-admin-email": "برېښليک پته:",
+	"config-admin-email": "برېښليک‌پته:",
 	"config-optional-continue": "نورې پوښتنې راڅخه وپوښتئ.",
 	"config-profile": "د کارن رښتو پېژنليک:",
 	"config-profile-wiki": "پرانيستې ويکي",
@@ -67,6 +68,8 @@
 	"config-email-settings": "د برېښليک امستنې",
 	"config-email-user": "کارن تر کارن برېښليک چارنول",
 	"config-upload-enable": "دوتنې پورته کېدنې چارنول",
+	"config-logo-preview-main": "لومړی‌مخ",
+	"config-logo-icon": "نښان (نښه):",
 	"config-extensions": "شاتاړي",
 	"config-skins": "پوښۍ",
 	"config-skins-use-as-default": "همدا پوښۍ په تلواليزه توگه کارول",
@@ -76,6 +79,8 @@
 	"config-install-tables": "لښتيالونه جوړول",
 	"config-download-localsettings": "ښکته کول <code>LocalSettings.php</code>",
 	"config-help": "لارښود",
+	"config-help-tooltip": "د پراخولو لپاره کلیک وکړئ",
+	"config-ext-skins-more-info": "نور مالومات",
 	"mainpagetext": "<strong>MediaWiki نصب شو.</strong>",
 	"mainpagedocfooter": "د ويکي ساوترې د کارولو د  مالوماتو په اړه [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents د کارن لارښود] سره سلا وکړۍ.\n\n== پيلول ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings د امستنو د سازونې لړليک]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ د ميډياويکي ډېرځليزې پوښتنې]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ د مېډياويکي د برېښليکونو لړليک]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources خپلې ژبې لپاره MediaWiki ځايتابول]"
 }

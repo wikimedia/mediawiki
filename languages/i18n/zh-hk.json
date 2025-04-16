@@ -36,7 +36,9 @@
 			"Z423x5c6",
 			"和平至上",
 			"捍粵者",
-			"星海"
+			"星海",
+			"Anterdc99",
+			"Shrubs"
 		]
 	},
 	"sunday": "星期日",
@@ -316,7 +318,7 @@
 	"anononlyblock": "僅限匿名用戶",
 	"empty-username": "沒有用戶名",
 	"contribslink": "貢獻",
-	"blocklogtext": "這是用戶的封禁與解禁操作的日誌記錄。\n自動封禁的 IP 位址不予包含。\n請參考 [[Special:BlockList|封禁清單]] 以檢視目前的封禁。",
+	"blocklogtext": "這是用戶的封鎖及取消封鎖動作的日誌記錄。自動封鎖的IP位址不予包含。請參考[[Special:BlockList|封鎖清單]]中的目前正在運作的阻止與封鎖。",
 	"semiprotectedpagemovewarning": "<strong>注意：</strong>本頁已受保護，只有自動確認用戶才可移動。\n以下是最近的紀錄：",
 	"tooltip-pt-tmpuserpage": "你的自動生成臨時用戶名",
 	"tooltip-pt-mytalk": "{{GENDER:|您的}}討論頁",

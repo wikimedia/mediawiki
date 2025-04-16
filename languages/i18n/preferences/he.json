@@ -92,6 +92,7 @@
 	"emailauthenticated": "כתובת הדוא\"ל שלך אומתה ב־$3, $2.",
 	"allowemail": "לאפשר למשתמשים אחרים לשלוח לי דואר אלקטרוני",
 	"email-allow-new-users-label": "לאפשר למשתמשים חדשים מאוד לשלוח לי דואר אלקטרוני",
+	"prefs-help-email-allow-new-users": "הפעלת האפשרות הזאת תאפשר למשתמשים שאינם [[{{MediaWiki:grouppage-autoconfirmed}}|ותיקים]] לשלוח לך דואר אלקטרוני.",
 	"tog-ccmeonemails": "לשלוח אליי העתקים של הודעות דוא\"ל שאני {{GENDER:|שולח|שולחת}} למשתמשים",
 	"email-mutelist-label": "חסימת המשתמשים הבאים משליחת דואר אלקטרוני אליי:",
 	"tog-enotifwatchlistpages": "לשלוח אליי דוא\"ל כאשר משתנה דף או קובץ ברשימת המעקב שלי",

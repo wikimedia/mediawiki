@@ -27,7 +27,8 @@
 			"Omar Ali",
 			"Umar2z",
 			"Yusuf Sa'adu",
-			"아라"
+			"아라",
+			"Ezeone10"
 		]
 	},
 	"sunday": "Lahadi",
@@ -700,7 +701,7 @@
 	"tooltip-undo": "\"Janyewa\" tana soke wannan gyaran ta kuma buɗa fom kin gyara mai rigya-gani.\nTana ba da damar bayyana dalilin soke gyaran.",
 	"simpleantispam-label": "Kar ku cika wannan!",
 	"pageinfo-toolboxlink": "Bayanin shafi",
-	"previousdiff": "Sauyin baya",
+	"previousdiff": "← Sauyin baya",
 	"nextdiff": "Gyaran gaba →",
 	"widthheightpage": "$1 ×$2, $3 {{{{PLURAL:$3|feji|fejina}}",
 	"file-info-size": "pikisal $1 × $2, girman fayil: $3, irin MIME: $4",

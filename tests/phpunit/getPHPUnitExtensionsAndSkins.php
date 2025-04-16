@@ -36,6 +36,7 @@ echo "\n\nTESTPATHS\n\n";
 // just the config needed to create a hook container, as early as when ExtensionsTestSuite::suite is called.
 // This particular hack can be removed once the UnitTestsList hook is removed (T298509)
 $registry = ExtensionRegistry::getInstance();
+$paths = [];
 foreach ( $registry->getAllThings() as $info ) {
 	$paths[] = dirname( $info['path'] ) . '/tests/phpunit';
 }

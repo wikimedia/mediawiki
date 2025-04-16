@@ -262,6 +262,18 @@ class CliInstaller extends Installer {
 		flush();
 	}
 
+	public function showSuccess( $msg, ...$params ) {
+		// @phan-suppress-next-line SecurityCheck-XSS
+		echo $this->getMessageText( $msg, $params ) . "\n";
+		flush();
+	}
+
+	public function showWarning( $msg, ...$params ) {
+		// @phan-suppress-next-line SecurityCheck-XSS
+		echo $this->getMessageText( $msg, $params ) . "\n";
+		flush();
+	}
+
 	public function showError( $msg, ...$params ) {
 		// @phan-suppress-next-line SecurityCheck-XSS
 		echo "***{$this->getMessageText( $msg, $params )}***\n";

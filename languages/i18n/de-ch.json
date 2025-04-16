@@ -88,7 +88,6 @@
 	"page-rss-feed": "RSS-Feed für «$1»",
 	"page-atom-feed": "Atom-Feed für «$1»",
 	"red-link-title": "$1 (Seite nicht vorhanden)",
-	"nstab-main": "Seite",
 	"mainpage-nstab": "Hauptseite",
 	"missing-article": "Der Text von «$1» $2 wurde nicht in der Datenbank gefunden.\n\nDie Seite ist möglicherweise gelöscht oder verschoben worden.\n\nFalls dies nicht  zutrifft, hast du eventuell einen Fehler in der Software gefunden. Bitte melde dies einem [[Special:ListUsers/sysop|Administrator]] unter Nennung der URL.",
 	"filecopyerror": "Die Datei «$1» konnte nicht nach «$2» kopiert werden.",

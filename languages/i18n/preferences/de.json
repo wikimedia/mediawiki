@@ -109,6 +109,7 @@
 	"emailauthenticated": "Deine E-Mail-Adresse wurde am $2 um $3 Uhr bestätigt.",
 	"allowemail": "Anderen Benutzern erlauben, E-Mails an mich zu senden",
 	"email-allow-new-users-label": "Sehr neuen anderen Benutzern erlauben, E-Mails an mich zu senden",
+	"prefs-help-email-allow-new-users": "Die Aktivierung dieser Option ermöglicht es Benutzern, die nicht [[{{MediaWiki:grouppage-autoconfirmed}}|automatisch bestätigt]] sind, dir E-Mails zu senden.",
 	"tog-ccmeonemails": "Schicke mir Kopien der E-Mails, die ich anderen Benutzern sende",
 	"email-mutelist-label": "Diesen Benutzern das Versenden von E-Mails an mich verbieten:",
 	"tog-enotifwatchlistpages": "Bei Änderungen an beobachteten Seiten oder Dateien E-Mails senden",

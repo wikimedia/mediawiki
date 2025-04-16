@@ -64,6 +64,7 @@
 	"rest-unsupported-target-format": "Le formato de destination requestate non es supportate.",
 	"rest-parsoid-resource-exceeded": "Limite de ressources excedite",
 	"rest-parsoid-error": "Error de Parsoid.",
+	"rest-parsoid-bad-render-id": "Mal ID de rendition Parsoid: $1",
 	"rest-bad-stash-key": "Mal clave de reserva.",
 	"rest-html-key-expected": "Clave <var>html</var> expectate in corpore",
 	"rest-invalid-transform": "Transformation non valide: $1 a $2",

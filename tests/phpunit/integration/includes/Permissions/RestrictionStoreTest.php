@@ -42,6 +42,10 @@ class RestrictionStoreTest extends MediaWikiIntegrationTestCase {
 	private static $testPageRestrictionSource;
 	/** @var array */
 	private static $testPageRestrictionCascade;
+	/** @var array */
+	private static $testFileRestrictionSource;
+	/** @var array */
+	private static $testFileTarget;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -65,6 +69,12 @@ class RestrictionStoreTest extends MediaWikiIntegrationTestCase {
 			$this->insertPage( 'RestrictionStoreTest_1', '{{RestrictionStoreTestB}}' );
 
 		$this->updateRestrictions( self::$testPageRestrictionSource['title'], [ 'edit' => 'sysop' ] );
+
+		self::$testFileTarget = $this->insertPage( 'File:RestrictionStoreTest.jpg', 'test file' );
+		self::$testFileRestrictionSource =
+			$this->insertPage( 'RestrictionStoreTest_File', '[[File:RestrictionStoreTest.jpg]]' );
+
+		$this->updateRestrictions( self::$testFileRestrictionSource['title'], [ 'edit' => 'sysop' ], 1 );
 	}
 
 	private function newRestrictionStore( array $options = [] ) {
@@ -100,22 +110,49 @@ class RestrictionStoreTest extends MediaWikiIntegrationTestCase {
 		$page = self::$testPageRestrictionCascade['title'];
 		$pageSource = self::$testPageRestrictionSource['title'];
 
-		[ $sources, $restrictions ] = $this->newRestrictionStore()
+		[ $sources, $restrictions, $tlSources, $ilSources ] = $this->newRestrictionStore()
 			->getCascadeProtectionSources( $page );
 		$this->assertCount( 1, $sources );
+		$this->assertCount( 1, $tlSources );
+		$this->assertCount( 0, $ilSources );
 		$this->assertTrue( $pageSource->isSamePageAs( $sources[$pageSource->getId()] ) );
 		$this->assertArrayEquals( [ 'edit' => [ 'sysop' ] ], $restrictions );
 
-		[ $sources, $restrictions ] = $this->newRestrictionStore()
+		[ $sources, $restrictions, $tlSources, $ilSources ] = $this->newRestrictionStore()
 			->getCascadeProtectionSources( $pageSource );
 		$this->assertCount( 0, $sources );
+		$this->assertCount( 0, $tlSources );
+		$this->assertCount( 0, $ilSources );
 		$this->assertCount( 0, $restrictions );
 	}
 
 	public function testGetCascadeProtectionSourcesSpecialPage() {
-		[ $sources, $restrictions ] = $this->newRestrictionStore()
+		[ $sources, $restrictions, $tlSources, $ilSources ] = $this->newRestrictionStore()
 			->getCascadeProtectionSources( SpecialPage::getTitleFor( 'Whatlinkshere' ) );
 		$this->assertCount( 0, $sources );
+		$this->assertCount( 0, $tlSources );
+		$this->assertCount( 0, $ilSources );
+		$this->assertCount( 0, $restrictions );
+	}
+
+	public function testGetCascadeProtectionSourcesFile() {
+		$page = self::$testFileTarget['title'];
+		$pageSource = self::$testFileRestrictionSource['title'];
+
+		[ $sources, $restrictions, $tlSources, $ilSources ] = $this->newRestrictionStore()
+			->getCascadeProtectionSources( $page );
+
+		$this->assertCount( 1, $sources );
+		$this->assertTrue( $pageSource->isSamePageAs( $sources[$pageSource->getId()] ) );
+		$this->assertArrayEquals( [ 'edit' => [ 'sysop' ] ], $restrictions );
+		$this->assertCount( 1, $ilSources );
+		$this->assertCount( 0, $tlSources );
+
+		[ $sources, $restrictions, $tlSources, $ilSources ] = $this->newRestrictionStore()
+			->getCascadeProtectionSources( $pageSource );
+		$this->assertCount( 0, $sources );
+		$this->assertCount( 0, $tlSources );
+		$this->assertCount( 0, $ilSources );
 		$this->assertCount( 0, $restrictions );
 	}
 

@@ -22,7 +22,8 @@
 			"Ykhwong",
 			"렌즈",
 			"밝은소년",
-			"아라"
+			"아라",
+			"Whatback11"
 		]
 	},
 	"preferences": "환경 설정",
@@ -104,6 +105,7 @@
 	"emailauthenticated": "이메일 주소가 $2 $3에 인증되었습니다.",
 	"allowemail": "다른 사용자가 내게 이메일을 보낼 수 있게 허용",
 	"email-allow-new-users-label": "처음 온 사용자들로부터 오는 이메일 허용",
+	"prefs-help-email-allow-new-users": "이 옵션을 활성화하면 [[{{MediaWiki:grouppage-autoconfirmed}}|자동 인증]]되지 않은 사용자가 당신에게 이메일을 보낼 수 있습니다.",
 	"tog-ccmeonemails": "이메일을 보낼 때 내 이메일로 복사본을 보내기",
 	"email-mutelist-label": "이 사용자가 내게 이메일을 보내지 못하게 합니다:",
 	"tog-enotifwatchlistpages": "주시문서 목록에 속한 문서나 파일이 바뀌면 이메일로 알림",

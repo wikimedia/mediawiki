@@ -449,6 +449,7 @@ swagger-ui:
   dest:
     swagger-ui-4.15.5/README.md:
     swagger-ui-4.15.5/LICENSE:
+    swagger-ui-4.15.5/NOTICE:
     swagger-ui-4.15.5/dist/swagger-ui-bundle.js:
     swagger-ui-4.15.5/dist/swagger-ui-bundle.js.map:
     swagger-ui-4.15.5/dist/swagger-ui-standalone-preset.js:

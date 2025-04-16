@@ -48,7 +48,7 @@
 	"apihelp-feedrecentchanges-example-30days": "30 ਦਿਨਾਂ ਲਈ ਹਾਲੀਆ ਤਬਦੀਲੀਆਂ ਵਿਖਾਓ।",
 	"apihelp-feedwatchlist-example-all6hrs": "ਪਿਛਲੇ 6 ਘੰਟਿਆਂ ਵਿੱਚ ਵੇਖੇ ਗਏ ਸਫ਼ਿਆਂ ਵਿੱਚ ਸਾਰੀਆਂ ਤਬਦੀਲੀਆਂ ਵਿਖਾਓ।",
 	"apihelp-help-example-recursive": "ਇੱਕੋ ਸਫ਼ੇ 'ਤੇ ਸਾਰੀ ਮਦਦ",
-	"apihelp-import-param-interwikipage": "ਅੰਤਰ-ਵਿਕੀ ਆਯਾਤ ਵਾਸਤੇ: ਆਯਾਤ ਕਰਨ ਲਈ ਸਫ਼ਾ।",
+	"apihelp-import-param-interwikipage": "ਅੰਤਰ-ਵਿਕੀ ਦਰਾਮਦ ਲਈ: ਦਰਾਮਦ ਕਰਨ ਲਈ ਸਫ਼ਾ।",
 	"apihelp-login-param-name": "ਵਰਤੋਂਕਾਰ ਨਾਂ।",
 	"apihelp-login-param-password": "ਪਾਰਸ਼ਬਦ।",
 	"apihelp-login-param-domain": "ਡੋਮੇਨ (ਇਖਤਿਆਰੀ)",
@@ -69,5 +69,6 @@
 	"apihelp-setpagelanguage-summary": "ਸਫ਼ੇ ਦੀ ਭਾਸ਼ਾ ਬਦਲੋ।",
 	"apihelp-validatepassword-summary": "ਵਿਕੀ ਦੀਆਂ ਪਾਰਸ਼ਬਦ ਨੀਤੀਆਂ ਦੇ ਖ਼ਿਲਾਫ ਇੱਕ ਪਾਰਸ਼ਬਦ ਦੀ ਤਸਦੀਕ ਕਰੋ।",
 	"apihelp-validatepassword-param-password": "ਤਸਦੀਕ ਕਰਨ ਲਈ ਪਾਰਸ਼ਬਦ",
-	"api-help-templatedparams-header": "ਫਰਮੇ ਦੇ ਮਾਪਦੰਡ"
+	"api-help-templatedparams-header": "ਫਰਮੇ ਦੇ ਮਾਪਦੰਡ",
+	"api-help-param-type-presenceboolean": "ਕਿਸਮ: ਬੂਲੀਅਨ (ਸੱਚ/ਝੂਠ ਕਿਸਮ) ([[Special:ApiHelp/main#main/datatype/boolean|ਵੇਰਵੇ]])"
 }

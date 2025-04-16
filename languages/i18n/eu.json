@@ -3372,7 +3372,7 @@
 	"duration-hours": "{{PLURAL:$1|ordubete|$1 ordu}}",
 	"duration-days": "{{PLURAL:$1|Egun bat|$1 egun}}",
 	"duration-weeks": "{{PLURAL:$1|Astebete|$1 aste}}",
-	"duration-months": "{{PLURAL: hilabete $1|$1 hilabete}}",
+	"duration-months": "{{PLURAL:$1|hilabete $1|$1 hilabete}}",
 	"duration-years": "{{PLURAL:$1|Urtebete|$1 urte}}",
 	"duration-decades": "{{PLURAL:$1|Hamarkada $1|$1 hamarkada}}",
 	"duration-centuries": "{{PLURAL:$1|Mende $1|$1 mende}}",
