@@ -41,6 +41,7 @@ class RecentChangeNotificationHandler implements NotificationHandler {
 		$sourceMap = [
 			RecentChangeNotification::ADMIN_NOTIFICATION => RecentChangeMailComposer::ALL_CHANGES,
 			RecentChangeNotification::TALK_NOTIFICATION => RecentChangeMailComposer::USER_TALK,
+			RecentChangeNotification::WATCHLIST_NOTIFICATION => RecentChangeMailComposer::WATCHLIST,
 		];
 		$source = $sourceMap[ $notification->getSource() ] ?? RecentChangeMailComposer::ALL_CHANGES;
 

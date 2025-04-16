@@ -3,6 +3,7 @@
 namespace MediaWiki\Notification;
 
 use ArrayIterator;
+use Countable;
 use IteratorAggregate;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
@@ -11,7 +12,7 @@ use Wikimedia\Assert\Assert;
  * @since 1.44
  * @unstable
  */
-class RecipientSet implements IteratorAggregate {
+class RecipientSet implements IteratorAggregate, Countable {
 
 	/**
 	 * @var UserIdentity[]
@@ -34,7 +35,19 @@ class RecipientSet implements IteratorAggregate {
 		return $this->recipients;
 	}
 
+	/**
+	 * @param UserIdentity $identity
+	 * @return void
+	 */
+	public function addRecipient( UserIdentity $identity ) {
+		$this->recipients[] = $identity;
+	}
+
 	public function getIterator(): ArrayIterator {
 		return new ArrayIterator( $this->recipients );
+	}
+
+	public function count(): int {
+		return count( $this->recipients );
 	}
 }
