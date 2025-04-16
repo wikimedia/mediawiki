@@ -74,7 +74,11 @@
 				:can-delete-log-entry="canDeleteLogEntry"
 			></block-log>
 
-			<div v-if="formVisible" class="mw-block__block-form">
+			<div
+				v-if="formVisible"
+				class="mw-block__block-form"
+				@change="formDirty = true"
+			>
 				<h2>{{ formHeaderText }}</h2>
 				<block-type-field></block-type-field>
 				<expiry-field></expiry-field>
@@ -200,6 +204,7 @@ module.exports = exports = defineComponent( {
 			formErrors,
 			formSubmitted,
 			formVisible,
+			formDirty,
 			blockAdded,
 			blockRemoved,
 			enableMultiblocks,
@@ -230,9 +235,7 @@ module.exports = exports = defineComponent( {
 		onMounted( () => {
 			// Prevent the window from being closed as long as we have the form open
 			mw.confirmCloseWindow( {
-				test: function () {
-					return formVisible.value;
-				}
+				test: () => formVisible.value && formDirty.value
 			} );
 
 			// If we're editing or removing via an id URL parameter, check that the block exists.
@@ -476,6 +479,7 @@ module.exports = exports = defineComponent( {
 			store,
 			messagesContainer,
 			formErrors,
+			formDirty,
 			blockAdded,
 			blockRemoved,
 			shouldShowAddBlockButton,

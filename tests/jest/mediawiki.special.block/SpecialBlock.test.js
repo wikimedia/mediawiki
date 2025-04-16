@@ -284,19 +284,23 @@ describe( 'SpecialBlock', () => {
 		expect( wrapper.find( '.mw-block__block-form' ).exists() ).toBeTruthy();
 		expect( wrapper.find( '.mw-block__block-form h2' ).text() ).toStrictEqual( 'block-update' );
 		expect( wrapper.find( '.mw-block-submit' ).text() ).toStrictEqual( 'block-submit' );
+		expect( store.formDirty ).toBeFalsy();
 		await wrapper.find( '[name=wpReason-other]' ).setValue( 'This is a test' );
 		expect( store.reason ).toStrictEqual( 'This is a test' );
+		expect( store.formDirty ).toBeTruthy();
 		// Submit.
 		await wrapper.find( '.mw-block-submit' ).trigger( 'click' );
 		await flushPromises();
 		expect( wrapper.find( '.mw-block-success' ).exists() ).toBeTruthy();
 		expect( wrapper.find( '.mw-block__block-form' ).exists() ).toBeFalsy();
 		expect( store.reason ).toStrictEqual( '' );
+		expect( store.blockId ).toBeNull();
 		// Add a new block.
 		await wrapper.find( '.mw-block__create-button' ).trigger( 'click' );
 		expect( wrapper.find( '.mw-block__block-form' ).exists() ).toBeTruthy();
 		expect( store.blockId ).toBeNull();
 		expect( store.reason ).toStrictEqual( '' );
+		expect( store.formDirty ).toBeFalsy();
 		expect( wrapper.find( '[name=wpReason-other]' ).element.value ).toStrictEqual( '' );
 	} );
 
