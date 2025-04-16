@@ -2325,7 +2325,7 @@ return [
 		);
 		$cache = new StatsCache;
 		$emitter = \Wikimedia\Stats\OutputFormats::getNewEmitter(
-			$config->get( MainConfigNames::StatsPrefix ) ?? 'MediaWiki',
+			$config->get( MainConfigNames::StatsPrefix ),
 			$cache,
 			\Wikimedia\Stats\OutputFormats::getNewFormatter( $format ),
 			$config->get( MainConfigNames::StatsTarget )
