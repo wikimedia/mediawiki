@@ -165,6 +165,13 @@ module.exports = exports = defineStore( 'block', () => {
 	 */
 	const formVisible = ref( false );
 	/**
+	 * Whether changes have been made to any form field.
+	 * This is set by the parent SpecialBlock component, and cleared by resetForm().
+	 *
+	 * @type {Ref<boolean>}
+	 */
+	const formDirty = ref( false );
+	/**
 	 * Whether the block was added successfully.
 	 *
 	 * @type {Ref<boolean>}
@@ -375,6 +382,7 @@ module.exports = exports = defineStore( 'block', () => {
 		formErrors.value = [];
 		formSubmitted.value = false;
 		formVisible.value = false;
+		formDirty.value = false;
 		blockAdded.value = false;
 		blockRemoved.value = false;
 		promises.value.clear();
@@ -566,6 +574,7 @@ module.exports = exports = defineStore( 'block', () => {
 		formErrors,
 		formSubmitted,
 		formVisible,
+		formDirty,
 		targetUser,
 		blockAdded,
 		blockRemoved,
