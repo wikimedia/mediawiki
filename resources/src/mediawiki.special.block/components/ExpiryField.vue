@@ -311,7 +311,8 @@ module.exports = exports = defineComponent( {
 		margin-bottom: 0;
 	}
 
-	&__custom-duration .cdx-field__control {
+	&__custom-duration .cdx-field__control,
+	&__datetime .cdx-field__control {
 		display: flex;
 		gap: @spacing-50;
 
