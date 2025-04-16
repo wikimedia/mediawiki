@@ -3074,7 +3074,7 @@
 	"version-ext-colheader-description": "Skildring",
 	"version-ext-colheader-credits": "Forfattarar",
 	"version-license-title": "Lisens for $1",
-	"version-poweredby-credits": "Denne wikien er driven av '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+	"version-poweredby-credits": "Denne wikien er driven av '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001–$1 $2.",
 	"version-poweredby-others": "andre",
 	"version-poweredby-translators": "translatewiki.net-omsetjarar",
 	"version-credits-summary": "Me ynskjer godskriva desse personane for tilskotet deira til [[Special:Version|MediaWiki]].",
