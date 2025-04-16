@@ -283,7 +283,7 @@ QUnit.module( 'mediawiki.Uri', ( hooks ) => {
 		assert.notStrictEqual( clone, original, 'clone is a different object when compared by reference' );
 
 		clone.host = 'bar.example.org';
-		assert.notStrictEqual( original.host, clone.host, 'manipulating clone did not effect original' );
+		assert.notStrictEqual( original.host, clone.host, 'manipulating clone did not affect original' );
 		assert.notStrictEqual( original.toString(), clone.toString(), 'Stringified url no longer matches original' );
 
 		clone.query.three = 3;
