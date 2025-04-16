@@ -11,6 +11,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\Parsoid\Config\DataAccess;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -197,6 +198,12 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 			'type' => $previousOutput === null ? 'full' : 'selective',
 			'wiki' => WikiMap::getCurrentWikiId(),
 			'reason' => $options->getRenderReason() ?: 'unknown',
+			'has_async_content' =>
+				$parserOutput->getOutputFlag( ParserOutputFlags::HAS_ASYNC_CONTENT )
+				? 'true' : 'false',
+			'async_not_ready' =>
+				$parserOutput->getOutputFlag( ParserOutputFlags::ASYNC_NOT_READY )
+				? 'true' : 'false',
 		];
 		$stats
 			->getCounter( 'Parsoid_parse_cpu_seconds' )
