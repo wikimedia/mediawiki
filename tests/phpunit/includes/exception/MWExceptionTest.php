@@ -23,9 +23,6 @@ class MWExceptionTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $e->isLoggable() );
 	}
 
-	/**
-	 * @covers \MWException::report
-	 */
 	public function testReport() {
 		// Turn off to keep mw-error.log file empty in CI (and thus avoid build failure)
 		$this->overrideConfigValue( MainConfigNames::DebugLogGroups, [] );

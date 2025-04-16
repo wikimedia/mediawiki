@@ -4,10 +4,12 @@ namespace MediaWiki\Tests\Logger\Monolog;
 
 use MediaWiki\Logger\Monolog\LogstashFormatter;
 
+/**
+ * @covers \MediaWiki\Logger\Monolog\LogstashFormatter
+ */
 class LogstashFormatterTest extends \MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideV1
-	 * @covers \MediaWiki\Logger\Monolog\LogstashFormatter::format
 	 * @param array $record The input record.
 	 * @param array $expected Associative array of expected keys and their values.
 	 * @param array $notExpected List of keys that should not exist.
@@ -45,9 +47,6 @@ class LogstashFormatterTest extends \MediaWikiUnitTestCase {
 		];
 	}
 
-	/**
-	 * @covers \MediaWiki\Logger\Monolog\LogstashFormatter::format
-	 */
 	public function testV1WithPrefix() {
 		$formatter = new LogstashFormatter( 'app', 'system', '', 'ctx_', LogstashFormatter::V1 );
 		$record = [ 'extra' => [ 'url' => 1 ], 'context' => [ 'url' => 2 ] ];

@@ -567,8 +567,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\MainConfigSchema::listDefaultValues
-	 * @covers \MediaWiki\MainConfigSchema::getDefaultValue
+	 * @covers \MediaWiki\MainConfigSchema
 	 */
 	public function testMainConfigSchemaDefaults() {
 		$defaults = iterator_to_array( MainConfigSchema::listDefaultValues() );

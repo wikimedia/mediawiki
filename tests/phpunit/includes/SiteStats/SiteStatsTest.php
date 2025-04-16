@@ -6,12 +6,10 @@ use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 /**
  * @group Database
+ * @covers \MediaWiki\SiteStats\SiteStats
  */
 class SiteStatsTest extends MediaWikiIntegrationTestCase {
 
-	/**
-	 * @covers \MediaWiki\SiteStats\SiteStats::jobs
-	 */
 	public function testJobsCountGetCached() {
 		$cache = $this->getServiceContainer()->getMainWANObjectCache();
 		$jobq = $this->getServiceContainer()->getJobQueueGroup();
@@ -38,9 +36,6 @@ class SiteStatsTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 0, SiteStats::jobs() );
 	}
 
-	/**
-	 * @covers \MediaWiki\SiteStats\SiteStats
-	 */
 	public function testInit() {
 		$this->getDb()->newDeleteQueryBuilder()
 			->deleteFrom( 'site_stats' )
