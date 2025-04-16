@@ -1925,6 +1925,7 @@
 	"statistics-header-users": "Benutzerstatistik",
 	"statistics-header-hooks": "Sonstige Statistiken",
 	"statistics-articles": "Inhaltsseiten",
+	"statistics-articles-desc": "Weitere Einzelheiten in der [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticleCountMethod Dokumentation zur Artikelzählung].",
 	"statistics-pages": "Seiten",
 	"statistics-pages-desc": "Alle Seiten in diesem Wiki, inklusive Diskussionsseiten, Weiterleitungen usw.",
 	"statistics-files": "Hochgeladene Dateien",
