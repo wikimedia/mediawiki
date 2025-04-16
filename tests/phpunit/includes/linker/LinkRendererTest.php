@@ -198,12 +198,21 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 				[
 					'title' => 'Main_Page',
 				],
-				'<div class="redirectMsg"><p>Redirect to:</p><ul class="redirectText"><li><a class="new" title="Main Page (page does not exist)">Main Page</a></li></ul></div>'
+				'<div class="redirectMsg"><p>Redirect to:</p><ul class="redirectText"><li><a class="new" title="Main Page (page does not exist)">Main Page</a></li></ul></div><link rel="mw:PageProp/redirect">'
 			],
 			[
 				[
 					'title' => 'Redirect',
 					'redirect' => true,
+				],
+				'<div class="redirectMsg"><p>Redirect to:</p><ul class="redirectText"><li><a class="new" title="Redirect (page does not exist)">Redirect</a></li></ul></div><link rel="mw:PageProp/redirect">'
+			],
+			// Test 'addLinkTag' => false
+			[
+				[
+					'title' => 'Redirect',
+					'redirect' => true,
+					'addLinkTag' => false,
 				],
 				'<div class="redirectMsg"><p>Redirect to:</p><ul class="redirectText"><li><a class="new" title="Redirect (page does not exist)">Redirect</a></li></ul></div>'
 			],
@@ -215,7 +224,7 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 					'namespace' => NS_SPECIAL,
 					'forceKnown' => true,
 				],
-				'<div class="redirectMsg"><p>Redirect to:</p><ul class="redirectText"><li><a title="Special:Main Page">Special:Main Page</a></li></ul></div>',
+				'<div class="redirectMsg"><p>Redirect to:</p><ul class="redirectText"><li><a title="Special:Main Page">Special:Main Page</a></li></ul></div><link rel="mw:PageProp/redirect">',
 			],
 			[
 				[
@@ -224,7 +233,7 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 					'redirect' => true,
 					'forceKnown' => true,
 				],
-				'<div class="redirectMsg"><p>Redirect to:</p><ul class="redirectText"><li><a href="/w/index.php?title=Special:Redirect&amp;redirect=no" title="Special:Redirect">Special:Redirect</a></li></ul></div>',
+				'<div class="redirectMsg"><p>Redirect to:</p><ul class="redirectText"><li><a href="/w/index.php?title=Special:Redirect&amp;redirect=no" title="Special:Redirect">Special:Redirect</a></li></ul></div><link rel="mw:PageProp/redirect">',
 			],
 		];
 	}
@@ -237,11 +246,12 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 		$lang = $this->getServiceContainer()->getContentLanguage();
 		$target = $this->makeMockTitle( $test['title'], $test );
 		$forceKnown = $test['forceKnown'] ?? false;
+		$addLinkTag = $test['addLinkTag'] ?? true;
 
 		$linkRenderer = $this->factory->create();
 		$this->assertEquals(
 			$expected,
-			$linkRenderer->makeRedirectHeader( $lang, $target, $forceKnown )
+			$linkRenderer->makeRedirectHeader( $lang, $target, $forceKnown, $addLinkTag )
 		);
 	}
 

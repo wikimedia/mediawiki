@@ -275,7 +275,8 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 			new ContentParseParams( Title::newMainPage() )
 		);
 		$redirectHeader = $parserOutput->getRedirectHeader();
-		$this->assertStringContainsString( '<div class="redirectMsg">', $redirectHeader );
+		$this->assertStringContainsString( '<div class="redirectMsg"', $redirectHeader );
+		$this->assertStringContainsString( '<link rel="mw:PageProp/redirect"', $redirectHeader );
 		$this->assertMatchesRegularExpression( '!<a[^<>]+>' . $expectedTarget . '</a>!', $redirectHeader );
 	}
 

@@ -443,9 +443,13 @@ class LinkRenderer {
 	 * @param Language $lang
 	 * @param Title $target Destination to redirect
 	 * @param bool $forceKnown Should the image be shown as a bluelink regardless of existence?
+	 * @param bool $addLinkTag Should a <link> tag be added?
 	 * @return string Containing HTML with redirect link
 	 */
-	public function makeRedirectHeader( Language $lang, Title $target, bool $forceKnown = false ) {
+	public function makeRedirectHeader(
+		Language $lang, Title $target,
+		bool $forceKnown = false, bool $addLinkTag = false
+	) {
 		$html = '<ul class="redirectText">';
 		if ( $forceKnown ) {
 			$link = $this->makeKnownLink(
@@ -466,13 +470,17 @@ class LinkRenderer {
 		}
 
 		$redirectToText = wfMessage( 'redirectto' )->inLanguage( $lang )->escaped();
+		$linkTag = '';
+		if ( $addLinkTag ) {
+			$linkTag = Html::rawElement( 'link', [ 'rel' => 'mw:PageProp/redirect' ] );
+		}
 
 		return Html::rawElement(
 			'div', [ 'class' => 'redirectMsg' ],
 			Html::rawElement( 'p', [], $redirectToText ) .
 			Html::rawElement( 'ul', [ 'class' => 'redirectText' ],
 				Html::rawElement( 'li', [], $link ) )
-		);
+		) . $linkTag;
 	}
 
 	/**
