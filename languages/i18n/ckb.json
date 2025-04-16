@@ -2900,7 +2900,7 @@
 	"logentry-managetags-create": "$1 تاگی «$4»ی {{GENDER:$2|دروست کرد}}",
 	"log-name-tag": "لۆگی تاگ",
 	"rightsnone": "(ھیچ)",
-	"rightslogentry-temporary-group": "$1 (کاتیی، تاوەکوو $2)",
+	"rightslogentry-temporary-group": "$1 (کاتی، تاوەکوو $2)",
 	"feedback-cancel": "ھەڵوەشاندنەوە",
 	"feedback-close": "کرا",
 	"feedback-dialog-title": "بۆچووندان",
