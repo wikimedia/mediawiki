@@ -1,6 +1,6 @@
 'use strict';
 
-const { shallowMount } = require( '@vue/test-utils' );
+const { mount, shallowMount } = require( '@vue/test-utils' );
 const ReasonField = require( '../../../resources/src/mediawiki.special.block/components/ReasonField.vue' );
 const { mockMwConfigGet } = require( './SpecialBlock.setup.js' );
 
@@ -35,5 +35,16 @@ describe( 'ReasonField', () => {
 		const wrapper = shallowMount( ReasonField, { propsData: { modelValue } } );
 		expect( wrapper.vm.selected ).toStrictEqual( selected );
 		expect( wrapper.vm.other ).toStrictEqual( other );
+	} );
+
+	it( 'should not show edit block reason link if user does not have rights', async () => {
+		const wrapper = mount( ReasonField );
+		expect( wrapper.find( '.mw-block-reason-edit' ).exists() ).toBeFalsy();
+	} );
+
+	it( 'should display edit block reason link if user has rights', async () => {
+		mockMwConfigGet( { blockCanEditInterface: true } );
+		const wrapper = mount( ReasonField );
+		expect( wrapper.find( '.mw-block-reason-edit' ).exists() ).toBeTruthy();
 	} );
 } );
