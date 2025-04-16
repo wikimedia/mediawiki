@@ -266,7 +266,8 @@
 			"捍粵者",
 			"아라",
 			"Juwan",
-			"XtexChooser"
+			"XtexChooser",
+			"Pppery"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -949,7 +950,7 @@
 	"noarticletext-nopermission": "See also:\n* {{msg-mw|Noarticletext}}",
 	"noarticletextanon": "{{notranslate}}\nDefault:\n* {{msg-mw|Noarticletext}}",
 	"missing-revision-permission": "Text displayed when the requested revision (using a permalink) belongs to a deleted page and the user has permission to view it.\n\nIf your translation would start with <code>#</code>, use <code>&lt;nowiki>#&lt;/nowiki></code> instead, so that the message does not display as a numbered list.\n\nParameters:\n* $1 - the ID of the missing revision\n* $2 - revision timestamp\n* $3 - the page title",
-	"missing-revision": "Text displayed when the requested revision (using a permalink) does not exist or belongs to a deleted page and the user lacks permission to view it.\n\nIf your translation would start with <code>#</code>, use <code>&lt;nowiki>#&lt;/nowiki></code> instead, so that the message does not display as a numbered list.\n\nExample: [{{canonicalurl:Project:News|oldid=9999999}} Permalink with invalid revision#]\n\nParameters:\n* $1 - the ID of the missing revision",
+	"missing-revision": "Text displayed when the requested revision (using a permalink) does not exist or belongs to a deleted page and the user lacks permission to view it.\n\nIf your translation would start with <code>#</code>, use <code>&lt;nowiki>#&lt;/nowiki></code> instead, so that the message does not display as a numbered list.\n\nExample: [{{canonicalurl:Project:News|oldid=9999999}} Permalink with invalid revision#]\n\nThe wikitext <code><nowiki>[{{fullurl: {{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} ... ]</nowiki></code> should be left untranslated. The text \"deletion log\" can be translated. \n\nParameters:\n* $1 - the ID of the missing revision",
 	"missing-revision-content": "Text displayed when the requested revision exists, but the content of the revision was unable to be loaded.\n\nIf your translation would start with <code>#</code>, use <code>&lt;nowiki>#&lt;/nowiki></code> instead, so that the message does not display as a numbered list.\n\nParameters:\n* $1 - the ID of the revision.\n* $2 - Title of the page.",
 	"userpage-userdoesnotexist": "Error message displayed when trying to edit or create a page or a subpage that belongs to a user who is not registered on the wiki.\n\nParameters:\n* $1 - a username\n{{Identical|Userdoesnotexist}}",
 	"userpage-userdoesnotexist-view": "Shown in user pages of non-existing users. See for example [{{canonicalurl:User:Foo}} User:Foo].\n\nParameters:\n* $1 - a username\n{{Identical|Userdoesnotexist}}",
@@ -1345,7 +1346,7 @@
 	"default": "{{Identical|Default}}",
 	"linterror-bogus-image-options": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-bogus-image-options-details}}.",
 	"linterror-deletable-table-tag": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-deletable-table-tag-details}}.",
-	"linterror-fostered": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-category-fostered}}.",
+	"linterror-fostered": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-fostered}}.",
 	"linterror-html5-misnesting": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-html5-misnesting-details}}.",
 	"linterror-inline-media-caption": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-inline-media-caption-details}}.",
 	"linterror-large-tables": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-large-tables-details}}.",
