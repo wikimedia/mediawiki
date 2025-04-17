@@ -75,6 +75,11 @@ class HistogramMetricTest extends TestCase {
 		StatsFactory::newNull()->getHistogram( 'test', [] );
 	}
 
+	public function testThrowOnTooManyBuckets() {
+		$this->expectException( 'InvalidArgumentException' );
+		StatsFactory::newNull()->getHistogram( 'test', [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ] );
+	}
+
 	// Return an array of just the values
 	public static function getSampleValues( $samples ) {
 		$output = [];

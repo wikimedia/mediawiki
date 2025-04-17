@@ -125,7 +125,7 @@ class StatsFactory {
 	 * Makes a new HistogramMetric.
 	 *
 	 * @param string $name
-	 * @param array $buckets
+	 * @param array<int|float> $buckets
 	 * @return HistogramMetric
 	 */
 	public function getHistogram( string $name, array $buckets ) {
