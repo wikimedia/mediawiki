@@ -370,9 +370,9 @@ because of Phabricator reports.
   warnings in 1.38, have been removed:
    - OutputPage::$mNoGallery
    - OutputPage::$mRevisionTimestamp
-* Removed $timestamp, $summary, $minorEdit, $oldid and $pageStatus params from
-  EmailNotification::notifyOnPageChange(). Now this method takes RecentChange
-  instead.
+* The method signatures of EmailNotification::notifyOnPageChange()
+  and actuallyNotifyOnPageChange() have changed. These method are now
+  marked as @internal and must not be used by extensions.
 * …
 
 === Deprecations in 1.44 ===
