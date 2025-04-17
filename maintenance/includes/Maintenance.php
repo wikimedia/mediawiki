@@ -496,10 +496,7 @@ abstract class Maintenance {
 			// Flush stats periodically in long-running CLI scripts to avoid OOM (T181385)
 			$stats = $this->getServiceContainer()->getStatsdDataFactory();
 			$statsFactory = $this->getServiceContainer()->getStatsFactory();
-			// FIXME: use sample count from StatsFactory (T381042)
-			if ( $stats->getDataCount() > 1000 ) {
-				MediaWiki::emitBufferedStats( $statsFactory, $stats, $this->getConfig() );
-			}
+			MediaWiki::emitBufferedStats( $statsFactory, $stats, $this->getConfig() );
 		}
 
 		if ( $this->mQuiet ) {

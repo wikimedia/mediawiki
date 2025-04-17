@@ -53,7 +53,14 @@ class UnitTestingHelper {
 	public function __construct() {
 		$this->cache = new StatsCache();
 		$this->logger = LoggerFactory::getInstance( 'Stats' );
-		$this->factory = new StatsFactory( $this->cache, new NullEmitter(), $this->logger );
+		// Disable StatsFactory::flush() and its StatsCache::clear() calls, because automatic
+		// flushes would otherwise delete metrics before we can assert them, e.g. after whenever
+		// a subject under test commits a database transaction or when a tested Maintenance script
+		// prints output.
+		$this->factory = new class( $this->cache, new NullEmitter(), $this->logger ) extends StatsFactory {
+			public function flush(): void {
+			}
+		};
 	}
 
 	/**
