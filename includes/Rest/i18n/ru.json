@@ -7,6 +7,7 @@
 			"Kareyac",
 			"Katunchik",
 			"Megakott",
+			"Mitte27",
 			"Okras",
 			"Vlad5250",
 			"Yurina Tatiana"
@@ -63,6 +64,7 @@
 	"rest-parsoid-error": "Ошибка Parsoid.",
 	"rest-html-key-expected": "Ожидаемый <var>HTML-</var> ключ в теле",
 	"rest-unsupported-transform-input": "Неподдерживаемый ввод: $1",
+	"rest-no-stashed-content": "Сохранённый контент для $1 не найден. Скорее всего, сессия редактирования истекла. Скопируйте текст, перезагрузите страницу и попробуйте снова.",
 	"rest-edit-conflict": "Конфликт редактирования ($1)",
 	"rest-unknown-parsoid-transformation": "Неизвестная трансформация.",
 	"rest-unknown-content-model": "Неизвестная модель содержимого: $1",
