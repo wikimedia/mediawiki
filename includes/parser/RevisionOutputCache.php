@@ -240,7 +240,7 @@ class RevisionOutputCache {
 			return false;
 		}
 
-		$output = $this->restoreFromJson( $json, $cacheKey, ParserOutput::class );
+		$output = $this->restoreFromJson( $json, $cacheKey );
 		if ( $output === null ) {
 			$this->incrementStats( $revision, 'miss', 'unserialize' );
 			return false;
@@ -336,13 +336,12 @@ class RevisionOutputCache {
 	/**
 	 * @param string $jsonData
 	 * @param string $key
-	 * @param string $expectedClass
 	 * @return CacheTime|ParserOutput|null
 	 */
-	private function restoreFromJson( string $jsonData, string $key, string $expectedClass ) {
+	private function restoreFromJson( string $jsonData, string $key ) {
 		try {
 			/** @var CacheTime $obj */
-			$obj = $this->jsonCodec->deserialize( $jsonData, $expectedClass );
+			$obj = $this->jsonCodec->deserialize( $jsonData, ParserOutput::class );
 			return $obj;
 		} catch ( JsonException $e ) {
 			$this->logger->error( 'Unable to deserialize JSON', [
