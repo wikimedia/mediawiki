@@ -916,11 +916,12 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 
 	/**
 	 * Get the username corresponding to a given user ID
-	 * @deprecated since 1.43, Use UserIdentityLookup to get name from id
+	 * @deprecated since 1.43, emits deprecation warnings since 1.44, Use UserIdentityLookup to get name from id
 	 * @param int $id User ID
 	 * @return string|false The corresponding username
 	 */
 	public static function whoIs( $id ) {
+		wfDeprecated( __METHOD__, '1.43' );
 		return MediaWikiServices::getInstance()->getUserCache()
 			->getProp( $id, 'name' );
 	}
@@ -928,11 +929,13 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	/**
 	 * Get the real name of a user given their user ID
 	 *
-	 * @deprecated since 1.43, Use UserFactory to get user instance and use User::getRealName
+	 * @deprecated since 1.43, emits deprecation warnings since 1.44,
+	 *   Use UserFactory to get user instance and use User::getRealName
 	 * @param int $id User ID
 	 * @return string|false The corresponding user's real name
 	 */
 	public static function whoIsReal( $id ) {
+		wfDeprecated( __METHOD__, '1.43' );
 		return MediaWikiServices::getInstance()->getUserCache()
 			->getProp( $id, 'real_name' );
 	}
