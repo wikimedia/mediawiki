@@ -81,6 +81,7 @@
     "imports": [
       "_Icon.js",
       "src/components/button/Button.vue",
+      "_useOptionalModelWrapper.js",
       "__plugin-vue_export-helper.js"
     ],
     "css": [

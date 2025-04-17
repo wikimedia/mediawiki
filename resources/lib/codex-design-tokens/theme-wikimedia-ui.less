@@ -1,9 +1,8 @@
 
-// Codex Design Tokens v1.22.0
+// Codex Design Tokens v1.23.0
 // Design System for Wikimedia
 // See https://doc.wikimedia.org/codex/latest/design-tokens/overview.html
 
-@background-image-input-checkbox--checked: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="%23fff" d="M7 14.17L2.83 10l-1.41 1.41L7 17 19 5l-1.41-1.42z"/></svg>' );
 @color-base: var( --color-base, #202122 );
 @color-base-fixed: var( --color-base-fixed, #202122 );
 @color-base--hover: var( --color-base--hover, #404244 );
@@ -162,6 +161,7 @@
 @text-overflow-clip: clip;
 @text-overflow-ellipsis: ellipsis;
 @tab-size-base: 4;
+@transform-checkbox-tick--checked: rotate( 45deg );
 @transform-progress-indicator-spinner-start: rotate( -45deg );
 @transform-progress-indicator-spinner-end: rotate( 315deg );
 @transition-duration-base: 100ms;
@@ -290,6 +290,7 @@
 @border-color-interactive--active: var( --border-color-interactive--active, #202122 );
 @border-color-disabled: var( --border-color-disabled, #c8ccd1 );
 @border-color-inverted: var( --border-color-inverted, #fff );
+@border-color-inverted-fixed: var( --border-color-inverted-fixed, #fff ); // The same as color-inverted in light mode, but does not change in dark mode. Use this for things that should be white in both modes.
 @border-color-progressive: var( --border-color-progressive, #6485d1 );
 @border-color-progressive--hover: var( --border-color-progressive--hover, #3056a9 );
 @border-color-progressive--active: var( --border-color-progressive--active, #233566 );

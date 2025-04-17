@@ -1,5 +1,5 @@
 /**
- * Codex Design Tokens v1.22.0
+ * Codex Design Tokens v1.23.0
  * Design System for Wikimedia
  * See https://doc.wikimedia.org/codex/latest/design-tokens/overview.html
  */
@@ -115,6 +115,7 @@
   --border-color-interactive--active: #202122;
   --border-color-disabled: #c8ccd1;
   --border-color-inverted: #fff;
+  --border-color-inverted-fixed: #fff; /* The same as color-inverted in light mode, but does not change in dark mode. Use this for things that should be white in both modes. */
   --border-color-progressive: #6485d1;
   --border-color-progressive--hover: #3056a9;
   --border-color-progressive--active: #233566;

@@ -1,3 +1,20 @@
+# 1.23.0 / 2025-04-17
+
+## Features
+- Accordion: add support for optional v-model prop (Eric Gardner)
+
+## Styles
+- styles, tokens, Checkbox: Replace non-option token SVG image with pure CSS (Volker E.)
+- styles, Checkbox: Add correct disabled color (Volker E.)
+
+## New design tokens
+- `@border-color-inverted-fixed`
+- `@transform-checkbox-tick--checked`
+
+## Docs
+- docs: Align Less bracket whitespace to Wikimedia coding guidelines (Volker E.)
+- docs: Update Design Principles (Derek Torsani)
+
 # 1.22.0 / 2025-04-01
 
 ## Styles
