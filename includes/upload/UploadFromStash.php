@@ -104,8 +104,12 @@ class UploadFromStash extends UploadBase {
 		 * an opaque key to the user agent.
 		 */
 		$metadata = $this->stash->getMetadata( $key );
+		$tempPath = $initTempFile ? $this->getRealPath( $metadata['us_path'] ) : null;
+		if ( $tempPath === false ) {
+			throw new UploadStashBadPathException( wfMessage( 'uploadstash-bad-path' ) );
+		}
 		$this->initializePathInfo( $name,
-			$initTempFile ? $this->getRealPath( $metadata['us_path'] ) : false,
+			$tempPath,
 			$metadata['us_size'],
 			false
 		);

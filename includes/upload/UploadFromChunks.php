@@ -141,8 +141,12 @@ class UploadFromChunks extends UploadFromFile {
 		$this->getChunkStatus();
 
 		$metadata = $this->stash->getMetadata( $key );
+		$tempPath = $this->getRealPath( $metadata['us_path'] );
+		if ( $tempPath === false ) {
+			throw new UploadStashBadPathException( wfMessage( 'uploadstash-bad-path' ) );
+		}
 		$this->initializePathInfo( $name,
-			$this->getRealPath( $metadata['us_path'] ),
+			$tempPath,
 			$metadata['us_size'],
 			false
 		);
