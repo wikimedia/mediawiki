@@ -47,7 +47,25 @@ class StatsEmitterTest extends TestCase {
 				"mediawiki.test.baz:3.14|ms\n" .
 				"mediawiki.test.bucketed:1|c|#le:0.1\n" .
 				"mediawiki.test.quux:1|g\n" .
-				"mediawiki.test.stats_buffered_total:6|c\n"
+				"mediawiki.test.zot_count:1|c\n" .
+				"mediawiki.test.zot_count:1|c\n" .
+				"mediawiki.test.zot_count:1|c\n" .
+				"mediawiki.test.zot_count:1|c\n" .
+				"mediawiki.test.zot_bucket:0|c|#le:+Inf\n" .
+				"mediawiki.test.zot_bucket:0|c|#le:1\n" .
+				"mediawiki.test.zot_bucket:0|c|#le:10\n" .
+				"mediawiki.test.zot_bucket:1|c|#le:+Inf\n" .
+				"mediawiki.test.zot_bucket:1|c|#le:10\n" .
+				"mediawiki.test.zot_bucket:1|c|#le:+Inf\n" .
+				"mediawiki.test.zot_bucket:1|c|#le:+Inf\n" .
+				"mediawiki.test.zot_bucket:1|c|#le:+Inf\n" .
+				"mediawiki.test.zot_bucket:1|c|#le:1\n" .
+				"mediawiki.test.zot_bucket:1|c|#le:10\n" .
+				"mediawiki.test.zot_sum:8|c\n" .
+				"mediawiki.test.zot_sum:12|c\n" .
+				"mediawiki.test.zot_sum:50|c\n" .
+				"mediawiki.test.zot_sum:1|c\n" .
+				"mediawiki.test.stats_buffered_total:24|c\n"
 			);
 		$emitter = $emitter->withTransport( $transport );
 
@@ -93,6 +111,12 @@ class StatsEmitterTest extends TestCase {
 		$m->getGauge( 'quux' )
 			->copyToStatsdAt( 'test.old_quux' )
 			->set( 1 );
+
+		$histo = $m->getHistogram( 'zot', [ 1, 10 ] );
+		$histo->observe( 8 );
+		$histo->observe( 12 );
+		$histo->observe( 50 );
+		$histo->observe( 1 );
 
 		// send metrics
 		$m->flush();
