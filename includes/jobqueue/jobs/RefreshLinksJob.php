@@ -33,6 +33,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserCache;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\SlotRecord;
@@ -480,6 +481,10 @@ class RefreshLinksJob extends Job {
 		$statsCounter
 			->setLabel( 'status', 'cache_miss' )
 			->setLabel( 'html_changed', $htmlChanged )
+			->setLabel( 'has_async_content',
+				$output->getOutputFlag( ParserOutputFlags::HAS_ASYNC_CONTENT ) ? 'true' : 'false' )
+			->setLabel( 'async_not_ready',
+				$output->getOutputFlag( ParserOutputFlags::ASYNC_NOT_READY ) ? 'true' : 'false' )
 			->copyToStatsdAt( 'refreshlinks.parser_uncached' )
 			->increment();
 
