@@ -34,6 +34,9 @@ use Wikimedia\Stats\StatsFactory;
  */
 class HistogramMetric {
 
+	/** @var int Maximum number of allowed buckets. */
+	private const MAX_BUCKETS = 10;
+
 	private StatsFactory $statsFactory;
 	private string $name;
 	private array $buckets;
@@ -44,6 +47,12 @@ class HistogramMetric {
 		$this->name = $name;
 		if ( !$buckets ) {
 			throw new InvalidArgumentException( 'Stats: Histogram buckets cannot be an empty array.' );
+		}
+		$bucketCount = count( $buckets );
+		if ( $bucketCount > self::MAX_BUCKETS ) {
+			throw new InvalidArgumentException(
+				"Stats: Too many buckets defined. Got:{$bucketCount}, Max:" . self::MAX_BUCKETS
+			);
 		}
 		foreach ( $buckets as $bucket ) {
 			if ( !( is_float( $bucket ) || is_int( $bucket ) ) ) {
