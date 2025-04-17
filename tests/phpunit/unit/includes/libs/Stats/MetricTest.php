@@ -430,4 +430,19 @@ class MetricTest extends TestCase {
 			)
 		);
 	}
+
+	public function testSetLabelReserved() {
+		$metric = @StatsFactory::newNull()->getCounter( 'test' )->setLabel( 'Le', 'foo' );
+		$this->assertInstanceOf( NullMetric::class, $metric );
+	}
+
+	public function testSetLabelsReserved() {
+		$metric = @StatsFactory::newNull()->getCounter( 'test' )->setLabels( [ 'foo' => 'a', 'lE' => '1', 'bar' => 'c' ] );
+		$this->assertInstanceOf( NullMetric::class, $metric );
+	}
+
+	public function testInvalidBucketValue() {
+		$this->expectException( 'InvalidArgumentException' );
+		StatsFactory::newNull()->getCounter( 'test' )->setBucket( 'foo' );
+	}
 }

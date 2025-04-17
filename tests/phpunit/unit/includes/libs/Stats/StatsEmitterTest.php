@@ -45,8 +45,9 @@ class StatsEmitterTest extends TestCase {
 				"mediawiki.test.bar:1|c|#mykey:value1\n" .
 				"mediawiki.test.bar:1|c|#mykey:value2\n" .
 				"mediawiki.test.baz:3.14|ms\n" .
+				"mediawiki.test.bucketed:1|c|#le:0.1\n" .
 				"mediawiki.test.quux:1|g\n" .
-				"mediawiki.test.stats_buffered_total:5|c\n"
+				"mediawiki.test.stats_buffered_total:6|c\n"
 			);
 		$emitter = $emitter->withTransport( $transport );
 
@@ -80,6 +81,11 @@ class StatsEmitterTest extends TestCase {
 			->copyToStatsdAt( 'test.old_baz' )
 			->observe( 3.14 );
 
+		// setting a bucket manages the 'le' label
+		$m->getCounter( 'bucketed' )
+			->setBucket( 0.1 )
+			->incrementBy( 1 );
+
 		// name collision: bar as gauge should not appear in output nor throw exception
 		@$m->getGauge( 'bar' )
 			->set( 42 );
@@ -87,6 +93,36 @@ class StatsEmitterTest extends TestCase {
 		$m->getGauge( 'quux' )
 			->copyToStatsdAt( 'test.old_quux' )
 			->set( 1 );
+
+		// send metrics
+		$m->flush();
+	}
+
+	public function testStatsdEmitterIgnoresHistograms() {
+		// initialize cache
+		$cache = new StatsCache();
+
+		// emitter
+		$emitter = OutputFormats::getNewEmitter(
+			'mediawiki',
+			$cache,
+			OutputFormats::getNewFormatter( OutputFormats::STATSD )
+		);
+
+		// transport
+		$transport = $this->createMock( UDPTransport::class );
+		$transport->expects( $this->once() )->method( "emit" )
+			->with(
+				"mediawiki.test.foo:1|c\n" .
+				"mediawiki.test.stats_buffered_total:2|c\n"
+			);
+		$emitter = $emitter->withTransport( $transport );
+
+		// initialize metrics factory
+		$m = new StatsFactory( $cache, $emitter, new NullLogger, 'test' );
+		$m->getCounter( 'foo' )->increment();
+		// this will get dropped from the output
+		$m->getCounter( 'bar' )->setBucket( 1 )->increment();
 
 		// send metrics
 		$m->flush();

@@ -21,6 +21,7 @@ declare( strict_types=1 );
 
 namespace Wikimedia\Stats\Metrics;
 
+use InvalidArgumentException;
 use Wikimedia\Stats\Exceptions\IllegalOperationException;
 use Wikimedia\Stats\Sample;
 
@@ -61,11 +62,34 @@ class CounterMetric implements MetricInterface {
 		}
 
 		try {
-			$this->baseMetric->addSample( new Sample( $this->baseMetric->getLabelValues(), $value ) );
+			$labelValues = $this->baseMetric->getLabelValues();
+			if ( $this->bucket ) {
+				$labelValues[] = $this->bucket;
+			}
+			$this->baseMetric->addSample( new Sample( $labelValues, $value ) );
 		} catch ( IllegalOperationException $ex ) {
 			// Log the condition and give the caller something that will absorb calls.
 			trigger_error( $ex->getMessage(), E_USER_WARNING );
 		}
+	}
+
+	/**
+	 * Sets the bucket value
+	 *
+	 * Only allows float, int, or literal '+Inf' as value.
+	 *
+	 * WARNING: This function exists to support HistogramMetric. It should not be used elsewhere.
+	 *
+	 * @internal
+	 * @param float|int|string $value
+	 * @return CounterMetric
+	 */
+	public function setBucket( $value ) {
+		if ( $value == "+Inf" || ( is_float( $value ) || is_int( $value ) ) ) {
+			$this->bucket = "{$value}";
+			return $this;
+		}
+		throw new InvalidArgumentException( "Stats: Got illegal bucket value '{$value}' - must be float or '+Inf'" );
 	}
 
 	/** @inheritDoc */
