@@ -21,7 +21,6 @@ namespace Wikimedia\Rdbms;
 
 use ArrayUtils;
 use InvalidArgumentException;
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -32,7 +31,7 @@ use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\ScopedCallback;
-use Wikimedia\Stats\NullStatsdDataFactory;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * @see ILoadBalancer
@@ -50,8 +49,8 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 	/** @var TransactionProfiler */
 	private $trxProfiler;
-	/** @var StatsdDataFactoryInterface */
-	private $statsd;
+	/** @var StatsFactory */
+	private $statsFactory;
 	/** @var LoggerInterface */
 	private $logger;
 	/** @var callable Exception logger */
@@ -197,7 +196,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		$this->logger = $params['logger'] ?? new NullLogger();
 
 		$this->trxProfiler = $params['trxProfiler'] ?? new TransactionProfiler();
-		$this->statsd = $params['statsdDataFactory'] ?? new NullStatsdDataFactory();
+		$this->statsFactory = $params['statsFactory'] ?? StatsFactory::newNull();
 
 		// Set up LoadMonitor
 		$loadMonitorConfig = $params['loadMonitor'] ?? [ 'class' => LoadMonitorNull::class ];
@@ -211,9 +210,13 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			$class = $compat[$class];
 		}
 		$this->loadMonitor = new $class(
-			$this, $this->srvCache, $this->wanCache, $loadMonitorConfig );
-		$this->loadMonitor->setLogger( $this->logger );
-		$this->loadMonitor->setStatsdDataFactory( $this->statsd );
+			$this,
+			$this->srvCache,
+			$this->wanCache,
+			$this->logger,
+			$this->statsFactory,
+			$loadMonitorConfig
+		);
 
 		if ( isset( $params['chronologyProtector'] ) ) {
 			$this->chronologyProtector = $params['chronologyProtector'];

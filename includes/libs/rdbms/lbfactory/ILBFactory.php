@@ -83,6 +83,7 @@ interface ILBFactory extends IConnectionProvider {
 	 *  - deprecationLogger: Callback to log a deprecation warning [optional]
 	 *  - secret: Secret string to use for HMAC hashing [optional]
 	 *  - criticalSectionProvider: CriticalSectionProvider instance [optional]
+	 *  - statsFactory: StatsFactory instance [optional]
 	 */
 	public function __construct( array $conf );
 
