@@ -1239,7 +1239,6 @@
 	"minoreditletter": "M",
 	"newpageletter": "N",
 	"boteditletter": "B",
-	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|Byte|Bytes|Bytes}} noh dem Ändere",
 	"newsectionsummary": "Neuje Afschnet /* $1 */",
 	"rc-old-title": "ojinaal als „$1“ aanjelaat",

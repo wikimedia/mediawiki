@@ -1300,7 +1300,7 @@
 	"badsiglinebreak": "您的簽名必須是單行Wikitext。",
 	"linterror-bogus-image-options": "有問題的檔案選項",
 	"linterror-deletable-table-tag": "應被刪除的表格標籤",
-	"linterror-fostered": "表格中不合法内容",
+	"linterror-fostered": "表格不合法內容",
 	"linterror-html5-misnesting": "錯誤（現已中斷）",
 	"linterror-inline-media-caption": "圖片說明不可見",
 	"linterror-large-tables": "在行動裝置上導致頁面顯示異常的過大表格",

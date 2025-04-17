@@ -79,7 +79,8 @@
 			"Xð",
 			"Àlex",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Pere prlpz"
 		]
 	},
 	"tog-underline": "Subratlla els enllaços:",
@@ -1290,6 +1291,7 @@
 	"userrights-systemuser": "{{GENDER:$1|Aquest és un usuari|Aquesta és una usuària}} del sistema.",
 	"userrights-groups-help": "Podeu modificar els grups als quals pertany {{GENDER:$1|aquest usuari|aquesta usuària}}.\n* Una casella marcada significa que {{GENDER:$1|l’usuari|la usuària}} pertany a aquest grup.\n* Una casella no marcada significa que {{GENDER:$1|l’usuari|la usuària}} no pertany a aquest grup.\n* Un asterisc (*) indica que no {{GENDER:$1|el|la}} podreu treure del grup una vegada l'hàgiu afegit o viceversa.\n* Un coixinet (#) indica que només podeu retardar la data d'expiració de la pertinença a aquest grup i que no la podeu avançar.",
 	"userrights-reason": "Motiu:",
+	"userrights-watchuser": "Afegiu la pàgina d'aquest usuari i la seva discussió a la vostra llista de seguiment",
 	"userrights-no-interwiki": "No teniu permisos per a editar els permisos d'usuari d'altres wikis.",
 	"userrights-nodatabase": "La base de dades $1 no existeix o no és local.",
 	"userrights-changeable-col": "Grups que podeu canviar",

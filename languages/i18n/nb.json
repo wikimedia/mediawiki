@@ -2749,7 +2749,7 @@
 	"blockipsuccesssub": "Blokkering utført",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] har blitt blokkert.<br />\nSe [[Special:BlockList|blokkeringslisten]] for alle blokkeringer.",
 	"ipb-empty-block": "Den angitte blokkeringen har ingen aktive begrensninger.",
-	"ipb-block-not-found": "Blokkeringen kunne ikke utføres, men ingen eksisterende blokkering ble funnet for «$1». Vennligst [https://www.mediawiki.org/wiki/Special:MyLanguage/Help_talk:Blocking_users rapporter det] hvis problemet vedvarer.",
+	"ipb-block-not-found": "Blokkeringen kunne ikke utføres, trolig fordi en annen administrator prøvde å blokkere brukeren samtidig. Sjekk blokkeringsstatusen og prøv igjen, om nødvendig.",
 	"ipb-blockingself": "Du er i ferd med å blokkere deg selv! Er du sikker på at du vil gjøre det?",
 	"ipb-confirmhideuser": "Du er i ferd med å blokkere en bruker med «skjul bruker» aktivert. Dette vil skjule brukerens navn i alle lister og loggoppføringer. Er du sikker på at du vil gjøre dette?",
 	"ipb-confirmaction": "Marker feltet «{{int:ipb-confirm}}» nederst om du er sikker på at du virkelig vil gjøre det.",
