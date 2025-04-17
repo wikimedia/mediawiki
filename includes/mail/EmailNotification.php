@@ -23,7 +23,6 @@
  */
 
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\Mail\RecentChangeMailComposer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Notification\RecipientSet;
@@ -193,7 +192,7 @@ class EmailNotification {
 		if ( !in_array( $this->pageStatus, $formattedPageStatus ) ) {
 			throw new UnexpectedValueException( 'Not a valid page status!' );
 		}
-		$composer = new RecentChangeMailComposer( $editor, $title, $recentChange, $pageStatus );
+		$agent = $mwServices->getUserFactory()->newFromAuthority( $editor );
 
 		$userTalkId = false;
 		if ( !$minorEdit ||
@@ -207,7 +206,7 @@ class EmailNotification {
 				$targetUser = $userFactory->newFromName( $title->getText() );
 				if ( $targetUser ) {
 					$talkNotification = new RecentChangeNotification(
-						$mwServices->getUserFactory()->newFromAuthority( $editor ),
+						$agent,
 						$title,
 						$recentChange,
 						$pageStatus,
@@ -223,10 +222,10 @@ class EmailNotification {
 				// Send updates to watchers other than the current editor
 				// and don't send to watchers who are blocked and cannot login
 				$userArray = UserArray::newFromIDs( $watchers );
+				$recipients = new RecipientSet( [] );
 				foreach ( $userArray as $watchingUser ) {
 					if ( $userOptionsLookup->getOption( $watchingUser, 'enotifwatchlistpages' )
 						&& ( !$minorEdit || $userOptionsLookup->getOption( $watchingUser, 'enotifminoredits' ) )
-						&& $watchingUser->isEmailConfirmed()
 						&& $watchingUser->getId() != $userTalkId
 						&& !in_array( $watchingUser->getName(),
 							$config->get( MainConfigNames::UsersNotifiedOnAllChanges ) )
@@ -236,8 +235,18 @@ class EmailNotification {
 							$watchingUser->getBlock() )
 						&& $hookRunner->onSendWatchlistEmailNotification( $watchingUser, $title, $this )
 					) {
-						$composer->compose( $watchingUser, RecentChangeMailComposer::WATCHLIST );
+						$recipients->addRecipient( $watchingUser );
 					}
+				}
+				if ( count( $recipients ) !== 0 ) {
+					$talkNotification = new RecentChangeNotification(
+						$agent,
+						$title,
+						$recentChange,
+						$pageStatus,
+						RecentChangeNotification::WATCHLIST_NOTIFICATION
+					);
+					$notifService->notify( $talkNotification, $recipients );
 				}
 			}
 		}
@@ -254,7 +263,7 @@ class EmailNotification {
 			}
 			$notifService->notify(
 				new RecentChangeNotification(
-					$mwServices->getUserFactory()->newFromAuthority( $editor ),
+					$agent,
 					$title,
 					$recentChange,
 					$pageStatus,
@@ -264,7 +273,6 @@ class EmailNotification {
 			);
 
 		}
-		$composer->sendMails();
 	}
 
 	/**

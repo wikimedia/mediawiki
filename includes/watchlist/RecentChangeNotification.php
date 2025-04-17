@@ -38,6 +38,7 @@ class RecentChangeNotification extends WikiNotification {
 
 	public const TALK_NOTIFICATION = 'talk';
 	public const ADMIN_NOTIFICATION = 'admin';
+	public const WATCHLIST_NOTIFICATION = 'watchlist';
 
 	private RecentChange $recentChange;
 	private string $pageStatus;
