@@ -4254,6 +4254,17 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Whether to re-run the refresh links jobs when asynchronous content
+	 * becomes ready.  This is needed if the asynchronous content can affect
+	 * categories or other page metadata.
+	 *
+	 * @since 1.44
+	 */
+	public const ParserCacheAsyncRefreshJobs = [
+		'default' => true,
+	];
+
+	/**
 	 * The expiry time for the parser cache for old revisions, in seconds.
 	 *
 	 * The default is 3600 (cache disabled).
