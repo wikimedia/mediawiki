@@ -538,7 +538,7 @@ module.exports = exports = defineStore( 'block', () => {
 
 		const actualPromise = api.get( params );
 		actualPromise.then( ( data ) => {
-			alreadyBlocked.value = data.query.blocks.length > 0;
+			alreadyBlocked.value = isTargetAlreadyBlocked( target, data.query.blocks );
 			// form should be visible if target is not blocked
 			if ( !alreadyBlocked.value ) {
 				formVisible.value = true;
@@ -546,6 +546,39 @@ module.exports = exports = defineStore( 'block', () => {
 		} );
 		blockLogPromise = Promise.all( [ actualPromise ] );
 		return pushPromise( blockLogPromise );
+	}
+
+	/**
+	 * Check if a target is already blocked given a list of blocks.
+	 * If the target is an IP and there is a block on a range that includes
+	 * the target, it is not considered already blocked for the purposes
+	 * of these modules
+	 *
+	 * @param {string} target is expected to be sanitized
+	 * @param blocks
+	 * @return {bool} true if target is the intended target of the block
+	 */
+	function isTargetAlreadyBlocked( target, blocks ) {
+		// T392049
+		if ( blocks.length === 0 ) {
+			return false;
+		}
+
+		const isValidIpOrRange = mw.util.isIPAddress( target, true );
+		const isIpAddress = mw.util.isIPAddress( target, false );
+		const isIpRange = isValidIpOrRange && !isIpAddress;
+
+		if ( !isIpAddress || isIpRange ) {
+			return true;
+		}
+
+		blocks.forEach( ( block ) => {
+			if ( block.user === target ) {
+				return true;
+			}
+		} );
+
+		return false;
 	}
 
 	/**
