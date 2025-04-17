@@ -1961,16 +1961,31 @@ config-schema:
         items:
             type: string
         description: |-
-            Other wikis on this site, can be administered from a single developer account.
-            List of wiki DB domain IDs; the format of each ID consist of 1-3 hyphen
-              delimited alphanumeric components (each with no hyphens nor spaces) of any of the forms:
-              - "<DB NAME>-<DB SCHEMA>-<TABLE PREFIX>"
-              - "<DB NAME>-<TABLE PREFIX>"
-              - "<DB NAME>"
+            List of all wiki IDs that reside on the current wiki farm.
+            The wikis listed here must meet the following requirements in order to
+            be be considered part of the same wiki farm:
+            - reachable for cross-wiki database queries, via \Wikimedia\Rdbms\IConnectionProvider,
+              as configured by $wgLBFactoryConf
+            - share the same $wgMainCacheType backend (e.g. the same Memcached cluster),
+              so that cache updates and purges via BagOStuff::makeGlobalKey and
+              WANObjectCache work correctly.
+            Examples of cross-wiki features enabled through this setting:
+            - SpecialUserRights, to assign a local user group from a central wiki.
+            - JobQueueGroup::push, to queue a job for another wiki
+              (e.g. GlobalUsage, MassMessage, and Wikibase extensions).
+            - RenameUser (when using $wgSharedDB), to globally apply the rename to revisions
+              logging tables on all wikis.
+            Each wiki ID must consist of 1-3 hyphen-delimited alphanumeric components (each with no
+            hyphens nor spaces) of any of the forms:
+            - "<DB NAME>"
+            - "<DB NAME>-<TABLE PREFIX>"
+            - "<DB NAME>-<DB SCHEMA>-<TABLE PREFIX>"
             If hyphens appear in any of the components, then the domain ID parsing may not work
-            in all cases and site functionality might be affected. If the schema ($wgDBmwschema)
-            is left to the default "mediawiki" for all wikis, then the schema should be omitted
-            from these IDs.
+            and site functionality might be affected. If the schema ($wgDBmwschema) is set to the
+            default of "mediawiki" on all wikis, then the schema should be omitted from wiki IDs.
+            @see WikiMap::getWikiIdFromDbDomain
+            @see SiteConfiguration::getLocalDatabases
+            @see self::LocalVirtualHosts
     DatabaseReplicaLagWarning:
         default: 10
         description: |-
