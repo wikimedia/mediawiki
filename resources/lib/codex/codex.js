@@ -50,7 +50,7 @@ var __async = (__this, __arguments, generator) => {
     step((generator = generator.apply(__this, __arguments)).next());
   });
 };
-import { ref, onMounted, defineComponent, computed, openBlock, createElementBlock, normalizeClass, toDisplayString, createCommentVNode, Comment, warn, watch, withKeys, withModifiers, renderSlot, resolveComponent, createElementVNode, createBlock, resolveDynamicComponent, withCtx, createVNode, toRef, Fragment, renderList, createTextVNode, Transition, normalizeStyle, inject, mergeProps, useId, withDirectives, vModelCheckbox, createSlots, nextTick, vModelDynamic, onUnmounted, toHandlers, vShow, unref, shallowRef, getCurrentScope, onScopeDispose, shallowReadonly, Teleport, toRefs, provide, reactive, vModelRadio, vModelText, getCurrentInstance } from "vue";
+import { ref, onMounted, defineComponent, computed, openBlock, createElementBlock, normalizeClass, toDisplayString, createCommentVNode, Comment, warn, watch, withKeys, withModifiers, renderSlot, toRef, resolveComponent, createElementVNode, createBlock, resolveDynamicComponent, withCtx, createVNode, Fragment, renderList, createTextVNode, Transition, normalizeStyle, inject, mergeProps, useId, withDirectives, vModelCheckbox, createSlots, nextTick, vModelDynamic, onUnmounted, toHandlers, vShow, unref, shallowRef, getCurrentScope, onScopeDispose, shallowReadonly, Teleport, toRefs, provide, reactive, vModelRadio, vModelText, getCurrentInstance } from "vue";
 const V = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', Z = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', e1 = '<path d="M7 14.17 2.83 10l-1.41 1.41L7 17 19 5l-1.41-1.42z"/>', z1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0m5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', p1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', I1 = '<path d="M10 15 2 5h16z"/>', b1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', w1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', n0 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', i = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7"/>', p0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0M9 5h2v2H9zm0 4h2v6H9z"/>', M2 = '<path d="M3 1h2v18H3zm13.5 1.5L15 1l-9 9 9 9 1.5-1.5L9 10z"/>', g2 = '<path d="M15 1h2v18h-2zM3.5 2.5 11 10l-7.5 7.5L5 19l9-9-9-9z"/>', A2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', T2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', $2 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"/>', v5 = '<path d="M10 0 3 8h14zm0 18-7-8h14z"/>', V5 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20m-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10z"/>', j5 = '<path d="m10 5 8 10H2z"/>', V3 = V, Z3 = Z, $3 = e1, a4 = z1, h4 = p1, z4 = I1, x4 = b1, u4 = w1, Y4 = n0, h6 = {
   langCodeMap: {
     ar: i
@@ -290,7 +290,7 @@ const _export_sfc = (sfc, props) => {
 };
 const _hoisted_1$x = ["aria-hidden"];
 const _hoisted_2$l = { key: 0 };
-const _hoisted_3$c = ["innerHTML"];
+const _hoisted_3$d = ["innerHTML"];
 const _hoisted_4$b = ["d"];
 function _sfc_render$A(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock(
@@ -317,7 +317,7 @@ function _sfc_render$A(_ctx, _cache, $props, $setup, $data, $options) {
         _ctx.iconSvg ? (openBlock(), createElementBlock("g", {
           key: 1,
           innerHTML: _ctx.iconSvg
-        }, null, 8, _hoisted_3$c)) : (openBlock(), createElementBlock("path", {
+        }, null, 8, _hoisted_3$d)) : (openBlock(), createElementBlock("path", {
           key: 2,
           d: _ctx.iconPath
         }, null, 8, _hoisted_4$b))
@@ -492,10 +492,36 @@ function _sfc_render$z(_ctx, _cache, $props, $setup, $data, $options) {
   );
 }
 const CdxButton = /* @__PURE__ */ _export_sfc(_sfc_main$z, [["render", _sfc_render$z]]);
+function useOptionalModelWrapper(internalValueRef, modelValueRef, emit, eventName) {
+  return computed({
+    get: () => {
+      var _a;
+      return (_a = modelValueRef.value) != null ? _a : internalValueRef.value;
+    },
+    set: (value) => {
+      if (modelValueRef.value !== null) {
+        emit(eventName || "update:modelValue", value);
+      } else {
+        internalValueRef.value = value;
+      }
+    }
+  });
+}
 const _sfc_main$y = defineComponent({
   name: "CdxAccordion",
   components: { CdxButton, CdxIcon },
   props: {
+    /**
+     * This component accepts an optional v-model binding; use it if you
+     * want to programmatically control the Accordion's open/closed state.
+     * If this feature is not needed, you can omit `v-model` and just use
+     * the "open" attribute if you want the component to render in the
+     * expanded state.
+     */
+    modelValue: {
+      type: [Boolean, null],
+      default: null
+    },
     /**
      * Forces the accordion to show the action icon.
      */
@@ -534,19 +560,49 @@ const _sfc_main$y = defineComponent({
      * When the action button is clicked.
      *
      */
-    "action-button-click"
+    "action-button-click",
+    /**
+     * When the "open" state changes. Only emitted if v-model binding
+     * is used in the parent scope.
+     *
+     * @param {boolean} newVal
+     */
+    "update:modelValue",
+    /**
+     * When the Accordion is toggled open or closed. Always emitted
+     * regardless of v-model binding.
+     *
+     * @param {boolean} isOpen
+     */
+    "toggle"
   ],
   setup(props, { attrs, emit }) {
-    const isExpanded = ref("open" in attrs);
+    const internalOpen = ref("open" in attrs);
+    const computedOpen = useOptionalModelWrapper(
+      internalOpen,
+      toRef(props, "modelValue"),
+      emit
+    );
     const emitActionButtonClick = () => {
       emit("action-button-click");
     };
     const onToggle = (e) => {
-      isExpanded.value = e.newState === "open";
+      computedOpen.value = e.newState === "open";
+      emit("toggle", computedOpen.value);
     };
-    const shouldShowActionButton = computed(
-      () => props.actionIcon && (isExpanded.value || props.actionAlwaysVisible)
-    );
+    const shouldShowActionButton = computed(() => {
+      if (props.actionIcon) {
+        if (computedOpen.value) {
+          return true;
+        } else if (props.actionAlwaysVisible) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    });
     const rootClasses = computed(() => ({
       "cdx-accordion--has-icon": shouldShowActionButton.value
     }));
@@ -554,65 +610,62 @@ const _sfc_main$y = defineComponent({
       emitActionButtonClick,
       rootClasses,
       shouldShowActionButton,
-      onToggle
+      onToggle,
+      computedOpen
     };
   }
 });
-const _hoisted_1$w = { class: "cdx-accordion__header__title" };
-const _hoisted_2$k = { class: "cdx-accordion__header__description" };
+const _hoisted_1$w = ["open"];
+const _hoisted_2$k = { class: "cdx-accordion__header__title" };
+const _hoisted_3$c = { class: "cdx-accordion__header__description" };
 function _sfc_render$y(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_button = resolveComponent("cdx-button");
-  return openBlock(), createElementBlock(
-    "details",
-    {
-      class: normalizeClass(["cdx-accordion", _ctx.rootClasses]),
-      onToggle: _cache[1] || (_cache[1] = (...args) => _ctx.onToggle && _ctx.onToggle(...args))
-    },
-    [
-      createElementVNode("summary", null, [
-        (openBlock(), createBlock(resolveDynamicComponent(_ctx.headingLevel), { class: "cdx-accordion__header" }, {
-          default: withCtx(() => [
-            createElementVNode("span", _hoisted_1$w, [
-              renderSlot(_ctx.$slots, "title")
-            ]),
-            createElementVNode("span", _hoisted_2$k, [
-              renderSlot(_ctx.$slots, "description")
-            ])
+  return openBlock(), createElementBlock("details", {
+    class: normalizeClass(["cdx-accordion", _ctx.rootClasses]),
+    open: _ctx.computedOpen || void 0,
+    onToggle: _cache[1] || (_cache[1] = (...args) => _ctx.onToggle && _ctx.onToggle(...args))
+  }, [
+    createElementVNode("summary", null, [
+      (openBlock(), createBlock(resolveDynamicComponent(_ctx.headingLevel), { class: "cdx-accordion__header" }, {
+        default: withCtx(() => [
+          createElementVNode("span", _hoisted_2$k, [
+            renderSlot(_ctx.$slots, "title")
           ]),
-          _: 3
-          /* FORWARDED */
-        })),
-        _ctx.shouldShowActionButton ? (openBlock(), createBlock(_component_cdx_button, {
-          key: 0,
-          class: "cdx-accordion__action",
-          "aria-label": _ctx.actionButtonLabel,
-          type: "button",
-          weight: "quiet",
-          onClick: withModifiers(_ctx.emitActionButtonClick, ["stop"])
-        }, {
-          default: withCtx(() => [
-            createVNode(_component_cdx_icon, {
-              icon: _ctx.actionIcon,
-              "icon-label": _ctx.actionButtonLabel,
-              size: "medium"
-            }, null, 8, ["icon", "icon-label"])
-          ]),
-          _: 1
-          /* STABLE */
-        }, 8, ["aria-label", "onClick"])) : createCommentVNode("v-if", true)
-      ]),
-      createElementVNode("div", {
-        class: "cdx-accordion__content",
-        onClick: _cache[0] || (_cache[0] = withModifiers(() => {
-        }, ["stop"]))
-      }, [
-        renderSlot(_ctx.$slots, "default")
-      ])
-    ],
-    34
-    /* CLASS, NEED_HYDRATION */
-  );
+          createElementVNode("span", _hoisted_3$c, [
+            renderSlot(_ctx.$slots, "description")
+          ])
+        ]),
+        _: 3
+        /* FORWARDED */
+      })),
+      _ctx.shouldShowActionButton ? (openBlock(), createBlock(_component_cdx_button, {
+        key: 0,
+        class: "cdx-accordion__action",
+        "aria-label": _ctx.actionButtonLabel,
+        type: "button",
+        weight: "quiet",
+        onClick: withModifiers(_ctx.emitActionButtonClick, ["stop"])
+      }, {
+        default: withCtx(() => [
+          createVNode(_component_cdx_icon, {
+            icon: _ctx.actionIcon,
+            "icon-label": _ctx.actionButtonLabel,
+            size: "medium"
+          }, null, 8, ["icon", "icon-label"])
+        ]),
+        _: 1
+        /* STABLE */
+      }, 8, ["aria-label", "onClick"])) : createCommentVNode("v-if", true)
+    ]),
+    createElementVNode("div", {
+      class: "cdx-accordion__content",
+      onClick: _cache[0] || (_cache[0] = withModifiers(() => {
+      }, ["stop"]))
+    }, [
+      renderSlot(_ctx.$slots, "default")
+    ])
+  ], 42, _hoisted_1$w);
 }
 const Accordion = /* @__PURE__ */ _export_sfc(_sfc_main$y, [["render", _sfc_render$y]]);
 function getButtonLabel(button) {
@@ -1643,21 +1696,6 @@ function _sfc_render$s(_ctx, _cache, $props, $setup, $data, $options) {
   ], 42, _hoisted_1$q);
 }
 const CdxInputChip = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["render", _sfc_render$s]]);
-function useOptionalModelWrapper(internalValueRef, modelValueRef, emit, eventName) {
-  return computed({
-    get: () => {
-      var _a;
-      return (_a = modelValueRef.value) != null ? _a : internalValueRef.value;
-    },
-    set: (value) => {
-      if (modelValueRef.value !== null) {
-        emit(eventName || "update:modelValue", value);
-      } else {
-        internalValueRef.value = value;
-      }
-    }
-  });
-}
 const statusValidator$9 = makeStringTypeValidator(ValidationStatusTypes);
 const _sfc_main$r = defineComponent({
   name: "CdxChipInput",
