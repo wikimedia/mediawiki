@@ -1500,7 +1500,7 @@
 	"badsiglinebreak": "Warning message that is displayed on [[Special:Preferences]] when trying to save a signature that contains a line break.",
 	"linterror-bogus-image-options": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-bogus-image-options-details}}.",
 	"linterror-deletable-table-tag": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-deletable-table-tag-details}}.",
-	"linterror-fostered": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-category-fostered}}.",
+	"linterror-fostered": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-fostered}}.",
 	"linterror-html5-misnesting": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-html5-misnesting-details}}.",
 	"linterror-inline-media-caption": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-inline-media-caption-details}}.",
 	"linterror-large-tables": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-large-tables-details}}.",
