@@ -27,6 +27,7 @@ use MediaWiki\Language\MessageParser;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Skin\Skin;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
@@ -96,20 +97,16 @@ class RecentChangeMailComposer {
 	public function __construct(
 		Authority $editor,
 		Title $title,
-		$summary,
-		$minorEdit,
-		$oldid,
-		string $timestamp,
-		$pageStatus
+		RecentChange $recentChange,
+		string $pageStatus
 	) {
 		$services = MediaWikiServices::getInstance();
-
 		$this->editor = $services->getUserFactory()->newFromAuthority( $editor );
 		$this->title = $title;
-		$this->oldid = $oldid;
-		$this->minorEdit = $minorEdit;
-		$this->timestamp = $timestamp;
-		$this->summary = $summary;
+		$this->oldid = $recentChange->getAttribute( 'rc_last_oldid' );
+		$this->minorEdit = $recentChange->getAttribute( 'rc_minor' );
+		$this->timestamp = $recentChange->getAttribute( 'rc_timestamp' );
+		$this->summary = $recentChange->getAttribute( 'rc_comment' );
 		$this->pageStatus = $pageStatus;
 
 		// Prepare for dependency injection

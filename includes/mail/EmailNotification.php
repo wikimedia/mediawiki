@@ -188,24 +188,12 @@ class EmailNotification {
 		# 2. minor edits (changes) are only regarded if the global flag indicates so
 		$this->pageStatus = $pageStatus;
 		$formattedPageStatus = [ 'deleted', 'created', 'moved', 'restored', 'changed' ];
-		$summary = $recentChange->getAttribute( 'rc_comment' );
-		$oldid = $recentChange->getAttribute( 'rc_last_oldid' );
-		$timestamp = $recentChange->getAttribute( 'rc_timestamp' );
 
 		$hookRunner->onUpdateUserMailerFormattedPageStatus( $formattedPageStatus );
 		if ( !in_array( $this->pageStatus, $formattedPageStatus ) ) {
 			throw new UnexpectedValueException( 'Not a valid page status!' );
 		}
-
-		$composer = new RecentChangeMailComposer(
-			$editor,
-			$title,
-			$summary,
-			$minorEdit,
-			$oldid,
-			$timestamp,
-			$pageStatus
-		);
+		$composer = new RecentChangeMailComposer( $editor, $title, $recentChange, $pageStatus );
 
 		$userTalkId = false;
 		if ( !$minorEdit ||
@@ -221,10 +209,7 @@ class EmailNotification {
 					$talkNotification = new RecentChangeNotification(
 						$mwServices->getUserFactory()->newFromAuthority( $editor ),
 						$title,
-						$summary,
-						$minorEdit,
-						$oldid,
-						$timestamp,
+						$recentChange,
 						$pageStatus,
 						RecentChangeNotification::TALK_NOTIFICATION
 					);
@@ -271,10 +256,7 @@ class EmailNotification {
 				new RecentChangeNotification(
 					$mwServices->getUserFactory()->newFromAuthority( $editor ),
 					$title,
-					$summary,
-					$minorEdit,
-					$oldid,
-					$timestamp,
+					$recentChange,
 					$pageStatus,
 					RecentChangeNotification::ADMIN_NOTIFICATION
 				),
