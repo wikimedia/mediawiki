@@ -87,7 +87,7 @@
 	"cactions": "Nakena",
 	"tool-link-userrights": "Ebanzhe {{Tin:$1|lezaloci}} edotazhi",
 	"tool-link-userrights-readonly": "Wu {{Tin:$1|lezaloci}}",
-	"tool-link-emailuser": "Ah sanwobakpako nana kan {{Tin:$1|lezaloci}}",
+	"tool-link-emailuser": "Ah sanwobakpako nana kan {{GENDER:$1|lezaloci}}",
 	"imagepage": "Wu kperegi gbofa",
 	"mediawikipage": "Wu kperegi esanwo",
 	"templatepage": "Wu kperegi kukuta dan",

@@ -380,6 +380,7 @@
 	"unusedtemplates": "Bimekoli na mosálá tɛ̂",
 	"randompage": "Lonkásá na mbɛsɛ",
 	"statistics": "Mitúya",
+	"statistics-articles-desc": "Tala [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticleCountMethod article count documentation] mpo na koyeba makambo mosusu",
 	"doubleredirects": "Boyendisi mbala míbalé",
 	"nbytes": "$1 {{PLURAL:$1|okté|baokté}}",
 	"nmembers": "{{PLURAL:$1|ekakoli|bikakoli}} $1",

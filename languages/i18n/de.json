@@ -3655,6 +3655,7 @@
 	"logentry-non-editing-block-reblock": "$1 {{GENDER:$2|änderte}} die Sperreinstellungen für {{GENDER:$4|$3}} für angegebene Nicht-Bearbeitungsaktionen mit einer Ablaufzeit von $5 $6",
 	"logentry-suppress-block": "$1 {{GENDER:$2|sperrte}} {{GENDER:$4|$3}} mit einer Sperrdauer von $5 $6",
 	"logentry-suppress-reblock": "$1 {{GENDER:$2|änderte}} die Sperreinstellungen für {{GENDER:$4|$3}} mit einer Sperrdauer von $5 $6",
+	"logentry-suppress-block-multi": "$1 {{GENDER:$2|ergänzte}} eine Sperre für {{GENDER:$4|$3}} mit einer Sperrdauer von $5 $6",
 	"logentry-import-upload": "$1 {{GENDER:$2|importierte}} $3 durch das Hochladen einer Datei",
 	"logentry-import-upload-details": "$1 {{GENDER:$2|importierte}} $3 durch das Hochladen einer Datei ({{PLURAL:$4|Eine Version|$4 Versionen}})",
 	"logentry-import-interwiki": "$1 {{GENDER:$2|importierte}} $3 aus einem anderen Wiki",

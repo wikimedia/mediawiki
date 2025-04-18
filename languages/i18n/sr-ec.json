@@ -2482,6 +2482,7 @@
 	"block-expiry-datetime": "Прецизан датум и време",
 	"block-options": "Додатне опције",
 	"block-reason": "Разлог",
+	"block-reason-help": "Нпр. наведите одређене странице које су (биле) вандализоване.",
 	"block-reason-other": "Други или додатни разлог",
 	"block-confirm-yes": "Да",
 	"block-confirm-no": "Не",

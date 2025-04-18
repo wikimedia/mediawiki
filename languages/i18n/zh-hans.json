@@ -2010,6 +2010,7 @@
 	"statistics-header-users": "用户统计",
 	"statistics-header-hooks": "其他统计",
 	"statistics-articles": "内容页面",
+	"statistics-articles-desc": "参见[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticleCountMethod 条目计数文档]了解详情",
 	"statistics-pages": "页面",
 	"statistics-pages-desc": "本wiki的所有页面，包括讨论页、重定向等。",
 	"statistics-files": "上传的文件",
