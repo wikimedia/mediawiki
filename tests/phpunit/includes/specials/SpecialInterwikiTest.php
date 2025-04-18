@@ -118,7 +118,6 @@ class SpecialInterwikiTest extends SpecialPageTestBase {
 		$performer = $this->getTestSysop()->getUser();
 
 		$formData = [
-			'wpEditToken' => $performer->getEditToken(),
 			'action' => $action,
 			'prefix' => $prefix,
 			'reason' => 'r',
