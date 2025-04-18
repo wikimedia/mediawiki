@@ -370,6 +370,8 @@ because of Phabricator reports.
   warnings in 1.38, have been removed:
    - OutputPage::$mNoGallery
    - OutputPage::$mRevisionTimestamp
+* OutputPage::formatPermissionsErrorMessage(), deprecated since 1.36, has been
+  removed. Use formatPermissionStatus() instead.
 * The method signatures of EmailNotification::notifyOnPageChange()
   and actuallyNotifyOnPageChange() have changed. These method are now
   marked as @internal and must not be used by extensions.

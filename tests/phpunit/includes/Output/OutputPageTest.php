@@ -3405,15 +3405,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	public function provideFormatPermissionsErrorMessage() {
-		yield 'RawMessage' => [
-			PermissionStatus::newEmpty()->fatal( new RawMessage( 'Foo Bar' ) ),
-			'(permissionserrorstext: 1)
-
-<div class="permissions-errors"><div class="mw-permissionerror-rawmessage">(rawmessage: Foo Bar)</div></div>',
-		];
-	}
-
 	/**
 	 * @dataProvider providePermissionStatus
 	 * @dataProvider provideFormatPermissionStatus
@@ -3422,21 +3413,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'qqx' );
 
 		$actual = self::newInstance()->formatPermissionStatus( $status );
-		$this->assertEquals( $expected, $actual );
-	}
-
-	/**
-	 * @dataProvider providePermissionStatus
-	 * @dataProvider provideFormatPermissionsErrorMessage
-	 */
-	public function testFormatPermissionsErrorMessage( PermissionStatus $status, string $expected ) {
-		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'qqx' );
-		$this->filterDeprecated( '/OutputPage::formatPermissionsErrorMessage was deprecated/' );
-		$this->filterDeprecated( '/toLegacyErrorArray/' );
-
-		// Unlike formatPermissionStatus, this method doesn't accept good statuses
-		$actual = $status->isGood() ? '' :
-			self::newInstance()->formatPermissionsErrorMessage( $status->toLegacyErrorArray() );
 		$this->assertEquals( $expected, $actual );
 	}
 

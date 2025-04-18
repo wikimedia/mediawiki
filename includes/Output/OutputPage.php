@@ -3525,6 +3525,7 @@ class OutputPage extends ContextSource {
 		if ( $status->isGood() ) {
 			return '';
 		}
+
 		return $this->formatPermissionInternal(
 			array_map( fn ( $msg ) => $this->msg( $msg ), $status->getMessages() ),
 			$action
@@ -3532,28 +3533,8 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Format a list of error messages
-	 *
-	 * @deprecated since 1.36. Use ::formatPermissionStatus instead
-	 * @param array $errors Array of arrays returned by PermissionManager::getPermissionErrors
-	 * @param-taint $errors none
-	 * @phan-param non-empty-array[] $errors
-	 * @param string|null $action Action that was denied or null if unknown
-	 * @return string The wikitext error-messages, formatted into a list.
-	 * @return-taint tainted
-	 */
-	public function formatPermissionsErrorMessage( array $errors, $action = null ) {
-		wfDeprecated( __METHOD__, '1.36' );
-		return $this->formatPermissionInternal(
-			// @phan-suppress-next-line PhanParamTooFewUnpack Elements of $errors already annotated as non-empty
-			array_map( fn ( $err ) => $this->msg( ...$err ), $errors ),
-			$action
-		);
-	}
-
-	/**
-	 * Helper for formatPermissionStatus() and deprecated formatPermissionsErrorMessage(),
-	 * should be inlined when the deprecated method is removed.
+	 * Helper for formatPermissionStatus() that was meant to be inlined when formatPermissionsErrorMessage()
+	 * was removed, but is also being called from showPermissionInternal() too.
 	 *
 	 * @param Message[] $messages
 	 * @param-taint $messages none
