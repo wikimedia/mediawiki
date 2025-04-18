@@ -693,7 +693,7 @@ class HTMLForm extends ContextSource {
 				// Session tokens for logged-out users have no security value.
 				// However, if the user gave one, check it in order to give a nice
 				// "session expired" error instead of "permission denied" or such.
-				$tokenOkay = $this->getUser()->matchEditToken( $editToken, $this->mTokenSalt );
+				$tokenOkay = $this->getUser()->matchEditToken( $editToken, $this->mTokenSalt, $this->getRequest() );
 			} else {
 				$tokenOkay = true;
 			}

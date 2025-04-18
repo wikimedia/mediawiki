@@ -12,6 +12,7 @@ use MediaWiki\Language\Language;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
@@ -149,5 +150,35 @@ class DerivativeContextTest extends MediaWikiIntegrationTestCase {
 
 		$derivative->setActionName( 'custom' );
 		$this->assertSame( 'custom', $derivative->getActionName(), 'override' );
+	}
+
+	public function testCsrfTokenSetShouldMatchRequest(): void {
+		$baseRequest = new FauxRequest();
+		$newRequest = new FauxRequest();
+		$newRequest->setVal( 'foo', 'bar' );
+
+		$origTokenSet = new CsrfTokenSet( $baseRequest );
+		$newTokenSet = new CsrfTokenSet( $newRequest );
+
+		$baseContext = $this->createMock( IContextSource::class );
+		$baseContext->method( 'getRequest' )
+			->willReturn( $baseRequest );
+
+		$derived = new DerivativeContext( $baseContext );
+		$initialTokenSet = $derived->getCsrfTokenSet();
+
+		$derived->setRequest( $newRequest );
+		$derivedTokenSet = $derived->getCsrfTokenSet();
+
+		$this->assertEquals(
+			$origTokenSet,
+			$initialTokenSet,
+			'should return CsrfTokenSet using the parent context request when no request override was given'
+		);
+		$this->assertEquals(
+			$newTokenSet,
+			$derivedTokenSet,
+			'should return a CsrfTokenSet using the local request once a request override has been given'
+		);
 	}
 }
