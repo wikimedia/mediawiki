@@ -1,0 +1,1 @@
+O:25:"MediaWiki\Message\Message":7:{s:9:"interface";b:0;s:8:"language";s:2:"de";s:3:"key";s:8:"mainpage";s:9:"keysToTry";a:1:{i:0;s:8:"mainpage";}s:10:"parameters";a:0:{}s:11:"useDatabase";b:1;s:10:"titlevalue";N;}
