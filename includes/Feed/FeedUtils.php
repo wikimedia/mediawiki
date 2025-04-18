@@ -206,7 +206,7 @@ class FeedUtils {
 				$diffText = self::getDiffLink( $title, $newid, $oldid );
 			} elseif ( $diffText === false ) {
 				// Error in diff engine, probably a missing revision
-				$diffText = Html::rawElement(
+				$diffText = Html::element(
 					'p',
 					[],
 					"Can't load revision $newid"
