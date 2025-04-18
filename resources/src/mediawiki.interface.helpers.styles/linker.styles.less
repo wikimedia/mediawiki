@@ -41,12 +41,19 @@
 /** Class is added by UserLinkRenderer::userLink */
 .mw-tempuserlink-expired {
 	text-decoration: line-through 0.075em;
+	position: relative;
 
 	/** Class is added by UserLinkRenderer::userLink */
 	&--tooltip {
-		// Avoid FOUC for expired temporary account link tooltips.
 		display: none;
-		position: absolute;
+		pointer-events: none;
+		top: 100%;
+		left: 0;
+	}
+
+	&:hover &--tooltip,
+	&:focus &--tooltip {
+		display: block;
 	}
 }
 
