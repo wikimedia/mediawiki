@@ -8,6 +8,7 @@ use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -140,15 +141,26 @@ class HTMLFormTest extends MediaWikiIntegrationTestCase {
 		?array $tokens,
 		bool $shouldBeAuthorized
 	) {
-		$user = $this->createNoOpMock( User::class, [ 'isRegistered', 'matchEditToken' ] );
+		$user = $this->createNoOpMock( User::class, [ 'isRegistered' ] );
 		$user->method( 'isRegistered' )->willReturn( $tokens !== null );
-		$user->method( 'matchEditToken' )->willReturnCallback(
-			static function ( $token, $salt ) use ( $tokens ) {
-				return $tokens && isset( $tokens[$salt] ) && $tokens[$salt] === $token;
-			} );
+
+		$request = new FauxRequest( $requestData, true );
+
+		$csrfTokenSet = $this->createMock( CsrfTokenSet::class );
+		$csrfTokenSet->method( 'matchTokenField' )
+			->with( CsrfTokenSet::DEFAULT_FIELD_NAME, $formTokenSalt )
+			->willReturnCallback(
+				static function ( $fieldName, $salt ) use ( $request, $tokens ): bool {
+					return $tokens &&
+						isset( $tokens[$salt] ) &&
+						$tokens[$salt] === $request->getRawVal( $fieldName );
+				}
+			);
+
 		$context = $this->createConfiguredMock( RequestContext::class, [
 			'getRequest' => new FauxRequest( $requestData, true ),
 			'getUser' => $user,
+			'getCsrfTokenSet' => $csrfTokenSet,
 		] );
 		$form = new HTMLForm( [], $context );
 		if ( $formTokenSalt !== null ) {

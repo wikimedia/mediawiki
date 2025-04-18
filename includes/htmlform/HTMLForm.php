@@ -73,6 +73,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\Sanitizer;
+use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
@@ -693,7 +694,9 @@ class HTMLForm extends ContextSource {
 				// Session tokens for logged-out users have no security value.
 				// However, if the user gave one, check it in order to give a nice
 				// "session expired" error instead of "permission denied" or such.
-				$tokenOkay = $this->getUser()->matchEditToken( $editToken, $this->mTokenSalt, $this->getRequest() );
+				$tokenOkay = $this->getCsrfTokenSet()->matchTokenField(
+					CsrfTokenSet::DEFAULT_FIELD_NAME, $this->mTokenSalt
+				);
 			} else {
 				$tokenOkay = true;
 			}
