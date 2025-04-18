@@ -48,6 +48,9 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 			$this->getServiceContainer()->getLinkRenderer(),
 			$this->tempUserDetailsLookup
 		);
+
+		// Ensure deterministic IDs for expired temporary account links.
+		UserLinkRenderer::resetExpiredTempUserLinkIdCounter();
 	}
 
 	public function addDBDataOnce(): void {
@@ -83,14 +86,7 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 			$attributes
 		);
 
-		// Match a format string instead of an exact comparison when testing user links
-		// for expired temporary accounts to avoid assuming a particular ID value,
-		// which may be affected by other tests (T391907).
-		if ( $user->getName() === self::EXPIRED_TEMP_USER_NAME ) {
-			$this->assertStringMatchesFormat( $expected, $actual );
-		} else {
-			$this->assertSame( $expected, $actual );
-		}
+		$this->assertSame( $expected, $actual );
 	}
 
 	public static function provideCasesForUserLink(): iterable {
@@ -219,8 +215,8 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 			'Expired temporary user link' => [
 				'<a href="/wiki/Special:Contributions/~2023-1" '
 				. 'class="mw-userlink mw-tempuserlink mw-tempuserlink-expired" '
-				. 'title="" aria-describedby="mw-tempuserlink-expired-tooltip-%s"><bdi>~2023-1</bdi></a>'
-				. '<div id="mw-tempuserlink-expired-tooltip-%s" role="tooltip" '
+				. 'title="" aria-describedby="mw-tempuserlink-expired-tooltip-0"><bdi>~2023-1</bdi></a>'
+				. '<div id="mw-tempuserlink-expired-tooltip-0" role="tooltip" '
 				. 'class="cdx-tooltip mw-tempuserlink-expired--tooltip">(tempuser-expired-link-tooltip)</div>',
 				new UserIdentityValue( 2, self::EXPIRED_TEMP_USER_NAME )
 			],
