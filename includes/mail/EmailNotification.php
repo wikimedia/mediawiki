@@ -73,11 +73,9 @@ class EmailNotification {
 	 *
 	 * May be deferred via the job queue.
 	 *
-	 * @since 1.11.0
-	 * @since 1.35 returns a boolean indicating whether an email job was created.
-	 * @since 1.44 This method takes just RecentChange $recentChange, instead of multiple parameters
 	 * @param RecentChange $recentChange
 	 * @return bool Whether an email & notification job was created or not.
+	 * @internal
 	 */
 	public function notifyOnPageChange(
 		RecentChange $recentChange
@@ -157,9 +155,8 @@ class EmailNotification {
 	 *
 	 * Send emails corresponding to the user $editor editing the page $title.
 	 *
-	 * @note Do not call directly. Use notifyOnPageChange so that wl_notificationtimestamp is updated.
+	 * @note Use notifyOnPageChange so that wl_notificationtimestamp is updated.
 	 *
-	 * @since 1.11.0
 	 * @param Authority $editor
 	 * @param Title $title
 	 * @param RecentChange $recentChange
