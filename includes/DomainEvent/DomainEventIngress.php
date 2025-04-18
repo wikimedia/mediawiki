@@ -37,6 +37,9 @@ use LogicException;
  * in extension.json.
  *
  * @since 1.44
+ *
+ * @see docs/Events.md
+ * @see https://www.mediawiki.org/wiki/Manual:Domain_events
  */
 abstract class DomainEventIngress implements InitializableDomainEventSubscriber {
 

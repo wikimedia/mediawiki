@@ -9,6 +9,9 @@ namespace MediaWiki\DomainEvent;
  * @since 1.44
  * @note Extensions should not implement this interface directly but should
  *       extend DomainEventIngress.
+ *
+ * @see docs/Events.md
+ * @see https://www.mediawiki.org/wiki/Manual:Domain_events
  */
 interface DomainEventSubscriber {
 
