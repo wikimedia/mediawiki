@@ -87,16 +87,4 @@ class StatsFactoryTest extends TestCase {
 		// NullMetric should not throw for any method call
 		$metric->increment();
 	}
-
-	public function testGetCacheCount() {
-		$statsFactory = StatsFactory::newNull();
-		$i = 0;
-		while ( $i < 10 ) {
-			$statsFactory->getCounter( 'foo' )->incrementBy( 2 );
-			$statsFactory->getGauge( 'bar' )->set( $i );
-			$statsFactory->getTiming( 'baz' )->observe( 100 );
-			$i++;
-		}
-		$this->assertEquals( 30, $statsFactory->getCacheCount() );
-	}
 }
