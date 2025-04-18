@@ -1726,13 +1726,13 @@ class FormatMetadata extends ContextSource {
 			},
 			[
 				'touchedCallback' => function ( $value ) use ( $file ) {
-					if ( $value &&
-						$this->getHookRunner()->onValidateExtendedMetadataCache( $value['timestamp'], $file )
+					if (
+						!$this->getHookRunner()->onValidateExtendedMetadataCache( $value['timestamp'], $file )
 					) {
-						return null;
+						// Reject cache and regenerate
+						return time();
 					}
-
-					return time();
+					return null;
 				}
 			]
 		);
