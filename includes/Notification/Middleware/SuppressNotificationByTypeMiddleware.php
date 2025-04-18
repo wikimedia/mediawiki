@@ -3,8 +3,6 @@
 namespace MediaWiki\Notification\Middleware;
 
 use MediaWiki\Notification\NotificationEnvelope;
-use MediaWiki\Notification\NotificationMiddlewareInterface;
-use MediaWiki\Notification\NotificationsBatch;
 
 /**
  * An example Middleware that allows to remove notifications of specific types
@@ -12,7 +10,7 @@ use MediaWiki\Notification\NotificationsBatch;
  * @since 1.44
  * @unstable
  */
-class SuppressNotificationByTypeMiddleware implements NotificationMiddlewareInterface {
+class SuppressNotificationByTypeMiddleware extends FilterMiddleware {
 
 	private string $notificationToSuppress;
 
@@ -26,17 +24,8 @@ class SuppressNotificationByTypeMiddleware implements NotificationMiddlewareInte
 	/**
 	 * Decide whether we want to remove notification from the list
 	 */
-	protected function shouldKeep( NotificationEnvelope $envelope ): bool {
+	protected function filter( NotificationEnvelope $envelope ): bool {
 		return $envelope->getNotification()->getType() !== $this->notificationToSuppress;
-	}
-
-	/**
-	 * @param NotificationsBatch $batch
-	 * @param callable():void $next
-	 */
-	public function handle( NotificationsBatch $batch, callable $next ): void {
-		$batch->filter( fn ( NotificationEnvelope $envelope ) => $this->shouldKeep( $envelope ) );
-		$next();
 	}
 
 }

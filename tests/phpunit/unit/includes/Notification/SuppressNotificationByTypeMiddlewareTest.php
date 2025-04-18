@@ -10,7 +10,7 @@ use MediaWiki\Notification\RecipientSet;
 use MediaWikiUnitTestCase;
 
 /**
- * @covers \MediaWiki\Notification\NotificationService
+ * @covers MediaWiki\Notification\Middleware\SuppressNotificationByTypeMiddleware
  */
 class SuppressNotificationByTypeMiddlewareTest extends MediaWikiUnitTestCase {
 
@@ -30,11 +30,11 @@ class SuppressNotificationByTypeMiddlewareTest extends MediaWikiUnitTestCase {
 		);
 
 		$sut->handle( $batch, static function () use ( $test, $batch ) {
-			$test->assertCount( 2, $batch );
-			$envelopes = iterator_to_array( $batch );
-			$test->assertSame( 'first', $envelopes[0]->getNotification()->getType() );
-			$test->assertSame( 'last', $envelopes[1]->getNotification()->getType() );
+			$test->assertCount( 3, $batch );
 		} );
-		$this->assertCount( 2, $batch );
+		$envelopes = iterator_to_array( $batch );
+		$this->assertCount( 2, $envelopes );
+		$test->assertSame( 'first', $envelopes[0]->getNotification()->getType() );
+		$test->assertSame( 'last', $envelopes[1]->getNotification()->getType() );
 	}
 }
