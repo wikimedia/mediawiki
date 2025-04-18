@@ -567,6 +567,7 @@ module.exports = exports = defineComponent( {
 	legend {
 		// Match font-size of accordion labels. T383921.
 		font-size: @font-size-medium;
+		font-weight: inherit;
 	}
 
 	legend .cdx-label__label,
