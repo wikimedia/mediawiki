@@ -25,9 +25,10 @@ class SpecialUserLogoutTest extends SpecialPageTestBase {
 
 	public function testUserLogoutComplete() {
 		$oldName = __METHOD__;
-		$user = new TestUser( $oldName );
+		$user = ( new TestUser( $oldName ) )->getUser();
 
 		$session = RequestContext::getMain()->getRequest()->getSession();
+		$session->setUser( $user );
 		$fauxRequest = new FauxRequest(
 			[ 'wpEditToken' => $session->getToken( 'logoutToken' ) ],
 			/* $wasPosted= */ true,
@@ -42,7 +43,7 @@ class SpecialUserLogoutTest extends SpecialPageTestBase {
 			}
 		);
 
-		[ $html ] = $this->executeSpecialPage( '', $fauxRequest, 'qqx', $user->getUser(), true );
+		[ $html ] = $this->executeSpecialPage( '', $fauxRequest, 'qqx', $user, true );
 		// Check that the page title and page content are as expected for a normal user logout
 		$this->assertStringContainsString( '(logouttext:', $html );
 		$this->assertStringContainsString( '(userlogout)', $html );
