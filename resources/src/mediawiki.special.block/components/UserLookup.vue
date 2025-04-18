@@ -21,6 +21,7 @@
 			@change="onChange"
 			@clear="onClear"
 			@update:selected="onSelect"
+			@keydown.enter.prevent="true/* See T391085 */"
 		>
 		</cdx-lookup>
 		<!-- eslint-enable vue/no-unused-refs -->
