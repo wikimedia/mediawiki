@@ -40,7 +40,11 @@ class HttpAcceptParser {
 			if ( isset( $matches[3] ) ) {
 				$kvps = explode( ';', $matches[3] );  // FIXME: Allow semi-colon in quotes
 				foreach ( $kvps as $kv ) {
-					[ $key, $val ] = explode( '=', trim( $kv ), 2 );
+					$kvArray = explode( '=', trim( $kv ), 2 );
+					if ( count( $kvArray ) != 2 ) {
+						continue;
+					}
+					[ $key, $val ] = $kvArray;
 					$key = strtolower( trim( $key ) );
 					$val = trim( $val );
 					if ( $key === 'q' ) {
