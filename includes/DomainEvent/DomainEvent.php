@@ -26,6 +26,9 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @note Subclasses must call declareEventType() in their constructor!
  *
  * @since 1.44
+ *
+ * @see docs/Events.md
+ * @see https://www.mediawiki.org/wiki/Manual:Domain_events
  */
 abstract class DomainEvent {
 

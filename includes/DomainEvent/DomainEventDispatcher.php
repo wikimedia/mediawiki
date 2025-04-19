@@ -7,6 +7,9 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * Service for sending domain events to registered listeners.
  *
  * @since 1.44
+ *
+ * @see docs/Events.md
+ * @see https://www.mediawiki.org/wiki/Manual:Domain_events
  */
 interface DomainEventDispatcher {
 
