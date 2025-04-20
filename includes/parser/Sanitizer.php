@@ -1627,6 +1627,8 @@ class Sanitizer {
 			// don't ignore char refs, we want them to be decoded
 			'ignoreNulls' => true,
 			'skipPreprocess' => true,
+			// We ignore all attributes, don't bother to parse them
+			'lazyAttributes' => true,
 		] );
 		$tokenizer->execute();
 		return self::normalizeWhitespace( $handler->getResult() );
