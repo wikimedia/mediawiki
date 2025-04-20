@@ -29,10 +29,10 @@ use Wikimedia\RequestTimeout\TimeoutException;
 /**
  * Module for ResourceLoader initialization.
  *
- * See also <https://www.mediawiki.org/wiki/ResourceLoader/Features#Startup_Module>
+ * See also <https://www.mediawiki.org/wiki/ResourceLoader/Architecture#Startup_Module>
  *
  * The startup module, as being called only from ClientHtml, has
- * the ability to vary based extra query parameters, in addition to those
+ * the ability to vary based on extra query parameters, in addition to those
  * from Context:
  *
  * - safemode: Only register modules that have ORIGIN_CORE as their origin.
@@ -51,7 +51,7 @@ class StartUpModule extends Module {
 	private const STORAGE_VERSION = '2';
 
 	/** @var int[] */
-	private $groupIds = [
+	private array $groupIds = [
 		// These reserved numbers MUST start at 0 and not skip any. These are preset
 		// for forward compatibility so that they can be safely referenced by mediawiki.js,
 		// even when the code is cached and the order of registrations (and implicit
