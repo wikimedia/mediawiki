@@ -10,6 +10,7 @@ use MediaWiki\Rest\Handler\PageHTMLHandler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
+use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
@@ -51,10 +52,13 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param Parsoid|MockObject|null $parsoid
+	 * @param RevisionRenderer|MockObject|null $renderer
 	 *
 	 * @return PageHTMLHandler
 	 */
-	private function newHandler( ?Parsoid $parsoid = null ): PageHTMLHandler {
+	private function newHandler(
+		?Parsoid $parsoid = null, ?RevisionRenderer $renderer = null
+	): PageHTMLHandler {
 		if ( $parsoid ) {
 			$this->resetServicesWithMockedParsoid( $parsoid );
 		} else {
@@ -62,6 +66,10 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			// Resetting ensures that ParsoidCachePrewarmJob gets a fresh copy
 			// of ParserOutputAccess without these problems!
 			$this->resetServices();
+		}
+
+		if ( $renderer ) {
+			$this->setService( 'RevisionRenderer', $renderer );
 		}
 
 		return $this->newPageHtmlHandler();
@@ -164,17 +172,19 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideWikiRedirect() {
-		yield 'follow wiki redirects per default' => [ [], 307 ];
-		yield 'bad redirect param' => [ [ 'redirect' => 'wrong' ], 400 ];
+		yield 'follow wiki redirects per default' => [ [], 307, null, false ];
+		yield 'bad redirect param' => [ [ 'redirect' => 'wrong' ], 400, null, false ];
 		yield 'redirect=no' => [ [ 'redirect' => 'no' ], 200, 'Footer' ];
 		yield 'redirect=false' => [ [ 'redirect' => 'false' ], 200, 'Footer' ];
-		yield 'redirect=true' => [ [ 'redirect' => 'true' ], 307 ];
+		yield 'redirect=true' => [ [ 'redirect' => 'true' ], 307, null, false ];
 	}
 
 	/**
 	 * @dataProvider provideWikiRedirect
 	 */
-	public function testWikiRedirect( $params, $expectedStatus, $expectedText = null ) {
+	public function testWikiRedirect(
+		$params, $expectedStatus, $expectedText = null, $allowRenders = true
+	) {
 		$redirect = $this->getExistingTestPage( 'HtmlEndpointTestPage/redirect' );
 		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage/target' );
 
@@ -192,7 +202,9 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		);
 
 		try {
-			$handler = $this->newHandler();
+			// If renders should not occur, use a renderer that will throw if called
+			$renderer = $allowRenders ? null : $this->createNoOpMock( RevisionRenderer::class );
+			$handler = $this->newHandler( null, $renderer );
 			$response = $this->executeHandler( $handler, $request, [
 				'format' => 'html'
 			] );

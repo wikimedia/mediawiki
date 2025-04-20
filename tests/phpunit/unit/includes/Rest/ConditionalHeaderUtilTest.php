@@ -27,6 +27,7 @@ class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 				null,
 				[],
 				null,
+				null,
 				[]
 			],
 			'inm true' => [
@@ -36,6 +37,7 @@ class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 				null,
 				[ 'If-None-Match' => '"b"' ],
 				null,
+				null,
 				[ 'ETag' => [ '"a"' ] ]
 			],
 			'inm false' => [
@@ -44,6 +46,7 @@ class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 				null,
 				null,
 				[ 'If-None-Match' => '"a"' ],
+				null,
 				304,
 				[ 'ETag' => [ '"a"' ] ]
 			],
@@ -54,6 +57,7 @@ class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 				null,
 				[ 'If-Modified-Since' => 'Mon, 14 Oct 2019 00:00:00 GMT' ],
 				null,
+				null,
 				[ 'Last-Modified' => [ 'Mon, 14 Oct 2019 00:00:01 GMT' ] ]
 			],
 			'ims false' => [
@@ -62,6 +66,7 @@ class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 				'Mon, 14 Oct 2019 00:00:00 GMT',
 				null,
 				[ 'If-Modified-Since' => 'Mon, 14 Oct 2019 00:00:00 GMT' ],
+				null,
 				304,
 				[ 'Last-Modified' => [ 'Mon, 14 Oct 2019 00:00:00 GMT' ] ]
 			],
@@ -72,6 +77,7 @@ class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 				null,
 				[ 'If-Match' => '"a"' ],
 				null,
+				null,
 				[ 'ETag' => [ '"a"' ] ]
 			],
 			'im false' => [
@@ -80,6 +86,7 @@ class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 				null,
 				null,
 				[ 'If-Match' => '"b"' ],
+				null,
 				412,
 				[]
 			],
@@ -90,6 +97,7 @@ class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 				null,
 				[ 'If-Unmodified-Since' => 'Mon, 14 Oct 2019 00:00:00 GMT' ],
 				null,
+				null,
 				[ 'Last-Modified' => [ 'Mon, 14 Oct 2019 00:00:00 GMT' ] ]
 			],
 			'ius false' => [
@@ -98,6 +106,7 @@ class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 				'Mon, 14 Oct 2019 00:00:01 GMT',
 				null,
 				[ 'If-Unmodified-Since' => 'Mon, 14 Oct 2019 00:00:00 GMT' ],
+				null,
 				412,
 				[]
 			],
@@ -110,6 +119,7 @@ class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 					'If-Match' => '"a"',
 					'If-Unmodified-Since' => 'Mon, 14 Oct 2019 00:00:00 GMT'
 				],
+				null,
 				null,
 				[
 					'Last-Modified' => [ 'Mon, 14 Oct 2019 00:00:01 GMT' ],
@@ -126,6 +136,7 @@ class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 					'If-Modified-Since' => 'Mon, 14 Oct 2019 00:00:00 GMT'
 				],
 				null,
+				null,
 				[
 					'Last-Modified' => [ 'Mon, 14 Oct 2019 00:00:00 GMT' ],
 					'ETag' => [ '"a"' ]
@@ -140,6 +151,7 @@ class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 					'If-Match' => '"a"',
 					'If-None-Match' => '"a"'
 				],
+				null,
 				304,
 				[ 'ETag' => [ '"a"' ] ]
 			],
@@ -152,6 +164,7 @@ class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 					'If-Unmodified-Since' => 'Mon, 14 Oct 2019 00:00:00 GMT',
 					'If-None-Match' => '"a"'
 				],
+				null,
 				304,
 				[
 					'Last-Modified' => [ 'Mon, 14 Oct 2019 00:00:00 GMT' ],
@@ -165,6 +178,7 @@ class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 				true,
 				[ 'If-Match' => '*' ],
 				null,
+				null,
 				[ 'ETag' => [ '"a"' ] ]
 			],
 			'im star true, no etag' => [
@@ -174,6 +188,7 @@ class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 				true,
 				[ 'If-Match' => '*' ],
 				null,
+				null,
 				[]
 			],
 			'im star false' => [
@@ -182,6 +197,7 @@ class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 				null,
 				false,
 				[ 'If-Match' => '*' ],
+				null,
 				412,
 				[]
 			],
@@ -191,6 +207,7 @@ class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 				null,
 				null,
 				[ 'If-None-Match' => '"a"' ],
+				null,
 				412,
 				[]
 			],
@@ -201,6 +218,7 @@ class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 				null,
 				[ 'If-Match' => '"b", "a"' ],
 				null,
+				null,
 				[ 'ETag' => [ '"a"' ] ]
 			],
 			'im multiple false' => [
@@ -209,6 +227,7 @@ class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 				null,
 				null,
 				[ 'If-Match' => '"b", "c"' ],
+				null,
 				412,
 				[]
 			],
@@ -224,6 +243,7 @@ class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 				null,
 				[ 'If-Match' => 'W/"a"' ],
 				null,
+				null,
 				[ 'ETag' => [ '"a"' ] ]
 			],
 			'If-Match strong vs weak' => [
@@ -232,6 +252,7 @@ class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 				null,
 				null,
 				[ 'If-Match' => '"a"' ],
+				null,
 				412,
 				[]
 			],
@@ -241,6 +262,7 @@ class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 				null,
 				null,
 				[ 'If-Match' => 'W/"a"' ],
+				null,
 				412,
 				[]
 			],
@@ -251,6 +273,7 @@ class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 				false,
 				[ 'If-Modified-Since' => 'Mon, 14 Oct 2019 00:00:00 GMT' ],
 				null,
+				null,
 				[]
 			],
 			'ius with resource unknown' => [
@@ -259,6 +282,7 @@ class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 				null,
 				false,
 				[ 'If-Unmodified-Since' => 'Mon, 14 Oct 2019 00:00:00 GMT' ],
+				null,
 				412,
 				[]
 			],
@@ -268,6 +292,7 @@ class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 				null,
 				true,
 				[ 'If-None-Match' => '*' ],
+				null,
 				304,
 				[]
 			],
@@ -277,7 +302,38 @@ class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 				self::makeFail( 'getLastModified' ),
 				true,
 				[ 'If-None-Match' => '*' ],
+				null,
 				412,
+				[]
+			],
+			'inm true, 4xx response' => [
+				'GET',
+				'"a"',
+				null,
+				null,
+				[ 'If-None-Match' => '"b"' ],
+				404,
+				null,
+				[]
+			],
+			'inm true, 301 response' => [
+				'GET',
+				'"a"',
+				null,
+				null,
+				[ 'If-None-Match' => '"b"' ],
+				301,
+				null,
+				[]
+			],
+			'inm true, 307 response' => [
+				'GET',
+				'"a"',
+				null,
+				null,
+				[ 'If-None-Match' => '"b"' ],
+				307,
+				null,
 				[]
 			],
 		];
@@ -285,7 +341,7 @@ class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 
 	/** @dataProvider provider */
 	public function testConditionalHeaderUtil( $method, $eTag, $lastModified, $hasRepresentation,
-		$requestHeaders, $expectedStatus, $expectedResponseHeaders
+		$requestHeaders, $statusOverride, $expectedStatus, $expectedResponseHeaders
 	) {
 		$util = new ConditionalHeaderUtil;
 		$util->setValidators( $eTag, $lastModified, $hasRepresentation );
@@ -295,6 +351,10 @@ class ConditionalHeaderUtilTest extends MediaWikiUnitTestCase {
 		] );
 		$status = $util->checkPreconditions( $request );
 		$this->assertSame( $expectedStatus, $status );
+
+		if ( $statusOverride !== null ) {
+			$status = $statusOverride;
+		}
 
 		$response = new Response;
 

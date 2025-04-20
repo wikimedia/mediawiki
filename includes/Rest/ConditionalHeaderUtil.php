@@ -191,7 +191,10 @@ class ConditionalHeaderUtil {
 	 * take precedence.
 	 */
 	public function applyResponseHeaders( ResponseInterface $response ) {
-		if ( $response->getStatusCode() >= 400 ) {
+		if ( $response->getStatusCode() >= 400
+			|| $response->getStatusCode() === 301
+			|| $response->getStatusCode() === 307
+		) {
 			// Don't add Last-Modified and ETag for errors, including 412.
 			// Note that 304 responses are required to have these headers set.
 			// See IETF RFC 7232 section 4.
