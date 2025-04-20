@@ -19,7 +19,7 @@ interface ResourceLoaderGetConfigVarsHook {
 	 * through MediaWiki\Hook\MakeGlobalVariablesScriptHook instead.
 	 * The skin name is made available to send skin-specific config only when needed.
 	 *
-	 * This hook is called from ResourceLoaderStartUpModule.
+	 * This hook is called from MediaWiki\ResourceLoader\StartUpModule.
 	 *
 	 * @since 1.35
 	 * @param array &$vars `[ variable name => value ]`

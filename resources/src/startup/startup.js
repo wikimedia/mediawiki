@@ -106,7 +106,7 @@ if ( !isCompatible() ) {
 	$CODE.defineLoader();
 
 	/**
-	 * The $CODE placeholder is substituted in ResourceLoaderStartUpModule.php.
+	 * The $CODE placeholder is substituted in StartUpModule.php.
 	 */
 	( function () {
 		/* global mw */
