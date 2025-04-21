@@ -3241,7 +3241,7 @@
 	"iranian-calendar-m11": "Бахман",
 	"iranian-calendar-m12": "Эсфанд",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|дийцар]])",
-	"signature-temp": "[[{{#special:Contributions}}/$1|$2]] ([[{{ns:user_talk}}:$1|обс.]])",
+	"signature-temp": "[[{{#special:Contributions}}/$1|$2]] ([[{{ns:user_talk}}:$1|дийц.]])",
 	"timezone-utc": "UTC",
 	"timezone-local": "Меттигера",
 	"duplicate-defaultsort": "<strong>Тидам бе:</strong> Сортировкин догӀано сецначул тӀехьа «$2» йухабилгала доккху хьалхара сортировкин догӀа сацарца «$1».",

@@ -257,7 +257,8 @@
 			"Balunhnoh",
 			"HylianAngel",
 			"Danielyepezgarces",
-			"MatyGamingHD"
+			"MatyGamingHD",
+			"JaimeDes"
 		]
 	},
 	"tog-underline": "Subrayar enlaces:",
@@ -580,7 +581,7 @@
 	"title-invalid-utf8": "El título de la página solicitada contiene una secuencia UTF-8 no válida.",
 	"title-invalid-interwiki": "El título de página solicitado contiene un enlace interwiki que no se puede usar en los títulos.",
 	"title-invalid-talk-namespace": "El título de la página solicitada apunta a una página de discusión imposible.",
-	"title-invalid-characters": "El título de la página solicitada contiene caracteres no válidos: «$1».",
+	"title-invalid-characters": "El título de la página solicitada contiene caracteres inválidos: «$1».",
 	"title-invalid-relative": "El título contiene una ruta relativa. Los títulos relativos (./, ../) no son válidos porque a menudo no los pueden manejar los navegadores web.",
 	"title-invalid-magic-tilde": "El título de la página solicitada contiene una secuencia de virgulillas no válida (<nowiki>~~~</nowiki>).",
 	"title-invalid-too-long": "El título de la página solicitada es muy largo. No debe exceder $1 {{PLURAL:$1|byte|bytes}} en codificación UTF-8.",

@@ -217,7 +217,8 @@
 			"TTO",
 			"Mahabarata",
 			"JLTRY",
-			"Rileyblondin"
+			"Rileyblondin",
+			"EmDashUser002"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -3366,9 +3367,6 @@
 	"variantname-kk-tr": "kk-TR",
 	"variantname-kk-cyrl": "kk-Cyrl",
 	"variantname-kk-latn": "kk-Latn",
-	"variantname-ku-arab": "ku-arab",
-	"variantname-ku-latn": "ku-latn",
-	"variantname-tg-cyrl": "tg-cyrl",
 	"variantname-tg-latn": "tg-latn",
 	"metadata": "Métadonnées",
 	"metadata-help": "Ce fichier contient des informations supplémentaires, probablement ajoutées par l'appareil photo numérique ou le numériseur utilisé pour le créer. \nSi le fichier a été modifié depuis son état original, certains détails peuvent ne pas refléter entièrement l'image modifiée.",

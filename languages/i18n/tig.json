@@ -138,7 +138,7 @@
 	"cactions": "ዚያደት",
 	"tool-link-userrights": "ተግዪር {{አስል፡$1/መትነፈዓይ}} መዓዪ/ሙጅተማዕ",
 	"tool-link-userrights-readonly": "ርእየት {{አስል፡$1/መትነፈዓይ}} መዓዪ/ሙጅተማዕ",
-	"tool-link-emailuser": "እሊ ንደእ/ለአክ {{አስል፡$1/መትነፈዓይ}}",
+	"tool-link-emailuser": "እሊ ንደእ/ለአክ {{GENDER፡$1|መትነፈዓይ}}",
 	"imagepage": "ገጽለ መለፍ(ወረቀት/ከረስ/ኮምፒተር) ርኤ",
 	"mediawikipage": "ገጽላ ርሳለት ርኤ",
 	"templatepage": "ግጽ ጃህዝ አምሳላት ግነሕ",
