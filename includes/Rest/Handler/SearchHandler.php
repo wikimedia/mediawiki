@@ -227,12 +227,13 @@ class SearchHandler extends Handler {
 	 * @param SearchResult|SearchSuggestion $result
 	 *
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-return (false|array{pageIdentity:PageIdentity,suggestion:?SearchSuggestion,result:?SearchResult,redirect:?PageIdentity}) $pageInfos
+	 * @phan-return (false|array{pageIdentity:PageIdentity,suggestion:?SearchSuggestion,result:?SearchResult,redirect:?PageIdentity,anchor:?string}) $pageInfos
 	 * @return bool|array Objects representing a given page:
 	 *   - pageIdentity: PageIdentity of page to return as the match
 	 *   - suggestion: SearchSuggestion or null if $searchResponse is SearchResults
 	 *   - result: SearchResult or null if $searchResponse is SearchSuggestions
 	 *   - redirect: PageIdentity|null depending on if the SearchResult|SearchSuggestion was a redirect
+	 * 	 - anchor: string|null if the SearchResult|SearchSuggestion was a redirect, this is the page anchor (if any)
 	 */
 	private function buildSinglePage( $title, $result ) {
 		$redirectTarget = $title->canExist() ? $this->redirectLookup->getRedirectTarget( $title ) : null;
@@ -240,9 +241,11 @@ class SearchHandler extends Handler {
 		// See T301346, T303352
 		if ( $redirectTarget && $redirectTarget->getNamespace() > -1 && !$redirectTarget->isExternal() ) {
 			$redirectSource = $title;
+			$anchor = $redirectTarget->getFragment();
 			$title = $this->pageStore->getPageForLink( $redirectTarget );
 		} else {
 			$redirectSource = null;
+			$anchor = null;
 		}
 		if ( !$title || !$this->getAuthority()->probablyCan( 'read', $title ) ) {
 			return false;
@@ -251,7 +254,8 @@ class SearchHandler extends Handler {
 			'pageIdentity' => $title,
 			'suggestion' => $result instanceof SearchSuggestion ? $result : null,
 			'result' => $result instanceof SearchResult ? $result : null,
-			'redirect' => $redirectSource
+			'redirect' => $redirectSource,
+			'anchor' => $anchor
 		];
 	}
 
@@ -260,12 +264,12 @@ class SearchHandler extends Handler {
 	 * @param array $pageInfos Page Info objects
 	 * @param array $thumbsAndDesc Associative array mapping pageId to array of description and thumbnail
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-param array<int,array{pageIdentity:PageIdentity,suggestion:SearchSuggestion,result:SearchResult,redirect:?PageIdentity}> $pageInfos
+	 * @phan-param array<int,array{pageIdentity:PageIdentity,suggestion:SearchSuggestion,result:SearchResult,redirect:?PageIdentity,anchor:?string}> $pageInfos
 	 * @phan-param array<int,array{description:array,thumbnail:array}> $thumbsAndDesc
 	 *
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-return array<int,array{id:int,key:string,title:string,excerpt:?string,matched_title:?string, description:?array, thumbnail:?array}> $pages
-	 * @return array[] of [ id, key, title, excerpt, matched_title ]
+	 * @phan-return array<int,array{id:int,key:string,title:string,excerpt:?string,matched_title:?string,anchor:?string, description:?array, thumbnail:?array}> $pages
+	 * @return array[] of [ id, key, title, excerpt, matched_title, anchor ]
 	 */
 	private function buildResultFromPageInfos( array $pageInfos, array $thumbsAndDesc ): array {
 		$pages = [];
@@ -274,7 +278,8 @@ class SearchHandler extends Handler {
 				'pageIdentity' => $page,
 				'suggestion' => $sugg,
 				'result' => $result,
-				'redirect' => $redirect
+				'redirect' => $redirect,
+				'anchor' => $anchor
 			] = $pageInfo;
 			$excerpt = $sugg ? $sugg->getText() : $result->getTextSnippet();
 			$id = ( $page instanceof PageIdentity && $page->canExist() ) ? $page->getId() : 0;
@@ -284,6 +289,7 @@ class SearchHandler extends Handler {
 				'title' => $this->titleFormatter->getPrefixedText( $page ),
 				'excerpt' => $excerpt ?: null,
 				'matched_title' => $redirect ? $this->titleFormatter->getPrefixedText( $redirect ) : null,
+				'anchor' => $anchor ?: null,
 				'description' => $id > 0 ? $thumbsAndDesc[$id]['description'] : null,
 				'thumbnail' => $id > 0 ? $thumbsAndDesc[$id]['thumbnail'] : null,
 			];
