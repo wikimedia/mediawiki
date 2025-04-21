@@ -24,6 +24,7 @@ describe( 'UserLookup', () => {
 	};
 
 	it( 'should update menu items based on the API response', async () => {
+		mockMwConfigGet();
 		const wrapper = getWrapper( { modelValue: 'ExampleUser' } );
 		// Ensure that the initial search string matches the initial prop value.
 		const input = wrapper.find( '.cdx-text-input__input' );
@@ -39,6 +40,13 @@ describe( 'UserLookup', () => {
 		expect( listBox.element.children ).toHaveLength( 2 );
 		expect( listBox.element.children[ 0 ].textContent ).toBe( 'ExampleUser' );
 		expect( listBox.element.children[ 1 ].textContent ).toBe( 'ExampleUser2' );
+
+		// Select a target and then focus on the field to ensure an API request is made
+		// and a new set of results is listed.
+		await listBox.element.children[ 1 ].click();
+		await input.trigger( 'focus' );
+		await flushPromises();
+		expect( listBox.element.children ).toHaveLength( 1 );
 	} );
 
 	it( 'should show an error if the pre-supplied target is missing', async () => {

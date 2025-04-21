@@ -751,6 +751,19 @@ function mockMwApiGet( additionalMocks = [] ) {
 		{
 			params: {
 				list: 'allusers',
+				auprefix: 'ExampleUser2'
+			},
+			response: {
+				query: {
+					allusers: [
+						{ name: 'ExampleUser2' }
+					]
+				}
+			}
+		},
+		{
+			params: {
+				list: 'allusers',
 				auprefix: 'NonexistentUser'
 			},
 			response: {

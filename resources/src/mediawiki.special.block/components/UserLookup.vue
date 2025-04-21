@@ -312,6 +312,8 @@ module.exports = exports = defineComponent( {
 			} else {
 				targetUser.value = value;
 			}
+
+			onInput( value );
 		}
 
 		return {
