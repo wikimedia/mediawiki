@@ -12700,7 +12700,7 @@ class MainConfigSchema {
 	 * For the pingback privacy policy, see:
 	 * https://wikimediafoundation.org/wiki/MediaWiki_Pingback_Privacy_Statement
 	 *
-	 * Aggregate pingback data is available at: https://pingback.wmflabs.org/
+	 * Aggregate pingback data is available at: https://pingback.wmcloud.org/
 	 *
 	 * @since 1.28
 	 */
