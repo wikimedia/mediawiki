@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Integration\Context;
 
+use Closure;
 use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Context\DerivativeContext;
@@ -21,8 +22,9 @@ use WikiPage;
  */
 class DerivativeContextTest extends MediaWikiIntegrationTestCase {
 
-	public function provideGetterSetter() {
+	public static function provideGetterSetter(): iterable {
 		$initialContext = new RequestContext();
+		// phpcs:disable Squiz.Scope.StaticThisUsage.Found
 		yield 'get/set Context' => [
 			'initialContext' => $initialContext,
 			'initialValue' => $initialContext,
@@ -39,29 +41,29 @@ class DerivativeContextTest extends MediaWikiIntegrationTestCase {
 		];
 		yield 'get/set OutputPage' => [
 			'initialContext' => $initialContext,
-			'initialValue' => $this->createNoOpMock( OutputPage::class ),
-			'newValue' => $this->createNoOpMock( OutputPage::class ),
+			'initialValue' => fn () => $this->createNoOpMock( OutputPage::class ),
+			'newValue' => fn () => $this->createNoOpMock( OutputPage::class ),
 			'getter' => 'getOutput',
 			'setter' => 'setOutput'
 		];
 		yield 'get/set User' => [
 			'initialContext' => $initialContext,
-			'initialValue' => $this->createNoOpMock( User::class ),
-			'newValue' => $this->createNoOpMock( User::class ),
+			'initialValue' => fn () => $this->createNoOpMock( User::class ),
+			'newValue' => fn () => $this->createNoOpMock( User::class ),
 			'getter' => 'getUser',
 			'setter' => 'setUser'
 		];
 		yield 'get/set Authority' => [
 			'initialContext' => $initialContext,
-			'initialValue' => $this->createNoOpMock( Authority::class ),
-			'newValue' => $this->createNoOpMock( Authority::class ),
+			'initialValue' => fn () => $this->createNoOpMock( Authority::class ),
+			'newValue' => fn () => $this->createNoOpMock( Authority::class ),
 			'getter' => 'getAuthority',
 			'setter' => 'setAuthority'
 		];
 		yield 'get/set Language' => [
 			'initialContext' => $initialContext,
-			'initialValue' => $this->createNoOpMock( Language::class ),
-			'newValue' => $this->createNoOpMock( Language::class ),
+			'initialValue' => fn () => $this->createNoOpMock( Language::class ),
+			'newValue' => fn () => $this->createNoOpMock( Language::class ),
 			'getter' => 'getLanguage',
 			'setter' => 'setLanguage'
 		];
@@ -72,23 +74,17 @@ class DerivativeContextTest extends MediaWikiIntegrationTestCase {
 			'getter' => 'getRequest',
 			'setter' => 'setRequest'
 		];
-		$initialTitle = $this->createMock( Title::class );
-		$initialTitle->expects( $this->any() )->method( 'equals' );
 		yield 'get/set Title' => [
 			'initialContext' => $initialContext,
-			'initialValue' => $initialTitle,
-			'newValue' => $this->createNoOpMock( Title::class ),
+			'initialValue' => fn () => $this->createNoOpMock( Title::class ),
+			'newValue' => fn () => $this->createNoOpMock( Title::class ),
 			'getter' => 'getTitle',
 			'setter' => 'setTitle',
 		];
-		$initialWikiPage = $this->createMock( WikiPage::class );
-		$initialWikiPage->expects( $this->any() )->method( 'getTitle' )->willReturn( $initialTitle );
-		$newWikiPage = $this->createMock( WikiPage::class );
-		$newWikiPage->expects( $this->any() )->method( 'getTitle' );
 		yield 'get/set WikiPage' => [
 			'initialContext' => $initialContext,
-			'initialValue' => $initialWikiPage,
-			'newValue' => $newWikiPage,
+			'initialValue' => fn () => $this->createMock( WikiPage::class ),
+			'newValue' => fn () => $this->createMock( WikiPage::class ),
 			'getter' => 'getWikiPage',
 			'setter' => 'setWikiPage',
 		];
@@ -99,6 +95,7 @@ class DerivativeContextTest extends MediaWikiIntegrationTestCase {
 			'getter' => 'getActionName',
 			'setter' => 'setActionName',
 		];
+		// phpcs:enable
 	}
 
 	/**
@@ -111,6 +108,14 @@ class DerivativeContextTest extends MediaWikiIntegrationTestCase {
 		string $getter,
 		string $setter
 	) {
+		if ( $initialValue instanceof Closure ) {
+			$initialValue = $initialValue->call( $this );
+		}
+
+		if ( $newValue instanceof Closure ) {
+			$newValue = $newValue->call( $this );
+		}
+
 		if ( $setter !== 'setContext' ) {
 			$initialContext->$setter( $initialValue );
 		}
