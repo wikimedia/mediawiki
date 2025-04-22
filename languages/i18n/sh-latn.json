@@ -871,7 +871,7 @@
 	"shown-title": "Prikaži $1 {{PLURAL:$1|rezultat|rezultata}} po stranici",
 	"viewprevnext": "Prikaži ($1 {{int:pipe-separator}} $2) ($3)",
 	"searchmenu-exists": "Postoji stranica pod nazivom „[[:$1]]”. {{PLURAL:$2|0=|Pogledajte i ostale rezultate pretrage.}}",
-	"searchmenu-new": "Stranica „[[:$1]]” ne postoji. Kliknite na vezu da biste je izradili. {{PLURAL:$2|0=|Pogledajte i stranicu pronađenu pretragom.|Pogledajte i rezultate pretrage.}}",
+	"searchmenu-new": "Stranica [[:$1]] ne postoji. Kliknite na link da biste je izradili. {{PLURAL:$2|0=|Pogledajte i stranicu pronađenu pretragom.|Pogledajte i rezultate pretrage.}}",
 	"searchprofile-articles": "Sadržinske stranice",
 	"searchprofile-images": "Datoteke",
 	"searchprofile-everything": "Sve",

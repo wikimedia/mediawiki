@@ -1008,6 +1008,7 @@
 	"linterror-duplicate-ids": "Dublikat idlər",
 	"linterror-empty-heading": "Boş başlıqlar",
 	"linterror-fostered": "Təşviq edilmiş məzmun",
+	"linterror-fostered-transparent": "Təşviq edilmiş şəffaf məzmun",
 	"linterror-html5-misnesting": "Yanlış yerləşdirmə (indi xarabdır)",
 	"linterror-inline-media-caption": "Görünməyən başlıq",
 	"linterror-large-tables": "Mobil cihazlarda ekranı pozan böyük cədvəllər",

@@ -20,7 +20,7 @@
 	"prefs-description-personal": "Nasıl körüngeniñiz, bağlanğanıñız ve bildirişkeniñizni kontrol etiñiz.",
 	"prefs-info": "Esas malümat",
 	"username": "{{GENDER:$1|Qullanıcı adı}}:",
-	"prefs-memberingroups": "{{GENDER:$2|Azası}}  olğan {{PLURAL:$1|gruppa|gruppalar}}:",
+	"prefs-memberingroups": "{{GENDER:$2|Azası}} olğan {{PLURAL:$1|gruppa|gruppalar}}:",
 	"group-membership-link-with-expiry": "$1 ($2 tarihına qadar)",
 	"prefs-edits": "Deñiştirmeler sayısı:",
 	"prefs-registration": "Qaydiyet tarihı:",

@@ -1075,6 +1075,7 @@
 	"linterror-duplicate-ids": "Zduplikowane ID",
 	"linterror-empty-heading": "Puste nagłówki",
 	"linterror-fostered": "Osierocona zawartość",
+	"linterror-fostered-transparent": "Osierocona przezroczysta zawartość",
 	"linterror-html5-misnesting": "Źle zagnieżdżone (i widoczne uszkodzenia)",
 	"linterror-inline-media-caption": "Niewidoczny podpis obrazu",
 	"linterror-large-tables": "Duże tabele, które psują układ na urządzeniach mobilnych",

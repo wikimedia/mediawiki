@@ -43,7 +43,7 @@
 	"category_header": "Makala katika jamii \"$1\"",
 	"subcategories": "Vijamii",
 	"category-media-header": "Midia katika jamii \"$1\"",
-	"category-empty": "<em>Kategoria hii kwa sasa haina kurasa au midia.</em>",
+	"category-empty": "<em>Jamii hii kwa sasa haina kurasa au midia.</em>",
 	"hidden-categories": "{{PLURAL:$1|Jamii iliofichwa|Jamii zilizofichwa}}",
 	"hidden-category-category": "Jamii zilizofichwa",
 	"category-subcat-count": "{{PLURAL:$2|Jamii hii ina kijamii hiki tu.|Jamii hii ina {{PLURAL:$1|kijamii kifuatacho|vijamii $1 vifuatavyo}}, kati ya jumla ya $2.}}",

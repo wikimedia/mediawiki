@@ -3786,6 +3786,7 @@
 	"logentry-non-editing-block-reblock": "$1{{GENDER:$2|更改了}}{{GENDER:$4|$3}}的特定非编辑操作的封禁设置，期限为$5$6",
 	"logentry-suppress-block": "$1{{GENDER:$2|已封禁}}{{GENDER:$4|$3}}，到期时间为$5$6",
 	"logentry-suppress-reblock": "$1将{{GENDER:$4|$3}}的封禁设置{{GENDER:$2|更改为}}持续时间至$5 $6",
+	"logentry-suppress-block-multi": "$1为{{GENDER:$4|$3}}{{GENDER:$2|新增了}}一条封禁，期限为$5$6",
 	"logentry-import-upload": "$1通过文件上传{{GENDER:$2|导入}}了$3",
 	"logentry-import-upload-details": "$1通过文件上传{{GENDER:$2|导入了}}$3（$4个{{PLURAL:$4|版本}}）",
 	"logentry-import-interwiki": "$1从其他wiki{{GENDER:$2|导入}}了$3",
