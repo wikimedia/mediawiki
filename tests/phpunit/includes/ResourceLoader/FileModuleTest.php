@@ -935,7 +935,8 @@ class FileModuleTest extends ResourceLoaderTestCase {
 		$module->getStyles( $context );
 
 		$module = $this->newModuleRequest( $moduleInfo, $context );
-		$dependencies = $module->getFileDependencies( $context );
+		$dependencies = ResourceLoaderFileTestModule::expandRelativePaths(
+			$module->getFileDependencies( $context ) );
 
 		$expectedDependencies = [
 			realpath( __DIR__ . '/../../data/less/common/test.common.mixins.less' ),
@@ -960,7 +961,8 @@ class FileModuleTest extends ResourceLoaderTestCase {
 		$module->getStyles( $context );
 
 		$module = $this->newModuleRequest( $moduleInfo, $context );
-		$dependencies = $module->getFileDependencies( $context );
+		$dependencies = ResourceLoaderFileTestModule::expandRelativePaths(
+			$module->getFileDependencies( $context ) );
 
 		$expectedDependencies = [ realpath( $tempDir . '/test.less' ) ];
 
@@ -973,7 +975,8 @@ class FileModuleTest extends ResourceLoaderTestCase {
 		$module->getStyles( $context );
 
 		$module = $this->newModuleRequest( $moduleInfo, $context );
-		$dependencies = $module->getFileDependencies( $context );
+		$dependencies = ResourceLoaderFileTestModule::expandRelativePaths(
+			$module->getFileDependencies( $context ) );
 
 		$expectedDependencies = [ realpath( $tempDir . '/pink.less' ) ];
 
