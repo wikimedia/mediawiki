@@ -146,7 +146,7 @@
 	"cactions": "ထပ်လို့",
 	"tool-link-userrights": "{{GENDER:$1|အသုံးပြုလူ}} အသင်းဝင်တိကို ပြောင်းလဲပါ",
 	"tool-link-userrights-readonly": "{{GENDER:$1|အသုံးပြုလူ}} အဖွဲ့တိကို ပြောင်းလဲပါ။",
-	"tool-link-emailuser": "ဒေ (GENDER:)$1အသုံးပြုရေလူပါးကို အီးမေးလ်ပို့ပါ",
+	"tool-link-emailuser": "ဒေ {{GENDER:$1|အသုံးပြုရေလူပါးကို}} အီးမေးလ်ပို့ပါ",
 	"imagepage": "ဖိုင်စာမျက်နှာကိုကြေ့ပါ",
 	"mediawikipage": "မက်ဆေ့ခ်ျစာမျက်နှာတိကိုကြည့်ပါ",
 	"templatepage": "တမ်းပလိတ်စာမျက်နှာကိုကြေ့ပါ",

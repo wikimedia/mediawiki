@@ -146,7 +146,7 @@
 	"cactions": "Pãasé",
 	"tool-link-userrights": "{{GENDER:$1 user}} sullã toeemame",
 	"tool-link-userrights-readonly": "{{GENDER:$1 yel-gɛtã yãgsgo}} sull",
-	"tool-link-emailuser": "D tʋm-y-yã {{-yend-kãngã :$1|n kõ-yã}}",
+	"tool-link-emailuser": "D tʋm-y-yã {{GENDER:$1|n kõ-yã}}",
 	"imagepage": "N gese fisiye seb-vão",
 	"mediawikipage": "N ges koɛɛg seb-vão",
 	"templatepage": "Ges-y seb-bil sẽn be seb-bilã pʋgẽ",

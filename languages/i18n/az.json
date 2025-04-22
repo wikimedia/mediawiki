@@ -1593,7 +1593,7 @@
 	"tmp-write-error": "Müvəqqəti fayl yazılarkən xəta.",
 	"large-file": "Faylların $1 ölçüsündən böyük olmaması tövsiyə olunur;\nbu faylın ölçüsü: $2.",
 	"largefileserver": "Faylın ölçüsü yol verilən həddi aşır.",
-	"emptyfile": "Yüklədiyiniz fayl boşdur. Bu faylın adında olan hərf səhvi ilə bağlı ola bilər. Xahiş olunur ki, doğurdan da bu faylı yükləmək istədiyinizi yoxlayasınız.",
+	"emptyfile": "Yüklədiyiniz fayl boşdur. \nBu, faylın adında olan hərf səhvi ilə bağlı ola bilər. \nZəhmət olmasa, doğrudan da, bu faylı yükləmək istəyib-istəmədiyinizi dəqiqləşdirin.",
 	"windows-nonascii-filename": "Bu viki xüsusi simvolları olan fayl adlarını dəstəkləmir.",
 	"fileexists": "Bu adda fayl artıq mövcuddur, əgər {{GENDER:|siz}} onu yenidən yükləmək istədiyinizə əmin deyilsinizsə, <strong>[[:$1]]</strong> faylını yoxlayın.\n[[$1|thumb]]",
 	"filepageexists": "Bu fayl üçün təsvir səhifəsi artıq <strong>[[:$1]]</strong> səhifəsində yaradılmışdır, lakin bu adda heç bir fayl hazırda mövcud deyil.\nDaxil etdiyiniz xülasə təsvir səhifəsində görünməyəcək.\nXülasənizin görünməsi üçün orada onu əl ilə redaktə etməli olacaqsınız.\n[[$1|thumb]]",
