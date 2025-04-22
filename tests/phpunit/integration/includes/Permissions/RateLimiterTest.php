@@ -249,7 +249,7 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 			$limiter->limit( $user, 'edit' ),
 			'Hooks that just return false leave $result false'
 		);
-		$this->removeTemporaryHook( 'PingLimiter' );
+		$this->clearHook( 'PingLimiter' );
 
 		// Hook sets $result to true
 		$this->setTemporaryHook(
@@ -267,7 +267,7 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 			$limiter->limit( $user, 'read' ),
 			'The "read" permission will bypass the hook'
 		);
-		$this->removeTemporaryHook( 'PingLimiter' );
+		$this->clearHook( 'PingLimiter' );
 
 		// Unknown action
 		$this->assertFalse(
