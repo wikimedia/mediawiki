@@ -638,6 +638,8 @@ because of Phabricator reports.
 * Maintenance::beginTransaction(), Maintenance::commitTransaction(),
   Maintenance::rollbackTransaction(), and Maintenance::waitForReplication()
   are now deprecated. Use Maintenance::*TransactionRound() instead.
+* Sanitizer::mergeAttributes() has been deprecated.
+* TextboxBuilder::mergeClassesIntoAttributes() has been deprecated.
 * The ReverseArrayIterator class, unused since 1.32, has been deprecated.
 * OutputPage::parserOptions() has been deprecated; use
   ParserOptions::newFromContext( $outputPage->getContext() ) instead.

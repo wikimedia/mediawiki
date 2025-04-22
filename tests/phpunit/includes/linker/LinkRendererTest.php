@@ -55,7 +55,7 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 			'bar' => 'baz'
 		] );
 		$this->assertEquals(
-			'<a href="/wiki/Special:BlankPage" class="new foobar" '
+			'<a href="/wiki/Special:BlankPage" class="foobar new" '
 			. 'title="Special:BlankPage (page does not exist)" bar="baz">'
 			. 'Special:BlankPage</a>',
 			$link
