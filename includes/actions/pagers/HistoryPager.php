@@ -519,10 +519,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			[ Sanitizer::class, 'isReservedDataAttribute' ],
 			ARRAY_FILTER_USE_KEY
 		);
-
-		if ( $classes ) {
-			$attribs['class'] = implode( ' ', $classes );
-		}
+		$attribs['class'] = $classes;
 
 		return Html::rawElement( 'li', $attribs, $s ) . "\n";
 	}
