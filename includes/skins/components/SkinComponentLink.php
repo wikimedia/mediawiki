@@ -188,7 +188,7 @@ class SkinComponentLink implements SkinComponent {
 					$class, $options['link-class']
 				);
 			}
-			$attrs['class'] = is_array( $class ) ? implode( ' ', $class ) : $class;
+			$attrs['class'] = Html::expandClassList( $class );
 			foreach ( $attrs as $key => $value ) {
 				if ( $value === null ) {
 					continue;
@@ -214,7 +214,7 @@ class SkinComponentLink implements SkinComponent {
 			'text' => trim( $text ),
 		];
 		if ( $classAsProperty ) {
-			$data['class'] = $attrs['class'] ?? '';
+			$data['class'] = $attrs['class'];
 		}
 		return $data;
 	}

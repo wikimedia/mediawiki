@@ -247,6 +247,10 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 			' zero="0"',
 			[ 'zero' => 0 ]
 		];
+		yield 'Integration test for space-separated attribs' => [
+			' class="a b"',
+			[ 'class' => [ 'a', 'b' ] ]
+		];
 	}
 
 	/**
@@ -273,35 +277,35 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 		// $expect, $classes
 		// string values
 		yield 'Normalization should strip redundant spaces' => [
-			' class="redundant spaces here"',
+			'redundant spaces here',
 			' redundant  spaces  here  '
 		];
 		yield 'Normalization should remove duplicates in string-lists' => [
-			' class="foo bar"',
+			'foo bar',
 			'foo bar foo bar bar'
 		];
 		// array values
 		yield 'Value with an empty array' => [
-			' class=""',
+			'',
 			[]
 		];
 		yield 'Array with null, empty string and spaces' => [
-			' class=""',
+			'',
 			[ null, '', ' ', '  ' ]
 		];
 		yield 'Normalization should remove duplicates in the array' => [
-			' class="foo bar"',
+			'foo bar',
 			[ 'foo', 'bar', 'foo', 'bar', 'bar' ]
 		];
 		yield 'Normalization should remove duplicates in string-lists in the array' => [
-			' class="foo bar"',
-			[ 'foo bar', 'bar foo', 'foo', 'bar bar' ]
+			'foo bar baz',
+			[ 'foo bar', 'bar foo', 'foo', 'bar bar', 'baz' ]
 		];
 
 		// Feature added in r96188 - pass attributes values as a PHP array
 		// only applies to class, rel, and accesskey
 		yield 'Associative array' => [
-			' class="booltrue one"',
+			'booltrue one',
 			[
 				'booltrue' => true,
 				'one' => 1,
@@ -319,7 +323,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 		// We could pass a "class" the values: 'GREEN' and [ 'GREEN' => false ]
 		// The latter will take precedence
 		yield 'Duplicate keys' => [
-			' class=""',
+			'',
 			[
 				'GREEN',
 				'GREEN' => false,
@@ -329,16 +333,12 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Html::expandAttributes has special features for HTML
-	 * attributes that use space separated lists and also
-	 * allows arrays to be used as values.
-	 *
 	 * @dataProvider provideExpandAttributesClass
 	 */
 	public function testExpandAttributesClass( string $expect, $classes ) {
 		$this->assertEquals(
 			$expect,
-			Html::expandAttributes( [ 'class' => $classes ] )
+			Html::expandClassList( $classes )
 		);
 	}
 

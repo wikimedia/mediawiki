@@ -388,14 +388,13 @@ class LinkRenderer {
 	public function makeExternalLink(
 		string $url, $text, $title, $linktype = '', $attribs = []
 	) {
-		$class = 'external';
+		$attribs['class'] ??= [];
+		Html::addClass( $attribs['class'], 'external' );
 		if ( $linktype ) {
-			$class .= " $linktype";
+			Html::addClass( $attribs['class'], $linktype );
 		}
-		if ( isset( $attribs['class'] ) && $attribs['class'] ) {
-			$class .= " {$attribs['class']}";
-		}
-		$attribs['class'] = $class;
+		// Stringify attributes for hook compatibility
+		$attribs['class'] = Html::expandClassList( $attribs['class'] );
 
 		if ( $text instanceof Message ) {
 			$text = $text->escaped();
@@ -406,14 +405,10 @@ class LinkRenderer {
 		}
 
 		$newRel = Parser::getExternalLinkRel( $url, $title );
-		if ( !isset( $attribs['rel'] ) || $attribs['rel'] === '' ) {
-			$attribs['rel'] = $newRel;
-		} elseif ( $newRel !== null ) {
-			// Merge the rel attributes.
-			$newRels = explode( ' ', $newRel );
-			$oldRels = explode( ' ', $attribs['rel'] );
-			$combined = array_unique( array_merge( $newRels, $oldRels ) );
-			$attribs['rel'] = implode( ' ', $combined );
+		if ( $newRel !== null ) {
+			$attribs['rel'] ??= [];
+			Html::addClass( $attribs['rel'], $newRel );
+			$attribs['rel'] = Html::expandClassList( $attribs['rel'] );
 		}
 		$link = '';
 		$success = $this->hookRunner->onLinkerMakeExternalLink(

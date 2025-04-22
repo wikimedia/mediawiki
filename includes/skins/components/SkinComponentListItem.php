@@ -192,9 +192,7 @@ class SkinComponentListItem implements SkinComponent {
 			$attrs['title'] = $item['itemtitle'];
 		}
 		// Making sure we always have strings as class values
-		$classes = is_array( $attrs['class'] ) ?
-			implode( ' ', $attrs['class'] ) :
-			$attrs['class'] ?? null;
+		$classes = Html::expandClassList( $attrs['class'] );
 		return [
 			'tag' => $options['tag'] ?? 'li',
 			'attrs' => $attrs,
