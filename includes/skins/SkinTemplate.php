@@ -429,7 +429,7 @@ class SkinTemplate extends Skin {
 			$personal_urls['mytalk'] = [
 				'text' => $this->msg( 'mytalk' )->text(),
 				'href' => &$usertalkUrlDetails['href'],
-				'class' => $usertalkUrlDetails['exists'] ? false : 'new',
+				'class' => $usertalkUrlDetails['exists'] ? null : 'new',
 				'exists' => $usertalkUrlDetails['exists'],
 				'active' => ( $usertalkUrlDetails['href'] == $pageurl ),
 				'icon' => 'userTalk'
@@ -843,7 +843,7 @@ class SkinTemplate extends Skin {
 		}
 
 		$result = [
-			'class' => implode( ' ', $classes ),
+			'class' => $classes,
 			'text' => $text,
 			'href' => $title->getLocalURL( $query ),
 			'exists' => $exists,
@@ -1148,7 +1148,6 @@ class SkinTemplate extends Skin {
 				// @todo abstract this for remote content that isn't a file
 				if ( $isRemoteContent ) {
 					$content_navigation['views']['view-foreign'] = [
-						'class' => '',
 						'text' => $this->getSkinNavOverrideableLabel(
 							'view-foreign', $page->getWikiDisplayName()
 						),
@@ -1186,7 +1185,7 @@ class SkinTemplate extends Skin {
 					$content_navigation['views']['edit'] = [
 						'class' => ( $isEditing && ( $section !== 'new' || !$showNewSection )
 							? 'selected'
-							: ''
+							: null
 						) . $isTalkClass,
 						'text' => $this->getSkinNavOverrideableLabel(
 							"view-$msgKey"
@@ -1201,7 +1200,7 @@ class SkinTemplate extends Skin {
 						// Adds new section link
 						// $content_navigation['actions']['addsection']
 						$content_navigation['views']['addsection'] = [
-							'class' => ( $isEditing && $section == 'new' ) ? 'selected' : false,
+							'class' => ( $isEditing && $section == 'new' ) ? 'selected' : null,
 							'text' => $this->getSkinNavOverrideableLabel(
 								"action-addsection"
 							),
@@ -1212,7 +1211,7 @@ class SkinTemplate extends Skin {
 				} elseif ( $title->hasSourceText() ) {
 					// Adds view source view link
 					$content_navigation['views']['viewsource'] = [
-						'class' => ( $onPage && $action == 'edit' ) ? 'selected' : false,
+						'class' => ( $onPage && $action == 'edit' ) ? 'selected' : null,
 						'text' => $this->getSkinNavOverrideableLabel(
 							"action-viewsource"
 						),
@@ -1225,7 +1224,7 @@ class SkinTemplate extends Skin {
 				if ( $title->exists() ) {
 					// Adds history view link
 					$content_navigation['views']['history'] = [
-						'class' => ( $onPage && $action == 'history' ) ? 'selected' : false,
+						'class' => ( $onPage && $action == 'history' ) ? 'selected' : null,
 						'text' => $this->getSkinNavOverrideableLabel(
 							'view-history'
 						),
@@ -1235,7 +1234,7 @@ class SkinTemplate extends Skin {
 					if ( $this->getAuthority()->probablyCan( 'delete', $title ) ) {
 						$content_navigation['actions']['delete'] = [
 							'icon' => 'trash',
-							'class' => ( $onPage && $action == 'delete' ) ? 'selected' : false,
+							'class' => ( $onPage && $action == 'delete' ) ? 'selected' : null,
 							'text' => $this->getSkinNavOverrideableLabel(
 								'action-delete'
 							),
@@ -1249,7 +1248,7 @@ class SkinTemplate extends Skin {
 					if ( $this->getAuthority()->probablyCan( 'move', $title ) ) {
 						$moveTitle = SpecialPage::getTitleFor( 'Movepage', $title->getPrefixedDBkey() );
 						$content_navigation['actions']['move'] = [
-							'class' => $this->getTitle()->isSpecial( 'Movepage' ) ? 'selected' : false,
+							'class' => $this->getTitle()->isSpecial( 'Movepage' ) ? 'selected' : null,
 							'text' => $this->getSkinNavOverrideableLabel(
 								'action-move'
 							),
@@ -1268,7 +1267,7 @@ class SkinTemplate extends Skin {
 							$msgKey = $this->getAuthority()->probablyCan( 'undelete', $title ) ?
 								'undelete' : 'viewdeleted';
 							$content_navigation['actions']['undelete'] = [
-								'class' => $this->getTitle()->isSpecial( 'Undelete' ) ? 'selected' : false,
+								'class' => $this->getTitle()->isSpecial( 'Undelete' ) ? 'selected' : null,
 								'text' => $this->getSkinNavOverrideableLabel(
 									"action-$msgKey", $n
 								),
@@ -1290,7 +1289,7 @@ class SkinTemplate extends Skin {
 					$isProtected = $restrictionStore->isProtected( $title );
 					$mode = $isProtected ? 'unprotect' : 'protect';
 					$content_navigation['actions'][$mode] = [
-						'class' => ( $onPage && $action == $mode ) ? 'selected' : false,
+						'class' => ( $onPage && $action == $mode ) ? 'selected' : null,
 						'text' => $this->getSkinNavOverrideableLabel(
 							"action-$mode"
 						),
@@ -1352,7 +1351,7 @@ class SkinTemplate extends Skin {
 						$varname = $pageLang->getVariantname( $code );
 						// Appends variant link
 						$content_navigation['variants'][] = [
-							'class' => ( $code == $preferred ) ? 'selected' : false,
+							'class' => ( $code == $preferred ) ? 'selected' : null,
 							'text' => $varname,
 							'href' => $title->getLocalURL( [ 'variant' => $code ] + $params ),
 							'lang' => LanguageCode::bcp47( $code ),
@@ -1461,7 +1460,7 @@ class SkinTemplate extends Skin {
 			$specialAssociatedNavigationLinks['special-specialAssociatedNavigationLinks-link-' . $i ] = [
 				'text' => $text,
 				'href' => $relatedTitle->getLocalURL(),
-				'class' => $relatedTitle->fixSpecialName()->equals( $title->fixSpecialName() ) ? 'selected' : '',
+				'class' => $relatedTitle->fixSpecialName()->equals( $title->fixSpecialName() ) ? 'selected' : null,
 			];
 		}
 		return $specialAssociatedNavigationLinks;

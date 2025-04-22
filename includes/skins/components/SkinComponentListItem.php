@@ -182,11 +182,13 @@ class SkinComponentListItem implements SkinComponent {
 				$attrs[$attr] = $item[$attr];
 			}
 		}
-		$attrs['class'] = SkinComponentUtils::addClassToClassList( $attrs['class'] ?? [], 'mw-list-item' );
-
+		if ( !isset( $attrs['class'] ) || $attrs['class'] === false ) {
+			// Compatibility
+			$attrs['class'] = null;
+		}
+		Html::addClass( $attrs['class'], 'mw-list-item' );
 		if ( isset( $item['active'] ) && $item['active'] ) {
-			// In the future, this should accept an array of classes, not a string
-			$attrs['class'] = SkinComponentUtils::addClassToClassList( $attrs['class'], 'active' );
+			Html::addClass( $attrs['class'], 'active' );
 		}
 		if ( isset( $item['itemtitle'] ) ) {
 			$attrs['title'] = $item['itemtitle'];

@@ -10,24 +10,6 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 
 class SkinComponentUtils {
-	/**
-	 * Adds a class to the existing class value, supporting it as a string
-	 * or array.
-	 *
-	 * @param string|array $class to update.
-	 * @param string $newClass to add.
-	 * @return string|array classes.
-	 * @internal
-	 */
-	public static function addClassToClassList( $class, string $newClass ) {
-		if ( is_array( $class ) ) {
-			$class[] = $newClass;
-		} else {
-			$class .= ' ' . $newClass;
-			$class = trim( $class );
-		}
-		return $class;
-	}
 
 	/**
 	 * Builds query params for the page to return to, used when building links

@@ -182,13 +182,10 @@ class SkinComponentLink implements SkinComponent {
 				unset( $attrs[ 'data' ] );
 			}
 			$this->applyLinkTitleAttribs( $item, true, $attrs );
-			$class = $attrs['class'] ?? [];
 			if ( isset( $options['link-class'] ) ) {
-				$class = SkinComponentUtils::addClassToClassList(
-					$class, $options['link-class']
-				);
+				Html::addClass( $attrs['class'], $options['link-class'] );
 			}
-			$attrs['class'] = Html::expandClassList( $class );
+			$attrs['class'] = Html::expandClassList( $attrs['class'] ?? [] );
 			foreach ( $attrs as $key => $value ) {
 				if ( $value === null ) {
 					continue;
