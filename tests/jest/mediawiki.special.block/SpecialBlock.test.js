@@ -417,4 +417,12 @@ describe( 'SpecialBlock', () => {
 		expect( wrapper.find( '.mw-block-log__type-active-ranges tbody' ).text() )
 			.toStrictEqual( 'block-user-no-active-range-blocks' );
 	} );
+
+	it( 'should show "add block" form for an IP with range blocks and no active blocks', async () => {
+		mw.util.isIPAddress = jest.fn().mockReturnValue( true );
+		wrapper = getSpecialBlock( { blockTargetUser: '1.2.3.20', blockTargetExists: true, blockEnableMultblocks: false } );
+		await flushPromises();
+		// since there are no blocks, the form is instanly available and add-block is not visible
+		expect( wrapper.find( '.mw-block-submit' ).exists() ).toBeTruthy();
+	} );
 } );
