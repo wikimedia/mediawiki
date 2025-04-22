@@ -2366,18 +2366,18 @@ Gallery with valid attributes
 !! config
 wgParserEnableLegacyMediaDOM=true
 !! wikitext
-<gallery type="123" summary="345">
+<gallery type="123" summary="345" class="foo">
 File:File:Foobar.jpg
 </gallery>
 !! html/php
-<ul class="gallery mw-gallery-traditional" type="123">
+<ul type="123" class="foo gallery mw-gallery-traditional">
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
 			<div class="thumb" style="height: 150px;">File:Foobar.jpg</div>
 			<div class="gallerytext"></div>
 		</div></li>
 </ul>
 !! html/parsoid
-<ul class="gallery mw-gallery-traditional" type="123" typeof="mw:Extension/gallery" about="#mwt3" data-mw='{"name":"gallery","attrs":{"type":"123","summary":"345"},"body":{}}'>
+<ul class="foo gallery mw-gallery-traditional" type="123" typeof="mw:Extension/gallery" about="#mwt3" data-mw='{"name":"gallery","attrs":{"type":"123","summary":"345"},"body":{}}'>
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="height: 150px;"><span typeof="mw:Error mw:File" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/File:Foobar.jpg"><span class="mw-file-element mw-broken-media" resource="./File:File:Foobar.jpg" data-width="120" data-height="120">File:File:Foobar.jpg</span></a></span></div><div class="gallerytext"></div></li>
 </ul>
 !! end
@@ -2921,7 +2921,7 @@ wgParserEnableLegacyMediaDOM=true
 File:Foobar.jpg
 </gallery>
 !! html/php
-<ul class="gallery mw-gallery-traditional center" style="text-align: center;">
+<ul class="center gallery mw-gallery-traditional" style="text-align: center;">
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
 			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" width="120" height="14" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" /></a></div></div>
 			<div class="gallerytext"></div>
@@ -2965,7 +2965,7 @@ wgParserEnableLegacyMediaDOM=true
 File:Foobar.jpg
 </gallery>
 !! html/php
-<ul class="gallery mw-gallery-slideshow" data-showthumbnails="1">
+<ul data-showthumbnails="1" class="gallery mw-gallery-slideshow">
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
 			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" width="120" height="14" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" /></a></div></div>
 			<div class="gallerytext"></div>

@@ -30,7 +30,6 @@ use MediaWiki\Linker\LinkTarget as MWLinkTarget;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\Parser;
-use MediaWiki\Parser\Sanitizer;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
@@ -218,7 +217,7 @@ class LinkRenderer {
 	 * @param-taint $target none
 	 * @param string|HtmlArmor|null $text Text that the user can click on to visit the link.
 	 * @param-taint $text escapes_html
-	 * @param string $classes CSS classes to add
+	 * @param string|array $classes CSS classes to add
 	 * @param-taint $classes none
 	 * @param array $extraAttribs Attributes you would like to add to the <a> tag. For example, if
 	 * you would like to add title="Text when hovering!", you would set this to [ 'title' => 'Text
@@ -231,7 +230,7 @@ class LinkRenderer {
 	 * @return-taint escaped
 	 */
 	public function makePreloadedLink(
-		$target, $text = null, $classes = '', array $extraAttribs = [], array $query = []
+		$target, $text = null, $classes = [], array $extraAttribs = [], array $query = []
 	) {
 		Assert::parameterType( [ LinkTarget::class, PageReference::class ], $target, '$target' );
 
@@ -242,15 +241,19 @@ class LinkRenderer {
 		}
 		$target = $this->normalizeTarget( $target );
 		$url = $this->getLinkURL( $target, $query );
-		$attribs = [ 'class' => $classes ];
+		// Define empty attributes here for consistent order in the output
+		$attribs = [ 'href' => null, 'class' => [], 'title' => null ];
+
 		$prefixedText = $this->titleFormatter->getPrefixedText( $target );
 		if ( $prefixedText !== '' ) {
 			$attribs['title'] = $prefixedText;
 		}
 
-		$attribs = [
-			'href' => $url,
-		] + $this->mergeAttribs( $attribs, $extraAttribs );
+		$attribs = array_merge( $attribs, $extraAttribs, [ 'href' => $url ] );
+
+		Html::addClass( $classes, Html::expandClassList( $extraAttribs['class'] ?? [] ) );
+		// Stringify attributes for hook compatibility
+		$attribs['class'] = Html::expandClassList( $classes );
 
 		$text ??= $this->getLinkText( $target );
 
@@ -302,7 +305,7 @@ class LinkRenderer {
 		return $this->makePreloadedLink(
 			$target,
 			$text,
-			implode( ' ', $classes ),
+			$classes,
 			$extraAttribs,
 			$query
 		);
@@ -350,7 +353,9 @@ class LinkRenderer {
 		}
 
 		$url = $this->getLinkURL( $target, $query );
-		$attribs = [ 'class' => 'new' ];
+		// Define empty attributes here for consistent order in the output
+		$attribs = [ 'href' => null, 'class' => [], 'title' => null ];
+
 		$prefixedText = $this->titleFormatter->getPrefixedText( $target );
 		if ( $prefixedText !== '' ) {
 			// This ends up in parser cache!
@@ -359,9 +364,11 @@ class LinkRenderer {
 				->text();
 		}
 
-		$attribs = [
-			'href' => $url,
-		] + $this->mergeAttribs( $attribs, $extraAttribs );
+		$attribs = array_merge( $attribs, $extraAttribs, [ 'href' => $url ] );
+
+		Html::addClass( $attribs['class'], 'new' );
+		// Stringify attributes for hook compatibility
+		$attribs['class'] = Html::expandClassList( $attribs['class'] ?? [] );
 
 		$text ??= $this->getLinkText( $target );
 
@@ -564,31 +571,6 @@ class LinkRenderer {
 		}
 
 		return $target;
-	}
-
-	/**
-	 * Merges two sets of attributes
-	 *
-	 * @param array $defaults
-	 * @param array $attribs
-	 *
-	 * @return array
-	 */
-	private function mergeAttribs( $defaults, $attribs ) {
-		if ( !$attribs ) {
-			return $defaults;
-		}
-		# Merge the custom attribs with the default ones, and iterate
-		# over that, deleting all "false" attributes.
-		$ret = [];
-		$merged = Sanitizer::mergeAttributes( $defaults, $attribs );
-		foreach ( $merged as $key => $val ) {
-			# A false value suppresses the attribute
-			if ( $val !== false ) {
-				$ret[$key] = $val;
-			}
-		}
-		return $ret;
 	}
 
 	/**

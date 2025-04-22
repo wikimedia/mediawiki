@@ -269,8 +269,9 @@ class TextConflictHelper {
 			'tabindex' => 1,
 		];
 		$attribs += $customAttribs;
-
-		$attribs = $builder->mergeClassesIntoAttributes( $classes, $attribs );
+		foreach ( $classes as $class ) {
+			Html::addClass( $attribs['class'], $class );
+		}
 
 		$attribs = $builder->buildTextboxAttribs(
 			'wpTextbox1',

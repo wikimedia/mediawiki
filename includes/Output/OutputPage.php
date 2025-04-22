@@ -3893,11 +3893,20 @@ class OutputPage extends ContextSource {
 		$services = MediaWikiServices::getInstance();
 		$sitedir = $services->getContentLanguage()->getDir();
 
+		$rlHtmlAtribs = $this->getRlClient()->getDocumentAttributes();
+		$skinHtmlAttribs = $sk->getHtmlElementAttributes();
+		// Combine the classes from different sources, and convert to a string, which is needed below
+		$htmlClass = Html::expandClassList( [
+			Html::expandClassList( $rlHtmlAtribs['class'] ?? [] ),
+			Html::expandClassList( $skinHtmlAttribs['class'] ?? [] ),
+			Html::expandClassList( $this->mAdditionalHtmlClasses )
+		] );
+		if ( $htmlClass === '' ) {
+			$htmlClass = null;
+		}
+		$htmlAttribs = array_merge( $rlHtmlAtribs, $skinHtmlAttribs, [ 'class' => $htmlClass ] );
+
 		$pieces = [];
-		$htmlAttribs = Sanitizer::mergeAttributes( Sanitizer::mergeAttributes(
-			$this->getRlClient()->getDocumentAttributes(),
-			$sk->getHtmlElementAttributes()
-		), [ 'class' => implode( ' ', $this->mAdditionalHtmlClasses ) ] );
 		$pieces[] = Html::htmlHeader( $htmlAttribs );
 		$pieces[] = Html::openElement( 'head' );
 
@@ -3918,7 +3927,7 @@ class OutputPage extends ContextSource {
 		}
 
 		$pieces[] = Html::element( 'title', [], $this->getHTMLTitle() );
-		$pieces[] = $this->getRlClient()->getHeadHtml( $htmlAttribs['class'] ?? null );
+		$pieces[] = $this->getRlClient()->getHeadHtml( $htmlClass );
 		$pieces[] = $this->buildExemptModules();
 		$pieces = array_merge( $pieces, array_values( $this->getHeadLinksArray() ) );
 		$pieces = array_merge( $pieces, array_values( $this->mHeadItems ) );

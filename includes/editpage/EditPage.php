@@ -3639,10 +3639,9 @@ class EditPage implements IEditObject {
 
 			$attribs = [
 				'aria-label' => $this->context->msg( 'edit-textarea-aria-label' )->text(),
-				'tabindex' => 1
+				'tabindex' => 1,
+				'class' => $classes,
 			];
-
-			$attribs = $builder->mergeClassesIntoAttributes( $classes, $attribs );
 		}
 
 		$this->showTextbox(

@@ -161,7 +161,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 	private function assertUserLinks( $user, $cacheEntry ) {
 		$this->assertValidHTML( $cacheEntry->userlink );
 		$this->assertMatchesRegularExpression(
-			'#^<a .*class="new mw-userlink".*><bdi>' . $user . '</bdi></a>#',
+			'#^<a .*class="mw-userlink new".*><bdi>' . $user . '</bdi></a>#',
 			$cacheEntry->userlink,
 			'verify user link'
 		);
