@@ -4,7 +4,8 @@
 			"BaRaN6161 TURK",
 			"BukhariSaeed",
 			"Matma Rex",
-			"Saraiki"
+			"Saraiki",
+			"Umar Shahid"
 		]
 	},
 	"sunday": "اتوار",
@@ -2053,8 +2054,8 @@
 	"confirm-markpatrolled-button": "ٹھیک ہے",
 	"deletedrevision": "پراݨی دہرائیاں $1 مٹ ڳیاں",
 	"filedeleteerror-short": "فائل  مٹاوݨ وچ غلطی: $1",
-	"previousdiff": "← پراݨی لکھائی",
-	"nextdiff": "نویں لکھائی →",
+	"previousdiff": "→ پراݨی لکھائی",
+	"nextdiff": "نویں لکھائی ←",
 	"widthheightpage": "$1×$2، $3 {{PLURAL:$3|ورقہ|ورقے}}",
 	"file-info": "فائل میچا: $1، MIME  قسم: $2",
 	"file-info-size": "\n$1 × $2 پکسل، فائل دا حجم: $3، MIME قسم: $4",

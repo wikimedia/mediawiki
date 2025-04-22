@@ -106,6 +106,7 @@
 	"emailauthenticated": "Twój adres e‐mail został potwierdzony $2 o $3.",
 	"allowemail": "Inni użytkownicy mogą przesyłać do mnie e‐maile",
 	"email-allow-new-users-label": "Zezwól na otrzymywanie e-maili od całkowicie nowych użytkowników",
+	"prefs-help-email-allow-new-users": "Włączenie tej opcji zezwoli użytkownikom niebędącym [[{{MediaWiki:grouppage-autoconfirmed}}|automatycznie zatwierdzonymi]] na wysyłanie ci e-maili.",
 	"tog-ccmeonemails": "Przesyłaj mi kopie wiadomości, które wysyłam do innych użytkowników",
 	"email-mutelist-label": "Zabroń tym użytkownikom kontaktowania się ze mną poprzez e-mail:",
 	"tog-enotifwatchlistpages": "Wyślij do mnie e‐mail, gdy strona lub plik z mojej listy obserwowanych zostaną zmodyfikowane",

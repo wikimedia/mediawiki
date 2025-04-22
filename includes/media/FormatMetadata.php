@@ -347,6 +347,13 @@ class FormatMetadata extends ContextSource {
 					case 'DateTimeMetadata':
 					case 'FirstPhotoDate':
 					case 'LastPhotoDate':
+						if ( $val === null ) {
+							// T384879 - we don't need to call literal to turn this into a string, but
+							// we might as well call it for consistency and future proofing of the default value
+							$val = $this->literal( $val );
+							break;
+						}
+
 						if ( $val === '0000:00:00 00:00:00' || $val === '    :  :     :  :  ' ) {
 							$val = $this->msg( 'exif-unknowndate' )->text();
 							break;

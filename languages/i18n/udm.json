@@ -789,7 +789,7 @@
 	"history-show-deleted": "Ӵушемез гинэ версия",
 	"histfirst": "тужгес вужъёсыз",
 	"histlast": "тужгес выльёсыз",
-	"historysize": "({{PLURAL:$1|1 байт|$1 байтъёс\n}})",
+	"historysize": "({{PLURAL:$1|1 байт|$1 байтъёс}})",
 	"historyempty": "буш",
 	"history-feed-title": "Воштэтъёслэн историзы",
 	"history-feed-description": "Викиын та бамысь воштонъёслэн историзы",

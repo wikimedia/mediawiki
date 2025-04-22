@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ahmed-Najib-Biabani-Ibrahimkhel",
+			"شاه زمان پټان"
+		]
+	},
+	"cdx-chip-input-chip-added": "چيپ $1 ورگډ شو.",
+	"cdx-chip-input-chip-removed": "چيپ $1 ليرې شو.",
+	"cdx-input-chip-aria-description": "د سمولو لپاره Enter یا د ليرې کولو لپاره Delete کښېکاږئ.",
+	"cdx-dialog-close-button-label": "تړل",
+	"cdx-label-optional-flag": "(اختياري)",
+	"cdx-message-dismiss-button-label": "تړل",
+	"cdx-search-input-search-button-label": "پلټل",
+	"cdx-table-select-all-label": "ټول کتارونه ټاکل",
+	"cdx-table-select-row-label": "له $2 څخه $1 کتار وټاکئ",
+	"cdx-table-sort-caption": "$1 (تڼیو سره د ستنې سرلیکونه د ترتیب وړ دي).",
+	"cdx-typeahead-search-search-results-label": "د پلټنې پايلې",
+	"cdx-table-pager-button-first-page": "لومړی مخ",
+	"cdx-table-pager-button-last-page": "وروستی مخ",
+	"cdx-table-pager-button-next-page": "بل مخ",
+	"cdx-table-pager-button-prev-page": "تېر مخ",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1| $1 کتار| $1 کتارونه}}",
+	"cdx-table-pager-items-per-page-default": "په هر مخ پایلې",
+	"cdx-table-pagination-status-message-determinate-long": "پايلې ښودل $1–$2 د $3",
+	"cdx-table-pagination-status-message-determinate-short": "د $3 څخه $1 - $2",
+	"cdx-table-pagination-status-message-indeterminate-long": "د ډېرو څخه $1 – $2 پایلې گورئ",
+	"cdx-table-pagination-status-message-indeterminate-short": "د ډېرو څخه $1 - $2",
+	"cdx-table-pagination-status-message-indeterminate-final": "وروستۍ {{PLURAL:$1| $1 پایله| $1 پایلې}} ښیې",
+	"cdx-table-pagination-status-message-pending": "پایلې بارېږي..."
+}

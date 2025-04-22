@@ -358,17 +358,40 @@ abstract class Installer {
 	protected array $virtualDomains = [];
 
 	/**
-	 * UI interface for displaying a short message
-	 * The parameters are like parameters to wfMessage().
-	 * The messages will be in wikitext format, which will be converted to an
-	 * output format such as HTML or text before being sent to the user.
-	 * @param string|MessageSpecifier $msg
+	 * Display a short neutral message
+	 *
+	 * @param string|MessageSpecifier $msg String of wikitext that will be converted
+	 *  to HTML, or interface message that will be parsed.
 	 * @param mixed ...$params
 	 */
 	abstract public function showMessage( $msg, ...$params );
 
 	/**
-	 * Same as showMessage(), but for displaying errors
+	 * Display a success message
+	 *
+	 * @param string|MessageSpecifier $msg String of wikitext that will be converted
+	 *  to HTML, or interface message that will be parsed.
+	 * @param string|int|float ...$params Message parameters, same as wfMessage().
+	 */
+	abstract public function showSuccess( $msg, ...$params );
+
+	/**
+	 * Display a warning message
+	 *
+	 * @param string|MessageSpecifier $msg String of wikitext that will be converted
+	 *  to HTML, or interface message that will be parsed.
+	 * @param string|int|float ...$params Message parameters, same as wfMessage().
+	 */
+	abstract public function showWarning( $msg, ...$params );
+
+	/**
+	 * Display an error message
+	 *
+	 * Avoid error fatigue in the installer. Use this only if something the
+	 * user expects has failed and requires intervention to continue.
+	 * If something non-essential failed that can be continued past with
+	 * no action, use a warning instead.
+	 *
 	 * @param string|MessageSpecifier $msg
 	 * @param mixed ...$params
 	 */
@@ -1100,7 +1123,7 @@ abstract class Installer {
 		$safe = !$this->dirIsExecutable( $dir, $url );
 
 		if ( !$safe ) {
-			$this->showMessage( 'config-uploads-not-safe', $dir );
+			$this->showWarning( 'config-uploads-not-safe', $dir );
 		}
 
 		return true;
@@ -1128,14 +1151,14 @@ abstract class Installer {
 		}
 
 		if ( !$status || !$status->isGood() ) {
-			$this->showMessage( 'config-uploads-security-requesterror', 'X-Content-Type-Options: nosniff' );
+			$this->showWarning( 'config-uploads-security-requesterror', 'X-Content-Type-Options: nosniff' );
 			return true;
 		}
 
 		$headerValue = $req->getResponseHeader( 'X-Content-Type-Options' ) ?? '';
 		$responseList = Header::splitList( $headerValue );
 		if ( !in_array( 'nosniff', $responseList, true ) ) {
-			$this->showMessage( 'config-uploads-security-headers', 'X-Content-Type-Options: nosniff' );
+			$this->showWarning( 'config-uploads-security-headers', 'X-Content-Type-Options: nosniff' );
 		}
 
 		return true;
@@ -1756,7 +1779,7 @@ abstract class Installer {
 		// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable
 		// $steps has at least one element and that defines $status
 		if ( $status->isOK() ) {
-			$this->showMessage(
+			$this->showSuccess(
 				'config-install-db-success'
 			);
 			$this->setVar( '_InstallDone', true );

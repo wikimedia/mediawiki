@@ -522,7 +522,7 @@
 	"page_last": "Dènyé",
 	"histfirst": "Pli vyé",
 	"histlast": "Pli nouvo",
-	"historysize": "{{PLURAL:$1|okté}}.",
+	"historysize": "({{PLURAL:$1|$1 okté}})",
 	"historyempty": "vid",
 	"history-feed-title": "Istorik a vèsyon-la",
 	"history-feed-item-nocomment": "$1 lè i té yé $2",

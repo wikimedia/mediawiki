@@ -95,7 +95,9 @@ class PHPUnitMaintClass {
 			// or when T227900 is resolved.
 			$args[] = '--configuration=' . __DIR__ . '/suite.xml';
 		}
-		$args[] = '--bootstrap=' . __DIR__ . '/bootstrap.maintenance.php';
+		if ( !isset( $knownOpts['bootstrap'] ) ) {
+			$args[] = '--bootstrap=' . __DIR__ . '/bootstrap.maintenance.php';
+		}
 		$command->run( $args, true );
 	}
 }

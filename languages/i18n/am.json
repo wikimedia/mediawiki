@@ -1417,7 +1417,7 @@
 	"filedelete-missing": "ፋይሉ «$1» ሰለማይኖር ሊጠፋ አይችልም።",
 	"filedelete-old-unregistered": "የተወሰነው ፋይል ዕትም «$1» በመረጃ-ቤቱ የለም።",
 	"filedelete-current-unregistered": "የተወሰነው ፋይል «$1» በመረጃ-ቤቱ የለም።",
-	"previousdiff": "የፊተኛው ለውጥ",
+	"previousdiff": "← የፊተኛው ለውጥ",
 	"nextdiff": "የሚቀጥለው ለውጥ →",
 	"widthheightpage": "$1 በ$2፣ $3 ገጾች",
 	"file-info": "የፋይል መጠን፦ $1፣ የMIME አይነት፦ $2",

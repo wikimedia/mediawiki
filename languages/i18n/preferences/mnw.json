@@ -13,7 +13,7 @@
 	"prefs-personal": "သ္ၚိညးလွပ်",
 	"prefs-info": "ပရိုင်တင်ဂၞင် သဇိုင်",
 	"username": "{{GENDER:$1|ယၟုညးလွပ်}}:",
-	"prefs-memberingroups": "{{GENDER:$2|ကောန်ဂကောံ}} of {{PLURAL:$1|ဌာန်ကောံ|ဌာန်ကောံဂမၠိုၚ်}}:",
+	"prefs-memberingroups": "{{GENDER:$2|ကောန်ဂကောံ}}မဆေၚ်စပ်ကဵု{{PLURAL:$1|ဌာန်ကောံ|ဌာန်ကောံဂမၠိုၚ်}}:",
 	"group-membership-link-with-expiry": "$1 (စဵုကဵုl $2)",
 	"prefs-edits": "လၟုဟ်မဒါန်တအ်:",
 	"prefs-registration": "အခိၚ်မသ္ပပတိုန်စၟတ်သမ္တီ:",

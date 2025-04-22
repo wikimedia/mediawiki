@@ -41,7 +41,7 @@
 	"apihelp-delete-param-tags": "Kemmañ an tikedennoù da lakaat e talvoud d'an enmont e marilh an diverkadennoù.",
 	"apihelp-delete-param-watch": "Ouzhpennañ ar bajenn da roll evezhiañ an implijer.",
 	"apihelp-delete-param-unwatch": "Dilemel ar bajenn a-ziwar roll evezhiañ an implijer.",
-	"apihelp-delete-example-simple": "Diverkañ <kbd>Main Page</kbd>.",
+	"apihelp-delete-example-simple": "Diverkañ [[{{MediaWiki:Mainpage}}]].",
 	"apihelp-disabled-summary": "Diweredekaet eo bet ar vodulenn-mañ.",
 	"apihelp-edit-summary": "Krouiñ pajennoù ha kemmañ anezho.",
 	"apihelp-edit-param-sectiontitle": "Titl ur rannbennad nevez pa reer gant <var>$1section=new</var>.",
@@ -101,7 +101,7 @@
 	"apihelp-parse-example-text": "Dielfennañ ar wikitestenn.",
 	"apihelp-protect-param-reason": "Abeg evit gwareziñ/diwareziñ.",
 	"apihelp-protect-example-protect": "Gwareziñ ur bajenn.",
-	"apihelp-purge-param-forcelinkupdate": "Hizivaat taolennoù al liammoù.",
+	"apihelp-purge-param-forcelinkupdate": "Hizivaat taolennoù al liammoù hag ober hivizadurioù roadennoù eilrenk all.",
 	"apihelp-query+filearchive-paramvalue-prop-dimensions": "Alias evit ar vent.",
 	"apihelp-query+imageinfo-paramvalue-prop-dimensions": "Alias evit ar vent.",
 	"apihelp-query+siteinfo-paramvalue-prop-namespacealiases": "Roll an aliasoù evit an esaouennoù anv enrollet.",
@@ -109,8 +109,8 @@
 	"apihelp-query+stashimageinfo-param-sessionkey": "Alias evit $1filekey, evit ar c'henglotañ war-gil.",
 	"apihelp-rollback-param-tags": "Tikedennoù da lakaat e talvoud war an distroioù.",
 	"apihelp-watch-param-expiry": "Eurdeiziañ termen da vezañ lakaet ouzh an holl bajennoù pourchaset. Na ober gan an arventenn-mañ evit lezel an holl dermenoù evel m'emaint bremañ.",
-	"apihelp-watch-example-watch-expiry": "Evezhiañ ar pajennoù <kbd>Main Page</kbd>, <kbd>Foo</kbd>, ha <kbd>Bar</kbd> e-pad miz.",
-	"api-help-datatype-expiry": "Talvoudoù termen relativel (da sk. <kbd>5 months</kbd> pe <kbd>2 weeks</kbd>) pe absolut (da sk. <kbd>2014-09-18T12:34:56Z</kbd>). Kuit da gaout termen ebet, ober gant <kbd>infinite</kbd>, <kbd>indefinite</kbd>, <kbd>infinity</kbd> pe <kbd>never</kbd>.",
+	"apihelp-watch-example-watch-expiry": "Evezhiañ ar pajennoù [[{{MediaWiki:Mainpage}}]], <kbd>Foo</kbd>, ha <kbd>Bar</kbd> e-pad miz.",
+	"api-help-datatype-expiry": "Talvoudoù termen a c’hall bezañ relativel (da sk. <kbd>5 months</kbd> pe <kbd>2 weeks</kbd>) pe absolut (da sk. <kbd>2014-09-18T12:34:56Z</kbd>). Kuit da gaout termen ebet, ober gant <kbd>infinite</kbd>, <kbd>indefinite</kbd>, <kbd>infinity</kbd> pe <kbd>never</kbd>.",
 	"api-help-param-type-expiry": "Seurt : {{PLURAL:$1|1=aet d'e dermen|2=roll aet d'e dermen}} ([[Special:ApiHelp/main#main/datatype/expiry|munudoù]])",
 	"apierror-concurrency-limit": "Tizhet ez eus bet ur vevenn kensturiegezh. Gortozit ma vo distro pep reked a-raok kas an hini war-lerc'h."
 }

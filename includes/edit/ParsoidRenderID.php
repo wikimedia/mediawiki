@@ -5,6 +5,7 @@ namespace MediaWiki\Edit;
 use InvalidArgumentException;
 use MediaWiki\Parser\ParserOutput;
 use Stringable;
+use function count;
 
 /**
  * Represents the identity of a specific rendering of a specific revision
@@ -37,11 +38,13 @@ class ParsoidRenderID implements Stringable {
 	 *
 	 */
 	public static function newFromKey( string $key ): self {
-		[ $revisionID, $uniqueID ] = explode( '/', $key, 2 );
+		$parts = explode( '/', $key, 2 );
 
-		if ( $revisionID === null || $uniqueID === null ) {
+		if ( count( $parts ) < 2 ) {
 			throw new InvalidArgumentException( 'Bad key: ' . $key );
 		}
+
+		[ $revisionID, $uniqueID ] = $parts;
 
 		return new self( (int)$revisionID, $uniqueID );
 	}

@@ -3613,7 +3613,7 @@
 	"duration-minutes": "$1 {{PLURAL:$1|minuto|minutoj}}",
 	"duration-hours": "$1 {{PLURAL:$1|horo|horoj}}",
 	"duration-days": "$1 {{PLURAL:$1|tago|tagoj}}",
-	"duration-weeks": "$1 {{PLURAL:$1|semajno|$1 semajnoj}}",
+	"duration-weeks": "$1 {{PLURAL:$1|semajno|semajnoj}}",
 	"duration-months": "$1 {{PLURAL:$1|monato|monatoj}}",
 	"duration-years": "$1 {{PLURAL:$1|jaro|jaroj}}",
 	"duration-decades": "$1 {{PLURAL:$1|jardeko|jardekoj}}",

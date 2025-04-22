@@ -108,6 +108,7 @@
 	"emailauthenticated": "Uw e-mailadres is bevestigd op $2 om $3.",
 	"allowemail": "Andere gebruikers toestaan mij e-mails te sturen",
 	"email-allow-new-users-label": "E-mails van gloednieuwe gebruikers toestaan",
+	"prefs-help-email-allow-new-users": "Als u deze optie inschakelt, kunnen ook gebruikers die niet [[{{MediaWiki:grouppage-autoconfirmed}}|automatisch bevestigd]] zijn u e-mails sturen.",
 	"tog-ccmeonemails": "Mij een kopie zenden van e-mails die ik naar andere gebruikers stuur",
 	"email-mutelist-label": "Voorkom dat deze gebruikers e-mails naar mij kunnen sturen:",
 	"tog-enotifwatchlistpages": "Mij e-mailen bij bewerkingen van pagina’s of bestanden op mijn volglijst",

@@ -627,23 +627,6 @@ class WebInstaller extends Installer {
 	}
 
 	/**
-	 * Get HTML for an information message box with an icon.
-	 *
-	 * @param string|HtmlArmor $text Wikitext to be parsed (from Message::plain) or raw HTML.
-	 * @param string|false $icon Icon name, file in mw-config/images. Default: false
-	 * @param string $class Additional class name to add to the wrapper div. Default: Empty string.
-	 * @return string HTML
-	 */
-	public function getInfoBox( $text, $icon = false, $class = '' ) {
-		$html = ( $text instanceof HtmlArmor ) ?
-			HtmlArmor::getHtml( $text ) :
-			$this->parse( $text, true );
-		$alt = wfMessage( 'config-information' )->text();
-
-		return self::infoBox( $html, '', $alt, $class );
-	}
-
-	/**
 	 * Get small text indented help for a preceding form field.
 	 * Parameters like wfMessage().
 	 *
@@ -677,8 +660,41 @@ class WebInstaller extends Installer {
 		$this->output->addHTML( $html );
 	}
 
+	/**
+	 * Get HTML for an information message box.
+	 *
+	 * @param string|HtmlArmor $text Wikitext to be parsed (from Message::plain) or raw HTML.
+	 * @return string HTML
+	 */
+	public function getInfoBox( $text ) {
+		$html = ( $text instanceof HtmlArmor ) ?
+			HtmlArmor::getHtml( $text ) :
+			$this->parse( $text, true );
+		return '<div class="cdx-message cdx-message--block cdx-message--notice">' .
+			'<span class="cdx-message__icon"></span><div class="cdx-message__content">' .
+			'<p><strong>' . wfMessage( 'config-information' )->escaped() . '</strong></p>' .
+			$html .
+			"</div></div>\n";
+	}
+
+	public function showSuccess( $msg, ...$params ) {
+		$html = '<div class="cdx-message cdx-message--block cdx-message--success">' .
+			'<span class="cdx-message__icon"></span><div class="cdx-message__content">' .
+			$this->parse( wfMessage( $msg, $params )->useDatabase( false )->plain() ) .
+			"</div></div>\n";
+		$this->output->addHTML( $html );
+	}
+
 	public function showMessage( $msg, ...$params ) {
 		$html = '<div class="cdx-message cdx-message--block cdx-message--notice">' .
+			'<span class="cdx-message__icon"></span><div class="cdx-message__content">' .
+			$this->parse( wfMessage( $msg, $params )->useDatabase( false )->plain() ) .
+			"</div></div>\n";
+		$this->output->addHTML( $html );
+	}
+
+	public function showWarning( $msg, ...$params ) {
+		$html = '<div class="cdx-message cdx-message--block cdx-message--warning">' .
 			'<span class="cdx-message__icon"></span><div class="cdx-message__content">' .
 			$this->parse( wfMessage( $msg, $params )->useDatabase( false )->plain() ) .
 			"</div></div>\n";
@@ -688,10 +704,10 @@ class WebInstaller extends Installer {
 	public function showStatusMessage( Status $status ) {
 		// Show errors at the top in web installer to make them easier to notice
 		foreach ( $status->getMessages( 'error' ) as $msg ) {
-			$this->showMessage( $msg );
+			$this->showWarning( $msg );
 		}
 		foreach ( $status->getMessages( 'warning' ) as $msg ) {
-			$this->showMessage( $msg );
+			$this->showWarning( $msg );
 		}
 	}
 
@@ -1111,21 +1127,6 @@ class WebInstaller extends Installer {
 	}
 
 	/**
-	 * Helper for "Download LocalSettings" link.
-	 *
-	 * @internal For use in WebInstallerComplete class
-	 * @return string Html for download link
-	 */
-	public function makeDownloadLinkHtml() {
-		$anchor = Html::rawElement( 'a',
-			[ 'href' => $this->getUrl( [ 'localsettings' => 1 ] ) ],
-			wfMessage( 'config-download-localsettings' )->parse()
-		);
-
-		return Html::rawElement( 'div', [ 'class' => 'config-download-link' ], $anchor );
-	}
-
-	/**
 	 * If the software package wants the LocalSettings.php file
 	 * to be placed in a specific location, override this function
 	 * (see mw-config/overrides/README) to return the path of
@@ -1226,34 +1227,6 @@ class WebInstaller extends Installer {
 	 */
 	public function getPhpErrors() {
 		return $this->phpErrors;
-	}
-
-	/**
-	 * Get HTML for an information message box with an icon.
-	 *
-	 * @since 1.36
-	 * @param string $rawHtml HTML
-	 * @param string $icon Path to icon file (used as 'src' attribute)
-	 * @param string $alt Alternate text for the icon
-	 * @param string $class Additional class name to add to the wrapper div
-	 * @return string HTML
-	 */
-	protected static function infoBox( $rawHtml, $icon, $alt, $class = '' ) {
-		$s = Html::openElement( 'div', [ 'class' => 'mw-installer-box-left' ] ) .
-			Html::element( 'img',
-				[
-					'src' => $icon,
-					'alt' => $alt,
-				]
-			) .
-			Html::closeElement( 'div' ) .
-			Html::openElement( 'div', [ 'class' => 'mw-installer-box-right' ] ) .
-			$rawHtml .
-			Html::closeElement( 'div' ) .
-			Html::element( 'div', [ 'style' => 'clear: left;' ], ' ' );
-
-		return Html::warningBox( $s, $class )
-			. Html::element( 'div', [ 'style' => 'clear: left;' ], ' ' );
 	}
 
 	/**

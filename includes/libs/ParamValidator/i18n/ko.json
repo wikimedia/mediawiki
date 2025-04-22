@@ -1,17 +1,31 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ykhwong"
+			"Ykhwong",
+			"Tensama0415"
 		]
 	},
+	"paramvalidator-badexpiry": "만료 변수 \"$1\"에 유효하지 않은 값 \"$2\"이 지정되었습니다.",
+	"paramvalidator-badfloat": "float 변수 \"$1\"에 유효하지 않은 값 \"$2\"이 지정되었습니다.",
+	"paramvalidator-badfloat-notfinite": "float 변수 \"$1\"에 대한 값 \"$2\"은 너무 크거나 숫자가 아닙니다.",
+	"paramvalidator-badinteger": "정수 변수 \"$1\"에 유효하지 않은 값 \"$2\"이 지정되었습니다.",
+	"paramvalidator-badtimestamp": "시간 기록 변수 \"$1\"에 유효하지 않은 값 \"$2\"이 지정되었습니다.",
+	"paramvalidator-badupload-formsize": "\"$1\"에 대한 업로드 파일은 클라이언트가 지정한 최대값을 초과합니다.",
+	"paramvalidator-badupload-inisize": "\"$1\"에 대한 업로드 파일은 서버의 최대값($3)을 초과합니다.",
+	"paramvalidator-badupload-nofile": "업로드 변수 \"$1\"에 대한 파일이 제공되지 않았습니다.",
 	"paramvalidator-badupload-partial": "\"$1\"에 대한 파일이 일부만 업로드되었습니다.",
 	"paramvalidator-badupload-phpext": "PHP 확장 기능으로 인해 \"$1\"에 대한 파일 업로드가 차단되었습니다.",
+	"paramvalidator-badvalue-enumnotmulti": "변수 \"$1\"에 대한 알 수 없는 값: $2.",
+	"paramvalidator-deprecated-value": "\"$1\" 변수에 대한 값 \"$2\"은 구식입니다.",
 	"paramvalidator-emptystring": "빈 문자열",
 	"paramvalidator-missingparam": "\"$1\" 변수는 설정이 필수입니다.",
+	"paramvalidator-multivalue-must-be-array": "다중값 변수 \"$1\"은 반드시 배열로 주어져야 합니다.",
+	"paramvalidator-needstring": "변수 \"$1\"은 문자열 값만을 허용하지만, $2를 받았습니다.",
 	"paramvalidator-outofrange-max": "\"$1\" 변수의 \"$2\" 값은 $4 미만이어야 합니다.",
 	"paramvalidator-outofrange-minmax": "\"$1\" 변수의 \"$2\" 값은 $3에서 $4 사이여야 합니다.",
 	"paramvalidator-outofrange-min": "\"$1\" 변수의 \"$2\" 값은 $3 보다 작아서는 안 됩니다.",
 	"paramvalidator-param-deprecated": "\"$1\" 변수는 구식입니다.",
+	"paramvalidator-toomanyvalues": "\"$1\" 변수에 너무 많은 갯수의 값이 주어졌습니다. 상한은 $2입니다.",
 	"paramvalidator-unrecognizedvalues": "\"$1\" 변수에 대해 인식할 수 없는 {{PLURAL:$4|값}}: $3",
 	"paramvalidator-help-default": "기본값: $1",
 	"paramvalidator-help-default-empty": "기본값: (빈 값)",

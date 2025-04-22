@@ -290,18 +290,6 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	}
 
 	/**
-	 * Controls how the parser cache is used.
-	 *
-	 * @param bool $read Whether we should look for cached output before parsing
-	 * @param bool $write Whether we should cache output after parsing
-	 */
-	public function setUseParserCache( bool $read, bool $write ) {
-		$this->parserOutputAccessOptions =
-			( $read ? 0 : ParserOutputAccess::OPT_FORCE_PARSE ) |
-			( $write ? 0 : ParserOutputAccess::OPT_NO_UPDATE_CACHE );
-	}
-
-	/**
 	 * Determine whether stashing should be applied.
 	 *
 	 * @param bool $stash

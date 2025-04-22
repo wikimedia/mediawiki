@@ -25,6 +25,7 @@
 	"apihelp-main-param-errorformat": "Фармат для вываду тэксту папярэджаньняў і памылак",
 	"apihelp-main-paramvalue-errorformat-plaintext": "Вікітэкст з выдаленымі HTML-цэтлікамі і замененымі існасьцямі.",
 	"apihelp-main-paramvalue-errorformat-wikitext": "Неразабраны вікітэкст.",
+	"apihelp-main-paramvalue-errorformat-raw": "Ключ паведамленьня і парамэтры.",
 	"apihelp-main-param-errorlang": "Мова для выкарыстаньня ў папярэджаньнях і памылках. <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo&siprop=languages]]</kbd> з <kbd>siprop=languages</kbd> вяртае сьпіс кодаў моваў. Пазначце <kbd>content</kbd> для выкарыстаньня мовы зьместу гэтай вікі, ці пазначце <kbd>uselang</kbd> для выкарыстаньня таго ж значэньня, што і ў парамэтры <var>uselang</var>.",
 	"apihelp-main-param-errorsuselocal": "Калі зададзена, тэксты памылак будуць выкарыстоўваць лякальна-наладжаныя паведамленьні з прасторы назваў {{ns:MediaWiki}}.",
 	"apihelp-block-summary": "Блякаваньне ўдзельніка.",

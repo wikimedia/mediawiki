@@ -1371,7 +1371,7 @@
 	"rcfilters-filter-user-experience-level-registered-description": "Prijavljeni urednici",
 	"rcfilters-filter-user-experience-level-unregistered-label": "Anonimni",
 	"rcfilters-filter-user-experience-level-unregistered-description": "Urednici koji nisu prijavljeni",
-	"rcfilters-filter-user-experience-level-unregistered-description-temp": "Urednici koji nisu prijavljeni i koji koriste privremene naloge.",
+	"rcfilters-filter-user-experience-level-unregistered-description-temp": "Urednici koji nisu prijavljeni i koji upotrebljavaju privremene naloge",
 	"rcfilters-filter-user-experience-level-newcomer-label": "Novajlije",
 	"rcfilters-filter-user-experience-level-newcomer-description": "Registrovani urednici s manje od 10 izmena ili 4 dana aktivnosti",
 	"rcfilters-filter-user-experience-level-learner-label": "Učenici",

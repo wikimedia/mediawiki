@@ -168,7 +168,7 @@
 	"apihelp-edit-param-appendtext": "Legg til denne teksten i slutten av siden eller seksjonen. Overstyrer $1text.\n\nBruk $1section=new for å legge til en ny seksjon i stedet for denne parameteren.",
 	"apihelp-edit-param-undo": "Fjern (gjør om) denne sideversjonen. Overstyrer $1text, $1prependtext og $1appendtext.",
 	"apihelp-edit-param-undoafter": "Fjern alle sideversjoner fra $1undo til denne. Om den ikke er satt, fjern kun én sideversjon.",
-	"apihelp-edit-param-redirect": "Bestem omdirigeringer automatisk.",
+	"apihelp-edit-param-redirect": "Løs omdirigeringer automatisk.",
 	"apihelp-edit-param-contentformat": "Innholdsserialiseringsformat brukt for inndatateksten.",
 	"apihelp-edit-param-contentmodel": "Det nye innholdets innholdsmodell.",
 	"apihelp-edit-param-returnto": "Sidetittel. Hvis det å lagre en redigering opprettet en midlertidig konto kan API-et svare med en URL klienten bør besøke for å fullføre innlogging. Hvis denne parameteren er angitt vil URL-en omdirigere til den gitte siden i stedet for siden som ble redigert.",

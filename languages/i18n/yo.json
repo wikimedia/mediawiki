@@ -17,7 +17,8 @@
 			"Urhixidur",
 			"Vlad5250",
 			"Wikicology",
-			"아라"
+			"아라",
+			"ToluAyo"
 		]
 	},
 	"sunday": "Ọjọ́ Àìkú",
@@ -484,6 +485,7 @@
 	"passwordreset-emailtext-user": "Oníṣe $1 lórí {{SITENAME}} tọrọ àtúntò ọ̀rọ̀ìpamọ́ yín fùn {{SITENAME}} ($4). {{PLURAL:$3|Àkópamọ́|Àwọn àkópamọ́}} oníṣe ìsàlẹ̀ yìí ní ìbáṣe pọ̀ mọ́ àdírẹ̀sì e-mail yìí:\n\n$2\n\n{{PLURAL:$3|Ọ̀rọ̀ìpamọ́ onígbàdíẹ̀ yìí|Àwọn ọ̀rọ̀ìpamọ́ onígbàdíẹ̀ wọ̀nyí}} yíò dópin lẹ́yìn {{PLURAL:$5|ọjọ́ kan|ọjọ́ $5}}.\nẸ gbọ́dọ̀ lọ yan ọ̀rọ̀ìpamọ́ tuntun báyìí. Tóbá jẹ́ pé ẹ̀lòmíràn ló ṣe ìtọrọ yìí, tàbí tọ́bá jẹ́ pé ẹ ti rántí ọ̀rọ̀ìpamọ́ àtètèkọ́ṣe yín, tí ẹ kọ̀ sí fẹ́ yíipadà mọ́, ẹ lé ṣàìkàsí ìránṣẹ́ yìí, kí ẹ sì tẹ̀síwájú ní lo ọ̀rọ̀ìpamọ́ àtijọ́ yín.",
 	"passwordreset-emailelement": "Orúkọ oníṣe: \n$1\n\nỌ̀rọ̀ìpamọ́ ìgbàdíẹ̀: \n$2",
 	"passwordreset-success": "O ti bèèrè fún àtúntò ìdá ìforúkọpamọ́.",
+	"passwordreset-invalidemail": "Àdírẹ́ẹ̀sì imeeli tí kò tọ́",
 	"changeemail": "Ìyípadà tàbí ìmúkúrò àdírẹ̀sì email",
 	"changeemail-header": "Ẹ Fíìlì fọ́ọ̀mù yìí láti ṣe ìyípadà àdírẹ̀sì email yín. Tí ẹ bá fẹ́ yọ àdírẹ̀sì email yìówú kan kúrò ní ìforúkọpamọ́ yín, ẹ mọ́ kọ ùnkankan sínú àdírẹ̀sì email tuntun.",
 	"changeemail-no-info": "Ẹ gbódọ̀ ti jẹ́ títẹ̀ wọlé láti bósí ojúewé yìí tààrà.",
@@ -1699,7 +1701,7 @@
 	"sp-contributions-logs": "àwọn àkọọ́lẹ̀",
 	"sp-contributions-talk": "ọ̀rọ̀",
 	"sp-contributions-userrights": "ìmójútó àwọn ẹ̀tọ́ {{GENDER:$1|oníṣe}}",
-	"sp-contributions-blocked-notice": "Lọ́wọ́lọ́wọ́ oníṣe yìí jẹ́ dídílọ́nà.\nÀkọsílẹ̀ ìdínà àìpẹ́ nìyí nísàlẹ̀ fún ìtọ́kasí:",
+	"sp-contributions-blocked-notice": "Lọ́wọ́lọ́wọ́ {{GENDER:$1|oníṣe}} yìí jẹ́ dídílọ́nà.\nÀkọsílẹ̀ ìdínà àìpẹ́ nìyí nísàlẹ̀ fún ìtọ́kasí:",
 	"sp-contributions-blocked-notice-anon": "Lọ́wọ́lọ́wọ́ àdírẹ́ẹ̀sì IP yìí jẹ́ dídílọ́nà.\nÀkọọ́lẹ̀ ìdínà àìpẹ́ nìyí nísàlẹ̀ fún ìtọ́kasí:",
 	"sp-contributions-search": "Àwáàrí fún àwọn àfikún",
 	"sp-contributions-username": "Àdírẹ́ẹ̀sì IP tàbí orúkọ oníṣe:",
@@ -1729,7 +1731,7 @@
 	"unblock": "Ìmúkúrò ìdínà oníṣe",
 	"blockip": "Dínà {{GENDER:$1|oníṣe}}",
 	"blockiptext": "Ẹ lo fọ́ọ̀mù ìsàlẹ̀ láti dínà ìle kọ láti ọ̀dọ̀ àdírẹ́ẹ̀sì IP pàtó kan tàbí orúkọ oníṣe.\nẸyí gbọ́dọ̀ jẹ́ síṣe láti dínà ìṣèbàjẹ́ nìkan, àtí gẹ́gẹ́bí [[{{MediaWiki:Policy-url}}|ètò ìsiṣẹ́]].\nẸ sọ ìdí pàtó nísàlẹ̀ (fún àpẹrẹ, ìtọ́kasí àwọn ojúewé pàtó tí wọ́n jẹ́ bíbàjẹ́).\nẸ le dínà àkópapọ̀ àwọn àdírẹ́ẹ̀sì IP nípa lílo ìlàkọ-ọ̀rọ̀ [https://yo.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]; àkópapọ̀ tó tóbi jùlọ tí wọ́n gbà láàyè ni /$1 fún IPv4 àti /$2 fún IPv6.",
-	"ipaddressorusername": "Àdírẹ́ẹ̀sì IP tàbí orúkọ oníṣe:",
+	"ipaddressorusername": "Àdírẹ́ẹ̀sì IP, orúkọ oníṣe tàbí ID idinamọ:",
 	"ipbreason": "Ìdíẹ̀:",
 	"ipbreason-dropdown": "*Àwọn ìdí fún ìdínà\n** Àròyé tí kò jẹ́ òtítọ́\n** Yíyọ àkóónú kúrò nínú ojúewé\n** Kíkọ àjápọ̀ sí àwọn ibi tí kò ní ìbámu mọ́ ojúewé\n** Ìkọkúkọ sínú ojúewé\n** Iwùwà ìpayà sí ẹlòmíràn\n** Ìlòkulò ọ̀pọ̀lọpọ̀ àpamọ́\n** Lílo orúkọ oníṣe tí kò tọ́",
 	"ipb-hardblock": "Ìdínà àwọn oníṣe tó jẹ́ títẹ̀wọlé láti ibi àdírẹ́ẹ̀sì IP yìí",

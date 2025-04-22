@@ -36,10 +36,7 @@ class WebInstallerWelcome extends WebInstallerPage {
 		$this->parent->output->addWikiTextAsInterface( wfMessage( 'config-welcome' )->plain() );
 		$status = $this->parent->doEnvironmentChecks();
 		if ( $status->isGood() ) {
-			$this->parent->output->addHTML(
-				'<div class="cdx-message cdx-message--block cdx-message--success">' .
-				'<span class="cdx-message__icon"></span> <div class="cdx-message__content">' .
-				wfMessage( 'config-env-good' )->escaped() . '</div></div>' );
+			$this->parent->showSuccess( 'config-env-good' );
 			$this->parent->output->addWikiTextAsInterface(
 				wfMessage( 'config-welcome-section-copyright',
 					SpecialVersion::getCopyrightAndAuthorList(),

@@ -3,19 +3,24 @@
 namespace MediaWiki\Tests\Rest\Handler\Helper;
 
 use Exception;
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\ExistingPageRecord;
+use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\Handler\Helper\PageContentHelper;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
+use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
+use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Rest\Handler\Helper\PageContentHelper
@@ -342,6 +347,102 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		$data = $helper->constructMetadata();
 
 		$this->assertEquals( $expected, $data );
+	}
+
+	public function provideConstructRestbaseCompatibleMetadata() {
+		$pageName = 'User:Morg';
+		$page = PageIdentityValue::localIdentity( 7, NS_USER, 'Morg' );
+		$user = UserIdentityValue::newRegistered( 444, 'Morg' );
+		$comment = CommentStoreComment::newUnsavedComment( 'just an edit' );
+		$timestamp = '20220102112233';
+
+		$rev = new MutableRevisionRecord( $page );
+		$rev->setId( 123 );
+		$rev->setUser( $user );
+		$rev->setComment( $comment );
+		$rev->setTimestamp( $timestamp );
+
+		$expected = [
+			'title' => $pageName,
+			'page_id' => 7,
+			'rev' => 123,
+			'tid' => 'DUMMY',
+			'namespace' => NS_USER,
+			'user_id' => 444,
+			'user_text' => 'Morg',
+			'comment' => $comment->text,
+			'timestamp' => wfTimestampOrNull( TS_ISO_8601, $timestamp ),
+			'tags' => [],
+			'restrictions' => [],
+			'page_language' => 'en',
+			'redirect' => false
+		];
+
+		yield [
+			$pageName,
+			$rev,
+			$expected
+		];
+
+		// Construct a revision with a hidden comment
+		$rev = new MutableRevisionRecord( $page );
+		$rev->setId( 123 );
+		$rev->setUser( $user );
+		$rev->setComment( $comment );
+		$rev->setTimestamp( $timestamp );
+		$rev->setVisibility( RevisionRecord::DELETED_COMMENT );
+
+		$expectedHiddenComment = [
+			'comment' => null,
+			'restrictions' => [ 'commenthidden' ],
+		] + $expected;
+
+		yield [
+			$pageName,
+			$rev,
+			$expectedHiddenComment
+		];
+
+		// Construct a revision with a suppressed user
+		$rev = new MutableRevisionRecord( $page );
+		$rev->setId( 123 );
+		$rev->setUser( $user );
+		$rev->setComment( $comment );
+		$rev->setTimestamp( $timestamp );
+		$rev->setVisibility( RevisionRecord::DELETED_USER );
+
+		$expectedHiddenComment = [
+				'user_text' => null,
+				'restrictions' => [ 'userhidden' ],
+			] + $expected;
+
+		yield [
+			$pageName,
+			$rev,
+			$expectedHiddenComment
+		];
+	}
+
+	/**
+	 * @dataProvider provideConstructRestbaseCompatibleMetadata
+	 */
+	public function testConstructRestbaseCompatibleMetadata(
+		string $pageName,
+		RevisionRecord $revision,
+		array $expected
+	) {
+		$helper = $this->newHelper( [ 'title' => $pageName ] );
+
+		$helperAccess = TestingAccessWrapper::newFromObject( $helper );
+		$helperAccess->pageIdentity = $revision->getPage();
+		$helperAccess->targetRevision = $revision;
+
+		$data = $helper->constructRestbaseCompatibleMetadata();
+
+		$this->assertEquals(
+			$expected,
+			$data
+		);
 	}
 
 }

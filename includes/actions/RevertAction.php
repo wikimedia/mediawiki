@@ -71,6 +71,7 @@ class RevertAction extends FormAction {
 	}
 
 	public function getRestriction() {
+		// Required permissions of revert are complicated, will be checked below.
 		return 'upload';
 	}
 
@@ -78,6 +79,16 @@ class RevertAction extends FormAction {
 		if ( $this->getTitle()->getNamespace() !== NS_FILE ) {
 			throw new ErrorPageError( $this->msg( 'nosuchaction' ), $this->msg( 'nosuchactiontext' ) );
 		}
+
+		$rights = [ 'reupload' ];
+		if ( $user->equals( $this->getFile()->getUploader() ) ) {
+			// reupload-own is more basic, put it in the front for error messages.
+			array_unshift( $rights, 'reupload-own' );
+		}
+		if ( !$user->isAllowedAny( ...$rights ) ) {
+			throw new PermissionsError( $rights[0] );
+		}
+
 		parent::checkCanExecute( $user );
 
 		$oldimage = $this->getRequest()->getText( 'oldimage' );

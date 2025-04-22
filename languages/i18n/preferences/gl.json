@@ -90,6 +90,7 @@
 	"emailauthenticated": "O teu enderezo de correo electrónico quedou confirmado o $2 ás $3.",
 	"allowemail": "Admitir mensaxes de correo electrónico doutros usuarios",
 	"email-allow-new-users-label": "Permitir correos electrónicos de usuarios novos",
+	"prefs-help-email-allow-new-users": "Ao activares esta opción, os usuarios que non estean [[{{MediaWiki:grouppage-autoconfirmed}}|autoconfirmados]] poderanche enviar correos electrónicos.",
 	"tog-ccmeonemails": "Recibir no meu enderezo unha copia das mensaxes de correo electrónico que lles envíe a outros usuarios",
 	"email-mutelist-label": "Prohibir a estes usuarios enviarme correos electrónicos:",
 	"tog-enotifwatchlistpages": "Recibir un aviso por correo electrónico cando alguén mude unha páxina ou un ficheiro da miña lista de vixilancia",

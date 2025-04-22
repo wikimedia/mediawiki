@@ -101,6 +101,15 @@ class FeedItem {
 	}
 
 	/**
+	 * Encode $string so that it can be safely embedded in a XML document,
+	 * returning `null` if $string was `null`.
+	 * @since 1.44 (also backported to 1.39.12, 1.42.6 and 1.43.1)
+	 */
+	public function xmlEncodeNullable( ?string $string ): ?string {
+		return $string !== null ? $this->xmlEncode( $string ) : null;
+	}
+
+	/**
 	 * Get the unique id of this item; already xml-encoded
 	 *
 	 * @return string

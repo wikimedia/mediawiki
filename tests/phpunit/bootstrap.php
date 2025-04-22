@@ -143,7 +143,7 @@ if ( !$hasIntegrationTests ) {
 	// For simplicity, getPHPUnitExtensionsAndSkins uses `\n\nTESTPATHS\n\n` to separate the lists of JSON files and
 	// additional test paths, so split the output into the individual lists.
 	[ $pathsToJsonFilesStr, $testPathsStr ] = explode( "\n\nTESTPATHS\n\n", $extensionData );
-	$pathsToJsonFiles = explode( "\n", $pathsToJsonFilesStr );
+	$pathsToJsonFiles = $pathsToJsonFilesStr ? explode( "\n", $pathsToJsonFilesStr ) : [];
 	$testPaths = explode( "\n", $testPathsStr );
 
 	$extensionProcessor = new ExtensionProcessor();

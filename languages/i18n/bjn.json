@@ -290,6 +290,7 @@
 	"title-invalid-interwiki": "Judul isinya tautan antarwiki nang kada kawa dipakai dalam judul.",
 	"title-invalid-talk-namespace": "Judul situs nang diminta manunjuk ka laman pamandiran nang kada kawa tasadia.",
 	"title-invalid-characters": "Judul laman nang diminta isinya karakter kada sah: \"$1\".",
+	"title-invalid-leading-colon": "Judul laman nang diminta dimulai lawan tanda titik dua nang kada sah.",
 	"perfcached": "Data barikut adalah timbuluk wan pina kada mutakhir. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.",
 	"perfcachedts": "Data nangini disinggah, wan pauncitnya dihanyari $1. Maksimum {{PLURAL:$4|salah satu kulihannya|$4 salah satu kulihannya}} tasadia di singgahan.",
 	"querypage-no-updates": "Pamugaan matan laman ngini parhatan dipajahkan. Data nang ada di sini wayahini kada pacangan disigarakan.",

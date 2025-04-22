@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Sabelöga",
-			"WikiPhoenix"
+			"WikiPhoenix",
+			"Lejonel"
 		]
 	},
 	"paramvalidator-badbool": "\"$2\" är ett ogiltigt värde för booleska parametern \"$1\". Ange $3 för true eller $5 för false.",
@@ -37,7 +38,7 @@
 	"paramvalidator-multivalue-must-be-array": "Flervärdesparametrarn \"$1\" måste anges som en array.",
 	"paramvalidator-needstring": "Parametern \"$1\" accepterar bara ett strängvärde, men fick $2.",
 	"paramvalidator-outofrange-max": "Värdet \"$2\" för parametern \"$1\" får inte vara större än $4.",
-	"paramvalidator-outofrange-minmax": "Värdet \"$2\" för parametern \"$1\" får inte ligga mellan $3 och $4.",
+	"paramvalidator-outofrange-minmax": "Värdet \"$2\" för parametern \"$1\" måste ligga mellan $3 och $4.",
 	"paramvalidator-outofrange-min": "Värdet \"$2\" för parametern \"$1\" får inte vara mindre än $3.",
 	"paramvalidator-param-deprecated": "Parametern \"$1\" är föråldrad.",
 	"paramvalidator-toomanyvalues": "För många värden har angetts för parametern \"$1\". Gränsen ligger på $2.",
@@ -59,7 +60,7 @@
 	"paramvalidator-help-type-integer": "Typ: {{PLURAL:$1|1=heltal|2=lista över heltal}}",
 	"paramvalidator-help-type-limit": "Typ: heltal eller \"max\"",
 	"paramvalidator-help-type-number-max": "{{PLURAL:$1|1=Värdet|2=Värdena}} får inte vara större än $3.",
-	"paramvalidator-help-type-number-minmax": "{{PLURAL:$1|1=Värdet|2=Värdena}} får inte ligga mellan $2 och $3.",
+	"paramvalidator-help-type-number-minmax": "{{PLURAL:$1|1=Värdet|2=Värdena}} måste ligga mellan $2 och $3.",
 	"paramvalidator-help-type-number-min": "{{PLURAL:$1|1=Värdet|2=Värdena}} får inte vara mindre än $2.",
 	"paramvalidator-help-type-presenceboolean": "Typ: boolesk",
 	"paramvalidator-help-type-string-maxbytes": "Kan inte vara längre än $1 {{PLURAL:$1|byte}}.",
