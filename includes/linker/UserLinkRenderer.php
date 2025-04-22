@@ -14,8 +14,8 @@ use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\TempUser\TempUserDetailsLookup;
 use MediaWiki\User\UserIdentity;
 use MessageLocalizer;
+use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
-use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Service class that renders HTML for user-related links.
@@ -36,6 +36,12 @@ class UserLinkRenderer {
 	 */
 	private MapCacheLRU $userLinkCache;
 
+	/**
+	 * Counter used to generate process-unique IDs for expired temporary account links.
+	 * @var int
+	 */
+	private static int $nextExpiredTempUserLinkId = 0;
+
 	public function __construct(
 		TempUserConfig $tempUserConfig,
 		SpecialPageFactory $specialPageFactory,
@@ -50,6 +56,19 @@ class UserLinkRenderer {
 		// Set a large enough cache size to accommodate long pagers,
 		// such as Special:RecentChanges with a high limit.
 		$this->userLinkCache = new MapCacheLRU( 1_000 );
+	}
+
+	/**
+	 * Reset the counter used to generate process-unique IDs for expired temporary account links.
+	 * Useful for testing.
+	 */
+	public static function resetExpiredTempUserLinkIdCounter(): void {
+		Assert::precondition(
+			defined( 'MW_PHPUNIT_TEST' ),
+			'This function is only meant to be used by tests.'
+		);
+
+		self::$nextExpiredTempUserLinkId = 0;
 	}
 
 	/**
@@ -119,8 +138,8 @@ class UserLinkRenderer {
 			if ( $this->tempUserDetailsLookup->isExpired( $targetUser ) ) {
 				$classes[] = 'mw-tempuserlink-expired';
 				$tooltipId = sprintf(
-					'mw-tempuserlink-expired-tooltip-%08x',
-					ConvertibleTimestamp::hrtime()
+					'mw-tempuserlink-expired-tooltip-%d',
+					self::$nextExpiredTempUserLinkId++
 				);
 
 				$postfix = Html::element(
