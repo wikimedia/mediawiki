@@ -390,6 +390,8 @@ return [
 	/* Moment.js */
 
 	'moment' => [
+		'deprecated' => '[1.44] Use mediawiki.DateFormatter or native Intl function instead.'
+			. ' See https://phabricator.wikimedia.org/T146798',
 		'scripts' => [
 			'resources/lib/moment/moment.js',
 			'resources/src/moment/moment-module.js',

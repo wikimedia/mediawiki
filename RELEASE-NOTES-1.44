@@ -660,6 +660,9 @@ because of Phabricator reports.
   internal implementation details not intended for public use.
 * MediaWikiTitleCodec::getTitleInvalidRegex() is now deprecated. Use the same
   method in TitleParser.
+* The `moment` library is deprecated and consumers should explore using
+  alternatives. More information and support will be provided at
+  https://phabricator.wikimedia.org/T146798
 * …
 
 === Other changes in 1.44 ===
