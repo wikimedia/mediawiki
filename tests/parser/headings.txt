@@ -3109,3 +3109,28 @@ Sections:
 </section><section data-mw-section-id="3"><h4 id="he_he">he he</h4>  <!-- but this is ok -->
 <p>see</p></section>
 !! end
+
+## While Parsoid sets an empty id on the heading here, DOMDataUtils::storeInPageBundle
+## considers it bogus and replaces it with a Parsoid generated id while creating the
+## PageBundle, orphaning the metadata.  Core's HandleParsoidSectionLinks won't be able
+## to getElementById either way.
+!! test
+T368722: Empty headings
+!! options
+showtocdata
+parsoid={
+	"modes": [ "wt2html" ],
+	"wrapSections": true
+}
+!! config
+wgParserEnableLegacyHeadingDOM=false
+!! wikitext
+== ==
+!! html/php
+<div class="mw-heading mw-heading2"><h2 id=""></h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: ">edit</a><span class="mw-editsection-bracket">]</span></span></div>
+!! html/parsoid
+<section data-mw-section-id="0"></section><section data-mw-section-id="1"><h2 id=""></h2></section>
+!! metadata
+Sections:
+ h2 index:1 toclevel:1 number:1 title:Parser_test off:0 anchor/linkAnchor: line:
+!! end

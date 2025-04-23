@@ -383,12 +383,12 @@ ill
 !! wikitext
 *{{#interlanguagelink:mi|Template:Bar}}
 *[[mi:Template:Foo]]
-!! metadata
+!! metadata/integrated
 ill=mi:Template:Bar
 !! html/php
 <ul><li class="mw-empty-elt"></li>
 <li><a href="/wiki/Template:Foo" title="Template:Foo">mi:Template:Foo</a></li></ul>
-!! html/parsoid
+!! html/parsoid+integrated
 <ul>
 <li><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#interlanguagelink:mi","function":"interlanguagelink"},"params":{"1":{"wt":"Template:Bar"}},"i":0}}]}'></span></li>
 <li><a rel="mw:WikiLink" href="./Template:Foo" title="Template:Foo">mi:Template:Foo</a></li>
@@ -401,11 +401,11 @@ ill=mi:Template:Bar
 ill
 !! wikitext
 *{{#interlanguagelink:mi|Template:Bat#fragment-kept|caption is ignored}}
-!! metadata
+!! metadata/integrated
 ill=mi:Template:Bat#fragment-kept
 !! html/php
 <ul><li class="mw-empty-elt"></li></ul>
-!! html/parsoid
+!! html/parsoid+integrated
 <ul>
 <li><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#interlanguagelink:mi","function":"interlanguagelink"},"params":{"1":{"wt":"Template:Bat#fragment-kept"},"2":{"wt":"caption is ignored"}},"i":0}}]}'></span></li>
 </ul>
