@@ -58,6 +58,7 @@ use UploadStashNoSuchKeyException;
 use UploadStashNotLoggedInException;
 use UploadStashWrongOwnerException;
 use UploadStashZeroLengthFileException;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
@@ -589,8 +590,7 @@ class ApiUpload extends ApiBase {
 	 * Throw an error that the user can recover from by providing a better
 	 * value for $parameter
 	 *
-	 * @param array $errors Array of Message objects, message keys, key+param
-	 *  arrays, or StatusValue::getErrors()-style arrays
+	 * @param MessageSpecifier[] $errors
 	 * @param string|null $parameter Parameter that needs revising
 	 * @throws ApiUsageException
 	 * @return never
