@@ -375,6 +375,7 @@ because of Phabricator reports.
    - OutputPage::$mRevisionTimestamp
 * OutputPage::formatPermissionsErrorMessage(), deprecated since 1.36, has been
   removed. Use formatPermissionStatus() instead.
+* BaseTemplate::getFooterIcons(), deprecated since 1.35, has been removed.
 * The method signatures of EmailNotification::notifyOnPageChange()
   and actuallyNotifyOnPageChange() have changed. These method are now
   marked as @internal and must not be used by extensions.

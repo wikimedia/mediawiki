@@ -233,35 +233,6 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	/**
-	 * Returns an array of footer icons filtered down by options relevant to how
-	 * the skin wishes to display them.
-	 * If you pass "icononly" as the option all footer icons which do not have an
-	 * image icon set will be filtered out.
-	 * If you pass "nocopyright" then MediaWiki's copyright icon will not be included
-	 * in the list of footer icons. This is mostly useful for skins which only
-	 * display the text from footericons instead of the images and don't want a
-	 * duplicate copyright statement because footerlinks already rendered one.
-	 * @param string|null $option
-	 * @deprecated since 1.35 read footer icons from template data requested via
-	 *     $this->get('footericons')
-	 * @return array
-	 */
-	protected function getFooterIcons( $option = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		// Generate additional footer icons
-		$footericons = $this->get( 'footericons' );
-
-		if ( $option == 'icononly' ) {
-			// Unset any icons which don't have an image
-			$this->unsetIconsWithoutImages( $footericons );
-		} elseif ( $option == 'nocopyright' ) {
-			unset( $footericons['copyright'] );
-		}
-
-		return $footericons;
-	}
-
-	/**
 	 * Unsets any elements in an array of icon definitions which do
 	 * not have src attributes or are not strings.
 	 */
@@ -280,10 +251,10 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	/**
-	 * Renderer for getFooterIcons and getFooterLinks
+	 * Renderer for getFooterLinks
 	 *
-	 * @param string $iconStyle $option for getFooterIcons: "icononly", "nocopyright"
-	 *   the "nocopyright" option is deprecated in 1.35 because of its association with getFooterIcons
+	 * @param string $iconStyle $option when set to "icononly" will not display any
+	 *  icons which do not have images.
 	 * @param string $linkStyle $option for getFooterLinks: "flat"
 	 *
 	 * @return string html
@@ -293,9 +264,6 @@ abstract class BaseTemplate extends QuickTemplate {
 		$validFooterIcons = $this->get( 'footericons' );
 		if ( $iconStyle === 'icononly' ) {
 			$this->unsetIconsWithoutImages( $validFooterIcons );
-		} else {
-			// take a deprecated unsupported path
-			$validFooterIcons = $this->getFooterIcons( $iconStyle );
 		}
 		$validFooterLinks = $this->getFooterLinks( $linkStyle );
 
