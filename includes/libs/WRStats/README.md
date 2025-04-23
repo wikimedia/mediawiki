@@ -100,8 +100,8 @@ Typical usage:
 ```php
 $wrstatsFactory = MediaWikiServices::getInstance()->getWRStatsFactory();
 $rateLimiter = $wrstatsFactory->createRateLimiter(
-    'by_user' => [
-        new LimitCondition( 10, 60 ) // 10 edits per minute
+    [
+        'by_user' => new LimitCondition( 10, 60 ), // 10 edits per minute
     ],
     'MyLimitCaller'
 );
