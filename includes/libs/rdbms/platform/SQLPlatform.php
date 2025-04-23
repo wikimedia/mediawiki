@@ -423,7 +423,6 @@ class SQLPlatform implements ISQLPlatform {
 
 	/**
 	 * @inheritDoc
-	 * @stable to override
 	 */
 	public function buildConcat( $stringList ) {
 		return 'CONCAT(' . implode( ',', $stringList ) . ')';
@@ -443,7 +442,6 @@ class SQLPlatform implements ISQLPlatform {
 	}
 
 	/**
-	 * @stable to override
 	 * @param string $s
 	 * @param string $escapeChar
 	 * @return string
@@ -476,7 +474,6 @@ class SQLPlatform implements ISQLPlatform {
 
 	/**
 	 * @inheritDoc
-	 * @stable to override
 	 */
 	public function unionSupportsOrderAndLimit() {
 		return true; // True for almost every DB supported
@@ -548,7 +545,6 @@ class SQLPlatform implements ISQLPlatform {
 
 	/**
 	 * @inheritDoc
-	 * @stable to override
 	 */
 	public function buildSubstring( $input, $startPosition, $length = null ) {
 		$this->assertBuildSubstringParams( $startPosition, $length );
@@ -858,7 +854,6 @@ class SQLPlatform implements ISQLPlatform {
 	 * Get an aliased field name
 	 * e.g. fieldName AS newFieldName
 	 *
-	 * @stable to override
 	 * @param string $name Field name
 	 * @param string|false $alias Alias (optional)
 	 * @return string SQL name for aliased field. Will not alias a field to its own name
@@ -1200,7 +1195,6 @@ class SQLPlatform implements ISQLPlatform {
 	}
 
 	/**
-	 * @stable to override
 	 * @return string|null Schema to use to qualify relations in queries
 	 */
 	protected function relationSchemaQualifier() {
@@ -1240,7 +1234,6 @@ class SQLPlatform implements ISQLPlatform {
 	 * as such in practice this is biased toward specifically improving performance
 	 * of large wiki farms that use MySQL or MariaDB (like Wikipedia).
 	 *
-	 * @stable to override
 	 * @param string $index
 	 * @return string
 	 */
@@ -1266,7 +1259,6 @@ class SQLPlatform implements ISQLPlatform {
 	 *
 	 * @see Database::select()
 	 *
-	 * @stable to override
 	 * @param array $options Associative array of options to be turned into
 	 *   an SQL query, valid keys are listed in the function.
 	 * @return string[] (START OPTIONS, PRE-LIMIT TAIL, POST-LIMIT TAIL)
@@ -1454,7 +1446,6 @@ class SQLPlatform implements ISQLPlatform {
 	}
 
 	/**
-	 * @stable to override
 	 * @return string[] ("INSERT"-style SQL verb, "ON CONFLICT"-style clause or "")
 	 * @since 1.35
 	 */
@@ -1657,7 +1648,6 @@ class SQLPlatform implements ISQLPlatform {
 	/**
 	 * Make UPDATE options array for Database::makeUpdateOptions
 	 *
-	 * @stable to override
 	 * @param array $options
 	 * @return array
 	 */
@@ -1983,7 +1973,6 @@ class SQLPlatform implements ISQLPlatform {
 	 * Override this in derived classes to provide variables for SQL schema
 	 * and patch files.
 	 *
-	 * @stable to override
 	 * @return array
 	 */
 	protected function getDefaultSchemaVars() {
