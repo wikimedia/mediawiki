@@ -853,7 +853,7 @@ class EditPage implements IEditObject {
 	/**
 	 * If automatic user creation is enabled, create the user.
 	 *
-	 * This is a helper for internalAttemptSavePrivate().
+	 * This is a helper for internalAttemptSave().
 	 *
 	 * If the edit is a null edit, the user will not be created.
 	 */
@@ -1820,7 +1820,7 @@ class EditPage implements IEditObject {
 
 	/**
 	 * Attempt submission
-	 * @param array|false &$resultDetails See docs for $result in internalAttemptSavePrivate @phan-output-reference
+	 * @param array|false &$resultDetails See docs for $result in internalAttemptSave @phan-output-reference
 	 * @throws UserBlockedError|ReadOnlyError|ThrottledError|PermissionsError
 	 * @return Status
 	 */
@@ -1833,7 +1833,7 @@ class EditPage implements IEditObject {
 		$markAsMinor = $this->minoredit && !$this->isNew
 			&& $this->getAuthority()->isAllowed( 'minoredit' );
 
-		$status = $this->internalAttemptSavePrivate( $resultDetails, $markAsBot, $markAsMinor );
+		$status = $this->internalAttemptSave( $resultDetails, $markAsBot, $markAsMinor );
 
 		$this->getHookRunner()->onEditPage__attemptSave_after( $this, $status, $resultDetails );
 
@@ -1864,7 +1864,7 @@ class EditPage implements IEditObject {
 		$statusValue = is_int( $status->value ) ? $status->value : 0;
 
 		/**
-		 * @todo FIXME: once the interface for internalAttemptSavePrivate() is made
+		 * @todo FIXME: once the interface for internalAttemptSave() is made
 		 *   nicer, this should use the message in $status
 		 */
 		if ( $statusValue === self::AS_SUCCESS_UPDATE
@@ -2087,7 +2087,7 @@ class EditPage implements IEditObject {
 	 *   AS_BLOCKED_PAGE_FOR_USER. All that stuff needs to be cleaned up some
 	 * time.
 	 */
-	private function internalAttemptSavePrivate( &$result, $markAsBot = false, $markAsMinor = false ) {
+	private function internalAttemptSave( &$result, $markAsBot = false, $markAsMinor = false ) {
 		// If an attempt to acquire a temporary name failed, don't attempt to do anything else.
 		if ( $this->unableToAcquireTempName ) {
 			$status = Status::newFatal( 'temp-user-unable-to-acquire' );
@@ -2624,7 +2624,7 @@ class EditPage implements IEditObject {
 
 	/**
 	 * Apply the specific updates needed for the EditPage fields based on which constraint
-	 * failed, rather than interspersing this logic throughout internalAttemptSavePrivate at
+	 * failed, rather than interspersing this logic throughout internalAttemptSave at
 	 * each of the points the constraints are checked. Eventually, this will act on the
 	 * result from the backend.
 	 */
