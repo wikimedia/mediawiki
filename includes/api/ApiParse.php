@@ -518,8 +518,6 @@ class ApiParse extends ApiBase {
 				// Based on OutputPage::output()
 				$outputPage->loadSkinModules( $skin );
 			}
-
-			$this->getHookRunner()->onApiParseMakeOutputPage( $this, $outputPage );
 		}
 
 		if ( $oldid !== null ) {
@@ -562,6 +560,8 @@ class ApiParse extends ApiBase {
 			// This needs to happen after running the OutputTransform pipeline so that the metadata inserted by
 			// the pipeline is also added to the OutputPage
 			$outputPage->addParserOutputMetadata( $p_result );
+
+			$this->getHookRunner()->onApiParseMakeOutputPage( $this, $outputPage );
 		}
 
 		if ( $params['summary'] !== null ||
