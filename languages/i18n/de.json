@@ -3090,7 +3090,7 @@
 	"tooltip-ca-create-local": "Erstellen der lokalen Beschreibungsseite",
 	"tooltip-ca-addsection": "Neuen Abschnitt beginnen",
 	"tooltip-ca-viewsource": "Diese Seite ist geschützt. Ihr Quelltext kann dennoch angesehen und kopiert werden.",
-	"tooltip-ca-history": "Frühere Versionen dieser Seite",
+	"tooltip-ca-history": "Frühere Versionen dieser Seite listen",
 	"tooltip-ca-protect": "Diese Seite schützen",
 	"tooltip-ca-unprotect": "Seitenschutz ändern",
 	"tooltip-ca-delete": "Diese Seite löschen",

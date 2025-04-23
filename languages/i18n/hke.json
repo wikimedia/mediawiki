@@ -255,7 +255,7 @@
 	"searchresults": "Byobyamexungwa mwa buxonderetsi",
 	"searchresults-title": "Byotwamebonekya mwexonda \"$1\"",
 	"prevn": "{{PLURAL:$1|kaxondotsi|$1 hixondotsi}}",
-	"nextn": "{{PLURAL:$1|kokakuliǩre|$1 byobikulǐke}}",
+	"nextn": "{{PLURAL:$1|kyokikulikǐre|$1 byobikulǐke}}",
 	"prevn-title": "{{PLURAL:$1|kyokikahika|byabikahika}}",
 	"nextn-title": "{{PLURAL:$1|kyokikahika|byabikahika}}",
 	"shown-title": "Bwerekya $1 {{PLURAL:$1|kyowamebonekya|byowamebonekya}} ku kinsi kashashali",
@@ -398,7 +398,7 @@
 	"listgrouprights-members": "(mutondeko wa banyakikanga)",
 	"emailuser": "Andikira amunu uyu kwa meli",
 	"emailusername": "Aretsina re unakolesa:",
-	"emailusernamesubmit": "Itûma",
+	"emailusernamesubmit": "Lebeka",
 	"watchlist": "Mutondeko we kulikirira",
 	"mywatchlist": "Mutondeko we kulikirira",
 	"watchlistfor2": "Ku $1",
@@ -494,7 +494,7 @@
 	"watchlisttools-view": "Bwerekya amahingyo momatsene kw'ibi",
 	"watchlisttools-edit": "Bwerekya ne hingya watchiliste",
 	"watchlisttools-raw": "Hingya amutondeko w'abalimi",
-	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|neena]])",
+	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|kishambalo]])",
 	"signature-temp": "[[{{#special:Contributions}}/$1|$2]] ([[{{ns:user_talk}}:$1|neena]])",
 	"version-ext-colheader-description": "Nganuliro",
 	"redirect-submit": "Twayo",
@@ -504,7 +504,7 @@
 	"tags-hitcount": "$1 {{PLURAL:$1|kyoshakihingibwa|byoshabihingibwa}}",
 	"htmlform-submit": "Itûma",
 	"revdelete-content-hid": "byobishirwe",
-	"feedback-submit": "Itûma",
+	"feedback-submit": "Lebeka",
 	"searchsuggest-search": "Xonda {{SITENAME}}",
 	"searchsuggest-containing": "Xonda tushashali totuli ko",
 	"duration-days": "$1 {{PLURAL:$1|lwire|biro}}",
@@ -522,5 +522,5 @@
 	"blockedtext-block-ip": "IP adress yawe ye $1.",
 	"blockedtext-include-details-queries": "Utushashire, uhire mwa bibutso byawe byoshe, amaytsi yoshi yoiri haluulu.",
 	"renameuserreason": "Kyokitumire:",
-	"renameusersubmit": "Itûma"
+	"renameusersubmit": "Lebeka"
 }
