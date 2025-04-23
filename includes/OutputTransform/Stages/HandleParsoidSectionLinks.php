@@ -18,6 +18,7 @@ use MediaWiki\Skin\Skin;
 use MediaWiki\Title\TitleFactory;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Parsoid\DOM\Document;
+use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMDataUtils;
 
@@ -39,6 +40,30 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 	public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool {
 		// Only run this stage if it is parsoid content
 		return ( $options['isParsoidContent'] ?? false );
+	}
+
+	/**
+	 * Check if the heading has attributes that can only be added using HTML syntax.
+	 *
+	 * In the Parsoid default future, we might prefer checking for stx=html.
+	 */
+	private function isHtmlHeading( Element $h ): bool {
+		foreach ( $h->attributes as $attr ) {
+			// Condition matches DiscussionTool's CommentFormatter::handleHeading
+			if (
+				!in_array( $attr->name, [ 'id', 'data-object-id', 'about', 'typeof' ], true ) &&
+				!Sanitizer::isReservedDataAttribute( $attr->name )
+			) {
+				return true;
+			}
+		}
+		// FIXME(T100856): stx info probably shouldn't be in data-parsoid
+		// Id is ignored above since it's a special case, make use of metadata
+		// to determine if it came from wikitext
+		if ( DOMDataUtils::getDataParsoid( $h )->reusedId ?? false ) {
+			return true;
+		}
+		return false;
 	}
 
 	public function transformDOM(
@@ -83,22 +108,12 @@ class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 				continue;
 			}
 
-			// T353489: Do not add the wrapper if the heading has attributes
-			// generated from wikitext
-			// In the Parsoid default future, we might prefer checking for stx=html
-			foreach ( $h->attributes as $attr ) {
-				// Condition matches DiscussionTool's CommentFormatter::handleHeading
-				if (
-					!in_array( $attr->name, [ 'id', 'data-object-id', 'about', 'typeof' ], true ) &&
-					!Sanitizer::isReservedDataAttribute( $attr->name )
-				) {
-					continue 2;
-				}
-			}
-			// FIXME(T100856): stx info probably shouldn't be in data-parsoid
-			// Id is ignored above since it's a special case, make use of metadata
-			// to determine if it came from wikitext
-			if ( DOMDataUtils::getDataParsoid( $h )->reusedId ?? false ) {
+			if ( $this->isHtmlHeading( $h ) ) {
+				// This is a <h#> tag with attributes added using HTML syntax.
+				// Mark it with a class to make them easier to distinguish (T68637).
+				DOMCompat::getClassList( $h )->add( 'mw-html-heading' );
+
+				// Do not add the wrapper if the heading has attributes added using HTML syntax (T353489).
 				continue;
 			}
 

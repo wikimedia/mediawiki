@@ -144,7 +144,7 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 
 		// T353489: Wrappers aren't added to headings with attributes
 		$input = '<section id="a"><h2 id="foo">F</h2>Oo<h2 id="bar" class="b">B</h2>Ar</section>';
-		$expected = '<section id="a"><div class="mw-heading mw-heading-1" id="mwAA"><h2 id="foo">F</h2>!<a id="c">edit</a>!</div><div id="mwAQ">Oo<h2 id="bar" class="b">B</h2>Ar</div></section>';
+		$expected = '<section id="a"><div class="mw-heading mw-heading-1" id="mwAA"><h2 id="foo">F</h2>!<a id="c">edit</a>!</div><div id="mwAQ">Oo<h2 id="bar" class="b mw-html-heading">B</h2>Ar</div></section>';
 		yield 'Heading with attributes is skipped' => [
 			self::newParserOutput( $input, $pOpts, $toc ),
 			$pOpts, $options,
