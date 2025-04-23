@@ -233,6 +233,7 @@ because of Phabricator reports.
   may require updates in any classes implementing these interfaces, including
   external extensions. Extensions such as Translate, Flow, and ReadingLists
   require compatibility patches to support these changes.
+* EditPage::internalAttemptSave(), deprecated since 1.43, was removed.
 * IDatabase::LB_TRX_ROUND_ID was removed and IDatabase::LB_READ_ONLY_REASON
   was marked as an internal constant.
 * IDatabase::onAtomicSectionCancel() has been removed without deprecation

@@ -2062,21 +2062,6 @@ class EditPage implements IEditObject {
 	}
 
 	/**
-	 * Deprecated public access to attempting save, see documentation on
-	 * internalAttemptSavePrivate()
-	 *
-	 * @deprecated since 1.43
-	 * @param array &$result
-	 * @param bool $markAsBot
-	 * @param bool $markAsMinor
-	 * @return Status
-	 */
-	public function internalAttemptSave( &$result, $markAsBot = false, $markAsMinor = false ) {
-		wfDeprecated( __METHOD__, '1.43' );
-		return $this->internalAttemptSavePrivate( $result, $markAsBot, $markAsMinor );
-	}
-
-	/**
 	 * Attempt submission (no UI)
 	 *
 	 * @param array &$result Array to add statuses to, currently with the
