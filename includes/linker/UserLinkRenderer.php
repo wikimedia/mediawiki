@@ -89,10 +89,14 @@ class UserLinkRenderer {
 		array $attributes = []
 	): string {
 		$outputPage = $context->getOutput();
-		$outputPage->addModuleStyles( [
-			'mediawiki.interface.helpers.styles',
-			'mediawiki.interface.helpers.linker.styles'
-		] );
+		$outputPage->addModuleStyles( [ 'mediawiki.interface.helpers.styles' ] );
+		$outputPage->addModules( [ 'mediawiki.interface.helpers' ] );
+
+		// Expired temporary account user links are not cacheable, because they contain a tooltip
+		// that needs to have a unique ID used in an ARIA association with the corresponding link.
+		if ( $this->tempUserDetailsLookup->isExpired( $targetUser ) ) {
+			return $this->renderUserLink( $targetUser, $context, $altUserName, $attributes );
+		}
 
 		return $this->userLinkCache->getWithSetCallback(
 			$this->userLinkCache->makeKey(
@@ -133,23 +137,26 @@ class UserLinkRenderer {
 			// Adjust the styling of expired temporary account links (T358469).
 			if ( $this->tempUserDetailsLookup->isExpired( $targetUser ) ) {
 				$classes[] = 'mw-tempuserlink-expired';
-
-				$description = $messageLocalizer->msg( 'tempuser-expired-link-tooltip' )->text();
-
-				$postfix = Html::element(
-					'span',
-					[
-						'role' => 'presentation',
-						'class' => 'cdx-tooltip mw-tempuserlink-expired--tooltip',
-					],
-					$description
+				$tooltipId = sprintf(
+					'mw-tempuserlink-expired-tooltip-%d',
+					self::$nextExpiredTempUserLinkId++
 				);
 
-				$attributes['aria-description'] = $description;
+				$postfix = Html::element(
+					'div',
+					[
+						'id' => $tooltipId,
+						'role' => 'tooltip',
+						'class' => 'cdx-tooltip mw-tempuserlink-expired--tooltip',
+					],
+					$messageLocalizer->msg( 'tempuser-expired-link-tooltip' )->text()
+				);
+
+				$attributes['aria-describedby'] = $tooltipId;
 
 				// Hide default link title when rendering expired temporary account links
 				// to avoid conflicting with the tooltip.
-				$attributes['title'] = null;
+				$attributes['title'] = '';
 			}
 
 			$pageName = $this->specialPageFactory->getLocalNameFor( 'Contributions', $userName );
@@ -169,8 +176,7 @@ class UserLinkRenderer {
 
 		// Wrap the output with <bdi> tags for directionality isolation
 		$linkText =
-			'<bdi>' . htmlspecialchars( $altUserName ?? $userName ) . '</bdi>'
-			 . $postfix;
+			'<bdi>' . htmlspecialchars( $altUserName ?? $userName ) . '</bdi>';
 
 		if ( isset( $attributes['class'] ) ) {
 			$classes[] = $attributes['class'];
@@ -179,9 +185,9 @@ class UserLinkRenderer {
 		$attributes['class'] = implode( ' ', $classes );
 
 		if ( $page !== null ) {
-			return $this->linkRenderer->makeLink( $page, new HtmlArmor( $linkText ), $attributes );
+			return $this->linkRenderer->makeLink( $page, new HtmlArmor( $linkText ), $attributes ) . $postfix;
 		}
 
-		return Html::rawElement( 'span', $attributes, $linkText );
+		return Html::rawElement( 'span', $attributes, $linkText ) . $postfix;
 	}
 }
