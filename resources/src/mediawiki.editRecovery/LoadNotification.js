@@ -18,7 +18,7 @@ const LoadNotification = function mwWidgetsEditRecoveryLoadNotification( config 
 		flags: [ 'destructive' ]
 	} );
 	const $buttons = $( '<div>' )
-		.addClass( 'mw-EditRecovery-LoadNotification-buttons' )
+		.addClass( 'mw-special-EditRecovery-LoadNotification-buttons' )
 		.append(
 			this.recoverButton.$element,
 			this.discardButton.$element

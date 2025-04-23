@@ -49,9 +49,9 @@ class SpecialEditRecovery extends SpecialPage {
 		$noJs = Html::errorBox(
 			$this->msg( 'edit-recovery-nojs-placeholder' )->parse(),
 			'',
-			'mw-EditRecovery-special-nojs-notice'
+			'mw-special-EditRecovery-nojs-notice'
 		);
-		$placeholder = Html::rawElement( 'div', [ 'class' => 'mw-EditRecovery-special' ], $noJs );
+		$placeholder = Html::rawElement( 'div', [ 'class' => 'mw-special-EditRecovery-app' ], $noJs );
 		$this->getOutput()->addHTML( $placeholder );
 	}
 }
