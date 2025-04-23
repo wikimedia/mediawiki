@@ -1931,6 +1931,12 @@ class LocalFile extends File {
 
 		$actorNormalizaton = MediaWikiServices::getInstance()->getActorNormalization();
 
+		// T391473: File uploads can involve moving a lot of bytes around. Sometimes in
+		// that time the DB connection can timeout. Normally this is automatically
+		// reconnected, but reconnection does not work inside atomic sections.
+		// Ping the DB to ensure it is still there prior to entering the atomic
+		// section. TODO: Refactor upload jobs to be smarter about implicit transactions.
+		$dbw->ping();
 		$dbw->startAtomic( __METHOD__ );
 
 		$actorId = $actorNormalizaton->acquireActorId( $performer->getUser(), $dbw );
