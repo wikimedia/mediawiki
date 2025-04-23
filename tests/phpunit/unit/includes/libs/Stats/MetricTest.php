@@ -397,15 +397,23 @@ class MetricTest extends TestCase {
 	/**
 	 * PHPUnit 10 compatible replacement for expectWarning().
 	 *
+	 * Default uses assertStringContainsString().
+	 * When $strict = true, uses assertSame().
+	 *
 	 * @param string $msg
 	 * @param callable $callback
+	 * @param bool $strict
 	 * @return void
 	 */
-	private function expectPHPWarning( string $msg, callable $callback ): void {
+	private function expectPHPWarning( string $msg, callable $callback, bool $strict = false ): void {
 		try {
 			$errorEmitted = false;
-			set_error_handler( function ( $_, $actualMsg ) use ( $msg, &$errorEmitted ) {
-				$this->assertStringContainsString( $msg, $actualMsg );
+			set_error_handler( function ( $_, $actualMsg ) use ( $msg, &$errorEmitted, $strict ) {
+				if ( $strict ) {
+					$this->assertSame( $msg, $actualMsg );
+				} else {
+					$this->assertStringContainsString( $msg, $actualMsg );
+				}
 				$errorEmitted = true;
 			}, E_USER_WARNING );
 			$callback();
