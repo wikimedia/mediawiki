@@ -448,7 +448,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			if ( $module ) {
 				$entity = $entitiesByModule[$moduleName];
 				$deps = $depsByEntity[$entity];
-				$paths = Module::expandRelativePaths( $deps['paths'] );
+				$paths = $deps['paths'];
 				$module->setFileDependencies( $context, $paths );
 			}
 		}
