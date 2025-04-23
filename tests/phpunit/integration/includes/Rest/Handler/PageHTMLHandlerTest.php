@@ -358,6 +358,11 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		// First, test it works if nothing was cached yet.
 		// Make some time pass since page was created:
 		$time += 10;
+
+		// Force the touch time, since it's used for Last-Modified
+		// when fetching the current version of a page.
+		$page->getTitle()->invalidateCache( $time );
+
 		MWTimestamp::setFakeTime( $time );
 		$handler = $this->newHandler();
 		$response = $this->executeHandler( $handler, $request, [

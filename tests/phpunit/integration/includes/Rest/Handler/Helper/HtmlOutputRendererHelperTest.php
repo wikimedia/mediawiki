@@ -289,6 +289,8 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideRevisionReferences() {
+		// Expected values to match the code in getExistingPageWithRevisions()
+
 		return [
 			'current' => [ null, [ 'html' => self::HTML, 'timestamp' => self::TIMESTAMP ] ],
 			'old' => [ 'first', [ 'html' => self::HTML_OLD, 'timestamp' => self::TIMESTAMP_OLD ] ],
@@ -551,13 +553,17 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$pout = $helper->getHtml();
 
 		$renderId = ParsoidRenderID::newFromParserOutput( $pout );
-		$lastModified = $pout->getCacheTime();
 
 		if ( $rev ) {
 			$this->assertSame( $rev->getId(), $helper->getRevisionId() );
+
+			// old revision use ParserOutput timestamp
+			$lastModified = $pout->getCacheTime();
 		} else {
-			// current revision
 			$this->assertSame( 0, $helper->getRevisionId() );
+
+			// current revision uses the page's touch time
+			$lastModified = $page->getTouched();
 		}
 
 		// make sure the etag didn't change after getHtml();
@@ -582,6 +588,35 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringNotContainsString( $renderId->getKey(), $helper->getETag() );
 		$this->assertSame(
 			MWTimestamp::convert( TS_MW, $now ),
+			MWTimestamp::convert( TS_MW, $helper->getLastModified() )
+		);
+	}
+
+	/**
+	 * Check that getLastModified doesn't load ParserOutput for the latest revision.
+	 */
+	public function testFastLastModified_no_rev() {
+		$page = $this->getExistingTestPage();
+		$touchDate = $page->getTouched();
+
+		// First, test it works if nothing was cached yet.
+		$helper = $this->newHelper( [
+			'ParserOutputAccess' => $this->createNoOpMock( ParserOutputAccess::class ),
+		], $page, self::PARAM_DEFAULTS, $this->newAuthority() );
+
+		// Try without providing a revision
+		$this->assertSame(
+			MWTimestamp::convert( TS_MW, $touchDate ),
+			MWTimestamp::convert( TS_MW, $helper->getLastModified() )
+		);
+
+		// Provide the latest revision
+		$helper = $this->newHelper( [
+			'ParserOutputAccess' => $this->createNoOpMock( ParserOutputAccess::class ),
+		], $page, self::PARAM_DEFAULTS, $this->newAuthority(), $page->getLatest() );
+
+		$this->assertSame(
+			MWTimestamp::convert( TS_MW, $touchDate ),
 			MWTimestamp::convert( TS_MW, $helper->getLastModified() )
 		);
 	}
