@@ -58,7 +58,6 @@ use UploadStashNoSuchKeyException;
 use UploadStashNotLoggedInException;
 use UploadStashWrongOwnerException;
 use UploadStashZeroLengthFileException;
-use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
@@ -846,81 +845,13 @@ class ApiUpload extends ApiBase {
 	 * @return never
 	 */
 	protected function checkVerification( array $verification ) {
-		switch ( $verification['status'] ) {
-			// Recoverable errors
-			case UploadBase::MIN_LENGTH_PARTNAME:
-				$this->dieRecoverableError( [ 'filename-tooshort' ], 'filename' );
-				// dieRecoverableError prevents continuation
-			case UploadBase::ILLEGAL_FILENAME:
-				$this->dieRecoverableError(
-					[ ApiMessage::create(
-						'illegal-filename', null, [ 'filename' => $verification['filtered'] ]
-					) ], 'filename'
-				);
-				// dieRecoverableError prevents continuation
-			case UploadBase::FILENAME_TOO_LONG:
-				$this->dieRecoverableError( [ 'filename-toolong' ], 'filename' );
-				// dieRecoverableError prevents continuation
-			case UploadBase::FILETYPE_MISSING:
-				$this->dieRecoverableError( [ 'filetype-missing' ], 'filename' );
-				// dieRecoverableError prevents continuation
-			case UploadBase::WINDOWS_NONASCII_FILENAME:
-				$this->dieRecoverableError( [ 'windows-nonascii-filename' ], 'filename' );
-
-			// Unrecoverable errors
-			case UploadBase::EMPTY_FILE:
-				$this->dieWithError( 'empty-file' );
-				// dieWithError prevents continuation
-			case UploadBase::FILE_TOO_LARGE:
-				$this->dieWithError( 'file-too-large' );
-				// dieWithError prevents continuation
-
-			case UploadBase::FILETYPE_BADTYPE:
-				$extradata = [
-					'filetype' => $verification['finalExt'],
-					'allowed' => array_values( array_unique(
-						$this->getConfig()->get( MainConfigNames::FileExtensions ) ) )
-				];
-				$extensions =
-					array_unique( $this->getConfig()->get( MainConfigNames::FileExtensions ) );
-				$msg = [
-					'filetype-banned-type',
-					null, // filled in below
-					Message::listParam( $extensions, 'comma' ),
-					count( $extensions ),
-					null, // filled in below
-				];
-				ApiResult::setIndexedTagName( $extradata['allowed'], 'ext' );
-
-				if ( isset( $verification['blacklistedExt'] ) ) {
-					$msg[1] = Message::listParam( $verification['blacklistedExt'], 'comma' );
-					$msg[4] = count( $verification['blacklistedExt'] );
-					$extradata['blacklisted'] = array_values( $verification['blacklistedExt'] );
-					ApiResult::setIndexedTagName( $extradata['blacklisted'], 'ext' );
-				} else {
-					$msg[1] = $verification['finalExt'];
-					$msg[4] = 1;
-				}
-
-				$this->dieWithError( $msg, 'filetype-banned', $extradata );
-				// dieWithError prevents continuation
-
-			case UploadBase::VERIFICATION_ERROR:
-				$msg = ApiMessage::create( $verification['details'], 'verification-error' );
-				if ( $verification['details'][0] instanceof MessageSpecifier ) {
-					$details = [ $msg->getKey(), ...$msg->getParams() ];
-				} else {
-					$details = $verification['details'];
-				}
-				ApiResult::setIndexedTagName( $details, 'detail' );
-				$msg->setApiData( $msg->getApiData() + [ 'details' => $details ] );
-				$this->dieWithError( $msg );
-				// dieWithError prevents continuation
-
-			default:
-				$this->dieWithError( 'apierror-unknownerror-nocode', 'unknown-error',
-					[ 'details' => [ 'code' => $verification['status'] ] ] );
+		$status = $this->mUpload->convertVerifyErrorToStatus( $verification );
+		if ( $status->isRecoverableError() ) {
+			$this->dieRecoverableError( [ $status->asApiMessage() ], $status->getInvalidParameter() );
+			// dieRecoverableError prevents continuation
 		}
+		$this->dieWithError( $status->asApiMessage() );
+		// dieWithError prevents continuation
 	}
 
 	/**

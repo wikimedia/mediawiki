@@ -47,7 +47,9 @@ use Wikimedia\AtEase\AtEase;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\FSFile\FSFile;
 use Wikimedia\FileBackend\FSFile\TempFSFile;
+use Wikimedia\Message\ListType;
 use Wikimedia\Message\MessageParam;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Mime\XmlTypeCheck;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\IDBAccessObject;
@@ -2249,15 +2251,89 @@ abstract class UploadBase {
 		return $apiUpload->getUploadImageInfo( $this );
 	}
 
-	/**
-	 * @param array $error
-	 * @return Status
-	 */
-	public function convertVerifyErrorToStatus( $error ) {
-		$code = $error['status'];
-		unset( $code['status'] );
+	public function convertVerifyErrorToStatus( array $error ): UploadVerificationStatus {
+		switch ( $error['status'] ) {
+			/** Statuses that only require name changing */
+			case self::MIN_LENGTH_PARTNAME:
+				return UploadVerificationStatus::newFatal( 'filename-tooshort' )
+					->setRecoverableError( true )
+					->setInvalidParameter( 'filename' );
 
-		return Status::newFatal( $this->getVerificationErrorCode( $code ), $error );
+			case self::ILLEGAL_FILENAME:
+				return UploadVerificationStatus::newFatal( 'illegal-filename' )
+					->setRecoverableError( true )
+					->setInvalidParameter( 'filename' )
+					->setApiData( [ 'filename' => $error['filtered'] ] );
+
+			case self::FILENAME_TOO_LONG:
+				return UploadVerificationStatus::newFatal( 'filename-toolong' )
+					->setRecoverableError( true )
+					->setInvalidParameter( 'filename' );
+
+			case self::FILETYPE_MISSING:
+				return UploadVerificationStatus::newFatal( 'filetype-missing' )
+					->setRecoverableError( true )
+					->setInvalidParameter( 'filename' );
+
+			case self::WINDOWS_NONASCII_FILENAME:
+				return UploadVerificationStatus::newFatal( 'windows-nonascii-filename' )
+					->setRecoverableError( true )
+					->setInvalidParameter( 'filename' );
+
+			/** Statuses that require reuploading */
+			case self::EMPTY_FILE:
+				return UploadVerificationStatus::newFatal( 'empty-file' );
+
+			case self::FILE_TOO_LARGE:
+				return UploadVerificationStatus::newFatal( 'file-too-large' );
+
+			case self::FILETYPE_BADTYPE:
+				$extensions = array_unique( MediaWikiServices::getInstance()
+					->getMainConfig()->get( MainConfigNames::FileExtensions ) );
+				$extradata = [
+					'filetype' => $error['finalExt'],
+					'allowed' => array_values( $extensions ),
+				];
+				ApiResult::setIndexedTagName( $extradata['allowed'], 'ext' );
+				if ( isset( $error['blacklistedExt'] ) ) {
+					$bannedTypes = $error['blacklistedExt'];
+					$extradata['blacklisted'] = array_values( $bannedTypes );
+					ApiResult::setIndexedTagName( $extradata['blacklisted'], 'ext' );
+				} else {
+					$bannedTypes = [ $error['finalExt'] ];
+				}
+				'@phan-var string[] $bannedTypes';
+				return UploadVerificationStatus::newFatal(
+						'filetype-banned-type',
+						Message::listParam( $bannedTypes, ListType::COMMA ),
+						Message::listParam( $extensions, ListType::COMMA ),
+						count( $extensions ),
+						// Add PLURAL support for the first parameter. This results
+						// in a bit unlogical parameter sequence, but does not break
+						// old translations
+						count( $bannedTypes )
+					)
+					->setApiCode( 'filetype-banned' )
+					->setApiData( $extradata );
+
+			case self::VERIFICATION_ERROR:
+				$msg = ApiMessage::create( $error['details'], 'verification-error' );
+				if ( $error['details'][0] instanceof MessageSpecifier ) {
+					$apiDetails = [ $msg->getKey(), ...$msg->getParams() ];
+				} else {
+					$apiDetails = $error['details'];
+				}
+				ApiResult::setIndexedTagName( $apiDetails, 'detail' );
+				$msg->setApiData( $msg->getApiData() + [ 'details' => $apiDetails ] );
+				return UploadVerificationStatus::newFatal( $msg );
+
+			default:
+				// @codeCoverageIgnoreStart
+				return UploadVerificationStatus::newFatal( 'upload-unknownerror-nocode' )
+					->setApiCode( 'unknown-error' )
+					->setApiData( [ 'details' => [ 'code' => $error['status'] ] ] );
+				// @codeCoverageIgnoreEnd
+		}
 	}
 
 	/**

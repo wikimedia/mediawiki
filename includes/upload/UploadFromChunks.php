@@ -241,9 +241,8 @@ class UploadFromChunks extends UploadFromFile {
 					'filekey' => $oldFileKey
 				]
 			);
-			$status->fatal( $this->getVerificationErrorCode( $ret['status'] ) );
-
-			return $status;
+			// @phan-suppress-next-line PhanTypeMismatchReturnProbablyReal
+			return $this->convertVerifyErrorToStatus( $ret );
 		}
 
 		// Update the mTempPath and mStashFile
