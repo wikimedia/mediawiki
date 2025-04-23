@@ -207,7 +207,7 @@ class EditPage implements IEditObject {
 	 * @deprecated since 1.38 for public usage; no replacement
 	 * @var string
 	 */
-	public $action = 'submit';
+	private $action = 'submit';
 
 	/** @var bool Whether an edit conflict needs to be resolved. Detected based on whether
 	 * $editRevId is different than the latest revision. When a conflict has successfully
@@ -552,6 +552,7 @@ class EditPage implements IEditObject {
 		$this->authManager = $services->getAuthManager();
 
 		$this->deprecatePublicProperty( 'textbox2', '1.44', __CLASS__ );
+		$this->deprecatePublicProperty( 'action', '1.38', __CLASS__ );
 	}
 
 	/**
