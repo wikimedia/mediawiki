@@ -1,6 +1,6 @@
 ( function () {
 	'use strict';
-	const outer = document.querySelector( '.mw-EditRecovery-special' );
+	const outer = document.querySelector( '.mw-special-EditRecovery-app' );
 	if ( !outer ) {
 		return;
 	}
