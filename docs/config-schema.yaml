@@ -4258,16 +4258,6 @@ config-schema:
             Overriding the default configuration is strongly discouraged in
             production.
             @since 1.39
-    ParsoidFragmentInput:
-        default: false
-        type: boolean
-        description: |-
-            Enable passing fragments as input to the Parsoid
-            DataAccess::preprocessWikitext() endpoint.
-            This is a temporary configuration variable to allow
-            testing a new parsoid feature, which will become the default
-            in future releases.
-            @unstable EXPERIMENTAL
     ParsoidExperimentalParserFunctionOutput:
         default: false
         type: boolean
