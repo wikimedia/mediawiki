@@ -74,7 +74,7 @@ trait MetricTrait {
 			$this->baseMetric->setSampleRate( $sampleRate );
 		} catch ( IllegalOperationException | InvalidArgumentException $ex ) {
 			// Log the condition and give the caller something that will absorb calls.
-			trigger_error( $ex->getMessage(), E_USER_WARNING );
+			trigger_error( "Stats: ({$this->getName()}) {$ex->getMessage()}", E_USER_WARNING );
 			return new NullMetric;
 		}
 		return $this;
@@ -92,14 +92,14 @@ trait MetricTrait {
 	/** @inheritDoc */
 	public function setLabel( string $key, string $value ) {
 		if ( strcasecmp( $key, 'le' ) === 0 ) {
-			trigger_error( 'Stats: \'le\' cannot be used as a label key. ', E_USER_WARNING );
+			trigger_error( "Stats: ({$this->getName()}) 'le' cannot be used as a label key", E_USER_WARNING );
 			return new NullMetric();
 		}
 		try {
 			$this->baseMetric->addLabel( $key, $value );
 		} catch ( IllegalOperationException | InvalidArgumentException $ex ) {
 			// Log the condition and give the caller something that will absorb calls.
-			trigger_error( $ex->getMessage(), E_USER_WARNING );
+			trigger_error( "Stats: ({$this->getName()}) {$ex->getMessage()}", E_USER_WARNING );
 			return new NullMetric;
 		}
 		return $this;
@@ -122,7 +122,7 @@ trait MetricTrait {
 			$this->baseMetric->setStatsdNamespaces( $statsdNamespaces );
 		} catch ( InvalidArgumentException $ex ) {
 			// Log the condition and give the caller something that will absorb calls.
-			trigger_error( $ex->getMessage(), E_USER_WARNING );
+			trigger_error( "Stats: ({$this->getName()}) {$ex->getMessage()}", E_USER_WARNING );
 			return new NullMetric;
 		}
 		return $this;

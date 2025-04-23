@@ -70,7 +70,7 @@ class TimingMetric implements MetricInterface {
 	 */
 	public function stop(): void {
 		if ( $this->startTime === null ) {
-			trigger_error( "Stats: stop() called before start() for metric '{$this->getName()}'", E_USER_WARNING );
+			trigger_error( "Stats: ({$this->getName()}) stop() called before start()", E_USER_WARNING );
 			return;
 		}
 		$this->observeNanoseconds( hrtime( true ) - $this->startTime );
@@ -147,7 +147,7 @@ class TimingMetric implements MetricInterface {
 			$this->baseMetric->addSample( new Sample( $this->baseMetric->getLabelValues(), $milliseconds ) );
 		} catch ( IllegalOperationException $ex ) {
 			// Log the condition and give the caller something that will absorb calls.
-			trigger_error( $ex->getMessage(), E_USER_WARNING );
+			trigger_error( "Stats: ({$this->getName()}): {$ex->getMessage()}", E_USER_WARNING );
 		}
 	}
 

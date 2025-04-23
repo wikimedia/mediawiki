@@ -79,7 +79,9 @@ class OutputFormats {
 			case self::NULL:
 				return new NullFormatter();
 			default:
-				throw new UnsupportedFormatException( 'Unsupported metrics format.  Got format: ' . $format );
+				throw new UnsupportedFormatException(
+					"Unsupported metrics format '{$format}' - See OutputFormats::class."
+				);
 		}
 	}
 
@@ -98,16 +100,15 @@ class OutputFormats {
 		FormatterInterface $formatter,
 		?string $target = null
 	): EmitterInterface {
-		switch ( get_class( $formatter ) ) {
+		$formatterClass = get_class( $formatter );
+		switch ( $formatterClass ) {
 			case StatsdFormatter::class:
 			case DogStatsdFormatter::class:
 				return new UDPEmitter( $prefix, $cache, $formatter, $target );
 			case NullFormatter::class:
 				return new NullEmitter;
 			default:
-				throw new UnsupportedFormatException(
-					'Unsupported metrics format.  Got format: ' . get_class( $formatter )
-				);
+				throw new UnsupportedFormatException( "Unsupported metrics formatter '{$formatterClass}'" );
 		}
 	}
 }

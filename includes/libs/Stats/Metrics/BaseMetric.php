@@ -71,8 +71,7 @@ class BaseMetric implements BaseMetricInterface {
 	/** @inheritDoc */
 	public function setSampleRate( float $sampleRate ): void {
 		if ( $this->hasSamples() ) {
-			throw new IllegalOperationException(
-				"Stats: Cannot change sample rate on metric with recorded samples." );
+			throw new IllegalOperationException( 'Cannot change sample rate on metric with recorded samples.' );
 		}
 		StatsUtils::validateNewSampleRate( $sampleRate );
 		$this->sampleRate = $sampleRate;
@@ -104,9 +103,7 @@ class BaseMetric implements BaseMetricInterface {
 		if ( !array_key_exists( $key, $this->workingLabels ) ) {
 			StatsUtils::validateLabelKey( $key );
 			if ( $this->hasSamples() ) {
-				throw new IllegalOperationException(
-					"Stats: Cannot add labels to a metric containing samples for '" . $this->name . "'"
-				);
+				throw new IllegalOperationException( 'Cannot add labels to a metric containing samples' );
 			}
 		}
 
@@ -134,10 +131,10 @@ class BaseMetric implements BaseMetricInterface {
 
 		foreach ( $statsdNamespaces as $namespace ) {
 			if ( $namespace === '' ) {
-				throw new InvalidArgumentException( "Stats: StatsD namespace cannot be empty." );
+				throw new InvalidArgumentException( 'StatsD namespace cannot be empty.' );
 			}
 			if ( !is_string( $namespace ) ) {
-				throw new InvalidArgumentException( "Stats: StatsD namespace must be a string." );
+				throw new InvalidArgumentException( 'StatsD namespace must be a string.' );
 			}
 		}
 		$this->statsdNamespaces = $statsdNamespaces;
@@ -160,7 +157,7 @@ class BaseMetric implements BaseMetricInterface {
 		# make sure all labels are accounted for
 		if ( in_array( null, $this->workingLabels, true ) ) {
 			throw new IllegalOperationException(
-				"Stats: Cannot associate label keys with label values: "
+				"Stats: ({$this->getName()}) Cannot associate label keys with label values - "
 				. "Not all initialized labels have an assigned value." );
 		}
 
