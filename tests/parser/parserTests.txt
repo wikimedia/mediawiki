@@ -17290,6 +17290,16 @@ But with isRawHTML the result is left alone:
 !! end
 
 !! test
+Handling of numeric extension tag arguments
+!! options
+parsoid=wt2html
+!! wikitext
+<spantag name=Round of 16>test</spantag>
+!! html/parsoid
+<p><span typeof="mw:Extension/spantag" data-mw='{"name":"spantag","attrs":{"name":"Round","of":"","16":""},"body":{"extsrc":"test"}}'>test</span></p>
+!! end
+
+!! test
 Handling of nowiki strip markers in Parsoid fragments
 !! options
 parsoid=wt2html
