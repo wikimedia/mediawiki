@@ -797,7 +797,6 @@ return [
 			'ParsoidSettings' => [
 				'useSelser' => true,
 			],
-			'ParsoidFragmentInput' => false,
 			'ParsoidExperimentalParserFunctionOutput' => false,
 			'ParserEnableLegacyMediaDOM' => false,
 			'ParserEnableLegacyHeadingDOM' => false,
@@ -2906,7 +2905,6 @@ return [
 			'UrlProtocols' => 'array',
 			'TidyConfig' => 'object',
 			'ParsoidSettings' => 'object',
-			'ParsoidFragmentInput' => 'boolean',
 			'ParsoidExperimentalParserFunctionOutput' => 'boolean',
 			'NoFollowNsExceptions' => 'array',
 			'NoFollowDomainExceptions' => 'array',

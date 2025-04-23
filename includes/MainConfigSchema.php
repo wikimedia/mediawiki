@@ -6671,19 +6671,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Enable passing fragments as input to the Parsoid
-	 * DataAccess::preprocessWikitext() endpoint.
-	 * This is a temporary configuration variable to allow
-	 * testing a new parsoid feature, which will become the default
-	 * in future releases.
-	 * @unstable EXPERIMENTAL
-	 */
-	public const ParsoidFragmentInput = [
-		'default' => false,
-		'type' => 'boolean',
-	];
-
-	/**
 	 * If set, Parsoid's HTML output for parser functions will be different
 	 * from Parsoid HTML spec 2.x.x and lets us experiment with a better
 	 * output that might be rolled out in a future 3.x Parsoid HTML version.
