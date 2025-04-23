@@ -9,6 +9,7 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\FauxResponse;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\User\LoggedOutEditToken;
 
 /**
  * @author Addshore
@@ -101,7 +102,10 @@ class SpecialPageExecutor {
 		// Edits via GET are a security issue and should not succeed. On the other hand, not all
 		// POST requests are edits, but should ignore unused parameters.
 		if ( !$request->getCheck( 'wpEditToken' ) && $request->wasPosted() ) {
-			$request->setVal( 'wpEditToken', $context->getUser()->getEditToken() );
+			$user = $context->getUser();
+			$request->getSession()->setUser( $user );
+			$token = $user->isRegistered() ? $request->getSession()->getToken() : new LoggedOutEditToken();
+			$request->setVal( 'wpEditToken', (string)$token );
 		}
 	}
 
