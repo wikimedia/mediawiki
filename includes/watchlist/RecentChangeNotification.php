@@ -86,4 +86,12 @@ class RecentChangeNotification extends WikiNotification {
 		return $this->source;
 	}
 
+	public function isUserTalkNotification(): bool {
+		return $this->source === self::TALK_NOTIFICATION;
+	}
+
+	public function isWatchlistNotification(): bool {
+		return $this->source === self::WATCHLIST_NOTIFICATION;
+	}
+
 }
