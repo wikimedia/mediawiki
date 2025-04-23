@@ -387,6 +387,7 @@ because of Phabricator reports.
   listExplicitlyDefinedTags(), listSoftwareActivatedTags(),
   listSoftwareDefinedTags(), makeTagSummarySubquery(), modifyDisplayQuery(),
   purgeTagCacheAll(), tagUsageStatistics(), and updateTags().
+* EditPage::$textbox2 has been deprecated (once again).
 * (T166010) All PHP code in MediaWiki is slowly being moved to be in a class
   namespace as appropriate, so that we can use PSR-4 auto-loading, which will
   speed up general code loading of MediaWiki. The old global namespace class

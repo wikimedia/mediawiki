@@ -327,8 +327,11 @@ class EditPage implements IEditObject {
 	 */
 	public $textbox1 = '';
 
-	/** @var string */
-	public $textbox2 = '';
+	/**
+	 * @deprecated since 1.44
+	 * @var string
+	 */
+	private $textbox2 = '';
 
 	/** @var string */
 	public $summary = '';
@@ -548,8 +551,7 @@ class EditPage implements IEditObject {
 			->getBlockErrorFormatter( $this->context );
 		$this->authManager = $services->getAuthManager();
 
-		// XXX: Restore this deprecation as soon as TwoColConflict is fixed (T305028)
-		// $this->deprecatePublicProperty( 'textbox2', '1.38', __CLASS__ );
+		$this->deprecatePublicProperty( 'textbox2', '1.44', __CLASS__ );
 	}
 
 	/**
