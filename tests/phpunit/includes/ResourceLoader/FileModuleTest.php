@@ -935,15 +935,13 @@ class FileModuleTest extends ResourceLoaderTestCase {
 		$module->getStyles( $context );
 
 		$module = $this->newModuleRequest( $moduleInfo, $context );
-		$dependencies = ResourceLoaderFileTestModule::expandRelativePaths(
-			$module->getFileDependencies( $context ) );
-
-		$expectedDependencies = [
-			realpath( __DIR__ . '/../../data/less/common/test.common.mixins.less' ),
-			realpath( __DIR__ . '/../../data/less/module/dependency.less' )
-		];
-
-		$this->assertEquals( $expectedDependencies, $dependencies );
+		$this->assertEquals(
+			[
+				'tests/phpunit/data/less/common/test.common.mixins.less',
+				'tests/phpunit/data/less/module/dependency.less'
+			],
+			$module->getFileDependencies( $context )
+		);
 	}
 
 	/**
@@ -952,35 +950,37 @@ class FileModuleTest extends ResourceLoaderTestCase {
 	public function testIndirectDependenciesUpdate() {
 		$context = $this->getResourceLoaderContext();
 		$tempDir = $this->getNewTempDirectory();
-		$moduleInfo = [ 'dir' => $tempDir, 'name' => 'new-dependencies' ];
+		$moduleDir = "$tempDir/resources/mymodule";
+		mkdir( $moduleDir, 0777, true );
+		$this->setMwGlobals( 'IP', $tempDir );
+		$moduleInfo = [ 'dir' => $moduleDir, 'name' => 'new-dependencies' ];
 
-		file_put_contents( "$tempDir/styles.less", "@import './test.less';" );
-		file_put_contents( "$tempDir/test.less", "div { color: red; } " );
-
+		// Version 1
+		file_put_contents( "$moduleDir/styles.less", "@import './test.less';" );
+		file_put_contents( "$moduleDir/test.less", "div { color: red; } " );
+		// Request A: Discover dependencies and save them
 		$module = $this->newModuleRequest( $moduleInfo, $context );
 		$module->getStyles( $context );
-
+		// Request B: Retrieve saved dependencies
 		$module = $this->newModuleRequest( $moduleInfo, $context );
-		$dependencies = ResourceLoaderFileTestModule::expandRelativePaths(
-			$module->getFileDependencies( $context ) );
+		$this->assertEquals(
+			[ 'resources/mymodule/test.less' ],
+			$module->getFileDependencies( $context )
+		);
 
-		$expectedDependencies = [ realpath( $tempDir . '/test.less' ) ];
-
-		$this->assertEquals( $expectedDependencies, $dependencies );
-
-		file_put_contents( "$tempDir/styles.less", "@import './pink.less';" );
-		file_put_contents( "$tempDir/pink.less", "div { color: pink; } " );
-
+		// Version 2
+		file_put_contents( "$moduleDir/styles.less", "@import './pink.less';" );
+		file_put_contents( "$moduleDir/pink.less", "div { color: pink; } " );
+		// Request C: Discover new dependencies and save them
 		$module = $this->newModuleRequest( $moduleInfo, $context );
 		$module->getStyles( $context );
-
+		// Request D: Retreive new dependencies,
+		// which should have replaced (not adding to) the previous ones.
 		$module = $this->newModuleRequest( $moduleInfo, $context );
-		$dependencies = ResourceLoaderFileTestModule::expandRelativePaths(
-			$module->getFileDependencies( $context ) );
-
-		$expectedDependencies = [ realpath( $tempDir . '/pink.less' ) ];
-
-		$this->assertEquals( $expectedDependencies, $dependencies );
+		$this->assertEquals(
+			[ 'resources/mymodule/pink.less' ],
+			$module->getFileDependencies( $context )
+		);
 	}
 
 	public function newModuleRequest( $moduleInfo, $context ) {
