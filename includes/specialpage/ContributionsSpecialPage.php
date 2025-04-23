@@ -467,12 +467,12 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 				}
 
 				$sitewide = false;
-				$logTargetPage = '';
+				$logTargetPages = [];
 				foreach ( $blocks as $block ) {
 					if ( $block->isSitewide() ) {
 						$sitewide = true;
 					}
-					$logTargetPage = $this->namespaceInfo->getCanonicalName( NS_USER ) .
+					$logTargetPages[] = $this->namespaceInfo->getCanonicalName( NS_USER ) .
 						':' . $block->getTargetName();
 				}
 
@@ -501,7 +501,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 					LogEventsList::showLogExtract(
 						$out,
 						'block',
-						$logTargetPage,
+						$logTargetPages,
 						'',
 						[
 							'lim' => 1,

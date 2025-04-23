@@ -89,7 +89,7 @@ class SpecialLog extends SpecialPage {
 		$opts = new FormOptions;
 		$opts->add( 'type', '' );
 		$opts->add( 'user', '' );
-		$opts->add( 'page', '' );
+		$opts->add( 'page', [] );
 		$opts->add( 'pattern', false );
 		$opts->add( 'year', null, FormOptions::INTNULL );
 		$opts->add( 'month', null, FormOptions::INTNULL );
@@ -159,31 +159,42 @@ class SpecialLog extends SpecialPage {
 		# only the username instead of the full title 'User:username'. This part try
 		# to lookup for a user by that name and eventually fix user input. See T3697.
 		if ( in_array( $opts->getValue( 'type' ), self::getLogTypesOnUser( $this->getHookRunner() ) ) ) {
-			# ok we have a type of log which expect a user title.
-			$page = $opts->getValue( 'page' );
-			$target = Title::newFromText( $page );
-			if ( $target && $target->getNamespace() === NS_MAIN ) {
-				if ( IPUtils::isValidRange( $target->getText() ) ) {
-					$page = IPUtils::sanitizeRange( $target->getText() );
-				}
-				# User forgot to add 'User:', we are adding it for them
-				$target = Title::makeTitleSafe( NS_USER, $page );
-			} elseif ( $target && $target->getNamespace() === NS_USER
-				&& IPUtils::isValidRange( $target->getText() )
-			) {
-				$ipOrRange = IPUtils::sanitizeRange( $target->getText() );
-				if ( $ipOrRange !== $target->getText() ) {
-					$target = Title::makeTitleSafe( NS_USER, $ipOrRange );
+			$pages = [];
+			foreach ( $opts->getValue( 'page' ) as $page ) {
+				$page = $this->normalizeUserPage( $page );
+				if ( $page !== null ) {
+					$pages[] = $page->getPrefixedText();
 				}
 			}
-			if ( $target !== null ) {
-				$page = $target->getPrefixedText();
-				$opts->setValue( 'page', $page );
-				$this->getRequest()->setVal( 'page', $page );
-			}
+			$opts->setValue( 'page', $pages );
 		}
 
 		$this->show( $opts, $qc );
+	}
+
+	/**
+	 * Add the namespace prefix to a user page and validate it
+	 *
+	 * @param string $page
+	 * @return Title|null
+	 */
+	private function normalizeUserPage( $page ) {
+		$target = Title::newFromText( $page );
+		if ( $target && $target->getNamespace() === NS_MAIN ) {
+			if ( IPUtils::isValidRange( $target->getText() ) ) {
+				$page = IPUtils::sanitizeRange( $target->getText() );
+			}
+			# User forgot to add 'User:', we are adding it for them
+			$target = Title::makeTitleSafe( NS_USER, $page );
+		} elseif ( $target && $target->getNamespace() === NS_USER
+			&& IPUtils::isValidRange( $target->getText() )
+		) {
+			$ipOrRange = IPUtils::sanitizeRange( $target->getText() );
+			if ( $ipOrRange !== $target->getText() ) {
+				$target = Title::makeTitleSafe( NS_USER, $ipOrRange );
+			}
+		}
+		return $target;
 	}
 
 	/**

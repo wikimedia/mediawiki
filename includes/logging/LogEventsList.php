@@ -546,7 +546,8 @@ class LogEventsList extends ContextSource {
 	 *
 	 * @param OutputPage|string &$out
 	 * @param string|array $types Log types to show
-	 * @param string|PageReference $page The page title to show log entries for
+	 * @param string|PageReference|(string|PageReference)[] $pages The page title(s) to show log
+	 *   entries for
 	 * @param string $user The user who made the log entries
 	 * @param array $param Associative Array with the following additional options:
 	 * - lim Integer Limit of items to show, default is 50
@@ -569,7 +570,7 @@ class LogEventsList extends ContextSource {
 	 * @return int Number of total log items (not limited by $lim)
 	 */
 	public static function showLogExtract(
-		&$out, $types = [], $page = '', $user = '', $param = []
+		&$out, $types = [], $pages = '', $user = '', $param = []
 	) {
 		$defaultParameters = [
 			'lim' => 25,
@@ -613,13 +614,17 @@ class LogEventsList extends ContextSource {
 		// FIXME: Figure out how to inject this
 		$linkRenderer = $services->getLinkRenderer();
 
+		if ( !is_array( $pages ) ) {
+			$pages = [ $pages ];
+		}
+
 		# Insert list of top 50 (or top $lim) items
 		$loglist = new LogEventsList( $context, $linkRenderer, $flags );
 		$pager = new LogPager(
 			$loglist,
 			$types,
 			$user,
-			$page,
+			$pages,
 			false,
 			$conds,
 			false,
@@ -663,8 +668,8 @@ class LogEventsList extends ContextSource {
 			if ( $msgKey[0] ) {
 				// @phan-suppress-next-line PhanParamTooFewUnpack Non-emptiness checked above
 				$msg = $context->msg( ...$msgKey );
-				if ( $page instanceof PageReference ) {
-					$msg->page( $page );
+				if ( ( $pages[0] ?? null ) instanceof PageReference ) {
+					$msg->page( $pages[0] );
 				}
 				$s .= $msg->parseAsBlock();
 			}
@@ -678,19 +683,20 @@ class LogEventsList extends ContextSource {
 				$context->msg( 'logempty' )->parse() );
 		}
 
-		if ( $page instanceof PageReference ) {
-			$titleFormatter = MediaWikiServices::getInstance()->getTitleFormatter();
-			$pageName = $titleFormatter->getPrefixedDBkey( $page );
-		} elseif ( $page != '' ) {
-			$pageName = $page;
-		} else {
-			$pageName = null;
+		$pageNames = [];
+		foreach ( $pages as $page ) {
+			if ( $page instanceof PageReference ) {
+				$titleFormatter = MediaWikiServices::getInstance()->getTitleFormatter();
+				$pageNames[] = $titleFormatter->getPrefixedDBkey( $page );
+			} elseif ( $page != '' ) {
+				$pageNames[] = $page;
+			}
 		}
 
 		if ( $numRows > $pager->mLimit ) { # Show "Full log" link
 			$urlParam = [];
-			if ( $pageName ) {
-				$urlParam['page'] = $pageName;
+			if ( $pageNames ) {
+				$urlParam['page'] = count( $pageNames ) > 1 ? $pageNames : $pageNames[0];
 			}
 
 			if ( $user != '' ) {
@@ -758,7 +764,9 @@ class LogEventsList extends ContextSource {
 
 		/* hook can return false, if we don't want the message to be emitted (Wikia BugId:7093) */
 		$hookRunner = new HookRunner( $services->getHookContainer() );
-		if ( $hookRunner->onLogEventsListShowLogExtract( $s, $types, $pageName, $user, $param ) ) {
+		if ( $hookRunner->onLogEventsListShowLogExtract(
+			$s, $types, $pageNames, $user, $param
+		) ) {
 			// $out can be either an OutputPage object or a String-by-reference
 			if ( $out instanceof OutputPage ) {
 				$out->addHTML( $s );
@@ -832,7 +840,7 @@ class LogEventsList extends ContextSource {
 			return null;
 		}
 		$appliesToTitle = false;
-		$logTargetPage = '';
+		$logTargetPages = [];
 		$blockTargetName = '';
 		$blocks = $blockStore->newListFromTarget( $user, $user, false,
 			DatabaseBlockStore::AUTO_NONE );
@@ -841,7 +849,7 @@ class LogEventsList extends ContextSource {
 				$appliesToTitle = true;
 			}
 			$blockTargetName = $block->getTargetName();
-			$logTargetPage = $namespaceInfo->getCanonicalName( NS_USER ) .
+			$logTargetPages[] = $namespaceInfo->getCanonicalName( NS_USER ) .
 				':' . $blockTargetName;
 		}
 
@@ -873,7 +881,7 @@ class LogEventsList extends ContextSource {
 		}
 
 		$outString = '';
-		self::showLogExtract( $outString, 'block', $logTargetPage, '', $params );
+		self::showLogExtract( $outString, 'block', $logTargetPages, '', $params );
 		return $outString ?: null;
 	}
 }

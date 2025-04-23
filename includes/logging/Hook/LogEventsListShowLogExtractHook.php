@@ -17,7 +17,7 @@ interface LogEventsListShowLogExtractHook {
 	 *
 	 * @param string &$s HTML to show for the log extract
 	 * @param string|array $types Log types to show
-	 * @param string|null $page Page title to show log entries for
+	 * @param array $pages Page titles to show log entries for
 	 * @param string $user User who made the log entries
 	 * @param array $param Associative array with the following additional options:
 	 *   - `lim` (integer): Limit of items to show, default is 50
@@ -37,7 +37,7 @@ interface LogEventsListShowLogExtractHook {
 	 * @return bool|void True or no return value to continue, or false to prevent the
 	 *   string from being added to the OutputPage
 	 */
-	public function onLogEventsListShowLogExtract( &$s, $types, $page, $user,
+	public function onLogEventsListShowLogExtract( &$s, $types, $pages, $user,
 		$param
 	);
 }

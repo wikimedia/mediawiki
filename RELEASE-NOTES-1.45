@@ -110,6 +110,10 @@ because of Phabricator reports.
 * The SiteConfiguration::extractGlobalSetting method, unused, is now private.
 * AuthManager::forcePrimaryAuthenticationProviders(), deprecated in 1.43 has
   been removed.
+* The following LogPager methods are deprecated without replacement:
+  getType, getPage, getPattern, getYear, getMonth, getDay, getTagFilter,
+  getTagInvert, getAction.
+* The LogEventsListShowLogExtract $page parameter is now an array.
 * …
 
 === Deprecations in 1.45 ===

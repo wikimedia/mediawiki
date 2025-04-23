@@ -103,4 +103,21 @@ class SpecialLogTest extends SpecialPageTestBase {
 		$this->assertStringNotContainsString( '(logentry-suppress-revision', $html );
 	}
 
+	/**
+	 * Test T389355 URL hack
+	 */
+	public function testPageArray() {
+		$sysop = $this->getTestSysop()->getUser();
+		$buf = $this->getServiceContainer()->getBlockUserFactory();
+		$buf->newBlockUser( '127.0.0.1', $sysop, 'infinity' )->placeBlock();
+		$buf->newBlockUser( '127.0.0.0/24', $sysop, 'infinity' )->placeBlock();
+		[ $html, ] = $this->executeSpecialPage(
+			'block',
+			new FauxRequest( [ 'page' => [ 'User:127.0.0.1', 'User:127.0.0.0/24' ] ] ),
+			'qqx'
+		);
+		$this->assertMatchesRegularExpression( '/logentry-block-block:.*127\.0\.0\.1/', $html );
+		$this->assertMatchesRegularExpression( '/logentry-block-block:.*127\.0\.0\.0\/24/', $html );
+	}
+
 }
