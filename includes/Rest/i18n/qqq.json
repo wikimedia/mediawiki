@@ -225,5 +225,16 @@
 	"rest-schema-desc-page-history-count": "{{Experimental}} REST API response field description, for page history edit count",
 	"rest-schema-desc-page-language-links": "{Experimental}} REST API response field description, for page interlanguage links",
 	"rest-schema-desc-search-results": "{{Experimental}} REST API response field description, for search results",
-	"rest-schema-desc-revision-compare": "{{Experimental}} REST API response field description, for revision comparison"
+	"rest-schema-desc-revision-compare": "{{Experimental}} REST API response field description, for revision comparison",
+	"rest-endpoint-desc-mock-desc": "{{Experimental}} Mock description for use in tests",
+	"rest-endpoint-desc-post-page": "{{Experimental}} REST API endpoint description, for the endpoint to create a page",
+	"rest-endpoint-desc-get-page-title": "{{Experimental}} REST API endpoint description, for the endpoint to get page information",
+	"rest-endpoint-desc-put-page-title": "{{Experimental}} REST API endpoint description, for the endpoint to create or edit a page",
+	"rest-endpoint-desc-get-page-title-html": "{{Experimental}} REST API endpoint description, for the endpoint to get page html",
+	"rest-endpoint-desc-get-page-title-with-html": "{{Experimental}} REST API endpoint description, for the endpoint to retrieve page information including html",
+	"rest-endpoint-desc-get-page-title-bare": "{{Experimental}} REST API endpoint description, for the endpoint to get page information",
+	"rest-endpoint-desc-get-revision-id": "{{Experimental}} REST API endpoint description, for the endpoint to get revision information, including source",
+	"rest-endpoint-desc-get-revision-id-html": "{{Experimental}} REST API endpoint description, for the endpoint to get revision html",
+	"rest-endpoint-desc-get-revision-id-with-html": "{{Experimental}} REST API endpoint description, for the endpoint to get revision information including html",
+	"rest-endpoint-desc-get-revision-id-bare": "{{Experimental}} REST API endpoint description, for the endpoint to get revision information"
 }

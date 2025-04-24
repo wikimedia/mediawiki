@@ -10,7 +10,7 @@
 	"paths": {
 		"/page": {
 			"post": {
-				"description": "Endpoint for creating pages",
+				"x-i18n-description": "rest-endpoint-desc-post-page",
 				"handler": {
 					"class": "MediaWiki\\Rest\\Handler\\CreationHandler",
 					"services": [
@@ -26,6 +26,7 @@
 		},
 		"/page/{title}": {
 			"get": {
+				"x-i18n-description": "rest-endpoint-desc-get-page-title",
 				"handler": {
 					"class": "MediaWiki\\Rest\\Handler\\PageSourceHandler",
 					"services": [
@@ -36,6 +37,7 @@
 				}
 			},
 			"put": {
+				"x-i18n-description": "rest-endpoint-desc-put-page-title",
 				"handler": {
 					"class": "MediaWiki\\Rest\\Handler\\UpdateHandler",
 					"services": [
@@ -50,6 +52,7 @@
 		},
 		"/page/{title}/html": {
 			"get": {
+				"x-i18n-description": "rest-endpoint-desc-get-page-title-html",
 				"handler": {
 					"class": "MediaWiki\\Rest\\Handler\\PageHTMLHandler",
 					"services": [
@@ -61,6 +64,7 @@
 		},
 		"/page/{title}/with_html": {
 			"get": {
+				"x-i18n-description": "rest-endpoint-desc-get-page-title-with-html",
 				"handler": {
 					"class": "MediaWiki\\Rest\\Handler\\PageHTMLHandler",
 					"services": [
@@ -72,6 +76,7 @@
 		},
 		"/page/{title}/bare": {
 			"get": {
+				"x-i18n-description": "rest-endpoint-desc-get-page-title-bare",
 				"handler": {
 					"class": "MediaWiki\\Rest\\Handler\\PageSourceHandler",
 					"services": [
@@ -84,6 +89,7 @@
 		},
 		"/revision/{id}": {
 			"get": {
+				"x-i18n-description": "rest-endpoint-desc-get-revision-id",
 				"handler": {
 					"class": "MediaWiki\\Rest\\Handler\\RevisionSourceHandler",
 					"services": [
@@ -95,6 +101,7 @@
 		},
 		"/revision/{id}/html": {
 			"get": {
+				"x-i18n-description": "rest-endpoint-desc-get-revision-id-html",
 				"handler": {
 					"class": "MediaWiki\\Rest\\Handler\\RevisionHTMLHandler",
 					"services": [
@@ -106,6 +113,7 @@
 		},
 		"/revision/{id}/with_html": {
 			"get": {
+				"x-i18n-description": "rest-endpoint-desc-get-revision-id-with-html",
 				"handler": {
 					"class": "MediaWiki\\Rest\\Handler\\RevisionHTMLHandler",
 					"services": [
@@ -117,6 +125,7 @@
 		},
 		"/revision/{id}/bare": {
 			"get": {
+				"x-i18n-description": "rest-endpoint-desc-get-revision-id-bare",
 				"handler": {
 					"class": "MediaWiki\\Rest\\Handler\\RevisionSourceHandler",
 					"services": [

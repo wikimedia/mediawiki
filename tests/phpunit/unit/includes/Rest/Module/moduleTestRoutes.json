@@ -17,7 +17,7 @@
 		"/ModuleTest/hello/{name}": {
 			"get": {
 				"summary": "hello summary",
-				"description": "hello description",
+				"x-i18n-description": "rest-endpoint-desc-mock-desc",
 				"handler": {
 					"class": "MediaWiki\\Tests\\Rest\\Handler\\HelloHandler",
 					"hello": "hi!"

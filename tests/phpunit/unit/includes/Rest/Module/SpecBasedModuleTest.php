@@ -72,7 +72,8 @@ class SpecBasedModuleTest extends \MediaWikiUnitTestCase {
 			'validator' => $validator
 		] );
 
-		$responseFactory = new ResponseFactory( [] );
+		$formatter = $this->getDummyTextFormatter( true );
+		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );
 		$responseFactory->setShowExceptionDetails( true );
 
 		$module = new SpecBasedModule(
@@ -226,5 +227,6 @@ class SpecBasedModuleTest extends \MediaWikiUnitTestCase {
 		$oas = $handler->getOpenApiSpec( 'GET' );
 
 		$this->assertSame( 'hello summary', $oas['summary'] );
+		$this->assertSame( '<message key="rest-endpoint-desc-mock-desc"></message>', $oas['description'] );
 	}
 }
