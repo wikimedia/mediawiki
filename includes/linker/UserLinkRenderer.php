@@ -133,6 +133,7 @@ class UserLinkRenderer {
 
 		if ( $this->tempUserConfig->isTempName( $userName ) ) {
 			$classes[] = 'mw-tempuserlink';
+			$attributes['data-mw-target'] = $userName;
 
 			// Adjust the styling of expired temporary account links (T358469).
 			if ( $this->tempUserDetailsLookup->isExpired( $targetUser ) ) {
