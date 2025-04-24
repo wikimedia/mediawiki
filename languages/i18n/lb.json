@@ -1645,7 +1645,7 @@
 	"statistics-pages": "Säiten",
 	"statistics-pages-desc": "All Säiten an der Wiki, inklusiv Diskussiounssäiten, Viruleedungen, asw.",
 	"statistics-files": "Eropgeluede Fichieren",
-	"statistics-edits": "Säitenännerungen zanter datt et {{SITENAME}} gëtt",
+	"statistics-edits": "Säitenännerungen, zanter datt et {{SITENAME}} gëtt",
 	"statistics-edits-average": "Duerchschnëttlech Zuel vun Ännerunge pro Säit",
 	"statistics-users": "Registréiert Benotzer",
 	"statistics-users-active": "Aktiv Benotzer",
