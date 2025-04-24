@@ -113,6 +113,19 @@ class BlockTargetFactory implements WikiAwareEntity {
 	}
 
 	/**
+	 * Try to create a block target from a single IP address
+	 *
+	 * @param string $ip
+	 * @return AnonIpBlockTarget|null
+	 */
+	public function newFromIp( string $ip ): ?AnonIpBlockTarget {
+		if ( IPUtils::isValid( $ip ) ) {
+			return new AnonIpBlockTarget( IPUtils::sanitizeIP( $ip ), $this->wikiId );
+		}
+		return null;
+	}
+
+	/**
 	 * Create a BlockTarget from a UserIdentity, which may refer to a
 	 * registered user, an IP address or range.
 	 *
@@ -128,7 +141,7 @@ class BlockTargetFactory implements WikiAwareEntity {
 		} elseif ( IPUtils::isValidRange( $name ) ) {
 			return $this->newRangeBlockTarget( IPUtils::sanitizeRange( $name ) );
 		} elseif ( IPUtils::isValid( $name ) ) {
-			return $this->newAnonIpBlockTarget( $name );
+			return $this->newAnonIpBlockTarget( IPUtils::sanitizeIP( $name ) );
 		} else {
 			return new UserBlockTarget( $user );
 		}
@@ -144,7 +157,7 @@ class BlockTargetFactory implements WikiAwareEntity {
 	public function newFromLegacyUnion( $union ): ?BlockTarget {
 		if ( $union instanceof UserIdentity ) {
 			if ( IPUtils::isValid( $union->getName() ) ) {
-				return new AnonIpBlockTarget( $union->getName(), $this->wikiId );
+				return new AnonIpBlockTarget( IPUtils::sanitizeIP( $union->getName() ), $this->wikiId );
 			} else {
 				return new UserBlockTarget( $union );
 			}
@@ -251,7 +264,8 @@ class BlockTargetFactory implements WikiAwareEntity {
 	/**
 	 * Create an IP block target
 	 *
-	 * A simple constructor proxy for pre-validated input.
+	 * A simple constructor proxy for pre-validated input. Use newFromIP() to
+	 * apply normalization, for example stripping leading zeroes.
 	 *
 	 * @param string $ip
 	 * @return AnonIpBlockTarget
