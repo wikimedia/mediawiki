@@ -308,7 +308,7 @@ class ExtensionProcessor implements Processor {
 						'class' => $className,
 					];
 				}
-				$module['name'] = $name;
+				$module['name'] ??= $name;
 			}
 		}
 

@@ -934,22 +934,59 @@ class SpecialVersion extends SpecialPage {
 		array_walk( $funcHooks, static function ( &$value ) use ( $preferredSynonyms ) {
 			$value = $preferredSynonyms[$value];
 		} );
+		$legacyHooks = array_flip( $funcHooks );
 
 		// Sort case-insensitively, ignoring the leading '#' if present
-		usort( $funcHooks, static function ( $a, $b ) {
+		$cmpHooks = static function ( $a, $b ) {
 			return strcasecmp( ltrim( $a, '#' ), ltrim( $b, '#' ) );
-		} );
+		};
+		usort( $funcHooks, $cmpHooks );
 
-		array_walk( $funcHooks, static function ( &$value ) {
+		$formatHooks = static function ( &$value ) {
 			// Bidirectional isolation ensures it displays as {{#ns}} and not {{ns#}} in RTL wikis
 			$value = Html::rawElement(
 				'bdi',
 				[],
 				Html::element( 'code', [], '{{' . $value . '}}' )
 			);
-		} );
+		};
+		array_walk( $funcHooks, $formatHooks );
 
 		$out .= $this->getLanguage()->listToText( $funcHooks );
+
+		# Get a list of parser functions from Parsoid as well.
+		$parsoidHooks = [];
+		$services = MediaWikiServices::getInstance();
+		$siteConfig = $services->getParsoidSiteConfig();
+		$magicWordFactory = $services->getMagicWordFactory();
+		foreach ( $siteConfig->getPFragmentHandlerKeys() as $key ) {
+			$config = $siteConfig->getPFragmentHandlerConfig( $key );
+			if ( !( $config['options']['parserFunction'] ?? false ) ) {
+				continue;
+			}
+			$mw = $magicWordFactory->get( $key );
+			foreach ( $mw->getSynonyms() as $local ) {
+				if ( !( $config['options']['nohash'] ?? false ) ) {
+					$local = '#' . $local;
+				}
+				// Skip hooks already present in legacy hooks (they will
+				// also work in parsoid)
+				if ( isset( $legacyHooks[$local] ) ) {
+					continue;
+				}
+				$parsoidHooks[] = $local;
+			}
+		}
+		if ( $parsoidHooks ) {
+			$out .= Html::element(
+				'h3',
+				[ 'id' => 'mw-version-parser-function-hooks-parsoid' ],
+				$this->msg( 'version-parser-function-hooks-parsoid' )->text()
+			);
+			usort( $parsoidHooks, $cmpHooks );
+			array_walk( $parsoidHooks, $formatHooks );
+			$out .= $this->getLanguage()->listToText( $parsoidHooks );
+		}
 
 		return $out;
 	}
