@@ -9,7 +9,8 @@
 			"Vlad5250",
 			"Kareyac",
 			"Cabadeck",
-			"Yurina Tatiana"
+			"Yurina Tatiana",
+			"Mitte27"
 		]
 	},
 	"rest-prefix-mismatch": "Запрашиваемый путь ($1) не найден внутри корневого пути REST API ($2)",

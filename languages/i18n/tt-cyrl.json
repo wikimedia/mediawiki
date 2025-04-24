@@ -4114,7 +4114,7 @@
 	"parsoid-client-error": "Кулланылмый торган parsoid-кереш: $1",
 	"newpages-showhide-bots": "Ботларныкын $1",
 	"newpages-showhide-patrolled": "Тикшерелгән төзәтмәләрне $1",
-	"newpages-showhide-redirect": "Юнәлтүрне $1",
+	"newpages-showhide-redirect": "Юнәлтүләрне $1",
 	"newpages-showhide-registered": "Теркәлгән кулланучыларныкын  $1",
 	"blockedtext-made-by": "Блоклауны $1 дигән идарәче башкарган.",
 	"blockedtext-reason-comment": "Блоклау сәбәбе: <em>$1</em>",
