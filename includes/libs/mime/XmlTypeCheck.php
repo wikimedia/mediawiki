@@ -169,9 +169,9 @@ class XmlTypeCheck {
 	private function validateFromInput( $xml, $isFile ) {
 		$reader = new XMLReader();
 		if ( $isFile ) {
-			$s = $reader->open( $xml, null, LIBXML_NOERROR | LIBXML_NOWARNING );
+			$s = $reader->open( $xml, null, LIBXML_NOERROR | LIBXML_NOWARNING | LIBXML_PARSEHUGE );
 		} else {
-			$s = $reader->XML( $xml, null, LIBXML_NOERROR | LIBXML_NOWARNING );
+			$s = $reader->XML( $xml, null, LIBXML_NOERROR | LIBXML_NOWARNING | LIBXML_PARSEHUGE );
 		}
 		if ( $s !== true ) {
 			// Couldn't open the XML
