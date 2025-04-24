@@ -270,8 +270,8 @@ class DatabaseBlockStore {
 			// @phan-suppress-next-line PhanTypeMismatchArgument
 			$orConds[] = $db->expr( 'bt_address', '=', array_unique( $addresses ) );
 		}
-		foreach ( $ranges as $range ) {
-			$orConds[] = new RawSQLExpression( $this->getRangeCond( $range[0], $range[1] ) );
+		foreach ( $this->getConditionForRanges( $ranges ) as $cond ) {
+			$orConds[] = new RawSQLExpression( $cond );
 		}
 		if ( !$orConds ) {
 			return [];
@@ -358,6 +358,51 @@ class DatabaseBlockStore {
 	}
 
 	/**
+	 * Get a set of SQL conditions which select range blocks encompassing the
+	 * given ranges. For each range that is really a single IP (start=end), it will
+	 * also select single IP blocks with that IP.
+	 *
+	 * @since 1.44
+	 * @param string[][] $ranges List of elements with `[ start, end ]`, where `start` and `end` are hexadecimal
+	 * IP representation, and `end` can be null to use `end = start`.
+	 * @phan-param list<array{0:string,1:?string}> $ranges
+	 * @return string[] List of conditions to be ORed.
+	 */
+	public function getConditionForRanges( array $ranges ): array {
+		$dbr = $this->getReplicaDB();
+
+		$conds = [];
+		$individualIPs = [];
+		foreach ( $ranges as [ $start, $end ] ) {
+			// Per T16634, we want to include relevant active range blocks; for
+			// range blocks, we want to include larger ranges which enclose the given
+			// range. We know that all blocks must be smaller than $wgBlockCIDRLimit,
+			// so we can improve performance by filtering on a LIKE clause
+			$chunk = $this->getIpFragment( $start );
+			$end ??= $start;
+
+			$expr = $dbr->expr(
+				'bt_range_start',
+				IExpression::LIKE,
+				new LikeValue( $chunk, $dbr->anyString() )
+			)
+				->and( 'bt_range_start', '<=', $start )
+				->and( 'bt_range_end', '>=', $end );
+			if ( $start === $end ) {
+				$individualIPs[] = $start;
+			}
+			$conds[] = $expr->toSql( $dbr );
+		}
+		if ( $individualIPs ) {
+			// Also select single IP blocks for these targets
+			$conds[] = $dbr->expr( 'bt_ip_hex', '=', $individualIPs )
+				->and( 'bt_range_start', '=', null )
+				->toSql( $dbr );
+		}
+		return $conds;
+	}
+
+	/**
 	 * Get a set of SQL conditions which select range blocks encompassing a
 	 * given range. If the given range is a single IP with start=end, it will
 	 * also select single IP blocks with that IP.
@@ -368,30 +413,9 @@ class DatabaseBlockStore {
 	 * @return string
 	 */
 	public function getRangeCond( $start, $end ) {
-		// Per T16634, we want to include relevant active range blocks; for
-		// range blocks, we want to include larger ranges which enclose the given
-		// range. We know that all blocks must be smaller than $wgBlockCIDRLimit,
-		// so we can improve performance by filtering on a LIKE clause
-		$chunk = $this->getIpFragment( $start );
 		$dbr = $this->getReplicaDB();
-		$end ??= $start;
-
-		$expr = $dbr->expr(
-				'bt_range_start',
-				IExpression::LIKE,
-				new LikeValue( $chunk, $dbr->anyString() )
-			)
-			->and( 'bt_range_start', '<=', $start )
-			->and( 'bt_range_end', '>=', $end );
-		if ( $start === $end ) {
-			// Also select single IP blocks for this target
-			$expr = $dbr->orExpr( [
-				$dbr->expr( 'bt_ip_hex', '=', $start )
-					->and( 'bt_range_start', '=', null ),
-				$expr
-			] );
-		}
-		return $expr->toSql( $dbr );
+		$conds = $this->getConditionForRanges( [ [ $start, $end ] ] );
+		return $dbr->makeList( $conds, IDatabase::LIST_OR );
 	}
 
 	/**
@@ -531,25 +555,23 @@ class DatabaseBlockStore {
 	 * @return DatabaseBlock[]
 	 */
 	public function newListFromIPs( array $addresses, $applySoftBlocks, $fromPrimary = false ) {
+		$addresses = array_unique( $addresses );
 		if ( $addresses === [] ) {
 			return [];
 		}
 
-		$conds = [];
-		foreach ( array_unique( $addresses ) as $ipaddr ) {
-			$conds[] = $this->getRangeCond( IPUtils::toHex( $ipaddr ), null );
+		$ranges = [];
+		foreach ( $addresses as $ipaddr ) {
+			$ranges[] = [ IPUtils::toHex( $ipaddr ), null ];
 		}
-
-		if ( $conds === [] ) {
-			return [];
-		}
+		$rangeConds = $this->getConditionForRanges( $ranges );
 
 		if ( $fromPrimary ) {
 			$db = $this->getPrimaryDB();
 		} else {
 			$db = $this->getReplicaDB();
 		}
-		$conds = $db->makeList( $conds, LIST_OR );
+		$conds = $db->makeList( $rangeConds, LIST_OR );
 		if ( !$applySoftBlocks ) {
 			$conds = [ $conds, 'bl_anon_only' => 0 ];
 		}

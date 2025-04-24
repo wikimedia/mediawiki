@@ -357,6 +357,72 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$this->assertCount( 0, $list );
 	}
 
+	public static function provideGetConditionForRanges() {
+		$hex1 = IPUtils::toHex( '1.2.3.4' );
+		$hex2 = IPUtils::toHex( '1.2.3.5' );
+		$hex3 = IPUtils::toHex( '1.2.3.6' );
+		$hex4 = IPUtils::toHex( '1.2.3.7' );
+		yield 'Both same end' => [
+			[ [ $hex1, null ], [ $hex2, null ] ],
+			[
+				"(bt_range_start LIKE '0102%' ESCAPE '`'"
+					. " AND bt_range_start <= '$hex1'"
+					. " AND bt_range_end >= '$hex1')",
+				"(bt_range_start LIKE '0102%' ESCAPE '`'"
+					. " AND bt_range_start <= '$hex2'"
+					. " AND bt_range_end >= '$hex2')",
+				"(bt_ip_hex IN ('01020304','01020305') AND bt_range_start IS NULL)"
+			],
+		];
+		yield 'Both different end' => [
+			[ [ $hex1, $hex2 ], [ $hex3, $hex4 ] ],
+			[
+				"(bt_range_start LIKE '0102%' ESCAPE '`'"
+					. " AND bt_range_start <= '$hex1'"
+					. " AND bt_range_end >= '$hex2')",
+				"(bt_range_start LIKE '0102%' ESCAPE '`'"
+					. " AND bt_range_start <= '$hex3'"
+					. " AND bt_range_end >= '$hex4')",
+			],
+		];
+		yield 'First same end, second different end' => [
+			[ [ $hex1, null ], [ $hex3, $hex4 ] ],
+			[
+				"(bt_range_start LIKE '0102%' ESCAPE '`'"
+					. " AND bt_range_start <= '$hex1'"
+					. " AND bt_range_end >= '$hex1')",
+				"(bt_range_start LIKE '0102%' ESCAPE '`'"
+					. " AND bt_range_start <= '$hex3'"
+					. " AND bt_range_end >= '$hex4')",
+				"(bt_ip_hex = '$hex1' AND bt_range_start IS NULL)",
+			],
+		];
+		yield 'First different end, second same end' => [
+			[ [ $hex1, $hex2 ], [ $hex3, null ] ],
+			[
+				"(bt_range_start LIKE '0102%' ESCAPE '`'"
+					. " AND bt_range_start <= '$hex1'"
+					. " AND bt_range_end >= '$hex2')",
+				"(bt_range_start LIKE '0102%' ESCAPE '`'"
+					. " AND bt_range_start <= '$hex3'"
+					. " AND bt_range_end >= '$hex3')",
+				"(bt_ip_hex = '$hex3' AND bt_range_start IS NULL)",
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetConditionForRanges
+	 * @covers ::getConditionForRanges
+	 * @covers ::getIpFragment
+	 */
+	public function testGetConditionForRanges( array $ranges, array $expect ) {
+		$this->assertSame(
+			$expect,
+			$this->getStore()->getConditionForRanges( $ranges )
+		);
+	}
+
 	public static function provideGetRangeCond() {
 		// $start, $end, $expect
 		$hex1 = IPUtils::toHex( '1.2.3.4' );
@@ -364,34 +430,34 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		yield 'IPv4 start, same end' => [
 			$hex1,
 			null,
-			"((bt_ip_hex = '$hex1' AND bt_range_start IS NULL)"
-			. " OR (bt_range_start LIKE '0102%' ESCAPE '`'"
+			"((bt_range_start LIKE '0102%' ESCAPE '`'"
 			. " AND bt_range_start <= '$hex1'"
 			. " AND bt_range_end >= '$hex1'))"
+			. " OR ((bt_ip_hex = '$hex1' AND bt_range_start IS NULL))"
 		];
 		yield 'IPv4 start, different end' => [
 			$hex1,
 			$hex2,
-			"(bt_range_start LIKE '0102%' ESCAPE '`'"
+			"((bt_range_start LIKE '0102%' ESCAPE '`'"
 			. " AND bt_range_start <= '$hex1'"
-			. " AND bt_range_end >= '$hex2')"
+			. " AND bt_range_end >= '$hex2'))"
 		];
 		$hex3 = IPUtils::toHex( '2000:DEAD:BEEF:A:0:0:0:0' );
 		$hex4 = IPUtils::toHex( '2000:DEAD:BEEF:A:0:0:000A:000F' );
 		yield 'IPv6 start, same end' => [
 			$hex3,
 			null,
-			"((bt_ip_hex = '$hex3' AND bt_range_start IS NULL)"
-			. " OR (bt_range_start LIKE 'v6-2000%' ESCAPE '`'"
+			"((bt_range_start LIKE 'v6-2000%' ESCAPE '`'"
 			. " AND bt_range_start <= '$hex3'"
 			. " AND bt_range_end >= '$hex3'))"
+			. " OR ((bt_ip_hex = '$hex3' AND bt_range_start IS NULL))"
 		];
 		yield 'IPv6 start, different end' => [
 			$hex3,
 			$hex4,
-			"(bt_range_start LIKE 'v6-2000%' ESCAPE '`'"
+			"((bt_range_start LIKE 'v6-2000%' ESCAPE '`'"
 			. " AND bt_range_start <= '$hex3'"
-			. " AND bt_range_end >= '$hex4')"
+			. " AND bt_range_end >= '$hex4'))"
 		];
 	}
 
