@@ -34,11 +34,6 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 	use ExpectCallbackTrait;
 
 	/**
-	 * @var array
-	 */
-	private $pages = [];
-
-	/**
 	 * A logged out user who edited the page before it was archived.
 	 * @var string
 	 */
@@ -48,8 +43,6 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 		parent::setUp();
 
 		$this->ipEditor = '2001:DB8:0:0:0:0:0:1';
-		$this->setupPage( 'UndeletePageTest_thePage', NS_MAIN, ' ' );
-		$this->setupPage( 'UndeletePageTest_thePage', NS_TALK, ' ' );
 	}
 
 	/**
@@ -58,8 +51,10 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 	 * @param string $titleText
 	 * @param int $ns
 	 * @param string|Content $content
+	 *
+	 * @return array { page: WikiPage, revId: int }
 	 */
-	private function setupPage( string $titleText, int $ns, $content ): void {
+	private function setupPage( string $titleText, int $ns, $content ): array {
 		if ( is_string( $content ) ) {
 			$content = new WikitextContent( $content );
 		}
@@ -79,8 +74,8 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 		// Run jobs that were enqueued by page creation now, since they might expect the page to exist.
 		$this->runJobs( [ 'minJobs' => 0 ] );
 
-		$this->pages[] = [ 'page' => $page, 'revId' => $revisionRecord->getId() ];
 		$this->deletePage( $page, '', $performer );
+		return [ 'page' => $page, 'revId' => $revisionRecord->getId() ];
 	}
 
 	/**
@@ -90,16 +85,19 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\User\ActorStoreFactory::getActorStoreForUndelete
 	 */
 	public function testUndeleteRevisions() {
+		$pages[] = $this->setupPage( 'UndeletePageTest_thePage', NS_MAIN, ' ' );
+		$pages[] = $this->setupPage( 'UndeletePageTest_thePage', NS_TALK, ' ' );
+
 		// TODO: MCR: Test undeletion with multiple slots. Check that slots remain untouched.
 		$revisionStore = $this->getServiceContainer()->getRevisionStore();
 
 		// First make sure old revisions are archived
 		$dbr = $this->getDb();
 
-		foreach ( [ 0, 1 ] as $key ) {
+		foreach ( $pages as $pg ) {
 			$row = $revisionStore->newArchiveSelectQueryBuilder( $dbr )
 				->joinComment()
-				->where( [ 'ar_rev_id' => $this->pages[$key]['revId'] ] )
+				->where( [ 'ar_rev_id' => $pg['revId'] ] )
 				->caller( __METHOD__ )->fetchRow();
 			$this->assertEquals( $this->ipEditor, $row->ar_user_text );
 
@@ -107,7 +105,7 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 			$row = $dbr->newSelectQueryBuilder()
 				->select( '1' )
 				->from( 'revision' )
-				->where( [ 'rev_id' => $this->pages[$key]['revId'] ] )
+				->where( [ 'rev_id' => $pg['revId'] ] )
 				->fetchRow();
 			$this->assertFalse( $row );
 
@@ -115,7 +113,7 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 			$row = $dbr->newSelectQueryBuilder()
 				->select( '1' )
 				->from( 'ip_changes' )
-				->where( [ 'ipc_rev_id' => $this->pages[$key]['revId'] ] )
+				->where( [ 'ipc_rev_id' => $pg['revId'] ] )
 				->fetchRow();
 			$this->assertFalse( $row );
 		}
@@ -125,7 +123,7 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 		$this->enableAutoCreateTempUser();
 		// Restore the page
 		$undeletePage = $this->getServiceContainer()->getUndeletePageFactory()->newUndeletePage(
-			$this->pages[0]['page'],
+			$pages[0]['page'],
 			$this->getTestSysop()->getUser()
 		);
 
@@ -133,9 +131,9 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( 2, $status->value[UndeletePage::REVISIONS_RESTORED] );
 
 		// check subject page and talk page are both back in the revision table
-		foreach ( [ 0, 1 ] as $key ) {
+		foreach ( $pages as $pg ) {
 			$row = $revisionStore->newSelectQueryBuilder( $dbr )
-				->where( [ 'rev_id' => $this->pages[$key]['revId'] ] )
+				->where( [ 'rev_id' => $pg['revId'] ] )
 				->caller( __METHOD__ )->fetchRow();
 
 			$this->assertNotFalse( $row, 'row exists in revision table' );
@@ -145,8 +143,9 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 			$row = $dbr->newSelectQueryBuilder()
 				->select( [ 'ipc_hex' ] )
 				->from( 'ip_changes' )
-				->where( [ 'ipc_rev_id' => $this->pages[$key]['revId'] ] )
+				->where( [ 'ipc_rev_id' => $pg['revId'] ] )
 				->fetchRow();
+
 			$this->assertNotFalse( $row, 'row exists in ip_changes table' );
 			$this->assertEquals( IPUtils::toHex( $this->ipEditor ), $row->ipc_hex );
 		}
@@ -156,7 +155,7 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 	 * Regression test for T381225
 	 * @covers \MediaWiki\Page\UndeletePage::undeleteUnsafe
 	 */
-	public function testEventEmission() {
+	public function testEventEmission_new() {
 		$page = PageIdentityValue::localIdentity( 0, NS_MEDIAWIKI, __METHOD__ );
 		$this->setupPage( $page->getDBkey(), $page->getNamespace(), 'Lorem Ipsum' );
 
@@ -204,6 +203,84 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$undeletePage->undeleteUnsafe( 'just a test' );
+	}
+
+	public static function provideEventEmission_existing() {
+		yield 'undelete historical revision' => [ -60, 10, false ];
+		yield 'undelete newer revision (different page ID)' => [ +60, 10, true ];
+		yield 'undelete newer revision (same page ID)' => [ +60, 0, true ];
+	}
+
+	/**
+	 * @dataProvider provideEventEmission_existing
+	 *
+	 * Regression test for T391739
+	 * @covers \MediaWiki\Page\UndeletePage::undeleteUnsafe
+	 */
+	public function testEventEmission_existing(
+		$archiveTimestampOffset,
+		$pageIdOffset,
+		$expectEvent,
+		$expectCreation = false
+	) {
+		$fakeTime = wfTimestamp( TS_UNIX, '2020-01-01T11:22:33' );
+
+		// create a page and delete it.
+		MWTimestamp::setFakeTime( $fakeTime + $archiveTimestampOffset );
+		$page = PageIdentityValue::localIdentity( 0, NS_MEDIAWIKI, __METHOD__ );
+		[ 'revId' => $archivedRev ] = $this->setupPage(
+			$page->getDBkey(),
+			$page->getNamespace(),
+			'Lorem Ipsum'
+		);
+
+		// create another page with the same name
+		MWTimestamp::setFakeTime( $fakeTime );
+		$status = $this->editPage( $page, 'Lorem Ipsum' );
+		$revId = $status->getNewRevision()->getId();
+		$pageId = $status->getNewRevision()->getPageId();
+
+		// Force the page ID of the archived revision(s).
+		$this->getDb()->newUpdateQueryBuilder()->update( 'archive' )
+			->where( [ 'ar_rev_id' => $archivedRev ] )
+			->set( [
+				'ar_page_id' => $pageId + $pageIdOffset
+			] )
+			->caller( __METHOD__ )
+			->execute();
+
+		$this->assertSame( 1, $this->getDb()->affectedRows() );
+
+		// clear the queue
+		$this->runJobs();
+
+		$sysop = $this->getTestSysop()->getUser();
+
+		$this->expectDomainEvent(
+			PageRevisionUpdatedEvent::TYPE, $expectEvent ? 1 : 0,
+			static function ( PageRevisionUpdatedEvent $event ) use ( $expectCreation, $revId ) {
+				Assert::assertTrue(
+					$event->hasCause( PageRevisionUpdatedEvent::CAUSE_UNDELETE ),
+					PageRevisionUpdatedEvent::CAUSE_UNDELETE
+				);
+
+				Assert::assertTrue( $event->isSilent(), 'isSilent' );
+				Assert::assertTrue( $event->isImplicit(), 'isImplicit' );
+				Assert::assertSame( $expectCreation, $event->isCreation(), 'isCreation' );
+				Assert::assertSame( $revId, $event->getLatestRevisionBefore()->getId() );
+				Assert::assertSame( $revId, $event->getPageRecordBefore()->getLatest() );
+			}
+		);
+
+		// Now undelete the page
+		$undeletePage = $this->getServiceContainer()->getUndeletePageFactory()->newUndeletePage(
+			$page,
+			$sysop
+		);
+		$status = $undeletePage->undeleteUnsafe( 'just a test' );
+
+		$this->assertStatusGood( $status );
+		$this->assertSame( 1, $status->value['revs'] );
 	}
 
 	public static function provideUpdatePropagation() {

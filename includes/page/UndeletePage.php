@@ -526,6 +526,10 @@ class UndeletePage {
 			}
 		}
 
+		// Grab page state before changing it
+		$updater = $this->pageUpdaterFactory->newDerivedPageDataUpdater( $wikiPage );
+		$updater->grabCurrentRevision();
+
 		$pageId = $wikiPage->insertOn( $dbw, $latestRestorableRow->ar_page_id );
 		if ( $pageId === false ) {
 			// The page ID is reserved; let's pick another
@@ -576,7 +580,8 @@ class UndeletePage {
 		Assert::postcondition( $page->exists(), 'The page should exist now' );
 
 		// Check if a deleted revision will become the current revision...
-		if ( $latestRestorableRow->ar_timestamp > $previousTimestamp ) {
+		$latestRestorableRowTimestamp = wfTimestamp( TS_MW, $latestRestorableRow->ar_timestamp );
+		if ( $latestRestorableRowTimestamp > $previousTimestamp ) {
 			// Check the state of the newest to-be version...
 			if ( !$this->unsuppress
 				&& ( $latestRestorableRow->ar_deleted & RevisionRecord::DELETED_TEXT )
@@ -645,7 +650,6 @@ class UndeletePage {
 					'oldcountable' => $oldcountable,
 				];
 
-				$updater = $this->pageUpdaterFactory->newDerivedPageDataUpdater( $wikiPage );
 				$updater->setCause( PageUpdater::CAUSE_UNDELETE );
 				$updater->setPerformer( $this->performer->getUser() );
 				$updater->prepareUpdate( $revision, $options );
