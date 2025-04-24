@@ -118,6 +118,7 @@ class CommandLineInstaller extends Maintenance {
 		Installer::overrideConfig( $settingsBuilder );
 	}
 
+	/** @inheritDoc */
 	public function getDbType() {
 		if ( $this->hasOption( 'env-checks' ) ) {
 			return Maintenance::DB_NONE;
@@ -125,6 +126,7 @@ class CommandLineInstaller extends Maintenance {
 		return parent::getDbType();
 	}
 
+	/** @inheritDoc */
 	public function execute() {
 		global $IP;
 

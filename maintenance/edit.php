@@ -61,6 +61,7 @@ class EditCLI extends Maintenance {
 		$this->addArg( 'title', 'Title of article to edit' );
 	}
 
+	/** @inheritDoc */
 	public function execute() {
 		$userName = $this->getOption( 'user', false );
 		$summary = $this->getOption( 'summary', '' );

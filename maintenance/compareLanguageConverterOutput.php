@@ -62,6 +62,7 @@ class CompareLanguageConverterOutput extends Maintenance {
 		);
 	}
 
+	/** @inheritDoc */
 	public function execute() {
 		$mwInstance = $this->getServiceContainer();
 

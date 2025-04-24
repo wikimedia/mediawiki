@@ -43,6 +43,7 @@ class UpdateRestrictions extends Maintenance {
 		$this->setBatchSize( 1000 );
 	}
 
+	/** @inheritDoc */
 	public function execute() {
 		$dbw = $this->getDB( DB_PRIMARY );
 		$batchSize = $this->getBatchSize();

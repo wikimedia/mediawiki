@@ -49,6 +49,7 @@ class ResetPageRandom extends Maintenance {
 		$this->setBatchSize( 200 );
 	}
 
+	/** @inheritDoc */
 	public function execute() {
 		$batchSize = $this->getBatchSize();
 		$dbw = $this->getPrimaryDB();

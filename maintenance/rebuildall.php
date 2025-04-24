@@ -39,6 +39,7 @@ class RebuildAll extends Maintenance {
 		$this->addDescription( 'Rebuild links, text index and recent changes' );
 	}
 
+	/** @inheritDoc */
 	public function getDbType() {
 		return Maintenance::DB_ADMIN;
 	}

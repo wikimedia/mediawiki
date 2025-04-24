@@ -32,6 +32,7 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 		$this->setBatchSize( 200 );
 	}
 
+	/** @inheritDoc */
 	public function execute() {
 		$db = $this->getPrimaryDB();
 		$key = $this->getUpdateKey();

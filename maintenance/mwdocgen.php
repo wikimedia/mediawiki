@@ -88,6 +88,7 @@ class MWDocGen extends Maintenance {
 			'Process the skins/ directory as well (ignored if --file is used)' );
 	}
 
+	/** @inheritDoc */
 	public function getDbType() {
 		return Maintenance::DB_NONE;
 	}

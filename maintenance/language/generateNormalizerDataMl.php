@@ -40,6 +40,7 @@ class GenerateNormalizerDataMl extends Maintenance {
 		$this->addDescription( 'Generate the normalizer data file for Malayalam' );
 	}
 
+	/** @inheritDoc */
 	public function getDbType() {
 		return Maintenance::DB_NONE;
 	}

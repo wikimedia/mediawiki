@@ -73,6 +73,7 @@ class UpdateMediaWiki extends Maintenance {
 		);
 	}
 
+	/** @inheritDoc */
 	public function getDbType() {
 		return Maintenance::DB_ADMIN;
 	}

@@ -42,6 +42,7 @@ class RenameDbPrefix extends Maintenance {
 		$this->addOption( "new", "New db prefix [0 for none]", true, true );
 	}
 
+	/** @inheritDoc */
 	public function getDbType() {
 		return Maintenance::DB_ADMIN;
 	}
