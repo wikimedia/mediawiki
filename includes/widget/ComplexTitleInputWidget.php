@@ -56,10 +56,12 @@ class ComplexTitleInputWidget extends Widget {
 			->appendContent( $this->namespace, $this->title );
 	}
 
+	/** @inheritDoc */
 	protected function getJavaScriptClassName() {
 		return 'mw.widgets.ComplexTitleInputWidget';
 	}
 
+	/** @inheritDoc */
 	public function getConfig( &$config ) {
 		$config['namespace'] = $this->config['namespace'];
 		$config['namespace']['dropdown']['$overlay'] = true;

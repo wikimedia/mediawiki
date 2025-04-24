@@ -35,10 +35,12 @@ class UserInputWidget extends TextInputWidget {
 		$this->addClasses( [ 'mw-widget-userInputWidget' ] );
 	}
 
+	/** @inheritDoc */
 	protected function getJavaScriptClassName() {
 		return 'mw.widgets.UserInputWidget';
 	}
 
+	/** @inheritDoc */
 	public function getConfig( &$config ) {
 		$config['$overlay'] = true;
 

@@ -19,6 +19,7 @@ class ToggleSwitchWidget extends CheckboxInputWidget {
 		$this->addClasses( [ 'mw-widgets-toggleSwitchWidget' ] );
 	}
 
+	/** @inheritDoc */
 	protected function getJavaScriptClassName() {
 		return 'mw.widgets.ToggleSwitchWidget';
 	}

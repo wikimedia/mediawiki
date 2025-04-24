@@ -103,10 +103,12 @@ class ComplexNamespaceInputWidget extends Widget {
 			->appendContent( $this->namespace, $this->associatedLabel, $this->invertLabel );
 	}
 
+	/** @inheritDoc */
 	protected function getJavaScriptClassName() {
 		return 'mw.widgets.ComplexNamespaceInputWidget';
 	}
 
+	/** @inheritDoc */
 	public function getConfig( &$config ) {
 		$config = array_merge(
 			$config,

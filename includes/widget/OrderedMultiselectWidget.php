@@ -20,12 +20,14 @@ class OrderedMultiselectWidget extends TagMultiselectWidget {
 		parent::__construct( $config );
 	}
 
+	/** @inheritDoc */
 	public function getConfig( &$config ) {
 		$config['options'] = $this->mOptions;
 
 		return parent::getConfig( $config );
 	}
 
+	/** @inheritDoc */
 	protected function getJavaScriptClassName() {
 		return 'mw.widgets.OrderedMultiselectWidget';
 	}

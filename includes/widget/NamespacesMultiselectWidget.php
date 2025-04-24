@@ -27,10 +27,12 @@ class NamespacesMultiselectWidget extends TagMultiselectWidget {
 		$this->addClasses( [ 'mw-widgets-namespacesMultiselectWidget' ] );
 	}
 
+	/** @inheritDoc */
 	protected function getJavaScriptClassName() {
 		return 'mw.widgets.NamespacesMultiselectWidget';
 	}
 
+	/** @inheritDoc */
 	public function getConfig( &$config ) {
 		if ( $this->allowEditTags !== null ) {
 			$config['allowEditTags'] = $this->allowEditTags;

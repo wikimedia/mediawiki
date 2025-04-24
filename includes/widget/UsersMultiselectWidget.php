@@ -56,10 +56,12 @@ class UsersMultiselectWidget extends TagMultiselectWidget {
 		}
 	}
 
+	/** @inheritDoc */
 	protected function getJavaScriptClassName() {
 		return 'mw.widgets.UsersMultiselectWidget';
 	}
 
+	/** @inheritDoc */
 	public function getConfig( &$config ) {
 		if ( $this->ipAllowed !== null ) {
 			$config['ipAllowed'] = $this->ipAllowed;
