@@ -11,6 +11,9 @@ use MediaWiki\User\TempUser\TempUserDetailsLookup;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiLangTestCase;
+use Wikimedia\IPUtils;
+use Wikimedia\Parsoid\Utils\DOMCompat;
+use Wikimedia\Parsoid\Utils\DOMUtils;
 
 /**
  * @covers \MediaWiki\Linker\UserLinkRenderer
@@ -87,6 +90,20 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 		);
 
 		$this->assertSame( $expected, $actual );
+
+		if (
+			IPUtils::isIPAddress( $user->getName() ) ||
+			$this->getServiceContainer()->getUserIdentityUtils()->isTemp( $user )
+		) {
+			$doc = DOMUtils::parseHTML( $actual );
+
+			$this->assertSame(
+				$altUserName ?? IPUtils::prettifyIP( $user->getName() ),
+				DOMCompat::querySelector( $doc, '.mw-userlink' )->textContent,
+				'The text of IP and temporary user links should be the user name,' .
+				' because the IP reveal functionality in the CheckUser extension expects this.'
+			);
+		}
 	}
 
 	public static function provideCasesForUserLink(): iterable {
