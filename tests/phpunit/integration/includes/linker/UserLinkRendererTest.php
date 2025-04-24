@@ -216,14 +216,16 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 			'Temporary user' => [
 				'<a href="/wiki/Special:Contributions/~2025-1" '
 				. 'class="mw-userlink mw-tempuserlink" '
-				. 'title="Special:Contributions/~2025-1"><bdi>~2025-1</bdi></a>',
+				. 'title="Special:Contributions/~2025-1" '
+				. 'data-mw-target="~2025-1"><bdi>~2025-1</bdi></a>',
 				new UserIdentityValue( 2, '~2025-1' )
 			],
 
 			'Temporary user link with custom class' => [
 				'<a href="/wiki/Special:Contributions/~2025-1" '
 				. 'class="mw-userlink mw-tempuserlink custom-class" '
-				. 'title="Special:Contributions/~2025-1"><bdi>~2025-1</bdi></a>',
+				. 'title="Special:Contributions/~2025-1" '
+				. 'data-mw-target="~2025-1"><bdi>~2025-1</bdi></a>',
 				new UserIdentityValue( 2, '~2025-1' ),
 				null,
 				[ 'class' => 'custom-class' ]
@@ -232,7 +234,8 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 			'Expired temporary user link' => [
 				'<a href="/wiki/Special:Contributions/~2023-1" '
 				. 'class="mw-userlink mw-tempuserlink mw-tempuserlink-expired" '
-				. 'title="" aria-describedby="mw-tempuserlink-expired-tooltip-0"><bdi>~2023-1</bdi></a>'
+				. 'title="" data-mw-target="~2023-1" '
+				. 'aria-describedby="mw-tempuserlink-expired-tooltip-0"><bdi>~2023-1</bdi></a>'
 				. '<div id="mw-tempuserlink-expired-tooltip-0" role="tooltip" '
 				. 'class="cdx-tooltip mw-tempuserlink-expired--tooltip">(tempuser-expired-link-tooltip)</div>',
 				new UserIdentityValue( 2, self::EXPIRED_TEMP_USER_NAME )
