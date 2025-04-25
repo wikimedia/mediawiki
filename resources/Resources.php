@@ -113,6 +113,25 @@ return [
 			],
 		],
 	],
+	'mediawiki.skinning.typeaheadSearch' => [
+		'dependencies' => [
+			'mediawiki.codex.typeaheadSearch'
+		],
+		'packageFiles' => [
+			'resources/src/mediawiki.skinning.typeaheadSearch/index.js',
+			'resources/src/mediawiki.skinning.typeaheadSearch/App.vue',
+			'resources/src/mediawiki.skinning.typeaheadSearch/instrumentation.js',
+			'resources/src/mediawiki.skinning.typeaheadSearch/fetch.js',
+			'resources/src/mediawiki.skinning.typeaheadSearch/restSearchClient.js',
+			'resources/src/mediawiki.skinning.typeaheadSearch/urlGenerator.js',
+		],
+		'messages' => [
+			'searchbutton',
+			'searchresults',
+			'search-loader',
+			'searchsuggest-containing-html'
+		]
+	],
 
 	/* Polyfills */
 	'web2017-polyfills' => [
@@ -655,6 +674,13 @@ return [
 			'CdxMessage',
 		],
 		'codexStyleOnly' => true
+	],
+
+	'mediawiki.codex.typeaheadSearch' => [
+		'class' => 'MediaWiki\\ResourceLoader\\CodexModule',
+		'codexComponents' => [
+			'CdxTypeaheadSearch'
+		]
 	],
 
 	'@wikimedia/codex-search' => [

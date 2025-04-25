@@ -40,6 +40,7 @@
 		"grunt-stylelint": "0.20.1",
 		"jest": "29.7.0",
 		"jest-environment-jsdom": "29.7.0",
+		"jest-fetch-mock": "3.0.3",
 		"jsdoc": "4.0.4",
 		"jsdoc-wmf-theme": "1.1.0",
 		"karma": "6.4.1",

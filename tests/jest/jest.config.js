@@ -23,7 +23,8 @@ module.exports = {
 	// An array of glob patterns indicating a set of files for which coverage information should be
 	// collected
 	collectCoverageFrom: [
-		'resources/src/mediawiki.special.block/**/*.{js,vue}'
+		'resources/src/mediawiki.special.block/**/*.{js,vue}',
+		'resources/src/mediawiki.skinning.typeaheadSearch/**/*.{js,vue}'
 	],
 
 	// The directory where Jest should output its coverage files
@@ -87,7 +88,8 @@ module.exports = {
 
 	// A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
 	moduleNameMapper: {
-		'icons.json$': '@wikimedia/codex-icons'
+		'icons.json$': '@wikimedia/codex-icons',
+		'mediawiki.codex.typeaheadSearch': '@wikimedia/codex'
 	},
 
 	// An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
