@@ -3,8 +3,8 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use DeleteBatch;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
-use WikiPage;
 
 /**
  * @covers \DeleteBatch

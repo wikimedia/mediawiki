@@ -12,6 +12,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Page\UndeletePage;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\ArchivedRevisionLookup;
@@ -24,7 +25,6 @@ use Psr\Log\NullLogger;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\ReadOnlyMode;
-use WikiPage;
 
 /**
  * @coversDefaultClass \MediaWiki\Page\UndeletePage

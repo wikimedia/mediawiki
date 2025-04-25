@@ -21,6 +21,8 @@
  * @ingroup Media
  */
 
+use MediaWiki\FileRepo\File\File;
+
 /**
  * Mock handler for images.
  *

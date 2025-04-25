@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\RecentChanges\ChangesListBooleanFilterGroup;
 use Wikimedia\TestingAccessWrapper;
 
 /**

@@ -8,13 +8,13 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Edit\ParsoidRenderID;
 use MediaWiki\Edit\SimpleParsoidOutputStash;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\UserAuthority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\User\User;
 use Wikimedia\ObjectCache\HashBagOStuff;
-use WikiPage;
 
 /**
  * This trait is used in PageHTMLHandlerTest.php & RevisionHTMLHandlerTest.php

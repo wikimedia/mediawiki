@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Exception\FatalError;
 use MediaWiki\Request\PathRouter;
 
 /**

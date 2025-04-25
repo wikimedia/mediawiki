@@ -5,9 +5,9 @@ namespace MediaWiki\Tests\Storage;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWikiIntegrationTestCase;
-use WikiPage;
 
 /**
  * @covers \MediaWiki\Storage\RevertedTagUpdate

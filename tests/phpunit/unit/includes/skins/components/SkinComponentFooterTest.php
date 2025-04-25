@@ -1,4 +1,5 @@
 <?php
+use MediaWiki\Config\HashConfig;
 use MediaWiki\Skin\SkinComponentFooter;
 use MediaWiki\Skin\SkinComponentRegistryContext;
 

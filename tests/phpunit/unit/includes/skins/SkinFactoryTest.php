@@ -1,9 +1,13 @@
 <?php
 
+use MediaWiki\Skin\Skin;
+use MediaWiki\Skin\SkinException;
+use MediaWiki\Skin\SkinFactory;
+use MediaWiki\Skin\SkinFallback;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 
 /**
- * @covers \SkinFactory
+ * @covers \MediaWiki\Skin\SkinFactory
  */
 class SkinFactoryTest extends \MediaWikiUnitTestCase {
 	use DummyServicesTrait;

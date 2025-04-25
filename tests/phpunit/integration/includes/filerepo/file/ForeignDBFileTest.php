@@ -1,8 +1,10 @@
 <?php
 
+use MediaWiki\FileRepo\File\ForeignDBFile;
+use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\Title\Title;
 
-/** @covers \ForeignDBFile */
+/** @covers \MediaWiki\FileRepo\File\ForeignDBFile */
 class ForeignDBFileTest extends MediaWikiIntegrationTestCase {
 
 	public function testShouldConstructCorrectInstanceFromTitle() {

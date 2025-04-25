@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Html\FormOptions;
+use MediaWiki\RecentChanges\ChangesListFilter;
 
 class MockChangesListFilter extends ChangesListFilter {
 	public function displaysOnUnstructuredUi() {

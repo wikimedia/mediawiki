@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Page\File\BadFileLookup;
 use MediaWiki\Tests\Unit\DummyServicesTrait;

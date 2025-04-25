@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Block\HideUserUtils;
+use MediaWiki\User\User;
 
 /**
  * @group Database

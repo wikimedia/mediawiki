@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Storage;
 
-use Article;
 use MediaWiki\Actions\McrUndoAction;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Context\DerivativeContext;
@@ -10,7 +9,9 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\EditPage\EditPage;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Page\Article;
 use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStoreRecord;
@@ -20,7 +21,6 @@ use MediaWiki\Tests\ExpectCallbackTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
-use WikiPage;
 
 /**
  * Integration tests for undos.

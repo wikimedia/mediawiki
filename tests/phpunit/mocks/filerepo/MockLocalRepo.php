@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\FileRepo\LocalRepo;
+
 /**
  * Class simulating a local file repo.
  *
