@@ -22005,7 +22005,7 @@ Selected changes since MediaWiki 1.16 that may be of interest:
 * (bug 24089) Logevents causes PHP Notice if leprop=title isn't supplied.
 * (bug 23473) Give description of properties on all modules.
 * (bug 24136) unknownerror when adding new section without summary, but
-  forceditsummary.
+  forceeditsummary.
 * (bug 22339) Added srwhat=nearmatch to list=search to get a "go" result.
 * (bug 24303) Added new &servedby parameter to all actions which adds the
   hostname that served the request to the result. It is also added
