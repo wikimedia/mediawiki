@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Logger;
 
+use LogicException;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
@@ -49,6 +50,8 @@ class LoggerFactory {
 	 * @var \MediaWiki\Logger\Spi
 	 */
 	private static $spi;
+
+	private static ?LoggingContext $context;
 
 	/**
 	 * Register a service provider to create new \Psr\Log\LoggerInterface
@@ -91,6 +94,27 @@ class LoggerFactory {
 	 */
 	public static function getInstance( $channel ) {
 		return self::getProvider()->getLogger( $channel );
+	}
+
+	/**
+	 * Get a logging context, which can be used to add information to all log events.
+	 * @since 1.44
+	 */
+	public static function getContext(): LoggingContext {
+		self::$context ??= new LoggingContext();
+		return self::$context;
+	}
+
+	/**
+	 * Replace the logging context, for testing.
+	 * Can also be used to reset the context between tests, by passing new LoggingContext().
+	 * @internal Should only be used by PHPUnit tests.
+	 */
+	public static function setContext( LoggingContext $context ): void {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new LogicException( __METHOD__ . ' can only be used in PHPUnit tests' );
+		}
+		self::$context = $context;
 	}
 
 	/**

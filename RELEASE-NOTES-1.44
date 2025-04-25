@@ -132,6 +132,8 @@ For notes on 1.43.x and older releases, see HISTORY.
 * The UserLinkRenderer service was added.
 * The AuthPreserveQueryParams hook has a new option, $options['request'],
   to avoid having to rely on the global context.
+* You can use LoggerFactory::getContext() to add extra context to all PSR-3
+  log events.
 * …
 
 === External library changes in 1.44 ===

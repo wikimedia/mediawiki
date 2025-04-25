@@ -15,6 +15,7 @@ use MediaWiki\Logger\LegacyLogger;
 use MediaWiki\Logger\LegacySpi;
 use MediaWiki\Logger\LogCapturingSpi;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Logger\LoggingContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
@@ -537,6 +538,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		MediaWiki\Session\SessionManager::resetCache();
 
 		TestUserRegistry::clear();
+		LoggerFactory::setContext( new LoggingContext() );
 	}
 
 	/**

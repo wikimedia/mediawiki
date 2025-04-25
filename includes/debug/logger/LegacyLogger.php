@@ -164,6 +164,8 @@ class LegacyLogger extends AbstractLogger {
 			return;
 		}
 
+		$context += LoggerFactory::getContext()->get();
+
 		if ( $this->isDB
 			&& $level === self::LEVEL_DEBUG
 			&& isset( $context['sql'] )
