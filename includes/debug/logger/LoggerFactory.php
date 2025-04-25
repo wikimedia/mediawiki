@@ -108,10 +108,10 @@ class LoggerFactory {
 	/**
 	 * Replace the logging context, for testing.
 	 * Can also be used to reset the context between tests, by passing new LoggingContext().
-	 * @internal Should only be used by PHPUnit tests.
+	 * @internal Should only be used by PHPUnit and parser tests.
 	 */
 	public static function setContext( LoggingContext $context ): void {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
 			throw new LogicException( __METHOD__ . ' can only be used in PHPUnit tests' );
 		}
 		self::$context = $context;
