@@ -84,7 +84,7 @@ class ChangesListTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringEndsWith( 'hook-added', $lineInnerHtml, 'Hook did not successfully modify HTML' );
 	}
 
-	public function testInsertDiffLinkWhenRecentChangeIsCategoryType() {
+	public function testInsertDiffAndHistLinkWhenRecentChangeIsCategoryType() {
 		$changesList = $this->getChangesList();
 		$recentChange = $this->getCategoryChange(
 			$changesList->getContext()->getUser()
@@ -102,9 +102,13 @@ class ChangesListTest extends MediaWikiIntegrationTestCase {
 		// Get the diff/hist HTML line and check that the diff a href is present.
 		$changesList->insertDiffHist( $html, $recentChange );
 		$htmlElement = DOMUtils::parseHTML( $html );
-		$wrappingElement = DOMCompat::querySelector(
+		$wrappingDiffElement = DOMCompat::querySelector(
 			$htmlElement, 'a.mw-changeslist-diff'
 		);
-		$this->assertNotNull( $wrappingElement );
+		$wrappingHistElement = DOMCompat::querySelector(
+			$htmlElement, 'a.mw-changeslist-history'
+		);
+		$this->assertNotNull( $wrappingDiffElement );
+		$this->assertNotNull( $wrappingHistElement );
 	}
 }
