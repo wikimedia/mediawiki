@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Exception\UserNotLoggedIn;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\SpecialEditWatchlist;
 

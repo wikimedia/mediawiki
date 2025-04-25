@@ -15,6 +15,7 @@ use MediaWiki\Message\Message;
 use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\RecentChanges\ChangeTrackingEventIngress;
 use MediaWiki\RecentChanges\RecentChange;
@@ -33,7 +34,6 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\Assert;
-use WikiPage;
 
 /**
  * @covers \MediaWiki\Storage\PageUpdater

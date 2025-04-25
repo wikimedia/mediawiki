@@ -4,6 +4,7 @@ use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\ContentModelChange;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;

@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\RecentChanges\RecentChange;
+use MediaWiki\RecentChanges\RecentChangesUpdateJob;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**

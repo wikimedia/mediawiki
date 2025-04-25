@@ -2,6 +2,7 @@
 
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 

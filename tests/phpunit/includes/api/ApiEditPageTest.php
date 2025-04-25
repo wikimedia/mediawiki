@@ -8,6 +8,7 @@ use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
@@ -17,7 +18,6 @@ use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
 use RevisionDeleter;
 use Wikimedia\Rdbms\IDBAccessObject;
-use WikiPage;
 
 /**
  * Tests for MediaWiki api.php?action=edit.

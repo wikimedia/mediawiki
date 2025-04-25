@@ -6,6 +6,8 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\EditPage\EditPage;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\Article;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Request\FauxRequest;

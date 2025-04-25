@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\JobQueue\Job;
 use MediaWiki\JobQueue\Jobs\RefreshLinksJob;
 use MediaWiki\JobQueue\Utils\BacklinkJobUtils;
 use MediaWiki\Title\Title;

@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Context\DerivativeContext;
+use MediaWiki\Exception\UserNotLoggedIn;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;

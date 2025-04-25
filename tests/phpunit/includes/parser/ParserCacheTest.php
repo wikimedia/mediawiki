@@ -7,6 +7,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\PageStoreRecord;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\CacheTime;
 use MediaWiki\Parser\ParserCache;
@@ -29,7 +30,6 @@ use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\UUID\GlobalIdGenerator;
-use WikiPage;
 
 /**
  * @covers \MediaWiki\Parser\ParserCache

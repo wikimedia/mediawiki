@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\NullRepo;
 use MediaWiki\Title\Title;
 
 class FakeDimensionFile extends File {

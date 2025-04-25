@@ -13,6 +13,7 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Exception\MWException;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Request\FauxRequest;
@@ -24,7 +25,6 @@ use Wikimedia\ParamValidator\TypeDef\EnumDef;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\ParamValidator\TypeDef\StringDef;
 use Wikimedia\TestingAccessWrapper;
-use WikiPage;
 
 /**
  * @group API

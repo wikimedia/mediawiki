@@ -1,9 +1,10 @@
 <?php
 
+use MediaWiki\Exception\BadTitleError;
 use MediaWiki\Output\OutputPage;
 
 /**
- * @covers \BadTitleError
+ * @covers \MediaWiki\Exception\BadTitleError
  * @author Addshore
  */
 class BadTitleErrorTest extends MediaWikiIntegrationTestCase {

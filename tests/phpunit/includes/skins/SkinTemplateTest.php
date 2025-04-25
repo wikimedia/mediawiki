@@ -1,6 +1,10 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Skin\BaseTemplate;
+use MediaWiki\Skin\QuickTemplate;
+use MediaWiki\Skin\SkinFallback;
+use MediaWiki\Skin\SkinTemplate;
 use MediaWiki\Title\Title;
 use Wikimedia\TestingAccessWrapper;
 
@@ -11,8 +15,8 @@ class SkinQuickTemplateTest extends QuickTemplate {
 }
 
 /**
- * @covers \SkinTemplate
- * @covers \Skin
+ * @covers \MediaWiki\Skin\SkinTemplate
+ * @covers \MediaWiki\Skin\Skin
  * @group Skin
  * @group Database
  * @author Bene* < benestar.wikimedia@gmail.com >

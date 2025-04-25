@@ -3,6 +3,7 @@
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Parser\Parser;
 
 /**
  * @covers MediaWiki\Language\MessageParser

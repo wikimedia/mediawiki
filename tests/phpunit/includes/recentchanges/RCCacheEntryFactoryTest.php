@@ -2,6 +2,8 @@
 
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\UserLinkRenderer;
+use MediaWiki\RecentChanges\RCCacheEntry;
+use MediaWiki\RecentChanges\RCCacheEntryFactory;
 use MediaWiki\Title\Title;
 
 /**

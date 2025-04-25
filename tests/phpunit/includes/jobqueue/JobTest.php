@@ -2,6 +2,7 @@
 
 use MediaWiki\JobQueue\IJobSpecification;
 use MediaWiki\JobQueue\Job;
+use MediaWiki\JobQueue\Jobs\DeleteLinksJob;
 use MediaWiki\JobQueue\Jobs\NullJob;
 use MediaWiki\JobQueue\Jobs\ParsoidCachePrewarmJob;
 use MediaWiki\JobQueue\Jobs\RefreshLinksJob;

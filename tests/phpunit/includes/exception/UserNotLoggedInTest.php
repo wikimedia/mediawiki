@@ -1,12 +1,13 @@
 <?php
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Exception\UserNotLoggedIn;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 
 /**
- * @covers \UserNotLoggedIn
+ * @covers \MediaWiki\Exception\UserNotLoggedIn
  * @author Addshore
  * @author Dreamy Jazz
  * @group Database

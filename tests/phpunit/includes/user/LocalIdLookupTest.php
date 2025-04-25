@@ -7,6 +7,7 @@ use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\CentralId\LocalIdLookup;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * @covers \MediaWiki\User\CentralId\LocalIdLookup

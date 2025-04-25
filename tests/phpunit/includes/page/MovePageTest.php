@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Content\Content;
+use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MainConfigNames;

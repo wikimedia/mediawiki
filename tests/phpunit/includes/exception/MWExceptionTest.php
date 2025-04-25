@@ -1,9 +1,11 @@
 <?php
 
+use MediaWiki\Exception\MWException;
+use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\MainConfigNames;
 
 /**
- * @covers \MWException
+ * @covers \MediaWiki\Exception\MWException
  * @author Antoine Musso
  */
 class MWExceptionTest extends MediaWikiIntegrationTestCase {

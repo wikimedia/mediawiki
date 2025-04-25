@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\RecentChanges\OldChangesList;
 use MediaWiki\Title\Title;
 
 /**

@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\FileRepo\File\LocalFile;
+use MediaWiki\FileRepo\File\UnregisteredLocalFile;
+use MediaWiki\FileRepo\FileRepo;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\FileBackend\FSFileBackend;
 

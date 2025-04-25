@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\FileRepo\FileRepo;
+use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\WikiMap\WikiMap;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\FileBackend\FSFile\TempFSFile;

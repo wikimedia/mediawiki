@@ -1,9 +1,10 @@
 <?php
 
+use MediaWiki\Exception\ThrottledError;
 use MediaWiki\Output\OutputPage;
 
 /**
- * @covers \ThrottledError
+ * @covers \MediaWiki\Exception\ThrottledError
  * @author Addshore
  */
 class ThrottledErrorTest extends MediaWikiIntegrationTestCase {

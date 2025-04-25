@@ -2,11 +2,12 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Skin\SkinTemplate;
 use MediaWiki\Title\Title;
 
 /**
- * @covers \Skin
- * @covers \SkinTemplate
+ * @covers \MediaWiki\Skin\Skin
+ * @covers \MediaWiki\Skin\SkinTemplate
  * @group Skin
  * @group Database
  */

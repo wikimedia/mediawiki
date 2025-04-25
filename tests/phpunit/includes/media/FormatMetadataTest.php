@@ -20,7 +20,7 @@ class FormatMetadataTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers \File::formatMetadata
+	 * @covers \MediaWiki\FileRepo\File\File::formatMetadata
 	 */
 	public function testInvalidDate() {
 		$file = $this->dataFile( 'broken_exif_date.jpg', 'image/jpeg' );

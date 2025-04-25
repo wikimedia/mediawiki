@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\ResourceLoader;
 
-use EmptyBagOStuff;
+use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
 
 /**

@@ -9,6 +9,7 @@ use MediaWiki\Deferred\DeferredUpdatesScopeMediaWikiStack;
 use MediaWiki\Deferred\DeferredUpdatesScopeStack;
 use MediaWiki\Exception\BadTitleError;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\FauxResponse;
 use MediaWiki\Request\WebRequest;
@@ -21,7 +22,6 @@ use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\Assert;
 use ReflectionMethod;
 use Wikimedia\TestingAccessWrapper;
-use WikiPage;
 
 // phpcs:disable MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals
 

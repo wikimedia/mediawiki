@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\FileRepo\FileBackendDBRepoWrapper;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\FileBackend\FSFileBackend;
 use Wikimedia\Rdbms\IDatabase;
@@ -11,7 +12,7 @@ class FileBackendDBRepoWrapperTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider getBackendPathsProvider
-	 * @covers \FileBackendDBRepoWrapper::getBackendPaths
+	 * @covers \MediaWiki\FileRepo\FileBackendDBRepoWrapper::getBackendPaths
 	 */
 	public function testGetBackendPaths(
 		$mocks,
@@ -90,7 +91,7 @@ class FileBackendDBRepoWrapperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \FileBackendDBRepoWrapper::getFileContentsMulti
+	 * @covers \MediaWiki\FileRepo\FileBackendDBRepoWrapper::getFileContentsMulti
 	 */
 	public function testGetFileContentsMulti() {
 		[ $dbMock, $backendMock, $wrapperMock ] = $this->getMocks();

@@ -10,6 +10,8 @@ use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Skin\Skin;
+use MediaWiki\Skin\SkinFallback;
 use MediaWiki\Tests\Unit\MockBlockTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
@@ -20,7 +22,7 @@ use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
 
 /**
- * @covers \Skin
+ * @covers \MediaWiki\Skin\Skin
  * @group Database
  */
 class SkinTest extends MediaWikiIntegrationTestCase {
@@ -29,7 +31,7 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 	use TempUserTestTrait;
 
 	/**
-	 * @covers \Skin
+	 * @covers \MediaWiki\Skin\Skin
 	 */
 	public function testGetSkinName() {
 		$skin = new SkinFallback();
