@@ -1186,7 +1186,7 @@ class ParserOptions {
 	 * @internal For testing
 	 */
 	public static function clearStaticCache() {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
 			throw new LogicException( __METHOD__ . ' is just for testing' );
 		}
 		self::$defaults = null;

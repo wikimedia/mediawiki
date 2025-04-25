@@ -382,7 +382,7 @@ class MediaWikiServices extends ServiceContainer {
 	 * @return self The old MediaWikiServices object, so it can be restored later.
 	 */
 	public static function forceGlobalInstance( self $services ): self {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
 			throw new LogicException( __METHOD__ . ' must not be used outside unit tests.' );
 		}
 
@@ -645,7 +645,7 @@ class MediaWikiServices extends ServiceContainer {
 	 *        from the container.
 	 */
 	public function resetServiceForTesting( $name, $destroy = true ) {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
 			throw new LogicException( 'resetServiceForTesting() must not be used outside unit tests.' );
 		}
 
@@ -679,7 +679,6 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public static function failIfResetNotAllowed( $method ) {
 		if ( !defined( 'MW_PHPUNIT_TEST' )
-			&& !defined( 'MW_PARSER_TEST' )
 			&& !defined( 'MEDIAWIKI_INSTALL' )
 			&& !defined( 'RUN_MAINTENANCE_IF_MAIN' )
 			&& defined( 'MW_SERVICE_BOOTSTRAP_COMPLETE' )

@@ -47,7 +47,7 @@ class ParserEditTests extends Maintenance {
 	public function finalSetup( SettingsBuilder $settingsBuilder ) {
 		// Some methods which are discouraged for normal code throw exceptions unless
 		// we declare this is just a test.
-		define( 'MW_PARSER_TEST', true );
+		define( 'MW_PHPUNIT_TEST', true );
 
 		parent::finalSetup( $settingsBuilder );
 		TestSetup::applyInitialConfig();
