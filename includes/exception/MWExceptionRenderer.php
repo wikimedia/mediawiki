@@ -145,6 +145,7 @@ class MWExceptionRenderer {
 				$message = MWExceptionHandler::getPublicLogMessage( $e );
 			}
 			print nl2br( htmlspecialchars( $message ) ) . "\n";
+			print '<meta name="color-scheme" content="light dark">';
 			self::header( "Content-Length: " . ob_get_length() );
 			ob_end_flush();
 		}
