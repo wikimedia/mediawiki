@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\FileRepo\FileBackendDBRepoWrapper;
 use MediaWiki\Maintenance\Maintenance;
 use Wikimedia\FileBackend\FileBackend;

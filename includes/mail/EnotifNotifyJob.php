@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\JobQueue\Job;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 

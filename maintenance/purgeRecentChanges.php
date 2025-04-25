@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Maintenance\Maintenance;
+use MediaWiki\RecentChanges\RecentChangesUpdateJob;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';

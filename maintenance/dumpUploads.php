@@ -21,6 +21,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\Maintenance\Maintenance;
 
 // @codeCoverageIgnoreStart

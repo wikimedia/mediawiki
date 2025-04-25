@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\JobQueue\Job;
 use MediaWiki\Maintenance\Maintenance;
 
 // @codeCoverageIgnoreStart

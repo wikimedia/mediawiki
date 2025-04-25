@@ -23,6 +23,8 @@
  * @todo Make this more useful, right now just dumps content language
  */
 
+use MediaWiki\Maintenance\Maintenance;
+
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/../Maintenance.php';
 // @codeCoverageIgnoreEnd

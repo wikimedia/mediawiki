@@ -20,11 +20,11 @@
 
 namespace MediaWiki\Page;
 
-use HTMLCacheUpdateJob;
 use MediaWiki\Actions\FileDeleteAction;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\FileRepo\LocalRepo;
+use MediaWiki\JobQueue\Jobs\HTMLCacheUpdateJob;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArrayFromResult;

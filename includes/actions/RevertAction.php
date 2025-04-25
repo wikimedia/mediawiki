@@ -37,6 +37,7 @@ use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\Article;
+use MediaWiki\Page\WikiFilePage;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
@@ -231,7 +232,7 @@ class RevertAction extends FormAction {
 	 * @return File
 	 */
 	private function getFile(): File {
-		/** @var \WikiFilePage $wikiPage */
+		/** @var WikiFilePage $wikiPage */
 		$wikiPage = $this->getWikiPage();
 		// @phan-suppress-next-line PhanUndeclaredMethod
 		return $wikiPage->getFile();

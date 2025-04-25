@@ -21,7 +21,6 @@
 namespace MediaWiki\Page;
 
 use BadMethodCallException;
-use HTMLCacheUpdateJob;
 use InvalidArgumentException;
 use MediaWiki\Actions\InfoAction;
 use MediaWiki\Category\Category;
@@ -33,6 +32,7 @@ use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\JobQueue\Jobs\HTMLCacheUpdateJob;
 use MediaWiki\JobQueue\Jobs\RefreshLinksJob;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;

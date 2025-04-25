@@ -31,6 +31,7 @@
  * @ingroup MaintenanceLanguage
  */
 
+use MediaWiki\Maintenance\Maintenance;
 use Wikimedia\StaticArrayWriter;
 
 // @codeCoverageIgnoreStart
