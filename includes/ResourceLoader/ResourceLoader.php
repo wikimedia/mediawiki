@@ -789,9 +789,9 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @return ScopedCallback
 	 */
 	protected function measureResponseTime() {
-		$statStart = $_SERVER['REQUEST_TIME_FLOAT'];
-		return new ScopedCallback( function () use ( $statStart ) {
-			$statTiming = microtime( true ) - $statStart;
+		$requestStart = $_SERVER['REQUEST_TIME_FLOAT'];
+		return new ScopedCallback( function () use ( $requestStart ) {
+			$statTiming = microtime( true ) - $requestStart;
 
 			$this->statsFactory->getTiming( 'resourceloader_response_time_seconds' )
 				->copyToStatsdAt( 'resourceloader.responseTime' )
