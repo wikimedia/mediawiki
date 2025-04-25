@@ -379,6 +379,8 @@ because of Phabricator reports.
 * The method signatures of EmailNotification::notifyOnPageChange()
   and actuallyNotifyOnPageChange() have changed. These method are now
   marked as @internal and must not be used by extensions.
+* The modules codex-search-styles and @wikimedia/codex-search have been
+  removed. Please use MediaWiki\\ResourceLoader\\CodexModule instead.
 * …
 
 === Deprecations in 1.44 ===
