@@ -28,6 +28,7 @@ use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\Http\Telemetry;
 use MediaWiki\JobQueue\Exceptions\JobQueueError;
 use MediaWiki\JobQueue\Jobs\DuplicateJob;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use Psr\Log\LoggerInterface;
 use Throwable;
@@ -35,6 +36,7 @@ use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Rdbms\DBReadOnlyError;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\ReadOnlyMode;
+use Wikimedia\ScopedCallback;
 use Wikimedia\Stats\StatsFactory;
 
 /**
@@ -372,8 +374,14 @@ class JobRunner {
 				$this->lbFactory->beginPrimaryChanges( $fnameTrxOwner ); // new explicit round
 			}
 			// Clear any stale REPEATABLE-READ snapshots from replica DB connections
+
+			$scope = LoggerFactory::getContext()->addScoped( [
+				'context.job_type' => $jType,
+			] );
 			$status = $job->run();
 			$error = $job->getLastError();
+			ScopedCallback::consume( $scope );
+
 			// Commit all pending changes from this job
 			$this->lbFactory->commitPrimaryChanges(
 				$fnameTrxOwner,
