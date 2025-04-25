@@ -56,6 +56,7 @@ use Wikimedia\AtEase\AtEase;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\ScopedCallback;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\Timestamp\TimestampException;
 
@@ -2002,7 +2003,12 @@ class ApiMain extends ApiBase {
 			$this->setupExternalResponse( $module, $params );
 		}
 
+		$scope = LoggerFactory::getContext()->addScoped( [
+			'context.api_module_name' => $module->getModuleName(),
+			'context.api_client_useragent' => $this->getUserAgent(),
+		] );
 		$module->execute();
+		ScopedCallback::consume( $scope );
 		$this->getHookRunner()->onAPIAfterExecute( $module );
 
 		$this->reportUnusedParams();

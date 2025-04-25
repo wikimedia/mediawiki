@@ -24,6 +24,7 @@ namespace MediaWiki\Api;
 
 use DumpStringOutput;
 use MediaWiki\Export\WikiExporterFactory;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
@@ -32,6 +33,7 @@ use MediaWiki\Title\TitleFormatter;
 use WikiExporter;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ScopedCallback;
 use XmlDumpWriter;
 
 /**
@@ -731,7 +733,11 @@ class ApiQuery extends ApiBase {
 			$params = $module->extractRequestParams();
 			$cacheMode = $this->mergeCacheMode(
 				$cacheMode, $module->getCacheMode( $params ) );
+			$scope = LoggerFactory::getContext()->addScoped( [
+				'context.api_query_module_name' => $module->getModuleName(),
+			] );
 			$module->execute();
+			ScopedCallback::consume( $scope );
 
 			$timer->stop();
 
