@@ -14,7 +14,6 @@ use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\TempUser\TempUserDetailsLookup;
 use MediaWiki\User\UserIdentity;
 use MessageLocalizer;
-use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
 
 /**
@@ -36,12 +35,6 @@ class UserLinkRenderer {
 	 */
 	private MapCacheLRU $userLinkCache;
 
-	/**
-	 * Counter used to generate process-unique IDs for expired temporary account links.
-	 * @var int
-	 */
-	private static int $nextExpiredTempUserLinkId = 0;
-
 	public function __construct(
 		TempUserConfig $tempUserConfig,
 		SpecialPageFactory $specialPageFactory,
@@ -56,19 +49,6 @@ class UserLinkRenderer {
 		// Set a large enough cache size to accommodate long pagers,
 		// such as Special:RecentChanges with a high limit.
 		$this->userLinkCache = new MapCacheLRU( 1_000 );
-	}
-
-	/**
-	 * Reset the counter used to generate process-unique IDs for expired temporary account links.
-	 * Useful for testing.
-	 */
-	public static function resetExpiredTempUserLinkIdCounter(): void {
-		Assert::precondition(
-			defined( 'MW_PHPUNIT_TEST' ),
-			'This function is only meant to be used by tests.'
-		);
-
-		self::$nextExpiredTempUserLinkId = 0;
 	}
 
 	/**
@@ -89,14 +69,10 @@ class UserLinkRenderer {
 		array $attributes = []
 	): string {
 		$outputPage = $context->getOutput();
-		$outputPage->addModuleStyles( [ 'mediawiki.interface.helpers.styles' ] );
-		$outputPage->addModules( [ 'mediawiki.interface.helpers' ] );
-
-		// Expired temporary account user links are not cacheable, because they contain a tooltip
-		// that needs to have a unique ID used in an ARIA association with the corresponding link.
-		if ( $this->tempUserDetailsLookup->isExpired( $targetUser ) ) {
-			return $this->renderUserLink( $targetUser, $context, $altUserName, $attributes );
-		}
+		$outputPage->addModuleStyles( [
+			'mediawiki.interface.helpers.styles',
+			'mediawiki.interface.helpers.linker.styles'
+		] );
 
 		return $this->userLinkCache->getWithSetCallback(
 			$this->userLinkCache->makeKey(
@@ -138,26 +114,23 @@ class UserLinkRenderer {
 			// Adjust the styling of expired temporary account links (T358469).
 			if ( $this->tempUserDetailsLookup->isExpired( $targetUser ) ) {
 				$classes[] = 'mw-tempuserlink-expired';
-				$tooltipId = sprintf(
-					'mw-tempuserlink-expired-tooltip-%d',
-					self::$nextExpiredTempUserLinkId++
-				);
+
+				$description = $messageLocalizer->msg( 'tempuser-expired-link-tooltip' )->text();
 
 				$postfix = Html::element(
-					'div',
+					'span',
 					[
-						'id' => $tooltipId,
-						'role' => 'tooltip',
+						'role' => 'presentation',
 						'class' => 'cdx-tooltip mw-tempuserlink-expired--tooltip',
 					],
-					$messageLocalizer->msg( 'tempuser-expired-link-tooltip' )->text()
+					$description
 				);
 
-				$attributes['aria-describedby'] = $tooltipId;
+				$attributes['aria-description'] = $description;
 
 				// Hide default link title when rendering expired temporary account links
 				// to avoid conflicting with the tooltip.
-				$attributes['title'] = '';
+				$attributes['title'] = null;
 			}
 
 			$pageName = $this->specialPageFactory->getLocalNameFor( 'Contributions', $userName );
@@ -177,7 +150,8 @@ class UserLinkRenderer {
 
 		// Wrap the output with <bdi> tags for directionality isolation
 		$linkText =
-			'<bdi>' . htmlspecialchars( $altUserName ?? $userName ) . '</bdi>';
+			'<bdi>' . htmlspecialchars( $altUserName ?? $userName ) . '</bdi>'
+			 . $postfix;
 
 		if ( isset( $attributes['class'] ) ) {
 			$classes[] = $attributes['class'];
@@ -186,9 +160,9 @@ class UserLinkRenderer {
 		$attributes['class'] = implode( ' ', $classes );
 
 		if ( $page !== null ) {
-			return $this->linkRenderer->makeLink( $page, new HtmlArmor( $linkText ), $attributes ) . $postfix;
+			return $this->linkRenderer->makeLink( $page, new HtmlArmor( $linkText ), $attributes );
 		}
 
-		return Html::rawElement( 'span', $attributes, $linkText ) . $postfix;
+		return Html::rawElement( 'span', $attributes, $linkText );
 	}
 }

@@ -11,9 +11,6 @@ use MediaWiki\User\TempUser\TempUserDetailsLookup;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiLangTestCase;
-use Wikimedia\IPUtils;
-use Wikimedia\Parsoid\Utils\DOMCompat;
-use Wikimedia\Parsoid\Utils\DOMUtils;
 
 /**
  * @covers \MediaWiki\Linker\UserLinkRenderer
@@ -51,9 +48,6 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 			$this->getServiceContainer()->getLinkRenderer(),
 			$this->tempUserDetailsLookup
 		);
-
-		// Ensure deterministic IDs for expired temporary account links.
-		UserLinkRenderer::resetExpiredTempUserLinkIdCounter();
 	}
 
 	public function addDBDataOnce(): void {
@@ -77,10 +71,7 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 
 		$this->outputPage->expects( $this->once() )
 			->method( 'addModuleStyles' )
-			->with( [ 'mediawiki.interface.helpers.styles' ] );
-		$this->outputPage->expects( $this->once() )
-			->method( 'addModules' )
-			->with( [ 'mediawiki.interface.helpers' ] );
+			->with( [ 'mediawiki.interface.helpers.styles', 'mediawiki.interface.helpers.linker.styles' ] );
 
 		$actual = $this->userLinkRenderer->userLink(
 			$user,
@@ -90,20 +81,6 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 		);
 
 		$this->assertSame( $expected, $actual );
-
-		if (
-			IPUtils::isIPAddress( $user->getName() ) ||
-			$this->getServiceContainer()->getUserIdentityUtils()->isTemp( $user )
-		) {
-			$doc = DOMUtils::parseHTML( $actual );
-
-			$this->assertSame(
-				$altUserName ?? IPUtils::prettifyIP( $user->getName() ),
-				DOMCompat::querySelector( $doc, '.mw-userlink' )->textContent,
-				'The text of IP and temporary user links should be the user name,' .
-				' because the IP reveal functionality in the CheckUser extension expects this.'
-			);
-		}
 	}
 
 	public static function provideCasesForUserLink(): iterable {
@@ -234,10 +211,10 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 			'Expired temporary user link' => [
 				'<a href="/wiki/Special:Contributions/~2023-1" '
 				. 'class="mw-userlink mw-tempuserlink mw-tempuserlink-expired" '
-				. 'title="" data-mw-target="~2023-1" '
-				. 'aria-describedby="mw-tempuserlink-expired-tooltip-0"><bdi>~2023-1</bdi></a>'
-				. '<div id="mw-tempuserlink-expired-tooltip-0" role="tooltip" '
-				. 'class="cdx-tooltip mw-tempuserlink-expired--tooltip">(tempuser-expired-link-tooltip)</div>',
+				. 'data-mw-target="~2023-1" '
+				. 'aria-description="(tempuser-expired-link-tooltip)"><bdi>~2023-1</bdi>'
+				. '<span role="presentation" class="cdx-tooltip mw-tempuserlink-expired--tooltip">(tempuser-expired-link-tooltip)</span>'
+				. '</a>',
 				new UserIdentityValue( 2, self::EXPIRED_TEMP_USER_NAME )
 			],
 
@@ -277,10 +254,7 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 
 		$this->outputPage->expects( $this->exactly( 2 ) )
 			->method( 'addModuleStyles' )
-			->with( [ 'mediawiki.interface.helpers.styles' ] );
-		$this->outputPage->expects( $this->exactly( 2 ) )
-			->method( 'addModules' )
-			->with( [ 'mediawiki.interface.helpers' ] );
+			->with( [ 'mediawiki.interface.helpers.styles', 'mediawiki.interface.helpers.linker.styles' ] );
 
 		$firstCall = $this->userLinkRenderer->userLink(
 			$user,
@@ -323,42 +297,5 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 			false,
 			new UserIdentityValue( 2, 'OtherUser' )
 		];
-	}
-
-	public function testDoesNotCacheExpiredTemporaryAccountLink(): void {
-		$user = new UserIdentityValue( 2, self::EXPIRED_TEMP_USER_NAME );
-		$nextId = 0;
-
-		$userLinkRenderer = new UserLinkRenderer(
-			$this->getServiceContainer()->getTempUserConfig(),
-			$this->getServiceContainer()->getSpecialPageFactory(),
-			$this->getServiceContainer()->getLinkRenderer(),
-			$this->tempUserDetailsLookup,
-			static function ( string $prefix ) use ( &$nextId ): string {
-				return $prefix . $nextId++;
-			}
-		);
-
-		$this->outputPage->expects( $this->exactly( 2 ) )
-			->method( 'addModuleStyles' )
-			->with( [ 'mediawiki.interface.helpers.styles' ] );
-		$this->outputPage->expects( $this->exactly( 2 ) )
-			->method( 'addModules' )
-			->with( [ 'mediawiki.interface.helpers' ] );
-
-		$this->tempUserDetailsLookup->method( 'isExpired' )
-			->with( $user )
-			->willReturn( true );
-
-		$firstCall = $userLinkRenderer->userLink(
-			$user,
-			$this->context
-		);
-		$otherCall = $userLinkRenderer->userLink(
-			$user,
-			$this->context
-		);
-
-		$this->assertNotEquals( $firstCall, $otherCall );
 	}
 }
