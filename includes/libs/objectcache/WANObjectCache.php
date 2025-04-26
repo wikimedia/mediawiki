@@ -1150,7 +1150,7 @@ class WANObjectCache implements
 	 *         $cache->makeGlobalKey( 'wikibase-item', $id ),
 	 *         self::INITIAL_TTV, // initial time-till-verify
 	 *         function ( $oldValue, &$ttv, &$setOpts, $oldAsOf ) use ( $checkKeys, $cache ) {
-	 *             $now = microtime( true );
+	 *             $now = time();
 	 *             // Use $oldValue if it passes max ultimate age and "check" key comparisons
 	 *             if ( $oldValue &&
 	 *                 $oldAsOf > max( $cache->getMultiCheckKeyTime( $checkKeys ) ) &&
