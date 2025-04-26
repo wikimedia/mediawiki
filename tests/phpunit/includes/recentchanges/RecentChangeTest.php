@@ -7,6 +7,7 @@ use MediaWiki\Page\PageProps;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;

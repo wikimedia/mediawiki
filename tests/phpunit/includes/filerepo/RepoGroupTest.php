@@ -1,9 +1,10 @@
 <?php
 
+use MediaWiki\FileRepo\ForeignAPIRepo;
 use MediaWiki\MainConfigNames;
 
 /**
- * @covers \RepoGroup
+ * @covers \MediaWiki\FileRepo\RepoGroup
  */
 class RepoGroupTest extends MediaWikiIntegrationTestCase {
 
@@ -48,6 +49,7 @@ class RepoGroupTest extends MediaWikiIntegrationTestCase {
 		] ] );
 	}
 }
+use MediaWiki\FileRepo\FileRepo;
 
 /**
  * Quick helper class to use as a mock callback for RepoGroup::forEachForeignRepo.

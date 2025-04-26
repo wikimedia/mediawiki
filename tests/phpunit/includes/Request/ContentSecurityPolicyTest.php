@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\FileRepo\ForeignAPIRepo;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\ContentSecurityPolicy;

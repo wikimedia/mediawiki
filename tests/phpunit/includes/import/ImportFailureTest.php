@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Config\HashConfig;
+use MediaWiki\Exception\MWUnknownContentModelException;
 use MediaWiki\MainConfigNames;
 
 /**

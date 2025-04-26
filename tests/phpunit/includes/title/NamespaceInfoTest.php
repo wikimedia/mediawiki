@@ -6,6 +6,7 @@
  */
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Exception\MWException;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;

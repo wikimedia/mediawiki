@@ -1,20 +1,24 @@
 <?php
 
+use MediaWiki\Actions\Action;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\UserBlockTarget;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\DAO\WikiAwareEntity;
+use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Exception\UserBlockedError;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\Article;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 
 /**
- * @covers \Action
+ * @covers \MediaWiki\Actions\Action
  *
  * @group Action
  * @group Database
@@ -179,7 +183,7 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \Action::factory
+	 * @covers \MediaWiki\Actions\Action::factory
 	 *
 	 * @dataProvider provideActions
 	 * @param string $requestedAction

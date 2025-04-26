@@ -17,6 +17,7 @@ use MediaWiki\Tests\Search\SearchUpdateSpyTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\Utils\MWTimestamp;
 use PHPUnit\Framework\Assert;
 use Wikimedia\IPUtils;
 

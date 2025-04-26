@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\FileRepo;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Title\TitleValue;
@@ -15,7 +17,7 @@ class FileTest extends MediaWikiMediaTestCase {
 	 * @param string $filename
 	 * @param bool $expected
 	 * @dataProvider providerCanAnimate
-	 * @covers \File::canAnimateThumbIfAppropriate
+	 * @covers \MediaWiki\FileRepo\File\File::canAnimateThumbIfAppropriate
 	 */
 	public function testCanAnimateThumbIfAppropriate( $filename, $expected ) {
 		$this->overrideConfigValue( MainConfigNames::MaxAnimatedGifArea, 9000 );
@@ -41,7 +43,7 @@ class FileTest extends MediaWikiMediaTestCase {
 
 	/**
 	 * @dataProvider getThumbnailBucketProvider
-	 * @covers \File::getThumbnailBucket
+	 * @covers \MediaWiki\FileRepo\File\File::getThumbnailBucket
 	 */
 	public function testGetThumbnailBucket( $data ) {
 		$this->overrideConfigValues( [
@@ -144,7 +146,7 @@ class FileTest extends MediaWikiMediaTestCase {
 
 	/**
 	 * @dataProvider getThumbnailSourceProvider
-	 * @covers \File::getThumbnailSource
+	 * @covers \MediaWiki\FileRepo\File\File::getThumbnailSource
 	 */
 	public function testGetThumbnailSource( $data ) {
 		$backendMock = $this->getMockBuilder( FSFileBackend::class )
@@ -255,7 +257,7 @@ class FileTest extends MediaWikiMediaTestCase {
 
 	/**
 	 * @dataProvider generateBucketsIfNeededProvider
-	 * @covers \File::generateBucketsIfNeeded
+	 * @covers \MediaWiki\FileRepo\File\File::generateBucketsIfNeeded
 	 */
 	public function testGenerateBucketsIfNeeded( $data ) {
 		$this->overrideConfigValue( MainConfigNames::ThumbnailBuckets, $data['buckets'] );
@@ -397,7 +399,7 @@ class FileTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers \File::getDisplayWidthHeight
+	 * @covers \MediaWiki\FileRepo\File\File::getDisplayWidthHeight
 	 * @dataProvider providerGetDisplayWidthHeight
 	 * @param array $dim Array [maxWidth, maxHeight, width, height]
 	 * @param array $expected Array [width, height] The width and height we expect to display at
@@ -452,7 +454,7 @@ class FileTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers \File::normalizeTitle
+	 * @covers \MediaWiki\FileRepo\File\File::normalizeTitle
 	 * @dataProvider provideNormalizeTitle
 	 */
 	public function testNormalizeTitle( $title, $expected ) {
@@ -470,7 +472,7 @@ class FileTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers \File::normalizeTitle
+	 * @covers \MediaWiki\FileRepo\File\File::normalizeTitle
 	 * @dataProvider provideNormalizeTitleFails
 	 */
 	public function testNormalizeTitleFails( $title ) {
@@ -482,8 +484,8 @@ class FileTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers \File::setHandlerState
-	 * @covers \File::getHandlerState
+	 * @covers \MediaWiki\FileRepo\File\File::setHandlerState
+	 * @covers \MediaWiki\FileRepo\File\File::getHandlerState
 	 */
 	public function testSetHandlerState() {
 		$obj = (object)[];
@@ -497,8 +499,8 @@ class FileTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers \File::thumbName
-	 * @covers \File::generateThumbName
+	 * @covers \MediaWiki\FileRepo\File\File::thumbName
+	 * @covers \MediaWiki\FileRepo\File\File::generateThumbName
 	 */
 	public function testThumbNameSteps() {
 		$this->overrideConfigValue( MainConfigNames::ThumbnailSteps, [ 10, 100, 200 ] );
@@ -525,8 +527,8 @@ class FileTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers \File::thumbName
-	 * @covers \File::generateThumbName
+	 * @covers \MediaWiki\FileRepo\File\File::thumbName
+	 * @covers \MediaWiki\FileRepo\File\File::generateThumbName
 	 */
 	public function testThumbNameStepsRatio() {
 		$this->overrideConfigValue( MainConfigNames::ThumbnailSteps, [ 10, 100, 200 ] );

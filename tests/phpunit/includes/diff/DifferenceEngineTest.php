@@ -5,6 +5,7 @@ use MediaWiki\Content\Content;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Exception\PermissionsError;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\SimpleAuthority;

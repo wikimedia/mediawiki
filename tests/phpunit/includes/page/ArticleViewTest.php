@@ -10,6 +10,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\Article;
 use MediaWiki\Page\WikiPage;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\MutableRevisionRecord;

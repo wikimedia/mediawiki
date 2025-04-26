@@ -2,6 +2,7 @@
 
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Exception\HttpError;
 use MediaWiki\LinkedData\PageDataRequestHandler;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Request\FauxRequest;

@@ -4,6 +4,7 @@ use MediaWiki\Api\ApiFormatXml;
 use MediaWiki\Api\ApiResult;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Debug\MWDebug;
+use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;

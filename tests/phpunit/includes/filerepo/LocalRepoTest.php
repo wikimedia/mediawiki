@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\FileRepo\File\LocalFile;
+use MediaWiki\FileRepo\File\OldLocalFile;
+use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
@@ -10,8 +13,8 @@ use Wikimedia\ObjectCache\WANObjectCache;
 
 /**
  * @group Database
- * @covers \FileRepo
- * @covers \LocalRepo
+ * @covers \MediaWiki\FileRepo\FileRepo
+ * @covers \MediaWiki\FileRepo\LocalRepo
  */
 class LocalRepoTest extends MediaWikiIntegrationTestCase {
 	/**

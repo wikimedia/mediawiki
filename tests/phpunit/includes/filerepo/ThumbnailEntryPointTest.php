@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\FileRepo\File\UnregisteredLocalFile;
 use MediaWiki\FileRepo\ThumbnailEntryPoint;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\SimpleAuthority;

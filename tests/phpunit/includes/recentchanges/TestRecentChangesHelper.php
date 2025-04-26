@@ -2,7 +2,10 @@
 
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\RecentChanges\RCCacheEntryFactory;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 
 /**

@@ -1,9 +1,10 @@
 <?php
 
+use MediaWiki\Exception\ReadOnlyError;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 
 /**
- * @covers \ReadOnlyError
+ * @covers \MediaWiki\Exception\ReadOnlyError
  * @author Addshore
  */
 class ReadOnlyErrorTest extends MediaWikiIntegrationTestCase {

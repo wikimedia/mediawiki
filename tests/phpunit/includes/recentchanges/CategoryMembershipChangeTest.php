@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\RecentChanges\CategoryMembershipChange;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;

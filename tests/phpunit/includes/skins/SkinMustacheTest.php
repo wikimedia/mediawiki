@@ -4,11 +4,12 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Request\ContentSecurityPolicy;
+use MediaWiki\Skin\SkinMustache;
 use MediaWiki\Title\Title;
 use PHPUnit\Framework\MockObject\MockObject;
 
 /**
- * @covers \SkinMustache
+ * @covers \MediaWiki\Skin\SkinMustache
  * @group Skin
  * @group Database
  */
@@ -93,7 +94,7 @@ class SkinMustacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \Skin
+	 * @covers \MediaWiki\Skin\Skin
 	 * @covers \MediaWiki\Skin\SkinComponentLogo
 	 * @covers \MediaWiki\Skin\SkinComponentSearch
 	 * @covers \MediaWiki\Skin\SkinComponentTableOfContents

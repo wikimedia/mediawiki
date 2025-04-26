@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Title\Title;
 
 /**

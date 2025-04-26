@@ -14,6 +14,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Revision\IncompleteRevisionException;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
@@ -48,7 +49,6 @@ use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\TestingAccessWrapper;
-use WikiPage;
 
 /**
  * @group Database

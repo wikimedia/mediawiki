@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\FileRepo\File\UnregisteredLocalFile;
+use MediaWiki\FileRepo\FileRepo;
 use Wikimedia\FileBackend\FileBackend;
 
 /**

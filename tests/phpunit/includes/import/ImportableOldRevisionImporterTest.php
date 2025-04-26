@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\Content\ContentHandler;
+use MediaWiki\Exception\MWContentSerializationException;
+use MediaWiki\Exception\MWUnknownContentModelException;
 use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
@@ -12,6 +14,7 @@ use MediaWiki\Tests\ResourceLoader\ResourceLoaderUpdateSpyTrait;
 use MediaWiki\Tests\Search\SearchUpdateSpyTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
+use MediaWiki\Utils\MWTimestamp;
 use PHPUnit\Framework\Assert;
 use Psr\Log\NullLogger;
 

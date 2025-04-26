@@ -3,6 +3,7 @@
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\MultiConfig;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Language\Language;
@@ -27,6 +28,7 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\Skin\QuickTemplate;
 use MediaWiki\Tests\ResourceLoader\ResourceLoaderTestCase;
 use MediaWiki\Tests\ResourceLoader\ResourceLoaderTestModule;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;

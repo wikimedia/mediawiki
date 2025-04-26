@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Exception\HttpError;
 use MediaWiki\LinkedData\PageDataRequestHandler;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Request\FauxRequest;

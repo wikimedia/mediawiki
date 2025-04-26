@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\FileRepo\FileRepo;
 use MediaWiki\Status\Status;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\FileBackend\FSFileBackend;
@@ -127,7 +128,7 @@ class StoreBatchTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \FileRepo::store
+	 * @covers \MediaWiki\FileRepo\FileRepo::store
 	 */
 	public function teststore() {
 		global $IP;

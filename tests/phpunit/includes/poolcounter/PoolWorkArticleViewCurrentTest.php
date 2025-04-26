@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Json\JsonCodec;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserCache;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;

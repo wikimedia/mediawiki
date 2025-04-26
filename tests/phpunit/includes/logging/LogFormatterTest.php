@@ -6,6 +6,7 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Logging\LogFormatter;
 use MediaWiki\Logging\LogPage;
+use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\SimpleAuthority;

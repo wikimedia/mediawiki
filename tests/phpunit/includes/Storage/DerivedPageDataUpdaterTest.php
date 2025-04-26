@@ -25,8 +25,10 @@ use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\ParserOutputAccess;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\ParserOptions;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\RevisionRecord;
@@ -45,12 +47,10 @@ use MediaWikiIntegrationTestCase;
 use MockTitleTrait;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\MockObject;
-use RecentChange;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
-use WikiPage;
 
 /**
  * @group Database

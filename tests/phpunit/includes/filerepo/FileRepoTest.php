@@ -1,10 +1,11 @@
 <?php
 
+use MediaWiki\FileRepo\FileRepo;
 use MediaWiki\MainConfigNames;
 use Wikimedia\FileBackend\FSFileBackend;
 
 /**
- * @covers \FileRepo
+ * @covers \MediaWiki\FileRepo\FileRepo
  */
 class FileRepoTest extends MediaWikiIntegrationTestCase {
 

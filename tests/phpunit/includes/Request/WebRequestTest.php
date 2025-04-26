@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Exception\MWException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\ProxyLookup;
 use MediaWiki\Request\WebRequest;
