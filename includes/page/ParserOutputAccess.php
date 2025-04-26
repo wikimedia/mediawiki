@@ -45,7 +45,6 @@ use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Rdbms\ChronologyProtector;
-use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\Telemetry\SpanInterface;
 use Wikimedia\Telemetry\TracerInterface;
@@ -139,7 +138,6 @@ class ParserOutputAccess {
 	private RevisionLookup $revisionLookup;
 	private RevisionRenderer $revisionRenderer;
 	private StatsFactory $statsFactory;
-	private ILBFactory $lbFactory;
 	private ChronologyProtector $chronologyProtector;
 	private LoggerSpi $loggerSpi;
 	private WikiPageFactory $wikiPageFactory;
@@ -152,7 +150,6 @@ class ParserOutputAccess {
 		RevisionLookup $revisionLookup,
 		RevisionRenderer $revisionRenderer,
 		StatsFactory $statsFactory,
-		ILBFactory $lbFactory,
 		ChronologyProtector $chronologyProtector,
 		LoggerSpi $loggerSpi,
 		WikiPageFactory $wikiPageFactory,
@@ -164,7 +161,6 @@ class ParserOutputAccess {
 		$this->revisionLookup = $revisionLookup;
 		$this->revisionRenderer = $revisionRenderer;
 		$this->statsFactory = $statsFactory;
-		$this->lbFactory = $lbFactory;
 		$this->chronologyProtector = $chronologyProtector;
 		$this->loggerSpi = $loggerSpi;
 		$this->wikiPageFactory = $wikiPageFactory;
@@ -585,7 +581,6 @@ class ParserOutputAccess {
 					$parserOptions,
 					$this->revisionRenderer,
 					$primaryCache,
-					$this->lbFactory,
 					$this->chronologyProtector,
 					$this->loggerSpi,
 					$this->wikiPageFactory,

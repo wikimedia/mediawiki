@@ -1670,7 +1670,6 @@ return [
 			$services->getRevisionLookup(),
 			$services->getRevisionRenderer(),
 			$services->getStatsFactory(),
-			$services->getDBLoadBalancerFactory(),
 			$services->getChronologyProtector(),
 			LoggerFactory::getProvider(),
 			$services->getWikiPageFactory(),

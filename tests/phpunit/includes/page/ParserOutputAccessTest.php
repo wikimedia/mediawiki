@@ -286,7 +286,6 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getRevisionLookup(),
 			$revRenderer,
 			$this->getServiceContainer()->getStatsFactory(),
-			$this->getServiceContainer()->getDBLoadBalancerFactory(),
 			$chronologyProtector,
 			LoggerFactory::getProvider(),
 			$this->getServiceContainer()->getWikiPageFactory(),
@@ -1268,15 +1267,14 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testFallbackFromMoreRecentParserCache() {
-		// Fake Unix timestamps
-		$lastWrite = 10;
-		$moreRecent = $lastWrite + 1;
+		// Fake Unix timestamp
+		$cacheTime = 1301648400;
 
 		$chronologyProtector = $this->createNoOpMock( ChronologyProtector::class, [ 'getTouched' ] );
-		$chronologyProtector->method( 'getTouched' )->willReturn( $lastWrite );
+		$chronologyProtector->method( 'getTouched' )->willReturn( false );
 
 		$output = new ParserOutput( 'hello world' );
-		$output->setCacheTime( $moreRecent );
+		$output->setCacheTime( $cacheTime );
 
 		$parserCache = $this->createMockParserCache( $output, true );
 
