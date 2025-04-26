@@ -3,9 +3,12 @@
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\Module;
+use MediaWiki\Skin\Skin;
+use MediaWiki\Skin\SkinException;
 use MediaWiki\User\User;
 
 /**
@@ -59,10 +62,10 @@ class PerformanceBudgetTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @param string $skinName
 	 *
-	 * @return \Skin
-	 * @throws \SkinException
+	 * @return Skin
+	 * @throws SkinException
 	 */
-	protected function prepareSkin( string $skinName ): \Skin {
+	protected function prepareSkin( string $skinName ): Skin {
 		$skinFactory = $this->getServiceContainer()->getSkinFactory();
 		$skin = $skinFactory->makeSkin( $skinName );
 		$title = $this->getExistingTestPage()->getTitle();

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Message\Message;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Watchlist\WatchedItem;

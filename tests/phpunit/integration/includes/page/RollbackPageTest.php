@@ -14,6 +14,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Page\RollbackPage;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Revision\SlotRecord;
@@ -33,7 +34,6 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\Assert;
 use Wikimedia\Rdbms\ReadOnlyMode;
-use WikiPage;
 
 /**
  * @group Database

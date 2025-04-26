@@ -6,6 +6,7 @@ use Exception;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Hook\ParserLogLinterDataHook;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Rest\Handler\PageHTMLHandler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -23,7 +24,6 @@ use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Parsoid\Utils\DOMUtils;
-use WikiPage;
 
 /**
  * @covers \MediaWiki\Rest\Handler\PageHTMLHandler

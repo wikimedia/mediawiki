@@ -1,11 +1,12 @@
 <?php
 
+use MediaWiki\Exception\HttpError;
 use MediaWiki\Message\Message;
 
 /**
  * @todo tests for HttpError::report
  *
- * @covers \HttpError
+ * @covers \MediaWiki\Exception\HttpError
  */
 class HttpErrorTest extends MediaWikiUnitTestCase {
 

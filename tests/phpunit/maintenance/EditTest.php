@@ -5,11 +5,11 @@ namespace MediaWiki\Tests\Maintenance;
 use EditCLI;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Maintenance\Maintenance;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use PHPUnit\Framework\ExpectationFailedException;
-use WikiPage;
 
 /**
  * Mock for the input/output of EditCLI

@@ -2,6 +2,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
+use MediaWiki\Skin\SkinFactory;
 
 /**
  * Checks for making sure registered skins are sensible.

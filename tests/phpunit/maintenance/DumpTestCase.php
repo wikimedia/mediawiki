@@ -7,13 +7,13 @@ use ExecutableFinder;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\Content;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWikiLangTestCase;
 use RuntimeException;
 use WikiExporter;
-use WikiPage;
 
 /**
  * Base TestCase for dumps

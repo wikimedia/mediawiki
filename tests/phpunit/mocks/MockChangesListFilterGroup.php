@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Html\FormOptions;
+use MediaWiki\RecentChanges\ChangesListFilterGroup;
 use MediaWiki\SpecialPage\ChangesListSpecialPage;
 use Wikimedia\Rdbms\IReadableDatabase;
 

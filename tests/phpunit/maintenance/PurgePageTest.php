@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
+use MediaWiki\Page\WikiPage;
 use PHPUnit\Framework\ExpectationFailedException;
 use PurgePage;
-use WikiPage;
 
 /**
  * The PurgePage maintenance script with the input mocked to allow easier testing.

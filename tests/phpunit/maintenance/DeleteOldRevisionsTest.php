@@ -3,7 +3,7 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use DeleteOldRevisions;
-use WikiPage;
+use MediaWiki\Page\WikiPage;
 
 /**
  * @covers \DeleteOldRevisions

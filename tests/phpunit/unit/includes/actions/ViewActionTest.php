@@ -1,9 +1,11 @@
 <?php
 
+use MediaWiki\Actions\ViewAction;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Page\Article;
 
 /**
- * @covers \ViewAction
+ * @covers \MediaWiki\Actions\ViewAction
  *
  * @group Actions
  *

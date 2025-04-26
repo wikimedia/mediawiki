@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\RecentChanges\ChangesListBooleanFilter;
+use MediaWiki\RecentChanges\ChangesListBooleanFilterGroup;
+
 /**
  * @covers \MediaWiki\RecentChanges\ChangesListBooleanFilter
  */

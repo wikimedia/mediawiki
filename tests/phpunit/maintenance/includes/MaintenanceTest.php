@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\Maintenance\Includes;
 
-use AtomicSectionUpdate;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
+use MediaWiki\Deferred\AtomicSectionUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\MediaWikiServices;

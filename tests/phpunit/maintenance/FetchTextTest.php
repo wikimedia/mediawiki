@@ -5,12 +5,12 @@ namespace MediaWiki\Tests\Maintenance;
 use Exception;
 use FetchText;
 use MediaWiki\Content\ContentHandler;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\ExpectationFailedException;
 use RuntimeException;
-use WikiPage;
 
 /**
  * Mock for the input/output of FetchText

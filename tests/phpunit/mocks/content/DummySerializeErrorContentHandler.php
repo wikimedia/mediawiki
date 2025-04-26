@@ -17,6 +17,7 @@
  */
 
 use MediaWiki\Content\Content;
+use MediaWiki\Exception\MWContentSerializationException;
 
 /**
  * A dummy content handler that will throw on an attempt to serialize content.

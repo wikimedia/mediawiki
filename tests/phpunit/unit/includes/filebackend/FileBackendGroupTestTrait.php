@@ -2,6 +2,7 @@
 
 use MediaWiki\FileBackend\FileBackendGroup;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
+use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Output\StreamFile;

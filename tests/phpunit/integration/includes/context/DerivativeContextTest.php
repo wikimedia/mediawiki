@@ -10,13 +10,13 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Language\Language;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Page\WikiPage;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
-use WikiPage;
 
 /**
  * @covers \MediaWiki\Context\DerivativeContext

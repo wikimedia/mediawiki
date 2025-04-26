@@ -1,13 +1,15 @@
 <?php
 
+use MediaWiki\FileRepo\ForeignDBViaLBRepo;
+use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
 
 class LocalAndForeignDBRepoTest extends MediaWikiIntegrationTestCase {
 	/**
-	 * @covers \LocalRepo::getSharedCacheKey
-	 * @covers \ForeignDBViaLBRepo::getSharedCacheKey
+	 * @covers \MediaWiki\FileRepo\LocalRepo::getSharedCacheKey
+	 * @covers \MediaWiki\FileRepo\ForeignDBViaLBRepo::getSharedCacheKey
 	 */
 	public function testsSharedCacheKey() {
 		$wikiId = WikiMap::getCurrentWikiDbDomain()->getId();
@@ -55,8 +57,8 @@ class LocalAndForeignDBRepoTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \LocalRepo::getLocalCacheKey
-	 * @covers \ForeignDBViaLBRepo::getLocalCacheKey
+	 * @covers \MediaWiki\FileRepo\LocalRepo::getLocalCacheKey
+	 * @covers \MediaWiki\FileRepo\ForeignDBViaLBRepo::getLocalCacheKey
 	 */
 	public function testsLocalCacheKey() {
 		$wikiId = WikiMap::getCurrentWikiDbDomain()->getId();

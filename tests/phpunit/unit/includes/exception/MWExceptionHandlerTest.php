@@ -1,10 +1,12 @@
 <?php
 
+use MediaWiki\Exception\MWException;
+use MediaWiki\Exception\MWExceptionHandler;
 use Wikimedia\NormalizedException\NormalizedException;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \MWExceptionHandler
+ * @covers \MediaWiki\Exception\MWExceptionHandler
  * @author Antoine Musso
  */
 class MWExceptionHandlerTest extends \MediaWikiUnitTestCase {
