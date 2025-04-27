@@ -31,6 +31,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\Linker\Linker;
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\File\BadFileLookup;
 use MediaWiki\Parser\Parser;
@@ -75,6 +76,7 @@ class DataAccess extends IDataAccess {
 	private ServiceOptions $config;
 	private ReadOnlyMode $readOnlyMode;
 	private LinkBatchFactory $linkBatchFactory;
+	private LinkRenderer $linkRenderer;
 	private int $markerIndex = 0;
 
 	/**
@@ -89,6 +91,7 @@ class DataAccess extends IDataAccess {
 	 * @param ParserFactory $parserFactory A legacy parser factory,
 	 *   for PST/preprocessing/extension handling
 	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param LinkRenderer $linkRenderer
 	 */
 	public function __construct(
 		ServiceOptions $config,
@@ -99,7 +102,8 @@ class DataAccess extends IDataAccess {
 		TrackingCategories $trackingCategories,
 		ReadOnlyMode $readOnlyMode,
 		ParserFactory $parserFactory,
-		LinkBatchFactory $linkBatchFactory
+		LinkBatchFactory $linkBatchFactory,
+		LinkRenderer $linkRenderer
 	) {
 		$config->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->config = $config;
@@ -110,6 +114,7 @@ class DataAccess extends IDataAccess {
 		$this->trackingCategories = $trackingCategories;
 		$this->readOnlyMode = $readOnlyMode;
 		$this->linkBatchFactory = $linkBatchFactory;
+		$this->linkRenderer = $linkRenderer;
 
 		$this->hookRunner = new HookRunner( $hookContainer );
 
@@ -205,7 +210,7 @@ class DataAccess extends IDataAccess {
 		foreach ( $titleObjs as $obj ) {
 			$pdbk = $obj->getPrefixedDBkey();
 			$pagemap[$obj->getArticleID()] = $pdbk;
-			$classes[$pdbk] = $obj->isRedirect() ? 'mw-redirect' : '';
+			$classes[$pdbk] = $this->linkRenderer->getLinkClasses( $obj );
 		}
 		$this->hookRunner->onGetLinkColours(
 			# $classes is passed by reference and mutated

@@ -199,6 +199,11 @@ because of Phabricator reports.
   and will emit deprecation warnings. Use BlockTargetFactory to obtain a
   BlockTarget to pass to the 'target' parameter of these functions, or use
   DatabaseBlockStore::newUnsaved() or ::insertBlockWithParams(). (T385966)
+* The UserLinkRenderer service has been marked @internal and the
+  UserLinkRenderer::userLink() method has been deprecated.  Use
+  LinkRenderer::makeUserLink() instead.  Calls to Linker::userLink()
+  method, deprecated in 1.44, should also use LinkRenderer::makeUserLink().
+  Users of the UserLinkRenderer service should use LinkRenderer.
 * Calling ApiOptions::__construct() without $userOptionsManager and
   $preferencesFactory has been deprecated and emits deprecation warnings.
   Code that extends ApiOptions should instead extend ApiOptionsBase.

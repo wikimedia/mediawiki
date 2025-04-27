@@ -1078,7 +1078,7 @@ class Linker {
 	 * @return string HTML fragment
 	 * @since 1.16.3. $altUserName was added in 1.19. $attributes was added in 1.40.
 	 *
-	 * @deprecated since 1.44, use {@link UserLinkRenderer::userLink()} instead.
+	 * @deprecated since 1.44, use {@link LinkRenderer::makeUserLink()} instead.
 	 */
 	public static function userLink(
 		$userId,
@@ -1092,8 +1092,8 @@ class Linker {
 			return wfMessage( 'empty-username' )->parse();
 		}
 
-		return MediaWikiServices::getInstance()->getUserLinkRenderer()
-			->userLink(
+		return MediaWikiServices::getInstance()->getLinkRenderer()
+			->makeUserLink(
 				new UserIdentityValue( $userId, (string)$userName ),
 				RequestContext::getMain(),
 				$altUserName === false ? null : (string)$altUserName,

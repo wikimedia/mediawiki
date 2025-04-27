@@ -133,7 +133,10 @@ class SpecialNewPagesTest extends SpecialPageTestBase {
 		// Verify that the user link is present and correct, including that the username is hidden if the current
 		// authority cannot see it.
 		$authority = RequestContext::getMain()->getAuthority();
-		$userNameElement = $this->getAndExpectSingleMatchingElement( $line, ".mw-userlink" );
+		// The username has a data-mw-revid attribute; there are also
+		// contribution and talk page links with the .mw-userlink class
+		// inside the span.mw-usertoollinks
+		$userNameElement = $this->getAndExpectSingleMatchingElement( $line, "[data-mw-revid].mw-userlink" );
 		if ( $firstRevision->userCan( RevisionRecord::DELETED_USER, $authority ) ) {
 			$expectedUserText = $firstRevision->getUser( RevisionRecord::RAW )->getName();
 		} else {

@@ -751,7 +751,7 @@ class ChangesList extends ContextSource {
 			$s .= ' <span class="' . $deletedClass . '">' .
 				$this->msg( 'rev-deleted-user' )->escaped() . '</span>';
 		} else {
-			$s .= $this->userLinkRenderer->userLink(
+			$s .= $this->linkRenderer->makeUserLink(
 				$rc->getPerformerIdentity(),
 				$this
 			);

@@ -547,7 +547,7 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 		$result = $parser->finalize( $parser->preprocess( 'test [[User:AlwaysKnownFoo]]' ) );
 
 		$this->assertSame(
-			'test <a href="/wiki/User:AlwaysKnownFoo" title="User:AlwaysKnownFoo">User:AlwaysKnownFoo</a>',
+			'test <a href="/wiki/User:AlwaysKnownFoo" class="mw-userlink" title="User:AlwaysKnownFoo">User:AlwaysKnownFoo</a>',
 			$result
 		);
 	}

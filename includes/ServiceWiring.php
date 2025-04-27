@@ -1175,7 +1175,11 @@ return [
 			$services->getTitleFormatter(),
 			$services->getLinkCache(),
 			$services->getSpecialPageFactory(),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getTempUserConfig(),
+			$services->getTempUserDetailsLookup(),
+			$services->getUserIdentityLookup(),
+			$services->getUserNameUtils()
 		);
 	},
 
@@ -1700,7 +1704,8 @@ return [
 			$services->getTrackingCategories(),
 			$services->getReadOnlyMode(),
 			$services->getParserFactory(), // *legacy* parser factory
-			$services->getLinkBatchFactory()
+			$services->getLinkBatchFactory(),
+			$services->getLinkRenderer()
 		);
 	},
 
@@ -2575,7 +2580,8 @@ return [
 			$services->getSpecialPageFactory(),
 			$services->getLinkRenderer(),
 			$services->getTempUserDetailsLookup(),
-			$services->getUserIdentityLookup()
+			$services->getUserIdentityLookup(),
+			$services->getUserNameUtils()
 		);
 	},
 
