@@ -373,12 +373,12 @@ class LinkerTest extends MediaWikiLangTestCase {
 		];
 
 		yield 'Contributions, targetted' => [
-			'<a href="/wiki/Special:Contributions/JohnDoe" title="Special:Contributions/JohnDoe">User contributions</a>',
+			'<a href="/wiki/Special:Contributions/JohnDoe" class="mw-userlink" title="Special:Contributions/JohnDoe">User contributions</a>',
 			'Contributions/JohnDoe'
 		];
 
 		yield 'Contributions, targetted, topOnly' => [
-			'<a href="/w/index.php?title=Special:Contributions/JohnDoe&amp;topOnly=1" title="Special:Contributions/JohnDoe">User contributions</a>',
+			'<a href="/w/index.php?title=Special:Contributions/JohnDoe&amp;topOnly=1" class="mw-userlink" title="Special:Contributions/JohnDoe">User contributions</a>',
 			'Contributions/JohnDoe?topOnly=1'
 		];
 

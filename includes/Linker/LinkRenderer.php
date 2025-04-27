@@ -8,6 +8,7 @@ namespace MediaWiki\Linker;
 
 use MediaWiki\Cache\LinkCache;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
@@ -20,6 +21,11 @@ use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
+use MediaWiki\User\TempUser\TempUserConfig;
+use MediaWiki\User\TempUser\TempUserDetailsLookup;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityLookup;
+use MediaWiki\User\UserNameUtils;
 use Wikimedia\Assert\Assert;
 use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Parsoid\Core\LinkTarget;
@@ -76,20 +82,20 @@ class LinkRenderer {
 	 */
 	private $specialPageFactory;
 
+	private UserLinkRenderer $userLinkRenderer;
+
 	/**
 	 * @internal For use by LinkRendererFactory
-	 *
-	 * @param TitleFormatter $titleFormatter
-	 * @param LinkCache $linkCache
-	 * @param SpecialPageFactory $specialPageFactory
-	 * @param HookContainer $hookContainer
-	 * @param ServiceOptions $options
 	 */
 	public function __construct(
 		TitleFormatter $titleFormatter,
 		LinkCache $linkCache,
 		SpecialPageFactory $specialPageFactory,
 		HookContainer $hookContainer,
+		TempUserConfig $tempUserConfig,
+		TempUserDetailsLookup $tempUserDetailsLookup,
+		UserIdentityLookup $userIdentityLookup,
+		UserNameUtils $userNameUtils,
 		ServiceOptions $options
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -99,6 +105,15 @@ class LinkRenderer {
 		$this->linkCache = $linkCache;
 		$this->specialPageFactory = $specialPageFactory;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->userLinkRenderer = new UserLinkRenderer(
+			$hookContainer,
+			$tempUserConfig,
+			$specialPageFactory,
+			$this,
+			$tempUserDetailsLookup,
+			$userIdentityLookup,
+			$userNameUtils
+		);
 	}
 
 	/**
@@ -283,7 +298,7 @@ class LinkRenderer {
 		if ( $isExternal ) {
 			$classes[] = 'extiw';
 		}
-		$colour = $this->getLinkClasses( $target );
+		$colour = $this->getLinkClasses( $target, $text );
 		if ( $colour !== '' ) {
 			$classes[] = $colour;
 		}
@@ -339,8 +354,9 @@ class LinkRenderer {
 		}
 
 		$url = $this->getLinkURL( $target, $query );
+		$classes = trim( 'new ' . $this->getLinkClasses( $target, $text ) );
 		// Define empty attributes here for consistent order in the output
-		$attribs = [ 'href' => null, 'class' => [], 'title' => null ];
+		$attribs = [ 'href' => null, 'class' => $classes, 'title' => null ];
 
 		$prefixedText = $this->titleFormatter->getPrefixedText( $target );
 		if ( $prefixedText !== '' ) {
@@ -475,6 +491,30 @@ class LinkRenderer {
 	}
 
 	/**
+	 * Render a user page link (or user contributions for anonymous and
+	 * temporary users). Returns potentially cached link HTML.
+	 *
+	 * @param UserIdentity $targetUser The user to render a link for.
+	 * @param IContextSource $context
+	 * @param ?string $altUserName Optional text to display instead of the user
+	 *   name, or `null` to use the user name.
+	 * @param array<string,string> $attributes Optional extra HTML attributes
+	 *   for the link.
+	 * @return string HTML fragment
+	 * @since 1.45
+	 */
+	public function makeUserLink(
+		UserIdentity $targetUser,
+		IContextSource $context,
+		?string $altUserName = null,
+		array $attributes = []
+	): string {
+		return $this->userLinkRenderer->userLink(
+			$targetUser, $context, $altUserName, $attributes
+		);
+	}
+
+	/**
 	 * Builds the final <a> element
 	 *
 	 * @param LinkTarget|PageReference $target Page that will be visited when the user clicks on the link.
@@ -569,28 +609,33 @@ class LinkRenderer {
 	 * makeKnownLink() or in LinkHolderArray).
 	 *
 	 * @param LinkTarget|PageReference $target Page that will be visited when the user clicks on the link.
+	 * @param string|HtmlArmor|null $text The link text
 	 * @return string CSS class
 	 */
-	public function getLinkClasses( $target ) {
+	public function getLinkClasses( $target, $text = null ) {
 		Assert::parameterType( [ LinkTarget::class, PageReference::class ], $target, '$target' );
 		$target = $this->castToLinkTarget( $target );
 		// Don't call LinkCache if the target is "non-proper"
-		if ( $target->isExternal() || $target->getText() === '' || $target->getNamespace() < 0 ) {
+		if ( $target->isExternal() || $target->getText() === '' ) {
 			return '';
+		}
+		$classes = $this->userLinkRenderer->getLinkClasses( $target, $text );
+		if ( $target->getNamespace() < 0 ) {
+			return implode( ' ', $classes );
 		}
 		// Make sure the target is in the cache
 		$id = $this->linkCache->addLinkObj( $target );
 		if ( $id == 0 ) {
 			// Doesn't exist
-			return '';
+			return implode( ' ', $classes );
 		}
 
 		if ( $this->linkCache->getGoodLinkFieldObj( $target, 'redirect' ) ) {
 			# Page is a redirect
-			return 'mw-redirect';
+			$classes[] = 'mw-redirect';
 		}
 
-		return '';
+		return implode( ' ', $classes );
 	}
 
 	/**

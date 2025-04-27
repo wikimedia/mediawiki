@@ -472,6 +472,11 @@ because of Phabricator reports.
 * The WatchedItemQueryServiceExtensions hook is deprecated and is no longer
   called. Use ApiQueryBaseBeforeQuery, ApiQueryBaseAfterQuery,
   ApiQueryBaseProcessRow and ApiQueryWatchlistExtractOutputData.
+* The UserLinkRenderer service has been marked @internal and the
+  UserLinkRenderer::userLink() method has been deprecated. Use
+  LinkRenderer::makeUserLink() instead. Calls to Linker::userLink()
+  method, deprecated in 1.44, should also use LinkRenderer::makeUserLink().
+  Users of the UserLinkRenderer service should use LinkRenderer.
 * …
 
 === Other changes in 1.46 ===

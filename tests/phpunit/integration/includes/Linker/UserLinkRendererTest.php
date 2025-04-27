@@ -11,6 +11,7 @@ use MediaWiki\Tests\Site\TestSites;
 use MediaWiki\Tests\Unit\FakeQqxMessageLocalizer;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleValue;
 use MediaWiki\User\TempUser\TempUserDetailsLookup;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
@@ -80,7 +81,8 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 			$this->getServiceContainer()->getSpecialPageFactory(),
 			$this->getServiceContainer()->getLinkRenderer(),
 			$this->tempUserDetailsLookup,
-			$this->userIdentityLookup
+			$this->userIdentityLookup,
+			$this->getServiceContainer()->getUserNameUtils()
 		);
 	}
 
@@ -477,5 +479,65 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 		$this->assertStringContainsString( '<span>foo</span>', $usernameHtml );
 		$this->assertStringContainsString( '<span>bar</span>', $usernameHtml );
 		$this->assertStringContainsString( '<span>test</span>', $usernameHtml );
+	}
+
+	/** @dataProvider provideGetLinkClasses */
+	public function testGetLinkClasses( int $ns, string $title, ?string $linkText, array $expected ) {
+		$linkTarget = new TitleValue( $ns, $title );
+		$classes = $this->userLinkRenderer->getLinkClasses( $linkTarget, $linkText );
+		sort( $classes );
+		sort( $expected );
+		$this->assertSame( $expected, $classes );
+	}
+
+	public function provideGetLinkClasses(): iterable {
+		yield 'Link to a permanent account page, unknown text' => [
+			'ns' => NS_USER,
+			'title' => 'ExampleUser',
+			'linkText' => null,
+			'expected' => [ 'mw-userlink' ],
+		];
+		yield 'Link to a permanent account page, text is the same as username' => [
+			'ns' => NS_USER,
+			'title' => 'ExampleUser',
+			'linkText' => 'ExampleUser',
+			'expected' => [ 'mw-userlink' ],
+		];
+		yield 'Link to a temporary account page, text is the same as username' => [
+			'ns' => NS_USER,
+			'title' => '~2025-1',
+			'linkText' => '~2025-1',
+			'expected' => [ 'mw-userlink', 'mw-tempuserlink' ],
+		];
+		yield 'Link to a temporary account page, text is the same as username, but HTML-encoded' => [
+			'ns' => NS_USER,
+			'title' => '~2025-1',
+			'linkText' => '&#126;2025-1',
+			'expected' => [ 'mw-userlink', 'mw-tempuserlink' ],
+		];
+		yield 'Link to a temporary account page, different text' => [
+			'ns' => NS_USER,
+			'title' => '~2025-1',
+			'linkText' => 'Lorem ipsum',
+			'expected' => [ 'mw-userlink' ],
+		];
+		yield 'Link to a permanent account contribs' => [
+			'ns' => NS_SPECIAL,
+			'title' => 'Contributions/ExampleUser',
+			'linkText' => null,
+			'expected' => [ 'mw-userlink' ],
+		];
+		yield 'Link to a temporary account contribs, text is the same as username' => [
+			'ns' => NS_SPECIAL,
+			'title' => 'Contributions/~2025-1',
+			'linkText' => '~2025-1',
+			'expected' => [ 'mw-userlink', 'mw-tempuserlink' ],
+		];
+		yield 'Link to a temporary account contribs, different text' => [
+			'ns' => NS_SPECIAL,
+			'title' => 'Contributions/~2025-1',
+			'linkText' => 'Lorem ipsum',
+			'expected' => [ 'mw-userlink' ],
+		];
 	}
 }

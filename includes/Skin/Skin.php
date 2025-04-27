@@ -491,6 +491,11 @@ abstract class Skin extends ContextSource {
 		if ( str_contains( $bodyHtml, 'mw-message-box' ) ) {
 			$modules['styles']['content'][] = 'mediawiki.legacy.messageBox';
 		}
+		// Since 1.46, links to temporary accounts in page content are expected to be styled.
+		if ( str_contains( $bodyHtml, 'mw-tempuserlink' ) ) {
+			$modules['styles']['content'][] = 'mediawiki.interface.helpers.styles';
+			$modules['styles']['content'][] = 'mediawiki.interface.helpers.linker.styles';
+		}
 
 		$title = $this->getTitle();
 		$namespace = $title ? $title->getNamespace() : 0;

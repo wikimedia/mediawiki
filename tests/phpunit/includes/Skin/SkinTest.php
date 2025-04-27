@@ -86,6 +86,11 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 				'FOO mw-ui-button BAR',
 				[ 'mediawiki.ui.button', 'mediawiki.feedlink' ]
 			],
+			[
+				false,
+				'FOO mw-tempuserlink BAR',
+				[ 'mediawiki.interface.helpers.styles', 'mediawiki.interface.helpers.linker.styles' ]
+			],
 		];
 	}
 
