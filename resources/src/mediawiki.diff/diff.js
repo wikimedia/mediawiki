@@ -24,14 +24,6 @@ const inlineFormatToggle = require( './inlineFormatToggle.js' );
 		}
 
 		/**
-		 * @return {string|undefined}
-		 * @ignore
-		 */
-		function getCurrentlyLockedSide() {
-			return $( '.diff' ).attr( 'data-selected-side' );
-		}
-
-		/**
 		 * @param {string|undefined} side Either "added" or "deleted", or undefined to unset.
 		 * @ignore
 		 */
@@ -42,8 +34,6 @@ const inlineFormatToggle = require( './inlineFormatToggle.js' );
 		/**
 		 * When the user clicks somewhere, check whether the node belongs to the diff. If it does, lock the
 		 * selection to that side of the diff. If it doesn't, unlock selection.
-		 * Also, if selection is already locked and the user clicks outside of the currently-locked column,
-		 * clear the selection to prevent annoying glitches (e.g. when shift-click-selecting; see also T292207).
 		 *
 		 * @param {MouseEvent} e
 		 * @ignore
@@ -53,11 +43,7 @@ const inlineFormatToggle = require( './inlineFormatToggle.js' );
 				// Right click.
 				return;
 			}
-			const clickSide = getNodeSide( e.target ),
-				lockedSide = getCurrentlyLockedSide();
-			if ( lockedSide && lockedSide !== clickSide ) {
-				document.getSelection().removeAllRanges();
-			}
+			const clickSide = getNodeSide( e.target );
 			setSideLock( clickSide );
 		}
 
