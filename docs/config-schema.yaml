@@ -7530,6 +7530,7 @@ config-schema:
             managetags/deactivate: MediaWiki\Logging\LogFormatter
             managetags/delete: MediaWiki\Logging\LogFormatter
             merge/merge: { class: MediaWiki\Logging\MergeLogFormatter, services: [TitleParser] }
+            merge/merge-into: { class: MediaWiki\Logging\MergeLogFormatter, services: [TitleParser] }
             move/move: { class: MediaWiki\Logging\MoveLogFormatter, services: [TitleParser] }
             move/move_redir: { class: MediaWiki\Logging\MoveLogFormatter, services: [TitleParser] }
             patrol/patrol: MediaWiki\Logging\PatrolLogFormatter

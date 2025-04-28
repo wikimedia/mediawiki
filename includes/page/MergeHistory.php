@@ -406,6 +406,25 @@ class MergeHistory {
 		$logId = $logEntry->insert();
 		$logEntry->publish( $logId );
 
+		// And at the destination
+		// https://phabricator.wikimedia.org/T118132
+		$destLog = new ManualLogEntry( 'merge', 'merge-into' );
+		$destLog->setPerformer( $performer->getUser() );
+		$destLog->setComment( $reason );
+		$destLog->setTarget( $this->dest );
+
+		$destParams = [
+			'4::src'        => $this->titleFormatter->getPrefixedText( $this->source ),
+			'5::mergepoint' => $this->getTimestampLimit()->getTimestamp( TS_MW ),
+		];
+		if ( $this->revidLimit !== null ) {
+			$destParams['6::mergerevid'] = $this->revidLimit;
+		}
+
+		$destLog->setParameters( $destParams );
+		$destId = $destLog->insert();
+		$destLog->publish( $destId );
+
 		$this->hookRunner->onArticleMergeComplete( $legacySource, $legacyDest );
 
 		$this->dbw->endAtomic( __METHOD__ );

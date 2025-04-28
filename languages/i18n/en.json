@@ -3957,6 +3957,7 @@
 	"logentry-import-interwiki": "$1 {{GENDER:$2|imported}} $3 from another wiki",
 	"logentry-import-interwiki-details": "$1 {{GENDER:$2|imported}} $3 from $5 ($4 {{PLURAL:$4|revision|revisions}})",
 	"logentry-merge-merge": "$1 {{GENDER:$2|merged}} $3 into $4 (revisions up to $5)",
+	"logentry-merge-merge-into": "$1 {{GENDER:$2|merged}} revisions from $4 into $3 (revisions up to $5)",
 	"logentry-move-move": "$1 {{GENDER:$2|moved}} page $3 to $4",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|moved}} page $3 to $4 without leaving a redirect",
 	"logentry-move-move_redir": "$1 {{GENDER:$2|moved}} page $3 to $4 over redirect",

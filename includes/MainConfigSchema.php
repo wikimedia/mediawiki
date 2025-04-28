@@ -12032,6 +12032,12 @@ class MainConfigSchema {
 					'TitleParser',
 				]
 			],
+			'merge/merge-into' => [
+				'class' => MergeLogFormatter::class,
+				'services' => [
+					'TitleParser',
+				]
+			],
 			'move/move' => [
 				'class' => MoveLogFormatter::class,
 				'services' => [
