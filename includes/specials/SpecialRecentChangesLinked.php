@@ -31,7 +31,6 @@ use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
-use MediaWiki\Xml\Xml;
 use SearchEngineFactory;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Rdbms\Subquery;
@@ -325,7 +324,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		$extraOpts['target'] = [ $this->msg( 'recentchangeslinked-page' )->escaped(),
 			Html::input( 'target', str_replace( '_', ' ', $opts['target'] ), 'text', [ 'size' => 40 ] ) . ' ' .
 			Html::check( 'showlinkedto', $opts['showlinkedto'], [ 'id' => 'showlinkedto' ] ) . ' ' .
-			Xml::label( $this->msg( 'recentchangeslinked-to' )->text(), 'showlinkedto' ) ];
+			Html::label( $this->msg( 'recentchangeslinked-to' )->text(), 'showlinkedto' ) ];
 
 		$this->addHelpLink( 'Help:Related changes' );
 		return $extraOpts;

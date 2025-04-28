@@ -34,7 +34,6 @@ use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
-use MediaWiki\Xml\Xml;
 use SearchEngineFactory;
 use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -473,7 +472,7 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 					$nt,
 					$this->getConfig()->get( MainConfigNames::MaxRedirectLinksRetrieved )
 				);
-				$out->addHTML( Xml::closeElement( 'li' ) );
+				$out->addHTML( Html::closeElement( 'li' ) );
 			} else {
 				$out->addHTML( $this->listItem( $row, $nt, $target ) );
 			}
@@ -489,7 +488,7 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 	}
 
 	protected function listStart( $level ) {
-		return Xml::openElement( 'ul', ( $level ? [] : [ 'id' => 'mw-whatlinkshere-list' ] ) );
+		return Html::openElement( 'ul', ( $level ? [] : [ 'id' => 'mw-whatlinkshere-list' ] ) );
 	}
 
 	private function listItem( stdClass $row, PageIdentity $nt, LinkTarget $target, bool $notClose = false ): string {
@@ -549,12 +548,12 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 		);
 
 		return $notClose ?
-			Xml::openElement( 'li' ) . "$link $propsText $wlh\n" :
+			Html::openElement( 'li' ) . "$link $propsText $wlh\n" :
 			Html::rawElement( 'li', [], "$link $propsText $wlh" ) . "\n";
 	}
 
 	protected function listEnd() {
-		return Xml::closeElement( 'ul' );
+		return Html::closeElement( 'ul' );
 	}
 
 	protected function wlhLink( Title $target, $text, $editText ) {
