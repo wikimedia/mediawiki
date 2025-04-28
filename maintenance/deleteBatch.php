@@ -134,9 +134,10 @@ class DeleteBatch extends Maintenance {
 				->deleteUnsafe( $reason );
 
 			if ( $status->isOK() ) {
-				$this->output( " Deleted!\n" );
+				$this->output( " Deleted $line!\n" );
 			} else {
-				$this->output( " FAILED to delete article\n" );
+				$this->output( " FAILED to delete page $line\n" );
+				$this->error( $status );
 			}
 
 			if ( $interval ) {
