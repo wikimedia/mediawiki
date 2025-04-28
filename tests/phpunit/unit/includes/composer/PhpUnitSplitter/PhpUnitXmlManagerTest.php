@@ -117,4 +117,11 @@ class PhpUnitXmlManagerTest extends TestCase {
 		$url = TestingAccessWrapper::newFromClass( PhpUnitXmlManager::class )->generateResultsCacheUrl( $urlBase, $logPath );
 		$this->assertEquals( $urlBase . '/mediawiki-quibble-vendor-mysql-php74', $url );
 	}
+
+	public function testMatchJobPartRegexpQuibbleAtStart() {
+		$urlBase = "https://results-server.example.com/results";
+		$logPath = "47/1113147/8/test/quibble-vendor-mysql-php74-noselenium/96878ad";
+		$url = TestingAccessWrapper::newFromClass( PhpUnitXmlManager::class )->generateResultsCacheUrl( $urlBase, $logPath );
+		$this->assertEquals( $urlBase . '/quibble-vendor-mysql-php74-noselenium', $url );
+	}
 }

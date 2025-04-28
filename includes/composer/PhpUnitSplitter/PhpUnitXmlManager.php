@@ -187,7 +187,7 @@ class PhpUnitXmlManager {
 			return null;
 		}
 		$matches = [];
-		if ( !preg_match( '/[^\/]+-quibble-[^\/]+/', $logPath, $matches ) ) {
+		if ( !preg_match( '/([^\/]+-)?quibble-[^\/]+/', $logPath, $matches ) ) {
 			return null;
 		}
 		return $serverUrlBase . '/' . $matches[0];
