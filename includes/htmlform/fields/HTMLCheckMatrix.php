@@ -7,7 +7,6 @@ use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\HTMLForm\HTMLFormFieldRequiredOptionsException;
 use MediaWiki\HTMLForm\HTMLNestedFilterable;
 use MediaWiki\Request\WebRequest;
-use MediaWiki\Xml\Xml;
 
 /**
  * A checkbox matrix
@@ -192,7 +191,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 	}
 
 	protected function getOneCheckboxHTML( $checked, $attribs ) {
-		return Xml::check( "{$this->mName}[]", $checked, $attribs );
+		return Html::check( "{$this->mName}[]", $checked, $attribs );
 	}
 
 	protected function isTagForcedOff( $tag ) {

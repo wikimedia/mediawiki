@@ -20,7 +20,7 @@ class HTMLCheckFieldTest extends HTMLFormFieldTestCase {
 			false,
 			<<<HTML
 			<div class="cdx-checkbox">
-				<input name="testfield" type="checkbox" value="1" id="mw-input-testfield" class=" cdx-checkbox__input" />
+				<input id="mw-input-testfield" class="cdx-checkbox__input" type="checkbox" value="1" name="testfield">
 				<span class="cdx-checkbox__icon">\u{00A0}</span>
 				<label for="mw-input-testfield" class="cdx-checkbox__label">Check me</label>
 			</div>
@@ -36,7 +36,7 @@ class HTMLCheckFieldTest extends HTMLFormFieldTestCase {
 			false,
 			<<<HTML
 			<div class="cdx-checkbox">
-				<input name="testfield" type="checkbox" value="1" checked="checked" id="mw-input-testfield" class="my-checkbox cdx-checkbox__input" />
+				<input id="mw-input-testfield" class="my-checkbox cdx-checkbox__input" checked="" type="checkbox" value="1" name="testfield">
 				<span class="cdx-checkbox__icon">\u{00A0}</span>
 				<label for="mw-input-testfield" class="cdx-checkbox__label">Check me</label>
 			</div>
@@ -52,7 +52,7 @@ class HTMLCheckFieldTest extends HTMLFormFieldTestCase {
 			false,
 			<<<HTML
 			<div class="cdx-checkbox">
-				<input name="testfield" type="checkbox" value="1" checked="checked" id="mw-input-testfield" class=" cdx-checkbox__input" />
+				<input id="mw-input-testfield" class="cdx-checkbox__input" checked="" type="checkbox" value="1" name="testfield">
 				<span class="cdx-checkbox__icon">\u{00A0}</span>
 				<label for="mw-input-testfield" class="cdx-checkbox__label">Check me</label>
 			</div>
@@ -68,7 +68,7 @@ class HTMLCheckFieldTest extends HTMLFormFieldTestCase {
 			true,
 			<<<HTML
 			<div class="cdx-checkbox cdx-checkbox--status-error">
-				<input name="testfield" type="checkbox" value="1" id="mw-input-testfield" disabled="" class=" cdx-checkbox__input" />
+				<input id="mw-input-testfield" disabled="" class="cdx-checkbox__input" type="checkbox" value="1" name="testfield">
 				<span class="cdx-checkbox__icon">\u{00A0}</span>
 				<label for="mw-input-testfield" class="cdx-checkbox__label">Check me</label>
 			</div>
@@ -84,7 +84,7 @@ class HTMLCheckFieldTest extends HTMLFormFieldTestCase {
 			false,
 			<<<HTML
 			<div class="cdx-checkbox" title="Add this page to your watchlist [w]">
-				<input name="testfield" type="checkbox" value="1" title="Add this page to your watchlist [w]" accesskey="w" id="mw-input-testfield" class=" cdx-checkbox__input" />
+				<input title="Add this page to your watchlist [w]" accesskey="w" id="mw-input-testfield" class="cdx-checkbox__input" type="checkbox" value="1" name="testfield">
 				<span class="cdx-checkbox__icon">\u{00A0}</span>
 				<label for="mw-input-testfield" class="cdx-checkbox__label">Watch</label>
 			</div>
