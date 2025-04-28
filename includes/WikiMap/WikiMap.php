@@ -27,6 +27,8 @@ use Wikimedia\Rdbms\DatabaseDomain;
 
 /**
  * Tools for dealing with other locally-hosted wikis.
+ *
+ * @ingroup Site
  */
 class WikiMap {
 
