@@ -2288,7 +2288,7 @@
 	"rollback": "Өңдемелерді шегіндіру",
 	"rollback-confirmation-no": "Болдырмау",
 	"rollbacklink": "шегіндіру",
-	"rollbacklinkcount": "$1 {{PLURAL:$1|өңдемені|өңдемені}} шегіндіру",
+	"rollbacklinkcount": "{{PLURAL:$1|$1 өңдемені}} шегіндіру",
 	"rollbacklinkcount-morethan": "$1-нан аса өңдемені шегіндіру",
 	"rollbackfailed": "Шегіндіру орындалмады",
 	"cantrollback": "Өңдеме қайтарылмады;\nсоңғы үлескері тек осы беттің бастаушысы болды.",
