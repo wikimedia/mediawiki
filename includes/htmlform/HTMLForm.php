@@ -1481,7 +1481,11 @@ class HTMLForm extends ContextSource {
 		# Include a <fieldset> wrapper for style, if requested.
 		if ( $this->mWrapperLegend !== false ) {
 			$legend = is_string( $this->mWrapperLegend ) ? $this->mWrapperLegend : false;
-			$html = Xml::fieldset( $legend, $html, $this->mWrapperAttributes );
+			$html = Html::rawElement(
+				'fieldset',
+				$this->mWrapperAttributes,
+				( $legend ? Html::element( 'legend', [], $legend ) : '' ) . $html
+			);
 		}
 
 		return Html::rawElement(
@@ -1991,7 +1995,11 @@ class HTMLForm extends ContextSource {
 	 * @return string The fieldset's Html
 	 */
 	protected function wrapFieldSetSection( $legend, $section, $attributes, $isRoot ) {
-		return Xml::fieldset( $legend, $section, $attributes ) . "\n";
+		return Html::rawElement(
+			'fieldset',
+			$attributes,
+			Html::element( 'legend', [], $legend ) . $section
+		) . "\n";
 	}
 
 	/**
