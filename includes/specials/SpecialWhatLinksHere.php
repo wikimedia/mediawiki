@@ -550,7 +550,7 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 
 		return $notClose ?
 			Xml::openElement( 'li' ) . "$link $propsText $wlh\n" :
-			Xml::tags( 'li', null, "$link $propsText $wlh" ) . "\n";
+			Html::rawElement( 'li', [], "$link $propsText $wlh" ) . "\n";
 	}
 
 	protected function listEnd() {

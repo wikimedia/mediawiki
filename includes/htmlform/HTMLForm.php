@@ -1389,7 +1389,7 @@ class HTMLForm extends ContextSource {
 
 			$attribs['class'] = [ 'mw-htmlform-submit' ];
 
-			$buttons .= Xml::submitButton( $this->getSubmitText(), $attribs ) . "\n";
+			$buttons .= Html::submitButton( $this->getSubmitText(), $attribs ) . "\n";
 		}
 
 		if ( $this->mShowCancel ) {

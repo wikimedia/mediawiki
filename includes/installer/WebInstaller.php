@@ -35,7 +35,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
-use MediaWiki\Xml\Xml;
 
 /**
  * Class for the core installer web interface.
@@ -727,7 +726,7 @@ class WebInstaller extends Installer {
 
 		return "<div class=\"config-block\">\n" .
 			"  <div class=\"config-block-label\">\n" .
-			Xml::tags( 'label',
+			Html::rawElement( 'label',
 				$attributes,
 				$labelText
 			) . "\n" .
@@ -774,12 +773,13 @@ class WebInstaller extends Installer {
 			$params['label'],
 			$params['controlName'],
 			"<div class=\"cdx-text-input\">" .
-			Xml::input(
+			Html::input(
 				$params['controlName'],
-				30, // intended to be overridden by CSS
 				$params['value'],
+				'text',
 				$params['attribs'] + [
 					'id' => $params['controlName'],
+					'size' => 30, // intended to be overridden by CSS
 					'class' => 'cdx-text-input__input',
 					'tabindex' => $this->nextTabIndex()
 				]
@@ -1032,7 +1032,7 @@ class WebInstaller extends Installer {
 				Html::radio( $params['controlName'], $checked, $itemAttribs + [ 'value' => $value ] ) .
 				'<span class="cdx-radio__icon"></span>' .
 				'<span class="cdx-radio__label cdx-label">' .
-				Xml::tags(
+				Html::rawElement(
 					'label',
 					[ 'for' => $id, 'class' => 'cdx-label__label' ],
 					'<span class="cdx-label__label__text">' . $radioText . '</span>'

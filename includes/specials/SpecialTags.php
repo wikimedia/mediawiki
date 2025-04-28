@@ -150,14 +150,14 @@ class SpecialTags extends SpecialPage {
 		}
 
 		// Write the headers
-		$thead = Xml::tags( 'tr', null, Xml::tags( 'th', null, $this->msg( 'tags-tag' )->parse() ) .
-			Xml::tags( 'th', null, $this->msg( 'tags-display-header' )->parse() ) .
-			Xml::tags( 'th', null, $this->msg( 'tags-description-header' )->parse() ) .
-			Xml::tags( 'th', null, $this->msg( 'tags-source-header' )->parse() ) .
-			Xml::tags( 'th', null, $this->msg( 'tags-active-header' )->parse() ) .
-			Xml::tags( 'th', null, $this->msg( 'tags-hitcount-header' )->parse() ) .
+		$thead = Html::rawElement( 'tr', [], Html::rawElement( 'th', [], $this->msg( 'tags-tag' )->parse() ) .
+			Html::rawElement( 'th', [], $this->msg( 'tags-display-header' )->parse() ) .
+			Html::rawElement( 'th', [], $this->msg( 'tags-description-header' )->parse() ) .
+			Html::rawElement( 'th', [], $this->msg( 'tags-source-header' )->parse() ) .
+			Html::rawElement( 'th', [], $this->msg( 'tags-active-header' )->parse() ) .
+			Html::rawElement( 'th', [], $this->msg( 'tags-hitcount-header' )->parse() ) .
 			( ( $userCanManage || $userCanDelete ) ?
-				Xml::tags( 'th', [ 'class' => 'unsortable' ],
+				Html::rawElement( 'th', [ 'class' => 'unsortable' ],
 					$this->msg( 'tags-actions-header' )->parse() ) :
 				'' )
 		);
@@ -184,11 +184,11 @@ class SpecialTags extends SpecialPage {
 			'mediawiki.pager.styles'
 		] );
 		$out->addModules( 'jquery.tablesorter' );
-		$out->addHTML( Xml::tags(
+		$out->addHTML( Html::rawElement(
 			'table',
 			[ 'class' => 'mw-datatable sortable mw-tags-table' ],
-			Xml::tags( 'thead', null, $thead ) .
-			Xml::tags( 'tbody', null, $tbody )
+			Html::rawElement( 'thead', [], $thead ) .
+				Html::rawElement( 'tbody', [], $tbody )
 		) );
 	}
 
@@ -196,12 +196,12 @@ class SpecialTags extends SpecialPage {
 		string $tag, int $hitcount, bool $showManageActions, bool $showDeleteActions, bool $showEditLinks
 	): string {
 		$newRow = '';
-		$newRow .= Xml::tags( 'td', null, Xml::element( 'code', null, $tag ) );
+		$newRow .= Html::rawElement( 'td', [], Xml::element( 'code', [], $tag ) );
 
 		$linkRenderer = $this->getLinkRenderer();
 		$disp = ChangeTags::tagDescription( $tag, $this->getContext() );
 		if ( $disp === false ) {
-			$disp = Xml::element( 'em', null, $this->msg( 'tags-hidden' )->text() );
+			$disp = Xml::element( 'em', [], $this->msg( 'tags-hidden' )->text() );
 		}
 		if ( $showEditLinks ) {
 			$disp .= ' ';
@@ -221,7 +221,7 @@ class SpecialTags extends SpecialPage {
 				$this->getLanguage()->pipeList( [ $editLink, $helpEditLink ] )
 			)->escaped();
 		}
-		$newRow .= Xml::tags( 'td', null, $disp );
+		$newRow .= Html::rawElement( 'td', [], $disp );
 
 		$msg = $this->msg( "tag-$tag-description" );
 		$desc = !$msg->exists() ? '' : $msg->parse();
@@ -235,7 +235,7 @@ class SpecialTags extends SpecialPage {
 			);
 			$desc .= $this->msg( 'parentheses' )->rawParams( $editDescLink )->escaped();
 		}
-		$newRow .= Xml::tags( 'td', null, $desc );
+		$newRow .= Html::rawElement( 'td', [], $desc );
 
 		$sourceMsgs = [];
 		$isSoftware = isset( $this->softwareDefinedTags[$tag] );
@@ -250,11 +250,11 @@ class SpecialTags extends SpecialPage {
 		if ( !$sourceMsgs ) {
 			$sourceMsgs[] = $this->msg( 'tags-source-none' )->escaped();
 		}
-		$newRow .= Xml::tags( 'td', null, implode( Xml::element( 'br' ), $sourceMsgs ) );
+		$newRow .= Html::rawElement( 'td', [], implode( Xml::element( 'br' ), $sourceMsgs ) );
 
 		$isActive = $isExplicit || isset( $this->softwareActivatedTags[$tag] );
 		$activeMsg = ( $isActive ? 'tags-active-yes' : 'tags-active-no' );
-		$newRow .= Xml::tags( 'td', null, $this->msg( $activeMsg )->escaped() );
+		$newRow .= Html::rawElement( 'td', [], $this->msg( $activeMsg )->escaped() );
 
 		$hitcountLabelMsg = $this->msg( 'tags-hitcount' )->numParams( $hitcount );
 		if ( $this->getConfig()->get( MainConfigNames::UseTagFilter ) ) {
@@ -269,7 +269,7 @@ class SpecialTags extends SpecialPage {
 		}
 
 		// add raw $hitcount for sorting, because tags-hitcount contains numbers and letters
-		$newRow .= Xml::tags( 'td', [ 'data-sort-value' => $hitcount ], $hitcountLabel );
+		$newRow .= Html::rawElement( 'td', [ 'data-sort-value' => $hitcount ], $hitcountLabel );
 
 		$actionLinks = [];
 
@@ -300,10 +300,10 @@ class SpecialTags extends SpecialPage {
 		}
 
 		if ( $showDeleteActions || $showManageActions ) {
-			$newRow .= Xml::tags( 'td', null, $this->getLanguage()->pipeList( $actionLinks ) );
+			$newRow .= Html::rawElement( 'td', [], $this->getLanguage()->pipeList( $actionLinks ) );
 		}
 
-		return Xml::tags( 'tr', null, $newRow ) . "\n";
+		return Html::rawElement( 'tr', [], $newRow ) . "\n";
 	}
 
 	public function processCreateTagForm( array $data, HTMLForm $form ) {
