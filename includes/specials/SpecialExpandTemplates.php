@@ -34,7 +34,6 @@ use MediaWiki\Status\Status;
 use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
-use MediaWiki\Xml\Xml;
 
 /**
  * A special page to enter wikitext and expands its templates, parser functions,
@@ -219,13 +218,13 @@ class SpecialExpandTemplates extends SpecialPage {
 	 */
 	private function makeOutput( $output, $heading = 'expand_templates_output' ) {
 		$out = "<h2>" . $this->msg( $heading )->escaped() . "</h2>\n";
-		$out .= Xml::textarea(
+		$out .= Html::textarea(
 			'output',
 			$output,
-			10,
-			10,
 			[
 				'id' => 'output',
+				'cols' => 10,
+				'rows' => 10,
 				'readonly' => 'readonly',
 				'class' => 'mw-editfont-' . $this->userOptionsLookup->getOption( $this->getUser(), 'editfont' )
 			]

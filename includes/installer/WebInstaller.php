@@ -821,13 +821,13 @@ class WebInstaller extends Installer {
 		return $this->label(
 			$params['label'],
 			$params['controlName'],
-			Xml::textarea(
+			Html::textarea(
 				$params['controlName'],
 				$params['value'],
-				30,
-				5,
 				$params['attribs'] + [
 					'id' => $params['controlName'],
+					'cols' => 30,
+					'rows' => 5,
 					'class' => 'config-input-text',
 					'tabindex' => $this->nextTabIndex()
 				]
