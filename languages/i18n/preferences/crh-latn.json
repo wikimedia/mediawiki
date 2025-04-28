@@ -67,7 +67,7 @@
 	"badsightml": "İmzañızda keçersiz ve ya eskirgen HTML sintaksisi bar:",
 	"badsiglinks": "İmzañızda bu vikideki qullanıcı saifeñizge, muzakere saifeñizge ve ya isseleriñizge bağlantı olmaq kerek. Lütfen, bağlantı qoşsañız. Meselâ: <code>$1</code>.",
 	"badsiglinebreak": "İmzañız tek bir satırlıq vikimetinden ibaret olmaq kerek.",
-	"prefs-email": "E-mail sazlamaları",
+	"prefs-email": "E-mail sazlanmaları",
 	"youremail": "E-mail adresiñiz:",
 	"prefs-setemail": "E-mail adresini sazlañız",
 	"prefs-changeemail": "E-mail adresini deñiştir ve ya yoq et",

@@ -6,9 +6,9 @@
 			"Zakaria Tunsung"
 		]
 	},
-	"pagecategories": "{{PLURAL:$1|Lombori|Lomboe}}",
-	"category_header": "Peejihi aŋ bɩ lombori \"$1\"",
-	"subcategories": "Lambo-bilii",
+	"pagecategories": "{{PLURAL:$1|Lombori kaŋa|Lomboe mine}}",
+	"category_header": "Peejihi aŋ bɩ lombori kaŋa \"$1\"",
+	"subcategories": "Lambo-bilii mine",
 	"category-media-header": "Mɩdɩɛ aŋ bɩ a lambori \"$1\"",
 	"category-empty": "<em>A lambori ŋa ba tarɩ peejihi bɩɩ ɩnyuo bʋʋhʋ jaa.</em>",
 	"hidden-categories": "{{PLURAL:$1|Lombo sɔgɩraa|Lombo sɔgɩrɩ}}",
@@ -97,7 +97,7 @@
 	"nstab-mediawiki": "Duoho",
 	"nstab-template": "Tɛpilet",
 	"nstab-help": "Sʋmbʋ peeji",
-	"nstab-category": "Lombori",
+	"nstab-category": "Lombori kaŋa",
 	"mainpage-nstab": "Peeji kpɔŋ",
 	"nosuchspecialpage": "A peeji soŋ ŋa tɔ jaa kyibe",
 	"nospecialpagetext": "<strong>E sugehe bɔyɛɛ peeji soŋ ŋa aŋ ba taa tonɔ be.</strong>\n\nE na baŋ nyɛɛ peeji suuhi ŋa aŋ taa tonɔ yoe yi [[Special:SpecialPages|{{int:specialpages}}]].",

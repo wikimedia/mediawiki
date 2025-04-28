@@ -15,7 +15,7 @@
 	"september": "Bule Smile",
 	"october": "Bule Spulóh",
 	"november": "Bule Sbelah",
-	"december": "Bule Duwo belah",
+	"december": "Bule Duwo Belah",
 	"january-gen": "Bule Satu",
 	"february-gen": "Bule Duwo",
 	"march-gen": "Bule Tigo",
@@ -53,5 +53,6 @@
 	"thu": "Kam",
 	"fri": "Jum",
 	"sat": "Sab",
-	"sun": "Aha"
+	"sun": "Aha",
+	"duration-days": "$1 {{PLURAL:$1|hari}}"
 }

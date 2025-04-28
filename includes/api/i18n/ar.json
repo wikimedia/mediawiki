@@ -719,6 +719,7 @@
 	"apihelp-query+categorymembers-param-endsortkey": "استخدم $1endhexsortkey بدلا من ذلك.",
 	"apihelp-query+categorymembers-example-simple": "الحصول على أول 10 صفحات في <kbd>Category:Physics</kbd>.",
 	"apihelp-query+categorymembers-example-generator": "الحصول على معلومات الصفحة حول أول 10 صفحات في <kbd>Category:Physics</kbd>.",
+	"apihelp-query+codexicons-param-names": "أسماء الأيقونات",
 	"apihelp-query+contributors-summary": "احصل على قائمة المساهمين المسجلين وعدد المساهمين المسجلين خارج الصفحة.",
 	"apihelp-query+contributors-param-group": "قم بتضمين المستخدمين بالصلاحيات المحددة فقط، لا تقم بتضمين الصلاحيات الممنوحة بواسطة المجموعات الضمنية أو الترقية التلقائية مثل * المستخدمين أو المستخدمين المؤكدين.",
 	"apihelp-query+contributors-param-excludegroup": "استبعاد المستخدمين بالصلاحيات المحددة، لا تقم بتضمين الصلاحيات الممنوحة بواسطة المجموعات الضمنية أو الترقية التلقائية مثل * المستخدمين أو المستخدمين المؤكدين.",

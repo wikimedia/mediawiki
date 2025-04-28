@@ -2652,7 +2652,7 @@
 	"blocklist-tempblocks": "Ukryj blokady tymczasowe",
 	"blocklist-indefblocks": "Ukryj blokady nałożone na czas nieokreślony",
 	"blocklist-addressblocks": "Ukryj blokady pojedynczych adresów IP",
-	"blocklist-tempuserblocks": "Ukryj tymczasowe blokady kont",
+	"blocklist-tempuserblocks": "Ukryj blokady tymczasowych kont",
 	"blocklist-type": "Typ:",
 	"blocklist-type-header": "Typ",
 	"blocklist-actions-header": "Działania",

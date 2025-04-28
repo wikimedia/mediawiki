@@ -93,7 +93,7 @@
 	"weeks": "{{PLURAL:$1|una semana|$1 semanas}}",
 	"days": "{{PLURAL:$1|un día|$1 días}}",
 	"hours": "{{PLURAL:$1|una ora|$1 oras}}",
-	"minutes": "{{PLURAL:$1|un minutu|$1 minutus}}",
+	"minutes": "{{PLURAL:$1|un menutu|$1 menutus}}",
 	"seconds": "{{PLURAL:$1|un segundu|$1 segundus}}",
 	"days-abbrev": "$1 d",
 	"hours-abbrev": "$1 o",
@@ -108,7 +108,7 @@
 	"duration-weeks": "$1 {{PLURAL:$1|semana|semanas}}",
 	"duration-days": "$1 {{PLURAL:$1|día|días}}",
 	"duration-hours": "$1 {{PLURAL:$1|ora|oras}}",
-	"duration-minutes": "$1 {{PLURAL:$1|minutu|minutus}}",
+	"duration-minutes": "$1 {{PLURAL:$1|menutu|menutus}}",
 	"duration-seconds": "$1 {{PLURAL:$1|segundu|segundus}}",
 	"monday-at": "el lunis alas $1",
 	"tuesday-at": "el martis alas $1",
@@ -119,7 +119,7 @@
 	"sunday-at": "el domingu alas $1",
 	"yesterday-at": "ayel alas $1",
 	"hours-ago": "hazi {{PLURAL:$1|una ora|$1 oras}}",
-	"minutes-ago": "hazi {{PLURAL:$1|un minutu|$1 minutus}}",
+	"minutes-ago": "hazi {{PLURAL:$1|un menutu|$1 menutus}}",
 	"seconds-ago": "hazi $1 {{PLURAL:$1|segundu|segundus}}",
 	"just-now": "ara mesmu"
 }

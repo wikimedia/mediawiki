@@ -114,6 +114,7 @@
 	"rest-param-desc-language-links-title": "عنوان صفحة الويكي",
 	"rest-param-desc-media-links-title": "عنوان الملف",
 	"rest-param-desc-media-file-title": "عنوان الملف",
+	"rest-param-desc-media-mediatype": "نوع الملف",
 	"rest-param-desc-media-original": "تفاصيل الملف الأصلي",
 	"rest-param-desc-module-spec-module": "مواصفات الوحدة الوحدة",
 	"rest-param-desc-module-spec-version": "إصدار مواصفات الوحدة",
@@ -142,5 +143,6 @@
 	"rest-schema-desc-revision-metadata": "مراجعة بيانات التعريف",
 	"rest-schema-desc-media-file": "معلومات حول الملف",
 	"rest-schema-desc-page-history": "تاريخ مراجعة الصفحة",
+	"rest-schema-desc-page-history-count": "عدد تعديلات تاريخ الصفحة",
 	"rest-schema-desc-search-results": "نتائج البحث"
 }
