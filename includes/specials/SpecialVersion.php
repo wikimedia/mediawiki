@@ -1021,7 +1021,9 @@ class SpecialVersion extends SpecialPage {
 		);
 
 		$moduleNames = array_map(
-			static fn ( $m )=>Html::element( 'code', [], $m->getConfig()['name'] ),
+			static fn ( $m )=>Html::element( 'code', [
+				'title' => $m->getConfig()['extension-name'] ?? null,
+			], $m->getConfig()['name'] ),
 			$modules
 		);
 

@@ -308,6 +308,7 @@ class ExtensionProcessor implements Processor {
 					];
 				}
 				$module['name'] ??= $name;
+				$module['extension-name'] = $name;
 			}
 		}
 
