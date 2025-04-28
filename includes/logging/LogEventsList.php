@@ -416,11 +416,7 @@ class LogEventsList extends ContextSource {
 
 		// If change tag editing is available to this user, return the checkbox
 		if ( $this->flags & self::USE_CHECKBOXES && $this->showTagEditUI ) {
-			return Html::check(
-				'showhiderevisions',
-				false,
-				[ 'name' => 'ids[' . $row->log_id . ']' ]
-			);
+			return Html::check( 'ids[' . $row->log_id . ']', false );
 		}
 
 		// no one can hide items from the suppress log.
@@ -444,11 +440,7 @@ class LogEventsList extends ContextSource {
 					if ( !self::userCan( $row, LogPage::DELETED_RESTRICTED, $authority ) ) {
 						$del = Html::check( 'deleterevisions', false, [ 'disabled' => 'disabled' ] );
 					} else {
-						$del = Html::check(
-							'showhiderevisions',
-							false,
-							[ 'name' => 'ids[' . $row->log_id . ']' ]
-						);
+						$del = Html::check( 'ids[' . $row->log_id . ']', false );
 					}
 				} else {
 					// If event was hidden from sysops
