@@ -1029,7 +1029,7 @@ class WebInstaller extends Installer {
 			$items[$value] =
 				'<span class="cdx-radio">' .
 				'<span class="cdx-radio__wrapper">' .
-				Xml::radio( $params['controlName'], $value, $checked, $itemAttribs ) .
+				Html::radio( $params['controlName'], $checked, $itemAttribs + [ 'value' => $value ] ) .
 				'<span class="cdx-radio__icon"></span>' .
 				'<span class="cdx-radio__label cdx-label">' .
 				Xml::tags(

@@ -33,7 +33,6 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\User\UserIdentityValue;
-use MediaWiki\Xml\Xml;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -148,9 +147,10 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 
 		$ts = wfTimestamp( TS_MW, $row->rev_timestamp );
 		$tsWithId = $ts . "|" . $row->rev_id;
-		$checkBox = Xml::radio(
-			'mergepoint', $tsWithId,
-			$this->mergePointTimestamp === $ts || $this->mergePointTimestamp === $tsWithId
+		$checkBox = Html::radio(
+			'mergepoint',
+			$this->mergePointTimestamp === $ts || $this->mergePointTimestamp === $tsWithId,
+			[ 'value' => $tsWithId ]
 		);
 
 		$user = $this->getUser();

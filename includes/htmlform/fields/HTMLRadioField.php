@@ -6,7 +6,6 @@ use InvalidArgumentException;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\Parser\Sanitizer;
-use MediaWiki\Xml\Xml;
 
 /**
  * Radio checkbox fields.
@@ -200,9 +199,12 @@ class HTMLRadioField extends HTMLFormField {
 			} else {
 				$id = Sanitizer::escapeIdForAttribute( $this->mID . "-$info" );
 				$classes = [ 'mw-htmlform-flatlist-item' ];
-				$radio = Xml::radio(
-					$this->mName, $info, $info === $value, $attribs + [ 'id' => $id ]
+				$radio = Html::radio(
+					$this->mName,
+					$info === $value,
+					$attribs + [ 'value' => $info, 'id' => $id ]
 				);
+
 				$radio .= "\u{00A0}" .
 					Html::rawElement( 'label', [ 'for' => $id ], $this->escapeLabel( $label ) );
 
