@@ -28,7 +28,6 @@ require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
 use MediaWiki\Maintenance\Maintenance;
-use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 /**
  * Maintenance script to run a database query in batches and wait for replica DBs.
@@ -64,13 +63,15 @@ class RunBatchedQuery extends Maintenance {
 			$dbw = $this->getServiceContainer()->getConnectionProvider()->getPrimaryDatabase( $dbName );
 		}
 
-		$selectConds = $where;
-		$prevEnd = false;
+		$queryBuilder = $dbw->newSelectQueryBuilder()
+			->select( $key )
+			->from( $table )
+			->where( $where )
+			->caller( __METHOD__ );
 
-		$n = 1;
-		do {
+		$iterator = new BatchRowIterator( $dbw, $queryBuilder, $key, $batchSize );
+		foreach ( $iterator as $n => $batch ) {
 			$this->output( "Batch $n: " );
-			$n++;
 
 			// Note that the update conditions do not rely on the atomicity of the
 			// SELECT query in order to guarantee that all rows are updated. The
@@ -78,43 +79,22 @@ class RunBatchedQuery extends Maintenance {
 			// updates merely result in the wrong number of rows being updated
 			// in a batch.
 
-			$res = $dbw->newSelectQueryBuilder()
-				->select( $key )
-				->from( $table )
-				->where( $selectConds )
-				->orderBy( $key )
-				->limit( $batchSize )
+			$firstRow = reset( $batch );
+			$lastRow = end( $batch );
+
+			$dbw->newUpdateQueryBuilder()
+				->table( $table )
+				->set( $set )
+				->where( $where )
+				->andWhere( $dbw->expr( $key, '>=', $firstRow->$key ) )
+				->andWhere( $dbw->expr( $key, '<=', $lastRow->$key ) )
 				->caller( __METHOD__ )
-				->fetchResultSet();
-
-			// Calculate the WHERE strings needed for this UPDATE and the next SELECT.
-			// Example $updateConds: `WHERE id > 999 AND id <= 1999`
-			if ( $res->numRows() ) {
-				$res->seek( $res->numRows() - 1 );
-				$row = $res->fetchObject();
-				$end = $row->$key;
-				$selectConds = array_merge( $where, [ $dbw->expr( $key, '>', $end ) ] );
-				$updateConds = array_merge( $where, [ $dbw->expr( $key, '<=', $end ) ] );
-			} else {
-				$updateConds = $where;
-				$end = false;
-			}
-			if ( $prevEnd !== false ) {
-				$updateConds = array_merge( [ $dbw->expr( $key, '>', $prevEnd ) ], $updateConds );
-			}
-
-			$query = "UPDATE " . $dbw->tableName( $table ) .
-				" SET " . $set .
-				" WHERE " . $dbw->makeList( $updateConds, ISQLPlatform::LIST_AND );
-
-			$dbw->query( $query, __METHOD__ );
-
-			$prevEnd = $end;
+				->execute();
 
 			$affected = $dbw->affectedRows();
 			$this->output( "$affected rows affected\n" );
 			$this->waitForReplication();
-		} while ( $res->numRows() );
+		}
 	}
 
 	/** @inheritDoc */
