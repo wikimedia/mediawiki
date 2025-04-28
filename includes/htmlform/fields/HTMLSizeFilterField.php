@@ -2,9 +2,9 @@
 
 namespace MediaWiki\HTMLForm\Field;
 
+use MediaWiki\Html\Html;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Widget\SizeFilterWidget;
-use MediaWiki\Xml\Xml;
 
 /**
  * A size filter field for use on query-type special pages. It looks a bit like:
@@ -31,22 +31,26 @@ class HTMLSizeFilterField extends HTMLIntField {
 			$attribs['disabled'] = 'disabled';
 		}
 
-		$html = Xml::radioLabel(
-			$this->msg( 'minimum-size' )->text(),
+		$html = '';
+
+		$minId = $this->mID . '-mode-min';
+		$html .= Html::radio(
 			$this->mName . '-mode',
-			'min',
-			$this->mID . '-mode-min',
 			$this->mSelectMin,
-			$attribs
+			[ 'id' => $minId, 'value' => 'min' ] + $attribs
 		);
-		$html .= "\u{00A0}" . Xml::radioLabel(
-			$this->msg( 'maximum-size' )->text(),
+		$html .= "\u{00A0}" . Html::label( $this->msg( 'minimum-size' )->text(), $minId, $attribs );
+
+		$html .= "\u{00A0}";
+
+		$maxId = $this->mID . '-mode-max';
+		$html .= Html::radio(
 			$this->mName . '-mode',
-			'max',
-			$this->mID . '-mode-max',
 			!$this->mSelectMin,
-			$attribs
+			[ 'id' => $maxId, 'value' => 'max' ] + $attribs
 		);
+		$html .= "\u{00A0}" . Html::label( $this->msg( 'maximum-size' )->text(), $maxId, $attribs );
+
 		$html .= "\u{00A0}" . parent::getInputHTML( $value ? abs( $value ) : '' );
 		$html .= "\u{00A0}" . $this->msg( 'pagesize' )->parse();
 
