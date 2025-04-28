@@ -15,6 +15,15 @@
 	/* Avoid affecting the height of the heading */
 	line-height: 0;
 	unicode-bidi: isolate;
+
+	a {
+		white-space: nowrap;
+	}
+
+	&::before {
+		/* T253601 */
+		content: '\200B';
+	}
 }
 
 .mw-editsection-bracket,
