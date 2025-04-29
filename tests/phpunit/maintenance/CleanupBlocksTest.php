@@ -2,7 +2,10 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
+use MediaWiki\Block\AnonIpBlockTarget;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\RangeBlockTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserIdentityValue;
 
 /**
@@ -25,6 +28,9 @@ class CleanupBlocksTest extends MaintenanceBaseTestCase {
 			'by' => new UserIdentityValue( 100, 'Admin' ),
 			'address' => '127.0.0.1',
 		];
+		if ( isset( $options['target'] ) ) {
+			unset( $options['address'] );
+		}
 		return $this->getServiceContainer()->getDatabaseBlockStore()
 			->insertBlockWithParams( $options );
 	}
@@ -66,6 +72,42 @@ class CleanupBlocksTest extends MaintenanceBaseTestCase {
 			->select( 'bl_id' )
 			->from( 'block' )
 			->assertFieldValues( [ (string)$block1->getId() ] );
+	}
+
+	public function testNormalizeAddresses() {
+		if ( $this->getDb()->getType() !== 'mysql' ) {
+			$this->markTestSkipped( 'not implemented on this DBMS' );
+		}
+		$this->insertBlock();
+		$this->insertBlock( [ 'target' => new AnonIpBlockTarget( '1.1.1.001' ) ] );
+		$this->insertBlock( [ 'target' => new AnonIpBlockTarget( '300e:0:0:0:0:0:0:0' ) ] );
+		$this->insertBlock( [
+			'target' => new RangeBlockTarget(
+				'2.1.1.111/24',
+				$this->getConfVar( MainConfigNames::BlockCIDRLimit )
+			)
+		] );
+
+		$this->newSelectQueryBuilder()
+			->select( 'bt_address' )
+			->from( 'block_target' )
+			->assertFieldValues( [
+				'1.1.1.001',
+				'127.0.0.1',
+				'2.1.1.111/24',
+				'300e:0:0:0:0:0:0:0',
+			] );
+
+		$this->maintenance->execute();
+		$this->newSelectQueryBuilder()
+			->select( 'bt_address' )
+			->from( 'block_target' )
+			->assertFieldValues( [
+				'1.1.1.1',
+				'127.0.0.1',
+				'2.1.1.0/24',
+				'300E:0:0:0:0:0:0:0',
+			] );
 	}
 
 	public function testMergeDuplicateBlockTargets() {

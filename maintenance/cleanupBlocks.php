@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Maintenance\Maintenance;
+use Wikimedia\IPUtils;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -18,6 +19,7 @@ class CleanupBlocks extends Maintenance {
 
 		$this->deleteOrphanBlockTargets();
 		$this->deleteTargetlessBlocks();
+		$this->normalizeAddresses();
 		$this->mergeDuplicateBlockTargets();
 		$this->fixTargetCounts();
 	}
@@ -125,6 +127,88 @@ class CleanupBlocks extends Maintenance {
 		$affected = $dbw->affectedRows();
 		$dbw->endAtomic( __METHOD__ );
 		$this->output( $affected ? "OK\n" : "no rows affected\n" );
+	}
+
+	/**
+	 * Fix IP address normalization issues:
+	 *   - Leading zeroes like 1.1.1.001
+	 *   - Lower-case IPv6 addresses like 200e::
+	 *   - Non-zero range suffixes like 1.1.1.111/24
+	 */
+	private function normalizeAddresses() {
+		$dbr = $this->getReplicaDB();
+		$dbType = $dbr->getType();
+		if ( $dbType !== 'mysql' ) {
+			$this->output( "Skipping IP address normalization: not implemented on $dbType\n" );
+			return;
+		}
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'bt_id', 'bt_address' ] )
+			->from( 'block_target' )
+			->where( [ 'bt_user' => null ] )
+			->andWhere( 'bt_range_start IS NOT NULL OR ' .
+				'bt_address RLIKE \'(^|[.:])0[0-9]|[a-f]|::\'' )
+			->caller( __METHOD__ )
+			->fetchResultSet();
+		$writeDone = false;
+		foreach ( $res as $row ) {
+			$addr = $row->bt_address;
+			if ( IPUtils::isValid( $addr ) ) {
+				$norm = IPUtils::sanitizeIP( $addr );
+			} elseif ( IPUtils::isValidRange( $addr ) ) {
+				$norm = IPUtils::sanitizeRange( $addr );
+			} else {
+				continue;
+			}
+			if ( $addr !== $norm && is_string( $norm ) ) {
+				$this->normalizeAddress( (int)$row->bt_id, $addr, $norm );
+				$writeDone = true;
+			}
+		}
+		if ( $writeDone ) {
+			// Ensure that mergeDuplicateBlockTargets() sees our changes
+			$this->waitForReplication();
+		}
+	}
+
+	/**
+	 * Normalize the IP address in a single block_target row
+	 *
+	 * @param int $targetId
+	 * @param string $address
+	 * @param string $normalizedAddress
+	 */
+	private function normalizeAddress( int $targetId, string $address, string $normalizedAddress ) {
+		$this->output( "Normalizing bt_id=$targetId $address -> $normalizedAddress: " );
+		if ( $this->dryRun ) {
+			$this->output( "dry run\n" );
+			return;
+		}
+		$dbw = $this->getPrimaryDB();
+		$dbw->startAtomic( __METHOD__ );
+		$primaryAddr = $dbw->newSelectQueryBuilder()
+			->select( 'bt_address' )
+			->from( 'block_target' )
+			->where( [ 'bt_id' => $targetId ] )
+			->forUpdate()
+			->caller( __METHOD__ )
+			->fetchField();
+		if ( $primaryAddr === false ) {
+			$this->output( "missing in primary\n" );
+			return;
+		}
+		if ( $primaryAddr !== $address ) {
+			$this->output( "changed in primary\n" );
+			return;
+		}
+		$dbw->newUpdateQueryBuilder()
+			->update( 'block_target' )
+			->set( [ 'bt_address' => $normalizedAddress ] )
+			->where( [ 'bt_id' => $targetId ] )
+			->caller( __METHOD__ )
+			->execute();
+		$dbw->endAtomic( __METHOD__ );
+		$this->output( "done\n" );
 	}
 
 	/**
