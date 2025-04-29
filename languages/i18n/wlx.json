@@ -489,5 +489,6 @@
 	"renameuserreason": "Ananso:",
 	"renameusersubmit": "De ko",
 	"interwiki_edit": "Maali-eŋ",
-	"interwiki_reasonfield": "Ananso:"
+	"interwiki_reasonfield": "Ananso:",
+	"searchsuggest-containing-html": "Bɔ peejihi aŋ tare <strong class=\"cdx-sɛgebozu-search__search-footer__query\">$1</strong>"
 }

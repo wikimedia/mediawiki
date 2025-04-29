@@ -1519,5 +1519,6 @@
 	"skin-action-protect": "Sassawa",
 	"skin-action-undelete": "sié floua boué vié moun bé wossounoun",
 	"skin-action-delete": "Nounnoun",
-	"skin-action-move": "Katchi floua boué nga i douman"
+	"skin-action-move": "Katchi floua boué nga i douman",
+	"searchsuggest-containing-html": "Kounndè floué boué moun nga liké nga wo noun: <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

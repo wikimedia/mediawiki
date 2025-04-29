@@ -1262,5 +1262,6 @@
 	"blockedtext-intended-blockee": "Nia ni kpa ni di kpari so: $1",
 	"blockedtext-contact-blocker-admin": "A ni tooi paai $1 bee soha dabam [[{{MediaWiki:Grouppage-sysop}}|administrator]] ka di gbaai saawara n-zaŋ jɛndi kparibu maa.",
 	"blockedtext-block-ip": "A sahaŋɔ IP address n-nyɛ $1",
-	"blockedtext-include-details-queries": "Pahimi suɣulo ka zaŋ kahigibu ŋan-do zuɣusaa ŋɔ zaa m-pahi a bɔhisi kam puuni."
+	"blockedtext-include-details-queries": "Pahimi suɣulo ka zaŋ kahigibu ŋan-do zuɣusaa ŋɔ zaa m-pahi a bɔhisi kam puuni.",
+	"searchsuggest-containing-html": "Yuli bo yaɣ'shɛŋa din mali <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

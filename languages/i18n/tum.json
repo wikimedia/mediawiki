@@ -729,5 +729,6 @@
 	"blockedtext-contact-blocker-admin": "Mungafumba $1 panji [[{{MediaWiki:Grouppage-sysop}}|administrator]] zakuti mulongosolelane.",
 	"blockedtext-block-ip": "IP address yinu ni $1.",
 	"blockedtext-block-id": "Ndipo block ID ni #$1.",
-	"blockedtext-include-details-queries": "Chonde sazgani vose ivo vili pachanya pakufumba ovwili."
+	"blockedtext-include-details-queries": "Chonde sazgani vose ivo vili pachanya pakufumba ovwili.",
+	"searchsuggest-containing-html": "Fufuza ma jani agho muli <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

@@ -3648,5 +3648,6 @@
 	"interwiki-language-links": "Prefixos interllingüísticos",
 	"interwiki-language-description": "Estes prefixos concuayen colos códigos de lingua definíos, y usaránse pa crear la llista «{{int:otherlanguages}}» al amestase a una páxina.",
 	"interwiki-global-language-links": "Prefixos interllingüísticos globales",
-	"interwiki-global-language-description": "Estos prefixos casen con códigos de llingua conocios, y van usase pa crear el  llistáu «{{int:otherlanguages}}» cuando s'añade a una páxina. Como s'hereda d'una configuración global, sólo pueden editase na wiki d'orixe. Les definiciones interllingüístiques globales nun pueden reescribise de mou llocal."
+	"interwiki-global-language-description": "Estos prefixos casen con códigos de llingua conocios, y van usase pa crear el  llistáu «{{int:otherlanguages}}» cuando s'añade a una páxina. Como s'hereda d'una configuración global, sólo pueden editase na wiki d'orixe. Les definiciones interllingüístiques globales nun pueden reescribise de mou llocal.",
+	"searchsuggest-containing-html": "Busca páxines que contengan <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

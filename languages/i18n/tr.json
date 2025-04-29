@@ -4214,5 +4214,6 @@
 	"interwiki-language-links": "Dil arası önekleri",
 	"interwiki-language-description": "Bu önekler, tanımlanmış dil kodlarıyla eşleşir ve bir sayfaya eklendiğinde \"{{int:otherlanguages}}\" listesini oluşturmak için kullanılır.",
 	"interwiki-global-language-links": "Küresel dil arası önekleri",
-	"interwiki-global-language-description": "Bu önekler, tanımlanmış dil kodlarıyla eşleşir ve bir sayfaya eklendiğinde \"{{int:otherlanguages}}\" listesini oluşturmak için kullanılır. Genel bir yapılandırmadan devralındıklarından, yalnızca kaynak vikide düzenlenebilirler. Küresel dil arası tanımları yerel olarak geçersiz kılınamaz."
+	"interwiki-global-language-description": "Bu önekler, tanımlanmış dil kodlarıyla eşleşir ve bir sayfaya eklendiğinde \"{{int:otherlanguages}}\" listesini oluşturmak için kullanılır. Genel bir yapılandırmadan devralındıklarından, yalnızca kaynak vikide düzenlenebilirler. Küresel dil arası tanımları yerel olarak geçersiz kılınamaz.",
+	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> içeren sayfaları ara"
 }

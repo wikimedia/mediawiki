@@ -3186,5 +3186,6 @@
 	"interwiki_edited": "前綴 \"$1\" 已經響個跨維基表度改咗。",
 	"interwiki_editerror": "前綴 \"$1\" 唔能夠響個跨維基表度改。\n可能佢並唔存在。",
 	"interwiki-badprefix": "所指定嘅跨維基前綴 \"$1\" 含有無效嘅字母",
-	"right-interwiki": "編輯跨維基資料"
+	"right-interwiki": "編輯跨維基資料",
+	"searchsuggest-containing-html": "搵包含 <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> 嘅版"
 }

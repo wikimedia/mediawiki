@@ -4261,5 +4261,6 @@
 	"interwiki-language-links": "البادئات بين اللغات",
 	"interwiki-language-description": "تتطابق هذه البادئات مع رموز اللغة المحددة، وسيتم استخدامها لإنشاء قائمة \"{{int: otherlanguages}}\" عند إضافتها إلى الصفحة.",
 	"interwiki-global-language-links": "بادئات اللغات الوسيطة العالمية",
-	"interwiki-global-language-description": "تطابق هذه البادئات رموز لغات معرفة، وسيتم استخدامها لإنشاء قائمة \"{{int:otherlanguages}}\" عند إضافتها إلى صفحة؛ لأنها موروثة من تكوين عمومي، لا يمكن تحريرها إلا في الويكي المصدر، لا يمكن تجاوز تعريفات اللغة الوسيطة محليا."
+	"interwiki-global-language-description": "تطابق هذه البادئات رموز لغات معرفة، وسيتم استخدامها لإنشاء قائمة \"{{int:otherlanguages}}\" عند إضافتها إلى صفحة؛ لأنها موروثة من تكوين عمومي، لا يمكن تحريرها إلا في الويكي المصدر، لا يمكن تجاوز تعريفات اللغة الوسيطة محليا.",
+	"searchsuggest-containing-html": "ابحث عن صفحات تحتوي <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

@@ -527,5 +527,6 @@
 	"htmlform-submit": "Intrega",
 	"revdelete-content-hid": "cuntènnidu cuau",
 	"searchsuggest-search": "Circa aìnturu de {{SITENAME}}",
-	"searchsuggest-containing": "Circa is pàginas chi tenint"
+	"searchsuggest-containing": "Circa is pàginas chi tenint",
+	"searchsuggest-containing-html": "Circa is pàginas chi tenint <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

@@ -490,5 +490,6 @@
 	"blockedtext-intended-blockee": "Hong-só tuì-siōng: $1",
 	"blockedtext-contact-blocker-admin": "Lí ē-tàng liân-lo̍k $1 ia̍h-sī kî-tha [[{{MediaWiki:Grouppage-sysop}}|kuán-lí jîn-uân]] lâi thó-lūn hong-só siong-kuan ê tāi-tsì.",
 	"blockedtext-block-ip": "Lí tsit-má ê IP tē-tsí sī $1.",
-	"blockedtext-include-details-queries": "Tshiánn lí sûn-būn ê sî kā siong-kuan ê tsu-sìn hù-siōng."
+	"blockedtext-include-details-queries": "Tshiánn lí sûn-būn ê sî kā siong-kuan ê tsu-sìn hù-siōng.",
+	"searchsuggest-containing-html": "Tshiau-tshē ū <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> ê ia̍h"
 }

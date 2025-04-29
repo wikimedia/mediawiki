@@ -366,5 +366,6 @@
 	"nstab-mainpage": "Watangpola",
 	"skin-action-protect": "Lénrungngi",
 	"skin-action-move": "Paléccéq",
-	"blockedtext-contact-blocker-admin": "Weddingngi idiq makkontaq $1 iyaréga [[{{MediaWiki:Grouppage-sysop}}|pajjampang]] ku abbicarangngi palawangengngé."
+	"blockedtext-contact-blocker-admin": "Weddingngi idiq makkontaq $1 iyaréga [[{{MediaWiki:Grouppage-sysop}}|pajjampang]] ku abbicarangngi palawangengngé.",
+	"searchsuggest-containing-html": "Sappa lempa malliseq <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

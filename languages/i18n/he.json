@@ -4189,5 +4189,6 @@
 	"interwiki-language-links": "תחיליות בין־לשוניות",
 	"interwiki-language-description": "תחיליות אלה מתאימות לקודים של שפה מוגדרת, וישמשו ליצירת רשימת \"{{int:otherlanguages}}\" בעת הוספתן לדף.",
 	"interwiki-global-language-links": "תחילות בין־לשוניות גלובליות",
-	"interwiki-global-language-description": "התחיליות אלו מתאימות לקודי שפה מוגדרים, והם ישמשו ליצירת רשימת \"{{int:otherlanguages}}\" בעד הוספה לדף. היות שהם מגיעים מהגדרות גלובליות, אפשר לערוך אותם רק בוויקי המקורי. לא ניתן לדרוס הגדרות בין־לשוניות גלובליות באופן מקומי."
+	"interwiki-global-language-description": "התחיליות אלו מתאימות לקודי שפה מוגדרים, והם ישמשו ליצירת רשימת \"{{int:otherlanguages}}\" בעד הוספה לדף. היות שהם מגיעים מהגדרות גלובליות, אפשר לערוך אותם רק בוויקי המקורי. לא ניתן לדרוס הגדרות בין־לשוניות גלובליות באופן מקומי.",
+	"searchsuggest-containing-html": "חיפוש דפים שמכילים <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

@@ -2545,5 +2545,6 @@
 	"skin-action-protect": "Dìon",
 	"skin-action-undelete": "Neo-dhèan an sguabadh às",
 	"skin-action-delete": "Sguab às",
-	"skin-action-move": "Gluais"
+	"skin-action-move": "Gluais",
+	"searchsuggest-containing-html": "Lorg duilleagan sa bheil <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

@@ -589,5 +589,6 @@
 	"blockedtext-intended-blockee": "A'alijitnüsü nünülia: $1",
 	"blockedtext-contact-blocker-admin": "Paashajaa nümaa $1 otta namaa na waneeirua [[{{MediaWiki:Grouppage-sysop}}|na akumajuliikana]] süpüla aakalaa tü alijitnuushika puulia.",
 	"blockedtext-block-ip": "Tü püyaawaseka IP shia $1",
-	"blockedtext-include-details-queries": "Analu'ulu putuma shii'ire pi'itaain supushuwa'a tü achuntunakaa pümüin wanaa sümaa püsakirüin saa'ujee wane kasa."
+	"blockedtext-include-details-queries": "Analu'ulu putuma shii'ire pi'itaain supushuwa'a tü achuntunakaa pümüin wanaa sümaa püsakirüin saa'ujee wane kasa.",
+	"searchsuggest-containing-html": "Achajaa sulu'u tü ee'iyalayaaka kalu'uko <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

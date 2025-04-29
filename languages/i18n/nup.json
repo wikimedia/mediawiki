@@ -867,5 +867,6 @@
 	"blockedtext-intended-blockee": "Kpikpa kikan:$1",
 	"blockedtext-contact-blocker-admin": "Wo'e yi $1 koma [[{{MediaWiki:Grouppage-sysop}}|administrator]] ebo wo'e baza kinkan nan.",
 	"blockedtext-block-ip": "IP address wo'e nya gbani yi $1.",
-	"blockedtext-include-details-queries": "Jin'akuri ah egan nana kpata la dan kpata nan wo'a tsun nan."
+	"blockedtext-include-details-queries": "Jin'akuri ah egan nana kpata la dan kpata nan wo'a tsun nan.",
+	"searchsuggest-containing-html": " Wiwaza feregi nan fibo nan<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

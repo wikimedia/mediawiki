@@ -2396,5 +2396,6 @@
 	"action-renameuser": "સભ્યોનાં નામ બદલો",
 	"right-renameuser": "સભ્યોના નામ બદલો",
 	"renameuser-renamed-notice": "આ સભ્યનું નામ પરિવર્તન થયું છે.\nનામ પરિવર્તન લોગ તમારા સંદર્ભ માટે અહીં આપેલ છે",
-	"interwiki_reasonfield": "કારણ:"
+	"interwiki_reasonfield": "કારણ:",
+	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> ધરાવતા પાનાઓ શોધો"
 }

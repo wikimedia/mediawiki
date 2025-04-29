@@ -1131,5 +1131,6 @@
 	"blockedtext-intended-blockee": "ᱵᱞᱚᱠ ᱠᱚᱨᱟᱣᱤᱡ $1",
 	"blockedtext-contact-blocker-admin": "ᱟᱢ ᱡᱚᱜᱟᱡᱚᱜᱽ $1 ᱥᱟᱶ ᱮᱢ ᱫᱟᱲᱮᱭᱟᱜᱼᱟ ᱟᱨ ᱵᱟᱝ ᱮᱴᱟᱜ [[{{MediaWiki:Grouppage-sysop}}|administrator]] ᱥᱟᱶ ᱵᱞᱚᱠ ᱪᱮᱛᱟᱱ ᱨᱮᱢ ᱜᱟᱞᱢᱟᱨᱟᱣ ᱫᱟᱲᱮᱭᱟᱜᱼᱟ ᱾",
 	"blockedtext-block-ip": "ᱟᱢᱟᱜ ᱱᱤᱛᱟᱜ ᱟᱭ.ᱯᱤ. ᱮᱰᱨᱮᱥ ᱫᱚ ᱦᱩᱭᱩᱜ ᱠᱟᱱᱟ $1.",
-	"blockedtext-include-details-queries": "ᱫᱟᱭᱟ ᱠᱟᱛᱮ ᱟᱢᱟᱜ ᱡᱟᱦᱟᱱ ᱠᱩᱠᱞᱤ ᱨᱮ ᱪᱮᱛᱟᱱ ᱨᱮᱱᱟᱜ ᱡᱚᱛᱚ ᱵᱤᱵᱨᱚᱬ ᱥᱮᱞᱮᱫ ᱢᱮ᱾"
+	"blockedtext-include-details-queries": "ᱫᱟᱭᱟ ᱠᱟᱛᱮ ᱟᱢᱟᱜ ᱡᱟᱦᱟᱱ ᱠᱩᱠᱞᱤ ᱨᱮ ᱪᱮᱛᱟᱱ ᱨᱮᱱᱟᱜ ᱡᱚᱛᱚ ᱵᱤᱵᱨᱚᱬ ᱥᱮᱞᱮᱫ ᱢᱮ᱾",
+	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> ᱠᱚᱭ ᱫᱤᱯᱤᱞᱟᱠᱟᱫ ᱥᱟᱦᱴᱟᱠᱚ ᱥᱮᱸᱫᱽᱨᱟ"
 }

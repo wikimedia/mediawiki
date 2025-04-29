@@ -3136,5 +3136,6 @@
 	"logentry-renameuser-renameuser-legacier": "$1ले प्रयोगकर्ता $4लाई प्रयोगकर्ता {{GENDER:$7|$5}}मा {{GENDER:$2|पुन: नामाकरण}} गर्नुभयो",
 	"renameuser-move-log": "{{GENDER:$2|प्रयोगकर्ता}} \"$1\"लाई \"$2\"मा पुन: नामाकरण गर्दा पृष्ठ स्वचालित रूपमा सारियो",
 	"interwiki-title-norights": "अन्तरविकि डेटा हेर्नुहोस्",
-	"interwiki_addbutton": "थप्नुहोस्"
+	"interwiki_addbutton": "थप्नुहोस्",
+	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> भएको पृष्ठहरू खोज्नुहोस्"
 }

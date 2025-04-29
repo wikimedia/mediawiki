@@ -4117,5 +4117,6 @@
 	"interwiki-local-description": "Tyto prefixy jsou definovány lokálně. Jakékoli duplicity vůči globální konfiguraci příslušnou globální definici překryjí.",
 	"interwiki-links": "Interwiki prefixy",
 	"interwiki-language-links": "Mezijazykové prefixy",
-	"interwiki-language-description": "Tyto prefixy odpovídají definovaným jazykovým kódům a použijí se k vytvoření seznamu „{{int:otherlanguages}}“, když se přidají do stránky."
+	"interwiki-language-description": "Tyto prefixy odpovídají definovaným jazykovým kódům a použijí se k vytvoření seznamu „{{int:otherlanguages}}“, když se přidají do stránky.",
+	"searchsuggest-containing-html": "Vyhledat stránky obsahující „<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>“"
 }

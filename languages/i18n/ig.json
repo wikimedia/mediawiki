@@ -1469,5 +1469,6 @@
 	"renameuser-page-moved": "Ihü $1 a páfùrù gá $2.",
 	"renameuser-page-unmoved": "Ihü $1 énweghịkị páfù gá $2.",
 	"interwiki_edit": "Mèzi",
-	"interwiki_reasonfield": "Mgbághapụtà:"
+	"interwiki_reasonfield": "Mgbághapụtà:",
+	"searchsuggest-containing-html": "Chọọ peeji ndị gụnyere <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

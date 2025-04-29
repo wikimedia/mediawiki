@@ -523,5 +523,6 @@
 	"blockedtext-intended-blockee": "A leɛroo teɛroo: $1",
 	"blockedtext-contact-blocker-admin": "Fo naŋ baŋ pagɛɛ $1 bee neɛkaŋa [[{{MediaWiki:Grouppage-sysop}}|administrator]] a yeli yɛlɛ",
 	"blockedtext-block-ip": "A fo pampana IP aderɛɛse e la $1",
-	"blockedtext-include-details-queries": "Eŋ yɛlɛ naŋ zaa ba na soore fo bee fo naŋ maale"
+	"blockedtext-include-details-queries": "Eŋ yɛlɛ naŋ zaa ba na soore fo bee fo naŋ maale",
+	"searchsuggest-containing-html": "Bɔ pɛllɛ naŋ taa <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

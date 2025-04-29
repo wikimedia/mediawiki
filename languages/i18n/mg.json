@@ -2867,5 +2867,6 @@
 	"interwiki_1": "eny",
 	"interwiki_0": "tsia",
 	"interwiki_edit": "Hanova",
-	"right-interwiki": "Manova ny data interwiki"
+	"right-interwiki": "Manova ny data interwiki",
+	"searchsuggest-containing-html": "Hikaroka ireo pejy misy <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

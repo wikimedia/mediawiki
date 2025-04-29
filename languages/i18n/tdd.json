@@ -1416,5 +1416,6 @@
 	"blockedtext-intended-blockee": "ᥘᥩᥒ ᥞᥥᥳ ᥖᥖᥴ ᥟᥢ ᥕᥫᥒᥰ ᥟᥣᥢᥰ ᥝᥭᥳ: $1",
 	"blockedtext-contact-blocker-admin": "ᥖᥣᥱ ᥟᥧᥙᥱ ᥟᥨᥝᥰ ᥘᥩᥒ ᥞᥥᥳ ᥖᥖᥴ ᥘᥢᥳ ᥓᥝᥲ ᥐᥝᥱ ᥖᥤᥴ ᥟᥛᥱ ᥓᥣᥒ ᥐᥙᥴ ᥔᥪᥙᥱ ᥖᥒᥰ $1 ᥟᥛᥱ ᥘᥢᥴ[[{{MediaWiki:Grouppage-sysop}}|ᥚᥧᥱ ᥗᥤᥒᥰ ᥐᥣᥢ]]ᥖᥣᥒᥱ ᥓᥫᥰ.",
 	"blockedtext-block-ip": "ᥞᥥᥢᥰ ᥘᥤᥐ ᥟᥣᥭᥱ ᥙᥤᥱ ᥓᥝᥲ ᥐᥝᥱ ᥕᥣᥛᥰ ᥘᥥᥝ ᥘᥭᥳ ᥙᥥᥢ $1 ။",
-	"blockedtext-include-details-queries": "ᥖᥤ ᥐᥣᥢ ᥑᥧᥢᥳ ᥑᥣᥴ ᥟᥢ ᥓᥝᥲ ᥐᥝᥱ ᥞᥥᥖᥱ ᥟᥢ ᥘᥬ ᥔᥥᥴ ᥟᥛᥱ ᥝᥣ ᥑᥦᥢᥰ ᥖᥩ ᥔᥬᥱ ᥙᥢ ᥙᥣᥰ ᥘᥩᥒ ᥖᥣᥒᥰ ᥞᥨᥝᥴ ᥕᥩᥭ ᥘᥒᥱ ᥚᥣᥭᥱ ᥘᥫᥴ ᥘᥭᥳ ᥖᥒᥰ ᥛᥨᥖᥴ ᥘᥦᥰ."
+	"blockedtext-include-details-queries": "ᥖᥤ ᥐᥣᥢ ᥑᥧᥢᥳ ᥑᥣᥴ ᥟᥢ ᥓᥝᥲ ᥐᥝᥱ ᥞᥥᥖᥱ ᥟᥢ ᥘᥬ ᥔᥥᥴ ᥟᥛᥱ ᥝᥣ ᥑᥦᥢᥰ ᥖᥩ ᥔᥬᥱ ᥙᥢ ᥙᥣᥰ ᥘᥩᥒ ᥖᥣᥒᥰ ᥞᥨᥝᥴ ᥕᥩᥭ ᥘᥒᥱ ᥚᥣᥭᥱ ᥘᥫᥴ ᥘᥭᥳ ᥖᥒᥰ ᥛᥨᥖᥴ ᥘᥦᥰ.",
+	"searchsuggest-containing-html": "ᥔᥩᥐ ᥞᥣᥴ ᥖᥩᥢᥲ ᥖᥣᥱ ᥘᥣᥲ ᥘᥤᥐ ᥓᥫᥰ ᥑᥝᥲ ᥙᥣᥰ ᥝᥭᥳ <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

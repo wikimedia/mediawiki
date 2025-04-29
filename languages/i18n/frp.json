@@ -3094,5 +3094,6 @@
 	"interwiki_edittext": "Changiér un prèfixo entèrvouiqui",
 	"log-name-interwiki": "Jornal de la trâbla entèrvouiqui",
 	"right-interwiki": "Changiér les balyês entèrvouiqui",
-	"action-interwiki": "changiér ceta entrâ entèrvouiqui"
+	"action-interwiki": "changiér ceta entrâ entèrvouiqui",
+	"searchsuggest-containing-html": "Rechèrchiér les pâges que contegnont <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

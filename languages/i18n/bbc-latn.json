@@ -707,5 +707,6 @@
 	"blockedtext-intended-blockee": "Situjuon ni panghurungan: $1",
 	"blockedtext-contact-blocker-admin": "Boi di uhai hamu $1 manang [[{{MediaWiki:Grouppage-sysop}}|juara bagas]] na asing taringot tu hurungan i.",
 	"blockedtext-block-ip": "Alamat IP muna saonnari ima $1.",
-	"blockedtext-include-details-queries": "Padohot ma sude panorangion na di ginjang di sude sungkunsungkun sisungkunonmu."
+	"blockedtext-include-details-queries": "Padohot ma sude panorangion na di ginjang di sude sungkunsungkun sisungkunonmu.",
+	"searchsuggest-containing-html": "Diori alaman na marisi <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

@@ -2242,5 +2242,6 @@
 	"blockedtext-intended-blockee": "Niya sîn be ti o be gɩde nina: $1",
 	"blockedtext-contact-blocker-admin": "Fo na tõoge n boolé $1 bɩɩ nina [[{{MediaWiki:Grouppage-sysop}}|administrator]] n sõso gɩdba yelle.",
 	"blockedtext-block-ip": "Fo marsa IP adersa ya $1.",
-	"blockedtext-include-details-queries": "D bõosdame tɩ f naag kibay wã fãa vɛɛsg buud fãa f sẽn maande."
+	"blockedtext-include-details-queries": "D bõosdame tɩ f naag kibay wã fãa vɛɛsg buud fãa f sẽn maande.",
+	"searchsuggest-containing-html": "Bao nemse n tar <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

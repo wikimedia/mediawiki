@@ -889,5 +889,6 @@
 	"blockedtext-block-ip": "Konyéla adrès IP a-w sé $1.",
 	"blockedtext-include-details-queries": "Syouplé abouté tout sé détay-la ki anho adan tout dèmann ou ka fè.",
 	"renameuserreason": "Rézon:",
-	"renameusersubmit": "Voyé"
+	"renameusersubmit": "Voyé",
+	"searchsuggest-containing-html": "Chèché paj ki ni <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

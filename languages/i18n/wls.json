@@ -560,5 +560,6 @@
 	"blockedtext-contact-blocker-admin": "Felogo'i mo $1 pe ko he tahi [[{{MediaWiki:Grouppage-sysop}}|lagiaki]] o 'uhiga mo te ta'ofi aeni.",
 	"blockedtext-block-ip": "Ko ta'u tu'asila IP e ke faka'aoga'i nei ko $1.",
 	"blockedtext-block-id": "Ko te faka'iloga ta'ofi #$1.",
-	"blockedtext-include-details-queries": "Fakamanatu mai te 'u koga fuli aeni mo ka e ke fia kumi logo mai o 'uhiga mo te ta'ofi 'aeni."
+	"blockedtext-include-details-queries": "Fakamanatu mai te 'u koga fuli aeni mo ka e ke fia kumi logo mai o 'uhiga mo te ta'ofi 'aeni.",
+	"searchsuggest-containing-html": "Kumi pāsina e tohi ai <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

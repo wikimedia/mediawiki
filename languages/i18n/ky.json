@@ -1637,5 +1637,6 @@
 	"interwiki_0": "жок",
 	"interwiki_edit": "Түзөтүү",
 	"interwiki_reasonfield": "Себеп:",
-	"interwiki_addbutton": "Кошуу"
+	"interwiki_addbutton": "Кошуу",
+	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">«$1»</strong> камтыган барактарды издөө"
 }

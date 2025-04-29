@@ -4128,5 +4128,6 @@
 	"interwiki-language-links": "Dillərarası prefikslər",
 	"interwiki-language-description": "Bu prefikslər müəyyən edilmiş dil kodlarına uyğun gəlir və səhifəyə əlavə edildikdə \"{{int:otherlanguages}}\" siyahısını yaratmaq üçün istifadə olunacaq.",
 	"interwiki-global-language-links": "Qlobal dillərarası prefikslər",
-	"interwiki-global-language-description": "Bu prefikslər müəyyən edilmiş dil kodlarına uyğun gəlir və səhifəyə əlavə edildikdə \"{{int:otherlanguages}}\" siyahısını yaratmaq üçün istifadə olunacaq. Onlar qlobal konfiqurasiyadan götürüldükləri üçün yalnız mənbə vikidə redaktə edilə bilər. Qlobal dillərarası tərifləri lokal olaraq ləğv etmək olmaz."
+	"interwiki-global-language-description": "Bu prefikslər müəyyən edilmiş dil kodlarına uyğun gəlir və səhifəyə əlavə edildikdə \"{{int:otherlanguages}}\" siyahısını yaratmaq üçün istifadə olunacaq. Onlar qlobal konfiqurasiyadan götürüldükləri üçün yalnız mənbə vikidə redaktə edilə bilər. Qlobal dillərarası tərifləri lokal olaraq ləğv etmək olmaz.",
+	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> ehtiva edən səhifələri axtar"
 }

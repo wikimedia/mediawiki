@@ -649,5 +649,6 @@
 	"blockedtext-intended-blockee": "مقصود ينحطّ البلوك ع: $1",
 	"blockedtext-contact-blocker-admin": "فيك تتواصل مع $1 أو غير [[{{MediaWiki:Grouppage-sysop}}|إداري]] لتناقشو البلوك.",
 	"blockedtext-block-ip": "حاليًا، عنوان الـIP تبعك هو $1.",
-	"blockedtext-include-details-queries": "پليز حط كل التفاصيل المذكورة فوق بكل الإستفسارات يلى بتعملا."
+	"blockedtext-include-details-queries": "پليز حط كل التفاصيل المذكورة فوق بكل الإستفسارات يلى بتعملا.",
+	"searchsuggest-containing-html": "نبّش ع صفحات بتحتوى ع <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

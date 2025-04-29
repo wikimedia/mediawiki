@@ -4181,5 +4181,6 @@
 	"interwiki-links": "Wikienväliset etuliitteet",
 	"interwiki-language-links": "Kieltenväliset etuliitteet",
 	"interwiki-language-description": "Nämä etuliitteet vastaavat määritettyjä kielitunnuksia, ja niitä käytetään luomaan luettelo ”{{int:otherlanguages}}” lisättynä sivulle.",
-	"interwiki-global-language-links": "Järjestelmänlaajuiset kieltenväliset etuliitteet"
+	"interwiki-global-language-links": "Järjestelmänlaajuiset kieltenväliset etuliitteet",
+	"searchsuggest-containing-html": "Hae sivuja, jotka sisältävät <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

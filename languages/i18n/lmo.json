@@ -3711,5 +3711,6 @@
 	"renameuserreason": "Resonː",
 	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|a l'ha rinominad}} l'utent $4 ({{PLURAL:$6|$6 modifega|$6 modifeghe}}) come $5",
 	"interwiki": "Varda e modìfica i dati interwiki",
-	"interwiki-title-norights": "Varda i dati interwiki"
+	"interwiki-title-norights": "Varda i dati interwiki",
+	"searchsuggest-containing-html": "Cerca i pagine che gh'hann dent <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

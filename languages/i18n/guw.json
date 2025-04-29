@@ -3009,5 +3009,6 @@
 	"blockedtext-contact-blocker-admin": "A sọgan dọho hẹ $1 kavi [[{{MediaWiki:Grouppage-sysop}}|anadenanutọ]] devo gando alọhẹndote lọ go.",
 	"blockedtext-block-ip": "IP adlẹsi towe din tọn wẹ $1.",
 	"blockedtext-block-id": "ID #$1 he yin alọhẹndotena.",
-	"blockedtext-include-details-queries": "Jaale mọ yi nudọnamẹ he to aga lẹ do dodinnanu depope he basi ate mẹ."
+	"blockedtext-include-details-queries": "Jaale mọ yi nudọnamẹ he to aga lẹ do dodinnanu depope he basi ate mẹ.",
+	"searchsuggest-containing-html": "Dín weda he bẹ <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> hẹn lẹ"
 }

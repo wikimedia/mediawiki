@@ -3902,5 +3902,6 @@
 	"logentry-interwiki-iw_delete": "Интервики таблицаһынан «$4» префиксын $1 {{GENDER:$2|юйҙы}}",
 	"log-description-interwiki": "Был — [[Special:Interwiki|интервики таблицаһын]] үҙгәртеүҙәр журналы.",
 	"right-interwiki": "Интервики таблицаһын мөхәррирләү",
-	"action-interwiki": "интервики яҙмаһын үҙгәртеү"
+	"action-interwiki": "интервики яҙмаһын үҙгәртеү",
+	"searchsuggest-containing-html": "Эстәлегендә <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> булған биттәрҙе эҙләргә"
 }

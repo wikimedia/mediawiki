@@ -3686,5 +3686,6 @@
 	"logentry-interwiki-iw_delete": "$1 {{GENDER:$2|a l'ha gavà}} ël prefiss «$4» da la tàula antërwiki",
 	"log-description-interwiki": "Cost-sì a l'é un registr dij cambi a la [[Special:Interwiki|tàula antërwiki]].",
 	"right-interwiki": "Modìfica dat antërwiki",
-	"action-interwiki": "cambia sto dat antërwiki-sì"
+	"action-interwiki": "cambia sto dat antërwiki-sì",
+	"searchsuggest-containing-html": "Serca le pàgine ch'a conten-o <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

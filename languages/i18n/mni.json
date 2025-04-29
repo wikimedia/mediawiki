@@ -933,5 +933,6 @@
 	"blockedtext-made-by": "ꯑꯊꯤꯡꯕ ꯑꯁꯤ $1ꯅꯥ ꯄꯤꯔꯛꯄꯅꯤ ꯫",
 	"blockedtext-reason-comment": "ꯃꯔꯝ ꯑꯁꯤ <em>$1</em>ꯗ ꯂꯩꯔꯦ ꯫",
 	"blockedtext-start-time": "$1:ꯊꯤꯡꯕ ꯍꯧꯈꯤꯕ",
-	"blockedtext-expiration-time": "$1:ꯊꯤꯡꯕ ꯂꯣꯏꯕꯒꯤ ꯃꯇꯝ"
+	"blockedtext-expiration-time": "$1:ꯊꯤꯡꯕ ꯂꯣꯏꯕꯒꯤ ꯃꯇꯝ",
+	"searchsuggest-containing-html": "ꯂꯃꯥꯏꯁꯤꯡ ꯑꯁꯤ ꯌꯥꯎꯕ ꯊꯤꯕꯥ <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

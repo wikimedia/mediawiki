@@ -3202,5 +3202,6 @@
 	"interwiki-global-links": "Globale mellomwikiførefeste",
 	"interwiki-links": "Mellomwiki-førefeste",
 	"interwiki-language-links": "Mellomspråklege førefeste",
-	"interwiki-language-description": "Desse førefesta svarar til definerte språkkodar, og vil verta nytta til å laga «{{int:otherlanguages}}»-lista når dei vert lagde til ei side."
+	"interwiki-language-description": "Desse førefesta svarar til definerte språkkodar, og vil verta nytta til å laga «{{int:otherlanguages}}»-lista når dei vert lagde til ei side.",
+	"searchsuggest-containing-html": "Søk etter sider som inneheld <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

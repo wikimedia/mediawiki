@@ -2265,5 +2265,6 @@
 	"action-renameuser": "badili jina la mtumiaji",
 	"right-renameuser": "Badili majina ya watumiaji",
 	"interwiki-legend-label": "Simulizi",
-	"interwiki_1": "ndiyo"
+	"interwiki_1": "ndiyo",
+	"searchsuggest-containing-html": "Tafuta kurasa zilizo na <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

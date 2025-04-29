@@ -321,5 +321,6 @@
 	"searchsuggest-search": "Hanapa sa {{SITENAME}}",
 	"searchsuggest-containing": "Magsagap kang manga pahina nga may sëlëd nga",
 	"expand_templates_ok": "OK dun",
-	"expand_templates_preview": "Bilid"
+	"expand_templates_preview": "Bilid",
+	"searchsuggest-containing-html": "Magsagap kang manga pahina nga may sëlëd nga <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

@@ -2923,5 +2923,6 @@
 	"interwiki_addintro": "நீங்கள் புதிய interwiki முன்னொட்டைச் சேர்க்கிறீர்கள்.\nநினைவிற் கொள்க: இதில் இடைவெளி ( ), அரைப்புள்ளி (:),   மற்றும் குறி (&),  அல்லது சமக்குறி  (=) இருக்கக் கூடாது",
 	"interwiki_addbutton": "சேர்",
 	"right-interwiki": "விக்கியிடைப் பரிமாற்றத் தரவுகளைத் தொகு",
-	"action-interwiki": "இந்த interwiki உள்ளீடினை மாற்று"
+	"action-interwiki": "இந்த interwiki உள்ளீடினை மாற்று",
+	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> உள்ளடக்கிய பக்கங்களை தேடு"
 }

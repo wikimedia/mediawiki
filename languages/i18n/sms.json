@@ -1273,5 +1273,6 @@
 	"interwiki-url-label": "URL:",
 	"interwiki_edit": "Muuʹtt",
 	"interwiki_reasonfield": "Mäinn:",
-	"interwiki_addbutton": "Lââʹzzet"
+	"interwiki_addbutton": "Lââʹzzet",
+	"searchsuggest-containing-html": "Ooʒʒ seeidaid, koin lij <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

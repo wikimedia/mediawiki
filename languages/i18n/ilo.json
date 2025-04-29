@@ -3380,5 +3380,6 @@
 	"interwiki-local-description": "Lokal nga adda dagitoy a pasakbay. Dagiti ania man a duplikado nga agraman iti global a kompigurasion ket tuonennanto ti global a depinison.",
 	"interwiki-links": "Dagiti pasakbay ti interwiki",
 	"interwiki-language-links": "Dagiti paskbay ti pagsasao",
-	"interwiki-language-description": "Dagitoy a pasakbay ket maipada kadagiti naipalawag a kodigo ti pagsasao, ken mausarto iti panagpartuat iti listaan ti \"{{int:otherlanguages}}\" no mainayon iti panid."
+	"interwiki-language-description": "Dagitoy a pasakbay ket maipada kadagiti naipalawag a kodigo ti pagsasao, ken mausarto iti panagpartuat iti listaan ti \"{{int:otherlanguages}}\" no mainayon iti panid.",
+	"searchsuggest-containing-html": "Agbiruk kadagiti panid nga nga aglaon iti <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

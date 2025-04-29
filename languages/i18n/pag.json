@@ -527,5 +527,6 @@
 	"nstab-mainpage": "Arapan ya bolong",
 	"skin-action-protect": "Iyagel",
 	"skin-action-delete": "Buralen",
-	"skin-action-move": "Iyales"
+	"skin-action-move": "Iyales",
+	"searchsuggest-containing-html": "Mananap na saray pahina ya wala ed <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

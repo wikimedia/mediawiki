@@ -509,5 +509,6 @@
 	"blockedtext-intended-blockee": "Nadiyan dabkada: $1",
 	"blockedtext-contact-blocker-admin": "Rannum manumin $1 aw gadǝ [[{{MediaWiki:Grouppage-sysop}}|administrator]] manano kela daftǝ num bǝlan",
 	"blockedtext-block-ip": "Nanum da,ama shima $1.",
-	"blockedtext-include-details-queries": "Bayan dukso yikǝ suro awo dukso manima bǝn."
+	"blockedtext-include-details-queries": "Bayan dukso yikǝ suro awo dukso manima bǝn.",
+	"searchsuggest-containing-html": "Na awoodoyə gnazanama mata <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

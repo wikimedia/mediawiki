@@ -486,5 +486,6 @@
 	"blockedtext-intended-blockee": "ᐃᓕᖅᑲᓱᖅᑕᐃᓕᒥᔪᖅ ᑯᐃᑕᖓ: $1",
 	"blockedtext-contact-blocker-admin": "ᓱᑲᑎᑦᑎᐊᕋᔅᓴᖅ $1 ᑕᐅᑐᖅᑕᐅᑉ [[{{MediaWiki:Grouppage-sysop}}|ᑕᐃᔭᐅᕆᔾᔪᑎᓂᑦ]] ᑐᓴᐅᕆᐊᕐᓂᖅᑕᐅᕐᑐᓂ.",
 	"blockedtext-block-ip": "ᒫᓐᓇᐅᔪᖅ IP ᑐᕌᕈᑎᒋᔭᐃᑦ $1.",
-	"blockedtext-include-details-queries": "ᐱᖃᑎᖃᔅᓱᐃᔨᒋᓯᒪᔪᓂᒃ ᑕᑕᐅᓯᒪᔪᑦ ᐊᒻᒪᓗ ᑐᓴᓂᐅᓗ ᐊᑦᓴᐃᓂᖅᑕᐅᔪᑦ."
+	"blockedtext-include-details-queries": "ᐱᖃᑎᖃᔅᓱᐃᔨᒋᓯᒪᔪᓂᒃ ᑕᑕᐅᓯᒪᔪᑦ ᐊᒻᒪᓗ ᑐᓴᓂᐅᓗ ᐊᑦᓴᐃᓂᖅᑕᐅᔪᑦ.",
+	"searchsuggest-containing-html": "ᕿᓂᕐᓗᒋᑦ ᒪᒃᐱᒐᐃᑦ ᐃᓗᓕᖃᖅᑐᑦ <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

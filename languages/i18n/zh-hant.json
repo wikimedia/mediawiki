@@ -4243,5 +4243,6 @@
 	"interwiki-language-links": "跨語言前綴",
 	"interwiki-language-description": "這些前綴符合已定義的語言代碼，當加入至頁面時會被用來建立「{{int:otherlanguages}}」清單。",
 	"interwiki-global-language-links": "全域跨語言前綴",
-	"interwiki-global-language-description": "這些前綴符合已定義的語言代碼，並會在加入頁面時用來建立「{{int:otherlanguages}}」清單。由於其繼承自全域設定，僅能在來源wiki上編輯。全域跨語言定義不能被本地內容覆蓋。"
+	"interwiki-global-language-description": "這些前綴符合已定義的語言代碼，並會在加入頁面時用來建立「{{int:otherlanguages}}」清單。由於其繼承自全域設定，僅能在來源wiki上編輯。全域跨語言定義不能被本地內容覆蓋。",
+	"searchsuggest-containing-html": "搜尋包含 <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> 的頁面"
 }

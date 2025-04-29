@@ -3720,5 +3720,6 @@
 	"action-renameuser": "preimenovanje korisnika",
 	"right-renameuser": "Preimenovanje korisnika",
 	"renameuser-renamed-notice": "Ovaj korisnik je preimenovan.\nIspod je prikazan dnevnik preimenovanja.",
-	"log-unknown-action": "izvršio(la) je nepoznatu radnju \"$2\" na [[$1]]"
+	"log-unknown-action": "izvršio(la) je nepoznatu radnju \"$2\" na [[$1]]",
+	"searchsuggest-containing-html": "Pretraži stranice koje sadrže <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

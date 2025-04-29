@@ -1120,5 +1120,6 @@
 	"blockedtext-intended-blockee": "Tulun di naantaban :$1",
 	"blockedtext-contact-blocker-admin": "Milo ko rumomut do $1 toi ko' suai [[{{MediaWiki:Grouppage-sysop}}|admin]] montok mibooboros kokomoi pangantaban.",
 	"blockedtext-block-ip": "Alamat IP dinondo nu nopo nga' $1.",
-	"blockedtext-include-details-queries": "Potonudo toinsanan butiran id sawat id suang do poguhatan di winonsoi nu."
+	"blockedtext-include-details-queries": "Potonudo toinsanan butiran id sawat id suang do poguhatan di winonsoi nu.",
+	"searchsuggest-containing-html": "Ihumo bolikan di haro <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

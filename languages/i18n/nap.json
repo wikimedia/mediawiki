@@ -3153,5 +3153,6 @@
 	"interwiki_local_0_intro": "'E richieste HTTP sterne a 'o wiki lucale ch' 'ausano stu prefisso interwiki dint'a l'URL fernerranno comm'a n'errore \"{{int:badtitle}}\".",
 	"interwiki_addtext": "Azzecca interwiki o prefisso 'e lengua",
 	"interwiki-addtext-local": "Azzecca interwiki lucale o prefisso 'e lengua",
-	"interwiki-links": "Prefisse d'interwiki"
+	"interwiki-links": "Prefisse d'interwiki",
+	"searchsuggest-containing-html": "Truova 'e paggene ca teneno <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

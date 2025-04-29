@@ -582,5 +582,6 @@
 	"blockedtext-block-ip": "Obwikaro bwawe bw'IP buli $1.",
 	"blockedtext-include-details-queries": "Tamu ebitonderwa byona haruguru omubikaguzo byona ebi okora.",
 	"renameuserreason": "Ensonga:",
-	"renameusersubmit": "Hayo"
+	"renameusersubmit": "Hayo",
+	"searchsuggest-containing-html": "Serra empapura eziina <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

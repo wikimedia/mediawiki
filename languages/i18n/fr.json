@@ -4377,5 +4377,6 @@
 	"interwiki-language-links": "Préfixes interlangues",
 	"interwiki-language-description": "Ces préfixes correspondent à des codes de langue définis et sont utilisés pour créer la liste « {{int:otherlanguages}} » lorsqu’ils sont ajoutés à une page.",
 	"interwiki-global-language-links": "Préfixes interlangues globaux",
-	"interwiki-global-language-description": "Ces préfixes correspondent à des codes de langue définis et seront utilisés pour créer la liste « {{int:otherlanguages}} » quand elle est ajoutée à une page. Puisqu’ils sont hérités d’une configuration globale, ils ne peuvent être modifiés que sur le wiki source. Les définitions globales de préfixes interlangues ne peuvent être écrasées localement."
+	"interwiki-global-language-description": "Ces préfixes correspondent à des codes de langue définis et seront utilisés pour créer la liste « {{int:otherlanguages}} » quand elle est ajoutée à une page. Puisqu’ils sont hérités d’une configuration globale, ils ne peuvent être modifiés que sur le wiki source. Les définitions globales de préfixes interlangues ne peuvent être écrasées localement.",
+	"searchsuggest-containing-html": "Rechercher les pages contenant <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

@@ -542,5 +542,6 @@
 	"blockedtext-intended-blockee": "Mizhodam giba': $1",
 	"blockedtext-contact-blocker-admin": "Giin izhi-wiindan $1 gemaa nawaj [[{{MediaWiki:Grouppage-sysop}}|wigii-ogimaa]] biindig idan giba'.",
 	"blockedtext-block-ip": "Gi azha ganoodan asab biindig $1.",
-	"blockedtext-include-details-queries": "Daga asigagindaaso akina akina gegoo gi andawendam idan biindig gi gagwedwewin."
+	"blockedtext-include-details-queries": "Daga asigagindaaso akina akina gegoo gi andawendam idan biindig gi gagwedwewin.",
+	"searchsuggest-containing-html": "Nandawaabam biindig mazina'igans ayaa <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

@@ -3806,5 +3806,6 @@
 	"benefit-1-description": "Чаклан лыдъетъёс, кудъёсыз тӥледлы тунсыко луись бамъёсты чакланы луонлык сёто.",
 	"benefit-2-description": "Ваёсъёсын яланлыко лыдъет, кудзэ тӥ проетэ пыртӥды.",
 	"benefit-3-description": "Ладъянъёс, кудъёсыз тӥлесьтыд адӟем-чакланъёстэс асъяны луонлык сёто.",
-	"temp-user-unable-to-acquire": "Огдырлы кылдытэм юзчилы ним басьтыны ӧз луы.Выльысь оскалтэ."
+	"temp-user-unable-to-acquire": "Огдырлы кылдытэм юзчилы ним басьтыны ӧз луы.Выльысь оскалтэ.",
+	"searchsuggest-containing-html": "Утчано бамъёсты, кудъёсаз вань <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

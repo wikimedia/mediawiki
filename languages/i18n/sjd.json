@@ -759,5 +759,6 @@
 	"skin-action-move": "Воа̄йхэ нэ̄м",
 	"renameuserold": "Адтҍя оаннӭй нэ̄мм:",
 	"renameusernew": "О̄дт оаннӭй нэ̄мм:",
-	"renameusersubmit": "Ӣллькъе"
+	"renameusersubmit": "Ӣллькъе",
+	"searchsuggest-containing-html": "О̄дзэ лыстэнҍ, мэ̄йн лӣ <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

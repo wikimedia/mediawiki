@@ -1014,5 +1014,6 @@
 	"renameuser-page-moved": "$1 í-keng sóa khì tī $2.",
 	"log-name-renameuser": "Iōng-chiá têng-hō-miâ kì-lio̍k",
 	"logentry-renameuser-renameuser": "$1 kā iōng-chiá $4 ({{PLURAL:$6|$6 pái pian-chi̍p|$6 pái pian-chi̍p}}) {{GENDER:$2|kái-miâ}} pìⁿ {{GENDER:$7|$5}}",
-	"logentry-renameuser-renameuser-legacier": "$1 kā iōng-chiá $4 ê hō-miâ kái chò {{GENDER:$7|$5}}"
+	"logentry-renameuser-renameuser-legacier": "$1 kā iōng-chiá $4 ê hō-miâ kái chò {{GENDER:$7|$5}}",
+	"searchsuggest-containing-html": "Chhiau-chhē ū <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> ê ia̍h"
 }

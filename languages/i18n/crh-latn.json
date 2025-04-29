@@ -1715,5 +1715,6 @@
 	"renameuser-renamed-notice": "Bu {{GENDER:$1|qullanıcınıñ}} adını deñiştirildi.\nAd deñiştirüv kündeligi menba olaraq aşağıda kösterilgen.",
 	"createacct-benefit-heading-temp-user": "{{SITENAME}} saytına isse qoşqanıñız içün sağ oluñız.\nDaa ziyade funktsiyağa irişmek içün qullanıcı esabını yaratıñız.",
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}}nı siziñ kibi adamlar yaza. Bir qullanıcı esabınen, aşağıdaki kibi funktsiyalarğa irişim bergen daimiy ve telükesiz bir kimlikke saip ola bilesiñiz:",
-	"interwiki-logtext": "Jurnalnı köster"
+	"interwiki-logtext": "Jurnalnı köster",
+	"searchsuggest-containing-html": "İçinde <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> olğan saifelerni qıdır"
 }

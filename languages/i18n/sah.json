@@ -3799,5 +3799,6 @@
 	"interwiki_edited": "\"$1\" префикс интервики табылыыссатыгар сөпкө уларытылынна.",
 	"interwiki_editerror": "\"$1\" префикс уларыйар кыаҕа суох.\nБаҕар отой да суох буолуон сөп.",
 	"interwiki-badprefix": "Интервики префикса \"$1\" туттуллуо суохтаах бэлиэлэрдээх",
-	"right-interwiki": "Интервикины уларытыы"
+	"right-interwiki": "Интервикины уларытыы",
+	"searchsuggest-containing-html": "Истэригэр <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> ахтыллар сирэйдэри көрдөөһүн"
 }

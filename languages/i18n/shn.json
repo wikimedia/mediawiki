@@ -2633,5 +2633,6 @@
 	"blockedtext-intended-blockee": "လွင်ႈႁႄႉတတ်း ဢၼ်ယိူင်းဢၢၼ်းဝႆႉ : $1",
 	"blockedtext-contact-blocker-admin": "တႃႇဢုပ်ႇဢူဝ်း လွင်ႈႁႄႉတတ်းၼၼ်ႉ ၸဝ်ႈၵဝ်ႇ တေဢမ်ႇၸၢင်ႈ ၵပ်းသိုပ်ႇတင်း $1 ဢမ်ႇၼၼ်  [[{{MediaWiki:Grouppage-sysop}}|ၽူႈၵုမ်းၵၢၼ်]]တၢင်ႇၸိူဝ်း။",
 	"blockedtext-block-ip": "ႁဵၼ်းလိၵ်ႈ ဢၢႆႇပီႇၸဝ်ႈၵဝ်ႇယၢမ်းလဵဝ်ၼႆႉ ပဵၼ် $1 ။",
-	"blockedtext-include-details-queries": "တီႈၵၢၼ်ၶူၼ်ႉႁႃ ဢၼ်ၸဝ်ႈၵဝ်ႇႁဵတ်း ဢၼ်လႂ်သေဢမ်ႇဝႃႈ ၶႅၼ်းတေႃႈ သႂ်ႇပၼ်ပႃး လွင်ႈတၢင်းႁူဝ်ယွႆႈ ၼင်ႇ ၽၢႆႇၼိူဝ်ၼႆႉတင်းသဵင်ႈတႃႉ။"
+	"blockedtext-include-details-queries": "တီႈၵၢၼ်ၶူၼ်ႉႁႃ ဢၼ်ၸဝ်ႈၵဝ်ႇႁဵတ်း ဢၼ်လႂ်သေဢမ်ႇဝႃႈ ၶႅၼ်းတေႃႈ သႂ်ႇပၼ်ပႃး လွင်ႈတၢင်းႁူဝ်ယွႆႈ ၼင်ႇ ၽၢႆႇၼိူဝ်ၼႆႉတင်းသဵင်ႈတႃႉ။",
+	"searchsuggest-containing-html": "ၶူၼ်ႉႁႃ တွၼ်ႈတႃႇ ၼႃႈလိၵ်ႈ ၸိူဝ်းၶဝ်ႈပႃးဝႆႉ <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

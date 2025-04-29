@@ -1397,5 +1397,6 @@
 	"blockedtext-contact-blocker-admin": "Podes cuntatare a $1 o a un'àteru [[{{MediaWiki:Grouppage-sysop}}|amministradore]] pro discutire de su blocu.",
 	"blockedtext-block-ip": "S'indiritzu IP atuale tuo est $1.",
 	"blockedtext-include-details-queries": "Pro praghere include totu sos detàllios inoghe in subra in cale si siat dimanda de acrarimentu chi as a fàghere.",
-	"renameusernew": "Nou nùmene impitadore:"
+	"renameusernew": "Nou nùmene impitadore:",
+	"searchsuggest-containing-html": "Chirca pàginas chi cuntèngiant <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

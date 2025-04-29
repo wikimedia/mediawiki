@@ -616,5 +616,6 @@
 	"blockedtext-intended-blockee": "Di wan we dɛn bin want fɔ blok: $1",
 	"blockedtext-contact-blocker-admin": "Yu kin kɔntak $1 ɔ ɔda [[{{MediaWiki:Grouppage-sysop}}|administreta]] fɔ tɔk bɔt di blɔk.",
 	"blockedtext-block-ip": "Di IP adrɛs we yu gɛt naw na $1.",
-	"blockedtext-include-details-queries": "Duya put ɔl di ditil dɛn we de ɔp pan ɛni kwɛstyɔn we yu aks."
+	"blockedtext-include-details-queries": "Duya put ɔl di ditil dɛn we de ɔp pan ɛni kwɛstyɔn we yu aks.",
+	"searchsuggest-containing-html": "Sach fɔ pejdɛm we gɛt<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

@@ -4307,5 +4307,6 @@
 	"interwiki-language-links": "Prefijos interlingüísticos",
 	"interwiki-language-description": "Estos prefijos coinciden con códigos de idiomas definidos, y se utilizarán para crear el listado \"{{int:otherlanguages}}\" cuando se añade a una página.",
 	"interwiki-global-language-links": "Prefijos interlingüísticos globales",
-	"interwiki-global-language-description": "Estos prefijos coinciden con códigos de idioma definidos, y se utilizarán para crear la lista «{{int:otherlanguages}}» cuando se añada a una página. Dado que están heredados de una configuración global, sólo se pueden editar en el wiki original. Las definiciones interlingüísticas globales no se pueden redefinir localmente."
+	"interwiki-global-language-description": "Estos prefijos coinciden con códigos de idioma definidos, y se utilizarán para crear la lista «{{int:otherlanguages}}» cuando se añada a una página. Dado que están heredados de una configuración global, sólo se pueden editar en el wiki original. Las definiciones interlingüísticas globales no se pueden redefinir localmente.",
+	"searchsuggest-containing-html": "Buscar páginas que contengan <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

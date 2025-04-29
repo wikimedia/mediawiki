@@ -2882,5 +2882,6 @@
 	"renameuser-move-log": "Awtomatikong pinagbalyo an pahina mantang pinapangaranan otro an {GENDER:$2|paragamit}} \"[[User:$1|$1]]\" na magin \"[[User:$2|$2]]\"",
 	"action-renameuser": "pangaranan otro an mga paragamit",
 	"right-renameuser": "Pangarani otro an mga paragamit",
-	"renameuser-renamed-notice": "Ining paragamit pinagngaranan otro.\nAn talaan kan pagpangaran otrol pinagtao sa ibaba para sa reperensiya."
+	"renameuser-renamed-notice": "Ining paragamit pinagngaranan otro.\nAn talaan kan pagpangaran otrol pinagtao sa ibaba para sa reperensiya.",
+	"searchsuggest-containing-html": "Maghanap nin mga pahinang igwang  <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

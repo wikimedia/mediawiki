@@ -579,5 +579,6 @@
 	"log-action-filter-block-block": "Zibira",
 	"paramvalidator-help-type-user-subtype-name": "izina ry’uwukoresha",
 	"skin-action-delete": "Kuraho",
-	"skin-action-move": "Imura"
+	"skin-action-move": "Imura",
+	"searchsuggest-containing-html": "Rondera impapuro zirimwo <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

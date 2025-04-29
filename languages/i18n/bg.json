@@ -3841,5 +3841,6 @@
 	"interwiki_edited": "Представката „$1“ беше успешно променена в таблицата с междууикита.",
 	"log-name-interwiki": "Дневник на междууикитата",
 	"log-description-interwiki": "Тази страница съдържа дневник на промените в [[Special:Interwiki|таблицата с междууикита]].",
-	"right-interwiki": "Редактиране на междууикитата"
+	"right-interwiki": "Редактиране на междууикитата",
+	"searchsuggest-containing-html": "Търсене на страници съдържащи <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

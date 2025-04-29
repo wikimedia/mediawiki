@@ -3471,5 +3471,6 @@
 	"log-name-interwiki": "ინტერვიკის ცხრილის ჟურნალი",
 	"log-description-interwiki": "ეს არის [[Special:Interwiki|ინტერვიკის ცხრილის]] ცვლილებების ჟურნალი.",
 	"right-interwiki": "ინტერვიკის მონაცემების რედაქტირება",
-	"action-interwiki": "ინტერვიკის ჩანაწერების შეცვლა"
+	"action-interwiki": "ინტერვიკის ჩანაწერების შეცვლა",
+	"searchsuggest-containing-html": "გვერდების მოძებნა, რომლებიც შეიცავენ <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>-ს"
 }

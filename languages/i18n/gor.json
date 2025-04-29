@@ -1106,5 +1106,6 @@
 	"blockedtext-start-time": "Tilumula lomubulo: $1",
 	"blockedtext-expiration-time": "Pulitiyo lomubulo: $1",
 	"blockedtext-intended-blockee": "Taa bubulalo: $1",
-	"blockedtext-block-ip": "Alamat IP ulemu sa'ati botiya $1"
+	"blockedtext-block-ip": "Alamat IP ulemu sa'ati botiya $1",
+	"searchsuggest-containing-html": "Lolohe halaman otuwa <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

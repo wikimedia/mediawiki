@@ -2392,5 +2392,6 @@
 	"interwiki-local-links": "مقامي بين الوڪي اڳياڙيون",
 	"interwiki-links": "بين الوڪي اڳياڙيون",
 	"interwiki-language-links": "بين الساني اڳياڙيون",
-	"interwiki-global-language-links": "عالمي بين الوڪي اڳياڙيون"
+	"interwiki-global-language-links": "عالمي بين الوڪي اڳياڙيون",
+	"searchsuggest-containing-html": "اھي صفحا ڳوليو جن ۾ <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> آھي"
 }

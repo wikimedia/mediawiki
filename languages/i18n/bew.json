@@ -3755,5 +3755,6 @@
 	"action-renameuser": "balik nama pemaké",
 	"right-renameuser": "Balik nama pemaké",
 	"renameuser-renamed-notice": "Ni pemaké udah dibalik nama.\nRekeman balik nama ada disediain di bawah sebagé ruju'an.",
-	"log-unknown-action": "piil nyang kaga' ditauin \"$2\" kelakonan di [[$1]]"
+	"log-unknown-action": "piil nyang kaga' ditauin \"$2\" kelakonan di [[$1]]",
+	"searchsuggest-containing-html": "Cari halaman nyang ada <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

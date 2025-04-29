@@ -1223,5 +1223,6 @@
 	"blockedtext-intended-blockee": "بٕنٛدِش ہِیوٚنٛد اِرادٕ: $1",
 	"blockedtext-contact-blocker-admin": "تُہؠ ہیٚکِو رٲبطہٕ کٔرِتھ $1 یا بیٚیس [[{{MediaWiki:Grouppage-sysop}}|اِنتِظٲمِس]] سٟتؠ بُلاکس پیٹھ کتھ باتھ کرنہٕ باپتھ۔",
 	"blockedtext-block-ip": "تُہُنٛد موجوٗدٕ ای پی پتا چھُ $1.",
-	"blockedtext-include-details-queries": "مہربٲنی کٔرِتھ کٔرِو پؠٹھٕ کنہِ دِنہٕ آمٕتؠ تمام تفصیٖل دَرٕج کُنہِ تہِ سَوالس مُتلِق یُس تُہؠ چھُ۔"
+	"blockedtext-include-details-queries": "مہربٲنی کٔرِتھ کٔرِو پؠٹھٕ کنہِ دِنہٕ آمٕتؠ تمام تفصیٖل دَرٕج کُنہِ تہِ سَوالس مُتلِق یُس تُہؠ چھُ۔",
+	"searchsuggest-containing-html": "صَفَن کٔرِو تَلاش یِمَن مَنٛز <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> چھُ"
 }

@@ -596,5 +596,6 @@
 	"blockedtext-intended-blockee": "Dwumadzinyi a akwansiwdze yi kɔ ma no: $1",
 	"blockedtext-contact-blocker-admin": "Ibotum ahwehwɛ $1 anaa [[{{MediaWiki:Grouppage-sysop}}|hwɛdofo]] fofor na enye edzi akwansiw no ho nkɔmbɔ.",
 	"blockedtext-block-ip": "Wo mprɛmprɛ IP adrɛɛse yi nye $1.",
-	"blockedtext-include-details-queries": "Yɛserɛ, fa nkyerɛkyerɛmu a ɔwɔ sor ha nyinara ka nhwehwɛmu biara a ebɛyɛ ho."
+	"blockedtext-include-details-queries": "Yɛserɛ, fa nkyerɛkyerɛmu a ɔwɔ sor ha nyinara ka nhwehwɛmu biara a ebɛyɛ ho.",
+	"searchsuggest-containing-html": "Hwehwɛ nkrataafa a <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> wɔ mu"
 }

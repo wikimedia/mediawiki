@@ -3794,5 +3794,6 @@
 	"benefit-1-description": "Сiрерге кирек страницаларны хайығда тударға пирчеткен страницалар изерiзi.",
 	"benefit-2-description": "Сiрер проектке кирген хозымның алыспас изерiзi.",
 	"benefit-3-description": "Опыт ciрерни полчатханын итчеткен настройкалар.",
-	"temp-user-unable-to-acquire": "Ӱр нимеске иділген аккаунт адын алар оңдай чоғыл. Хатап ит кӧріңер."
+	"temp-user-unable-to-acquire": "Ӱр нимеске иділген аккаунт адын алар оңдай чоғыл. Хатап ит кӧріңер.",
+	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> пар страницаларны тілирi"
 }

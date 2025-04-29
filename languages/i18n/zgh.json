@@ -1128,5 +1128,6 @@
 	"blockedtext-include-details-queries": "ⵎⴽ ⵜⵓⴼⵉⴷ, ⵙⵙⴰⵎⵓ ⵉⴼⵔⵓⵔⵉⵜⵏ ⴰⴽⴽⵯ ⵏ ⵏⵏⵉⴳ ⴷⴰ ⴳ ⵜⵓⵜⵔⵉⵡⵉⵏ ⴰⴽⴽⵯ ⵏⵏⴰ ⵜⵙⴽⵔⴷ.",
 	"interwiki_1": "ⵢⴰⵀ",
 	"interwiki_0": "ⵓⵀⵓ",
-	"interwiki_addbutton": "ⵔⵏⵓ"
+	"interwiki_addbutton": "ⵔⵏⵓ",
+	"searchsuggest-containing-html": "ⵔⵣⵓ ⵖⴼ ⵜⴰⵙⵏⵉⵡⵉⵏ ⵓⵎⴰⵏⵉⵏ <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }
