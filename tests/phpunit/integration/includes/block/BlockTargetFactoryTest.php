@@ -112,13 +112,38 @@ class BlockTargetFactoryTest extends \MediaWikiIntegrationTestCase {
 			$status->getMessages()[0]->getParams()[0]->dump() );
 	}
 
+	public static function provideNewFromIp() {
+		return [
+			[ '', null ],
+			[ '127.0.0.1', '127.0.0.1' ],
+			[ '::0', '0:0:0:0:0:0:0:0' ],
+			[ '127.0.0.001', '127.0.0.1' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideNewFromIp
+	 * @param string $input
+	 * @param string|null $expected
+	 */
+	public function testNewFromIp( $input, $expected ) {
+		$result = $this->getBlockTargetFactory()->newFromIp( $input );
+		if ( $expected === null ) {
+			$this->assertNull( $result );
+		} else {
+			$this->assertInstanceOf( AnonIpBlockTarget::class, $result );
+			$this->assertSame( $expected, $result->toString() );
+		}
+	}
+
 	public static function provideNewFromUser() {
 		return [
-			[ 1, 'Alice', UserBlockTarget::class ],
-			[ 5, 'Exists', UserBlockTarget::class ],
-			[ 0, 'Nonexistent', UserBlockTarget::class ],
-			[ 0, '127.0.0.1', AnonIpBlockTarget::class ],
-			[ 0, '1.2.3.0/24', RangeBlockTarget::class ],
+			[ 1, 'Alice', 'Alice', UserBlockTarget::class ],
+			[ 5, 'Exists', 'Exists', UserBlockTarget::class ],
+			[ 0, 'Nonexistent', 'Nonexistent', UserBlockTarget::class ],
+			[ 0, '127.0.0.1', '127.0.0.1', AnonIpBlockTarget::class ],
+			[ 0, '127.0.0.001', '127.0.0.1', AnonIpBlockTarget::class ],
+			[ 0, '1.2.3.0/24', '1.2.3.0/24', RangeBlockTarget::class ],
 		];
 	}
 
@@ -126,13 +151,14 @@ class BlockTargetFactoryTest extends \MediaWikiIntegrationTestCase {
 	 * @dataProvider provideNewFromUser
 	 * @param int $id
 	 * @param string $name
+	 * @param string|null $expectedName
 	 * @param string $class
 	 */
-	public function testNewFromUser( $id, $name, $class ) {
+	public function testNewFromUser( $id, $name, $expectedName, $class ) {
 		$user = new UserIdentityValue( $id, $name );
 		$target = $this->getBlockTargetFactory()->newFromUser( $user );
 		$this->assertInstanceOf( $class, $target );
-		$this->assertSame( $name, $target->toString() );
+		$this->assertSame( $expectedName, $target->toString() );
 	}
 
 	public static function provideNewFromRow() {

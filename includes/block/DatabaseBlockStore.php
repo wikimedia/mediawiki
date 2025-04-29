@@ -1525,11 +1525,11 @@ class DatabaseBlockStore {
 		}
 		$parentBlock->assertWiki( $this->wikiId );
 
-		if ( !IPUtils::isValid( $autoblockIP ) ) {
+		$target = $this->blockTargetFactory->newFromIp( $autoblockIP );
+		if ( !$target ) {
 			$this->logger->debug( "Invalid autoblock IP" );
 			return false;
 		}
-		$target = $this->blockTargetFactory->newAnonIpBlockTarget( $autoblockIP );
 
 		// Check if autoblock exempt.
 		if ( $this->autoblockExemptionList->isExempt( $autoblockIP ) ) {
