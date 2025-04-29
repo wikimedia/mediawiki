@@ -51,25 +51,25 @@ var __async = (__this, __arguments, generator) => {
   });
 };
 import { ref, onMounted, defineComponent, computed, openBlock, createElementBlock, normalizeClass, toDisplayString, createCommentVNode, Comment, warn, watch, withKeys, withModifiers, renderSlot, toRef, resolveComponent, createElementVNode, createBlock, resolveDynamicComponent, withCtx, createVNode, Fragment, renderList, createTextVNode, Transition, normalizeStyle, inject, mergeProps, useId, withDirectives, vModelCheckbox, createSlots, nextTick, vModelDynamic, onUnmounted, toHandlers, vShow, unref, shallowRef, getCurrentScope, onScopeDispose, shallowReadonly, Teleport, toRefs, provide, reactive, vModelRadio, vModelText, getCurrentInstance } from "vue";
-const V = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', Z = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', e1 = '<path d="M7 14.17 2.83 10l-1.41 1.41L7 17 19 5l-1.41-1.42z"/>', z1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0m5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', p1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', I1 = '<path d="M10 15 2 5h16z"/>', b1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', w1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', n0 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', i = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7"/>', p0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0M9 5h2v2H9zm0 4h2v6H9z"/>', M2 = '<path d="M3 1h2v18H3zm13.5 1.5L15 1l-9 9 9 9 1.5-1.5L9 10z"/>', g2 = '<path d="M15 1h2v18h-2zM3.5 2.5 11 10l-7.5 7.5L5 19l9-9-9-9z"/>', A2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', T2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', $2 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"/>', v5 = '<path d="M10 0 3 8h14zm0 18-7-8h14z"/>', V5 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20m-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10z"/>', j5 = '<path d="m10 5 8 10H2z"/>', V3 = V, Z3 = Z, $3 = e1, a4 = z1, h4 = p1, z4 = I1, x4 = b1, u4 = w1, Y4 = n0, h6 = {
+const g = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', w = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', l1 = '<path d="M7 14.17 2.83 10l-1.41 1.41L7 17 19 5l-1.41-1.42z"/>', d1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0m5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', r1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', u1 = '<path d="M10 15 2 5h16z"/>', f1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', b1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', s0 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', i = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7"/>', i0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0M9 5h2v2H9zm0 4h2v6H9z"/>', m2 = '<path d="M3 1h2v18H3zm13.5 1.5L15 1l-9 9 9 9 1.5-1.5L9 10z"/>', M2 = '<path d="M15 1h2v18h-2zM3.5 2.5 11 10l-7.5 7.5L5 19l9-9-9-9z"/>', I2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', T2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', $2 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"/>', v5 = '<path d="M10 0 3 8h14zm0 18-7-8h14z"/>', V5 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20m-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10z"/>', j5 = '<path d="m10 5 8 10H2z"/>', u3 = g, W3 = w, c4 = l1, t4 = d1, o4 = r1, p4 = u1, u4 = f1, I4 = b1, j4 = s0, o6 = {
   langCodeMap: {
     ar: i
   },
-  default: p0
-}, j6 = {
+  default: i0
+}, X6 = {
+  ltr: m2,
+  shouldFlip: true
+}, _6 = {
   ltr: M2,
   shouldFlip: true
-}, X6 = {
-  ltr: g2,
-  shouldFlip: true
-}, o7 = {
-  ltr: A2,
+}, s7 = {
+  ltr: I2,
   shouldFlip: true
 }, g7 = {
   ltr: T2,
   shouldFlip: true
 }, w7 = $2, P7 = v5, $7 = V5, F8 = j5;
-function _8(c, s, o) {
+function X8(c, s, o) {
   if (typeof c == "string" || "path" in c)
     return c;
   if ("shouldFlip" in c)
@@ -79,7 +79,7 @@ function _8(c, s, o) {
   const v = s in c.langCodeMap ? c.langCodeMap[s] : c.default;
   return typeof v == "string" || "path" in v ? v : v.ltr;
 }
-function $8(c, s) {
+function _8(c, s) {
   if (typeof c == "string")
     return false;
   if ("langCodeMap" in c) {
@@ -262,13 +262,13 @@ const _sfc_main$A = defineComponent({
       return (_a = props.lang) != null ? _a : computedLang.value;
     });
     const rootClasses = computed(() => ({
-      "cdx-icon--flipped": overriddenDir.value === "rtl" && overriddenLang.value !== null && $8(props.icon, overriddenLang.value),
+      "cdx-icon--flipped": overriddenDir.value === "rtl" && overriddenLang.value !== null && _8(props.icon, overriddenLang.value),
       ["cdx-icon--".concat(props.size)]: true
     }));
     const resolvedIcon = computed(
       () => {
         var _a, _b;
-        return _8(props.icon, (_a = overriddenLang.value) != null ? _a : "", (_b = overriddenDir.value) != null ? _b : "ltr");
+        return X8(props.icon, (_a = overriddenLang.value) != null ? _a : "", (_b = overriddenDir.value) != null ? _b : "ltr");
       }
     );
     const iconSvg = computed(() => typeof resolvedIcon.value === "string" ? resolvedIcon.value : "");
@@ -877,7 +877,7 @@ const _sfc_main$w = defineComponent({
      */
     placeholderIcon: {
       type: [String, Object],
-      default: Y4
+      default: j4
     }
   },
   setup: (props) => {
@@ -1639,7 +1639,7 @@ const _sfc_main$s = defineComponent({
       rootClasses,
       ariaDescription,
       onKeydown,
-      cdxIconClose: h4,
+      cdxIconClose: o4,
       tabIndex
     };
   },
@@ -2404,7 +2404,7 @@ const _sfc_main$p = defineComponent({
       rootClasses,
       contentTag,
       title,
-      cdxIconCheck: $3
+      cdxIconCheck: c4
     };
   }
 });
@@ -3762,7 +3762,7 @@ const _sfc_main$m = defineComponent({
       onBlur,
       onInvalid,
       shouldPreventDefault,
-      cdxIconClear: a4
+      cdxIconClear: t4
     };
   },
   // Public methods
@@ -5840,7 +5840,7 @@ const _sfc_main$l = defineComponent({
       onKeydown,
       onButtonClick,
       onButtonMousedown,
-      cdxIconExpand: u4,
+      cdxIconExpand: I4,
       rootClasses,
       rootStyle,
       otherAttrs
@@ -6247,7 +6247,7 @@ const _sfc_main$k = defineComponent({
       close,
       onBackdropClick,
       onBackdropMouseDown,
-      cdxIconClose: h4,
+      cdxIconClose: o4,
       labelId,
       rootClasses,
       backdrop,
@@ -6472,9 +6472,9 @@ function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
 }
 const Dialog = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["render", _sfc_render$k]]);
 const iconMap$2 = {
-  notice: h6,
-  error: x4,
-  warning: V3,
+  notice: o6,
+  error: u4,
+  warning: u3,
   success: $7
 };
 const _sfc_main$j = defineComponent({
@@ -6611,7 +6611,7 @@ const _sfc_main$j = defineComponent({
       leaveActiveClass,
       computedIcon,
       onDismiss,
-      cdxIconClose: h4
+      cdxIconClose: o4
     };
   }
 });
@@ -6847,9 +6847,9 @@ function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
 }
 const Field = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$i]]);
 const iconMap$1 = {
-  notice: h6,
-  error: x4,
-  warning: V3,
+  notice: o6,
+  error: u4,
+  warning: u3,
   success: $7
 };
 const _sfc_main$h = defineComponent({
@@ -6953,24 +6953,6 @@ const _sfc_main$g = defineComponent({
       type: [String, Number],
       default: null
     },
-    // DEPRECATED: Remove (T373532).
-    /**
-     * Initial value of the text input. Non-reactive.
-     *
-     * @deprecated Use `inputValue` instead.
-     */
-    initialInputValue: {
-      type: [String, Number],
-      default: "",
-      validator: (value) => {
-        if (value) {
-          console.warn(
-            '[CdxLookup]: prop "initialInputValue" is deprecated. Use "inputValue" instead.'
-          );
-        }
-        return true;
-      }
-    },
     /**
      * Whether the entire component is disabled.
      */
@@ -7071,7 +7053,7 @@ const _sfc_main$g = defineComponent({
       var _a, _b;
       return (_b = (_a = menu.value) == null ? void 0 : _a.getHighlightedMenuItem()) == null ? void 0 : _b.id;
     });
-    const internalInputValue = ref(props.initialInputValue);
+    const internalInputValue = ref("");
     const computedInputValue = useOptionalModelWrapper(
       internalInputValue,
       toRef(props, "inputValue"),
@@ -8057,7 +8039,7 @@ const _sfc_main$c = defineComponent({
       showFooter,
       footerActionsClasses,
       close,
-      cdxIconClose: h4,
+      cdxIconClose: o4,
       floating,
       floatingStyles,
       arrowRef,
@@ -8819,7 +8801,7 @@ const _sfc_main$8 = defineComponent({
       onClick,
       onKeydown,
       startIcon,
-      cdxIconExpand: u4
+      cdxIconExpand: I4
     };
   }
 });
@@ -8977,9 +8959,9 @@ const _sfc_main$7 = defineComponent({
       btnLabelLast,
       wrappedItemsPerPage,
       cdxIconPrevious: g7,
-      cdxIconNext: o7,
-      cdxIconMoveFirst: j6,
-      cdxIconMoveLast: X6
+      cdxIconNext: s7,
+      cdxIconMoveFirst: X6,
+      cdxIconMoveLast: _6
     };
   }
 });
@@ -9087,7 +9069,7 @@ const paginationPositionValidator = makeStringTypeValidator(TablePaginationPosit
 const iconMap = {
   none: P7,
   asc: F8,
-  desc: z4
+  desc: p4
 };
 const sortDirectionMap = {
   none: "none",
@@ -10196,7 +10178,7 @@ const _sfc_main$4 = defineComponent({
       scrollTabs,
       focusActiveTab,
       cdxIconPrevious: g7,
-      cdxIconNext: o7
+      cdxIconNext: s7
     };
   },
   /**
@@ -11522,7 +11504,7 @@ const _sfc_main = defineComponent({
       onSubmit,
       onKeydown,
       MenuFooterValue,
-      articleIcon: Z3,
+      articleIcon: W3,
       translatedSearchResultsLabel
     };
   },

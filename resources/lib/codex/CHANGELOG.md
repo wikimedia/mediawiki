@@ -1,3 +1,49 @@
+# 2.0.0-rc.1 / 2025-04-29
+
+## Breaking changes
+- [BREAKING CHANGE] Lookup: remove initialInputValue prop (Lauralyn Watson)
+- [BREAKING CHANGE] icons: remove deprecated icons (Lauralyn Watson)
+- [BREAKING CHANGE] types: remove DialogAction and PrimaryDialogAction (Lauralyn Watson)
+- [BREAKING CHANGE] tokens, styles: Introduce font modes and redesign type scale system (Derek Torsani)
+- [BREAKING CHANGE] tokens: Add new Less mixin files and remove legacy file (Eric Gardner)
+
+View how to handle these changes in the
+[Codex 2.0 migration guide](https://www.mediawiki.org/wiki/Codex/Release_Timeline/2.0/Breaking_changes).
+
+## Styles
+- Dialog: fix padding in header, body, and footer (Derek Torsani)
+- Popover, styles: ensure header icon does not shrink (Lauralyn Watson)
+- Accordion, styles: Fix action button position when open (Volker E.)
+- Accordion, styles: Don't let flexbox shrink the indicator icon (Eric Gardner)
+
+### New design tokens
+- `spacing-6`
+- `spacing-65`
+- `line-height-large`
+- `line-height-x-large`
+- `line-height-xx-large`
+- `line-height-xxx-large`
+- `size-toggle-switch-grip`
+- `width-toggle-switch`
+- `min-height-toggle-switch`
+- `height-toggle-switch`
+- `spacing-toggle-switch-grip-start`
+- `spacing-toggle-switch-grip-end`
+
+### Deprecated design tokens
+- `line-height-xxx-small`
+- `line-height-xx-small`
+
+### Un-deprecated tokens
+- `line-height-x-small`
+
+## Documentation
+- docs: Fix 'node_modules' file import path in documentation (Volker E.)
+- docs, icons: Add an appearance menu to the docs site & 'configure' icon (Anne Tomasevich)
+- docs: Adjust styles and format on Style Guide Typography page (Anne Tomasevich)
+- docs: Remove sub-1.0.0 versioning comments (Volker E.)
+- docs: Clarify usage of custom properties carrying design tokens (Volker E.)
+
 # 1.23.0 / 2025-04-17
 
 ## Features
@@ -11,7 +57,7 @@
 - `@border-color-inverted-fixed`
 - `@transform-checkbox-tick--checked`
 
-## Docs
+## Documentation
 - docs: Align Less bracket whitespace to Wikimedia coding guidelines (Volker E.)
 - docs: Update Design Principles (Derek Torsani)
 
@@ -26,7 +72,7 @@
 - Thumbnail: Ensure that prop updates trigger image change when necessary (Eric Gardner)
 - useFloatingMenu: Ensure flip padding is less than size padding (Eric Gardner)
 
-## Docs
+## Documentation
 - docs: Update to clarify introduction of Popover component (Volker E.)
 - demos: Add typography demo sandbox page (Volker E.)
 
@@ -64,7 +110,7 @@
 - Popover: change header button wrapper's class name (Lauralyn Watson)
 - Popover: Adjust anchor prop type (Anne Tomasevich)
 
-## Docs
+## Documentation
 - docs: add design tokens introduced in v1.20.3 (Lauralyn Watson)
 - docs, i18n: update docs about adding new message keys (Lauralyn Watson)
 - demos: Fix Container demo selectors (Volker E.)
@@ -102,7 +148,7 @@
 - build: Stop CI from failing if Netlify deployment fails (Anne Tomasevich)
 - build: Add `--glob` flag to 'rimraf' command (Volker E.)
 
-## Docs
+## Documentation
 - docs: Update Codex logo (Derek Torsani)
 - docs: Don't break everything when there's a generic type (Anne Tomasevich)
 - docs: Remove superfluous JSDoc Boolean `@values` annotations (Volker E.)
@@ -156,7 +202,7 @@ Only used as general `box-shadow` token constructors:
 - build: Limit color references only to `box-shadow` colors, not to all tokens (Volker E.)
 - build: upgrade browserslist-db to 1.0.30001700 (Volker E.)
 
-## Docs
+## Documentation
 - docs: Update Codex logo (Derek Torsani)
 - docs: Update AUTHORS.txt (Roan Kattouw)
 - docs: Conduct various clean up on the docs site (Derek Torsani)
@@ -183,7 +229,7 @@ Only used as general `box-shadow` token constructors:
 - build: Clean up .gitignore files (Roan Kattouw)
 - Menu: Re-work how IDs are generated (Eric Gardner)
 
-## Docs
+## Documentation
 - demos: Make `tbody` explicit in `table`s (Volker E.)
 - docs: Fix `<table>` HTML semantics (Volker E.)
 - docs: Fix link syntax (apaskulin)
@@ -217,7 +263,7 @@ Only used as general `box-shadow` token constructors:
 - icons: add ArrowUp and ArrowDown icons to Codex (Lauralyn Watson)
 - icons: add azerbaijani definitions and new bold Q (Nemoralis)
 
-## Docs
+## Documentation
 - docs: Add component groups in the sidebar (Anne Tomasevich)
 - docs: Add instructions to RELEASING.md for Phab tagging release commit (Roan Kattouw)
 - docs: Explain vendor prefixes in 'css-icon' public mixin (Volker E.)
@@ -272,7 +318,7 @@ Dummy release to fix a publishing problem with 1.19.0.
 - build: Update `@typescript-eslint` plugins to 8.19.0 (Volker E.)
 - build: Use new @import directive in jsdoc comments (Roan Kattouw)
 
-## Docs
+## Documentation
 - docs: Update component page styles to prepare for simplification (Anne Tomasevich)
 - docs: Simplify Checkbox, Radio, and ToggleSwitch pages (Derek Torsani)
 - docs: Simplify Combobox, SearchInput, Select, and TypeaheadSearch (Anne Tomasevich)
@@ -316,7 +362,7 @@ Dummy release to fix a publishing problem with 1.19.0.
 - MultiselectLookup: Remove unneeded prop (Anne Tomasevich)
 - Tooltip: Add guard clauses for undefined and empty string values (Doğu Abaris)
 
-## Docs
+## Documentation
 - Image: Add WIP Image and component (Doğu Abaris)
 - docs: Add recent authors (>1 commit) and other contributors (Volker E.)
 
@@ -348,7 +394,7 @@ Dummy release to fix a publishing problem with 1.19.0.
 - build: update 'svglint' to latest v3.1.0 (Volker E.)
 - build: update 'svgo' to latest v3.3.2 (Volker E.)
 
-## Docs
+## Documentation
 - IconLookup: Clarify reactive data flow and update watcher (Eric Gardner)
 - docs: Document native validation for TextInput (Anne Tomasevich)
 - docs: Revise colors used for top graphic on Style Guide colors page (Derek Torsani)
@@ -388,7 +434,7 @@ Dummy release to fix a publishing problem with 1.19.0.
 ## Code
 - Lookup: Ensure input event on selection has correct value (Anne Tomasevich)
 
-## Docs
+## Documentation
 - docs: update the Figma library links (bmartinezcalvo)
 - docs: Fix typo in field demo header (Anne Tomasevich)
 
@@ -418,7 +464,7 @@ Dummy release to fix a publishing problem with 1.19.0.
 - Table, i18n: improve caption message for a11y (lwatson)
 - ToggleButton: add button type (lwatson)
 
-## Docs
+## Documentation
 - InfoChip: CSS-only demo with icon (lwatson)
 - docs: ADR for native constraint validation (Anne Tomasevich)
 - docs: Link to the menu group docs (Anne Tomasevich)
@@ -451,7 +497,7 @@ Dummy release to fix a publishing problem with 1.19.0.
 - Menu: minor update test file (lwatson)
 - MultiselectLookup: Handle race condition when editing chip (Anne Tomasevich)
 
-## Docs
+## Documentation
 - Lookup, LookupMultiselect: Refactor demo pages (Anne Tomasevich)
 - docs: include MultiselectLookup guidelines (bmartinezcalvo)
 - docs: update Lookup guidelines (bmartinezcalvo)
@@ -475,7 +521,7 @@ Dummy release to fix a publishing problem with 1.19.0.
 ## Code
 - Menu: key nav scrolls menu items into view (lwatson)
 
-## Docs
+## Documentation
 - docs: Remove 'color update' banner from Colors page (Volker E.)
 - Radio, Checkbox: Update status prop documentation (Anne Tomasevich)
 - docs: minor updates to releasing.md (lwatson)
@@ -496,7 +542,7 @@ Dummy release to fix a publishing problem with 1.19.0.
 - build: Fix npm-shrinkwrap dependency (Volker E.)
 - build: upgrade browserslist-db to 1.0.30001660 (Volker E.)
 
-## Docs
+## Documentation
 - docs: reorder MenuItem's config demo props (lwatson)
 - docs: update menu item guidelines (bmartinezcalvo)
 - docs: Update Colors page of the Style Guide (Anne Tomasevich)
@@ -538,7 +584,7 @@ Dummy release to fix a publishing problem with 1.19.0.
 - Tabs: make 2-way binding of active tab optional (Eric Gardner)
 - Lookup: Make unit tests more realistic when inputting text (Anne Tomasevich)
 
-## Docs
+## Documentation
 - RELEASING.md: Update instructions to add make-cdx command (Roan Kattouw)
 - docs: update releasing docs (lwatson)
 - docs: update MenuItem interaction states (bmartinezcalvo)
@@ -566,7 +612,7 @@ Dummy release to fix a publishing problem with 1.19.0.
 - Radio, Checkbox: clean up HTML (Lauralyn Watson)
 - ChipInput.vue: rootElement.value can be undefined, use nullcheck (Daphne Smit)
 
-## Docs
+## Documentation
 - docs: Use Codex colors for links within content (Anne Tomasevich)
 - docs: Add test for getFormattedDate (Anne Tomasevich)
 - docs: Update ValidationMessages type to include new properties (Anne Tomasevich)
@@ -599,7 +645,7 @@ Dummy release to fix a publishing problem with 1.19.0.
 - i18n: Make the system more type-safe (Eric Gardner)
 - FloatingUI: Use default fallbackStrategy (Anne Tomasevich)
 
-## Docs
+## Documentation
 - docs: include interaction states guidelines for Table's pagination (bmartinezcalvo)
 - Reapply "docs: include guidelines for custom input within Radio and Checkbox" (LWatson)
 - Reapply "docs: include table pagination guidelines" (LWatson)
@@ -636,7 +682,7 @@ Dummy release to fix a publishing problem with 1.19.0.
 - Dialog, Label, Message: use useI18nWithOverride composable (lwatson)
 - useI18n: Simplify unit tests (Roan Kattouw)
 
-## Docs
+## Documentation
 - Message: fix demo's usage of `allowUserDismiss` prop (lwatson)
 - docs: clarify usage of ToggleButtonGroup and Tabs (bmartinezcalvo)
 - demo: Remove wrong disabled Accordion example (Volker E.)
@@ -669,7 +715,7 @@ Dummy release to fix a publishing problem with 1.19.0.
 - icons: Drop `fill-rule` argument from 'appearance' icon (thiemowmde)
 - icons: Re-draw 'appearance' icon for most minimal file size (thiemowmde)
 
-## Docs
+## Documentation
 - docs: add i18n function type (lwatson)
 - docs: Update Field guidelines (bmartinezcalvo)
 - docs: Standardize descriptions of props with default strings (Anne Tomasevich)
@@ -706,7 +752,7 @@ Dummy release to fix a publishing problem with 1.19.0.
 - Table: minor follow-ups (Anne Tomasevich)
 - tokens: Use transform instead of custom formatter for Less with CSS vars (Roan Kattouw)
 
-## Docs
+## Documentation
 - docs, ChipInput: Remove remove-button-label prop from examples (Roan Kattouw)
 - docs: Add recent authors (>1 commit) (Anne Tomasevich)
 - docs: Document Jest pitfall around optional parameters (Roan Kattouw)
@@ -1094,7 +1140,7 @@ ESM (and have "type: module" set in their respective package.json files).
 - build: Update 'vite' to latest 4.n version (Volker E.)
 - build: Update .browerslistrc reference to upstream (James D. Forrester)
 
-## Docs
+## Documentation
 - docs: Fix code color regression and contrast issue (Volker E.)
 - docs: Remove VRT from releasing docs (Anne Tomasevich)
 - docs: fix typo and expand abbreviations in Radio & Voice and tone (Volker E.)
