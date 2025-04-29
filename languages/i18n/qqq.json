@@ -1302,7 +1302,7 @@
 	"linterror-duplicate-ids": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-duplicate-ids-details}}.",
 	"linterror-empty-heading": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-empty-heading}}.",
 	"linterror-fostered": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-fostered}}.",
-	"linterror-fostered-transparent": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-fostered-transparent}}.",
+	"linterror-fostered-transparent": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-fostered-transparent-details}}.",
 	"linterror-html5-misnesting": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-html5-misnesting-details}}.",
 	"linterror-inline-media-caption": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-inline-media-caption-details}}.",
 	"linterror-large-tables": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-large-tables-details}}.",

@@ -1306,7 +1306,7 @@
 	"apihelp-query+userinfo-paramvalue-prop-options": "Перелічує усі налаштування, які поточний користувач встановив.",
 	"apihelp-query+userinfo-paramvalue-prop-editcount": "Додає кількість редагувань поточного користувача.",
 	"apihelp-query+userinfo-paramvalue-prop-ratelimits": "Перелічує усі ліміти оцінок, застосовні до поточного користувача.",
-	"apihelp-query+userinfo-paramvalue-prop-theoreticalratelimits": "Перелічує всі обмеження швидкості, що застосовувались би до поточного користувача якби він не мав виключення з обмежень швидкості на основі прав користувача чи IP",
+	"apihelp-query+userinfo-paramvalue-prop-theoreticalratelimits": "Перелічує всі обмеження швидкості, що застосовувались би до поточного користувача якби він не мав виключення з обмежень швидкості на основі прав користувача чи IP.",
 	"apihelp-query+userinfo-paramvalue-prop-realname": "Додає справжнє ім'я користувача.",
 	"apihelp-query+userinfo-paramvalue-prop-email": "Додає електронну пошту користувача та дату її підтвердження.",
 	"apihelp-query+userinfo-paramvalue-prop-acceptlang": "Дублює шапку <code>Accept-Language</code>, надіслану клієнтом у структурованому форматі.",

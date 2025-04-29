@@ -3,7 +3,8 @@
 		"authors": [
 			"Ignatgg",
 			"METROKOP228 UA",
-			"Yasen igra"
+			"Yasen igra",
+			"Ата"
 		]
 	},
 	"cdx-chip-input-chip-added": "Додано чіп $1.",
@@ -12,6 +13,7 @@
 	"cdx-dialog-close-button-label": "Закрити",
 	"cdx-label-optional-flag": "(необов'язково)",
 	"cdx-message-dismiss-button-label": "Закрити",
+	"cdx-popover-close-button-label": "Закрити",
 	"cdx-search-input-search-button-label": "Пошук",
 	"cdx-table-select-all-label": "Вибрати усі рядки",
 	"cdx-table-select-row-label": "Виберіть ряд $1 з $2",
@@ -28,5 +30,6 @@
 	"cdx-table-pagination-status-message-indeterminate-long": "Показ $1–$2 результатів",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2",
 	"cdx-table-pagination-status-message-indeterminate-final": "Показ останніх {{PLURAL:$1|$1 результат|$1 результати|$1 результатів}}",
-	"cdx-table-pagination-status-message-pending": "Завантаження результатів…"
+	"cdx-table-pagination-status-message-pending": "Завантаження результатів…",
+	"cdx-table-no-data-message": "Немає доступних даних."
 }
