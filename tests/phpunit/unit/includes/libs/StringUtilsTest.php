@@ -4,10 +4,10 @@ namespace Wikimedia\Tests;
 
 use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
-use StringUtils;
+use Wikimedia\StringUtils\StringUtils;
 
 /**
- * @covers \StringUtils
+ * @covers \Wikimedia\StringUtils\StringUtils
  */
 class StringUtilsTest extends TestCase {
 

@@ -23,7 +23,6 @@
 
 namespace MediaWiki\Parser;
 
-use HtmlArmor;
 use MediaWiki\Cache\LinkCache;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -32,6 +31,7 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
+use Wikimedia\HtmlArmor\HtmlArmor;
 
 /**
  * @internal for using in Parser only.

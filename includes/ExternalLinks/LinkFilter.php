@@ -24,11 +24,11 @@ use MediaWiki\Content\Content;
 use MediaWiki\Content\TextContent;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use StringUtils;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeMatch;
 use Wikimedia\Rdbms\LikeValue;
+use Wikimedia\StringUtils\StringUtils;
 
 /**
  * Utilities for formatting and querying the externallinks table.

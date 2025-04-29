@@ -27,6 +27,7 @@ require_once __DIR__ . '/../Maintenance.php';
 
 use MediaWiki\Maintenance\Maintenance;
 use Wikimedia\StaticArrayWriter;
+use Wikimedia\StringUtils\StringUtils;
 
 /**
  * Generate first letter data files for Collation.php

@@ -3,8 +3,6 @@ declare( strict_types=1 );
 
 namespace MediaWiki\Linker;
 
-use HtmlArmor;
-use MapCacheLRU;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\SpecialPage\SpecialPageFactory;
@@ -14,7 +12,9 @@ use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\TempUser\TempUserDetailsLookup;
 use MediaWiki\User\UserIdentity;
 use MessageLocalizer;
+use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\IPUtils;
+use Wikimedia\MapCacheLRU\MapCacheLRU;
 
 /**
  * Service class that renders HTML for user-related links.

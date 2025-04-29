@@ -31,7 +31,7 @@ use MediaWiki\Session\CsrfTokenSetProvider;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use Timing;
+use Wikimedia\Timing\Timing;
 
 /**
  * Interface for objects which can provide a MediaWiki context on request

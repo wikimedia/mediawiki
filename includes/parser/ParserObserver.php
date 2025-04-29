@@ -28,13 +28,13 @@
 
 namespace MediaWiki\Parser;
 
-use MapCacheLRU;
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Content\Content;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Title\Title;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
+use Wikimedia\MapCacheLRU\MapCacheLRU;
 
 /**
  * For observing and detecting parser behaviors, such as duplicate parses

@@ -22,8 +22,8 @@
 
 namespace Wikimedia\FileBackend;
 
-use HttpStatus;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Http\HttpStatus;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**

@@ -22,7 +22,6 @@
 
 namespace MediaWiki\Api;
 
-use HttpStatus;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Html\Html;
 use MediaWiki\Json\FormatJson;
@@ -30,6 +29,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\SpecialPage\SpecialPage;
+use Wikimedia\Http\HttpStatus;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**

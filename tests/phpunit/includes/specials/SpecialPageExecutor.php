@@ -10,6 +10,7 @@ use MediaWiki\Request\FauxResponse;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\LoggedOutEditToken;
+use Wikimedia\Http\HttpStatus;
 
 /**
  * @author Addshore

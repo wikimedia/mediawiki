@@ -22,7 +22,7 @@
 namespace MediaWiki\Language;
 
 use MediaWiki\Logger\LoggerFactory;
-use StringUtils;
+use Wikimedia\StringUtils\StringUtils;
 
 /**
  * The rules used for language conversion, this processes the rules

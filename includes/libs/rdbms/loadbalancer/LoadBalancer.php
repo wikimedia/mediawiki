@@ -19,7 +19,6 @@
  */
 namespace Wikimedia\Rdbms;
 
-use ArrayUtils;
 use InvalidArgumentException;
 use LogicException;
 use Psr\Log\LoggerInterface;
@@ -27,6 +26,7 @@ use Psr\Log\NullLogger;
 use RuntimeException;
 use Throwable;
 use UnexpectedValueException;
+use Wikimedia\ArrayUtils\ArrayUtils;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;

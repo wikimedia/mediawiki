@@ -62,13 +62,13 @@ use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\Xml\XmlSelect;
 use NumberFormatter;
 use RuntimeException;
-use StringUtils;
 use UtfNormal\Validator as UtfNormalValidator;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\DebugInfo\DebugInfoTrait;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
+use Wikimedia\StringUtils\StringUtils;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**

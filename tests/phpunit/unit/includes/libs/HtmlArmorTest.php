@@ -2,12 +2,12 @@
 
 namespace Wikimedia\Tests;
 
-use HtmlArmor;
 use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
+use Wikimedia\HtmlArmor\HtmlArmor;
 
 /**
- * @covers \HtmlArmor
+ * @covers \Wikimedia\HtmlArmor\HtmlArmor
  */
 class HtmlArmorTest extends TestCase {
 

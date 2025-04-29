@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Utils\UrlUtils;
+use Wikimedia\ArrayUtils\ArrayUtils;
 
 /**
  * Shared data providers for UrlUtilsTest and some GlobalFunctions tests

@@ -2,7 +2,7 @@
 
 namespace MediaWiki\User\TempUser;
 
-use ArrayUtils;
+use Wikimedia\ArrayUtils\ArrayUtils;
 
 /**
  * Since "base" is an overused term in class names and mostly means something

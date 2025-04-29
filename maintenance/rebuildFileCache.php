@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Actions\Action;
+use MediaWiki\Cache\HTMLFileCache;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\MainConfigNames;

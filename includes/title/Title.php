@@ -25,7 +25,6 @@
 namespace MediaWiki\Title;
 
 use InvalidArgumentException;
-use MapCacheLRU;
 use MediaWiki\Cache\LinkCache;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\DAO\WikiAwareEntityTrait;
@@ -60,6 +59,7 @@ use stdClass;
 use Stringable;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\PreconditionException;
+use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
 use Wikimedia\Parsoid\Core\LinkTargetTrait;
 use Wikimedia\Rdbms\DBAccessObjectUtils;

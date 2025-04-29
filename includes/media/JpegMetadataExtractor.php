@@ -23,6 +23,7 @@
 
 use MediaWiki\Libs\UnpackFailedException;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\StringUtils\StringUtils;
 use Wikimedia\XMPReader\Reader as XMPReader;
 
 /**

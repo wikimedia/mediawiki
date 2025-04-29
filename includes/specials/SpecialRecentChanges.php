@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Specials;
 
-use HtmlArmor;
 use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Context\IContextSource;
@@ -43,6 +42,7 @@ use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Xml\Xml;
 use OOUI\ButtonWidget;
 use OOUI\HtmlSnippet;
+use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\RawSQLExpression;

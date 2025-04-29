@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\ArrayUtils\ArrayUtils;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\ObjectCache\MediumSpecificBagOStuff;
 use Wikimedia\Rdbms\Blob;

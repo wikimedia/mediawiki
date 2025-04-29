@@ -24,7 +24,6 @@
 namespace MediaWiki\Installer;
 
 use Exception;
-use HtmlArmor;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
 use MediaWiki\Installer\Task\TaskFactory;
@@ -35,6 +34,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
+use Wikimedia\HtmlArmor\HtmlArmor;
 
 /**
  * Class for the core installer web interface.

@@ -20,7 +20,6 @@
 namespace MediaWiki\Page;
 
 use InvalidArgumentException;
-use MapCacheLRU;
 use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -43,6 +42,7 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Assert\Assert;
+use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\ILBFactory;

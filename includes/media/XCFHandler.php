@@ -28,6 +28,7 @@
 
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\Libs\UnpackFailedException;
+use Wikimedia\StringUtils\StringUtils;
 
 /**
  * Handler for the Gimp's native file format; getimagesize() doesn't

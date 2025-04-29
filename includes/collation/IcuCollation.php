@@ -21,6 +21,7 @@
 use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\ArrayUtils\ArrayUtils;
 
 /**
  * @since 1.16.3

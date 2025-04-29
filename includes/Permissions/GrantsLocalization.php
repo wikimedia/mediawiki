@@ -20,12 +20,12 @@
 
 namespace MediaWiki\Permissions;
 
-use HtmlArmor;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\SpecialPage\SpecialPage;
+use Wikimedia\HtmlArmor\HtmlArmor;
 
 /**
  * This separate service is needed because the ::getGrantsLink method requires a LinkRenderer

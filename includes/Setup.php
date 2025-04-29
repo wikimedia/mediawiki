@@ -80,6 +80,7 @@ use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use Psr\Log\LoggerInterface;
+use Wikimedia\Http\HttpStatus;
 use Wikimedia\RequestTimeout\RequestTimeout;
 use Wikimedia\Telemetry\SpanInterface;
 use Wikimedia\Telemetry\TracerState;

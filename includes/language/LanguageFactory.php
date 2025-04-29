@@ -23,7 +23,6 @@ namespace MediaWiki\Languages;
 use InvalidArgumentException;
 use LocalisationCache;
 use LogicException;
-use MapCacheLRU;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
@@ -33,6 +32,7 @@ use MediaWiki\Language\LanguageConverter;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\NamespaceInfo;
 use Wikimedia\Bcp47Code\Bcp47Code;
+use Wikimedia\MapCacheLRU\MapCacheLRU;
 
 /**
  * Internationalisation code

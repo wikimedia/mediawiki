@@ -58,11 +58,11 @@ use OOUI\PanelLayout;
 use OOUI\TextInputWidget;
 use SearchEngineFactory;
 use StatusValue;
-use StringUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
+use Wikimedia\StringUtils\StringUtils;
 
 /**
  * Implement Special:Movepage for changing page titles

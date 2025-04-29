@@ -23,7 +23,7 @@
 
 namespace MediaWiki\Actions;
 
-use HTMLFileCache;
+use MediaWiki\Cache\HTMLFileCache;
 use MediaWiki\Feed\ChannelFeed;
 use MediaWiki\Feed\FeedItem;
 use MediaWiki\Feed\FeedUtils;

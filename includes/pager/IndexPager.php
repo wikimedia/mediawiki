@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Pager;
 
-use HtmlArmor;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
@@ -29,6 +28,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Navigation\PagerNavigationBuilder;
 use MediaWiki\Request\WebRequest;
 use stdClass;
+use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 

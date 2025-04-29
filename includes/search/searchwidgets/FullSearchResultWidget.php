@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Search\SearchWidgets;
 
-use HtmlArmor;
 use MediaTransformOutput;
 use MediaWiki\Category\Category;
 use MediaWiki\FileRepo\File\File;
@@ -19,6 +18,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsManager;
 use SearchResult;
 use ThumbnailImage;
+use Wikimedia\HtmlArmor\HtmlArmor;
 
 /**
  * Renders a 'full' multi-line search result with metadata.

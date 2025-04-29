@@ -27,6 +27,7 @@
 
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Settings\SettingsBuilder;
+use Wikimedia\Http\HttpStatus;
 
 # T17461: Make IE8 turn off content sniffing. Everybody else should ignore this
 # We're adding it here so that it's *always* set, even for alternate entry

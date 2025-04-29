@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Session;
 
-use ArrayUtils;
 use BadMethodCallException;
 use InvalidArgumentException;
 use MediaWiki\Config\HashConfig;
@@ -19,6 +18,7 @@ use MediaWiki\Session\UserInfo;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\NullLogger;
 use TestLogger;
+use Wikimedia\ArrayUtils\ArrayUtils;
 use Wikimedia\TestingAccessWrapper;
 
 /**

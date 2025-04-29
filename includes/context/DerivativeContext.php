@@ -33,10 +33,10 @@ use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use Timing;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
+use Wikimedia\Timing\Timing;
 
 /**
  * An IContextSource implementation which will inherit context from another source

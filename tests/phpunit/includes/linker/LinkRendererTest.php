@@ -10,6 +10,7 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
+use Wikimedia\HtmlArmor\HtmlArmor;
 
 /**
  * @covers \MediaWiki\Linker\LinkRenderer

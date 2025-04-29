@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Tests\Integration\Permissions;
 
-use HtmlArmor;
 use MediaWiki\Html\Html;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWikiIntegrationTestCase;
+use Wikimedia\HtmlArmor\HtmlArmor;
 
 /**
  * @author Zabe

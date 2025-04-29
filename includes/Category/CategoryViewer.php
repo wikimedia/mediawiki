@@ -23,7 +23,6 @@
 namespace MediaWiki\Category;
 
 use Collation;
-use HtmlArmor;
 use ImageGalleryBase;
 use ImageGalleryClassNotFoundException;
 use InvalidArgumentException;
@@ -42,6 +41,7 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
+use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 class CategoryViewer extends ContextSource {

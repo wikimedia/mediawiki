@@ -22,7 +22,6 @@
 
 namespace MediaWiki\Api;
 
-use HtmlArmor;
 use ISearchResultSet;
 use MediaWiki\Search\TitleMatcher;
 use MediaWiki\Status\Status;
@@ -30,6 +29,7 @@ use SearchEngine;
 use SearchEngineConfig;
 use SearchEngineFactory;
 use SearchResult;
+use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
 

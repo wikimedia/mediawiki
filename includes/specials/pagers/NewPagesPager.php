@@ -21,7 +21,6 @@
 
 namespace MediaWiki\Pager;
 
-use MapCacheLRU;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\ChangeTags\ChangeTagsStore;
@@ -45,6 +44,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserIdentityValue;
 use stdClass;
+use Wikimedia\MapCacheLRU\MapCacheLRU;
 use Wikimedia\Rdbms\IExpression;
 
 /**

@@ -22,7 +22,6 @@ namespace MediaWiki\User;
 
 use Iterator;
 use LogicException;
-use MapCacheLRU;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\TemporaryPasswordAuthenticationRequest;
 use MediaWiki\Config\ServiceOptions;
@@ -38,6 +37,7 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 use StatusValue;
+use Wikimedia\MapCacheLRU\MapCacheLRU;
 
 /**
  * Password reset helper for functionality shared by the web UI and the API.

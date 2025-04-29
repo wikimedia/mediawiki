@@ -5,9 +5,9 @@ namespace MediaWiki\User\TempUser;
 use ArrayIterator;
 use CallbackFilterIterator;
 use IteratorIterator;
-use MapCacheLRU;
 use MediaWiki\User\Registration\UserRegistrationLookup;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\MapCacheLRU\MapCacheLRU;
 
 /**
  * Caching lookup service for metadata related to temporary accounts, such as expiration.

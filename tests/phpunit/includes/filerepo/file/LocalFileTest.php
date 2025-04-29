@@ -22,6 +22,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\WikiMap\WikiMap;
 use PHPUnit\Framework\Assert;
+use Wikimedia\ArrayUtils\ArrayUtils;
 use Wikimedia\FileBackend\FSFileBackend;
 use Wikimedia\TestingAccessWrapper;
 

@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace Wikimedia\ArrayUtils;
+
 /**
  * A collection of static methods to play with arrays.
  *
@@ -251,3 +253,6 @@ class ArrayUtils {
 		return $outputArrays;
 	}
 }
+
+/** @deprecated class alias since 1.44 */
+class_alias( ArrayUtils::class, 'ArrayUtils' );

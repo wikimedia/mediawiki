@@ -31,11 +31,11 @@ use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use Timing;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\NonSerializable\NonSerializableTrait;
+use Wikimedia\Timing\Timing;
 
 /**
  * The simplest way of implementing IContextSource is to hold a RequestContext as a

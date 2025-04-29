@@ -25,7 +25,6 @@
 
 namespace MediaWiki\Logging;
 
-use HtmlArmor;
 use MediaWiki\Api\ApiQueryBase;
 use MediaWiki\Api\ApiResult;
 use MediaWiki\CommentFormatter\CommentFormatter;
@@ -45,6 +44,7 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserIdentity;
 use stdClass;
+use Wikimedia\HtmlArmor\HtmlArmor;
 use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 

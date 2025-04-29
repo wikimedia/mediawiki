@@ -26,7 +26,6 @@
 namespace MediaWiki\Logging;
 
 use InvalidArgumentException;
-use MapCacheLRU;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\ChangeTags\ChangeTags;
 use MediaWiki\Context\ContextSource;
@@ -56,6 +55,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MessageLocalizer;
 use stdClass;
+use Wikimedia\MapCacheLRU\MapCacheLRU;
 
 class LogEventsList extends ContextSource {
 	public const NO_ACTION_LINK = 1;

@@ -20,8 +20,8 @@
 
 namespace MediaWiki\Deferred;
 
-use HTMLFileCache;
 use MediaWiki\Cache\CacheKeyHelper;
+use MediaWiki\Cache\HTMLFileCache;
 use MediaWiki\Page\PageIdentity;
 use Wikimedia\Assert\Assert;
 

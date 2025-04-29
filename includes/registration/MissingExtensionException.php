@@ -3,8 +3,8 @@
 namespace MediaWiki\Registration;
 
 use Exception;
-use HttpStatus;
 use MediaWiki\Html\TemplateParser;
+use Wikimedia\Http\HttpStatus;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 
 /**
