@@ -923,7 +923,7 @@ class WebInstaller extends Installer {
 
 		return "<div class=\"cdx-checkbox\" style=\"margin-top: 12px; margin-bottom: 2px;\">" .
 			"<div class=\"cdx-checkbox__wrapper\">\n" .
-			Xml::check(
+			Html::check(
 				$params['controlName'],
 				$params['value'],
 				$params['attribs'] + [

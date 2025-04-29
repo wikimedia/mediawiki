@@ -324,7 +324,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 
 		$extraOpts['target'] = [ $this->msg( 'recentchangeslinked-page' )->escaped(),
 			Xml::input( 'target', 40, str_replace( '_', ' ', $opts['target'] ) ) . ' ' .
-			Xml::check( 'showlinkedto', $opts['showlinkedto'], [ 'id' => 'showlinkedto' ] ) . ' ' .
+			Html::check( 'showlinkedto', $opts['showlinkedto'], [ 'id' => 'showlinkedto' ] ) . ' ' .
 			Xml::label( $this->msg( 'recentchangeslinked-to' )->text(), 'showlinkedto' ) ];
 
 		$this->addHelpLink( 'Help:Related changes' );

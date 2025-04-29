@@ -8,7 +8,6 @@ use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\HTMLForm\OOUIHTMLForm;
 use MediaWiki\HTMLForm\VFormHTMLForm;
 use MediaWiki\Request\WebRequest;
-use MediaWiki\Xml\Xml;
 
 /**
  * A checkbox field
@@ -44,7 +43,7 @@ class HTMLCheckField extends HTMLFormField {
 		$isVForm = $this->mParent instanceof VFormHTMLForm;
 
 		$chkDivider = "\u{00A0}";
-		$chkLabel = Xml::check( $this->mName, $value, $attr ) .
+		$chkLabel = Html::check( $this->mName, $value, $attr ) .
 			$chkDivider .
 			Html::rawElement( 'label', $attrLabel, $this->mLabel );
 
@@ -120,7 +119,7 @@ class HTMLCheckField extends HTMLFormField {
 
 		// Construct the component.
 		$checkIcon = "<span class=\"cdx-checkbox__icon\">\u{00A0}</span>";
-		$innerContent = Xml::check( $this->mName, $value, $attribs ) .
+		$innerContent = Html::check( $this->mName, $value, $attribs ) .
 			$checkIcon .
 			Html::rawElement( 'label', $labelAttribs, $this->mLabel );
 		return Html::rawElement(

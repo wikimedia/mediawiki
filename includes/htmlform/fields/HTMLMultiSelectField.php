@@ -8,7 +8,6 @@ use MediaWiki\HTMLForm\HTMLNestedFilterable;
 use MediaWiki\HTMLForm\OOUIHTMLForm;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Widget\MenuTagMultiselectWidget;
-use MediaWiki\Xml\Xml;
 use RuntimeException;
 
 /**
@@ -155,7 +154,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 			throw new RuntimeException( __METHOD__ . ' is not supported' );
 		} else {
 			$checkbox =
-				Xml::check( "{$this->mName}[]", $checked, $attribs ) .
+				Html::check( "{$this->mName}[]", $checked, $attribs ) .
 				"\u{00A0}" .
 				Html::rawElement(
 					'label',
