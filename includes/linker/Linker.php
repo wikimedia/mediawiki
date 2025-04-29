@@ -44,7 +44,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\ExternalUserNames;
 use MediaWiki\User\UserIdentityValue;
-use MediaWiki\Xml\Xml;
 use MessageLocalizer;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -2125,7 +2124,7 @@ class Linker {
 		if ( $tooltip === false ) {
 			return '';
 		}
-		return Xml::expandAttributes( [
+		return Html::expandAttributes( [
 			'title' => $tooltip
 		] );
 	}
