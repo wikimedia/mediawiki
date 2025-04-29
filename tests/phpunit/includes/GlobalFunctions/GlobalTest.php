@@ -348,7 +348,7 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 	 * @param string $expectedText Text after merge has been completed
 	 * @param string $expectedMergeAttemptResult Diff3 output if conflicts occur
 	 *
-	 * @dataProvider provideMerge()
+	 * @dataProvider provideMerge
 	 * @group medium
 	 * @covers ::wfMerge
 	 */

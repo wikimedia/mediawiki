@@ -692,7 +692,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 	 * @param array $params
 	 * @param string|string[]|null $expectedText Null means use the original content.
 	 * @param array $expectedHeaders
-	 * @dataProvider provideRequests()
+	 * @dataProvider provideRequests
 	 * @covers \MediaWiki\Rest\Handler\Helper\HtmlInputTransformHelper
 	 * @covers \MediaWiki\Parser\Parsoid\HtmlToContentTransform
 	 */
@@ -811,7 +811,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideOriginal()
+	 * @dataProvider provideOriginal
 	 *
 	 * @param SelserContext|null $stashed
 	 * @param RevisionRecord|int|null $rev

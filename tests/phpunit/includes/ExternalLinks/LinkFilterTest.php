@@ -284,7 +284,7 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @dataProvider provideMakeIndexes()
+	 * @dataProvider provideMakeIndexes
 	 */
 	public function testMakeIndexes( $url, $expected ) {
 		// Set global so file:// tests can work
@@ -381,7 +381,7 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @dataProvider provideReverseIndexes()
+	 * @dataProvider provideReverseIndexes
 	 */
 	public function testReverseIndex( $url, $expected ) {
 		// Set global so file:// tests can work

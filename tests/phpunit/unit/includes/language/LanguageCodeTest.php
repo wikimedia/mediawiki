@@ -57,7 +57,7 @@ class LanguageCodeTest extends MediaWikiUnitTestCase {
 	 * all upper cases language code.
 	 *
 	 * @see https://tools.ietf.org/html/bcp47
-	 * @dataProvider provideLanguageCodes()
+	 * @dataProvider provideLanguageCodes
 	 */
 	public function testBcp47( $code, $expected ) {
 		$this->assertEquals( $expected, LanguageCode::bcp47( $code ),
@@ -204,7 +204,7 @@ class LanguageCodeTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @dataProvider provideBcp47ToInternal()
+	 * @dataProvider provideBcp47ToInternal
 	 */
 	public function testBcp47ToInternal( $expected, $bcp47 ) {
 		$result = LanguageCode::bcp47ToInternal( $bcp47 );
@@ -212,7 +212,7 @@ class LanguageCodeTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @dataProvider provideSupportedLanguageCodes()
+	 * @dataProvider provideSupportedLanguageCodes
 	 */
 	public function testBcp47ToInternalLanguage( $internalCode ) {
 		if ( $internalCode === 'egl' ) {
