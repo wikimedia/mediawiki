@@ -25,28 +25,25 @@ namespace MediaWiki\Page;
 
 use InvalidArgumentException;
 use MediaWiki;
-use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\Linker\LinkTargetLookup;
 use MediaWiki\Logging\ManualLogEntry;
-use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
-use MediaWiki\Revision\MutableRevisionRecord;
-use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
+use MediaWiki\Storage\PageUpdater;
+use MediaWiki\Storage\PageUpdaterFactory;
+use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\Title\TitleFormatter;
-use MediaWiki\Title\TitleValue;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
+use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Timestamp\TimestampException;
@@ -62,10 +59,10 @@ class MergeHistory {
 	/** Maximum number of revisions that can be merged at once */
 	public const REVISION_LIMIT = 5000;
 
-	/** @var PageIdentity Page from which history will be merged */
+	/** @var ProperPageIdentity Page from which history will be merged */
 	protected $source;
 
-	/** @var PageIdentity Page to which history will be merged */
+	/** @var ProperPageIdentity Page to which history will be merged */
 	protected $dest;
 
 	/** @var IDatabase Database that we are using */
@@ -101,14 +98,12 @@ class MergeHistory {
 	protected $revisionsMerged;
 
 	private IContentHandlerFactory $contentHandlerFactory;
-	private RevisionStore $revisionStore;
 	private WatchedItemStoreInterface $watchedItemStore;
 	private SpamChecker $spamChecker;
 	private HookRunner $hookRunner;
-	private WikiPageFactory $wikiPageFactory;
+	private PageUpdaterFactory $pageUpdaterFactory;
 	private TitleFormatter $titleFormatter;
 	private TitleFactory $titleFactory;
-	private LinkTargetLookup $linkTargetLookup;
 	private DeletePageFactory $deletePageFactory;
 
 	/**
@@ -117,14 +112,12 @@ class MergeHistory {
 	 * @param ?string $timestamp Timestamp up to which history from the source will be merged
 	 * @param IConnectionProvider $dbProvider
 	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param RevisionStore $revisionStore
 	 * @param WatchedItemStoreInterface $watchedItemStore
 	 * @param SpamChecker $spamChecker
 	 * @param HookContainer $hookContainer
-	 * @param WikiPageFactory $wikiPageFactory
+	 * @param PageUpdaterFactory $pageUpdaterFactory
 	 * @param TitleFormatter $titleFormatter
 	 * @param TitleFactory $titleFactory
-	 * @param LinkTargetLookup $linkTargetLookup
 	 * @param DeletePageFactory $deletePageFactory
 	 */
 	public function __construct(
@@ -133,34 +126,49 @@ class MergeHistory {
 		?string $timestamp,
 		IConnectionProvider $dbProvider,
 		IContentHandlerFactory $contentHandlerFactory,
-		RevisionStore $revisionStore,
 		WatchedItemStoreInterface $watchedItemStore,
 		SpamChecker $spamChecker,
 		HookContainer $hookContainer,
-		WikiPageFactory $wikiPageFactory,
+		PageUpdaterFactory $pageUpdaterFactory,
 		TitleFormatter $titleFormatter,
 		TitleFactory $titleFactory,
-		LinkTargetLookup $linkTargetLookup,
 		DeletePageFactory $deletePageFactory
 	) {
 		// Save the parameters
-		$this->source = $source;
-		$this->dest = $dest;
+		$this->source = self::toProperPageIdentity( $source, '$source' );
+		$this->dest = self::toProperPageIdentity( $dest, '$dest' );
 		$this->timestamp = $timestamp;
 
 		// Get the database
 		$this->dbw = $dbProvider->getPrimaryDatabase();
 
 		$this->contentHandlerFactory = $contentHandlerFactory;
-		$this->revisionStore = $revisionStore;
 		$this->watchedItemStore = $watchedItemStore;
 		$this->spamChecker = $spamChecker;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->wikiPageFactory = $wikiPageFactory;
+		$this->pageUpdaterFactory = $pageUpdaterFactory;
 		$this->titleFormatter = $titleFormatter;
 		$this->titleFactory = $titleFactory;
-		$this->linkTargetLookup = $linkTargetLookup;
 		$this->deletePageFactory = $deletePageFactory;
+	}
+
+	private static function toProperPageIdentity(
+		PageIdentity $page,
+		string $name
+	): ProperPageIdentity {
+		// Make sure $source and $dest are proper pages
+		if ( $page instanceof Title ) {
+			$page = $page->toPageIdentity();
+		}
+
+		Assert::parameterType(
+			ProperPageIdentity::class,
+			$page,
+			$name
+		);
+		'@phan-var ProperPageIdentity $page';
+
+		return $page;
 	}
 
 	/**
@@ -327,7 +335,13 @@ class MergeHistory {
 			return Status::wrap( $permCheck );
 		}
 
+		$updater = $this->pageUpdaterFactory->newPageUpdater(
+			$this->source,
+			$performer->getUser()
+		);
+
 		$this->dbw->startAtomic( __METHOD__ );
+		$updater->grabParentRevision(); // preserve latest revision for later
 
 		$this->dbw->newUpdateQueryBuilder()
 			->update( 'revision' )
@@ -369,7 +383,7 @@ class MergeHistory {
 				)->inContentLanguage()->text();
 			}
 
-			$this->updateSourcePage( $status, $performer, $revisionComment );
+			$this->updateSourcePage( $status, $performer, $revisionComment, $updater );
 
 		} else {
 			$legacySource->invalidateCache();
@@ -410,8 +424,9 @@ class MergeHistory {
 	 * @param Authority $performer
 	 * @param string $revisionComment Edit summary for the redirect or empty revision
 	 *   to be created in place of the source page
+	 * @param PageUpdater $updater For turning the source page into a redirect
 	 */
-	private function updateSourcePage( $status, $performer, $revisionComment ): void {
+	private function updateSourcePage( $status, $performer, $revisionComment, PageUpdater $updater ): void {
 		$deleteSource = false;
 		$legacySourceTitle = $this->titleFactory->newFromPageIdentity( $this->source );
 		$legacyDestTitle = $this->titleFactory->newFromPageIdentity( $this->dest );
@@ -462,63 +477,24 @@ class MergeHistory {
 		// content model supports redirects, then it will be the redirect content.
 		// If the content model does not supports redirect, this content will aid
 		// proper deletion of the page below.
-		$comment = CommentStoreComment::newUnsavedComment( $revisionComment );
-		$revRecord = new MutableRevisionRecord( $this->source );
-		$revRecord->setContent( SlotRecord::MAIN, $newContent )
-			->setPageId( $this->source->getId() )
-			->setComment( $comment )
-			->setUser( $performer->getUser() )
-			->setTimestamp( wfTimestampNow() );
 
-		$insertedRevRecord = $this->revisionStore->insertRevisionOn( $revRecord, $this->dbw );
+		$updater->setContent( SlotRecord::MAIN, $newContent )
+			->setHints( [ 'suppressDerivedDataUpdates' => $deleteSource ] )
+			->saveRevision( $revisionComment, EDIT_INTERNAL | EDIT_IMPLICIT | EDIT_SILENT );
 
-		$newPage = $this->wikiPageFactory->newFromTitle( $this->source );
-		$newPage->updateRevisionOn( $this->dbw, $insertedRevRecord );
-
-		if ( !$deleteSource ) {
-			// TODO: This doesn't belong here, it should be part of PageLinksTable.
-			// We have created a redirect page so let's
-			// record the link from the page to the new title.
-			// It should have no other outgoing links...
-			$this->dbw->newDeleteQueryBuilder()
-				->deleteFrom( 'pagelinks' )
-				->where( [ 'pl_from' => $this->source->getId() ] )
-				->caller( __METHOD__ )->execute();
-			$migrationStage = MediaWikiServices::getInstance()->getMainConfig()->get(
-				MainConfigNames::PageLinksSchemaMigrationStage
-			);
-			$row = [
-				'pl_from' => $this->source->getId(),
-				'pl_from_namespace' => $this->source->getNamespace(),
-			];
-			if ( $migrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
-				$row['pl_namespace'] = $this->dest->getNamespace();
-				$row['pl_title'] = $this->dest->getDBkey();
-			}
-			if ( $migrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
-				$row['pl_target_id'] = $this->linkTargetLookup->acquireLinkTargetId(
-					new TitleValue( $this->dest->getNamespace(), $this->dest->getDBkey() ),
-					$this->dbw
-				);
-			}
-			$this->dbw->newInsertQueryBuilder()
-				->insertInto( 'pagelinks' )
-				->row( $row )
-				->caller( __METHOD__ )->execute();
-
-		} else {
+		if ( $deleteSource ) {
 			// T263340/T93469: Delete the source page to prevent errors because its
 			// revisions are now tied to a different title and its content model
 			// does not support redirects, so we cannot leave a new revision on it.
 			// This deletion does not depend on userright but may still fails. If it
 			// fails, it will be communicated in the status response.
 			$reason = wfMessage( 'mergehistory-source-deleted-reason' )->inContentLanguage()->plain();
-			$delPage = $this->deletePageFactory->newDeletePage( $newPage, $performer );
+			$delPage = $this->deletePageFactory->newDeletePage( $this->source, $performer );
 			$deletionStatus = $delPage->deleteUnsafe( $reason );
 			if ( $deletionStatus->isGood() && $delPage->deletionsWereScheduled()[DeletePage::PAGE_BASE] ) {
 				$deletionStatus->warning(
 					'delete-scheduled',
-					wfEscapeWikiText( $newPage->getTitle()->getPrefixedText() )
+					wfEscapeWikiText( $this->titleFormatter->getPrefixedText( $this->source ) )
 				);
 			}
 			// Notify callers that the source page has been deleted.

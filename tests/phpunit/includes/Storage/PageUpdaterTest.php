@@ -559,6 +559,23 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$updater->saveRevision( $summary );
 	}
 
+	public function testEventEmission_suppressed() {
+		$page = $this->getExistingTestPage();
+		$user = $this->getTestUser()->getUser();
+
+		$this->runDeferredUpdates(); // flush
+
+		$this->expectDomainEvent( PageRevisionUpdatedEvent::TYPE, 0 );
+		$this->expectHook( 'RevisionFromEditComplete', 0 );
+		$this->expectHook( 'PageSaveComplete', 0 );
+
+		$updater = $page->newPageUpdater( $user );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( 'Lorem Ipsum' ) );
+
+		$updater->setHints( [ 'suppressDerivedDataUpdates' => true ] )
+			->saveRevision( 'Just a test' );
+	}
+
 	public function testEventEmission_implicit() {
 		$page = $this->getExistingTestPage();
 		$user = $this->getTestUser()->getUser();

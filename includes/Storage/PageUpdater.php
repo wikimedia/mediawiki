@@ -295,6 +295,14 @@ class PageUpdater implements PageUpdateCauses {
 		return $this;
 	}
 
+	/**
+	 * @param array $hints Hints used by DerivedPageDataUpdater::prepareUpdate.
+	 * Additional hints supported:
+	 * - suppressDerivedDataUpdates: do not perform any updates of derived data,
+	 *   do not emit events.
+	 *
+	 * @return $this
+	 */
 	public function setHints( array $hints ): self {
 		$this->hints = $hints + $this->hints;
 		return $this;
@@ -1339,15 +1347,12 @@ class PageUpdater implements PageUpdateCauses {
 				]
 			);
 
-			DeferredUpdates::addUpdate(
-				$this->getAtomicSectionUpdate(
-					$dbw,
-					$wikiPage,
-					$newRevisionRecord,
-					$revision->getComment(),
-					[ 'changed' => false ]
-				),
-				DeferredUpdates::PRESEND
+			$this->scheduleAtomicSectionUpdate(
+				$dbw,
+				$wikiPage,
+				$newRevisionRecord,
+				$revision->getComment(),
+				[ 'changed' => false ]
 			);
 		}
 
@@ -1449,13 +1454,16 @@ class PageUpdater implements PageUpdateCauses {
 
 			$editResult = $this->getEditResult();
 			$tags = $this->computeEffectiveTags();
-			$this->hookRunner->onRevisionFromEditComplete(
-				$wikiPage,
-				$newRevisionRecord,
-				$editResult->getOriginalRevisionId(),
-				$this->author,
-				$tags
-			);
+
+			if ( !$this->updatesSuppressed() ) {
+				$this->hookRunner->onRevisionFromEditComplete(
+					$wikiPage,
+					$newRevisionRecord,
+					$editResult->getOriginalRevisionId(),
+					$this->author,
+					$tags
+				);
+			}
 
 			$this->prepareDerivedDataUpdater(
 				$wikiPage,
@@ -1500,15 +1508,12 @@ class PageUpdater implements PageUpdateCauses {
 		// HTTP redirect to the standard view before derived data has been created - most
 		// importantly, before the parser cache has been updated. This would cause the
 		// content to be parsed a second time, or may cause stale content to be shown.
-		DeferredUpdates::addUpdate(
-			$this->getAtomicSectionUpdate(
-				$dbw,
-				$wikiPage,
-				$newRevisionRecord,
-				$summary,
-				[ 'changed' => $changed, ]
-			),
-			DeferredUpdates::PRESEND
+		$this->scheduleAtomicSectionUpdate(
+			$dbw,
+			$wikiPage,
+			$newRevisionRecord,
+			$summary,
+			[ 'changed' => $changed, ]
 		);
 
 		// Mark the earliest point where the transaction round can be committed in CLI mode.
@@ -1577,9 +1582,11 @@ class PageUpdater implements PageUpdateCauses {
 		}
 
 		$tags = $this->computeEffectiveTags();
-		$this->hookRunner->onRevisionFromEditComplete(
-			$wikiPage, $newRevisionRecord, false, $this->author, $tags
-		);
+		if ( !$this->updatesSuppressed() ) {
+			$this->hookRunner->onRevisionFromEditComplete(
+				$wikiPage, $newRevisionRecord, false, $this->author, $tags
+			);
+		}
 
 		if ( $this->usePageCreationLog ) {
 			// Log the page creation
@@ -1608,16 +1615,14 @@ class PageUpdater implements PageUpdateCauses {
 
 		// Notify the dispatcher of the PageRevisionUpdatedEvent during the transaction round
 		$this->emitEvents();
+
 		// Schedule the secondary updates to run after the transaction round commits
-		DeferredUpdates::addUpdate(
-			$this->getAtomicSectionUpdate(
-				$dbw,
-				$wikiPage,
-				$newRevisionRecord,
-				$summary,
-				[ 'created' => true ]
-			),
-			DeferredUpdates::PRESEND
+		$this->scheduleAtomicSectionUpdate(
+			$dbw,
+			$wikiPage,
+			$newRevisionRecord,
+			$summary,
+			[ 'created' => true ]
 		);
 
 		// Mark the earliest point where the transaction round can be committed in CLI mode.
@@ -1665,8 +1670,39 @@ class PageUpdater implements PageUpdateCauses {
 		$this->derivedDataUpdater->prepareUpdate( $newRevisionRecord, $hints );
 	}
 
+	private function updatesSuppressed() {
+		return $this->hints['suppressDerivedDataUpdates'] ?? false;
+	}
+
 	private function emitEvents(): void {
+		if ( $this->updatesSuppressed() ) {
+			return;
+		}
+
 		$this->derivedDataUpdater->emitEvents();
+	}
+
+	private function scheduleAtomicSectionUpdate(
+		IDatabase $dbw,
+		WikiPage $wikiPage,
+		RevisionRecord $newRevisionRecord,
+		CommentStoreComment $summary,
+		array $hints = []
+	): void {
+		if ( $this->updatesSuppressed() ) {
+			return;
+		}
+
+		DeferredUpdates::addUpdate(
+			$this->getAtomicSectionUpdate(
+				$dbw,
+				$wikiPage,
+				$newRevisionRecord,
+				$summary,
+				$hints
+			),
+			DeferredUpdates::PRESEND
+		);
 	}
 
 	private function getAtomicSectionUpdate(

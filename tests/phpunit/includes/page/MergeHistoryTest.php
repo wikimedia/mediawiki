@@ -5,6 +5,8 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Message\Message;
+use MediaWiki\Page\Event\PageDeletedEvent;
+use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Page\MergeHistory;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -129,14 +131,12 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 				null,
 				$this->getServiceContainer()->getConnectionProvider(),
 				$this->getServiceContainer()->getContentHandlerFactory(),
-				$this->getServiceContainer()->getRevisionStore(),
 				$this->getServiceContainer()->getWatchedItemStore(),
 				$this->getServiceContainer()->getSpamChecker(),
 				$this->getServiceContainer()->getHookContainer(),
-				$this->getServiceContainer()->getWikiPageFactory(),
+				$this->getServiceContainer()->getPageUpdaterFactory(),
 				$this->getServiceContainer()->getTitleFormatter(),
 				$this->getServiceContainer()->getTitleFactory(),
-				$this->getServiceContainer()->getLinkTargetLookup(),
 				$this->getServiceContainer()->getDeletePageFactory(),
 			] )
 			->getMock();
@@ -210,6 +210,10 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		$this->insertPage( $title );
 		$this->insertPage( $title2 );
 
+		// Latest revision turned into redirect, no page deleted.
+		$this->expectDomainEvent( PageRevisionUpdatedEvent::TYPE, 1 );
+		$this->expectDomainEvent( PageDeletedEvent::TYPE, 0 );
+
 		$factory = $this->getServiceContainer()->getMergeHistoryFactory();
 		$mh = $factory->newMergeHistory( $title, $title2 );
 
@@ -234,6 +238,10 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		$this->insertPage( $title );
 		$this->insertPage( $title2 );
 
+		// Latest revision didn't change, page deleted.
+		$this->expectDomainEvent( PageRevisionUpdatedEvent::TYPE, 0 );
+		$this->expectDomainEvent( PageDeletedEvent::TYPE, 1 );
+
 		$factory = $this->getServiceContainer()->getMergeHistoryFactory();
 		$mh = $factory->newMergeHistory( $title, $title2 );
 
@@ -242,7 +250,16 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		$status = $mh->merge( static::getTestSysop()->getUser() );
 		$this->assertStatusOK( $status );
 
-		$this->assertFalse( $title->exists() );
+		// XXX: Using the $title object triggers failures in some versions of PHP,
+		//      see discussions on Id7549ebfdffaf90db87a359b4e44c0fbca9bef0b.
+		$this->runDeferredUpdates();
+		$pageStore = $this->getServiceContainer()->getPageStore();
+		$pageAfter = $pageStore->getPageByName(
+			$title->getNamespace(),
+			$title->getDBkey(),
+			IDBAccessObject::READ_LATEST
+		);
+		$this->assertNull( $pageAfter );
 	}
 
 	/**
@@ -274,9 +291,8 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusOK( $status );
 
 		// make sure the links are gone, but the redirect is there
-		// NOTE: Categories should be cleared, but currently are not.
 		$this->runDeferredUpdates();
-		$this->assertLinks( $title, [ $title2 ], [ $testCategory ], $title2 );
+		$this->assertLinks( $title, [ $title2 ], [], $title2 );
 	}
 
 	private function assertLinks(
@@ -442,18 +458,12 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		if ( $deleteSource ) {
 			// If the source page gets deleted, there's an additional RC entry.
 			$this->expectChangeTrackingUpdates( 0, 2, 0, 0, 0 );
-
-			// The source page should get re-indexed.
-			$this->expectSearchUpdates( 1 );
 		} else {
-			// NOTE: CategoryMembershipChangeJob *should* be scheduled, but
-			// currently isn't.
-			$this->expectChangeTrackingUpdates( 0, 1, 0, 0, 0 );
-
-			// The source page should get re-indexed.
-			// NOTE: It's currently only called for deletions, not redirects!
-			$this->expectSearchUpdates( 0 );
+			$this->expectChangeTrackingUpdates( 0, 1, 0, 0, 1 );
 		}
+
+		// The source page should get re-indexed.
+		$this->expectSearchUpdates( 1 );
 
 		// The localization cache should be reset for the MediaWiki
 		// namespace.
@@ -463,9 +473,8 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 
 		// If the content model is JS, the module cache should be reset for the
 		// source page.
-		// NOTE: It's currently only not called, but should be for JS pages!
 		$this->expectResourceLoaderUpdates(
-			$oldContent->getModel() === CONTENT_MODEL_JAVASCRIPT ? 0 : 0
+			$oldContent->getModel() === CONTENT_MODEL_JAVASCRIPT ? 1 : 0
 		);
 
 		// Now merge the pages
