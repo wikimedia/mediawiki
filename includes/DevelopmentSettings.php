@@ -74,7 +74,7 @@ if ( $logDir ) {
 	$splitGroupLogId = getenv( 'MW_PHPUNIT_SPLIT_GROUP_ID' );
 
 	foreach ( $logFileNames as $key => $logFileName ) {
-		if ( $splitGroupLogId ) {
+		if ( $splitGroupLogId !== false ) {
 			$logFileNames[$key] = "$logDir/$logFileName.split-group-$splitGroupLogId.log";
 		} else {
 			$logFileNames[$key] = "$logDir/$logFileName.log";
