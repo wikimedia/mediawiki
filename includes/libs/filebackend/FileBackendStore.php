@@ -395,9 +395,9 @@ abstract class FileBackendStore extends FileBackend {
 		$scopeLockS = $this->getScopedFileLocks( $params['srcs'], LockManager::LOCK_UW, $status );
 		if ( $status->isOK() ) {
 			// Actually do the file concatenation...
-			$start_time = microtime( true );
+			$hrStart = hrtime( true );
 			$status->merge( $this->doConcatenate( $params ) );
-			$sec = microtime( true ) - $start_time;
+			$sec = ( hrtime( true ) - $hrStart ) / 1e9;
 			if ( !$status->isOK() ) {
 				$this->logger->error( static::class . "-{$this->name}" .
 					" failed to concatenate " . count( $params['srcs'] ) . " file(s) [$sec sec]" );
