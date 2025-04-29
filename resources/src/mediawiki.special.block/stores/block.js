@@ -284,6 +284,8 @@ module.exports = exports = defineStore( 'block', () => {
 			} else {
 				params.delete( 'remove' );
 			}
+			// Remove title= if present
+			params.delete( 'title' );
 			// Trim off the trailing slash and any target user from the page name.
 			const pageName = mw.config.get( 'wgPageName' ).replace( /\/(?:[^/]+)?$/, '' );
 			const newUrl = mw.util.getUrl( pageName + ( targetUser.value ? '/' + targetUser.value : '' ) );
@@ -555,8 +557,8 @@ module.exports = exports = defineStore( 'block', () => {
 	 * of these modules
 	 *
 	 * @param {string} target is expected to be sanitized
-	 * @param blocks
-	 * @return {bool} true if target is the intended target of the block
+	 * @param {Object[]} blocks
+	 * @return {boolean} true if target is the intended target of the block
 	 */
 	function isTargetAlreadyBlocked( target, blocks ) {
 		// T392049
