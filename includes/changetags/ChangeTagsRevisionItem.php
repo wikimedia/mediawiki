@@ -65,7 +65,7 @@ class ChangeTagsRevisionItem extends RevisionItem {
 				$this->list->getContext()
 			);
 			$content .= " $tagSummary";
-			$attribs['class'] = implode( ' ', $classes );
+			$attribs['class'] = $classes;
 		}
 		return Html::rawElement( 'li', $attribs, $content );
 	}

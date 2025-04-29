@@ -1395,9 +1395,7 @@ class SpecialUndelete extends SpecialPage {
 			'deletedhistory',
 			$this->getContext()
 		);
-		if ( $classes ) {
-			$attribs['class'] = implode( ' ', $classes );
-		}
+		$attribs['class'] = $classes;
 
 		$revisionRow = $this->msg( 'undelete-revision-row2' )
 			->rawParams(
