@@ -2511,7 +2511,7 @@
 	"blockipsuccesssub": "Blòcco ariêscîo",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] o l'é stæto blocòu.<br />\nAmîa a [[Special:BlockList|lìsta di indirìssi IP blocæ]] pe védde i blòcchi atîvi.",
 	"ipb-empty-block": "O blòcco prezentòu o no gh'à de restriçioìn ativæ.",
-	"ipb-block-not-found": "O no blòcco o no peu êse aplicòu, ma no l'é stæto trovòu de blòcchi in vigô pe \"$1\". Sò-u problêma o perscìste, pe piâxéi [https://www.mediawiki.org/wiki/Special:MyLanguage/Help_talk:Blocking_users segnalâlo].",
+	"ipb-block-not-found": "O blòcco o no peu êse aplicòu, de probàbile perché 'n âtro aministratô o l'à provòu a blocâ st'uténte chi into mæximo moménto. Contròlla o stâto do blòcco e prêuva tórna.",
 	"ipb-blockingself": "Ti stæ pe blocâ ti mæximo! T'ê segûo de voéilo fâ?",
 	"ipb-confirmhideuser": "Ti stæ pe blocâ un uténte con l'opçión \"Ascóndi uténte\" ativâ.\nDe sta mainêa chi o nómme uténte o saiâ soprèsso da tùtte e lìste e-e vôxe de regìstro.\nT'ê segûo de voéilo fâ?",
 	"ipb-confirmaction": "Se t'ê segûo de voéilo fâ davéi, contròlla o cànpo \"{{int:ipb-confirm}}\" in fóndo.",

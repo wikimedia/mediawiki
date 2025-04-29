@@ -71,7 +71,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"沈澄心",
-			"FunnyYellowDog"
+			"FunnyYellowDog",
+			"Yummie1207"
 		]
 	},
 	"sunday": "Chủ nhật",
@@ -759,7 +760,7 @@
 	"sectioneditnotsupported-text": "Chức năng sửa đổi đề mục không được hỗ trợ cho trang này hoặc bị tắt cho khung nhìn này.",
 	"modeleditnotsupported-title": "Không hỗ trợ sửa đổi",
 	"modeleditnotsupported-text": "Không hỗ trợ sửa đổi mô hình nội dung $1.",
-	"permissionserrors": "Không có quyền thực hiện",
+	"permissionserrors": "Lỗi quyền",
 	"permissionserrorstext": "Bạn không có quyền thực hiện thao tác đó, vì {{PLURAL:$1|lý do|các lý do}} sau:",
 	"permissionserrorstext-withaction": "Bạn không được quyền $2, vì {{PLURAL:$1|lý do|các lý do}} sau:",
 	"contentmodelediterror": "Bạn không thể sửa đổi phiên bản này vì kiểu nội dung của nó là <code>$1</code>, khác với kiểu nội dung hiện tại <code>$2</code>.",

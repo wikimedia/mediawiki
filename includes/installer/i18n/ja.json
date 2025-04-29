@@ -207,7 +207,7 @@
 	"config-subscribe-help": "これは、リリースの告知 (重要なセキュリティに関する案内を含む) に使用される、流量が少ないメーリングリストです。\nこのメーリングリストを購読して、新しいバージョンが出た場合にMediaWikiを更新してください。",
 	"config-subscribe-noemail": "メールアドレスなしでリリースアナウンスのメーリングリストを購読しようとしています。\nメーリングリストを購読する場合にはメールアドレスを入力してください。",
 	"config-pingback": "このインストールに関するデータをMediaWikiの開発者と共有する。[https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement プライバシーポリシー]。",
-	"config-pingback-help": "もし下記のオプションを有効にした場合、MediaWiki は定期的にこの MediaWiki インスタンスに関する基本データとともに https://www.mediawiki.org を呼び出します。このデータは例えばシステムのタイプ、PHPのバージョンと選択したデータベースのバックエンドなどを含んでいます。ウィキメディア財団は MediaWiki 開発者とこの情報を共有し、将来の開発に役立たせます。ご使用のシステムに送るデータは次のとおりです。\n<pre>$1</pre>\n\nこの機能のプライバシーポリシーはhttps://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statementにてご覧になれます。\n\nこの機能についてのもっと詳しい一般的な情報は、https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgPingbackにご覧ください。\n\n集合したピンバックデータについては、https://pingback.wmflabs.org/をご覧ください。",
+	"config-pingback-help": "もし下記のオプションを有効にした場合、MediaWiki は定期的にこの MediaWiki インスタンスに関する基本データとともに https://www.mediawiki.org を呼び出します。このデータは例えばシステムのタイプ、PHPのバージョンと選択したデータベースのバックエンドなどを含んでいます。ウィキメディア財団は MediaWiki 開発者とこの情報を共有し、将来の開発に役立たせます。ご使用のシステムに送るデータは次のとおりです。\n<pre>$1</pre>\n\nこの機能のプライバシーポリシーはhttps://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statementにてご覧になれます。\n\nこの機能についてのもっと詳しい一般的な情報は、https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgPingbackにご覧ください。\n\n集合したピンバックデータについては、https://pingback.wmcloud.org/をご覧ください。",
 	"config-almost-done": "これでほぼ終わりました!\n残りの設定を飛ばして、ウィキを今すぐインストールできます。",
 	"config-optional-continue": "私にもっと質問してください。",
 	"config-optional-skip": "もう飽きてしまったので、とにかくウィキをインストールしてください。",

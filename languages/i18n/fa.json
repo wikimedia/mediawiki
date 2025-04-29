@@ -2511,7 +2511,7 @@
 	"anoncontribs": "مشارکت‌ها",
 	"contribute": "مشارکت",
 	"contributions-subtitle": "نتایج برای {{GENDER:$2|$1}}",
-	"contributions-edit-count": "یک {{GENDER:$1|کاربر}} با $2 {{PLURAL:$2|ویرایش}}.",
+	"contributions-edit-count": "{{GENDER:$1|کاربری}} با $2 {{PLURAL:$2|ویرایش}}.",
 	"contributions-account-creation-date": "حساب ایجاد شده در $1 .",
 	"contributions-userdoesnotexist": "حساب کاربری «$1» ثبت نشده است.",
 	"negative-namespace-not-supported": "فضاهای نام با مقدار منفی پشتیبانی نمی‌شوند.",

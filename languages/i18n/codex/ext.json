@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"HackerPunki"
+		]
+	},
+	"cdx-chip-input-chip-added": "S'añidió la pieça $1.",
+	"cdx-chip-input-chip-removed": "Se quitó la pieça $1.",
+	"cdx-input-chip-aria-description": "Achuchi \"Enter/Intro\" pa dital o Aborral pa quital",
+	"cdx-dialog-close-button-label": "Fechal",
+	"cdx-label-optional-flag": "(ocional)",
+	"cdx-message-dismiss-button-label": "Fechal",
+	"cdx-search-input-search-button-label": "Precural",
+	"cdx-table-select-all-label": "Descogel tolas carrefilas",
+	"cdx-table-select-row-label": "Descogel la carrefila $1 de $2",
+	"cdx-table-sort-caption": "$1 (los encabeçaus de coluna con botonis se puein acolocar).",
+	"cdx-typeahead-search-search-results-label": "Resultaus dela precura",
+	"cdx-table-pager-button-first-page": "Primel página",
+	"cdx-table-pager-button-last-page": "Última página",
+	"cdx-table-pager-button-next-page": "Siguienti página",
+	"cdx-table-pager-button-prev-page": "Página anteriol",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 carrefila|$1 carrefilas}}",
+	"cdx-table-pager-items-per-page-default": "Resultaus por página",
+	"cdx-table-pagination-status-message-determinate-long": "Muestrandu resultaus $1–$2 de $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 de $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Muestrandu resultaus $1–$2 d'abondus",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 d'abondus",
+	"cdx-table-pagination-status-message-indeterminate-final": "Muestrandu {{PLURAL:$1|el resultau caberu|los $1 resultaus caberus}}",
+	"cdx-table-pagination-status-message-pending": "Cargandu resultaus..."
+}
