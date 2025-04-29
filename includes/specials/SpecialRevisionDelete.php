@@ -36,7 +36,6 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use MediaWiki\Xml\Xml;
 use RevDelList;
 use RevisionDeleter;
 
@@ -376,7 +375,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 							'token' => $user->getEditToken( $archiveName ),
 						] )
 					],
-					Xml::submitButton( $this->msg( 'revdelete-show-file-submit' )->text() )
+					Html::submitButton( $this->msg( 'revdelete-show-file-submit' )->text() )
 				)
 			);
 
@@ -549,7 +548,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 					[],
 					[ 'action' => 'edit' ]
 				);
-				$htmlForm->setPostHtml( Xml::tags( 'p', [ 'class' => 'mw-revdel-editreasons' ], $link ) );
+				$htmlForm->setPostHtml( Html::rawElement( 'p', [ 'class' => 'mw-revdel-editreasons' ], $link ) );
 			}
 			$out->addHTML( $htmlForm->getHTML( false ) );
 		}
