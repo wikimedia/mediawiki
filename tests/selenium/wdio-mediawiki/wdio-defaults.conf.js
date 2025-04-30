@@ -165,7 +165,10 @@ exports.config = {
 	 * @param {Object} test Mocha Test object
 	 */
 	afterTest: async function ( test ) {
-		await saveScreenshot( `${ test.parent }-${ test.title }` );
-		stopVideo( ffmpeg );
+		try {
+			await saveScreenshot( `${ test.parent }-${ test.title }` );
+		} finally {
+			stopVideo( ffmpeg );
+		}
 	}
 };
