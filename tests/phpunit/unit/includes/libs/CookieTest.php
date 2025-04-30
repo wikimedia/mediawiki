@@ -13,7 +13,7 @@ class CookieTest extends TestCase {
 	use MediaWikiCoversValidator;
 
 	/**
-	 * @dataProvider cookieDomains
+	 * @dataProvider provideCookieDomains
 	 * @covers \Cookie::validateCookieDomain
 	 */
 	public function testValidateCookieDomain( $expected, $domain, $origin = null ) {
@@ -27,7 +27,7 @@ class CookieTest extends TestCase {
 		$this->assertEquals( $expected, $ok, $msg );
 	}
 
-	public static function cookieDomains() {
+	public static function provideCookieDomains() {
 		return [
 			[ false, "org" ],
 			[ false, ".org" ],

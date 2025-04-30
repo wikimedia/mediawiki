@@ -6,7 +6,7 @@
  */
 class WfStringToBoolTest extends MediaWikiUnitTestCase {
 
-	public function getTestCases() {
+	public function provideTestCases() {
 		return [
 			[ 'true', true ],
 			[ 'on', true ],
@@ -36,7 +36,7 @@ class WfStringToBoolTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @dataProvider getTestCases
+	 * @dataProvider provideTestCases
 	 * @param string $str
 	 * @param bool $bool
 	 */

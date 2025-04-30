@@ -31,7 +31,7 @@ class RESTBagOStuffTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @dataProvider dataGet
+	 * @dataProvider provideDataGet
 	 */
 	public function testGet( $serializationType, $hmacKey, $data ) {
 		$classReflect = new ReflectionClass( RESTBagOStuff::class );
@@ -54,7 +54,7 @@ class RESTBagOStuffTest extends \MediaWikiUnitTestCase {
 		$this->assertEquals( 'somedata', $result );
 	}
 
-	public static function dataGet() {
+	public static function provideDataGet() {
 		// Make sure the defaults are last, so the $bag is left as expected for the next test
 		return [
 			[ 'JSON', '12345', 'JSON.Us1wli82zEJ6DNQnCG//w+MShOFrdx9wCdfTUhPPA2w=."somedata"' ],
@@ -100,7 +100,7 @@ class RESTBagOStuffTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @dataProvider dataGet
+	 * @dataProvider provideDataGet
 	 */
 	public function testPut( $serializationType, $hmacKey, $data ) {
 		$classReflect = new ReflectionClass( RESTBagOStuff::class );

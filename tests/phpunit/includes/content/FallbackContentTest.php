@@ -107,7 +107,7 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 'horkyporky', $content->getContentHandler()->getModelID() );
 	}
 
-	public static function dataIsEmpty() {
+	public static function provideIsEmpty() {
 		return [
 			[ '', true ],
 			[ '  ', false ],
@@ -117,7 +117,7 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @dataProvider dataIsEmpty
+	 * @dataProvider provideIsEmpty
 	 */
 	public function testIsEmpty( $text, $empty ) {
 		$content = $this->newContent( $text );

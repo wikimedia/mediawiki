@@ -63,7 +63,7 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	public function dataRemoveHTMLtags() {
+	public function provideRemoveHTMLtags() {
 		return [
 			// former testSelfClosingTag
 			[
@@ -94,14 +94,14 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider dataRemoveHTMLtags
+	 * @dataProvider provideRemoveHTMLtags
 	 */
 	public function testInternalRemoveHTMLtags( $input, $output, $msg = null ) {
 		$this->assertEquals( $output, Sanitizer::internalRemoveHtmlTags( $input ), $msg );
 	}
 
 	/**
-	 * @dataProvider dataRemoveHTMLtags
+	 * @dataProvider provideRemoveHTMLtags
 	 */
 	public function testRemoveSomeTags( $input, $output, $msg = null ) {
 		$this->assertEquals( $output, Sanitizer::removeSomeTags( $input ), $msg );

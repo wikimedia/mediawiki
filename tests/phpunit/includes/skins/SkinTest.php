@@ -144,7 +144,7 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function providGetPageClasses() {
+	public function provideGetPageClasses() {
 		yield 'normal page has namespace' => [
 			new TitleValue( NS_MAIN, 'Test' ), // $title
 			$this->mockRegisteredUltimateAuthority(), // $authority
@@ -184,7 +184,7 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider providGetPageClasses
+	 * @dataProvider provideGetPageClasses
 	 */
 	public function testGetPageClasses(
 		LinkTarget $title,

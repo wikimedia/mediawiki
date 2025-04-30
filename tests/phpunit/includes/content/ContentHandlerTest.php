@@ -78,7 +78,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->insertPage( 'Smithee', 'A smithee is one who smiths. See also [[Alan Smithee]]' );
 	}
 
-	public static function dataGetDefaultModelFor() {
+	public static function provideGetDefaultModelFor() {
 		return [
 			[ 'Help:Foo', CONTENT_MODEL_WIKITEXT ],
 			[ 'Help:Foo.js', CONTENT_MODEL_WIKITEXT ],
@@ -107,7 +107,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider dataGetDefaultModelFor
+	 * @dataProvider provideGetDefaultModelFor
 	 */
 	public function testGetDefaultModelFor( $title, $expectedModelId ) {
 		$title = Title::newFromText( $title );
@@ -115,7 +115,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expectedModelId, ContentHandler::getDefaultModelFor( $title ) );
 	}
 
-	public static function dataGetLocalizedName() {
+	public static function provideGetLocalizedName() {
 		return [
 			[ null, null ],
 			[ "xyzzy", null ],
@@ -126,7 +126,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider dataGetLocalizedName
+	 * @dataProvider provideGetLocalizedName
 	 */
 	public function testGetLocalizedName( $id, $expected ) {
 		$name = ContentHandler::getLocalizedName( $id );
@@ -143,7 +143,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public static function dataGetPageLanguage() {
+	public static function provideGetPageLanguage() {
 		global $wgLanguageCode;
 
 		return [
@@ -158,7 +158,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider dataGetPageLanguage
+	 * @dataProvider provideGetPageLanguage
 	 */
 	public function testGetPageLanguage( $title, $expected ) {
 		$title = Title::newFromText( $title );
@@ -194,7 +194,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertNull( $text );
 	}
 
-	public static function dataMakeContent() {
+	public static function provideMakeContent() {
 		return [
 			[ 'hallo', 'Help:Test', null, null, CONTENT_MODEL_WIKITEXT, false ],
 			[ 'hallo', 'MediaWiki:Test.js', null, null, CONTENT_MODEL_JAVASCRIPT, false ],
@@ -243,7 +243,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider dataMakeContent
+	 * @dataProvider provideMakeContent
 	 */
 	public function testMakeContent( $data, $title, $modelId, $format,
 		$expectedModelId, $shouldFail

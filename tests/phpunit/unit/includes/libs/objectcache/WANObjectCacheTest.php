@@ -332,7 +332,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @dataProvider getWithSetCallback_provider
+	 * @dataProvider getWithSetCallbackProvider
 	 * @param array $extOpts
 	 */
 	public function testGetWithSetCallback( array $extOpts ) {
@@ -519,7 +519,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @dataProvider getWithSetCallback_provider
+	 * @dataProvider getWithSetCallbackProvider
 	 * @param array $extOpts
 	 */
 	public function testGetWithSetCallback_touched( array $extOpts ) {
@@ -574,7 +574,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 2, $wasSet, "Value was recomputed once" );
 	}
 
-	public static function getWithSetCallback_provider() {
+	public static function getWithSetCallbackProvider() {
 		return [
 			[ [], false ],
 			[ [ 'version' => 1 ], true ]
@@ -688,7 +688,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @dataProvider getWithSetCallback_provider
+	 * @dataProvider getWithSetCallbackProvider
 	 * @param array $extOpts
 	 */
 	public function testGetMultiWithSetCallback( array $extOpts ) {
@@ -850,7 +850,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @dataProvider getMultiWithSetCallbackRefresh_provider
+	 * @dataProvider getMultiWithSetCallbackRefreshProvider
 	 * @param bool $expiring
 	 * @param bool $popular
 	 * @param array $idsByKey
@@ -927,7 +927,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		}
 	}
 
-	public static function getMultiWithSetCallbackRefresh_provider() {
+	public static function getMultiWithSetCallbackRefreshProvider() {
 		return [
 			[ true, true, [ 'a' => 1, 'b' => 2, 'c' => 3, 'd' => 4 ] ],
 			[ true, false, [ 'a' => 'x', 'b' => 'y', 'c' => 'z', 'd' => 'w' ] ],
@@ -936,13 +936,13 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		];
 	}
 
-	public static function getMultiWithUnionSetCallback_provider() {
+	public static function getMultiWithUnionSetCallbackProvider() {
 		yield 'default' => [ [] ];
 		yield 'versioned' => [ [ 'version' => 1 ] ];
 	}
 
 	/**
-	 * @dataProvider getMultiWithUnionSetCallback_provider
+	 * @dataProvider getMultiWithUnionSetCallbackProvider
 	 * @param array $extOpts
 	 */
 	public function testGetMultiWithUnionSetCallback( array $extOpts ) {
@@ -1135,7 +1135,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @dataProvider getMultiWithSetCallbackRefresh_provider
+	 * @dataProvider getMultiWithSetCallbackRefreshProvider
 	 * @param bool $expiring
 	 * @param bool $popular
 	 * @param array $idsByKey
@@ -1424,7 +1424,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 3, $calls, 'Callback was not used; used interim' );
 	}
 
-	public static function getBusyValues_Provider() {
+	public static function getBusyValuesProvider() {
 		$hash = new HashBagOStuff( [] );
 
 		return [
@@ -1443,7 +1443,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @dataProvider getBusyValues_Provider
+	 * @dataProvider getBusyValuesProvider
 	 */
 	public function testBusyValueTypes( $busyValue, $expected ) {
 		[ $cache, $bag ] = $this->newWanCache();
@@ -1677,7 +1677,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @dataProvider getWithSetCallback_provider
+	 * @dataProvider getWithSetCallbackProvider
 	 * @param array $extOpts
 	 * @param bool $versioned
 	 */

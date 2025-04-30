@@ -146,7 +146,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expectedBool, $title->hasSubjectNamespace( $ns ) );
 	}
 
-	public function dataGetContentModel() {
+	public function provideGetContentModel() {
 		return [
 			[ 'Help:Foo', CONTENT_MODEL_WIKITEXT ],
 			[ 'Help:Foo.js', CONTENT_MODEL_WIKITEXT ],
@@ -172,7 +172,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider dataGetContentModel
+	 * @dataProvider provideGetContentModel
 	 * @covers \MediaWiki\Title\Title::getContentModel
 	 */
 	public function testGetContentModel( $title, $expectedModelId ) {
@@ -181,7 +181,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider dataGetContentModel
+	 * @dataProvider provideGetContentModel
 	 * @covers \MediaWiki\Title\Title::hasContentModel
 	 */
 	public function testHasContentModel( $title, $expectedModelId ) {

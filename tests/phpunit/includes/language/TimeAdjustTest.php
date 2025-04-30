@@ -11,7 +11,7 @@ class TimeAdjustTest extends MediaWikiLangTestCase {
 
 	/**
 	 * Test offset usage for a given Language::userAdjust
-	 * @dataProvider dataUserAdjust
+	 * @dataProvider provideUserAdjust
 	 */
 	public function testUserAdjust( string $date, $correction, string $expected ) {
 		$this->overrideConfigValue( MainConfigNames::LocalTZoffset, self::LOCAL_TZ_OFFSET );
@@ -22,7 +22,7 @@ class TimeAdjustTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	public static function dataUserAdjust() {
+	public static function provideUserAdjust() {
 		// Note: make sure to use dates in the past, especially with geographical time zones, to avoid any
 		// chance of tests failing due to a change to the time zone rules.
 		yield 'Literal int 0 (technically undocumented)' => [ '20221015120000', 0, '20221015120000' ];

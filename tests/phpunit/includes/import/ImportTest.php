@@ -15,7 +15,7 @@ class ImportTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @covers \WikiImporter
-	 * @dataProvider getUnknownTagsXML
+	 * @dataProvider provideUnknownTagsXML
 	 * @param string $xml
 	 * @param string $text
 	 * @param string $title
@@ -36,7 +36,7 @@ class ImportTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	public function getUnknownTagsXML() {
+	public function provideUnknownTagsXML() {
 		return [
 			[
 				<<< EOF
@@ -75,7 +75,7 @@ EOF
 
 	/**
 	 * @covers \WikiImporter::handlePage
-	 * @dataProvider getRedirectXML
+	 * @dataProvider provideRedirectXML
 	 * @param string $xml
 	 * @param string|null $redirectTitle
 	 */
@@ -99,7 +99,7 @@ EOF
 		$this->assertEquals( $redirectTitle, $redirect );
 	}
 
-	public function getRedirectXML() {
+	public function provideRedirectXML() {
 		return [
 			[
 				<<< EOF
@@ -159,7 +159,7 @@ EOF
 
 	/**
 	 * @covers \WikiImporter::handleSiteInfo
-	 * @dataProvider getSiteInfoXML
+	 * @dataProvider provideSiteInfoXML
 	 * @param string $xml
 	 * @param array|null $namespaces
 	 */
@@ -180,7 +180,7 @@ EOF
 		$this->assertEquals( $importNamespaces, $namespaces );
 	}
 
-	public function getSiteInfoXML() {
+	public function provideSiteInfoXML() {
 		return [
 			[
 				<<< EOF

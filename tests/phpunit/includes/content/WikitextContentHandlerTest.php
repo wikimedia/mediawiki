@@ -32,7 +32,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 			->getContentHandler( CONTENT_MODEL_WIKITEXT );
 	}
 
-	public static function dataMerge3() {
+	public static function provideMerge3() {
 		return [
 			[
 				"first paragraph
@@ -65,7 +65,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @dataProvider dataMerge3
+	 * @dataProvider provideMerge3
 	 */
 	public function testMerge3( $old, $mine, $yours, $expected ) {
 		$this->markTestSkippedIfNoDiff3();
@@ -80,7 +80,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, $merged ? $merged->getText() : $merged );
 	}
 
-	public static function dataGetAutosummary() {
+	public static function provideGetAutosummary() {
 		return [
 			[
 				'Hello there, world!',
@@ -130,7 +130,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @dataProvider dataGetAutosummary
+	 * @dataProvider provideGetAutosummary
 	 */
 	public function testGetAutosummary( $old, $new, $flags, $expected ) {
 		$oldContent = $old === null ? null : new WikitextContent( $old );
@@ -144,7 +144,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	public static function dataGetChangeTag() {
+	public static function provideGetChangeTag() {
 		return [
 			[
 				null,
@@ -221,7 +221,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @dataProvider dataGetChangeTag
+	 * @dataProvider provideGetChangeTag
 	 */
 	public function testGetChangeTag( $old, $new, $flags, $expected ) {
 		$this->overrideConfigValue( MainConfigNames::SoftwareTags, [

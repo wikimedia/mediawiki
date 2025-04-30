@@ -110,7 +110,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function dataXmlMimeType() {
+	public function provideXmlMimeType() {
 		return [
 			// ( $mimetype, $isXmlMimeType )
 			# HTML is not an XML MimeType
@@ -129,7 +129,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider dataXmlMimeType
+	 * @dataProvider provideXmlMimeType
 	 */
 	public function testXmlMimeType( $mimetype, $isXmlMimeType ) {
 		$this->assertEquals( $isXmlMimeType, Html::isXmlMimeType( $mimetype ) );

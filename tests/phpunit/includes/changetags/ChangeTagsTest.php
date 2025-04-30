@@ -517,7 +517,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	public static function dataGetSoftwareTags() {
+	public static function provideGetSoftwareTags() {
 		return [
 			[
 				[
@@ -567,7 +567,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider dataGetSoftwareTags
+	 * @dataProvider provideGetSoftwareTags
 	 * @covers \MediaWiki\ChangeTags\ChangeTagsStore::getSoftwareTags
 	 */
 	public function testGetSoftwareTags( $softwareTags, $expected ) {
