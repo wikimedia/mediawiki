@@ -348,7 +348,7 @@ class RateLimiter {
 
 	/**
 	 * @param string $action
-	 * @return LimitCondition[]
+	 * @return array<string,LimitCondition>
 	 */
 	private function getConditions( $action ) {
 		if ( !isset( $this->rateLimits[$action] ) ) {
