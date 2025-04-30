@@ -658,7 +658,6 @@ class UserGroupManager {
 			default:
 				$result = null;
 				$this->hookRunner->onAutopromoteCondition( $cond[0],
-					// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 					array_slice( $cond, 1 ), $user, $result );
 				if ( $result === null ) {
 					throw new InvalidArgumentException(

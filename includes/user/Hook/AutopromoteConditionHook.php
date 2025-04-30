@@ -20,7 +20,7 @@ interface AutopromoteConditionHook {
 	 * @param string $type Condition type
 	 * @param array $args Arguments
 	 * @param User $user
-	 * @param array &$result Result of checking autopromote condition
+	 * @param null|bool &$result Result of checking autopromote condition
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onAutopromoteCondition( $type, $args, $user, &$result );
