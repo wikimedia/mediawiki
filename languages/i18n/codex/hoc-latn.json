@@ -11,6 +11,18 @@
 	"cdx-search-input-search-button-label": "Nelsangarè",
 	"cdx-table-select-all-label": "Saben Ganḍigene salaè",
 	"cdx-table-select-row-label": "$2 re $1 Ganḍigene salaè",
+	"cdx-typeahead-search-search-results-label": "Sangarnamnaḱ ko",
+	"cdx-table-pager-button-first-page": "Ayar Sakam",
+	"cdx-table-pager-button-last-page": "Canaba Sakam",
+	"cdx-table-pager-button-next-page": "Netayomaḱ Sakam",
+	"cdx-table-pager-button-prev-page": "Nemaaṅaḱ Sakam",
 	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 Ganḍigene|$1 Ganḍigene ko}}",
-	"cdx-table-pager-items-per-page-default": "Sakam mutit́ Sangarnamnaḱ"
+	"cdx-table-pager-items-per-page-default": "Sakam mutit́ Sangarnamnaḱ",
+	"cdx-table-pagination-status-message-determinate-long": "$3 Sangarnamnaḱ reaḱ $1–$2 uduṕoḱ tana",
+	"cdx-table-pagination-status-message-determinate-short": "$3 reaḱ $1-$2",
+	"cdx-table-pagination-status-message-indeterminate-long": "Sangi Sangarnamḱ reaḱ $1–$2 uduṕoḱ tana",
+	"cdx-table-pagination-status-message-indeterminate-short": "Sangi reaḱ $1–$2",
+	"cdx-table-pagination-status-message-indeterminate-final": "Canaba {{PLURAL:$1|$1a Sangarnamnaḱ|$1a Sangarnamnaḱ ko|2=$1a Sangarnamnaḱ kin}} uduṕoḱ tana",
+	"cdx-table-pagination-status-message-pending": "Sangarnamnaḱ ko aguoḱ tana...",
+	"cdx-table-no-data-message": "Data banoḱa."
 }

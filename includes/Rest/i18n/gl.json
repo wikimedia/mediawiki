@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Elisardojm",
-			"Toliño"
+			"Toliño",
+			"Xosecalvo"
 		]
 	},
 	"rest-prefix-mismatch": "O camiño solicitado ($1) non estaba no interior do camiño base da API REST ($2)",
@@ -96,5 +97,7 @@
 	"rest-module-content.v1-title": "Contido da páxina",
 	"rest-module-content.v1-desc": "Ofrece acceso ao contido e metadatos das páxinas e revisións",
 	"rest-param-desc-revision-id": "Identificador da revisión",
-	"rest-param-desc-source": "Contido da páxina no formato especificado pola propiedade content_model"
+	"rest-param-desc-source": "Contido da páxina no formato especificado pola propiedade content_model",
+	"rest-property-desc-revision-content-model": "Tipo de contido",
+	"rest-property-desc-revision-page": "A páxina á que pertence a revisión"
 }

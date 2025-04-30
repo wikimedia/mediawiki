@@ -876,6 +876,7 @@
 	"apihelp-query+filerepoinfo-paramvalue-prop-apiurl": "Ссылка на API репозитория — полезно для получения информации об изображении с сервера.",
 	"apihelp-query+filerepoinfo-paramvalue-prop-local": "Является ли хранилище локальным или нет.",
 	"apihelp-query+filerepoinfo-paramvalue-prop-rootUrl": "Корневой URL для изображений.",
+	"apihelp-query+filerepoinfo-paramvalue-prop-thumbUrl": "Корневой URL-адрес для путей к миниатюрам.",
 	"apihelp-query+filerepoinfo-paramvalue-prop-url": "URL путь публичной зоны.",
 	"apihelp-query+filerepoinfo-example-simple": "Получить информацию о файловых репозиториях.",
 	"apihelp-query+fileusage-summary": "Поиск всех страниц, использующих данный файл.",

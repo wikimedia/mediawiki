@@ -1833,7 +1833,7 @@
 	"blanknamespace": "(Mastru)",
 	"contributions": "Cuntribbuti di l'utenti",
 	"tool-link-contributions": "Cuntribbuti di l'{{GENDER:$1|utenti}}",
-	"contributions-title": "Cuntribbuti di l'utenti $1",
+	"contributions-title": "Cuntribbuti di l'{{GENDER:$2|utenti}} $1",
 	"mycontris": "Li mè cuntribbuti",
 	"anoncontribs": "cuntribbuti",
 	"contributions-userdoesnotexist": "Lu cuntu utenti \"$1\" nun è riggistratu.",

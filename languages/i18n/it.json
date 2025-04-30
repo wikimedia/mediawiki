@@ -3618,6 +3618,7 @@
 	"logentry-protect-modify": "$1 {{GENDER:$2|ha modificato}} le impostazioni di protezione per $3 $4",
 	"logentry-protect-modify-cascade": "$1 {{GENDER:$2|ha modificato}} le impostazioni di protezione per $3 $4 [ricorsiva]",
 	"logentry-rights-rights": "$1 {{GENDER:$2|ha modificato}} l'appartenenza di {{GENDER:$6|$3}}: $7",
+	"logentry-rights-rights-granted": "{{GENDER:$2|assegnati}} i diritti di $1",
 	"logentry-rights-rights-revoked": "{{GENDER:$2|ha revocato}} $1",
 	"logentry-rights-rights-expiry-changed": "{{GENDER:$2|ha modificato}} la scadenza di $1",
 	"logentry-rights-rights-kept": "{{GENDER:$2|ha mantenuto}} $1 invariato",
