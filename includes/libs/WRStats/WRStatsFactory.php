@@ -76,7 +76,7 @@ class WRStatsFactory {
 	/**
 	 * Create a rate limiter.
 	 *
-	 * @param LimitCondition[] $conditions An array in which the key is the
+	 * @param array<string,LimitCondition> $conditions An array in which the key is the
 	 *   condition name, and the value is a LimitCondition describing the limit.
 	 * @param string|string[] $prefix A string or array of strings to prefix
 	 *   before storage keys.

@@ -10,9 +10,9 @@ namespace Wikimedia\WRStats;
 class WRStatsRateLimiter {
 	/** @var StatsStore */
 	private $store;
-	/** @var LimitCondition[] */
+	/** @var array<string,LimitCondition> */
 	private $conditions;
-	/** @var array */
+	/** @var array<string,array> */
 	private $specs;
 	/** @var string|string[] */
 	private $prefix;
@@ -25,7 +25,7 @@ class WRStatsRateLimiter {
 	/**
 	 * @internal Use WRStatsFactory::createRateLimiter instead
 	 * @param StatsStore $store
-	 * @param LimitCondition[] $conditions
+	 * @param array<string,LimitCondition> $conditions
 	 * @param string|string[] $prefix
 	 * @param array $options
 	 */
