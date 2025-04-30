@@ -47,6 +47,7 @@ use Psr\Log\NullLogger;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Parsoid\Core\ClientError;
@@ -94,6 +95,13 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$spi = $this->createNoOpMock( LoggerSpi::class, [ 'getLogger' ] );
 		$spi->method( 'getLogger' )->willReturn( $logger ?? new NullLogger() );
 		return $spi;
+	}
+
+	private function setFakeTime( string $time, ?BagOStuff $cache = null ): void {
+		MWTimestamp::setFakeTime( $time );
+		if ( $cache ) {
+			$cache->setMockTime( $time );
+		}
 	}
 
 	/**
@@ -230,12 +238,11 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		array $parameters = [],
 		?Authority $authority = null,
 		$revision = null,
-		bool $lenientRevHandling = false,
-		?SimpleParsoidOutputStash $spOutputStash = null
+		bool $lenientRevHandling = false
 	): HtmlOutputRendererHelper {
 		$chFactory = $this->getServiceContainer()->getContentHandlerFactory();
 		$cache = $options['cache'] ?? new EmptyBagOStuff();
-		$stash = $spOutputStash ?? new SimpleParsoidOutputStash( $chFactory, $cache, 1 );
+		$stash = new SimpleParsoidOutputStash( $chFactory, $cache, 1 );
 
 		$services = $this->getServiceContainer();
 
@@ -265,21 +272,21 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	) {
 		$page = $this->getNonexistingTestPage( $name );
 
-		MWTimestamp::setFakeTime( self::TIMESTAMP_OLD );
+		$this->setFakeTime( self::TIMESTAMP_OLD );
 		$this->editPage( $page, $wikitextOld );
 		$revisions['first'] = $page->getRevisionRecord();
 
-		MWTimestamp::setFakeTime( self::TIMESTAMP );
+		$this->setFakeTime( self::TIMESTAMP );
 		$this->editPage( $page, $wikitext );
 		$revisions['latest'] = $page->getRevisionRecord();
 
-		MWTimestamp::setFakeTime( self::TIMESTAMP_LATER );
+		$this->setFakeTime( self::TIMESTAMP_LATER );
 		return [ $page, $revisions ];
 	}
 
 	private function getNonExistingPageWithFakeRevision( $name ) {
 		$page = $this->getNonexistingTestPage( $name );
-		MWTimestamp::setFakeTime( self::TIMESTAMP_OLD );
+		$this->setFakeTime( self::TIMESTAMP_OLD );
 
 		$content = new WikitextContent( self::WIKITEXT_OLD );
 		$rev = new MutableRevisionRecord( $page->getTitle() );
@@ -415,17 +422,13 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		[ $page, ] = $this->getExistingPageWithRevisions( __METHOD__ );
 
 		$cache = new HashBagOStuff();
-		$chFactory = $this->createNoOpMock( IContentHandlerFactory::class );
-		$stash = new SimpleParsoidOutputStash( $chFactory, $cache, ( 2 * 60 ) );
+		$this->setFakeTime( self::TIMESTAMP, $cache );
 
 		$helper = $this->newHelper(
 			[ 'cache' => $cache, 'expectedHtml' => self::MOCK_HTML ],
 			$page,
 			self::PARAM_DEFAULTS,
-			$this->newAuthority(),
-			null,
-			false,
-			$stash
+			$this->newAuthority()
 		);
 		$helper->setStashingEnabled( true );
 
@@ -435,6 +438,8 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$eTag = $helper->getETag();
 		$parsoidStashKey = ParsoidRenderID::newFromETag( $eTag );
 
+		$chFactory = $this->createNoOpMock( IContentHandlerFactory::class );
+		$stash = new SimpleParsoidOutputStash( $chFactory, $cache, 1 );
 		$this->assertNotNull( $stash->get( $parsoidStashKey ) );
 	}
 
@@ -442,6 +447,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$page = $this->getNonexistingTestPage();
 
 		$cache = new HashBagOStuff();
+		$this->setFakeTime( self::TIMESTAMP, $cache );
 		$text = 'just some wikitext';
 
 		$helper = $this->newHelper( [ 'cache' => $cache ], $page, self::PARAM_DEFAULTS, $this->newAuthority() );
@@ -552,6 +558,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$rev = $revRef ? $revisions[ $revRef ] : null;
 
 		$cache = new HashBagOStuff();
+		$this->setFakeTime( self::TIMESTAMP, $cache );
 
 		// First, test it works if nothing was cached yet.
 		$helper = $this->newHelper( [ 'cache' => $cache ], $page, self::PARAM_DEFAULTS, $this->newAuthority(), $rev );
@@ -582,7 +589,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 
 		// Now, expire the cache. etag and timestamp should change
 		$now = MWTimestamp::convert( TS_UNIX, self::TIMESTAMP_LATER ) + 10000;
-		MWTimestamp::setFakeTime( $now );
+		$this->setFakeTime( $now, $cache );
 		$this->assertTrue(
 			$page->getTitle()->invalidateCache( MWTimestamp::convert( TS_MW, $now ) ),
 			'Cannot invalidate cache'
@@ -706,6 +713,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$page = $this->getExistingTestPage( __METHOD__ );
 
 		$cache = new HashBagOStuff();
+		$this->setFakeTime( self::TIMESTAMP, $cache );
 
 		// First, test it works if nothing was cached yet.
 		$helper = $this->newHelper( [
@@ -1241,8 +1249,10 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$page = $this->getNonexistingTestPage( __METHOD__ );
 		$this->editPage( $page, new CssContent( '"not wikitext"' ) );
 
+		$cache = new HashBagOStuff();
+		$this->setFakeTime( self::TIMESTAMP, $cache );
 		$helper = $this->newHelper( [
-				'cache' => new HashBagOStuff(),
+				'cache' => $cache,
 			] + $this->newRealParserOutputAccess(), $page, self::PARAM_DEFAULTS, $this->newAuthority() );
 		$helper->setFlavor( $flavor );
 
