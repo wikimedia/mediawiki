@@ -317,7 +317,7 @@
 	"privacy": "Tietosuojakäytäntö",
 	"privacypage": "Project:Tietosuojakäytäntö",
 	"badaccess": "Ei lupaa",
-	"badaccess-group0": "Sinulla ei ole lupaa suorittaa pyydettyä toimintoa.",
+	"badaccess-group0": "Sinulla ei ole oikeutta suorittaa pyydettyä toimintoa.",
 	"badaccess-groups": "Pyytämäsi toiminto on rajoitettu käyttäjille, jotka kuuluvat {{PLURAL:$2|seuraavaan ryhmään|seuraaviin ryhmiin}}: $1.",
 	"versionrequired": "MediaWikistä tarvitaan vähintään versio $1",
 	"versionrequiredtext": "MediaWikistä tarvitaan vähintään versio $1 tämän sivun käyttämiseen. Katso [[Special:Version|versio]].",
