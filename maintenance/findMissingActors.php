@@ -19,11 +19,11 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Exception\CannotCreateActorException;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNameUtils;
-use MediaWiki\User\UserRigorOptions;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
@@ -109,22 +109,19 @@ class FindMissingActors extends Maintenance {
 			$this->fatalError( "Not a valid user name: '$name'" );
 		}
 
-		$name = $this->userNameUtils->getCanonical( $name, UserRigorOptions::RIGOR_NONE );
-
 		if ( $user->isRegistered() ) {
 			$this->output( "Using existing user: '$user'\n" );
-		} elseif ( !$this->userNameUtils->isValid( $name ) ) {
-			$this->fatalError( "Not a valid user name: '$name'" );
-		} elseif ( !$this->userNameUtils->isUsable( $name ) ) {
-			$this->output( "Using system user: '$name'\n" );
+		} elseif ( !$this->userNameUtils->isUsable( $user->getName() ) ) {
+			$this->output( "Using system user: '{$user->getName()}'\n" );
 		} else {
-			$this->fatalError( "Unknown user: '$name'" );
+			$this->fatalError( "Unknown user: '{$user->getName()}'" );
 		}
 
 		$dbw = $this->getPrimaryDB();
-		$actorId = $this->actorNormalization->acquireActorId( $user, $dbw );
 
-		if ( !$actorId ) {
+		try {
+			$actorId = $this->actorNormalization->acquireActorId( $user, $dbw );
+		} catch ( CannotCreateActorException $e ) {
 			$this->fatalError( "Failed to acquire an actor ID for user '$user'" );
 		}
 
@@ -158,7 +155,7 @@ class FindMissingActors extends Maintenance {
 			$this->output( "Do you want to OVERWRITE the listed actor IDs?\n" );
 			$this->output( "Information about the invalid IDs will be lost!\n" );
 			$this->output( "\n" );
-			$confirm = self::readconsole( 'Type "yes" to continue: ' );
+			$confirm = static::readconsole( 'Type "yes" to continue: ' );
 
 			if ( $confirm === 'yes' ) {
 				$this->overwriteActorIDs( $field, array_keys( $bad ), $overwrite );
