@@ -28,7 +28,6 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
-use Psr\Log\NullLogger;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\ClientError;
@@ -36,9 +35,6 @@ use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Parsoid\Utils\ContentUtils;
-use Wikimedia\Stats\BufferingStatsdDataFactory;
-use Wikimedia\Stats\Emitters\NullEmitter;
-use Wikimedia\Stats\StatsCache;
 use Wikimedia\Stats\StatsFactory;
 
 /**
@@ -709,13 +705,11 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 			$originalContent = '';
 		}
 
-		$statsCache = new StatsCache();
-		$statsdFactory = new BufferingStatsdDataFactory( '' );
-		$stats = new StatsFactory( $statsCache, new NullEmitter(), new NullLogger() );
-		$stats = $stats->withStatsdDataFactory( $statsdFactory );
+		$statsHelper = StatsFactory::newUnitTestingHelper();
+		$statsFactory = $statsHelper->getStatsFactory();
 
 		// TODO: find a way to test $pageLanguage
-		$helper = $this->newHelper( [], $stats, $page, $body, $params );
+		$helper = $this->newHelper( [], $statsFactory, $page, $body, $params );
 
 		$response = $this->createResponse();
 		$helper->putContent( $response );
@@ -736,24 +730,15 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		// Ensure that exactly one key with the given prefix is set.
 		// This ensures that the number of keys set always adds up to 100%,
 		// for any set of keys under this prefix.
-		$this->assertMetricsCount( 1, $statsdFactory, 'html_input_transform.original_html.' );
+		$this->assertMetricsCount( 1, $statsHelper, 'html_input_transform_total' );
 	}
 
-	private function assertMetricsCount( $expected, BufferingStatsdDataFactory $stats, $prefix = '' ) {
-		$keys = [];
-		foreach ( $stats->getData() as $datum ) {
-			if ( str_starts_with( $datum->getKey(), $prefix ) ) {
-				$keys[] = $datum->getKey();
-			}
-		}
-
-		$this->addToAssertionCount( 1 );
-		if ( count( $keys ) !== $expected ) {
-			$this->fail(
-				"Failed to assert that the number of metrics keys starting with '$prefix' is $expected. Keys: \n\t"
-				. implode( "\n\t", $keys )
-			);
-		}
+	private function assertMetricsCount( $expected, $statsHelper, string $selector ) {
+		$this->assertSame(
+			(float)$expected,
+			$statsHelper->sum( $selector ),
+			"\nMetrics buffer:\n" . implode( "\n", $statsHelper->getAllFormatted() ) . "\n"
+		);
 	}
 
 	public function provideOriginal() {
@@ -781,7 +766,6 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 			]
 		];
 
-		// should load original wikitext by revision id ////////////////////
 		yield 'should load original wikitext by revision id' => [
 			$selserContext,
 			1, // will be replaced by the actual revid
@@ -789,11 +773,9 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 			null, // Selser should preserve the original content.
 		];
 
-		// should use wikitext from fake revision ////////////////////
 		$page = PageIdentityValue::localIdentity( 7, NS_MAIN, 'HtmlInputTransformHelperTest' );
 		$rev = new MutableRevisionRecord( $page );
 		$rev->setContent( SlotRecord::MAIN, new WikitextContent( 'Goats are great!' ) );
-
 		yield 'should use wikitext from fake revision' => [
 			$selserContext,
 			$rev,
@@ -801,7 +783,6 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 			'Goats are great!', // Text from the fake revision. Selser should preserve it.
 		];
 
-		// should get original HTML from stash ////////////////////
 		yield 'should get original HTML from stash' => [
 			$selserContext,
 			$rev,
@@ -856,12 +837,10 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 			'html' => $html
 		];
 
-		$statsCache = new StatsCache();
-		$statsdFactory = new BufferingStatsdDataFactory( '' );
-		$stats = new StatsFactory( $statsCache, new NullEmitter(), new NullLogger() );
-		$stats = $stats->withStatsdDataFactory( $statsdFactory );
+		$statsHelper = StatsFactory::newUnitTestingHelper();
+		$statsFactory = $statsHelper->getStatsFactory();
 
-		$helper = $this->newHelper( [], $stats, $page, $body, $params );
+		$helper = $this->newHelper( [], $statsFactory, $page, $body, $params );
 		$helper->setOriginal( $rev, $originalRendering );
 
 		$response = $this->createResponse();
@@ -879,10 +858,18 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		// Ensure that exactly one key with the given prefix is set.
 		// This ensures that the number of keys set always adds up to 100%,
 		// for any set of keys under this prefix.
-		if ( $rev || $originalRendering ) {
-			$this->assertMetricsCount( 1, $statsdFactory, 'html_input_transform.original_html.given' );
+		if ( $originalRendering instanceof ParsoidRenderID ) {
+			// NOTE: This increments both
+			// - first, original_html_given=false
+			// - then, original_html_given=as_renderid
+			$this->assertMetricsCount( 1, $statsHelper, 'html_input_transform_total{original_html_given=as_renderid}' );
+		} elseif ( $rev || $originalRendering ) {
+			// NOTE: This increments both
+			// - first, original_html_given=false
+			// - then, original_html_given=true
+			$this->assertMetricsCount( 1, $statsHelper, 'html_input_transform_total{original_html_given=true}' );
 		} else {
-			$this->assertMetricsCount( 1, $statsdFactory, 'html_input_transform.original_html.not_given' );
+			$this->assertMetricsCount( 1, $statsHelper, 'html_input_transform_total{original_html_given=false}' );
 		}
 	}
 
