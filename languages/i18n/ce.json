@@ -2240,7 +2240,7 @@
 	"alreadyrolled": "[[User:$2|$2]] ([[User talk:$2|дийцар]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) декъахочо «[[:$1]]» агӀонна тӀаьххьара бина хийцамаш йуха ца балабало. Цхьа кхиниг кхиъна хийцамаш йухабало йа агӀо нисйан.\n\nХийцамаш бинарг ву [[User:$3|$3]] ([[User talk:$3|дийцар]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 	"editcomment": "Хийцамаш барна гайтина бахьана: <em>$1</em>.",
 	"revertpage": "йухадаккха {{PLURAL:$7|нисдар}} [[Special:Contributions/$2|$2]] ([[User talk:$2|дийцар]]) тӀаьххьара версега [[User:$1|$1]]",
-	"revertpage-anon": "{{PLURAL:$7|нисдарш}} [[Special:Contributions/$2|$2]] т\\аьххара версега [[User:$1|$1]] йухадахар йу",
+	"revertpage-anon": "{{PLURAL:$7|Нисдарш}} [[Special:Contributions/$2|$2]] тӀаьххьара версега [[User:$1|$1]] йухадахар йу",
 	"revertpage-nouser": "Къайлаха декъахочун тӀаьххьара версега [[User:$1|$1]] {{PLURAL:$7|нисдарш}} йухадахар",
 	"rollback-success": "Д\\атеттина нисдарш {{GENDER:$3|$1}}; йухайаьккхина т\\аьхьара верси {{GENDER:$4|$2}}.",
 	"sessionfailure-title": "Сеансан гӀалат",
