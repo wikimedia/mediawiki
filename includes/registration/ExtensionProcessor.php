@@ -151,7 +151,6 @@ class ExtensionProcessor implements Processor {
 		'TranslationAliasesDirs',
 		'ForeignResourcesDir',
 		'Hooks',
-		'DomainEventSubscribers', // Deprecated (T389033)
 		'DomainEventIngresses',
 		'MessagePosterModule',
 		'MessagesDirs',
@@ -585,12 +584,6 @@ class ExtensionProcessor implements Processor {
 	protected function extractDomainEventIngresses( array $info, string $path ) {
 		$this->attributes['DomainEventIngresses'] ??= [];
 		foreach ( $info['DomainEventIngresses'] ?? [] as $subscriber ) {
-			$subscriber['extensionPath'] = $path;
-			$this->attributes['DomainEventIngresses'][] = $subscriber;
-		}
-
-		// Deprecated (T389033)
-		foreach ( $info['DomainEventSubscribers'] ?? [] as $subscriber ) {
 			$subscriber['extensionPath'] = $path;
 			$this->attributes['DomainEventIngresses'][] = $subscriber;
 		}

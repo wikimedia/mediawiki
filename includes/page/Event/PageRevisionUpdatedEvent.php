@@ -328,20 +328,6 @@ class PageRevisionUpdatedEvent extends PageStateEvent implements PageUpdateCause
 	}
 
 	/**
-	 * @deprecated since 1.44
-	 */
-	public function getOldRevision(): ?RevisionRecord {
-		return $this->getLatestRevisionBefore();
-	}
-
-	/**
-	 * @deprecated since 1.44
-	 */
-	public function getNewRevision(): RevisionRecord {
-		return $this->getLatestRevisionAfter();
-	}
-
-	/**
 	 * Returns the page update's initial patrol status.
 	 * @see PageUpdater::setRcPatrolStatus()
 	 * @see RecentChange::PRC_XXX
@@ -386,9 +372,3 @@ class PageRevisionUpdatedEvent extends PageStateEvent implements PageUpdateCause
 	}
 
 }
-
-/** @deprecated temporary alias, remove before 1.44 release */
-class_alias( PageRevisionUpdatedEvent::class, 'MediaWiki\Storage\PageUpdatedEvent' );
-
-/** @deprecated temporary alias, remove before 1.44 release */
-class_alias( PageRevisionUpdatedEvent::class, 'MediaWiki\Page\Event\PageUpdatedEvent' );

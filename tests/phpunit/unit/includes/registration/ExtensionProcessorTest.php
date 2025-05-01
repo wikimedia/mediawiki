@@ -627,31 +627,6 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 					]
 				]
 			],
-			'DomainEventSubscriber (deprecated, T389033)' => [
-				[
-					'DomainEventIngresses' => [
-						[ 'events' => [ 'FooDone' ], 'factory' => 'PriorCallback' ]
-					]
-				],
-				[
-					'DomainEventSubscribers' => [
-						[
-							'events' => [ 'FooDone', 'BarDone', ],
-							'class' => 'FooClass',
-							'services' => [],
-						],
-					]
-				] + self::$default,
-				[
-					[ 'events' => [ 'FooDone' ], 'factory' => 'PriorCallback' ],
-					[
-						'events' => [ 'FooDone', 'BarDone', ],
-						'class' => 'FooClass',
-						'services' => [],
-						'extensionPath' => $this->getExtensionPath()
-					]
-				]
-			],
 		];
 	}
 

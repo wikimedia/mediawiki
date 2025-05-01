@@ -230,7 +230,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	private $renderedRevision = null;
 
 	/** @var ?PageRevisionUpdatedEvent */
-	private $pageUpdatedEvent = null;
+	private $pageRevisionUpdatedEvent = null;
 
 	/**
 	 * @var RevisionRenderer
@@ -1537,8 +1537,8 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 * With a 10% chance, triggers pruning the recent changes table.
 	 *
 	 * Further updates may be triggered by core components and extensions
-	 * that listen to the PageRevisionUpdated event. Search for method names starting
-	 * with "handlePageUpdatedEvent" to find listeners.
+	 * that listen to the PageRevisionUpdated event. Search for method names
+	 * starting with "handlePageRevisionUpdatedEvent" to find listeners.
 	 *
 	 * @note prepareUpdate() must be called before calling this method!
 	 *
@@ -1670,8 +1670,8 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	}
 
 	private function getPageRevisionUpdatedEvent(): PageRevisionUpdatedEvent {
-		if ( $this->pageUpdatedEvent ) {
-			return $this->pageUpdatedEvent;
+		if ( $this->pageRevisionUpdatedEvent ) {
+			return $this->pageRevisionUpdatedEvent;
 		}
 
 		$this->assertHasRevision( __METHOD__ );
@@ -1721,7 +1721,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		$performer = $this->options['triggeringUser'] ?? $this->user;
 		'@phan-var UserIdentity $performer';
 
-		$this->pageUpdatedEvent = new PageRevisionUpdatedEvent(
+		$this->pageRevisionUpdatedEvent = new PageRevisionUpdatedEvent(
 			$this->options['cause'] ?? PageUpdateCauses::CAUSE_EDIT,
 			$pageRecordBefore,
 			$pageRecordAfter,
@@ -1735,7 +1735,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			$this->options['rcPatrolStatus'] ?? 0,
 		);
 
-		return $this->pageUpdatedEvent;
+		return $this->pageRevisionUpdatedEvent;
 	}
 
 	private function triggerParserCacheUpdate() {
