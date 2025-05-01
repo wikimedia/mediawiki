@@ -322,12 +322,12 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		return $pageConfigFactory;
 	}
 
-	private function getTextFromFile( string $name ): string {
+	private static function getTextFromFile( string $name ): string {
 		return trim( file_get_contents( __DIR__ . "/data/Transform/$name" ) );
 	}
 
-	private function getJsonFromFile( string $name ): array {
-		$text = $this->getTextFromFile( $name );
+	private static function getJsonFromFile( string $name ): array {
+		$text = self::getTextFromFile( $name );
 		return json_decode( $text, JSON_OBJECT_AS_ARRAY );
 	}
 
@@ -359,7 +359,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		return $expectedMime === $actualMime && $expectedSpec === $actualSpec;
 	}
 
-	public function provideHtml2wt() {
+	public static function provideHtml2wt() {
 		$profileVersion = '2.6.0';
 		$wikitextProfileUri = 'https://www.mediawiki.org/wiki/Specs/wikitext/1.0.0';
 		$htmlProfileUri = 'https://www.mediawiki.org/wiki/Specs/HTML/' . $profileVersion;
@@ -380,7 +380,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 
 		// should convert html to wikitext ///////////////////////////////////
-		$html = $this->getTextFromFile( 'MainPage-data-parsoid.html' );
+		$html = self::getTextFromFile( 'MainPage-data-parsoid.html' );
 		$expectedText = [
 			'MediaWiki has been successfully installed',
 			'== Getting started ==',
@@ -404,7 +404,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 
 		// should accept original wikitext in body ////////////////////
-		$originalWikitext = $this->getTextFromFile( 'OriginalMainPage.wikitext' );
+		$originalWikitext = self::getTextFromFile( 'OriginalMainPage.wikitext' );
 		$attribs = [
 			'opts' => [
 				'original' => [
@@ -424,14 +424,14 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 
 		// should use original html for selser (default) //////////////////////
-		$originalDataParsoid = $this->getJsonFromFile( 'MainPage-original.data-parsoid' );
+		$originalDataParsoid = self::getJsonFromFile( 'MainPage-original.data-parsoid' );
 		$attribs = [
 			'opts' => [
 				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE,
 				'original' => [
 					'html' => [
 						'headers' => $htmlHeaders,
-						'body' => $this->getTextFromFile( 'MainPage-original.html' ),
+						'body' => self::getTextFromFile( 'MainPage-original.html' ),
 					],
 					'data-parsoid' => [
 						'headers' => [
@@ -459,7 +459,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 							//      version given in the HTML?
 							'content-type' => 'text/html; profile="mediawiki.org/specs/html/1.1.1"',
 						],
-						'body' => $this->getTextFromFile( 'MainPage-data-parsoid-1.1.1.html' ),
+						'body' => self::getTextFromFile( 'MainPage-data-parsoid-1.1.1.html' ),
 					],
 					'data-parsoid' => [
 						'headers' => [
@@ -487,7 +487,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 							'content-type' => 'text/html; profile="mediawiki.org/specs/html/1.1.1"',
 						],
 						// No schema version in HTML
-						'body' => $this->getTextFromFile( 'MainPage-original.html' ),
+						'body' => self::getTextFromFile( 'MainPage-original.html' ),
 					],
 					'data-parsoid' => [
 						'headers' => [
@@ -507,7 +507,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		// Return original wikitext when HTML doesn't change ////////////////////////////
 		// New and old html are identical, which should produce no diffs
 		// and reuse the original wikitext.
-		$html = $this->getTextFromFile( 'Selser.html' );
+		$html = self::getTextFromFile( 'Selser.html' );
 
 		// Original wikitext (to be preserved by selser)
 		$originalWikitext = self::IMPERFECT_WIKITEXT;
@@ -748,7 +748,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 
 		// should apply original data-mw when modified is absent (captions 1) ///////////
-		$html = $this->getTextFromFile( 'Image.html' );
+		$html = self::getTextFromFile( 'Image.html' );
 		$dataParsoid = [ 'ids' => [
 			'mwAg' => [ 'optList' => [ [ 'ck' => 'caption', 'ak' => 'Testing 123' ] ] ],
 			'mwAw' => [ 'a' => [ 'href' => './File:Foobar.jpg' ], 'sa' => [] ],
@@ -783,7 +783,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 
 		// should give precedence to inline data-mw over modified (captions 2) /////////////
-		$htmlModified = $this->getTextFromFile( 'Image-data-mw.html' );
+		$htmlModified = self::getTextFromFile( 'Image-data-mw.html' );
 		$dataMediaWikiModified = [
 			'ids' => [
 				'mwAg' => [ 'caption' => 'Testing 123' ]
@@ -863,7 +863,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 
 		// should apply version downgrade ///////////
-		$htmlOfMinimal = $this->getTextFromFile( 'Minimal.html' ); // Uses profile version 2.4.0
+		$htmlOfMinimal = self::getTextFromFile( 'Minimal.html' ); // Uses profile version 2.4.0
 		$attribs = [
 			'opts' => [
 				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE,
@@ -888,7 +888,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 
 		// should not apply version downgrade if versions are the same ///////////
-		$htmlOfMinimal = $this->getTextFromFile( 'Minimal.html' ); // Uses profile version 2.4.0
+		$htmlOfMinimal = self::getTextFromFile( 'Minimal.html' ); // Uses profile version 2.4.0
 		$attribs = [
 			'opts' => [
 				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE,
@@ -912,7 +912,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 
 		// should convert html to json ///////////////////////////////////
-		$html = $this->getTextFromFile( 'JsonConfig.html' );
+		$html = self::getTextFromFile( 'JsonConfig.html' );
 		$expectedText = [
 			'{"a":4,"b":3}',
 		];
@@ -932,7 +932,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 
 		// page bundle input should work with no original data present  ///////////
-		$htmlOfMinimal = $this->getTextFromFile( 'Minimal.html' ); // Uses profile version 2.4.0
+		$htmlOfMinimal = self::getTextFromFile( 'Minimal.html' ); // Uses profile version 2.4.0
 		$attribs = [
 			'opts' => [
 				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE,
@@ -1015,7 +1015,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideHtml2wtThrows() {
+	public static function provideHtml2wtThrows() {
 		$html = '<html lang="en"><body>123</body></html>';
 
 		$profileVersion = '2.4.0';
@@ -1053,8 +1053,8 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 
 		// should fail to downgrade the original version for an unknown transition ///////////
-		$htmlOfMinimal = $this->getTextFromFile( 'Minimal.html' );
-		$htmlOfMinimal2222 = $this->getTextFromFile( 'Minimal-2222.html' );
+		$htmlOfMinimal = self::getTextFromFile( 'Minimal.html' );
+		$htmlOfMinimal2222 = self::getTextFromFile( 'Minimal-2222.html' );
 		$attribs = [
 			'opts' => [
 				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE,

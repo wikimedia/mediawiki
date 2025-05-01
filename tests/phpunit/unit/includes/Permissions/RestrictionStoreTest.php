@@ -211,8 +211,8 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $obj->getRestrictions( $page, $action ) );
 	}
 
-	public function provideGetRestrictions(): array {
-		$all = $this->provideGetAllRestrictions();
+	public static function provideGetRestrictions(): array {
+		$all = self::provideGetAllRestrictions();
 		$ret = [];
 
 		foreach ( $all as $name => $arr ) {
@@ -716,7 +716,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $obj->listApplicableRestrictionTypes( $page ) );
 	}
 
-	public function provideListApplicableRestrictionTypes(): array {
+	public static function provideListApplicableRestrictionTypes(): array {
 		$expandedRestrictions = array_merge( self::DEFAULT_RESTRICTION_TYPES, [ 'liquify' ] );
 		return [
 			'Special page' => [
@@ -807,15 +807,15 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 			'Hook not run for special page' => [
 				[],
 				self::newImproperPageIdentity( NS_SPECIAL, 'X' ),
-				[ 'hookFn' => function () {
-					$this->fail( 'Should be unreached' );
+				[ 'hookFn' => static function () {
+					Assert::fail( 'Should be unreached' );
 				} ],
 			],
 			'Hook not run for media page' => [
 				[],
 				self::newImproperPageIdentity( NS_MEDIA, 'X' ),
-				[ 'hookFn' => function () {
-					$this->fail( 'Should be unreached' );
+				[ 'hookFn' => static function () {
+					Assert::fail( 'Should be unreached' );
 				} ],
 			],
 		];

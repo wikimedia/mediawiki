@@ -55,13 +55,13 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $store->getUseExternalStore() );
 	}
 
-	private function makeObjectBlob( $text ) {
+	private static function makeObjectBlob( $text ) {
 		$obj = new ConcatenatedGzipHistoryBlob();
 		$obj->setText( $text );
 		return serialize( $obj );
 	}
 
-	public function provideDecompress() {
+	public static function provideDecompress() {
 		yield '(no legacy encoding), empty in empty out' => [ false, '', [], '' ];
 		yield '(no legacy encoding), string in string out' => [ false, 'A', [], 'A' ];
 		yield '(no legacy encoding), error flag -> false' => [ false, 'X', [ 'error' ], false ];
@@ -76,13 +76,13 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 
 		yield '(no legacy encoding), serialized object in with object flag returns string' => [
 			false,
-			$this->makeObjectBlob( 'HHJJDDFF' ),
+			self::makeObjectBlob( 'HHJJDDFF' ),
 			[ 'object' ],
 			'HHJJDDFF',
 		];
 		yield '(no legacy encoding), serialized object in with object & gzip flag returns string' => [
 			false,
-			gzdeflate( $this->makeObjectBlob( '8219JJJ840' ) ),
+			gzdeflate( self::makeObjectBlob( '8219JJJ840' ) ),
 			[ 'object', 'gzip' ],
 			'8219JJJ840',
 		];
@@ -100,13 +100,13 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 		];
 		yield '(ISO-8859-1 encoding), serialized object in with object flags returns string' => [
 			'ISO-8859-1',
-			$this->makeObjectBlob( iconv( 'utf-8', 'ISO-8859-1', "3®Àþ3" ) ),
+			self::makeObjectBlob( iconv( 'utf-8', 'ISO-8859-1', "3®Àþ3" ) ),
 			[ 'object' ],
 			'3®Àþ3',
 		];
 		yield '(ISO-8859-1 encoding), serialized object in with object & gzip flags returns string' => [
 			'ISO-8859-1',
-			gzdeflate( $this->makeObjectBlob( iconv( 'utf-8', 'ISO-8859-1', "2®Àþ2" ) ) ),
+			gzdeflate( self::makeObjectBlob( iconv( 'utf-8', 'ISO-8859-1', "2®Àþ2" ) ) ),
 			[ 'gzip', 'object' ],
 			'2®Àþ2',
 		];

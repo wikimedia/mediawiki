@@ -3,6 +3,7 @@
 namespace Wikimedia\Tests;
 
 use MediaWikiCoversValidator;
+use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\ArrayUtils\ArrayUtils;
 
@@ -27,11 +28,11 @@ class ArrayUtilsTest extends TestCase {
 		);
 	}
 
-	public function provideFindLowerBound() {
-		$indexValueCallback = function ( $size ) {
-			return function ( $val ) use ( $size ) {
-				$this->assertTrue( $val >= 0 );
-				$this->assertTrue( $val < $size );
+	public static function provideFindLowerBound() {
+		$indexValueCallback = static function ( $size ) {
+			return static function ( $val ) use ( $size ) {
+				Assert::assertTrue( $val >= 0 );
+				Assert::assertTrue( $val < $size );
 				return $val;
 			};
 		};

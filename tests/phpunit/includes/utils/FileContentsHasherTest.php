@@ -25,9 +25,9 @@ class FileContentsHasherTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( $expected, $actualHashRepeat );
 	}
 
-	public function provideMultipleFiles() {
+	public static function provideMultipleFiles() {
 		return [
-			[ $this->provideSingleFile() ]
+			[ self::provideSingleFile() ]
 		];
 	}
 

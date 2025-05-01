@@ -33,8 +33,8 @@ use MediaWikiIntegrationTestCase;
  */
 class SiteTest extends MediaWikiIntegrationTestCase {
 
-	public function instanceProvider() {
-		return $this->arrayWrap( TestSites::getSites() );
+	public static function instanceProvider() {
+		return self::arrayWrap( TestSites::getSites() );
 	}
 
 	/**

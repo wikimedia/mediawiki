@@ -135,9 +135,9 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 		}
 	}
 
-	public function providePageBundleFromParserOutput() {
+	public static function providePageBundleFromParserOutput() {
 		yield 'should convert ParsoidOutput containing data-parsoid and data-mw' => [
-			$this->getParsoidOutput(
+			self::getParsoidOutput(
 				'hello world',
 				[
 					'parsoid' => [ 'ids' => '1.22' ],
@@ -150,7 +150,7 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 		];
 
 		yield 'should convert ParsoidOutput that does not contain data-parsoid or data-mw' => [
-			$this->getParsoidOutput(
+			self::getParsoidOutput(
 				'hello world',
 				[
 					'parsoid' => null,
@@ -170,7 +170,7 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( 'de', $pb->headers['content-language'] );
 	}
 
-	private function getParsoidOutput(
+	private static function getParsoidOutput(
 		string $rawText,
 		?array $pageBundleData
 	): ParserOutput {

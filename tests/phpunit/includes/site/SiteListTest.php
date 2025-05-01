@@ -35,8 +35,8 @@ class SiteListTest extends MediaWikiIntegrationTestCase {
 	 * Returns instances of SiteList implementing objects.
 	 * @return array
 	 */
-	public function siteListProvider() {
-		$sitesArrays = $this->siteArrayProvider();
+	public static function siteListProvider() {
+		$sitesArrays = self::siteArrayProvider();
 
 		$listInstances = [];
 
@@ -44,14 +44,14 @@ class SiteListTest extends MediaWikiIntegrationTestCase {
 			$listInstances[] = new SiteList( $sitesArray[0] );
 		}
 
-		return $this->arrayWrap( $listInstances );
+		return self::arrayWrap( $listInstances );
 	}
 
 	/**
 	 * Returns arrays with instances of Site implementing objects.
 	 * @return array
 	 */
-	public function siteArrayProvider() {
+	public static function siteArrayProvider() {
 		$sites = TestSites::getSites();
 
 		$siteArrays = [];
@@ -62,7 +62,7 @@ class SiteListTest extends MediaWikiIntegrationTestCase {
 
 		$siteArrays[] = [ array_shift( $sites ), array_shift( $sites ) ];
 
-		return $this->arrayWrap( $siteArrays );
+		return self::arrayWrap( $siteArrays );
 	}
 
 	/**

@@ -302,7 +302,7 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 		$this->assertNotContains( 'test2', $extracted['globals']['wgImplicitRights'] );
 	}
 
-	public function provideMixedStyleHooks() {
+	public static function provideMixedStyleHooks() {
 		// Format:
 		// Content in extension.json
 		// Expected wgHooks
@@ -339,7 +339,7 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 								'services' => [],
 								'name' => 'FooBar-HandlerObjectCallback'
 							],
-							'extensionPath' => $this->getExtensionPath()
+							'extensionPath' => self::getExtensionPath()
 						],
 						[
 							'handler' => [
@@ -348,7 +348,7 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 								'name' => 'FooBar-HandlerObjectCallback'
 							],
 							'deprecated' => true,
-							'extensionPath' => $this->getExtensionPath()
+							'extensionPath' => self::getExtensionPath()
 						],
 						[
 							'handler' => [
@@ -356,7 +356,7 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 								'services' => [],
 								'name' => 'FooBar-HandlerObjectCallback'
 							],
-							'extensionPath' => $this->getExtensionPath()
+							'extensionPath' => self::getExtensionPath()
 						]
 					]
 				]
@@ -364,7 +364,7 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 		];
 	}
 
-	public function provideNonLegacyHooks() {
+	public static function provideNonLegacyHooks() {
 		// Format:
 		// Current Hooks attribute
 		// Content in extension.json
@@ -393,7 +393,7 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 								'name' => 'FooBar-HandlerObjectCallback'
 							],
 							'deprecated' => true,
-							'extensionPath' => $this->getExtensionPath()
+							'extensionPath' => self::getExtensionPath()
 						]
 					]
 				],
@@ -417,7 +417,7 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 								'services' => [],
 								'name' => 'FooBar-HandlerObjectCallback'
 							],
-							'extensionPath' => $this->getExtensionPath()
+							'extensionPath' => self::getExtensionPath()
 						],
 					]
 				],
@@ -446,7 +446,7 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 								'services' => []
 							],
 							'deprecated' => true,
-							'extensionPath' => $this->getExtensionPath()
+							'extensionPath' => self::getExtensionPath()
 						],
 						[
 							'handler' => [
@@ -454,7 +454,7 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 								'class' => 'FooClass',
 								'services' => [],
 							],
-							'extensionPath' => $this->getExtensionPath()
+							'extensionPath' => self::getExtensionPath()
 						]
 					]
 				],
@@ -482,7 +482,7 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 								'class' => 'FooClass',
 								'services' => []
 							],
-							'extensionPath' => $this->getExtensionPath()
+							'extensionPath' => self::getExtensionPath()
 						],
 					]
 				],
@@ -596,7 +596,7 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 		$processor->getExtractedInfo();
 	}
 
-	public function provideDomainEventDomainEventIngresses() {
+	public static function provideDomainEventDomainEventIngresses() {
 		// Format:
 		// Current attributes
 		// Content in extension.json
@@ -623,7 +623,7 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 						'events' => [ 'FooDone', 'BarDone', ],
 						'class' => 'FooClass',
 						'services' => [],
-						'extensionPath' => $this->getExtensionPath()
+						'extensionPath' => self::getExtensionPath()
 					]
 				]
 			],

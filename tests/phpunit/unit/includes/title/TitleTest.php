@@ -195,8 +195,8 @@ class TitleTest extends MediaWikiUnitTestCase {
 		$this->assertTrue( $clone->equals( $title ) );
 	}
 
-	public function provideCastFromLinkTarget() {
-		return array_merge( [ [ null ] ], $this->provideNewFromTitleValue() );
+	public static function provideCastFromLinkTarget() {
+		return array_merge( [ [ null ] ], self::provideNewFromTitleValue() );
 	}
 
 	/**

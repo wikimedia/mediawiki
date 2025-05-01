@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Debug\DeprecatablePropertyArray;
+use PHPUnit\Framework\Assert;
 
 /**
  * @covers \MediaWiki\Debug\DeprecatablePropertyArray
@@ -17,7 +18,7 @@ class DeprecatablePropertyArrayTest extends MediaWikiUnitTestCase {
 		$callback();
 	}
 
-	public function provideDeprecationWarning() {
+	public static function provideDeprecationWarning() {
 		$propName = self::PROP_NAME;
 		$array = new DeprecatablePropertyArray(
 			[
@@ -34,20 +35,20 @@ class DeprecatablePropertyArrayTest extends MediaWikiUnitTestCase {
 		);
 
 		yield 'get' => [
-			function () use ( $array ) {
-				$this->assertSame( 'test_value', $array[ self::PROP_NAME ] );
+			static function () use ( $array ) {
+				Assert::assertSame( 'test_value', $array[ self::PROP_NAME ] );
 			},
 			"TEST get '{$propName}'"
 		];
 		yield 'get, callback' => [
-			function () use ( $array ) {
-				$this->assertSame( 'callback_test_value', $array[ 'callback' ] );
+			static function () use ( $array ) {
+				Assert::assertSame( 'callback_test_value', $array[ 'callback' ] );
 			},
 			"TEST get 'callback'"
 		];
 		yield 'exists' => [
-			function () use ( $array ) {
-				$this->assertTrue( isset( $array[ self::PROP_NAME ] ) );
+			static function () use ( $array ) {
+				Assert::assertTrue( isset( $array[ self::PROP_NAME ] ) );
 			},
 			"TEST exists '{$propName}'"
 		];

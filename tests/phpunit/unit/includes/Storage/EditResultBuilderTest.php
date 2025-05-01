@@ -121,10 +121,10 @@ class EditResultBuilderTest extends MediaWikiUnitTestCase {
 		$this->assertArrayEquals( [], $er->getRevertTags(), 'EditResult::getRevertTags' );
 	}
 
-	public function provideEnabledSoftwareTagsForRollback(): array {
+	public static function provideEnabledSoftwareTagsForRollback(): array {
 		return [
 			"all change tags enabled" => [
-				$this->getSoftwareTags(),
+				self::getSoftwareTags(),
 				[ "mw-rollback" ]
 			],
 			"no change tags enabled" => [
@@ -179,10 +179,10 @@ class EditResultBuilderTest extends MediaWikiUnitTestCase {
 			'EditResult::getRevertTags' );
 	}
 
-	public function provideEnabledSoftwareTagsForUndo(): array {
+	public static function provideEnabledSoftwareTagsForUndo(): array {
 		return [
 			"all change tags enabled" => [
-				$this->getSoftwareTags(),
+				self::getSoftwareTags(),
 				[ "mw-undo" ]
 			],
 			"no change tags enabled" => [
@@ -268,7 +268,7 @@ class EditResultBuilderTest extends MediaWikiUnitTestCase {
 	public function testRevertWithoutOriginalRevision() {
 		$erb = $this->getNewEditResultBuilder(
 			null,
-			$this->getSoftwareTags()
+			self::getSoftwareTags()
 		);
 		$newRevision = $this->getDummyRevision();
 
@@ -301,7 +301,7 @@ class EditResultBuilderTest extends MediaWikiUnitTestCase {
 	public function testManualRevertDetectionDisabled() {
 		$erb = $this->getNewEditResultBuilder(
 			null,
-			$this->getSoftwareTags(),
+			self::getSoftwareTags(),
 			0 // set the search radius to 0 to disable the feature entirely
 		);
 		$newRevision = $this->getDummyRevision();
@@ -391,7 +391,7 @@ class EditResultBuilderTest extends MediaWikiUnitTestCase {
 	 *
 	 * @return string[]
 	 */
-	private function getSoftwareTags(): array {
+	private static function getSoftwareTags(): array {
 		return [
 			"mw-contentmodelchange",
 			"mw-new-redirect",

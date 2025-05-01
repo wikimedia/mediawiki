@@ -26,8 +26,8 @@ class GhostFieldAccessTraitTest extends MediaWikiUnitTestCase {
 		}
 	}
 
-	public function provideUnserializedInstancesWithValues() {
-		return $this->provideUnserializedInstances( 'withValues' );
+	public static function provideUnserializedInstancesWithValues() {
+		return self::provideUnserializedInstances( 'withValues' );
 	}
 
 	/**
@@ -39,8 +39,8 @@ class GhostFieldAccessTraitTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 'public_value', $instance->getPublicField() );
 	}
 
-	public function provideUnserializedInstancesWithNulls() {
-		return $this->provideUnserializedInstances( 'withNulls' );
+	public static function provideUnserializedInstancesWithNulls() {
+		return self::provideUnserializedInstances( 'withNulls' );
 	}
 
 	/**

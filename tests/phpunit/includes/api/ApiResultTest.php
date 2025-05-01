@@ -767,7 +767,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideTransformations() {
+	public static function provideTransformations() {
 		$kvp = static function ( $keyKey, $key, $valKey, $value ) {
 			return [
 				$keyKey => $key,
@@ -1268,7 +1268,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 					ApiResult::META_PRESERVE_KEYS => [ '_dummy2', '_dummy3' ],
 				],
 				[
-					'Custom' => [ $this, 'customTransform' ],
+					'Custom' => [ self::class, 'customTransform' ],
 					'BC' => [],
 					'Types' => [],
 					'Strip' => 'all'
@@ -1318,7 +1318,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 	 * @param array &$data
 	 * @param array &$metadata
 	 */
-	public function customTransform( &$data, &$metadata ) {
+	public static function customTransform( &$data, &$metadata ) {
 		// Prevent recursion
 		if ( isset( $metadata['_added'] ) ) {
 			$metadata[ApiResult::META_TYPE] = 'array';

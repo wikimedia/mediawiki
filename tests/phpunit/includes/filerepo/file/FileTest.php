@@ -316,7 +316,7 @@ class FileTest extends MediaWikiMediaTestCase {
 				$data['message'] );
 	}
 
-	public function generateBucketsIfNeededProvider() {
+	public static function generateBucketsIfNeededProvider() {
 		$defaultBuckets = [ 256, 512, 1024, 2048, 4096 ];
 
 		return [
@@ -325,12 +325,12 @@ class FileTest extends MediaWikiMediaTestCase {
 				'width' => 256,
 				'physicalWidth' => 256,
 				'physicalHeight' => 100,
-				'expectedGetBucketThumbPathCalls' => $this->never(),
-				'expectedFileExistsCalls' => $this->never(),
+				'expectedGetBucketThumbPathCalls' => self::never(),
+				'expectedFileExistsCalls' => self::never(),
 				'fileExistsReturn' => null,
-				'expectedMakeTransformTmpFile' => $this->never(),
+				'expectedMakeTransformTmpFile' => self::never(),
 				'makeTransformTmpFileReturn' => false,
-				'expectedGenerateAndSaveThumb' => $this->never(),
+				'expectedGenerateAndSaveThumb' => self::never(),
 				'generateAndSaveThumbReturn' => false,
 				'expectedResult' => false,
 				'message' => 'No bucket found, nothing to generate'
@@ -340,12 +340,12 @@ class FileTest extends MediaWikiMediaTestCase {
 				'width' => 5000,
 				'physicalWidth' => 300,
 				'physicalHeight' => 200,
-				'expectedGetBucketThumbPathCalls' => $this->once(),
-				'expectedFileExistsCalls' => $this->once(),
+				'expectedGetBucketThumbPathCalls' => self::once(),
+				'expectedFileExistsCalls' => self::once(),
 				'fileExistsReturn' => true,
-				'expectedMakeTransformTmpFile' => $this->never(),
+				'expectedMakeTransformTmpFile' => self::never(),
 				'makeTransformTmpFileReturn' => false,
-				'expectedGenerateAndSaveThumb' => $this->never(),
+				'expectedGenerateAndSaveThumb' => self::never(),
 				'generateAndSaveThumbReturn' => false,
 				'expectedResult' => false,
 				'message' => 'File already exists, no reason to generate buckets'
@@ -355,12 +355,12 @@ class FileTest extends MediaWikiMediaTestCase {
 				'width' => 5000,
 				'physicalWidth' => 300,
 				'physicalHeight' => 200,
-				'expectedGetBucketThumbPathCalls' => $this->once(),
-				'expectedFileExistsCalls' => $this->once(),
+				'expectedGetBucketThumbPathCalls' => self::once(),
+				'expectedFileExistsCalls' => self::once(),
 				'fileExistsReturn' => false,
-				'expectedMakeTransformTmpFile' => $this->once(),
+				'expectedMakeTransformTmpFile' => self::once(),
 				'makeTransformTmpFileReturn' => false,
-				'expectedGenerateAndSaveThumb' => $this->never(),
+				'expectedGenerateAndSaveThumb' => self::never(),
 				'generateAndSaveThumbReturn' => false,
 				'expectedResult' => false,
 				'message' => 'Cannot generate temp file for bucket'
@@ -370,12 +370,12 @@ class FileTest extends MediaWikiMediaTestCase {
 				'width' => 5000,
 				'physicalWidth' => 300,
 				'physicalHeight' => 200,
-				'expectedGetBucketThumbPathCalls' => $this->once(),
-				'expectedFileExistsCalls' => $this->once(),
+				'expectedGetBucketThumbPathCalls' => self::once(),
+				'expectedFileExistsCalls' => self::once(),
 				'fileExistsReturn' => false,
-				'expectedMakeTransformTmpFile' => $this->once(),
+				'expectedMakeTransformTmpFile' => self::once(),
 				'makeTransformTmpFileReturn' => new TempFSFile( '/tmp/foo' ),
-				'expectedGenerateAndSaveThumb' => $this->once(),
+				'expectedGenerateAndSaveThumb' => self::once(),
 				'generateAndSaveThumbReturn' => false,
 				'expectedResult' => false,
 				'message' => 'Bucket image could not be generated'
@@ -385,12 +385,12 @@ class FileTest extends MediaWikiMediaTestCase {
 				'width' => 5000,
 				'physicalWidth' => 300,
 				'physicalHeight' => 200,
-				'expectedGetBucketThumbPathCalls' => $this->once(),
-				'expectedFileExistsCalls' => $this->once(),
+				'expectedGetBucketThumbPathCalls' => self::once(),
+				'expectedFileExistsCalls' => self::once(),
 				'fileExistsReturn' => false,
-				'expectedMakeTransformTmpFile' => $this->once(),
+				'expectedMakeTransformTmpFile' => self::once(),
 				'makeTransformTmpFileReturn' => new TempFSFile( '/tmp/foo' ),
-				'expectedGenerateAndSaveThumb' => $this->once(),
+				'expectedGenerateAndSaveThumb' => self::once(),
 				'generateAndSaveThumbReturn' => new ThumbnailImage( false, 'bar', false, false ),
 				'expectedResult' => true,
 				'message' => 'Bucket image could not be generated'

@@ -28,27 +28,27 @@ class ApiQuerySearchTest extends ApiTestCase {
 		$this->overrideConfigValue( MainConfigNames::SearchType, MockSearchEngine::class );
 	}
 
-	public function provideSearchResults() {
+	public static function provideSearchResults() {
 		return [
 			'empty search result' => [ [], [] ],
 			'has search results' => [
 				[ 'Zomg' ],
-				[ $this->mockResultClosure( 'Zomg' ) ],
+				[ self::mockResultClosure( 'Zomg' ) ],
 			],
 			'filters broken search results' => [
 				[ 'A', 'B' ],
 				[
-					$this->mockResultClosure( 'a' ),
-					$this->mockResultClosure( 'Zomg', [ 'setBrokenTitle' => true ] ),
-					$this->mockResultClosure( 'b' ),
+					self::mockResultClosure( 'a' ),
+					self::mockResultClosure( 'Zomg', [ 'setBrokenTitle' => true ] ),
+					self::mockResultClosure( 'b' ),
 				],
 			],
 			'filters results with missing revision' => [
 				[ 'B', 'A' ],
 				[
-					$this->mockResultClosure( 'Zomg', [ 'setMissingRevision' => true ] ),
-					$this->mockResultClosure( 'b' ),
-					$this->mockResultClosure( 'a' ),
+					self::mockResultClosure( 'Zomg', [ 'setMissingRevision' => true ] ),
+					self::mockResultClosure( 'b' ),
+					self::mockResultClosure( 'a' ),
 				],
 			],
 		];
@@ -68,7 +68,7 @@ class ApiQuerySearchTest extends ApiTestCase {
 		$this->assertEquals( $expect, $titles );
 	}
 
-	public function provideInterwikiResults() {
+	public static function provideInterwikiResults() {
 		return [
 			'empty' => [ [], [] ],
 			'one wiki response' => [
@@ -76,7 +76,7 @@ class ApiQuerySearchTest extends ApiTestCase {
 				[
 					ISearchResultSet::SECONDARY_RESULTS => [
 						'utwiki' => new MockSearchResultSet( [
-							$this->mockResultClosure(
+							self::mockResultClosure(
 								'Qwerty',
 								[ 'setInterwikiPrefix' => 'utwiki' ]
 							),
@@ -125,7 +125,7 @@ class ApiQuerySearchTest extends ApiTestCase {
 	 * @param array $setters
 	 * @return callable function(): MockSearchResult
 	 */
-	private function mockResultClosure( $titleText, $setters = [] ) {
+	private static function mockResultClosure( $titleText, $setters = [] ) {
 		return static function () use ( $titleText, $setters ) {
 			$title = Title::newFromText( $titleText );
 			$title->resetArticleID( 0 );

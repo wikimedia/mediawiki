@@ -15,6 +15,7 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWikiCoversValidator;
 use MediaWikiIntegrationTestCase;
+use PHPUnit\Framework\Assert;
 use StatusValue;
 use Wikimedia\TestingAccessWrapper;
 
@@ -64,7 +65,7 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 		$callback( $form, $form->mFieldData );
 	}
 
-	public function provideCondState() {
+	public static function provideCondState() {
 		yield 'Field hidden if "check" field is checked' => [
 			'fieldInfo' => [
 				'text1' => [ 'hide-if' => [ '===', 'check1', '1' ] ],
@@ -72,8 +73,8 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 			'requestData' => [
 				'wpcheck1' => '1',
 			],
-			'callback' => function ( $form, $fieldData ) {
-				$this->assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
+			'callback' => static function ( $form, $fieldData ) {
+				Assert::assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
 			}
 		];
 		yield 'Field hidden if "check" field is not checked' => [
@@ -81,8 +82,8 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 				'text1' => [ 'hide-if' => [ '===', 'check1', '' ] ],
 			],
 			'requestData' => [],
-			'callback' => function ( $form, $fieldData ) {
-				$this->assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
+			'callback' => static function ( $form, $fieldData ) {
+				Assert::assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
 			}
 		];
 		yield 'Field not hidden if "check" field is not checked' => [
@@ -90,8 +91,8 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 				'text1' => [ 'hide-if' => [ '===', 'check1', '1' ] ],
 			],
 			'requestData' => [],
-			'callback' => function ( $form, $fieldData ) {
-				$this->assertFalse( $form->getField( 'text1' )->isHidden( $fieldData ) );
+			'callback' => static function ( $form, $fieldData ) {
+				Assert::assertFalse( $form->getField( 'text1' )->isHidden( $fieldData ) );
 			}
 		];
 		yield 'Field hidden if "check" field (invert) is checked' => [
@@ -101,8 +102,8 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 			'requestData' => [
 				'wpcheck2' => '1',
 			],
-			'callback' => function ( $form, $fieldData ) {
-				$this->assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
+			'callback' => static function ( $form, $fieldData ) {
+				Assert::assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
 			}
 		];
 		yield 'Field hidden if "check" field (invert) is not checked' => [
@@ -110,8 +111,8 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 				'text1' => [ 'hide-if' => [ '!==', 'check2', '1' ] ],
 			],
 			'requestData' => [],
-			'callback' => function ( $form, $fieldData ) {
-				$this->assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
+			'callback' => static function ( $form, $fieldData ) {
+				Assert::assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
 			}
 		];
 		yield 'Field not hidden if "check" field (invert) is checked' => [
@@ -121,8 +122,8 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 			'requestData' => [
 				'wpcheck2' => '1',
 			],
-			'callback' => function ( $form, $fieldData ) {
-				$this->assertFalse( $form->getField( 'text1' )->isHidden( $fieldData ) );
+			'callback' => static function ( $form, $fieldData ) {
+				Assert::assertFalse( $form->getField( 'text1' )->isHidden( $fieldData ) );
 			}
 		];
 		yield 'Field hidden if "select" field has value' => [
@@ -132,8 +133,8 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 			'requestData' => [
 				'wpselect1' => 'a',
 			],
-			'callback' => function ( $form, $fieldData ) {
-				$this->assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
+			'callback' => static function ( $form, $fieldData ) {
+				Assert::assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
 			}
 		];
 		yield 'Field hidden if "text" field has value' => [
@@ -143,8 +144,8 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 			'requestData' => [
 				'wptext1' => 'hello',
 			],
-			'callback' => function ( $form, $fieldData ) {
-				$this->assertTrue( $form->getField( 'select1' )->isHidden( $fieldData ) );
+			'callback' => static function ( $form, $fieldData ) {
+				Assert::assertTrue( $form->getField( 'select1' )->isHidden( $fieldData ) );
 			}
 		];
 
@@ -159,8 +160,8 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 				'wpcheck1' => '1',
 				'wpselect1' => 'a',
 			],
-			'callback' => function ( $form, $fieldData ) {
-				$this->assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
+			'callback' => static function ( $form, $fieldData ) {
+				Assert::assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
 			}
 		];
 		yield 'Field hidden using OR conditions' => [
@@ -173,8 +174,8 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 			'requestData' => [
 				'wpcheck1' => '1',
 			],
-			'callback' => function ( $form, $fieldData ) {
-				$this->assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
+			'callback' => static function ( $form, $fieldData ) {
+				Assert::assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
 			}
 		];
 		yield 'Field hidden using NAND conditions' => [
@@ -187,8 +188,8 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 			'requestData' => [
 				'wpcheck1' => '1',
 			],
-			'callback' => function ( $form, $fieldData ) {
-				$this->assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
+			'callback' => static function ( $form, $fieldData ) {
+				Assert::assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
 			}
 		];
 		yield 'Field hidden using NOR conditions' => [
@@ -199,8 +200,8 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 				] ],
 			],
 			'requestData' => [],
-			'callback' => function ( $form, $fieldData ) {
-				$this->assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
+			'callback' => static function ( $form, $fieldData ) {
+				Assert::assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
 			}
 		];
 		yield 'Field hidden using complex conditions' => [
@@ -214,8 +215,8 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 				] ],
 			],
 			'requestData' => [],
-			'callback' => function ( $form, $fieldData ) {
-				$this->assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
+			'callback' => static function ( $form, $fieldData ) {
+				Assert::assertTrue( $form->getField( 'text1' )->isHidden( $fieldData ) );
 			}
 		];
 
@@ -267,8 +268,8 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 			'requestData' => [
 				'wpcheck1' => '1',
 			],
-			'callback' => function ( $form, $fieldData ) {
-				$this->assertTrue( $form->getField( 'text1' )->isDisabled( $fieldData ) );
+			'callback' => static function ( $form, $fieldData ) {
+				Assert::assertTrue( $form->getField( 'text1' )->isDisabled( $fieldData ) );
 			}
 		];
 		yield 'Field disabled if hidden' => [
@@ -278,8 +279,8 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 			'requestData' => [
 				'wpcheck1' => '1',
 			],
-			'callback' => function ( $form, $fieldData ) {
-				$this->assertTrue( $form->getField( 'text1' )->isDisabled( $fieldData ) );
+			'callback' => static function ( $form, $fieldData ) {
+				Assert::assertTrue( $form->getField( 'text1' )->isDisabled( $fieldData ) );
 			}
 		];
 
@@ -290,8 +291,8 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 			'requestData' => [
 				'foo' => '1',
 			],
-			'callback' => function ( $form, $fieldData ) {
-				$this->assertTrue( $form->getField( 'text1' )->isDisabled( $fieldData ) );
+			'callback' => static function ( $form, $fieldData ) {
+				Assert::assertTrue( $form->getField( 'text1' )->isDisabled( $fieldData ) );
 			}
 		];
 		yield 'Field disabled even the \'wp\' prefix is used (back-compat)' => [
@@ -301,8 +302,8 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 			'requestData' => [
 				'wpcheck1' => '1',
 			],
-			'callback' => function ( $form, $fieldData ) {
-				$this->assertTrue( $form->getField( 'text1' )->isDisabled( $fieldData ) );
+			'callback' => static function ( $form, $fieldData ) {
+				Assert::assertTrue( $form->getField( 'text1' )->isDisabled( $fieldData ) );
 			}
 		];
 		yield 'Field name does not exist' => [
@@ -323,8 +324,8 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 			'requestData' => [
 				'wpcloner' => [ 0 => [ 'check1' => '1' ] ],
 			],
-			'callback' => function ( $form, $fieldData ) {
-				$this->assertTrue( $this->getFieldInCloner( $form, 'cloner', 0, 'check2' )
+			'callback' => static function ( $form, $fieldData ) {
+				Assert::assertTrue( self::getFieldInCloner( $form, 'cloner', 0, 'check2' )
 					->isDisabled( $fieldData ) );
 			}
 		];
@@ -337,8 +338,8 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 			'requestData' => [
 				'wpcloner' => [ 0 => [ 'check2' => '1' ] ],
 			],
-			'callback' => function ( $form, $fieldData ) {
-				$this->assertTrue( $this->getFieldInCloner( $form, 'cloner', 0, 'check1' )
+			'callback' => static function ( $form, $fieldData ) {
+				Assert::assertTrue( self::getFieldInCloner( $form, 'cloner', 0, 'check1' )
 					->isDisabled( $fieldData ) );
 			}
 		];
@@ -351,8 +352,8 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 			'requestData' => [
 				'wpcloner' => [ 0 => [ 'foo' => '1' ] ],
 			],
-			'callback' => function ( $form, $fieldData ) {
-				$this->assertTrue( $this->getFieldInCloner( $form, 'cloner', 0, 'check1' )
+			'callback' => static function ( $form, $fieldData ) {
+				Assert::assertTrue( self::getFieldInCloner( $form, 'cloner', 0, 'check1' )
 					->isDisabled( $fieldData ) );
 			}
 		];
@@ -365,14 +366,14 @@ class HTMLFormFieldTest extends MediaWikiIntegrationTestCase {
 			'requestData' => [
 				'wpselect1' => 'a',
 			],
-			'callback' => function ( $form, $fieldData ) {
-				$this->assertTrue( $this->getFieldInCloner( $form, 'cloner', 0, 'check1' )
+			'callback' => static function ( $form, $fieldData ) {
+				Assert::assertTrue( self::getFieldInCloner( $form, 'cloner', 0, 'check1' )
 					->isDisabled( $fieldData ) );
 			}
 		];
 	}
 
-	private function getFieldInCloner( $form, $clonerName, $index, $fieldName ) {
+	private static function getFieldInCloner( $form, $clonerName, $index, $fieldName ) {
 		$cloner = TestingAccessWrapper::newFromObject( $form->getField( $clonerName ) );
 		return $cloner->getFieldsForKey( $index )[$fieldName];
 	}

@@ -180,8 +180,8 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( Parsoid::defaultHTMLVersion(), $outputPageBundle->version );
 	}
 
-	public function provideConvertParserOutputVariant() {
-		foreach ( $this->provideConvertPageBundleVariant() as $name => $case ) {
+	public static function provideConvertParserOutputVariant() {
+		foreach ( self::provideConvertPageBundleVariant() as $name => $case ) {
 			$case[0] = PageBundleParserOutputConverter::parserOutputFromPageBundle( $case[0] );
 			yield $name => $case;
 		}

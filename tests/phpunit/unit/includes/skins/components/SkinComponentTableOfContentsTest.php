@@ -11,11 +11,11 @@ use Wikimedia\Parsoid\Core\TOCData;
  */
 class SkinComponentTableOfContentsTest extends MediaWikiUnitTestCase {
 
-	private function addDefaults( array $sectionData ): array {
+	private static function addDefaults( array $sectionData ): array {
 		return SectionMetadata::fromLegacy( $sectionData )->toLegacy();
 	}
 
-	public function provideGetSectionsData(): array {
+	public static function provideGetSectionsData(): array {
 		// byteoffset and fromtitle are redacted from this test.
 		$SECTION_1 = [
 			'toclevel' => 1,
@@ -69,12 +69,12 @@ class SkinComponentTableOfContentsTest extends MediaWikiUnitTestCase {
 				[
 					'number-section-count' => 2,
 					'array-sections' => [
-						$this->addDefaults( $SECTION_1 ) + [
+						self::addDefaults( $SECTION_1 ) + [
 							'array-sections' => [],
 							'is-top-level-section' => true,
 							'is-parent-section' => false,
 						],
-						$this->addDefaults( $SECTION_2 ) + [
+						self::addDefaults( $SECTION_2 ) + [
 							'array-sections' => [],
 							'is-top-level-section' => true,
 							'is-parent-section' => false,
@@ -95,9 +95,9 @@ class SkinComponentTableOfContentsTest extends MediaWikiUnitTestCase {
 				[
 					'number-section-count' => 3,
 					'array-sections' => [
-						$this->addDefaults( $SECTION_1 ) + [
+						self::addDefaults( $SECTION_1 ) + [
 							'array-sections' => [
-								$this->addDefaults( $SECTION_1_1 ) + [
+								self::addDefaults( $SECTION_1_1 ) + [
 									'array-sections' => [],
 									'is-top-level-section' => false,
 									'is-parent-section' => false,
@@ -106,7 +106,7 @@ class SkinComponentTableOfContentsTest extends MediaWikiUnitTestCase {
 							'is-top-level-section' => true,
 							'is-parent-section' => true,
 						],
-						$this->addDefaults( $SECTION_2 ) + [
+						self::addDefaults( $SECTION_2 ) + [
 							'array-sections' => [],
 							'is-top-level-section' => true,
 							'is-parent-section' => false,
@@ -130,16 +130,16 @@ class SkinComponentTableOfContentsTest extends MediaWikiUnitTestCase {
 				[
 					'number-section-count' => 6,
 					'array-sections' => [
-						$this->addDefaults( $SECTION_1 ) + [
+						self::addDefaults( $SECTION_1 ) + [
 							'array-sections' => [
-								$this->addDefaults( $SECTION_1_1 ) + [
+								self::addDefaults( $SECTION_1_1 ) + [
 									'array-sections' => [],
 									'is-top-level-section' => false,
 									'is-parent-section' => false,
 								],
-								$this->addDefaults( $SECTION_1_2 ) + [
+								self::addDefaults( $SECTION_1_2 ) + [
 									'array-sections' => [
-										$this->addDefaults( $SECTION_1_2_1 ) + [
+										self::addDefaults( $SECTION_1_2_1 ) + [
 											'array-sections' => [],
 											'is-top-level-section' => false,
 											'is-parent-section' => false,
@@ -148,7 +148,7 @@ class SkinComponentTableOfContentsTest extends MediaWikiUnitTestCase {
 									'is-top-level-section' => false,
 									'is-parent-section' => true,
 								],
-								$this->addDefaults( $SECTION_1_3 ) + [
+								self::addDefaults( $SECTION_1_3 ) + [
 									'array-sections' => [],
 									'is-top-level-section' => false,
 									'is-parent-section' => false,
@@ -157,7 +157,7 @@ class SkinComponentTableOfContentsTest extends MediaWikiUnitTestCase {
 							'is-top-level-section' => true,
 							'is-parent-section' => true,
 						],
-						$this->addDefaults( $SECTION_2 ) + [
+						self::addDefaults( $SECTION_2 ) + [
 							'array-sections' => [],
 							'is-top-level-section' => true,
 							'is-parent-section' => false,

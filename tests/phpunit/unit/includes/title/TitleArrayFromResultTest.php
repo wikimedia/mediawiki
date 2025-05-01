@@ -20,7 +20,7 @@ class TitleArrayFromResultTest extends MediaWikiUnitTestCase {
 		return $resultWrapper;
 	}
 
-	private function getRowWithTitle( $namespace = 3, $title = 'foo' ) {
+	private static function getRowWithTitle( $namespace = 3, $title = 'foo' ) {
 		return (object)[
 			'page_namespace' => $namespace,
 			'page_title' => $title,
@@ -47,7 +47,7 @@ class TitleArrayFromResultTest extends MediaWikiUnitTestCase {
 	public function testConstructionWithRow() {
 		$namespace = 0;
 		$title = 'foo';
-		$row = $this->getRowWithTitle( $namespace, $title );
+		$row = self::getRowWithTitle( $namespace, $title );
 		$resultWrapper = $this->getMockResultWrapper( $row );
 
 		$object = new TitleArrayFromResult( $resultWrapper );
@@ -73,7 +73,7 @@ class TitleArrayFromResultTest extends MediaWikiUnitTestCase {
 	 */
 	public function testCountWithVaryingValues( $numRows ) {
 		$object = new TitleArrayFromResult( $this->getMockResultWrapper(
-			$this->getRowWithTitle(),
+			self::getRowWithTitle(),
 			$numRows
 		) );
 		$this->assertEquals( $numRows, $object->count() );
@@ -85,16 +85,16 @@ class TitleArrayFromResultTest extends MediaWikiUnitTestCase {
 	public function testCurrentAfterConstruction() {
 		$namespace = 0;
 		$title = 'foo';
-		$row = $this->getRowWithTitle( $namespace, $title );
+		$row = self::getRowWithTitle( $namespace, $title );
 		$object = new TitleArrayFromResult( $this->getMockResultWrapper( $row ) );
 		$this->assertInstanceOf( Title::class, $object->current() );
 		$this->assertEquals( $namespace, $object->current->getNamespace() );
 		$this->assertEquals( $title, $object->current->getText() );
 	}
 
-	public function provideTestValid() {
+	public static function provideTestValid() {
 		return [
-			[ $this->getRowWithTitle(), true ],
+			[ self::getRowWithTitle(), true ],
 			[ false, false ],
 		];
 	}

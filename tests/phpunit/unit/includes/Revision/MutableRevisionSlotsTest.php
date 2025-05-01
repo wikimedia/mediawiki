@@ -20,7 +20,7 @@ class MutableRevisionSlotsTest extends RevisionSlotsTest {
 	 * @param SlotRecord[] $slots
 	 * @return RevisionSlots
 	 */
-	protected function newRevisionSlots( $slots = [] ) {
+	protected static function newRevisionSlots( $slots = [] ) {
 		return new MutableRevisionSlots( $slots );
 	}
 

@@ -344,12 +344,12 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		return $rev;
 	}
 
-	public function provideInsertRevisionOn_successes() {
+	public static function provideInsertRevisionOn_successes() {
 		yield 'Bare minimum revision insertion' => [
 			[
 				'slot' => SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'Chicken' ) ),
 				'page' => true,
-				'comment' => $this->getRandomCommentStoreComment(),
+				'comment' => self::getRandomCommentStoreComment(),
 				'timestamp' => '20171117010101',
 				'user' => true,
 			],
@@ -359,7 +359,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 				'slot' => SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'Chicken' ) ),
 				'parent' => true,
 				'page' => true,
-				'comment' => $this->getRandomCommentStoreComment(),
+				'comment' => self::getRandomCommentStoreComment(),
 				'timestamp' => '20171117010101',
 				'user' => true,
 				'minor' => true,
@@ -373,14 +373,14 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 					'aux' => new TextContent( 'Egg' ),
 				],
 				'page' => true,
-				'comment' => $this->getRandomCommentStoreComment(),
+				'comment' => self::getRandomCommentStoreComment(),
 				'timestamp' => '20171117010101',
 				'user' => true,
 			],
 		];
 	}
 
-	protected function getRandomCommentStoreComment() {
+	protected static function getRandomCommentStoreComment() {
 		return CommentStoreComment::newUnsavedComment( __METHOD__ . '.' . rand( 0, 1000 ) );
 	}
 
@@ -479,7 +479,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$revDetails = [
 			'slot' => SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'Chicken' ) ),
 			'parent' => true,
-			'comment' => $this->getRandomCommentStoreComment(),
+			'comment' => self::getRandomCommentStoreComment(),
 			'timestamp' => '20171117010101',
 			'user' => true,
 		];
@@ -512,10 +512,10 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $secondReturn->getId(), $secondMainSlot->getRevision() );
 	}
 
-	public function provideInsertRevisionOn_failures() {
+	public static function provideInsertRevisionOn_failures() {
 		yield 'no slot' => [
 			[
-				'comment' => $this->getRandomCommentStoreComment(),
+				'comment' => self::getRandomCommentStoreComment(),
 				'timestamp' => '20171117010101',
 				'user' => true,
 			],
@@ -524,7 +524,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		yield 'no main slot' => [
 			[
 				'slot' => SlotRecord::newUnsaved( 'aux', new WikitextContent( 'Turkey' ) ),
-				'comment' => $this->getRandomCommentStoreComment(),
+				'comment' => self::getRandomCommentStoreComment(),
 				'timestamp' => '20171117010101',
 				'user' => true,
 			],
@@ -533,7 +533,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		yield 'no timestamp' => [
 			[
 				'slot' => SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'Chicken' ) ),
-				'comment' => $this->getRandomCommentStoreComment(),
+				'comment' => self::getRandomCommentStoreComment(),
 				'user' => true,
 			],
 			new IncompleteRevisionException( 'timestamp field must not be NULL!' )
@@ -549,7 +549,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		yield 'no user' => [
 			[
 				'slot' => SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'Chicken' ) ),
-				'comment' => $this->getRandomCommentStoreComment(),
+				'comment' => self::getRandomCommentStoreComment(),
 				'timestamp' => '20171117010101',
 			],
 			new IncompleteRevisionException( 'user must not be NULL!' )
@@ -557,7 +557,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		yield 'size mismatch' => [
 			[
 				'slot' => SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'Chicken' ) ),
-				'comment' => $this->getRandomCommentStoreComment(),
+				'comment' => self::getRandomCommentStoreComment(),
 				'timestamp' => '20171117010101',
 				'user' => true,
 				'size' => 123456
@@ -567,7 +567,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		yield 'sha1 mismatch' => [
 			[
 				'slot' => SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'Chicken' ) ),
-				'comment' => $this->getRandomCommentStoreComment(),
+				'comment' => self::getRandomCommentStoreComment(),
 				'timestamp' => '20171117010101',
 				'user' => true,
 				'sha1' => 'DEADBEEF',
