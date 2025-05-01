@@ -198,16 +198,18 @@ abstract class MediaTransformOutput {
 		}
 
 		if ( $this->path === null ) {
-			return $this->file->getLocalRefPath(); // assume thumb was not scaled
+			// assume thumb was not scaled
+			return $this->file->getLocalRefPath();
 		}
 		if ( FileBackend::isStoragePath( $this->path ) ) {
 			$be = $this->file->getRepo()->getBackend();
-			// The temp file will be process cached by FileBackend
+			// The temp file is process-cached by FileBackend
 			$fsFile = $be->getLocalReference( [ 'src' => $this->path ] );
 
 			return $fsFile ? $fsFile->getPath() : false;
 		}
-		return $this->path; // may return false
+		// may return false
+		return $this->path;
 	}
 
 	/**
@@ -230,16 +232,17 @@ abstract class MediaTransformOutput {
 					[ 'src' => $this->path, 'headers' => $headers, ]
 				)
 			);
-		} else {
-			$streamer = new HTTPFileStreamer(
-				$this->getLocalCopyPath(),
-				$repo ? $repo->getBackend()->getStreamerOptions() : []
-			);
-
-			$success = $streamer->stream( $headers );
-			return $success ? Status::newGood()
-				: Status::newFatal( 'backend-fail-stream', $this->path );
 		}
+
+		$streamer = new HTTPFileStreamer(
+			$this->getLocalCopyPath(),
+			$repo ? $repo->getBackend()->getStreamerOptions() : []
+		);
+
+		$success = $streamer->stream( $headers );
+
+		return $success ? Status::newGood()
+			: Status::newFatal( 'backend-fail-stream', $this->path );
 	}
 
 	/**
