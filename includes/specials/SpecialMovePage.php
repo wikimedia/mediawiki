@@ -23,7 +23,6 @@ namespace MediaWiki\Specials;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Exception\ThrottledError;
@@ -217,7 +216,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 			$permStatus = $this->permManager->getPermissionStatus( 'move', $user, $this->oldTitle,
 				PermissionManager::RIGOR_SECURE );
 			// If the account is "hard" blocked, auto-block IP
-			DeferredUpdates::addCallableUpdate( [ $user, 'spreadAnyEditBlock' ] );
+			$user->scheduleSpreadBlock();
 			if ( !$permStatus->isGood() ) {
 				throw new PermissionsError( 'move', $permStatus );
 			}
@@ -227,7 +226,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 			$permStatus = $this->permManager->getPermissionStatus( 'move', $user, $this->oldTitle,
 				PermissionManager::RIGOR_FULL );
 			if ( !$permStatus->isGood() ) {
-				DeferredUpdates::addCallableUpdate( [ $user, 'spreadAnyEditBlock' ] );
+				$user->scheduleSpreadBlock();
 				throw new PermissionsError( 'move', $permStatus );
 			}
 			$this->showForm();
