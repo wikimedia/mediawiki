@@ -395,7 +395,7 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideModuleDefinitionFiles() {
+	public static function provideModuleDefinitionFiles() {
 		$conf = MediaWikiServices::getInstance()->getMainConfig();
 		$entryPoint = TestingAccessWrapper::newFromClass( EntryPoint::class );
 		$routeFiles = $entryPoint->getRouteFiles( $conf );

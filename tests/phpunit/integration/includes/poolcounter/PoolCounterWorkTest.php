@@ -76,13 +76,13 @@ class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 		return TestingAccessWrapper::newFromObject( $worker );
 	}
 
-	public function provideExecuteFlow() {
+	public static function provideExecuteFlow() {
 		yield "Not Cacheable and not skipCache should call acquireForMe" => [
 			false, false,
 			[
-				'acquireForMe' => $this->returnValue( Status::newGood( 'StupidAction' ) )
+				'acquireForMe' => self::returnValue( Status::newGood( 'StupidAction' ) )
 			], [], [
-				'info' => $this->returnValue( null )
+				'info' => self::returnValue( null )
 			],
 			false
 		];
@@ -90,9 +90,9 @@ class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 		yield "Not Cacheable and skipCache should call acquireForMe" => [
 			false, true,
 			[
-				'acquireForMe' => $this->returnValue( Status::newGood( 'StupidAction' ) )
+				'acquireForMe' => self::returnValue( Status::newGood( 'StupidAction' ) )
 			], [], [
-				'info' => $this->returnValue( null )
+				'info' => self::returnValue( null )
 			],
 			false
 		];
@@ -100,9 +100,9 @@ class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 		yield "Cacheable and not skipCache should call acquireForAnyone" => [
 			true, false,
 			[
-				'acquireForAnyone' => $this->returnValue( Status::newGood( 'StupidAction' ) )
+				'acquireForAnyone' => self::returnValue( Status::newGood( 'StupidAction' ) )
 			], [], [
-				'info' => $this->returnValue( null )
+				'info' => self::returnValue( null )
 			],
 			false
 		];
@@ -110,9 +110,9 @@ class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 		yield "Cacheable and skipCache should call acquireForMe" => [
 			true, true,
 			[
-				'acquireForMe' => $this->returnValue( Status::newGood( 'StupidAction' ) )
+				'acquireForMe' => self::returnValue( Status::newGood( 'StupidAction' ) )
 			], [], [
-				'info' => $this->returnValue( null )
+				'info' => self::returnValue( null )
 			],
 			false
 		];
@@ -120,11 +120,11 @@ class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 		yield 'If Fatal error call doWork and log error' => [
 			false, false,
 			[
-				'acquireForMe' => $this->returnValue( Status::newFatal( 'apierror' ) )
+				'acquireForMe' => self::returnValue( Status::newFatal( 'apierror' ) )
 			], [
-				'doWork' => $this->returnValue( "SomeResults" )
+				'doWork' => self::returnValue( "SomeResults" )
 			], [
-				'info' => $this->returnValue( null )
+				'info' => self::returnValue( null )
 			],
 			"SomeResults"
 		];
@@ -136,10 +136,10 @@ class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 			yield 'If ' . $name . ' call doWork and return' => [
 				false, false,
 				[
-					'acquireForMe' => $this->returnValue( Status::newGood( $acquireResult ) ),
-					'release' => $this->returnValue( null )
+					'acquireForMe' => self::returnValue( Status::newGood( $acquireResult ) ),
+					'release' => self::returnValue( null )
 				], [
-					'doWork' => $this->returnValue( "SomeResults" )
+					'doWork' => self::returnValue( "SomeResults" )
 				], [],
 				"SomeResults"
 			];
@@ -148,9 +148,9 @@ class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 		yield 'If DONE and not chacheable call getCachedWork and return if OK' => [
 			false, false,
 			[
-				'acquireForMe' => $this->returnValue( Status::newGood( PoolCounter::DONE ) ),
+				'acquireForMe' => self::returnValue( Status::newGood( PoolCounter::DONE ) ),
 			], [
-				'getCachedWork' => $this->returnValue( "SomeResults" )
+				'getCachedWork' => self::returnValue( "SomeResults" )
 			], [],
 			"SomeResults"
 		];
@@ -158,9 +158,9 @@ class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 		yield 'If DONE and chacheable call getCachedWork and return if OK' => [
 			true, false,
 			[
-				'acquireForAnyone' => $this->returnValue( Status::newGood( PoolCounter::DONE ) ),
+				'acquireForAnyone' => self::returnValue( Status::newGood( PoolCounter::DONE ) ),
 			], [
-				'getCachedWork' => $this->returnValue( "SomeResults" )
+				'getCachedWork' => self::returnValue( "SomeResults" )
 			], [],
 			"SomeResults"
 		];
@@ -168,12 +168,12 @@ class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 		yield 'If DONE and chacheable call getCachedWork and repeat if not OK' => [
 			true, false,
 			[
-				'acquireForAnyone' => $this->returnValue( Status::newGood( PoolCounter::DONE ) ),
-				'acquireForMe' => $this->returnValue( Status::newGood( PoolCounter::LOCKED ) ),
-				'release' => $this->returnValue( '' )
+				'acquireForAnyone' => self::returnValue( Status::newGood( PoolCounter::DONE ) ),
+				'acquireForMe' => self::returnValue( Status::newGood( PoolCounter::LOCKED ) ),
+				'release' => self::returnValue( '' )
 			], [
-				'getCachedWork' => $this->returnValue( false ),
-				'doWork' => $this->returnValue( 'SomeResults' )
+				'getCachedWork' => self::returnValue( false ),
+				'doWork' => self::returnValue( 'SomeResults' )
 			], [],
 			"SomeResults"
 		];
@@ -185,9 +185,9 @@ class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 			yield 'If ' . $name . ' and not chacheable call fallback and return if OK' => [
 				false, false,
 				[
-					'acquireForMe' => $this->returnValue( Status::newGood( $acquireResult ) ),
+					'acquireForMe' => self::returnValue( Status::newGood( $acquireResult ) ),
 				], [
-					'fallback' => $this->returnValue( "SomeResults" )
+					'fallback' => self::returnValue( "SomeResults" )
 				], [],
 				"SomeResults"
 			];
@@ -195,10 +195,10 @@ class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 			yield 'If ' . $name . ' and not chacheable call fallback and log if not OK' => [
 				false, false,
 				[
-					'acquireForMe' => $this->returnValue( Status::newGood( $acquireResult ) ),
+					'acquireForMe' => self::returnValue( Status::newGood( $acquireResult ) ),
 				], [
 				], [
-					'info' => $this->returnValue( null )
+					'info' => self::returnValue( null )
 				],
 				false
 			];

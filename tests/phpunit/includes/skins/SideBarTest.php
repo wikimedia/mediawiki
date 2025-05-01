@@ -15,9 +15,9 @@ class SideBarTest extends MediaWikiLangTestCase {
 	/** @var SkinTemplate */
 	private $skin;
 	/** @var string[][] Local cache for sidebar messages */
-	private $messages;
+	private static $messages;
 
-	private function initMessagesHref() {
+	private static function initMessagesHref() {
 		# List of default messages for the sidebar. The sidebar doesn't care at
 		# all whether they are full URLs, interwiki links or local titles.
 		$URL_messages = [
@@ -36,10 +36,10 @@ class SideBarTest extends MediaWikiLangTestCase {
 		foreach ( $URL_messages as $m ) {
 			$titleName = $messageCache->get( $m );
 			if ( MWHttpRequest::isValidURI( $titleName ) ) {
-				$this->messages[$m]['href'] = $titleName;
+				self::$messages[$m]['href'] = $titleName;
 			} else {
 				$title = Title::newFromText( $titleName );
-				$this->messages[$m]['href'] = $title->getLocalURL();
+				self::$messages[$m]['href'] = $title->getLocalURL();
 			}
 		}
 	}
@@ -51,8 +51,8 @@ class SideBarTest extends MediaWikiLangTestCase {
 	}
 
 	/** @return array */
-	public function provideSidebars() {
-		$this->initMessagesHref();
+	public static function provideSidebars() {
+		self::initMessagesHref();
 		return [
 			// sidebar with only two titles
 			[
@@ -69,7 +69,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 				[ 'Title' => [
 					[
 						'text' => 'Help',
-						'href' => $this->messages['helppage']['href'],
+						'href' => self::$messages['helppage']['href'],
 						'id' => 'n-help',
 						'icon' => 'help',
 						'active' => null

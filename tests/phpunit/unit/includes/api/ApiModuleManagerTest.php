@@ -41,11 +41,11 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function newApiRsd( $main, $action ) {
+	public static function newApiRsd( $main, $action ) {
 		return new ApiRsd( $main, $action );
 	}
 
-	public function addModuleProvider() {
+	public static function addModuleProvider() {
 		return [
 			'plain class' => [
 				'rsd',
@@ -58,7 +58,7 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 				'rsd',
 				'action',
 				ApiRsd::class,
-				[ $this, 'newApiRsd' ],
+				[ self::class, 'newApiRsd' ],
 			],
 
 			'with spec (class only)' => [
@@ -75,7 +75,7 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 				'action',
 				[
 					'class' => ApiRsd::class,
-					'factory' => [ $this, 'newApiRsd' ],
+					'factory' => [ self::class, 'newApiRsd' ],
 				],
 				null,
 			],
@@ -115,7 +115,7 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 		$this->assertNotNull( $moduleManager->getModule( $name, $group, true ), 'getModule' );
 	}
 
-	public function addModulesProvider() {
+	public static function addModulesProvider() {
 		return [
 			'empty' => [
 				[],
@@ -134,7 +134,7 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 				[
 					'rsd' => [
 						'class' => ApiRsd::class,
-						'factory' => [ $this, 'newApiRsd' ],
+						'factory' => [ self::class, 'newApiRsd' ],
 					],
 					'logout' => [
 						'class' => ApiLogout::class,
@@ -163,13 +163,13 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 		$this->assertTrue( true ); // Don't mark the test as risky if $modules is empty
 	}
 
-	public function getModuleProvider() {
+	public static function getModuleProvider() {
 		$modules = [
 			'disabled' => ApiDisabled::class,
 			'disabled2' => [ 'class' => ApiDisabled::class ],
 			'rsd' => [
 				'class' => ApiRsd::class,
-				'factory' => [ $this, 'newApiRsd' ],
+				'factory' => [ self::class, 'newApiRsd' ],
 			],
 			'logout' => [
 				'class' => ApiLogout::class,

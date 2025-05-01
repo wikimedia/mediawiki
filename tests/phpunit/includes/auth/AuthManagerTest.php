@@ -1033,30 +1033,16 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideAuthentication
-	 * @param StatusValue $preResponse
-	 * @param array<AuthenticationResponse|Exception> $primaryResponses
-	 * @param array<AuthenticationResponse|Exception> $secondaryResponses
-	 * @param array<AuthenticationResponse|Exception> $managerResponses
-	 * @param bool $link Whether the primary authentication provider is a "link" provider
 	 */
 	public function testAuthentication(
-		StatusValue $preResponse, array $primaryResponses, array $secondaryResponses,
-		array $managerResponses, $link = false
+		StatusValue $preResponse, $responses, $link = false
 	) {
 		$this->initializeManager();
 		$user = $this->getTestSysop()->getUser();
 		$id = $user->getId();
 		$name = $user->getName();
-		// Hack: replace placeholder usernames with that of the test user. A better solution would be to instantiate
-		// all responses here, only providing constructor arguments (like the status) from the data provider.
-		$responseArrays = [ $primaryResponses, $secondaryResponses, $managerResponses ];
-		foreach ( $responseArrays as $respArray ) {
-			foreach ( $respArray as $resp ) {
-				if ( $resp instanceof AuthenticationResponse && $resp->username === 'PLACEHOLDER' ) {
-					$resp->username = $name;
-				}
-			}
-		}
+		$req = $this->getMockForAbstractClass( AuthenticationRequest::class );
+		[ $primaryResponses, $secondaryResponses, $managerResponses ] = $responses( $this, $req, $name );
 
 		// Set up lots of mocks...
 		$req = new RememberMeAuthenticationRequest;
@@ -1275,158 +1261,207 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideAuthentication() {
-		$rememberReq = new RememberMeAuthenticationRequest;
-		$rememberReq->action = AuthManager::ACTION_LOGIN;
-
-		$req = $this->getMockForAbstractClass( AuthenticationRequest::class );
-		$restartResponse = AuthenticationResponse::newRestart(
-			$this->message( 'authmanager-authn-no-local-user' )
-		);
-		$restartResponse->neededRequests = [ $rememberReq ];
-
-		$restartResponse2Pass = AuthenticationResponse::newPass( null );
-		$restartResponse2Pass->linkRequest = $req;
-		$restartResponse2 = AuthenticationResponse::newRestart(
-			$this->message( 'authmanager-authn-no-local-user-link' )
-		);
-		$restartResponse2->createRequest = new CreateFromLoginAuthenticationRequest(
-			null, [ $req->getUniqueId() => $req ]
-		);
-		$restartResponse2->createRequest->action = AuthManager::ACTION_LOGIN;
-		$restartResponse2->neededRequests = [ $rememberReq, $restartResponse2->createRequest ];
-
-		// Hack: use a placeholder that will be replaced with the actual username in the test method.
-		$userNamePlaceholder = 'PLACEHOLDER';
-
+	public static function provideAuthentication() {
 		return [
 			'Failure in pre-auth' => [
 				StatusValue::newFatal( 'fail-from-pre' ),
-				[],
-				[],
-				[
-					AuthenticationResponse::newFail( $this->message( 'fail-from-pre' ) ),
-					AuthenticationResponse::newFail(
-						$this->message( 'authmanager-authn-not-in-progress' )
-					),
-				]
+				static function ( $testCase, $req, $userNamePlaceholder ) {
+					return [
+						[],
+						[],
+						[
+							AuthenticationResponse::newFail( $testCase->message( 'fail-from-pre' ) ),
+							AuthenticationResponse::newFail(
+								$testCase->message( 'authmanager-authn-not-in-progress' )
+							),
+						]
+					];
+				},
 			],
 			'Failure in primary' => [
 				StatusValue::newGood(),
-				$tmp = [
-					AuthenticationResponse::newFail( $this->message( 'fail-from-primary' ) ),
-				],
-				[],
-				$tmp
+				static function ( $testCase, $req, $userNamePlaceholder ) {
+					$tmp = [
+						AuthenticationResponse::newFail( $testCase->message( 'fail-from-primary' ) ),
+					];
+					return [
+						$tmp,
+						[],
+						$tmp
+					];
+				},
 			],
 			'All primary abstain' => [
 				StatusValue::newGood(),
-				[
-					AuthenticationResponse::newAbstain(),
-				],
-				[],
-				[
-					AuthenticationResponse::newFail( $this->message( 'authmanager-authn-no-primary' ) )
-				]
+				static function ( $testCase, $req, $userNamePlaceholder ) {
+					return [
+						[
+							AuthenticationResponse::newAbstain(),
+						],
+						[],
+						[
+							AuthenticationResponse::newFail( $testCase->message( 'authmanager-authn-no-primary' ) )
+						]
+					];
+				},
 			],
 			'Primary UI, then redirect, then fail' => [
 				StatusValue::newGood(),
-				$tmp = [
-					AuthenticationResponse::newUI( [ $req ], $this->message( '...' ) ),
-					AuthenticationResponse::newRedirect( [ $req ], '/foo.html', [ 'foo' => 'bar' ] ),
-					AuthenticationResponse::newFail( $this->message( 'fail-in-primary-continue' ) ),
-				],
-				[],
-				$tmp
+				static function ( $testCase, $req, $userNamePlaceholder ) {
+					$tmp = [
+						AuthenticationResponse::newUI( [ $req ], $testCase->message( '...' ) ),
+						AuthenticationResponse::newRedirect( [ $req ], '/foo.html', [ 'foo' => 'bar' ] ),
+						AuthenticationResponse::newFail( $testCase->message( 'fail-in-primary-continue' ) ),
+					];
+					return [
+						$tmp,
+						[],
+						$tmp
+					];
+				},
 			],
 			'Primary redirect, then abstain' => [
 				StatusValue::newGood(),
-				[
+				static function ( $testCase, $req, $userNamePlaceholder ) {
 					$tmp = AuthenticationResponse::newRedirect(
 						[ $req ], '/foo.html', [ 'foo' => 'bar' ]
-					),
-					AuthenticationResponse::newAbstain(),
-				],
-				[],
-				[
-					$tmp,
-					new DomainException(
-						'MockAbstractPrimaryAuthenticationProvider::continuePrimaryAuthentication() returned ABSTAIN'
-					)
-				]
+					);
+					return [
+						[
+							$tmp,
+							AuthenticationResponse::newAbstain(),
+						],
+						[],
+						[
+							$tmp,
+							new DomainException(
+								'MockAbstractPrimaryAuthenticationProvider::continuePrimaryAuthentication() returned ABSTAIN'
+							)
+						]
+					];
+				},
 			],
 			'Primary UI, then pass with no local user' => [
 				StatusValue::newGood(),
-				[
-					$tmp = AuthenticationResponse::newUI( [ $req ], $this->message( '...' ) ),
-					AuthenticationResponse::newPass( null ),
-				],
-				[],
-				[
-					$tmp,
-					$restartResponse,
-				]
+				static function ( $testCase, $req, $userNamePlaceholder ) {
+					$rememberReq = new RememberMeAuthenticationRequest;
+					$rememberReq->action = AuthManager::ACTION_LOGIN;
+
+					$restartResponse = AuthenticationResponse::newRestart(
+						$testCase->message( 'authmanager-authn-no-local-user' )
+					);
+					$restartResponse->neededRequests = [ $rememberReq ];
+					$tmp = AuthenticationResponse::newUI( [ $req ], $testCase->message( '...' ) );
+					return [
+						[
+							$tmp,
+							AuthenticationResponse::newPass( null ),
+						],
+						[],
+						[
+							$tmp,
+							$restartResponse,
+						]
+					];
+				},
 			],
 			'Primary UI, then pass with no local user (link type)' => [
 				StatusValue::newGood(),
-				[
-					$tmp = AuthenticationResponse::newUI( [ $req ], $this->message( '...' ) ),
-					$restartResponse2Pass,
-				],
-				[],
-				[
-					$tmp,
-					$restartResponse2,
-				],
+				static function ( $testCase, $req, $userNamePlaceholder ) {
+					$rememberReq = new RememberMeAuthenticationRequest;
+					$rememberReq->action = AuthManager::ACTION_LOGIN;
+
+					$restartResponse2Pass = AuthenticationResponse::newPass( null );
+					$restartResponse2Pass->linkRequest = $req;
+					$restartResponse2 = AuthenticationResponse::newRestart(
+						$testCase->message( 'authmanager-authn-no-local-user-link' )
+					);
+					$restartResponse2->createRequest = new CreateFromLoginAuthenticationRequest(
+						null, [ $req->getUniqueId() => $req ]
+					);
+					$restartResponse2->createRequest->action = AuthManager::ACTION_LOGIN;
+					$restartResponse2->neededRequests = [ $rememberReq, $restartResponse2->createRequest ];
+
+					$tmp = AuthenticationResponse::newUI( [ $req ], $testCase->message( '...' ) );
+					return [
+						[
+							$tmp,
+							$restartResponse2Pass,
+						],
+						[],
+						[
+							$tmp,
+							$restartResponse2,
+						],
+					];
+				},
 				true
 			],
 			'Primary pass with invalid username' => [
 				StatusValue::newGood(),
-				[
-					AuthenticationResponse::newPass( '<>' ),
-				],
-				[],
-				[
-					new DomainException(
-						'MockAbstractPrimaryAuthenticationProvider returned an invalid username: <>'
-					),
-				]
+				static function ( $testCase, $req, $userNamePlaceholder ) {
+					return [
+						[
+							AuthenticationResponse::newPass( '<>' ),
+						],
+						[],
+						[
+							new DomainException(
+								'MockAbstractPrimaryAuthenticationProvider returned an invalid username: <>'
+							),
+						]
+					];
+				},
 			],
 			'Secondary fail' => [
 				StatusValue::newGood(),
-				[
-					AuthenticationResponse::newPass( $userNamePlaceholder ),
-				],
-				$tmp = [
-					AuthenticationResponse::newFail( $this->message( 'fail-in-secondary' ) ),
-				],
-				$tmp
+				static function ( $testCase, $req, $userNamePlaceholder ) {
+					$tmp = [
+						AuthenticationResponse::newFail( $testCase->message( 'fail-in-secondary' ) ),
+					];
+					return [
+						[
+							AuthenticationResponse::newPass( $userNamePlaceholder ),
+						],
+						$tmp,
+						$tmp
+					];
+				},
 			],
 			'Secondary UI, then abstain' => [
 				StatusValue::newGood(),
-				[
-					AuthenticationResponse::newPass( $userNamePlaceholder ),
-				],
-				[
-					$tmp = AuthenticationResponse::newUI( [ $req ], $this->message( '...' ) ),
-					AuthenticationResponse::newAbstain()
-				],
-				[
-					$tmp,
-					AuthenticationResponse::newPass( $userNamePlaceholder ),
-				]
+				static function ( $testCase, $req, $userNamePlaceholder ) {
+					$tmp = AuthenticationResponse::newUI( [ $req ], $testCase->message( '...' ) );
+					return [
+						[
+							AuthenticationResponse::newPass( $userNamePlaceholder ),
+						],
+						[
+							$tmp,
+							AuthenticationResponse::newAbstain()
+						],
+						[
+							$tmp,
+							AuthenticationResponse::newPass( $userNamePlaceholder ),
+						]
+					];
+				},
 			],
 			'Secondary pass' => [
 				StatusValue::newGood(),
-				[
-					AuthenticationResponse::newPass( $userNamePlaceholder ),
-				],
-				[
-					AuthenticationResponse::newPass()
-				],
-				[
-					AuthenticationResponse::newPass( $userNamePlaceholder ),
-				]
+				static function ( $testCase, $req, $userNamePlaceholder ) {
+					return [
+						[
+							AuthenticationResponse::newPass( $userNamePlaceholder ),
+						],
+						[
+							AuthenticationResponse::newPass()
+						],
+						[
+							AuthenticationResponse::newPass( $userNamePlaceholder ),
+						]
+					];
+				},
 			],
 		];
 	}
@@ -2246,24 +2281,19 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideAccountCreation
-	 * @param StatusValue $preTest
-	 * @param StatusValue $primaryTest
-	 * @param StatusValue $secondaryTest
-	 * @param array $primaryResponses
-	 * @param array $secondaryResponses
-	 * @param array $managerResponses
 	 */
 	public function testAccountCreation(
 		StatusValue $preTest, $primaryTest, $secondaryTest,
-		array $primaryResponses, array $secondaryResponses, array $managerResponses
+		$responses
 	) {
 		$creator = $this->getTestSysop()->getUser();
 		$username = self::usernameForCreation();
 
 		$this->initializeManager();
+		$req = $this->getMockForAbstractClass( AuthenticationRequest::class );
+		[ $primaryResponses, $secondaryResponses, $managerResponses ] = $responses( $this, $req );
 
 		// Set up lots of mocks...
-		$req = $this->getMockForAbstractClass( AuthenticationRequest::class );
 		$mocks = [];
 		foreach ( [ 'pre', 'primary', 'secondary' ] as $key ) {
 			$class = ucfirst( $key ) . 'AuthenticationProvider';
@@ -2533,122 +2563,166 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 				->fetchField() );
 	}
 
-	public function provideAccountCreation() {
-		$req = $this->getMockForAbstractClass( AuthenticationRequest::class );
+	public static function provideAccountCreation() {
 		$good = StatusValue::newGood();
 
 		return [
 			'Pre-creation test fail in pre' => [
 				StatusValue::newFatal( 'fail-from-pre' ), $good, $good,
-				[],
-				[],
-				[
-					AuthenticationResponse::newFail( $this->message( 'fail-from-pre' ) ),
-				]
+				static function ( $testCase, $req ) {
+					return [
+						[],
+						[],
+						[
+							AuthenticationResponse::newFail( $testCase->message( 'fail-from-pre' ) ),
+						]
+					];
+				},
 			],
 			'Pre-creation test fail in primary' => [
 				$good, StatusValue::newFatal( 'fail-from-primary' ), $good,
-				[],
-				[],
-				[
-					AuthenticationResponse::newFail( $this->message( 'fail-from-primary' ) ),
-				]
+				static function ( $testCase, $req ) {
+					return [
+						[],
+						[],
+						[
+							AuthenticationResponse::newFail( $testCase->message( 'fail-from-primary' ) ),
+						]
+					];
+				},
 			],
 			'Pre-creation test fail in secondary' => [
 				$good, $good, StatusValue::newFatal( 'fail-from-secondary' ),
-				[],
-				[],
-				[
-					AuthenticationResponse::newFail( $this->message( 'fail-from-secondary' ) ),
-				]
+				static function ( $testCase, $req ) {
+					return [
+						[],
+						[],
+						[
+							AuthenticationResponse::newFail( $testCase->message( 'fail-from-secondary' ) ),
+						]
+					];
+				},
 			],
 			'Failure in primary' => [
 				$good, $good, $good,
-				$tmp = [
-					AuthenticationResponse::newFail( $this->message( 'fail-from-primary' ) ),
-				],
-				[],
-				$tmp
+				static function ( $testCase, $req ) {
+					$tmp = [
+						AuthenticationResponse::newFail( $testCase->message( 'fail-from-primary' ) ),
+					];
+					return [
+						$tmp,
+						[],
+						$tmp
+					];
+				},
 			],
 			'All primary abstain' => [
 				$good, $good, $good,
-				[
-					AuthenticationResponse::newAbstain(),
-				],
-				[],
-				[
-					AuthenticationResponse::newFail( $this->message( 'authmanager-create-no-primary' ) )
-				]
+				static function ( $testCase, $req ) {
+					return [
+						[
+							AuthenticationResponse::newAbstain(),
+						],
+						[],
+						[
+							AuthenticationResponse::newFail( $testCase->message( 'authmanager-create-no-primary' ) )
+						]
+					];
+				},
 			],
 			'Primary UI, then redirect, then fail' => [
 				$good, $good, $good,
-				$tmp = [
-					AuthenticationResponse::newUI( [ $req ], $this->message( '...' ) ),
-					AuthenticationResponse::newRedirect( [ $req ], '/foo.html', [ 'foo' => 'bar' ] ),
-					AuthenticationResponse::newFail( $this->message( 'fail-in-primary-continue' ) ),
-				],
-				[],
-				$tmp
+				static function ( $testCase, $req ) {
+					$tmp = [
+						AuthenticationResponse::newUI( [ $req ], $testCase->message( '...' ) ),
+						AuthenticationResponse::newRedirect( [ $req ], '/foo.html', [ 'foo' => 'bar' ] ),
+						AuthenticationResponse::newFail( $testCase->message( 'fail-in-primary-continue' ) ),
+					];
+					return [
+						$tmp,
+						[],
+						$tmp
+					];
+				},
 			],
 			'Primary redirect, then abstain' => [
 				$good, $good, $good,
-				[
+				static function ( $testCase, $req ) {
 					$tmp = AuthenticationResponse::newRedirect(
 						[ $req ], '/foo.html', [ 'foo' => 'bar' ]
-					),
-					AuthenticationResponse::newAbstain(),
-				],
-				[],
-				[
-					$tmp,
-					new DomainException(
-						'MockAbstractPrimaryAuthenticationProvider::continuePrimaryAccountCreation() returned ABSTAIN'
-					)
-				]
+					);
+					return [
+						[
+							$tmp,
+							AuthenticationResponse::newAbstain(),
+						],
+						[],
+						[
+							$tmp,
+							new DomainException(
+								'MockAbstractPrimaryAuthenticationProvider::continuePrimaryAccountCreation() returned ABSTAIN'
+							)
+						]
+					];
+				},
 			],
 			'Primary UI, then pass; secondary abstain' => [
 				$good, $good, $good,
-				[
-					$tmp1 = AuthenticationResponse::newUI( [ $req ], $this->message( '...' ) ),
-					AuthenticationResponse::newPass(),
-				],
-				[
-					AuthenticationResponse::newAbstain(),
-				],
-				[
-					$tmp1,
-					'created' => AuthenticationResponse::newPass( '' ),
-				]
+				static function ( $testCase, $req ) {
+					$tmp = AuthenticationResponse::newUI( [ $req ], $testCase->message( '...' ) );
+					return [
+						[
+							$tmp,
+							AuthenticationResponse::newPass(),
+						],
+						[
+							AuthenticationResponse::newAbstain(),
+						],
+						[
+							$tmp,
+							'created' => AuthenticationResponse::newPass( '' ),
+						]
+					];
+				},
 			],
 			'Primary pass; secondary UI then pass' => [
 				$good, $good, $good,
-				[
-					AuthenticationResponse::newPass( '' ),
-				],
-				[
-					$tmp1 = AuthenticationResponse::newUI( [ $req ], $this->message( '...' ) ),
-					AuthenticationResponse::newPass( '' ),
-				],
-				[
-					'created' => $tmp1,
-					AuthenticationResponse::newPass( '' ),
-				]
+				static function ( $testCase, $req ) {
+					$tmp = AuthenticationResponse::newUI( [ $req ], $testCase->message( '...' ) );
+					return [
+						[
+							AuthenticationResponse::newPass( '' ),
+						],
+						[
+							$tmp,
+							AuthenticationResponse::newPass( '' ),
+						],
+						[
+							'created' => $tmp,
+							AuthenticationResponse::newPass( '' ),
+						]
+					];
+				},
 			],
 			'Primary pass; secondary fail' => [
 				$good, $good, $good,
-				[
-					AuthenticationResponse::newPass(),
-				],
-				[
-					AuthenticationResponse::newFail( $this->message( '...' ) ),
-				],
-				[
-					'created' => new DomainException(
-						'MockAbstractSecondaryAuthenticationProvider::beginSecondaryAccountCreation() returned FAIL. ' .
-							'Secondary providers are not allowed to fail account creation, ' .
-							'that should have been done via testForAccountCreation().'
-					)
-				]
+				static function ( $testCase, $req ) {
+					return [
+						[
+							AuthenticationResponse::newPass(),
+						],
+						[
+							AuthenticationResponse::newFail( $testCase->message( '...' ) ),
+						],
+						[
+							'created' => new DomainException(
+								'MockAbstractSecondaryAuthenticationProvider::beginSecondaryAccountCreation() returned FAIL. ' .
+									'Secondary providers are not allowed to fail account creation, ' .
+									'that should have been done via testForAccountCreation().'
+							)
+						]
+					];
+				},
 			],
 		];
 	}
@@ -3945,11 +4019,13 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideAccountLink
 	 */
 	public function testAccountLink(
-		StatusValue $preTest, array $primaryResponses, array $managerResponses
+		StatusValue $preTest, $responses
 	) {
 		$user = $this->getTestSysop()->getUser();
 
 		$this->initializeManager();
+		$req = $this->getMockForAbstractClass( AuthenticationRequest::class );
+		[ $primaryResponses, $managerResponses ] = $responses( $this, $req );
 
 		// Set up lots of mocks...
 		$req = $this->getMockForAbstractClass( AuthenticationRequest::class );
@@ -4108,77 +4184,108 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expectLog, $this->logger->getBuffer() );
 	}
 
-	public function provideAccountLink() {
-		$req = $this->getMockForAbstractClass( AuthenticationRequest::class );
+	public static function provideAccountLink() {
 		$good = StatusValue::newGood();
 
 		return [
 			'Pre-link test fail in pre' => [
 				StatusValue::newFatal( 'fail-from-pre' ),
-				[],
-				[
-					AuthenticationResponse::newFail( $this->message( 'fail-from-pre' ) ),
-				]
+				static function ( $testCase, $req ) {
+					return [
+						[],
+						[
+							AuthenticationResponse::newFail( $testCase->message( 'fail-from-pre' ) ),
+						]
+					];
+				},
 			],
 			'Failure in primary' => [
 				$good,
-				$tmp = [
-					AuthenticationResponse::newFail( $this->message( 'fail-from-primary' ) ),
-				],
-				$tmp
+				static function ( $testCase, $req ) {
+					$tmp = [
+						AuthenticationResponse::newFail( $testCase->message( 'fail-from-primary' ) ),
+					];
+					return [
+						$tmp,
+						$tmp
+					];
+				},
 			],
 			'All primary abstain' => [
 				$good,
-				[
-					AuthenticationResponse::newAbstain(),
-				],
-				[
-					AuthenticationResponse::newFail( $this->message( 'authmanager-link-no-primary' ) )
-				]
+				static function ( $testCase, $req ) {
+					return [
+						[
+							AuthenticationResponse::newAbstain(),
+						],
+						[
+							AuthenticationResponse::newFail( $testCase->message( 'authmanager-link-no-primary' ) )
+						]
+					];
+				},
 			],
 			'Primary UI, then redirect, then fail' => [
 				$good,
-				$tmp = [
-					AuthenticationResponse::newUI( [ $req ], $this->message( '...' ) ),
-					AuthenticationResponse::newRedirect( [ $req ], '/foo.html', [ 'foo' => 'bar' ] ),
-					AuthenticationResponse::newFail( $this->message( 'fail-in-primary-continue' ) ),
-				],
-				$tmp
+				static function ( $testCase, $req ) {
+					$tmp = [
+						AuthenticationResponse::newUI( [ $req ], $testCase->message( '...' ) ),
+						AuthenticationResponse::newRedirect( [ $req ], '/foo.html', [ 'foo' => 'bar' ] ),
+						AuthenticationResponse::newFail( $testCase->message( 'fail-in-primary-continue' ) ),
+					];
+					return [
+						$tmp,
+						$tmp
+					];
+				},
 			],
 			'Primary redirect, then abstain' => [
 				$good,
-				[
+				static function ( $testCase, $req ) {
 					$tmp = AuthenticationResponse::newRedirect(
 						[ $req ], '/foo.html', [ 'foo' => 'bar' ]
-					),
-					AuthenticationResponse::newAbstain(),
-				],
-				[
-					$tmp,
-					new DomainException(
-						'MockAbstractPrimaryAuthenticationProvider::continuePrimaryAccountLink() returned ABSTAIN'
-					)
-				]
+					);
+					return [
+						[
+							$tmp,
+							AuthenticationResponse::newAbstain(),
+						],
+						[
+							$tmp,
+							new DomainException(
+								'MockAbstractPrimaryAuthenticationProvider::continuePrimaryAccountLink() returned ABSTAIN'
+							)
+						]
+					];
+				},
 			],
 			'Primary UI, then pass' => [
 				$good,
-				[
-					$tmp1 = AuthenticationResponse::newUI( [ $req ], $this->message( '...' ) ),
-					AuthenticationResponse::newPass(),
-				],
-				[
-					$tmp1,
-					AuthenticationResponse::newPass( '' ),
-				]
+				static function ( $testCase, $req ) {
+					$tmp = AuthenticationResponse::newUI( [ $req ], $testCase->message( '...' ) );
+					return [
+						[
+							$tmp,
+							AuthenticationResponse::newPass(),
+						],
+						[
+							$tmp,
+							AuthenticationResponse::newPass( '' ),
+						]
+					];
+				},
 			],
 			'Primary pass' => [
 				$good,
-				[
-					AuthenticationResponse::newPass( '' ),
-				],
-				[
-					AuthenticationResponse::newPass( '' ),
-				]
+				static function ( $testCase, $req ) {
+					return [
+						[
+							AuthenticationResponse::newPass( '' ),
+						],
+						[
+							AuthenticationResponse::newPass( '' ),
+						]
+					];
+				},
 			],
 		];
 	}

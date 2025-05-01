@@ -234,7 +234,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegr
 		$this->assertFalse( $result );
 	}
 
-	public function provideTestUserCanAuthenticateErrorCases(): iterable {
+	public static function provideTestUserCanAuthenticateErrorCases(): iterable {
 		yield 'invalid user name' => [ '<invalid>' ];
 		yield 'nonexistent user' => [ 'DoesNotExist' ];
 		yield 'user with invalid password' => [

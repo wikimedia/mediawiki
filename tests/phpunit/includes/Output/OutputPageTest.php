@@ -632,7 +632,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected, @$op->checkLastModified( $timestamp ) );
 	}
 
-	public function provideCheckLastModified() {
+	public static function provideCheckLastModified() {
 		$lastModified = time() - 3600;
 		return [
 			'Timestamp 0' =>
@@ -660,8 +660,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 					[ MainConfigNames::CacheEpoch => wfTimestamp( TS_MW, $lastModified + 1 ) ] ],
 			'Recently-touched user' =>
 				[ $lastModified, $lastModified, false, [],
-				function ( OutputPage $op ) {
-					$op->getContext()->setUser( $this->getTestUser()->getUser() );
+				static function ( OutputPage $op, $testCase ) {
+					$op->getContext()->setUser( $testCase->getTestUser()->getUser() );
 				} ],
 			'After CDN expiry' =>
 				[ $lastModified, $lastModified, false,

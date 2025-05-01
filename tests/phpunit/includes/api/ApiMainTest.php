@@ -970,11 +970,17 @@ class ApiMainTest extends ApiTestCase {
 	/**
 	 * @dataProvider provideExceptionErrors
 	 */
-	public function testExceptionErrors( $error, $expectReturn, $expectResult ) {
+	public function testExceptionErrors( $errorCallback, $expectReturn, $expectResult ) {
 		$this->overrideConfigValues( [
 			MainConfigNames::Server => 'https://local.example',
 			MainConfigNames::ScriptPath => '/w',
 		] );
+
+		$error = $errorCallback( $this );
+		if ( isset( $expectResult['trace'] ) ) {
+			$expectResult['trace'] = $expectResult['trace']( $error );
+		}
+
 		$context = new RequestContext();
 		$context->setRequest( new FauxRequest( [ 'errorformat' => 'plaintext' ] ) );
 		$context->setLanguage( 'en' );
@@ -1000,55 +1006,18 @@ class ApiMainTest extends ApiTestCase {
 		);
 	}
 
-	// Not static so $this can be used
-	public function provideExceptionErrors() {
+	public static function provideExceptionErrors() {
 		$reqId = WebRequest::getRequestId();
 		$doclink = 'https://local.example/w/api.php';
 
-		$ex = new InvalidArgumentException( 'Random exception' );
-		$trace = wfMessage( 'api-exception-trace',
-			get_class( $ex ),
-			$ex->getFile(),
-			$ex->getLine(),
-			MWExceptionHandler::getRedactedTraceAsString( $ex )
-		)->inLanguage( 'en' )->useDatabase( false )->text();
-
-		$dbex = new DBQueryError(
-			$this->createMock( IDatabase::class ),
-			'error', 1234, 'SELECT 1', __METHOD__ );
-		$dbtrace = wfMessage( 'api-exception-trace',
-			get_class( $dbex ),
-			$dbex->getFile(),
-			$dbex->getLine(),
-			MWExceptionHandler::getRedactedTraceAsString( $dbex )
-		)->inLanguage( 'en' )->useDatabase( false )->text();
-
 		// The specific exception doesn't matter, as long as it's namespaced.
 		$nsex = new ShellDisabledError();
-		$nstrace = wfMessage( 'api-exception-trace',
-			get_class( $nsex ),
-			$nsex->getFile(),
-			$nsex->getLine(),
-			MWExceptionHandler::getRedactedTraceAsString( $nsex )
-		)->inLanguage( 'en' )->useDatabase( false )->text();
-
-		$apiEx1 = new ApiUsageException( null,
-			StatusValue::newFatal( new ApiRawMessage( 'An error', 'sv-error1' ) ) );
-		TestingAccessWrapper::newFromObject( $apiEx1 )->modulePath = 'foo+bar';
-		$apiEx1->getStatusValue()->warning( new ApiRawMessage( 'A warning', 'sv-warn1' ) );
-		$apiEx1->getStatusValue()->warning( new ApiRawMessage( 'Another warning', 'sv-warn2' ) );
-		$apiEx1->getStatusValue()->fatal( new ApiRawMessage( 'Another error', 'sv-error2' ) );
-
-		$badMsg = $this->getMockBuilder( ApiRawMessage::class )
-			->setConstructorArgs( [ 'An error', 'ignored' ] )
-			->onlyMethods( [ 'getApiCode' ] )
-			->getMock();
-		$badMsg->method( 'getApiCode' )->willReturn( "bad\nvalue" );
-		$apiEx2 = new ApiUsageException( null, StatusValue::newFatal( $badMsg ) );
 
 		return [
 			[
-				$ex,
+				static function () {
+					return new InvalidArgumentException( 'Random exception' );
+				},
 				[ 'existing-error', 'internal_api_error_InvalidArgumentException' ],
 				[
 					'warnings' => [
@@ -1064,12 +1033,24 @@ class ApiMainTest extends ApiTestCase {
 							],
 						]
 					],
-					'trace' => $trace,
+					'trace' => static function ( $ex ) {
+						return wfMessage( 'api-exception-trace',
+							get_class( $ex ),
+							$ex->getFile(),
+							$ex->getLine(),
+							MWExceptionHandler::getRedactedTraceAsString( $ex )
+						)->inLanguage( 'en' )->useDatabase( false )->text();
+					},
 					'servedby' => wfHostname(),
 				]
 			],
 			[
-				$dbex,
+				static function ( $testCase ) {
+					return new DBQueryError(
+						$testCase->createMock( IDatabase::class ),
+						'error', 1234, 'SELECT 1', 'provideExceptionErrors'
+					);
+				},
 				[ 'existing-error', 'internal_api_error_DBQueryError' ],
 				[
 					'warnings' => [
@@ -1086,12 +1067,21 @@ class ApiMainTest extends ApiTestCase {
 							],
 						]
 					],
-					'trace' => $dbtrace,
+					'trace' => static function ( $dbex ) {
+						return wfMessage( 'api-exception-trace',
+							get_class( $dbex ),
+							$dbex->getFile(),
+							$dbex->getLine(),
+							MWExceptionHandler::getRedactedTraceAsString( $dbex )
+						)->inLanguage( 'en' )->useDatabase( false )->text();
+					},
 					'servedby' => wfHostname(),
 				]
 			],
 			[
-				$nsex,
+				static function () use ( $nsex ) {
+					return $nsex;
+				},
 				[ 'existing-error', 'internal_api_error_MediaWiki\Exception\ShellDisabledError' ],
 				[
 					'warnings' => [
@@ -1107,12 +1097,27 @@ class ApiMainTest extends ApiTestCase {
 							],
 						]
 					],
-					'trace' => $nstrace,
+					'trace' => static function ( $nsex ) {
+						return wfMessage( 'api-exception-trace',
+							get_class( $nsex ),
+							$nsex->getFile(),
+							$nsex->getLine(),
+							MWExceptionHandler::getRedactedTraceAsString( $nsex )
+						)->inLanguage( 'en' )->useDatabase( false )->text();
+					},
 					'servedby' => wfHostname(),
 				]
 			],
 			[
-				$apiEx1,
+				static function () {
+					$apiEx1 = new ApiUsageException( null,
+						StatusValue::newFatal( new ApiRawMessage( 'An error', 'sv-error1' ) ) );
+					TestingAccessWrapper::newFromObject( $apiEx1 )->modulePath = 'foo+bar';
+					$apiEx1->getStatusValue()->warning( new ApiRawMessage( 'A warning', 'sv-warn1' ) );
+					$apiEx1->getStatusValue()->warning( new ApiRawMessage( 'Another warning', 'sv-warn2' ) );
+					$apiEx1->getStatusValue()->fatal( new ApiRawMessage( 'Another error', 'sv-error2' ) );
+					return $apiEx1;
+				},
 				[ 'existing-error', 'sv-error1', 'sv-error2' ],
 				[
 					'warnings' => [
@@ -1132,7 +1137,15 @@ class ApiMainTest extends ApiTestCase {
 				]
 			],
 			[
-				$apiEx2,
+				static function ( $testCase ) {
+					$badMsg = $testCase->getMockBuilder( ApiRawMessage::class )
+						->setConstructorArgs( [ 'An error', 'ignored' ] )
+						->onlyMethods( [ 'getApiCode' ] )
+						->getMock();
+					$badMsg->method( 'getApiCode' )->willReturn( "bad\nvalue" );
+					$apiEx2 = new ApiUsageException( null, StatusValue::newFatal( $badMsg ) );
+					return $apiEx2;
+				},
 				[ 'existing-error', '<invalid-code>' ],
 				[
 					'warnings' => [

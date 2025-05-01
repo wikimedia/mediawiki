@@ -851,7 +851,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetRevisionByTitle( $getTitle ) {
 		$page = $this->getTestPage();
-		$title = $getTitle();
+		$title = $getTitle( $this );
 		$content = new WikitextContent( __METHOD__ );
 		$status = $page->doUserEditContent(
 			$content,
@@ -868,13 +868,13 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( __METHOD__, $storeRecord->getComment()->text );
 	}
 
-	public function provideRevisionByTitle() {
+	public static function provideRevisionByTitle() {
 		return [
-			[ function () {
-				return $this->getTestPageTitle();
+			[ static function ( $testCase ) {
+				return $testCase->getTestPageTitle();
 			} ],
-			[ function () {
-				return $this->getTestPageTitle()->toPageIdentity();
+			[ static function ( $testCase ) {
+				return $testCase->getTestPageTitle()->toPageIdentity();
 			} ]
 		];
 	}
@@ -1000,7 +1000,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		// Otherwise we might not get the correct revision and the test may fail...
 		MWTimestamp::setFakeTime( '20110401090000' );
 		$page = $this->getTestPage();
-		$title = $getTitle();
+		$title = $getTitle( $this );
 		MWTimestamp::setFakeTime( '20110401090001' );
 		$content = new WikitextContent( __METHOD__ );
 		$status = $page->doUserEditContent(
@@ -1846,7 +1846,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		)->getNewRevision();
 		$store = $this->getServiceContainer()->getRevisionStore();
 		$storeRecord = $store->getKnownCurrentRevision(
-			$getPageIdentity(),
+			$getPageIdentity( $this ),
 			$revRecord->getId()
 		);
 		$this->assertRevisionRecordsEqual( $revRecord, $storeRecord );

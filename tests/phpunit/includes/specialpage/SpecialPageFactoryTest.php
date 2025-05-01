@@ -58,11 +58,11 @@ class SpecialPageFactoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $count );
 	}
 
-	public function newSpecialAllPages() {
+	public static function newSpecialAllPages() {
 		return new SpecialAllPages();
 	}
 
-	public function specialPageProvider() {
+	public static function specialPageProvider() {
 		$specialPageTestHelper = new SpecialPageTestHelper();
 
 		return [
@@ -70,7 +70,7 @@ class SpecialPageFactoryTest extends MediaWikiIntegrationTestCase {
 			'closure' => [ static function () {
 				return new SpecialAllPages();
 			}, false ],
-			'function' => [ [ $this, 'newSpecialAllPages' ], false ],
+			'function' => [ [ self::class, 'newSpecialAllPages' ], false ],
 			'callback string' => [ SpecialPageTestHelper::class . '::newSpecialAllPages', false ],
 			'callback with object' => [
 				[ $specialPageTestHelper, 'newSpecialAllPages' ],
