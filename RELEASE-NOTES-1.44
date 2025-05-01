@@ -352,8 +352,8 @@ because of Phabricator reports.
 * Block::TYPE_ID has been removed. Use DatabaseBlockStore::newFromID().
 * UserOptionsManager methods resetOptions, listOptionKinds and getOptionKinds,
   deprecated since 1.43, have been removed.
-* WANObjectCache::clearLastError(), soft-deprecated in 1.38 and hard-deprecated
-  in 1.43, has been removed.
+* WANObjectCache::clearLastError(), deprecated in 1.38 & emitting notices since
+  1.43, has been removed.
 * The WANObjectCache 'stats' option for StatsdDataFactory, deprecated in 1.43,
   is no longer supported. Use StatsFactory instead.
 * When fetching a message containing {{PAGENAME}} or similar with
@@ -630,7 +630,7 @@ because of Phabricator reports.
   since toolbox relates to tools associated with the current page, not the
   site. To support the transition, for interface admins who have already
   customized MediaWiki:Sidebar, the special pages link will be automatically
-  added. This will be hard deprecated in the next MediaWiki release. More
+  added. This will start emitting notices in the next MediaWiki release. More
   information is available at T333211. To avoid future breakage, see the
   guidance in T385346.
 * Various deprecated static methods of Xml, deprecated in earlier versions, are
