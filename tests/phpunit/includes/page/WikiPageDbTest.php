@@ -1004,7 +1004,7 @@ just a test
 more stuff
 ";
 
-	public function dataReplaceSection() {
+	public function provideReplaceSection() {
 		// NOTE: assume the Help namespace to contain wikitext
 		return [
 			[ 'Help:WikiPageTest_testReplaceSection',
@@ -1053,7 +1053,7 @@ more stuff
 	}
 
 	/**
-	 * @dataProvider dataReplaceSection
+	 * @dataProvider provideReplaceSection
 	 */
 	public function testReplaceSectionContent( $title, $model, $text, $section,
 		$with, $sectionTitle, $expected
@@ -1068,7 +1068,7 @@ more stuff
 	}
 
 	/**
-	 * @dataProvider dataReplaceSection
+	 * @dataProvider provideReplaceSection
 	 */
 	public function testReplaceSectionAtRev( $title, $model, $text, $section,
 		$with, $sectionTitle, $expected

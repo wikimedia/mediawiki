@@ -255,7 +255,7 @@ class ApiOptionsTest extends ApiTestCase {
 		$this->fail( "ApiUsageException was not thrown" );
 	}
 
-	public function userScenarios() {
+	public function provideUserScenarios() {
 		return [
 			[ true, true, false ],
 			[ true, false, true ],
@@ -263,7 +263,7 @@ class ApiOptionsTest extends ApiTestCase {
 	}
 
 	/**
-	 * @dataProvider userScenarios
+	 * @dataProvider provideUserScenarios
 	 */
 	public function testReset( $isRegistered, $isNamed, $expectException ) {
 		$this->mUserMock->method( 'isRegistered' )->willReturn( $isRegistered );
@@ -296,7 +296,7 @@ class ApiOptionsTest extends ApiTestCase {
 	}
 
 	/**
-	 * @dataProvider userScenarios
+	 * @dataProvider provideUserScenarios
 	 */
 	public function testResetKinds( $isRegistered, $isNamed, $expectException ) {
 		$this->mUserMock->method( 'isRegistered' )->willReturn( $isRegistered );
@@ -328,7 +328,7 @@ class ApiOptionsTest extends ApiTestCase {
 	}
 
 	/**
-	 * @dataProvider userScenarios
+	 * @dataProvider provideUserScenarios
 	 */
 	public function testResetChangeOption( $isRegistered, $isNamed, $expectException ) {
 		$this->mUserMock->method( 'isRegistered' )->willReturn( $isRegistered );

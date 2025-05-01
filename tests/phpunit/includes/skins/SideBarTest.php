@@ -224,7 +224,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 
 	/**
 	 * Test $wgExternaLinkTarget in sidebar
-	 * @dataProvider dataRespectExternallinktarget
+	 * @dataProvider provideRespectExternallinktarget
 	 */
 	public function testRespectExternallinktarget( $externalLinkTarget ) {
 		$this->overrideConfigValue( MainConfigNames::ExternalLinkTarget, $externalLinkTarget );
@@ -234,7 +234,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $attribs['target'], $externalLinkTarget );
 	}
 
-	public static function dataRespectExternallinktarget() {
+	public static function provideRespectExternallinktarget() {
 		return [
 			[ '_blank' ],
 			[ '_self' ],

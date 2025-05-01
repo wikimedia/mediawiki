@@ -29,7 +29,7 @@ class CssContentTest extends TextContentTest {
 	}
 
 	// XXX: currently, preSaveTransform is applied to styles. this may change or become optional.
-	public static function dataPreSaveTransform() {
+	public static function providePreSaveTransform() {
 		return [
 			[ 'hello this is ~~~',
 				"hello this is [[Special:Contributions/127.0.0.1|127.0.0.1]]",
@@ -100,7 +100,7 @@ class CssContentTest extends TextContentTest {
 		// phpcs:enable
 	}
 
-	public static function dataEquals() {
+	public static function provideEquals() {
 		return [
 			[ new CssContent( 'hallo' ), null, false ],
 			[ new CssContent( 'hallo' ), new CssContent( 'hallo' ), true ],
@@ -110,7 +110,7 @@ class CssContentTest extends TextContentTest {
 	}
 
 	/**
-	 * @dataProvider dataEquals
+	 * @dataProvider provideEquals
 	 */
 	public function testEquals( Content $a, ?Content $b = null, $equal = false ) {
 		$this->assertEquals( $equal, $a->equals( $b ) );

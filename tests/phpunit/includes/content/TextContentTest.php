@@ -55,7 +55,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 		return new TextContent( $text );
 	}
 
-	public static function dataGetRedirectTarget() {
+	public static function provideGetRedirectTargetTextContent() {
 		return [
 			[ '#REDIRECT [[Test]]',
 				null,
@@ -64,7 +64,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @dataProvider dataGetRedirectTarget
+	 * @dataProvider provideGetRedirectTargetTextContent
 	 */
 	public function testGetRedirectTarget( $text, $expected ) {
 		$content = $this->newContent( $text );
@@ -78,7 +78,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @dataProvider dataGetRedirectTarget
+	 * @dataProvider provideGetRedirectTargetTextContent
 	 */
 	public function testIsRedirect( $text, $expected ) {
 		$content = $this->newContent( $text );
@@ -86,7 +86,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected !== null, $content->isRedirect() );
 	}
 
-	public static function dataIsCountable() {
+	public static function provideIsCountable() {
 		return [
 			[ '',
 				null,
@@ -102,7 +102,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @dataProvider dataIsCountable
+	 * @dataProvider provideIsCountable
 	 */
 	public function testIsCountable( $text, $hasLinks, $mode, $expected ) {
 		$this->overrideConfigValue( MainConfigNames::ArticleCountMethod, $mode );
@@ -120,7 +120,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	public static function dataGetTextForSummary() {
+	public static function provideGetTextForSummary() {
 		return [
 			[ "hello\nworld.",
 				16,
@@ -138,7 +138,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @dataProvider dataGetTextForSummary
+	 * @dataProvider provideGetTextForSummary
 	 */
 	public function testGetTextForSummary( $text, $maxlength, $expected ) {
 		$content = $this->newContent( $text );
@@ -178,7 +178,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 		$this->assertEquals( CONTENT_MODEL_TEXT, $content->getContentHandler()->getModelID() );
 	}
 
-	public static function dataIsEmpty() {
+	public static function provideIsEmpty() {
 		return [
 			[ '', true ],
 			[ '  ', false ],
@@ -188,7 +188,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @dataProvider dataIsEmpty
+	 * @dataProvider provideIsEmpty
 	 */
 	public function testIsEmpty( $text, $empty ) {
 		$content = $this->newContent( $text );
@@ -196,7 +196,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $empty, $content->isEmpty() );
 	}
 
-	public static function dataEquals() {
+	public static function provideEquals() {
 		return [
 			[ new TextContent( "hallo" ), null, false ],
 			[ new TextContent( "hallo" ), new TextContent( "hallo" ), true ],
@@ -207,7 +207,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @dataProvider dataEquals
+	 * @dataProvider provideEquals
 	 */
 	public function testEquals( Content $a, ?Content $b = null, $equal = false ) {
 		$this->assertEquals( $equal, $a->equals( $b ) );

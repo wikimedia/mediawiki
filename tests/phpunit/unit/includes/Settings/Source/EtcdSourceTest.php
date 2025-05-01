@@ -101,7 +101,7 @@ class EtcdSourceTest extends TestCase {
 	}
 
 	/**
-	 * @dataProvider serverFailures
+	 * @dataProvider provideServerFailures
 	 */
 	public function testLoadAllServersFailed( GuzzleException $exception ) {
 		$client = $this->mockClientWithResponses( [
@@ -125,7 +125,7 @@ class EtcdSourceTest extends TestCase {
 	}
 
 	/**
-	 * @dataProvider serverFailures
+	 * @dataProvider provideServerFailures
 	 */
 	public function testLoadSomeServersFailed( GuzzleException $exception ) {
 		$client = $this->mockClientWithResponses( [
@@ -200,7 +200,7 @@ class EtcdSourceTest extends TestCase {
 	/**
 	 * All possible server-side exceptions.
 	 */
-	public function serverFailures(): array {
+	public function provideServerFailures(): array {
 		return [
 			[
 				new ConnectException(

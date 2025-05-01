@@ -32,7 +32,7 @@ more stuff
 		return new WikitextContent( $text );
 	}
 
-	public static function dataGetSection() {
+	public static function provideGetSection() {
 		return [
 			[ self::SECTIONS,
 				"0",
@@ -51,7 +51,7 @@ just a test"
 	}
 
 	/**
-	 * @dataProvider dataGetSection
+	 * @dataProvider provideGetSection
 	 */
 	public function testGetSection( $text, $sectionId, $expectedText ) {
 		$content = $this->newContent( $text );
@@ -66,7 +66,7 @@ just a test"
 		$this->assertEquals( $expectedText, $sectionText );
 	}
 
-	public static function dataReplaceSection() {
+	public static function provideReplaceSection() {
 		return [
 			[ self::SECTIONS,
 				"0",
@@ -105,7 +105,7 @@ just a test"
 	}
 
 	/**
-	 * @dataProvider dataReplaceSection
+	 * @dataProvider provideReplaceSection
 	 */
 	public function testReplaceSection( $text, $section, $with, $sectionTitle, $expected ) {
 		$content = $this->newContent( $text );
@@ -125,7 +125,7 @@ just a test"
 		$this->assertEquals( "hello world", $content->getText() );
 	}
 
-	public static function dataPreSaveTransform() {
+	public static function providePreSaveTransform() {
 		return [
 			[ 'hello this is ~~~',
 				"hello this is [[Special:Contributions/127.0.0.1|127.0.0.1]]",
@@ -140,7 +140,7 @@ just a test"
 		];
 	}
 
-	public static function dataGetRedirectTarget() {
+	public static function provideGetRedirectTargetTextContent() {
 		return [
 			[ '#REDIRECT [[Test]]',
 				'Test',
@@ -154,7 +154,7 @@ just a test"
 		];
 	}
 
-	public static function dataGetTextForSummary() {
+	public static function provideGetTextForSummary() {
 		return [
 			[ "hello\nworld.",
 				16,
@@ -171,7 +171,7 @@ just a test"
 		];
 	}
 
-	public static function dataIsCountable() {
+	public static function provideIsCountable() {
 		return [
 			[ '',
 				null,
@@ -325,7 +325,7 @@ just a test"
 		);
 	}
 
-	public static function dataEquals() {
+	public static function provideEquals() {
 		return [
 			[ new WikitextContent( "hallo" ), null, false ],
 			[ new WikitextContent( "hallo" ), new WikitextContent( "hallo" ), true ],
@@ -335,7 +335,7 @@ just a test"
 		];
 	}
 
-	public static function dataGetDeletionUpdates() {
+	public static function provideGetDeletionUpdates() {
 		return [
 			[
 				CONTENT_MODEL_WIKITEXT, "hello ''world''\n",

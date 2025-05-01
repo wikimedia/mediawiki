@@ -24,7 +24,7 @@ class GrantsLocalizationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider grantDescriptions
+	 * @dataProvider provideGrantDescriptions
 	 */
 	public function testGetGrantDescription( string $grant ) {
 		$message = new Message( 'grant-' . $grant );
@@ -38,7 +38,7 @@ class GrantsLocalizationTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function grantDescriptions() {
+	public function provideGrantDescriptions() {
 		yield [ 'blockusers' ];
 		yield [ 'createeditmovepage' ];
 		yield [ 'delete' ];

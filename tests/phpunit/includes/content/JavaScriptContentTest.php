@@ -26,7 +26,7 @@ class JavaScriptContentTest extends TextContentTest {
 	}
 
 	// XXX: currently, preSaveTransform is applied to scripts. this may change or become optional.
-	public static function dataPreSaveTransform() {
+	public static function providePreSaveTransform() {
 		return [
 			[ 'hello this is ~~~',
 				"hello this is [[Special:Contributions/127.0.0.1|127.0.0.1]]",
@@ -40,7 +40,7 @@ class JavaScriptContentTest extends TextContentTest {
 		];
 	}
 
-	public static function dataGetRedirectTarget() {
+	public static function provideGetRedirectTargetTextContent() {
 		return [
 			[ '#REDIRECT [[Test]]',
 				null,
@@ -54,7 +54,7 @@ class JavaScriptContentTest extends TextContentTest {
 		];
 	}
 
-	public static function dataIsCountable() {
+	public static function provideIsCountable() {
 		return [
 			[ '',
 				null,
@@ -99,7 +99,7 @@ class JavaScriptContentTest extends TextContentTest {
 		];
 	}
 
-	public static function dataGetTextForSummary() {
+	public static function provideGetTextForSummary() {
 		return [
 			[ "hello\nworld.",
 				16,
@@ -170,7 +170,7 @@ class JavaScriptContentTest extends TextContentTest {
 	}
 
 	// NOTE: Overridden by subclass!
-	public static function dataEquals() {
+	public static function provideEquals() {
 		return [
 			[ new JavaScriptContent( "hallo" ), null, false ],
 			[ new JavaScriptContent( "hallo" ), new JavaScriptContent( "hallo" ), true ],
