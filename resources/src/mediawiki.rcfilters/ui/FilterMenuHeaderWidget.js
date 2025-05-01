@@ -9,6 +9,8 @@
  * @param {mw.rcfilters.dm.FiltersViewModel} model View model
  * @param {Object} config Configuration object
  * @param {jQuery} [config.$overlay] A jQuery object serving as overlay for popups
+ * @param {boolean} [config.isMobile] a boolean flag that determines whether some
+ * elements should be displayed based on whether the UI is mobile or not.
  */
 const FilterMenuHeaderWidget = function MwRcfiltersUiFilterMenuHeaderWidget( controller, model, config ) {
 	config = config || {};
@@ -45,12 +47,14 @@ const FilterMenuHeaderWidget = function MwRcfiltersUiFilterMenuHeaderWidget( con
 	} );
 	this.helpIcon.toggle( this.model.getCurrentView() === 'tags' );
 
-	// Highlight button
-	this.highlightButton = new OO.ui.ToggleButtonWidget( {
-		icon: 'highlight',
-		label: mw.msg( 'rcfilters-highlightbutton-title' ),
-		classes: [ 'mw-rcfilters-ui-filterMenuHeaderWidget-hightlightButton' ]
-	} );
+	if ( !config.isMobile ) {
+		// Highlight button
+		this.highlightButton = new OO.ui.ToggleButtonWidget( {
+			icon: 'highlight',
+			label: mw.msg( 'rcfilters-highlightbutton-title' ),
+			classes: [ 'mw-rcfilters-ui-filterMenuHeaderWidget-hightlightButton' ]
+		} );
+	}
 
 	// Invert buttons
 	this.invertTagsButton = new OO.ui.ToggleButtonWidget( {
@@ -66,8 +70,10 @@ const FilterMenuHeaderWidget = function MwRcfiltersUiFilterMenuHeaderWidget( con
 
 	// Events
 	this.backButton.connect( this, { click: 'onBackButtonClick' } );
-	this.highlightButton
-		.connect( this, { click: 'onHighlightButtonClick' } );
+	if ( !config.isMobile ) {
+		this.highlightButton
+			.connect( this, { click: 'onHighlightButtonClick' } );
+	}
 	this.invertTagsButton
 		.connect( this, { click: 'onInvertTagsButtonClick' } );
 	this.invertNamespacesButton
@@ -109,10 +115,13 @@ const FilterMenuHeaderWidget = function MwRcfiltersUiFilterMenuHeaderWidget( con
 							$( '<div>' )
 								.addClass( 'mw-rcfilters-ui-cell' )
 								.addClass( 'mw-rcfilters-ui-filterMenuHeaderWidget-header-highlight' )
-								.append( this.highlightButton.$element )
+								.append( config.isMobile ? undefined : this.highlightButton.$element )
 						)
 				)
 		);
+	if ( config.isMobile ) {
+		this.$element.find( '.mw-rcfilters-ui-filterMenuHeaderWidget-header-highlight' ).remove();
+	}
 };
 
 /* Initialization */
