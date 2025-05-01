@@ -293,19 +293,23 @@ abstract class ParsoidHandler extends Handler {
 		];
 
 		# Convert language codes in $opts['updates']['variant'] if present
-		$sourceVariant = $opts['updates']['variant']['source'] ?? null;
+		$sourceVariant = $opts['updates']['variant']['wikitext'] ??
+			$opts['updates']['variant']['source'] ?? null;
 		if ( $sourceVariant ) {
 			$sourceVariant = LanguageCode::normalizeNonstandardCodeAndWarn(
 				$sourceVariant
 			);
-			$opts['updates']['variant']['source'] = $sourceVariant;
+			unset( $opts['updates']['variant']['source'] );
+			$opts['updates']['variant']['wikitext'] = $sourceVariant;
 		}
-		$targetVariant = $opts['updates']['variant']['target'] ?? null;
+		$targetVariant = $opts['updates']['variant']['html'] ??
+			$opts['updates']['variant']['target'] ?? null;
 		if ( $targetVariant ) {
 			$targetVariant = LanguageCode::normalizeNonstandardCodeAndWarn(
 				$targetVariant
 			);
-			$opts['updates']['variant']['target'] = $targetVariant;
+			unset( $opts['updates']['variant']['target'] );
+			$opts['updates']['variant']['html'] = $targetVariant;
 		}
 		if ( isset( $opts['wikitext']['headers']['content-language'] ) ) {
 			$contentLanguage = $opts['wikitext']['headers']['content-language'];
@@ -1022,9 +1026,11 @@ abstract class ParsoidHandler extends Handler {
 		PageConfig $pageConfig, array $attribs, array $revision
 	) {
 		$opts = $attribs['opts'];
-		$target = $opts['updates']['variant']['target'] ??
+		$target = $opts['updates']['variant']['html'] ??
+			$opts['updates']['variant']['target'] ??
 			$attribs['envOptions']['htmlVariantLanguage'];
-		$source = $opts['updates']['variant']['source'] ?? null;
+		$source = $opts['updates']['variant']['wikitext'] ??
+			$opts['updates']['variant']['source'] ?? null;
 
 		if ( !$target ) {
 			throw new LocalizedHttpException( new MessageValue( "rest-target-variant-required" ), 400 );
