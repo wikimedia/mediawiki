@@ -132,7 +132,7 @@ class SiteExporterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideRoundTrip()
+	 * @dataProvider provideRoundTrip
 	 */
 	public function testRoundTrip( SiteList $sites ) {
 		$tmp = tmpfile();

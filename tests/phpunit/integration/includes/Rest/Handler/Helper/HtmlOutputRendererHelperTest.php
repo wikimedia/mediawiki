@@ -298,7 +298,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideRevisionReferences()
+	 * @dataProvider provideRevisionReferences
 	 */
 	public function testGetHtml( $revRef ) {
 		[ $page, $revisions ] = $this->getExistingPageWithRevisions( __METHOD__ );
@@ -538,7 +538,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideRevisionReferences()
+	 * @dataProvider provideRevisionReferences
 	 */
 	public function testETagLastModified( $revRef ) {
 		[ $page, $revisions ] = $this->getExistingPageWithRevisions( __METHOD__ );
@@ -693,7 +693,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideETagSuffix()
+	 * @dataProvider provideETagSuffix
 	 */
 	public function testETagSuffix( array $params, string $mode, string $suffix ) {
 		$page = $this->getExistingTestPage( __METHOD__ );

@@ -126,7 +126,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideAddQuotes()
+	 * @dataProvider provideAddQuotes
 	 */
 	public function testAddQuotes( $value, $expected ) {
 		// check quoting

@@ -965,7 +965,7 @@ hello
 	 * The watchlist expiry field should select the entered value on preview, rather than the
 	 * calculated number of days till the expiry (as it shows on edit).
 	 * @covers \MediaWiki\EditPage\EditPage::getCheckboxesDefinition()
-	 * @dataProvider provideWatchlistExpiry()
+	 * @dataProvider provideWatchlistExpiry
 	 */
 	public function testWatchlistExpiry( $existingExpiry, $postVal, $selected, $options ) {
 		// Set up config and fake current time.
