@@ -67,7 +67,7 @@ class TempUserDetailsLookupTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expired, $cached );
 	}
 
-	public function provideIsExpired(): iterable {
+	public static function provideIsExpired(): iterable {
 		yield 'legacy IP user' => [
 			new UserIdentityValue( 0, '1.1.1.1' ),
 			null,

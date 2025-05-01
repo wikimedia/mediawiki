@@ -1374,7 +1374,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		);
 	}
 
-	public function provideFormatDurationBetweenTimestamps(): array {
+	public static function provideFormatDurationBetweenTimestamps(): array {
 		return [
 			// most test cases ported from provideFormatDuration()
 			[

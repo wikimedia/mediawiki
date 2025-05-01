@@ -98,7 +98,7 @@ class MWLBFactoryTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function setDomainAliasesProvider() {
+	public static function setDomainAliasesProvider() {
 		return [
 			[ 'enwiki', '', 'enwiki' ],
 			[ 'wikipedia', 'fr_', 'wikipedia-fr_' ],

@@ -516,7 +516,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expectedParams, $params );
 	}
 
-	public function provideValidateBodyParams_invalid() {
+	public static function provideValidateBodyParams_invalid() {
 		$paramDefintions = [
 			'foo' => [
 				ParamValidator::PARAM_TYPE => 'timestamp',

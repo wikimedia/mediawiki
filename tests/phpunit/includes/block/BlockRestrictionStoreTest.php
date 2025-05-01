@@ -439,7 +439,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 		$this->assertSame( $expected, $this->blockRestrictionStore->equals( $a, $b ) );
 	}
 
-	public function equalsDataProvider() {
+	public static function equalsDataProvider() {
 		return [
 			[
 				[

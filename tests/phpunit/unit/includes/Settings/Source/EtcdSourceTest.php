@@ -200,7 +200,7 @@ class EtcdSourceTest extends TestCase {
 	/**
 	 * All possible server-side exceptions.
 	 */
-	public function provideServerFailures(): array {
+	public static function provideServerFailures(): array {
 		return [
 			[
 				new ConnectException(

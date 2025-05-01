@@ -110,7 +110,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideXmlMimeType() {
+	public static function provideXmlMimeType() {
 		return [
 			// ( $mimetype, $isXmlMimeType )
 			# HTML is not an XML MimeType

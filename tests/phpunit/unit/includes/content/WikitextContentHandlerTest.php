@@ -83,7 +83,7 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 		$this->assertSame( '', $content->getText() );
 	}
 
-	public function provideIsSupportedFormat() {
+	public static function provideIsSupportedFormat() {
 		return [
 			[ null, true ],
 			[ CONTENT_FORMAT_WIKITEXT, true ],

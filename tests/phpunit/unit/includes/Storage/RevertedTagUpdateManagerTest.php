@@ -15,7 +15,7 @@ use MediaWikiUnitTestCase;
  */
 class RevertedTagUpdateManagerTest extends MediaWikiUnitTestCase {
 
-	public function provideApproveRevertedTagForRevision() {
+	public static function provideApproveRevertedTagForRevision() {
 		yield 'not revert' => [
 			new EditResult( false, 1234, 0, null, null, false, false, [] ),
 			false

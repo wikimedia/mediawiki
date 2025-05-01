@@ -6,7 +6,7 @@
  */
 class SearchIndexFieldTest extends \MediaWikiUnitTestCase {
 
-	public function provideMergeCases() {
+	public static function provideMergeCases() {
 		return [
 			[ 0, 'test', 0, 'test', true ],
 			[ SearchIndexField::INDEX_TYPE_NESTED, 'test',

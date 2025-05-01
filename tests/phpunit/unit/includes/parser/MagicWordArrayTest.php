@@ -49,7 +49,7 @@ class MagicWordArrayTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $array->matchStartToEnd( $input ) );
 	}
 
-	public function provideMatchStartToEndCaseSensitive() {
+	public static function provideMatchStartToEndCaseSensitive() {
 		return [
 			'identifier is not automatically valid syntax' => [ 'ID', false ],
 			'mismatch' => [ 'unknown', false ],
@@ -69,7 +69,7 @@ class MagicWordArrayTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $array->matchVariableStartToEnd( $input ) );
 	}
 
-	public function provideMatchVariableStartToEnd() {
+	public static function provideMatchVariableStartToEnd() {
 		return [
 			'identifier is not automatically valid syntax' => [ 'ID' ],
 			'match' => [ 'SyNoNyM', [ 'ID', false ] ],
@@ -101,7 +101,7 @@ class MagicWordArrayTest extends MediaWikiUnitTestCase {
 		], $spy->getVariableStartToEndRegex() );
 	}
 
-	public function provideMatchVariableStartToEndMultiple() {
+	public static function provideMatchVariableStartToEndMultiple() {
 		return [
 			[ 'thumb', [ 'img_thumbnail', false ] ],
 			[ 'upright=1.2', [ 'img_upright', '1.2' ] ],
@@ -127,7 +127,7 @@ class MagicWordArrayTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expectedText ?? $input, $text );
 	}
 
-	public function provideMatchStartAndRemove() {
+	public static function provideMatchStartAndRemove() {
 		return [
 			'identifier is not automatically valid syntax' => [ 'ID', false ],
 			'match' => [ 'SyNoNyMx', 'ID', 'x' ],
@@ -151,7 +151,7 @@ class MagicWordArrayTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expectedText ?? $input, $text );
 	}
 
-	public function provideMatchAndRemove() {
+	public static function provideMatchAndRemove() {
 		return [
 			'identifier is not automatically valid syntax' => [ 'ID' ],
 			'two matches' => [ 'xSyNoNyMxSyNoNyMx', [ 'ID' => false ], 'xxx' ],
@@ -175,7 +175,7 @@ class MagicWordArrayTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expectedText ?? $input, $text );
 	}
 
-	public function provideMatchAndRemoveMultiple() {
+	public static function provideMatchAndRemoveMultiple() {
 		return [
 			[
 				'x__NOTC__x__NOTOC__x__NOTITLECONVERT__x',

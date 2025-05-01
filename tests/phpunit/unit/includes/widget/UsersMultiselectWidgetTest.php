@@ -92,7 +92,7 @@ class UsersMultiselectWidgetTest extends MediaWikiUnitTestCase {
 			'getJavaScriptClassName did not return the expected value.' );
 	}
 
-	public function provideGetConfig(): array {
+	public static function provideGetConfig(): array {
 		return [
 			'ipAllowed' => [
 				[

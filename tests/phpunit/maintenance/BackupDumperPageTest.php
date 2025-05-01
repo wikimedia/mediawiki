@@ -95,7 +95,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		return $dumper;
 	}
 
-	public function schemaVersionProvider() {
+	public static function schemaVersionProvider() {
 		foreach ( XmlDumpWriter::$supportedSchemas as $schemaVersion ) {
 			yield [ $schemaVersion ];
 		}

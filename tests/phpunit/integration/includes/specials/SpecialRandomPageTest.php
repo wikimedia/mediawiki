@@ -33,7 +33,7 @@ class SpecialRandomPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expectedNS, $this->page->getNamespaces() );
 	}
 
-	public function providerParsePar() {
+	public static function providerParsePar() {
 		global $wgContentNamespaces;
 
 		return [

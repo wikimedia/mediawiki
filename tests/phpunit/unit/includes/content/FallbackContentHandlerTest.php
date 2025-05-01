@@ -49,7 +49,7 @@ class FallbackContentHandlerTest extends MediaWikiUnitTestCase {
 		$this->assertSame( '', $content->getData() );
 	}
 
-	public function provideIsSupportedFormat() {
+	public static function provideIsSupportedFormat() {
 		return [
 			[ null, true ],
 			[ 'application/octet-stream', true ],

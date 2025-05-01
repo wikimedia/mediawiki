@@ -11,7 +11,7 @@ use StatusValue;
  */
 class StatusValueTest extends MediaWikiUnitTestCase {
 
-	public function provideToString() {
+	public static function provideToString() {
 		yield [
 			true, null, null,
 			'<OK, no errors detected, no value set>',

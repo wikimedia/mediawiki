@@ -65,7 +65,7 @@ class RedisBagOStuffTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $actual, $message );
 	}
 
-	public function serializeProvider() {
+	public static function serializeProvider() {
 		return [
 			[
 				-1,

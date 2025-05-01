@@ -6,7 +6,7 @@
  */
 class WfStringToBoolTest extends MediaWikiUnitTestCase {
 
-	public function provideTestCases() {
+	public static function provideTestCases() {
 		return [
 			[ 'true', true ],
 			[ 'on', true ],

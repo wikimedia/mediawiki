@@ -123,7 +123,7 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 		);
 	}
 
-	public function executeForUserWithWhitespacesDataProvider(): array {
+	public static function executeForUserWithWhitespacesDataProvider(): array {
 		return [
 			'With an empty target' => [
 				'expected' => '',

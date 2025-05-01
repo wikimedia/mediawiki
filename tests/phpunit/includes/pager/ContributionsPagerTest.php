@@ -66,7 +66,7 @@ class ContributionsPagerTest extends MediaWikiIntegrationTestCase {
 		$pager->createRevisionRecord( $row );
 	}
 
-	public function provideIsArchive() {
+	public static function provideIsArchive() {
 		return [
 			'Get revisions from the revision table' => [ false, [ 'rev_id' => 6789 ] ],
 			'Get revisions from the archive table' => [ true, [ 'ar_rev_id' => 9876 ] ],
@@ -192,7 +192,7 @@ class ContributionsPagerTest extends MediaWikiIntegrationTestCase {
 		$pager->getBody();
 	}
 
-	public function provideRunHooks() {
+	public static function provideRunHooks() {
 		return [
 			'Do not run any hooks if runHooks is false' => [ false, false ],
 			'Run hooks if runHooks is true' => [ true, true ],

@@ -32,7 +32,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 		$this->addTestPages( $this->getTestSysop()->getUser() );
 	}
 
-	public function schemaVersionProvider() {
+	public static function schemaVersionProvider() {
 		foreach ( XmlDumpWriter::$supportedSchemas as $schemaVersion ) {
 			yield [ $schemaVersion ];
 		}

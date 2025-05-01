@@ -96,7 +96,7 @@ class W3CTraceContextPropagatorTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $carrier );
 	}
 
-	public function provideInjectData(): iterable {
+	public static function provideInjectData(): iterable {
 		yield 'no active span context' => [
 			null,
 			[]

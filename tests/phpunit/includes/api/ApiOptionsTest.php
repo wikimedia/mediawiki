@@ -255,7 +255,7 @@ class ApiOptionsTest extends ApiTestCase {
 		$this->fail( "ApiUsageException was not thrown" );
 	}
 
-	public function provideUserScenarios() {
+	public static function provideUserScenarios() {
 		return [
 			[ true, true, false ],
 			[ true, false, true ],

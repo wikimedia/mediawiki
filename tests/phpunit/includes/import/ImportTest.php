@@ -36,7 +36,7 @@ class ImportTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	public function provideUnknownTagsXML() {
+	public static function provideUnknownTagsXML() {
 		return [
 			[
 				<<< EOF
@@ -99,7 +99,7 @@ EOF
 		$this->assertEquals( $redirectTitle, $redirect );
 	}
 
-	public function provideRedirectXML() {
+	public static function provideRedirectXML() {
 		return [
 			[
 				<<< EOF
@@ -180,7 +180,7 @@ EOF
 		$this->assertEquals( $importNamespaces, $namespaces );
 	}
 
-	public function provideSiteInfoXML() {
+	public static function provideSiteInfoXML() {
 		return [
 			[
 				<<< EOF

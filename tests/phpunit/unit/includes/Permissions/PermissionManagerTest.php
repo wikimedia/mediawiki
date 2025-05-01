@@ -365,7 +365,7 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 		$this->assertStatusMessagesExactly( $expectedStatus, $result );
 	}
 
-	public function provideTestCheckQuickPermissionsHook() {
+	public static function provideTestCheckQuickPermissionsHook() {
 		// test name => [ $hookErrors, $expectedStatus ]
 		yield 'Hook returns false but no errors' => [
 			[],

@@ -670,7 +670,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		}
 	}
 
-	public function skinsProvider() {
+	public static function skinsProvider() {
 		return [
 			'No language specified' => [ null ],
 			'Czech' => [ 'cs' ],

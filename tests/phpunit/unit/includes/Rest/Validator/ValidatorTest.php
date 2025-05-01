@@ -752,7 +752,7 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 		}
 	}
 
-	public function provideGetValue() {
+	public static function provideGetValue() {
 		return [
 			// Test case 0: Parameter exists in source and no normalization required
 			[
