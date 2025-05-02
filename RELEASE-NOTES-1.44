@@ -685,6 +685,29 @@ because of Phabricator reports.
 * The `moment` library is deprecated and consumers should explore using
   alternatives. More information and support will be provided at
   https://phabricator.wikimedia.org/T146798
+* Passing the wrong type or null as the various parameters to the public methods
+  of SiteConfiguration is now deprecated:
+  - SiteConfiguration::get
+    - Only pass a string to $settingName or $wiki
+    - Only pass null or a string to $site
+    - Only pass an array to $params or $wikiTags
+  - SiteConfiguration::getAll
+    - Only pass a string to $wiki
+    - Only pass null or a string to $site
+    - Only pass an array to $params or $wikiTags
+  - SiteConfiguration::getBool
+    - Only pass a string to $setting or $wiki
+    - Only pass null or a string to $site
+    - Only pass an array to $wikiTags
+  - SiteConfiguration::extractGlobalSetting
+    - Only pass a string to $setting or $wiki
+    - Only pass an array to $params
+  - SiteConfiguration::extractAllGlobals
+    - Only pass a string to $wiki
+    - Only pass null or a string to $site
+    - Only pass an array to $params or $wikiTags
+  - SiteConfiguration::siteFromDB
+    - Only pass a string to $wiki
 * …
 
 === Other changes in 1.44 ===
