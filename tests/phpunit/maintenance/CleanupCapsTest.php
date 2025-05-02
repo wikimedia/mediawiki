@@ -18,6 +18,13 @@ class CleanupCapsTest extends MaintenanceBaseTestCase {
 		return CleanupCaps::class;
 	}
 
+	protected function setUp(): void {
+		parent::setUp();
+		// We clear the title cache because these tests will create title objects with lowercase form and uppercase
+		// form
+		Title::clearCaches();
+	}
+
 	/** @dataProvider provideCapitalLinksValues */
 	public function testWhenNamespaceEmpty( bool $capitalLinks, string $stringToExpectInOutput ) {
 		$this->overrideConfigValue( MainConfigNames::CapitalLinks, $capitalLinks );
