@@ -13,7 +13,6 @@ use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
-use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\ExpectCallbackTrait;
 use MediaWiki\Tests\recentchanges\ChangeTrackingUpdateSpyTrait;
 use MediaWiki\Tests\Search\SearchUpdateSpyTrait;
@@ -303,41 +302,39 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$this->assertNull( $file->getUploader() );
 	}
 
-	public function providePermissionChecks() {
-		$capablePerformer = $this->mockRegisteredAuthorityWithPermissions( [ 'deletedhistory', 'deletedtext' ] );
-		$incapablePerformer = $this->mockRegisteredAuthorityWithoutPermissions( [ 'deletedhistory', 'deletedtext' ] );
+	public static function providePermissionChecks() {
 		yield 'Deleted, RAW' => [
-			'performer' => $incapablePerformer,
+			'performerMock' => 'without',
 			'audience' => File::RAW,
 			'deleted' => File::DELETED_USER | File::DELETED_COMMENT,
 			'expected' => true,
 		];
 		yield 'No permission, not deleted' => [
-			'performer' => $incapablePerformer,
+			'performerMock' => 'without',
 			'audience' => File::FOR_THIS_USER,
 			'deleted' => 0,
 			'expected' => true,
 		];
 		yield 'No permission, deleted' => [
-			'performer' => $incapablePerformer,
+			'performerMock' => 'without',
 			'audience' => File::FOR_THIS_USER,
 			'deleted' => File::DELETED_USER | File::DELETED_COMMENT,
 			'expected' => false,
 		];
 		yield 'Not deleted, public' => [
-			'performer' => $capablePerformer,
+			'performerMock' => 'with',
 			'audience' => File::FOR_PUBLIC,
 			'deleted' => 0,
 			'expected' => true,
 		];
 		yield 'Deleted, public' => [
-			'performer' => $capablePerformer,
+			'performerMock' => 'with',
 			'audience' => File::FOR_PUBLIC,
 			'deleted' => File::DELETED_USER | File::DELETED_COMMENT,
 			'expected' => false,
 		];
 		yield 'With permission, deleted' => [
-			'performer' => $capablePerformer,
+			'performerMock' => 'with',
 			'audience' => File::FOR_THIS_USER,
 			'deleted' => File::DELETED_USER | File::DELETED_COMMENT,
 			'expected' => true,
@@ -420,11 +417,14 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\FileRepo\File\LocalFile::getUploader
 	 */
 	public function testGetUploader(
-		Authority $performer,
+		string $performerMock,
 		int $audience,
 		int $deleted,
 		bool $expected
 	) {
+		$performer = $performerMock === 'with'
+			? $this->mockRegisteredAuthorityWithPermissions( [ 'deletedhistory', 'deletedtext' ] )
+			: $this->mockRegisteredAuthorityWithoutPermissions( [ 'deletedhistory', 'deletedtext' ] );
 		$file = $this->getOldLocalFileWithDeletion( $performer->getUser(), $deleted );
 		if ( $expected ) {
 			$this->assertTrue( $performer->getUser()->equals( $file->getUploader( $audience, $performer ) ) );
@@ -438,11 +438,14 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\FileRepo\File\ArchivedFile::getDescription
 	 */
 	public function testGetDescription(
-		Authority $performer,
+		string $performerMock,
 		int $audience,
 		int $deleted,
 		bool $expected
 	) {
+		$performer = $performerMock === 'with'
+			? $this->mockRegisteredAuthorityWithPermissions( [ 'deletedhistory', 'deletedtext' ] )
+			: $this->mockRegisteredAuthorityWithoutPermissions( [ 'deletedhistory', 'deletedtext' ] );
 		$file = $this->getArchivedFileWithDeletion( $performer->getUser(), $deleted );
 		if ( $expected ) {
 			$this->assertSame( 'comment', $file->getDescription( $audience, $performer ) );
@@ -456,11 +459,14 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\FileRepo\File\ArchivedFile::getUploader
 	 */
 	public function testArchivedGetUploader(
-		Authority $performer,
+		string $performerMock,
 		int $audience,
 		int $deleted,
 		bool $expected
 	) {
+		$performer = $performerMock === 'with'
+			? $this->mockRegisteredAuthorityWithPermissions( [ 'deletedhistory', 'deletedtext' ] )
+			: $this->mockRegisteredAuthorityWithoutPermissions( [ 'deletedhistory', 'deletedtext' ] );
 		$file = $this->getArchivedFileWithDeletion( $performer->getUser(), $deleted );
 		if ( $expected ) {
 			$this->assertTrue( $performer->getUser()->equals( $file->getUploader( $audience, $performer ) ) );
@@ -474,11 +480,14 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\FileRepo\File\LocalFile::getDescription
 	 */
 	public function testArchivedGetDescription(
-		Authority $performer,
+		string $performerMock,
 		int $audience,
 		int $deleted,
 		bool $expected
 	) {
+		$performer = $performerMock === 'with'
+			? $this->mockRegisteredAuthorityWithPermissions( [ 'deletedhistory', 'deletedtext' ] )
+			: $this->mockRegisteredAuthorityWithoutPermissions( [ 'deletedhistory', 'deletedtext' ] );
 		$file = $this->getOldLocalFileWithDeletion( $performer->getUser(), $deleted );
 		if ( $expected ) {
 			$this->assertSame( 'comment', $file->getDescription( $audience, $performer ) );

@@ -21,7 +21,6 @@ use MediaWiki\Exception\ShellDisabledError;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\FauxResponse;
 use MediaWiki\Request\WebRequest;
@@ -411,15 +410,15 @@ class ApiMainTest extends ApiTestCase {
 		$this->doTestCheckMaxLag( 4 );
 	}
 
-	public function provideAssert() {
+	public static function provideAssert() {
 		return [
-			[ $this->mockAnonNullAuthority(), 'user', 'assertuserfailed' ],
-			[ $this->mockRegisteredNullAuthority(), 'user', false ],
-			[ $this->mockAnonNullAuthority(), 'anon', false ],
-			[ $this->mockRegisteredNullAuthority(), 'anon', 'assertanonfailed' ],
-			[ $this->mockRegisteredNullAuthority(), 'bot', 'assertbotfailed' ],
-			[ $this->mockRegisteredAuthorityWithPermissions( [ 'bot' ] ), 'user', false ],
-			[ $this->mockRegisteredAuthorityWithPermissions( [ 'bot' ] ), 'bot', false ],
+			[ 'anon', 'user', 'assertuserfailed' ],
+			[ 'registered', 'user', false ],
+			[ 'anon', 'anon', false ],
+			[ 'registered', 'anon', 'assertanonfailed' ],
+			[ 'registered', 'bot', 'assertbotfailed' ],
+			[ [ 'bot' ], 'user', false ],
+			[ [ 'bot' ], 'bot', false ],
 		];
 	}
 
@@ -428,7 +427,14 @@ class ApiMainTest extends ApiTestCase {
 	 *
 	 * @dataProvider provideAssert
 	 */
-	public function testAssert( Authority $performer, $assert, $error ) {
+	public function testAssert( $performerSpec, $assert, $error ) {
+		if ( is_array( $performerSpec ) ) {
+			$performer = $this->mockRegisteredAuthorityWithPermissions( $performerSpec );
+		} else {
+			$performer = $performerSpec === 'registered'
+				? $this->mockRegisteredNullAuthority()
+				: $this->mockAnonNullAuthority();
+		}
 		try {
 			$this->doApiRequest( [
 				'action' => 'query',

@@ -22,7 +22,6 @@ use MediaWiki\EditPage\Constraint\AuthorizationConstraint;
 use MediaWiki\EditPage\Constraint\IEditConstraint;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
-use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\MockBlockTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserIdentityValue;
@@ -39,7 +38,8 @@ class AuthorizationConstraintTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideTestPass
 	 */
-	public function testPass( Authority $performer, PageIdentity $page, bool $new ): void {
+	public function testPass( array $permissions, PageIdentity $page, bool $new ): void {
+		$performer = $this->mockAnonAuthorityWithPermissions( $permissions );
 		$constraint = new AuthorizationConstraint(
 			$performer,
 			$page,
@@ -48,14 +48,14 @@ class AuthorizationConstraintTest extends MediaWikiUnitTestCase {
 		$this->assertConstraintPassed( $constraint );
 	}
 
-	public function provideTestPass(): iterable {
+	public static function provideTestPass(): iterable {
 		yield 'Edit existing page' => [
-			'performer' => $this->mockAnonAuthorityWithPermissions( [ 'edit' ] ),
+			'permissions' => [ 'edit' ],
 			'page' => PageIdentityValue::localIdentity( 123, NS_MAIN, 'AuthorizationConstraintTest' ),
 			'new' => false,
 		];
 		yield 'Create a new page' => [
-			'performer' => $this->mockAnonAuthorityWithPermissions( [ 'edit', 'create' ] ),
+			'permissions' => [ 'edit', 'create' ],
 			'page' => PageIdentityValue::localIdentity( 0, NS_MAIN, 'AuthorizationConstraintTest' ),
 			'new' => true,
 		];
@@ -65,8 +65,21 @@ class AuthorizationConstraintTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideTestFailure
 	 */
 	public function testFailure(
-		Authority $performer, PageIdentity $page, bool $new, int $expectedValue
+		$performerSpec, PageIdentity $page, bool $new, int $expectedValue
 	): void {
+		if ( is_array( $performerSpec ) ) {
+			$performer = $this->mockAnonAuthorityWithoutPermissions( $performerSpec );
+		} else {
+			$performer = $performerSpec === 'registered'
+				? $this->mockRegisteredAuthorityWithoutPermissions( [ 'edit' ] )
+				: $this->mockUserAuthorityWithBlock(
+					UserIdentityValue::newRegistered( 42, 'AuthorizationConstraintTest User' ),
+					$this->makeMockBlock( [
+						'decodedExpiry' => 'infinity',
+					] ),
+					[ 'edit' ]
+				);
+		}
 		$constraint = new AuthorizationConstraint(
 			$performer,
 			$page,
@@ -75,33 +88,27 @@ class AuthorizationConstraintTest extends MediaWikiUnitTestCase {
 		$this->assertConstraintFailed( $constraint, $expectedValue );
 	}
 
-	public function provideTestFailure(): iterable {
+	public static function provideTestFailure(): iterable {
 		yield 'Anonymous user' => [
-			'performer' => $this->mockAnonAuthorityWithoutPermissions( [ 'edit' ] ),
+			'performerSpec' => [ 'edit' ],
 			'page' => PageIdentityValue::localIdentity( 123, NS_MAIN, 'AuthorizationConstraintTest' ),
 			'new' => false,
 			'expectedValue' => IEditConstraint::AS_READ_ONLY_PAGE_ANON,
 		];
 		yield 'Registered user' => [
-			'performer' => $this->mockRegisteredAuthorityWithoutPermissions( [ 'edit' ] ),
+			'performerSpec' => 'registered',
 			'page' => PageIdentityValue::localIdentity( 123, NS_MAIN, 'AuthorizationConstraintTest' ),
 			'new' => false,
 			'expectedValue' => IEditConstraint::AS_READ_ONLY_PAGE_LOGGED,
 		];
 		yield 'User without create permission creates a page' => [
-			'performer' => $this->mockAnonAuthorityWithoutPermissions( [ 'create' ] ),
+			'performerSpec' => [ 'create' ],
 			'page' => PageIdentityValue::localIdentity( 0, NS_MAIN, 'AuthorizationConstraintTest' ),
 			'new' => true,
 			'expectedValue' => IEditConstraint::AS_NO_CREATE_PERMISSION,
 		];
 		yield 'Blocked user' => [
-			'performer' => $this->mockUserAuthorityWithBlock(
-				UserIdentityValue::newRegistered( 42, 'AuthorizationConstraintTest User' ),
-				$this->makeMockBlock( [
-					'decodedExpiry' => 'infinity',
-				] ),
-				[ 'edit' ]
-			),
+			'performerSpec' => 'blocked',
 			'page' => PageIdentityValue::localIdentity( 123, NS_MAIN, 'AuthorizationConstraintTest' ),
 			'new' => false,
 			'expectedValue' => IEditConstraint::AS_BLOCKED_PAGE_FOR_USER,
