@@ -560,6 +560,10 @@ class SessionManager implements SessionManagerInterface {
 		// "fail" is just return false.
 		if ( $info->forceUse() && $blob !== false ) {
 			$failHandler = function () use ( $key, &$info, $request ) {
+				$this->logSessionWrite( $request, $info, [
+					'type' => 'delete',
+					'reason' => 'loadSessionInfo fail',
+				] );
 				$this->store->delete( $key );
 				return $this->loadSessionInfoFromStore( $info, $request );
 			};
@@ -574,9 +578,10 @@ class SessionManager implements SessionManagerInterface {
 		if ( $blob !== false ) {
 			// Double check: blob must be an array, if it's saved at all
 			if ( !is_array( $blob ) ) {
-				$this->logger->warning( 'Session "{session}": Bad data', [
-					'session' => $info->__toString(),
-				] );
+				$this->logSessionWrite( $request, $info, [
+					'type' => 'delete',
+					'reason' => 'bad data',
+				], LogLevel::WARNING );
 				$this->store->delete( $key );
 				return $failHandler();
 			}
@@ -585,9 +590,10 @@ class SessionManager implements SessionManagerInterface {
 			if ( !isset( $blob['data'] ) || !is_array( $blob['data'] ) ||
 				!isset( $blob['metadata'] ) || !is_array( $blob['metadata'] )
 			) {
-				$this->logger->warning( 'Session "{session}": Bad data structure', [
-					'session' => $info->__toString(),
-				] );
+				$this->logSessionWrite( $request, $info, [
+					'type' => 'delete',
+					'reason' => 'bad data structure',
+				], LogLevel::WARNING );
 				$this->store->delete( $key );
 				return $failHandler();
 			}
@@ -602,9 +608,10 @@ class SessionManager implements SessionManagerInterface {
 				!array_key_exists( 'userToken', $metadata ) ||
 				!array_key_exists( 'provider', $metadata )
 			) {
-				$this->logger->warning( 'Session "{session}": Bad metadata', [
-					'session' => $info->__toString(),
-				] );
+				$this->logSessionWrite( $request, $info, [
+					'type' => 'delete',
+					'reason' => 'bad metadata',
+				], LogLevel::WARNING );
 				$this->store->delete( $key );
 				return $failHandler();
 			}
@@ -614,12 +621,11 @@ class SessionManager implements SessionManagerInterface {
 			if ( $provider === null ) {
 				$newParams['provider'] = $provider = $this->getProvider( $metadata['provider'] );
 				if ( !$provider ) {
-					$this->logger->warning(
-						'Session "{session}": Unknown provider ' . $metadata['provider'],
-						[
-							'session' => $info->__toString(),
-						]
-					);
+					$this->logSessionWrite( $request, $info, [
+						'type' => 'delete',
+						'reason' => 'unknown provider',
+						'provider' => $metadata['provider'],
+					], LogLevel::WARNING );
 					$this->store->delete( $key );
 					return $failHandler();
 				}
@@ -1094,6 +1100,36 @@ class SessionManager implements SessionManagerInterface {
 			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable message is set when used here
 			$logger->log( $logLevel, $message, $logData );
 		}
+	}
+
+	/**
+	 * @param WebRequest $request
+	 * @param SessionInfo $info
+	 * @param array $data Additional log context. Should have at least the following keys:
+	 *   - type: 'write' or 'delete'.
+	 *   - reason: why the write happened
+	 * @param string $level PSR LogLevel constant (defaults to info)
+	 * @throws MWException
+	 * @see SessionBackend::logSessionWrite()
+	 */
+	private function logSessionWrite(
+		WebRequest $request,
+		SessionInfo $info,
+		array $data,
+		string $level = LogLevel::INFO
+	): void {
+		$user = ( !$info->getUserInfo() || $info->getUserInfo()->isAnon() )
+			? '<anon>'
+			: $info->getUserInfo()->getName();
+		$this->logger->log( $level, 'Session store: {action} for {reason}', $data + [
+				'action' => $data['type'],
+				'reason' => $data['reason'],
+				'id' => $info->getId(),
+				'provider' => $info->getProvider() ? get_class( $info->getProvider() ) : 'null',
+				'user' => $user,
+				'clientip' => $request->getIP(),
+				'userAgent' => $request->getHeader( 'user-agent' ),
+			] );
 	}
 
 	// endregion -- end of Internal methods
