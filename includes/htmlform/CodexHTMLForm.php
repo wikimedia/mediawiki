@@ -236,13 +236,7 @@ class CodexHTMLForm extends HTMLForm {
 				$attrs['id'] = $button['id'];
 			}
 
-			if ( isset( $attrs['class'] ) ) {
-				// Ensure $attrs['class'] is always treated as an array whether it's initially set
-				// as an array or a string.
-				$attrs['class'] = (array)( $attrs['class'] ?? [] );
-			}
-
-			$attrs['class'][] = 'cdx-button';
+			Html::addClass( $attrs['class'], 'cdx-button' );
 
 			$buttons[] = Html::rawElement( 'button', $attrs, $label ) . "\n";
 		}

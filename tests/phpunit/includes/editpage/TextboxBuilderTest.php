@@ -124,7 +124,7 @@ class TextboxBuilderTest extends MediaWikiIntegrationTestCase {
 		// custom attrib showed up
 		$this->assertArrayHasKey( 'data-foo', $attribs );
 		// classes merged properly (string)
-		$this->assertSame( 'foo bar mw-editfont-monospace', $attribs['class'] );
+		$this->assertSame( [ 'foo bar', 'mw-editfont-monospace' ], $attribs['class'] );
 		// overrides in custom attrib worked
 		$this->assertSame( 30, $attribs['rows'] );
 		$this->assertSame( 'en', $attribs['lang'] );
@@ -139,6 +139,6 @@ class TextboxBuilderTest extends MediaWikiIntegrationTestCase {
 			'mw-textbox3', [], $user, $title
 		);
 		// classes ok when nothing to be merged
-		$this->assertSame( 'mw-editfont-monospace', $attribs3['class'] );
+		$this->assertSame( [ 'mw-editfont-monospace' ], $attribs3['class'] );
 	}
 }

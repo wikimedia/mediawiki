@@ -134,6 +134,32 @@ class Html {
 	}
 
 	/**
+	 * Add a class to a 'class' attribute in a format accepted by Html::element().
+	 *
+	 * This method may also be used for any other space-separated attribute, such as 'rel'.
+	 *
+	 * @param array|string|null &$classes Class list to modify in-place
+	 * @param string $class Class to add
+	 * @phan-assert non-empty-array $classes
+	 */
+	public static function addClass( &$classes, string $class ): void {
+		$classes = (array)$classes;
+		// Detect mistakes where $attrs is passed as $classes instead of $attrs['class']
+		foreach ( $classes as $key => $val ) {
+			if (
+				( is_int( $key ) && is_string( $val ) ) ||
+				( is_string( $key ) && is_bool( $val ) )
+			) {
+				// Valid formats for class array entries
+				continue;
+			}
+			wfWarn( __METHOD__ . ": Argument doesn't look like a class array: " . var_export( $classes, true ) );
+			break;
+		}
+		$classes[] = $class;
+	}
+
+	/**
 	 * Returns an HTML link element in a string.
 	 *
 	 * @param string $text The text of the element. Will be escaped (not raw HTML)
@@ -700,18 +726,8 @@ class Html {
 		if ( $heading !== '' ) {
 			$html = self::element( 'h2', [], $heading ) . $html;
 		}
-		$coreClasses = [
-			'cdx-message',
-			'cdx-message--block'
-		];
-		if ( is_array( $className ) ) {
-			$className = array_merge(
-				$coreClasses,
-				$className
-			);
-		} else {
-			$className .= ' ' . implode( ' ', $coreClasses );
-		}
+		self::addClass( $className, 'cdx-message' );
+		self::addClass( $className, 'cdx-message--block' );
 		return self::rawElement( 'div', [ 'class' => $className ],
 			self::element( 'span', [ 'class' => [
 				'cdx-message__icon',

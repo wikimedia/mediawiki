@@ -131,8 +131,7 @@ class HandleSectionLinks extends ContentTextTransformStage {
 				if ( $this->isHtmlHeading( $attrs ) ) {
 					// This is a <h#> tag with attributes added using HTML syntax.
 					// Mark it with a class to make them easier to distinguish (T68637).
-					$attrs['class'] = isset( $attrs['class'] ) ? (array)$attrs['class'] : [];
-					$attrs['class'][] = 'mw-html-heading';
+					Html::addClass( $attrs['class'], 'mw-html-heading' );
 
 					// Do not add the wrapper if the heading has attributes added using HTML syntax (T353489).
 					// In this case it's also guaranteed that there's no edit link, so we don't need wrappers.

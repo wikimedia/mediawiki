@@ -68,6 +68,68 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 		$this->setUserLang( $userLangObj );
 	}
 
+	public function testAddClassSpecialCases() {
+		// You probably shouldn't do this, but it works
+		Html::addClass( $attrs['class'], 'foo' );
+		$this->assertEquals( [ 'class' => [ 'foo' ] ], $attrs, 'Variable is defined if missing' );
+
+		// This is intended though and supported
+		$attrs = [];
+		Html::addClass( $attrs['class'], 'foo' );
+		$this->assertEquals( [ 'class' => [ 'foo' ] ], $attrs, 'Attribute is added if missing' );
+
+		// Warning is emitted if attributes are passed instead of classes
+		$attrs = [ 'title' => 'hello' ];
+		$this->expectPHPError(
+			E_USER_NOTICE,
+			static function () use ( &$attrs ) {
+				Html::addClass( $attrs, 'foo' );
+			},
+			"Argument doesn't look like a class array"
+		);
+		$this->assertEquals( [ 'title' => 'hello', 'foo' ], $attrs );
+	}
+
+	/**
+	 * @dataProvider provideAddClass
+	 */
+	public function testAddClass( $input, $class, $expected ) {
+		Html::addClass( $input, $class );
+		$this->assertEquals( $expected, $input );
+	}
+
+	public static function provideAddClass() {
+		yield "Null" =>
+			[ null, 'foo', [ 'foo' ] ];
+
+		yield "Empty array" =>
+			[ [], 'foo', [ 'foo' ] ];
+
+		yield "Array" =>
+			[ [ 'foo' ], 'bar', [ 'foo', 'bar' ] ];
+
+		yield "Empty string" =>
+			[ '', 'bar', [ '', 'bar' ] ];
+
+		yield "String" =>
+			[ 'foo', 'bar', [ 'foo', 'bar' ] ];
+
+		yield "Assoc" =>
+			[ [ 'foo' => false ], 'bar', [ 'foo' => false, 'bar' ] ];
+
+		yield "Duplicate" =>
+			[ [ 'foo' ], 'foo', [ 'foo', 'foo' ] ];
+
+		yield "Duplicate string" =>
+			[ 'foo', 'foo', [ 'foo', 'foo' ] ];
+
+		yield "Duplicate assoc" =>
+			[ [ 'foo' => false ], 'foo', [ 'foo' => false, 'foo' ] ];
+
+		yield "No cleanup" =>
+			[ ' a  b ', ' c  d ', [ ' a  b ', ' c  d ' ] ];
+	}
+
 	public function testOpenElement() {
 		$this->expectPHPError(
 			E_USER_NOTICE,
@@ -480,7 +542,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 
 	public function testWarningBox() {
 		$this->assertEquals(
-			'<div class="cdx-message cdx-message--block cdx-message--warning">'
+			'<div class="cdx-message--warning cdx-message cdx-message--block">'
 				. '<span class="cdx-message__icon"></span>'
 				. '<div class="cdx-message__content">warn</div></div>',
 			Html::warningBox( 'warn' )
@@ -489,13 +551,13 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 
 	public function testErrorBox() {
 		$this->assertEquals(
-			'<div class="cdx-message cdx-message--block cdx-message--error">'
+			'<div class="cdx-message--error cdx-message cdx-message--block">'
 				. '<span class="cdx-message__icon"></span>'
 				. '<div class="cdx-message__content">err</div></div>',
 			Html::errorBox( 'err' )
 		);
 		$this->assertEquals(
-			'<div class="cdx-message cdx-message--block cdx-message--error errorbox-custom-class">'
+			'<div class="cdx-message--error errorbox-custom-class cdx-message cdx-message--block">'
 				. '<span class="cdx-message__icon"></span>'
 				. '<div class="cdx-message__content">'
 				. '<h2>heading</h2>err'
@@ -503,7 +565,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 			Html::errorBox( 'err', 'heading', 'errorbox-custom-class' )
 		);
 		$this->assertEquals(
-			'<div class="cdx-message cdx-message--block cdx-message--error">'
+			'<div class="cdx-message--error cdx-message cdx-message--block">'
 				. '<span class="cdx-message__icon"></span>'
 				. '<div class="cdx-message__content">'
 				. '<h2>0</h2>err'
@@ -514,13 +576,13 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 
 	public function testSuccessBox() {
 		$this->assertEquals(
-			'<div class="cdx-message cdx-message--block cdx-message--success">'
+			'<div class="cdx-message--success cdx-message cdx-message--block">'
 				. '<span class="cdx-message__icon"></span>'
 				. '<div class="cdx-message__content">great</div></div>',
 			Html::successBox( 'great' )
 		);
 		$this->assertEquals(
-			'<div class="cdx-message cdx-message--block cdx-message--success">'
+			'<div class="cdx-message--success cdx-message cdx-message--block">'
 				. '<span class="cdx-message__icon"></span>'
 				. '<div class="cdx-message__content">'
 				. '<script>beware no escaping!</script>'
