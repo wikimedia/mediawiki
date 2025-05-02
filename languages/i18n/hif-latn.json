@@ -2783,5 +2783,6 @@
 	"renameuser-page-unmoved": "Panna $1 ke naam badal ke $2 nai kare sakaa hai.",
 	"log-name-renameuser": "Sadasya ke naam badle ke log",
 	"renameuser-move-log": "Automatically panna ke move kar diya hai jab ki sadasya ke naam  \"[[User:$1|$1]]\" se badal ke \"[[User:$2|$2]]\" kar dewa gais hai",
-	"right-renameuser": "Sadasya log ke naam badlo"
+	"right-renameuser": "Sadasya log ke naam badlo",
+	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> jisme hai, ke khojo"
 }

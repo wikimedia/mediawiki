@@ -2021,5 +2021,6 @@
 	"right-renameuser": "Foydalanuvchilar nomini oʻzgartirish",
 	"interwiki_reasonfield": "Sabab:",
 	"interwiki_addbutton": "Qoʻshish",
-	"log-name-interwiki": "Interviki jadvalidagi oʻzgarishlar qaydlari"
+	"log-name-interwiki": "Interviki jadvalidagi oʻzgarishlar qaydlari",
+	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>ni oʻz ichiga olgan sahifalar uchun qidiruv"
 }

@@ -3839,5 +3839,6 @@
 	"interwiki-global-links": "Awalan interwiki sejagat",
 	"interwiki-local-links": "Awalan interwiki tempatan",
 	"interwiki-links": "Awalan interwiki",
-	"interwiki-language-links": "Awalan antara bahasa"
+	"interwiki-language-links": "Awalan antara bahasa",
+	"searchsuggest-containing-html": "Cari untuk laman yang mengandungi <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

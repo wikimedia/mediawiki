@@ -3923,5 +3923,6 @@
 	"log-name-interwiki": "Registre de taula interwiki",
 	"log-description-interwiki": "Això és un registre de canvis a la[[Special:Interwiki|interwiki taula]].",
 	"right-interwiki": "Modificar les dades interwiki",
-	"action-interwiki": "canviar aquesta entrada d'interwiki"
+	"action-interwiki": "canviar aquesta entrada d'interwiki",
+	"searchsuggest-containing-html": "Cerca les pàgines que continguin <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

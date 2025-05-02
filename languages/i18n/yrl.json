@@ -788,5 +788,6 @@
 	"nstab-mainpage": "Yupirũgawawara sowa",
 	"skin-action-protect": "Uçupirũ",
 	"skin-action-delete": "Muçaká",
-	"skin-action-move": "Yatimana"
+	"skin-action-move": "Yatimana",
+	"searchsuggest-containing-html": "Sikari papera-itá pitasuka supé <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

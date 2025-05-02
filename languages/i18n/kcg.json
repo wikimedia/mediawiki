@@ -1586,5 +1586,6 @@
 	"blockedtext-intended-blockee": "A̱tyu a̱ fa fwun wu: $1",
 	"blockedtext-contact-blocker-admin": "A maai a myim ma̱ng $1 ku [[{{MediaWiki:Grouppage-sysop}}|a̱kwak a̱son]] a̱ghyang a bwuo nkhang ma̱ng a̱nggu tazwa fwun hu.",
 	"blockedtext-block-ip": "A̱vwuonswat IP ang ka mi̱ di̱ yong huni kya yet $1.",
-	"blockedtext-include-details-queries": "Ma̱sa̱kut mbeang a̱mgba̱m nkhang na̱ shyia̱ tazwa a̱ni mi̱ kuzang lyip nang a lyip a̱ni."
+	"blockedtext-include-details-queries": "Ma̱sa̱kut mbeang a̱mgba̱m nkhang na̱ shyia̱ tazwa a̱ni mi̱ kuzang lyip nang a lyip a̱ni.",
+	"searchsuggest-containing-html": "Zop ngwat na̱ byia̱ <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

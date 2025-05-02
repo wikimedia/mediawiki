@@ -1174,5 +1174,6 @@
 	"renameuserwarnings": "Avîs:",
 	"interwiki_1": "sì",
 	"interwiki_0": "no",
-	"interwiki_addbutton": "Zonte"
+	"interwiki_addbutton": "Zonte",
+	"searchsuggest-containing-html": "Cîr pagjinis cun dentri <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

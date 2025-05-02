@@ -491,5 +491,6 @@
 	"blockedtext-contact-blocker-admin": "Udi bua ku buela mu muyiiki $1 anyi bakuabu [[{{MediaWiki:Grouppage-sysop}}|badi bamba bia kuenza ]] bua kuyiikila bua dikanga.",
 	"blockedtext-block-ip": "Muaba weba IP wa pindiewu udi $1.",
 	"blockedtext-include-details-queries": "Udi mua kuela bionsu bia kumanya muaba ewu mu konku yonsu udi weela.",
-	"renameuserreason": "Bua tshinyi:"
+	"renameuserreason": "Bua tshinyi:",
+	"searchsuggest-containing-html": "kuKeba pa mabeji adi ne <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

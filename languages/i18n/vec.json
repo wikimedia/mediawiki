@@ -2604,5 +2604,6 @@
 	"interwiki-badprefix": "El prefisso interwiki speçificà (\"$1\") el contien caràteri mia validi",
 	"log-name-interwiki": "Registro de la tabèla interwiki",
 	"log-description-interwiki": "Registro dei canbiamenti fati a la [[Special:Interwiki|tabèla dei interwiki]].",
-	"right-interwiki": "Cànbia i dati interwiki"
+	"right-interwiki": "Cànbia i dati interwiki",
+	"searchsuggest-containing-html": "Serca pàzine che i contien <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

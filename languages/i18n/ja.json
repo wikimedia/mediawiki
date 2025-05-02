@@ -4316,5 +4316,6 @@
 	"interwiki-language-links": "言語間リンク接頭辞",
 	"interwiki-language-description": "これらの接頭辞は、定義済みの言語コードと一致しており、ページに追加する「{{int:otherlanguages}}」の一覧を作成する際に使用されます。",
 	"interwiki-global-language-links": "グローバル言語間接頭辞",
-	"interwiki-global-language-description": "これらの接頭辞は定義された言語コードと一致し、ページに追加されたときに「{{int:otherlanguages}}」リストを作成するために使用されます。これらはグローバル設定から継承されるため、元のウィキ上でのみ編集可能です。グローバルな言語間定義をローカルで上書きすることはできません。"
+	"interwiki-global-language-description": "これらの接頭辞は定義された言語コードと一致し、ページに追加されたときに「{{int:otherlanguages}}」リストを作成するために使用されます。これらはグローバル設定から継承されるため、元のウィキ上でのみ編集可能です。グローバルな言語間定義をローカルで上書きすることはできません。",
+	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>を含むページを検索する"
 }

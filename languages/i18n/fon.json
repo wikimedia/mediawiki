@@ -592,5 +592,6 @@
 	"blockedtext-contact-blocker-admin": "Mi hɛn ɔ, mi na ɖɔ xó xá $1 alo [[{{MediaWiki:Grouppage-sysop}}|acɛ ɖaxo ɖotɔ]] ɖévo bo na do ɖɔ mɛɖoté ɔ",
 	"blockedtext-block-ip": "$1 wɛ nyi mɛsɔxlɛ wekwin mitɔn",
 	"blockedtext-block-id": "ID alɔɖomɛté ɔ tɔn wɛ nyi #$1.",
-	"blockedtext-include-details-queries": "Mi sɔ nukunmɔjɛnumɛ eé ɖo nukɔn lɛ bi sɔ do nukambiɔ mitɔn lɛ bi mɛ."
+	"blockedtext-include-details-queries": "Mi sɔ nukunmɔjɛnumɛ eé ɖo nukɔn lɛ bi sɔ do nukambiɔ mitɔn lɛ bi mɛ.",
+	"searchsuggest-containing-html": "Ba wéma é mɛ <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> ɖé é"
 }

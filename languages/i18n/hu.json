@@ -4083,5 +4083,6 @@
 	"interwiki-language-links": "Nyelvközi előtagok",
 	"interwiki-language-description": "Ezek az előtagok megegyeznek definiált nyelvkódokkal, és a „{{int:otherlanguages}}” lista készítéséhez lesznek felhasználva, ha hozzáadod őket egy laphoz.",
 	"interwiki-global-language-links": "Globális nyelvközi előtagok",
-	"interwiki-global-language-description": "Ezek az előtagok egyeznek a meghatározott nyelvi kódokkal, és a „{{int:otherlanguages}}” lista létrehozására szolgálnak, amikor hozzáadják őket egy oldalhoz. Mivel egy globális konfigurációból öröklődnek, csak a forráswikin szerkeszthetők. A globális nyelvközi definíciók nem bírálhatók felül helyileg."
+	"interwiki-global-language-description": "Ezek az előtagok egyeznek a meghatározott nyelvi kódokkal, és a „{{int:otherlanguages}}” lista létrehozására szolgálnak, amikor hozzáadják őket egy oldalhoz. Mivel egy globális konfigurációból öröklődnek, csak a forráswikin szerkeszthetők. A globális nyelvközi definíciók nem bírálhatók felül helyileg.",
+	"searchsuggest-containing-html": "Olyan oldalak keresése, amelyek tartalmazzák a következőt: <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

@@ -3782,5 +3782,6 @@
 	"createacct-benefit-subheading-temp-user": "Verkosivusto {{SITENAME}} on sinunmoizien ristittyzien luajittu. Olemas olijan käyttäjäntunnuksen hyvyös sinul voi olla pyzyi da turvalline identifikuattoru da mahto käyttiä moizii funksieloi kui:",
 	"benefit-1-description": "Tarkailulistat, kudamien hyvyös voit tarkailla sinuu kiinnostuttajii sivuloi.",
 	"benefit-2-description": "Alalline luvettelu kohenduksis, kudamii olet luadinuh projektan hyväkse.",
-	"benefit-3-description": "Azetukset, kudamat avvutetah lajitella sinun ruadoloi."
+	"benefit-3-description": "Azetukset, kudamat avvutetah lajitella sinun ruadoloi.",
+	"searchsuggest-containing-html": "Eči sivuloi, kudamis on <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

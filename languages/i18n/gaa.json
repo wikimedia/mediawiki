@@ -1018,5 +1018,6 @@
 	"skin-action-move": "Tsi",
 	"renameuser-error-temp-user": "Onyɛŋ otsake be kukuoo mli akauntu lɛ gbɛi \" $1 \".",
 	"renameuser-error-temp-user-reserved": "Onyɛŋ okɛ \" $1 \" atsu nii. Akɛto aha be kukuoo mli akauntu.",
-	"temp-user-unable-to-acquire": "Anyɛɛɛ ana be kukuoo mli akauntu Nifeelɔgbɛ. Ofainɛ kaa ekoŋŋ."
+	"temp-user-unable-to-acquire": "Anyɛɛɛ ana be kukuoo mli akauntu Nifeelɔgbɛ. Ofainɛ kaa ekoŋŋ.",
+	"searchsuggest-containing-html": "Taomɔ baafai ni yɔɔ<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

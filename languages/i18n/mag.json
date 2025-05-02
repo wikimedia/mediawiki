@@ -1154,5 +1154,6 @@
 	"blockedtext-intended-blockee": "अभिप्रेत अबरोधित: $1",
 	"blockedtext-contact-blocker-admin": "ब्लॉक् पर चर्चा करेला अपने $1 वा अन्य [[{{MediaWiki:Grouppage-sysop}}|ब्यवस्थापक]] से सम्पर्क कर सकही ।",
 	"blockedtext-block-ip": "अपनेके बर्तमान आईपी पता $1 हे ।",
-	"blockedtext-include-details-queries": "कृपया अपन कौनो प्रश्नमे उपरोक्त सब बिवरण सामिल करी ।"
+	"blockedtext-include-details-queries": "कृपया अपन कौनो प्रश्नमे उपरोक्त सब बिवरण सामिल करी ।",
+	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> वाला पन्ना खोजहू"
 }

@@ -3915,5 +3915,6 @@
 	"benefit-3-description": "Preferensi sané ngamersidayang ragané ngostumisasi pangalaman ragané.",
 	"temp-user-unable-to-acquire": "Nénten prasida ngamolihang wasta panganggé akun sauntara. Durus sobyahang malih.",
 	"interwiki-title-norights": "Cingak data interwiki",
-	"interwiki_1": "inggih"
+	"interwiki_1": "inggih",
+	"searchsuggest-containing-html": "Selehin kaca sané madaging <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

@@ -860,5 +860,6 @@
 	"blockedtext-reason-comment": "𐍃𐍉 𐍆𐌰𐌹𐍂𐌹𐌽𐌰 𐌹𐍃𐍄 <em>$1</em>.",
 	"blockedtext-start-time": "𐌰𐌽𐌰𐍃𐍄𐍉𐌳𐌴𐌹𐌽𐍃 𐌰𐌽𐍃𐌹𐌽𐍃: $1",
 	"blockedtext-block-ip": "𐌽𐌿 IP 𐍃𐍄𐌰𐌸𐍃 𐌸𐌴𐌹𐌽𐍃 𐌹𐍃𐍄 $1.",
-	"interwiki_reasonfield": "𐍆𐌰𐌹𐍂𐌹𐌽𐌰:"
+	"interwiki_reasonfield": "𐍆𐌰𐌹𐍂𐌹𐌽𐌰:",
+	"searchsuggest-containing-html": "𐍃𐍉𐌺𐌴𐌹 𐌰𐌻𐌻𐌰𐌽𐍃 𐌻𐌰𐌿𐌱𐌰𐌽𐍃 𐌸𐌰𐌽𐌶𐌴𐌹 𐌷𐌰𐌱𐌰𐌽𐌳 <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

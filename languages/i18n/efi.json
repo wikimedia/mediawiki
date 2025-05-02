@@ -482,5 +482,6 @@
 	"blockedtext-contact-blocker-admin": "Afo emekeme ndika mbine $1 midịghe en̄wen [[{{MediaWiki:Grouppage-sysop}}|adise mban̄a]] man eneme se ikanade eberi.",
 	"blockedtext-block-ip": "Obufa IP adres fo edi $1.",
 	"blockedtext-include-details-queries": "Mbọk sịn kpukpru ntọt emi ke mbụme ekededi emi afo obụpde.",
-	"renameusersubmit": "Sịn"
+	"renameusersubmit": "Sịn",
+	"searchsuggest-containing-html": "Yom mme ikpehe <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>ọdọn̄ọde"
 }

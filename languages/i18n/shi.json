@@ -1058,5 +1058,6 @@
 	"skin-action-protect": "Ḥbu",
 	"skin-action-undelete": "Rard may mayḥiydn",
 	"skin-action-delete": "Kks",
-	"skin-action-move": "Smatti"
+	"skin-action-move": "Smatti",
+	"searchsuggest-containing-html": "Siggl tasniwin ɣ illa <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

@@ -4346,5 +4346,6 @@
 	"interwiki-language-links": "跨语言前缀",
 	"interwiki-language-description": "这些前缀匹配定义的语言代码，并在加入页面时用于创建“{{int:otherlanguages}}”列表。",
 	"interwiki-global-language-links": "全域跨语言前缀",
-	"interwiki-global-language-description": "这些前缀与定义的语言代码匹配，并在添加到页面时用于创建“{{int:otherlanguages}}”列表。由于它们是从全域配置继承的，因此只能在源wiki上进行编辑。不能在本地覆盖全域跨语言定义。"
+	"interwiki-global-language-description": "这些前缀与定义的语言代码匹配，并在添加到页面时用于创建“{{int:otherlanguages}}”列表。由于它们是从全域配置继承的，因此只能在源wiki上进行编辑。不能在本地覆盖全域跨语言定义。",
+	"searchsuggest-containing-html": "搜索包含<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>的页面"
 }

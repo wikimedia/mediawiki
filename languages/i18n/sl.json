@@ -4182,5 +4182,6 @@
 	"interwiki-language-links": "Medjezikovne predpone",
 	"interwiki-language-description": "Te predpone se ujemajo z opredeljenimi oznakami jezika in bodo uporabljene za ustvarjanje seznama »{{int:otherlanguages}}«, ko bodo dodane na stran.",
 	"interwiki-global-language-links": "Globalne medjezikovne predpone",
-	"interwiki-global-language-description": "Te predpone se ujemajo z opredeljenimi oznakami jezika in bodo uporabljene za ustvarjanje seznama »{{int:otherlanguages}}«, ko bodo dodane na stran. Ker so podedovani iz globalne konfiguracije, jih je mogoče urejati le v izvornem vikiju. Globalnih medjezikovnih opredelitev ni mogoče preglasiti lokalno."
+	"interwiki-global-language-description": "Te predpone se ujemajo z opredeljenimi oznakami jezika in bodo uporabljene za ustvarjanje seznama »{{int:otherlanguages}}«, ko bodo dodane na stran. Ker so podedovani iz globalne konfiguracije, jih je mogoče urejati le v izvornem vikiju. Globalnih medjezikovnih opredelitev ni mogoče preglasiti lokalno.",
+	"searchsuggest-containing-html": "Poišči strani, ki vsebujejo <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

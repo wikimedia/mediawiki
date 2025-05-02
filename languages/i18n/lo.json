@@ -821,5 +821,6 @@
 	"blockedtext-contact-blocker-admin": "ທ່ານສາມາດຕິດຕໍ່ $1 ຫຼື [[{{MediaWiki:Grouppage-sysop}}|ຜູ້ດູແລລະບົບ]]ທ່ານອື່ນເພື່ອປຶກສາຫາລືກ່ຽວກັບການບລັອກໄດ້",
 	"blockedtext-block-ip": "ເລກທີ່ຢູ່ໄອພີປະຈຸບັນຂອງທ່ານແມ່ນ $1",
 	"blockedtext-block-id": "ໄອດີການບລັອກ #$1",
-	"blockedtext-include-details-queries": "ກະລຸນາລວມລາຍລະອຽດຂ້າງເທິງທັງໝົດໃນແບບສອບຖາມໃດໆ ທີ່ທ່ານເຮັດ"
+	"blockedtext-include-details-queries": "ກະລຸນາລວມລາຍລະອຽດຂ້າງເທິງທັງໝົດໃນແບບສອບຖາມໃດໆ ທີ່ທ່ານເຮັດ",
+	"searchsuggest-containing-html": "ຊອກຫາໜ້າເວັບທີ່ມີ <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

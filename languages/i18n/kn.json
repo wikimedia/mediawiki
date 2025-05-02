@@ -1864,5 +1864,6 @@
 	"interwiki_0": "ಇಲ್ಲ",
 	"interwiki_edit": "ಸಂಪಾದಿಸಿ",
 	"interwiki_reasonfield": "ಕಾರಣ:",
-	"interwiki_addbutton": "ಸೇರಿಸು"
+	"interwiki_addbutton": "ಸೇರಿಸು",
+	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> ಹೊಂದಿರುವ ಪುಟಗಳಿಗಾಗಿ ಹುಡುಕಿ"
 }

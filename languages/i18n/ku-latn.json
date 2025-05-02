@@ -1988,5 +1988,6 @@
 	"right-renameuser": "Navê bikarhêneran biguhêre",
 	"interwiki_1": "erê",
 	"interwiki_edit": "Biguhêre",
-	"interwiki_reasonfield": "Sedem:"
+	"interwiki_reasonfield": "Sedem:",
+	"searchsuggest-containing-html": "Li rûpelên ku <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> dihewînin bigere"
 }

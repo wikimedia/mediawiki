@@ -4192,5 +4192,6 @@
 	"interwiki-language-links": "Intertaalvoorvoegsels",
 	"interwiki-language-description": "Deze voorvoegsels komen overeen met gedefinieerde taalcode en worden gebruikt om de lijst \"{{int:otherlanguages}}\" te maken als deze aan een pagina wordt toegevoegd.",
 	"interwiki-global-language-links": "Globale taalvoorvoegsels",
-	"interwiki-global-language-description": "Deze voorvoegsels komen overeen met gedefinieerde taalcodes en worden gebruikt om de lijst “{{int:otherlanguages}}” te maken wanneer ze aan een pagina worden toegevoegd. Omdat ze worden overgenomen van een globale configuratie, kunnen ze alleen worden bewerkt op de bronwiki. Globale definities van taalkoppelingen kunnen niet lokaal worden overschreven."
+	"interwiki-global-language-description": "Deze voorvoegsels komen overeen met gedefinieerde taalcodes en worden gebruikt om de lijst “{{int:otherlanguages}}” te maken wanneer ze aan een pagina worden toegevoegd. Omdat ze worden overgenomen van een globale configuratie, kunnen ze alleen worden bewerkt op de bronwiki. Globale definities van taalkoppelingen kunnen niet lokaal worden overschreven.",
+	"searchsuggest-containing-html": "Zoek naar pagina's die <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> bevatten"
 }

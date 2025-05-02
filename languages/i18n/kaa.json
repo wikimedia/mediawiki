@@ -2176,5 +2176,6 @@
 	"interwiki-title-norights": "Wikiaralıq maǵlıwmat penen tanısıw",
 	"interwiki_edit": "Redaktorlaw",
 	"interwiki_reasonfield": "Sebebi:",
-	"log-name-interwiki": "Interwiki keste jurnalı"
+	"log-name-interwiki": "Interwiki keste jurnalı",
+	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> tekstin óz ishine alǵan betlerdi izlew"
 }

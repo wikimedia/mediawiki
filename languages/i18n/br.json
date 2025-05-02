@@ -3669,5 +3669,6 @@
 	"logentry-interwiki-iw_delete": "$1 {{GENDER:$2|en deus|he deus}} tennet ar rakger \"$4\" diwar an daolenn etrewiki",
 	"log-description-interwiki": "Ur marilh eus ar c'hemmoù e [[Special:Interwiki|taolenn an etrewiki]] eo.",
 	"right-interwiki": "Kemmañ ar roadennoù etrewiki",
-	"action-interwiki": "kemmañ ar moned etrewiki-mañ"
+	"action-interwiki": "kemmañ ar moned etrewiki-mañ",
+	"searchsuggest-containing-html": "Klask pajennoù a zo <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> enno"
 }

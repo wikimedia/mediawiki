@@ -2118,5 +2118,6 @@
 	"renameuser-page-unmoved": "صفحه $1 نه تونیت په $2 جاه په جاه بیت.",
 	"log-name-renameuser": "آمار نام بدل کتن کاربر",
 	"renameuser-move-log": "اتوماتیکی صفحه جاه په جاه بیت وهدی که کاربر نام بدل بی \"[[User:$1|$1]]\" به \"[[User:$2|$2]]\"",
-	"right-renameuser": "عوض کتن نام کابران"
+	"right-renameuser": "عوض کتن نام کابران",
+	"searchsuggest-containing-html": "شۏھاز مہ تاکانءِ تۏکا <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

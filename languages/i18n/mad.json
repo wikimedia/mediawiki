@@ -764,5 +764,6 @@
 	"blockedtext-intended-blockee": "Sekkèp panganḍhângan: $1",
 	"blockedtext-contact-blocker-admin": "Bâ'na ngennèng ngojjhâ $1 otabâ [[{{MediaWiki:Grouppage-sysop}}|administrator]] ka'angghuy arembhâk ḍhâng-anḍhângan.",
 	"blockedtext-block-ip": "Lamat IPna Bâ'na satèya $1",
-	"blockedtext-include-details-queries": "Mara pamaso' kabbhi pa-apa sè èkaparlo è attas è ḍâlem pètanya sè Bâ'na tanya'aghi."
+	"blockedtext-include-details-queries": "Mara pamaso' kabbhi pa-apa sè èkaparlo è attas è ḍâlem pètanya sè Bâ'na tanya'aghi.",
+	"searchsuggest-containing-html": "Sarè kaca sè aèsse <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

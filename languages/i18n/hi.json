@@ -3670,5 +3670,6 @@
 	"interwiki-global-links": "वैश्विक अन्तरविकि उपसर्ग",
 	"interwiki-global-description": "ये उपसर्ग वैश्विक विन्यास से विरासत में मिले हैं और इन्हें केवल स्रोत विकि पर ही सम्पादित किया जा सकता है।",
 	"interwiki-local-description": "ये उपसर्ग स्थानीय रूप में उपलब्ध हैं। वैश्विक विन्यास के साथ कोई भी प्रतिलिपि वैश्विक परिभाषा को अध्यारोहण करेगा।",
-	"interwiki-links": "अन्तरविकि उपसर्ग"
+	"interwiki-links": "अन्तरविकि उपसर्ग",
+	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> से युक्त पृष्ठ खोजें"
 }

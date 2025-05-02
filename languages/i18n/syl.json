@@ -1014,5 +1014,6 @@
 	"blockedtext-intended-blockee": "ꠛꠟꠇ ꠇꠞꠣꠞ ꠟꠣꠉꠤ ꠪ $1",
 	"blockedtext-contact-blocker-admin": "$1 ꠅꠞꠘꠟꠉꠦ ꠎꠥꠉꠣꠎꠥꠉ ꠇꠞ꠆ꠔꠣ ꠙꠣꠞꠂꠘ ꠀꠞ꠆ꠘꠣꠄ ꠀꠞꠇ [[{{MediaWiki:Grouppage-sysop}}|ꠌꠣꠟꠣꠅꠞꠣꠞ]] ꠟꠉꠦ ꠁ ꠛꠟꠇ ꠟꠂꠀ ꠝꠣꠔꠂꠘ ⁕",
 	"blockedtext-block-ip": "ꠀꠙ꠆ꠘꠣꠞ ꠀꠁꠙꠤꠞ ꠑꠤꠇꠣꠘꠣ ꠅꠁꠟꠧ $1 ⁕",
-	"blockedtext-include-details-queries": "ꠏꠤꠈꠣꠘꠤꠞ ꠡꠝꠄ ꠖꠄꠀ ꠇꠞꠤ ꠃꠙ꠆ꠞꠞ ꠢꠇꠟ꠆ꠔꠣꠡꠢ ꠖꠤꠛꠣ ⁕"
+	"blockedtext-include-details-queries": "ꠏꠤꠈꠣꠘꠤꠞ ꠡꠝꠄ ꠖꠄꠀ ꠇꠞꠤ ꠃꠙ꠆ꠞꠞ ꠢꠇꠟ꠆ꠔꠣꠡꠢ ꠖꠤꠛꠣ ⁕",
+	"searchsuggest-containing-html": "ꠚꠣꠔꠣ ꠕꠥꠇꠣꠃꠇ꠆ꠇꠣ ꠎꠦꠘꠅ <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

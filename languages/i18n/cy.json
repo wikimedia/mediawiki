@@ -3635,5 +3635,6 @@
 	"right-interwiki": "Golygu data rhyngwici",
 	"action-interwiki": "newid yr eitem rhyngwici hwn",
 	"interwiki-links": "Rhagddodiaid interwici",
-	"interwiki-language-links": "Rhagddodiaid rhyngiaith"
+	"interwiki-language-links": "Rhagddodiaid rhyngiaith",
+	"searchsuggest-containing-html": "Chwilio am dudalennau sy'n cynnwys <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

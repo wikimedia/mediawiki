@@ -1209,5 +1209,6 @@
 	"blockedtext-intended-blockee": "ရည်ရွယ်ထားရေ blockee- $1",
 	"blockedtext-contact-blocker-admin": "ပိတ်ဆို့ခြင်းကို ဆွီးနွီးရန် မင်းစွာ $1 သို့မဟုတ် အခြား [[{{MediaWiki:Grouppage-sysop}}|စီမံခန့်ခွဲသူ]] ကို ဆက်သွယ်နိုင်ပါရေ။",
 	"blockedtext-block-ip": "သင့်လက်ဟိ IP လိပ်စာစွာ $1 ဖြစ်ရေ။",
-	"blockedtext-include-details-queries": "မင်းမီးသမျှမေးခွန်းတိတွင် အထက်မှာပြထားရေ အသေးစိတ်အချက်တိ အားလုံးကို ထည့်သွင်းပါ။"
+	"blockedtext-include-details-queries": "မင်းမီးသမျှမေးခွန်းတိတွင် အထက်မှာပြထားရေ အသေးစိတ်အချက်တိ အားလုံးကို ထည့်သွင်းပါ။",
+	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>ပါဝင်ရေ စာမျက်နှာတိ ယှာဖွီရန်"
 }

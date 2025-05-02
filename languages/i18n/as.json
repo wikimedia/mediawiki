@@ -2666,5 +2666,6 @@
 	"interwiki_0": "নহয়",
 	"interwiki_edit": "সম্পাদনা কৰক",
 	"interwiki_reasonfield": "কাৰণ:",
-	"interwiki_addbutton": "যোগ"
+	"interwiki_addbutton": "যোগ",
+	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> থকা পৃষ্ঠাসমূহ সন্ধান কৰক"
 }

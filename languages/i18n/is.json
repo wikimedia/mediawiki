@@ -3588,5 +3588,6 @@
 	"interwiki_edit": "Breyta",
 	"interwiki_reasonfield": "Ástæða:",
 	"interwiki-logtext": "Skoða aðgerðaskrá",
-	"interwiki_addbutton": "Bæta við"
+	"interwiki_addbutton": "Bæta við",
+	"searchsuggest-containing-html": "Leita að síðum sem innihalda <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

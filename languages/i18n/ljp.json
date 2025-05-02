@@ -1533,5 +1533,6 @@
 	"blockedtext-contact-blocker-admin": "Niku dapok ngehubungi $1 atawa [[{{MediaWiki:Grouppage-sysop}}|pengurus]] guwai mupakatko pemblokiran sina.",
 	"blockedtext-block-ip": "Jenganan IP mu ganta sa yakdolah $1.",
 	"blockedtext-include-details-queries": "Harop kurukko unyin perinciyan di unggak dilom inggal pertanyaan say Niku ajuko.",
-	"renameuser-renamed-notice": "{{GENDER:$1|pemakai}} hinji radu buganti gelar.\nLog penggantiyan wat di réperénsi di bah."
+	"renameuser-renamed-notice": "{{GENDER:$1|pemakai}} hinji radu buganti gelar.\nLog penggantiyan wat di réperénsi di bah.",
+	"searchsuggest-containing-html": "Sepok halaman sai buisi <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

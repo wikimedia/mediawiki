@@ -1663,5 +1663,6 @@
 	"blockedtext-contact-blocker-admin": "Tū mazzi kōntaktitwei si sen $1 anga kittan [[{{MediaWiki:Grouppage-sysop}}|perwaldītajan]] kāi diskutītwei blōkisenin.",
 	"blockedtext-block-ip": "Twajā bigantī IP adressi ast $1.",
 	"blockedtext-block-id": "Blōkisenes ID nummeri ast #$1.",
-	"blockedtext-include-details-queries": "Madli ebimmais wissans šins malkans en wisēimans prasīsenins ezze blōkisenin."
+	"blockedtext-include-details-queries": "Madli ebimmais wissans šins malkans en wisēimans prasīsenins ezze blōkisenin.",
+	"searchsuggest-containing-html": "Laukīs pāusans turīnts <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

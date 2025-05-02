@@ -2506,5 +2506,6 @@
 	"renameuser-renamed-notice": "ایس ورتن والے دا ناں بدلیا گیا اے۔\nناں بدلن والی لاگ اتے پتے لئی تھلے دتی گئی اے۔",
 	"interwiki-title-norights": "انٹر وکی ڈیٹا ویکھو",
 	"interwiki-legend-label": "کُنجی",
-	"interwiki_reasonfield": "وجہ:"
+	"interwiki_reasonfield": "وجہ:",
+	"searchsuggest-containing-html": "اس ٹرم نوں صفحےآں وچ کھوجو <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

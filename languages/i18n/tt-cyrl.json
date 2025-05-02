@@ -3834,5 +3834,6 @@
 	"interwiki_edit": "Үзгәртү",
 	"interwiki_reasonfield": "Сәбәп:",
 	"interwiki-logtext": "Көндәлекне карау",
-	"interwiki_addbutton": "Өстәү"
+	"interwiki_addbutton": "Өстәү",
+	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> ны үз эченә алган битләрне эзләү"
 }

@@ -2970,5 +2970,6 @@
 	"log-name-renameuser": "Log ganti ngaran",
 	"renameuser-move-log": "Otomatis mindahkeun kaca nalika ngaganti ngaran \"[[User:$1|$1]]\" jadi \"[[User:$2|$2]]\"",
 	"interwiki_1": "nya",
-	"interwiki_reasonfield": "Alesan:"
+	"interwiki_reasonfield": "Alesan:",
+	"searchsuggest-containing-html": "Paluruh kaca-kaca anu ngandung <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

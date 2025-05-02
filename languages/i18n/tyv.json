@@ -3777,5 +3777,6 @@
 	"benefit-1-description": "Сонуургаар арыннарыңарны көөр арганы бээр хайгаарал даңзызы.",
 	"benefit-2-description": "Төлевилелче киирген үүлеңерниң доктаамал даңзызы",
 	"benefit-3-description": "Дуржулгаңарны өйлеп алыр арганы бээр өйлээшкиннер.",
-	"interwiki_edit": "Эдер"
+	"interwiki_edit": "Эдер",
+	"searchsuggest-containing-html": "Мындыг чүүлдерлиг арыннарны дилээри: <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

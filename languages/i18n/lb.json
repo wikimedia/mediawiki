@@ -3647,5 +3647,6 @@
 	"action-interwiki": "dës Interwiki-Informatioun z'änneren",
 	"interwiki-global-links": "Global Interwikiprefixen",
 	"interwiki-local-links": "Lokal Interwikiprefixen",
-	"interwiki-links": "Interwiki-Prefixen"
+	"interwiki-links": "Interwiki-Prefixen",
+	"searchsuggest-containing-html": "No Säite mat <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> sichen"
 }

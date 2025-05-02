@@ -4215,5 +4215,6 @@
 	"interwiki-language-links": "Interlanguage-Präfixe",
 	"interwiki-language-description": "Diese Präfixe stimmen mit definierten Sprachcodes überein und werden zur Erstellung der Liste „{{int:otherlanguages}}“ beim Hinzufügen zu einer Seite verwendet.",
 	"interwiki-global-language-links": "Globale Interlanguage-Präfixe",
-	"interwiki-global-language-description": "Diese Präfixe stimmen mit definierten Sprachcodes überein und werden verwendet, um die Liste \"{{int: otherlanguages}}\" zu erstellen, wenn sie einer Seite hinzugefügt werden. Da sie von einer globalen Konfiguration geerbt werden, können sie nur im Quell-Wiki bearbeitet werden. Globale Sprachdefinitionen können nicht lokal überschrieben werden."
+	"interwiki-global-language-description": "Diese Präfixe stimmen mit definierten Sprachcodes überein und werden verwendet, um die Liste \"{{int: otherlanguages}}\" zu erstellen, wenn sie einer Seite hinzugefügt werden. Da sie von einer globalen Konfiguration geerbt werden, können sie nur im Quell-Wiki bearbeitet werden. Globale Sprachdefinitionen können nicht lokal überschrieben werden.",
+	"searchsuggest-containing-html": "Suche nach Seiten, die <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> enthalten"
 }

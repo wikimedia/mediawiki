@@ -1512,5 +1512,6 @@
 	"blockedtext-reason-comment": "La razón dá hue la siguienti: <em>$1</em>.",
 	"blockedtext-start-time": "Esmieçu del tarugu: $1",
 	"blockedtext-block-ip": "La tu dereción IP d'agora es $1",
-	"renameuser-page-moved": "S'á movíu la página $1 a $2."
+	"renameuser-page-moved": "S'á movíu la página $1 a $2.",
+	"searchsuggest-containing-html": "Precural páginas que recadin <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

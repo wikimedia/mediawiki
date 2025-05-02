@@ -2807,5 +2807,6 @@
 	"logentry-interwiki-iw_delete": "$1 {{GENDER:$2|het}} die voorvoegsel \"$4\" uit die interwikitabel verwyder",
 	"log-description-interwiki": "Die is 'n logboek van veranderinge aan die [[Special:Interwiki|interwikitabel]].",
 	"right-interwiki": "Wysig interwikidata",
-	"action-interwiki": "verander hierdie interwiki-item"
+	"action-interwiki": "verander hierdie interwiki-item",
+	"searchsuggest-containing-html": "Soek vir bladsye wat <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> bevat"
 }

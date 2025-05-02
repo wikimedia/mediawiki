@@ -4051,5 +4051,6 @@
 	"interwiki-language-links": "Medžujezyčne prědstavky",
 	"interwiki-language-description": "Tute prědstavky odpovědajut oprěděljenym jezyčnym kodam i budut koristane za stvorjenje spiska «{{int:otherlanguages}}» pri dodavanju na stranici.",
 	"interwiki-global-language-links": "Globalne medžujezyčne prědstavky",
-	"interwiki-global-language-description": "Tute prědstavky odpovědajut oprěděljenym jezyčnym kodam i budut koristane za stvorjenje spiska «{{int:otherlanguages}}» pri dodavanju na stranici. Zatože one byli naslědžene od globalnoj konfiguracije, one mogut byti izpravjene samo na izvornoj viki. Globalne medžujezyčne oprěděljenja ne mogut byti zaměnjene lokalnymi."
+	"interwiki-global-language-description": "Tute prědstavky odpovědajut oprěděljenym jezyčnym kodam i budut koristane za stvorjenje spiska «{{int:otherlanguages}}» pri dodavanju na stranici. Zatože one byli naslědžene od globalnoj konfiguracije, one mogut byti izpravjene samo na izvornoj viki. Globalne medžujezyčne oprěděljenja ne mogut byti zaměnjene lokalnymi.",
+	"searchsuggest-containing-html": "Iskati stranice sodrživajuče <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

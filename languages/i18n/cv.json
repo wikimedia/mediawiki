@@ -3965,5 +3965,6 @@
 	"interwiki_edit": "Тӳрлет",
 	"interwiki_reasonfield": "Сӑлтав:",
 	"interwiki-logtext": "Журнала пӑхӑр",
-	"interwiki_addbutton": "Хуш"
+	"interwiki_addbutton": "Хуш",
+	"searchsuggest-containing-html": "Текстра <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> пур страницӑсене шырасси."
 }

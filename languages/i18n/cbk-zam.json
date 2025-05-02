@@ -604,5 +604,6 @@
 	"skin-action-move": "Mobe",
 	"blockedtext-reason-comment": "El razon ya dale ay: <em>$1</em>.",
 	"interwiki_1": "Sí",
-	"interwiki-logtext": "Mira con el registro"
+	"interwiki-logtext": "Mira con el registro",
+	"searchsuggest-containing-html": "Busca con el maga pagina aquel tiene <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

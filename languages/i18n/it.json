@@ -4112,5 +4112,6 @@
 	"interwiki-local-description": "Questi prefissi esistono localmente. Eventuali duplicati con la configurazione globale sovrascriveranno la definizione globale.",
 	"interwiki-links": "Prefissi interwiki",
 	"interwiki-language-links": "Prefissi interlingua",
-	"interwiki-language-description": "Questi prefissi corrispondono codici di lingua definiti e verranno utilizzati per creare l'elenco \"{{int:otherlanguages}}\" quando aggiunti a una pagina."
+	"interwiki-language-description": "Questi prefissi corrispondono codici di lingua definiti e verranno utilizzati per creare l'elenco \"{{int:otherlanguages}}\" quando aggiunti a una pagina.",
+	"searchsuggest-containing-html": "Cerca le pagine che contengono <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

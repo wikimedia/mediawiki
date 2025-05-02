@@ -578,5 +578,6 @@
 	"nstab-mainpage": "Hello jaɓɓorgo",
 	"skin-action-protect": "Hisnu",
 	"skin-action-delete": "Momtu",
-	"skin-action-move": "Dirtin"
+	"skin-action-move": "Dirtin",
+	"searchsuggest-containing-html": "Yiylo kelle coomɗe $1<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

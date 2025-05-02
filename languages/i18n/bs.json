@@ -3486,5 +3486,6 @@
 	"log-name-interwiki": "Zapisnik tabele interwikija",
 	"log-description-interwiki": "Ovo je zapisnik izmjena na [[Special:Interwiki|interwiki tabeli]].",
 	"right-interwiki": "Uređivanje interwiki podataka",
-	"action-interwiki": "mijenjate ovu stavku interwikija"
+	"action-interwiki": "mijenjate ovu stavku interwikija",
+	"searchsuggest-containing-html": "Pretraži stranice koje sadrže <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

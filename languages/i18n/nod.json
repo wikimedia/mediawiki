@@ -502,5 +502,6 @@
 	"blockedtext-intended-blockee": "ᨹᩪ᩶​ᨩᩲ᩶​ᨸᩮᩢ᩶ᩣ​ᩉ᩠ᨾᩣ᩠ᨿ​: $1",
 	"blockedtext-contact-blocker-admin": "ᨴ᩵ᩤ᩠ᨶ​ᩉᩖ᩶ᩣ᩠ᨦ​ᨲᩥ᩠ᨯ​ᨲᩬᩴ᩵​ $1​ ᨣᩤ​ [[{{MediaWiki:Grouppage-sysop}}|ᨤᩫ᩠ᨶ​ᨹᩬᩴ᩵​ᨣᩬ᩠ᨿ​ᩁᨷᩫ᩠ᨷ]]ᨤᩫ᩠ᨶ​ᩋᩨ᩠᩵ᨶ​ᨻᩮᩬᩨ᩵ᩋ​ᨸᩮᩥᩢ᩠ᨠᩇᩣ​ᨠ᩠᩵ᨿᩅ​ᨠᩢ᩠ᨷ​ᨠᩣ᩠ᩁ​ᨠᩮᩥᩢ᩠ᨯ​ᨠᩢ᩠᩶ᨶ​ᨯᩱ᩶",
 	"blockedtext-block-ip": "ᩃᩮ᩠ᨡ​ᩋᩱᨽᩦ​ᨷᩢ᩠ᨯ​ᨯ᩠᩵ᨿᩅ​ᨶᩦ᩶​ᨡᩬᨦ​ᨴ᩵ᩣ᩠ᨶ​ᨤᩨ​ $1",
-	"blockedtext-include-details-queries": "ᨡᩬᩴ​ᨴ᩵ᩤ᩠ᨶ​ᩁᩬᨾ​ᩐᩣ​ᩁᩣ᩠ᨿ​ᩃᩋ᩠ᨿᨯ​ᨻᩣ᩠ᨿ​ᨷᩫ᩠ᨶ​ᨩᩩᩋᩢ᩠ᨶᨶᩲ​ᨠᩣ᩠ᩁ​ᩈᩨ᩵​ᩈᩣ᩠ᩁ​ᨴᩘ᩠ᩃᩣ᩠ᨿᨠ᩠᩵ᨿᩅ​ᨠᩢ᩠ᨷ​ᨠᩣ᩠ᩁ​ᨠᩮᩥᩢ᩠ᨯ​ᨠᩢ᩠᩶ᨶ​ᨶᩦ᩶​ᨡᩬᨦ​ᨴ᩵ᩤ᩠ᨶ"
+	"blockedtext-include-details-queries": "ᨡᩬᩴ​ᨴ᩵ᩤ᩠ᨶ​ᩁᩬᨾ​ᩐᩣ​ᩁᩣ᩠ᨿ​ᩃᩋ᩠ᨿᨯ​ᨻᩣ᩠ᨿ​ᨷᩫ᩠ᨶ​ᨩᩩᩋᩢ᩠ᨶᨶᩲ​ᨠᩣ᩠ᩁ​ᩈᩨ᩵​ᩈᩣ᩠ᩁ​ᨴᩘ᩠ᩃᩣ᩠ᨿᨠ᩠᩵ᨿᩅ​ᨠᩢ᩠ᨷ​ᨠᩣ᩠ᩁ​ᨠᩮᩥᩢ᩠ᨯ​ᨠᩢ᩠᩶ᨶ​ᨶᩦ᩶​ᨡᩬᨦ​ᨴ᩵ᩤ᩠ᨶ",
+	"searchsuggest-containing-html": "ᨪᩰᩬᩡᩉᩣᩉ᩠ᨶ᩶ᩣᨴᩦ᩵ᨾᩦ<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

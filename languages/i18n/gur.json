@@ -695,5 +695,6 @@
 	"skin-action-protect": "Gu-a",
 	"skin-action-delete": "Saalum",
 	"skin-action-move": "Lɛgum",
-	"temp-user-unable-to-acquire": "A kan nyaŋɛ yo'e Nananewa akanti yu'urɛ, malum le zigɛ bisɛ"
+	"temp-user-unable-to-acquire": "A kan nyaŋɛ yo'e Nananewa akanti yu'urɛ, malum le zigɛ bisɛ",
+	"searchsuggest-containing-html": "Ɛ pɛgesi'a n tari <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

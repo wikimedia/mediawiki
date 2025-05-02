@@ -768,5 +768,6 @@
 	"blockedtext-reason-comment": "ለትሃየባ ሰበብ <em>$1</em> ቱ.",
 	"blockedtext-start-time": "ክርፈት ኣንበቶት: $1",
 	"blockedtext-expiration-time": "ክርፈት ኣክለሶት: $1",
-	"blockedtext-block-ip": "ናይ ኣዘ ዕንዋን IP ናይካ $1 ቱ."
+	"blockedtext-block-ip": "ናይ ኣዘ ዕንዋን IP ናይካ $1 ቱ.",
+	"searchsuggest-containing-html": "ክኒ ለተሌ ለጸበጥ አግጸት ሕዜ <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

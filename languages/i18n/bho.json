@@ -1639,5 +1639,6 @@
 	"blockedtext-intended-blockee": "जेकरा खातिर रोक लगावल गइल: $1",
 	"blockedtext-contact-blocker-admin": "आप $1 से चाहे अउरी केहू [[{{MediaWiki:Grouppage-sysop}}|प्रबंधक]] से रोक (ब्लॉक) के बारे में चर्चा क सकत बानी।",
 	"blockedtext-block-ip": "राउर वर्तमान आइपी पता $1 बा।",
-	"blockedtext-include-details-queries": "किरपा कइ के कौनों किसिम के पुछार करे में ऊपर दिहल सगरी डिटेल सभ के शामिल करीं।"
+	"blockedtext-include-details-queries": "किरपा कइ के कौनों किसिम के पुछार करे में ऊपर दिहल सगरी डिटेल सभ के शामिल करीं।",
+	"searchsuggest-containing-html": "पन्ना खोजीं जिनहन में <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> होखे"
 }

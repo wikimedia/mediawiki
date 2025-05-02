@@ -536,5 +536,6 @@
 	"renameuserold": "alta-munk nim:",
 	"renameusernew": "chxi nim:",
 	"renameuserreason": "Qhata:",
-	"renameusersubmit": "Mamuk ukuk"
+	"renameusersubmit": "Mamuk ukuk",
+	"searchsuggest-containing-html": "tilay t’ɬap pipa pus t’uʔan <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

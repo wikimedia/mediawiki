@@ -551,5 +551,6 @@
 	"searchsuggest-containing": "Eči šivuja kumpašissa on",
 	"skin-view-create-local": "Lisyä paikallini kuvauš",
 	"nstab-mainpage": "Piäšivu",
-	"skin-action-move": "Šiirrä"
+	"skin-action-move": "Šiirrä",
+	"searchsuggest-containing-html": "Eči šivuja, kumpašissa on <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

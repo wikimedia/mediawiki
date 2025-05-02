@@ -2197,5 +2197,6 @@
 	"interwiki_0": "nee",
 	"interwiki_edit": "Bewurkje",
 	"interwiki_reasonfield": "Reden:",
-	"interwiki_addbutton": "Tafoegje"
+	"interwiki_addbutton": "Tafoegje",
+	"searchsuggest-containing-html": "Siden sykje mei as ynhâld <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

@@ -2926,5 +2926,6 @@
 	"interwiki_edited": "Lu prifissi \"$1\" vinni canciatu ntâ tabedda di li interwiki.",
 	"interwiki_editerror": "Mpussìbbili mudificari lu prifissi \"$1\" nnâ tabedda di li interwiki.\nLu prifissu putissi èssiri ca non c'è.",
 	"interwiki-badprefix": "Lu prifissu interwiki \"$1\" cunteni caràttiri non vàlidi",
-	"right-interwiki": "Mudìfica li dati interwiki"
+	"right-interwiki": "Mudìfica li dati interwiki",
+	"searchsuggest-containing-html": "Riscedi i pàggini chi cuntèninu <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

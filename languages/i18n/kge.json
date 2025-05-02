@@ -2101,5 +2101,6 @@
 	"blockedtext-contact-blocker-admin": "Niku panday ngahubungi $1 atawa [[{{MediaWiki:Grouppage-sysop}}|pangingun]] untuk ngarombakko pamblokiran sina.",
 	"blockedtext-block-ip": "Alamat IP mu ganta sa joda da $1.",
 	"blockedtext-include-details-queries": "Harap kurukko unyin parinciyan dinggak dilom satiyap partanyaan say Niku ajuko.",
-	"renameusersubmit": "Kirim"
+	"renameusersubmit": "Kirim",
+	"searchsuggest-containing-html": "Sopok'i halaman sai buisi <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

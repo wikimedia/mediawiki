@@ -751,5 +751,6 @@
 	"blockedtext-made-by": "سکتن تله دبوات اوليه $1.",
 	"blockedtext-reason-comment": "سبب يڠ دبري اياله <em>$1</em>.",
 	"blockedtext-start-time": "مولا سکت: $1",
-	"blockedtext-expiration-time": "تمت تيمڤوه سکتن: $1"
+	"blockedtext-expiration-time": "تمت تيمڤوه سکتن: $1",
+	"searchsuggest-containing-html": "چاري لامن يڠ مڠاندوڠي <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

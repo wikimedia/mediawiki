@@ -1714,5 +1714,6 @@
 	"temp-user-unable-to-acquire": "Koskâpuddâsâš kevtteetubdâlduv kevtteenoomâ rähtim ij luhostum. Keččâl uđđâsist.",
 	"interwiki_reasonfield": "Suijâ:",
 	"interwiki-logtext": "Keejâ loki",
-	"interwiki_addbutton": "Lasseet"
+	"interwiki_addbutton": "Lasseet",
+	"searchsuggest-containing-html": "Uusâ siijđoid, moh siskeldeh <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

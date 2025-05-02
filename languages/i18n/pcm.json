@@ -520,5 +520,6 @@
 	"blockedtext-contact-blocker-admin": "You fit mesej $1 or anoda [[{{MediaWiki:Grouppage-sysop}}|administreto]] to diskos di blok.",
 	"blockedtext-block-ip": "Di IP adres wey you dey yuz now na $1",
 	"blockedtext-block-id": "Di blok ID na #$1.",
-	"blockedtext-include-details-queries": "Mek you ad evri info wey de abov for di mesej wey you wan send."
+	"blockedtext-include-details-queries": "Mek you ad evri info wey de abov for di mesej wey you wan send.",
+	"searchsuggest-containing-html": "Find pej-dem wey get <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

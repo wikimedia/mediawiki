@@ -2763,5 +2763,6 @@
 	"interwiki_0": "نە",
 	"interwiki_edit": "دەستکاری",
 	"interwiki_reasonfield": "هۆکار:",
-	"interwiki_deleted": "پێشگری «$1» سەرکەوتووانە لە خشتەی نێوانویکی لابرا."
+	"interwiki_deleted": "پێشگری «$1» سەرکەوتووانە لە خشتەی نێوانویکی لابرا.",
+	"searchsuggest-containing-html": "بەدوای ئەو پەڕانە بگەڕێ کە «<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>»یان تێدایە."
 }

@@ -4096,5 +4096,6 @@
 	"interwiki-language-links": "Prefìssi interlengoìstichi",
 	"interwiki-language-description": "A sti prefìssi chi corispóndan di còdichi de léngoa definîi e saiàn dêuviæ pe creâ a lìsta \"{{int:otherlanguages}}\" quànde azónti a 'na pàgina.",
 	"interwiki-global-language-links": "Prefìssi interlengoìstichi globâli",
-	"interwiki-global-language-description": "Sti prefìssi chi corispóndan a di còdichi de léngoa definîi, dêuviæ pe creâ a lìsta \"{{int:otherlanguages}}\" cómme che són azónti a 'na pàgina. Scicómme che són ereditæ da 'na configuraçión globâle, pêuan êse modificæ sôlo che in sciâ wiki d'òrìgine. E definiçioìn interlengoìstiche globâli no pêuan êse soviascrîte localménte."
+	"interwiki-global-language-description": "Sti prefìssi chi corispóndan a di còdichi de léngoa definîi, dêuviæ pe creâ a lìsta \"{{int:otherlanguages}}\" cómme che són azónti a 'na pàgina. Scicómme che són ereditæ da 'na configuraçión globâle, pêuan êse modificæ sôlo che in sciâ wiki d'òrìgine. E definiçioìn interlengoìstiche globâli no pêuan êse soviascrîte localménte.",
+	"searchsuggest-containing-html": "Çèrca inte pàgine che contêgnan <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

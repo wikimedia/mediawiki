@@ -749,5 +749,6 @@
 	"blockedtext-intended-blockee": "Orang tagat alit: $1",
 	"blockedtext-contact-blocker-admin": "Nuan ulih kontak $1 tauka [[{{MediaWiki:Grouppage-sysop}}|pengatur]] kena berandau pasal alit tu.",
 	"blockedtext-block-ip": "Address IP nuan kemaya tu nya $1",
-	"blockedtext-include-details-queries": "Minta nuan nyengkaum semua penerang di atas dalam sebarang tanya ti digaga nuan."
+	"blockedtext-include-details-queries": "Minta nuan nyengkaum semua penerang di atas dalam sebarang tanya ti digaga nuan.",
+	"searchsuggest-containing-html": "Giga lambar ke ngembuan <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

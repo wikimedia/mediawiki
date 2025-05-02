@@ -4143,5 +4143,6 @@
 	"interwiki-language-links": "Prefixos interlingüísticos",
 	"interwiki-language-description": "Estes prefixos correspóndense cos códigos de lingua definidos e úsanse para crear a lista \"{{int:otherlanguages}}\" ao engadirse a unha páxina.",
 	"interwiki-global-language-links": "Prefixos interlingüísticos globais",
-	"interwiki-global-language-description": "Estes prefixos correspóndense cos códigos de lingua definidos e úsanse para crear a lista \"{{int:otherlanguages}}\" ao engadirse a unha páxina. Dado que están herdados dunha configuración global, só se poden editar no wiki de orixe. As definicións interlingüísticas globais non se poden redefinir localmente."
+	"interwiki-global-language-description": "Estes prefixos correspóndense cos códigos de lingua definidos e úsanse para crear a lista \"{{int:otherlanguages}}\" ao engadirse a unha páxina. Dado que están herdados dunha configuración global, só se poden editar no wiki de orixe. As definicións interlingüísticas globais non se poden redefinir localmente.",
+	"searchsuggest-containing-html": "Procurar as páxinas que conteñan \"<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>\""
 }

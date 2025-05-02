@@ -2816,5 +2816,6 @@
 	"interwiki_deleting": "تاسې د \"$1\" مختاړی ړنګوی.",
 	"interwiki_addbutton": "ورگډول",
 	"interwiki-links": "ويکي‌خپلمنځي مختاړي",
-	"interwiki-language-links": "ژب‌خپلمنځي مختاړي"
+	"interwiki-language-links": "ژب‌خپلمنځي مختاړي",
+	"searchsuggest-containing-html": "هغه مخونه پلټل چې<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> لري"
 }

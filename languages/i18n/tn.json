@@ -384,5 +384,6 @@
 	"pagelang-reason": "Lebaka",
 	"paramvalidator-help-type-user-subtype-name": "leina la modirisi",
 	"nstab-mainpage": "Tsebe ya konokono",
-	"skin-action-delete": "Sutlha"
+	"skin-action-delete": "Sutlha",
+	"searchsuggest-containing-html": "Batla ditsebe tse di naleng <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

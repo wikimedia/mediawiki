@@ -476,5 +476,6 @@
 	"blockedtext-block-ip": "IP adress yawe ye $1.",
 	"blockedtext-include-details-queries": "Utushashire, uhire mwa bibutso byawe byoshe, amaytsi yoshi yoiri haluulu.",
 	"renameuserreason": "Kyokitumire:",
-	"renameusersubmit": "Lebeka"
+	"renameusersubmit": "Lebeka",
+	"searchsuggest-containing-html": "Xonda tushashali totuli ko <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

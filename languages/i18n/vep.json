@@ -3833,5 +3833,6 @@
 	"interwiki_edit": "Redaktiruida",
 	"interwiki_reasonfield": "Sü:",
 	"interwiki_addbutton": "Ližata",
-	"interwiki_edittext": "Interwiki-prefiksoiden redaktiruind"
+	"interwiki_edittext": "Interwiki-prefiksoiden redaktiruind",
+	"searchsuggest-containing-html": "Eci lehtpoled, miččiš om <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

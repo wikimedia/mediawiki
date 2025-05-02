@@ -2001,5 +2001,6 @@
 	"blockedtext-include-details-queries": "ದಯಮಲ್ತ್ ಈರ್ ಮಾಲ್ಪುನ ಒವ್ವೇ ಪ್ರಶ್ನೆಲೆಡ್ಲ್ ಮಿತ್ತ ಮಾಂತ ವಿವರೊಲೆನ್ ಸೇರಾಲೆ.",
 	"interwiki_edit": "ತಿದ್ದ್‘ಲೆ",
 	"interwiki_reasonfield": "ಕಾರಣ",
-	"interwiki_addbutton": "ಸೇರಾಲೆ"
+	"interwiki_addbutton": "ಸೇರಾಲೆ",
+	"searchsuggest-containing-html": "ಉಂದು<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> ಇಪ್ಪುನ ಪುಟೊಕ್ಲೆನ್ ನಾಡ್‌ಲೆ"
 }

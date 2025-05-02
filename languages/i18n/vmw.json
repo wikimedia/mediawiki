@@ -535,5 +535,6 @@
 	"blockedtext-contact-blocker-admin": "Mokhala olavula ni $1 wala mukina [[{{MediaWiki:Grouppage-sysop}}|amuheleli]] wiira mulanule mwaha anyu.",
 	"blockedtext-block-ip": "IP anyu vano ti $1.",
 	"blockedtext-block-id": "I a mulipa otthukela ti #$1.",
-	"blockedtext-include-details-queries": "Xontte mulepe sowooniherya sotheene nveliwaanyu olepa."
+	"blockedtext-include-details-queries": "Xontte mulepe sowooniherya sotheene nveliwaanyu olepa.",
+	"searchsuggest-containing-html": "Waavya makukhu arimomo <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

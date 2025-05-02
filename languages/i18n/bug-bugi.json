@@ -552,5 +552,6 @@
 	"skin-action-move": "ᨄᨒᨙᨌᨙ",
 	"renameuserold": "ᨕᨔᨛᨄᨁᨘᨊ ᨆᨀᨚᨀᨚᨓᨙ :",
 	"renameusernew": "ᨕᨔᨛᨄᨁᨘᨊ ᨅᨑᨘ :",
-	"renameusererrorinvalid": "ᨕᨔᨛᨄᨁᨘᨊ \"<nowiki>$1</nowiki>\" ᨉᨙᨊᨔᨖᨗ᨞"
+	"renameusererrorinvalid": "ᨕᨔᨛᨄᨁᨘᨊ \"<nowiki>$1</nowiki>\" ᨉᨙᨊᨔᨖᨗ᨞",
+	"searchsuggest-containing-html": "ᨔᨄ ᨒᨛᨇᨑ ᨆᨒᨗᨔᨛ <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

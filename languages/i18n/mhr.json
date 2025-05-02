@@ -3846,5 +3846,6 @@
 	"benefit-2-description": "Тыйын проектыш пыштыме эре улшо надыр списке.",
 	"benefit-3-description": "Тыйын опытетым тӧрлаташ пуышо параметр-влак",
 	"temp-user-unable-to-acquire": "Жаплан ыштыме ушнышо лӱмым налаш ок лий. Поро лий, эше тӧчен ончо.",
-	"interwiki_reasonfield": "Амал:"
+	"interwiki_reasonfield": "Амал:",
+	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> мутан лаштыклам кычалмаш"
 }

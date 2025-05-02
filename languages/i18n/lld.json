@@ -1066,5 +1066,6 @@
 	"blockedtext-expiration-time": "Fin dl bloch: $1",
 	"blockedtext-intended-blockee": "Utënt che dëssa unì blocà: $1",
 	"blockedtext-block-ip": "Ti adres IP atuela ie $1",
-	"interwiki-title-norights": "Lista di prefisc interwiki"
+	"interwiki-title-norights": "Lista di prefisc interwiki",
+	"searchsuggest-containing-html": "Chir les plates cun laite <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

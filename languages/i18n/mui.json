@@ -1150,5 +1150,6 @@
 	"blockedtext-contact-blocker-admin": "Dûlûr paca' ngari $1 apo [[{{MediaWiki:Grouppage-sysop}}|pengingon]] amen na' ngomongke pekaro penyadangan tu.",
 	"blockedtext-block-ip": "Ma'ini aderés IP Dulur yola $1.",
 	"blockedtext-include-details-queries": "Tûlûng maso'ke galo-galo pekaro di pûcû' ke jerû saben takonan yang na' Dulur enju'ke.",
-	"createacct-benefit-heading-temp-user": "Mokasî la mélo' beréjo di {{SITENAME}}. Gawé'la akun amen na' ngaksés kepaca'an laénnyo."
+	"createacct-benefit-heading-temp-user": "Mokasî la mélo' beréjo di {{SITENAME}}. Gawé'la akun amen na' ngaksés kepaca'an laénnyo.",
+	"searchsuggest-containing-html": "Kelo' laman yang di jerûnyo ado <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

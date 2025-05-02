@@ -1072,5 +1072,6 @@
 	"blockedtext-intended-blockee": "Niba'agö: $1",
 	"blockedtext-contact-blocker-admin": "Tola öfahuhuosi womba'agö andre khö $1 ma zui [[{{MediaWiki:Grouppage-sysop}}|administrator]].",
 	"blockedtext-block-ip": "Nomoro IP-mö iada'a ya'ia $1.",
-	"blockedtext-include-details-queries": "Faogö fefu da'ö yaŵa bakha ba ero wanofu sedöna öfa'ema."
+	"blockedtext-include-details-queries": "Faogö fefu da'ö yaŵa bakha ba ero wanofu sedöna öfa'ema.",
+	"searchsuggest-containing-html": "Alui nga'örö si so bakha <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }

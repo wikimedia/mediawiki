@@ -890,5 +890,6 @@
 	"blockedtext-intended-blockee": "Теубыдыныгъэм и щхьэусыгъуэр: $1",
 	"blockedtext-contact-blocker-admin": "Зыхуэптх хъунур $1 е нэгъуэщӀ[[{{MediaWiki:Grouppage-sysop}}|администраторхэм]], теубыдыгъэм теухуауэ.",
 	"blockedtext-block-ip": "Уи иджырей IP-адресыр - $1",
-	"blockedtext-include-details-queries": "КхъыӀэ мыхэр псори укъыщытхуэтхэкӀэ уи тхыгъэм хэтхэ."
+	"blockedtext-include-details-queries": "КхъыӀэ мыхэр псори укъыщытхуэтхэкӀэ уи тхыгъэм хэтхэ.",
+	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> иту напэкӀуэцӀ лъыхъуэн"
 }

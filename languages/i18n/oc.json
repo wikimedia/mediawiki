@@ -3225,5 +3225,6 @@
 	"log-name-interwiki": "Jornal de la taula interwiki",
 	"log-description-interwiki": "Aquò es lo jornal dels cambiaments dins la [[Special:Interwiki|taula interwiki]].",
 	"right-interwiki": "Modificar las donadas interwiki",
-	"action-interwiki": "modificar aquesta entrada interwiki"
+	"action-interwiki": "modificar aquesta entrada interwiki",
+	"searchsuggest-containing-html": "Cercar las paginas que contènon <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
 }
