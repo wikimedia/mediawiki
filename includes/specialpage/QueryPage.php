@@ -126,8 +126,8 @@ abstract class QueryPage extends SpecialPage {
 	 * Get a list of query page classes and their associated special pages,
 	 * for periodic updates.
 	 *
-	 * DO NOT CHANGE THIS LIST without testing that
-	 * maintenance/updateSpecialPages.php still works.
+	 * When changing this list, you should ensure that maintenance/updateSpecialPages.php still works
+	 * including when test data exists.
 	 *
 	 * @return array[] List of [ string $class, string $specialPageName, ?int $limit (optional) ].
 	 *  Limit defaults to $wgQueryCacheLimit if not given.
