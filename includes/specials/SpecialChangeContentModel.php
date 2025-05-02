@@ -8,6 +8,7 @@ use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\Exception\ErrorPageError;
+use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Logging\LogEventsList;
@@ -20,7 +21,6 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use MediaWiki\Xml\Xml;
 use SearchEngineFactory;
 
 /**
@@ -87,7 +87,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		$text = '';
 		if ( $this->title ) {
 			$contentModelLogPage = new LogPage( 'contentmodel' );
-			$text = Xml::element( 'h2', null, $contentModelLogPage->getName()->text() );
+			$text = Html::element( 'h2', [], $contentModelLogPage->getName()->text() );
 			$out = '';
 			LogEventsList::showLogExtract( $out, 'contentmodel', $this->title );
 			$text .= $out;

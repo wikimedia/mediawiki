@@ -47,7 +47,6 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsManager;
-use MediaWiki\Xml\Xml;
 use SearchEngine;
 use SearchEngineConfig;
 use SearchEngineFactory;
@@ -655,7 +654,7 @@ class SpecialSearch extends SpecialPage {
 			];
 
 			$subtitle .= ' (';
-			$subtitle .= Xml::element(
+			$subtitle .= Html::element(
 				'a',
 				[
 					'href' => $this->getPageTitle()->getLocalURL( $params ),

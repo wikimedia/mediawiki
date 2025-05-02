@@ -28,7 +28,6 @@ use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPage;
-use MediaWiki\Xml\Xml;
 
 /**
  * A special page that lists tags for edits
@@ -196,12 +195,12 @@ class SpecialTags extends SpecialPage {
 		string $tag, int $hitcount, bool $showManageActions, bool $showDeleteActions, bool $showEditLinks
 	): string {
 		$newRow = '';
-		$newRow .= Html::rawElement( 'td', [], Xml::element( 'code', [], $tag ) );
+		$newRow .= Html::rawElement( 'td', [], Html::element( 'code', [], $tag ) );
 
 		$linkRenderer = $this->getLinkRenderer();
 		$disp = ChangeTags::tagDescription( $tag, $this->getContext() );
 		if ( $disp === false ) {
-			$disp = Xml::element( 'em', [], $this->msg( 'tags-hidden' )->text() );
+			$disp = Html::element( 'em', [], $this->msg( 'tags-hidden' )->text() );
 		}
 		if ( $showEditLinks ) {
 			$disp .= ' ';
@@ -250,7 +249,7 @@ class SpecialTags extends SpecialPage {
 		if ( !$sourceMsgs ) {
 			$sourceMsgs[] = $this->msg( 'tags-source-none' )->escaped();
 		}
-		$newRow .= Html::rawElement( 'td', [], implode( Xml::element( 'br' ), $sourceMsgs ) );
+		$newRow .= Html::rawElement( 'td', [], implode( Html::element( 'br' ), $sourceMsgs ) );
 
 		$isActive = $isExplicit || isset( $this->softwareActivatedTags[$tag] );
 		$activeMsg = ( $isActive ? 'tags-active-yes' : 'tags-active-no' );

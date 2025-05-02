@@ -37,7 +37,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserNameUtils;
-use MediaWiki\Xml\Xml;
 use UnexpectedValueException;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -574,7 +573,7 @@ class ImageListPager extends TablePager {
 					$opt = [ 'time' => wfTimestamp( TS_MW, $this->mCurrentRow->img_timestamp ) ];
 					$file = $this->localRepo->findFile( $value, $opt );
 					if ( $file ) {
-						$download = Xml::element(
+						$download = Html::element(
 							'a',
 							[ 'href' => $file->getUrl() ],
 							$imgfile
