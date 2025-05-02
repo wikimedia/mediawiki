@@ -61,21 +61,22 @@ class ImageRedirectConstraintTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideTestFailure
-	 * @param Authority $performer
-	 * @param int $expectedValue
 	 */
-	public function testFailure( Authority $performer, int $expectedValue ) {
+	public function testFailure( string $performerSpec, int $expectedValue ) {
+		$performer = $performerSpec === 'anon'
+			? $this->mockAnonAuthorityWithoutPermissions( [ 'upload' ] )
+			: $this->mockRegisteredAuthorityWithoutPermissions( [ 'upload' ] );
 		$constraint = $this->getConstraint( $performer );
 		$this->assertConstraintFailed( $constraint, $expectedValue );
 	}
 
-	public function provideTestFailure() {
+	public static function provideTestFailure() {
 		yield 'Anonymous user' => [
-			'performer' => $this->mockAnonAuthorityWithoutPermissions( [ 'upload' ] ),
+			'performerSpec' => 'anon',
 			'expectedValue' => IEditConstraint::AS_IMAGE_REDIRECT_ANON
 		];
 		yield 'Registered user' => [
-			'performer' => $this->mockRegisteredAuthorityWithoutPermissions( [ 'upload' ] ),
+			'performerSpec' => 'registered',
 			'expectedValue' => IEditConstraint::AS_IMAGE_REDIRECT_LOGGED
 		];
 	}

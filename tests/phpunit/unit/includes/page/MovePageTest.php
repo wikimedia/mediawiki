@@ -5,11 +5,11 @@ namespace MediaWiki\Tests\Unit;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\Page\MovePage;
 use MediaWiki\Page\PageIdentity;
-use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWikiUnitTestCase;
 use MockTitleTrait;
+use PHPUnit\Framework\Assert;
 
 /**
  * @coversDefaultClass \MediaWiki\Page\MovePage
@@ -20,28 +20,28 @@ class MovePageTest extends MediaWikiUnitTestCase {
 	use MockAuthorityTrait;
 	use MockServiceDependenciesTrait;
 
-	public function provideCheckPermissions() {
+	public static function provideCheckPermissions() {
 		yield 'all good and allowed' => [
-			'authority' => $this->mockRegisteredUltimateAuthority(),
+			'authority' => 'ultimate',
 			'good' => true,
 		];
 		yield 'cannot move' => [
-			'authority' => $this->mockAnonAuthority( function (
+			'authority' => static function (
 				string $permission,
 				PageIdentity $page,
 				PermissionStatus $status
 			) {
 				if ( $permission === 'move' ) {
-					$this->assertSame( 'Existent', $page->getDBkey() );
+					Assert::assertSame( 'Existent', $page->getDBkey() );
 					$status->fatal( 'test' );
 					return false;
 				}
 				return true;
-			} ),
+			},
 			'good' => false,
 		];
 		yield 'cannot edit old page' => [
-			'authority' => $this->mockAnonAuthority( static function (
+			'authority' => static function (
 				string $permission,
 				PageIdentity $page,
 				PermissionStatus $status
@@ -51,26 +51,26 @@ class MovePageTest extends MediaWikiUnitTestCase {
 					return false;
 				}
 				return true;
-			} ),
+			},
 			'good' => false,
 		];
 		yield 'cannot move-target' => [
-			'authority' => $this->mockAnonAuthority( function (
+			'authority' => static function (
 				string $permission,
 				PageIdentity $page,
 				PermissionStatus $status
 			) {
 				if ( $permission === 'move-target' ) {
-					$this->assertSame( 'Existent2', $page->getDBkey() );
+					Assert::assertSame( 'Existent2', $page->getDBkey() );
 					$status->fatal( 'test' );
 					return false;
 				}
 				return true;
-			} ),
+			},
 			'good' => false,
 		];
 		yield 'cannot edit new page' => [
-			'authority' => $this->mockAnonAuthority( static function (
+			'authority' => static function (
 				string $permission,
 				PageIdentity $page,
 				PermissionStatus $status
@@ -80,7 +80,7 @@ class MovePageTest extends MediaWikiUnitTestCase {
 					return false;
 				}
 				return true;
-			} ),
+			},
 			'good' => false,
 		];
 	}
@@ -91,7 +91,10 @@ class MovePageTest extends MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Page\MovePage::authorizeMove
 	 * @covers \MediaWiki\Page\MovePage::probablyCanMove
 	 */
-	public function testCheckPermissions( Authority $authority, bool $good ) {
+	public function testCheckPermissions( $authoritySpec, bool $good ) {
+		$authority = $authoritySpec === 'ultimate'
+			? $this->mockRegisteredUltimateAuthority()
+			: $this->mockAnonAuthority( $authoritySpec );
 		$spamChecker = $this->createNoOpMock( SpamChecker::class, [ 'checkSummary' ] );
 		$spamChecker->method( 'checkSummary' )->willReturn( false );
 		$mp = $this->newServiceInstance(

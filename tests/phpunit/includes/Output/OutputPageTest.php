@@ -3205,28 +3205,28 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	public function provideGetJsVarsEditable() {
+	public static function provideGetJsVarsEditable() {
 		yield 'can edit and create' => [
-			'performer' => $this->mockAnonAuthorityWithPermissions( [ 'edit', 'create' ] ),
+			'performerSpec' => 'with',
 			'expectedEditableConfig' => [
 				'wgIsProbablyEditable' => true,
 				'wgRelevantPageIsProbablyEditable' => true,
 			]
 		];
 		yield 'cannot edit or create' => [
-			'performer' => $this->mockAnonAuthorityWithoutPermissions( [ 'edit', 'create' ] ),
+			'performerSpec' => 'without',
 			'expectedEditableConfig' => [
 				'wgIsProbablyEditable' => false,
 				'wgRelevantPageIsProbablyEditable' => false,
 			]
 		];
 		yield 'only can edit relevant title' => [
-			'performer' => $this->mockAnonAuthority( static function (
+			'performerSpec' => static function (
 				string $permission,
 				PageIdentity $page
 			) {
 				return ( $permission === 'edit' || $permission === 'create' ) && $page->getDBkey() === 'RelevantTitle';
-			} ),
+			},
 			'expectedEditableConfig' => [
 				'wgIsProbablyEditable' => false,
 				'wgRelevantPageIsProbablyEditable' => true,
@@ -3237,7 +3237,14 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideGetJsVarsEditable
 	 */
-	public function testGetJsVarsEditable( Authority $performer, array $expectedEditableConfig ) {
+	public function testGetJsVarsEditable( $performerSpec, array $expectedEditableConfig ) {
+		if ( is_string( $performerSpec ) ) {
+			$performer = $performerSpec === 'with'
+				? $this->mockAnonAuthorityWithPermissions( [ 'edit', 'create' ] )
+				: $this->mockAnonAuthorityWithoutPermissions( [ 'edit', 'create' ] );
+		} else {
+			$performer = $this->mockAnonAuthority( $performerSpec );
+		}
 		$op = $this->newInstance( [], null, null, $performer );
 		$op->getContext()->getSkin()->setRelevantTitle( Title::makeTitle( NS_MAIN, 'RelevantTitle' ) );
 		$this->assertArraySubmapSame( $expectedEditableConfig, $op->getJSVars() );
@@ -3318,52 +3325,34 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		return $user;
 	}
 
-	public function provideUserCanPreview() {
+	public static function provideUserCanPreview() {
 		yield 'all good' => [
-			'performer' => $this->mockUserAuthorityWithPermissions(
-				$this->mockUser( true, true ),
-				[ 'edit' ]
-			),
+			'performerSpec' => [ 'with', true, true ],
 			'request' => new FauxRequest( [ 'action' => 'submit' ], true ),
 			true
 		];
 		yield 'get request' => [
-			'performer' => $this->mockUserAuthorityWithPermissions(
-				$this->mockUser( true, true ),
-				[ 'edit' ]
-			),
+			'performerSpec' => [ 'with', true, true ],
 			'request' => new FauxRequest( [ 'action' => 'submit' ], false ),
 			false
 		];
 		yield 'not a submit action' => [
-			'performer' => $this->mockUserAuthorityWithPermissions(
-				$this->mockUser( true, true ),
-				[ 'edit' ]
-			),
+			'performerSpec' => [ 'with', true, true ],
 			'request' => new FauxRequest( [ 'action' => 'something' ], true ),
 			false
 		];
 		yield 'anon can not' => [
-			'performer' => $this->mockUserAuthorityWithPermissions(
-				$this->mockUser( false, true ),
-				[ 'edit' ]
-			),
+			'performerSpec' => [ 'with', false, true ],
 			'request' => new FauxRequest( [ 'action' => 'submit' ], true ),
 			false
 		];
 		yield 'token not match' => [
-			'performer' => $this->mockUserAuthorityWithPermissions(
-				$this->mockUser( true, false ),
-				[ 'edit' ]
-			),
+			'performerSpec' => [ 'with', true, false ],
 			'request' => new FauxRequest( [ 'action' => 'submit' ], true ),
 			false
 		];
 		yield 'no permission' => [
-			'performer' => $this->mockUserAuthorityWithoutPermissions(
-				$this->mockUser( true, true ),
-				[ 'edit' ]
-			),
+			'performerSpec' => [ 'without', true, true ],
 			'request' => new FauxRequest( [ 'action' => 'submit' ], true ),
 			false
 		];
@@ -3372,7 +3361,11 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideUserCanPreview
 	 */
-	public function testUserCanPreview( Authority $performer, WebRequest $request, bool $expected ) {
+	public function testUserCanPreview( $performerSpec, WebRequest $request, bool $expected ) {
+		$mockedUser = $this->mockUser( $performerSpec[1], $performerSpec[2] );
+		$performer = $performerSpec[0] === 'with'
+			? $this->mockUserAuthorityWithPermissions( $mockedUser, [ 'edit' ] )
+			: $this->mockUserAuthorityWithoutPermissions( $mockedUser, [ 'edit' ] );
 		$op = $this->newInstance( [], $request, null, $performer );
 		$this->assertSame( $expected, $op->userCanPreview() );
 	}

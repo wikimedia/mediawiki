@@ -8,7 +8,6 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\PageReferenceValue;
-use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Skin\SkinFallback;
@@ -111,13 +110,13 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideGetDefaultModulesForRights() {
+	public static function provideGetDefaultModulesForRights() {
 		yield 'no rights' => [
-			$this->mockRegisteredNullAuthority(), // $authority
+			'null', // $authoritySpec
 			false, // $hasModule
 		];
 		yield 'has all rights' => [
-			$this->mockRegisteredUltimateAuthority(), // $authority
+			'ultimate', // $authoritySpec
 			true, // $hasModule
 		];
 	}
@@ -125,7 +124,10 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideGetDefaultModulesForRights
 	 */
-	public function testGetDefaultModulesForRights( Authority $authority, bool $hasModule ) {
+	public function testGetDefaultModulesForRights( string $authoritySpec, bool $hasModule ) {
+		$authority = $authoritySpec === 'ultimate'
+			? $this->mockRegisteredUltimateAuthority()
+			: $this->mockRegisteredNullAuthority();
 		$skin = new class extends Skin {
 			public function outputPage() {
 			}
@@ -144,40 +146,40 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideGetPageClasses() {
+	public static function provideGetPageClasses() {
 		yield 'normal page has namespace' => [
 			new TitleValue( NS_MAIN, 'Test' ), // $title
-			$this->mockRegisteredUltimateAuthority(), // $authority
+			'ultimate', // $authoritySpec
 			[ 'ns-0' ], // $expectedClasses
 		];
 		yield 'valid special page' => [
 			new TitleValue( NS_SPECIAL, 'Userlogin' ), // $title
-			$this->mockRegisteredUltimateAuthority(), // $authority
+			'ultimate', // $authoritySpec
 			[ 'mw-special-Userlogin' ], // $expectedClasses
 		];
 		yield 'invalid special page' => [
 			new TitleValue( NS_SPECIAL, 'BLABLABLABLA_I_AM_INVALID' ), // $title
-			$this->mockRegisteredUltimateAuthority(), // $authority
+			'ultimate', // $authoritySpec
 			[ 'mw-invalidspecialpage' ], // $expectedClasses
 		];
 		yield 'talk page' => [
 			new TitleValue( NS_TALK, 'Test' ), // $title
-			$this->mockRegisteredUltimateAuthority(), // $authority
+			'ultimate', // $authoritySpec
 			[ 'ns-talk' ], // $expectedClasses
 		];
 		yield 'subject' => [
 			new TitleValue( NS_MAIN, 'Test' ), // $title
-			$this->mockRegisteredUltimateAuthority(), // $authority
+			'ultimate', // $authoritySpec
 			[ 'ns-subject' ], // $expectedClasses
 		];
 		yield 'editable' => [
 			new TitleValue( NS_MAIN, 'Test' ), // $title
-			$this->mockRegisteredAuthorityWithPermissions( [ 'edit' ] ), // $authority
+			[ 'edit' ], // $authoritySpec
 			[ 'mw-editable' ], // $expectedClasses
 		];
 		yield 'not editable' => [
 			new TitleValue( NS_MAIN, 'Test' ), // $title
-			$this->mockRegisteredNullAuthority(), // $authority
+			'null', // $authoritySpec
 			[], // $expectedClasses
 			[ 'mw-editable' ], // $unexpectedClasses
 		];
@@ -188,10 +190,17 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetPageClasses(
 		LinkTarget $title,
-		Authority $authority,
+		$authoritySpec,
 		array $expectedClasses,
 		array $unexpectedClasses = []
 	) {
+		if ( is_array( $authoritySpec ) ) {
+			$authority = $this->mockRegisteredAuthorityWithPermissions( $authoritySpec );
+		} else {
+			$authority = $authoritySpec === 'ultimate'
+				? $this->mockRegisteredUltimateAuthority()
+				: $this->mockRegisteredNullAuthority();
+		}
 		$skin = new class extends Skin {
 			public function outputPage() {
 			}
