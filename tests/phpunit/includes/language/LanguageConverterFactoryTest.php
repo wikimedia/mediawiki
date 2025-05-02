@@ -357,6 +357,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 			'hif-latn',
 			'hil',
 			'ho',
+			'hoc-latn',
 			'hr',
 			'hrx',
 			'hsb',

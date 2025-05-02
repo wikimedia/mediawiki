@@ -242,6 +242,7 @@ class Names {
 		'hke' => 'kihunde', # Hunde
 		'hno' => 'ہندکو', # Hindko
 		'ho' => 'Hiri Motu', # Hiri Motu
+		'hoc-latn' => 'Ho', # Ho (Latin script), T393086
 		'hr' => 'hrvatski', # Croatian
 		'hrx' => 'Hunsrik', # Riograndenser Hunsrückisch
 		'hsb' => 'hornjoserbsce', # Upper Sorbian
