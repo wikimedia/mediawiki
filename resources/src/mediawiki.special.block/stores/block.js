@@ -514,7 +514,8 @@ module.exports = exports = defineStore( 'block', () => {
 			leprop: 'ids|title|type|user|timestamp|parsedcomment|details',
 			letitle: `User:${ target }`,
 			list: 'logevents',
-			formatversion: 2
+			formatversion: 2,
+			uselang: mw.config.get( 'wgUserLanguage' )
 		};
 
 		if ( blockLogType === 'suppress' ) {
