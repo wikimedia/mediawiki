@@ -49,24 +49,29 @@ class ReassignEdits extends Maintenance {
 	}
 
 	public function execute() {
-		if ( $this->hasArg( 0 ) && $this->hasArg( 1 ) ) {
-			# Set up the users involved
-			$from = $this->initialiseUser( $this->getArg( 0 ) );
-			$to = $this->initialiseUser( $this->getArg( 1 ) );
+		# Set up the users involved
+		$from = $this->initialiseUser( $this->getArg( 0 ) );
+		$to = $this->initialiseUser( $this->getArg( 1 ) );
 
-			# If the target doesn't exist, and --force is not set, stop here
-			if ( $to->getId() || $this->hasOption( 'force' ) ) {
-				# Reassign the edits
-				$report = $this->hasOption( 'report' );
-				$this->doReassignEdits( $from, $to, !$this->hasOption( 'norc' ), $report );
-				# If reporting, and there were items, advise the user to run without --report
-				if ( $report ) {
-					$this->output( "Run the script again without --report to update.\n" );
-				}
-			} else {
-				$ton = $to->getName();
-				$this->error( "User '{$ton}' not found." );
+		// Reject attempts to re-assign to an IP address. This is done because the script does not
+		// populate ip_changes and it breaks if temporary accounts are enabled (T373914).
+		if ( IPUtils::isIPAddress( $to->getName() ) ) {
+			$this->fatalError( 'Script does not support re-assigning to another IP.' );
+		} elseif ( $from->equals( $to ) ) {
+			$this->fatalError( 'The from and to user cannot be the same.' );
+		}
+
+		# If the target doesn't exist, and --force is not set, stop here
+		if ( $to->getId() || $this->hasOption( 'force' ) ) {
+			# Reassign the edits
+			$report = $this->hasOption( 'report' );
+			$this->doReassignEdits( $from, $to, !$this->hasOption( 'norc' ), $report );
+			# If reporting, and there were items, advise the user to run without --report
+			if ( $report ) {
+				$this->output( "Run the script again without --report to update.\n" );
 			}
+		} else {
+			$this->fatalError( "User '{$to->getName()}' not found." );
 		}
 	}
 
