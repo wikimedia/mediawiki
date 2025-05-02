@@ -39,7 +39,6 @@ use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
-use MediaWiki\Xml\Xml;
 use OOUI\ButtonWidget;
 use OOUI\HtmlSnippet;
 use Wikimedia\HtmlArmor\HtmlArmor;
@@ -672,10 +671,13 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$panel[] = $form;
 		$panelString = implode( "\n", $panel );
 
-		$rcoptions = Xml::fieldset(
-			$this->msg( 'recentchanges-legend' )->text(),
-			$panelString,
-			[ 'class' => 'rcoptions cloptions' ]
+		$rcoptions = Html::rawElement(
+			'fieldset',
+			[ 'class' => 'rcoptions cloptions' ],
+			Html::element(
+				'legend', [],
+				$this->msg( 'recentchanges-legend' )->text()
+			) . $panelString
 		);
 
 		// Insert a placeholder for RCFilters
