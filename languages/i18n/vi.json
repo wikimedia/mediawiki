@@ -75,12 +75,12 @@
 			"아라"
 		]
 	},
-	"pagecategories": "{{PLURAL:$1}}Thể loại",
+	"pagecategories": "{{PLURAL:$1|Thể loại|Thể loại}}",
 	"category_header": "Trang trong thể loại “$1”",
 	"subcategories": "Thể loại con",
-	"category-media-header": "Tập tin trong thể loại “$1”",
-	"category-empty": "<em>Thể loại này hiện không có trang hay tập tin nào.</em>",
-	"hidden-categories": "{{PLURAL:$1}}Thể loại ẩn",
+	"category-media-header": "Phương tiện trong thể loại “$1”",
+	"category-empty": "<em>Thể loại này hiện không có trang hoặc phương tiện nào.</em>",
+	"hidden-categories": "{{PLURAL:$1|Thể loại ẩn|Thể loại ẩn}}",
 	"hidden-category-category": "Thể loại ẩn",
 	"category-subcat-count": "{{PLURAL:$2|Thể loại này chỉ có thể loại con sau.|Thể loại này có {{PLURAL:$1|thể loại con|$1 thể loại con}} sau, trên tổng số $2 thể loại con.}}",
 	"category-subcat-count-limited": "Thể loại này gồm {{PLURAL:$1|thể loại con|$1 thể loại con}} sau.",

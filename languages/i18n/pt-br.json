@@ -1954,6 +1954,7 @@
 	"statistics-header-users": "Estatísticas dos usuários",
 	"statistics-header-hooks": "Outras estatísticas",
 	"statistics-articles": "Páginas de conteúdo",
+	"statistics-articles-desc": "Consulte a [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticleCountMethod documentação de contagem de artigos] para obter detalhes",
 	"statistics-pages": "Páginas",
 	"statistics-pages-desc": "Todas as páginas da wiki, incluindo páginas de discussão, redirecionamentos etc.",
 	"statistics-files": "Arquivos carregados",
