@@ -472,6 +472,7 @@ $wgAutoloadLocalClasses = [
 	'FixMergeHistoryCorruption' => __DIR__ . '/maintenance/fixMergeHistoryCorruption.php',
 	'FixTimestamps' => __DIR__ . '/maintenance/fixTimestamps.php',
 	'FixUserRegistration' => __DIR__ . '/maintenance/fixUserRegistration.php',
+	'FixWrongPasswordPrefixes' => __DIR__ . '/maintenance/fixWrongPasswordPrefixes.php',
 	'ForeignAPIFile' => __DIR__ . '/includes/filerepo/file/ForeignAPIFile.php',
 	'ForeignAPIRepo' => __DIR__ . '/includes/filerepo/ForeignAPIRepo.php',
 	'ForeignDBFile' => __DIR__ . '/includes/filerepo/file/ForeignDBFile.php',

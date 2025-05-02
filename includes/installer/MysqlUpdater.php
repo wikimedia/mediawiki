@@ -25,6 +25,7 @@
 namespace MediaWiki\Installer;
 
 use FixInconsistentRedirects;
+use FixWrongPasswordPrefixes;
 use MediaWiki\Maintenance\FixAutoblockLogTitles;
 use MigrateExternallinks;
 use MigrateRevisionActorTemp;
@@ -183,6 +184,7 @@ class MysqlUpdater extends DatabaseUpdater {
 
 			// 1.45
 			[ 'addTable', 'existencelinks', 'patch-existencelinks.sql' ],
+			[ 'runMaintenance', FixWrongPasswordPrefixes::class ],
 		];
 	}
 

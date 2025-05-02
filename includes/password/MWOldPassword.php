@@ -40,16 +40,8 @@ class MWOldPassword extends ParameterizedPassword {
 	}
 
 	public function crypt( string $plaintext ): void {
-		if ( count( $this->args ) === 1 ) {
-			// Accept (but do not generate) salted passwords with :A: prefix.
-			// These are actually B-type passwords, but an error in a previous
-			// version of MediaWiki caused them to be written with an :A:
-			// prefix.
-			$this->hash = md5( $this->args[0] . '-' . md5( $plaintext ) );
-		} else {
-			$this->args = [];
-			$this->hash = md5( $plaintext );
-		}
+		$this->args = [];
+		$this->hash = md5( $plaintext );
 
 		if ( strlen( $this->hash ) < 32 ) {
 			throw new PasswordError( 'Error when hashing password.' );

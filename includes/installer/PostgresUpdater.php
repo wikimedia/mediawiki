@@ -24,6 +24,7 @@
 namespace MediaWiki\Installer;
 
 use FixInconsistentRedirects;
+use FixWrongPasswordPrefixes;
 use MediaWiki\Maintenance\FixAutoblockLogTitles;
 use MigrateExternallinks;
 use MigrateRevisionActorTemp;
@@ -450,6 +451,7 @@ class PostgresUpdater extends DatabaseUpdater {
 
 			// 1.45
 			[ 'addTable', 'existencelinks', 'patch-existencelinks.sql' ],
+			[ 'runMaintenance', FixWrongPasswordPrefixes::class ],
 		];
 	}
 
