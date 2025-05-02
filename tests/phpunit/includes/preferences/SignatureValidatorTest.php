@@ -199,7 +199,7 @@ class SignatureValidatorTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $result );
 	}
 
-	public function provideValidateSignature() {
+	public static function provideValidateSignature() {
 		yield 'Perfect' => [
 			'[[User:SignatureValidatorTest|Signature]] ([[User talk:SignatureValidatorTest|talk]])',
 			// no complaints from lint

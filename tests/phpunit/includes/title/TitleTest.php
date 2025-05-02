@@ -146,7 +146,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expectedBool, $title->hasSubjectNamespace( $ns ) );
 	}
 
-	public function provideGetContentModel() {
+	public static function provideGetContentModel() {
 		return [
 			[ 'Help:Foo', CONTENT_MODEL_WIKITEXT ],
 			[ 'Help:Foo.js', CONTENT_MODEL_WIKITEXT ],

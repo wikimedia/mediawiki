@@ -126,7 +126,7 @@ class ArrayDefTest extends TypeDefUnitTestCase {
 		];
 	}
 
-	public function provideListSchema() {
+	public static function provideListSchema() {
 		yield 'simple list of strings' => [
 			'string',
 			[
@@ -171,7 +171,7 @@ class ArrayDefTest extends TypeDefUnitTestCase {
 		$this->assertArrayEquals( $expect, $paramSchema );
 	}
 
-	public function provideMapSchema() {
+	public static function provideMapSchema() {
 		yield 'simple map of strings' => [
 			'string',
 			[
@@ -216,7 +216,7 @@ class ArrayDefTest extends TypeDefUnitTestCase {
 		$this->assertArrayEquals( $expect, $paramSchema );
 	}
 
-	public function provideObjectSchema() {
+	public static function provideObjectSchema() {
 		yield 'object with two required properties, one an integer and another an enum' => [
 			[ 'a' => 'integer', 'b' => [ 'enum' => [ 'x', 'y', 'z' ] ] ],
 			[],
@@ -292,7 +292,7 @@ class ArrayDefTest extends TypeDefUnitTestCase {
 		$this->assertArrayEquals( $expect, $paramSchema );
 	}
 
-	public function provideInvalidObjectSchema() {
+	public static function provideInvalidObjectSchema() {
 		yield 'object with property defined as both required and optional' => [
 			[ 'a' => 'integer' ],
 			[ 'a' => 'integer' ],

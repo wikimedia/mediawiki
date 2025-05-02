@@ -62,7 +62,7 @@ class LocalUserRegistrationProviderTest extends MediaWikiUnitTestCase {
 		$this->provider->fetchRegistrationBatch( $users );
 	}
 
-	public function provideInvalidInput(): iterable {
+	public static function provideInvalidInput(): iterable {
 		yield 'foreign UserIdentity instance' => [
 			[ new UserIdentityValue( 123, 'Admin', 'otherwiki' ) ],
 			new PreconditionException(

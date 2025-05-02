@@ -80,7 +80,7 @@ class PreSaveTransformParamsValueTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $options, $params->getParserOptions() );
 	}
 
-	public function provideParserOptions(): array {
+	public static function provideParserOptions(): array {
 		$user = new User();
 		$options = ParserOptions::newFromUser( $user );
 		return [

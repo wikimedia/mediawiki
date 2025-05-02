@@ -290,7 +290,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function emailAuthenticationProvider() {
+	public static function emailAuthenticationProvider() {
 		$userNoEmail = new User;
 		$userEmailUnauthed = new User;
 		$userEmailUnauthed->setEmail( 'noauth@example.org' );

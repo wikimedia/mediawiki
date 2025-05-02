@@ -87,7 +87,7 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function temporaryRedirectProvider() {
+	public static function temporaryRedirectProvider() {
 		yield [
 			'source',
 			'/page/{title}',

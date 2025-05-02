@@ -3243,7 +3243,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertArraySubmapSame( $expectedEditableConfig, $op->getJSVars() );
 	}
 
-	public function provideJsVarsAboutPageLang() {
+	public static function provideJsVarsAboutPageLang() {
 		// Format:
 		// - expected
 		// - title
@@ -3377,7 +3377,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $op->userCanPreview() );
 	}
 
-	public function providePermissionStatus() {
+	public static function providePermissionStatus() {
 		yield 'no errors' => [
 			PermissionStatus::newEmpty(),
 			'',
@@ -3398,7 +3398,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	public function provideFormatPermissionStatus() {
+	public static function provideFormatPermissionStatus() {
 		yield 'RawMessage' => [
 			PermissionStatus::newEmpty()->fatal( new RawMessage( 'Foo Bar' ) ),
 			'(permissionserrorstext: 1)

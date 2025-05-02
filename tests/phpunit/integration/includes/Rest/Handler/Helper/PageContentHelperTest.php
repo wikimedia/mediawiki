@@ -371,7 +371,7 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected, $data );
 	}
 
-	public function provideConstructRestbaseCompatibleMetadata() {
+	public static function provideConstructRestbaseCompatibleMetadata() {
 		$pageName = 'User:Morg';
 		$page = PageIdentityValue::localIdentity( 7, NS_USER, 'Morg' );
 		$user = UserIdentityValue::newRegistered( 444, 'Morg' );

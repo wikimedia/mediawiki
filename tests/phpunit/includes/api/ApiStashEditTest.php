@@ -436,7 +436,7 @@ class ApiStashEditTest extends ApiTestCase {
 		$this->assertEqualsWithDelta( $ttl, $wrapper->bag[$key][HashBagOStuff::KEY_EXP] - time(), 1 );
 	}
 
-	public function signatureProvider() {
+	public static function signatureProvider() {
 		return [
 			'~~~' => [ '~~~', PageEditStash::MAX_SIGNATURE_TTL ],
 			'~~~~' => [ '~~~~', PageEditStash::MAX_SIGNATURE_TTL ],

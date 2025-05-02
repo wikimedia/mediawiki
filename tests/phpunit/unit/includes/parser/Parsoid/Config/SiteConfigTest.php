@@ -906,7 +906,7 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 		$this->assertSame( null, $config->getMWConfigValue( 'CiteUnknownConfig' ) );
 	}
 
-	public function provideMetricsData(): iterable {
+	public static function provideMetricsData(): iterable {
 		return [ [
 			"metric_name",
 			[

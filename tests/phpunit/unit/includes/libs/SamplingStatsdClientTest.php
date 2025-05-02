@@ -42,7 +42,7 @@ class SamplingStatsdClientTest extends TestCase {
 		$client->send( $data, $sampleRate );
 	}
 
-	public function samplingDataProvider() {
+	public static function samplingDataProvider() {
 		$unsampled = new StatsdData();
 		$unsampled->setKey( 'foo' );
 		$unsampled->setValue( 1 );

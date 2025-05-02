@@ -20,7 +20,7 @@ class QueryBuilderFromRawSqlTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expectedFlags, $query->getFlags() );
 	}
 
-	public function provideBuildQuery() {
+	public static function provideBuildQuery() {
 		return [
 			[
 				'SELECT * FROM foo',

@@ -57,7 +57,7 @@ class EmailerTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $status->isGood() );
 	}
 
-	public function provideSend(): array {
+	public static function provideSend(): array {
 		$from = new MailAddress( 'foo@example.com', 'UserName', 'Real name' );
 		$to = new MailAddress( 'bar@example.com', 'UserName', 'Real name' );
 		$bodyHtml = '<p>Hello, World!</p>';

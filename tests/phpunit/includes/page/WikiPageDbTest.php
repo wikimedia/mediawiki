@@ -1004,7 +1004,7 @@ just a test
 more stuff
 ";
 
-	public function provideReplaceSection() {
+	public static function provideReplaceSection() {
 		// NOTE: assume the Help namespace to contain wikitext
 		return [
 			[ 'Help:WikiPageTest_testReplaceSection',

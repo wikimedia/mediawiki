@@ -28,7 +28,7 @@ class WfEscapeWikiTextTest extends MediaWikiUnitTestCase {
 		}
 	}
 
-	public function provideEscape() {
+	public static function provideEscape() {
 		return [
 			'null' => [
 				null,

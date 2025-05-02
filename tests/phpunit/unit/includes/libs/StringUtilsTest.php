@@ -150,7 +150,7 @@ class StringUtilsTest extends TestCase {
 		$this->assertSame( $replacement, $result );
 	}
 
-	public function provideRegexReplacements() {
+	public static function provideRegexReplacements() {
 		return [
 			'meaningless characters' => [ ' "()*+-./?[]^a{|}ä' ],
 			'backslash' => [ '\\1' ],

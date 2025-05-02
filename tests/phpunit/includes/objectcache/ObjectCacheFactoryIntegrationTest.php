@@ -141,7 +141,7 @@ class ObjectCacheFactoryIntegrationTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideLocalServerKeyspace() {
+	public static function provideLocalServerKeyspace() {
 		$dbDomain = static function ( $dbName, $dbPrefix ) {
 			global $wgDBmwschema;
 			return ( new DatabaseDomain( $dbName, $wgDBmwschema, $dbPrefix ) )->getId();

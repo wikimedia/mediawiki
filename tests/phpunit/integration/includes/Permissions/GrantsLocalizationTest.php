@@ -38,7 +38,7 @@ class GrantsLocalizationTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideGrantDescriptions() {
+	public static function provideGrantDescriptions() {
 		yield [ 'blockusers' ];
 		yield [ 'createeditmovepage' ];
 		yield [ 'delete' ];

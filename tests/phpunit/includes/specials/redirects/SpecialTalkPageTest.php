@@ -47,7 +47,7 @@ class SpecialTalkPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertHTMLEquals( $expectedRedirect, $output->getHTML(), 'redirect should contain appropriate HTML' );
 	}
 
-	public function provideRedirects() {
+	public static function provideRedirects() {
 		$subjectTitleText = 'MediaWiki:ok';
 		$subjectTitle = Title::newFromText( $subjectTitleText );
 		$talkTitle = $subjectTitle->getTalkPageIfDefined();
@@ -78,7 +78,7 @@ class SpecialTalkPageTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideNoRedirects() {
+	public static function provideNoRedirects() {
 		yield [ '', null ];
 		yield [ 'Special:TalkPage', null, 'title-invalid-talk-namespace', "value='Special:TalkPage'" ];
 		yield [ '', 'Special:TalkPage', 'title-invalid-talk-namespace', "value='Special:TalkPage'" ];

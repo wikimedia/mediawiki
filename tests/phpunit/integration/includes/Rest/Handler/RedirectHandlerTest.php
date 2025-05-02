@@ -13,7 +13,7 @@ use MediaWikiIntegrationTestCase;
 class RedirectHandlerTest extends MediaWikiIntegrationTestCase {
 	use HandlerTestTrait;
 
-	public function redirectConfigProvider() {
+	public static function redirectConfigProvider() {
 		return [
 			[
 				[ 'path' => '/v1/other/path/{param}', 'code' => 301 ],
@@ -30,7 +30,7 @@ class RedirectHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	public function provideFailure() {
+	public static function provideFailure() {
 		return [
 			[
 				[ 'path' => '', 'code' => 308 ],
