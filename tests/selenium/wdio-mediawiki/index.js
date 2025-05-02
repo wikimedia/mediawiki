@@ -71,8 +71,8 @@ function startVideo( ffmpeg, title ) {
 			'-pix_fmt', 'yuv420p', // QuickTime Player support, "Use -pix_fmt yuv420p for compatibility with outdated media players"
 			videoPath // output file
 		] );
-		ffmpeg.on( 'error', () => {
-			console.log( 'Not recording a video because ffmpeg is not available' );
+		ffmpeg.on( 'error', ( e ) => {
+			console.error( `Could not start ffmpeg or could not kill it, check the error ${ e }` );
 		} );
 		const logBuffer = function ( buffer, prefix ) {
 			const lines = buffer.toString().trim().split( '\n' );
