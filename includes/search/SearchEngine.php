@@ -685,8 +685,9 @@ abstract class SearchEngine {
 			return $sugg->getSuggestedTitle()->isKnown();
 		} );
 		if ( $diff > 0 ) {
-			MediaWikiServices::getInstance()->getStatsdDataFactory()
-				->updateCount( 'search.completion.missing', $diff );
+			$statsFactory = MediaWikiServices::getInstance()->getStatsFactory();
+			$statsFactory->getCounter( 'search_completion_missing_total' )
+				->incrementBy( $diff );
 		}
 
 		// SearchExactMatchRescorer should probably be refactored to work directly on top of a SearchSuggestionSet
