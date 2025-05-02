@@ -1390,7 +1390,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doUpdates()
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::maybeAddRecreateChangeTag
 	 */
-	public function testDoUpdatesTagsEditAsRecreatedWhenDeletedLogEntry() {
+	public function testDoUpdatesTagsEditAsRecreatedWhenDeletionLogEntry() {
 		$page = $this->getPage( __METHOD__ );
 		$title = $this->getTitle( __METHOD__ );
 
@@ -1400,7 +1400,6 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$deleteLogEntry = new ManualLogEntry( 'delete', 'delete' );
 		$deleteLogEntry->setPerformer( $this->getTestUser()->getUser() );
 		$deleteLogEntry->setTarget( $title );
-		$deleteLogEntry->setDeleted( LogPage::DELETED_ACTION );
 		$logId = $deleteLogEntry->insert( $this->getDb() );
 		$deleteLogEntry->publish( $logId );
 
@@ -1426,7 +1425,6 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$deleteLogEntry = new ManualLogEntry( 'delete', 'delete' );
 		$deleteLogEntry->setPerformer( $this->getTestUser()->getUser() );
 		$deleteLogEntry->setTarget( $title );
-		$deleteLogEntry->setDeleted( LogPage::DELETED_ACTION );
 		$logId = $deleteLogEntry->insert( $this->getDb() );
 		$deleteLogEntry->publish( $logId );
 
@@ -1440,7 +1438,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doUpdates()
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::maybeAddRecreateChangeTag
 	 */
-	public function testDoUpdatesTagsEditAsRecreatedWhenDeletedLogEntryAndUndelete() {
+	public function testDoUpdatesDoesNotTagEditAsRecreatedWhenDeletionLogEntryAndUndelete() {
 		$page = $this->getPage( __METHOD__ );
 		$title = $this->getTitle( __METHOD__ );
 		$user = $this->getMutableTestUser()->getUser();
@@ -1459,7 +1457,6 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$deleteLogEntry = new ManualLogEntry( 'delete', 'delete' );
 		$deleteLogEntry->setPerformer( $this->getTestUser()->getUser() );
 		$deleteLogEntry->setTarget( $title );
-		$deleteLogEntry->setDeleted( LogPage::DELETED_ACTION );
 		$logId = $deleteLogEntry->insert( $this->getDb() );
 		$deleteLogEntry->publish( $logId );
 		// undelete the page
@@ -1475,10 +1472,39 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doUpdates()
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::maybeAddRecreateChangeTag
 	 */
-	public function testDoUpdatesDoesNotTagEditAsRecreatedWhenNoDeletedLogEntry() {
+	public function testDoUpdatesDoesNotTagEditAsRecreatedWhenNoDeletionLogEntry() {
 		$page = $this->getPage( __METHOD__ );
 
 		$content = [ SlotRecord::MAIN => new WikitextContent( 'rev ID ver #1: {{REVISIONID}}' ) ];
+		$rev = $this->createRevision( $page, 'first', $content );
+
+		$this->assertSame( [], $this->getServiceContainer()->getChangeTagsStore()->getTags(
+			$this->getDb(), null, $rev->getId() ) );
+	}
+
+	/**
+	 * See T385792
+	 *
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doUpdates()
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::maybeAddRecreateChangeTag
+	 */
+	public function testDoUpdatesDoesNotTagEditAsRecreatedWhenDeletionLogEntryActionHidden() {
+		$page = $this->getPage( __METHOD__ );
+		$title = $this->getTitle( __METHOD__ );
+
+		$content = [ SlotRecord::MAIN => new WikitextContent( 'rev ID ver #1: {{REVISIONID}}' ) ];
+
+		// create a deletion log entry
+		$deleteLogEntry = new ManualLogEntry( 'delete', 'delete' );
+		$deleteLogEntry->setPerformer( $this->getTestUser()->getUser() );
+		$deleteLogEntry->setTarget( $title );
+
+		// hide the target of the deletion log entry
+		$deleteLogEntry->setDeleted( LogPage::DELETED_ACTION );
+
+		$logId = $deleteLogEntry->insert( $this->getDb() );
+		$deleteLogEntry->publish( $logId );
+
 		$rev = $this->createRevision( $page, 'first', $content );
 
 		$this->assertSame( [], $this->getServiceContainer()->getChangeTagsStore()->getTags(
