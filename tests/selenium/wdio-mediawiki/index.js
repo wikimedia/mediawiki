@@ -1,6 +1,6 @@
 'use strict';
 
-const fs = require( 'fs' );
+const { mkdir } = require( 'fs/promises' );
 
 /**
  * @since 1.1.0
@@ -39,14 +39,10 @@ function filePath( title, extension ) {
 async function saveScreenshot( title ) {
 	// Create sensible file name for current test title
 	const path = filePath( title, 'png' );
-	// Ensure directory exists, based on WebDriverIO#saveScreenshotSync()
-	try {
-		// eslint-disable-next-line security/detect-non-literal-fs-filename
-		fs.statSync( browser.config.screenshotPath );
-	} catch ( err ) {
-		// eslint-disable-next-line security/detect-non-literal-fs-filename
-		fs.mkdirSync( browser.config.screenshotPath );
-	}
+
+	// eslint-disable-next-line security/detect-non-literal-fs-filename
+	await mkdir( browser.config.screenshotPath, { recursive: true } );
+
 	// Create and save screenshot
 	await browser.saveScreenshot( path );
 	return path;
