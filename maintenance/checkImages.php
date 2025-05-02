@@ -23,6 +23,7 @@
 
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 use MediaWiki\Maintenance\Maintenance;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
@@ -50,11 +51,12 @@ class CheckImages extends Maintenance {
 
 		$repo = $this->getServiceContainer()->getRepoGroup()->getLocalRepo();
 		do {
-			$queryBuilder = FileSelectQueryBuilder::newForFile( $dbr );
-
-			$res = $queryBuilder->where( $dbr->expr( 'img_name', '>', $start ) )
+			$res = FileSelectQueryBuilder::newForFile( $dbr )
+				->where( $dbr->expr( 'img_name', '>', $start ) )
 				->limit( $this->getBatchSize() )
-				->caller( __METHOD__ )->fetchResultSet();
+				->orderBy( 'img_name', SelectQueryBuilder::SORT_ASC )
+				->caller( __METHOD__ )
+				->fetchResultSet();
 			foreach ( $res as $row ) {
 				$numImages++;
 				$start = $row->img_name;
