@@ -687,16 +687,11 @@ mw.loader.register([
 	 *
 	 * @see provideGetModuleRegistrations
 	 */
-	public function provideGetModuleRegistrationsProduction() {
+	public static function provideGetModuleRegistrationsProduction() {
 		yield 'Version falls back gracefully if getModuleContent throws' => [ [
 			'modules' => [
 				'test.fail' => [
-					'factory' => function () {
-						$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
-							->onlyMethods( [ 'getModuleContent' ] )->getMock();
-						$mock->method( 'getModuleContent' )->willThrowException( new Exception );
-						return $mock;
-					}
+					'moduleContent' => 'throw',
 				]
 			],
 			'out' => 'mw.loader.addSource({"local":"/w/load.php"});' . "\n"
@@ -706,17 +701,7 @@ mw.loader.register([
 		yield 'Version falls back gracefully if getDefinitionSummary throws' => [ [
 			'modules' => [
 				'test.fail' => [
-					'factory' => function () {
-						$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
-							->onlyMethods( [
-								'enableModuleContentVersion',
-								'getDefinitionSummary'
-							] )
-							->getMock();
-						$mock->method( 'enableModuleContentVersion' )->willReturn( false );
-						$mock->method( 'getDefinitionSummary' )->willThrowException( new Exception );
-						return $mock;
-					}
+					'definitionSummary' => 'throw',
 				]
 			],
 			'out' => 'mw.loader.addSource({"local":"/w/load.php"});' . "\n"
@@ -730,6 +715,27 @@ mw.loader.register([
 	 */
 	public function testGetModuleRegistrationsProduction( array $case ) {
 		$this->clearHook( 'ResourceLoaderModifyEmbeddedSourceUrls' );
+
+		foreach ( $case['modules'] as $module => &$definition ) {
+			$mockBuilder = $this->getMockBuilder( ResourceLoaderTestModule::class );
+			if ( isset( $definition['moduleContent'] ) ) {
+				$mock = $mockBuilder->onlyMethods( [ 'getModuleContent' ] )->getMock();
+				$mock->method( 'getModuleContent' )->willThrowException( new Exception );
+			} elseif ( isset( $definition['definitionSummary'] ) ) {
+				$mock = $mockBuilder->onlyMethods( [
+						'enableModuleContentVersion',
+						'getDefinitionSummary'
+					] )
+					->getMock();
+				$mock->method( 'enableModuleContentVersion' )->willReturn( false );
+				$mock->method( 'getDefinitionSummary' )->willThrowException( new Exception );
+			}
+			$definition = [
+				'factory' => static function () use ( $mock ) {
+					return $mock;
+				},
+			];
+		}
 
 		$context = $this->getResourceLoaderContext( [ 'debug' => 'false' ] );
 		$rl = $context->getResourceLoader();

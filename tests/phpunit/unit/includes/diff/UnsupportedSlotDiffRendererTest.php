@@ -11,22 +11,14 @@ use MediaWiki\Message\Message;
  */
 class UnsupportedSlotDiffRendererTest extends MediaWikiUnitTestCase {
 
-	public function provideDiff() {
+	public static function provideDiff() {
 		// AbstactContent::getContentHandler uses the ContentHandlerFactory
 		// from MediaWikiServices, which we need to avoid. Instead, mock
 		// to return the relevant ContentHandlers. The actual "content" of the
 		// Content objects isn't used, just getModel() and getContentHandler()
-		$oldContent = $this->createMock( TextContent::class );
-		$oldContent->method( 'getModel' )->willReturn( CONTENT_MODEL_TEXT );
-		$oldContent->method( 'getContentHandler' )->willReturn( new TextContentHandler() );
-
-		$newContent = $this->createMock( TextContent::class );
-		$newContent->method( 'getModel' )->willReturn( CONTENT_MODEL_TEXT );
-		$newContent->method( 'getContentHandler' )->willReturn( new TextContentHandler() );
-
-		$badContent = $this->createMock( FallbackContent::class );
-		$badContent->method( 'getModel' )->willReturn( 'xyzzy' );
-		$badContent->method( 'getContentHandler' )->willReturn( new FallbackContentHandler( 'xyzzy' ) );
+		$oldContent = [ TextContent::class, CONTENT_MODEL_TEXT, new TextContentHandler() ];
+		$newContent = [ TextContent::class, CONTENT_MODEL_TEXT, new TextContentHandler() ];
+		$badContent = [ FallbackContent::class, 'xyzzy', new FallbackContentHandler( 'xyzzy' ) ];
 
 		yield [ '(unsupported-content-diff)', $oldContent, null ];
 		yield [ '(unsupported-content-diff)', null, $newContent ];
@@ -40,7 +32,22 @@ class UnsupportedSlotDiffRendererTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideDiff
 	 */
-	public function testDiff( $expected, $oldContent, $newContent ) {
+	public function testDiff( $expected, $oldContentSpec, $newContentSpec ) {
+		if ( $oldContentSpec !== null ) {
+			$oldContent = $this->createMock( $oldContentSpec[0] );
+			$oldContent->method( 'getModel' )->willReturn( $oldContentSpec[1] );
+			$oldContent->method( 'getContentHandler' )->willReturn( $oldContentSpec[2] );
+		} else {
+			$oldContent = null;
+		}
+		if ( $newContentSpec !== null ) {
+			$newContent = $this->createMock( $newContentSpec[0] );
+			$newContent->method( 'getModel' )->willReturn( $newContentSpec[1] );
+			$newContent->method( 'getContentHandler' )->willReturn( $newContentSpec[2] );
+		} else {
+			$newContent = null;
+		}
+
 		$localizer = $this->createMock( MessageLocalizer::class );
 
 		$localizer->method( 'msg' )

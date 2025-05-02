@@ -54,6 +54,10 @@ class MultiTitleFilterTest extends MediaWikiUnitTestCase {
 	 * @dataProvider filterForFormDataProvider
 	 */
 	public function testFilterForForm( $expected, $inputValue, $newFromIDsReturnValue ) {
+		$newFromIDsReturnValuePages = [];
+		foreach ( $newFromIDsReturnValue as $s ) {
+			$newFromIDsReturnValuePages[] = $this->getMockTitle( $s );
+		}
 		$titleFormatter = $this->createMock( TitleFormatter::class );
 		$titleFormatter->method( 'getPrefixedText' )
 			->willReturnOnConsecutiveCalls(
@@ -61,10 +65,10 @@ class MultiTitleFilterTest extends MediaWikiUnitTestCase {
 					static function ( $t ) {
 						return $t->getPrefixedText();
 					},
-					$newFromIDsReturnValue
+					$newFromIDsReturnValuePages
 				)
 			);
-		$pageStore = $this->getPageStore( $newFromIDsReturnValue );
+		$pageStore = $this->getPageStore( $newFromIDsReturnValuePages );
 		$multiTitleFilter = new MultiTitleFilter( null, $pageStore, $titleFormatter );
 		$this->assertSame( $expected, $multiTitleFilter->filterForForm( $inputValue ) );
 	}
@@ -84,7 +88,7 @@ class MultiTitleFilterTest extends MediaWikiUnitTestCase {
 		return $pageStore;
 	}
 
-	public function filterForFormDataProvider(): array {
+	public static function filterForFormDataProvider(): array {
 		return [
 			[
 				'',
@@ -100,8 +104,8 @@ class MultiTitleFilterTest extends MediaWikiUnitTestCase {
 				"Foo\nBar",
 				"2\n\3\n\42",
 				[
-					$this->getMockTitle( 'Foo' ),
-					$this->getMockTitle( 'Bar' )
+					'Foo',
+					'Bar'
 				]
 			]
 		];
@@ -114,27 +118,27 @@ class MultiTitleFilterTest extends MediaWikiUnitTestCase {
 	public function testFilterFromForm( $expected, $titles, $newFromTextValue ) {
 		$pageStore = $this->createMock( PageStore::class );
 		$pageStore->method( 'getPageByText' )
-			->willReturnOnConsecutiveCalls( $newFromTextValue );
+			->willReturnOnConsecutiveCalls( $this->getMockPageIdentityValue( ...$newFromTextValue ) );
 		$multiTitleFilter = new MultiTitleFilter( null, $pageStore );
 		$this->assertSame( $expected, $multiTitleFilter->filterFromForm( $titles ) );
 	}
 
-	public function filterFromFormDataProvider(): array {
+	public static function filterFromFormDataProvider(): array {
 		return [
 			[
 				null,
 				'',
-				$this->getMockPageIdentityValue( 0, 'Foo' ),
+				[ 0, 'Foo' ],
 			],
 			[
 				"42",
 				"Foo",
-				$this->getMockPageIdentityValue( 42, 'Foo' )
+				[ 42, 'Foo' ]
 			],
 			[
 				"",
 				"Bar",
-				$this->getMockPageIdentityValue( 0, 'Bar' )
+				[ 0, 'Bar' ]
 			]
 
 		];

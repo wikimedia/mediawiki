@@ -583,49 +583,18 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'test', $memberships['test']->getGroup() );
 	}
 
-	public function provideGetUserAutopromoteEmailConfirmed() {
-		$successUserMock = $this->createNoOpMock(
-			User::class, [ 'getEmail', 'getEmailAuthenticationTimestamp', 'isTemp', 'assertWiki' ]
-		);
-		$successUserMock->method( 'assertWiki' )->willReturn( true );
-		$successUserMock->expects( $this->once() )
-			->method( 'getEmail' )
-			->willReturn( 'test@test.com' );
-		$successUserMock->expects( $this->once() )
-			->method( 'getEmailAuthenticationTimestamp' )
-			->willReturn( wfTimestampNow() );
+	public static function provideGetUserAutopromoteEmailConfirmed() {
 		yield 'Successful autopromote' => [
-			true, $successUserMock, [ 'test_autoconfirmed' ]
+			true, [ 'email' => 'test@test.com', 'timestamp' => wfTimestampNow() ], [ 'test_autoconfirmed' ]
 		];
-		$emailAuthMock = $this->createNoOpMock( User::class, [ 'getEmail', 'isTemp', 'assertWiki' ] );
-		$emailAuthMock->method( 'assertWiki' )->willReturn( true );
-		$emailAuthMock->expects( $this->once() )
-			->method( 'getEmail' )
-			->willReturn( 'test@test.com' );
 		yield 'wgEmailAuthentication is false' => [
-			false, $emailAuthMock, [ 'test_autoconfirmed' ]
+			false, [ 'email' => 'test@test.com' ], [ 'test_autoconfirmed' ]
 		];
-		$invalidEmailMock = $this->createNoOpMock( User::class, [ 'getEmail', 'isTemp', 'assertWiki' ] );
-		$invalidEmailMock->method( 'assertWiki' )->willReturn( true );
-		$invalidEmailMock
-			->expects( $this->once() )
-			->method( 'getEmail' )
-			->willReturn( 'INVALID!' );
 		yield 'Invalid email' => [
-			true, $invalidEmailMock, []
+			true, [ 'email' => 'INVALID!' ], []
 		];
-		$nullTimestampMock = $this->createNoOpMock(
-			User::class, [ 'getEmail', 'getEmailAuthenticationTimestamp', 'isTemp', 'assertWiki' ]
-		);
-		$nullTimestampMock->method( 'assertWiki' )->willReturn( true );
-		$nullTimestampMock->expects( $this->once() )
-			->method( 'getEmail' )
-			->willReturn( 'test@test.com' );
-		$nullTimestampMock->expects( $this->once() )
-			->method( 'getEmailAuthenticationTimestamp' )
-			->willReturn( null );
 		yield 'Invalid email auth timestamp' => [
-			true, $nullTimestampMock, []
+			true, [ 'email' => 'test@test.com', 'timestamp' => null ], []
 		];
 	}
 
@@ -633,15 +602,25 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideGetUserAutopromoteEmailConfirmed
 	 * @covers \MediaWiki\User\UserGroupManager::getUserAutopromoteGroups
 	 * @covers \MediaWiki\User\UserGroupManager::checkCondition
-	 * @param bool $emailAuthentication
-	 * @param User $user
-	 * @param array $expected
 	 */
 	public function testGetUserAutopromoteEmailConfirmed(
 		bool $emailAuthentication,
-		User $user,
+		array $userSpec,
 		array $expected
 	) {
+		$user = $this->createNoOpMock(
+			User::class, array_merge( [ 'getEmail', 'isTemp', 'assertWiki' ],
+				( array_key_exists( 'timestamp', $userSpec ) ? [ 'getEmailAuthenticationTimestamp' ] : [] ) )
+		);
+		$user->method( 'assertWiki' )->willReturn( true );
+		$user->expects( $this->once() )
+			->method( 'getEmail' )
+			->willReturn( $userSpec['email'] );
+		if ( array_key_exists( 'timestamp', $userSpec ) ) {
+			$user->expects( $this->once() )
+				->method( 'getEmailAuthenticationTimestamp' )
+				->willReturn( $userSpec['timestamp'] );
+		}
 		$manager = $this->getManager( [
 			MainConfigNames::Autopromote => [ 'test_autoconfirmed' => [ APCOND_EMAILCONFIRMED ] ],
 			MainConfigNames::EmailAuthentication => $emailAuthentication

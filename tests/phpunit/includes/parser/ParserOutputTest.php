@@ -1104,31 +1104,25 @@ EOF
 		$this->assertFieldValues( $a, $expected );
 	}
 
-	public function provideMergeInternalMetaDataFrom() {
-		$this->filterDeprecated( '/^.*CacheTime::setCacheTime called with -1 as an argument/' );
-
+	public static function provideMergeInternalMetaDataFrom() {
 		// flags & co
-		$a = new ParserOutput();
+		$a = [
+			'warning' => [
+				[ 'duplicate-args-warning', 'A', 'B', 'C' ],
+				[ 'template-loop-warning', 'D' ],
+			],
+			'outputFlag' => [ 'foo', 'bar' ],
+			'recordOption' => [ 'Foo', 'Bar' ],
+		];
 
-		$a->addWarningMsg( 'duplicate-args-warning', 'A', 'B', 'C' );
-		$a->addWarningMsg( 'template-loop-warning', 'D' );
-
-		$a->setOutputFlag( 'foo' );
-		$a->setOutputFlag( 'bar' );
-
-		$a->recordOption( 'Foo' );
-		$a->recordOption( 'Bar' );
-
-		$b = new ParserOutput();
-
-		$b->addWarningMsg( 'template-equals-warning' );
-		$b->addWarningMsg( 'template-loop-warning', 'D' );
-
-		$b->setOutputFlag( 'zoo' );
-		$b->setOutputFlag( 'bar' );
-
-		$b->recordOption( 'Zoo' );
-		$b->recordOption( 'Bar' );
+		$b = [
+			'warning' => [
+				[ 'template-equals-warning' ],
+				[ 'template-loop-warning', 'D' ],
+			],
+			'outputFlag' => [ 'zoo', 'bar' ],
+			'recordOption' => [ 'Zoo', 'Bar' ],
+		];
 
 		yield 'flags' => [ $a, $b, [
 			'getWarnings' => [
@@ -1143,112 +1137,136 @@ EOF
 		// cache time
 		$someTime = "20240207202040";
 		$someLaterTime = "20240207202112";
-		$a = new ParserOutput();
-		$a->setCacheTime( $someTime );
-		$b = new ParserOutput();
+		$a = [
+			'cacheTime' => $someTime,
+		];
+		$b = [];
 		yield 'only left cache time' => [ $a, $b, [ 'getCacheTime' => $someTime ] ];
 
-		$a = new ParserOutput();
-		$b = new ParserOutput();
-		$b->setCacheTime( $someTime );
+		$a = [];
+		$b = [
+			'cacheTime' => $someTime,
+		];
 		yield 'only right cache time' => [ $a, $b, [ 'getCacheTime' => $someTime ] ];
 
-		$a = new ParserOutput();
-		$b = new ParserOutput();
-		$a->setCacheTime( $someLaterTime );
-		$b->setCacheTime( $someTime );
+		$a = [
+			'cacheTime' => $someLaterTime,
+		];
+		$b = [
+			'cacheTime' => $someTime,
+		];
 		yield 'left has later cache time' => [ $a, $b, [ 'getCacheTime' => $someLaterTime ] ];
 
-		$a = new ParserOutput();
-		$b = new ParserOutput();
-		$a->setCacheTime( $someTime );
-		$b->setCacheTime( $someLaterTime );
+		$a = [
+			'cacheTime' => $someTime,
+		];
+		$b = [
+			'cacheTime' => $someLaterTime,
+		];
 		yield 'right has later cache time' => [ $a, $b, [ 'getCacheTime' => $someLaterTime ] ];
 
-		$a = new ParserOutput();
-		$b = new ParserOutput();
-		$a->setCacheTime( -1 );
-		$b->setCacheTime( $someTime );
+		$a = [
+			'cacheTime' => -1,
+		];
+		$b = [
+			'cacheTime' => $someTime,
+		];
 		yield 'left is uncacheable' => [ $a, $b, [ 'getCacheTime' => "-1" ] ];
 
-		$a = new ParserOutput();
-		$b = new ParserOutput();
-		$a->setCacheTime( $someTime );
-		$b->setCacheTime( -1 );
+		$a = [
+			'cacheTime' => $someTime,
+		];
+		$b = [
+			'cacheTime' => -1,
+		];
 		yield 'right is uncacheable' => [ $a, $b, [ 'getCacheTime' => "-1" ] ];
 
 		// timestamp ------------
-		$a = new ParserOutput();
-		$a->setRevisionTimestamp( '20180101000011' );
-		$b = new ParserOutput();
+		$a = [
+			'revisionTimestamp' => '20180101000011',
+		];
+		$b = [];
 		yield 'only left timestamp' => [ $a, $b, [ 'getTimestamp' => '20180101000011' ] ];
 
-		$a = new ParserOutput();
-		$b = new ParserOutput();
-		$b->setRevisionTimestamp( '20180101000011' );
+		$a = [];
+		$b = [
+			'revisionTimestamp' => '20180101000011',
+		];
 		yield 'only right timestamp' => [ $a, $b, [ 'getTimestamp' => '20180101000011' ] ];
 
-		$a = new ParserOutput();
-		$a->setRevisionTimestamp( '20180101000011' );
-		$b = new ParserOutput();
-		$b->setRevisionTimestamp( '20180101000001' );
+		$a = [
+			'revisionTimestamp' => '20180101000011',
+		];
+		$b = [
+			'revisionTimestamp' => '20180101000001',
+		];
 		yield 'left timestamp wins' => [ $a, $b, [ 'getTimestamp' => '20180101000011' ] ];
 
-		$a = new ParserOutput();
-		$a->setRevisionTimestamp( '20180101000001' );
-		$b = new ParserOutput();
-		$b->setRevisionTimestamp( '20180101000011' );
+		$a = [
+			'revisionTimestamp' => '20180101000001',
+		];
+		$b = [
+			'revisionTimestamp' => '20180101000011',
+		];
 		yield 'right timestamp wins' => [ $a, $b, [ 'getTimestamp' => '20180101000011' ] ];
 
 		// speculative rev id ------------
-		$a = new ParserOutput();
-		$a->setSpeculativeRevIdUsed( 9 );
-		$b = new ParserOutput();
+		$a = [
+			'speculativeRevIdUsed' => 9,
+		];
+		$b = [];
 		yield 'only left speculative rev id' => [ $a, $b, [ 'getSpeculativeRevIdUsed' => 9 ] ];
 
-		$a = new ParserOutput();
-		$b = new ParserOutput();
-		$b->setSpeculativeRevIdUsed( 9 );
+		$a = [];
+		$b = [
+			'speculativeRevIdUsed' => 9,
+		];
 		yield 'only right speculative rev id' => [ $a, $b, [ 'getSpeculativeRevIdUsed' => 9 ] ];
 
-		$a = new ParserOutput();
-		$a->setSpeculativeRevIdUsed( 9 );
-		$b = new ParserOutput();
-		$b->setSpeculativeRevIdUsed( 9 );
+		$a = [
+			'speculativeRevIdUsed' => 9,
+		];
+		$b = [
+			'speculativeRevIdUsed' => 9,
+		];
 		yield 'same speculative rev id' => [ $a, $b, [ 'getSpeculativeRevIdUsed' => 9 ] ];
 
 		// limit report (recursive max) ------------
-		$a = new ParserOutput();
+		$a = [
+			'limitReportData' => [
+				[ 'naive1', 7 ],
+				[ 'naive2', 27 ],
 
-		$a->setLimitReportData( 'naive1', 7 );
-		$a->setLimitReportData( 'naive2', 27 );
+				[ 'limitreport-simple1', 7 ],
+				[ 'limitreport-simple2', 27 ],
 
-		$a->setLimitReportData( 'limitreport-simple1', 7 );
-		$a->setLimitReportData( 'limitreport-simple2', 27 );
+				[ 'limitreport-pair1', [ 7, 9 ] ],
+				[ 'limitreport-pair2', [ 27, 29 ] ],
 
-		$a->setLimitReportData( 'limitreport-pair1', [ 7, 9 ] );
-		$a->setLimitReportData( 'limitreport-pair2', [ 27, 29 ] );
+				[ 'limitreport-more1', [ 7, 9, 1 ] ],
+				[ 'limitreport-more2', [ 27, 29, 21 ] ],
 
-		$a->setLimitReportData( 'limitreport-more1', [ 7, 9, 1 ] );
-		$a->setLimitReportData( 'limitreport-more2', [ 27, 29, 21 ] );
+				[ 'limitreport-only-a', 13 ],
+			],
+		];
 
-		$a->setLimitReportData( 'limitreport-only-a', 13 );
+		$b = [
+			'limitReportData' => [
+				[ 'naive1', 17 ],
+				[ 'naive2', 17 ],
 
-		$b = new ParserOutput();
+				[ 'limitreport-simple1', 17 ],
+				[ 'limitreport-simple2', 17 ],
 
-		$b->setLimitReportData( 'naive1', 17 );
-		$b->setLimitReportData( 'naive2', 17 );
+				[ 'limitreport-pair1', [ 17, 19 ] ],
+				[ 'limitreport-pair2', [ 17, 19 ] ],
 
-		$b->setLimitReportData( 'limitreport-simple1', 17 );
-		$b->setLimitReportData( 'limitreport-simple2', 17 );
+				[ 'limitreport-more1', [ 17, 19, 11 ] ],
+				[ 'limitreport-more2', [ 17, 19, 11 ] ],
 
-		$b->setLimitReportData( 'limitreport-pair1', [ 17, 19 ] );
-		$b->setLimitReportData( 'limitreport-pair2', [ 17, 19 ] );
-
-		$b->setLimitReportData( 'limitreport-more1', [ 17, 19, 11 ] );
-		$b->setLimitReportData( 'limitreport-more2', [ 17, 19, 11 ] );
-
-		$b->setLimitReportData( 'limitreport-only-b', 23 );
+				[ 'limitreport-only-b', 23 ],
+			],
+		];
 
 		// first write wins
 		yield 'limit report' => [ $a, $b, [
@@ -1277,20 +1295,16 @@ EOF
 				],
 			],
 		] ];
-
-		MWDebug::clearDeprecationFilters();
 	}
 
 	/**
 	 * @dataProvider provideMergeInternalMetaDataFrom
 	 * @covers \MediaWiki\Parser\ParserOutput::mergeInternalMetaDataFrom
-	 *
-	 * @param ParserOutput $a
-	 * @param ParserOutput $b
-	 * @param array $expected
 	 */
-	public function testMergeInternalMetaDataFrom( ParserOutput $a, ParserOutput $b, $expected ) {
+	public function testMergeInternalMetaDataFrom( array $aSpec, array $bSpec, $expected ) {
 		$this->filterDeprecated( '/^.*CacheTime::setCacheTime called with -1 as an argument/' );
+		$a = $this->createParserOutput( $aSpec );
+		$b = $this->createParserOutput( $bSpec );
 		$a->mergeInternalMetaDataFrom( $b );
 
 		$this->assertFieldValues( $a, $expected );
@@ -1299,6 +1313,32 @@ EOF
 		$a->mergeInternalMetaDataFrom( $b );
 
 		$this->assertFieldValues( $a, $expected );
+	}
+
+	private function createParserOutput( array $spec ): ParserOutput {
+		$po = new ParserOutput();
+		foreach ( $spec['warning'] ?? [] as $warning ) {
+			$po->addWarningMsg( ...$warning );
+		}
+		foreach ( $spec['outputFlag'] ?? [] as $outputFlag ) {
+			$po->setOutputFlag( $outputFlag );
+		}
+		foreach ( $spec['recordOption'] ?? [] as $recordOption ) {
+			$po->recordOption( $recordOption );
+		}
+		foreach ( $spec['limitReportData'] ?? [] as $limitReportData ) {
+			$po->setLimitReportData( ...$limitReportData );
+		}
+		if ( isset( $spec['cacheTime'] ) ) {
+			$po->setCacheTime( $spec['cacheTime'] );
+		}
+		if ( isset( $spec['revisionTimestamp'] ) ) {
+			$po->setRevisionTimestamp( $spec['revisionTimestamp'] );
+		}
+		if ( isset( $spec['speculativeRevIdUsed'] ) ) {
+			$po->setSpeculativeRevIdUsed( $spec['speculativeRevIdUsed'] );
+		}
+		return $po;
 	}
 
 	/**

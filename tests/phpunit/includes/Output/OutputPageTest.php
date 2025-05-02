@@ -948,6 +948,9 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$title = $titles[0];
+		if ( is_array( $title ) ) {
+			$title = $this->makeMockTitle( ...$title );
+		}
 		$query = $queries[0];
 
 		$str = OutputPage::buildBacklinkSubtitle( $title, $query )->text();
@@ -966,8 +969,11 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testAddBacklinkSubtitle( $titles, $queries, $contains, $notContains ) {
 		$op = $this->newInstance();
-		foreach ( $titles as $i => $unused ) {
-			$op->addBacklinkSubtitle( $titles[$i], $queries[$i] );
+		foreach ( $titles as $i => $title ) {
+			if ( is_array( $title ) ) {
+				$title = $this->makeMockTitle( ...$title );
+			}
+			$op->addBacklinkSubtitle( $title, $queries[$i] );
 		}
 
 		$str = $op->getSubtitle();
@@ -981,8 +987,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideBacklinkSubtitle() {
-		$page1title = $this->makeMockTitle( 'Page 1', [ 'redirect' => true ] );
+	public static function provideBacklinkSubtitle() {
+		$page1title = [ 'Page 1', [ 'redirect' => true ] ];
 		$page1ref = new PageReferenceValue( NS_MAIN, 'Page 1', PageReference::LOCAL );
 
 		$row = [

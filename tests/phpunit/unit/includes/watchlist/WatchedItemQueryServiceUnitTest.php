@@ -647,7 +647,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		$this->assertSame( [], $items );
 	}
 
-	public function getWatchedItemsWithRecentChangeInfoInvalidOptionsProvider() {
+	public static function getWatchedItemsWithRecentChangeInfoInvalidOptionsProvider() {
 		return [
 			[
 				[ 'rcTypes' => [ 1337 ] ],
@@ -700,7 +700,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				'Bad value for parameter $startFrom: must be a two-element array',
 			],
 			[
-				[ 'watchlistOwner' => $this->getMockUserWithId( 2 ) ],
+				[ 'watchlistOwner' => 2 ],
 				null,
 				'Bad value for parameter $options[\'watchlistOwnerToken\']',
 			],
@@ -720,6 +720,9 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		$startFrom,
 		$expectedInExceptionMessage
 	) {
+		if ( isset( $options['watchlistOwner'] ) && is_int( $options['watchlistOwner'] ) ) {
+			$options['watchlistOwner'] = $this->getMockUserWithId( $options['watchlistOwner'] );
+		}
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->never() )
 			->method( $this->anything() );

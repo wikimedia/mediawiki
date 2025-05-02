@@ -620,17 +620,17 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 		$this->assertSamePage( $existingPage, $page );
 	}
 
-	public function provideGetPageByIdentity_invalid() {
+	public static function provideGetPageByIdentity_invalid() {
 		yield 'section' => [
-			$this->makeMockTitle( '', [ 'fragment' => 'See also' ] ),
+			[ '', [ 'fragment' => 'See also' ] ],
 			InvalidArgumentException::class
 		];
 		yield 'special' => [
-			$this->makeMockTitle( 'Blankpage', [ 'namespace' => NS_SPECIAL ] ),
+			[ 'Blankpage', [ 'namespace' => NS_SPECIAL ] ],
 			InvalidArgumentException::class
 		];
 		yield 'interwiki' => [
-			$this->makeMockTitle( 'Foo', [ 'interwiki' => 'acme' ] ),
+			[ 'Foo', [ 'interwiki' => 'acme' ] ],
 			InvalidArgumentException::class
 		];
 
@@ -645,6 +645,9 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Page\PageStore::getPageByReference
 	 */
 	public function testGetPageByIdentity_invalid( $identity, $exception ) {
+		if ( is_array( $identity ) ) {
+			$identity = $this->makeMockTitle( ...$identity );
+		}
 		$pageStore = $this->getPageStore();
 
 		$this->expectException( $exception );

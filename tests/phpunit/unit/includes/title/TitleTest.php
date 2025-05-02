@@ -310,29 +310,24 @@ class TitleTest extends MediaWikiUnitTestCase {
 		}
 	}
 
-	public function provideCastFromPageIdentity() {
+	public static function provideCastFromPageIdentity() {
 		yield [ null ];
-
-		$fake = $this->createMock( PageIdentity::class );
-		$fake->method( 'getId' )->willReturn( 7 );
-		$fake->method( 'getNamespace' )->willReturn( NS_MAIN );
-		$fake->method( 'getDBkey' )->willReturn( 'Test' );
-
-		yield [ $fake ];
-
-		$fake = $this->createMock( Title::class );
-		$fake->method( 'getId' )->willReturn( 7 );
-		$fake->method( 'getNamespace' )->willReturn( NS_MAIN );
-		$fake->method( 'getDBkey' )->willReturn( 'Test' );
-
-		yield [ $fake ];
+		yield [ PageIdentity::class ];
+		yield [ Title::class ];
 	}
 
 	/**
 	 * @covers \MediaWiki\Title\Title::castFromPageIdentity
 	 * @dataProvider provideCastFromPageIdentity
 	 */
-	public function testCastFromPageIdentity( ?PageIdentity $value ) {
+	public function testCastFromPageIdentity( $value ) {
+		if ( $value !== null ) {
+			$value = $this->createMock( $value );
+			$value->method( 'getId' )->willReturn( 7 );
+			$value->method( 'getNamespace' )->willReturn( NS_MAIN );
+			$value->method( 'getDBkey' )->willReturn( 'Test' );
+		}
+
 		$title = Title::castFromPageIdentity( $value );
 
 		if ( $value === null ) {
@@ -355,7 +350,14 @@ class TitleTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideCastFromPageIdentity
 	 * @dataProvider provideCastFromPageReference
 	 */
-	public function testCastFromPageReference( ?PageReference $value ) {
+	public function testCastFromPageReference( $value ) {
+		if ( is_string( $value ) ) {
+			$value = $this->createMock( $value );
+			$value->method( 'getId' )->willReturn( 7 );
+			$value->method( 'getNamespace' )->willReturn( NS_MAIN );
+			$value->method( 'getDBkey' )->willReturn( 'Test' );
+		}
+
 		$title = Title::castFromPageReference( $value );
 
 		if ( $value === null ) {

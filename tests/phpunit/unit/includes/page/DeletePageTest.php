@@ -20,14 +20,12 @@ use MediaWiki\Page\WikiPage;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
-use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;
-use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Message\ITextFormatter;
@@ -145,12 +143,24 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 	 * @dataProvider providePermissions
 	 */
 	public function testPermissions(
-		Authority $authority,
+		$authoritySpec,
 		bool $expectedGood,
 		?string $expectedMessage = null,
-		?ServiceOptions $options = null,
-		?RevisionStore $revStore = null
+		?int $revDeleteLimit = null
 	) {
+		$authority = $authoritySpec === 'ultimate'
+			? $this->mockRegisteredUltimateAuthority()
+			: $this->mockAnonAuthority( $authoritySpec );
+		if ( $revDeleteLimit !== null ) {
+			$options = $this->getServiceOptions( $revDeleteLimit );
+			$revStore = $this->getMockRevisionStore();
+			$revStore->expects( $this->atLeastOnce() )
+				->method( 'countRevisionsByPageId' )
+				->willReturn( $revDeleteLimit + 42 );
+		} else {
+			$options = null;
+			$revStore = null;
+		}
 		$dp = $this->getDeletePage(
 			$this->getMockPage(),
 			$authority,
@@ -164,57 +174,46 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 		}
 	}
 
-	public function providePermissions(): iterable {
+	public static function providePermissions(): iterable {
 		$cannotDeleteMsg = "You shall not delete!";
-		$cannotDeleteAuthority = $this->mockAnonAuthority(
-			static function (
-				string $permission,
-				?PageIdentity $page = null,
-				?PermissionStatus $status = null
-			) use ( $cannotDeleteMsg ): bool {
-				if ( $permission === 'delete' ) {
-					if ( $status ) {
-						$status->fatal( $cannotDeleteMsg );
-					}
-					return false;
+		$cannotDeleteAuthoritySpec = static function (
+			string $permission,
+			?PageIdentity $page = null,
+			?PermissionStatus $status = null
+		) use ( $cannotDeleteMsg ): bool {
+			if ( $permission === 'delete' ) {
+				if ( $status ) {
+					$status->fatal( $cannotDeleteMsg );
 				}
-				return true;
+				return false;
 			}
-		);
-		yield 'Cannot delete' => [ $cannotDeleteAuthority, false, $cannotDeleteMsg ];
+			return true;
+		};
+		yield 'Cannot delete' => [ $cannotDeleteAuthoritySpec, false, $cannotDeleteMsg ];
 
 		$cannotBigDeleteMsg = 'delete-toomanyrevisions';
-		$cannotBigDeleteAuthority = $this->mockAnonAuthority(
-			static function (
-				string $permission,
-				?PageIdentity $page = null,
-				?PermissionStatus $status = null
-			) use ( $cannotBigDeleteMsg ): bool {
-				if ( $permission === 'bigdelete' ) {
-					if ( $status ) {
-						$status->fatal( $cannotBigDeleteMsg );
-					}
-					return false;
+		$cannotBigDeleteAuthoritySpec = static function (
+			string $permission,
+			?PageIdentity $page = null,
+			?PermissionStatus $status = null
+		) use ( $cannotBigDeleteMsg ): bool {
+			if ( $permission === 'bigdelete' ) {
+				if ( $status ) {
+					$status->fatal( $cannotBigDeleteMsg );
 				}
-				return true;
+				return false;
 			}
-		);
+			return true;
+		};
 		$revDeleteLimit = -1;
-		$cannotBigDeleteOptions = $this->getServiceOptions( $revDeleteLimit );
-		$revStore = $this->getMockRevisionStore();
-		$revStore->expects( $this->atLeastOnce() )
-			->method( 'countRevisionsByPageId' )
-			->willReturn( $revDeleteLimit + 42 );
 		yield 'Cannot bigdelete' => [
-			$cannotBigDeleteAuthority,
+			$cannotBigDeleteAuthoritySpec,
 			false,
 			$cannotBigDeleteMsg,
-			$cannotBigDeleteOptions,
-			$revStore
+			$revDeleteLimit
 		];
 
-		$successAuthority = new UltimateAuthority( new UserIdentityValue( 42, 'Deleter' ) );
-		yield 'Successful' => [ $successAuthority, true ];
+		yield 'Successful' => [ 'ultimate', true ];
 	}
 
 	/**
@@ -266,19 +265,31 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @param ProperPageIdentity $page
-	 * @param WikiPageFactory $wpFactory
-	 * @param NamespaceInfo|null $nsInfo
-	 * @param string|null $expectedMsg
 	 * @covers ::canProbablyDeleteAssociatedTalk
 	 * @dataProvider provideAssociatedTalk
 	 */
 	public function testCanProbablyDeleteAssociatedTalk(
 		ProperPageIdentity $page,
-		WikiPageFactory $wpFactory,
-		?NamespaceInfo $nsInfo,
+		$talkExists,
 		?string $expectedMsg
 	): void {
+		$wpFactory = $this->createMock( WikiPageFactory::class );
+		$wpFactory->method( 'newFromTitle' )->willReturnCallback( function ( $t ) {
+			$title = Title::castFromPageReference( $t );
+			$wikiPage = $this->createMock( WikiPage::class );
+			$wikiPage->method( 'getTitle' )->willReturn( $title );
+			$wikiPage->method( 'getNamespace' )->willReturn( $title->getNamespace() );
+			return $wikiPage;
+		} );
+		$wpFactory->method( 'newFromLinkTarget' )->willReturnCallback(
+			function ( LinkTarget $t ) use ( $talkExists ) {
+				$existingTalk = $this->createMock( WikiPage::class );
+				$existingTalk->expects( $this->atLeastOnce() )->method( 'exists' )->willReturn( $talkExists );
+				return $existingTalk;
+			}
+		);
+
+		$nsInfo = new NamespaceInfo( $this->createMock( ServiceOptions::class ), $this->createHookContainer(), [], [] );
 		$delPage = $this->getDeletePage( $page, null, null, null, $wpFactory, $nsInfo );
 
 		$res = $delPage->canProbablyDeleteAssociatedTalk();
@@ -289,34 +300,13 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 		}
 	}
 
-	public function provideAssociatedTalk(): Generator {
-		$getWpFactory = function ( bool $talkExists ): WikiPageFactory {
-			$wpFactory = $this->createMock( WikiPageFactory::class );
-			$wpFactory->method( 'newFromTitle' )->willReturnCallback( function ( $t ) {
-				$title = Title::castFromPageReference( $t );
-				$wikiPage = $this->createMock( WikiPage::class );
-				$wikiPage->method( 'getTitle' )->willReturn( $title );
-				$wikiPage->method( 'getNamespace' )->willReturn( $title->getNamespace() );
-				return $wikiPage;
-			} );
-			$wpFactory->method( 'newFromLinkTarget' )->willReturnCallback(
-				function ( LinkTarget $t ) use ( $talkExists ) {
-					$existingTalk = $this->createMock( WikiPage::class );
-					$existingTalk->expects( $this->atLeastOnce() )->method( 'exists' )->willReturn( $talkExists );
-					return $existingTalk;
-				}
-			);
-			return $wpFactory;
-		};
-		$nsInfo = new NamespaceInfo( $this->createMock( ServiceOptions::class ), $this->createHookContainer(), [], [] );
-
+	public static function provideAssociatedTalk(): Generator {
 		$talkPage = new PageIdentityValue( 42, NS_TALK, 'Test talk page', PageIdentity::LOCAL );
-		yield 'Talk page' => [ $talkPage, $getWpFactory( false ), $nsInfo, 'delete-error-associated-alreadytalk' ];
+		yield 'Talk page' => [ $talkPage, false, 'delete-error-associated-alreadytalk' ];
 
 		$nonTalkPage = new PageIdentityValue( 44, NS_MAIN, 'Test article', PageIdentity::LOCAL );
-		yield 'Article without talk page' =>
-		[ $nonTalkPage, $getWpFactory( false ), $nsInfo, 'delete-error-associated-doesnotexist' ];
+		yield 'Article without talk page' => [ $nonTalkPage, false, 'delete-error-associated-doesnotexist' ];
 
-		yield 'Article with talk page' => [ $nonTalkPage, $getWpFactory( true ), $nsInfo, null ];
+		yield 'Article with talk page' => [ $nonTalkPage, true, null ];
 	}
 }
