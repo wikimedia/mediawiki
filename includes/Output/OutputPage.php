@@ -3958,9 +3958,9 @@ class OutputPage extends ContextSource {
 		}
 
 		$bodyAttrs = [];
-		// While the implode() is not strictly needed, it's used for backwards compatibility
+		// While the expandClassList() is not strictly needed, it's used for backwards compatibility
 		// (this used to be built as a string and hooks likely still expect that).
-		$bodyAttrs['class'] = implode( ' ', $bodyClasses );
+		$bodyAttrs['class'] = Html::expandClassList( $bodyClasses );
 
 		$this->getHookRunner()->onOutputPageBodyAttributes( $this, $sk, $bodyAttrs );
 
