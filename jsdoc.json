@@ -25,6 +25,7 @@
 			"resources/src/"
 		],
 		"exclude": [
+			"resources/src/mediawiki.skinning.typeaheadSearch"
 		]
 	},
 	"templates": {

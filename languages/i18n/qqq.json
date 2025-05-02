@@ -317,6 +317,8 @@
 	"search": "{{doc-special|Search}}\nNoun. Text of menu section shown on every page of the wiki above the search form.\n\nSee also:\n* {{msg-mw|Search}}\n* {{msg-mw|Accesskey-search}}\n* {{msg-mw|Tooltip-search}}\n{{Identical|Search}}",
 	"search-ignored-headings": "Headings that the search will ignore. You can translate the text, including \"Leave this line exactly as it is\". Some lines of this messages have one leading space.",
 	"searchbutton": "The button you can see in the sidebar, below the search input box. The \"Go\" button is {{msg-mw|Searcharticle}}.\n{{Identical|Search}}",
+	"searchsuggest-containing-html": "Label used in the special item of the search suggestions list which gives the user an option to perform a full text search for the term. Used in the Codex typeahead search component.",
+	"search-loader": "Text to display below search input while the search suggestion module is loading",
 	"go": "Appears next to the search button. Goes directly to the page with that name, if it exists.\n\nSee also:\n* {{msg-mw|Go}}\n* {{msg-mw|Accesskey-search-go}}\n* {{msg-mw|Tooltip-search-go}}\n{{Identical|Go}}",
 	"searcharticle": "Button description in the search menu displayed on every page. The \"Search\" button is {{msg-mw|Searchbutton}}.\n{{Identical|Go}}\nNote however that some wikis (e.g. French Wikipedia) have chosen to translate this search submission button differently as ''Read'', rather than ''Go'':\n{{Identical|Read}}",
 	"skin-view-history": "Tab label in the Vector skin. See for example {{canonicalurl:Translating:MediaWiki|useskin=vector}}\n{{Identical|View history}}",
