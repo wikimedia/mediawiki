@@ -192,7 +192,7 @@ WARN
 				'user_id = up_user',
 				'up_property' => $option,
 			] )
-			->fields( [ 'user_id', 'user_name' ] )
+			->fields( [ 'user_id', 'user_name', 'up_value' ] )
 			// up_value is unindexed so this can be slow, but should be acceptable in a script
 			->where( [ 'up_value' => $fromIsDefault ? null : $from ] )
 			// need to order by ID so we can use ID ranges for query continuation
@@ -216,27 +216,37 @@ WARN
 			$result = $queryBuilder->fetchResultSet();
 			foreach ( $result as $row ) {
 				$fromUserId = (int)$row->user_id;
-				$oldOptionIsDefault = true;
-
 				$user = UserIdentityValue::newRegistered( $row->user_id, $row->user_name );
+
 				if ( $fromIsDefault ) {
 					// $user has the default value for $option; skip if it doesn't match
 					// NOTE: This is intentionally a loose comparison. $from is always a string
 					// (coming from the command line), but the default value might be of a
 					// different type.
 					$oldOptionMatchingDefault = null;
+					$oldOptionIsDefault = true;
 					foreach ( $from as $oldOption ) {
-						$oldOptionIsDefault = $oldOption != $userOptionsManager->getDefaultOption( $option, $user );
+						$oldOptionIsDefault = $oldOption == $userOptionsManager->getDefaultOption( $option, $user );
 						if ( $oldOptionIsDefault ) {
 							$oldOptionMatchingDefault = $oldOption;
 							break;
 						}
 					}
-					$fromAsText = $oldOptionMatchingDefault ?? $fromAsText;
+					if ( !$oldOptionIsDefault ) {
+						$this->output(
+							"Skipping $option for $row->user_name as the default value for that user is not " .
+							"specified in --from\n"
+						);
+						continue;
+					}
+
+					$fromForThisUser = $oldOptionMatchingDefault ?? $fromAsText;
+				} else {
+					$fromForThisUser = $row->up_value;
 				}
 
-				$this->output( "$settingWord {$option} for {$row->user_name} from '{$fromAsText}' to '{$to}'\n" );
-				if ( !$dryRun && $oldOptionIsDefault ) {
+				$this->output( "$settingWord $option for $row->user_name from '$fromForThisUser' to '$to'\n" );
+				if ( !$dryRun ) {
 					$userOptionsManager->setOption( $user, $option, $to );
 					$userOptionsManager->saveOptions( $user );
 				}
@@ -329,19 +339,20 @@ WARN
 			$this->fatalError( "Option name is required" );
 		}
 
-		if ( !$dryRun ) {
-			$this->warn( <<<WARN
+		if ( $dryRun ) {
+			$this->fatalError( "--delete-defaults does not support a dry run." );
+		}
+
+		$this->warn( <<<WARN
 This script is about to delete all rows in user_properties that match the current
 defaults for the user (including conditional defaults).
 This action is IRREVERSIBLE.
 
 Abort with control-c in the next five seconds....
 WARN
-			);
-		}
+		);
 
 		$dbr = $this->getDB( DB_REPLICA );
-		$dbw = $this->getDB( DB_PRIMARY );
 
 		$queryBuilderTemplate = $dbr->newSelectQueryBuilder()
 			->select( [ 'user_id', 'user_name', 'up_value' ] )
