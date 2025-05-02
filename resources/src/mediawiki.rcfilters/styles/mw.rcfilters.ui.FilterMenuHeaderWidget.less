@@ -4,30 +4,28 @@
 
 .mw-rcfilters-ui-filterMenuHeaderWidget {
 	&-title {
-		display: inline-block;
 		font-size: 1.2em;
-		padding: 0.75em 0 0.75em 0.5em;
 		color: @color-subtle;
-	}
-
-	&-helpIcon {
-		position: absolute;
-		top: 50%;
-		transform: translateY( -50% );
 	}
 
 	&-header {
 		background-color: @background-color-neutral-subtle;
 		border-bottom: @border-subtle;
 
-		&-highlight {
-			min-width: 1em;
+		.mw-rcfilters-ui-row {
+			justify-content: space-between;
+			padding: (8 / @font-size-system-ui / @font-size-vector);
 			// Using the same padding that the filter item
-			// uses, so the button is aligned with the highlight
+			// uses, so the highlight button is aligned with the highlight
 			// buttons for the filters
+			gap: (12 / @font-size-system-ui / @font-size-vector);
 			padding-right: (12 / @font-size-system-ui / @font-size-vector);
-			// Set the left-padding here, so that the invert buttons have the same padding
-			padding-left: (12 / @font-size-system-ui / @font-size-vector);
+			padding-left: 0;
+		}
+
+		// One of these buttons is always hidden, so hide the gap visually
+		&-invert + &-invert {
+			margin-left: (-12 / @font-size-system-ui / @font-size-vector);
 		}
 
 		&-back {
@@ -38,8 +36,17 @@
 		}
 
 		&-title {
-			position: relative;
+			display: flex;
 			flex-grow: 1;
+			align-items: center;
+		}
+
+		&-highlight,
+		&-invert {
+			.oo-ui-buttonElement > .oo-ui-buttonElement-button {
+				// T356467
+				white-space: normal;
+			}
 		}
 	}
 
