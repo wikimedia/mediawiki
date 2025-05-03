@@ -663,6 +663,7 @@ because of Phabricator reports.
    - Xml::textarea() – use Html::element() instead
    - Xml::submitButton() – use Html::submitButton() instead
    - Xml::check() – use Html::check() instead
+   - Xml::radio() – use Html::radio() instead
 * BlockUtils and BlockUtilsFactory is now deprecated. Use BlockTargetFactory
   and CrossWikiBlockTargetFactory.
 * RenameuserSQL::rename has been deprecated and should be replaced with
