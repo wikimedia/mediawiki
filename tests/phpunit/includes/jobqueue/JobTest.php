@@ -18,50 +18,52 @@ class JobTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideTestToString
-	 *
-	 * @param Job $job
-	 * @param string $expected
 	 */
-	public function testToString( $job, $expected ) {
+	public function testToString( $jobSpec, $expected ) {
 		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'en' );
+
+		if ( $jobSpec === 'stdClass' ) {
+			$mockToStringObj = $this->getMockBuilder( stdClass::class )
+				->addMethods( [ '__toString' ] )->getMock();
+			$mockToStringObj->method( '__toString' )
+				->willReturn( '{STRING_OBJ_VAL}' );
+			$jobSpec = [ $mockToStringObj ];
+		}
+		$job = $this->getMockJob( $jobSpec );
+
 		$this->assertEquals( $expected, $job->toString() );
 	}
 
-	public function provideTestToString() {
-		$mockToStringObj = $this->getMockBuilder( stdClass::class )
-			->addMethods( [ '__toString' ] )->getMock();
-		$mockToStringObj->method( '__toString' )
-			->willReturn( '{STRING_OBJ_VAL}' );
-
+	public static function provideTestToString() {
 		$requestId = 'requestId=' . WebRequest::getRequestId();
 
 		return [
 			[
-				$this->getMockJob( [ 'key' => 'val' ] ),
+				[ 'key' => 'val' ],
 				'someCommand Special: key=val ' . $requestId
 			],
 			[
-				$this->getMockJob( [ 'key' => [ 'inkey' => 'inval' ] ] ),
+				[ 'key' => [ 'inkey' => 'inval' ] ],
 				'someCommand Special: key={"inkey":"inval"} ' . $requestId
 			],
 			[
-				$this->getMockJob( [ 'val1' ] ),
+				[ 'val1' ],
 				'someCommand Special: 0=val1 ' . $requestId
 			],
 			[
-				$this->getMockJob( [ 'val1', 'val2' ] ),
+				[ 'val1', 'val2' ],
 				'someCommand Special: 0=val1 1=val2 ' . $requestId
 			],
 			[
-				$this->getMockJob( [ (object)[] ] ),
+				[ (object)[] ],
 				'someCommand Special: 0=stdClass ' . $requestId
 			],
 			[
-				$this->getMockJob( [ $mockToStringObj ] ),
+				'stdClass',
 				'someCommand Special: 0={STRING_OBJ_VAL} ' . $requestId
 			],
 			[
-				$this->getMockJob( [
+				[
 					"pages" => [
 						"932737" => [
 							0,
@@ -76,7 +78,7 @@ class JobTest extends MediaWikiIntegrationTestCase {
 						"asOfTime" => 1457521464.3814
 					],
 					"triggeredRecursive" => true
-				] ),
+				],
 				'someCommand Special: pages={"932737":[0,"Robert_James_Waller"]} ' .
 				'rootJobSignature=45868e99bba89064e4483743ebb9b682ef95c1a7 ' .
 				'rootJobTimestamp=20160309110158 masterPos=' .

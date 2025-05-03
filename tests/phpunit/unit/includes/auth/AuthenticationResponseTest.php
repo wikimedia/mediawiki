@@ -22,6 +22,21 @@ class AuthenticationResponseTest extends MediaWikiUnitTestCase {
 	 * @param array|Exception $expect
 	 */
 	public function testConstructors( $constructor, $args, $expect ) {
+		if ( $args && is_array( $args[0] ) ) {
+			foreach ( $args[0] as &$arg ) {
+				if ( $arg === 'authrequest' ) {
+					$arg = $this->getMockForAbstractClass( AuthenticationRequest::class );
+				}
+			}
+		}
+		if ( is_array( $expect ) && isset( $expect['neededRequests'] ) ) {
+			foreach ( $expect['neededRequests'] as &$neededRequests ) {
+				if ( $neededRequests === 'authrequest' ) {
+					$neededRequests = $this->getMockForAbstractClass( AuthenticationRequest::class );
+				}
+			}
+		}
+
 		if ( is_array( $expect ) ) {
 			$res = new AuthenticationResponse();
 			$res->messageType = 'warning';
@@ -40,8 +55,7 @@ class AuthenticationResponseTest extends MediaWikiUnitTestCase {
 		}
 	}
 
-	public function provideConstructors() {
-		$req = $this->getMockForAbstractClass( AuthenticationRequest::class );
+	public static function provideConstructors() {
 		$msg = new Message( 'mainpage' );
 
 		return [
@@ -73,23 +87,23 @@ class AuthenticationResponseTest extends MediaWikiUnitTestCase {
 				'status' => AuthenticationResponse::ABSTAIN,
 			] ],
 
-			[ 'newUI', [ [ $req ], $msg ], [
+			[ 'newUI', [ [ 'authrequest' ], $msg ], [
 				'status' => AuthenticationResponse::UI,
-				'neededRequests' => [ $req ],
+				'neededRequests' => [ 'authrequest' ],
 				'message' => $msg,
 				'messageType' => 'warning',
 			] ],
 
-			[ 'newUI', [ [ $req ], $msg, 'warning' ], [
+			[ 'newUI', [ [ 'authrequest' ], $msg, 'warning' ], [
 				'status' => AuthenticationResponse::UI,
-				'neededRequests' => [ $req ],
+				'neededRequests' => [ 'authrequest' ],
 				'message' => $msg,
 				'messageType' => 'warning',
 			] ],
 
-			[ 'newUI', [ [ $req ], $msg, 'error' ], [
+			[ 'newUI', [ [ 'authrequest' ], $msg, 'error' ], [
 				'status' => AuthenticationResponse::UI,
-				'neededRequests' => [ $req ],
+				'neededRequests' => [ 'authrequest' ],
 				'message' => $msg,
 				'messageType' => 'error',
 			] ],
@@ -97,17 +111,17 @@ class AuthenticationResponseTest extends MediaWikiUnitTestCase {
 				new InvalidArgumentException( '$reqs may not be empty' )
 			],
 
-			[ 'newRedirect', [ [ $req ], 'http://example.org/redir' ], [
+			[ 'newRedirect', [ [ 'authrequest' ], 'http://example.org/redir' ], [
 				'status' => AuthenticationResponse::REDIRECT,
-				'neededRequests' => [ $req ],
+				'neededRequests' => [ 'authrequest' ],
 				'redirectTarget' => 'http://example.org/redir',
 			] ],
 			[
 				'newRedirect',
-				[ [ $req ], 'http://example.org/redir', [ 'foo' => 'bar' ] ],
+				[ [ 'authrequest' ], 'http://example.org/redir', [ 'foo' => 'bar' ] ],
 				[
 					'status' => AuthenticationResponse::REDIRECT,
-					'neededRequests' => [ $req ],
+					'neededRequests' => [ 'authrequest' ],
 					'redirectTarget' => 'http://example.org/redir',
 					'redirectApiData' => [ 'foo' => 'bar' ],
 				]

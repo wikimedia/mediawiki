@@ -365,47 +365,32 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 		$this->assertFalse( $record->hasSlot( 'c' ) );
 	}
 
-	public function provideNotReadyForInsertion() {
-		$title = $this->makeMockTitle( 'Dummy' );
-		$user = new UserIdentityValue( 42, 'Test' );
-
-		/** @var CommentStoreComment $comment */
-		$comment = $this->createMock( CommentStoreComment::class );
-
-		$content = new DummyContentForTesting( 'Test' );
-
-		$rev = new MutableRevisionRecord( $title );
-		yield 'empty' => [ $rev ];
-
-		$rev = new MutableRevisionRecord( $title );
-		$rev->setContent( SlotRecord::MAIN, $content );
-		$rev->setUser( $user );
-		$rev->setComment( $comment );
-		yield 'no timestamp' => [ $rev ];
-
-		$rev = new MutableRevisionRecord( $title );
-		$rev->setUser( $user );
-		$rev->setComment( $comment );
-		$rev->setTimestamp( '20101010000000' );
-		yield 'no content' => [ $rev ];
-
-		$rev = new MutableRevisionRecord( $title );
-		$rev->setContent( SlotRecord::MAIN, $content );
-		$rev->setComment( $comment );
-		$rev->setTimestamp( '20101010000000' );
-		yield 'no user' => [ $rev ];
-
-		$rev = new MutableRevisionRecord( $title );
-		$rev->setUser( $user );
-		$rev->setContent( SlotRecord::MAIN, $content );
-		$rev->setTimestamp( '20101010000000' );
-		yield 'no comment' => [ $rev ];
+	public static function provideNotReadyForInsertion() {
+		yield 'empty' => [ [ 'content' => false, 'user' => false, 'comment' => false, 'timestamp' => false ] ];
+		yield 'no timestamp' => [ [ 'content' => true, 'user' => true, 'comment' => true, 'timestamp' => false ] ];
+		yield 'no content' => [ [ 'content' => false, 'user' => true, 'comment' => true, 'timestamp' => true ] ];
+		yield 'no user' => [ [ 'content' => true, 'user' => false, 'comment' => true, 'timestamp' => true ] ];
+		yield 'no comment' => [ [ 'content' => true, 'user' => true, 'comment' => false, 'timestamp' => true ] ];
 	}
 
 	/**
 	 * @dataProvider provideNotReadyForInsertion
 	 */
-	public function testNotReadyForInsertion( $rev ) {
+	public function testNotReadyForInsertion( $revSpec ) {
+		$rev = new MutableRevisionRecord( $this->makeMockTitle( 'Dummy' ) );
+		if ( $revSpec['content'] ) {
+			$rev->setContent( SlotRecord::MAIN, new DummyContentForTesting( 'Test' ) );
+		}
+		if ( $revSpec['user'] ) {
+			$rev->setUser( new UserIdentityValue( 42, 'Test' ) );
+		}
+		if ( $revSpec['comment'] ) {
+			$rev->setComment( $this->createMock( CommentStoreComment::class ) );
+		}
+		if ( $revSpec['timestamp'] ) {
+			$rev->setTimestamp( '20101010000000' );
+		}
+
 		$this->assertFalse( $rev->isReadyForInsertion() );
 	}
 

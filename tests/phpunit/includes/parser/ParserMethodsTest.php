@@ -6,7 +6,6 @@ use LogicException;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -265,46 +264,31 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		];
 	}
 
-	public function provideRevisionAccess() {
-		$title = $this->makeMockTitle( 'ParserRevisionAccessTest', [
-			'language' => MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' )
-		] );
+	public static function provideRevisionAccess() {
+		$text = '* user:{{REVISIONUSER}};id:{{REVISIONID}};time:{{REVISIONTIMESTAMP}};';
 
-		$frank = new UserIdentityValue( 5, 'Frank' );
+		yield 'current' => [ $text, [], 0, 'user:CurrentAuthor;id:200;time:20160606000000;' ];
+		yield 'anonymous' => [ $text, [], null, 'user:;id:;time:' ];
+		yield 'current with ID' => [ $text, [], 200, 'user:CurrentAuthor;id:200;time:20160606000000;' ];
 
 		$text = '* user:{{REVISIONUSER}};id:{{REVISIONID}};time:{{REVISIONTIMESTAMP}};';
-		$po = new ParserOptions( $frank );
 
-		yield 'current' => [ $text, $po, 0, 'user:CurrentAuthor;id:200;time:20160606000000;' ];
-		yield 'anonymous' => [ $text, $po, null, 'user:;id:;time:' ];
-		yield 'current with ID' => [ $text, $po, 200, 'user:CurrentAuthor;id:200;time:20160606000000;' ];
+		yield 'old' => [ $text, [], 100, 'user:OldAuthor;id:100;time:20140404000000;' ];
 
-		$text = '* user:{{REVISIONUSER}};id:{{REVISIONID}};time:{{REVISIONTIMESTAMP}};';
-		$po = new ParserOptions( $frank );
+		$oldRevisionSpec = [
+			'id' => 100,
+			'user' => [ 7, 'FauxAuthor' ],
+			'timestamp' => '20141111111111',
+			'content' => 'FAUX',
+		];
 
-		yield 'old' => [ $text, $po, 100, 'user:OldAuthor;id:100;time:20140404000000;' ];
-
-		$oldRevision = new MutableRevisionRecord( $title );
-		$oldRevision->setId( 100 );
-		$oldRevision->setUser( new UserIdentityValue( 7, 'FauxAuthor' ) );
-		$oldRevision->setTimestamp( '20141111111111' );
-		$oldRevision->setContent( SlotRecord::MAIN, new WikitextContent( 'FAUX' ) );
-
-		$po = new ParserOptions( $frank );
-		$po->setCurrentRevisionRecordCallback( static function () use ( $oldRevision ) {
-			return $oldRevision;
-		} );
-
-		yield 'old with override' => [ $text, $po, 100, 'user:FauxAuthor;id:100;time:20141111111111;' ];
+		yield 'old with override' => [ $text, [ 'revisionCallback' => $oldRevisionSpec ], 100, 'user:FauxAuthor;id:100;time:20141111111111;' ];
 
 		$text = '* user:{{REVISIONUSER}};user-subst:{{subst:REVISIONUSER}};';
 
-		$po = new ParserOptions( $frank );
-		$po->setIsPreview( true );
-
 		yield 'preview without override, using context' => [
 			$text,
-			$po,
+			[ 'preview' => true ],
 			null,
 			'user:Frank;',
 			'user-subst:Frank;',
@@ -313,33 +297,22 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$text = '* user:{{REVISIONUSER}};time:{{REVISIONTIMESTAMP}};'
 			. 'user-subst:{{subst:REVISIONUSER}};time-subst:{{subst:REVISIONTIMESTAMP}};';
 
-		$newRevision = new MutableRevisionRecord( $title );
-		$newRevision->setUser( new UserIdentityValue( 9, 'NewAuthor' ) );
-		$newRevision->setTimestamp( '20180808000000' );
-		$newRevision->setContent( SlotRecord::MAIN, new WikitextContent( 'NEW' ) );
-
-		$po = new ParserOptions( $frank );
-		$po->setIsPreview( true );
-		$po->setCurrentRevisionRecordCallback( static function () use ( $newRevision ) {
-			return $newRevision;
-		} );
-
+		$newRevisionSpec = [
+			'user' => [ 9, 'NewAuthor' ],
+			'timestamp' => '20180808000000',
+			'content' => 'NEW',
+		];
 		yield 'preview' => [
 			$text,
-			$po,
+			[ 'preview' => true, 'revisionCallback' => $newRevisionSpec ],
 			null,
 			'user:NewAuthor;time:20180808000000;',
 			'user-subst:NewAuthor;time-subst:20180808000000;',
 		];
 
-		$po = new ParserOptions( $frank );
-		$po->setCurrentRevisionRecordCallback( static function () use ( $newRevision ) {
-			return $newRevision;
-		} );
-
 		yield 'pre-save' => [
 			$text,
-			$po,
+			[ 'revisionCallback' => $newRevisionSpec ],
 			null,
 			'user:NewAuthor;time:20180808000000;',
 			'user-subst:NewAuthor;time-subst:20180808000000;',
@@ -348,18 +321,12 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$text = "(ONE)<includeonly>(TWO)</includeonly>"
 			. "<noinclude>#{{:ParserRevisionAccessTest}}#</noinclude>";
 
-		$newRevision = new MutableRevisionRecord( $title );
-		$newRevision->setUser( new UserIdentityValue( 9, 'NewAuthor' ) );
-		$newRevision->setTimestamp( '20180808000000' );
-		$newRevision->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
-
-		$po = new ParserOptions( $frank );
-		$po->setIsPreview( true );
-		$po->setCurrentRevisionRecordCallback( static function () use ( $newRevision ) {
-			return $newRevision;
-		} );
-
-		yield 'preview with self-transclude' => [ $text, $po, null, '(ONE)#(ONE)(TWO)#' ];
+		$newRevisionSpec = [
+			'user' => [ 9, 'NewAuthor' ],
+			'timestamp' => '20180808000000',
+			'content' => $text,
+		];
+		yield 'preview with self-transclude' => [ $text, [ 'preview' => true, 'revisionCallback' => $newRevisionSpec ], null, '(ONE)#(ONE)(TWO)#' ];
 	}
 
 	/**
@@ -367,7 +334,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 	 */
 	public function testRevisionAccess(
 		$text,
-		ParserOptions $po,
+		$poSpec,
 		$revId,
 		$expectedInHtml,
 		$expectedInPst = null
@@ -375,6 +342,25 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$title = $this->makeMockTitle( 'ParserRevisionAccessTest', [
 			'language' => $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' )
 		] );
+
+		$frank = new UserIdentityValue( 5, 'Frank' );
+		$po = new ParserOptions( $frank );
+		if ( isset( $poSpec['revisionCallback'] ) ) {
+			$revisionSpec = $poSpec['revisionCallback'];
+			$revision = new MutableRevisionRecord( $title );
+			if ( isset( $revisionSpec['id'] ) ) {
+				$revision->setId( $revisionSpec['id'] );
+			}
+			$revision->setUser( new UserIdentityValue( ...$revisionSpec['user'] ) );
+			$revision->setTimestamp( $revisionSpec['timestamp'] );
+			$revision->setContent( SlotRecord::MAIN, new WikitextContent( $revisionSpec['content'] ) );
+			$po->setCurrentRevisionRecordCallback( static function () use ( $revision ) {
+				return $revision;
+			} );
+		}
+		if ( isset( $poSpec['preview'] ) ) {
+			$po->setIsPreview( $poSpec['preview'] );
+		}
 
 		$oldRevision = new MutableRevisionRecord( $title );
 		$oldRevision->setId( 100 );

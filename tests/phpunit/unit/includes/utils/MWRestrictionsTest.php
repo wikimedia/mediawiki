@@ -2,7 +2,6 @@
 
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Request\FauxRequest;
-use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
 
 class MWRestrictionsTest extends MediaWikiUnitTestCase {
@@ -186,47 +185,34 @@ class MWRestrictionsTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @covers \MWRestrictions::check
-	 * @dataProvider provideCheck
-	 * @param WebRequest $request
-	 * @param Status $expect
+	 * @dataProvider provideCheckIP
 	 */
-	public function testCheck( $request, $expect ) {
+	public function testCheck( $ip, $pass ) {
+		$ok = [];
+		$request = $this->getMockBuilder( FauxRequest::class )
+			->onlyMethods( [ 'getIP' ] )->getMock();
+
+		$request->method( 'getIP' )
+			->willReturn( $ip );
+		$ok['ip'] = $pass;
+
+		/* If we ever add more restrictions, add nested for loops here:
+		 *  foreach ( self::provideCheckFoo() as $checkFoo ) {
+		 *      $request->method( 'getFoo' )->willReturn( $checkFoo[0] );
+		 *      $ok['foo'] = $checkFoo[1];
+		 *
+		 *      foreach ( self::provideCheckBar() as $checkBar ) {
+		 *          $request->method( 'getBar' )->willReturn( $checkBar[0] );
+		 *          $ok['bar'] = $checkBar[1];
+		 *
+		 *          // etc.
+		 *      }
+		 *  }
+		 */
+
+		$expect = Status::newGood();
+		$expect->setResult( $ok === array_filter( $ok ), $ok );
+
 		$this->assertEquals( $expect, self::$restrictionsForChecks->check( $request ) );
-	}
-
-	public function provideCheck() {
-		$ret = [];
-
-		$mockBuilder = $this->getMockBuilder( FauxRequest::class )
-			->onlyMethods( [ 'getIP' ] );
-
-		foreach ( self::provideCheckIP() as $checkIP ) {
-			$ok = [];
-			$request = $mockBuilder->getMock();
-
-			$request->method( 'getIP' )
-				->willReturn( $checkIP[0] );
-			$ok['ip'] = $checkIP[1];
-
-			/* If we ever add more restrictions, add nested for loops here:
-			 *  foreach ( self::provideCheckFoo() as $checkFoo ) {
-			 *      $request->method( 'getFoo' )->willReturn( $checkFoo[0] );
-			 *      $ok['foo'] = $checkFoo[1];
-			 *
-			 *      foreach ( self::provideCheckBar() as $checkBar ) {
-			 *          $request->method( 'getBar' )->willReturn( $checkBar[0] );
-			 *          $ok['bar'] = $checkBar[1];
-			 *
-			 *          // etc.
-			 *      }
-			 *  }
-			 */
-
-			$status = Status::newGood();
-			$status->setResult( $ok === array_filter( $ok ), $ok );
-			$ret[] = [ $request, $status ];
-		}
-
-		return $ret;
 	}
 }

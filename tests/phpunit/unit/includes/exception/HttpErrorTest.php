@@ -23,7 +23,22 @@ class HttpErrorTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider getHtmlProvider
 	 */
-	public function testGetHtml( array $expected, $content, $header ) {
+	public function testGetHtml( array $expected, $contentSpec, $headerSpec ) {
+		// Avoid parsing logic in real Message class which includes text transformations
+		// that require MediaWikiServices
+		if ( is_array( $contentSpec ) ) {
+			$content = $this->createMock( Message::class );
+			$content->method( 'escaped' )->willReturn( ...$contentSpec );
+		} else {
+			$content = $contentSpec;
+		}
+		if ( is_array( $headerSpec ) ) {
+			$header = $this->createMock( Message::class );
+			$header->method( 'escaped' )->willReturn( ...$headerSpec );
+		} else {
+			$header = $headerSpec;
+		}
+
 		$httpError = new HttpError( 500, $content, $header );
 		$errorHtml = $httpError->getHTML();
 
@@ -32,14 +47,7 @@ class HttpErrorTest extends MediaWikiUnitTestCase {
 		}
 	}
 
-	public function getHtmlProvider() {
-		// Avoid parsing logic in real Message class which includes text transformations
-		// that require MediaWikiServices
-		$content = $this->createMock( Message::class );
-		$content->method( 'escaped' )->willReturn( 'blahblah' );
-		$header = $this->createMock( Message::class );
-		$header->method( 'escaped' )->willReturn( 'loginerror' );
-
+	public static function getHtmlProvider() {
 		return [
 			[
 				[
@@ -56,8 +64,8 @@ class HttpErrorTest extends MediaWikiUnitTestCase {
 					'body html' => '<body><h1>loginerror</h1>'
 					. '<p>blahblah</p></body>'
 				],
-				$content,
-				$header
+				[ 'blahblah' ],
+				[ 'loginerror' ]
 			],
 			[
 				[

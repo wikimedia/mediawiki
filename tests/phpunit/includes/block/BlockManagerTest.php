@@ -401,6 +401,22 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 	public function testTrackBlockWithCookie( $options, $expected ) {
 		$this->overrideConfigValue( MainConfigNames::CookiePrefix, '' );
 
+		if ( is_int( $options['block'] ) ) {
+			$options['block'] = $this->getTrackableBlock( $options['block'] );
+		} elseif ( is_array( $options['block'] ) ) {
+			$blocks = [];
+			foreach ( $options['block'] as $block ) {
+				if ( is_int( $block ) ) {
+					$blocks[] = $this->getTrackableBlock( $block );
+				} elseif ( $block === 'system' ) {
+					$blocks[] = new SystemBlock();
+				}
+			}
+			$options['block'] = new CompositeBlock( [
+				'originalBlocks' => $blocks
+			] );
+		}
+
 		$request = new FauxRequest();
 		if ( $options['cookieSet'] ) {
 			$request->setCookie( 'BlockID', 'the value does not matter' );
@@ -428,13 +444,13 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected['value'], $response->getCookie( 'BlockID' ) );
 	}
 
-	public function provideTrackBlockWithCookie() {
+	public static function provideTrackBlockWithCookie() {
 		$blockId = 123;
 		return [
 			'Block cookie is already set; there is a trackable block' => [
 				[
 					'cookieSet' => true,
-					'block' => $this->getTrackableBlock( $blockId ),
+					'block' => $blockId,
 				],
 				[
 					'count' => 1,
@@ -465,7 +481,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 			'Block cookie is not yet set; there is a trackable block' => [
 				[
 					'cookieSet' => false,
-					'block' => $this->getTrackableBlock( $blockId ),
+					'block' => $blockId,
 				],
 				[
 					'count' => 1,
@@ -475,12 +491,10 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 			'Block cookie is not yet set; there is a composite block with a trackable block' => [
 				[
 					'cookieSet' => false,
-					'block' => new CompositeBlock( [
-						'originalBlocks' => [
-							new SystemBlock(),
-							$this->getTrackableBlock( $blockId ),
-						]
-					] ),
+					'block' => [
+						'system',
+						$blockId,
+					],
 				],
 				[
 					'count' => 1,
@@ -490,12 +504,10 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 			'Block cookie is not yet set; there is a composite block but no trackable block' => [
 				[
 					'cookieSet' => false,
-					'block' => new CompositeBlock( [
-						'originalBlocks' => [
-							new SystemBlock(),
-							new SystemBlock(),
-						]
-					] ),
+					'block' => [
+						'system',
+						'system',
+					],
 				],
 				[
 					'count' => 0,

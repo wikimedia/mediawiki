@@ -108,15 +108,18 @@ class MwHttpRequestToResponseInterfaceAdapterTest extends MediaWikiUnitTestCase 
 	 * @dataProvider unsupportedMethodsProvider
 	 */
 	public function testBuilderMethodsThrowLogicException( string $method, $args ) {
+		if ( $args === 'streaminterface' ) {
+			$args = [ $this->createMock( StreamInterface::class ) ];
+		}
 		$this->expectException( \LogicException::class );
 		( new MwHttpRequestToResponseInterfaceAdapter( $this->createMock( MWHttpRequest::class ) ) )
 			->{$method}( ...$args );
 	}
 
-	public function unsupportedMethodsProvider() {
+	public static function unsupportedMethodsProvider() {
 		return [
 			[ 'withAddedHeader', [ 'foo', 'bar' ] ],
-			[ 'withBody', [ $this->createMock( StreamInterface::class ) ] ],
+			[ 'withBody', 'streaminterface' ],
 			[ 'withHeader', [ 'foo', 'bar' ] ],
 			[ 'withoutHeader', [ 'foo', 'bar' ] ],
 			[ 'withProtocolVersion', [ '1.1' ] ],

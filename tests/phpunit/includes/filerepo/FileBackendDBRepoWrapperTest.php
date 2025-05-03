@@ -15,77 +15,61 @@ class FileBackendDBRepoWrapperTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\FileRepo\FileBackendDBRepoWrapper::getBackendPaths
 	 */
 	public function testGetBackendPaths(
-		$mocks,
 		$latest,
-		$dbReadsExpected,
+		$dbReadsExpectedArray,
 		$dbReturnValue,
 		$originalPath,
-		$expectedBackendPath,
-		$message ) {
-		[ $dbMock, $backendMock, $wrapperMock ] = $mocks;
+		$expectedBackendPath
+	) {
+		[ $dbMock, $backendMock, $wrapperMock ] = $this->getMocks();
 
-		$dbMock->expects( $dbReadsExpected )
-			->method( 'selectField' )
-			->willReturn( $dbReturnValue );
-		$dbMock->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn () => new SelectQueryBuilder( $dbMock ) );
+		foreach ( $dbReadsExpectedArray as $message => $dbReadsExpected ) {
+			$dbMock->expects( $dbReadsExpected )
+				->method( 'selectField' )
+				->willReturn( $dbReturnValue );
+			$dbMock->method( 'newSelectQueryBuilder' )->willReturnCallback( static fn () => new SelectQueryBuilder( $dbMock ) );
 
-		$newPaths = $wrapperMock->getBackendPaths( [ $originalPath ], $latest );
+			$newPaths = $wrapperMock->getBackendPaths( [ $originalPath ], $latest );
 
-		$this->assertEquals(
-			$expectedBackendPath,
-			$newPaths[0],
-			$message );
+			$this->assertEquals(
+				$expectedBackendPath,
+				$newPaths[0],
+				$message
+			);
+		}
 	}
 
-	public function getBackendPathsProvider() {
+	public static function getBackendPathsProvider() {
 		$prefix = 'mwstore://' . self::BACKEND_NAME . '/' . self::REPO_NAME;
-		$mocksForCaching = $this->getMocks();
 
 		return [
 			[
-				$mocksForCaching,
 				false,
-				$this->once(),
+				[ 'Public path translated correctly' => self::once(), 'LRU cache leveraged' => self::never() ],
 				'96246614d75ba1703bdfd5d7660bb57407aaf5d9',
 				$prefix . '-public/f/o/foobar.jpg',
 				$prefix . '-original/9/6/2/96246614d75ba1703bdfd5d7660bb57407aaf5d9',
-				'Public path translated correctly',
 			],
 			[
-				$mocksForCaching,
-				false,
-				$this->never(),
-				'96246614d75ba1703bdfd5d7660bb57407aaf5d9',
-				$prefix . '-public/f/o/foobar.jpg',
-				$prefix . '-original/9/6/2/96246614d75ba1703bdfd5d7660bb57407aaf5d9',
-				'LRU cache leveraged',
-			],
-			[
-				$this->getMocks(),
 				true,
-				$this->once(),
+				[ 'Latest obtained' => self::once() ],
 				'96246614d75ba1703bdfd5d7660bb57407aaf5d9',
 				$prefix . '-public/f/o/foobar.jpg',
 				$prefix . '-original/9/6/2/96246614d75ba1703bdfd5d7660bb57407aaf5d9',
-				'Latest obtained',
 			],
 			[
-				$this->getMocks(),
 				true,
-				$this->never(),
+				[ 'Deleted path translated correctly' => self::never() ],
 				'96246614d75ba1703bdfd5d7660bb57407aaf5d9',
 				$prefix . '-deleted/f/o/foobar.jpg',
 				$prefix . '-original/f/o/o/foobar',
-				'Deleted path translated correctly',
 			],
 			[
-				$this->getMocks(),
 				true,
-				$this->once(),
+				[ 'Path left untouched if no sha1 can be found' => self::once() ],
 				null,
 				$prefix . '-public/b/a/baz.jpg',
 				$prefix . '-public/b/a/baz.jpg',
-				'Path left untouched if no sha1 can be found',
 			],
 		];
 	}

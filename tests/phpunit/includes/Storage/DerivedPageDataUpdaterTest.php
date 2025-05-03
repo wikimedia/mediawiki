@@ -876,7 +876,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		return $rev;
 	}
 
-	public function provideIsReusableFor() {
+	public static function provideIsReusableFor() {
 		$title = PageIdentityValue::localIdentity( 1234, NS_MAIN, __CLASS__ );
 
 		$user1 = new UserIdentityValue( 111, 'Alice' );
@@ -894,12 +894,12 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$update2 = new RevisionSlotsUpdate();
 		$update2->modifyContent( SlotRecord::MAIN, $content2 );
 
-		$rev1 = $this->makeRevision( $title, $update1, $user1, 'rev1', 11 );
-		$rev1b = $this->makeRevision( $title, $update1b, $user1, 'rev1', 11 );
+		$rev1 = [ $title, $update1, $user1, 'rev1', 11 ];
+		$rev1b = [ $title, $update1b, $user1, 'rev1', 11 ];
 
-		$rev2 = $this->makeRevision( $title, $update2, $user1, 'rev2', 12 );
-		$rev2x = $this->makeRevision( $title, $update2, $user2, 'rev2', 12 );
-		$rev2y = $this->makeRevision( $title, $update2, $user1, 'rev2', 122 );
+		$rev2 = [ $title, $update2, $user1, 'rev2', 12 ];
+		$rev2x = [ $title, $update2, $user2, 'rev2', 12 ];
+		$rev2y = [ $title, $update2, $user1, 'rev2', 122 ];
 
 		yield 'any' => [
 			'$prepUser' => null,
@@ -1019,10 +1019,10 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testIsReusableFor(
 		?UserIdentity $prepUser,
-		?MutableRevisionRecord $prepRevision,
+		?array $prepRevision,
 		?RevisionSlotsUpdate $prepUpdate,
 		?UserIdentity $forUser,
-		?RevisionRecord $forRevision,
+		?array $forRevision,
 		?RevisionSlotsUpdate $forUpdate,
 		$forParent,
 		$isReusable
@@ -1034,7 +1034,10 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		}
 
 		if ( $prepRevision ) {
-			$updater->prepareUpdate( $prepRevision );
+			$updater->prepareUpdate( $this->makeRevision( ...$prepRevision ) );
+		}
+		if ( $forRevision ) {
+			$forRevision = $this->makeRevision( ...$forRevision );
 		}
 
 		$this->assertSame(
