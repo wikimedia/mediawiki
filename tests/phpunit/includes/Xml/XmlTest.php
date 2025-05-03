@@ -85,6 +85,7 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testLabelCreation() {
+		$this->hideDeprecated( Xml::class . '::label' );
 		$this->assertEquals(
 			'<label for="id">name</label>',
 			Xml::label( 'name', 'id' ),
@@ -93,21 +94,25 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testLabelAttributeCanOnlyBeClassOrTitle() {
+		$this->hideDeprecated( Xml::class . '::label' );
 		$this->assertEquals(
 			'<label for="id">name</label>',
 			Xml::label( 'name', 'id', [ 'generated' => true ] ),
 			'label() cannot be given a generated attribute'
 		);
+		$this->hideDeprecated( Xml::class . '::label' );
 		$this->assertEquals(
 			'<label for="id" class="nice">name</label>',
 			Xml::label( 'name', 'id', [ 'class' => 'nice' ] ),
 			'label() can get a class attribute'
 		);
+		$this->hideDeprecated( Xml::class . '::label' );
 		$this->assertEquals(
 			'<label for="id" title="nice tooltip">name</label>',
 			Xml::label( 'name', 'id', [ 'title' => 'nice tooltip' ] ),
 			'label() can get a title attribute'
 		);
+		$this->hideDeprecated( Xml::class . '::label' );
 		$this->assertEquals(
 			'<label for="id" class="nice" title="nice tooltip">name</label>',
 			Xml::label( 'name', 'id', [

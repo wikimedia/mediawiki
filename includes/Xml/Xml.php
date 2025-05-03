@@ -153,9 +153,11 @@ class Xml {
 	 *     apply to the label as well; only class and title are applied.
 	 * @return string HTML
 	 *
-	 * @deprecated since 1.42, use {@see Html::label} instead
+	 * @deprecated since 1.42, use {@see Html::label} instead; emiting warnings since 1.46
 	 */
 	public static function label( $label, $id, $attribs = [] ) {
+		wfDeprecated( __METHOD__, '1.42' );
+
 		$a = [ 'for' => $id ];
 
 		foreach ( [ 'class', 'title' ] as $attr ) {
