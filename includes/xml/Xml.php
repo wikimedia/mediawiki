@@ -382,9 +382,11 @@ class Xml {
 	 * @param array $attribs Other attributes
 	 * @return string HTML
 	 *
-	 * @deprecated since 1.42, use {@see Html::radio} instead
+	 * @deprecated since 1.42, use {@see Html::radio} instead; emiting warnings since 1.44
 	 */
 	public static function radio( $name, $value, $checked = false, $attribs = [] ) {
+		wfDeprecated( __METHOD__, '1.42' );
+
 		return self::element( 'input', [
 			'name' => $name,
 			'type' => 'radio',
