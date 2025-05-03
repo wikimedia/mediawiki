@@ -685,9 +685,11 @@ class Xml {
 	 * @param array $attribs Any other attributes for the textarea
 	 * @return string
 	 *
-	 * @deprecated since 1.42, use {@see Html::textarea} instead
+	 * @deprecated since 1.42, use {@see Html::textarea} instead; emiting deprecation warnings since 1.44
 	 */
 	public static function textarea( $name, $content, $cols = 40, $rows = 5, $attribs = [] ) {
+		wfDeprecated( __METHOD__, '1.42' );
+
 		return self::element( 'textarea',
 					[
 						'name' => $name,
