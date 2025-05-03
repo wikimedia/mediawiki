@@ -505,7 +505,7 @@ abstract class Module {
 		// even if the spec allows multiple.
 		$moduleId = $this->getPathPrefix();
 
-		// Fields from OAS Info to include.
+		// Fields from openApiSpec info to include.
 		// Note that mwapi-1.0 is based on OAS 3.0, so it doesn't support the
 		// "summary" property introduced in 3.1.
 		$infoFields = [ 'version', 'title', 'description' ];
