@@ -660,7 +660,7 @@ class ActionEntryPoint extends MediaWikiEntryPoint {
 					// Rewrite environment to redirected article
 					$rpage = $services->getWikiPageFactory()->newFromTitle( $target );
 					$rpage->loadPageData();
-					if ( $rpage->exists() || ( is_object( $file ) && !$file->isLocal() ) ) {
+					if ( $target->isKnown() || ( is_object( $file ) && !$file->isLocal() ) ) {
 						$rarticle = Article::newFromWikiPage( $rpage, $context );
 						$rarticle->setRedirectedFrom( $title );
 

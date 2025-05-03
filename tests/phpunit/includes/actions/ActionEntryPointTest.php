@@ -472,4 +472,52 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 		Assert::assertStringContainsString( 'Footer', $output );
 	}
 
+	public function testViewRedirectNonExistingViewablePage() {
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'en' );
+		$page = $this->getExistingTestPage( 'Origin_' . __METHOD__ );
+		$target = $this->getNonexistingTestPage( 'MediaWiki:Mainpage' );
+		$link = $this->getServiceContainer()->getTitleFormatter()
+			->getPrefixedText( $target );
+
+		$this->editPage( $page, "#REDIRECT [[$link]]\n\nRedirect Footer" );
+		$this->editPage( $target, "Redirect Target" );
+
+		$request = new FauxRequest( [
+			'title' => $page->getTitle()->getPrefixedDBkey(),
+		] );
+
+		$env = new MockEnvironment( $request );
+
+		$entryPoint = $this->getEntryPoint( $env );
+		$entryPoint->run();
+		$output = $entryPoint->getCapturedOutput();
+
+		Assert::assertStringContainsString( '<title>(pagetitle: MediaWiki:Mainpage', $output );
+		Assert::assertStringContainsString( 'Mainpage', $output );
+	}
+
+	public function testViewRedirectNonExistingViewablePageInFrLanguageCode() {
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'fr' );
+		$page = $this->getExistingTestPage( 'Origin_' . __METHOD__ );
+		$target = $this->getNonexistingTestPage( 'MediaWiki:Mainpage' );
+		$link = $this->getServiceContainer()->getTitleFormatter()
+			->getPrefixedText( $target );
+
+		$this->editPage( $page, "#REDIRECT [[$link]]\n\nRedirect Footer" );
+		$this->editPage( $target, "Redirect Target" );
+
+		$request = new FauxRequest( [
+			'title' => $page->getTitle()->getPrefixedDBkey(),
+		] );
+
+		$env = new MockEnvironment( $request );
+
+		$entryPoint = $this->getEntryPoint( $env );
+		$entryPoint->run();
+		$output = $entryPoint->getCapturedOutput();
+
+		Assert::assertStringContainsString( '<title>(pagetitle: MediaWiki:Mainpage', $output );
+		Assert::assertStringContainsString( 'Accueil', $output );
+	}
+
 }
