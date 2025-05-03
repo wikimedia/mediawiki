@@ -490,6 +490,34 @@ vue:
     package/dist/vue.global.js:
     package/dist/vue.global.prod.js:
 
+vue-test-utils:
+   license: MIT
+   homepage: https://test-utils.vuejs.org/
+   authors: Lachlan Miller
+   version: 2.4.6
+   purl: pkg:npm/@vue/test-utils@2.4.6
+   type: tar
+   src: https://registry.npmjs.org/@vue/test-utils/-/test-utils-2.4.6.tgz
+   integrity: sha512-FMxEjOpYNYiFe0GkaHsnJPXFHxQ6m4t8vI/ElPGpMWxZKpmRvQ33OIrvRXemy6yha03RxhOlQuy+gZMC3CQSow==
+   dest:
+    package/README.md:
+    package/LICENSE:
+    package/dist/vue-test-utils.browser.js:
+
+vue-compiler-dom:
+  license: MIT
+  homepage: https://vuejs.org/
+  authors: Yuxi (Evan) You
+  version: 3.5.13
+  purl: pkg:npm/@vue/compiler-dom@3.5.13
+  type: tar
+  src: https://registry.npmjs.org/@vue/compiler-dom/-/compiler-dom-3.5.13.tgz
+  integrity: sha512-ZOJ46sMOKUjO3e94wPdCzQ6P1Lx/vhp2RSvfaab88Ajexs0AHeV0uasYhi99WPaogmBlRHNRuly8xV75cNTMDA==
+  dest:
+    package/README.md:
+    package/LICENSE:
+    package/dist/compiler-dom.global.js:
+
 vuex:
   license: MIT
   homepage: https://vuex.vuejs.org/
