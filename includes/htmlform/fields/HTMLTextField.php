@@ -114,6 +114,7 @@ class HTMLTextField extends HTMLFormField {
 			'autofocus',
 			'readonly',
 			'autocomplete',
+			'inputmode',
 			// Only used in HTML mode:
 			'pattern',
 			'list',
@@ -194,6 +195,7 @@ class HTMLTextField extends HTMLFormField {
 			'autofocus',
 			'readonly',
 			'autocomplete',
+			'inputmode',
 			// Only used in OOUI mode:
 			'autosize',
 			'flags',
@@ -251,6 +253,7 @@ class HTMLTextField extends HTMLFormField {
 			'autofocus',
 			'readonly',
 			'autocomplete',
+			'inputmode',
 			'pattern',
 			'list',
 		];
