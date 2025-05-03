@@ -7,8 +7,6 @@ use Exception;
 use Generator;
 use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\WikitextContent;
-use MediaWiki\Language\Language;
-use MediaWiki\Language\LanguageCode;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\ParserCache;
@@ -38,6 +36,8 @@ use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
+use Wikimedia\Bcp47Code\Bcp47Code;
+use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Config\DataAccess;
 use Wikimedia\Parsoid\Config\PageConfig;
@@ -115,18 +115,15 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			?? $this->getServiceContainer()->getParsoidPageConfigFactory();
 
 		$handler = new class (
-			$this,
 			$revisionLookup,
 			$siteConfig,
 			$pageConfigFactory,
 			$dataAccess,
 			$methodOverrides
 		) extends ParsoidHandler {
-			private $testCase;
 			private $overrides;
 
 			public function __construct(
-				$testCase,
 				RevisionLookup $revisionLookup,
 				SiteConfig $siteConfig,
 				PageConfigFactory $pageConfigFactory,
@@ -140,7 +137,6 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 					$dataAccess
 				);
 
-				$this->testCase = $testCase;
 				$this->overrides = $overrides;
 			}
 
@@ -216,7 +212,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 					);
 				}
 				$attribs += [
-					'pagelanguage' => $this->testCase->createLanguageMock( 'en' ),
+					'pagelanguage' => new Bcp47CodeValue( 'en' ),
 				];
 
 				return parent::tryToCreatePageConfig(
@@ -1418,10 +1414,10 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/** @return Generator */
-	public function provideTryToCreatePageConfigData() {
-		$en = $this->createLanguageMock( 'en' );
-		$ar = $this->createLanguageMock( 'ar' );
-		$de = $this->createLanguageMock( 'de' );
+	public static function provideTryToCreatePageConfigData() {
+		$en = new Bcp47CodeValue( 'en' );
+		$ar = new Bcp47CodeValue( 'ar' );
+		$de = new Bcp47CodeValue( 'de' );
 		yield 'Default attribs for tryToCreatePageConfig()' => [
 			'attribs' => [ 'oldid' => 1, 'pageName' => 'Test', 'pagelanguage' => $en ],
 			'wikitext' => null,
@@ -1481,7 +1477,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		array $attribs,
 		?string $wikitext,
 		$html2WtMode,
-		Language $expectedLanguage
+		Bcp47Code $expectedLanguage
 	) {
 		// Create a page, if needed, to test with oldid
 		$origContent = 'Test content for ' . __METHOD__;
@@ -1498,12 +1494,12 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$pageName = ( $attribs['pageName'] === '' ) ? 'Main Page' : $attribs['pageName'];
 		$this->assertSame( $pageName, $pageConfig->getLinkTarget()->getPrefixedText() );
 
-		$this->assertSame( $expectedLanguage->getCode(), $pageConfig->getPageLanguageBcp47()->getCode() );
+		$this->assertTrue( $expectedLanguage->isSameCodeAs( $pageConfig->getPageLanguageBcp47() ) );
 	}
 
 	/** @return Generator */
-	public function provideTryToCreatePageConfigDataThrows() {
-		$en = $this->createLanguageMock( 'en' );
+	public static function provideTryToCreatePageConfigDataThrows() {
+		$en = new Bcp47CodeValue( 'en' );
 		yield "PageConfig with oldid that doesn't exist" => [
 			'attribs' => [ 'oldid' => null, 'pageName' => 'Test', 'pagelanguage' => $en ],
 			'wikitext' => null,
@@ -1720,9 +1716,9 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $wikitext, $actual );
 	}
 
-	public function provideLanguageConversion() {
-		$en = $this->createLanguageMock( 'en' );
-		$enPigLatin = $this->createLanguageMock( 'en-x-piglatin' );
+	public static function provideLanguageConversion() {
+		$en = new Bcp47CodeValue( 'en' );
+		$enPigLatin = new Bcp47CodeValue( 'en-x-piglatin' );
 		$profileVersion = Parsoid::AVAILABLE_VERSIONS[0];
 		$htmlProfileUri = 'https://www.mediawiki.org/wiki/Specs/HTML/' . $profileVersion;
 		$htmlContentType = "text/html; charset=utf-8; profile=\"$htmlProfileUri\"";
@@ -1764,7 +1760,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			'>esttay anguagelay onversioncay<',
 			[
 				'content-type' => $htmlContentType,
-				'content-language' => $enPigLatin->toBcp47Code(),
+				'content-language' => 'en-x-piglatin',
 			]
 		];
 	}
@@ -2254,28 +2250,5 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 	// TODO: test wt2html failure modes
 	// TODO: test redlinks
-
-	public function createLanguageMock( string $code ) {
-		// Ensure that we always return the same object for a given code.
-		static $seen = [];
-		if ( !isset( $seen[$code] ) ) {
-			$langMock = $this->createMock( Language::class );
-			$langMock
-				->method( 'getCode' )
-				->willReturn( $code );
-			$bcp47 = LanguageCode::bcp47( $code );
-			$langMock
-				->method( 'getHtmlCode' )
-				->willReturn( $bcp47 );
-			$langMock
-				->method( 'toBcp47Code' )
-				->willReturn( $bcp47 );
-			$langMock
-				->method( 'getDir' )
-				->willReturn( 'ltr' );
-			$seen[$code] = $langMock;
-		}
-		return $seen[$code];
-	}
 
 }
