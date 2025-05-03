@@ -111,14 +111,6 @@ class RemoveUnusedAccounts extends Maintenance {
 					->where( [ 'actor_id' => $del ] )
 					->caller( __METHOD__ )->execute();
 			}
-			if ( $keep ) {
-				$dbw->newUpdateQueryBuilder()
-					->update( 'actor' )
-					->set( [ 'actor_user' => null ] )
-					->where( [ 'actor_id' => $keep ] )
-					->caller( __METHOD__ )
-					->execute();
-			}
 			$dbw->newDeleteQueryBuilder()
 				->deleteFrom( 'user_groups' )
 				->where( [ 'ug_user' => $delUser ] )
