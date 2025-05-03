@@ -102,6 +102,9 @@ class ParserTestsMaintenance extends Maintenance {
 		$this->addOption( 'update-tests',
 			'Update parserTests.txt with results from wt2html fails.  Note that editTests.php exists ' .
 				'for finer grained editing of tests.' );
+		$this->addOption( 'update-unexpected',
+			'Update parserTests.txt with results from unexpected wt2html fails.'
+		);
 	}
 
 	public function finalSetup( SettingsBuilder $settingsBuilder ) {
@@ -240,6 +243,7 @@ class ParserTestsMaintenance extends Maintenance {
 			'traceFlags' => $traceFlags,
 			'dumpFlags' => $dumpFlags,
 			'update-tests' => $this->hasOption( 'update-tests' ),
+			'update-unexpected' => $this->hasOption( 'update-unexpected' ),
 		] );
 
 		$ok = $tester->runTestsFromFiles( $files );
