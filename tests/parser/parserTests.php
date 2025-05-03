@@ -105,6 +105,8 @@ class ParserTestsMaintenance extends Maintenance {
 		$this->addOption( 'update-unexpected',
 			'Update parserTests.txt with results from unexpected wt2html fails.'
 		);
+		$this->addOption( 'update-format', 'format with which to update tests; only useful in conjunction ' .
+			'with update-tests or update-unexpected and --parsoid. Values: raw, noDsr, actualNormalized.' );
 	}
 
 	public function finalSetup( SettingsBuilder $settingsBuilder ) {

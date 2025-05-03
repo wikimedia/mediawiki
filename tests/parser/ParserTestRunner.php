@@ -73,6 +73,7 @@ use Wikimedia\Parsoid\ParserTests\StyleTag as ParsoidStyleTag;
 use Wikimedia\Parsoid\ParserTests\Test as ParserTest;
 use Wikimedia\Parsoid\ParserTests\TestFileReader;
 use Wikimedia\Parsoid\ParserTests\TestMode as ParserTestMode;
+use Wikimedia\Parsoid\ParserTests\TestUtils;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Parsoid\Utils\DOMCompat;
@@ -224,6 +225,7 @@ class ParserTestRunner {
 	 *      Else name of the file backend to use
 	 *  - disable-save-parse (bool) if true, disable parse on article insertion
 	 *  - update-tests (bool) Update parserTests.txt with results from wt2html fails.
+	 *  - update-format (string) format of the updated test (raw, actualNormalized, noDsr)
 	 *
 	 * NOTE: At this time, Parsoid-specific test options are only handled
 	 * in PHPUnit mode. A future patch will likely tweak some of this and
@@ -246,6 +248,7 @@ class ParserTestRunner {
 			'changetree' => null,
 			'update-tests' => false,
 			'update-unexpected' => false,
+			'update-format' => 'noDsr',
 			// Options can also match those in ParserTestModes::TEST_MODES
 			// but we don't need to initialize those here; they will be
 			// accessed via $this->requestedTestModes instead.
@@ -1005,7 +1008,9 @@ class ParserTestRunner {
 				}
 
 				if ( $this->options['update-tests'] || $this->options['update-unexpected'] ) {
-					$this->updateTests( $filename, $testFileInfo, !$inParsoidMode );
+					$this->updateTests(
+						$filename, $testFileInfo, !$inParsoidMode, $this->options['update-format'] ?? null
+					);
 				}
 
 				// Clean up
@@ -1263,10 +1268,15 @@ class ParserTestRunner {
 	/**
 	 * @param string $filename The parser test file
 	 * @param TestFileReader $testFileInfo
-	 * @param bool $isLegacy
+	 * @param bool $isLegacy whether we are updating legacy or Parsoid tests
+	 * @param ?string $updateFormat format in which to update the tests
+	 *  - 'raw' - format returned by the parser
+	 *  - 'actualNormalized' - normalizes format to remove irrelevant differences depending on test sections (see
+	 *     Wikimedia\Parsoid\ParserTests\Test::normalizeHtml)
+	 *  - 'noDsr' (default) - filter out the dsr from data-parsoid, and data-parsoid itself it is empty
 	 */
 	public function updateTests(
-		string $filename, TestFileReader $testFileInfo, bool $isLegacy
+		string $filename, TestFileReader $testFileInfo, bool $isLegacy, ?string $updateFormat
 	) {
 		$fileContent = file_get_contents( $filename );
 		foreach ( $testFileInfo->testCases as $t ) {
@@ -1278,6 +1288,19 @@ class ParserTestRunner {
 				$html = self::getLegacyMetadataSection( $t );
 			}
 			if ( $testName !== null && $fail !== null && $html !== null ) {
+
+				if ( !$isLegacy ) {
+					if ( $updateFormat !== 'raw' && $updateFormat !== 'actualNormalized' ) {
+						$updateFormat = 'noDsr';
+					}
+
+					if ( $updateFormat === 'actualNormalized' ) {
+						[ $fail, $expected ] = $t->normalizeHTML( $fail, null, false );
+					} elseif ( $updateFormat === 'noDsr' ) {
+						$fail = TestUtils::filterDsr( $fail );
+					}
+				}
+
 				$exp = '/(!!\s*test\s*' .
 					preg_quote( $testName, '/' ) .
 					'(?:(?!!!\s*end)[\s\S])*' .
