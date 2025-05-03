@@ -304,9 +304,11 @@ class Xml {
 	 * @param array $attribs Other attributes
 	 * @return string HTML
 	 *
-	 * @deprecated since 1.42, use {@see Html::input} instead
+	 * @deprecated since 1.42, use {@see Html::input} instead; emitting warnings since 1.44
 	 */
 	public static function input( $name, $size = false, $value = false, $attribs = [] ) {
+		wfDeprecated( __METHOD__, '1.42' );
+
 		$attributes = [ 'name' => $name ];
 
 		if ( $size ) {
