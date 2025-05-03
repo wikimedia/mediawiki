@@ -500,9 +500,11 @@ class Xml {
 	 * @param array $attribs Optional custom attributes
 	 * @return string HTML
 	 *
-	 * @deprecated since 1.42, use {@see Html::submitButton} instead
+	 * @deprecated since 1.42, use {@see Html::submitButton} instead; emitting deprecation warnings since 1.44
 	 */
 	public static function submitButton( $value, $attribs = [] ) {
+		wfDeprecated( __METHOD__, '1.42' );
+
 		$attribs += [
 			'type' => 'submit',
 			'value' => $value,
@@ -841,7 +843,13 @@ class Xml {
 			$form .= self::openElement( 'tr' );
 			$form .= self::tags( 'td', [], '' );
 			$form .= self::openElement( 'td', [ 'class' => 'mw-submit' ] )
-				. self::submitButton( wfMessage( $submitLabel )->text(), $submitAttribs )
+				. Html::element(
+					'input',
+					$submitAttribs + [
+						'type' => 'submit',
+						'value' => wfMessage( $submitLabel )->text(),
+					]
+				)
 				. self::closeElement( 'td' );
 			$form .= self::closeElement( 'tr' );
 		}
