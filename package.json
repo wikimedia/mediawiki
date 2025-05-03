@@ -27,7 +27,7 @@
 		"@wikimedia/codex": "1.23.0",
 		"@wikimedia/codex-icons": "1.23.0",
 		"@wikimedia/karma-firefox-launcher": "2.1.3",
-		"api-testing": "1.6.0",
+		"api-testing": "1.7.1",
 		"chai-openapi-response-validator": "^0.14.2",
 		"domino": "2.1.0",
 		"dotenv": "8.2.0",
