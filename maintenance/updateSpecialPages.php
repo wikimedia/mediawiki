@@ -94,18 +94,7 @@ class UpdateSpecialPages extends Maintenance {
 						$this->output( "FAILED: database error\n" );
 					} else {
 						$this->output( "got $num rows in " );
-
-						$elapsed = $t2 - $t1;
-						$hours = intval( $elapsed / 3600 );
-						$minutes = intval( (int)$elapsed % 3600 / 60 );
-						$seconds = $elapsed - $hours * 3600 - $minutes * 60;
-						if ( $hours ) {
-							$this->output( $hours . 'h ' );
-						}
-						if ( $minutes ) {
-							$this->output( $minutes . 'm ' );
-						}
-						$this->output( sprintf( "%.2fs\n", $seconds ) );
+						$this->outputElapsedTime( $t2 - $t1 );
 					}
 					# Reopen any connections that have closed
 					$this->reopenAndWaitForReplicas();
@@ -137,6 +126,9 @@ class UpdateSpecialPages extends Maintenance {
 		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 		$lb = $lbFactory->getMainLB();
 		if ( !$lb->pingAll() ) {
+			// We don't want the tests to sleep for 10 seconds, so mark this as ignored because there is no reason to
+			// test it.
+			// @codeCoverageIgnoreStart
 			$this->output( "\n" );
 			do {
 				$this->error( "Connection failed, reconnecting in 10 seconds..." );
@@ -144,6 +136,7 @@ class UpdateSpecialPages extends Maintenance {
 				$this->waitForReplication();
 			} while ( !$lb->pingAll() );
 			$this->output( "Reconnected\n\n" );
+			// @codeCoverageIgnoreEnd
 		}
 		$this->waitForReplication();
 	}
@@ -157,31 +150,42 @@ class UpdateSpecialPages extends Maintenance {
 			}
 
 			if ( !$this->hasOption( 'only' ) || $this->getOption( 'only' ) === $special ) {
+				$this->output( sprintf( '%-30s [callback] ', $special ) );
 				if ( !is_callable( $call ) ) {
 					$this->error( "Uncallable function $call!" );
 					continue;
 				}
-				$this->output( sprintf( '%-30s [callback] ', $special ) );
 				$t1 = microtime( true );
 				$call( $dbw );
 				$t2 = microtime( true );
 
 				$this->output( "completed in " );
-				$elapsed = $t2 - $t1;
-				$hours = intval( $elapsed / 3600 );
-				$minutes = intval( (int)$elapsed % 3600 / 60 );
-				$seconds = $elapsed - $hours * 3600 - $minutes * 60;
-				if ( $hours ) {
-					$this->output( $hours . 'h ' );
-				}
-				if ( $minutes ) {
-					$this->output( $minutes . 'm ' );
-				}
-				$this->output( sprintf( "%.2fs\n", $seconds ) );
+				$this->outputElapsedTime( $t2 - $t1 );
+
 				# Wait for the replica DB to catch up
 				$this->reopenAndWaitForReplicas();
 			}
 		}
+	}
+
+	/**
+	 * Outputs the time that was elapsed to update the cache update for
+	 * a script.
+	 *
+	 * @param float $elapsed
+	 * @return void
+	 */
+	private function outputElapsedTime( float $elapsed ) {
+		$hours = intval( $elapsed / 3600 );
+		$minutes = intval( (int)$elapsed % 3600 / 60 );
+		$seconds = $elapsed - $hours * 3600 - $minutes * 60;
+		if ( $hours ) {
+			$this->output( $hours . 'h ' );
+		}
+		if ( $minutes ) {
+			$this->output( $minutes . 'm ' );
+		}
+		$this->output( sprintf( "%.2fs\n", $seconds ) );
 	}
 }
 
