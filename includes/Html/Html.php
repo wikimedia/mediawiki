@@ -141,6 +141,7 @@ class Html {
 	 * @param array|string|null &$classes Class list to modify in-place
 	 * @param string $class Class to add
 	 * @phan-assert non-empty-array $classes
+	 * @since 1.44
 	 */
 	public static function addClass( &$classes, string $class ): void {
 		$classes = (array)$classes;
@@ -451,6 +452,7 @@ class Html {
 	 *
 	 * @param array|string $classes
 	 * @return string
+	 * @since 1.44
 	 */
 	public static function expandClassList( $classes ): string {
 		// Convert into correct array. Array can contain space-separated

@@ -134,6 +134,7 @@ For notes on 1.43.x and older releases, see HISTORY.
   to avoid having to rely on the global context.
 * You can use LoggerFactory::getContext() to add extra context to all PSR-3
   log events.
+* New helper methods Html::addClass() and Html::expandClassList().
 * …
 
 === External library changes in 1.44 ===
