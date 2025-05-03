@@ -360,9 +360,11 @@ class Xml {
 	 * @param array $attribs Array other attributes
 	 * @return string HTML
 	 *
-	 * @deprecated since 1.42, use {@see Html::check} instead
+	 * @deprecated since 1.42, use {@see Html::check} instead; emiting warnings since 1.44
 	 */
 	public static function check( $name, $checked = false, $attribs = [] ) {
+		wfDeprecated( __METHOD__, '1.42' );
+
 		return self::element( 'input', array_merge(
 			[
 				'name' => $name,
