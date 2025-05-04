@@ -724,6 +724,8 @@ because of Phabricator reports.
     - Only pass an array to $params or $wikiTags
   - SiteConfiguration::siteFromDB
     - Only pass a string to $wiki
+* UserMailer::sanitizeHeaderValue emits deprecation warnings. This function
+  is no longer used within core/extensions. No replacement is provided.
 * …
 
 === Other changes in 1.44 ===
