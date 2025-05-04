@@ -176,6 +176,7 @@ For notes on 1.43.x and older releases, see HISTORY.
 * Updated mediawiki/mediawiki-phan-config from 0.14.0 to 0.15.0.
 * Updated nikic/php-parser from ^4.10.2 to ^5.3.1.
 * Updated phpunit/phpunit from 9.6.19 to 9.6.21.
+* Updated seld/json-lint from 1.10.2 to 1.11.0.
 * Updated stylelint-config-wikimedia from v0.17.2 to v0.18.0.
 * Updated wikimedia/langconv from 0.4.2 to 0.5.0.
 * …
