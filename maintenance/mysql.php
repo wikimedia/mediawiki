@@ -47,7 +47,7 @@ class MysqlMaintenance extends Maintenance {
 		$this->addOption( 'raw-host',
 			'Connect directly to a specific MySQL server, even if not known to MediaWiki '
 				. 'via wgLBFactoryConf (e.g. parser cache or depooled host). '
-				. 'Credentails will be chosen based on --cluster and --wikidb.',
+				. 'Credentials will be chosen based on --cluster and --wikidb.',
 			false,
 			true
 		);
