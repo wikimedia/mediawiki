@@ -159,6 +159,9 @@ because of Phabricator reports.
   methods deprecated in 1.37, have been removed.
 * SqlBagOStuff::expireAll() and ::deleteAll(), deprecated in 1.41 have been
   removed.
+* JobQueueGroup::deduplicateRootJob(), deprecated in 1.40, has been removed.
+* JobQueueGroup::waitForBackups(), deprecated in 1.41, has been removed. You can
+  use JobQueue::waitForBackups() instead.
 * (T376295) The ability to use raw HTML messages for the copyright footer has
   been removed. The messages 'copyright' and 'history_copyright', the hook
   'SkinCopyrightFooter', and the config option $wgAllowRawHtmlCopyrightMessages
