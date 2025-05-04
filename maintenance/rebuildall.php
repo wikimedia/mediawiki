@@ -49,19 +49,19 @@ class RebuildAll extends Maintenance {
 		if ( $this->getReplicaDB()->getType() != 'postgres' ) {
 			$this->output( "** Rebuilding fulltext search index (if you abort "
 				. "this will break searching; run this script again to fix):\n" );
-			$rebuildText = $this->runChild( RebuildTextIndex::class, 'rebuildtextindex.php' );
+			$rebuildText = $this->createChild( RebuildTextIndex::class, 'rebuildtextindex.php' );
 			$rebuildText->execute();
 		}
 
 		// Rebuild RC
 		$this->output( "\n\n** Rebuilding recentchanges table:\n" );
-		$rebuildRC = $this->runChild( RebuildRecentchanges::class, 'rebuildrecentchanges.php' );
+		$rebuildRC = $this->createChild( RebuildRecentchanges::class, 'rebuildrecentchanges.php' );
 		$rebuildRC->execute();
 
 		// Rebuild link tables
 		$this->output( "\n\n** Rebuilding links tables -- this can take a long time. "
 			. "It should be safe to abort via ctrl+C if you get bored.\n" );
-		$rebuildLinks = $this->runChild( RefreshLinks::class, 'refreshLinks.php' );
+		$rebuildLinks = $this->createChild( RefreshLinks::class, 'refreshLinks.php' );
 		$rebuildLinks->execute();
 
 		$this->output( "Done.\n" );
