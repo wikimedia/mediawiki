@@ -165,6 +165,10 @@ For notes on 1.43.x and older releases, see HISTORY.
 * Updated wikimedia/relpath from 4.0.1 to 4.0.2.
 * Updated wikimedia/shellbox from 4.1.1 to 4.2.0.
 * Updated wikimedia/timestamp from 4.1.1 to 4.2.0.
+* Updated symfony/polyfill-php80 from 1.31.0 to 1.32.0.
+* Updated symfony/polyfill-php81 from 1.31.0 to 1.32.0.
+* Updated symfony/polyfill-php82 from 1.31.0 to 1.32.0.
+* Updated symfony/polyfill-php83 from 1.31.0 to 1.32.0.
 * …
 
 ===== Changed development-only external libraries =====
