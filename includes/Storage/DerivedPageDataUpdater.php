@@ -40,6 +40,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\JobQueue\Jobs\ParsoidCachePrewarmJob;
 use MediaWiki\Language\Language;
+use MediaWiki\Logging\LogPage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Page\PageIdentity;
@@ -1770,14 +1771,20 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 * @param int $revisionId
 	 */
 	private function maybeAddRecreateChangeTag( WikiPage $wikiPage, int $revisionId ) {
-		if ( $this->loadbalancerFactory->getReplicaDatabase()->newSelectQueryBuilder()
+		$dbr = $this->loadbalancerFactory->getReplicaDatabase();
+
+		if ( $dbr->newSelectQueryBuilder()
 				->select( [ '1' ] )
 				->from( 'logging' )
 				->where( [
 					'log_type' => 'delete',
 					'log_title' => $wikiPage->getTitle()->getDBkey(),
 					'log_namespace' => $wikiPage->getNamespace(),
-				] )->caller( __METHOD__ )->limit( 1 )->fetchField() ) {
+				] )
+				->where(
+					$dbr->bitAnd( 'log_deleted', LogPage::DELETED_ACTION ) .
+						' != ' . LogPage::DELETED_ACTION // T385792
+				)->caller( __METHOD__ )->limit( 1 )->fetchField() ) {
 			$this->changeTagsStore->addTags(
 				[ ChangeTags::TAG_RECREATE ],
 				null,
