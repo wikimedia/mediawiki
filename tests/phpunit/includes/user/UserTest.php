@@ -316,7 +316,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$status = $this->user->checkPasswordValidity( 'Password1234' );
 		$this->assertStatusWarning( 'isValidPassword returned false', $status );
 
-		$this->removeTemporaryHook( 'isValidPassword' );
+		$this->clearHook( 'isValidPassword' );
 
 		$this->setTemporaryHook( 'isValidPassword', static function ( $password, &$result, $user ) {
 			$result = true;
@@ -325,7 +325,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$status = $this->user->checkPasswordValidity( 'Password1234' );
 		$this->assertStatusGood( $status );
 
-		$this->removeTemporaryHook( 'isValidPassword' );
+		$this->clearHook( 'isValidPassword' );
 
 		$this->setTemporaryHook( 'isValidPassword', static function ( $password, &$result, $user ) {
 			$result = 'isValidPassword returned true';
@@ -334,7 +334,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$status = $this->user->checkPasswordValidity( 'Password1234' );
 		$this->assertStatusWarning( 'isValidPassword returned true', $status );
 
-		$this->removeTemporaryHook( 'isValidPassword' );
+		$this->clearHook( 'isValidPassword' );
 
 		// On the forbidden list
 		$user = User::newFromName( 'Useruser' );
@@ -420,7 +420,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$user->logout();
 		$this->assertTrue( $user->isRegistered() );
 
-		$this->removeTemporaryHook( 'UserLogout' );
+		$this->clearHook( 'UserLogout' );
 		$user->logout();
 		$this->assertFalse( $user->isRegistered() );
 
@@ -1389,7 +1389,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		} );
 		$user->setEmail( 'TestEmail@mediawiki.org' );
 
-		$this->removeTemporaryHook( 'UserSetEmail' );
+		$this->clearHook( 'UserSetEmail' );
 
 		$this->setTemporaryHook( 'UserSetEmail', static function ( $user, &$email ) {
 			$email = 'SettingIntercepted@mediawiki.org';
@@ -1410,8 +1410,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			'Hooks can override getting email address'
 		);
 
-		$this->removeTemporaryHook( 'UserGetEmail' );
-		$this->removeTemporaryHook( 'UserSetEmail' );
+		$this->clearHook( 'UserGetEmail' );
+		$this->clearHook( 'UserSetEmail' );
 
 		$user->invalidateEmail();
 		$this->assertSame(

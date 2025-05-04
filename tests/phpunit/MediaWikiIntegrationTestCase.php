@@ -2589,11 +2589,13 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 *
 	 * @note This is implemented to remove ALL handlers for the given hook
 	 *       for the duration of the current test case.
-	 * @deprecated since 1.36, use clearHook() instead.
+	 * @deprecated since 1.36, use clearHook() instead, hard deprecated
+	 *    since 1.44.
 	 *
 	 * @param string $hookName
 	 */
 	protected function removeTemporaryHook( $hookName ) {
+		wfDeprecated( __METHOD__, '1.36' );
 		$this->clearHook( $hookName );
 	}
 
