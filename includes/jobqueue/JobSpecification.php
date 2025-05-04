@@ -169,24 +169,6 @@ class JobSpecification implements IJobSpecification {
 	}
 
 	/**
-	 * @deprecated since 1.41
-	 * @return array Field/value map that can immediately be serialized
-	 * @since 1.25
-	 */
-	public function toSerializableArray() {
-		wfDeprecated( __METHOD__, '1.41' );
-		return [
-			'type'   => $this->type,
-			'params' => $this->params,
-			'opts'   => $this->opts,
-			'title'  => [
-				'ns'  => $this->page->getNamespace(),
-				'key' => $this->page->getDBkey()
-			]
-		];
-	}
-
-	/**
 	 * @param array $map Field/value map
 	 * @return JobSpecification
 	 * @since 1.25
