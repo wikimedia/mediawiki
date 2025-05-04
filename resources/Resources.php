@@ -2088,6 +2088,7 @@ return [
 			'resources/src/mediawiki.special/blocklist.less',
 			'resources/src/mediawiki.special/version.less',
 			'resources/src/mediawiki.special/contribute.less',
+			'resources/src/mediawiki.special/specialPages.less',
 		],
 	],
 	'mediawiki.special.apisandbox' => [
@@ -2747,6 +2748,16 @@ return [
 	'mediawiki.special.userlogin.signup.styles' => [
 		'skinStyles' => [
 			'default' => 'resources/src/mediawiki.special.userlogin.signup.styles/signup.less',
+		],
+	],
+	'mediawiki.special.specialpages' => [
+		'localBasePath' => MW_INSTALL_PATH . '/resources/src',
+		'remoteBasePath' => "$wgResourceBasePath/resources/src",
+		'packageFiles' => [
+			'mediawiki.special.specialpages.js',
+		],
+		'dependencies' => [
+			'oojs-ui-core',
 		],
 	],
 	'mediawiki.special.userrights' => [
