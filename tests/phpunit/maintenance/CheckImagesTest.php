@@ -3,9 +3,9 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use CheckImages;
-use File;
-use LocalRepo;
-use RepoGroup;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\LocalRepo;
+use MediaWiki\FileRepo\RepoGroup;
 use Wikimedia\TestingAccessWrapper;
 
 /**
