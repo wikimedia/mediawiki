@@ -58,6 +58,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$this->logger = new TestLogger( false, static function ( $m ) {
 			return ( str_starts_with( $m, 'SessionBackend ' )
 				|| str_starts_with( $m, 'SessionManager using store ' )
+				|| str_starts_with( $m, 'Session store: ' )
 				// These were added for T264793 and behave somewhat erratically, not worth testing
 				|| str_starts_with( $m, 'Failed to load session, unpersisting' )
 				|| preg_match( '/^(Persisting|Unpersisting) session (for|due to)/', $m )
@@ -1086,14 +1087,14 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$this->store->setRawSession( $id, true );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( [
-			[ LogLevel::WARNING, 'Session "{session}": Bad data' ],
+			[ LogLevel::WARNING, 'Session store: {action} for {reason}' ],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		$this->store->setRawSession( $id, [ 'data' => [] ] );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( [
-			[ LogLevel::WARNING, 'Session "{session}": Bad data structure' ],
+			[ LogLevel::WARNING, 'Session store: {action} for {reason}' ],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
@@ -1101,21 +1102,21 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$this->store->setRawSession( $id, [ 'metadata' => $metadata ] );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( [
-			[ LogLevel::WARNING, 'Session "{session}": Bad data structure' ],
+			[ LogLevel::WARNING, 'Session store: {action} for {reason}' ],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		$this->store->setRawSession( $id, [ 'metadata' => $metadata, 'data' => true ] );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( [
-			[ LogLevel::WARNING, 'Session "{session}": Bad data structure' ],
+			[ LogLevel::WARNING, 'Session store: {action} for {reason}' ],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
 		$this->store->setRawSession( $id, [ 'metadata' => true, 'data' => [] ] );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( [
-			[ LogLevel::WARNING, 'Session "{session}": Bad data structure' ],
+			[ LogLevel::WARNING, 'Session store: {action} for {reason}' ],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
@@ -1125,7 +1126,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			$this->store->setRawSession( $id, [ 'metadata' => $tmp, 'data' => [] ] );
 			$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 			$this->assertSame( [
-				[ LogLevel::WARNING, 'Session "{session}": Bad metadata' ],
+				[ LogLevel::WARNING, 'Session store: {action} for {reason}' ],
 			], $logger->getBuffer() );
 			$logger->clearBuffer();
 		}
@@ -1163,7 +1164,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		] );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertSame( [
-			[ LogLevel::WARNING, 'Session "{session}": Unknown provider Bad' ],
+			[ LogLevel::WARNING, 'Session store: {action} for {reason}' ],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
@@ -1543,6 +1544,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $this->store->getSession( $id ) );
 		$this->assertSame( [
 			[ LogLevel::WARNING, 'Session "{session}": User token mismatch' ],
+			[ LogLevel::INFO, 'Session store: {action} for {reason}' ],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
 	}

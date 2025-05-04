@@ -29,6 +29,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\User\User;
 use MWRestrictions;
@@ -229,11 +230,11 @@ final class SessionBackend {
 	 * @param int $index
 	 */
 	public function deregisterSession( $index ) {
-		unset( $this->requests[$index] );
-		if ( !$this->shutdown && !count( $this->requests ) ) {
+		if ( !$this->shutdown && count( $this->requests ) <= 1 ) {
 			$this->save( true );
 			$this->provider->getManager()->deregisterSessionBackend( $this );
 		}
+		unset( $this->requests[$index] );
 	}
 
 	/**
@@ -295,6 +296,11 @@ final class SessionBackend {
 
 			$this->autosave();
 
+			$this->logSessionWrite( [
+				'old_session_id' => $oldId,
+				'action' => 'delete',
+				'reason' => 'ID reset',
+			] );
 			// Delete the data for the old session ID now
 			$this->store->delete( $this->store->makeKey( 'MWSession', $oldId ) );
 		}
@@ -364,6 +370,10 @@ final class SessionBackend {
 			$this->forcePersist = true;
 			$this->metaDirty = true;
 
+			$this->logSessionWrite( [
+				'action' => 'delete',
+				'reason' => 'unpersist',
+			] );
 			// Delete the session data, so the local cache-only write in
 			// self::save() doesn't get things out of sync with the backend.
 			$this->store->delete( $this->store->makeKey( 'MWSession', (string)$this->id ) );
@@ -761,6 +771,7 @@ final class SessionBackend {
 			}
 		}
 
+		$persistenceChangeType = $this->persistenceChangeType;
 		$this->forcePersist = false;
 		$this->persistenceChangeType = null;
 
@@ -789,6 +800,18 @@ final class SessionBackend {
 			if ( $metadata[$k] !== $v ) {
 				throw new \UnexpectedValueException( "SessionMetadata hook changed metadata key \"$k\"" );
 			}
+		}
+
+		if ( $this->persist ) {
+			$this->logSessionWrite( [
+				'remember' => $metadata['remember'],
+				'metaDirty' => $this->metaDirty,
+				'dataDirty' => $this->dataDirty,
+				'persistenceChangeType' => $persistenceChangeType ?? '',
+				'action' => 'write',
+				'reason' => 'save',
+			] );
+
 		}
 
 		$flags = $this->persist ? 0 : CachedBagOStuff::WRITE_CACHE_ONLY;
@@ -880,6 +903,32 @@ final class SessionBackend {
 			'clientip' => $request->getIP(),
 			'userAgent' => $request->getHeader( 'user-agent' ),
 		] );
+	}
+
+	/**
+	 * @param array $data Additional log context. Should have at least the following keys:
+	 *   - action: 'write' or 'delete'.
+	 *   - reason: why the write happened
+	 * @see SessionManager::logSessionWrite()
+	 */
+	private function logSessionWrite( array $data = [] ): void {
+		$id = $this->getId();
+		$user = $this->getUser()->isAnon() ? '<anon>' : $this->getUser()->getName();
+		// No great way to find out what request SessionBackend is being called for, but it's
+		// rare to have multiple ones which are significantly different, and even rarer for the
+		// first of those not to be the real one.
+		$request = reset( $this->requests );
+		// Don't require $this->requests to be non-empty for unit tests, as it's hard to enforce
+		if ( $request === false && defined( 'MW_PHPUNIT_TEST' ) ) {
+			$request = new FauxRequest();
+		}
+		$this->logger->info( 'Session store: {action} for {reason}', $data + [
+				'id' => $id,
+				'provider' => get_class( $this->getProvider() ),
+				'user' => $user,
+				'clientip' => $request->getIP(),
+				'userAgent' => $request->getHeader( 'user-agent' ),
+			] );
 	}
 
 }
