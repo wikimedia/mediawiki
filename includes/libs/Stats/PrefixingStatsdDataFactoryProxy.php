@@ -26,6 +26,16 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 /**
  * Proxy to prefix metric keys sent to a StatsdDataFactoryInterface
  *
+ * @deprecated since 1.44 Use StatsFactory with `setLabel()` instead
+ *
+ * For example:
+ *
+ * ```
+ * $statsFactory
+ *      ->getCounter( 'example_total' )
+ *      ->setLabel( 'wiki', WikiMap::getCurrentWikiId() )
+ * ```
+ *
  * @since 1.32
  */
 class PrefixingStatsdDataFactoryProxy implements StatsdDataFactoryInterface {
