@@ -203,31 +203,29 @@ class LanguageCodeTest extends MediaWikiUnitTestCase {
 		];
 	}
 
-	/**
-	 * @dataProvider provideBcp47ToInternal
-	 */
-	public function testBcp47ToInternal( $expected, $bcp47 ) {
-		$result = LanguageCode::bcp47ToInternal( $bcp47 );
-		$this->assertEquals( $expected, $result );
-	}
-
-	/**
-	 * @dataProvider provideSupportedLanguageCodes
-	 */
-	public function testBcp47ToInternalLanguage( $internalCode ) {
-		if ( $internalCode === 'egl' ) {
-			# 'egl' was added as an internal code prematurely; 'eml' hasn't
-			# been added to the deprecated list yet (T36217) and so only
-			# 'eml' is a "real" internal code.
-			$internalCode = 'eml';
+	public function testBcp47ToInternal() {
+		foreach ( $this->getBcp47ToInternal() as $message => [ $expected, $bcp47 ] ) {
+			$result = LanguageCode::bcp47ToInternal( $bcp47 );
+			$this->assertEquals( $expected, $result, $message );
 		}
-		$lang = $this->createMock( Language::class );
-		$lang->method( 'getCode' )->willReturn( $internalCode );
-		$result = LanguageCode::bcp47ToInternal( $lang );
-		$this->assertEquals( $internalCode, $result );
 	}
 
-	public function provideSupportedLanguageCodes() {
+	public function testBcp47ToInternalLanguage() {
+		foreach ( $this->getSupportedLanguageCodes() as [ $internalCode ] ) {
+			if ( $internalCode === 'egl' ) {
+				# 'egl' was added as an internal code prematurely; 'eml' hasn't
+				# been added to the deprecated list yet (T36217) and so only
+				# 'eml' is a "real" internal code.
+				$internalCode = 'eml';
+			}
+			$lang = $this->createMock( Language::class );
+			$lang->method( 'getCode' )->willReturn( $internalCode );
+			$result = LanguageCode::bcp47ToInternal( $lang );
+			$this->assertEquals( $internalCode, $result );
+		}
+	}
+
+	public function getSupportedLanguageCodes() {
 		$lnu = $this->getDummyLanguageNameUtils();
 		$languages = $lnu->getLanguageNames(
 			LanguageNameUtils::AUTONYMS, LanguageNameUtils::SUPPORTED
@@ -237,9 +235,8 @@ class LanguageCodeTest extends MediaWikiUnitTestCase {
 		}
 	}
 
-	public function provideBcp47ToInternal() {
-		foreach ( $this->provideSupportedLanguageCodes() as $args ) {
-			$code = $args[0];
+	public function getBcp47ToInternal() {
+		foreach ( $this->getSupportedLanguageCodes() as [ $code ] ) {
 			if ( $code === 'egl' ) {
 				# 'egl' was added as an internal code prematurely; 'eml' hasn't
 				# been added to the deprecated list yet (T36217) and so only
