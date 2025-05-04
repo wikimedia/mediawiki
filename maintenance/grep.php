@@ -102,7 +102,7 @@ class GrepPages extends Maintenance {
 		}
 	}
 
-	public function findPages( $prefixes = null ) {
+	public function findPages( ?array $prefixes = null ): iterable {
 		$dbr = $this->getReplicaDB();
 		$orConds = [];
 		if ( $prefixes !== null ) {

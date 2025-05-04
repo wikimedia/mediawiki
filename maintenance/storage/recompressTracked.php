@@ -133,7 +133,7 @@ class RecompressTracked {
 		return new self( $jobOptions );
 	}
 
-	public function __construct( $options ) {
+	public function __construct( array $options ) {
 		foreach ( $options as $name => $value ) {
 			$this->$name = $value;
 		}

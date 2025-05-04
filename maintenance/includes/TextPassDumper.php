@@ -274,7 +274,7 @@ TEXT
 		$this->report( true );
 	}
 
-	protected function processFileOpt( $opt ) {
+	protected function processFileOpt( string $opt ): string {
 		$split = explode( ':', $opt, 2 );
 		$val = $split[0];
 		$param = '';
@@ -747,7 +747,7 @@ TEXT
 		return $text;
 	}
 
-	protected function openSpawn() {
+	protected function openSpawn(): bool {
 		global $IP;
 
 		$wiki = WikiMap::getCurrentWikiId();
@@ -888,7 +888,7 @@ TEXT
 		return $normalized;
 	}
 
-	protected function startElement( $parser, $name, $attribs ) {
+	protected function startElement( $parser, string $name, array $attribs ) {
 		$this->checkpointJustWritten = false;
 
 		$this->clearOpenElement( null );
@@ -942,7 +942,7 @@ TEXT
 		}
 	}
 
-	protected function endElement( $parser, $name ) {
+	protected function endElement( $parser, string $name ) {
 		$this->checkpointJustWritten = false;
 
 		if ( $this->openElement ) {
@@ -1003,7 +1003,7 @@ TEXT
 		}
 	}
 
-	protected function characterData( $parser, $data ) {
+	protected function characterData( $parser, string $data ) {
 		$this->clearOpenElement( null );
 		if ( $this->lastName == "id" ) {
 			if ( $this->state == "revision" ) {
@@ -1035,7 +1035,7 @@ TEXT
 		$this->buffer .= htmlspecialchars( $data, ENT_COMPAT );
 	}
 
-	protected function clearOpenElement( $style ) {
+	protected function clearOpenElement( ?string $style ) {
 		if ( $this->openElement ) {
 			$this->buffer .= Xml::element( $this->openElement[0], $this->openElement[1], $style );
 			$this->openElement = false;

@@ -159,7 +159,7 @@ abstract class Benchmarker extends Maintenance {
 		);
 	}
 
-	public function addResult( $res ) {
+	public function addResult( array $res ) {
 		$ret = sprintf( "%s\n  %' 6s: %d\n",
 			$res['name'],
 			'count',
@@ -189,7 +189,7 @@ abstract class Benchmarker extends Maintenance {
 		$this->output( "$ret\n" );
 	}
 
-	protected function verboseRun( $iteration ) {
+	protected function verboseRun( int $iteration ) {
 		$this->output( sprintf( "#%3d - memory: %-10s - peak: %-10s\n",
 			$iteration,
 			$this->formatSize( memory_get_usage( true ) ),

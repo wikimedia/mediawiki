@@ -146,7 +146,7 @@ class FixDoubleRedirects extends Maintenance {
 		$this->output( "$n double redirects processed" . $processedTitles . "\n" );
 	}
 
-	protected function queueJobs( $jobs, $dryrun = false ) {
+	protected function queueJobs( array $jobs, bool $dryrun = false ) {
 		$this->output( "Queuing batch of " . count( $jobs ) . " double redirects.\n" );
 		$this->getServiceContainer()->getJobQueueGroup()->push( $dryrun ? [] : $jobs );
 	}

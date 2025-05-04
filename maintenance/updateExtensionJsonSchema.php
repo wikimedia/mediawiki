@@ -84,7 +84,7 @@ class UpdateExtensionJsonSchema extends Maintenance {
 		}
 	}
 
-	protected function updateTo2( &$json ) {
+	protected function updateTo2( array &$json ) {
 		if ( isset( $json['config'] ) ) {
 			$config = $json['config'];
 			$json['config'] = [];

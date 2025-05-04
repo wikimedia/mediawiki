@@ -29,6 +29,7 @@ require_once __DIR__ . '/Maintenance.php';
 use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\SpecialPage\QueryPage;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Maintenance script to update cached special pages.
@@ -141,7 +142,7 @@ class UpdateSpecialPages extends Maintenance {
 		$this->waitForReplication();
 	}
 
-	public function doSpecialPageCacheUpdates( $dbw ) {
+	public function doSpecialPageCacheUpdates( IDatabase $dbw ) {
 		foreach ( $this->getConfig()->get( MainConfigNames::SpecialPageCacheUpdates ) as $special => $call ) {
 			# --list : just show the name of pages
 			if ( $this->hasOption( 'list' ) ) {

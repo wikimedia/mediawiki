@@ -75,7 +75,7 @@ class FindOrphanedFiles extends Maintenance {
 		$this->checkFiles( $repo, $pathBatch, $verbose );
 	}
 
-	protected function checkFiles( LocalRepo $repo, array $paths, $verbose ) {
+	protected function checkFiles( LocalRepo $repo, array $paths, bool $verbose ) {
 		if ( !count( $paths ) ) {
 			return;
 		}

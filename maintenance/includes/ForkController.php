@@ -241,7 +241,7 @@ class ForkController {
 		pcntl_signal( SIGTERM, SIG_DFL );
 	}
 
-	protected function handleTermSignal( $signal ) {
+	protected function handleTermSignal( int $signal ) {
 		$this->termReceived = true;
 	}
 }

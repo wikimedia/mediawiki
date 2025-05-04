@@ -115,24 +115,24 @@ class BenchmarkTitleValue extends Benchmarker {
 		$this->dbKey = ucfirst( wfRandomString( 10 ) );
 	}
 
-	protected function constructTitleValue() {
+	protected function constructTitleValue(): TitleValue {
 		return new TitleValue( NS_CATEGORY, $this->dbKey );
 	}
 
-	protected function constructTitle() {
+	protected function constructTitle(): Title {
 		return Title::makeTitle( NS_CATEGORY, $this->dbKey );
 	}
 
-	protected function constructTitleSafe() {
+	protected function constructTitleSafe(): Title {
 		return Title::makeTitleSafe( NS_CATEGORY, $this->dbKey );
 	}
 
-	protected function getPrefixedTextTitleValue() {
+	protected function getPrefixedTextTitleValue(): string {
 		// This is really showing TitleFormatter perf
 		return $this->titleFormatter->getPrefixedText( $this->titleValue );
 	}
 
-	protected function getPrefixedTextTitle() {
+	protected function getPrefixedTextTitle(): string {
 		return $this->title->getPrefixedText();
 	}
 

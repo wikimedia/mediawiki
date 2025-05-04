@@ -110,7 +110,7 @@ class PurgeParserCache extends Maintenance {
 		$this->output( "\nDone\n" );
 	}
 
-	public function showProgressAndWait( $percent ) {
+	public function showProgressAndWait( int $percent ) {
 		// Parser caches involve mostly-unthrottled writes of large blobs. This is sometimes prone
 		// to replication lag. As such, while our purge queries are simple primary key deletes,
 		// we want to avoid adding significant load to the replication stream, by being

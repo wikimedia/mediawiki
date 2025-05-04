@@ -116,7 +116,7 @@ class NukePage extends Maintenance {
 		}
 	}
 
-	public function deleteRevisions( $ids ) {
+	public function deleteRevisions( array $ids ) {
 		$dbw = $this->getPrimaryDB();
 		$this->beginTransaction( $dbw, __METHOD__ );
 

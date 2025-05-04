@@ -318,11 +318,11 @@ class UcdXmlReader {
 	/** @var array */
 	public $currentBlock;
 
-	public function __construct( $fileName ) {
+	public function __construct( string $fileName ) {
 		$this->fileName = $fileName;
 	}
 
-	public function readChars( $callback ) {
+	public function readChars( callable $callback ) {
 		$this->getBlocks();
 		$this->currentBlock = reset( $this->blocks );
 		$xml = $this->open();
@@ -346,7 +346,7 @@ class UcdXmlReader {
 		$xml->close();
 	}
 
-	protected function open() {
+	protected function open(): XMLReader {
 		$this->xml = new XMLReader;
 		if ( !$this->xml->open( $this->fileName ) ) {
 			throw new RuntimeException( __METHOD__ . ": unable to open {$this->fileName}" );
@@ -406,7 +406,7 @@ class UcdXmlReader {
 		}
 	}
 
-	public function getBlocks() {
+	public function getBlocks(): array {
 		if ( $this->blocks ) {
 			return $this->blocks;
 		}
