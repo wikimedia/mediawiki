@@ -2,7 +2,7 @@
 <!DOCTYPE supplementalData SYSTEM "../../common/dtd/ldmlSupplemental.dtd">
 <supplementalData>
 	<plurals>
-		<!-- Levantive Arabic. Not in CLDR. Based on "ar", but with modifications. See task T363690 -->
+		<!-- Levantine Arabic. Not in CLDR. Based on "ar", but with modifications. See task T363690 -->
 		<pluralRules locales="apc">
 			<pluralRule count="one">n = 1 @integer 1 @decimal 1.0, 1.00, 1.000, 1.0000</pluralRule>
 			<pluralRule count="two">n = 2 @integer 2 @decimal 2.0, 2.00, 2.000, 2.0000</pluralRule>
