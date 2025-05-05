@@ -4,8 +4,11 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Tests\Unit\composer\PhpUnitSplitter;
 
+use MediaWiki\Composer\ComposerLaunchParallel;
+use MediaWiki\Composer\ComposerSystemInterface;
 use MediaWiki\Composer\PhpUnitSplitter\PhpUnitErrorTestCaseFoundException;
 use MediaWiki\Composer\PhpUnitSplitter\PhpUnitXmlManager;
+use MediaWiki\Composer\PhpUnitSplitter\SplitGroupExecutor;
 use MediaWiki\Composer\PhpUnitSplitter\TestListMissingException;
 use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
@@ -55,7 +58,7 @@ class PhpUnitXmlManagerTest extends TestCase {
 	}
 
 	private function tearDownTestFolder() {
-		foreach ( [ 'phpunit-test.xml', 'phpunit.xml.dist', 'tests-list.xml' ] as $file ) {
+		foreach ( [ 'phpunit.xml', 'phpunit-test.xml', 'phpunit.xml.dist', 'tests-list.xml' ] as $file ) {
 			$path = $this->testDir . DIRECTORY_SEPARATOR . $file;
 			if ( file_exists( $path ) ) {
 				unlink( $path );
@@ -123,5 +126,28 @@ class PhpUnitXmlManagerTest extends TestCase {
 		$logPath = "47/1113147/8/test/quibble-vendor-mysql-php74-noselenium/96878ad";
 		$url = TestingAccessWrapper::newFromClass( PhpUnitXmlManager::class )->generateResultsCacheUrl( $urlBase, $logPath );
 		$this->assertEquals( $urlBase . '/quibble-vendor-mysql-php74-noselenium', $url );
+	}
+
+	public function testSplitTestsList() {
+		$systemMock = $this->createMock( ComposerSystemInterface::class );
+		$systemMock->method( 'getcwd' )->willReturn( $this->testDir );
+		$systemMock->expects( $this->once() )
+			->method( 'exit' )
+			->with( ComposerLaunchParallel::EXIT_STATUS_PHPUNIT_LIST_TESTS_ERROR );
+		$executorMock = $this->createMock( SplitGroupExecutor::class );
+		$executorMock->expects( $this->once() )
+			->method( 'runLinearFallback' )
+			->with( 'database' );
+		$this->copyTestListIntoPlace( 'tests-list-with-error.xml' );
+		PhpUnitXmlManager::splitTestsList(
+			'custom',
+			'tests-list.xml',
+			'database',
+			'phpunit-custom.xml',
+			$systemMock,
+			$executorMock,
+			null
+		);
+		$this->assertFileExists( $this->testDir . DIRECTORY_SEPARATOR . 'phpunit.xml' );
 	}
 }

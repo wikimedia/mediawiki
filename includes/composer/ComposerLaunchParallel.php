@@ -60,7 +60,7 @@ class ComposerLaunchParallel extends ForkController {
 		$this->excludeGroups = $excludeGroups;
 		$this->composerSystemInterface = $composerSystemInterface ?? new ComposerSystemInterface();
 		$this->splitGroupExecutor = $splitGroupExecutor ?? new SplitGroupExecutor(
-			$phpUnitConfigFile, Shellbox::createUnboxedExecutor(), $event, $this->composerSystemInterface
+			$phpUnitConfigFile, Shellbox::createUnboxedExecutor(), $event->getIO(), $this->composerSystemInterface
 		);
 
 		/**

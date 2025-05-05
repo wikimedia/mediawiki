@@ -23,4 +23,8 @@ class ComposerSystemInterface {
 	public function putFileContents( string $path, string $data ) {
 		file_put_contents( $path, $data );
 	}
+
+	public function getcwd(): string {
+		return getcwd();
+	}
 }

@@ -4,7 +4,7 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Composer\PhpUnitSplitter;
 
-use Composer\Script\Event;
+use Composer\IO\IOInterface;
 use MediaWiki\Composer\ComposerLaunchParallel;
 use MediaWiki\Composer\ComposerSystemInterface;
 use Shellbox\Command\UnboxedExecutor;
@@ -16,19 +16,19 @@ use Shellbox\Command\UnboxedResult;
 class SplitGroupExecutor {
 
 	private UnboxedExecutor $executor;
-	private ?Event $event;
+	private ?IOInterface $io;
 	private ComposerSystemInterface $composerSystemInterface;
 	private string $phpunitConfigFile;
 
 	public function __construct(
 		string $phpunitConfigFile,
 		UnboxedExecutor $shellExecutor,
-		?Event $event,
+		?IOInterface $io,
 		?ComposerSystemInterface $composerSystemInterface = null
 	) {
 		$this->phpunitConfigFile = $phpunitConfigFile;
 		$this->executor = $shellExecutor;
-		$this->event = $event;
+		$this->io = $io;
 		$this->composerSystemInterface = $composerSystemInterface ?? new ComposerSystemInterface();
 	}
 
@@ -66,14 +66,14 @@ class SplitGroupExecutor {
 	}
 
 	private function warning( string $warning ) {
-		if ( $this->event ) {
-			$this->event->getIO()->warning( $warning );
+		if ( $this->io ) {
+			$this->io->warning( $warning );
 		}
 	}
 
 	private function composerLog( string $text ) {
-		if ( $this->event ) {
-			$this->event->getIO()->write( $text );
+		if ( $this->io ) {
+			$this->io->write( $text );
 		}
 	}
 
