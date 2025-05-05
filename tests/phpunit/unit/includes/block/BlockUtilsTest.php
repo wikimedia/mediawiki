@@ -141,8 +141,8 @@ class BlockUtilsTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function provideTestParseBlockTargetNonIpString() {
-		$userIdentity = $this->createMock( UserIdentity::class );
+	public static function provideTestParseBlockTargetNonIpString() {
+		$userIdentity = UserIdentityValue::newRegistered( 42, 'DannyS712' );
 		yield 'Name returns a valid user' => [
 			'DannyS712',
 			$userIdentity,

@@ -321,7 +321,7 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotSame( $oldInstance, $newInstance );
 	}
 
-	public function provideGetters() {
+	public static function provideGetters() {
 		$getServiceCases = self::provideGetService();
 		$getterCases = [
 			// These are "mis-named" getters that don't follow the standard pattern, so are listed explicitly

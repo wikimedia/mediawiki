@@ -235,15 +235,15 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		$manager->clearAllUserNotifications( $authority );
 	}
 
-	public function provideTestPageFactory() {
+	public static function provideTestPageFactory() {
 		yield [ static function ( $pageId, $namespace, $dbKey ) {
 			return new TitleValue( $namespace, $dbKey );
 		} ];
 		yield [ static function ( $pageId, $namespace, $dbKey ) {
 			return new PageIdentityValue( $pageId, $namespace, $dbKey, PageIdentityValue::LOCAL );
 		} ];
-		yield [ function ( $pageId, $namespace, $dbKey ) {
-			return $this->makeMockTitle( $dbKey, [
+		yield [ static function ( $pageId, $namespace, $dbKey, $testCase ) {
+			return $testCase->makeMockTitle( $dbKey, [
 				'id' => $pageId,
 				'namespace' => $namespace
 			] );
@@ -257,7 +257,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		// ********** Code path #1 **********
 		// Early return: read only mode
 
-		$title = $testPageFactory( 100, 0, 'SomeDbKey' );
+		$title = $testPageFactory( 100, 0, 'SomeDbKey', $this );
 
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
 		[ $authority, ] = $this->getAuthorityAndUserFactory( $userIdentity );
@@ -282,7 +282,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		// ********** Code path #2 **********
 		// Early return: User lacks `editmywatchlist`
 
-		$title = $testPageFactory( 100, 0, 'SomeDbKey' );
+		$title = $testPageFactory( 100, 0, 'SomeDbKey', $this );
 
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
 		[ $authority, $userFactory ] = $this->getAuthorityAndUserFactory( $userIdentity );
@@ -307,7 +307,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		// ********** Code path #3 **********
 		// Early return: config with OPTION_ENOTIF false
 
-		$title = $testPageFactory( 100, NS_USER_TALK, 'PageTitleGoesHere' );
+		$title = $testPageFactory( 100, NS_USER_TALK, 'PageTitleGoesHere', $this );
 
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
 		[ $authority, $userFactory ] = $this->getAuthorityAndUserFactory(
@@ -335,7 +335,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		// ********** Code path #4 **********
 		// Early return: user is not registered
 
-		$title = $testPageFactory( 100, NS_USER_TALK, 'PageTitleGoesHere' );
+		$title = $testPageFactory( 100, NS_USER_TALK, 'PageTitleGoesHere', $this );
 
 		$options = [
 			WatchlistManager::OPTION_ENOTIF => true,
@@ -368,7 +368,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		// ********** Code path #5 **********
 		// No early returns; resetNotificationTimestamp is called
 
-		$title = $testPageFactory( 100, NS_USER_TALK, 'PageTitleGoesHere' );
+		$title = $testPageFactory( 100, NS_USER_TALK, 'PageTitleGoesHere', $this );
 
 		$options = [
 			WatchlistManager::OPTION_ENOTIF => true,
@@ -403,7 +403,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 
 		$userIdentity = new UserIdentityValue( 0, 'User Name' );
 
-		$title = $testPageFactory( 100, 0, 'SomeDbKey' );
+		$title = $testPageFactory( 100, 0, 'SomeDbKey', $this );
 
 		$manager = $this->getManager();
 
@@ -426,7 +426,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
 
-		$title = $testPageFactory( 100, NS_MAIN, 'Page_db_Key_goesHere' );
+		$title = $testPageFactory( 100, NS_MAIN, 'Page_db_Key_goesHere', $this );
 
 		$watchedItem = $this->createMock( WatchedItem::class );
 		$watchedItem->expects( $this->once() )
@@ -473,7 +473,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
 
-		$title = $testPageFactory( 100, NS_MAIN, 'Page_db_Key_goesHere' );
+		$title = $testPageFactory( 100, NS_MAIN, 'Page_db_Key_goesHere', $this );
 
 		$watchedItem = $this->createMock( WatchedItem::class );
 		$watchedItem->expects( $this->once() )
@@ -504,7 +504,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
 
-		$title = $testPageFactory( 100, NS_MAIN, 'Page_db_Key_goesHere' );
+		$title = $testPageFactory( 100, NS_MAIN, 'Page_db_Key_goesHere', $this );
 
 		$watchedItemStore = $this->createMock( WatchedItemStoreInterface::class );
 		$watchedItemStore->expects( $this->once() )

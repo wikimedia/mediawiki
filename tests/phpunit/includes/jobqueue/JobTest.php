@@ -124,14 +124,14 @@ class JobTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotSame( $job, $job3, 'should not reuse instance' );
 	}
 
-	public function provideTestJobFactory() {
+	public static function provideTestJobFactory() {
 		return [
 			'class name, no title' => [ 'NullJob', NullJob::class ],
 			'class name with title' => [ DeleteLinksJob::class, DeleteLinksJob::class ],
 			'closure' => [ static function ( Title $title, array $params ) {
 				return new NullJob( $params );
 			}, NullJob::class ],
-			'function' => [ [ $this, 'newNullJob' ], NullJob::class ],
+			'function' => [ [ self::class, 'newNullJob' ], NullJob::class ],
 			'object spec, no title' => [ [ 'class' => 'NullJob' ], NullJob::class ],
 			'object spec with title' => [ [ 'class' => DeleteLinksJob::class ], DeleteLinksJob::class ],
 			'object spec with no title and not subclass of GenericParameterJob' => [
@@ -150,7 +150,7 @@ class JobTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	public function newNullJob( Title $title, array $params ) {
+	public static function newNullJob( Title $title, array $params ) {
 		return new NullJob( $params );
 	}
 
