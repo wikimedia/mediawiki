@@ -2521,7 +2521,7 @@
 	"undelete-show-file-confirm": "\"<nowiki>$1</nowiki>\" faylının $2 $3 tarixli silinmiş bir redaktəsini görmək istədiyinizdən əminsizinizmi?",
 	"undelete-show-file-submit": "Bəli",
 	"undelete-back-to-list": "Bütün silinmiş redaktələrə bax",
-	"namespace": "Adlar fəzası:",
+	"namespace": "Ad fəzası:",
 	"invert": "Seçilən xaricindəkiləri",
 	"tooltip-invert": "Seçilmiş ad fəzasında (və ya göstərilmiş uyğunluqlarda olan adlar) olan səhifələrdəki dəyişiklikləri gizlətmək üçün bura işarə edin",
 	"tooltip-whatlinkshere-invert": "Seçilmiş ad fəzalarındakı səhifələri göstərməmək üçün bu qutucuğu seçin.",

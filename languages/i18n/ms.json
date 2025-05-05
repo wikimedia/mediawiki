@@ -3589,7 +3589,7 @@
 	"logentry-import-upload": "$1 telah {{GENDER:$2|mengimport}} $3 melalui pemuatnaikan fail",
 	"logentry-import-upload-details": "$1 {{GENDER:$2|diimport}} $3 oleh muat naik fail ($4 {{PLURAL:$4|semakan}})",
 	"logentry-import-interwiki": "$1 telah {{GENDER:$2|mengimport}} $3 dari wiki lain",
-	"logentry-import-interwiki-details": "$1 {{GENDER:$2|diimport}} $3 daripada $5 ($4 {{PLURAL:$4|semakan}})",
+	"logentry-import-interwiki-details": "$1 {{GENDER:$2|telah mengimport}} $3 daripada $5 ($4 {{PLURAL:$4|semakan}})",
 	"logentry-merge-merge": "$1 telah {{GENDER:$2|menggabungkan}} $3 ke dalam $4 (pindaan sehingga $5)",
 	"logentry-move-move": "$1 telah {{GENDER:$2|memindahkan}} laman $3 ke $4",
 	"logentry-move-move-noredirect": "$1 telah {{GENDER:$2|memindahkan}} laman $3 ke $4 tanpa meninggalkan lencongan",

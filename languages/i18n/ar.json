@@ -3539,7 +3539,7 @@
 	"fileduplicatesearch-result-1": "الملف \"$1\" ليس له تكرار مطابق.",
 	"fileduplicatesearch-result-n": "الملف \"$1\" له {{PLURAL:$2|1 تكرار مطابق|$2 تكرار مطابق}}.",
 	"fileduplicatesearch-noresults": "لا ملف بالاسم \"$1\" تم العثور عليه.",
-	"specialpages": "الصفحات الخاصة",
+	"specialpages": "صفحات خاصة",
 	"specialpages-note-top": "المفتاح",
 	"specialpages-note-restricted": "* صفحات خاصة عادية.\n* <span class=\"mw-specialpagerestricted\">صفحات خاصة مقيدة.</span>",
 	"specialpages-group-maintenance": "تقارير الصيانة",

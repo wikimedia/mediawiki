@@ -34,7 +34,8 @@
 			"Wyz",
 			"Yumeki",
 			"아라",
-			"Mahabarata"
+			"Mahabarata",
+			"JLTRY"
 		]
 	},
 	"config-desc": "Le programme d’installation de MediaWiki",
@@ -208,7 +209,7 @@
 	"config-subscribe-help": "Il s’agit d’une liste de diffusion à faible volume utilisée pour annoncer les nouvelles versions, y compris les versions améliorant la sécurité du logiciel.\nVous devriez vous y abonner et mettre à jour votre version de MediaWiki lorsque de nouvelles versions sont publiées.",
 	"config-subscribe-noemail": "Vous avez essayé de vous abonner à la liste de diffusion des annonces de nouvelles versions sans fournir une adresse courriel.\nVeuillez fournir une adresse de courriel si vous souhaitez vous abonner à la liste de diffusion.",
 	"config-pingback": "Partager des données au sujet de cette installation avec les développeurs de MediaWiki.\n[https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement Politique de confidentialité].",
-	"config-pingback-help": "Si vous sélectionnez cette option, MediaWiki notifiera périodiquement https://www.mediawiki.org/ avec les données de base sur cette instance de MediaWiki. Ces données incluent, par exemple, le type de système, la version de PHP, ainsi que le service de base de données choisi. La Fondation Wikimedia partage ces données avec les développeurs de MediaWiki pour aider à orienter les futurs efforts de développement. Les données suivantes seront envoyées concernant votre système :\n<pre>$1</pre>\n\nLa politique de confidentialité relative à cette fonctionnalité peut être consultée sur https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement<nowiki/>.\n\nPour des informations générales concernant cette fonctionnalité, voir https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgPingback<nowiki/>.\n\nLes données agrégées peuvent être consultées sur https://pingback.wmflabs.org/<nowiki/>.",
+	"config-pingback-help": "Si vous sélectionnez cette option, MediaWiki notifiera périodiquement https://www.mediawiki.org/ avec les données de base sur cette instance de MediaWiki. Ces données incluent, par exemple, le type de système, la version de PHP, ainsi que le service de base de données choisi. La Fondation Wikimedia partage ces données avec les développeurs de MediaWiki pour aider à orienter les futurs efforts de développement. Les données suivantes seront envoyées concernant votre système :\n<pre>$1</pre>\n\nLa politique de confidentialité relative à cette fonctionnalité peut être consultée sur https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement<nowiki/>.\n\nPour des informations générales concernant cette fonctionnalité, voir https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgPingback<nowiki/>.\n\nLes données agrégées peuvent être consultées sur https://pingback.wmcloud.org/<nowiki/>.",
 	"config-almost-done": "Vous avez presque fini !\nVous pouvez passer la configuration restante et installer immédiatement le wiki.",
 	"config-optional-continue": "Me poser davantage de questions.",
 	"config-optional-skip": "J’en ai assez, installer simplement le wiki.",

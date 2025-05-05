@@ -3,7 +3,8 @@
 		"authors": [
 			"AgnesAbah",
 			"Peace",
-			"AnnGabZak"
+			"AnnGabZak",
+			"Iamgraced"
 		]
 	},
 	"tog-underline": "éwú kíyà kámé wú dámá",
@@ -170,7 +171,7 @@
 	"skin-view-create": "Nyí",
 	"create-local": "Dí ujuwé érané manwu",
 	"delete": "Dukwó",
-	"undelete_short": "Fú kpá lú kwó",
+	"undelete_short": "Ẹ kpa lu kwon",
 	"viewdeleted_short": "Dá gó ké gó{{PLURAL:$1|}}",
 	"protect": "Dída",
 	"protect_change": "arida",
@@ -204,10 +205,12 @@
 	"jumptonavigation": "áchówo",
 	"jumptosearch": "téné",
 	"view-pool-error": "ékí wé dó nó úgbó kú má kójó ábájó yí ú nyá dé génó $1",
+	"generic-pool-error": "Agba, ami sava yi chẹ nẹ adu wewe abajọi. Amonẹ wewe dọmọ a tene kuma a du ẹnwu ẹnwu yi ch'ekwu.\nAgba we re taki a dabi che ajama kẹ gudu t'efu nwu gẹ.",
 	"pool-timeout": "Íkó tágbá gbá",
 	"pool-queuefull": "Í poolí ché kó",
 	"pool-errorunknown": "éné dú má nó",
 	"pool-servererror": "Ómí bó génó$1",
+	"poolcounter-usage-error": "Edu ch'ekwu ki ma ch'ejunw n",
 	"aboutsite": "Tódù {{SITENAME}}",
 	"aboutpage": "Project:Tódú",
 	"copyrightpage": "{{ns:project}}:Amé góché",

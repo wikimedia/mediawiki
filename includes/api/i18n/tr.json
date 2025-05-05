@@ -20,7 +20,8 @@
 			"Uğurkent",
 			"İnternion",
 			"Cobija",
-			"McDutchie"
+			"McDutchie",
+			"Andac"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Belgelendirme]]\n* [[mw:Special:MyLanguage/API:Etiquette|Görgü kuralları ve kullanım kuralları]]\n* [[mw:Special:MyLanguage/API:FAQ|SSS]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Posta listesi]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ API Duyuruları]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Hatalar ve talepler]\n</div>\n<strong>Durum:</strong> MediaWiki API, aktif olarak desteklenen ve geliştirilen olgun ve kararlı bir arayüzdür. Bundan kaçınmaya çalışırken, zaman zaman kırılma değişiklikleri yapmamız gerekebilir; güncellemeleri bildirmek için [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ posta listesine] abone olun.\n\n<strong>Hatalı istekler:</strong> API'ya hatalı istekler gönderildiğinde, \"MediaWiki-API-Error\" anahtarını içeren bir HTTP başlığı gönderilir ve daha sonra hem başlığın değeri hem de geri gönderilen hata kodu olarak ayarlanır. aynı değer. Daha fazla bilgi için [[mw:Special:MyLanguage/API:Errors_and_warnings|API:Hatalar ve uyarılar]] sayfasına bakın.\n\n<p class=\"mw-apisandbox-link\"><strong>Deneme:</strong> API isteklerini test etme kolaylığı için, [[Special:ApiSandbox]] sayfasına bakın.</p>",
@@ -146,8 +147,8 @@
 	"apihelp-delete-param-watchlistexpiry": "İzleme listesi süresinin dolması zaman damgası. Geçerli bitiş tarihini değiştirmeden bırakmak için bu parametreyi tamamen atlayın.",
 	"apihelp-delete-param-unwatch": "Sayfayı geçerli kullanıcının izleme listesinden kaldırın.",
 	"apihelp-delete-param-oldimage": "[[Special:ApiHelp/query+imageinfo|action=query&prop=imageinfo&iiprop=archivename]] tarafından sağlanan, silinecek eski görüntünün adı.",
-	"apihelp-delete-example-simple": "<kbd>Main Page</kbd> sayfasını silin.",
-	"apihelp-delete-example-reason": "<kbd>Preparing for move</kbd> nedeni ile <kbd>Main Page</kbd> silin.",
+	"apihelp-delete-example-simple": "[[{{MediaWiki:Mainpage}}]] sayfasını silin.",
+	"apihelp-delete-example-reason": "<kbd>Preparing for move</kbd> nedeni ile [[{{MediaWiki:Mainpage}}]]'i silin.",
 	"apihelp-disabled-summary": "Bu modül devre dışı bırakıldı.",
 	"apihelp-edit-summary": "Sayfa oluşturun ve düzenleyin.",
 	"apihelp-edit-param-title": "Düzenlenecek sayfanın başlığı. <var>$1pageid</var> ile birlikte kullanılamaz.",
@@ -823,6 +824,7 @@
 	"apihelp-query+fileusage-param-namespace": "Yalnızca bu ad alanlarına sayfalar ekleyin.",
 	"apihelp-query+fileusage-param-limit": "Geri dönmek için kaç tane.",
 	"apihelp-query+fileusage-param-show": "Yalnızca bu ölçütleri karşılayan öğeleri gösterin:\n;redirect:Yalnızca yönlendirmeleri gösterin.\n;!redirect:Yalnızca yönlendirme olmayanları gösterin.",
+	"apihelp-query+fileusage-paramvalue-show-redirect": "Sadece yönlendirmeleri göster.",
 	"apihelp-query+fileusage-example-simple": "[[:File:Example.jpg]] kullanarak sayfaların bir listesini alın.",
 	"apihelp-query+fileusage-example-generator": "[[:File:Example.jpg]] kullanarak sayfalar hakkında bilgi edinin.",
 	"apihelp-query+imageinfo-summary": "Dosya bilgilerini ve yükleme geçmişini döndürür.",
