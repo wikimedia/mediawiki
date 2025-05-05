@@ -6,6 +6,7 @@ use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Message;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Status\StatusFormatter;
+use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
 use Psr\Log\Test\TestLogger;
 use Wikimedia\Message\MessageValue;
@@ -483,8 +484,10 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 
 	public function testUserLanguageNotLoaded() {
 		// Confirm that the user language is not loaded from the database when
-		// formatting an error in a specific language
-		$this->getServiceContainer()->disableService( 'UserOptionsLookup' );
+		// formatting an error in a specific language. Disable all hooks to prevent unrelated
+		// access to user options.
+		$this->setService( 'UserOptionsLookup', $this->createNoOpMock( UserOptionsLookup::class ) );
+		$this->clearHooks( [ 'MessageCacheFetchOverrides', 'MessageCache::get' ] );
 		$context = RequestContext::getMain();
 		$user = new User;
 		$user->setName( 'Test' );
