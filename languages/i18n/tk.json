@@ -2976,6 +2976,5 @@
 	"renameuser-move-log": "Ulanyjy \"[[User:$1|$1]]\" adyndan \"[[User:$2|$2]]\" adyna täzeden atlandyrylanda, sahypa awtomatik geçirildi",
 	"right-renameuser": "Ulanyjylaryň adyny üýtget",
 	"renameuser-renamed-notice": "Bu ulanyjynyň ady üýtgedilipdir.\nAt üýtgediş gündeligi aşakda salgylanma üçin berilýär.",
-	"interwiki_edit": "Redaktirle",
-	"searchsuggest-containing-html": "Içindäki sahypalary gözläň <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki_edit": "Redaktirle"
 }

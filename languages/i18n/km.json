@@ -2595,6 +2595,5 @@
 	"interwiki_editerror": "បុព្វបទ \"$1\" មិនអាចកែសម្រួលនៅក្នុងតារាងអន្តរវិគីបានទេ។\n\nប្រហែលជាវាមិនមានអត្ថិភាពទេ។",
 	"log-name-interwiki": "កំណត់ហេតុតារាងអន្តរវិគី",
 	"log-description-interwiki": "នេះជាកំណត់ហេតុនៃបន្លាស់ប្តូរក្នុង[[Special:Interwiki|តារាងអន្តរវិគី]]។",
-	"right-interwiki": "កែប្រែទិន្នន័យអន្តរវិគី",
-	"searchsuggest-containing-html": "ស្វែងរកទំព័រដែលមានពាក្យ<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"right-interwiki": "កែប្រែទិន្នន័យអន្តរវិគី"
 }

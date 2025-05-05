@@ -1785,6 +1785,5 @@
 	"blockedtext-block-ip": "Twōj adres IP to je terŏz $1.",
 	"blockedtext-include-details-queries": "Proszã ô wkludzyniy wszyjskich powyższych informacyji we wszelich spytaniach.",
 	"interwiki_reasonfield": "Powōd:",
-	"interwiki_addbutton": "Dodej",
-	"searchsuggest-containing-html": "Szukej zajtōw ftore zawiyrajōm <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki_addbutton": "Dodej"
 }

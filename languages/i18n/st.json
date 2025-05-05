@@ -153,6 +153,5 @@
 	"specialpages": "Maqephe a khethehileng",
 	"searchsuggest-search": "Batla {{SITENAME}}",
 	"searchsuggest-containing": "Batla maqephe a nang le",
-	"nstab-mainpage": "Leqephe la pele",
-	"searchsuggest-containing-html": "Batla maqephe a nang le <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"nstab-mainpage": "Leqephe la pele"
 }

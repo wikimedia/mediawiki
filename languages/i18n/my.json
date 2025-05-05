@@ -2631,6 +2631,5 @@
 	"interwiki-legend-label": "အညွှန်း",
 	"interwiki_edit": "ပြင်ဆင်ရန်",
 	"interwiki_reasonfield": "အ​ကြောင်း​ပြ​ချက်:",
-	"interwiki_addbutton": "ပေါင်းထည့်ရန်",
-	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> ပါဝင်သော စာမျက်နှာများ ရှာဖွေရန်"
+	"interwiki_addbutton": "ပေါင်းထည့်ရန်"
 }

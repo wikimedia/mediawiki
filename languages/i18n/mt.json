@@ -2926,6 +2926,5 @@
 	"interwiki_reasonfield": "Raġuni:",
 	"interwiki_addbutton": "Żid",
 	"interwiki_added": "Il-prefiss \"$1\" ġie miżjud b'suċċess fit-tabella tal-interwiki.",
-	"interwiki_addfailed": "Il-prefiss \"$1\" ma setax jiġi miżjud mat-tabella tal-interwiki.\nProbabbilment dan diġà jeżisti fit-tabella.",
-	"searchsuggest-containing-html": "Fittex għal paġni li għandhom <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki_addfailed": "Il-prefiss \"$1\" ma setax jiġi miżjud mat-tabella tal-interwiki.\nProbabbilment dan diġà jeżisti fit-tabella."
 }

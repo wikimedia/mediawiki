@@ -3375,6 +3375,5 @@
 	"interwiki-language-links": "Prefisse inderlènghe",
 	"interwiki-language-description": "Ste prefisse s'accocchiane cu codice de lènghe definite e avènene ausate pe ccrejà l'elenghe \"{{int:otherlanguages}}\" quanne aggiunde a 'na pàgene.",
 	"interwiki-global-language-links": "Prefisse inderlènghe globbale",
-	"interwiki-global-language-description": "Ste prefisse s'accocchiane cu codice de lènghe definite e avènene ausate pe ccrejà l'elenghe \"{{int:otherlanguages}}\" quanne aggiunde a 'na pàgene. Cumme avènene ereditate da 'na configurazione globbale, ponne essere cangiate sulamende sus 'a uicchi origgenale. Le definiziune de le inderlènghe globbale ponne essere sovrascritte localmende.",
-	"searchsuggest-containing-html": "Cirche le pàggene ca tènene <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki-global-language-description": "Ste prefisse s'accocchiane cu codice de lènghe definite e avènene ausate pe ccrejà l'elenghe \"{{int:otherlanguages}}\" quanne aggiunde a 'na pàgene. Cumme avènene ereditate da 'na configurazione globbale, ponne essere cangiate sulamende sus 'a uicchi origgenale. Le definiziune de le inderlènghe globbale ponne essere sovrascritte localmende."
 }

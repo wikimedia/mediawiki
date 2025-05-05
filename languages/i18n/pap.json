@@ -666,6 +666,5 @@
 	"nstab-mainpage": "Página prinsipal",
 	"skin-view-edit-local": "Editá deskripshon lokal",
 	"skin-action-protect": "Protehá",
-	"skin-action-move": "Move",
-	"searchsuggest-containing-html": "Buska página ku tin <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"skin-action-move": "Move"
 }

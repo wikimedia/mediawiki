@@ -729,6 +729,5 @@
 	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|нарєчє}} польꙃєватєл҄ь ⁖ $4 ⁖ ({{PLURAL:$6|$6 мѣна|$6 мѣноу|$6 мѣнъ}}) имєньмь ⁖ {{GENDER:$7|$5}} ⁖",
 	"interwiki_1": "да",
 	"interwiki_0": "нѣтъ",
-	"interwiki_edit": "исправлѥниѥ",
-	"searchsuggest-containing-html": "исканиѥ страниц, сѥ дрьжащи <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki_edit": "исправлѥниѥ"
 }

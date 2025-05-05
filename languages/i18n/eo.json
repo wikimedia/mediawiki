@@ -3891,6 +3891,5 @@
 	"interwiki-badprefix": "Specifita intervika prefikso \"$1\" enhavas nevalidajn signojn",
 	"log-name-interwiki": "Loglibro pri la intervikia tabelo",
 	"log-description-interwiki": "Jen loglibro de ŝanĝoj al la [[Special:Interwiki|intervikia tabelo]].",
-	"right-interwiki": "Redakti intervikiajn datenojn",
-	"searchsuggest-containing-html": "Serĉu paĝojn enhavantajn<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"right-interwiki": "Redakti intervikiajn datenojn"
 }

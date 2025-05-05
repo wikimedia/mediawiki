@@ -3771,6 +3771,5 @@
 	"interwiki_reasonfield": "Sebeb:",
 	"interwiki_addbutton": "Cı ke",
 	"log-name-interwiki": "Qeydê tabloyê interwiki",
-	"right-interwiki": "Daneyanê interwiki bıvurne",
-	"searchsuggest-containing-html": "Pelanê tede <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> esto, cı geyre"
+	"right-interwiki": "Daneyanê interwiki bıvurne"
 }

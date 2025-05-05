@@ -11,6 +11,7 @@
 			"DannyS712",
 			"Growingup",
 			"Irus",
+			"Janabaevazizbek",
 			"Janatkg",
 			"Kgbek",
 			"Macofe",
@@ -146,7 +147,6 @@
 	"versionrequired": "MediaWiki'нин $1 версиясы керек",
 	"versionrequiredtext": "Бул барак менен иштөө үчүн MediaWiki $1 версиясы талап кылынат. Кара.[[Special:Version|version page]].",
 	"ok": "Макул",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"backlinksubtitle": "← $1",
 	"retrievedfrom": "\"$1\" булагынан алынды",
 	"new-messages": "Сизде {{PLURAL:$3}} $1 бар ($2).",
@@ -1014,6 +1014,7 @@
 	"listusers-noresult": "Колдонуучу табылган жок.",
 	"listusers-blocked": "(бөгөттөлгөн)",
 	"activeusers": "Жигердүү колдонуучулардын тизмеси",
+	"activeusers-count": "акыргы {{PLURAL:$3|күндө|$3 күндө}} $1 {{PLURAL:$1|түзөтүү|түзөтүү}}",
 	"activeusers-noresult": "Колдонуучулар табылган жок.",
 	"listgrouprights-group": "Топ",
 	"listgrouprights-rights": "Укуктар",
@@ -1637,6 +1638,5 @@
 	"interwiki_0": "жок",
 	"interwiki_edit": "Түзөтүү",
 	"interwiki_reasonfield": "Себеп:",
-	"interwiki_addbutton": "Кошуу",
-	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">«$1»</strong> камтыган барактарды издөө"
+	"interwiki_addbutton": "Кошуу"
 }

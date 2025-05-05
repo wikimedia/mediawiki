@@ -2301,6 +2301,5 @@
 	"blockedtext-intended-blockee": "Abhallung bedreffd: $1",
 	"blockedtext-contact-blocker-admin": "Du kannst $1 odder en annre [[{{MediaWiki:Grouppage-sysop}}|Administratoer]] kontakteere, um iwer das Abhallung se diskutiere.",
 	"blockedtext-block-ip": "Dein aktuaale IP-Adress is $1.",
-	"blockedtext-include-details-queries": "Bitte schliese alle Informazione in jeder Aanfroh in, wo du stellst.",
-	"searchsuggest-containing-html": "Suche noh Seite wo <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> enthelld."
+	"blockedtext-include-details-queries": "Bitte schliese alle Informazione in jeder Aanfroh in, wo du stellst."
 }

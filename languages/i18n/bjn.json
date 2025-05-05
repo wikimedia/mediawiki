@@ -2453,6 +2453,5 @@
 	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|maubah ngaran}} pamakai $4 ({{PLURAL:$6|$6 babakan}}) manjadi {{GENDER:$7|$5}}",
 	"logentry-renameuser-renameuser-legacier": "$1 maubah ngaran pamakai $4 manjadi {{GENDER:$7|$5}}",
 	"renameuser-move-log": "Mamindahakan sacara utumatis laman ini wayah maubah ngaran {{GENDER:$2|pamakai}} \"[[User:$1|$1]]\" manjadi \"[[User:$2|$2]]\"",
-	"right-renameuser": "Maubah ngaran pamakai",
-	"searchsuggest-containing-html": "Gagai laman nang baisi <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"right-renameuser": "Maubah ngaran pamakai"
 }

@@ -118,7 +118,7 @@
 	"views": "Nlere",
 	"toolbox": "Ngwaọrụ",
 	"cactions": "Ọzọ kwa",
-	"tool-link-userrights": "gbanwee {{GENDER:$1|user}} otu ndia",
+	"tool-link-userrights": "Gbanwee {{GENDER:$1|ojiarụ}} otu ndia",
 	"tool-link-userrights-readonly": "lee {{GENDER:$1|user}} otu ndia",
 	"tool-link-emailuser": "Zigara {{GENDER:$1|onye ọrụ}} mail a",
 	"imagepage": "Zìri ihu àfabà",
@@ -1469,6 +1469,5 @@
 	"renameuser-page-moved": "Ihü $1 a páfùrù gá $2.",
 	"renameuser-page-unmoved": "Ihü $1 énweghịkị páfù gá $2.",
 	"interwiki_edit": "Mèzi",
-	"interwiki_reasonfield": "Mgbághapụtà:",
-	"searchsuggest-containing-html": "Chọọ peeji ndị gụnyere <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki_reasonfield": "Mgbághapụtà:"
 }

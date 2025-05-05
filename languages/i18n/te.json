@@ -3863,6 +3863,5 @@
 	"interwiki_addbutton": "చేర్చు",
 	"log-name-interwiki": "అంతర్వికీ పట్టిక చిట్టా",
 	"log-description-interwiki": "ఇది [[Special:Interwiki|అంతర్వికీ పట్టిక]]కి జరిగిన మార్పుల చిట్టా.",
-	"right-interwiki": "అంతర్వికీ సమాచారము మార్చు",
-	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> కలిగి ఉన్న పేజీల కోసం వెతకండి"
+	"right-interwiki": "అంతర్వికీ సమాచారము మార్చు"
 }

@@ -3445,6 +3445,5 @@
 	"log-description-interwiki": "Ovo su evidencije promjena na [[Special:Interwiki|interwiki tablici]].",
 	"right-interwiki": "Uređivanje interwiki podataka",
 	"action-interwiki": "uredi ovaj međuwiki zapis",
-	"interwiki-links": "Prefiksi međuwikija",
-	"searchsuggest-containing-html": "Traži stranice koje sadrže <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki-links": "Prefiksi međuwikija"
 }

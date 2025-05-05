@@ -759,6 +759,5 @@
 	"skin-action-undelete": "Zawo",
 	"skin-action-delete": "Gyawo olupapula luno",
 	"skin-action-move": "Simbuliza",
-	"interwiki_edit": "Kyusa",
-	"searchsuggest-containing-html": "Okunoonya empapula ezirimu <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki_edit": "Kyusa"
 }

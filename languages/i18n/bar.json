@@ -1125,6 +1125,5 @@
 	"skin-action-protect": "Schitzn",
 	"skin-action-undelete": "Wiederherstön",
 	"skin-action-delete": "Leschn",
-	"skin-action-move": "Vaschiabm",
-	"searchsuggest-containing-html": "Suach nooch Seiten, dé <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> énthoiden"
+	"skin-action-move": "Vaschiabm"
 }

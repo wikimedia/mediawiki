@@ -732,6 +732,5 @@
 	"blockedtext-intended-blockee": "Achhuahpa blockee: $1",
 	"blockedtext-contact-blocker-admin": "$1 cvk a hropa [[{{MediaWiki:Grouppage-sysop}}|administrator]] he block kyh pachia awpa ta azao thei aw va chi.",
 	"blockedtext-block-ip": "Tahmâ na IP address cha $1 a châ.",
-	"blockedtext-include-details-queries": "Kheihawhpa na taopa hiahrina to zydua liata a chô liata didiahpa zydua khi khô khai bei mah y.",
-	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> ahlaopa hmiazy tlua teh"
+	"blockedtext-include-details-queries": "Kheihawhpa na taopa hiahrina to zydua liata a chô liata didiahpa zydua khi khô khai bei mah y."
 }

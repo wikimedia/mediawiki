@@ -4061,6 +4061,5 @@
 	"interwiki-links": "Међувики префикси",
 	"interwiki-language-links": "Међујезички префикси",
 	"interwiki-language-description": "Ови префиски су кодови језика и користе се за списак „{{int:otherlanguages}}” када се повеже нека страница.",
-	"interwiki-global-language-links": "Глобални међујезички префикси",
-	"searchsuggest-containing-html": "Претражи странице које садрже <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki-global-language-links": "Глобални међујезички префикси"
 }

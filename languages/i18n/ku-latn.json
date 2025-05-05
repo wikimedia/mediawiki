@@ -106,7 +106,7 @@
 	"views": "Dîtin",
 	"toolbox": "Qutiya amûran",
 	"cactions": "Bêhtir",
-	"tool-link-userrights": "Komên bikarhêner{{GENDER:$1|î|ê|î}} biguhêre",
+	"tool-link-userrights": "Komên {{GENDER:$1|bikarhênerî|bikarhênerê}} biguhêre",
 	"tool-link-userrights-readonly": "Komên {{GENDER:$1|bikarhêner}} bibîne",
 	"tool-link-emailuser": "E-name ji {{GENDER:$1|vî bikarhênerî|vê bikarhênerê}} re bişîne",
 	"imagepage": "Rûpela dosyeyan bibîne",
@@ -1988,6 +1988,5 @@
 	"right-renameuser": "Navê bikarhêneran biguhêre",
 	"interwiki_1": "erê",
 	"interwiki_edit": "Biguhêre",
-	"interwiki_reasonfield": "Sedem:",
-	"searchsuggest-containing-html": "Li rûpelên ku <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> dihewînin bigere"
+	"interwiki_reasonfield": "Sedem:"
 }

@@ -2889,6 +2889,5 @@
 	"log-description-renameuser": "Lietotājvārdu maiņas reģistrs",
 	"action-renameuser": "pārsaukt lietotājus",
 	"right-renameuser": "Pārsaukt dalībniekus",
-	"interwiki-legend-label": "Apzīmējumi",
-	"searchsuggest-containing-html": "Meklēt lapas, kas satur <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki-legend-label": "Apzīmējumi"
 }

@@ -2742,6 +2742,5 @@
 	"action-renameuser": "brükern amnääm",
 	"right-renameuser": "Brükern amnääm",
 	"renameuser-renamed-notice": "Didiar {{GENDER:$1|brüker}} as amnäämd wurden. Uun't amnääm logbuk oner stäänt muar diartu.",
-	"interwiki-title-norights": "Interwiki-dooten uunluke",
-	"searchsuggest-containing-html": "Sjük sidjen, huar <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> banen as"
+	"interwiki-title-norights": "Interwiki-dooten uunluke"
 }

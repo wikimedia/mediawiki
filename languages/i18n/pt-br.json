@@ -39,6 +39,7 @@
 			"Diego Queiroz",
 			"Dr03ramos",
 			"Duke of Wikipädia",
+			"EGobi",
 			"EVinente",
 			"Ed g2s",
 			"Eduardo Addad de Oliveira",
@@ -286,7 +287,6 @@
 	"versionrequired": "É necessária a versão $1 do MediaWiki",
 	"versionrequiredtext": "Esta página requer a versão $1 do MediaWiki para ser utilizada.\nVeja a [[Special:Version|página sobre a versão do sistema]].",
 	"ok": "OK",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"backlinksubtitle": "← $1",
 	"retrievedfrom": "Disponível em “$1”",
 	"new-messages": "{{PLURAL:$3|Você tem}} $1 ($2).",
@@ -4317,6 +4317,5 @@
 	"interwiki-language-links": "Prefixos interlínguas",
 	"interwiki-language-description": "Esses prefixos combinam códigos de idioma definidos e serão usados ​​para criar a listagem \"{{int:otherlanguages}}\" quando adicionada a uma página.",
 	"interwiki-global-language-links": "Prefixos de interlínguas globais",
-	"interwiki-global-language-description": "Esses prefixos correspondem aos códigos de idioma definidos e serão usados para criar listagem em \"{{int:otherlanguages}}\" quando adicionado a uma página. Como eles são herdados de uma configuração global, eles só podem ser editados no wiki de origem. As definições globais de interlanguage não podem ser substituídas localmente.",
-	"searchsuggest-containing-html": "Procurar pelas páginas contendo <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki-global-language-description": "Esses prefixos correspondem aos códigos de idioma definidos e serão usados para criar listagem em \"{{int:otherlanguages}}\" quando adicionado a uma página. Como eles são herdados de uma configuração global, eles só podem ser editados no wiki de origem. As definições globais de interlanguage não podem ser substituídas localmente."
 }

@@ -461,6 +461,5 @@
 	"blockedtext-intended-blockee": "Destinatari të bloku: $1",
 	"blockedtext-contact-blocker-admin": "Mënd të vush me kontat $1 o gnatrë [[{{MediaWiki:Grouppage-sysop}}|aministratur]] sa të diskutur mi blokun.",
 	"blockedtext-block-ip": "IP jiti pësinani ësht $1.",
-	"blockedtext-include-details-queries": "Pifauri/Të parkales speçifikar gjith i detaje ktu inkluirmë kur lip ndogjegjë.",
-	"searchsuggest-containing-html": "Kërkoj paginet çë kan <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"blockedtext-include-details-queries": "Pifauri/Të parkales speçifikar gjith i detaje ktu inkluirmë kur lip ndogjegjë."
 }

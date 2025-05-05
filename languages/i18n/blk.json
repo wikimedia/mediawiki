@@ -2002,6 +2002,5 @@
 	"blockedtext-expiration-time": "ကဒိုꩻ့ပေ့ꩻယို သက်အုံလို့ခိင်ႏ $1",
 	"blockedtext-intended-blockee": "အင်းမိုးခါꩻဒါႏ ဒိုꩻ့ပေ့ꩻထာꩻမာꩻဖုံႏ- $1",
 	"blockedtext-contact-blocker-admin": "ဒို့ꩻပေ့ꩻရဲးယို နာꩻနဝ်ꩻ အိုမ်ကိုမ်သွော့ꩻ $1 နဝ်ꩻတဝ်းလဲ့ꩻ အလင် [[{{MediaWiki:Grouppage-sysop}}|ကေားခြပ်ဖန်းဖြယ်]] ယို သွုပ်ဆွိုင်ꩻနွောင်ꩻဒျာႏသွူ။",
-	"blockedtext-block-ip": "နာꩻ IP လိပ်သာ ယိုခါနဝ်ꩻ ထွာဒျာႏ $1 သွူ။",
-	"searchsuggest-containing-html": "ထိုမ်ႏသွော့ ကပါသော့ꩻ လိတ်မဲ့ငါဖုံႏယို။ <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"blockedtext-block-ip": "နာꩻ IP လိပ်သာ ယိုခါနဝ်ꩻ ထွာဒျာႏ $1 သွူ။"
 }

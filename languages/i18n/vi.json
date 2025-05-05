@@ -4139,6 +4139,5 @@
 	"interwiki-language-links": "Tiền tố liên ngôn ngữ",
 	"interwiki-language-description": "Các tiền tố này khớp với mã ngôn ngữ cụ thể và sẽ được sử dụng để tạo danh sách “{{int:otherlanguages}}” khi được thêm vào trang.",
 	"interwiki-global-language-links": "Tiền tố liên ngôn ngữ toàn cục",
-	"interwiki-global-language-description": "Các tiền tố này khớp với mã ngôn ngữ được xác định và sẽ được sử dụng để tạo danh sách \"{{int:otherlanguages}}\" khi được thêm vào một trang. Vì chúng được kế thừa từ cấu hình chung nên chúng chỉ có thể được chỉnh sửa trên wiki nguồn. Các định nghĩa liên ngôn ngữ chung không thể bị ghi đè cục bộ.",
-	"searchsuggest-containing-html": "Tìm trang có <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki-global-language-description": "Các tiền tố này khớp với mã ngôn ngữ được xác định và sẽ được sử dụng để tạo danh sách \"{{int:otherlanguages}}\" khi được thêm vào một trang. Vì chúng được kế thừa từ cấu hình chung nên chúng chỉ có thể được chỉnh sửa trên wiki nguồn. Các định nghĩa liên ngôn ngữ chung không thể bị ghi đè cục bộ."
 }

@@ -2372,6 +2372,5 @@
 	"renameuserwarnings": "Àwọn ìkìlọ̀:",
 	"renameusersubmit": "Fúnsílẹ̀",
 	"renameusererrordoesnotexist": "Oníṣe \"<nowiki>$1</nowiki>\" kò sí.",
-	"renameusererrorexists": "Oníṣe \"<nowiki>$1</nowiki>\" tilẹ̀ wà tẹ́lẹ̀.",
-	"searchsuggest-containing-html": "Ṣe ìwárí fún àwọn ojúewé tó ní <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"renameusererrorexists": "Oníṣe \"<nowiki>$1</nowiki>\" tilẹ̀ wà tẹ́lẹ̀."
 }

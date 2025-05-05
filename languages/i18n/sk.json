@@ -3676,6 +3676,5 @@
 	"log-name-interwiki": "Záznam zmien tabuľky interwiki",
 	"log-description-interwiki": "Toto je záznam zmien [[Special:Interwiki|tabuľky interwiki]].",
 	"right-interwiki": "Upraviť interwiki údaje",
-	"action-interwiki": "zmeniť tento záznam interwiki",
-	"searchsuggest-containing-html": "Hľadať stránky obsahujúce <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"action-interwiki": "zmeniť tento záznam interwiki"
 }

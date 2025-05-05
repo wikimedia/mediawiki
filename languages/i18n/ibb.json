@@ -494,6 +494,5 @@
 	"blockedtext-block-ip": "Current mfo ado IP address ke $1.",
 	"blockedtext-include-details-queries": "Mbok aim afid de eyem ke mkpo nte ke se ayam.",
 	"renameuserreason": "Ntak:",
-	"renameusersubmit": "Dọñ",
-	"searchsuggest-containing-html": "Yem ikpa nwed anieghe <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"renameusersubmit": "Dọñ"
 }

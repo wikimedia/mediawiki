@@ -3284,6 +3284,7 @@
 	"version-hooks": "Kytköspisteet",
 	"version-parser-extensiontags": "Jäsentimen laajennustagit",
 	"version-parser-function-hooks": "Jäsentimen laajennusfunktiot",
+	"version-parser-function-hooks-parsoid": "vain Parsoid",
 	"version-parsoid-modules": "Parsoid-laajennusmoduulit",
 	"version-hook-name": "Kytköspisteen nimi",
 	"version-hook-subscribedby": "Kytkökset",
@@ -4069,6 +4070,8 @@
 	"newpages-showhide-redirect": "$1 ohjaukset",
 	"newpages-showhide-registered": "$1 rekisteröityneet käyttäjät",
 	"restsandbox": "REST-hiekkalaatikko",
+	"restsandbox-select-api": "Valitse API tutkittavaksi.",
+	"restsandbox-no-such-api": "Annettua API-parametria ei tueta: $1",
 	"blockedtext-made-by": "Eston teki $1.",
 	"blockedtext-reason-comment": "Eston syyksi annettiin <em>$1</em>.",
 	"blockedtext-start-time": "Eston alkamisaika: $1",
@@ -4181,6 +4184,5 @@
 	"interwiki-links": "Wikienväliset etuliitteet",
 	"interwiki-language-links": "Kieltenväliset etuliitteet",
 	"interwiki-language-description": "Nämä etuliitteet vastaavat määritettyjä kielitunnuksia, ja niitä käytetään luomaan luettelo ”{{int:otherlanguages}}” lisättynä sivulle.",
-	"interwiki-global-language-links": "Järjestelmänlaajuiset kieltenväliset etuliitteet",
-	"searchsuggest-containing-html": "Hae sivuja, jotka sisältävät <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki-global-language-links": "Järjestelmänlaajuiset kieltenväliset etuliitteet"
 }

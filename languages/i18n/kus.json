@@ -523,6 +523,5 @@
 	"blockedtext-contact-blocker-admin": "Fʋ tun'e pian'a tis $1 bɛɛ ninkanɛ [[{{MediaWiki:Grouppage-sysop}}|an tuongat]] ka ya sɔns gu'ub la yɛla.",
 	"blockedtext-block-ip": "Fʋ IP adɛris nannanna nwa anɛ $1",
 	"blockedtext-block-id": "ID kanɛ ka ba gu' la anɛ #$1.",
-	"blockedtext-include-details-queries": "Fa' fʋ ya'a bu'osid bu'osa wʋsa, fʋn paasim bʋmbanɛ ka fʋ sɔb zugin kpɛla la.",
-	"searchsuggest-containing-html": "Iem lakir banɛ mɔri <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"blockedtext-include-details-queries": "Fa' fʋ ya'a bu'osid bu'osa wʋsa, fʋn paasim bʋmbanɛ ka fʋ sɔb zugin kpɛla la."
 }

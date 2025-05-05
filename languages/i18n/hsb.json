@@ -2890,6 +2890,5 @@
 	"logentry-interwiki-iw_delete": "$1 {{GENDER:$2|wotstroni}} prefiks \"$4\" z interwikijoweje tabele",
 	"log-description-interwiki": "To je protokol změnow na [[Special:Interwiki|interwiki-tabeli]].",
 	"right-interwiki": "Daty interwiki wobdźěłać",
-	"action-interwiki": "tutón zapisk interwiki změnić",
-	"searchsuggest-containing-html": "Pytaj za stronami, kotrež <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> wobsahuja."
+	"action-interwiki": "tutón zapisk interwiki změnić"
 }

@@ -1123,6 +1123,5 @@
 	"blockedtext-intended-blockee": "jan ni o ken ala: $1",
 	"blockedtext-contact-blocker-admin": "sina wile toki lon weka ken la, o toki tawa jan $1 anu [[{{MediaWiki:Grouppage-sysop}}|jan lawa]] ante.",
 	"blockedtext-block-ip": "ni li nanpa IP sina: $1",
-	"blockedtext-include-details-queries": "toki sina la o toki e ni ale.",
-	"searchsuggest-containing-html": "o alasa e lipu ni: nimi \"<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>\" li lon ona li lon ona"
+	"blockedtext-include-details-queries": "toki sina la o toki e ni ale."
 }

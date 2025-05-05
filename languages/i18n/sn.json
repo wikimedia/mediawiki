@@ -997,6 +997,5 @@
 	"blockedtext-intended-blockee": "Mudziviswa anga achitarisirwa: $1",
 	"blockedtext-block-ip": "Kero ye DD (IP) yako izvozvi i $1 .",
 	"renameuserconfirm": "Hongu, tumidzai mushandisi rimwezita",
-	"interwiki_1": "hongu",
-	"searchsuggest-containing-html": "Tsvaga mazanhi ane <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki_1": "hongu"
 }

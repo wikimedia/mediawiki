@@ -1285,6 +1285,5 @@
 	"renameusersuccess": "Athainmníodh úsáideoir \"<nowiki>$1</nowiki>\" mar \"<nowiki>$2</nowiki>\"",
 	"renameuser-page-exists": "Tá leathanach \"$1\" ann chean féin; ní féidir ábhar a scríobh thairis go huathoibríoch.",
 	"interwiki_edit": "Cuir in eagar",
-	"interwiki_reasonfield": "Fáth:",
-	"searchsuggest-containing-html": "Cuardaigh leathanaigh ina bhfuil <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki_reasonfield": "Fáth:"
 }

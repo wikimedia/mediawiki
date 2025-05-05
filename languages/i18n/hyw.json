@@ -1131,6 +1131,5 @@
 	"blockedtext-intended-blockee": "Նախատեսուած պլոքաւոր՝ $1",
 	"blockedtext-contact-blocker-admin": "Կապ հաստատել $1 կամ ուրիշ [[{{MediaWiki:Grouppage-sysop}}|վարիչի հետ]] պլոքը արծարծելու համար։",
 	"blockedtext-block-ip": "Ձեր ներկայ IP հասցէն՝ $1։",
-	"blockedtext-include-details-queries": "Ներառել բոլոր վերը նշուած մանրամասնութիւնները։",
-	"searchsuggest-containing-html": "Որոնել էջեր որ կը ներառեն <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"blockedtext-include-details-queries": "Ներառել բոլոր վերը նշուած մանրամասնութիւնները։"
 }

@@ -79,7 +79,7 @@
 	"views": "Pen",
 	"toolbox": "Küdawpeyüm",
 	"cactions": "Zoy peam",
-	"tool-link-userrights": "Kakünun {{$1|pünefe}} ñi trokiñ",
+	"tool-link-userrights": "Kakünun {{GENDER:$1|pünefe}} ñi trokiñ",
 	"tool-link-userrights-readonly": "Pen {{GENDER:$1|user}} ñi trokiñ",
 	"tool-link-emailuser": "Werkülael {{GENDER:$1|user}}",
 	"imagepage": "Adkintun ad wülngiñ",
@@ -742,6 +742,5 @@
 	"blockedtext-contact-blocker-admin": "Zugun mew kisunchi $1 ka kureyenke [[{{MediaWiki:Grouppage-sysop}}|ülkantun]] kiñe rakizu mew am.",
 	"blockedtext-block-ip": "Tañi kom küzawun IP am $1.",
 	"blockedtext-block-id": "Katrütunieetew niey tachi rakin #$1.",
-	"blockedtext-include-details-queries": "Fijke piwke ta kisuñwirin ñi mew ñi kisunchi.",
-	"searchsuggest-containing-html": "Kintun kom tapülh nielu <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"blockedtext-include-details-queries": "Fijke piwke ta kisuñwirin ñi mew ñi kisunchi."
 }

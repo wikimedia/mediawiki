@@ -46,6 +46,8 @@
 	"search": "Iskanje",
 	"search-ignored-headings": " #<!-- ostavite tutoj redok točno takym, kaky jest tutčas --> <pre>\n# Zaglavja, ktore budut ignorovane pri iskanju.\n# Vvedene izměny budut priměnjene poslě indeksovanja stranice s zaglavjem.\n# Vy možete forsovati ponovno indeksovanje stranice, ako sdělajete pravku bez nijednoj izměny.\n# Sintaksa jest slědujuča:\n# * Vse od znaka \"#\" do konca redka jest komentar.\n# * Vsaky neprazdny redok jest točno zaglavje do ignorovanja, vključno s velikostju bukv i vsim.\nReferencije\nVněšnje linky\nGledite takože\n #</pre> <!-- ostavite tutoj redok točno takym, kaky jest tutčas -->",
 	"searchbutton": "Iskati",
+	"searchsuggest-containing-html": "Iskati stranice sodrživajuče <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"search-loader": "Včityvanje prědloženij za iskanje",
 	"go": "Prějdti",
 	"searcharticle": "Prějdti",
 	"skin-view-history": "Pokazati historiju",
@@ -3151,6 +3153,7 @@
 	"version-hooks": "Haky",
 	"version-parser-extensiontags": "Tagy parsernyh razširjenij",
 	"version-parser-function-hooks": "Haky parsernyh funkcij",
+	"version-parser-function-hooks-parsoid": "Samo Parsoid",
 	"version-parsoid-modules": "Moduly razširjenja Parsoid",
 	"version-hook-name": "Nazva haka",
 	"version-hook-subscribedby": "Podpisany na",
@@ -4051,6 +4054,5 @@
 	"interwiki-language-links": "Medžujezyčne prědstavky",
 	"interwiki-language-description": "Tute prědstavky odpovědajut oprěděljenym jezyčnym kodam i budut koristane za stvorjenje spiska «{{int:otherlanguages}}» pri dodavanju na stranici.",
 	"interwiki-global-language-links": "Globalne medžujezyčne prědstavky",
-	"interwiki-global-language-description": "Tute prědstavky odpovědajut oprěděljenym jezyčnym kodam i budut koristane za stvorjenje spiska «{{int:otherlanguages}}» pri dodavanju na stranici. Zatože one byli naslědžene od globalnoj konfiguracije, one mogut byti izpravjene samo na izvornoj viki. Globalne medžujezyčne oprěděljenja ne mogut byti zaměnjene lokalnymi.",
-	"searchsuggest-containing-html": "Iskati stranice sodrživajuče <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki-global-language-description": "Tute prědstavky odpovědajut oprěděljenym jezyčnym kodam i budut koristane za stvorjenje spiska «{{int:otherlanguages}}» pri dodavanju na stranici. Zatože one byli naslědžene od globalnoj konfiguracije, one mogut byti izpravjene samo na izvornoj viki. Globalne medžujezyčne oprěděljenja ne mogut byti zaměnjene lokalnymi."
 }

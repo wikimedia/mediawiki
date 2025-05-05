@@ -623,6 +623,5 @@
 	"blockedtext-contact-blocker-admin": "Owu môkọt isi lek $1 mè ìyaka ire ufi [[{{MediaWiki:Grouppage-sysop}}|ogwu adimin]] isi ikpa ikọ ofolek igban yi.",
 	"blockedtext-block-ip": "IP address kwun̄ eyi mgbọ keyi ìre $1.",
 	"blockedtext-include-details-queries": "Soso tap otutuuk etip egobe me inyọn̄ yi me lek idodo geelek odobe.",
-	"renameuserreason": "Ibot:",
-	"searchsuggest-containing-html": "Wèek akpọk echi òkakaan̄ <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"renameuserreason": "Ibot:"
 }

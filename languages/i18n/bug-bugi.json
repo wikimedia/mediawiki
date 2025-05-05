@@ -113,7 +113,6 @@
 	"badaccess": "ᨕᨙᨑᨚᨑᨚ ᨄᨑᨗᨔᨗᨂᨛ",
 	"versionrequired": "ᨑᨗᨄᨑᨛᨒᨘᨓᨗ MediaWiki ᨆᨄᨙᨑᨛᨔᨗ $1",
 	"ok": "OK",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"backlinksubtitle": "← $1",
 	"new-messages-from-many-users": "ᨆᨄᨘᨊ ᨕᨗᨉᨗ $1 ᨄᨚᨒᨙ ᨄᨁᨘᨊ ᨒᨙᨂᨙ ($2).",
 	"editsection": "ᨄᨉᨙᨌᨙ",
@@ -552,6 +551,5 @@
 	"skin-action-move": "ᨄᨒᨙᨌᨙ",
 	"renameuserold": "ᨕᨔᨛᨄᨁᨘᨊ ᨆᨀᨚᨀᨚᨓᨙ :",
 	"renameusernew": "ᨕᨔᨛᨄᨁᨘᨊ ᨅᨑᨘ :",
-	"renameusererrorinvalid": "ᨕᨔᨛᨄᨁᨘᨊ \"<nowiki>$1</nowiki>\" ᨉᨙᨊᨔᨖᨗ᨞",
-	"searchsuggest-containing-html": "ᨔᨄ ᨒᨛᨇᨑ ᨆᨒᨗᨔᨛ <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"renameusererrorinvalid": "ᨕᨔᨛᨄᨁᨘᨊ \"<nowiki>$1</nowiki>\" ᨉᨙᨊᨔᨖᨗ᨞"
 }

@@ -67,6 +67,8 @@
 	"search": "Riçèrca",
 	"search-ignored-headings": " #<!-- làscia quésta rîga ezataménte comm'a l'é --> <pre>\n# Lìsta de intestaçioìn che saiàn ignoræ da-a riçèrca.\n# E modìfiche a quésta pàgina saiàn efetîve cómme a pàgina a saiâ indicizâ.\n# Ti pêu forsâ a re-indicizaçión de 'na pàgina efetoàndo 'na modìfica nùlla.\n# A scintàsci a l'é quélla chi de sótta:\n#   * Tùtto da-o caràtere \"#\" a-a fìn da rîga o l'é 'n coménto\n#   * Tùtto e rîghe no vêue són e intestaçioìn ezàtte da ignorâ, maióscolo/minóscolo e tùtto\nNòtte\nVôxe corelæ\nConligaménti estèrni\n #</pre> <!-- làscia quésta rîga ezataménte comm'a l'é -->",
 	"searchbutton": "Riçèrca",
+	"searchsuggest-containing-html": "Çèrca inte pàgine che contêgnan <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"search-loader": "Caregaménto di sugeriménti de riçèrca",
 	"go": "Vànni",
 	"searcharticle": "Vànni",
 	"skin-view-history": "Cronologîa",
@@ -3194,6 +3196,7 @@
 	"version-hooks": "Hook",
 	"version-parser-extensiontags": "Tag riconosciûi da-o parser introdûti da di estenscioìn",
 	"version-parser-function-hooks": "Hook pe de fonçioìn do parser",
+	"version-parser-function-hooks-parsoid": "Sôlo parsoid",
 	"version-parsoid-modules": "Mòdoli d'estensción parsoid",
 	"version-hook-name": "Nómme de l'hook",
 	"version-hook-subscribedby": "Sotoscriçioìn",
@@ -4096,6 +4099,5 @@
 	"interwiki-language-links": "Prefìssi interlengoìstichi",
 	"interwiki-language-description": "A sti prefìssi chi corispóndan di còdichi de léngoa definîi e saiàn dêuviæ pe creâ a lìsta \"{{int:otherlanguages}}\" quànde azónti a 'na pàgina.",
 	"interwiki-global-language-links": "Prefìssi interlengoìstichi globâli",
-	"interwiki-global-language-description": "Sti prefìssi chi corispóndan a di còdichi de léngoa definîi, dêuviæ pe creâ a lìsta \"{{int:otherlanguages}}\" cómme che són azónti a 'na pàgina. Scicómme che són ereditæ da 'na configuraçión globâle, pêuan êse modificæ sôlo che in sciâ wiki d'òrìgine. E definiçioìn interlengoìstiche globâli no pêuan êse soviascrîte localménte.",
-	"searchsuggest-containing-html": "Çèrca inte pàgine che contêgnan <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki-global-language-description": "Sti prefìssi chi corispóndan a di còdichi de léngoa definîi, dêuviæ pe creâ a lìsta \"{{int:otherlanguages}}\" cómme che són azónti a 'na pàgina. Scicómme che són ereditæ da 'na configuraçión globâle, pêuan êse modificæ sôlo che in sciâ wiki d'òrìgine. E definiçioìn interlengoìstiche globâli no pêuan êse soviascrîte localménte."
 }

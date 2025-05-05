@@ -184,7 +184,7 @@
 	"viewpagelogs": "Эй страница калахан дангсава ичэвэмбури",
 	"currentrev-asof": "Хаморой модан ичэхэчи туй: $1",
 	"revisionasof": "Аӈгой дурун $1",
-	"revision-info": "$1; най эй вариантава тахани {{GENDER:$6|}}$2$7",
+	"revision-info": "$1; най эй вариантава тахани {{GENDER:$6|$2}}$7",
 	"previousrevision": "← Дюлуй",
 	"nextrevision": "Диалан →",
 	"currentrevisionlink": "Эй версия",

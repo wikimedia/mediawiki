@@ -3300,6 +3300,5 @@
 	"right-renameuser": "Gebroekers hernaome",
 	"renameuser-renamed-notice": "Deze gebroeker is herneump.\nRelevante regels oet 't logbook staon hieónger.",
 	"interwiki": "Tuin en bewirk interwikigegaeves",
-	"interwiki-title-norights": "Toean interwikigegaeves",
-	"searchsuggest-containing-html": "Zeuk veur pagina's mitte teks <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki-title-norights": "Toean interwikigegaeves"
 }

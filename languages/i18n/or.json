@@ -2617,6 +2617,5 @@
 	"interwiki_0": "ନା",
 	"interwiki_edit": "ସମ୍ପାଦନା",
 	"interwiki_reasonfield": "କାରଣ:",
-	"interwiki_deleting": "ଆପଣ \"$1\"ର ପୂର୍ବକୁ ବଦଳାଉଛନ୍ତି",
-	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> ଥିବା ପୃଷ୍ଠାସବୁ ଖୋଜନ୍ତୁ"
+	"interwiki_deleting": "ଆପଣ \"$1\"ର ପୂର୍ବକୁ ବଦଳାଉଛନ୍ତି"
 }

@@ -1482,6 +1482,5 @@
 	"blockedtext-contact-blocker-admin": "မၞး ဆက်ကဵု \n $1 ဂွံမာန်ရ၊ ဟွံသေင်မ္ဂး ညးတၞဟ် [[{{MediaWiki:Grouppage-sysop}}|ညးပကင်ရင်]] သွက်ဂွံ ချပ်ဂၞန် ကိစ္စ ပရေင်ကမာတ်လဒဵုဂှ်။",
 	"blockedtext-block-ip": "အာဲပဳဗှ်ေဂှ်လၟုဟ်မဒှ် $1 ရ။",
 	"blockedtext-include-details-queries": "ပဂုဏ်တုဲ တင်မဗမံက်ထ္ၜး တင်ဂၞင်သောဲသောဲဗြောဲဗြောဲ ဗွဲလတူတအ် သီုဖအိုတ်ဂှ် ချူဗပေင်ကဵုညိ။",
-	"interwiki_addbutton": "ဗပေၚ်စုတ်",
-	"searchsuggest-containing-html": "ဂၠာဲသွက်မုက်လိက်လုပ်အဝေါၚ် <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>ဂမၠိုၚ်"
+	"interwiki_addbutton": "ဗပေၚ်စုတ်"
 }

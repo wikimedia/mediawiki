@@ -3363,6 +3363,5 @@
 	"logentry-interwiki-iw_edit": "$1 {{GENDER:$2|modified}} \"$4\" ($5) интеруики кестесіне (trans: $6; local: $7)",
 	"logentry-interwiki-iw_delete": "Интеруики кестесінен \"$4\" префиксі $1 {{GENDER:$2|removed}}",
 	"right-interwiki": "Интеруики деректерін өңдеу",
-	"action-interwiki": "бұл интеруики ендірілуін өзгерту",
-	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">«$1»</strong> бар беттерді іздеу"
+	"action-interwiki": "бұл интеруики ендірілуін өзгерту"
 }

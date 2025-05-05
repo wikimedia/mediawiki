@@ -483,6 +483,5 @@
 	"blockedtext-reason-comment": "సీత కారణ్<em>$1</em>.",
 	"blockedtext-block-ip": "నిర్ పంగీ అనేక ఐపి అడ్రస్ $1",
 	"renameuserreason": "కర్నం:",
-	"renameusersubmit": "సబ్మిట్ ఇదర్",
-	"searchsuggest-containing-html": "ఇత్తి అనేక పేజీకుంగ్ సటి కిరావ్<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"renameusersubmit": "సబ్మిట్ ఇదర్"
 }

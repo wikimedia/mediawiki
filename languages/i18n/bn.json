@@ -4077,6 +4077,5 @@
 	"interwiki-local-links": "স্থানীয় অন্তঃউইকি পছন্দসমূহ",
 	"interwiki-links": "আন্তঃউইকি উপসর্গ",
 	"interwiki-language-links": "আন্তঃভাষা উপসর্গ",
-	"interwiki-global-language-links": "বৈশ্বিক আন্তঃভাষিক উপসর্গ",
-	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> থাকা পাতাগুলিতে অনুসন্ধান করুন"
+	"interwiki-global-language-links": "বৈশ্বিক আন্তঃভাষিক উপসর্গ"
 }

@@ -2126,6 +2126,5 @@
 	"interwiki_1": "тийм",
 	"interwiki_0": "үгүй",
 	"interwiki_reasonfield": "Шалтгаан:",
-	"interwiki_addbutton": "Нэмэх",
-	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> бичвэрийг агуулсан хуудсыг хайх"
+	"interwiki_addbutton": "Нэмэх"
 }

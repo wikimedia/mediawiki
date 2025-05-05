@@ -852,6 +852,5 @@
 	"blockedtext-include-details-queries": "Zəhmət nybu həmmə ym ətrofinə cijon əlovə bykən bə hargylə yštə ərizon.",
 	"interwiki_0": "ne",
 	"interwiki_edit": "Sərost bykə",
-	"interwiki_addbutton": "Əlovə",
-	"searchsuggest-containing-html": "Səhifon nəve končo heste <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki_addbutton": "Əlovə"
 }

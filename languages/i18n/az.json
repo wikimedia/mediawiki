@@ -2082,7 +2082,7 @@
 	"activeusers-noresult": "İstifadəçi tapılmadı.",
 	"activeusers-submit": "Aktiv istifadəçiləri göstər",
 	"listgrouprights": "İstifadəçi qruplarının hüquqları",
-	"listgrouprights-summary": "Bu vikidə olan istifadəçi siyahıları və onların hüquqları aşağıda göstərilmişdir.\nFərdi hüquqlar haqqında əlavə məlumatı [[{{MediaWiki:Listgrouprights-helppage}}]] səhifəsində tapa bilərsiniz",
+	"listgrouprights-summary": "Bu vikidə olan istifadəçi siyahıları və onların hüquqları aşağıda göstərilmişdir.\nFərdi hüquqlar haqqında [[{{MediaWiki:Listgrouprights-helppage}}|əlavə məlumat]] ala bilərsiniz.",
 	"listgrouprights-key": "Hüquq:\n* <span class=\"listgrouprights-granted\">Verilmiş hüquqlar</span>\n* <span class=\"listgrouprights-revoked\">Geri alınmış hüquqlar</span>",
 	"listgrouprights-group": "Qrup",
 	"listgrouprights-rights": "Hüquqlar",
@@ -3226,6 +3226,7 @@
 	"version-hooks": "Çəngəllər",
 	"version-parser-extensiontags": "Ayrışdırıcı uzantı teqləri",
 	"version-parser-function-hooks": "Ayrışdırıcı funksiya qarmaqları",
+	"version-parser-function-hooks-parsoid": "Yalnız parsoid",
 	"version-parsoid-modules": "Parsoid uzantı modulları",
 	"version-hook-name": "Çəngəlin adı",
 	"version-hook-subscribedby": "Abunə olan",
@@ -4128,6 +4129,5 @@
 	"interwiki-language-links": "Dillərarası prefikslər",
 	"interwiki-language-description": "Bu prefikslər müəyyən edilmiş dil kodlarına uyğun gəlir və səhifəyə əlavə edildikdə \"{{int:otherlanguages}}\" siyahısını yaratmaq üçün istifadə olunacaq.",
 	"interwiki-global-language-links": "Qlobal dillərarası prefikslər",
-	"interwiki-global-language-description": "Bu prefikslər müəyyən edilmiş dil kodlarına uyğun gəlir və səhifəyə əlavə edildikdə \"{{int:otherlanguages}}\" siyahısını yaratmaq üçün istifadə olunacaq. Onlar qlobal konfiqurasiyadan götürüldükləri üçün yalnız mənbə vikidə redaktə edilə bilər. Qlobal dillərarası tərifləri lokal olaraq ləğv etmək olmaz.",
-	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> ehtiva edən səhifələri axtar"
+	"interwiki-global-language-description": "Bu prefikslər müəyyən edilmiş dil kodlarına uyğun gəlir və səhifəyə əlavə edildikdə \"{{int:otherlanguages}}\" siyahısını yaratmaq üçün istifadə olunacaq. Onlar qlobal konfiqurasiyadan götürüldükləri üçün yalnız mənbə vikidə redaktə edilə bilər. Qlobal dillərarası tərifləri lokal olaraq ləğv etmək olmaz."
 }

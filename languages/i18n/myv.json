@@ -3808,6 +3808,5 @@
 	"interwiki-local-label": "Пачтямс седе тов",
 	"interwiki_edit": "Витнемс-петнемс",
 	"interwiki_reasonfield": "Тувталось:",
-	"interwiki_addbutton": "Поладомс",
-	"searchsuggest-containing-html": "Вешнемс лопат, конатнесэ ули <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki_addbutton": "Поладомс"
 }

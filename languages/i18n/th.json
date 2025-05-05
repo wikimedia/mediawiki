@@ -3960,6 +3960,5 @@
 	"interwiki_addbutton": "เพิ่ม",
 	"interwiki_edittext": "แก้ไขคำนำหน้าอินเทอร์วิกิ",
 	"right-interwiki": "แก้ไขข้อมูลอินเทอร์วิกิ",
-	"action-interwiki": "เปลี่ยนแปลงรายการอินเทอร์วิกินี้",
-	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"action-interwiki": "เปลี่ยนแปลงรายการอินเทอร์วิกินี้"
 }

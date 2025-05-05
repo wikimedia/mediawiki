@@ -1447,6 +1447,5 @@
 	"renameuserreason": "Ном ивыны аххос:",
 	"renameusersubmit": "Афтæ уæд",
 	"log-name-renameuser": "Архайджыты нæмттæ ивыны лог",
-	"interwiki_reasonfield": "Аххос:",
-	"searchsuggest-containing-html": "Агур фæрстæ, кæцыты ис <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki_reasonfield": "Аххос:"
 }

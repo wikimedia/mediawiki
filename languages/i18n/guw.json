@@ -421,11 +421,11 @@
 	"botpasswords-insert-failed": "Yinkọ ọdinatẹ tọn e he \"$1\" ma dike bo biọ e mẹ. Be e ko yin zizedo emẹ dai wẹ ya?",
 	"botpasswords-update-failed": "Yinkọ ọdinatẹ tọn e he \"$1\" ma dike bo biọ e mẹ. Be e ko yin súnsunsẹ wẹ ya?",
 	"botpasswords-created-title": "Wekun họnhungan tọn ọdinatẹ tọn yọyọ ko yin bibasi",
-	"botpasswords-created-body": "Họnhungan bọt tọn na bọt yinkọ \"$1\" na {{GENDER:$2yinkọ zinzantọ tọn|zinzantọ}} \"$2\" ko yin hunhun.",
+	"botpasswords-created-body": "Họnhungan bọt tọn na bọt yinkọ \"$1\" na {{GENDER:$2|yinkọ zinzantọ tọn|zinzantọ}} \"$2\" ko yin hunhun.",
 	"botpasswords-updated-title": "Wekun họnhungan tọn ọdinatẹ tọn yọyọ ko yin bibasi",
 	"botpasswords-updated-body": "Họnhungan bọt tọn na bọt yinkọ \"$1\" na {{GENDER:$2 yinkọ zinzantọ tọn|zinzantọ}} \"$2\" ko yin ada gblona.",
 	"botpasswords-deleted-title": "Wekun họnhungan tọn ọdinatẹ tọn yọyọ ko yin bibasi",
-	"botpasswords-deleted-body": "Họnhungan bọt tọn na bọt yinkọ \"$1\" na {{GENDER:$2 yinkọ zinzantọ tọn|zinzantọ}} \"$2\" ko yin súnsún sẹ.",
+	"botpasswords-deleted-body": "Họnhungan bọt tọn na bọt yinkọ \"$1\" na {{GENDER:$2|yinkọ zinzantọ tọn|zinzantọ}} \"$2\" ko yin súnsún sẹ.",
 	"botpasswords-newpassword": "Họ̀nhungan yọyọ lọ nado biọ <strong>$1</strong> mẹ wẹ <strong>$2</strong>. <em>Jaale sẹ́ ehe do na alọdlẹndonu to nukọ̀nmẹ. </em> <br> (Na bọt hoho he biọ dọ yin adà hunhun ni yin nudopolọ po yin yinkọ zinzántọ to godomẹ po, a sọgan sọ zan <strong>$3</strong> taidi yinkọ zinzántọ tọn bo zan <strong>$4</strong> taidi họ̀nhungan.)",
 	"botpasswords-no-provider": "BotPasswordsSessionProvider ma tin to aimẹ.",
 	"botpasswords-restriction-failed": "Họnhungan Bọt tọn sìn alọhẹndotena lẹ wẹ glọnali nado biọ ada ehe mẹ.",
@@ -3009,6 +3009,5 @@
 	"blockedtext-contact-blocker-admin": "A sọgan dọho hẹ $1 kavi [[{{MediaWiki:Grouppage-sysop}}|anadenanutọ]] devo gando alọhẹndote lọ go.",
 	"blockedtext-block-ip": "IP adlẹsi towe din tọn wẹ $1.",
 	"blockedtext-block-id": "ID #$1 he yin alọhẹndotena.",
-	"blockedtext-include-details-queries": "Jaale mọ yi nudọnamẹ he to aga lẹ do dodinnanu depope he basi ate mẹ.",
-	"searchsuggest-containing-html": "Dín weda he bẹ <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> hẹn lẹ"
+	"blockedtext-include-details-queries": "Jaale mọ yi nudọnamẹ he to aga lẹ do dodinnanu depope he basi ate mẹ."
 }

@@ -2089,6 +2089,5 @@
 	"blockedtext-intended-blockee": "Manarimo na i blokir: $1",
 	"blockedtext-contact-blocker-admin": "Ho bisa manghubungi kontak $1 sangape [[{{MediaWiki:Grouppage-sysop}}|administrator]] lain anso bisa amu marpokat saga aha na i blokir on.",
 	"blockedtext-block-ip": "Alamat IP Mu pas atia sannari $1",
-	"blockedtext-include-details-queries": "On jolo tarmasuk ma sudena detail sian tingon ginjang i bangasan satiop parsapaan na hamu mambuat.",
-	"searchsuggest-containing-html": "Jalaki tompat na marisi <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"blockedtext-include-details-queries": "On jolo tarmasuk ma sudena detail sian tingon ginjang i bangasan satiop parsapaan na hamu mambuat."
 }

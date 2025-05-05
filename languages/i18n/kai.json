@@ -518,6 +518,5 @@
 	"blockedtext-start-time": "Cinàa ma minɗu: $1",
 	"blockedtext-expiration-time": "Minɗu gaɗatakauː $1",
 	"blockedtext-intended-blockee": "Intended blockee: $1",
-	"blockedtext-block-ip": "Your current IP address is $1.",
-	"searchsuggest-containing-html": "Bakaa ta shafi ma <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"blockedtext-block-ip": "Your current IP address is $1."
 }

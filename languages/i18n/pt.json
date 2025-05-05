@@ -4050,6 +4050,5 @@
 	"interwiki-language-links": "Prefixos interlínguas",
 	"interwiki-language-description": "Estes prefixos correspondem a códigos de língua definidos e serão usados para criar a lista \"{{int:otherlanguages}}\" quando adicionados a uma página.",
 	"interwiki-global-language-links": "Prefixos interlínguas globais",
-	"interwiki-global-language-description": "Estes prefixos correspondem a códigos de língua definidos e serão usados para criar a listagem \"{{int:otherlanguages}}\" quando adicionados a uma página. Como são herdados de uma configuração global, eles só podem ser editados na wiki de origem. As definições interlínguas globais não podem ser sobrepostas localmente.",
-	"searchsuggest-containing-html": "Procurar páginas que contenham <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki-global-language-description": "Estes prefixos correspondem a códigos de língua definidos e serão usados para criar a listagem \"{{int:otherlanguages}}\" quando adicionados a uma página. Como são herdados de uma configuração global, eles só podem ser editados na wiki de origem. As definições interlínguas globais não podem ser sobrepostas localmente."
 }

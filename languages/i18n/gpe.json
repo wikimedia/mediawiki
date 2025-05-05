@@ -574,6 +574,5 @@
 	"blockedtext-intended-blockee": "Blockee dem intend: $1",
 	"blockedtext-contact-blocker-admin": "You fi contact $1 anaa anoda [[{{MediaWiki:Grouppage-sysop}}|administrator]] make you discuss de block.",
 	"blockedtext-block-ip": "Your current IP address be $1.",
-	"blockedtext-include-details-queries": "We beg make you include all above details for any queries you make insyd.",
-	"searchsuggest-containing-html": "Search for pages wey dey contain <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"blockedtext-include-details-queries": "We beg make you include all above details for any queries you make insyd."
 }

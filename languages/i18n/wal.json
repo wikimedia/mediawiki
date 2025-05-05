@@ -762,6 +762,5 @@
 	"blockedtext-contact-blocker-admin": "Neeni teqettaabaa tobbanaassi $1 woykko haraabawu [[{{MediaWiki:Grouppage-sysop}}|ayssiyaagaara]] gaytta.",
 	"blockedtext-block-ip": "Ha'i ne IPee beettiyoosay $1",
 	"blockedtext-include-details-queries": "Hayyanaa ne ayi oyshaa oychiyoode ha qommo qonccissota gelissa.",
-	"renameusersubmit": "Shiishsha",
-	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> oyqqida sinttata koyya"
+	"renameusersubmit": "Shiishsha"
 }

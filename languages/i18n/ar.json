@@ -160,6 +160,8 @@
 	"search": "بحث",
 	"search-ignored-headings": "# <!-- اترك هذا السطر كما هو --> <pre>\n# سيتم تجاهل الترويسات خلال عملية البحث\n#التغييرات ستأخذ مجراها ما أن يتم فهرسة الصفحة التي تحتوي على ترويسات\n# يمكنك فرض عملية فهرسة الصفحة من خلال تعديل فارغ\n# الصيغة هي كالأتي:\n# * كل ما يكتب بعد \"#\" إلى آخر السطر يعتبر تعليق\n# * كل سطر غير فارغ سيكون العنوان الذي سيتم تجاهله (سيأخذ العنوان كما هو بالضبط بالتشكيل وخلافه)\nالمراجع\nالوصلات الخارجية\nانظر أيضا\n#</pre><!--أترك هذا السطر كما هو -->",
 	"searchbutton": "بحث",
+	"searchsuggest-containing-html": "البحث عن الصفحات المحتوية على <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"search-loader": "تحميل اقتراحات البحث",
 	"go": "اذهب",
 	"searcharticle": "اذهب",
 	"skin-view-history": "تاريخ",
@@ -3343,6 +3345,7 @@
 	"version-hooks": "الخطاطيف",
 	"version-parser-extensiontags": "وسوم امتداد المحلل",
 	"version-parser-function-hooks": "خطاطيف دالة المحلل",
+	"version-parser-function-hooks-parsoid": "البارسويد فقط",
 	"version-parsoid-modules": "وحدات تمديد بارسويد",
 	"version-hook-name": "اسم الخطاف",
 	"version-hook-subscribedby": "يستخدم بواسطة",
@@ -4261,6 +4264,5 @@
 	"interwiki-language-links": "البادئات بين اللغات",
 	"interwiki-language-description": "تتطابق هذه البادئات مع رموز اللغة المحددة، وسيتم استخدامها لإنشاء قائمة \"{{int: otherlanguages}}\" عند إضافتها إلى الصفحة.",
 	"interwiki-global-language-links": "بادئات اللغات الوسيطة العالمية",
-	"interwiki-global-language-description": "تطابق هذه البادئات رموز لغات معرفة، وسيتم استخدامها لإنشاء قائمة \"{{int:otherlanguages}}\" عند إضافتها إلى صفحة؛ لأنها موروثة من تكوين عمومي، لا يمكن تحريرها إلا في الويكي المصدر، لا يمكن تجاوز تعريفات اللغة الوسيطة محليا.",
-	"searchsuggest-containing-html": "ابحث عن صفحات تحتوي <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki-global-language-description": "تطابق هذه البادئات رموز لغات معرفة، وسيتم استخدامها لإنشاء قائمة \"{{int:otherlanguages}}\" عند إضافتها إلى صفحة؛ لأنها موروثة من تكوين عمومي، لا يمكن تحريرها إلا في الويكي المصدر، لا يمكن تجاوز تعريفات اللغة الوسيطة محليا."
 }

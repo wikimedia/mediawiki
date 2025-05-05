@@ -585,6 +585,5 @@
 	"blockedtext-block-ip": "IP boja longo la tatanu lɛ ndɛ $1.",
 	"blockedtext-include-details-queries": "Son sɔisɛ ɓeteledi ɓa mɔɲ o ɓesɔsɔmedi ɓɛsɛ oa ɓaisɛ.",
 	"renameuserreason": "Njo̱m:",
-	"renameusersubmit": "Ɓola",
-	"searchsuggest-containing-html": "Wasa la mapapa ma alidi <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"renameusersubmit": "Ɓola"
 }

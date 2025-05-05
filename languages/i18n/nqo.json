@@ -2793,6 +2793,5 @@
 	"blockedtext-intended-blockee": "ߟߊ߬ߓߊ߰ߙߊ߬ߟߊ ߓߟߏߕߍ߯ߟߌ ߟߐ߯ߟߊߣߍ߫: $1",
 	"blockedtext-contact-blocker-admin": "ߌ ߘߴߛߋ߫ ߗߋ ߓߌ߬ߟߊ߬ ߟߊ߫ $1 ߡߊ߬ ߥߟߊ߫ [[{{MediaWiki:Grouppage-sysop}}|ߡߊ߬ߡߙߊ߬ߟߊ]] ߜߘߍ߫، ߞߊ߬ ߓߟߏߕߍ߯ߟߌ ߘߐߢߌߡߌ߲߫.",
 	"blockedtext-block-ip": "ߌ ߟߊ߫ ߥߊ߯ߕߌ ߣߌ߲߬ IP ߛߊ߲߬ߓߊ߬ߕߐ߮ ߦߋ߫ $1 ߟߋ߬ ߘߌ߫.",
-	"blockedtext-include-details-queries": "ߝߊߙߊ߲ߝߊߙߊ߲ߝߊ߯ߛߌ ߡߍ߲ ߠߎ߬ ߦߋ߫ ߛߊ߲ߝߍ߬߸ ߏ߬ ߟߎ߬ ߓߍ߯ ߟߊߘߏ߲߬ ߖߊ߰ߣߌ߲߫߸ ߌ ߟߊ߫ ߡߊ߬ߢߌ߬ߣߌ߲߬ߠߌ߲ ߠߎ߬ ߓߍ߯ ߟߊ߫.",
-	"searchsuggest-containing-html": "ߞߐߜߍ߬ ߟߎ߫ ߢߌߣߌ߲߫ <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> ߦߋ߫ ߡߍ߲ ߠߎ߬ ߘߐ߫"
+	"blockedtext-include-details-queries": "ߝߊߙߊ߲ߝߊߙߊ߲ߝߊ߯ߛߌ ߡߍ߲ ߠߎ߬ ߦߋ߫ ߛߊ߲ߝߍ߬߸ ߏ߬ ߟߎ߬ ߓߍ߯ ߟߊߘߏ߲߬ ߖߊ߰ߣߌ߲߫߸ ߌ ߟߊ߫ ߡߊ߬ߢߌ߬ߣߌ߲߬ߠߌ߲ ߠߎ߬ ߓߍ߯ ߟߊ߫."
 }

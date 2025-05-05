@@ -1116,6 +1116,5 @@
 	"interwiki_edited": "Prefiks \"$1\" te reyisi modifye nan tablo entèwiki a.",
 	"interwiki_editerror": "Prefiks \"$1\" pa ka modifye nan tablo entèwiki a.\nPetèt li pa ekziste.",
 	"log-name-interwiki": "Jounal tablo entèwiki a",
-	"log-description-interwiki": "Sa se yon jounal pou chanjman yo nan [[Special:Interwiki|tablo entèwiki a]].",
-	"searchsuggest-containing-html": "Chèche paj ki genyen ladan l <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"log-description-interwiki": "Sa se yon jounal pou chanjman yo nan [[Special:Interwiki|tablo entèwiki a]]."
 }

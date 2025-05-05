@@ -300,7 +300,7 @@
 	"views": "Affichages",
 	"toolbox": "Outils",
 	"cactions": "Plus",
-	"tool-link-userrights": "Modifier les groupes de l’utilisat{{GENDER:$1|eur|rice}}",
+	"tool-link-userrights": "Modifier les groupes de {{GENDER:$1|l’utilisateur|l’utilisatrice}}",
 	"tool-link-userrights-readonly": "Voir les groupes de l’utilisat{{GENDER:$1|eur|rice}}",
 	"tool-link-emailuser": "Envoyer un courriel à {{GENDER:$1|cet utilisateur|cette utilisatrice|$1}}",
 	"imagepage": "Voir la page du fichier",
@@ -3459,6 +3459,7 @@
 	"version-hooks": "Greffons",
 	"version-parser-extensiontags": "Balises étendues de l’analyseur syntaxique",
 	"version-parser-function-hooks": "Fonctions étendues de l’analyseur syntaxique",
+	"version-parser-function-hooks-parsoid": "Parsoid uniquement",
 	"version-parsoid-modules": "Modules d'extension Parsoid",
 	"version-hook-name": "Nom du greffon",
 	"version-hook-subscribedby": "Abonnés :",
@@ -4377,6 +4378,5 @@
 	"interwiki-language-links": "Préfixes interlangues",
 	"interwiki-language-description": "Ces préfixes correspondent à des codes de langue définis et sont utilisés pour créer la liste « {{int:otherlanguages}} » lorsqu’ils sont ajoutés à une page.",
 	"interwiki-global-language-links": "Préfixes interlangues globaux",
-	"interwiki-global-language-description": "Ces préfixes correspondent à des codes de langue définis et seront utilisés pour créer la liste « {{int:otherlanguages}} » quand elle est ajoutée à une page. Puisqu’ils sont hérités d’une configuration globale, ils ne peuvent être modifiés que sur le wiki source. Les définitions globales de préfixes interlangues ne peuvent être écrasées localement.",
-	"searchsuggest-containing-html": "Rechercher les pages contenant <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki-global-language-description": "Ces préfixes correspondent à des codes de langue définis et seront utilisés pour créer la liste « {{int:otherlanguages}} » quand elle est ajoutée à une page. Puisqu’ils sont hérités d’une configuration globale, ils ne peuvent être modifiés que sur le wiki source. Les définitions globales de préfixes interlangues ne peuvent être écrasées localement."
 }

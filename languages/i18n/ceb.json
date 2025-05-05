@@ -739,6 +739,5 @@
 	"skin-action-protect": "Protektahi",
 	"skin-action-undelete": "Ayaw papasa",
 	"skin-action-delete": "Papasa",
-	"skin-action-move": "Ibalhin",
-	"searchsuggest-containing-html": "Pangitaa ang mga panid nga adunay<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"skin-action-move": "Ibalhin"
 }

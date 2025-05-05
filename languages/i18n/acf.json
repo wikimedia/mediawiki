@@ -461,6 +461,5 @@
 	"blockedtext-contact-blocker-admin": "Ou sa kontakté $1 ou lòt [[{{MediaWiki:Grouppage-sysop}}|administwatè]] pou diskité blòk-la.",
 	"blockedtext-block-ip": "Adwésé IP'w kouwan sé $1.",
 	"blockedtext-include-details-queries": "Souplé mété tout détay an ho adan népòt demann ou fèt.",
-	"renameuserreason": "Wézon:",
-	"searchsuggest-containing-html": "Chaché sé paj ki ni <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"renameuserreason": "Wézon:"
 }

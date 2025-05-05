@@ -695,6 +695,5 @@
 	"skin-action-protect": "Karewa",
 	"skin-action-delete": "Gogewa",
 	"skin-action-move": "Gusarwa",
-	"interwiki_reasonfield": "Dalili:",
-	"searchsuggest-containing-html": "Duba shafukan dake dauke da <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki_reasonfield": "Dalili:"
 }

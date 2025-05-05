@@ -1627,6 +1627,5 @@
 	"log-name-renameuser": "Diarium de renomination de usator",
 	"interwiki_reasonfield": "Rason:",
 	"interwiki-logtext": "Vider diarium",
-	"log-name-interwiki": "Diarium del tabelle de interwikis",
-	"searchsuggest-containing-html": "Serchar págines contenent <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"log-name-interwiki": "Diarium del tabelle de interwikis"
 }

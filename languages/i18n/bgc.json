@@ -466,6 +466,5 @@
 	"blockedtext-block-ip": "थारा मोजुदा आई पी पता $1 सै।",
 	"blockedtext-include-details-queries": "कृपया सारे उपरी-विवरण शामिल करें जो-जो सवाल थम पुछो सो उन सब मे।",
 	"renameuserreason": "वजह:",
-	"renameusersubmit": "प्रस्तुत करैं",
-	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> सी सहित पन्ने  खोजें"
+	"renameusersubmit": "प्रस्तुत करैं"
 }

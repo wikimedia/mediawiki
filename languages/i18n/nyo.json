@@ -531,6 +531,5 @@
 	"blockedtext-contact-blocker-admin": "Noosobora kukwataniza $1 rundi [[{{MediaWiki:Grouppage-sysop}}|omwebembezi]] ondi kugambirangana okutanga kunu.",
 	"blockedtext-block-ip": "Obwikaro bwawe bw'IP nubwo $1.",
 	"blockedtext-include-details-queries": "Tamu ebitonderwa byona ebya haruguru omubikaguzo byona ebi okora.",
-	"renameusersubmit": "Hayo",
-	"searchsuggest-containing-html": "Serra empapura eziina <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"renameusersubmit": "Hayo"
 }

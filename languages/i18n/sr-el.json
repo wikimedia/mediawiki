@@ -3883,6 +3883,5 @@
 	"interwiki-local-links": "Lokalni međuviki prefiksi",
 	"interwiki-links": "Međuviki prefiksi",
 	"interwiki-language-links": "Međujezički prefiksi",
-	"interwiki-global-language-links": "Globalni međujezički prefiksi",
-	"searchsuggest-containing-html": "Pretraži stranice koje sadrže <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki-global-language-links": "Globalni međujezički prefiksi"
 }

@@ -4117,6 +4117,5 @@
 	"interwiki-language-links": "Keeltevahelised eesliited",
 	"interwiki-language-description": "Need eesliited vastavad määratud keelekoodidele, mida lehekülgedel kasutatakse nimekirja \"{{int:otherlanguages}}\" keelelinkide jaoks.",
 	"interwiki-global-language-links": "Globaalsed keeltevahelised eesliited",
-	"interwiki-global-language-description": "Need eesliited vastavad määratletud keelekoodidele ja leheküljele lisatuna kasutatakse neid loendi \"{{int:otherlanguages}}\" koostamiseks. Kuna need on pärit globaalsest häälestusest, siis saab neid muuta ainult lähtevikis. Globaalseid keeltevahelisi määratlusi ei saa kohalikus vikis üle kirjutada.",
-	"searchsuggest-containing-html": "Otsi lehekülgi, kus sisaldub <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki-global-language-description": "Need eesliited vastavad määratletud keelekoodidele ja leheküljele lisatuna kasutatakse neid loendi \"{{int:otherlanguages}}\" koostamiseks. Kuna need on pärit globaalsest häälestusest, siis saab neid muuta ainult lähtevikis. Globaalseid keeltevahelisi määratlusi ei saa kohalikus vikis üle kirjutada."
 }

@@ -85,8 +85,8 @@
 	"views": "Igó",
 	"toolbox": "Éwúáné",
 	"cactions": "Mànyu",
-	"tool-link-userrights": "Mú rídá{{GENDER:$1|}}",
-	"tool-link-userrights-readonly": "Égó yóyó{{GENDER:$1|}}",
+	"tool-link-userrights": "Mú rídá {{GENDER:$1|énéagwu}}",
+	"tool-link-userrights-readonly": "Égó yóyó {{GENDER:$1|énéagwu}}",
 	"tool-link-emailuser": "Kórú mí{{GENDER:$1|}}",
 	"imagepage": "Dájú gó éyómó nú kú má ché",
 	"mediawikipage": "égó kpólá wé",
@@ -599,6 +599,5 @@
 	"blockedtext-contact-blocker-admin": "É neké ka nwí $1 bakí ene ómuné [[{{MediaWiki:Grouppage-sysop}}|administrator]] tódú mé kóla tódù óna kù ma kpa yé í.",
 	"blockedtext-block-ip": "IP address wé abajoí chí $1.",
 	"blockedtext-block-id": "É ma kpona nwu chí ID #$5.",
-	"blockedtext-include-details-queries": "Kí yó jó amenwu ku ma kó ta té yí fu kó té amenwu ké téné kó í",
-	"searchsuggest-containing-html": "Téné amí ogbá kí gwonwú <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"blockedtext-include-details-queries": "Kí yó jó amenwu ku ma kó ta té yí fu kó té amenwu ké téné kó í"
 }

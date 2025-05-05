@@ -572,6 +572,5 @@
 	"skin-view-edit-local": "改這位的說明",
 	"skin-action-delete": "刣",
 	"newpages-showhide-bots": "$1機器人",
-	"newpages-showhide-redirect": "$1轉頁",
-	"searchsuggest-containing-html": "搜揣有<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>的頁"
+	"newpages-showhide-redirect": "$1轉頁"
 }

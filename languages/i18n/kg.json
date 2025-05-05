@@ -360,6 +360,5 @@
 	"nstab-mainpage": "Lutiti ya Nene",
 	"skin-action-protect": "Keba",
 	"skin-action-delete": "Kufwa",
-	"skin-action-move": "Nata",
-	"searchsuggest-containing-html": "Sosa balutiti ya kele ti <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"skin-action-move": "Nata"
 }

@@ -59,6 +59,8 @@
 	"search": "Rereh",
 	"search-ignored-headings": "# <pre>\n# Murda sané jagi nénten karunguang olih pangrereh.\n# Suratan puniki jagi kalaksanayang sasampun kaca taler murda puniki kaindeks.\n# Ragané prasida ngmaksayang pangindeksan mawali kaca puniki antuk nglaksanayang suratan kosong (''null edit'')\n# Sintaksisnyané sakadi puniki:\n#   * Makasami saking watek \"#\" ka bait untat inggih punika silih tunggil pabligbagan.\n#   * Tiap bait ten-kosong inggih punika murda sané patut sané jagi nénten karunguang.\nReferensi\nPranala luar\nCingak taler\n #</pre>",
 	"searchbutton": "Rereh",
+	"searchsuggest-containing-html": "Selehin kaca sané madaging <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"search-loader": "Ngamuat saran parerehan",
 	"go": "Lanturang",
 	"searcharticle": "Rereh",
 	"skin-view-history": "Cingak babad",
@@ -243,7 +245,7 @@
 	"title-invalid-empty": "Murda kaca sané kapinta nénten madaging napi-napi utawi madaging wantah silih tunggil genah aran.",
 	"title-invalid-utf8": "Murda kaca sané kapinta madué paiketan UTF-8 sané nénten resmi.",
 	"title-invalid-interwiki": "Murda madué pranala pantaraningwiki sané nénten prasida kaanggén ring murda.",
-	"title-invalid-talk-namespace": "Murda situs sané kapinta nuju ka kaca pablibagan sané nénten prasida kasayagayang.",
+	"title-invalid-talk-namespace": "Murda laman sané katunasin nujuang kaca pabligbagan sané iwang katentuang anggén kaca ring genah wasta tiosan. Kaca pabligbagan saking kaca non-ruang utama patut kasurat pinaka \"Pabligbagan Proyék:Foo\", nénten \"Pabligbagan:Proyék:Foo\".",
 	"title-invalid-characters": "Murda kaca sané kapinta madué watek sané ten resmi:\"$1\".",
 	"title-invalid-relative": "Murda madué alamat relatif. Murda kaca relatif (./, ../) nénten resmi, mawinan prasida ngawinan wangde ritatkala kapindatangan olih prajuru panganggé.",
 	"title-invalid-magic-tilde": "Murda kaca madué paiketan tilda sané nénten resmi (<nowiki>~~~</nowiki>).",
@@ -520,7 +522,7 @@
 	"edit-recovery-loaded-title": "Ulihang gentosan?",
 	"edit-recovery-loaded-message": "Pauahan ragané sané durung kasineb punika prasida otomatis kaulihang.",
 	"edit-recovery-loaded-message-different-rev": "Élingang yéning kaca niki minab sampun magentos saking ragané ngawit nguahin. Durus turéksa pagentosan sadurung nyimpen.",
-	"edit-recovery-loaded-discard": "Kutang uahan",
+	"edit-recovery-loaded-discard": "Kutang",
 	"summary": "Ringkesan:",
 	"subject": "Parihindik:",
 	"minoredit": "Puniki uahan alit",
@@ -1773,6 +1775,7 @@
 	"statistics-header-users": "Statistik sang anganggé",
 	"statistics-header-hooks": "Statistik tiosan",
 	"statistics-articles": "Kaca daging",
+	"statistics-articles-desc": "Cingakin [https\n://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticleCountMethod dokuméntasi petékan suratan] antuk rerincian",
 	"statistics-pages": "Kaca",
 	"statistics-pages-desc": "Samian kaca ring wiki, rumasuk kaca pabligbagan, pangalihan, msl.",
 	"statistics-files": "Berkas kaunggah",
@@ -3915,6 +3918,5 @@
 	"benefit-3-description": "Preferensi sané ngamersidayang ragané ngostumisasi pangalaman ragané.",
 	"temp-user-unable-to-acquire": "Nénten prasida ngamolihang wasta panganggé akun sauntara. Durus sobyahang malih.",
 	"interwiki-title-norights": "Cingak data interwiki",
-	"interwiki_1": "inggih",
-	"searchsuggest-containing-html": "Selehin kaca sané madaging <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki_1": "inggih"
 }

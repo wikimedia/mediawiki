@@ -3922,6 +3922,5 @@
 	"interwiki_edittext": "Modificarea prefixului unui interwiki",
 	"log-name-interwiki": "Jurnal tabel interwiki",
 	"right-interwiki": "Modifică date interwiki",
-	"action-interwiki": "modificați această legătură interwiki",
-	"searchsuggest-containing-html": "Căutați după pagini care conțin <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"action-interwiki": "modificați această legătură interwiki"
 }

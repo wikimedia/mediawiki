@@ -4042,6 +4042,5 @@
 	"interwiki-language-links": "Mga prefix sa tunga sang mga lenguahe",
 	"interwiki-language-description": "Ining mga prefix nagahisanto sa gintalana nga mga kodigo sang lenguahe, kag gamiton sa paghimo sang \"{{int:otherlanguages}}\" nga listahan kon idugang sa isa ka pahina.",
 	"interwiki-global-language-links": "Global interlanguage prefix",
-	"interwiki-global-language-description": "Ining mga prefix nagahisanto sa gintalana nga mga kodigo sang lenguahe, kag gamiton sa paghimo sang \"{{int:otherlanguages}}\" nga listahan kon idugang sa isa ka pahina. Bangod ginpanubli ini gikan sa isa ka pangkalibutanon nga pagsulundan, mahimo lamang ini ma-edit sa ginhalinan nga wiki. Ang mga kahulugan sang pangkalibutanon nga interlanguage indi mahimo nga i-override sa lokal.",
-	"searchsuggest-containing-html": "Mangita sang mga panid nga nagasulod sang <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki-global-language-description": "Ining mga prefix nagahisanto sa gintalana nga mga kodigo sang lenguahe, kag gamiton sa paghimo sang \"{{int:otherlanguages}}\" nga listahan kon idugang sa isa ka pahina. Bangod ginpanubli ini gikan sa isa ka pangkalibutanon nga pagsulundan, mahimo lamang ini ma-edit sa ginhalinan nga wiki. Ang mga kahulugan sang pangkalibutanon nga interlanguage indi mahimo nga i-override sa lokal."
 }

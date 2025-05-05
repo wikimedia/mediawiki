@@ -3102,6 +3102,5 @@
 	"interwiki_0": "no",
 	"interwiki_edit": "Redaktar",
 	"interwiki_reasonfield": "Motivo:",
-	"interwiki_addbutton": "Adjuntar",
-	"searchsuggest-containing-html": "Serchar pagini kontenanta <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki_addbutton": "Adjuntar"
 }

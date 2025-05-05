@@ -2497,7 +2497,7 @@
 	"block-removal-reason-placeholder": "Увядзіце прычыну",
 	"block-removal-confirm-yes": "Выдаліць блакаванне",
 	"block-removal-confirm-no": "Адмена",
-	"block-removed": "Блакаванне $1 былo знятae.",
+	"block-removed": "Блакаванне былo знятae.",
 	"block-view-target": "Прагляд",
 	"unblockip": "Зняць блок з удзельніка",
 	"unblockiptext": "З дапамогай формы ніжэй можна вярнуць дазвол на праўкі для раней заблакіраванага IP-адраса або ўдзельніка.",
@@ -3878,6 +3878,5 @@
 	"interwiki-title-norights": "Прагляд звестак пра інтэрвікі",
 	"interwiki_reasonfield": "Прычына:",
 	"interwiki_addbutton": "Дадаць",
-	"interwiki-badprefix": "Пазначаны прэфікс інтэрвікі «$1» змяшчае няслушныя сімвалы",
-	"searchsuggest-containing-html": "Шукаць старонкі, якія змяшчаюць <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki-badprefix": "Пазначаны прэфікс інтэрвікі «$1» змяшчае няслушныя сімвалы"
 }

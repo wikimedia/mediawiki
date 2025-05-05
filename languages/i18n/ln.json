@@ -613,6 +613,5 @@
 	"blockedtext-contact-blocker-admin": "Okoki kokutana na $1 to [[{{MediaWiki:Grouppage-sysop}}|mokambi]] mosusu mpo na kolobela bloc.",
 	"blockedtext-block-ip": "Addresse IP na yo ya lelo ezali $1 .",
 	"blockedtext-include-details-queries": "Tosengi otia makambo nyonso oyo ezali likolo na mituna nyonso oyo okosala.",
-	"renameuser-error-global-detaching": "Moto oyo azali kosalela yango azali na boyokani na mokili mobimba. Salelá CentralAuth mpo na kobenga nkombo ya sika.",
-	"searchsuggest-containing-html": "Luká nkasa oyo ezali na<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"renameuser-error-global-detaching": "Moto oyo azali kosalela yango azali na boyokani na mokili mobimba. Salelá CentralAuth mpo na kobenga nkombo ya sika."
 }

@@ -498,6 +498,5 @@
 	"renameusersubmit": "Сигын",
 	"interwiki_1": "эӀй",
 	"interwiki_0": "ваӀ",
-	"interwiki_reasonfield": "Себеб:",
-	"searchsuggest-containing-html": "Мид-кид джарбыр ахтармиш <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki_reasonfield": "Себеб:"
 }

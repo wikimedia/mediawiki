@@ -172,6 +172,5 @@
 	"searchsuggest-containing": "Gi ambeti so ayeke na yâ ni",
 	"skin-action-undelete": "Kîri na nî",
 	"skin-action-delete": "Lungûla",
-	"skin-action-move": "Sanzêe ïrï",
-	"searchsuggest-containing-html": "Gi alê ti lê ti mbeti so ayeke na <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"skin-action-move": "Sanzêe ïrï"
 }

@@ -2874,6 +2874,5 @@
 	"logentry-interwiki-iw_delete": "$1 {{GENDER:$2|removed}} prefix \"$4\" fae the interwiki buird",
 	"log-description-interwiki": "This is ae log o chynges til the [[Special:Interwiki|interwiki buird]].",
 	"right-interwiki": "Eidit interwiki data",
-	"action-interwiki": "chynge this interwiki entrie",
-	"searchsuggest-containing-html": "Sairch fur pages containin <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"action-interwiki": "chynge this interwiki entrie"
 }

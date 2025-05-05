@@ -257,6 +257,8 @@
 	"search": "搜索",
 	"search-ignored-headings": " #<!-- 请将此行保持原样 --> <pre>\n# 将被搜索忽略的标题。\n# 一旦带有标题的页面被索引，对此的更改就会生效。\n# 您可以通过执行空编辑来强制重新索引页面。\n# 语法如下：\n#  * 所有以“#”开头的行都是注释。\n#  * 所有非空白行都是要忽略的标题。\n参考资料\n外部链接\n参见\n #</pre> <!-- 请将此行保持原样 -->",
 	"searchbutton": "搜索",
+	"searchsuggest-containing-html": "搜索包含<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>的页面",
+	"search-loader": "正在加载搜索建议",
 	"go": "前往",
 	"searcharticle": "前往",
 	"skin-view-history": "查看历史",
@@ -3436,6 +3438,7 @@
 	"version-hooks": "钩子函数",
 	"version-parser-extensiontags": "解析器扩展标签",
 	"version-parser-function-hooks": "解析器函数钩子",
+	"version-parser-function-hooks-parsoid": "仅Parsoid可用",
 	"version-parsoid-modules": "Parsoid扩展模块",
 	"version-hook-name": "钩子函数名",
 	"version-hook-subscribedby": "订阅",
@@ -4346,6 +4349,5 @@
 	"interwiki-language-links": "跨语言前缀",
 	"interwiki-language-description": "这些前缀匹配定义的语言代码，并在加入页面时用于创建“{{int:otherlanguages}}”列表。",
 	"interwiki-global-language-links": "全域跨语言前缀",
-	"interwiki-global-language-description": "这些前缀与定义的语言代码匹配，并在添加到页面时用于创建“{{int:otherlanguages}}”列表。由于它们是从全域配置继承的，因此只能在源wiki上进行编辑。不能在本地覆盖全域跨语言定义。",
-	"searchsuggest-containing-html": "搜索包含<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>的页面"
+	"interwiki-global-language-description": "这些前缀与定义的语言代码匹配，并在添加到页面时用于创建“{{int:otherlanguages}}”列表。由于它们是从全域配置继承的，因此只能在源wiki上进行编辑。不能在本地覆盖全域跨语言定义。"
 }

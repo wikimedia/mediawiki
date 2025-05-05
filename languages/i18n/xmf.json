@@ -3924,6 +3924,5 @@
 	"action-renameuser": "მახვარებუეფიშ ჯოხოშ თირუა",
 	"right-renameuser": "მახვარებუეფიშ ჯოხოშ თირუა",
 	"renameuser-renamed-notice": "თე მახვარებუს ჯოხოქ გინათირჷ.\nგიმე მოჩამილი რე ჯოხოშ გინოთირუაშ ჟურნალი.",
-	"log-unknown-action": "ხასჷლას [[$1]] იკეთინჷ უჩინებუ ქიმინუაქ „$2“",
-	"searchsuggest-containing-html": "თი ხასჷლეფიშ გორუა, ნამუეფჷთ იკათუანა <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>-ის"
+	"log-unknown-action": "ხასჷლას [[$1]] იკეთინჷ უჩინებუ ქიმინუაქ „$2“"
 }

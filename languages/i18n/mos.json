@@ -92,7 +92,7 @@
 	"views": "Gese",
 	"toolbox": "Teedo",
 	"cactions": "Pãasé",
-	"tool-link-userrights": "{{GENDER:$1 user}} sullã toeemame",
+	"tool-link-userrights": "{{GENDER:$1|Tʋmtʋmda}} sullã toeemame",
 	"tool-link-userrights-readonly": "{{GENDER:$1 yel-gɛtã yãgsgo}} sull",
 	"tool-link-emailuser": "D tʋm-y-yã {{GENDER:$1|n kõ-yã}}",
 	"imagepage": "N gese fisiye seb-vão",
@@ -426,7 +426,7 @@
 	"botpasswords-created-title": "Bot password sẽn naanã",
 	"botpasswords-created-body": "B segd n toeema bot yʋʋr sẽn boond tɩ \"$2\" wã wagsg tɩ \"$1\" yaa {{GENDER:$1ning sẽn tũnugd ne-a wã wagsg ye}}",
 	"botpasswords-updated-title": "Bot password yaa yam-yãk",
-	"botpasswords-updated-body": "B segd n toeema bot yʋʋr sẽn boond tɩ \"$2\" wã wagsg tɩ \"$1\" yaa {{GENDER:$1ning sẽn tũnugd ne-a wã wagsg ye}}",
+	"botpasswords-updated-body": "B segd n toeema bot yʋʋr sẽn boond tɩ \"$2\" wã wagsg tɩ \"$1\" yaa {{GENDER:$2|ning sẽn tũnugd ne-a wã wagsg ye}}",
 	"botpasswords-deleted-title": "Bot sõor sẽn yiis",
 	"botpasswords-deleted-body": "B segd n toeema bot yʋʋr sẽn boond tɩ \"$2\" wã wagsg tɩ \"$1\" yaa {{GENDER:$1ning sẽn tũnugd ne-a wã wagsg ye}}",
 	"botpasswords-newpassword": "Sõng-rɩll ning sẽn na yɩl n kẽ ne <strong>$1</strong> wã yaa <strong>$2</strong>. <em>Bɩ y gʋls-y-yã rẽ tɩ b na n wilg-y-la rẽ beoog-daare.</em>  (Bos-kʋdse, sẽn dat tɩ logt yʋʋr yɩ wa logt yʋʋr sẽn na n yɩ to-to wã yĩnga, y tõe n leb n dɩka <strong>$3</strong> n yɩ logt yʋʋr la <strong>$4</strong> n yɩ logtoog).<br/>",
@@ -831,7 +831,6 @@
 	"diff-incompatible": "Pa tõe n makd \"$1\" ne \"$2\" sẽn be bũmb ning pʋgẽ wã ne taab ye",
 	"diff-empty": "(Welgre pa be)",
 	"diff-user-edits": "{{PLURAL:<span>$1</span> yeebs}}",
-	"diff-multi-sameuser": "({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by the same {{GENDER:$3|user}} not shown)",
 	"diff-multi-otherusers": "({{PLURAL:$1|Lebg-n-gɛsga sũka yɛ|$1 lebg-n-gɛsga sũka}} tɩ {{PLURAL:$2|tʋʋm-tʋʋmde yɛ|$2 tʋʋm-tʋʋmde}} pa vẽnege)",
 	"diff-multi-manyusers": "({{PLURAL:$1|0ne intermediate revision|$1 intermediate revisions}} n be $2 {{PLURAL$2|user|users}} not shown)",
 	"diff-paragraph-moved-tonew": "B kɩtame tɩ b toeem sõsgã. Sõng-y n kẽng zĩig a to.",
@@ -2242,6 +2241,5 @@
 	"blockedtext-intended-blockee": "Niya sîn be ti o be gɩde nina: $1",
 	"blockedtext-contact-blocker-admin": "Fo na tõoge n boolé $1 bɩɩ nina [[{{MediaWiki:Grouppage-sysop}}|administrator]] n sõso gɩdba yelle.",
 	"blockedtext-block-ip": "Fo marsa IP adersa ya $1.",
-	"blockedtext-include-details-queries": "D bõosdame tɩ f naag kibay wã fãa vɛɛsg buud fãa f sẽn maande.",
-	"searchsuggest-containing-html": "Bao nemse n tar <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"blockedtext-include-details-queries": "D bõosdame tɩ f naag kibay wã fãa vɛɛsg buud fãa f sẽn maande."
 }

@@ -73,6 +73,7 @@
 			"Naufal06",
 			"Naval Scene",
 			"Nemo bis",
+			"NikolasKHF",
 			"Nohirara",
 			"Palladin911",
 			"Pebaryan",
@@ -538,7 +539,7 @@
 	"botpasswords-updated-title": "Kata sandi bot diperbarui",
 	"botpasswords-updated-body": "Kata sandi bot \"$1\" dari  {{GENDER:$2|user}} \"$2\" berhasil diperbarui.",
 	"botpasswords-deleted-title": "Kata sandi bot dihapus",
-	"botpasswords-deleted-body": "Kata sandi bot \"$1\" dari  {{GENDER:$2|user}} \"$2\" telah dihapus.",
+	"botpasswords-deleted-body": "Kata sandi bot \"$1\" dari {{GENDER:$2|pengguna}} \"$2\" telah dihapus.",
 	"botpasswords-newpassword": "Kata sandi baru untuk masuk log dengan <strong>$1</strong> adalah <strong>$2</strong>. <em>Catatlah kata sandi ini untuk referensi ke depan.</em> <br> (Untuk bot lama yang memerlukan nama masuk log yang sama dengan nama pengguna, dapat menggunakan <strong>$3</strong> sebagai nama pengguna dan <strong>$4</strong> sebagai kata sandi.)",
 	"botpasswords-no-provider": "BotPasswordsSessionProvider tidak tersedia.",
 	"botpasswords-restriction-failed": "Batasan kata sandi menghalangi masuk log ini.",
@@ -4106,6 +4107,5 @@
 	"interwiki-language-links": "Awalan interbahasa",
 	"interwiki-language-description": "Awalan-awalan ini cocok dengan kode bahasa yang sudah didefiniskan, dan akan digunakan untuk membuat daftar \"{{int:otherlanguages}}\" ketika ditambahkan ke halaman.",
 	"interwiki-global-language-links": "Awalan interbahasa global",
-	"interwiki-global-language-description": "Awalan-awalan ini cocok dengan kode bahasa yang didefinisikan, dan akan digunakan untuk membuat daftar \"{{int:otherlanguages}}\" ketika ditambahkan ke halaman. Karena mereka diturunkan dari konfigurasi global, mereka hanya bisa diubah di wiki sumbernya. Definisi interbahasa global tidak bisa ditimpa secara lokal.",
-	"searchsuggest-containing-html": "Cari halaman yang berisi <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki-global-language-description": "Awalan-awalan ini cocok dengan kode bahasa yang didefinisikan, dan akan digunakan untuk membuat daftar \"{{int:otherlanguages}}\" ketika ditambahkan ke halaman. Karena mereka diturunkan dari konfigurasi global, mereka hanya bisa diubah di wiki sumbernya. Definisi interbahasa global tidak bisa ditimpa secara lokal."
 }

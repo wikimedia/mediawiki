@@ -3622,6 +3622,5 @@
 	"right-interwiki": "Interwiki datuak aldatu",
 	"action-interwiki": "aldatu interwiki sarrera hau",
 	"interwiki-links": "Interwiki aurrizkiak",
-	"interwiki-language-links": "Interlanguage aurrizkiak",
-	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> duten orrialdeak bilatu"
+	"interwiki-language-links": "Interlanguage aurrizkiak"
 }

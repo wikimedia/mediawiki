@@ -639,7 +639,7 @@
 	"edit-slots-cannot-remove": "Пу {{PLURAL:$1|орын}} чох идiлбеске кирек: $2.",
 	"edit-slots-missing": "Пу {{PLURAL:$1|орын}} чоғыл: $2.",
 	"postedit-confirmation-created": "Страница идiл парды.",
-	"postedit-confirmation-restored": "Страницаның айландырылған.",
+	"postedit-confirmation-restored": "Страница айландырылған.",
 	"postedit-confirmation-saved": "Сірернің тӱзедіглерің киріл парған.",
 	"postedit-confirmation-published": "Сірернің тӱзедіглерің чарыхха сығарылған.",
 	"postedit-temp-created-label": "Ӱр нимеске иділген аккаунт",
@@ -3794,6 +3794,5 @@
 	"benefit-1-description": "Сiрерге кирек страницаларны хайығда тударға пирчеткен страницалар изерiзi.",
 	"benefit-2-description": "Сiрер проектке кирген хозымның алыспас изерiзi.",
 	"benefit-3-description": "Опыт ciрерни полчатханын итчеткен настройкалар.",
-	"temp-user-unable-to-acquire": "Ӱр нимеске иділген аккаунт адын алар оңдай чоғыл. Хатап ит кӧріңер.",
-	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> пар страницаларны тілирi"
+	"temp-user-unable-to-acquire": "Ӱр нимеске иділген аккаунт адын алар оңдай чоғыл. Хатап ит кӧріңер."
 }

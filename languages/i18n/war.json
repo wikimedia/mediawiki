@@ -1930,6 +1930,5 @@
 	"skin-action-protect": "Panalipdi",
 	"skin-action-undelete": "Igbalik an ginpara",
 	"skin-action-delete": "Para-a",
-	"skin-action-move": "Balhina",
-	"searchsuggest-containing-html": "Pamiling hin mga pakli nga nagsusulod hin <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"skin-action-move": "Balhina"
 }

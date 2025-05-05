@@ -4072,6 +4072,5 @@
 	"logentry-interwiki-iw_delete": "{{GENDER:$2|Ο|Η}} $1 προσέθεσε το πρόθεμα «$4» από τον πίνακα interwiki",
 	"log-description-interwiki": "Αυτή είναι μια καταγραφή αλλαγών στον [[Special:Interwiki|πίνακα interwiki]].",
 	"right-interwiki": "Επεξεργασία δεδομένων interwiki",
-	"action-interwiki": "αλλαγή αυτής της καταχώρισης interwiki",
-	"searchsuggest-containing-html": "Αναζητήστε σελίδες που περιέχουν <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"action-interwiki": "αλλαγή αυτής της καταχώρισης interwiki"
 }

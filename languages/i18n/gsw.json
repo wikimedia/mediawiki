@@ -2728,6 +2728,5 @@
 	"logentry-interwiki-iw_delete": "$1 {{GENDER:$2|het}} s Präfix „$4“ uss dr Interwikitabelle ussegno",
 	"log-description-interwiki": "In däm Logbuech wäre Änderige an dr [[Special:Interwiki|Interwiki-Tabälle]] protokolliert.",
 	"right-interwiki": "Interwiki-Tabälle bearbeite",
-	"action-interwiki": "Där Interwiki-Yytrag ändere",
-	"searchsuggest-containing-html": "No Syte sueche, wu s <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> din het"
+	"action-interwiki": "Där Interwiki-Yytrag ändere"
 }

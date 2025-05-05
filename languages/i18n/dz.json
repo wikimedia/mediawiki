@@ -469,6 +469,5 @@
 	"pagelang-language": "བོད་ཡིག",
 	"log-action-filter-all": "ཆ་མཉམ།",
 	"nstab-mainpage": "མ་ཤོག",
-	"skin-action-protect": "ཉེན་སྐྱོབ།",
-	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> ཡོད་པའི་ཤོག་ལེབ་འཚོལ་ཞིབ་འབད།"
+	"skin-action-protect": "ཉེན་སྐྱོབ།"
 }

@@ -1186,6 +1186,5 @@
 	"blockedtext-start-time": "Mulai geutham: $1",
 	"blockedtext-expiration-time": "Akhé geutham: $1",
 	"blockedtext-intended-blockee": "Nyang keumeung geutham: $1",
-	"blockedtext-block-ip": "Alamat IP Droeneuh jinoe $1",
-	"searchsuggest-containing-html": "Mita ôn nyang na <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"blockedtext-block-ip": "Alamat IP Droeneuh jinoe $1"
 }

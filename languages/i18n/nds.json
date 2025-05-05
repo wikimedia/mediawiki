@@ -1952,6 +1952,5 @@
 	"interwiki_addtext": "Interwiki- oder Spraakpräfix tofögen",
 	"interwiki_addbutton": "Tofögen",
 	"right-interwiki": "Interwiki-Tabell ännern",
-	"action-interwiki": "dissen Indrag in de Interwiki-Tabell ännern",
-	"searchsuggest-containing-html": "Söök för Sieden mit <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"action-interwiki": "dissen Indrag in de Interwiki-Tabell ännern"
 }

@@ -618,6 +618,5 @@
 	"blockedtext-intended-blockee": "Doigonde erere fempilere jorin: $1",
 	"blockedtext-contact-blocker-admin": "Si $1 eici gūwa [[{{MediaWiki:Grouppage-sysop}}|kadalasi]] de jasigan bufi ere fempilen be leoleci ombi.",
 	"blockedtext-block-ip": "Sini ineku IP tehe ba oci $1.",
-	"blockedtext-include-details-queries": "Dacilara fonde bairengge dergi de bisire narhūšara arbun be nisihai alibuki.",
-	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> be baktambure justan be suwelembi"
+	"blockedtext-include-details-queries": "Dacilara fonde bairengge dergi de bisire narhūšara arbun be nisihai alibuki."
 }

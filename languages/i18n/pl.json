@@ -3293,6 +3293,7 @@
 	"version-hooks": "Haki (ang. hooks)",
 	"version-parser-extensiontags": "Znaczniki parsera pochodzące z rozszerzeń",
 	"version-parser-function-hooks": "Funkcje parsera",
+	"version-parser-function-hooks-parsoid": "Tylko w Parsoidzie",
 	"version-parsoid-modules": "Moduły rozszerzeń Parsoid",
 	"version-hook-name": "Nazwa haka (ang. hook name)",
 	"version-hook-subscribedby": "Zapotrzebowany przez",
@@ -4197,6 +4198,5 @@
 	"interwiki-language-links": "Przedrostki międzyjęzykowe",
 	"interwiki-language-description": "Te prefiksy pasują do zdefiniowanych kodów języków i będą wykorzystywane do tworzenia listy „{{int:otherlanguages}}”, gdy zostaną dodane na stronę.",
 	"interwiki-global-language-links": "Globalne przedrostki językowe",
-	"interwiki-global-language-description": "Te przedrostki pasują do zdefiniowanych kodów językowych i zostaną użyte do stworzenia listy linków „{{int:otherlanguages}}” po dodaniu na stronę. Jako że zostały one dziedzicznie przekazane z globalnej konfiguracji, mogą być edytowane jedynie na docelowej wiki. Globalne definicje międzyjęzykowe nie mogą być nadpisywane lokalnie.",
-	"searchsuggest-containing-html": "Szukaj stron zawierających <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki-global-language-description": "Te przedrostki pasują do zdefiniowanych kodów językowych i zostaną użyte do stworzenia listy linków „{{int:otherlanguages}}” po dodaniu na stronę. Jako że zostały one dziedzicznie przekazane z globalnej konfiguracji, mogą być edytowane jedynie na docelowej wiki. Globalne definicje międzyjęzykowe nie mogą być nadpisywane lokalnie."
 }

@@ -4166,6 +4166,5 @@
 	"interwiki-language-links": "Interspråkprefix",
 	"interwiki-language-description": "Dessa prefix matchar definierade språkkoder, och används för att skapa \"{{int:otherlanguages}}\"-listan när den läggs till på en sida.",
 	"interwiki-global-language-links": "Globala språkprefix",
-	"interwiki-global-language-description": "Dessa prefix matchar definierade språkkoder och kommer att användas för att skapa \"{{int:otherlanguages}}\"-listan när de läggs till på en sida. Efteresom de ärvs från den globala konfigurationen, kan de endast redigeras på källwikin. Globala språkdefinitioner kan inte åsidosättas lokalt.",
-	"searchsuggest-containing-html": "Sök efter sidor som innehåller <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki-global-language-description": "Dessa prefix matchar definierade språkkoder och kommer att användas för att skapa \"{{int:otherlanguages}}\"-listan när de läggs till på en sida. Efteresom de ärvs från den globala konfigurationen, kan de endast redigeras på källwikin. Globala språkdefinitioner kan inte åsidosättas lokalt."
 }

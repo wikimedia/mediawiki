@@ -4100,6 +4100,5 @@
 	"interwiki_prefix_intro": "<code>[<nowiki />[префикс:<em>бетни аты</em>]]</code> викитекстни синтаксисинде хайырландырыллыкъ интервики префикс.",
 	"interwiki_url_intro": "URL шаблон. $1 орун сакълаучу, <code>[<nowiki />[префикс:<em>бетни аты</em>]]</code>ндагъы <em>бетни аты</em> бла ауушдуруллукъду.",
 	"interwiki_local": "Алгъа",
-	"interwiki-local-label": "Алгъа",
-	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> ичинде болгъан бетлени изле"
+	"interwiki-local-label": "Алгъа"
 }

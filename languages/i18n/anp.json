@@ -1005,6 +1005,5 @@
 	"blockedtext-intended-blockee": "ब्लॉक करै वाला के प्रयोजन: $1",
 	"blockedtext-contact-blocker-admin": "ब्लॉक प चर्चा करै लेली तोंय $1 या अन्य [[{{MediaWiki:Grouppage-sysop}}|व्यवस्थापक]] सँ संपर्क करै सकै छौ।",
 	"blockedtext-block-ip": "तोरौ वर्त्तमान IP एड्रेस $1 छेकौं।",
-	"blockedtext-include-details-queries": "कृपया अपनौ कोय्यो प्रश्न मँ उपरोक्त सब्भे विवरण क शामिल करौ।",
-	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> सँ जुड़लो पन्ना खोजौ"
+	"blockedtext-include-details-queries": "कृपया अपनौ कोय्यो प्रश्न मँ उपरोक्त सब्भे विवरण क शामिल करौ।"
 }

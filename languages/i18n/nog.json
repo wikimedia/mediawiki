@@ -478,6 +478,5 @@
 	"special-characters-group-arabic": "Арапша",
 	"nstab-mainpage": "Бас бет",
 	"skin-action-delete": "Йок ет",
-	"renameuserreason": "Себеп:",
-	"searchsuggest-containing-html": "Бар бетлерди излев <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"renameuserreason": "Себеп:"
 }

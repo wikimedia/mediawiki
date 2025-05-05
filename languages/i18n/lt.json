@@ -3971,6 +3971,5 @@
 	"interwiki-logtext": "Žiūrėti žurnalą",
 	"interwiki_addbutton": "Pridėti",
 	"log-description-interwiki": "Tai pakeitimų [[Special:Interwiki|interwiki lentelėje]] sąrašas",
-	"right-interwiki": "Keisti interwiki duomenis",
-	"searchsuggest-containing-html": "Ieškoti puslapių, turinčių <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"right-interwiki": "Keisti interwiki duomenis"
 }

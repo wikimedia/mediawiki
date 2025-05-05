@@ -2402,6 +2402,5 @@
 	"renameusersuppress": "لا تسوي تحويلات للاسم الجديد",
 	"renameuserwarnings": "التحذيرات:",
 	"renameuserconfirm": "اي، غير اليوزر",
-	"renameuser-warning-currentblock": "هاذ المستخدم [$1 محظور حاليًا].",
-	"searchsuggest-containing-html": "ابحث صفحات بيهه <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"renameuser-warning-currentblock": "هاذ المستخدم [$1 محظور حاليًا]."
 }

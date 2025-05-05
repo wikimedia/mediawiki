@@ -3006,6 +3006,5 @@
 	"interwiki-local-description": "Ater-ater iki mung enggon-enggonan. Menawa ana dhobelané karo setèlan global, dhobelané iku bakal nggantèni sing global.",
 	"interwiki-links": "Ater-ater interwiki",
 	"interwiki-language-links": "Ater-ater antarbasa",
-	"interwiki-language-description": "Ater-ater iki cocog karo kodhé basa sing ditemtokaké lan bakal kanggo nggawé pratélan \"{{int:otherlanguages}}\" nalika ditambahaké ing kaca.",
-	"searchsuggest-containing-html": "Golèk kaca sing nduwèni ukara <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki-language-description": "Ater-ater iki cocog karo kodhé basa sing ditemtokaké lan bakal kanggo nggawé pratélan \"{{int:otherlanguages}}\" nalika ditambahaké ing kaca."
 }

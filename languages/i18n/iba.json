@@ -700,6 +700,7 @@
 	"whatlinkshere-hidelinks": "Lalaika link",
 	"whatlinkshere-hideimages": "Lalaika link fail",
 	"ipbhidename": "Lalaika nama pengena ari edit enggau ripih",
+	"block-expiry-custom-months": "bulan",
 	"autoblocklist-legend": "Ripih alit automatik",
 	"autoblocklist-empty": "Ripih alit automatik puang.",
 	"infiniteblock": "meruan",
@@ -749,6 +750,5 @@
 	"blockedtext-intended-blockee": "Orang tagat alit: $1",
 	"blockedtext-contact-blocker-admin": "Nuan ulih kontak $1 tauka [[{{MediaWiki:Grouppage-sysop}}|pengatur]] kena berandau pasal alit tu.",
 	"blockedtext-block-ip": "Address IP nuan kemaya tu nya $1",
-	"blockedtext-include-details-queries": "Minta nuan nyengkaum semua penerang di atas dalam sebarang tanya ti digaga nuan.",
-	"searchsuggest-containing-html": "Giga lambar ke ngembuan <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"blockedtext-include-details-queries": "Minta nuan nyengkaum semua penerang di atas dalam sebarang tanya ti digaga nuan."
 }

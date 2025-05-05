@@ -479,6 +479,5 @@
 	"blockedtext-intended-blockee": "ɦa kewa reem ni :$1",
 	"blockedtext-contact-blocker-admin": "Nyaan $1 laa jen ɦii[[{{MediaWiki:Grouppage-sysop}}|bermbee]] na baɦ tcrgn.",
 	"blockedtext-block-ip": "B'IP nii:$1",
-	"blockedtext-block-id": "Kewm hidr nni nº $1.",
-	"searchsuggest-containing-html": "Bag wadii iban <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"blockedtext-block-id": "Kewm hidr nni nº $1."
 }

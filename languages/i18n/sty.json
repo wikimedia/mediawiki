@@ -580,6 +580,5 @@
 	"blockedtext-intended-blockee": "Ней өцөн тыйғалы: $1",
 	"blockedtext-contact-blocker-admin": "Тыйыуны киңәшләшеү өцөн $1ға йасып пағың йә пашҡа [[{{MediaWiki:Grouppage-sysop}}|администраторға]].",
 	"blockedtext-block-ip": "Сеснең ҡәсерге IP-адресығыс — $1.",
-	"blockedtext-include-details-queries": "Әрни, ней үс энтәшеүләрегестә пы пөтөн ҡәбәр-пелемнәрне күргәсең.",
-	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> эцтәлегентә парын питләрне эстәү"
+	"blockedtext-include-details-queries": "Әрни, ней үс энтәшеүләрегестә пы пөтөн ҡәбәр-пелемнәрне күргәсең."
 }

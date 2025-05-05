@@ -525,6 +525,5 @@
 	"skin-action-protect": "免修",
 	"skin-action-undelete": "还原",
 	"skin-action-delete": "消嘎",
-	"skin-action-move": "移走",
-	"searchsuggest-containing-html": "搜尋包含 <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> 亇頁面"
+	"skin-action-move": "移走"
 }

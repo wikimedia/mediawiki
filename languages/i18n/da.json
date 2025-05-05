@@ -4036,6 +4036,5 @@
 	"interwiki_editerror": "Præfikset \"$1\" kunne ikke ændres i interwikitabellen.\nDet findes muligvis ikke.",
 	"interwiki-badprefix": "Det angivne interwikipræfiks \"$1\" indeholder ugyldige tegn.",
 	"right-interwiki": "Redigere interwikidata",
-	"action-interwiki": "redigere interwikidata",
-	"searchsuggest-containing-html": "Søgning for sider der indeholder <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"action-interwiki": "redigere interwikidata"
 }

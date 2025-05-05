@@ -1801,6 +1801,5 @@
 	"blockedtext-intended-blockee": "Циль блокади: $1",
 	"blockedtext-contact-blocker-admin": "Можеце контактовац $1 або даєдного другого [[{{MediaWiki:Grouppage-sysop}}|администратора]] за пояшнєнє причини блокади.",
 	"blockedtext-block-ip": "Ваша хвилькова IP адреса $1",
-	"blockedtext-include-details-queries": "Наведзце шицки горнї податки при вимоги за деблокаду.",
-	"searchsuggest-containing-html": "Найдз боки хтори содержа <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"blockedtext-include-details-queries": "Наведзце шицки горнї податки при вимоги за деблокаду."
 }

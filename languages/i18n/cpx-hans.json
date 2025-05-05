@@ -486,6 +486,5 @@
 	"revdelete-content-hid": "隐藏内容",
 	"feedback-cancel": "取消",
 	"searchsuggest-search": "伫{{SITENAME}}寻讨",
-	"searchsuggest-containing": "寻讨含有以下内容兮页面",
-	"searchsuggest-containing-html": "寻讨含有<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>兮页面"
+	"searchsuggest-containing": "寻讨含有以下内容兮页面"
 }

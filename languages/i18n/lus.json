@@ -1247,6 +1247,5 @@
 	"blockedtext-intended-blockee": "Dânna nei tu tum: $1",
 	"blockedtext-contact-blocker-admin": "$1 emaw a dang emaw [[{{MediaWiki:Grouppage-sysop}}|administrator]] dânna chungchang sawiho turin i biak theih a ni.",
 	"blockedtext-block-ip": "Tuna i IP chenna hmun chu $1 a ni.",
-	"blockedtext-include-details-queries": "Zawhna i neih apiangah a chunga kan sawi zawng zawng hi ziak tel vek thei a ni.",
-	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> awmna phek zawng tur"
+	"blockedtext-include-details-queries": "Zawhna i neih apiangah a chunga kan sawi zawng zawng hi ziak tel vek thei a ni."
 }

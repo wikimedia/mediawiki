@@ -611,6 +611,5 @@
 	"nstab-mainpage": "Tasna tamezwarut",
 	"skin-action-protect": "Mstn",
 	"skin-action-delete": "Kkes",
-	"skin-action-move": "Smutti",
-	"searchsuggest-containing-html": "Arzu x tisnawin i daysent <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"skin-action-move": "Smutti"
 }

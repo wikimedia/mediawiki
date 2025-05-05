@@ -3030,6 +3030,5 @@
 	"renameuser-move-log": "Lëvizi faqen automatikisht kur riemëroi përdoruesin \"[[User:$1|$1]]\" në \"[[User:$2|$2]]\"",
 	"action-renameuser": "riemëro përdoruesit",
 	"right-renameuser": "Riemëroni përdorueset",
-	"renameuser-renamed-notice": "Ky përdorues është riemëruar. Regjistri i riemërimit është poshtë për referencë.",
-	"searchsuggest-containing-html": "Kërkoni për faqe që përmbajnë <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"renameuser-renamed-notice": "Ky përdorues është riemëruar. Regjistri i riemërimit është poshtë për referencë."
 }

@@ -3605,6 +3605,5 @@
 	"interwiki-links": "അന്തർവിക്കി പൂർവ്വാക്ഷരങ്ങൾ",
 	"interwiki-language-links": "അന്തർഭാഷാ പൂർവ്വക്ഷരങ്ങൾ",
 	"interwiki-language-description": "നിർവ്വചിക്കപ്പെട്ട ഭാഷാകോഡുകളുമായി ചേർന്നുപോകുന്നവയാണ് ഈ പൂർവ്വാക്ഷരങ്ങൾ, താളുകളിലേക്ക് ചേർക്കുമ്പോൾ ഇവ \"{{int:otherlanguages}}\" പട്ടിക നിർമ്മിക്കാൻ ഉപയോഗിക്കുന്നതാണ്.",
-	"interwiki-global-language-links": "ആഗോള അന്തർഭാഷാ പൂർവ്വാക്ഷരങ്ങൾ",
-	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> അടങ്ങിയ പേജുകൾക്കായി തിരയുക"
+	"interwiki-global-language-links": "ആഗോള അന്തർഭാഷാ പൂർവ്വാക്ഷരങ്ങൾ"
 }

@@ -20,7 +20,7 @@
 			"Zimosa"
 		]
 	},
-	"pagecategories": "{{PLURAL:$1|kuuhenɔ|kuuhenɔi}}",
+	"pagecategories": "{{PLURAL:$1|Kuuhenɔ|Kuuhenɔi}}",
 	"category_header": "Plamai yɛ kuuhenɔ \"$1\" mli",
 	"subcategories": "Kuu gbenei",
 	"category-media-header": "Miidia yɛ kuuhenɔ \"$1\" mli",
@@ -98,7 +98,7 @@
 	"views": "Kwɛlɔi",
 	"toolbox": "Nitsumɔ nibii",
 	"cactions": "Ekrokomɛi",
-	"tool-link-userrights": "Tsakemɔ {{GENDER:$1| nifeelɔ}}kui",
+	"tool-link-userrights": "Tsakemɔ {{GENDER:$1|nifeelɔ}} kui",
 	"tool-link-userrights-readonly": "Kwɛmɔ {{GENDER:$1| nifeelɔ}} kui",
 	"tool-link-emailuser": "Emailimɔ enɛ {{GENDER:$1|nifeelɔ}}",
 	"imagepage": "Kwɛɔ faili lɛ plama",
@@ -448,7 +448,7 @@
 	"botpasswords-update-failed": "Bɔt gbɛi lɛ nyɛɛɛ ni eye emuu \"$1\". Agbe lo?",
 	"botpasswords-created-title": "Agbele bɔt paswɛdi",
 	"botpasswords-created-body": "Bɔt paswɛdi lɛ kɛhã bɔt gbɛi \"$1\" kɛhã {{GENDER:$2|user}} \"$2\" agbele.",
-	"botpasswords-updated-body": "Bɔt paswɛdi lɛ kɛhã bɔt gbɛi \"$1\" kɛhã {{GENDER:$2|user}} \"$2\" ahã eye emuu",
+	"botpasswords-updated-body": "Bɔt paswɛdi lɛ kɛhã bɔt gbɛi \"$1\" kɛhã {{GENDER:$2|nifeelɔ}} \"$2\" ahã eye emuu",
 	"botpasswords-deleted-title": "Ajie bɔt paswɛdi",
 	"botpasswords-deleted-body": "Bɔt paswɛdi lɛ kɛhã bɔt gbɛi \"$1\" kɛhã {{GENDER:$2|user}} \"$2\" ahã eye emuu",
 	"botpasswords-newpassword": "Paswɛdi hee ni sa akɛ akɛbote akauntu lɛ mli <strong>$1</strong> ji <strong>$2</strong>. <em>Ofainɛ ŋmaa enɛ kɛŋmɛ shi kɛhã wɔsɛɛ ko.</em> <br> (kɛji tsutsu bɔt lɛ biɔ akɛ lɔgin gbɛi lɛ kɛ nifeelɔgbɛi lɛ ahi ŋlɛ nɔ lɛ, obaanyɛ ni okɛ <strong>$3</strong> nifeelɔgbɛi kɛ <strong>$4</strong> akɛ paswɛdi.)",
@@ -1018,6 +1018,5 @@
 	"skin-action-move": "Tsi",
 	"renameuser-error-temp-user": "Onyɛŋ otsake be kukuoo mli akauntu lɛ gbɛi \" $1 \".",
 	"renameuser-error-temp-user-reserved": "Onyɛŋ okɛ \" $1 \" atsu nii. Akɛto aha be kukuoo mli akauntu.",
-	"temp-user-unable-to-acquire": "Anyɛɛɛ ana be kukuoo mli akauntu Nifeelɔgbɛ. Ofainɛ kaa ekoŋŋ.",
-	"searchsuggest-containing-html": "Taomɔ baafai ni yɔɔ<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"temp-user-unable-to-acquire": "Anyɛɛɛ ana be kukuoo mli akauntu Nifeelɔgbɛ. Ofainɛ kaa ekoŋŋ."
 }

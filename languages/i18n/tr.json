@@ -170,6 +170,8 @@
 	"search": "Ara",
 	"search-ignored-headings": " #<!-- bu satırı olduğu gibi bırakın --> <pre>\n# Başlıklar aramada göz ardı edilecektir.\n# Bu değişiklikler başlık ve sayfa endeksli şekilde en kısa sürede yürürlüğe girecektir.\n# Boş bir düzenleme yaparak, yeniden dizin oluşturulmasını zorlayabilirsiniz.\n# Sözdizimi aşağıdaki gibidir:\n#   * \"#\" karakteri ile başlayan her satır, satır sonuna kadar bir yorumdur.\n#   * Boş olmayan her türlü satırın tam başlığı her durumda görmezden gelinir.\nKaynaklar\nDış bağlantılar\nAyrıca bakınız\n #</pre> <!-- bu satırları olduğu gibi bırakın-->",
 	"searchbutton": "Ara",
+	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> içeren sayfaları ara",
+	"search-loader": "Arama önerileri yükleniyor",
 	"go": "Git",
 	"searcharticle": "Git",
 	"skin-view-history": "Geçmişi gör",
@@ -3171,7 +3173,7 @@
 	"sp-newimages-showfrom": "$1, $2 tarihi itibarı ile yeni dosyaları göster",
 	"video-dims": "$1, $2×$3",
 	"bad_image_list": "Biçim aşağıdaki gibidir:\n\nSadece liste öğeleri (* ile başlayan satırlar) dikkate alınmaktadır.\nSatırdaki ilk bağlantı, kötü dosyaya giden bir bağlantı olmalıdır.\nTakip eden bağlantılar istisna olarak kabul edilmektedir. Örneğin: dosya, sayfada satır içinde görünebilir.",
-	"metadata": "Meta veri",
+	"metadata": "Üstveri",
 	"metadata-help": "Bu dosyada, muhtemelen fotoğraf makinesi ya da tarayıcı tarafından eklenmiş ek bilgiler mevcuttur. Eğer dosyada sonradan değişiklik yapıldıysa, bazı bilgiler yeni değişikliğe göre eski kalmış olabilir.",
 	"metadata-expand": "Genişletilmiş ayrıntıları göster",
 	"metadata-collapse": "Genişletilmiş ayrıntıları gizle",
@@ -3310,6 +3312,7 @@
 	"version-hooks": "Çengeller",
 	"version-parser-extensiontags": "Derleyici uzantı etiketleri",
 	"version-parser-function-hooks": "Derleyici işlevi çengelleri",
+	"version-parser-function-hooks-parsoid": "Sadece Parsoid",
 	"version-parsoid-modules": "Parsoid uzantı modülleri",
 	"version-hook-name": "Çengel adı",
 	"version-hook-subscribedby": "Abone olan",
@@ -4214,6 +4217,5 @@
 	"interwiki-language-links": "Dil arası önekleri",
 	"interwiki-language-description": "Bu önekler, tanımlanmış dil kodlarıyla eşleşir ve bir sayfaya eklendiğinde \"{{int:otherlanguages}}\" listesini oluşturmak için kullanılır.",
 	"interwiki-global-language-links": "Küresel dil arası önekleri",
-	"interwiki-global-language-description": "Bu önekler, tanımlanmış dil kodlarıyla eşleşir ve bir sayfaya eklendiğinde \"{{int:otherlanguages}}\" listesini oluşturmak için kullanılır. Genel bir yapılandırmadan devralındıklarından, yalnızca kaynak vikide düzenlenebilirler. Küresel dil arası tanımları yerel olarak geçersiz kılınamaz.",
-	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> içeren sayfaları ara"
+	"interwiki-global-language-description": "Bu önekler, tanımlanmış dil kodlarıyla eşleşir ve bir sayfaya eklendiğinde \"{{int:otherlanguages}}\" listesini oluşturmak için kullanılır. Genel bir yapılandırmadan devralındıklarından, yalnızca kaynak vikide düzenlenebilirler. Küresel dil arası tanımları yerel olarak geçersiz kılınamaz."
 }

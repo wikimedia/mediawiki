@@ -2608,6 +2608,5 @@
 	"logentry-interwiki-iw_delete": "Si $1 ay {{GENDER:$2|nagtanggal}} ng unlaping \"$4\" mula sa talangguhit ng ugnayang wiki",
 	"log-description-interwiki": "Isa itong talaan ng mga pagbabago sa [[Special:Interwiki|tablang pang-ugnayang wiki]].",
 	"right-interwiki": "Baguhin ang datong pangugnayang-wiki (''interwiki'')",
-	"action-interwiki": "baguhin ang ipinasok/entradang ito na pang-ugnayang wiki (''interwiki'')",
-	"searchsuggest-containing-html": "Maghanap ng mga pahinang may <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"action-interwiki": "baguhin ang ipinasok/entradang ito na pang-ugnayang wiki (''interwiki'')"
 }

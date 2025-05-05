@@ -4145,6 +4145,5 @@
 	"interwiki-language-links": "Mellomspråklige prefiks",
 	"interwiki-language-description": "Disse prefiksene matcher definerte språkkoder, og vil brukes for å opprette «{{int:otherlanguages}}»-lister når de legges til på en side.",
 	"interwiki-global-language-links": "Globale språkprefiks",
-	"interwiki-global-language-description": "Disse prefiksene matcher definerte språkkoder, og blir brukt for å lage lista «{{int:otherlanguages}}» når de legges til på en side. Siden de arves fra global konfigurasjon kan du kun redigeres på kildewikien. Globale språkdefinisjoner kan ikke overstyres lokalt.",
-	"searchsuggest-containing-html": "Søk etter sider som inneholder <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"interwiki-global-language-description": "Disse prefiksene matcher definerte språkkoder, og blir brukt for å lage lista «{{int:otherlanguages}}» når de legges til på en side. Siden de arves fra global konfigurasjon kan du kun redigeres på kildewikien. Globale språkdefinisjoner kan ikke overstyres lokalt."
 }

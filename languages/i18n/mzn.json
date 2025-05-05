@@ -984,6 +984,5 @@
 	"blockedtext-contact-blocker-admin": "این قطع دسترسی خَوِری گپ بزوئن وسه تونی $1 یا اتی [[{{MediaWiki:Grouppage-sysop\n}}|مدیر]] جه صؤحبت هاکنین.",
 	"blockedtext-block-ip": "شمه آی‌پی نشونی إسا $1 هسه.",
 	"blockedtext-include-details-queries": "اگه خانی ات‌چی هاپورسین، این اطلاعات ره اونجه حکماً بلین.",
-	"interwiki_edit": "دچی‌ین",
-	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> دار صفحه‌ئون دله چرخه‌تو هکردن"
+	"interwiki_edit": "دچی‌ین"
 }

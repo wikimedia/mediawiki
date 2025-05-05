@@ -1857,6 +1857,5 @@
 	"renameuserold": "السمية لحالية د لخدايمي:",
 	"renameusererrorinvalid": "السمية د لخدايمي \"<nowiki>$1</nowiki>\" ماشي صحيحة",
 	"log-name-renameuser": "كناش تبدال سميت لخدايمي",
-	"logentry-renameuser-renameuser": "{{GENDER:$2|بدل|بدلات}} $1 سميت $4 ({{PLURAL:$6|تبديل واحد|جوج تبديلات|$6 تبديل}}) ل {{GENDER:$7|$5}}",
-	"searchsuggest-containing-html": "قلب علا صفاحي فيهم <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>"
+	"logentry-renameuser-renameuser": "{{GENDER:$2|بدل|بدلات}} $1 سميت $4 ({{PLURAL:$6|تبديل واحد|جوج تبديلات|$6 تبديل}}) ل {{GENDER:$7|$5}}"
 }
