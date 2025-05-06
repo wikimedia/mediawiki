@@ -5,7 +5,7 @@ Installing MediaWiki
 It is possible to install and configure the wiki "in-place", as long as you have
 the necessary prerequisites available.
 
-Required software as of MediaWiki 1.44.0:
+Required software as of MediaWiki 1.45.0:
 
 * Web server with PHP 8.1.0 or higher, plus the following extensions:
 ** ctype
