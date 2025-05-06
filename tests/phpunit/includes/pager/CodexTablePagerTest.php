@@ -80,10 +80,6 @@ class CodexTablePagerTest extends MediaWikiIntegrationTestCase {
 		return ( new HtmlFormatter( $html ) )->getDoc();
 	}
 
-	protected function tearDown(): void {
-		parent::tearDown();
-	}
-
 	public function testGetEmptyBody() {
 		$doc = self::getOutputHtml( $this->pager->getEmptyBody() );
 
