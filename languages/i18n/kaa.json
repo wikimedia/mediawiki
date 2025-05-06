@@ -488,7 +488,7 @@
 	"botpasswords-insert-failed": "\"$1\" bot atın qosıw ilajsız. Ol aldın qosılǵanba?",
 	"botpasswords-update-failed": "\"$1\" bot atın jańalap bolmadı. Ol óshirildime?",
 	"botpasswords-created-title": "Bot paroli jaratıldı",
-	"botpasswords-created-body": "\"$2\" {{GENDER:$2|paydalanıwshı}}nıń \"$1\" bot atı ushın bot paroli jaratıldı.",
+	"botpasswords-created-body": "\"$2\" {{GENDER:$2|paydalanıwshınıń}} \"$1\" bot atı ushın bot paroli jaratıldı.",
 	"botpasswords-updated-title": "Bot paroli jańalandı",
 	"botpasswords-updated-body": "\"$2\" {{GENDER:$2|paydalanıwshı}}nıń \"$1\" bot atı ushın bot paroli jańalandı.",
 	"botpasswords-deleted-title": "Bot paroli óshirildi",

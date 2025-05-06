@@ -25,7 +25,8 @@
 			"ToprakM",
 			"Uğur Başak",
 			"Vito Genovese",
-			"Watermelon juice"
+			"Watermelon juice",
+			"Andac"
 		]
 	},
 	"preferences": "Tercihler",
@@ -107,6 +108,7 @@
 	"emailauthenticated": "E-posta adresiniz $2 $3 tarihinde onaylandı.",
 	"allowemail": "Diğer kullanıcıların bana e-posta gönderebilmesine izin ver",
 	"email-allow-new-users-label": "Yeni kullanıcılardan e-postalara izin ver",
+	"prefs-help-email-allow-new-users": "Bu seçeneği etkinleştirmek, [[{{MediaWiki:grouppage-autoconfirmed}}|otomatik olarak onaylanmamış]] kullanıcıların size e-posta göndermesine izin verecektir.",
 	"tog-ccmeonemails": "Diğer kullanıcıya gönderdiğim e-postanın bir kopyasını bana gönder",
 	"email-mutelist-label": "Şu kullanıcıların bana e-posta göndermesine izin verme:",
 	"tog-enotifwatchlistpages": "İzleme listemdeki bir sayfa veya dosya değiştirilirse bana e-posta gönder",

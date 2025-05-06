@@ -158,7 +158,7 @@
 	"views": "Dîtin",
 	"toolbox": "Qutiya amûran",
 	"cactions": "Bêhtir",
-	"tool-link-userrights": "Komên bikarhêner{{GENDER:$1|î|ê|î}} biguhêre",
+	"tool-link-userrights": "Komên {{GENDER:$1|bikarhênerî|bikarhênerê}} biguhêre",
 	"tool-link-userrights-readonly": "Komên {{GENDER:$1|bikarhêner}} bibîne",
 	"tool-link-emailuser": "E-name ji {{GENDER:$1|vî bikarhênerî|vê bikarhênerê}} re bişîne",
 	"imagepage": "Rûpela dosyeyan bibîne",

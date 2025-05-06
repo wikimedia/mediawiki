@@ -2125,7 +2125,7 @@
 	"activeusers-noresult": "İstifadəçi tapılmadı.",
 	"activeusers-submit": "Aktiv istifadəçiləri göstər",
 	"listgrouprights": "İstifadəçi qruplarının hüquqları",
-	"listgrouprights-summary": "Bu vikidə olan istifadəçi siyahıları və onların hüquqları aşağıda göstərilmişdir.\nFərdi hüquqlar haqqında əlavə məlumatı [[{{MediaWiki:Listgrouprights-helppage}}]] səhifəsində tapa bilərsiniz",
+	"listgrouprights-summary": "Bu vikidə olan istifadəçi siyahıları və onların hüquqları aşağıda göstərilmişdir.\nFərdi hüquqlar haqqında [[{{MediaWiki:Listgrouprights-helppage}}|əlavə məlumat]] ala bilərsiniz.",
 	"listgrouprights-key": "Hüquq:\n* <span class=\"listgrouprights-granted\">Verilmiş hüquqlar</span>\n* <span class=\"listgrouprights-revoked\">Geri alınmış hüquqlar</span>",
 	"listgrouprights-group": "Qrup",
 	"listgrouprights-rights": "Hüquqlar",

@@ -692,7 +692,7 @@
 	"edit-slots-cannot-remove": "Пу {{PLURAL:$1|орын}} чох идiлбеске кирек: $2.",
 	"edit-slots-missing": "Пу {{PLURAL:$1|орын}} чоғыл: $2.",
 	"postedit-confirmation-created": "Страница идiл парды.",
-	"postedit-confirmation-restored": "Страницаның айландырылған.",
+	"postedit-confirmation-restored": "Страница айландырылған.",
 	"postedit-confirmation-saved": "Сірернің тӱзедіглерің киріл парған.",
 	"postedit-confirmation-published": "Сірернің тӱзедіглерің чарыхха сығарылған.",
 	"postedit-temp-created-label": "Ӱр нимеске иділген аккаунт",

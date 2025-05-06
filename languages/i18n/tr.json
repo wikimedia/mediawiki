@@ -3205,7 +3205,7 @@
 	"sunday-at": "$1 Pazar günü",
 	"yesterday-at": "$1 dün itibarıyla",
 	"bad_image_list": "Biçim aşağıdaki gibidir:\n\nSadece liste öğeleri (* ile başlayan satırlar) dikkate alınmaktadır.\nSatırdaki ilk bağlantı, kötü dosyaya giden bir bağlantı olmalıdır.\nTakip eden bağlantılar istisna olarak kabul edilmektedir. Örneğin: dosya, sayfada satır içinde görünebilir.",
-	"metadata": "Meta veri",
+	"metadata": "Üstveri",
 	"metadata-help": "Bu dosyada, muhtemelen fotoğraf makinesi ya da tarayıcı tarafından eklenmiş ek bilgiler mevcuttur. Eğer dosyada sonradan değişiklik yapıldıysa, bazı bilgiler yeni değişikliğe göre eski kalmış olabilir.",
 	"metadata-expand": "Genişletilmiş ayrıntıları göster",
 	"metadata-collapse": "Genişletilmiş ayrıntıları gizle",

@@ -4097,6 +4097,8 @@
 	"newpages-showhide-redirect": "$1 ohjaukset",
 	"newpages-showhide-registered": "$1 rekisteröityneet käyttäjät",
 	"restsandbox": "REST-hiekkalaatikko",
+	"restsandbox-select-api": "Valitse API tutkittavaksi.",
+	"restsandbox-no-such-api": "Annettua API-parametria ei tueta: $1",
 	"blockedtext-made-by": "Eston teki $1.",
 	"blockedtext-reason-comment": "Eston syyksi annettiin <em>$1</em>.",
 	"blockedtext-start-time": "Eston alkamisaika: $1",

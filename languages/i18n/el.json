@@ -78,7 +78,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"PeachyOne",
-			"Fotis A."
+			"Fotis A.",
+			"Jimkats"
 		]
 	},
 	"sunday": "Κυριακή",
@@ -3493,6 +3494,7 @@
 	"specialpurge-page": "Σελίδα στόχος",
 	"specialpurge-submit": "Μετάβαση στη σελίδα",
 	"namespaceinfo": "Πληροφορίες Ονοματοχώρου",
+	"namespaceinfo-heading-id": "ID",
 	"namespaceinfo-heading-canonical": "Κανονικό όνομα",
 	"namespaceinfo-heading-local": "Τοπικό όνομα",
 	"namespaceinfo-heading-info": "Περιγραφή και ιδιότητες",
