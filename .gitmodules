@@ -5,7 +5,7 @@
 [submodule "extensions/AbuseFilter"]
 	path = extensions/AbuseFilter
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/AbuseFilter
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/AdvancedSearch"]
 	path = extensions/AdvancedSearch
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/AdvancedSearch
@@ -61,7 +61,7 @@
 [submodule "extensions/CategoryTree"]
 	path = extensions/CategoryTree
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/CategoryTree
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/CentralAuth"]
 	path = extensions/CentralAuth
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/CentralAuth
@@ -81,7 +81,7 @@
 [submodule "extensions/CheckUser"]
 	path = extensions/CheckUser
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/CheckUser
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/ChessBrowser"]
 	path = extensions/ChessBrowser
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/ChessBrowser
@@ -93,11 +93,11 @@
 [submodule "extensions/Cite"]
 	path = extensions/Cite
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Cite
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/CiteThisPage"]
 	path = extensions/CiteThisPage
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/CiteThisPage
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/Citoid"]
 	path = extensions/Citoid
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Citoid
@@ -109,7 +109,7 @@
 [submodule "extensions/CodeEditor"]
 	path = extensions/CodeEditor
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/CodeEditor
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/CodeMirror"]
 	path = extensions/CodeMirror
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/CodeMirror
@@ -137,7 +137,7 @@
 [submodule "extensions/ConfirmEdit"]
 	path = extensions/ConfirmEdit
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/ConfirmEdit
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/ContactPage"]
 	path = extensions/ContactPage
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/ContactPage
@@ -161,7 +161,7 @@
 [submodule "extensions/DiscussionTools"]
 	path = extensions/DiscussionTools
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/DiscussionTools
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/DismissableSiteNotice"]
 	path = extensions/DismissableSiteNotice
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/DismissableSiteNotice
@@ -173,7 +173,7 @@
 [submodule "extensions/Echo"]
 	path = extensions/Echo
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Echo
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/Elastica"]
 	path = extensions/Elastica
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Elastica
@@ -241,7 +241,7 @@
 [submodule "extensions/Gadgets"]
 	path = extensions/Gadgets
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Gadgets
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/GeoCrumbs"]
 	path = extensions/GeoCrumbs
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/GeoCrumbs
@@ -293,7 +293,7 @@
 [submodule "extensions/ImageMap"]
 	path = extensions/ImageMap
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/ImageMap
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/ImageSuggestions"]
 	path = extensions/ImageSuggestions
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/ImageSuggestions
@@ -301,7 +301,7 @@
 [submodule "extensions/InputBox"]
 	path = extensions/InputBox
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/InputBox
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/Insider"]
 	path = extensions/Insider
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Insider
@@ -313,7 +313,7 @@
 [submodule "extensions/Interwiki"]
 	path = extensions/Interwiki
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Interwiki
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/InterwikiSorting"]
 	path = extensions/InterwikiSorting
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/InterwikiSorting
@@ -349,7 +349,7 @@
 [submodule "extensions/Linter"]
 	path = extensions/Linter
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Linter
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/LiquidThreads"]
 	path = extensions/LiquidThreads
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/LiquidThreads
@@ -357,7 +357,7 @@
 [submodule "extensions/LoginNotify"]
 	path = extensions/LoginNotify
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/LoginNotify
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/MapSources"]
 	path = extensions/MapSources
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/MapSources
@@ -369,7 +369,7 @@
 [submodule "extensions/Math"]
 	path = extensions/Math
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Math
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/MediaModeration"]
 	path = extensions/MediaModeration
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/MediaModeration
@@ -393,7 +393,7 @@
 [submodule "extensions/MultimediaViewer"]
 	path = extensions/MultimediaViewer
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/MultimediaViewer
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/NavigationTiming"]
 	path = extensions/NavigationTiming
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/NavigationTiming
@@ -417,11 +417,11 @@
 [submodule "extensions/Nuke"]
 	path = extensions/Nuke
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Nuke
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/OATHAuth"]
 	path = extensions/OATHAuth
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/OATHAuth
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/OAuth"]
 	path = extensions/OAuth
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/OAuth
@@ -445,7 +445,7 @@
 [submodule "extensions/PageImages"]
 	path = extensions/PageImages
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/PageImages
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/PageNotice"]
 	path = extensions/PageNotice
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/PageNotice
@@ -461,7 +461,7 @@
 [submodule "extensions/ParserFunctions"]
 	path = extensions/ParserFunctions
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/ParserFunctions
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/ParserMigration"]
 	path = extensions/ParserMigration
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/ParserMigration
@@ -469,7 +469,7 @@
 [submodule "extensions/PdfHandler"]
 	path = extensions/PdfHandler
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/PdfHandler
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/Phonos"]
 	path = extensions/Phonos
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Phonos
@@ -477,7 +477,7 @@
 [submodule "extensions/Poem"]
 	path = extensions/Poem
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Poem
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/Popups"]
 	path = extensions/Popups
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Popups
@@ -533,7 +533,7 @@
 [submodule "extensions/Scribunto"]
 	path = extensions/Scribunto
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Scribunto
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/SearchExtraNS"]
 	path = extensions/SearchExtraNS
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/SearchExtraNS
@@ -545,7 +545,7 @@
 [submodule "extensions/SecureLinkFixer"]
 	path = extensions/SecureLinkFixer
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/SecureLinkFixer
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/SecurePoll"]
 	path = extensions/SecurePoll
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/SecurePoll
@@ -565,7 +565,7 @@
 [submodule "extensions/SpamBlacklist"]
 	path = extensions/SpamBlacklist
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/SpamBlacklist
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/StopForumSpam"]
 	path = extensions/StopForumSpam
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/StopForumSpam
@@ -581,11 +581,11 @@
 [submodule "extensions/SyntaxHighlight_GeSHi"]
 	path = extensions/SyntaxHighlight_GeSHi
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/SyntaxHighlight_GeSHi
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/TemplateData"]
 	path = extensions/TemplateData
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/TemplateData
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/TemplateSandbox"]
 	path = extensions/TemplateSandbox
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/TemplateSandbox
@@ -593,7 +593,7 @@
 [submodule "extensions/TemplateStyles"]
 	path = extensions/TemplateStyles
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/TemplateStyles
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/TemplateWizard"]
 	path = extensions/TemplateWizard
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/TemplateWizard
@@ -601,11 +601,11 @@
 [submodule "extensions/TextExtracts"]
 	path = extensions/TextExtracts
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/TextExtracts
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/Thanks"]
 	path = extensions/Thanks
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Thanks
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/TheWikipediaLibrary"]
 	path = extensions/TheWikipediaLibrary
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/TheWikipediaLibrary
@@ -621,7 +621,7 @@
 [submodule "extensions/TitleBlacklist"]
 	path = extensions/TitleBlacklist
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/TitleBlacklist
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/TocTree"]
 	path = extensions/TocTree
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/TocTree
@@ -673,7 +673,7 @@
 [submodule "extensions/VisualEditor"]
 	path = extensions/VisualEditor
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/VisualEditor
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/WebAuthn"]
 	path = extensions/WebAuthn
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/WebAuthn
@@ -713,7 +713,7 @@
 [submodule "extensions/WikiEditor"]
 	path = extensions/WikiEditor
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/WikiEditor
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "extensions/wikihiero"]
 	path = extensions/wikihiero
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/wikihiero
@@ -777,7 +777,7 @@
 [submodule "skins/MinervaNeue"]
 	path = skins/MinervaNeue
 	url = https://gerrit.wikimedia.org/r/mediawiki/skins/MinervaNeue
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "skins/Modern"]
 	path = skins/Modern
 	url = https://gerrit.wikimedia.org/r/mediawiki/skins/Modern
@@ -785,7 +785,7 @@
 [submodule "skins/MonoBook"]
 	path = skins/MonoBook
 	url = https://gerrit.wikimedia.org/r/mediawiki/skins/MonoBook
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "skins/Nostalgia"]
 	path = skins/Nostalgia
 	url = https://gerrit.wikimedia.org/r/mediawiki/skins/Nostalgia
@@ -793,11 +793,11 @@
 [submodule "skins/Timeless"]
 	path = skins/Timeless
 	url = https://gerrit.wikimedia.org/r/mediawiki/skins/Timeless
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "skins/Vector"]
 	path = skins/Vector
 	url = https://gerrit.wikimedia.org/r/mediawiki/skins/Vector
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
 [submodule "skins/WikimediaApiPortal"]
 	path = skins/WikimediaApiPortal
 	url = https://gerrit.wikimedia.org/r/mediawiki/skins/WikimediaApiPortal
@@ -805,4 +805,8 @@
 [submodule "vendor"]
 	path = vendor
 	url = https://gerrit.wikimedia.org/r/mediawiki/vendor
-	branch = wmf/1.44.0-wmf.28
+	branch = REL1_44
+[submodule "extensions/ReplaceText"]
+	path = extensions/ReplaceText
+	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/ReplaceText
+	branch = REL1_44
