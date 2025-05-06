@@ -21,7 +21,7 @@
 use Psr\Log\NullLogger;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
-use Wikimedia\Rdbms\DBUnexpectedError;
+use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -118,7 +118,7 @@ class LoadMonitorTest extends MediaWikiUnitTestCase {
 		);
 
 		$weights = [ 0, 100, 100, 100, 100 ];
-		$this->expectException( DBUnexpectedError::class );
+		$this->expectException( DBConnectionError::class );
 		$loadMonitor->scaleLoads( $weights );
 	}
 
