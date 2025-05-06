@@ -153,7 +153,7 @@ For notes on 1.43.x and older releases, see HISTORY.
 ==== Changed external libraries ====
 
 * Updated codex, codex-design-tokens and codex-icons
-  from v1.14.0 to v2.0.0-rc.1.
+  from v1.14.0 to v1.23.0.
 * Updated mck89/peast from 1.16.3 to 1.17.0.
 * Updated moment from v2.25.2 to v2.30.1.
 * Updated OOUI from v0.51.2 to v0.51.7.
