@@ -55,13 +55,15 @@
 // Codex as its base theme, once Codex has a proper theming system that allows for this (T296689).
 
 @font-size-base: 1em;
-@font-size-x-small: 0.75em;
-@font-size-small: 0.875em;
-@font-size-medium: 1em;
-@font-size-large: 1.125em;
-@font-size-x-large: 1.25em;
-@font-size-xx-large: 1.5em;
-@font-size-xxx-large: 1.75em;
+// Please note, that in Codex `font-size` and `line-height` are featuring CSS custom properties
+// since v2.0.0-rc.1 in order to support font modes in skins.
+@font-size-x-small: 0.75rem; // `x` stands for extra. In this case extra small.
+@font-size-small: 0.875rem;
+@font-size-medium: 1rem;
+@font-size-large: 1.125rem;
+@font-size-x-large:  1.25rem;
+@font-size-xx-large:  1.5rem;
+@font-size-xxx-large:  1.75rem;
 @accent-color-base: #0645ad;
 @background-color-base: #fff;
 @background-color-base-fixed: #fff;
@@ -195,7 +197,7 @@
 @min-size-interactive-pointer: 32px;
 @min-size-interactive-touch: 44px;
 @min-size-input-binary: 20px;
-@min-size-toggle-switch-grip: 20px;
+@min-size-toggle-switch-grip: 18px;
 @size-0: 0;
 @size-6: 0.0625em;
 @size-12: 0.125em;
@@ -234,12 +236,16 @@
 @size-icon-small: 1em;
 @size-icon-medium: 1.25em;
 @size-search-figure: 2.5em;
+@size-toggle-switch-grip: calc( @font-size-medium * 1.25 );
 @min-width-medium: 256px;
 @min-width-breakpoint-mobile: 320px;
 @min-width-breakpoint-tablet: 640px;
 @min-width-breakpoint-desktop: 1120px;
 @min-width-breakpoint-desktop-wide: 1680px;
 @min-width-toggle-switch: 48px;
+@min-height-toggle-switch: 28px;
+@width-toggle-switch: calc( @font-size-medium * 3 );
+@height-toggle-switch: calc( @font-size-medium * 2 );
 @max-width-base: none;
 // `max-width-breakpoint-*` values are set to the next min-width breakpoint minus 1px.
 // For cross-browser support and standards alignment Less calculations and not `calc()` is used.
@@ -252,11 +258,13 @@
 @max-width-button: 28em;
 @position-offset-border-width-base: -1px;
 @spacing-0: 0;
+@spacing-6: 1px;
 @spacing-12: 2px;
 @spacing-25: 4px;
 @spacing-30: 5px;
 @spacing-35: 6px;
 @spacing-50: 8px;
+@spacing-65: 10px;
 @spacing-75: 12px;
 @spacing-100: 16px;
 @spacing-125: 20px;
@@ -273,6 +281,8 @@
 @spacing-horizontal-input-text-two-end-icons: calc( @spacing-50 * 2 + @size-icon-small );
 @spacing-start-typeahead-search-figure: 12px;
 @spacing-start-typeahead-search-icon: 22px;
+@spacing-toggle-switch-grip-start: calc( @font-size-medium * 0.375 );
+@spacing-toggle-switch-grip-end: calc( @font-size-medium * 1.25 );
 @spacing-typeahead-search-focus-addition: 24px;
 @border-width-base: 1px;
 @border-width-thick: 2px;
@@ -362,10 +372,13 @@
 @font-weight-normal: 400;
 @font-weight-semi-bold: 600;
 @font-weight-bold: 700;
-@line-height-xxx-small: 1.25;
-@line-height-xx-small: 1.375;
-@line-height-small: 1.6;
-@line-height-medium: 1.6;
+@line-height-x-small: var( --line-height-x-small, 1.25rem ); // `x` stands for extra. In this case extra small.
+@line-height-small: var( --line-height-small, 1.375rem );
+@line-height-medium: var( --line-height-medium, 1.625rem );
+@line-height-large: var( --line-height-large, 1.75rem );
+@line-height-x-large: var( --line-height-x-large, 1.875rem );
+@line-height-xx-large: var( --line-height-xx-large, 2.125rem );
+@line-height-xxx-large: var( --line-height-xxx-large, 2.375rem );
 @text-decoration-none: none;
 @text-decoration-line-through: line-through;
 @text-decoration-underline: underline;
@@ -418,8 +431,10 @@
 @box-shadow-drop-small: 0 1px 1px rgba( 0, 0, 0, 0.2 );
 @box-shadow-drop-medium: 0 2px 2px 0 rgba( 0, 0, 0, 0.2 );
 @box-shadow-drop-xx-large: 0 20px 48px 0 rgba( 0, 0, 0, 0.2 );
+// Since v2.0.0-rc.1
+@line-height-xxx-small: 1.25;
+@line-height-xx-small: 1.375;
 
 // Neutral values for deprecated Codex tokens
 @color-base--subtle: #767676; // @deprecated - do not use!
 @font-family-sans: @font-family-sans--fallback;
-@line-height-x-small: 1.42;
