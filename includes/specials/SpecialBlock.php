@@ -165,6 +165,7 @@ class SpecialBlock extends FormSpecialPage {
 			$this->codexFormData[ 'blockShowSuppressLog' ] = $authority->isAllowed( 'suppressionlog' );
 			$this->codexFormData[ 'blockCanDeleteLogEntry' ] = $authority->isAllowed( 'deletelogentry' );
 			$this->codexFormData[ 'blockCanEditInterface' ] = $authority->isAllowed( 'editinterface' );
+			$this->codexFormData[ 'blockCIDRLimit' ] = $this->getConfig()->get( MainConfigNames::BlockCIDRLimit );
 			$this->getOutput()->addJsConfigVars( $this->codexFormData );
 		}
 	}
@@ -646,7 +647,7 @@ class SpecialBlock extends FormSpecialPage {
 			// Remove top-level errors that are later handled per-field in Codex.
 			if ( $this->useCodex ) {
 				$this->preErrors = array_filter( $this->preErrors, function ( $error ) {
-					if ( $error->getKey() === 'nosuchusershort' ) {
+					if ( $error->getKey() === 'nosuchusershort' || $error->getKey() === 'ip_range_toolarge' ) {
 						// Avoids us having to re-query the API to validate the user.
 						$this->codexFormData[ 'blockTargetExists' ] = false;
 						return false;
