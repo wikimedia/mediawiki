@@ -122,7 +122,7 @@ class LoadMonitor implements ILoadMonitor {
 		}
 
 		if ( $circuitBreakingEnabled ) {
-			throw new DBUnexpectedError(
+			throw new DBConnectionError(
 				null, 'Database servers in ' . $this->lb->getClusterName() . ' are overloaded. ' .
 				'In order to protect application servers, the circuit breaking to databases of this section ' .
 				'have been activated. Please try again a few seconds.'
