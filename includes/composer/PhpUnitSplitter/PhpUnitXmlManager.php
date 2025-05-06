@@ -227,7 +227,7 @@ class PhpUnitXmlManager {
 		}
 		// We want to put the cache file in a tmp directory, but we don't have MainConfigSchema::TmpDirectory available
 		// to us, so use the system temp folder.
-		$cacheFile = sys_get_temp_dir() . DIRECTORY_SEPARATOR . self::RESULTS_CACHE_FILE;
+		$cacheFile = self::resultsCacheFileLocation();
 		$event->getIO()->write( '' );
 		if ( file_exists( $cacheFile ) ) {
 			$event->getIO()->write( 'Using existing PHPUnit results cache ' . self::RESULTS_CACHE_FILE );
@@ -273,6 +273,10 @@ class PhpUnitXmlManager {
 		);
 	}
 
+	private static function resultsCacheFileLocation(): string {
+		return sys_get_temp_dir() . DIRECTORY_SEPARATOR . self::RESULTS_CACHE_FILE;
+	}
+
 	/**
 	 * @throws TestListMissingException
 	 * @throws UnlocatedTestException
@@ -295,7 +299,11 @@ class PhpUnitXmlManager {
 		 * Parser tests (which we have to run in a group on their own - see T345481)
 		 */
 		try {
-			$resultsCacheFile = file_exists( self::RESULTS_CACHE_FILE ) ? self::RESULTS_CACHE_FILE : null;
+			$cacheFileLocation = self::resultsCacheFileLocation();
+			$resultsCacheFile = file_exists( $cacheFileLocation ) ? $cacheFileLocation : null;
+			if ( $io && !$resultsCacheFile ) {
+				$io->warning( 'No results cache file found at ' . $cacheFileLocation );
+			}
 			( new PhpUnitXmlManager(
 				$system->getcwd(),
 				$testListFile,
@@ -323,19 +331,18 @@ class PhpUnitXmlManager {
 				/* Parallel test suite run failed. Run the tests in linear order to work out
 				 * which test actually has an error (see T379764 for some discussion of why this
 				 * is necessary)
+				 *
+				 * For a "custom" run, no test suite is specified.
+				 * This only happens when users manually run the 'split' function from composer on the command
+				 * line and supply their own `tests-list.xml` file and does not happen as part of a CI run, so a
+				 * fallback run of the test suite is not desired / expected.
 				 */
 				$executor->runLinearFallback( $testSuite );
 				if ( $io ) {
 					$io->error( "Test suite splitting failed" );
 				}
-				$system->exit( ComposerLaunchParallel::EXIT_STATUS_PHPUNIT_LIST_TESTS_ERROR );
-			} else {
-				// For a "custom" run, no test suite is specified.
-				// This only happens when users manually run the 'split' function from composer on the command
-				// line and supply their own `tests-list.xml` file and does not happen as part of a CI run, so a
-				// fallback run of the test suite is not desired / expected.
-				$system->exit( ComposerLaunchParallel::EXIT_STATUS_PHPUNIT_LIST_TESTS_ERROR );
 			}
+			$system->exit( ComposerLaunchParallel::EXIT_STATUS_PHPUNIT_LIST_TESTS_ERROR );
 		}
 	}
 
