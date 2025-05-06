@@ -13,8 +13,8 @@ const FilterMenuHeaderWidget = require( './FilterMenuHeaderWidget.js' ),
  * @param {mw.rcfilters.Controller} controller Controller
  * @param {mw.rcfilters.dm.FiltersViewModel} model View model
  * @param {Object} [config] Configuration object
- * @param {boolean} [config.isMobile] a boolean flag determining whether the menu
- * should display a header or not (the header is omitted on mobile).
+ * @param {boolean} [config.isMobile] a boolean flag that determines whether some
+ * elements should be displayed based on whether the UI is mobile or not.
  * @param {jQuery} [config.$overlay] A jQuery object serving as overlay for popups
  * @param {Object[]} [config.footers] An array of objects defining the footers for
  *  this menu, with a definition whether they appear per specific views.
@@ -45,7 +45,7 @@ const MenuSelectWidget = function MwRcfiltersUiMenuSelectWidget( controller, mod
 	// Parent
 	MenuSelectWidget.super.call( this, Object.assign( config, {
 		$autoCloseIgnore: this.$overlay,
-		width: config.isMobile ? undefined : 650,
+		width: 650,
 		// Our filtering is done through the model
 		filterFromInput: false
 	} ) );
@@ -54,21 +54,17 @@ const MenuSelectWidget = function MwRcfiltersUiMenuSelectWidget( controller, mod
 			.addClass( 'mw-rcfilters-ui-menuSelectWidget-group' )
 	);
 
-	let header;
-	if ( !config.isMobile ) {
-		// When hiding the header (i.e. mobile mode) avoid problems
-		// with clippable and the menu's fixed width.
-		this.setClippableElement( this.$body );
-		this.setClippableContainer( this.$element );
+	this.setClippableElement( this.$body );
+	this.setClippableContainer( this.$element );
 
-		header = new FilterMenuHeaderWidget(
-			this.controller,
-			this.model,
-			{
-				$overlay: this.$overlay
-			}
-		);
-	}
+	const header = new FilterMenuHeaderWidget(
+		this.controller,
+		this.model,
+		{
+			$overlay: this.$overlay,
+			isMobile: config.isMobile
+		}
+	);
 
 	this.noResults = new OO.ui.LabelWidget( {
 		label: mw.msg( 'rcfilters-filterlist-noresults' ),
@@ -85,7 +81,7 @@ const MenuSelectWidget = function MwRcfiltersUiMenuSelectWidget( controller, mod
 	this.$element
 		.addClass( 'mw-rcfilters-ui-menuSelectWidget' )
 		.attr( 'aria-label', mw.msg( 'rcfilters-filterlist-title' ) )
-		.append( config.isMobile ? undefined : header.$element )
+		.append( header.$element )
 		.append(
 			this.$body
 				.append( this.$group, this.noResults.$element )

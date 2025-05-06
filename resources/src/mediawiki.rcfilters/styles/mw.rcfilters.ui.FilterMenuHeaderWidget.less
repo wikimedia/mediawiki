@@ -54,3 +54,19 @@
 		align-self: center;
 	}
 }
+
+@media screen and ( max-width: @max-width-breakpoint-mobile ) {
+	.mw-rcfilters-ui-filterMenuHeaderWidget {
+		& > .mw-rcfilters-ui-table > .mw-rcfilters-ui-row {
+			flex-wrap: wrap;
+		}
+
+		.mw-rcfilters-ui-cell {
+			align-self: center;
+		}
+
+		.mw-rcfilters-ui-cell.mw-rcfilters-ui-filterMenuHeaderWidget-header-invert {
+			margin: 0 0.25em 0 0;
+		}
+	}
+}
