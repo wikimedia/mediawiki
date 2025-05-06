@@ -24,10 +24,6 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		$this->changeTags = $this->getServiceContainer()->getChangeTagsStore();
 	}
 
-	protected function tearDown(): void {
-		parent::tearDown();
-	}
-
 	private function emptyChangeTagsTables() {
 		$dbw = $this->getDb();
 		$dbw->newDeleteQueryBuilder()

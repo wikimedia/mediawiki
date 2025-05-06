@@ -34,10 +34,6 @@ class ChangeTagsConstraintTest extends MediaWikiIntegrationTestCase {
 	use EditConstraintTestTrait;
 	use MockAuthorityTrait;
 
-	protected function setUp(): void {
-		parent::setUp();
-	}
-
 	public function testPass() {
 		$tagName = 'tag-for-constraint-test-pass';
 		$this->getServiceContainer()->getChangeTagsStore()->defineTag( $tagName );
