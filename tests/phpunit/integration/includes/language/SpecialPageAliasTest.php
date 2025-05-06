@@ -1,8 +1,6 @@
 <?php
 
 use MediaWiki\Languages\LanguageNameUtils;
-use MediaWiki\MediaWikiServices;
-use MediaWiki\Title\Title;
 use UtfNormal\Validator;
 
 /**
@@ -17,31 +15,12 @@ use UtfNormal\Validator;
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
 class SpecialPageAliasTest extends MediaWikiIntegrationTestCase {
-	/** @var ?array Cache language names */
-	private static $langNames = null;
-
-	/**
-	 * @throws Exception
-	 */
-	public static function setUpBeforeClass(): void {
-		if ( !self::$langNames ) {
-			$langNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
-			self::$langNames = $langNameUtils->getLanguageNames(
-				LanguageNameUtils::AUTONYMS,
-				LanguageNameUtils::SUPPORTED
-			);
-		}
-	}
-
-	public static function tearDownAfterClass(): void {
-		self::$langNames = null;
-	}
-
 	/**
 	 * @coversNothing
 	 */
 	public function testValidSpecialPageAliases() {
-		foreach ( $this->validSpecialPageAliasesProvider() as [ $languageCode, $specialPageAliases ] ) {
+		$titleParser = $this->getServiceContainer()->getTitleParser();
+		foreach ( $this->getValidSpecialPageAliases() as [ $languageCode, $specialPageAliases ] ) {
 			foreach ( $specialPageAliases as $specialPage => $aliases ) {
 				foreach ( $aliases as $alias ) {
 					$msg = "\$specialPageAliases[$languageCode][$specialPage] → '$alias' ";
@@ -50,7 +29,7 @@ class SpecialPageAliasTest extends MediaWikiIntegrationTestCase {
 						'must not contain slashes'
 					);
 
-					$this->assertNotNull( Title::makeTitleSafe( NS_SPECIAL, $alias ), $msg .
+					$this->assertNotNull( $titleParser->makeTitleValueSafe( NS_SPECIAL, $alias ), $msg .
 						'is not a valid title'
 					);
 
@@ -70,12 +49,13 @@ class SpecialPageAliasTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	/**
-	 * @return Generator
-	 */
-	public function validSpecialPageAliasesProvider() {
-		$languageNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
-		foreach ( self::$langNames as $code => $_ ) {
+	public function getValidSpecialPageAliases(): iterable {
+		$languageNameUtils = $this->getServiceContainer()->getLanguageNameUtils();
+		$langNames = $languageNameUtils->getLanguageNames(
+			LanguageNameUtils::AUTONYMS,
+			LanguageNameUtils::SUPPORTED
+		);
+		foreach ( $langNames as $code => $_ ) {
 			$specialPageAliases = $this->getSpecialPageAliases( $languageNameUtils, $code );
 			if ( $specialPageAliases ) {
 				yield [ $code, $specialPageAliases ];
