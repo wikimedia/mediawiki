@@ -843,7 +843,8 @@ class SkinTemplate extends Skin {
 		}
 
 		$result = [
-			'class' => $classes,
+			// Use a string instead of a class list for hook compatibility (T393504)
+			'class' => implode( ' ', $classes ),
 			'text' => $text,
 			'href' => $title->getLocalURL( $query ),
 			'exists' => $exists,
