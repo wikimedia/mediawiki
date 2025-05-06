@@ -387,8 +387,6 @@ class DataAccess extends IDataAccess {
 	) {
 		$parser = $this->prepareParser( $pageConfig, Parser::OT_PREPROCESS );
 		if ( $wikitext instanceof PFragment ) {
-			// Note that Parsoid will not pass a PFragment to this method
-			// unless $wgParsoidFragmentInput is true.
 			$result = [];
 			$index = 1;
 			$split = $wikitext instanceof WikitextPFragment ?
