@@ -162,14 +162,16 @@ class PhpUnitXmlManager {
 		$testFiles = $this->scanForTestFiles();
 		$testClasses = $this->loadTestClasses();
 		$seenFiles = [];
+		$validClasses = [];
 		foreach ( $testClasses as $testDescriptor ) {
 			$file = $this->resolveFileForTest( $testDescriptor, $testFiles );
 			if ( is_string( $file ) && !array_key_exists( $file, $seenFiles ) ) {
 				$testDescriptor->setFilename( $file );
+				$validClasses[] = $testDescriptor;
 				$seenFiles[$file] = 1;
 			}
 		}
-		$suites = $this->buildSuites( $testClasses, $groups - 1 );
+		$suites = $this->buildSuites( $validClasses, $groups - 1 );
 		$unitFile->addSplitGroups( $suites );
 		$unitFile->addSpecialCaseTests( $groups );
 		$unitFile->saveToDisk( $this->getPhpUnitXmlTarget() );
