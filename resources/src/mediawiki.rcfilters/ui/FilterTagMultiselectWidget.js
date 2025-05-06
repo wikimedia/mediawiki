@@ -156,7 +156,7 @@ const FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWid
 	} );
 
 	if ( !this.isMobile ) {
-		this.input.connect( this, { change: 'onInputChange' } );
+		this.input.connect( this, { change: 'onInputChange', onBlur: this.onInputBlur } );
 	}
 
 	// The filter list and button should appear side by side regardless of how
@@ -348,6 +348,14 @@ FilterTagMultiselectWidget.prototype.onModelSearchChange = function ( value ) {
  */
 FilterTagMultiselectWidget.prototype.onInputChange = function ( value ) {
 	this.controller.setSearch( value );
+};
+
+/**
+ * Respond to input blur event
+ *
+ */
+FilterTagMultiselectWidget.prototype.onInputBlur = function () {
+	// T389976 noop (override default OOUI MenuTagMultiselectWidget behavior onBlur so that we can click help icons)
 };
 
 /**
