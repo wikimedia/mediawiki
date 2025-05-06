@@ -1,0 +1,146 @@
+= MediaWiki 1.45 =
+
+== MediaWiki 1.45.0-PRERELEASE ==
+
+THIS IS NOT A RELEASE YET
+
+MediaWiki 1.45 is an alpha-quality development branch, and is not recommended
+for use in production.
+
+== Upgrading notes for 1.45 ==
+Don't forget to always back up your database before upgrading!
+
+See the file UPGRADE for more detailed per-version upgrade instructions from the
+oldest supported upgrading version, MediaWiki 1.35.
+
+Some specific notes for MediaWiki 1.45 upgrades are below:
+
+* …
+
+For notes on 1.44.x and older releases, see HISTORY.
+
+=== Configuration changes for system administrators in 1.45 ===
+
+* …
+
+==== New configuration ====
+
+* …
+
+==== Changed configuration ====
+
+* …
+
+==== Removed configuration ====
+
+* …
+
+=== New user-facing features in 1.45 ===
+
+* …
+
+=== New features for sysadmins in 1.45 ===
+
+* …
+
+=== New developer features in 1.45 ===
+
+* …
+
+=== External library changes in 1.45 ===
+
+==== New external libraries ====
+
+* …
+
+===== New development-only external libraries =====
+
+* …
+
+==== Changed external libraries ====
+
+* …
+
+===== Changed development-only external libraries =====
+
+* …
+
+==== Removed external libraries ====
+
+* …
+
+=== Bug fixes in 1.45 ===
+
+* …
+
+=== Action API changes in 1.45 ===
+
+* …
+
+=== Action API internal changes in 1.45 ===
+
+* …
+
+=== Languages updated in 1.45 ===
+MediaWiki supports over 350 languages. Many localisations are updated regularly.
+Below only new and removed languages are listed, as well as changes to languages
+because of Phabricator reports.
+
+* …
+
+=== Breaking changes in 1.45 ===
+
+* …
+
+=== Deprecations in 1.45 ===
+
+* …
+
+=== Other changes in 1.45 ===
+
+* …
+
+== Compatibility ==
+
+MediaWiki 1.45 requires PHP 8.1.0 or later and the following PHP extensions:
+
+* ctype
+* dom
+* fileinfo
+* iconv
+* intl
+* json
+* mbstring
+* xml
+
+MariaDB is the recommended database software. MySQL, PostgreSQL, or SQLite can
+be used instead, but support for them is somewhat less mature.
+
+The supported versions are:
+
+* MariaDB 10.3 or higher
+* MySQL 5.7.0 or higher
+* PostgreSQL 10 or later
+* SQLite 3.8.0 or later
+
+== Online documentation ==
+Documentation for both end-users and site administrators is available on
+MediaWiki.org, and is covered under the GNU Free Documentation License (except
+for pages that explicitly state that their contents are in the public domain):
+
+  <https://www.mediawiki.org/wiki/Special:MyLanguage/Documentation>
+
+== Mailing list ==
+A mailing list is available for MediaWiki user support and discussion:
+
+  <https://lists.wikimedia.org/postorius/lists/mediawiki-l.lists.wikimedia.org/>
+
+A low-traffic announcements-only list is also available:
+
+  <https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/>
+
+It's highly recommended that you sign up for one of these lists if you're
+going to run a public MediaWiki, so you can be notified of security fixes.
+
+== IRC help ==
+There's usually someone online in #mediawiki on irc.libera.chat.
