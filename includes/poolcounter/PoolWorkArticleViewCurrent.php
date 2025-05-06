@@ -32,9 +32,7 @@ use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Status\Status;
-use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Rdbms\ChronologyProtector;
-use Wikimedia\Rdbms\ILBFactory;
 
 /**
  * PoolWorkArticleView for the current revision of a page, using ParserCache.
@@ -48,8 +46,6 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 	private $page;
 	/** @var ParserCache */
 	private $parserCache;
-	/** @var ILBFactory */
-	private $lbFactory;
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
 	/** @var bool Whether it should trigger an opportunistic LinksUpdate or not */
@@ -63,7 +59,6 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 	 * @param ParserOptions $parserOptions ParserOptions to use for the parse
 	 * @param RevisionRenderer $revisionRenderer
 	 * @param ParserCache $parserCache
-	 * @param ILBFactory $lbFactory
 	 * @param ChronologyProtector $chronologyProtector
 	 * @param LoggerSpi $loggerSpi
 	 * @param WikiPageFactory $wikiPageFactory
@@ -77,7 +72,6 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 		ParserOptions $parserOptions,
 		RevisionRenderer $revisionRenderer,
 		ParserCache $parserCache,
-		ILBFactory $lbFactory,
 		ChronologyProtector $chronologyProtector,
 		LoggerSpi $loggerSpi,
 		WikiPageFactory $wikiPageFactory,
@@ -101,7 +95,6 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 		$this->workKey = $poolCounter->getKey();
 		$this->page = $page;
 		$this->parserCache = $parserCache;
-		$this->lbFactory = $lbFactory;
 		$this->chronologyProtector = $chronologyProtector;
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->cacheable = $cacheable;
@@ -174,25 +167,21 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 		}
 
 		if ( $fast ) {
-			/* Check if the stale response is from before the last write to the
-			 * DB by this user. Declining to return a stale response in this
-			 * case ensures that the user will see their own edit after page
-			 * save.
-			 *
-			 * Note that the CP touch time is the timestamp of the shutdown of
-			 * the save request, so there is a bias towards avoiding fast stale
-			 * responses of potentially several seconds.
-			 */
-			$lastWriteTime = $this->chronologyProtector->getTouched( $this->lbFactory->getMainLB() );
-			$cacheTime = MWTimestamp::convert( TS_UNIX, $parserOutput->getCacheTime() );
-			if ( $lastWriteTime && $cacheTime <= $lastWriteTime ) {
+			// If this user recently made DB changes, then don't eagerly serve stale output,
+			// so that users generally see their own edits after page save.
+			//
+			// If PoolCounter is overloaded, we may end up here a second time (with fast=false),
+			// in which case we will serve a stale fallback then.
+			//
+			// Note that CP reports anything in the last 10 seconds from the same client,
+			// including to other pages and other databases, so we bias towards avoiding
+			// fast-stale responses for several seconds after saving an edit.
+			if ( $this->chronologyProtector->getTouched() ) {
 				$logger->info(
-					'declining to send dirty output since cache time ' .
-					'{cacheTime} is before last write time {lastWriteTime}',
+					'declining fast-fallback to stale output since ChronologyProtector ' .
+					'reports the client recently made changes',
 					[
 						'workKey' => $this->workKey,
-						'cacheTime' => $cacheTime,
-						'lastWriteTime' => $lastWriteTime,
 					]
 				);
 				// Forget this ParserOutput -- we will request it again if

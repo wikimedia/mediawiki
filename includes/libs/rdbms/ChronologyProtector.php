@@ -20,7 +20,6 @@
 namespace Wikimedia\Rdbms;
 
 use LogicException;
-use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\ObjectCache\BagOStuff;
@@ -131,7 +130,7 @@ use Wikimedia\ObjectCache\EmptyBagOStuff;
  * @ingroup Database
  * @internal
  */
-class ChronologyProtector implements LoggerAwareInterface {
+class ChronologyProtector {
 	/** @var array Web request information about the client */
 	private $requestInfo;
 	/** @var string Secret string for HMAC hashing */
@@ -153,20 +152,11 @@ class ChronologyProtector implements LoggerAwareInterface {
 
 	/** @var bool Whether reading/writing session consistency replication positions is enabled */
 	protected $enabled = true;
-	/** @var float|null UNIX timestamp when the client data was loaded */
-	protected $startupTimestamp;
 
-	/** @var array<string,DBPrimaryPos> Map of (primary server name => position) */
-	protected $startupPositionsByPrimary = [];
-	/** @var array<string,DBPrimaryPos> Map of (primary server name => position) */
+	/** @var array<string,DBPrimaryPos|null> Map of (primary server name => position) */
+	protected $startupPositionsByPrimary = null;
+	/** @var array<string,DBPrimaryPos|null> Map of (primary server name => position) */
 	protected $shutdownPositionsByPrimary = [];
-	/** @var array<string,float> Map of (DB cluster name => UNIX timestamp) */
-	protected $startupTimestampsByCluster = [];
-	/** @var array<string,float> Map of (DB cluster name => UNIX timestamp) */
-	protected $shutdownTimestampsByCluster = [];
-
-	/** @var float|null */
-	private $wallClockOverride;
 
 	/**
 	 * Whether a clientId is new during this request.
@@ -192,7 +182,6 @@ class ChronologyProtector implements LoggerAwareInterface {
 	private const LOCK_TTL = 6;
 
 	private const FLD_POSITIONS = 'positions';
-	private const FLD_TIMESTAMPS = 'timestamps';
 	private const FLD_WRITE_INDEX = 'writeIndex';
 
 	/**
@@ -258,11 +247,6 @@ class ChronologyProtector implements LoggerAwareInterface {
 		}
 
 		$this->requestInfo = $info + $this->requestInfo;
-	}
-
-	public function setLogger( LoggerInterface $logger ) {
-		$this->load();
-		$this->logger = $logger;
 	}
 
 	/**
@@ -334,19 +318,30 @@ class ChronologyProtector implements LoggerAwareInterface {
 		$cluster = $lb->getClusterName();
 		$masterName = $lb->getServerName( ServerInfo::WRITER_INDEX );
 
+		// If LoadBalancer::hasStreamingReplicaServers is false (single DB host),
+		// or if the database type has no replication (i.e. SQLite), then we do not need to
+		// save any position data, as it would never be loaded or waited for. When we save this
+		// data, it is for DB_REPLICA queries in future requests, which load it via
+		// ChronologyProtector::getSessionPrimaryPos (from LoadBalancer::getReaderIndex)
+		// and wait for that position. In a single-server setup, all queries go the primary DB.
+		//
+		// In that case we still store a null value, so that ChronologyProtector::getTouched
+		// reliably detects recent writes for non-database purposes,
+		// such as ParserOutputAccess/PoolWorkArticleViewCurrent. This also makes getTouched()
+		// easier to setup and test, as we it work work always once CP is enabled
+		// (e.g. wgMicroStashType or wgMainCacheType set to a non-DB cache).
 		if ( $lb->hasStreamingReplicaServers() ) {
 			$pos = $lb->getPrimaryPos();
 			if ( $pos ) {
 				$this->logger->debug( __METHOD__ . ": $cluster ($masterName) position now '$pos'" );
 				$this->shutdownPositionsByPrimary[$masterName] = $pos;
-				$this->shutdownTimestampsByCluster[$cluster] = $pos->asOfTime();
 			} else {
 				$this->logger->debug( __METHOD__ . ": $cluster ($masterName) position unknown" );
-				$this->shutdownTimestampsByCluster[$cluster] = $this->getCurrentTime();
+				$this->shutdownPositionsByPrimary[$masterName] = null;
 			}
 		} else {
 			$this->logger->debug( __METHOD__ . ": $cluster ($masterName) has no replication" );
-			$this->shutdownTimestampsByCluster[$cluster] = $this->getCurrentTime();
+			$this->shutdownPositionsByPrimary[$masterName] = null;
 		}
 	}
 
@@ -364,7 +359,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 			return [];
 		}
 
-		if ( !$this->shutdownTimestampsByCluster ) {
+		if ( !$this->shutdownPositionsByPrimary ) {
 			$this->logger->debug( __METHOD__ . ": no primary positions data to save" );
 
 			return [];
@@ -375,7 +370,6 @@ class ChronologyProtector implements LoggerAwareInterface {
 			$positions = $this->mergePositions(
 				$this->unmarshalPositions( $this->store->get( $this->key ) ),
 				$this->shutdownPositionsByPrimary,
-				$this->shutdownTimestampsByCluster,
 				$clientPosIndex
 			);
 
@@ -389,14 +383,14 @@ class ChronologyProtector implements LoggerAwareInterface {
 			$ok = false;
 		}
 
-		$clusterList = implode( ', ', array_keys( $this->shutdownTimestampsByCluster ) );
+		$primaryList = implode( ', ', array_keys( $this->shutdownPositionsByPrimary ) );
 
 		if ( $ok ) {
-			$this->logger->debug( "ChronologyProtector saved position data for $clusterList" );
+			$this->logger->debug( "ChronologyProtector saved position data for $primaryList" );
 			$bouncedPositions = [];
 		} else {
 			// Maybe position store is down
-			$this->logger->warning( "ChronologyProtector failed to save position data for $clusterList" );
+			$this->logger->warning( "ChronologyProtector failed to save position data for $primaryList" );
 			$clientPosIndex = null;
 			$bouncedPositions = $this->shutdownPositionsByPrimary;
 		}
@@ -405,39 +399,33 @@ class ChronologyProtector implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Get the UNIX timestamp when the client last touched the DB, if they did so recently
+	 * Whether the request came from a client that recently made database changes (last 10 seconds).
 	 *
-	 * @internal This method should only be called from LBFactory.
+	 * When a user saves an edit or makes other changes to the database, the response to that
+	 * request contains a short-lived ChronologyProtector cookie (or cpPosIndex query parameter).
 	 *
-	 * @param ILoadBalancer $lb
-	 * @return float|false UNIX timestamp; false if not recent or on record
-	 * @since 1.35
+	 * If we find such cookie on the current request,
+	 * and we find any corresponding database positions in the MicroStash,
+	 * and they are not expired,
+	 * then we return true.
+	 *
+	 * @since 1.28 Changed parameter in 1.35. Removed parameter in 1.44.
+	 * @return bool
 	 */
-	public function getTouched( ILoadBalancer $lb ) {
+	public function getTouched() {
 		$this->load();
+
 		if ( !$this->enabled ) {
 			return false;
 		}
 
-		$cluster = $lb->getClusterName();
-
-		$timestampsByCluster = $this->getStartupSessionTimestamps();
-		$timestamp = $timestampsByCluster[$cluster] ?? null;
-		if ( $timestamp === null ) {
-			$recentTouchTimestamp = false;
-		} elseif ( ( $this->startupTimestamp - $timestamp ) > self::POSITION_COOKIE_TTL ) {
-			// If the position store is not replicated among datacenters and the cookie that
-			// sticks the client to the primary datacenter expires, then the touch timestamp
-			// will be found for requests in one datacenter but not others. For consistency,
-			// return false once the user is no longer routed to the primary datacenter.
-			$recentTouchTimestamp = false;
-			$this->logger->debug( __METHOD__ . ": old timestamp ($timestamp) for $cluster" );
-		} else {
-			$recentTouchTimestamp = $timestamp;
-			$this->logger->debug( __METHOD__ . ": recent timestamp ($timestamp) for $cluster" );
+		if ( $this->getStartupSessionPositions() ) {
+			$this->logger->debug( __METHOD__ . ": found recent writes" );
+			return true;
 		}
 
-		return $recentTouchTimestamp;
+		$this->logger->debug( __METHOD__ . ": found no recent writes" );
+		return false;
 	}
 
 	/**
@@ -450,31 +438,19 @@ class ChronologyProtector implements LoggerAwareInterface {
 	}
 
 	/**
-	 * @return array<string,float>
-	 */
-	protected function getStartupSessionTimestamps() {
-		$this->lazyStartup();
-
-		return $this->startupTimestampsByCluster;
-	}
-
-	/**
 	 * Load the stored replication positions and touch timestamps for the client
 	 *
 	 * @return void
 	 */
 	protected function lazyStartup() {
-		if ( $this->startupTimestamp !== null ) {
+		if ( $this->startupPositionsByPrimary !== null ) {
 			return;
 		}
-
-		$this->startupTimestamp = $this->getCurrentTime();
 
 		// There wasn't a client id in the cookie so we built one
 		// There is no point in looking it up.
 		if ( $this->hasNewClientId ) {
 			$this->startupPositionsByPrimary = [];
-			$this->startupTimestampsByCluster = [];
 			return;
 		}
 
@@ -484,7 +460,6 @@ class ChronologyProtector implements LoggerAwareInterface {
 		$data = $this->unmarshalPositions( $this->store->get( $this->key ) );
 
 		$this->startupPositionsByPrimary = $data ? $data[self::FLD_POSITIONS] : [];
-		$this->startupTimestampsByCluster = $data[self::FLD_TIMESTAMPS] ?? [];
 
 		// When a stored array expires and is re-created under the same (deterministic) key,
 		// the array value naturally starts again from index zero. As such, it is possible
@@ -521,14 +496,12 @@ class ChronologyProtector implements LoggerAwareInterface {
 	 *
 	 * @param array<string,mixed>|false $storedValue Current replication position data
 	 * @param array<string,DBPrimaryPos> $shutdownPositions New replication positions
-	 * @param array<string,float> $shutdownTimestamps New DB post-commit shutdown timestamps
 	 * @param int|null &$clientPosIndex New position write index
 	 * @return array<string,mixed> Combined replication position data
 	 */
 	protected function mergePositions(
 		$storedValue,
 		array $shutdownPositions,
-		array $shutdownTimestamps,
 		?int &$clientPosIndex = null
 	) {
 		/** @var array<string,DBPrimaryPos> $mergedPositions */
@@ -544,56 +517,19 @@ class ChronologyProtector implements LoggerAwareInterface {
 			}
 		}
 
-		/** @var array<string,float> $mergedTimestamps */
-		$mergedTimestamps = $storedValue[self::FLD_TIMESTAMPS] ?? [];
-		// Use the newest touch timestamp for each DB primary
-		foreach ( $shutdownTimestamps as $cluster => $timestamp ) {
-			if (
-				!isset( $mergedTimestamps[$cluster] ) ||
-				$timestamp > $mergedTimestamps[$cluster]
-			) {
-				$mergedTimestamps[$cluster] = $timestamp;
-			}
-		}
-
 		$clientPosIndex = ( $storedValue[self::FLD_WRITE_INDEX] ?? 0 ) + 1;
 
 		return [
 			self::FLD_POSITIONS => $mergedPositions,
-			self::FLD_TIMESTAMPS => $mergedTimestamps,
 			self::FLD_WRITE_INDEX => $clientPosIndex
 		];
 	}
 
-	/**
-	 * @internal For testing only
-	 * @return float UNIX timestamp
-	 * @codeCoverageIgnore
-	 */
-	protected function getCurrentTime() {
-		if ( $this->wallClockOverride ) {
-			return $this->wallClockOverride;
-		}
-
-		$clockTime = (float)time(); // call this first
-		// microtime() can severely drift from time() and the microtime() value of other threads.
-		// Instead of seeing the current time as being in the past, use the value of time().
-		return max( microtime( true ), $clockTime );
-	}
-
-	/**
-	 * @internal For testing only
-	 * @param float|null &$time Mock UNIX timestamp
-	 * @codeCoverageIgnore
-	 */
-	public function setMockTime( &$time ) {
-		$this->load();
-		$this->wallClockOverride =& $time;
-	}
-
 	private function marshalPositions( array $positions ): array {
 		foreach ( $positions[ self::FLD_POSITIONS ] as $key => $pos ) {
-			$positions[ self::FLD_POSITIONS ][ $key ] = $pos->toArray();
+			if ( $pos ) {
+				$positions[ self::FLD_POSITIONS ][ $key ] = $pos->toArray();
+			}
 		}
 
 		return $positions;
@@ -609,8 +545,10 @@ class ChronologyProtector implements LoggerAwareInterface {
 		}
 
 		foreach ( $positions[ self::FLD_POSITIONS ] as $key => $pos ) {
-			$class = $pos[ '_type_' ];
-			$positions[ self::FLD_POSITIONS ][ $key ] = $class::newFromArray( $pos );
+			if ( $pos ) {
+				$class = $pos[ '_type_' ];
+				$positions[ self::FLD_POSITIONS ][ $key ] = $class::newFromArray( $pos );
+			}
 		}
 
 		return $positions;

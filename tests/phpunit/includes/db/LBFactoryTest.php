@@ -28,7 +28,6 @@ use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDatabaseForOwner;
-use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\LBFactoryMulti;
@@ -750,33 +749,6 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		} else {
 			return $db->addIdentifierQuotes( $table );
 		}
-	}
-
-	public function testGetChronologyProtectorTouched() {
-		$store = new HashBagOStuff;
-		$chronologyProtector = new ChronologyProtector( $store, '', false );
-		$chronologyProtector->setRequestInfo( [ 'ChronologyClientId' => 'ii' ] );
-
-		// 2019-02-05T05:03:20Z
-		$mockWallClock = 1549343000.0;
-		$priorTime = $mockWallClock; // reference time
-		$chronologyProtector->setMockTime( $mockWallClock );
-
-		$cpWrap = TestingAccessWrapper::newFromObject( $chronologyProtector );
-		$cpWrap->store->set(
-			$cpWrap->key,
-			$cpWrap->mergePositions(
-				false,
-				[],
-				[ ILBFactory::CLUSTER_MAIN_DEFAULT => $priorTime ]
-			),
-			3600
-		);
-
-		$lbFactory = $this->newLBFactoryMulti( [ 'chronologyProtector' => $chronologyProtector ] );
-		$mockWallClock += 1.0;
-		$touched = $chronologyProtector->getTouched( $lbFactory->getMainLB() );
-		$this->assertEquals( $priorTime, $touched );
 	}
 
 	public function testReconfigureWithOneReplica() {
