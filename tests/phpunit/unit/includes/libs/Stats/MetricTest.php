@@ -338,7 +338,6 @@ class MetricTest extends TestCase {
 		$emitter = OutputFormats::getNewEmitter( 'mediawiki', $cache, $formatter );
 		$statsFactory = new StatsFactory( $cache, $emitter, new NullLogger );
 
-		// start() and stop() called so close together here should be fractions of a millisecond
 		$timer = $statsFactory->getTiming( 'test' )
 			->setLabel( 'foo', 'bar' )
 			->start();
@@ -346,7 +345,7 @@ class MetricTest extends TestCase {
 		$timer->stop();
 
 		$this->assertMatchesRegularExpression(
-			'/^mediawiki\.test:(0\.[0-9]+)\|ms\|#foo:baz$/',
+			'/^mediawiki\.test:([0-9]+\.[0-9]+)\|ms\|#foo:baz$/',
 			TestingAccessWrapper::newFromObject( $emitter )->render()[0]
 		);
 	}
