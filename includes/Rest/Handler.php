@@ -668,7 +668,7 @@ abstract class Handler {
 
 		// TODO: Allow additional information about parameters and responses to
 		//       be provided in the route definition.
-		$oas = $this->getConfig()['OAS'] ?? [];
+		$oas = $this->getConfig()['openApiSpec'] ?? [];
 		$spec += $oas;
 
 		return $spec;

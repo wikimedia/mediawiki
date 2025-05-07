@@ -210,7 +210,7 @@ class SpecBasedModule extends MatcherBasedModule {
 		$info = [
 			'spec' => array_intersect_key( $handlerSpec, array_flip( $objectSpecKeys ) ),
 			'config' => array_diff_key( $handlerSpec, array_flip( $objectSpecKeys ) ),
-			'OAS' => array_intersect_key( $opSpec, array_flip( $oasKeys ) ),
+			'openApiSpec' => array_intersect_key( $opSpec, array_flip( $oasKeys ) ),
 			'path' => $path,
 		];
 

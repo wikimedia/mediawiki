@@ -1704,7 +1704,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			'$responseBodySchema' => null,
 			'$routeConfig' => [
 				'path' => 'test/{p}',
-				'OAS' => [
+				'openApiSpec' => [
 					'title' => 'just a test',
 					'parameters' => 'will be ignored',
 				]
