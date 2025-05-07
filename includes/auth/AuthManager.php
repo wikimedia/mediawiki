@@ -39,6 +39,8 @@ use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Notification\NotificationService;
+use MediaWiki\Notification\RecipientSet;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
@@ -55,6 +57,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserRigorOptions;
+use MediaWiki\User\WelcomeNotification;
 use MediaWiki\Watchlist\WatchlistManager;
 use Profiler;
 use Psr\Log\LoggerAwareInterface;
@@ -232,6 +235,7 @@ class AuthManager implements LoggerAwareInterface {
 	private UserFactory $userFactory;
 	private UserIdentityLookup $userIdentityLookup;
 	private UserOptionsManager $userOptionsManager;
+	private NotificationService $notificationService;
 
 	public function __construct(
 		WebRequest $request,
@@ -248,7 +252,8 @@ class AuthManager implements LoggerAwareInterface {
 		BotPasswordStore $botPasswordStore,
 		UserFactory $userFactory,
 		UserIdentityLookup $userIdentityLookup,
-		UserOptionsManager $userOptionsManager
+		UserOptionsManager $userOptionsManager,
+		NotificationService $notificationService
 	) {
 		$this->request = $request;
 		$this->config = $config;
@@ -267,6 +272,7 @@ class AuthManager implements LoggerAwareInterface {
 		$this->userFactory = $userFactory;
 		$this->userIdentityLookup = $userIdentityLookup;
 		$this->userOptionsManager = $userOptionsManager;
+		$this->notificationService = $notificationService;
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
@@ -1715,6 +1721,10 @@ class AuthManager implements LoggerAwareInterface {
 				}
 				$this->setDefaultUserOptions( $user, $creator->isAnon() );
 				$this->getHookRunner()->onLocalUserCreated( $user, false );
+				$this->notificationService->notify(
+					new WelcomeNotification( $user ),
+					new RecipientSet( [ $user ] )
+				);
 				$user->saveSettings();
 				$state['userid'] = $user->getId();
 

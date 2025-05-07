@@ -81,7 +81,8 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegratio
 				$mwServices->getBotPasswordStore(),
 				$mwServices->getUserFactory(),
 				$mwServices->getUserIdentityLookup(),
-				$mwServices->getUserOptionsManager()
+				$mwServices->getUserOptionsManager(),
+				$mwServices->getNotificationService()
 			);
 		}
 		$this->validity = Status::newGood();

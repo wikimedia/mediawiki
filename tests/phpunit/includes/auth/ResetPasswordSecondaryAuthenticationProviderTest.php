@@ -124,7 +124,8 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends MediaWikiIntegrat
 			$this->createMock( BotPasswordStore::class ),
 			$mwServices->getUserFactory(),
 			$mwServices->getUserIdentityLookup(),
-			$mwServices->getUserOptionsManager()
+			$mwServices->getUserOptionsManager(),
+			$mwServices->getNotificationService()
 		);
 		$this->initProvider( $provider, null, null, $manager );
 		$provider = TestingAccessWrapper::newFromObject( $provider );
