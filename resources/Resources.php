@@ -2026,7 +2026,6 @@ return [
 			'mediawiki.api',
 			'mediawiki.jqueryMsg',
 			'mediawiki.language',
-			'mediawiki.Uri',
 			'mediawiki.user',
 			'mediawiki.util',
 			'mediawiki.widgets',
