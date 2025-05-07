@@ -550,6 +550,33 @@
 		"pk": [ "tl_from", "tl_target_id" ]
 	},
 	{
+		"name": "existencelinks",
+		"comment": "Track dependencies on the existence of a target page, like #ifexist",
+		"columns": [
+			{
+				"name": "exl_from",
+				"comment": "page_id of the referring page",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "exl_target_id",
+				"type": "bigint",
+				"comment": "Foreign key to linktarget.lt_id",
+				"options": { "notnull": true, "unsigned": true }
+			}
+		],
+		"indexes": [
+			{
+				"name": "exl_target_id",
+				"columns": [ "exl_target_id", "exl_from" ],
+				"comment": "Reverse index, for triggering cache updates",
+				"unique": false
+			}
+		],
+		"pk": [ "exl_from", "exl_target_id" ]
+	},
+	{
 		"name": "imagelinks",
 		"comment": "Track links to images *used inline* We don't distinguish live from broken links here, so they do not need to be changed on upload/removal.",
 		"columns": [

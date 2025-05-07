@@ -180,6 +180,9 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addField', 'categorylinks', 'cl_target_id', 'patch-categorylinks-target_id.sql' ],
 			[ 'addTable', 'collation', 'patch-collation.sql' ],
 			[ 'dropTable', 'module_deps' ],
+
+			// 1.45
+			[ 'addTable', 'existencelinks', 'patch-existencelinks.sql' ],
 		];
 	}
 
