@@ -1276,6 +1276,19 @@ class AuthManager implements LoggerAwareInterface {
 	 */
 	public function beginAccountCreation( Authority $creator, array $reqs, $returnToUrl ) {
 		$session = $this->request->getSession();
+		if ( $creator->isTemp() ) {
+			// For a temp account creating a permanent account, we do not want the temporary
+			// account to be associated with the created permanent account. To avoid this,
+			// set the session user to a new anonymous user, save it, and set the request
+			// context from the new session user account. (T393628)
+			$creator = $this->userFactory->newAnonymous();
+			$session->setUser( $creator );
+			// Ensure the temporary account username is also cleared from the session, this is set
+			// in TempUserCreator::acquireAndStashName
+			$session->remove( 'TempUser:name' );
+			$session->save();
+			$this->setRequestContextUserFromSessionUser();
+		}
 		if ( !$this->canCreateAccounts() ) {
 			// Caller should have called canCreateAccounts()
 			$session->remove( self::ACCOUNT_CREATION_STATE );
@@ -1371,6 +1384,10 @@ class AuthManager implements LoggerAwareInterface {
 
 		$session->setSecret( self::ACCOUNT_CREATION_STATE, $state );
 		$session->persist();
+		$this->logger->debug( __METHOD__ . ': Proceeding with account creation for {username} by {creator}', [
+			'username' => $user->getName(),
+			'creator' => $creator->getUser()->getName(),
+		] );
 
 		return $this->continueAccountCreation( $reqs );
 	}

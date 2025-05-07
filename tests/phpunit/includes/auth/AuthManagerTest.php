@@ -4316,4 +4316,53 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		];
 		// phpcs:enable
 	}
+
+	public function testTemporaryAccountNamedAccountCreation() {
+		$tempAccount = $this->getServiceContainer()->getTempUserCreator()->create( null, new FauxRequest() )->getUser();
+		$this->clearHook( 'UserLogout' );
+		$this->clearHook( 'SaveUserOptions' );
+		$this->mergeMwGlobalArrayValue(
+			'wgRevokePermissions',
+			[
+				'temp' => [
+					'createaccount' => false
+				]
+			]
+		);
+		$primaryAuthProvider = $this->createMock( AbstractPrimaryAuthenticationProvider::class );
+		$primaryAuthProvider->method( 'accountCreationType' )
+			->willReturn( PrimaryAuthenticationProvider::TYPE_CREATE );
+		$primaryAuthProvider->method( 'continuePrimaryAuthentication' )->willReturn( AuthenticationResponse::PASS );
+		$primaryAuthProvider->method( 'testForAccountCreation' )->willReturn( StatusValue::newGood() );
+		$primaryAuthProvider->method( 'beginPrimaryAccountCreation' )->willReturn( AuthenticationResponse::newPass() );
+		$primaryAuthProvider->method( 'testUserForCreation' )->willReturn( StatusValue::newGood() );
+		$this->primaryauthMocks = [ $primaryAuthProvider ];
+		$this->logger = new TestLogger( true, static function ( $message, $level ) {
+			return $message;
+		} );
+		$this->initializeManager();
+		$this->logger->setCollectContext( true );
+		$this->logger->setCollect( true );
+
+		$usernameAuthRequest = new UsernameAuthenticationRequest();
+		$usernameAuthRequest->username = ucfirst( wfRandomString() );
+		$userDataAuthRequest = new UserDataAuthenticationRequest();
+		$userDataAuthRequest->username = $tempAccount->getName();
+		$session = $this->request->getSession();
+		$session->setUser( $tempAccount );
+		$this->manager->setRequestContextUserFromSessionUser();
+		$session->set( 'TempUser:name', $tempAccount->getName() );
+		$result = $this->manager->beginAccountCreation( $tempAccount, [
+			$usernameAuthRequest,
+			$userDataAuthRequest
+		], '' );
+		$this->assertSame( $usernameAuthRequest->username, $result->username );
+		$this->assertSame( AuthenticationResponse::PASS, $result->status );
+		$this->assertSame(
+			[ 'username' => $usernameAuthRequest->username, 'creator' => '127.0.0.1' ],
+			// Check the context variables on the last message passed to the logger
+			$this->logger->getBuffer()[0][2]
+		);
+		$this->assertSame( null, $this->request->getSession()->get( 'TempUser:name' ) );
+	}
 }
