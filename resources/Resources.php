@@ -1209,7 +1209,8 @@ return [
 			],
 		],
 		'dependencies' => 'mediawiki.util',
-		'deprecated' => '[1.43] Please use browser native URL.',
+		'deprecated' =>
+			'[1.43] Please use browser native URL. See https://www.mediawiki.org/wiki/Migrating_mw.Uri_to_URL',
 	],
 	'mediawiki.user' => [
 		'scripts' => 'resources/src/mediawiki.user.js',
