@@ -29,11 +29,10 @@ describe( 'Revision Compare', () => {
 		const invalidRevId = 'invalidString';
 
 		it( 'should return 400 if revision id is not an integer', async () => {
-			const response = await client.get( `/v1/revision/${ validRevId }/compare/${ invalidRevId }` );
-			const { status } = response;
+			const { status, text } = await client.get( `/v1/revision/${ validRevId }/compare/${ invalidRevId }` );
 			assert.equal( status, 400 );
 			// eslint-disable-next-line no-unused-expressions
-			expect( response ).to.satisfyApiSpec;
+			expect( text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
 		it( 'should successfully get diff between 2 valid revisions', async () => {
@@ -53,21 +52,19 @@ describe( 'Revision Compare', () => {
 		} );
 
 		it( 'should return 404 for revision that does not exist', async () => {
-			const response = await client.get( `/v1/revision/${ validRevId }/compare/${ nonExistentRevId }` );
-			const { status } = response;
+			const { status, text } = await client.get( `/v1/revision/${ validRevId }/compare/${ nonExistentRevId }` );
 			assert.strictEqual( status, 404 );
 			// eslint-disable-next-line no-unused-expressions
-			expect( response ).to.satisfyApiSpec;
+			expect( text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
 		it( 'should return 400 if revision ids belong to different pages', async () => {
 			const { newrevid: pageOneRev } = await mindy.edit( pageOne, { text: 'Page 1 edit' } );
 			const { newrevid: pageTwoRev } = await mindy.edit( pageTwo, { text: 'Page 2 edit' } );
-			const response = await client.get( `/v1/revision/${ pageOneRev }/compare/${ pageTwoRev }` );
-			const { status } = response;
+			const { status, text } = await client.get( `/v1/revision/${ pageOneRev }/compare/${ pageTwoRev }` );
 			assert.strictEqual( status, 400 );
 			// eslint-disable-next-line no-unused-expressions
-			expect( response ).to.satisfyApiSpec;
+			expect( text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 	} );
 

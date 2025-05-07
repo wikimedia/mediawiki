@@ -37,12 +37,10 @@ describe( 'Page media links', () => {
 		} );
 		it( 'Should return 404 for non existing page', async () => {
 			const dummyPageTitle = utils.title( 'DummyPage_' );
-			const res = await client.get( `/v1/page/${ dummyPageTitle }/links/media` );
-			const { status } = res;
+			const { status, text } = await client.get( `/v1/page/${ dummyPageTitle }/links/media` );
 			assert.deepEqual( status, 404 );
 			// eslint-disable-next-line no-unused-expressions
-			expect( res ).to.satisfyApiSpec;
-
+			expect( text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 	} );
 } );

@@ -192,13 +192,6 @@ class CompareHandler extends Handler {
 		return 'includes/Rest/Handler/Schema/RevisionCompare.json';
 	}
 
-	protected function generateResponseSpec( string $method ): array {
-		$spec = parent::generateResponseSpec( $method );
-		$spec['404'] = [ '$ref' => '#/components/responses/GenericErrorResponse' ];
-
-		return $spec;
-	}
-
 	public function getParamSettings() {
 		return [
 			'from' => [

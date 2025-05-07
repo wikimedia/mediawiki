@@ -164,7 +164,7 @@ describe( 'POST /page', () => {
 				assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 				assert.nestedProperty( editBody, 'messageTranslations' );
 				// eslint-disable-next-line no-unused-expressions
-				expect( newPage ).to.satisfyApiSpec;
+				expect( newPage.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 			} );
 		} );
 
@@ -184,8 +184,7 @@ describe( 'POST /page', () => {
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 			// eslint-disable-next-line no-unused-expressions
-			expect( newPage ).to.satisfyApiSpec;
-
+			expect( newPage.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
 		it( 'should fail if a bad token is given', async () => {
@@ -204,8 +203,7 @@ describe( 'POST /page', () => {
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 			// eslint-disable-next-line no-unused-expressions
-			expect( newPage ).to.satisfyApiSpec;
-
+			expect( newPage.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
 		it( 'should fail if a bad content model is given', async () => {
@@ -225,7 +223,7 @@ describe( 'POST /page', () => {
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 			// eslint-disable-next-line no-unused-expressions
-			expect( newPage ).to.satisfyApiSpec;
+			expect( newPage.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 
 		} );
 
@@ -245,8 +243,7 @@ describe( 'POST /page', () => {
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 			// eslint-disable-next-line no-unused-expressions
-			expect( newPage ).to.satisfyApiSpec;
-
+			expect( newPage.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 	} );
 
@@ -270,8 +267,7 @@ describe( 'POST /page', () => {
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 			// eslint-disable-next-line no-unused-expressions
-			expect( newPage ).to.satisfyApiSpec;
-
+			expect( newPage.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 	} );
 
@@ -299,8 +295,7 @@ describe( 'POST /page', () => {
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 			// eslint-disable-next-line no-unused-expressions
-			expect( newPage ).to.satisfyApiSpec;
-
+			expect( newPage.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
 		} );
 
 	} );

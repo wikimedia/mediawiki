@@ -697,13 +697,6 @@ class PageHistoryCountHandler extends SimpleHandler {
 		return 'includes/Rest/Handler/Schema/PageHistoryCount.json';
 	}
 
-	protected function generateResponseSpec( string $method ): array {
-		$spec = parent::generateResponseSpec( $method );
-
-		$spec['404'] = [ '$ref' => '#/components/responses/GenericErrorResponse' ];
-		return $spec;
-	}
-
 	public function getParamSettings() {
 		return [
 			'title' => [

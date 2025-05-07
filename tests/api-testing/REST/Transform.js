@@ -89,6 +89,11 @@ function validateSpec( response ) {
 	expect( response ).to.satisfyApiSpec;
 }
 
+function validateDefaultSpec( response ) {
+	// eslint-disable-next-line no-unused-expressions
+	expect( response.text ).to.satisfySchemaInApiSpec( 'GenericErrorResponseModel' );
+}
+
 // TODO: Replace all occurrences of (Lint Page/Lint_Page) with `page`.
 describe( '/transform/ endpoint', () => {
 	const client = new REST();
@@ -234,7 +239,7 @@ describe( '/transform/ endpoint', () => {
 					JSON.parse( res.error.text ).message.should.equal(
 						'Not acceptable'
 					);
-					validateSpec( res );
+					validateDefaultSpec( res );
 				} )
 				.end( done );
 		} );
@@ -256,7 +261,8 @@ describe( '/transform/ endpoint', () => {
 				.send( { wikitext: '== h2 ==' } )
 				.expect( 406 )
 				.expect( ( res ) => {
-					validateSpec( res );
+					validateDefaultSpec( res );
+
 				} )
 				.end( done );
 		} );
@@ -670,7 +676,7 @@ describe( '/transform/ endpoint', () => {
 				.send( {} )
 				.expect( 400 )
 				.expect( ( res ) => {
-					validateSpec( res );
+					validateDefaultSpec( res );
 				} )
 				.end( done );
 		} );
@@ -682,7 +688,7 @@ describe( '/transform/ endpoint', () => {
 				.send( {} )
 				.expect( 400 )
 				.expect( ( res ) => {
-					validateSpec( res );
+					validateDefaultSpec( res );
 				} )
 				.end( done );
 		} );
@@ -693,7 +699,7 @@ describe( '/transform/ endpoint', () => {
 				.send( {} )
 				.expect( 404 )
 				.expect( ( res ) => {
-					validateSpec( res );
+					validateDefaultSpec( res );
 				} )
 				.end( done );
 		} );
@@ -705,7 +711,7 @@ describe( '/transform/ endpoint', () => {
 				.send( {} )
 				.expect( 404 )
 				.expect( ( res ) => {
-					validateSpec( res );
+					validateDefaultSpec( res );
 				} )
 				.end( done );
 		} );
@@ -955,7 +961,7 @@ describe( '/transform/ endpoint', () => {
 				.send( { wikitext: '{{1x|foo}}', subst: 'true' } )
 				.expect( 501 )
 				.expect( ( res ) => {
-					validateSpec( res );
+					validateDefaultSpec( res );
 				} )
 				.end( done );
 		} );
@@ -970,7 +976,7 @@ describe( '/transform/ endpoint', () => {
 				} )
 				.expect( 413 )
 				.expect( ( res ) => {
-					validateSpec( res );
+					validateDefaultSpec( res );
 				} )
 				.end( done );
 		} );

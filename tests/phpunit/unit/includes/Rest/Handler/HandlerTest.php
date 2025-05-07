@@ -1325,8 +1325,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 					$resp = $spec['responses'];
 
 					Assert::assertArrayHasKey( 200, $resp );
-					Assert::assertArrayHasKey( 400, $resp );
-					Assert::assertArrayHasKey( 500, $resp );
+					Assert::assertArrayHasKey( 'default', $resp );
 				},
 		];
 
