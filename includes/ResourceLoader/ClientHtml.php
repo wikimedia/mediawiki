@@ -501,7 +501,7 @@ RLPAGEMODULES = {$pageModulesJson};
 							// For:
 							// - startup (naturally because this is what will define mw.loader)
 							$chunk = Html::element( 'script', [
-								'async' => true,
+								'defer' => true,
 								'src' => $url,
 							] );
 						} else {
