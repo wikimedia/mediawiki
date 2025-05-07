@@ -768,7 +768,6 @@ External links: link text with spaces
 </p>
 !! end
 
-# Note edge case difference between PHP and Parsoid here.
 !! test
 External links: wiki links within external link (T5695)
 !! options
@@ -782,7 +781,7 @@ parsoid=wt2html
 </p><p><a rel="nofollow" class="external text" href="http://example.com">test </a><a href="/wiki/Wikilink" title="Wikilink">wikilink</a> embedded in ext link
 </p>
 !! html/parsoid
-<p><a rel="mw:ExtLink nofollow" href="http://example.com" class="external autonumber"></a><a rel="mw:WikiLink" href="./Wikilink" title="Wikilink" data-parsoid='{"stx":"simple","a":{"href":"./Wikilink"},"sa":{"href":"wikilink"},"misnested":true}'>wikilink</a><span data-parsoid='{"misnested":true}'> embedded in ext link</span></p>
+<p><a rel="mw:ExtLink nofollow" href="http://example.com" class="external text"></a><a rel="mw:WikiLink" href="./Wikilink" title="Wikilink" data-parsoid='{"stx":"simple","a":{"href":"./Wikilink"},"sa":{"href":"wikilink"},"misnested":true}'>wikilink</a><span data-parsoid='{"misnested":true}'> embedded in ext link</span></p>
 
 <p><a rel="mw:ExtLink nofollow" href="http://example.com" class="external text">test </a><a rel="mw:WikiLink" href="./Wikilink" title="Wikilink" data-parsoid='{"stx":"simple","a":{"href":"./Wikilink"},"sa":{"href":"wikilink"},"misnested":true}'>wikilink</a><span data-parsoid='{"misnested":true}'> embedded in ext link</span></p>
 !! end

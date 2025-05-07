@@ -91,39 +91,6 @@ foo
 !! end
 
 ###
-### Parsoid edge case regression tests
-###
-
-# This is unlikely to ever be used in any production wikipage
-# since it doesn't make any sense embedding tables in links.
-# FIXME: Note that the legacy parser and Parsoid differ on this!
-!! test
-Tables with multiple newlines after individual lines embedded in links
-!! options
-parsoid=wt2html,wt2wt
-!! wikitext
-[[Test|
-{|
-
-|test
-|}]]
-!! html/php
-<p><a href="/wiki/Test" title="Test">
-</a></p><table>
-
-<tbody><tr>
-<td>test
-</td></tr></tbody></table>
-<p class="mw-empty-elt"></p>
-!! html/parsoid
-<p><a rel="mw:WikiLink" href="./Test" title="Test">
-<table>
-
-<tbody><tr data-parsoid='{"autoInsertedStart":true}'><td>test</td></tr>
-</tbody></table></a></p>
-!! end
-
-###
 ### Table tests
 ### some content taken from http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide:_Using_tables
 ###
@@ -2017,4 +1984,31 @@ asdf
 asdf</td></tr>
 </tbody></table>
 </figcaption></figure>
+!! end
+
+###
+### Parsoid edge case regression tests
+###
+!! test
+Table lines with multiple newlines, spaces, comments embedded in file caption
+!! options
+parsoid=wt2html,wt2wt
+!! wikitext
+[[File:Foobar.jpg|thumb|
+  <!--cmt-->   
+{|
+  
+ |test
+   <!--cmt-->  
+|}]]
+!! html/php
+<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="mw-file-element" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a><figcaption> <table>    <tbody><tr> <td>test </td></tr></tbody></table></figcaption></figure>
+!! html/parsoid
+<figure class="mw-default-size" typeof="mw:File/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"caption","ak":"\n  &lt;!--cmt-->   \n{|\n  \n |test\n   &lt;!--cmt-->  \n|}"}]}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" class="mw-file-element" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"20","width":"180"},"sa":{"resource":"File:Foobar.jpg"}}'/></a><figcaption>
+  <!--cmt-->   
+<table>
+  
+ <tbody><tr><td>test
+   <!--cmt--></td></tr>
+</tbody></table></figcaption></figure>
 !! end
