@@ -1062,7 +1062,8 @@ Nowiki with newlines in list
 123</span></dd></dl>
 !! end
 
-## The output here may change with the outcome of T255007
+## We should get rid of this test - it is unclear if this
+## is the right thing to do. See discussion in T255007.
 !! test
 Nowiki and french spacing
 !! wikitext
@@ -2509,7 +2510,7 @@ parsoid=wt2html
 <p>[<a rel="nofollow" class="external text" href="http://example.com%7C"></a><a href="/wiki/Example" title="Example">Example</a>]
 </p>
 !! html/parsoid
-<p>[<a rel="mw:ExtLink nofollow" href="http://example.com%7C" class="external autonumber" data-parsoid='{"a":{"href":"http://example.com%7C"},"sa":{"href":"http://example.com|"}}'></a><a rel="mw:WikiLink" href="./Example" title="Example" data-parsoid='{"stx":"simple","a":{"href":"./Example"},"sa":{"href":"Example"},"misnested":true}'>Example</a>]</p>
+<p>[<a rel="mw:ExtLink nofollow" href="http://example.com%7C" class="external text" data-parsoid='{"a":{"href":"http://example.com%7C"},"sa":{"href":"http://example.com|"}}'></a><a rel="mw:WikiLink" href="./Example" title="Example" data-parsoid='{"stx":"simple","a":{"href":"./Example"},"sa":{"href":"Example"},"misnested":true}'>Example</a>]</p>
 !! end
 
 !! test
@@ -9693,7 +9694,7 @@ Fuzz testing: Parser25 (T8055)
 <p>&lt;LI CLASS=blah" onmouseover="alert('hello world');" align="left"<b>MOVE MOUSE CURSOR OVER HERE</b>
 </p>
 !! html/parsoid
-<span about="#mwt1" typeof="mw:Param" data-parsoid='{"pi":[[{"k":"1"},{"k":"2"},{"k":"3"}]]}' data-mw='{"parts":[{"templatearg":{"target":{"wt":"\n"},"params":{"1":{"wt":" \n&lt;LI CLASS="},"2":{"wt":""},"3":{"wt":"\n >\n"}},"i":0}},"blah\" onmouseover=\"alert(&#39;hello world&#39;);\" align=\"left\"&#39;&#39;&#39;MOVE MOUSE CURSOR OVER HERE"]}'> 
+<span about="#mwt1" typeof="mw:Param" data-parsoid='{"pi":[[{"k":"1"},{"k":"2"},{"k":"3"}]]}' data-mw='{"parts":[{"templatearg":{"target":{"wt":""},"params":{"1":{"wt":" \n&lt;LI CLASS="},"2":{"wt":""},"3":{"wt":"\n >\n"}},"i":0}},"blah\" onmouseover=\"alert(&#39;hello world&#39;);\" align=\"left\"&#39;&#39;&#39;MOVE MOUSE CURSOR OVER HERE"]}'>
 </span><p about="#mwt1">&lt;LI CLASS=blah" onmouseover="alert('hello world');" align="left"<b>MOVE MOUSE CURSOR OVER HERE</b></p>
 !! end
 
@@ -15602,7 +15603,7 @@ parsoid=wt2html
 !! wikitext
 {{1x|hi}}[http://example.com [[ho]]]
 !! html/parsoid
-<p><span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"hi"}},"i":0}}]}'>hi</span><a rel="mw:ExtLink nofollow" href="http://example.com" class="external autonumber"></a><a rel="mw:WikiLink" href="./Ho" title="Ho" data-parsoid='{"stx":"simple","a":{"href":"./Ho"},"sa":{"href":"ho"},"misnested":true}'>ho</a></p>
+<p><span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"hi"}},"i":0}}]}'>hi</span><a rel="mw:ExtLink nofollow" href="http://example.com" class="external text"></a><a rel="mw:WikiLink" href="./Ho" title="Ho" data-parsoid='{"stx":"simple","a":{"href":"./Ho"},"sa":{"href":"ho"},"misnested":true}'>ho</a></p>
 !! end
 
 !! test

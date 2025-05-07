@@ -2355,7 +2355,7 @@ wgParserEnableLegacyHeadingDOM=false
 !! html/php
 <h3 id="asdf" class="mw-html-heading">odd</h3>
 !! html/parsoid
-<section data-mw-section-id="0"></section><section data-mw-section-id="-1"><h3 id="asdf" data-parsoid='{"stx":"html","reusedId":true}' class="mw-html-heading">odd</h3></section>
+<section data-mw-section-id="0"></section><section data-mw-section-id="-1"><h3 id="asdf" data-parsoid='{"stx":"html","reusedId":true}'>odd</h3></section>
 !! metadata
 Sections:
  h3 index: toclevel:1 number:1 title:NULL off:NULL anchor/linkAnchor:asdf line:odd
@@ -2853,14 +2853,14 @@ wgParserEnableLegacyHeadingDOM=false
 <h2 id="Normal_heading_with_existing_wrapper.21">Normal heading with existing wrapper!</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Normal heading with existing wrapper!">edit</a><span class="mw-editsection-bracket">]</span></span>
 </div>
 !! html/parsoid
-<h2 id="Normal_heading!" data-parsoid='{"dsr":[0,19,2,2]}'><span id="Normal_heading.21" typeof="mw:FallbackId" data-parsoid='{"dsr":[2,2,null,null]}'></span>Normal heading!</h2>
+<h2 id="Normal_heading!" data-parsoid='{}'><span id="Normal_heading.21" typeof="mw:FallbackId"></span>Normal heading!</h2>
 
-<h2 id="HTML_heading!" data-parsoid='{"stx":"html","dsr":[21,43,4,5]}'><span id="HTML_heading.21" typeof="mw:FallbackId" data-parsoid='{"dsr":[25,25,null,null]}'></span>HTML heading!</h2>
+<h2 id="HTML_heading!" data-parsoid='{"stx":"html"}'><span id="HTML_heading.21" typeof="mw:FallbackId"></span>HTML heading!</h2>
 
-<h2 style="border: 1px solid green; background: lightgreen; padding: 5px; font-size: 1.5em;" id="HTML_heading_with_attributes!" data-parsoid='{"stx":"html","dsr":[45,172,93,5]}' class="mw-html-heading"><span id="HTML_heading_with_attributes.21" typeof="mw:FallbackId" data-parsoid='{"dsr":[138,138,null,null]}'></span>HTML heading with attributes!</h2>
+<h2 style="border: 1px solid green; background: lightgreen; padding: 5px; font-size: 1.5em;" id="HTML_heading_with_attributes!" data-parsoid='{"stx":"html"}'><span id="HTML_heading_with_attributes.21" typeof="mw:FallbackId"></span>HTML heading with attributes!</h2>
 
-<div class="mw-heading mw-heading2" data-parsoid='{"stx":"html","dsr":[174,259,36,6]}'>
-<h2 id="Normal_heading_with_existing_wrapper!" data-parsoid='{"dsr":[211,252,2,2]}'><span id="Normal_heading_with_existing_wrapper.21" typeof="mw:FallbackId" data-parsoid='{"dsr":[213,213,null,null]}'></span>Normal heading with existing wrapper!</h2>
+<div class="mw-heading mw-heading2">
+<h2 id="Normal_heading_with_existing_wrapper!" data-parsoid='{}'><span id="Normal_heading_with_existing_wrapper.21" typeof="mw:FallbackId"></span>Normal heading with existing wrapper!</h2>
 </div>
 !! end
 
