@@ -3368,6 +3368,11 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 			'pagelinks',
 			[ 'causeAction' => 'page-touch' ]
 		);
+		$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
+			$this,
+			'existencelinks',
+			[ 'causeAction' => 'existence-touch' ]
+		);
 		if ( $this->mNamespace === NS_CATEGORY ) {
 			$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
 				$this,

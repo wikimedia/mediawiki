@@ -200,6 +200,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private $mInterwikiLinks = [];
 
 	/**
+	 * @var array<int,array<string,bool>> 2-D map of NS/DBK to true for #ifexist and similar
+	 */
+	private $existenceLinks = [];
+
+	/**
 	 * @var bool Show a new section link?
 	 */
 	private $mNewSection = false;
@@ -795,6 +800,16 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 						'link' => new TitleValue( NS_CATEGORY, (string)$dbkey ),
 						'sort' => $sort,
 					];
+				}
+				break;
+
+			case ParserOutputLinkTypes::EXISTENCE:
+				foreach ( $this->existenceLinks as $ns => $titles ) {
+					foreach ( $titles as $dbkey => $unused ) {
+						$result[] = [
+							'link' => new TitleValue( $ns, (string)$dbkey )
+						];
+					}
 				}
 				break;
 
@@ -1402,6 +1417,26 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		}
 		$prefix = $link->getInterwiki();
 		$this->mInterwikiLinks[$prefix][$link->getDBkey()] = 1;
+	}
+
+	/**
+	 * Add a dependency on the existence of a page. The cache entry will be
+	 * invalidated if the page is created or deleted.
+	 *
+	 * @since 1.44
+	 * @param ParsoidLinkTarget $link
+	 */
+	public function addExistenceDependency( ParsoidLinkTarget $link ) {
+		$ns = $link->getNamespace();
+		$dbk = $link->getDBkey();
+		// Ignore some kinds of links, as in addLink()
+		if ( $link->isExternal() || $ns === NS_SPECIAL || $dbk === '' ) {
+			return;
+		}
+		if ( $ns === NS_MEDIA ) {
+			$ns = NS_FILE;
+		}
+		$this->existenceLinks[$ns][$dbk] = true;
 	}
 
 	/**
@@ -2705,6 +2740,12 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			$this->addTemplate( $link, $pageid, $revid );
 		}
 		foreach (
+			$source->getLinkList( ParserOutputLinkTypes::EXISTENCE )
+			as [ 'link' => $link ]
+		) {
+			$this->addExistenceDependency( $link );
+		}
+		foreach (
 			$source->getLinkList( ParserOutputLinkTypes::MEDIA ) as $item
 		) {
 			$this->addImage( $item['link'], $item['time'] ?? null, $item['sha1'] ?? null );
@@ -3039,6 +3080,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'FileSearchOptions' => $this->mFileSearchOptions,
 			'ExternalLinks' => $this->mExternalLinks,
 			'InterwikiLinks' => $this->mInterwikiLinks,
+			'ExistenceLinks' => $this->existenceLinks,
 			'NewSection' => $this->mNewSection,
 			'HideNewSection' => $this->mHideNewSection,
 			'NoGallery' => $this->mNoGallery,
@@ -3131,6 +3173,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->mFileSearchOptions = $jsonData['FileSearchOptions'];
 		$this->mExternalLinks = $jsonData['ExternalLinks'];
 		$this->mInterwikiLinks = $jsonData['InterwikiLinks'];
+		$this->existenceLinks = $jsonData['ExistenceLinks'] ?? [];
 		$this->mNewSection = $jsonData['NewSection'];
 		$this->mHideNewSection = $jsonData['HideNewSection'];
 		$this->mNoGallery = $jsonData['NoGallery'];

@@ -247,6 +247,7 @@ class BacklinkCache {
 			'categorylinks' => 'cl',
 			'templatelinks' => 'tl',
 			'redirect' => 'rd',
+			'existencelinks' => 'exl',
 		];
 
 		if ( isset( $prefixes[$table] ) ) {
@@ -295,6 +296,7 @@ class BacklinkCache {
 		switch ( $table ) {
 			case 'pagelinks':
 			case 'templatelinks':
+			case 'existencelinks':
 				$queryBuilder->where(
 					$this->linksMigration->getLinksConditions( $table, TitleValue::newFromPage( $this->page ) )
 				);

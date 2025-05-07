@@ -19,6 +19,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @covers \MediaWiki\Deferred\LinksUpdate\LinksUpdate
  * @covers \MediaWiki\Deferred\LinksUpdate\CategoryLinksTable
+ * @covers \MediaWiki\Deferred\LinksUpdate\ExistenceLinksTable
  * @covers \MediaWiki\Deferred\LinksUpdate\ExternalLinksTable
  * @covers \MediaWiki\Deferred\LinksUpdate\GenericPageLinksTable
  * @covers \MediaWiki\Deferred\LinksUpdate\ImageLinksTable
@@ -830,6 +831,57 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		yield "Deprecated API" => [ true ];
 	}
 
+	public function testUpdate_existencelinks() {
+		/** @var ParserOutput $po */
+		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
+
+		$po->addExistenceDependency( Title::newFromText( "Foo" ) );
+		$po->addExistenceDependency( Title::newFromText( "Bar" ) );
+		$po->addExistenceDependency( Title::newFromText( "Special:Foo" ) ); // special namespace should be ignored
+		$po->addExistenceDependency( Title::newFromText( "linksupdatetest:Foo" ) ); // interwiki link should be ignored
+		$po->addExistenceDependency( Title::newFromText( "#Foo" ) ); // hash link should be ignored
+
+		$update = $this->assertLinksUpdate(
+			$t,
+			$po,
+			'existencelinks',
+			[ 'lt_namespace', 'lt_title' ],
+			[ 'exl_from' => self::$testingPageId ],
+			[
+				[ NS_MAIN, 'Bar' ],
+				[ NS_MAIN, 'Foo' ],
+			]
+		);
+		$this->assertArrayEquals( [
+			[ NS_MAIN, 'Foo' ],
+			[ NS_MAIN, 'Bar' ],
+		], array_map(
+			static function ( PageReference $pageReference ) {
+				return [ $pageReference->getNamespace(), $pageReference->getDbKey() ];
+			},
+			$update->getPageReferenceArray( 'existencelinks', LinksTable::INSERTED )
+		) );
+
+		$po = new ParserOutput();
+		$po->setTitleText( $t->getPrefixedText() );
+		$po->addExistenceDependency( Title::newFromText( "Bar" ) );
+		$po->addExistenceDependency( Title::newFromText( "Baz" ) );
+		$po->addExistenceDependency( Title::newFromText( "Talk:Baz" ) );
+
+		$this->assertLinksUpdate(
+			$t,
+			$po,
+			'existencelinks',
+			[ 'lt_namespace', 'lt_title' ],
+			[ 'exl_from' => self::$testingPageId ],
+			[
+				[ NS_MAIN, 'Bar' ],
+				[ NS_MAIN, 'Baz' ],
+				[ NS_TALK, 'Baz' ],
+			]
+		);
+	}
+
 	// @todo test recursive, too!
 
 	protected function assertLinksUpdate( Title $title, ParserOutput $parserOutput,
@@ -858,6 +910,8 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			->where( $condition );
 		if ( $table === 'pagelinks' ) {
 			$qb->join( 'linktarget', null, 'pl_target_id=lt_id' );
+		} elseif ( $table === 'existencelinks' ) {
+			$qb->join( 'linktarget', null, 'exl_target_id=lt_id' );
 		}
 		$qb->assertResultSet( $expectedRows );
 		return $update;
@@ -986,6 +1040,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		$po->addLink( new TitleValue( 0, $s ) );
 		$po->setUnsortedPageProperty( $s, $s );
 		$po->addTemplate( new TitleValue( 0, $s ), 1, 1 );
+		$po->addExistenceDependency( new TitleValue( 0, $s ) );
 
 		$update = new LinksUpdate( $t, $po );
 		/** @var LinksTableGroup $tg */

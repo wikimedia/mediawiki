@@ -38,7 +38,7 @@ namespace MediaWiki\Parser;
 class ParserOutputLinkTypes {
 
 	/**
-	 * @var string Category links
+	 * Category links
 	 * @see ParserOutput::addCategory
 	 * @see ParserOutput::getCategoryMap
 	 * @see ParserOutput::getCategoryNames
@@ -46,14 +46,14 @@ class ParserOutputLinkTypes {
 	public const CATEGORY = 'category';
 
 	/**
-	 * @var string Interwiki links
+	 * Interwiki links
 	 * @see ParserOutput::addInterwikiLink
 	 * @see ParserOutput::getInterwikiLinks
 	 */
 	public const INTERWIKI = 'interwiki';
 
 	/**
-	 * @var string Language links
+	 * Language links
 	 * @see ParserOutput::addLanguageLink
 	 * @see ParserOutput::getLanguageLinks
 	 */
@@ -67,7 +67,7 @@ class ParserOutputLinkTypes {
 	public const LOCAL = 'local';
 
 	/**
-	 * @var string Links to media
+	 * Links to media
 	 * @see ParserOutput::addImage
 	 * @see ParserOutput::getImages
 	 * @see ParserOutput::getFileSearchOptions
@@ -75,19 +75,25 @@ class ParserOutputLinkTypes {
 	public const MEDIA = 'media';
 
 	/**
-	 * @var string Links to special pages
+	 * Links to special pages
 	 * @see ParserOutput::addLink
 	 * @see ParserOutput::getLinksSpecial
 	 */
 	public const SPECIAL = 'special';
 
 	/**
-	 * @var string Links to templates
+	 * Links to templates
 	 * @see ParserOutput::addTemplate
 	 * @see ParserOutput::getTemplates
 	 * @see ParserOutput::getTemplateIds
 	 */
 	public const TEMPLATE = 'template';
+
+	/**
+	 * #ifexist references
+	 * @see ParserOutput::addExistenceDependency
+	 */
+	public const EXISTENCE = 'existence';
 
 	public static function cases(): array {
 		return [
