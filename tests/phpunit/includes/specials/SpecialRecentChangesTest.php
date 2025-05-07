@@ -45,7 +45,7 @@ class SpecialRecentChangesTest extends AbstractChangesListSpecialPageTestCase {
 	// Below providers should only be for features specific to
 	// RecentChanges.  Otherwise, it should go in ChangesListSpecialPageTest
 
-	public function provideParseParameters() {
+	public static function provideParseParameters() {
 		return [
 			[ 'limit=123', [ 'limit' => '123' ] ],
 
@@ -65,7 +65,7 @@ class SpecialRecentChangesTest extends AbstractChangesListSpecialPageTestCase {
 		];
 	}
 
-	public function validateOptionsProvider() {
+	public static function validateOptionsProvider() {
 		return [
 			[
 				// hidebots=1 is default for Special:RecentChanges

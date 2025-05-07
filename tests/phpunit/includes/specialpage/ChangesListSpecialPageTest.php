@@ -1089,7 +1089,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		);
 	}
 
-	public function provideParseParameters() {
+	public static function provideParseParameters() {
 		return [
 			[ 'hidebots', [ 'hidebots' => true ] ],
 
@@ -1252,7 +1252,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		);
 	}
 
-	public function validateOptionsProvider() {
+	public static function validateOptionsProvider() {
 		return [
 			[
 				[ 'hideanons' => 1, 'hideliu' => 1, 'hidebots' => 1 ],
