@@ -59,7 +59,7 @@
 	"period-am": "moies",
 	"period-pm": "nomëttes",
 	"timezone-local": "Lokal",
-	"years": "{{PLURAL:$1|$1 Joer|$1 Joer}}",
+	"years": "{{PLURAL:$1|$1 Joer}}",
 	"months": "{{PLURAL:$1|$1 Mount|$1 Méint}}",
 	"weeks": "{{PLURAL:$1|$1 Woch|$1 Wochen}}",
 	"days": "{{PLURAL:$1|$1 Dag|$1 Deeg}}",

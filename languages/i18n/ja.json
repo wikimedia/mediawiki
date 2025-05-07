@@ -3782,7 +3782,7 @@
 	"logentry-rights-rights-expiry-changed": "$1 の有効期限を {{GENDER:$2|変更}}",
 	"logentry-rights-rights-kept": "$1 は {{GENDER:$2|変更なし}}",
 	"logentry-rights-rights-legacy": "$1 が $3 の所属グループを{{GENDER:$2|変更しました}}",
-	"logentry-rights-autopromote": "$1 が 自動的に所属グループを {{GENDER:$2|変更しました}}: $7",
+	"logentry-rights-autopromote": "$1 の所属グループが自動的に{{GENDER:$2|変更されました}}: $7",
 	"logentry-rights-autopromote-granted": "$1 を {{GENDER:$2|追加}}",
 	"logentry-rights-autopromote-revoked": "$1 を {{GENDER:$2|削除}}",
 	"logentry-rights-autopromote-expiry-changed": "$1 の有効期限を {{GENDER:$2|変更}}",

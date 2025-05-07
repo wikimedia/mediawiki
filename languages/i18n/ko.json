@@ -149,6 +149,8 @@
 	"search": "검색",
 	"search-ignored-headings": " #<!-- 이 줄은 그대로 두십시오 --> <pre>\n# 검색에서 무시되는 문단 제목입니다.\n# 이 문서에 대한 바뀜은 즉시 문단 제목으로 된 문서가 다시 색인됩니다.\n# null 편집을 하여 문서 다시 색인을 강제할 수 있습니다.\n# 문법은 다음과 같습니다:\n#   * \"#\" 문자에서 줄의 끝까지는 주석입니다\n#   * 빈 줄이 아닌 줄은 무시할 정확한 제목이며, 대소문자를 무시합니다\n각주\n참조\n참고\n출처\n외부 링크\n같이 보기\n함께 보기\n #</pre> <!-- 이 줄은 그대로 두십시오 -->",
 	"searchbutton": "검색",
+	"searchsuggest-containing-html": "<strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> 항목이 포함된 글을 검색",
+	"search-loader": "검색 제안을 불러오는 중",
 	"go": "보기",
 	"searcharticle": "보기",
 	"skin-view-history": "역사 보기",

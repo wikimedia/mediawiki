@@ -1329,6 +1329,7 @@
 	"statistics-header-users": "Штатістіка хоснователїв",
 	"statistics-header-hooks": "Інша штатістіка",
 	"statistics-articles": "Обсяговы сторінкы",
+	"statistics-articles-desc": "Подробности найдете в [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticleCountMethod документації о рахованю статей]",
 	"statistics-pages": "Сторінкы",
 	"statistics-pages-desc": "Вшыткы сторінкы на вікі враховано діскузій, напрямлїня ітд.",
 	"statistics-files": "Наладованы файлы",

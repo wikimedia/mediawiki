@@ -683,7 +683,7 @@
 	"bad-language-code-category": "Säite mat ongëltege Sproochcoden",
 	"bad-language-code-category-desc": "Op der Säit kënnt en <code><nowiki>{{#dir}}</nowiki></code> mat engem ongültege Sproochcode vir.",
 	"converter-manual-rule-error": "An der Reegel iwwer déi manuell Ëmwandlung vun der Sprooch gouf e Feeler fonnt",
-	"undo-success": "D'Ännerung kann net réckgängeg gemaach ginn.\nIwwerpréift wgl. de Verglach ënnendrënner fir nozekuckeen ob et dat ass wat Dir maache wëllt, duerno späichert wgl. d'Ännerungen of, fir d'Ännerung zréckzesetzen.",
+	"undo-success": "D'Ännerung ka réckgängeg gemaach ginn.\nIwwerpréift wgl. de Verglach ënnendrënner fir nozekucken, ob et dat ass, wat Dir maache wëllt, a späichert duerno d'Ännerungen of fir d'Zrécksetze vun der Ännerung ofzeschléissen.",
 	"undo-failure": "D'Ännerung konnt net réckgängeg gemaach ginn, wëll de betraffenen Abschnitt an der Tëschenzäit geännert gouf.",
 	"undo-norev": "D'Ännerung kann net zréckgesat ginn, well et se net gëtt oder well se scho geläscht ass.",
 	"undo-nochange": "D'Ännerung gouf anscheinend schonn zréckgesat.",
