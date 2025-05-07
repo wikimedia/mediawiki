@@ -14,7 +14,8 @@
 			"Zetud",
 			"아라",
 			"Angularis",
-			"Kizule"
+			"Kizule",
+			"Lisyeng"
 		]
 	},
 	"tog-underline": "Levconyana gluyaxa",
@@ -181,6 +182,7 @@
 	"talk": "Prilara",
 	"views": "Wira",
 	"toolbox": "Xekak",
+	"cactions": "Loon",
 	"imagepage": "Wira va iyeltakbu",
 	"mediawikipage": "Rupera va staksa bu",
 	"templatepage": "Rupera va teza bu",
@@ -252,7 +254,7 @@
 	"sort-descending": "Titafa mubera",
 	"sort-ascending": "Ticafa mubera",
 	"nstab-main": "Bu",
-	"nstab-user": "Favesikbu",
+	"nstab-user": "{{GENDER:$1|Favesikbu}}",
 	"nstab-media": "Kanaca",
 	"nstab-special": "Aptabu",
 	"nstab-project": "Abdumimaks bu",
@@ -1382,7 +1384,7 @@
 	"movenotallowed": "Rin va bu me ronovarrundal.",
 	"cant-move-user-page": "Rin va favesikbu (rade volveybu) me ronovarrundal.",
 	"cant-move-to-user-page": "Rin va bu ika favesikbu (rade favesikafu volveybu) me ronovarrundal.",
-	"newtitle": "Warzaf vergumvelt",
+	"newtitle": "Warzaf vergumvelt:",
 	"move-watch": "Busuzdara",
 	"movepagebtn": "Tolyoltara va teliz",
 	"pagemovedsub": "Tolyoltanhara",
@@ -1700,6 +1702,7 @@
 	"tags-active-no": "Volgue / me",
 	"tags-hitcount": "$1 {{PLURAL:$1|betaks}}",
 	"deletepage": "Busulara",
+	"htmlform-submit": "Staksera",
 	"logentry-delete-delete": "$1 {{GENDER:$2|sulayanu}} $3 bu",
 	"logentry-delete-restore": "$1 {{GENDER:$2|dimplekuyunu}} $3 bu ko $4",
 	"logentry-delete-revision": "$1 {{GENDER:$2|betayar}} va rowinuca ke {{PLURAL:$5|tanoya betara|$5 betara}} va $3: $4 bu.",
@@ -1723,5 +1726,6 @@
 	"skin-view-edit-local": "Va lizukafa pimtara betal",
 	"skin-action-protect": "Nendara",
 	"skin-action-delete": "Sulara",
-	"skin-action-move": "Arrundara"
+	"skin-action-move": "Arrundara",
+	"blockedtext-made-by": "Elekara tir gan to $1."
 }

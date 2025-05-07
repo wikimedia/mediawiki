@@ -4054,7 +4054,7 @@
 	"renameuser-warning-currentblock": "Dát geavaheaddji lea [$1 dál hehttejuvvon].",
 	"log-name-renameuser": "Geavaheaddjinamaid lonuhanlogga",
 	"log-description-renameuser": "Dát lea logga, masa merkejuvvojit geavaheaddjinamaid lonuhemiin ja sirdimiin.",
-	"logentry-renameuser-renameuser": "Geavaheaddji $1 {{GENDER:$2|lonuhii}} geavaheaddji $4 nama ({{PLURAL:$6|0=ii oktage rievdadus|1=1 rievdadus|$6 rievdadusa}}) nammii {{GENDER:$7|$5}}.",
+	"logentry-renameuser-renameuser": "Geavaheaddji $1 {{GENDER:$2|lonuhii}} geavaheaddji $4 ({{PLURAL:$6|0=ii oktage rievdadus|1=1 rievdadus|$6 rievdadusa}}) nama nammii {{GENDER:$7|$5}}.",
 	"logentry-renameuser-renameuser-legacier": "Geavaheaddji $1 {{GENDER:$2|lonuhii}} geavaheaddji $4 nama nammii {{GENDER:$7|$5}}",
 	"renameuser-move-log": "Siidu sirdojuvvui automáhtalaččat go {{GENDER:$2|geavaheaddji}} \"[[User:$1|$1]]\" namma lonuhuvvui nammii \"[[User:$2|$2]]\".",
 	"action-renameuser": "lonuhit geavaheddjiid namaid",

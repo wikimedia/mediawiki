@@ -2905,7 +2905,7 @@
 	"importuploaderrortemp": "Postavljanje uvozne datoteke nije uspjelo.\nNedostaje privremeni folder.",
 	"import-parse-failure": "Greška pri parsiranju XML uvoza",
 	"import-noarticle": "Nema stranice za uvoz!",
-	"import-nonewrevisions": "Nesam uvezio nijednu reviziju (sve su već prisutne ili izostavljene zbog grešaka)",
+	"import-nonewrevisions": "Nije uvezena nijedna izmjena (ili su sve već prisutne ili su preskočene zbog grešaka)",
 	"xml-error-string": "$1 na liniji $2, kolona $3 (bajt $4): $5",
 	"import-upload": "Postavljanje XML podataka",
 	"import-token-mismatch": "Izgubljeni podaci sesije.\n\nMožda ste odjavljeni. '''Molimo provjerite da li ste još uvijek prijavljeni i pokušajte ponovo'''.\nAko se problem i dalje pojavljuje, [[Special:UserLogout|odjavite se]] i ponovo prijavite se, i provjerite da li vaš pretraživač dozvoljava kolačiće sa ovog sajta.",

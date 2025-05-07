@@ -3486,7 +3486,7 @@
 	"renameuser-warning-currentblock": "ਇਹ ਵਰਤੋਂਕਾਰ ਤੇ [$1 ਇਸ ਵੇਲੇ ਪਾਬੰਦੀ ਲੱਗੀ ਹੋਈ ਏ]",
 	"log-name-renameuser": "ਵਰਤੋਂਕਾਰ ਨਾਂ ਬਦਲੀ ਦੇ ਚਿੱਠੇ",
 	"log-description-renameuser": "ਇਹ ਵਰਤੋਂਕਾਰ ਨਾਮਾਂ ਵਿੱਚ ਤਬਦੀਲੀਆਂ ਦਾ ਇੱਕ ਚਿੱਠਾ ਹੈ।",
-	"logentry-renameuser-renameuser": "$1 ਨੇ ਵਰਤੋਂਕਾਰ $4 ਦਾ {{GENDER:$2|ਨਾਂ ਬਦਲਿਆ}} ({{PLURAL:$6|$6 ਸੋਧ|$6 ਸੋਧਾਂ}}) ਨੂੰ {{GENDER:$7|$5}} ਵਿੱਚ।",
+	"logentry-renameuser-renameuser": "$1 ਨੇ ਵਰਤੋਂਕਾਰ $4 ({{PLURAL:$6|$6 ਸੋਧ|$6 ਸੋਧਾਂ}}) ਦਾ {{GENDER:$2|ਨਾਂ ਬਦਲ ਕੇ}} {{GENDER:$7|$5}} ਰੱਖ ਦਿੱਤਾ ਹੈ।",
 	"logentry-renameuser-renameuser-legacier": "$1 ਨੇ ਵਰਤੋਂਕਾਰ $4 ਦਾ {{GENDER:$2|ਨਾਂ ਬਦਲ ਕੇ}} {{GENDER:$7|$5}} ਰੱਖਿਆ।",
 	"renameuser-move-log": "{{GENDER:$2|ਵਰਤੋਂਕਾਰ}} \"[[User:$1|$1]]\" ਦਾ ਨਾਂ ਬਦਲ ਕੇ \"[[User:$2|$2]]\" ਕਰਦੇ ਸਮੇਂ ਵਰਕਾ ਦੀ ਆਪਣੇ-ਆਪ ਥਾਂ-ਬਦਲੀ ਗਈ।",
 	"action-renameuser": "ਵਰਤੋਂਕਾਰਾਂ ਦੇ ਨਾਂ ਬਦਲੋ",

@@ -157,7 +157,8 @@
 			"Juliana Reboucas de Oliveira",
 			"Tuliouel",
 			"Ninawauwau",
-			"Vanished 345490135"
+			"Vanished 345490135",
+			"EGobi"
 		]
 	},
 	"tog-underline": "Sublinhar links:",
@@ -391,7 +392,6 @@
 	"versionrequired": "É necessária a versão $1 do MediaWiki",
 	"versionrequiredtext": "Esta página requer a versão $1 do MediaWiki para ser utilizada.\nVeja a [[Special:Version|página sobre a versão do sistema]].",
 	"ok": "OK",
-	"pagetitle": "$1 - {{SITENAME}}",
 	"backlinksubtitle": "← $1",
 	"retrievedfrom": "Disponível em “$1”",
 	"youhavenewmessages": "{{PLURAL:$3|Você tem}} $1 ($2).",
