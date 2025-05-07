@@ -275,7 +275,7 @@ class MigrateFileTables extends Maintenance {
 			->from( 'filerevision' )
 			->where( [ 'fr_file' => $fileId ] )
 			->orderBy( 'fr_timestamp', 'DESC' )
-			->fetchField();
+			->caller( __METHOD__ )->fetchField();
 		$dbw->newUpdateQueryBuilder()
 			->update( 'file' )
 			->set( [ 'file_latest' => $latestFrId ] )
