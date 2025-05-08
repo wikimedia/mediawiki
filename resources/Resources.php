@@ -1717,6 +1717,7 @@ return [
 			) {
 				$readyConfig = [
 					'search' => true,
+					'searchModule' => 'mediawiki.searchSuggest',
 					'collapsible' => true,
 					'sortable' => true,
 					'selectorLogoutLink' => '#pt-logout a[data-mw="interface"]'

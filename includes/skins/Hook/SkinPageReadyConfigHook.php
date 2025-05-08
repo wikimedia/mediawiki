@@ -22,5 +22,5 @@ interface SkinPageReadyConfigHook {
 	public function onSkinPageReadyConfig(
 		RL\Context $context,
 		array &$config
-	): void;
+	);
 }
