@@ -398,18 +398,23 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 	public static function provideEventEmission() {
 		yield [ false, [] ];
 		yield [ true, [ 'suppressed' ] ];
+		yield [ true, [], new WikitextContent( "#REDIRECT [[Foobar]]" ) ];
 	}
 
 	/**
 	 * @dataProvider provideEventEmission
 	 * @covers \MediaWiki\Page\DeletePage::deleteUnsafe
 	 */
-	public function testEventEmission( $suppress, $tags ) {
+	public function testEventEmission( $suppress, $tags, $content = null ) {
 		$calls = 0;
+
+		if ( $content === null ) {
+			$content = new WikitextContent( self::PAGE_TEXT );
+		}
 
 		$deleterUser = static::getTestSysop()->getUser();
 		$deleter = new UltimateAuthority( $deleterUser );
-		$page = $this->createPage( 'MediaWiki:' . __METHOD__, self::PAGE_TEXT );
+		$page = $this->createPage( 'MediaWiki:' . __METHOD__, $content );
 		$id = $page->getId();
 
 		// clear the queue
@@ -417,7 +422,8 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 
 		$this->getServiceContainer()->getDomainEventSource()->registerListener(
 			PageDeletedEvent::TYPE,
-			static function ( PageDeletedEvent $event ) use ( &$calls, $suppress, $tags, $id ) {
+			static function ( PageDeletedEvent $event ) use ( &$calls, $suppress, $tags, $id, $content
+			) {
 				Assert::assertNull(
 					$event->getPageRecordAfter(),
 					'Expected getPageStateAfter() to be null.'
@@ -442,6 +448,16 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 
 				Assert::assertSame( $tags, $event->getTags() );
 				Assert::assertSame( $suppress, $event->isSuppressed() );
+
+				Assert::assertSame( $content->isRedirect(), $event->wasRedirect(), "isRedirect()" );
+				Assert::assertSame( $content->getRedirectTarget() === null,
+					$event->getRedirectTargetBefore() === null, "getPageRedirectTargetBefore()" );
+
+				if ( $content->getRedirectTarget() !== null ) {
+					Assert::assertSame( $content->getRedirectTarget()->getDBkey(),
+						$event->getRedirectTargetBefore()->getDBkey(), "getPageRedirectTargetBefore()" );
+
+				}
 
 				$calls++;
 			}
