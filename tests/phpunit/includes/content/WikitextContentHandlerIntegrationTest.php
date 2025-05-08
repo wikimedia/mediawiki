@@ -56,6 +56,7 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 			'maxIncludeSize',
 			'suppressSectionEditLinks',
 			'useParsoid',
+			'isMessage',
 			'wrapclass',
 			'expensiveParserFunctionLimit',
 			'maxPPExpandDepth',

@@ -70,6 +70,7 @@ class MessageParser {
 			}
 
 			$this->parserOptions = ParserOptions::newFromContext( $context );
+			$this->parserOptions->setIsMessage( true );
 			// Messages may take parameters that could come
 			// from malicious sources. As a precaution, disable
 			// the <html> parser tag when parsing messages.
