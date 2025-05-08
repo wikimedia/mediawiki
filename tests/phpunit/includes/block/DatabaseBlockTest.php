@@ -272,8 +272,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 			'sitewide' => true,
 		] );
 
-		$block->setTarget(
-			new UserBlockTarget( new UserIdentityValue( $user->getId(), $user->getName() ) ) );
+		$block->setTarget( new UserIdentityValue( $user->getId(), $user->getName() ) );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
 
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
@@ -300,7 +299,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 			'sitewide' => false,
 		] );
 
-		$block->setTarget( new UserBlockTarget( $user ) );
+		$block->setTarget( $user );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
 
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
@@ -332,7 +331,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 			'sitewide' => true,
 		] );
 
-		$block->setTarget( new UserBlockTarget( $user ) );
+		$block->setTarget( $user );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
 
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
@@ -357,7 +356,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 			'sitewide' => false,
 		] );
 
-		$block->setTarget( new UserBlockTarget( $user ) );
+		$block->setTarget( $user );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
 
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
@@ -386,7 +385,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 			'sitewide' => false,
 		] );
 
-		$block->setTarget( new UserBlockTarget( $user ) );
+		$block->setTarget( $user );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
 
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
