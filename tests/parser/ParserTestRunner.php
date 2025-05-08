@@ -245,6 +245,7 @@ class ParserTestRunner {
 			'updateKnownFailures' => false,
 			'changetree' => null,
 			'update-tests' => false,
+			'update-unexpected' => false,
 			// Options can also match those in ParserTestModes::TEST_MODES
 			// but we don't need to initialize those here; they will be
 			// accessed via $this->requestedTestModes instead.
@@ -1003,7 +1004,7 @@ class ParserTestRunner {
 					$this->updateKnownFailures( $filename, $testFileInfo );
 				}
 
-				if ( $this->options['update-tests'] ) {
+				if ( $this->options['update-tests'] || $this->options['update-unexpected'] ) {
 					$this->updateTests( $filename, $testFileInfo, !$inParsoidMode );
 				}
 
@@ -1552,7 +1553,7 @@ class ParserTestRunner {
 
 		$testResult = new ParserTestResult( $test, $mode, $expected, $out );
 
-		if ( $this->options['update-tests'] && !$testResult->isSuccess() ) {
+		if ( ( $this->options['update-tests'] || $this->options['update-unexpected'] ) && !$testResult->isSuccess() ) {
 			$test->knownFailures["$mode"] = $rawOut;
 		}
 
@@ -1790,6 +1791,14 @@ class ParserTestRunner {
 
 		if ( $this->options['update-tests'] && !$passed ) {
 			$test->knownFailures["$mode"] = $rawActual;
+		}
+
+		if ( $this->options['update-unexpected'] ) {
+			if ( $knownFailureChanged || $unexpectedFail ) {
+				$test->knownFailures["$mode"] = $rawActual;
+			} else {
+				unset( $test->knownFailures["$mode"] );
+			}
 		}
 
 		if ( $unexpectedPass ) {
