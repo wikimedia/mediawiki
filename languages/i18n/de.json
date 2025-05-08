@@ -2705,7 +2705,7 @@
 	"unblocklink": "Freigeben",
 	"change-blocklink": "Sperre ändern",
 	"remove-blocklink": "Sperre aufheben",
-	"manage-blocklink": "Verwalten von Sperren",
+	"manage-blocklink": "Sperren verwalten",
 	"empty-username": "(kein Benutzername verfügbar)",
 	"blocklist-hidden-placeholder": "(Benutzername versteckt)",
 	"blocklist-hidden-param": "Benutzername versteckt",

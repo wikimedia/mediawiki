@@ -2721,7 +2721,7 @@
 	"emailblock": "メール送信も禁止",
 	"blocklist-nousertalk": "自分のトークページも編集禁止",
 	"blocklist-editing": "編集",
-	"blocklist-editing-sitewide": "編集（サイト全体）",
+	"blocklist-editing-sitewide": "編集 (サイト全体)",
 	"blocklist-editing-page": "ページ",
 	"blocklist-editing-ns": "名前空間",
 	"blocklist-editing-action": "操作",

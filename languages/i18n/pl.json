@@ -159,6 +159,8 @@
 	"search": "Szukaj",
 	"search-ignored-headings": " #<!-- ten wiersz zostaw bez zmian --> <pre>\n# Umieszczone tutaj nagłówki będą ignorowane podczas wyszukiwania.\n# Zmiany wprowadzone tutaj zostaną zastosowane, gdy strona wykorzystująca odpowiedni nagłówek zostanie zindeksowana.\n# Można wymusić ponowne zindeksowanie strony wykonując na niej null edit.\n# Składnia jest następująca:\n#   * Wszystko począwszy od znaku „#” aż do końca wiersza jest komentarzem.\n#   * Każdy niepusty wiersz wprowadza dokładną treść nagłówka, który należy zignorować, wielkość liter ma znaczenie.\nLinki zewnętrzne\nZobacz też\n #</pre> <!-- ten wiersz zostaw bez zmian -->",
 	"searchbutton": "Szukaj",
+	"searchsuggest-containing-html": "Szukaj stron zawierających <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"search-loader": "Wczytywanie sugestii wyszukiwania",
 	"go": "Przejdź",
 	"searcharticle": "Przejdź",
 	"skin-view-history": "Wyświetl historię",
