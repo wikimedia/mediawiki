@@ -14,3 +14,4 @@ Gemfile* export-ignore
 vendor/pear/net_smtp/README.rst export-ignore
 phpunit.xml.dist export-ignore
 DEVELOPERS.md export-ignore
+docker-compose.yml export-ignore
