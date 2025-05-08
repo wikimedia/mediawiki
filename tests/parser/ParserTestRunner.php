@@ -1271,7 +1271,7 @@ class ParserTestRunner {
 		foreach ( $testFileInfo->testCases as $t ) {
 			$testName = $t->testName;
 			$fail = $t->knownFailures[$isLegacy ? 'legacy' : 'wt2html'] ?? null;
-			$html = $isLegacy ? $t->legacyHtml : $t->parsoidHtml;
+			$html = $isLegacy ? $t->legacyHtml : ( $t->sections['html/parsoid+integrated'] ?? $t->parsoidHtml );
 			if ( $isLegacy && $fail === null ) {
 				$fail = $t->knownFailures['metadata'] ?? null;
 				$html = self::getLegacyMetadataSection( $t );
