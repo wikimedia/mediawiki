@@ -47,7 +47,7 @@ abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiIntegrati
 	 */
 	abstract protected function getPageAccessWrapper();
 
-	abstract public function provideParseParameters();
+	abstract public static function provideParseParameters();
 
 	/**
 	 * @dataProvider provideParseParameters
@@ -146,5 +146,5 @@ abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiIntegrati
 		}
 	}
 
-	abstract public function validateOptionsProvider();
+	abstract public static function validateOptionsProvider();
 }
