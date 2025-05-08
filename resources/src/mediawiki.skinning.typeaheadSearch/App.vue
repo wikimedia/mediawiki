@@ -10,7 +10,7 @@
 		:placeholder="searchPlaceholder"
 		:aria-label="searchPlaceholder"
 		:initial-input-value="searchQuery"
-		:button-label="$i18n( 'searchbutton' ).text()"
+		:button-label="searchButtonLabel"
 		:form-action="action"
 		:show-thumbnail="showThumbnail"
 		:highlight-query="highlightQuery"
@@ -18,6 +18,7 @@
 		:search-results="suggestions"
 		:search-footer-url="searchFooterUrl"
 		:visible-item-limit="visibleItemLimit"
+		:use-button="!!searchButtonLabel"
 		@load-more="onLoadMore"
 		@input="onInput"
 		@search-result-click="instrumentation.onSuggestionClick"
@@ -83,6 +84,10 @@ module.exports = exports = defineComponent( {
 		searchPageTitle: {
 			type: String,
 			default: 'Special:Search'
+		},
+		searchButtonLabel: {
+			type: String,
+			default: mw.msg( 'searchbutton' )
 		},
 		autofocusInput: {
 			type: Boolean,
