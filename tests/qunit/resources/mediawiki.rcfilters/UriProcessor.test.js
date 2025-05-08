@@ -47,13 +47,13 @@
 		const uriProcessor = new rcfilters.UriProcessor( new rcfilters.dm.FiltersViewModel() );
 
 		assert.strictEqual(
-			uriProcessor.getVersion( { param1: 'foo', urlversion: '2' } ),
+			uriProcessor.getVersion( new URLSearchParams( { param1: 'foo', urlversion: '2' } ) ),
 			2,
 			'Retrieving the version from the URI query'
 		);
 
 		assert.strictEqual(
-			uriProcessor.getVersion( { param1: 'foo' } ),
+			uriProcessor.getVersion( new URLSearchParams( { param1: 'foo' } ) ),
 			1,
 			'Getting version 1 if no version is specified'
 		);
@@ -62,8 +62,8 @@
 	QUnit.test( 'getUpdatedUri', ( assert ) => {
 		const filtersModel = new rcfilters.dm.FiltersViewModel(),
 			makeUri = function ( queryParams ) {
-				const uri = new mw.Uri( 'http://server/wiki/Special:RC' );
-				uri.query = queryParams;
+				const uri = new URL( 'http://server/wiki/Special:RC' );
+				uri.search = new URLSearchParams( queryParams ).toString();
 				return uri;
 			};
 
@@ -71,14 +71,14 @@
 		const uriProcessor = new rcfilters.UriProcessor( filtersModel );
 
 		assert.deepEqual(
-			( uriProcessor.getUpdatedUri( makeUri( {} ) ) ).query,
-			{ urlversion: '2' },
+			( uriProcessor.getUpdatedUri( makeUri( {} ) ) ).searchParams,
+			new URLSearchParams( { urlversion: '2' } ),
 			'Empty model state with empty uri state, assumes the given uri is already normalized, and adds urlversion=2'
 		);
 
 		assert.deepEqual(
-			( uriProcessor.getUpdatedUri( makeUri( { foo: 'bar' } ) ) ).query,
-			{ urlversion: '2', foo: 'bar' },
+			( uriProcessor.getUpdatedUri( makeUri( { foo: 'bar' } ) ) ).searchParams,
+			new URLSearchParams( { urlversion: '2', foo: 'bar' } ),
 			'Empty model state with unrecognized params retains unrecognized params'
 		);
 
@@ -89,14 +89,14 @@
 		} );
 
 		assert.deepEqual(
-			( uriProcessor.getUpdatedUri( makeUri( {} ) ) ).query,
-			{ urlversion: '2', filter2: '1', group3: 'filter5' },
+			( uriProcessor.getUpdatedUri( makeUri( {} ) ) ).searchParams,
+			new URLSearchParams( { urlversion: '2', filter2: '1', group3: 'filter5' } ),
 			'Model state is reflected in the updated URI'
 		);
 
 		assert.deepEqual(
-			( uriProcessor.getUpdatedUri( makeUri( { foo: 'bar' } ) ) ).query,
-			{ urlversion: '2', filter2: '1', group3: 'filter5', foo: 'bar' },
+			( uriProcessor.getUpdatedUri( makeUri( { foo: 'bar' } ) ) ).searchParams,
+			new URLSearchParams( { urlversion: '2', filter2: '1', group3: 'filter5', foo: 'bar' } ),
 			'Model state is reflected in the updated URI with existing uri params'
 		);
 	} );
@@ -107,21 +107,21 @@
 		filtersModel.initializeFilters( mockFilterStructure );
 		const uriProcessor = new rcfilters.UriProcessor( filtersModel );
 
-		uriProcessor.updateModelBasedOnQuery( {} );
+		uriProcessor.updateModelBasedOnQuery( new URLSearchParams( {} ) );
 		assert.deepEqual(
 			filtersModel.getCurrentParameterState(),
 			minimalDefaultParams,
 			'Version 1: Empty url query sets model to defaults'
 		);
 
-		uriProcessor.updateModelBasedOnQuery( { urlversion: '2' } );
+		uriProcessor.updateModelBasedOnQuery( new URLSearchParams( { urlversion: '2' } ) );
 		assert.deepEqual(
 			filtersModel.getCurrentParameterState(),
 			{},
 			'Version 2: Empty url query sets model to all-false'
 		);
 
-		uriProcessor.updateModelBasedOnQuery( { filter1: '1', urlversion: '2' } );
+		uriProcessor.updateModelBasedOnQuery( new URLSearchParams( { filter1: '1', urlversion: '2' } ) );
 		assert.deepEqual(
 			filtersModel.getCurrentParameterState(),
 			$.extend( true, {}, { filter1: '1' } ),
@@ -187,7 +187,10 @@
 
 		cases.forEach( ( testCase ) => {
 			assert.strictEqual(
-				uriProcessor.isNewState( testCase.states.curr, testCase.states.new ),
+				uriProcessor.isNewState(
+					new URLSearchParams( testCase.states.curr ),
+					new URLSearchParams( testCase.states.new )
+				),
 				testCase.result,
 				testCase.message
 			);
@@ -224,8 +227,8 @@
 
 		cases.forEach( ( testCase ) => {
 			assert.deepEqual(
-				uriProcessor._getNormalizedQueryParams( testCase.query ),
-				testCase.result,
+				uriProcessor._getNormalizedQueryParams( new URLSearchParams( testCase.query ) ),
+				new URLSearchParams( testCase.result ),
 				testCase.message
 			);
 		} );
@@ -296,10 +299,8 @@
 			);
 
 			assert.strictEqual(
-				uriProcessor._normalizeTargetInUri(
-					new mw.Uri( testCase.input )
-				).toString(),
-				new mw.Uri( testCase.output ).toString(),
+				uriProcessor._normalizeTargetInUri( new URL( testCase.input ) ).searchParams.get( 'target' ),
+				new URL( testCase.output ).searchParams.get( 'target' ),
 				testCase.message
 			);
 		} );
