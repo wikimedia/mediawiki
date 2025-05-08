@@ -304,7 +304,9 @@ class CoreMagicVariables {
 			case 'pagelanguage':
 				return $pageLang->getCode();
 			case 'userlanguage':
-				if ( $svcOptions->get( MainConfigNames::ParserEnableUserLanguage ) ) {
+				if ( $parser->getOptions()->isMessage()
+					|| $svcOptions->get( MainConfigNames::ParserEnableUserLanguage )
+				) {
 					return $parser->getOptions()->getUserLang();
 				} else {
 					return $pageLang->getCode();
