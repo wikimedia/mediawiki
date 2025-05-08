@@ -38,19 +38,8 @@ abstract class BundleSizeTestBase extends MediaWikiIntegrationTestCase {
 		'mw.loader.impl' => 17
 	];
 
-	/**
-	 * TODO: Make this static after migrating consumers.
-	 */
-	public function provideBundleSize() {
-		$path1 = static::getBundleSizeConfigData();
-		$content1 = $path1 ? json_decode( file_get_contents( $path1 ), true ) : [];
-		$path2 = $this->getBundleSizeConfig();
-		$content2 = $path2 ? json_decode( file_get_contents( $path2 ), true ) : [];
-
-		$content = array_unique( array_merge_recursive( $content1, $content2 ), SORT_REGULAR );
-		if ( !$content ) {
-			$this->markTestSkipped( 'Test was skipped because no bundle size config data was loaded.' );
-		}
+	public static function provideBundleSize() {
+		$content = json_decode( file_get_contents( static::getBundleSizeConfigData() ), true );
 
 		foreach ( $content as $testCase ) {
 			yield $testCase['resourceModule'] => [ $testCase ];
@@ -127,30 +116,9 @@ abstract class BundleSizeTestBase extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @deprecated Override getBundleSizeConfigData() instead as that
-	 *    method and its overrides are used directly in data providers to
-	 *    get JSON config data.
-	 *    NOTE: "abstract" was removed in order to migrate consumers in 1 step.
 	 * @return string Path to bundlesize.config.json
 	 */
-	public function getBundleSizeConfig(): string {
-		// Extensions should override this.
-		return '';
-	}
-
-	/**
-	 * NOTE: This will be made an abstract method once all consumers
-	 * extensions migrate. This way, current child classes won't break
-	 * because abstract methods must be implemented in the child class.
-	 * If we make it abstract now, existing child classes will expect it
-	 * to be implemented which will break CI.
-	 *
-	 * @return string Path to bundlesize.config.json
-	 */
-	public static function getBundleSizeConfigData(): string {
-		// Extensions should override this.
-		return '';
-	}
+	abstract public static function getBundleSizeConfigData(): string;
 
 	/**
 	 * @return string Skin name
