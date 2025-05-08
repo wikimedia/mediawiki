@@ -525,8 +525,8 @@ class LinkCache implements LoggerAwareInterface {
 		return $this->wanCache->makeKey(
 			'page',
 			$page->getNamespace(),
-			sha1( $page->getDBkey()
-		) );
+			sha1( $page->getDBkey() )
+		);
 	}
 
 	/**
