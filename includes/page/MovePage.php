@@ -38,8 +38,8 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logging\LogFormatterFactory;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\Event\PageLatestRevisionChangedEvent;
 use MediaWiki\Page\Event\PageMovedEvent;
-use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\RestrictionStore;
@@ -937,7 +937,7 @@ class MovePage {
 		// NOTE: Use FLAG_SILENT to avoid redundant RecentChanges entry.
 		//       The move log already generates one.
 		$nullRevision = $newpage->newPageUpdater( $user )
-			->setCause( PageRevisionUpdatedEvent::CAUSE_MOVE )
+			->setCause( PageLatestRevisionChangedEvent::CAUSE_MOVE )
 			->setHints( [
 				'oldtitle' => $this->oldTitle,
 				'oldcountable' => $oldcountable,

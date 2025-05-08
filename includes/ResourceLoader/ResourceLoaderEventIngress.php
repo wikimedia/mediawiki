@@ -5,8 +5,8 @@ namespace MediaWiki\ResourceLoader;
 use MediaWiki\DomainEvent\DomainEventIngress;
 use MediaWiki\Page\Event\PageDeletedEvent;
 use MediaWiki\Page\Event\PageDeletedListener;
-use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
-use MediaWiki\Page\Event\PageRevisionUpdatedListener;
+use MediaWiki\Page\Event\PageLatestRevisionChangedEvent;
+use MediaWiki\Page\Event\PageLatestRevisionChangedListener;
 use MediaWiki\Storage\PageUpdateCauses;
 use Wikimedia\Rdbms\LBFactory;
 
@@ -19,7 +19,7 @@ use Wikimedia\Rdbms\LBFactory;
  */
 class ResourceLoaderEventIngress
 	extends DomainEventIngress
-	implements PageRevisionUpdatedListener, PageDeletedListener
+	implements PageLatestRevisionChangedListener, PageDeletedListener
 {
 
 	/** Object spec intended for use with {@link DomainEventSource::registerSubscriber()} */
@@ -29,7 +29,7 @@ class ResourceLoaderEventIngress
 			'DBLoadBalancerFactory'
 		],
 		'events' => [
-			PageRevisionUpdatedEvent::TYPE,
+			PageLatestRevisionChangedEvent::TYPE,
 			PageDeletedEvent::TYPE,
 		],
 	];
@@ -41,11 +41,11 @@ class ResourceLoaderEventIngress
 	}
 
 	/**
-	 * Listener method for PageRevisionUpdatedEvent, to be registered with a DomainEventSource.
+	 * Listener method for PageLatestRevisionChangedEvent, to be registered with a DomainEventSource.
 	 *
 	 * @noinspection PhpUnused
 	 */
-	public function handlePageRevisionUpdatedEvent( PageRevisionUpdatedEvent $event ) {
+	public function handlePageLatestRevisionChangedEvent( PageLatestRevisionChangedEvent $event ) {
 		if (
 			$event->isNominalContentChange()
 			|| $event->hasCause( PageUpdateCauses::CAUSE_MOVE )

@@ -4,7 +4,7 @@ use MediaWiki\Content\ContentHandler;
 use MediaWiki\Exception\MWContentSerializationException;
 use MediaWiki\Exception\MWUnknownContentModelException;
 use MediaWiki\Page\Event\PageCreatedEvent;
-use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
+use MediaWiki\Page\Event\PageLatestRevisionChangedEvent;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\SlotRecord;
@@ -106,11 +106,11 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 		$this->testImport( $expectedTags );
 	}
 
-	private function makePageRevisionUpdatedListener( $new ) {
-		return static function ( PageRevisionUpdatedEvent $event ) use ( $new ) {
+	private function makePageLatestChangedListener( $new ) {
+		return static function ( PageLatestRevisionChangedEvent $event ) use ( $new ) {
 			Assert::assertFalse( $event->isReconciliationRequest(), 'isReconciliationRequest' );
 			Assert::assertSame( $new, $event->isCreation(), 'isCreation' );
-			Assert::assertSame( PageRevisionUpdatedEvent::CAUSE_IMPORT, $event->getCause(), 'getCause' );
+			Assert::assertSame( PageLatestRevisionChangedEvent::CAUSE_IMPORT, $event->getCause(), 'getCause' );
 
 			Assert::assertTrue( $event->isImplicit(), 'isImplicit' );
 			Assert::assertTrue( $event->isSilent(), 'isSilent' );
@@ -119,21 +119,21 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Check that importing revisions for a non-existing page emits a
-	 * PageRevisionUpdatedEvent indicating page creation.
+	 * PageLatestRevisionChangedEvent indicating page creation.
 	 */
 	public function testEventEmission_new() {
 		$title = Title::newFromText( __CLASS__ . rand() );
 
 		$this->expectDomainEvent(
-			PageRevisionUpdatedEvent::TYPE, 1,
-			$this->makePageRevisionUpdatedListener( true )
+			PageLatestRevisionChangedEvent::TYPE, 1,
+			$this->makePageLatestChangedListener( true )
 		);
 
 		$this->expectDomainEvent(
 			PageCreatedEvent::TYPE, 1,
 			static function ( PageCreatedEvent $event ) {
 				Assert::assertSame(
-					PageRevisionUpdatedEvent::CAUSE_IMPORT,
+					PageLatestRevisionChangedEvent::CAUSE_IMPORT,
 					$event->getCause(),
 					'getCause'
 				);
@@ -149,13 +149,13 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Check that importing an old revision for an existing page does not emit
-	 * a PageRevisionUpdatedEvent.
+	 * a PageLatestRevisionChangedEvent.
 	 */
 	public function testEventEmission_old() {
 		$page = $this->getExistingTestPage();
 		$title = $page->getTitle();
 
-		$this->expectDomainEvent( PageRevisionUpdatedEvent::TYPE, 0 );
+		$this->expectDomainEvent( PageLatestRevisionChangedEvent::TYPE, 0 );
 		$this->expectDomainEvent( PageCreatedEvent::TYPE, 0 );
 
 		// Import an old revision
@@ -168,7 +168,7 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Check that importing a new revision for an existing page emits
-	 * a PageRevisionUpdatedEvent.
+	 * a PageLatestRevisionChangedEvent.
 	 */
 	public function testEventEmission_current() {
 		MWTimestamp::setFakeTime( '20110101223344' );
@@ -176,8 +176,8 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 		$title = $page->getTitle();
 
 		$this->expectDomainEvent(
-			PageRevisionUpdatedEvent::TYPE, 1,
-			$this->makePageRevisionUpdatedListener( false )
+			PageLatestRevisionChangedEvent::TYPE, 1,
+			$this->makePageLatestChangedListener( false )
 		);
 
 		$this->expectDomainEvent( PageCreatedEvent::TYPE, 0 );
