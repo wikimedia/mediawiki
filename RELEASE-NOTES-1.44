@@ -159,6 +159,7 @@ For notes on 1.43.x and older releases, see HISTORY.
 * Updated OOUI from v0.51.2 to v0.51.7.
 * Updated vue from 3.4.27 to 3.5.13.
 * Updated wikimedia/bcp-47-code from 2.0.0 to 2.0.1.
+* Updated wikimedia/common-passwords from 0.5.0 to 0.5.1.
 * Updated wikimedia/less.php from 5.1.2 to 5.2.1.
 * Updated wikimedia/minify from 2.8.0 to 2.9.0.
 * Updated wikimedia/php-session-serializer from 3.0.0 to 3.0.1.
