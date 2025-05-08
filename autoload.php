@@ -1719,6 +1719,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Hook\\SpecialTrackingCategories__generateCatLinkHook' => __DIR__ . '/includes/specials/Hook/SpecialTrackingCategories__generateCatLinkHook.php',
 	'MediaWiki\\Hook\\SpecialTrackingCategories__preprocessHook' => __DIR__ . '/includes/specials/Hook/SpecialTrackingCategories__preprocessHook.php',
 	'MediaWiki\\Hook\\SpecialUploadCompleteHook' => __DIR__ . '/includes/specials/Hook/SpecialUploadCompleteHook.php',
+	'MediaWiki\\Hook\\SpecialUserRightsChangeableGroupsHook' => __DIR__ . '/includes/specials/Hook/SpecialUserRightsChangeableGroupsHook.php',
 	'MediaWiki\\Hook\\SpecialVersionVersionUrlHook' => __DIR__ . '/includes/specials/Hook/SpecialVersionVersionUrlHook.php',
 	'MediaWiki\\Hook\\SpecialWatchlistGetNonRevisionTypesHook' => __DIR__ . '/includes/specials/Hook/SpecialWatchlistGetNonRevisionTypesHook.php',
 	'MediaWiki\\Hook\\SpecialWhatLinksHereQueryHook' => __DIR__ . '/includes/specials/Hook/SpecialWhatLinksHereQueryHook.php',

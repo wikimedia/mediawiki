@@ -34,3 +34,7 @@ input.mw-userrights-groupcheckbox:not( :checked ) ~ .mw-userrights-nested {
 .client-js .mw-userrights-expiryfield {
 	display: none;
 }
+
+.mw-userrights-unaddable-reason {
+	margin-left: 1.2em;
+}

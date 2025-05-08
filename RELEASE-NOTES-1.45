@@ -45,6 +45,7 @@ For notes on 1.44.x and older releases, see HISTORY.
 
 === New developer features in 1.45 ===
 
+* The SpecialUserRightsChangeableGroupsHook hook was added.
 * The UserLinkRendererUserPostRenderLink hook was added.
 * …
 
