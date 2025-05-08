@@ -130,7 +130,8 @@
 			"✓",
 			"21 little ducks",
 			"Rye Greenwood",
-			"Juwan"
+			"Juwan",
+			"Talex42"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -243,12 +244,12 @@
 	"category_header": "Seiten in der Kategorie „$1“",
 	"subcategories": "Unterkategorien",
 	"category-media-header": "Medien in der Kategorie „$1“",
-	"category-empty": "''Diese Kategorie enthält zurzeit keine Seiten oder Medien.''",
+	"category-empty": "<em>Diese Kategorie enthält zurzeit keine Seiten oder Medien.</em>",
 	"hidden-categories": "{{PLURAL:$1|Versteckte Kategorie|Versteckte Kategorien}}",
 	"hidden-category-category": "Versteckte Kategorien",
 	"category-subcat-count": "{{PLURAL:$2|Diese Kategorie enthält nur die folgende Unterkategorie:|Diese Kategorie enthält die {{PLURAL:$1|folgende Unterkategorie|folgenden $1 Unterkategorien}} ($2 insgesamt):}}",
 	"category-subcat-count-limited": "Diese Kategorie enthält die {{PLURAL:$1|folgende Unterkategorie|folgenden $1 Unterkategorien}}.",
-	"category-article-count": "{{PLURAL:$2|Diese Kategorie enthält nur die folgende Seite.|Folgende {{PLURAL:$1|Seite ist| $1 Seiten sind}} in dieser Kategorie, von $2 insgesamt.}}",
+	"category-article-count": "{{PLURAL:$2|Diese Kategorie enthält nur die folgende Seite.|Folgende {{PLURAL:$1|Seite ist|$1 Seiten sind}} in dieser Kategorie, von $2 insgesamt.}}",
 	"category-article-count-limited": "{{PLURAL:$1|Folgende Seite ist|Die folgenden $1 Seiten sind}} in dieser Kategorie enthalten:",
 	"category-file-count": "{{PLURAL:$2|Diese Kategorie enthält nur folgende Datei.|Folgende {{PLURAL:$1|Datei ist|$1 Dateien sind}} in dieser Kategorie, von $2 insgesamt.}}",
 	"category-file-count-limited": "Folgende {{PLURAL:$1|Datei ist|$1 Dateien sind}} in dieser Kategorie enthalten:",
@@ -260,7 +261,7 @@
 	"newwindow": "(wird in einem neuen Fenster geöffnet)",
 	"cancel": "Abbrechen",
 	"moredotdotdot": "Mehr …",
-	"morenotlisted": "Diese Liste könnte unvollständig sein.",
+	"morenotlisted": "Diese Liste ist möglicherweise unvollständig.",
 	"mypage": "Eigene Seite",
 	"mytalk": "Diskussion",
 	"anontalk": "Diskussionsseite",

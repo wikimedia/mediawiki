@@ -218,7 +218,8 @@
 			"Mahabarata",
 			"JLTRY",
 			"Rileyblondin",
-			"EmDashUser002"
+			"EmDashUser002",
+			"Wikipucine"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -406,7 +407,7 @@
 	"views": "Affichages",
 	"toolbox": "Outils",
 	"cactions": "Plus",
-	"tool-link-userrights": "Modifier les groupes de l’utilisat{{GENDER:$1|eur|rice}}",
+	"tool-link-userrights": "Modifier les groupes de {{GENDER:$1|l’utilisateur|l’utilisatrice}}",
 	"tool-link-userrights-readonly": "Voir les groupes de l’utilisat{{GENDER:$1|eur|rice}}",
 	"tool-link-emailuser": "Envoyer un courriel à {{GENDER:$1|cet utilisateur|cette utilisatrice|$1}}",
 	"imagepage": "Voir la page du fichier",

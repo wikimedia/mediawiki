@@ -2719,7 +2719,7 @@
 	"blockipsuccesssub": "Blokeerimine õnnestus",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] on blokeeritud.<br />\nKehtivaid blokeeringuid vaata [[Special:BlockList|blokeerimisnimekirjast]].",
 	"ipb-empty-block": "Edastatud blokeeringuga ei kaasne piiranguid.",
-	"ipb-block-not-found": "Blokeerimine ei õnnestunud ning blokeeritava \"$1\" kohta ei leidu ka kehtivat blokeeringut. Kui see probleem on püsiv, siis palun [https://www.mediawiki.org/wiki/Special:MyLanguage/Help_talk:Blocking_users anna sellest teada].",
+	"ipb-block-not-found": "Blokeerimine ei õnnestunud. Tõenäoliselt proovis teine administraator seda kasutajat samal ajal blokeerida. Palun kontrolli blokeeringu olekut ja proovi uuesti.",
 	"ipb-blockingself": "Sa blokeerid iseenda! Kas tahad tõesti seda teha?",
 	"ipb-confirmhideuser": "Avaldasid soovi kasutaja blokeerida ja peita. Kasutaja nimi peidetakse kõigist loenditest ja logisissekannetest. Kas oled kindel, et soovid seda teha?",
 	"ipb-confirmaction": "Kui oled tõesti kindel, et tahad seda teha, siis vali palun allpool \"{{int:ipb-confirm}}\".",

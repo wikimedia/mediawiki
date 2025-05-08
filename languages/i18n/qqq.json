@@ -267,7 +267,9 @@
 			"IJzeren Jan",
 			"Juwan",
 			"XtexChooser",
-			"Pppery"
+			"Pppery",
+			"Bunnypranav",
+			"Qwrop"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -1309,7 +1311,7 @@
 	"diff-incompatible": "This message appears instead of a diff when two slots have different content models and the diff renderer does not know how to compare them. $1 and $2 are the content models of the left and right (old and new) content, respectively.",
 	"diff-empty": "This message appears instead of a \"diff\" when comparing two revisions that are identical.",
 	"diff-user-edits": "Edit count of user in common diff/change view. Parameters:\n* $1 - the count, may use PLURAL\nEnsure number is wrapped in a span element.\n{{Identical|Edit}}",
-	"diff-multi-sameuser": "This message appears in the revision history of a page when comparing two versions which aren't consecutive, and the intermediate revisions were all created by the same user as the new revision.\n\nParameters:\n* $1 - the number of revisions\n{{Related|Diff-multi}}\n* $2 - (not used)\n* $3 - the username of the user in question, for GENDER support\n\nFor many languages the first parameter should be given as 1= because 21, 31 etc. may also have a singular form:\n\n({{PLURAL\n:$1|1=One intermediate revision|$1 intermediate revision|$1 intermediate revisions}} by the same {{GENDER:$3|user}} not shown)",
+	"diff-multi-sameuser": "This message appears in the revision history of a page when comparing two versions which aren't consecutive, and the intermediate revisions were all created by the same user as the new revision.\n\nParameters:\n* $1 - the number of revisions\n{{Related|Diff-multi}}\n* $2 - (not used)\n* $3 - the username of the user in question, for GENDER support\n\nFor many languages the first parameter should be given as 1= because 21, 31 etc. may also have a singular form:\n\n(<nowiki>{{PLURAL:$1|1=One intermediate revision|$1 intermediate revision|$1 intermediate revisions}}</nowiki> by the same <nowiki>{{GENDER:$3|user}}</nowiki> not shown)",
 	"diff-multi-otherusers": "This message appears in the revision history of a page when comparing two versions which aren't consecutive, and at least one of the intermediate revisions was created by a user other than the user who created the new revision.\n\nParameters:\n* $1 - the number of revisions\n* $2 - the number of distinct other users who made those revisions\n{{Related|Diff-multi}}",
 	"diff-multi-manyusers": "This message appears in the revision history of a page when comparing two versions which aren't consecutive, and the intermediate revisions have been edited by more than 100 users.\n\nParameters:\n* $1 - the number of revisions, will always be 101 or more\n* $2 - the number of users that were found, which was limited at 100\n{{Related|Diff-multi}}",
 	"diff-paragraph-moved-tonew": "Explaining title tag for the indicating symbols when a paragraph was moved hinting to the new location in the Diff view.",
@@ -2440,8 +2442,8 @@
 	"brokenredirects": "{{doc-special|BrokenRedirects}}",
 	"brokenredirects-summary": "{{doc-specialpagesummary|brokenredirects}}",
 	"brokenredirectstext": "Shown on top of [[Special:BrokenRedirects]].",
-	"brokenredirects-edit": "Link in [[Special:BrokenRedirects]]\n\n{{Identical|Edit}}",
-	"brokenredirects-delete": "Link in [[Special:BrokenRedirects]] for admins\n\n{{Identical|Delete}}",
+	"brokenredirects-edit": "Label of the link to edit the page listed at [[Special:BrokenRedirects]]\n\n{{Identical|Edit}}",
+	"brokenredirects-delete": "Label of the link to delete the page listed at [[Special:BrokenRedirects]]. Only visible if you have delete page right.\n\n{{Identical|Delete}}",
 	"brokenredirects-delete-reason": "{{ignored}}\nThe default deletion reason when deleting a broken redirect from [[Special:BrokenRedirects]]",
 	"withoutinterwiki": "{{doc-special|WithoutInterwiki}}",
 	"withoutinterwiki-summary": "Summary of [[Special:WithoutInterwiki]].",

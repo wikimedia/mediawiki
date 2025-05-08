@@ -102,7 +102,8 @@
 			"Rebeccayoga",
 			"Biyanto",
 			"Munajad.MH",
-			"DedeKurnn"
+			"DedeKurnn",
+			"NikolasKHF"
 		]
 	},
 	"tog-underline": "Garis bawahi pranala:",
@@ -647,7 +648,7 @@
 	"botpasswords-updated-title": "Kata sandi bot diperbarui",
 	"botpasswords-updated-body": "Kata sandi bot \"$1\" dari  {{GENDER:$2|user}} \"$2\" berhasil diperbarui.",
 	"botpasswords-deleted-title": "Kata sandi bot dihapus",
-	"botpasswords-deleted-body": "Kata sandi bot \"$1\" dari  {{GENDER:$2|user}} \"$2\" telah dihapus.",
+	"botpasswords-deleted-body": "Kata sandi bot \"$1\" dari {{GENDER:$2|pengguna}} \"$2\" telah dihapus.",
 	"botpasswords-newpassword": "Kata sandi baru untuk masuk log dengan <strong>$1</strong> adalah <strong>$2</strong>. <em>Catatlah kata sandi ini untuk referensi ke depan.</em> <br> (Untuk bot lama yang memerlukan nama masuk log yang sama dengan nama pengguna, dapat menggunakan <strong>$3</strong> sebagai nama pengguna dan <strong>$4</strong> sebagai kata sandi.)",
 	"botpasswords-no-provider": "BotPasswordsSessionProvider tidak tersedia.",
 	"botpasswords-restriction-failed": "Batasan kata sandi menghalangi masuk log ini.",
