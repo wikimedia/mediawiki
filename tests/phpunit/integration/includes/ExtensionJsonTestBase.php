@@ -15,6 +15,8 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Api\ApiTestContext;
 use MediaWikiIntegrationTestCase;
+use ReflectionMethod;
+use ReflectionProperty;
 use Wikimedia\Http\MultiHttpClient;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -50,7 +52,7 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 	 * @var string The path to the extension.json file.
 	 * Should be specified as `__DIR__ . '/.../extension.json'`.
 	 */
-	protected string $extensionJsonPath;
+	// protected string $extensionJsonPath;
 
 	/**
 	 * @var string|null The prefix of the extension's own services in the service container.
@@ -71,6 +73,8 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 	 */
 	private static array $extensionJsonCache = [];
 
+	private static array $cacheExtensionJsonPath = [];
+
 	protected function setUp(): void {
 		parent::setUp();
 
@@ -80,21 +84,33 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 		$this->disallowHttpAccess();
 	}
 
-	final protected function getExtensionJson(): array {
-		if ( !array_key_exists( $this->extensionJsonPath, self::$extensionJsonCache ) ) {
-			self::$extensionJsonCache[$this->extensionJsonPath] = json_decode(
-				file_get_contents( $this->extensionJsonPath ),
+	final protected static function getExtensionJson(): array {
+		// Temporary get the path depending of the property state - T393065
+		if ( !isset( self::$cacheExtensionJsonPath[static::class] ) ) {
+			$reflectionProperty = new ReflectionProperty( static::class, 'extensionJsonPath' );
+			$reflectionProperty->setAccessible( true );
+			$invokeObject = null;
+			if ( !$reflectionProperty->isStatic() ) {
+				$invokeObject = new static();
+			}
+			self::$cacheExtensionJsonPath[static::class] = $reflectionProperty->getValue( $invokeObject );
+		}
+		$extensionJsonPath = self::$cacheExtensionJsonPath[static::class];
+
+		if ( !array_key_exists( $extensionJsonPath, self::$extensionJsonCache ) ) {
+			self::$extensionJsonCache[$extensionJsonPath] = json_decode(
+				file_get_contents( $extensionJsonPath ),
 				true,
 				512,
 				JSON_THROW_ON_ERROR
 			);
 		}
-		return self::$extensionJsonCache[$this->extensionJsonPath];
+		return self::$extensionJsonCache[$extensionJsonPath];
 	}
 
-	/** @dataProvider provideHookHandlerNames */
+	/** @dataProvider provideHookHandlerNamesStatically */
 	public function testHookHandler( string $hookHandlerName ): void {
-		$specification = $this->getExtensionJson()['HookHandlers'][$hookHandlerName];
+		$specification = self::getExtensionJson()['HookHandlers'][$hookHandlerName];
 		$objectFactory = MediaWikiServices::getInstance()->getObjectFactory();
 		$objectFactory->createObject( $specification, [
 			'allowClassName' => true,
@@ -102,15 +118,52 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( true );
 	}
 
-	public function provideHookHandlerNames(): iterable {
-		foreach ( $this->getExtensionJson()['HookHandlers'] ?? [] as $hookHandlerName => $specification ) {
+	// public static function provideHookHandlerNames(): iterable
+
+	private static function provideHookHandlerNamesBase(): iterable {
+		foreach ( self::getExtensionJson()['HookHandlers'] ?? [] as $hookHandlerName => $specification ) {
 			yield [ $hookHandlerName ];
 		}
 	}
 
+	/**
+	 * Temporary override to make provideHookHandlerNames static.
+	 * See T393065.
+	 */
+	final public static function provideHookHandlerNamesStatically(): iterable {
+		if ( method_exists( static::class, 'provideHookHandlerNames' ) ) {
+			// override exists, check if changed to static or non-static
+			$reflectionMethod = new ReflectionMethod( static::class, 'provideHookHandlerNames' );
+			$invokeObject = null;
+			if ( !$reflectionMethod->isStatic() ) {
+				// Non-static data provider are soft-deprecated
+				$invokeObject = new static();
+			}
+			return $reflectionMethod->invoke( $invokeObject );
+		}
+		// The base implementation temporary has own name to avoid php fatal for non-static functions
+		return self::provideHookHandlerNamesBase();
+	}
+
+	public function __call( $name, $args ) {
+		// Called as parent::provideHookHandlerNames()
+		if ( $name === 'provideHookHandlerNames' ) {
+			return self::provideHookHandlerNamesBase();
+		}
+		throw new \RuntimeException( "Call to undefined method $name()" );
+	}
+
+	public static function __callStatic( $name, $args ) {
+		// Called as parent::provideHookHandlerNames()
+		if ( $name === 'provideHookHandlerNames' ) {
+			return self::provideHookHandlerNamesBase();
+		}
+		throw new \RuntimeException( "Call to undefined method $name()" );
+	}
+
 	/** @dataProvider provideContentModelIDs */
 	public function testContentHandler( string $contentModelID ): void {
-		$specification = $this->getExtensionJson()['ContentHandlers'][$contentModelID];
+		$specification = self::getExtensionJson()['ContentHandlers'][$contentModelID];
 		$objectFactory = MediaWikiServices::getInstance()->getObjectFactory();
 		$objectFactory->createObject( $specification, [
 			'assertClass' => ContentHandler::class,
@@ -121,15 +174,15 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( true );
 	}
 
-	public function provideContentModelIDs(): iterable {
-		foreach ( $this->getExtensionJson()['ContentHandlers'] ?? [] as $contentModelID => $specification ) {
+	public static function provideContentModelIDs(): iterable {
+		foreach ( self::getExtensionJson()['ContentHandlers'] ?? [] as $contentModelID => $specification ) {
 			yield [ $contentModelID ];
 		}
 	}
 
 	/** @dataProvider provideApiModuleNames */
 	public function testApiModule( string $moduleName ): void {
-		$specification = $this->getExtensionJson()['APIModules'][$moduleName];
+		$specification = self::getExtensionJson()['APIModules'][$moduleName];
 		$objectFactory = MediaWikiServices::getInstance()->getObjectFactory();
 		$objectFactory->createObject( $specification, [
 			'allowClassName' => true,
@@ -138,15 +191,15 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( true );
 	}
 
-	public function provideApiModuleNames(): iterable {
-		foreach ( $this->getExtensionJson()['APIModules'] ?? [] as $moduleName => $specification ) {
+	public static function provideApiModuleNames(): iterable {
+		foreach ( self::getExtensionJson()['APIModules'] ?? [] as $moduleName => $specification ) {
 			yield [ $moduleName ];
 		}
 	}
 
 	/** @dataProvider provideApiQueryModuleListsAndNames */
 	public function testApiQueryModule( string $moduleList, string $moduleName ): void {
-		$specification = $this->getExtensionJson()[$moduleList][$moduleName];
+		$specification = self::getExtensionJson()[$moduleList][$moduleName];
 		$objectFactory = MediaWikiServices::getInstance()->getObjectFactory();
 		$objectFactory->createObject( $specification, [
 			'allowClassName' => true,
@@ -155,9 +208,10 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( true );
 	}
 
-	public function provideApiQueryModuleListsAndNames(): iterable {
+	public static function provideApiQueryModuleListsAndNames(): iterable {
+		$extensionJson = self::getExtensionJson();
 		foreach ( [ 'APIListModules', 'APIMetaModules', 'APIPropModules' ] as $moduleList ) {
-			foreach ( $this->getExtensionJson()[$moduleList] ?? [] as $moduleName => $specification ) {
+			foreach ( $extensionJson[$moduleList] ?? [] as $moduleName => $specification ) {
 				yield [ $moduleList, $moduleName ];
 			}
 		}
@@ -165,7 +219,7 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 
 	/** @dataProvider provideSpecialPageNames */
 	public function testSpecialPage( string $specialPageName ): void {
-		$specification = $this->getExtensionJson()['SpecialPages'][$specialPageName];
+		$specification = self::getExtensionJson()['SpecialPages'][$specialPageName];
 		$objectFactory = MediaWikiServices::getInstance()->getObjectFactory();
 		$objectFactory->createObject( $specification, [
 			'allowClassName' => true,
@@ -173,15 +227,15 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( true );
 	}
 
-	public function provideSpecialPageNames(): iterable {
-		foreach ( $this->getExtensionJson()['SpecialPages'] ?? [] as $specialPageName => $specification ) {
+	public static function provideSpecialPageNames(): iterable {
+		foreach ( self::getExtensionJson()['SpecialPages'] ?? [] as $specialPageName => $specification ) {
 			yield [ $specialPageName ];
 		}
 	}
 
 	/** @dataProvider provideAuthenticationProviders */
 	public function testAuthenticationProviders( string $providerType, string $providerName, string $providerClass ): void {
-		$specification = $this->getExtensionJson()['AuthManagerAutoConfig'][$providerType][$providerName];
+		$specification = self::getExtensionJson()['AuthManagerAutoConfig'][$providerType][$providerName];
 		$objectFactory = MediaWikiServices::getInstance()->getObjectFactory();
 		$objectFactory->createObject( $specification, [
 			'assertClass' => $providerClass,
@@ -189,8 +243,8 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( true );
 	}
 
-	public function provideAuthenticationProviders(): iterable {
-		$config = $this->getExtensionJson()['AuthManagerAutoConfig'] ?? [];
+	public static function provideAuthenticationProviders(): iterable {
+		$config = self::getExtensionJson()['AuthManagerAutoConfig'] ?? [];
 
 		$types = [
 			'preauth'       => PreAuthenticationProvider::class,
@@ -207,20 +261,25 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 
 	/** @dataProvider provideSessionProviders */
 	public function testSessionProviders( string $providerName ): void {
-		$specification = $this->getExtensionJson()['SessionProviders'][$providerName];
+		$specification = self::getExtensionJson()['SessionProviders'][$providerName];
 		$objectFactory = MediaWikiServices::getInstance()->getObjectFactory();
 		$objectFactory->createObject( $specification );
 		$this->assertTrue( true );
 	}
 
-	public function provideSessionProviders(): iterable {
-		foreach ( $this->getExtensionJson()['SessionProviders'] ?? [] as $providerName => $specification ) {
+	public static function provideSessionProviders(): iterable {
+		foreach ( self::getExtensionJson()['SessionProviders'] ?? [] as $providerName => $specification ) {
 			yield [ $providerName ];
 		}
 	}
 
 	/** @dataProvider provideServicesLists */
 	public function testServicesSorted( array $services ): void {
+		if ( $this->serviceNamePrefix === null ) {
+			// do not test sorting
+			$this->assertTrue( true );
+			return;
+		}
 		$sortedServices = $services;
 		usort( $sortedServices, function ( $serviceA, $serviceB ) {
 			$isExtensionServiceA = str_starts_with( $serviceA, $this->serviceNamePrefix );
@@ -236,11 +295,8 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 			"then all {$this->serviceNamePrefix}* ones." );
 	}
 
-	public function provideServicesLists(): iterable {
-		if ( $this->serviceNamePrefix === null ) {
-			return; // do not test sorting
-		}
-		foreach ( $this->provideSpecifications() as $name => $specification ) {
+	public static function provideServicesLists(): iterable {
+		foreach ( self::provideSpecifications() as $name => $specification ) {
 			if (
 				is_array( $specification ) &&
 				array_key_exists( 'services', $specification )
@@ -250,33 +306,34 @@ abstract class ExtensionJsonTestBase extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideSpecifications(): iterable {
-		foreach ( $this->provideHookHandlerNames() as [ $hookHandlerName ] ) {
-			yield "HookHandlers/$hookHandlerName" => $this->getExtensionJson()['HookHandlers'][$hookHandlerName];
+	public static function provideSpecifications(): iterable {
+		$extensionJson = self::getExtensionJson();
+		foreach ( self::provideHookHandlerNamesStatically() as [ $hookHandlerName ] ) {
+			yield "HookHandlers/$hookHandlerName" => $extensionJson['HookHandlers'][$hookHandlerName];
 		}
 
-		foreach ( $this->provideContentModelIDs() as [ $contentModelID ] ) {
-			yield "ContentHandlers/$contentModelID" => $this->getExtensionJson()['ContentHandlers'][$contentModelID];
+		foreach ( self::provideContentModelIDs() as [ $contentModelID ] ) {
+			yield "ContentHandlers/$contentModelID" => $extensionJson['ContentHandlers'][$contentModelID];
 		}
 
-		foreach ( $this->provideApiModuleNames() as [ $moduleName ] ) {
-			yield "APIModules/$moduleName" => $this->getExtensionJson()['APIModules'][$moduleName];
+		foreach ( self::provideApiModuleNames() as [ $moduleName ] ) {
+			yield "APIModules/$moduleName" => $extensionJson['APIModules'][$moduleName];
 		}
 
-		foreach ( $this->provideApiQueryModuleListsAndNames() as [ $moduleList, $moduleName ] ) {
-			yield "$moduleList/$moduleName" => $this->getExtensionJson()[$moduleList][$moduleName];
+		foreach ( self::provideApiQueryModuleListsAndNames() as [ $moduleList, $moduleName ] ) {
+			yield "$moduleList/$moduleName" => $extensionJson[$moduleList][$moduleName];
 		}
 
-		foreach ( $this->provideSpecialPageNames() as [ $specialPageName ] ) {
-			yield "SpecialPages/$specialPageName" => $this->getExtensionJson()['SpecialPages'][$specialPageName];
+		foreach ( self::provideSpecialPageNames() as [ $specialPageName ] ) {
+			yield "SpecialPages/$specialPageName" => $extensionJson['SpecialPages'][$specialPageName];
 		}
 
-		foreach ( $this->provideAuthenticationProviders() as [ $providerType, $providerName, $providerClass ] ) {
-			yield "AuthManagerAutoConfig/$providerType/$providerName" => $this->getExtensionJson()['AuthManagerAutoConfig'][$providerType][$providerName];
+		foreach ( self::provideAuthenticationProviders() as [ $providerType, $providerName, $providerClass ] ) {
+			yield "AuthManagerAutoConfig/$providerType/$providerName" => $extensionJson['AuthManagerAutoConfig'][$providerType][$providerName];
 		}
 
-		foreach ( $this->provideSessionProviders() as [ $providerName ] ) {
-			yield "SessionProviders/$providerName" => $this->getExtensionJson()['SessionProviders'][$providerName];
+		foreach ( self::provideSessionProviders() as [ $providerName ] ) {
+			yield "SessionProviders/$providerName" => $extensionJson['SessionProviders'][$providerName];
 		}
 	}
 
