@@ -49,6 +49,23 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 		$this->testUserCanChangeRights( $temporaryAccount, false, false );
 	}
 
+	public function testShowForm() {
+		$target = $this->getTestUser()->getUser();
+		$performer = $this->getTestSysop()->getUser();
+
+		[ $html ] = $this->executeSpecialPage(
+			$target->getName(),
+			null,
+			'qqx',
+			$performer
+		);
+
+		$targetName = $target->getName();
+		$this->assertStringContainsString( "(userrights-editusergroup: $targetName)", $html );
+		$this->assertStringContainsString( 'wpGroup-sysop', $html );
+		$this->assertStringContainsString( '(logempty)', $html );
+	}
+
 	public function testSaveUserGroups() {
 		$target = $this->getTestUser()->getUser();
 		$performer = $this->getTestSysop()->getUser();
