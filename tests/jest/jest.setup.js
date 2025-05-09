@@ -2,6 +2,10 @@
 
 const { config } = require( '@vue/test-utils' );
 
+// Load jQuery
+const jquery = require( '../../resources/lib/jquery/jquery.js' );
+global.$ = jquery;
+
 /**
  * Mock for the calls to Core's $i18n plugin which returns a mw.Message object.
  *

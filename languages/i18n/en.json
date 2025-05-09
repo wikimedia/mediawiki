@@ -46,6 +46,7 @@
 	"help": "Help",
 	"help-mediawiki": "Help about MediaWiki",
 	"search": "Search",
+	"search-close": "Close search dialog",
 	"search-ignored-headings": " #<!-- leave this line exactly as it is --> <pre>\n# Headings that will be ignored by search.\n# Changes to this take effect as soon as the page with the heading is indexed.\n# You can force page reindexing by doing a null edit.\n# The syntax is as follows:\n#   * Everything from a \"#\" character to the end of the line is a comment.\n#   * Every non-blank line is the exact title to ignore, case and everything.\nReferences\nExternal links\nSee also\n #</pre> <!-- leave this line exactly as it is -->",
 	"searchbutton": "Search",
 	"searchsuggest-containing-html": "Search for pages containing <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",

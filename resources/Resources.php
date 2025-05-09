@@ -119,12 +119,21 @@ return [
 		'packageFiles' => [
 			'resources/src/mediawiki.skinning.typeaheadSearch/index.js',
 			'resources/src/mediawiki.skinning.typeaheadSearch/App.vue',
+			'resources/src/mediawiki.skinning.typeaheadSearch/TypeaheadSearchWrapper.vue',
+			[
+				'name' => 'resources/src/mediawiki.skinning.typeaheadSearch/icons.json',
+				'callback' => 'MediaWiki\\ResourceLoader\\CodexModule::getIcons',
+				'callbackParam' => [
+					'cdxIconArrowPrevious'
+				],
+			],
 			'resources/src/mediawiki.skinning.typeaheadSearch/instrumentation.js',
 			'resources/src/mediawiki.skinning.typeaheadSearch/fetch.js',
 			'resources/src/mediawiki.skinning.typeaheadSearch/restSearchClient.js',
 			'resources/src/mediawiki.skinning.typeaheadSearch/urlGenerator.js',
 		],
 		'messages' => [
+			'search-close',
 			'searchbutton',
 			'searchresults',
 			'search-loader',
@@ -678,6 +687,9 @@ return [
 	'mediawiki.codex.typeaheadSearch' => [
 		'class' => 'MediaWiki\\ResourceLoader\\CodexModule',
 		'codexComponents' => [
+			"CdxIcon",
+			"CdxButton",
+			"CdxDialog",
 			'CdxTypeaheadSearch'
 		]
 	],
@@ -1703,8 +1715,10 @@ return [
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.page.ready",
 		'packageFiles' => [
 			'ready.js',
+			'enableSearchDialog.js',
 			'checkboxShift.js',
 			'checkboxHack.js',
+			'clearAddressBar.js',
 			'teleportTarget.js',
 			'toggleAllCollapsibles.js',
 			[ 'name' => 'config.json', 'callback' => static function (

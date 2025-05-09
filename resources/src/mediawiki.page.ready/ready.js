@@ -1,6 +1,8 @@
 const checkboxShift = require( './checkboxShift.js' );
 const config = require( './config.json' );
 const teleportTarget = require( './teleportTarget.js' );
+const enableSearchDialog = require( './enableSearchDialog.js' );
+const clearAddressBar = require( './clearAddressBar.js' );
 
 // Break out of framesets
 if ( mw.config.get( 'wgBreakFrames' ) ) {
@@ -285,6 +287,8 @@ try {
  * @exports mediawiki.page.ready
  */
 module.exports = {
+	clearAddressBar,
+	enableSearchDialog,
 	loadSearchModule,
 	/** @type {module:mediawiki.page.ready.CheckboxHack} */
 	checkboxHack: require( './checkboxHack.js' ),
