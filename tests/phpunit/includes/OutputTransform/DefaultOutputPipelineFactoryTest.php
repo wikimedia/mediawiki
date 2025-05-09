@@ -33,7 +33,6 @@ class DefaultOutputPipelineFactoryTest extends MediaWikiLangTestCase {
 		$this->overrideConfigValues( [
 			MainConfigNames::ScriptPath => '/w',
 			MainConfigNames::Script => '/w/index.php',
-			MainConfigNames::ParserEnableLegacyHeadingDOM => false,
 		] );
 
 		$po = new ParserOutput( $text );

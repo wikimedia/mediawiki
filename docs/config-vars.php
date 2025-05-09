@@ -2393,13 +2393,6 @@ $wgParsoidExperimentalParserFunctionOutput = null;
 $wgParserEnableLegacyMediaDOM = null;
 
 /**
- * Config variable stub for the ParserEnableLegacyHeadingDOM setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::ParserEnableLegacyHeadingDOM
- * @deprecated since 1.44
- */
-$wgParserEnableLegacyHeadingDOM = null;
-
-/**
  * Config variable stub for the UseContentMediaStyles setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::UseContentMediaStyles
  * @deprecated since 1.41

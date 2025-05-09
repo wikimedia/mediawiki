@@ -2221,7 +2221,6 @@ return [
 				[
 					'name' => 'fallback',
 					'styles' => [ 'mediawiki.skinning.interface', 'mediawiki.codex.messagebox.styles' ],
-					'supportsMwHeading' => true,
 					'templateDirectory' => __DIR__ . '/skins/templates/fallback',
 				]
 			]
@@ -2233,7 +2232,6 @@ return [
 				[
 					'name' => 'apioutput',
 					'styles' => [ 'mediawiki.skinning.interface' ],
-					'supportsMwHeading' => true,
 					'templateDirectory' => __DIR__ . '/skins/templates/apioutput',
 				]
 			]
@@ -2265,7 +2263,6 @@ return [
 				[
 					'name' => 'json',
 					'styles' => [],
-					'supportsMwHeading' => true,
 					'format' => 'json',
 					'templateDirectory' => __DIR__ . '/skins/templates/apioutput',
 				]

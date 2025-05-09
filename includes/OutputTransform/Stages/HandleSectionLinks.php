@@ -7,7 +7,6 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
 use MediaWiki\Html\HtmlHelper;
-use MediaWiki\MainConfigNames;
 use MediaWiki\OutputTransform\ContentTextTransformStage;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
@@ -27,11 +26,6 @@ class HandleSectionLinks extends ContentTextTransformStage {
 		'/<H(?P<level>[1-6])(?P<attrib>(?:[^\'">]*|"([^"]*)"|\'([^\']*)\')*>)(?P<header>[\s\S]*?)<\/H[1-6] *>/i';
 
 	private TitleFactory $titleFactory;
-
-	/** @internal */
-	public const CONSTRUCTOR_OPTIONS = [
-		MainConfigNames::ParserEnableLegacyHeadingDOM, // For HandleSectionLinks
-	];
 
 	public function __construct(
 		ServiceOptions $options, LoggerInterface $logger, TitleFactory $titleFactory
@@ -71,15 +65,10 @@ class HandleSectionLinks extends ContentTextTransformStage {
 	}
 
 	private function replaceHeadings( string $text, array $options ): string {
-		$skin = $this->resolveSkin( $options );
-		$useLegacyHeading = $this->options->get( MainConfigNames::ParserEnableLegacyHeadingDOM );
-		if ( $skin && !$skin->getOptions()['supportsMwHeading'] ) {
-			$useLegacyHeading = true;
-		}
 		$needToCheckExistingWrappers = preg_match( '/class="[^"]*\bmw-heading\b[^"]*"/', $text );
 
 		return preg_replace_callback( self::HEADING_REGEX, function ( $m ) use (
-			$useLegacyHeading, $needToCheckExistingWrappers, $text
+			$needToCheckExistingWrappers, $text
 		) {
 			// Parse attributes out of the <h#> tag. Do not actually use HtmlHelper's output,
 			// because EDITSECTION_REGEX is sensitive to quotes in HTML serialization.
@@ -109,37 +98,32 @@ class HandleSectionLinks extends ContentTextTransformStage {
 				return '';
 			}, $m['header'][0] );
 
-			if ( !$useLegacyHeading ) {
-				$wrapperType = 'mwheading';
+			$wrapperType = 'mwheading';
 
-				// Do not add another wrapper if an existing wrapper if present.
-				// This is to support DiscussionTools adding wrappers itself.
-				// TODO: This is obviously bad and unreliable. One day, this code will use DOM transforms,
-				// and can just check ->parentNode like in HandleParsoidSectionLinks.
-				if ( $needToCheckExistingWrappers ) {
-					$textBeforeMatch = substr( $text, 0, $m[0][1] );
-					$openOffset = strrpos( $textBeforeMatch, '<div class="mw-heading' );
-					if ( $openOffset !== false ) {
-						$closeOffset = strpos( $textBeforeMatch, '</div>', $openOffset );
-						if ( $closeOffset === false ) {
-							// Looks like we're already inside a wrapper
-							$wrapperType = 'none';
-						}
+			// Do not add another wrapper if an existing wrapper if present.
+			// This is to support DiscussionTools adding wrappers itself.
+			// TODO: This is obviously bad and unreliable. One day, this code will use DOM transforms,
+			// and can just check ->parentNode like in HandleParsoidSectionLinks.
+			if ( $needToCheckExistingWrappers ) {
+				$textBeforeMatch = substr( $text, 0, $m[0][1] );
+				$openOffset = strrpos( $textBeforeMatch, '<div class="mw-heading' );
+				if ( $openOffset !== false ) {
+					$closeOffset = strpos( $textBeforeMatch, '</div>', $openOffset );
+					if ( $closeOffset === false ) {
+						// Looks like we're already inside a wrapper
+						$wrapperType = 'none';
 					}
 				}
+			}
 
-				if ( $this->isHtmlHeading( $attrs ) ) {
-					// This is a <h#> tag with attributes added using HTML syntax.
-					// Mark it with a class to make them easier to distinguish (T68637).
-					Html::addClass( $attrs['class'], 'mw-html-heading' );
+			if ( $this->isHtmlHeading( $attrs ) ) {
+				// This is a <h#> tag with attributes added using HTML syntax.
+				// Mark it with a class to make them easier to distinguish (T68637).
+				Html::addClass( $attrs['class'], 'mw-html-heading' );
 
-					// Do not add the wrapper if the heading has attributes added using HTML syntax (T353489).
-					// In this case it's also guaranteed that there's no edit link, so we don't need wrappers.
-					$wrapperType = 'none';
-				}
-
-			} else {
-				$wrapperType = 'legacy';
+				// Do not add the wrapper if the heading has attributes added using HTML syntax (T353489).
+				// In this case it's also guaranteed that there's no edit link, so we don't need wrappers.
+				$wrapperType = 'none';
 			}
 
 			return $this->makeHeading(
@@ -162,7 +146,7 @@ class HandleSectionLinks extends ContentTextTransformStage {
 	 * @param string $link HTML to add for the section edit link
 	 * @param string|false $fallbackAnchor A second, optional anchor to give for
 	 *   backward compatibility (false to omit)
-	 * @param string $wrapperType 'legacy', 'mwheading' or 'none'
+	 * @param string $wrapperType 'mwheading' or 'none'
 	 * @return string HTML headline
 	 */
 	private function makeHeading( $level, $attrs, $anchor, $html,
@@ -180,11 +164,6 @@ class HandleSectionLinks extends ContentTextTransformStage {
 		}
 
 		switch ( $wrapperType ) {
-			case 'legacy':
-				return "<h$level" . Html::expandAttributes( $attrs ) . ">"
-					. "$fallback<span class=\"mw-headline\"$idAttr>$html</span>"
-					. $link
-					. "</h$level>";
 			case 'mwheading':
 				return "<div class=\"mw-heading mw-heading$level\">"
 					. "<h$level$idAttr" . Html::expandAttributes( $attrs ) . ">$fallback$html</h$level>"

@@ -4280,18 +4280,6 @@ config-schema:
             https://www.mediawiki.org/wiki/Parsing/Media_structure
             @deprecated since 1.41
             @since 1.36
-    ParserEnableLegacyHeadingDOM:
-        default: false
-        deprecated: 'since 1.44'
-        description: |-
-            Enable legacy HTML structure for headings in the output from the Parser.
-            The legacy structure includes section edit links (and other markup added
-            by some extensions) inside the headings rather than outside them, leading
-            to poor accessibility. This doesn't affect headings on special pages.
-            Note that each skin also has to indicate support for the new structure.
-            More information: https://www.mediawiki.org/wiki/Heading_HTML_changes
-            @deprecated since 1.44
-            @since 1.43
     UseContentMediaStyles:
         default: false
         deprecated: 'since 1.41'

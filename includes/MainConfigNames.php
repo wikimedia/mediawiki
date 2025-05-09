@@ -2408,13 +2408,6 @@ class MainConfigNames {
 	public const ParserEnableLegacyMediaDOM = 'ParserEnableLegacyMediaDOM';
 
 	/**
-	 * Name constant for the ParserEnableLegacyHeadingDOM setting, for use with Config::get()
-	 * @see MainConfigSchema::ParserEnableLegacyHeadingDOM
-	 * @deprecated since 1.44
-	 */
-	public const ParserEnableLegacyHeadingDOM = 'ParserEnableLegacyHeadingDOM';
-
-	/**
 	 * Name constant for the UseContentMediaStyles setting, for use with Config::get()
 	 * @see MainConfigSchema::UseContentMediaStyles
 	 * @deprecated since 1.41

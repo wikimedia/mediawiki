@@ -6702,22 +6702,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Enable legacy HTML structure for headings in the output from the Parser.
-	 * The legacy structure includes section edit links (and other markup added
-	 * by some extensions) inside the headings rather than outside them, leading
-	 * to poor accessibility. This doesn't affect headings on special pages.
-	 * Note that each skin also has to indicate support for the new structure.
-	 * More information: https://www.mediawiki.org/wiki/Heading_HTML_changes
-	 *
-	 * @deprecated since 1.44
-	 * @since 1.43
-	 */
-	public const ParserEnableLegacyHeadingDOM = [
-		'default' => false,
-		'deprecated' => 'since 1.44',
-	];
-
-	/**
 	 * Enable shipping the styles for the media HTML structure that replaces
 	 * legacy, when $wgParserEnableLegacyMediaDOM is `false`.  This is configured
 	 * separately so that it can continue to be served after the latter is disabled

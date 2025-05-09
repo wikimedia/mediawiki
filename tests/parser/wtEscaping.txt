@@ -207,8 +207,6 @@ parsoid=html2wt
 # in the html2wt direction we emit '= = =' or '=<nowiki>=</nowiki>='
 !! test
 Headings: 4d. Short headings (2)
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! options
 parsoid=wt2html,html2html
 !! wikitext
@@ -349,7 +347,6 @@ a
 !! test
 Headings: Used as horizontal rule
 !! config
-wgParserEnableLegacyHeadingDOM=false
 wgFragmentMode=[ "html5", "legacy" ]
 !! options
 parsoid=wt2html

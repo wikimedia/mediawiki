@@ -539,8 +539,6 @@ c</p>
 Multiple newlines after tables are converted to p-br-p tags
 !!options
 parsoid=wt2html,wt2wt
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !!wikitext
 {|
 |x
@@ -3726,8 +3724,6 @@ List items from template
 
 !! test
 List interrupted by empty line or heading
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 *foo
 
@@ -5233,8 +5229,6 @@ Unbalanced includeonly and noinclude tags
 includeonly / noinclude / onlyinclude and headers
 !! options
 parsoid = wt2html
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 <includeonly><!--hello1 --></includeonly>== test 1 == <includeonly><!--hello2 --></includeonly>
 <noinclude><!--hello3 --></noinclude>== test 2 == <noinclude><!--hello4 --></noinclude>
@@ -5294,8 +5288,6 @@ Un-closed <includeonly>
 Includes and comments at SOL
 !! options
 parsoid=wt2html,html2html
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 <!-- comment --><noinclude><!-- comment --></noinclude><!-- comment -->==hu==
 
@@ -6939,8 +6931,6 @@ subpage title=[[Subpage test/1/2/3/4]]
 T335847: Resolve forward slash title
 !! options
 subpage title=[[/]]
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ===123===
 !! html/php
@@ -7747,8 +7737,6 @@ ill=fr:1
 Single-line or multiline-comments can follow headings
 !! options
 parsoid=wt2html,wt2wt
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==foo==<!---->
 ==bar==<!--c1-->
@@ -11459,7 +11447,6 @@ wgFragmentMode=[ "html5", "legacy" ]
 anchorencode encodes like the TOC generator: (T20431)
 !! config
 wgFragmentMode=[ "html5", "legacy" ]
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ===_ +:.3A%3A _ &&amp;]] x===
 {{anchorencode: _ +:.3A%3A _ &&amp;]] x}}
@@ -11484,7 +11471,6 @@ __NOEDITSECTION__
 anchorencode encodes like the TOC generator: (T20431) (legacy)
 !! config
 wgFragmentMode=[ "legacy" ]
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ===_ +:.3A%3A&&amp;]]===
 {{anchorencode: _ +:.3A%3A&&amp;]] }}
@@ -12727,8 +12713,6 @@ MediaWiki:T34057
 T34057: Title needed when expanding <h> nodes.
 !! options
 title=[[Main Page]]
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 {{int:T34057}}
 !! html/php
@@ -16782,8 +16766,6 @@ parsoid={
 	"modes": ["wt2html"],
 	"preserveIEW": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __NOTOC__
 ==    <!--c1-->  <!--c2--> Spaces   <!--c3--> <!--c4-->  ==
@@ -16866,8 +16848,6 @@ parsoid={
 	"modes": ["wt2html"],
 	"preserveIEW": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __NOTOC__
 <h2>    <!--c1-->   <!--c2--> Heading    <!--c3--> <!--c4-->  </h2>

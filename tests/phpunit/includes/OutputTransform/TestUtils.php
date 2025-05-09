@@ -27,24 +27,7 @@ class TestUtils {
 <p>Three
 </p>
 HTML;
-	public const TEST_DOC_WITH_LINKS_LEGACY_MARKUP = <<<HTML
-<p>Test document.
-</p>
-<meta property="mw:PageProp/toc" />
-<h2><span class="mw-headline" id="Section_1">Section 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<p>One
-</p>
-<h2><span class="mw-headline" id="Section_2">Section 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=2" title="Edit section: Section 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<p>Two
-</p>
-<h3><span class="mw-headline" id="Section_2.1">Section 2.1</span></h3>
-<p>Two point one
-</p>
-<h2><span class="mw-headline" id="Section_3">Section 3</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=4" title="Edit section: Section 3">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<p>Three
-</p>
-HTML;
-	public const TEST_DOC_WITH_LINKS_NEW_MARKUP = <<<HTML
+	public const TEST_DOC_WITH_LINKS = <<<HTML
 <p>Test document.
 </p>
 <meta property="mw:PageProp/toc" />
@@ -61,24 +44,7 @@ HTML;
 <p>Three
 </p>
 HTML;
-	public const TEST_DOC_WITHOUT_LINKS_LEGACY_MARKUP = <<<HTML
-<p>Test document.
-</p>
-<meta property="mw:PageProp/toc" />
-<h2><span class="mw-headline" id="Section_1">Section 1</span></h2>
-<p>One
-</p>
-<h2><span class="mw-headline" id="Section_2">Section 2</span></h2>
-<p>Two
-</p>
-<h3><span class="mw-headline" id="Section_2.1">Section 2.1</span></h3>
-<p>Two point one
-</p>
-<h2><span class="mw-headline" id="Section_3">Section 3</span></h2>
-<p>Three
-</p>
-HTML;
-	public const TEST_DOC_WITHOUT_LINKS_NEW_MARKUP = <<<HTML
+	public const TEST_DOC_WITHOUT_LINKS = <<<HTML
 <p>Test document.
 </p>
 <meta property="mw:PageProp/toc" />
@@ -102,16 +68,10 @@ HTML;
 	public const TEST_DOC_ANGLE_BRACKETS = <<<HTML
 <h2 data-mw-anchor=">">><mw:editsection page="Test Page" section="1">></mw:editsection></h2>
 HTML;
-	public const TEST_DOC_ANGLE_BRACKETS_WITH_LINKS_LEGACY_MARKUP = <<<HTML
-<h2><span class="mw-headline" id="&gt;">></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: &gt;">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-HTML;
-	public const TEST_DOC_ANGLE_BRACKETS_WITH_LINKS_NEW_MARKUP = <<<HTML
+	public const TEST_DOC_ANGLE_BRACKETS_WITH_LINKS = <<<HTML
 <div class="mw-heading mw-heading2"><h2 id="&gt;">></h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: &gt;">edit</a><span class="mw-editsection-bracket">]</span></span></div>
 HTML;
-	public const TEST_DOC_ANGLE_BRACKETS_WITHOUT_LINKS_LEGACY_MARKUP = <<<HTML
-<h2><span class="mw-headline" id="&gt;">></span></h2>
-HTML;
-	public const TEST_DOC_ANGLE_BRACKETS_WITHOUT_LINKS_NEW_MARKUP = <<<HTML
+	public const TEST_DOC_ANGLE_BRACKETS_WITHOUT_LINKS = <<<HTML
 <div class="mw-heading mw-heading2"><h2 id="&gt;">></h2></div>
 HTML;
 
