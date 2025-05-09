@@ -43,7 +43,7 @@ describe( 'Special:RecentChanges', () => {
 			async () => ( await RecentChangesPage.titles[ 0 ].getText() ) === name,
 			{ timeout: 10000 }
 		);
-		await expect( await RecentChangesPage.titles[ 0 ] ).toHaveText( name );
+		await expect( RecentChangesPage.titles[ 0 ] ).toHaveText( name );
 	} );
 
 } );

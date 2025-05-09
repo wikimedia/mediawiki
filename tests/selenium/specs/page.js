@@ -35,10 +35,10 @@ describe( 'Page', () => {
 		await LoginPage.loginAdmin();
 		await EditPage.preview( name, content );
 
-		await expect( await EditPage.heading ).toHaveText( `Creating ${ name }` );
-		await expect( await EditPage.displayedContent ).toHaveText( content );
-		await expect( await EditPage.content ).toBeDisplayed( { message: 'editor is still present' } );
-		await expect( await EditPage.conflictingContent ).not.toBeDisplayed( { message: 'no edit conflict happened' } );
+		await expect( EditPage.heading ).toHaveText( `Creating ${ name }` );
+		await expect( EditPage.displayedContent ).toHaveText( content );
+		await expect( EditPage.content ).toBeDisplayed( { message: 'editor is still present' } );
+		await expect( EditPage.conflictingContent ).not.toBeDisplayed( { message: 'no edit conflict happened' } );
 
 		// T269566: Popup with text
 		// 'Leave site? Changes that you made may not be saved. Cancel/Leave'
@@ -52,8 +52,8 @@ describe( 'Page', () => {
 		await EditPage.edit( name, content );
 
 		// check
-		await expect( await EditPage.heading ).toHaveText( name );
-		await expect( await EditPage.displayedContent ).toHaveText( content );
+		await expect( EditPage.heading ).toHaveText( name );
+		await expect( EditPage.displayedContent ).toHaveText( content );
 	} );
 
 	it( 'should be re-creatable', async () => {
@@ -68,8 +68,8 @@ describe( 'Page', () => {
 		await EditPage.edit( name, content );
 
 		// check
-		await expect( await EditPage.heading ).toHaveText( name );
-		await expect( await EditPage.displayedContent ).toHaveText( content );
+		await expect( EditPage.heading ).toHaveText( name );
+		await expect( EditPage.displayedContent ).toHaveText( content );
 	} );
 
 	it( 'should be editable @daily', async () => {
@@ -81,8 +81,8 @@ describe( 'Page', () => {
 		await EditPage.edit( name, editContent );
 
 		// check
-		await expect( await EditPage.heading ).toHaveText( name );
-		await expect( await EditPage.displayedContent ).toHaveTextContaining( editContent );
+		await expect( EditPage.heading ).toHaveText( name );
+		await expect( EditPage.displayedContent ).toHaveTextContaining( editContent );
 	} );
 
 	it( 'should have history @daily', async () => {
@@ -91,7 +91,7 @@ describe( 'Page', () => {
 
 		// check
 		await HistoryPage.open( name );
-		await expect( await HistoryPage.comment ).toHaveText( `created with "${ content }"` );
+		await expect( HistoryPage.comment ).toHaveText( `created with "${ content }"` );
 	} );
 
 	it( 'should be deletable', async () => {
@@ -104,7 +104,7 @@ describe( 'Page', () => {
 		await DeletePage.delete( name, 'delete reason' );
 
 		// check
-		await expect( await DeletePage.displayedContent ).toHaveTextContaining( `"${ name }" has been deleted.` );
+		await expect( DeletePage.displayedContent ).toHaveTextContaining( `"${ name }" has been deleted.` );
 	} );
 
 	it( 'should be restorable', async () => {
@@ -119,7 +119,7 @@ describe( 'Page', () => {
 		await RestorePage.restore( name, 'restore reason' );
 
 		// check
-		await expect( await RestorePage.displayedContent ).toHaveTextContaining( `${ name } has been undeleted` );
+		await expect( RestorePage.displayedContent ).toHaveTextContaining( `${ name } has been undeleted` );
 	} );
 
 	it( 'should be protectable', async () => {
@@ -140,8 +140,8 @@ describe( 'Page', () => {
 
 		// Check that we can't edit the page anymore
 		await EditPage.openForEditing( name );
-		await expect( await EditPage.save ).not.toExist();
-		await expect( await EditPage.heading ).toHaveText( `View source for ${ name }` );
+		await expect( EditPage.save ).not.toExist();
+		await expect( EditPage.heading ).toHaveText( `View source for ${ name }` );
 	} );
 
 	it( 'should be undoable @daily', async () => {
@@ -156,7 +156,7 @@ describe( 'Page', () => {
 
 		await UndoPage.undo( name, previousRev, undoRev );
 
-		await expect( await EditPage.displayedContent ).toHaveTextContaining( content );
+		await expect( EditPage.displayedContent ).toHaveTextContaining( content );
 	} );
 
 } );
