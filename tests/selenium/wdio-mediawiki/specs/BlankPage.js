@@ -7,6 +7,6 @@ describe( 'BlankPage', () => {
 		await BlankPage.open();
 
 		// check
-		await expect( await BlankPage.heading ).toHaveText( 'Blank page' );
+		await expect( BlankPage.heading ).toHaveText( 'Blank page' );
 	} );
 } );
