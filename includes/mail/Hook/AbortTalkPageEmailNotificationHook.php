@@ -10,6 +10,7 @@ use MediaWiki\User\User;
  * Use the hook name "AbortTalkPageEmailNotification" to register handlers implementing this interface.
  *
  * @stable to implement
+ * @deprecated since 1.44 Use the NotificationMiddleware instead
  * @ingroup Hooks
  */
 interface AbortTalkPageEmailNotificationHook {

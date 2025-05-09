@@ -35,6 +35,7 @@ class DeprecatedHooks {
 	 * @phpcs-require-sorted-array
 	 */
 	private $deprecatedHooks = [
+		'AbortTalkPageEmailNotification' => [ 'deprecatedVersion' => '1.44' ],
 		'AddNewAccount' => [ 'deprecatedVersion' => '1.27' ],
 		'ArticleDelete' => [ 'deprecatedVersion' => '1.37', 'silent' => true ],
 		'ArticleDeleteComplete' => [ 'deprecatedVersion' => '1.37', 'silent' => true ],
