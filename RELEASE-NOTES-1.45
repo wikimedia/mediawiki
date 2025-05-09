@@ -166,6 +166,8 @@ because of Phabricator reports.
   - RevisionStore::getFirstRevision
   - RevisionStore::getRevisionByTimestamp
   - RevisionStore::getRevisionByTitle
+* The MagicWordwgVariableIDsHook, deprecated in 1.35, now emits warnings in the
+  hook runner. Migrate to the GetMagicVariableIDsHook instead.
 * …
 
 === Other changes in 1.45 ===

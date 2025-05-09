@@ -45,7 +45,7 @@ class DeprecatedHooks {
 		'EmailUserPermissionsErrors' => [ 'deprecatedVersion' => '1.41' ],
 		'InterwikiLoadPrefix' => [ 'deprecatedVersion' => '1.36' ],
 		'LocalFile::getHistory' => [ 'deprecatedVersion' => '1.37' ],
-		'MagicWordwgVariableIDs' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
+		'MagicWordwgVariableIDs' => [ 'deprecatedVersion' => '1.35' ],
 		'MessageCache::get' => [ 'deprecatedVersion' => '1.41' ],
 		'PageContentSave' => [ 'deprecatedVersion' => '1.35' ],
 		'PermissionErrorAudit' => [ 'deprecatedVersion' => '1.44' ],
