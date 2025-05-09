@@ -280,56 +280,6 @@ class AuthManager implements LoggerAwareInterface {
 		return $this->request;
 	}
 
-	/**
-	 * Force certain PrimaryAuthenticationProviders
-	 *
-	 * @deprecated since 1.43; for backwards compatibility only
-	 * @param PrimaryAuthenticationProvider[] $providers
-	 * @param string $why
-	 */
-	public function forcePrimaryAuthenticationProviders( array $providers, $why ) {
-		wfDeprecated( __METHOD__, '1.43' );
-
-		$this->logger->warning( "Overriding AuthManager primary authn because $why" );
-
-		if ( $this->primaryAuthenticationProviders !== null ) {
-			$this->logger->warning(
-				'PrimaryAuthenticationProviders have already been accessed! I hope nothing breaks.'
-			);
-
-			$this->allAuthenticationProviders = array_diff_key(
-				$this->allAuthenticationProviders,
-				$this->primaryAuthenticationProviders
-			);
-			$session = $this->request->getSession();
-			$session->remove( self::AUTHN_STATE );
-			$session->remove( self::ACCOUNT_CREATION_STATE );
-			$session->remove( self::ACCOUNT_LINK_STATE );
-			$this->createdAccountAuthenticationRequests = [];
-		}
-
-		$this->primaryAuthenticationProviders = [];
-		foreach ( $providers as $provider ) {
-			if ( !$provider instanceof AbstractPrimaryAuthenticationProvider ) {
-				throw new \RuntimeException(
-					'Expected instance of MediaWiki\\Auth\\AbstractPrimaryAuthenticationProvider, got ' .
-						get_class( $provider )
-				);
-			}
-			$provider->init( $this->logger, $this, $this->hookContainer, $this->config, $this->userNameUtils );
-			$id = $provider->getUniqueId();
-			if ( isset( $this->allAuthenticationProviders[$id] ) ) {
-				throw new \RuntimeException(
-					"Duplicate specifications for id $id (classes " .
-						get_class( $provider ) . ' and ' .
-						get_class( $this->allAuthenticationProviders[$id] ) . ')'
-				);
-			}
-			$this->allAuthenticationProviders[$id] = $provider;
-			$this->primaryAuthenticationProviders[$id] = $provider;
-		}
-	}
-
 	/***************************************************************************/
 	// region   Authentication
 	/** @name   Authentication */
