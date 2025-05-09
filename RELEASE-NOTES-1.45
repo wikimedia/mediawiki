@@ -92,6 +92,8 @@ because of Phabricator reports.
 
 === Breaking changes in 1.45 ===
 
+* AuthManager::forcePrimaryAuthenticationProviders(), deprecated in 1.43 has
+  been removed.
 * …
 
 === Deprecations in 1.45 ===
