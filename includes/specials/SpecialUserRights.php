@@ -334,7 +334,7 @@ class SpecialUserRights extends SpecialPage {
 	 * Data comes from the editUserGroupsForm() form function
 	 *
 	 * @param string $reason Reason for group change
-	 * @param UserIdentity $user
+	 * @param UserIdentity $user The target user
 	 * @return Status
 	 */
 	protected function saveUserGroups( string $reason, UserIdentity $user ) {
@@ -423,7 +423,7 @@ class SpecialUserRights extends SpecialPage {
 	 *
 	 * This function can be used without submitting the special page
 	 *
-	 * @param UserIdentity $user
+	 * @param UserIdentity $user The target user
 	 * @param string[] $add Array of groups to add
 	 * @param string[] $remove Array of groups to remove
 	 * @param string $reason Reason for group change
@@ -540,7 +540,7 @@ class SpecialUserRights extends SpecialPage {
 
 	/**
 	 * Add a rights log entry for an action.
-	 * @param UserIdentity $user
+	 * @param UserIdentity $user The target user
 	 * @param array $oldGroups
 	 * @param array $newGroups
 	 * @param string $reason
@@ -742,7 +742,7 @@ class SpecialUserRights extends SpecialPage {
 	/**
 	 * Show the form to edit group memberships.
 	 *
-	 * @param UserIdentity $user
+	 * @param UserIdentity $user The target user
 	 * @param string[] $groups Array of groups the user is in. Not used by this implementation
 	 *   anymore, but kept for backward compatibility with subclasses
 	 * @param UserGroupMembership[] $groupMemberships Associative array of (group name => UserGroupMembership
@@ -908,7 +908,7 @@ class SpecialUserRights extends SpecialPage {
 	 *
 	 * @param UserGroupMembership[] $usergroups Associative array of (group name as string =>
 	 *   UserGroupMembership object) for groups the user belongs to
-	 * @param UserIdentity $user
+	 * @param UserIdentity $user The target user
 	 * @return array Array with 2 elements: the XHTML table element with checkxboes, and
 	 * whether any groups are changeable
 	 */
@@ -1142,7 +1142,7 @@ class SpecialUserRights extends SpecialPage {
 	 * Use UserIdentity::getName for {{GENDER:}} in messages and
 	 * use the "display user name" for visible user names in logs or messages
 	 *
-	 * @param UserIdentity $user
+	 * @param UserIdentity $user The target user
 	 * @return string
 	 */
 	private function getDisplayUsername( UserIdentity $user ) {
