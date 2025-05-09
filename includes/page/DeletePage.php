@@ -637,7 +637,8 @@ class DeletePage {
 			[ PageDeletedEvent::FLAG_SUPPRESSED => $this->suppress ],
 			$logEntry->getTimestamp(),
 			$reason,
-			$archivedRevisionCount
+			$archivedRevisionCount,
+			$pageBeforeDelete->isRedirect() ? $this->redirectStore->getRedirectTarget( $page ) : null
 		), $this->lbFactory );
 
 		$dbw->endAtomic( __METHOD__ );
