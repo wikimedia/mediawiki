@@ -23,6 +23,7 @@ namespace Wikimedia\Stats\Metrics;
 
 use Wikimedia\Stats\Exceptions\IllegalOperationException;
 use Wikimedia\Stats\Sample;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Timing Metric Implementation
@@ -61,7 +62,7 @@ class TimingMetric implements MetricInterface {
 	 * @return $this
 	 */
 	public function start() {
-		$this->startTime = hrtime( true );
+		$this->startTime = ConvertibleTimestamp::hrtime();
 		return $this;
 	}
 
@@ -73,7 +74,7 @@ class TimingMetric implements MetricInterface {
 			trigger_error( "Stats: stop() called before start() for metric '{$this->getName()}'", E_USER_WARNING );
 			return;
 		}
-		$this->observeNanoseconds( hrtime( true ) - $this->startTime );
+		$this->observeNanoseconds( ConvertibleTimestamp::hrtime() - $this->startTime );
 		$this->startTime = null;
 	}
 
