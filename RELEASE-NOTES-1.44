@@ -734,6 +734,8 @@ because of Phabricator reports.
     - Only pass a string to $wiki
 * UserMailer::sanitizeHeaderValue emits deprecation warnings. This function
   is no longer used within core/extensions. No replacement is provided.
+* (T387995) Deprecated AbortTalkPageEmailNotification hook. Use the Notification
+  Middleware to filter our Talk Page notifications
 * …
 
 === Other changes in 1.44 ===
