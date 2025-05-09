@@ -70,6 +70,7 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testElementInputCanHaveAValueOfZero() {
+		$this->hideDeprecated( Xml::class . '::input' );
 		$this->assertEquals(
 			'<input name="name" value="0" />',
 			Xml::input( 'name', false, 0 ),
