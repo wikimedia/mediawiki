@@ -28,7 +28,7 @@ describe( 'User', () => {
 		await CreateAccountPage.createAccount( username, password );
 
 		// check
-		await expect( await CreateAccountPage.heading ).toHaveText( `Welcome, ${ username }!` );
+		await expect( CreateAccountPage.heading ).toHaveText( `Welcome, ${ username }!` );
 	} );
 
 	it( 'should be able to log in', async () => {
@@ -49,12 +49,12 @@ describe( 'User', () => {
 
 		await CreateAccountPage.open();
 
-		await expect( await CreateAccountPage.username ).toExist();
-		await expect( await CreateAccountPage.password ).toExist();
-		await expect( await CreateAccountPage.tempPasswordInput ).toExist(
+		await expect( CreateAccountPage.username ).toExist();
+		await expect( CreateAccountPage.password ).toExist();
+		await expect( CreateAccountPage.tempPasswordInput ).toExist(
 			{ message: 'Named users should have the option to have a temporary password sent on signup (T328718)' }
 		);
-		await expect( await CreateAccountPage.reasonInput ).toExist(
+		await expect( CreateAccountPage.reasonInput ).toExist(
 			{ message: 'Named users should have to provide a reason for their account creation (T328718)' }
 		);
 	} );
@@ -66,12 +66,12 @@ describe( 'User', () => {
 		await EditPage.edit( pageTitle, pageText );
 		await EditPage.openCreateAccountPageAsTempUser();
 
-		await expect( await CreateAccountPage.username ).toExist();
-		await expect( await CreateAccountPage.password ).toExist();
-		await expect( await CreateAccountPage.tempPasswordInput ).not.toExist(
+		await expect( CreateAccountPage.username ).toExist();
+		await expect( CreateAccountPage.password ).toExist();
+		await expect( CreateAccountPage.tempPasswordInput ).not.toExist(
 			{ message: 'Temporary users should not have the option to have a temporary password sent on signup (T328718)' }
 		);
-		await expect( await CreateAccountPage.reasonInput ).not.toExist(
+		await expect( CreateAccountPage.reasonInput ).not.toExist(
 			{ message: 'Temporary users should not have to provide a reason for their account creation (T328718)' }
 		);
 	} );
@@ -87,7 +87,7 @@ describe( 'User', () => {
 
 		const actualUsername = await LoginPage.getActualUsername();
 		expect( actualUsername ).toBe( username );
-		await expect( await CreateAccountPage.heading ).toHaveText( `Welcome, ${ username }!` );
+		await expect( CreateAccountPage.heading ).toHaveText( `Welcome, ${ username }!` );
 	} );
 
 	it( 'should be able to block a user', async () => {
@@ -99,6 +99,6 @@ describe( 'User', () => {
 		const reason = Util.getTestString();
 		await BlockPage.block( username, expiry, reason );
 
-		await expect( await BlockPage.messages ).toHaveTextContaining( 'Block added' );
+		await expect( BlockPage.messages ).toHaveTextContaining( 'Block added' );
 	} );
 } );
