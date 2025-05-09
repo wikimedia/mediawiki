@@ -439,10 +439,11 @@ class HTMLFormFieldCloner extends HTMLFormField {
 
 		if ( !empty( $this->mParams['row-legend'] ) ) {
 			$legend = $this->msg( $this->mParams['row-legend'] )->text();
+			$legend = $legend ? Html::element( 'legend', [], $legend ) : '';
 			$html = Html::rawElement(
 				'fieldset',
 				[],
-				$legend ? Html::element( 'legend', [], $legend ) : '' . $html
+				$legend . $html
 			);
 		}
 
@@ -548,10 +549,11 @@ class HTMLFormFieldCloner extends HTMLFormField {
 
 		if ( !empty( $this->mParams['row-legend'] ) ) {
 			$legend = $this->msg( $this->mParams['row-legend'] )->text();
+			$legend = $legend ? Html::element( 'legend', [], $legend ) : '';
 			$html = Html::rawElement(
 				'fieldset',
 				[],
-				$legend ? Html::element( 'legend', [], $legend ) : '' . $html
+				$legend . $html
 			);
 		}
 
