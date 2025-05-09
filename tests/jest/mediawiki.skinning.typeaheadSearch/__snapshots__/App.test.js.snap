@@ -18,7 +18,7 @@ exports[`App renders a typeahead search component 1`] = `
   searchresults=""
   showthumbnail="true"
   title="search"
-  usebutton="false"
+  usebutton="true"
   visibleitemlimit="7"
 />
 `;
