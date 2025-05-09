@@ -3236,7 +3236,7 @@
 	"version-parserhooks": "Parsertillegg",
 	"version-variables": "Variabler",
 	"version-editors": "Redigeringsprogrammer",
-	"version-antispam": "Søppelpostforebygging",
+	"version-antispam": "Spamforebygging",
 	"version-other": "Annet",
 	"version-mediahandlers": "Mediehåndterere",
 	"version-hooks": "Haker",

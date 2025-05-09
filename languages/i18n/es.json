@@ -2819,6 +2819,7 @@
 	"blocklink": "bloquear",
 	"unblocklink": "desbloquear",
 	"change-blocklink": "cambiar bloqueo",
+	"remove-blocklink": "revocar bloqueo",
 	"manage-blocklink": "gestionar bloqueos",
 	"empty-username": "(nombre de usuario no disponible)",
 	"blocklist-hidden-placeholder": "(nombre de usuario oculto)",
