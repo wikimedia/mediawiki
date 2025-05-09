@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Integration\HTMLForm;
 use InvalidArgumentException;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\HTMLForm\HTMLFormField;
+use MediaWiki\Language\RawMessage;
 use MediaWikiIntegrationTestCase;
 
 abstract class HTMLFormFieldTestCase extends MediaWikiIntegrationTestCase {
@@ -33,8 +34,17 @@ abstract class HTMLFormFieldTestCase extends MediaWikiIntegrationTestCase {
 				'HTMLFormFieldTestCase subclass ' . __CLASS__ . ' must override $className or constructField()'
 			);
 		}
+
+		$form = $this->createMock( HTMLForm::class );
+		$form->method( 'getLanguage' )
+			->willReturnCallback(
+				fn () => $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'qqx' )
+			);
+		$form->method( 'msg' )
+			->willReturnCallback( static fn ( ...$args ) => new RawMessage( ...$args ) );
+
 		return new $this->className( $params + [
-			'parent' => $this->createMock( HTMLForm::class ),
+			'parent' => $form,
 			'name' => 'testfield'
 		] );
 	}
