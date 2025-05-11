@@ -10,6 +10,7 @@
 	"paths": {
 		"/page": {
 			"post": {
+				"description": "Endpoint for creating pages",
 				"handler": {
 					"class": "MediaWiki\\Rest\\Handler\\CreationHandler",
 					"services": [

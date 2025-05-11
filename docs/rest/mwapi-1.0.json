@@ -64,6 +64,9 @@
 				"externalDocs": {
 					"$ref": "https://spec.openapis.org/oas/3.0/schema/2021-09-28#/definitions/ExternalDocumentation"
 				}
+			},
+			"patternProperties": {
+				"^x-i18n-": { "$ref": "#/definitions/i18n" }
 			}
 		},
 		"OperationImpl": {
@@ -122,6 +125,10 @@
 					"additionalProperties": false
 				}
 			}
+		},
+		"i18n": {
+			"description": "internationalized version of some other key",
+			"type": "string"
 		}
 	}
 }
