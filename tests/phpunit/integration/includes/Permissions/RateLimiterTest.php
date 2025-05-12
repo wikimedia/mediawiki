@@ -142,19 +142,19 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $limiter->limit( $karaY1, 'move' ), 'Second move by another user' );
 
 		$actual = $statsHelper->count( 'RateLimiter_limit_cause_total{action="edit",tripped_by="anon"}' );
-		$this->assertEquals( 2, $actual );
+		$this->assertSame( 1, $actual );
 		$actual = $statsHelper->count( 'RateLimiter_limit_cause_total{action="purge",tripped_by="ip"}' );
-		$this->assertEquals( 5, $actual );
+		$this->assertSame( 1, $actual );
 		$actual = $statsHelper->count( 'RateLimiter_limit_cause_total{action="purge",tripped_by="subnet"}' );
-		$this->assertEquals( 7, $actual );
+		$this->assertSame( 3, $actual );
 		$actual = $statsHelper->count( 'RateLimiter_limit_cause_total{action="delete",tripped_by="ip_all"}' );
-		$this->assertEquals( 7, $actual );
+		$this->assertSame( 2, $actual );
 		$actual = $statsHelper->count( 'RateLimiter_limit_cause_total{action="delete",tripped_by="subnet_all"}' );
-		$this->assertEquals( 8, $actual );
+		$this->assertSame( 3, $actual );
 		$actual = $statsHelper->count( 'RateLimiter_limit_cause_total{action="rollback",tripped_by="user"}' );
-		$this->assertEquals( 2, $actual );
+		$this->assertSame( 1, $actual );
 		$actual = $statsHelper->count( 'RateLimiter_limit_cause_total{action="move",tripped_by="user_global"}' );
-		$this->assertEquals( 10, $actual );
+		$this->assertSame( 5, $actual );
 	}
 
 	public function testPingLimiterWithStaleCache() {
@@ -275,14 +275,10 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 			'Actions with no rate limit set do not trip the rate limiter'
 		);
 
-		$actual = $statsHelper->count( 'RateLimiter_limit_actions_total{action="edit",tripped_by="passed_by_hook"}' );
-		$this->assertEquals( 2, $actual );
-		$actual = $statsHelper->count( 'RateLimiter_limit_actions_total{action="edit",tripped_by="tripped_by_hook"}' );
-		$this->assertEquals( 2, $actual );
-		$actual = $statsHelper->count( 'RateLimiter_limit_actions_total{action="edit",tripped_by="passed"}' );
-		$this->assertEquals( 2, $actual );
-		$actual = $statsHelper->count( 'RateLimiter_limit_actions_total{action="edit",tripped_by="tripped"}' );
-		$this->assertEquals( 2, $actual );
+		$actual = $statsHelper->count( 'RateLimiter_limit_actions_total{action="edit",result="passed_by_hook"}' );
+		$this->assertSame( 1, $actual );
+		$actual = $statsHelper->count( 'RateLimiter_limit_actions_total{action="edit",result="tripped_by_hook"}' );
+		$this->assertSame( 1, $actual );
 	}
 
 	public function testIsLimitableAction() {
@@ -422,11 +418,11 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $limiter->limit( $newbie3, 'edit' ) );
 
 		$actual = $statsHelper->count( 'RateLimiter_limit_actions_total{action="edit",result="passed"}' );
-		$this->assertEquals( 5, $actual );
+		$this->assertSame( 2, $actual );
 		$actual = $statsHelper->count( 'RateLimiter_limit_actions_total{action="edit",result="tripped"}' );
-		$this->assertEquals( 4, $actual );
+		$this->assertSame( 1, $actual );
 		$actual = $statsHelper->count( 'RateLimiter_limit_cause_total{action="edit",tripped_by="ip"}' );
-		$this->assertEquals( 2, $actual );
+		$this->assertSame( 1, $actual );
 	}
 
 	/**
@@ -485,11 +481,11 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $limiter->limit( $user, 'delete' ), 'bypass should be denied' );
 
 		$actual = $statsHelper->count( 'RateLimiter_limit_actions_total{action="edit",result="exempt"}' );
-		$this->assertEquals( 4, $actual );
-		$actual = $statsHelper->count( 'RateLimiter_limit_actions_total{action="delete",result="exempt"}' );
-		$this->assertEquals( 2, $actual );
+		$this->assertSame( 2, $actual );
+		$actual = $statsHelper->count( 'RateLimiter_limit_actions_total{action="delete",result="passed"}' );
+		$this->assertSame( 1, $actual );
 		$actual = $statsHelper->count( 'RateLimiter_limit_actions_total{action="delete",result="tripped"}' );
-		$this->assertEquals( 3, $actual );
+		$this->assertSame( 1, $actual );
 	}
 
 	/**
@@ -546,10 +542,10 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $limiter->limit( $user, 'edit' ), 'limit for autoconfirmed exceeded' );
 
 		$actual = $statsHelper->count( 'RateLimiter_limit_actions_total{action="edit",result="passed"}' );
-		$this->assertEquals( 5, $actual );
+		$this->assertSame( 2, $actual );
 		$actual = $statsHelper->count( 'RateLimiter_limit_actions_total{action="edit",result="tripped"}' );
-		$this->assertEquals( 4, $actual );
+		$this->assertSame( 1, $actual );
 		$actual = $statsHelper->count( 'RateLimiter_limit_cause_total{action="edit",tripped_by="autoconfirmed"}' );
-		$this->assertEquals( 2, $actual );
+		$this->assertSame( 1, $actual );
 	}
 }

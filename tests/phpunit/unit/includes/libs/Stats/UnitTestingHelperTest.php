@@ -77,6 +77,9 @@ class UnitTestingHelperTest extends TestCase {
 		$this->assertEquals( 3, $actual );
 		$actual = $this->statsHelperWithComponent->sum( 'test{a="a"}' );
 		$this->assertEquals( 3, $actual );
+		// avoid counting the same metric twice
+		$actual = $this->statsHelperWithComponent->sum( 'test{a="a", a="a"}' );
+		$this->assertEquals( 3, $actual );
 	}
 
 	public function testMax() {
