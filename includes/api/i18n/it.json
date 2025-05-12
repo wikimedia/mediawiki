@@ -27,7 +27,8 @@
 			"Pierpao",
 			"Ontsed",
 			"McDutchie",
-			"Valerio Bozzolan"
+			"Valerio Bozzolan",
+			"Emabarto01"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentazione]]\n* [[mw:Special:MyLanguage/API:Etiquette|Etiquette & linee guida sull'utilizzo]]\n* [[mw:Special:MyLanguage/API:FAQ|Domande frequenti]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Mailing list]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ Annunci sull'API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bug & richieste]\n</div>\n<strong>Stato:</strong> l'API MediaWiki è un'interfaccia matura e stabile che è attivamente supportata e migliorata. Anche se cerchiamo di evitarlo, potremmo dover fare delle modifiche che causano malfunzionamenti; iscriviti alla [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ mailing list sugli annunci delle API MediaWiki] per essere informato sugli aggiornamenti.\n\n<strong>Istruzioni sbagliate:</strong> quando vengono impartite alle API delle istruzioni sbagliate, un'intestazione HTTP verrà inviata col messaggio \"MediaWiki-API-Error\" e, sia il valore dell'intestazione, sia il codice d'errore, verranno impostati con lo stesso valore. Per maggiori informazioni leggi [[mw:Special:MyLanguage/API:Errors_and_warnings|API:Errori ed avvertimenti]] (in inglese).\n\n<p class=\"mw-apisandbox-link\"><strong>Test:</strong> per testare facilmente le richieste API, vedi [[Special:ApiSandbox]].</p>",
@@ -44,6 +45,7 @@
 	"apihelp-main-param-variant": "Variante della lingua. Funziona solo se la lingua originale supporta la variante di conversione.",
 	"apihelp-main-param-errorformat": "Formato da utilizzare per generare un testo di avvertenza e errore",
 	"apihelp-main-paramvalue-errorformat-raw": "Chiave del messaggio e parametri.",
+	"apihelp-main-paramvalue-errorformat-none": "Nessun output di testo, solo i codici di errore.",
 	"apihelp-main-param-errorsuselocal": "Se indicato, i testi di errore impiegheranno messaggi personalizzati localmente dal namespace {{ns:MediaWiki}}.",
 	"apihelp-block-summary": "Blocca un utente.",
 	"apihelp-block-param-user": "Utente da bloccare.",
@@ -104,7 +106,7 @@
 	"apihelp-edit-param-section": "Identificativo di sezione. <kbd>0</kbd> per la sezione iniziale, <kbd>new</kbd> per una nuova sezione. Spesso è un intero positivo, ma potrebbe essere anche non numerico.",
 	"apihelp-edit-param-sectiontitle": "Il titolo per una nuova sezione quando usi <var>$1section=new</var>.",
 	"apihelp-edit-param-text": "Contenuto della pagina.",
-	"apihelp-edit-param-summary": "Oggetto della modifica. Anche titolo della sezione se $1sezione=new e $1sectiontitle non è impostato.",
+	"apihelp-edit-param-summary": "Riepilogo delle modifiche.\n\nSe questo parametro non viene specificato o è vuoto, [[mw:Special:MyLanguage/Autosummary|potrebbe essere generato automaticamente un riepilogo delle modifiche]].\n\nSe si utilizza <var>$1 section=new</var> e <var>$1 sectiontitle</var> non viene specificato, il valore di questo parametro viene utilizzato per il titolo della sezione e viene generato automaticamente un riepilogo delle modifiche.",
 	"apihelp-edit-param-tags": "Cambia i tag da applicare alla revisione.",
 	"apihelp-edit-param-minor": "Contrassegna questa modifica come minore.",
 	"apihelp-edit-param-notminor": "Non contrassegnare questa modifica come minore anche se la preferenza \"{{int:tog-minordefault}}\" è impostata.",

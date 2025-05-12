@@ -178,7 +178,7 @@
 	"talk": "Kozman",
 	"views": "Afichaj",
 	"toolbox": "Zouti",
-	"tool-link-userrights": "Modifyé group-ya di itiliz{{GENDER:$1|ò|ris}}-a",
+	"tool-link-userrights": "Modifyé group-ya di {{GENDER:$1|itilizò|itilizris}}-a",
 	"tool-link-userrights-readonly": "Wè group-ya di itilizat{{GENDER:$1|ò|ris}}",
 	"tool-link-emailuser": "Voyé roun kourilèt pou {{GENDER:$1|sa itilizatò}}",
 	"imagepage": "Wè paj fiché-a",

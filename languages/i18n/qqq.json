@@ -267,7 +267,9 @@
 			"IJzeren Jan",
 			"Juwan",
 			"XtexChooser",
-			"Pppery"
+			"Pppery",
+			"Bunnypranav",
+			"Qwrop"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -2345,8 +2347,8 @@
 	"brokenredirects": "{{doc-special|BrokenRedirects}}",
 	"brokenredirects-summary": "{{doc-specialpagesummary|brokenredirects}}",
 	"brokenredirectstext": "Shown on top of [[Special:BrokenRedirects]].",
-	"brokenredirects-edit": "Link in [[Special:BrokenRedirects]]\n\n{{Identical|Edit}}",
-	"brokenredirects-delete": "Link in [[Special:BrokenRedirects]] for admins\n\n{{Identical|Delete}}",
+	"brokenredirects-edit": "Label of the link to edit the page listed at [[Special:BrokenRedirects]]\n\n{{Identical|Edit}}",
+	"brokenredirects-delete": "Label of the link to delete the page listed at [[Special:BrokenRedirects]]. Only visible if you have delete page right.\n\n{{Identical|Delete}}",
 	"brokenredirects-delete-reason": "{{ignored}}\nThe default deletion reason when deleting a broken redirect from [[Special:BrokenRedirects]]",
 	"withoutinterwiki": "{{doc-special|WithoutInterwiki}}",
 	"withoutinterwiki-summary": "Summary of [[Special:WithoutInterwiki]].",

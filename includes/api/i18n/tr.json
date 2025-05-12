@@ -1143,7 +1143,7 @@
 	"apihelp-query+search-param-search": "Bu değerle eşleşen sayfa başlıklarını veya içeriği arayın. Vikinin arama arka ucunun ne uyguladığına bağlı olarak, özel arama özelliklerini çağırmak için arama dizesini kullanabilirsiniz.",
 	"apihelp-query+search-param-namespace": "Yalnızca bu ad alanlarında arama yapın.",
 	"apihelp-query+search-param-what": "Hangi tür arama gerçekleştirilecek.",
-	"apihelp-query+search-param-info": "Hangi meta veri döndürülecek.",
+	"apihelp-query+search-param-info": "Hangi üstveri döndürülecek.",
 	"apihelp-query+search-param-prop": "Döndürülecek özellikler:",
 	"apihelp-query+search-param-qiprofile": "Kullanılacak sorgudan bağımsız profil (sıralama algoritmasını etkiler).",
 	"apihelp-query+search-paramvalue-prop-size": "Sayfanın boyutunu bayt olarak ekler.",

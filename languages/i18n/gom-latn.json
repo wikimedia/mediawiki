@@ -421,7 +421,7 @@
 	"currentrev": "Akherchim uzollnni",
 	"currentrev-asof": "$1, hachi halinchi uzollnni",
 	"revisionasof": "$1 hachi uzollnni",
-	"revision-info": "$1 porian, $2 hannem kelli uzollnni",
+	"revision-info": "$1 porian, {{GENDER:$6|$2}} hannem kelli uzollnni $7",
 	"previousrevision": "← Adli uzollnni",
 	"nextrevision": "Novi uzolnni →",
 	"currentrevisionlink": "Akherchim uzollnni",

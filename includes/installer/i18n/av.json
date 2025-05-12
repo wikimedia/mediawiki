@@ -6,6 +6,11 @@
 			"Augustus A C"
 		]
 	},
+	"config-information": "Информация",
+	"config-your-language": "Нужер мацӀ:",
+	"config-back": "← Нахъе",
+	"config-continue": "Хаду →",
+	"config-page-language": "МацӀ",
 	"config-page-welcome": "ЛъикӀ щварал MediaWiki-ялде!",
 	"config-page-name": "ЦӀар",
 	"config-page-options": "Опцияби",
