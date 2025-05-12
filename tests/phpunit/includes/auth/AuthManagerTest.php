@@ -4044,7 +4044,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			if ( $response instanceof AuthenticationResponse &&
 				$response->status === AuthenticationResponse::PASS
 			) {
-				$expectLog[] = [ LogLevel::INFO, 'Account linked to {user} by primary' ];
+				$expectLog[] = [ LogLevel::INFO, 'Account linked to {user} by {id}' ];
 			}
 
 			try {
