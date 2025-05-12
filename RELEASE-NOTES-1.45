@@ -139,6 +139,11 @@ because of Phabricator reports.
   emits deprecation warnings. Use ::getReadOnlyMode() service together
   with ::getConfiguredReason() and ::isConfiguredReadOnly() to check
   when a site is set to read-only mode.
+* Passing a string or UserIdentity object to DatabaseBlock::setTarget() or
+  the 'address' parameter to DatabaseBlock::__construct() is now deprecated
+  and will emit deprecation warnings. Use BlockTargetFactory to obtain a
+  BlockTarget to pass to the 'target' parameter of these functions, or use
+  DatabaseBlockStore::newUnsaved() or ::insertBlockWithParams(). (T385966)
 * Calling ApiOptions::__construct() without $userOptionsManager and
   $preferencesFactory has been deprecated and emits deprecation warnings.
   Code that extends ApiOptions should instead extend ApiOptionsBase.
