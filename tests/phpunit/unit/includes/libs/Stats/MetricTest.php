@@ -23,130 +23,120 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @covers \Wikimedia\Stats\StatsUtils
  */
 class MetricTest extends MediaWikiUnitTestCase {
-
-	public const FORMATS = [ 'statsd', 'dogstatsd' ];
-
-	public const TYPES = [ 'counter', 'gauge', 'timing' ];
-
-	public const TESTS = [
-		'basic' => [
-			'config' => [
-				'name' => 'test.unit',
-				'component' => 'testComponent',
+	public static function provideMetrics() {
+		$dataset = [
+			'basic' => [
+				'call' => [
+					'component' => 'testComponent',
+					'name' => 'test.unit',
+					'labels' => [],
+					'value' => 2,
+				],
+				'expected' => [
+					'counter' => 'mediawiki.testComponent.test_unit:2|c',
+					'gauge' => 'mediawiki.testComponent.test_unit:2|g',
+					'timing' => 'mediawiki.testComponent.test_unit:2|ms',
+				],
 			],
-			'value' => 2,
-			'labels' => [],
-		],
-		'oneLabel' => [
-			'config' => [
-				'name' => 'test.unit',
-				'component' => 'testComponent',
+			'oneLabel' => [
+				'call' => [
+					'component' => 'testComponent',
+					'name' => 'test.unit',
+					'labels' => [ 'x' => 'labelOne' ],
+					'value' => 2,
+				],
+				'expected' => [
+					'counter' => [
+						'statsd' => 'mediawiki.testComponent.test_unit.labelOne:2|c',
+						'dogstatsd' => 'mediawiki.testComponent.test_unit:2|c|#x:labelOne',
+					],
+					'gauge' => [
+						'statsd' => 'mediawiki.testComponent.test_unit.labelOne:2|g',
+						'dogstatsd' => 'mediawiki.testComponent.test_unit:2|g|#x:labelOne',
+					],
+					'timing' => [
+						'statsd' => 'mediawiki.testComponent.test_unit.labelOne:2|ms',
+						'dogstatsd' => 'mediawiki.testComponent.test_unit:2|ms|#x:labelOne',
+					],
+				],
 			],
-			'value' => 2,
-			'labels' => [ 'x' => 'labelOne' ],
-		],
-		'multiLabel' => [
-			'config' => [
-				'name' => 'test.unit',
-				'component' => 'testComponent',
+			'multiLabel' => [
+				'call' => [
+					'component' => 'testComponent',
+					'name' => 'test.unit',
+					'labels' => [ 'x' => 'labelOne', 'y' => 'labelTwo' ],
+					'value' => 2,
+				],
+				'expected' => [
+					'counter' => [
+						'dogstatsd' => 'mediawiki.testComponent.test_unit:2|c|#x:labelOne,y:labelTwo',
+						'statsd' => 'mediawiki.testComponent.test_unit.labelOne.labelTwo:2|c',
+					],
+					'gauge' => [
+						'statsd' => 'mediawiki.testComponent.test_unit.labelOne.labelTwo:2|g',
+						'dogstatsd' => 'mediawiki.testComponent.test_unit:2|g|#x:labelOne,y:labelTwo',
+					],
+					'timing' => [
+						'statsd' => 'mediawiki.testComponent.test_unit.labelOne.labelTwo:2|ms',
+						'dogstatsd' => 'mediawiki.testComponent.test_unit:2|ms|#x:labelOne,y:labelTwo',
+					],
+				],
 			],
-			'value' => 2,
-			'labels' => [ 'x' => 'labelOne', 'y' => 'labelTwo' ],
-		],
-		'noComponent' => [
-			'config' => [
-				'name' => 'test.unit',
-				'component' => null,
-			],
-			'value' => 2,
-			'labels' => [],
-		]
-	];
+			'noComponent' => [
+				'call' => [
+					'component' => null,
+					'name' => 'test.unit',
+					'labels' => [],
+					'value' => 2,
+				],
+				'expected' => [
+					'counter' => 'mediawiki.test_unit:2|c',
+					'gauge' => 'mediawiki.test_unit:2|g',
+					'timing' => 'mediawiki.test_unit:2|ms',
+				],
+			]
+		];
+		foreach ( $dataset as $name => $data ) {
+			foreach ( $data['expected'] as $type => $formatted ) {
+				foreach ( [ 'statsd', 'dogstatsd' ] as $format ) {
+					yield "$name $type in $format" => [
+						$data['call'], $type, $format,
+						(array)( is_string( $formatted ) ? $formatted : $formatted[$format] )
+					];
+				}
+			}
+		}
+	}
 
-	public const RESULTS = [
-		'statsd.counter.basic' => [ 'mediawiki.testComponent.test_unit:2|c' ],
-		'statsd.counter.oneLabel' => [ 'mediawiki.testComponent.test_unit.labelOne:2|c' ],
-		'statsd.counter.multiLabel' => [ 'mediawiki.testComponent.test_unit.labelOne.labelTwo:2|c' ],
-		'statsd.counter.noComponent' => [ 'mediawiki.test_unit:2|c' ],
-		'statsd.gauge.basic' => [ 'mediawiki.testComponent.test_unit:2|g' ],
-		'statsd.gauge.oneLabel' => [ 'mediawiki.testComponent.test_unit.labelOne:2|g' ],
-		'statsd.gauge.multiLabel' => [ 'mediawiki.testComponent.test_unit.labelOne.labelTwo:2|g' ],
-		'statsd.gauge.noComponent' => [ 'mediawiki.test_unit:2|g' ],
-		'statsd.timing.basic' => [ 'mediawiki.testComponent.test_unit:2|ms' ],
-		'statsd.timing.oneLabel' => [ 'mediawiki.testComponent.test_unit.labelOne:2|ms' ],
-		'statsd.timing.multiLabel' => [ 'mediawiki.testComponent.test_unit.labelOne.labelTwo:2|ms' ],
-		'statsd.timing.noComponent' => [ 'mediawiki.test_unit:2|ms' ],
-
-		'dogstatsd.counter.basic' => [ 'mediawiki.testComponent.test_unit:2|c' ],
-		'dogstatsd.counter.oneLabel' => [ 'mediawiki.testComponent.test_unit:2|c|#x:labelOne' ],
-		'dogstatsd.counter.multiLabel' => [
-			'mediawiki.testComponent.test_unit:2|c|#x:labelOne,y:labelTwo' ],
-		'dogstatsd.counter.noComponent' => [ 'mediawiki.test_unit:2|c' ],
-		'dogstatsd.gauge.basic' => [ 'mediawiki.testComponent.test_unit:2|g' ],
-		'dogstatsd.gauge.oneLabel' => [ 'mediawiki.testComponent.test_unit:2|g|#x:labelOne' ],
-		'dogstatsd.gauge.multiLabel' => [
-			'mediawiki.testComponent.test_unit:2|g|#x:labelOne,y:labelTwo' ],
-		'dogstatsd.gauge.noComponent' => [ 'mediawiki.test_unit:2|g' ],
-		'dogstatsd.timing.basic' => [ 'mediawiki.testComponent.test_unit:2|ms' ],
-		'dogstatsd.timing.oneLabel' => [ 'mediawiki.testComponent.test_unit:2|ms|#x:labelOne' ],
-		'dogstatsd.timing.multiLabel' => [
-			'mediawiki.testComponent.test_unit:2|ms|#x:labelOne,y:labelTwo' ],
-		'dogstatsd.timing.noComponent' => [ 'mediawiki.test_unit:2|ms' ],
-	];
-
-	/** @var StatsCache */
-	private $cache;
-
-	public function handleTest( $test, $type, $format ) {
-		$config = self::TESTS[$test];
-		$name = implode( '.', [ $format, $type, $test ] );
-		$this->setName( $name );
-		$this->cache->clear();
+	/**
+	 * @dataProvider provideMetrics
+	 */
+	public function testMetrics( array $call, string $type, string $format, array $expected ) {
+		$cache = new StatsCache();
 		$formatter = OutputFormats::getNewFormatter( OutputFormats::getFormatFromString( $format ) );
-		$emitter = OutputFormats::getNewEmitter( 'mediawiki', $this->cache, $formatter );
-		$statsFactory = new StatsFactory( $this->cache, $emitter, new NullLogger );
-		if ( $config['config']['component'] !== null ) {
-			$statsFactory = $statsFactory->withComponent( $config['config']['component'] );
+		$emitter = OutputFormats::getNewEmitter( 'mediawiki', $cache, $formatter );
+		$statsFactory = new StatsFactory( $cache, $emitter, new NullLogger );
+		if ( $call['component'] !== null ) {
+			$statsFactory = $statsFactory->withComponent( $call['component'] );
 		}
 		switch ( $type ) {
 			case 'counter':
-				$metric = $statsFactory->getCounter( $config['config']['name'] );
-				$metric->setLabels( $config['labels'] );
-				$metric->incrementBy( $config['value'] );
+				$metric = $statsFactory->getCounter( $call['name'] );
+				$metric->setLabels( $call['labels'] );
+				$metric->incrementBy( $call['value'] );
 				break;
 			case 'gauge':
-				$metric = $statsFactory->getGauge( $config['config']['name'] );
-				$metric->setLabels( $config['labels'] );
-				$metric->set( $config['value'] );
+				$metric = $statsFactory->getGauge( $call['name'] );
+				$metric->setLabels( $call['labels'] );
+				$metric->set( $call['value'] );
 				break;
 			case 'timing':
-				$metric = $statsFactory->getTiming( $config['config']['name'] );
-				$metric->setLabels( $config['labels'] );
-				$metric->observe( $config['value'] );
-				break;
-			case 'default':
+				$metric = $statsFactory->getTiming( $call['name'] );
+				$metric->setLabels( $call['labels'] );
+				$metric->observe( $call['value'] );
 				break;
 		}
-		$this->assertEquals( self::RESULTS[$name], TestingAccessWrapper::newFromObject( $emitter )->render() );
-	}
-
-	public function handleType( $type, $format ) {
-		foreach ( self::TESTS as $test => $_ ) {
-			$this->handleTest( $test, $type, $format );
-		}
-	}
-
-	public function handleFormat( $format ) {
-		$this->cache = new StatsCache();
-		foreach ( self::TYPES as $type ) {
-			$this->handleType( $type, $format );
-		}
-	}
-
-	public function testMetrics() {
-		foreach ( self::FORMATS as $format ) {
-			$this->handleFormat( $format );
-		}
+		$this->assertEquals( $expected, TestingAccessWrapper::newFromObject( $emitter )->render() );
 	}
 
 	public function testSampledMetrics() {
