@@ -19,6 +19,7 @@
 		:search-footer-url="searchFooterUrl"
 		:visible-item-limit="visibleItemLimit"
 		:use-button="!!searchButtonLabel"
+		:show-empty-query-results="showEmptySearchRecommendations"
 		@load-more="onLoadMore"
 		@input="onInput"
 		@search-result-click="instrumentation.onSuggestionClick"
@@ -136,6 +137,10 @@ module.exports = exports = defineComponent( {
 		autoExpandWidth: {
 			type: Boolean,
 			default: false
+		},
+		showEmptySearchRecommendations: {
+			type: Boolean,
+			default: false
 		}
 	},
 	data() {
@@ -188,15 +193,13 @@ module.exports = exports = defineComponent( {
 			this.currentSearchQuery = query;
 
 			if ( query === '' ) {
-				this.suggestions = [];
-				this.searchFooterUrl = '';
-				return;
+				this.loadEmptySearchRecommendations();
+			} else {
+				this.updateUIWithSearchClientResult(
+					this.restClient.fetchByTitle( query, 10, this.showDescription ),
+					true
+				);
 			}
-
-			this.updateUIWithSearchClientResult(
-				this.restClient.fetchByTitle( query, 10, this.showDescription ),
-				true
-			);
 		},
 
 		/**
@@ -228,7 +231,6 @@ module.exports = exports = defineComponent( {
 		 */
 		updateUIWithSearchClientResult( search, replaceResults ) {
 			const query = this.currentSearchQuery;
-
 			search.fetch
 				.then( ( data ) => {
 					// Only use these results if they're still relevant
@@ -257,6 +259,18 @@ module.exports = exports = defineComponent( {
 				} );
 		},
 
+		loadEmptySearchRecommendations() {
+			const fetchRecommendations = this.restClient.fetchRecommendationByTitle;
+			// Check empty search recommendations is enabled and the API supports recommendations
+			if ( this.showEmptySearchRecommendations && fetchRecommendations ) {
+				const currentTitle = mw.config.get( 'wgPageName' );
+				this.updateUIWithSearchClientResult(
+					this.restClient.fetchRecommendationByTitle( currentTitle, this.showDescription ),
+					true
+				);
+			}
+		},
+
 		/**
 		 * @param {SearchSubmitEvent} event
 		 */
@@ -268,6 +282,9 @@ module.exports = exports = defineComponent( {
 
 		onFocus() {
 			this.isFocused = true;
+			if ( this.currentSearchQuery === '' ) {
+				this.loadEmptySearchRecommendations();
+			}
 		},
 
 		onBlur() {
