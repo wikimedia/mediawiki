@@ -2574,7 +2574,8 @@ return [
 			$services->getTempUserConfig(),
 			$services->getSpecialPageFactory(),
 			$services->getLinkRenderer(),
-			$services->getTempUserDetailsLookup()
+			$services->getTempUserDetailsLookup(),
+			$services->getUserIdentityLookup()
 		);
 	},
 
