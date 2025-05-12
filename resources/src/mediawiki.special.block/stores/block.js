@@ -567,21 +567,21 @@ module.exports = exports = defineStore( 'block', () => {
 			return false;
 		}
 
-		const isValidIpOrRange = mw.util.isIPAddress( target, true );
-		const isIpAddress = mw.util.isIPAddress( target, false );
-		const isIpRange = isValidIpOrRange && !isIpAddress;
-
-		if ( !isIpAddress || isIpRange ) {
+		const isIpOrRange = mw.util.isIPAddress( target, true );
+		if ( !isIpOrRange ) {
 			return true;
 		}
 
+		let blockFound = false;
 		blocks.forEach( ( block ) => {
 			if ( block.user === target ) {
-				return true;
+				blockFound = true;
+				return;
+
 			}
 		} );
 
-		return false;
+		return blockFound;
 	}
 
 	/**

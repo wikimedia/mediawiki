@@ -621,7 +621,43 @@ function mockMwApiGet( additionalMocks = [] ) {
 				}
 			}
 		},
-		// IP with range blocks (T389987)
+		// IP with range blocks
+		{
+			params: {
+				list: 'logevents|blocks',
+				letype: 'block',
+				letitle: 'User:192.1.1.1'
+			},
+			response: {
+				query: {
+					blocks: [
+						{
+							id: 2001,
+							user: '192.1.1.0/18',
+							by: 'Admin',
+							timestamp: '2025-03-31T23:24:54Z',
+							expiry: '2025-10-01T23:24:54Z',
+							'duration-l10n': '6 months',
+							reason: 'Spamming links to external sites',
+							parsedreason: 'Spamming links to external sites',
+							rangestart: '1.2.0.0',
+							rangeend: '1.2.63.255',
+							automatic: false,
+							anononly: true,
+							nocreate: true,
+							autoblock: false,
+							noemail: false,
+							hidden: false,
+							allowusertalk: true,
+							partial: false,
+							restrictions: []
+						}
+					],
+					logevents: []
+				}
+			}
+		},
+		// Blocked IP with range blocks (T389987)
 		{
 			params: {
 				list: 'logevents|blocks',
