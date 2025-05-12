@@ -213,8 +213,8 @@ class UnitTestingHelper {
 		$filters = $this->getFilters( $selector );
 		$labelKeys = $metric->getLabelKeys();
 		$left = $metric->getSamples();
-		$right = [];
 		foreach ( $filters as $filter ) {
+			$right = [];
 			[ $key, $value, $operator ] = $filter;
 			$labelPosition = array_search( $key, $labelKeys );
 			foreach ( $left as $sample ) {
