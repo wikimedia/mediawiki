@@ -161,26 +161,26 @@ class CategoryViewer extends ContextSource {
 		$this->doCategoryQuery();
 		$this->finaliseCategoryState();
 
-		$r = $this->getSubcategorySection() .
+		$html = $this->getSubcategorySection() .
 			$this->getPagesSection() .
 			$this->getImageSection();
 
-		if ( $r == '' ) {
+		if ( $html == '' ) {
 			// If there is no category content to display, only
 			// show the top part of the navigation links.
 			// @todo FIXME: Cannot be completely suppressed because it
 			//        is unknown if 'until' or 'from' makes this
 			//        give 0 results.
-			$r = $this->getCategoryTop();
+			$html = $this->getCategoryTop();
 		} else {
-			$r = $this->getCategoryTop() .
-				$r .
+			$html = $this->getCategoryTop() .
+				$html .
 				$this->getCategoryBottom();
 		}
 
 		// Give a proper message if category is empty
-		if ( $r == '' ) {
-			$r = $this->msg( 'category-empty' )->parseAsBlock();
+		if ( $html == '' ) {
+			$html = $this->msg( 'category-empty' )->parseAsBlock();
 		}
 
 		$lang = $this->getLanguage();
@@ -190,9 +190,9 @@ class CategoryViewer extends ContextSource {
 			'dir' => $lang->getDir()
 		];
 		# put a div around the headings which are in the user language
-		$r = Html::rawElement( 'div', $attribs, $r );
+		$html = Html::rawElement( 'div', $attribs, $html );
 
-		return $r;
+		return $html;
 	}
 
 	protected function clearCategoryState() {
@@ -491,103 +491,102 @@ class CategoryViewer extends ContextSource {
 	}
 
 	/**
-	 * @return string
+	 * @return string HTML
 	 */
 	protected function getCategoryTop() {
-		$r = $this->getCategoryBottom();
-		return $r === ''
-			? $r
-			: "<br style=\"clear:both;\"/>\n" . $r;
+		$html = $this->getCategoryBottom();
+		return $html === ''
+			? $html
+			: "<br style=\"clear:both;\"/>\n" . $html;
 	}
 
 	/**
-	 * @return string
+	 * @return string HTML
 	 */
 	protected function getSubcategorySection() {
 		# Don't show subcategories section if there are none.
-		$r = '';
-		$rescnt = count( $this->children );
-		$dbcnt = $this->cat->getSubcatCount();
+		$html = '';
+		$localCount = count( $this->children );
+		$databaseCount = $this->cat->getSubcatCount();
 		// This function should be called even if the result isn't used, it has side-effects
-		$countmsg = $this->getCountMessage( $rescnt, $dbcnt, 'subcat' );
+		$countMessage = $this->getCountMessage( $localCount, $databaseCount, 'subcat' );
 
-		if ( $rescnt > 0 ) {
-			# Showing subcategories
-			$r .= Html::openElement( 'div', [ 'id' => 'mw-subcategories' ] ) . "\n";
-			$r .= Html::rawElement( 'h2', [], $this->msg( 'subcategories' )->parse() ) . "\n";
-			$r .= $countmsg;
-			$r .= $this->getSectionPagingLinks( 'subcat' );
-			$r .= $this->formatList( $this->children, $this->children_start_char );
-			$r .= $this->getSectionPagingLinks( 'subcat' );
-			$r .= "\n" . Html::closeElement( 'div' );
+		if ( $localCount > 0 ) {
+			$html .= Html::openElement( 'div', [ 'id' => 'mw-subcategories' ] ) . "\n";
+			$html .= Html::rawElement( 'h2', [], $this->msg( 'subcategories' )->parse() ) . "\n";
+			$html .= $countMessage;
+			$html .= $this->getSectionPagingLinks( 'subcat' );
+			$html .= $this->formatList( $this->children, $this->children_start_char );
+			$html .= $this->getSectionPagingLinks( 'subcat' );
+			$html .= "\n" . Html::closeElement( 'div' );
 		}
-		return $r;
+		return $html;
 	}
 
 	/**
-	 * @return string
+	 * @return string HTML
 	 */
 	protected function getPagesSection() {
 		$name = $this->getOutput()->getUnprefixedDisplayTitle();
 		# Don't show articles section if there are none.
-		$r = '';
+		$html = '';
 
 		# @todo FIXME: Here and in the other two sections: we don't need to bother
 		# with this rigmarole if the entire category contents fit on one page
 		# and have already been retrieved.  We can just use $rescnt in that
 		# case and save a query and some logic.
-		$dbcnt = $this->cat->getPageCount( Category::COUNT_CONTENT_PAGES );
-		$rescnt = count( $this->articles );
+		$databaseCount = $this->cat->getPageCount( Category::COUNT_CONTENT_PAGES );
+		$localCount = count( $this->articles );
 		// This function should be called even if the result isn't used, it has side-effects
-		$countmsg = $this->getCountMessage( $rescnt, $dbcnt, 'article' );
+		$countMessage = $this->getCountMessage( $localCount, $databaseCount, 'article' );
 
-		if ( $rescnt > 0 ) {
-			$r .= Html::openElement( 'div', [ 'id' => 'mw-pages' ] ) . "\n";
-			$r .= Html::rawElement(
+		if ( $localCount > 0 ) {
+			$html .= Html::openElement( 'div', [ 'id' => 'mw-pages' ] ) . "\n";
+			$html .= Html::rawElement(
 				'h2',
 				[],
 				$this->msg( 'category_header' )->rawParams( $name )->parse()
 			) . "\n";
-			$r .= $countmsg;
-			$r .= $this->getSectionPagingLinks( 'page' );
-			$r .= $this->formatList( $this->articles, $this->articles_start_char );
-			$r .= $this->getSectionPagingLinks( 'page' );
-			$r .= "\n" . Html::closeElement( 'div' );
+			$html .= $countMessage;
+			$html .= $this->getSectionPagingLinks( 'page' );
+			$html .= $this->formatList( $this->articles, $this->articles_start_char );
+			$html .= $this->getSectionPagingLinks( 'page' );
+			$html .= "\n" . Html::closeElement( 'div' );
 		}
-		return $r;
+		return $html;
 	}
 
 	/**
-	 * @return string
+	 * @return string HTML
 	 */
 	protected function getImageSection() {
 		$name = $this->getOutput()->getUnprefixedDisplayTitle();
-		$r = '';
-		$rescnt = $this->showGallery ?
+		$html = '';
+		$localCount = $this->showGallery ?
 			$this->gallery->count() :
 			count( $this->imgsNoGallery ?? [] );
-		$dbcnt = $this->cat->getFileCount();
+		$databaseCount = $this->cat->getFileCount();
 		// This function should be called even if the result isn't used, it has side-effects
-		$countmsg = $this->getCountMessage( $rescnt, $dbcnt, 'file' );
+		$countMessage = $this->getCountMessage( $localCount, $databaseCount, 'file' );
 
-		if ( $rescnt > 0 ) {
-			$r .= Html::openElement( 'div', [ 'id' => 'mw-category-media' ] ) . "\n";
-			$r .= Html::rawElement(
+		if ( $localCount > 0 ) {
+			$html .= Html::openElement( 'div', [ 'id' => 'mw-category-media' ] ) . "\n";
+			$html .= Html::rawElement(
 				'h2',
 				[],
 				$this->msg( 'category-media-header' )->rawParams( $name )->parse()
 			) . "\n";
-			$r .= $countmsg;
-			$r .= $this->getSectionPagingLinks( 'file' );
+			$html .= $countMessage;
+			$html .= $this->getSectionPagingLinks( 'file' );
 			if ( $this->showGallery ) {
-				$r .= $this->gallery->toHTML();
+				$html .= $this->gallery->toHTML();
 			} else {
-				$r .= $this->formatList( $this->imgsNoGallery, $this->imgsNoGallery_start_char );
+				$html .= $this->formatList( $this->imgsNoGallery, $this->imgsNoGallery_start_char );
 			}
-			$r .= $this->getSectionPagingLinks( 'file' );
-			$r .= "\n" . Html::closeElement( 'div' );
+			$html .= $this->getSectionPagingLinks( 'file' );
+			$html .= "\n" . Html::closeElement( 'div' );
 		}
-		return $r;
+		return $html;
 	}
 
 	/**
@@ -803,12 +802,12 @@ class CategoryViewer extends ContextSource {
 	 * returned?  This function says what. Each type is considered independently
 	 * of the other types.
 	 *
-	 * @param int $rescnt The number of items returned by our database query.
-	 * @param int $dbcnt The number of items according to the category table.
+	 * @param int $localCount The number of items returned by our database query.
+	 * @param int $databaseCount The number of items according to the category table.
 	 * @param string $type 'subcat', 'article', or 'file'
 	 * @return string A message giving the number of items, to output to HTML.
 	 */
-	private function getCountMessage( $rescnt, $dbcnt, $type ) {
+	private function getCountMessage( $localCount, $databaseCount, $type ) {
 		// There are three cases:
 		//   1) The category table figure seems good.  It might be wrong, but
 		//      we can't do anything about it if we don't recalculate it on ev-
@@ -834,21 +833,21 @@ class CategoryViewer extends ContextSource {
 			$fromOrUntil = true;
 		}
 
-		if ( $dbcnt == $rescnt ||
-			( ( $rescnt == $this->limit || $fromOrUntil ) && $dbcnt > $rescnt )
+		if ( $databaseCount == $localCount ||
+			( ( $localCount == $this->limit || $fromOrUntil ) && $databaseCount > $localCount )
 		) {
 			// Case 1: seems good.
-			$totalcnt = $dbcnt;
-		} elseif ( $rescnt < $this->limit && !$fromOrUntil ) {
+			$totalCount = $databaseCount;
+		} elseif ( $localCount < $this->limit && !$fromOrUntil ) {
 			// Case 2: not good, but salvageable.  Use the number of results.
-			$totalcnt = $rescnt;
+			$totalCount = $localCount;
 		} else {
 			// Case 3: hopeless.  Don't give a total count at all.
 			// Messages: category-subcat-count-limited, category-article-count-limited,
 			// category-file-count-limited
-			return $this->msg( "category-$type-count-limited" )->numParams( $rescnt )->parseAsBlock();
+			return $this->msg( "category-$type-count-limited" )->numParams( $localCount )->parseAsBlock();
 		}
 		// Messages: category-subcat-count, category-article-count, category-file-count
-		return $this->msg( "category-$type-count" )->numParams( $rescnt, $totalcnt )->parseAsBlock();
+		return $this->msg( "category-$type-count" )->numParams( $localCount, $totalCount )->parseAsBlock();
 	}
 }
