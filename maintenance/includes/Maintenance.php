@@ -494,9 +494,8 @@ abstract class Maintenance {
 		// This is sometimes called very early, before Setup.php is included.
 		if ( defined( 'MW_SERVICE_BOOTSTRAP_COMPLETE' ) ) {
 			// Flush stats periodically in long-running CLI scripts to avoid OOM (T181385)
-			$stats = $this->getServiceContainer()->getStatsdDataFactory();
 			$statsFactory = $this->getServiceContainer()->getStatsFactory();
-			MediaWiki::emitBufferedStats( $statsFactory, $stats, $this->getConfig() );
+			MediaWiki::emitBufferedStats( $statsFactory );
 		}
 
 		if ( $this->mQuiet ) {
@@ -1274,9 +1273,7 @@ abstract class Maintenance {
 		DeferredUpdates::tryOpportunisticExecute();
 		// Flush stats periodically in long-running CLI scripts to avoid OOM (T181385)
 		MediaWikiEntryPoint::emitBufferedStats(
-			$this->getServiceContainer()->getStatsFactory(),
-			$this->getServiceContainer()->getStatsdDataFactory(),
-			$this->getConfig()
+			$this->getServiceContainer()->getStatsFactory()
 		);
 
 		return $waitSucceeded;
@@ -1331,9 +1328,7 @@ abstract class Maintenance {
 		DeferredUpdates::tryOpportunisticExecute();
 		// Flush stats periodically in long-running CLI scripts to avoid OOM (T181385)
 		MediaWikiEntryPoint::emitBufferedStats(
-			$this->getServiceContainer()->getStatsFactory(),
-			$this->getServiceContainer()->getStatsdDataFactory(),
-			$this->getConfig()
+			$this->getServiceContainer()->getStatsFactory()
 		);
 
 		// If possible, apply changes to the database configuration.

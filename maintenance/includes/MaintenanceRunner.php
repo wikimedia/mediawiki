@@ -809,9 +809,7 @@ class MaintenanceRunner {
 		$profiler->logDataPageOutputOnly();
 
 		MediaWiki::emitBufferedStats(
-			$this->getServiceContainer()->getStatsFactory(),
-			$this->getServiceContainer()->getStatsdDataFactory(),
-			$this->getConfig()
+			$this->getServiceContainer()->getStatsFactory()
 		);
 
 		if ( $lbFactory ) {
