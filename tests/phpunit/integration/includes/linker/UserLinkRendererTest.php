@@ -15,6 +15,7 @@ use MediaWiki\User\TempUser\TempUserDetailsLookup;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\WikiMap\WikiMap;
 use MediaWikiLangTestCase;
 use Wikimedia\Rdbms\IDBAccessObject;
 
@@ -40,11 +41,11 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 		$conf->suffixes = [ 'wiki' ];
 		$conf->settings = [
 			'wgServer' => [
-				'localwiki' => 'http://local.wiki.org',
+				WikiMap::getCurrentWikiId() => 'http://local.wiki.org',
 				'externalwiki' => '//external.wiki.org',
 			],
 			'wgArticlePath' => [
-				'localwiki' => '/w/$1',
+				WikiMap::getCurrentWikiId() => '/w/$1',
 				'externalwiki' => '/wiki/$1',
 			],
 		];
@@ -52,12 +53,9 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 		$this->setMwGlobals( 'wgConf', $conf );
 		$this->overrideConfigValues( [
 			MainConfigNames::LocalDatabases => [
-				'localwiki',
+				WikiMap::getCurrentWikiId(),
 				'externalwiki'
 			],
-			MainConfigNames::CanonicalServer => '//external.wiki.org',
-			MainConfigNames::DBname => 'localwiki',
-			MainConfigNames::DBprefix => ''
 		] );
 
 		TestSites::insertIntoDb();
