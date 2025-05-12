@@ -2,8 +2,7 @@
 
 namespace Wikimedia\Tests\Stats;
 
-use MediaWikiCoversValidator;
-use PHPUnit\Framework\TestCase;
+use MediaWikiUnitTestCase;
 use Psr\Log\NullLogger;
 use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\Metrics\BaseMetric;
@@ -14,6 +13,7 @@ use Wikimedia\Stats\StatsCache;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\Stats\StatsUtils;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @covers \Wikimedia\Stats\Metrics\NullMetric
@@ -22,8 +22,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \Wikimedia\Stats\Metrics\TimingMetric
  * @covers \Wikimedia\Stats\StatsUtils
  */
-class MetricTest extends TestCase {
-	use MediaWikiCoversValidator;
+class MetricTest extends MediaWikiUnitTestCase {
 
 	public const FORMATS = [ 'statsd', 'dogstatsd' ];
 
@@ -319,10 +318,9 @@ class MetricTest extends TestCase {
 	}
 
 	public function testCanChangeLabelsWhileTimerIsStarted() {
-		$cache = new StatsCache;
-		$formatter = OutputFormats::getNewFormatter( OutputFormats::getFormatFromString( 'dogstatsd' ) );
-		$emitter = OutputFormats::getNewEmitter( 'mediawiki', $cache, $formatter );
-		$statsFactory = new StatsFactory( $cache, $emitter, new NullLogger );
+		ConvertibleTimestamp::setFakeTime( '20110401090000' );
+		$statsHelper = StatsFactory::newUnitTestingHelper();
+		$statsFactory = $statsHelper->getStatsFactory();
 
 		$timer = $statsFactory->getTiming( 'test' )
 			->setLabel( 'foo', 'bar' )
@@ -330,9 +328,9 @@ class MetricTest extends TestCase {
 		$timer->setLabel( 'foo', 'baz' );
 		$timer->stop();
 
-		$this->assertMatchesRegularExpression(
-			'/^mediawiki\.test:([0-9]+\.[0-9]+)\|ms\|#foo:baz$/',
-			TestingAccessWrapper::newFromObject( $emitter )->render()[0]
+		$this->assertSame(
+			[ 'mediawiki.test:1|ms|#foo:baz' ],
+			$statsHelper->consumeAllFormatted()
 		);
 	}
 
