@@ -8,7 +8,7 @@ use MediaWiki\Password\MWOldPassword;
  * @covers \MediaWiki\Password\Password
  */
 class MWOldPasswordTest extends PasswordTestCase {
-	protected function getTypeConfigs() {
+	protected static function getTypeConfigs() {
 		return [ 'A' => [
 			'class' => MWOldPassword::class,
 		] ];

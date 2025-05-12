@@ -10,7 +10,7 @@ use MediaWiki\Password\Pbkdf2PasswordUsingHashExtension;
  * @covers \Mediawiki\Password\Password
  */
 class EncryptedPasswordTest extends PasswordTestCase {
-	protected function getTypeConfigs() {
+	protected static function getTypeConfigs() {
 		return [
 			'both' => [
 				'class' => EncryptedPassword::class,
