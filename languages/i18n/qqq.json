@@ -2837,6 +2837,7 @@
 	"sp-contributions-outofrange": "Message shown when a user tries to view contributions of an IP range that's too large. $1 is the numerical limit imposed on the CIDR range.",
 	"sp-contributions-concurrency-user": "Message shown when a logged-in user tries to load [[Special:Contributions]] too many times at once.",
 	"sp-contributions-concurrency-ip": "Message shown when a logged-out user tries to load [[Special:Contributions]] too many times at once.",
+	"sp-contributions-newcontribution": "Label of the button to go to the Contribute tab when enabled on [[Special:Contributions]].",
 	"whatlinkshere": "The text of the link in the toolbox (on the left, below the search menu) going to [[Special:WhatLinksHere]].\n\nSee also:\n* {{msg-mw|Accesskey-t-whatlinkshere}}\n* {{msg-mw|Tooltip-t-whatlinkshere}}\n* {{msg-mw|Bs-smartlist-tag-smartlist-example-whatlinkshere}}",
 	"whatlinkshere-count": "Message indicating the number of pages listed in the current view on [[Special:WhatLinksHere]]. Parameters:\n* $1 - number of pages",
 	"whatlinkshere-title": "Title of the special page [[Special:WhatLinksHere]]. This page appears when you click on the 'What links here' button in the toolbox. $1 is the name of the page concerned.",
