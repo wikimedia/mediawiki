@@ -46,11 +46,8 @@ class BaseMetric implements BaseMetricInterface {
 	private string $name;
 	private string $component;
 
-	/** @var array key-value pairs of metric-specific labels */
+	/** @var array<string,string|null> key-value pairs of metric-specific labels */
 	private array $workingLabels = [];
-
-	/** @var string[] ordered array of label keys */
-	private array $labelKeys = [];
 
 	/** @var Sample[] */
 	private array $samples = [];
@@ -103,10 +100,20 @@ class BaseMetric implements BaseMetricInterface {
 
 	/** @inheritDoc */
 	public function addLabel( string $key, string $value ): void {
+		// Performance optimization: Assume the key is valid and already registered
+		if ( !array_key_exists( $key, $this->workingLabels ) ) {
+			$key = StatsUtils::normalizeString( $key );
+			StatsUtils::validateLabelKey( $key );
+
+			// Check the key again in case it changed above, even if this never really happens
+			if ( $this->hasSamples() && !array_key_exists( $key, $this->workingLabels ) ) {
+				throw new IllegalOperationException(
+					"Stats: Cannot add labels to a metric containing samples for '" . $this->name . "'"
+				);
+			}
+		}
+
 		StatsUtils::validateLabelValue( $value );
-		$key = StatsUtils::normalizeString( $key );
-		StatsUtils::validateLabelKey( $key );
-		$this->addLabelKey( $key );
 		$this->workingLabels[$key] = StatsUtils::normalizeString( $value );
 	}
 
@@ -116,7 +123,7 @@ class BaseMetric implements BaseMetricInterface {
 	}
 
 	/** @inheritDoc */
-	public function withStatsdDataFactory( $statsdDataFactory ): BaseMetric {
+	public function withStatsdDataFactory( $statsdDataFactory ): BaseMetricInterface {
 		$this->statsdDataFactory = $statsdDataFactory;
 		return $this;
 	}
@@ -144,52 +151,28 @@ class BaseMetric implements BaseMetricInterface {
 		return $this->statsdNamespaces;
 	}
 
-	/**
-	 * Registers a label key
-	 *
-	 * @param string $key
-	 * @return void
-	 */
-	private function addLabelKey( string $key ): void {
-		if ( in_array( $key, $this->labelKeys, true ) ) {
-			return;  // key already exists
-		}
-		if ( $this->hasSamples() ) {
-			throw new IllegalOperationException(
-				"Stats: Cannot add labels to a metric containing samples for '" . $this->name . "'"
-			);
-		}
-		$this->labelKeys[] = $key;
-	}
-
 	/** @return string[] */
 	public function getLabelKeys(): array {
-		return $this->labelKeys;
+		return array_keys( $this->workingLabels );
 	}
 
 	/**
-	 * Get label values in the order of labelKeys.
-	 *
 	 * @return string[]
 	 */
 	public function getLabelValues(): array {
-		$output = [];
 		# make sure all labels are accounted for
-		if ( array_diff( $this->labelKeys, array_keys( $this->workingLabels ) ) ) {
+		if ( in_array( null, $this->workingLabels, true ) ) {
 			throw new IllegalOperationException(
 				"Stats: Cannot associate label keys with label values: "
 				. "Not all initialized labels have an assigned value." );
 		}
 
-		foreach ( $this->labelKeys as $labelKey ) {
-			$output[] = $this->workingLabels[$labelKey];
-		}
-		return $output;
+		return array_values( $this->workingLabels );
 	}
 
 	/** @inheritDoc */
 	public function clearLabels(): void {
-		$this->workingLabels = [];
+		$this->workingLabels = array_fill_keys( array_keys( $this->workingLabels ), null );
 	}
 
 	/** @inheritDoc */
@@ -198,7 +181,7 @@ class BaseMetric implements BaseMetricInterface {
 	}
 
 	private function hasSamples(): bool {
-		return $this->samples !== [];
+		return (bool)$this->samples;
 	}
 
 }

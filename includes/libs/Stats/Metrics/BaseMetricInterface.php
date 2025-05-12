@@ -153,7 +153,7 @@ interface BaseMetricInterface {
 	 *
 	 * @param IBufferingStatsdDataFactory|null $statsdDataFactory
 	 *
-	 * @return BaseMetricInterface
+	 * @return self
 	 */
 	public function withStatsdDataFactory( ?IBufferingStatsdDataFactory $statsdDataFactory );
 }
