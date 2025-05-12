@@ -22,7 +22,7 @@ class Argon2PasswordTest extends PasswordTestCase {
 	 *
 	 * @return array[]
 	 */
-	protected function getTypeConfigs() {
+	protected static function getTypeConfigs() {
 		return [
 			'argon2' => [
 				'class' => Argon2Password::class,

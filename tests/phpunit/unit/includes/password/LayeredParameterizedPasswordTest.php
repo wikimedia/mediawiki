@@ -10,7 +10,7 @@ use MediaWiki\Password\Pbkdf2PasswordUsingHashExtension;
  * @covers \MediaWiki\Password\Password
  */
 class LayeredParameterizedPasswordTest extends PasswordTestCase {
-	protected function getTypeConfigs() {
+	protected static function getTypeConfigs() {
 		return [
 			'testLargeLayeredTop' => [
 				'class' => LayeredParameterizedPassword::class,
@@ -35,7 +35,7 @@ class LayeredParameterizedPasswordTest extends PasswordTestCase {
 		];
 	}
 
-	protected function getValidTypes() {
+	protected static function getValidTypes() {
 		return [ 'testLargeLayeredFinal' ];
 	}
 

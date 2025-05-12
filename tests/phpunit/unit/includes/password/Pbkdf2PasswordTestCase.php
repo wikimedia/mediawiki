@@ -6,7 +6,7 @@ use MediaWiki\Password\PasswordFactory;
 abstract class Pbkdf2PasswordTestCase extends PasswordTestCase {
 	abstract protected static function getPbkdf2PasswordClass();
 
-	protected function getTypeConfigs() {
+	protected static function getTypeConfigs() {
 		return [ 'pbkdf2' => [
 			'class' => static::getPbkdf2PasswordClass(),
 			'algo' => 'sha256',

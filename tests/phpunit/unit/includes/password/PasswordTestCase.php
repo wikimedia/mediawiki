@@ -35,7 +35,7 @@ abstract class PasswordTestCase extends MediaWikiUnitTestCase {
 		parent::setUp();
 
 		$this->passwordFactory = new PasswordFactory();
-		foreach ( $this->getTypeConfigs() as $type => $config ) {
+		foreach ( static::getTypeConfigs() as $type => $config ) {
 			$this->passwordFactory->register( $type, $config );
 		}
 	}
@@ -45,7 +45,7 @@ abstract class PasswordTestCase extends MediaWikiUnitTestCase {
 	 *
 	 * @return array[]
 	 */
-	abstract protected function getTypeConfigs();
+	abstract protected static function getTypeConfigs();
 
 	/**
 	 * An array of tests in the form of (bool, string, string), where the first
@@ -86,16 +86,14 @@ abstract class PasswordTestCase extends MediaWikiUnitTestCase {
 		$this->assertFalse( $invalid->verify( $hash ) );
 	}
 
-	protected function getValidTypes() {
-		return array_keys( $this->getTypeConfigs() );
+	protected static function getValidTypes() {
+		return array_keys( static::getTypeConfigs() );
 	}
 
-	public function provideTypes() {
-		$params = [];
-		foreach ( $this->getValidTypes() as $type ) {
-			$params[] = [ $type ];
+	public static function provideTypes() {
+		foreach ( static::getValidTypes() as $type ) {
+			yield [ $type ];
 		}
-		return $params;
 	}
 
 	/**

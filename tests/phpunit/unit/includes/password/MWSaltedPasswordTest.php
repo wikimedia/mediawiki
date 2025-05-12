@@ -8,7 +8,7 @@ use MediaWiki\Password\MWSaltedPassword;
  * @covers \MediaWiki\Password\Password
  */
 class MWSaltedPasswordTest extends PasswordTestCase {
-	protected function getTypeConfigs() {
+	protected static function getTypeConfigs() {
 		return [ 'B' => [
 			'class' => MWSaltedPassword::class,
 		] ];
