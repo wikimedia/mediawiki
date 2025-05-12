@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Aca",
 			"Acamicamacaraca",
 			"Aktron",
 			"BadDog",
@@ -996,6 +997,7 @@
 	"default": "подразумевано",
 	"linterror-bogus-image-options": "Привидна опција датотеке",
 	"linterror-deletable-table-tag": "Table ознака коју треба избрисати",
+	"linterror-empty-heading": "Празна заглавља",
 	"linterror-html5-misnesting": "Погрешно угнежђивање (сада покварено)",
 	"linterror-inline-media-caption": "Невидљиви поднапис",
 	"linterror-large-tables": "Велике табеле које кваре приказ на мобилним уређајима.",
@@ -3957,6 +3959,7 @@
 	"skin-action-delete": "Избриши",
 	"skin-action-move": "Премести",
 	"skin-json-warning": "@УПОЗОРЕЊЕ",
+	"parsoid-async-not-ready-fallback": "Садржај није спреман",
 	"newpages-showhide-bots": "$1 ботове",
 	"newpages-showhide-patrolled": "$1 патролиране измене",
 	"newpages-showhide-redirect": "$1 преусмерења",

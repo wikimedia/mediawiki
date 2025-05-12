@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Ant176",
+			"Foomin10",
 			"Fryed-peach",
 			"Otokoume",
 			"Shirayuki"
@@ -120,7 +121,7 @@
 	"hours": "{{PLURAL:$1|$1 時間}}",
 	"minutes": "{{PLURAL:$1|$1 分}}",
 	"seconds": "{{PLURAL:$1|$1 秒}}",
-	"days-abbrev": "$1 d",
+	"days-abbrev": "$1日",
 	"hours-abbrev": "$1時間",
 	"minutes-abbrev": "$1分",
 	"seconds-abbrev": "$1秒",
@@ -129,7 +130,7 @@
 	"duration-centuries": "$1 {{PLURAL:$1|世紀}}",
 	"duration-decades": "$1{{PLURAL:$1|0 年}}",
 	"duration-years": "$1 {{PLURAL:$1|年}}",
-	"duration-months": "$1{{PLURAL:$1|ヶ月}}",
+	"duration-months": "$1{{PLURAL:$1|か月}}",
 	"duration-weeks": "$1 {{PLURAL:$1|週間}}",
 	"duration-days": "$1 {{PLURAL:$1|日}}",
 	"duration-hours": "$1 {{PLURAL:$1|時間}}",
