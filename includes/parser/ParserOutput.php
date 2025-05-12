@@ -2200,7 +2200,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private static function getTimes( ?string $clock = null ): array {
 		$ret = [];
 		if ( !$clock || $clock === 'wall' ) {
-			$ret['wall'] = microtime( true );
+			$ret['wall'] = hrtime( true ) / 10 ** 9;
 		}
 		if ( !$clock || $clock === 'cpu' ) {
 			$ru = getrusage( 0 /* RUSAGE_SELF */ );
