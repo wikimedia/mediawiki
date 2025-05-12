@@ -416,6 +416,7 @@ class Parser {
 		MainConfigNames::ExtraInterlanguageLinkPrefixes,
 		MainConfigNames::FragmentMode,
 		MainConfigNames::Localtimezone,
+		MainConfigNames::MaxArticleSize,
 		MainConfigNames::MaxSigChars,
 		MainConfigNames::MaxTocLevel,
 		MainConfigNames::MiserMode,
@@ -796,6 +797,11 @@ class Parser {
 
 		$parserOutput->setLimitReportData( 'limitreport-ppvisitednodes',
 			[ $this->mPPNodeCount, $parserOptions->getMaxPPNodeCount() ]
+		);
+		$revisionSize = $this->mInputSize !== false ? $this->mInputSize :
+			$this->getRevisionSize();
+		$parserOutput->setLimitReportData( 'limitreport-revisionsize',
+			[ $revisionSize ?? -1, $this->svcOptions->get( MainConfigNames::MaxArticleSize ) * 1024 ]
 		);
 		$parserOutput->setLimitReportData( 'limitreport-postexpandincludesize',
 			[ $this->mIncludeSizes['post-expand'], $maxIncludeSize ]
@@ -6111,6 +6117,9 @@ class Parser {
 	public function getRevisionRecordObject() {
 		if ( $this->mRevisionRecordObject ) {
 			return $this->mRevisionRecordObject;
+		}
+		if ( $this->mOptions->isMessage() ) {
+			return null;
 		}
 
 		// NOTE: try to get the RevisionRecord object even if mRevisionId is null.
