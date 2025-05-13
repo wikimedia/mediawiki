@@ -78,7 +78,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 					404,
 					"No test module found for the '$component' component.\n"
 						. "Make sure the extension is enabled via wfLoadExtension(),\n"
-						. "and register a test module via the QUnitTestModules attribute in extension.json.",
+						. "and register a test module via the QUnitTestModule attribute in extension.json.",
 					'Unknown component',
 				);
 			}

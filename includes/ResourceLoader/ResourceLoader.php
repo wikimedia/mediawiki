@@ -303,7 +303,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 */
 	public function registerTestModules(): void {
 		$extRegistry = ExtensionRegistry::getInstance();
-		$testModules = $extRegistry->getAttribute( 'QUnitTestModules' );
+		$testModules = $extRegistry->getAttribute( 'QUnitTestModule' );
 
 		$testModuleNames = [];
 		foreach ( $testModules as $name => &$module ) {

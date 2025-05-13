@@ -75,7 +75,7 @@ class ExtensionRegistry implements DomainEventSubscriber {
 	 */
 	private const LAZY_LOADED_ATTRIBUTES = [
 		'TrackingCategories',
-		'QUnitTestModules',
+		'QUnitTestModule',
 		'SkinLessImportPaths',
 	];
 
