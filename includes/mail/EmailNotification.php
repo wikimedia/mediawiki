@@ -304,9 +304,7 @@ class EmailNotification {
 		} elseif ( $userOptionsLookup->getOption( $targetUser, 'enotifusertalkpages' )
 			&& ( !$minorEdit || $userOptionsLookup->getOption( $targetUser, 'enotifminoredits' ) )
 		) {
-			if ( !$targetUser->isEmailConfirmed() ) {
-				wfDebug( __METHOD__ . ": talk page owner doesn't have validated email" );
-			} elseif ( !( new HookRunner( $services->getHookContainer() ) )
+			if ( !( new HookRunner( $services->getHookContainer() ) )
 				->onAbortTalkPageEmailNotification( $targetUser, $title )
 			) {
 				wfDebug( __METHOD__ . ": talk page update notification is aborted for this user" );
