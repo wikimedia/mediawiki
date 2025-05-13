@@ -9,7 +9,6 @@ use Wikimedia\RemexHtml\Serializer\Serializer;
 use Wikimedia\RemexHtml\Serializer\SerializerWithTracer;
 use Wikimedia\RemexHtml\Tokenizer\Tokenizer;
 use Wikimedia\RemexHtml\TreeBuilder\Dispatcher;
-use Wikimedia\RemexHtml\TreeBuilder\TreeBuilder;
 use Wikimedia\RemexHtml\TreeBuilder\TreeMutationTracer;
 
 class RemexDriver extends TidyDriverBase {
@@ -21,19 +20,15 @@ class RemexDriver extends TidyDriverBase {
 	private $mungerTrace;
 	/** @var bool */
 	private $pwrap;
-	/** @var bool */
-	private $enableLegacyMediaDOM;
 
 	/** @internal */
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::TidyConfig,
-		MainConfigNames::ParserEnableLegacyMediaDOM,
 	];
 
 	public function __construct( ServiceOptions $options ) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$config = $options->get( MainConfigNames::TidyConfig );
-		$this->enableLegacyMediaDOM = $options->get( MainConfigNames::ParserEnableLegacyMediaDOM );
 		$config += [
 			'treeMutationTrace' => false,
 			'serializerTrace' => false,
@@ -68,8 +63,7 @@ class RemexDriver extends TidyDriverBase {
 		} else {
 			$tracer = $munger;
 		}
-		$treeBuilderClass = $this->enableLegacyMediaDOM ? TreeBuilder::class : RemexCompatBuilder::class;
-		$treeBuilder = new $treeBuilderClass( $tracer, [
+		$treeBuilder = new RemexCompatBuilder( $tracer, [
 			'ignoreErrors' => true,
 			'ignoreNulls' => true,
 		] );

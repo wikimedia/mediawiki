@@ -122,7 +122,6 @@ class ThumbnailImage extends MediaTransformOutput {
 		$services = MediaWikiServices::getInstance();
 		$mainConfig = $services->getMainConfig();
 		$nativeImageLazyLoading = $mainConfig->get( MainConfigNames::NativeImageLazyLoading );
-		$enableLegacyMediaDOM = $mainConfig->get( MainConfigNames::ParserEnableLegacyMediaDOM );
 
 		if ( func_num_args() === 2 ) {
 			throw new InvalidArgumentException( __METHOD__ . ' called in the old style' );
@@ -142,7 +141,6 @@ class ThumbnailImage extends MediaTransformOutput {
 		// Description links get the mw-file-description class and link
 		// to the file description page, making the resource redundant
 		if (
-			!$enableLegacyMediaDOM &&
 			isset( $options['magnify-resource'] ) &&
 			!( $options['desc-link'] ?? false )
 		) {
@@ -188,11 +186,7 @@ class ThumbnailImage extends MediaTransformOutput {
 		} else {
 			$linkAttribs = false;
 			if ( !empty( $options['title'] ) ) {
-				if ( $enableLegacyMediaDOM ) {
-					$attribs['title'] = $options['title'];
-				} else {
-					$linkAttribs = [ 'title' => $options['title'] ];
-				}
+				$linkAttribs = [ 'title' => $options['title'] ];
 			}
 		}
 

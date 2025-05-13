@@ -49,8 +49,6 @@ name=
 Page status indicators: Stress test
 !! options
 showindicators
-!! config
-wgParserEnableLegacyMediaDOM=false
 !! wikitext
 <indicator name="01">hello world</indicator>
 <indicator name="02">[[Main Page]]</indicator>

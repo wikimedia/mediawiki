@@ -1407,8 +1407,6 @@ __TOC__
 T35845: Headings become cursive in TOC when they contain an image
 !! options
 title=[[Main Page]]
-!! config
-wgParserEnableLegacyMediaDOM=false
 !! wikitext
 __TOC__
 ==Image [[Image:foobar.jpg]]==

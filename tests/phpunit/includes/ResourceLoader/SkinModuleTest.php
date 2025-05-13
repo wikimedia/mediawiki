@@ -229,9 +229,7 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 			->getMock();
 		$module->expects( $this->atLeast( 1 ) )->method( 'getLogoData' )
 			->willReturn( $logo );
-		$module->setConfig( new HashConfig( [
-			MainConfigNames::ParserEnableLegacyMediaDOM => false,
-		] + self::getSettings() ) );
+		$module->setConfig( new HashConfig( self::getSettings() ) );
 
 		$ctx = $this->createMock( Context::class );
 

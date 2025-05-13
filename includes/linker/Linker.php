@@ -357,7 +357,6 @@ class Linker {
 
 		$services = MediaWikiServices::getInstance();
 		$config = $services->getMainConfig();
-		$enableLegacyMediaDOM = $config->get( MainConfigNames::ParserEnableLegacyMediaDOM );
 
 		$classes = [];
 		if (
@@ -369,14 +368,6 @@ class Linker {
 		}
 
 		$prefix = $postfix = '';
-
-		if ( $enableLegacyMediaDOM ) {
-			if ( $frameParams['align'] == 'center' ) {
-				$prefix = '<div class="center">';
-				$postfix = '</div>';
-				$frameParams['align'] = 'none';
-			}
-		}
 
 		if ( $file && !isset( $handlerParams['width'] ) ) {
 			if ( isset( $handlerParams['height'] ) && $file->isVectorized() ) {
@@ -428,20 +419,6 @@ class Linker {
 			isset( $frameParams['framed'] );
 
 		if ( $hasVisibleCaption ) {
-			if ( $enableLegacyMediaDOM ) {
-				// This is no longer needed in our new media output, since the
-				// default styling in content.media-common.less takes care of it;
-				// see T269704.
-
-				# Create a thumbnail. Alignment depends on the writing direction of
-				# the page content language (right-aligned for LTR languages,
-				# left-aligned for RTL languages)
-				# If a thumbnail width has not been provided, it is set
-				# to the default user option as specified in Language*.php
-				if ( $frameParams['align'] == '' ) {
-					$frameParams['align'] = $parser->getTargetLanguage()->alignEnd();
-				}
-			}
 			return $prefix . self::makeThumbLink2(
 				$title, $file, $frameParams, $handlerParams, $time, $query,
 				$classes, $parser
@@ -473,23 +450,19 @@ class Linker {
 		$isBadFile = $file && $thumb &&
 			$parser->getBadFileLookup()->isBadFile( $title->getDBkey(), $parser->getTitle() );
 
-		if ( !$thumb || ( !$enableLegacyMediaDOM && $thumb->isError() ) || $isBadFile ) {
+		if ( !$thumb || $thumb->isError() || $isBadFile ) {
 			$rdfaType = 'mw:Error ' . $rdfaType;
 			$currentExists = $file && $file->exists();
-			if ( $enableLegacyMediaDOM ) {
-				$label = $frameParams['title'];
+			if ( $currentExists && !$thumb ) {
+				$label = wfMessage( 'thumbnail_error', '' )->text();
+			} elseif ( $thumb && $thumb->isError() ) {
+				Assert::invariant(
+					$thumb instanceof MediaTransformError,
+					'Unknown MediaTransformOutput: ' . get_class( $thumb )
+				);
+				$label = $thumb->toText();
 			} else {
-				if ( $currentExists && !$thumb ) {
-					$label = wfMessage( 'thumbnail_error', '' )->text();
-				} elseif ( $thumb && $thumb->isError() ) {
-					Assert::invariant(
-						$thumb instanceof MediaTransformError,
-						'Unknown MediaTransformOutput: ' . get_class( $thumb )
-					);
-					$label = $thumb->toText();
-				} else {
-					$label = $frameParams['alt'] ?? '';
-				}
+				$label = $frameParams['alt'] ?? '';
 			}
 			$s = self::makeBrokenImageLinkObj(
 				$title, $label, '', '', '', (bool)$time, $handlerParams, $currentExists
@@ -504,32 +477,11 @@ class Linker {
 				$params['alt'] = $frameParams['alt'];
 			}
 			$params['title'] = $frameParams['title'];
-			if ( $enableLegacyMediaDOM ) {
-				$params += [
-					'valign' => $frameParams['valign'] ?? false,
-					'img-class' => $frameParams['class'],
-				];
-				if ( isset( $frameParams['border'] ) ) {
-					$params['img-class'] .= ( $params['img-class'] !== '' ? ' ' : '' ) . 'thumbborder';
-				}
-			} else {
-				$params += [
-					'img-class' => 'mw-file-element',
-				];
-			}
+			$params += [
+				'img-class' => 'mw-file-element',
+			];
 			$params = self::getImageLinkMTOParams( $frameParams, $query, $parser ) + $params;
 			$s = $thumb->toHtml( $params );
-		}
-
-		if ( $enableLegacyMediaDOM ) {
-			if ( $frameParams['align'] != '' ) {
-				$s = Html::rawElement(
-					'div',
-					[ 'class' => 'float' . $frameParams['align'] ],
-					$s
-				);
-			}
-			return str_replace( "\n", ' ', $prefix . $s . $postfix );
 		}
 
 		$wrapper = 'span';
@@ -656,18 +608,13 @@ class Linker {
 		$time = false, $query = '', array $classes = [], ?Parser $parser = null
 	) {
 		$exists = $file && $file->exists();
-
 		$services = MediaWikiServices::getInstance();
-		$enableLegacyMediaDOM = $services->getMainConfig()->get( MainConfigNames::ParserEnableLegacyMediaDOM );
 
 		$page = $handlerParams['page'] ?? false;
 		$lang = $handlerParams['lang'] ?? false;
 
 		if ( !isset( $frameParams['align'] ) ) {
 			$frameParams['align'] = '';
-			if ( $enableLegacyMediaDOM ) {
-				$frameParams['align'] = 'right';
-			}
 		}
 		if ( !isset( $frameParams['caption'] ) ) {
 			$frameParams['caption'] = '';
@@ -734,7 +681,7 @@ class Linker {
 			}
 		}
 
-		if ( !$enableLegacyMediaDOM && $parser && $rdfaType === 'mw:File/Thumb' ) {
+		if ( $parser && $rdfaType === 'mw:File/Thumb' ) {
 			$parser->getOutput()->addModules( [ 'mediawiki.page.media' ] );
 		}
 
@@ -772,11 +719,6 @@ class Linker {
 
 		$s = '';
 
-		if ( $enableLegacyMediaDOM ) {
-			$s .= "<div class=\"thumb t{$frameParams['align']}\">"
-				. "<div class=\"thumbinner\" style=\"width:{$outerWidth}px;\">";
-		}
-
 		$isBadFile = $exists && $thumb && $parser &&
 			$parser->getBadFileLookup()->isBadFile(
 				$manualthumb ? $manual_title : $title->getDBkey(),
@@ -785,40 +727,27 @@ class Linker {
 
 		if ( !$exists ) {
 			$rdfaType = 'mw:Error ' . $rdfaType;
-			$label = '';
-			if ( !$enableLegacyMediaDOM ) {
-				$label = $frameParams['alt'] ?? '';
-			}
+			$label = $frameParams['alt'] ?? '';
 			$s .= self::makeBrokenImageLinkObj(
 				$title, $label, '', '', '', (bool)$time, $handlerParams, false
 			);
 			$zoomIcon = '';
-		} elseif ( !$thumb || ( !$enableLegacyMediaDOM && $thumb->isError() ) || $isBadFile ) {
+		} elseif ( !$thumb || $thumb->isError() || $isBadFile ) {
 			$rdfaType = 'mw:Error ' . $rdfaType;
-			if ( $enableLegacyMediaDOM ) {
-				if ( !$thumb ) {
-					$s .= wfMessage( 'thumbnail_error', '' )->escaped();
-				} else {
-					$s .= self::makeBrokenImageLinkObj(
-						$title, '', '', '', '', (bool)$time, $handlerParams, true
-					);
-				}
-			} else {
-				if ( $thumb && $thumb->isError() ) {
-					Assert::invariant(
-						$thumb instanceof MediaTransformError,
-						'Unknown MediaTransformOutput: ' . get_class( $thumb )
-					);
-					$label = $thumb->toText();
-				} elseif ( !$thumb ) {
-					$label = wfMessage( 'thumbnail_error', '' )->text();
-				} else {
-					$label = '';
-				}
-				$s .= self::makeBrokenImageLinkObj(
-					$title, $label, '', '', '', (bool)$time, $handlerParams, true
+			if ( $thumb && $thumb->isError() ) {
+				Assert::invariant(
+					$thumb instanceof MediaTransformError,
+					'Unknown MediaTransformOutput: ' . get_class( $thumb )
 				);
+				$label = $thumb->toText();
+			} elseif ( !$thumb ) {
+				$label = wfMessage( 'thumbnail_error', '' )->text();
+			} else {
+				$label = '';
 			}
+			$s .= self::makeBrokenImageLinkObj(
+				$title, $label, '', '', '', (bool)$time, $handlerParams, true
+			);
 			$zoomIcon = '';
 		} else {
 			if ( !$noscale && !$manualthumb ) {
@@ -831,20 +760,12 @@ class Linker {
 			if ( isset( $frameParams['alt'] ) ) {
 				$params['alt'] = $frameParams['alt'];
 			}
-			if ( $enableLegacyMediaDOM ) {
-				$params += [
-					'img-class' => ( isset( $frameParams['class'] ) && $frameParams['class'] !== ''
-						? $frameParams['class'] . ' '
-						: '' ) . 'thumbimage'
-				];
-			} else {
-				$params += [
-					'img-class' => 'mw-file-element',
-				];
-				// Only thumbs gets the magnify link
-				if ( $rdfaType === 'mw:File/Thumb' ) {
-					$params['magnify-resource'] = $url;
-				}
+			$params += [
+				'img-class' => 'mw-file-element',
+			];
+			// Only thumbs gets the magnify link
+			if ( $rdfaType === 'mw:File/Thumb' ) {
+				$params['magnify-resource'] = $url;
 			}
 			$params = self::getImageLinkMTOParams( $frameParams, $query, $parser ) + $params;
 			$s .= $thumb->toHtml( $params );
@@ -859,11 +780,6 @@ class Linker {
 					] )
 				);
 			}
-		}
-
-		if ( $enableLegacyMediaDOM ) {
-			$s .= '  <div class="thumbcaption">' . $zoomIcon . $frameParams['caption'] . '</div></div></div>';
-			return str_replace( "\n", ' ', $s );
 		}
 
 		$s .= Html::rawElement(
@@ -950,10 +866,6 @@ class Linker {
 			'data-width' => $handlerParams['width'] ?? null,
 			'data-height' => $handlerParams['height'] ?? null,
 		], $label );
-
-		if ( $mainConfig->get( MainConfigNames::ParserEnableLegacyMediaDOM ) ) {
-			$html = htmlspecialchars( $label, ENT_COMPAT );
-		}
 
 		$repoGroup = $services->getRepoGroup();
 		$currentExists = $currentExists ||

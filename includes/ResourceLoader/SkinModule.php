@@ -61,10 +61,6 @@ class SkinModule extends LessVarFileModule {
 	 *
 	 * "content-media":
 	 *     Styles for thumbnails and floated elements.
-	 *     Will add styles for the new media structure on wikis where $wgParserEnableLegacyMediaDOM is disabled,
-	 *     or $wgUseContentMediaStyles is enabled.
-	 *     See https://www.mediawiki.org/wiki/Parsing/Media_structure
-	 *
 	 *     Compatibility aliases: "content", "content-thumbnails".
 	 *
 	 * "content-media-dark":
@@ -433,26 +429,21 @@ class SkinModule extends LessVarFileModule {
 							$defaultRemoteBasePath
 						);
 					}
-					if (
-						!$this->getConfig()->get( MainConfigNames::ParserEnableLegacyMediaDOM ) ||
-						$this->getConfig()->get( MainConfigNames::UseContentMediaStyles )
-					) {
-						$featureFilePaths['all'][] = new FilePath(
-							'resources/src/mediawiki.skinning/content.media-common.less',
-							$defaultLocalBasePath,
-							$defaultRemoteBasePath
-						);
-						$featureFilePaths['screen'][] = new FilePath(
-							'resources/src/mediawiki.skinning/content.media-screen.less',
-							$defaultLocalBasePath,
-							$defaultRemoteBasePath
-						);
-						$featureFilePaths['print'][] = new FilePath(
-							'resources/src/mediawiki.skinning/content.media-print.less',
-							$defaultLocalBasePath,
-							$defaultRemoteBasePath
-						);
-					}
+					$featureFilePaths['all'][] = new FilePath(
+						'resources/src/mediawiki.skinning/content.media-common.less',
+						$defaultLocalBasePath,
+						$defaultRemoteBasePath
+					);
+					$featureFilePaths['screen'][] = new FilePath(
+						'resources/src/mediawiki.skinning/content.media-screen.less',
+						$defaultLocalBasePath,
+						$defaultRemoteBasePath
+					);
+					$featureFilePaths['print'][] = new FilePath(
+						'resources/src/mediawiki.skinning/content.media-print.less',
+						$defaultLocalBasePath,
+						$defaultRemoteBasePath
+					);
 				}
 			}
 		}

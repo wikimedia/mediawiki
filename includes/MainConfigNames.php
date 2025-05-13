@@ -2383,20 +2383,6 @@ class MainConfigNames {
 	public const ParsoidExperimentalParserFunctionOutput = 'ParsoidExperimentalParserFunctionOutput';
 
 	/**
-	 * Name constant for the ParserEnableLegacyMediaDOM setting, for use with Config::get()
-	 * @see MainConfigSchema::ParserEnableLegacyMediaDOM
-	 * @deprecated since 1.41
-	 */
-	public const ParserEnableLegacyMediaDOM = 'ParserEnableLegacyMediaDOM';
-
-	/**
-	 * Name constant for the UseContentMediaStyles setting, for use with Config::get()
-	 * @see MainConfigSchema::UseContentMediaStyles
-	 * @deprecated since 1.41
-	 */
-	public const UseContentMediaStyles = 'UseContentMediaStyles';
-
-	/**
 	 * Name constant for the UseLegacyMediaStyles setting, for use with Config::get()
 	 * @see MainConfigSchema::UseLegacyMediaStyles
 	 */

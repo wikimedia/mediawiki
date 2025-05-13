@@ -24,8 +24,6 @@
 
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\Html\Html;
-use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\HTTPFileStreamer;
@@ -268,11 +266,6 @@ abstract class MediaTransformOutput {
 		if ( isset( $linkAttribs['href'] ) ) {
 			return Html::rawElement( 'a', $linkAttribs, $contents );
 		}
-		$parserEnableLegacyMediaDOM = MediaWikiServices::getInstance()
-			->getMainConfig()->get( MainConfigNames::ParserEnableLegacyMediaDOM );
-		if ( $parserEnableLegacyMediaDOM ) {
-			return $contents;
-		}
 		return Html::rawElement( 'span', $linkAttribs ?: null, $contents );
 	}
 
@@ -300,15 +293,8 @@ abstract class MediaTransformOutput {
 
 		$attribs = [
 			'href' => $this->file->getTitle()->getLocalURL( $query ),
+			'class' => 'mw-file-description',
 		];
-
-		$parserEnableLegacyMediaDOM = MediaWikiServices::getInstance()
-			->getMainConfig()->get( MainConfigNames::ParserEnableLegacyMediaDOM );
-		if ( $parserEnableLegacyMediaDOM ) {
-			$attribs['class'] = 'image';
-		} else {
-			$attribs['class'] = 'mw-file-description';
-		}
 
 		if ( $title ) {
 			$attribs['title'] = $title;
