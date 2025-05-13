@@ -1,14 +1,13 @@
 /*!
  * JavaScript for Special:Preferences: section navigation.
  */
-let switchingNoHash;
 const session = require( 'mediawiki.storage' ).session;
 
 /**
  * @ignore
  */
 module.exports = {
-	switchingNoHash: switchingNoHash,
+	switchingNoHash: undefined,
 	/**
 	 * Make sure the accessibility tip is focussable so that keyboard users take notice,
 	 * but hide it by default to reduce visual clutter.
