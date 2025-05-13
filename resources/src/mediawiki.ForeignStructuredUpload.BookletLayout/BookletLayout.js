@@ -1,4 +1,3 @@
-/* global moment */
 ( function () {
 
 	/**
@@ -243,10 +242,14 @@
 			// api: new mw.ForeignApi( ... ),
 			$overlay: this.$overlay
 		} );
+
+		const date = new Date();
+		date.setDate( date.getDate() + 1 ); // Tomorrow
+		const mustBeBefore = this.isoFormat( date );
 		this.dateWidget = new mw.widgets.DateInputWidget( {
 			$overlay: this.$overlay,
 			required: true,
-			mustBeBefore: moment().add( 1, 'day' ).locale( 'en' ).format( 'YYYY-MM-DD' ) // Tomorrow
+			mustBeBefore
 		} );
 
 		this.filenameField = new OO.ui.FieldLayout( this.filenameWidget, {
@@ -294,6 +297,22 @@
 		} );
 
 		return this.infoForm;
+	};
+
+	/**
+	 * Format date as YYYY-MM-DD
+	 *
+	 * @param {Date} date
+	 * @return {string} date as YYYY-MM-DD
+	 */
+	mw.ForeignStructuredUpload.BookletLayout.prototype.isoFormat = function ( date ) {
+		const year = String( date.getFullYear() );
+
+		// Ensure two-digit format (ES2017 String.padStart would be nicer)
+		const month = `0${ date.getMonth() + 1 }`.slice( -2 );
+		const day = `0${ date.getDate() }`.slice( -2 );
+
+		return `${ year }-${ month }-${ day }`;
 	};
 
 	/**
@@ -408,11 +427,14 @@
 					metadata = null;
 				}
 
-				if ( metadata !== null && metadata.exif !== undefined && metadata.exif.DateTimeOriginal ) {
-					deferred.resolve( moment( metadata.exif.DateTimeOriginal, 'YYYY:MM:DD' ).format( 'YYYY-MM-DD' ) );
-				} else {
-					deferred.reject();
+				if ( metadata && metadata.exif && typeof metadata.exif.DateTimeOriginal === 'string' ) {
+					const match = metadata.exif.DateTimeOriginal.match( /^\d\d\d\d:\d\d:\d\d/ ); // YYYY:MM:DD
+					if ( match ) {
+						deferred.resolve( match[ 0 ].replace( /:/g, '-' ) ); // YYYY-MM-DD
+						return;
+					}
 				}
+				deferred.reject();
 			};
 
 			if ( 'readAsBinaryString' in fileReader ) {
@@ -437,7 +459,7 @@
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.getDateFromLastModified = function ( file ) {
 		if ( file && file.lastModified ) {
-			return moment( file.lastModified ).format( 'YYYY-MM-DD' );
+			return this.isoFormat( new Date( file.lastModified ) );
 		}
 	};
 
