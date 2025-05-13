@@ -344,7 +344,6 @@ class HookRunner implements
 	\MediaWiki\Hook\SkinAfterBottomScriptsHook,
 	\MediaWiki\Hook\SkinAfterContentHook,
 	\MediaWiki\Hook\SkinBuildSidebarHook,
-	\MediaWiki\Hook\SkinCopyrightFooterHook,
 	\MediaWiki\Hook\SkinCopyrightFooterMessageHook,
 	\MediaWiki\Hook\SkinEditSectionLinksHook,
 	\MediaWiki\Hook\SkinPreloadExistenceHook,
@@ -3612,13 +3611,6 @@ class HookRunner implements
 		return $this->container->run(
 			'SkinBuildSidebar',
 			[ $skin, &$bar ]
-		);
-	}
-
-	public function onSkinCopyrightFooter( $title, $type, &$msg, &$link ) {
-		return $this->container->run(
-			'SkinCopyrightFooter',
-			[ $title, $type, &$msg, &$link ]
 		);
 	}
 

@@ -1956,12 +1956,6 @@ class MainConfigNames {
 	public const RawHtmlMessages = 'RawHtmlMessages';
 
 	/**
-	 * Name constant for the AllowRawHtmlCopyrightMessages setting, for use with Config::get()
-	 * @see MainConfigSchema::AllowRawHtmlCopyrightMessages
-	 */
-	public const AllowRawHtmlCopyrightMessages = 'AllowRawHtmlCopyrightMessages';
-
-	/**
 	 * Name constant for the Localtimezone setting, for use with Config::get()
 	 * @see MainConfigSchema::Localtimezone
 	 */

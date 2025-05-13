@@ -1941,12 +1941,6 @@ $wgForceUIMsgAsContentMsg = null;
 $wgRawHtmlMessages = null;
 
 /**
- * Config variable stub for the AllowRawHtmlCopyrightMessages setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::AllowRawHtmlCopyrightMessages
- */
-$wgAllowRawHtmlCopyrightMessages = null;
-
-/**
  * Config variable stub for the Localtimezone setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::Localtimezone
  */

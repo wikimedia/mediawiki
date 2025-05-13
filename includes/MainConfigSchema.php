@@ -5123,23 +5123,9 @@ class MainConfigSchema {
 	 * @since 1.32
 	 */
 	public const RawHtmlMessages = [
-		'default' => [
-			'copyright',
-			'history_copyright',
-		],
+		'default' => [],
 		'type' => 'list',
 		'items' => [ 'type' => 'string', ],
-	];
-
-	/**
-	 * Whether on-wiki overrides for the 'copyright' and 'history_copyright' messages, which allow raw
-	 * HTML, will be used.
-	 *
-	 * @since 1.43
-	 */
-	public const AllowRawHtmlCopyrightMessages = [
-		'default' => true,
-		'type' => 'boolean',
 	];
 
 	/**

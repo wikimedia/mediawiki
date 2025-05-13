@@ -93,6 +93,11 @@ because of Phabricator reports.
 
 === Breaking changes in 1.45 ===
 
+* (T376295) The ability to use raw HTML messages for the copyright footer has
+  been removed. The messages 'copyright' and 'history_copyright', the hook
+  'SkinCopyrightFooter', and the config option $wgAllowRawHtmlCopyrightMessages
+  have all been removed. Instead use the messages 'copyright-footer' and
+  'copyright-footer-history', and the hook 'SkinCopyrightFooterMessage'.
 * The SiteConfiguration::extractGlobalSetting method, unused, is now private.
 * AuthManager::forcePrimaryAuthenticationProviders(), deprecated in 1.43 has
   been removed.
