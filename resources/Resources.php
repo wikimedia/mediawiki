@@ -2538,19 +2538,19 @@ return [
 			'convertmessagebox.js',
 			'editfont.js',
 			'nav.js',
-			'skinPrefs.js',
-			'signature.js',
-			'timezone.js',
 			[
-				'name' => 'layout.js',
+				'name' => 'nav-setup.js',
 				'callback' => static function ( Context $context ) {
 					$skinName = $context->getSkin();
 					( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
 						->onPreferencesGetLayout( $useMobileLayout, $skinName );
-					$file = $useMobileLayout ? 'mobile.js' : 'tabs.js';
+					$file = $useMobileLayout ? 'nav-mobile.js' : 'nav-tabs.js';
 					return new FilePath( $file );
 				},
 			],
+			'skinPrefs.js',
+			'signature.js',
+			'timezone.js',
 		],
 		'messages' => [
 			'prefs-tabs-navigation-hint',
