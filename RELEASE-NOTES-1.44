@@ -639,6 +639,8 @@ because of Phabricator reports.
   RL\Context::encodeJson, if available. If not, use FormatJson::encode.
 * wfAssembleUrl(), wfMatchesDomainList(), and wfUrlProtocolsWithoutProtRel(),
   all deprecated in 1.39, now emit warnings.
+* MediaWikiServices::getPerDbNameStatsdDataFactory() is now deprecated. Use
+  StatsFactory instead with wiki ID via WikiMap::getCurrentDomainId() as label.
 * BlockManager::getUserBlock(), deprecated since 1.42, now emits warnings.
 * DatabaseBlock methods newFromRow(), delete(), insert(), update(),
   doAutoblock(), isExemptedFromAutoblocks(), doAutoblock(), updateTimestamp(),
