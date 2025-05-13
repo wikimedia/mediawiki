@@ -35,6 +35,7 @@
 			"Vlad5250",
 			"Wangombe",
 			"Yasen igra",
+			"Zaza3939",
 			"לערי ריינהארט",
 			"아라"
 		]
@@ -178,6 +179,7 @@
 	"showtoc": "fichua",
 	"hidetoc": "ficha",
 	"collapsible-collapse": "Kunja",
+	"collapsible-collapse-all-text": "Kunja zote",
 	"collapsible-expand": "Tanua",
 	"collapsible-expand-all-text": "Panua zote",
 	"confirmable-confirm": "Wewe ni {{GENDER:$1|you}} kwa uhakika?",
@@ -288,7 +290,7 @@
 	"virus-scanfailed": "skani imeshindwa (msimbo $1)",
 	"virus-unknownscanner": "kipambana na virusi haijulikani:",
 	"logouttext": "<strong>Umetoka kwenye akaunti yako.</strong>\n\nJua kwamba kurasa zingine zinaweza endelea kuonyeshwa ni kana kwamba umeingia hadi ufute kashe yako ya kivinjari.",
-	"logging-out-notify": "Unaondolewa, tafadhali subiri.",
+	"logging-out-notify": "Unaondolewa. Tafadhali subiri.",
 	"welcomeuser": "Karibu, $1!",
 	"welcomecreation-msg": "Akaunti yako imeundwa.\nUnaweza kubadili {{SITENAME}}[[Special:Preferences|mapendekezo]] kama unataka.",
 	"yourname": "Jina la mtumiaji:",

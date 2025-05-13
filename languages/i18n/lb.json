@@ -2925,7 +2925,7 @@
 	"version-credits-title": "E spezielle Merci fir $1",
 	"version-poweredby-credits": "Dës Wiki funktionéiert mat '''[https://www.mediawiki.org/ MediaWiki]''', Copyright © 2001-$1 $2.",
 	"version-poweredby-others": "anerer",
-	"version-poweredby-translators": "translatewiki.net Iwwersetzer",
+	"version-poweredby-translators": "translatewiki.net-Iwwersetzer",
 	"version-poweredby-various": "Verschidden Auteuren",
 	"version-credits-summary": "Mir soen dëse Persoune 'Merci' fir hir Mataarbecht u [[Special:Version|MediaWiki]].",
 	"version-license-info": "MediaWiki ass eng fräi Software. Dir kënnt se weiderginn an/oder ënner de Bedingungen vun der GNU-General Public License, änneren, sou wéi se vun der Free Software Foundation publizéiert ass; entweder ënner der Versioun 2 vun der Lizenz, oder (no Ärem Choix) enger spéiderer Versioun.\n\nMediaWiki gëtt verdeelt, an der Hoffnung datt se nëtzlech ass, awer <em>OUNI IERGENDENG GARANTIE</em> an ouni eng implizit Garantie vu <strong>Kommerzialisatioun</strong> oder <strong>Eegnung fir e bestëmmte Gebrauch</strong>. Kuckt d'GPU General Public License fir méi Informatiounen.\n\nDir misst eng [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun der GNU General Public License] mat dësem Programm kritt hunn. Wann net da schreift der Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA oder [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html liest se online].",
