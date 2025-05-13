@@ -1,10 +1,18 @@
 <?php
 
 use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MainConfigSchema;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\MergeHistory;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Tests\ExpectCallbackTrait;
+use MediaWiki\Tests\Language\LocalizationUpdateSpyTrait;
+use MediaWiki\Tests\recentchanges\ChangeTrackingUpdateSpyTrait;
+use MediaWiki\Tests\ResourceLoader\ResourceLoaderUpdateSpyTrait;
+use MediaWiki\Tests\Search\SearchUpdateSpyTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\MWTimestamp;
@@ -14,6 +22,38 @@ use MediaWiki\Utils\MWTimestamp;
  */
 class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;
+	use ChangeTrackingUpdateSpyTrait;
+	use SearchUpdateSpyTrait;
+	use LocalizationUpdateSpyTrait;
+	use ResourceLoaderUpdateSpyTrait;
+	use ExpectCallbackTrait;
+
+	private const NS_WITHOUT_REDIRECTS = 2030;
+	private const CM_TESTING = 'testing';
+
+	protected function setUp(): void {
+		parent::setUp();
+
+		$this->overrideConfigValues( [
+			MainConfigNames::ExtraNamespaces => [
+				self::NS_WITHOUT_REDIRECTS => 'NoRedirect',
+				self::NS_WITHOUT_REDIRECTS + 1 => 'NoRedirect_talk'
+			] + MainConfigSchema::getDefaultValue( MainConfigNames::ExtraNamespaces ),
+
+			MainConfigNames::NamespaceContentModels => [
+				self::NS_WITHOUT_REDIRECTS => self::CM_TESTING
+			] + MainConfigSchema::getDefaultValue( MainConfigNames::NamespaceContentModels ),
+
+			MainConfigNames::ContentHandlers => [
+				// Relies on the DummyContentHandlerForTesting not
+				// supporting redirects by default. If this ever gets
+				// changed this test has to be fixed.
+				self::CM_TESTING => DummyContentHandlerForTesting::class
+			] + MainConfigSchema::getDefaultValue( MainConfigNames::ContentHandlers ),
+
+			MainConfigNames::RCWatchCategoryMembership => true
+		] );
+	}
 
 	/**
 	 * Make some pages to work with
@@ -26,14 +66,6 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		// Pages that will be merged
 		$this->insertPage( 'Merge1' );
 		$this->insertPage( 'Merge2' );
-
-		// Exclusive for testSourceUpdateForNoRedirectSupport()
-		$this->insertPage( 'Merge3' );
-		$this->insertPage( 'Merge4' );
-
-		// Exclusive for testSourceUpdateWithRedirectSupport()
-		$this->insertPage( 'Merge5' );
-		$this->insertPage( 'Merge6' );
 	}
 
 	/**
@@ -175,6 +207,9 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		$title = Title::makeTitle( NS_MAIN, 'Merge5' );
 		$title2 = Title::makeTitle( NS_MAIN, 'Merge6' );
 
+		$this->insertPage( $title );
+		$this->insertPage( $title2 );
+
 		$factory = $this->getServiceContainer()->getMergeHistoryFactory();
 		$mh = $factory->newMergeHistory( $title, $title2 );
 
@@ -193,27 +228,11 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Page\MergeHistory::merge
 	 */
 	public function testSourceUpdateForNoRedirectSupport() {
-		$this->overrideConfigValues( [
-			MainConfigNames::ExtraNamespaces => [
-				2030 => 'NoRedirect',
-				2031 => 'NoRedirect_talk'
-			],
+		$title = Title::makeTitle( self::NS_WITHOUT_REDIRECTS, 'Merge3' );
+		$title2 = Title::makeTitle( self::NS_WITHOUT_REDIRECTS, 'Merge4' );
 
-			MainConfigNames::NamespaceContentModels => [
-				2030 => 'testing'
-			],
-			MainConfigNames::ContentHandlers => [
-				// Relies on the DummyContentHandlerForTesting not
-				// supporting redirects by default. If this ever gets
-				// changed this test has to be fixed.
-				'testing' => DummyContentHandlerForTesting::class
-			]
-		] );
-
-		$title = Title::makeTitle( NS_MAIN, 'Merge3' );
-		$title->setContentModel( 'testing' );
-		$title2 = Title::makeTitle( NS_MAIN, 'Merge4' );
-		$title2->setContentModel( 'testing' );
+		$this->insertPage( $title );
+		$this->insertPage( $title2 );
 
 		$factory = $this->getServiceContainer()->getMergeHistoryFactory();
 		$mh = $factory->newMergeHistory( $title, $title2 );
@@ -224,6 +243,94 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusOK( $status );
 
 		$this->assertFalse( $title->exists() );
+	}
+
+	/**
+	 * Test that links tables are updated to reflect the fact that the
+	 * source page has become a redirect.
+	 *
+	 * @covers \MediaWiki\Page\MergeHistory::merge
+	 */
+	public function testLinkTableUpdates() {
+		$textWithLinks = "Hello [[world]]\n\n[[Category:Test]]";
+		$worldLink = new TitleValue( NS_MAIN, 'World' );
+		$testCategory = 'Test';
+
+		$title = Title::makeTitle( NS_MAIN, __METHOD__ . '_src' );
+		$title2 = Title::makeTitle( NS_MAIN, __METHOD__ . '_des' );
+
+		$this->insertPage( $title, $textWithLinks );
+		$this->insertPage( $title2 );
+
+		$this->runDeferredUpdates();
+
+		// sanity check before testing the effect of the merge
+		$this->assertLinks( $title, [ $worldLink ], [ $testCategory ] );
+
+		$factory = $this->getServiceContainer()->getMergeHistoryFactory();
+		$mh = $factory->newMergeHistory( $title, $title2 );
+
+		$status = $mh->merge( static::getTestSysop()->getUser() );
+		$this->assertStatusOK( $status );
+
+		// make sure the links are gone, but the redirect is there
+		// NOTE: Categories should be cleared, but currently are not.
+		$this->runDeferredUpdates();
+		$this->assertLinks( $title, [ $title2 ], [ $testCategory ], $title2 );
+	}
+
+	private function assertLinks(
+		PageIdentity $page,
+		array $links,
+		array $categories,
+		?LinkTarget $redirect = null
+	) {
+		$actualRedirect =
+			$this->getServiceContainer()->getRedirectLookup()->getRedirectTarget( $page );
+
+		if ( $redirect ) {
+			$this->assertTrue( $actualRedirect->isSameLinkAs( $redirect ), 'Redirect target' );
+		} else {
+			$this->assertNull( $actualRedirect, 'Redirect target' );
+		}
+
+		$linksMigration = $this->getServiceContainer()->getLinksMigration();
+		$linkRows = $this->getDb()->newSelectQueryBuilder()
+			->queryInfo( $linksMigration->getQueryInfo( 'pagelinks' ) )
+			->where( [ 'pl_from' => $page->getId() ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
+
+		$actualLinks = [];
+
+		[ $plNamespace, $plTitle ] = $linksMigration->getTitleFields( 'pagelinks' );
+		foreach ( $linkRows as $row ) {
+			$key = $row->$plNamespace . ':' . $row->$plTitle;
+			$actualLinks[$key] = true;
+		}
+
+		foreach ( $links as $lnk ) {
+			$key = $lnk->getNamespace() . ':' . $lnk->getDBkey();
+			$this->assertArrayHasKey( $key, $actualLinks, 'Page Links' );
+			unset( $actualLinks[ $key ] );
+		}
+
+		$this->assertSame( [], $actualLinks, 'Leftover Page Links' );
+
+		$actualCategories = $this->getDb()->newSelectQueryBuilder()
+			->select( 'cl_to' )
+			->from( 'categorylinks' )
+			->where( [ 'cl_from' => $page->getId() ] )
+			->caller( __METHOD__ )
+			->fetchFieldValues();
+
+		$actualCategories = array_flip( $actualCategories );
+
+		foreach ( $categories as $cat ) {
+			$this->assertArrayHasKey( $cat, $actualCategories, 'Categories' );
+			unset( $actualCategories[ $cat ] );
+		}
+		$this->assertSame( [], $actualCategories, 'Leftover Categories' );
 	}
 
 	/**
@@ -260,5 +367,116 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $store->getRevisionByPageId( $title1->getId(), $revid2 ) );
 		$this->assertNotNull( $store->getRevisionByPageId( $title2->getId(), $revid1 ) );
 		$this->assertNull( $store->getRevisionByPageId( $title2->getId(), $revid2 ) );
+	}
+
+	public static function provideUpdatePropagation() {
+		static $counter = 1;
+		$name = __METHOD__ . $counter++;
+
+		$script = new JavaScriptContent( 'console.log("testing")' );
+		$noRedirect = new DummyContentForTesting( 'just a test' );
+
+		yield 'merge articles' => [ "$name-OLD", "$name-NEW" ];
+		yield 'merge no-redirect' => [ "NoRedirect:$name-OLD", "NoRedirect:$name-NEW",
+			$noRedirect, $noRedirect ];
+		yield 'merge user talk' => [ "User_talk:$name-OLD", "User_talk:$name-NEW" ];
+		yield 'merge messages' => [ "MediaWiki:$name-OLD", "MediaWiki:$name-NEW" ];
+		yield 'merge scripts' => [ "User:$name/OLD.js", "User:$name/NEW.js", $script ];
+
+		// TODO: also test partial merges!
+	}
+
+	/**
+	 * Test update propagation.
+	 *
+	 * @covers \MediaWiki\Page\MergeHistory::merge
+	 *
+	 * @dataProvider provideUpdatePropagation
+	 */
+	public function testUpdatePropagation(
+		$old,
+		$new,
+		?Content $oldContent = null,
+		?Content $newContent = null
+	) {
+		// Clear some extension hook handlers that may interfere with mock object expectations.
+		$this->clearHooks( [
+			'RevisionRecordInserted',
+			'PageSaveComplete',
+			'PageMoveComplete',
+			'LinksUpdateComplete',
+		] );
+
+		$old = Title::newFromText( $old );
+		$new = Title::newFromText( $new );
+
+		$oldContent ??= new WikitextContent( 'hey' );
+		$newContent ??= new WikitextContent( 'ho' );
+
+		MWTimestamp::setFakeTime( '20220101223344' );
+		$this->editPage( $old, $oldContent );
+
+		MWTimestamp::setFakeTime( '20240101334455' );
+		$this->editPage( $new, $newContent );
+
+		// clear the queue
+		$this->runJobs();
+
+		$deleteSource = false;
+
+		$contentHandler = $this->getServiceContainer()->getContentHandlerFactory()
+			->getContentHandler( $oldContent->getModel() );
+
+		if ( !$contentHandler->supportsRedirects() || (
+				// Do not create redirects for wikitext message overrides (T376399).
+				// Maybe one day they will have a custom content model and this special case won't be needed.
+				$old->getNamespace() === NS_MEDIAWIKI &&
+				$old->getContentModel() === CONTENT_MODEL_WIKITEXT
+			) ) {
+			$deleteSource = true;
+		}
+
+		// Merges don't count as user contributions and should not trigger talk
+		// page notifications. They should show up in RecentChanges as merges,
+		// not edits.
+		if ( $deleteSource ) {
+			// If the source page gets deleted, there's an additional RC entry.
+			$this->expectChangeTrackingUpdates( 0, 2, 0, 0, 0 );
+
+			// The source page should get re-indexed.
+			$this->expectSearchUpdates( 1 );
+		} else {
+			// NOTE: CategoryMembershipChangeJob *should* be scheduled, but
+			// currently isn't.
+			$this->expectChangeTrackingUpdates( 0, 1, 0, 0, 0 );
+
+			// The source page should get re-indexed.
+			// NOTE: It's currently only called for deletions, not redirects!
+			$this->expectSearchUpdates( 0 );
+		}
+
+		// The localization cache should be reset for the MediaWiki
+		// namespace.
+		$this->expectLocalizationUpdate(
+			$old->getNamespace() === NS_MEDIAWIKI ? 1 : 0
+		);
+
+		// If the content model is JS, the module cache should be reset for the
+		// source page.
+		// NOTE: It's currently only not called, but should be for JS pages!
+		$this->expectResourceLoaderUpdates(
+			$oldContent->getModel() === CONTENT_MODEL_JAVASCRIPT ? 0 : 0
+		);
+
+		// Now merge the pages
+		$admin = static::getTestUser( [ 'sysop', 'interface-admin' ] )->getUser();
+
+		$factory = $this->getServiceContainer()->getMergeHistoryFactory();
+		$mh = $factory->newMergeHistory( $old, $new );
+		$status = $mh->merge( $admin );
+
+		$this->assertStatusOK( $status ); // sanity
+
+		$this->runDeferredUpdates();
 	}
 }
