@@ -92,6 +92,7 @@ because of Phabricator reports.
 
 === Breaking changes in 1.45 ===
 
+* The SiteConfiguration::extractGlobalSetting method, unused, is now private.
 * AuthManager::forcePrimaryAuthenticationProviders(), deprecated in 1.43 has
   been removed.
 * …
