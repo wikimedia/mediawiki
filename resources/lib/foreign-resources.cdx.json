@@ -2,7 +2,7 @@
     "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
     "bomFormat": "CycloneDX",
     "specVersion": "1.6",
-    "serialNumber": "urn:uuid:da970f7a-9f3c-40fc-9bad-2f690b332333",
+    "serialNumber": "urn:uuid:6e336a2e-60ad-4b7c-b1dc-8e81a03a831c",
     "version": 1,
     "components": [
         {
@@ -607,6 +607,54 @@
                 }
             ],
             "purl": "pkg:npm/vue@3.5.13",
+            "authors": [
+                {
+                    "name": "Yuxi (Evan) You"
+                }
+            ],
+            "externalReferences": [
+                {
+                    "url": "https://vuejs.org/",
+                    "type": "website"
+                }
+            ]
+        },
+        {
+            "type": "library",
+            "name": "vue-test-utils",
+            "version": "2.4.6",
+            "licenses": [
+                {
+                    "license": {
+                        "id": "MIT"
+                    }
+                }
+            ],
+            "purl": "pkg:npm/@vue/test-utils@2.4.6",
+            "authors": [
+                {
+                    "name": "Lachlan Miller"
+                }
+            ],
+            "externalReferences": [
+                {
+                    "url": "https://test-utils.vuejs.org/",
+                    "type": "website"
+                }
+            ]
+        },
+        {
+            "type": "library",
+            "name": "vue-compiler-dom",
+            "version": "3.5.13",
+            "licenses": [
+                {
+                    "license": {
+                        "id": "MIT"
+                    }
+                }
+            ],
+            "purl": "pkg:npm/@vue/compiler-dom@3.5.13",
             "authors": [
                 {
                     "name": "Yuxi (Evan) You"
