@@ -2571,6 +2571,7 @@ return [
 
 	'UserLinkRenderer' => static function ( MediaWikiServices $services ): UserLinkRenderer {
 		return new UserLinkRenderer(
+			$services->getHookContainer(),
 			$services->getTempUserConfig(),
 			$services->getSpecialPageFactory(),
 			$services->getLinkRenderer(),
