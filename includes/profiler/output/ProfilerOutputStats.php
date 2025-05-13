@@ -17,6 +17,7 @@
  *
  * @file
  */
+
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -34,18 +35,21 @@ class ProfilerOutputStats extends ProfilerOutput {
 	 */
 	public function log( array $stats ) {
 		$prefix = $this->params['prefix'] ?? '';
-		$contextStats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+		$statsFactory = MediaWikiServices::getInstance()->getStatsFactory();
+		$posCounter = $statsFactory->getCounter( 'ProfilerOutputStats_calls_total' );
+		$posCpuTimer = $statsFactory->getTiming( 'ProfilerOutputStats_cpu_seconds' );
+		$posRealTimer = $statsFactory->getTiming( 'ProfilerOutputStats_real_seconds' );
 
 		foreach ( $stats as $stat ) {
-			$key = "{$prefix}.{$stat['name']}";
+			$key = $prefix ? "{$prefix}_{$stat['name']}" : "{$stat['name']}";
 
 			// Convert fractional seconds to whole milliseconds
 			$cpu = round( $stat['cpu'] * 1000 );
 			$real = round( $stat['real'] * 1000 );
 
-			$contextStats->increment( "{$key}.calls" );
-			$contextStats->timing( "{$key}.cpu", $cpu );
-			$contextStats->timing( "{$key}.real", $real );
+			$posCounter->setLabel( 'key', $key )->increment();
+			$posCpuTimer->setLabel( 'key', $key )->observe( $cpu );
+			$posRealTimer->setLabel( 'key', $key )->observe( $real );
 		}
 	}
 }

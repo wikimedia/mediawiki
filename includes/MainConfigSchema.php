@@ -10005,9 +10005,8 @@ class MainConfigSchema {
 	 *   a comment.  You can make the profiling data in HTML render visibly
 	 *   instead by setting the 'visible' configuration flag.
 	 *
-	 * - ProfilerOutputStats: outputs profiling data as StatsD metrics.
-	 *   It expects that $wgStatsdServer is set to the host (or host:port)
-	 *   of a statsd server.
+	 * - ProfilerOutputStats: outputs profiling data in a format as configured
+	 *   by $wgStatsFormat. It expects that $wgStatsTarget is set.
 	 *
 	 * - ProfilerOutputDump: outputs dump files that are compatible
 	 *   with the XHProf gui. It expects that `$wgProfiler['outputDir']`
