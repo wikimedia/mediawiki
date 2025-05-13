@@ -110,6 +110,8 @@
 	"index-category": "Laman terindeks",
 	"noindex-category": "Laman tak diindekskan",
 	"broken-file-category": "Laman yang ada pautan fail yang terputus",
+	"categoryviewer-pagedlinks": "($1) ($2)",
+	"category-header-numerals": "$1–$2",
 	"about": "Perihal",
 	"article": "Laman kandungan",
 	"newwindow": "(dibuka di tetingkap baru)",

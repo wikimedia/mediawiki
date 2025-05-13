@@ -699,7 +699,7 @@
 	"blockedtext-composite-no-ids": "Din IP-adresse findes i flere blokeringslister",
 	"blockedtext-composite-reason": "Det er flere blokeringer på din konto og/eller ip-adresse",
 	"whitelistedittext": "Du skal $1 for at kunne redigere sider.",
-	"confirmedittext": "Du skal bekræfte din e-mailadresse, før du kan redigere sider. Udfyld og bekræft din e-mailadresse i dine [[Special:Preferences|bruger indstillinger]].",
+	"confirmedittext": "Du skal bekræfte din e-mailadresse, før du kan redigere sider. Udfyld og bekræft din e-mailadresse i dine [[Special:Preferences|brugerindstillinger]].",
 	"nosuchsectiontitle": "Kan ikke finde afsnittet",
 	"nosuchsectiontext": "Du forsøgte at redigere et afsnit, der ikke findes. Det kan være flyttet eller slettet imens du kiggede på siden.",
 	"loginreqtitle": "Log på nødvendigt",

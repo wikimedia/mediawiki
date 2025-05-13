@@ -2263,6 +2263,7 @@
 	"contribute": "Kontributar",
 	"contributions-subtitle": "Por {{GENDER:$2|$1}}",
 	"contributions-edit-count": "Uzero kun $2 {{PLURAL:$2|kontributado|kontributadi}}.",
+	"contributions-account-creation-date": "Konto kreita ye $1.",
 	"contributions-userdoesnotexist": "L'uzeronomo \"$1\" ne enrejistresis.",
 	"negative-namespace-not-supported": "''Namespace''-i kun valori infra zero ne aceptesas.",
 	"nocontribs": "Ne trovesis chanji qui fitez ita kriterii.",

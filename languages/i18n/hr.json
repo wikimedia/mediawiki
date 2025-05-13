@@ -53,7 +53,8 @@
 			"Zeljko.filipin",
 			"Сербијана",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Aca"
 		]
 	},
 	"sunday": "nedjelja",
@@ -745,6 +746,7 @@
 	"expansion-depth-exceeded-warning": "Na ovoj stranici dubina proširenja je prevelika",
 	"parser-unstrip-loop-warning": "Nedopuštena petlja",
 	"unstrip-depth-warning": "Dosegnuto je ograničenje rekurzije ($1)",
+	"double-px-category": "Veličina slike upisana s više jedinica px",
 	"converter-manual-rule-error": "Pronađena je pogrješka u pravilu ručnog prijevoda",
 	"undo-success": "Izmjenu je moguće ukloniti.\nMolimo Vas, usporedite niže navedene razlike u inačicama kako biste bili sigurni da ovo zaista želite učiniti, te objavite stranicu i izmjene će biti uklonjene.",
 	"undo-failure": "Ova izmjena ne može biti uklonjena zbog postojanja međuinačica.",
