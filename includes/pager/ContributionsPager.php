@@ -868,10 +868,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 			$chardiff .= Linker::formatRevisionSize( $row->{$this->revisionLengthField} );
 			$chardiff .= ' <span class="mw-changeslist-separator"></span> ';
 		} else {
-			$parentLen = 0;
-			if ( isset( $this->mParentLens[$row->{$this->revisionParentIdField}] ) ) {
-				$parentLen = $this->mParentLens[$row->{$this->revisionParentIdField}];
-			}
+			$parentLen = $this->getParentRevisionSize( $row );
 
 			$chardiff = ' <span class="mw-changeslist-separator"></span> ';
 			$chardiff .= ChangesList::showCharacterDifference(
@@ -882,6 +879,15 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 			$chardiff .= ' <span class="mw-changeslist-separator"></span> ';
 		}
 		return $chardiff;
+	}
+
+	/**
+	 * Get the byte length of the parent revision of a given row.
+	 * @param stdClass $row
+	 * @return int
+	 */
+	protected function getParentRevisionSize( $row ): int {
+		return $this->mParentLens[$row->{$this->revisionParentIdField}] ?? 0;
 	}
 
 	/**
