@@ -399,10 +399,16 @@ class UserNameUtils implements UserRigorOptions {
 	/**
 	 * Get a placeholder name for a temporary user before serial acquisition
 	 *
+	 * This method throws if temporary users are not enabled, and you can't check whether they are or
+	 * not from this class, so you have to check from the TempUserConfig class first, and then you
+	 * might as well use TempUserConfig::getPlaceholderName() directly.
+	 *
 	 * @since 1.39
+	 * @deprecated since 1.45 Use TempUserConfig::getPlaceholderName() instead
 	 * @return string
 	 */
 	public function getTempPlaceholder() {
+		wfDeprecated( __METHOD__, '1.45' );
 		return $this->tempUserConfig->getPlaceholderName();
 	}
 }
