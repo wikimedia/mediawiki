@@ -1,7 +1,7 @@
 {
 	"root": true,
 	"extends": [
-		"wikimedia/client-common",
+		"wikimedia/client/common",
 		"wikimedia/language/es2020",
 		"wikimedia/jquery",
 		"wikimedia/mediawiki",
