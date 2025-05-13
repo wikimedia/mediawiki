@@ -576,6 +576,7 @@ class HookRunner implements
 	\MediaWiki\User\Hook\UserLoadDefaultsHook,
 	\MediaWiki\User\Hook\UserLogoutHook,
 	\MediaWiki\User\Hook\UserPrivilegedGroupsHook,
+	\MediaWiki\Linker\Hook\UserLinkRendererUserLinkPostRenderHook,
 	\MediaWiki\User\Hook\UserRemoveGroupHook,
 	\MediaWiki\User\Hook\UserSaveSettingsHook,
 	\MediaWiki\User\Hook\UserSendConfirmationMailHook,
@@ -4414,6 +4415,15 @@ class HookRunner implements
 		return $this->container->run(
 			'UserIsLocked',
 			[ $user, &$locked ]
+		);
+	}
+
+	public function onUserLinkRendererUserLinkPostRender(
+		UserIdentity $targetUser, IContextSource $context, &$html, &$prefix, &$postfix
+	) {
+		return $this->container->run(
+			'UserLinkRendererUserLinkPostRender',
+			[ $targetUser, $context, &$html, &$prefix, &$postfix ]
 		);
 	}
 

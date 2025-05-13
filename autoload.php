@@ -3056,6 +3056,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\WikiMap\\WikiReference' => __DIR__ . '/includes/WikiMap/WikiReference.php',
 	'MediaWiki\\Xml\\Xml' => __DIR__ . '/includes/xml/Xml.php',
 	'MediaWiki\\Xml\\XmlSelect' => __DIR__ . '/includes/xml/XmlSelect.php',
+	'Mediawiki\\Linker\\Hook\\UserLinkRendererUserLinkPostRenderHook' => __DIR__ . '/includes/linker/Hook/UserLinkRendererUserLinkPostRenderHook.php',
 	'MediumSpecificBagOStuff' => __DIR__ . '/includes/libs/objectcache/MediumSpecificBagOStuff.php',
 	'MemcLockManager' => __DIR__ . '/includes/libs/lockmanager/MemcLockManager.php',
 	'MemcachedBagOStuff' => __DIR__ . '/includes/libs/objectcache/MemcachedBagOStuff.php',

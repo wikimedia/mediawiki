@@ -5,6 +5,8 @@ namespace MediaWiki\Linker;
 
 use MediaWiki\Context\IContextSource;
 use MediaWiki\DAO\WikiAwareEntity;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\Title;
@@ -26,6 +28,8 @@ use Wikimedia\MapCacheLRU\MapCacheLRU;
  * @unstable
  */
 class UserLinkRenderer {
+
+	private HookRunner $hookRunner;
 	private TempUserConfig $tempUserConfig;
 	private SpecialPageFactory $specialPageFactory;
 	private LinkRenderer $linkRenderer;
@@ -41,12 +45,14 @@ class UserLinkRenderer {
 	private MapCacheLRU $userLinkCache;
 
 	public function __construct(
+		HookContainer $hookContainer,
 		TempUserConfig $tempUserConfig,
 		SpecialPageFactory $specialPageFactory,
 		LinkRenderer $linkRenderer,
 		TempUserDetailsLookup $tempUserDetailsLookup,
 		UserIdentityLookup $userIdentityLookup
 	) {
+		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->tempUserConfig = $tempUserConfig;
 		$this->specialPageFactory = $specialPageFactory;
 		$this->linkRenderer = $linkRenderer;
@@ -84,7 +90,7 @@ class UserLinkRenderer {
 		$userName = $targetUser->getName();
 
 		if ( $this->isFromExternalWiki( $targetUser->getWikiId() ) ) {
-			return $this->userLinkCache->getWithSetCallback(
+			$html = $this->userLinkCache->getWithSetCallback(
 				$this->userLinkCache->makeKey(
 					$targetUser->getWikiId(),
 					$userName,
@@ -98,21 +104,25 @@ class UserLinkRenderer {
 					$attributes
 				)
 			);
+		} else {
+			$html = $this->userLinkCache->getWithSetCallback(
+				$this->userLinkCache->makeKey(
+					$userName,
+					$altUserName ?? '',
+					implode( ' ', $attributes )
+				),
+				fn () => $this->renderUserLink(
+					$targetUser,
+					$context,
+					$altUserName,
+					$attributes
+				)
+			);
 		}
-
-		return $this->userLinkCache->getWithSetCallback(
-			$this->userLinkCache->makeKey(
-				$userName,
-				$altUserName ?? '',
-				implode( ' ', $attributes )
-			),
-			fn () => $this->renderUserLink(
-				$targetUser,
-				$context,
-				$altUserName,
-				$attributes
-			)
-		);
+		$prefix = '';
+		$postfix = '';
+		$this->hookRunner->onUserLinkRendererUserLinkPostRender( $targetUser, $context, $html, $prefix, $postfix );
+		return $prefix . $html . $postfix;
 	}
 
 	/**

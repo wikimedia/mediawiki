@@ -45,6 +45,7 @@ For notes on 1.44.x and older releases, see HISTORY.
 
 === New developer features in 1.45 ===
 
+* The UserLinkRendererUserPostRenderLink hook was added.
 * …
 
 === External library changes in 1.45 ===

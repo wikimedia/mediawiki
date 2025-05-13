@@ -75,6 +75,7 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 		$this->userIdentityLookup = $this->createMock( UserIdentityLookup::class );
 
 		$this->userLinkRenderer = new UserLinkRenderer(
+			$this->getServiceContainer()->getHookContainer(),
 			$this->getServiceContainer()->getTempUserConfig(),
 			$this->getServiceContainer()->getSpecialPageFactory(),
 			$this->getServiceContainer()->getLinkRenderer(),
@@ -455,5 +456,26 @@ class UserLinkRendererTest extends MediaWikiLangTestCase {
 			'shouldMatch' => false,
 			'otherUser' => new UserIdentityValue( 2, 'OtherUser' )
 		];
+	}
+
+	public function testUserLinkHook() {
+		$this->setTemporaryHook( 'UserLinkRendererUserLinkPostRender', static function (
+			UserIdentity $targetUser, IContextSource $context, &$html, &$prefix, &$postfix
+		) {
+			$prefix .= '<span>foo</span>';
+			$postfix .= '<span>bar</span>';
+			$html .= '<span>test</span>';
+		} );
+		$outputPageMock = $this->createMock( OutputPage::class );
+		$contextMock = $this->createMock( IContextSource::class );
+		$contextMock->method( 'getOutput' )
+			->willReturn( $outputPageMock );
+		$usernameHtml = $this->getServiceContainer()->getUserLinkRenderer()->userLink(
+			$this->getTestUser()->getUser(),
+			$contextMock
+		);
+		$this->assertStringContainsString( '<span>foo</span>', $usernameHtml );
+		$this->assertStringContainsString( '<span>bar</span>', $usernameHtml );
+		$this->assertStringContainsString( '<span>test</span>', $usernameHtml );
 	}
 }
