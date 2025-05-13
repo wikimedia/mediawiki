@@ -676,7 +676,7 @@ class ExtensionProcessor implements Processor {
 					$data['localBasePath'] = "$dir/{$data['localBasePath']}";
 				}
 			}
-			$this->attributes['QUnitTestModules']["test.{$info['name']}"] = $data;
+			$this->attributes['QUnitTestModule']["test.{$info['name']}"] = $data;
 		}
 
 		if ( isset( $info['MessagePosterModule'] ) ) {

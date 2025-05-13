@@ -986,7 +986,7 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 				],
 				// Expected
 				[
-					'QUnitTestModules' => [
+					'QUnitTestModule' => [
 						'test.FooBar' => [
 							'localBasePath' => $dir,
 							'remoteExtPath' => 'Foo',
