@@ -432,22 +432,7 @@ class SiteConfiguration {
 	 * @param string $wiki
 	 * @param array $params
 	 */
-	public function extractGlobalSetting( $setting, $wiki, $params ) {
-		if ( !is_string( $setting ) ) {
-			wfDeprecated( __METHOD__ . ' with non-string $setting', '1.44' );
-			$setting = (string)$setting;
-		}
-		if ( $wiki === null ) {
-			wfDeprecated( __METHOD__ . ' with null $wiki', '1.44' );
-		}
-		if ( !is_string( $wiki ) ) {
-			wfDeprecated( __METHOD__ . ' with non-string $wiki', '1.44' );
-		}
-		$wiki = (string)$wiki;
-		if ( !is_array( $params ) ) {
-			wfDeprecated( __METHOD__ . ' with non-array $params', '1.44' );
-			$params = (array)$params;
-		}
+	private function extractGlobalSetting( $setting, $wiki, $params ) {
 		$overrides = $this->settings[$setting] ?? null;
 		$value = $overrides ? $this->processSetting( $overrides, $wiki, $params['tags'] ) : null;
 		if ( !array_key_exists( '@replaceableSettings', $this->settings )
@@ -502,8 +487,8 @@ class SiteConfiguration {
 			$wikiTags = (array)$wikiTags;
 		}
 		$params = $this->mergeParams( $wiki, $site, $params, $wikiTags );
-		foreach ( $this->settings as $varName => $setting ) {
-			$this->extractGlobalSetting( $varName, $wiki, $params );
+		foreach ( $this->settings as $setting => $overrides ) {
+			$this->extractGlobalSetting( $setting, $wiki, $params );
 		}
 	}
 
