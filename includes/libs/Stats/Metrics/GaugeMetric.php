@@ -57,7 +57,7 @@ class GaugeMetric implements MetricInterface {
 			$this->baseMetric->addSample( new Sample( $this->baseMetric->getLabelValues(), $value ) );
 		} catch ( IllegalOperationException $ex ) {
 			// Log the condition and give the caller something that will absorb calls.
-			trigger_error( $ex->getMessage(), E_USER_WARNING );
+			trigger_error( "Stats: ({$this->getName()}): {$ex->getMessage()}", E_USER_WARNING );
 		}
 	}
 

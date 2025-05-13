@@ -67,17 +67,20 @@ class HistogramMetricTest extends TestCase {
 
 	public function testThrowOnInvalidBucketValue() {
 		$this->expectException( 'InvalidArgumentException' );
-		StatsFactory::newNull()->getHistogram( 'test', [ 'foo' ] );
+		$this->expectExceptionMessage( 'Stats: (metricName) Histogram buckets can only be float or int.' );
+		StatsFactory::newNull()->getHistogram( 'metricName', [ 'foo' ] );
 	}
 
 	public function testThrowOnEmptyBucketArray() {
 		$this->expectException( 'InvalidArgumentException' );
-		StatsFactory::newNull()->getHistogram( 'test', [] );
+		$this->expectExceptionMessage( 'Stats: (metricName) Histogram buckets cannot be an empty array.' );
+		StatsFactory::newNull()->getHistogram( 'metricName', [] );
 	}
 
 	public function testThrowOnTooManyBuckets() {
 		$this->expectException( 'InvalidArgumentException' );
-		StatsFactory::newNull()->getHistogram( 'test', [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ] );
+		$this->expectExceptionMessage( 'Stats: (metricName) Too many buckets defined. Got:11, Max:10' );
+		StatsFactory::newNull()->getHistogram( 'metricName', [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ] );
 	}
 
 	// Return an array of just the values

@@ -165,31 +165,58 @@ class MetricTest extends MediaWikiUnitTestCase {
 	public function testTimerNotStarted() {
 		$m = StatsFactory::newNull();
 		$this->expectPHPWarning(
-			'Stats: stop() called before start() for metric \'test\'',
+			'Stats: (metricName) stop() called before start()',
 			static function () use ( $m ) {
-				$m->getTiming( 'test' )->stop();
+				$m->getTiming( 'metricName' )->stop();
 			}
 		);
 	}
 
 	public function testChangingLabelsToUsedMetric() {
 		$m = StatsFactory::newNull();
-		$m->getCounter( 'testMetricCounter' )->setLabel( 'labelOne', 'a' )->increment();
+		$counter = $m->getCounter( 'testMetricCounter' )->setLabel( 'labelOne', 'a' );
+		$counter->increment();
+		$callable = static function () use ( $counter ) {
+			$counter->setLabel( 'labelTwo', 'b' );
+		};
+		$this->expectPHPWarning(
+			'Stats: (testMetricCounter) Cannot add labels to a metric containing samples',
+			$callable,
+			true
+		);
 		$counter = @$m->getCounter( 'testMetricCounter' )->setLabel( 'labelTwo', 'b' );
 		$this->assertInstanceOf( NullMetric::class, $counter );
-		$m->getGauge( 'testMetricGauge' )->setLabel( 'labelOne', 'a' )->set( 1 );
+		$gauge = $m->getGauge( 'testMetricGauge' )->setLabel( 'labelOne', 'a' );
+		$gauge->set( 1 );
+		$callable = static function () use ( $gauge ) {
+			$gauge->setLabel( 'labelTwo', 'b' );
+		};
+		$this->expectPHPWarning(
+			'Stats: (testMetricGauge) Cannot add labels to a metric containing samples',
+			$callable,
+			true
+		);
 		$gauge = @$m->getGauge( 'testMetricGauge' )->setLabel( 'labelTwo', 'b' );
 		$this->assertInstanceOf( NullMetric::class, $gauge );
-		$m->getTiming( 'testMetricTiming' )->setLabel( 'labelOne', 'a' )->observe( 1 );
-		$timer = @$m->getTiming( 'testMetricTiming' )->setLabel( 'labelTwo', 'b' );
-		$this->assertInstanceOf( NullMetric::class, $timer );
+		$timing = $m->getTiming( 'testMetricTiming' )->setLabel( 'labelOne', 'a' );
+		$timing->observe( 1 );
+		$callable = static function () use ( $timing ) {
+			$timing->setLabel( 'labelTwo', 'b' );
+		};
+		$this->expectPHPWarning(
+			'Stats: (testMetricTiming) Cannot add labels to a metric containing samples',
+			$callable,
+			true
+		);
+		$timing = @$m->getTiming( 'testMetricTiming' )->setLabel( 'labelTwo', 'b' );
+		$this->assertInstanceOf( NullMetric::class, $timing );
 	}
 
 	public function testCounterHandleNotAllLabelsHaveValues() {
 		$m = StatsFactory::newNull();
 		$m->getCounter( 'testMetricCounter' )->setLabel( 'labelOne', 'a' )->increment();
 		$this->expectPHPWarning(
-			'Stats: Cannot associate label keys with label values: Not all initialized labels have an assigned value.',
+			'Stats: (testMetricCounter) Cannot associate label keys with label values - Not all initialized labels have an assigned value.',
 			static function () use ( $m ) {
 				$m->getCounter( 'testMetricCounter' )->increment();
 			}
@@ -200,7 +227,7 @@ class MetricTest extends MediaWikiUnitTestCase {
 		$m = StatsFactory::newNull();
 		$m->getGauge( 'testMetricGauge' )->setLabel( 'labelOne', 'a' )->set( 1 );
 		$this->expectPHPWarning(
-			'Stats: Cannot associate label keys with label values: Not all initialized labels have an assigned value.',
+			'Stats: (testMetricGauge) Cannot associate label keys with label values - Not all initialized labels have an assigned value.',
 			static function () use ( $m ) {
 				$m->getGauge( 'testMetricGauge' )->set( 1 );
 			}
@@ -211,7 +238,8 @@ class MetricTest extends MediaWikiUnitTestCase {
 		$m = StatsFactory::newNull();
 		$m->getTiming( 'testMetricTiming' )->setLabel( 'labelOne', 'a' )->observe( 1 );
 		$this->expectPHPWarning(
-			'Stats: Cannot associate label keys with label values: Not all initialized labels have an assigned value.',
+			'Stats: (testMetricTiming) Cannot associate label keys with label values - '
+			. 'Not all initialized labels have an assigned value.',
 			static function () use ( $m ) {
 				$m->getTiming( 'testMetricTiming' )->observe( 1 );
 			}
@@ -220,24 +248,47 @@ class MetricTest extends MediaWikiUnitTestCase {
 
 	public function testSampleRateOOB() {
 		$m = StatsFactory::newNull();
-		$metric = @$m->getCounter( 'testMetricCounter' )->setSampleRate( 1.1 );
+		$counter = $m->getCounter( 'CounterMetricName' );
+		$gauge = $m->getCounter( 'GaugeMetricName' );
+		$timing = $m->getCounter( 'TimingMetricName' );
+		$callable = static function () use ( $counter ) {
+			$counter->setSampleRate( 1.1 );
+		};
+		$this->expectPHPWarning( 'Stats: (CounterMetricName) Sample rate can only be between 0.0 and 1.0. Got: 1.1', $callable, true );
+		$callable = static function () use ( $gauge ) {
+			$gauge->setSampleRate( -1 );
+		};
+		$this->expectPHPWarning( 'Stats: (GaugeMetricName) Sample rate can only be between 0.0 and 1.0. Got: -1', $callable, true );
+		$callable = static function () use ( $timing ) {
+			$timing->setSampleRate( 20 );
+		};
+		$this->expectPHPWarning( 'Stats: (TimingMetricName) Sample rate can only be between 0.0 and 1.0. Got: 20', $callable, true );
+		$metric = @$counter->setSampleRate( 1.1 );
 		$this->assertInstanceOf( NullMetric::class, $metric );
-		$metric = @$m->getGauge( 'testMetricGauge' )->setSampleRate( -1 );
+		$metric = @$gauge->setSampleRate( -1 );
 		$this->assertInstanceOf( NullMetric::class, $metric );
-		$metric = @$m->getTiming( 'testMetricTimer' )->setSampleRate( 20 );
+		$metric = @$timing->setSampleRate( 20 );
 		$this->assertInstanceOf( NullMetric::class, $metric );
 	}
 
 	public function testSampleRateDisallowed() {
 		$m = StatsFactory::newNull();
-		$m->getCounter( 'testMetric' )->increment();
-		$metric = @$m->getCounter( 'testMetric' )->setSampleRate( 0.5 );
+		$m->getCounter( 'CounterMetricName' )->increment();
+		$callable = static function () use ( $m ) {
+			$m->getCounter( 'CounterMetricName' )->setSampleRate( 0.5 );
+		};
+		$this->expectPHPWarning(
+			'Stats: (CounterMetricName) Cannot change sample rate on metric with recorded samples.',
+			$callable,
+			true
+		);
+		$metric = @$m->getCounter( 'CounterMetricName' )->setSampleRate( 0.5 );
 		$this->assertInstanceOf( NullMetric::class, $metric );
-		$m->getGauge( 'testMetricGauge' )->set( 1 );
-		$metric = @$m->getGauge( 'testMetricGauge' )->setSampleRate( 0.5 );
+		$m->getGauge( 'GaugeMetricName' )->set( 1 );
+		$metric = @$m->getGauge( 'GaugeMetricName' )->setSampleRate( 0.5 );
 		$this->assertInstanceOf( NullMetric::class, $metric );
-		$m->getTiming( 'testMetricTiming' )->observe( 1 );
-		$metric = @$m->getTiming( 'testMetricTiming' )->setSampleRate( 0.5 );
+		$m->getTiming( 'TimingMetricName' )->observe( 1 );
+		$metric = @$m->getTiming( 'TimingMetricName' )->setSampleRate( 0.5 );
 		$this->assertInstanceOf( NullMetric::class, $metric );
 	}
 
@@ -275,11 +326,12 @@ class MetricTest extends MediaWikiUnitTestCase {
 		$m = StatsFactory::newNull();
 		$m = $m->withStatsdDataFactory( $this->createMock( IBufferingStatsdDataFactory::class ) );
 		$this->expectPHPWarning(
-			'Stats: StatsD namespace must be a string.',
+			'Stats: (testMetricCounter) StatsD namespace must be a string.',
 			function () use ( $m ) {
 				$metric = $m->getCounter( 'testMetricCounter' )->copyToStatsdAt( null );
 				$this->assertInstanceOf( NullMetric::class, $metric );
-			}
+			},
+			true
 		);
 	}
 
@@ -287,11 +339,12 @@ class MetricTest extends MediaWikiUnitTestCase {
 		$m = StatsFactory::newNull();
 		$m = $m->withStatsdDataFactory( $this->createMock( IBufferingStatsdDataFactory::class ) );
 		$this->expectPHPWarning(
-			'Stats: StatsD namespace cannot be empty.',
+			'Stats: (testMetricCounter) StatsD namespace cannot be empty.',
 			function () use ( $m ) {
 				$metric = $m->getCounter( 'testMetricCounter' )->copyToStatsdAt( '' );
 				$this->assertInstanceOf( NullMetric::class, $metric );
-			}
+			},
+			true
 		);
 	}
 
@@ -299,11 +352,12 @@ class MetricTest extends MediaWikiUnitTestCase {
 		$m = StatsFactory::newNull();
 		$m = $m->withStatsdDataFactory( $this->createMock( IBufferingStatsdDataFactory::class ) );
 		$this->expectPHPWarning(
-			'Stats: StatsD namespace must be a string.',
+			'Stats: (testMetricCounter) StatsD namespace must be a string.',
 			function () use ( $m ) {
 				$metric = $m->getCounter( 'testMetricCounter' )->copyToStatsdAt( [ null ] );
 				$this->assertInstanceOf( NullMetric::class, $metric );
-			}
+			},
+			true
 		);
 	}
 
@@ -420,24 +474,32 @@ class MetricTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testSetLabelReserved() {
-		$metric = @StatsFactory::newNull()->getCounter( 'test' )->setLabel( 'Le', 'foo' );
-		$this->assertInstanceOf( NullMetric::class, $metric );
+		$metric = StatsFactory::newNull()->getCounter( 'metricName' );
+		$callable = static function () use ( $metric ) {
+			$metric->setLabel( 'Le', 'foo' );
+		};
+		$this->expectPHPWarning( 'Stats: (metricName) \'le\' cannot be used as a label key', $callable, true );
+		$this->assertInstanceOf( NullMetric::class, @$metric->setLabel( 'le', 'foo' ) );
 	}
 
 	public function testSetLabelsReserved() {
-		$metric = @StatsFactory::newNull()->getCounter( 'test' )->setLabels( [ 'foo' => 'a', 'lE' => '1', 'bar' => 'c' ] );
+		$metric = @StatsFactory::newNull()->getCounter( 'test' )
+			->setLabels( [ 'foo' => 'a', 'lE' => '1', 'bar' => 'c' ] );
 		$this->assertInstanceOf( NullMetric::class, $metric );
 	}
 
 	public function testInvalidBucketValue() {
 		$this->expectException( 'InvalidArgumentException' );
-		StatsFactory::newNull()->getCounter( 'test' )->setBucket( 'foo' );
+		$this->expectExceptionMessage( 'Stats: (metricName) Got illegal bucket value \'foo\' - must be float or \'+Inf\'' );
+		StatsFactory::newNull()->getCounter( 'metricName' )->setBucket( 'foo' );
 	}
 
 	public function testInvalidLabel() {
-		$this->assertInstanceOf(
-			NullMetric::class,
-			@StatsFactory::newNull()->getCounter( 'test' )->setLabel( ': x', 'labelOne' )
-		);
+		$metric = StatsFactory::newNull()->getCounter( 'metricName' );
+		$callable = static function () use ( $metric ) {
+			$metric->setLabel( ': x', 'labelOne' );
+		};
+		$this->expectPHPWarning( 'Stats: (metricName) Invalid label key: \': x\'', $callable, true );
+		$this->assertInstanceOf( NullMetric::class, @$metric->setLabel( ': x', 'labelOne' ) );
 	}
 }

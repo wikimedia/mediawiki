@@ -58,7 +58,7 @@ class CounterMetric implements MetricInterface {
 	 */
 	public function incrementBy( float $value ): void {
 		if ( $value < 0 ) {
-			trigger_error( "Stats: got negative value for counter \"{$this->getName()}\"", E_USER_WARNING );
+			trigger_error( "Stats: ({$this->getName()}) Counter got negative value", E_USER_WARNING );
 			return;
 		}
 
@@ -74,7 +74,7 @@ class CounterMetric implements MetricInterface {
 			$this->baseMetric->addSample( new Sample( $labelValues, $value ) );
 		} catch ( IllegalOperationException $ex ) {
 			// Log the condition and give the caller something that will absorb calls.
-			trigger_error( $ex->getMessage(), E_USER_WARNING );
+			trigger_error( "Stats: ({$this->getName()}): {$ex->getMessage()}", E_USER_WARNING );
 		}
 	}
 
@@ -94,7 +94,9 @@ class CounterMetric implements MetricInterface {
 			$this->bucket = "{$value}";
 			return $this;
 		}
-		throw new InvalidArgumentException( "Stats: Got illegal bucket value '{$value}' - must be float or '+Inf'" );
+		throw new InvalidArgumentException(
+			"Stats: ({$this->getName()}) Got illegal bucket value '{$value}' - must be float or '+Inf'"
+		);
 	}
 
 	/** @inheritDoc */

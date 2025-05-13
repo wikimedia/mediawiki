@@ -46,24 +46,24 @@ class HistogramMetric {
 		$this->statsFactory = $statsFactory;
 		$this->name = $name;
 		if ( !$buckets ) {
-			throw new InvalidArgumentException( 'Stats: Histogram buckets cannot be an empty array.' );
+			throw new InvalidArgumentException( "Stats: ({$name}) Histogram buckets cannot be an empty array." );
 		}
 		$bucketCount = count( $buckets );
 		if ( $bucketCount > self::MAX_BUCKETS ) {
 			throw new InvalidArgumentException(
-				"Stats: Too many buckets defined. Got:{$bucketCount}, Max:" . self::MAX_BUCKETS
+				"Stats: ({$name}) Too many buckets defined. Got:{$bucketCount}, Max:" . self::MAX_BUCKETS
 			);
 		}
 		foreach ( $buckets as $bucket ) {
 			if ( !( is_float( $bucket ) || is_int( $bucket ) ) ) {
-				throw new InvalidArgumentException( 'Stats: Histogram buckets can only be float or int.' );
+				throw new InvalidArgumentException( "Stats: ({$name}) Histogram buckets can only be float or int." );
 			}
 		}
 		$normalizedBuckets = array_unique( $buckets );
 		sort( $normalizedBuckets, SORT_NUMERIC );
 		if ( $buckets !== $normalizedBuckets ) {
 			throw new InvalidArgumentException(
-				'Stats: Histogram buckets must be unique and in order of least to greatest.'
+				"Stats: ({$name}) Histogram buckets must be unique and in order of least to greatest."
 			);
 		}
 		$this->buckets = $buckets;

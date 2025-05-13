@@ -195,7 +195,7 @@ class StatsFactory {
 			$metric = $this->cache->get( $this->component, $name, $className );
 		} catch ( TypeError | InvalidArgumentException | InvalidConfigurationException $ex ) {
 			// Log the condition and give the caller something that will absorb calls.
-			trigger_error( $ex->getMessage(), E_USER_WARNING );
+			trigger_error( "Stats: {$name}: {$ex->getMessage()}", E_USER_WARNING );
 			return new NullMetric;
 		}
 		if ( $metric === null ) {

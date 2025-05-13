@@ -39,17 +39,20 @@ class StatsFactoryTest extends TestCase {
 
 	public function testUnsupportedOutputFormat() {
 		$this->expectException( UnsupportedFormatException::class );
+		$this->expectExceptionMessage( 'Unsupported metrics format \'999\' - See OutputFormats::class.' );
 		OutputFormats::getNewFormatter( 999 );
 	}
 
 	public function testEmptyPrefix() {
 		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( 'UDPEmitter: Prefix cannot be empty.' );
 		OutputFormats::getNewEmitter( '', new StatsCache, OutputFormats::getNewFormatter( OutputFormats::STATSD ), '' );
 	}
 
 	public function testUnsetNameConfig() {
 		$m = StatsFactory::newNull();
 		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( 'Stats: Metric name cannot be empty.' );
 		$m->getCounter( '' );
 	}
 
