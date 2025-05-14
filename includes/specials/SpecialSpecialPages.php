@@ -23,8 +23,9 @@ namespace MediaWiki\Specials;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
-use Wikimedia\Parsoid\Core\SectionMetadata;
-use Wikimedia\Parsoid\Core\TOCData;
+use MediaWiki\Title\Title;
+use OOUI\FieldLayout;
+use OOUI\SearchInputWidget;
 
 /**
  * A special page that lists special pages
@@ -44,7 +45,7 @@ class SpecialSpecialPages extends UnlistedSpecialPage {
 		$out->getMetadata()->setPreventClickjacking( false );
 		$out->addModuleStyles( 'mediawiki.special' );
 
-		$groups = $this->getPageGroups();
+		$groups = $this->getSpecialPages();
 
 		if ( $groups === false ) {
 			return;
@@ -54,8 +55,8 @@ class SpecialSpecialPages extends UnlistedSpecialPage {
 		$this->outputPageList( $groups );
 	}
 
-	/** @return array[][]|false */
-	private function getPageGroups() {
+	/** @return array[]|false */
+	private function getSpecialPages() {
 		$pages = $this->getSpecialPageFactory()->getUsablePages( $this->getUser() );
 
 		if ( $pages === [] ) {
@@ -64,7 +65,7 @@ class SpecialSpecialPages extends UnlistedSpecialPage {
 		}
 
 		// Put them into a sortable array
-		$groups = [];
+		$specialPages = [];
 		foreach ( $pages as $page ) {
 			$group = $page->getFinalGroupName();
 			$desc = $page->getDescription();
@@ -75,135 +76,132 @@ class SpecialSpecialPages extends UnlistedSpecialPage {
 			}
 			// (T360723) Only show an entry if the message isn't blanked, to allow on-wiki unlisting
 			if ( !$desc->isDisabled() ) {
-				$groups[$group][$desc->text()] = [
+				$specialPages[$desc->text()] = [
 					$page->getPageTitle(),
 					$page->isRestricted(),
-					$page->isCached()
+					$page->isCached(),
+					$group
 				];
 			}
 		}
 
-		// Sort
-		foreach ( $groups as $group => $sortedPages ) {
-			ksort( $groups[$group] );
-		}
+		// Sort by group
+		uasort( $specialPages, static fn ( $a, $b ) => $a[3] <=> $b[3] );
 
-		// Always move "other" to end
-		if ( array_key_exists( 'other', $groups ) ) {
-			$other = $groups['other'];
-			unset( $groups['other'] );
-			$groups['other'] = $other;
-		}
-
-		return $groups;
+		return $specialPages;
 	}
 
-	private function outputPageList( array $groups ) {
+	private function outputPageList( array $specialPages ) {
 		$out = $this->getOutput();
+		$aliases = $this->getSpecialPageFactory()->getAliasList();
+		$out->addModuleStyles( [ 'codex-styles' ] );
+		$out->addModules( 'mediawiki.special.specialpages' );
+		$out->enableOOUI();
 
-		// Legend
 		$includesRestrictedPages = false;
-		$includesCachedPages = false;
-		foreach ( $groups as $group => $sortedPages ) {
-			foreach ( $sortedPages as $desc => [ $title, $restricted, $cached ] ) {
-				if ( $cached ) {
-					$includesCachedPages = true;
-				}
-				if ( $restricted ) {
-					$includesRestrictedPages = true;
-				}
+		foreach ( $specialPages as $desc => [ $title, $restricted, $cached, $group ] ) {
+			if ( $restricted ) {
+				$includesRestrictedPages = true;
+				break;
 			}
 		}
 
-		$notes = [];
 		if ( $includesRestrictedPages ) {
-			$restricedMsg = $this->msg( 'specialpages-note-restricted' );
-			if ( !$restricedMsg->isDisabled() ) {
-				$notes[] = $restricedMsg->parse();
-			}
-		}
-		if ( $includesCachedPages ) {
-			$cachedMsg = $this->msg( 'specialpages-note-cached' );
-			if ( !$cachedMsg->isDisabled() ) {
-				$notes[] = $cachedMsg->parse();
-			}
-		}
-		if ( $notes !== [] ) {
-			$legendHeading = $this->msg( 'specialpages-note-top' )->parse();
-
 			$legend = Html::rawElement(
 				'div',
-				[ 'class' => [ 'mw-changeslist-legend', 'mw-specialpages-notes' ] ],
-				$legendHeading . implode( "\n", $notes )
+				[ 'class' => [ 'cdx-card', 'mw-special-pages-legend' ] ],
+				Html::element(
+					'div',
+					[ 'class' => [ 'cdx-card__text' ] ],
+					$this->msg( 'specialpages-access-restricted-note' )->text()
+				)
 			);
-
 			$out->addHTML( $legend );
-			$out->addModuleStyles( 'mediawiki.special.changeslist.legend' );
 		}
 
-		// Format table of contents
-		$tocData = new TOCData();
-		$tocLength = 0;
-		foreach ( $groups as $group => $sortedPages ) {
-			if ( !str_contains( $group, '/' ) ) {
-				++$tocLength;
-				$tocData->addSection( new SectionMetadata(
-					1,
-					2,
-					$this->msg( "specialpages-group-$group" )->escaped(),
-					$this->getLanguage()->formatNum( $tocLength ),
-					(string)$tocLength,
-					null,
-					null,
-					"mw-specialpagesgroup-$group",
-					"mw-specialpagesgroup-$group"
-				) );
-			}
-		}
-
-		$out->addTOCPlaceholder( $tocData );
-
+		$out->addHTML(
+			Html::openElement( 'div', [ 'class' => 'cdx-table' ] ) .
+			Html::openElement( 'div', [ 'class' => 'cdx-table__header' ] )
+		);
+		// Headers
+		$out->addHTML( new FieldLayout(
+			new SearchInputWidget( [
+				'placeholder' => $this->msg( 'specialpages-header-search' )->text(),
+			] ),
+			[
+				'classes' => [ 'mw-special-pages-search' ],
+				'label' => $this->msg( 'specialpages-header-search' )->text(),
+				'invisibleLabel' => true,
+				'infusable' => true,
+			]
+		) );
+		// Open table elements
+		$out->addHTML(
+			Html::closeElement( 'div' ) .
+			Html::openElement( 'div', [ 'class' => 'cdx-table__table-wrapper' ] ) .
+			Html::openElement( 'table', [ 'class' => 'cdx-table__table sortable' ] )
+		);
+		// Add table header
+		$accessHeader = $includesRestrictedPages ?
+			Html::element( 'th', [], $this->msg( 'specialpages-header-access' )->text() ) : '';
+		$out->addHTML(
+			Html::openElement( 'thead' ) .
+			Html::openElement( 'tr' ) .
+			Html::element( 'th', [], $this->msg( 'specialpages-header-name' )->text() ) .
+			Html::element( 'th', [], $this->msg( 'specialpages-header-category' )->text() ) .
+			$accessHeader .
+			Html::closeElement( 'tr' ) .
+			Html::closeElement( 'thead' ) .
+			Html::openElement( 'tbody' )
+		);
 		// Format contents
-		foreach ( $groups as $group => $sortedPages ) {
+		foreach ( $specialPages as $desc => [ $title, $restricted, $cached, $group ] ) {
+			$indexAttr = [ 'data-search-index-0' => strtolower( $title->getText() ) ];
+			$c = 1;
+			foreach ( $aliases as $alias => $target ) {
+				/** @var Title $title */
+				if ( $target == $title->getText() && strtolower( $alias ) !== strtolower( $title->getText() ) ) {
+					$indexAttr['data-search-index-' . $c ] = strtolower( $alias );
+					++$c;
+				}
+			}
 			if ( str_contains( $group, '/' ) ) {
 				[ $group, $subGroup ] = explode( '/', $group, 2 );
-				$out->addHTML( Html::element(
-					'h3',
-					[ 'class' => "mw-specialpagessubgroup" ],
-					$this->msg( "specialpages-group-$group-$subGroup" )->text()
-				) . "\n" );
+				$groupName = $this->msg( "specialpages-group-$group-$subGroup" )->text();
 			} else {
-				$out->addHTML( Html::element(
-					'h2',
-					[ 'class' => "mw-specialpagesgroup", 'id' => "mw-specialpagesgroup-$group" ],
-					$this->msg( "specialpages-group-$group" )->text()
-				) . "\n" );
+				$groupName = $this->msg( "specialpages-group-$group" )->text();
+			}
+			$rowClasses = [ 'mw-special-pages-search-highlight', 'mw-special-pages-row' ];
+			if ( $includesRestrictedPages ) {
+				if ( $restricted === true ) {
+					$rowClasses[] = 'mw-special-pages-row-restricted';
+					$accessMessageKey = 'specialpages-access-restricted';
+				} else {
+					$accessMessageKey = 'specialpages-access-public';
+				}
+				$accessCell = Html::element( 'td', [], $this->msg( $accessMessageKey )->text() );
+			} else {
+				$accessCell = '';
 			}
 			$out->addHTML(
-				Html::openElement( 'div', [ 'class' => 'mw-specialpages-list' ] )
-				. '<ul>'
-			);
-			foreach ( $sortedPages as $desc => [ $title, $restricted, $cached ] ) {
-				$pageClasses = [];
-				if ( $cached ) {
-					$pageClasses[] = 'mw-specialpagecached';
-				}
-				if ( $restricted ) {
-					$pageClasses[] = 'mw-specialpagerestricted';
-				}
-
-				$link = $this->getLinkRenderer()->makeKnownLink( $title, $desc );
-				$out->addHTML( Html::rawElement(
-						'li',
-						[ 'class' => $pageClasses ],
-						$link
-					) . "\n" );
-			}
-			$out->addHTML(
-				Html::closeElement( 'ul' ) .
-				Html::closeElement( 'div' )
+				Html::openElement( 'tr', $indexAttr + [ 'class' => $rowClasses ] ) .
+				Html::rawElement(
+					'td',
+					[ 'class' => 'mw-special-pages-name' ],
+					$this->getLinkRenderer()->makeKnownLink( $title, $desc )
+				) .
+				Html::element( 'td', [], $groupName ) .
+				$accessCell .
+				Html::closeElement( 'tr' )
 			);
 		}
+
+		$out->addHTML(
+			Html::closeElement( 'tbody' ) .
+			Html::closeElement( 'table' ) .
+			Html::closeElement( 'div' ) .
+			Html::closeElement( 'div' )
+		);
 	}
 }
 

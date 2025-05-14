@@ -1466,7 +1466,7 @@ class SpecialPageFactory {
 	 * the key is an alias, and the value is the canonical name of the special page.
 	 * All registered special pages are guaranteed to map to themselves.
 	 */
-	private function getAliasList(): array {
+	public function getAliasList(): array {
 		if ( $this->aliases === null ) {
 			$aliases = $this->contLang->getSpecialPageAliases();
 			$pageList = $this->getPageList();
