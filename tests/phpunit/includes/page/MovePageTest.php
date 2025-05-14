@@ -627,6 +627,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 
 		$mover = $this->getTestSysop()->getUser();
 
+		$reason = 'testEventEmission';
 		// clear the queue
 		$this->runJobs();
 
@@ -702,18 +703,20 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		$this->expectDomainEvent(
 			PageMovedEvent::TYPE, 1,
 			static function ( PageMovedEvent $event )
-				use ( $old, $oldPageId, $new, $mover )
+				use ( $old, $oldPageId, $new, $mover, $reason )
 			{
 				Assert::assertTrue( $event->getPageRecordAfter()->isSamePageAs( $new ) );
 				Assert::assertTrue( $event->getPageRecordBefore()->isSamePageAs( $old ) );
 
 				Assert::assertSame( $oldPageId, $event->getPageId() );
+
+				Assert::assertSame( $reason, $event->getReason(), 'getReason()' );
 			}
 		);
 
 		// Now move the page
 		$obj = $this->newMovePageWithMocks( $old, $new, [ 'db' => $this->getDb() ] );
-		$obj->move( $mover );
+		$obj->move( $mover, $reason );
 	}
 
 	public static function provideUpdatePropagation() {

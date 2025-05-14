@@ -37,16 +37,19 @@ use Wikimedia\Assert\Assert;
  */
 class PageMovedEvent extends PageStateEvent {
 	public const TYPE = 'PageMoved';
+	private string $reason;
 
 	/**
 	 * @param ExistingPageRecord $pageRecordBefore The page before the move.
 	 * @param ExistingPageRecord $pageRecordAfter The page after the move.
 	 * @param UserIdentity $performer The user performing the move.
+	 * @param string $reason The reason for the move.
 	 */
 	public function __construct(
 		ExistingPageRecord $pageRecordBefore,
 		ExistingPageRecord $pageRecordAfter,
-		UserIdentity $performer
+		UserIdentity $performer,
+		string $reason
 	) {
 		Assert::parameter(
 			$pageRecordBefore->getId() === $pageRecordAfter->getId(),
@@ -61,6 +64,7 @@ class PageMovedEvent extends PageStateEvent {
 			$performer
 		);
 
+		$this->reason = $reason;
 		$this->declareEventType( self::TYPE );
 	}
 
@@ -82,4 +86,12 @@ class PageMovedEvent extends PageStateEvent {
 		return parent::getPageRecordAfter();
 	}
 
+	/**
+	 * Returns the reason for the move action.
+	 *
+	 * @return string
+	 */
+	public function getReason(): string {
+		return $this->reason;
+	}
 }

@@ -745,7 +745,8 @@ class MovePage {
 		$this->eventDispatcher->dispatch( new PageMovedEvent(
 			$pageStateBeforeMove,
 			$this->newTitle->toPageRecord( IDBAccessObject::READ_LATEST ),
-			$user
+			$user,
+			$reason
 		), $this->dbProvider );
 
 		$dbw->endAtomic( __METHOD__ );
