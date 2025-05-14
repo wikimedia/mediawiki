@@ -241,14 +241,12 @@ class PageCommandFactory implements
 			$timestamp,
 			$this->lbFactory,
 			$this->contentHandlerFactory,
-			$this->revisionStoreFactory->getRevisionStore(),
 			$this->watchedItemStore,
 			$this->spamChecker,
 			$this->hookContainer,
-			$this->wikiPageFactory,
+			$this->pageUpdaterFactory,
 			$this->titleFormatter,
 			$this->titleFactory,
-			$this->linkTargetLookup,
 			$this
 		);
 	}

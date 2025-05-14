@@ -1214,6 +1214,8 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 * or else the record will be left in a funky state.
 	 * Best if all done inside a transaction.
 	 *
+	 * @internal Low level interface, not safe for use in extensions!
+	 *
 	 * @todo Factor out into a PageStore service, to be used by PageUpdater.
 	 *
 	 * @param IDatabase $dbw
@@ -1253,6 +1255,8 @@ class WikiPage implements Stringable, Page, PageRecord {
 
 	/**
 	 * Update the page record to point to a newly saved revision.
+	 *
+	 * @internal Low level interface, not safe for use in extensions!
 	 *
 	 * @todo Factor out into a PageStore service, or move into PageUpdater.
 	 *
