@@ -495,11 +495,23 @@ class MetricTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testInvalidLabel() {
-		$metric = StatsFactory::newNull()->getCounter( 'metricName' );
+		$statsHelper = StatsFactory::newUnitTestingHelper();
+		$statsFactory = $statsHelper->getStatsFactory();
+
+		$metric = $statsFactory->getCounter( 'metricName' );
 		$callable = static function () use ( $metric ) {
 			$metric->setLabel( ': x', 'labelOne' );
 		};
-		$this->expectPHPWarning( 'Stats: (metricName) Invalid label key: \': x\'', $callable, true );
-		$this->assertInstanceOf( NullMetric::class, @$metric->setLabel( ': x', 'labelOne' ) );
+		$this->expectPHPWarning( 'Stats: (metricName) Non-normalized label keys are deprecated, found \': x\'', $callable, true );
+
+		// While deprecated, the metric should not be dropped in favor of NullMetric
+		$this->assertInstanceOf( CounterMetric::class, @$metric->setLabel( ': y', 'labelTwo' ) );
+
+		$metric->increment();
+
+		$this->assertSame(
+			[ 'mediawiki.metricName:1|c|#x:labelOne,y:labelTwo' ],
+			$statsHelper->consumeAllFormatted()
+		);
 	}
 }
