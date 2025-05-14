@@ -435,9 +435,19 @@ class MetricTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testInvalidLabel() {
-		$this->assertInstanceOf(
-			NullMetric::class,
-			@StatsFactory::newNull()->getCounter( 'test' )->setLabel( ': x', 'labelOne' )
+		$statsHelper = StatsFactory::newUnitTestingHelper();
+		$statsFactory = $statsHelper->getStatsFactory();
+
+		$metric = $statsFactory->getCounter( 'metricName' );
+		$metric->setLabel( ': x', 'labelOne' );
+		// The metric should not be dropped in favor of NullMetric
+		$this->assertInstanceOf( CounterMetric::class, @$metric->setLabel( ': y', 'labelTwo' ) );
+
+		$metric->increment();
+
+		$this->assertSame(
+			[ 'mediawiki.metricName:1|c|#x:labelOne,y:labelTwo' ],
+			$statsHelper->consumeAllFormatted()
 		);
 	}
 }

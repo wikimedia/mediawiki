@@ -23,6 +23,7 @@ namespace Wikimedia\Stats\Metrics;
 
 use InvalidArgumentException;
 use Wikimedia\Stats\Exceptions\IllegalOperationException;
+use Wikimedia\Stats\Exceptions\InvalidConfigurationException;
 use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\Sample;
 use Wikimedia\Stats\StatsUtils;
@@ -102,8 +103,16 @@ class BaseMetric implements BaseMetricInterface {
 	public function addLabel( string $key, string $value ): void {
 		// Performance optimization: Assume the key is valid and already registered
 		if ( !array_key_exists( $key, $this->workingLabels ) ) {
-			StatsUtils::validateLabelKey( $key );
-			if ( $this->hasSamples() ) {
+			try {
+				StatsUtils::validateLabelKey( $key );
+			} catch ( InvalidConfigurationException $e ) {
+				// Reduce logspam for 1 week (T394053)
+				// trigger_error(
+				//	"Stats: ($this->name) Non-normalized label keys are deprecated, found '$key'",
+				//	E_USER_WARNING );
+				$key = StatsUtils::normalizeString( $key );
+			}
+			if ( $this->hasSamples() && !array_key_exists( $key, $this->workingLabels ) ) {
 				throw new IllegalOperationException(
 					"Stats: Cannot add labels to a metric containing samples for '" . $this->name . "'"
 				);
