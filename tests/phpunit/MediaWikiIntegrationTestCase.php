@@ -1617,7 +1617,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * Should be called from addDBData().
 	 *
 	 * @since 1.25 ($namespace in 1.28)
-	 * @param string|Title|LinkTarget|PageIdentity $title Page name or title
+	 * @param string|LinkTarget|PageIdentity $title Page name string or title object
 	 * @param string $text Page's content
 	 * @param int|null $namespace Namespace id (name cannot already contain namespace)
 	 * @param User|null $user If null, static::getTestSysop()->getUser() is used.
@@ -1633,7 +1633,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			throw new RuntimeException( 'When testing with pages, the test must use @group Database.' );
 		}
 
-		// If the first parameter isn't a Title, convert it to a Title
+		// If the first parameter isn't a Title, convert it to a Title.
+		// Note that Title implements PageIdentity, so passing in a Title is handled by this
+		// first condition.
 		if ( $title instanceof PageIdentity ) {
 			$titleObject = Title::newFromPageIdentity( $title );
 		} elseif ( $title instanceof LinkTarget ) {
@@ -1641,7 +1643,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		} elseif ( is_string( $title ) ) {
 			$titleObject = Title::newFromText( $title, $namespace );
 		} else {
-			$titleObject = $title;
+			throw new InvalidArgumentException(
+				'Title must be a string, LinkTarget, or PageIdentity, ' . get_debug_type( $title ) . ' given'
+			);
 		}
 
 		$user ??= static::getTestSysop()->getUser();
