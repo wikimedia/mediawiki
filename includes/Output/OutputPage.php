@@ -2751,13 +2751,10 @@ class OutputPage extends ContextSource {
 				$linestart, true, $this->mRevisionId
 			);
 
-		// Set wrapper class directly on ParserOutput, since otherwise
-		// ParserOptions::getWrapOutputClass() is ignored if $interface=true;
-		// see ParserOutput::setFromParserOptions()
+		// Don't include default mw-parser-output wrap class, just use our own
+		$parserOutput->clearWrapperDivClass();
 		if ( $wrapperClass !== null ) {
 			$parserOutput->addWrapperDivClass( $wrapperClass );
-		} else {
-			$parserOutput->clearWrapperDivClass();
 		}
 
 		if ( !$allowTOC ) {

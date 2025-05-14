@@ -334,7 +334,10 @@ class ParserOptions {
 	}
 
 	/**
-	 * Parsing an interface message?
+	 * Parsing an interface message in the user language?
+	 *
+	 * Note: use isMessage() to determine if we are parsing a message in any language.
+	 *
 	 * @return bool
 	 */
 	public function getInterfaceMessage() {
@@ -342,12 +345,33 @@ class ParserOptions {
 	}
 
 	/**
-	 * Parsing an interface message?
+	 * Parsing an interface message in the user language?
 	 * @param bool|null $x New value (null is no change)
 	 * @return bool Old value
 	 */
 	public function setInterfaceMessage( $x ) {
 		return $this->setOptionLegacy( 'interfaceMessage', $x );
+	}
+
+	/**
+	 * Parsing a message?
+	 *
+	 * @since 1.45
+	 * @return bool
+	 */
+	public function isMessage() {
+		return $this->getOption( 'isMessage' );
+	}
+
+	/**
+	 * Set whether we are parsing a message
+	 *
+	 * @since 1.45
+	 * @param bool $x
+	 * @return bool
+	 */
+	public function setIsMessage( $x ) {
+		return $this->setOption( 'isMessage', $x );
 	}
 
 	/**
@@ -1227,6 +1251,7 @@ class ParserOptions {
 			self::$defaults = [
 				'dateformat' => null,
 				'interfaceMessage' => false,
+				'isMessage' => false,
 				'targetLanguage' => null,
 				'removeComments' => true,
 				'suppressTOC' => false,

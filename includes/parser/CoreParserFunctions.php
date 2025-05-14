@@ -437,7 +437,7 @@ class CoreParserFunctions {
 		$genderCache = MediaWikiServices::getInstance()->getGenderCache();
 		if ( $user ) {
 			$gender = $genderCache->getGenderOf( $user, __METHOD__ );
-		} elseif ( $username === '' && $parser->getOptions()->getInterfaceMessage() ) {
+		} elseif ( $username === '' && $parser->getOptions()->isMessage() ) {
 			$gender = $genderCache->getGenderOf( $parser->getOptions()->getUserIdentity(), __METHOD__ );
 		}
 		$ret = $parser->getTargetLanguage()->gender( $gender, $forms );

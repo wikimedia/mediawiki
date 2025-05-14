@@ -2496,7 +2496,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		// Wrap non-interface parser output in a <div> so it can be targeted
 		// with CSS (T37247)
 		$class = $parserOptions->getWrapOutputClass();
-		if ( $class !== false && !$parserOptions->getInterfaceMessage() ) {
+		if ( $class !== false && !$parserOptions->isMessage() ) {
 			$this->addWrapperDivClass( $class );
 		}
 
