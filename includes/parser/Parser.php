@@ -747,9 +747,7 @@ class Parser {
 		}
 
 		# Information on limits, for the benefit of users who try to skirt them
-		if ( $this->svcOptions->get( MainConfigNames::EnableParserLimitReporting ) ) {
-			$this->makeLimitReport( $this->mOptions, $this->mOutput );
-		}
+		$this->makeLimitReport( $this->mOptions, $this->mOutput );
 
 		$this->mOutput->setFromParserOptions( $options );
 
@@ -773,6 +771,15 @@ class Parser {
 	public function makeLimitReport(
 		ParserOptions $parserOptions, ParserOutput $parserOutput
 	) {
+		if ( !$this->svcOptions->get( MainConfigNames::EnableParserLimitReporting ) ) {
+			return;
+		}
+		if ( $parserOptions->isMessage() ) {
+			// No need to include limit report information in
+			// user interface messages.
+			return;
+		}
+
 		$maxIncludeSize = $parserOptions->getMaxIncludeSize();
 
 		$cpuTime = $parserOutput->getTimeProfile( 'cpu' );
