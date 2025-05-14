@@ -39,8 +39,8 @@ For notes on 1.44.x and older releases, see HISTORY.
 
 * (T219543) [[Special:SpecialPages]], the index of special pages, has been re-
   designed to be clearer, filterable/sortable, and mobile-friendly. Restricted
-  special pages, previously shown in bold, now are now explicitly labelled as
-  such, with the row highlighted in yellow.
+  special pages, previously shown in bold, are now explicitly labelled as such,
+  with the row highlighted in yellow.
 * …
 
 === New features for sysadmins in 1.45 ===
