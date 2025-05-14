@@ -124,6 +124,9 @@ class ModuleSpecHandler extends SimpleHandler {
 	private function getPathsSpec( Module $module ): array {
 		$specs = [];
 
+		// XXX: We currently don't support meta-data on OpenAPI path objects
+		//      (summary, description).
+
 		foreach ( $module->getDefinedPaths() as $path => $methods ) {
 			foreach ( $methods as $mth ) {
 				$key = strtolower( $mth );

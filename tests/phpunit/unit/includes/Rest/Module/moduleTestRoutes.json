@@ -16,6 +16,8 @@
 		},
 		"/ModuleTest/hello/{name}": {
 			"get": {
+				"summary": "hello summary",
+				"description": "hello description",
 				"handler": {
 					"class": "MediaWiki\\Tests\\Rest\\Handler\\HelloHandler",
 					"hello": "hi!"

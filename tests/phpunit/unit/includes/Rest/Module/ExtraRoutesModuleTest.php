@@ -298,4 +298,18 @@ class ExtraRoutesModuleTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( 'Denied by hook', $data['message'] );
 	}
 
+	public function testOpenApiInfo() {
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/test.v1/ModuleTest/hello/world' ) ] );
+		$module = $this->createRouteFileModule( $request );
+
+		$info = $module->getOpenApiInfo();
+		$this->assertSame( 'rest-module-extra-routes-title', $info['title'] );
+		$this->assertSame( 'undefined', $info['version'] );
+
+		$handler = $module->getHandlerForPath( '/ModuleTest/hello/world', $request );
+		$oas = $handler->getOpenApiSpec( 'GET' );
+
+		$this->assertSame( 'hello summary', $oas['summary'] );
+	}
+
 }

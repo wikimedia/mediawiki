@@ -8,7 +8,11 @@
 	{
 		"path": "/ModuleTest/hello/{name}",
 		"class": "MediaWiki\\Tests\\Rest\\Handler\\HelloHandler",
-		"hello": "hi!"
+		"hello": "hi!",
+		"openApiSpec": {
+			"summary": "hello summary",
+			"description": "hello description"
+		}
 	},
 	{
 		"path": "/ModuleTest/throw",
