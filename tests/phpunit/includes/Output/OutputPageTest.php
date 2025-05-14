@@ -3424,8 +3424,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		?Authority $performer = null
 	): OutputPage {
 		$this->overrideConfigValues( [
-			// Avoid configured skin affecting the headings
-			MainConfigNames::ParserEnableLegacyHeadingDOM => false,
+			// Avoid configured skin affecting anything
 			MainConfigNames::DefaultSkin => 'fallback',
 			MainConfigNames::HiddenPrefs => [ 'skin' ],
 		] );

@@ -408,7 +408,6 @@ Preprocessor precedence 14: broken language converter in comment
 Preprocessor precedence 15: broken brace markup in headings
 !! config
 wgFragmentMode=[ "html5", "legacy" ]
-wgParserEnableLegacyHeadingDOM=false
 !! options
 parsoid=wt2html
 !! wikitext

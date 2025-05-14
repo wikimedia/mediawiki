@@ -2402,8 +2402,6 @@ class ParserTestRunner {
 				+ [ 'ISBN' => true, 'PMID' => true, 'RFC' => true ],
 			// Test with legacy encoding by default until HTML5 is very stable and default
 			'wgFragmentMode' => [ 'legacy' ],
-			// Use legacy headings for a while until tests in extensions are updated
-			'wgParserEnableLegacyHeadingDOM' => true,
 			'wgLocaltimezone' => $timezone,
 		];
 
@@ -2439,8 +2437,6 @@ class ParserTestRunner {
 			$mwServices->resetServiceForTesting( 'ParserFactory' );
 			// Depends on $wgParserEnableLegacyMediaDOM
 			$mwServices->resetServiceForTesting( 'Tidy' );
-			// Depends on $wgParserEnableLegacyHeadingDOM
-			$mwServices->resetServiceForTesting( 'DefaultOutputPipeline' );
 			// The SiteConfig depends on various services that reset above,
 			// so reset it as well.
 			// T310283: be more selective about resetting SiteConfig if

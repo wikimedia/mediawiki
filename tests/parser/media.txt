@@ -1235,7 +1235,6 @@ Image with nested tables in caption
 Image with heading and horizontal rule in caption
 !! config
 wgParserEnableLegacyMediaDOM=false
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 [[File:Foobar.jpg|thumb|
 ===Testing===

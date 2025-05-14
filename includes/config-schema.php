@@ -799,7 +799,6 @@ return [
 			],
 			'ParsoidExperimentalParserFunctionOutput' => false,
 			'ParserEnableLegacyMediaDOM' => false,
-			'ParserEnableLegacyHeadingDOM' => false,
 			'UseContentMediaStyles' => false,
 			'UseLegacyMediaStyles' => false,
 			'RawHtml' => false,
@@ -3434,9 +3433,6 @@ return [
 		],
 		'ParserEnableLegacyMediaDOM' => [
 			'deprecated' => 'since 1.41',
-		],
-		'ParserEnableLegacyHeadingDOM' => [
-			'deprecated' => 'since 1.44',
 		],
 		'UseContentMediaStyles' => [
 			'deprecated' => 'since 1.41',

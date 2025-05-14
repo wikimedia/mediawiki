@@ -33,6 +33,10 @@ For notes on 1.44.x and older releases, see HISTORY.
 
 ==== Removed configuration ====
 
+* (T13555, T371756) $wgParserEnableLegacyHeadingDOM was removed.
+  The skin option 'supportsMwHeading' was likewise removed.
+  New heading markup is now always enabled, on all skins.
+  More information: https://www.mediawiki.org/wiki/Heading_HTML_changes
 * …
 
 === New user-facing features in 1.45 ===

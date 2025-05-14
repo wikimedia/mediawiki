@@ -10,11 +10,10 @@
 		return;
 	}
 
-	// Trigger this when a contextmenu click on the page targets an h1-h6 element.
+	// Trigger this when a contextmenu click on the page targets a wikitext heading element.
 	// This uses a delegate handler which 1) starts immediately instead of blocking
 	// response on dom-ready, and 2) selects and binds once instead of N times.
-	// (Plain tags needed for compatibility with skin option supportsMwHeading=false)
-	$( document ).on( 'contextmenu', '.mw-heading, h1, h2, h3, h4, h5, h6', function ( e ) {
+	$( document ).on( 'contextmenu', '.mw-heading', function ( e ) {
 		// Don't use ":has:(.mw-editsection a)" in the selector because it's slow.
 		const $edit = $( this ).find( '.mw-editsection a' );
 		if ( !$edit.length ) {

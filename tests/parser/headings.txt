@@ -42,8 +42,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==h1==
 ===h1.1===
@@ -76,8 +74,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==a==
 <h2>b</h2>
@@ -101,8 +97,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 {{1x|
 <h2>hi</h2>
@@ -131,8 +125,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==a==
 ==a==
@@ -153,8 +145,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==a==
 {{Test}}
@@ -174,8 +164,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==<span>x</span>==
 ==<strike>y</strike>==
@@ -194,8 +182,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==<div>b</div>==
 ==<font>c</font>==
@@ -214,8 +200,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==<span dir='ltr' title='x'>a</span>==
 ==<span dir='rtl' title='x'>b</span>==
@@ -237,8 +221,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==<span><div></div></span>x==
 ==<span dir='ltr'><i dir='ltr'></i></span>y==
@@ -256,7 +238,6 @@ Sections:
 Ensure comments in toc lines are stripped
 !! config
 wgRawHtml=1
-wgParserEnableLegacyHeadingDOM=false
 !! options
 nohtml
 showtocdata
@@ -276,8 +257,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==[[Cat]]==
 ==[[Dog]]s==
@@ -303,7 +282,6 @@ parsoid={
 }
 !! config
 wgFragmentMode=[ "html5", "legacy" ]
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ===a=
 =''x''=
@@ -343,8 +321,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==a==
 {{1x|1=
@@ -368,7 +344,6 @@ Sections:
 Handle extension content in section headers properly (non-Cite version)
 !! config
 wgFragmentMode=[ "html5", "legacy" ]
-wgParserEnableLegacyHeadingDOM=false
 !! options
 nohtml
 showtocdata
@@ -387,7 +362,6 @@ Sections:
 Offsets in toc metadata should be unicode codepoints, not bytes or UCS-2
 !! config
 wgFragmentMode=[ "html5", "legacy" ]
-wgParserEnableLegacyHeadingDOM=false
 !! options
 parsoid={
 	"modes": [ "wt2html" ],
@@ -415,8 +389,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 <div>
 {{1x|1=
@@ -443,8 +415,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 {{#if:1|<h2>foo</h2>|unused}}
 ==bar==
@@ -463,8 +433,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 {{{foo|
 ==tplarg==
@@ -479,8 +447,6 @@ Sections:
 ###
 !! test
 Basic section headings
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==Headline 1==
 Some text
@@ -503,8 +469,6 @@ Blah blah
 
 !! test
 Section headings with TOC
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==Headline 1==
 ===Subheadline 1===
@@ -561,7 +525,6 @@ Some text
 Section headings with TOC and language conversion (T295187, T306862)
 !! config
 wgUsePigLatinVariant=true
-wgParserEnableLegacyHeadingDOM=false
 !! options
 language=en htmlVariantLanguage=en-x-piglatin
 !! wikitext
@@ -607,7 +570,6 @@ Some text
 Section headings with TOC and language conversion disabled (T295187)
 !! config
 wgUsePigLatinVariant=true
-wgParserEnableLegacyHeadingDOM=false
 !! options
 language=en htmlVariantLanguage=en-x-piglatin
 !! wikitext
@@ -658,7 +620,6 @@ Section headings with TOC, language conversion rules, and displaytitle
 !! config
 wgUsePigLatinVariant=true
 wgRestrictDisplayTitle=false
-wgParserEnableLegacyHeadingDOM=false
 !! options
 language=en htmlVariantLanguage=en-x-piglatin
 showtitle
@@ -728,8 +689,6 @@ Introduction.
 
 !! test
 TOC anchors don't collide
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __FORCETOC__
 ==Headline 2==
@@ -758,8 +717,6 @@ __FORCETOC__
 Handling of sections up to level 6 and beyond
 !! options
 parsoid=wt2html
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 =Level 1 Heading=
 ==Level 2 Heading==
@@ -827,8 +784,6 @@ wgParserEnableLegacyHeadingDOM=false
 
 !! test
 TOC regression (T11764)
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==title 1==
 ===title 1.1===
@@ -874,8 +829,6 @@ wgParserEnableLegacyHeadingDOM=false
 
 !! test
 TOC for heading containing <span id="..."></span> (T96153)
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __FORCETOC__
 ==<span id="old-anchor"></span>New title==
@@ -893,8 +846,6 @@ __FORCETOC__
 TOC with wgMaxTocLevel=3 (T8204)
 !! options
 wgMaxTocLevel=3
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==title 1==
 ===title 1.1===
@@ -938,8 +889,6 @@ wgParserEnableLegacyHeadingDOM=false
 TOC with wgMaxTocLevel=3 and two level four headings (T8204)
 !! options
 wgMaxTocLevel=3
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==Section 1==
 ===Section 1.1===
@@ -973,8 +922,6 @@ wgParserEnableLegacyHeadingDOM=false
 
 !! test
 Resolving duplicate section names
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==Foo bar==
 ==Foo bar==
@@ -985,8 +932,6 @@ wgParserEnableLegacyHeadingDOM=false
 
 !! test
 Resolving duplicate section names with differing case (T12721)
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==Foo bar==
 ==Foo Bar==
@@ -1009,8 +954,6 @@ showflags
 parsoid={
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __NOTOC__
 ==Section 0==
@@ -1038,8 +981,6 @@ showflags
 parsoid={
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 !! metadata
 flags=
@@ -1056,8 +997,6 @@ showflags
 parsoid={
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __FORCETOC__
 !! metadata
@@ -1075,8 +1014,6 @@ showflags
 parsoid={
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __TOC__
 !! metadata
@@ -1093,8 +1030,6 @@ showflags
 parsoid={
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __NOTOC__
 !! metadata
@@ -1111,8 +1046,6 @@ showflags
 parsoid={
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 == One ==
 !! metadata
@@ -1132,8 +1065,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 <div>
 ==a==
@@ -1163,8 +1094,6 @@ showflags
 parsoid={
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __FORCETOC__
 == One ==
@@ -1191,8 +1120,6 @@ showflags
 parsoid={
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 == One ==
 __TOC__
@@ -1217,8 +1144,6 @@ showflags
 parsoid={
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __NOTOC__
 == One ==
@@ -1239,8 +1164,6 @@ showflags
 parsoid={
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 == One ==
 === Two ===
@@ -1282,8 +1205,6 @@ showflags
 parsoid={
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __FORCETOC__
 == One ==
@@ -1327,8 +1248,6 @@ showflags
 parsoid={
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __NOTOC__
 == One ==
@@ -1360,8 +1279,6 @@ showflags
 parsoid={
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __NOEDITSECTION__
 ==Section 1==
@@ -1381,8 +1298,6 @@ flags=no-section-edit-links
 
 !! test
 Link inside a section heading
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==Section with a [[Main Page|link]] in it==
 !! html
@@ -1391,8 +1306,6 @@ wgParserEnableLegacyHeadingDOM=false
 
 !! test
 TOC regression (T14077)
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __TOC__
 ==title 1==
@@ -1431,8 +1344,6 @@ showflags
 parsoid={
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __NEWSECTIONLINK__
 __FORCETOC__
@@ -1456,8 +1367,6 @@ flags=mw-NewSection
 T28375: TOC with italics
 !! options
 title=[[Main Page]]
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __TOC__
 ==''Lost'' episodes==
@@ -1478,8 +1387,6 @@ __TOC__
 T28375: TOC with bold
 !! options
 title=[[Main Page]]
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __TOC__
 =='''should be bold''' then normal text==
@@ -1502,7 +1409,6 @@ T35845: Headings become cursive in TOC when they contain an image
 title=[[Main Page]]
 !! config
 wgParserEnableLegacyMediaDOM=false
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __TOC__
 ==Image [[Image:foobar.jpg]]==
@@ -1523,8 +1429,6 @@ __TOC__
 T35845 (2): Headings become bold in TOC when they contain a blockquote
 !! options
 title=[[Main Page]]
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __TOC__
 ==<blockquote>Quote</blockquote>==
@@ -1545,7 +1449,6 @@ __TOC__
 Unclosed tags in TOC
 !! config
 wgFragmentMode=[ "html5", "legacy" ]
-wgParserEnableLegacyHeadingDOM=false
 !! options
 title=[[Main Page]]
 !! wikitext
@@ -1573,8 +1476,6 @@ QED</p>
 
 !! test
 Multiple tags in TOC
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __TOC__
 ==<i>Foo</i> <b>Bar</b>==
@@ -1603,8 +1504,6 @@ __TOC__
 Tags with parameters in TOC
 !! options
 parsoid=wt2html
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __TOC__
 ==<sup class="in-h2">Hello</sup>==
@@ -1629,8 +1528,6 @@ __TOC__
 
 !! test
 span tags with directionality in TOC
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __TOC__
 ==<span dir="ltr">C++</span>==
@@ -1659,8 +1556,6 @@ __TOC__
 
 !! test
 T74884: bdi element in ToC
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __TOC__
 ==<bdi>test</bdi>==
@@ -1679,8 +1574,6 @@ __TOC__
 
 !! test
 T35715: s/strike element in ToC
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __TOC__
 ==<s>test</s> test <strike>test</strike>==
@@ -1701,8 +1594,6 @@ __TOC__
 T198618: style element in ToC
 !! options
 styletag=1
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __TOC__
 ==<style>.foo {}</style>Style<style>.bar {}</style>==
@@ -1723,8 +1614,6 @@ __TOC__
 T198618: script element in ToC
 !! options
 wgRawHtml=1
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __TOC__
 ==<html><script>alert(1);</script></html>Script<html><script>alert(1);</script></html>==
@@ -1743,8 +1632,6 @@ __TOC__
 
 !! test
 Empty <p> tag in TOC, removed by Sanitizer (T92892)
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __TOC__
 ==x==
@@ -1765,8 +1652,6 @@ __TOC__
 Disable TOC
 !! options
 notoc
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 Lead
 ==Section 1==
@@ -1794,8 +1679,6 @@ Lead
 Short headings with trailing space should match behavior of Parser::doHeadings (T21910)
 !! options
 parsoid=wt2html,html2html
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 === 
 The line above must have a trailing space!
@@ -1819,8 +1702,6 @@ But just in case it doesn't...
 
 !! test
 Header with special characters (T27462)
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 The tooltips shall not show entities to the user (ie. be double escaped)
 
@@ -1887,8 +1768,6 @@ section 5
 
 !! test
 Header with space, plus and underscore as entity
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 Id should not contain + for spaces
 
@@ -1989,8 +1868,6 @@ Headers with excess '=' characters
 (Are similar tests necessary beyond the 1st level?)
 !! options
 parsoid=wt2html,wt2wt,html2html
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 =foo==
 ==foo=
@@ -2020,8 +1897,6 @@ wgParserEnableLegacyHeadingDOM=false
 !! test
 HTML headers vs TOC (T25393)
 (__NOEDITSECTION__ for clearer output, doesn't matter here)
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 <h1>Header 1</h1>
 ==Header 1.1==
@@ -2071,8 +1946,6 @@ __NOEDITSECTION__
 
 !! test
 Out-of-order TOC heading levels
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==2==
 ======6======
@@ -2120,7 +1993,6 @@ wgParserEnableLegacyHeadingDOM=false
 TOC with HTML entities which are not wikitext entities (T355386)
 !! config
 wgFragmentMode=[ "html5" ]
-wgParserEnableLegacyHeadingDOM=false
 !! options
 nohtml
 showtocdata
@@ -2143,7 +2015,6 @@ Sections:
 TOC with french spacing (T324763)
 !! config
 wgFragmentMode=[ "html5" ]
-wgParserEnableLegacyHeadingDOM=false
 !! options
 nohtml
 showtocdata
@@ -2171,8 +2042,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __FORCETOC__
 <spantag>
@@ -2215,8 +2084,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __FORCETOC__
 {{1x|1=foo
@@ -2264,8 +2131,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __FORCETOC__
 {{1x|1=<spantag>
@@ -2320,8 +2185,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 <span id="hiho">hiho</span>
 === hiho ===
@@ -2348,8 +2211,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 <h3 id="asdf">odd</h3>
 !! html/php
@@ -2363,8 +2224,6 @@ Sections:
 
 !! test
 Extra newlines followed by heading
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 a
 
@@ -2393,8 +2252,6 @@ Dummy article to suppress redlinks in tests
 
 !! test
 Extra newlines between heading and content are swallowed (Parsoid does not)
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 =b=
 
@@ -2419,7 +2276,6 @@ Heading with line break in nowiki
 parsoid=wt2html
 !! config
 wgFragmentMode=[ "html5", "legacy" ]
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==A <nowiki>B
 C</nowiki>==
@@ -2437,7 +2293,6 @@ Heading with nonbreaking space in prefix/suffix (T235684)
 parsoid=wt2html,html2html
 !! config
 wgFragmentMode=[ "html5", "legacy" ]
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 == &nbsp; A &nbsp; B &nbsp; ==
 !! html/php
@@ -2450,7 +2305,6 @@ wgParserEnableLegacyHeadingDOM=false
 Heading with literal wikitext - the wikitext is not parsed in section edit link tooltip
 !! config
 wgFragmentMode=[ "html5" ]
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 == <nowiki>{{PAGENAME}}</nowiki> ==
 == &#123;&#123;PAGENAME}} ==
@@ -2470,8 +2324,6 @@ Template:Includeonly section
 
 !! test
 T8563: Edit link generation for section shown by <includeonly>
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 {{includeonly section}}
 !! html
@@ -2481,8 +2333,6 @@ wgParserEnableLegacyHeadingDOM=false
 
 !! test
 T8563: Edit link generation for section suppressed by <includeonly>
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 <includeonly>
 ==Includeonly section==
@@ -2497,8 +2347,6 @@ wgParserEnableLegacyHeadingDOM=false
 # production takes precedence.
 !! test
 Fuzz testing: Parser14
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==onmouseover===
 http://__TOC__
@@ -2518,8 +2366,6 @@ http://</p><div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-h
 Fuzz testing: Parser14-table
 !! options
 parsoid=wt2html,html2html
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==a==
 {| STYLE=__TOC__
@@ -2542,8 +2388,6 @@ MediaWiki:Fake
 
 !! test
 Inclusion of !userCanEdit() content
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 {{MediaWiki:Fake}}
 !! html
@@ -2553,8 +2397,6 @@ wgParserEnableLegacyHeadingDOM=false
 
 !! test
 Morwen/13: Unclosed link followed by heading
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 [[link
 ==heading==
@@ -2566,8 +2408,6 @@ wgParserEnableLegacyHeadingDOM=false
 
 !! test
 HHP2.1: Heuristics for headings in preprocessor parenthetical structures
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 {{foo|
 =heading=
@@ -2579,8 +2419,6 @@ wgParserEnableLegacyHeadingDOM=false
 
 !! test
 HHP2.2: Heuristics for headings in preprocessor parenthetical structures
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 {{foo|
 ==heading==
@@ -2598,8 +2436,6 @@ FOO
 
 !! test
 nowiki inside link inside heading (T20295)
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==[[foo|x<nowiki>y</nowiki>z]]==
 !! html
@@ -2610,7 +2446,6 @@ wgParserEnableLegacyHeadingDOM=false
 Decoding of HTML entities in headings and links for IDs and link fragments (T103714)
 !! config
 wgFragmentMode=[ "html5", "legacy" ]
-wgParserEnableLegacyHeadingDOM=false
 !! options
 showtocdata
 parsoid={
@@ -2635,7 +2470,6 @@ Sections:
 Decoding of HTML entities in headings and links for IDs and link fragments (T103714) (legacy)
 !! config
 wgFragmentMode=[ "legacy" ]
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==A&B&amp;C&amp;amp;D&amp;amp;amp;E==
 [[#A&B&amp;C&amp;amp;D&amp;amp;amp;E]]
@@ -2650,7 +2484,6 @@ wgParserEnableLegacyHeadingDOM=false
 HTML5 ids: fallback to legacy
 !! config
 wgFragmentMode=[ "html5", "legacy" ]
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==Foo bar==
 
@@ -2717,7 +2550,6 @@ wgParserEnableLegacyHeadingDOM=false
 HTML5 ids: legacy with a fallback to modern
 !! config
 wgFragmentMode=[ "legacy", "html5" ]
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==Foo bar==
 
@@ -2766,7 +2598,6 @@ wgParserEnableLegacyHeadingDOM=false
 HTML5 ids: no legacy
 !! config
 wgFragmentMode=[ "html5" ]
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==Foo bar==
 
@@ -2814,7 +2645,6 @@ wgParserEnableLegacyHeadingDOM=false
 T90902: Normalize weird characters in section IDs
 !! config
 wgFragmentMode=[ "html5", "legacy" ]
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==Foo&nbsp;bar==
 [[#Foo&nbsp;bar]]
@@ -2832,8 +2662,6 @@ wgParserEnableLegacyHeadingDOM=false
 mw-heading wrapper edge cases
 !! options
 notoc
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==Normal heading!==
 
@@ -2866,8 +2694,6 @@ wgParserEnableLegacyHeadingDOM=false
 
 !! test
 T365413: Headings with dollar signs
-!! options
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 ==$text==
 
@@ -2889,11 +2715,11 @@ wgParserEnableLegacyHeadingDOM=false
 </ul>
 </div>
 
-<h2><span class="mw-headline" id=".24text">$text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: $text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<h2><span class="mw-headline" id=".24_text">$ text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: $ text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<h2><span class="mw-headline" id="text_.24text">text $text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: text $text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<h2><span class="mw-headline" id=".5C.24text">\$text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: \$text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<h2><span class="mw-headline" id=".24.24text">$$text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: $$text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<div class="mw-heading mw-heading2"><h2 id=".24text">$text</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: $text">edit</a><span class="mw-editsection-bracket">]</span></span></div>
+<div class="mw-heading mw-heading2"><h2 id=".24_text">$ text</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: $ text">edit</a><span class="mw-editsection-bracket">]</span></span></div>
+<div class="mw-heading mw-heading2"><h2 id="text_.24text">text $text</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: text $text">edit</a><span class="mw-editsection-bracket">]</span></span></div>
+<div class="mw-heading mw-heading2"><h2 id=".5C.24text">\$text</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: \$text">edit</a><span class="mw-editsection-bracket">]</span></span></div>
+<div class="mw-heading mw-heading2"><h2 id=".24.24text">$$text</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: $$text">edit</a><span class="mw-editsection-bracket">]</span></span></div>
 !! end
 
 !! article
@@ -2910,8 +2736,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 {{With a section?}}
 !! html/php
@@ -2951,8 +2775,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 === out ===
 123
@@ -2994,8 +2816,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 === out ===
 123
@@ -3024,8 +2844,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 {{with redirect}}
 !! metadata
@@ -3035,8 +2853,6 @@ Sections:
 
 !! test
 Editable headings can only have trailing comments and whitespace
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! options
 showtocdata
 parsoid={
@@ -3122,8 +2938,6 @@ parsoid={
 	"modes": [ "wt2html" ],
 	"wrapSections": true
 }
-!! config
-wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 == ==
 !! html/php
