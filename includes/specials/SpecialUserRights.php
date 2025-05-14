@@ -70,6 +70,8 @@ class SpecialUserRights extends SpecialPage {
 	/** @var bool */
 	protected $isself = false;
 
+	protected ?array $changeableGroups = null;
+
 	private UserGroupManagerFactory $userGroupManagerFactory;
 
 	/** @var UserGroupManager|null The UserGroupManager of the target username or null */
@@ -437,6 +439,10 @@ class SpecialUserRights extends SpecialPage {
 	public function doSaveUserGroups( $user, array $add, array $remove, string $reason = '',
 		array $tags = [], array $groupExpiries = []
 	) {
+		// Set properties that other methods rely on if not already set, e.g. if called from the API
+		$this->mTarget ??= $user->getName();
+		$this->mFetchedUser ??= $user;
+
 		// Validate input set...
 		$isself = $user->getName() == $this->getUser()->getName();
 		if ( $this->userGroupManager === null ) {
@@ -996,6 +1002,14 @@ class SpecialUserRights extends SpecialPage {
 					'disabled' => $checkbox['disabled'],
 				] ) . '&nbsp;' . Html::label( $text, "wpGroup-$group" );
 
+				$groups = $this->changeableGroups();
+				if ( isset( $groups['unaddable'][$group] ) ) {
+					$checkboxHtml .= Html::element(
+						'div',
+						[ 'class' => 'mw-userrights-unaddable-reason' ],
+						$this->msg( $groups['unaddable'][$group] )->text() );
+				}
+
 				if ( $this->canProcessExpiries() ) {
 					$uiUser = $this->getUser();
 
@@ -1129,11 +1143,36 @@ class SpecialUserRights extends SpecialPage {
 	 *   'remove' => [ removablegroups ],
 	 *   'add-self' => [ addablegroups to self ],
 	 *   'remove-self' => [ removable groups from self ]
+	 *   'unaddable' => [ map of unchangeable groups to reasons ]
 	 *  ]
 	 * @phan-return array{add:list<string>,remove:list<string>,add-self:list<string>,remove-self:list<string>}
 	 */
 	protected function changeableGroups() {
-		return $this->userGroupManager->getGroupsChangeableBy( $this->getContext()->getAuthority() );
+		if ( $this->changeableGroups === null ) {
+			$authority = $this->getContext()->getAuthority();
+			$groups = $this->userGroupManager->getGroupsChangeableBy( $authority );
+
+			if ( $this->mFetchedUser !== null ) {
+				// Allow extensions to define groups that cannot be added, given the target user and
+				// the performer. This allows policy restrictions to be enforced via software. This
+				// could be done via configuration in the future, as discussed in T393615.
+				$unaddableGroups = [];
+				$this->getHookRunner()->onSpecialUserRightsChangeableGroups(
+					$authority,
+					$this->mFetchedUser,
+					$groups['add'],
+					$unaddableGroups
+				);
+
+				$unaddableGroupNames = array_keys( $unaddableGroups );
+				$groups['add'] = array_diff( $groups['add'], $unaddableGroupNames );
+				$groups['unaddable'] = $unaddableGroups;
+			}
+
+			$this->changeableGroups = $groups;
+		}
+
+		return $this->changeableGroups;
 	}
 
 	/**

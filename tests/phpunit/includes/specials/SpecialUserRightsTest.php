@@ -49,6 +49,13 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 		$this->testUserCanChangeRights( $temporaryAccount, false, false );
 	}
 
+	private function performBasicFormAssertions( $html, $target ) {
+		$targetName = $target->getName();
+		$this->assertStringContainsString( "(userrights-editusergroup: $targetName)", $html );
+		$this->assertStringContainsString( 'wpGroup-sysop', $html );
+		$this->assertStringContainsString( '(logempty)', $html );
+	}
+
 	public function testShowForm() {
 		$target = $this->getTestUser()->getUser();
 		$performer = $this->getTestSysop()->getUser();
@@ -60,10 +67,33 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 			$performer
 		);
 
-		$targetName = $target->getName();
-		$this->assertStringContainsString( "(userrights-editusergroup: $targetName)", $html );
-		$this->assertStringContainsString( 'wpGroup-sysop', $html );
-		$this->assertStringContainsString( '(logempty)', $html );
+		$this->performBasicFormAssertions( $html, $target );
+	}
+
+	private function setUnaddableSysopGroup() {
+		$this->setTemporaryHook(
+			'SpecialUserRightsChangeableGroups',
+			static function ( $authority, $target, $addableGroups, &$unaddableGroups ) {
+				$unaddableGroups['sysop'] = 'sysop-unaddable-reason';
+			}
+		);
+	}
+
+	public function testShowFormWithUnaddableGroup() {
+		$this->setUnaddableSysopGroup();
+
+		$target = $this->getTestUser()->getUser();
+		$performer = $this->getTestSysop()->getUser();
+
+		[ $html ] = $this->executeSpecialPage(
+			$target->getName(),
+			null,
+			'qqx',
+			$performer
+		);
+
+		$this->performBasicFormAssertions( $html, $target );
+		$this->assertStringContainsString( '(sysop-unaddable-reason)', $html );
 	}
 
 	public function testSaveUserGroups() {
@@ -90,6 +120,36 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 		$this->assertSame( 1, $request->getSession()->get( 'specialUserrightsSaveSuccess' ) );
 		$this->assertSame(
 			[ 'bot' ],
+			$this->getServiceContainer()->getUserGroupManager()->getUserGroups( $target )
+		);
+	}
+
+	public function testSaveUserGroupsWithUnaddableGroup() {
+		$this->setUnaddableSysopGroup();
+
+		$target = $this->getTestUser()->getUser();
+		$performer = $this->getTestSysop()->getUser();
+		$request = new FauxRequest(
+			[
+				'saveusergroups' => true,
+				'conflictcheck-originalgroups' => '',
+				'wpGroup-sysop' => true,
+				'wpExpiry-sysop' => 'existing',
+				'wpEditToken' => $performer->getEditToken( $target->getName() ),
+			],
+			true
+		);
+
+		$this->executeSpecialPage(
+			$target->getName(),
+			$request,
+			'qqx',
+			$performer
+		);
+
+		$this->assertSame( 1, $request->getSession()->get( 'specialUserrightsSaveSuccess' ) );
+		$this->assertSame(
+			[],
 			$this->getServiceContainer()->getUserGroupManager()->getUserGroups( $target )
 		);
 	}
