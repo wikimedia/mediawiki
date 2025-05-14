@@ -512,8 +512,9 @@ abstract class ParsoidHandler extends Handler {
 
 		$title = ( $title !== '' ) ? Title::newFromText( $title ) : Title::newMainPage();
 		if ( !$title ) {
-			// TODO use proper validation
-			throw new LogicException( 'Title not found!' );
+			throw new LocalizedHttpException(
+				new MessageValue( "rest-invalid-title", [ 'pageName' ] ), 400
+			);
 		}
 		$user = RequestContext::getMain()->getUser();
 
