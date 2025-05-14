@@ -447,7 +447,7 @@ class Xml {
 
 		return [
 			self::label( $label, $id, $attribs ),
-			self::input( $name, $size, $value, [ 'id' => $id ] + $attribs )
+			Html::input( $name, $value, 'test', [ 'id' => $id, 'size' => $size ] + $attribs )
 		];
 	}
 
