@@ -358,6 +358,7 @@ class UserNameUtilsTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testGetTempPlaceholder() {
+		$this->expectDeprecationAndContinue( '/getTempPlaceholder/' );
 		$utils = $this->getDummyUserNameUtils();
 		$name = $utils->getTempPlaceholder();
 		$this->assertSame( '*Unregistered *', $name );

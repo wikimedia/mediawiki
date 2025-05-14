@@ -2526,7 +2526,8 @@ return [
 				UserFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
 			),
 			$services->getDBLoadBalancerFactory(),
-			$services->getUserNameUtils()
+			$services->getUserNameUtils(),
+			$services->getTempUserConfig()
 		);
 	},
 

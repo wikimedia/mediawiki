@@ -25,6 +25,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\User\TempUser\TempUserConfig;
 use RuntimeException;
 use stdClass;
 use Wikimedia\Rdbms\IDatabase;
@@ -58,19 +59,22 @@ class UserFactory implements UserRigorOptions {
 	private ILBFactory $loadBalancerFactory;
 	private ILoadBalancer $loadBalancer;
 	private UserNameUtils $userNameUtils;
+	private TempUserConfig $tempUserConfig;
 
 	private ?User $lastUserFromIdentity = null;
 
 	public function __construct(
 		ServiceOptions $options,
 		ILBFactory $loadBalancerFactory,
-		UserNameUtils $userNameUtils
+		UserNameUtils $userNameUtils,
+		TempUserConfig $tempUserConfig
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->loadBalancerFactory = $loadBalancerFactory;
 		$this->loadBalancer = $loadBalancerFactory->getMainLB();
 		$this->userNameUtils = $userNameUtils;
+		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	/**
@@ -361,7 +365,7 @@ class UserFactory implements UserRigorOptions {
 	 */
 	public function newTempPlaceholder(): User {
 		$user = new User();
-		$user->setName( $this->userNameUtils->getTempPlaceholder() );
+		$user->setName( $this->tempUserConfig->getPlaceholderName() );
 		return $user;
 	}
 
@@ -374,7 +378,7 @@ class UserFactory implements UserRigorOptions {
 	 */
 	public function newUnsavedTempUser( ?string $name ): User {
 		$user = new User();
-		$user->setName( $name ?? $this->userNameUtils->getTempPlaceholder() );
+		$user->setName( $name ?? $this->tempUserConfig->getPlaceholderName() );
 		return $user;
 	}
 
