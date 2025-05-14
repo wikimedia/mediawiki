@@ -1443,7 +1443,7 @@
 	"rcfilters-tag-prefix-tags-inverted": "<strong>nem</strong> #$1",
 	"rcfilters-exclude-button-off": "A kiválasztottak kizárása",
 	"rcfilters-exclude-button-on": "A kiválasztottak kizárva",
-	"rcfilters-view-tags": "Megjelölt szerkesztések",
+	"rcfilters-view-tags": "Címkék",
 	"rcfilters-view-namespaces-tooltip": "Találatok szűrése névtér szerint",
 	"rcfilters-view-tags-tooltip": "Találatok szűrése címkék használatával",
 	"rcfilters-view-return-to-default-tooltip": "Vissza a főszűrőmenübe.",

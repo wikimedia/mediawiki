@@ -153,6 +153,8 @@
 	"config-mysql-engine": "Lagringsmotor:",
 	"config-mysql-innodb": "InnoDB (anbefalt)",
 	"config-mysql-engine-help": "'''InnoDB''' er nesten alltid det beste alternativet siden den har god støtte for samtidighet («concurrency»).\n\n'''MyISAM''' kan være raskere i enbruker- eller les-bare-installasjoner.\nMyISAM-databaser har en tendens til å bli ødelagt oftere enn InnoDB-databaser.",
+	"config-server": "URL-vertsnavn:",
+	"config-server-help": "Protokollen og vertsnavnsdelen av URL-en som brukes for å få tilgang til wikien din. Standardinnstillingen som oppdages automatisk er som regel riktig.",
 	"config-site-name": "Navn på wiki:",
 	"config-site-name-help": "Dette vil vises i tittellinjen i nettleseren og diverse andre steder.",
 	"config-site-name-blank": "Skriv inn et nettstedsnavn.",

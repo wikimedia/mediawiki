@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Lorenzoitza"
+			"Lorenzoitza",
+			"Abby95"
 		]
 	},
 	"january": "Eneero",
@@ -55,5 +56,6 @@
 	"sat": "Saab",
 	"sun": "Dom",
 	"period-am": "AM",
-	"period-pm": "PM"
+	"period-pm": "PM",
+	"duration-days": "$1 {{PLURAL:$1|k'iin|k'iino'ob}}"
 }

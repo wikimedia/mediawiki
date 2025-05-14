@@ -218,7 +218,8 @@
 			"Zolo",
 			"Горан Анђелковић",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Wikipucine"
 		]
 	},
 	"pagecategories": "{{PLURAL:$1|Catégorie|Catégories}}",
@@ -262,6 +263,8 @@
 	"search": "Rechercher",
 	"search-ignored-headings": " #<!-- ne pas modifier cette ligne --><pre>\n# Titres des sections qui seront ignorés par la recherche.\n# Les changements effectués ici prennent effet dès lors que la page avec le titre est indexée.\n# Vous pouvez forcer la réindexation de la page en effectuant une modification vide.\n# La syntaxe est la suivante :\n#   * Tout ce qui suit un « # » jusqu’à la fin de la ligne est un commentaire.\n#   * Toute ligne non vide est le titre exact à ignorer, casse comprise.\nRéférences\nLiens externes\nVoir aussi\n #</pre><!-- ne pas modifier cette ligne -->",
 	"searchbutton": "Rechercher",
+	"searchsuggest-containing-html": "Rechercher les pages contenant <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
+	"search-loader": "Chargement des suggestions de recherche",
 	"go": "Consulter",
 	"searcharticle": "Lire",
 	"skin-view-history": "Voir l’historique",
@@ -3839,7 +3842,7 @@
 	"logentry-rights-rights-expiry-changed": "{{GENDER:$2|}}Expiration des droits $1",
 	"logentry-rights-rights-kept": "{{GENDER:$2|}}$1 inchangé",
 	"logentry-rights-rights-legacy": "$1{{GENDER:$2|}} a modifié l’appartenance aux groupes pour $3",
-	"logentry-rights-autopromote": "Les groupes de $1 ont été {{GENDER:$2|}}mis-à-jour automatiquement : $7",
+	"logentry-rights-autopromote": "Les groupes de $1 ont été {{GENDER:$2|}}mis à jour automatiquement : $7",
 	"logentry-rights-autopromote-granted": "{{GENDER:$2|}}Droit obtenu $1",
 	"logentry-rights-autopromote-revoked": "{{GENDER:$2|}}perd $1",
 	"logentry-rights-autopromote-expiry-changed": "{{GENDER:$2|}}Modification de l'expiration des droits $1",

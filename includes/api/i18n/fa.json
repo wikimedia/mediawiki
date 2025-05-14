@@ -19,7 +19,8 @@
 			"Mjbmr",
 			"Reza1615",
 			"Sahehco",
-			"Signal89"
+			"Signal89",
+			"Darafsh"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|مستندات]]\n* [[mw:Special:MyLanguage/API:Etiquette|آداب و رهنمودهای استفاده]]\n* [[mw:Special:MyLanguage/API:FAQ|پرسش‌های متداول]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ میلینگ لیست]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ اطلاعیه‌های واسط برنامه‌نویسی کاربردی]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R مشکلات و درخواست‌ها]\n</div>\n\n<strong>وضعیت:</strong> تمام ویژگی‌هایی که در این صفحه نمایش یافته‌اند باید کار بکنند، ولی رابط برنامه‌نویسی کاربردی کماکان در حال توسعه است، و ممکن است در هر زمان تغییر بکند. به عضویت [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ فهرست پست الکترونیکی mediawiki-api-announce] در بیایید تا از تغییرات باخبر شوید.\n\n<strong>درخواست‌های معیوب:</strong> وقتی درخواست‌های معیوب به رابط برنامه‌نویسی کاربردی فرستاده شوند، یک سرایند اچ‌تی‌تی‌پی با کلید «MediaWiki-API-Erorr» فرستاده می‌شود و بعد هم مقدار سرایند و هم کد خطای بازگردانده شده هر دو به یک مقدار نسبت داده می‌شوند. برای اطلاعات بیشتر [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]] را ببینید.\n\n<strong>آزمایش:</strong> برای انجام درخواست‌های API آزمایشی [[Special:ApiSandbox]] را ببینید.",
@@ -281,6 +282,8 @@
 	"apihelp-options-example-reset": "بازنشانی همه تنظیمات.",
 	"apihelp-paraminfo-param-helpformat": "ساختار راهنمای رشته‌ها",
 	"apihelp-parse-paramvalue-prop-links": "پیوندهای داخلی در ویکی‌متن تجزیه‌شده را برمی‌گرداند.",
+	"apihelp-parse-paramvalue-prop-displaytitle": "عنوان متن ویکی‌تکست تجزیه‌شده را اضافه می‌کند.",
+	"apihelp-parse-paramvalue-prop-subtitle": "زیرعنوان صفحهٔ تجزیه‌شده را اضافه می‌کند.",
 	"apihelp-parse-param-pst": "انجام تبدیل پیشاذخیره بر روی ورودی پیش از تجزیهٔ آن. تنها در صورت استفاده به‌همراه متن معتبر است.",
 	"apihelp-parse-param-disablepp": "به جایش از <var>$1disablelimitreport</var> استفاده کن.",
 	"apihelp-parse-param-preview": "تجزیه در حالت پیش‌نمایش.",
