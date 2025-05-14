@@ -15,7 +15,11 @@ oldest supported upgrading version, MediaWiki 1.35.
 
 Some specific notes for MediaWiki 1.44 upgrades are below:
 
-* …
+* The default HTML markup used for headings has changed.  Some skins may need
+  updates.  You can temporarily revert to the old markup by setting
+  $wgParserEnableLegacyHeadingDOM to true (see below), but this option will
+  be removed in the next release.  See
+  https://www.mediawiki.org/wiki/Heading_HTML_changes for more information.
 
 For notes on 1.43.x and older releases, see HISTORY.
 
