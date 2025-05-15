@@ -40,7 +40,10 @@
 		"services": [
 			"PageRestHelperFactory"
 		],
-		"format": "source"
+		"format": "source",
+		"openApiSpec": {
+			"x-i18n-description": "rest-endpoint-desc-get-revision-id"
+		}
 	},
 	{
 		"path": "/v1/revision/{id}/html",
@@ -48,7 +51,10 @@
 		"services": [
 			"PageRestHelperFactory"
 		],
-		"format": "html"
+		"format": "html",
+		"openApiSpec": {
+			"x-i18n-description": "rest-endpoint-desc-get-revision-id-html"
+		}
 	},
 	{
 		"path": "/v1/revision/{id}/with_html",
@@ -56,7 +62,10 @@
 		"services": [
 			"PageRestHelperFactory"
 		],
-		"format": "with_html"
+		"format": "with_html",
+		"openApiSpec": {
+			"x-i18n-description": "rest-endpoint-desc-get-revision-id-with-html"
+		}
 	},
 	{
 		"path": "/v1/revision/{id}/bare",
@@ -64,7 +73,10 @@
 		"services": [
 			"PageRestHelperFactory"
 		],
-		"format": "bare"
+		"format": "bare",
+		"openApiSpec": {
+			"x-i18n-description": "rest-endpoint-desc-get-revision-id-bare"
+		}
 	},
 	{
 		"path": "/v1/search",
@@ -123,7 +135,10 @@
 			"TitleFormatter",
 			"PageRestHelperFactory"
 		],
-		"format": "source"
+		"format": "source",
+		"openApiSpec": {
+			"x-i18n-description": "rest-endpoint-desc-get-page-title"
+		}
 	},
 	{
 		"path": "/v1/page/{title}/bare",
@@ -132,7 +147,10 @@
 			"TitleFormatter",
 			"PageRestHelperFactory"
 		],
-		"format": "bare"
+		"format": "bare",
+		"openApiSpec": {
+			"x-i18n-description": "rest-endpoint-desc-get-page-title-bare"
+		}
 	},
 	{
 		"path": "/v1/page/{title}/html",
@@ -140,7 +158,10 @@
 		"services": [
 			"PageRestHelperFactory"
 		],
-		"format": "html"
+		"format": "html",
+		"openApiSpec": {
+			"x-i18n-description": "rest-endpoint-desc-get-page-title-html"
+		}
 	},
 	{
 		"path": "/v1/page/{title}/with_html",
@@ -148,7 +169,10 @@
 		"services": [
 			"PageRestHelperFactory"
 		],
-		"format": "with_html"
+		"format": "with_html",
+		"openApiSpec": {
+			"x-i18n-description": "rest-endpoint-desc-get-page-title-with-html"
+		}
 	},
 	{
 		"path": "/v1/page/{title}/links/media",
@@ -177,7 +201,10 @@
 			"TitleParser",
 			"TitleFormatter",
 			"RevisionStore"
-		]
+		],
+		"openApiSpec": {
+			"x-i18n-description": "rest-endpoint-desc-put-page-title"
+		}
 	},
 	{
 		"method": "POST",
@@ -189,7 +216,10 @@
 			"TitleParser",
 			"TitleFormatter",
 			"RevisionStore"
-		]
+		],
+		"openApiSpec": {
+			"x-i18n-description": "rest-endpoint-desc-post-page"
+		}
 	},
 	{
 		"method": "POST",

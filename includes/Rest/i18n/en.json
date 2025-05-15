@@ -220,5 +220,16 @@
 	"rest-schema-desc-page-history-count": "Page history edit count",
 	"rest-schema-desc-page-language-links": "Interlanguage links for the page",
 	"rest-schema-desc-search-results": "Search results",
-	"rest-schema-desc-revision-compare": "Revision comparison"
+	"rest-schema-desc-revision-compare": "Revision comparison",
+	"rest-endpoint-desc-mock-desc": "Mock description.",
+	"rest-endpoint-desc-post-page": "Creates a wiki page.",
+	"rest-endpoint-desc-get-page-title": "Returns the content of a wiki page in the format specified by the content_model property, the license, and information about the latest revision.",
+	"rest-endpoint-desc-put-page-title": "Edits a page based on the page's latest revision ID, or creates the page if no revision ID is given.",
+	"rest-endpoint-desc-get-page-title-html": "Returns the latest content of a wiki page in HTML. This endpoint returns content type text/html.",
+	"rest-endpoint-desc-get-page-title-with-html": "Returns information about a wiki page, including the license, latest revision, and latest content in HTML.",
+	"rest-endpoint-desc-get-page-title-bare": "Returns the standard page object for a wiki page, including the API route to fetch the latest content in HTML, the license, and information about the latest revision.",
+	"rest-endpoint-desc-get-revision-id": "Returns meta-data for a revision, including source",
+	"rest-endpoint-desc-get-revision-id-html": "Returns the content of a revision in HTML. This endpoint returns content type text/html.",
+	"rest-endpoint-desc-get-revision-id-with-html": "Returns meta-data for a revision, including the content in HTML",
+	"rest-endpoint-desc-get-revision-id-bare": "Returns details for an individual revision."
 }
