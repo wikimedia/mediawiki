@@ -7,12 +7,14 @@
 			"Kizule",
 			"Milicevic01",
 			"Obsuser",
-			"Сербијана"
+			"Сербијана",
+			"Aca"
 		]
 	},
 	"apihelp-main-param-action": "Коју радњу извршити.",
 	"apihelp-main-param-format": "Формат излаза.",
 	"apihelp-main-param-maxlag": "Максимално кашњење може се користити када је Медијавики инсталиран на репликовани кластер базе података. Да би се сачувало од радња које ће изазвати још кашњења услед репликације сајта, овај параметар може да учини да клијент чека док кашњење због репликације не буде мање од одређене вредности. У случају прекомерних кашњења, код грешке <samp>maxlag</samp> бива враћен са поруком као што је <samp>Waiting for $host: $lag seconds lagged</samp>.<br />Погледајте [[mw:Special:MyLanguage/Manual:Maxlag_parameter|Приручник: параметар Maxlag]] за више информација.",
+	"apihelp-main-paramvalue-errorformat-raw": "Кључ поруке и параметри",
 	"apihelp-block-summary": "Блокирање корисника.",
 	"apihelp-block-param-user": "Корисник ког желите да блокирате",
 	"apihelp-block-param-reason": "Разлог за блокирање.",
@@ -21,6 +23,10 @@
 	"apihelp-block-param-allowusertalk": "Омогући уреднику да уређује сопствену страницу за разговор (зависи од <var>[[mw:Special:MyLanguage/Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
 	"apihelp-block-param-partial": "Блокирање корисника са одређених страница или именских простора уместо са целог сајта.",
 	"apihelp-changecontentmodel-summary": "Промењен садржински модел странице",
+	"apihelp-checktoken-param-type": "Тип токена који се тестира.",
+	"apihelp-checktoken-param-token": "Токен за тестирање.",
+	"apihelp-compare-param-totitle": "Други наслов за поређење.",
+	"apihelp-compare-param-torev": "Друга измена за поређење.",
 	"apihelp-createaccount-summary": "Отварање новог корисничког налога.",
 	"apihelp-delete-summary": "Брисање странице.",
 	"apihelp-delete-param-deletetalk": "Обриши страницу за разговор ако постоји.",

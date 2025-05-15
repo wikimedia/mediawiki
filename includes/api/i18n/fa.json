@@ -283,6 +283,7 @@
 	"apihelp-paraminfo-param-helpformat": "ساختار راهنمای رشته‌ها",
 	"apihelp-parse-paramvalue-prop-links": "پیوندهای داخلی در ویکی‌متن تجزیه‌شده را برمی‌گرداند.",
 	"apihelp-parse-paramvalue-prop-displaytitle": "عنوان متن ویکی‌تکست تجزیه‌شده را اضافه می‌کند.",
+	"apihelp-parse-paramvalue-prop-subtitle": "زیرعنوان صفحهٔ تجزیه‌شده را اضافه می‌کند.",
 	"apihelp-parse-param-pst": "انجام تبدیل پیشاذخیره بر روی ورودی پیش از تجزیهٔ آن. تنها در صورت استفاده به‌همراه متن معتبر است.",
 	"apihelp-parse-param-disablepp": "به جایش از <var>$1disablelimitreport</var> استفاده کن.",
 	"apihelp-parse-param-preview": "تجزیه در حالت پیش‌نمایش.",

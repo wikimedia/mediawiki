@@ -370,7 +370,7 @@
 	"unexpected": "Uyğunsuzluq: \"$1\"=\"$2\".",
 	"formerror": "Xəta: Formanı göndərmək mümkün olmadı.",
 	"badarticleerror": "Yerinə yetirmək istədiyiniz fəaliyyətin icrası bu səhifədə mümkün deyil.",
-	"cannotdelete": "İstədiyiniz \"$1\" səhifə və ya faylını silmək mümkün deyil.\nBu səhifə və ya fayl başqa bir istifadəçi tərəfindən silinmiş ola bilər.",
+	"cannotdelete": "\"$1\" adlı səhifə və ya faylı silmək mümkün olmadı.\nBu səhifə və ya fayl artıq başqa biri tərəfindən silinmiş ola bilər.",
 	"cannotdelete-title": "\"$1\" səhifəsinin silinməsi mümkünsüzdür.",
 	"delete-scheduled": "\"$1\" səhifəsinin silinməsi planlaşdırılır.\nXahiş edirik səbrli olun.",
 	"delete-hook-aborted": "Silmə əməliyyatı hook tərəfindən dayandırıldı. \nHeç bir açıqlama edilmədi.",

@@ -151,7 +151,8 @@
 			"Dream Indigo",
 			"Ciampix",
 			"VittGam",
-			"Gmelfi"
+			"Gmelfi",
+			"Emabarto01"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -766,6 +767,8 @@
 	"edit-recovery-loaded-title": "Modifiche ripristinate",
 	"edit-recovery-loaded-message": "Le tue modifiche non salvate sono state automaticamente ripristinate.",
 	"edit-recovery-loaded-message-different-rev": "<em>Tieni presente che la pagina potrebbe essere cambiata da quando hai iniziato a modificare.</em>",
+	"edit-recovery-loaded-message-different-rev-publish": "<em>Si prega di revisionare le modifiche prima di pubblicarle.</em>",
+	"edit-recovery-loaded-message-different-rev-save": "<em>Si prega di revisionare le modifiche prima di salvarle.</em>",
 	"edit-recovery-loaded-show": "Mostra modifiche",
 	"edit-recovery-loaded-discard": "Ignora modifiche",
 	"summary": "Oggetto:",
@@ -786,6 +789,7 @@
 	"temp-user-banner-description": "Stai utilizzando un'utenza temporanea",
 	"temp-user-banner-tooltip-label": "Ulteriori informazioni sulle utenze temporanee",
 	"temp-user-banner-tooltip-title": "Utenza temporanea",
+	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Il tuo account temporaneo scadrà tra meno di un giorno.</strong> Dopo la scadenza, ne verrà creato uno nuovo quando effettuerai una nuova modifica senza effettuare l'accesso.",
 	"temp-user-banner-tooltip-description-learn-more": "Questo utente temporaneo è stato creato dopo che è stata apportata una modifica senza un'utenza su questo browser e dispositivo. [[mw:Help:Temporary_accounts|Ulteriori informazioni]].",
 	"blankarticle": "<strong>Attenzione:</strong> la pagina che stai creando è vuota.\nCliccando nuovamente su \"$1\", la pagina sarà creata senza alcun contenuto.",
 	"anoneditwarning": "<strong>Attenzione:</strong> non hai effettuato l'accesso. Se effettuerai delle modifiche il tuo indirizzo IP sarà visibile pubblicamente. Se <strong>[$1 accedi]</strong> o <strong>[$2 crei un'utenza]</strong>, le tue modifiche saranno attribuite al tuo nome utente, insieme ad altri benefici.",
@@ -1106,10 +1110,12 @@
 	"difference-title-multipage": "$1 e $2: differenze tra le pagine",
 	"difference-multipage": "(Differenze fra le pagine)",
 	"lineno": "Riga $1:",
+	"lineno-inline": "Riga $1 ⟶ $2:",
 	"compareselectedversions": "Confronta versioni selezionate",
 	"showhideselectedversions": "Mostra/nascondi versioni selezionate",
 	"showhideselectedfileversions": "Mostra/nascondi versioni selezionate",
 	"editundo": "annulla",
+	"diff-incompatible": "Impossibile confrontare i modelli di contenuto \"$1\" e \"$2\"",
 	"diff-empty": "(Nessuna differenza)",
 	"diff-user-edits": "<span>$1</span> {{PLURAL:$1|modifica|modifiche}}",
 	"diff-multi-sameuser": "({{PLURAL:$1|Una versione intermedia|$1 versioni intermedie}} di uno stesso {{GENDER:$3|utente}} non {{PLURAL:$1|è mostrata|sono mostrate}})",
@@ -1120,6 +1126,8 @@
 	"diff-inline-tooltip-ins": "Contenuto aggiunto",
 	"diff-inline-tooltip-del": "Contenuto cancellato",
 	"diff-inline-format-label": "In linea",
+	"diff-line-deleted": "⟵ elimina",
+	"diff-newline": "↲ nuova riga",
 	"difference-missing-revision": "{{PLURAL:$2|Una versione|$2 versioni}} di questa differenza ($1) {{PLURAL:$2|non è stata trovata|non sono state trovate}}.\n\nQuesto si verifica solitamente seguendo un collegamento obsoleto di un diff a una pagina cancellata.\nI dettagli possono essere trovati nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro delle cancellazioni].",
 	"difference-bad-old-revision": "Il contenuto della vecchia versione è mancante o danneggiato.",
 	"difference-bad-new-revision": "Il contenuto della nuova versione è mancante o danneggiato.",
@@ -4276,5 +4284,7 @@
 	"right-renameuser": "Rinomina gli utenti",
 	"renameuser-renamed-notice": "Questo utente è stato rinominato.\nIl registro delle rinomine è riportato di seguito per informazione.",
 	"log-unknown-action": "ha eseguito l'azione sconosciuta \"$2\" su [[$1]]",
+	"createacct-benefit-heading-temp-user": "Grazie per il tuo contributo a {{SITENAME}}.\nCrea un account per accedere a più funzionalità.",
+	"createacct-benefit-subheading-temp-user": "{{SITENAME}} è fatto da persone come te. Con un account puoi avere un'identità permanente e sicura, ed accedere a funzionalità come:",
 	"benefit-2-description": "Elenco permanente dei contributi che hai apportato al progetto."
 }
