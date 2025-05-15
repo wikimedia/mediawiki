@@ -29,6 +29,7 @@ use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Stats\StatsFactory;
+use Wikimedia\Stats\UnitTestingHelper;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -37,8 +38,12 @@ use Wikimedia\TestingAccessWrapper;
  */
 class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 
+	private UnitTestingHelper $statsHelper;
+
 	public function setUp(): void {
 		parent::setUp();
+
+		$this->statsHelper = new UnitTestingHelper();
 
 		// always hit the sample code
 		$this->overrideConfigValue(
@@ -100,7 +105,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 			'19900220000000',
 			$this->getServiceContainer()->getHookContainer(),
 			new JsonCodec( $this->getServiceContainer() ),
-			StatsFactory::newNull(),
+			$this->statsHelper->getStatsFactory(),
 			new NullLogger(),
 			$this->getServiceContainer()->getTitleFactory(),
 			$this->getServiceContainer()->getWikiPageFactory(),
@@ -285,7 +290,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 			$parserCacheFactory,
 			$this->getServiceContainer()->getRevisionLookup(),
 			$revRenderer,
-			$this->getServiceContainer()->getStatsFactory(),
+			$this->statsHelper->getStatsFactory(),
 			$chronologyProtector,
 			LoggerFactory::getProvider(),
 			$this->getServiceContainer()->getWikiPageFactory(),
@@ -360,6 +365,11 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$output = $status->getValue();
 		$this->assertContainsHtml( 'Hello <i>World</i>!', $output->getRawText() );
 
+		$this->assertStatsKeyContains( '#case:current' );
+		$this->assertStatsKeyContains( '#pool:none', 'Should count direct render' );
+		$this->assertStatsKeyNotContains( '#pool:articleview', 'Should not count poolcounter work' );
+		$this->flushStats();
+
 		// Check that the output was cached.
 		// Create a new instance so we bypass the in-object cache.
 		$access = $this->getParserOutputAccess( [
@@ -369,6 +379,12 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$cachedOutput = $access->getCachedParserOutput( $page, $parserOptions );
 		$this->assertNotNull( $cachedOutput );
 		$this->assertSame( $output->getRawText(), $cachedOutput->getRawText() );
+
+		$this->assertStatsKeyContains(
+			'#cache:primary,reason:hit,type:hit',
+			'Should count cache hit'
+		);
+		$this->assertStatsKeyNotContains( '#pool:none', 'Should not count direct render' );
 	}
 
 	/**
@@ -428,6 +444,14 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 			ParserOutputAccess::OPT_FOR_ARTICLE_VIEW
 		);
 		$this->assertContainsHtml( 'Hello <i>World</i>!', $status );
+
+		$this->assertStatsKeyContains( '#case:current' );
+		$this->assertStatsKeyContains( '#cache:primary,reason:miss,type:miss' );
+		$this->assertStatsKeyContains(
+			'#pool:articleview,cache:primary',
+			'Should count poolcounter work'
+		);
+		$this->assertStatsKeyNotContains( '#pool:none', 'Should not count direct render' );
 	}
 
 	/**
@@ -482,10 +506,13 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$this->editPage( $page, 'Hello \'\'World\'\'!' );
 
 		$access->getParserOutput( $page, $parserOptions );
+		$this->flushStats();
 
 		// The second call should use cached output
 		$status = $access->getParserOutput( $page, $parserOptions );
 		$this->assertContainsHtml( 'Hello <i>World</i>!', $status );
+
+		$this->assertStatsKeyNotContains( 'parseroutputaccess_render_total' );
 	}
 
 	/**
@@ -512,6 +539,9 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		);
 		$this->assertNotSameHtml( $cachedOutput, $status );
 		$this->assertContainsHtml( 'Hello <i>World</i>!', $status );
+
+		$this->assertStatsKeyContains( 'mediawiki.parseroutputaccess_render_total:1|c|#pool:none,cache:none' );
+		$this->assertStatsKeyNotContains( 'mediawiki.parseroutputaccess_render_total:1|c|#pool:articleview,cache:primary' );
 	}
 
 	/**
@@ -1021,6 +1051,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 		$testingAccess = TestingAccessWrapper::newFromObject( $access );
 		$testingAccess->localCache->clear();
+		$this->flushStats();
 
 		$access = $this->getParserOutputAccess( [
 			'poolCounterFactory' => $this->makePoolCounterFactory( [
@@ -1044,6 +1075,9 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertStatusWarning( $expectedMessage, $cachedResult );
 		$this->assertStatusWarning( 'view-pool-dirty-output', $cachedResult );
+
+		$this->assertStatsKeyContains( '#pool:articleview', 'Count poolcoutner work' );
+		$this->assertStatsKeyContains( 'status:miss,reason:expired', 'Count expired' );
 	}
 
 	/**
@@ -1073,6 +1107,11 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 			ParserOutputAccess::OPT_FOR_ARTICLE_VIEW
 		);
 		$this->assertStatusError( 'pool-timeout', $result );
+
+		$this->assertStatsKeyContains(
+			'#pool:articleview',
+			'Should count poolcounter work'
+		);
 	}
 
 	/**
@@ -1095,6 +1134,12 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$parserOptions = $this->getParserOptions();
 		$result = $access->getParserOutput( $page, $parserOptions );
 		$this->assertContainsHtml( 'World', $result );
+
+		$this->assertStatsKeyContains( '#pool:none', 'Should count direct render' );
+		$this->assertStatsKeyNotContains(
+			'#pool:articleview',
+			'Should not count poolcounter work'
+		);
 	}
 
 	public function testParsoidCacheSplit() {
@@ -1405,6 +1450,49 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertTrue( $status->isOK() );
 		$this->assertSame( $output->getRawText(), $status->getValue()->getRawText() );
+	}
+
+	private function flushStats(): void {
+		$this->statsHelper->consumeAllFormatted();
+	}
+
+	private function assertStatsKeyContains( $key, $message = '' ): void {
+		$stats = $this->statsHelper->getAllFormatted();
+
+		if ( $message ) {
+			$message = "$message\n";
+		}
+
+		$this->assertTrue(
+			self::arrayContainsSubstring( $key, $stats ),
+			"{$message}Stats should contain $key:\n\t" . implode( "\n\t", $stats )
+		);
+	}
+
+	private function assertStatsKeyNotContains( $key, $message = '' ): void {
+		$stats = $this->statsHelper->getAllFormatted();
+
+		if ( $message ) {
+			$message = "$message\n";
+		}
+
+		$this->assertFalse(
+			self::arrayContainsSubstring(
+				$key,
+				$this->statsHelper->getAllFormatted()
+			),
+			"{$message}Stats should not contain $key:\n\t" . implode( "\n\t", $stats )
+		);
+	}
+
+	private static function arrayContainsSubstring( string $prefix, array $array ): bool {
+		foreach ( $array as $value ) {
+			if ( strpos( $value, $prefix ) !== false ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 }
