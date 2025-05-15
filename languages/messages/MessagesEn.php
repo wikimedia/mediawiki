@@ -327,6 +327,7 @@ $magicWords = [
 	'localurle'               => [ 0, 'LOCALURLE:' ],
 	'localweek'               => [ 1, 'LOCALWEEK' ],
 	'localyear'               => [ 1, 'LOCALYEAR' ],
+	'lossless'                => [ 0, 'LOSSLESS' ],
 	'msg'                     => [ 0, 'MSG:' ],
 	'msgnw'                   => [ 0, 'MSGNW:' ],
 	'namespace'               => [ 1, 'NAMESPACE' ],

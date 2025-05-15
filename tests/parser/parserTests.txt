@@ -12801,6 +12801,34 @@ language=be-tarask
 !! end
 
 !! test
+Check lossless in formatNum
+!! wikitext
+{{formatnum:9999999999999999}}
+{{formatnum:9999999999999999|LOSSLESS}}
+!! html/php
+<p>10,000,000,000,000,000
+9999999999999999
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"formatnum:9999999999999999","function":"formatnum"},"params":{},"i":0}}]}'>10,000,000,000,000,000</span>
+<span about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"formatnum:9999999999999999","function":"formatnum"},"params":{"1":{"wt":"LOSSLESS"}},"i":0}}]}'>9999999999999999</span></p>
+!! end
+
+!! test
+Check noCommafy + lossless in formatNum
+!! wikitext
+{{formatnum:999999999999999|NOSEP|LOSSLESS}}
+{{formatnum:9999999999999999|NOSEP|LOSSLESS}}
+!! html/php
+<p>999999999999999
+9999999999999999
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"formatnum:999999999999999","function":"formatnum"},"params":{"1":{"wt":"NOSEP"},"2":{"wt":"LOSSLESS"}},"i":0}}]}'>999999999999999</span>
+<span about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"formatnum:9999999999999999","function":"formatnum"},"params":{"1":{"wt":"NOSEP"},"2":{"wt":"LOSSLESS"}},"i":0}}]}'>9999999999999999</span></p>
+!! end
+
+!! test
 Wrong option for formatNum (T58199)
 !! wikitext
 {{formatnum:1,234.56|Random}}

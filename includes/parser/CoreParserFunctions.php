@@ -347,20 +347,43 @@ class CoreParserFunctions {
 	/**
 	 * @param Parser $parser
 	 * @param string $num
-	 * @param string|null $arg
+	 * @param string $arg1
+	 * @param string $arg2
 	 * @return string
 	 */
-	public static function formatnum( $parser, $num = '', $arg = null ) {
-		if ( self::matchAgainstMagicword( $parser->getMagicWordFactory(), 'rawsuffix', $arg ) ) {
-			$func = [ $parser->getTargetLanguage(), 'parseFormattedNumber' ];
-		} elseif (
-			self::matchAgainstMagicword( $parser->getMagicWordFactory(), 'nocommafysuffix', $arg )
-		) {
-			$func = [ $parser->getTargetLanguage(), 'formatNumNoSeparators' ];
-			$func = self::getLegacyFormatNum( $parser, $func );
+	public static function formatnum( $parser, $num = '', $arg1 = '', $arg2 = '' ) {
+		static $magicWords = null;
+		if ( $magicWords === null ) {
+			$magicWords = $parser->getMagicWordFactory()->newArray( [
+				'rawsuffix',
+				'nocommafysuffix',
+				'lossless',
+			] );
+		}
+
+		$modifiers = [ $magicWords->matchStartToEnd( $arg1 ), $magicWords->matchStartToEnd( $arg2 ) ];
+		$targetLanguage = $parser->getTargetLanguage();
+		if ( in_array( 'rawsuffix', $modifiers, true ) ) {
+			$func = [ $targetLanguage, 'parseFormattedNumber' ];
 		} else {
-			$func = [ $parser->getTargetLanguage(), 'formatNum' ];
-			$func = self::getLegacyFormatNum( $parser, $func );
+			if ( in_array( 'nocommafysuffix', $modifiers, true ) ) {
+				$func = [ $targetLanguage, 'formatNumNoSeparators' ];
+			} else {
+				$func = [ $targetLanguage, 'formatNum' ];
+				$func = self::getLegacyFormatNum( $parser, $func );
+			}
+			if ( in_array( 'lossless', $modifiers, true ) ) {
+				$potentiallyLossyFunc = $func;
+				$func = static function ( $num ) use ( $targetLanguage, $potentiallyLossyFunc ) {
+					$formatted = $potentiallyLossyFunc( $num );
+					$parsed = $targetLanguage->parseFormattedNumber( $formatted );
+					if ( $num === $parsed ) {
+						return $formatted;
+					} else {
+						return (string)$num;
+					}
+				};
+			}
 		}
 		return $parser->markerSkipCallback( $num, $func );
 	}
