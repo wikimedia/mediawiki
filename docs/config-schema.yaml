@@ -3202,12 +3202,14 @@ config-schema:
             letter.
             @since 1.32
     AllowRawHtmlCopyrightMessages:
-        default: true
+        default: false
         type: boolean
+        deprecated: 'since 1.44'
         description: |-
             Whether on-wiki overrides for the 'copyright' and 'history_copyright' messages, which allow raw
             HTML, will be used.
             @since 1.43
+            @deprecated since 1.44
     Localtimezone:
         dynamicDefault:
             callback: [MediaWiki\MainConfigSchema, getDefaultLocaltimezone]

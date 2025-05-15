@@ -616,7 +616,7 @@ return [
 				'copyright',
 				'history_copyright',
 			],
-			'AllowRawHtmlCopyrightMessages' => true,
+			'AllowRawHtmlCopyrightMessages' => false,
 			'Localtimezone' => null,
 			'LocalTZoffset' => null,
 			'OverrideUcfirstCharacters' => [
@@ -3423,6 +3423,9 @@ return [
 			'items' => [
 				'type' => 'string',
 			],
+		],
+		'AllowRawHtmlCopyrightMessages' => [
+			'deprecated' => 'since 1.44',
 		],
 		'InterwikiLogoOverride' => [
 			'items' => [

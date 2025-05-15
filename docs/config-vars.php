@@ -1943,6 +1943,7 @@ $wgRawHtmlMessages = null;
 /**
  * Config variable stub for the AllowRawHtmlCopyrightMessages setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::AllowRawHtmlCopyrightMessages
+ * @deprecated since 1.44
  */
 $wgAllowRawHtmlCopyrightMessages = null;
 

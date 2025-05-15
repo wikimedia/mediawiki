@@ -5136,10 +5136,12 @@ class MainConfigSchema {
 	 * HTML, will be used.
 	 *
 	 * @since 1.43
+	 * @deprecated since 1.44
 	 */
 	public const AllowRawHtmlCopyrightMessages = [
-		'default' => true,
+		'default' => false,
 		'type' => 'boolean',
+		'deprecated' => 'since 1.44',
 	];
 
 	/**

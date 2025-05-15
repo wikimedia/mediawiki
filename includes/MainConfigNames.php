@@ -1958,6 +1958,7 @@ class MainConfigNames {
 	/**
 	 * Name constant for the AllowRawHtmlCopyrightMessages setting, for use with Config::get()
 	 * @see MainConfigSchema::AllowRawHtmlCopyrightMessages
+	 * @deprecated since 1.44
 	 */
 	public const AllowRawHtmlCopyrightMessages = 'AllowRawHtmlCopyrightMessages';
 
