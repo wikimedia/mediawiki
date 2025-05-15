@@ -4059,6 +4059,8 @@
 	"limitreport-ppvisitednodes-value": "$1/$2",
 	"limitreport-postexpandincludesize": "Post-expand include size",
 	"limitreport-postexpandincludesize-value": "$1/$2 {{PLURAL:$2|byte|bytes}}",
+	"limitreport-revisionsize": "Revision size",
+	"limitreport-revisionsize-value": "$1/$2 {{PLURAL:$2|byte|bytes}}",
 	"limitreport-templateargumentsize": "Template argument size",
 	"limitreport-templateargumentsize-value": "$1/$2 {{PLURAL:$2|byte|bytes}}",
 	"limitreport-expansiondepth": "Highest expansion depth",
