@@ -27,6 +27,7 @@
 namespace MediaWiki\Parser;
 
 use LogicException;
+use Wikimedia\Parsoid\Utils\Utils;
 use Wikimedia\StringUtils\StringUtils;
 
 class BlockLevelPass {
@@ -472,6 +473,8 @@ class BlockLevelPass {
 		$state = self::COLON_STATE_TEXT;
 		$ltLevel = 0;
 		$lcLevel = 0;
+		$captureName = false;
+		$tagName = '';
 		$len = strlen( $str );
 		for ( $i = $m[0][1]; $i < $len; $i++ ) {
 			$c = $str[$i];
@@ -482,6 +485,8 @@ class BlockLevelPass {
 						case "<":
 							# Could be either a <start> tag or an </end> tag
 							$state = self::COLON_STATE_TAGSTART;
+							$captureName = true;
+							$tagName = '';
 							break;
 						case ":":
 							if ( $ltLevel === 0 ) {
@@ -531,8 +536,13 @@ class BlockLevelPass {
 				case self::COLON_STATE_TAG:
 					# In a <tag>
 					switch ( $c ) {
+						case " ":
+							$captureName = false;
+							break;
 						case ">":
-							$ltLevel++;
+							if ( !Utils::isVoidElement( strtolower( $tagName ) ) ) {
+								$ltLevel++;
+							}
 							$state = self::COLON_STATE_TEXT;
 							break;
 						case "/":
@@ -540,6 +550,9 @@ class BlockLevelPass {
 							$state = self::COLON_STATE_TAGSLASH;
 							break;
 						default:
+							if ( $captureName ) {
+								$tagName .= $c;
+							}
 							# ignore
 					}
 					break;
@@ -556,6 +569,9 @@ class BlockLevelPass {
 							$state = self::COLON_STATE_TEXT;
 							break;
 						default:
+							if ( $captureName ) {
+								$tagName .= $c;
+							}
 							$state = self::COLON_STATE_TAG;
 					}
 					break;
