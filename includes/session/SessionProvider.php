@@ -149,38 +149,6 @@ abstract class SessionProvider implements Stringable, SessionProviderInterface {
 	}
 
 	/**
-	 * Sets a logger instance on the object.
-	 *
-	 * @deprecated since 1.37. For extension-defined session providers
-	 * that were using this method to trigger other work, please override
-	 * SessionProvider::postInitSetup instead. If your extension
-	 * was using this to explicitly change the logger of an existing
-	 * SessionProvider object, please file a report on phabricator
-	 * - there is no non-deprecated way to do this anymore.
-	 * @param LoggerInterface $logger
-	 */
-	public function setLogger( LoggerInterface $logger ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$this->logger = $logger;
-	}
-
-	/**
-	 * Set configuration
-	 *
-	 * @deprecated since 1.37. For extension-defined session providers
-	 * that were using this method to trigger other work, please override
-	 * SessionProvider::postInitSetup instead. If your extension
-	 * was using this to explicitly change the Config of an existing
-	 * SessionProvider object, please file a report on phabricator
-	 * - there is no non-deprecated way to do this anymore.
-	 * @param Config $config
-	 */
-	public function setConfig( Config $config ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$this->config = $config;
-	}
-
-	/**
 	 * Get the config
 	 *
 	 * @since 1.37
@@ -191,43 +159,11 @@ abstract class SessionProvider implements Stringable, SessionProviderInterface {
 	}
 
 	/**
-	 * Set the session manager
-	 *
-	 * @deprecated since 1.37. For extension-defined session providers
-	 * that were using this method to trigger other work, please override
-	 * SessionProvider::postInitSetup instead. If your extension
-	 * was using this to explicitly change the SessionManager of an existing
-	 * SessionProvider object, please file a report on phabricator
-	 * - there is no non-deprecated way to do this anymore.
-	 * @param SessionManager $manager
-	 */
-	public function setManager( SessionManager $manager ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$this->manager = $manager;
-	}
-
-	/**
 	 * Get the session manager
 	 * @return SessionManager
 	 */
 	public function getManager() {
 		return $this->manager;
-	}
-
-	/**
-	 * @internal
-	 * @deprecated since 1.37. For extension-defined session providers
-	 * that were using this method to trigger other work, please override
-	 * SessionProvider::postInitSetup instead. If your extension
-	 * was using this to explicitly change the HookContainer of an existing
-	 * SessionProvider object, please file a report on phabricator
-	 * - there is no non-deprecated way to do this anymore.
-	 * @param HookContainer $hookContainer
-	 */
-	public function setHookContainer( $hookContainer ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$this->hookContainer = $hookContainer;
-		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	protected function getHookContainer(): HookContainer {
@@ -581,6 +517,8 @@ abstract class SessionProvider implements Stringable, SessionProviderInterface {
 	 *
 	 * @since 1.42
 	 * @stable to override
+	 *
+	 * @param array|null $providerMetadata
 	 * @return MWRestrictions|null
 	 */
 	public function getRestrictions( ?array $providerMetadata ): ?MWRestrictions {
