@@ -20,8 +20,6 @@
 
 namespace MediaWiki\Page;
 
-use MediaWiki\Title\Title;
-
 /**
  * Service for page rename actions.
  *
@@ -32,9 +30,9 @@ use MediaWiki\Title\Title;
 interface MovePageFactory {
 
 	/**
-	 * @param Title $from
-	 * @param Title $to
+	 * @param PageIdentity $from
+	 * @param PageIdentity $to
 	 * @return MovePage
 	 */
-	public function newMovePage( Title $from, Title $to ): MovePage;
+	public function newMovePage( PageIdentity $from, PageIdentity $to ): MovePage;
 }
