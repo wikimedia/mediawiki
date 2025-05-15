@@ -2035,6 +2035,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Maintenance\\SevenZipStream' => __DIR__ . '/maintenance/includes/SevenZipStream.php',
 	'MediaWiki\\Maintenance\\TextPassDumper' => __DIR__ . '/maintenance/includes/TextPassDumper.php',
 	'MediaWiki\\Maintenance\\UndoLog' => __DIR__ . '/maintenance/includes/UndoLog.php',
+	'MediaWiki\\Maintenance\\UpdateCredits' => __DIR__ . '/maintenance/updateCredits.php',
 	'MediaWiki\\Maintenance\\Version' => __DIR__ . '/maintenance/Version.php',
 	'MediaWiki\\MediaWikiEntryPoint' => __DIR__ . '/includes/MediaWikiEntryPoint.php',
 	'MediaWiki\\MediaWikiServices' => __DIR__ . '/includes/MediaWikiServices.php',
