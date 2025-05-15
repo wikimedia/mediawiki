@@ -759,6 +759,12 @@ because of Phabricator reports.
 * (T387995) Deprecated AbortTalkPageEmailNotification hook. Use the Notification
   Middleware to filter our Talk Page notifications
 * (T45646) The hook 'SkinCopyrightFooter' now emits deprecation warnings.
+* (T293512) ParserOutput::getText, deprecated in 1.42, now emits deprecation
+  warnings. It is expected to be removed in 1.45. Depending on the use case,
+  calling sites should either use ParserOutput::getRawText or call the
+  OutputTransform pipeline with ParserOutput::runOutputPipeline (unstable,
+  see T371004) or by invoking the pipeline directly (to be worked on in
+  T371008).
 * …
 
 === Other changes in 1.44 ===

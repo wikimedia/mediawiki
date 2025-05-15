@@ -2615,7 +2615,8 @@ class LocalFile extends File {
 			// Rendering failed.
 			return false;
 		}
-		return $parseStatus->getValue()->getText();
+		// TODO T371004 move runOutputPipeline out of $parserOutput
+		return $parseStatus->getValue()->runOutputPipeline( $parserOptions, [] )->getContentHolderText();
 	}
 
 	/**

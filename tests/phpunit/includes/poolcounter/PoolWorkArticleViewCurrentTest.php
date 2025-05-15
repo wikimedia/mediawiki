@@ -121,7 +121,7 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 		// The parser output cached but $work2 should now be also visible to $work1
 		$status1 = $work1->getCachedWork();
 		$this->assertInstanceOf( ParserOutput::class, $status1->getValue() );
-		$this->assertSame( $status2->getValue()->getText(), $status1->getValue()->getText() );
+		$this->assertSame( $status2->getValue()->getRawText(), $status1->getValue()->getRawText() );
 	}
 
 	public function testFallbackFromOutdatedParserCache() {

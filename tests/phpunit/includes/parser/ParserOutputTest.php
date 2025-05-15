@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Parser;
 
 use LogicException;
-use MediaWiki\Context\RequestContext;
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -18,7 +17,6 @@ use MediaWiki\Utils\MWTimestamp;
 use MediaWikiLangTestCase;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Parsoid\Core\SectionMetadata;
-use Wikimedia\Parsoid\Core\TOCData;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Tests\SerializationTestTrait;
 
@@ -306,201 +304,6 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * This test aims at being replaced by its version in DefaultOutputPipelineFactoryTest when
-	 * ParserOutput::getText gets deprecated.
-	 * @covers \MediaWiki\Parser\ParserOutput::getText
-	 * @dataProvider provideGetText
-	 * @param array $options Options to getText()
-	 * @param string $text Parser text
-	 * @param string $expect Expected output
-	 */
-	public function testGetText( $options, $text, $expect ) {
-		// Avoid other skins affecting the section edit links
-		$this->overrideConfigValue( MainConfigNames::DefaultSkin, 'fallback' );
-		RequestContext::resetMain();
-
-		$this->overrideConfigValues( [
-			MainConfigNames::ScriptPath => '/w',
-			MainConfigNames::Script => '/w/index.php',
-		] );
-
-		$po = new ParserOutput( $text );
-		self::initSections( $po );
-		$actual = $po->getText( $options );
-		$this->assertSame( $expect, $actual );
-	}
-
-	private static function initSections( ParserOutput $po ): void {
-		$po->setTOCData( new TOCData(
-			SectionMetadata::fromLegacy( [
-				'index' => "1",
-				'level' => 1,
-				'toclevel' => 1,
-				'number' => "1",
-				'line' => "Section 1",
-				'anchor' => "Section_1"
-			] ),
-			SectionMetadata::fromLegacy( [
-				'index' => "2",
-				'level' => 1,
-				'toclevel' => 1,
-				'number' => "2",
-				'line' => "Section 2",
-				'anchor' => "Section_2"
-			] ),
-			SectionMetadata::fromLegacy( [
-				'index' => "3",
-				'level' => 2,
-				'toclevel' => 2,
-				'number' => "2.1",
-				'line' => "Section 2.1",
-				'anchor' => "Section_2.1"
-			] ),
-			SectionMetadata::fromLegacy( [
-				'index' => "4",
-				'level' => 1,
-				'toclevel' => 1,
-				'number' => "3",
-				'line' => "Section 3",
-				'anchor' => "Section_3"
-			] ),
-		) );
-	}
-
-	public static function provideGetText() {
-		$text = <<<EOF
-<p>Test document.
-</p>
-<meta property="mw:PageProp/toc" />
-<div class="mw-heading mw-heading2"><h2 id="Section_1">Section 1</h2><mw:editsection page="Test Page" section="1">Section 1</mw:editsection></div>
-<p>One
-</p>
-<div class="mw-heading mw-heading2"><h2 id="Section_2">Section 2</h2><mw:editsection page="Test Page" section="2">Section 2</mw:editsection></div>
-<p>Two
-</p>
-<div class="mw-heading mw-heading3"><h3 id="Section_2.1">Section 2.1</h3></div>
-<p>Two point one
-</p>
-<div class="mw-heading mw-heading2"><h2 id="Section_3">Section 3</h2><mw:editsection page="Test Page" section="4">Section 3</mw:editsection></div>
-<p>Three
-</p>
-EOF;
-
-		$dedupText = <<<EOF
-<p>This is a test document.</p>
-<style data-mw-deduplicate="duplicate1">.Duplicate1 {}</style>
-<style data-mw-deduplicate="duplicate1">.Duplicate1 {}</style>
-<style data-mw-deduplicate="duplicate2">.Duplicate2 {}</style>
-<style data-mw-deduplicate="duplicate1">.Duplicate1 {}</style>
-<style data-mw-deduplicate="duplicate2">.Duplicate2 {}</style>
-<style data-mw-not-deduplicate="duplicate1">.Duplicate1 {}</style>
-<style data-mw-deduplicate="duplicate1">.Same-attribute-different-content {}</style>
-<style data-mw-deduplicate="duplicate3">.Duplicate1 {}</style>
-<style>.Duplicate1 {}</style>
-EOF;
-
-		return [
-			'No options' => [
-				[], $text, <<<EOF
-<p>Test document.
-</p>
-<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
-<ul>
-<li class="toclevel-1 tocsection-1"><a href="#Section_1"><span class="tocnumber">1</span> <span class="toctext">Section 1</span></a></li>
-<li class="toclevel-1 tocsection-2"><a href="#Section_2"><span class="tocnumber">2</span> <span class="toctext">Section 2</span></a>
-<ul>
-<li class="toclevel-2 tocsection-3"><a href="#Section_2.1"><span class="tocnumber">2.1</span> <span class="toctext">Section 2.1</span></a></li>
-</ul>
-</li>
-<li class="toclevel-1 tocsection-4"><a href="#Section_3"><span class="tocnumber">3</span> <span class="toctext">Section 3</span></a></li>
-</ul>
-</div>
-
-<div class="mw-heading mw-heading2"><h2 id="Section_1">Section 1</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a><span class="mw-editsection-bracket">]</span></span></div>
-<p>One
-</p>
-<div class="mw-heading mw-heading2"><h2 id="Section_2">Section 2</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=2" title="Edit section: Section 2">edit</a><span class="mw-editsection-bracket">]</span></span></div>
-<p>Two
-</p>
-<div class="mw-heading mw-heading3"><h3 id="Section_2.1">Section 2.1</h3></div>
-<p>Two point one
-</p>
-<div class="mw-heading mw-heading2"><h2 id="Section_3">Section 3</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=4" title="Edit section: Section 3">edit</a><span class="mw-editsection-bracket">]</span></span></div>
-<p>Three
-</p>
-EOF
-			],
-			'Disable section edit links' => [
-				[ 'enableSectionEditLinks' => false ], $text, <<<EOF
-<p>Test document.
-</p>
-<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
-<ul>
-<li class="toclevel-1 tocsection-1"><a href="#Section_1"><span class="tocnumber">1</span> <span class="toctext">Section 1</span></a></li>
-<li class="toclevel-1 tocsection-2"><a href="#Section_2"><span class="tocnumber">2</span> <span class="toctext">Section 2</span></a>
-<ul>
-<li class="toclevel-2 tocsection-3"><a href="#Section_2.1"><span class="tocnumber">2.1</span> <span class="toctext">Section 2.1</span></a></li>
-</ul>
-</li>
-<li class="toclevel-1 tocsection-4"><a href="#Section_3"><span class="tocnumber">3</span> <span class="toctext">Section 3</span></a></li>
-</ul>
-</div>
-
-<div class="mw-heading mw-heading2"><h2 id="Section_1">Section 1</h2></div>
-<p>One
-</p>
-<div class="mw-heading mw-heading2"><h2 id="Section_2">Section 2</h2></div>
-<p>Two
-</p>
-<div class="mw-heading mw-heading3"><h3 id="Section_2.1">Section 2.1</h3></div>
-<p>Two point one
-</p>
-<div class="mw-heading mw-heading2"><h2 id="Section_3">Section 3</h2></div>
-<p>Three
-</p>
-EOF
-			],
-			'Disable TOC, but wrap' => [
-				[ 'allowTOC' => false, 'wrapperDivClass' => 'mw-parser-output' ], $text, <<<EOF
-<div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p>Test document.
-</p>
-
-<div class="mw-heading mw-heading2"><h2 id="Section_1">Section 1</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a><span class="mw-editsection-bracket">]</span></span></div>
-<p>One
-</p>
-<div class="mw-heading mw-heading2"><h2 id="Section_2">Section 2</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=2" title="Edit section: Section 2">edit</a><span class="mw-editsection-bracket">]</span></span></div>
-<p>Two
-</p>
-<div class="mw-heading mw-heading3"><h3 id="Section_2.1">Section 2.1</h3></div>
-<p>Two point one
-</p>
-<div class="mw-heading mw-heading2"><h2 id="Section_3">Section 3</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=4" title="Edit section: Section 3">edit</a><span class="mw-editsection-bracket">]</span></span></div>
-<p>Three
-</p></div>
-EOF
-			],
-			'Style deduplication' => [
-				[], $dedupText, <<<EOF
-<p>This is a test document.</p>
-<style data-mw-deduplicate="duplicate1">.Duplicate1 {}</style>
-<link rel="mw-deduplicated-inline-style" href="mw-data:duplicate1" />
-<style data-mw-deduplicate="duplicate2">.Duplicate2 {}</style>
-<link rel="mw-deduplicated-inline-style" href="mw-data:duplicate1" />
-<link rel="mw-deduplicated-inline-style" href="mw-data:duplicate2" />
-<style data-mw-not-deduplicate="duplicate1">.Duplicate1 {}</style>
-<link rel="mw-deduplicated-inline-style" href="mw-data:duplicate1" />
-<style data-mw-deduplicate="duplicate3">.Duplicate1 {}</style>
-<style>.Duplicate1 {}</style>
-EOF
-			],
-			'Style deduplication disabled' => [
-				[ 'deduplicateStyles' => false ], $dedupText, $dedupText
-			],
-		];
-		// phpcs:enable
-	}
-
-	/**
 	 * @covers \MediaWiki\Parser\ParserOutput::hasText
 	 */
 	public function testHasText() {
@@ -523,18 +326,6 @@ EOF
 		$po = new ParserOutput( 'foo' );
 		$po->setRawText( null );
 		$this->assertFalse( $po->hasText() );
-	}
-
-	/**
-	 * This test aims at being replaced by its version in DefaultOutputPipelineFactoryTest when
-	 * ParserOutput::getText gets deprecated.
-	 * @covers \MediaWiki\Parser\ParserOutput::getText
-	 */
-	public function testGetText_failsIfNoText() {
-		$po = new ParserOutput( null );
-
-		$this->expectException( LogicException::class );
-		$po->getText();
 	}
 
 	/**
