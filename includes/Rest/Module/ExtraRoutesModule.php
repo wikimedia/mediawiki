@@ -240,6 +240,10 @@ class ExtraRoutesModule extends MatcherBasedModule {
 			];
 		}
 
+		if ( isset( $route['openApiSpec'] ) ) {
+			$info['openApiSpec'] = $route['openApiSpec'];
+		}
+
 		$info['path'] = $route['path'];
 		return $info;
 	}

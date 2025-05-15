@@ -1318,6 +1318,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			'$requestTypes' => [ 'application/json' ],
 			'$responseBodySchema' => null,
 			'$routeConfig' => [ 'path' => '/test' ],
+			'$openApiSpec' => [],
 			'$method' => 'GET',
 			'$assertions' =>
 				static function ( array $spec ) {
@@ -1358,6 +1359,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			'$requestTypes' => [ 'application/json' ],
 			'$responseBodySchema' => null,
 			'$routeConfig' => [ 'path' => '/test/{a}/{b}/{d}' ],
+			'$openApiSpec' => [],
 			'$method' => 'GET',
 			'$assertions' =>
 				static function ( array $spec ) {
@@ -1413,6 +1415,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			'$requestTypes' => [ 'application/json' ],
 			'$responseBodySchema' => null,
 			'$routeConfig' => [ 'path' => '/test' ],
+			'$openApiSpec' => [],
 			'$method' => 'GET',
 			'$assertions' =>
 				static function ( array $spec ) {
@@ -1469,6 +1472,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			'$requestTypes' => [ 'application/foo+json', 'application/bar+json' ],
 			'$responseBodySchema' => null,
 			'$routeConfig' => [ 'path' => '/test' ],
+			'$openApiSpec' => [],
 			'$method' => 'PUT',
 			'$assertions' =>
 				static function ( array $spec ) {
@@ -1525,6 +1529,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			'$requestTypes' => [ 'application/x-www-form-urlencoded' ],
 			'$responseBodySchema' => null,
 			'$routeConfig' => [ 'path' => '/test' ],
+			'$openApiSpec' => [],
 			'$method' => 'POST',
 			'$assertions' =>
 				static function ( array $spec ) {
@@ -1559,6 +1564,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			'$requestTypes' => [ 'application/json' ],
 			'$responseBodySchema' => null,
 			'$routeConfig' => [ 'path' => '/test' ],
+			'$openApiSpec' => [],
 			'$method' => 'GET',
 			'$assertions' =>
 				static function ( array $spec ) {
@@ -1581,6 +1587,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			'$requestTypes' => [ 'application/json' ],
 			'$responseBodySchema' => null,
 			'$routeConfig' => [ 'path' => '/test' ],
+			'$openApiSpec' => [],
 			'$method' => 'DELETE',
 			'$assertions' =>
 				static function ( array $spec ) {
@@ -1607,6 +1614,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			'$requestTypes' => [ 'application/json' ],
 			'$responseBodySchema' => null,
 			'$routeConfig' => [ 'path' => '/test/{p}' ],
+			'$openApiSpec' => [],
 			'$method' => 'GET',
 			'$assertions' =>
 				static function ( array $spec ) {
@@ -1663,6 +1671,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 				]
 			],
 			'$routeConfig' => [ 'path' => 'test' ],
+			'$openApiSpec' => [],
 			'$method' => 'GET',
 			'$assertions' =>
 				static function ( array $spec ) {
@@ -1704,17 +1713,17 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			'$responseBodySchema' => null,
 			'$routeConfig' => [
 				'path' => 'test/{p}',
-				'openApiSpec' => [
-					'title' => 'just a test',
-					'parameters' => 'will be ignored',
-				]
+			],
+			'$openApiSpec' => [
+				'summary' => 'just a test',
+				'parameters' => 'will be ignored',
 			],
 			'$method' => 'GET',
 			'$assertions' =>
 				static function ( array $spec ) {
-					self::assertWellFormedOAS( $spec, [ 'title', 'parameters' ] );
-					Assert::assertArrayHasKey( 'title', $spec );
-					Assert::assertSame( 'just a test', $spec['title'] );
+					self::assertWellFormedOAS( $spec, [ 'summary', 'parameters' ] );
+					Assert::assertArrayHasKey( 'summary', $spec );
+					Assert::assertSame( 'just a test', $spec['summary'] );
 
 					$params = self::makeMap( $spec['parameters'], 'name' );
 					Assert::assertArrayHasKey( 'p', $params );
@@ -1731,6 +1740,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$requestTypes,
 		$responseBodySchema,
 		$routeConfig,
+		$openApiSpec,
 		$method,
 		$assertions
 	) {
@@ -1750,7 +1760,8 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$handler->initContext(
 			$module,
 			$routeConfig['path'],
-			$routeConfig
+			$routeConfig,
+			$openApiSpec
 		);
 
 		// Because the dummy text formatter uses MessageValue::dump(), translated message keys

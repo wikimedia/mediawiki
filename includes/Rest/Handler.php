@@ -56,6 +56,9 @@ abstract class Handler {
 	/** @var array */
 	private $config;
 
+	/** @var array */
+	private $openApiSpec;
+
 	/** @var ResponseFactory */
 	private $responseFactory;
 
@@ -90,10 +93,16 @@ abstract class Handler {
 	 * @param Module $module
 	 * @param string $path
 	 * @param array $routeConfig information about the route declaration.
+	 * @param array $openApiSpec OpenAPI meta-data, such as the description.
 	 *
 	 * @internal
 	 */
-	final public function initContext( Module $module, string $path, array $routeConfig ) {
+	final public function initContext(
+		Module $module,
+		string $path,
+		array $routeConfig,
+		array $openApiSpec = []
+	) {
 		Assert::precondition(
 			$this->authority === null,
 			'initContext() must be called before initServices()'
@@ -102,6 +111,7 @@ abstract class Handler {
 		$this->module = $module;
 		$this->path = $path;
 		$this->config = $routeConfig;
+		$this->openApiSpec = $openApiSpec;
 	}
 
 	/**
@@ -668,8 +678,7 @@ abstract class Handler {
 
 		// TODO: Allow additional information about parameters and responses to
 		//       be provided in the route definition.
-		$oas = $this->getConfig()['openApiSpec'] ?? [];
-		$spec += $oas;
+		$spec += $this->openApiSpec;
 
 		return $spec;
 	}

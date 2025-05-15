@@ -176,12 +176,10 @@ abstract class Module {
 		$config = $match['config'] ?? [];
 		$config['path'] ??= $match['path'];
 
-		// TODO: Make this nicer by passing the OpenAPI spec to initContext separately.
-		//       The openApiSpec key is used in Handler::getOpenApiSpec().
-		$config['openApiSpec'] ??= $match['openApiSpec'] ?? [];
+		$openApiSpec = $match['openApiSpec'] ?? [];
 
 		// Provide context about the module
-		$handler->initContext( $this, $match['path'], $config );
+		$handler->initContext( $this, $match['path'], $config, $openApiSpec );
 
 		// Inject services and state from the router
 		$this->getRouter()->prepareHandler( $handler );
