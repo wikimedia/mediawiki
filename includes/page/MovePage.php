@@ -103,8 +103,8 @@ class MovePage {
 	 * @see MovePageFactory
 	 */
 	public function __construct(
-		Title $oldTitle,
-		Title $newTitle,
+		PageIdentity $oldTitle,
+		PageIdentity $newTitle,
 		ServiceOptions $options,
 		IConnectionProvider $dbProvider,
 		NamespaceInfo $nsInfo,
@@ -125,8 +125,8 @@ class MovePage {
 		DeletePageFactory $deletePageFactory,
 		LogFormatterFactory $logFormatterFactory
 	) {
-		$this->oldTitle = $oldTitle;
-		$this->newTitle = $newTitle;
+		$this->oldTitle = Title::newFromPageIdentity( $oldTitle );
+		$this->newTitle = Title::newFromPageIdentity( $newTitle );
 
 		$this->options = $options;
 		$this->dbProvider = $dbProvider;

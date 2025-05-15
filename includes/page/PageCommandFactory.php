@@ -41,7 +41,6 @@ use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\RevisionStoreFactory;
 use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\Title\NamespaceInfo;
-use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\User\ActorMigration;
@@ -252,11 +251,11 @@ class PageCommandFactory implements
 	}
 
 	/**
-	 * @param Title $from
-	 * @param Title $to
+	 * @param PageIdentity $from
+	 * @param PageIdentity $to
 	 * @return MovePage
 	 */
-	public function newMovePage( Title $from, Title $to ): MovePage {
+	public function newMovePage( PageIdentity $from, PageIdentity $to ): MovePage {
 		return new MovePage(
 			$from,
 			$to,
