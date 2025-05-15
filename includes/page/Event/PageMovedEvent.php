@@ -21,6 +21,7 @@
 namespace MediaWiki\Page\Event;
 
 use MediaWiki\Page\ExistingPageRecord;
+use MediaWiki\Page\PageRecord;
 use MediaWiki\Storage\PageUpdateCauses;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
@@ -38,18 +39,21 @@ use Wikimedia\Assert\Assert;
 class PageMovedEvent extends PageStateEvent {
 	public const TYPE = 'PageMoved';
 	private string $reason;
+	private ?PageRecord $redirectPage;
 
 	/**
 	 * @param ExistingPageRecord $pageRecordBefore The page before the move.
 	 * @param ExistingPageRecord $pageRecordAfter The page after the move.
 	 * @param UserIdentity $performer The user performing the move.
 	 * @param string $reason The reason for the move.
+	 * @param ?PageRecord $redirectPage The page redirect, if one was created during the move.
 	 */
 	public function __construct(
 		ExistingPageRecord $pageRecordBefore,
 		ExistingPageRecord $pageRecordAfter,
 		UserIdentity $performer,
-		string $reason
+		string $reason,
+		?PageRecord $redirectPage = null
 	) {
 		Assert::parameter(
 			$pageRecordBefore->getId() === $pageRecordAfter->getId(),
@@ -65,6 +69,7 @@ class PageMovedEvent extends PageStateEvent {
 		);
 
 		$this->reason = $reason;
+		$this->redirectPage = $redirectPage;
 		$this->declareEventType( self::TYPE );
 	}
 
@@ -93,5 +98,24 @@ class PageMovedEvent extends PageStateEvent {
 	 */
 	public function getReason(): string {
 		return $this->reason;
+	}
+
+	/*
+	 * Returns a PageRecord representing the page redirect at
+	 * the old title, if one was created during the move.
+	 *
+	 * @return PageRecord|null
+	 */
+	public function getRedirectPage(): ?PageRecord {
+		return $this->redirectPage;
+	}
+
+	/**
+	 * Whether a redirect page at the old title was created during the move.
+	 *
+	 * @return bool
+	 */
+	public function wasRedirectCreated(): bool {
+		return $this->redirectPage !== null;
 	}
 }
