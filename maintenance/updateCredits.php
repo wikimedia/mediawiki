@@ -28,9 +28,9 @@ if ( PHP_SAPI != 'cli' ) {
 	die( "This script can only be run from the command line.\n" );
 }
 
-$CREDITS = 'CREDITS';
-$START_CONTRIBUTORS = '<!-- BEGIN CONTRIBUTOR LIST -->';
-$END_CONTRIBUTORS = '<!-- END CONTRIBUTOR LIST -->';
+const CREDITS = 'CREDITS';
+const START_CONTRIBUTORS = '<!-- BEGIN CONTRIBUTOR LIST -->';
+const END_CONTRIBUTORS = '<!-- END CONTRIBUTOR LIST -->';
 
 $inHeader = true;
 $inFooter = false;
@@ -38,18 +38,18 @@ $header = [];
 $contributors = [];
 $footer = [];
 
-if ( !file_exists( $CREDITS ) ) {
+if ( !file_exists( CREDITS ) ) {
 	exit( 'No CREDITS file found. Are you running this script in the right directory?' );
 }
 
-$lines = explode( "\n", file_get_contents( $CREDITS ) );
+$lines = explode( "\n", file_get_contents( CREDITS ) );
 foreach ( $lines as $line ) {
 	if ( $inHeader ) {
 		$header[] = $line;
-		$inHeader = $line !== $START_CONTRIBUTORS;
+		$inHeader = $line !== START_CONTRIBUTORS;
 	} elseif ( $inFooter ) {
 		$footer[] = $line;
-	} elseif ( $line == $END_CONTRIBUTORS ) {
+	} elseif ( $line == END_CONTRIBUTORS ) {
 		$inFooter = true;
 		$footer[] = $line;
 	} else {
@@ -79,6 +79,6 @@ array_walk( $contributors, static function ( &$v, $k ) {
 } );
 
 file_put_contents(
-	$CREDITS,
+	CREDITS,
 	implode( "\n", array_merge( $header, $contributors, $footer ) )
 );
