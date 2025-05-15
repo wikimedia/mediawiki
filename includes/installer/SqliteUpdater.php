@@ -159,6 +159,8 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'addTable', 'collation', 'patch-collation.sql' ],
 			[ 'dropTable', 'module_deps' ],
 
+			// 1.45
+			[ 'addTable', 'existencelinks', 'patch-existencelinks.sql' ],
 		];
 	}
 
