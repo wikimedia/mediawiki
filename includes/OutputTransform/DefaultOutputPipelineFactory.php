@@ -56,12 +56,6 @@ class DefaultOutputPipelineFactory {
 				'HookContainer',
 			],
 		],
-		'ParsoidLocalization' => [
-			'class' => ParsoidLocalization::class,
-			'services' => [
-				'TitleFactory',
-			]
-		],
 		'ExecutePostCacheTransformHooks' => [
 			'class' => ExecutePostCacheTransformHooks::class,
 			'services' => [
@@ -81,11 +75,21 @@ class DefaultOutputPipelineFactory {
 				'TitleFactory',
 			],
 		],
+		// HandleParsoidSectionLinks and ParsoidLocalization are currently the only two DOM passes; we keep them
+		// adjacent to each other to be able to skip the DOM->text->DOM transformations (TODO)
 		'HandleParsoidSectionLinks' => [
 			'class' => HandleParsoidSectionLinks::class,
 			'services' => [
 				'TitleFactory',
 			],
+		],
+		// This should be before DeduplicateStyles because some system messages may use TemplateStyles (so we
+		// want to expand them before deduplication).
+		'ParsoidLocalization' => [
+			'class' => ParsoidLocalization::class,
+			'services' => [
+				'TitleFactory',
+			]
 		],
 		'HandleTOCMarkers' => [
 			'class' => HandleTOCMarkers::class,
