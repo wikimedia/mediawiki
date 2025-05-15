@@ -366,9 +366,8 @@ class MetricTest extends MediaWikiUnitTestCase {
 		$statsHelper = StatsFactory::newUnitTestingHelper();
 		$statsFactory = $statsHelper->getStatsFactory();
 
-		$timer = $statsFactory->getTiming( 'test' )
-			->setLabel( 'foo', 'bar' )
-			->start();
+		$timer = $statsFactory->getTiming( 'test' )->setLabel( 'foo', 'bar' );
+		$timer->start();
 		$timer->setLabel( 'foo', 'baz' );
 		$timer->stop();
 
@@ -513,5 +512,48 @@ class MetricTest extends MediaWikiUnitTestCase {
 			[ 'mediawiki.metricName:1|c|#x:labelOne,y:labelTwo' ],
 			$statsHelper->consumeAllFormatted()
 		);
+	}
+
+	public int $recursions = 0;
+	public int $maxRecursions = 2;
+
+	public function recur( $statsFactory ) {
+		$timing = $statsFactory->getTiming( 'metricName' )->start();
+		if ( $this->recursions > $this->maxRecursions ) {
+			return;
+		} else {
+			$this->recursions += 1;
+			$this->recur( $statsFactory );
+		}
+		$timing->stop();
+	}
+
+	public function testTimingRecursion() {
+		$statsHelper = StatsFactory::newUnitTestingHelper();
+		$this->recur( $statsHelper->getStatsFactory() );
+		$this->assertSame( 3, $statsHelper->count( 'metricName' ) );
+	}
+
+	public function testStopRunningTimerWarning() {
+		$statsFactory = StatsFactory::newNull();
+		$timing = $statsFactory->getTiming( 'metricName' )->start();
+		$callable = static function () use ( $timing ) {
+			$timing->stop();
+		};
+		$callable();
+		$this->expectPHPWarning( 'Stats: (metricName) cannot call stop() more than once on a RunningTimer.', $callable, true );
+	}
+
+	public function testRunningTimerNullMetric() {
+		$statsHelper = StatsFactory::newUnitTestingHelper();
+		$statsFactory = $statsHelper->getStatsFactory();
+
+		// put one good metric in the cache
+		$statsFactory->getTiming( 'metricName' )->start()->stop();
+
+		// try setting the label to something invalid making RunningTimer::metric = NullMetric()
+		@$timing = $statsFactory->getTiming( 'metricName' )->start()->setLabel( 'foo', '' )->stop();
+
+		$this->assertSame( 1, $statsHelper->count( 'metricName' ) );
 	}
 }
