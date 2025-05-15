@@ -376,7 +376,7 @@
 	"apihelp-options-param-change": "List of changes, formatted name=value (e.g. skin=vector). If no value is given (not even an equals sign), e.g., optionname|otheroption|..., the option will be reset to its default value. If any value passed contains the pipe character (<kbd>|</kbd>), use the [[Special:ApiHelp/main#main/datatypes|alternative multiple-value separator]] for correct operation.",
 	"apihelp-options-param-optionname": "The name of the option that should be set to the value given by <var>$1optionvalue</var>.",
 	"apihelp-options-param-optionvalue": "The value for the option specified by <var>$1optionname</var>. When <var>$1optionname</var> is set but <var>$1optionvalue</var> is omitted, the option will be reset to its default value.",
-	"apihelp-options-param-global": "What to do if the option was set globally using the GlobalPreferences extension.\n\n* <kbd>ignore</kbd>: Do nothing. The option remains with its previous value.\n* <kbd>override</kbd>: Add a local override.\n* <kbd>update</kbd>: Update the option globally.",
+	"apihelp-options-param-global": "What to do if the option was set globally using the GlobalPreferences extension.\n\n* <kbd>ignore</kbd>: Do nothing. The option remains with its previous value.\n* <kbd>override</kbd>: Add a local override.\n* <kbd>update</kbd>: Update the option globally.\n* <kbd>create</kbd>: Set the option globally, overriding any local value.",
 	"apihelp-options-example-reset": "Reset all preferences.",
 	"apihelp-options-example-change": "Change <kbd>skin</kbd> and <kbd>hideminor</kbd> preferences.",
 	"apihelp-options-example-complex": "Reset all preferences, then set <kbd>skin</kbd> and <kbd>nickname</kbd>.",

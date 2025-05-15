@@ -76,7 +76,8 @@ class ApiOptions extends ApiOptionsBase {
 		$globalUpdateType = [
 			'ignore' => UserOptionsManager::GLOBAL_IGNORE,
 			'update' => UserOptionsManager::GLOBAL_UPDATE,
-			'override' => UserOptionsManager::GLOBAL_OVERRIDE
+			'override' => UserOptionsManager::GLOBAL_OVERRIDE,
+			'create' => UserOptionsManager::GLOBAL_CREATE,
 		][ $this->getGlobalParam() ];
 
 		$this->getUserOptionsManager()->setOption(
@@ -116,7 +117,7 @@ class ApiOptions extends ApiOptionsBase {
 	public function getAllowedParams() {
 		return parent::getAllowedParams() + [
 			'global' => [
-				ParamValidator::PARAM_TYPE => [ 'ignore', 'update', 'override' ],
+				ParamValidator::PARAM_TYPE => [ 'ignore', 'update', 'override', 'create' ],
 				ParamValidator::PARAM_DEFAULT => 'ignore'
 			]
 		];
