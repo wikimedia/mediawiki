@@ -12815,6 +12815,22 @@ Check lossless in formatNum
 !! end
 
 !! test
+Check bn lossless in formatNum
+!! options
+language=bn
+!! wikitext
+{{formatnum:9999999999999999}}
+{{formatnum:9999999999999999|LOSSLESS}}
+!! html/php
+<p>১০,০০,০০,০০,০০,০০,০০,০০০
+9999999999999999
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"formatnum:9999999999999999","function":"formatnum"},"params":{},"i":0}}]}'>১০,০০,০০,০০,০০,০০,০০,০০০</span>
+<span about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"formatnum:9999999999999999","function":"formatnum"},"params":{"1":{"wt":"LOSSLESS"}},"i":0}}]}'>9999999999999999</span></p>
+!! end
+
+!! test
 Check noCommafy + lossless in formatNum
 !! wikitext
 {{formatnum:999999999999999|NOSEP|LOSSLESS}}
