@@ -120,6 +120,9 @@ because of Phabricator reports.
 
 * UserNameUtils::getTempPlaceholder() has been deprecated and now emits
   deprecation warnings. Use TempUserConfig::getPlaceholderName() instead.
+* Calling ApiOptions::__construct() without $userOptionsManager and
+  $preferencesFactory has been deprecated and emits deprecation warnings.
+  Code that extends ApiOptions should instead extend ApiOptionsBase.
 * …
 
 === Other changes in 1.45 ===

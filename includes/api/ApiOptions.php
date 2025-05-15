@@ -40,13 +40,15 @@ class ApiOptions extends ApiOptionsBase {
 		?UserOptionsManager $userOptionsManager = null,
 		?PreferencesFactory $preferencesFactory = null
 	) {
-		/**
-		 * This class is extended by GlobalPreferences extension.
-		 * So it falls back to the global state.
-		 */
-		$services = MediaWikiServices::getInstance();
-		$userOptionsManager ??= $services->getUserOptionsManager();
-		$preferencesFactory ??= $services->getPreferencesFactory();
+		if ( $userOptionsManager === null || $preferencesFactory === null ) {
+			wfDeprecatedMsg(
+				__METHOD__ . ': calling without $userOptionsManager and $preferencesFactory is deprecated',
+				'1.45'
+			);
+			$services = MediaWikiServices::getInstance();
+			$userOptionsManager ??= $services->getUserOptionsManager();
+			$preferencesFactory ??= $services->getPreferencesFactory();
+		}
 		parent::__construct( $main, $action, $userOptionsManager, $preferencesFactory );
 	}
 
@@ -93,11 +95,13 @@ class ApiOptions extends ApiOptionsBase {
 		$this->getUserForUpdates()->saveSettings();
 	}
 
-	public function getHelpUrls() {
+	/** @codeCoverageIgnore Merely declarative */
+	public function getHelpUrls(): string {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Options';
 	}
 
-	protected function getExamplesMessages() {
+	/** @codeCoverageIgnore Merely declarative */
+	protected function getExamplesMessages(): array {
 		return [
 			'action=options&reset=&token=123ABC'
 				=> 'apihelp-options-example-reset',
