@@ -184,12 +184,7 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 		$parserOutput->setFromParserOptions( $options );
 
 		$parserOutput->recordTimeProfile();
-		$limitReporting = MediaWikiServices::getInstance()->getMainConfig()->get(
-			MainConfigNames::EnableParserLimitReporting
-		);
-		if ( $limitReporting ) {
-			$this->dataAccess->makeLimitReport( $pageConfig, $options, $parserOutput );
-		}
+		$this->dataAccess->makeLimitReport( $pageConfig, $options, $parserOutput );
 
 		// T371713: Collect statistics on parsing time -vs- presence of
 		// $previousOutput
