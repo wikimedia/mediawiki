@@ -121,7 +121,7 @@ class HTMLButtonField extends HTMLFormField {
 
 	public function getInputCodex( $value, $hasErrors ) {
 		$flags = $this->mFlags;
-		$buttonLabel = $this->buttonLabel ?: htmlspecialchars( $this->getDefault() );
+		$buttonLabel = $this->buttonLabel ?: $this->getDefault();
 		$buttonClasses = [ 'mw-htmlform-submit', 'cdx-button', $this->mClass ];
 		$buttonAttribs = [
 			'class' => $buttonClasses,
@@ -132,6 +132,8 @@ class HTMLButtonField extends HTMLFormField {
 			'formnovalidate' => $this->mFormnovalidate,
 		] + $this->getAttributes( [ 'disabled', 'tabindex' ] );
 
+		// T394396 - Needs revisiting. Merged with suppress to match sec release.
+		// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 		return static::buildCodexComponent(
 			$flags,
 			$buttonLabel,
@@ -170,7 +172,7 @@ class HTMLButtonField extends HTMLFormField {
 		$attribs['class'] = $buttonClassesAndFlags;
 
 		$buttonHtml = Html::rawElement(
-			'button', $attribs, $buttonLabel
+			'button', $attribs, htmlspecialchars( $buttonLabel )
 		);
 
 		return $buttonHtml;
