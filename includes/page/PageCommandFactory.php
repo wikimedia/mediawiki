@@ -173,12 +173,6 @@ class PageCommandFactory implements
 		$this->logFormatterFactory = $logFormatterFactory;
 	}
 
-	/**
-	 * @param Authority $performer
-	 * @param PageIdentity $page
-	 * @param string $newContentModel
-	 * @return ContentModelChange
-	 */
 	public function newContentModelChange(
 		Authority $performer,
 		PageIdentity $page,
@@ -223,12 +217,6 @@ class PageCommandFactory implements
 		);
 	}
 
-	/**
-	 * @param PageIdentity $source
-	 * @param PageIdentity $destination
-	 * @param string|null $timestamp
-	 * @return MergeHistory
-	 */
 	public function newMergeHistory(
 		PageIdentity $source,
 		PageIdentity $destination,
@@ -250,11 +238,6 @@ class PageCommandFactory implements
 		);
 	}
 
-	/**
-	 * @param PageIdentity $from
-	 * @param PageIdentity $to
-	 * @return MovePage
-	 */
 	public function newMovePage( PageIdentity $from, PageIdentity $to ): MovePage {
 		return new MovePage(
 			$from,
@@ -283,11 +266,6 @@ class PageCommandFactory implements
 
 	/**
 	 * Create a new command instance for page rollback.
-	 *
-	 * @param PageIdentity $page
-	 * @param Authority $performer
-	 * @param UserIdentity $byUser
-	 * @return RollbackPage
 	 */
 	public function newRollbackPage(
 		PageIdentity $page,
