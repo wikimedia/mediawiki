@@ -470,9 +470,17 @@ class LogFormatter {
 				break;
 
 			case 'merge':
-				$text = wfMessage( 'pagemerge-logentry' )
-					->rawParams( $target, $parameters['4::dest'], $parameters['5::mergepoint'] )
-					->inContentLanguage()->escaped();
+				switch ( $entry->getSubtype() ) {
+					case 'merge':
+						$text = wfMessage( 'pagemerge-logentry' )
+							->rawParams( $target, $parameters['4::dest'], $parameters['5::mergepoint'] )
+							->inContentLanguage()->escaped();
+						break;
+
+					case 'merge-into':
+						// Nothing for IRC (already covered by the log at the source page)
+						return '';
+				}
 				break;
 
 			case 'block':

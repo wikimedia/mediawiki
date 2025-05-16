@@ -2308,6 +2308,12 @@ return [
 						'TitleParser',
 					],
 				],
+				'merge/merge-into' => [
+					'class' => 'MediaWiki\\Logging\\MergeLogFormatter',
+					'services' => [
+						'TitleParser',
+					],
+				],
 				'move/move' => [
 					'class' => 'MediaWiki\\Logging\\MoveLogFormatter',
 					'services' => [

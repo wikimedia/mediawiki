@@ -223,6 +223,15 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusOK( $status );
 
 		$this->assertTrue( $title->exists() );
+
+		$srcLog = $this->getLatestLogEntry( $title );
+		$dstLog = $this->getLatestLogEntry( $title2 );
+
+		$this->assertNotNull( $srcLog );
+		$this->assertSame( 'merge/merge', $srcLog->getFullType() );
+
+		$this->assertNotNull( $dstLog );
+		$this->assertSame( 'merge/merge-into', $dstLog->getFullType() );
 	}
 
 	/**
@@ -260,6 +269,30 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 			IDBAccessObject::READ_LATEST
 		);
 		$this->assertNull( $pageAfter );
+
+		$srcLog = $this->getLatestLogEntry( $title );
+		$dstLog = $this->getLatestLogEntry( $title2 );
+
+		$this->assertNotNull( $srcLog );
+		$this->assertSame( 'merge/merge', $srcLog->getFullType() );
+
+		$this->assertNotNull( $dstLog );
+		$this->assertSame( 'merge/merge-into', $dstLog->getFullType() );
+	}
+
+	private function getLatestLogEntry( PageIdentity $page ): ?LogEntry {
+		$row = DatabaseLogEntry::newSelectQueryBuilder( $this->getDb() )
+			->where( [ 'log_page' => $page->getId() ] )
+			->orderBy( 'log_id', 'DESC' )
+			->limit( 1 )
+			->caller( __METHOD__ )
+			->fetchRow();
+
+		if ( !$row ) {
+			return null;
+		}
+
+		return DatabaseLogEntry::newFromRow( $row );
 	}
 
 	/**
@@ -457,9 +490,9 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		// not edits.
 		if ( $deleteSource ) {
 			// If the source page gets deleted, there's an additional RC entry.
-			$this->expectChangeTrackingUpdates( 0, 2, 0, 0, 0 );
+			$this->expectChangeTrackingUpdates( 0, 3, 0, 0, 0 );
 		} else {
-			$this->expectChangeTrackingUpdates( 0, 1, 0, 0, 1 );
+			$this->expectChangeTrackingUpdates( 0, 2, 0, 0, 1 );
 		}
 
 		// The source page should get re-indexed.
