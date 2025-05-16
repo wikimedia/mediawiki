@@ -30,10 +30,6 @@ use Wikimedia\Rdbms\LikeValue;
 /**
  * Handles searching prefixes of user names
  *
- * @note There are two classes called UserNamePrefixSearch.  You should use this class, in
- * namespace MediaWiki\User, which is a service.  \UserNamePrefixSearch is a deprecated static wrapper
- * that forwards to the service class.
- *
  * @since 1.36
  * @ingroup User
  * @author DannyS712

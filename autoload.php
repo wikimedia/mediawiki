@@ -3627,7 +3627,6 @@ $wgAutoloadLocalClasses = [
 	'UserGroupExpiryJob' => __DIR__ . '/includes/user/UserGroupExpiryJob.php',
 	'UserGroupMembership' => __DIR__ . '/includes/user/UserGroupMembership.php',
 	'UserMailer' => __DIR__ . '/includes/mail/UserMailer.php',
-	'UserNamePrefixSearch' => __DIR__ . '/includes/user/UserNamePrefixSearch_deprecated.php',
 	'UserNotLoggedIn' => __DIR__ . '/includes/exception/UserNotLoggedIn.php',
 	'UserOptionsMaintenance' => __DIR__ . '/maintenance/userOptions.php',
 	'UserOptionsUpdateJob' => __DIR__ . '/includes/user/Options/UserOptionsUpdateJob.php',

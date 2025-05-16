@@ -182,6 +182,8 @@ because of Phabricator reports.
   obtain a list of strings.
 * The parameter $default of WebRequest::getRawVal(), deprecated since 1.43,
   is now removed.
+* The UserNamePrefixSearch class, deprecated in 1.41 has been removed,
+  the MediaWiki\User\UserNamePrefixSearch service should be used instead.
 * …
 
 === Deprecations in 1.45 ===
