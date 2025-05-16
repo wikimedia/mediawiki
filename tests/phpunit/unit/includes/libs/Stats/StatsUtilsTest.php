@@ -20,7 +20,7 @@ class StatsUtilsTest extends TestCase {
 		$this->assertEquals( $expected, $actual );
 	}
 
-	public function provideMakeBucketsFromMean() {
+	public static function provideMakeBucketsFromMean() {
 		yield 'Skip = 1' => [
 			11, 1,
 			[ 4.7, 5.6, 6.8, 8.2, 10, 12, 15, 18, 22 ]
