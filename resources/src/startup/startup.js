@@ -37,7 +37,7 @@ function isCompatible() {
 		// https://blog.whatwg.org/this-week-in-html-5-episode-30
 		'localStorage' in window &&
 
-		// Ensure ES2015 grammar and runtime API (a.k.a. ES6)
+		// Ensure ES2015 runtime API (a.k.a. ES6)
 		//
 		// In practice, Promise.finally is a good proxy for overall ES6 support and
 		// rejects most unsupporting browsers in one sweep. The feature itself
@@ -45,32 +45,37 @@ function isCompatible() {
 		// https://caniuse.com/promise-finally
 		// Chrome 63+, Edge 18+, Opera 50+, Safari 11.1+, Firefox 58+, iOS 11+
 		//
+		// ES6 RegExp.prototype.flags
+		// https://caniuse.com/mdn-javascript_builtins_regexp_flags
+		// Edge 79+ (Chromium-based, rejects MSEdgeHTML-based Edge <= 18)
+		//
 		// eslint-disable-next-line es-x/no-promise, es-x/no-promise-prototype-finally, dot-notation
 		typeof Promise === 'function' && Promise.prototype[ 'finally' ] &&
-		// ES6 Arrow Functions (with default params), this ensures
-		// genuine syntax support for ES6 grammar, not just API coverage.
+		// eslint-disable-next-line es-x/no-regexp-prototype-flags
+		/./g.flags === 'g' &&
+
+		// Ensure ES2017 grammar and syntax support, including:
+		// - ES6 Arrow Functions (with default params)
+		// - ES2017 Trailing comma in function params
+		// - ES2017 Async Functions
 		//
-		// https://caniuse.com/arrow-functions
-		// Chrome 45+, Safari 10+, Firefox 22+, Opera 32+
+		// https://caniuse.com/mdn-javascript_grammar_trailing_commas_trailing_commas_in_functions
+		// Chrome 58+, Edge 14+, Safari 10+, Firefox 52+, Opera 45+
+		//
+		// https://caniuse.com/async-functions
+		// Chrome 55+, Edge 15+, Safari 11+, Firefox 52+, Opera 42+
 		//
 		// Based on Benjamin De Cock's snippet here:
 		// https://gist.github.com/bendc/d7f3dbc83d0f65ca0433caf90378cd95
 		( function () {
 			try {
 				// eslint-disable-next-line no-new, no-new-func
-				new Function( '(a = 0) => a' );
+				new Function( 'async (a = 0,) => a' );
 				return true;
 			} catch ( e ) {
 				return false;
 			}
-		}() ) &&
-		// ES6 RegExp.prototype.flags
-		//
-		// https://caniuse.com/mdn-javascript_builtins_regexp_flags
-		// Edge 79+ (Chromium-based, rejects MSEdgeHTML-based Edge <= 18)
-		//
-		// eslint-disable-next-line es-x/no-regexp-prototype-flags
-		/./g.flags === 'g'
+		}() )
 	);
 }
 
