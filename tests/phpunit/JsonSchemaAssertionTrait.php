@@ -54,13 +54,14 @@ trait JsonSchemaAssertionTrait {
 	 * @param string|array|stdClass $json A JSONic data structure, or a JSON string.
 	 * @param array<string, string> $resources Mapping of schema IDs to local files,
 	 *        to avoid loading schemas over the network during testing.
+	 * @param string $message
 	 */
-	private function assertMatchesJsonSchema( $schema, $json, array $resources = [] ): void {
+	private function assertMatchesJsonSchema( $schema, $json, array $resources = [], string $message = '' ): void {
 		if ( is_string( $json ) ) {
 			try {
 				$json = json_decode( $json, false, JSON_THROW_ON_ERROR );
 			} catch ( JsonException $ex ) {
-				self::fail( 'Invalid JSON: ' . $ex->getMessage() );
+				self::fail( ( $message !== '' ? $message . ' - ' : '' ) . 'Invalid JSON: ' . $ex->getMessage() );
 			}
 		}
 		if ( is_string( $schema ) ) {
@@ -87,7 +88,7 @@ trait JsonSchemaAssertionTrait {
 		if ( !$validator->isValid() ) {
 			foreach ( $validator->getErrors() as $error ) {
 				$error = json_encode( $error );
-				self::fail( "JSON schema validation failed: $error" );
+				self::fail( ( $message !== '' ? $message . ' - ' : '' ) . "JSON schema validation failed: $error" );
 			}
 		}
 
@@ -100,14 +101,15 @@ trait JsonSchemaAssertionTrait {
 	 * Currently only works for schemas that match Draft-4.
 	 *
 	 * @param array $schema The schema to validate.
+	 * @param string $message
 	 * @throws LogicException if the schema is invalid
 	 */
-	public function assertValidJsonSchema( array $schema ): void {
+	public function assertValidJsonSchema( array $schema, string $message = '' ): void {
 		// Load the draft-04 schema from the local file
 		$metaSchema = MW_INSTALL_PATH . '/vendor/justinrainbow/json-schema/dist/' .
 			'schema/json-schema-draft-04.json';
 
-		self::assertMatchesJsonSchema( $metaSchema, $schema );
+		self::assertMatchesJsonSchema( $metaSchema, $schema, [], $message );
 	}
 
 }

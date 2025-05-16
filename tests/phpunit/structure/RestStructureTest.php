@@ -90,49 +90,6 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 		return $services;
 	}
 
-	private function getRouterForDataProviders(): Router {
-		static $router = null;
-
-		if ( !$router ) {
-			$language = $this->createNoOpMock( Language::class, [ 'getCode' ] );
-			$language->method( 'getCode' )->willReturn( 'en' );
-
-			$title = Title::makeTitle( NS_SPECIAL, 'Badtitle/dummy title for RestStructureTest' );
-			$authority = new SimpleAuthority( new UserIdentityValue( 0, 'Testor' ), [] );
-
-			$request = $this->createNoOpMock( WebRequest::class, [ 'getSession' ] );
-			$request->method( 'getSession' )->willReturn( $this->createNoOpMock( Session::class ) );
-
-			$context = $this->createNoOpMock(
-				RequestContext::class,
-				[ 'getLanguage', 'getTitle', 'getAuthority', 'getRequest' ]
-			);
-			$context->method( 'getLanguage' )->willReturn( $language );
-			$context->method( 'getTitle' )->willReturn( $title );
-			$context->method( 'getAuthority' )->willReturn( $authority );
-			$context->method( 'getRequest' )->willReturn( $request );
-
-			$responseFactory = $this->createNoOpMock( ResponseFactory::class, [ 'getFormattedMessage' ] );
-			$responseFactory->method( 'getFormattedMessage' )->willReturn( '' );
-
-			$cors = $this->createNoOpMock( CorsUtils::class );
-
-			$services = $this->getFakeServiceContainer();
-
-			// NOTE: createRouter() implements the logic for determining the list of route files to load.
-			$entryPoint = TestingAccessWrapper::newFromClass( EntryPoint::class );
-			$router = $entryPoint->createRouter(
-				$services,
-				$context,
-				new RequestData(),
-				$responseFactory,
-				$cors
-			);
-		}
-
-		return $router;
-	}
-
 	/**
 	 * Initialize/fetch the Router instance for testing
 	 * @warning Must not be called in data providers!
@@ -170,41 +127,39 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 		return $this->router;
 	}
 
-	/**
-	 * @dataProvider provideRoutes
-	 */
-	public function testPathParameters( string $moduleName, string $method, string $path ): void {
-		$router = $this->getTestRouter();
-		$module = $router->getModule( $moduleName );
-
-		$request = new RequestData( [ 'method' => $method ] );
-		$handler = $module->getHandlerForPath( $path, $request, false );
-
-		$params = $handler->getParamSettings();
-		$dataName = $this->dataName();
-
-		// Test that all parameters in the path exist and are declared as such
+	public function testPathParameters(): void {
 		$matcher = TestingAccessWrapper::newFromObject( new PathMatcher );
-		$pathParams = [];
-		foreach ( explode( '/', $path ) as $part ) {
-			$param = $matcher->getParamName( $part );
-			if ( $param !== false ) {
-				$this->assertArrayHasKey( $param, $params, "Path parameter $param exists" );
-				$this->assertSame( 'path', $params[$param][Handler::PARAM_SOURCE] ?? null,
-					"$dataName: Path parameter {{$param}} must have PARAM_SOURCE = 'path'" );
-				$pathParams[$param] = true;
-			}
-		}
 
-		// Test that any path parameters not in the path aren't marked as required
-		foreach ( $params as $param => $settings ) {
-			if ( ( $settings[Handler::PARAM_SOURCE] ?? null ) === 'path' &&
-				!isset( $pathParams[$param] )
-			) {
-				$this->assertFalse( $settings[ParamValidator::PARAM_REQUIRED] ?? false,
-					"$dataName, parameter $param: PARAM_REQUIRED cannot be true for a path parameter "
-					. 'not in the path'
-				);
+		$router = $this->getTestRouter();
+		foreach ( $this->generateRoutesTestData( $router ) as [ $moduleName, $module, $method, $path ] ) {
+			$message = "Handler in module '$moduleName' for $method $path.";
+			$request = new RequestData( [ 'method' => $method ] );
+			$handler = $module->getHandlerForPath( $path, $request, false );
+
+			$params = $handler->getParamSettings();
+
+			// Test that all parameters in the path exist and are declared as such
+			$pathParams = [];
+			foreach ( explode( '/', $path ) as $part ) {
+				$param = $matcher->getParamName( $part );
+				if ( $param !== false ) {
+					$this->assertArrayHasKey( $param, $params, $message . " Path parameter $param exists" );
+					$this->assertSame( 'path', $params[$param][Handler::PARAM_SOURCE] ?? null,
+						$message . " Path parameter {{$param}} must have PARAM_SOURCE = 'path'" );
+					$pathParams[$param] = true;
+				}
+			}
+
+			// Test that any path parameters not in the path aren't marked as required
+			foreach ( $params as $param => $settings ) {
+				if ( ( $settings[Handler::PARAM_SOURCE] ?? null ) === 'path' &&
+					!isset( $pathParams[$param] )
+				) {
+					$this->assertFalse( $settings[ParamValidator::PARAM_REQUIRED] ?? false,
+						$message . " Parameter $param: PARAM_REQUIRED cannot be true for a path parameter "
+						. 'not in the path'
+					);
+				}
 			}
 		}
 
@@ -212,102 +167,81 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 		$this->addToAssertionCount( 1 );
 	}
 
-	/**
-	 * @dataProvider provideRoutes
-	 */
-	public function testBodyParameters( string $moduleName, string $method, string $path ): void {
+	public function testBodyParameters(): void {
 		$router = $this->getTestRouter();
-		$module = $router->getModule( $moduleName );
+		foreach ( $this->generateRoutesTestData( $router ) as [ $moduleName, $module, $method, $path ] ) {
+			$message = "Handler in module '$moduleName' for $method $path.";
+			$request = new RequestData( [ 'method' => $method ] );
+			$handler = $module->getHandlerForPath( $path, $request, false );
 
-		$request = new RequestData( [ 'method' => $method ] );
-		$handler = $module->getHandlerForPath( $path, $request, false );
+			$bodySettings = $handler->getBodyParamSettings();
 
-		$bodySettings = $handler->getBodyParamSettings();
+			if ( !$bodySettings ) {
+				continue;
+			}
 
-		if ( !$bodySettings ) {
-			$this->addToAssertionCount( 1 );
-			return;
-		}
+			foreach ( $bodySettings as $settings ) {
+				$this->assertArrayHasKey( Handler::PARAM_SOURCE, $settings, $message );
+				$this->assertSame( 'body', $settings[Handler::PARAM_SOURCE], $message );
 
-		foreach ( $bodySettings as $settings ) {
-			$this->assertArrayHasKey( Handler::PARAM_SOURCE, $settings );
-			$this->assertSame( 'body', $settings[Handler::PARAM_SOURCE] );
-
-			if ( isset( $settings[ ArrayDef::PARAM_SCHEMA ] ) ) {
-				try {
-					$this->assertValidJsonSchema( $settings[ ArrayDef::PARAM_SCHEMA ] );
-				} catch ( LogicException $e ) {
-					$this->fail( "Invalid JSON schema for parameter {$settings['name']}: " . $e->getMessage() );
+				if ( isset( $settings[ ArrayDef::PARAM_SCHEMA ] ) ) {
+					try {
+						$this->assertValidJsonSchema( $settings[ ArrayDef::PARAM_SCHEMA ], $message );
+					} catch ( LogicException $e ) {
+						$this->fail( $message . " Invalid JSON schema for parameter {$settings['name']}: " . $e->getMessage() );
+					}
 				}
 			}
 		}
+		$this->addToAssertionCount( 1 );
 	}
 
-	/**
-	 * @dataProvider provideRoutes
-	 */
-	public function testBodyParametersNotInParamSettings( string $moduleName, string $method, string $path ): void {
+	public function testBodyParametersNotInParamSettings(): void {
 		$router = $this->getTestRouter();
-		$module = $router->getModule( $moduleName );
+		foreach ( $this->generateRoutesTestData( $router ) as [ $moduleName, $module, $method, $path ] ) {
+			$message = "Handler in module '$moduleName' for $method $path.";
+			$request = new RequestData( [ 'method' => $method ] );
+			$handler = $module->getHandlerForPath( $path, $request, false );
 
-		$request = new RequestData( [ 'method' => $method ] );
-		$handler = $module->getHandlerForPath( $path, $request, false );
+			$paramSettings = $handler->getParamSettings();
 
-		$paramSettings = $handler->getParamSettings();
+			if ( !$paramSettings ) {
+				continue;
+			}
 
-		if ( !$paramSettings ) {
-			$this->addToAssertionCount( 1 );
-			return;
+			foreach ( $paramSettings as $settings ) {
+				$this->assertArrayHasKey( Handler::PARAM_SOURCE, $settings, $message );
+				$this->assertNotSame( 'body', $settings[Handler::PARAM_SOURCE], $message );
+			}
 		}
-
-		foreach ( $paramSettings as $settings ) {
-			$this->assertArrayHasKey( Handler::PARAM_SOURCE, $settings );
-			$this->assertNotSame( 'body', $settings[Handler::PARAM_SOURCE] );
-		}
+		$this->addToAssertionCount( 1 );
 	}
 
-	public function provideModules(): Iterator {
-		$router = $this->getRouterForDataProviders();
-
-		foreach ( $router->getModuleIds() as $name ) {
-			yield "Module '$name'" => [ $name ];
-		}
-	}
-
-	public function provideRoutes(): Iterator {
-		$router = $this->getRouterForDataProviders();
-
+	public function generateRoutesTestData( Router $router ): Iterator {
 		foreach ( $router->getModuleIds() as $moduleName ) {
 			$module = $router->getModule( $moduleName );
 
 			foreach ( $module->getDefinedPaths() as $path => $methods ) {
 
 				foreach ( $methods as $method ) {
-					// NOTE: we can't use the $module object directly, since it
-					//       may hold references to incorrect service instance.
 					yield "Handler in module '$moduleName' for $method $path"
-						=> [ $moduleName, $method, $path ];
+						=> [ $moduleName, $module, $method, $path ];
 				}
 			}
 		}
 	}
 
-	/**
-	 * @dataProvider provideRoutes
-	 */
-	public function testParameters( string $moduleName, string $method, string $path ): void {
+	public function testParameters(): void {
 		$router = $this->getTestRouter();
-		$module = $router->getModule( $moduleName );
+		foreach ( $this->generateRoutesTestData( $router ) as [ $moduleName, $module, $method, $path ] ) {
+			$message = "Handler in module '$moduleName' for $method $path.";
+			$request = new RequestData( [ 'method' => $method ] );
+			$handler = $module->getHandlerForPath( $path, $request, false );
 
-		$request = new RequestData( [ 'method' => $method ] );
-		$handler = $module->getHandlerForPath( $path, $request, false );
-
-		$params = $handler->getParamSettings();
-		foreach ( $params as $param => $settings ) {
-			$method = $routeSpec['method'] ?? 'GET';
-			$method = implode( ",", (array)$method );
-
-			$this->assertParameter( $param, $settings, "Handler {$method} {$path}, parameter $param" );
+			$params = $handler->getParamSettings();
+			foreach ( $params as $param => $settings ) {
+				$this->assertParameter( $param, $settings, $message . " Parameter $param" );
+			}
 		}
 	}
 
@@ -419,34 +353,32 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 		$this->assertMatchesJsonSchema( $schemaFile, $moduleSpec, self::SPEC_FILES );
 	}
 
-	/**
-	 * @dataProvider provideModules
-	 */
-	public function testGetModuleDescription( string $moduleName ): void {
+	public function testGetModuleDescription(): void {
 		static $infoSchema = [ '$ref' =>
 			'https://www.mediawiki.org/schema/discovery-1.0#/definitions/Module'
 		];
 
 		$router = $this->getTestRouter();
-		$module = $router->getModule( $moduleName );
-		$info = $module->getModuleDescription();
+		foreach ( $router->getModuleIds() as $moduleName ) {
+			$module = $router->getModule( $moduleName );
+			$info = $module->getModuleDescription();
 
-		$this->assertMatchesJsonSchema( $infoSchema, $info, self::SPEC_FILES );
+			$this->assertMatchesJsonSchema( $infoSchema, $info, self::SPEC_FILES, "Module '$moduleName'" );
+		}
 	}
 
-	/**
-	 * @dataProvider provideModules
-	 */
-	public function testGetOpenApiInfo( string $moduleName ): void {
+	public function testGetOpenApiInfo(): void {
 		static $infoSchema = [ '$ref' =>
 			'https://spec.openapis.org/oas/3.0/schema/2021-09-28#/definitions/Info'
 		];
 
 		$router = $this->getTestRouter();
-		$module = $router->getModule( $moduleName );
-		$info = $module->getOpenApiInfo();
+		foreach ( $router->getModuleIds() as $moduleName ) {
+			$module = $router->getModule( $moduleName );
+			$info = $module->getOpenApiInfo();
 
-		$this->assertMatchesJsonSchema( $infoSchema, $info, self::SPEC_FILES );
+			$this->assertMatchesJsonSchema( $infoSchema, $info, self::SPEC_FILES, "Module '$moduleName'" );
+		}
 	}
 
 }
