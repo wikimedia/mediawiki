@@ -15,7 +15,11 @@ oldest supported upgrading version, MediaWiki 1.35.
 
 Some specific notes for MediaWiki 1.44 upgrades are below:
 
-* …
+* The default HTML markup used for headings has changed.  Some skins may need
+  updates.  You can temporarily revert to the old markup by setting
+  $wgParserEnableLegacyHeadingDOM to true (see below), but this option will
+  be removed in the next release.  See
+  https://www.mediawiki.org/wiki/Heading_HTML_changes for more information.
 
 For notes on 1.43.x and older releases, see HISTORY.
 
@@ -63,6 +67,13 @@ For notes on 1.43.x and older releases, see HISTORY.
   that your wiki's content or an extension is incompatible with the new markup.
   More information: https://www.mediawiki.org/wiki/Heading_HTML_changes
   This option will be removed in a future release.
+* (T45646) $wgAllowRawHtmlCopyrightMessages now defaults to `false`, which
+  means that the 'copyright-footer' and 'copyright-footer-history' wikitext
+  messages will be used instead of 'copyright' and 'history_copyright' that
+  supported raw HTML, and the 'SkinCopyrightFooter' hook will not be called.
+  This helps protect your wiki against attacks by a rogue administrator
+  account. You can set it to `true` to temporarily re-enable them until you
+  can update your overrides. This option will be removed in a future release.
 * (T386210) $wgAddGroups and $wgRemoveGroups now use the correct merge strategy
   of `array_merge_recursive`. This lets extensions add entries from the
   extension.json file, which would previously be silently ignored.
@@ -743,6 +754,7 @@ because of Phabricator reports.
   is no longer used within core/extensions. No replacement is provided.
 * (T387995) Deprecated AbortTalkPageEmailNotification hook. Use the Notification
   Middleware to filter our Talk Page notifications
+* (T45646) The hook 'SkinCopyrightFooter' now emits deprecation warnings.
 * …
 
 === Other changes in 1.44 ===
