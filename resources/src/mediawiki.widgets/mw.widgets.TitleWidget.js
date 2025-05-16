@@ -177,7 +177,7 @@
 					normalizedTitle: normalizedTitle + '#' + fragment,
 					ns: normalizedTitle.getNamespaceId(),
 					// Sort prefix matches to the top
-					index: normalizeFragment( section.line ).indexOf( normalizedFragmentQuery ) === 0 ? 0 : 1
+					index: normalizeFragment( section.line ).startsWith( normalizedFragmentQuery ) ? 0 : 1
 				};
 			} );
 			// Sorting also happens later, but we need to do it now before we truncate

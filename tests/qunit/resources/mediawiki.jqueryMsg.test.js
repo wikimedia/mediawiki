@@ -653,7 +653,7 @@
 				key = testCase[ 0 ],
 				input = testCase[ 1 ],
 				output = testCase[ 2 ],
-				paramHref = key.slice( 0, 8 ) === 'wikilink' ? 'Example' : 'http://example.com',
+				paramHref = key.startsWith( 'wikilink' ) ? 'Example' : 'http://example.com',
 				paramText = 'Text';
 			mw.messages.set( key, input );
 			assert.htmlEqual(

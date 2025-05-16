@@ -412,7 +412,7 @@ mw.trackSubscribe = function ( topic, callback ) {
 	function handler( trackQueue ) {
 		for ( ; seen < trackQueue.length; seen++ ) {
 			const event = trackQueue[ seen ];
-			if ( event.topic.indexOf( topic ) === 0 ) {
+			if ( event.topic.startsWith( topic ) ) {
 				callback( event.topic, ...event.args );
 			}
 		}

@@ -1035,7 +1035,7 @@ FiltersViewModel.prototype.findMatches = function ( query, returnFlat ) {
 	for ( let i = 0; i < items.length; i++ ) {
 		if (
 			searchIsEmpty ||
-			items[ i ].getLabel().toLowerCase().indexOf( query ) === 0 ||
+			items[ i ].getLabel().toLowerCase().startsWith( query ) ||
 			(
 				// For tags, we want the parameter name to be included in the search
 				view === 'tags' &&

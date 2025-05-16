@@ -876,7 +876,7 @@
 		let target = SCRIPT_PATH_URL + 'tests/qunit/data/mwLoaderTestCallback.js';
 		// Use a protocol-relative URL for this test
 		target = target.replace( /https?:/, '' );
-		assert.strictEqual( target.slice( 0, 2 ), '//', 'URL is protocol-relative' );
+		assert.true( target.startsWith( '//' ), 'URL is protocol-relative' );
 
 		mw.loader.testCallback = function () {
 			// Ensure once, delete now

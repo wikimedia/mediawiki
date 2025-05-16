@@ -295,12 +295,12 @@ const mwString = require( 'mediawiki.String' ),
 		if (
 			title.includes( '.' ) && (
 				title === '.' || title === '..' ||
-				title.indexOf( './' ) === 0 ||
-				title.indexOf( '../' ) === 0 ||
+				title.startsWith( './' ) ||
+				title.startsWith( '../' ) ||
 				title.includes( '/./' ) ||
 				title.includes( '/../' ) ||
-				title.slice( -2 ) === '/.' ||
-				title.slice( -3 ) === '/..'
+				title.endsWith( '/.' ) ||
+				title.endsWith( '/..' )
 			)
 		) {
 			return false;

@@ -240,7 +240,7 @@
 					const d = this;
 					const item = ev.dataTransfer.items[ 0 ];
 					// Only allow images.
-					if ( item && item.type.indexOf( 'image/' ) === 0 ) {
+					if ( item && item.type.startsWith( 'image/' ) ) {
 						const blob = item.getAsFile();
 						const reader = new FileReader();
 						reader.readAsDataURL( blob );

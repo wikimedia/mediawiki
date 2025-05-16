@@ -309,7 +309,7 @@ const ApiSandbox = {
 				if ( Object.prototype.hasOwnProperty.call( ApiSandbox.availableFormats, params.format + 'fm' ) ) {
 					params.format = params.format + 'fm';
 				}
-				if ( params.format.slice( -2 ) === 'fm' ) {
+				if ( params.format.endsWith( 'fm' ) ) {
 					params.wrappedhtml = 1;
 				}
 			}
