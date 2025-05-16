@@ -83,6 +83,8 @@ class PruneUnusedLinkTargetRows extends Maintenance {
 					$tableData['target_id'] => null
 				] );
 			}
+			$queryBuilder->leftJoin( 'existencelinks', null, 'exl_target_id=lt_id' )
+				->andWhere( [ 'exl_target_id' => null ] );
 			$ltIdsToDelete = $queryBuilder->caller( __METHOD__ )->fetchFieldValues();
 			if ( !$ltIdsToDelete ) {
 				$ltCounter += $this->getBatchSize();
