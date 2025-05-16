@@ -2505,8 +2505,6 @@
 	"fileduplicatesearch-result-n": "Vun dä Datei „$1“ ham'mer '''{{PLURAL:$2|ein|$2|kein}}''' dubbelte mem selve Enhalt jefonge.",
 	"fileduplicatesearch-noresults": "Mer han kein Dattei met däm Name „$1“ jefonge.",
 	"specialpages": "{{int:nstab-special}}e",
-	"specialpages-note-top": "Lejänd",
-	"specialpages-note-restricted": "* Jewöhnlejje {{int:nstab-special}}e för jede Metmaacher.\n* <span class=\"mw-specialpagerestricted\">{{int:nstab-special}}e bloß för Metmaacher met besönder Räächde.</span>",
 	"specialpages-group-maintenance": "Waadungsleste",
 	"specialpages-group-other": "Ander {{int:nstab-special}}e",
 	"specialpages-group-login": "Enlogge udder Aanmälde",

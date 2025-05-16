@@ -1867,7 +1867,6 @@
 	"fileduplicatesearch-result-1": "案 \"$1\" 無重也。",
 	"fileduplicatesearch-result-n": "案 \"$1\" 重有$2。",
 	"specialpages": "特查",
-	"specialpages-note-restricted": "* 準特查。\n* <strong class=\"mw-specialpagerestricted\">限特查。</strong>",
 	"specialpages-group-maintenance": "護報",
 	"specialpages-group-other": "他奇頁",
 	"specialpages-group-login": "登／增",

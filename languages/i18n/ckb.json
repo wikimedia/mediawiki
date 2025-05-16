@@ -2448,7 +2448,6 @@
 	"fileduplicatesearch-result-n": "پەڕگەی «$1» {{PLURAL:$2|١ دووپاتکراوەی کوتوموتی|$2 دووپاتکراوەی کوتوموتی}} ھەیە.",
 	"fileduplicatesearch-noresults": "پەڕگەیەک بە ناوی «$1» نەدۆزرایەوە.",
 	"specialpages": "پەڕە تایبەتەکان",
-	"specialpages-note-restricted": "* پەڕە تایبەتە ئاساییەکان.\n* <span class=\"mw-specialpagerestricted\">پەڕە تایبەتە بەرگریلێکراوەکان.</span>",
 	"specialpages-group-maintenance": "ڕاپۆرتەکانی چاکسازی",
 	"specialpages-group-other": "پەڕە تایبەتەکانی دیکە",
 	"specialpages-group-login": "ھەڵسووڕاندنی ھەژمار",

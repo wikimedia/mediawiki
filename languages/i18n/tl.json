@@ -2359,7 +2359,6 @@
 	"fileduplicatesearch-result-n": "Ang talaksan na \"$1\" ay may {{PLURAL:$2|1 kapareho|$2 mga kapareho}}.",
 	"fileduplicatesearch-noresults": "Walang natagpuang talaksan na may pangalang \"$1\".",
 	"specialpages": "Natatanging pahina",
-	"specialpages-note-restricted": "* Normal na natatanging mga pahina.\n* <span class=\"mw-specialpagerestricted\">Pinaghihigpitang natatanging mga pahina.</span>",
 	"specialpages-group-maintenance": "Mga pagpapanatiling ulat",
 	"specialpages-group-other": "Iba pang natatanging mga pahina",
 	"specialpages-group-login": "Mag-login / lumikha ng account",

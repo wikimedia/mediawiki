@@ -3084,8 +3084,6 @@
 	"fileduplicatesearch-result-n": "\"$1\" файлда {{PLURAL:$2|тӧӧй дубликат}} пар.",
 	"fileduplicatesearch-noresults": "\"$1\" аттығ файл табылбаан.",
 	"specialpages": "Ӧнетін страницалар",
-	"specialpages-note-top": "Легенда",
-	"specialpages-note-restricted": "* Олаңай ӧнетін страницалар.\n* <span class=\"mw-specialpagerestricted\">Прайзына кӧрінминчеткен ӧнетін страницалар.</span>",
 	"specialpages-group-maintenance": "Техническай тоғыстың сан-пирiзi",
 	"specialpages-group-other": "Пасха ӧнетін страницалар",
 	"specialpages-group-login": "Аккаунтнаң устиры",

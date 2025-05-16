@@ -2309,8 +2309,6 @@
 	"fileduplicatesearch-result-n": "Ghe xe {{PLURAL:$2|un duplicato conpagno|$2 duplicati conpagni}} al file \"$1\".",
 	"fileduplicatesearch-noresults": "Nisun file de nome \"$1\" trovà.",
 	"specialpages": "Pajine speçałi",
-	"specialpages-note-top": "Lejenda",
-	"specialpages-note-restricted": "* Pàjine speçaƚi normałi.\n* <span class=\"mw-specialpagerestricted\">Pàjine speçałi a entrada łimitada.</span>",
 	"specialpages-group-maintenance": "Rendesto conto de manutension",
 	"specialpages-group-other": "Altre pàjine speçałi",
 	"specialpages-group-login": "Nar drento / Notasion",

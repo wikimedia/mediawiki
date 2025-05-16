@@ -2539,8 +2539,6 @@
 	"fileduplicatesearch-result-n": "An sagunson \"$1\" igwa nin {{PLURAL:$2|1 kaparehong duplikasyon|$2 mga kaparehong duplikasyon}}.",
 	"fileduplicatesearch-noresults": "Mayong sagunson na pinagngaranan na \"$1\" an nanagboan.",
 	"specialpages": "Espesyal na mga pahina",
-	"specialpages-note-top": "Balaynan",
-	"specialpages-note-restricted": "* Normal sa espesyal na mga pahina.\n* <span class=\"mw-specialpagerestricted\"> Restriktadong espesyal na mga pahina.</span>",
 	"specialpages-group-maintenance": "Mga talaan nin pagpangataman",
 	"specialpages-group-other": "Iba pang mga espesyal na pahina",
 	"specialpages-group-login": "Maglaog / magmukna nin panindog",

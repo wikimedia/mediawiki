@@ -3195,8 +3195,6 @@
 	"fileduplicatesearch-result-n": "El fitxer «$1» té {{PLURAL:$2|1 duplicació idèntica|$2 duplicacions idèntiques}}.",
 	"fileduplicatesearch-noresults": "No s'ha trobat cap fitxer anomenat «$1».",
 	"specialpages": "Pàgines especials",
-	"specialpages-note-top": "Llegenda",
-	"specialpages-note-restricted": "* Pàgines especials normals.\n* <span class=\"mw-specialpagerestricted\">Pàgines especials restringides.</span>",
 	"specialpages-group-maintenance": "Informes de manteniment",
 	"specialpages-group-other": "Altres pàgines especials",
 	"specialpages-group-login": "Gestió del compte",

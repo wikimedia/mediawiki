@@ -3118,8 +3118,6 @@
 	"fileduplicatesearch-result-n": "«$1» файлы {{PLURAL:$2|охшаш дубликатка}} ия.",
 	"fileduplicatesearch-noresults": "«$1» исемле файл табылмады.",
 	"specialpages": "Махсус битләр",
-	"specialpages-note-top": "Аңлатма",
-	"specialpages-note-restricted": "* Гади махсус битләр.\n* <span class=\"mw-specialpagerestricted\">Чикләнелгән махсус битләр.</span>",
 	"specialpages-group-maintenance": "Техник карау хисапнамәсе",
 	"specialpages-group-other": "Башка махсус битләр",
 	"specialpages-group-login": "Аккаунт белән идарә итү",

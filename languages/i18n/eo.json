@@ -3155,8 +3155,6 @@
 	"fileduplicatesearch-result-n": "La dosiero \"$1\" havas {{PLURAL:$2|1 identan duplikaton|$2 identajn duplikatojn}}.",
 	"fileduplicatesearch-noresults": "Neniu dosiero nomita \"$1\" troviĝis.",
 	"specialpages": "Specialaj paĝoj",
-	"specialpages-note-top": "Klarigo",
-	"specialpages-note-restricted": "* Normaj specialaj paĝoj.\n* <span class=\"mw-specialpagerestricted\">Limigitaj specialaj paĝoj.</span>",
 	"specialpages-group-maintenance": "Raportoj pri prizorgado",
 	"specialpages-group-other": "Aliaj specialaj paĝoj",
 	"specialpages-group-login": "Administrado de kontoj",

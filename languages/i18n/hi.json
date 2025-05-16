@@ -3025,8 +3025,6 @@
 	"fileduplicatesearch-noresults": "कोई फ़ाइल नाम \"$1\" मिला नहीं ।",
 	"special-talkpage": "वार्ता पृष्ठ",
 	"specialpages": "विशेष पृष्ठ",
-	"specialpages-note-top": "कुंजी",
-	"specialpages-note-restricted": "* सामान्य विशेष पृष्ठ।\n* <span class=\"mw-specialpagerestricted\">प्रतिबंधित विशेष पृष्ठ।</span>",
 	"specialpages-group-maintenance": "अनुरक्षण रिपोर्ट",
 	"specialpages-group-other": "अन्य विशेष पृष्ठ",
 	"specialpages-group-login": "सत्र आरम्भ / खाता खोलें",

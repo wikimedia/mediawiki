@@ -2739,8 +2739,6 @@
 	"fileduplicatesearch-result-n": "'t Bestandj \"$1\" haet {{PLURAL:$2|1 identieke döbbelversie|$2 identiek döbbelversies}}.",
 	"fileduplicatesearch-noresults": "d'r Is gei bestandj mitte naam \"$1\" gevónje.",
 	"specialpages": "Speciaal pazjena's",
-	"specialpages-note-top": "Legenda",
-	"specialpages-note-restricted": "* Normaal speciaal pagina's.\n* <span class=\"mw-specialpagerestricted\">Bepirk-tougenkelike speciaal pagina's.</span>",
 	"specialpages-group-maintenance": "Óngerhajingsrapporter",
 	"specialpages-group-other": "Euverige speciaal pazjena's",
 	"specialpages-group-login": "Meld dich aan / registreer",

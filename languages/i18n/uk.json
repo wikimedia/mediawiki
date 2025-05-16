@@ -3386,8 +3386,6 @@
 	"special-talkpage-target": "Введіть назву сторінки, сторінку обговорення якої необхідно знайти.",
 	"special-talkpage-submit": "Перейти на сторінку обговорення",
 	"specialpages": "Спеціальні сторінки",
-	"specialpages-note-top": "Легенда",
-	"specialpages-note-restricted": "* Звичайні спеціальні сторінки.\n* <span class=\"mw-specialpagerestricted\">Спеціальні сторінки з обмеженим доступом.</span>",
 	"specialpages-group-maintenance": "Технічні звіти",
 	"specialpages-group-other": "Інші",
 	"specialpages-group-login": "Управління обліковим записом",

@@ -3085,8 +3085,6 @@
 	"fileduplicatesearch-result-n": "\"$1\" файлта иҗлкн, давхрдсн {{PLURAL:$2|1 файл|$2 файл}} бәәнә.",
 	"fileduplicatesearch-noresults": "\"$1\" нертә файл олдсн уга.",
 	"specialpages": "Шишлң халхс",
-	"specialpages-note-top": "Томъялвр",
-	"specialpages-note-restricted": "* Йирин шишлң халхс.\n* <strong class=\"mw-specialpagerestricted\">Хөрәтә шишлң халхс.</strong>",
 	"specialpages-group-maintenance": "Ясвр үүлчллһнә илдклмүд",
 	"specialpages-group-other": "Бусд шишлң халхс",
 	"specialpages-group-login": "Бүртклиг удрдх",

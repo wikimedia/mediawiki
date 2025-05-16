@@ -2567,8 +2567,6 @@
 	"fileduplicatesearch-result-1": "Tsy misy rakitra mitovy amin'ny « $1 ».",
 	"fileduplicatesearch-result-n": "Misy rakitra {{PLURAL:}}$2 mitovy amin'i « $1 ».",
 	"specialpages": "Pejy manokana",
-	"specialpages-note-top": "Maribolana",
-	"specialpages-note-restricted": "* Pejy manokana tsotra\n* <span class=\"mw-specialpagerestricted\">Pejy manokana voafetra ara-pijey.</span>",
 	"specialpages-group-maintenance": "laogy hikojakojana",
 	"specialpages-group-other": "Pejy manokana hafa",
 	"specialpages-group-login": "Fitantanana kaonty",

@@ -2635,8 +2635,6 @@
 	"fileduplicatesearch-result-n": "Wepo \"$1\" tindo {{PLURAL:$2|wunmẹ etọn nkọ dopo|wunmẹ etọn nkọ delẹ}}.",
 	"fileduplicatesearch-noresults": "Wepo he tindo yinkọ lọ \"$1\" depope ma yin mimọ.",
 	"specialpages": "Weda vonọtaun lẹ",
-	"specialpages-note-top": "Ohia",
-	"specialpages-note-restricted": "* Wsda vonọtaun paa lẹ.\n* <span class=\"mw-specialpagerestricted\">Weda vonọtaun he yè ko de dogbó na lẹ.</span>",
 	"specialpages-group-maintenance": "Linlin nukúnpipedonugo tọn lẹ",
 	"specialpages-group-other": "Weda vonọtaun devo lẹ",
 	"specialpages-group-login": "Hùn adà towe / hùn adà yọyọ",

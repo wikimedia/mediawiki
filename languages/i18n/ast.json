@@ -2949,8 +2949,6 @@
 	"fileduplicatesearch-result-n": "L'archivu \"$1\" tien {{PLURAL:$2|un duplicáu idénticu|$2 duplicaos idénticos}}.",
 	"fileduplicatesearch-noresults": "Nun s'alcontró dengún ficheru nomáu «$1».",
 	"specialpages": "Páxines especiales",
-	"specialpages-note-top": "Lleenda",
-	"specialpages-note-restricted": "* Páxines especiales normales.\n* <span class=\"mw-specialpagerestricted\">Páxines especiales restrinxíes.</span>",
 	"specialpages-group-maintenance": "Informes de mantenimientu",
 	"specialpages-group-other": "Otres páxines especiales",
 	"specialpages-group-login": "Entrar / crear cuenta",

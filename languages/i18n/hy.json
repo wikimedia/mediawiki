@@ -1969,7 +1969,6 @@
 	"fileduplicatesearch-result-n": "$1 նիշքն ունի {{PLURAL:$2|1 նույնական կրկնօրինակ|$2 նույնական կրկնօրինակ}}.",
 	"fileduplicatesearch-noresults": "$1 անունով նիշք չի գտնվել",
 	"specialpages": "Սպասարկող էջեր",
-	"specialpages-note-restricted": "* Հասարակ հատուկ էջեր։\n* <span class=\"mw-specialpagerestricted\">Սահմանափակված հատուկ էջեր։</span>",
 	"specialpages-group-maintenance": "Տեխնիկական սպասարկման տեղեկատուներ",
 	"specialpages-group-other": "Այլ հատուկ էջեր",
 	"specialpages-group-login": "Հաշվի կառավարում",

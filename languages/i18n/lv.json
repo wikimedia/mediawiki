@@ -2507,8 +2507,6 @@
 	"fileduplicatesearch-result-n": "Failam \"$1\" ir {{PLURAL:$2|$2 identiskas kopijas|1 identiska kopija|$2 identiskas kopijas}}.",
 	"fileduplicatesearch-noresults": "Nav atrasts neviens fails ar nosaukumu \"$1\".",
 	"specialpages": "Īpašās lapas",
-	"specialpages-note-top": "Apzīmējumi",
-	"specialpages-note-restricted": "* Normālas īpašās lapas.\n* <span class=\"mw-specialpagerestricted\">Ierobežotas pieejas īpašās lapas.</span>",
 	"specialpages-group-maintenance": "Uzturēšanas atskaites",
 	"specialpages-group-other": "Citas īpašās lapas",
 	"specialpages-group-login": "Konta pārvaldība",

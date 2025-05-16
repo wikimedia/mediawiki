@@ -2137,8 +2137,6 @@
 	"fileduplicatesearch-result-n": "\"$1\" sutiyuq willañiqiqa {{PLURAL:$2|1 kaqllalla iskaychasqayuqmi|$2 kaqllalla iskaychasqakunayuqmi}}.",
 	"fileduplicatesearch-noresults": "\"$1\" sutiyuq willañiqiqa manam tarisqachu.",
 	"specialpages": "Sapaq p'anqakuna",
-	"specialpages-note-top": "Sut'ichana",
-	"specialpages-note-restricted": "* Sapsipaq sapaq p'anqakuna.\n* <span class=\"mw-specialpagerestricted\">Sapaqkunallapaq sapaq p'anqakuna.</span>",
 	"specialpages-group-maintenance": "Hatalliy willaykuna",
 	"specialpages-group-other": "Huk sapaq p'anqakuna",
 	"specialpages-group-login": "Yaykuy / rakiqunata kamariy",

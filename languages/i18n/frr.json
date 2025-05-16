@@ -2383,8 +2383,6 @@
 	"fileduplicatesearch-result-n": "Det datei „$1“ hää {{PLURAL:$2|1 dobelt ütjfeerang|$2 dobelt ütjfeerangen}}.",
 	"fileduplicatesearch-noresults": "Nian datei mä di nööm „$1“ fünjen.",
 	"specialpages": "Spetsiaal sidjen",
-	"specialpages-note-top": "Legend",
-	"specialpages-note-restricted": "* Normool spetsiaal sidjen\n* <span class=\"mw-specialpagerestricted\">Spetsiaal sidjen mä tugripsrochten</span>",
 	"specialpages-group-maintenance": "Werksteedsidjen",
 	"specialpages-group-other": "Ööder spetsiaal sidjen",
 	"specialpages-group-login": "Melde di uun of skriiw di iin",

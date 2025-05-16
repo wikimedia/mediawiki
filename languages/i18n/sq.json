@@ -2584,8 +2584,6 @@
 	"fileduplicatesearch-result-n": "Skeda \"$1\" ka {{PLURAL:$2|1 dyfishim|$2 dyfishime}}.",
 	"fileduplicatesearch-noresults": "Nuk u gjet asnjë skedë me emrin \"$1\".",
 	"specialpages": "Faqet e veçanta",
-	"specialpages-note-top": "Legjenda",
-	"specialpages-note-restricted": "* Faqet speciale normale.\n* <span class=\"mw-specialpagerestricted\">Faqet speciale të kufizuara.</span>",
 	"specialpages-group-maintenance": "Përmbledhje mirëmbajtjeje",
 	"specialpages-group-other": "Faqe speciale të tjera",
 	"specialpages-group-login": "Hyrë / hap llogari",

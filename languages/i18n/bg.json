@@ -3146,8 +3146,6 @@
 	"fileduplicatesearch-result-n": "Файлът „$1“ има {{PLURAL:$2|едно идентично копие|$2 идентични копия}}.",
 	"fileduplicatesearch-noresults": "Не беше открит файл с име „$1“.",
 	"specialpages": "Специални страници",
-	"specialpages-note-top": "Легенда",
-	"specialpages-note-restricted": "* Обикновени специални страници.\n* <span class=\"mw-specialpagerestricted\">Специални страници с ограничен достъп.</span>",
 	"specialpages-group-maintenance": "Доклади по поддръжката",
 	"specialpages-group-other": "Други специални страници",
 	"specialpages-group-login": "Управление на сметката",

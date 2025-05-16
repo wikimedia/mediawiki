@@ -2557,8 +2557,6 @@
 	"fileduplicatesearch-result-n": "Berkas \"$1\" ora ndarbèni {{PLURAL:$2|1 duplikat idèntik|$2 duplikat idèntik}}.",
 	"fileduplicatesearch-noresults": "Ora tinemu barkas kanthi jeneng \"$1\".",
 	"specialpages": "Kaca mirunggan",
-	"specialpages-note-top": "Katerangan",
-	"specialpages-note-restricted": "* Kaca mirunggan sedhengan.\n* <span class=\"mw-specialpagerestricted\">Kaca mirunggan winatesan.</span>",
 	"specialpages-group-maintenance": "Lapuran pangopèn",
 	"specialpages-group-other": "Kaca mirunggan liyané",
 	"specialpages-group-login": "Mlebu log / nggawé akun",

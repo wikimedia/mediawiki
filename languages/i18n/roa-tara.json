@@ -2810,8 +2810,6 @@
 	"fileduplicatesearch-result-n": "'U file \"$1\" tène {{PLURAL:$2|1 duplicazione|$2 duplicaziune}} uguale uguale.",
 	"fileduplicatesearch-noresults": "Nisciune file chiamate \"$1\" ha state acchiate.",
 	"specialpages": "Pàggene speciele",
-	"specialpages-note-top": "Leggende",
-	"specialpages-note-restricted": "* Pàggene speciale normale.\n* <span class=\"mw-specialpagerestricted\">Pàggene speciale cu le restriziune.</span>",
 	"specialpages-group-maintenance": "Report d'a manutenzione",
 	"specialpages-group-other": "Otre pàggene speciele",
 	"specialpages-group-login": "Tràse / Reggistrate",

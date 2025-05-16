@@ -3146,8 +3146,6 @@
 	"fileduplicatesearch-result-n": "Datoteka „$1” ima {{PLURAL:$2|identičan duplikat|$2 identična duplikata|$2 identičnih duplikata}}.",
 	"fileduplicatesearch-noresults": "Datoteka pod nazivom „$1” nije pronađena.",
 	"specialpages": "Posebne stranice",
-	"specialpages-note-top": "Legenda",
-	"specialpages-note-restricted": "* Obične posebne stranice.\n* <span class=\"mw-specialpagerestricted\">Posebne stranice s ograničenjem.</span>",
 	"specialpages-group-maintenance": "Izveštaji održavanja",
 	"specialpages-group-other": "Ostale posebne stranice",
 	"specialpages-group-login": "Upravljanje nalogom",

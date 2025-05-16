@@ -2873,8 +2873,6 @@
 	"fileduplicatesearch-result-n": "Datoteka \"$1\" ima {{PLURAL:$2|1 identičnu kopiju|$2 identične kopije}}.",
 	"fileduplicatesearch-noresults": "Nije pronađena datoteka s imenom \"$1\".",
 	"specialpages": "Posebne stranice",
-	"specialpages-note-top": "Legenda",
-	"specialpages-note-restricted": "* Redovne posebne stranice.\n* <span class=\"mw-specialpagerestricted\">Posebne stranice ograničenoga pristupa.</span>",
 	"specialpages-group-maintenance": "Izvješća održavanja",
 	"specialpages-group-other": "Ostale posebne stranice",
 	"specialpages-group-login": "Upravljanje računom",

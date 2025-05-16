@@ -2956,8 +2956,6 @@
 	"fileduplicatesearch-result-n": "\"$1\" എന്ന പ്രമാണത്തിന് {{PLURAL:$2|ഒരു സദൃശ പകർപ്പ്|$2 സദൃശ പകർപ്പുകൾ}} ഉണ്ട്.",
 	"fileduplicatesearch-noresults": "\"$1\" എന്ന പേരിൽ ഒരു പ്രമാണവും കണ്ടെത്താനായില്ല.",
 	"specialpages": "പ്രത്യേക താളുകൾ",
-	"specialpages-note-top": "സൂചന",
-	"specialpages-note-restricted": "* പൊതുവേ ഉപയോഗിക്കുന്ന പ്രത്യേക താളുകൾ.\n* <span class=\"mw-specialpagerestricted\">ഉപയോഗം പരിമിതപ്പെടുത്തിയിരിക്കുന്ന പ്രത്യേക താളുകൾ.</span>",
 	"specialpages-group-maintenance": "പരിചരണം ആവശ്യമായവ",
 	"specialpages-group-other": "മറ്റു പ്രത്യേക താളുകൾ",
 	"specialpages-group-login": "പ്രവേശിക്കുക / അംഗത്വമെടുക്കുക",

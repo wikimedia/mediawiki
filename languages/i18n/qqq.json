@@ -4332,7 +4332,7 @@
 	"limitreport-postexpandincludesize": "Label for the \"Post-expand include size\" row in the limit report table",
 	"limitreport-postexpandincludesize-value": "Format for the \"Post-expand include size\" row in the limit report table. Parameters:\n* $1 - the usage (in bytes)\n* $2 - the maximum (in bytes)",
 	"limitreport-revisionsize": "Label for the \"Revision size\" row in the limit report table",
-	"limitreport-revisionsize-value": "Format for the \"Revision size\" row in the limit report table. Parameters:\n* $1 - the usage (in bytes)\n* $2 - the maximum (in bytes)",
+	"limitreport-revisionsize-value": "Format for the \"Revision size\" ({{msg-mw|Limitreport-revisionsize}}) row in the limit report table. Parameters:\n* $1 - the usage (in bytes)\n* $2 - the maximum (in bytes)",
 	"limitreport-templateargumentsize": "Label for the \"Template argument size\" row in the limit report table",
 	"limitreport-templateargumentsize-value": "Format for the \"Template argument size\" row in the limit report table.\n\nParameters:\n* $1 - the usage (in bytes)\n* $2 - the maximum (in bytes)",
 	"limitreport-expansiondepth": "Label for the \"Highest expansion depth\" row in the limit report table.\n\nIf \"highest depth\" is an oxymoron in your language, use \"deepest (depth)\" instead.",

@@ -2533,8 +2533,6 @@
 	"fileduplicatesearch-result-n": "Koropak \"$1\" mibanda {{PLURAL:$2|1 duplikat idéntik|$2 duplikat idéntik}}.",
 	"fileduplicatesearch-noresults": "Teu manggihan berkas nu ngaranna \"$1\".",
 	"specialpages": "Kaca husus",
-	"specialpages-note-top": "Kamandang",
-	"specialpages-note-restricted": "* Kaca husus normal.\n* <span class=\"mw-specialpagerestricted\">Kaca husus diwates.</span>",
 	"specialpages-group-maintenance": "Laporan pigawéeun",
 	"specialpages-group-other": "Kaca husus lainna",
 	"specialpages-group-login": "Asup log / jieun akun",

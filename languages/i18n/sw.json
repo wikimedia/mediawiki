@@ -2087,8 +2087,6 @@
 	"fileduplicatesearch-result-n": "Faili la \"$1\" lina {{PLURAL:$2|kifani 1|vifani $2}}.",
 	"fileduplicatesearch-noresults": "Faili linaloitwa \"$1\" halikupatikana.",
 	"specialpages": "Kurasa maalumu",
-	"specialpages-note-top": "Simulizi",
-	"specialpages-note-restricted": "* Kurasa maalum za kawaida.\n* <span class=\"mw-specialpagerestricted\">Kurasa maalum zisizoonekana na wote.</span>\n* <span class=\"mw-specialpagecached\">Kurasa maalum zinazotoka \"cache\" (might be obsolete).</span>",
 	"specialpages-group-maintenance": "Ripoti za kurekebisha na kutunza kurasa",
 	"specialpages-group-other": "Kurasa zingine maalumu",
 	"specialpages-group-login": "Ingia / sajili akaunti",

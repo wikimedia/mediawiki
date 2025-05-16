@@ -3057,8 +3057,6 @@
 	"fileduplicatesearch-result-n": "{{PLURAL:$2|A gh'è un duplicad egual|I esisten $2 duplicad eguai}} del fail \"$1\".",
 	"fileduplicatesearch-noresults": "Nissun fail ciamad \"$1\" trovad.",
 	"specialpages": "Pagine speciai",
-	"specialpages-note-top": "Legenda",
-	"specialpages-note-restricted": "* Pagine speciai minga riservade.\n* <span class=\"mw-specialpagerestricted\">Pagine speciai riservade doma per certe categoria di utent.</span>",
 	"specialpages-group-maintenance": "Raport de manutenzion",
 	"specialpages-group-other": "Alter pagine speciai",
 	"specialpages-group-login": "Và dent / crea un cunt",

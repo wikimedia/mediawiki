@@ -3013,8 +3013,6 @@
 	"fileduplicatesearch-result-n": "Skráin „$1“ hefur {{PLURAL:$2|1 nákvæmlega eins afrit|$2 nákvæmlega eins afrit}}.",
 	"fileduplicatesearch-noresults": "Mistókst að finna skrána \"$1\"",
 	"specialpages": "Kerfissíður",
-	"specialpages-note-top": "Fyrirsögn",
-	"specialpages-note-restricted": "* Venjulegar kerfissíður.\n* <span class=\"mw-specialpagerestricted\">Kerfissíður með takmörkuðum aðgangi.</span>",
 	"specialpages-group-maintenance": "Viðhaldsskýrslur",
 	"specialpages-group-other": "Aðrar kerfissíður",
 	"specialpages-group-login": "Umsýsla aðgangs",

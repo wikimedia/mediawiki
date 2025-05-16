@@ -3126,8 +3126,6 @@
 	"fileduplicatesearch-result-n": "Файл «$1» мае $2 {{PLURAL:$2|ідэнтычную копію|ідэнтычныя копіі|ідэнтычных копіяў}}.",
 	"fileduplicatesearch-noresults": "Файл з назвай «$1» ня знойдзены.",
 	"specialpages": "Спэцыяльныя старонкі",
-	"specialpages-note-top": "Легенда",
-	"specialpages-note-restricted": "* Звычайныя спэцыяльныя старонкі.\n* <span class=\"mw-specialpagerestricted\">Спэцыяльныя старонкі з абмежаваным доступам.</span>",
 	"specialpages-group-maintenance": "Тэхнічныя справаздачы",
 	"specialpages-group-other": "Іншыя спэцыяльныя старонкі",
 	"specialpages-group-login": "Кіраваньне ўліковым запісам",

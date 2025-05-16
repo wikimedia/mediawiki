@@ -2827,8 +2827,6 @@
 	"fileduplicatesearch-result-n": "La fix \"$1\" ave {{PLURAL:$2|1 dupli identica|$2 duplis identica}}.",
 	"fileduplicatesearch-noresults": "No fix nomida \"$1\" ia es trovada.",
 	"specialpages": "Pajes spesial",
-	"specialpages-note-top": "Esplica",
-	"specialpages-note-restricted": "* Pajes spesial normal.\n* <span class=\"mw-specialpagerestricted\">Pajes spesial restrinjeda.</span>",
 	"specialpages-group-maintenance": "Reportas de manteni",
 	"specialpages-group-other": "Otra pajes spesial",
 	"specialpages-group-login": "Autentici / crea conta",

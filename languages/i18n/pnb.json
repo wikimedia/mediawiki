@@ -2229,8 +2229,6 @@
 	"fileduplicatesearch-result-n": "فائل ''$1'' چ {{PLURAL:$2|1 رلدی نقل|$2 رلدیاں نقلں}} نیں۔",
 	"fileduplicatesearch-noresults": "\"$1\" ناں دی کوئی فائل نئیں لبی۔",
 	"specialpages": "خاص صفحے",
-	"specialpages-note-top": "کُنجی",
-	"specialpages-note-restricted": "* نارمل خاص صفحے.\n* <span class=\"mw-specialpagerestricted\">روکے گۓ خاص صفحے.</span>",
 	"specialpages-group-maintenance": "مرمت رپورٹ",
 	"specialpages-group-other": "ہور خاص صفحے",
 	"specialpages-group-login": "لاگ ان / کھاتہ کھولو",

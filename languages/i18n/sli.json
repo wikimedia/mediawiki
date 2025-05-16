@@ -1462,7 +1462,6 @@
 	"fileduplicatesearch-result-1": "De Datei „$1“ hoat keene identischa Duplikate.",
 	"fileduplicatesearch-result-n": "De Datei „$1“ hoot {{PLURAL:$2|1 identisches Duplikat|$2 identische Duplikate}}.",
 	"specialpages": "Spezialseita",
-	"specialpages-note-restricted": "* Spezialseyta fier Jedermoan\n* <strong class=\"mw-specialpagerestricted\">Spezialseyta fier Nutzer miet erweiterta Rechta</strong>",
 	"specialpages-group-other": "Andere Spezialseyta",
 	"specialpages-group-login": "Oamelda",
 	"specialpages-group-changes": "Letzte Änderunga und Logbicher",

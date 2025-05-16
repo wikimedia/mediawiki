@@ -2819,8 +2819,6 @@
 	"fileduplicatesearch-result-n": "個檔案 \"$1\" 有$2項完全相同嘅重覆。",
 	"fileduplicatesearch-noresults": "檔案名\"$1\"找不到",
 	"specialpages": "特別頁",
-	"specialpages-note-top": "圖例",
-	"specialpages-note-restricted": "* 標準特別頁。\n* <span class=\"mw-specialpagerestricted\">有限制嘅特別頁。</span>",
 	"specialpages-group-maintenance": "維護報告",
 	"specialpages-group-other": "其它特別頁",
 	"specialpages-group-login": "戶口管理",

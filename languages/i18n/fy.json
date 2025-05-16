@@ -1932,8 +1932,6 @@
 	"fileduplicatesearch-result-1": "It bestân \"$1\" hat gjin duplikaten.",
 	"fileduplicatesearch-result-n": "It bestân \"$1\" hat {{PLURAL:$2|1 duplikaat|$2 duplikaten}}.",
 	"specialpages": "Bysûndere siden",
-	"specialpages-note-top": "Leginda",
-	"specialpages-note-restricted": "* Normale bysûndere siden.\n* <span class=\"mw-specialpagerestricted\">Beheinde bysûndere siden.</span>",
 	"specialpages-group-maintenance": "Underhâld siden",
 	"specialpages-group-other": "Oare bysûndere siden",
 	"specialpages-group-login": "Oanmelde / registrearje",

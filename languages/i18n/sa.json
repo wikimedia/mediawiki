@@ -2259,8 +2259,6 @@
 	"fileduplicatesearch-result-n": "इति सञ्चिका {{PLURAL:$1|सादृश्यप्रतिकृतिः|$2 सादृश्यप्रतिकृतयः}}",
 	"fileduplicatesearch-noresults": "\"$1\" इति नाम्ना सञ्चिका न दृष्टा ।",
 	"specialpages": "विशेषपृष्ठानि",
-	"specialpages-note-top": "तालिका",
-	"specialpages-note-restricted": "* विशिष्टपृष्ठानि । \n* <span class=\"mw-specialpagerestricted\"> प्रतिबन्धितानि विशिष्टपृष्ठानि ।</span>",
 	"specialpages-group-maintenance": "निर्वहणवृत्तानि ।",
 	"specialpages-group-other": "अन्यविशेषपुटानि ।",
 	"specialpages-group-login": "प्रविश्यताम् / लेखा सृज्यताम्",

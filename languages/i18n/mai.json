@@ -2539,8 +2539,6 @@
 	"fileduplicatesearch-result-n": "फाइल \"$1\" मे {{PLURAL:$2|1 तादात्म्य द्वितीयक|$2 तादात्म्य द्वितीयक}} भेटल अछि।",
 	"fileduplicatesearch-noresults": "कोनो \"$1\" नाम्ना संचिका नै।",
 	"specialpages": "विशेष पन्नासभ",
-	"specialpages-note-top": "कुंजी",
-	"specialpages-note-restricted": "* सामान्य विशिष्ट पन्ना।\n* <span class=\"mw-specialpagerestricted\">प्रतिबंधित विशिष्ट पन्ना।</span>\n* <span class=\"mw-specialpagecached\">उपस्मृतिक विशिष्ट पन्ना (पुरान भऽ सकैए)।</span>",
 	"specialpages-group-maintenance": "सुस्थापन प्रतिवेदन",
 	"specialpages-group-other": "दोसर विशेष पन्ना",
 	"specialpages-group-login": "सम्प्रवेश/ सम्प्रवेश आवेदन",
