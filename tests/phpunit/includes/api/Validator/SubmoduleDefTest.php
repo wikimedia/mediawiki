@@ -91,10 +91,15 @@ class SubmoduleDefTest extends TypeDefTestCase {
 		return $api;
 	}
 
-	public function provideValidate() {
-		$opts = [
-			'module' => $this->mockApi(),
-		];
+	/** @dataProvider provideValidate */
+	public function testValidate(
+		$value, $expect, array $settings = [], array $options = [], array $expectConds = []
+	) {
+		$options['module'] = $this->mockApi();
+		parent::testValidate( $value, $expect, $settings, $options, $expectConds );
+	}
+
+	public static function provideValidate() {
 		$map = [
 			SubmoduleDef::PARAM_SUBMODULE_MAP => [
 				'mod2' => 'testmod+mod1',
@@ -103,31 +108,37 @@ class SubmoduleDefTest extends TypeDefTestCase {
 		];
 
 		return [
-			'Basic' => [ 'mod1', 'mod1', [], $opts ],
+			'Basic' => [ 'mod1', 'mod1', [] ],
 			'Nonexistent submodule' => [
 				'mod3',
 				new ValidationException(
 					DataMessageValue::new( 'paramvalidator-badvalue', [], 'badvalue', [] ), 'test', 'mod3', []
 				),
 				[],
-				$opts,
 			],
-			'Mapped' => [ 'mod3', 'mod3', $map, $opts ],
+			'Mapped' => [ 'mod3', 'mod3', $map ],
 			'Mapped, not in map' => [
 				'mod1',
 				new ValidationException(
 					DataMessageValue::new( 'paramvalidator-badvalue', [], 'badvalue', [] ), 'test', 'mod1', $map
 				),
 				$map,
-				$opts,
 			],
 		];
 	}
 
-	public function provideCheckSettings() {
-		$opts = [
-			'module' => $this->mockApi(),
-		];
+	/** @dataProvider provideCheckSettings */
+	public function testCheckSettings(
+		array $settings,
+		array $ret,
+		array $expect,
+		array $options = []
+	): void {
+		$options['module'] = $this->mockApi();
+		parent::testCheckSettings( $settings, $ret, $expect, $options );
+	}
+
+	public static function provideCheckSettings() {
 		$keys = [
 			'Y', EnumDef::PARAM_DEPRECATED_VALUES,
 			SubmoduleDef::PARAM_SUBMODULE_MAP, SubmoduleDef::PARAM_SUBMODULE_PARAM_PREFIX
@@ -142,7 +153,6 @@ class SubmoduleDefTest extends TypeDefTestCase {
 					'allowedKeys' => $keys,
 					'messages' => [],
 				],
-				$opts
 			],
 			'Test with everything' => [
 				[
@@ -157,7 +167,6 @@ class SubmoduleDefTest extends TypeDefTestCase {
 					'allowedKeys' => $keys,
 					'messages' => [],
 				],
-				$opts
 			],
 			'Bad types' => [
 				[
@@ -175,7 +184,6 @@ class SubmoduleDefTest extends TypeDefTestCase {
 					'allowedKeys' => $keys,
 					'messages' => [],
 				],
-				$opts
 			],
 			'Bad values in map' => [
 				[
@@ -198,21 +206,21 @@ class SubmoduleDefTest extends TypeDefTestCase {
 					'allowedKeys' => $keys,
 					'messages' => [],
 				],
-				$opts
 			],
 		];
 	}
 
-	public function provideGetEnumValues() {
-		$opts = [
-			'module' => $this->mockApi(),
-		];
+	/** @dataProvider provideGetEnumValues */
+	public function testGetEnumValues( array $settings, $expect, array $options = [] ) {
+		$options['module'] = $this->mockApi();
+		parent::testGetEnumValues( $settings, $expect, $options );
+	}
 
+	public static function provideGetEnumValues() {
 		return [
 			'Basic test' => [
 				[ ParamValidator::PARAM_TYPE => 'submodule' ],
 				[ 'mod1', 'mod2', 'dep', 'depint', 'int', 'recurse' ],
-				$opts,
 			],
 			'Mapped' => [
 				[
@@ -223,16 +231,19 @@ class SubmoduleDefTest extends TypeDefTestCase {
 					]
 				],
 				[ 'mod2', 'mod3' ],
-				$opts,
 			],
 		];
 	}
 
-	public function provideGetInfo() {
-		$opts = [
-			'module' => $this->mockApi(),
-		];
+	/** @dataProvider provideGetInfo */
+	public function testGetInfo(
+		array $settings, array $expectParamInfo, array $expectHelpInfo, array $options = []
+	) {
+		$options['module'] = $this->mockApi();
+		parent::testGetInfo( $settings, $expectParamInfo, $expectHelpInfo, $options );
+	}
 
+	public static function provideGetInfo() {
 		return [
 			'Basic' => [
 				[],
@@ -253,7 +264,6 @@ class SubmoduleDefTest extends TypeDefTestCase {
 					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-enum"><text>1</text><list listType="comma"><text>[[Special:ApiHelp/testmod+mod1|&lt;span dir=&quot;ltr&quot; lang=&quot;en&quot;&gt;mod1&lt;/span&gt;]]</text><text>[[Special:ApiHelp/testmod+mod2|&lt;span dir=&quot;ltr&quot; lang=&quot;en&quot;&gt;mod2&lt;/span&gt;]]</text><text>[[Special:ApiHelp/testmod+recurse|&lt;span dir=&quot;ltr&quot; lang=&quot;en&quot;&gt;recurse&lt;/span&gt;]]</text><text>[[Special:ApiHelp/testmod+dep|&lt;span dir=&quot;ltr&quot; lang=&quot;en&quot; class=&quot;apihelp-deprecated-value&quot;&gt;dep&lt;/span&gt;]]</text><text>[[Special:ApiHelp/testmod+int|&lt;span dir=&quot;ltr&quot; lang=&quot;en&quot; class=&quot;apihelp-internal-value&quot;&gt;int&lt;/span&gt;]]</text><text>[[Special:ApiHelp/testmod+depint|&lt;span dir=&quot;ltr&quot; lang=&quot;en&quot; class=&quot;apihelp-deprecated-value apihelp-internal-value&quot;&gt;depint&lt;/span&gt;]]</text></list><num>6</num></message>',
 					ParamValidator::PARAM_ISMULTI => null,
 				],
-				$opts,
 			],
 			'Mapped' => [
 				[
@@ -280,7 +290,6 @@ class SubmoduleDefTest extends TypeDefTestCase {
 					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-enum"><text>2</text><list listType="comma"><text>[[Special:ApiHelp/testmod+mod3|&lt;span dir=&quot;ltr&quot; lang=&quot;en&quot;&gt;mod3&lt;/span&gt;]]</text><text>[[Special:ApiHelp/testmod+mod4|&lt;span dir=&quot;ltr&quot; lang=&quot;en&quot;&gt;mod4&lt;/span&gt;]]</text><text>[[Special:ApiHelp/testmod+dep|&lt;span dir=&quot;ltr&quot; lang=&quot;en&quot; class=&quot;apihelp-deprecated-value&quot;&gt;xyz&lt;/span&gt;]]</text></list><num>3</num></message>',
 					ParamValidator::PARAM_ISMULTI => null,
 				],
-				$opts,
 			],
 		];
 	}

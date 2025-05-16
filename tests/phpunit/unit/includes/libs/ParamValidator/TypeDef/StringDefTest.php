@@ -17,7 +17,7 @@ class StringDefTest extends TypeDefTestCase {
 		return new StringDef( $callbacks, $options );
 	}
 
-	public function provideValidate() {
+	public static function provideValidate() {
 		$req = [
 			ParamValidator::PARAM_REQUIRED => true,
 		];
@@ -95,7 +95,7 @@ class StringDefTest extends TypeDefTestCase {
 		];
 	}
 
-	public function provideCheckSettings() {
+	public static function provideCheckSettings() {
 		$keys = [ 'Y', StringDef::PARAM_MAX_BYTES, StringDef::PARAM_MAX_CHARS ];
 
 		return [
@@ -200,7 +200,7 @@ class StringDefTest extends TypeDefTestCase {
 		];
 	}
 
-	public function provideGetInfo() {
+	public static function provideGetInfo() {
 		return [
 			'Basic test' => [
 				[],

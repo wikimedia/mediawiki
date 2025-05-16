@@ -16,7 +16,7 @@ class LimitDefTest extends TypeDefTestCase {
 		return new LimitDef( $callbacks, $options );
 	}
 
-	public function provideValidate() {
+	public static function provideValidate() {
 		$useHigh = [ 'useHighLimits' => true ];
 		$max = [ LimitDef::PARAM_MAX => 2 ];
 		$max2 = [ LimitDef::PARAM_MAX => 2, LimitDef::PARAM_MAX2 => 4 ];
@@ -31,7 +31,7 @@ class LimitDefTest extends TypeDefTestCase {
 		yield 'A number' => [ '123', 123 ];
 	}
 
-	public function provideNormalizeSettings() {
+	public static function provideNormalizeSettings() {
 		$def = [ LimitDef::PARAM_MIN => 0, ParamValidator::PARAM_ISMULTI => false ];
 
 		return [
@@ -62,7 +62,7 @@ class LimitDefTest extends TypeDefTestCase {
 		];
 	}
 
-	public function provideCheckSettings() {
+	public static function provideCheckSettings() {
 		$keys = [
 			'Y', IntegerDef::PARAM_IGNORE_RANGE,
 			IntegerDef::PARAM_MIN, IntegerDef::PARAM_MAX, IntegerDef::PARAM_MAX2
@@ -171,7 +171,7 @@ class LimitDefTest extends TypeDefTestCase {
 		];
 	}
 
-	public function provideGetInfo() {
+	public static function provideGetInfo() {
 		return [
 			'Basic' => [
 				[],

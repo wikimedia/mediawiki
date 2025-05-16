@@ -18,14 +18,14 @@ class PasswordDefTest extends StringDefTest {
 		return new PasswordDef( $callbacks, $options );
 	}
 
-	public function provideNormalizeSettings() {
+	public static function provideNormalizeSettings() {
 		return [
 			[ [], [ ParamValidator::PARAM_SENSITIVE => true ] ],
 			[ [ ParamValidator::PARAM_SENSITIVE => false ], [ ParamValidator::PARAM_SENSITIVE => true ] ],
 		];
 	}
 
-	public function provideCheckSettings() {
+	public static function provideCheckSettings() {
 		$keys = [ 'Y', StringDef::PARAM_MAX_BYTES, StringDef::PARAM_MAX_CHARS ];
 
 		yield from parent::provideCheckSettings();

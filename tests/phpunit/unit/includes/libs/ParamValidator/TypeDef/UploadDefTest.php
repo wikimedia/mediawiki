@@ -33,7 +33,7 @@ class UploadDefTest extends TypeDefTestCase {
 		return $ret;
 	}
 
-	private function makeUpload( $err = UPLOAD_ERR_OK ) {
+	private static function makeUpload( $err = UPLOAD_ERR_OK ) {
 		return new UploadedFile( [
 			'name' => 'example.txt',
 			'type' => 'text/plain',
@@ -45,7 +45,7 @@ class UploadDefTest extends TypeDefTestCase {
 
 	public function testGetNoFile() {
 		$typeDef = $this->getInstance(
-			$this->getCallbacks( $this->makeUpload( UPLOAD_ERR_NO_FILE ), [] ),
+			$this->getCallbacks( self::makeUpload( UPLOAD_ERR_NO_FILE ), [] ),
 			[]
 		);
 
@@ -53,9 +53,9 @@ class UploadDefTest extends TypeDefTestCase {
 		$this->assertNull( $typeDef->getValue( 'nothing', [], [] ) );
 	}
 
-	public function provideValidate() {
-		$okFile = $this->makeUpload();
-		$iniFile = $this->makeUpload( UPLOAD_ERR_INI_SIZE );
+	public static function provideValidate() {
+		$okFile = self::makeUpload();
+		$iniFile = self::makeUpload( UPLOAD_ERR_INI_SIZE );
 		$exIni = new ValidationException(
 			DataMessageValue::new( 'paramvalidator-badupload-inisize', [], 'badupload', [
 				'code' => 'inisize',
@@ -85,7 +85,7 @@ class UploadDefTest extends TypeDefTestCase {
 			'Too big (G)' => [ $iniFile, $exIni, [], [ 'inisize' => '2G' ] ],
 
 			'Form size' => [
-				$this->makeUpload( UPLOAD_ERR_FORM_SIZE ),
+				self::makeUpload( UPLOAD_ERR_FORM_SIZE ),
 				new ValidationException(
 					DataMessageValue::new( 'paramvalidator-badupload-formsize', [], 'badupload', [
 						'code' => 'formsize',
@@ -94,7 +94,7 @@ class UploadDefTest extends TypeDefTestCase {
 				),
 			],
 			'Partial' => [
-				$this->makeUpload( UPLOAD_ERR_PARTIAL ),
+				self::makeUpload( UPLOAD_ERR_PARTIAL ),
 				new ValidationException(
 					DataMessageValue::new( 'paramvalidator-badupload-partial', [], 'badupload', [
 						'code' => 'partial',
@@ -103,7 +103,7 @@ class UploadDefTest extends TypeDefTestCase {
 				),
 			],
 			'No tmp' => [
-				$this->makeUpload( UPLOAD_ERR_NO_TMP_DIR ),
+				self::makeUpload( UPLOAD_ERR_NO_TMP_DIR ),
 				new ValidationException(
 					DataMessageValue::new( 'paramvalidator-badupload-notmpdir', [], 'badupload', [
 						'code' => 'notmpdir',
@@ -112,7 +112,7 @@ class UploadDefTest extends TypeDefTestCase {
 				),
 			],
 			'Can\'t write' => [
-				$this->makeUpload( UPLOAD_ERR_CANT_WRITE ),
+				self::makeUpload( UPLOAD_ERR_CANT_WRITE ),
 				new ValidationException(
 					DataMessageValue::new( 'paramvalidator-badupload-cantwrite', [], 'badupload', [
 						'code' => 'cantwrite',
@@ -121,7 +121,7 @@ class UploadDefTest extends TypeDefTestCase {
 				),
 			],
 			'Ext abort' => [
-				$this->makeUpload( UPLOAD_ERR_EXTENSION ),
+				self::makeUpload( UPLOAD_ERR_EXTENSION ),
 				new ValidationException(
 					DataMessageValue::new( 'paramvalidator-badupload-phpext', [], 'badupload', [
 						'code' => 'phpext',
@@ -152,7 +152,7 @@ class UploadDefTest extends TypeDefTestCase {
 
 	public function testValidate_unknownError() {
 		// -43 should be safe from ever being a valid UPLOAD_ERR_ constant
-		$callbacks = $this->getCallbacks( $this->makeUpload( -43 ), [] );
+		$callbacks = $this->getCallbacks( self::makeUpload( -43 ), [] );
 		$typeDef = $this->getInstance( $callbacks, [] );
 		$value = $typeDef->getValue( 'test', [], [] );
 
@@ -163,7 +163,7 @@ class UploadDefTest extends TypeDefTestCase {
 
 	public function testValidate_unknownError2() {
 		define( 'UPLOAD_ERR_UPLOADDEFTEST', -44 );
-		$callbacks = $this->getCallbacks( $this->makeUpload( UPLOAD_ERR_UPLOADDEFTEST ), [] );
+		$callbacks = $this->getCallbacks( self::makeUpload( UPLOAD_ERR_UPLOADDEFTEST ), [] );
 		$typeDef = $this->getInstance( $callbacks, [] );
 		$value = $typeDef->getValue( 'test', [], [] );
 
@@ -174,7 +174,7 @@ class UploadDefTest extends TypeDefTestCase {
 		$typeDef->validate( 'test', $value, [], [] );
 	}
 
-	public function provideCheckSettings() {
+	public static function provideCheckSettings() {
 		return [
 			'Basic test' => [
 				[],
@@ -244,13 +244,13 @@ class UploadDefTest extends TypeDefTestCase {
 		];
 	}
 
-	public function provideStringifyValue() {
+	public static function provideStringifyValue() {
 		return [
-			'Yeah, right' => [ $this->makeUpload(), null ],
+			'Yeah, right' => [ self::makeUpload(), null ],
 		];
 	}
 
-	public function provideGetInfo() {
+	public static function provideGetInfo() {
 		return [
 			'Basic test' => [
 				[],
