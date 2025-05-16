@@ -62,7 +62,15 @@ class RunJobs extends Maintenance {
 		}
 
 		// Don't eat all memory on the machine if we get a bad job.
-		return "150M";
+		//
+		// The default memory_limit for PHP-CLI is -1 (unlimited).
+		// This is fine for most maintenance scripts, but runJobs.php is unusually likely
+		// to leak memory (e.g. some badly-managed in-process cache array in some class)
+		// because it can run for long periods doing different tasks.
+		// Let's use 3x the limit for a web request.
+		global $wgMemoryLimit;
+		$limit = wfShorthandToInteger( (string)$wgMemoryLimit );
+		return $limit === -1 ? $limit : ( $limit * 3 );
 	}
 
 	public function execute() {
