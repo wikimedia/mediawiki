@@ -478,7 +478,6 @@ class MaintenanceRunner {
 		// Basic checks and such
 		$this->scriptObject->setup();
 
-		// Set the memory limit
 		$this->adjustMemoryLimit();
 
 		// Override any config settings
@@ -495,29 +494,31 @@ class MaintenanceRunner {
 	}
 
 	/**
-	 * @see Maintenance::memoryLimit()
-	 * @return string
+	 * Adjusts PHP's memory limit to better suit our needs, if needed.
+	 *
+	 * @see Maintenance::memoryLimit
 	 */
-	private function memoryLimit() {
+	private function adjustMemoryLimit() {
 		if ( $this->parameters->hasOption( 'memory-limit' ) ) {
 			$limit = $this->parameters->getOption( 'memory-limit', 'max' );
 			$limit = trim( $limit, "\" '" ); // trim quotes in case someone misunderstood
-			return $limit;
+		} else {
+			$limit = $this->scriptObject->memoryLimit() ?: 'max';
 		}
-
-		$limit = $this->scriptObject->memoryLimit();
-		return $limit ?: 'max';
-	}
-
-	/**
-	 * Adjusts PHP's memory limit to better suit our needs, if needed.
-	 */
-	private function adjustMemoryLimit() {
-		$limit = $this->memoryLimit();
 		if ( $limit == 'max' ) {
 			$limit = -1; // no memory limit
 		}
 		if ( $limit != 'default' ) {
+			// NOTE: This should not override $wgMemoryLimit and ride the wfMemoryLimit() call in Setup.php.
+			//
+			// We are still in MW_FINAL_SETUP_CALLBACK in Setup.php, before that calls wfMemoryLimit(),
+			// and we can still set $wgMemoryLimit here or in MaintenanceRunner::overrideConfig.
+			// But, $wgMemoryLimit is a way to *raise* the memory limit, mainly for web requests
+			// where the system default is often less than what we need.
+			//
+			// Maintenance::memoryLimit, however, is to *lower* the memory limit (often -1 for PHP-CLI).
+			// If we override $wgMemoryLimit and let Setup.php call wfMemoryLimit, it would do nothing
+			// when memory_limit=-1 and run maintenance scripts with unlimited memory.
 			ini_set( 'memory_limit', $limit );
 		}
 	}
@@ -596,7 +597,6 @@ class MaintenanceRunner {
 
 	/**
 	 * @param SettingsBuilder $settingsBuilder
-	 *
 	 * @return void
 	 */
 	private function overrideConfig( SettingsBuilder $settingsBuilder ) {

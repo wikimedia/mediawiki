@@ -810,8 +810,9 @@ abstract class Maintenance {
 	 * processes.
 	 *
 	 * @stable to override
-	 * @return string|int Must be a shorthand string like "50M" or "max", or a number
-	 * of bytes (-1 for unlimited) passed to `ini_set( 'memory_limit' )`.
+	 * @return string|int Must be a shorthand string like "50M", or a number of bytes
+	 * (-1 for unlimited) passed to `ini_set( 'memory_limit' )`, or a keyword like "max"
+	 * (alias for -1) or "default" (alias for leaving memory_limit from php.ini unchanged).
 	 */
 	public function memoryLimit() {
 		return 'max';
@@ -952,7 +953,6 @@ abstract class Maintenance {
 	 * Handle some last-minute setup here.
 	 *
 	 * @stable to override
-	 *
 	 * @param SettingsBuilder $settingsBuilder
 	 */
 	public function finalSetup( SettingsBuilder $settingsBuilder ) {
