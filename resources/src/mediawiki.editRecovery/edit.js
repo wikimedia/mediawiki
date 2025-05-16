@@ -198,7 +198,7 @@ function loadDataSuccess( pageData ) {
 function recover( pageData ) {
 	for ( const fieldName in inputFields ) {
 		if ( pageData[ fieldNamePrefix + fieldName ] === undefined ) {
-			return;
+			continue;
 		}
 		const field = inputFields[ fieldName ];
 		const $field = $( field );
