@@ -1004,10 +1004,11 @@ class SpecialUserRights extends SpecialPage {
 
 				$groups = $this->changeableGroups();
 				if ( isset( $groups['unaddable'][$group] ) ) {
-					$checkboxHtml .= Html::element(
+					$checkboxHtml .= Html::rawElement(
 						'div',
 						[ 'class' => 'mw-userrights-unaddable-reason' ],
-						$this->msg( $groups['unaddable'][$group] )->text() );
+						$this->msg( $groups['unaddable'][$group] )->parse()
+					);
 				}
 
 				if ( $this->canProcessExpiries() ) {
