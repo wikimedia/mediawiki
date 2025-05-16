@@ -33,6 +33,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\DAO\WikiAwareEntityTrait;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
@@ -55,6 +56,7 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MWCryptHash;
 use MWCryptRand;
+use Profiler;
 use RuntimeException;
 use stdClass;
 use Stringable;
@@ -2676,6 +2678,21 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 			MediaWikiServices::getInstance()->getUserOptionsManager()->saveOptions( $this );
 		}
 		return Status::newGood();
+	}
+
+	/**
+	 * Schedule a deferred update which will block the IP address of the current
+	 * user, if they are blocked with the autoblocking option.
+	 *
+	 * @since 1.45
+	 */
+	public function scheduleSpreadBlock() {
+		DeferredUpdates::addCallableUpdate( function () {
+			// Permit master queries in a GET request
+			$scope = Profiler::instance()->getTransactionProfiler()->silenceForScope();
+			$this->spreadAnyEditBlock();
+			ScopedCallback::consume( $scope );
+		} );
 	}
 
 	/**

@@ -35,7 +35,6 @@ use MediaWiki\Content\TextContent;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Debug\DeprecationHelper;
-use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\EditPage\Constraint\AccidentalRecreationConstraint;
 use MediaWiki\EditPage\Constraint\AuthorizationConstraint;
 use MediaWiki\EditPage\Constraint\BrokenRedirectConstraint;
@@ -686,9 +685,7 @@ class EditPage implements IEditObject {
 			$user = $this->context->getUser();
 			if ( $user->getBlock() && !$readOnlyMode->isReadOnly() ) {
 				// Auto-block user's IP if the account was "hard" blocked
-				DeferredUpdates::addCallableUpdate( static function () use ( $user ) {
-					$user->spreadAnyEditBlock();
-				} );
+				$user->scheduleSpreadBlock();
 			}
 			$this->displayPermissionStatus( $status );
 

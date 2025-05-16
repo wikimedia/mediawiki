@@ -103,10 +103,10 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::isAllowedAny
-	 * @covers \MediaWiki\User\User::isAllowedAll
-	 * @covers \MediaWiki\User\User::isAllowed
-	 * @covers \MediaWiki\User\User::isNewbie
+	 * @covers ::isAllowedAny
+	 * @covers ::isAllowedAll
+	 * @covers ::isAllowed
+	 * @covers ::isNewbie
 	 */
 	public function testIsAllowed() {
 		$this->assertFalse(
@@ -146,9 +146,9 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::useRCPatrol
-	 * @covers \MediaWiki\User\User::useNPPatrol
-	 * @covers \MediaWiki\User\User::useFilePatrol
+	 * @covers ::useRCPatrol
+	 * @covers ::useNPPatrol
+	 * @covers ::useFilePatrol
 	 */
 	public function testPatrolling() {
 		$user = $this->getTestUser( 'patroller' )->getUser();
@@ -163,7 +163,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::isBot
+	 * @covers ::isBot
 	 */
 	public function testBot() {
 		$user = $this->getTestUser( 'bot' )->getUser();
@@ -180,7 +180,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Test User::editCount
 	 * @group medium
-	 * @covers \MediaWiki\User\User::getEditCount
+	 * @covers ::getEditCount
 	 */
 	public function testGetEditCount() {
 		$user = $this->getMutableTestUser()->getUser();
@@ -217,7 +217,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Test User::editCount
 	 * @group medium
-	 * @covers \MediaWiki\User\User::getEditCount
+	 * @covers ::getEditCount
 	 */
 	public function testGetEditCountForAnons() {
 		$user = User::newFromName( 'Anonymous' );
@@ -239,7 +239,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::getRightDescription
+	 * @covers ::getRightDescription
 	 */
 	public function testGetRightDescription() {
 		$key = 'deletechangetags';
@@ -248,7 +248,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::getRightDescriptionHtml
+	 * @covers ::getRightDescriptionHtml
 	 */
 	public function testGetParsedRightDescription() {
 		$key = 'deletechangetags';
@@ -261,8 +261,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 *	- ensure the password meets the minimal length
 	 *	- ensure the password is not the same as the username
 	 *	- ensure the username/password combo isn't forbidden
-	 * @covers \MediaWiki\User\User::checkPasswordValidity()
-	 * @covers \MediaWiki\User\User::isValidPassword()
+	 * @covers ::checkPasswordValidity()
+	 * @covers ::isValidPassword()
 	 */
 	public function testCheckPasswordValidity() {
 		$this->overrideConfigValue(
@@ -343,7 +343,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::checkPasswordValidity
+	 * @covers ::checkPasswordValidity
 	 */
 	public function testCheckPasswordValidityForTemporaryAccount() {
 		$this->enableAutoCreateTempUser();
@@ -355,7 +355,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::equals
+	 * @covers ::equals
 	 */
 	public function testEquals() {
 		$first = $this->getMutableTestUser()->getUser();
@@ -379,8 +379,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::getId
-	 * @covers \MediaWiki\User\User::setId
+	 * @covers ::getId
+	 * @covers ::setId
 	 */
 	public function testUserId() {
 		$this->assertGreaterThan( 0, $this->user->getId() );
@@ -405,9 +405,9 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::isRegistered
-	 * @covers \MediaWiki\User\User::isAnon
-	 * @covers \MediaWiki\User\User::logOut
+	 * @covers ::isRegistered
+	 * @covers ::isAnon
+	 * @covers ::logOut
 	 */
 	public function testIsRegistered() {
 		$user = $this->getMutableTestUser()->getUser();
@@ -435,8 +435,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::setRealName
-	 * @covers \MediaWiki\User\User::getRealName
+	 * @covers ::setRealName
+	 * @covers ::getRealName
 	 */
 	public function testRealName() {
 		$user = $this->getMutableTestUser()->getUser();
@@ -461,8 +461,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::checkAndSetTouched
-	 * @covers \MediaWiki\User\User::getDBTouched()
+	 * @covers ::checkAndSetTouched
+	 * @covers ::getDBTouched()
 	 */
 	public function testCheckAndSetTouched() {
 		$user = $this->getMutableTestUser()->getUser();
@@ -483,8 +483,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::validateCache
-	 * @covers \MediaWiki\User\User::getTouched
+	 * @covers ::validateCache
+	 * @covers ::getTouched
 	 */
 	public function testValidateCache() {
 		$user = $this->getTestUser()->getUser();
@@ -508,7 +508,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::findUsersByGroup
+	 * @covers ::findUsersByGroup
 	 */
 	public function testFindUsersByGroup() {
 		$users = User::findUsersByGroup( [] );
@@ -541,7 +541,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::getBlock
+	 * @covers ::getBlock
 	 */
 	public function testSoftBlockRanges() {
 		$this->overrideConfigValue( MainConfigNames::SoftBlockRanges, [ '10.0.0.0/8' ] );
@@ -590,7 +590,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideIsPingLimitable
-	 * @covers \MediaWiki\User\User::isPingLimitable
+	 * @covers ::isPingLimitable
 	 * @param array $rateLimitExcludeIps
 	 * @param string|null $rightOverride
 	 * @param bool $expected
@@ -631,7 +631,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::getExperienceLevel
+	 * @covers ::getExperienceLevel
 	 * @dataProvider provideExperienceLevel
 	 */
 	public function testExperienceLevel( $editCount, $memberSince, $expLevel ) {
@@ -659,7 +659,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::getExperienceLevel
+	 * @covers ::getExperienceLevel
 	 */
 	public function testExperienceLevelAnon() {
 		$user = User::newFromName( '10.11.12.13', false );
@@ -675,7 +675,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::newFromId
+	 * @covers ::newFromId
 	 */
 	public function testNewFromId() {
 		$userId = $this->user->getId();
@@ -693,7 +693,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::newFromActorId
+	 * @covers ::newFromActorId
 	 */
 	public function testActorId() {
 		$this->filterDeprecated( '/Passing a parameter to getActorId\(\) is deprecated/', '1.36' );
@@ -764,7 +764,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::getActorId
+	 * @covers ::getActorId
 	 */
 	public function testForeignGetActorId() {
 		$this->filterDeprecated( '/Passing a parameter to getActorId\(\) is deprecated/', '1.36' );
@@ -775,7 +775,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::getWikiId
+	 * @covers ::getWikiId
 	 */
 	public function testGetWiki() {
 		$user = User::newFromName( 'UserTestActorId1' );
@@ -783,7 +783,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::assertWiki
+	 * @covers ::assertWiki
 	 */
 	public function testAssertWiki() {
 		$user = User::newFromName( 'UserTestActorId1' );
@@ -796,7 +796,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::newFromAnyId
+	 * @covers ::newFromAnyId
 	 */
 	public function testNewFromAnyId() {
 		$this->disableAutoCreateTempUser();
@@ -864,7 +864,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::newFromIdentity
+	 * @covers ::newFromIdentity
 	 */
 	public function testNewFromIdentity() {
 		// Registered user
@@ -890,7 +890,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::newFromConfirmationCode
+	 * @covers ::newFromConfirmationCode
 	 */
 	public function testNewFromConfirmationCode() {
 		$user = User::newFromConfirmationCode( 'NotARealConfirmationCode' );
@@ -907,12 +907,12 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::newFromName
-	 * @covers \MediaWiki\User\User::getName
-	 * @covers \MediaWiki\User\User::getUserPage
-	 * @covers \MediaWiki\User\User::getTalkPage
-	 * @covers \MediaWiki\User\User::getTitleKey
-	 * @covers \MediaWiki\User\User::whoIs
+	 * @covers ::newFromName
+	 * @covers ::getName
+	 * @covers ::getUserPage
+	 * @covers ::getTalkPage
+	 * @covers ::getTitleKey
+	 * @covers ::whoIs
 	 * @dataProvider provideNewFromName
 	 */
 	public function testNewFromName( $name, $titleKey ) {
@@ -938,7 +938,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::newFromName
+	 * @covers ::newFromName
 	 */
 	public function testNewFromName_extra() {
 		$user = User::newFromName( '1.2.3.4' );
@@ -953,8 +953,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::newFromSession
-	 * @covers \MediaWiki\User\User::getRequest
+	 * @covers ::newFromSession
+	 * @covers ::getRequest
 	 */
 	public function testSessionAndRequest() {
 		$req1 = new WebRequest;
@@ -984,8 +984,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::newFromRow
-	 * @covers \MediaWiki\User\User::loadFromRow
+	 * @covers ::newFromRow
+	 * @covers ::loadFromRow
 	 */
 	public function testNewFromRow() {
 		// TODO: Create real tests here for loadFromRow
@@ -995,8 +995,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::newFromRow
-	 * @covers \MediaWiki\User\User::loadFromRow
+	 * @covers ::newFromRow
+	 * @covers ::loadFromRow
 	 */
 	public function testNewFromRow_bad() {
 		$this->expectException( InvalidArgumentException::class );
@@ -1005,8 +1005,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::getBlock
-	 * @covers \MediaWiki\User\User::isHidden
+	 * @covers ::getBlock
+	 * @covers ::isHidden
 	 */
 	public function testBlockInstanceCache() {
 		$this->hideDeprecated( User::class . '::isBlockedFrom' );
@@ -1043,7 +1043,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::getBlock
+	 * @covers ::getBlock
 	 */
 	public function testCompositeBlocks() {
 		$user = $this->getMutableTestUser()->getUser();
@@ -1072,7 +1072,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::getBlock
+	 * @covers ::getBlock
 	 */
 	public function testUserBlock() {
 		$user = $this->getMutableTestUser()->getUser();
@@ -1170,8 +1170,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::isBlockedFromEmailuser
-	 * @covers \MediaWiki\User\User::isAllowedToCreateAccount
+	 * @covers ::isBlockedFromEmailuser
+	 * @covers ::isAllowedToCreateAccount
 	 * @dataProvider provideIsBlockedFromAction
 	 * @param bool $blockFromEmail Whether to block email access.
 	 * @param bool $blockFromAccountCreation Whether to block account creation.
@@ -1204,7 +1204,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::isBlockedFromUpload
+	 * @covers ::isBlockedFromUpload
 	 * @dataProvider provideIsBlockedFromUpload
 	 * @param bool $sitewide Whether to block sitewide.
 	 * @param bool $expected Whether the user is expected to be blocked from uploads.
@@ -1231,7 +1231,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::isSystemUser
+	 * @covers ::isSystemUser
 	 */
 	public function testIsSystemUser() {
 		$this->assertFalse( $this->user->isSystemUser(), 'Normal users are not system users' );
@@ -1241,7 +1241,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::newSystemUser
+	 * @covers ::newSystemUser
 	 * @dataProvider provideNewSystemUser
 	 * @param string $exists How/whether to create the user before calling User::newSystemUser
 	 *  - 'missing': Do not create the user
@@ -1347,8 +1347,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::getName
-	 * @covers \MediaWiki\User\User::setName
+	 * @covers ::getName
+	 * @covers ::setName
 	 */
 	public function testUserName() {
 		$user = User::newFromName( 'DannyS712' );
@@ -1367,9 +1367,9 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::getEmail
-	 * @covers \MediaWiki\User\User::setEmail
-	 * @covers \MediaWiki\User\User::invalidateEmail
+	 * @covers ::getEmail
+	 * @covers ::setEmail
+	 * @covers ::invalidateEmail
 	 */
 	public function testUserEmail() {
 		$user = $this->user;
@@ -1422,7 +1422,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::setEmailWithConfirmation
+	 * @covers ::setEmailWithConfirmation
 	 */
 	public function testSetEmailWithConfirmation_basic() {
 		$user = $this->getTestUser()->getUser();
@@ -1457,8 +1457,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::isItemLoaded
-	 * @covers \MediaWiki\User\User::setItemLoaded
+	 * @covers ::isItemLoaded
+	 * @covers ::setItemLoaded
 	 */
 	public function testItemLoaded() {
 		$user = User::newFromName( 'DannyS712' );
@@ -1478,7 +1478,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::requiresHTTPS
+	 * @covers ::requiresHTTPS
 	 * @dataProvider provideRequiresHTTPS
 	 */
 	public function testRequiresHTTPS( $preference, bool $expected ) {
@@ -1508,7 +1508,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::requiresHTTPS
+	 * @covers ::requiresHTTPS
 	 */
 	public function testRequiresHTTPS_disabled() {
 		$this->overrideConfigValues( [
@@ -1533,7 +1533,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::requiresHTTPS
+	 * @covers ::requiresHTTPS
 	 */
 	public function testRequiresHTTPS_forced() {
 		$this->overrideConfigValues( [
@@ -1558,7 +1558,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::addToDatabase
+	 * @covers ::addToDatabase
 	 */
 	public function testAddToDatabase_bad() {
 		$user = new User();
@@ -1570,7 +1570,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::pingLimiter
+	 * @covers ::pingLimiter
 	 */
 	public function testPingLimiter() {
 		$user = $this->getTestUser()->getUser();
@@ -1591,8 +1591,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::loadFromDatabase
-	 * @covers \MediaWiki\User\User::loadDefaults
+	 * @covers ::loadFromDatabase
+	 * @covers ::loadDefaults
 	 */
 	public function testBadUserID() {
 		$user = User::newFromId( 999999999 );
@@ -1600,10 +1600,10 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::probablyCan
-	 * @covers \MediaWiki\User\User::definitelyCan
-	 * @covers \MediaWiki\User\User::authorizeRead
-	 * @covers \MediaWiki\User\User::authorizeWrite
+	 * @covers ::probablyCan
+	 * @covers ::definitelyCan
+	 * @covers ::authorizeRead
+	 * @covers ::authorizeWrite
 	 */
 	public function testAuthorityMethods() {
 		$user = $this->getTestUser()->getUser();
@@ -1621,8 +1621,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::isAllowed
-	 * @covers \MediaWiki\User\User::__sleep
+	 * @covers ::isAllowed
+	 * @covers ::__sleep
 	 */
 	public function testSerializationRoudTripWithAuthority() {
 		$user = $this->getTestUser()->getUser();
@@ -1641,7 +1641,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::isTemp
+	 * @covers ::isTemp
 	 * @dataProvider provideIsTemp
 	 */
 	public function testIsTemp( $name, $expected ) {
@@ -1652,7 +1652,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::isTemp
+	 * @covers ::isTemp
 	 */
 	public function testSetIsTempInLoadDefaults() {
 		$this->enableAutoCreateTempUser();
@@ -1664,7 +1664,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::isNamed
+	 * @covers ::isNamed
 	 */
 	public function testIsNamed() {
 		$this->enableAutoCreateTempUser();
@@ -1691,7 +1691,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::addToDatabase
+	 * @covers ::addToDatabase
 	 * @dataProvider provideAddToDatabase_temp
 	 */
 	public function testAddToDatabase_temp( $name, $expected ) {
@@ -1710,8 +1710,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::spreadAnyEditBlock
-	 * @covers \MediaWiki\User\User::spreadBlock
+	 * @covers ::spreadAnyEditBlock
+	 * @covers ::spreadBlock
 	 */
 	public function testSpreadAnyEditBlockForAnonUser() {
 		$hookCalled = false;
@@ -1725,8 +1725,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::spreadAnyEditBlock
-	 * @covers \MediaWiki\User\User::spreadBlock
+	 * @covers ::spreadAnyEditBlock
+	 * @covers ::spreadBlock
 	 * @dataProvider provideBlockWasSpreadValues
 	 */
 	public function testSpreadAnyEditBlockForUnblockedUser( $mockBlockWasSpreadHookValue ) {
@@ -1753,8 +1753,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::spreadAnyEditBlock
-	 * @covers \MediaWiki\User\User::spreadBlock
+	 * @covers ::spreadAnyEditBlock
+	 * @covers ::spreadBlock
 	 */
 	public function testSpreadAnyEditBlockForBlockedUser() {
 		$this->getServiceContainer()->getBlockUserFactory()->newBlockUser(
@@ -1766,8 +1766,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\User::spreadAnyEditBlock
-	 * @covers \MediaWiki\User\User::spreadBlock
+	 * @covers ::spreadAnyEditBlock
+	 * @covers ::spreadBlock
 	 */
 	public function testSpreadAnyEditBlockWhenMultiblocked() {
 		$this->overrideConfigValue( MainConfigNames::EnableMultiBlocks, true );
@@ -1783,5 +1783,18 @@ class UserTest extends MediaWikiIntegrationTestCase {
 
 		$autoblocks = $this->getServiceContainer()->getBlockManager()->getIpBlock( '1.2.3.4', true );
 		$this->assertCount( 1, $autoblocks->toArray() );
+	}
+
+	/**
+	 * @covers ::scheduleSpreadBlock
+	 */
+	public function testScheduleSpreadBlock() {
+		$this->getServiceContainer()->getBlockUserFactory()->newBlockUser(
+			$this->user, $this->getTestSysop()->getAuthority(), 'indefinite', '', [ 'isAutoblocking' => true ]
+		)->placeBlockUnsafe();
+		RequestContext::getMain()->getRequest()->setIP( '1.2.3.4' );
+		$this->user->scheduleSpreadBlock();
+		$this->runDeferredUpdates();
+		$this->assertNotNull( $this->getServiceContainer()->getBlockManager()->getIpBlock( '1.2.3.4', true ) );
 	}
 }
