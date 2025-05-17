@@ -478,10 +478,10 @@ trait LanguageNameUtilsTestTrait {
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( "Invalid language code \"$code\"" );
 
-		$callback( $code );
+		$callback( $this, $code );
 	}
 
-	public function provideExceptionFromInvalidCode() {
+	public static function provideExceptionFromInvalidCode() {
 		$ret = [];
 		foreach ( static::provideIsValidBuiltInCode() as $desc => [ $code, $valid ] ) {
 			if ( $valid ) {
@@ -491,17 +491,25 @@ trait LanguageNameUtilsTestTrait {
 
 			// For getFileName, we define an anonymous function because of the extra first param
 			$ret["getFileName: $desc"] = [
-				function ( $code ) {
-					return $this->getFileName( 'Messages', $code );
+				static function ( $testCase, $code ) {
+					return $testCase->getFileName( 'Messages', $code );
 				},
 				$code
 			];
 
-			$ret["getMessagesFileName: $desc"] =
-				[ [ $this, 'getMessagesFileName' ], $code ];
+			$ret["getMessagesFileName: $desc"] = [
+				static function ( $testCase, $code ) {
+					return $testCase->getMessagesFileName( $code );
+				},
+				$code
+			];
 
-			$ret["getJsonMessagesFileName: $desc"] =
-				[ [ $this, 'getJsonMessagesFileName' ], $code ];
+			$ret["getJsonMessagesFileName: $desc"] = [
+				static function ( $testCase, $code ) {
+					return $testCase->getJsonMessagesFileName( $code );
+				},
+				$code
+			];
 		}
 		return $ret;
 	}

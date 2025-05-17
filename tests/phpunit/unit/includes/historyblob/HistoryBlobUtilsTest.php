@@ -47,7 +47,7 @@ class HistoryBlobUtilsTest extends MediaWikiUnitTestCase {
 
 	public function testUnserializeBadEmbedded() {
 		// Creation of dynamic property is deprecated - T352679
-		$this->markTestSkippedIfPhp( '>=', '8.2' );
+		self::markTestSkippedIfPhp( '>=', '8.2' );
 
 		$obj = HistoryBlobUtils::unserialize( "O:15:\"HistoryBlobStub\":4:{s:9:\"\0*\0mOldId\";N;s:8:\"\0*\0mHash\";s:0:\"\";s:7:\"\0*\0mRef\";N;s:3:\"bad\";O:8:\"stdClass\":0:{}}" );
 		$this->assertInstanceOf( '__PHP_Incomplete_Class', $obj->bad );

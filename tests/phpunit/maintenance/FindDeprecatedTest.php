@@ -33,7 +33,7 @@ class FindDeprecatedTest extends MaintenanceBaseTestCase {
 	public function testExecute() {
 		// Creation of dynamic property is deprecated which is done by the script being tested.
 		// FIXME: Make this test work in PHP 8.2 and above.
-		$this->markTestSkippedIfPhp( '>=', '8.2' );
+		self::markTestSkippedIfPhp( '>=', '8.2' );
 
 		$this->maintenance->execute();
 		$this->expectOutputRegex(
