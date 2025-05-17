@@ -3015,6 +3015,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\User\\UserRigorOptions' => __DIR__ . '/includes/user/UserRigorOptions.php',
 	'MediaWiki\\User\\UserSelectQueryBuilder' => __DIR__ . '/includes/user/UserSelectQueryBuilder.php',
 	'MediaWiki\\User\\UserTimeCorrection' => __DIR__ . '/includes/user/UserTimeCorrection.php',
+	'MediaWiki\\User\\WelcomeNotification' => __DIR__ . '/includes/user/WelcomeNotification.php',
 	'MediaWiki\\Utils\\ExtensionInfo' => __DIR__ . '/includes/utils/ExtensionInfo.php',
 	'MediaWiki\\Utils\\GitInfo' => __DIR__ . '/includes/utils/GitInfo.php',
 	'MediaWiki\\Utils\\MWTimestamp' => __DIR__ . '/includes/utils/MWTimestamp.php',
