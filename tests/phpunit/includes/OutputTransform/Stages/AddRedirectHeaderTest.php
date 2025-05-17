@@ -23,17 +23,17 @@ class AddRedirectHeaderTest extends OutputTransformStageTestBase {
 		);
 	}
 
-	public function provideShouldRun(): iterable {
+	public static function provideShouldRun(): iterable {
 		$po = new ParserOutput();
 		$po->setRedirectHeader( 'xyz' );
 		yield [ $po, null, [] ];
 	}
 
-	public function provideShouldNotRun(): array {
+	public static function provideShouldNotRun(): array {
 		return [ [ new ParserOutput(), null, [] ] ];
 	}
 
-	public function provideTransform(): array {
+	public static function provideTransform(): array {
 		$text = "<h1>header</h1>\n<p>hello world</p>";
 		$redirect = '<div class="redirectMsg">REDIRECT</div>';
 		$expectedText = <<<EOF

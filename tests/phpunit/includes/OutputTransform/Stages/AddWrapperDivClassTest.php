@@ -23,20 +23,20 @@ class AddWrapperDivClassTest extends OutputTransformStageTestBase {
 		);
 	}
 
-	public function provideShouldRun(): array {
+	public static function provideShouldRun(): array {
 		return( [
 			[ new ParserOutput(), null, [ 'wrapperDivClass' => 'some string' ] ]
 		] );
 	}
 
-	public function provideShouldNotRun(): array {
+	public static function provideShouldNotRun(): array {
 		return( [
 			[ new ParserOutput(), null, [ 'wrapperDivClass' => '' ] ],
 			[ new ParserOutput(), null, [] ]
 		] );
 	}
 
-	public function provideTransform(): array {
+	public static function provideTransform(): array {
 		$opts = [ 'wrapperDivClass' => 'mw-parser-output' ];
 		$po = new ParserOutput( TestUtils::TEST_DOC );
 		$wrappedText = <<<EOF

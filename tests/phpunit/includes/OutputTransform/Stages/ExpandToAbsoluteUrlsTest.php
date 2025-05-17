@@ -20,20 +20,20 @@ class ExpandToAbsoluteUrlsTest extends OutputTransformStageTestBase {
 		);
 	}
 
-	public function provideShouldRun(): array {
+	public static function provideShouldRun(): array {
 		return [
 			[ new ParserOutput(), null, [ 'absoluteURLs' => true ] ],
 		];
 	}
 
-	public function provideShouldNotRun(): array {
+	public static function provideShouldNotRun(): array {
 		return [
 			[ new ParserOutput(), null, [ 'absoluteURLs' => false ] ],
 			[ new ParserOutput(), null, [] ],
 		];
 	}
 
-	public function provideTransform(): array {
+	public static function provideTransform(): array {
 		$options = [];
 		return [
 			[ new ParserOutput( '' ), null, $options, new ParserOutput( '' ) ],

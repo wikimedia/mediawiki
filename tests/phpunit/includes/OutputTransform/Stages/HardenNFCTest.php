@@ -21,17 +21,17 @@ class HardenNFCTest extends OutputTransformStageTestBase {
 		);
 	}
 
-	public function provideShouldRun(): array {
+	public static function provideShouldRun(): array {
 		return [
 			[ new ParserOutput(), null, [] ]
 		];
 	}
 
-	public function provideShouldNotRun(): array {
-		$this->markTestSkipped( 'HydrateHeaderPlaceHolders should always run' );
+	public static function provideShouldNotRun(): array {
+		self::markTestSkipped( 'HydrateHeaderPlaceHolders should always run' );
 	}
 
-	public function provideTransform(): array {
+	public static function provideTransform(): array {
 		$text = "<h1>\u{0338}</h1>";
 		$expectedText = "<h1>&#x338;</h1>";
 		return [
