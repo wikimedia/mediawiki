@@ -234,6 +234,7 @@ $magicWords = [
 	'localurle'                 => [ '0', 'عنوان_المسار_المحلي:', 'LOCALURLE:' ],
 	'localweek'                 => [ '1', 'أسبوع_محلي', 'LOCALWEEK' ],
 	'localyear'                 => [ '1', 'عام_محلي', 'LOCALYEAR' ],
+	'lossless'                  => [ '0', 'بدون_خسارة', 'بدون_فقدان', 'LOSSLESS' ],
 	'msg'                       => [ '0', 'رسالة:', 'MSG:' ],
 	'msgnw'                     => [ '0', 'رسالة_بدون_تهيئة:', 'MSGNW:' ],
 	'namespace'                 => [ '1', 'نطاق', 'NAMESPACE' ],
