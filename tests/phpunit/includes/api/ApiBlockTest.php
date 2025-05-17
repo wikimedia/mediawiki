@@ -432,6 +432,11 @@ class ApiBlockTest extends ApiTestCase {
 		$this->doBlock( [ 'reblock' => '', 'id' => '1' ] );
 	}
 
+	public function testNewblockConflictsWithReblock() {
+		$this->expectApiErrorCode( 'invalidparammix' );
+		$this->doBlock( [ 'newblock' => '', 'reblock' => '' ] );
+	}
+
 	public function testIdMulti() {
 		$this->doBlock();
 		$block1 = $this->block->getId();

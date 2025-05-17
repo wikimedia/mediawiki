@@ -111,6 +111,7 @@ class ApiBlock extends ApiBase {
 		$this->checkUserRightsAny( 'block' );
 		$params = $this->extractRequestParams();
 		$this->requireOnlyOneParameter( $params, 'id', 'user', 'userid' );
+		$this->requireMaxOneParameter( $params, 'newblock', 'reblock' );
 		$this->requireNoConflictingParameters( $params,
 			'id', [ 'newblock', 'reblock' ] );
 
