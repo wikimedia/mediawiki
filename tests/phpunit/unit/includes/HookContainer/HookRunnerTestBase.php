@@ -20,7 +20,7 @@ abstract class HookRunnerTestBase extends MediaWikiUnitTestCase {
 	/**
 	 * @return Generator|array
 	 */
-	// abstract public static function provideHookRunners();
+	abstract public static function provideHookRunners();
 
 	/**
 	 * @var string[] Method names ("onFooBar") of hook methods that do not return void,
@@ -39,28 +39,7 @@ abstract class HookRunnerTestBase extends MediaWikiUnitTestCase {
 	protected static array $voidMethodsNotUnabortableHooks = [];
 
 	/**
-	 * Temporary override to make provideHookRunners static.
-	 * See T332865.
-	 *
-	 * @return Generator|array
-	 */
-	final public static function provideHookRunnersStatically() {
-		$reflectionMethod = new ReflectionMethod( static::class, 'provideHookRunners' );
-		if ( $reflectionMethod->isStatic() ) {
-			return $reflectionMethod->invoke( null );
-		}
-
-		trigger_error(
-			'overriding provideHookRunners as an instance method is deprecated. (' .
-			$reflectionMethod->getFileName() . ':' . $reflectionMethod->getEndLine() . ')',
-			E_USER_DEPRECATED
-		);
-
-		return $reflectionMethod->invoke( new static() );
-	}
-
-	/**
-	 * @dataProvider provideHookRunnersStatically
+	 * @dataProvider provideHookRunners
 	 */
 	public function testAllMethodsInheritedFromInterface( string $hookRunnerClass ) {
 		$hookRunnerReflectionClass = new ReflectionClass( $hookRunnerClass );
@@ -82,7 +61,7 @@ abstract class HookRunnerTestBase extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @dataProvider provideHookRunnersStatically
+	 * @dataProvider provideHookRunners
 	 */
 	public function testHookInterfacesConvention( string $hookRunnerClass ) {
 		$hookRunnerReflectionClass = new ReflectionClass( $hookRunnerClass );
@@ -111,7 +90,7 @@ abstract class HookRunnerTestBase extends MediaWikiUnitTestCase {
 	}
 
 	public static function provideHookMethods() {
-		foreach ( self::provideHookRunnersStatically() as $name => [ $hookRunnerClass ] ) {
+		foreach ( static::provideHookRunners() as $name => [ $hookRunnerClass ] ) {
 			$hookRunnerReflectionClass = new ReflectionClass( $hookRunnerClass );
 			foreach ( $hookRunnerReflectionClass->getInterfaces() as $hookInterface ) {
 				yield $name . ':' . $hookInterface->getName()

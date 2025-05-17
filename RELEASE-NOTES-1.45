@@ -115,6 +115,8 @@ because of Phabricator reports.
   been removed.
 * Abstract function AuthenticationRequestTestCase::provideLoadFromSubmission is
   now static and has to be declared as static function when implemented.
+* Abstract function HookRunnerTestBase::provideHookRunners is
+  now static and has to be declared as static function when implemented.
 * The following LogPager methods are deprecated without replacement:
   getType, getPage, getPattern, getYear, getMonth, getDay, getTagFilter,
   getTagInvert, getAction.
