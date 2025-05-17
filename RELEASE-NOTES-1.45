@@ -113,6 +113,8 @@ because of Phabricator reports.
 * The SiteConfiguration::extractGlobalSetting method, unused, is now private.
 * AuthManager::forcePrimaryAuthenticationProviders(), deprecated in 1.43 has
   been removed.
+* Abstract function AuthenticationRequestTestCase::provideLoadFromSubmission is
+  now static and has to be declared as static function when implemented.
 * The following LogPager methods are deprecated without replacement:
   getType, getPage, getPattern, getYear, getMonth, getDay, getTagFilter,
   getTagInvert, getAction.
