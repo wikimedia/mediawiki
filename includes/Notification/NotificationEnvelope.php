@@ -5,18 +5,27 @@ namespace MediaWiki\Notification;
  * An object representing notification with list of recipients
  * @since 1.44
  * @unstable
+ * @template T of Notification
  */
 class NotificationEnvelope {
 
+	/** @var T */
 	private Notification $notification;
 	private RecipientSet $recipientSet;
 
-	public function __construct( Notification $notification, RecipientSet $recipientSet ) {
+	/**
+	 * @param T $notification
+	 * @param RecipientSet $recipientSet
+	 */
+	public function __construct( $notification, $recipientSet ) {
 		$this->notification = $notification;
 		$this->recipientSet = $recipientSet;
 	}
 
-	public function getNotification(): Notification {
+	/**
+	 * @return T
+	 */
+	public function getNotification() {
 		return $this->notification;
 	}
 
