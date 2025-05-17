@@ -10,6 +10,7 @@ use LogicException;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\Content;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionSlots;
 use MediaWiki\Revision\RevisionStoreRecord;
@@ -17,7 +18,6 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SuppressedDataException;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserIdentityValue;
-use MockTitleTrait;
 
 /**
  * @covers \MediaWiki\Revision\RevisionRecord
@@ -25,7 +25,6 @@ use MockTitleTrait;
  * @note Expects to be used in classes that extend MediaWikiUnitTestCase.
  */
 trait RevisionRecordTests {
-	use MockTitleTrait;
 	use MockAuthorityTrait;
 
 	/**
@@ -91,9 +90,9 @@ trait RevisionRecordTests {
 		$this->assertEquals( 1, $revision->getParentId() );
 	}
 
-	abstract protected function expectedDefaultFieldVisibility( $field ): bool;
+	abstract protected static function expectedDefaultFieldVisibility( $field ): bool;
 
-	private function provideAudienceCheckData( int $field ): iterable {
+	private static function provideAudienceCheckData( int $field ): iterable {
 		yield 'field accessible for oversighter (ALL)' => [
 			RevisionRecord::SUPPRESSED_ALL,
 			[ 'deletedtext', 'deletedhistory', 'viewsuppressed', 'suppressrevision' ],
@@ -141,15 +140,15 @@ trait RevisionRecordTests {
 				? RevisionRecord::DELETED_USER
 				: RevisionRecord::DELETED_COMMENT,
 			[],
-			$this->expectedDefaultFieldVisibility( $field ),
-			$this->expectedDefaultFieldVisibility( $field )
+			self::expectedDefaultFieldVisibility( $field ),
+			self::expectedDefaultFieldVisibility( $field )
 		];
 
 		yield 'nothing suppressed' => [
 			0,
 			[],
-			$this->expectedDefaultFieldVisibility( $field ),
-			$this->expectedDefaultFieldVisibility( $field )
+			self::expectedDefaultFieldVisibility( $field ),
+			self::expectedDefaultFieldVisibility( $field )
 		];
 	}
 
@@ -159,8 +158,8 @@ trait RevisionRecordTests {
 		serialize( $rev );
 	}
 
-	public function provideGetComment_audience() {
-		return $this->provideAudienceCheckData( RevisionRecord::DELETED_COMMENT );
+	public static function provideGetComment_audience() {
+		return self::provideAudienceCheckData( RevisionRecord::DELETED_COMMENT );
 	}
 
 	/**
@@ -184,8 +183,8 @@ trait RevisionRecordTests {
 		);
 	}
 
-	public function provideGetUser_audience() {
-		return $this->provideAudienceCheckData( RevisionRecord::DELETED_USER );
+	public static function provideGetUser_audience() {
+		return self::provideAudienceCheckData( RevisionRecord::DELETED_USER );
 	}
 
 	/**
@@ -209,8 +208,8 @@ trait RevisionRecordTests {
 		);
 	}
 
-	public function provideGetSlot_audience() {
-		return $this->provideAudienceCheckData( RevisionRecord::DELETED_TEXT );
+	public static function provideGetSlot_audience() {
+		return self::provideAudienceCheckData( RevisionRecord::DELETED_TEXT );
 	}
 
 	/**
@@ -351,7 +350,7 @@ trait RevisionRecordTests {
 		$this->assertSame( DummyContentForTesting::MODEL_ID, $rev->getMainContentModel() );
 	}
 
-	public function provideUserCanBitfield() {
+	public static function provideUserCanBitfield() {
 		yield [ 0, 0, [], null, true ];
 		// Bitfields match, user has no permissions
 		yield [
@@ -425,14 +424,14 @@ trait RevisionRecordTests {
 			RevisionRecord::DELETED_TEXT,
 			RevisionRecord::DELETED_TEXT,
 			[ 'deletedtext', 'deletedhistory' ],
-			$this->makeMockTitle( __METHOD__ ),
+			PageIdentityValue::localIdentity( 0, NS_MAIN, 'ProvideUserCanBitfield' ),
 			true,
 		];
 		yield [
 			RevisionRecord::DELETED_TEXT,
 			RevisionRecord::DELETED_TEXT,
 			[],
-			$this->makeMockTitle( __METHOD__ ),
+			PageIdentityValue::localIdentity( 0, NS_MAIN, 'ProvideUserCanBitfield' ),
 			false,
 		];
 	}
@@ -449,7 +448,7 @@ trait RevisionRecordTests {
 		);
 	}
 
-	public function provideHasSameContent() {
+	public static function provideHasSameContent() {
 		// Create some slots with content
 		$mainA = SlotRecord::newUnsaved( SlotRecord::MAIN, new DummyContentForTesting( 'A' ) );
 		$mainB = SlotRecord::newUnsaved( SlotRecord::MAIN, new DummyContentForTesting( 'B' ) );
@@ -459,28 +458,28 @@ trait RevisionRecordTests {
 		return [
 			'same record object' => [
 				true,
-				$this->makeHasSameContentTestRecord( [ $mainA ], 12 ),
-				$this->makeHasSameContentTestRecord( [ $mainA ], 12 ),
+				self::makeHasSameContentTestRecord( [ $mainA ], 12 ),
+				self::makeHasSameContentTestRecord( [ $mainA ], 12 ),
 			],
 			'same record content, different object' => [
 				true,
-				$this->makeHasSameContentTestRecord( [ $mainA ], 12 ),
-				$this->makeHasSameContentTestRecord( [ $mainA ], 13 )
+				self::makeHasSameContentTestRecord( [ $mainA ], 12 ),
+				self::makeHasSameContentTestRecord( [ $mainA ], 13 )
 			],
 			'same record content, aux slot, different object' => [
 				true,
-				$this->makeHasSameContentTestRecord( [ $auxA ], 12 ),
-				$this->makeHasSameContentTestRecord( [ $auxB ], 13 ),
+				self::makeHasSameContentTestRecord( [ $auxA ], 12 ),
+				self::makeHasSameContentTestRecord( [ $auxB ], 13 ),
 			],
 			'different content' => [
 				false,
-				$this->makeHasSameContentTestRecord( [ $mainA ], 12 ),
-				$this->makeHasSameContentTestRecord( [ $mainB ], 13 ),
+				self::makeHasSameContentTestRecord( [ $mainA ], 12 ),
+				self::makeHasSameContentTestRecord( [ $mainB ], 13 ),
 			],
 			'different content and number of slots' => [
 				false,
-				$this->makeHasSameContentTestRecord( [ $mainA ], 12 ),
-				$this->makeHasSameContentTestRecord( [ $mainA, $mainB ], 13 ),
+				self::makeHasSameContentTestRecord( [ $mainA ], 12 ),
+				self::makeHasSameContentTestRecord( [ $mainA, $mainB ], 13 ),
 			],
 		];
 	}
@@ -490,11 +489,11 @@ trait RevisionRecordTests {
 	 * @param int $revId
 	 * @return RevisionStoreRecord
 	 */
-	private function makeHasSameContentTestRecord( array $slots, $revId ) {
+	private static function makeHasSameContentTestRecord( array $slots, $revId ) {
 		$slots = new RevisionSlots( $slots );
 
 		return new RevisionStoreRecord(
-			$this->makeMockTitle( 'provideHasSameContent', [ 'id' => 19 ] ),
+			PageIdentityValue::localIdentity( 19, NS_MAIN, 'ProvideHasSameContent' ),
 			new UserIdentityValue( 11, __METHOD__ ),
 			CommentStoreComment::newUnsavedComment( __METHOD__ ),
 			(object)[
@@ -526,7 +525,7 @@ trait RevisionRecordTests {
 		);
 	}
 
-	public function provideIsDeleted() {
+	public static function provideIsDeleted() {
 		yield 'no deletion' => [
 			0,
 			[

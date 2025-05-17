@@ -17,6 +17,7 @@ use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
+use MockTitleTrait;
 use Wikimedia\Assert\PreconditionException;
 
 /**
@@ -25,8 +26,9 @@ use Wikimedia\Assert\PreconditionException;
  */
 class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 	use RevisionRecordTests;
+	use MockTitleTrait;
 
-	protected function expectedDefaultFieldVisibility( $field ): bool {
+	protected static function expectedDefaultFieldVisibility( $field ): bool {
 		return true;
 	}
 
