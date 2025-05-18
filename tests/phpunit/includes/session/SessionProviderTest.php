@@ -26,11 +26,6 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 	use SessionProviderTestTrait;
 
 	public function testBasics() {
-		$this->hideDeprecated( 'MediaWiki\Session\SessionProvider::setConfig' );
-		$this->hideDeprecated( 'MediaWiki\Session\SessionProvider::setLogger' );
-		$this->hideDeprecated( 'MediaWiki\Session\SessionProvider::setManager' );
-		$this->hideDeprecated( 'MediaWiki\Session\SessionProvider::setHookContainer' );
-
 		$manager = new SessionManager();
 		$logger = new TestLogger();
 		$config = new HashConfig();
@@ -47,21 +42,17 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $manager, $provider->getManager() );
 		$this->assertSame( $hookContainer, $priv->getHookContainer() );
 		$this->assertSame( $userNameUtils, $priv->userNameUtils );
-		$provider->setConfig( $config );
 		$this->assertSame( $config, $priv->getConfig() );
-		$provider->setLogger( $logger );
 		$this->assertSame( $logger, $priv->logger );
-		$provider->setManager( $manager );
 		$this->assertSame( $manager, $priv->manager );
 		$this->assertSame( $manager, $provider->getManager() );
-		$provider->setHookContainer( $hookContainer );
 		$this->assertSame( $hookContainer, $priv->getHookContainer() );
 
 		$provider->invalidateSessionsForUser( new User );
 
 		$this->assertSame( [], $provider->getVaryHeaders() );
 		$this->assertSame( [], $provider->getVaryCookies() );
-		$this->assertSame( null, $provider->suggestLoginUsername( new FauxRequest ) );
+		$this->assertNull( $provider->suggestLoginUsername( new FauxRequest ) );
 
 		$this->assertSame( get_class( $provider ), (string)$provider );
 

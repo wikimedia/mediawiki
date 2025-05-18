@@ -105,6 +105,8 @@ because of Phabricator reports.
 
 === Breaking changes in 1.45 ===
 
+* SessionProvider::setLogger(), setConfig(), setManager(), setHookContainer()
+  methods deprecated in 1.37, have been removed.
 * (T376295) The ability to use raw HTML messages for the copyright footer has
   been removed. The messages 'copyright' and 'history_copyright', the hook
   'SkinCopyrightFooter', and the config option $wgAllowRawHtmlCopyrightMessages
