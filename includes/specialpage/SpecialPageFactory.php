@@ -211,6 +211,7 @@ class SpecialPageFactory {
 				'ContentHandlerFactory',
 				'ConnectionProvider',
 				'LinkBatchFactory',
+				'RedirectLookup'
 			]
 		],
 		'Deadendpages' => [

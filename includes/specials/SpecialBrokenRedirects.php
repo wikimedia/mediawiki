@@ -25,6 +25,7 @@ namespace MediaWiki\Specials;
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Page\RedirectLookup;
 use MediaWiki\SpecialPage\QueryPage;
 use MediaWiki\Title\Title;
 use Skin;
@@ -41,6 +42,7 @@ use Wikimedia\Rdbms\IResultWrapper;
 class SpecialBrokenRedirects extends QueryPage {
 
 	private IContentHandlerFactory $contentHandlerFactory;
+	private RedirectLookup $redirectLookup;
 
 	/**
 	 * @param IContentHandlerFactory $contentHandlerFactory
@@ -50,12 +52,14 @@ class SpecialBrokenRedirects extends QueryPage {
 	public function __construct(
 		IContentHandlerFactory $contentHandlerFactory,
 		IConnectionProvider $dbProvider,
-		LinkBatchFactory $linkBatchFactory
+		LinkBatchFactory $linkBatchFactory,
+		RedirectLookup $redirectLookup
 	) {
 		parent::__construct( 'BrokenRedirects' );
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->setDatabaseProvider( $dbProvider );
 		$this->setLinkBatchFactory( $linkBatchFactory );
+		$this->redirectLookup = $redirectLookup;
 	}
 
 	public function isExpensive() {
@@ -130,13 +134,14 @@ class SpecialBrokenRedirects extends QueryPage {
 				$result->rd_fragment
 			);
 		} else {
-			$toObj = false;
+			$toObj = Title::castFromLinkTarget(
+				$this->redirectLookup->getRedirectTarget( $fromObj )
+			);
 		}
 
 		$linkRenderer = $this->getLinkRenderer();
 
-		// $toObj may very easily be false if the $result list is cached
-		if ( !is_object( $toObj ) ) {
+		if ( !is_object( $toObj ) || $toObj->exists() ) {
 			return '<del>' . $linkRenderer->makeLink( $fromObj ) . '</del>';
 		}
 
