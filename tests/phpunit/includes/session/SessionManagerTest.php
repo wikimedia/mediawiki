@@ -375,7 +375,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$session = $manager->getSessionForRequest( $request );
 		$this->assertInstanceOf( Session::class, $session );
 		$this->assertSame( $id1, $session->getId() );
-		$this->assertTrue( $requestUnpersist1 ); // The saving of the session does it
+		$this->assertFalse( $requestUnpersist1 );
 		$this->assertFalse( $requestUnpersist2 );
 		$session->persist();
 		$this->assertTrue( $session->isPersistent() );
@@ -419,6 +419,9 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $id, $session->getId() );
 
 		// Store isn't checked if the session is already loaded
+		// Save the session before overriding the stored data, to make sure the dirty flags
+		// are false and later internal save() calls are noops. Otherwise the fixture would get messed up.
+		$session->save();
 		$this->store->setSession( $id, [ 'metadata' => [
 			'userId' => $userIdentity->getId(),
 			'userToken' => 'bad',
@@ -426,6 +429,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$session2 = $manager->getSessionById( $id, false );
 		$this->assertInstanceOf( Session::class, $session2 );
 		$this->assertSame( $id, $session2->getId() );
+		// Unset all Session objects, which will deregister the session backend and trigger a load next time
 		unset( $session, $session2 );
 		$this->logger->setCollect( true );
 		$this->assertNull( $manager->getSessionById( $id, true ) );
