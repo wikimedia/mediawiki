@@ -289,7 +289,7 @@ class WANObjectCache implements
 	public const KEY_TTL = 'ttl';
 	/** Remaining TTL attribute for a key; keep value for b/c (< 1.36) */
 	public const KEY_CUR_TTL = 'curTTL';
-	/** Tomstone timestamp attribute for a key; keep value for b/c (< 1.36) */
+	/** Tombstone timestamp attribute for a key; keep value for b/c (< 1.36) */
 	public const KEY_TOMB_AS_OF = 'tombAsOf';
 	/** Highest "check" key timestamp for a key; keep value for b/c (< 1.36) */
 	public const KEY_CHECK_AS_OF = 'lastCKPurge';
@@ -302,7 +302,7 @@ class WANObjectCache implements
 	private const RES_AS_OF = 2;
 	/** Logical TTL attribute for a key */
 	private const RES_TTL = 3;
-	/** Tomstone timestamp attribute for a key */
+	/** Tombstone timestamp attribute for a key */
 	private const RES_TOMB_AS_OF = 4;
 	/** Highest "check" key timestamp for a key */
 	private const RES_CHECK_AS_OF = 5;
