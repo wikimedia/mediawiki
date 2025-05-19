@@ -56,6 +56,7 @@ use Wikimedia\Parsoid\DOM\Document;
 use Wikimedia\Parsoid\Utils\Utils;
 use Wikimedia\Stats\PrefixingStatsdDataFactoryProxy;
 use Wikimedia\Stats\StatsFactory;
+use Wikimedia\Stats\StatsUtils;
 
 /**
  * Site-level configuration for Parsoid
@@ -272,6 +273,32 @@ class SiteConfig extends ISiteConfig {
 		$this->prefixedStatsFactory()->getTiming( $name )
 			->setLabels( $labels )
 			->observe( $value );
+	}
+
+	/**
+	 * Record a histogram metric
+	 * @param string $name
+	 * @param float $value A time value in milliseconds
+	 * @param array $buckets The buckets used in this histogram
+	 * @param array $labels The metric labels
+	 * @return void
+	 */
+	public function observeHistogram( string $name, float $value, array $buckets, array $labels ) {
+		$metric = $this->prefixedStatsFactory()->getHistogram( $name, $buckets );
+		foreach ( $labels as $labelKey => $labelValue ) {
+			$metric->setLabel( $labelKey, $labelValue );
+		}
+		$metric->observe( $value );
+	}
+
+	/**
+	 * Generate buckets based on skip and mean
+	 * @param float $mean
+	 * @param int $skip
+	 * @return float[]
+	 */
+	public function getHistogramBuckets( float $mean, int $skip ) {
+		return StatsUtils::makeBucketsFromMean( $mean, $skip );
 	}
 
 	/**
