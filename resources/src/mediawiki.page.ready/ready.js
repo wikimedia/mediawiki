@@ -251,7 +251,7 @@ function loadSearchModule( moduleName ) {
 
 	// Load the module once a search input is focussed.
 	function eventListener( e ) {
-		if ( isSearchInput( e.target ) ) {
+		if ( e.target && e.target.nodeType === 1 && isSearchInput( e.target ) ) {
 			requestSearchModule();
 
 			document.removeEventListener( 'focusin', eventListener );
