@@ -908,7 +908,7 @@ final class SessionBackend {
 		}
 		$this->persistenceChangeData = [ 'id' => $id, 'user' => $user, 'message' => $message ];
 
-		$this->logger->info( $message, [
+		$this->logger->debug( $message, [
 			'id' => $id,
 			'provider' => get_class( $this->getProvider() ),
 			'user' => $user,
