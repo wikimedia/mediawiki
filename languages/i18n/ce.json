@@ -3656,7 +3656,7 @@
 	"limitreport-cputime": "Процессоран хан лелор",
 	"limitreport-cputime-value": "$1 {{PLURAL:$1|секунд}}",
 	"limitreport-walltime": "Йодуш йолу хенахь лелор",
-	"limitreport-walltime-value": "$1 секунд",
+	"limitreport-walltime-value": "$1 {{PLURAL:$1|секунд}}",
 	"limitreport-ppvisitednodes": "Препроцессор хьаьжжина шадин дукхалла",
 	"limitreport-postexpandincludesize": "Схьаяьстина йуккъерчаран барам",
 	"limitreport-postexpandincludesize-value": "$1/$2 {{PLURAL:$2|байт}}",

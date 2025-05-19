@@ -3,7 +3,8 @@
 		"authors": [
 			"Egiebizzy",
 			"Samatics",
-			"Kambai Akau"
+			"Kambai Akau",
+			"Pingponging"
 		]
 	},
 	"tog-underline": "Wetin join-am dey onda:",
@@ -327,6 +328,7 @@
 	"grouppage-bot": "{{ns:project}}:Bot-dem",
 	"grouppage-sysop": "{{ns:project}}:Adminisreto-dem",
 	"rightslog": "Yuza rights log",
+	"skin-action-addsection": "Put anoda topik",
 	"action-edit": "chenj dis pej",
 	"action-createaccount": "Mek dis yuza akaunt",
 	"nchanges": "$1 {{PLURAL:$1|chenj|chenj-dem}}",
@@ -391,6 +393,8 @@
 	"recentchangeslinked-summary": "Rait pej nem mek you si di chenj-dem for di pej wey link kom hie. (If you wan si memba for di katigori, rait {{ns:category}}:Nem of di katigori). Chenj-dem for di pej-dem wey dey for [[Special:Watchlist|your Wochlist]] dey for <strong>bold</strong>.",
 	"recentchangeslinked-page": "Pej nem:",
 	"recentchangeslinked-to": "Show chenj-dem to pej-dem wey link go di pej",
+	"recentchanges-page-added-to-category": "Na [[:$1]] dem ad to katigori",
+	"recentchanges-page-removed-from-category": "Na [[:$1]] dem rimov from katigori",
 	"upload": "Put file inside",
 	"filedesc": "How evritin dey",
 	"filesource": "Source:",
@@ -588,5 +592,6 @@
 	"revdelete-content-hid": "dem hide wetin dey inside",
 	"searchsuggest-search": "Find-am for {{SITENAME}}",
 	"searchsuggest-containing": "Find pej-dem wey get",
-	"duration-days": "$1 {{PLURAL:$1|day|day-dem}}"
+	"duration-days": "$1 {{PLURAL:$1|day|day-dem}}",
+	"nstab-mainpage": "Main Pej"
 }

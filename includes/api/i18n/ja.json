@@ -1072,7 +1072,7 @@
 	"apihelp-userrights-param-userid": "代わりに <kbd>$1user=#<var>ID</var></kbd> を指定してください。",
 	"apihelp-userrights-param-add": "利用者をこのグループに追加するか、既にメンバーの場合は、そのグループのメンバーシップの有効期限を更新します。",
 	"apihelp-userrights-param-reason": "変更の理由。",
-	"apihelp-userrights-example-expiry": "利用者 <kbd>SometimeSysop</kbd> を 1ヶ月間 <kbd>sysop</kbd> グループに追加する。",
+	"apihelp-userrights-example-expiry": "利用者 <kbd>SometimeSysop</kbd> を1か月間 <kbd>sysop</kbd> グループに追加する。",
 	"apihelp-watch-summary": "現在の利用者のウォッチリストにページを追加/除去します。",
 	"apihelp-watch-example-watch": "[[{{MediaWiki:Mainpage}}]] をウォッチする。",
 	"apihelp-watch-example-unwatch": "[[{{MediaWiki:Mainpage}}]] のウォッチを解除する。",

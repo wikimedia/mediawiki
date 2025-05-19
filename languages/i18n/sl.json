@@ -21,7 +21,8 @@
 			"아라",
 			"Pinky sl",
 			"BadDog",
-			"IJzeren Jan"
+			"IJzeren Jan",
+			"Aca"
 		]
 	},
 	"tog-underline": "Podčrtovanje povezav:",
@@ -1062,7 +1063,7 @@
 	"prefs-user-restoreprefs-label": "Ponastavitev nastavitev:",
 	"prefs-user-restoreprefs-info": "Obnovi vse privzete nastavitve (v vseh razdelkih)",
 	"savedprefs": "Vaše nastavitve so shranjene.",
-	"savedrights": "Uporabniške skupine {{GENDER:$1|$1}} soo shranjene.",
+	"savedrights": "Uporabniške skupine {{GENDER:$1|$1}} so shranjene.",
 	"timezonelegend": "Časovni pas",
 	"localtime": "Krajevni čas:",
 	"timezoneuseserverdefault": "Uporabi privzeti čas vikija ($1)",

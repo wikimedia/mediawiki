@@ -28,7 +28,8 @@
 			"CorraleH",
 			"McDutchie",
 			"Ninawauwau",
-			"EGobi"
+			"EGobi",
+			"Jessicamss93"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentação]]\n* [[mw:Special:MyLanguage/API:Etiquette|Etiqueta & diretrizes de uso]]\n* [[mw:Special:MyLanguage/API:FAQ|Perguntas frequentes]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Lista de discussão]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ Anúncios da API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Falhas e solicitações]\n</div>\n<strong>Estado:</strong> A API do MediaWiki é uma interface madura e estável ativamente compatibilizada e aprimorada. Por mais que tentemos evitar, ocasionalmente talvez precisemos fazer mudanças estruturais; inscreva-se na [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ lista de discussão mediawiki-api-announce] para avisos sobre atualizações.\n\n<strong>Requisições incorretas:</strong> Quando são enviadas requisições incorretas à API, será devolvido um cabeçalho HTTP com a chave “MediaWiki-API-Error” e tanto o valor desse cabeçalho como o código de erro devolvido serão definidos com o mesmo valor. Para mais informações, consulte [[mw:Special:MyLanguage/API:Errors_and_warnings|API:Erros e avisos]].\n\n<p class=\"mw-apisandbox-link\"><strong>Testes:</strong> Para testar facilmente requisições à API, visite a [[Special:ApiSandbox|caixa de areia da API]].</p>",
@@ -180,8 +181,8 @@
 	"apihelp-edit-param-watchlist": "Adicione ou remova incondicionalmente a página da lista de páginas vigiadas do usuário atual, use preferências (ignoradas para usuários de robô) ou não mude a vigilância.",
 	"apihelp-edit-param-watchlistexpiry": "Carimbo de data/hora de expiração da lista de páginas vigiadas. Omita esse parâmetro inteiramente para manter inalterada a validade atual.",
 	"apihelp-edit-param-md5": "O hash MD5 do parâmetro $1text ou os parâmetros $1prependtext e $1appendtext concatenados. Se configurado, a edição não será feita a menos que o hash esteja correto.",
-	"apihelp-edit-param-prependtext": "Adiciona este texto ao início da página. Substitui $1text.",
-	"apihelp-edit-param-appendtext": "Adiciona este texto ao fim da página. Substitui $1text.\n\nUse $1section=new para anexar uma nova seção, em vez deste parâmetro.",
+	"apihelp-edit-param-prependtext": "Adicionar esse text ao início da página ou seção. \nOverrides $1text.",
+	"apihelp-edit-param-appendtext": "Adicionar este texto ao fim da página ou seção. Substituir $1text.\n\nUse $1section=new para anexar uma nova seção, em vez deste parâmetro.",
 	"apihelp-edit-param-undo": "Desfazer esta revisão. Substitui $1text, $1prependtext e $1appendtext.",
 	"apihelp-edit-param-undoafter": "Desfazer todas as revisões de $1undo para este. Se não estiver configurado, desfaz uma revisão.",
 	"apihelp-edit-param-redirect": "Resolve redirecionamento automaticamente.",

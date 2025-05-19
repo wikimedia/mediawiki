@@ -269,7 +269,10 @@
 			"XtexChooser",
 			"Pppery",
 			"Bunnypranav",
-			"Qwrop"
+			"Qwrop",
+			"Aca",
+			"codeofdusk",
+			"Foomin10"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -4271,7 +4274,7 @@
 	"logentry-suppress-revision": "{{Logentry}}\nAdditional parameters:\n{{Logentryparam}}\n* $5 - the number of affected revisions of the page $3.",
 	"logentry-suppress-event-legacy": "{{Logentry}}",
 	"logentry-suppress-revision-legacy": "{{Logentry}}",
-	"revdelete-content-hid": "Used on\n* {{msg-mw|logentry-delete-event}}\n* {{msg-mw|logentry-delete-revision}}\n* {{msg-mw|logentry-suppress-event}}\n* {{msg-mw|logentry-suppress-event}}",
+	"revdelete-content-hid": "Used on\n* {{msg-mw|logentry-delete-event}}\n* {{msg-mw|logentry-delete-revision}}\n* {{msg-mw|logentry-suppress-event}}",
 	"revdelete-summary-hid": "Used on\n* {{msg-mw|logentry-delete-event}}\n* {{msg-mw|logentry-delete-revision}}\n* {{msg-mw|logentry-suppress-event}}\n* {{msg-mw|logentry-suppress-revision}}",
 	"revdelete-uname-hid": "Used on\n* {{msg-mw|logentry-delete-event}}\n* {{msg-mw|logentry-delete-revision}}\n* {{msg-mw|logentry-suppress-event}}\n* {{msg-mw|logentry-suppress-event}}",
 	"revdelete-content-unhid": "Used on\n* {{msg-mw|logentry-delete-event}}\n* {{msg-mw|logentry-delete-revision}}\n* {{msg-mw|logentry-suppress-event}}\n* {{msg-mw|logentry-suppress-event}}",
