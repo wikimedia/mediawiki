@@ -4954,6 +4954,13 @@ class Parser {
 	 * @return string Result HTML
 	 */
 	public static function replaceTableOfContentsMarker( $text, $toc ) {
+		// Optimization: Avoid a potentially expensive Remex tokenization and reserialization
+		// if the content does not contain a TOC placeholder, such as during message parsing,
+		// which may occur hundreds of times per request (T394059).
+		if ( !str_contains( $text, 'mw:PageProp/toc' ) ) {
+			return $text;
+		}
+
 		$replaced = false;
 		return HtmlHelper::modifyElements(
 			$text,
