@@ -3651,7 +3651,7 @@
 	"specialpages-header-access": "Access",
 	"specialpages-access-public": "Public",
 	"specialpages-access-restricted": "Restricted",
-	"specialpages-access-restricted-note": "'{{int:specialpages-access-restricted}}' pages are not accessible publicly, but they are accessible to you.",
+	"specialpages-access-restricted-note": "Restricted pages are not accessible publicly, but they are accessible to you .",
 	"specialpages-group-maintenance": "Maintenance reports",
 	"specialpages-group-other": "Other special pages",
 	"specialpages-group-login": "Account management",
