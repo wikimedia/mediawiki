@@ -5,6 +5,7 @@ const urlGeneratorFn = require( '../../../resources/src/mediawiki.skinning.typea
 const scriptPath = '/w/index.php';
 const urlGenerator = urlGeneratorFn( scriptPath );
 const searchApiUrl = 'https://en.wikipedia.org/w/rest.php';
+const recommendationApiUrl = 'https://en.wikipedia.org/w/api.php';
 const mockedRequests = !process.env.TEST_LIVE_REQUESTS;
 
 describe( 'restApiSearchClient', () => {
@@ -55,7 +56,7 @@ describe( 'restApiSearchClient', () => {
 		};
 		fetchMock.mockOnce( JSON.stringify( restResponse ) );
 
-		const searchResult = await restSearchClient( searchApiUrl, urlGenerator ).fetchByTitle(
+		const searchResult = await restSearchClient( searchApiUrl, urlGenerator, recommendationApiUrl ).fetchByTitle(
 			'media',
 			2
 		).fetch;
@@ -86,7 +87,7 @@ describe( 'restApiSearchClient', () => {
 		const restResponse = { pages: [] };
 		fetchMock.mockOnce( JSON.stringify( restResponse ) );
 
-		const searchResult = await restSearchClient( searchApiUrl, urlGenerator ).fetchByTitle(
+		const searchResult = await restSearchClient( searchApiUrl, urlGenerator, recommendationApiUrl ).fetchByTitle(
 			'thereIsNothingLikeThis'
 		).fetch;
 
@@ -108,7 +109,7 @@ describe( 'restApiSearchClient', () => {
 		test( 'network error', async () => {
 			fetchMock.mockRejectOnce( new Error( 'failed' ) );
 
-			await expect( restSearchClient( searchApiUrl, urlGenerator ).fetchByTitle(
+			await expect( restSearchClient( searchApiUrl, urlGenerator, recommendationApiUrl ).fetchByTitle(
 				'anything'
 			).fetch ).rejects.toThrow( 'failed' );
 		} );

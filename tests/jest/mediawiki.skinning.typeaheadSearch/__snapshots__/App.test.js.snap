@@ -16,6 +16,7 @@ exports[`App renders a typeahead search component 1`] = `
   search-results-label="searchresults"
   searchfooterurl=""
   searchresults=""
+  show-empty-query-results="false"
   showthumbnail="true"
   title="search"
   usebutton="true"
