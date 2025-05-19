@@ -94,7 +94,7 @@
 	"rest-module-specs.v0-title": "Specs",
 	"rest-module-specs.v0-desc": "Self-documentation module providing discovery, specs, and schemas for all available modules.",
 	"rest-module-content.v1-title": "Page content",
-	"rest-module-content.v1-desc": "Provides access to the content and meta-data of pages and revisions",
+	"rest-module-content.v1-desc": "Provides access to the content and metadata of pages and revisions",
 	"rest-param-desc-mock-desc": "Mock description.",
 	"rest-param-desc-revision-id": "Revision identifier",
 	"rest-param-desc-html-input-title": "HTML input transform title",
@@ -208,7 +208,7 @@
 	"rest-property-desc-search-description": "Short summary of the page topic or null if no summary exists.",
 	"rest-property-desc-search-thumbnail": "Information about the thumbnail image for the page, or null if no thumbnail exists.",
 	"rest-schema-desc-mock-desc": "Mock description.",
-	"rest-schema-desc-revision-metadata": "Revision meta-data",
+	"rest-schema-desc-revision-metadata": "Revision metadata",
 	"rest-schema-desc-new-page": "The new page, including source (usually wikitext)",
 	"rest-schema-desc-bare-page": "Page without content",
 	"rest-schema-desc-existing-revision": "Revision with HTML content",
@@ -228,8 +228,8 @@
 	"rest-endpoint-desc-get-page-title-html": "Returns the latest content of a wiki page in HTML. This endpoint returns content type text/html.",
 	"rest-endpoint-desc-get-page-title-with-html": "Returns information about a wiki page, including the license, latest revision, and latest content in HTML.",
 	"rest-endpoint-desc-get-page-title-bare": "Returns the standard page object for a wiki page, including the API route to fetch the latest content in HTML, the license, and information about the latest revision.",
-	"rest-endpoint-desc-get-revision-id": "Returns meta-data for a revision, including source",
+	"rest-endpoint-desc-get-revision-id": "Returns metadata for a revision, including source",
 	"rest-endpoint-desc-get-revision-id-html": "Returns the content of a revision in HTML. This endpoint returns content type text/html.",
-	"rest-endpoint-desc-get-revision-id-with-html": "Returns meta-data for a revision, including the content in HTML",
+	"rest-endpoint-desc-get-revision-id-with-html": "Returns metadata for a revision, including the content in HTML",
 	"rest-endpoint-desc-get-revision-id-bare": "Returns details for an individual revision."
 }
