@@ -33,7 +33,6 @@ use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Diff\ArrayDiffFormatter;
 use Wikimedia\Diff\ComplexityException;
 use Wikimedia\Diff\Diff;
-use Wikimedia\Stats\NullStatsdDataFactory;
 use Wikimedia\Stats\StatsFactory;
 
 // @codeCoverageIgnoreStart
@@ -97,14 +96,13 @@ class CompareLanguageConverterOutput extends Maintenance {
 	private function newPageRestHelperFactory(): PageRestHelperFactory {
 		$services = $this->getServiceContainer();
 
-		$factory = new PageRestHelperFactory(
+		return new PageRestHelperFactory(
 			new ServiceOptions( PageRestHelperFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getRevisionLookup(),
 			$services->getRevisionRenderer(),
 			$services->getTitleFormatter(),
 			$services->getPageStore(),
 			$services->getParsoidOutputStash(),
-			new NullStatsdDataFactory(),
 			$services->getParserOutputAccess(),
 			$services->getParsoidSiteConfig(),
 			$services->getHtmlTransformFactory(),
@@ -117,7 +115,6 @@ class CompareLanguageConverterOutput extends Maintenance {
 			$services->getChangeTagsStore(),
 			StatsFactory::newNull()
 		);
-		return $factory;
 	}
 
 	private function getParserOptions( Language $language ): ParserOptions {
