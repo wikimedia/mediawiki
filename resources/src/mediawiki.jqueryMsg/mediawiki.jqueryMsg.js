@@ -1094,7 +1094,7 @@ HtmlEmitter.prototype = {
 		let page = textify( nodes[ 0 ] );
 		// Strip leading ':', which is used to suppress special behavior in wikitext links,
 		// e.g. [[:Category:Foo]] or [[:File:Foo.jpg]]
-		if ( page.charAt( 0 ) === ':' ) {
+		if ( page.startsWith( ':' ) ) {
 			page = page.slice( 1 );
 		}
 		const title = new mw.Title( page );

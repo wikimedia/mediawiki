@@ -30,7 +30,7 @@
 	}
 
 	function unRfc2068( value ) {
-		if ( value.indexOf( '"' ) === 0 ) {
+		if ( value.startsWith( '"' ) ) {
 			// This is a quoted cookie as according to RFC2068, unescape
 			value = value.slice( 1, -1 ).replace( /\\"/g, '"' ).replace( /\\\\/g, '\\' );
 		}

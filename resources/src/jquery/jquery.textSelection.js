@@ -190,12 +190,12 @@
 					} else if ( options.replace ) {
 						selText = options.peri;
 					} else {
-						while ( selText.charAt( selText.length - 1 ) === ' ' ) {
+						while ( selText.endsWith( ' ' ) ) {
 							// Exclude ending space char
 							selText = selText.slice( 0, -1 );
 							post += ' ';
 						}
-						while ( selText.charAt( 0 ) === ' ' ) {
+						while ( selText.startsWith( ' ' ) ) {
 							// Exclude prepending space char
 							selText = selText.slice( 1 );
 							pre = ' ' + pre;

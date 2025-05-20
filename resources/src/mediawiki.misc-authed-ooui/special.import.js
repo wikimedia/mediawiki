@@ -12,7 +12,7 @@ $( () => {
 	function updateImportSubprojectList() {
 		const project = projectDropdownInput.getValue();
 		subprojectDropdownInput.dropdownWidget.getMenu().getItems().forEach( ( item ) => {
-			item.toggle( item.getData().indexOf( project + '::' ) === 0 );
+			item.toggle( item.getData().startsWith( project + '::' ) );
 		} );
 
 		const firstItem = subprojectDropdownInput.dropdownWidget.menu.findFirstSelectableItem();

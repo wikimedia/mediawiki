@@ -435,7 +435,7 @@ ApiSandboxLayout.prototype.loadParamInfo = function () {
 			const items = [],
 				deprecatedItems = [],
 				buttons = [],
-				filterFmModules = ( v ) => v.slice( -2 ) !== 'fm' ||
+				filterFmModules = ( v ) => !v.endsWith( 'fm' ) ||
 					!Object.prototype.hasOwnProperty.call( ApiSandbox.availableFormats, v.slice( 0, -2 ) );
 
 			// This is something of a hack. We always want the 'format' and

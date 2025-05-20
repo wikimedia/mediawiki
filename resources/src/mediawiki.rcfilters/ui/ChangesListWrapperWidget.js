@@ -142,7 +142,7 @@ ChangesListWrapperWidget.prototype.onModelUpdate = function (
 			// eslint-disable-next-line mediawiki/class-doc
 			this.$element.removeClass( ( elementIndex, allClasses ) => allClasses
 				.split( ' ' )
-				.filter( ( className ) => className.indexOf( 'mw-changeslist-' ) === 0 )
+				.filter( ( className ) => className.startsWith( 'mw-changeslist-' ) )
 				.join( ' ' ) );
 		}
 

@@ -10,7 +10,7 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 				fetch: function ( val ) {
 					const $el = $( this );
 					$el.suggestions( 'suggestions',
-						$el.data( 'autocomplete' ).filter( ( v ) => v.indexOf( val ) === 0 )
+						$el.data( 'autocomplete' ).filter( ( v ) => v.startsWith( val ) )
 					);
 				}
 			} );

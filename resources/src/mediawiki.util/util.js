@@ -1220,10 +1220,10 @@ const util = {
 
 			let match = true;
 			if ( prefix !== '' ) {
-				match = ( username.indexOf( prefix ) === 0 );
+				match = username.startsWith( prefix );
 			}
 			if ( match && suffix !== '' ) {
-				match = ( username.slice( -suffix.length ) === suffix ) &&
+				match = ( username.endsWith( suffix ) ) &&
 					( username.length >= prefix.length + suffix.length );
 			}
 			if ( match ) {
