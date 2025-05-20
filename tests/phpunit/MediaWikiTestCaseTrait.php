@@ -151,9 +151,9 @@ trait MediaWikiTestCaseTrait {
 	 * @param string $op
 	 * @param string $version
 	 */
-	protected function markTestSkippedIfPhp( $op, $version ) {
+	protected static function markTestSkippedIfPhp( $op, $version ) {
 		if ( version_compare( PHP_VERSION, $version, $op ) ) {
-			$this->markTestSkipped( "PHP $version isn't supported for this test" );
+			self::markTestSkipped( "PHP $version isn't supported for this test" );
 		}
 	}
 
