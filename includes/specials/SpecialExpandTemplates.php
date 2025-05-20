@@ -222,7 +222,8 @@ class SpecialExpandTemplates extends SpecialPage {
 			'output',
 			$output,
 			[
-				'id' => 'output',
+				// #output is used by CodeMirror (T384148)
+				'id' => $heading === 'expand_templates_output' ? 'output' : $heading,
 				'cols' => 10,
 				'rows' => 10,
 				'readonly' => 'readonly',
