@@ -13,11 +13,6 @@ class UnionQueryBuilderTest extends \MediaWikiUnitTestCase {
 	private DatabaseTestHelper $db;
 	private UnionQueryBuilder $uqb;
 
-	protected function setUp(): void {
-		$this->db = new DatabaseTestHelper( __CLASS__ . '::' . $this->getName() );
-		$this->uqb = $this->db->newUnionQueryBuilder();
-	}
-
 	private function assertSql( $expected ) {
 		$actual = $this->uqb->getSQL();
 		$actual = preg_replace( '/ +/', ' ', $actual );
@@ -33,6 +28,8 @@ class UnionQueryBuilderTest extends \MediaWikiUnitTestCase {
 	}
 
 	public function testGetSql() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->uqb = $this->db->newUnionQueryBuilder();
 		$this->uqb
 			->add( $this->db->newSelectQueryBuilder()
 				->select( 'f' )
@@ -51,6 +48,8 @@ class UnionQueryBuilderTest extends \MediaWikiUnitTestCase {
 	}
 
 	public function testFetchResultSet() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->uqb = $this->db->newUnionQueryBuilder();
 		$this->uqb
 			->add( $this->db->newSelectQueryBuilder()
 				->select( 'f' )
@@ -67,6 +66,8 @@ class UnionQueryBuilderTest extends \MediaWikiUnitTestCase {
 	}
 
 	public function testFetchField() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->uqb = $this->db->newUnionQueryBuilder();
 		$this->uqb
 			->add( $this->db->newSelectQueryBuilder()
 				->select( 'f' )
@@ -83,6 +84,8 @@ class UnionQueryBuilderTest extends \MediaWikiUnitTestCase {
 	}
 
 	public function testFetchRow() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->uqb = $this->db->newUnionQueryBuilder();
 		$this->uqb
 			->add( $this->db->newSelectQueryBuilder()
 				->select( 'f' )

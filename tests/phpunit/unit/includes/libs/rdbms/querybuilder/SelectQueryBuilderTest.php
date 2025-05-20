@@ -19,11 +19,6 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	private DatabaseTestHelper $db;
 	private SelectQueryBuilder $sqb;
 
-	protected function setUp(): void {
-		$this->db = new DatabaseTestHelper( __CLASS__ . '::' . $this->getName() );
-		$this->sqb = $this->db->newSelectQueryBuilder();
-	}
-
 	private function assertSQL( $expected ) {
 		$actual = $this->sqb->getSQL();
 		$actual = preg_replace( '/ +/', ' ', $actual );
@@ -32,12 +27,16 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testNoTable() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->select( '1' );
 		$this->assertSQL( 'SELECT 1' );
 	}
 
 	public function testCondsEtc() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->table( 'a' )
 			->where( '1' )
@@ -48,6 +47,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testConflictingConds() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		// T288882: the empty set is the right answer
 		$this->sqb
 			->select( '1' )
@@ -58,6 +59,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testTableAlias() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->table( 't', 'a' )
 			->field( 'f' );
@@ -65,6 +68,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testTableIndex() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->table( 't', null )
 			->useIndex( 'i' )
@@ -73,6 +78,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testTableAliasIndex() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->table( 't', 'a' )
 			->useIndex( 'i' )
@@ -81,6 +88,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testIgnoreIndex() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->table( 't' )
 			->ignoreIndex( 'i' )
@@ -89,6 +98,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testSubquery() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->table(
 				$this->sqb->newSubquery()
@@ -102,6 +113,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testSubqueryAsObject() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->table(
 				new Subquery( $this->sqb->newSubquery()
@@ -116,6 +129,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testTablesFields() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->tables( [ 'a' => 'b', 'c' ] )
 			->useIndex( 'ic' )
@@ -125,6 +140,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testFieldsRepeating() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->table( 't' )
 			->field( 'f' )
@@ -133,6 +150,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testFieldsRepeatingAlias() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->table( 't' )
 			->field( 'f', 'f' )
@@ -141,6 +160,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testFieldsConflictingAlias() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->expectException( LogicException::class );
 		$this->sqb
 			->table( 't' )
@@ -149,6 +170,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testRawTables() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->select( 'f' )
 			->rawTables( [ 'a' => [ 't1', 't2' ] ] );
@@ -156,6 +179,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testJoin() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->table( 'a' )
 			->join( 'b', 'b', 'aa=bb' )
@@ -164,6 +189,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testLeftJoin() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->table( 'a' )
 			->leftJoin( 'b', 'b', 'aa=bb' )
@@ -172,6 +199,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testStraightJoin() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->table( 'a' )
 			->straightJoin( 'b', 'b', 'aa=bb' )
@@ -180,6 +209,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testAutoAliasedJoin() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->table( 'a' )
 			->join( 'b' )
@@ -188,6 +219,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testAutoAliasedLeftJoin() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->table( 'a' )
 			->leftJoin( 'b', null, 'aa=bb' )
@@ -196,6 +229,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testLeftJoinGroup() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->table( 'a' )
 			->field( 'f' )
@@ -210,6 +245,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testInnerJoinGroup() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->table( 'a' )
 			->field( 'f' )
@@ -224,6 +261,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testDoubleJoinGroup() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->table( 'a' )
 			->field( 'f' )
@@ -242,6 +281,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testInitialJoinGroup() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->table(
 				$this->sqb->newJoinGroup()
@@ -253,6 +294,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testInitialDoubleJoinGroup() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->table( $this->sqb->newJoinGroup()
 				->table(
@@ -271,6 +314,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testDegenerateJoinGroup() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->table( $this->sqb->newJoinGroup()->table( 'a' ) )
 			->field( 'f' );
@@ -278,6 +323,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testSubqueryInJoinGroup() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->field( 'f' )
 			->table(
@@ -289,6 +336,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testConditionsOnGroup() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->field( 'f' )
 			->table( 'a' )
@@ -302,16 +351,22 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testJoinToEmpty() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->expectException( LogicException::class );
 		$this->sqb->join( 'a', 'a', [] );
 	}
 
 	public function testJoinToEmptyInJoinGroup() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->expectException( LogicException::class );
 		$this->sqb->newJoinGroup()->join( 'a', 'a', [] );
 	}
 
 	public function testConflictingAlias() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->expectException( LogicException::class );
 		$this->sqb
 			->table( 'a' )
@@ -320,6 +375,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testConflictingAliasInGroup() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->expectException( LogicException::class );
 		$this->sqb->newJoinGroup()
 			->table( 'a' )
@@ -328,6 +385,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testJoinConds() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->field( '*' )
 			->tables( [ 'a', 'b' => 'b' ] )
@@ -336,6 +395,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testJoinSubquery() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->select( 'sq.a' )
 			->from( 't1' )
@@ -348,6 +409,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testLeftJoinSubquery() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->select( 'sq.a' )
 			->from( 't1' )
@@ -360,6 +423,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testOffsetLimit() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->select( 'f' )
 			->from( 't' )
@@ -369,6 +434,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testLockInShareMode() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->select( 'f' )
 			->from( 't' )
@@ -377,6 +444,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testForUpdate() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->select( 'f' )
 			->from( 't' )
@@ -385,6 +454,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testDistinct() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->select( 'f' )
 			->from( 't' )
@@ -393,6 +464,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testGroupBy() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->select( 'f' )
 			->from( 't' )
@@ -401,6 +474,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testHaving() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->select( 'f' )
 			->from( 't' )
@@ -409,6 +484,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testOrderBy1() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->select( [ 'a', 'b', 'c' ] )
 			->from( 't' )
@@ -419,6 +496,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testOrderBy2() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->select( [ 'a', 'b', 'c' ] )
 			->from( 't' )
@@ -427,6 +506,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testOrderBy3() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->select( [ 'a', 'b', 'c' ] )
 			->from( 't' )
@@ -435,6 +516,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testOrderBy4() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->select( [ 'a', 'b', 'c' ] )
 			->from( 't' )
@@ -444,6 +527,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testOrderBy5() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->select( [ 'a', 'b', 'c' ] )
 			->from( 't' )
@@ -453,6 +538,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testExplain() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->explain()
 			->select( '*' )
@@ -461,6 +548,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testStraightJoinOption() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->straightJoinOption()
 			->select( '1' )
@@ -469,6 +558,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testBigResult() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->bigResult()
 			->select( '1' )
@@ -477,6 +568,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testSmallResult() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->smallResult()
 			->select( '1' )
@@ -485,6 +578,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testCalcFoundRows() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->calcFoundRows()
 			->select( '1' )
@@ -493,6 +588,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testOption() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->select( 'f' )
 			->from( 't' )
@@ -501,6 +598,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testOptions() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->select( '1' )
 			->options( [ 'ORDER BY' => '1', 'GROUP BY' => '2' ] );
@@ -508,6 +607,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testFetchResultSet() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb->select( '1' )->caller( __METHOD__ );
 		$res = $this->sqb->fetchResultSet();
 		$this->assertEquals( 'SELECT 1', $this->db->getLastSqls() );
@@ -515,12 +616,16 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testFetchField() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb->select( '1' )->caller( __METHOD__ );
 		$this->sqb->fetchField();
 		$this->assertEquals( 'SELECT 1 LIMIT 1', $this->db->getLastSqls() );
 	}
 
 	public function testFetchFieldValues() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb->select( '1' )->caller( __METHOD__ );
 		$res = $this->sqb->fetchFieldValues();
 		$this->assertEquals( 'SELECT 1 AS value', $this->db->getLastSqls() );
@@ -528,12 +633,16 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testFetchRow() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb->select( '1' )->caller( __METHOD__ );
 		$this->sqb->fetchRow();
 		$this->assertEquals( 'SELECT 1 LIMIT 1', $this->db->getLastSqls() );
 	}
 
 	public function testFetchRowCount() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb->table( 't' )->caller( __METHOD__ );
 		$this->sqb->fetchRowCount();
 		$this->assertEquals( 'SELECT COUNT(*) AS rowcount FROM (SELECT 1 FROM t     ) tmp_count',
@@ -541,6 +650,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testFetchRowCountWithField() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb->table( 't' )->field( 'f' )->caller( __METHOD__ );
 		$this->sqb->fetchRowCount();
 		$this->assertEquals( 'SELECT COUNT(*) AS rowcount FROM (SELECT 1 FROM t WHERE (f IS NOT NULL)  ) tmp_count',
@@ -548,6 +659,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testEstimateRowCount() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->table( 't' )
 			->conds( [ 'a' => 'b' ] )
@@ -558,6 +671,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testBuildGroupConcatField() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->select( 'f' )
 			->from( 't' )
@@ -568,6 +683,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testGetSQL() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->select( 'f' )
 			->from( 't' )
@@ -577,6 +694,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testGetQueryInfo() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->select( 'f' )
 			->from( 't' )
@@ -597,6 +716,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testQueryInfo() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb->queryInfo(
 			[
 				'tables' => [ 't', 'u' => 'u' ],
@@ -610,6 +731,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testGetQueryInfoJoins() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->select( 'f' )
 			->from( 't' )
@@ -630,6 +753,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testQueryInfoJoins() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb->queryInfo(
 			[
 				'tables' => [ 't', 'u' => 'u' ],
@@ -643,6 +768,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testQueryInfoMerge() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->select( [ 'a', 'b' => 'c' ] )
 			->from( 't' )
@@ -659,6 +786,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testMerge() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->select( [ 'a', 'b' => 'c' ] )
 			->from( 't' )
@@ -676,6 +805,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testMergeCaller() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$tsqb = TestingAccessWrapper::newFromObject( $this->sqb );
 		$this->sqb->caller( 'A' );
 		$this->assertSame( 'A', $tsqb->caller );
@@ -696,6 +827,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testAcquireRowLocks() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->table( 't' )
 			->conds( [ 'a' => 'b' ] )
@@ -707,6 +840,8 @@ class SelectQueryBuilderTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testClearFields() {
+		$this->db = new DatabaseTestHelper( __METHOD__ );
+		$this->sqb = $this->db->newSelectQueryBuilder();
 		$this->sqb
 			->fields( [ 'a', 'b' ] )
 			->clearFields()
