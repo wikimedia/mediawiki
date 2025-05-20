@@ -8,9 +8,6 @@ namespace Wikimedia\Rdbms;
  * Unlike ReadOnlyMode, this only checks site configuration.
  * It does not confirm whether the primary database host actively accepts writes.
  *
- * To obtain an instance, use \MediaWiki\MediaWikiServices::getConfiguredReadOnlyMode().
- * This service can be configured via $wgReadOnly and $wgReadOnlyFile.
- *
  * @since 1.29
  */
 class ConfiguredReadOnlyMode {
