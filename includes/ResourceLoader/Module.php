@@ -171,23 +171,6 @@ abstract class Module implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Get JS representing deprecation information for the current module if available
-	 *
-	 * @deprecated since 1.41 use getDeprecationWarning()
-	 *
-	 * @param Context $context
-	 * @return string JavaScript code
-	 */
-	public function getDeprecationInformation( Context $context ) {
-		wfDeprecated( __METHOD__, '1.41' );
-		$warning = $this->getDeprecationWarning();
-		if ( $warning === null ) {
-			return '';
-		}
-		return 'mw.log.warn(' . $context->encodeJson( $warning ) . ');';
-	}
-
-	/**
 	 * Get the deprecation warning, if any
 	 *
 	 * @since 1.41
