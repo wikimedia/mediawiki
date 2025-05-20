@@ -80,6 +80,7 @@
 	"search": "Soek",
 	"search-ignored-headings": " #<!-- los hierdie reël onveranderd hier --> <pre>\n# Hofies wat deur die soektog geïgnoreer word.\n# Wysigings word toegepas sodra die bladsy met die hofie geïndekseer word.\n# Jy kan ïndeksering afdwing deur 'n nietige wysiging te maak.\n# Die sintaks is soos volg:\n#   * Alles vanaf 'n \"#\" karakter tot die einde van 'n lyn is 'n opmerking.\n#   * Elke reël wat enige teks bevat moet die presiese titel wees wat geïgnoreer moet word, insluitend hoof- en kleinletters.\nVerwsyings\nEksterne skakels\nSien ook\n #</pre> <!-- los hierdie reël onveranderd hier -->",
 	"searchbutton": "Soek",
+	"searchsuggest-containing-html": "Soek vir bladsye wat <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong> bevat",
 	"go": "Wys",
 	"searcharticle": "Wys",
 	"skin-view-history": "Wys geskiedenis",

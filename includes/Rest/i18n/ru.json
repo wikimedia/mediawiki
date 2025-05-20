@@ -92,6 +92,7 @@
 	"rest-property-desc-revision-timestamp": "Временная метка версии",
 	"rest-property-desc-page-id": "Идентификатор страницы",
 	"rest-property-desc-page-title": "Заголовок страницы",
+	"rest-property-desc-page-language-code": "Код языка",
 	"rest-property-desc-page-contentmodel": "Тип содержимого страницы",
 	"rest-property-desc-revision-content-model": "Тип содержания",
 	"rest-schema-desc-page-language-links": "Межъязыковые ссылки для страницы",

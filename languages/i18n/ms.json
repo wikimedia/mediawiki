@@ -42,7 +42,7 @@
 			"아라"
 		]
 	},
-	"pagecategories": "{{PLURAL:$1|Kategori|Kategori}}",
+	"pagecategories": "{{PLURAL:$1|Kategori}}",
 	"category_header": "Laman-laman dalam kategori \"$1\"",
 	"subcategories": "Subkategori",
 	"category-media-header": "Media dalam kategori \"$1\"",

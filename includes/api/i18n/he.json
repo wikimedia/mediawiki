@@ -364,7 +364,7 @@
 	"apihelp-options-param-change": "רשימת שינויים, בתסדיר name=value (למשל skin=vector). אם לא ניתן ערך, אפילו לא סימן שווה, למשל optionname|otheroption|...‎, האפשרות תאופס לערך ברירת המחדל שלה. אם ערך מועבר כלשהו מכיל את תו הקו הניצב (<kbd>|</kbd>), יש להשתמש ב[[Special:ApiHelp/main#main/datatypes|מפריד ערכים מרובים חלופי]] בשביל פעולה נכונה.",
 	"apihelp-options-param-optionname": "שם האפשרות שצריך להגדיר לערך שניתן ב־<var>$1optionvalue</var>.",
 	"apihelp-options-param-optionvalue": "ערך האפשרות שצוין ב־<var>$1optionname</var>. כש־<var>$1optionname</var> מוגדר אך <var>$1optionvalue</var> מושמט, האפשרות תאופס לערך ברירת המחדל שלה.",
-	"apihelp-options-param-global": "מה לעשות אם האפשרות הוגדרה גלובלית באמצעות ההרחבה GlobalPreferences.\n\n* <kbd>ignore</kbd>: לא לעשות כלום. האפשרות נשארת עם הערך הקודם שלה.\n* <kbd>override</kbd>: להוסיף עקיפה מקומית.\n* <kbd>update</kbd>: לעדכן את האפשרות באופן גלובלי.",
+	"apihelp-options-param-global": "מה לעשות אם האפשרות הוגדרה גלובלית באמצעות ההרחבה GlobalPreferences.\n\n* <kbd>ignore</kbd>: לא לעשות כלום. האפשרות נשארת עם הערך הקודם שלה.\n* <kbd>override</kbd>: להוסיף עקיפה מקומית.\n* <kbd>update</kbd>: לעדכן את האפשרות באופן גלובלי.\n* <kbd>create</kbd>: הגדרת האפשרות באופן גלובלי ודריסה של כל ערך מקומי.",
 	"apihelp-options-example-reset": "אתחול כל ההעדפות.",
 	"apihelp-options-example-change": "לשנות את ההעדפות <kbd>skin</kbd> ו־<kbd>hideminor</kbd>.",
 	"apihelp-options-example-complex": "לאתחל את כל ההעדפות ואז להגדיר את <kbd>skin</kbd> ואת <kbd>nickname</kbd>.",

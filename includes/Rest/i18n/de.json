@@ -192,5 +192,6 @@
 	"rest-schema-desc-page-history": "Versionsgeschichte",
 	"rest-schema-desc-page-language-links": "Interlanguage-Links für die Seite",
 	"rest-schema-desc-search-results": "Suchergebnisse",
-	"rest-schema-desc-revision-compare": "Versionsvergleich"
+	"rest-schema-desc-revision-compare": "Versionsvergleich",
+	"rest-endpoint-desc-post-page": "Erstellt eine Wiki-Seite."
 }

@@ -222,5 +222,12 @@
 	"rest-schema-desc-page-history-count": "ספירת העריכה של היסטוריית הדף",
 	"rest-schema-desc-page-language-links": "קישורים בין־לשוניים עבור השפה",
 	"rest-schema-desc-search-results": "תוצאות החיפוש",
-	"rest-schema-desc-revision-compare": "השוואת גרסאות"
+	"rest-schema-desc-revision-compare": "השוואת גרסאות",
+	"rest-endpoint-desc-mock-desc": "תיאור־דמה.",
+	"rest-endpoint-desc-post-page": "יוצרת דף ויקי.",
+	"rest-endpoint-desc-get-page-title": "מחזירה את תוכן דף הוויקי בתסדיר שצוין על־ידי המאפיין content_model, הרישיון ומידע על הגרסה האחרונה.",
+	"rest-endpoint-desc-put-page-title": "עריכת דף על סמך מזהה הגרסה האחרון של הדף, או יצירת הדף אם לא ניתן מזהה גרסה.",
+	"rest-endpoint-desc-get-page-title-html": "מחזירה את התוכן העדכני ביותר של דף ויקי ב־HTML. נקודת הקצה הזאת מחזירה תוכן מסוג text/html.",
+	"rest-endpoint-desc-get-page-title-with-html": "מחזירה מידע על דף ויקי, כולל הרישיון, הגרסה האחרונה והתוכן העדכני ביותר ב־HTML.",
+	"rest-endpoint-desc-get-page-title-bare": "מחזירה את עצם הדף התקני עבור דף ויקי, כולל נתיב ה־API לאחזור התוכן העדכני ביותר ב־HTML, הרישיון ומידע על הגרסה האחרונה."
 }

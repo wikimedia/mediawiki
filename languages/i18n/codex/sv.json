@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Teaparty",
 			"WikiPhoenix",
 			"Yupik"
 		]
@@ -11,6 +12,7 @@
 	"cdx-dialog-close-button-label": "Stäng",
 	"cdx-label-optional-flag": "(valfritt)",
 	"cdx-message-dismiss-button-label": "Stäng",
+	"cdx-popover-close-button-label": "Stäng",
 	"cdx-search-input-search-button-label": "Sök",
 	"cdx-table-select-all-label": "Markera alla rader",
 	"cdx-table-select-row-label": "Markera rad $1 av $2",
