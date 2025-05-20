@@ -2905,6 +2905,7 @@
 	"tag-mw-blank-description": "Uređivanje kojim je uklonjen cjelokupan sadržaj stranice",
 	"tag-mw-replace": "zamijenjeno preko 90 % teksta",
 	"tag-mw-replace-description": "Uređivanja kojima se uklanja više nego 90 % sadržaja stranice",
+	"tag-mw-recreated": "Ponovo stvoreno",
 	"tag-mw-rollback": "brzo uklanjanje",
 	"tag-mw-rollback-description": "Uređivanja kojima se brzo uklanjaju prethodne izmjene rabeći poveznicu za brzo uklanjanje",
 	"tag-mw-undo": "uklanjanje",

@@ -3700,6 +3700,7 @@
 	"logentry-import-interwiki": "$1 已由其他 wiki {{GENDER:$2|匯入}} $3",
 	"logentry-import-interwiki-details": "$1已自$5{{GENDER:$2|匯入}}$3（$4{{PLURAL:$4|修訂|修訂}}）",
 	"logentry-merge-merge": "$1 將 $3 {{GENDER:$2|合併}}至 $4 (修訂版本至 $5)",
+	"logentry-merge-merge-into": "$1將$4的修訂版本{{GENDER:$2|合併}}至$3（修訂版本至$5）",
 	"logentry-move-move": "$1{{GENDER:$2|移動}}頁面$3至$4",
 	"logentry-move-move-noredirect": "$1{{GENDER:$2|已移動}}頁面$3至$4，不留重新導向",
 	"logentry-move-move_redir": "$1{{GENDER:$2|已移動}}頁面$3至$4並覆蓋原有重新導向",

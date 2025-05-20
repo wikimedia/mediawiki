@@ -3801,6 +3801,7 @@
 	"logentry-import-interwiki": "$1从其他wiki{{GENDER:$2|导入}}了$3",
 	"logentry-import-interwiki-details": "$1从$5{{GENDER:$2|导入了}}$3（$4个{{PLURAL:$4|版本}}）",
 	"logentry-merge-merge": "$1将$3{{GENDER:$2|合并}}至$4（修订版本至$5）",
+	"logentry-merge-merge-into": "$1将$4的修订版本{{GENDER:$2|合并}}至$3（修订版本至$5）",
 	"logentry-move-move": "$1{{GENDER:$2|移动}}页面$3至$4",
 	"logentry-move-move-noredirect": "$1{{GENDER:$2|移动}}页面$3至$4，不留重定向",
 	"logentry-move-move_redir": "$1{{GENDER:$2|移动}}页面$3至$4，覆盖重定向",

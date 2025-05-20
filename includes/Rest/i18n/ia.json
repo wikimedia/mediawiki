@@ -219,5 +219,16 @@
 	"rest-schema-desc-page-history-count": "Numero de modificationes in le historia del pagina",
 	"rest-schema-desc-page-language-links": "Ligamines a altere linguas pro le pagina",
 	"rest-schema-desc-search-results": "Resultatos del recerca",
-	"rest-schema-desc-revision-compare": "Comparation de versiones"
+	"rest-schema-desc-revision-compare": "Comparation de versiones",
+	"rest-endpoint-desc-mock-desc": "Description fictive.",
+	"rest-endpoint-desc-post-page": "Crea un pagina wiki.",
+	"rest-endpoint-desc-get-page-title": "Restitue le contento de un pagina wiki in le formato specificate per le proprietate content_model, le licentia, e information sur le ultime version.",
+	"rest-endpoint-desc-put-page-title": "Modifica un pagina basate sur le ID del ultime version del pagina, o crea le pagina si necun ID de version es fornite.",
+	"rest-endpoint-desc-get-page-title-html": "Restitue le ultime contento de un pagina wiki in HTML. Iste puncto final restitue contento del typo text/html.",
+	"rest-endpoint-desc-get-page-title-with-html": "Restitue information sur un pagina wiki, includente le licentia, le ultime version, e le ultime contento in HTML.",
+	"rest-endpoint-desc-get-page-title-bare": "Restitue le objecto de pagina standard pro un pagina wiki, includente le itinerario API pro obtener le ultime contento in HTML, le licentia, e information sur le ultime version.",
+	"rest-endpoint-desc-get-revision-id": "Restitue metadatos pro un version, includente le codice fonte.",
+	"rest-endpoint-desc-get-revision-id-html": "Restitue le contento de un version in HTML. Iste puncto final restitue contento del typo text/html.",
+	"rest-endpoint-desc-get-revision-id-with-html": "Restitue metadatos pro un version, includente le contento in HTML.",
+	"rest-endpoint-desc-get-revision-id-bare": "Restitue detalios pro un version individual."
 }

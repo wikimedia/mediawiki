@@ -3601,6 +3601,7 @@
 	"logentry-import-interwiki": "$1 {{GENDER:$2|importou}} $3 dende outro wiki",
 	"logentry-import-interwiki-details": "$1 {{GENDER:$2|importou}} $3 desde $5 ($4 {{PLURAL:$4|revisión|revisións}})",
 	"logentry-merge-merge": "$1 {{GENDER:$2|fusionou}} \"$3\" con \"$4\" (revisións ata o $5)",
+	"logentry-merge-merge-into": "$1 {{GENDER:$2|fusionou}} revisións de \"$4\" con \"$3\" (revisións ata o $5)",
 	"logentry-move-move": "$1 {{GENDER:$2|moveu}} a páxina \"$3\" a \"$4\"",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|moveu}} a páxina \"$3\" a \"$4\" sen deixar unha redirección",
 	"logentry-move-move_redir": "$1 {{GENDER:$2|moveu}} a páxina \"$3\" a \"$4\" sobre unha redirección",

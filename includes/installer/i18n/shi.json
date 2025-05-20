@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"AguzulH",
 			"Dalinanir",
 			"Lhoussine AIT TAYFST",
 			"Seb35"
@@ -9,6 +10,6 @@
 	"config-page-language": "tutlayt",
 	"config-page-name": "ism",
 	"config-help": "tiwisi",
-	"mainpagetext": "<strong>MediaWiki tǧizn bla tamukrist.</strong>",
-	"mainpagedocfooter": "Ẓr taǧttnn  [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents/fr Guide de l’utilisateur] bac ad tawit inɣmisn yaḍn f manik sa tswwurt asɣẓan ad.\n\n== Izwir d MediaWiki ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Umuɣ n iɣwwarn n usgadda ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/fr Isqqsitn f MidyWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Umuɣ n imsgdaln f imbḍitn n MidyaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localise MediaWiki for your language]"
+	"mainpagetext": "<strong>Tettusras MidyaWiki s umurs.</strong>",
+	"mainpagedocfooter": "Aggʷ nn f[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents umanar n unsmras] afad ad tawi inɣmisn f manmk s ittusmras usɣẓan ad.\n\n== Asnti d MidyaWiki ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Talgamt n tsmmstay n tsɣal]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Isqsitn ttmyalasnin f MidyaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Talgamt tasawayt n tfifiɣin n WikiMidya]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Ssuɣl MidyaWiki s tutlayt nnk]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Lmd manmk s rad tmmtwit s usbbam ɣ uwiki nnk]"
 }
