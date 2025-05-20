@@ -19,7 +19,7 @@ use MediaWikiUnitTestCase;
 class RevisionStoreRecordTest extends MediaWikiUnitTestCase {
 	use RevisionRecordTests;
 
-	protected function expectedDefaultFieldVisibility( $field ): bool {
+	protected static function expectedDefaultFieldVisibility( $field ): bool {
 		return true;
 	}
 
@@ -83,8 +83,8 @@ class RevisionStoreRecordTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $current, $rev->isCurrent(), 'isCurrent()' );
 	}
 
-	public function provideGetSlot_audience_latest() {
-		return $this->provideAudienceCheckData( RevisionRecord::DELETED_TEXT );
+	public static function provideGetSlot_audience_latest() {
+		return self::provideAudienceCheckData( RevisionRecord::DELETED_TEXT );
 	}
 
 	/**
