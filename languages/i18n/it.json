@@ -4067,6 +4067,7 @@
 	"skin-action-undelete": "Ripristina",
 	"skin-action-delete": "Cancella",
 	"skin-action-move": "Sposta",
+	"skin-json-warning-message": "Questa non è un'API, è solo per il debug! Non utilizzarla in accessori o codice di produzione.",
 	"parsoid-resource-limit-exceeded": "Limite delle risorse Parsoid superato: $1",
 	"newpages-showhide-bots": "$1 i bot",
 	"newpages-showhide-patrolled": "$1 le modifiche verificate",

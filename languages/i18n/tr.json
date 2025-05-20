@@ -181,7 +181,7 @@
 	"dec": "Ara",
 	"period-am": "ÖÖ",
 	"period-pm": "ÖS",
-	"pagecategories": "{{PLURAL:$1|Kategori|Kategori}}",
+	"pagecategories": "{{PLURAL:$1|Kategori|Kategoriler}}",
 	"category_header": "\"$1\" kategorisindeki sayfalar",
 	"subcategories": "Alt kategoriler",
 	"category-media-header": "\"$1\" kategorisindeki ortam dosyaları",

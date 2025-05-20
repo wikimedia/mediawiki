@@ -807,7 +807,7 @@
 	"apihelp-query+deletedrevs-paramvalue-prop-minor": "Отмечает, была ли правка малой.",
 	"apihelp-query+deletedrevs-paramvalue-prop-len": "Добавляет длину правки (в байтах).",
 	"apihelp-query+deletedrevs-paramvalue-prop-sha1": "Добавляет хэш SHA-1 (base 16) правки.",
-	"apihelp-query+deletedrevs-paramvalue-prop-content": "Добавляет содержимое правки.",
+	"apihelp-query+deletedrevs-paramvalue-prop-content": "Добавляет содержимое версии. Из соображений производительности, если используется эта опция, <var>$2limit</var> принудительно устанавливается в значение $1.",
 	"apihelp-query+deletedrevs-paramvalue-prop-token": "Возвращает токен редактирования.",
 	"apihelp-query+deletedrevs-paramvalue-prop-tags": "Метки правки.",
 	"apihelp-query+deletedrevs-example-mode1": "Список последних удалённых правок страниц [[{{MediaWiki:Mainpage}}]] и <kbd>Talk:Main Page</kbd> с содержимым (режим 1).",
