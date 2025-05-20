@@ -1097,7 +1097,7 @@ function wfClientAcceptsGzip( $force = false ) {
 function wfEscapeWikiText( $input ): string {
 	global $wgEnableMagicLinks;
 	static $repl = null, $repl2 = null, $repl3 = null, $repl4 = null;
-	if ( $repl === null || defined( 'MW_PARSER_TEST' ) || defined( 'MW_PHPUNIT_TEST' ) ) {
+	if ( $repl === null || defined( 'MW_PHPUNIT_TEST' ) ) {
 		// Tests depend upon being able to change $wgEnableMagicLinks, so don't cache
 		// in those situations
 		$repl = [

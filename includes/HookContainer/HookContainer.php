@@ -175,7 +175,7 @@ class HookContainer implements SalvageableService {
 	/**
 	 * Clear handlers of the given hook.
 	 * This is intended for use while testing and will fail if MW_PHPUNIT_TEST
-	 * and MW_PARSER_TEST are not defined.
+	 * is not defined.
 	 *
 	 * @param string $hook Name of hook to clear
 	 *
@@ -183,7 +183,7 @@ class HookContainer implements SalvageableService {
 	 * @codeCoverageIgnore
 	 */
 	public function clear( string $hook ): void {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
 			throw new LogicException( 'Cannot reset hooks in operation.' );
 		}
 

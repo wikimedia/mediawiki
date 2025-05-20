@@ -779,7 +779,7 @@ class SiteConfig extends ISiteConfig {
 	protected function shouldValidateExtConfig(): bool {
 		// Only perform json schema validation for extension module
 		// configurations when running tests.
-		return defined( 'MW_PHPUNIT_TEST' ) || defined( 'MW_PARSER_TEST' );
+		return defined( 'MW_PHPUNIT_TEST' );
 	}
 
 	/** @inheritDoc */
