@@ -230,11 +230,12 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		array $parameters = [],
 		?Authority $authority = null,
 		$revision = null,
-		bool $lenientRevHandling = false
+		bool $lenientRevHandling = false,
+		?SimpleParsoidOutputStash $spOutputStash = null
 	): HtmlOutputRendererHelper {
 		$chFactory = $this->getServiceContainer()->getContentHandlerFactory();
 		$cache = $options['cache'] ?? new EmptyBagOStuff();
-		$stash = new SimpleParsoidOutputStash( $chFactory, $cache, 1 );
+		$stash = $spOutputStash ?? new SimpleParsoidOutputStash( $chFactory, $cache, 1 );
 
 		$services = $this->getServiceContainer();
 
@@ -414,9 +415,17 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		[ $page, ] = $this->getExistingPageWithRevisions( __METHOD__ );
 
 		$cache = new HashBagOStuff();
+		$chFactory = $this->createNoOpMock( IContentHandlerFactory::class );
+		$stash = new SimpleParsoidOutputStash( $chFactory, $cache, ( 2 * 60 ) );
 
 		$helper = $this->newHelper(
-			[ 'cache' => $cache, 'expectedHtml' => self::MOCK_HTML ], $page, self::PARAM_DEFAULTS, $this->newAuthority()
+			[ 'cache' => $cache, 'expectedHtml' => self::MOCK_HTML ],
+			$page,
+			self::PARAM_DEFAULTS,
+			$this->newAuthority(),
+			null,
+			false,
+			$stash
 		);
 		$helper->setStashingEnabled( true );
 
@@ -426,8 +435,6 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$eTag = $helper->getETag();
 		$parsoidStashKey = ParsoidRenderID::newFromETag( $eTag );
 
-		$chFactory = $this->createNoOpMock( IContentHandlerFactory::class );
-		$stash = new SimpleParsoidOutputStash( $chFactory, $cache, 1 );
 		$this->assertNotNull( $stash->get( $parsoidStashKey ) );
 	}
 
