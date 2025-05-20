@@ -1500,16 +1500,26 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 	/** @return Generator */
 	public static function provideTryToCreatePageConfigDataThrows() {
 		$en = new Bcp47CodeValue( 'en' );
+		$missingRevisionException = new LocalizedHttpException(
+			new MessageValue(
+				"rest-specified-revision-unavailable",
+				[ 'The specified revision does not exist.' ]
+			),
+			404
+		);
+
 		yield "PageConfig with oldid that doesn't exist" => [
 			'attribs' => [ 'oldid' => null, 'pageName' => 'Test', 'pagelanguage' => $en ],
 			'wikitext' => null,
 			'html2WtMode' => false,
+			'expected' => $missingRevisionException,
 		];
 
 		yield 'PageConfig with a bad title' => [
 			[ 'oldid' => null, 'pageName' => 'Special:Badtitle', 'pagelanguage' => $en ],
 			'wikitext' => null,
 			'html2WtMode' => false,
+			'expected' => $missingRevisionException,
 		];
 
 		yield "PageConfig with a revision that doesn't exist" => [
@@ -1518,6 +1528,23 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			[ 'oldid' => 12345678, 'pageName' => 'Test', 'pagelanguage' => $en ],
 			'wikitext' => null,
 			'html2WtMode' => false,
+			'expected' => new LocalizedHttpException(
+				new MessageValue(
+					"rest-specified-revision-unavailable",
+					[ 'Can\'t find revision 12345678' ]
+				),
+				404
+			),
+		];
+
+		yield 'PageConfig with an invalid title' => [
+			[ 'oldid' => null, 'pageName' => 'Talk:File:Foo.jpg', 'pagelanguage' => $en ],
+			'wikitext' => null,
+			'html2WtMode' => false,
+			'expected' => new LocalizedHttpException(
+				new MessageValue( "rest-invalid-title", [ 'pageName' ] ),
+				400
+			),
 		];
 	}
 
@@ -1526,11 +1553,25 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @dataProvider provideTryToCreatePageConfigDataThrows
 	 */
-	public function testTryToCreatePageConfigThrows( array $attribs, $wikitext, $html2WtMode ) {
-		$this->expectException( HttpException::class );
-		$this->expectExceptionCode( 404 );
+	public function testTryToCreatePageConfigThrows(
+		array $attribs,
+		$wikitext,
+		$html2WtMode,
+		HttpException $expected
+	) {
+		try {
+			$this->newParsoidHandler()->tryToCreatePageConfig( $attribs, $wikitext, $html2WtMode );
+			$this->fail( 'Expected exception: ' . get_class( $expected ) );
+		} catch ( HttpException $e ) {
+			$this->assertSame( get_class( $expected ), get_class( $e ) );
+			$this->assertSame( $expected->getMessage(), $e->getMessage() );
+			$this->assertSame( $expected->getCode(), $e->getCode() );
 
-		$this->newParsoidHandler()->tryToCreatePageConfig( $attribs, $wikitext, $html2WtMode );
+			if ( $expected instanceof LocalizedHttpException ) {
+				$this->assertEquals( $expected->getMessageValue(), $e->getMessageValue() );
+				$this->assertSame( $expected->getErrorData(), $e->getErrorData() );
+			}
+		}
 	}
 
 	public static function provideRoundTripNoSelser() {
