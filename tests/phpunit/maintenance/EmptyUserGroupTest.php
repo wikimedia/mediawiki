@@ -3,6 +3,9 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use EmptyUserGroup;
+use MediaWiki\Logging\LogEntryBase;
+use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 
 /**
@@ -56,6 +59,7 @@ class EmptyUserGroupTest extends MaintenanceBaseTestCase {
 			"Removing users from sysop...\n" .
 			"  ...done! Removed 5 users in total.\n"
 		);
+
 		// Verify all users in the 'sysop' group actually had their group removed.
 		foreach ( $sysopUsers as $user ) {
 			$this->assertNotContains(
@@ -70,5 +74,65 @@ class EmptyUserGroupTest extends MaintenanceBaseTestCase {
 				$this->getServiceContainer()->getUserGroupManager()->getUserGroups( $user )
 			);
 		}
+
+		// Verify that no log entries were created, as this was not configured.
+		$this->newSelectQueryBuilder()
+			->select( 'COUNT(*)' )
+			->from( 'logging' )
+			->where( [ 'log_type' => 'rights' ] )
+			->caller( __METHOD__ )
+			->assertFieldValue( 0 );
+	}
+
+	public function testExecuteForGroupWithUsersWhenCreateLogSpecified() {
+		$sysopUsers = $this->createTestUsersWithGroup( 'sysop', 3 );
+
+		// Run the maintenance script to empty the sysop group and logs being created
+		$this->maintenance->setArg( 0, 'sysop' );
+		$this->maintenance->setOption( 'create-log', 1 );
+		$this->maintenance->setOption( 'log-reason', 'Test log reason' );
+		$this->maintenance->execute();
+		$this->expectOutputString(
+			"Removing users from sysop...\n" .
+			"  ...done! Removed 3 users in total.\n"
+		);
+
+		// Verify all users in the 'sysop' group actually had their group removed.
+		foreach ( $sysopUsers as $user ) {
+			$this->assertNotContains(
+				'sysop',
+				$this->getServiceContainer()->getUserGroupManager()->getUserGroups( $user )
+			);
+		}
+
+		// Verify that log entries were created and that no recentchanges entries were created.
+		$this->newSelectQueryBuilder()
+			->select( 'log_title' )
+			->from( 'logging' )
+			->join( 'actor', null, [ 'log_actor=actor_id' ] )
+			->join( 'comment', null, [ 'log_comment_id=comment_id' ] )
+			->where( [
+				'log_type' => 'rights',
+				'log_action' => 'rights',
+				'actor_name' => User::MAINTENANCE_SCRIPT_USER,
+				'log_namespace' => NS_USER,
+				'log_params' => LogEntryBase::makeParamBlob( [
+					'4::oldgroups' => [ 'sysop' ],
+					'5::newgroups' => [],
+				] ),
+				'comment_text' => 'Test log reason',
+			] )
+			->caller( __METHOD__ )
+			->assertFieldValues(
+				array_map( static function ( UserIdentity $user ) {
+					return Title::newFromText( $user->getName(), NS_USER )->getDBkey();
+				}, $sysopUsers )
+			);
+
+		$this->newSelectQueryBuilder()
+			->select( 'COUNT(*)' )
+			->from( 'recentchanges' )
+			->caller( __METHOD__ )
+			->assertFieldValue( 0 );
 	}
 }
