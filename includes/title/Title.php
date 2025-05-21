@@ -2383,8 +2383,10 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	 * Remove any title protection due to page existing
 	 *
 	 * @deprecated since 1.37, do not use (this is only for WikiPage::onArticleCreate)
+	 *   hard-deprecated since 1.44
 	 */
 	public function deleteTitleProtection() {
+		wfDeprecated( __METHOD__, '1.37' );
 		MediaWikiServices::getInstance()->getRestrictionStore()->deleteCreateProtection( $this );
 	}
 

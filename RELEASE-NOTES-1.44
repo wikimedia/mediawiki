@@ -634,6 +634,8 @@ because of Phabricator reports.
   It is planned to be removed in 1.45. No replacement is provided.
 * WikiPage::doEditUpdates(), deprecated since 1.32, is now emitting warnings.
   Use DerivedPageDataUpdater::doUpdates() instead.
+* Title::deleteTitleProtection(), deprecated in 1.37, now emits warnings.
+  Use RestrictionStore::deleteCreateProtection() instead.
 * IDatabase::setTransactionListener() is now deprecated without replacement.
 * ILBFactory::setWaitForReplicationListener() is now deprecated without
   replacement.

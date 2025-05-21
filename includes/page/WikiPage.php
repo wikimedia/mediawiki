@@ -2442,7 +2442,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 		$hcu->purgeTitleUrls( [ $title, $other ], $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 
 		$title->touchLinks();
-		$title->deleteTitleProtection();
+		$services->getRestrictionStore()->deleteCreateProtection( $title );
 
 		$services->getLinkCache()->invalidateTitle( $title );
 
