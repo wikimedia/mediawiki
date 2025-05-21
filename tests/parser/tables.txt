@@ -2012,3 +2012,18 @@ parsoid=wt2html,wt2wt
    <!--cmt--></td></tr>
 </tbody></table></figcaption></figure>
 !! end
+
+!! test
+First line attributes should be handled by html2wt even without data-parsoid
+!! wikitext
+{|
+|- valign="top"
+|Bar
+|}
+!! html
+<table>
+
+<tbody><tr valign="top">
+<td>Bar
+</td></tr></tbody></table>
+!! end
