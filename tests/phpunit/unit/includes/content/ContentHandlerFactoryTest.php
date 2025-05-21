@@ -46,7 +46,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @dataProvider provideHandlerSpecs $handlerSpecs
+	 * @dataProvider provideHandlerSpecs
 	 */
 	public function testGetContentHandler_callWithProvider_same(
 		array $handlerSpecs, string $contentHandlerClass
@@ -85,7 +85,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @dataProvider provideHandlerSpecs $handlerSpecs
+	 * @dataProvider provideHandlerSpecs
 	 */
 	public function testGetContentHandler_hookWithProvider_same(
 		array $handlerSpecs,
