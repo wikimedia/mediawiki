@@ -1536,7 +1536,6 @@ return [
 			$services->getTitleFormatter(),
 			$services->getPageStore(),
 			$services->getParsoidOutputStash(),
-			$services->getStatsdDataFactory(),
 			$services->getParserOutputAccess(),
 			$services->getParsoidSiteConfig(),
 			$services->getHtmlTransformFactory(),
