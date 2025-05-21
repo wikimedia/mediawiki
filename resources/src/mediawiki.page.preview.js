@@ -212,7 +212,7 @@
 		if ( editable ) {
 			const $editLink = $baseLink.clone()
 				.attr( 'href', template.title.getUrl( { action: 'edit' } ) )
-				.append( mw.msg( canEdit ? 'editlink' : 'viewsourcelink' ) );
+				.append( mw.message( canEdit ? 'editlink' : 'viewsourcelink' ).escaped() );
 
 			const wordSep = mw.message( 'word-separator' ).escaped();
 			return getRestrictionsText( template.apiData.protection || [] )
