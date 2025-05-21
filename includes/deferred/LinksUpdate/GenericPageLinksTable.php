@@ -8,8 +8,8 @@ use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
- * Shared code for pagelinks and templatelinks. They are very similar tables
- * since they both link to an arbitrary page identified by namespace and title.
+ * Shared code for pagelinks, templatelinks and existencelinks. These tables
+ * all link to an arbitrary page identified by namespace and title.
  *
  * Link ID format: string[]:
  *   - 0: namespace ID
@@ -56,7 +56,7 @@ abstract class GenericPageLinksTable extends TitleLinksTable {
 	abstract protected function getTargetIdField();
 
 	/**
-	 * @return mixed
+	 * @return string|null
 	 */
 	abstract protected function getFromNamespaceField();
 
@@ -132,9 +132,11 @@ abstract class GenericPageLinksTable extends TitleLinksTable {
 	}
 
 	protected function insertLink( $linkId ) {
-		$row = [
-			$this->getFromNamespaceField() => $this->getSourcePage()->getNamespace(),
-		];
+		$row = [];
+		$fromNamespaceField = $this->getFromNamespaceField();
+		if ( $fromNamespaceField !== null ) {
+			$row[$fromNamespaceField] = $this->getSourcePage()->getNamespace();
+		}
 		if ( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_OLD ) {
 			$row[$this->getNamespaceField()] = $linkId[0];
 			$row[$this->getTitleField()] = $linkId[1];

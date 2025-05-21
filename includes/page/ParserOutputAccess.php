@@ -664,4 +664,12 @@ class ParserOutputAccess {
 		}
 		return $span->start()->activate();
 	}
+
+	/**
+	 * Clear the local cache
+	 * @since 1.45
+	 */
+	public function clearLocalCache() {
+		$this->localCache->clear();
+	}
 }

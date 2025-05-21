@@ -20,7 +20,6 @@ use MediaWiki\Logger\LoggingContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
-use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Page\WikiPage;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Permissions\Authority;
@@ -2627,18 +2626,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		$services = $this->getServiceContainer();
-		if ( $page instanceof WikiPage ) {
-			$title = $page->getTitle();
-		} elseif ( $page instanceof PageIdentity ) {
-			$page = $services->getWikiPageFactory()->newFromTitle( $page );
-			$title = $page->getTitle();
-		} elseif ( $page instanceof LinkTarget ) {
-			$page = $services->getWikiPageFactory()->newFromLinkTarget( $page );
-			$title = $page->getTitle();
-		} else {
-			$title = $services->getTitleFactory()->newFromText( $page, $defaultNs );
-			$page = $services->getWikiPageFactory()->newFromTitle( $title );
-		}
+		$page = $this->makeWikiPage( $page, $defaultNs );
+		$title = $page->getTitle();
 
 		if ( is_string( $content ) ) {
 			$content = $services->getContentHandlerFactory()
@@ -2654,11 +2643,33 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @param ProperPageIdentity $page
+	 * Make a WikiPage from various types of thing
+	 *
+	 * @param string|PageIdentity|LinkTarget|WikiPage $page
+	 * @param int $defaultNs
+	 * @return WikiPage
+	 */
+	private function makeWikiPage( $page, $defaultNs = NS_MAIN ) {
+		$services = $this->getServiceContainer();
+		if ( $page instanceof WikiPage ) {
+			return $page;
+		} elseif ( $page instanceof PageIdentity ) {
+			return $services->getWikiPageFactory()->newFromTitle( $page );
+		} elseif ( $page instanceof LinkTarget ) {
+			return $services->getWikiPageFactory()->newFromLinkTarget( $page );
+		} else {
+			$title = $services->getTitleFactory()->newFromText( $page, $defaultNs );
+			return $services->getWikiPageFactory()->newFromTitle( $title );
+		}
+	}
+
+	/**
+	 * @param string|PageIdentity|LinkTarget|WikiPage $page
 	 * @param string $summary
 	 * @param Authority|null $deleter
 	 */
-	protected function deletePage( ProperPageIdentity $page, string $summary = '', ?Authority $deleter = null ): void {
+	protected function deletePage( $page, string $summary = '', ?Authority $deleter = null ): void {
+		$page = $this->makeWikiPage( $page );
 		$deleter ??= new UltimateAuthority( new UserIdentityValue( 0, 'MediaWiki default' ) );
 		MediaWikiServices::getInstance()->getDeletePageFactory()
 			->newDeletePage( $page, $deleter )

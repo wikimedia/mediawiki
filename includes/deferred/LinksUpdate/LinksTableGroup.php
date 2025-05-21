@@ -44,6 +44,9 @@ class LinksTableGroup {
 		'externallinks' => [
 			'class' => ExternalLinksTable::class,
 		],
+		'existencelinks' => [
+			'class' => ExistenceLinksTable::class,
+		],
 		'imagelinks' => [
 			'class' => ImageLinksTable::class
 		],

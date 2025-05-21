@@ -1237,6 +1237,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Deferred\\HtmlFileCacheUpdate' => __DIR__ . '/includes/deferred/HtmlFileCacheUpdate.php',
 	'MediaWiki\\Deferred\\JobQueueEnqueueUpdate' => __DIR__ . '/includes/deferred/JobQueueEnqueueUpdate.php',
 	'MediaWiki\\Deferred\\LinksUpdate\\CategoryLinksTable' => __DIR__ . '/includes/deferred/LinksUpdate/CategoryLinksTable.php',
+	'MediaWiki\\Deferred\\LinksUpdate\\ExistenceLinksTable' => __DIR__ . '/includes/deferred/LinksUpdate/ExistenceLinksTable.php',
 	'MediaWiki\\Deferred\\LinksUpdate\\ExternalLinksTable' => __DIR__ . '/includes/deferred/LinksUpdate/ExternalLinksTable.php',
 	'MediaWiki\\Deferred\\LinksUpdate\\GenericPageLinksTable' => __DIR__ . '/includes/deferred/LinksUpdate/GenericPageLinksTable.php',
 	'MediaWiki\\Deferred\\LinksUpdate\\ImageLinksTable' => __DIR__ . '/includes/deferred/LinksUpdate/ImageLinksTable.php',

@@ -136,7 +136,7 @@ class HTMLCacheUpdateJob extends Job {
 		// anyway. We assume that vast majority of the cache jobs finish before the link jobs,
 		// so using the current timestamp instead of the root timestamp is not expected to
 		// invalidate these cache entries too often.
-		$newTouchedUnix = time();
+		$newTouchedUnix = (int)wfTimestamp();
 		// Timestamp used to bypass pages already invalided since the triggering event
 		$casTsUnix = $rootTsUnix ?? $newTouchedUnix;
 
