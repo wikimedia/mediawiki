@@ -978,7 +978,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 				static function () {
 					return 'noop';
 				},
-				2
+				1
 			]
 		] ] ] );
 

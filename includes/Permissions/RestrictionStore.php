@@ -567,13 +567,6 @@ class RestrictionStore {
 			->join( 'page', null, 'page_id=pr_page' )
 			->where( [ 'pr_cascade' => 1 ] );
 
-		$imageQuery = clone $baseQuery;
-		$imageQuery->join( 'imagelinks', null, 'il_from=pr_page' )
-			->fields( [
-				'type' => $dbr->addQuotes( 'il' ),
-			] )
-			->andWhere( [ 'il_to' => $page->getDBkey() ] );
-
 		$templateQuery = clone $baseQuery;
 		$templateQuery->join( 'templatelinks', null, 'tl_from=pr_page' )
 			->fields( [
@@ -584,6 +577,13 @@ class RestrictionStore {
 			);
 
 		if ( $page->getNamespace() === NS_FILE ) {
+			$imageQuery = clone $baseQuery;
+			$imageQuery->join( 'imagelinks', null, 'il_from=pr_page' )
+				->fields( [
+					'type' => $dbr->addQuotes( 'il' ),
+				] )
+				->andWhere( [ 'il_to' => $page->getDBkey() ] );
+
 			$unionQuery = $dbr->newUnionQueryBuilder()
 				->add( $imageQuery )
 				->add( $templateQuery )
@@ -602,11 +602,19 @@ class RestrictionStore {
 			$expiry = $dbr->decodeExpiry( $row->pr_expiry );
 			if ( $expiry > $now ) {
 				if ( $row->type === 'il' ) {
-					$ilSources[$row->pr_page] = new PageIdentityValue( $row->pr_page,
-					$row->page_namespace, $row->page_title, PageIdentity::LOCAL );
+					$ilSources[$row->pr_page] = new PageIdentityValue(
+						$row->pr_page,
+						$row->page_namespace,
+						$row->page_title,
+						PageIdentity::LOCAL
+					);
 				} elseif ( $row->type === 'tl' ) {
-					$tlSources[$row->pr_page] = new PageIdentityValue( $row->pr_page,
-					$row->page_namespace, $row->page_title, PageIdentity::LOCAL );
+					$tlSources[$row->pr_page] = new PageIdentityValue(
+						$row->pr_page,
+						$row->page_namespace,
+						$row->page_title,
+						PageIdentity::LOCAL
+					);
 				}
 
 				// Add groups needed for each restriction type if its not already there
