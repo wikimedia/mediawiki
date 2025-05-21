@@ -80,7 +80,16 @@ exports.config = {
 
 		// For Chrome/Chromium https://www.w3.org/TR/webdriver
 		browserName: 'chrome',
+		// Use correct browser and driver in CI
+		...( process.env.CI && {
+			'wdio:chromedriverOptions': {
+				binary: '/usr/bin/chromedriver'
+			}
+		} ),
 		'goog:chromeOptions': {
+			...( process.env.CI && {
+				binary: '/usr/bin/chromium'
+			} ),
 			// If DISPLAY is set, assume developer asked non-headless or CI with Xvfb.
 			// Otherwise, use --headless.
 			args: [
