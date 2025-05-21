@@ -2,11 +2,13 @@
 @import 'mediawiki.skin.variables.less';
 @import 'mediawiki.mixins.less';
 
+@defaultFormWidth: 290px;
+
 .mw-htmlform {
 	box-sizing: border-box;
 
 	@media ( min-width: @min-width-breakpoint-tablet ) {
-		min-width: @size-4000;
+		width: @defaultFormWidth;
 	}
 }
 
