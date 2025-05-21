@@ -112,7 +112,8 @@ because of Phabricator reports.
   'SkinCopyrightFooter', and the config option $wgAllowRawHtmlCopyrightMessages
   have all been removed. Instead use the messages 'copyright-footer' and
   'copyright-footer-history', and the hook 'SkinCopyrightFooterMessage'.
-* The SiteConfiguration::extractGlobalSetting method, unused, is now private.
+* The SiteConfiguration::extractGlobalSetting method, not used outside of
+  SiteConfiguration class, is now private.
 * AuthManager::forcePrimaryAuthenticationProviders(), deprecated in 1.43 has
   been removed.
 * The following LogPager methods are deprecated without replacement:
