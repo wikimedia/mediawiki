@@ -39,6 +39,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\Event\PageProtectionChangedEvent;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
@@ -1943,19 +1944,26 @@ class WikiPage implements Stringable, Page, PageRecord {
 		$changed = false;
 
 		$dbw = $services->getConnectionProvider()->getPrimaryDatabase();
+		$restrictionMapBefore = [];
+		$restrictionMapAfter = [];
 
 		foreach ( $restrictionTypes as $action ) {
 			if ( !isset( $expiry[$action] ) || $expiry[$action] === $dbw->getInfinity() ) {
 				$expiry[$action] = 'infinity';
 			}
-			if ( !isset( $limit[$action] ) ) {
-				$limit[$action] = '';
-			} elseif ( $limit[$action] != '' ) {
-				$protect = true;
-			}
 
 			// Get current restrictions on $action
-			$current = implode( '', $restrictionStore->getRestrictions( $this->mTitle, $action ) );
+			$restrictionMapBefore[$action] = $restrictionStore->getRestrictions( $this->mTitle, $action );
+			$limit[$action] ??= '';
+
+			if ( $limit[$action] === '' ) {
+				$restrictionMapAfter[$action] = [];
+			} else {
+				$protect = true;
+				$restrictionMapAfter[$action] = explode( ',', $limit[$action] );
+			}
+
+			$current = implode( ',', $restrictionMapBefore[$action] );
 			if ( $current != '' ) {
 				$isProtected = true;
 			}
@@ -2154,6 +2162,20 @@ class WikiPage implements Stringable, Page, PageRecord {
 		}
 		$logId = $logEntry->insert();
 		$logEntry->publish( $logId );
+
+		$event = new PageProtectionChangedEvent(
+			$this,
+			$restrictionMapBefore,
+			$restrictionMapAfter,
+			$expiry,
+			$cascade,
+			$user,
+			$reason,
+			$tags
+		);
+
+		$dispatcher = MediaWikiServices::getInstance()->getDomainEventDispatcher();
+		$dispatcher->dispatch( $event, $services->getConnectionProvider() );
 
 		return Status::newGood( $logId );
 	}

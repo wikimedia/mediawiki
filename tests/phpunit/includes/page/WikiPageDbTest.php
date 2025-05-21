@@ -12,6 +12,7 @@ use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\Event\PageProtectionChangedEvent;
 use MediaWiki\Page\Event\PageRevisionUpdatedEvent;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
@@ -1551,29 +1552,59 @@ more stuff
 
 		$cascade = false;
 
-		// Expect that the onArticleProtect and onArticleProtectComplete hooks are called for successful calls.
-		$articleProtectHookCalled = false;
-		$this->setTemporaryHook(
-			'ArticleProtect',
-			static function () use ( &$articleProtectHookCalled ) {
-				$articleProtectHookCalled = true;
-			},
-			false
-		);
+		// Expect that the onArticleProtect and onArticleProtectComplete hooks.
+		$this->expectHook( 'ArticleProtect' );
+		$this->expectHook( 'ArticleProtectComplete' );
 
-		$articleProtectCompleteHookCalled = false;
-		$this->setTemporaryHook(
-			'ArticleProtectComplete',
-			static function () use ( &$articleProtectCompleteHookCalled ) {
-				$articleProtectCompleteHookCalled = true;
-			},
-			false
+		// Expect PageProtectionChangedEvent
+		$this->expectDomainEvent(
+			PageProtectionChangedEvent::TYPE, 1,
+			static function ( PageProtectionChangedEvent $event ) use (
+				$page,
+				$user,
+				$cascade,
+				$expectedRestrictions,
+				$expectedRestrictionExpiries
+			) {
+				Assert::assertTrue( $page->isSamePageAs( $event->getPage() ), 'getPage' );
+				Assert::assertSame( $page->getId(), $event->getPageId() );
+
+				Assert::assertSame(
+					$user->getName(),
+					$event->getPerformer()->getName(),
+					'getPerformer'
+				);
+				Assert::assertSame(
+					$cascade,
+					$event->isCascadingAfter(),
+					'isCascadingAfter'
+				);
+
+				$defaultRestrictions = array_fill_keys(
+					array_keys( $expectedRestrictions ),
+					[]
+				);
+
+				$defaultExpiry = array_fill_keys(
+					array_keys( $expectedRestrictions ),
+					'infinity'
+				);
+
+				Assert::assertSame( $defaultRestrictions,
+					$event->getRestrictionMapBefore(),
+					'getRestrictionMapBefore' );
+
+				Assert::assertSame( $expectedRestrictions,
+					$event->getRestrictionMapAfter(),
+					'getRestrictionMapAfter' );
+
+				Assert::assertSame( $expectedRestrictionExpiries + $defaultExpiry,
+					$event->getExpiryAfter(),
+					'getExpiryAfter' );
+			}
 		);
 
 		$status = $page->doUpdateRestrictions( $limit, $expiry, $cascade, 'aReason', $userIdentity, [] );
-
-		$this->assertTrue( $articleProtectCompleteHookCalled );
-		$this->assertTrue( $articleProtectHookCalled );
 
 		$logId = $status->getValue();
 		$restrictionStore = $this->getServiceContainer()->getRestrictionStore();
@@ -1639,6 +1670,12 @@ more stuff
 		// The first entry should have a logId as it did something
 		$this->assertStatusGood( $status );
 		$this->assertIsInt( $status->getValue() );
+
+		// Expect no hooks and events (flush pending events first)
+		$this->runDeferredUpdates();
+		$this->expectHook( 'ArticleProtect', 0 );
+		$this->expectHook( 'ArticleProtectComplete', 0 );
+		$this->expectDomainEvent( PageProtectionChangedEvent::TYPE, 0 );
 
 		$status = $page->doUpdateRestrictions(
 			$limit,
