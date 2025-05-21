@@ -2510,6 +2510,7 @@
 	"tooltip-ca-viewsource": "Ca pagino esas protektita. Vu povas vidar olua fonto-kodo",
 	"tooltip-ca-history": "Pasinta versioni di ca pagino",
 	"tooltip-ca-protect": "Protektez ica pagino",
+	"tooltip-ca-unprotect": "Modifikar la protektado di ca pagino",
 	"tooltip-ca-delete": "Efacez ica pagino",
 	"tooltip-ca-move": "Movez pagino",
 	"tooltip-ca-watch": "Adjuntez ca pagino a vua surveyaji",

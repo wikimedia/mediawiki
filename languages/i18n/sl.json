@@ -974,7 +974,7 @@
 	"searchresultshead": "Nastavitve poizvedovanja",
 	"prefs-description-misc": "Prilagodite kazalo vsebine.",
 	"prefs-help-watchlist-token2": "To je skrivni ključ do spletnega vira vašega nadzornega seznama.\nKdor ga pozna, lahko bere vaš nadzorni seznam, zato ga ne delite.\nČe želite, [[Special:ResetTokens|ga lahko ponastavite]].",
-	"savedrights": "Uporabniške skupine {{GENDER:$1|$1}} soo shranjene.",
+	"savedrights": "Uporabniške skupine {{GENDER:$1|$1}} so shranjene.",
 	"prefs-namespaces": "Imenski prostori",
 	"default": "privzeto",
 	"linterror-bogus-image-options": "Neveljavna datotečna možnost",

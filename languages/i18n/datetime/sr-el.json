@@ -117,7 +117,7 @@
 	"years": "{{PLURAL:$1|$1 godina|$1 godine}}",
 	"months": "{{PLURAL:$1|$1 mesec|$1 meseci}}",
 	"weeks": "{{PLURAL:$1|$1 nedelja|$1 nedelje|$1 nedelja}}",
-	"days": "{{PLURAL:$1|$1 dan|$1 dana|$1 dana}}",
+	"days": "{{PLURAL:$1|$1 dan|$1 dana}}",
 	"hours": "{{PLURAL:$1|$1 sat|$1 sata|$1 sati}}",
 	"minutes": "{{PLURAL:$1|$1 minut|$1 minuta|$1 minuta}}",
 	"seconds": "{{PLURAL:$1|$1 sekunda|$1 sekunda|$1 sekundi}}",

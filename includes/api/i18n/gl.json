@@ -1346,7 +1346,7 @@
 	"apihelp-query+userinfo-paramvalue-prop-options": "Lista todas as preferencias que ten seleccionadas o usuario actual.",
 	"apihelp-query+userinfo-paramvalue-prop-editcount": "Engade o contador de edicións do usuario actual.",
 	"apihelp-query+userinfo-paramvalue-prop-ratelimits": "Lista todos o límites de rango aplicados ó usuario actual.",
-	"apihelp-query+userinfo-paramvalue-prop-theoreticalratelimits": "Lista todos o límites de rango que se aplicarían ó usuario actual se non estivese exento dos límites en base aos seus dereitos de usuario ou o seu enderezo IP",
+	"apihelp-query+userinfo-paramvalue-prop-theoreticalratelimits": "Lista todos o límites de rango que se aplicarían ó usuario actual se non estivese exento dos límites en base aos seus dereitos de usuario ou o seu enderezo IP.",
 	"apihelp-query+userinfo-paramvalue-prop-realname": "Engade o nome real do usuario.",
 	"apihelp-query+userinfo-paramvalue-prop-email": "Engade o enderezo de correo electrónico do usuario e a data de autenticación dese enderezo.",
 	"apihelp-query+userinfo-paramvalue-prop-acceptlang": "Reenvía a cabeceira <code>Accept-Language</code> enviada polo cliente nun formato estruturado.",

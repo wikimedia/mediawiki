@@ -3775,7 +3775,7 @@
 	"logentry-protect-modify-cascade": "$1 изменил{{GENDER:$2||а}} настройки защиты $3 $4 [каскадно]",
 	"logentry-rights-rights": "$1 изменил{{GENDER:$2||а}} членство в группах для {{GENDER:$6|$3}}: $7",
 	"logentry-rights-rights-granted": "присвоил{{GENDER:$2||а}} $1",
-	"logentry-rights-rights-revoked": "отозвал{{GENDER:$2||а}} $1",
+	"logentry-rights-rights-revoked": "снял{{GENDER:$2||а}} $1",
 	"logentry-rights-rights-expiry-changed": "изменил{{GENDER:$2||а}} срок у $1",
 	"logentry-rights-rights-kept": "оставил{{GENDER:$2||а}} $1 без изменений",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|изменил|изменила}} членство в группах для $3",
